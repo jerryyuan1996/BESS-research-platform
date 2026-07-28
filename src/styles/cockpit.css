@@ -1,0 +1,42 @@
+/* ---------------------------------------------------------------------------
+   Home-page (global cockpit) only: hero, market-card grid, league-table heatmap,
+   segmented controls, FX row and the $1M engine matrix (prototype lines 270-312).
+   The .dash-overlay/.dash-bar/.dash-frame rules from the prototype are intentionally
+   dropped - the srcdoc iframe they styled no longer exists (see docs/migration-notes.md).
+   --------------------------------------------------------------------------- */
+/* ---------- hub-specific additions (design language inherited from engine.css) ---------- */
+.hero{padding:6px 0 2px;}
+.hero .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px;}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:12px;margin:14px 0 6px;}
+.mcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 15px;display:flex;flex-direction:column;gap:8px;}
+.mcard .mhead{display:flex;align-items:center;gap:8px;}
+.mcard .flag{font-size:20px;line-height:1;}
+.mcard h3{font-size:14.5px;font-weight:650;}
+.mcard .arch{font-size:11px;color:var(--muted);}
+.mcard .mstats{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.mcard .ms{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:6px 8px;}
+.mcard .ms .l{font-size:10px;color:var(--muted);line-height:1.3;}
+.mcard .ms .v{font-size:15px;font-weight:650;margin-top:1px;}
+.mcard .thesis{font-size:11.5px;color:var(--ink2);line-height:1.45;flex:1;}
+.mcard .enter{display:block;text-align:center;border:1px solid var(--s1);background:var(--accent-bg);color:var(--ink);
+  border-radius:8px;padding:7px 10px;font-size:12.5px;font-weight:600;text-decoration:none;}
+.mcard .enter:hover{background:var(--s1);color:#fff;text-decoration:none;}
+.hm td.best{background:var(--good-bg);font-weight:650;}
+.hm td.worst{background:var(--serious-bg);}
+.hm td.ctx{color:var(--muted);font-style:italic;}
+.hm .rowlbl{max-width:230px;}
+.seg{display:inline-flex;gap:4px;flex-wrap:wrap;}
+.seg .btn.active{background:var(--accent-bg);border-color:var(--s1);font-weight:600;}
+.fxrow{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:11.5px;color:var(--muted);margin-top:6px;}
+/* ---------- $1M engine matrix, grouped by market ---------- */
+.eng table{border-collapse:separate;border-spacing:0;}
+.eng td{border-bottom:1px solid var(--grid);}
+.eng tr.grp-first td{border-top:2px solid var(--baseline);}
+.eng tr.alt td{background:var(--bg);}
+.eng td.mcell{vertical-align:middle;border-left:4px solid var(--mc);padding-left:10px;white-space:nowrap;}
+.eng td.mcell .mflag{font-size:17px;margin-right:6px;vertical-align:middle;}
+.eng td.mcell .mname{font-weight:650;color:var(--ink);font-size:13px;}
+.eng td.mcell .march{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;}
+.eng td .snote{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;font-weight:400;}
+.eng td.best{background:var(--good-bg);}
+
