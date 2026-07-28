@@ -1,0 +1,12 @@
+# Normalize line endings. The ETL writes JSON snapshots from Linux CI runners and
+# they are edited on Windows; without this, every snapshot would show as fully
+# rewritten on each platform switch and the drift diffs would be unreadable.
+* text=auto eol=lf
+
+# Data snapshots are machine-written. Keeping them out of diff noise makes an
+# actual value change visible in review.
+public/data/** linguist-generated=true
+
+# Large verbatim prototypes, kept for verification only.
+legacy/*.html   linguist-vendored=true
+reference/*.html linguist-vendored=true

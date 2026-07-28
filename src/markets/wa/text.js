@@ -1,0 +1,37 @@
+/* ---------------------------------------------------------------------------
+   WA UI strings, verbatim from the prototype (lines 292-321). Bilingual pairs.
+   --------------------------------------------------------------------------- */
+
+
+// ---------------- common UI strings ----------------
+const T = {
+  title: ['Western Australia Battery Investment Dashboard', '西澳储能投资看板'],
+  sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application.',
+        '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。'],
+  asOf: ['Seed snapshot verified', '种子数据核验日期'],
+  dataDate: ['Latest data date', '最新数据日期'],
+  tz: ['All timestamps AWST', '所有时间为西澳标准时间(AWST)'],
+  srcHealth: ['Source health: SEED — public sources refreshed Jul 2026, automated checks not yet running', '数据源状态：种子数据 — 公开来源已于2026年7月刷新，自动检测尚未运行'],
+  nextMilestone: ['Next RCM milestone: verify against the AEMO Reserve Capacity Timetable', '下一RCM里程碑：请以AEMO备用容量周期时间表为准'],
+  disclaimer: ['This dashboard supports, but does not replace, independent investment, legal, technical and financial analysis. Composite signals, recommended durations and suggested commercial terms are generated from the stated methodology and the data sources shown; they are not investment advice and should not be relied upon as the sole basis for a transaction decision.',
+               '本看板用于辅助而非替代独立的投资、法律、技术及财务分析。综合信号、建议时长及建议商业条款均基于所示方法及数据来源生成，不构成投资建议，不应作为交易决策的唯一依据。'],
+  seedWarn: ['Every value on this page is a SEED_JSON_V1 snapshot or an illustrative placeholder. No KPI is production-complete until its live ingestion, validation and source-health check are operational (spec §22.0).',
+             '本页所有数值均为SEED_JSON_V1种子快照或示例占位数据。在其实时抓取、校验及源健康检测上线前，任何KPI均不可用于生产决策（规范§22.0）。'],
+  codYearLbl: ['Forecast COD year', '预计投运容量年度'],
+  themeLbl: ['Theme', '主题'],
+  badgeOfficial: ['Verified official (seed)', '官方已验证（种子）'],
+  badgeCalc: ['Calculated from official data', '基于官方数据计算'],
+  badgeIllus: ['Illustrative seed — not official', '示例种子 — 非官方'],
+  badgeForecast: ['Forecast', '预测'],
+  badgeDev: ['Developer-reported', '开发商披露'],
+  yoy: ['year on year', '同比'],
+  vsPrior: ['vs Q1 2025', '对比2025年一季度'],
+  score: ['Score', '评分'],
+  weight: ['Weight', '权重'],
+  factor: ['Factor', '因子'],
+  total: ['Total', '合计'],
+  downloadCsv: ['Download KPI CSV', '下载KPI CSV'],
+  downloadJson: ['Download seed JSON', '下载种子JSON'],
+};
+
+export { T };

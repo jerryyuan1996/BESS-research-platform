@@ -1,0 +1,5 @@
+# Cloudflare Pages SPA fallback.
+# The app uses History API routing, so /markets/wa is a client-side route with no
+# file behind it. Without this rule a direct visit or a refresh on that URL 404s.
+# 200 (rewrite, not redirect) keeps the URL intact so the router can read it.
+/*    /index.html   200

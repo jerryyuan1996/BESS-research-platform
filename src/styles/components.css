@@ -1,0 +1,161 @@
+/* ---------------------------------------------------------------------------
+   Shared UI vocabulary: header, buttons, disclaimer, KPIs, chips, badges, tables,
+   meters, note/warning/recommendation boxes, forms, footer, decision-logic footnotes,
+   thresholds, waterfall lists, source drawers, status ladders, players, exits, compares.
+   (prototype lines 46-66, 94-139, 157-184, 216-265, 267)
+   --------------------------------------------------------------------------- */
+/* ---------- header ---------- */
+.hdr{padding:20px 0 12px; display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start; justify-content:space-between;}
+.hdr h1{font-size:22px; font-weight:650; letter-spacing:-.01em;}
+.hdr .sub{color:var(--ink2); font-size:13px; margin-top:2px; max-width:640px;}
+.hdr-meta{display:flex; flex-wrap:wrap; gap:8px 14px; font-size:12px; color:var(--muted); margin-top:8px; align-items:center;}
+.hdr-meta b{color:var(--ink2); font-weight:600;}
+.ctrls{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+.btn{
+  border:1px solid var(--border); background:var(--surface); color:var(--ink);
+  border-radius:8px; padding:6px 12px; font-size:13px; cursor:pointer; font-family:inherit;
+}
+.btn:hover{border-color:var(--baseline);}
+.btn.active{background:var(--accent-bg); border-color:var(--s1); font-weight:600;}
+select.btn{padding:6px 8px;}
+
+/* ---------- disclaimer ---------- */
+.disc{
+  background:var(--warn-bg); border:1px solid var(--border); border-radius:10px;
+  padding:10px 14px; font-size:12px; color:var(--ink2); margin:8px 0 14px;
+}
+.disc b{color:var(--ink);}
+/* ---------- kpis ---------- */
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; margin:10px 0;}
+.kpi{background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:10px 12px;}
+.kpi .lbl{font-size:11.5px; color:var(--muted); line-height:1.35; min-height:30px;}
+.kpi .val{font-size:21px; font-weight:650; margin-top:3px; letter-spacing:-.01em;}
+.kpi .val small{font-size:12px; font-weight:500; color:var(--ink2);}
+.kpi .delta{font-size:12px; margin-top:2px; color:var(--ink2);}
+.delta.up{color:var(--good);} .delta.down{color:var(--critical);}
+
+/* ---------- chips & badges ---------- */
+.chip{
+  display:inline-flex; align-items:center; gap:5px; border-radius:999px;
+  font-size:11.5px; font-weight:600; padding:3px 10px; border:1px solid var(--border); white-space:nowrap;
+}
+.chip::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--muted); flex:none;}
+.chip.good{background:var(--good-bg);} .chip.good::before{background:var(--good);}
+.chip.warn{background:var(--warn-bg);} .chip.warn::before{background:var(--warn);}
+.chip.serious{background:var(--serious-bg);} .chip.serious::before{background:var(--serious);}
+.chip.critical{background:var(--critical-bg);} .chip.critical::before{background:var(--critical);}
+.chip.info{background:var(--accent-bg);} .chip.info::before{background:var(--s1);}
+.badge{
+  display:inline-block; border-radius:6px; font-size:10.5px; font-weight:600; padding:2px 7px;
+  border:1px solid var(--border); color:var(--ink2); vertical-align:middle; white-space:nowrap;
+}
+.badge.official{border-color:var(--good); color:var(--good);}
+.badge.calc{border-color:var(--s1); color:var(--s1);}
+.badge.illus{border-color:var(--serious); color:var(--serious);}
+.badge.seed{background:var(--bg); color:var(--muted);}
+.badge.etl{border-color:var(--critical); color:var(--critical);}
+.badge.tp{border-color:var(--s5); color:var(--s5);}
+.badge.conf{background:var(--critical-bg); border-color:var(--critical); color:var(--critical);}
+.badge.recon{border-color:var(--muted); color:var(--muted);}
+.badge.gross{border-color:var(--serious); color:var(--serious); background:var(--serious-bg);}
+.badge.mismatch{border-color:var(--warn); color:var(--warn); background:var(--warn-bg);}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto; margin-top:8px;}
+table{border-collapse:collapse; width:100%; font-size:12.5px;}
+th{
+  text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em;
+  color:var(--muted); font-weight:600; padding:6px 10px 6px 0; border-bottom:1px solid var(--baseline); white-space:nowrap;
+}
+td{padding:6px 10px 6px 0; border-bottom:1px solid var(--grid); vertical-align:top; color:var(--ink2);}
+td b{color:var(--ink); font-weight:600;}
+td.num, th.num{text-align:right; font-variant-numeric:tabular-nums;}
+tr:last-child td{border-bottom:none;}
+/* ---------- meters ---------- */
+.meter{height:10px; border-radius:5px; background:var(--grid); overflow:hidden; margin:6px 0 2px;}
+.meter > div{height:100%; border-radius:5px;}
+.score-row{display:flex; align-items:center; gap:10px; font-size:12px; margin:4px 0;}
+.score-row .sr-lbl{flex:0 0 218px; color:var(--ink2); line-height:1.3;}
+.score-row .sr-bar{flex:1; height:8px; background:var(--grid); border-radius:4px; overflow:hidden;}
+.score-row .sr-bar > div{height:100%; border-radius:4px; background:var(--s1);}
+.score-row .sr-val{flex:0 0 76px; text-align:right; font-variant-numeric:tabular-nums; color:var(--ink);}
+
+/* ---------- misc ---------- */
+.flow{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:10px 0;}
+.flow .fbox{background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:6px 10px; font-size:12px; color:var(--ink2); max-width:200px;}
+.flow .farr{color:var(--muted); font-size:14px;}
+.note{background:var(--accent-bg); border:1px solid var(--border); border-radius:10px; padding:10px 14px; font-size:12.5px; color:var(--ink2); margin:10px 0;}
+.warnbox{background:var(--serious-bg); border:1px solid var(--serious); border-radius:10px; padding:10px 14px; font-size:12.5px; color:var(--ink); margin:10px 0;}
+.reco{background:var(--good-bg); border:1px solid var(--good); border-radius:10px; padding:12px 14px; font-size:13px; margin:10px 0;}
+.inp{border:1px solid var(--border); background:var(--bg); color:var(--ink); border-radius:7px; padding:5px 8px; font-size:12.5px; font-family:inherit; width:100%; font-variant-numeric:tabular-nums;}
+.inp:focus{outline:2px solid var(--s1); outline-offset:0;}
+.frm{display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:8px 12px; margin:10px 0;}
+.frm label{font-size:11px; color:var(--muted); display:block;}
+details{margin:8px 0;}
+details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink2); padding:4px 0;}
+.footer{margin-top:30px; border-top:1px solid var(--border); padding-top:14px; font-size:11.5px; color:var(--muted);}
+.actions li{margin:8px 0 8px 18px; color:var(--ink2);}
+.actions .trig{display:block; font-size:11.5px; color:var(--muted); margin-top:2px;}
+.case{border-left:3px solid var(--s1); padding:2px 0 2px 12px; margin:12px 0;}
+.case h4{font-size:13px; margin-bottom:3px;}
+.case p{font-size:12.5px; color:var(--ink2);}
+/* ---------- Kemerton underwriting extensions ---------- */
+.badge.final{border-color:var(--good);color:var(--good);background:var(--good-bg)}
+.badge.draft{border-color:var(--warn);color:var(--warn);background:var(--warn-bg)}
+.badge.project{border-color:var(--s5);color:var(--s5)}
+.badge.model{border-color:var(--s1);color:var(--s1);background:var(--accent-bg)}
+.badge.contract{border-color:var(--good);color:var(--good)}
+.badge.superseded{border-color:var(--muted);color:var(--muted);text-decoration:line-through}
+.threshold{position:relative;margin:14px 4px 8px;padding-top:34px}
+.threshold-track{height:12px;border-radius:7px;background:linear-gradient(90deg,var(--good-bg),var(--warn-bg) 65%,var(--critical-bg));border:1px solid var(--border);position:relative}
+.threshold-fill{position:absolute;left:0;top:0;height:100%;border-radius:7px;background:var(--s1);opacity:.45}
+.threshold-mark{position:absolute;top:-29px;transform:translateX(-50%);font-size:10.5px;color:var(--ink2);text-align:center;white-space:nowrap}
+.threshold-mark::after{content:"";position:absolute;left:50%;top:24px;width:1px;height:20px;background:var(--ink2)}
+.threshold-mark.asset{font-weight:700;color:var(--s1);top:-45px}
+.threshold-mark.asset::after{width:3px;background:var(--s1)}
+.waterfall-list{display:grid;gap:7px;margin-top:10px}
+.wf-row{display:grid;grid-template-columns:minmax(210px,1fr) 110px minmax(180px,1.2fr);gap:10px;align-items:center;font-size:12px;padding:5px 0;border-bottom:1px solid var(--grid)}
+.wf-row:last-child{border-bottom:none}.wf-row .v{text-align:right;font-weight:650;color:var(--ink)}
+.source-drawer{margin-top:10px;border-top:1px solid var(--grid);padding-top:6px}
+.source-drawer summary{font-size:11.5px;color:var(--muted)}
+.source-grid{display:grid;grid-template-columns:130px 1fr;gap:5px 10px;font-size:11.5px;color:var(--ink2);margin-top:6px}
+.source-grid b{color:var(--ink)}
+.status-ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:7px;margin:10px 0}
+.status-step{border:1px solid var(--border);border-radius:9px;background:var(--bg);padding:9px 10px;font-size:11.5px}
+.status-step b{display:block;color:var(--ink);margin-bottom:3px}.status-step span{color:var(--ink2)}
+.ic-summary{border-left:4px solid var(--serious);background:var(--serious-bg);padding:12px 14px;border-radius:0 10px 10px 0;margin:12px 0}
+
+/* ---------- decision-logic footnotes (one under every chart / stat block) ---------- */
+.why{margin:9px 0 2px;padding:8px 11px 8px 13px;border-left:3px solid var(--s1);background:var(--accent-bg);border-radius:0 8px 8px 0;font-size:11.5px;line-height:1.55;color:var(--ink2)}
+.why b{color:var(--ink);font-weight:650}
+.why .sig{display:inline-block;margin-left:6px;padding:1px 6px;border:1px solid var(--border);border-radius:20px;font-size:10px;color:var(--muted);white-space:nowrap}
+.badge.supp{border-color:var(--s3);color:var(--s3)}
+.badge.nem{border-color:var(--s6);color:var(--s6)}
+.badge.public{border-color:var(--s2);color:var(--s2)}
+/* ---------- market-structure blocks (players, exit routes, holders) ---------- */
+.player-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:9px;margin:10px 0}
+.player{border:1px solid var(--border);border-radius:10px;background:var(--bg);padding:10px 11px}
+.player .ptype{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.player h4{font-size:13px;margin:3px 0 4px}
+.player .pmet{font-size:12px;font-weight:650;color:var(--s1);font-variant-numeric:tabular-nums}
+.player p{font-size:11.5px;color:var(--ink2);margin-top:4px}
+.exit{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:start;padding:9px 0;border-bottom:1px solid var(--grid);font-size:12.5px}
+.exit:last-child{border-bottom:none}
+.exit .ename{font-weight:650;color:var(--ink)}
+.exit .ecase{font-size:11.5px;color:var(--muted);margin-top:3px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.cmp>div{border:1px solid var(--border);border-radius:10px;padding:11px 12px;background:var(--bg)}
+.cmp .cmp-h{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:5px}
+.cmp .cmp-v{font-size:19px;font-weight:650;font-variant-numeric:tabular-nums}
+.cmp .cmp-s{font-size:11.5px;color:var(--ink2);margin-top:3px}
+@media (max-width:760px){.wf-row{grid-template-columns:1fr}.wf-row .v{text-align:left}.source-grid{grid-template-columns:1fr}.threshold-mark{font-size:9px}.exit{grid-template-columns:1fr}.cmp{grid-template-columns:1fr}}
+@media (max-width:640px){ .score-row .sr-lbl{flex-basis:130px;} .g2{grid-template-columns:1fr;} }
+
+/* ---------- regional-lens badges (multi-region markets) ----------
+   A block carrying one of these shows area-specific data; anything without one
+   is national. Colours match each region's series colour and stay fixed across
+   every tab of the market's dashboard. */
+.badge.jp-national{border-color:var(--muted);color:var(--muted)}
+.badge.jp-tokyo{border-color:var(--s7);color:var(--s7)}
+.badge.jp-kyushu{border-color:var(--s8);color:var(--s8)}
+.badge.jp-hokkaido{border-color:var(--s4);color:var(--s4)}

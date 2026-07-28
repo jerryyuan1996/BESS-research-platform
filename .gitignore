@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------------------
+# Confidential / local data.
+# Nothing under local-data/ is ever committed except its README.
+# See docs/data-policy.md — anything that reaches the production bundle is public.
+# ---------------------------------------------------------------------------
+local-data/*
+!local-data/README.md
+
+.env
+.env.*
+
+*.xlsx
+*.xlsm
+*.xls
+*.csv.local
+
+# ---------------------------------------------------------------------------
+# Build + tooling
+# ---------------------------------------------------------------------------
+node_modules/
+dist/
+.vite/
+*.local
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
