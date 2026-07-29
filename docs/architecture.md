@@ -191,9 +191,13 @@ is rather than being guessed at.
 
 ```
 /                        home / global cockpit
+/data                    data status — feeds, freshness, and automation's limits
 /markets/:slug           a market dashboard, default tab
 /markets/:slug/:tab      a market dashboard, deep-linked tab
 ```
+
+`/data` was added with the live-data layer. A site that fetches automatically owes its reader a page
+saying what it fetched, how stale it is, and what the automation was permitted to touch.
 
 History API, resolved by slug from the registry. The `:tab` segment is an addition beyond the
 required routes: it makes every market tab linkable, which the prototype's overlay could not do. An
@@ -201,6 +205,8 @@ unrecognised tab falls back to the market's default rather than 404ing.
 
 `/compare`, `/methodology` and `/portfolio` are named as future routes and are deliberately not
 built. Adding one is a single entry in `parseRoute`.
+
+`public/_redirects` covers these too — the SPA fallback is a wildcard, so no new rule was needed.
 
 Deployment needs a rewrite so a direct visit to `/markets/wa` returns `index.html`.
 `public/_redirects` does this on Cloudflare Pages; Vite's dev server does it natively.
@@ -247,11 +253,65 @@ those selectors' base rules.
 Design tokens (`--bg`, `--surface`, `--ink`, `--ink2`, `--muted`, `--grid`, `--baseline`, `--border`,
 `--s1`…`--s8`, status ramp and translucent backgrounds) are unchanged, as is every colour semantic.
 
+## Live data
+
+The site fetches nothing at build time and holds no secrets. A scheduled GitHub Actions job runs the
+ETL, writes JSON snapshots into `public/data/public/`, and commits them; Cloudflare Pages rebuilds on
+the push. The browser loads those snapshots at runtime, after first render, and shows them **beside**
+the analyst's approved values rather than in place of them.
+
+```
+etl/                        Node, runs in CI only — never in the browser
+├── run.mjs                 orchestrator: fetch → validate → publish → detect drift
+├── propose.mjs             the only program that edits an analyst file; branch-only
+├── verify.mjs              CI gate: every snapshot matches its checksum
+├── lib/                    boundary envelope fetch validate series summarize zip
+├── sources/                ecb entsoe jepx aemo-wem
+└── drift/                  detect report
+
+src/governance/             the authority model — imported by both the app and the ETL
+├── authority.js            who may change what
+├── materiality.js          when drift is worth a human's attention
+├── datasets.js             the dataset catalogue
+├── derivation.js           approved bridge parameters
+└── anchors.js              analyst-recorded observation anchors
+
+src/derive/                 pure metric functions, no DOM   (priceMetrics merchantBridge)
+src/live/                   runtime loader and provenance UI (client freshness liveValue dataStatusPage)
+```
+
+Two layering rules extend the table above:
+
+| Layer | May import | Must not import |
+|---|---|---|
+| `governance/` | `markets/schema`, `comparison/assumptions` | any DOM, any market module, `etl/` |
+| `derive/` | `governance/` | any DOM, any market module |
+| `live/` | everything shared, `governance/`, `derive/` | `etl/` |
+| `etl/` | `src/` freely | — (but may only *write* to `public/data/`) |
+
+`governance/` and `derive/` touch no DOM, for the same reason `comparison/` does not: the ETL runs
+them in Node, and the tests pin them there.
+
+**The registry rule has a counterpart.** `src/governance/datasets.js` is the only place the platform
+learns that a dataset exists — the ETL iterates it, the runtime loads from it, and the drift detector
+reads it to know which assumption an observation bears on.
+
+Full detail: [`live-data.md`](live-data.md) and [`governance.md`](governance.md).
+
 ## What is deliberately absent
 
 No login, no accounts, no permissions, no investor authentication, no private API, no user database,
-no admin panel, no backend, no CMS, no live data fetching. Every file in the production build is
-public — see `docs/data-policy.md`.
+no admin panel, no backend, no CMS. Every file in the production build is public — see
+`docs/data-policy.md`.
+
+Live data does not change that. The pipeline runs in CI, not in the browser; credentials are Actions
+secrets and never reach the bundle; and the site remains a folder of static files that works
+completely with zero snapshots present.
+
+**And no automated judgement.** Automation observes, computes and proposes. Every assumption, score,
+thesis and market status on this site was set by a person and can only be changed by a person. That
+boundary is enforced in code and asserted by `tests/governance.test.js` — see
+[`governance.md`](governance.md).
 
 ## Related documents
 

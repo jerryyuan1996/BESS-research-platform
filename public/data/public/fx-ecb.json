@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "fx-ecb",
+  "marketId": null,
+  "title": [
+    "ECB euro foreign-exchange reference rates",
+    "欧洲央行欧元外汇参考汇率"
+  ],
+  "authority": "observed",
+  "source": {
+    "name": "European Central Bank",
+    "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+    "licence": "ECB — free reuse with attribution",
+    "attribution": "Source: European Central Bank"
+  },
+  "fetchedAt": "2026-07-29T00:26:28.467Z",
+  "coverage": {
+    "from": "2026-07-28T00:00:00Z",
+    "to": "2026-07-28T00:00:00Z",
+    "resolution": "P1D",
+    "points": 4
+  },
+  "units": {
+    "rate": "USD per 1 unit of currency"
+  },
+  "series": [
+    {
+      "t": "2026-07-28T00:00:00Z",
+      "v": 0.6968489455615499,
+      "k": "AUD"
+    },
+    {
+      "t": "2026-07-28T00:00:00Z",
+      "v": 1.1367,
+      "k": "EUR"
+    },
+    {
+      "t": "2026-07-28T00:00:00Z",
+      "v": 1.3286966686148451,
+      "k": "GBP"
+    },
+    {
+      "t": "2026-07-28T00:00:00Z",
+      "v": 0.006100794332331473,
+      "k": "JPY"
+    }
+  ],
+  "derived": {
+    "asOf": "2026-07-28",
+    "usdPerEur": 1.1367,
+    "rates": {
+      "EUR": 1.1367,
+      "AUD": 0.6968489455615499,
+      "GBP": 1.3286966686148451,
+      "JPY": 0.006100794332331473
+    }
+  },
+  "notes": [
+    "Cross-computed through the euro from ECB reference rates.",
+    "Reference rates are indicative, not tradable — they are not dealable prices."
+  ],
+  "refreshHours": 24,
+  "staleAfterHours": 96,
+  "contentChecksum": "sha256:10602c938e111a600b9715a777bd0201bb46cb162e995efe15bc308a5ad23a6f",
+  "envelopeChecksum": "sha256:a8616ff6cd65c75aa0642649225e4b5480e955aa1c7169f2280abf27d4992d08"
+}

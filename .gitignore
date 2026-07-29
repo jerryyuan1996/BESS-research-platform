@@ -15,6 +15,14 @@ local-data/*
 *.csv.local
 
 # ---------------------------------------------------------------------------
+# ETL run artefacts.
+# Drift reports and proposal bodies are per-run outputs, published as CI
+# artefacts and job summaries rather than committed. The DATA the ETL writes
+# (public/data/) is committed on purpose — that history is the audit trail.
+# ---------------------------------------------------------------------------
+etl/out/
+
+# ---------------------------------------------------------------------------
 # Build + tooling
 # ---------------------------------------------------------------------------
 node_modules/

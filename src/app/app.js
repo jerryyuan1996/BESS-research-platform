@@ -16,6 +16,7 @@ import { currentRoute, onRouteChange, startRouter, navigate } from './router.js'
 import { markets, bySlug } from '../markets/registry.js';
 import { renderHome } from '../home/homePage.js';
 import { renderMarketPage } from '../markets/marketPage.js';
+import { renderDataStatus } from '../live/dataStatusPage.js';
 import { marketNav } from '../components/navigation.js';
 import { validateRegistry } from '../utils/validation.js';
 
@@ -44,6 +45,7 @@ export function render(){
     return void renderNotFound(app, { path: '/markets/' + route.slug });
   }
   if (route.name === 'home') return void renderHome(app);
+  if (route.name === 'data') return void renderDataStatus(app);
   renderNotFound(app, route);
 }
 
