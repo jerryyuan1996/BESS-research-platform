@@ -33,9 +33,30 @@ Suitable:
 - public source metadata
 - non-confidential research conclusions
 
-Currently every figure in this repository is seed-derived and carries the quality badges of its source
-dashboard. Nothing is production-complete until its live ingestion, validation and source-health check
-are operational.
+Every *assumption* in this repository is seed-derived and carries the quality badges of its source
+dashboard. Observed market data is now ingested automatically, validated and published with a
+provenance envelope — see [`live-data.md`](live-data.md). The two are kept visibly apart on screen
+and are never merged.
+
+### Automatically published data
+
+`public/data/public/` is written by the ETL on a schedule and is public by the same rule as
+everything else. Three constraints apply to it specifically:
+
+- **Licence before publication.** Each dataset declares `republishable` in
+  `src/governance/datasets.js`. Where it is false the raw series must not be written at all — only
+  whatever derived statistic the licence permits, or nothing. `buildSnapshot()` throws rather than
+  letting a licensed series into the bundle.
+- **Attribution travels with the data.** Every snapshot carries its source name, URL, licence and
+  attribution string, and `/data` renders them.
+- **Observed data is not hand-editable.** Each snapshot carries a checksum over its payload and
+  `npm run etl:verify` fails CI on a mismatch. A tuned "observed" value is worse than an honest
+  assumption — it carries more authority and attracts less scrutiny.
+
+### Credentials
+
+`ENTSOE_TOKEN` is a GitHub Actions secret. It is used only by the ETL in CI, never at build time and
+never in the browser. No credential of any kind reaches `dist/`.
 
 ## What does not belong in the public bundle
 
@@ -90,6 +111,8 @@ scheme that pretends client-side code can keep a secret.
 
 ## Before deploying
 
+0. `npm test` — includes the governance suite, which asserts that automation cannot write outside
+   `public/data/` and that every comparison field is classified.
 1. `git status` — confirm nothing from `local-data/` is staged.
 2. Search the bundle for anything that should not be there:
 

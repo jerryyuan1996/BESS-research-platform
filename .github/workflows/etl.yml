@@ -1,0 +1,170 @@
+name: Live data
+
+# Two jobs, and the split is the governance model expressed as CI:
+#
+#   refresh   unattended. Fetches, validates, publishes observed data and
+#             deterministic derived metrics straight to main. It can only touch
+#             public/data/ — enforced in code, not by convention.
+#
+#   propose   opens a pull request when drift is material. Never merges it.
+#             Runs on a branch, edits the analyst-controlled value there, and
+#             stops. A human decides.
+#
+# Nothing in this file may be given auto-merge. That is deliberate and it is the
+# single most important line in the workflow.
+
+on:
+  schedule:
+    # Every six hours. The sources publish daily or better; six hours keeps the
+    # site current without hammering a public regulator's server.
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Comma-separated dataset ids (blank = all)'
+        required: false
+        type: string
+
+concurrency:
+  # A long backfill must not race the next scheduled run into the same files.
+  group: live-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    name: Fetch, validate, publish
+    runs-on: ubuntu-latest
+    outputs:
+      material: ${{ steps.drift.outputs.material }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm ci
+
+      - name: Run ETL
+        env:
+          # Absent secrets are not an error. The connector skips its dataset and
+          # the previous snapshot stays in place — see etl/lib/fetch.mjs.
+          ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
+        run: |
+          if [ -n "${{ inputs.only }}" ]; then
+            node etl/run.mjs --only "${{ inputs.only }}"
+          else
+            node etl/run.mjs
+          fi
+
+      - name: Check the wall held
+        # Belt and braces. The boundary module makes writing outside public/data/
+        # throw, but a workflow that verifies the invariant after the fact costs
+        # nothing and catches a bad merge that weakened it.
+        run: |
+          if ! git diff --quiet -- ':!public/data'; then
+            echo "::error::The ETL modified files outside public/data/:"
+            git diff --name-only -- ':!public/data'
+            exit 1
+          fi
+          echo "Confirmed: only public/data/ was modified."
+
+      - name: Commit published data
+        run: |
+          if git diff --quiet -- public/data; then
+            echo "No data changed this run."
+            exit 0
+          fi
+          git config user.name  "bess-etl[bot]"
+          git config user.email "bess-etl[bot]@users.noreply.github.com"
+          git add public/data
+          # The commit message carries the run summary, so `git log public/data`
+          # reads as the data's provenance history rather than a wall of
+          # identical "update data" lines.
+          UPDATED=$(node -e "const s=require('./etl/out/summary.json');console.log(s.updated.join(', ')||'none')")
+          git commit -m "data: refresh ${UPDATED}" \
+                     -m "Observed data and derived metrics only. No analyst assumption was modified." \
+                     -m "$(node -e "const s=require('./etl/out/summary.json');console.log('Failed: '+(s.failed.map(f=>f.id+' ('+f.status+')').join(', ')||'none'))")"
+          git push
+
+      - name: Read drift outcome
+        id: drift
+        run: |
+          MATERIAL=$(node -e "console.log(require('./etl/out/summary.json').material)")
+          echo "material=$MATERIAL" >> "$GITHUB_OUTPUT"
+          echo "Material findings: $MATERIAL"
+
+      - name: Publish drift report
+        uses: actions/upload-artifact@v4
+        with:
+          name: drift-report
+          path: |
+            etl/out/drift-report.md
+            etl/out/summary.json
+            etl/out/proposals.json
+          if-no-files-found: warn
+
+      - name: Drift report to the job summary
+        run: cat etl/out/drift-report.md >> "$GITHUB_STEP_SUMMARY"
+
+  propose:
+    name: Open a proposal for material drift
+    needs: refresh
+    if: needs.refresh.outputs.material != '0'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Pull the data commit the refresh job just pushed, so the proposal is
+          # computed against the same snapshots it cites as evidence.
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm ci
+
+      - name: Recompute drift against the published snapshots
+        env:
+          ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
+        # --dry-run: this job must not write data. It only needs the findings.
+        run: node etl/run.mjs --dry-run
+
+      - name: Apply the proposal on a branch
+        run: |
+          BRANCH="proposal/drift-$(date -u +%Y%m%d-%H%M)"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
+          git config user.name  "bess-etl[bot]"
+          git config user.email "bess-etl[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          node etl/propose.mjs
+
+      - name: Verify the proposal still passes every test
+        # A proposed number that breaks the baseline or the registry checks must
+        # never reach a reviewer looking like a routine update.
+        run: npm test
+
+      - name: Commit and open the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then
+            echo "Nothing was applied — no pull request to open."
+            exit 0
+          fi
+          git add -A ':!etl/out'
+          git commit -m "propose: assumption changes from observed drift" \
+                     -m "Opened automatically. Requires analyst review — do not auto-merge."
+          git push -u origin "$BRANCH"
+          gh pr create \
+            --title "Proposed assumption changes from observed drift" \
+            --body-file etl/out/pr-body.md \
+            --label "automated-proposal" \
+            --label "needs-analyst-review" \
+            --base main \
+            --head "$BRANCH"

@@ -10,7 +10,9 @@ export default defineConfig({
     sourcemap: true,
   },
   server: {
-    port: 5173,
+    // Honour PORT when the environment assigns one, so several checkouts (or
+    // tooling that manages its own port) can run side by side.
+    port: Number(process.env.PORT) || 5173,
     open: true,
   },
 });

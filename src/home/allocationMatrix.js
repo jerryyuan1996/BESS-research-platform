@@ -25,6 +25,8 @@ import {
 import { runCase, runBaseCase } from '../comparison/engine.js';
 import { STRATEGIES, strategyById, baseStrategy } from '../comparison/strategies.js';
 import { FX, EXIT_Y_CONTRACTED, EXIT_Y_MERCHANT, FX_NOTE, FX_SEED_DATE } from '../comparison/assumptions.js';
+import { whenLoaded } from '../live/client.js';
+import { liveBadge } from '../live/liveValue.js';
 import { homeState, waterfallMarket } from './state.js';
 
 /* ---- A. assumptions + matrix -------------------------------------------- */
@@ -39,22 +41,60 @@ function grantClause(marketList){
   };
 }
 
+/* Two decimals is right for majors and wrong for JPY — ¥1 = $0.0064 rounds to
+   $0.01, a 56% error on the face of the page. Scale the precision to the rate. */
+const fxRate = (v) => (v < 0.1
+  ? v.toLocaleString('en-US', { minimumFractionDigits: 4, maximumFractionDigits: 4 })
+  : NF2.format(v));
+
 function fxRow(marketList){
   // Only show rates actually in use by the registered markets.
   const used = [...new Set(marketList.map(m => m.manifest.currency))];
-  /* Two decimals is right for majors and wrong for JPY — ¥1 = $0.0064 rounds to
-     $0.01, a 56% error on the face of the page. Scale the precision to the rate. */
-  const rate = (v) => (v < 0.1
-    ? v.toLocaleString('en-US', { minimumFractionDigits: 4, maximumFractionDigits: 4 })
-    : NF2.format(v));
   const txt = used.map(cur => {
     const mf = marketList.find(m => m.manifest.currency === cur).manifest;
-    return mf.currencySymbol + '1 = $' + rate(FX[cur]);
+    return mf.currencySymbol + '1 = $' + fxRate(FX[cur]);
   }).join(' · ');
-  return h('div', { class: 'fxrow' },
+
+  const row = h('div', { class: 'fxrow' },
     h('span', {}, 'FX: ' + txt),
     h('span', {}, L(['Seed date: ', '种子日期：']) + FX_SEED_DATE),
     h('span', {}, L(FX_NOTE)));
+
+  /* The live ECB rates are appended after the page has rendered. The engine goes
+     on using the approved rates above — this block is an observation shown for
+     comparison, and the visual separation is the point. If no snapshot has been
+     published the row simply stays as it was. */
+  const holder = h('div', { class: 'fx-observed' });
+
+  whenLoaded('fx-ecb', (summary) => {
+    const rates = summary?.derived?.rates;
+    if (!rates) return;
+
+    const parts = used
+      .filter(cur => typeof rates[cur] === 'number')
+      .map(cur => {
+        const approved = FX[cur];
+        const observed = rates[cur];
+        const delta = approved ? (observed - approved) / approved : null;
+        const sym = marketList.find(m => m.manifest.currency === cur).manifest.currencySymbol;
+        const sign = delta == null ? '' :
+          ` (${delta >= 0 ? '+' : ''}${(delta * 100).toFixed(1)}%)`;
+        return `${sym}1 = $${fxRate(observed)}${sign}`;
+      });
+
+    if (parts.length === 0) return;
+
+    holder.append(
+      h('span', { class: 'obs-tag' }, L(['ECB observed', '欧洲央行实测'])),
+      h('span', {}, parts.join(' · ')),
+      liveBadge(summary),
+      h('span', { class: 'obs-hint' }, L([
+        'not used by the model — approved rates above are',
+        '模型未采用此值 — 实际使用上方已批准汇率',
+      ])));
+  });
+
+  return h('div', {}, row, holder);
 }
 
 function renderMatrix(main, marketList, X){

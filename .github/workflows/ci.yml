@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests and governance gates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm ci
+
+      # The full suite, including the governance tests that assert the ETL
+      # cannot write outside public/data/ and that every comparison field is
+      # classified. A pull request that widens automation's authority without
+      # saying so fails here.
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # Snapshots are machine-written and carry a checksum over their contents.
+      # A hand-edited "observed" file is exactly the confusion the envelope
+      # exists to prevent, so it fails the build rather than shipping.
+      - name: Verify snapshot integrity
+        run: npm run etl:verify

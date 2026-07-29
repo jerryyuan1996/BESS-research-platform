@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "fx-ecb",
+  "marketId": null,
+  "title": [
+    "ECB euro foreign-exchange reference rates",
+    "欧洲央行欧元外汇参考汇率"
+  ],
+  "authority": "observed",
+  "source": {
+    "name": "European Central Bank",
+    "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+    "licence": "ECB — free reuse with attribution",
+    "attribution": "Source: European Central Bank"
+  },
+  "fetchedAt": "2026-07-29T00:40:26.010Z",
+  "coverage": {
+    "from": "2026-07-28T00:00:00Z",
+    "to": "2026-07-28T00:00:00Z",
+    "resolution": "P1D",
+    "points": 4
+  },
+  "units": {
+    "rate": "USD per 1 unit of currency"
+  },
+  "notes": [
+    "Cross-computed through the euro from ECB reference rates.",
+    "Reference rates are indicative, not tradable — they are not dealable prices."
+  ],
+  "refreshHours": 24,
+  "staleAfterHours": 96,
+  "derived": {
+    "asOf": "2026-07-28",
+    "usdPerEur": 1.1367,
+    "rates": {
+      "EUR": 1.1367,
+      "AUD": 0.6968489455615499,
+      "GBP": 1.3286966686148451,
+      "JPY": 0.006100794332331473
+    }
+  },
+  "arbitrage": null,
+  "daily": [
+    {
+      "d": "2026-07-28",
+      "n": 4,
+      "mean": 0.79,
+      "min": 0.01,
+      "max": 1.33,
+      "spread": 0.79,
+      "charge": null,
+      "discharge": 0.79
+    }
+  ],
+  "sourceSnapshot": {
+    "file": "fx-ecb.json",
+    "contentChecksum": "sha256:10602c938e111a600b9715a777bd0201bb46cb162e995efe15bc308a5ad23a6f",
+    "points": 4
+  },
+  "summaryChecksum": "sha256:884aba7d0c5d68259e9e4f2bb01d79004511e9e2f501322cacd50b99625e9087"
+}

@@ -38,6 +38,11 @@ export function parseRoute(pathname, search = ''){
 
   if (parts.length === 0) return { name: 'home', ...view };
 
+  /* /data — the public data-status page. Added with the live-data layer: a site
+     that fetches automatically owes its reader a page saying what it fetched,
+     how stale it is, and what the automation was allowed to touch. */
+  if (parts[0] === 'data' && parts.length === 1) return { name: 'data', ...view };
+
   if (parts[0] === 'markets'){
     if (parts.length === 1) return { name: 'home', ...view };   // /markets → home
     return {
