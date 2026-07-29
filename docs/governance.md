@@ -177,6 +177,34 @@ proposing a change you have already made.
 
 ---
 
+## The legacy baseline, and why a proposal is allowed to break it
+
+`tests/fixtures/legacy-baseline.json` pins the original prototype's outputs, and
+`tests/baseline.test.js` asserts the modular engine still reproduces them. That fixture verifies the
+**migration**. It is not an ongoing invariant.
+
+The moment an analyst deliberately revises an assumption, the platform has intentionally departed
+from the prototype for that market — that is the entire point of revising it. So:
+
+- `npm test` runs everything, including the baseline. Use it for ordinary work.
+- `npm run test:structural` runs registry, governance and finance checks only. **This is what the
+  proposal workflow runs**, because a proposal is supposed to move those numbers.
+- When you accept an assumption change, regenerate the fixture in the same commit:
+
+  ```bash
+  npm run test:baseline
+  ```
+
+Running the full suite in the proposal job would fail every legitimate proposal and the mechanism
+would never open a single pull request. That trap is easy to walk into — it was hit the first time
+this workflow was exercised — and it is worth understanding rather than working around.
+
+What the proposal job *does* still enforce is that the proposed value is a valid market input and
+that automation stayed inside its authority. A proposal cannot smuggle in a malformed field or a
+change to something it was never allowed to touch.
+
+---
+
 ## Reviewing a proposal
 
 Every automated pull request ends with this checklist:

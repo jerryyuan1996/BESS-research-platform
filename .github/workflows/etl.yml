@@ -144,10 +144,41 @@ jobs:
           git checkout -b "$BRANCH"
           node etl/propose.mjs
 
-      - name: Verify the proposal still passes every test
-        # A proposed number that breaks the baseline or the registry checks must
-        # never reach a reviewer looking like a routine update.
-        run: npm test
+      - name: Verify the proposal is structurally valid
+        # Registry, governance and finance checks — NOT the legacy baseline.
+        #
+        # tests/baseline.test.js pins the original prototype's outputs. A
+        # proposal that revises an assumption is SUPPOSED to move those numbers,
+        # so running it here would fail every legitimate proposal and the whole
+        # mechanism would never open a single pull request. That is a real trap
+        # and it was hit the first time this workflow was exercised.
+        #
+        # What must still hold is that the proposed value is a valid market
+        # input and that automation stayed inside its authority.
+        run: npm run test:structural
+
+      - name: Record the baseline divergence for the reviewer
+        # Informational. The baseline is a migration-verification artefact, and
+        # departing from it is a decision the reviewer is being asked to make —
+        # so it is reported in the pull request rather than hidden in a red X.
+        run: |
+          echo "" >> etl/out/pr-body.md
+          echo "### Legacy baseline" >> etl/out/pr-body.md
+          echo "" >> etl/out/pr-body.md
+          if npm run test:baseline --silent > /tmp/new-baseline.json 2>/dev/null \
+             && ! diff -q /tmp/new-baseline.json tests/fixtures/legacy-baseline.json > /dev/null; then
+            echo "This proposal changes outputs pinned by \`tests/fixtures/legacy-baseline.json\`," >> etl/out/pr-body.md
+            echo "which records the original prototype's numbers." >> etl/out/pr-body.md
+            echo "" >> etl/out/pr-body.md
+            echo "That is expected — the fixture verifies the *migration*, not an ongoing" >> etl/out/pr-body.md
+            echo "invariant. If you accept this change, regenerate it in the same commit:" >> etl/out/pr-body.md
+            echo "" >> etl/out/pr-body.md
+            echo '```bash' >> etl/out/pr-body.md
+            echo 'npm run test:baseline' >> etl/out/pr-body.md
+            echo '```' >> etl/out/pr-body.md
+          else
+            echo "No change to the pinned legacy baseline." >> etl/out/pr-body.md
+          fi
 
       - name: Commit and open the pull request
         env:

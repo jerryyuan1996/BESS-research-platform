@@ -214,6 +214,8 @@ export function renderPullRequestBody({ material, runAt }){
   L.push('- [ ] The downstream impact is acceptable and does not misorder the league table');
   L.push('- [ ] If you accept a `merchGross` change, **re-anchor** in `src/governance/anchors.js`');
   L.push('      so the pipeline stops proposing the change you just made');
+  L.push('- [ ] If the legacy baseline diverges (see below), regenerate it in the same commit');
+  L.push('      with `npm run test:baseline`');
   L.push('');
   L.push('If you reject this, close the pull request. The pipeline will raise it again on the');
   L.push('next run while the drift persists — either adjust the assumption, re-anchor, or');
