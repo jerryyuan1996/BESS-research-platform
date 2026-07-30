@@ -17,7 +17,9 @@ import { state, render } from '../state.js';
 import { NF1, fmtN, fmtAk, fmtAM, fmtPct } from '../ui.js';
 import { SEED } from '../data/seed.js';
 import { WP_QUEUE } from '../data/wem.js';
-import { KEMERTON } from '../data/kemerton.js';
+import { KEMERTON, hasProjectData } from '../data/kemerton.js';
+import { MJA2026, hasMjaData } from '../data/optimizer.js';
+import { withheldCard } from '../../../components/withheld.js';
 import { WA_GRID_MAP } from '../gridMapData.js';
 
 // ---------------- GRID CONNECTION ----------------
@@ -91,6 +93,8 @@ function renderGrid(main){
 
 // Project-specific network deliverability / NAQ evidence — Portfolio tab only.
 function kemertonNetworkCard(){
+  // Reachable only from the gated Portfolio tab; guarded because it is exported.
+  if (!hasProjectData) return withheldCard(['Network deliverability & NAQ evidence', '网络可交付性与NAQ证据']);
   const kd = card(['Network deliverability & NAQ evidence', '网络可交付性与NAQ证据'], [sourceStatusBadge(KEMERTON.sources.steady), badge('project')]);
   kd.append(h('div',{class:'warnbox'},h('b',{},L(['Hard underwriting point: ','硬性承销要点：'])),L(['CRC is not equivalent to Capacity Credits. Final NAQ and operational constraint exposure can reduce accredited revenue below nameplate or CRC.','CRC不等于容量信用。最终NAQ及运营约束可能使认证收入低于铭牌或CRC。'])));
   const kdTableHead = h('thead',{},h('tr',{},
@@ -120,11 +124,12 @@ function kemertonNetworkCard(){
 
 // Project-specific grid-forming value ladder — Portfolio tab only.
 function kemertonGfmCard(){
+  if (!hasProjectData) return withheldCard(['Grid-forming strategic-value ladder', '构网型战略价值阶梯']);
   const gfm = card(['Grid-forming strategic-value ladder', '构网型战略价值阶梯'], [sourceStatusBadge(KEMERTON.sources.gps)]);
   gfm.append(h('div',{class:'kpis'},
-    kpi(L(['Grid-forming inverters','构网型逆变器']),'34 × SMA',{text:'[REDACTED-SPEC]UP-S'},[badge('project')]),
+    kpi(L(['Grid-forming inverters','构网型逆变器']),KEMERTON.project.inverterCount+' × '+KEMERTON.project.inverterVendor,{text:KEMERTON.project.inverterModel},[badge('project')]),
     kpi(L(['Installed inverter rating','逆变器装机额定']),KEMERTON.project.installedInverterMW+'<small> MW</small>',{text:'at 35°C'},[badge('project')]),
-    kpi(L(['Import / export','进/出口']),'±100<small> MW</small>',null,[badge('project')]),
+    kpi(L(['Import / export','进/出口']),'±'+KEMERTON.project.powerMW+'<small> MW</small>',null,[badge('project')]),
     kpi(L(['Reactive capability','无功能力']),'±'+KEMERTON.project.reactiveMvar+'<small> MVAr</small>',null,[badge('project')])));
   gfm.append(h('div',{class:'status-ladder'},[
     [['Technical capability','技术能力'],['Designed / expected','已设计/预计']],
@@ -260,25 +265,32 @@ function gridBody(main){
   c5.style.marginTop = '14px';
   main.append(c5);
 
-  // Supplementary locational case study — fills the gap official sources leave on
-  // project-level NAQ outcomes (AEMO publishes assigned NAQ, not the sub-boundary logic).
+  /* Supplementary locational case study — fills the gap official sources leave on
+     project-level NAQ outcomes (AEMO publishes assigned NAQ, not the sub-boundary
+     logic).
+
+     Every named site, DSOC figure and NAQ outcome comes from the confidential
+     study, so the card is data-driven and omitted entirely when that layer is
+     absent. It previously had the three project names written into this file,
+     which meant a gate on the data alone still published them — the table shipped
+     in the bundle whether or not it rendered. */
+  if (!hasMjaData) return;
+  const LC = MJA2026?.locationalCases;
+  if (!LC) return;
+
   const cLoc = card(['Locational deliverability — why a headline transmission project is not proof of NAQ', '位置可交付性 — 标志性输电项目为何不能证明NAQ'], [badge('supp'), badge('conf'), badge('recon')]);
   cLoc.append(h('div', { class: 'note' }, L(['A headline transmission project is not proof of project-level capacity deliverability. Capacity revenue follows DSOC → CRC → NAQ → Capacity Credits; merchant revenue follows MLF + curtailment + import/export limits. These are separate locational multipliers.',
     '一个标志性输电项目并不证明项目层面的容量可交付性。容量收入沿 DSOC→CRC→NAQ→容量信用；市场化收入沿 MLF+限电+进出口限额。二者是相互独立的位置乘数。'])));
   cLoc.append(h('div', { class: 'tbl-wrap' }, h('table', {},
     h('thead', {}, h('tr', {}, h('th', {}, L(['Project', '项目'])), h('th', {}, L(['Region / boundary', '区域/边界'])), h('th', { class: 'num' }, L(['DSOC', 'DSOC'])), h('th', {}, L(['Network finding', '网络结论'])), h('th', {}, L(['NAQ outcome', 'NAQ结果'])))),
-    h('tbody', {},
-      h('tr', {}, h('td', {}, h('b', {}, 'BESS 1 — [REDACTED-SITE]')), h('td', {}, L(['Metro South 330 kV', '南都会区330 kV'])), h('td', { class: 'num' }, '250 MW'),
-        h('td', {}, L(['Export 1,500 MW (N-1-1); peak 400→775 MW with BESS 1+2 — little curtailment', '出口1,500 MW（N-1-1）；峰值400→775 MW（含BESS1+2）— 限电很少'])), h('td', {}, chip('good', L(['NAQ ≈ CRC', 'NAQ ≈ CRC'])))),
-      h('tr', {}, h('td', {}, h('b', {}, 'BESS 2 — [REDACTED-SITE]')), h('td', {}, L(['Metro South 330 kV', '南都会区330 kV'])), h('td', { class: 'num' }, '125 MW'),
-        h('td', {}, L(['Same low-constraint boundary', '同一低约束边界'])), h('td', {}, chip('good', L(['NAQ ≈ CRC', 'NAQ ≈ CRC'])))),
-      h('tr', {}, h('td', {}, h('b', {}, 'BESS 3 — [REDACTED-SITE]')), h('td', {}, L(['North · MW–NB boundary', '北部 · MW–NB边界'])), h('td', { class: 'num' }, '500 → 250 MW'),
-        h('td', {}, L(['Clean Energy Link North adds regional transfer, but the MW–NB export boundary gains only ~50 MW — regular curtailment likely at 500 MW', '清洁能源链路北增加区域输送，但MW–NB出口边界仅增约50 MW — 500 MW下可能经常限电'])), h('td', {}, chip('critical', L(['DSOC cut 50%', 'DSOC削减50%']))))))));
-  cLoc.append(h('div', { class: 'cap' }, L(['The North project\'s original 500 MW DSOC was halved to 250 MW despite a major regional augmentation, because the binding sub-boundary (MW–NB) gains only ~50 MW. Supplementary third-party study; chart-reconstructed and confidential, used here because official publications give assigned NAQ outcomes but not the sub-boundary logic behind them.',
-    '尽管有大型区域增强，北部项目原500 MW DSOC仍被减半至250 MW，因为起约束作用的子边界（MW–NB）仅增约50 MW。补充性第三方研究；图表重构、保密。此处引用的原因是官方发布仅给出获配NAQ结果，未披露其背后的子边界逻辑。'])));
-  cLoc.append(why(['This is the most expensive single lesson available on locational risk: a 50% DSOC cut at a node that a headline regional transmission programme was supposed to relieve. The mechanism generalises — what matters is the binding sub-boundary at your connection point, not the region or the programme name. So in diligence, ask which sub-boundary constrains the node and how much capacity it actually gains, and never accept "the upgrade covers this area" as evidence. If the answer is unavailable, treat the node as constrained and size the case on a reduced DSOC.',
-    '这是位置风险方面代价最高的一课：在一个原本应由标志性区域输电计划缓解的节点上，DSOC被削减50%。其机制具有普适性 — 真正决定因素是并网点所处的起约束作用的子边界，而非区域名称或计划名称。因此尽调中应追问：约束该节点的是哪一子边界、其实际新增容量多少；且绝不接受"该升级覆盖本区域"作为证据。若无法取得答案，应将该节点视为受约束，并按折减后的DSOC测算。'],
-    ['Ask which sub-boundary binds', '追问哪一子边界起约束']));
+    h('tbody', {}, LC.rows.map(r => h('tr', {},
+      h('td', {}, h('b', {}, r.project)),
+      h('td', {}, L(r.boundary)),
+      h('td', { class: 'num' }, r.dsoc),
+      h('td', {}, L(r.finding)),
+      h('td', {}, chip(r.outcomeTone, L(r.outcome)))))))));
+  cLoc.append(h('div', { class: 'cap' }, L(LC.caption)));
+  cLoc.append(why(LC.why, LC.whyTag));
   cLoc.style.marginTop = '14px';
   main.append(cLoc);
 }

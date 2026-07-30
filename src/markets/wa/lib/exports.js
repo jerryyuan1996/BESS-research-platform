@@ -7,7 +7,7 @@ import { SEED } from '../data/seed.js';
 import { RCM_HISTORY } from '../data/rcmHistory.js';
 import { WEM_MARKET } from '../data/wemMarket.js';
 import { NEM_SC } from '../data/nemScorecard.js';
-import { KEMERTON, ESOO_BAL } from '../data/kemerton.js';
+import { KEMERTON, ESOO_BAL, hasProjectData } from '../data/kemerton.js';
 import { dniScore, connScore, kemDurationCase } from '../lib/scores.js';
 
 // ---------------- exports ----------------
@@ -45,13 +45,25 @@ function exportCsv(){
     ['NEM full output achieved FY2026 (context only, not WA)', NEM_SC.fyOutput.fullGW, 'GW', 'official (NEM namespace)', 'CONTEXT_ONLY', 'AEMO NEM Connection Scorecard Jun 2026'],
     ['Duration-Need Index', dniScore(), '0-100', 'calculated (illustrative inputs)', 'SEED_JSON_V1', 'dashboard'],
     ['Connection risk score', connScore(), '0-100', 'calculated (illustrative inputs)', 'SEED_JSON_V1', 'dashboard'],
-    ['Kemerton installed power', KEMERTON.project.powerMW, 'MW', 'project technical / model', 'CONFIDENTIAL', '[REDACTED-PROJECT] source pack'],
-    ['Kemerton installed energy', KEMERTON.project.energyMWh, 'MWh', 'financial-model assumption', 'CONFIDENTIAL', '20260716 [REDACTED-DOCUMENT]'],
-    ['Kemerton raw duration', KEMERTON.project.rawDurationHours, 'h', 'calculated', 'CONFIDENTIAL', 'dashboard'],
-    ['Kemerton 8.5h raw headroom', kemDurationCase(8.5).headroom, 'MWh', 'calculated', 'CONFIDENTIAL', 'dashboard'],
-    ['Kemerton initial capex intensity', KEMERTON.capex.initialPerKWh, 'A$/kWh', 'financial-model assumption', 'CONFIDENTIAL', '20260716 [REDACTED-DOCUMENT]'],
     ['ERA reference capex intensity', KEMERTON.capex.eraBenchmarkPerKWh, 'A$/kWh', 'official final', 'SEED_JSON_V1', 'ERA BRCP final determination'],
   ];
+
+  /* The confidential project rows are appended only where the local layer is
+     present, and their LABELS come from that layer too.
+
+     Keeping the labels here was not safe: they named the project and its
+     financial model, and a gated block still ships its string literals. A `dist/` scan
+     found them after the values themselves had already been moved out. */
+  if (hasProjectData && Array.isArray(KEMERTON.exportRows)){
+    const case85 = kemDurationCase(8.5);
+    const value = (field) => {
+      if (field === 'durationCase8_5') return case85 ? case85.headroom : '';
+      return field.split('.').reduce((o, k) => (o == null ? undefined : o[k]), KEMERTON);
+    };
+    for (const r of KEMERTON.exportRows){
+      rows.push([r.label, value(r.field), r.unit, r.basis, 'CONFIDENTIAL', r.source]);
+    }
+  }
   download('wa_bess_dashboard_kpis.csv', rows.map(r => r.join(',')).join('\n'), 'text/csv');
 }
 function exportJson(){
@@ -82,18 +94,34 @@ function exportJson(){
       fyApproved: NEM_SC.fyApproved, fyOutput: NEM_SC.fyOutput, stages: NEM_SC.stages.map(s => ({ stage: s.n[0], gw: s.gw, conversion: s.conv, typicalMonths: s.dur })),
       systemStrength: NEM_SC.sysStrength,
     },
-    kemertonConfidential: {
+    /* Public WEM capacity context, which was previously nested inside the
+       confidential block and is not confidential at all — it is 2026 WEM ESOO
+       and ERA material. */
+    wemCapacityContext: KEMERTON.capacityContext,
+    wemDurationThresholds: KEMERTON.duration,
+    eraReference: {
+      benchmarkPerKWh: KEMERTON.capex.eraBenchmarkPerKWh,
+      referenceCapexAUD: KEMERTON.capex.eraReferenceCapexAUD,
+      brcp: KEMERTON.capex.eraBRCP,
+      fixedCapitalChargePerMW: KEMERTON.capex.fixedCapitalChargePerMW,
+    },
+    disclaimer: 'Seed snapshot only. Illustrative series excluded. Not investment advice.',
+  };
+
+  /* The confidential project layer is added only in a development build where
+     local-data/ is present. A public export carries no key for it — not an empty
+     one. */
+  if (hasProjectData){
+    o.kemertonConfidential = {
       project: KEMERTON.project,
-      duration: { ...KEMERTON.duration, cases: [7,7.5,8,8.5].map(kemDurationCase) },
-      capacityContext: KEMERTON.capacityContext,
+      duration: { ...KEMERTON.duration, cases: [7, 7.5, 8, 8.5].map(kemDurationCase) },
       merchant: KEMERTON.merchant,
       marketServices: KEMERTON.marketServices,
       capex: KEMERTON.capex,
       grid: KEMERTON.grid,
-      sourceStatus: Object.fromEntries(Object.entries(KEMERTON.sources).map(([k,v])=>[k,{file:v.file,status:v.status,date:v.date,applicable:v.cy}]))
-    },
-    disclaimer: 'Seed snapshot only. Illustrative series excluded. Not investment advice.',
-  };
+      sourceStatus: Object.fromEntries(Object.entries(KEMERTON.sources).map(([k, v]) => [k, { file: v.file, status: v.status, date: v.date, applicable: v.cy }])),
+    };
+  }
   download('wa_bess_dashboard_seed.json', JSON.stringify(o, null, 2), 'application/json');
 }
 

@@ -9,7 +9,7 @@ import { why } from '../../../components/decisionLogic.js';
 import { sectionHead } from '../../../components/sectionHeader.js';
 import { T } from '../text.js';
 import { SRC } from '../sources.js';
-import { MJA2026 } from '../data/optimizer.js';
+import { MJA2026, hasMjaData } from '../data/optimizer.js';
 import { exportCsv, exportJson } from '../lib/exports.js';
 
 // ---------------- DATA & METHODOLOGY ----------------
@@ -97,25 +97,12 @@ function renderData(main){
     ['Automate the seven decision-critical feeds', '优先自动化七类决策关键数据']));
   main.append(c1);
 
-  // Supplementary third-party source registry entry — confidential, gap-filling only
-  const cMja = card(['Supplementary third-party source — used only where official publications are silent', '补充性第三方来源 — 仅用于官方来源缺失之处'], [badge('supp'), badge('conf')]);
-  const mjaMeta = [
-    [['Source', '来源'], MJA2026.sourceName + ' — ' + MJA2026.reportTitle],
-    [['Vintage', '版本'], MJA2026.reportDate],
-    [['Gap it fills', '所填补的空白'], ['Long-run project revenue shape and price path; sub-boundary locational deliverability logic. No official publication covers either.', '长期项目收入形态与价格路径；子边界位置可交付性逻辑。两者均无官方来源覆盖。']],
-    [['Status', '状态'], ['Confidential · modelled · chart-reconstructed · not official', '保密 · 模型 · 图表重构 · 非官方']],
-    [['Price basis', '价格基准'], MJA2026.priceBasis],
-    [['Permitted use', '允许用途'], ['Display-only, in the Energy and Grid tabs, clearly badged. Never fed into EBITDA, IRR, DSCR or any scoring input; never presented as an alternative to an official figure.', '仅在现货与并网页面展示并明确标注。绝不进入EBITDA、IRR、DSCR或任何评分输入；绝不作为官方数据的替代观点呈现。']],
-  ];
-  cMja.append(h('div', { class: 'tbl-wrap' }, h('table', {},
-    h('tbody', {}, mjaMeta.map(r => h('tr', {}, h('td', {}, h('b', {}, L(r[0]))), h('td', {}, Array.isArray(r[1]) ? L(r[1]) : r[1])))))));
-  cMja.append(h('div', { class: 'warnbox' }, L(['Do not expose this document or its detailed project data in a public deployment without permission. Chart-reconstructed figures are tagged accordingly and cannot be exported as official.',
-    '未经许可，不得在公开部署中暴露本文件或其详细项目数据。图表重构数值均相应标注，且不可作为官方数据导出。'])));
-  cMja.append(why(['A supplementary source is only legitimate where an official one is silent, and only for the shape of a relationship rather than the level of a number. Both uses here meet that test: no regulator publishes a 30-year project revenue curve, and AEMO publishes assigned NAQ outcomes without the sub-boundary reasoning behind them. Keeping it to gap-filling avoids the trap of running a parallel set of numbers — there is one official figure for every official question, and the supplementary layer answers only the questions that have no official figure.',
-    '补充来源只有在官方来源缺失时才具备正当性，且仅用于说明关系的形态而非数字的水平。此处两项用途均满足该检验：无监管机构发布30年项目收入曲线；AEMO发布获配NAQ结果但不披露其背后的子边界推理。将其严格限于填补空白，可避免维护一套平行数字的陷阱 — 每个官方问题只有一个官方数字，补充层仅回答那些没有官方数字的问题。'],
-    ['Shape only, where nothing official exists', '仅在无官方数据处说明形态']));
-  cMja.style.marginTop = '14px';
-  main.append(cMja);
+  /* Supplementary third-party source registry entry — confidential, gap-filling
+     only. The entry names the report, its author and its vintage, so it is
+     itself confidential metadata and is omitted from a public build along with
+     the layer it describes. The formula and badge-legend cards below are public
+     and continue regardless. */
+  if (hasMjaData) renderMjaSourceEntry(main);
 
   const c2 = card(['Core formulas (spec §6.4, §8.4, §13.5)', '核心公式（规范§6.4、§8.4、§13.5）'], [statusBadge(false)]);
   c2.append(h('pre', { style: 'font-size:11.5px;line-height:1.7;color:var(--ink2);overflow-x:auto;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:8px;' },
@@ -134,6 +121,33 @@ shadow RCP                   = exact ESM Rules formula, validated against publis
   c2.style.marginTop = '14px';
   main.append(c2);
 
+  renderDataTail(main);
+}
+
+/* Confidential: names the report, its author and its vintage. */
+function renderMjaSourceEntry(main){
+  const cMja = card(['Supplementary third-party source — used only where official publications are silent', '补充性第三方来源 — 仅用于官方来源缺失之处'], [badge('supp'), badge('conf')]);
+  const mjaMeta = [
+    [['Source', '来源'], MJA2026.sourceName + ' — ' + MJA2026.reportTitle],
+    [['Vintage', '版本'], MJA2026.reportDate],
+    [['Gap it fills', '所填补的空白'], ['Long-run project revenue shape and price path; sub-boundary locational deliverability logic. No official publication covers either.', '长期项目收入形态与价格路径；子边界位置可交付性逻辑。两者均无官方来源覆盖。']],
+    [['Status', '状态'], ['Confidential · modelled · chart-reconstructed · not official', '保密 · 模型 · 图表重构 · 非官方']],
+    [['Price basis', '价格基准'], MJA2026.priceBasis],
+    [['Permitted use', '允许用途'], ['Display-only, in the Energy and Grid tabs, clearly badged. Never fed into EBITDA, IRR, DSCR or any scoring input; never presented as an alternative to an official figure.', '仅在现货与并网页面展示并明确标注。绝不进入EBITDA、IRR、DSCR或任何评分输入；绝不作为官方数据的替代观点呈现。']],
+  ];
+  cMja.append(h('div', { class: 'tbl-wrap' }, h('table', {},
+    h('tbody', {}, mjaMeta.map(r => h('tr', {}, h('td', {}, h('b', {}, L(r[0]))), h('td', {}, Array.isArray(r[1]) ? L(r[1]) : r[1])))))));
+  cMja.append(h('div', { class: 'warnbox' }, L(['Do not expose this document or its detailed project data in a public deployment without permission. Chart-reconstructed figures are tagged accordingly and cannot be exported as official.',
+    '未经许可，不得在公开部署中暴露本文件或其详细项目数据。图表重构数值均相应标注，且不可作为官方数据导出。'])));
+  cMja.append(why(['A supplementary source is only legitimate where an official one is silent, and only for the shape of a relationship rather than the level of a number. Both uses here meet that test: no regulator publishes a 30-year project revenue curve, and AEMO publishes assigned NAQ outcomes without the sub-boundary reasoning behind them. Keeping it to gap-filling avoids the trap of running a parallel set of numbers — there is one official figure for every official question, and the supplementary layer answers only the questions that have no official figure.',
+    '补充来源只有在官方来源缺失时才具备正当性，且仅用于说明关系的形态而非数字的水平。此处两项用途均满足该检验：无监管机构发布30年项目收入曲线；AEMO发布获配NAQ结果但不披露其背后的子边界推理。将其严格限于填补空白，可避免维护一套平行数字的陷阱 — 每个官方问题只有一个官方数字，补充层仅回答那些没有官方数字的问题。'],
+    ['Shape only, where nothing official exists', '仅在无官方数据处说明形态']));
+  cMja.style.marginTop = '14px';
+  main.append(cMja);
+}
+
+/* Public: badge legend, official-value summary and the export buttons. */
+function renderDataTail(main){
   const c3 = card(['Data-quality badge legend & seed status', '数据质量标识说明与种子状态'], [statusBadge(false)]);
   c3.append(h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;' },
     badge('official'), badge('calc'), badge('illus'), badge('forecast'), badge('dev'), badge('public'),
