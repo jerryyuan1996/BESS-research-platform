@@ -15,11 +15,16 @@ import { state } from '../state.js';
 import { fmtN, fmtAM, fmtIRR, fmtX } from '../ui.js';
 import { T } from '../text.js';
 import { SEED } from '../data/seed.js';
-import { OPT } from '../data/optimizer.js';
+import { OPT, MJA2026 } from '../data/optimizer.js';
 import { esrAtYear } from '../lib/scores.js';
 import { merchantPerMW } from '../lib/lab.js';
 
+/**
+ * Gross→net reconciliation for a confidential reconciliation point.
+ * Returns null when the point is absent, which is always in production.
+ */
 function mjaReconcile(r){
+  if (!r) return null;
   const dischargedMWh = r.dsocMW * 8760 * r.cfPct / 100;
   const grossSales = dischargedMWh * r.dwp;
   const chargeCost = dischargedMWh / (r.rte / 100) * r.lwp;
@@ -27,26 +32,50 @@ function mjaReconcile(r){
   const netMargin = grossSales - chargeCost;
   return { dischargedMWh, grossSales, chargeCost, spreadMargin, netMargin };
 }
-// ---- MJA annual forecast arrays (BESS 1, 30-year) ----
-// CHART_RECONSTRUCTED: digitised approximations from the report's figures — NO workbook was provided.
-// Anchored to verified points: 2035 DWP A$130 / LWP A$79 / net ~A$21M; spread A$47→A$75; duration path
-// 6→8→10→12h; ~10-yr grandfathering; year-15 refurbishment; revenue plateau A$140-160M, cliff A$95-105M.
-// Display-only and gross-basis — never fed into EBITDA/IRR/DSCR (spec §9.10 / MJA §5-6 safeguards).
+
+/* ---- MJA annual forecast arrays (BESS 1, 30-year) -------------------------
+   Every parameter this reconstruction is anchored to now lives in
+   local-data/wa-mja2026.json under `reconstruction`.
+
+   They were previously hardcoded here as literals — the capacity price, the
+   discharge-weighted price path, the duration-protection schedule and the
+   refurbishment year. That made this function a reconstruction of confidential
+   third-party figures sitting in the public bundle, which is exactly what the
+   data module next door was flagged for. Moving the constants was the point; the
+   arithmetic is unchanged.
+
+   Returns null when the confidential layer is absent. Display-only and
+   gross-basis either way — never fed into EBITDA/IRR/DSCR. */
 let _mjaSeriesCache = null;
 function mjaSeries(){
   if (_mjaSeriesCache) return _mjaSeriesCache;
-  const DSOC = 250, RTE = 0.9, peakRcp = 340000, refurb = 15, protectYrs = 10;
-  const reqAct = fy => fy <= 2034 ? 8 : fy <= 2040 ? 10 : 12;
+  const R = MJA2026?.reconstruction;
+  if (!R) return null;
+
+  const reqAct = (fy) => {
+    for (const [untilFy, hours] of R.requirementHoursByFY){
+      if (fy <= untilFy) return hours;
+    }
+    return R.requirementHoursBeyond;
+  };
+
   const years = [], dwp = [], lwp = [], spread = [], cf = [], capRev = [], energyGross = [], netEnergy = [], essRocof = [], total = [], derate = [];
-  for (let i = 0; i < 30; i++){
-    const fy = 2031 + i, ysr = i < refurb ? i : i - refurb;
-    const c = 0.25 - 0.006 * ysr, d = 118 + 3 * i, l = 72 + 1.9 * i;
-    const usable = 6.03 * (c / 0.25), effReq = i < protectYrs ? 6 : reqAct(fy), der = Math.min(usable / effReq, 1);
-    const dischMWh = DSOC * 8760 * c, eg = dischMWh * d, cc = dischMWh / RTE * l, cap = DSOC * der * peakRcp, ess = Math.max(2, 6 - 0.15 * i) * 1e6;
+  for (let i = 0; i < R.years; i++){
+    const fy = R.startFY + i, ysr = i < R.refurbYear ? i : i - R.refurbYear;
+    const c = R.cfStart - R.cfDeclinePerYear * ysr;
+    const d = R.dwpStart + R.dwpSlope * i;
+    const l = R.lwpStart + R.lwpSlope * i;
+    const usable = R.usableHoursAtRefCf * (c / R.cfStart);
+    const effReq = i < R.protectYears ? 6 : reqAct(fy);
+    const der = Math.min(usable / effReq, 1);
+    const dischMWh = R.dsocMW * 8760 * c;
+    const eg = dischMWh * d, cc = dischMWh / R.rte * l;
+    const cap = R.dsocMW * der * R.peakRcp;
+    const ess = Math.max(R.essFloorAM, R.essStartAM - R.essSlopeAM * i) * 1e6;
     years.push(fy); dwp.push(d); lwp.push(+l.toFixed(1)); spread.push(+(d - l).toFixed(1)); cf.push(+(c * 100).toFixed(1));
     energyGross.push(eg); netEnergy.push(eg - cc); capRev.push(cap); essRocof.push(ess); total.push(cap + eg + ess); derate.push(der);
   }
-  _mjaSeriesCache = { years, dwp, lwp, spread, cf, capRev, energyGross, netEnergy, essRocof, total, derate, peakRcp, refurbFY: 2031 + refurb };
+  _mjaSeriesCache = { years, dwp, lwp, spread, cf, capRev, energyGross, netEnergy, essRocof, total, derate, peakRcp: R.peakRcp, refurbFY: R.startFY + R.refurbYear };
   return _mjaSeriesCache;
 }
 function rcmScnParams(scn){ if (scn === 'CUSTOM'){ if (!state.rcmCustom) state.rcmCustom = { ...OPT.scnParams.BASE }; return state.rcmCustom; } return OPT.scnParams[scn]; }

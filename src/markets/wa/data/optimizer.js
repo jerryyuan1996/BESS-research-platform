@@ -1,15 +1,22 @@
 /* ---------------------------------------------------------------------------
-   Co-optimisation scenario tables and the third-party MJA scenario layer.
-   Verbatim from the prototype (lines 3439-3485).
+   Co-optimisation scenario tables (public) + the third-party MJA scenario layer
+   (confidential, loaded only in development).
 
-   MJA2026 is CONFIDENTIAL_THIRD_PARTY in the prototype and chart-reconstructed.
-   NOTE: this file ships in the public production bundle. See docs/data-policy.md -
-   nothing in src/ is private. Migrated as-is to preserve behaviour; flagged for
-   the confidential-data phase.
+   OPT is the Investment Lab's own scenario configuration — RCM/energy/FCESS
+   weightings, strategy definitions and an illustrative WA daily price shape. It
+   is this platform's modelling, not anyone else's material, and it is public.
+
+   MJA2026 is chart-reconstructed from a confidential third-party consultant
+   report. The prototype's comment read "Do not expose in a public deployment",
+   and it then shipped in the public bundle for the whole of the refactor. It now
+   lives in `local-data/wa-mja2026.json`.
+
+   Callers must branch on `hasMjaData` before reading MJA2026. In production it is
+   null.
    --------------------------------------------------------------------------- */
+import { loadLocal } from '../../../local/loader.js';
 
-
-// ---------------- Investment Lab: RCM × Energy × FCESS co-optimisation (spec update) ----------------
+// ---------------- Investment Lab: RCM × Energy × FCESS co-optimisation ----------------
 const OPT = {
   scnParams: {
     HIGH: { rcpFactor: 1.00, ccRet: 0.98, refundBase: 1.5, avail: 98.5, merchScale: 0.9, shadow: 1.3, vol: 0.10 },
@@ -29,32 +36,13 @@ const OPT = {
   price24: [42, 38, 35, 33, 32, 34, 45, 60, 40, 18, 5, -4, -6, -2, 8, 28, 70, 150, 205, 190, 120, 70, 55, 48],
   oblStart: 17, oblEnd: 21,
 };
-// ---- Third-party confidential scenario layer: Marsden Jacob Associates, 27 Feb 2026 (MJA report) ----
-// NEVER badged official. Values are chart-reconstructed from the confidential report; kept separate
-// from the official SEED and calculated layers (spec §5.1). Do not expose in a public deployment.
-const MJA2026 = {
-  id: 'MJA_2026_EXPECTED_CASE', sourceName: 'Marsden Jacob Associates', reportTitle: 'Utility Scale Storage in the WEM',
-  reportDate: '2026-02-27', confidentiality: 'CONFIDENTIAL_THIRD_PARTY', priceBasis: ['June 2025 real A$', '2025年6月不变价 A$'],
-  status: 'THIRD_PARTY_MODELLED', scope: ['Project-specific WEM expected case (3 BESS)', '项目层面WEM期望情景（3个BESS）'],
-  draftBrcp: 491700,          // draft 2026 BRCP (6h basis) — NOT the official 488,500
-  esrHours: 6,                // MJA assumed benchmark/requirement — NOT the current 7h
-  projects: [
-    { id: 'BESS1', region: ['Metro South', '南都会区'], loc: 'Baldivis', cod: '2029-10-01', installedMW: 341.5, installedMWh: 1506.8, dsocMW: 250, hoursAtDsoc: 6.0273, network: 'LOW_CONSTRAINT', refurbYear: 15 },
-    { id: 'BESS2', region: ['Metro South', '南都会区'], loc: 'Hopeland', cod: '2029-10-01', installedMW: 170.7, installedMWh: 753.4, dsocMW: 125, hoursAtDsoc: 6.0273, network: 'LOW_CONSTRAINT', refurbYear: 15 },
-    { id: 'BESS3', region: ['North', '北部区'], loc: 'Mimegarra', cod: '2030-10-01', installedMW: 341.5, installedMWh: 1506.8, dsocMW: 250, originalDsocMW: 500, hoursAtDsoc: 6.0273, network: 'MATERIAL_MW_NB_CONSTRAINT', refurbYear: 15 },
-  ],
-  assumptions: {
-    coalRetire: { Collie: 2027, MujaD: 2031, Bluewaters: 2034 },
-    durationPathHours: { '2028-29': 6, '2031-32': 8, '2035-36': 10, '2041-42': 12 },
-    peakSurplusPct: 2.5, flexiblePremium: false, rocofTotalCostAM: 43, rocofBessMaxSharePct: 65,
-    spreadEarly: 47, spreadLate: 75, capacityFactorPct: 25, avgStorageCF: { 2025: 4.5, '2032-36': 15.7 },
-    revenueMix: { capacity: 52, energy: 44, essRocof: 4 },
-  },
-  // representative 2035 BESS1 gross→net reconciliation point (chart-reconstructed, §3.3)
-  recon2035: { dsocMW: 250, cfPct: 23, dwp: 130, lwp: 79, spread: 50, rte: 90 },
-  labPreset: { mw: 250, hours: 6.03, life: 30, ccPct: 100, rcpPct: 100, degr: 1.5 },
-  grossNotNetWarning: ['Published "Energy Arbitrage" stack appears to be gross discharge sales; deduct charging cost, efficiency loss, degradation and fees before use as net margin.',
-    '报告中“现货套利”栏目似为毛放电销售额；用作净收益前须扣除充电成本、效率损失、衰减及费用。'],
-};
+
+/* ---- Third-party confidential scenario layer ------------------------------
+   Never badged official. In production this is null and every consumer renders
+   its public content only. */
+const MJA2026 = loadLocal('wa-mja2026');
+
+/** True when the confidential MJA layer is available. Always false in a build. */
+export const hasMjaData = MJA2026 !== null;
 
 export { OPT, MJA2026 };

@@ -16,7 +16,9 @@ import { NF1, fmtN, fmtAM } from '../ui.js';
 import { T } from '../text.js';
 import { SEED } from '../data/seed.js';
 import { KEMERTON } from '../data/kemerton.js';
-import { MJA2026 } from '../data/optimizer.js';
+import { MJA2026, hasMjaData } from '../data/optimizer.js';
+import { hasProjectData } from '../data/kemerton.js';
+import { withheldCard } from '../../../components/withheld.js';
 import { mjaReconcile, mjaSeries } from '../lib/optimizer.js';
 
 // ---------------- ENERGY ----------------
@@ -112,8 +114,20 @@ function renderEnergy(main){
   g.append(c4);
   main.append(g);
 
-  // ---- Supplementary long-run view: fills the forward-revenue gap official
-  //      publications do not cover (AEMO/ERA publish no 30-year project revenue path).
+  /* ---- Supplementary long-run view: fills the forward-revenue gap official
+          publications do not cover (AEMO/ERA publish no 30-year project revenue
+          path).
+
+     Both supplementary cards below are built entirely from the confidential
+     third-party layer, so they are omitted rather than emptied when it is
+     absent. The public content of this tab — the WEM spread history, the FCESS
+     interaction and the merchant curve — is above and unaffected.
+
+     Nothing is stated in place of them here: unlike the Portfolio tab, whose
+     absence would be conspicuous, these are supplementary by construction and a
+     reader who never saw them is not missing part of an argument. */
+  if (!hasMjaData) return;
+
   const S = mjaSeries();
   const fyL = S.years.map(y => "'" + String(y).slice(2));
   const rc = mjaReconcile(MJA2026.recon2035);
@@ -171,6 +185,8 @@ function renderEnergy(main){
 
 // Project-specific charging / offtake strategy — Portfolio tab only.
 function kemertonChargingCard(){
+  // Reachable only from the gated Portfolio tab; guarded because it is exported.
+  if (!hasProjectData) return withheldCard(['Commercial charging & offtake strategy', '充电与售电策略']);
   const kcs = card(['Commercial charging & offtake strategy', '充电与售电策略'], [badge('dev'), badge('model')]);
   kcs.append(h('div',{class:'kpis'},
     kpi(L(['Renewable charging cost','新能源充电成本']),'A$'+KEMERTON.merchant.renewableChargeCost+'<small>/MWh</small>',null,[badge('dev')]),

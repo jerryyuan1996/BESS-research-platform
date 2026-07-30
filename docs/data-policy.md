@@ -66,7 +66,52 @@ never in the browser. No credential of any kind reaches `dist/`.
 - internal financial models
 - anything a data-room agreement covers
 
-### One item currently in breach of that rule, flagged rather than removed
+### Resolved: the confidential WA layer is now behind `local-data/`
+
+Both items previously flagged below have been moved out of the public tree. What
+the exercise taught is worth more than the fix:
+
+**Moving the values was not enough.** The section *prose* carried the project
+name, the site address, the capital structure and the financial model's own audit
+exception as string literals. A `dist/` scan found every one of them after the
+data modules were already clean.
+
+**Gating the render was not enough either.** A bundler ships a function's string
+literals whether or not the function is ever called. `renderPortfolio` returned
+early in production and its entire confidential text still shipped.
+
+**Nor was gating the CSV export.** The row labels named the project and its
+financial model.
+
+**Nor was a clean JS bundle.** Sourcemaps publish readable original source,
+including comments — and explanatory comments naming the project and the
+consultant were reachable through the `.map` long after the code was clean.
+`vite.config.js` now sets `sourcemap: false`.
+
+So the rule is:
+
+> If a whole section is confidential, move the **module**. If a value inside a
+> publishable section is confidential, move the **value**. Gating a render
+> protects nothing.
+
+Three mechanisms enforce it:
+
+| | |
+|---|---|
+| `vite-plugin-local-data.js` | replaces two public stubs (`src/local/payload.js`, `src/local/portfolioSection.js`) with real content in dev; in a build they stay stubs, unconditionally |
+| `tests/bundle-confidentiality.test.js` | scans the built `dist/` for forbidden markers and fails the build |
+| `.gitignore` | `local-data/*` is never committed |
+
+The stubs are real files rather than Vite `virtual:` modules on purpose: the test
+suite imports the market registry in plain Node, and a virtual specifier breaks
+every test that reaches it.
+
+Note what the marker list deliberately does **not** ban: "Kemerton" alone. It is a
+real WA place — the Kemerton Strategic Industrial Area, Kemerton Terminal, the
+KEM–MRR constraint — and that geography is public and discussed throughout the
+grid and RCM tabs. What is confidential is *this fund's asset* at that location.
+
+### The original flags, kept for the record
 
 `src/markets/wa/data/optimizer.js` contains `MJA2026` — a scenario layer marked
 `CONFIDENTIAL_THIRD_PARTY` in the prototype, chart-reconstructed from a Marsden Jacob Associates

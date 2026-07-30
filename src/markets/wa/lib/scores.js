@@ -19,10 +19,20 @@ function shadowRcpFactor(r){
 }
 function stageProb(id){ const s = SEED.stages.find(x => x.id === id); return s ? s.p / 100 : 0; }
 
+/**
+ * Duration headroom for the confidential project case.
+ *
+ * Returns null when the project layer is absent, which is always in production.
+ * Deliberately not defaulted to zero: `powerMW * hours` on a missing value would
+ * produce a plausible-looking 0 MWh requirement and 100% headroom, which is a
+ * wrong answer rather than a missing one. Callers branch on null.
+ */
 function kemDurationCase(hours){
-  const required = KEMERTON.project.powerMW * hours;
-  const headroom = KEMERTON.project.energyMWh - required;
-  return { hours, required, headroom, pct: headroom / KEMERTON.project.energyMWh * 100 };
+  const p = KEMERTON.project;
+  if (!p) return null;
+  const required = p.powerMW * hours;
+  const headroom = p.energyMWh - required;
+  return { hours, required, headroom, pct: headroom / p.energyMWh * 100 };
 }
 
 export { dniScore, connScore, compositeScore, esrAtYear, shadowRcpFactor, stageProb, kemDurationCase };

@@ -17,7 +17,8 @@ import { NF1, fmtN } from '../ui.js';
 import { T } from '../text.js';
 import { SRC } from '../sources.js';
 import { SEED } from '../data/seed.js';
-import { KEMERTON } from '../data/kemerton.js';
+import { KEMERTON, hasProjectData } from '../data/kemerton.js';
+import { WITHHELD_NOTICE } from '../../../local/loader.js';
 import { dniScore, esrAtYear, kemDurationCase } from '../lib/scores.js';
 
 // ---------------- DURATION ----------------
@@ -42,6 +43,21 @@ function renderDuration(main){
 // Project-specific duration / fixed-price eligibility — Portfolio tab only.
 function kemertonDurationCard(){
   const kemDur = card(['Duration & 10-year fixed-price eligibility', '时长与10年固定价资格'], [sourceStatusBadge(SRC.esoo), badge('project')]);
+
+  /* The card's whole subject is one named project's deliverable duration, so
+     there is nothing public to fall back to. It states that the layer is
+     withheld rather than disappearing: a reader who has seen this dashboard
+     before should be able to tell "not published here" from "no longer
+     analysed". The WEM thresholds themselves are public and stay on screen. */
+  if (!hasProjectData){
+    kemDur.append(h('div', { class:'kpis' },
+      kpi(L(['Current fixed-price hurdle','当前固定价门槛']), KEMERTON.duration.fixedPriceBaseThresholdHours + '<small> h</small>', { text:L(['Base-case long-duration threshold','基准长期储能门槛']) }, [badge('final')]),
+      kpi(L(['Upper sensitivity','上行情景门槛']), KEMERTON.duration.sensitivityHighHours + '<small> h</small>', { text:L(['Anticipated-project sensitivity','预期项目敏感性']) }, [badge('final')])));
+    kemDur.append(h('div', { class:'note' }, L(WITHHELD_NOTICE)));
+    kemDur.append(sourceDrawer(SRC.esoo, ['ESR duration requirements, long-duration threshold and sensitivities','ESR时长要求、长期储能门槛及敏感性']));
+    return kemDur;
+  }
+
   const dCases = [7,7.5,8,8.5].map(kemDurationCase);
   kemDur.append(h('div', { class:'kpis' },
     kpi(L(['Raw installed duration','原始装机时长']), KEMERTON.project.rawDurationHours + '<small> h</small>', { text:'860 MWh ÷ 100 MW' }, [badge('model')]),

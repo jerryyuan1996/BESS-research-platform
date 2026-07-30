@@ -14,7 +14,8 @@ import { lineChart, barChart, waterfall } from '../../../charts/index.js';
 import { NF1, fmtN, fmtAM } from '../ui.js';
 import { T } from '../text.js';
 import { SEED } from '../data/seed.js';
-import { KEMERTON } from '../data/kemerton.js';
+import { KEMERTON, hasProjectData } from '../data/kemerton.js';
+import { withheldCard } from '../../../components/withheld.js';
 
 // ---------------- FCESS ----------------
 function renderFcess(main){
@@ -85,6 +86,8 @@ function renderFcess(main){
 
 // Project-specific market-services bridge — Portfolio tab only.
 function kemertonServicesCard(){
+  // Reachable only from the gated Portfolio tab; guarded because it is exported.
+  if (!hasProjectData) return withheldCard(['Market-services underwriting bridge', '市场服务承销桥']);
   const km = card(['Market-services underwriting bridge', '市场服务承销桥'], [badge('project'), badge('model')]);
   km.append(h('div',{class:'kpis'},
     kpi(L(['Modelled annual services revenue','模型年度服务收入']),fmtAM(KEMERTON.marketServices.annualRevenueAUD),{text:'CPI '+KEMERTON.marketServices.escalationPct+'%'},[badge('model')]),
