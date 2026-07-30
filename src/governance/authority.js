@@ -37,6 +37,18 @@ export const AUTHORITY = {
   /** Deterministic function of observed data. Machine computes; publishes after validation. */
   DERIVED: 'derived',
 
+  /** Canonical name for a deterministic metric whose inputs are all observed. */
+  DERIVED_OBSERVED: 'derived-observed',
+
+  /** A pathway or projection published by an official body, preserving its vintage and scenario. */
+  OFFICIAL_FORECAST: 'official-forecast',
+
+  /** A forward series approved by the analyst; automation may recompute but not redefine it. */
+  ANALYST_SCENARIO: 'analyst-scenario',
+
+  /** Synthetic data used only to demonstrate a component; never an investment input. */
+  ILLUSTRATIVE_SEED: 'illustrative-seed',
+
   /**
    * An analyst-set assumption that a public observation bears on.
    * Machine may PROPOSE a change with evidence. Machine may never apply one.
@@ -55,7 +67,12 @@ export const AUTHORITY = {
 };
 
 /** Classes automation is permitted to write directly. */
-export const MACHINE_WRITABLE = new Set([AUTHORITY.OBSERVED, AUTHORITY.DERIVED]);
+export const MACHINE_WRITABLE = new Set([
+  AUTHORITY.OBSERVED,
+  AUTHORITY.DERIVED,
+  AUTHORITY.DERIVED_OBSERVED,
+  AUTHORITY.OFFICIAL_FORECAST,
+]);
 
 /** Classes automation may raise a pull request against. */
 export const MACHINE_PROPOSABLE = new Set([AUTHORITY.ANALYST]);
@@ -250,6 +267,10 @@ export function canMachinePropose(authority){
 export const AUTHORITY_LABEL = {
   [AUTHORITY.OBSERVED]: ['Observed — fetched from a public source', '实测 — 取自公开来源'],
   [AUTHORITY.DERIVED]: ['Derived — computed from observed data', '衍生 — 由实测数据计算'],
+  [AUTHORITY.DERIVED_OBSERVED]: ['Derived-observed — deterministic calculation from official data', '观察衍生 — 基于官方数据的确定性计算'],
+  [AUTHORITY.OFFICIAL_FORECAST]: ['Official forecast — source pathway and vintage preserved', '官方预测 — 保留来源情景与版本'],
+  [AUTHORITY.ANALYST_SCENARIO]: ['Analyst scenario — human-approved forward case', '分析师情景 — 人工批准的前瞻情景'],
+  [AUTHORITY.ILLUSTRATIVE_SEED]: ['Illustrative seed — excluded from investment metrics', '示例种子 — 不计入投资指标'],
   [AUTHORITY.ANALYST]: ['Analyst assumption — automation may propose, not change', '分析师假设 — 自动化仅可建议，不可更改'],
   [AUTHORITY.METHODOLOGY]: ['Analyst methodology — human-set only', '分析师方法论 — 仅由人工设定'],
   [AUTHORITY.CONFIG]: ['Configuration', '配置'],

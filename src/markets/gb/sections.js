@@ -10,6 +10,9 @@
    which is what keeps the four markets in this lineage interchangeable.
    --------------------------------------------------------------------------- */
 
+import { buildGBGridSection } from './gridSection.js';
+import { gbEconomicsP0Blocks } from './economicsP0Section.js';
+
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
   const { h, L, MKT, M, SRC, T, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, compositeScore, liveScore, durationAt, interp, dilutionAt, labInputs, labModel, pipelineByYear } = api;
@@ -131,8 +134,8 @@ SEC_B.home = function (){
           ['Duration-differentiated de-rating','按时长差异化的折减系数'],
           ['Longer-duration investment signal','更长时长投资信号'],
         ], sep:'+' },
-        { t:'why', text:['This is the only strengthening signal, and in GB it is paid for through the de-rating table rather than through wider spreads. Moving 2h → 4h roughly doubles de-rated capacity (' + fmtPct(derate2 * 100) + ' → ' + fmtPct(derate4 * 100) + ') while realised merchant revenue rises only ' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + '%. So the fourth hour is a capacity-market and resilience decision, not an arbitrage one. With the fleet averaging ' + fmt1(O.fleetAvgHours) + ' h against a P90 event length of ' + fmt1(M.events.highPrice.p90) + ' h, the incumbent short fleet cannot follow — which is precisely where new-build advantage sits.',
-          '这是唯一走强的信号，且在英国是通过折减系数表而非更宽价差来支付的。由2小时增至4小时，折减后容量约翻倍（' + fmtPct(derate2 * 100) + '→' + fmtPct(derate4 * 100) + '），而实际市场化收入仅上升' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + '%。因此第4小时是容量市场与韧性决策，而非套利决策。存量平均' + fmt1(O.fleetAvgHours) + '小时，对应P90事件时长' + fmt1(M.events.highPrice.p90) + '小时，短时存量机组无法跟随 — 这正是新建项目的优势所在。'],
+        { t:'why', text:['This is the only strengthening signal, and in GB it is paid for through the de-rating table rather than through wider spreads. Moving 2h → 4h roughly doubles de-rated capacity (' + fmtPct(derate2 * 100) + ' → ' + fmtPct(derate4 * 100) + ') while realised merchant revenue rises only ' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + '. So the fourth hour is a capacity-market and resilience decision, not an arbitrage one. With the fleet averaging ' + fmt1(O.fleetAvgHours) + ' h against a P90 event length of ' + fmt1(M.events.highPrice.p90) + ' h, the incumbent short fleet cannot follow — which is precisely where new-build advantage sits.',
+          '这是唯一走强的信号，且在英国是通过折减系数表而非更宽价差来支付的。由2小时增至4小时，折减后容量约翻倍（' + fmtPct(derate2 * 100) + '→' + fmtPct(derate4 * 100) + '），而实际市场化收入仅上升' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + '。因此第4小时是容量市场与韧性决策，而非套利决策。存量平均' + fmt1(O.fleetAvgHours) + '小时，对应P90事件时长' + fmt1(M.events.highPrice.p90) + '小时，短时存量机组无法跟随 — 这正是新建项目的优势所在。'],
           sig:['Hours are paid by de-rating, not spread','小时数由折减系数付费，而非价差'] },
       ] },
       // ---- Card F ----
@@ -197,12 +200,14 @@ SEC_B.home = function (){
 
 // ============================== GB MARKET STORY ==============================
 SEC_B.story = function (){
+  const S = M.systemEvolution;
   return {
   head: ['GB Market Evolution — from energy-only trading market to a duration-and-connection-constrained storage market',
          '英国市场演进 — 从单一电能量交易市场到受时长与并网约束的储能市场'],
   cap: ['This section is the narrative bridge between the Overview and the detailed underwriting tabs. It separates historical facts, observed market outcomes and the forward investment conclusion.',
         '本节连接“总览”与后续承销分析，明确区分历史事实、已观察市场结果及前瞻投资结论。'],
   blocks: [
+    ...gbEconomicsP0Blocks(SRC),
     { t:'card', mt:false, title:['One-minute orientation for a new institutional investor','机构投资人的一分钟市场定位'], badges:['official','public'], live:false, blocks:[
       { t:'kpis', items:[
         { l:['Wholesale market design','批发市场设计'], v:'2001 / 2005', d:['NETA then BETTA — energy-only, national pricing retained under RNP','NETA继而BETTA — 单一电能量，改革后维持全国统一定价'], b:['official'] },
@@ -220,6 +225,42 @@ SEC_B.story = function (){
         sig:['Position risk, not thesis risk','位置风险而非逻辑风险'] },
     ] },
 
+    { t:'card', title:['Official system evolution — FES 2025 Ten Year Forecast','官方系统演进 — FES 2025十年预测'], badges:['official','forecast'], blocks:[
+      { t:'kpis', items:[
+        { l:['Annual system demand','年度系统需求'], v:fmt1(S.demand.totalGWh.values[2] / 1000) + '<small> TWh</small>', d:['2035 vs ' + fmt1(S.demand.totalGWh.values[0] / 1000) + ' TWh in 2024','2035年；2024年为' + fmt1(S.demand.totalGWh.values[0] / 1000) + 'TWh'], b:['official','forecast'] },
+        { l:['Peak customer demand','客户峰值需求'], v:fmt1(S.demand.peakGW.values[2]) + '<small> GW</small>', d:['2035 vs ' + fmt1(S.demand.peakGW.values[0]) + ' GW in 2024','2035年；2024年为' + fmt1(S.demand.peakGW.values[0]) + 'GW'], b:['official','forecast'] },
+        { l:['Data-centre demand','数据中心需求'], v:fmt1(S.demand.dataCentreGWh.values[2] / 1000) + '<small> TWh</small>', d:['2035; ' + fmt1(S.demand.dataCentreGWh.values[2] / S.demand.dataCentreGWh.values[0]) + '× 2024','2035年；为2024年的' + fmt1(S.demand.dataCentreGWh.values[2] / S.demand.dataCentreGWh.values[0]) + '倍'], b:['official','forecast'] },
+        { l:['Network-connected batteries','联网电池'], v:fmt1(S.capacity.batteryGW.values[1]) + '<small> GW</small>', d:['2030; excludes Distributed-Micro','2030年；不含分布式微型储能'], b:['official','forecast'] },
+        { l:['Long-duration storage','长时储能'], v:fmt1(S.capacity.ldesGW.values[2]) + '<small> GW</small>', d:['2035 vs ' + fmt1(S.capacity.ldesGW.values[1]) + ' GW in 2030','2035年；2030年为' + fmt1(S.capacity.ldesGW.values[1]) + 'GW'], b:['official','forecast'] },
+      ] },
+      { t:'g2', cards:[
+        { title:['Variable renewables and storage capacity','可变可再生能源与储能容量'], badges:['official','forecast'], blocks:[
+          { t:'line', cfg:{ xs:S.years.map(String), yfmt:v => fmt1(v) + ' GW', ymin:0, h:230,
+            series:[
+              { name:['Wind','风电'], color:'var(--s2)', vals:S.capacity.windGW.values },
+              { name:['Solar PV','光伏'], color:'var(--s3)', vals:S.capacity.solarGW.values },
+              { name:['Network batteries','联网电池'], color:'var(--s1)', vals:S.capacity.batteryGW.values },
+              { name:['LDES','长时储能'], color:'var(--s6)', vals:S.capacity.ldesGW.values },
+            ] } },
+        ] },
+        { title:['Peak demand, firm capacity and interconnection','峰值需求、稳固容量与互联'], badges:['official','forecast'], blocks:[
+          { t:'line', cfg:{ xs:S.years.map(String), yfmt:v => fmt1(v) + ' GW', ymin:0, h:230,
+            series:[
+              { name:['Peak customer demand','客户峰值需求'], color:'var(--ink)', vals:S.demand.peakGW.values },
+              { name:['Gas','燃气'], color:'var(--s6)', vals:S.capacity.gasGW.values },
+              { name:['Nuclear','核电'], color:'var(--s5)', vals:S.capacity.nuclearGW.values },
+              { name:['Interconnectors','互联线路'], color:'var(--s4)', vals:S.capacity.interconnectorGW.values },
+            ] } },
+        ] },
+      ] },
+      { t:'note', text:['These are points from one named official pathway, not observed outturns and not the dashboard’s analyst low/central/high merchant scenarios. Original years and FES 2025 vintage are preserved; no hidden interpolation is used.',
+        '这些数值来自一个具名官方路径，并非实际结果，也非看板的分析师低/中/高市场化情景。原始年份与FES 2025版本均被保留，未使用任何隐藏插值。'] },
+      { t:'why', text:['The physical storage case is visible in the joint movement: annual demand rises about 37%, data-centre demand more than quadruples, wind adds nearly 69 GW, and nuclear falls before partially recovering. FES places network-connected batteries at ' + fmt1(S.capacity.batteryGW.values[1]) + ' GW in 2030. The investment case is invalidated, however, if connection delivery and revenue capture do not keep pace — official system need is not evidence that any individual queue project will earn its cost of capital.',
+        '储能的物理需求体现在联动变化中：年度需求增长约37%，数据中心需求增长超过四倍，风电增加近69GW，而核电先下降后部分恢复。FES预计2030年联网电池达到' + fmt1(S.capacity.batteryGW.values[1]) + 'GW。但若并网交付与收入捕获未能同步，投资逻辑仍会失效 — 官方系统需求并不能证明任何单个排队项目能够赚取其资本成本。'],
+        sig:['System need ≠ project return','系统需求≠项目回报'] },
+      { t:'src', src:SRC.fesEd1, use:['Annual and peak demand, including data-centre demand; FES 2025 Ten Year Forecast','年度与峰值需求（含数据中心需求）；FES 2025十年预测'] },
+      { t:'src', src:SRC.fesEs1, use:['Technology capacity by connection class; FES 2025 Ten Year Forecast','按接入类别划分的技术容量；FES 2025十年预测'] },
+    ] },
     { t:'card', title:['How GB storage revenue was re-pointed — three times in ten years','英国储能收入的三次重新定向 — 十年间'], badges:['official','public'], blocks:[
       { t:'band-story', b:['Why this history is underwriting-relevant','这段历史为何与承销相关'],
         text:['GB has never paid storage through a single durable mechanism. Revenue moved from frequency response, to the Capacity Market and wholesale spreads, to the Balancing Mechanism — and each move stranded the design that was optimal for the previous era. A 1-hour asset built for Enhanced Frequency Response and a 2-hour asset built for Dynamic Containment are both still operating and both structurally disadvantaged today.',
@@ -248,8 +289,8 @@ SEC_B.story = function (){
         { y:'2022–2025', t:['Wholesale volatility and BM access become the core','批发波动与平衡机制准入成为核心'],
           p:['Gas-driven price volatility widened spreads, while platform reform improved battery access to the Balancing Mechanism. The BM is now the single largest revenue component at 39%, ahead of day-ahead at 38%.',
              '燃气驱动的价格波动扩大了价差，同时平台改革改善了电池进入平衡机制的条件。平衡机制目前是最大的单一收入项，占39%，高于日前市场的38%。'],
-          i:['Third re-pointing — and this one rewards trading capability rather than asset specification. The same physical battery now earns ' + fmtPct((M.realisedRatio.strong / M.realisedRatio.weak - 1) * 100, 0) + '% more under a strong optimiser than a weak one.',
-             '第三次重新定向 — 这一次奖励的是交易能力而非资产规格。同一台物理电池在优秀优化商手中的收入，比在落后者手中高' + fmtPct((M.realisedRatio.strong / M.realisedRatio.weak - 1) * 100, 0) + '%。'] },
+          i:['Third re-pointing — and this one rewards trading capability rather than asset specification. The same physical battery now earns ' + fmtPct((M.realisedRatio.strong / M.realisedRatio.weak - 1) * 100, 0) + ' more under a strong optimiser than a weak one.',
+             '第三次重新定向 — 这一次奖励的是交易能力而非资产规格。同一台物理电池在优秀优化商手中的收入，比在落后者手中高' + fmtPct((M.realisedRatio.strong / M.realisedRatio.weak - 1) * 100, 0) + '。'] },
         { y:'2024–2025', t:['Clean Power 2030 and connections reform','2030清洁电力与并网改革'],
           p:['The CP2030 Action Plan set a 23–27 GW battery and 4–6 GW LDES requirement. In parallel, connections reform replaced the first-come-first-served queue with Gate 1 / Gate 2, re-ordering a multi-hundred-GW queue against strategic need and project readiness.',
              '《2030清洁电力行动计划》确定23–27GW电池与4–6GW长时储能需求。与此同时，并网改革以Gate 1/Gate 2取代先到先得排队机制，依据战略需求与项目成熟度对数百GW的队列重新排序。'],
@@ -356,8 +397,8 @@ SEC_B.story = function (){
           { yr:['2027–2028','2027–2028'], h:['Services floor, wholesale carries','服务见底，批发承载'], p:['Frequency-response revenue approaches a floor set by opex-plus-margin bidding. Wholesale and BM carry the case, so optimiser selection dominates asset selection.','调频响应收入接近由“运维加边际”报价决定的底部。批发与平衡机制承载投资逻辑，因此优化商选择的重要性超过资产选择。'] },
           { yr:['2028–2029','2028–2029'], h:['De-rating squeeze on short assets','折减系数挤压短时资产'], p:['Successive de-rating vintages cut 1–2h capacity value further while 4h holds. New build converges on 2h+ with an augmentation path.','连续的折减系数版本进一步削减1–2小时资产的容量价值，而4小时基本维持。新建项目向“2小时以上并保留增容路径”收敛。'] },
         ] },
-        { t:'why', text:['In this window nothing about the market changes in your favour. Spread compression under the central buildout path reaches ' + fmtPct((1 - M.compression2h.CENTRAL[4]) * 100, 0) + '% by 2029 for a 2h asset, and services keep falling. The only levers a sponsor controls are connection date, duration and optimiser. Underwrite as if all three must be top-quartile, because the market will not compensate for any of them being average.',
-          '在这一窗口内，市场不会有任何变化对你有利。在中性投产路径下，2小时资产的价差压缩至2029年达到' + fmtPct((1 - M.compression2h.CENTRAL[4]) * 100, 0) + '%，且服务收入持续下滑。发起人可控的杠杆只有并网日期、时长与优化商三项。应按三项均须处于前四分之一来测算，因为市场不会为其中任何一项的平庸表现给予补偿。'],
+        { t:'why', text:['In this window nothing about the market changes in your favour. Spread compression under the central buildout path reaches ' + fmtPct((1 - M.compression2h.CENTRAL[4]) * 100, 0) + ' by 2029 for a 2h asset, and services keep falling. The only levers a sponsor controls are connection date, duration and optimiser. Underwrite as if all three must be top-quartile, because the market will not compensate for any of them being average.',
+          '在这一窗口内，市场不会有任何变化对你有利。在中性投产路径下，2小时资产的价差压缩至2029年达到' + fmtPct((1 - M.compression2h.CENTRAL[4]) * 100, 0) + '，且服务收入持续下滑。发起人可控的杠杆只有并网日期、时长与优化商三项。应按三项均须处于前四分之一来测算，因为市场不会为其中任何一项的平庸表现给予补偿。'],
           sig:['Three controllable levers only','仅三项可控杠杆'] },
       ] },
       { title:['Long-term outlook — 2030 to 2035: policy demand meets delivery reality','长期展望 — 2030至2035：政策需求遭遇交付现实'], badges:['official','forecast'], blocks:[
@@ -366,8 +407,8 @@ SEC_B.story = function (){
           { yr:['2031–2033','2031–2033'], h:['LDES becomes a separate class','长时储能成为独立类别'], p:['Cap-and-floor awards convert 8h+ projects into regulated, contracted assets with a different cost of capital and different buyers from 2h merchant storage.','上下限机制授予将8小时以上项目转化为受监管、合同化的资产，其资本成本与买家群体均不同于2小时市场化储能。'] },
           { yr:['2033–2035','2033–2035'], h:['Replacement and augmentation cycle','置换与增容周期'], p:['The 2016–2020 short-duration fleet reaches end of warranted life with de-rating factors that no longer support it. Augmentation-ready sites hold value; fixed 1h sites do not.','2016–2020年建设的短时机组达到质保寿命终点，而折减系数已不再支持其经济性。具备增容条件的场址保值，固定1小时场址则不然。'] },
         ] },
-        { t:'why', text:['The long-run case rests on a gap the market is not currently pricing: policy needs 23–27 GW, the central delivery path gives 16 GW, and the difference is constrained by connections and consent rather than by capital. If that gap persists, the assets that are already connected in 2030 are on the scarce side. If connections reform succeeds faster than expected, the high buildout path applies and 2h merchant economics compress ' + fmtPct((1 - M.compression2h.HIGH[5]) * 100, 0) + '% by 2030. Both branches point to the same protection: secure the connection date and the duration, and contract enough revenue to survive the high case.',
-          '长期逻辑基于一个市场当前尚未定价的缺口：政策需要23–27GW，中性交付路径仅提供16GW，而差额的约束来自并网与规划许可而非资本。若该缺口持续，2030年前已并网的资产将处于稀缺一侧。若并网改革推进快于预期，则适用高投产路径，2小时市场化经济性到2030年压缩' + fmtPct((1 - M.compression2h.HIGH[5]) * 100, 0) + '%。两条分支指向同一项保护：锁定并网日期与时长，并签约足够收入以承受高情景。'],
+        { t:'why', text:['The long-run case rests on a gap the market is not currently pricing: policy needs 23–27 GW, the central delivery path gives 16 GW, and the difference is constrained by connections and consent rather than by capital. If that gap persists, the assets that are already connected in 2030 are on the scarce side. If connections reform succeeds faster than expected, the high buildout path applies and 2h merchant economics compress ' + fmtPct((1 - M.compression2h.HIGH[5]) * 100, 0) + ' by 2030. Both branches point to the same protection: secure the connection date and the duration, and contract enough revenue to survive the high case.',
+          '长期逻辑基于一个市场当前尚未定价的缺口：政策需要23–27GW，中性交付路径仅提供16GW，而差额的约束来自并网与规划许可而非资本。若该缺口持续，2030年前已并网的资产将处于稀缺一侧。若并网改革推进快于预期，则适用高投产路径，2小时市场化经济性到2030年压缩' + fmtPct((1 - M.compression2h.HIGH[5]) * 100, 0) + '。两条分支指向同一项保护：锁定并网日期与时长，并签约足够收入以承受高情景。'],
           sig:['Same protection in both branches','两条分支下保护措施相同'] },
       ] },
     ] },
@@ -510,8 +551,8 @@ SEC_B.energy = function (){
       ] },
       { t:'line', cfg:{ xs:['1h','2h','4h','6h','8h'], yfmt: v => fmtCk(v), ymin: 0, h: 230,
         series:[{ name:['Realised revenue by duration','按时长的实际收入'], color:'var(--s1)', vals:[M.bmRevenueByDur[1], M.bmRevenueByDur[2], M.bmRevenueByDur[4], M.bmRevenueByDur[6], M.bmRevenueByDur[8]] }] } },
-      { t:'why', text:['Merchant revenue is strongly concave in duration. Doubling from 2h to 4h costs roughly double the energy capex but adds only ' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + '% of merchant revenue; 4h to 8h adds ' + fmtPct((M.bmRevenueByDur[8] / M.bmRevenueByDur[4] - 1) * 100, 0) + '%. On merchant grounds alone GB storage should be short. The reason to build longer is entirely on the capacity and resilience side — which is why the duration decision must be made on combined incremental NPV and never on the trading case alone.',
-        '市场化收入对时长呈显著凹性。由2小时增至4小时，能量段造价约翻倍，但市场化收入仅增加' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + '%；由4小时增至8小时仅增加' + fmtPct((M.bmRevenueByDur[8] / M.bmRevenueByDur[4] - 1) * 100, 0) + '%。仅从市场化角度看，英国储能应当做短。做长的理由完全来自容量与韧性一侧 — 因此时长决策必须基于合并的增量NPV，绝不可仅凭交易逻辑。'],
+      { t:'why', text:['Merchant revenue is strongly concave in duration. Doubling from 2h to 4h costs roughly double the energy capex but adds only ' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + ' of merchant revenue; 4h to 8h adds ' + fmtPct((M.bmRevenueByDur[8] / M.bmRevenueByDur[4] - 1) * 100, 0) + '. On merchant grounds alone GB storage should be short. The reason to build longer is entirely on the capacity and resilience side — which is why the duration decision must be made on combined incremental NPV and never on the trading case alone.',
+        '市场化收入对时长呈显著凹性。由2小时增至4小时，能量段造价约翻倍，但市场化收入仅增加' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + '；由4小时增至8小时仅增加' + fmtPct((M.bmRevenueByDur[8] / M.bmRevenueByDur[4] - 1) * 100, 0) + '。仅从市场化角度看，英国储能应当做短。做长的理由完全来自容量与韧性一侧 — 因此时长决策必须基于合并的增量NPV，绝不可仅凭交易逻辑。'],
         sig:['Merchant says short; capacity says long','市场化指向短时；容量指向长时'] },
       { t:'src', src: SRC.vendor, use:['Realised revenue per MW by duration; vendor and vintage must be recorded before transaction use','按时长的每MW实际收入；交易使用前须记录供应商与数据版本'] },
     ] },
@@ -526,8 +567,8 @@ SEC_B.energy = function (){
 
     { t:'card', title:['Theoretical → realised bridge (2h asset, £/MWh of spread value)','理论至实际桥（2小时资产，价差价值£/MWh）'], badges:['calc','illus'], live:true, blocks:[
       { t:'wf', cfg:{ yfmt: v => '£' + fmtN(v), h: 280, steps: M.spreadBridge } },
-      { t:'why', text:['Roughly ' + fmtPct((1 - 65 / 112) * 100, 0) + '% of theoretical spread value never reaches the P&L, and the three largest deductions — forecast error, skip rate and network charges — are not efficiency losses that better equipment fixes. Two are execution and one is policy. This is why a GB base case built from a perfect-foresight backtest is not conservative but simply wrong, and why the optimiser contract deserves more diligence than the battery supply agreement.',
-        '理论价差价值中约' + fmtPct((1 - 65 / 112) * 100, 0) + '%从未进入损益表，且三项最大扣减 — 预测误差、跳过率与网络费用 — 均非更好的设备所能解决的效率损失。其中两项属执行，一项属政策。这正是为何以完全预见回测构建的英国基准情景不是审慎而是根本错误，也是为何优化商合同比电池供货协议更值得尽调。'],
+      { t:'why', text:['Roughly ' + fmtPct((1 - 65 / 112) * 100, 0) + ' of theoretical spread value never reaches the P&L, and the three largest deductions — forecast error, skip rate and network charges — are not efficiency losses that better equipment fixes. Two are execution and one is policy. This is why a GB base case built from a perfect-foresight backtest is not conservative but simply wrong, and why the optimiser contract deserves more diligence than the battery supply agreement.',
+        '理论价差价值中约' + fmtPct((1 - 65 / 112) * 100, 0) + '从未进入损益表，且三项最大扣减 — 预测误差、跳过率与网络费用 — 均非更好的设备所能解决的效率损失。其中两项属执行，一项属政策。这正是为何以完全预见回测构建的英国基准情景不是审慎而是根本错误，也是为何优化商合同比电池供货协议更值得尽调。'],
         sig:['Backtests are not base cases','回测不等于基准情景'] },
     ] },
 
@@ -552,8 +593,8 @@ SEC_B.energy = function (){
       ] },
       { t:'note', text:['The pipeline-to-spread transmission model and the fundamental price curve are calibrated to the same third-party source. They are not independent confirmation of each other, and a base case should not treat agreement between them as corroboration.',
         '管线至价差的传导模型与基本面价格曲线校准于同一第三方来源。两者并非相互独立的验证，基准情景不应将其一致性视为佐证。'] },
-      { t:'why', text:['For a ' + state.codYear + ' COD the central case already removes ' + fmtPct((1 - compC) * 100, 0) + '% of today’s per-MW merchant revenue, and the high case removes ' + fmtPct((1 - compH) * 100, 0) + '%. The gap between the two — ' + fmtPct((compC - compH) * 100, 0) + ' points — is what a sponsor is actually taking a view on, and it is decided by other people’s connection dates. That is the argument for contracting a floor: not because the central case fails, but because the sponsor has no influence over which case occurs.',
-        '对' + state.codYear + '投运的项目，中性情景已抹去当前每MW市场化收入的' + fmtPct((1 - compC) * 100, 0) + '%，高投产情景则抹去' + fmtPct((1 - compH) * 100, 0) + '%。两者之间' + fmtPct((compC - compH) * 100, 0) + '个百分点的差距，才是发起人真正在下注的对象，而它由他人的并网日期决定。这正是签订保底安排的理由 — 并非因为中性情景不成立，而是因为发起人无法影响哪一种情景会发生。'],
+      { t:'why', text:['For a ' + state.codYear + ' COD the central case already removes ' + fmtPct((1 - compC) * 100, 0) + ' of today’s per-MW merchant revenue, and the high case removes ' + fmtPct((1 - compH) * 100, 0) + '. The gap between the two — ' + fmtPct((compC - compH) * 100, 0) + ' points — is what a sponsor is actually taking a view on, and it is decided by other people’s connection dates. That is the argument for contracting a floor: not because the central case fails, but because the sponsor has no influence over which case occurs.',
+        '对' + state.codYear + '投运的项目，中性情景已抹去当前每MW市场化收入的' + fmtPct((1 - compC) * 100, 0) + '，高投产情景则抹去' + fmtPct((1 - compH) * 100, 0) + '。两者之间' + fmtPct((compC - compH) * 100, 0) + '个百分点的差距，才是发起人真正在下注的对象，而它由他人的并网日期决定。这正是签订保底安排的理由 — 并非因为中性情景不成立，而是因为发起人无法影响哪一种情景会发生。'],
         sig:['You are betting on other people’s CODs','你押注的是他人的投运时点'] },
       { t:'src', src: SRC.tec, use:['Probability-weighted TEC / ECR / REPD pipeline underlying the buildout cases','支撑投产情景的概率加权TEC/ECR/REPD管线'] },
     ] },
@@ -608,8 +649,8 @@ SEC_B.services = function (){
         { n:['Exclude from debt sizing','排除于债务规模测算之外'], d:['Treat services as equity upside. Lenders in GB size against the capacity agreement and any contracted floor.','将服务收入视为股权上行。英国贷款人以容量协议及任何合同保底安排债务规模。'] },
         { n:['Re-test each auction reform','每次拍卖机制改革后重新检验'], d:['Product definitions and procurement volumes have changed repeatedly; a product can be redesigned out of existence.','产品定义与采购量已多次变更；某项产品可能因重新设计而不复存在。'] },
       ] },
-      { t:'why', text:['At ' + fmtCk(M.lab.servicesKW * 1000) + '/MW/yr the services line is roughly ' + fmtPct(M.lab.servicesKW * 1000 / M.bmRevenueByDur[2] * 100, 0) + '% of a 2h asset’s merchant revenue — small enough that removing it entirely should not break the investment case. If it does, the case was never a storage case; it was a bet on an ancillary market that has already been competed away once and is being competed away again.',
-        '按' + fmtCk(M.lab.servicesKW * 1000) + '/MW/年计，服务收入约为2小时资产市场化收入的' + fmtPct(M.lab.servicesKW * 1000 / M.bmRevenueByDur[2] * 100, 0) + '% — 其规模小到即使完全剔除也不应影响投资结论。若剔除后投资逻辑不成立，那么它从来就不是储能投资逻辑，而是对一个已被竞争消化过一次、正在被再次消化的辅助服务市场的押注。'],
+      { t:'why', text:['At ' + fmtCk(M.lab.servicesKW * 1000) + '/MW/yr the services line is roughly ' + fmtPct(M.lab.servicesKW * 1000 / M.bmRevenueByDur[2] * 100, 0) + ' of a 2h asset’s merchant revenue — small enough that removing it entirely should not break the investment case. If it does, the case was never a storage case; it was a bet on an ancillary market that has already been competed away once and is being competed away again.',
+        '按' + fmtCk(M.lab.servicesKW * 1000) + '/MW/年计，服务收入约为2小时资产市场化收入的' + fmtPct(M.lab.servicesKW * 1000 / M.bmRevenueByDur[2] * 100, 0) + ' — 其规模小到即使完全剔除也不应影响投资结论。若剔除后投资逻辑不成立，那么它从来就不是储能投资逻辑，而是对一个已被竞争消化过一次、正在被再次消化的辅助服务市场的押注。'],
         sig:['Remove it; if the case breaks, it was never a case','剔除后若逻辑崩塌，说明本无逻辑'] },
     ] },
   ] };
@@ -712,38 +753,62 @@ SEC_B.duration = function (){
 
 // ============================== PIPELINE ==============================
 SEC_B.pipeline = function (){
-  const mw = pipelineByYear('MW'), mwh = pipelineByYear('MWh');
-  const totRaw = mw.raw.reduce((a, b) => a + b, 0), totPw = mw.pw.reduce((a, b) => a + b, 0);
+  const P = M.pipelineOfficial;
+  const discount = (1 - P.analystWeightedForwardMW / P.forwardMW) * 100;
   return {
-  head: ['Project Pipeline — probability-weighted, with MW and MWh separated','项目管线 — 概率加权，MW与MWh分列'],
-  cap: ['A pipeline is a distribution, not a number. Every project is discounted by the gate it has actually cleared, and MW and MWh are shown separately because they saturate different markets: MW saturates system services and capacity, MWh saturates spreads.',
-        '管线是一个分布而非一个数字。每个项目按其实际通过的门槛折减；MW与MWh分别列示，因为二者饱和的市场不同：MW饱和的是系统服务与容量，MWh饱和的是价差。'],
+  head: ['Project Pipeline — official TEC evidence, analytical weighting and explicit coverage gaps','项目管线 — 官方TEC证据、分析加权与明确覆盖缺口'],
+  cap: ['The official view now separates three things: the raw transmission register, an analyst-weighted delivery screen, and missing evidence. TEC supplies MW, status, Gate and effective date; it does not supply duration, financing status or an independently verified energisation date.',
+        '官方视图现将三类信息分开：原始输电登记册、分析师加权交付筛选及缺失证据。TEC提供MW、状态、Gate与生效日期，但不提供时长、融资状态或经独立核实的送电日期。'],
   blocks: [
-    { t:'card', mt:false, title:['Stage probabilities — the gate is the discount','阶段概率 — 门槛即折减'], badges:['calc'], live:false, blocks:[
+    { t:'card', mt:false, title:['Coverage first — what the register can and cannot support','覆盖优先 — 登记册能与不能支持什么'], badges:['official','calc'], blocks:[
+      { t:'kpis', items:[
+        { l:['Unique exact-ESS projects','纯储能唯一项目'], v:fmtN(P.uniqueProjects), d:[fmtN(P.sourceRecords) + ' total TEC records screened','已筛选TEC总记录' + fmtN(P.sourceRecords) + '条'], b:['calc'] },
+        { l:['Forward nameplate capacity','前瞻铭牌容量'], v:fmt1(P.forwardMW / 1000) + '<small> GW</small>', d:['raw connection-register total — not expected delivery','原始并网登记总量 — 非预期交付量'], b:['calc'] },
+        { l:['Gate 2 forward capacity','Gate 2前瞻容量'], v:fmt1(P.gate2ForwardMW / 1000) + '<small> GW</small>', d:['Gate field populated as 2','Gate字段填报为2'], b:['calc'] },
+        { l:['Analyst-weighted forward capacity','分析师加权前瞻容量'], v:fmt1(P.analystWeightedForwardMW / 1000) + '<small> GW</small>', d:['screening output, not an NESO forecast','筛选输出，非NESO预测'], b:['calc'] },
+        { l:['Exact-ESS built capacity in TEC','TEC纯储能已建容量'], v:fmt1(P.builtMW / 1000) + '<small> GW</small>', d:['transmission-register coverage only','仅输电登记覆盖范围'], b:['calc'] },
+        { l:['Duration / MWh coverage','时长/MWh覆盖率'], v:'0<small>%</small>', d:['TEC has no duration field','TEC无时长字段'], cls:'down', b:['official'] },
+      ] },
+      { t:'warn', text:['The 177.2 GW headline is a queue measure, not a build forecast. It excludes hybrid Plant Type rows, DNO-only projects and REPD-only projects, while the source itself warns that capacities across stages and technologies can be aggregated or duplicated. The dashboard therefore never feeds raw TEC MW into the merchant forecast or investment score.',
+        '177.2GW这一标题数字是队列指标，并非投产预测。它排除了混合技术类型行、仅DNO项目及仅REPD项目，同时来源自身警告不同阶段和技术容量可能聚合或重复。因此看板绝不将原始TEC MW直接输入市场化预测或投资评分。'] },
+      { t:'src', src:SRC.tec, use:['Project status, Gate, cumulative MW and effective-date evidence; exact-ESS filtering and deterministic Project ID deduplication','项目状态、Gate、累计MW与生效日期证据；纯储能筛选及按Project ID确定性去重'] },
+    ] },
+    { t:'card', title:['Analyst delivery weights — explicit and separate from NESO fields','分析师交付权重 — 与NESO字段明确分离'], badges:['calc'], blocks:[
       { t:'stageProb' },
-      { t:'why', text:['The probability step that matters is Gate 1 (25%) to Gate 2 with consent (60%) — a 35-point jump that no amount of announced capacity substitutes for. This is why headline pipeline figures are close to useless for GB: the same MW can appear in TEC, an Embedded Capacity Register and REPD, and most of it sits below the gate where attrition happens. Probability-weight by gate cleared, and de-duplicate across registers before doing anything else.',
-        '真正关键的概率跃迁是由Gate 1（25%）到已获许可的Gate 2（60%） — 35个百分点的跳升，任何数量的已公告容量都无法替代。这正是英国的管线总量数字近乎无用的原因：同一批MW可能同时出现在TEC、配网接入容量登记册与REPD中，且其中大部分处于流失发生的门槛之下。应按已通过门槛进行概率加权，并在做任何其他分析前先跨登记册去重。'],
-        sig:['De-duplicate, then weight by gate','先去重，再按门槛加权'] },
+      { t:'why', text:['Applying the disclosed screening weights removes ' + fmtPct(discount, 0) + ' of raw forward MW. This does not turn a queue into a forecast: the weights are an analyst scenario, and Gate-not-populated remains its own category rather than being silently treated as Gate 1.',
+        '应用已披露筛选权重后，原始前瞻MW减少' + fmtPct(discount, 0) + '。这并不会把队列变成预测：权重属于分析师情景，Gate未填报仍作为独立类别，绝不暗中视为Gate 1。'],
+        sig:['Official fields, analyst weights','官方字段，分析师权重'] },
     ] },
     { t:'g2', cards:[
-      { title:['COD pipeline by year — MW','按投运年度的管线 — MW'], badges:['illus'], live:true, blocks:[
-        { t:'pipeChart', unit:'MW' },
-        { t:'why', text:['Probability weighting removes ' + fmtPct((1 - totPw / totRaw) * 100, 0) + '% of announced MW across the seed register. That discount is the whole analytical content of a pipeline view — an unweighted pipeline systematically overstates future competition and therefore understates future revenue, which is the error that makes merchant cases look bankable when they are not.',
-          '在种子登记表中，概率加权剔除了已公告MW的' + fmtPct((1 - totPw / totRaw) * 100, 0) + '%。这一折减正是管线分析的全部价值 — 未加权的管线会系统性高估未来竞争、进而低估未来收入，而这正是使市场化情景看似可融资、实则不然的错误来源。'],
-          sig:['Unweighted pipelines mislead twice','未加权管线会两次误导'] },
+      { title:['Effective-year capacity — raw versus analyst-weighted','按生效年份容量 — 原始与分析加权'], badges:['official','calc'], blocks:[
+        { t:'bar', cfg:{ xs:P.years.map(String), mode:'group', yfmt:v => fmt1(v / 1000) + ' GW', h:260,
+          series:[
+            { name:['TEC raw nameplate MW','TEC原始铭牌MW'], color:'var(--s3)', vals:P.rawMW },
+            { name:['Analyst-weighted MW','分析师加权MW'], color:'var(--s1)', vals:P.analystWeightedMW },
+          ] } },
+        { t:'note', text:['“MW Effective From” is the contract field in the TEC Register. It is not independently verified COD and may be stale for individual projects.','“MW Effective From”是TEC登记册中的合同字段，并非经独立核实的投运日期，个别项目可能已过期。'] },
       ] },
-      { title:['COD pipeline by year — MWh','按投运年度的管线 — MWh'], badges:['illus'], live:true, blocks:[
-        { t:'pipeChart', unit:'MWh' },
-        { t:'why', text:['MWh is the series that predicts spread compression; MW predicts services and capacity saturation. They diverge as average duration rises, so a market can be saturating on energy while still short on de-rated capacity — which is precisely the GB position after 2029, and the reason a 4h asset can face falling spreads and rising relative capacity value at the same time.',
-          '预测价差压缩的是MWh序列，预测服务与容量饱和的是MW序列。随着平均时长上升两者出现分化，因此市场可能在能量上趋于饱和，而在折减后容量上仍然短缺 — 这正是英国2029年之后的状态，也是4小时资产可能同时面临价差下行与容量相对价值上行的原因。'],
-          sig:['MWh drives spreads, MW drives capacity','MWh驱动价差，MW驱动容量'] },
+      { title:['Gate composition — evidence quality changes sharply after 2029','Gate构成 — 2029年后证据质量显著变化'], badges:['official','calc'], blocks:[
+        { t:'bar', cfg:{ xs:P.years.map(String), mode:'group', yfmt:v => fmt1(v / 1000) + ' GW', h:260,
+          series:[
+            { name:['Gate 2','Gate 2'], color:'var(--s2)', vals:P.gate2MW },
+            { name:['Gate 1','Gate 1'], color:'var(--s6)', vals:P.gate1MW },
+            { name:['Gate not populated','Gate未填报'], color:'var(--muted)', vals:P.gateUnpopulatedMW },
+          ] } },
+        { t:'why', text:['Every exact-ESS Gate 2 MW in this snapshot has an effective year no later than 2029. Capacity shown after that is Gate 1 or Gate-not-populated, so a late-2030s queue total cannot be read as equivalent competitive pressure.',
+          '本快照中所有纯储能Gate 2容量的生效年份均不晚于2029年。此后显示的容量均为Gate 1或Gate未填报，因此2030年代后期的队列总量不能被视为等同的竞争压力。'] },
       ] },
     ] },
-    { t:'card', title:['Project register — illustrative placeholders, not real facilities','项目登记表 — 示例占位，非真实项目'], badges:['illus'], live:true, blocks:[
+    { t:'card', title:['MWh competition — unavailable from TEC','MWh竞争 — TEC无法提供'], badges:['official','verify'], blocks:[
+      { t:'warn', text:['No duration or MWh estimate is shown. Adding an assumed duration would convert a documented source gap into false precision. The MWh competition view remains unavailable until duration is joined from an official or project-level evidence source with a stable project match.',
+        '此处不显示任何时长或MWh估算。加入假定时长会把有记录的来源缺口变成虚假精度。在通过稳定项目匹配从官方或项目级证据来源接入时长之前，MWh竞争视图保持不可用。'] },
+      { t:'src', src:SRC.repd, use:['Planning-stage cross-check is registered but not yet included; REPD does not by itself close the duration gap','规划阶段交叉核对来源已登记但尚未纳入；REPD本身也无法弥补时长缺口'] },
+    ] },
+    { t:'card', title:['Official project evidence — selected high-evidence TEC rows','官方项目证据 — 精选高证据TEC记录'], badges:['official'], blocks:[
       { t:'projTable' },
-      { t:'note', text:['All projects shown are illustrative placeholders. Replace with a de-duplicated extract across the TEC Register, the DNO Embedded Capacity Registers and REPD before any transaction use; the same physical project frequently appears in all three with different capacities.',
-        '所示项目均为示例占位。任何交易用途前，须以TEC登记册、配网接入容量登记册与REPD的去重合并数据替换；同一实体项目常以不同容量同时出现在三者之中。'] },
-      { t:'src', src: SRC.repd, use:['Planning-stage pipeline cross-check against the connection registers','以规划阶段管线与并网登记册交叉核对'] },
+      { t:'note', text:['The table is a display sample: all exact-ESS rows marked Under Construction/Commissioning plus the largest Gate 2 rows marked Consents Approved. Headline totals use the complete 714-project normalized population, not this sample. NESO states that project status is supplied on a best-knowledge basis and is not planning-authority verification.',
+        '本表仅为展示样本：包括所有标记为在建/调试的纯储能记录，以及规模最大的Gate 2且许可获批记录。标题总量采用完整的714个标准化项目总体，而非本样本。NESO说明项目状态基于其最佳认知，并非规划主管机关核验。'] },
+      { t:'src', src:SRC.tec, use:['Named project, customer, connection site, MW, effective date, status and Gate','项目名称、客户、接入点、MW、生效日期、状态与Gate'] },
     ] },
     { t:'card', title:['Contracted-revenue benchmarks — what the market will pay to take your risk','合同化收入基准 — 市场为承接你的风险愿付多少'], badges:['dev','public'], live:false, blocks:[
       { t:'table', head:[['Structure','结构'],['Reference','参考交易'],['Implied £/MW/yr','隐含£/MW/年'],['Comment','说明']], num:[2],
@@ -754,8 +819,8 @@ SEC_B.pipeline = function (){
         { h:['Floor vs realised 2h merchant','保底对2小时实际市场化收入'], v: fmtPct(M.contracted[1].v / M.bmRevenueByDur[2] * 100, 0),
           s:['a floor costs more upside than a toll but retains it above the floor','保底让渡的上行多于租赁，但保留下限以上的收益'] },
       ] },
-      { t:'why', text:['These three prices are the market’s own view of forward merchant revenue, and they sit ' + fmtPct((1 - M.contracted[0].v / M.bmRevenueByDur[2]) * 100, 0) + '–' + fmtPct((1 - M.contracted[1].v / M.bmRevenueByDur[2]) * 100, 0) + '% below trailing realised revenue. If a sponsor’s merchant base case is above the tolling level, the model is more optimistic than the counterparties who trade this risk daily. That is a legitimate position, but it should be stated as a view, sized as equity, and never used to support senior debt.',
-        '这三个价格是市场自身对远期市场化收入的判断，较过去实际收入低' + fmtPct((1 - M.contracted[0].v / M.bmRevenueByDur[2]) * 100, 0) + '–' + fmtPct((1 - M.contracted[1].v / M.bmRevenueByDur[2]) * 100, 0) + '%。若发起人的市场化基准情景高于租赁水平，则该模型比每天交易这一风险的交易对手更为乐观。这是一个合理立场，但应作为观点明确陈述、以股权规模承担，且绝不可据以支撑优先级债务。'],
+      { t:'why', text:['These three prices are the market’s own view of forward merchant revenue, and they sit ' + fmtPct((1 - M.contracted[0].v / M.bmRevenueByDur[2]) * 100, 0) + '–' + fmtPct((1 - M.contracted[1].v / M.bmRevenueByDur[2]) * 100, 0) + ' below trailing realised revenue. If a sponsor’s merchant base case is above the tolling level, the model is more optimistic than the counterparties who trade this risk daily. That is a legitimate position, but it should be stated as a view, sized as equity, and never used to support senior debt.',
+        '这三个价格是市场自身对远期市场化收入的判断，较过去实际收入低' + fmtPct((1 - M.contracted[0].v / M.bmRevenueByDur[2]) * 100, 0) + '–' + fmtPct((1 - M.contracted[1].v / M.bmRevenueByDur[2]) * 100, 0) + '。若发起人的市场化基准情景高于租赁水平，则该模型比每天交易这一风险的交易对手更为乐观。这是一个合理立场，但应作为观点明确陈述、以股权规模承担，且绝不可据以支撑优先级债务。'],
         sig:['The toll price is the market’s forecast','租赁价格即市场的预测'] },
     ] },
   ] };
@@ -818,6 +883,8 @@ SEC_B.grid = function (){
     ] },
   ] };
 };
+// Investor-facing map and evidence journey supersedes the legacy editable scorecard.
+SEC_B.grid = () => buildGBGridSection({ SRC });
 
 // ============================== GB vs IRELAND (peer benchmark) ==============================
 // Mirrors the WA dashboard's "WEM vs NEM" section: the only tab that uses peer-market
@@ -1040,8 +1107,8 @@ SEC_B.portfolio = function (){
         [{b:['Fixed opex','固定运维']}, '−' + fmtCM(r.opex), {chip:'good', text:['LTSA and O&M contracted','长期服务协议与运维已签约']},
          ['Check cycling limits in the warranty against the modelled cycles','须核对质保循环限制与模型循环次数是否一致']],
       ] },
-      { t:'why', text:['Only the first line is contracted, and it is ' + fmtPct(r.capRev / (r.capRev + r.arb1 + r.svc1) * 100, 0) + '% of gross revenue. That single ratio is the GB investment case in one number: a lender sizing purely on contracted cash flow can support only a fraction of this capital structure, which is why every serious GB storage financing either adds a toll or a floor, or accepts materially lower gearing. Decide which of those three it is before the model, not after.',
-        '只有第一项是合同化的，且仅占毛收入的' + fmtPct(r.capRev / (r.capRev + r.arb1 + r.svc1) * 100, 0) + '%。这一个比率就是英国投资逻辑的浓缩：若贷款人纯粹依据合同化现金流安排规模，仅能支撑本资本结构的一小部分 — 这正是每一笔严肃的英国储能融资要么加入租赁或保底、要么接受显著更低杠杆的原因。这三者中选哪一条，应在建模之前决定，而非之后。'],
+      { t:'why', text:['Only the first line is contracted, and it is ' + fmtPct(r.capRev / (r.capRev + r.arb1 + r.svc1) * 100, 0) + ' of gross revenue. That single ratio is the GB investment case in one number: a lender sizing purely on contracted cash flow can support only a fraction of this capital structure, which is why every serious GB storage financing either adds a toll or a floor, or accepts materially lower gearing. Decide which of those three it is before the model, not after.',
+        '只有第一项是合同化的，且仅占毛收入的' + fmtPct(r.capRev / (r.capRev + r.arb1 + r.svc1) * 100, 0) + '。这一个比率就是英国投资逻辑的浓缩：若贷款人纯粹依据合同化现金流安排规模，仅能支撑本资本结构的一小部分 — 这正是每一笔严肃的英国储能融资要么加入租赁或保底、要么接受显著更低杠杆的原因。这三者中选哪一条，应在建模之前决定，而非之后。'],
         sig:['One contracted line, three possible structures','一条合同化收入，三种可行结构'] },
     ] },
     { t:'card', title:['Investment Committee gates — what must be true before capital is released','投委会门槛 — 资金拨付前必须成立的条件'], badges:['calc'], live:false, blocks:[
@@ -1061,7 +1128,7 @@ SEC_B.portfolio = function (){
 
 // ============================== DATA & METHODOLOGY ==============================
 SEC_B.data = function (){
-  const srcs = [SRC.cmreg, SRC.derate, SRC.bmrs, SRC.eac, SRC.skip, SRC.tec, SRC.repd, SRC.reform, SRC.ldes, SRC.cp2030, SRC.vendor, SRC.semo];
+  const srcs = [SRC.cmreg, SRC.derate, SRC.bmrs, SRC.eac, SRC.skip, SRC.tec, SRC.fesEs1, SRC.fesEd1, SRC.etys, SRC.beyond, SRC.repd, SRC.reform, SRC.ldes, SRC.cp2030, SRC.vendor, SRC.semo];
   return {
   head: ['Data & Methodology — source registry, formulas and quality badges','数据与方法 — 数据源登记、公式与质量标识'],
   cap: ['Every figure in this dashboard carries a quality badge and a namespace. Official values come from named regulator or system-operator publications; calculated values are derived here; illustrative values are synthetic placeholders that must be replaced by live ingestion before any investment use.',
@@ -1079,7 +1146,19 @@ SEC_B.data = function (){
         '五行中有四行描述的是同一错误：以更早、更易获得的替代指标取代决定性证据。在英国，这一错误方向一致 — 每一个便利的替代指标都比真实情况更乐观。铭牌高于折减后MW，理论高于实际，队列位置美化送电日期，而已公告管线对到场竞争的高估方向，恰恰使自身项目显得更优。'],
         sig:['Every convenient proxy flatters','每个便利替代指标都在美化'] },
     ] },
-    { t:'card', title:['Source registry — verified 26 July 2026','数据源登记表 — 2026年7月26日核验'], badges:['calc'], live:false, blocks:[
+    { t:'card', title:['Metric-level provenance — upgraded GB series','指标级溯源 — 已升级英国序列'], badges:['official','calc'], blocks:[
+      { t:'table', head:[['Metric ID','指标ID'],['Authority','权威类别'],['Unit / basis','单位/口径'],['Vintage','版本'],['Source ID','来源ID'],['Transformation','转换规则']],
+        rows:M.metricRegistry.map(metric => [
+          { b:[metric.id, metric.id] },
+          [metric.authority, metric.authority],
+          metric.unit + ' · ' + metric.valueBasis + ' · ' + metric.yearBasis,
+          metric.vintage,
+          metric.sourceIds.join(', '),
+          metric.transformation,
+        ]) },
+      { t:'note', text:['Official forecasts, derived observations and analyst scenarios are separate authority classes. A chart series cannot enter this upgraded GB slice without a registered metric ID, source relationship, unit, basis, vintage and transformation.','官方预测、观察衍生与分析师情景属于不同权威类别。任何图表序列若缺少已登记的指标ID、来源关系、单位、口径、版本及转换规则，均不得进入本次英国升级范围。'] },
+    ] },
+    { t:'card', title:['Source registry — verified 29 July 2026','数据源登记表 — 2026年7月29日核验'], badges:['calc'], live:false, blocks:[
       { t:'table', head:[['Source','来源'],['Status','状态'],['Source date','来源日期'],['Applicable period','适用期间']],
         rows: srcs.map(s => [{ b: [s.file, s.file] }, s.status, s.date, s.cy]) },
       { t:'note', text:['The third-party revenue index requires a vendor licence; record vendor identity and data vintage in the model before any transaction use, and note that the buildout-to-spread transmission model is calibrated to the same vendor curve — the two are not independent confirmation.',

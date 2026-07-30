@@ -1,0 +1,17 @@
+.fi{
+  position:relative;
+  display:inline-block;
+  width:1.333333em;
+  line-height:1em;
+  background-position:50%;
+  background-repeat:no-repeat;
+  background-size:contain;
+}
+.fi::before{content:"\00a0";}
+.fi-au{background-image:url("../../node_modules/flag-icons/flags/4x3/au.svg");}
+.fi-gb{background-image:url("../../node_modules/flag-icons/flags/4x3/gb.svg");}
+.fi-ie{background-image:url("../../node_modules/flag-icons/flags/4x3/ie.svg");}
+.fi-ro{background-image:url("../../node_modules/flag-icons/flags/4x3/ro.svg");}
+.fi-pl{background-image:url("../../node_modules/flag-icons/flags/4x3/pl.svg");}
+.fi-jp{background-image:url("../../node_modules/flag-icons/flags/4x3/jp.svg");}
+.fi-un{background-image:url("../../node_modules/flag-icons/flags/4x3/un.svg");}

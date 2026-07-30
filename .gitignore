@@ -22,6 +22,10 @@ local-data/*
 # ---------------------------------------------------------------------------
 etl/out/
 
+# Scratch: downloaded source PDFs, dev-server logs, anything a run left behind.
+# Source documents are cited by URL in the source registers, not vendored.
+tmp/
+
 # ---------------------------------------------------------------------------
 # Build + tooling
 # ---------------------------------------------------------------------------

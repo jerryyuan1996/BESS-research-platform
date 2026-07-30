@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-29T16:12:01.000Z",
+  "refreshHours": 24,
+  "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
+  "sources": [
+    {
+      "name": "Modo Energy",
+      "feed": "https://fast.wistia.com/channels/vtx0dp52da/rss",
+      "homepage": "https://modoenergy.com/research",
+      "kind": "Public RSS"
+    },
+    {
+      "name": "Energy-Storage.news",
+      "feed": "https://www.energy-storage.news/feed/",
+      "homepage": "https://www.energy-storage.news/",
+      "kind": "Public RSS"
+    },
+    {
+      "name": "Utility Dive",
+      "feed": "https://www.utilitydive.com/feeds/news/",
+      "homepage": "https://www.utilitydive.com/",
+      "kind": "Public RSS"
+    },
+    {
+      "name": "pv magazine",
+      "feed": "https://www.pv-magazine.com/feed/",
+      "homepage": "https://www.pv-magazine.com/",
+      "kind": "Public RSS"
+    }
+  ],
+  "sourceStatus": [
+    {
+      "source": "Modo Energy",
+      "status": "ok",
+      "items": 20
+    },
+    {
+      "source": "Energy-Storage.news",
+      "status": "ok",
+      "items": 20
+    },
+    {
+      "source": "Utility Dive",
+      "status": "ok",
+      "items": 7
+    },
+    {
+      "source": "pv magazine",
+      "status": "ok",
+      "items": 8
+    }
+  ],
+  "items": [
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/cms-energy-plans-to-sell-renewable-assets-to-focus-on-regulated-utilities/826489/",
+      "source": "Utility Dive",
+      "title": "CMS Energy plans to sell renewable assets to focus on regulated utilities",
+      "url": "https://www.utilitydive.com/news/cms-energy-plans-to-sell-renewable-assets-to-focus-on-regulated-utilities/826489/",
+      "publishedAt": "2026-07-29T16:12:01.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The Jackson, Michigan-based company said the move would simplify its corporate structure, net about $500 million and set it up to generate nearly all of its earnings from its regulated utilities after 2027."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/07/29/chinas-solar-market-heads-for-first-annual-contraction-since-2019/",
+      "source": "pv magazine",
+      "title": "China’s solar market heads for first annual contraction since 2019",
+      "url": "https://www.pv-magazine.com/2026/07/29/chinas-solar-market-heads-for-first-annual-contraction-since-2019/",
+      "publishedAt": "2026-07-29T14:35:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The China Photovoltaic Industry Association says domestic installations are returning to more sustainable levels but expects both China’s market and global PV additions to shrink in 2026. The post China’s solar market heads for first annual contraction since 2019 appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/07/29/cab-solar-highlights-solar-cable-hanger-solutions-for-agricultural-projects/",
+      "source": "pv magazine",
+      "title": "CAB® Solar highlights solar cable hanger solutions for agricultural projects",
+      "url": "https://www.pv-magazine.com/2026/07/29/cab-solar-highlights-solar-cable-hanger-solutions-for-agricultural-projects/",
+      "publishedAt": "2026-07-29T14:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "At The smarter E 2026 in Munich, the company demonstrated its ModulAir® free-air cable hangers for solar projects, as well as its latest 3D locking hangers, which are designed to secure electric cables when used in locations with livestock. The post CAB® Solar highlights solar cable hanger solutions for agricultural…"
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/georgia-power-completes-construction-of-198mwh-bess-next-to-moody-air-force-base/",
+      "source": "Energy-Storage.news",
+      "title": "Georgia Power completes construction of 198MWh BESS next to Moody Air Force Base",
+      "url": "https://www.energy-storage.news/georgia-power-completes-construction-of-198mwh-bess-next-to-moody-air-force-base/",
+      "publishedAt": "2026-07-29T12:52:29.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Utility Georgia Power has completed construction of the 49.5MW/198MWh Moody Battery Facility, located outside of Valdosta, Georgia, US."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/07/29/fcc-bans-foreign-produced-solar-inverters-grid-lockout-begins-today/",
+      "source": "pv magazine",
+      "title": "US bans foreign-produced solar inverters",
+      "url": "https://www.pv-magazine.com/2026/07/29/fcc-bans-foreign-produced-solar-inverters-grid-lockout-begins-today/",
+      "publishedAt": "2026-07-29T12:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In the United States, the Federal Communications Commission Public Safety and Homeland Security Bureau has added foreign-produced power inverters to its Covered List, executing an immediate ban on equipment authorizations for unapproved foreign models over national security and hacking concerns. The post US bans for…"
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/07/29/serbia-adds-61-mw-of-solar-in-h1/",
+      "source": "pv magazine",
+      "title": "Serbia adds 61 MW of solar in H1",
+      "url": "https://www.pv-magazine.com/2026/07/29/serbia-adds-61-mw-of-solar-in-h1/",
+      "publishedAt": "2026-07-29T11:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "After the first six months of the year, Serbia’s solar capacity reached around 379 MW. While the country’s green energy market has been impacted by delays in permitting and grid connection processes, its prosumer market continues to grow. The post Serbia adds 61 MW of solar in H1 appeared first on pv magazine Global ."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/tremendously-important-market-for-storage-us-bess-integrator-flexgen-on-its-start-of-european-operations/",
+      "source": "Energy-Storage.news",
+      "title": "‘Tremendously important market for storage’: US BESS integrator FlexGen on its start of European operations",
+      "url": "https://www.energy-storage.news/tremendously-important-market-for-storage-us-bess-integrator-flexgen-on-its-start-of-european-operations/",
+      "publishedAt": "2026-07-29T10:56:03.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "ESN Premium speaks with Jason Abiecunas and Mike Wallace of FlexGen, one of a growing number of US BESS companies establishing operations in Europe."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/rwe-building-470mwh-bess-in-germany-kallista-enlists-envision-for-386mwh-in-france/",
+      "source": "Energy-Storage.news",
+      "title": "RWE building 470MWh BESS in Germany; Kallista enlists Envision for 386MWh in France",
+      "url": "https://www.energy-storage.news/rwe-building-470mwh-bess-in-germany-kallista-enlists-envision-for-386mwh-in-france/",
+      "publishedAt": "2026-07-29T10:46:34.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "RWE has launched construction on a 236MW/470MWh BESS in Germany, while IPP Kallista has done the same on a 193MW/386MWh system in France, supplied by Envision Energy."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/07/29/why-consumers-are-choosing-solar-over-fossil-fuels/",
+      "source": "pv magazine",
+      "title": "Why consumers are choosing solar over fossil fuels",
+      "url": "https://www.pv-magazine.com/2026/07/29/why-consumers-are-choosing-solar-over-fossil-fuels/",
+      "publishedAt": "2026-07-29T10:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "People across the world have woken up to the fact that renewable energy is a source of local economic stability and energy security, particularly when it’s on their roofs, with a recent global survey finding two in three people now support renewable energy and storage investment. The post Why consumers are choosing…"
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/07/29/financing-secured-for-timor-lestes-first-solar-storage-project/",
+      "source": "pv magazine",
+      "title": "Financing secured for Timor-Leste’s first solar-storage project",
+      "url": "https://www.pv-magazine.com/2026/07/29/financing-secured-for-timor-lestes-first-solar-storage-project/",
+      "publishedAt": "2026-07-29T09:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Asian Development Bank, World Bank and investors from Canada and Japan have partnered on a $85.7 million financing package for Timor-Leste’s first independent power project. The post Financing secured for Timor-Leste’s first solar-storage project appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/07/29/bhutan-tenders-solar-systems-for-three-schools/",
+      "source": "pv magazine",
+      "title": "Bhutan tenders solar systems for three schools",
+      "url": "https://www.pv-magazine.com/2026/07/29/bhutan-tenders-solar-systems-for-three-schools/",
+      "publishedAt": "2026-07-29T08:40:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A tender is open in Bhutan for three rooftop solar systems to serve three separate schools. The deadline for applications is August 24. The post Bhutan tenders solar systems for three schools appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/07/29/german-battery-manufacturer-files-for-self-administered-insolvency/",
+      "source": "pv magazine",
+      "title": "German battery manufacturer files for self-administered insolvency",
+      "url": "https://www.pv-magazine.com/2026/07/29/german-battery-manufacturer-files-for-self-administered-insolvency/",
+      "publishedAt": "2026-07-29T08:20:00.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "German battery manufacturer Varta has filed for self-administered insolvency, with the proceedings covering its solar-storage and energy management business. The post German battery manufacturer files for self-administered insolvency appeared first on pv magazine Global ."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/neoen-australia-begins-construction-on-907mwh-grid-forming-bess-in-south-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Neoen Australia begins construction on 907MWh grid-forming BESS in South Australia",
+      "url": "https://www.energy-storage.news/neoen-australia-begins-construction-on-907mwh-grid-forming-bess-in-south-australia/",
+      "publishedAt": "2026-07-29T03:20:14.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Neoen Australia has commenced construction of a 227MW/907MWh grid-forming battery storage system in South Australia."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/nem-battery-price-spreads-fall-85-in-a-year-as-australias-grid-scale-bess-fleet-passes-9000mw/",
+      "source": "Energy-Storage.news",
+      "title": "NEM battery price spreads fall 85% in a year as Australia’s grid-scale BESS fleet passes 9,000MW",
+      "url": "https://www.energy-storage.news/nem-battery-price-spreads-fall-85-in-a-year-as-australias-grid-scale-bess-fleet-passes-9000mw/",
+      "publishedAt": "2026-07-29T03:17:34.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "NEM-wide battery price spreads fell 85% in a single year to average AU$51/MWh (US$35/MWh) in Q2 2026, according to AEMO."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/quinbrooks-supernode-bess-becomes-the-largest-in-operation-across-australias-nem/",
+      "source": "Energy-Storage.news",
+      "title": "Quinbrook’s Supernode BESS becomes the largest in operation across Australia’s NEM",
+      "url": "https://www.energy-storage.news/quinbrooks-supernode-bess-becomes-the-largest-in-operation-across-australias-nem/",
+      "publishedAt": "2026-07-29T03:13:55.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Quinbrook has completed construction and commenced commercial operations at Stage 2 of its Supernode BESS in Australia."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/behind-the-new-york-data-center-pause-is-legislation-that-could-impact-exis/826369/",
+      "source": "Utility Dive",
+      "title": "Behind the New York data center pause is legislation that could impact existing facilities",
+      "url": "https://www.utilitydive.com/news/behind-the-new-york-data-center-pause-is-legislation-that-could-impact-exis/826369/",
+      "publishedAt": "2026-07-28T15:53:08.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Legislation that&rsquo;s been put on the back burner while the moratorium is in effect would require large data centers to procure at least a third of their electricity from renewable sources by 2030 and might impact those with water-intensive cooling, analyses show."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/community-solar-can-bridge-californias-energy-affordability-gap/824956/",
+      "source": "Utility Dive",
+      "title": "Community solar can bridge California’s energy affordability gap",
+      "url": "https://www.utilitydive.com/news/community-solar-can-bridge-californias-energy-affordability-gap/824956/",
+      "publishedAt": "2026-07-28T15:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Regulatory complexities are thwarting innovation and keeping electricity bills for the majority of Californians far too high, writes&nbsp;Ardi Arian, CEO of Renewable America."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-board-backstop-capacity-auction-data-center-curtailment/826347/",
+      "source": "Utility Dive",
+      "title": "PJM board proposes backstop capacity auction, data center curtailment plans",
+      "url": "https://www.utilitydive.com/news/pjm-board-backstop-capacity-auction-data-center-curtailment/826347/",
+      "publishedAt": "2026-07-28T14:09:32.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "FERC&rsquo;s response to the proposals will likely &ldquo;influence utility capital investment, data center development timelines and the allocation of reliability risks and costs,&rdquo; ClearView Energy Partners said."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/bnef-chip-based-model-pegs-us-2033-data-center-demand-at-up-to-200-gw/825910/",
+      "source": "Utility Dive",
+      "title": "BNEF chip-based model pegs US data center demand at 207 GW by 2033",
+      "url": "https://www.utilitydive.com/news/bnef-chip-based-model-pegs-us-2033-data-center-demand-at-up-to-200-gw/825910/",
+      "publishedAt": "2026-07-28T13:45:42.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A base model anticipates U.S. data center demand of about 118 GW by 2030. As potential demand and proposed data center size both grow, so does the complexity in forecasting, analysts said."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/centerpoint-energy-14-gw-texas-batch-zero-large-load-earnings/826329/",
+      "source": "Utility Dive",
+      "title": "CenterPoint says 14 GW likely eligible for Texas’ ‘Batch Zero’ large-load interconnection",
+      "url": "https://www.utilitydive.com/news/centerpoint-energy-14-gw-texas-batch-zero-large-load-earnings/826329/",
+      "publishedAt": "2026-07-28T12:02:06.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The utility expects 50% load growth by the end of 2029, largely driven by data centers navigating Texas&rsquo; new large-load interconnection process, company officials said Tuesday."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/slovakian-battery-and-bess-manufacturer-inobat-eyes-spac-merger-for-nasdaq-listing/",
+      "source": "Energy-Storage.news",
+      "title": "Slovakian battery and BESS manufacturer InoBat eyes SPAC merger for Nasdaq listing",
+      "url": "https://www.energy-storage.news/slovakian-battery-and-bess-manufacturer-inobat-eyes-spac-merger-for-nasdaq-listing/",
+      "publishedAt": "2026-07-28T11:41:11.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "European battery manufacturer and energy storage system integrator InoBat plans to get a Nasdaq listing through a business combination with a special purpose acquisition company (SPAC)."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/inside-the-container-looking-at-catls-sodium-ion-teners-specs/",
+      "source": "Energy-Storage.news",
+      "title": "Inside the container: looking at CATL’s sodium-ion Tener’s specs",
+      "url": "https://www.energy-storage.news/inside-the-container-looking-at-catls-sodium-ion-teners-specs/",
+      "publishedAt": "2026-07-28T10:19:21.000Z",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "In this deep-dive, we go through and analyse all of the technical features and claims of CATL's new sodium-ion grid-scale BESS product, including its 'millisecond-level self-healing'."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/video-how-envision-energy-is-positioning-itself-as-a-system-level-energy-infrastructure-provider/",
+      "source": "Energy-Storage.news",
+      "title": "VIDEO: How Envision Energy is positioning itself as a system-level energy infrastructure provider",
+      "url": "https://www.energy-storage.news/video-how-envision-energy-is-positioning-itself-as-a-system-level-energy-infrastructure-provider/",
+      "publishedAt": "2026-07-28T10:14:53.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "We caught up with Kevin Huang, Senior Vice President and President of Energy Storage Product Line at Envision Energy at Smarter E in Munich for a video interview on the company's energy storage strategy and the growing role of AI data centres in power demand."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/zenobe-buys-german-bess-developer-sdp-energie-inheriting-1-75gw-transmission-level-pipeline/",
+      "source": "Energy-Storage.news",
+      "title": "Zenobē buys German BESS developer SDP Energie, inheriting 1.75GW transmission-level pipeline",
+      "url": "https://www.energy-storage.news/zenobe-buys-german-bess-developer-sdp-energie-inheriting-1-75gw-transmission-level-pipeline/",
+      "publishedAt": "2026-07-28T09:40:04.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "UK-based BESS and EV charging firm Zenobē has entered the German market with the acquisition of Bavaria-headquartered BESS developer SDP Energie."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/minister-of-energy-leads-ceremony-to-commission-malawis-first-grid-scale-standalone-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Minister of Energy leads ceremony to commission Malawi’s first grid-scale standalone BESS",
+      "url": "https://www.energy-storage.news/minister-of-energy-leads-ceremony-to-commission-malawis-first-grid-scale-standalone-bess/",
+      "publishedAt": "2026-07-28T08:52:20.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Malawi’s energy minister was on hand last week as the southeast African country inaugurated its first large-scale standalone battery energy storage system (BESS)."
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
+      "source": "Modo Energy",
+      "title": "What Happens When The State Take Risks Private Capital Won't? - GB Energy",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
+      "publishedAt": "2026-07-28T06:00:22.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "GB Energy's £1 million solar investment freed up savings a Hull hospital had left on the table for years. It's an example of what can happen when a state-backed investor takes risks the market won't. GB Energy calls itself an activist investor, built to put public money behind the frontiers where private capital mov…"
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/malaysia-launches-tender-for-2-5gw-of-solar-pv-with-co-located-battery-storage/",
+      "source": "Energy-Storage.news",
+      "title": "Malaysia launches tender for 2.5GW of solar PV with co-located battery storage",
+      "url": "https://www.energy-storage.news/malaysia-launches-tender-for-2-5gw-of-solar-pv-with-co-located-battery-storage/",
+      "publishedAt": "2026-07-28T05:17:59.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The government of Malaysia has unveiled the next round of its Large-scale solar (LSS) program tender seeking 2.5GW of solar PV co-located with 1.25GW of battery energy storage system (BESS) capacity."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/hanoi-power-corporation-inaugurates-the-first-100mwh-battery-storage-portfolio-in-vietnamese-capital/",
+      "source": "Energy-Storage.news",
+      "title": "Hanoi Power Corporation inaugurates the first 100MWh battery storage portfolio in Vietnamese capital",
+      "url": "https://www.energy-storage.news/hanoi-power-corporation-inaugurates-the-first-100mwh-battery-storage-portfolio-in-vietnamese-capital/",
+      "publishedAt": "2026-07-28T04:47:11.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Hanoi Power Corporation (EVNHANOI) has begun pilot operation of five battery energy storage systems at substations in Hanoi, Vietnam."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/states-ferc-filing-rights-section-205-pjm/826170/",
+      "source": "Utility Dive",
+      "title": "States cannot be granted filing rights under Section 205 of the Federal Power Act",
+      "url": "https://www.utilitydive.com/news/states-ferc-filing-rights-section-205-pjm/826170/",
+      "publishedAt": "2026-07-27T15:30:32.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Federal Energy Regulatory Commission should reject a proposal that states share &ldquo;filing rights&rdquo; with the PJM Interconnection and its transmission owners, former FERC Chairman Joseph Kelliher writes."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/vehicle-to-grid-added-to-massachusetts-utilities-connectedsolutions-demand-response-vpp/",
+      "source": "Energy-Storage.news",
+      "title": "Vehicle-to-grid added to Massachusetts utilities’ ConnectedSolutions demand response VPP",
+      "url": "https://www.energy-storage.news/vehicle-to-grid-added-to-massachusetts-utilities-connectedsolutions-demand-response-vpp/",
+      "publishedAt": "2026-07-27T12:08:51.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Eversource and National Grid will enable customers in Massachusetts to enrol vehicle-to-grid (V2G) -capable EVs in their demand side flexibility programme."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-storage-generates-nearly-20-of-catls-revenues-in-first-half-of-2026/",
+      "source": "Energy-Storage.news",
+      "title": "Energy storage generates nearly 20% of CATL’s revenues in first half of 2026",
+      "url": "https://www.energy-storage.news/energy-storage-generates-nearly-20-of-catls-revenues-in-first-half-of-2026/",
+      "publishedAt": "2026-07-27T10:31:08.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "CATL’s energy storage division represented 19.23% of the Chinese battery manufacturer’s total revenue in the first half of 2026."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ark-energy-locks-in-au1-3-billion-for-2-2gwh-solar-plus-storage-site-in-new-south-wales-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Ark Energy locks in AU$1.3 billion for 2.2GWh solar-plus-storage site in New South Wales, Australia",
+      "url": "https://www.energy-storage.news/ark-energy-locks-in-au1-3-billion-for-2-2gwh-solar-plus-storage-site-in-new-south-wales-australia/",
+      "publishedAt": "2026-07-27T02:35:14.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Two Australian solar-plus-storage projects advance: Ark Energy secures AU$1.3 billion for 2.2GWh Richmond Valley project; Quinbrook submits 250MWp Queensland site."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/poland-r-power-enlists-epcs-for-2-2gwh-of-bess-edf-and-eurus-eiffel-and-ergy-co-invest-in-projects/",
+      "source": "Energy-Storage.news",
+      "title": "Poland: R.Power enlists EPCs for 2.2GWh of BESS, EDF and Eurus, Eiffel and Ergy co-invest in projects",
+      "url": "https://www.energy-storage.news/poland-r-power-enlists-epcs-for-2-2gwh-of-bess-edf-and-eurus-eiffel-and-ergy-co-invest-in-projects/",
+      "publishedAt": "2026-07-24T10:48:49.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "It's been a busy week for the large-scale energy storage market in Poland, with projects moved to construction and delivery by EDF Power Solutions & Eurus Energy Europe, Eiffel Investment Group & Ergy, R.Power Renewables, and EDP."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/sodium-ion-bess-catl-in-2gwh-eastern-europe-collaboration-ess-inc-signs-loi-for-500mwh-of-us-deployments/",
+      "source": "Energy-Storage.news",
+      "title": "Sodium-ion BESS: CATL in 2GWh Eastern Europe collaboration, ESS Inc signs LOI for 500MWh of US deployments",
+      "url": "https://www.energy-storage.news/sodium-ion-bess-catl-in-2gwh-eastern-europe-collaboration-ess-inc-signs-loi-for-500mwh-of-us-deployments/",
+      "publishedAt": "2026-07-24T08:40:48.000Z",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "ESS Tech Inc is deploying sodium-ion BESS in the US with Juniper Energy, while CATL deploys its sodium-ion technology in Eastern Europe with Solarpro."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/europe-roundup-grenergy-maxsolar-with-saft-and-amarenco-progress-bess-projects-in-spain-germany-and-france/",
+      "source": "Energy-Storage.news",
+      "title": "Europe ROUNDUP: Grenergy, MaxSolar with Saft, and Amarenco progress BESS projects in Spain, Germany, and France",
+      "url": "https://www.energy-storage.news/europe-roundup-grenergy-maxsolar-with-saft-and-amarenco-progress-bess-projects-in-spain-germany-and-france/",
+      "publishedAt": "2026-07-24T07:01:49.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In this news roundup, Grenergy, MaxSolar and Saft, and Amarenco have made significant advancements on BESS projects in Spain, Germany, and France."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/brookfield-buys-bess-developer-aypa-power-from-blackstone/",
+      "source": "Energy-Storage.news",
+      "title": "Brookfield buys BESS developer Aypa Power from Blackstone",
+      "url": "https://www.energy-storage.news/brookfield-buys-bess-developer-aypa-power-from-blackstone/",
+      "publishedAt": "2026-07-23T14:53:49.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Brookfield has agreed to acquire battery storage developer-operator Aypa Power at an enterprise value of ~US$7 billion."
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=dymytru20k",
+      "source": "Modo Energy",
+      "title": "Why Renewables Are Changing How Power Gets Priced - Renewable Exchange",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=dymytru20k",
+      "publishedAt": "2026-07-14T06:00:24.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Many people picture a power purchase agreement as a 15-year mega-deal between a tech giant and a solar farm. In reality, 99% of UK PPAs look nothing like that. Power purchase agreements now sit behind a growing chunk of how the UK's electricity supply is sourced, and getting the price wrong could mean getting locked…"
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gvcgcyn80i",
+      "source": "Modo Energy",
+      "title": "How Thermal Storage Decarbonises Industrial Heat - ENERGYNEST",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gvcgcyn80i",
+      "publishedAt": "2026-06-23T06:00:00.000Z",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Two thirds of industrial energy demand is heat, not electricity, and most of it still runs on gas. Thermal storage converts cheap electricity into heat, stores it in concrete, and dispatches it when the factory needs it, undercutting the gas bill even though gas is cheaper per unit on average. Alex Robertson, CEO of…"
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=g4tvkatedu",
+      "source": "Modo Energy",
+      "title": "How Battery Traders Actually Make Money - Statkraft",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=g4tvkatedu",
+      "publishedAt": "2026-06-09T06:00:19.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Most battery revenue projections stop at the day-ahead auction. But the optimisers running multi-gigawatt BESS portfolios argue that's where the money is being left on the table - re-trading a battery through intraday, balancing, and ancillary services can add 50% or more to revenue, and battery offtake structures l…"
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=14rqfx7kf5",
+      "source": "Modo Energy",
+      "title": "Connections, Capacity & Clean Power: Britain's Grid Reform - NESO",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=14rqfx7kf5",
+      "publishedAt": "2026-06-02T06:00:25.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The scope of the National Energy System Operator - or NESO - has expanded from running the electricity system to planning Britain's whole energy system across electricity, gas and hydrogen, all while delivering connections reform and steering toward Clean Power 2030. That transformation is reshaping everything from…"
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3ewfcky4o4",
+      "source": "Modo Energy",
+      "title": "Where Capital Is Flowing in Spanish Renewables - nTeaser",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3ewfcky4o4",
+      "publishedAt": "2026-05-26T06:00:24.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Three years ago, the best price for a ready-to-build solar project in Spain was €200,000 per megawatt — today it is €50,000. Batteries have moved the opposite way, with ready-to-build prices climbing to around €100,000 per megawatt and a 30GW pipeline now stacking up behind them. Ed Porter sits down with Carmen Izqu…"
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=w6oz29pc99",
+      "source": "Modo Energy",
+      "title": "Clean Power 2030: Inside Mission Control with Chris Stark",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=w6oz29pc99",
+      "publishedAt": "2026-05-19T06:00:22.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Chris Stark is Head of UK’s Mission for Clean Power, As Head of Mission Control at DESNZ, no one sees the constraint costs, grid bottlenecks and reform of National Pricing trade-offs more clearly. The UK is building a clean power system at a pace not seen since the 1960s, connecting record volumes of wind and solar…"
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=kv08rl7xf8",
+      "source": "Modo Energy",
+      "title": "Why Germany's Battery Storage Market Is Harder Than It Looks - Terralayr",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=kv08rl7xf8",
+      "publishedAt": "2026-05-12T06:00:21.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Germany sits at the centre of Europe's energy transition: over 800 distribution networks, deep intraday markets, and a flexibility gap roughly 40 times its battery fleet. But the real question isn't whether the market is big - it's whether it saturates as battery capacity grows, or scales for years yet. Philipp Man…"
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=r02yvrja6q",
+      "source": "Modo Energy",
+      "title": "Solar Saturation & Grid Collapse: Spain's BESS Opportunity - Modo Energy",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=r02yvrja6q",
+      "publishedAt": "2026-04-28T06:00:17.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Spain has approximately 42GW of utility-scale solar and 50GW when rooftop is included, yet less than 100MW of grid-connected battery storage. In February, solar capture rates hit €1.30 per megawatt hour, a fraction of the €30–35/MWh needed for a solar project to break even. So why hasn't battery storage followed the…"
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=6kgj1zzcgr",
+      "source": "Modo Energy",
+      "title": "The Behavioural Shift That Makes EV Flexibility Actually Work - Ohme",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=6kgj1zzcgr",
+      "publishedAt": "2026-04-21T06:00:24.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Smart EV charging isn't just about saving money on your electricity bill, it's quietly becoming one of the most scalable sources of grid flexibility in Great Britain. Ohme has run the numbers: incentivising 22,000 customers to plug in more often drove a 32–37% increase in plug-in frequency, unlocking dispatchable fl…"
+    }
+  ]
+}

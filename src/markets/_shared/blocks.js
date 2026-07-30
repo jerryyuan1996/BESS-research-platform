@@ -15,6 +15,7 @@ import { chip } from '../../components/chip.js';
 import { why } from '../../components/decisionLogic.js';
 import { kpi, scoreRows, bandFor } from '../../components/metricCard.js';
 import { sourceDrawer } from '../../components/sourceDrawer.js';
+import { renderGeographicGridMap } from '../../components/geographicGridMap.js';
 import { lineChart, barChart, waterfall, bandChart } from '../../charts/index.js';
 import { GLOSS_CORE } from './glossary.js';
 
@@ -136,6 +137,7 @@ function B(parent, b){
       parent.append(h('div', { class: 'ic-summary' }, h('b', {}, L(b.b)), h('div', { style:'margin-top:5px;font-size:12.5px;color:var(--ink2)' }, L(b.text))));
       break;
     case 'src': parent.append(sourceDrawer(b.src, b.use)); break;
+    case 'geo-grid-map': renderGeographicGridMap(parent, b.data); break;
     case 'walk':
       parent.append(h('div', { class: 'walk' }, b.items.map(x => h('button', {
         class: 'walk-step', onclick: () => { state.tab = x[3]; render(); window.scrollTo(0, 0); } },
@@ -219,13 +221,17 @@ function blkStageProb(parent){
 function projectsIn(region){
   return region ? M.projects.filter(p => p.region === region) : M.projects;
 }
+function projectValue(p, unit){
+  if (unit !== 'MWh') return Number.isFinite(p.mw) ? p.mw : 0;
+  return Number.isFinite(p.mw) && Number.isFinite(p.h) ? p.mw * p.h : 0;
+}
 function pipelineByYear(unit, region){
   const src = projectsIn(region);
-  const years = [...new Set(src.map(p => p.cod))].sort();
+  const years = [...new Set(src.map(p => p.cod).filter(Number.isFinite))].sort();
   const raw = years.map(y => src.filter(p => p.cod === y)
-    .reduce((a, p) => a + (unit === 'MWh' ? p.mw * p.h : p.mw), 0));
+    .reduce((a, p) => a + projectValue(p, unit), 0));
   const pw = years.map(y => src.filter(p => p.cod === y)
-    .reduce((a, p) => a + (unit === 'MWh' ? p.mw * p.h : p.mw) * stageProb(p.st), 0));
+    .reduce((a, p) => a + projectValue(p, unit) * stageProb(p.st), 0));
   return { years, raw, pw };
 }
 function blkPipeChart(parent, b){
@@ -238,7 +244,7 @@ function blkPipeChart(parent, b){
       series: b.series.map(s => ({
         name: s.name, color: s.color,
         vals: years.map(y => projectsIn(s.region).filter(p => p.cod === y)
-          .reduce((a, p) => a + ((b.unit === 'MWh' ? p.mw * p.h : p.mw) * (b.weighted === false ? 1 : stageProb(p.st))), 0)),
+          .reduce((a, p) => a + projectValue(p, b.unit) * (b.weighted === false ? 1 : stageProb(p.st)), 0)),
       })),
     });
     return;
@@ -253,20 +259,33 @@ function blkPipeChart(parent, b){
   });
 }
 function blkProjTable(parent, b){
-  const rows = projectsIn(b && b.region).map(p => {
+  const projects = projectsIn(b && b.region);
+  const showGate = projects.some(p => Object.hasOwn(p, 'gate'));
+  const rows = projects.map(p => {
     const st = M.stages.find(s => s.id === p.st);
-    return h('tr', {},
-      h('td', {}, h('b', {}, p.n)), h('td', {}, p.owner || p.county || p.region || '—'),
-      h('td', { class: 'num' }, fmtN(p.mw)), h('td', { class: 'num' }, fmt1(p.h)),
-      h('td', { class: 'num' }, fmtN(p.mw * p.h)), h('td', { class: 'num' }, p.cod),
-      h('td', {}, L(st.n)), h('td', { class: 'num' }, st.p + '%'));
+    const location = [p.owner, p.site || p.county || p.region].filter(Boolean).join(' · ') || '—';
+    const cells = [
+      h('td', {}, h('b', {}, p.n)), h('td', {}, location),
+      h('td', { class: 'num' }, Number.isFinite(p.mw) ? fmtN(p.mw) : '—'),
+      h('td', { class: 'num' }, Number.isFinite(p.h) ? fmt1(p.h) : '—'),
+      h('td', { class: 'num' }, Number.isFinite(p.mw) && Number.isFinite(p.h) ? fmtN(p.mw * p.h) : '—'),
+      h('td', { class: 'num' }, p.codDate || p.cod || '—'),
+      h('td', {}, st ? L(st.n) : (p.statusRaw || '—')),
+    ];
+    if (showGate) cells.push(h('td', { class: 'num' }, p.gate || '—'));
+    cells.push(h('td', { class: 'num' }, st ? st.p + '%' : '—'));
+    return h('tr', {}, cells);
   });
+  const heads = [
+    h('th', {}, L(['Project', '项目'])), h('th', {}, L(['Owner / location', '业主/区位'])),
+    h('th', { class: 'num' }, 'MW'), h('th', { class: 'num' }, L(['Hours', '小时'])),
+    h('th', { class: 'num' }, 'MWh'), h('th', { class: 'num' }, L(['Effective date / COD', '生效日期/投运'])),
+    h('th', {}, L(['Stage', '阶段'])),
+  ];
+  if (showGate) heads.push(h('th', { class: 'num' }, 'Gate'));
+  heads.push(h('th', { class: 'num' }, L(['Analyst weight', '分析师权重'])));
   parent.append(h('div', { class: 'tbl-wrap' }, h('table', {},
-    h('thead', {}, h('tr', {},
-      h('th', {}, L(['Project', '项目'])), h('th', {}, L(['Owner / location', '业主/区位'])),
-      h('th', { class: 'num' }, 'MW'), h('th', { class: 'num' }, L(['Hours', '小时'])),
-      h('th', { class: 'num' }, 'MWh'), h('th', { class: 'num' }, 'COD'),
-      h('th', {}, L(['Stage', '阶段'])), h('th', { class: 'num' }, L(['P', '概率'])))),
+    h('thead', {}, h('tr', {}, heads)),
     h('tbody', {}, rows))));
 }
   return { B, blkScorecard, blkAugmentation, blkStageProb, pipelineByYear, blkPipeChart, blkProjTable, projectsIn };

@@ -14,23 +14,61 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 
+const REVENUE_IDS = new Set(['rcm', 'capacity', 'energy', 'fcess', 'services', 'duration']);
+const COUNTRY_FLAGS = {
+  wa: 'au',
+  gb: 'gb',
+  ie: 'ie',
+  ro: 'ro',
+  pl: 'pl',
+  jp: 'jp',
+  jp_tokyo: 'jp',
+  jp_kyushu: 'jp',
+  jp_hokkaido: 'jp',
+};
+export const marketFlagCode = market => COUNTRY_FLAGS[market.manifest.id]
+  || COUNTRY_FLAGS[market.manifest.dashboardId]
+  || 'un';
+
+
+function groupedTabs(tabs){
+  const revenue = tabs.filter(([id]) => REVENUE_IDS.has(id));
+  const other = tabs.filter(([id]) => !REVENUE_IDS.has(id));
+  const byId = new Map(other);
+  const ordered = [];
+  for (const id of ['home', 'story', 'grid']){
+    if (byId.has(id)){
+      ordered.push([id, byId.get(id)]);
+      byId.delete(id);
+    }
+  }
+  if (revenue.length) ordered.push([revenue[0][0], ['Revenue Mechanisms', '收入机制']]);
+  for (const entry of other){
+    if (!byId.has(entry[0])) continue;
+    ordered.push(entry);
+    byId.delete(entry[0]);
+  }
+  return { ordered, revenue };
+}
+
 /**
  * @param {Array} markets  registry entries
  * @param {string} activeId  market id, or 'home'
  */
 export function marketNav(markets, activeId){
-  const link = (href, label, active) => h('a', {
+  const link = (href, label, active, flag = '') => h('a', {
     class: 'tab-btn' + (active ? ' active' : ''),
     href,
     onclick: (e) => { e.preventDefault(); navigate(href); },
-  }, label);
+  }, flag && h('span', { class:`market-flag fi fi-${flag}`, 'aria-hidden':'true' }), label);
 
   return h('div', { class: 'tabs' },
     link('/', L(['◂ Global cockpit', '◂ 全球总看板']), activeId === 'home'),
     markets.map(m => link(
       '/markets/' + m.manifest.slug,
-      m.manifest.flag + ' ' + L(m.manifest.shortName),
-      m.manifest.id === activeId)));
+      L(m.manifest.shortName),
+      m.manifest.id === activeId,
+      marketFlagCode(m))));
 }
 
 /**
@@ -40,9 +78,28 @@ export function marketNav(markets, activeId){
  * @param {string} basePath  e.g. '/markets/western-australia'
  */
 export function tabNav(tabs, activeTab, basePath){
-  return h('div', { class: 'tabs' }, tabs.map(([id, name]) => h('a', {
-    class: 'tab-btn' + (activeTab === id ? ' active' : ''),
+  const { ordered, revenue } = groupedTabs(tabs);
+  const revenueIds = new Set(revenue.map(([id]) => id));
+  return h('div', { class: 'tabs' }, ordered.map(([id, name]) => h('a', {
+    class: 'tab-btn' + ((activeTab === id || (id === revenue[0]?.[0] && revenueIds.has(activeTab))) ? ' active' : ''),
     href: basePath + '/' + id,
     onclick: (e) => { e.preventDefault(); navigate(basePath + '/' + id); window.scrollTo(0, 0); },
+  }, L(name))));
+}
+
+export function revenueSubNav(tabs, activeTab, basePath){
+  const revenue = tabs.filter(([id]) => REVENUE_IDS.has(id));
+  if (!revenue.some(([id]) => id === activeTab)) return null;
+  return h('div', {
+    class:'tabs revenue-subtabs',
+    'aria-label':L(['Revenue mechanism sections', '收入机制子页']),
+  }, revenue.map(([id, name]) => h('a', {
+    class:'tab-btn' + (activeTab === id ? ' active' : ''),
+    href:basePath + '/' + id,
+    onclick:(event) => {
+      event.preventDefault();
+      navigate(basePath + '/' + id);
+      window.scrollTo(0, 0);
+    },
   }, L(name))));
 }

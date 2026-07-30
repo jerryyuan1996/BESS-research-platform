@@ -1,3 +1,7 @@
+import { buildROGridSection } from './gridSection.js';
+import { buildROPlanningBlocks } from './planningSection.js';
+import { buildROEconomicsBlocks } from './economicsSection.js';
+
 /* ---------------------------------------------------------------------------
    Romania 鈥?declarative section specs, verbatim from the prototype
    (lines 1580-2479).
@@ -205,6 +209,9 @@ SEC_B.story = function (){
         sig:['Conversion risk, not opportunity risk','转化风险而非机会风险'] },
     ] },
 
+    ...buildROPlanningBlocks({ SRC }),
+
+    ...buildROEconomicsBlocks(),
     { t:'card', title:['How the Romanian storage case was built — four changes in five years','罗马尼亚储能逻辑的形成 — 五年内四次变化'], badges:['official','public'], blocks:[
       { t:'band-story', b:['Why this history is underwriting-relevant','这段历史为何与承销相关'],
         text:['Romania did not design a storage market; it acquired one as a by-product of solar growth, EU market coupling and state-aid availability. Each of the four changes below improved the case, and none of them created a contracted revenue line. That is why the diligence emphasis here is documentary rather than analytical.',
@@ -914,6 +921,8 @@ SEC_B.data = function (){
   ] };
 };
 
+
+  SEC_B.grid = () => buildROGridSection({ SRC });
 
   return SECTIONS;
 }

@@ -55,6 +55,7 @@ jobs:
           # the previous snapshot stays in place — see etl/lib/fetch.mjs.
           ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
         run: |
+          node etl/news.mjs
           if [ -n "${{ inputs.only }}" ]; then
             node etl/run.mjs --only "${{ inputs.only }}"
           else

@@ -18,12 +18,18 @@ import { SEED } from '../data/seed.js';
 import { RCM_HISTORY } from '../data/rcmHistory.js';
 import { WEM_MARKET } from '../data/wemMarket.js';
 import { ESOO_BAL } from '../data/kemerton.js';
+import { renderWaOfficialPlanning } from '../officialPlanningSection.js';
+import { renderWaEconomicsP0 } from '../economicsP0Section.js';
 
 // ---------------- WA MARKET STORY ----------------
 function renderStory(main){
   sectionHead(main, ['WA Market Evolution — from capacity-backed thermal system to duration-led storage market', '西澳市场演进 — 从容量支撑的火电系统到时长驱动的储能市场'],
     ['This section is the narrative bridge between the Overview and the detailed underwriting tabs. It separates historical facts, observed market outcomes and the forward investment conclusion.',
      '本节连接“总览”与后续承销分析，明确区分历史事实、已观察市场结果及前瞻投资结论。']);
+
+
+  renderWaEconomicsP0(main);
+  renderWaOfficialPlanning(main);
 
   const R = WEM_MARKET.records, CIS = WEM_MARKET.cis;
   const orient = card(['One-minute orientation for a new institutional investor', '机构投资人的一分钟市场定位'], [badge('official'), badge('public'), statusBadge(false)]);

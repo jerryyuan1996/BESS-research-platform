@@ -21,9 +21,11 @@ import { h } from '../../utils/dom.js';
 import { L } from '../../app/i18n.js';
 import { requestRender } from '../../app/state.js';
 import { renderHeader, renderDisclaimer } from '../../components/header.js';
-import { marketNav, tabNav } from '../../components/navigation.js';
+import { marketNav, tabNav, revenueSubNav } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
 import { chip } from '../../components/chip.js';
+import { enhanceMarketPage } from '../../components/pageEnhancements.js';
+import { WA_GRID_MAP } from './gridMapData.js';
 import { markets } from '../registry.js';
 
 import { manifest } from './manifest.js';
@@ -98,11 +100,18 @@ export function dashboard(container, { tabId, basePath }){
   container.append(renderDisclaimer(T.disclaimer));
   container.append(marketNav(markets, manifest.id));
   container.append(tabNav(TABS, state.tab, basePath));
+  const revenueNav = revenueSubNav(TABS, state.tab, basePath);
+  if (revenueNav) container.append(revenueNav);
 
   const main = h('div');
   container.append(main);
   (SECTIONS[state.tab] || SECTIONS[DEFAULT_TAB])(main);
 
+  enhanceMarketPage(main, {
+    overviewMap: state.tab === DEFAULT_TAB ? WA_GRID_MAP : null,
+    marketId:manifest.id,
+    tabId:state.tab,
+  });
   container.append(renderFooter([
     T.disclaimer,
     L(['Model version: ', '模型版本：']) + SEED.modelVersion + ' · ' + L(T.tz) + ' · ' +

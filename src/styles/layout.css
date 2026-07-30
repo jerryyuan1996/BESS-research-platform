@@ -7,6 +7,14 @@
   display:flex; gap:4px; flex-wrap:wrap; position:sticky; top:0; z-index:40;
   background:var(--bg); padding:8px 0 10px; border-bottom:1px solid var(--border); margin-bottom:18px;
 }
+.revenue-subtabs{
+  margin-top:-6px;
+  margin-bottom:12px;
+  padding:6px 8px;
+  border-top:0;
+  background:var(--surface);
+}
+.revenue-subtabs .tab-btn{font-size:11.5px}
 .tab-btn{
   border:1px solid transparent; background:transparent; color:var(--ink2);
   border-radius:8px; padding:7px 12px; font-size:13px; cursor:pointer; font-family:inherit; white-space:nowrap;
@@ -28,3 +36,18 @@
 .sect > h2{font-size:17px; font-weight:650; margin-bottom:4px;}
 .sect > .cap{font-size:13px; color:var(--ink2); margin-bottom:12px; max-width:900px;}
 @media print{ .tabs,.ctrls{display:none;} }
+
+/* ---------- market-story subpages ---------- */
+.story-subtabs{
+  display:flex;
+  gap:6px;
+  padding:8px;
+  margin:-8px 0 12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--surface);
+}
+.story-subtabs .btn{flex:0 1 auto;}
+.story-panel{display:grid;gap:14px;}
+.story-panel[hidden]{display:none;}
+.story-panel>.card,.story-panel>.grid{margin-top:0!important;}

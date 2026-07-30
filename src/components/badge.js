@@ -19,7 +19,7 @@ import { L } from '../app/i18n.js';
 
 /** Shared badge vocabulary. Every string is byte-identical to the prototype. */
 export const BADGE_LABELS = {
-  official:   ['Verified official (seed)', '官方已验证（种子）'],
+  official:   ['Verified official source', '已核验官方来源'],
   calc:       ['Calculated from official data', '基于官方数据计算'],
   illus:      ['Illustrative seed — not official', '示例种子 — 非官方'],
   forecast:   ['Forecast', '预测'],

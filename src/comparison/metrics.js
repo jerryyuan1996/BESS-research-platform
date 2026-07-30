@@ -119,7 +119,7 @@ export const METRICS = [
     id: 'connectionRisk', hi: false,
     label: ['Connection risk score (lower = safer)', '并网风险评分（越低越安全）'],
     value: (m) => m.comparison.score.connectionRisk,
-    format: (m) => m.comparison.score.connectionRisk + '/100',
+    format: (m) => Math.round(m.comparison.score.connectionRisk) + '/100',
   },
   {
     id: 'pipelineRatio', ctx: true,

@@ -28,6 +28,7 @@ const DAYS = 24 * HOURS;
  * @typedef {object} Dataset
  * @property {string}   id             stable key; also the snapshot filename
  * @property {string?}  marketId       registry market id, or null for global
+ * @property {string?}  sourceId       governed source-registry id when registered
  * @property {string[]} title          [en, zh]
  * @property {string}   connector      etl/sources/<connector>.mjs
  * @property {object}   source         provenance shown to the reader
@@ -73,6 +74,7 @@ export const DATASETS = [
   {
     id: 'gb-day-ahead',
     marketId: 'gb',
+    sourceId: 'gb-entsoe-transparency',
     title: ['GB day-ahead wholesale prices', '英国日前批发电价'],
     connector: 'entsoe',
     source: {

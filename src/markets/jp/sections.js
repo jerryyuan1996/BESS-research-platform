@@ -11,6 +11,9 @@
    expanded block from the same spec.
    --------------------------------------------------------------------------- */
 
+import { JP_GRID_MAPS } from './gridMapData.js';
+import { buildJPEconomicsBlocks } from './economicsSection.js';
+
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
   const {
@@ -74,10 +77,51 @@ export function buildSections(api){
 
   // ============================== OVERVIEW ==============================
   SEC_B.home = function (){
+    const S = M.systemEvolution;
+    const systemRegions = ['tokyo', 'kyushu', 'hokkaido'];
     return {
     warn: M.seedWarn,
     blocks: [
       lensNote(),
+      ...buildJPEconomicsBlocks(),
+      { t: 'card', mt: false, title: ['Official system evolution — OCCTO FY2025 supply plan',
+                                      '官方系统演进 — OCCTO FY2025供给计划'],
+        badges: ['official', 'forecast'], live: false, src: SRC.occtoSupplyPlan2025,
+        srcUse: ['Appendix 2 and 3 regional demand and supply tables', '附录2与3的区域需求及供给表'], blocks: [
+        { t: 'table',
+          head: [['Region', '区域'], ['FY2025 peak', 'FY2025峰值'], ['FY2030 peak', 'FY2030峰值'],
+                 ['FY2034 peak', 'FY2034峰值'], ['FY2034 supply capacity', 'FY2034供给能力']],
+          num: [1, 2, 3, 4],
+          rows: systemRegions.map(id => [
+            { b: R(id).short },
+            fmt1(S.regions[id].peakDemandGW[0]) + ' GW',
+            fmt1(S.regions[id].peakDemandGW[1]) + ' GW',
+            fmt1(S.regions[id].peakDemandGW[2]) + ' GW',
+            fmt1(S.regions[id].supplyCapacityGW[2]) + ' GW',
+          ]) },
+        { t: 'note', text: [
+          'These are official planning points from one named FY2025 vintage. FY2034 is shown because it is the source horizon; the dashboard does not interpolate an unsupported 2035 value. Hokkaido uses its winter-peak series while Tokyo and Kyushu use their regional peak series.',
+          '以上为同一FY2025官方版本中的规划点。由于来源止于FY2034，故看板显示FY2034，不插值生成无来源的2035数值。北海道采用冬季峰值序列，东京与九州采用各自区域峰值序列。',
+        ] },
+        { t: 'g2', cards: [
+          { title: ['Forecast confidence', '预测置信度'], badges: ['calc'], blocks: [
+            { t: 'kpis', items: [
+              { l: ['Evidence confidence', '证据置信度'], v: M.forecastGovernance.confidenceScore + '/10', d: M.forecastGovernance.confidenceBand },
+              { l: ['Queue completeness', '队列完整性'], v: 'N/A', d: ['No complete public register', '无完整公开登记'] },
+            ] },
+            { t: 'p', text: M.forecastGovernance.confidenceBasis },
+          ] },
+          { title: ['What invalidates the case', '何种情况会推翻情景'], badges: ['verify'], blocks: [
+            { t: 'p', text: M.forecastGovernance.invalidation },
+            { t: 'note', text: M.forecastGovernance.queueCoverage },
+          ] },
+        ] },
+        { t: 'why', text: [
+          'The common national rules do not create common regional economics. Tokyo grows into a deeper load pool; Kyushu peak demand is almost flat while solar-surplus and export constraints dominate; Hokkaido gains supply capacity and interconnection but remains a small winter-peaking system. These physical differences are the official anchor for the three regional scenarios.',
+          '统一的全国规则并不会产生统一的区域经济性。东京进入更深的负荷池；九州峰值需求基本持平，光伏过剩与外送约束占主导；北海道供给能力与跨区互联提升，但仍是规模较小的冬峰系统。这些物理差异是三个区域情景的官方锚点。',
+        ], sig: ['Official need anchors scenarios; it does not guarantee returns', '官方需求锚定情景，但不保证回报'] },
+      ] },
+
       { t: 'card', mt: false, title: ['Institutional Investor Walkthrough — six questions, one decision path',
                                       '机构投资人导览 — 六个问题，一条决策路径'],
         badges: ['official'], live: false, blocks: [
@@ -348,6 +392,57 @@ export function buildSections(api){
         { t: 'why', text: ['Five products, one asset. A battery cannot sell capability into all of them simultaneously and still run an arbitrage cycle — every ΔkW reserved is energy headroom withdrawn from JEPX. This is why the platform counts only incremental balancing value.',
                            '五个品种，一台资产。储能无法在维持套利循环的同时向所有品种提供容量 — 每预留一份ΔkW，就从JEPX撤出一份电量裕度。这正是本平台仅计算调整力增量价值的原因。'],
           sig: ['Reserved ΔkW is withdrawn energy', '预留容量即撤出电量'] } ] },
+      { t: 'card', title: ['Investor claim checked — “online / extra-high-voltage priority”',
+                           '投资人说法核验 — “online / 特别高压优先权”'],
+        badges: ['official', 'calc'], live: false, src: SRC.eprxProductRequirements,
+        srcUse: ['Current product requirements and control-line eligibility', '现行品种要求与控制线路准入'], blocks: [
+        { t: 'chip', cls: 'warn', text: [
+          'Commercially plausible, but not a general priority right',
+          '商业上可能形成优势，但并非普遍优先权',
+        ] },
+        { t: 'table',
+          head: [['Question', '问题'], ['Verified rule', '已核验规则'], ['Investment reading', '投资解读']],
+          rows: [
+            [{ b: ['Who clears first?', '谁优先出清？'] },
+             ['Lowest ΔkW bid price first; tie-breaks use fewer interconnectors, then system-priority area.', 'ΔkW报价最低者先出清；同价时依次按经过联络线更少、系统优先区域排序。'],
+             ['Voltage class and project duration are not clearing-priority fields.', '电压等级与项目时长并非出清优先字段。']],
+            [{ b: ['Is there any online access edge?', 'online是否存在准入优势？'] },
+             ['Yes, narrowly: the rules cap offline Primary awards, so online capability can avoid that product-specific constraint.', '有，但范围有限：规则对离线一次调频中标设有上限，online能力可避免这一特定品种约束。'],
+             ['Treat it as product access, not universal dispatch priority.', '应视为品种准入优势，而非普遍调度优先权。']],
+            [{ b: ['Does online control matter?', 'online控制是否重要？'] },
+             ['Yes. Secondary-1 requires dedicated-line online LFC; Secondary-2 and Tertiary products require online control with dedicated line or the simplified command system, depending on product.', '是。二次①要求专线online LFC；二次②及三次产品按品种要求采用专线或简易指令系统进行online控制。'],
+             ['Qualification can open more products and more bid windows, which is a real commercial edge.', '通过资格审查可开放更多品种与投标窗口，构成真实商业优势。']],
+            [{ b: ['Is a 2 MW / 8 MWh project excluded?', '2MW/8MWh项目是否被排除？'] },
+             ['No. The minimum bid is 1 MW across products; aggregation may meet it. EPRX also allows qualifying 1–10 MW high/extra-high-voltage batteries in the offline FCR category, with no different bidding method.', '否。各品种最低投标量均为1MW，可通过聚合满足。EPRX亦允许符合条件的1–10MW高压/特别高压电池进入离线一次调频类别，投标方式并无差异。'],
+             ['A small project loses only if it lacks qualification, bids less competitively or carries higher per-MW control costs — not because it is “2/8”.', '小项目只有在资格不足、报价竞争力较弱或单位MW控制成本更高时处于劣势，并非因其“2/8”规格。']],
+          ] },
+        { t: 'flow', items: [
+          ['Grid import + export rights', '充放电并网权'],
+          ['Control line / telemetry', '控制线路/遥测'],
+          ['TSO prequalification test', 'TSO资格预审'],
+          ['Competitive ΔkW bid', '有竞争力的ΔkW报价'],
+          ['Incremental revenue after JEPX cost', '扣除JEPX机会成本后的增量收入'],
+        ] },
+        { t: 'g3', cards: [
+          { title: ['Tokyo opportunity', '东京机会'], badges: ['jp-tokyo'], blocks: [
+            { t: 'p', text: ['Online multi-product access is most useful where deep load and scarcity support repeated dispatch — but only with firm import/export evidence.', '在深度负荷与稀缺性支持重复调度之处，online多品种准入最有价值 — 但前提是充放电并网证据充分。'] },
+          ] },
+          { title: ['Kyushu opportunity', '九州机会'], badges: ['jp-kyushu'], blocks: [
+            { t: 'p', text: ['Pair online qualification with verified solar-surplus charging access. Grid reinforcement that reduces curtailment is the downside overlay.', '将online资格与已核验的光伏过剩充电接入结合；降低弃电的电网强化则是下行情景。'] },
+          ] },
+          { title: ['Hokkaido warning', '北海道提示'], badges: ['jp-hokkaido'], blocks: [
+            { t: 'p', text: ['First-mover access is already being competed away: published FY2026 balancing registrations exceed 0.2 GW against a small requirement. Online capability does not prevent saturation.', '先发准入优势已被竞争侵蚀：公开FY2026调整力注册规模超过0.2GW，而需求池较小。online能力无法避免饱和。'] },
+          ] },
+        ] },
+        { t: 'warn', text: [
+          'Underwriting rule: do not add a generic “online premium”. Model only the products actually prequalified, accepted bid volumes and realised prices, net of JEPX opportunity cost, state-of-charge reservation, degradation, fees and penalties.',
+          '承销规则：不得笼统添加“online溢价”。仅对实际通过资格预审的品种、实际中标量及实现价格建模，并扣除JEPX机会成本、SOC预留、衰减、费用与罚则。',
+        ] },
+        { t: 'src', src: SRC.eprxRules18, use: ['Articles 26, 32 and 39 — minimum bid, award order, offline Primary cap and performance', '第26、32、39条 — 最低投标量、中标顺序、离线一次调频上限与履约'] },
+        { t: 'src', src: SRC.eprxFaq, use: ['1 MW minimum, aggregation, offline FCR eligibility and control-line clarification', '1MW最低投标量、聚合、离线一次调频资格及控制线路说明'] },
+        { t: 'src', src: SRC.eprxBatteryGuide, use: ['Voltage, metering, aggregation and connection pathways', '电压、计量、聚合与并网路径'] },
+      ] },
+
 
       { t: 'card', title: ['Incremental value bridge', '增量价值桥接'], badges: ['calc', 'illus'], live: true, blocks: [
         { t: 'wfrows', items: [
@@ -468,11 +563,49 @@ export function buildSections(api){
           sig: ['11 / 8 / 5 is an optionality ranking', '11/8/5即选择权排序'] } ] },
 
       perRegion(id => ({
-        title: [L(R(id).short) + ' — connection risk', L(R(id).short) + ' — 并网风险'],
-        badges: [regionBadge(id), 'calc'], live: true, blocks: [
-          { t: 'scorecard', id: path(id, 'connFactors'), bands: 'connBands' },
+        title: [L(R(id).short) + ' — physical grid, supply and demand', L(R(id).short) + ' — 物理电网、电源与负荷'],
+        badges: [regionBadge(id), 'official'], live: false, blocks: [
+          { t: 'geo-grid-map', data: JP_GRID_MAPS[id] },
         ],
       })),
+
+      { t: 'card', title: ['How a Japanese BESS reaches energisation', '日本储能如何实现送电'], badges: ['official'], live: false,
+        src: SRC.kyudenContribution, srcUse: ['Representative TSO connection and construction-contribution sequence; region-specific rules remain controlling', '代表性输电运营商并网及工程费负担流程；仍以各区域具体规则为准'], blocks: [
+        { t: 'flow', items: [
+          ['Site and separate import/export request', '选址并分别提出充电/放电申请'],
+          ['TSO connection study', '输电运营商并网检讨'],
+          ['Technical offer, works and cost allocation', '技术要约、增容工程及费用分摊'],
+          ['Deposit and construction contributions', '保证金及工程费负担'],
+          ['Protection, controls and performance tests', '保护、控制与性能试验'],
+          ['Energisation and market qualification', '送电及市场准入'],
+        ] },
+        { t: 'warn', text: ['Non-firm or early connection means conditional operation under network controls. It is not evidence of firm import headroom, firm export headroom or an unconstrained commercial-operation date.',
+                            '非保证型或早期并网意味着须在电网控制条件下运行，并不证明存在确定的充电余量、放电余量或不受约束的商业运行日期。'] },
+      ] },
+
+      { t: 'card', title: ['Who controls which gate', '各机构分别控制什么'], badges: ['official'], live: false, blocks: [
+        { t: 'table',
+          head: [['Institution', '机构'], ['Decision / responsibility', '决策 / 职责'], ['Investor evidence', '投资人应取得的证据']],
+          rows: [
+            [{ b: 'METI / ANRE' }, ['National energy policy, licences and technical-policy direction', '国家能源政策、许可及技术政策方向'], ['Applicable licence, safety and policy requirements', '适用许可、安全及政策要求']],
+            [{ b: 'OCCTO' }, ['Cross-regional planning, capacity adequacy and national connection frameworks', '跨区规划、容量充裕度及全国并网框架'], ['Current planning case and applicable national rule vintage', '现行规划断面及适用全国规则版本']],
+            [{ b: ['Regional TSO', '区域输电运营商'] }, ['Connection study, named constraints, works, cost and energisation', '并网检讨、具名约束、增容工程、费用及送电'], ['Binding import/export MW, N-1 case, cost and dated milestones', '具约束力的充/放电MW、N-1断面、费用及带日期里程碑']],
+            [{ b: 'JEPX / EPRX / OCCTO CM' }, ['Energy, balancing and capacity-market qualification after the physical connection path', '物理并网路径完成后的电能量、调整力及容量市场准入'], ['Separate product qualification and metering evidence', '独立的品种准入及计量证据']],
+          ] },
+        { t: 'why', text: ['A grid study and a market qualification answer different questions. The former decides whether and under what controls power can flow; the latter decides whether the asset may earn from a product.',
+                           '并网检讨与市场准入回答不同问题：前者决定电力能否流动以及受何种控制，后者决定资产能否通过某一品种获得收入。'],
+          sig: ['Connection is physical; qualification is commercial', '并网是物理条件，准入是商业条件'] },
+      ] },
+
+      { t: 'card', title: ['Delay-prevention package for investment committee', '投委会延误防范清单'], badges: ['official'], live: false, blocks: [
+        { t: 'list', items: [
+          [['Separate import and export MW', '分列充电与放电MW'], ['Record normal and contingency rights at the actual connection point.', '记录实际并网点在正常及事故断面下的权利。']],
+          [['Name the constraint and enabling work', '具名约束及解约工程'], ['Identify substation, circuit, protection, converter or control work — not a generic “grid upgrade”.', '明确变电站、线路、保护、换流或控制工程，而非笼统“电网升级”。']],
+          [['Baseline and contingency COD', '基准及延误投运日'], ['Tie dates to land, equipment, outage and payment milestones.', '将日期与土地、设备、停电窗口及付款里程碑绑定。']],
+          [['Version the commercial conditions', '对商业条件进行版本管理'], ['Preserve the study, offer, contribution schedule, curtailment protocol and every later amendment.', '保留检讨、要约、负担金计划、限电协议及全部后续修订。']],
+          [['Model controls explicitly', '显式建模控制条件'], ['Non-firm dispatch, transfer-trip, charging control and intertie outages belong in revenue cases.', '非保证型调度、转移跳闸、充电控制及联络线停运均应进入收入情景。']],
+        ] },
+      ] },
 
       { t: 'card', title: ['Region-specific connection conditions', '区域特定并网条件'], badges: ['official'], live: false, blocks: [
         { t: 'sub', text: ['Tokyo — TEPCO Power Grid', '东京 — 东京电力电网'] },
@@ -636,10 +769,35 @@ export function buildSections(api){
                            '11项输入中仍有8项为种子数据。已锚定的3项恰是结构性区分各区域的关键，因此本看板的定性排序比IRR更可信。请阅读排序，勿引用具体数值。'],
           sig: ['Trust the ordering, not the IRR', '相信排序，而非IRR'] } ] },
 
+      { t: 'card', title: ['Evidence contract — forecast, scenario and coverage stay separate',
+                           '证据契约 — 预测、情景与覆盖范围保持分离'],
+        badges: ['official', 'calc'], live: false, blocks: [
+        { t: 'table',
+          head: [['Layer', '层级'], ['Authority', '权威类别'], ['Japan implementation', '日本实施']],
+          rows: [
+            [{ b: ['System evolution', '系统演进'] }, ['Official forecast', '官方预测'], ['OCCTO FY2025 / FY2030 / FY2034 source points; no hidden 2035 interpolation', 'OCCTO FY2025/FY2030/FY2034来源点；不进行隐含2035插值']],
+            [{ b: ['Market observations', '市场观测'] }, ['Observed / derived-observed', '观测/观测衍生'], ['JEPX area prices, OCCTO capacity awards, TSO curtailment and balancing records', 'JEPX区域电价、OCCTO容量中标、TSO弃电与调整力记录']],
+            [{ b: ['Base / Bear / Bull', '基准/悲观/乐观'] }, ['Analyst scenario', '分析师情景'], ['Human-approved revenue capture and delivery overlays; never machine-written', '人工批准的收入捕获与交付叠加层；不得由机器改写']],
+            [{ b: ['Project funnel', '项目漏斗'] }, ['Coverage-limited', '覆盖受限'], ['Official awards and named disclosures only; complete queue shown as N/A', '仅含官方中标与具名披露；完整队列显示为N/A']],
+            [{ b: ['Economics', '经济性'] }, ['Illustrative seed until ETL', 'ETL前为示例种子'], ['No public-build IRR is promoted to observed or official evidence', '公开版本IRR不得被提升为观测或官方证据']],
+          ] },
+        { t: 'kpis', items: [
+          { l: ['Forecast confidence', '预测置信度'], v: M.forecastGovernance.confidenceScore + '/10', d: M.forecastGovernance.confidenceBand, b: ['calc'] },
+          { l: ['Planning horizon', '规划时点'], v: 'FY2034', d: ['Nearest official year to 2035', '最接近2035的官方年份'], b: ['official', 'forecast'] },
+          { l: ['Complete public BESS queue', '完整公开储能队列'], v: 'N/A', d: ['Coverage gap, not zero', '覆盖缺口，并非零'], b: ['verify'] },
+        ] },
+        { t: 'note', text: M.forecastGovernance.invalidation },
+        { t: 'why', text: [
+          'This is the architecture control that prevents a strong national framework from being translated into a false regional return forecast. Official need, analyst revenue capture and project deliverability are three different statements and remain separately sourced.',
+          '该架构控制可防止将强劲的全国制度错误转化为虚假的区域回报预测。官方需求、分析师收入捕获与项目可交付性是三类不同陈述，须分别溯源。',
+        ], sig: ['Confidence measures evidence, not attractiveness', '置信度衡量证据，而非吸引力'] },
+      ] },
+
       { t: 'card', title: ['Source registry', '数据源登记'], badges: ['official'], live: false, blocks: [
         { t: 'table',
-          head: [['Source', '来源'], ['Status', '状态'], ['Date', '日期'], ['Coverage', '适用期间']],
-          rows: Object.values(SRC).map(s => [{ b: s.file }, s.status, s.date, s.cy]) } ] },
+          head: [['Source', '来源'], ['Status', '状态'], ['Date', '日期'], ['Coverage', '适用期间'], ['Refresh', '刷新']],
+          rows: Object.values(SRC).map(s => [{ b: s.file }, s.status, s.date, s.cy, s.automation ? s.automation + ' · ' + s.format : 'C · HTML/PDF']) },
+        { t: 'note', text: ['A/B sources are machine-fetchable or transformable; C sources require a controlled manual refresh. Every update retains the official vintage and locator.', 'A/B类来源可机器抓取或转换；C类来源需受控人工刷新。每次更新均保留官方版本与定位信息。'] } ] },
 
       { t: 'card', title: ['Core formulas', '核心公式'], badges: ['calc'], live: false, blocks: [
         { t: 'wfrows', items: [
