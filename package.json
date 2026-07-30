@@ -21,6 +21,9 @@
     "etl:verify": "node etl/verify.mjs",
     "etl:propose": "node etl/propose.mjs"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "vite": "^5.4.10"
   },

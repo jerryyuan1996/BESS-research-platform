@@ -243,16 +243,26 @@ History-API routing needs, so `/markets/wa` resolves on a direct visit or a refr
 
 No Workers, no functions, no build-time environment variables, no build secrets.
 
+Set `NODE_VERSION=20` as a Pages environment variable — the default is older than this project needs
+and the resulting failure does not say so.
+
 ### Publishing it
 
-1. Push this repository to GitHub.
+**Step-by-step, written for a first deployment: [`docs/publishing.md`](docs/publishing.md).**
+
+The short version:
+
+1. Push to GitHub. **Make the repository private** — the confidential WA layer is still in git
+   history even though it no longer reaches the build. The published site is public either way.
 2. Cloudflare Pages → **Create a project** → connect the repository, with the settings above.
-3. *(Optional, for the four ENTSO-E markets)* add a repository secret `ENTSOE_TOKEN`. Register at
+3. GitHub → Settings → Actions → General → **Read and write permissions**, and allow Actions to
+   create pull requests. The data refresh commits, and drift proposals open PRs.
+4. *(Optional, for the four ENTSO-E markets)* add a repository secret `ENTSOE_TOKEN`. Register at
    [transparency.entsoe.eu](https://transparency.entsoe.eu/) and email their service desk to have API
    access enabled — it is not automatic on signup.
 
-That is the whole deployment. The scheduled data refresh needs no further setup: it commits to `main`
-and Cloudflare rebuilds on the push.
+After that the site maintains itself: the scheduled refresh commits to `main` and Cloudflare rebuilds
+on the push.
 
 Without the token the site still deploys and works — the four ENTSO-E feeds show as unconfigured on
 `/data` and every other market updates normally.
@@ -338,6 +348,7 @@ change output.
 
 | | |
 |---|---|
+| [`docs/publishing.md`](docs/publishing.md) | first-time deployment walkthrough — GitHub, Cloudflare Pages, secrets, troubleshooting |
 | [`docs/governance.md`](docs/governance.md) | who may change what, and how it is enforced — read before changing the pipeline |
 | [`docs/live-data.md`](docs/live-data.md) | the pipeline: sources, connectors, scheduling, operations |
 | [`docs/architecture.md`](docs/architecture.md) | structure, layering rules, module contract, multi-region markets |
