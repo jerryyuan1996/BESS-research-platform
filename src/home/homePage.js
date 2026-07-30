@@ -8,7 +8,6 @@
      cross-market league    (one currency, one model)
      revenue architecture   (per MWh, contracted vs merchant)
      $1M engine             (matrix · IRR · frontier · waterfall)
-     allocation findings
      footer
 
    Every section receives the market list as an argument. Nothing here knows how
@@ -27,26 +26,26 @@ import { EXIT_YEARS } from '../comparison/assumptions.js';
 import { homeState } from './state.js';
 import { renderMarketGrid } from './marketGrid.js';
 import { renderLeague } from './marketComparison.js';
+import { renderMarketGlobe } from './marketGlobe.js';
+import { renderNewsPreview } from '../news/newsFeed.js';
 import { renderStack } from './normalizationView.js';
 import { renderEngine } from './allocationMatrix.js';
-import { renderFindings } from './findings.js';
-import { renderRegionalStrip } from './regionalStrip.js';
 
 const T = {
   title: ['Global BESS Investment Cockpit', '全球储能投资总看板'],
   /* Two counts, deliberately. Allocation markets are exposures; detail dashboards
      are documents. Japan contributes three of the first and one of the second. */
   sub: (n, d) => ([
-    'One page across ' + n + ' allocation markets and ' + d + ' detailed dashboards: normalized apples-to-apples indicators, and what $1M buys — by market and by route-to-market.',
-    n + '个配置市场、' + d + '个详细看板，一页总览：归一化的同口径指标，以及每100万美元在不同市场、不同售电路径下的回报。',
+    'One page across ' + n + ' allocation markets and ' + d + ' detailed dashboards: comparable market indicators and an illustrative $1M allocation model.',
+    '覆盖' + n + '个配置市场和' + d + '个详细看板：集中展示可比市场指标及仅作示例的100万美元配置模型。',
   ]),
   disclaimer: (n) => ([
-    'This hub normalizes seed values from the underlying market dashboards into USD on one simplified, unlevered model, across ' + n + ' allocation markets. All figures are illustrative, carry the badges of their source dashboards, and are not investment advice.',
-    '本总看板将各市场看板的种子数值以一个简化、无杠杆的模型归一化为美元，覆盖' + n + '个配置市场。所有数值均为示例性质、沿用来源看板的质量标识，不构成投资建议。',
+    'The market cards, league tables and $1M engine normalize legacy seed inputs across ' + n + ' markets in a simplified, unlevered USD model. These allocation outputs are illustrative; source and evidence status remain available in each detailed market dashboard.',
+    '市场卡片、排行榜及100万美元引擎将' + n + '个市场的历史种子输入纳入简化、无杠杆的美元模型。配置结果仅作示例；各项来源及证据状态仍保留在对应市场的详细看板中。',
   ]),
   footerNote: [
-    'Sources and quality badges live in each market dashboard; this page inherits them and adds only FX and exit-pricing assumptions, both stated above.',
-    '数据来源与质量标识见各市场看板；本页继承之，仅新增汇率与退出定价假设，均已在上文列明。',
+    'Detailed market dashboards retain the governed public-source registry. The allocation model inherits their badges and adds only the stated FX and exit-pricing assumptions.',
+    '各市场详细看板继续保留受治理的公开来源登记册；配置模型沿用其标识，并仅新增已披露的汇率与退出定价假设。',
   ],
 };
 
@@ -80,9 +79,9 @@ export function renderHome(app){
     title: T.title,
     sub: T.sub(n, d),
     meta: [
-      h('span', {}, h('b', {}, L(['Seed snapshots verified: ', '种子数据核验日期：'])), '2026-07-26'),
-      chip('serious', ['All values seed-derived & illustrative — see each dashboard for badges',
-                       '所有数值源自种子数据、属示例性质 — 质量标识详见各看板']),
+      h('span', {}, h('b', {}, L(['Comparison inputs reviewed: ', '对比输入复核日期：'])), '2026-07-29'),
+      chip('serious', ['Allocation outputs are illustrative — see each market for governed evidence',
+                       '配置结果仅作示例 — 受治理证据详见各市场看板']),
     ],
     controls: [exitYearSelect()],
   }));
@@ -91,13 +90,15 @@ export function renderHome(app){
   app.append(marketNav(markets, 'home'));
 
   const main = h('div');
-  renderMarketGrid(main, list, homeState.exitYear);
-  // Explains why several cards share a flag, before the league table compares them.
-  renderRegionalStrip(main, list, homeState.exitYear);
+  const universe = h('section', { class:'market-universe' });
+  const marketColumn = h('div', { class:'market-universe-cards' });
+  renderMarketGrid(marketColumn, list, homeState.exitYear);
+  universe.append(marketColumn, renderMarketGlobe());
+  main.append(universe);
+  renderNewsPreview(main);
   renderLeague(main, list, homeState.exitYear);
   renderStack(main, list, homeState.exitYear);
   renderEngine(main, list, homeState.exitYear);
-  renderFindings(main, list, homeState.exitYear);
   app.append(main);
 
   app.append(renderFooter([T.disclaimer(n), 'hub-1.0 · ' + L(T.footerNote)]));

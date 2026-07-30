@@ -8,23 +8,25 @@ import { card } from '../../../components/card.js';
 import { badge, statusBadge } from '../../../components/badge.js';
 import { chip } from '../../../components/chip.js';
 import { why } from '../../../components/decisionLogic.js';
-import { kpi, bandFor } from '../../../components/metricCard.js';
+import { renderGeographicGridMap } from '../../../components/geographicGridMap.js';
+import { kpi } from '../../../components/metricCard.js';
 import { sectionHead } from '../../../components/sectionHeader.js';
 import { sourceDrawer, sourceStatusBadge } from '../../../components/sourceDrawer.js';
 import { barChart, waterfall } from '../../../charts/index.js';
 import { state, render } from '../state.js';
 import { NF1, fmtN, fmtAk, fmtAM, fmtPct } from '../ui.js';
-import { T } from '../text.js';
 import { SEED } from '../data/seed.js';
 import { WP_QUEUE } from '../data/wem.js';
 import { KEMERTON } from '../data/kemerton.js';
-import { connScore } from '../lib/scores.js';
+import { WA_GRID_MAP } from '../gridMapData.js';
 
 // ---------------- GRID CONNECTION ----------------
 function renderGrid(main){
   sectionHead(main, ['Grid Connection — a chain of approvals, not a binary status', '并网 — 一连串审批与合同，而非二元状态'],
     ['Physical connection readiness, contractual access, market registration and capacity monetisation are four separate states. An Access Offer alone does not prove full Capacity Credit value.',
      '物理并网、合同接入、市场注册与容量变现是四个相互独立的状态。仅有接入报价并不代表足额容量信用价值。']);
+
+  renderGeographicGridMap(main, WA_GRID_MAP);
 
   if (!state.bridge) state.bridge = { np: 200, ex: 200, crc: 196, naq: 190, rcpPct: 100 };
   const b = state.bridge, cc = Math.min(b.crc, b.naq, b.ex, b.np);
@@ -62,25 +64,26 @@ function renderGrid(main){
     ['Nameplate is marketing; credits are revenue', '铭牌是营销，信用是收入']));
   g.append(c1);
 
-  const cs = connScore(), cband = bandFor(SEED.connBands, cs);
-  const c2 = card(['Connection Risk Score — weighted factors, editable', '并网风险评分 — 加权因子，可编辑'], [badge('calc'), badge('illus'), statusBadge(true)]);
-  c2.append(h('div', { style: 'display:flex;align-items:center;gap:12px;margin:8px 0;flex-wrap:wrap;' },
-    h('span', { style: 'font-size:26px;font-weight:650;' }, cs + ' / 100'), chip(cband.c, L(cband.n))));
-  c2.append(h('div', { class: 'meter' }, h('div', { style: `width:${cs}%;background:var(--${cband.c === 'good' ? 'good' : cband.c === 'warn' ? 'warn' : cband.c === 'serious' ? 'serious' : 'critical'});` })));
-  c2.append(h('div', { class: 'tbl-wrap' }, h('table', {},
-    h('thead', {}, h('tr', {}, h('th', {}, L(T.factor)), h('th', { class: 'num' }, L(T.weight)), h('th', { class: 'num' }, L(['Risk 0–3', '风险0–3'])))),
-    h('tbody', {}, SEED.connFactors.map((f, i) => h('tr', {},
-      h('td', {}, L(f.n)), h('td', { class: 'num' }, f.w + '%'),
-      h('td', { class: 'num' }, (() => {
-        const sel = h('select', { class: 'inp', style: 'width:64px;', onchange: e => { SEED.connFactors[i].s = +e.target.value; render(); } },
-          [0, 1, 2, 3].map(v => { const o = h('option', { value: v }, String(v)); if (v === f.s) o.selected = true; return o; }));
-        return sel;
-      })())))))));
-  c2.append(h('div', { class: 'cap' }, L(['Bands: 0–24 connection-investable · 25–44 conditional (CPs & holdbacks) · 45–64 material risk (re-price / defer) · 65–100 not investment-ready (spec §11.5). Higher = riskier.',
-    '区间：0–24可投资 · 25–44有条件（先决条件与保留款） · 45–64重大风险（重新定价/延后） · 65–100不具备投资条件（规范§11.5）。分数越高风险越大。'])));
-  c2.append(why(['The score is weighted so that the four contractable factors — connection option, study maturity, GPS status and access contracts — carry 60% between them. That is deliberate: those are the items a well-structured deal can fix with conditions precedent and evidence, whereas queue position and network capex certainty largely cannot. Use the band to choose the instrument, not the price: 25–44 means proceed with CPs and holdbacks, 45–64 means re-price or defer, and 65+ means the project is not yet an investment. Re-score after every material connection milestone.',
-    '评分权重设置使四项可合同化因子 — 并网方案、研究成熟度、GPS状态与接入合同 — 合计占60%。这是刻意安排：这些事项可通过良好的交易结构以先决条件与证据解决，而排队位置与电网造价确定性基本无法解决。应据区间选择工具而非价格：25–44应以先决条件与保留款推进，45–64应重新定价或延后，65以上则尚不构成投资。每一重要并网里程碑后应重新评分。'],
-    ['Band picks the instrument, not the price', '区间决定工具而非价格']));
+  const c2 = card(['How a WA connection becomes investable', '西澳并网如何达到可投资状态'], [badge('official'), badge('verify')]);
+  c2.append(h('div', { class:'flow' },
+    h('span', { class:'fbox' }, L(['Application & access enquiry','申请及接入咨询'])), h('span', { class:'farr' }, '→'),
+    h('span', { class:'fbox' }, L(['Western Power studies & offer','Western Power研究及报价'])), h('span', { class:'farr' }, '→'),
+    h('span', { class:'fbox' }, L(['GPS / technical compliance','GPS / 技术合规'])), h('span', { class:'farr' }, '→'),
+    h('span', { class:'fbox' }, L(['Construction & commissioning','施工及调试'])), h('span', { class:'farr' }, '→'),
+    h('span', { class:'fbox' }, L(['AEMO registration, CRC & NAQ','AEMO注册、CRC及NAQ'])), h('span', { class:'farr' }, '→'),
+    h('span', { class:'fbox' }, L(['Assigned Capacity Credits','获配容量信用']))));
+  c2.append(h('div', { class:'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {}, h('th', {}, L(['Who / reform','机构 / 改革'])), h('th', {}, L(['Investor evidence','投资者证据'])))),
+    h('tbody', {},
+      h('tr', {}, h('td', {}, h('b', {}, 'Western Power')), h('td', {}, L(['Executed access agreement, exact node, export/import limits, enabling works and dates','已签接入协议、具体节点、送出/受入限制、配套工程及日期']))),
+      h('tr', {}, h('td', {}, h('b', {}, 'AEMO / WEM')), h('td', {}, L(['Registration, facility status, CRC, final NAQ and assigned Capacity Credits are separate evidence gates','注册、设施状态、CRC、最终NAQ及获配容量信用是不同证据关口']))),
+      h('tr', {}, h('td', {}, h('b', {}, L(['Network planning','网络规划']))), h('td', {}, L(['Clean Energy Link and the 7.2 GW demand case are programme/scenario evidence—not reserved project headroom','Clean Energy Link及7.2GW负荷情景属于项目群/情景证据，并非项目预留空间']))),
+      h('tr', {}, h('td', {}, h('b', {}, L(['Grid-forming reform','构网型改革']))), h('td', {}, L(['2025–26 security review proposes new >10 MVA inverter requirements; capability still needs GPS approval, service qualification and a contract','2025–26安全评估提出大于10MVA逆变器新要求；相关能力仍需GPS批准、服务资格及合同'])))))));
+  c2.append(h('div', { class:'warnbox' }, L(['Delay case study: Clean Energy Link North is expected to enable up to 1,000 MW of new generation, but an offered project date remains dependent on the named tranche, construction, outage sequencing and energisation. Prevent value leakage by making each milestone a condition precedent with a long-stop date and per-MW price adjustment for NAQ shortfall.',
+    '延误案例：Clean Energy Link North预计可支持最多1,000MW新增发电，但项目报价日期仍依赖具名批次、施工、停电顺序及送电。应将各里程碑设为带最终期限的先决条件，并对NAQ缺口设置按MW调价，以防价值流失。'])));
+  c2.append(why(['Grid-forming technology improves voltage, frequency and system-strength performance; it does not create network capacity. Underwrite the connection right first, then carry grid-forming service value only where certification, market enablement and payment evidence exist.',
+    '构网型技术可改善电压、频率及系统强度表现，但不会创造网络容量。应先承销并网权，再仅在认证、市场启用及付费证据存在时计入构网服务价值。'],
+    ['Milestones and documents, not a subjective score','以里程碑及文件为准，而非主观评分']));
   g.append(c2);
   main.append(g);
   gridBody(main);

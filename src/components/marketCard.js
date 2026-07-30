@@ -13,6 +13,7 @@ import { navigate } from '../app/router.js';
 import { chip } from './chip.js';
 import { meter } from './metricCard.js';
 import { fmtPct, fmtIRR } from '../utils/formatting.js';
+import { marketFlagCode } from './navigation.js';
 
 /**
  * @param {object} market  registry entry ({ manifest, comparison, ... })
@@ -28,7 +29,7 @@ export function marketCard(market, result){
 
   return h('div', { class: 'mcard' },
     h('div', { class: 'mhead' },
-      h('span', { class: 'flag' }, mf.flag),
+      h('span', { class: `flag fi fi-${marketFlagCode(market)}`, 'aria-hidden':'true' }),
       h('div', {},
         h('h3', {}, L(mf.name)),
         h('div', { class: 'arch' }, L(cmp.narrative.archetype)))),

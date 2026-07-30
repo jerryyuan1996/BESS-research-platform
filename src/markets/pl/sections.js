@@ -1,3 +1,7 @@
+import { buildPLGridSection } from './gridSection.js';
+import { buildPLPlanningBlocks } from './planningSection.js';
+import { buildPLEconomicsBlocks } from './economicsSection.js';
+
 /* ---------------------------------------------------------------------------
    Poland 鈥?declarative section specs, verbatim from the prototype
    (lines 1590-2507).
@@ -211,6 +215,9 @@ SEC_B.story = function (){
         sig:['Access risk, not thesis risk','准入风险而非逻辑风险'] },
     ] },
 
+    ...buildPLPlanningBlocks({ SRC }),
+
+    ...buildPLEconomicsBlocks(),
     { t:'card', title:['How Poland arrived at a storage capacity market — four changes','波兰如何走向储能容量市场 — 四次变化'], badges:['verify','public'], blocks:[
       { t:'band-story', b:['Why this history is underwriting-relevant','这段历史为何与承销相关'],
         text:['The Polish capacity market was designed for thermal plant and has been progressively re-pointed toward flexibility. Each re-pointing changed which technology could win without changing the mechanism’s name — which is exactly the pattern that strands designs built for the previous vintage. Record the auction vintage and correction-factor table in every model.',
@@ -932,6 +939,8 @@ SEC_B.data = function (){
   ] };
 };
 
+
+  SEC_B.grid = () => buildPLGridSection({ SRC });
 
   return SECTIONS;
 }

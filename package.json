@@ -11,13 +11,23 @@
     "test": "node --test \"tests/*.test.js\"",
     "test:structural": "node --test tests/registry.test.js tests/governance.test.js tests/finance.test.js",
     "test:baseline": "node tests/fixtures/generate.mjs > tests/fixtures/legacy-baseline.json",
-
+    "etl:verify:gb": "node etl/verify-gb-official.mjs",
+    "etl:verify:grid-maps": "node etl/verify-grid-map-sources.mjs",
+    "etl:verify:public-sources": "node etl/verify-public-sources.mjs",
+    "refresh:grid-boundaries": "node scripts/refresh-grid-boundaries.mjs",
     "etl": "node etl/run.mjs",
+    "etl:news": "node etl/news.mjs",
     "etl:dry": "node etl/run.mjs --dry-run",
     "etl:verify": "node etl/verify.mjs",
     "etl:propose": "node etl/propose.mjs"
   },
   "devDependencies": {
     "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "d3-geo": "^3.1.1",
+    "flag-icons": "^7.5.0",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
   }
 }

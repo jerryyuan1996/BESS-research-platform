@@ -18,12 +18,15 @@ import { SEED } from '../data/seed.js';
 import { WA_FLEET, WA_PIPELINE, WA_FIN } from '../data/wem.js';
 import { WEM_MARKET } from '../data/wemMarket.js';
 import { stageProb } from '../lib/scores.js';
+import { renderWaQueueCoverage } from '../officialPlanningSection.js';
 
 // ---------------- PIPELINE ----------------
 function renderPipeline(main){
   sectionHead(main, ['Project Pipeline — real WA register, probability-weighted (MW and MWh separated)', '项目管线 — 西澳真实项目登记，概率加权（MW与MWh分列）'],
     ['Populated with the real WA BESS universe (operating fleet + committed + development-stage) and its financing status. Stage probabilities are the spec §10.2 defaults and editable below; the probability-weighted chart recomputes immediately. Source: Crestone WA BESS pack, 2026-07.',
      '现已载入西澳真实BESS项目集（在运+已承诺+开发阶段）及其融资状态。阶段概率为规范§10.2默认值、可在下方编辑；概率加权图表即时重算。来源：Crestone西澳资料，2026-07。']);
+
+  renderWaQueueCoverage(main);
 
   const mwTxt = v => v==null ? 'n.d.' : (Number.isInteger(v) ? fmtN(v) : String(v));
   const CIS = WEM_MARKET.cis;

@@ -35,8 +35,10 @@ import { sectionHead } from '../../components/sectionHeader.js';
 import { sourceDrawer, sourceStatusBadge } from '../../components/sourceDrawer.js';
 // Charts, card and why are re-exported to market sections through `api`, not used here.
 import { renderHeader, renderDisclaimer } from '../../components/header.js';
-import { marketNav, tabNav } from '../../components/navigation.js';
+import { marketNav, tabNav, revenueSubNav } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
+import { enhanceMarketPage } from '../../components/pageEnhancements.js';
+import { gridMapForMarket } from '../gridMapRegistry.js';
 import { lineChart, barChart, waterfall, bandChart } from '../../charts/index.js';
 
 import { BASE_TEXT } from './text.js';
@@ -228,6 +230,8 @@ export function createMarketEngine(cfg){
     container.append(renderDisclaimer(T.disclaimer));
     container.append(marketNav(allMarkets, route.market ? route.market.manifest.id : MKT.id));
     container.append(tabNav(TABS, tabValue, basePath));
+    const revenueNav = revenueSubNav(TABS, tabValue, basePath);
+    if (revenueNav) container.append(revenueNav);
 
     const lens = regionSelector(allMarkets);
     if (lens) container.append(lens);
@@ -239,6 +243,10 @@ export function createMarketEngine(cfg){
     const spec = S_[tabValue] || S_[TABS[0][0]];
     renderSection(spec)(main);
 
+    const overviewMap = tabValue === TABS[0][0]
+      ? gridMapForMarket(MKT.id, route.market?.manifest.region || (regionValue === 'compare' ? null : regionValue))
+      : null;
+    enhanceMarketPage(main, { overviewMap, marketId:MKT.id, tabId:tabValue });
     container.append(renderFooter([
       T.disclaimer,
       L(['Model version: ', '模型版本：']) + M.modelVersion + ' · ' + L(MKT.tzNote) + ' · ' + L(M.footerNote),

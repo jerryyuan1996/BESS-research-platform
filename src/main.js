@@ -12,6 +12,7 @@
    is additive, so putting it last keeps the original cascade provably unchanged.
    --------------------------------------------------------------------------- */
 import './styles/tokens.css';
+import './styles/flags.css';
 import './styles/global.css';
 import './styles/layout.css';
 import './styles/components.css';

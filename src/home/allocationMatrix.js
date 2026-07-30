@@ -97,6 +97,13 @@ function fxRow(marketList){
   return h('div', {}, row, holder);
 }
 
+/** The homepage opportunity set suppresses routes that destroy value on either
+    the full-hold or selected-exit basis. Zero remains visible; only negatives
+    and unavailable/non-finite results are excluded. */
+export const hasNoNegativeIrr = result =>
+  Number.isFinite(result?.irrHold) && Number.isFinite(result?.irrExit)
+  && result.irrHold >= 0 && result.irrExit >= 0;
+
 function renderMatrix(main, marketList, X){
   const cA = spacedCard(
     ['The $1M engine — one dollar, ' + marketList.length + ' markets, comparable routes to market',
@@ -117,8 +124,9 @@ function renderMatrix(main, marketList, X){
      fragility (docs/migration-notes.md, B2) while producing identical output. */
   const perMarket = marketList.map(m => ({
     market: m,
-    runs: STRATEGIES.map(s => ({ s, r: runCase(m, s.id, X) })).filter(x => !x.r.na),
-  }));
+    runs: STRATEGIES.map(s => ({ s, r: runCase(m, s.id, X) }))
+      .filter(x => !x.r.na && hasNoNegativeIrr(x.r)),
+  })).filter(entry => entry.runs.length > 0);
   const allIrrs = perMarket.flatMap(pm => pm.runs.map(x => x.r.irrHold)).filter(v => v != null);
   const bestIrr = allIrrs.length ? Math.max(...allIrrs) : null;
 
@@ -156,13 +164,13 @@ function renderMatrix(main, marketList, X){
     h('tbody', {}, rows))));
 
   cA.append(h('div', { class: 'cap' }, L([
-    'Only routes with a basis in each market are listed: Romania has no capacity mechanism, and the tolled/floor structure has a market precedent only in GB. Green marks the highest hold IRR in the matrix.',
-    '仅列示在各市场确有依据的路径：罗马尼亚无容量机制，租赁/保底结构仅在英国有市场先例。绿色标示矩阵中最高的持有IRR。',
+    'Only applicable routes with non-negative hold and exit IRRs are shown. Romania has no capacity mechanism, and the tolled/floor structure has a market precedent only in GB. Green marks the highest hold IRR in the filtered matrix.',
+    '仅展示适用且持有IRR与退出IRR均不为负的路径。罗马尼亚无容量机制，租赁/保底结构仅在英国有市场先例。绿色标示筛选后矩阵中最高的持有IRR。',
   ])));
   cA.append(why([
-    'Read each market\'s rows against each other, not against other markets. The gap between a market\'s capacity-backed row and its merchant row is what that market\'s mechanism is actually worth — a couple of IRR points in some, the entire investment case in others. And the merchant rows are really a duration test: strip the capacity revenue away and the result sorts by hours rather than by country, because merchant revenue pays for power while only a capacity mechanism pays for hours. Where the mechanism secures one delivery year at a time, that gap is itself at risk — which is why the secured tenor column exists.',
-    '应将每个市场的各行相互对照，而非跨市场对照。同一市场容量支撑行与纯市场化行之间的差距，即为该市场机制的真实价值 — 在部分市场为几个IRR百分点，在另一些市场则是整个投资逻辑。纯市场化各行实为一场时长测试：剥离容量收入后，结果按小时数而非国别排序，因为市场化收入为功率付费，而只有容量机制为小时数付费。若该机制每次仅锁定一个交付年度，这一差距本身即处于风险之中 — 这正是设置锁定年限列的原因。',
-  ], ['Merchant rows are a duration test', '纯市场化各行是一场时长测试']));
+    'This table is an investable opportunity set, not a catalogue of every modelled route. Negative cases remain in the underlying engine and regression tests, but are excluded here so the committee can compare viable structures without value-destroying rows dominating the page.',
+    '本表呈现可投资机会集，而非全部模型路径目录。负值情景仍保留在底层引擎与回归测试中，但不在此展示，使配置委员会能够直接比较可行结构，而不受价值毁损路径干扰。',
+  ], ['Show the viable opportunity set', '仅展示可行机会集']));
   main.append(cA);
 }
 
@@ -172,30 +180,31 @@ function renderIrrChart(main, marketList, X){
   const cB = spacedCard(
     ['Hold IRR by market and route (15-yr, unlevered)', '按市场与路径的持有IRR（15年，无杠杆）'],
     [badge('calc')]);
+  cB.classList.add('engine-wide', 'engine-irr-card');
 
   const colors = ['var(--s2)', 'var(--s1)', 'var(--s3)'];
   barChart(cB, {
     xs: marketList.map(m => L(m.manifest.shortName)),
-    mode: 'group', bw: 18, yfmt: v => fmt1(v) + '%', h: 260,
+    mode: 'group', bw: 14, yfmt: v => fmt1(v) + '%', h: 230,
     series: STRATEGIES.map((s, i) => ({
       name: s.n,
       color: colors[i % colors.length],
-      /* Unavailable routes are passed as 0 so barChart draws no visible bar, which
-         is the prototype's behaviour. The engine itself returns { na } — see
-         docs/migration-notes.md, B3, for why this is preserved rather than fixed
-         here. Changing it is a one-line change once a visual change is acceptable. */
-      vals: marketList.map(m => { const r = runCase(m, s.id, X); return r.na ? 0 : r.irrHold * 100; }),
+      // Negative and unavailable routes remain in the engine but are not charted.
+      vals: marketList.map(m => {
+        const r = runCase(m, s.id, X);
+        return r.na || !Number.isFinite(r.irrHold) || r.irrHold < 0 ? 0 : r.irrHold * 100;
+      }),
     })),
   });
 
   cB.append(h('div', { class: 'cap' }, L([
-    'Bars below the zero line are value-destroying at these assumptions. A missing bar means the strategy has no basis in that market (no capacity mechanism in Romania; no toll precedent outside GB).',
-    '零线以下的柱表示在该假设下摧毁价值。缺失的柱表示该策略在该市场没有依据（罗马尼亚无容量机制；英国以外无租赁先例）。',
+    'Negative hold-IRR routes are omitted. A missing bar therefore means either the route is value-destroying at these assumptions or the strategy has no basis in that market.',
+    '负持有IRR路径不予展示。缺失的柱表示该路径在当前假设下摧毁价值，或该策略在该市场没有适用依据。',
   ])));
   cB.append(why([
-    'Notice what the chart does not show: a market that dominates. Wherever a tolled or floor bar sits below its own merchant bar, that gap is the insurance premium the market charges to remove merchant risk — and the premium buys the one thing an unlevered chart cannot show, which is debt capacity. The right reading is that each bar prices a different risk. The portfolio question is which risks you are being paid most to hold, not which bar is tallest.',
-    '请注意图中没有出现的东西：一个全面占优的市场。凡租赁或保底柱低于其自身纯市场化柱之处，该差距即为市场为消除市场化风险所收取的保险费 — 而这笔保费买到的正是无杠杆图表无法呈现的东西：债务容量。正确的读法是：每根柱定价的是不同的风险。组合层面的问题是你持有哪类风险获得的报酬最高，而非哪根柱最高。',
-  ], ['Each bar prices a different risk', '每根柱定价的是不同风险']));
+    'The full-width chart compares only non-negative hold outcomes. Use the recovery path below to see how much of a selected market\'s return comes from operating cash versus exit proceeds.',
+    '精简后的图表仅比较非负持有回报。结合右侧回收路径，可进一步判断所选市场的回报来自运营现金还是退出所得。',
+  ], ['Compare return with recovery shape', '同时比较回报与回收结构']));
   main.append(cB);
 }
 
@@ -249,6 +258,7 @@ function renderWaterfall(main, marketList, X){
     ['$1M in, what comes back — ' + L(m.manifest.name) + ', ' + L(stratName) + ', exit year ' + X,
      '投入100万美元的回收路径 — ' + L(m.manifest.name) + '，' + L(stratName) + '，第' + X + '年退出'],
     [badge('calc')]);
+  cD.classList.add('engine-wide', 'engine-waterfall-card');
 
   cD.append(h('div', { class: 'seg', style: 'margin:4px 0 6px;' }, marketList.map(mm =>
     h('button', {
@@ -262,7 +272,7 @@ function renderWaterfall(main, marketList, X){
     }, mm.manifest.flag + ' ' + L(mm.manifest.shortName)))));
 
   waterfall(cD, {
-    yfmt: v => '$' + fmtN(v) + 'k', h: 280,
+    yfmt: v => '$' + fmtN(v) + 'k', h: 210,
     steps: [
       { l: ['$1M invested (net of grant)', '投入100万美元（扣除补贴后）'], v: -1000, t: 'start' },
       { l: ['Operating cash, years 1–' + X, '第1–' + X + '年运营现金'], v: Math.round(r.cumOp * sf / 1000), t: 'd' },
@@ -289,6 +299,6 @@ function renderWaterfall(main, marketList, X){
 export function renderEngine(main, marketList, exitYear){
   renderMatrix(main, marketList, exitYear);
   renderIrrChart(main, marketList, exitYear);
-  renderFrontier(main, marketList, exitYear);
   renderWaterfall(main, marketList, exitYear);
+  renderFrontier(main, marketList, exitYear);
 }

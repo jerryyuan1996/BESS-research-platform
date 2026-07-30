@@ -62,11 +62,11 @@ export const JP_NATIONAL = {
 
   /* Balancing products. National definitions, area-specific outcomes. */
   balancingProducts: [
-    { n: ['Primary (FCR)', '一次调整力'], jp: '一次調整力', resp: ['≤10 s', '≤10秒'], dur: ['≥5 min', '≥5分钟'] },
+    { n: ['Primary (FCR)', '一次调整力'], jp: '一次調整力', resp: ['≤10 s online / ≤30 s offline', 'online≤10秒 / offline≤30秒'], dur: ['≥5 min online', 'online≥5分钟'] },
     { n: ['Secondary 1 (S-1)', '二次调整力①'], jp: '二次調整力①', resp: ['≤5 min', '≤5分钟'], dur: ['≥30 min', '≥30分钟'] },
     { n: ['Secondary 2 (S-2)', '二次调整力②'], jp: '二次調整力②', resp: ['≤5 min', '≤5分钟'], dur: ['≥30 min', '≥30分钟'] },
-    { n: ['Tertiary 1 (T-1)', '三次调整力①'], jp: '三次調整力①', resp: ['≤15 min', '≤15分钟'], dur: ['≥3 h', '≥3小时'] },
-    { n: ['Tertiary 2 (T-2)', '三次调整力②'], jp: '三次調整力②', resp: ['≤45 min', '≤45分钟'], dur: ['≥3 h', '≥3小时'] },
+    { n: ['Tertiary 1 (T-1)', '三次调整力①'], jp: '三次調整力①', resp: ['≤15 min', '≤15分钟'], dur: ['≥30 min', '≥30分钟'] },
+    { n: ['Tertiary 2 (T-2)', '三次调整力②'], jp: '三次調整力②', resp: ['≤60 min', '≤60分钟'], dur: ['≥30 min', '≥30分钟'] },
   ],
 
   /* Capacity Market — delivery year 2029 main-auction result by area.

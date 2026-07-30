@@ -18,13 +18,13 @@ export const manifest = {
   status: ['Selective', '选择性投资'],
   color: 'var(--s5)',
 
-  asOf: '2026-07-26',
-  dataDate: 'TTM Apr 2026 / DY 2029-30',
-  modelVersion: 'gb-seed-1.0-cm-structure-sem-benchmark',
-  lastVerified: '2026-07-26',
+  asOf: '2026-07-29',
+  dataDate: 'FES 2025 / TEC 29 Jul 2026 / TTM Apr 2026 / DY 2029-30',
+  modelVersion: 'gb-governed-2.0-fes-tec',
+  lastVerified: '2026-07-29',
   sourceHealth: [
-    'SEED — public sources refreshed Jul 2026, automated checks not yet running',
-    '种子数据 — 公开来源已于2026年7月刷新，自动检测尚未运行',
+    'MIXED — governed FES/TEC snapshots; legacy revenue and finance series remain seed/modelled',
+    '混合 — FES/TEC为受治理快照；既有收入与财务序列仍为种子/模型数据',
   ],
 };
 

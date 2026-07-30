@@ -33,6 +33,34 @@ export const SRC = {
     date: 'Effective 1 Jul 2026', cy: 'Current rule vintage',
     url: 'https://www.eprx.or.jp/outline/announcement.html',
   },
+  eprxRules18: {
+    file: 'EPRX — Trading Rules v18',
+    status: ['Official — Final', '官方 — 最终'],
+    date: 'Effective 1 Jul 2026', cy: 'Articles 26, 32 and 39',
+    url: 'https://www.eprx.or.jp/outline/docs/kitei_ver.18_260701.pdf',
+    automation: 'C', format: 'Versioned PDF',
+  },
+  eprxGuide10: {
+    file: 'EPRX — Trading Guide v10',
+    status: ['Official — Final', '官方 — 最终'],
+    date: 'Effective 1 Jul 2026', cy: 'Current operating guide',
+    url: 'https://www.eprx.or.jp/outline/docs/guide_ver.10_260701.pdf',
+    automation: 'C', format: 'Versioned PDF',
+  },
+  eprxBatteryGuide: {
+    file: 'EPRX — Battery and pumped-storage participation guide v3',
+    status: ['Official — Final', '官方 — 最终'],
+    date: '14 Mar 2026', cy: 'Connection, metering and participation pathways',
+    url: 'https://www.eprx.or.jp/outline/docs/yousuichikudenchi_guide_260314.pdf',
+    automation: 'C', format: 'Versioned PDF',
+  },
+  eprxComms: {
+    file: 'EPRX — communications-system application and capacity status',
+    status: ['Official — Current', '官方 — 现行'],
+    date: '29 Jul 2026', cy: 'Current application process',
+    url: 'https://www.eprx.or.jp/outline/system_construction.html',
+    automation: 'B', format: 'HTML and linked files',
+  },
   occtoCm2029: {
     file: 'OCCTO — 2029 Capacity Market main auction materials and results',
     status: ['Official — Final', '官方 — 最终'],
@@ -46,6 +74,28 @@ export const SRC = {
     url: 'https://www.occto.or.jp/iken/000606.html',
     quality: 'consult',
   },
+  occtoSupplyPlan2025: {
+    file: 'OCCTO — Aggregation of Electricity Supply Plans FY2025',
+    status: ['Official — Forecast', '官方 — 预测'],
+    date: '30 Jun 2025', cy: 'FY2025–FY2034; source years preserved',
+    url: 'https://www.occto.or.jp/en/assets/information_disclosure/supply_plan/files/2025_Aggregation_of_Electricity_Supply_Plan.pdf',
+    automation: 'B', format: 'PDF with structured appendix tables',
+  },
+  eprxProductRequirements: {
+    file: 'EPRX — Balancing Market product requirements and schedule, v6',
+    status: ['Official — Final', '官方 — 最终'],
+    date: '13 Mar 2026', cy: 'Current product requirements',
+    url: 'https://www.eprx.or.jp/outline/docs/shouhin_ver.6_20260313.pdf',
+    automation: 'C', format: 'PDF',
+  },
+  eprxFaq: {
+    file: 'EPRX — participation, control-line and offline-FCR clarifications',
+    status: ['Official — Current', '官方 — 现行'],
+    date: '29 Jul 2026', cy: 'Current FAQ; monitor rule changes',
+    url: 'https://www.eprx.or.jp/contact/jukyuchoseishijo/faq.html',
+    automation: 'C', format: 'HTML',
+  },
+
 
   // ---- Tokyo -------------------------------------------------------------
   tepcoStudyCap: {

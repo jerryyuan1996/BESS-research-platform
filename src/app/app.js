@@ -18,6 +18,7 @@ import { renderHome } from '../home/homePage.js';
 import { renderMarketPage } from '../markets/marketPage.js';
 import { renderDataStatus } from '../live/dataStatusPage.js';
 import { marketNav } from '../components/navigation.js';
+import { renderNewsPage } from '../news/newsFeed.js';
 import { validateRegistry } from '../utils/validation.js';
 
 function renderNotFound(app, route){
@@ -46,6 +47,7 @@ export function render(){
   }
   if (route.name === 'home') return void renderHome(app);
   if (route.name === 'data') return void renderDataStatus(app);
+  if (route.name === 'news') return void renderNewsPage(app);
   renderNotFound(app, route);
 }
 

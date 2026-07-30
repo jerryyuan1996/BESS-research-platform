@@ -22,6 +22,7 @@ export function renderMarketGrid(main, marketList, exitYear){
   const g = h('div', { class: 'mgrid' });
   for (const m of marketList) g.append(marketCard(m, runBaseCase(m, exitYear)));
   main.append(g);
+  return g;
   main.append(why(COMMENTARY(marketList.length),
     ['Scores are local; the comparison is global', '评分是本地的，对比才是全局的']));
 }

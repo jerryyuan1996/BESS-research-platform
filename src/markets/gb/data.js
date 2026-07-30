@@ -6,18 +6,26 @@
    per-tab narrative content. Not one value was changed by the migration.
    --------------------------------------------------------------------------- */
 
+import {
+  GB_SYSTEM_EVOLUTION, GB_TEC_PIPELINE, GB_TEC_PROJECTS, GB_METRIC_REGISTRY,
+} from './officialData.js';
+
 const M = {
-  asOf: '2026-07-26',
-  dataDate: 'TTM Apr 2026 / DY 2029-30',
-  modelVersion: 'gb-seed-1.0-cm-structure-sem-benchmark',
+  asOf: '2026-07-29',
+  dataDate: 'FES 2025 / TEC 29 Jul 2026 / TTM Apr 2026 / DY 2029-30',
+  modelVersion: 'gb-governed-2.0-fes-tec',
   title: ['Great Britain Battery Investment Dashboard', '英国储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。'],
   nextMilestone: ['Next milestone: T-4 2030/31 auction parameters and the next Gate 2 offer tranche', '下一里程碑：T-4 2030/31拍卖参数及下一批Gate 2要约'],
-  footerNote: ['Public and official sources re-verified 26 July 2026; Irish SEM data (Jul 2026) is held in a separate peer namespace and excluded from GB scoring. Northern Ireland is out of scope — it is covered in the Ireland dashboard.',
-               '公开及官方来源已于2026年7月26日重新核验；爱尔兰SEM数据（2026年7月）保存在独立同业命名空间，不计入英国评分。北爱尔兰不在本看板范围内，由爱尔兰看板覆盖。'],
-  seedWarn: ['Every value on this page is a GB_SEED_V1 snapshot or an illustrative placeholder. No KPI is production-complete until its live ingestion, validation and source-health check are operational. De-rated MW is never nameplate MW; a Gate 2 offer is never an energisation date; realised revenue is never theoretical revenue.',
-             '本页所有数值均为GB_SEED_V1种子快照或示例占位数据。在实时抓取、校验及源健康检测上线前，任何KPI均不可用于生产决策。折减后MW不等于铭牌MW；Gate 2要约不等于送电日期；实际收入不等于理论收入。'],
+  footerNote: ['Official FES and TEC sources re-verified 29 July 2026; Irish SEM data remains in a separate peer namespace and is excluded from GB scoring. Northern Ireland is covered in the Ireland dashboard.',
+               'FES与TEC官方来源已于2026年7月29日重新核验；爱尔兰SEM数据仍保存在独立同业命名空间，不计入英国评分。北爱尔兰由爱尔兰看板覆盖。'],
+  seedWarn: ['FES system planning and the TEC project pipeline are governed official snapshots with metric-level lineage. Revenue, service, finance and some policy values remain GB_SEED_V1, analyst or third-party modelled and retain their existing badges. A queue MW is never expected delivery; a Gate 2 field is never an energisation date; realised revenue is never theoretical revenue.',
+             'FES系统规划与TEC项目管线现为带指标级溯源的受治理官方快照。收入、服务、财务及部分政策数值仍为GB_SEED_V1、分析师或第三方模型，并保留既有标识。队列MW绝不等于预期交付；Gate 2字段绝不等于送电日期；实际收入绝不等于理论收入。'],
+
+  systemEvolution: GB_SYSTEM_EVOLUTION,
+  pipelineOfficial: GB_TEC_PIPELINE,
+  metricRegistry: GB_METRIC_REGISTRY,
 
   // ---- official snapshot ----
   official: {
@@ -144,26 +152,26 @@ const M = {
   // ---- pipeline ----
   stages: [
     { id: 'op',  n: ['Operating', '已投运'], p: 100 },
-    { id: 'uc',  n: ['Under construction, financial close & firm connection', '在建，已融资交割且并网确定'], p: 90 },
-    { id: 'fid', n: ['FID / financed, Gate 2 + implementable consent', '已FID/融资，Gate 2及可实施许可'], p: 85 },
-    { id: 'g2p', n: ['Gate 2, consented, procurement advanced', 'Gate 2，已许可，采购推进中'], p: 75 },
-    { id: 'g2c', n: ['Gate 2 & consented, no financing', 'Gate 2且已许可，未融资'], p: 60 },
-    { id: 'g2i', n: ['Gate 2 but planning / land incomplete', 'Gate 2但规划/土地未完成'], p: 45 },
-    { id: 'g1',  n: ['Gate 1 with secured land & planning progress', 'Gate 1，土地已控且规划推进'], p: 25 },
-    { id: 'ann', n: ['Announced / early development only', '仅公告/早期开发'], p: 10 },
+    { id: 'uc',  n: ['Under Construction/Commissioning (TEC status)', '在建/调试（TEC状态）'], p: 90 },
+    { id: 'g2c', n: ['Gate 2 and Consents Approved (TEC fields)', 'Gate 2且许可获批（TEC字段）'], p: 60 },
+    { id: 'g2i', n: ['Other Gate 2 record', '其他Gate 2记录'], p: 45 },
+    { id: 'g1',  n: ['Gate 1 record', 'Gate 1记录'], p: 25 },
+    { id: 'tec', n: ['TEC record with Gate not populated', 'Gate未填报的TEC记录'], p: 20 },
   ],
-  projects: [
-    { n: 'Seed example Alder',   region: 'North West',   mw: 100, h: 2, cod: 2027, st: 'uc' },
-    { n: 'Seed example Birch',   region: 'Yorkshire',    mw: 150, h: 2, cod: 2027, st: 'fid' },
-    { n: 'Seed example Coppice', region: 'East Midlands',mw: 200, h: 1, cod: 2028, st: 'g2p' },
-    { n: 'Seed example Dunlin',  region: 'Scotland',     mw: 300, h: 2, cod: 2028, st: 'g2c' },
-    { n: 'Seed example Eider',   region: 'South West',   mw: 250, h: 4, cod: 2029, st: 'g2i' },
-    { n: 'Seed example Fenwick', region: 'North East',   mw: 400, h: 2, cod: 2029, st: 'g2c' },
-    { n: 'Seed example Garnet',  region: 'Wales',        mw: 350, h: 4, cod: 2030, st: 'g1' },
-    { n: 'Seed example Heron',   region: 'East of England', mw: 500, h: 4, cod: 2030, st: 'ann' },
-    { n: 'Seed example Ivel',    region: 'South East',   mw: 150, h: 8, cod: 2030, st: 'g2i' },
-    { n: 'Seed example Jarrow',  region: 'Scotland',     mw: 250, h: 4, cod: 2031, st: 'g1' },
-  ],
+  projects: GB_TEC_PROJECTS.map(project => ({
+    n: project.name,
+    owner: project.owner,
+    region: project.hostTO,
+    site: project.connectionSite,
+    mw: project.capacityMW,
+    h: project.durationHours,
+    cod: project.expectedCod ? Number(project.expectedCod.slice(0, 4)) : null,
+    codDate: project.expectedCod,
+    st: project.stage === 'under_construction' ? 'uc' : 'g2c',
+    gate: project.gate,
+    statusRaw: project.statusRaw,
+    sourceProjectId: project.sourceProjectId,
+  })),
 
   // ---- connection ----
   connFactors: [
@@ -254,6 +262,15 @@ const M = {
 
   // ---- CSV export rows ----
   kpiExport: [
+    ['FES total system demand 2035', 396764, 'GWh', 'official-forecast', 'FES 2025 — Ten Year Forecast', 'gb-neso-fes-ed1-2025'],
+    ['FES peak customer demand 2035', 71.914, 'GW', 'official-forecast', 'FES 2025 — Ten Year Forecast', 'gb-neso-fes-ed1-2025'],
+    ['FES data-centre demand 2035', 33211, 'GWh', 'official-forecast', 'FES 2025 — Ten Year Forecast', 'gb-neso-fes-ed1-2025'],
+    ['FES network-connected battery capacity 2030', 23.865084, 'GW', 'official-forecast', 'FES 2025 — Ten Year Forecast', 'gb-neso-fes-es1-2025'],
+    ['FES LDES capacity 2035', 7.158094, 'GW', 'official-forecast', 'FES 2025 — Ten Year Forecast', 'gb-neso-fes-es1-2025'],
+    ['TEC exact-ESS forward capacity 2026+', 177195.8, 'MW', 'derived-observed', 'TEC 2026-07-29', 'gb-neso-tec-register'],
+    ['TEC exact-ESS Gate 2 forward capacity 2026+', 7778.4, 'MW', 'derived-observed', 'TEC 2026-07-29', 'gb-neso-tec-register'],
+    ['TEC exact-ESS analyst-weighted forward capacity 2026+', 43271.6, 'MW', 'analyst-scenario', 'TEC 2026-07-29 / screening weights v1', 'gb-neso-tec-register'],
+    ['TEC duration coverage', 0, '%', 'observed', 'TEC 2026-07-29', 'gb-neso-tec-register'],
     ['T-4 clearing price DY 2029/30', 27.10, 'GBP/kW/yr', 'official', 'GB_SEED_V1', 'NESO CM register'],
     ['T-4 awarded de-rated capacity DY 2029/30', 40108.6, 'MW', 'official', 'GB_SEED_V1', 'NESO CM register'],
     ['T-1 clearing price DY 2026/27', 5.00, 'GBP/kW/yr', 'official', 'GB_SEED_V1', 'NESO CM register'],

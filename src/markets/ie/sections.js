@@ -10,6 +10,10 @@
    which is what keeps the four markets in this lineage interchangeable.
    --------------------------------------------------------------------------- */
 
+import { IE_GRID_MAP } from './gridMapData.js';
+import { ieOfficialPlanningBlocks, ieQueueCoverageBlock } from './officialPlanningSection.js';
+import { ieEconomicsP0Blocks } from './economicsP0Section.js';
+
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
   const { h, L, MKT, M, SRC, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, compositeScore, liveScore, interp, dilutionAt, labInputs, labModel, pipelineByYear } = api;
@@ -194,6 +198,8 @@ SEC_B.story = function (){
   cap: ['This section is the narrative bridge between the Overview and the detailed underwriting tabs. It separates historical facts, observed market outcomes and the forward investment conclusion.',
         '本节连接“总览”与后续承销分析，明确区分历史事实、已观察市场结果及前瞻投资结论。'],
   blocks: [
+    ...ieEconomicsP0Blocks(SRC),
+    ...ieOfficialPlanningBlocks(),
     { t:'card', mt:false, title:['One-minute orientation for a new institutional investor','机构投资人的一分钟市场定位'], badges:['official','public'], live:false, blocks:[
       { t:'kpis', items:[
         { l:['Market design','市场设计'], v:'I-SEM', d:['all-island gross pool with central scheduling and a capacity mechanism','全岛总电量池，集中调度并配套容量机制'], b:['official'] },
@@ -679,15 +685,26 @@ SEC_B.pipeline = function (){
   ] };
 };
 
+// The public project sources do not resolve into one complete all-island
+// delivery funnel. Keep the seed register out of decision outputs until a
+// governed, de-duplicated official register is available.
+SEC_B.pipeline = function (){
+  return {
+    head:['Project Pipeline — official coverage gap', '项目管线 — 官方覆盖缺口'],
+    cap:['Official aggregate connection, auction and adequacy evidence remains usable within its stated scope. Complete project-level MW, MWh, delivery stage and probability-weighted COD are N/A.', '官方汇总并网、拍卖及充足性证据可在其明确范围内使用。完整的项目级MW、MWh、交付阶段及概率加权投运日期均为N/A。'],
+    blocks:[ieQueueCoverageBlock()],
+  };
+};
+
 // ============================== GRID & CONNECTION ==============================
 SEC_B.grid = function (){
-  const cs = liveScore('connFactors'), band = bandFor(M.connBands, cs);
   const mec = M.mecBridge;
   return {
   head: ['Grid & Connection — a chain of approvals, not a binary status','并网 — 一连串审批与合同，而非二元状态'],
   cap: ['Connection is the binding constraint on Irish storage and the place where development capital is lost. The distinctively Irish requirement is that both MEC (export) and MIC (import) must be documented in an executed agreement — an asset with export rights but insufficient import rights cannot charge at contracted power.',
         '并网是爱尔兰储能的关键约束，也是开发资本损失之处。爱尔兰特有的要求是：MEC（送出）与MIC（受入）必须在已签协议中同时载明 — 拥有送出权利但受入权利不足的资产，无法以合同功率充电。'],
   blocks: [
+    { t:'geo-grid-map', data:IE_GRID_MAP },
     { t:'card', mt:false, title:['Nameplate → revenue bridge','铭牌容量至收入桥'], badges:['calc','illus'], live:true, blocks:[
       { t:'sub', text:['Capacity channel','容量通道'] },
       { t:'flow', items:[
@@ -712,11 +729,29 @@ SEC_B.grid = function (){
         sig:['Size on offered, not requested','按报价容量而非申请容量定规模'] },
     ] },
 
-    { t:'card', title:['Connection Risk Score — weighted factors, editable','并网风险评分 — 加权因子，可编辑'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-      { t:'why', text:['The score is ' + cs + '/100 (higher = riskier), placing the reference project in the "' + L(band.n) + '" band. The heaviest factor is connection stage and executed agreement at 20%, followed by land and planning and by MEC/MIC sufficiency at 15% each. Together those three are half the score, and all three are documentary rather than analytical — which means most Irish connection risk is eliminated by reading the right documents rather than by building a better model.',
-        '评分为' + cs + '/100（分值越高风险越大），使参考项目落入“' + L(band.n) + '”区间。权重最高的因子是并网阶段与已签协议（20%），其次是土地与规划、以及MEC/MIC充分性（各15%）。三者合计占评分的一半，且均属文件性而非分析性 — 这意味着爱尔兰的大部分并网风险靠阅读正确的文件即可消除，而非靠构建更好的模型。'],
-        sig:['Documentary risk, not analytical risk','属文件风险，而非分析风险'] },
+    { t:'card', title:['Connection pathway, regulators and reform','并网流程、监管机构及改革'], badges:['official','verify'], live:false, blocks:[
+      { t:'flow', items:[
+        ['Route to the correct operator','选择正确运营商'], ['Application and studies','申请及研究'], ['Offer: exact MIC + MEC','报价：明确MIC及MEC'],
+        ['Planning / land / consents','规划 / 土地 / 许可'], ['Executed agreement','已签协议'], ['Build, test and energise','施工、测试及送电'],
+        ['Market registration and qualification','市场注册及资格'],
+      ] },
+      { t:'table', head:[['Jurisdiction / reform','司法辖区 / 改革'],['Who decides or delivers','决策或交付机构'],['Evidence an investor should demand','投资者应取得的证据']], rows:[
+        [{b:['Republic of Ireland generation','爱尔兰共和国发电']},
+          ['CRU regulates; EirGrid handles transmission applications above 40 MW and ESB Networks handles smaller distribution applications','CRU监管；40MW以上输电申请由EirGrid处理，较小的配电申请由ESB Networks处理'],
+          ['Batch / process status, assessed capacity, exact node, executed agreement, MIC, MEC, enabling works and long-stop dates','批次/流程状态、评估容量、具体节点、已签协议、MIC、MEC、配套工程及最终期限']],
+        [{b:['Northern Ireland connection','北爱尔兰并网']},
+          ['Utility Regulator regulates; SONI handles transmission connections at 110 kV and above, NIE Networks the distribution system','Utility Regulator监管；110kV及以上输电并网由SONI处理，配电由NIE Networks处理'],
+          ['Signed offer, contestable/non-contestable works, reinforcement scope, cost allocation, programme and energisation evidence','已签报价、可竞争/不可竞争工程、增容范围、成本分配、计划及送电证据']],
+        [{b:['ROI data-centre reform','爱尔兰共和国数据中心改革']},
+          ['CRU’s new policy tests location, system security and matching local generation/storage','CRU新政策测试区位、系统安全及配套本地发电/储能'],
+          ['Do not infer approval from corporate announcement or land; require the system-operator decision and matching-resource evidence','不可根据企业公告或土地推断获批；须取得系统运营商决定及配套资源证据']],
+        [{b:['NI connection-cost reform','北爱并网成本改革']},
+          ['Reinforcement costs are moving toward socialisation while customers retain direct-asset costs and published caps','增容成本正转向社会化，客户仍承担直接资产成本及公布上限'],
+          ['Verify the implementation date, qualifying voltage, offer version and residual direct works—policy direction is not a final invoice','核实实施日期、适用电压、报价版本及剩余直接工程；政策方向不是最终账单']],
+      ] },
+      { t:'why', text:['Delay case study: the existing cross-border path is constrained at roughly 300 MW, while the planned North–South Interconnector is designed for up to 1,500 MW. It is fully consented and in the construction step, but that future capability is not usable until build, testing and energisation finish. Prevent the same valuation error in a BESS deal by tying each dependency to a condition precedent, named document, long-stop date and per-MW price adjustment. Grid-forming capability can improve stability and service eligibility, but it does not create MIC, MEC or network headroom.',
+        '延误案例：现有跨境路径受限于约300MW，而规划南北互联线设计能力最高1,500MW。该项目已全部获批并进入施工步骤，但在完成建设、测试及送电前，未来能力不可使用。BESS交易应将每项依赖绑定至先决条件、具名文件、最终期限及按MW调价，以避免同类估值错误。构网型能力可改善稳定性及服务资格，但不会创造MIC、MEC或网络空间。'],
+        sig:['Consent is not energisation; capability is not a connection right','许可不等于送电；技术能力不等于并网权'] },
     ] },
 
     { t:'card', title:['Constraint and dispatch-down — the system problem storage is paid to solve','网络约束与限发 — 储能获付费所要解决的系统问题'], badges:['official','verify'], live:true, blocks:[

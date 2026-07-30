@@ -17,10 +17,30 @@ import {
   JP_EXPECTED_CAPACITY_FACTOR, CONN_BANDS, DUR_BANDS,
 } from './regions.js';
 import { SRC } from './sources.js';
+import { metricValues } from '../../governance/metrics.js';
 
 /* Updated by dashboard.js before each render. In compare mode the engine-owned
    default namespace resolves to Tokyo; every comparison block addresses regions
    explicitly, so the default is only a fallback for exports. */
+const JP_SYSTEM_EVOLUTION = {
+  years: [2025, 2030, 2034],
+  vintage: 'OCCTO Aggregation of Electricity Supply Plans FY2025',
+  regions: {
+    tokyo: {
+      peakDemandGW: metricValues('jp-tokyo-peak-demand'),
+      supplyCapacityGW: metricValues('jp-tokyo-supply-capacity'),
+    },
+    kyushu: {
+      peakDemandGW: metricValues('jp-kyushu-peak-demand'),
+      supplyCapacityGW: metricValues('jp-kyushu-supply-capacity'),
+    },
+    hokkaido: {
+      peakDemandGW: metricValues('jp-hokkaido-winter-peak-demand'),
+      supplyCapacityGW: metricValues('jp-hokkaido-winter-supply-capacity'),
+    },
+  },
+};
+
 export const activeRegion = { id: 'tokyo' };
 const R = () => JP_REGIONS[activeRegion.id] || JP_REGIONS.tokyo;
 
@@ -106,6 +126,23 @@ export const M = {
   durationPath: {
     years: ['2027', '2028', '2029', '2030', '2031'],
     hours: [4, 4, 4, 4.5, 4.5],
+  },
+  systemEvolution: JP_SYSTEM_EVOLUTION,
+  forecastGovernance: {
+    confidenceScore: 8,
+    confidenceBand: ['High', '高'],
+    confidenceBasis: [
+      'Strong official FY2025–2034 planning, price, capacity and regional-grid evidence; no complete public BESS queue.',
+      'FY2025–2034官方规划、价格、容量与区域电网证据较强；但不存在完整公开的储能队列。',
+    ],
+    queueCoverage: [
+      'Official awards and TSO disclosures are subsets, not a complete application/connection funnel.',
+      '官方中标与输电运营商披露仅为子集，并非完整申请/并网管线。',
+    ],
+    invalidation: [
+      'Regional price capture, balancing qualification, connection delivery or saturation moves outside the approved scenario.',
+      '区域价格捕获、调整力准入、并网交付或饱和度超出已批准情景。',
+    ],
   },
 
   // ---- pipeline ----
