@@ -1,14 +1,20 @@
 /* ---------------------------------------------------------------------------
    Home page — the Global BESS Investment Cockpit.
 
-   Composition order is the prototype's, unchanged:
+   Composition order is the prototype's, with one section added at the end:
 
      header · disclaimer
      market universe        (cards)
      cross-market league    (one currency, one model)
      revenue architecture   (per MWh, contracted vs merchant)
      $1M engine             (matrix · IRR · frontier · waterfall)
+     investment lab         (your assumptions, any market, levered or not)
      footer
+
+   The Lab is last because everything above it is the house position and the Lab
+   is where a reader disagrees with it. It replaces the Investment Lab and Project
+   Debt tabs that used to sit on all six market dashboards — six models became
+   one, and the one runs the same engine as the sections above it.
 
    Every section receives the market list as an argument. Nothing here knows how
    many markets there are or what they are called — the list comes from the
@@ -30,6 +36,8 @@ import { renderMarketGlobe } from './marketGlobe.js';
 import { renderNewsPreview } from '../news/newsFeed.js';
 import { renderStack } from './normalizationView.js';
 import { renderEngine } from './allocationMatrix.js';
+import { renderCongestionView } from './congestionView.js';
+import { renderInvestmentLab } from './investmentLab.js';
 
 const T = {
   title: ['Global BESS Investment Cockpit', '全球储能投资总看板'],
@@ -99,6 +107,13 @@ export function renderHome(app){
   renderLeague(main, list, homeState.exitYear);
   renderStack(main, list, homeState.exitYear);
   renderEngine(main, list, homeState.exitYear);
+  /* After the engine, before the Lab: congestion is the one revenue line the
+     unlevered model does not carry, and the reader should meet it before being
+     handed the controls. */
+  renderCongestionView(main, list);
+  /* Last, and deliberately so: everything above states the house position, and
+     the Lab is where a reader disagrees with it. */
+  renderInvestmentLab(main, list, homeState.exitYear);
   app.append(main);
 
   app.append(renderFooter([T.disclaimer(n), 'hub-1.0 · ' + L(T.footerNote)]));

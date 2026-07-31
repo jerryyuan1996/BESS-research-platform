@@ -20,7 +20,28 @@ import { irrOf, pvTail } from '../utils/finance.js';
 import {
   FX, LIFE, EXIT_Y_CONTRACTED, EXIT_Y_MERCHANT, EXIT_Y_OPEX, EXIT_Y_AUCTION,
 } from './assumptions.js';
+import { servicesFactor } from './capacityLine.js';
 import { strategyById, supports, baseStrategy } from './strategies.js';
+
+/**
+ * Capital grant, after the caps a scheme actually imposes.
+ *
+ * A grant expressed as a percentage of capex is an approximation of a scheme
+ * that is really a competitive award with hard ceilings. Romania's is capped at
+ * €69,000/MWh installed and €15m per company; at our archetype neither binds, but
+ * they bind immediately if capex rises or the duration is changed, and a
+ * percentage alone would silently sail past both.
+ */
+function grantForMW(e, archetype, capexPerMW){
+  let g = capexPerMW * (e.grantPct || 0) / 100;
+  if (e.grantCapPerMWh && archetype?.durationHours){
+    g = Math.min(g, e.grantCapPerMWh * archetype.durationHours);
+  }
+  if (e.grantCapAbsolute && archetype?.powerMW){
+    g = Math.min(g, e.grantCapAbsolute / archetype.powerMW);
+  }
+  return g;
+}
 
 /**
  * Runs one market under one route to market.
@@ -64,10 +85,19 @@ function runLegacyCase(market, strategyId, exitYear){
   const fx = FX[market.manifest.currency];
   if (fx == null) return { na: ['No FX rate for ' + market.manifest.currency, '缺少' + market.manifest.currency + '汇率'] };
 
+  /* Network-access haircut. Where a market grants dispatch priority to incumbents
+     — or takes it away in exchange for price certainty, as WA's fixed-price
+     election does — what is lost is headroom to earn energy revenue, not the
+     capacity payment itself. So it lands here, on the market streams, which is
+     also where it can later be checked against a constraint dataset. */
+  const access = e.naqFactor ?? 1;
+
   let cap = 0, cy = 0, post = 0, note = null;
-  let merch = e.merchGross * (1 - (e.feePct || 0) / 100) * fx;
-  let svc = (e.services || 0) * fx;
-  let grant = e.capexPerMW * fx * (e.grantPct || 0) / 100;
+  let capB = 0, cyB = 0;          // a second contracted stream, retained alongside the first
+  let marketFrom = 1;             // first year the asset earns market revenue
+  let merch = e.merchGross * (1 - (e.feePct || 0) / 100) * fx * access;
+  let svc = (e.services || 0) * fx * access;
+  let grant = grantForMW(e, market.comparison.archetype, e.capexPerMW) * fx;
   const capexG = e.capexPerMW * fx, opex = e.opexPerMW * fx;
 
   if (strategyId === 'cap'){
@@ -76,16 +106,32 @@ function runLegacyCase(market, strategyId, exitYear){
   } else if (strategyId === 'mer'){
     note = e.grantNote || null;
   } else if (strategyId === 'toll'){
-    merch = 0; svc = 0; grant = 0;
+    grant = 0;
     cap = e.toll * fx; cy = Math.min(e.tollYears || LIFE, LIFE); post = 0;
+    /* GB's tolling precedent (Drax/Fidra) pays a fixed fee for dispatch control
+       while the OWNER keeps Capacity Market revenue. Modelling the two as
+       alternatives — which is what a single `cap` slot forces — understated the
+       structure by the whole capacity line. */
+    if (e.tollAdditiveWithCapacity){
+      capB = (e.contracted || 0) * fx;
+      cyB = Math.min(e.contractYears || 0, LIFE);
+    }
+    /* The toll ends before the asset does: ten years of precedent against a
+       fifteen-year window. Those five years are a merchant tail, and pretending
+       they are empty is as wrong as pretending they are contracted. */
+    marketFrom = e.tollRevertsToMerchant ? cy + 1 : LIFE + 1;
+    if (!e.tollRevertsToMerchant){ merch = 0; svc = 0; }
     note = e.tollNote || null;
   }
 
   const net = capexG - grant;
   const capY = [], mchY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
-    const c = y <= cy ? cap : cap * post;
-    const mm = (merch + svc) * Math.pow(1 - (e.degr || 2) / 100, y - 1);
+    const c = (y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0);
+    const d = Math.pow(1 - (e.degr || 2) / 100, y - 1);
+    const mm = y >= marketFrom
+      ? (merch + svc * servicesFactor(e.servicesCurve, y)) * d
+      : 0;
     capY.push(c); mchY.push(mm); eb.push(c + mm - opex);
   }
 
@@ -139,28 +185,48 @@ function runAuctionRenewalCase(market, strategyId, exitYear){
 
   const capexG = e.capexPerMW * fx;
   const opex = e.opexPerMW * fx;
-  const grant = capexG * (e.grantPct || 0) / 100;
+  const grant = grantForMW(e, market.comparison.archetype, e.capexPerMW) * fx;
   const net = capexG - grant;
+
+  /* The long-term award is a different animal from the annual capacity auction
+     that this function was originally written for, and the difference is not the
+     tenor — it is the clawback. Japan's LTDA returns ~90% of net profit earned in
+     other markets to OCCTO for the whole 20-year term, so the award and the
+     merchant stack are very nearly alternatives rather than a stack. Retention
+     expresses that: it is the fraction of market revenue the owner keeps. */
+  const isLtda = strategyId === 'ltda';
+  const award = e.ltda || null;
+  if (isLtda && !award) return { na: ['No representative award scenario loaded', '未载入代表性中标情景'] };
+  const retention = isLtda ? (award.merchantRetention ?? 1) : 1;
+  const access = e.naqFactor ?? 1;
 
   /* merchGross may already be net of the optimiser fee — the Japan dashboard
      reports it that way. merchantNetOfFee guards against deducting it twice. */
   const feeMult = e.merchantNetOfFee ? 1 : (1 - (e.feePct || 0) / 100);
-  const merch = e.merchGross * feeMult * fx;
-  const svc = (e.services || 0) * fx;   // incremental balancing value only
+  const merch = e.merchGross * feeMult * fx * retention * access;
+  const svc = (e.services || 0) * fx * retention * access;   // incremental balancing value only
 
-  const securedYears = strategyId === 'cap' ? Math.min(e.securedContractYears || 0, LIFE) : 0;
-  const secured = strategyId === 'cap' ? (e.securedContracted || 0) * fx : 0;
-
-  /* Renewal curve: entry i is the assumed payment for the year at index
-     securedYears + i, in native currency per MW per year. A short curve simply
-     ends — no payment is assumed beyond what the market stated. */
-  const curve = (strategyId === 'cap' && Array.isArray(e.auctionRenewalCurve)) ? e.auctionRenewalCurve : [];
+  let securedYears = 0, secured = 0, curve = [];
+  if (isLtda){
+    securedYears = Math.min(award.years || 0, LIFE);
+    secured = (award.payment || 0) * fx;
+    /* No renewal curve by construction: a 20-year Capacity Reserve Agreement does
+       not roll off inside a 15-year window. There is nothing to re-win. */
+  } else if (strategyId === 'cap'){
+    securedYears = Math.min(e.securedContractYears || 0, LIFE);
+    secured = (e.securedContracted || 0) * fx;
+    /* Renewal curve: entry i is the assumed payment for the year at index
+       securedYears + i, in native currency per MW per year. A short curve simply
+       ends — no payment is assumed beyond what the market stated. */
+    if (Array.isArray(e.auctionRenewalCurve)) curve = e.auctionRenewalCurve;
+  }
 
   const secY = [], aucY = [], mchY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
     const s = y <= securedYears ? secured : 0;
     const a = y > securedYears ? ((curve[y - securedYears - 1] ?? 0) * fx) : 0;
-    const m = (merch + svc) * Math.pow(1 - (e.degr || 2) / 100, y - 1);
+    const d = Math.pow(1 - (e.degr || 2) / 100, y - 1);
+    const m = (merch + svc * servicesFactor(e.servicesCurve, y)) * d;
     secY.push(s); aucY.push(a); mchY.push(m);
     eb.push(s + a + m - opex);
   }
@@ -194,7 +260,7 @@ function runAuctionRenewalCase(market, strategyId, exitYear){
     // contracted. Future auction clearings are market risk.
     contractedShare: securedShare,
     kwPerM: 1e6 / (net / 1000),
-    note: e.capNote || e.grantNote || null,
+    note: (isLtda ? award.note : null) || e.capNote || e.grantNote || null,
   };
 }
 

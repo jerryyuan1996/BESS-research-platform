@@ -557,6 +557,19 @@ SEC_B.duration = function (){
         '在波兰，增容既是价值工具也是合规工具。可用时长须在整个' + O.cmAgreementYears + '年义务期内保持高于申报值，因此增容路径正是使衰减中的资产在第十二至十七年仍保持合规的手段。最常被遗漏的两项是并网条件与建设许可对新增MWh的覆盖 — 两者在起始阶段成本低廉，事后则几乎无法补救。'],
         sig:['Augmentation keeps you compliant, not just richer','增容不仅带来收益，更保障合规'] },
     ] },
+    
+    /* Relocated from the Investment Lab tab, which moved to the home page. The
+       duration question is a market question — where the de-rating uplift stops
+       covering the MWh capex — so it belongs beside the rest of this tab rather
+       than inside a returns model. */
+    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
+      { t:'labDur' },
+      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the Investment Lab on the home page.',
+        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
+        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
+        sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
+    ] },
   ] };
 };
 
@@ -798,37 +811,6 @@ SEC_B.benchmark = function (){
     ] },
   ] };
 };
-
-// ============================== INVESTMENT LAB ==============================
-SEC_B.lab = function (){
-  return {
-  head: ['Investment Lab — market metrics to project returns','投资测算 — 从市场指标到项目回报'],
-  cap: ['A simplified annual pre-tax model on the seed assumptions above. It demonstrates the decision workflow — correction factor, executable spread, balancing and saturation by COD year — and is not a substitute for a dispatch-optimised project-finance model.',
-        '基于上述种子假设的简化年度税前模型，用于演示决策流程 — 折减系数、可执行价差、平衡收入及按投运年度的饱和 — 不能替代调度优化的完整项目融资模型。'],
-  blocks: [
-    { t:'card', mt:false, title:['Inputs','输入假设'], badges:['illus'], live:false, blocks:[
-      { t:'labInputs' },
-      { t:'note', text:['Capacity price is entered in ' + MKT.cur + '/kW/yr (the seed value of ' + fmtN(O.cmPricePln) + ' PLN/kW/yr equals ' + fmtC(capEurKW) + ' at ' + fmt1(M.fx) + ' PLN/EUR). Capacity revenue uses the correction factor, not nameplate MW, and continues for ' + O.cmAgreementYears + ' years before dropping to the re-contracting assumption. Merchant revenue is scaled by the saturation factor for the selected COD year (' + state.codYear + ': ' + fmtPct(dilutionAt(+state.codYear) * 100, 0) + ' of today).',
-        '容量价格以' + MKT.cur + '/kW/年输入（种子值' + fmtN(O.cmPricePln) + ' PLN/kW/年，按' + fmt1(M.fx) + ' PLN/EUR折合' + fmtC(capEurKW) + '）。容量收入采用折减系数而非铭牌MW，并持续' + O.cmAgreementYears + '年，其后降至重新签约假设水平。市场化收入按所选投运年度的饱和系数缩放（' + state.codYear + '：为当前的' + fmtPct(dilutionAt(+state.codYear) * 100, 0) + '）。'] },
-    ] },
-    { t:'card', title:['Outputs — base case and lender downside','输出结果 — 基准情景与贷款人下行情景'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labOut' },
-      { t:'why', text:['The gap between the two cases is the whole investment question, and in Poland the capacity line holds it together: even with the spread stressed 25% and balancing 30%, the contracted base survives. That is what conventional project debt is sized against, and it is why Polish minimum DSCR is typically the most robust in this comparison set. If it still fails, the issue is the correction factor or the capex, not the market.',
-        '两种情景之间的差距即是全部投资问题，而在波兰，容量收入线维系着整体：即便价差承压25%、平衡收入承压30%，合同化基础依然存续。这正是常规项目融资据以安排规模的依据，也是波兰最低偿债覆盖率通常在本对比样本中最稳健的原因。若仍不达标，问题出在折减系数或造价，而非市场。'],
-        sig:['The contracted base holds the downside','合同化基础支撑下行情景'] },
-    ] },
-    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labDur' },
-      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR. In Poland the incremental column is dominated by the correction-factor step, so the crossover moves whenever the factor table is revised. Note that this table prices revenue only — it does not price the avoided penalty exposure from meeting the capacity obligation, which is an additional argument for 4h that the arithmetic understates.',
-        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR。在波兰，增量列由折减系数的阶跃主导，因此每当系数表被修订，临界点即随之移动。须注意本表仅为收入定价 — 未为“履行容量义务所规避的罚则敞口”定价，而这正是算术低估的、支持4小时的额外理由。'],
-        sig:['The table understates the case for 4h','该表低估了4小时的论证'] },
-    ] },
-    { t:'card', title:['Scenario snapshots (saved locally)','情景快照（本地保存）'], badges:['calc'], live:false, blocks:[
-      { t:'labSnaps' },
-    ] },
-  ] };
-};
-
 // ============================== PORTFOLIO / FUND VIEW ==============================
 SEC_B.portfolio = function (){
   const inp = labInputs(), r = labModel(inp);

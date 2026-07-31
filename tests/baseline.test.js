@@ -10,8 +10,34 @@
    5 markets × 3 strategies × 3 exit years — 45 cases — including which
    combinations are "not applicable" and why.
 
-   If a change to comparison/ breaks this test, the change altered investment
-   output. That is not allowed in this phase (brief section 11).
+   WHAT THIS TEST DOES AND DOES NOT CLAIM — read before changing it.
+
+   It runs the engine against the PROTOTYPE'S OWN INPUTS, frozen in
+   tests/fixtures/legacy-inputs.mjs, and not against the assumptions the site
+   currently publishes. Until 2026-07-30 those were the same thing, so the test
+   proved two claims at once:
+
+       (a) the engine computes what the prototype computed        — correctness
+       (b) the published assumptions still equal the prototype's  — currency
+
+   Claim (b) was never meant to survive an assumption revision — the proposal
+   workflow runs `test:structural` precisely because a revision is SUPPOSED to
+   move the pinned numbers (docs/governance.md). When the July 2026 external
+   review moved GB to four hours, Poland onto the December 2025 auction
+   parameters, Ireland onto a services decay curve, WA to seven hours and
+   Romania upward, keeping the two fused would have forced a choice between
+   regenerating the fixture — destroying (a), the migration's central proof — and
+   carrying a permanently red test.
+
+   So (a) lives here, on frozen inputs, and is now a stronger statement than it
+   was: the engine still reproduces the prototype exactly, INCLUDING after
+   gaining a services curve, a network-access factor, an additive toll and a
+   long-term-award route, none of which the frozen inputs declare.
+
+   (b) lives in tests/current-model.test.js and pins what we publish today.
+
+   If a change to comparison/ breaks THIS test, the change altered the engine's
+   arithmetic for inputs that do not use the new fields. That is a regression.
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -19,6 +45,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { markets, byId } from '../src/markets/registry.js';
+import { legacyMarket, LEGACY_VINTAGE } from './fixtures/legacy-inputs.mjs';
 import { runCase, runBaseCase, runMatrix } from '../src/comparison/engine.js';
 import { STRATEGIES, baseStrategy } from '../src/comparison/strategies.js';
 import {
@@ -72,7 +99,7 @@ test('frozen assumptions still hold the prototype\'s values', () => {
 
 test('the legacy markets are untouched by the auction-renewal branch', () => {
   for (const id of LEGACY_MARKETS){
-    const m = byId(id);
+    const m = legacyMarket(byId(id));
     assert.equal(m.comparison.economics.riskClass, undefined,
       `${id} must stay on the legacy two-stream model`);
     // Legacy results still expose the new field names, as aliases.
@@ -85,7 +112,7 @@ test('the legacy markets are untouched by the auction-renewal branch', () => {
 
 test('base strategies match the prototype\'s baseStrat()', () => {
   for (const [id, strat] of Object.entries(baseline.baseStrategies)){
-    assert.equal(baseStrategy(byId(id)), strat, `${id} base strategy`);
+    assert.equal(baseStrategy(legacyMarket(byId(id))), strat, `${id} base strategy`);
   }
 });
 
@@ -95,8 +122,8 @@ for (const key of Object.keys(baseline.cases)){
   const expected = baseline.cases[key];
 
   test(`baseline ${key}`, () => {
-    const market = byId(marketId);
-    assert.ok(market, `market ${marketId} is registered`);
+    assert.ok(byId(marketId), `market ${marketId} is registered`);
+    const market = legacyMarket(byId(marketId));
     const actual = runCase(market, strategyId, exitYear);
 
     if (expected.na){
@@ -118,29 +145,34 @@ for (const key of Object.keys(baseline.cases)){
   });
 }
 
+/* The prototype's own prose, asserted against the prototype's own inputs. These
+   sentences were written about the 2h/4h/8h archetypes and the 2024-vintage
+   auction results; they are a claim about what the ORIGINAL model said, which is
+   why they belong in the parity file and not in current-model.test.js. */
 test('headline figures the prototype states in its own commentary', () => {
   const pct = (v) => Number((v * 100).toFixed(1));
   const x = (v) => Number(v.toFixed(2));
+  const M = (id) => legacyMarket(byId(id));
 
   // "WA (−10.8% → +10.4%)" and "1.55× (WA)" / "1.06× (Romania)"
-  assert.equal(pct(runCase(byId('wa'), 'cap', 5).irrHold), 10.4);
-  assert.equal(pct(runCase(byId('wa'), 'mer', 5).irrHold), -10.8);
-  assert.equal(x(runBaseCase(byId('wa'), 5).moic), 1.55);
-  assert.equal(x(runBaseCase(byId('ro'), 5).moic), 1.06);
+  assert.equal(pct(runCase(M('wa'), 'cap', 5).irrHold), 10.4);
+  assert.equal(pct(runCase(M('wa'), 'mer', 5).irrHold), -10.8);
+  assert.equal(x(runBaseCase(M('wa'), 5).moic), 1.55);
+  assert.equal(x(runBaseCase(M('ro'), 5).moic), 1.06);
 
   // "the 2-hour markets survive (GB 8.0%, RO 5.3%), the 4-hour markets sag
   //  (PL 0.8%, IE −4.5%) and the 8-hour market collapses (WA −10.8%)"
-  assert.equal(pct(runCase(byId('gb'), 'mer', 5).irrHold), 8.0);
-  assert.equal(pct(runCase(byId('ro'), 'mer', 5).irrHold), 5.3);
-  assert.equal(pct(runCase(byId('pl'), 'mer', 5).irrHold), 0.8);
-  assert.equal(pct(runCase(byId('ie'), 'mer', 5).irrHold), -4.5);
+  assert.equal(pct(runCase(M('gb'), 'mer', 5).irrHold), 8.0);
+  assert.equal(pct(runCase(M('ro'), 'mer', 5).irrHold), 5.3);
+  assert.equal(pct(runCase(M('pl'), 'mer', 5).irrHold), 0.8);
+  assert.equal(pct(runCase(M('ie'), 'mer', 5).irrHold), -4.5);
 
   // "GB's toll bar sits ~1.8 IRR points below its merchant bar"
-  const gap = runCase(byId('gb'), 'mer', 5).irrHold - runCase(byId('gb'), 'toll', 5).irrHold;
+  const gap = runCase(M('gb'), 'mer', 5).irrHold - runCase(M('gb'), 'toll', 5).irrHold;
   assert.ok(Math.abs(gap * 100 - 1.8) < 0.1, `toll gap was ${gap * 100} points`);
 
   // "Romania (0%, 1.4%) ... to WA (77%, 11.6%)" on the certainty frontier
-  const ro = runBaseCase(byId('ro'), 5), wa = runBaseCase(byId('wa'), 5);
+  const ro = runBaseCase(M('ro'), 5), wa = runBaseCase(M('wa'), 5);
   assert.equal(Math.round(ro.contractedShare * 100), 0);
   assert.equal(pct(ro.irrExit), 1.4);
   assert.equal(Math.round(wa.contractedShare * 100), 77);
@@ -151,13 +183,13 @@ test('headline figures the prototype states in its own commentary', () => {
   assert.equal(Math.round(wa.kwPerM), 364);
 
   // "Year-1 yields sit in a narrow 11.3–14.5% band"
-  const yields = markets.map(m => runBaseCase(m, 5).yield1 * 100);
+  const yields = LEGACY_MARKETS.map(id => runBaseCase(M(id), 5).yield1 * 100);
   assert.equal(Number(Math.min(...yields).toFixed(1)), 11.3);
   assert.equal(Number(Math.max(...yields).toFixed(1)), 14.5);
 });
 
 test('runMatrix flags unavailable routes instead of dropping or zeroing them', () => {
-  const legacy = LEGACY_MARKETS.map(byId);
+  const legacy = LEGACY_MARKETS.map(id => legacyMarket(byId(id)));
   const legacyStrats = STRATEGIES.filter(s => LEGACY_STRATEGIES.includes(s.id));
   const rows = runMatrix(legacy, legacyStrats, 5);
   assert.equal(rows.length, legacy.length * legacyStrats.length);
@@ -171,16 +203,35 @@ test('runMatrix flags unavailable routes instead of dropping or zeroing them', (
   assert.equal(waToll.result.na[0], 'No market precedent');
 });
 
-test('the long-term-award route is declared but never rendered by default', () => {
-  // It exists so the extension point is real; enabling it is a per-market decision
-  // that must be backed by an actual award scenario, not a market-wide assumption.
+test('the prototype declared no long-term award, and still reports none', () => {
+  /* The live registry now enables this route for Japan — that is the 2026-07-30
+     revision, and tests/registry.test.js guards the conditions it must satisfy.
+     What belongs HERE is the narrower claim: the frozen inputs declare no award,
+     and adding the route to the engine did not conjure one for them. A new
+     strategy must be inert for markets that do not opt into it. */
   const ltda = STRATEGIES.find(s => s.id === 'ltda');
   assert.ok(ltda, 'the ltda route must be declared');
-  for (const m of markets){
+
+  for (const id of LEGACY_MARKETS){
+    const m = legacyMarket(byId(id));
     assert.ok(!m.comparison.capabilities.longTermAward,
-      `${m.manifest.id} must not claim a long-term award without a loaded scenario`);
-    assert.ok(runCase(m, 'ltda', 5).na, `${m.manifest.id}: ltda must report N/A`);
+      `${id}: the frozen inputs must not claim a long-term award`);
+    assert.ok(runCase(m, 'ltda', 5).na, `${id}: ltda must report N/A`);
   }
+});
+
+test('the frozen inputs are frozen', () => {
+  /* A guard against the most likely future mistake: someone "refreshing" the
+     legacy fixture to make this file green after a model change, which would
+     quietly delete the proof it exists to hold. If these values move, the
+     parity claim is gone — so they are asserted, not merely commented. */
+  assert.match(LEGACY_VINTAGE, /global-cockpit-0727-v1/);
+  assert.equal(legacyMarket(byId('gb')).comparison.archetype.durationHours, 2);
+  assert.equal(legacyMarket(byId('gb')).comparison.economics.contracted, 5962);
+  assert.equal(legacyMarket(byId('wa')).comparison.archetype.durationHours, 8);
+  assert.equal(legacyMarket(byId('pl')).comparison.economics.contracted, 39585);
+  assert.equal(legacyMarket(byId('ie')).comparison.economics.servicesCurve, undefined);
+  assert.equal(legacyMarket(byId('ro')).comparison.economics.merchGross, 55400);
 });
 
 test('the auction-renewal model prices secured and renewal years differently', () => {

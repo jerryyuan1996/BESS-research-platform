@@ -21,7 +21,7 @@ import { h } from '../../utils/dom.js';
 import { L } from '../../app/i18n.js';
 import { requestRender } from '../../app/state.js';
 import { renderHeader, renderDisclaimer } from '../../components/header.js';
-import { marketNav, tabNav, revenueSubNav } from '../../components/navigation.js';
+import { marketNav, tabNav, revenueSubNav, labLink } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
 import { chip } from '../../components/chip.js';
 import { enhanceMarketPage } from '../../components/pageEnhancements.js';
@@ -43,13 +43,14 @@ import { renderDuration } from './sections/duration.js';
 import { renderPipeline } from './sections/pipeline.js';
 import { renderGrid } from './sections/grid.js';
 import { renderBenchmark } from './sections/benchmark.js';
-import { renderLab } from './sections/lab.js';
 import { renderPortfolio } from './sections/portfolio.js';
 import { renderData } from './sections/data.js';
 
-/* Tab id → section renderer. Verbatim from the prototype's RENDER map. The BRCP
-   forecast and the co-optimisation model are not entries here: they render as the
-   tail of the rcm and lab tabs, as they did in the prototype. */
+/* Tab id → section renderer. The BRCP forecast and the RCM × Energy × FCESS
+   co-optimisation are not entries here: both render as the tail of the rcm tab.
+   The co-optimiser moved there when the Investment Lab and Project Debt tabs left
+   the dashboard for the home page, where one model now serves every market — see
+   src/home/investmentLab.js. */
 const SECTIONS = {
   home: renderHome,
   story: renderStory,
@@ -60,7 +61,6 @@ const SECTIONS = {
   pipeline: renderPipeline,
   grid: renderGrid,
   benchmark: renderBenchmark,
-  lab: renderLab,
   portfolio: renderPortfolio,
   data: renderData,
 };
@@ -102,6 +102,8 @@ export function dashboard(container, { tabId, basePath }){
   container.append(tabNav(TABS, state.tab, basePath));
   const revenueNav = revenueSubNav(TABS, state.tab, basePath);
   if (revenueNav) container.append(revenueNav);
+
+  container.append(labLink(manifest.id));
 
   const main = h('div');
   container.append(main);

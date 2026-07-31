@@ -36,11 +36,24 @@ export const STRATEGIES = [
     requires: 'tolling',
     na: ['No market precedent', '无市场先例'],
   },
-  /* Long-term decarbonization / fixed-award route. Declared so the extension
-     point is real, but no market enables it: an award is project-specific, not a
-     market benchmark, and showing it by default would imply every project in the
-     market wins one. A market enables it only when a representative scenario is
-     actually loaded, and it must be badged illustrative/project when it is. */
+  /* Long-term decarbonization / fixed-award route.
+
+     This was declared but disabled everywhere, on the grounds that an award is
+     project-specific rather than a market benchmark, and showing it by default
+     would imply every project in the market wins one. That reasoning still
+     stands, and any market enabling it must badge the case illustrative/project.
+
+     What changed is that in Japan it is now the only route with a six-hour-plus
+     product: LTDA Round 3 (May 2026) eliminated the 3-6h bracket entirely. A
+     four-hour Japanese battery cannot bid. Leaving the route off therefore
+     stopped being conservative and started being distortive — the model was
+     publishing the residual case as if it were the mainstream one.
+
+     The route carries two pieces of structure the others do not:
+       · a long secured tenor (20-year CRA; the 15-year window never sees it end)
+       · `merchantRetention` — the award claws back ~90% of net profit earned in
+         other markets, so LTDA and merchant are very nearly mutually exclusive
+         rather than additive. See docs/external-view.md §3. */
   {
     id: 'ltda',
     n: ['Long-term award', '长期脱碳拍卖'],
@@ -85,6 +98,11 @@ export function baseStrategy(market){
  * How long year-1 revenue is actually secured, in years.
  * A capacity payment won one delivery year at a time is secured for one year,
  * however many years the asset remains eligible to bid.
+ *
+ * The toll answer is deliberately the toll's own tenor and not the modelled life.
+ * GB's precedent is ten years (Drax/Fidra), against a fifteen-year window — the
+ * gap is a merchant tail, and calling it secured is the error this function
+ * exists to prevent. It is also what the project-debt layer sizes against.
  */
 export function securedTenor(market, strategyId){
   const e = market.comparison.economics;
@@ -92,5 +110,6 @@ export function securedTenor(market, strategyId){
     return e.riskClass === 'auction-renewal' ? (e.securedContractYears || 0) : (e.contractYears || 0);
   }
   if (strategyId === 'toll') return e.tollYears || 0;
+  if (strategyId === 'ltda') return e.ltda?.years || 0;
   return 0;
 }

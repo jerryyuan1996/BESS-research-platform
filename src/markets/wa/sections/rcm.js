@@ -1,6 +1,15 @@
 /* ---------------------------------------------------------------------------
    RCM & Capacity tab, verbatim from the prototype (lines 1869-1981).
-   Ends by delegating to the ten-year BRCP forecast section.
+   Ends by delegating to the ten-year BRCP forecast section, then to the
+   RCM × Energy × FCESS co-optimisation.
+
+   The co-optimisation used to be the tail of the Investment Lab tab. That tab is
+   gone — the Lab is now one cross-market section on the home page — but the
+   co-optimiser did not go with it, and should not have: it models how ONE WEM
+   battery serves three revenue streams under shared MW, MWh, headroom and SOC
+   limits, which is a fact about this market's dispatch rather than an investment
+   model. Its natural home was always the capacity tab, because the RCM Energy
+   Floor is what couples the three.
    --------------------------------------------------------------------------- */
 import { h } from '../../../utils/dom.js';
 import { L } from '../../../app/i18n.js';
@@ -17,6 +26,7 @@ import { SEED } from '../data/seed.js';
 import { ESOO_BAL } from '../data/kemerton.js';
 import { shadowRcpFactor } from '../lib/scores.js';
 import { renderBrcp } from '../sections/brcp.js';
+import { renderOptimizer } from '../sections/optimizer.js';
 
 // ---------------- RCM ----------------
 function renderRcm(main){
@@ -130,6 +140,7 @@ function renderRcm(main){
   cone.style.marginTop='14px'; main.append(cone);
 
   renderBrcp(main);
+  renderOptimizer(main);
 }
 
 export { renderRcm };

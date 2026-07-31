@@ -19,7 +19,7 @@ import { markets } from '../src/markets/registry.js';
 import {
   AUTHORITY, COMPARISON_AUTHORITY, MANIFEST_AUTHORITY, ASSUMPTION_AUTHORITY,
   comparisonAuthority, manifestAuthority, assumptionAuthority,
-  canMachineWrite, canMachinePropose, AUTHORITY_LABEL,
+  canMachineWrite, canMachinePropose, AUTHORITY_LABEL, isClassified,
 } from '../src/governance/authority.js';
 import { DATASETS, datasetById, snapshotFile, summaryFile } from '../src/governance/datasets.js';
 import {
@@ -138,27 +138,73 @@ test('the scheduled workflow never enables auto-merge', async () => {
    2. Classification is exhaustive — nothing reaches production unclassified
    ===================================================================== */
 
+/* Walks to every LEAF, however deep, rather than stopping at the second level.
+
+   The depth matters. A capacity line is declared as its components — a clearing
+   price, a de-rating factor, an FX rate, and the prose describing which auction
+   they came from — and those do not share an authority class: the first three
+   are observations the ETL should notice, the last is analyst prose it must
+   never touch. Classifying the CONTAINER would hand the whole object to
+   whichever class the container carried, which for `economics.capacity` would
+   have meant automation could rewrite the source citation.
+
+   Arrays are leaves. A bilingual label and a fifteen-element decay curve are
+   each one decision, not fifteen. */
+function leafPaths(obj, prefix, out){
+  for (const [key, value] of Object.entries(obj)){
+    const path = prefix ? `${prefix}.${key}` : key;
+    if (value && typeof value === 'object' && !Array.isArray(value)){
+      leafPaths(value, path, out);
+    } else {
+      out.push(path);
+    }
+  }
+  return out;
+}
+
 test('every field of every market comparison interface is classified', () => {
   const unclassified = [];
 
   for (const m of markets){
-    const cmp = m.comparison;
-    if (!cmp) continue;
-
-    for (const [section, value] of Object.entries(cmp)){
-      if (value && typeof value === 'object' && !Array.isArray(value)){
-        for (const field of Object.keys(value)){
-          const p = `${section}.${field}`;
-          if (!(p in COMPARISON_AUTHORITY)) unclassified.push(`${m.manifest.id}: ${p}`);
-        }
-      } else if (!(section in COMPARISON_AUTHORITY)){
-        unclassified.push(`${m.manifest.id}: ${section}`);
-      }
+    if (!m.comparison) continue;
+    for (const p of leafPaths(m.comparison, '', [])){
+      // Classified by an explicit entry OR by a declared rule (assumption-range
+      // leaves) — never by falling through to the fail-closed default.
+      if (!isClassified(p)) unclassified.push(`${m.manifest.id}: ${p}`);
     }
   }
 
   assert.deepEqual(unclassified, [],
     'add these to COMPARISON_AUTHORITY in src/governance/authority.js and decide who owns them');
+});
+
+test('an assumption range is never classified more permissively than the value it bounds', () => {
+  for (const m of markets){
+    for (const field of Object.keys(m.comparison.ranges || {})){
+      const bounded = comparisonAuthority(`economics.${field}`);
+      assert.equal(comparisonAuthority(`ranges.${field}.seed`), bounded,
+        `${m.manifest.id}: ranges.${field}.seed must inherit from economics.${field}`);
+      // A citation stays out of automation's reach whatever it cites.
+      assert.ok(!canMachinePropose(comparisonAuthority(`ranges.${field}.source`)),
+        `${m.manifest.id}: ranges.${field}.source must not be proposable`);
+      assert.ok(!canMachinePropose(comparisonAuthority(`ranges.${field}.basis`)),
+        `${m.manifest.id}: ranges.${field}.basis must not be proposable`);
+    }
+  }
+});
+
+test('a nested field is classified in its own right, not by its container', () => {
+  // The container itself is deliberately absent, so a caller asking about it
+  // fails closed at METHODOLOGY rather than inheriting a permissive child.
+  assert.equal('economics.capacity' in COMPARISON_AUTHORITY, false);
+  assert.equal(comparisonAuthority('economics.capacity'), AUTHORITY.METHODOLOGY);
+
+  // …while the components carry genuinely different classes.
+  assert.equal(comparisonAuthority('economics.capacity.price'), AUTHORITY.ANALYST);
+  assert.equal(comparisonAuthority('economics.capacity.derating'), AUTHORITY.ANALYST);
+  assert.equal(comparisonAuthority('economics.capacity.source'), AUTHORITY.METHODOLOGY);
+  assert.ok(!canMachinePropose(comparisonAuthority('economics.capacity.source')),
+    'automation must not be able to propose a change to a source citation');
 });
 
 test('every manifest field in use is classified', () => {

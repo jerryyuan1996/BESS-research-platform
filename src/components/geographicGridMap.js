@@ -1,6 +1,15 @@
 import { geoMercator, geoPath } from 'd3-geo';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
+import {
+  CAPTURE_LABEL, CAPTURE_PAYS, RELIEF_STATUS_LABEL, reliefRunway,
+} from '../governance/congestion.js';
+
+/* The year relief runways are measured from. The register publishes commissioning
+   years, not durations, so the reference has to be stated somewhere rather than
+   read off a clock — a map that silently re-dated itself every January would
+   change published figures with no diff. */
+export const RUNWAY_FROM = 2026;
 
 const W = 760;
 const H = 650;
@@ -77,9 +86,14 @@ function kindLabel(data, kind){
 }
 
 export function renderGeographicGridMap(parent, data){
+  /* Constraints are a fifth layer, added only where the market has a congestion
+     register. They are given `kind:'constraint'` here rather than in the register
+     so the register stays a statement about the market, not about this map. */
+  const constraints = (data.constraints || []).map(zone => ({ ...zone, kind:'constraint' }));
+
   const state = {
     period: data.defaultPeriod || (data.periodOrder.includes('current') ? 'current' : data.periodOrder[0]),
-    layers: { node:true, generation:true, load:true, route:true },
+    layers: { node:true, generation:true, load:true, route:true, constraint:true },
     selectedId: data.defaultSelectedId || null,
   };
 
@@ -116,10 +130,13 @@ export function renderGeographicGridMap(parent, data){
   const path = geoPath(projection);
   const baseLayer = svgEl('g', { class:'geo-base-layer' });
   const regionLabelLayer = svgEl('g', { class:'geo-region-label-layer', 'aria-hidden':'true' });
+  /* Under the network layers on purpose: a constraint is the background a node
+     sits in, and drawing it on top would bury the assets it constrains. */
+  const constraintLayer = svgEl('g', { class:'geo-constraint-layer' });
   const routeLayer = svgEl('g', { class:'geo-route-layer' });
   const pointLayer = svgEl('g', { class:'geo-point-layer' });
   const labelLayer = svgEl('g', { class:'geo-label-layer' });
-  svg.append(baseLayer, regionLabelLayer, routeLayer, pointLayer, labelLayer);
+  svg.append(baseLayer, regionLabelLayer, constraintLayer, routeLayer, pointLayer, labelLayer);
 
   const boundaryFeatures = normalizedBoundary.type === 'FeatureCollection' ? normalizedBoundary.features : [normalizedBoundary];
   for (const feature of boundaryFeatures){
@@ -141,6 +158,9 @@ export function renderGeographicGridMap(parent, data){
     h('span', {}, h('i', { class:'geo-symbol generation' }), L(['Generation','发电'])),
     h('span', {}, h('i', { class:'geo-symbol load' }), L(['Demand','负荷'])),
     h('span', {}, h('i', { class:'geo-symbol route' }), L(['Network path','网络路径'])),
+    constraints.length
+      ? h('span', {}, h('i', { class:'geo-symbol constraint' }), L(['Constraint','约束']))
+      : null,
   );
   mapPane.append(svg, legend);
 
@@ -152,8 +172,27 @@ export function renderGeographicGridMap(parent, data){
     return data.routes.filter(r => r.periods.includes(state.period) && state.layers.route);
   }
 
+  /* A constraint shows on the period it binds in and on every earlier one; it
+     disappears from the period after its relief project commissions. That is the
+     whole point of the layer — the map is where the expiry date becomes visible
+     rather than a footnote. */
+  function visibleConstraints(){
+    if (!state.layers.constraint) return [];
+    return constraints.filter(zone => {
+      if (state.period === 'past') return false;
+      if (state.period !== 'future') return true;
+      const year = zone.relief?.expected;
+      return !Number.isFinite(year) || year > 2035;
+    });
+  }
+
+  function visibleFeatures(){
+    return [...visibleConstraints(), ...visiblePoints(), ...visibleRoutes()];
+  }
+
   function selectedFeature(){
-    return [...visiblePoints(), ...visibleRoutes()].find(x => x.id === state.selectedId) || visiblePoints()[0] || visibleRoutes()[0] || null;
+    const all = visibleFeatures();
+    return all.find(x => x.id === state.selectedId) || all[0] || null;
   }
 
   function setSelected(id){
@@ -171,13 +210,47 @@ export function renderGeographicGridMap(parent, data){
     periodGroup.append(button);
   }
 
-  for (const [key, layer] of Object.entries(data.layers)){
+  /* The constraint toggle is appended by the renderer rather than declared in
+     each market's map data: the layer exists exactly when a congestion register
+     does, so making six data files repeat that would only let them disagree. */
+  const layerEntries = [
+    ...Object.entries(data.layers),
+    ...(constraints.length ? [['constraint', { label:['Constraints','约束'] }]] : []),
+  ];
+  for (const [key, layer] of layerEntries){
     const input = h('input', {
       type:'checkbox',
       checked:'',
       onchange:(event) => { state.layers[key] = event.target.checked; update(); },
     });
     layerGroup.append(h('label', { class:`geo-layer-toggle ${key}` }, input, h('span', { 'aria-hidden':'true' }), L(layer.label)));
+  }
+
+  function renderConstraints(){
+    constraintLayer.replaceChildren();
+    for (const zone of visibleConstraints()){
+      const selected = zone.id === state.selectedId;
+      const runway = reliefRunway(zone, RUNWAY_FROM);
+      const cls = `geo-constraint ${zone.shape} ${selected ? 'selected' : ''}`
+        + (runway == null ? ' open-ended' : '');
+      let node;
+      if (zone.shape === 'interface'){
+        node = svgEl('path', { class:cls, d:path({ type:'LineString', coordinates:zone.coords }) });
+      } else {
+        const projected = projection(zone.coord);
+        if (!projected) continue;
+        /* Radius carries intensity, which is an analyst ranking rather than a
+           measurement — so it sizes the marker and never appears as a number. */
+        const r = 16 + 20 * (zone.intensity ?? 0.5);
+        node = svgEl('circle', { class:cls, cx:projected[0], cy:projected[1], r });
+      }
+      node.append(appendText(svgEl('title'),
+        `${L(zone.name)} — ${runway == null
+          ? L(['no published relief date','无公开缓解日期'])
+          : L(['relief ','缓解于']) + zone.relief.expected}`));
+      node.addEventListener('click', () => setSelected(zone.id));
+      constraintLayer.append(node);
+    }
   }
 
   function renderRoutes(){
@@ -250,10 +323,10 @@ export function renderGeographicGridMap(parent, data){
   }
 
   function renderSelector(){
-    const features = [...visiblePoints(), ...visibleRoutes()];
     locationSelect.replaceChildren(h('option', { value:'' }, L(['Inspect a location or path…','查看地点或路径…'])));
-    for (const item of features){
-      const option = h('option', { value:item.id }, `${kindLabel(data, item.kind)} · ${L(item.name)}`);
+    for (const item of visibleFeatures()){
+      const label = item.kind === 'constraint' ? L(['Constraint','约束']) : kindLabel(data, item.kind);
+      const option = h('option', { value:item.id }, `${label} · ${L(item.name)}`);
       if (item.id === state.selectedId) option.selected = true;
       locationSelect.append(option);
     }
@@ -262,10 +335,62 @@ export function renderGeographicGridMap(parent, data){
     if (event.target.value) setSelected(event.target.value);
   });
 
+  /* A constraint answers different questions from a node, so it gets its own
+     panel rather than being squeezed into the asset fact list: what is measured,
+     how a battery is paid for it, what ends it, and when. */
+  function renderConstraintDetail(zone){
+    const runway = reliefRunway(zone, RUNWAY_FROM);
+    const pays = CAPTURE_PAYS[zone.capture.mechanism];
+
+    const metrics = h('dl', { class:'geo-detail-facts' });
+    for (const m of zone.metrics){
+      metrics.append(h('div', {},
+        h('dt', {}, L(m.label)),
+        h('dd', {}, L(m.value), h('span', { class:'geo-metric-period' }, ' · ' + L(m.period)))));
+    }
+
+    detail.replaceChildren(
+      h('div', { class:'geo-detail-eyebrow constraint' }, L(['Constraint','约束'])),
+      h('h4', {}, L(zone.name)),
+      h('div', { class:'geo-detail-type' },
+        L(zone.direction === 'export' ? ['Export constrained','送出受限']
+          : zone.direction === 'import' ? ['Import constrained','受入受限']
+          : ['Both directions','双向受限'])),
+      metrics,
+      h('div', { class:'geo-detail-section capture' },
+        h('span', {}, L(['How a battery is paid','储能如何获得回报']),
+          h('i', { class:'geo-capture-tag' + (pays ? '' : ' charges') }, L(CAPTURE_LABEL[zone.capture.mechanism]))),
+        h('p', {}, L(zone.capture.text)),
+        pays ? null : h('p', { class:'geo-capture-warn' }, L([
+          'This mechanism charges the developer rather than paying the operator.',
+          '该机制向开发商收费，而非向运营方付费。',
+        ]))),
+      h('div', { class:'geo-detail-section relief' },
+        h('span', {}, L(['What ends it','约束何时终止']),
+          h('i', { class:'geo-relief-tag' }, L(RELIEF_STATUS_LABEL[zone.relief.status]))),
+        h('p', {}, h('b', {}, L(zone.relief.project)), ' — ', L(zone.relief.scope)),
+        h('p', { class:'geo-runway' }, runway == null
+          ? L(['No published commissioning year — the constraint has no committed end date.',
+               '无公开投运年份 — 该约束尚无确定的终止日期。'])
+          : L(['Relief expected ','预计缓解于']) + zone.relief.expected
+            + L([` · ${runway} year${runway === 1 ? '' : 's'} of runway from ${RUNWAY_FROM}`,
+                 `年 · 自${RUNWAY_FROM}年起剩余${runway}年`]))),
+      h('div', { class:'geo-detail-section investor' },
+        h('span', {}, L(['Investor implication','投资者影响'])),
+        h('p', {}, L(zone.investor))),
+      h('a', { class:'geo-source-link', href:zone.sourceUrl, target:'_blank', rel:'noopener' },
+        `${L(['Source','来源'])}: ${zone.source} ↗`),
+    );
+  }
+
   function renderDetail(){
     const item = selectedFeature();
     if (!item){
       detail.replaceChildren(h('p', { class:'geo-empty' }, L(['Turn on a layer to inspect its locations.','打开图层以查看地点。'])));
+      return;
+    }
+    if (item.kind === 'constraint'){
+      renderConstraintDetail(item);
       return;
     }
     const feature = { ...item, ...(item.factsByPeriod?.[state.period] || {}) };
@@ -307,7 +432,7 @@ export function renderGeographicGridMap(parent, data){
   }
 
   function update(){
-    const allowed = [...visiblePoints(), ...visibleRoutes()];
+    const allowed = visibleFeatures();
     if (!allowed.some(x => x.id === state.selectedId)) state.selectedId = allowed[0]?.id || null;
     periodGroup.querySelectorAll('button').forEach(button => {
       const active = button.dataset.period === state.period;
@@ -315,6 +440,7 @@ export function renderGeographicGridMap(parent, data){
       button.setAttribute('aria-pressed', String(active));
     });
     renderContext();
+    renderConstraints();
     renderRoutes();
     renderPoints();
     renderSelector();

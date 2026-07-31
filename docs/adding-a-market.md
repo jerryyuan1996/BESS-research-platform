@@ -159,7 +159,7 @@ SEC_B.capacity = function (){
 ```
 
 You get ~40 block types, and every interactive widget — scorecards, augmentation grids, the pipeline
-table, the whole Investment Lab — behaves identically to the other markets for free. Block types and
+table, the duration sweep — behaves identically to the other markets for free. Block types and
 the full list are in [`../src/markets/_shared/README.md`](../src/markets/_shared/README.md).
 
 Take this path unless you have a specific reason not to.

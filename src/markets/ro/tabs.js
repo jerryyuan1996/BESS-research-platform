@@ -13,7 +13,6 @@ const TABS = [
   ['pipeline',  ['Project Pipeline', '项目管线']],
   ['grid',      ['Grid & Permitting', '并网与许可']],
   ['benchmark', ['Romania vs Poland', '罗马尼亚与波兰对比']],
-  ['lab',       ['Investment Lab', '投资测算']],
   ['portfolio', ['Portfolio', '组合与基金视图']],
   ['data',      ['Data & Methodology', '数据与方法']],
 ];

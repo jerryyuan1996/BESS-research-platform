@@ -28,12 +28,12 @@ npm run preview
 npm test
 ```
 
-127 assertions.
+200 assertions.
 
-**83 on the model:** registry integrity, unique market ids, allocation-market vs detail-dashboard
+**On the model:** registry integrity, unique market ids, allocation-market vs detail-dashboard
 counts, required and freshness metadata, source-register shape, tab-id validity, comparison-input
-validation, auction-renewal stream separation, IRR/NPV, and all 45 legacy market × strategy ×
-exit-year baseline cases — which are asserted unchanged after the engine gained a second risk class.
+validation, auction-renewal stream separation, IRR/NPV, all 45 legacy market × strategy × exit-year
+baseline cases, and a separate snapshot of what the site publishes today.
 
 **44 on governance and the data pipeline:** that the ETL cannot write outside `public/data/`, that no
 ETL module imports a write API directly, that `propose.mjs` refuses to run on `main`, that the
@@ -59,6 +59,14 @@ self-consistent:
 npm run test:baseline    # regenerate tests/fixtures/legacy-baseline.json
 ```
 
+**Two files, failing for opposite reasons.** Since the July 2026 assumption revision,
+`tests/baseline.test.js` runs against the prototype's own inputs, frozen in
+`tests/fixtures/legacy-inputs.mjs` — it proves the *engine* still reproduces the prototype, and a
+failure there is a regression. `tests/current-model.test.js` pins the assumptions the site publishes
+now, and a failure there is a prompt to check a number against its source. Fusing them would have
+forced a choice between deleting the migration's correctness proof and living with a permanently red
+test. See [`docs/external-view.md`](docs/external-view.md).
+
 ---
 
 ## Architecture
@@ -79,6 +87,20 @@ App
    { manifest, comparison, sources, tabs, dashboard }
 ```
 
+Each market also declares a **congestion register** (`src/markets/*/congestion.js`): every constraint
+that binds it, what a battery is actually paid for relieving it, and the named reinforcement that
+ends it with a commissioning year. That register drives three things at once — a constraint layer on
+the market's map, a table on its Grid Connection tab, and one cross-market comparison card on the
+home page — because congestion is the only revenue on this platform with a published expiry date.
+No per-MW congestion revenue is modelled anywhere; nothing public supports one (gate G14).
+
+Returns modelling lives once, on the home page. The **Investment Lab** lets a reader select any
+market, retype every normalized assumption inside a band that market declares — each band stating
+which of its endpoints is an observation and which is not — and choose whether to lever the case.
+It has no model of its own: it re-runs the comparison engine with the overrides applied, so resetting
+every input reproduces the league table above it exactly. Project debt is the levered half of the
+same section. Neither is a market tab; a market joins the Lab by declaring `comparison.ranges`.
+
 ```
 src/
 ├── main.js                  entry: styles in cascade order, then boot
@@ -89,8 +111,8 @@ src/
 ├── charts/                  lineChart barChart waterfallChart bandChart scatterChart axes chartUtils
 ├── utils/                   dom formatting finance storage validation
 ├── home/                    homePage marketGrid marketComparison normalizationView
-│                            allocationMatrix findings state
-├── comparison/              engine assumptions strategies metrics
+│                            allocationMatrix congestionView investmentLab marketGlobe findings state
+├── comparison/              engine assumptions strategies metrics ranges scenario
 ├── markets/
 │   ├── registry.js          ← the canonical list of markets
 │   ├── schema.js            the market-module contract
@@ -131,13 +153,16 @@ cp -r src/markets/_template src/markets/jp
 
 Fill in `manifest.js` and `comparison.js`, then add two lines to `src/markets/registry.js`. The
 market immediately appears in the market grid, the navigation, the league table, the revenue-anatomy
-chart, the `$1M` engine, the certainty frontier and the waterfall selector — with no other edits. The
+chart, the `$1M` engine, the certainty frontier and the waterfall selector — with no other edits. Declare
+`comparison.ranges` alongside its economics and it also joins the home-page Investment Lab, where a
+reader can retype every assumption inside an evidenced band and price a capital structure. The
 dashboard can follow later; until it exists the route renders a pending-migration page and everything
 else still works.
 
 When you do build the dashboard, prefer the shared block engine: describe each tab as a list of
-blocks and you inherit every interactive widget — scorecards, the Investment Lab, the pipeline
-table — already consistent with the other four markets.
+blocks and you inherit every interactive widget — scorecards, the duration sweep, the pipeline
+table — already consistent with the other four markets. Do not give it a project-debt or
+investment-lab tab: both live once, on the home page, so that one model serves every market.
 
 Step-by-step: [`docs/adding-a-market.md`](docs/adding-a-market.md).
 
@@ -150,18 +175,18 @@ Kyushu and Hokkaido are three exposures sharing one Japan research dashboard.
 
 | Market | Route | Dashboard | Lineage |
 |---|---|---|---|
-| Western Australia — WEM | `/markets/western-australia` | 12 tabs | hand-written sections |
-| Great Britain | `/markets/great-britain` | 12 tabs | shared block engine |
-| Ireland — SEM | `/markets/ireland` | 12 tabs | shared block engine |
-| Romania | `/markets/romania` | 12 tabs | shared block engine |
-| Poland | `/markets/poland` | 12 tabs | shared block engine |
-| Japan — Tokyo Area | `/markets/japan-tokyo` | 12 tabs, Tokyo lens | shared block engine |
-| Japan — Kyushu Area | `/markets/japan-kyushu` | 12 tabs, Kyushu lens | shared block engine |
-| Japan — Hokkaido Area | `/markets/japan-hokkaido` | 12 tabs, Hokkaido lens | shared block engine |
+| Western Australia — WEM | `/markets/western-australia` | 13 tabs | hand-written sections |
+| Great Britain | `/markets/great-britain` | 13 tabs | shared block engine |
+| Ireland — SEM | `/markets/ireland` | 13 tabs | shared block engine |
+| Romania | `/markets/romania` | 13 tabs | shared block engine |
+| Poland | `/markets/poland` | 13 tabs | shared block engine |
+| Japan — Tokyo Area | `/markets/japan-tokyo` | 13 tabs, Tokyo lens | shared block engine |
+| Japan — Kyushu Area | `/markets/japan-kyushu` | 13 tabs, Kyushu lens | shared block engine |
+| Japan — Hokkaido Area | `/markets/japan-hokkaido` | 13 tabs, Hokkaido lens | shared block engine |
 
 Add `?region=compare` to any Japan route to see all three regions side by side.
 
-All 96 tab renders complete with zero console errors.
+All 104 tab renders complete with zero console errors.
 
 ### Japan — three exposures, one rulebook
 
@@ -185,8 +210,16 @@ merchant       JEPX + incremental balancing                → priced at 11.5%
 ```
 
 and the league table's first row became **secured share** rather than contracted share, with
-**secured tenor** beside it. WA is 77% secured for 10 years; Japan is ~45% secured for 1. Those are
-different assets and the old wording hid that.
+**secured tenor** beside it. WA is 77% secured for 10 years; a Japanese capacity-auction case is
+~40% secured for 1. Those are different assets and the old wording hid that.
+
+**Since July 2026 the base route is the long-term decarbonization auction, not the annual capacity
+auction.** LTDA Round 3 abolished the 3-6 hour bracket and set a hard six-hour minimum, so the
+previous four-hour reference could not bid into the route Japanese projects are actually financed
+on. The award is a 20-year OCCTO agreement — it never rolls off inside the 15-year window — but it
+returns roughly 90% of other-market net profit, so it is very nearly an *alternative* to the merchant
+stack rather than an addition to it. The annual capacity auction remains selectable as a route.
+See [`docs/external-view.md`](docs/external-view.md) §3.
 
 > **Read the ordering, not the IRRs.** Japan's structural facts are anchored to OCCTO and TSO
 > sources; its economics are illustrative seed. Eight inputs — capex, merchant margin, incremental
@@ -332,11 +365,24 @@ explicitly in [`docs/data-policy.md`](docs/data-policy.md), which you should rea
 
 ---
 
-## What this refactor did not change
+## What the refactor changed, and what the July 2026 revision changed
 
-Financial assumptions, market scores, IRRs, MOICs, capex, revenue assumptions, FX, duration
-assumptions, exit assumptions, wording, source labels, quality badges and investment conclusions are
-all byte-identical to the prototype. Formulas were moved, not modified.
+**The refactor changed nothing.** Financial assumptions, market scores, IRRs, MOICs, capex, revenue
+assumptions, FX, duration assumptions, exit assumptions, wording, source labels, quality badges and
+investment conclusions came across byte-identical to the prototype. Formulas were moved, not
+modified. `tests/baseline.test.js` still proves this, against inputs frozen in
+`tests/fixtures/legacy-inputs.mjs`.
+
+**The 2026-07-30 assumption revision changed a great deal**, deliberately and with the evidence
+recorded. Poland's capacity line fell 63% on a de-rating cut, GB moved to four hours, Japan to six
+and onto the long-term award, Ireland gained a DS3→FASS decay curve, WA moved to seven hours against
+a six-hour product, and Romania roughly doubled. Every change, its source and its authority class is
+in [`docs/external-view.md`](docs/external-view.md) §6a; what the site publishes now is pinned by
+`tests/current-model.test.js`.
+
+Methodology was **not** touched: the 15-year window, the exit yields and the unlevered basis are
+unchanged. One consequence of that is worth knowing before comparing our IRRs with anyone else's —
+see `docs/external-view.md` §5.5.
 
 Probable bugs found during the migration are documented in
 [`docs/migration-notes.md`](docs/migration-notes.md) §8 rather than fixed, since fixing them would
@@ -349,6 +395,7 @@ change output.
 | | |
 |---|---|
 | [`docs/publishing.md`](docs/publishing.md) | first-time deployment walkthrough — GitHub, Cloudflare Pages, secrets, troubleshooting |
+| [`docs/external-view.md`](docs/external-view.md) | what the market says, where we differ, and why — read before changing an assumption |
 | [`docs/governance.md`](docs/governance.md) | who may change what, and how it is enforced — read before changing the pipeline |
 | [`docs/live-data.md`](docs/live-data.md) | the pipeline: sources, connectors, scheduling, operations |
 | [`docs/architecture.md`](docs/architecture.md) | structure, layering rules, module contract, multi-region markets |

@@ -13,6 +13,7 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
+import { homeState } from '../home/state.js';
 
 const REVENUE_IDS = new Set(['rcm', 'capacity', 'energy', 'fcess', 'services', 'duration']);
 const COUNTRY_FLAGS = {
@@ -85,6 +86,44 @@ export function tabNav(tabs, activeTab, basePath){
     href: basePath + '/' + id,
     onclick: (e) => { e.preventDefault(); navigate(basePath + '/' + id); window.scrollTo(0, 0); },
   }, L(name))));
+}
+
+/**
+ * A pointer from a market dashboard to the home-page Investment Lab.
+ *
+ * The Lab used to be two tabs on every dashboard. Removing them without leaving
+ * a signpost would look like a feature was deleted, so each market says where its
+ * returns model went — and preselects itself when the reader follows the link, so
+ * the Lab opens on the market they were already reading.
+ *
+ * @param {string} marketId  preselected in the Lab on arrival
+ */
+export function labLink(marketId){
+  const open = () => {
+    homeState.labMarket = marketId;
+    navigate('/');
+    /* The Lab does not exist in the document until the home page has been built,
+       and navigate() does not promise to have finished by the time it returns.
+       Watch for the element across a few frames rather than assuming one is
+       enough; give up quietly if it never appears. */
+    let frames = 0;
+    const scroll = () => {
+      const lab = document.getElementById('lab');
+      if (lab) lab.scrollIntoView({ block: 'start' });
+      else if (frames++ < 30) requestAnimationFrame(scroll);
+    };
+    requestAnimationFrame(scroll);
+  };
+  return h('div', { class: 'lab-pointer' },
+    h('span', {}, L([
+      'Model this market — retype the assumptions, price a capital structure:',
+      '测算本市场 — 重新输入假设、测算资本结构：',
+    ])),
+    h('a', {
+      class: 'btn',
+      href: '/#lab',
+      onclick: (e) => { e.preventDefault(); open(); },
+    }, L(['Investment Lab & project debt ▸', '投资测算与项目债务 ▸'])));
 }
 
 export function revenueSubNav(tabs, activeTab, basePath){

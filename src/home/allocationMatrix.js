@@ -216,7 +216,8 @@ function renderFrontier(main, marketList, X){
     [badge('calc')]);
 
   scatterChart(cC, {
-    xmin: 0, xfmt: v => fmtN(v) + '%', yfmt: v => fmt1(v) + '%',
+    // A share of year-1 revenue. 100% is the ceiling, so the axis stops there.
+    xmin: 0, xmax: 100, xfmt: v => fmtN(v) + '%', yfmt: v => fmt1(v) + '%',
     xlabel: ['Secured share of year-1 revenue (%) — exit IRR at year ' + X + ' on the y-axis',
              '第1年已锁定收入占比（%） — 纵轴为第' + X + '年退出IRR'],
     pts: marketList.map(m => {

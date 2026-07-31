@@ -13,12 +13,41 @@ import { markets, byId } from '../markets/registry.js';
 
 const PREFERRED_WATERFALL_MARKET = 'pl';
 
+/* Nothing here may call into the registry at module scope. The market modules
+   import the navigation component, which imports this file to preselect a market
+   in the Lab — so a registry lookup during evaluation closes the cycle and throws
+   before the app starts. Both accessors below resolve lazily instead, which they
+   had to do anyway to self-heal when a market is deregistered. */
 export const homeState = {
   exitYear: 5,                       // 5 | 7 | 10
-  wfMarket: byId(PREFERRED_WATERFALL_MARKET) ? PREFERRED_WATERFALL_MARKET : markets[0]?.manifest.id,
+  wfMarket: PREFERRED_WATERFALL_MARKET,
+
+  /* ---- Investment Lab ----------------------------------------------------
+     Overrides are kept PER MARKET, keyed by market id, so switching markets
+     does not silently carry a Polish capex assumption into Japan. Each entry is
+     { [dotted economics path]: number }; an absent key means "use the seed",
+     which is why nothing is pre-populated here. */
+  labMarket: null,                   // null → the market the page defaults to
+  labStrategy: null,                 // null → that market's base strategy
+  labLevered: false,                 // capital structure: unlevered | project debt
+  labInputs: {},                     // { [marketId]: { [path]: number } }
+  labDebt: {},                       // { [priced convention]: number }
+  labOpenBasis: null,                // which field's evidence drawer is expanded
 };
 
 /** Resolves the waterfall market, self-healing if the id is no longer registered. */
 export function waterfallMarket(){
   return byId(homeState.wfMarket) || markets[0] || null;
+}
+
+/** Resolves the Lab market, self-healing if the id is no longer registered. */
+export function labMarket(list){
+  const pool = (list && list.length) ? list : markets;
+  return pool.find(m => m.manifest.id === homeState.labMarket) || pool[0] || null;
+}
+
+/** This market's overrides, created on first write rather than up front. */
+export function labOverrides(marketId){
+  if (!homeState.labInputs[marketId]) homeState.labInputs[marketId] = {};
+  return homeState.labInputs[marketId];
 }

@@ -113,10 +113,32 @@ export const COMPARISON_AUTHORITY = {
 
   // Capacity revenue. Auction clearing prices and de-rating factors are
   // published, so drift here is evidence-backed and proposable.
+  //
+  // `contracted` is now DERIVED from `capacity` in every market that declares
+  // one — it stays ANALYST because a market may still assert it directly, and
+  // because failing open on a revenue line would be the wrong default. What
+  // changed is that the two things that actually move are separately visible:
+  // Poland's clearing price rose 76% while its de-rating factor fell 79%, and a
+  // fused number could report neither.
   'economics.contracted': AUTHORITY.ANALYST,
   'economics.contractYears': AUTHORITY.ANALYST,
   'economics.securedContracted': AUTHORITY.ANALYST,
   'economics.securedContractYears': AUTHORITY.ANALYST,
+
+  // The capacity line's components. A clearing price is published by the
+  // auction body; a de-rating factor is published alongside it. Both are exactly
+  // the kind of observation the ETL exists to notice.
+  'economics.capacity.price': AUTHORITY.ANALYST,
+  'economics.capacity.derating': AUTHORITY.ANALYST,
+  'economics.capacity.fxToMarket': AUTHORITY.ANALYST,
+  'economics.capacity.deliveryYear': AUTHORITY.ANALYST,
+  // Which auction a price came from, and what units it is in, describe the
+  // observation rather than being one.
+  'economics.capacity.unit': AUTHORITY.CONFIG,
+  'economics.capacity.priceCurrency': AUTHORITY.CONFIG,
+  'economics.capacity.auction': AUTHORITY.METHODOLOGY,
+  'economics.capacity.source': AUTHORITY.METHODOLOGY,
+  'economics.capacity.note': AUTHORITY.METHODOLOGY,
 
   // The step-down after contract expiry is a forward assumption with no
   // observable counterpart — nobody publishes what a battery earns in year 16.
@@ -133,8 +155,38 @@ export const COMPARISON_AUTHORITY = {
   'economics.toll': AUTHORITY.ANALYST,
   'economics.tollYears': AUTHORITY.ANALYST,
 
+  // How a toll interacts with the rest of the stack is a reading of the deal
+  // structure, not a term. Drax/Fidra leaves Capacity Market revenue with the
+  // owner; whether that generalises to "the GB toll" is a judgement.
+  'economics.tollAdditiveWithCapacity': AUTHORITY.METHODOLOGY,
+  'economics.tollRevertsToMerchant': AUTHORITY.METHODOLOGY,
+
+  // The services decay curve. Not an assumption about a value — an assumption
+  // about a REGIME, calibrated on another market's history. No feed implies it,
+  // and no observation of today's DS3 rate settles what FASS will clear at, so
+  // automation may neither write nor propose it. It is a forward case a human
+  // approved: ANALYST_SCENARIO is exactly that class.
+  'economics.servicesCurve': AUTHORITY.ANALYST_SCENARIO,
+  'economics.servicesNote': AUTHORITY.METHODOLOGY,
+
+  // Network-access haircut. What is lost when a market's access regime
+  // deprioritises you. Observable in principle from constraint data, which is
+  // why it is proposable rather than methodology.
+  'economics.naqFactor': AUTHORITY.ANALYST,
+
+  // Long-term award. The payment is a bid into a pay-as-bid auction that does
+  // not publish clearing prices, so it is an assumption informed by a published
+  // ceiling; the tenor and the clawback are rules, but reading the clawback as a
+  // retention fraction is a modelling decision.
+  'economics.ltda.payment': AUTHORITY.ANALYST,
+  'economics.ltda.years': AUTHORITY.ANALYST,
+  'economics.ltda.merchantRetention': AUTHORITY.METHODOLOGY,
+  'economics.ltda.note': AUTHORITY.METHODOLOGY,
+
   // Policy-set, therefore observable in principle.
   'economics.grantPct': AUTHORITY.ANALYST,
+  'economics.grantCapPerMWh': AUTHORITY.ANALYST,
+  'economics.grantCapAbsolute': AUTHORITY.ANALYST,
 
   // Degradation is a warranty/engineering assumption, not a market observation.
   'economics.degr': AUTHORITY.METHODOLOGY,
@@ -159,6 +211,11 @@ export const COMPARISON_AUTHORITY = {
   // Whether a market's inputs are complete enough to publish a number is an
   // analyst's call about data quality, not a threshold a script should trip.
   'engineReady': AUTHORITY.METHODOLOGY,
+
+  // Which route a market is PRESENTED under. Japan moving from the annual
+  // capacity auction to the long-term award is the house view on what a
+  // Japanese battery is, and no observation settles it.
+  'baseStrategy': AUTHORITY.METHODOLOGY,
 };
 
 /**
@@ -226,6 +283,51 @@ export const ASSUMPTION_AUTHORITY = {
 };
 
 /* ---------------------------------------------------------------------------
+   Ranges — the bounds the Investment Lab enforces.
+
+   Classified by RULE rather than by enumeration, because every band has the same
+   seven leaves and the same governance answer whichever field it bounds. Listing
+   `ranges.capexPerMW.min` … `ranges.tollYears.gate` for eight markets would be a
+   hundred lines that say one thing four times over.
+
+   The answer itself:
+
+     min / max   ANALYST. A bound is a claim about what the evidence supports.
+                 Two auction clears moving is exactly the kind of observation the
+                 ETL should be able to notice and propose against — the same
+                 class the value it bounds already carries.
+
+     seed        Inherits from the economics field it mirrors, and cannot be more
+                 permissive than it. A band must never become a side door through
+                 which automation writes a value it is not allowed to write.
+
+     kind        METHODOLOGY. Whether a band counts as sourced or dispersed is an
+     basis       argument about evidence, and `source` is a citation — the
+     source      existing test in this suite says automation must not be able to
+     gate        propose a change to one of those.
+   --------------------------------------------------------------------------- */
+const RANGE_LEAF_AUTHORITY = {
+  min: AUTHORITY.ANALYST,
+  max: AUTHORITY.ANALYST,
+  kind: AUTHORITY.METHODOLOGY,
+  basis: AUTHORITY.METHODOLOGY,
+  source: AUTHORITY.METHODOLOGY,
+  gate: AUTHORITY.METHODOLOGY,
+};
+
+/** Resolves a `ranges.<field>.<leaf>` path, or null when the path is not one. */
+function rangeAuthority(path){
+  if (!path.startsWith('ranges.')) return null;
+  const rest = path.slice('ranges.'.length);
+  const cut = rest.lastIndexOf('.');
+  if (cut < 0) return null;
+  const field = rest.slice(0, cut);            // may itself be dotted: `ltda.payment`
+  const leaf = rest.slice(cut + 1);
+  if (leaf === 'seed') return COMPARISON_AUTHORITY['economics.' + field] ?? AUTHORITY.METHODOLOGY;
+  return RANGE_LEAF_AUTHORITY[leaf] ?? null;
+}
+
+/* ---------------------------------------------------------------------------
    Queries. Callers ask these rather than reading the tables directly, so the
    default for an unrecognised path is safe rather than permissive.
    --------------------------------------------------------------------------- */
@@ -236,7 +338,16 @@ export const ASSUMPTION_AUTHORITY = {
  * that forgetting to classify a new field fails closed rather than open.
  */
 export function comparisonAuthority(path){
-  return COMPARISON_AUTHORITY[path] ?? AUTHORITY.METHODOLOGY;
+  return COMPARISON_AUTHORITY[path] ?? rangeAuthority(path) ?? AUTHORITY.METHODOLOGY;
+}
+
+/**
+ * Has this path been classified deliberately, rather than falling through to the
+ * fail-closed default? The suite asserts this over every field of every market,
+ * so a new comparison field cannot be added without someone deciding who owns it.
+ */
+export function isClassified(path){
+  return (path in COMPARISON_AUTHORITY) || rangeAuthority(path) != null;
 }
 
 /** Authority for a manifest field. Unknown fields fail closed. */

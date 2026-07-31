@@ -544,6 +544,19 @@ SEC_B.duration = function (){
         '在罗马尼亚，增容选择权本身即是时长策略，而非其补充。最常被遗漏的两项是“仅增MWh时的ATR处理”与“补贴计划对增容部分的处理” — 两者在项目起始阶段建立成本低廉，事后则几乎无法补救；其中任一项缺失，都可能导致火电退役后第二个窗口开启时该选择权无法行使。'],
         sig:['Two clauses decide whether the option exists','两项条款决定选择权是否存在'] },
     ] },
+    
+    /* Relocated from the Investment Lab tab, which moved to the home page. The
+       duration question is a market question — where the de-rating uplift stops
+       covering the MWh capex — so it belongs beside the rest of this tab rather
+       than inside a returns model. */
+    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
+      { t:'labDur' },
+      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the Investment Lab on the home page.',
+        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
+        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
+        sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
+    ] },
   ] };
 };
 
@@ -782,37 +795,6 @@ SEC_B.benchmark = function (){
     ] },
   ] };
 };
-
-// ============================== INVESTMENT LAB ==============================
-SEC_B.lab = function (){
-  return {
-  head: ['Investment Lab — market metrics to project returns','投资测算 — 从市场指标到项目回报'],
-  cap: ['A simplified annual pre-tax model on the seed assumptions above. Because Romania has no capacity mechanism, the capacity channel is deliberately zero and the capital grant replaces it — the model shows that structure explicitly rather than hiding it.',
-        '基于上述种子假设的简化年度税前模型。由于罗马尼亚没有容量机制，容量通道被有意设为零，由资本补贴替代 — 模型显式呈现该结构，而非将其隐去。'],
-  blocks: [
-    { t:'card', mt:false, title:['Inputs','输入假设'], badges:['illus'], live:false, blocks:[
-      { t:'labInputs' },
-      { t:'note', text:['Capacity price is zero because Romania has no capacity mechanism; the capacity de-rating factor therefore reads 100% and year-1 capacity revenue reads ' + fmtC(0) + '. The capital grant appears instead as a reduction in net capex. The spread input is the executable net margin (' + fmtC(M.lab.spread) + '/MWh), scaled by the competition-dilution factor for the selected COD year (' + state.codYear + ': ' + fmtPct(dilutionAt(+state.codYear) * 100, 0) + ').',
-        '容量价格为零，因为罗马尼亚没有容量机制；因此容量折减系数显示为100%，第1年容量收入显示为' + fmtC(0) + '。资本补贴改以净资本开支的减项形式体现。价差输入为可执行净价差（' + fmtC(M.lab.spread) + '/MWh），并按所选投运年度的竞争稀释系数缩放（' + state.codYear + '：' + fmtPct(dilutionAt(+state.codYear) * 100, 0) + '）。'] },
-    ] },
-    { t:'card', title:['Outputs — base case and lender downside','输出结果 — 基准情景与贷款人下行情景'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labOut' },
-      { t:'why', text:['The lender downside case removes the grant entirely as well as stressing spread and balancing revenue — which is the correct treatment, because a grant that has not been formally awarded is not available to a lender at all. If minimum DSCR fails in that case, the answer in Romania is lower gearing or a negotiated bilateral floor. There is no capacity mechanism to fall back on, so the structure must do the work the market does not.',
-        '贷款人下行情景在对价差与平衡收入施加压力的同时，完全剔除补贴 — 这是正确处理方式，因为尚未正式授予的补贴对贷款人而言根本不存在。若该情景下最低偿债覆盖率不达标，罗马尼亚的答案是降低杠杆或谈判取得双边保底。此处没有容量机制可作依托，因此必须由结构承担市场未承担的职能。'],
-        sig:['No mechanism to fall back on','没有机制可作依托'] },
-    ] },
-    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labDur' },
-      { t:'why', text:['Because the capacity column is flat at 100%, this table isolates the pure merchant and grant case for duration — which is the honest Romanian question. Where the incremental column turns negative is the point beyond which added MWh destroys value at current cell prices, and in an energy-only market that crossover arrives earlier than in any capacity-market jurisdiction.',
-        '由于容量列固定为100%，本表分离出时长的纯市场化与补贴情景 — 这正是罗马尼亚需要面对的诚实问题。增量列转负之处，即是在当前电芯价格下增配MWh开始摧毁价值的临界点；在单一电能量市场中，该临界点比任何设有容量市场的辖区来得更早。'],
-        sig:['The crossover arrives earlier here','此处临界点来得更早'] },
-    ] },
-    { t:'card', title:['Scenario snapshots (saved locally)','情景快照（本地保存）'], badges:['calc'], live:false, blocks:[
-      { t:'labSnaps' },
-    ] },
-  ] };
-};
-
 // ============================== PORTFOLIO / FUND VIEW ==============================
 SEC_B.portfolio = function (){
   const inp = labInputs(), r = labModel(inp);

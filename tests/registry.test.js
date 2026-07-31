@@ -96,9 +96,24 @@ test('supported strategies match the prototype: RO has no capacity, only GB has 
   assert.deepEqual(ids(byId('pl')), ['cap', 'mer']);
 });
 
-test('base strategies: capacity-backed everywhere a capacity mechanism exists', () => {
+/* The default is still capacity-backed wherever a capacity mechanism exists, and
+   merchant otherwise — Romania remains the one market with no capacity leg. What
+   changed on 2026-07-30 is that Japan now declares `baseStrategy: 'ltda'`
+   explicitly, because the annual Capacity Market auction stopped being the route
+   a Japanese battery is financed on: LTDA Round 3 set a hard six-hour minimum
+   and a 20-year agreement, and the main auction secures one delivery year. The
+   override exists precisely so a market can say so. */
+test('base strategies: capacity-backed by default, overridden where a market says otherwise', () => {
   assert.deepEqual(markets.map(m => baseStrategy(m)),
-    ['cap', 'cap', 'cap', 'mer', 'cap', 'cap', 'cap', 'cap']);
+    ['cap', 'cap', 'cap', 'mer', 'cap', 'ltda', 'ltda', 'ltda']);
+
+  // An override is only honoured when the market actually supports the route.
+  for (const m of markets){
+    const explicit = m.comparison.baseStrategy;
+    if (!explicit) continue;
+    assert.equal(baseStrategy(m), explicit,
+      `${m.manifest.id}: declared base strategy is not supported by its capabilities`);
+  }
 });
 
 test('every market exposes the full module surface', () => {
@@ -110,9 +125,27 @@ test('every market exposes the full module surface', () => {
   }
 });
 
-test('every dashboard has twelve tabs', () => {
+/* Thirteen since 2026-07-30, when Project Debt was added next to the revenue
+   tabs. The count is asserted rather than left free because the dashboards are
+   meant to mirror one another — a market that quietly gains or loses a tab has
+   stopped being comparable, which is the whole premise of the shared engine. */
+test('every dashboard has the same eleven tabs', () => {
   for (const m of markets){
-    assert.equal(m.tabs.length, 12, `${m.manifest.id} tab count`);
+    assert.equal(m.tabs.length, 11, `${m.manifest.id} tab count`);
+  }
+});
+
+/* Project debt and the Investment Lab moved to the home page, where one model
+   serves every market instead of six dashboards each carrying their own. A
+   dashboard that reintroduced either tab would be re-forking the model, which is
+   the thing the move exists to prevent. */
+test('no dashboard carries a project-debt or investment-lab tab', () => {
+  for (const m of markets){
+    const ids = m.tabs.map(([id]) => id);
+    assert.ok(!ids.includes('debt'),
+      `${m.manifest.id}: project debt belongs to the home-page Investment Lab`);
+    assert.ok(!ids.includes('lab'),
+      `${m.manifest.id}: the Investment Lab is a single cross-market section on the home page`);
   }
 });
 
@@ -132,9 +165,45 @@ test('auction-renewal markets separate secured revenue from assumed renewals', (
       `${id}: renewal payments must sit below the secured payment`);
     assert.ok(e.auctionRenewalCurve[13] < e.auctionRenewalCurve[0],
       `${id}: renewal curve must decline`);
-    // LTDA is a project award, not a market benchmark.
-    assert.equal(m.comparison.capabilities.longTermAward, false,
-      `${id}: LTDA must stay out of the market base case`);
+  }
+});
+
+/* This used to assert `longTermAward === false` — that LTDA stayed out of the
+   market base case entirely, because an award is project-specific and showing it
+   by default would imply every project wins one.
+
+   That reasoning has not been abandoned; it has been overtaken. LTDA Round 3
+   abolished the 3-6 hour bracket, so the long-term award is now the ONLY route
+   in Japan with a product a six-hour battery can bid into, and excluding it
+   stopped being conservative — the model was publishing the residual case as if
+   it were the mainstream one.
+
+   What survives is the guard, not the exclusion. If the route is going to be
+   shown by default, the three things that make it project-specific rather than
+   market-wide have to be modelled explicitly and cannot be quietly dropped. */
+test('a long-term award is modelled with its constraints, never as free contracted revenue', () => {
+  const awarded = markets.filter(m => m.comparison.capabilities.longTermAward);
+  assert.ok(awarded.length > 0, 'no market enables the long-term award route');
+
+  for (const m of awarded){
+    const id = m.manifest.id;
+    const a = m.comparison.economics.ltda;
+    assert.ok(a, `${id}: declares longTermAward but carries no award scenario`);
+    assert.ok(a.payment > 0, `${id}: award payment must be positive`);
+    assert.ok(a.years > 0, `${id}: award tenor must be positive`);
+
+    // The clawback is the whole reason this route is not additive with merchant.
+    // Modelling the award while ignoring it would overstate Japan badly.
+    assert.ok(a.merchantRetention > 0 && a.merchantRetention < 1,
+      `${id}: other-market revenue sharing must be modelled, not assumed away`);
+
+    // Never shown bare: the case carries prose saying what it is.
+    assert.ok(Array.isArray(a.note) && a.note.length === 2,
+      `${id}: an award case must carry a bilingual note`);
+
+    // The duration the auction requires is the duration we model.
+    assert.ok(m.comparison.archetype.durationHours >= 6,
+      `${id}: LTDA requires a 6h minimum — a shorter archetype cannot bid`);
   }
 });
 
