@@ -28,12 +28,21 @@
    requires. The dashboard says so on every affected card.
    --------------------------------------------------------------------------- */
 
+import { band, limits } from '../../comparison/ranges.js';
+
 /* Reference asset — identical in all three regions on purpose. The controlled
-   experiment the Regional Benchmark tab asks: same 50 MW / 4h battery, same
-   capex, what changes when you move it? */
+   experiment the Regional Benchmark tab asks: same 50 MW / 6h battery, same
+   capex, what changes when you move it?
+
+   REVISED 2026-07-30: 4h → 6h. This is not a preference. LTDA Round 3 eliminated
+   the 3-6 hour bracket and set a hard SIX-HOUR MINIMUM for BESS; the capacity
+   auction that awarded 1.25 GW of storage carried the same six-hour requirement.
+   A four-hour Japanese battery cannot bid into the route that makes Japan
+   bankable, so a four-hour reference asset was modelling a market that is closed.
+   docs/external-view.md §3. */
 export const JP_REFERENCE = {
   powerMW: 50,
-  durationHours: 4,
+  durationHours: 6,
   usableFraction: 0.95,
   rtePct: 88,
   availPct: 92,
@@ -42,11 +51,21 @@ export const JP_REFERENCE = {
   degrPct: 2,
 };
 
-/* Common cost basis, JPY. SEED — reconcile against a real Japanese 4h build
-   before any transaction use. ¥45,000/kWh × 4 h × 1,000 kWh/MWh = ¥180m/MW. */
+/* Common cost basis, JPY.
+
+   REVISED 2026-07-30: ¥45,000/kWh → ¥60,000/kWh. Japanese grid-scale BESS
+   averaged around ¥68,000/kWh in FY2024 (~US$433/kWh), with system costs
+   reported at 2.5-3× global benchmarks. ¥45,000 was a seed that quietly assumed
+   Japan builds at world prices, which is the one thing every source says it does
+   not — and which is the reason the LTDA exists at all.
+
+   ¥60,000 sits between the FY2024 observation and global convergence, allowing
+   for decline to a 2026-27 COD. It remains an ANALYST assumption: gate G5.
+
+   ¥60,000/kWh × 6 h × 1,000 kWh/MWh = ¥360m/MW. */
 export const JP_COMMON_COST = {
-  capexPerKWh: 45000,
-  capexPerMW: 180000000,
+  capexPerKWh: 60000,
+  capexPerMW: 360000000,
   opexPerMW: 1800000,
   optimiserFeePct: 10,
 };
@@ -69,6 +88,99 @@ function renewalCurve(securedJPYperMW){
 
 const cmPrice = { tokyo: 15111, kyushu: 15112, hokkaido: 14972 };
 const secured = (area) => Math.round(cmPrice[area] * 1000 * JP_EXPECTED_CAPACITY_FACTOR);
+
+/* ---------------------------------------------------------------------------
+   THE LONG-TERM DECARBONIZATION AUCTION — Japan's bankable route.
+
+   Round 3 (results 13 May 2026) is now the route a Japanese BESS is underwritten
+   on, and it is structurally unlike everything else in this platform:
+
+     · 20-year Capacity Reserve Agreement with OCCTO, CPI-indexed
+     · hard 6-hour minimum duration; the 3-6h bracket was abolished
+     · pay-as-bid, and CLEARING PRICES ARE NOT PUBLISHED
+     · ~90% of net profit from other markets is returned to OCCTO for the term
+     · ~575 MW of standalone BESS awarded; ~46% bid success, up from ~20%
+
+   PRICING A PAY-AS-BID AUCTION WITH NO PUBLISHED CLEARING PRICE.
+
+   The only published anchor is the FY2024 bid ceiling: ~¥87,683-93,883/kW/yr for
+   6h+ duration (against ~¥56,545-77,509 for the abolished 3-6h bracket). It is
+   tempting to take a fraction of that ceiling, and it is wrong: in a pay-as-bid
+   auction with real competition — 46% success means more than half the bid
+   capacity lost — a bidder bids its cost, not the cap. Anchoring to the ceiling
+   would model a bidder with no competitors.
+
+   So the award is derived as cost-reflective fixed-cost recovery, which is what
+   the bid actually is:
+
+       capex annuitised over the 20-year term at a required return
+     + opex
+     - the sliver of market revenue the bidder still keeps after the clawback
+     = the bid
+
+   That lands at ~¥37,000/kW/yr, or about 41% of the ceiling midpoint — a
+   plausible competitive clearing level, and one that moves correctly if the
+   capex assumption moves. It remains an ANALYST assumption: gate G4 (OCCTO
+   Round 3 guidelines) is what would replace it with an observation.
+   --------------------------------------------------------------------------- */
+
+/** Required return used to annuitise capex into an LTDA bid. Nominal, pre-tax. */
+const LTDA_REQUIRED_RETURN = 0.08;
+const LTDA_TERM_YEARS = 20;
+
+/** Published FY2024 bid ceiling for the 6h+ bracket, ¥/kW/yr. Context, not an input. */
+export const JP_LTDA_CAP_BAND = [87683, 93883];
+
+function ltdaCostReflectiveBid(retainedMarketPerMW){
+  const capexPerKW = JP_COMMON_COST.capexPerMW / 1000;
+  const r = LTDA_REQUIRED_RETURN;
+  const annuityFactor = r / (1 - Math.pow(1 + r, -LTDA_TERM_YEARS));
+  const perKW = capexPerKW * annuityFactor
+    + JP_COMMON_COST.opexPerMW / 1000
+    - retainedMarketPerMW / 1000;
+  return Math.round(perKW / 1000) * 1000 * 1000;   // to ¥/MW/yr, rounded to ¥1,000/kW
+}
+
+/* Fraction of other-market net profit the owner keeps. The LTDA returns ~90% to
+   OCCTO, which is why the award and the merchant stack are very nearly
+   alternatives rather than a stack — and why co-located projects, which are NOT
+   subject to the clawback, are where advisers are steering developers. */
+export const JP_LTDA_MERCHANT_RETENTION = 0.10;
+
+/* Arbitrage uplift from the 4h reference the seed economics were built on to the
+   6h asset the LTDA now requires. Sub-linear: 50% more energy does not buy 50%
+   more spread, because the marginal hours are the less valuable ones. Balancing
+   value is power-based and is NOT scaled. SEED. */
+const JP_6H_MERCHANT_UPLIFT = 1.25;
+
+/* Normalized economics for one area.
+
+   Note what falls out of this: because the LTDA bid is cost-reflective and costs
+   are national, all three areas land on the SAME award. That is not a modelling
+   shortcut — it is the finding. The LTDA does not differentiate regions, exactly
+   as the Capacity Market area prices do not (¥14,972 / ¥15,111 / ¥15,112, within
+   0.9% of each other). Whatever separates Tokyo from Kyushu from Hokkaido has to
+   be earned in the market legs, which is the premise the three-region split was
+   built on. */
+function regionEcon(area, merchGross4hJPYMWYr, balancingJPYMWYr){
+  const merchGross = Math.round(merchGross4hJPYMWYr * JP_6H_MERCHANT_UPLIFT);
+
+  /* Market revenue the owner actually keeps under the clawback, net of the
+     optimiser fee on the traded leg. This is what a bidder can deduct from the
+     fixed-cost recovery it needs the award to cover. */
+  const retained = (merchGross * (1 - JP_COMMON_COST.optimiserFeePct / 100) + balancingJPYMWYr)
+    * JP_LTDA_MERCHANT_RETENTION;
+
+  return {
+    merchGrossJPYMWYr: merchGross,
+    merchGross4hJPYMWYr,                       // kept for the Regional Benchmark tab
+    balancingIncrementalJPYMWYr: balancingJPYMWYr,
+    securedContractedJPYMWYr: secured(area),
+    capacityAreaPriceJPYkWYr: cmPrice[area],
+    renewal: renewalCurve(secured(area)),
+    ltdaPaymentJPYMWYr: ltdaCostReflectiveBid(retained),
+  };
+}
 
 export const JP_REGIONS = {
   // =========================================================================
@@ -172,13 +284,7 @@ export const JP_REGIONS = {
     ],
 
     // ---- normalized economics for the global engine (SEED) ----
-    econ: {
-      merchGrossJPYMWYr: 11500000,
-      balancingIncrementalJPYMWYr: 2400000,
-      securedContractedJPYMWYr: secured('tokyo'),
-      capacityAreaPriceJPYkWYr: cmPrice.tokyo,
-      renewal: renewalCurve(secured('tokyo')),
-    },
+    econ: regionEcon('tokyo', 11500000, 2400000),
   },
 
   // =========================================================================
@@ -276,13 +382,7 @@ export const JP_REGIONS = {
       { n: ['Augmentation flexibility', '增容灵活性'], w: 7, s: 2 },
     ],
 
-    econ: {
-      merchGrossJPYMWYr: 13400000,
-      balancingIncrementalJPYMWYr: 2000000,
-      securedContractedJPYMWYr: secured('kyushu'),
-      capacityAreaPriceJPYkWYr: cmPrice.kyushu,
-      renewal: renewalCurve(secured('kyushu')),
-    },
+    econ: regionEcon('kyushu', 13400000, 2000000),
   },
 
   // =========================================================================
@@ -393,17 +493,104 @@ export const JP_REGIONS = {
       { n: ['Augmentation flexibility', '增容灵活性'], w: 7, s: 2 },
     ],
 
-    econ: {
-      merchGrossJPYMWYr: 12100000,
-      balancingIncrementalJPYMWYr: 1500000,
-      securedContractedJPYMWYr: secured('hokkaido'),
-      capacityAreaPriceJPYkWYr: cmPrice.hokkaido,
-      renewal: renewalCurve(secured('hokkaido')),
-    },
+    econ: regionEcon('hokkaido', 12100000, 1500000),
   },
 };
 
 export const REGION_IDS = ['tokyo', 'kyushu', 'hokkaido'];
+
+/* ---------------------------------------------------------------------------
+   Investment-Lab bounds, built once for all three areas.
+
+   Costs are national and the LTDA does not differentiate regions, so every band
+   below is identical across Tokyo, Kyushu and Hokkaido except `securedContracted`
+   and `services`, which are derived from each area's own seed. That is the same
+   finding regionEcon() produces: whatever separates the three areas has to be
+   earned in the market legs.
+
+   Two fields are deliberately NOT given a band, and so are not editable:
+
+     securedContractYears  the Capacity Market main auction secures one delivery
+                           year. There is no longer award to select.
+     ltda.years            the Capacity Reserve Agreement is twenty years, fixed
+                           by the scheme, and outlives the comparison window.
+   --------------------------------------------------------------------------- */
+export function jpRanges(economics){
+  return {
+    capexPerMW: band(economics.capexPerMW, 45000 * 6000, 68000 * 6000, {
+      basis: [
+        'Japanese grid-scale BESS averaged ~¥68,000/kWh in FY2024 (~US$433/kWh), with system costs reported at 2.5–3× global benchmarks. ¥45,000/kWh was this platform\'s previous seed and assumed convergence to world prices. ¥60,000 sits between the observation and that convergence, allowing for decline to a 2026-27 COD. Both ends × 6,000 kWh/MW.',
+        '日本电网级储能在2024财年平均约¥68,000/kWh（约US$433/kWh），系统成本据报为全球基准的2.5–3倍。¥45,000/kWh为本平台此前种子值，隐含向全球价格收敛的假设。¥60,000介于实测值与该收敛之间，并考虑至2026–27年投运期间的成本下降。两端均乘以6,000 kWh/MW。',
+      ],
+      source: 'MRI / METI cost estimates and IEEFA, FY2024 observation ~¥68,000/kWh',
+      gate: 'G5',
+    }),
+
+    opexPerMW: band(economics.opexPerMW, null, null, {
+      basis: [
+        'No published Japanese fixed-opex series. ¥1.8m/MW/yr is ≈US$11,500, below the US utility-scale benchmark of US$15–25k/MW/yr, which is context rather than a bound.',
+        '无日本固定运维公开序列。¥180万/MW/年约合US$11,500，低于美国公用事业级基准US$15–25k/MW/年 — 后者仅为参照，非边界。',
+      ],
+      source: 'Platform seed',
+      gate: 'G13',
+    }),
+
+    /* The area price is anchored; the factor applied to it is not. */
+    securedContracted: band(economics.securedContracted, null, null, {
+      basis: [
+        'The Capacity Market area price is ANCHORED (OCCTO, delivery year 2029) and the three areas sit within 0.9% of each other at ¥14,972–15,112/kW/yr. What is seeded is the Expected Capacity factor of 0.70 applied to it — the single highest-leverage open input in the Japan build — so the band is dispersion around the product, not around the price.',
+        '容量市场分区价格为已锚定数据（OCCTO，2029实需年度），三个区域价格差异在0.9%以内，为¥14,972–15,112/kW/年。种子设定的是施加于其上的预期容量系数0.70 — 该系数是日本模型中影响最大的未决输入 — 因此区间为该乘积的离散范围，而非价格的离散范围。',
+      ],
+      source: 'OCCTO Capacity Market area prices (anchored); Expected Capacity factor is a seed — docs/japan-etl-gates.md',
+    }),
+
+    /* Pay-as-bid with no published clearing price. The band is the honest width
+       of that: a cost-reflective bid at the bottom, the published cap at the top. */
+    'ltda.payment': band(economics.ltda.payment, null, 87683 * 1000, {
+      basis: [
+        'LTDA Round 3 is pay-as-bid and clearing prices are NOT published. The ceiling is the FY2024 guideline maximum for the 6h+ bracket, ¥87,683–93,883/kW/yr. The seed is derived instead as cost-reflective fixed-cost recovery — capex annuitised over the 20-year term at 8%, plus opex, less the sliver of market revenue retained after the ~90% clawback — which lands at ~41% of the ceiling midpoint. With ~46% bid success, more than half the bid capacity lost, so a bidder bids its cost rather than the cap.',
+        '长期脱碳拍卖第3轮采用按报价成交，且出清价格不予公布。上限为2024财年6小时以上档位的指导价上限¥87,683–93,883/kW/年。种子值则按成本反映型固定成本回收推导 — 资本开支按8%在20年期限内年金化，加运维成本，减去在约90%收益上缴后所保留的少量市场收入 — 结果约为上限中值的41%。在约46%的中标率下，超过半数投标容量落标，因此投标人按成本而非按上限报价。',
+      ],
+      source: 'OCCTO LTDA Round 3 (results 13 May 2026); FY2024 Round 2 guideline maxima for 6h+',
+      gate: 'G4',
+    }),
+
+    merchGross: band(economics.merchGross, null, null, {
+      basis: [
+        'JEPX day-ahead and intraday capture for a six-hour asset, uplifted 1.25× from the four-hour seed the economics were originally built on. The uplift is sub-linear on purpose — 50% more energy does not buy 50% more spread, because the marginal hours are the less valuable ones.',
+        '六小时资产在JEPX日前及日内市场的价格兑现，在原economics所依据的四小时种子基础上按1.25倍提升。该提升刻意设为次线性 — 能量增加50%并不能带来50%的价差增长，因为边际小时数属于价值较低的时段。',
+      ],
+      source: 'Platform seed — JEPX area prices, pending the 12-month backtest in docs/japan-etl-gates.md',
+    }),
+
+    feePct: limits(economics.feePct, 6, 12, {
+      kind: 'dispersed',
+      basis: [
+        'Optimiser fees across the platform\'s six markets run 8–10% of market revenue; the band widens that by the stated dispersion.',
+        '本平台六个市场的优化商费用为市场化收入的8–10%；该区间在此基础上按既定离散幅度扩展。',
+      ],
+      source: 'Platform cross-market seeds, widened by the stated dispersion',
+    }),
+
+    services: band(economics.services, null, null, {
+      basis: [
+        'EPRX balancing, counted as INCREMENTAL value only — the part a battery earns beyond what the energy leg already captures. Seeded per area; no public per-MW Japanese balancing series exists.',
+        'EPRX平衡市场，仅计入增量价值 — 即电池在电能量收入之外额外获得的部分。按区域设定种子值；目前无公开的日本每MW平衡市场收入序列。',
+      ],
+      source: 'Platform seed — EPRX incremental balancing value',
+    }),
+
+    degr: limits(economics.degr, 1, 3, {
+      kind: 'dispersed',
+      basis: [
+        'Applied to the market revenue leg. 2%/yr is the platform seed in every market; no market-specific degradation series is carried.',
+        '适用于市场化收入部分。各市场种子值均为每年2%；本平台未采用市场专属的衰减序列。',
+      ],
+      source: 'Platform seed — held constant across all markets',
+      gate: 'G13',
+    }),
+  };
+}
 
 /** Shared risk bands. Identical in all three regions so comparison means something. */
 export const CONN_BANDS = [

@@ -1,4 +1,7 @@
-import { PL_GRID_MAP } from './gridMapData.js';
+import { gridMapById } from '../gridMapRegistry.js';
+import { congestionFor } from '../congestionRegistry.js';
+
+const PL_GRID_MAP = gridMapById('pl-grid-map');
 
 export function buildPLGridSection({ SRC }){
   return {
@@ -11,6 +14,7 @@ export function buildPLGridSection({ SRC }){
         { t:'src', src:SRC.gridPlan, use:['Published nodes, investment tasks, dates and system scenarios','公开节点、投资任务、日期及系统情景'] },
         { t:'src', src:SRC.giscoBoundary, use:['Published country boundary used by the map','地图采用的公开国家边界'] },
       ]},
+      { t:'congestion', data:congestionFor('pl') },
       { t:'card', title:['Connection journey — from location to unrestricted operation','并网流程 — 从区位到无限制运行'], badges:['official'], blocks:[
         { t:'phases', items:[
           {yr:['1 · Screen','1 · 初筛'],h:['Choose operator and node','确定运营商及节点'],p:['Identify whether PSE or a DSO owns the relevant voltage level, then test the published plan and local network.','确定相关电压等级由PSE或配电运营商负责，再测试公开规划及本地网络。']},

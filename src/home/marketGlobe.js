@@ -136,6 +136,40 @@ export function renderMarketGlobe(){
   const markerLayer = S('g', { class:'globe-markers' });
   svg.append(sphere, graticule, countryLayer, markerLayer);
 
+  /* Activation is resolved from the pressed node rather than from a `click`
+     listener on it.
+
+     Rotating the globe needs setPointerCapture on the <svg>, and an active
+     pointer capture retargets the subsequent pointerup — and therefore the
+     synthesised click — to the capture element. A click listener bound to a
+     country path is consequently never called: the event is dispatched at the
+     <svg>. Recording what was pressed and opening it on pointerup, provided the
+     pointer did not travel far enough to count as a drag, is equivalent for a
+     mouse and unaffected by capture. Keyboard activation is unaffected and stays
+     on the focusable node. */
+  const routeByNode = new Map();
+  const openRoute = (route) => {
+    navigate(route);
+    window.scrollTo(0, 0);
+  };
+  /** Registers a node as a link, with keyboard activation. */
+  const bindRoute = (node, route) => {
+    routeByNode.set(node, route);
+    node.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' '){
+        event.preventDefault();
+        openRoute(route);
+      }
+    });
+  };
+  /** The route of the nearest bound ancestor — markers press their child circle. */
+  const routeAt = (target) => {
+    for (let el = target; el && el !== svg; el = el.parentNode){
+      if (routeByNode.has(el)) return routeByNode.get(el);
+    }
+    return null;
+  };
+
   const countryShapes = countries.map(country => {
     const countryId = Number(country.id);
     const isAustralia = countryId === 36;
@@ -148,15 +182,7 @@ export function renderMarketGlobe(){
     if (covered){
       node.append(S('title'));
       node.querySelector('title').textContent = L(covered.name);
-      const open = () => {
-        if (dragMoved) return;
-        navigate(covered.route);
-        window.scrollTo(0, 0);
-      };
-      node.addEventListener('click', open);
-      node.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') open();
-      });
+      bindRoute(node, covered.route);
     }
     countryLayer.append(node);
     return [country, node];
@@ -174,33 +200,20 @@ export function renderMarketGlobe(){
   const waTitle = S('title');
   waTitle.textContent = L(waMarket.name);
   waShape.append(waTitle);
-  const openWesternAustralia = () => {
-    if (dragMoved) return;
-    navigate(waMarket.route);
-    window.scrollTo(0, 0);
-  };
-  waShape.addEventListener('click', openWesternAustralia);
-  waShape.addEventListener('keydown', event => {
-    if (event.key === 'Enter' || event.key === ' ') openWesternAustralia();
-  });
+  bindRoute(waShape, waMarket.route);
   countryLayer.append(waShape);
 
   const markers = [...COVERED.values()].map(market => {
     const group = S('g', { class:'globe-marker', role:'link', tabindex:'0' });
+    /* Ireland is under ten screen pixels wide at the default zoom, so the marker
+       carries an invisible hit area larger than anything drawn. */
+    const hit = S('circle', { r:'14', class:'globe-marker-hit' });
     const pulse = S('circle', { r:'9', class:'globe-marker-pulse' });
     const dot = S('circle', { r:'4', class:'globe-marker-dot' });
     const title = S('title');
     title.textContent = L(market.name);
-    group.append(pulse, dot, title);
-    const open = () => {
-      if (dragMoved) return;
-      navigate(market.route);
-      window.scrollTo(0, 0);
-    };
-    group.addEventListener('click', open);
-    group.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') open();
-    });
+    group.append(hit, pulse, dot, title);
+    bindRoute(group, market.route);
     markerLayer.append(group);
     return [market, group];
   });
@@ -225,6 +238,7 @@ export function renderMarketGlobe(){
   let dragMoved = false;
   let startPoint = null;
   let startRotation = null;
+  let pressedRoute = null;
   const setScale = value => {
     projection.scale(Math.max(150, Math.min(340, value)));
     render();
@@ -240,6 +254,7 @@ export function renderMarketGlobe(){
   svg.addEventListener('pointerdown', event => {
     dragging = true;
     dragMoved = false;
+    pressedRoute = routeAt(event.target);
     startPoint = [event.clientX, event.clientY];
     startRotation = projection.rotate();
     svg.setPointerCapture(event.pointerId);
@@ -261,9 +276,16 @@ export function renderMarketGlobe(){
     dragging = false;
     svg.classList.remove('dragging');
     if (svg.hasPointerCapture(event.pointerId)) svg.releasePointerCapture(event.pointerId);
+    const route = pressedRoute;
+    pressedRoute = null;
     setTimeout(() => { dragMoved = false; }, 0);
+    return route;
   };
-  svg.addEventListener('pointerup', finishDrag);
+  svg.addEventListener('pointerup', event => {
+    const route = finishDrag(event);
+    // A press that rotated the globe is a drag, not a selection.
+    if (route && !dragMoved) openRoute(route);
+  });
   svg.addEventListener('pointercancel', finishDrag);
 
   render();

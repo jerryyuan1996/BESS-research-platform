@@ -16,6 +16,7 @@ import { why } from '../../components/decisionLogic.js';
 import { kpi, scoreRows, bandFor } from '../../components/metricCard.js';
 import { sourceDrawer } from '../../components/sourceDrawer.js';
 import { renderGeographicGridMap } from '../../components/geographicGridMap.js';
+import { renderCongestionRegister } from '../../components/congestionPanel.js';
 import { lineChart, barChart, waterfall, bandChart } from '../../charts/index.js';
 import { GLOSS_CORE } from './glossary.js';
 
@@ -138,6 +139,9 @@ function B(parent, b){
       break;
     case 'src': parent.append(sourceDrawer(b.src, b.use)); break;
     case 'geo-grid-map': renderGeographicGridMap(parent, b.data); break;
+    /* The congestion register that belongs to the map above it. Both are joined
+       to the market in gridMapRegistry.js, so they cannot disagree. */
+    case 'congestion': renderCongestionRegister(parent, b.data); break;
     case 'walk':
       parent.append(h('div', { class: 'walk' }, b.items.map(x => h('button', {
         class: 'walk-step', onclick: () => { state.tab = x[3]; render(); window.scrollTo(0, 0); } },

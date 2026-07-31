@@ -43,7 +43,7 @@ No rendering code. No charts. No components. A section is described, not drawn:
 |---|---|
 | `engine.js` | `createMarketEngine(cfg)` — binds everything to one market, returns its `dashboard` |
 | `blocks.js` | `B()`, the block renderer, plus the engine-owned interactive blocks |
-| `lab.js` | the Investment Lab — one model, four markets |
+| `lab.js` | the duration-NPV sweep and the portfolio screening model. Named for the Investment Lab tab it used to render; that tab moved to the home page, and what remains here is the market-level analysis the cross-market Lab does not do |
 | `compute.js` | weighted scores, de-rating interpolation, duration path, stage probabilities |
 | `format.js` | currency- and locale-bound formatters, derived from `MKT` |
 | `exports.js` | CSV / JSON download |

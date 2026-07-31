@@ -1,19 +1,36 @@
+/* ---------------------------------------------------------------------------
+   Grid maps, with each market's congestion register attached.
+
+   The two are declared separately — a map is geography, a register is economics
+   — and joined here so that every consumer of a map gets the constraint layer
+   without knowing the join exists. A market that gains a congestion register
+   therefore gains the map layer, the grid-tab table and the home-page comparison
+   in one edit, which is the same rule the market registry follows.
+   --------------------------------------------------------------------------- */
 import { WA_GRID_MAP } from './wa/gridMapData.js';
 import { GB_GRID_MAP } from './gb/gridMapData.js';
 import { IE_GRID_MAP } from './ie/gridMapData.js';
 import { RO_GRID_MAP } from './ro/gridMapData.js';
 import { PL_GRID_MAP } from './pl/gridMapData.js';
 import { JP_GRID_MAPS } from './jp/gridMapData.js';
+import { congestionFor } from './congestionRegistry.js';
+
+/** A map plus the constraint zones of the allocation market it belongs to. */
+const join = (map, marketId) => ({
+  ...map,
+  marketId,
+  constraints: congestionFor(marketId)?.zones || [],
+});
 
 export const GRID_MAPS = [
-  WA_GRID_MAP,
-  GB_GRID_MAP,
-  IE_GRID_MAP,
-  RO_GRID_MAP,
-  PL_GRID_MAP,
-  JP_GRID_MAPS.tokyo,
-  JP_GRID_MAPS.kyushu,
-  JP_GRID_MAPS.hokkaido,
+  join(WA_GRID_MAP, 'wa'),
+  join(GB_GRID_MAP, 'gb'),
+  join(IE_GRID_MAP, 'ie'),
+  join(RO_GRID_MAP, 'ro'),
+  join(PL_GRID_MAP, 'pl'),
+  join(JP_GRID_MAPS.tokyo, 'jp_tokyo'),
+  join(JP_GRID_MAPS.kyushu, 'jp_kyushu'),
+  join(JP_GRID_MAPS.hokkaido, 'jp_hokkaido'),
 ];
 
 const byId = new Map(GRID_MAPS.map(map => [map.id, map]));
@@ -23,6 +40,9 @@ export function gridMapById(id){
 }
 
 export function gridMapForMarket(marketId, region){
-  if (marketId === 'jp') return JP_GRID_MAPS[region] || JP_GRID_MAPS.tokyo;
+  if (marketId === 'jp'){
+    const area = JP_GRID_MAPS[region] ? region : 'tokyo';
+    return byId.get(JP_GRID_MAPS[area].id) || null;
+  }
   return byId.get(`${marketId}-grid-map`) || null;
 }

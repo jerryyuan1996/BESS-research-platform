@@ -1,4 +1,7 @@
-import { RO_GRID_MAP } from './gridMapData.js';
+import { gridMapById } from '../gridMapRegistry.js';
+import { congestionFor } from '../congestionRegistry.js';
+
+const RO_GRID_MAP = gridMapById('ro-grid-map');
 
 export function buildROGridSection({ SRC }){
   return {
@@ -11,7 +14,8 @@ export function buildROGridSection({ SRC }){
         { t:'src', src:SRC.gridPlan, use:['Transmission nodes, corridors and 2026–2035 reinforcement programme','输电节点、走廊及2026—2035增容计划'] },
         { t:'src', src:SRC.gridProjects, use:['Official project-stage funnel used to distinguish ATR capacity from mature projects','用于区分ATR容量与成熟项目的官方项目阶段漏斗'] },
         { t:'src', src:SRC.giscoBoundary, use:['Published country boundary used by the map','地图采用的公开国家边界'] },
-      ] },
+      ]},
+      { t:'congestion', data:congestionFor('ro') },
       { t:'card', title:['Connection journey — what each document actually proves','并网流程 — 每份文件究竟证明什么'], badges:['official'], blocks:[
         { t:'phases', items:[
           {yr:['1 · Screen','1 · 初筛'],h:['Node and route','节点与路径'],p:['Use Transelectrica’s indicative capacity map and development plan to choose scenarios. Neither creates a right.','利用Transelectrica示意容量地图及发展规划选择情景；两者均不产生权利。']},

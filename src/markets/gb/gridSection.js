@@ -1,4 +1,9 @@
-import { GB_GRID_MAP } from './gridMapData.js';
+import { gridMapById } from '../gridMapRegistry.js';
+import { congestionFor } from '../congestionRegistry.js';
+
+/* The joined map, not the raw one: gridMapRegistry attaches this market's
+   congestion register so the constraint layer and the table below agree. */
+const GB_GRID_MAP = gridMapById('gb-grid-map');
 
 export function buildGBGridSection({ SRC }){
   return {
@@ -30,6 +35,8 @@ export function buildGBGridSection({ SRC }){
           { t:'src', src:SRC.onsBoundary, use:['Great Britain country boundary used as the map base','地图采用的英国国家边界'] },
         ],
       },
+
+      { t:'congestion', data:congestionFor('gb') },
 
       {
         t:'card',

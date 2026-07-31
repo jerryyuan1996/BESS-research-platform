@@ -348,6 +348,35 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 .geo-symbol.generation{background:var(--s2);clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:0}
 .geo-symbol.load{background:var(--s6);border-radius:2px}
 .geo-symbol.route{width:13px;height:2px;background:var(--s5);border-radius:0}
+.geo-symbol.constraint{background:color-mix(in srgb,var(--critical) 45%,transparent);
+  border:1px solid var(--critical);width:10px;height:10px}
+
+/* ---- constraint layer ----------------------------------------------------
+   Drawn beneath the network so a constraint reads as the background a node sits
+   in. Deliberately unlabelled on the map: the marker carries intensity, which is
+   an analyst ranking, and printing a ranking as a number would dress judgement
+   up as measurement. */
+.geo-constraint{fill:color-mix(in srgb,var(--critical) 13%,transparent);
+  stroke:var(--critical);stroke-width:1.1;cursor:pointer;transition:fill .16s ease}
+.geo-constraint.interface{fill:none;stroke-width:3.4;stroke-linecap:round;stroke-dasharray:9 5}
+.geo-constraint.open-ended{stroke-dasharray:2 3}
+.geo-constraint.interface.open-ended{stroke-dasharray:14 4 2 4}
+.geo-constraint:hover{fill:color-mix(in srgb,var(--critical) 22%,transparent)}
+.geo-constraint.selected{stroke-width:2.4;fill:color-mix(in srgb,var(--critical) 26%,transparent)}
+.geo-constraint.interface.selected{fill:none;stroke-width:5}
+.geo-layer-toggle.constraint span{background:color-mix(in srgb,var(--critical) 60%,transparent);
+  border:1px solid var(--critical)}
+
+.geo-detail-eyebrow.constraint{color:var(--critical)}
+.geo-metric-period{color:var(--muted);font-size:10.5px}
+.geo-capture-tag,.geo-relief-tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;
+  font-style:normal;font-size:9.5px;font-weight:600;letter-spacing:.02em;
+  background:var(--good-bg);color:var(--ink);border:1px solid var(--good)}
+.geo-capture-tag.charges{background:var(--critical-bg);border-color:var(--critical)}
+.geo-relief-tag{background:var(--accent-bg);border-color:var(--border)}
+.geo-capture-warn{color:var(--critical);font-weight:600}
+.geo-runway{margin-top:5px;font-weight:600}
+
 .geo-map-detail{padding:18px 16px;background:var(--bg)}
 .geo-detail-eyebrow{
   font-size:10.5px;

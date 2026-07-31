@@ -35,7 +35,7 @@ import { sectionHead } from '../../components/sectionHeader.js';
 import { sourceDrawer, sourceStatusBadge } from '../../components/sourceDrawer.js';
 // Charts, card and why are re-exported to market sections through `api`, not used here.
 import { renderHeader, renderDisclaimer } from '../../components/header.js';
-import { marketNav, tabNav, revenueSubNav } from '../../components/navigation.js';
+import { marketNav, tabNav, revenueSubNav, labLink } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
 import { enhanceMarketPage } from '../../components/pageEnhancements.js';
 import { gridMapForMarket } from '../gridMapRegistry.js';
@@ -83,6 +83,8 @@ export function createMarketEngine(cfg){
   let tabValue = TABS[0][0];
   let pendingTab = null;
   let basePath = '';
+  /* The registry, captured on the first render. See api.marketEntry(). */
+  let registry = null;
 
   let regionValue = REGIONS ? REGIONS[0][0] : null;
 
@@ -141,6 +143,16 @@ export function createMarketEngine(cfg){
        just the selected one. This is what stops compare mode from duplicating a
        national rule three times. */
     lensRegions: () => (regionValue === 'compare' ? REGION_IDS.filter(r => r !== 'compare') : [regionValue]),
+
+    /* This market's own registry entry, resolved at render time.
+
+       A static import of the registry here would close a cycle — the registry
+       imports the market, which imports this engine. The registry is already
+       handed to dashboard() for the application nav row, so it is captured there
+       and matched on slug, which is what basePath is built from. Sections must
+       call this rather than caching it: three Japanese allocation markets share
+       one dashboard, and the answer changes with the route. */
+    marketEntry: () => (registry || []).find(m => basePath === '/markets/' + m.manifest.slug) || null,
   };
 
   // Markets supply SECTIONS() as a function so every string re-evaluates per language.
@@ -207,6 +219,7 @@ export function createMarketEngine(cfg){
    * @param {Array} allMarkets  registry, for the application nav row
    */
   function dashboard(container, route, allMarkets){
+    registry = allMarkets;
     basePath = route.basePath;
     // Set the backing field directly: reading the route is not a navigation.
     tabValue = TABS.some(([id]) => id === route.tabId) ? route.tabId : TABS[0][0];
@@ -235,6 +248,8 @@ export function createMarketEngine(cfg){
 
     const lens = regionSelector(allMarkets);
     if (lens) container.append(lens);
+
+    container.append(labLink(route.market ? route.market.manifest.id : MKT.id));
 
     const main = h('div');
     container.append(main);

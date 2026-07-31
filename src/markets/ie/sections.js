@@ -10,7 +10,8 @@
    which is what keeps the four markets in this lineage interchangeable.
    --------------------------------------------------------------------------- */
 
-import { IE_GRID_MAP } from './gridMapData.js';
+import { gridMapById } from '../gridMapRegistry.js';
+import { congestionFor } from '../congestionRegistry.js';
 import { ieOfficialPlanningBlocks, ieQueueCoverageBlock } from './officialPlanningSection.js';
 import { ieEconomicsP0Blocks } from './economicsP0Section.js';
 
@@ -634,6 +635,19 @@ SEC_B.duration = function (){
         '在爱尔兰，增容选择权的价值高于其他市场，因为其回报是行政性的、呈阶跃状：跨入更高折减档位意味着容量收入的离散跃升，而非交易收入的边际改善。最常导致该选择权失效的两个事项是规划许可范围与并网协议中的MEC/MIC裕度 — 两者在项目起始阶段获取成本低廉，事后则几乎无法补救。'],
         sig:['Secure the envelope and the MIC first','优先锁定规划范围与MIC'] },
     ] },
+    
+    /* Relocated from the Investment Lab tab, which moved to the home page. The
+       duration question is a market question — where the de-rating uplift stops
+       covering the MWh capex — so it belongs beside the rest of this tab rather
+       than inside a returns model. */
+    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
+      { t:'labDur' },
+      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the Investment Lab on the home page.',
+        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
+        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
+        sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
+    ] },
   ] };
 };
 
@@ -704,7 +718,8 @@ SEC_B.grid = function (){
   cap: ['Connection is the binding constraint on Irish storage and the place where development capital is lost. The distinctively Irish requirement is that both MEC (export) and MIC (import) must be documented in an executed agreement — an asset with export rights but insufficient import rights cannot charge at contracted power.',
         '并网是爱尔兰储能的关键约束，也是开发资本损失之处。爱尔兰特有的要求是：MEC（送出）与MIC（受入）必须在已签协议中同时载明 — 拥有送出权利但受入权利不足的资产，无法以合同功率充电。'],
   blocks: [
-    { t:'geo-grid-map', data:IE_GRID_MAP },
+    { t:'geo-grid-map', data:gridMapById('ie-grid-map') },
+    { t:'congestion', data:congestionFor('ie') },
     { t:'card', mt:false, title:['Nameplate → revenue bridge','铭牌容量至收入桥'], badges:['calc','illus'], live:true, blocks:[
       { t:'sub', text:['Capacity channel','容量通道'] },
       { t:'flow', items:[
@@ -944,37 +959,6 @@ SEC_B.benchmark = function (){
     ] },
   ] };
 };
-
-// ============================== INVESTMENT LAB ==============================
-SEC_B.lab = function (){
-  return {
-  head: ['Investment Lab — market metrics to project returns','投资测算 — 从市场指标到项目回报'],
-  cap: ['A simplified annual pre-tax model on the seed assumptions above. It demonstrates the decision workflow — capacity de-rating, executable spread, services and saturation by COD year — and is not a substitute for a dispatch-optimised project-finance model.',
-        '基于上述种子假设的简化年度税前模型，用于演示决策流程 — 容量折减、可执行价差、系统服务及按投运年度的饱和 — 不能替代调度优化的完整项目融资模型。'],
-  blocks: [
-    { t:'card', mt:false, title:['Inputs','输入假设'], badges:['illus'], live:false, blocks:[
-      { t:'labInputs' },
-      { t:'note', text:['The spread input is the executable net spread (' + fmtC(59) + '/MWh), not the published day-ahead spread (' + fmtC(O.daSpread) + '/MWh). Merchant revenue is then scaled by the saturation factor for the selected COD year (' + state.codYear + ': ' + fmtPct(dilutionAt(+state.codYear) * 100, 0) + ' of today) and by the duration factor. Capacity revenue uses the de-rating curve, not nameplate MW.',
-        '价差输入项为可执行净价差（' + fmtC(59) + '/MWh），而非公布的日前价差（' + fmtC(O.daSpread) + '/MWh）。市场化收入随后按所选投运年度的饱和系数（' + state.codYear + '：为当前的' + fmtPct(dilutionAt(+state.codYear) * 100, 0) + '）及时长系数缩放。容量收入采用折减系数曲线，而非铭牌MW。'] },
-    ] },
-    { t:'card', title:['Outputs — base case and lender downside','输出结果 — 基准情景与贷款人下行情景'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labOut' },
-      { t:'why', text:['The gap between the two cases is the whole investment question. Note that in Ireland the capacity line dominates the waterfall, so the downside case is driven mainly by the capacity sensitivity rather than by the spread — the opposite of GB. If minimum DSCR in the downside case is below 1.30x, the fix is duration or gearing, not a better spread forecast.',
-        '两种情景之间的差距即是全部投资问题。须注意在爱尔兰，容量收入在瀑布图中占主导，因此下行情景主要由容量敏感性而非价差驱动 — 与英国恰好相反。若下行情景下最低偿债覆盖率低于1.30x，应通过时长或杠杆解决，而非依靠更好的价差预测。'],
-        sig:['Capacity sensitivity drives the downside','下行情景由容量敏感性驱动'] },
-    ] },
-    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labDur' },
-      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR. In Ireland the incremental column is driven almost entirely by the de-rating step, so the crossover point moves whenever the de-rating table is revised — which makes recording the vintage in the model a governance requirement rather than a formality.',
-        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR。在爱尔兰，增量列几乎完全由折减系数的阶跃驱动，因此每当折减表被修订，临界点即随之移动 — 这使在模型中记录版本成为治理要求而非形式手续。'],
-        sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
-    ] },
-    { t:'card', title:['Scenario snapshots (saved locally)','情景快照（本地保存）'], badges:['calc'], live:false, blocks:[
-      { t:'labSnaps' },
-    ] },
-  ] };
-};
-
 // ============================== PORTFOLIO / FUND VIEW ==============================
 SEC_B.portfolio = function (){
   const inp = labInputs(), r = labModel(inp);

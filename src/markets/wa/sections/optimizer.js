@@ -1,6 +1,7 @@
 /* ---------------------------------------------------------------------------
    RCM x Energy x FCESS co-optimisation section, verbatim from the prototype
-   (lines 3661-3882). Rendered as the tail of the Investment Lab tab.
+   (lines 3661-3882). Rendered as the tail of the RCM & Capacity tab — it was the
+   tail of the Investment Lab tab until that tab moved to the home page.
    --------------------------------------------------------------------------- */
 import { h } from '../../../utils/dom.js';
 import { L } from '../../../app/i18n.js';
@@ -14,9 +15,15 @@ import { waterfall } from '../../../charts/index.js';
 import { state, render } from '../state.js';
 import { NF1, fmtN, fmtAM, fmtPct, fmtIRR, fmtX } from '../ui.js';
 import { OPT } from '../data/optimizer.js';
+import { SEED } from '../data/seed.js';
 import { optimizerModel, buildDispatch, optExplanation, dispatchChart } from '../lib/optimizer.js';
 
 function renderOptimizer(main){
+  /* Seeded here rather than by the Investment Lab, which used to render above
+     this section and no longer exists on the dashboard at all. The reference
+     configuration is WA's own seed; retyping economic assumptions is the home
+     page's job now. */
+  if (!state.lab) state.lab = { ...SEED.lab };
   if (!state.rcmScn) state.rcmScn = 'BASE';
   if (!state.optStrat) state.optStrat = 'BALANCED';
   const inp = state.lab, scn = state.rcmScn, strat = state.optStrat;
@@ -36,8 +43,8 @@ function renderOptimizer(main){
     h('span', { style: 'font-size:12px;color:var(--muted);margin-right:2px;' }, L(['Strategy:', '策略：'])),
     ...OPT.stratOrder.map(k => h('button', { class: 'btn' + (strat === k ? ' active' : ''), onclick: () => { state.optStrat = k; render(); } }, L(OPT.strat[k].n))));
   main.append(h('div', { class: 'card' }, scnBtns, stratBtns,
-    h('div', { class: 'cap', style: 'margin-top:8px;' }, L(['Rule vintage: ESM Rules (current effective) · WEM Procedures (current) · Capacity Year ' + state.codYear + ' · calculation: simplified / indicative. Project inputs are taken from the Investment Lab above; change MW, duration, capex, debt etc. there.',
-      '规则版本：ESM规则（现行生效）· WEM程序（现行）· 容量年度' + state.codYear + ' · 计算：简化/示意。项目输入取自上方投资测算，如需修改MW、时长、造价、债务等请在上方调整。']))));
+    h('div', { class: 'cap', style: 'margin-top:8px;' }, L(['Rule vintage: ESM Rules (current effective) · WEM Procedures (current) · Capacity Year ' + state.codYear + ' · calculation: simplified / indicative. Project inputs are the WA reference configuration. To retype economic assumptions and price a capital structure, use the Investment Lab on the home page.',
+      '规则版本：ESM规则（现行生效）· WEM程序（现行）· 容量年度' + state.codYear + ' · 计算：简化/示意。项目输入采用西澳参考配置。如需重新输入经济性假设并测算资本结构，请使用首页的投资测算模块。']))));
 
   // ---- row 1: RCM bridge + strategy profile ----
   const g1 = h('div', { class: 'grid g2' });

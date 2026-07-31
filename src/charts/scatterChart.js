@@ -13,7 +13,17 @@ function scatterChart(parent, cfg){
   const W = 760, H = 320, padL = 62, padR = 26, padT = 20, padB = 46;
   const plotW = W - padL - padR, plotH = H - padT - padB;
   const xs = cfg.pts.map(p => p.x), ys = cfg.pts.map(p => p.y);
-  const xt = niceTicks(cfg.xmin != null ? cfg.xmin : Math.min(0, ...xs), Math.max(...xs) * 1.1, 4);
+  /* `xmax` is a hard ceiling, not a hint. niceTicks rounds the requested top up
+     to a round number, which is right for an open-ended quantity and wrong for a
+     share: a set whose largest point is 100% would otherwise be plotted on an
+     axis running to 150%, implying headroom that cannot exist. */
+  const xt0 = niceTicks(cfg.xmin != null ? cfg.xmin : Math.min(0, ...xs),
+    cfg.xmax != null ? cfg.xmax : Math.max(...xs) * 1.1, 4);
+  const xt = cfg.xmax == null ? xt0 : (() => {
+    const kept = xt0.filter(v => v <= cfg.xmax);
+    if (kept[kept.length - 1] !== cfg.xmax) kept.push(cfg.xmax);
+    return kept;
+  })();
   const yt = niceTicks(Math.min(...ys) * 0.85, Math.max(...ys) * 1.1, 4);
   const xlo = xt[0], xhi = xt[xt.length - 1], ylo = yt[0], yhi = yt[yt.length - 1];
   const X = v => padL + (v - xlo) / (xhi - xlo) * plotW;

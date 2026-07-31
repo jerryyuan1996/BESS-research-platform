@@ -11,7 +11,8 @@
    expanded block from the same spec.
    --------------------------------------------------------------------------- */
 
-import { JP_GRID_MAPS } from './gridMapData.js';
+import { gridMapForMarket } from '../gridMapRegistry.js';
+import { congestionForDashboard } from '../congestionRegistry.js';
 import { buildJPEconomicsBlocks } from './economicsSection.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
@@ -498,6 +499,19 @@ export function buildSections(api){
         { t: 'why', text: ['Augmentation optionality is worth more in Japan than in most markets on this platform, because the duration answer is genuinely uncertain: the expected-capacity treatment can be revised between auction vintages, and the merchant-optimal duration moves with how much storage enters. Optionality is the correct response to a moving target.',
                            '在本平台各市场中，增容选择权在日本的价值更高，因为时长的答案确实不确定：期待容量的处理方式可能在不同拍卖年份间修订，而市场化最优时长也随储能进入规模变化。面对移动的目标，选择权是正确的应对。'],
           sig: ['Optionality beats a duration bet', '选择权优于时长押注'] } ] },
+      
+      /* Relocated from the Investment Lab tab, which moved to the home page. The
+         duration question is a market question — where the de-rating uplift stops
+         covering the MWh capex — so it belongs beside the rest of this tab rather
+         than inside a returns model. */
+      { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
+        { t:'labDur' },
+        { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the Investment Lab on the home page.',
+          '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+        { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
+          '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
+          sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
+      ] },
     ] };
   };
 
@@ -565,7 +579,8 @@ export function buildSections(api){
       perRegion(id => ({
         title: [L(R(id).short) + ' — physical grid, supply and demand', L(R(id).short) + ' — 物理电网、电源与负荷'],
         badges: [regionBadge(id), 'official'], live: false, blocks: [
-          { t: 'geo-grid-map', data: JP_GRID_MAPS[id] },
+          { t: 'geo-grid-map', data: gridMapForMarket('jp', id) },
+          { t: 'congestion', data: congestionForDashboard('jp', id) },
         ],
       })),
 
@@ -683,27 +698,6 @@ export function buildSections(api){
   };
 
   // ============================== LAB ==============================
-  SEC_B.lab = function (){
-    return {
-    head: ['Investment Lab — one model, three regional cases', '投资测算 — 一套模型，三个区域案例'],
-    cap: ['All physical, financing and exit assumptions are common. Only regional inputs move between cases.',
-          '所有物理、融资与退出假设均相同，各案例间仅区域输入发生变化。'],
-    blocks: [
-      { t: 'card', mt: false, title: ['Inputs', '输入'], badges: ['illus'], live: true, blocks: [
-        { t: 'labInputs' },
-        { t: 'cap', text: ['Capacity price defaults to the ' + L(R(region() === 'compare' ? 'tokyo' : region()).short) + ' area price × the expected-capacity factor. Capacity agreement defaults to 1 year — the main auction secures one delivery year.',
-                           '容量价格默认取' + L(R(region() === 'compare' ? 'tokyo' : region()).short) + '区域价格×期待容量系数。容量协议年限默认为1年 — 主拍卖仅锁定一个实需年度。'] } ] },
-      { t: 'card', title: ['Outputs', '输出'], badges: ['calc', 'illus'], live: true, blocks: [
-        { t: 'labOut' },
-        { t: 'why', text: ['Set the capacity agreement to 1 year and the model tells the truth about Japan: most of the value has to come from energy and balancing, because only one year of capacity revenue is actually secured. Setting it to 15 produces a much better-looking project that does not exist.',
-                           '将容量协议年限设为1年，模型即揭示日本的真实情况：绝大部分价值必须来自电能量与调整力，因为实际锁定的容量收入仅一年。设为15年会得到一个好看但并不存在的项目。'],
-          sig: ['Set capacity years to 1 and read again', '将容量年限设为1后重新阅读'] } ] },
-      { t: 'card', title: ['Duration sweep', '时长扫描'], badges: ['calc', 'illus'], live: true, blocks: [
-        { t: 'labDur' } ] },
-      { t: 'card', title: ['Scenario snapshots', '情景快照'], badges: ['illus'], live: true, blocks: [
-        { t: 'labSnaps' } ] },
-    ] };
-  };
 
   // ============================== PORTFOLIO ==============================
   SEC_B.portfolio = function (){

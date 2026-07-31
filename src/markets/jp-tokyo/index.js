@@ -5,16 +5,24 @@
    in the Tokyo lens. The national rulebook lives there once; only this market's
    normalized comparison inputs live here.
 
-   Economics: reference 50 MW / 4h, JPY per MW per year.
+   Economics: reference 50 MW / 6h, JPY per MW per year.
      ANCHORED  capacity area price ¥15,111/kW/yr (OCCTO, delivery year 2029)
      SEED      capex, opex, merchant margin, incremental balancing value,
-               expected-capacity factor and the renewal curve
+               expected-capacity factor, the renewal curve and the LTDA bid
    See src/markets/jp/regions.js and the Data & Methodology tab for the gates.
+
+   REVISED 2026-07-30: the base route is now the long-term decarbonization
+   auction, not the Capacity Market main auction. LTDA Round 3 set a hard
+   six-hour minimum, so the previous four-hour reference could not bid into the
+   route Japanese projects are actually financed on. See regions.js for the
+   award derivation and docs/external-view.md §3 for the evidence.
    --------------------------------------------------------------------------- */
 import { dashboard } from '../jp/dashboard.js';
 import { tabs } from '../jp/tabs.js';
 import { sources } from '../jp/sources.js';
-import { JP_REGIONS, JP_COMMON_COST, JP_REFERENCE } from '../jp/regions.js';
+import {
+  JP_REGIONS, JP_COMMON_COST, JP_REFERENCE, JP_LTDA_MERCHANT_RETENTION, jpRanges,
+} from '../jp/regions.js';
 
 const R = JP_REGIONS.tokyo;
 
@@ -48,8 +56,48 @@ export const manifest = {
   ],
 };
 
+const economics = {
+  // Capacity revenue is won one delivery year at a time and re-auctioned after.
+  riskClass: 'auction-renewal',
+
+  capexPerMW: JP_COMMON_COST.capexPerMW,
+  opexPerMW: JP_COMMON_COST.opexPerMW,
+
+  securedContracted: R.econ.securedContractedJPYMWYr,
+  securedContractYears: 1,
+  auctionRenewalCurve: R.econ.renewal,
+
+  merchGross: R.econ.merchGrossJPYMWYr,
+  feePct: JP_COMMON_COST.optimiserFeePct,
+  services: R.econ.balancingIncrementalJPYMWYr,
+  grantPct: 0,               // market benchmark excludes project-specific support
+  degr: JP_REFERENCE.degrPct,
+
+  /* The bankable route. A 20-year OCCTO Capacity Reserve Agreement never rolls
+     off inside the 15-year window, so there is no renewal curve here — but the
+     ~90% clawback means it is very nearly an ALTERNATIVE to the merchant stack
+     rather than an addition to it, which is what merchantRetention encodes. */
+  ltda: {
+    payment: R.econ.ltdaPaymentJPYMWYr,
+    years: 20,
+    merchantRetention: JP_LTDA_MERCHANT_RETENTION,
+    note: [
+      '20-yr OCCTO CRA, CPI-indexed, 6h minimum; ~90% of other-market net profit returned',
+      '20年OCCTO容量储备协议，随CPI调整，最低6小时；其他市场净利润约90%需上缴',
+    ],
+  },
+
+  capNote: ['Capacity Market secures one delivery year; years 2-15 are auction-renewal, not contracted',
+            '容量市场仅锁定一个实需年度；第2–15年属拍卖续约，非已签约'],
+};
+
+const ranges = jpRanges(economics);
+
 export const comparison = {
   engineReady: true,
+
+  /* The long-term award, not the annual capacity auction. See the header. */
+  baseStrategy: 'ltda',
 
   archetype: { powerMW: JP_REFERENCE.powerMW, durationHours: JP_REFERENCE.durationHours },
 
@@ -63,35 +111,17 @@ export const comparison = {
     merchant: true,            // JEPX day-ahead and intraday
     ancillaryServices: true,   // EPRX balancing
     tolling: false,
-    longTermAward: false,      // LTDA excluded from the market benchmark
+    longTermAward: true,       // LTDA Round 3 — 6h minimum, 20-yr CRA
   },
 
-  economics: {
-    // Capacity revenue is won one delivery year at a time and re-auctioned after.
-    riskClass: 'auction-renewal',
-
-    capexPerMW: JP_COMMON_COST.capexPerMW,
-    opexPerMW: JP_COMMON_COST.opexPerMW,
-
-    securedContracted: R.econ.securedContractedJPYMWYr,
-    securedContractYears: 1,
-    auctionRenewalCurve: R.econ.renewal,
-
-    merchGross: R.econ.merchGrossJPYMWYr,
-    feePct: JP_COMMON_COST.optimiserFeePct,
-    services: R.econ.balancingIncrementalJPYMWYr,
-    grantPct: 0,               // market benchmark excludes project-specific support
-    degr: JP_REFERENCE.degrPct,
-
-    capNote: ['Capacity Market secures one delivery year; years 2-15 are auction-renewal, not contracted',
-              '容量市场仅锁定一个实需年度；第2–15年属拍卖续约，非已签约'],
-  },
+  economics,
+  ranges,
 
   narrative: {
-    archetype: ['50 MW · 4h reference · scarcity / multi-market', '50MW · 4小时参考 · 稀缺性 / 多市场'],
+    archetype: ['50 MW · 6h reference · LTDA-led', '50MW · 6小时参考 · 长期脱碳拍卖主导'],
     thesis: [
-      'Large-load, scarcity and flexibility benchmark. Underwrite Tokyo-area price capture and connection quality rather than demand size alone.',
-      '大负荷、稀缺性与灵活性基准市场。投资重点是东京区域价格兑现与并网质量，而非仅看负荷规模。',
+      'Large-load, scarcity and flexibility benchmark, underwritten on a 20-year award rather than a one-year auction. The award is national and identical in all three areas, so Tokyo-area price capture and connection quality are what differentiate — and the clawback means the trading upside mostly is not yours.',
+      '大负荷、稀缺性与灵活性基准市场，以20年中标而非一年期拍卖为承销基础。中标条件全国统一、三区域一致，故差异化来自东京区域价格兑现与并网质量 — 且收益上缴机制意味着交易端上行空间大部分不归投资人所有。',
     ],
     pipelineRatio: R.saturation.pipelineRatio,
   },

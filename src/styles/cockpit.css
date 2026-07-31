@@ -100,7 +100,11 @@
 .globe-wa{fill:color-mix(in srgb,var(--s1) 86%,var(--surface));stroke:var(--ink);stroke-width:1.35;cursor:pointer;transition:fill .16s ease;}
 .globe-wa:hover,.globe-wa:focus{fill:var(--s1);outline:none;}
 .globe-marker{cursor:pointer;}
-.globe-marker-pulse{fill:color-mix(in srgb,var(--s1) 18%,transparent);stroke:var(--s1);stroke-width:1;}
+/* Invisible but hit-testable: the drawn marker is ~7px across on screen. */
+.globe-marker-hit{fill:transparent;stroke:none;}
+.globe-marker:hover .globe-marker-pulse,.globe-marker:focus .globe-marker-pulse{fill:color-mix(in srgb,var(--s1) 38%,transparent);}
+.globe-marker:focus{outline:none;}
+.globe-marker-pulse{fill:color-mix(in srgb,var(--s1) 18%,transparent);stroke:var(--s1);stroke-width:1;transition:fill .16s ease;}
 .globe-marker-dot{fill:#fff;stroke:var(--s1);stroke-width:2;}
 .globe-market-links{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px;}
 .globe-market-link{display:inline-flex;gap:4px;align-items:center;padding:4px 7px;border:1px solid var(--border);border-radius:999px;color:var(--ink2);font-size:10.5px;text-decoration:none;}
@@ -129,13 +133,68 @@
 .news-source-note a{color:var(--s1);}
 .market-flag{width:1.35em;line-height:1;margin-right:5px;border-radius:2px;box-shadow:0 0 0 1px color-mix(in srgb,var(--ink) 18%,transparent);}
 
+/* ---- congestion register -------------------------------------------------
+   Used by the per-market grid tabs and by the home-page comparison, so the two
+   read identically. */
+.cong-table td{vertical-align:top;padding-top:8px;padding-bottom:8px;}
+.cong-table td.ctx{color:var(--muted);font-style:italic;}
+.cong-dir,.cong-metric-label{display:block;font-size:10.5px;color:var(--muted);
+  font-style:normal;margin-top:2px;line-height:1.4;}
+.cong-charges{display:block;font-size:10px;color:var(--critical);font-weight:600;margin-top:3px;}
+.cong-table .chip{white-space:normal;}
+
+/* Signpost on every market dashboard to where its returns model went. */
+.lab-pointer{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0 2px;
+  padding:8px 12px;border:1px dashed var(--border);border-radius:10px;
+  background:var(--accent-bg);font-size:11.5px;color:var(--ink2);}
+.lab-pointer .btn{text-decoration:none;font-size:11.5px;}
+
+/* ---- Investment Lab ------------------------------------------------------
+   The form is the argument, so a field is not just a box: it carries its range,
+   how that range was derived, and whether it has been moved off its seed. */
+.lab-ctl{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:8px 0;}
+.lab-ctl-lbl{font-size:11px;color:var(--muted);min-width:112px;text-transform:uppercase;letter-spacing:.04em;}
+.lab-body{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(430px,1fr));margin-top:14px;}
+.lab-body>.card{margin-top:0;}
+.lab-debt{margin-top:14px;}
+
+.lab-form-head{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  font-size:11.5px;color:var(--ink2);margin:10px 0 4px;}
+.lab-group-title{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+  margin:12px 0 2px;padding-top:8px;border-top:1px solid var(--grid);}
+.lab-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin:8px 0;}
+
+.lab-field label{font-size:11px;color:var(--muted);display:block;margin-bottom:3px;}
+.lab-field.moved label{color:var(--ink);font-weight:600;}
+.lab-field .inp.moved{border-color:var(--s1);background:var(--accent-bg);}
+.lab-range{display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin-top:4px;
+  font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.lab-range .chip{font-size:9.5px;padding:1px 5px;}
+
+/* Dated warning from the market's congestion register on the field it bears on. */
+.lab-relief{margin-top:5px;padding:5px 7px;border-left:2px solid var(--warn);
+  background:var(--warn-bg);border-radius:0 6px 6px 0;font-size:10.5px;
+  color:var(--ink2);line-height:1.45;}
+.lab-relief .chip{font-size:9.5px;padding:1px 5px;margin-bottom:3px;}
+.lab-relief span{display:block;}
+
+.lab-basis-btn{background:none;border:none;padding:0;margin-top:3px;cursor:pointer;
+  font:inherit;font-size:10.5px;color:var(--s1);text-decoration:underline;text-underline-offset:2px;}
+.lab-basis-body{margin-top:5px;padding:7px 9px;border-left:2px solid var(--s1);
+  background:var(--accent-bg);border-radius:0 7px 7px 0;font-size:11px;color:var(--ink2);line-height:1.5;}
+.lab-basis-body .cap{margin:5px 0 0;font-size:10px;}
+
 @media(max-width:1050px){
   .market-universe{grid-template-columns:1fr;}
   .market-globe-card{min-height:520px;}
+  .lab-body{grid-template-columns:1fr;}
 }
 @media(max-width:700px){
   .news-item.compact{grid-template-columns:1fr;gap:4px;}
   .news-section-head{display:block;}
   .news-more{display:inline-block;margin-top:8px;}
   .market-globe-card{min-height:auto;}
+  .lab-ctl{display:block;}
+  .lab-ctl-lbl{margin-bottom:4px;}
+  .lab-form{grid-template-columns:1fr;}
 }

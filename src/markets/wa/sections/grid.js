@@ -20,7 +20,9 @@ import { WP_QUEUE } from '../data/wem.js';
 import { KEMERTON, hasProjectData } from '../data/kemerton.js';
 import { MJA2026, hasMjaData } from '../data/optimizer.js';
 import { withheldCard } from '../../../components/withheld.js';
-import { WA_GRID_MAP } from '../gridMapData.js';
+import { gridMapById } from '../../gridMapRegistry.js';
+import { congestionFor } from '../../congestionRegistry.js';
+import { renderCongestionRegister } from '../../../components/congestionPanel.js';
 
 // ---------------- GRID CONNECTION ----------------
 function renderGrid(main){
@@ -28,7 +30,8 @@ function renderGrid(main){
     ['Physical connection readiness, contractual access, market registration and capacity monetisation are four separate states. An Access Offer alone does not prove full Capacity Credit value.',
      '物理并网、合同接入、市场注册与容量变现是四个相互独立的状态。仅有接入报价并不代表足额容量信用价值。']);
 
-  renderGeographicGridMap(main, WA_GRID_MAP);
+  renderGeographicGridMap(main, gridMapById('wa-grid-map'));
+  renderCongestionRegister(main, congestionFor('wa'));
 
   if (!state.bridge) state.bridge = { np: 200, ex: 200, crc: 196, naq: 190, rcpPct: 100 };
   const b = state.bridge, cc = Math.min(b.crc, b.naq, b.ex, b.np);

@@ -15,7 +15,6 @@ export const TABS = [
   ['pipeline',  ['Project Pipeline', '项目管线']],
   ['grid',      ['Grid & Connection', '并网与电网约束']],
   ['benchmark', ['Regional Benchmark', '区域对比']],
-  ['lab',       ['Investment Lab', '投资测算']],
   ['portfolio', ['Portfolio', '组合与基金视图']],
   ['data',      ['Data & Methodology', '数据与方法']],
 ];

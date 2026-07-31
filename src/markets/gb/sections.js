@@ -748,6 +748,19 @@ SEC_B.duration = function (){
         '由于市场化逻辑主张建短、容量逻辑主张建长，价值最高的结构通常两者皆非：现在建2小时，并买入日后在折减系数版本已知、电芯更便宜时建至4小时的权利。该选择权只有在规划许可、并网协议、OEM质保与融资文件中均有明确记载时才真实存在 — 而这四处正是它通常被丢失的地方。本项高分的价值高于今天多配一小时的MWh。'],
         sig:['The option is worth more than the hour','选择权的价值高于该小时本身'] },
     ] },
+    
+    /* Relocated from the Investment Lab tab, which moved to the home page. The
+       duration question is a market question — where the de-rating uplift stops
+       covering the MWh capex — so it belongs beside the rest of this tab rather
+       than inside a returns model. */
+    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
+      { t:'labDur' },
+      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the Investment Lab on the home page.',
+        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
+        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
+        sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
+    ] },
   ] };
 };
 
@@ -1041,37 +1054,6 @@ SEC_B.benchmark = function (){
     ] },
   ] };
 };
-
-// ============================== INVESTMENT LAB ==============================
-SEC_B.lab = function (){
-  return {
-  head: ['Investment Lab — market metrics to project returns','投资测算 — 从市场指标到项目回报'],
-  cap: ['A simplified annual pre-tax model on the seed assumptions above. It demonstrates the decision workflow — capacity de-rating, realised merchant spread, services, saturation by COD year — and is not a substitute for a dispatch-optimised project-finance model.',
-        '基于上述种子假设的简化年度税前模型，用于演示决策流程 — 容量折减、实际市场化价差、系统服务、按投运年度的饱和 — 不能替代调度优化的完整项目融资模型。'],
-  blocks: [
-    { t:'card', mt:false, title:['Inputs','输入假设'], badges:['illus'], live:false, blocks:[
-      { t:'labInputs' },
-      { t:'note', text:['Merchant revenue is scaled by the saturation factor for the selected COD year (' + state.codYear + ': ' + fmtPct(dilutionAt(+state.codYear) * 100, 0) + ' of today) and by the duration factor, because deeper cycles capture thinner spreads. Capacity revenue uses the de-rating curve, not nameplate MW.',
-        '市场化收入按所选投运年度的饱和系数（' + state.codYear + '：为当前的' + fmtPct(dilutionAt(+state.codYear) * 100, 0) + '）及时长系数缩放，因为更深的循环所捕获的价差更薄。容量收入采用折减系数曲线，而非铭牌MW。'] },
-    ] },
-    { t:'card', title:['Outputs — base case and lender downside','输出结果 — 基准情景与贷款人下行情景'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labOut' },
-      { t:'why', text:['The gap between the two cases is the whole investment question. The base case is a view on other people’s connection dates; the downside case is what a lender will actually size against. If minimum DSCR in the downside case is below 1.30x, the capital structure — not the project — is what needs changing: less debt, a contracted floor, or a shorter tenor.',
-        '两种情景之间的差距即是全部投资问题。基准情景是对他人并网时点的判断；下行情景才是贷款人实际据以安排债务规模的依据。若下行情景下最低偿债覆盖率低于1.30x，需要改变的是资本结构而非项目本身：降低债务比例、引入合同保底、或缩短债务期限。'],
-        sig:['Fix the structure, not the forecast','应调整结构，而非调整预测'] },
-    ] },
-    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labDur' },
-      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
-        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
-        sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
-    ] },
-    { t:'card', title:['Scenario snapshots (saved locally)','情景快照（本地保存）'], badges:['calc'], live:false, blocks:[
-      { t:'labSnaps' },
-    ] },
-  ] };
-};
-
 // ============================== PORTFOLIO / FUND VIEW ==============================
 SEC_B.portfolio = function (){
   const inp = labInputs(), r = labModel(inp);
