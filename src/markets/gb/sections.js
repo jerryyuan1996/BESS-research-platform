@@ -897,7 +897,7 @@ SEC_B.grid = function (){
   ] };
 };
 // Investor-facing map and evidence journey supersedes the legacy editable scorecard.
-SEC_B.grid = () => buildGBGridSection({ SRC });
+SEC_B.grid = () => buildGBGridSection({ SRC, M });
 
 // ============================== GB vs IRELAND (peer benchmark) ==============================
 // Mirrors the WA dashboard's "WEM vs NEM" section: the only tab that uses peer-market

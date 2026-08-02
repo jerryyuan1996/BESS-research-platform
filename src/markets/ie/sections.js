@@ -782,6 +782,25 @@ SEC_B.grid = function (){
       { t:'src', src: SRC.eirgrid, use:['Dispatch-down, constraint and curtailment cost, SNSP limit','限发、约束与弃电成本、非同步渗透率上限'] },
     ] },
 
+    { t:'card', title:['The network build behind the offers — named projects and their delivery step','要约背后的电网建设 — 具名项目及其交付阶段'], badges:['official','forecast'], live:false, blocks:[
+      { t:'table',
+        head:[['Project','工程'],['Route','路径'],['Delivery body','交付主体'],['Position','进展状态'],['Scope','范围'],['Target','目标年份'],['Status','状态']], num:[5],
+        rows: M.reinforcements.map(x => {
+          const k = M.planClasses.find(c => c.id === x.cls);
+          return [{ b:x.n }, x.region, [x.operator, x.operator], { chip:k.c, text:k.n }, x.scope, String(x.year), x.status];
+        }) },
+      { t:'cap', text:['The all-island transmission projects an Irish connection date depends on, ordered by target year. Ireland publishes no ISP-style status classification, so the position column maps EirGrid\'s own project lifecycle onto whether consent and construction actually exist.',
+        '爱尔兰并网日期所依赖的全岛输电工程，按目标年份排列。爱尔兰不发布ISP式的状态分类，因此进展状态列将EirGrid自身的项目生命周期映射为“许可与施工是否确实存在”。'] },
+      { t:'table', head:[['Position','进展状态'],['What it does and does not confer','其赋予与不赋予的内容']],
+        rows: M.planClasses.map(k => [{ chip:k.c, text:k.n }, k.d]) },
+      { t:'why', text:['One row on this table should reset how an Irish network date is read. The North-South Interconnector has held full planning approval on both sides of the border since 2018 and is only now expected to start construction, for completion in 2031 — thirteen years in the consented class. That is the single largest all-island transfer constraint, and it is the constraint behind much of the dispatch-down bill in the card above. Two consequences. A consented Irish project is not a near-term project, so a case that assumes the constraint prize shrinks on the consent date is wrong by years. And Celtic shows the converse risk — it slipped from 2027 to Q4 2028 while already under construction — so even the strongest class here carries schedule risk. Underwrite the constraint capture against the build dates in this table, not against the policy dates.',
+        '本表中有一行应当改变对爱尔兰电网日期的解读方式。南北互联线自2018年起即在边界两侧取得完整规划批准，直到现在才预计开工，2031年完工 — 在"已获许可"类别中停留了十三年。它是全岛最大的单一输送约束，也是上方卡片中大部分限发账单背后的成因。由此有两点推论。爱尔兰已获许可的项目并非近期项目，因此假定约束"奖金池"会在许可日期缩小的方案，会误判数年之久。而Celtic则显示了相反的风险 — 它在已经施工的情况下仍由2027年推迟至2028年第四季度 — 因此即便是本表中最强的类别也带有进度风险。约束捕获应以本表中的建设日期承销，而非以政策日期承销。'],
+        sig:['Consented has meant thirteen years here','在此“已获许可”曾意味着十三年'] },
+      { t:'src', src: SRC.tdp, use:['Named project scope, lifecycle step and target completion years','具名项目范围、生命周期阶段及目标完工年份'] },
+      { t:'src', src: SRC.celtic, use:['Celtic Interconnector scope and revised commissioning date','Celtic互联线范围及修订后的投运日期'] },
+      { t:'src', src: SRC.pr6, use:['Approved 2026–2030 capital envelope and priority project counts','已核准的2026–2030年资本额度及优先项目数量'] },
+    ] },
+
     { t:'card', title:['Connection risk → suggested commercial protections','并网风险 → 建议商业保护条款'], badges:['calc'], live:false, blocks:[
       { t:'table', head:[['Risk','风险'],['Protection','保护条款'],['Trigger to invoke','触发条件']], rows:[
         [{b:['MEC reduced between offer and executed agreement','报价至签约期间MEC被削减']},

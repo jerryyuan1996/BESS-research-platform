@@ -91,11 +91,21 @@ export function renderGeographicGridMap(parent, data){
      so the register stays a statement about the market, not about this map. */
   const constraints = (data.constraints || []).map(zone => ({ ...zone, kind:'constraint' }));
 
+  /* A feature's `layer` defaults to its `kind`. The two are separate because the
+     governance validator constrains `kind` to the four physical asset types, and
+     the planned-build layer is not a fifth asset type — it is the same nodes and
+     routes, drawn from the market's network-plan register instead of from the
+     operating network. Declaring `layer:'plan'` moves a feature onto that toggle
+     without lying about what it physically is. */
+  const layerOf = (feature) => feature.layer || feature.kind;
+
   const state = {
     period: data.defaultPeriod || (data.periodOrder.includes('current') ? 'current' : data.periodOrder[0]),
-    layers: { node:true, generation:true, load:true, route:true, constraint:true },
+    layers: { node:true, generation:true, load:true, route:true, plan:true, constraint:true },
     selectedId: data.defaultSelectedId || null,
   };
+
+  const hasPlanLayer = [...(data.points || []), ...(data.routes || [])].some(f => layerOf(f) === 'plan');
 
   const mapId = data.id || 'electricity-map';
   const titleId = `${mapId}-title`;
@@ -158,6 +168,9 @@ export function renderGeographicGridMap(parent, data){
     h('span', {}, h('i', { class:'geo-symbol generation' }), L(['Generation','发电'])),
     h('span', {}, h('i', { class:'geo-symbol load' }), L(['Demand','负荷'])),
     h('span', {}, h('i', { class:'geo-symbol route' }), L(['Network path','网络路径'])),
+    hasPlanLayer
+      ? h('span', {}, h('i', { class:'geo-symbol plan' }), L(['Planned build','规划建设']))
+      : null,
     constraints.length
       ? h('span', {}, h('i', { class:'geo-symbol constraint' }), L(['Constraint','约束']))
       : null,
@@ -165,11 +178,11 @@ export function renderGeographicGridMap(parent, data){
   mapPane.append(svg, legend);
 
   function visiblePoints(){
-    return data.points.filter(p => p.periods.includes(state.period) && state.layers[p.kind]);
+    return data.points.filter(p => p.periods.includes(state.period) && state.layers[layerOf(p)]);
   }
 
   function visibleRoutes(){
-    return data.routes.filter(r => r.periods.includes(state.period) && state.layers.route);
+    return data.routes.filter(r => r.periods.includes(state.period) && state.layers[layerOf(r)]);
   }
 
   /* A constraint shows on the period it binds in and on every earlier one; it
@@ -215,6 +228,10 @@ export function renderGeographicGridMap(parent, data){
      does, so making six data files repeat that would only let them disagree. */
   const layerEntries = [
     ...Object.entries(data.layers),
+    /* Same rule as constraints: the planned-build toggle exists exactly when the
+       market's map carries features drawn from its network-plan register, so
+       nine data files are not asked to repeat — and disagree about — that fact. */
+    ...(hasPlanLayer && !data.layers.plan ? [['plan', { label:['Planned build','规划建设'] }]] : []),
     ...(constraints.length ? [['constraint', { label:['Constraints','约束'] }]] : []),
   ];
   for (const [key, layer] of layerEntries){
@@ -257,12 +274,15 @@ export function renderGeographicGridMap(parent, data){
     routeLayer.replaceChildren();
     for (const route of visibleRoutes()){
       const line = { type:'LineString', coordinates:route.coords };
+      const isPlan = layerOf(route) === 'plan';
       const routePath = svgEl('path', {
-        class:`geo-route ${route.periods.includes('future') && !route.periods.includes('current') ? 'future' : ''} ${route.id === state.selectedId ? 'selected' : ''}`,
+        class:`geo-route ${route.periods.includes('future') && !route.periods.includes('current') ? 'future' : ''} ${isPlan ? 'plan ' + (route.planClass || '') : ''} ${route.id === state.selectedId ? 'selected' : ''}`,
         d:path(line),
         'data-id':route.id,
       });
-      routePath.append(appendText(svgEl('title'), `${L(route.name)} — ${L(route.note)}`));
+      routePath.append(appendText(svgEl('title'), isPlan
+        ? `${L(route.name)} — ${L(route.planStatus || route.note)}`
+        : `${L(route.name)} — ${L(route.note)}`));
       routePath.addEventListener('click', () => setSelected(route.id));
       routeLayer.append(routePath);
     }
@@ -277,7 +297,7 @@ export function renderGeographicGridMap(parent, data){
       const [x, y] = projected;
       const selected = item.id === state.selectedId;
       const group = svgEl('g', {
-        class:`geo-marker ${item.kind} ${selected ? 'selected' : ''}`,
+        class:`geo-marker ${item.kind} ${layerOf(item) === 'plan' ? 'plan ' + (item.planClass || '') : ''} ${selected ? 'selected' : ''}`,
         transform:`translate(${x} ${y})`,
         'data-id':item.id,
       });
@@ -398,6 +418,13 @@ export function renderGeographicGridMap(parent, data){
     const feature = { ...item, ...(item.factsByPeriod?.[state.period] || {}) };
     const companies = item.companiesByPeriod?.[state.period] || item.companies || [];
     const factRows = [
+      /* Plan features carry their register class and target year so the map and
+         the grid-tab register cannot say different things about the same
+         project. The class label travels with the feature rather than being
+         looked up here, which keeps this component ignorant of nine different
+         status vocabularies. */
+      [L(['Plan status','规划状态']), feature.planClassLabel],
+      [L(['Target year','目标年份']), feature.planYear ? [String(feature.planYear), String(feature.planYear)] : null],
       [L(['Owner / operator','所有者 / 运营方']), feature.owner],
       [L(['Connected nodes','连接节点']), feature.endpoints],
       [L(['Operating / current','运营 / 当前']), feature.operatingCapacity],
@@ -421,7 +448,9 @@ export function renderGeographicGridMap(parent, data){
         )
       : null;
     const detailChildren = [
-      h('div', { class:'geo-detail-eyebrow' }, kindLabel(data, item.kind)),
+      h('div', { class:'geo-detail-eyebrow' }, layerOf(item) === 'plan'
+        ? L(['Planned build','规划建设'])
+        : kindLabel(data, item.kind)),
       h('h4', {}, L(item.name)),
       item.subtype ? h('div', { class:'geo-detail-type' }, L(item.subtype)) : null,
       factRows.length ? facts : null,

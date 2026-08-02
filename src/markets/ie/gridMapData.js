@@ -260,7 +260,9 @@ const routes = [
     capacityBasis:['Directional operating limits, not a single always-available rating','方向性运行限制，并非始终可用的单一额定值'],
   },
   {
-    id:'ie-celtic', periods:['future'], kind:'route',
+    id:'ie-celtic', periods:['future'], kind:'route', layer:'plan',
+    planClass:'construction', planClassLabel:['In construction','在建'], planYear:2028,
+    planStatus:['Under construction; commissioning slipped from 2027 to Q4 2028','在建；投运时间由2027年推迟至2028年第四季度'],
     name:['Celtic Interconnector', 'Celtic互联线'],
     coords:[[-8.26,51.99],[-7.75,51.55],[-7.30,51.23]],
     note:['Planned HVDC link from Knockraha in County Cork to La Martyre in Brittany.', '规划连接科克郡Knockraha与布列塔尼La Martyre的HVDC线路。'],
@@ -273,7 +275,9 @@ const routes = [
     capacityBasis:['Project transfer rating, not connection headroom at Knockraha','项目输送额定值，并非Knockraha并网空间'],
   },
   {
-    id:'ie-new-north-south', periods:['future'], kind:'route',
+    id:'ie-new-north-south', periods:['future'], kind:'route', layer:'plan',
+    planClass:'consented', planClassLabel:['Consented, not started','已获许可，未开工'], planYear:2031,
+    planStatus:['Approved on both sides of the border since 2018; construction expected to start 2026, completion October 2031','2018年起已获边界两侧批准；预计2026年开工，2031年10月完工'],
     name:['North–South Interconnector', '南北互联线'],
     coords:[[-6.55,53.67],[-6.63,53.90],[-6.70,54.12],[-6.71,54.47]],
     note:['Planned approximately 138 km, 400 kV project from County Meath through Cavan, Monaghan and Armagh to County Tyrone.', '规划约138公里、400kV项目，由Meath郡经Cavan、Monaghan及Armagh至Tyrone郡。'],
@@ -286,7 +290,9 @@ const routes = [
     capacityBasis:['System transfer capability, not local generator or demand connection headroom','系统输送能力，并非本地发电或负荷并网空间'],
   },
   {
-    id:'ie-kildare-meath', periods:['future'], kind:'route',
+    id:'ie-kildare-meath', periods:['future'], kind:'route', layer:'plan',
+    planClass:'construction', planClassLabel:['In construction','在建'], planYear:2027,
+    planStatus:['Planning permission granted March 2025; at construction and energisation step','2025年3月获得规划许可；处于施工与送电阶段'],
     name:['Kildare–Meath Grid Upgrade', 'Kildare—Meath电网升级'],
     coords:[[-6.71,53.16],[-6.65,53.34],[-6.62,53.52]],
     note:['Selected 400 kV underground cable solution between Dunstown and Woodland.', 'Dunstown与Woodland之间选定的400kV地下电缆方案。'],

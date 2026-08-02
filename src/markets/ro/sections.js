@@ -904,7 +904,7 @@ SEC_B.data = function (){
 };
 
 
-  SEC_B.grid = () => buildROGridSection({ SRC });
+  SEC_B.grid = () => buildROGridSection({ SRC, M });
 
   return SECTIONS;
 }

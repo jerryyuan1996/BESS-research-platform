@@ -110,6 +110,51 @@ export const M = {
   cost: JP_COMMON_COST,
   namedPipeline: NAMED_PIPELINE,
 
+  /* ---- named transmission, from the OCCTO wide-area master plan and its
+     grid-development planning process ---------------------------------------
+     National rather than regional on purpose: every one of these is an
+     interconnector between two of the nine areas, so a Tokyo, Kyushu or
+     Hokkaido battery is affected by whichever intertie its area sits behind.
+     The register is deliberately short — OCCTO's master plan is a long-term
+     scenario document, and only a handful of reinforcements have reached a
+     planning process with a published in-service target. `cls` matches
+     `planClasses`. */
+  reinforcements: [
+    { n: ['Hokkaido–Honshu interconnection uprate', '北海道—本州联络设备扩容'], operator: 'HEPCO Network / TEPCO Power Grid',
+      region: ['Hokkaido ↔ Tohoku', '北海道 ↔ 东北'], areas: ['hokkaido'],
+      cls: 'approved', scope: ['Existing intertie from 0.9 GW to 1.2 GW; the constraint behind Hokkaido curtailment and charging control', '既有联络线由0.9GW扩容至1.2GW；北海道弃电与充电控制背后的约束'],
+      year: 2027, status: ['Approved; delivery by end of FY2027', '已批准；2027财年末前交付'], c: 'warn' },
+    { n: ['Tokyo–Chubu frequency converter expansion', '东京—中部间连系设备（FC）扩容'], operator: 'TEPCO Power Grid / Chubu Electric Power Grid',
+      region: ['Tokyo ↔ Chubu', '东京 ↔ 中部'], areas: ['tokyo'],
+      cls: 'approved', scope: ['Frequency-conversion capacity from 2.1 GW to 3.0 GW, the only path between the 50 Hz and 60 Hz halves of the country', '变频容量由2.1GW提升至3.0GW，是全国50赫兹与60赫兹两半之间的唯一通道'],
+      year: 2027, status: ['Approved plan; completion targeted end of FY2027', '规划已批准；目标2027财年末完工'], c: 'warn' },
+    { n: ['Hokkaido–Honshu HVDC, Japan Sea route', '北海道—本州高压直流（日本海路线）'], operator: 'To be appointed by OCCTO tender',
+      region: ['Hokkaido ↔ Honshu', '北海道 ↔ 本州'], areas: ['hokkaido'],
+      cls: 'process', scope: ['A new ~2 GW subsea HVDC link, separate from and far larger than the uprate above', '全新约2GW海底高压直流线路，与上述扩容工程相互独立且规模远大于后者'],
+      year: 2030, status: ['Operator selection was targeted for March 2026; completion indicated for the early 2030s', '业主选定原定于2026年3月；完工时点指示为2030年代前期'], c: 'critical' },
+    { n: ['Kanmon (Chugoku–Kyushu) interconnection reinforcement', '关门（中国—九州）联络线增强'], operator: 'To be appointed by OCCTO tender',
+      region: ['Chugoku ↔ Kyushu', '中国 ↔ 九州'], areas: ['kyushu'],
+      cls: 'process', scope: ['About 1 GW of additional capacity, taking the intertie to roughly 3.0–3.5 GW; this is the constraint Kyushu curtailment sits behind', '新增约1GW容量，使联络线达到约3.0–3.5GW；这正是九州弃电所对应的约束'],
+      year: 2038, status: ['In the planning process; operation planned for end of FY2038, with an acceleration target of FY2036', '处于计划制定流程；计划2038财年末投运，加速目标为2036财年'], c: 'critical' },
+    { n: ['OCCTO wide-area master plan', 'OCCTO广域连系系统总体规划'], operator: 'OCCTO',
+      region: ['Japan', '日本全国'], areas: ['tokyo', 'kyushu', 'hokkaido'],
+      cls: 'masterplan', scope: ['The long-term scenario framework the reinforcements above are drawn from, covering the nine areas to the 2040s', '上述增容工程所源自的长期情景框架，覆盖九个区域并展望至2040年代'],
+      year: 2040, status: ['A scenario document — reinforcements only acquire dates once they enter a planning process', '属情景文件 — 增容工程仅在进入计划制定流程后才获得日期'], c: 'serious' },
+  ],
+
+  /* Japan's status vocabulary. The gap between `masterplan` and `process` is
+     the one that matters: appearing in the master plan gives a reinforcement no
+     date at all, and the two projects that would most change Kyushu and
+     Hokkaido economics are still on the far side of it. */
+  planClasses: [
+    { id: 'approved',   n: ['Approved, dated', '已批准且有日期'], c: 'warn',
+      d: ['A grid-development plan is approved and a delivery year is published. The strongest class Japan offers on an intertie.', '电网整备计划已获批准并公布交付年份。这是日本在联络线方面提供的最强类别。'] },
+    { id: 'process',    n: ['In planning process', '计划制定流程中'], c: 'critical',
+      d: ['Inside OCCTO\'s formal planning process with an indicated target, but the delivery entity or the works are not yet fixed. Targets at this stage have moved by years.', '已进入OCCTO正式计划制定流程并有指示性目标，但交付主体或工程范围尚未确定。该阶段的目标曾发生数年变动。'] },
+    { id: 'masterplan', n: ['Master plan only', '仅列入总体规划'], c: 'serious',
+      d: ['Identified in the long-term wide-area scenario. No delivery entity, no works, no date — it is a statement of where capacity would be worth building, not when.', '仅在长期广域情景中被识别。无交付主体、无工程范围、无日期 — 它说明容量在何处值得建设，而非何时建成。'] },
+  ],
+
   // ---- engine-owned default namespace, bound to the region in view ----
   get components(){ return R().components; },
   get connFactors(){ return R().connFactors; },

@@ -125,7 +125,9 @@ const routes = [
     ['Under construction since January 2025 with the western branch cable already installed. The most advanced relief on this map.',
      '自2025年1月起施工，西段电缆已敷设完成。本图中进展最快的缓解工程。'],
     'Terna', URL.tyrrhenian,
-    { endpoints:['Sicily – Campania, with a western branch to Sardinia','西西里至坎帕尼亚，西段延伸至撒丁岛'],
+    { layer:'plan', planClass:'construction', planClassLabel:['In construction','在建'], planYear:2028,
+      planStatus:['Under construction since January 2025','自2025年1月起施工'],
+      endpoints:['Sicily – Campania, with a western branch to Sardinia','西西里至坎帕尼亚，西段延伸至撒丁岛'],
       plannedCapacity:['1,000 MW, commissioning 2028','1,000MW，2028年投运'] }),
 
   route('tyrrhenian-west', ['Tyrrhenian Link — West branch', '第勒尼安互联 — 西段'],
@@ -135,7 +137,9 @@ const routes = [
     ['Sardinia gains two interconnectors in 2028 while already holding close to half the national battery fleet.',
      '撒丁岛将于2028年新增两条互联线，而其已持有接近全国半数的储能装机。'],
     'Terna', URL.tyrrhenian,
-    { endpoints:['Sardinia – Sicily','撒丁岛至西西里'],
+    { layer:'plan', planClass:'construction', planClassLabel:['In construction','在建'], planYear:2028,
+      planStatus:['Under construction; western branch cable installed','在建；西段电缆已敷设'],
+      endpoints:['Sardinia – Sicily','撒丁岛至西西里'],
       plannedCapacity:['Part of the 1,000 MW scheme, commissioning 2028','属1,000MW工程的一部分，2028年投运'] }),
 
   route('adriatic', ['Adriatic Link', '亚得里亚海互联'],
@@ -145,7 +149,9 @@ const routes = [
     ['Cable supply and installation contracted at about €630m; laying concludes in the first half of 2028.',
      '电缆供应与敷设合同金额约6.3亿欧元；敷设于2028年上半年完成。'],
     'Terna / Prysmian', URL.adriatic,
-    { endpoints:['Fano, Marche – Cepagatti, Abruzzo','马尔凯大区法诺至阿布鲁佐大区切帕加蒂'],
+    { layer:'plan', planClass:'construction', planClassLabel:['In construction','在建'], planYear:2029,
+      planStatus:['Under construction, cable contracted; laying concludes in the first half of 2028','在建，电缆已签约；敷设于2028年上半年完成'],
+      endpoints:['Fano, Marche – Cepagatti, Abruzzo','马尔凯大区法诺至阿布鲁佐大区切帕加蒂'],
       plannedCapacity:['1,000 MW, commissioning 2029','1,000MW，2029年投运'] }),
 
   route('elmed', ['ELMED', 'ELMED互联'],
@@ -155,7 +161,9 @@ const routes = [
     ['An import corridor. It changes the Sicilian price stack without relieving the export constraint a battery is sited for.',
      '这是受入通道。它改变西西里的价格结构，但不缓解储能选址所依据的送出约束。'],
     'Terna / STEG', URL.elmed,
-    { endpoints:['Partanna, Sicily – Tunisia','西西里帕尔坦纳至突尼斯'],
+    { layer:'plan', planClass:'delivery', planClassLabel:['In delivery','交付中'], planYear:2028,
+      planStatus:['In delivery under an EU-supported programme','在欧盟支持的计划下交付中'],
+      endpoints:['Partanna, Sicily – Tunisia','西西里帕尔坦纳至突尼斯'],
       plannedCapacity:['600 MW, commissioning 2028','600MW，2028年投运'] }),
 ];
 

@@ -93,11 +93,32 @@ const M = {
     // grid
     mlfCostPerMW: 3200, mlfMultipleLo: 5, mlfMultipleHi: 10, mlfResetDate: '1 April',
     fleetCurtailMWh: 90929, nemCurtailTWh: 7, nemCurtailGrowthPct: 60,
-    pecEnergised: 'June 2026', pecKm: 900, pecMW: 800,
+    /* Project EnergyConnect is a two-stage project and only Stage 1 is delivered.
+       Appendix A5 gives Stage 2 as November 2027; the proponents report ~July 2027,
+       about a year later than the original plan. An earlier version of this file
+       carried `pecEnergised: 'June 2026'`, which is wrong and inverted the argument
+       the grid tab builds on it. */
+    pecKm: 900, pecMW: 800, pecStage1MW: 150, pecStage1Done: 'late 2024',
+    pecStage2Year: 'November 2027', pecStage2Proponent: 'mid-2027',
     humelinkKm: 365, humelinkKV: 500, humelinkYear: 2027, humelinkUnlockGW: 3, snowyMW: 2200,
     cwoNetworkGW: 4.5, cwoConnectGW: 7.7, cwoYear: 2028,
     vniWestGW: 3.5, vniWestAbn: 7.6, vniWestYear: 2030, vniWestWasYear: 2028,
     marinusMW: 750, marinusYear: 2030,
+
+    /* ---- 2026 ISP optimal development path, Step Change (Appendix A5) ----
+       Planning scale, not project scope. Every figure is A5 §A5.1.1 or the ISP
+       explainer; `ispKmPrev` is the 2024 ISP Step Change figure and is carried
+       only so the reduction is visible rather than asserted. */
+    ispVintage: '2026', ispPublished: '25 June 2026',
+    ispExistingKm: 44000, ispExtensionPct: 14,
+    ispKm2050: 6046, ispKmPrev: 7483,
+    ispKmCommitted: 1312, ispKmAnticipated: 2196, ispKmActionable: 1662, ispKmFuture: 876,
+    ispKmDecade: 5000, ispConnectionAssetKm: 1800,
+    ispTxCapexAbn: 16, ispTxCapexTo2050Abn: 6, ispConsumerSavingAbn: 30, ispOdpAnnualisedAbn: 106,
+    ispWindSolar2050GW: 120, ispGasGW: 17, ispCapacity2050GW: 297, ispCapacityNowGW: 92,
+    ispConsumptionNowTWh: 205, ispConsumption2050TWh: 389,
+    ispVreCapacityPct: 66, ispVreGenPct: 96, ispRenewableInclHydroPct: 98,
+    ispActionableCount: 12, ispFutureCount: 7, ispCommittedAnticipatedCount: 8,
   },
 
   /* Regional installed energy as reported at Q2 2026. These five figures sum to
@@ -316,25 +337,174 @@ const M = {
       d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
   ],
 
-  /* ---- named transmission, from the 2026 ISP and the delivery bodies -----
-     Carried here rather than only in the congestion register because the grid
-     tab reads commissioning years as a schedule, not as a constraint list. */
-  reinforcements: [
-    { n: ['Project EnergyConnect', 'Project EnergyConnect互联工程'], operator: 'ElectraNet / Transgrid',
-      scope: ['900 km SA–NSW interconnector, 800 MW of transfer capability', '900公里南澳—新南威尔士互联线，800MW输送能力'],
-      year: 2026, status: ['Fully energised June 2026', '2026年6月全面送电'], c: 'good' },
-    { n: ['HumeLink', 'HumeLink输电工程'], operator: 'Transgrid',
-      scope: ['365 km of 500 kV, unlocking 3 GW including 2,200 MW of Snowy 2.0', '365公里500千伏线路，释放3GW，其中含雪山2.0的2,200MW'],
-      year: 2027, status: ['Under construction, completion late 2027', '在建，2027年底完工'], c: 'warn' },
-    { n: ['Central-West Orana REZ', '中西部奥拉纳可再生能源区'], operator: 'EnergyCo NSW',
-      scope: ['4.5 GW of network capacity for 7.7 GW of wind and solar', '4.5GW网络容量，服务7.7GW风电与光伏'],
-      year: 2028, status: ['Under construction, commissioning 2028', '在建，2028年投运'], c: 'warn' },
-    { n: ['Marinus Link Stage 1', 'Marinus Link一期'], operator: 'Marinus Link Pty Ltd',
-      scope: ['750 MW HVDC, Tasmania to Victoria', '750MW高压直流，塔斯马尼亚至维多利亚'],
-      year: 2030, status: ['FID August 2025, services late 2030', '2025年8月最终投资决策，2030年底投运'], c: 'serious' },
-    { n: ['VNI West', 'VNI West输电工程'], operator: 'Iberdrola (selected Nov 2025)',
-      scope: ['Up to 3.5 GW bidirectional, A$7.6bn', '最高3.5GW双向输送，A$76亿'],
-      year: 2030, status: ['Completion moved from 2028 to late 2030', '完工时间由2028年推迟至2030年底'], c: 'critical' },
+  /* ---- the 2026 ISP optimal development path, project by project ----------
+     Transcribed from AEMO's 2026 ISP Appendix A5 "Network Investments" (June
+     2026), which is the project-level authority: the ISP body and the explainer
+     map show status by colour only.
+
+     `cls` is AEMO's own classification, not a judgement. It is what makes the
+     table underwritable — "actionable" is a regulatory instruction to start a
+     RIT-T, not a funded project, and the difference is the entire point of the
+     register. Five jurisdictional variants exist (actionable ISP, NSW, Qld, Vic)
+     and are kept distinct because they proceed under different statutes.
+
+     `year` is the proponent-advised or Step Change in-service year and drives
+     sorting; `earliest` is A5's earliest in-service date where it publishes one
+     separately, and is null where it does not. `capexAM` is the A5 reported cost
+     in A$ million ($2025), null where A5 reports none — committed and anticipated
+     projects are outside the ISP cost-benefit analysis and carry no ISP cost. */
+  ispProjects: [
+    // ---- committed (4) ----
+    { n: ['Project EnergyConnect Stage 2', 'Project EnergyConnect二期'], operator: 'ElectraNet / Transgrid', region: 'SA–NSW',
+      cls: 'committed', scope: ['900 km SA–NSW interconnector; Stage 2 lifts transfer to 800 MW both ways', '900公里南澳—新南威尔士互联线；二期将输送能力提升至双向800MW'],
+      mw: 650, capexAM: null, year: 2027, earliest: null,
+      status: ['Stage 1 (150 MW) done late 2024; Stage 2 in service Nov 2027', '一期（150MW）已于2024年底完成；二期2027年11月投运'], c: 'warn' },
+    { n: ['HumeLink', 'HumeLink输电工程'], operator: 'Transgrid', region: 'NSW',
+      cls: 'committed', scope: ['365 km of 500 kV, Snowy and PEC to Bannaby; unlocks 3 GW incl. 2,200 MW of Snowy 2.0', '365公里500千伏线路，连接雪山与PEC至Bannaby；释放3GW，含雪山2.0的2,200MW'],
+      mw: null, capexAM: null, year: 2027, earliest: null,
+      status: ['Under construction; completion December 2027', '在建；2027年12月完工'], c: 'warn' },
+    { n: ['Hunter-Central Coast REZ Network Infrastructure', '猎人—中央海岸REZ网络基础设施'], operator: 'Ausgrid / EnergyCo NSW', region: 'NSW',
+      cls: 'committed', scope: ['132 kV upgrades Kurri to Muswellbrook in three portions; supports up to 1,800 MW of projects', 'Kurri至Muswellbrook的132千伏升级，分三部分；支持最多1,800MW项目'],
+      mw: 600, capexAM: null, year: 2028, earliest: null,
+      status: ['Actionable NSW in the 2024 ISP; committed for the final 2026 ISP', '2024年ISP中为新州可行动项目；2026年终版ISP中转为已承诺'], c: 'warn' },
+    { n: ['Central-West Orana REZ Network Infrastructure', '中西部奥拉纳REZ网络基础设施'], operator: 'ACEREZ / EnergyCo NSW', region: 'NSW',
+      cls: 'committed', scope: ['4,500 MW of REZ network capacity; 7.15 GW of access rights awarded against a 7.7 GW maximum', '4,500MW的REZ网络容量；已授出7.15GW接入权，上限7.7GW'],
+      mw: 4500, capexAM: null, year: 2028, earliest: null,
+      status: ['Construction began June 2025; energisation December 2028', '2025年6月开工；2028年12月送电'], c: 'warn' },
+
+    // ---- anticipated (4) ----
+    { n: ['Western Renewables Link', '西部可再生能源联络线'], operator: 'AusNet / VicGrid', region: 'VIC',
+      cls: 'anticipated', scope: ['500 kV double-circuit Bulgana to Sydenham; harnesses 1,460 MW after the rescope', 'Bulgana至Sydenham的500千伏双回线；调整范围后可承载1,460MW'],
+      mw: null, capexAM: null, year: 2029, earliest: null,
+      status: ['Anticipated; expected completion November 2029', '预期项目；预计2029年11月完工'], c: 'warn' },
+    { n: ['Project Marinus Stage 1', 'Marinus项目一期'], operator: 'Marinus Link Pty Ltd / TasNetworks', region: 'TAS–VIC',
+      cls: 'anticipated', scope: ['750 MW HVDC monopole Burnie to Hazelwood, plus the North West Transmission Developments', 'Burnie至Hazelwood的750MW高压直流单极，以及西北输电工程'],
+      mw: 750, capexAM: null, year: 2030, earliest: null,
+      status: ['FID 1 August 2025; anticipated, in service December 2030', '2025年8月1日最终投资决策；预期项目，2030年12月投运'], c: 'serious' },
+    { n: ['CopperString', 'CopperString'], operator: 'Powerlink / Queensland Government', region: 'QLD',
+      cls: 'anticipated', scope: ['~840 km to the North-West Minerals Province; Townsville–Hughenden section modelled, +1,400 MW at Hughenden', '约840公里通往西北矿产区；建模范围为Townsville—Hughenden段，Hughenden增加1,400MW'],
+      mw: 1400, capexAM: null, year: 2032, earliest: '2031',
+      status: ['Anticipated; in-service date revised from June 2031 to 2032', '预期项目；投运日期由2031年6月修订为2032年'], c: 'serious' },
+    { n: ['New England REZ Network Infrastructure', '新英格兰REZ网络基础设施'], operator: 'EnergyCo NSW', region: 'NSW',
+      cls: 'anticipated', scope: ['500 kV and 330 kV between central and northern NSW; 6,000 MW both directions', '新州中部至北部的500千伏与330千伏线路；双向6,000MW'],
+      mw: 6000, capexAM: null, year: 2034, earliest: null,
+      status: ['Actionable in the 2024 ISP; anticipated for 2026, delivery January 2034', '2024年ISP中为可行动项目；2026年转为预期项目，2034年1月交付'], c: 'serious' },
+
+    // ---- actionable (12) ----
+    { n: ['Gladstone Project', 'Gladstone项目'], operator: 'Powerlink', region: 'QLD',
+      cls: 'actionable-qld', scope: ['CQ–Gladstone Option 2: new Gladstone West 275 kV switching station and Calvale–Calliope River line', '中昆士兰—Gladstone方案2：新建Gladstone West 275千伏开关站及Calvale—Calliope River线路'],
+      mw: 2600, capexAM: 2367, year: 2029, earliest: null,
+      status: ['Priority Transmission Investment; line March 2029, balance by mid-2030', '优先输电投资；线路2029年3月，其余2030年年中前完成'], c: 'warn' },
+    { n: ['Western Victoria Reinforcement', '西维多利亚加强工程'], operator: 'VicGrid', region: 'VIC',
+      cls: 'actionable-vic', scope: ['MEL–WNV Option 1; 800 MW of reverse transfer into western and northern Victoria', 'MEL—WNV方案1；向维州西部及北部增加800MW反向输送'],
+      mw: 800, capexAM: 128, year: 2029, earliest: null,
+      status: ['New actionable project under the Victorian Transmission Investment Framework', '维多利亚输电投资框架下的新增可行动项目'], c: 'warn' },
+    { n: ['VNI West — South West NSW REZ', 'VNI West — 新州西南REZ'], operator: 'Transgrid / EnergyCo NSW', region: 'NSW',
+      cls: 'actionable-nsw', scope: ['Stage 1: Dinawan–Wagga–Gugaa uprated to 500 kV, Dinawan 500 kV switchyard; +600 MW at N5', '一期：Dinawan—Wagga—Gugaa升压至500千伏，新建Dinawan 500千伏开关站；N5增加600MW'],
+      mw: 600, capexAM: 7600, year: 2029, earliest: null,
+      status: ['Split from the interconnector in the final ISP; REZ scope August 2029', '终版ISP中与互联线拆分；REZ部分2029年8月'], c: 'warn' },
+    { n: ['Sydney Ring North (Hunter Transmission Project)', '悉尼环网北段（猎人输电项目）'], operator: 'EnergyCo NSW / Transgrid', region: 'NSW',
+      cls: 'actionable-nsw', scope: ['CNSW–SNW Option 1: 500 kV double-circuit Olney to Bayswater; 5,000 MW forward', '中新州—SNW方案1：Olney至Bayswater的500千伏双回线；正向5,000MW'],
+      mw: 5000, capexAM: 1364, year: 2029, earliest: null,
+      status: ['Actionable in the 2024 ISP and still actionable; November 2029', '2024年ISP中即为可行动项目并延续；2029年11月'], c: 'warn' },
+    { n: ['Tasmania REZ Expansion', '塔斯马尼亚REZ扩容'], operator: 'TasNetworks', region: 'TAS',
+      cls: 'actionable', scope: ['Burnie–Hampshire Hills 220 kV double-circuit; 800 MW to support the Tasmanian Renewable Energy Target', 'Burnie—Hampshire Hills 220千伏双回线；800MW，支撑塔州可再生能源目标'],
+      mw: 800, capexAM: 245, year: 2030, earliest: null,
+      status: ['New actionable ISP project; replaces the Second Tasmania REZ Expansion', '新增可行动ISP项目；取代塔州第二REZ扩容'], c: 'warn' },
+    { n: ['Switching Station Near Wondalga', 'Wondalga附近开关站'], operator: 'Transgrid', region: 'NSW',
+      cls: 'actionable', scope: ['SNSW–CNSW Option 5: switching station at the Y point of the 3 x 330 kV lines; 450 MW both ways', '新州南部—中部方案5：三回330千伏线路Y点处开关站；双向450MW'],
+      mw: 450, capexAM: 220, year: 2031, earliest: '2030',
+      status: ['New actionable ISP project; April 2031 against a December 2030 earliest date', '新增可行动ISP项目；2031年4月，最早日期为2030年12月'], c: 'warn' },
+    { n: ['Central to North Queensland Reinforcement (Stage 1)', '中昆士兰至北昆士兰加强工程（一期）'], operator: 'Powerlink', region: 'QLD',
+      cls: 'actionable', scope: ['CQ–NQ Option 3: second Stanwell–Broadsound 275 kV circuit; 350 MW forward, 500 MW reverse', '中昆—北昆方案3：Stanwell—Broadsound第二回275千伏线路；正向350MW、反向500MW'],
+      mw: 350, capexAM: 209, year: 2031, earliest: '2029',
+      status: ['New actionable ISP project; replaces the larger Queensland SuperGrid North', '新增可行动ISP项目；取代规模更大的昆士兰超级电网北段'], c: 'warn' },
+    { n: ['Gippsland Offshore Wind Transmission', '吉普斯兰海上风电输电工程'], operator: 'VicGrid', region: 'VIC',
+      cls: 'actionable-vic', scope: ['500 kV radial lines from a new terminal station near Woodside; +2,000 MW at REZ V8, staged 2031/2033/2038', '自Woodside附近新终端站引出的500千伏放射状线路；V8可再生能源区增加2,000MW，分2031/2033/2038三期'],
+      mw: 2000, capexAM: 1500, year: 2031, earliest: null,
+      status: ['New actionable Victoria project; first stage July 2031', '维州新增可行动项目；首期2031年7月'], c: 'warn' },
+    { n: ['VNI West — Victoria–NSW interconnector', 'VNI West — 维州—新州互联线'], operator: 'VicGrid / Transgrid', region: 'VIC–NSW',
+      cls: 'actionable', scope: ['Stage 2: 500 kV Bulgana–Tragowel–Dinawan; 1,890 MW forward, 1,670 MW reverse', '二期：Bulgana—Tragowel—Dinawan的500千伏线路；正向1,890MW、反向1,670MW'],
+      mw: 1890, capexAM: 7600, year: 2031, earliest: null,
+      status: ['Interconnector scope retains actionable ISP status; November 2031', '互联线部分保留可行动ISP地位；2031年11月'], c: 'serious' },
+    { n: ['Brisbane Area 275 kV Reinforcement', '布里斯班地区275千伏加强工程'], operator: 'Powerlink', region: 'QLD',
+      cls: 'actionable', scope: ['SQ–CQ Option 7; 685 MW forward from south-east to central Queensland', '南昆—中昆方案7；由昆士兰东南向中部正向输送685MW'],
+      mw: 685, capexAM: 63, year: 2032, earliest: null,
+      status: ['New actionable ISP project after revised Powerlink advice', 'Powerlink修订意见后新增的可行动ISP项目'], c: 'warn' },
+    { n: ['Central-West Orana REZ Expansion', '中西部奥拉纳REZ扩容'], operator: 'EnergyCo NSW', region: 'NSW',
+      cls: 'actionable-nsw', scope: ['N3 Option 1; further expansion of the committed CWO REZ network', 'N3方案1；在已承诺的CWO REZ网络基础上进一步扩容'],
+      mw: null, capexAM: 855, year: 2033, earliest: null,
+      status: ['Progressed from a future project to actionable NSW in the final ISP', '终版ISP中由未来项目升级为新州可行动项目'], c: 'warn' },
+    { n: ['Sydney Ring South', '悉尼环网南段'], operator: 'Transgrid', region: 'NSW',
+      cls: 'actionable', scope: ['Both options now actionable: power flow control (A$261m) and the 500 kV line, 3,600 MW forward', '两个方案均转为可行动：潮流控制装置（A$2.61亿）与500千伏线路，正向3,600MW'],
+      mw: 3600, capexAM: 2360, year: 2033, earliest: null,
+      status: ['Modified from the Draft 2026 ISP: the 500 kV option moved from future to actionable', '相较2026年ISP草案有调整：500千伏方案由未来项目转为可行动'], c: 'serious' },
+    { n: ['Project Marinus Stage 2', 'Marinus项目二期'], operator: 'Marinus Link Pty Ltd', region: 'TAS–VIC',
+      cls: 'actionable', scope: ['TAS–SEV Option 2A: a second 750 MW HVDC monopole Burnie to Hazelwood', 'TAS—SEV方案2A：Burnie至Hazelwood的第二条750MW高压直流单极'],
+      mw: 750, capexAM: 2485, year: 2034, earliest: null,
+      status: ['Reassessed as actionable for the 2026 ISP; December 2034', '2026年ISP中重新评定为可行动；2034年12月'], c: 'serious' },
+
+    // ---- future ISP projects (7) ----
+    { n: ['South West to South East Queensland Reinforcement', '昆士兰西南至东南加强工程'], operator: 'Powerlink', region: 'QLD',
+      cls: 'future', scope: ['SWQLD1: transformer replacement at Middle Ridge, or a 300 MW BESS run-back scheme as a virtual transmission line', 'SWQLD1：Middle Ridge变压器更换，或以300MW储能回退方案作为虚拟输电线路'],
+      mw: 150, capexAM: 26, year: 2041, earliest: '2028-29',
+      status: ['Future ISP project; Step Change 2041-42, earliest 2028-29', '未来ISP项目；阶跃变革情景2041-42年，最早2028-29年'], c: 'serious' },
+    { n: ['Eastern Victoria Reinforcement', '东维多利亚加强工程'], operator: 'VicGrid', region: 'VIC',
+      cls: 'future', scope: ['SEV–MEL Option 1; 1,000 MW forward into Melbourne after the Yallourn closure', 'SEV—MEL方案1；Yallourn关停后向墨尔本正向输送1,000MW'],
+      mw: 1000, capexAM: 70, year: 2033, earliest: '2031-32',
+      status: ['Future ISP project; Accelerated Transition 2033-34', '未来ISP项目；加速转型情景2033-34年'], c: 'serious' },
+    { n: ['Second Tasmania REZ Expansion', '塔斯马尼亚第二REZ扩容'], operator: 'TasNetworks', region: 'TAS',
+      cls: 'future', scope: ['Formerly the Waddamana to Palmerston transfer capability upgrade, in the Central Highlands REZ', '原Waddamana至Palmerston输送能力升级工程，位于中部高地REZ'],
+      mw: null, capexAM: null, year: 2034, earliest: null,
+      status: ['Was actionable; now a future project needed only under one scenario', '原为可行动项目；现为仅在单一情景下需要的未来项目'], c: 'serious' },
+    { n: ['Northern Transmission Project', '北部输电项目'], operator: 'ElectraNet', region: 'SA',
+      cls: 'future', scope: ['MN1 Option 2 "South": 275 kV Bundey to near Bolivar/Dry Creek; 1,200 MW', 'MN1方案2“南线”：Bundey至Bolivar/Dry Creek附近的275千伏线路；1,200MW'],
+      mw: 1200, capexAM: 1429, year: 2041, earliest: null,
+      status: ['Was actionable; deferred to a future project, but the ElectraNet RIT-T should conclude', '原为可行动项目；已推迟为未来项目，但ElectraNet的RIT-T应当完成'], c: 'critical' },
+    { n: ['Central to North Queensland Reinforcement (Stage 2)', '中昆士兰至北昆士兰加强工程（二期）'], operator: 'Powerlink', region: 'QLD',
+      cls: 'future', scope: ['CQ–NQ Option 4; 500 MW forward, 1,000 MW reverse from northern Queensland', '中昆—北昆方案4；自北昆士兰正向500MW、反向1,000MW'],
+      mw: 500, capexAM: 1850, year: 2042, earliest: '2033-34',
+      status: ['New future ISP project; Step Change 2042-43, Accelerated Transition 2035-36', '新增未来ISP项目；阶跃变革2042-43年，加速转型2035-36年'], c: 'serious' },
+    { n: ['QNI Connect', 'QNI Connect'], operator: 'Powerlink / Transgrid', region: 'QLD–NSW',
+      cls: 'future', scope: ['NNSW–SQ Option 2; 1,260 MW forward, connecting into the New England REZ project', '新州北部—南昆方案2；正向1,260MW，接入新英格兰REZ项目'],
+      mw: 1260, capexAM: 2989, year: 2041, earliest: '2033-34',
+      status: ['Was actionable; identified need deferred almost a decade to the mid-2040s', '原为可行动项目；识别需求推迟近十年至2040年代中期'], c: 'critical' },
+    { n: ['South West Victoria Expansion', '西南维多利亚扩容'], operator: 'VicGrid', region: 'VIC',
+      cls: 'future', scope: ['MEL–WNV Option 3; 500 kV Moorabool to Truganina to Sydenham; 2,000 MW reverse', 'MEL—WNV方案3；Moorabool—Truganina—Sydenham的500千伏线路；反向2,000MW'],
+      mw: 2000, capexAM: 1330, year: 2045, earliest: '2033-34',
+      status: ['Future ISP project; Step Change 2045-46', '未来ISP项目；阶跃变革情景2045-46年'], c: 'serious' },
+
+    // ---- distribution projects (2) ----
+    { n: ['Hunter-Central Coast REZ Expansion', '猎人—中央海岸REZ扩容'], operator: 'Ausgrid / EnergyCo NSW', region: 'NSW',
+      cls: 'distribution', scope: ['N9b Option 2a and N9a Option 2b; 132 kV and 330 kV uplifts around Singleton, Newcastle and Muswellbrook', 'N9b方案2a与N9a方案2b；Singleton、Newcastle及Muswellbrook周边132千伏与330千伏提升'],
+      mw: 900, capexAM: 636, year: 2030, earliest: '2030-31',
+      status: ['New to the ODP; beneficial in all three scenarios', '新纳入最优发展路径；在三种情景下均有效益'], c: 'warn' },
+    { n: ['Dubbo Distribution Project', 'Dubbo配电项目'], operator: 'Essential Energy / Transgrid / EnergyCo NSW', region: 'NSW',
+      cls: 'distribution', scope: ['DN1 Option 1; 700 MW of continuous export to the 330 kV system, unlocking 2.4 GW of connections', 'DN1方案1；向330千伏系统持续送出700MW，释放2.4GW并网容量'],
+      mw: 700, capexAM: 607, year: 2032, earliest: null,
+      status: ['Distribution network development opportunity; Step Change 2032-33', '配电网发展机会；阶跃变革情景2032-33年'], c: 'warn' },
+  ],
+
+  /* AEMO's own status vocabulary, defined once so the register's chips and the
+     km-by-class chart cannot drift apart. `km` is the A5 §A5.1.1 Step Change
+     length by class; `prevKm` is the same figure in the 2024 ISP. */
+  ispClasses: [
+    { id: 'committed',      n: ['Committed', '已承诺'],            c: 'good',
+      d: ['Meets all five criteria on planning, construction, land, contracts and financing. Outside the ISP cost-benefit analysis: assumed to proceed.', '满足规划、施工、土地、合同与融资五项标准。不纳入ISP成本效益分析：假定必然推进。'] },
+    { id: 'anticipated',    n: ['Anticipated', '预期'],            c: 'warn',
+      d: ['Meets at least three of the five committed criteria. Also assumed to proceed, on one fewer piece of evidence.', '满足五项已承诺标准中的至少三项。同样假定推进，但证据少一项。'] },
+    { id: 'actionable',     n: ['Actionable ISP', '可行动ISP'],     c: 'warn',
+      d: ['The proponent must start a RIT-T on publication of the final ISP. An instruction to begin a regulatory test, not a funded project.', '发起人须在终版ISP发布时启动RIT-T。这是启动监管测试的指令，而非已获资金的项目。'] },
+    { id: 'actionable-nsw', n: ['Actionable NSW', '可行动（新州）'], c: 'warn',
+      d: ['Proceeds under the Electricity Infrastructure Investment Act 2020 (NSW) rather than the National Electricity Rules.', '依《2020年电力基础设施投资法》（新州）推进，而非依《国家电力规则》。'] },
+    { id: 'actionable-qld', n: ['Actionable Qld', '可行动（昆州）'], c: 'warn',
+      d: ['Proceeds under the Energy (Infrastructure Facilitation) Act 2024 (Qld).', '依《2024年能源（基础设施促进）法》（昆州）推进。'] },
+    { id: 'actionable-vic', n: ['Actionable Vic', '可行动（维州）'], c: 'warn',
+      d: ['Proceeds under the Victorian Transmission Investment Framework.', '依维多利亚输电投资框架推进。'] },
+    { id: 'future',         n: ['Future ISP', '未来ISP'],          c: 'serious',
+      d: ['On the optimal development path and beneficial under at least one scenario, but not needed until later. No RIT-T required yet.', '属最优发展路径且在至少一种情景下有效益，但短期内并不需要。尚无须启动RIT-T。'] },
+    { id: 'distribution',   n: ['Distribution', '配电'],           c: 'info',
+      d: ['Delivered in the distribution network to connect utility-scale generation and storage more cheaply than a transmission solution.', '在配电网层面交付，以低于输电方案的成本接入公用事业级发电与储能。'] },
   ],
 
   /* ---- coverage gaps, rendered verbatim on the Data & Methodology tab ----

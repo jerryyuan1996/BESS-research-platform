@@ -645,6 +645,25 @@ export function buildSections(api){
         { t: 'why', text: ['Hokkaido is the only region where the network can restrict charging as an explicit condition of early connection. Every other market on this platform treats grid risk as an export question. A model that assumes unconstrained import will overstate Hokkaido specifically, which is why import evidence is weighted equally with export evidence in the shared connection score.',
                            '北海道是唯一将限制充电作为早期并网明确条件的区域。本平台其他市场均将电网风险视为外送问题。假设充电不受限的模型将专门高估北海道 — 因此在通用并网评分中，充电证据与放电证据权重相同。'],
           sig: ['Import restriction is a Hokkaido-specific risk', '充电限制是北海道特有风险'] } ] },
+
+      { t: 'card', title: ['The interconnector build behind the curtailment — OCCTO planning stages', '弃电背后的联络线建设 — OCCTO规划阶段'], badges: ['official', 'forecast'], live: false, blocks: [
+        { t: 'table',
+          head: [['Reinforcement', '增容工程'], ['Between', '连接区域'], ['Delivery body', '交付主体'], ['Planning stage', '规划阶段'], ['Scope', '范围'], ['Target', '目标年份'], ['Status', '状态']],
+          num: [5],
+          rows: M.reinforcements.map(x => {
+            const k = M.planClasses.find(c => c.id === x.cls);
+            return [{ b: x.n }, x.region, [x.operator, x.operator], { chip: k.c, text: k.n }, x.scope, String(x.year), x.status];
+          }) },
+        { t: 'cap', text: ['Every intertie reinforcement that bears on the three regions in this dashboard, by OCCTO planning stage. National rather than regional, because each region\'s curtailment sits behind a different intertie: Hokkaido behind the Hokkaido–Honshu links, Kyushu behind Kanmon, Tokyo behind the 50/60 Hz frequency converters.',
+          '按OCCTO规划阶段列出的、与本看板三个区域相关的全部联络线增容工程。之所以按全国而非区域组织，是因为各区域的弃电对应不同的联络线：北海道对应北海道—本州各线路，九州对应关门断面，东京对应50/60赫兹变频设备。'] },
+        { t: 'table', head: [['Planning stage', '规划阶段'], ['What it does and does not confer', '其赋予与不赋予的内容']],
+          rows: M.planClasses.map(k => [{ chip: k.c, text: k.n }, k.d]) },
+        { t: 'why', text: ['Put this table next to the curtailment days and the regional ranking changes shape. Kyushu\'s ' + O.curtailKyushuDays + ' verified curtailment days are the worst in the set, and the reinforcement that would fix them — Kanmon — is planned for the end of FY2038, with an acceleration target of FY2036. That is beyond any reasonable holding period, so Kyushu curtailment should be modelled as a permanent feature of the asset rather than a window that closes. Hokkaido is the opposite case in the near term and the same case beyond it: the 0.9 to 1.2 GW uprate is approved and dated for FY2027, but the ~2 GW Japan Sea HVDC that would actually change Hokkaido economics has not even fixed its delivery entity. Tokyo is the least exposed, because the frequency-converter expansion is approved, dated and modest in what it changes. The ranking that matters is therefore not curtailment today but how far each region\'s relief sits from a date.',
+          '将本表与弃电天数并置，区域排序的形态就会改变。九州已核验的' + O.curtailKyushuDays + '天弃电为样本中最差，而能够解决该问题的增容工程 — 关门断面 — 计划于2038财年末投运，加速目标为2036财年。这已超出任何合理的持有期，因此九州弃电应作为资产的永久特征建模，而非一个会关闭的窗口。北海道在近期属相反情形，而在更长期则属相同情形：0.9GW至1.2GW的扩容已批准并定于2027财年，但真正能改变北海道经济性的约2GW日本海高压直流线路甚至尚未确定交付主体。东京敞口最小，因为变频设备扩容已获批准、有明确日期，且其改变的幅度有限。因此真正重要的排序，不是当下的弃电水平，而是各区域的缓解措施距离一个确定日期还有多远。'],
+          sig: ['Rank by distance to a date, not by curtailment', '按距离确定日期的远近排序，而非按弃电水平'] },
+        { t: 'src', src: SRC.occtoMasterPlan, use: ['Interconnector reinforcements by planning stage and their published in-service targets', '按规划阶段列示的联络线增容工程及其公布的投运目标'] },
+        { t: 'src', src: SRC.hokkaidoHonshu, use: ['The approved Hokkaido–Honshu uprate and its delivery year', '已批准的北海道—本州扩容工程及其交付年份'] },
+      ] },
     ] };
   };
 

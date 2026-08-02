@@ -226,7 +226,9 @@ const routes = [
     capacityBasis:['Transfer capability depends on dispatch, outages and cross-border flows','输送能力取决于调度、停电及跨境潮流'],
   },
   {
-    id:'northern-rail', kind:'route', periods:['future'],
+    id:'northern-rail', kind:'route', periods:['future'], layer:'plan',
+    planClass:'planned', planClassLabel:['In the agreed plan','已列入获同意规划'], planYear:2034,
+    planStatus:['In the PRSP agreed with URE on 20 December 2024; no route-level in-service date published','列入2024年12月20日与URE达成一致的PRSP；未公布线路层面投运日期'],
     name:['Northern 400 kV rail','北部400千伏主干线'],
     coords:[[14.45,53.35],[16.18,54.20],[17.89,54.74],[18.67,54.32],[20.40,53.82]],
     note:['PSE identifies a coastal sequence from Krajnik through Dunowo, Słupsk, Żarnowiec and Gdańsk to Olsztyn Mątki.','PSE明确从克拉伊尼克经杜诺沃、斯武普斯克、扎尔诺维茨及格但斯克至奥尔什丁蒙特基的沿海序列。'],
@@ -238,7 +240,9 @@ const routes = [
     status:['Multiple sections in permitting and construction; 138 km Gdańsk Błonia–Olsztyn Mątki section had an environmental decision in March 2026','多区段处于许可及建设阶段；138公里格但斯克布沃尼亚—奥尔什丁蒙特基区段于2026年3月取得环境决定'],
   },
   {
-    id:'offshore-evacuation', kind:'route', periods:['future'],
+    id:'offshore-evacuation', kind:'route', periods:['future'], layer:'plan',
+    planClass:'planned', planClassLabel:['In the agreed plan','已列入获同意规划'], planYear:2034,
+    planStatus:['Offshore landing capacity allocated in the agreed PRSP; Choczewo station is the one element under construction','获同意PRSP中分配的海上风电落点容量；Choczewo变电站是其中唯一在建的部分'],
     name:['Choczewo offshore-wind evacuation','霍切沃海上风电送出工程'],
     coords:[[17.89,54.74],[18.10,54.72],[18.67,54.32],[18.76,53.50]],
     note:['New 400 kV sections connect the Choczewo landing hub into Żarnowiec, Gdańsk and the north-central system.','新增400千伏区段将霍切沃登陆枢纽接入扎尔诺维茨、格但斯克及中北部系统。'],
@@ -250,7 +254,9 @@ const routes = [
     status:['Choczewo–Żarnowiec obtained a building permit; other sections have separate schedules','霍切沃—扎尔诺维茨已取得建设许可；其他区段有独立计划'],
   },
   {
-    id:'north-south-hvdc', kind:'route', periods:['future'],
+    id:'north-south-hvdc', kind:'route', periods:['future'], layer:'plan',
+    planClass:'planned', planClassLabel:['In the agreed plan','已列入获同意规划'], planYear:2034,
+    planStatus:['Identified in the agreed PRSP; no route, consent or in-service date published','已在获同意的PRSP中识别；未公布路径、许可或投运日期'],
     name:['Planned internal north–south HVDC corridor (schematic)','规划国内南北高压直流走廊（示意）'],
     coords:[[18.10,54.72],[18.76,53.50],[19.70,52.55],[19.35,51.27],[19.30,50.20]],
     note:['PSE plans an internal HVDC system to move northern wind power toward southern industrial demand without loading the parallel AC grid.','PSE规划国内高压直流系统，将北部风电送往南部工业负荷，同时避免加重并行交流网络。'],
@@ -262,7 +268,9 @@ const routes = [
     status:['Planned for the 2025–2034 programme; route shown is a corridor schematic','纳入2025—2034规划；所示路径为走廊示意'],
   },
   {
-    id:'central-demand-reinforcement', kind:'route', periods:['future'],
+    id:'central-demand-reinforcement', kind:'route', periods:['future'], layer:'plan',
+    planClass:'planned', planClassLabel:['In the agreed plan','已列入获同意规划'], planYear:2034,
+    planStatus:['In the agreed PRSP; no separate in-service date published','列入获同意的PRSP；未单独公布投运日期'],
     name:['Central demand and offshore-transfer reinforcements','中部负荷及海上风电输送增容'],
     coords:[[18.76,53.50],[19.70,52.55],[20.74,52.20],[19.60,51.80],[19.35,51.27]],
     note:['Named 400 kV projects reinforce offshore transfer and supply new central demand, including the CPK area.','具名400千伏工程增强海上风电输送并服务包括CPK地区在内的新增中部负荷。'],

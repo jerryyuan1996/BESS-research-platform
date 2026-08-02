@@ -3,7 +3,7 @@ import { congestionFor } from '../congestionRegistry.js';
 
 const PL_GRID_MAP = gridMapById('pl-grid-map');
 
-export function buildPLGridSection({ SRC }){
+export function buildPLGridSection({ SRC, M }){
   return {
     head:['Grid Connection — scarce capacity, changing flow and documentary proof','并网 — 稀缺容量、变化潮流与文件证据'],
     cap:['An investor map and evidence journey for Poland’s coal-to-coast transition. It shows how inherited thermal nodes, northern generation, new demand and PSE’s 2034 reinforcements interact—and which documents convert a location into an underwritable connection.','面向投资者的波兰“煤电向沿海转移”地图及证据路径。展示既有火电节点、北部发电、新增负荷及PSE 2034年前增容工程如何相互作用，并说明哪些文件可将区位转化为可承销并网。'],
@@ -55,6 +55,23 @@ export function buildPLGridSection({ SRC }){
         { t:'why', text:['PSE’s plan includes 1,050 Mvar of new synchronous compensators and an internal HVDC system. These are system-strength and transfer tools; neither automatically gives a battery a connection. Prevention is an interface matrix that ties the project’s models and tests to the exact network works and Grid Code version.','PSE规划包含1,050Mvar新增同步调相机及国内高压直流系统。这些是系统强度及输送工具；均不会自动赋予电池并网权利。预防方法是建立接口矩阵，将项目模型及测试与确切电网工程及电网规范版本相绑定。'],sig:['Capability must be contracted and tested','能力须被合同化并完成测试']},
         { t:'src', src:SRC.gridReform, use:['URE proposals for digitisation, cable pooling and commercial connection','URE关于数字化、共用接入点及商业并网的建议'] },
         { t:'src', src:SRC.gridCode, use:['Approved 2025 generating-unit connection requirements','获批的2025年发电单元并网要求'] },
+      ]},
+      { t:'card', title:['The network build behind the refusals — named projects in the agreed PRSP','拒绝背后的电网建设 — 获同意PRSP中的具名项目'], badges:['official','forecast'], blocks:[
+        { t:'table',
+          head:[['Project','工程'],['Area','区域'],['Delivery body','交付主体'],['Position','进展状态'],['Scope','范围'],['Horizon','展望年份'],['Status','状态']], num:[5],
+          rows: M.reinforcements.map(x => {
+            const k = M.planClasses.find(c => c.id === x.cls);
+            return [{ b:x.n }, x.region, [x.operator, x.operator], { chip:k.c, text:k.n }, x.scope, String(x.year), x.status];
+          }) },
+        { t:'cap', text:['The PSE investments a Polish connection date depends on. Poland publishes no ISP-style status classification, so the position column separates what is physically underway from what the agreed plan merely lists.',
+          '波兰并网日期所依赖的PSE投资项目。波兰不发布ISP式的状态分类，因此进展状态列区分"已实际开工"与"获同意规划仅作列示"。'] },
+        { t:'table', head:[['Position','进展状态'],['What it does and does not confer','其赋予与不赋予的内容']],
+          rows: M.planClasses.map(k => [{ chip:k.c, text:k.n }, k.d]) },
+        { t:'why', text:['This table is the counterweight to the refusal card above. The refusal statistics say capacity is scarce today; the plan says PLN 64bn and 4,700 km of 400 kV are coming. Both are true and neither dates your connection, because only one row here is actually under construction. Choczewo has a completion year because steel is in the ground; the north–south HVDC link — the project that would most change where a Polish battery is worth building — has no route, no consent and no in-service date, only a 2034 horizon. So the practical rule for a Polish site is to ask which PRSP entry your connection conditions assume, and then check whether that entry has moved out of the plan and into construction. Until it has, the reinforcement is an argument for where capacity will eventually exist, not evidence that a refusal will be reversed.',
+          '本表是上方拒绝卡片的对照。拒绝统计说明当下容量稀缺；规划则说明640亿兹罗提与4,700公里400千伏线路即将到来。两者均为事实，且都无法确定你的并网日期，因为本表中真正在建的仅有一行。Choczewo之所以有完工年份，是因为工程实体已在地面；而南北高压直流联络线 — 最能改变波兰储能选址价值的项目 — 既无路径、无许可、也无投运日期，仅有2034年的展望。因此对波兰场址的实用规则是：追问你的并网条件假设了哪一条PRSP条目，再核查该条目是否已由规划进入施工。在此之前，增容工程只是关于"容量最终将存在于何处"的论据，而非"拒绝将被推翻"的证据。'],
+          sig:['One row is built; the rest is a plan','仅一行在建，其余皆为规划'] },
+        { t:'src', src:SRC.systemPlan, use:['Named investments, route kilometres, substation counts and the 2034 planning horizon','具名投资、线路公里数、变电站数量及2034年规划展望'] },
+        { t:'src', src:SRC.gridPlan, use:['The agreed plan document and its offshore connection allocations','获同意的规划文件及其海上风电并网容量分配'] },
       ]},
     ],
   };

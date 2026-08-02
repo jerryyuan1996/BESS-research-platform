@@ -175,6 +175,48 @@ const M = {
       d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
   ],
 
+  /* ---- named transmission, from Transelectrica's RET Development Plan
+     2026–2035 ---------------------------------------------------------------
+     The plan is organised by priority direction rather than by delivery status,
+     so the class column below records the direction each named work serves. That
+     is the honest mapping: Romania's public synthesis names the works and the
+     2030 delivery window, but does not publish a per-project consenting position
+     or a construction start, and none is invented here. */
+  reinforcements: [
+    { n: ['Brașov – Sibiu South', 'Brașov — Sibiu South'], operator: 'Transelectrica', region: ['Centre — Transylvania', '中部 — 特兰西瓦尼亚'],
+      cls: 'security', scope: ['400 kV reinforcement across the central corridor linking Transylvanian load to the southern ring', '400千伏中部走廊增容，连接特兰西瓦尼亚负荷与南部环网'],
+      year: 2030, status: ['Named 2030 work in the adopted plan; no published construction start', '已列入通过规划的2030年具名工程；未公布开工时间'], c: 'warn' },
+    { n: ['Cetate – Calafat', 'Cetate — Calafat'], operator: 'Transelectrica', region: ['South West — Oltenia', '西南 — 奥尔特尼亚'],
+      cls: 'interconnection', scope: ['South-western reinforcement serving the Danube corridor and Bulgarian cross-border exchange', '西南部增容工程，服务多瑙河走廊及与保加利亚的跨境交换'],
+      year: 2030, status: ['Named 2030 work in the adopted plan; no published construction start', '已列入通过规划的2030年具名工程；未公布开工时间'], c: 'warn' },
+    { n: ['Alba Iulia – Cluj Florești', 'Alba Iulia — Cluj Florești'], operator: 'Transelectrica', region: ['North West — Transylvania', '西北 — 特兰西瓦尼亚'],
+      cls: 'renewables', scope: ['North-western 400 kV reinforcement releasing Transylvanian renewable and hydro transfer', '西北部400千伏增容，释放特兰西瓦尼亚可再生能源与水电输送能力'],
+      year: 2030, status: ['Named 2030 work in the adopted plan; no published construction start', '已列入通过规划的2030年具名工程；未公布开工时间'], c: 'warn' },
+    { n: ['Bucharest South – Mostiștea', 'Bucharest South — Mostiștea'], operator: 'Transelectrica', region: ['South — Muntenia', '南部 — 蒙特尼亚'],
+      cls: 'security', scope: ['Reinforcement into the Bucharest load centre, the largest single demand concentration on the system', '通往布加勒斯特负荷中心的增容工程，该地是系统内最大的单一负荷集中区'],
+      year: 2030, status: ['Named 2030 work in the adopted plan; no published construction start', '已列入通过规划的2030年具名工程；未公布开工时间'], c: 'warn' },
+    { n: ['Lotru – Sibiu South', 'Lotru — Sibiu South'], operator: 'Transelectrica', region: ['Centre — Vâlcea / Sibiu', '中部 — 沃尔恰 / 锡比乌'],
+      cls: 'renewables', scope: ['Reinforcement around the Lotru hydro complex, improving central transfer capability', 'Lotru水电枢纽周边增容，提升中部输送能力'],
+      year: 2030, status: ['Named 2030 work in the adopted plan; no published construction start', '已列入通过规划的2030年具名工程；未公布开工时间'], c: 'warn' },
+    { n: ['RET Development Plan 2026–2035', 'RET发展规划2026–2035'], operator: 'Transelectrica', region: ['Romania', '罗马尼亚全境'],
+      cls: 'programme', scope: ['The adopted transmission programme the works above sit inside, built on four priority directions and running to a 2035 horizon', '上述工程所属的已通过输电计划，基于四个优先方向，展望至2035年'],
+      year: 2035, status: ['Adopted plan horizon — a programme, not a commissioning date', '已通过的规划展望期 — 属计划而非投运日期'], c: 'serious' },
+  ],
+
+  /* Romania's plan classifies by priority direction, not by delivery status, so
+     that is what the register reports. The absence of a status ladder is itself
+     the finding, and the `why` on the card says so rather than inferring one. */
+  planClasses: [
+    { id: 'security',        n: ['Security of supply', '供电安全'], c: 'warn',
+      d: ['Serves the plan\'s supply-security direction. Delivery status is not published per project, so the 2030 window is a plan year rather than a commissioning date.', '服务于规划的供电安全方向。各项目的交付状态未公布，因此2030年窗口属规划年份而非投运日期。'] },
+    { id: 'renewables',      n: ['Renewable integration', '新能源接入'], c: 'warn',
+      d: ['Serves the plan\'s renewable-integration direction, including the Dobrogea and Moldova build-out. Same caveat on dating.', '服务于规划的新能源接入方向，含多布罗加与摩尔多瓦地区建设。日期方面存在同样保留。'] },
+    { id: 'interconnection', n: ['Interconnection', '跨境互联'], c: 'warn',
+      d: ['Serves the cross-border capacity direction, which targets 15% interconnection by 2030 and 7,000 MW of exchange capacity.', '服务于跨境容量方向，目标为2030年互联率15%及7,000MW交换能力。'] },
+    { id: 'programme',       n: ['Programme', '整体计划'], c: 'serious',
+      d: ['The plan as a whole. Romania publishes priority directions and named works but not per-project consent or construction status — so no row here can be read as a date.', '规划整体。罗马尼亚公布优先方向与具名工程，但不公布各项目的许可或施工状态 — 因此本表任何一行均不可视为日期。'] },
+  ],
+
   lab: {
     mw: 50, hours: 2, capexKWh: 240, capexKW: 150, opexKW: 8,
     rte: 88, avail: 96, degr: 2.0, cycles: 1.4, spread: 62, optFee: 10,

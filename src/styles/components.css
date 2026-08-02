@@ -368,6 +368,37 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   border:1px solid var(--critical)}
 
 .geo-detail-eyebrow.constraint{color:var(--critical)}
+
+/* ---- planned-build layer -------------------------------------------------
+   The market's network-plan register, drawn on the map. Deliberately styled as
+   a weaker line than the operating network: these are projects at various
+   distances from a date, and the dash density carries that distance. A solid
+   operating route and a planned corridor must never read as the same evidence.
+
+   Firmness runs light-to-heavy dash: committed/under-construction is nearly
+   solid, an approvals status is dashed, and a plan-only entry is sparse. Class
+   names are the register's own ids, so a market that invents a new class simply
+   falls through to the base .plan style rather than silently borrowing another
+   market's meaning. */
+.geo-route.plan{stroke:var(--s3);stroke-width:2.2;opacity:.85;stroke-dasharray:5 4;stroke-linecap:round}
+.geo-route.plan.committed,
+.geo-route.plan.construction,
+.geo-route.plan.approved{stroke-dasharray:none;stroke-width:2.8}
+.geo-route.plan.anticipated,
+.geo-route.plan.priority,
+.geo-route.plan.delivery{stroke-dasharray:9 4}
+.geo-route.plan.actionable,.geo-route.plan.actionable-nsw,.geo-route.plan.actionable-qld,
+.geo-route.plan.actionable-vic,.geo-route.plan.process,
+.geo-route.plan.priority-pending,.geo-route.plan.planning,.geo-route.plan.funded{stroke-dasharray:6 5}
+.geo-route.plan.future,.geo-route.plan.planned,.geo-route.plan.early,
+.geo-route.plan.masterplan,.geo-route.plan.programme,
+.geo-route.plan.security,.geo-route.plan.renewables,.geo-route.plan.interconnection{stroke-dasharray:2 6;opacity:.72}
+.geo-route.plan:hover,.geo-route.plan.selected{stroke-width:4.4;opacity:1}
+
+.geo-marker.plan .marker-shape{fill:var(--s3);stroke-dasharray:3 2}
+.geo-symbol.plan{width:13px;height:0;border-top:2px dashed var(--s3);background:none;border-radius:0}
+.geo-layer-toggle.plan span{width:11px;height:0;border-radius:0;background:none;
+  border-top:2px dashed var(--s3)}
 .geo-metric-period{color:var(--muted);font-size:10.5px}
 .geo-capture-tag,.geo-relief-tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;
   font-style:normal;font-size:9.5px;font-weight:600;letter-spacing:.02em;

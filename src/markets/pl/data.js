@@ -177,6 +177,42 @@ const M = {
       d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
   ],
 
+  /* ---- named transmission, from PSE's Transmission Network Development Plan
+     (PRSP) 2025–2034, agreed with the regulator URE on 20 December 2024 ------
+     Poland's plan is unusually binding by the standards of this platform: URE
+     agreement is a regulatory act, not a consultation output. What it is not is
+     a commissioning guarantee, which is why the class column separates the
+     projects that are physically underway from the ones the plan merely lists. */
+  reinforcements: [
+    { n: ['Choczewo 400 kV station', 'Choczewo 400千伏变电站'], operator: 'PSE', region: ['Pomerania — Żarnowiec area', '波莫瑞 — Żarnowiec地区'],
+      cls: 'construction', scope: ['Offshore wind connection point; the plan allocates up to 5,350 MW of offshore capacity here by 2034', '海上风电并网点；规划到2034年在此分配最多5,350MW海上风电容量'],
+      year: 2027, status: ['Under construction since March 2023; equipment passed readiness tests end-2025, completion 2027', '自2023年3月起施工；设备于2025年底通过就绪测试，2027年完工'], c: 'good' },
+    { n: ['Krzemienica 400 kV station', 'Krzemienica 400千伏变电站'], operator: 'PSE', region: ['Pomerania — Słupsk area', '波莫瑞 — 斯武普斯克地区'],
+      cls: 'planned', scope: ['Second offshore landing hub; the plan allocates up to 5,060 MW of offshore capacity here by 2034', '第二个海上风电落点枢纽；规划到2034年在此分配最多5,060MW海上风电容量'],
+      year: 2034, status: ['In the agreed PRSP; no published commissioning date for the full allocation', '已列入获同意的PRSP；全部分配容量无公布投运日期'], c: 'serious' },
+    { n: ['Słupsk 400 kV', 'Słupsk 400千伏'], operator: 'PSE', region: ['Pomerania', '波莫瑞'],
+      cls: 'planned', scope: ['Third offshore landing point; 1,440 MW allocated by 2034', '第三个海上风电落点；到2034年分配1,440MW'],
+      year: 2034, status: ['In the agreed PRSP; no published commissioning date', '已列入获同意的PRSP；无公布投运日期'], c: 'serious' },
+    { n: ['Internal north–south HVDC link', '国内南北高压直流联络线'], operator: 'PSE', region: ['North → South Poland', '波兰北部 → 南部'],
+      cls: 'planned', scope: ['The plan\'s flagship: a direct-current link carrying northern offshore and wind output to southern load without loading the AC network', '规划的旗舰项目：直流线路将北部海上风电与陆上风电送至南部负荷中心，且不加重交流网络负担'],
+      year: 2034, status: ['Identified in the agreed PRSP; no route, consent or in-service date published', '已在获同意的PRSP中识别；未公布路径、许可或投运日期'], c: 'critical' },
+    { n: ['PRSP 2025–2034 programme', 'PRSP 2025–2034计划'], operator: 'PSE, agreed by URE', region: ['Poland', '波兰全境'],
+      cls: 'programme', scope: ['4,700 km of new 400 kV circuits, 28 new and 110 rebuilt substations, more than PLN 64bn to 2034', '新建4,700公里400千伏线路，新建28座、改造110座变电站，到2034年投资超过640亿兹罗提'],
+      year: 2034, status: ['Agreed with URE on 20 December 2024 — a regulatory act, not a commissioning date', '2024年12月20日获URE同意 — 属监管行为，而非投运日期'], c: 'serious' },
+  ],
+
+  /* Poland's status vocabulary. `planned` is the class that does the work here:
+     URE agreement makes a PRSP entry more than a wish, and still less than a
+     project with a route and a date. */
+  planClasses: [
+    { id: 'construction', n: ['In construction', '在建'], c: 'good',
+      d: ['Physically underway with a published completion year. The only class where a date can carry weight.', '已实际开工并公布完工年份。唯一日期具有分量的类别。'] },
+    { id: 'planned',      n: ['In the agreed plan', '已列入获同意规划'], c: 'serious',
+      d: ['Listed in a PRSP that the regulator has formally agreed, but with no route, consent or in-service date published. A 2034 horizon year is not a commissioning date.', '列入监管机构已正式同意的PRSP，但未公布路径、许可或投运日期。2034年的展望年份并非投运日期。'] },
+    { id: 'programme',    n: ['Programme total', '计划总量'], c: 'serious',
+      d: ['The plan-wide capital and route totals. Useful for sizing the national build; useless for dating any one connection.', '全规划的资本与线路总量。可用于衡量全国建设规模，但无法为任何单一并网确定日期。'] },
+  ],
+
   lab: {
     mw: 100, hours: 4, capexKWh: 200, capexKW: 170, opexKW: 9,
     rte: 88, avail: 96, degr: 2.0, cycles: 1.2, spread: 60, optFee: 9,

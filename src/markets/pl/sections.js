@@ -922,7 +922,7 @@ SEC_B.data = function (){
 };
 
 
-  SEC_B.grid = () => buildPLGridSection({ SRC });
+  SEC_B.grid = () => buildPLGridSection({ SRC, M });
 
   return SECTIONS;
 }

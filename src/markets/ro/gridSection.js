@@ -3,7 +3,7 @@ import { congestionFor } from '../congestionRegistry.js';
 
 const RO_GRID_MAP = gridMapById('ro-grid-map');
 
-export function buildROGridSection({ SRC }){
+export function buildROGridSection({ SRC, M }){
   return {
     head:['Grid Connection — turn an ATR into deliverable capacity','并网 — 将ATR转化为可交付容量'],
     cap:['An investor guide to Romania’s network structure, connection evidence and 2026 anti-speculation reform. The map compares inherited topology, today’s queue pressure and the named reinforcements behind future connection offers.','面向投资者的罗马尼亚电网结构、并网证据及2026年反投机改革指南。地图对比既有拓扑、当前队列压力及未来并网要约背后的具名增容工程。'],
@@ -55,6 +55,23 @@ export function buildROGridSection({ SRC }){
         ]},
         { t:'why', text:['The national evidence shows why a connection date slips even when a headline ATR exists: each successive document removes a different failure mode. Prevention is a monthly evidence matrix covering ATR validity, contract, permits, securities, named reinforcement, land, procurement, outage window, compliance testing and energisation.','全国证据说明为何即使存在ATR标题，并网日期仍会延误：每一份后续文件消除的是不同失效模式。预防方法是建立月度证据矩阵，覆盖ATR有效期、合同、许可、担保、具名增容、土地、采购、停电窗口、合规测试及送电。'],sig:['Track conversion, not announcements','跟踪转化，而非公告']},
         { t:'src', src:SRC.gridProjects, use:['Official stage counts and approved export capacity','官方阶段数量及核准送出容量'] },
+      ]},
+      { t:'card', title:['The network build behind the offers — named works in the adopted RET plan','要约背后的电网建设 — 已通过RET规划中的具名工程'], badges:['official','forecast'], blocks:[
+        { t:'table',
+          head:[['Work','工程'],['Area','区域'],['Delivery body','交付主体'],['Priority direction','优先方向'],['Scope','范围'],['Plan year','规划年份'],['Status','状态']], num:[5],
+          rows: M.reinforcements.map(x => {
+            const k = M.planClasses.find(c => c.id === x.cls);
+            return [{ b:x.n }, x.region, [x.operator, x.operator], { chip:k.c, text:k.n }, x.scope, String(x.year), x.status];
+          }) },
+        { t:'cap', text:['The named reinforcements behind future Romanian connection offers. Transelectrica organises the plan by priority direction rather than by delivery status, so that is what the fourth column reports — there is no published per-project consenting position to show.',
+          '未来罗马尼亚并网要约背后的具名增容工程。Transelectrica按优先方向而非交付状态组织规划，因此第四列报告的即为优先方向 — 并不存在可展示的各项目公开许可进展。'] },
+        { t:'table', head:[['Priority direction','优先方向'],['What it does and does not confer','其赋予与不赋予的内容']],
+          rows: M.planClasses.map(k => [{ chip:k.c, text:k.n }, k.d]) },
+        { t:'why', text:['Compare this table with the funnel above and the gap is the point. The funnel is granular to the project: 81.3 GW of valid ATR narrowing to 8.9 GW with an establishment authorisation. The network plan is not — it names five 2030 works and four priority directions, and publishes no construction start or consenting position for any of them. So Romania gives an investor precise evidence about competitors and vague evidence about the wires those competitors are queuing for. The practical consequence is asymmetric: you can probability-weight the competition, but you cannot date the reinforcement your own ATR depends on. Make the named reinforcement a condition precedent with a long-stop, because there is no published schedule to check it against.',
+          '将本表与上方漏斗对照，差距本身就是重点。漏斗对项目层面颗粒度很高：81.3GW有效ATR收窄至具备设立许可的8.9GW。而电网规划则不然 — 它列出五项2030年工程与四个优先方向，却未公布其中任何一项的开工时间或许可进展。因此罗马尼亚为投资者提供了关于竞争者的精确证据，以及关于这些竞争者所排队等待的线路的模糊证据。其实际后果是不对称的：你可以对竞争进行概率加权，却无法为自身ATR所依赖的增容工程确定日期。应将具名增容工程设为带最终截止日的先决条件，因为并不存在可供核对的公开进度表。'],
+          sig:['Precise on rivals, vague on wires','对竞争者精确，对线路模糊'] },
+        { t:'src', src:SRC.systemPlan, use:['Named 2030 works, priority directions and the 2035 planning horizon','2030年具名工程、优先方向及2035年规划展望'] },
+        { t:'src', src:SRC.gridPlan, use:['The adopted RET development plan document','已通过的RET发展规划文件'] },
       ]},
     ],
   };
