@@ -182,6 +182,13 @@ export const COMPARISON_AUTHORITY = {
   'economics.ltda.years': AUTHORITY.ANALYST,
   'economics.ltda.merchantRetention': AUTHORITY.METHODOLOGY,
   'economics.ltda.note': AUTHORITY.METHODOLOGY,
+  /* What the award pays after its term ends, and whether a capital grant may be
+     stacked on top of a competitively bid award. Both are modelling positions
+     rather than published scheme parameters. */
+  'economics.ltda.postFactor': AUTHORITY.METHODOLOGY,
+  'economics.ltda.excludesGrant': AUTHORITY.METHODOLOGY,
+  /* An eligibility rule the scheme publishes, where it has one. */
+  'economics.ltda.minDurationHours': AUTHORITY.ANALYST,
 
   // Policy-set, therefore observable in principle.
   'economics.grantPct': AUTHORITY.ANALYST,

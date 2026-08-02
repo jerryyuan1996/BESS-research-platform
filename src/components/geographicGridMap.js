@@ -2,7 +2,7 @@ import { geoMercator, geoPath } from 'd3-geo';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import {
-  CAPTURE_LABEL, CAPTURE_PAYS, RELIEF_STATUS_LABEL, reliefRunway,
+  CAPTURE_LABEL, CAPTURE_FLOW, CAPTURE_FLOW_LABEL, RELIEF_STATUS_LABEL, reliefRunway,
 } from '../governance/congestion.js';
 
 /* The year relief runways are measured from. The register publishes commissioning
@@ -340,7 +340,7 @@ export function renderGeographicGridMap(parent, data){
      how a battery is paid for it, what ends it, and when. */
   function renderConstraintDetail(zone){
     const runway = reliefRunway(zone, RUNWAY_FROM);
-    const pays = CAPTURE_PAYS[zone.capture.mechanism];
+    const flow = CAPTURE_FLOW[zone.capture.mechanism];
 
     const metrics = h('dl', { class:'geo-detail-facts' });
     for (const m of zone.metrics){
@@ -359,12 +359,14 @@ export function renderGeographicGridMap(parent, data){
       metrics,
       h('div', { class:'geo-detail-section capture' },
         h('span', {}, L(['How a battery is paid','储能如何获得回报']),
-          h('i', { class:'geo-capture-tag' + (pays ? '' : ' charges') }, L(CAPTURE_LABEL[zone.capture.mechanism]))),
+          h('i', { class:'geo-capture-tag ' + flow }, L(CAPTURE_LABEL[zone.capture.mechanism]))),
         h('p', {}, L(zone.capture.text)),
-        pays ? null : h('p', { class:'geo-capture-warn' }, L([
-          'This mechanism charges the developer rather than paying the operator.',
-          '该机制向开发商收费，而非向运营方付费。',
-        ]))),
+        flow === 'pays' ? null
+          : h('p', { class:'geo-capture-warn' }, L(flow === 'charges'
+            ? ['This mechanism charges the developer rather than paying the operator.',
+               '该机制向开发商收费，而非向运营方付费。']
+            : ['Nobody is paid for relieving this constraint. Value exists only in charging into the prices it creates.',
+               '缓解该约束无人获得报酬。其价值仅存在于在该约束所形成的低价时段充电。']))),
       h('div', { class:'geo-detail-section relief' },
         h('span', {}, L(['What ends it','约束何时终止']),
           h('i', { class:'geo-relief-tag' }, L(RELIEF_STATUS_LABEL[zone.relief.status]))),

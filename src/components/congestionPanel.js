@@ -21,8 +21,14 @@ import { badge } from './badge.js';
 import { chip } from './chip.js';
 import { why } from './decisionLogic.js';
 import {
-  CAPTURE_LABEL, CAPTURE_PAYS, RELIEF_STATUS, RELIEF_STATUS_LABEL, reliefRunway,
+  CAPTURE_LABEL, CAPTURE_FLOW, CAPTURE_FLOW_LABEL,
+  RELIEF_STATUS, RELIEF_STATUS_LABEL, reliefRunway,
 } from '../governance/congestion.js';
+
+/* Green only where the mechanism actually pays. A constraint nobody compensates
+   is not a neutral fact for an investor — it is the reason the case has to be
+   built on charging into the prices the constraint creates instead. */
+const FLOW_TONE = { pays: 'ok', charges: 'bad', neither: 'warn' };
 
 /** Matches the map's reference year so the two cannot drift apart. */
 export const RUNWAY_FROM = 2026;
@@ -56,7 +62,7 @@ export function renderCongestionRegister(parent, register){
 
   const rows = register.zones.map(zone => {
     const runway = reliefRunway(zone, RUNWAY_FROM);
-    const pays = CAPTURE_PAYS[zone.capture.mechanism];
+    const flow = CAPTURE_FLOW[zone.capture.mechanism];
     const head = zone.metrics[0];
 
     return h('tr', {},
@@ -68,9 +74,9 @@ export function renderCongestionRegister(parent, register){
       h('td', {}, h('b', {}, L(head.value)),
         h('span', { class: 'cong-metric-label' }, L(head.label), ' · ', L(head.period))),
       h('td', {},
-        chip(pays ? 'ok' : 'bad', L(CAPTURE_LABEL[zone.capture.mechanism])),
-        pays ? null : h('span', { class: 'cong-charges' },
-          L(['charges the developer', '由开发商承担']))),
+        chip(FLOW_TONE[flow], L(CAPTURE_LABEL[zone.capture.mechanism])),
+        flow === 'pays' ? null
+          : h('span', { class: 'cong-charges' }, L(CAPTURE_FLOW_LABEL[flow]))),
       h('td', {}, h('b', {}, L(zone.relief.project)),
         h('span', { class: 'cong-metric-label' }, L(RELIEF_STATUS_LABEL[zone.relief.status]))),
       h('td', { class: 'num' }, runwayChip(runway, zone.relief.status)));

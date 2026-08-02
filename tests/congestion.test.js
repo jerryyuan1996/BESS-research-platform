@@ -22,7 +22,7 @@ import {
 } from '../src/markets/congestionRegistry.js';
 import { GRID_MAPS, gridMapForMarket, gridMapById } from '../src/markets/gridMapRegistry.js';
 import {
-  validateCongestionCollection, CAPTURE, CAPTURE_LABEL, CAPTURE_PAYS,
+  validateCongestionCollection, CAPTURE, CAPTURE_LABEL, CAPTURE_PAYS, CAPTURE_FLOW, CAPTURE_FLOW_LABEL,
   RELIEF_STATUS, RELIEF_STATUS_LABEL, reliefRunway, HORIZON_YEAR,
 } from '../src/governance/congestion.js';
 import { LAB_FIELDS } from '../src/comparison/ranges.js';
@@ -47,19 +47,30 @@ test('a constraint always states how a battery is paid, and whether it pays at a
     assert.ok(Object.values(CAPTURE).includes(mechanism),
       `${zone.id}: mechanism outside the vocabulary`);
     assert.ok(CAPTURE_LABEL[mechanism], `${zone.id}: mechanism has no label`);
-    assert.equal(typeof CAPTURE_PAYS[mechanism], 'boolean',
-      `${zone.id}: mechanism does not declare whether it pays or charges`);
+    assert.ok(['pays', 'charges', 'neither'].includes(CAPTURE_FLOW[mechanism]),
+      `${zone.id}: mechanism does not declare which way the money runs`);
+    assert.ok(CAPTURE_FLOW_LABEL[CAPTURE_FLOW[mechanism]],
+      `${zone.id}: money-flow direction has no label`);
+    assert.equal(CAPTURE_PAYS[mechanism], CAPTURE_FLOW[mechanism] === 'pays',
+      `${zone.id}: CAPTURE_PAYS must stay derived from CAPTURE_FLOW, not maintained separately`);
   }
 });
 
-/* Romania is the whole reason CAPTURE_PAYS exists: its congestion is charged to
-   the developer at the connection auction rather than paid to the operator
-   afterwards. If that ever becomes true of no market, the distinction has gone
-   stale and the register has quietly become a list of revenues. */
-test('the paying/charging distinction is exercised by at least one market', () => {
-  const charging = allZones().filter(z => !CAPTURE_PAYS[z.capture.mechanism]);
-  assert.ok(charging.length, 'no market charges for congestion — is CAPTURE_PAYS still meaningful?');
-  assert.ok(charging.some(z => z.marketId === 'ro'),
+/* Three directions, and each one has to be exercised by a real market or the
+   distinction is decoration:
+
+     charges   Romania prices congestion at the connection auction, so the
+               developer pays it before the asset exists
+     neither   the NEM holds no firm transmission rights and killed the
+               Congestion Relief Market, so a constrained battery gets nothing
+
+   If either disappears, the vocabulary has drifted ahead of the evidence. */
+test('every money-flow direction is exercised by a real market', () => {
+  const zones = allZones();
+  const byFlow = (flow) => zones.filter(z => CAPTURE_FLOW[z.capture.mechanism] === flow);
+
+  assert.ok(byFlow('pays').length, 'no market pays for congestion relief');
+  assert.ok(byFlow('charges').some(z => z.marketId === 'ro'),
     'Romania allocates connections by auction and should be a charging market');
 });
 
@@ -103,9 +114,9 @@ test('a constraint that bears on an assumption names a field the Lab actually re
 /* The warning the Lab shows is only honest if it is restricted to mechanisms
    that pay. A connection auction bears on capex as a COST — telling a reader
    that cost "is relieved in 2029" would be exactly backwards. */
-test('only paying mechanisms can carry a relief warning on a revenue assumption', () => {
+test('a charging mechanism never carries a relief warning on a revenue assumption', () => {
   for (const zone of allZones()){
-    if (CAPTURE_PAYS[zone.capture.mechanism]) continue;
+    if (CAPTURE_FLOW[zone.capture.mechanism] !== 'charges') continue;
     assert.notEqual(zone.bearsOn, 'merchGross',
       `${zone.id}: a charging mechanism must not warn against merchant revenue`);
     assert.notEqual(zone.bearsOn, 'services',

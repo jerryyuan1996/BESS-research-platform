@@ -24,7 +24,13 @@ function scatterChart(parent, cfg){
     if (kept[kept.length - 1] !== cfg.xmax) kept.push(cfg.xmax);
     return kept;
   })();
-  const yt = niceTicks(Math.min(...ys) * 0.85, Math.max(...ys) * 1.1, 4);
+  /* Pad the y-domain by a fraction of its RANGE, not by scaling the endpoints.
+     Scaling breaks the moment a value is negative — min × 0.85 moves −10 up to
+     −8.5, putting the lowest point below the axis — and plotting several routes
+     per market is exactly what puts a negative exit IRR on this chart. */
+  const yLo = Math.min(...ys), yHi = Math.max(...ys);
+  const yPad = (yHi - yLo) * 0.12 || Math.abs(yHi) * 0.1 || 1;
+  const yt = niceTicks(yLo - yPad, yHi + yPad, 4);
   const xlo = xt[0], xhi = xt[xt.length - 1], ylo = yt[0], yhi = yt[yt.length - 1];
   const X = v => padL + (v - xlo) / (xhi - xlo) * plotW;
   const Y = v => padT + plotH - (v - ylo) / (yhi - ylo) * plotH;
@@ -38,17 +44,31 @@ function scatterChart(parent, cfg){
     svg.append(axisText(X(tv), H - 26, (cfg.xfmt || fmtN)(tv)));
   }
   svg.append(axisText(padL + plotW / 2, H - 8, L(cfg.xlabel), 'middle', 10.5));
-  for (const p of cfg.pts){
+  /* Hollow points are drawn first so a filled one is never hidden behind an
+     alternative route sitting at nearly the same coordinates. */
+  const ordered = [...cfg.pts].sort((a, b) => (a.hollow ? 0 : 1) - (b.hollow ? 0 : 1));
+
+  for (const p of ordered){
     // clamp guards against a point escaping the plot if a domain is ever mis-sized
     const cx = Math.max(padL, Math.min(W - padR, X(p.x)));
     const cy = Math.max(padT, Math.min(padT + plotH, Y(p.y)));
-    const c = S('circle', { cx, cy, r: 7, fill: p.color, stroke: 'var(--surface)', 'stroke-width': 2 });
+    /* Filled = the market's base route, the one every other section of the page
+       reports. Hollow = an alternative route available in that market. Same
+       colour, because they are the same market seen through a different
+       contract. */
+    const c = p.hollow
+      ? S('circle', { cx, cy, r: 6, fill: 'var(--surface)', stroke: p.color, 'stroke-width': 2.4 })
+      : S('circle', { cx, cy, r: 7, fill: p.color, stroke: 'var(--surface)', 'stroke-width': 2 });
     c.addEventListener('mousemove', ev => tipShow(p.tip, ev));
     c.addEventListener('mouseleave', tipHide);
     svg.append(c);
-    // flip the label inward when the point sits near the right edge
-    const right = cx > padL + plotW * 0.82;
-    svg.append(axisText(cx + (right ? -11 : 11), cy + 4, p.label, right ? 'end' : 'start', 11));
+    // Only labelled points get text; with several routes per market, labelling
+    // all of them would produce a chart of overlapping strings.
+    if (p.label){
+      // flip the label inward when the point sits near the right edge
+      const right = cx > padL + plotW * 0.82;
+      svg.append(axisText(cx + (right ? -11 : 11), cy + 4, p.label, right ? 'end' : 'start', 11));
+    }
   }
   const wrap = h('div', { class: 'chart' }); wrap.append(svg); parent.append(wrap);
 }

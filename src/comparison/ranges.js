@@ -143,6 +143,8 @@ export const LAB_FIELDS = [
     label: ['Years secured', '已锁定年限'] },
   { key: 'ltda.payment', group: 'contracted', unit: 'cur',
     label: ['Long-term award per MW/yr', '每MW/年长期中标金额'] },
+  { key: 'ltda.years', group: 'contracted', unit: 'yr',
+    label: ['Award term', '中标期限'] },
 
   { key: 'toll', group: 'contracted', unit: 'cur',
     label: ['Toll fee per MW/yr', '每MW/年租赁费'] },

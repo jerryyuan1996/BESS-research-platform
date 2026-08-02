@@ -23,7 +23,7 @@ import {
   NF2, fmtN, fmt1, fmtPct, fmtUSDk, fmtIRR, fmtX,
 } from '../utils/formatting.js';
 import { runCase, runBaseCase } from '../comparison/engine.js';
-import { STRATEGIES, strategyById, baseStrategy } from '../comparison/strategies.js';
+import { STRATEGIES, strategyById, baseStrategy, supportedStrategies } from '../comparison/strategies.js';
 import { FX, EXIT_Y_CONTRACTED, EXIT_Y_MERCHANT, FX_NOTE, FX_SEED_DATE } from '../comparison/assumptions.js';
 import { whenLoaded } from '../live/client.js';
 import { liveBadge } from '../live/liveValue.js';
@@ -210,39 +210,92 @@ function renderIrrChart(main, marketList, X){
 
 /* ---- C. certainty frontier ---------------------------------------------- */
 
+/* ---- C. certainty frontier ----------------------------------------------
+
+   One point per ROUTE, not per market. A market is not a single position: it is
+   a menu of contracts, and the whole question this chart exists to ask — what
+   does certainty cost — is a question about the spread BETWEEN those contracts,
+   which a single dot per market cannot show. Italy is the clearest case: the
+   MACSE award and an Italian toll sit at very different points on both axes, and
+   plotting only the base route would publish whichever one we happened to pick
+   as if it were the market.
+
+   Unlike the $1M matrix above, this chart does NOT filter value-destroying
+   routes. The matrix is an opportunity set and should show only what is
+   investable; the frontier is a price of certainty, and a route that buys
+   certainty by giving up all of the return is precisely what it should reveal.
+   -------------------------------------------------------------------------- */
+
+function frontierPoints(marketList, X){
+  const pts = [];
+  for (const m of marketList){
+    const baseId = baseStrategy(m);
+    for (const s of supportedStrategies(m)){
+      const r = runCase(m, s.id, X);
+      if (r.na || !Number.isFinite(r.irrExit)) continue;
+
+      const secured = (r.securedShare ?? r.contractedShare) * 100;
+      const tenor = r.securedYears ?? 0;
+      const isBase = s.id === baseId;
+
+      pts.push({
+        x: Math.max(0, Math.min(100, secured)),
+        y: r.irrExit * 100,
+        color: m.manifest.color,
+        hollow: !isBase,
+        // Only the base route is labelled; the rest are identified on hover.
+        label: isBase ? L(m.manifest.shortName) : null,
+        tip: '<b>' + m.manifest.flag + ' ' + L(m.manifest.name) + '</b>' +
+          '<div class="tr"><span>' + L(['Route', '路径']) + '</span><b>' + L(s.n) +
+            (isBase ? L([' (base)', '（基准）']) : '') + '</b></div>' +
+          '<div class="tr"><span>' + L(['Secured share', '已锁定占比']) + '</span><b>' + fmtPct(secured, 0) + '</b></div>' +
+          // Tenor next to share: a 1-year award and a 15-year contract can sit at
+          // the same x position and mean completely different things.
+          '<div class="tr"><span>' + L(['Secured tenor', '锁定年限']) + '</span><b>' + (tenor ? tenor + L([' yr', '年']) : '—') + '</b></div>' +
+          '<div class="tr"><span>' + L(['Exit IRR', '退出IRR']) + '</span><b>' + fmtIRR(r.irrExit) + '</b></div>' +
+          '<div class="tr"><span>' + L(['15-yr hold IRR', '15年持有IRR']) + '</span><b>' + fmtIRR(r.irrHold) + '</b></div>' +
+          '<div class="tr"><span>MOIC</span><b>' + fmtX(r.moic) + '</b></div>' +
+          (r.note ? '<div class="tr"><span>' + L(['Note', '备注']) + '</span><b>' + L(r.note) + '</b></div>' : ''),
+      });
+    }
+  }
+  return pts;
+}
+
 function renderFrontier(main, marketList, X){
   const cC = spacedCard(
-    ['The certainty frontier — contracted share vs exit-year IRR', '确定性前沿 — 合同化占比与退出年IRR'],
+    ['The certainty frontier — contracted share vs exit-year IRR, every route to market',
+     '确定性前沿 — 合同化占比与退出年IRR，涵盖全部售电路径'],
     [badge('calc')]);
+
+  const pts = frontierPoints(marketList, X);
+  const alternatives = pts.filter(p => p.hollow).length;
 
   scatterChart(cC, {
     // A share of year-1 revenue. 100% is the ceiling, so the axis stops there.
     xmin: 0, xmax: 100, xfmt: v => fmtN(v) + '%', yfmt: v => fmt1(v) + '%',
     xlabel: ['Secured share of year-1 revenue (%) — exit IRR at year ' + X + ' on the y-axis',
              '第1年已锁定收入占比（%） — 纵轴为第' + X + '年退出IRR'],
-    pts: marketList.map(m => {
-      const r = runBaseCase(m, X);
-      const secured = (r.securedShare ?? r.contractedShare) * 100;
-      const tenor = r.securedYears ?? m.comparison.economics.contractYears ?? 0;
-      return {
-        x: secured, y: r.irrExit * 100, color: m.manifest.color,
-        label: L(m.manifest.shortName),
-        tip: '<b>' + m.manifest.flag + ' ' + L(m.manifest.name) + '</b>' +
-          '<div class="tr"><span>' + L(['Secured share', '已锁定占比']) + '</span><b>' + fmtPct(secured, 0) + '</b></div>' +
-          // Tenor next to share: a 1-year award and a 15-year contract can sit at
-          // the same x position and mean completely different things.
-          '<div class="tr"><span>' + L(['Secured tenor', '锁定年限']) + '</span><b>' + (tenor ? tenor + L([' yr', '年']) : '—') + '</b></div>' +
-          '<div class="tr"><span>' + L(['Exit IRR', '退出IRR']) + '</span><b>' + fmtIRR(r.irrExit) + '</b></div>' +
-          '<div class="tr"><span>MOIC</span><b>' + fmtX(r.moic) + '</b></div>' +
-          '<div class="tr"><span>' + L(['Thesis', '逻辑']) + '</span><b>' + L(m.comparison.narrative.archetype) + '</b></div>',
-      };
-    }),
+    pts,
   });
 
+  cC.append(h('div', { class: 'frontier-key' },
+    h('span', {}, h('i', { class: 'fk-dot filled' }), L(['Base route — the one every other section reports',
+                                                        '基准路径 — 本页其余部分所采用的路径'])),
+    h('span', {}, h('i', { class: 'fk-dot hollow' }), L(['Alternative route available in that market',
+                                                        '该市场可选的其他路径'])),
+    h('span', { class: 'fk-count' }, pts.length + L([' points · ', '个点 · ']) + marketList.length
+      + L([' markets · ', '个市场 · ']) + alternatives + L([' alternatives', '条备选路径']))));
+
+  cC.append(h('div', { class: 'cap' }, L([
+    'Every applicable route is plotted, including routes that destroy value — unlike the $1M matrix above, which is an opportunity set and filters them out. A route that buys certainty by giving up the return is the thing this chart exists to show. Hover any point for its route, tenor and hold IRR.',
+    '本图展示全部适用路径，包括摧毁价值的路径 — 与上方作为机会集并已过滤此类路径的百万美元矩阵不同。以放弃回报换取确定性的路径，正是本图存在的意义。悬停任一点可查看其路径、锁定年限及持有IRR。',
+  ])));
+
   cC.append(why([
-    'An efficient frontier should slope down — more certainty, less return. This one does not, because exit buyers pay for certainty faster than the auctions charge for it. But read the x-axis carefully: it is secured share, and two points at the same x can carry a one-year award and a fifteen-year contract. Hover for the tenor before concluding that two markets offer the same certainty. A point that is highly secured for a single delivery year is closer to the merchant end of this chart than its position suggests.',
-    '有效前沿本应向下倾斜 — 确定性越高、回报越低。此图并非如此，因为退出买家为确定性支付溢价的速度快于拍卖对其收取的价格。但请仔细阅读横轴：其含义为已锁定占比，而横轴同一位置的两个点可能分别对应一年期中标与十五年合同。在断定两个市场具有同等确定性之前，请先查看悬停提示中的锁定年限。仅锁定单一交付年度的高占比点，实际上比其位置所示更接近本图的市场化一端。',
-  ], ['Check the tenor before trusting the x-axis', '相信横轴前先核对锁定年限']));
+    'Read the vertical spread within one colour before comparing across colours. That spread is the price of certainty inside a single market, measured against the same capex and the same grid — and it is usually larger than the difference between markets. Italy is the clearest example on this page: the MACSE award and an Italian toll are the same asset under two contracts, and they do not land in the same place. An efficient frontier should slope down, more certainty for less return; this one does not, because exit buyers pay for certainty faster than the auctions charge for it. But read the x-axis carefully. It is secured SHARE, so two points at the same x can carry a one-year award and a fifteen-year contract — hover for the tenor before concluding that two positions offer the same certainty.',
+    '在跨颜色比较之前，应先看同一颜色内部的纵向离散。该离散即为单一市场内部确定性的价格 — 以相同造价、相同电网为基准衡量 — 且其幅度通常大于市场之间的差异。本页最清晰的例证是意大利：MACSE中标与意大利租赁协议是同一资产的两种合同形态，二者并不落在同一位置。有效前沿本应向下倾斜，即确定性越高、回报越低；此图并非如此，因为退出买家为确定性支付溢价的速度快于拍卖对其收取的价格。但请仔细阅读横轴：其含义为已锁定占比，因此横轴同一位置的两个点可能分别对应一年期中标与十五年合同 — 在断定两个头寸具有同等确定性之前，请先悬停查看锁定年限。',
+  ], ['The spread within a market is the price of certainty', '市场内部的离散即确定性的价格']));
   main.append(cC);
 }
 

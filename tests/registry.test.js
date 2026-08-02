@@ -16,13 +16,13 @@ import { FX } from '../src/comparison/assumptions.js';
 import { supportedStrategies, baseStrategy, STRATEGIES } from '../src/comparison/strategies.js';
 
 test('the registry contains every allocation market', () => {
-  assert.deepEqual(marketIds(), ['wa', 'gb', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido']);
+  assert.deepEqual(marketIds(), ['wa', 'nem', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido']);
 });
 
 test('allocation markets and detail dashboards are counted separately', () => {
   // Three Japan allocation points share one research dashboard.
-  assert.equal(ALLOCATION_MARKETS().length, 8);
-  assert.equal(DETAIL_DASHBOARDS().length, 6);
+  assert.equal(ALLOCATION_MARKETS().length, 11);
+  assert.equal(DETAIL_DASHBOARDS().length, 9);
   const jp = ALLOCATION_MARKETS().filter(m => m.manifest.dashboardId === 'jp');
   assert.equal(jp.length, 3);
   assert.deepEqual(jp.map(m => m.manifest.region), ['tokyo', 'kyushu', 'hokkaido']);
@@ -104,8 +104,12 @@ test('supported strategies match the prototype: RO has no capacity, only GB has 
    and a 20-year agreement, and the main auction secures one delivery year. The
    override exists precisely so a market can say so. */
 test('base strategies: capacity-backed by default, overridden where a market says otherwise', () => {
+  /* Italy declares NO override despite having a long-term award, and that is the
+     point of the default: 95% of new de-rated capacity in the DY2027 auction went
+     to BESS on 15-year contracts in every zone, so `cap` really is the route it
+     is financed on. MACSE is the interesting route, not the base one. */
   assert.deepEqual(markets.map(m => baseStrategy(m)),
-    ['cap', 'cap', 'cap', 'mer', 'cap', 'ltda', 'ltda', 'ltda']);
+    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'cap', 'ltda', 'ltda', 'ltda']);
 
   // An override is only honoured when the market actually supports the route.
   for (const m of markets){
@@ -201,9 +205,13 @@ test('a long-term award is modelled with its constraints, never as free contract
     assert.ok(Array.isArray(a.note) && a.note.length === 2,
       `${id}: an award case must carry a bilingual note`);
 
-    // The duration the auction requires is the duration we model.
-    assert.ok(m.comparison.archetype.durationHours >= 6,
-      `${id}: LTDA requires a 6h minimum — a shorter archetype cannot bid`);
+    /* Where the scheme sets an eligibility floor, the archetype has to clear it.
+       Japan's LTDA Round 3 abolished the 3-6h bracket; the NEM's Capacity
+       Investment Scheme sets no duration minimum, so it declares none. */
+    if (a.minDurationHours != null){
+      assert.ok(m.comparison.archetype.durationHours >= a.minDurationHours,
+        `${id}: the award requires ${a.minDurationHours}h — a shorter archetype cannot bid`);
+    }
   }
 });
 

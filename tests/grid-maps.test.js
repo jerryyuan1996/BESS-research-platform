@@ -8,11 +8,12 @@ import {
 } from '../src/governance/gridMapSources.js';
 
 test('every allocation dashboard has an investor-grade public-source grid map', () => {
-  assert.equal(GRID_MAPS.length, 8);
+  assert.equal(GRID_MAPS.length, 11);
   assert.deepEqual(
     GRID_MAPS.map(map => map.id),
     [
-      'wa-grid-map', 'gb-grid-map', 'ie-grid-map', 'ro-grid-map', 'pl-grid-map',
+      'wa-grid-map', 'nem-grid-map', 'gb-grid-map', 'de-grid-map', 'it-grid-map',
+      'ie-grid-map', 'ro-grid-map', 'pl-grid-map',
       'jp-tokyo-grid-map', 'jp-kyushu-grid-map', 'jp-hokkaido-grid-map',
     ],
   );

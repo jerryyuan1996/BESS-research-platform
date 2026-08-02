@@ -19,7 +19,8 @@
     "etl:news": "node etl/news.mjs",
     "etl:dry": "node etl/run.mjs --dry-run",
     "etl:verify": "node etl/verify.mjs",
-    "etl:propose": "node etl/propose.mjs"
+    "etl:propose": "node etl/propose.mjs",
+    "refresh:market-boundaries": "node scripts/generate-market-boundaries.mjs"
   },
   "engines": {
     "node": ">=20"

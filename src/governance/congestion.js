@@ -52,6 +52,37 @@ export const CAPTURE = {
   OUTPUT_CONTROL: 'output-control',
   /** Shows up in capacity accreditation rather than in energy. */
   CAPACITY_ACCREDITATION: 'capacity-accreditation',
+
+  /* No mechanism at all. The asset is constrained off and receives nothing —
+     value exists only indirectly, by charging into the prices the constraint
+     creates. The NEM is the case this exists for: generators and storage hold no
+     firm transmission rights, and the Congestion Relief Market that would have
+     paid for relief was recommended not to proceed. A vocabulary with no way to
+     say "nobody pays for this" would have forced the NEM into a category that
+     implies somebody does. */
+  UNCOMPENSATED: 'uncompensated',
+
+  /* A settlement multiplier rather than an event: every megawatt-hour is scaled
+     by a locational loss factor, so the constraint is charged continuously and
+     invisibly rather than during a constrained period. */
+  LOSS_FACTOR: 'loss-factor',
+
+  /* The constraint reaches the wholesale price directly, because the market
+     settles by zone. Italy is the case this exists for, and it is the exact
+     thing Great Britain and Germany each voted not to have in 2025: where they
+     socialise congestion, an Italian battery captures it by sitting on the
+     expensive side of a zonal boundary and doing nothing else. Distinct from
+     BALANCING, which requires a dispatch instruction. */
+  ZONAL_PRICE: 'zonal-price',
+
+  /* The operator is PAID to relieve the constraint, in an auction it can win,
+     at a price the buyer publishes by zone. Terna's MACSE is the case this
+     exists for: the requirement was set at zero GWh in the North and the whole
+     first tranche in the south and the islands, with Sicily clearing 30% above
+     the southern mainland for the same product. The mirror image of
+     ACCESS_AUCTION — same instrument shape, opposite money flow — and the
+     reason that one is not reused here. */
+  LOCATIONAL_PROCUREMENT: 'locational-procurement',
 };
 
 export const CAPTURE_LABEL = {
@@ -61,20 +92,48 @@ export const CAPTURE_LABEL = {
   [CAPTURE.ACCESS_AUCTION]: ['Connection auction', '并网权拍卖'],
   [CAPTURE.OUTPUT_CONTROL]: ['Output control', '出力控制'],
   [CAPTURE.CAPACITY_ACCREDITATION]: ['Capacity accreditation', '容量认定'],
+  [CAPTURE.UNCOMPENSATED]: ['No compensation', '无补偿机制'],
+  [CAPTURE.LOSS_FACTOR]: ['Loss factor', '边际损耗系数'],
+  [CAPTURE.ZONAL_PRICE]: ['Zonal price', '分区电价'],
+  [CAPTURE.LOCATIONAL_PROCUREMENT]: ['Zonal procurement', '分区采购'],
 };
 
-/** Whether the mechanism pays the battery, or charges it. */
-export const CAPTURE_PAYS = {
-  [CAPTURE.BALANCING]: true,
-  [CAPTURE.REGULATED_COMPENSATION]: true,
-  [CAPTURE.UNIT_COMMITMENT]: true,
-  [CAPTURE.OUTPUT_CONTROL]: true,
-  [CAPTURE.CAPACITY_ACCREDITATION]: true,
-  /* The only one that runs the other way, and the reason it is in the
-     vocabulary at all: in Romania congestion is charged to the developer at the
-     connection auction rather than paid to the operator afterwards. */
-  [CAPTURE.ACCESS_AUCTION]: false,
+/**
+ * Which way the money runs.
+ *
+ * Three states, not two. The first version of this file carried a boolean —
+ * pays, or charges — and the NEM broke it: a battery constrained off in the
+ * National Electricity Market is neither paid for the constraint nor charged for
+ * it, because no firm access right and no congestion payment exist. Calling that
+ * "charges" would have been as wrong as calling it "pays".
+ */
+export const CAPTURE_FLOW = {
+  [CAPTURE.BALANCING]: 'pays',
+  [CAPTURE.REGULATED_COMPENSATION]: 'pays',
+  [CAPTURE.UNIT_COMMITMENT]: 'pays',
+  [CAPTURE.OUTPUT_CONTROL]: 'pays',
+  [CAPTURE.CAPACITY_ACCREDITATION]: 'pays',
+  /* Italy: the zonal settlement price and Terna's zonal procurement both put
+     money in the operator's pocket for being on the right side of a boundary. */
+  [CAPTURE.ZONAL_PRICE]: 'pays',
+  [CAPTURE.LOCATIONAL_PROCUREMENT]: 'pays',
+  /* Romania: congestion is charged to the developer at the connection auction
+     rather than paid to the operator afterwards. */
+  [CAPTURE.ACCESS_AUCTION]: 'charges',
+  /* The NEM's marginal loss factor is a permanent settlement haircut. */
+  [CAPTURE.LOSS_FACTOR]: 'charges',
+  [CAPTURE.UNCOMPENSATED]: 'neither',
 };
+
+export const CAPTURE_FLOW_LABEL = {
+  pays: ['pays the operator', '向运营方付费'],
+  charges: ['charges the developer', '由开发商承担'],
+  neither: ['nobody pays for it', '无人为此付费'],
+};
+
+/** True only where the mechanism puts money in the operator's pocket. */
+export const CAPTURE_PAYS = Object.fromEntries(
+  Object.entries(CAPTURE_FLOW).map(([k, v]) => [k, v === 'pays']));
 
 /** How far the relief project has actually got. */
 export const RELIEF_STATUS = {

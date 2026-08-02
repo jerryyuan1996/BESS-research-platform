@@ -13,60 +13,54 @@ import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { S } from '../charts/chartUtils.js';
 
-const COVERED = new Map([
-  [36, {
-    name:['Western Australia', '西澳'],
-    route:'/markets/western-australia',
-    point:[121, -31],
-    flag:'\u{1F1E6}\u{1F1FA}',
-  }],
-  [826, {
-    name:['Great Britain', '英国'],
-    route:'/markets/great-britain',
-    point:[-2, 54],
-    flag:'\u{1F1EC}\u{1F1E7}',
-  }],
-  [372, {
-    name:['Ireland', '爱尔兰'],
-    route:'/markets/ireland',
-    point:[-8, 53],
-    flag:'\u{1F1EE}\u{1F1EA}',
-  }],
-  [642, {
-    name:['Romania', '罗马尼亚'],
-    route:'/markets/romania',
-    point:[25, 46],
-    flag:'\u{1F1F7}\u{1F1F4}',
-  }],
-  [616, {
-    name:['Poland', '波兰'],
-    route:'/markets/poland',
-    point:[19, 52],
-    flag:'\u{1F1F5}\u{1F1F1}',
-  }],
-  [392, {
-    name:['Japan', '日本'],
-    route:'/markets/japan-tokyo',
-    point:[138, 37],
-    flag:'\u{1F1EF}\u{1F1F5}',
-  }],
-]);
+/* Markets shown on the globe.
 
-const MARKET_LINKS = [
-  ['\u{1F1E6}\u{1F1FA}', ['WA', '西澳'], '/markets/western-australia'],
-  ['\u{1F1EC}\u{1F1E7}', ['GB', '英国'], '/markets/great-britain'],
-  ['\u{1F1EE}\u{1F1EA}', ['IE', '爱尔兰'], '/markets/ireland'],
-  ['\u{1F1F7}\u{1F1F4}', ['RO', '罗马尼亚'], '/markets/romania'],
-  ['\u{1F1F5}\u{1F1F1}', ['PL', '波兰'], '/markets/poland'],
-  ['\u{1F1EF}\u{1F1F5}', ['Tokyo', '东京'], '/markets/japan-tokyo'],
-  ['\u{1F1EF}\u{1F1F5}', ['Kyushu', '九州'], '/markets/japan-kyushu'],
-  ['\u{1F1EF}\u{1F1F5}', ['Hokkaido', '北海道'], '/markets/japan-hokkaido'],
+   A LIST rather than a map keyed by country, because Australia now carries two
+   of them. Western Australia is drawn from its own ABS state outline and the
+   NEM takes the rest of the country — which is what the two markets actually
+   are, so the map says it without a caption. `countryId` binds a market to a
+   Natural Earth country polygon; WA has none because its shape is separate. */
+const COVERED = [
+  { id:'wa', countryId:null, flagCode:'au',
+    name:['Western Australia — WEM', '西澳 — WEM'],
+    route:'/markets/western-australia', point:[121, -31] },
+  { id:'nem', countryId:36, flagCode:'au',
+    name:['Australia — National Electricity Market', '澳大利亚 — 国家电力市场'],
+    route:'/markets/nem', point:[149, -33] },
+  { id:'gb', countryId:826, flagCode:'gb',
+    name:['Great Britain', '英国'], route:'/markets/great-britain', point:[-2, 54] },
+  { id:'ie', countryId:372, flagCode:'ie',
+    name:['Ireland', '爱尔兰'], route:'/markets/ireland', point:[-8, 53] },
+  { id:'de', countryId:276, flagCode:'de',
+    name:['Germany', '德国'], route:'/markets/germany', point:[10.4, 51.2] },
+  { id:'it', countryId:380, flagCode:'it',
+    name:['Italy', '意大利'], route:'/markets/italy', point:[12.5, 42.6] },
+  { id:'ro', countryId:642, flagCode:'ro',
+    name:['Romania', '罗马尼亚'], route:'/markets/romania', point:[25, 46] },
+  { id:'pl', countryId:616, flagCode:'pl',
+    name:['Poland', '波兰'], route:'/markets/poland', point:[19, 52] },
+  { id:'jp', countryId:392, flagCode:'jp',
+    name:['Japan', '日本'], route:'/markets/japan-tokyo', point:[138, 37] },
 ];
 
-function marketLink([_flag, label, route]){
-  const flagCode = route.includes('western-australia') ? 'au'
-    : route.includes('great-britain') ? 'gb'
-    : route.includes('ireland') ? 'ie' : route.includes('romania') ? 'ro' : route.includes('poland') ? 'pl' : 'jp';
+const COVERED_BY_COUNTRY = new Map(
+  COVERED.filter(m => m.countryId != null).map(m => [m.countryId, m]));
+
+const MARKET_LINKS = [
+  ['au', ['WA', '西澳'], '/markets/western-australia'],
+  ['au', ['NEM', 'NEM'], '/markets/nem'],
+  ['gb', ['GB', '英国'], '/markets/great-britain'],
+  ['ie', ['IE', '爱尔兰'], '/markets/ireland'],
+  ['de', ['DE', '德国'], '/markets/germany'],
+  ['it', ['IT', '意大利'], '/markets/italy'],
+  ['ro', ['RO', '罗马尼亚'], '/markets/romania'],
+  ['pl', ['PL', '波兰'], '/markets/poland'],
+  ['jp', ['Tokyo', '东京'], '/markets/japan-tokyo'],
+  ['jp', ['Kyushu', '九州'], '/markets/japan-kyushu'],
+  ['jp', ['Hokkaido', '北海道'], '/markets/japan-hokkaido'],
+];
+
+function marketLink([flagCode, label, route]){
   return h('a', {
     class:'globe-market-link',
     href:route,
@@ -172,10 +166,9 @@ export function renderMarketGlobe(){
 
   const countryShapes = countries.map(country => {
     const countryId = Number(country.id);
-    const isAustralia = countryId === 36;
-    const covered = isAustralia ? null : COVERED.get(countryId);
+    const covered = COVERED_BY_COUNTRY.get(countryId);
     const node = S('path', {
-      class:'globe-country' + (covered ? ' covered' : '') + (isAustralia ? ' australia-context' : ''),
+      class:'globe-country' + (covered ? ' covered' : ''),
       tabindex:covered ? '0' : '-1',
       role:covered ? 'link' : 'presentation',
     });
@@ -188,7 +181,10 @@ export function renderMarketGlobe(){
     return [country, node];
   });
 
-  const waMarket = COVERED.get(36);
+  /* WA is drawn over the Australian polygon rather than instead of it. The
+     country underneath routes to the NEM and the state on top routes to the WEM,
+     which is the same division the two markets have in reality. */
+  const waMarket = COVERED.find(m => m.id === 'wa');
   // ABS publishes RFC 7946 ring winding; d3-geo uses the opposite spherical winding.
   const waBoundary = d3Winding(westernAustralia.features[0]);
   const waShape = S('path', {
@@ -203,7 +199,7 @@ export function renderMarketGlobe(){
   bindRoute(waShape, waMarket.route);
   countryLayer.append(waShape);
 
-  const markers = [...COVERED.values()].map(market => {
+  const markers = COVERED.map(market => {
     const group = S('g', { class:'globe-marker', role:'link', tabindex:'0' });
     /* Ireland is under ten screen pixels wide at the default zoom, so the marker
        carries an invisible hit area larger than anything drawn. */

@@ -49,7 +49,7 @@ import {
   clampToRange, isMoved, readPath, DISPERSION_NOTE,
 } from '../comparison/ranges.js';
 import { congestionFor } from '../markets/congestionRegistry.js';
-import { CAPTURE_PAYS, reliefRunway } from '../governance/congestion.js';
+import { CAPTURE_FLOW, reliefRunway } from '../governance/congestion.js';
 import { RUNWAY_FROM } from '../components/congestionPanel.js';
 import { homeState, labMarket, labOverrides } from './state.js';
 
@@ -174,15 +174,18 @@ function basisDrawer(key, range){
  * project does not arrive. That is a legitimate position — it is not a legitimate
  * silence, so the field says so.
  *
- * Only constraints whose mechanism actually pays are flagged. Romania's
- * connection auction bears on capex as a cost, not as a revenue that expires.
+ * Constraints whose mechanism CHARGES are excluded. Romania's connection auction
+ * bears on capex as a cost, not as a revenue that expires, so warning that it
+ * "is relieved" would read backwards. An UNCOMPENSATED constraint is still
+ * flagged: nobody is paid for it, but the depressed prices it creates are
+ * already inside the merchant seed, and they end when the constraint does.
  */
 function reliefWarning(market, fieldKey){
   const register = congestionFor(market.manifest.id);
   if (!register) return null;
 
   const dated = register.zones
-    .filter(z => z.bearsOn === fieldKey && CAPTURE_PAYS[z.capture.mechanism])
+    .filter(z => z.bearsOn === fieldKey && CAPTURE_FLOW[z.capture.mechanism] !== 'charges')
     .map(z => ({ zone: z, runway: reliefRunway(z, RUNWAY_FROM) }))
     .filter(x => x.runway != null)
     .sort((a, b) => a.runway - b.runway);

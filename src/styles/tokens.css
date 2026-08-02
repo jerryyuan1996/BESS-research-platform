@@ -10,6 +10,9 @@
   --grid:#e1e0d9; --baseline:#c3c2b7; --border:rgba(11,11,11,.10);
   --map-water:#eef3f6; --map-land:#dfe8e6; --map-coast:#708394;
   --s1:#2a78d6; --s2:#1baf7a; --s3:#eda100; --s4:#008300; --s5:#4a3aa7; --s6:#e34948; --s7:#e87ba4; --s8:#eb6834;
+  /* Extended for Germany, Italy and the NEM. Hues picked in the gaps the first
+     eight leave — teal, violet and olive — so eleven market series stay separable. */
+  --s9:#0d8f9e; --s10:#9b3fb5; --s11:#6f8b1f;
   --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --critical:#d03b3b;
   --good-bg:rgba(12,163,12,.12); --warn-bg:rgba(250,178,25,.16); --serious-bg:rgba(236,131,90,.16); --critical-bg:rgba(208,59,59,.12);
   --accent-bg:rgba(42,120,214,.10);
@@ -21,6 +24,8 @@
     --grid:#2c2c2a; --baseline:#383835; --border:rgba(255,255,255,.10);
     --map-water:#111923; --map-land:#2a3542; --map-coast:#8193a6;
     --s1:#3987e5; --s2:#199e70; --s3:#c98500; --s4:#008300; --s5:#9085e9; --s6:#e66767; --s7:#d55181; --s8:#d95926;
+  --s9:#1aa9ba; --s10:#b45fd0; --s11:#8aa832;
+    --s9:#1aa9ba; --s10:#b45fd0; --s11:#8aa832;
     --good-bg:rgba(12,163,12,.18); --warn-bg:rgba(250,178,25,.14); --serious-bg:rgba(236,131,90,.15); --critical-bg:rgba(208,59,59,.20);
     --accent-bg:rgba(57,135,229,.14);
   }
