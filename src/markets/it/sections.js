@@ -444,8 +444,13 @@ SEC_B.grid = function (){
     { t:'congestion', data:congestionFor('it') },
 
     { t:'card', title:['Named transmission relief','具名输电缓解工程'], badges:['official'], blocks:[
-      { t:'table', head:[['Project','工程'],['Operator','运营方'],['Scope','范围'],['Year','年份'],['Status','状态']],
-        rows: M.reinforcements.map(r => [{b:r.n}, [r.operator, r.operator], r.scope, String(r.year), {chip:r.c, text:r.status}]) },
+      { t:'table', head:[['Project','工程'],['Route','路径'],['Operator','运营方'],['Delivery stage','交付阶段'],['Scope','范围'],['Year','年份'],['Status','状态']],
+        rows: M.reinforcements.map(r => {
+          const k = M.planClasses.find(c => c.id === r.cls);
+          return [{b:r.n}, r.region, [r.operator, r.operator], {chip:k.c, text:k.n}, r.scope, String(r.year), {chip:r.c, text:r.status}];
+        }) },
+      { t:'table', head:[['Delivery stage','交付阶段'],['What it does and does not confer','其赋予与不赋予的内容']],
+        rows: M.planClasses.map(k => [{ chip:k.c, text:k.n }, k.d]) },
       { t:'why', text:['This is the strongest relief evidence on the platform and the comparison is worth making explicitly. Germany\'s four HVDC corridors are all reported as running late, which is the only reason a German congestion thesis has a runway at all. The NEM\'s register leans on programme dates. Italy has four named submarine schemes with contracted cable supply and commissioning years, plus a Development Plan committing more than €' + O.planEbn + 'bn over ten years. The plan row is carried last and marked weakest on purpose: a decade of capital expenditure is not a commissioning date, and only the four named projects above carry dates worth underwriting to.',
         '这是本平台最有力的缓解证据，值得明确作出比较。德国的四条高压直流走廊均有延期报道，这也是德国拥塞投资逻辑尚存窗口期的唯一原因。澳大利亚国家电力市场的登记表则依赖计划日期。意大利拥有四项具名海底工程，其电缆供应已签约且有明确投运年份，另有十年投资超过' + O.planEbn + '亿欧元的发展规划。规划一行刻意置于最后并标为最弱：十年资本开支不等于投运日期，只有上述四项具名工程才具备值得承销的日期。'],
         sig:['Four dated projects beat one funded programme','四项有明确日期的工程优于一项已获资金的计划'] },

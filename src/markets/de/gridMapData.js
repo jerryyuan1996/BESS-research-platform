@@ -121,7 +121,9 @@ const routes = [
     ['The nearest German relief date — end of 2026. A congestion case in the west has the shortest runway on this map.',
      '德国最近的缓解时点 — 2026年底。西部拥塞投资逻辑在本图中剩余期最短。'],
     'Bundesnetzagentur', URL.ultranet,
-    { endpoints:['Osterath – Philippsburg','Osterath至Philippsburg'],
+    { layer:'plan', planClass:'approved', planClassLabel:['Fully approved','已全面核准'], planYear:2026,
+      planStatus:['Approved 31 October 2025; COD end 2026, reported late','2025年10月31日核准；预计2026年底投运，据报延期'],
+      endpoints:['Osterath – Philippsburg','Osterath至Philippsburg'],
       plannedCapacity:['2 GW, commissioning end 2026','2GW，2026年底投运'] }),
 
   route('a-nord', ['A-Nord', 'A-Nord输电工程'],
@@ -131,7 +133,9 @@ const routes = [
     ['Pairs with Ultranet at Osterath: together they carry northern wind into the western load centre.',
      '与Ultranet在Osterath衔接：两者共同将北部风电输送至西部负荷中心。'],
     'Amprion', URL.bnetza,
-    { endpoints:['Emden – Osterath','Emden至Osterath'],
+    { layer:'plan', planClass:'construction', planClassLabel:['In construction','在建'], planYear:2027,
+      planStatus:['Under construction, reported late','在建，据报延期'],
+      endpoints:['Emden – Osterath','Emden至Osterath'],
       plannedCapacity:['~2 GW, commissioning 2027','约2GW，2027年投运'] }),
 
   route('suedostlink', ['SuedOstLink', 'SuedOstLink输电工程'],
@@ -141,7 +145,9 @@ const routes = [
     ['This is the corridor that relieves Bavarian PV curtailment, which is the most locational opportunity in Germany.',
      '该走廊将缓解巴伐利亚光伏限电，而后者是德国区位属性最强的机会。'],
     'Bundesnetzagentur', URL.suedostlink,
-    { endpoints:['Wolmirstedt – Isar','Wolmirstedt至Isar'],
+    { layer:'plan', planClass:'approved', planClassLabel:['Fully approved','已全面核准'], planYear:2027,
+      planStatus:['Final section approved 25 July 2025; under construction, reported late','最后一段于2025年7月25日核准；在建，据报延期'],
+      endpoints:['Wolmirstedt – Isar','Wolmirstedt至Isar'],
       plannedCapacity:['2 GW, commissioning 2027','2GW，2027年投运'] }),
 
   route('suedlink', ['SuedLink', 'SuedLink输电工程'],
@@ -151,7 +157,9 @@ const routes = [
     ['The largest single piece of German congestion relief, and the latest — end of 2028, with the first underground cable section completed in 2026.',
      '德国规模最大的单项拥塞缓解工程，也是最晚投运的一项 — 2028年底，首段地下电缆已于2026年完工。'],
     'TenneT / TransnetBW', URL.suedlink,
-    { endpoints:['Brunsbüttel and Wilster – Grafenrheinfeld','Brunsbüttel与Wilster至Grafenrheinfeld'],
+    { layer:'plan', planClass:'construction', planClassLabel:['In construction','在建'], planYear:2028,
+      planStatus:['Under construction, COD end 2028, reported late','在建，预计2028年底投运，据报延期'],
+      endpoints:['Brunsbüttel and Wilster – Grafenrheinfeld','Brunsbüttel与Wilster至Grafenrheinfeld'],
       plannedCapacity:['~4 GW, commissioning end 2028','约4GW，2028年底投运'] }),
 ];
 

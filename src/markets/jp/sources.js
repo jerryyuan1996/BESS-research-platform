@@ -210,6 +210,25 @@ export const SRC = {
     date: '2026', cy: 'Approved to FY2027-end',
     url: 'https://www.occto.or.jp/',
   },
+  /* Project-level authority for the interconnector register. OCCTO publishes the
+     master plan and, separately, the grid-development planning process for each
+     intertie — the two carry very different evidential weight, which is what the
+     register's class column records. */
+  occtoMasterPlan: {
+    file: 'OCCTO — wide-area grid master plan and grid-development planning processes',
+    status: ['Official — Public', '官方 — 公开'],
+    date: '2026', cy: 'Interconnector reinforcements by planning stage, with in-service targets where published',
+    url: 'https://www.occto.or.jp/institution/kouikikeitou/seibikeikaku/',
+    authority: 'official-forecast',
+    historical: 'Approved grid-development plans and their delivery years',
+    forecast: 'Long-term wide-area scenario to the 2040s; targets for interties in the planning process',
+    frequency: 'Master plan periodically; planning-committee papers continuously',
+    format: 'PDF (Japanese)',
+    machineReadable: 'No',
+    automation: 'C — fetchable; Japanese-language extraction requires review',
+    lastChecked: '2026-08-02',
+    freshness: 'Current planning-committee round',
+  },
   hepcoBalancing: {
     file: 'Hokkaido Electric Power Network — BESS balancing registration and connection-contract pipeline',
     status: ['Official — Final', '官方 — 最终'],

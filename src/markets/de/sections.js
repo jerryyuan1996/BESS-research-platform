@@ -392,6 +392,27 @@ SEC_B.grid = function (){
       { t:'src', src:SRC.agnes, use:['The AgNes grid fee framework and its grandfathering','AgNes电网费用框架及其祖父条款'] },
     ] },
 
+    { t:'card', title:['The corridors behind the congestion — named projects and approval stage','拥塞背后的走廊工程 — 具名项目及核准阶段'], badges:['official','forecast'], blocks:[
+      { t:'table',
+        head:[['Corridor','走廊'],['Route','路径'],['Delivery body','交付主体'],['Approval stage','核准阶段'],['Scope','范围'],['GW','GW'],['Target','目标年份'],['Status','状态']], num:[5,6],
+        rows: M.reinforcements.map(x => {
+          const k = M.planClasses.find(c => c.id === x.cls);
+          return [{ b:x.n }, x.region, [x.operator, x.operator], { chip:k.c, text:k.n }, x.scope,
+                  x.gw == null ? null : String(x.gw), String(x.year), x.status];
+        }) },
+      { t:'cap', text:['The four HVDC corridors a German congestion thesis depends on, plus the statutory plan behind them. Ten gigawatts of relief across three years.',
+        '德国拥塞投资逻辑所依赖的四条高压直流走廊，以及其背后的法定规划。三年内共十吉瓦缓解能力。'] },
+      { t:'table', head:[['Approval stage','核准阶段'],['What it does and does not confer','其赋予与不赋予的内容']],
+        rows: M.planClasses.map(k => [{ chip:k.c, text:k.n }, k.d]) },
+      { t:'why', text:['What is striking about this table is how little it separates. Four corridors, two approval classes, one delivery period, and every one of them reported late — including Ultranet, which is fully approved and still slipping. That uniformity is the German finding: the relief is not a portfolio of independent projects that might arrive at different times, it is a single synchronised bet on the same supply chain, the same contractors and the same construction window. So there is no diversification to underwrite. If the corridors run late together the congestion thesis extends for everyone at once, and if they land together it closes for everyone at once. Two consequences follow. Do not model corridor-by-corridor relief probabilities as independent. And treat 2029 — after SuedLink and the same year the grid fee exemption ends — as the year the German case has to stand on something other than congestion.',
+        '本表最值得注意的，是它区分度之低。四条走廊、两个核准类别、一个交付期，且每一条都有延期报道 — 包括已全面核准却仍在推迟的Ultranet。这种一致性正是德国的关键结论：缓解措施并非一组可能在不同时点到位的独立项目，而是对同一供应链、同一承包商、同一施工窗口的单一同步押注。因此不存在可供承销的分散化。若各走廊同步延期，拥塞逻辑将对所有人同时延长；若同步投运，则对所有人同时终结。由此有两点推论。不应将各走廊的缓解概率按独立事件建模。并应将2029年 — SuedLink之后、且与电网费用豁免到期同年 — 视为德国投资逻辑必须依靠拥塞以外因素支撑的那一年。'],
+        sig:['One synchronised bet, not four projects','这是一次同步押注，而非四个项目'] },
+      { t:'src', src:SRC.ultranet, use:['Ultranet route, capacity and approval decision','Ultranet路径、容量及核准决定'] },
+      { t:'src', src:SRC.suedostlink, use:['SuedOstLink route, capacity and final-section approval','SuedOstLink路径、容量及最后区段核准'] },
+      { t:'src', src:SRC.suedlink, use:['SuedLink route, capacity and construction progress','SuedLink路径、容量及施工进展'] },
+      { t:'src', src:SRC.bnetza, use:['Statutory network development planning and confirmed need','法定电网发展规划及已确认需求'] },
+    ] },
+
     { t:'card', title:['Connection risk scorecard','并网风险记分卡'], badges:['calc','illus'], live:true, blocks:[
       { t:'scorecard', id:'connFactors', bands:'connBands' },
     ] },

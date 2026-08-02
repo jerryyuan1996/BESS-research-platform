@@ -251,6 +251,8 @@ const tokyoRoutes = [
     source:'OCCTO reinforcement status', sourceUrl:URL.occtoReinforcement,
   }),
   route('tokyo-chubu-fc',['Tokyo–Chubu frequency converters','东京—中部频率转换设施'],[[138.18,36.22],[138.45,36.10],[138.93,35.35]],['current','future'],{
+    layer:'plan', planClass:'approved', planClassLabel:['Approved, dated','已批准且有日期'], planYear:2027,
+    planStatus:['Approved plan; completion targeted end of FY2027','规划已批准；目标2027财年末完工'],
     owner:['Regional TSOs / J-POWER Transmission','区域输电运营商 / 电源开发送变电网络'], endpoints:['Shin-Shinano / Sakuma / Higashi-Shimizu interface ↔ Tokyo 50Hz area','新信浓 / 佐久间 / 东清水接口 ↔ 东京50赫兹区域'],
     factsByPeriod:{
       current:{ operatingCapacity:['2,100MW aggregate frequency-conversion capacity','频率转换总容量2,100MW'] },
@@ -373,6 +375,8 @@ const kyushuRoutes = [
     source:'Kyushu T&D output-control method', sourceUrl:URL.kyushuCurtailment,
   }),
   route('kyushu-kanmon-reinforcement',['Chugoku–Kyushu reinforcement','中国—九州联络增容'],[[131.00,34.05],[130.96,33.95],[130.70,33.88]],['future'],{
+    layer:'plan', planClass:'process', planClassLabel:['In planning process','计划制定流程中'], planYear:2038,
+    planStatus:['In the planning process; operation planned for end of FY2038, with an acceleration target of FY2036','处于计划制定流程；计划2038财年末投运，加速目标为2036财年'],
     owner:['Regional TSOs under OCCTO plan','OCCTO规划下的区域输电运营商'], endpoints:['Chugoku area ↔ north Kyushu','中国地区 ↔ 九州北部'],
     plannedCapacity:['+1,000MW; 2,780MW → 3,780MW, targeted around 2030–2033','增加1,000MW；由2,780MW升至3,780MW，目标约2030—2033年'], status:['Basic requirements decided; not current capacity','基本要求已确定；并非当前容量'],
     note:['The committed planning process is narrower than the larger long-term master-plan scenarios.','已进入规划程序的增容规模小于更大规模的长期总规情景。'],
@@ -380,6 +384,8 @@ const kyushuRoutes = [
     source:'OCCTO future operational capacity material', sourceUrl:URL.occtoFutureCapacity,
   }),
   route('kyushu-shikoku-scenario',['Kyushu–Shikoku HVDC scenario','九州—四国HVDC情景'],[[131.55,33.27],[132.10,33.45],[132.70,33.75]],['future'],{
+    layer:'plan', planClass:'masterplan', planClassLabel:['Master plan only','仅列入总体规划'], planYear:null,
+    planStatus:['Identified in the wide-area master plan only; no delivery entity, works or date','仅在广域总体规划中被识别；无交付主体、工程范围或日期'],
     owner:['Not assigned in the master-plan scenario','总规情景中尚未确定'], endpoints:['East Kyushu ↔ Shikoku','九州东部 ↔ 四国'],
     plannedCapacity:['Up to 2,800MW in the long-term master-plan scenario','长期总规情景最高2,800MW'], status:['Scenario / not a committed construction project','情景 / 非已承诺建设项目'],
     note:['The master plan tests a new offshore HVDC outlet for renewable export.','总规测试新增海上HVDC通道以送出可再生能源。'],
@@ -511,6 +517,8 @@ const hokkaidoRoutes = [
     source:'HEPN New Kitahon overview', sourceUrl:URL.kitahon,
   }),
   route('hokkaido-kitahon-expansion',['New-New Kitahon expansion','新新北本联络扩容'],[[140.66,41.82],[140.57,41.55],[140.52,41.18]],['future'],{
+    layer:'plan', planClass:'approved', planClassLabel:['Approved, dated','已批准且有日期'], planYear:2027,
+    planStatus:['Approved; delivery by end of FY2027','已批准；2027财年末前交付'],
     owner:['Hokkaido Electric Power Network','北海道电力网络'], endpoints:['Hokuto converter ↔ Imabetsu converter','北斗换流站 ↔ 今别换流站'],
     plannedCapacity:['+300MW; total Hokkaido–Honshu interconnection 900MW → 1,200MW by end-FY2027','新增300MW；北海道—本州联络总容量由900MW升至1,200MW，计划FY2027末完成'], status:['Under construction / official plan','在建 / 官方规划'],
     note:['The additional pole builds on the voltage-source converter and Seikan Tunnel route.','新增极基于自励式换流技术及青函隧道通道建设。'],
@@ -518,6 +526,8 @@ const hokkaidoRoutes = [
     source:'HEPN expansion works summary', sourceUrl:URL.kitahonExpansion,
   }),
   route('hokkaido-sea-japan-hvdc',['Hokkaido–Honshu Sea-of-Japan HVDC','北海道—本州日本海HVDC'],[[141.05,44.20],[140.30,42.90],[139.90,41.30],[139.60,40.20]],['future'],{
+    layer:'plan', planClass:'process', planClassLabel:['In planning process','计划制定流程中'], planYear:2030,
+    planStatus:['Operator selection targeted for March 2026; completion indicated for the early 2030s','业主选定原定于2026年3月；完工时点指示为2030年代前期'],
     owner:['To be assigned through the eastern-region planning process','将通过东部区域规划程序确定'], endpoints:['Northern/western Hokkaido ↔ northern Honshu','北海道北部/西部 ↔ 本州北部'],
     plannedCapacity:['2,000MW new subsea HVDC in the official planning scenario','官方规划情景中的2,000MW新海底HVDC'], status:['Basic requirements / planning; target window around 2030–2034, not current capacity','基本要求 / 规划阶段；目标约2030—2034年，并非当前容量'],
     note:['The corridor is intended to unlock northern renewable resource and move it toward Honshu demand.','该走廊旨在释放北部可再生能源资源并向本州负荷输送。'],

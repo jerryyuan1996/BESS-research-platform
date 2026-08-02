@@ -157,7 +157,9 @@ const routes = [
     capacityBasis:['Boundary capability varies with outages, dispatch and cross-border flow','断面能力随检修、调度及跨境潮流变化'],
   },
   {
-    id:'cernavoda-stalpu', kind:'route', periods:['future'],
+    id:'cernavoda-stalpu', kind:'route', periods:['future'], layer:'plan',
+    planClass:'renewables', planClassLabel:['Renewable integration','新能源接入'], planYear:2030,
+    planStatus:['Named work in the adopted RET plan; no published construction start','已列入通过的RET规划的具名工程；未公布开工时间'],
     name:['Cernavodă–Stâlpu 400 kV corridor','切尔纳沃德—斯特尔普400千伏走廊'],
     coords:[[28.04,44.34],[27.45,44.55],[26.72,45.00]],
     note:['A named reinforcement for evacuating nuclear and renewable generation from the south-east.','用于送出东南部核电及新能源的具名增容工程。'],
@@ -169,7 +171,9 @@ const routes = [
     status:['Development-plan programme; section-by-section delivery must be checked','发展规划工程；须逐区段核查交付状态'],
   },
   {
-    id:'gutinas-smardan', kind:'route', periods:['future'],
+    id:'gutinas-smardan', kind:'route', periods:['future'], layer:'plan',
+    planClass:'renewables', planClassLabel:['Renewable integration','新能源接入'], planYear:2030,
+    planStatus:['Named work in the adopted RET plan; no published construction start','已列入通过的RET规划的具名工程；未公布开工时间'],
     name:['Gutinaș–Smârdan 400 kV double circuit','古蒂纳什—斯默尔丹400千伏双回路'],
     coords:[[26.82,46.21],[27.40,45.85],[27.93,45.48]],
     note:['Planned eastern double-circuit reinforcement studied for renewable and conventional connections.','面向新能源及常规电源并网研究的规划东部双回路增容线路。'],
@@ -181,7 +185,9 @@ const routes = [
     status:['Planned; public studies completed, delivery remains a project milestone','规划中；公共研究已完成，交付仍属项目里程碑'],
   },
   {
-    id:'western-ring', kind:'route', periods:['future'],
+    id:'western-ring', kind:'route', periods:['future'], layer:'plan',
+    planClass:'interconnection', planClassLabel:['Interconnection','跨境互联'], planYear:2030,
+    planStatus:['Named work group in the adopted RET plan; transfer capability is scenario-dependent','已列入通过的RET规划的具名工程组；输送能力取决于情景'],
     name:['Western 400 kV ring / Serbia reinforcement group','西部400千伏环网及塞尔维亚增容工程组'],
     coords:[[22.66,44.67],[21.89,45.30],[21.31,46.17]],
     note:['Porțile de Fier–Reșița and Timișoara–Arad works strengthen the western ring and border interface.','铁门—雷希察及蒂米什瓦拉—阿拉德工程增强西部环网及边境接口。'],

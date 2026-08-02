@@ -396,24 +396,36 @@ const M = {
      the strongest relief evidence on the platform: dated projects rather than
      programme years. The plan row is carried last and deliberately marked weaker,
      because a decade of capital expenditure is not a commissioning date. */
+  /* Italy's status vocabulary. The spread here is real and it is why this is the
+     platform's strongest relief evidence: three schemes with steel and cable in
+     place, one in delivery, and one programme row that is deliberately weakest. */
+  planClasses: [
+    { id: 'construction', n: ['In construction', '在建'], c: 'warn',
+      d: ['Physically underway with cable supply contracted. The class where an Italian commissioning year can be underwritten.', '已实际开工且电缆供应已签约。这是意大利投运年份可供承销的类别。'] },
+    { id: 'delivery',     n: ['In delivery', '交付中'], c: 'info',
+      d: ['Contracted and progressing under an EU-supported programme, but not yet in main construction.', '已签约并在欧盟支持的计划下推进，但尚未进入主体施工。'] },
+    { id: 'programme',    n: ['Approved programme', '已核准计划'], c: 'serious',
+      d: ['An approved ten-year capital envelope covering many works. A decade of capital expenditure is not a commissioning date.', '已核准的、覆盖多项工程的十年资本额度。十年资本开支不等于投运日期。'] },
+  ],
+
   reinforcements: [
-    { n: ['Tyrrhenian Link', '第勒尼安互联'], operator: 'Terna',
+    { n: ['Tyrrhenian Link', '第勒尼安互联'], operator: 'Terna', region: ['Sicily ↔ Campania ↔ Sardinia', '西西里 ↔ 坎帕尼亚 ↔ 撒丁'], cls: 'construction',
       scope: ['1,000 MW, 970 km, €3.7bn double 500 kV HVDC; Sicily–Campania with a western branch to Sardinia; under construction since January 2025',
               '1,000MW、970公里、37亿欧元双回500千伏高压直流；连接西西里与坎帕尼亚，西段延伸至撒丁岛；自2025年1月起施工'],
       year: 2028, status: ['Under construction; western branch cable installed', '在建；西段电缆已敷设'], c: 'warn' },
-    { n: ['SA.CO.I.3', 'SA.CO.I.3'], operator: 'Terna',
+    { n: ['SA.CO.I.3', 'SA.CO.I.3'], operator: 'Terna', region: ['Sardinia ↔ Corsica ↔ Tuscany', '撒丁 ↔ 科西嘉 ↔ 托斯卡纳'], cls: 'construction',
       scope: ['400 MW renewal of the Sardinia–Corsica–Tuscany link; land-based construction started',
               '400MW，更新撒丁岛—科西嘉—托斯卡纳联络线；陆上工程已开工'],
       year: 2028, status: ['Under construction', '在建'], c: 'warn' },
-    { n: ['ELMED', 'ELMED互联'], operator: 'Terna / STEG',
+    { n: ['ELMED', 'ELMED互联'], operator: 'Terna / STEG', region: ['Sicily ↔ Tunisia', '西西里 ↔ 突尼斯'], cls: 'delivery',
       scope: ['600 MW over ~200 km of HVDC submarine cable, Sicily to Tunisia; EU PCI-supported. An IMPORT corridor — it changes the Sicilian price stack without relieving the export constraint',
               '600MW、约200公里海底高压直流电缆，连接西西里与突尼斯；获欧盟共同利益项目支持。属受入通道 — 改变西西里价格结构，但不缓解送出约束'],
       year: 2028, status: ['In delivery', '交付中'], c: 'info' },
-    { n: ['Adriatic Link', '亚得里亚海互联'], operator: 'Terna / Prysmian',
+    { n: ['Adriatic Link', '亚得里亚海互联'], operator: 'Terna / Prysmian', region: ['Marche ↔ Abruzzo', '马尔凯 ↔ 阿布鲁佐'], cls: 'construction',
       scope: ['1,000 MW HVDC over 250 km, of which 210 km submarine, Fano in Marche to the Cepagatti area in Abruzzo; ≈€630m cable contract, laying concludes in the first half of 2028',
               '1,000MW高压直流，全长250公里，其中海底段210公里，自马尔凯大区法诺至阿布鲁佐大区切帕加蒂地区；电缆合同约6.3亿欧元，敷设于2028年上半年完成'],
       year: 2029, status: ['Under construction, cable contracted', '在建，电缆已签约'], c: 'warn' },
-    { n: ['Development Plan 2025–2034', '2025–2034年发展规划'], operator: 'Terna',
+    { n: ['Development Plan 2025–2034', '2025–2034年发展规划'], operator: 'Terna', region: ['Italy', '意大利全境'], cls: 'programme',
       scope: ['More than €23bn over ten years, of which €16.6bn across 2024–2028; approved and in execution. A programme, not a commissioning date',
               '十年投资超过230亿欧元，其中2024–2028年为166亿欧元；已获批准并在执行中。属计划而非投运日期'],
       year: 2034, status: ['Approved, in execution — weakest relief evidence here', '已获批准并执行中 — 本表中证据力最弱'], c: 'serious' },

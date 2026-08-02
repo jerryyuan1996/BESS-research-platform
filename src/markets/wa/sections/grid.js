@@ -20,6 +20,8 @@ import { WP_QUEUE } from '../data/wem.js';
 import { KEMERTON, hasProjectData } from '../data/kemerton.js';
 import { MJA2026, hasMjaData } from '../data/optimizer.js';
 import { withheldCard } from '../../../components/withheld.js';
+import { WA_TSP } from '../data/swisPlan.js';
+import { SRC } from '../sources.js';
 import { gridMapById } from '../../gridMapRegistry.js';
 import { congestionFor } from '../../congestionRegistry.js';
 import { renderCongestionRegister } from '../../../components/congestionPanel.js';
@@ -151,6 +153,63 @@ function kemertonGfmCard(){
   return gfm;
 }
 
+/* The SWIS Transmission Plan register — WA's counterpart to the NEM's ISP
+   appendix table, and the reason the two are worth reading side by side: the
+   NEM classifies by regulatory test, WA by statutory priority declaration. */
+function swisPlanCard(main){
+  const T = WA_TSP;
+  const c = card(['SWIS Transmission Plan — the named build behind the queue', 'SWIS输电规划 — 队列背后的具名建设'], [badge('official'), statusBadge(true)]);
+
+  c.append(h('div', { class:'kpis' },
+    kpi(L(['Phase One capacity unlocked', '第一阶段释放容量']), NF1.format(T.phaseOneGW) + '<small> GW</small>',
+      { text: L([T.northGW + ' GW north + ' + T.eastGW + ' GW east', '北部' + T.northGW + 'GW + 东部' + T.eastGW + 'GW']) }, [badge('official')]),
+    kpi(L(['State coal retiring by ' + T.coalRetireBy, T.coalRetireBy + '年前退役的国有煤电']), NF1.format(T.coalRetireGW) + '<small> GW</small>',
+      { text: L(['what the plan is being built against', '规划所要对冲的对象']), cls: 'down' }, [badge('official')]),
+    kpi(L(['Clean Energy Link North + East', 'Clean Energy Link北部+东部']), T.celCombinedGW + '<small> GW</small>',
+      { text: L(['about ' + T.celJobs + ' construction jobs', '约' + T.celJobs + '个施工岗位']) }, [badge('official')]),
+    kpi(L(['Clean Energy Fund', '清洁能源基金']), 'A$' + NF1.format(T.fundAbn) + '<small>bn</small>',
+      { text: L(['committed ' + T.fundAnnounced, T.fundAnnounced + '承诺']) }, [badge('official')])));
+
+  const rows = T.projects.map(p => {
+    const k = T.classes.find(x => x.id === p.cls);
+    return h('tr', {},
+      h('td', {}, h('b', {}, L(p.n))),
+      h('td', {}, L(p.corridor)),
+      h('td', {}, p.operator),
+      h('td', {}, chip(k.c, L(k.n))),
+      h('td', {}, L(p.scope)),
+      h('td', { class:'num' }, p.mw == null ? '—' : fmtN(p.mw)),
+      h('td', { class:'num' }, p.year == null ? '—' : String(p.year)),
+      h('td', {}, L(p.status)));
+  });
+  c.append(h('div', { class:'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {},
+      h('th', {}, L(['Project', '工程'])), h('th', {}, L(['Corridor', '走廊'])), h('th', {}, L(['Delivery body', '交付主体'])),
+      h('th', {}, L(['Status class', '状态类别'])), h('th', {}, L(['Scope', '范围'])),
+      h('th', { class:'num' }, L(['MW enabled', '释放MW'])), h('th', { class:'num' }, L(['Target', '目标年份'])),
+      h('th', {}, L(['Status', '状态'])))),
+    h('tbody', {}, rows))));
+  c.append(h('div', { class:'cap' }, L(['Every named element of the plan, in WA\'s own status vocabulary. "MW enabled" is programme capability — generation the corridor can carry — not Capacity Credits and not connection headroom at any node. A dash means the plan names the item without publishing a figure or a date.',
+    '规划中每一具名要素，采用西澳自身的状态用语。"释放MW"是项目群能力 — 即该走廊可承载的发电量 — 既非容量信用，也非任一节点的并网可用空间。破折号表示规划已列出该项，但未公布数值或日期。'])));
+
+  c.append(h('div', { class:'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {}, h('th', {}, L(['Status class', '状态类别'])), h('th', {}, L(['What it does and does not confer', '其赋予与不赋予的内容'])))),
+    h('tbody', {}, T.classes.map(k => h('tr', {}, h('td', {}, chip(k.c, L(k.n))), h('td', {}, L(k.d))))))));
+
+  c.append(h('div', { class:'warnbox' }, L(['One project on this table is under construction. Everything else is an approvals status, an area with a capacity figure, or money. Read the class column before the MW column.',
+    '本表中仅有一个项目在建。其余各项或为审批状态、或为附带容量数字的区域、或为资金。应先看状态类别列，再看MW列。'])));
+
+  c.append(why(['Set this against the ' + fmtN(WP_QUEUE.bessTotal.dsoc) + ' MW of BESS DSOC already in the Western Power queue and the mismatch is the whole WA network story. The plan unlocks ' + NF1.format(T.phaseOneGW) + ' GW across Phase One, against roughly ' + NF1.format(WP_QUEUE.bessTotal.dsoc / 1000) + ' GW of batteries queuing and ' + NF1.format(T.coalRetireGW) + ' GW of state coal leaving by ' + T.coalRetireBy + '. The queue cannot clear on this network, which is why node selection beats scale. Two specific cautions. First, the ' + T.northEnableMW + ' MW that Clean Energy Link North enables is corridor capability, and WA converts corridor capability into revenue only through DSOC → CRC → NAQ → assigned Capacity Credits, with NAQ binding at sub-boundary level — so a project on the CEL North corridor can still be de-rated to nothing. Second, note what the status classes do here: a priority-project declaration under the State Development Act streamlines approvals but funds nothing and builds nothing, and it is the rung Clean Energy Link East sits on for a 2029 date. Only CEL North has contracts, works and a date all at once.',
+    '将本表与Western Power队列中已有的' + fmtN(WP_QUEUE.bessTotal.dsoc) + 'MW储能DSOC并置，其错配即是西澳电网的全部故事。规划在第一阶段释放' + NF1.format(T.phaseOneGW) + 'GW，而排队储能约' + NF1.format(WP_QUEUE.bessTotal.dsoc / 1000) + 'GW，且' + T.coalRetireBy + '年前还有' + NF1.format(T.coalRetireGW) + 'GW国有煤电退出。队列无法在该电网上出清，这正是节点选择优于规模的原因。有两点具体警示。其一，Clean Energy Link北部所释放的' + T.northEnableMW + 'MW属走廊能力，而西澳将走廊能力转化为收入只能通过DSOC→CRC→NAQ→获配容量信用，且NAQ在子边界层面起约束作用 — 因此位于CEL北部走廊上的项目仍可能被折减至零。其二，请注意此处状态类别的作用：依《州发展法》作出的优先项目宣布可简化审批，但既不提供资金也不进行建设，而Clean Energy Link东部正是凭该等级对应2029年的日期。只有CEL北部同时具备合同、工程与日期。'],
+    ['Corridor capability is not a Capacity Credit', '走廊能力不等于容量信用']));
+
+  c.append(sourceDrawer(SRC.swisPlan, ['Phased capacity ambition, area coverage and plan structure', '分阶段容量目标、覆盖区域及规划结构']));
+  c.append(sourceDrawer(SRC.celProgram, ['Clean Energy Link project scope, contracts and construction status', 'Clean Energy Link项目范围、合同及施工状态']));
+  c.append(sourceDrawer(SRC.cef, ['State funding envelope and its stated purpose', '州资金额度及其既定用途']));
+  c.style.marginTop = '14px';
+  main.append(c);
+}
+
 function gridBody(main){
   // --- Western Power connection queue — official quarterly reality (Major Customer Connections Insights, Jun 2026) ---
   const gq = h('div', { class:'grid g2', style:'margin-top:14px;' });
@@ -194,6 +253,8 @@ function gridBody(main){
     ['Access, not demand, is the constraint', '约束在接入而非需求']));
   cq3.style.marginTop = '14px';
   main.append(cq3);
+
+  swisPlanCard(main);
 
   // swimlane
   const lanes = [

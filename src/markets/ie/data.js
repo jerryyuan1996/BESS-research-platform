@@ -210,6 +210,50 @@ const M = {
     { lo: 70, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
       d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
   ],
+  /* ---- named transmission, from EirGrid's project publications and Price
+     Review 6 --------------------------------------------------------------
+     All-island: three of these rows are joint EirGrid/SONI or cross-border, so
+     the register spans both jurisdictions exactly as the SEM does. `cls` matches
+     `planClasses` and is the consenting-and-delivery position, because Ireland
+     publishes no ISP-style network classification. */
+  reinforcements: [
+    { n: ['Greenlink Interconnector', 'Greenlink互联线'], operator: 'Greenlink Interconnector Ltd', region: ['Wexford ↔ Pembrokeshire', '韦克斯福德 ↔ 彭布罗克郡'],
+      cls: 'operational', scope: ['504 MW HVDC subsea link, Great Island to Pembroke; Ireland\'s second link to GB', '504MW海底高压直流线路，Great Island至Pembroke；爱尔兰通往英国的第二条联络线'],
+      year: 2025, status: ['Operational; commercial flows since 2025', '已投运；自2025年起商业输电'], c: 'good' },
+    { n: ['Kildare-Meath Grid Upgrade', '基尔代尔—米斯电网升级'], operator: 'EirGrid / ESB Networks', region: ['Kildare → Meath', '基尔代尔 → 米斯'],
+      cls: 'construction', scope: ['400 kV underground cable, Dunstown to Woodland; reinforces the Dublin-area transfer the data-centre load sits behind', '400千伏地下电缆，Dunstown至Woodland；加强数据中心负荷所依赖的都柏林地区输送能力'],
+      year: 2027, status: ['Planning permission granted March 2025; at construction and energisation step', '2025年3月获得规划许可；处于施工与送电阶段'], c: 'good' },
+    { n: ['Celtic Interconnector', 'Celtic互联线'], operator: 'EirGrid / RTE', region: ['Cork ↔ Brittany', '科克 ↔ 布列塔尼'],
+      cls: 'construction', scope: ['700 MW HVDC, ~575 km, Ireland\'s first direct link to continental Europe; converter stations substantially complete', '700MW高压直流，约575公里，爱尔兰通往欧洲大陆的首条直连线路；换流站已基本完工'],
+      year: 2028, status: ['Under construction; commissioning slipped from 2027 to Q4 2028', '在建；投运时间由2027年推迟至2028年第四季度'], c: 'warn' },
+    { n: ['North-South Interconnector', '南北互联线'], operator: 'EirGrid / SONI, built by ESB', region: ['Meath ↔ Tyrone', '米斯 ↔ 蒂龙'],
+      cls: 'consented', scope: ['400 kV overhead line, Woodland to Turleenan, 138 km; the single largest all-island transfer constraint', '400千伏架空线路，Woodland至Turleenan，138公里；全岛最大的单一输送约束'],
+      year: 2031, status: ['Approved on both sides of the border since 2018; construction expected to start 2026, completion October 2031', '2018年起已获边界两侧批准；预计2026年开工，2031年10月完工'], c: 'critical' },
+    { n: ['Powering Up Offshore — South Coast', '海上电力工程 — 南海岸'], operator: 'EirGrid', region: ['Waterford / Wexford coast', '沃特福德 / 韦克斯福德海岸'],
+      cls: 'planning', scope: ['Onshore and offshore grid infrastructure for around 900 MW of south-coast offshore wind', '为约900MW南海岸海上风电配套的陆上及海上电网基础设施'],
+      year: 2032, status: ['Step 4 — route and landfall selection; marine surveys resume July 2026', '第4步 — 路径与登陆点选择；海上勘测于2026年7月恢复'], c: 'serious' },
+    { n: ['Price Review 6 capital programme', '第6次价格审查资本计划'], operator: 'EirGrid / ESB Networks, approved by CRU', region: ['Republic of Ireland', '爱尔兰共和国'],
+      cls: 'programme', scope: ['€18.9bn across 2026–2030 enabling around 500 capital projects, of which 29 priority transmission projects; creates headroom for up to 5 GW of offshore wind in the early 2030s', '2026–2030年间投资189亿欧元，支持约500个资本项目，其中优先输电项目29个；为2030年代初最多5GW海上风电创造空间'],
+      year: 2030, status: ['Approved expenditure, not a commissioning date — the weakest relief evidence here', '已核准的支出，而非投运日期 — 本表中证据力最弱'], c: 'serious' },
+  ],
+
+  /* Ireland's status vocabulary. Consent is the rung that matters most here:
+     the North-South Interconnector has been consented on both sides of the
+     border since 2018 and is still not built, which is why `consented` sits
+     below `construction` rather than beside it. */
+  planClasses: [
+    { id: 'operational',  n: ['Operational', '已投运'],       c: 'good',
+      d: ['Energised and carrying commercial flows.', '已送电并承载商业输电。'] },
+    { id: 'construction', n: ['In construction', '在建'],      c: 'good',
+      d: ['Consented and physically underway. Dates can still move — Celtic slipped a year while under construction.', '已获许可并已实际开工。日期仍可能变动 — Celtic在施工期间即推迟一年。'] },
+    { id: 'consented',    n: ['Consented, not started', '已获许可，未开工'], c: 'critical',
+      d: ['Full planning approval, no construction. In Ireland this class has held projects for years, so treat the target year as the earliest possible date.', '已取得完整规划批准，但尚未施工。在爱尔兰，该类别项目曾停滞多年，因此应将目标年份视为最早可能日期。'] },
+    { id: 'planning',     n: ['In planning', '规划阶段'],      c: 'serious',
+      d: ['Route or landfall not yet fixed and no application determined. No date can be relied on.', '路径或登陆点尚未确定，亦无已决申请。任何日期均不可依赖。'] },
+    { id: 'programme',    n: ['Approved programme', '已核准计划'], c: 'serious',
+      d: ['A regulator-approved envelope of capital expenditure covering many projects. Not a date for any one of them.', '监管机构核准的、覆盖多个项目的资本支出总额。不构成其中任何单一项目的日期。'] },
+  ],
+
   mecBridge: [
     { l: ['Requested MEC', '申请MEC'], v: 60 },
     { l: ['Assessed', '评估后'], v: 55 },

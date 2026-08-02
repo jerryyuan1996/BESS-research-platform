@@ -136,6 +136,63 @@ const M = {
     { lo: 70, hi: 100, n: ['Long-duration / policy-driven', '长时/政策驱动'], c: 'good',
       d: ['8h+ becomes a separate contracted asset class under cap-and-floor.', '8小时以上在上下限机制下成为独立的合同化资产类别。'] },
   ],
+  /* ---- named transmission, from the Great Grid Upgrade and the transitional
+     Centralised Strategic Network Plan ---------------------------------------
+     GB has no ISP-equivalent status vocabulary, so the class column uses the
+     consenting position, which is the thing that actually moves a GB date:
+     an Ofgem-funded project with no development consent is not the same asset
+     as one in construction. `cls` matches `planClasses` below. */
+  reinforcements: [
+    { n: ['Yorkshire GREEN', 'Yorkshire GREEN工程'], operator: 'NGET', region: ['Yorkshire', '约克郡'],
+      cls: 'construction', scope: ['400 kV reinforcement across Yorkshire, releasing north-to-south boundary transfer', '横跨约克郡的400千伏增容工程，释放南北断面输送能力'],
+      year: 2027, status: ['Under construction; first assets operational 2027, works complete 2028', '在建；首批资产2027年投运，工程2028年完工'], c: 'good' },
+    { n: ['Bramford to Twinstead Reinforcement', 'Bramford至Twinstead增容工程'], operator: 'NGET', region: ['Suffolk / Essex', '萨福克 / 埃塞克斯'],
+      cls: 'construction', scope: ['400 kV reinforcement between Bramford and Twinstead; £363m main works contract', 'Bramford与Twinstead之间的400千伏增容；主体工程合同3.63亿英镑'],
+      year: 2028, status: ['Consented and under construction since 2025; completion 2028', '已获许可并自2025年起施工；2028年完工'], c: 'good' },
+    { n: ['Eastern Green Link 1', '东方绿色互联1号线'], operator: 'SP Transmission / NGET', region: ['Scotland → North East England', '苏格兰 → 英格兰东北'],
+      cls: 'funded', scope: ['2 GW HVDC subsea link, Torness to Hawthorn Pit; ~£2bn Ofgem funding decision November 2024', '2GW海底高压直流线路，Torness至Hawthorn Pit；2024年11月Ofgem约20亿英镑资金决定'],
+      year: 2029, status: ['Funded and in delivery; fully operational 2029', '已获资金并在交付中；2029年全面投运'], c: 'warn' },
+    { n: ['Eastern Green Link 2', '东方绿色互联2号线'], operator: 'SSEN Transmission / NGET', region: ['Scotland → Yorkshire', '苏格兰 → 约克郡'],
+      cls: 'construction', scope: ['2 GW HVDC subsea link, Peterhead to Drax; GB\'s longest subsea HVDC cable', '2GW海底高压直流线路，Peterhead至Drax；英国最长海底高压直流电缆'],
+      year: 2029, status: ['Under construction since September 2024; commissioning 2029', '自2024年9月起施工；2029年投运'], c: 'warn' },
+    { n: ['Norwich to Tilbury', 'Norwich至Tilbury工程'], operator: 'NGET', region: ['East Anglia → Essex', '东安格利亚 → 埃塞克斯'],
+      cls: 'planning', scope: ['400 kV reinforcement from Norwich through Bramford to Tilbury', '自Norwich经Bramford至Tilbury的400千伏增容'],
+      year: 2031, status: ['DCO application submitted September 2025; construction from 2027 if consented', '2025年9月提交开发许可申请；若获许可，2027年起施工'], c: 'serious' },
+    { n: ['Sea Link', 'Sea Link海底联络线'], operator: 'NGET', region: ['Suffolk ↔ Kent', '萨福克 ↔ 肯特'],
+      cls: 'planning', scope: ['2 GW HVDC link between Suffolk and Kent, mostly subsea, around 138 km', '连接萨福克与肯特的2GW高压直流线路，以海底段为主，约138公里'],
+      year: 2031, status: ['DCO examination closed May 2026; completion expected end-2031 if consented', '2026年5月开发许可审查结束；若获许可，预计2031年底完工'], c: 'serious' },
+    { n: ['Eastern Green Link 3', '东方绿色互联3号线'], operator: 'SSEN Transmission / NGET', region: ['Scotland → Lincolnshire', '苏格兰 → 林肯郡'],
+      cls: 'early', scope: ['2 GW HVDC subsea link from Peterhead into Lincolnshire', '自Peterhead至林肯郡的2GW海底高压直流线路'],
+      year: 2033, status: ['Ofgem early construction funding agreed; construction from 2029, operational 2033', 'Ofgem已同意前期施工资金；2029年起施工，2033年投运'], c: 'serious' },
+    { n: ['Eastern Green Link 4', '东方绿色互联4号线'], operator: 'SP Transmission / NGET', region: ['Fife → Lincolnshire', '法夫 → 林肯郡'],
+      cls: 'early', scope: ['2 GW HVDC subsea link, Westfield in Fife into Lincolnshire; ~£2bn of supply contracts placed', '2GW海底高压直流线路，自法夫Westfield至林肯郡；已签署约20亿英镑供货合同'],
+      year: 2033, status: ['Ofgem early construction funding agreed; target 2033', 'Ofgem已同意前期施工资金；目标2033年'], c: 'serious' },
+    { n: ['Grimsby to Walpole', 'Grimsby至Walpole工程'], operator: 'NGET', region: ['Lincolnshire → Norfolk', '林肯郡 → 诺福克'],
+      cls: 'early', scope: ['400 kV onshore link providing the landing capacity the Eastern Green Links need', '400千伏陆上线路，为东方绿色互联各线提供所需的落点容量'],
+      year: 2033, status: ['Ofgem target delivery December 2033; application 2027, construction 2029–2033', 'Ofgem目标交付时间为2033年12月；2027年提交申请，2029–2033年施工'], c: 'critical' },
+    { n: ['Transitional CSNP / Beyond 2030', '过渡性CSNP / 2030后规划'], operator: 'NESO', region: ['Great Britain', '英国全境'],
+      cls: 'programme', scope: ['The strategic network plan the projects above are drawn from; the next transitional CSNP is due June 2026 and the full CSNP by end-2028', '上述项目所源自的战略网络规划；下一版过渡性CSNP应于2026年6月发布，完整CSNP应于2028年底前发布'],
+      year: 2028, status: ['A plan, not a commissioning date — the weakest relief evidence on this table', '这是规划而非投运日期 — 本表中证据力最弱的一行'], c: 'serious' },
+  ],
+
+  /* GB status vocabulary. The ordering is deliberate: it is a consenting ladder,
+     and a project cannot skip a rung. Defined once so the register's chips and
+     the explanatory table cannot drift apart. */
+  planClasses: [
+    { id: 'operational',  n: ['Operational', '已投运'],           c: 'good',
+      d: ['Energised and carrying power. The only class where the date is a fact rather than a forecast.', '已送电并输送电力。唯一日期属于事实而非预测的类别。'] },
+    { id: 'construction', n: ['In construction', '在建'],          c: 'good',
+      d: ['Consented, funded and physically underway. Slippage is possible but the works exist.', '已获许可、资金到位并已实际开工。仍可能延期，但工程实体存在。'] },
+    { id: 'funded',       n: ['Funded, pre-construction', '已获资金，未开工'], c: 'warn',
+      d: ['Ofgem has made a project assessment decision and released funding; main construction has not started.', 'Ofgem已作出项目评估决定并拨付资金；主体工程尚未开工。'] },
+    { id: 'planning',     n: ['In planning', '许可审批中'],        c: 'serious',
+      d: ['A DCO application is submitted or in examination. No consent, so no construction date can be relied on.', '开发许可申请已提交或处于审查中。尚无许可，因此任何施工日期均不可依赖。'] },
+    { id: 'early',        n: ['Early funding, pre-application', '前期资金，未申请'], c: 'critical',
+      d: ['Ofgem has agreed early construction funding and a target date, but the consenting application has not been made.', 'Ofgem已同意前期施工资金并设定目标日期，但许可申请尚未提交。'] },
+    { id: 'programme',    n: ['Programme', '规划计划'],           c: 'serious',
+      d: ['A strategic plan covering many projects. A programme slips in pieces, so a programme year is not a date for any one project.', '覆盖多个项目的战略规划。计划是分块延期的，因此计划年份不构成任何单一项目的日期。'] },
+  ],
+
   augItems: [
     ['Land reserved for additional enclosures', '预留新增电池舱用地'],
     ['DC collection system expansion capacity', '直流汇集系统扩容能力'],

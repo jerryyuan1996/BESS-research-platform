@@ -185,7 +185,9 @@ const routes = [
     status:['Existing network; schematic','现有网络；示意'],
   },
   {
-    id:'wa-cel-north', periods:['future'], kind:'route',
+    id:'wa-cel-north', periods:['future'], kind:'route', layer:'plan',
+    planClass:'construction', planClassLabel:['Under construction','在建'], planYear:2027,
+    planStatus:['Construction commenced November 2025; in service late 2027','2025年11月开工；2027年底投运'],
     name:['Clean Energy Link — North', 'Clean Energy Link—北部'],
     coords:[[115.89,-31.86],[115.78,-31.67],[115.27,-29.82],[115.76,-29.53]],
     note:['Priority reinforcement from the Perth interface through the northern corridor; the public review expected service in December 2027. Capacity value still follows DSOC → CRC → NAQ → assigned Capacity Credits.', '从珀斯接口向北部走廊延伸的优先增容项目；公开评估预计2027年12月投运。容量价值仍须依次通过DSOC→CRC→NAQ→获配容量信用。'],
@@ -198,7 +200,9 @@ const routes = [
     capacityBasis:['Programme capability, not local connection headroom or guaranteed NAQ','项目群能力，并非本地并网空间或保证NAQ'],
   },
   {
-    id:'wa-cel-east', periods:['future'], kind:'route',
+    id:'wa-cel-east', periods:['future'], kind:'route', layer:'plan',
+    planClass:'priority', planClassLabel:['Priority project declared','已宣布优先项目'], planYear:2029,
+    planStatus:['Declared a priority project under the State Development Act 2025; expected online by end 2029','已依《2025年州发展法》宣布为优先项目；预计2029年底前投运'],
     name:['Clean Energy Link — East / central-east programme (indicative)', 'Clean Energy Link—东部 / 中东部计划（示意）'],
     coords:[[115.77,-32.24],[116.15,-33.36],[117.10,-32.65],[118.28,-31.48]],
     note:['Indicative planning corridor for future renewable transfer and industrial electrification; final assets and staging remain plan-dependent.', '面向未来新能源送出及工业电气化的示意规划走廊；最终资产及分期仍取决于规划。'],
@@ -209,6 +213,21 @@ const routes = [
     plannedCapacity:['No final route-specific MW published on the cited plan page','所引规划页面未公布最终线路特定MW'],
     status:['Future planning programme; not an operating path','未来规划项目；非运营线路'],
     capacityBasis:['Scenario / planning representation, not a committed asset alignment','情景 / 规划展示，并非已承诺资产线路'],
+  },
+  {
+    id:'wa-cel-kwinana', periods:['future'], kind:'route', layer:'plan',
+    planClass:'priority-pending', planClassLabel:['Declaration foreshadowed','已预告将宣布'], planYear:null,
+    planStatus:['Priority-project declaration foreshadowed, not yet made; no published in-service date','已预告将宣布为优先项目但尚未落实；未公布投运日期'],
+    name:['Clean Energy Link — Kwinana', 'Clean Energy Link—Kwinana'],
+    coords:[[115.89,-31.86],[115.83,-32.08],[115.77,-32.24]],
+    note:['New terminals and transmission lines supporting 900 MW of new industrial demand in the Western Trade Coast. A demand-side reinforcement, not a generation corridor.', '新建终端及输电线路，支撑西部贸易海岸900MW新增工业负荷。属负荷侧增容，而非发电送出走廊。'],
+    investor:['A load reinforcement changes the direction of local constraint rather than releasing export headroom. It can improve charging economics and worsen the export position at the same time — model the two legs separately.', '负荷侧增容改变的是本地约束的方向，而非释放送出容量。它可能同时改善充电经济性并恶化送出条件 — 应分别对两侧建模。'],
+    source:'Energy Policy WA SWIS Transmission Plan', sourceUrl:URL.swisPlan,
+    endpoints:['Perth metropolitan network ↔ Kwinana / Western Trade Coast', '珀斯都市圈网络 ↔ Kwinana / 西部贸易海岸'],
+    owner:['Western Power','Western Power'],
+    plannedCapacity:['Supports 900 MW of new industrial demand; no published in-service date','支撑900MW新增工业负荷；未公布投运日期'],
+    status:['Priority declaration foreshadowed; scope not final','优先项目宣布已预告；范围尚未最终确定'],
+    capacityBasis:['Programme capability, not local connection headroom or guaranteed NAQ','项目群能力，并非本地并网空间或保证NAQ'],
   },
 ];
 

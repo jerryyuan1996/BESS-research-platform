@@ -77,6 +77,29 @@ export function validateGridMapData(map){
     if (!item.periods?.length || item.periods.some(period => !periods.has(period))){
       fail(`${item.id} has an invalid period`);
     }
+    /* `layer` is presentation — which toggle a feature sits behind — while
+       `kind` stays the physical asset type the rules below validate. Only the
+       planned-build layer is allowed to override, because it is the one layer
+       that is a projection of the market's network-plan register rather than a
+       different sort of asset. */
+    if (item.layer != null && item.layer !== 'plan'){
+      fail(`${item.id} has an invalid layer; only 'plan' may override kind`);
+    }
+    if (item.layer === 'plan'){
+      /* A map feature drawn from the register must carry the register's own
+         status class and its bilingual label, so the two cannot drift into
+         saying different things about the same project. A null planYear is
+         allowed and means the plan names the project without publishing a date;
+         a missing class is not. */
+      if (!item.planClass) fail(`${item.id} is on the plan layer and needs planClass`);
+      if (!bilingual(item.planClassLabel)) fail(`${item.id} needs a bilingual planClassLabel`);
+      if (!bilingual(item.planStatus)) fail(`${item.id} needs a bilingual planStatus`);
+      if (!('planYear' in item)) fail(`${item.id} needs planYear (null where the plan publishes no date)`);
+      if (item.planYear != null && !Number.isInteger(item.planYear)){
+        fail(`${item.id} planYear must be an integer or null`);
+      }
+      if (!item.periods.includes('future')) fail(`${item.id} is planned build and must appear in the future period`);
+    }
   }
 
   for (const point of map.points || []){

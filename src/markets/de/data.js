@@ -386,18 +386,33 @@ const M = {
      are reported as running late, which is why the status column says so rather
      than repeating the target year. */
   reinforcements: [
-    { n: ['Ultranet', 'Ultranet'], operator: 'Amprion / TransnetBW',
-      scope: ['2 GW HVDC, Osterath to Philippsburg, fully approved 31 October 2025', '2GW高压直流，Osterath至Philippsburg，2025年10月31日全面核准'],
+    { n: ['Ultranet', 'Ultranet'], operator: 'Amprion / TransnetBW', region: ['NRW → Baden-Württemberg', '北威州 → 巴符州'], gw: 2,
+      cls: 'approved', scope: ['2 GW HVDC, Osterath to Philippsburg, fully approved 31 October 2025', '2GW高压直流，Osterath至Philippsburg，2025年10月31日全面核准'],
       year: 2026, status: ['Approved; COD end 2026, reported late', '已核准；预计2026年底投运，据报延期'], c: 'warn' },
-    { n: ['SuedOstLink', 'SuedOstLink'], operator: '50Hertz / TenneT',
-      scope: ['2 GW, 525 kV, Wolmirstedt to Isar; final section approved 25 July 2025', '2GW，525千伏，Wolmirstedt至Isar；最后一段于2025年7月25日核准'],
+    { n: ['SuedOstLink', 'SuedOstLink'], operator: '50Hertz / TenneT', region: ['Saxony-Anhalt → Bavaria', '萨安州 → 巴伐利亚'], gw: 2,
+      cls: 'approved', scope: ['2 GW, 525 kV, Wolmirstedt to Isar; final section approved 25 July 2025', '2GW，525千伏，Wolmirstedt至Isar；最后一段于2025年7月25日核准'],
       year: 2027, status: ['Under construction, reported late', '在建，据报延期'], c: 'serious' },
-    { n: ['A-Nord', 'A-Nord'], operator: 'Amprion',
-      scope: ['~2 GW, Emden to Osterath', '约2GW，Emden至Osterath'],
+    { n: ['A-Nord', 'A-Nord'], operator: 'Amprion', region: ['Lower Saxony → NRW', '下萨克森 → 北威州'], gw: 2,
+      cls: 'construction', scope: ['~2 GW, Emden to Osterath', '约2GW，Emden至Osterath'],
       year: 2027, status: ['Under construction, reported late', '在建，据报延期'], c: 'serious' },
-    { n: ['SuedLink', 'SuedLink'], operator: 'TenneT / TransnetBW',
-      scope: ['~4 GW over ~700 km, Brunsbüttel and Wilster to Grafenrheinfeld; first underground cable section completed 2026', '约4GW、约700公里，Brunsbüttel与Wilster至Grafenrheinfeld；首段地下电缆已于2026年完成'],
+    { n: ['SuedLink', 'SuedLink'], operator: 'TenneT / TransnetBW', region: ['Schleswig-Holstein → Bavaria', '石荷州 → 巴伐利亚'], gw: 4,
+      cls: 'construction', scope: ['~4 GW over ~700 km, Brunsbüttel and Wilster to Grafenrheinfeld; first underground cable section completed 2026', '约4GW、约700公里，Brunsbüttel与Wilster至Grafenrheinfeld；首段地下电缆已于2026年完成'],
       year: 2028, status: ['Under construction, COD end 2028, reported late', '在建，预计2028年底投运，据报延期'], c: 'critical' },
+    { n: ['Netzentwicklungsplan / Bundesbedarfsplan', '电网发展规划 / 联邦需求规划'], operator: 'Übertragungsnetzbetreiber, confirmed by Bundesnetzagentur', region: ['Germany', '德国全境'], gw: null,
+      cls: 'programme', scope: ['The statutory planning framework the four corridors sit inside, and the source of everything scheduled after them', '四条走廊所处的法定规划框架，也是其后所有工程安排的来源'],
+      year: 2045, status: ['A confirmed plan, not a commissioning date — the weakest relief evidence here', '已确认的规划而非投运日期 — 本表中证据力最弱'], c: 'serious' },
+  ],
+
+  /* Germany's status vocabulary. Note how little it separates: four corridors,
+     two classes, and every one of them reported late. That uniformity is the
+     finding, and the card's `why` says so rather than manufacturing a spread. */
+  planClasses: [
+    { id: 'approved',     n: ['Fully approved', '已全面核准'], c: 'warn',
+      d: ['Planning approval (Planfeststellung) complete on every section. The strongest class here — and it still has not stopped the date from slipping.', '各区段的规划核准程序均已完成。这是本表最强的类别 — 但仍未能阻止日期推迟。'] },
+    { id: 'construction', n: ['In construction', '在建'], c: 'serious',
+      d: ['Physically underway; approval is not stated as complete on every section. Works exist, but the corridor is not fully de-risked.', '已实际开工；但并未说明各区段核准均已完成。工程实体存在，但走廊风险尚未完全出清。'] },
+    { id: 'programme',    n: ['Statutory plan', '法定规划'], c: 'serious',
+      d: ['Confirmed need under the Bundesbedarfsplan and the network development plan. Establishes that a reinforcement will happen, not when.', '依《联邦需求规划》与电网发展规划确认的需求。它确立增容工程将会发生，但不确立何时发生。'] },
   ],
 
   /* ---- coverage gaps, rendered verbatim on the Data & Methodology tab ----

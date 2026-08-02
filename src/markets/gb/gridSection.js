@@ -5,7 +5,7 @@ import { congestionFor } from '../congestionRegistry.js';
    congestion register so the constraint layer and the table below agree. */
 const GB_GRID_MAP = gridMapById('gb-grid-map');
 
-export function buildGBGridSection({ SRC }){
+export function buildGBGridSection({ SRC, M }){
   return {
     head: [
       'Grid Connection — where power, demand and deliverability meet',
@@ -224,6 +224,35 @@ export function buildGBGridSection({ SRC }){
           ] },
           { t:'src', src:SRC.protectedDelay, use:['Protected-project date delays and Ofgem response','受保护项目日期延误及Ofgem回应'] },
           { t:'src', src:SRC.offerRebaseline, use:['Updated programme assumptions and phased delivery','更新后的计划假设及分阶段交付'] },
+        ],
+      },
+
+      {
+        t:'card',
+        title:['The network build behind the offers — named projects and their consenting position','要约背后的电网建设 — 具名项目及其许可进展'],
+        badges:['official','forecast'],
+        blocks:[
+          { t:'table',
+            head:[['Project','工程'],['Route','路径'],['Delivery body','交付主体'],['Consenting position','许可进展'],['Scope','范围'],['Target','目标年份'],['Status','状态']],
+            num:[5],
+            rows: M.reinforcements.map(x => {
+              const k = M.planClasses.find(c => c.id === x.cls);
+              return [{ b:x.n }, x.region, [x.operator, x.operator], { chip:k.c, text:k.n }, x.scope, String(x.year), x.status];
+            }) },
+          { t:'cap', text:[
+            'The transmission projects a GB connection date depends on, ordered by target year. GB publishes no ISP-style status classification, so the class column is the consenting position — which is what actually moves a GB date, as the Harker case above shows.',
+            '英国并网日期所依赖的输电工程，按目标年份排列。英国不发布ISP式的状态分类，因此类别列采用许可进展 — 正如上文Harker案例所示，这才是真正影响英国日期的因素。',
+          ] },
+          { t:'table',
+            head:[['Consenting position','许可进展'],['What it does and does not confer','其赋予与不赋予的内容']],
+            rows: M.planClasses.map(k => [{ chip:k.c, text:k.n }, k.d]) },
+          { t:'why', text:[
+            'Read this table against the Gate 2 table above, because they answer different questions. A Gate 2 offer tells you the project has a contractual position in the queue; this table tells you whether the wires that position assumes will exist. Four of the largest projects here — both later Eastern Green Links, Grimsby to Walpole and Norwich to Tilbury — have no development consent, and three of them are targeting 2031–2033. So a connection date in the early 2030s is very often a bet on a consenting process that has not started, dressed as a network date. Ask which named project your offer depends on, then look up that project\'s rung on this ladder rather than the programme it belongs to.',
+            '应将本表与上文的Gate 2表格对照阅读，因为两者回答不同问题。Gate 2要约说明项目在队列中拥有合同地位；本表说明该地位所假设的线路是否将会存在。此处最大的四个项目 — 后两条东方绿色互联、Grimsby至Walpole以及Norwich至Tilbury — 均未取得开发许可，其中三项目标为2031–2033年。因此2030年代初的并网日期，往往是对尚未启动的许可流程下注，却被包装成电网日期。应追问要约所依赖的具名项目，然后查看该项目在本阶梯上的位置，而非其所属的整体计划。',
+          ], sig:['Look up the project, not the programme','应查具体项目，而非整体计划'] },
+          { t:'src', src:SRC.greatGrid, use:['Named project scope, consenting position and target completion years','具名项目范围、许可进展及目标完工年份'] },
+          { t:'src', src:SRC.csnp, use:['The strategic network plan these projects are drawn from','这些项目所源自的战略网络规划'] },
+          { t:'src', src:SRC.beyond, use:['Recommended onshore and offshore reinforcements beyond 2030','2030年后建议的陆上及海上增容工程'] },
         ],
       },
 
