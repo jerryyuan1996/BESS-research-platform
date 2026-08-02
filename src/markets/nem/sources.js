@@ -1,0 +1,37 @@
+/* ---------------------------------------------------------------------------
+   NEM — source register.
+
+   Lives next to the market (brief section 20) and is rendered by the shared
+   components/sourceDrawer.js. Two things about this register are worth stating
+   because they shape what the dashboard can and cannot claim:
+
+     · AEMO publishes an unusual amount — quarterly market dynamics, marginal
+       loss factors, the Integrated System Plan — so the NEM's grid and
+       congestion layers rest on primary official data.
+     · almost nothing about CONTRACT PRICES is published. CIS floors and
+       ceilings are commercial-in-confidence for every project, and no Australian
+       BESS toll price has ever been disclosed. Those gaps are registered here as
+       coverage gaps rather than left implicit.
+   --------------------------------------------------------------------------- */
+
+const SRC = {
+  qed: { file:'AEMO — Quarterly Energy Dynamics', status:['Official — Final','官方 — 最终'], date:'Jul 2026', cy:'Q2 2026 prices, dispatch, battery revenue and FCAS', url:'https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/nem-forecasting-and-planning/quarterly-energy-dynamics' },
+  isp: { file:'AEMO — 2026 Integrated System Plan', status:['Official — Final','官方 — 最终'], date:'Jun 2026', cy:'Optimal development path to 2050; actionable and committed projects', url:'https://www.aemo.com.au/energy-systems/major-publications/integrated-system-plan-isp', authority:'official-forecast', historical:'Committed and anticipated network projects', forecast:'Storage requirement to 2030 and 2050; named transmission with commissioning years', frequency:'Biennial', format:'PDF + appendices', machineReadable:'Limited', automation:'C — fetchable; extraction requires review', lastChecked:'2026-08-01', freshness:'Current 2026 ISP vintage' },
+  mlf: { file:'AEMO — Marginal Loss Factors', status:['Official — Final','官方 — 最终'], date:'Apr 2026', cy:'FY2026-27 connection-point loss factors', url:'https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/data-nem/network-data/marginal-loss-factors', authority:'observed', historical:'Annual published factors by connection point', forecast:'None — republished each 1 April', frequency:'Annual, effective 1 July', format:'PDF + workbook', machineReadable:'Partial', automation:'B — scheduled annual fetch', lastChecked:'2026-08-01', freshness:'FY2026-27 vintage, effective 1 July 2026' },
+  cis: { file:'DCCEEW — Capacity Investment Scheme', status:['Official — Public','官方 — 公开'], date:'Jun 2026', cy:'Tender results: project, MW, MWh, state', url:'https://www.dcceew.gov.au/energy/renewable/capacity-investment-scheme', authority:'observed', historical:'Awarded volumes by tender round', forecast:'Announced future tender volumes and closing dates', frequency:'Per tender round', format:'HTML', machineReadable:'Limited', automation:'C — page monitor; prices are not published', lastChecked:'2026-08-01', freshness:'Tender 8 results, 24 June 2026' },
+  gencost: { file:'CSIRO — GenCost 2025-26 Final Report', status:['Official — Final','官方 — 最终'], date:'15 Jul 2026', cy:'Capital cost by technology and duration', url:'https://www.csiro.au/en/research/technology-space/energy/GenCost', authority:'observed', historical:'Annual cost series since 2018', forecast:'Projections to 2050 by scenario', frequency:'Annual', format:'PDF + data portal workbook', machineReadable:'Partial', automation:'C — headline costs extractable; fixed O&M sits in an appendix workbook', lastChecked:'2026-08-01', freshness:'2025-26 final vintage' },
+  aemc: { file:'AEMC — Transmission access reform', status:['Official — Final','官方 — 最终'], date:'Dec 2025', cy:'Congestion Relief Market recommendation and ministerial response', url:'https://www.aemc.gov.au/market-reviews-advice/transmission-access-reform' },
+  nelson: { file:'NEM Wholesale Market Settings Review (Nelson Review) — final report', status:['Official — Final','官方 — 最终'], date:'16 Dec 2025', cy:'Energy-only model retained; ESEM successor design', url:'https://www.dcceew.gov.au/energy/markets/national-electricity-market-review' },
+  ltesa: { file:'NSW Climate and Energy Action — Electricity Infrastructure Roadmap LTESA tenders', status:['Official — Public','官方 — 公开'], date:'2026', cy:'Long-duration storage LTESA rounds and annuity caps', url:'https://www.energy.nsw.gov.au/nsw-plans-and-progress/major-state-projects/electricity-infrastructure-roadmap' },
+  humelink: { file:'Transgrid — HumeLink', status:['Official — Public','官方 — 公开'], date:'2026', cy:'500 kV Wagga Wagga – Bannaby – Maragle, under construction', url:'https://www.transgrid.com.au/projects-innovation/humelink' },
+  cwo: { file:'EnergyCo NSW — Central-West Orana REZ Transmission Project', status:['Official — Public','官方 — 公开'], date:'2026', cy:'4.5 GW network capacity, commissioning 2028', url:'https://www.energyco.nsw.gov.au/our-projects/central-west-orana-renewable-energy-zone/transmission-project' },
+  pec: { file:'ElectraNet / Transgrid — Project EnergyConnect', status:['Official — Public','官方 — 公开'], date:'Jun 2026', cy:'900 km SA–NSW interconnector, fully energised', url:'https://www.electranet.com.au/projects/project-energyconnect/' },
+  aer: { file:'AER — network revenue and contingent project determinations', status:['Official — Final','官方 — 最终'], date:'2026', cy:'Approved transmission capex, including Marinus Link Stage 1', url:'https://www.aer.gov.au/' },
+  cec: { file:'Clean Energy Council — Clean Energy Australia Report 2026', status:['Public source','公开来源'], date:'2026', cy:'Financial close volumes and investment totals', url:'https://cleanenergycouncil.org.au/' },
+  giscoBoundary: { file:'Natural Earth 110m country boundaries via world-atlas', status:['Public source','公开来源'], date:'2026', cy:'Australia outline used as the map base', url:'https://github.com/topojson/world-atlas' },
+
+  contractPriceGap: { file:'NEM long-term contract prices — coverage gap', status:['Not verified','未核实'], date:'Aug 2026', cy:'CIS floors/ceilings and BESS toll prices', url:'https://www.dcceew.gov.au/energy/renewable/capacity-investment-scheme', authority:'methodology', historical:'No CIS floor, ceiling or payment cap has been published for any project; no Australian BESS toll price has ever been disclosed', forecast:'The Nelson Review recommends the successor ESEM publish its auction clearing prices, which would close this from 2027', frequency:'Reviewed each tender round', format:'Coverage assessment', machineReadable:'No', automation:'D — analyst coverage review', lastChecked:'2026-08-01', freshness:'Assessment current at review date' },
+  opexGap: { file:'NEM BESS fixed operating cost — coverage gap', status:['Not verified','未核实'], date:'Aug 2026', cy:'Fixed O&M per MW per year', url:'https://www.csiro.au/en/research/technology-space/energy/GenCost', authority:'methodology', historical:'GenCost carries fixed O&M in an appendix workbook rather than in extractable report text', forecast:'N/A', frequency:'Annual with each GenCost vintage', format:'Coverage assessment', machineReadable:'No', automation:'D — analyst coverage review', lastChecked:'2026-08-01', freshness:'Assessment current at review date' },
+};
+
+export { SRC, SRC as sources };

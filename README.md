@@ -1,7 +1,7 @@
 # BESS Research Platform
 
-Cross-market battery-storage investment research. A global cockpit that normalizes five markets into
-one currency and one model, plus a detailed dashboard per market.
+Cross-market battery-storage investment research. A global cockpit that normalizes eleven markets
+into one currency and one model, plus a detailed dashboard per market.
 
 Refactored from a single 1.65 MB HTML prototype into a modular Vite site. The prototype is kept at
 [`legacy/global-cockpit-0727-v1.html`](legacy/) for verification.
@@ -28,7 +28,7 @@ npm run preview
 npm test
 ```
 
-200 assertions.
+238 assertions.
 
 **On the model:** registry integrity, unique market ids, allocation-market vs detail-dashboard
 counts, required and freshness metadata, source-register shape, tab-id validity, comparison-input
@@ -47,7 +47,7 @@ missing anchor proposes nothing.
 npm run test:structural
 ```
 
-Registry, governance and finance only — 72 assertions, no legacy baseline. This is what the proposal
+Registry, governance and finance only — 76 assertions, no legacy baseline. This is what the proposal
 workflow runs, because an assumption change is *meant* to move the pinned numbers. See
 [`docs/governance.md`](docs/governance.md#the-legacy-baseline-and-why-a-proposal-is-allowed-to-break-it).
 
@@ -78,10 +78,14 @@ App
  ├─ Comparison Engine
  └─ Market Registry
        ├─ WA   hand-written sections
-       ├─ GB   ┐
-       ├─ IE   ├─ shared declarative block engine
+       ├─ NEM  ┐
+       ├─ GB   │
+       ├─ DE   │
+       ├─ IT   ├─ shared declarative block engine
+       ├─ IE   │
        ├─ RO   │
-       └─ PL   ┘
+       ├─ PL   │
+       └─ JP×3 ┘  three exposures, one dashboard
 
  every market exposes the same contract:
    { manifest, comparison, sources, tabs, dashboard }
@@ -118,8 +122,10 @@ src/
 │   ├── schema.js            the market-module contract
 │   ├── marketPage.js        shared market page shell
 │   ├── _template/           documented empty market module
-│   ├── _shared/             declarative block engine (GB · IE · RO · PL)
-│   └── wa/ gb/ ie/ ro/ pl/
+│   ├── _shared/             declarative block engine (every market except WA)
+│   ├── gridMapRegistry.js   grid maps, joined to their congestion registers
+│   ├── congestionRegistry.js one congestion register per allocation market
+│   └── wa/ nem/ gb/ de/ it/ ie/ ro/ pl/ jp-*/
 └── local/                   stub interface for confidential data (later phase)
 ```
 
@@ -132,7 +138,8 @@ src/
 /markets/:slug/:tab      market dashboard, deep-linked tab
 ```
 
-Live slugs: `western-australia`, `great-britain`, `ireland`, `romania`, `poland`.
+Live slugs: `western-australia`, `nem`, `great-britain`, `germany`, `italy`, `ireland`, `romania`,
+`poland`, `japan-tokyo`, `japan-kyushu`, `japan-hokkaido`.
 
 History-API routing. Direct visits and refreshes work in dev via Vite's SPA fallback and in production
 via [`public/_redirects`](public/_redirects).
@@ -161,7 +168,7 @@ else still works.
 
 When you do build the dashboard, prefer the shared block engine: describe each tab as a list of
 blocks and you inherit every interactive widget — scorecards, the duration sweep, the pipeline
-table — already consistent with the other four markets. Do not give it a project-debt or
+table — already consistent with the other nine. Do not give it a project-debt or
 investment-lab tab: both live once, on the home page, so that one model serves every market.
 
 Step-by-step: [`docs/adding-a-market.md`](docs/adding-a-market.md).
@@ -170,23 +177,26 @@ Step-by-step: [`docs/adding-a-market.md`](docs/adding-a-market.md).
 
 ## Markets
 
-**8 allocation markets · 6 detail dashboards.** Those are different counts on purpose — Tokyo,
+**11 allocation markets · 9 detail dashboards.** Those are different counts on purpose — Tokyo,
 Kyushu and Hokkaido are three exposures sharing one Japan research dashboard.
 
 | Market | Route | Dashboard | Lineage |
 |---|---|---|---|
-| Western Australia — WEM | `/markets/western-australia` | 13 tabs | hand-written sections |
-| Great Britain | `/markets/great-britain` | 13 tabs | shared block engine |
-| Ireland — SEM | `/markets/ireland` | 13 tabs | shared block engine |
-| Romania | `/markets/romania` | 13 tabs | shared block engine |
-| Poland | `/markets/poland` | 13 tabs | shared block engine |
-| Japan — Tokyo Area | `/markets/japan-tokyo` | 13 tabs, Tokyo lens | shared block engine |
-| Japan — Kyushu Area | `/markets/japan-kyushu` | 13 tabs, Kyushu lens | shared block engine |
-| Japan — Hokkaido Area | `/markets/japan-hokkaido` | 13 tabs, Hokkaido lens | shared block engine |
+| Western Australia — WEM | `/markets/western-australia` | 11 tabs | hand-written sections |
+| Australia — NEM | `/markets/nem` | 11 tabs | shared block engine |
+| Great Britain | `/markets/great-britain` | 11 tabs | shared block engine |
+| Germany | `/markets/germany` | 11 tabs | shared block engine |
+| Italy | `/markets/italy` | 11 tabs | shared block engine |
+| Ireland — SEM | `/markets/ireland` | 11 tabs | shared block engine |
+| Romania | `/markets/romania` | 11 tabs | shared block engine |
+| Poland | `/markets/poland` | 11 tabs | shared block engine |
+| Japan — Tokyo Area | `/markets/japan-tokyo` | 11 tabs, Tokyo lens | shared block engine |
+| Japan — Kyushu Area | `/markets/japan-kyushu` | 11 tabs, Kyushu lens | shared block engine |
+| Japan — Hokkaido Area | `/markets/japan-hokkaido` | 11 tabs, Hokkaido lens | shared block engine |
 
 Add `?region=compare` to any Japan route to see all three regions side by side.
 
-All 104 tab renders complete with zero console errors.
+All 103 tab renders complete with zero console errors.
 
 ### Japan — three exposures, one rulebook
 
@@ -311,7 +321,7 @@ initial payload to roughly the home page alone and make each market a separate c
 
 It is not done here because it changes the module contract: `dashboard` becomes async, and the
 registry needs a loader indirection rather than a direct import. That is a design decision worth
-making deliberately, and it matters more as markets are added — five markets is fine, twenty is not.
+making deliberately, and it matters more as markets are added — eleven is fine, twenty is not.
 
 ---
 
@@ -341,8 +351,10 @@ This is enforced, not merely documented:
 - An unclassified field fails **closed**, at the most restrictive authority class.
 - A test greps the workflow for every auto-merge mechanism and fails if one appears.
 
-Nine feeds across all eight markets: ECB (FX), ENTSO-E (GB, IE, RO, PL), AEMO (WA), JEPX (Tokyo,
-Kyushu, Hokkaido). Every feed, its freshness and its licence are public at **`/data`**.
+Nine feeds: ECB (FX), ENTSO-E (GB, IE, RO, PL), AEMO (WA), JEPX (Tokyo, Kyushu, Hokkaido). Every
+feed, its freshness and its licence are public at **`/data`**. The three markets added in the
+2026-08 round — NEM, Germany and Italy — carry **no automated feed yet** and are marked SEED in their
+manifests; their numbers move only when an analyst moves them.
 
 ```bash
 npm run etl

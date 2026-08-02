@@ -122,6 +122,33 @@ function runLegacyCase(market, strategyId, exitYear){
     marketFrom = e.tollRevertsToMerchant ? cy + 1 : LIFE + 1;
     if (!e.tollRevertsToMerchant){ merch = 0; svc = 0; }
     note = e.tollNote || null;
+  } else if (strategyId === 'ltda'){
+    /* A long-term award on a market whose capacity is NOT re-auctioned annually.
+
+       Japan reaches this route through runAuctionRenewalCase, because there the
+       award sits alongside a capacity market that clears one delivery year at a
+       time. Italy's MACSE and the NEM's Capacity Investment Scheme do not: the
+       award is the whole contracted position for its term, and the market it
+       displaces is the ordinary merchant stack. Forcing those two into the
+       auction-renewal risk class to reach this route would have published a
+       renewal curve neither scheme has.
+
+       The structure is the same in both places and is what `merchantRetention`
+       encodes: a fixed payment, plus whatever fraction of market revenue the
+       scheme lets the owner keep. At retention 1 the award simply stacks; at 0.1
+       it is very nearly an alternative to trading rather than an addition to it. */
+    const award = e.ltda;
+    if (!award) return { na: ['No representative award scenario loaded', '未载入代表性中标情景'] };
+    cap = (award.payment || 0) * fx;
+    cy = Math.min(award.years || LIFE, LIFE);
+    post = award.postFactor ?? 0;
+    const retention = award.merchantRetention ?? 1;
+    merch *= retention;
+    svc *= retention;
+    /* An award is competitively bid against the bidder's own costs. Stacking a
+       capital grant on top would let a market claim support twice. */
+    if (award.excludesGrant) grant = 0;
+    note = award.note || null;
   }
 
   const net = capexG - grant;
@@ -156,7 +183,8 @@ function runLegacyCase(market, strategyId, exitYear){
     // secured share and secured tenor are just the contracted figures renamed.
     securedShare: contractedShare,
     securedYears: strategyId === 'cap' ? Math.min(e.contractYears || 0, LIFE)
-      : strategyId === 'toll' ? Math.min(e.tollYears || LIFE, LIFE) : 0,
+      : strategyId === 'toll' ? Math.min(e.tollYears || LIFE, LIFE)
+      : strategyId === 'ltda' ? Math.min(e.ltda?.years || 0, LIFE) : 0,
     aucY: Array(LIFE).fill(0),
     kwPerM: 1e6 / (net / 1000), note,
   };

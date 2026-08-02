@@ -32,10 +32,17 @@ import { badge } from '../components/badge.js';
 import { chip } from '../components/chip.js';
 import { why } from '../components/decisionLogic.js';
 import {
-  CAPTURE_LABEL, CAPTURE_PAYS, RELIEF_STATUS_LABEL, reliefRunway,
+  CAPTURE_LABEL, CAPTURE_PAYS, CAPTURE_FLOW, CAPTURE_FLOW_LABEL,
+  RELIEF_STATUS_LABEL, reliefRunway,
 } from '../governance/congestion.js';
+
 import { congestionFor } from '../markets/congestionRegistry.js';
 import { RUNWAY_FROM } from '../components/congestionPanel.js';
+
+/* Green only where the mechanism pays. Amber — not green — where nobody pays at
+   all, because "no congestion payment exists" is a finding an investor has to
+   act on, not a neutral fact. */
+const FLOW_TONE = { pays: 'ok', charges: 'bad', neither: 'warn' };
 
 /**
  * The zone that decides a market's congestion case.
@@ -100,7 +107,7 @@ export function renderCongestionView(main, marketList){
   const body = rows.map(({ market, register }) => {
     const zone = headlineZone(register);
     const runway = reliefRunway(zone, RUNWAY_FROM);
-    const pays = CAPTURE_PAYS[zone.capture.mechanism];
+    const flow = CAPTURE_FLOW[zone.capture.mechanism];
     const head = zone.metrics[0];
 
     return h('tr', {},
@@ -109,8 +116,9 @@ export function renderCongestionView(main, marketList){
       h('td', { class: 'ctx' }, L(head.value),
         h('span', { class: 'cong-metric-label' }, L(head.label), ' · ', L(head.period))),
       h('td', {},
-        chip(pays ? 'ok' : 'bad', L(CAPTURE_LABEL[zone.capture.mechanism])),
-        pays ? null : h('span', { class: 'cong-charges' }, L(['charges the developer', '由开发商承担']))),
+        chip(FLOW_TONE[flow], L(CAPTURE_LABEL[zone.capture.mechanism])),
+        flow === 'pays' ? null
+          : h('span', { class: 'cong-charges' }, L(CAPTURE_FLOW_LABEL[flow]))),
       h('td', {}, L(zone.relief.project),
         h('span', { class: 'cong-metric-label' },
           zone.relief.expected ? String(zone.relief.expected) + ' · ' : '',

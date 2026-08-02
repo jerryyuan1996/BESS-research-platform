@@ -16,10 +16,16 @@ import { PL_CONGESTION } from './pl/congestion.js';
 import { RO_CONGESTION } from './ro/congestion.js';
 import { WA_CONGESTION } from './wa/congestion.js';
 import { JP_CONGESTION } from './jp/congestion.js';
+import { NEM_CONGESTION } from './nem/congestion.js';
+import { DE_CONGESTION } from './de/congestion.js';
+import { IT_CONGESTION } from './it/congestion.js';
 
 export const CONGESTION_REGISTERS = [
   WA_CONGESTION,
+  NEM_CONGESTION,
   GB_CONGESTION,
+  DE_CONGESTION,
+  IT_CONGESTION,
   IE_CONGESTION,
   RO_CONGESTION,
   PL_CONGESTION,

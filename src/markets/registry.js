@@ -26,8 +26,13 @@ import pl from './pl/index.js';
 import jpTokyo from './jp-tokyo/index.js';
 import jpKyushu from './jp-kyushu/index.js';
 import jpHokkaido from './jp-hokkaido/index.js';
+// Added in the 2026-08 round. NEM is Australia's other market: energy-only,
+// against WA's capacity-paying WEM.
+import nem from './nem/index.js';
+import de from './de/index.js';
+import it from './it/index.js';
 
-export const markets = [wa, gb, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido];
+export const markets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido];
 
 // ---- derived lookups -------------------------------------------------------
 

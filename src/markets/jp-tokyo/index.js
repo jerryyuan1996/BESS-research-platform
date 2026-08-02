@@ -80,6 +80,11 @@ const economics = {
   ltda: {
     payment: R.econ.ltdaPaymentJPYMWYr,
     years: 20,
+    /* Round 3 abolished the 3-6h bracket and set a hard six-hour floor, so a
+       shorter asset cannot bid into this route at all. Declared by the market
+       rather than assumed by the model: the NEM Capacity Investment Scheme is
+       also a long-term award and has no duration minimum. */
+    minDurationHours: 6,
     merchantRetention: JP_LTDA_MERCHANT_RETENTION,
     note: [
       '20-yr OCCTO CRA, CPI-indexed, 6h minimum; ~90% of other-market net profit returned',
