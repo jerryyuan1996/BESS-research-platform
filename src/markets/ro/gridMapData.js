@@ -18,8 +18,15 @@ const URL = {
   smardan:'https://www.transelectrica.ro/ro/-/press-release-the-national-power-grid-co-transelectrica-sa-has-accomplished-the-studies-on-the-new-400-kv-double-circuit-overhead-line-ohl-between-the',
 };
 
+/* Standing map labels. Demand centres and generation zones always carry one —
+   they are the geography that orients a reader against a published network
+   plan. Nodes carry one only where the map is sparse enough to take it; on the
+   denser maps they would bury the routes they sit on. Any point overrides with
+   `label:false` or places its text with `labelAnchor` / `labelBelow`. */
+const LABEL_KINDS = new Set(['load','generation','node']);
 const point = (id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, extra = {}) => ({
-  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, ...extra,
+  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size: 1,
+  label:LABEL_KINDS.has(kind), ...extra,
 });
 
 /*

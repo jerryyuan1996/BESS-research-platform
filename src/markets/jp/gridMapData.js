@@ -1,4 +1,5 @@
 import prefectures from './jp-prefectures-lite.json' with { type:'json' };
+import zoneSet from './jp-zones.json' with { type:'json' };
 
 const URL = {
   geometry:'https://raw.githubusercontent.com/geolonia/prefecture-tiles/master/prefectures.geojson',
@@ -81,8 +82,14 @@ const featureCodes = codes => ({
   features:prefectures.features.filter(feature => codes.includes(feature.properties.code)),
 });
 
+/* Standing map labels. Demand centres and generation zones always carry one —
+   they are the geography that orients a reader against a published network
+   plan. Nodes carry one only where the map is sparse enough to take it; on the
+   denser maps they would bury the routes they sit on. Any point overrides with
+   `label:false` or places its text with `labelAnchor` / `labelBelow`. */
+const LABEL_KINDS = new Set(['load','generation','node']);
 const point = (id, name, coord, kind, subtype, periods, fields) => ({
-  id, name, coord, kind, subtype, periods, size:1, ...fields,
+  id, name, coord, kind, subtype, periods, size:1, label:LABEL_KINDS.has(kind), ...fields,
 });
 const route = (id, name, coords, periods, fields) => ({
   id, name, coords, kind:'route', periods, ...fields,
@@ -548,6 +555,10 @@ const baseMap = (id, ariaLabel, title, boundary, points, routes, sourceCatalog, 
   boundaryLabelValues,
   viewBounds,
   boundarySource:{ label:['Geolonia prefecture GeoJSON · MLIT-derived','Geolonia都道府县GeoJSON · 源自国土交通省'], url:URL.geometry },
+  /* All nine OCCTO areas, shared by the three area maps. A region's storage
+     value is set partly by what its neighbours can send it, so the neighbours
+     are drawn even on a map zoomed to one of them. */
+  zoneSet:{ ...zoneSet, label:['OCCTO areas','广域机关区域'] },
   periodOrder:['past','current','future'],
   periods:PERIODS,
   layers:LAYERS,

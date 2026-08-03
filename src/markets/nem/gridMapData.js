@@ -20,6 +20,7 @@
    named projects below have either landed or slipped.
    --------------------------------------------------------------------------- */
 import boundary from './au-boundary.json' with { type:'json' };
+import zoneSet from './nem-zones.json' with { type:'json' };
 
 const URL = {
   isp: 'https://www.aemo.com.au/energy-systems/major-publications/integrated-system-plan-isp',
@@ -37,44 +38,51 @@ const point = (id, name, coord, kind, subtype, periods, note, investor, source, 
   id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size: 1, ...extra,
 });
 
+/* A point that carries a standing label on the map rather than only when it is
+   selected. Reserved for geography that orients the reader — regional centres,
+   REZs and interconnector terminals — so the map reads like the published
+   system-planner maps it is compared against. */
+const labelled = (id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, extra = {}) =>
+  point(id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, { label: true, ...extra });
+
 const points = [
   /* ---- connection nodes ------------------------------------------------- */
-  point('wagga', ['Wagga Wagga', '瓦加瓦加'], [147.37, -35.12], 'node', ['500 kV junction node', '500千伏枢纽节点'], ['past','current','future'],
+  labelled('wagga', ['Wagga Wagga', '瓦加瓦加'], [147.37, -35.12], 'node', ['500 kV junction node', '500千伏枢纽节点'], ['past','current','future'],
     ['Where three interconnector-scale flows meet: Project EnergyConnect from South Australia, HumeLink from the Snowy scheme and VNI West from Victoria.',
      '三条互联规模潮流的交汇点：来自南澳的Project EnergyConnect、来自雪山工程的HumeLink，以及来自维多利亚的VNI West。'],
     ['A project here is exposed to three commissioning schedules at once. Ask which of the three the connection offer assumes, and what happens to the study if one slips.',
      '此处的项目同时暴露于三项工程的投运进度。应追问并网要约假设了其中哪一项，以及若其中一项延期，研究结论将如何变化。'],
-    'AEMO 2026 ISP', URL.isp),
+    'AEMO 2026 ISP', URL.isp, { labelAnchor:'start', labelBelow:true }),
 
-  point('merotherie', ['Merotherie / Central-West Orana', 'Merotherie / 中西部奥拉纳'], [149.35, -32.15], 'node', ['REZ energy hub', '可再生能源区枢纽'], ['current','future'],
+  labelled('merotherie', ['Merotherie / Central-West Orana', 'Merotherie / 中西部奥拉纳'], [149.35, -32.15], 'node', ['REZ energy hub', '可再生能源区枢纽'], ['current','future'],
     ['The NSW Central-West Orana renewable energy zone hub, under construction to connect 7.7 GW of wind and solar.',
      '新南威尔士中西部奥拉纳可再生能源区枢纽，正在建设中，用于接入7.7GW风电与光伏。'],
     ['A REZ access scheme rations connection by a published headroom decision. Being inside the zone is not access — confirm the scheme round and the allocated MW.',
      '可再生能源区接入机制依据公开的容量裕度决定进行配给。位于区内并不等于获得接入权 — 须确认接入机制的轮次及所分配的MW。'],
     'EnergyCo NSW', URL.cwo),
 
-  point('robertstown', ['Robertstown', '罗伯茨敦'], [139.08, -33.98], 'node', ['Interconnector terminal', '互联线路端站'], ['current','future'],
+  labelled('robertstown', ['Robertstown', '罗伯茨敦'], [139.08, -33.98], 'node', ['Interconnector terminal', '互联线路端站'], ['current','future'],
     ['South Australian terminal of Project EnergyConnect. Stage 1 completed in late 2024 at 150 MW; the full 800 MW waits on Stage 2 in November 2027.',
      'Project EnergyConnect的南澳端站。一期已于2024年底完成，输送能力150MW；完整的800MW须待2027年11月二期投运。'],
     ['This is the platform\'s worked example of relief arriving in stages rather than on a date. A 2024 congestion case written here is not yet spent — it expires with Stage 2, not with Stage 1.',
      '这是本平台关于缓解措施分期到位而非按单一日期到位的实证案例。2024年在此撰写的拥塞投资逻辑尚未兑现 — 其到期日对应二期而非一期。'],
-    'ElectraNet / Transgrid', URL.pec),
+    'ElectraNet / Transgrid', URL.pec, { labelAnchor:'start' }),
 
-  point('kerang', ['Kerang', '克朗'], [143.92, -35.73], 'node', ['Transmission node', '输电节点'], ['current','future'],
+  labelled('kerang', ['Kerang', '克朗'], [143.92, -35.73], 'node', ['Transmission node', '输电节点'], ['current','future'],
     ['North-west Victorian node on the VNI West corridor, in the area with the NEM\'s highest negative-price incidence.',
      'VNI West走廊上的维多利亚西北部节点，位于NEM负电价发生率最高的区域。'],
     ['High negative-price incidence is a charging opportunity and an export constraint at the same time. Model both legs separately before netting them.',
      '高负电价发生率同时意味着充电机会与送出约束。在轧差之前，应分别对两侧建模。'],
-    'AEMO 2026 ISP', URL.isp),
+    'AEMO 2026 ISP', URL.isp, { labelAnchor:'start', labelBelow:true }),
 
-  point('bannaby', ['Bannaby', '班纳比'], [149.80, -34.50], 'node', ['500 kV node', '500千伏节点'], ['past','current','future'],
+  labelled('bannaby', ['Bannaby', '班纳比'], [149.80, -34.50], 'node', ['500 kV node', '500千伏节点'], ['past','current','future'],
     ['Southern NSW node on the HumeLink corridor, feeding the Sydney load centre.',
      'HumeLink走廊上的新南威尔士南部节点，向悉尼负荷中心供电。'],
     ['Proximity to Sydney load improves the marginal loss factor but does not confer export headroom — the two are settled separately.',
      '靠近悉尼负荷有助于改善边际损耗系数，但不带来送出容量 — 二者分别结算。'],
-    'Transgrid HumeLink', URL.humelink),
+    'Transgrid HumeLink', URL.humelink, { labelAnchor:'end' }),
 
-  point('townsville', ['Townsville / Hughenden', '汤斯维尔 / 休恩登'], [146.20, -20.10], 'node', ['CopperString corridor', 'CopperString走廊'], ['future'],
+  labelled('townsville', ['Townsville / Hughenden', '汤斯维尔 / 休恩登'], [146.20, -20.10], 'node', ['CopperString corridor', 'CopperString走廊'], ['future'],
     ['North Queensland node on the CopperString corridor, with major construction from 2028 and operations from 2032.',
      'CopperString走廊上的北昆士兰节点，2028年起大规模施工，2032年投运。'],
     ['A 2032 commissioning is outside a fifteen-year window opened today only at the far end. Treat it as optionality, not as a modelled connection.',
@@ -96,12 +104,12 @@ const points = [
      '维多利亚的退役时间表决定了市场化投资逻辑所依赖的价差扩大节奏。应以已公布日期而非目标为承销依据。'],
     'AEMO 2026 ISP', URL.isp, { operatingCapacity:['Brown-coal fleet, closure dates published by owners','褐煤机组，业主已公布关停日期'] }),
 
-  point('snowy', ['Snowy 2.0', '雪山2.0'], [148.40, -35.90], 'generation', ['Pumped hydro', '抽水蓄能'], ['future'],
+  labelled('snowy', ['Snowy 2.0', '雪山2.0'], [148.40, -35.90], 'generation', ['Pumped hydro', '抽水蓄能'], ['future'],
     ['2,200 MW of pumped hydro currently stranded behind the southern NSW constraint that HumeLink is built to relieve.',
      '2,200MW抽水蓄能目前受困于新南威尔士南部约束之后，而HumeLink正是为缓解该约束而建。'],
     ['This is the competitor a southern NSW battery inherits when the constraint clears. Relief and new competition arrive on the same date.',
      '这是约束解除后新南威尔士南部储能将面对的竞争者。缓解与新增竞争在同一天到来。'],
-    'Snowy Hydro', URL.snowy, { plannedCapacity:['2,200 MW, unlocked by HumeLink','2,200MW，由HumeLink释放'], size:1.2 }),
+    'Snowy Hydro', URL.snowy, { plannedCapacity:['2,200 MW, unlocked by HumeLink','2,200MW，由HumeLink释放'], size:1.2, labelAnchor:'end' }),
 
   point('cwo-renewables', ['Central-West Orana wind and solar', '中西部奥拉纳风电与光伏'], [149.10, -32.40], 'generation', ['Wind and solar', '风电与光伏'], ['current','future'],
     ['7.7 GW of wind and solar to be connected by the Central-West Orana REZ transmission project.',
@@ -118,16 +126,15 @@ const points = [
     'WattClarity / AEMO', URL.isp, { operatingCapacity:['38% of utility-scale solar curtailed in 2025','2025年公用事业级光伏限电比例38%'], size:1.15 }),
 
   /* ---- demand ------------------------------------------------------------ */
-  point('sydney', ['Sydney', '悉尼'], [151.21, -33.87], 'load', ['Metropolitan load centre', '大都市负荷中心'], ['past','current','future'],
+  labelled('sydney', ['Sydney', '悉尼'], [151.21, -33.87], 'load', ['Metropolitan load centre', '大都市负荷中心'], ['past','current','future'],
     ['The largest load centre in the NEM and the destination of the southern and western NSW corridors.',
      'NEM中最大的负荷中心，也是新南威尔士南部与西部走廊的终点。'],
     ['Siting near load improves the loss factor, which is a permanent settlement multiplier rather than a one-off.',
      '靠近负荷选址可改善损耗系数，而该系数是永久性的结算乘数而非一次性因素。'],
-    'AEMO 2026 ISP', URL.isp,
-    { companies:['Transgrid', 'Ausgrid', 'EnergyAustralia', 'AGL'],
-      demandScale:['Largest single load centre in the NEM','NEM中最大的单一负荷中心'] }),
+    'AEMO 2026 ISP', URL.isp, { companies:['Transgrid', 'Ausgrid', 'EnergyAustralia', 'AGL'],
+      demandScale:['Largest single load centre in the NEM','NEM中最大的单一负荷中心'], labelAnchor:'start' }),
 
-  point('melbourne', ['Melbourne', '墨尔本'], [144.96, -37.81], 'load', ['Metropolitan load centre', '大都市负荷中心'], ['past','current','future'],
+  labelled('melbourne', ['Melbourne', '墨尔本'], [144.96, -37.81], 'load', ['Metropolitan load centre', '大都市负荷中心'], ['past','current','future'],
     ['Victorian load centre served by the Latrobe Valley and, increasingly, by western Victorian renewables.',
      '维多利亚负荷中心，由拉筹伯谷供电，并日益依赖维多利亚西部可再生能源。'],
     ['Victoria has the NEM\'s only legislated storage targets — 2.6 GW by 2030 and 6.3 GW by 2035 — which is competition as much as it is policy support.',
@@ -136,7 +143,7 @@ const points = [
     { companies:['AusNet Services', 'CitiPower', 'Powercor', 'SEC Victoria'],
       demandScale:['Second-largest NEM load centre','NEM第二大负荷中心'] }),
 
-  point('brisbane', ['Brisbane / South East Queensland', '布里斯班 / 东南昆士兰'], [153.03, -27.47], 'load', ['Metropolitan and industrial load', '大都市与工业负荷'], ['past','current','future'],
+  labelled('brisbane', ['Brisbane / South East Queensland', '布里斯班 / 东南昆士兰'], [153.03, -27.47], 'load', ['Metropolitan and industrial load', '大都市与工业负荷'], ['past','current','future'],
     ['Queensland load centre at the southern end of a long, thin state network with limited southward export.',
      '昆士兰负荷中心，位于狭长州级电网的南端，向南送出能力有限。'],
     ['Queensland went from the NEM\'s top battery earner to its worst in a single year as storage saturated. Read regional revenue history with its build-out.',
@@ -144,6 +151,185 @@ const points = [
     'AEMO Quarterly Energy Dynamics', URL.isp,
     { companies:['Powerlink', 'Energex', 'Stanwell', 'CS Energy'],
       demandScale:['Queensland metropolitan and industrial load','昆士兰大都市与工业负荷'] }),
+
+  /* ---- regional centres and renewable energy zones on the ISP corridors ----
+     The geography the optimal development path is drawn around. Labelled on
+     the map because a corridor without its terminals is a line, not a plan. */
+  labelled('cairns', ['Cairns', '凯恩斯'], [145.77, -16.92], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Far North Queensland load centre at the top of the ISP corridor, behind the longest thermal transfer path in the NEM.',
+     '远北昆士兰负荷中心，位于ISP走廊最北端，其后是NEM中最长的热稳定输送通道。'],
+    ['The most constrained end of the Queensland system. Distance to load is the whole story for anything sited north of Townsville.',
+     '昆士兰系统中约束最严重的一端。对位于汤斯维尔以北的任何项目而言，与负荷的距离就是全部问题。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end' }),
+
+  labelled('mackay', ['Mackay', '麦凯'], [149.19, -21.14], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Central Queensland coastal node between the northern generation cluster and the Gladstone industrial load.',
+     '中昆士兰沿海节点，位于北部发电集群与格拉德斯通工业负荷之间。'],
+    ['Sits on the flow path the Central to North Queensland Reinforcement addresses; a Stage 1 or Stage 2 date changes what exports past here.',
+     '位于中昆至北昆加强工程所针对的潮流通道上；一期或二期的日期决定了经此外送的电量。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'start' }),
+
+  labelled('rockhampton', ['Rockhampton', '罗克汉普顿'], [150.51, -23.38], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Central Queensland node adjacent to the Stanwell generation cluster and the Gladstone corridor.',
+     '中昆士兰节点，毗邻Stanwell发电集群及格拉德斯通走廊。'],
+    ['Both actionable Queensland projects on this map terminate near here. Confirm which one a connection offer assumes.',
+     '本图中两个昆州可行动项目均在此附近落点。须确认并网要约假设的是哪一个。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end' }),
+
+  labelled('gladstone', ['Gladstone', '格拉德斯通'], [151.26, -23.84], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Industrial load centre and the site of a coal-station closure that the actionable Gladstone Project is built to cover.',
+     '工业负荷中心，也是煤电关停所在地，可行动的格拉德斯通项目正是为此而建。'],
+    ['A demand-side reinforcement in a generation-side plan. Industrial electrification here changes the direction of local constraint, not just its size.',
+     '这是发电侧规划中的负荷侧增容。此处的工业电气化改变的是本地约束的方向，而不仅是其规模。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end', labelBelow:true }),
+
+  labelled('bundaberg', ['Bundaberg', '班达伯格'], [152.35, -24.87], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Southern Queensland coastal node between the Gladstone corridor and the South East Queensland load.',
+     '昆士兰南部沿海节点，位于格拉德斯通走廊与昆士兰东南负荷之间。'],
+    ['Orientation only. The binding constraint for projects here is the South West to South East Queensland flow path, not local capacity.',
+     '仅作方位参考。此处项目的约束在于昆士兰西南至东南潮流通道，而非本地容量。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'start' }),
+
+  labelled('armidale', ['Armidale', '阿米代尔'], [151.67, -30.51], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['New England REZ hub and the southern terminus of the deferred QNI Connect project.',
+     '新英格兰可再生能源区枢纽，也是已推迟的QNI Connect项目的南端。'],
+    ['Two register rows meet here on very different timelines: the New England REZ network is anticipated for 2034, QNI Connect is deferred to the mid-2040s.',
+     '两条登记表行项在此交汇，但时间线迥异：新英格兰REZ网络预期为2034年，QNI Connect则推迟至2040年代中期。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'start' }),
+
+  labelled('tamworth', ['Tamworth', '塔姆沃思'], [150.93, -31.09], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Northern NSW node on the central-to-northern flow path the New England REZ project reinforces.',
+     '新州北部节点，位于新英格兰REZ项目所加强的中部至北部潮流通道上。'],
+    ['The existing Armidale–Tamworth circuits are the thermal limit the anticipated project is sized to remove.',
+     '既有的Armidale—Tamworth线路是该预期项目所要消除的热稳定限制。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end' }),
+
+  labelled('dubbo', ['Dubbo', '达博'], [148.6, -32.25], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Central-West NSW centre beside the Central-West Orana REZ and the named Dubbo distribution project.',
+     '新州中西部中心，毗邻中西部奥拉纳REZ及具名的Dubbo配电项目。'],
+    ['The distribution project here unlocks 2.4 GW at lower cost than a transmission solution — evidence that not every constraint needs a corridor.',
+     '此处的配电项目以低于输电方案的成本释放2.4GW — 这证明并非每项约束都需要一条走廊。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end' }),
+
+  labelled('newcastle', ['Newcastle', '纽卡斯尔'], [151.78, -32.93], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Hunter load centre and the coastal end of the Sydney Ring North corridor, beside the retiring Hunter coal cluster.',
+     '猎人谷负荷中心，也是悉尼环网北段走廊的沿海端点，毗邻正在退役的猎人谷煤电集群。'],
+    ['Retiring coal, a committed REZ network and an actionable ring project overlap here. This is the densest cluster of dated change on the map.',
+     '退役煤电、已承诺的REZ网络与可行动的环网项目在此重叠。这是本图中有明确日期变化最密集的区域。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'start' }),
+
+  labelled('wollongong', ['Wollongong', '卧龙岗'], [150.89, -34.42], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Southern end of the Sydney, Newcastle and Wollongong load area that both Sydney Ring projects supply.',
+     '悉尼—纽卡斯尔—卧龙岗负荷区南端，两个悉尼环网项目均向其供电。'],
+    ['Named in the identified need for both ring projects, which is why their dates bear on a project sited anywhere in this load area.',
+     '两个环网项目的识别需求中均具名提及此地，因此其日期对该负荷区内任何项目均有影响。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'start', labelBelow:true }),
+
+  labelled('canberra', ['Canberra', '堪培拉'], [149.13, -35.28], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['ACT load centre between the Snowy scheme and the Sydney load area, on the HumeLink corridor.',
+     '首都领地负荷中心，位于雪山工程与悉尼负荷区之间，处于HumeLink走廊上。'],
+    ['Orientation only: the ACT is inside NSW1 for settlement, so a project here prices off the NSW regional reference node.',
+     '仅作方位参考：首都领地在结算上属NSW1区域，因此此处项目按新州区域参考节点定价。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'start', labelBelow:true }),
+
+  labelled('ballarat', ['Ballarat', '巴拉瑞特'], [143.85, -37.56], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Western Victorian centre on the Western Renewables Link corridor between Bulgana and Melbourne.',
+     '维多利亚西部中心，位于Bulgana至墨尔本的西部可再生能源联络线走廊上。'],
+    ['The anticipated link past here is what lets western Victorian generation reach Melbourne without the 220 kV constraint.',
+     '经此的预期联络线使维州西部电源无需受制于220千伏约束即可送达墨尔本。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end' }),
+
+  labelled('bendigo', ['Bendigo', '本迪戈'], [144.28, -36.76], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['North-central Victorian node between the Kerang area and the Melbourne load.',
+     '维多利亚中北部节点，位于Kerang地区与墨尔本负荷之间。'],
+    ['Downstream of the highest negative-price incidence in the NEM. Charging economics and export limits here move in opposite directions.',
+     '位于NEM负电价发生率最高区域的下游。此处的充电经济性与送出限制方向相反。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end' }),
+
+  labelled('adelaide', ['Adelaide', '阿德莱德'], [138.6, -34.93], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['South Australian load centre and the destination of the deferred Northern Transmission Project.',
+     '南澳负荷中心，也是已推迟的北部输电项目的终点。'],
+    ['South Australia has the NEM\u2019s highest renewable share and its relief project just moved to the 2040s. Model the constraint as durable.',
+     '南澳拥有NEM最高的可再生能源占比，而其缓解项目刚被推迟至2040年代。应将该约束按持久性建模。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end', labelBelow:true }),
+
+  labelled('port-lincoln', ['Port Lincoln', '林肯港'], [135.86, -34.73], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Eyre Peninsula node at the western edge of the South Australian network.',
+     '艾尔半岛节点，位于南澳电网西缘。'],
+    ['A radial edge of the system. Orientation only \u2014 no ISP project on this map terminates here.',
+     '系统的辐射状边缘。仅作方位参考 \u2014 本图中没有ISP项目在此落点。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end', labelBelow:true }),
+
+  labelled('broken-hill', ['Broken Hill', '布罗肯希尔'], [141.45, -31.96], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Far-western NSW node on the Project EnergyConnect alignment.',
+     '新州极西部节点，位于Project EnergyConnect线路走向上。'],
+    ['On the interconnector that is only half delivered. Stage 2 in November 2027 is the date that matters for anything sited along it.',
+     '位于仅完成一半的互联线上。2027年11月的二期投运是沿线项目的关键日期。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'start' }),
+
+  labelled('mount-gambier', ['Mount Gambier', '甘比尔山'], [140.78, -37.83], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['South-eastern South Australian node near the Victorian border interconnection.',
+     '南澳东南部节点，靠近与维多利亚的边界互联。'],
+    ['The Heywood interconnector area. A South Australian congestion case depends on flows through here as much as on Project EnergyConnect.',
+     'Heywood互联线区域。南澳的拥塞投资逻辑对经此潮流的依赖，不亚于对Project EnergyConnect的依赖。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'end' }),
+
+  labelled('launceston', ['Launceston', '朗塞斯顿'], [147.14, -41.44], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Northern Tasmanian centre near the Marinus Link and Tasmania REZ works.',
+     '塔斯马尼亚北部中心，靠近Marinus Link及塔州REZ工程。'],
+    ['Tasmanian hydro competing into the Victorian evening peak arrives through here. Relief and new competition share one date.',
+     '塔州水电参与维州晚高峰竞争的电力经此送出。缓解与新增竞争共享同一日期。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'start' }),
+
+  labelled('hobart', ['Hobart', '霍巴特'], [147.33, -42.88], 'node', ['Regional network centre', '区域电网中心'], ['past','current','future'],
+    ['Southern Tasmanian load centre at the far end of the Tasmanian network.',
+     '塔斯马尼亚南部负荷中心，位于塔州电网最远端。'],
+    ['Orientation only. Tasmanian storage value is set by Marinus and the mainland spread, not by local load.',
+     '仅作方位参考。塔州储能价值由Marinus及大陆价差决定，而非本地负荷。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.72, labelAnchor:'start', labelBelow:true }),
+
+  labelled('rez-fnq', ['Far North Queensland REZ', '远北昆士兰可再生能源区'], [145.2, -17.8], 'generation', ['Renewable energy zone', '可再生能源区'], ['future'],
+    ['Northern Queensland resource zone at the head of the ISP corridor, dependent on CopperString for transfer.',
+     '昆士兰北部资源区，位于ISP走廊最北端，其外送依赖CopperString。'],
+    ['Resource quality is not deliverability. Everything here waits on a 2032 corridor.',
+     '资源质量不等于可交付性。此处的一切都取决于一条2032年的走廊。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.9, labelBelow:true, plannedCapacity:['Zone identified in the ISP optimal development path','ISP最优发展路径中识别的区域'] }),
+
+  labelled('rez-new-england', ['New England REZ', '新英格兰可再生能源区'], [151.2, -30.2], 'generation', ['Renewable energy zone', '可再生能源区'], ['future'],
+    ['Declared NSW REZ with 8,000 MW of intended network capacity, served by an anticipated 2034 project.',
+     '已宣布的新州可再生能源区，规划网络容量8,000MW，由预期于2034年交付的项目服务。'],
+    ['A declared REZ rations access by scheme round. Being inside the zone is not access — confirm the allocated MW.',
+     '已宣布的REZ按机制轮次配给接入权。位于区内并不等于获得接入 — 须确认已分配的MW。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.9, labelBelow:true, plannedCapacity:['8,000 MW intended network capacity; network project anticipated 2034','规划网络容量8,000MW；网络项目预期2034年'] }),
+
+  labelled('rez-sw-nsw', ['South West NSW REZ', '新州西南可再生能源区'], [146.2, -34.6], 'generation', ['Renewable energy zone', '可再生能源区'], ['future'],
+    ['REZ served by the VNI West South West NSW component, now proceeding under NSW legislation.',
+     '由VNI West新州西南部分服务的可再生能源区，现依新州立法推进。'],
+    ['This half of VNI West was split off into a different regulatory regime in the 2026 ISP. Its date is now separate from the interconnector\u2019s.',
+     'VNI West的这一半在2026年ISP中被拆分至不同监管制度。其日期现已与互联线部分分离。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.9, plannedCapacity:['+600 MW at N5 under the actionable NSW component','可行动新州部分下N5增加600MW'], labelAnchor:'end', labelBelow:true }),
+
+  labelled('rez-gippsland', ['Gippsland offshore wind zone', '吉普斯兰海上风电区'], [147.6, -38.7], 'generation', ['Renewable energy zone', '可再生能源区'], ['future'],
+    ['Declared offshore wind area served by the actionable Gippsland Offshore Wind Transmission project.',
+     '已宣布的海上风电区域，由可行动的吉普斯兰海上风电输电项目服务。'],
+    ['Transmission is staged across 2031, 2033 and 2038. One project name, three underwriting cases.',
+     '输电分2031、2033、2038三期交付。一个项目名称，三种承销情景。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.9, labelBelow:true, plannedCapacity:['+2,000 MW at REZ V8, staged from July 2031','V8区增加2,000MW，自2031年7月起分期'] }),
+
+  labelled('rez-nw-tas', ['North West Tasmania REZ', '塔斯马尼亚西北可再生能源区'], [145.4, -41.3], 'generation', ['Renewable energy zone', '可再生能源区'], ['future'],
+    ['Tasmanian resource zone served by the newly actionable Tasmania REZ Expansion.',
+     '塔州资源区，由新列为可行动的塔州REZ扩容工程服务。'],
+    ['The ISP switched its preferred Tasmanian zone between the draft and the final. Confirm which zone a project sits in.',
+     'ISP在草案与终版之间更换了其偏好的塔州区域。须确认项目所处区域。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.9, plannedCapacity:['800 MW supported by the actionable expansion, July 2030','可行动扩容支持800MW，2030年7月'], labelAnchor:'end' }),
+
+  labelled('rez-mid-north-sa', ['Mid-North South Australia REZ', '南澳中北部可再生能源区'], [138.6, -33.2], 'generation', ['Renewable energy zone', '可再生能源区'], ['future'],
+    ['South Australian resource zone whose transmission project was deferred from actionable to future.',
+     '南澳资源区，其输电项目已由可行动推迟为未来项目。'],
+    ['The clearest case on this map of a REZ whose relief moved away rather than closer between two ISPs.',
+     '本图中最清晰的案例：某可再生能源区的缓解措施在两版ISP之间不是变近，而是变远。'],
+    'AEMO 2026 ISP', URL.isp, { size:0.9, plannedCapacity:['1,200 MW under the deferred Northern Transmission Project','已推迟的北部输电项目下1,200MW'], labelAnchor:'end' }),
+
 ];
 
 const route = (id, name, coords, periods, note, investor, source, sourceUrl, extra = {}) => ({
@@ -386,6 +572,10 @@ const sourceCatalog = [
 ];
 
 export const NEM_GRID_MAP = {
+  /* The market's own zonal structure. See scripts/generate-market-zones.mjs
+     for how each outline is derived and how exact it is. */
+  zoneSet: { ...zoneSet, label: ['Pricing regions','定价区域'] },
+
   id:'nem-grid-map',
   ariaLabel:['Interactive National Electricity Market map','澳大利亚国家电力市场交互地图'],
   title:['NEM grid structure by period','NEM不同时期电网结构'],

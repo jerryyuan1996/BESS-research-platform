@@ -91,6 +91,13 @@ export function renderGeographicGridMap(parent, data){
      so the register stays a statement about the market, not about this map. */
   const constraints = (data.constraints || []).map(zone => ({ ...zone, kind:'constraint' }));
 
+  /* Pricing and control areas — the market's own zonal structure, drawn under
+     everything else. A zone is not an asset and never enters the point or route
+     validation; it is the settlement geography those assets sit inside, which is
+     why a battery's node matters at all. Markets with a single bidding zone
+     declare none and the layer does not appear. */
+  const zones = (data.zoneSet?.zones || []).map(z => ({ ...z, kind:'zone' }));
+
   /* A feature's `layer` defaults to its `kind`. The two are separate because the
      governance validator constrains `kind` to the four physical asset types, and
      the planned-build layer is not a fifth asset type — it is the same nodes and
@@ -101,7 +108,7 @@ export function renderGeographicGridMap(parent, data){
 
   const state = {
     period: data.defaultPeriod || (data.periodOrder.includes('current') ? 'current' : data.periodOrder[0]),
-    layers: { node:true, generation:true, load:true, route:true, plan:true, constraint:true },
+    layers: { zone:true, node:true, generation:true, load:true, route:true, plan:true, constraint:true },
     selectedId: data.defaultSelectedId || null,
   };
 
@@ -142,11 +149,15 @@ export function renderGeographicGridMap(parent, data){
   const regionLabelLayer = svgEl('g', { class:'geo-region-label-layer', 'aria-hidden':'true' });
   /* Under the network layers on purpose: a constraint is the background a node
      sits in, and drawing it on top would bury the assets it constrains. */
+  /* Zones sit directly on the base map, beneath even the constraint shading:
+     they are the ground everything else is drawn on. */
+  const zoneLayer = svgEl('g', { class:'geo-zone-layer' });
+  const zoneLabelLayer = svgEl('g', { class:'geo-zone-label-layer', 'aria-hidden':'true' });
   const constraintLayer = svgEl('g', { class:'geo-constraint-layer' });
   const routeLayer = svgEl('g', { class:'geo-route-layer' });
   const pointLayer = svgEl('g', { class:'geo-point-layer' });
   const labelLayer = svgEl('g', { class:'geo-label-layer' });
-  svg.append(baseLayer, regionLabelLayer, constraintLayer, routeLayer, pointLayer, labelLayer);
+  svg.append(baseLayer, zoneLayer, regionLabelLayer, constraintLayer, routeLayer, pointLayer, zoneLabelLayer, labelLayer);
 
   const boundaryFeatures = normalizedBoundary.type === 'FeatureCollection' ? normalizedBoundary.features : [normalizedBoundary];
   for (const feature of boundaryFeatures){
@@ -164,6 +175,7 @@ export function renderGeographicGridMap(parent, data){
   }
 
   const legend = h('div', { class:'geo-map-legend', 'aria-label':L(['Map symbol legend','地图符号图例']) },
+    zones.length ? h('span', {}, h('i', { class:'geo-symbol zone' }), L(['Market zone','市场区域'])) : null,
     h('span', {}, h('i', { class:'geo-symbol node' }), L(['Node','节点'])),
     h('span', {}, h('i', { class:'geo-symbol generation' }), L(['Generation','发电'])),
     h('span', {}, h('i', { class:'geo-symbol load' }), L(['Demand','负荷'])),
@@ -199,8 +211,12 @@ export function renderGeographicGridMap(parent, data){
     });
   }
 
+  function visibleZones(){
+    return state.layers.zone ? zones : [];
+  }
+
   function visibleFeatures(){
-    return [...visibleConstraints(), ...visiblePoints(), ...visibleRoutes()];
+    return [...visibleZones(), ...visibleConstraints(), ...visiblePoints(), ...visibleRoutes()];
   }
 
   function selectedFeature(){
@@ -227,6 +243,9 @@ export function renderGeographicGridMap(parent, data){
      each market's map data: the layer exists exactly when a congestion register
      does, so making six data files repeat that would only let them disagree. */
   const layerEntries = [
+    /* Zones lead the list because they are the ground, not an overlay. Like the
+       constraint toggle, it appears exactly when the market has one. */
+    ...(zones.length ? [['zone', { label:data.zoneSet?.label || ['Market zones','市场区域'] }]] : []),
     ...Object.entries(data.layers),
     /* Same rule as constraints: the planned-build toggle exists exactly when the
        market's map carries features drawn from its network-plan register, so
@@ -241,6 +260,35 @@ export function renderGeographicGridMap(parent, data){
       onchange:(event) => { state.layers[key] = event.target.checked; update(); },
     });
     layerGroup.append(h('label', { class:`geo-layer-toggle ${key}` }, input, h('span', { 'aria-hidden':'true' }), L(layer.label)));
+  }
+
+  /* Zones are drawn once and never change with the period: a bidding zone is not
+     a project. Each gets its name at the polygon centroid, which is where a
+     reader looks for it and is stable enough at national scale. */
+  function renderZones(){
+    zoneLayer.replaceChildren();
+    zoneLabelLayer.replaceChildren();
+    for (const zone of visibleZones()){
+      const d = path(zone.geometry);
+      if (!d) continue;
+      const selected = zone.id === state.selectedId;
+      const shape = svgEl('path', {
+        class:`geo-zone ${zone.approximate ? 'approximate' : ''} ${selected ? 'selected' : ''}`,
+        d,
+        'data-id':zone.id,
+      });
+      shape.append(appendText(svgEl('title'), `${L(zone.name)}${zone.approximate ? ' — ' + L(['approximate boundary','边界为近似值']) : ''}`));
+      shape.addEventListener('click', () => setSelected(zone.id));
+      zoneLayer.append(shape);
+
+      const [cx, cy] = path.centroid(zone.geometry);
+      if (Number.isFinite(cx) && Number.isFinite(cy)){
+        zoneLabelLayer.append(appendText(svgEl('text', {
+          class:'geo-zone-label',
+          x:cx, y:cy, 'text-anchor':'middle',
+        }), L(zone.name)));
+      }
+    }
   }
 
   function renderConstraints(){
@@ -288,9 +336,62 @@ export function renderGeographicGridMap(parent, data){
     }
   }
 
+  /* Standing place labels are placed after every marker is drawn, by trying a
+     ring of candidate offsets around each point and taking the first that does
+     not collide with a label already placed. Hand-tuning an anchor per point
+     across nine maps would be both tedious and brittle — the collisions move
+     whenever a point is added — so the map resolves them itself and a data
+     author only supplies `labelAnchor` / `labelBelow` when they want a specific
+     side tried first.
+
+     Priority is demand centres, then nodes, then generation: where two features
+     share a locality, the one that orients the reader keeps its label and the
+     other loses it rather than overprinting. Falls back to the plain default if
+     the browser cannot measure text — a hidden tab reports zero-width boxes,
+     and a silently unlabelled map would be worse than an imperfect one. */
+  const LABEL_PRIORITY = { load:0, node:1, generation:2 };
+
+  function placeLabels(pending){
+    const placed = [];
+    const hits = (a, b) => a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+    const order = [...pending].sort((a, b) =>
+      (LABEL_PRIORITY[a.item.kind] ?? 3) - (LABEL_PRIORITY[b.item.kind] ?? 3));
+
+    for (const { item, x, y } of order){
+      const preferred = [];
+      if (item.labelAnchor || item.labelBelow){
+        preferred.push([item.labelAnchor || 'start', !!item.labelBelow]);
+      }
+      const candidates = [...preferred,
+        ['start', false], ['end', false], ['start', true], ['end', true],
+        ['middle', false], ['middle', true]];
+
+      const text = appendText(svgEl('text', { class:`geo-point-label ${item.kind}` }), L(item.name));
+      labelLayer.append(text);
+
+      let box = null;
+      let measurable = true;
+      for (const [anchor, below] of candidates){
+        const dx = anchor === 'end' ? -9 : anchor === 'middle' ? 0 : 9;
+        const dy = below ? 14 : -9;
+        text.setAttribute('x', x + dx);
+        text.setAttribute('y', y + dy);
+        text.setAttribute('text-anchor', anchor);
+        let bb = null;
+        try { bb = text.getBBox(); } catch { /* detached or hidden */ }
+        if (!bb || !bb.width){ measurable = false; break; }
+        const candidate = { x:bb.x, y:bb.y, w:bb.width, h:bb.height };
+        if (!placed.some(p => hits(candidate, p))){ box = candidate; break; }
+      }
+      if (box) placed.push(box);
+      else if (measurable) text.remove();   // every side was taken
+    }
+  }
+
   function renderPoints(){
     pointLayer.replaceChildren();
     labelLayer.replaceChildren();
+    const pendingLabels = [];
     for (const item of visiblePoints()){
       const projected = projection(item.coord);
       if (!projected) continue;
@@ -323,6 +424,8 @@ export function renderGeographicGridMap(parent, data){
       group.addEventListener('click', () => setSelected(item.id));
       pointLayer.append(group);
 
+      if (item.label && !selected) pendingLabels.push({ item, x, y });
+
       if (selected){
         labelLayer.append(appendText(svgEl('text', {
           class:'geo-selected-label',
@@ -331,6 +434,7 @@ export function renderGeographicGridMap(parent, data){
         }), L(item.name)));
       }
     }
+    placeLabels(pendingLabels);
   }
 
   function renderContext(){
@@ -345,7 +449,10 @@ export function renderGeographicGridMap(parent, data){
   function renderSelector(){
     locationSelect.replaceChildren(h('option', { value:'' }, L(['Inspect a location or path…','查看地点或路径…'])));
     for (const item of visibleFeatures()){
-      const label = item.kind === 'constraint' ? L(['Constraint','约束']) : kindLabel(data, item.kind);
+      const label = item.kind === 'constraint' ? L(['Constraint','约束'])
+        : item.kind === 'zone' ? L(['Zone','区域'])
+        : layerOf(item) === 'plan' ? L(['Planned build','规划建设'])
+        : kindLabel(data, item.kind);
       const option = h('option', { value:item.id }, `${label} · ${L(item.name)}`);
       if (item.id === state.selectedId) option.selected = true;
       locationSelect.append(option);
@@ -405,6 +512,35 @@ export function renderGeographicGridMap(parent, data){
     );
   }
 
+  /* A zone panel has to do one thing the others do not: say how much to trust
+     its own outline. Where the drawn boundary is a stand-in — Germany's control
+     areas are grouped federal states, because control-area borders follow
+     transmission ownership — the panel says so in the same breath as the name,
+     rather than leaving it to a legend the reader may not reach. */
+  function renderZoneDetail(zone){
+    const meta = data.zoneSet || {};
+    detail.replaceChildren(
+      h('div', { class:'geo-detail-eyebrow zone' }, L(['Market zone','市场区域'])),
+      h('h4', {}, L(zone.name)),
+      zone.operator ? h('div', { class:'geo-detail-type' }, zone.operator) : null,
+      zone.approximate
+        ? h('div', { class:'geo-zone-caveat' }, L([
+            'Indicative outline. This zone is drawn from administrative boundaries because its real border follows transmission ownership, not geography — read it as which zone, never as exactly where the edge runs.',
+            '示意性轮廓。该区域以行政边界绘制，因其真实边界依输电资产归属划分而非地理划分 — 应据此判断属于哪个区域，而不可据此判断边界的确切位置。',
+          ]))
+        : null,
+      zone.note
+        ? h('div', { class:'geo-detail-section' },
+            h('span', {}, L(['Why it matters','为何重要'])),
+            h('p', {}, L(zone.note)))
+        : null,
+      meta.sourceUrl
+        ? h('a', { class:'geo-source-link', href:meta.sourceUrl, target:'_blank', rel:'noopener' },
+            `${L(['Source','来源'])}: ${meta.source} ↗`)
+        : null,
+    );
+  }
+
   function renderDetail(){
     const item = selectedFeature();
     if (!item){
@@ -413,6 +549,10 @@ export function renderGeographicGridMap(parent, data){
     }
     if (item.kind === 'constraint'){
       renderConstraintDetail(item);
+      return;
+    }
+    if (item.kind === 'zone'){
+      renderZoneDetail(item);
       return;
     }
     const feature = { ...item, ...(item.factsByPeriod?.[state.period] || {}) };
@@ -471,6 +611,7 @@ export function renderGeographicGridMap(parent, data){
       button.setAttribute('aria-pressed', String(active));
     });
     renderContext();
+    renderZones();
     renderConstraints();
     renderRoutes();
     renderPoints();

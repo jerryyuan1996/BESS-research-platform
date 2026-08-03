@@ -326,6 +326,20 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   paint-order:stroke;
   font:650 13px/1.2 system-ui,sans-serif;
 }
+/* Standing place labels. Quieter than the selected label on purpose — these are
+   orientation, not the thing the reader clicked. Haloed so they stay legible
+   over coastline and routes, and non-interactive so they never steal a click
+   from the marker underneath. */
+.geo-point-label{
+  fill:var(--ink2);
+  stroke:var(--map-land,var(--bg));
+  stroke-width:3.5;
+  paint-order:stroke;
+  font:600 10.5px/1.2 system-ui,sans-serif;
+  letter-spacing:.01em;
+  pointer-events:none;
+}
+.geo-point-label.generation{fill:var(--muted)}
 .geo-map-legend{
   position:absolute;
   left:12px;
@@ -368,6 +382,33 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   border:1px solid var(--critical)}
 
 .geo-detail-eyebrow.constraint{color:var(--critical)}
+
+/* ---- market zone layer ---------------------------------------------------
+   Pricing and control areas, drawn on the base map beneath everything else.
+   Very low contrast on purpose: a zone is context for the assets on top of it,
+   not a thing to look at. An approximate boundary — one drawn from
+   administrative geography because the real border follows asset ownership —
+   gets a dashed edge so the map itself distinguishes the two without needing
+   the panel open. */
+.geo-zone{fill:color-mix(in srgb,var(--s6) 7%,transparent);
+  stroke:color-mix(in srgb,var(--s6) 45%,transparent);stroke-width:1.1;
+  cursor:pointer;transition:fill .16s ease;vector-effect:non-scaling-stroke}
+.geo-zone.approximate{stroke-dasharray:6 4}
+.geo-zone:hover{fill:color-mix(in srgb,var(--s6) 14%,transparent)}
+.geo-zone.selected{fill:color-mix(in srgb,var(--s6) 18%,transparent);stroke-width:2.2}
+.geo-zone-label{fill:color-mix(in srgb,var(--s6) 85%,var(--ink));
+  stroke:var(--map-land,var(--bg));stroke-width:3.5;paint-order:stroke;
+  font:700 10px/1.2 system-ui,sans-serif;letter-spacing:.06em;
+  text-transform:uppercase;opacity:.72;pointer-events:none}
+.geo-symbol.zone{background:color-mix(in srgb,var(--s6) 16%,transparent);
+  border:1px solid color-mix(in srgb,var(--s6) 55%,transparent);width:11px;height:9px;border-radius:2px}
+.geo-layer-toggle.zone span{width:11px;height:9px;border-radius:2px;
+  background:color-mix(in srgb,var(--s6) 16%,transparent);
+  border:1px solid color-mix(in srgb,var(--s6) 55%,transparent)}
+.geo-detail-eyebrow.zone{color:var(--s6)}
+.geo-zone-caveat{margin:8px 0;padding:8px 10px;border-radius:6px;
+  background:var(--accent-bg);border-left:2px solid var(--s6);
+  font-size:11.5px;line-height:1.45;color:var(--ink2)}
 
 /* ---- planned-build layer -------------------------------------------------
    The market's network-plan register, drawn on the map. Deliberately styled as
