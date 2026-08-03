@@ -26,8 +26,15 @@ const URL = {
   katowiceIndustry:'https://www.paih.gov.pl/wp-content/uploads/2024/08/Potencjal-inwestycyjny-Katowic-2023.pdf',
 };
 
+/* Standing map labels. Demand centres and generation zones always carry one —
+   they are the geography that orients a reader against a published network
+   plan. Nodes carry one only where the map is sparse enough to take it; on the
+   denser maps they would bury the routes they sit on. Any point overrides with
+   `label:false` or places its text with `labelAnchor` / `labelBelow`. */
+const LABEL_KINDS = new Set(['load','generation','node']);
 const point = (id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, extra = {}) => ({
-  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, ...extra,
+  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size: 1,
+  label:LABEL_KINDS.has(kind), ...extra,
 });
 
 /*

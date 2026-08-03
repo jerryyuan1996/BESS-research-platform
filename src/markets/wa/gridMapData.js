@@ -46,8 +46,15 @@ const sourceCatalog = [
   { id:'wa-collie-industries', owner:'Government of Western Australia', title:'Game-changing industries shaping the future of Collie', url:URL.collieIndustry, format:'Public HTML', cadence:'programme milestone', licence:'Government of Western Australia copyright and reuse terms', automation:'C', checkedAt:'2026-07-29' },
 ];
 
+/* Standing map labels. Demand centres and generation zones always carry one —
+   they are the geography that orients a reader against a published network
+   plan. Nodes carry one only where the map is sparse enough to take it; on the
+   denser maps they would bury the routes they sit on. Any point overrides with
+   `label:false` or places its text with `labelAnchor` / `labelBelow`. */
+const LABEL_KINDS = new Set(['load','generation','node']);
 const point = (id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size=1, details={}) => ({
-  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size, ...details,
+  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size,
+  label:LABEL_KINDS.has(kind), ...details,
 });
 
 /*

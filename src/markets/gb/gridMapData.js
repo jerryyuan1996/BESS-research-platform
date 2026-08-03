@@ -34,8 +34,15 @@ const URL = {
   culhamAigz: 'https://www.find-tender.service.gov.uk/procurement/ocds-h6vhtk-05945d',
 };
 
-const point = (id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size = 1) => ({
+/* Standing map labels. Demand centres and generation zones always carry one —
+   they are the geography that orients a reader against a published network
+   plan. Nodes carry one only where the map is sparse enough to take it; on the
+   denser maps they would bury the routes they sit on. Any point overrides with
+   `label:false` or places its text with `labelAnchor` / `labelBelow`. */
+const LABEL_KINDS = new Set(['load','generation']);
+const point = (id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size = 1, details = {}) => ({
   id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size,
+  label:LABEL_KINDS.has(kind), ...details,
 });
 
 /*

@@ -20,7 +20,8 @@
     "etl:dry": "node etl/run.mjs --dry-run",
     "etl:verify": "node etl/verify.mjs",
     "etl:propose": "node etl/propose.mjs",
-    "refresh:market-boundaries": "node scripts/generate-market-boundaries.mjs"
+    "refresh:market-boundaries": "node scripts/generate-market-boundaries.mjs",
+    "refresh:market-zones": "node scripts/generate-market-zones.mjs"
   },
   "engines": {
     "node": ">=20"

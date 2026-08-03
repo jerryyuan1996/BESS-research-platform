@@ -17,6 +17,7 @@
    named submarine links land between 2028 and 2030.
    --------------------------------------------------------------------------- */
 import boundary from './it-boundary.json' with { type:'json' };
+import zoneSet from './it-zones.json' with { type:'json' };
 
 const URL = {
   macse: 'https://www.terna.it/en/media/press-releases/detail/completed-first-macse-auction',
@@ -27,8 +28,15 @@ const URL = {
   atlas: 'https://github.com/topojson/world-atlas',
 };
 
+/* Standing map labels. Demand centres and generation zones always carry one —
+   they are the geography that orients a reader against a published network
+   plan. Nodes carry one only where the map is sparse enough to take it; on the
+   denser maps they would bury the routes they sit on. Any point overrides with
+   `label:false` or places its text with `labelAnchor` / `labelBelow`. */
+const LABEL_KINDS = new Set(['load','generation','node']);
 const point = (id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, extra = {}) => ({
-  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size: 1, ...extra,
+  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size: 1,
+  label:LABEL_KINDS.has(kind), ...extra,
 });
 
 const points = [
@@ -177,6 +185,10 @@ const sourceCatalog = [
 ];
 
 export const IT_GRID_MAP = {
+  /* The market's own zonal structure. See scripts/generate-market-zones.mjs
+     for how each outline is derived and how exact it is. */
+  zoneSet: { ...zoneSet, label: ['Bidding zones','竞价区'] },
+
   id:'it-grid-map',
   ariaLabel:['Interactive Italy electricity map','意大利电力交互地图'],
   title:['Italy grid structure by period','意大利不同时期电网结构'],

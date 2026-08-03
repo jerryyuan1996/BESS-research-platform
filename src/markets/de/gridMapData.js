@@ -13,6 +13,7 @@
    reported as running late.
    --------------------------------------------------------------------------- */
 import boundary from './de-boundary.json' with { type:'json' };
+import zoneSet from './de-zones.json' with { type:'json' };
 
 const URL = {
   bnetza: 'https://www.bundesnetzagentur.de/EN/Areas/Energy/Companies/GridDevelopment/start.html',
@@ -23,8 +24,15 @@ const URL = {
   atlas: 'https://github.com/topojson/world-atlas',
 };
 
+/* Standing map labels. Demand centres and generation zones always carry one —
+   they are the geography that orients a reader against a published network
+   plan. Nodes carry one only where the map is sparse enough to take it; on the
+   denser maps they would bury the routes they sit on. Any point overrides with
+   `label:false` or places its text with `labelAnchor` / `labelBelow`. */
+const LABEL_KINDS = new Set(['load','generation','node']);
 const point = (id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, extra = {}) => ({
-  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size: 1, ...extra,
+  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size: 1,
+  label:LABEL_KINDS.has(kind), ...extra,
 });
 
 const points = [
@@ -173,6 +181,10 @@ const sourceCatalog = [
 ];
 
 export const DE_GRID_MAP = {
+  /* The market's own zonal structure. See scripts/generate-market-zones.mjs
+     for how each outline is derived and how exact it is. */
+  zoneSet: { ...zoneSet, label: ['TSO control areas','输电运营区'] },
+
   id:'de-grid-map',
   ariaLabel:['Interactive Germany electricity map','德国电力交互地图'],
   title:['Germany grid structure by period','德国不同时期电网结构'],

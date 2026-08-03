@@ -60,8 +60,15 @@ const sourceCatalog = [
   { id:'ie-belfast-harbour', owner:'Invest Northern Ireland', title:'Belfast Harbour — offshore wind opportunity', url:URL.belfast, format:'Public PDF', cadence:'periodic', licence:'Invest NI website terms', automation:'B', checkedAt:'2026-07-29' },
 ];
 
+/* Standing map labels. Demand centres and generation zones always carry one —
+   they are the geography that orients a reader against a published network
+   plan. Nodes carry one only where the map is sparse enough to take it; on the
+   denser maps they would bury the routes they sit on. Any point overrides with
+   `label:false` or places its text with `labelAnchor` / `labelBelow`. */
+const LABEL_KINDS = new Set(['load','generation']);
 const point = (id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size=1, details={}) => ({
-  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size, ...details,
+  id, name, coord, kind, subtype, periods, note, investor, source, sourceUrl, size,
+  label:LABEL_KINDS.has(kind), ...details,
 });
 
 /*
