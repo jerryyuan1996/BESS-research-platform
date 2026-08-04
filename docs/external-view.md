@@ -1,6 +1,6 @@
 # External view — what the market says, and where we differ
 
-**Collection round 1 · vintage 2026-07-30**
+**Collection round 1 · vintage 2026-07-30 · revised 2026-08-04 (rounds 2–4)**
 
 This document records what mainstream research houses, consultancies and trade press were saying
 about BESS investment strategy at the collection date, tested against what this platform publishes.
@@ -23,19 +23,29 @@ Three rules for maintaining it:
 
 ---
 
-## 1 · What we publish, as at the collection date
+## 1 · What we publish
+
+**14 allocation markets · 12 dashboards**, as at 2026-08-04. Tokyo, Kyushu and Hokkaido are three
+exposures sharing one Japan dashboard.
 
 | Market | Archetype | Base route | Contracted line | Thesis |
 |---|---|---|---|---|
-| WA — WEM | 200 MW · 8h | capacity | 0.95 × BRCP = A$464k/MW, 10 yr | Capacity-led islanded market; duration is the product |
-| GB | 100 MW · 2h | capacity (+ toll) | £27.10/kW × 0.22, 15 yr | Trading-led, connection-rationed |
-| IE — SEM | 50 MW · 4h | capacity | €149.96/kW × 0.66, 10 yr | Highest capacity pay per nameplate MW |
-| RO | 50 MW · 2h | merchant + 20% grant | none | Best raw spread, zero contracted revenue |
-| PL | 100 MW · 4h | capacity | €60.9/kW × 0.65, 17 yr | Longest contract makes storage conventional infrastructure |
-| JP ×3 | 50 MW · 4h | capacity (1 yr secured, then auction-renewal) | ¥15,111/kW × 0.70 | Multi-market optionality, regional differentiation |
+| WA — WEM | 200 MW · 7h | capacity | A$422,372/MW, 10 yr, `naqFactor` 0.90 | Capacity-led islanded market; duration is the product |
+| AU — NEM | 280 MW · 4h | long-term award | CIS floor A$121,500/MW, 15 yr | Deepest build, thinnest contracted revenue; certainty must be bought |
+| GB | 100 MW · 4h | capacity (+ additive toll) | £27.10/kW × 0.38, 15 yr | Trading-led, connection-rationed |
+| DE | 100 MW · 4h | merchant | none | Most congestion spend on the platform, least direct route to it |
+| IT | 100 MW · 4h | capacity | €31,490/MW/yr (MACSE) | A TSO-procured 15-year tolling clear, zonally priced |
+| IE — SEM | 50 MW · 4h | capacity | €135.50/kW × 0.66, 10 yr | Highest capacity pay per nameplate MW; DS3→FASS decay modelled |
+| RO | 50 MW · 2h | merchant + grant | none | Best raw spread, zero contracted revenue |
+| PL | 100 MW · 4h | capacity | PLN 465.02/kW × 0.1339, 17 yr | Longest contract, but de-rating now takes 87% of it |
+| JP ×3 | 50 MW · 6h | long-term award | ~¥10.5m/MW secured, then auction-renewal | 20-yr LTDA with ~90% clawback; regional differentiation |
+| PJM | 90 MW · 4h | capacity (auction-renewal) | $69,989/MW/yr, 1 yr secured | A BRA procures one delivery year; the rest is re-won |
+| ERCOT | 100 MW · 2h | toll | none | The platform's only 2h archetype, because the fleet is 1.6h |
+| CAISO | 100 MW · 4h | capacity | $105,240/MW/yr (bilateral RA) | 4h is a ceiling, not a floor — NQC credits nothing beyond it |
 
-Routes modelled: `cap` · `mer` · `toll` (GB only) · `ltda` (declared, disabled everywhere).
-Unlevered, 15-year window, exit priced at 7.5% contracted / 11.5% merchant and auction-renewal.
+Routes modelled: `cap` · `mer` · `toll` · `ltda`. Unlevered, 15-year window, exit priced at 7.5%
+contracted / 11.5% merchant and auction-renewal. Both merchant legs are stated at a single declared
+`merchantVintage`, enforced by `src/comparison/vintage.js`.
 
 ---
 
@@ -115,192 +125,74 @@ globally, with 4.3 GW reaching financial close in 2025 (+150% YoY).
 
 ---
 
-## 3 · Market-by-market: consensus vs what we publish
+## 3 · Market-by-market conflicts — all closed
 
-### Poland — the de-rating collapse
+The six conflicts collected on 2026-07-30 have been resolved and their detail deleted. Each was
+re-verified against the live comparison interface on 2026-08-04; the change that closed it is in
+§6a.
 
-| | We publish | Market |
+| Conflict as collected | Closed by | Verified now |
 |---|---|---|
-| Capacity price | €60.9/kW/yr (PLN 264.90, Dec-2024 auction, 2029 delivery) | **PLN 465.02/kW/yr**, Dec-2025 auction, 2030 delivery (+76%) |
-| Correction factor (KWD) | 0.65 | **0.1339** — down from ~60% (2024) and 95% (2023) |
-| Implied per physical MW | €39,585/MW/yr | **~€14.6k/MW/yr** |
+| **Poland** — we published the Dec-2024 auction at KWD 0.65 while the market had moved | Capacity line rebuilt on the Dec-2025 auction | `capacity` = PLN 465.02/kW × 0.1339, delivery 2030 |
+| **Japan** — a 4h reference could not bid into the LTDA's 6h minimum, and capex sat at ¥45k/kWh | Archetype to 6h; base route to the LTDA; capex to ¥60k/kWh | 50 MW · 6h, ¥360m/MW, base route `ltda` |
+| **Great Britain** — spot numbers right, archetype wrong at 2h; toll modelled as an alternative to capacity | Archetype to 4h; toll to 10 years and additive | 100 MW · 4h, `tollYears` 10, `tollAdditiveWithCapacity` |
+| **Ireland** — the DS3→FASS cliff was a footnote, not a model input | `servicesCurve` calibrated on GB's frequency-response collapse | `servicesCurve` present |
+| **Western Australia** — 8h of capex against a 6h product, and no charge for forfeited access | Archetype to 7h; `naqFactor` 0.90 | 200 MW · 7h, `naqFactor` 0.90 |
+| **Romania** — merchant revenue understated at €70.4k | Raised, then revised to €110k with an FCR saturation curve | `merchGross` €110,000 with `servicesCurve` |
 
-~685 MW of de-rated obligation was awarded against ~5.1 GW of physical battery: for every 100 MW
-built, 13.4 MW of obligation. Total 2030 obligations ~6.9 GW across 198 CMUs, ~1 GW of it foreign.
-
-The Polish CM expects units to deliver contracted capacity for four hours, so the KWD cut lands
-hardest on exactly the 4h configuration we model.
-
-**Caveat that matters:** contracts already won at the old factors are grandfathered for their
-17 years. Our number may still be right for an *existing contracted asset*. It is wrong as a
-**market-entry benchmark**, and market entry is what the cockpit models.
-
-This directly contradicts our published Poland thesis — *"the auction, not the site, is where value
-is created."* The auction is where the value was removed.
-
-### Japan — the 4h archetype cannot bid
-
-LTDA Round 3, results 13 May 2026:
-
-- 3–6h bracket **eliminated**; hard **6-hour minimum** for BESS.
-- ~575 MW standalone BESS awarded; ~1,705 MW total storage allocation against an 800 MW target.
-  1.25 GW across 19 projects on the wider count (551 MW lithium-ion, 699 MW non-lithium).
-- Bid success ~46%, up from ~20% in Round 2. Advisers caution against assuming this persists.
-- **20-year** Capacity Reserve Agreement with OCCTO, CPI-indexed, pay-as-bid, clearing prices not disclosed.
-- FY2024 (Round 2) guideline maxima: ~¥87,683–93,883/kW/yr for 6h+, vs ~¥56,545–77,509/kW/yr for 3–6h.
-- **~90% of net profit from other markets is returned to OCCTO** for the 20-year term.
-- **Co-located** renewable + BESS is *not* subject to the clawback.
-
-Two consequences for us. First, our 50 MW / 4h reference is ineligible for the route advisers treat
-as the bankable base. Second, the clawback means LTDA and merchant are **not additive** — they are
-close to mutually exclusive. Our strategy model treats routes as parallel alternatives with merchant
-stacked inside `cap`; switching `ltda` on under that structure would overstate Japan badly.
-
-Japanese capex is the other open item: grid-scale BESS averaged **~¥68,000/kWh in FY2024**
-(~US$433/kWh), with system costs 2.5–3× global benchmarks. We model ¥45,000/kWh.
-
-### Great Britain — our spot numbers are right, our archetype is not
-
-Two of our inputs are *exactly* current, which is worth recording:
-
-- **£73,145/MW/yr** is Modo's 2h GB benchmark for the twelve months to April 2026.
-- **£27.10/kW/yr** is the actual T-4 2029/30 clear (March 2026).
-
-New-build storage awards in that auction, by duration: **2h 431 MW · 4h 224 MW · 5h 273 MW ·
-8h 70 MW** — 1.18 GW total. Agreement lengths on offer: 1, 3, 9 and **15** years. 109 battery CMUs
-participated; 49 exited without a contract.
-
-Context on the price: £27.10 follows three consecutive T-4s at £60–65/kW. The completed-auction range
-is £6.44–65/kW. De-rating factors fell sharply for 2026/27 and 2027/28 on a NESO stress-event
-methodology change, partially recovered for 2028/29 and 2029/30, and the stated long-run direction is
-**downward** as stress events lengthen. Published anchors: 1h **10.47%**, 2h **20.94%** (2024/25).
-
-We discount a one-off auction outcome as a 15-year contracted stream at 7.5%.
-
-### Ireland — the DS3 cliff is not in the model
-
-| | We publish | Market |
-|---|---|---|
-| Capacity price | €149.96/kW/yr | That is the **2028/29** T-4. The **2029/30** T-4 (Apr 2026) cleared **€135,499.99/MW/yr** |
-| System services | €8,000/MW/yr, **flat for 15 years** | DS3 expires end-2026; extended to FASS go-live May 2027, long-stop Sept 2027. Effective rates already **down >40% since 2022** |
-
-Modo's explicit analogy is Great Britain, "where frequency response revenues collapsed" when legacy
-contracts ended. The GB precedent in detail: FFR was 40–50% of battery revenue through 2020;
-Dynamic Containment launched Q4 2020 and became dominant; DC revenues fell through 2022 on
-saturation; by January 2024 Balancing Mechanism revenue had overtaken frequency response entirely.
-Saturation arrived at roughly 1.1× the requirement — ~1,567 MW installed against a frequency response
-requirement below ~1,400 MW.
-
-Ireland: ~800 MW operational, first 4h system online early 2026, pipeline ~10 GW / 50 GWh across
-155 projects **dominated by 4h systems built for wholesale arbitrage** — while the existing fleet is
-almost entirely 1h and 2h built for DS3's tariff structure. Wholesale spreads average ~€103/MWh on a
-merit order with no mid-merit cushion. De-rating factors are beginning to erode capacity payments,
-particularly for shorter durations.
-
-### Western Australia — 8h of capex against a 6h product
-
-| | We publish | Market |
-|---|---|---|
-| Archetype | 200 MW / **8h** | ERA benchmark facility is **200 MW / 1,200 MWh (6h)**; flexible capacity credits require defending a **six-hour** window |
-| Capex | A$4.16m/MW → **A$520/kWh** | ERA benchmark is **A$520/kWh** — our unit cost is exactly right |
-| Capacity price | 0.95 × BRCP = A$464k/MW | BRCP A$491,700/MW (+36%), but AEMO forecasts surplus; realised RCP may settle ~**A$422,372/MW** |
-
-The 10-year fixed-price election secures ~**A$844.7m** for a 200 MW battery — A$422,350/MW/yr, which
-is the same A$422k level. It is not free certainty: it **sacrifices transmission access priority and
-forfeits upside**. Network Access Quantities cap accreditation and dispatch; existing "foundation"
-generators hold priority and new entrants take the remaining headroom.
-
-ERA's A$520/kWh sits well above CSIRO's national A$301–377/kWh, so the BRCP may overcompensate
-typical construction cost even after WA's regional premium.
-
-AEMO context: >2,000 MW of EOIs into the 2026 Reserve Capacity Cycle; surplus of 347 MW against a
-Peak RCR of 6,323 MW in 2028-29; 889 MW of further committed generation and storage by 2028-29.
-
-### Romania — we may be understating it
-
-Our structure is right — no capacity mechanism, merchant plus grant — and matches every source found.
-The **level** does not.
-
-| | We publish | Market |
-|---|---|---|
-| Total revenue | €70,400/MW/yr gross (€55,400 merchant + €15,000 services) | **~€140/kW/yr** (Clean Horizon) |
-
-Supporting observations: 2025 DAM average **€110/MWh** with maximum daily price spread **€168/MWh**,
-described as exceptionally high in a European context; FCR ~**€70/MW/h** (the most lucrative
-ancillary service); aFRR up/down ~€9/MW/h. In 2025 the regulator **eliminated double taxation of
-stored electricity**, exempting charging and discharging from network tariffs — a direct, dated
-improvement to project economics that our merchant line does not reflect.
-
-The grant is now specified: EC approved the scheme March 2026; Romania's Modernisation Fund
-allocation is €636.9m (the largest of any recipient); the current tranche is €150m for standalone
-storage, awarded by **competitive bidding capped at €69,000/MWh and €15m per company**, targeting
-≥2,174 MWh. For our 50 MW / 2h archetype the cap is €6.9m against 20% of capex = €6.3m — so 20% sits
-just inside the cap, but it is a **binary auction outcome we model as a deterministic percentage**.
-
-Saturation risk is the counterweight: pipeline >9 GW, >2 GW operational expected by end-2026. FCR at
-€70/MW/h does not survive that. An aggressive level needs a decay attached to it.
+> Deleted rather than archived on purpose. This file's value is the distance between us and
+> consensus *today*; a settled conflict left in the present tense is noise that reads like an open
+> one.
 
 ---
 
 ## 4 · Structural gaps in our model
 
-Ordered by how much they distort a published number.
+Ordered by how much they distort a published number. Five of the original nine closed and have been
+deleted: de-rating is now a first-class `capacity` input, `servicesCurve` models regime change, the
+toll is 10 years and additive, a project-debt layer sizes leverage per market, and the three
+"missing markets" — Italy, Germany and the NEM — are all built, alongside PJM, ERCOT and CAISO.
 
-1. **De-rating is not a first-class input.** Poland going 95% → 60% → 13.39% in three auctions is the
-   clearest evidence that de-rating, not price, is the volatile variable in any capacity-backed
-   thesis. In our code it is fused into a hardcoded `contracted` figure with a comment. This is the
-   highest-value ETL feed we do not have — it applies to PL, GB, IE and WA alike.
-2. **No regime-change step in services revenue.** Every services line is flat with 2%/yr degradation.
-   Consensus is unanimous that ancillary markets saturate: DS3→FASS in Ireland, GB's frequency
-   response collapse as the documented precedent, Timera forecasting German FCR/aFRR down up to 50%
-   vs 2025.
-3. **No duration sensitivity.** One archetype per market means duration and geography are perfectly
-   confounded. We cannot test our own published finding — *"merchant viability tracks duration, not
-   geography"* — because no two markets share a duration and no market has two.
-4. **Toll tenor and additivity are both wrong.** We assume 15 years (the code concedes "precedent
-   tenors are shorter; assumed rollable"); precedent is 10. And in the Drax structure the owner
-   **retains** Capacity Market revenue, so toll and capacity are additive — we model them as
-   mutually exclusive rows.
-5. **No leverage.** Deliberate, and defended in `comparison-methodology.md`. But debt capacity is the
-   main thing a capacity contract or a toll actually buys, so expressing it only through a 400bp
-   exit-yield spread understates the contracted routes we are trying to measure — and our
-   "certainty frontier does not slope down" finding is partly an artefact of that choice.
-6. **No optimiser / route-to-market counterparty dimension**, which lenders now weight explicitly.
-7. **Saturation does not enter the engine.** `narrative.pipelineRatio` exists as a display string
-   (~2.4× to ~13×) and touches nothing.
-8. **No co-location.** All archetypes are standalone. Aurora ranks co-location as a separate market
-   question, and in Japan co-location is the way around the LTDA clawback.
-9. **Missing markets.** We cover three of consensus' top picks and miss the two most-cited: **Italy**
-   (MACSE — Terna 15-year tolling, 10 GWh awarded in auction 1, **16 GWh auction 24 Nov 2026**, up to
-   ~€34k/MW depending on contracted discharge duration) and **Germany** (Aurora #1 for co-location,
-   40–50% tolled, grid-forming inertia contracts from Jan 2026). Also **Australia's NEM** — while we
-   carry only WA, a ~6 GW islanded system.
+1. **No duration sensitivity within a market.** One archetype per market still means duration and
+   geography are confounded, so we cannot test our own published finding — *"merchant viability
+   tracks duration, not geography"*. The confound is weaker than it was: the platform now spans 2h
+   (RO, ERCOT), 4h, 6h (JP) and 7h (WA), so duration varies across markets even though it is fixed
+   within each one.
+2. **No optimiser / route-to-market counterparty dimension**, which lenders now weight explicitly.
+3. **Saturation does not enter the engine.** `narrative.pipelineRatio` is still a display string
+   rendered by `metrics.js` and touches no cash flow.
+4. **No co-location.** All fourteen archetypes are standalone. Aurora ranks co-location as a separate
+   market question, and in Japan co-location is the way around the LTDA clawback.
+5. **Component capex is a global split, not a market observation.** The stack introduced in
+   `src/comparison/capex.js` reconciles exactly to each market's published installed cost, but the
+   DC-block/PCS/transformer/BOP/EPC shares are the same everywhere. Gate **G24**. It bites hardest in
+   Japan, where the capex premium over global benchmarks (**G5**) cannot be attributed to a component.
+6. **The RTB entry price is an input, not an observation.** `devCostPct` and `rtbPremiumPct` are
+   seeded at zero, so every published return is still a build-cost return rather than an acquisition
+   return. Gate **G25**.
 
 ---
 
 ## 5 · Where we are deliberately against consensus
 
-Recorded so that a future reader does not "fix" these.
+Recorded so that a future reader does not "fix" these. The fifth entry — `ltda` declared but
+disabled — has been deleted: the route is now the base case in Japan and the NEM, so the position
+no longer exists to defend.
 
 1. **Secured share and secured tenor are separate published rows**, and auction-renewal cash flow is
    discounted at the merchant yield rather than the contracted yield. The standard research deck
    reports a single "contracted %" that puts Japan's one-year award and Poland's seventeen-year
    contract at the same position. Our three risk classes exist to stop that. Keep.
-2. **`ltda` was declared but disabled**, on the grounds that an award is project-specific and showing
-   it by default would imply every project in the market wins one. That reasoning is sound; what
-   changed is that the LTDA is now the *only* route with a six-hour-plus product, which makes the
-   omission distortive rather than conservative. Revisit — the *reason* still stands and any
-   enablement must carry an illustrative/project badge.
-3. **Unlevered comparison.** Consensus underwrites levered. We keep the cross-market comparison
+2. **Unlevered comparison.** Consensus underwrites levered. We keep the cross-market comparison
    unlevered so that debt capacity is an *output* to be measured rather than an assumption baked in.
    Keep — but the missing half is now planned as a market-level project-debt layer, not a change to
    the global engine.
-4. **Spot indices are not underwriting numbers.** Clean Horizon's Poland 2h at €800k+/MW/yr is a
+3. **Spot indices are not underwriting numbers.** Clean Horizon's Poland 2h at €800k+/MW/yr is a
    monthly run-rate annualised at 1.5 cycles/day gross of fees, during a period of extreme aFRR
    prices in a market with very little operational capacity. We will not carry it as a merchant
    assumption, and this file records why.
 
-5. **Fifteen years, no residual, no augmentation.** This one was surfaced *by* the revision rather
+4. **Fifteen years, no residual, no augmentation.** This one was surfaced *by* the revision rather
    than decided in it, and it is the largest single reason our absolute returns sit below published
    ones. `LIFE = 15` and the hold case assigns no terminal value at year 15; the exit case prices
    only the cash flows remaining inside the window. Consensus unlevered IRRs — GB at 10-12%, Germany
@@ -313,7 +205,7 @@ Recorded so that a future reader does not "fix" these.
    README already says, and which this makes load-bearing rather than decorative.
 
    Left unchanged deliberately. `LIFE`, the exit yields and `UNLEVERED` are METHODOLOGY, and moving
-   the window would re-rate all eight markets at once for a reason that has nothing to do with any
+   the window would re-rate all fourteen markets at once for a reason that has nothing to do with any
    of them. The honest fix is a terminal-value treatment and an augmentation line, which is a
    design decision, not a data refresh. Recorded as gate **G12**.
 
@@ -329,6 +221,9 @@ Each item is a specific document or series that would close a specific open assu
 > "G2" means *Modo's GB 4h series* here and *Japanese capex per MW* there. Nothing in code reads the
 > Japanese numbering, so the collision is a documentation hazard rather than a bug — but it is worth
 > resolving before the Japanese list grows.
+>
+> **G29 is unassigned.** The US round jumped from G28 to G30. Left as a hole rather than renumbered,
+> because gate ids are cited from `comparison.js` files and renumbering would silently repoint them.
 
 | # | Gate | Closes | Where to get it |
 |---|---|---|---|
@@ -344,10 +239,10 @@ Each item is a specific document or series that would close a specific open assu
 | G10 | Real BESS senior debt margins by market | Project-debt pricing — we hold base rates and structural conventions, not margins. Re-searched July 2026: Modo's Q1 2026 report gives deal counts and volumes (53 deals / 11 GW, >€3bn disclosed debt) but no margin quotation, and no public source quotes one. The 200–250bp band stands as an assumption | Modo European BESS Capital Markets report; lender term sheets |
 | G11 | Terna MACSE auction 2 rules and results (24 Nov 2026) | ~~Whether to add Italy~~ — closed 2026-08 on auction 1. What remains open is the auction-2 reserve premium, unpublished at the time of writing, and whether the ≈€12,959/MWh/yr weighted clear holds at 16 GWh against 10 | Terna publications |
 | G12 | A terminal-value and augmentation treatment | Why our absolute returns sit below published ones — see §5.5. A design decision, not a data fetch | Internal; needs an augmentation capex curve and a residual-value basis |
-| G13 | Per-market BESS fixed-opex and degradation series | The two Investment Lab bands with no published counterpart anywhere. Opex seeds run US$8.6k–16.5k/MW/yr across our six markets against a US utility-scale benchmark of US$15–25k; degradation is held at 2%/yr in every market because nothing market-specific exists to hold it at anything else | Operator LTSA/O&M disclosures; supplier warranty degradation curves |
+| G13 | Per-market BESS fixed-opex and degradation series | The two Investment Lab bands with no published counterpart anywhere. Opex seeds run US$8.6k–16.5k/MW/yr across fourteen markets against a US utility-scale benchmark of US$15–25k; degradation is held at 2%/yr in every market because nothing market-specific exists to hold it at anything else | Operator LTSA/O&M disclosures; supplier warranty degradation curves |
 | G14 | Per-MW congestion revenue for a battery, by market | The one number the congestion register deliberately does not carry. Operators publish the constraint pool — NESO a £3.1bn balancing cost, EirGrid an 11.3% dispatch-down rate, PSE a 1,131 GWh curtailed volume, OCCTO an output-control percentage — but none publish what share of it a battery captures. Closing it would let the Investment Lab price congestion instead of only flagging its expiry date. Italy is the nearest thing to a partial close: its zonal MACSE spread (Sicily 30% above Sud e Calabria for the same product) is a published price for one constraint, but it is a procurement clear rather than a measurement, so the register uses it as a proxy and says so | Modo GB Balancing Mechanism revenue by asset; EirGrid/PSE settlement data; Terna curtailment volumes in GWh; an optimiser's realised constraint-revenue disclosure |
 | G15 | Australian 4h BESS capex outside GenCost | The NEM capex seed rests on a single source — CSIRO GenCost 2025-26 at A$385/kWh — with the band floor derived from GenCost's own 2h trajectory rather than from a second observer | Vendor EPC quotations; AEMO ISP cost inputs; a disclosed Australian project cost |
-| G16 | A disclosed BESS toll fee, in any market | The gate three markets now share. No toll price has ever been published in Australia, Germany or Italy, so all three toll bands are bounded rather than quoted — the NEM's by the NSW LTESA Round 6 annuity cap, Germany's by a published breakeven analysis, Italy's by the MACSE clear below and the wholesale spread above. One disclosed fee would convert three derivations into one benchmark | Transaction disclosure; an offtaker's segment reporting; an infrastructure fund's valuation note |
+| G16 | A disclosed BESS toll fee, in any market | The gate five markets now share. No toll price has ever been published in Australia, Germany, Italy or GB, and ERCOT's published TB2 value is a proxy rather than a fee, so every toll band is bounded rather than quoted — the NEM's by the NSW LTESA Round 6 annuity cap, Germany's by a published breakeven analysis, Italy's by the MACSE clear below and the wholesale spread above. One disclosed fee would convert three derivations into one benchmark | Transaction disclosure; an offtaker's segment reporting; an infrastructure fund's valuation note |
 | G17 | CIS floor, cap and payment ceiling for an awarded project | The NEM's contracted route is modelled at 90% of a bracketed floor because every CIS project's terms are commercial-in-confidence. Round 5 cleared at ≈A$185k and Round 6 at ≈A$150k, so the direction is known and the level is not | DCCEEW; an awarded proponent's disclosure |
 | G18 | NEM marginal loss factor and curtailment at project level | Modo finds location moves NEM IRRs by up to 1.8 percentage points and reports some batteries carrying MLF costs 5–10× the fleet average. The platform carries one national `naqFactor`, which cannot express that | AEMO MLF tables by connection point; WattClarity curtailment reviews |
 | G19 | Whether German published capex already includes the Baukostenzuschuss | A 12–24% swing on German capital cost, unresolved. Reported BKZ tariffs run €110k–165k/MW against a €935k/MW 4h capex; no source states whether the charge sits inside the figure | Modo methodology note; an EPC and a DSO quotation obtained separately |
@@ -359,10 +254,15 @@ Each item is a specific document or series that would close a specific open assu
 | G25 | **The RTB acquisition premium, in any market** | The platform underwrites at ready-to-build, so the entry price is development cost plus a developer's margin — and an RTB trade is a private bilateral, so no market publishes either leg. `devCostPct` and `rtbPremiumPct` are seeded at zero and exposed as Investment Lab inputs; the Lab reports the implied £/MW so the assumption is at least visible | Transaction disclosure; a developer's segment reporting; an infrastructure fund's acquisition note |
 | G26 | **Connection charge by market, at project scale** | Germany is the only market with a published figure — the Baukostenzuschuss, up to €140,000/MW, applied inconsistently across DSOs and upheld by the courts. Everywhere else the charge is regulated on actual cost or negotiated, so it is project-specific and unpublished. Japan's TEPCO regime is the clearest case of a known *schedule* against an unknown *amount*: a 10% deposit and a first contribution of at least 50% from 1 April 2026 | DSO/TSO connection offers; a proponent's disclosed connection cost |
 | G27 | **VAT recovery lag by market** | Rates are statutory and known — GB 20%, Germany 19%, Italy 22%, Poland 23%, Ireland 23%, Romania 21% since 1 Aug 2025, Australia and Japan 10%. What is not published is how long a refund actually takes, which is the only thing that matters when VAT is recoverable: it converts a rate into a working-capital drag on IRR. Seeded at zero months, so VAT currently costs nothing in the model | Tax authority service standards; an operator's working-capital disclosure |
+| G28 | **PJM Base Residual Auction clearing beyond the cleared years** | PJM's secured line is one delivery year — $325.00/MW-day × 365 × 59% ELCC = $69,989/MW/yr — and everything after it is an auction-renewal assumption. The 2027/28 and 2028/29 results are published; the renewal curve past them is not, and PJM is the market where that matters most because the BRA is the whole contracted position | PJM auction results and ELCC class ratings as each BRA clears |
+| G30 | **US ancillary-service saturation, all three markets** | The one gate the US markets share. ERCOT's RTC+B went live 5 December 2025 and PJM's Regulation Redesign Phase 1 on 1 October 2025, both re-sizing the products a battery earns from, and CAISO's queue composition points the same way. Every US services seed is therefore a forward view rather than a run-rate | Modo indices post-redesign; ERCOT AS Methodology; PJM Regulation market size |
+| G31 | **IRC §48E qualification under the material-assistance rules** | The federal tax credit is worth up to 37% of capex and the three US markets model it identically, but the One Big Beautiful Bill Act's material-assistance provisions and IRS Notice 2026-15 condition it on supply-chain sourcing that no BESS developer publishes. A binary that moves US returns more than any revenue assumption | IRS guidance; a developer's qualification opinion |
+| G32 | **US merchant energy revenue at a 2030 vintage** | ERCOT and CAISO merchant seeds rest on Modo indices measured on today's fleet, restated to the vintage `merchantVintage` declares. The restatement is a judgement, not an observation, and ERCOT is where it bites — a 2h archetype in the market consensus flags for saturation | Modo forward curves; an optimiser's forward book |
+| G33 | **CAISO Resource Adequacy price and tenor distribution** | RA is bilaterally negotiated rather than cleared, so CAISO's contracted line has the widest band on the platform. One 15-year agreement is public (Ormat / City of Riverside); nothing publishes the distribution around it | CPUC RA reports; utility procurement filings |
 
 ---
 
-## 6a · What this round changed
+## 6a · Round 1 — what it changed
 
 Landed 2026-07-30. Every item below is an analyst decision, not an automated update — the ETL
 proposed none of it and could not have.
@@ -383,7 +283,7 @@ the merchant stack. `naqFactor` charges an access regime against energy revenue.
 the scheme's own terms. All classified in `governance/authority.js`; the classification test now
 walks to every leaf, so a nested object can no longer be authorised wholesale.
 
-**Project debt.** A new tab beside the revenue tabs on all six dashboards, sizing two tranches
+**Project debt.** A layer beside the revenue tabs on every dashboard, sizing two tranches
 against secured and market cash flow separately, with rollover allowances that are **zero** for
 auction-renewal revenue and for tolls. It reports the share of senior debt standing on contracted
 cash flow — what certainty actually buys — plus the refinancing point and the balloon. It shows
@@ -391,7 +291,41 @@ leverage as *dilutive* for Japan's award, whose return sits below the all-in cos
 
 **Tests.** Split in two. `baseline.test.js` now runs the prototype's own frozen inputs
 (`fixtures/legacy-inputs.mjs`) and proves engine correctness; `current-model.test.js` pins what we
-publish today. They fail for opposite reasons, which is the point. 200 assertions, all passing.
+publish today. They fail for opposite reasons, which is the point.
+
+---
+
+## 6b · Rounds 2-4 — what changed since
+
+Landed 2026-08-01 to 2026-08-04. Analyst decisions throughout; the ETL proposed none of it.
+
+**Markets.** Italy, Germany and the NEM closed the "missing markets" gap; PJM, ERCOT and CAISO then
+took the platform to fourteen. The US three are separate markets rather than one country with
+regional lenses because they share a federal tax and tariff layer and almost nothing above it —
+which makes the league table an unusually clean controlled comparison of market design.
+
+**The merchant vintage.** The first US build priced ERCOT's arbitrage leg at CY2025 actual against a
+2030-saturated ancillary leg. That is not conservative, it is incoherent: it prices one leg in a
+world where the queue has arrived and the other in a world where it has not.
+`src/comparison/vintage.js` now derives the vintage year from the base route, so a market cannot
+disagree with its own toll tenor, and all fourteen markets declare one.
+
+**Capital cost.** Capex was one number spent at t=0. It now carries a component stack, a tax layer, a
+ready-to-build entry price and a construction period — the four things that were hiding inside a
+single scalar. Introduced as a strict superset: every stack reconciles exactly to its market's
+published installed cost, VAT is recoverable with no lag, dev cost and premium seed at zero, and a
+twelve-month build is one outflow. **Nothing revalued.** `baseline.test.js` proves it, still green
+against a fixture that was never regenerated. New gates G24-G27.
+
+**Network plans.** Every market gained a named-project register in its own jurisdiction's status
+vocabulary, plotted on a new planned-build map layer. The NEM's is AEMO's 2026 ISP Appendix A5 in
+full. Correcting one error found on the way: Project EnergyConnect was recorded as fully energised in
+June 2026 and is not — Stage 1 delivered 150 MW of an eventual 800 MW and Stage 2 lands November
+2027, which inverted an argument the grid tab was building on it.
+
+**No forced returns.** `irrOf` returned null both when a route does not exist and when the cash flows
+never return the capital. The engine now diagnoses which, and an unsolvable case prints
+"N/M — no positive IRR solution" with MOIC retained rather than an em dash that hides the difference.
 
 ---
 
