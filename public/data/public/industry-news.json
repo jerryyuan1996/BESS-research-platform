@@ -43,7 +43,7 @@
     {
       "source": "Utility Dive",
       "status": "ok",
-      "items": 6
+      "items": 5
     },
     {
       "source": "pv magazine",
@@ -61,6 +61,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The largest grid-scale battery energy storage system (BESS) project in the Czech Republic has gone online, supplied by a company invested in by lithium-ion OEM CATL."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
+      "source": "Utility Dive",
+      "title": "Eversource Q2 income plunges on transmission ROE, offshore wind charges",
+      "url": "https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
+      "publishedAt": "2026-08-04T13:35:56.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Jefferies analysts cast doubt on Connecticut Light and Power&rsquo;s $1 billion advanced metering infrastructure proposal, which has a negative benefit-to-cost ratio."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+      "source": "Utility Dive",
+      "title": "Southern Co. contracted large load rises to 17 GW",
+      "url": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+      "publishedAt": "2026-08-04T13:20:14.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. The contract&nbsp;includes 1 GW of &ldquo;flexible demand response&rdquo; for peak shaving&nbsp;&mdash; the first such flexibility provision the company has codified with a data center customer."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/massachusetts-issues-rfp-seeking-1000mw-of-bess/",
@@ -213,6 +233,16 @@
       "summary": "The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said."
     },
     {
+      "id": "Utility Dive:https://www.utilitydive.com/news/dte-rate-stability-data-center-projects-large-load-pipeline/826803/",
+      "source": "Utility Dive",
+      "title": "DTE ties rate stability to data center projects as large-load pipeline remains steady",
+      "url": "https://www.utilitydive.com/news/dte-rate-stability-data-center-projects-large-load-pipeline/826803/",
+      "publishedAt": "2026-08-03T12:43:44.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The company&rsquo;s $30 billion electric utility capital investment plan&nbsp;was unchanged from the first quarter, officials said during the second-quarter earnings call."
+    },
+    {
       "id": "Utility Dive:https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/",
       "source": "Utility Dive",
       "title": "PJM files backstop auction plan at FERC to meet capacity shortfall",
@@ -221,16 +251,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "The proposal aims to fill a capacity shortfall driven by surging data center demand, which could grow by 70 GW by 2038, according to the PJM Interconnection.&nbsp;The success of the plan depends on states taking steps to protect their retail customers from cost shifts, it said."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/spons/how-pge-scaled-home-energy-reports-into-wide-ranging-energy-reduction-and/826315/",
-      "source": "Utility Dive",
-      "title": "How PG&E scaled home energy reports into wide-ranging energy reduction and bill savings",
-      "url": "https://www.utilitydive.com/spons/how-pge-scaled-home-energy-reports-into-wide-ranging-energy-reduction-and/826315/",
-      "publishedAt": "2026-08-03T09:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Learn how this approach can support savings, affordability and peak flexibility."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/you-cannot-build-a-whole-electricity-system-purely-on-solar-hybrids-squadron-energy-ceo-warns/",
@@ -251,26 +271,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Grid-forming BESS have not yet been confirmed to meet the highest tier of system strength requirements in Australia's NEM, according to AEMO."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/xcel-energy-on-track-retail-sales-growth-this-year-executives-say/826705/",
-      "source": "Utility Dive",
-      "title": "Xcel Energy on track for 3% retail sales growth this year, executives say",
-      "url": "https://www.utilitydive.com/news/xcel-energy-on-track-retail-sales-growth-this-year-executives-say/826705/",
-      "publishedAt": "2026-07-31T12:30:38.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The company has a 2026-2030 base capital investment plan of $60 billion and line of sight to an additional $10 billion that includes&nbsp;transmission and generation for data center load."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/exelon-data-center-load-new-jersey-battery-earnings/826686/",
-      "source": "Utility Dive",
-      "title": "Exelon ‘high probability’ data center load falls 40%",
-      "url": "https://www.utilitydive.com/news/exelon-data-center-load-new-jersey-battery-earnings/826686/",
-      "publishedAt": "2026-07-31T11:57:09.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The drop to 11 GW reflects Exelon&rsquo;s ability to weed out speculative projects through &ldquo;transmission service agreements,&rdquo; said CFO Jeanne Jones."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/antora-energy-closes-us550-million-series-c-to-scale-us-thermal-battery-deployment/",
@@ -321,16 +321,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "1414 Degrees has signed a deal to develop up to 1GW of AI data centre infrastructure at its Aurora Energy Precinct in South Australia."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/texas-approves-ai-data-center-co-location-next-to-wind-farm-with-curtailme/826617/",
-      "source": "Utility Dive",
-      "title": "Texas approves AI data center co-location next to wind farm, with curtailment caveats",
-      "url": "https://www.utilitydive.com/news/texas-approves-ai-data-center-co-location-next-to-wind-farm-with-curtailme/826617/",
-      "publishedAt": "2026-07-30T16:57:06.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A final order in the case could offer an early template for other large behind-the-meter loads, requiring rapid curtailment during grid emergencies while limiting participation in demand response programs."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/aecon-executes-energy-storage-agreement-for-1200mwh-ontario-bess/",
