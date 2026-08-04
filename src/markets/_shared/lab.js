@@ -31,6 +31,15 @@ export function createLab(ctx){
   ['capYrs', ['Capacity agreement (yr)', '容量协议年限']],
   ['servicesKW', [MKT.cur + '/kW/yr system services', MKT.cur + '/kW/年系统服务']],
   ['grantPct', ['Capital grant % of capex', '资本补贴占造价 %']],
+  /* Capital-structure inputs. Each is optional: `blkLabInputs` skips a field the
+     market has not seeded, so a market that declares no connection charge shows
+     no connection row rather than a misleading zero. */
+  ['connectionPerMW', [MKT.cur + '/MW connection charge', MKT.cur + '/MW 并网费用']],
+  ['vatPct', ['VAT / sales tax %', '增值税 %']],
+  ['vatRecoverable', ['VAT recoverable (1 = yes)', '增值税可抵扣（1=是）']],
+  ['devCostPct', ['Development cost % of capex', '开发成本占造价 %']],
+  ['rtbPremiumPct', ['RTB premium % of dev cost', 'RTB溢价占开发成本 %']],
+  ['constructionMonths', ['Construction (months)', '建设周期（月）']],
   ['life', ['Asset life (yr)', '资产寿命（年）']], ['disc', ['Discount rate %', '折现率 %']],
   ['debtPct', ['Debt %', '债务比例 %']], ['rate', ['Debt interest %', '债务利率 %']],
   ['tenor', ['Debt tenor (yr)', '债务期限（年）']],
@@ -51,8 +60,29 @@ function annuity(P, r, n){ return r === 0 ? P / n : P * r / (1 - Math.pow(1 + r,
 function labModel(inp, opts){
   opts = opts || {};
   const dil = dilutionAt(+state.codYear) * (opts.dil || 1);
-  const capex = inp.mw * 1000 * (inp.hours * inp.capexKWh + inp.capexKW);
-  const grant = capex * (opts.noGrant ? 0 : (inp.grantPct || 0)) / 100;
+  const build = inp.mw * 1000 * (inp.hours * inp.capexKWh + inp.capexKW);
+  /* Connection charge is per MW and sits outside the per-kW build cost because
+     it is the line that differs most between markets and least between projects
+     of different duration — Germany's Baukostenzuschuss runs to €140k/MW and is
+     charged on connection capacity, not on stored energy. */
+  const connection = inp.mw * (inp.connectionPerMW || 0);
+  const capexPreTax = build + connection;
+
+  /* Ready-to-build entry price. Development cost is a percentage of the build;
+     the premium on top is the developer's margin, which nothing publishes, so it
+     is an input and the per-MW result is an output the user reads back. */
+  const devCost = capexPreTax * (inp.devCostPct || 0) / 100;
+  const rtbPrice = devCost * (1 + (inp.rtbPremiumPct || 0) / 100);
+  const rtbPerMW = inp.mw ? rtbPrice / inp.mw : 0;
+
+  /* Non-recoverable VAT capitalises. Recoverable VAT is a timing cost and the
+     Lab does not model the refund lag — the engine does — so here it is simply
+     excluded rather than approximated. */
+  const vat = (inp.vatRecoverable === 0 || inp.vatRecoverable === false)
+    ? capexPreTax * (inp.vatPct || 0) / 100 : 0;
+
+  const capex = capexPreTax + rtbPrice + vat;
+  const grant = build * (opts.noGrant ? 0 : (inp.grantPct || 0)) / 100;
   const net = capex - grant;
   // capacity channel: de-rated MW × administered / auction-cleared price
   const derate = interp(M.deratingCurve, inp.hours);
@@ -66,7 +96,17 @@ function labModel(inp, opts){
   const gross1 = arb1 + svc1;
   const fee1 = gross1 * inp.optFee / 100;
   const opex = inp.mw * 1000 * inp.opexKW;
-  const ebitda = [], cfs = [-net];
+  /* Construction spend. Up to twelve months is one outflow at t=0, which is the
+     shape the Lab has always used; beyond that the spend splits across an
+     S-curve and first revenue moves out by the extra years. An HV connection
+     waiting on a transformer is the usual reason a build crosses that line. */
+  const buildYears = Math.max(1, Math.ceil((inp.constructionMonths || 12) / 12));
+  const curve = buildYears === 1 ? [1] : buildYears === 2 ? [0.4, 0.6]
+    : buildYears === 3 ? [0.2, 0.6, 0.2]
+    : Array.from({ length: buildYears }, (_, i) => 1 - Math.cos(2 * Math.PI * (i + 0.5) / buildYears));
+  const cSum = curve.reduce((a, b) => a + b, 0);
+
+  const ebitda = [], cfs = curve.map(w => -net * w / cSum);
   for (let y = 1; y <= inp.life; y++){
     const capY = y <= inp.capYrs ? capRev : capRev * (M.futureCapFactor == null ? 0.6 : M.futureCapFactor);
     const e = capY + (gross1 - fee1) * Math.pow(1 - inp.degr / 100, y - 1) - opex;
@@ -75,11 +115,12 @@ function labModel(inp, opts){
   const debt = net * inp.debtPct / 100;
   const ds = annuity(debt, inp.rate / 100, inp.tenor);
   const dscrs = ebitda.slice(0, inp.tenor).map(e => e / ds);
-  const lev = [-(net - debt)];
+  const lev = curve.map(w => -(net - debt) * w / cSum);
   for (let y = 1; y <= inp.life; y++) lev.push(ebitda[y - 1] - (y <= inp.tenor ? ds : 0));
   let cum = -net, payback = null;
   for (let y = 1; y <= inp.life; y++){ cum += ebitda[y - 1]; if (cum >= 0 && payback == null) payback = y; }
   return { capex, grant, net, derate, capMW, capRev, arb1, svc1, opex, fee1,
+    build, connection, devCost, rtbPrice, rtbPerMW, vat, buildYears,
     ebitda1: ebitda[0], unlevIRR: irrOf(cfs), levIRR: irrOf(lev), npv: npvOf(inp.disc / 100, cfs),
     minDSCR: dscrs.length ? Math.min(...dscrs) : null,
     avgDSCR: dscrs.length ? dscrs.reduce((a, b) => a + b, 0) / dscrs.length : null, payback };
@@ -104,6 +145,12 @@ function blkLabOutputs(parent){
   const dn = labModel(inp, { spreadFactor: 0.75, svcFactor: 0.7, capFactor: 0.85, noGrant: true });
   parent.append(h('div', { class: 'kpis' },
     kpi(L(['Total capex', '总资本开支']), fmtCM(r.capex), { text: L(['grant ', '补贴 ']) + fmtCM(r.grant) }, ['calc']),
+    /* The number an RTB acquisition is actually negotiated on. Shown whenever a
+       development cost is set, because a premium on nothing is nothing. */
+    ...(r.devCost > 0 ? [kpi(L(['RTB acquisition price', 'RTB收购价格']), fmtCk(r.rtbPerMW) + '<small>/MW</small>',
+      { text: L(['dev cost ', '开发成本 ']) + fmtCM(r.devCost) + L([' + premium', ' + 溢价']) }, ['calc', 'illus'])] : []),
+    ...(r.buildYears > 1 ? [kpi(L(['Construction period', '建设周期']), r.buildYears + L([' yr', ' 年']),
+      { text: L(['spend spread; first revenue delayed', '支出分摊；首年收入推迟']), cls: 'down' }, ['calc'])] : []),
     kpi(L(['Capacity de-rating factor', '容量折减系数']), fmtPct(r.derate * 100),
       { text: L(['de-rated ', '折减后 ']) + fmtN(r.capMW) + ' MW' }, ['calc']),
     kpi(L(['Year-1 capacity revenue', '第1年容量收入']), fmtCM(r.capRev), null, ['calc']),

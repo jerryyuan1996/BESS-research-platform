@@ -31,8 +31,22 @@ import jpHokkaido from './jp-hokkaido/index.js';
 import nem from './nem/index.js';
 import de from './de/index.js';
 import it from './it/index.js';
+/* The 2026-08 US round. CAISO, ERCOT and PJM are three separate allocation
+   markets with three separate dashboards, not one country with three regional
+   lenses like Japan: they share a federal tax and tariff layer and almost
+   nothing else. PJM pays for capacity through an auction, CAISO through
+   bilateral Resource Adequacy, and ERCOT does not pay for capacity at all —
+   which is the single question this platform's comparison engine cares about
+   most, and they give three different answers to it.
 
-export const markets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido];
+   Appended rather than inserted. Registry order is the tie-break order for
+   best/worst highlighting in the league table, so adding to the end is the
+   change that moves the fewest existing published outputs. */
+import pjm from './pjm/index.js';
+import ercot from './ercot/index.js';
+import caiso from './caiso/index.js';
+
+export const markets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso];
 
 // ---- derived lookups -------------------------------------------------------
 

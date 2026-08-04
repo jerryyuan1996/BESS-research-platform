@@ -11,9 +11,48 @@ import {
   REQUIRED_MANIFEST_FIELDS, ECONOMICS_FIELDS, CAPABILITY_FLAGS, RISK_CLASSES,
 } from '../markets/schema.js';
 import { FX } from '../comparison/assumptions.js';
+import { validateMerchantVintage } from '../comparison/vintage.js';
+import { baseStrategy } from '../comparison/strategies.js';
 
 const isPair = (v) => Array.isArray(v) && v.length >= 2 && typeof v[0] === 'string';
 const isNum = (v) => typeof v === 'number' && Number.isFinite(v);
+
+/**
+ * One year of an auction-renewal scenario.
+ *
+ * Checks that the year is explained rather than asserted: a named delivery year,
+ * a clearing price in a stated unit, an accreditation factor, and the payment
+ * those two produce. It does NOT check the shape of the path — see the note in
+ * markets/schema.js for why a renewal year is allowed to sit above its secured
+ * year.
+ *
+ * @param {object} y        the scenario entry
+ * @param {?number} payment the curve value this entry must reconcile to
+ * @param {string} where    label for the problem message
+ * @param {(msg:string)=>void} at
+ */
+function checkRenewalYear(y, payment, where, at){
+  if (!y || typeof y !== 'object'){ at(`${where} is not an object`); return; }
+  if (typeof y.deliveryYear !== 'string' || !y.deliveryYear){
+    at(`${where}.deliveryYear must name the delivery year the assumption applies to`);
+  }
+  if (!isNum(y.price) || y.price <= 0) at(`${where}.price must be a positive assumed clearing price`);
+  if (typeof y.priceUnit !== 'string' || !y.priceUnit){
+    at(`${where}.priceUnit must state the unit the price is in`);
+  }
+  if (!isNum(y.accreditation) || y.accreditation <= 0 || y.accreditation > 1){
+    at(`${where}.accreditation must be a factor in (0, 1]`);
+  }
+  if (!isNum(y.paymentPerMWYr) || y.paymentPerMWYr < 0){
+    at(`${where}.paymentPerMWYr must be a non-negative payment per MW per year`);
+  }
+  /* The payment has to BE the curve value. Without this the declared price and
+     accreditation are decoration and the curve can drift away from the argument
+     that justifies it — which is the whole failure this scenario prevents. */
+  if (payment != null && isNum(y.paymentPerMWYr) && Math.abs(y.paymentPerMWYr - payment) > 1){
+    at(`${where}.paymentPerMWYr (${y.paymentPerMWYr}) does not reconcile to its auctionRenewalCurve entry (${payment})`);
+  }
+}
 
 /**
  * @param {object} market  a market module
@@ -99,6 +138,35 @@ export function validateMarket(market){
           at('economics.auctionRenewalCurve must be an array (use [] to assume no renewal revenue)');
         } else if (e.auctionRenewalCurve.some(v => !isNum(v) || v < 0)){
           at('economics.auctionRenewalCurve entries must be non-negative numbers');
+        } else if (e.auctionRenewalCurve.length > 0){
+          /* Every uncleared year must be an explained analyst scenario, never a
+             bare number. See markets/schema.js. */
+          const s = e.auctionRenewalScenario;
+          if (!s || typeof s !== 'object'){
+            at('economics.auctionRenewalScenario is required whenever auctionRenewalCurve carries assumed years');
+          } else {
+            if (!isPair(s.basis)) at('auctionRenewalScenario.basis must be an [en, zh] pair');
+            if (typeof s.source !== 'string' || !s.source){
+              at('auctionRenewalScenario.source must name what the price and accreditation assumptions are built from');
+            }
+            checkRenewalYear(s.securedYear, e.securedContracted, 'auctionRenewalScenario.securedYear', at);
+            if (s.securedYear && s.securedYear.cleared !== true){
+              at('auctionRenewalScenario.securedYear.cleared must be true — it is the year an auction actually cleared');
+            }
+            if (!Array.isArray(s.years)){
+              at('auctionRenewalScenario.years must be an array, one entry per auctionRenewalCurve year');
+            } else {
+              if (s.years.length !== e.auctionRenewalCurve.length){
+                at(`auctionRenewalScenario.years has ${s.years.length} entries for ${e.auctionRenewalCurve.length} renewal years`);
+              }
+              s.years.forEach((y, i) => {
+                checkRenewalYear(y, e.auctionRenewalCurve[i], `auctionRenewalScenario.years[${i}]`, at);
+                if (y && y.cleared !== false){
+                  at(`auctionRenewalScenario.years[${i}].cleared must be false — a cleared auction is a secured year, not a renewal assumption`);
+                }
+              });
+            }
+          }
         }
         if (e.contracted !== undefined){
           at('use securedContracted, not contracted, with riskClass "auction-renewal"');
@@ -123,6 +191,14 @@ export function validateMarket(market){
     }
     if (isNum(e.feePct) && (e.feePct < 0 || e.feePct > 100)) at('economics.feePct should be 0-100');
     if (isNum(e.grantPct) && (e.grantPct < 0 || e.grantPct > 100)) at('economics.grantPct should be 0-100');
+  }
+
+  /* Both merchant legs must be priced at the same year, and that year must be
+     the one the base route actually leaves exposed. See comparison/vintage.js —
+     the rule exists because the first US build priced one leg at last calendar
+     year and the other at a 2030 projection. */
+  if (cmp.capabilities?.merchant && cmp.economics){
+    for (const p of validateMerchantVintage(market, baseStrategy(market))) at(p);
   }
 
   if (!cmp.narrative || !isPair(cmp.narrative.archetype) || !isPair(cmp.narrative.thesis)){

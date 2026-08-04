@@ -482,6 +482,17 @@ const M = {
   ],
 
   lab: {
+    /* ---- capital structure. Seeded neutral: nothing here moves a published
+       return until it is set. VAT is recoverable, so it costs only timing, and
+       the Lab leaves the refund lag to the engine. */
+    /* Baukostenzuschuss: a connection charge of up to €140,000/MW that BESS pays
+       because it draws from the grid, applied inconsistently across DSOs and
+       upheld by the courts. Seeded at zero because whether the €935k/MW capex
+       already includes it is unresolved — gate G19 — so adding it here would
+       risk counting it twice. Set it once that is settled. */
+    connectionPerMW: 0,
+    vatPct: 19, vatRecoverable: 1,
+    devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
     /* 100 MW is a modelling convention — no published German average exists.
        Four hours is not a convention: it is the duration Modo's own 13.7% IRR is
        computed on.

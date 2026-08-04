@@ -25,15 +25,21 @@ no database, no authentication, no server-side rendering.
                                 │
                     src/markets/registry.js
                        ├── wa            hand-written sections
-                       ├── gb   ┐
-                       ├── ie   ├─ src/markets/_shared/  (declarative block engine)
-                       ├── ro   │
-                       ├── pl   ┘
+                       ├── nem   ┐
+                       ├── gb    │
+                       ├── de    │
+                       ├── it    ├─ src/markets/_shared/  (declarative block engine)
+                       ├── ie    │
+                       ├── ro    │
+                       ├── pl    │
+                       ├── pjm   │
+                       ├── ercot │
+                       ├── caiso ┘
                        ├── jp_tokyo    ┐
                        ├── jp_kyushu   ├─ one Japan dashboard, three regional lenses
                        └── jp_hokkaido ┘
 
-        8 allocation markets · 6 detail dashboards
+        14 allocation markets · 12 detail dashboards
         all expose the same module contract:
             { manifest, comparison, sources, tabs, dashboard }
 
@@ -88,8 +94,8 @@ participates in every home-page comparison and renders a pending-migration page 
 These are different counts and the codebase keeps them apart.
 
 ```javascript
-ALLOCATION_MARKETS()   // 8 — exposures a portfolio can hold
-DETAIL_DASHBOARDS()    // 6 — research documents
+ALLOCATION_MARKETS()   // 14 — exposures a portfolio can hold
+DETAIL_DASHBOARDS()    // 12 — research documents
 ```
 
 Tokyo, Kyushu and Hokkaido are three allocation markets and one dashboard. For a portfolio they are

@@ -39,7 +39,7 @@ import { why } from '../components/decisionLogic.js';
 import { kpi } from '../components/metricCard.js';
 import { renderProjectDebt } from '../components/debtPanel.js';
 import { waterfall } from '../charts/index.js';
-import { fmtN, fmt1, fmtPct, fmtIRR, fmtX, fmtUSDk } from '../utils/formatting.js';
+import { fmtN, fmt1, fmtPct, fmtIRR, fmtIRRor, fmtX, fmtUSDk } from '../utils/formatting.js';
 import { runCase } from '../comparison/engine.js';
 import { supportedStrategies, baseStrategy, strategyById } from '../comparison/strategies.js';
 import { sizeProjectDebt, riskClassFor } from '../economics/projectDebt.js';
@@ -81,6 +81,9 @@ function fmtValue(v, field, mf, range){
       return (v * 100).toFixed(dp) + '%';
     }
     case 'yr': return fmtN(v) + L([' yr', '年']);
+    /* Months rather than years, because a build programme is negotiated in
+       months and rounding one to a year hides the case this field exists for. */
+    case 'mo': return fmtN(v) + L([' mo', '个月']);
     default: return mf.currencySymbol + fmtN(v);
   }
 }
@@ -88,6 +91,7 @@ function fmtValue(v, field, mf, range){
 /** A step small enough to be useful and large enough not to need eleven keystrokes. */
 function stepFor(field, range){
   if (field.unit === 'yr') return 1;
+  if (field.unit === 'mo') return 3;
   if (field.unit === 'frac') return 0.01;
   if (field.unit === 'pct') return 0.5;
   const span = Math.abs(range.max - range.min) || Math.abs(range.seed) || 1;
@@ -324,9 +328,9 @@ function renderOutputs(parent, market, seedMarket, strategyId, exitYear, convent
     : null;
 
   const kpis = h('div', { class: 'kpis' },
-    kpi(L(['15-yr hold IRR', '15年持有IRR']), fmtIRR(now.irrHold),
+    kpi(L(['15-yr hold IRR', '15年持有IRR']), fmtIRRor(now.irrHold, now.irrHoldAbsent, L),
       deltaChip(now.irrHold, seed.irrHold, v => fmt1(v * 100) + 'pp')),
-    kpi(L(['Exit-year IRR', '退出年IRR']), fmtIRR(now.irrExit),
+    kpi(L(['Exit-year IRR', '退出年IRR']), fmtIRRor(now.irrExit, now.irrExitAbsent, L),
       deltaChip(now.irrExit, seed.irrExit, v => fmt1(v * 100) + 'pp')),
     kpi(L(['MOIC at exit', '退出时MOIC']), fmtX(now.moic),
       deltaChip(now.moic, seed.moic, v => fmt1(v) + '×')),

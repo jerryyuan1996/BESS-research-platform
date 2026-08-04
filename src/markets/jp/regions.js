@@ -29,6 +29,7 @@
    --------------------------------------------------------------------------- */
 
 import { band, limits } from '../../comparison/ranges.js';
+import { stackFrom } from '../../comparison/capex.js';
 
 /* Reference asset — identical in all three regions on purpose. The controlled
    experiment the Regional Benchmark tab asks: same 50 MW / 6h battery, same
@@ -70,6 +71,31 @@ export const JP_COMMON_COST = {
   optimiserFeePct: 10,
 };
 
+/* ---- capital structure, shared by all three areas -------------------------
+   The stack reconciles exactly to ¥360m/MW, so introducing it moved no
+   published Japanese return. The component shares are global — gate G24 — which
+   matters more here than anywhere else on the platform: Japan's capex premium
+   over global benchmarks is the whole reason gate G5 exists, and a global split
+   cannot say which component carries it. Balance of plant and civil works are
+   the usual explanation and this stack cannot yet confirm it.
+
+   Consumption tax is 10% and recoverable by a taxable enterprise. The TEPCO
+   connection regime — a 10% deposit and a first contribution of at least 50%
+   from 1 April 2026 — is a genuine working-capital cost that is not modelled
+   here: it is a payment schedule against a connection charge whose amount is
+   project-specific and unpublished. Gate G26.
+
+   Six-hour Japanese builds are not fast, but no public source gives a
+   programme, so twelve months is carried as the platform default rather than an
+   estimate dressed as evidence. */
+export const JP_CAPEX_STACK = stackFrom(JP_COMMON_COST.capexPerMW, 6);
+export const JP_CAPITAL = {
+  capexStack: JP_CAPEX_STACK,
+  vatPct: 10, vatRecoverable: true, vatLagMonths: 0,
+  devCostPct: 0, rtbPremiumPct: 0,
+  constructionMonths: 12,
+};
+
 /* Expected Capacity factor applied to the Capacity Market area price for a 4h
    battery. The formula is national, so the same factor is used in all three
    areas and capacity revenue differs only by area price — which is the point.
@@ -80,10 +106,55 @@ export const JP_EXPECTED_CAPACITY_FACTOR = 0.70;
    year; years 2-15 are assumed, not won. Rule: linear decline from 90% of the
    secured payment in year 2 to 60% in year 15, reflecting storage entering the
    auction. SEED — replace with a scenario from the Capacity & LTDA tab. */
+const RENEWAL_YEARS = 14, RENEWAL_FROM = 0.90, RENEWAL_TO = 0.60;
+const renewalTaper = (i) =>
+  RENEWAL_FROM + (RENEWAL_TO - RENEWAL_FROM) * (i / (RENEWAL_YEARS - 1));
+
 function renewalCurve(securedJPYperMW){
-  const n = 14, from = 0.90, to = 0.60;
-  return Array.from({ length: n }, (_, i) =>
-    Math.round(securedJPYperMW * (from + (to - from) * (i / (n - 1)))));
+  return Array.from({ length: RENEWAL_YEARS }, (_, i) =>
+    Math.round(securedJPYperMW * renewalTaper(i)));
+}
+
+/* The same taper, decomposed into the two things it is actually a claim about.
+   markets/schema.js requires every uncleared year to say what it is made of, so
+   that a reader can disagree with the price path and the accreditation path
+   separately instead of with one blended number.
+
+   In Japan the taper sits entirely on the AREA PRICE — more storage bidding into
+   the main auction clears it lower — while the Expected Capacity factor is a
+   national formula and does not move with penetration. The payment is computed
+   from `securedJPYperMW` exactly as `renewalCurve` computes it, so introducing
+   this declaration moved no published Japanese number.
+
+   The secured award is delivery year 2029; the assumed years run FY2030-FY2043. */
+const RENEWAL_FIRST_DELIVERY_YEAR = 2030;
+
+function renewalScenario(area){
+  const securedJPYperMW = secured(area);
+  return {
+    basis: [
+      'One linear path, applied to the area clearing price rather than to the payment: the Capacity Market main auction secures a single delivery year, and every year after it has to be re-won against a fleet that grows each round. 90% of the secured price in the first assumed year falling to 60% by year 15 is a SEED taper, not an observation — no Japanese post-2029 clearing price exists to test it against. The Expected Capacity factor is held flat at ' + JP_EXPECTED_CAPACITY_FACTOR + ' because it is a national formula that does not respond to how much storage is bidding.',
+      '这是一条线性路径，且作用于区域出清价格而非直接作用于收入：容量市场主拍卖仅锁定一个实需年度，其后每一年都须面对逐轮扩大的机组规模重新竞标。首个假设年度取已锁定价格的90%、至第15年降至60%，这是种子设定的递减路径而非观测值 — 日本不存在2029年之后的出清价格可供检验。期待容量系数固定为' + JP_EXPECTED_CAPACITY_FACTOR + '，因为它属于全国统一公式，不随投标储能规模变化。',
+    ],
+    source: 'OCCTO Capacity Market main auction area prices (delivery year 2029); taper and Expected Capacity factor are analyst seeds',
+    gate: 'G20',
+    securedYear: {
+      deliveryYear: '2029',
+      price: cmPrice[area],
+      priceUnit: 'JPY/kW/yr',
+      accreditation: JP_EXPECTED_CAPACITY_FACTOR,
+      paymentPerMWYr: securedJPYperMW,
+      cleared: true,
+    },
+    years: Array.from({ length: RENEWAL_YEARS }, (_, i) => ({
+      deliveryYear: String(RENEWAL_FIRST_DELIVERY_YEAR + i),
+      price: Math.round(cmPrice[area] * renewalTaper(i)),
+      priceUnit: 'JPY/kW/yr',
+      accreditation: JP_EXPECTED_CAPACITY_FACTOR,
+      paymentPerMWYr: Math.round(securedJPYperMW * renewalTaper(i)),
+      cleared: false,
+    })),
+  };
 }
 
 const cmPrice = { tokyo: 15111, kyushu: 15112, hokkaido: 14972 };
@@ -178,6 +249,7 @@ function regionEcon(area, merchGross4hJPYMWYr, balancingJPYMWYr){
     securedContractedJPYMWYr: secured(area),
     capacityAreaPriceJPYkWYr: cmPrice[area],
     renewal: renewalCurve(secured(area)),
+    renewalScenario: renewalScenario(area),
     ltdaPaymentJPYMWYr: ltdaCostReflectiveBid(retained),
   };
 }

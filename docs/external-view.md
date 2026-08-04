@@ -323,6 +323,13 @@ Recorded so that a future reader does not "fix" these.
 
 Each item is a specific document or series that would close a specific open assumption.
 
+> **Two numbering schemes share the letter G, and they are not the same gates.** The table below is
+> the platform-wide sequence and is what `gate:` fields in every `comparison.js` refer to.
+> [`japan-etl-gates.md`](japan-etl-gates.md) separately numbers eight Japan-only inputs G1–G8, so
+> "G2" means *Modo's GB 4h series* here and *Japanese capex per MW* there. Nothing in code reads the
+> Japanese numbering, so the collision is a documentation hazard rather than a bug — but it is worth
+> resolving before the Japanese list grows.
+
 | # | Gate | Closes | Where to get it |
 |---|---|---|---|
 | G1 | NESO Auction Guidelines / De-Rating Factor workbook, T-4 2029/30 | GB de-rating by duration (we have 1h and 2h only, from 2024/25) | NESO EMR Delivery Body — "Auction Results and De-Rating Factors Summary Data Workbook" |
@@ -348,6 +355,10 @@ Each item is a specific document or series that would close a specific open assu
 | G21 | Momentanreserve MWs registered per MW of rating | The bottom-up derivation gives €6,038/MW/yr and Modo publishes €8–20k for the same product — a threefold disagreement whose reconciling factor is not published | German TSO tender documentation; a participating operator's registration |
 | G22 | ARERA Deliberazione 168/2025, Allegato B — reference storage technology costs | The highest-value single follow-up on the platform. Italy's capex band spans a factor of 2.4 because a European turnkey survey (€180–260/kWh) and Italian expert interviews (~$120/kWh) disagree by half. The authoritative document exists and would not machine-read | ARERA — analyst extraction of Allegato B |
 | G23 | Italian MSD revenue at an underwriting level | The only published Italian MSD total is one month annualised — €654k/MW/yr North, €640k South, May 2026 — roughly 5× the forward wholesale view. The platform seeds from the published revenue *split* instead. MSD saturation is Italy's dominant modelling risk and its size is unknown | GME MSD clearing-price series by zone and product; an Italian optimiser's monthly book |
+| G24 | **A component-level capex breakdown for any market** | The stack introduced in `src/comparison/capex.js` splits every market's installed cost by the same global shares — DC block 56%, PCS 9%, transformer 4%, BOP 19%, EPC 12% — because no market publishes its own. Until this closes the split is descriptive and only the total it reconciles to is market evidence. It matters most in Japan, where the capex premium over global benchmarks (G5) cannot be attributed to a component | EPC bid tabulations; an owner's cost breakdown; a tier-1 integrator's price list |
+| G25 | **The RTB acquisition premium, in any market** | The platform underwrites at ready-to-build, so the entry price is development cost plus a developer's margin — and an RTB trade is a private bilateral, so no market publishes either leg. `devCostPct` and `rtbPremiumPct` are seeded at zero and exposed as Investment Lab inputs; the Lab reports the implied £/MW so the assumption is at least visible | Transaction disclosure; a developer's segment reporting; an infrastructure fund's acquisition note |
+| G26 | **Connection charge by market, at project scale** | Germany is the only market with a published figure — the Baukostenzuschuss, up to €140,000/MW, applied inconsistently across DSOs and upheld by the courts. Everywhere else the charge is regulated on actual cost or negotiated, so it is project-specific and unpublished. Japan's TEPCO regime is the clearest case of a known *schedule* against an unknown *amount*: a 10% deposit and a first contribution of at least 50% from 1 April 2026 | DSO/TSO connection offers; a proponent's disclosed connection cost |
+| G27 | **VAT recovery lag by market** | Rates are statutory and known — GB 20%, Germany 19%, Italy 22%, Poland 23%, Ireland 23%, Romania 21% since 1 Aug 2025, Australia and Japan 10%. What is not published is how long a refund actually takes, which is the only thing that matters when VAT is recoverable: it converts a rate into a working-capital drag on IRR. Seeded at zero months, so VAT currently costs nothing in the model | Tax authority service standards; an operator's working-capital disclosure |
 
 ---
 

@@ -20,7 +20,7 @@ import { why } from '../components/decisionLogic.js';
 import { kpi } from '../components/metricCard.js';
 import { barChart, scatterChart, waterfall } from '../charts/index.js';
 import {
-  NF2, fmtN, fmt1, fmtPct, fmtUSDk, fmtIRR, fmtX,
+  NF2, fmtN, fmt1, fmtPct, fmtUSDk, fmtIRR, fmtIRRor, fmtX,
 } from '../utils/formatting.js';
 import { runCase, runBaseCase } from '../comparison/engine.js';
 import { STRATEGIES, strategyById, baseStrategy, supportedStrategies } from '../comparison/strategies.js';
@@ -144,8 +144,8 @@ function renderMatrix(main, marketList, X){
         h('td', { class: 'num' }, fmtN(r.kwPerM)),
         h('td', { class: 'num' }, fmtUSDk(r.eb1 * 1e6 / r.net)),
         h('td', { class: 'num' }, r.payback ? r.payback + L([' yr', ' 年']) : '—'),
-        h('td', { class: 'num' + (r.irrHold === bestIrr ? ' best' : '') }, h('b', {}, fmtIRR(r.irrHold))),
-        h('td', { class: 'num' }, fmtIRR(r.irrExit)),
+        h('td', { class: 'num' + (r.irrHold === bestIrr ? ' best' : '') }, h('b', {}, fmtIRRor(r.irrHold, r.irrHoldAbsent, L))),
+        h('td', { class: 'num' }, fmtIRRor(r.irrExit, r.irrExitAbsent, L)),
         h('td', { class: 'num' }, h('b', {}, fmtX(r.moic))));
       rows.push(tr);
     });
@@ -252,8 +252,8 @@ function frontierPoints(marketList, X){
           // Tenor next to share: a 1-year award and a 15-year contract can sit at
           // the same x position and mean completely different things.
           '<div class="tr"><span>' + L(['Secured tenor', '锁定年限']) + '</span><b>' + (tenor ? tenor + L([' yr', '年']) : '—') + '</b></div>' +
-          '<div class="tr"><span>' + L(['Exit IRR', '退出IRR']) + '</span><b>' + fmtIRR(r.irrExit) + '</b></div>' +
-          '<div class="tr"><span>' + L(['15-yr hold IRR', '15年持有IRR']) + '</span><b>' + fmtIRR(r.irrHold) + '</b></div>' +
+          '<div class="tr"><span>' + L(['Exit IRR', '退出IRR']) + '</span><b>' + fmtIRRor(r.irrExit, r.irrExitAbsent, L) + '</b></div>' +
+          '<div class="tr"><span>' + L(['15-yr hold IRR', '15年持有IRR']) + '</span><b>' + fmtIRRor(r.irrHold, r.irrHoldAbsent, L) + '</b></div>' +
           '<div class="tr"><span>MOIC</span><b>' + fmtX(r.moic) + '</b></div>' +
           (r.note ? '<div class="tr"><span>' + L(['Note', '备注']) + '</span><b>' + L(r.note) + '</b></div>' : ''),
       });
@@ -337,7 +337,7 @@ function renderWaterfall(main, marketList, X){
 
   cD.append(h('div', { class: 'kpis' },
     kpi(L(['MOIC at exit', '退出时MOIC']), fmtX(r.moic)),
-    kpi(L(['Exit-year IRR', '退出年IRR']), fmtIRR(r.irrExit)),
+    kpi(L(['Exit-year IRR', '退出年IRR']), fmtIRRor(r.irrExit, r.irrExitAbsent, L)),
     kpi(L(['kW controlled per $1M', '每100万美元可控kW']), fmtN(r.kwPerM)),
     kpi(L(['Exit share of total return', '退出占总回报比重']), fmtPct(r.exitVal / (r.cumOp + r.exitVal) * 100, 0))));
 

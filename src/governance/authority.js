@@ -111,6 +111,45 @@ export const COMPARISON_AUTHORITY = {
   'economics.capexPerMW': AUTHORITY.ANALYST,
   'economics.opexPerMW': AUTHORITY.ANALYST,
 
+  /* ---- capital structure -------------------------------------------------
+     The component stack is ANALYST rather than DERIVED even though it is
+     currently generated from a share model. The shares are a placeholder for
+     evidence that does not exist yet (gate G24), and the moment a market gets a
+     real component quotation it will be written here directly — classifying it
+     DERIVED would say the platform can recompute it, which it cannot.
+
+     A statutory VAT rate is a public fact and it is still ANALYST here, which
+     looks wrong for a second and then does not: the comparison interface is not
+     a machine-writable surface at all. The ETL writes to `public/data/public/`
+     and nowhere else, so a field's class in this table says who may propose a
+     change to it, not whether the underlying number is observable. Whether VAT
+     is recoverable, and how long the refund takes, are positions on a project's
+     tax structuring and would be analyst judgements in any case. */
+  'economics.capexStack.dcBlockPerKWh': AUTHORITY.ANALYST,
+  'economics.capexStack.pcsPerMW': AUTHORITY.ANALYST,
+  'economics.capexStack.transformerHvPerMW': AUTHORITY.ANALYST,
+  'economics.capexStack.bopPerMW': AUTHORITY.ANALYST,
+  'economics.capexStack.bopPerKWh': AUTHORITY.ANALYST,
+  'economics.capexStack.epcPct': AUTHORITY.ANALYST,
+  'economics.capexStack.connectionFeePerMW': AUTHORITY.ANALYST,
+  'economics.capexStack.dutyPct': AUTHORITY.ANALYST,
+  'economics.capexStack.otherPerMW': AUTHORITY.ANALYST,
+
+  'economics.vatPct': AUTHORITY.ANALYST,
+  'economics.vatRecoverable': AUTHORITY.ANALYST,
+  'economics.vatLagMonths': AUTHORITY.ANALYST,
+
+  /* Development cost and the premium paid over it are the two inputs on this
+     platform with no public counterpart anywhere — an RTB trade is a private
+     bilateral. They are ANALYST by necessity, not by preference. Gate G25. */
+  'economics.devCostPct': AUTHORITY.ANALYST,
+  'economics.rtbPremiumPct': AUTHORITY.ANALYST,
+
+  /* Build programme. Observable in principle from a proponent's own schedule,
+     but what the model needs is the programme for the archetype rather than for
+     any one project, so it stays a judgement. */
+  'economics.constructionMonths': AUTHORITY.ANALYST,
+
   // Capacity revenue. Auction clearing prices and de-rating factors are
   // published, so drift here is evidence-backed and proposable.
   //
@@ -204,10 +243,61 @@ export const COMPARISON_AUTHORITY = {
   'economics.auctionRenewalCurve': AUTHORITY.METHODOLOGY,
   'economics.riskClass': AUTHORITY.METHODOLOGY,
 
+  /* ---- what the renewal curve is made of ---------------------------------
+     The curve above is a blended number and stays METHODOLOGY. Its components
+     do not all belong in one class, and that is the reason for decomposing it.
+
+     The SECURED year is a cleared auction. Its clearing price and its
+     accreditation factor are both published by the auction body — PJM posts the
+     RPM result and the ELCC class ratings as separate documents — so they are
+     exactly the kind of observation the ETL exists to notice, and they are
+     proposable. The payment is their product and moves only when they do.
+
+     The ASSUMED years are not. They are a forward path a human approved, with no
+     observable counterpart until each auction actually runs, which is precisely
+     what ANALYST_SCENARIO is for: automation may recompute the payment when the
+     approved price and accreditation paths change, but may not redefine the
+     paths. A machine has no standing to argue what PJM clears at in 2034. */
+  'economics.auctionRenewalScenario.securedYear.price': AUTHORITY.ANALYST,
+  'economics.auctionRenewalScenario.securedYear.accreditation': AUTHORITY.ANALYST,
+  'economics.auctionRenewalScenario.securedYear.paymentPerMWYr': AUTHORITY.ANALYST,
+  'economics.auctionRenewalScenario.securedYear.deliveryYear': AUTHORITY.CONFIG,
+  'economics.auctionRenewalScenario.securedYear.priceUnit': AUTHORITY.CONFIG,
+  // Whether the year cleared is a fact about the world, but it is the structural
+  // claim the whole split rests on, so it is not machine-touchable.
+  'economics.auctionRenewalScenario.securedYear.cleared': AUTHORITY.METHODOLOGY,
+
+  'economics.auctionRenewalScenario.years': AUTHORITY.ANALYST_SCENARIO,
+  'economics.auctionRenewalScenario.basis': AUTHORITY.METHODOLOGY,
+  'economics.auctionRenewalScenario.source': AUTHORITY.METHODOLOGY,
+  'economics.auctionRenewalScenario.gate': AUTHORITY.METHODOLOGY,
+
   // Qualitative notes attached to revenue lines.
   'economics.capNote': AUTHORITY.METHODOLOGY,
   'economics.tollNote': AUTHORITY.METHODOLOGY,
   'economics.grantNote': AUTHORITY.METHODOLOGY,
+
+  /* ---- the merchant vintage ------------------------------------------------
+     Which year both merchant legs are priced at, and the three cases at that
+     year. See src/comparison/vintage.js.
+
+     The year itself is METHODOLOGY, not an observation: it follows from how the
+     base route covers merchant exposure, and no feed implies it. The three cases
+     are ANALYST_SCENARIO — forward views a human approved, which automation may
+     recompute when the approved inputs move but may not redefine. That is the
+     same class the services decay curve carries, for the same reason.
+
+     Note that the base case is the published seed and the outer cases are the
+     band endpoints; classifying them here does not create a second writable copy
+     of those numbers, because vintage.js derives them rather than restating them. */
+  'merchantVintage.year': AUTHORITY.METHODOLOGY,
+  'merchantVintage.basis': AUTHORITY.METHODOLOGY,
+  'merchantVintage.cases.downside.merchGross': AUTHORITY.ANALYST_SCENARIO,
+  'merchantVintage.cases.downside.services': AUTHORITY.ANALYST_SCENARIO,
+  'merchantVintage.cases.base.merchGross': AUTHORITY.ANALYST_SCENARIO,
+  'merchantVintage.cases.base.services': AUTHORITY.ANALYST_SCENARIO,
+  'merchantVintage.cases.upside.merchGross': AUTHORITY.ANALYST_SCENARIO,
+  'merchantVintage.cases.upside.services': AUTHORITY.ANALYST_SCENARIO,
 
   // ---- narrative: the investment thesis ------------------------------------
   'narrative.archetype': AUTHORITY.METHODOLOGY,

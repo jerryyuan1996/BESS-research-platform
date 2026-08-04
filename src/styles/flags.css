@@ -8,10 +8,19 @@
   background-size:contain;
 }
 .fi::before{content:"\00a0";}
+/* Vendored per flag rather than importing the whole flag-icons stylesheet, which
+   is ~250 country sprites for a platform that uses seven of them. The cost of
+   the subset is that it has to be extended when a market lands: Germany, Italy
+   and the NEM shipped in the 2026-08 round without their entries and rendered
+   the UN placeholder until the US round found it. Keep this list in step with
+   COUNTRY_FLAGS in src/components/navigation.js. */
 .fi-au{background-image:url("../../node_modules/flag-icons/flags/4x3/au.svg");}
 .fi-gb{background-image:url("../../node_modules/flag-icons/flags/4x3/gb.svg");}
 .fi-ie{background-image:url("../../node_modules/flag-icons/flags/4x3/ie.svg");}
+.fi-de{background-image:url("../../node_modules/flag-icons/flags/4x3/de.svg");}
+.fi-it{background-image:url("../../node_modules/flag-icons/flags/4x3/it.svg");}
 .fi-ro{background-image:url("../../node_modules/flag-icons/flags/4x3/ro.svg");}
 .fi-pl{background-image:url("../../node_modules/flag-icons/flags/4x3/pl.svg");}
 .fi-jp{background-image:url("../../node_modules/flag-icons/flags/4x3/jp.svg");}
+.fi-us{background-image:url("../../node_modules/flag-icons/flags/4x3/us.svg");}
 .fi-un{background-image:url("../../node_modules/flag-icons/flags/4x3/un.svg");}

@@ -14,15 +14,16 @@ import { validateMarket, validateRegistry } from '../src/utils/validation.js';
 import { REQUIRED_MANIFEST_FIELDS, METADATA_FIELDS } from '../src/markets/schema.js';
 import { FX } from '../src/comparison/assumptions.js';
 import { supportedStrategies, baseStrategy, STRATEGIES } from '../src/comparison/strategies.js';
+import { merchantVintage, firstUncoveredMerchantYear } from '../src/comparison/vintage.js';
 
 test('the registry contains every allocation market', () => {
-  assert.deepEqual(marketIds(), ['wa', 'nem', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido']);
+  assert.deepEqual(marketIds(), ['wa', 'nem', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido', 'pjm', 'ercot', 'caiso']);
 });
 
 test('allocation markets and detail dashboards are counted separately', () => {
   // Three Japan allocation points share one research dashboard.
-  assert.equal(ALLOCATION_MARKETS().length, 11);
-  assert.equal(DETAIL_DASHBOARDS().length, 9);
+  assert.equal(ALLOCATION_MARKETS().length, 14);
+  assert.equal(DETAIL_DASHBOARDS().length, 12);
   const jp = ALLOCATION_MARKETS().filter(m => m.manifest.dashboardId === 'jp');
   assert.equal(jp.length, 3);
   assert.deepEqual(jp.map(m => m.manifest.region), ['tokyo', 'kyushu', 'hokkaido']);
@@ -108,8 +109,19 @@ test('base strategies: capacity-backed by default, overridden where a market say
      point of the default: 95% of new de-rated capacity in the DY2027 auction went
      to BESS on 15-year contracts in every zone, so `cap` really is the route it
      is financed on. MACSE is the interesting route, not the base one. */
+  /* PJM takes the default rather than an override, and unlike Italy it does not
+     even have a competing route to decline: no PJM tolling agreement exists at
+     any price and no long-term award scheme does either. `cap` is not a choice
+     there, it is the only contracted route the market has. */
+  /* ERCOT declares `toll`, and it is the third override on this list for the
+     third distinct reason. Japan overrides because a four-hour battery cannot
+     bid into the annual auction at all; the NEM overrides because the CIS is how
+     a project reaching financial close is actually contracted; ERCOT overrides
+     because it has no capacity market, so the engine's merchant fallback would
+     otherwise publish the uncontracted case as the mainstream one — against
+     twelve known tolled batteries, five of them already operating. */
   assert.deepEqual(markets.map(m => baseStrategy(m)),
-    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'cap', 'ltda', 'ltda', 'ltda']);
+    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'cap', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap']);
 
   // An override is only honoured when the market actually supports the route.
   for (const m of markets){
@@ -117,6 +129,64 @@ test('base strategies: capacity-backed by default, overridden where a market say
     if (!explicit) continue;
     assert.equal(baseStrategy(m), explicit,
       `${m.manifest.id}: declared base strategy is not supported by its capabilities`);
+  }
+});
+
+/* ---------------------------------------------------------------------------
+   THE MERCHANT VINTAGE.
+
+   The first US build priced ERCOT's arbitrage leg at calendar 2025 actual and
+   its ancillary leg at a 2030-saturated level, and did the same in PJM. That is
+   not conservatism — it describes a year that will never happen, pricing one leg
+   in a world where the queue has arrived and the other in a world where it has
+   not. These tests exist so it cannot recur silently.
+   --------------------------------------------------------------------------- */
+test('every market prices both merchant legs at the same declared year', () => {
+  for (const m of markets){
+    if (!m.comparison.capabilities?.merchant) continue;
+    const v = m.comparison.merchantVintage;
+    assert.ok(v, `${m.manifest.id}: no merchant vintage declared`);
+    assert.equal(v.year, firstUncoveredMerchantYear(m, baseStrategy(m)),
+      `${m.manifest.id}: vintage year disagrees with what its base route leaves exposed`);
+    // The seed is the base case, in both legs. Otherwise the declaration is decoration.
+    assert.equal(v.cases.base.merchGross, m.comparison.economics.merchGross, `${m.manifest.id}: arbitrage seed`);
+    assert.equal(v.cases.base.services, m.comparison.economics.services, `${m.manifest.id}: ancillary seed`);
+  }
+});
+
+test('a toll-led market prices merchant from the year the toll stops paying', () => {
+  /* ERCOT is the case the rule was written for: seven tolled years pay a fixed
+     fee and no merchant revenue, so year 1 merchant is a cash flow the owner
+     never sees. Anywhere the contracted revenue is ADDITIVE to merchant rather
+     than a substitute for it, exposure starts at commissioning and the vintage
+     is year 1 — which is every other market here. */
+  const ercot = byId('ercot');
+  assert.equal(baseStrategy(ercot), 'toll');
+  assert.equal(ercot.comparison.merchantVintage.year, ercot.comparison.economics.tollYears + 1);
+
+  for (const m of markets){
+    if (m.manifest.id === 'ercot' || !m.comparison.capabilities?.merchant) continue;
+    assert.equal(m.comparison.merchantVintage.year, 1,
+      `${m.manifest.id}: contracted revenue is additive, so merchant is exposed from year 1`);
+  }
+});
+
+test('forward saturation is a curve, never folded into the seed', () => {
+  /* A seed is a level at a stated year and a curve is what happens after it.
+     PJM's Regulation line is the worked example: $32,000 in 2029 falling on a
+     published fleet projection, rather than one number standing for both. */
+  const pjm = byId('pjm').comparison.economics;
+  assert.ok(Array.isArray(pjm.servicesCurve), 'PJM carries a Regulation saturation curve');
+  assert.equal(pjm.servicesCurve.length, 15, 'a curve covers the whole modelled life');
+  assert.equal(pjm.servicesCurve[0], 1, 'the curve starts at the vintage year, so year 1 is unscaled');
+  assert.ok(pjm.servicesCurve[14] < pjm.servicesCurve[0], 'and Regulation saturates rather than holding');
+
+  // Every market carrying a curve must start it at 1, or the seed is not a level.
+  for (const m of markets){
+    const c = m.comparison.economics.servicesCurve;
+    if (!Array.isArray(c)) continue;
+    assert.equal(c[0], 1, `${m.manifest.id}: a services curve must start at its vintage year`);
+    assert.equal(c.length, 15, `${m.manifest.id}: a services curve must cover the modelled life`);
   }
 });
 
@@ -153,23 +223,78 @@ test('no dashboard carries a project-debt or investment-lab tab', () => {
   }
 });
 
+/* This used to assert that a renewal curve declined monotonically and sat
+   entirely below its secured year. That was Japan's shape mistaken for a rule.
+
+   PJM broke it, correctly. Its renewal path RISES above the secured year before
+   falling below it, because two published forces run in opposite directions: the
+   FERC-approved price collar ends after 2029/2030 and the cap reverts from
+   $325/MW-day toward a Net CONE figure PJM estimates near $550, while four-hour
+   storage ELCC erodes as 67 GW of queued storage arrives. A rule forcing decline
+   would have made the most investable feature of that market unstateable.
+
+   What replaces the shape constraint is an EVIDENCE constraint, which is what the
+   old rule was really reaching for. Every year that has not cleared must be
+   declared as an analyst scenario with its own clearing-price and accreditation
+   assumptions, and the payment must reconcile to them — so a curve can be any
+   shape at all, provided every point in it says what it is made of. The
+   arithmetic is enforced by validateMarket; this test enforces the vocabulary. */
 test('auction-renewal markets separate secured revenue from assumed renewals', () => {
-  const jp = markets.filter(m => m.comparison.economics.riskClass === 'auction-renewal');
-  assert.equal(jp.length, 3, 'the three Japan markets use the auction-renewal class');
-  for (const m of jp){
+  const renewal = markets.filter(m => m.comparison.economics.riskClass === 'auction-renewal');
+  assert.deepEqual(renewal.map(m => m.manifest.id),
+    ['jp_tokyo', 'jp_kyushu', 'jp_hokkaido', 'pjm'],
+    'the three Japan markets and PJM win capacity one delivery period at a time');
+
+  for (const m of renewal){
     const e = m.comparison.economics;
     const id = m.manifest.id;
     assert.equal(e.contracted, undefined, `${id}: must not carry a legacy contracted field`);
     assert.ok(e.securedContracted > 0, `${id}: needs a positive secured payment`);
-    assert.equal(e.securedContractYears, 1, `${id}: the main auction secures one delivery year`);
+    assert.equal(e.securedContractYears, 1, `${id}: the auction secures one delivery year`);
     assert.ok(Array.isArray(e.auctionRenewalCurve) && e.auctionRenewalCurve.length === 14,
       `${id}: renewal curve must cover years 2-15`);
-    // Renewal must be a haircut to the secured level, never an escalation.
-    assert.ok(e.auctionRenewalCurve.every(v => v < e.securedContracted),
-      `${id}: renewal payments must sit below the secured payment`);
-    assert.ok(e.auctionRenewalCurve[13] < e.auctionRenewalCurve[0],
-      `${id}: renewal curve must decline`);
+
+    const s = e.auctionRenewalScenario;
+    assert.ok(s, `${id}: a renewal curve must declare what its years are made of`);
+    assert.equal(s.years.length, e.auctionRenewalCurve.length,
+      `${id}: one declared scenario year per renewal year`);
+
+    // The cleared year is the only one allowed to claim it cleared.
+    assert.equal(s.securedYear.cleared, true, `${id}: the secured year is a cleared auction`);
+    assert.equal(s.securedYear.paymentPerMWYr, e.securedContracted,
+      `${id}: the secured year must reconcile to securedContracted`);
+
+    for (const [i, y] of s.years.entries()){
+      assert.equal(y.cleared, false,
+        `${id} year ${i + 2}: an uncleared year must be marked as an analyst scenario`);
+      // Price and accreditation are declared separately so a reader can disagree
+      // with either one alone. A blended payment hides which half is the claim.
+      assert.ok(y.price > 0, `${id} year ${i + 2}: needs an assumed clearing price`);
+      assert.ok(y.accreditation > 0 && y.accreditation <= 1,
+        `${id} year ${i + 2}: needs an assumed accreditation factor in (0, 1]`);
+      assert.equal(y.paymentPerMWYr, e.auctionRenewalCurve[i],
+        `${id} year ${i + 2}: payment must reconcile to the curve`);
+    }
   }
+});
+
+/* The shape is deliberately unconstrained, so this test records that the two
+   markets actually carrying renewal curves have DIFFERENT shapes — and that the
+   platform can express both. If a future edit quietly re-imposed a decline rule,
+   this is what would catch it. */
+test('a renewal curve may rise above its secured year where the evidence says so', () => {
+  const jp = byId('jp_tokyo').comparison.economics;
+  const pjm = byId('pjm').comparison.economics;
+
+  // Japan: a taper on the area clearing price, every year below the secured one.
+  assert.ok(jp.auctionRenewalCurve.every(v => v < jp.securedContracted),
+    'Japan tapers, and nothing here forces it to');
+
+  // PJM: the collar lifts before accreditation erodes, so the curve peaks above.
+  assert.ok(Math.max(...pjm.auctionRenewalCurve) > pjm.securedContracted,
+    'PJM must be able to state a renewal year worth more than its secured year');
+  assert.ok(pjm.auctionRenewalCurve[13] < pjm.securedContracted,
+    'and must still fall below it by the end of the window');
 });
 
 /* This used to assert `longTermAward === false` — that LTDA stayed out of the
@@ -267,6 +392,16 @@ test('a brand-new market participates with only a manifest and a comparison inte
         merchGross: 60000, feePct: 9, services: 8000, grantPct: 0, degr: 2,
       },
       narrative: { archetype: ['100 MW · 4h', '100MW · 4小时'], thesis: ['Test.', '测试。'], pipelineRatio: '~1×' },
+      /* One more line than the original fixture, and it is the merchant vintage:
+         a market that publishes two merchant legs has to say which year both are
+         priced at. `merchantVintage()` derives the three cases from the economics
+         and ranges the market already has, so this stays a one-liner — the cost of
+         the rule is a declaration, not a dataset. */
+      merchantVintage: merchantVintage(1, {
+        capexPerMW: 800000, opexPerMW: 9000,
+        contracted: 40000, contractYears: 12, postFactor: 0.5,
+        merchGross: 60000, feePct: 9, services: 8000, grantPct: 0, degr: 2,
+      }, null, ['Year 1 — capacity revenue is additive to merchant.', '第1年 — 容量收入与市场化收入并存。']),
     },
   };
 
@@ -288,6 +423,14 @@ test('validation rejects the mistakes a new market is most likely to make', () =
       capabilities: { merchant: true },
       economics: { capexPerMW: 1, opexPerMW: 1, merchGross: 1, feePct: 1, services: 0, grantPct: 0, degr: 2 },
       narrative: { archetype: ['a', 'b'], thesis: ['a', 'b'], pipelineRatio: '~1×' },
+      merchantVintage: {
+        year: 1, basis: ['Year 1.', '第1年。'],
+        cases: {
+          downside: { merchGross: 1, services: 0 },
+          base: { merchGross: 1, services: 0 },
+          upside: { merchGross: 1, services: 0 },
+        },
+      },
     },
   }));
 

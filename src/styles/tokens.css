@@ -11,8 +11,14 @@
   --map-water:#eef3f6; --map-land:#dfe8e6; --map-coast:#708394;
   --s1:#2a78d6; --s2:#1baf7a; --s3:#eda100; --s4:#008300; --s5:#4a3aa7; --s6:#e34948; --s7:#e87ba4; --s8:#eb6834;
   /* Extended for Germany, Italy and the NEM. Hues picked in the gaps the first
-     eight leave — teal, violet and olive — so eleven market series stay separable. */
+     eight leave — teal, violet and olive — so eleven market series stay separable.
+     Extended again for CAISO, ERCOT and PJM: slate, maroon and gold, which are
+     the last three gaps wide enough to stay distinguishable at chart-line width
+     against the eleven above. Fourteen is the practical ceiling for a
+     categorical ramp — a fifteenth market should reach for a second visual
+     channel (dash pattern, marker shape) rather than a fifteenth hue. */
   --s9:#0d8f9e; --s10:#9b3fb5; --s11:#6f8b1f;
+  --s12:#4f6d8c; --s13:#a03050; --s14:#b8860b;
   --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --critical:#d03b3b;
   --good-bg:rgba(12,163,12,.12); --warn-bg:rgba(250,178,25,.16); --serious-bg:rgba(236,131,90,.16); --critical-bg:rgba(208,59,59,.12);
   --accent-bg:rgba(42,120,214,.10);
@@ -24,8 +30,8 @@
     --grid:#2c2c2a; --baseline:#383835; --border:rgba(255,255,255,.10);
     --map-water:#111923; --map-land:#2a3542; --map-coast:#8193a6;
     --s1:#3987e5; --s2:#199e70; --s3:#c98500; --s4:#008300; --s5:#9085e9; --s6:#e66767; --s7:#d55181; --s8:#d95926;
-  --s9:#1aa9ba; --s10:#b45fd0; --s11:#8aa832;
     --s9:#1aa9ba; --s10:#b45fd0; --s11:#8aa832;
+    --s12:#7d9ab8; --s13:#d4607f; --s14:#d9a520;
     --good-bg:rgba(12,163,12,.18); --warn-bg:rgba(250,178,25,.14); --serious-bg:rgba(236,131,90,.15); --critical-bg:rgba(208,59,59,.20);
     --accent-bg:rgba(57,135,229,.14);
   }
@@ -36,6 +42,12 @@
   --grid:#2c2c2a; --baseline:#383835; --border:rgba(255,255,255,.10);
   --map-water:#111923; --map-land:#2a3542; --map-coast:#8193a6;
   --s1:#3987e5; --s2:#199e70; --s3:#c98500; --s4:#008300; --s5:#9085e9; --s6:#e66767; --s7:#d55181; --s8:#d95926;
+  /* These six were missing here while the prefers-color-scheme block above
+     carried them, so a reader who chose dark EXPLICITLY got DE, IT and the NEM
+     in light-theme hues against a dark background. Extending the ramp to
+     fourteen made that visible; it was wrong for the first eleven too. */
+  --s9:#1aa9ba; --s10:#b45fd0; --s11:#8aa832;
+  --s12:#7d9ab8; --s13:#d4607f; --s14:#d9a520;
   --good-bg:rgba(12,163,12,.18); --warn-bg:rgba(250,178,25,.14); --serious-bg:rgba(236,131,90,.15); --critical-bg:rgba(208,59,59,.20);
   --accent-bg:rgba(57,135,229,.14);
 }

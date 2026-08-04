@@ -40,3 +40,22 @@ export const fmtUSDM = (x) => '$' + NF2.format(x / 1e6) + 'M';
    ASCII x. Both are kept — see markets/wa/ui.js for WA's variants. */
 export const fmtIRR = (v) => (v == null ? '—' : NF1.format(v * 100) + '%');
 export const fmtX   = (v) => (v == null ? '—' : NF2.format(v) + '×');
+
+/* An absent IRR has two meanings and they must not print the same way.
+
+   A dash says "no number here", which is right when a route does not exist in a
+   market. It is wrong when the case was computed in full and the answer is that
+   the cash flows never return the capital — that is a finding, not a gap, and
+   the platform used to bury it behind the same glyph a missing input produces.
+
+   `absent` is the engine's diagnosis object (result.irrHoldAbsent /
+   irrExitAbsent). Where it is present the value is genuinely unsolvable and this
+   prints N/M; where it is null the dash still means what it always meant. MOIC
+   is unaffected in both cases and is what a reader should look at instead. */
+export const IRR_NO_SOLUTION = ['N/M — no positive IRR solution', 'N/M — 无正IRR解'];
+
+/* `localise` is passed in rather than imported: this module is a pure formatter
+   and importing app/i18n.js here would invert the dependency the whole utils
+   layer depends on. Every call site already has L in scope. */
+export const fmtIRRor = (v, absent, localise) =>
+  (v != null ? fmtIRR(v) : (absent ? localise(IRR_NO_SOLUTION) : '—'));

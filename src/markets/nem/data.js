@@ -550,6 +550,11 @@ const M = {
   ],
 
   lab: {
+    /* ---- capital structure. Seeded neutral: nothing here moves a published
+       return until it is set. VAT is recoverable, so it costs only timing, and
+       the Lab leaves the refund lag to the engine. */
+    vatPct: 10, vatRecoverable: 1,
+    devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
     /* 280 MW is the CIS Tender 8 average (4,205 MW across 15 projects), which is
        also comparison.js's archetype. capexKWh 245 + capexKW 560 reproduces
        GenCost's A$385/kWh four-hour point at A$1.54m/MW. */

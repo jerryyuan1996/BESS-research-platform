@@ -41,6 +41,14 @@ const COVERED = [
     name:['Poland', '波兰'], route:'/markets/poland', point:[19, 52] },
   { id:'jp', countryId:392, flagCode:'jp',
     name:['Japan', '日本'], route:'/markets/japan-tokyo', point:[138, 37] },
+  /* The US polygon routes to PJM, and the marker sits on the PJM footprint
+     rather than on the country centroid — a marker in Kansas would point at a
+     market that covers none of it. CAISO and ERCOT join this entry as extra
+     links below when they land; the country can only carry one polygon route,
+     so it goes to whichever market the marker is placed on. */
+  { id:'pjm', countryId:840, flagCode:'us',
+    name:['United States — PJM Interconnection', '美国 — PJM互联电网'],
+    route:'/markets/pjm', point:[-79, 39.5] },
 ];
 
 const COVERED_BY_COUNTRY = new Map(
@@ -58,6 +66,9 @@ const MARKET_LINKS = [
   ['jp', ['Tokyo', '东京'], '/markets/japan-tokyo'],
   ['jp', ['Kyushu', '九州'], '/markets/japan-kyushu'],
   ['jp', ['Hokkaido', '北海道'], '/markets/japan-hokkaido'],
+  ['us', ['PJM', 'PJM'], '/markets/pjm'],
+  ['us', ['ERCOT', 'ERCOT'], '/markets/ercot'],
+  ['us', ['CAISO', 'CAISO'], '/markets/caiso'],
 ];
 
 function marketLink([flagCode, label, route]){

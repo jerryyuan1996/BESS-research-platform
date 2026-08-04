@@ -22,6 +22,138 @@ import {
 } from './assumptions.js';
 import { servicesFactor } from './capacityLine.js';
 import { strategyById, supports, baseStrategy } from './strategies.js';
+import { buildCapex, rtbEntry, capitalFlows } from './capex.js';
+
+/* ---------------------------------------------------------------------------
+   WHY AN IRR IS ABSENT.
+
+   `irrOf` returns null in two situations that mean completely different things,
+   and until ERCOT arrived the platform rendered both as an em dash.
+
+     NOT APPLICABLE   the route does not exist in this market. Callers already
+                      branch on `.na` for this and must keep doing so.
+     NO SOLUTION      the route exists, the case was computed in full, and there
+                      is no discount rate at which the cash flows return the
+                      capital. That is not missing data — it is a result, and it
+                      is the most important thing the model can say about a
+                      project whose lifetime receipts never reach its cost.
+
+   A dash implies the first. Publishing it for the second hides a finding behind
+   what looks like a gap in the data, so the engine says which one it is and the
+   formatter prints "N/M — no positive IRR solution" rather than nothing.
+
+   The condition is diagnosed from the cash flows rather than guessed: an IRR
+   exists only where the undiscounted flows change sign, so a case whose total
+   receipts fall short of its capital has no root to find. Where the shortfall is
+   compounded by an operating loss late in life — merchant revenue below fixed
+   opex once a toll expires, which is exactly the ERCOT case — the bisection
+   cannot bracket a root at all, because both ends of the interval are negative.
+   MOIC survives in every one of these cases and is the number to read instead.
+   --------------------------------------------------------------------------- */
+function irrDiagnosis(irr, flows, netCapital){
+  if (irr != null) return null;
+  const receipts = flows.reduce((a, v) => a + v, 0);
+  const lossYears = flows.reduce((n, v) => n + (v < 0 ? 1 : 0), 0);
+  return {
+    reason: 'no-solution',
+    /* Stated as multiples rather than currency so the note reads the same in
+       every market and needs no FX. */
+    recovered: netCapital > 0 ? receipts / netCapital : null,
+    operatingLossYears: lossYears,
+    note: [
+      lossYears > 0
+        ? 'Lifetime receipts do not return the capital, and ' + lossYears + ' of the modelled years run an operating loss — merchant revenue below fixed opex. No discount rate solves the cash flows, so no IRR exists to report. Read MOIC instead.'
+        : 'Lifetime receipts do not return the capital, so no discount rate solves the cash flows and no IRR exists to report. Read MOIC instead.',
+      lossYears > 0
+        ? '全生命周期现金流入不足以收回投资，且其中' + lossYears + '个建模年度出现经营亏损 — 市场化收入低于固定运维成本。不存在可使现金流平衡的折现率，因此无IRR可供列示。请改看MOIC。'
+        : '全生命周期现金流入不足以收回投资，因此不存在可使现金流平衡的折现率，无IRR可供列示。请改看MOIC。',
+    ],
+  };
+}
+
+/**
+ * The capital side of a case: what is spent, when, and what the ratios divide by.
+ *
+ * Shared by both engine paths because they price capital identically — only the
+ * revenue model differs between them. Returns the legacy single-outflow shape
+ * unless the market declares a stack, an RTB premium or a construction period.
+ */
+function capitalOf(market, e, fx){
+  const hours = market.comparison.archetype?.durationHours;
+  const raw = buildCapex(e.capexStack, hours);
+
+  /* `capexPerMW` stays the authority and the stack describes its composition,
+     never replaces it. That ordering matters for more than tidiness: the
+     Investment Lab reprices a scenario by overriding `capexPerMW`, and a market's
+     grant ceilings are tested against a deliberately dearer build. If the stack
+     won, both would silently stop working — a cheaper capex would produce the
+     same IRR, which is exactly the bug this comment exists to prevent.
+
+     Where the two disagree the parts are scaled to the authoritative total, so a
+     component breakdown always sums to the number on the card. */
+  const buildPerMW = e.capexPerMW != null ? e.capexPerMW : (raw ? raw.total : 0);
+  const k = raw && raw.total > 0 ? buildPerMW / raw.total : 1;
+  const stack = raw
+    ? { total: buildPerMW, parts: Object.fromEntries(Object.entries(raw.parts).map(([n, v]) => [n, v * k])) }
+    : null;
+
+  /* A capital grant is a contribution to the project's construction cost, so it
+     is taken against build capex and never against the price paid for the
+     development — a grant does not subsidise a developer's margin. */
+  const grant = grantForMW(e, market.comparison.archetype, buildPerMW) * fx;
+  const entry = rtbEntry(e, buildPerMW);
+  const capexG = (buildPerMW + entry.rtbPrice) * fx;
+  const entryNet = capexG - grant;
+
+  /* VAT is charged on the construction supply. The RTB price is excluded: an RTB
+     project changes hands as a company far more often than as an asset, and the
+     two are taxed differently — assuming the asset case would overstate the
+     charge in most trades. */
+  const { flows, codOffset, vatDrag } = capitalFlows(e, entryNet, buildPerMW * fx);
+
+  return {
+    flows, codOffset, grant, capexG, stack,
+    devCost: entry.devCost * fx,
+    rtbPrice: entry.rtbPrice * fx,
+    buildCapexG: buildPerMW * fx,
+    net: entryNet + vatDrag,
+  };
+}
+
+/**
+ * Lay operating cash flow after the build, and return the full vector.
+ *
+ * With no construction period `codOffset` is 0 and this reproduces
+ * `[-net].concat(op)` exactly, which is what the pinned baseline asserts.
+ */
+/**
+ * Re-price capital once the strategy has settled the grant.
+ *
+ * Tolls and competitively-bid awards zero the grant — support counted twice
+ * otherwise — and that changes the amount financed, so the spend profile has to
+ * be rebuilt rather than scaled.
+ */
+function capitalWithGrant(cap, grant, e){
+  const entryNet = cap.capexG - grant;
+  const { flows, codOffset, vatDrag } = capitalFlows(e, entryNet, cap.buildCapexG);
+  return { ...cap, grant, flows, codOffset, net: entryNet + vatDrag };
+}
+
+function withCapital(cap, op, tail){
+  const out = cap.flows.slice();
+  const start = cap.codOffset + 1;
+  for (let i = 0; i < op.length; i++){
+    const t = start + i;
+    while (out.length <= t) out.push(0);
+    out[t] += op[i];
+  }
+  if (tail){
+    const t = cap.codOffset + tail.at;
+    while (out.length <= t) out.push(0);
+    out[t] += tail.value;
+  }
+  return out;
+}
 
 /**
  * Capital grant, after the caps a scheme actually imposes.
@@ -97,8 +229,9 @@ function runLegacyCase(market, strategyId, exitYear){
   let marketFrom = 1;             // first year the asset earns market revenue
   let merch = e.merchGross * (1 - (e.feePct || 0) / 100) * fx * access;
   let svc = (e.services || 0) * fx * access;
-  let grant = grantForMW(e, market.comparison.archetype, e.capexPerMW) * fx;
-  const capexG = e.capexPerMW * fx, opex = e.opexPerMW * fx;
+  const cap0 = capitalOf(market, e, fx);
+  let grant = cap0.grant;
+  const capexG = cap0.capexG, opex = e.opexPerMW * fx;
 
   if (strategyId === 'cap'){
     cap = e.contracted * fx; cy = Math.min(e.contractYears, LIFE); post = e.postFactor || 0;
@@ -151,7 +284,8 @@ function runLegacyCase(market, strategyId, exitYear){
     note = award.note || null;
   }
 
-  const net = capexG - grant;
+  const capital = capitalWithGrant(cap0, grant, e);
+  const net = capital.net;
   const capY = [], mchY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
     const c = (y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0);
@@ -162,23 +296,29 @@ function runLegacyCase(market, strategyId, exitYear){
     capY.push(c); mchY.push(mm); eb.push(c + mm - opex);
   }
 
-  const irrHold = irrOf([-net].concat(eb));
+  const irrHold = irrOf(withCapital(capital, eb));
   let cum = -net, payback = null;
   for (let y = 1; y <= LIFE; y++){ cum += eb[y - 1]; if (cum >= 0 && payback == null) payback = y; }
 
   const X = exitYear;
   const exitVal = pvTail(capY, EXIT_Y_CONTRACTED, X) + pvTail(mchY, EXIT_Y_MERCHANT, X)
     - pvTail(Array(LIFE - X).fill(opex), EXIT_Y_OPEX, 0);
-  const exFlows = [-net].concat(eb.slice(0, X)); exFlows[X] += exitVal;
-  const irrExit = irrOf(exFlows);
+  const irrExit = irrOf(withCapital(capital, eb.slice(0, X), { at: X, value: exitVal }));
   const cumOp = eb.slice(0, X).reduce((a, b) => a + b, 0);
   const moic = (cumOp + exitVal) / net;
   const contractedShare = eb[0] > 0 ? capY[0] / (capY[0] + mchY[0]) : 0;
 
   return {
     marketId: market.manifest.id, strategyId, exitYear: X,
-    net, grant, capexG, eb1: eb[0], yield1: eb[0] / net, capY, mchY, eb,
+    net, grant: capital.grant, capexG, eb1: eb[0], yield1: eb[0] / net, capY, mchY, eb,
     irrHold, payback, exitVal, irrExit, moic, cumOp, contractedShare,
+    irrHoldAbsent: irrDiagnosis(irrHold, eb, net),
+    irrExitAbsent: irrDiagnosis(irrExit, eb.slice(0, X).concat(exitVal), net),
+    // Capital detail, for the Lab and the capex waterfall. Null-safe: a market
+    // with no stack reports no parts rather than a fabricated split.
+    capexParts: capital.stack ? capital.stack.parts : null,
+    buildCapexG: capital.buildCapexG, devCost: capital.devCost, rtbPrice: capital.rtbPrice,
+    constructionMonths: e.constructionMonths || 0, codOffset: capital.codOffset,
     // In the legacy model every contracted unit is secured for its full tenor, so
     // secured share and secured tenor are just the contracted figures renamed.
     securedShare: contractedShare,
@@ -211,10 +351,11 @@ function runAuctionRenewalCase(market, strategyId, exitYear){
   const fx = FX[market.manifest.currency];
   if (fx == null) return { na: ['No FX rate for ' + market.manifest.currency, '缺少' + market.manifest.currency + '汇率'] };
 
-  const capexG = e.capexPerMW * fx;
+  const capital = capitalOf(market, e, fx);
+  const capexG = capital.capexG;
   const opex = e.opexPerMW * fx;
-  const grant = grantForMW(e, market.comparison.archetype, e.capexPerMW) * fx;
-  const net = capexG - grant;
+  const grant = capital.grant;
+  const net = capital.net;
 
   /* The long-term award is a different animal from the annual capacity auction
      that this function was originally written for, and the difference is not the
@@ -259,7 +400,7 @@ function runAuctionRenewalCase(market, strategyId, exitYear){
     eb.push(s + a + m - opex);
   }
 
-  const irrHold = irrOf([-net].concat(eb));
+  const irrHold = irrOf(withCapital(capital, eb));
   let cum = -net, payback = null;
   for (let y = 1; y <= LIFE; y++){ cum += eb[y - 1]; if (cum >= 0 && payback == null) payback = y; }
 
@@ -268,8 +409,7 @@ function runAuctionRenewalCase(market, strategyId, exitYear){
     + pvTail(aucY, EXIT_Y_AUCTION, X)
     + pvTail(mchY, EXIT_Y_MERCHANT, X)
     - pvTail(Array(LIFE - X).fill(opex), EXIT_Y_OPEX, 0);
-  const exFlows = [-net].concat(eb.slice(0, X)); exFlows[X] += exitVal;
-  const irrExit = irrOf(exFlows);
+  const irrExit = irrOf(withCapital(capital, eb.slice(0, X), { at: X, value: exitVal }));
   const cumOp = eb.slice(0, X).reduce((a, b) => a + b, 0);
   const moic = (cumOp + exitVal) / net;
 
@@ -283,10 +423,15 @@ function runAuctionRenewalCase(market, strategyId, exitYear){
     // "capacity vs merchant" keep working; secY/aucY expose the split.
     capY: secY.map((v, i) => v + aucY[i]), secY, aucY, mchY, eb,
     irrHold, payback, exitVal, irrExit, moic, cumOp,
+    irrHoldAbsent: irrDiagnosis(irrHold, eb, net),
+    irrExitAbsent: irrDiagnosis(irrExit, eb.slice(0, X).concat(exitVal), net),
     securedShare, securedYears,
     // Deliberately equal to securedShare: only executed cash flow counts as
     // contracted. Future auction clearings are market risk.
     contractedShare: securedShare,
+    capexParts: capital.stack ? capital.stack.parts : null,
+    buildCapexG: capital.buildCapexG, devCost: capital.devCost, rtbPrice: capital.rtbPrice,
+    constructionMonths: e.constructionMonths || 0, codOffset: capital.codOffset,
     kwPerM: 1e6 / (net / 1000),
     note: (isLtda ? award.note : null) || e.capNote || e.grantNote || null,
   };
