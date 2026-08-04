@@ -12,7 +12,7 @@ import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { chip } from './chip.js';
 import { meter } from './metricCard.js';
-import { fmtPct, fmtIRR } from '../utils/formatting.js';
+import { fmtPct, fmtIRRor } from '../utils/formatting.js';
 import { marketFlagCode } from './navigation.js';
 
 /**
@@ -40,7 +40,7 @@ export function marketCard(market, result){
     meter(cmp.score.composite, mf.color),
     h('div', { class: 'mstats' },
       stat(['Contracted share (yr 1)', '合同化占比（第1年）'], fmtPct(result.contractedShare * 100, 0)),
-      stat(['15-yr unlevered IRR', '15年无杠杆IRR'], fmtIRR(result.irrHold))),
+      stat(['15-yr unlevered IRR', '15年无杠杆IRR'], fmtIRRor(result.irrHold, result.irrHoldAbsent, L))),
     h('div', { class: 'thesis' }, L(cmp.narrative.thesis)),
     h('a', {
       class: 'enter',

@@ -19,6 +19,9 @@ import { JP_CONGESTION } from './jp/congestion.js';
 import { NEM_CONGESTION } from './nem/congestion.js';
 import { DE_CONGESTION } from './de/congestion.js';
 import { IT_CONGESTION } from './it/congestion.js';
+import { PJM_CONGESTION } from './pjm/congestion.js';
+import { ERCOT_CONGESTION } from './ercot/congestion.js';
+import { CAISO_CONGESTION } from './caiso/congestion.js';
 
 export const CONGESTION_REGISTERS = [
   WA_CONGESTION,
@@ -32,6 +35,9 @@ export const CONGESTION_REGISTERS = [
   JP_CONGESTION.tokyo,
   JP_CONGESTION.kyushu,
   JP_CONGESTION.hokkaido,
+  PJM_CONGESTION,
+  ERCOT_CONGESTION,
+  CAISO_CONGESTION,
 ];
 
 const byMarket = new Map(CONGESTION_REGISTERS.map(r => [r.marketId, r]));

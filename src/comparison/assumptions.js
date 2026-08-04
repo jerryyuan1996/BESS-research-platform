@@ -17,6 +17,12 @@ export const FX = {
   // Added for the Japan markets. Illustrative mid-rate on the seed date below;
   // it is NOT retrieved live and must not be labelled as such.
   JPY: 0.0064,
+  /* The comparison currency itself. Added for the US markets, and exactly 1 by
+     construction rather than by observation — USD is the numeraire every other
+     rate above converts into, so this entry carries no FX assumption at all and
+     no seed date applies to it. A US market is therefore the only one on the
+     platform whose published economics are unaffected by the FX row. */
+  USD: 1,
 };
 
 /** Date the FX seeds above were set. Shown next to the rates on the home page. */

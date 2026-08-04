@@ -127,6 +127,19 @@ export const LAB_FIELDS = [
   { key: 'opexPerMW', group: 'capital', unit: 'cur',
     label: ['Fixed opex per MW/yr', '每MW/年固定运维'] },
 
+  /* Capital structure. These four are what turn a build cost into the price an
+     RTB acquisition actually pays, and how long the money waits before it earns.
+     A market shows each one only where it declares a range for it, so a market
+     with no published connection charge shows no connection row. */
+  { key: 'capexStack.connectionFeePerMW', group: 'capital', unit: 'cur',
+    label: ['Grid connection charge per MW', '每MW并网费用'] },
+  { key: 'devCostPct', group: 'capital', unit: 'pct',
+    label: ['Development cost, % of capex', '开发成本占造价%'] },
+  { key: 'rtbPremiumPct', group: 'capital', unit: 'pct',
+    label: ['RTB premium, % of development cost', 'RTB溢价占开发成本%'] },
+  { key: 'constructionMonths', group: 'capital', unit: 'mo',
+    label: ['Construction period', '建设周期'] },
+
   { key: 'contracted', group: 'contracted', unit: 'cur',
     label: ['Contracted revenue per MW/yr', '每MW/年合同化收入'] },
   { key: 'contractYears', group: 'contracted', unit: 'yr',

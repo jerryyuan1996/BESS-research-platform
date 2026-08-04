@@ -55,7 +55,7 @@ export function renderLeague(main, marketList, exitYear){
       marketList.forEach((m, i) => {
         const r = results.get(m.manifest.id);
         // Never substitute a number for "not applicable".
-        const text = r && !r.na ? String(metric.format(m, r)) : 'N/A';
+        const text = r && !r.na ? String(metric.format(m, r, L)) : 'N/A';
         const cls = metric.ctx ? ' ctx' : (r && r.na) ? ' ctx' : i === best ? ' best' : i === worst ? ' worst' : '';
         tr.append(h('td', { class: 'num' + cls }, text));
       });

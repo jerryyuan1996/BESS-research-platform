@@ -16,16 +16,28 @@ import { navigate } from '../app/router.js';
 import { homeState } from '../home/state.js';
 
 const REVENUE_IDS = new Set(['rcm', 'capacity', 'energy', 'fcess', 'services', 'duration']);
+/* A market id is not a country code — `wa` is Australia and the three Japanese
+   areas share one flag — so the mapping is explicit. Anything missing falls back
+   to the UN flag, which is why a market absent from this table renders a
+   placeholder rather than failing: NEM, DE and IT were all doing exactly that
+   until the US round noticed it. Add a market here AND to src/styles/flags.css,
+   which vendors only the flags actually used. */
 const COUNTRY_FLAGS = {
   wa: 'au',
+  nem: 'au',
   gb: 'gb',
   ie: 'ie',
+  de: 'de',
+  it: 'it',
   ro: 'ro',
   pl: 'pl',
   jp: 'jp',
   jp_tokyo: 'jp',
   jp_kyushu: 'jp',
   jp_hokkaido: 'jp',
+  pjm: 'us',
+  ercot: 'us',
+  caiso: 'us',
 };
 export const marketFlagCode = market => COUNTRY_FLAGS[market.manifest.id]
   || COUNTRY_FLAGS[market.manifest.dashboardId]

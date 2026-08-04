@@ -54,8 +54,14 @@ Two constraints worth knowing before you start:
 - **`currency` must have an FX rate** in `src/comparison/assumptions.js`. Without one the market
   cannot be normalized into USD and validation rejects it. Adding a rate is a one-line change, but
   it is a change to a *frozen assumption* — do it deliberately.
-- **`color` should be an unused `--s1` … `--s8`** token. Two markets sharing a colour makes the
-  grouped charts unreadable.
+- **`color` should be an unused `--s1` … `--s14`** token. Two markets sharing a colour makes the
+  grouped charts unreadable. Fourteen is the practical ceiling for a categorical ramp — a fifteenth
+  market should reach for a second visual channel (dash pattern, marker shape) rather than a
+  fifteenth hue.
+- **Add the market's flag to two places, not one.** `COUNTRY_FLAGS` in
+  `src/components/navigation.js` maps a market id to a country code, and `src/styles/flags.css`
+  vendors that one flag. Miss either and the market silently renders the UN placeholder — which is
+  exactly what Germany, Italy and the NEM did between the 2026-08 round and the US round.
 
 Freshness metadata — `asOf`, `dataDate`, `modelVersion`, `lastVerified`, `sourceHealth` — should be
 present as keys even when you do not yet have the value. **Leave them `null` rather than guessing.**

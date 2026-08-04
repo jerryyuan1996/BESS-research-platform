@@ -15,7 +15,7 @@ import { spacedCard } from '../components/card.js';
 import { badge } from '../components/badge.js';
 import { why } from '../components/decisionLogic.js';
 import { chip } from '../components/chip.js';
-import { fmtPct, fmtIRR } from '../utils/formatting.js';
+import { fmtPct, fmtIRR, fmtIRRor } from '../utils/formatting.js';
 import { runBaseCase } from '../comparison/engine.js';
 
 /* Standing editorial per shared dashboard. Keyed by dashboardId so a new
@@ -98,7 +98,7 @@ export function renderRegionalStrip(main, marketList, exitYear){
           h('td', { class: 'num' }, h('b', {}, r.na ? 'N/A' : fmtPct((r.securedShare ?? r.contractedShare) * 100, 0)))),
         h('tr', {},
           h('td', {}, L(['15-yr unlevered IRR', '15年无杠杆IRR'])),
-          h('td', { class: 'num' }, h('b', {}, r.na ? 'N/A' : fmtIRR(r.irrHold)))),
+          h('td', { class: 'num' }, h('b', {}, r.na ? 'N/A' : fmtIRRor(r.irrHold, r.irrHoldAbsent, L)))),
       ))));
       grid.append(col);
     }

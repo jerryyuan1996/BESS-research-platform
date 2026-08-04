@@ -54,10 +54,46 @@ Per MW, in USD, for a market `m` under strategy `s` with exit year `X`:
 merch  = merchGross × (1 − feePct/100) × fx
 svc    = services × fx
 grant  = capexPerMW × fx × grantPct/100
-capexG = capexPerMW × fx
+capexG = (capexPerMW + rtbPrice) × fx
 opex   = opexPerMW × fx
-net    = capexG − grant
+net    = capexG − grant + non-recoverable VAT
 ```
+
+### Capital cost — components, entry price and spend profile
+
+`capexPerMW` remains the authority on what a build costs. Three optional layers sit around it, in
+[`src/comparison/capex.js`](../src/comparison/capex.js), and **a market that declares none of them
+produces exactly the cash-flow vector it produced before** — which is what
+[`tests/baseline.test.js`](../tests/baseline.test.js) asserts without regenerating its fixture.
+
+**`capexStack`** describes the composition of `capexPerMW`; it never replaces it. Where the two
+disagree the components are scaled to the authoritative total, so a breakdown always sums to the
+number on the card, and so the Investment Lab can still reprice a scenario by overriding
+`capexPerMW` alone. Component shares are global until gate **G24** closes — the split is
+descriptive, and only the total it reconciles to is market evidence.
+
+**`devCostPct` and `rtbPremiumPct`** price the entry. This platform underwrites at ready-to-build,
+so what is bought is a developed project, not a construction budget:
+
+```
+devCost  = capexPerMW × devCostPct/100
+rtbPrice = devCost × (1 + rtbPremiumPct/100)
+```
+
+Both seed at zero. Nothing publishes an RTB premium — gate **G25** — so the model takes it as an
+input and reports the implied per-MW acquisition price as an output rather than asserting one.
+
+**`constructionMonths`** spreads the spend. Up to twelve months is a single outflow at t=0, which is
+the legacy shape; beyond that the spend follows an S-curve (20/60/20 over three years, a normalised
+raised cosine for longer) and first revenue moves out by the additional years. This is the channel
+through which an HV transformer lead time reaches the IRR: on 2026 lead times a transformer-bound
+connection is a multi-year programme, and two otherwise identical projects do not earn the same
+return.
+
+**VAT** is timing, not cost, wherever it is recoverable: charged with each construction instalment
+and refunded after `vatLagMonths`, so it drags the return through working capital only. Set
+`vatRecoverable: false` and it capitalises into `net` instead. Rates are statutory; the recovery lag
+is gate **G27** and seeds at zero, so VAT currently costs nothing in the published model.
 
 **2. Set the contracted line by strategy.**
 

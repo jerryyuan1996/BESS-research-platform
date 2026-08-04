@@ -214,6 +214,11 @@ const M = {
   ],
 
   lab: {
+    /* ---- capital structure. Seeded neutral: nothing here moves a published
+       return until it is set. VAT is recoverable, so it costs only timing, and
+       the Lab leaves the refund lag to the engine. */
+    vatPct: 23, vatRecoverable: 1,
+    devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
     mw: 100, hours: 4, capexKWh: 200, capexKW: 170, opexKW: 9,
     rte: 88, avail: 96, degr: 2.0, cycles: 1.2, spread: 60, optFee: 9,
     capPrice: 60.9, capYrs: 17, servicesKW: 10, grantPct: 10,

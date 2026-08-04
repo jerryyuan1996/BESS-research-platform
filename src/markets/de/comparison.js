@@ -42,6 +42,8 @@
    April 2026 update cut lifetime revenues 16% across the curve.
    --------------------------------------------------------------------------- */
 import { band, limits } from '../../comparison/ranges.js';
+import { merchantVintage } from '../../comparison/vintage.js';
+import { stackFrom } from '../../comparison/capex.js';
 
 /* Modo publishes 2h revenue but not 4h. The scaling factor is derived from the
    two figures it DOES publish for both durations — capex and unlevered IRR:
@@ -59,12 +61,40 @@ const DURATION_SCALAR = 1.50;
    model needs. Midpoint €122,500. */
 const LEVELISED_2H = (115000 + 130000) / 2;
 
+/* The installed cost the component stack must reconcile to. */
+const CAPEX_TOTAL_PER_MW = 935000;
+
 const economics = {
   /* Modo's published 4h figure, €935k/MW = €234/kWh. Carried as published: it is
      NOT confirmed whether it includes the Baukostenzuschuss, and adding a cost
      that may already be inside it would overstate German capex by up to 18%. The
      BKZ is instead carried at the top of the band — see ranges. */
   capexPerMW: 935000,
+
+  /* ---- capital structure -------------------------------------------------
+     The stack reconciles exactly to the installed cost above — `stackFrom`
+     puts the residual in EPC — so introducing it moved no published return.
+     What it adds is the ability to move one component without moving the rest,
+     and a place for the market-specific lines to sit visibly rather than
+     inside a single number. Component split is global until gate G24 closes.
+
+     VAT is 19% here (Umsatzsteuer, recoverable as input tax). It is carried as timing rather than cost:
+     recoverable, so it drags the return only through the refund lag, and the
+     lag is zero until an analyst sets one — gate G27. Set `vatRecoverable:
+     false` and it capitalises instead.
+
+     `devCostPct` is zero deliberately. Published installed-cost benchmarks are
+     EPC scope and exclude development, so a non-zero value here would be a new
+     cost rather than a reallocation, and that is an analyst's call — gate G25.
+     Set it, then set `rtbPremiumPct`, and the Lab reports the implied RTB
+     acquisition price per MW. */
+  capexStack: stackFrom(CAPEX_TOTAL_PER_MW, 4),
+  vatPct: 19, vatRecoverable: true, vatLagMonths: 0,
+  devCostPct: 0, rtbPremiumPct: 0,
+  /* Twelve months is one spend period, which is the single up-front outflow the
+     model has always used. Longer builds split the spend across an S-curve and
+     push first revenue out; that is what an HV transformer lead time does. */
+  constructionMonths: 12,
   opexPerMW: 17000,
 
   /* Ineligible, not zero-valued. The capacity market exists; a four-hour battery
@@ -118,6 +148,34 @@ const economics = {
    be represented by one number, and the band is where that shows.
    --------------------------------------------------------------------------- */
 const ranges = {
+  /* ---- capital structure ------------------------------------------------
+     Three levers with no published counterpart. They are seeded so that they
+     change nothing, and bounded so that moving them stays inside what the
+     market plausibly does rather than inside what the arithmetic allows. */
+  devCostPct: limits(0, 0, 15, {
+    basis: [
+      'Development cost as a share of build capex — land, planning, grid studies, legal and the connection application. Zero-seeded because published installed-cost benchmarks are EPC scope and already exclude it, so any non-zero value here is a new cost rather than a reallocation. The 15% ceiling is the upper end of what developers describe for a consented storage project.',
+      '开发成本占建设造价的比例 — 土地、规划、电网研究、法务及并网申请。种子值为零，因为公开的安装成本基准属EPC范围、本就不含开发成本，故此处任何非零值都是新增成本而非重新分配。15%上限为开发商对已获许可储能项目所述的上端水平。',
+    ],
+    source: 'No published series; bound set from developer commentary',
+    gate: 'G25',
+  }),
+  rtbPremiumPct: limits(0, 0, 200, {
+    basis: [
+      'The margin an RTB seller takes over its development cost. An RTB trade is a private bilateral and no market publishes either leg, so this is an input by necessity. The ceiling is deliberately wide: at a scarce connection point a premium of more than 100% of development cost is not unusual, and a narrow bound would imply a precision that does not exist.',
+      'RTB卖方在其开发成本之上收取的margin。RTB交易属私下双边交易，且没有市场公布其中任一部分，因此这必然是一个输入项。上限刻意设宽：在稀缺并网点，超过开发成本100%的溢价并不罕见，而过窄的边界会暗示一种并不存在的精确度。',
+    ],
+    source: 'Never published, in any market',
+    gate: 'G25',
+  }),
+  constructionMonths: limits(12, 9, 60, {
+    basis: [
+      'Notice to proceed through to commercial operation. Twelve months is one spend period and reproduces the single up-front outflow the model has always used; beyond that the spend spreads across an S-curve and first revenue moves out. The ceiling is set by transformer supply rather than by construction: tier-1 HV power transformer lead times ran 2.5-5 years through 2026, so an HV connection can be the binding path.',
+      '自开工令至商业运行。12个月为单一支出期，可复现模型一贯采用的单笔前置支出；超过则支出按S曲线分摊、首年收入相应推迟。上限由变压器供应而非施工决定：2026年一线高压电力变压器交付周期为2.5–5年，因此高压并网可能成为制约路径。',
+    ],
+    source: 'Transformer lead-time reporting, 2026; no published BESS build programme by market',
+    gate: 'G26',
+  }),
   capexPerMW: band(economics.capexPerMW, 180 * 4000, 935000 + 165000, {
     basis: [
       '€935k/MW is €234/kWh at four hours, inside the €180–260/kWh European turnkey band whose floor sets the low end. The ceiling adds the Baukostenzuschuss at its highest reported level — €165,000/MW at SWM Infrastruktur in Munich, against €110,000/MW at Mitnetz Strom — because it is NOT confirmed whether the published capex already includes it. The BKZ is a one-off, non-refundable grid-connection contribution the Bundesgerichtshof upheld against storage on 15 July 2025, with no reimbursement of charges already levied.',
@@ -224,6 +282,12 @@ export const comparison = {
 
   economics,
   ranges,
+
+  /* Both merchant legs priced at the same year. See src/comparison/vintage.js. */
+  merchantVintage: merchantVintage(1, economics, ranges, [
+    'Year 1. The four-hour archetype is ineligible for the StromVKG capacity auction, so there is no contracted revenue to cover the merchant legs at all and both are exposed from commercial operation.',
+    '第1年。四小时原型不具备StromVKG容量拍卖资格，因此完全不存在可覆盖市场化收入项的合同化收入，两项自商业运行起即处于敞口状态。',
+  ]),
 
   narrative: {
     archetype: ['100 MW · 4h · merchant + toll', '100MW · 4小时 · 市场化+租赁'],

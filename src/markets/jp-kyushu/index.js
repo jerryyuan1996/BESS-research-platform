@@ -19,8 +19,9 @@ import { dashboard } from '../jp/dashboard.js';
 import { tabs } from '../jp/tabs.js';
 import { sources } from '../jp/sources.js';
 import {
-  JP_REGIONS, JP_COMMON_COST, JP_REFERENCE, JP_LTDA_MERCHANT_RETENTION, jpRanges,
+  JP_REGIONS, JP_COMMON_COST, JP_CAPITAL, JP_REFERENCE, JP_LTDA_MERCHANT_RETENTION, jpRanges,
 } from '../jp/regions.js';
+import { merchantVintage } from '../../comparison/vintage.js';
 
 const R = JP_REGIONS.kyushu;
 
@@ -58,10 +59,14 @@ const economics = {
 
   capexPerMW: JP_COMMON_COST.capexPerMW,
   opexPerMW: JP_COMMON_COST.opexPerMW,
+  /* Component stack, consumption tax and build period — shared across the
+     three areas, because none of them differ on capital cost. */
+  ...JP_CAPITAL,
 
   securedContracted: R.econ.securedContractedJPYMWYr,
   securedContractYears: 1,
   auctionRenewalCurve: R.econ.renewal,
+  auctionRenewalScenario: R.econ.renewalScenario,
 
   merchGross: R.econ.merchGrossJPYMWYr,
   feePct: JP_COMMON_COST.optimiserFeePct,
@@ -117,6 +122,12 @@ export const comparison = {
 
   economics,
   ranges,
+
+  /* Both merchant legs priced at the same year. See src/comparison/vintage.js. */
+  merchantVintage: merchantVintage(1, economics, ranges, [
+    'Year 1. Capacity Market revenue is additive to merchant, so both merchant legs are exposed from commercial operation. Under the long-term award the clawback reduces retained market revenue but does not remove the exposure, so the vintage is unchanged.',
+    '第1年。容量市场收入与市场化收入并存，因此两个市场化收入项自商业运行起即处于敞口状态。在长期中标机制下，收益上缴会减少留存的市场化收入，但并未消除该敞口，故口径年度不变。',
+  ]),
 
   narrative: {
     archetype: ['50 MW · 6h reference · surplus / curtailment', '50MW · 6小时参考 · 过剩 / 弃电'],

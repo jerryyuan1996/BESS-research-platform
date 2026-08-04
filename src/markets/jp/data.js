@@ -215,6 +215,11 @@ export const M = {
 
   // ---- Investment Lab defaults (JPY) ----
   lab: {
+    /* ---- capital structure. Seeded neutral: nothing here moves a published
+       return until it is set. VAT is recoverable, so it costs only timing, and
+       the Lab leaves the refund lag to the engine. */
+    vatPct: 10, vatRecoverable: 1,
+    devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
     mw: 50, hours: 4,
     capexKWh: JP_COMMON_COST.capexPerKWh, capexKW: 0,
     opexKW: 1800,

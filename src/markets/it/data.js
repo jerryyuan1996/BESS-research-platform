@@ -510,6 +510,11 @@ const M = {
   ],
 
   lab: {
+    /* ---- capital structure. Seeded neutral: nothing here moves a published
+       return until it is set. VAT is recoverable, so it costs only timing, and
+       the Lab leaves the refund lag to the engine. */
+    vatPct: 22, vatRecoverable: 1,
+    devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
     /* 100 MW is a modelling convention — no published Italian average exists.
        Four hours is the basis every published Italian revenue figure is quoted
        on, and the duration of the one toll whose energy is disclosed.

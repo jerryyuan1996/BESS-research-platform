@@ -30,6 +30,12 @@ const TARGETS = [
   { id: 276, out: 'src/markets/de/de-boundary.json', name: 'Germany' },
   { id: 380, out: 'src/markets/it/it-boundary.json', name: 'Italy' },
   { id: 36, out: 'src/markets/nem/au-boundary.json', name: 'Australia' },
+  /* PJM covers thirteen states and the District of Columbia. Like the NEM, the
+     outline is the country and the market's extent is carried by `viewBounds` on
+     its map — a US map framed on the whole country would put the PJM footprint
+     in one corner of it. The 110m outline includes Alaska and Hawaii, which the
+     view bounds crop out. */
+  { id: 840, out: 'src/markets/pjm/us-boundary.json', name: 'United States' },
 ];
 
 const round = (n, dp = 3) => Number(n.toFixed(dp));
@@ -65,5 +71,58 @@ for (const target of TARGETS){
   await writeFile(path, JSON.stringify(out) + '\n');
   const rings = out.features[0].geometry.type === 'Polygon'
     ? 1 : out.features[0].geometry.coordinates.length;
-  console.log(`${target.name.padEnd(10)} → ${target.out}  (${rings} polygon${rings === 1 ? '' : 's'})`);
+  console.log(`${target.name.padEnd(14)} → ${target.out}  (${rings} polygon${rings === 1 ? '' : 's'})`);
+}
+
+/* ---------------------------------------------------------------------------
+   Sub-national outlines.
+
+   ERCOT is a state grid, not a country one — it covers about 90% of the Texas
+   load and does not synchronously connect to either interconnection. Cropping
+   the US outline to a Texas-shaped window would draw Oklahoma and Louisiana as
+   if they were part of the market, so ERCOT takes a state polygon the way
+   Western Australia does.
+
+   Unlike the country targets above, this one needs the NETWORK: world-atlas
+   ships countries only. Natural Earth's 50m admin-1 file carries subdivisions
+   for a handful of large countries, the United States among them, and it is the
+   same source scripts/generate-market-zones.mjs already uses for the Australian
+   states. The output is committed, so this runs by hand and rarely.
+   --------------------------------------------------------------------------- */
+const NE_ADMIN1_50M = 'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_1_states_provinces.geojson';
+
+const ADMIN1_TARGETS = [
+  { match: f => f.properties?.iso_3166_2 === 'US-TX',
+    out: 'src/markets/ercot/tx-boundary.json', name: 'Texas' },
+  /* CAISO is not the whole of California — the municipal utilities, LADWP and
+     SMUD among them, sit outside it — but the state outline is the right frame
+     for the same reason Texas is for ERCOT, and the scope note says so. */
+  { match: f => f.properties?.iso_3166_2 === 'US-CA',
+    out: 'src/markets/caiso/ca-boundary.json', name: 'California' },
+];
+
+if (ADMIN1_TARGETS.length){
+  const res = await fetch(NE_ADMIN1_50M);
+  if (!res.ok) throw new Error(`Natural Earth admin-1 fetch failed: ${res.status}`);
+  const admin1 = await res.json();
+
+  for (const target of ADMIN1_TARGETS){
+    const match = admin1.features.find(target.match);
+    if (!match) throw new Error(`${target.name}: no matching admin-1 feature`);
+
+    const out = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        properties: { name: target.name, source: 'Natural Earth 50m admin-1' },
+        geometry: roundGeometry(match.geometry),
+      }],
+    };
+
+    const path = resolve(ROOT, target.out);
+    await writeFile(path, JSON.stringify(out) + '\n');
+    const rings = out.features[0].geometry.type === 'Polygon'
+      ? 1 : out.features[0].geometry.coordinates.length;
+    console.log(`${target.name.padEnd(14)} → ${target.out}  (${rings} polygon${rings === 1 ? '' : 's'})`);
+  }
 }

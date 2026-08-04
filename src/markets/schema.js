@@ -69,6 +69,41 @@ export const CAPABILITY_FLAGS = [
  */
 export const RISK_CLASSES = [undefined, 'auction-renewal'];
 
+/* ---------------------------------------------------------------------------
+   THE AUCTION-RENEWAL SCENARIO.
+
+   `auctionRenewalCurve` is a bare array of payments, and a bare array hides the
+   argument. Two different markets can produce the same number from opposite
+   stories — a rising clearing price against a falling accreditation, or the
+   reverse — and a reader cannot tell which, or disagree with either half.
+
+   So a market that carries a renewal curve must also declare what each year is
+   MADE of. One entry per curve year, each naming the delivery year, the assumed
+   clearing price in that auction's own unit, the assumed accreditation applied
+   to it, and the payment those two produce — which must be the curve value, so
+   the arithmetic cannot drift away from the assumptions that justify it.
+
+   `cleared` is false on every scenario entry, by construction. A cleared auction
+   is a SECURED year and belongs in `securedContracted`; anything in the curve is
+   an analyst scenario and is labelled as one wherever it renders.
+
+   What this deliberately does NOT require is a shape. PJM's renewal rises above
+   its secured year before it falls, because the price collar lifts in 2030/31
+   while 4-hour storage accreditation erodes — and a rule that forced the curve
+   to decline monotonically would have made that unstateable. The constraint is
+   that every year is explained, not that every year is worse.
+
+     securedYear   { deliveryYear, price, priceUnit, accreditation,
+                     paymentPerMWYr, cleared: true }
+     years[]       the same shape with cleared: false, one per curve entry
+     basis         [en, zh] — why this path and not another
+     source        what the price and accreditation assumptions are built from
+     gate          the research gate that closes the weakest input
+   --------------------------------------------------------------------------- */
+export const RENEWAL_SCENARIO_YEAR_FIELDS = [
+  'deliveryYear', 'price', 'priceUnit', 'accreditation', 'paymentPerMWYr', 'cleared',
+];
+
 /**
  * Multi-region markets.
  *
@@ -103,9 +138,10 @@ export const ECONOMICS_FIELDS = {
   ],
   // Replaces the three fields above when riskClass === 'auction-renewal'.
   capacityMarketAuctionRenewal: [
-    'securedContracted',     // payment secured by an executed award, per MW per year
-    'securedContractYears',  // how long that award actually covers
-    'auctionRenewalCurve',   // assumed payments per year AFTER the secured period
+    'securedContracted',        // payment secured by an executed award, per MW per year
+    'securedContractYears',     // how long that award actually covers
+    'auctionRenewalCurve',      // assumed payments per year AFTER the secured period
+    'auctionRenewalScenario',   // what those assumed payments are made of — see below
   ],
   tolling: [
     'toll',             // fixed toll per MW per year

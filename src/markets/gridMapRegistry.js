@@ -16,6 +16,9 @@ import { JP_GRID_MAPS } from './jp/gridMapData.js';
 import { NEM_GRID_MAP } from './nem/gridMapData.js';
 import { DE_GRID_MAP } from './de/gridMapData.js';
 import { IT_GRID_MAP } from './it/gridMapData.js';
+import { PJM_GRID_MAP } from './pjm/gridMapData.js';
+import { ERCOT_GRID_MAP } from './ercot/gridMapData.js';
+import { CAISO_GRID_MAP } from './caiso/gridMapData.js';
 import { congestionFor } from './congestionRegistry.js';
 
 /** A map plus the constraint zones of the allocation market it belongs to. */
@@ -37,6 +40,9 @@ export const GRID_MAPS = [
   join(JP_GRID_MAPS.tokyo, 'jp_tokyo'),
   join(JP_GRID_MAPS.kyushu, 'jp_kyushu'),
   join(JP_GRID_MAPS.hokkaido, 'jp_hokkaido'),
+  join(PJM_GRID_MAP, 'pjm'),
+  join(ERCOT_GRID_MAP, 'ercot'),
+  join(CAISO_GRID_MAP, 'caiso'),
 ];
 
 const byId = new Map(GRID_MAPS.map(map => [map.id, map]));

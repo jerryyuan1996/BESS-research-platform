@@ -1,6 +1,6 @@
 # BESS Research Platform
 
-Cross-market battery-storage investment research. A global cockpit that normalizes eleven markets
+Cross-market battery-storage investment research. A global cockpit that normalizes fourteen markets
 into one currency and one model, plus a detailed dashboard per market.
 
 Refactored from a single 1.65 MB HTML prototype into a modular Vite site. The prototype is kept at
@@ -28,7 +28,7 @@ npm run preview
 npm test
 ```
 
-238 assertions.
+242 assertions.
 
 **On the model:** registry integrity, unique market ids, allocation-market vs detail-dashboard
 counts, required and freshness metadata, source-register shape, tab-id validity, comparison-input
@@ -77,15 +77,18 @@ App
  ├─ Shared UI + Charts
  ├─ Comparison Engine
  └─ Market Registry
-       ├─ WA   hand-written sections
-       ├─ NEM  ┐
-       ├─ GB   │
-       ├─ DE   │
-       ├─ IT   ├─ shared declarative block engine
-       ├─ IE   │
-       ├─ RO   │
-       ├─ PL   │
-       └─ JP×3 ┘  three exposures, one dashboard
+       ├─ WA    hand-written sections
+       ├─ NEM   ┐
+       ├─ GB    │
+       ├─ DE    │
+       ├─ IT    │
+       ├─ IE    ├─ shared declarative block engine
+       ├─ RO    │
+       ├─ PL    │
+       ├─ PJM   │
+       ├─ ERCOT │
+       ├─ CAISO ┘
+       └─ JP×3     three exposures, one dashboard
 
  every market exposes the same contract:
    { manifest, comparison, sources, tabs, dashboard }
@@ -116,7 +119,7 @@ src/
 ├── utils/                   dom formatting finance storage validation
 ├── home/                    homePage marketGrid marketComparison normalizationView
 │                            allocationMatrix congestionView investmentLab marketGlobe findings state
-├── comparison/              engine assumptions strategies metrics ranges scenario
+├── comparison/              engine assumptions strategies metrics ranges scenario vintage
 ├── markets/
 │   ├── registry.js          ← the canonical list of markets
 │   ├── schema.js            the market-module contract
@@ -125,7 +128,7 @@ src/
 │   ├── _shared/             declarative block engine (every market except WA)
 │   ├── gridMapRegistry.js   grid maps, joined to their congestion registers
 │   ├── congestionRegistry.js one congestion register per allocation market
-│   └── wa/ nem/ gb/ de/ it/ ie/ ro/ pl/ jp-*/
+│   └── wa/ nem/ gb/ de/ it/ ie/ ro/ pl/ pjm/ ercot/ caiso/ jp-*/
 └── local/                   stub interface for confidential data (later phase)
 ```
 
@@ -139,7 +142,7 @@ src/
 ```
 
 Live slugs: `western-australia`, `nem`, `great-britain`, `germany`, `italy`, `ireland`, `romania`,
-`poland`, `japan-tokyo`, `japan-kyushu`, `japan-hokkaido`.
+`poland`, `japan-tokyo`, `japan-kyushu`, `japan-hokkaido`, `pjm`, `ercot`, `caiso`.
 
 History-API routing. Direct visits and refreshes work in dev via Vite's SPA fallback and in production
 via [`public/_redirects`](public/_redirects).
@@ -321,7 +324,7 @@ initial payload to roughly the home page alone and make each market a separate c
 
 It is not done here because it changes the module contract: `dashboard` becomes async, and the
 registry needs a loader indirection rather than a direct import. That is a design decision worth
-making deliberately, and it matters more as markets are added — eleven is fine, twenty is not.
+making deliberately, and it matters more as markets are added — fourteen is fine, twenty is not.
 
 ---
 

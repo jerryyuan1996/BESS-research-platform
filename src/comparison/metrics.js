@@ -13,7 +13,7 @@
    Rows, labels, order, formatters and the best/worst logic are unchanged from the
    prototype. Only the packaging differs.
    --------------------------------------------------------------------------- */
-import { fmtN, fmtPct, fmtUSD, fmtUSDk, fmtIRR, fmtX } from '../utils/formatting.js';
+import { fmtN, fmtPct, fmtUSD, fmtUSDk, fmtIRR, fmtX, fmtIRRor } from '../utils/formatting.js';
 
 /**
  * @typedef {object} Metric
@@ -106,7 +106,10 @@ export const METRICS = [
     id: 'irrHold', hi: true,
     label: ['15-yr unlevered IRR', '15年无杠杆IRR'],
     value: (m, r) => r.irrHold,
-    format: (m, r) => fmtIRR(r.irrHold),
+    /* `localise` is supplied by the caller — see the note on fmtIRRor. A case
+       whose cash flows never return the capital has no IRR to print, and that
+       has to read differently from a route that does not exist. */
+    format: (m, r, localise) => fmtIRRor(r.irrHold, r.irrHoldAbsent, localise),
   },
   {
     id: 'moic', hi: true,
