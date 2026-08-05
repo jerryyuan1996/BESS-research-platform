@@ -10,7 +10,7 @@ import { S, niceTicks, roundTopRect, roundBotRect, legendRow } from './chartUtil
 import { axisText } from './axes.js';
 // ---------------- scatter (hub-only chart) ----------------
 function scatterChart(parent, cfg){
-  const W = 760, H = 320, padL = 62, padR = 26, padT = 20, padB = 46;
+  const W = 760, H = cfg.h || 320, padL = 62, padR = 26, padT = 20, padB = 46;
   const plotW = W - padL - padR, plotH = H - padT - padB;
   const xs = cfg.pts.map(p => p.x), ys = cfg.pts.map(p => p.y);
   /* `xmax` is a hard ceiling, not a hint. niceTicks rounds the requested top up
@@ -30,7 +30,21 @@ function scatterChart(parent, cfg){
      per market is exactly what puts a negative exit IRR on this chart. */
   const yLo = Math.min(...ys), yHi = Math.max(...ys);
   const yPad = (yHi - yLo) * 0.12 || Math.abs(yHi) * 0.1 || 1;
-  const yt = niceTicks(yLo - yPad, yHi + yPad, 4);
+  const requestedYLo = cfg.ymin != null ? cfg.ymin : yLo - yPad;
+  const requestedYHi = cfg.ymax != null ? cfg.ymax : yHi + yPad;
+  const yt0 = niceTicks(requestedYLo, requestedYHi, 4);
+  const yt = (() => {
+    let ticks = yt0;
+    if (cfg.ymin != null){
+      ticks = ticks.filter(v => v >= cfg.ymin);
+      if (ticks[0] !== cfg.ymin) ticks.unshift(cfg.ymin);
+    }
+    if (cfg.ymax != null){
+      ticks = ticks.filter(v => v <= cfg.ymax);
+      if (ticks[ticks.length - 1] !== cfg.ymax) ticks.push(cfg.ymax);
+    }
+    return ticks;
+  })();
   const xlo = xt[0], xhi = xt[xt.length - 1], ylo = yt[0], yhi = yt[yt.length - 1];
   const X = v => padL + (v - xlo) / (xhi - xlo) * plotW;
   const Y = v => padT + plotH - (v - ylo) / (yhi - ylo) * plotH;
@@ -56,9 +70,11 @@ function scatterChart(parent, cfg){
        reports. Hollow = an alternative route available in that market. Same
        colour, because they are the same market seen through a different
        contract. */
-    const c = p.hollow
-      ? S('circle', { cx, cy, r: 6, fill: 'var(--surface)', stroke: p.color, 'stroke-width': 2.4 })
-      : S('circle', { cx, cy, r: 7, fill: p.color, stroke: 'var(--surface)', 'stroke-width': 2 });
+    const c = p.clippedLow
+      ? S('circle', { cx, cy, r: 6, fill: 'var(--surface)', stroke: p.color,
+        'stroke-width': 2.4, 'stroke-dasharray':'3 2' })
+      : p.hollow ? S('circle', { cx, cy, r: 6, fill: 'var(--surface)', stroke: p.color, 'stroke-width': 2.4 })
+        : S('circle', { cx, cy, r: 7, fill: p.color, stroke: 'var(--surface)', 'stroke-width': 2 });
     c.addEventListener('mousemove', ev => tipShow(p.tip, ev));
     c.addEventListener('mouseleave', tipHide);
     svg.append(c);

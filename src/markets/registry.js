@@ -17,6 +17,7 @@
    There is no `if (market === 'wa')` anywhere in this codebase. If you are about
    to write one, add a capability flag or a manifest field instead.
    --------------------------------------------------------------------------- */
+import { decisionProfileForMarket } from './decisionProfiles.js';
 import wa from './wa/index.js';
 import gb from './gb/index.js';
 import ie from './ie/index.js';
@@ -46,8 +47,18 @@ import pjm from './pjm/index.js';
 import ercot from './ercot/index.js';
 import caiso from './caiso/index.js';
 
-export const markets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso];
+const registeredMarkets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso];
 
+/* Decision metadata is a comparison concern shared by every global component.
+   Attach it once at registration without mutating the market module, so detail
+   dashboards remain the authority for their own facts and renderers. */
+export const markets = registeredMarkets.map(market => ({
+  ...market,
+  comparison: market.comparison
+    ? { ...market.comparison, refinement: decisionProfileForMarket(market.manifest.id) }
+    : market.comparison,
+
+}));
 // ---- derived lookups -------------------------------------------------------
 
 const byIdMap = new Map(markets.map(m => [m.manifest.id, m]));

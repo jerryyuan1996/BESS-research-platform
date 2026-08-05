@@ -101,7 +101,7 @@ const AS_UPSIDE = MERCHANT_UPSIDE - ENERGY_UPSIDE;
 
 /* Ancillary saturation, as a path rather than a level — the same treatment PJM's
    Regulation line gets and the same mechanism Ireland and Romania use. CAISO
-   ancillary requirements are small relative to a fleet near 15 GW and rising,
+   ancillary requirements are small relative to a 16.7 GW fleet and rising,
    with batteries about 46% of a roughly 500 GW interconnection queue. The curve
    is a fleet ratio held flat once the requirement is comprehensively oversupplied,
    because nothing published extends the projection further. */
@@ -141,8 +141,8 @@ const economics = {
   services: AS_BASE,
   servicesCurve: AS_CURVE,
   servicesNote: [
-    'CAISO ancillary requirements are small against a fleet near 15 GW with batteries about 46% of a ~500 GW queue. The curve is a fleet ratio, flat once the requirement is comprehensively oversupplied.',
-    'CAISO辅助服务需求相对于近15GW的机组规模较小，而储能约占约500GW排队量的46%。该曲线为机组规模比率，在需求被全面超额供给后保持不变。',
+    'CAISO ancillary requirements are small against a 16.7 GW fleet with batteries about 46% of a ~500 GW queue. The curve is a fleet ratio, flat once the requirement is comprehensively oversupplied.',
+    'CAISO辅助服务需求相对于16.7GW的机组规模较小，而储能约占约500GW排队量的46%。该曲线为机组规模比率，在需求被全面超额供给后保持不变。',
   ],
 
   /* Seeded at zero and editable in the home-page Investment Lab, identical to
@@ -223,8 +223,8 @@ const ranges = {
 
   services: band(economics.services, AS_DOWNSIDE, AS_UPSIDE, {
     basis: [
-      'The ancillary fifth of the same merchant benchmark, at the same year-1 vintage and on the same estimated 80/20 split. Saturation after year 1 is carried by `servicesCurve` rather than folded into this seed: CAISO ancillary requirements are small against a fleet near 15 GW, with batteries about 46% of a roughly 500 GW interconnection queue behind it.',
-      '同一市场化收入基准中辅助服务所占的五分之一，按相同的第1年口径与相同的估算80/20拆分。第1年之后的饱和由`servicesCurve`承载，而非并入本种子值：CAISO辅助服务需求相对于近15GW的机组规模较小，其后还有约500GW并网排队，其中储能约占46%。',
+      'The ancillary fifth of the same merchant benchmark, at the same year-1 vintage and on the same estimated 80/20 split. Saturation after year 1 is carried by `servicesCurve` rather than folded into this seed: CAISO ancillary requirements are small against a 16.7 GW fleet, with batteries about 46% of a roughly 500 GW interconnection queue behind it.',
+      '同一市场化收入基准中辅助服务所占的五分之一，按相同的第1年口径与相同的估算80/20拆分。第1年之后的饱和由`servicesCurve`承载，而非并入本种子值：CAISO辅助服务需求相对于16.7GW的机组规模较小，其后还有约500GW并网排队，其中储能约占46%。',
     ],
     source: 'Modo Energy CAISO BESS merchant benchmark; CAISO interconnection queue composition',
     gate: 'G30',
@@ -314,8 +314,8 @@ export const comparison = {
      Californian battery trades its own energy from commercial operation.
      See src/comparison/vintage.js. */
   merchantVintage: merchantVintage(1, economics, ranges, [
-    'Year 1, because a Resource Adequacy contract sells capacity to a load-serving entity and leaves the energy and ancillary legs with the owner — merchant exposure begins at commercial operation. Both legs come from the same published merchant benchmark, split on one estimated 80/20 share, and move together on one set of forward assumptions: a fleet near 15 GW with batteries about 46% of a roughly 500 GW queue behind it, midday solar driving the negative prices a battery charges into, and ancillary requirements that do not grow with the fleet.',
-    '第1年，因为容量充裕度合约将容量出售给负荷服务实体，而电能量与辅助服务收入仍归业主所有 — 市场化敞口自商业运行起即开始。两个收入项均取自同一已公布的市场化收入基准，按同一估算的80/20比例拆分，并基于同一套前瞻假设同步变动：机组规模接近15GW，其后约500GW排队中储能约占46%，午间光伏形成储能赖以充电的负电价，而辅助服务需求不随机组规模增长。',
+    'Year 1, because a Resource Adequacy contract sells capacity to a load-serving entity and leaves the energy and ancillary legs with the owner — merchant exposure begins at commercial operation. Both legs come from the same published merchant benchmark, split on one estimated 80/20 share, and move together on one set of forward assumptions: a 16.7 GW fleet with batteries about 46% of a roughly 500 GW queue behind it, midday solar driving the negative prices a battery charges into, and ancillary requirements that do not grow with the fleet.',
+    '第1年，因为容量充裕度合约将容量出售给负荷服务实体，而电能量与辅助服务收入仍归业主所有 — 市场化敞口自商业运行起即开始。两个收入项均取自同一已公布的市场化收入基准，按同一估算的80/20比例拆分，并基于同一套前瞻假设同步变动：机组规模为16.7GW，其后约500GW排队中储能约占46%，午间光伏形成储能赖以充电的负电价，而辅助服务需求不随机组规模增长。',
   ]),
 
   narrative: {
@@ -325,7 +325,7 @@ export const comparison = {
       '这是美国唯一一个合同化收入占据大部分收入的市场，也是唯一一个四小时构成上限而非下限的市场。2025年上半年容量充裕度平均为每kW每月$8.77，而市场化收入约为$2.5–3，因此加州储能在实质上是一份附带交易期权的容量合约。此处的不确定性与其他各处恰恰相反：市场化区间较窄，而合同化区间较宽，因为容量充裕度是逐笔协商而非集中出清 — 非受限区域为每kW每月$4.29至$14.67。承销依据应为交易对手、合约期限与可交付性状态；价差只是其中较小的部分。',
     ],
     /* Roughly 500 GW in the CAISO queue with batteries about 46% of it — about
-       230 GW — against a fleet near 15 GW. */
+       230 GW — against a fleet of 16.7 GW. */
     pipelineRatio: '~15×',
   },
 };

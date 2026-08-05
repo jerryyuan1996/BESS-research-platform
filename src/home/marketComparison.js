@@ -15,6 +15,19 @@ import { why } from '../components/decisionLogic.js';
 import { METRICS, rank, metricLabel } from '../comparison/metrics.js';
 import { runAll } from '../comparison/engine.js';
 import { strategyById, baseStrategy } from '../comparison/strategies.js';
+const HIDDEN_METRIC_IDS = new Set([
+  'composite',
+  'pipelineRatio',
+  'executedShare',
+  'proxyShare',
+  'evidenceConfidence',
+  'observedNpv',
+  'capexCompleteness',
+  'reauctionExposure',
+  'kwPerM',
+]);
+const DECISION_METRICS = METRICS.filter(metric => !HIDDEN_METRIC_IDS.has(metric.id));
+
 
 /* Structural commentary. Deliberately names no winner: rankings move when a
    market is added, and a sentence that names a winner goes stale silently. The
@@ -49,7 +62,7 @@ export function renderLeague(main, marketList, exitYear){
     h('thead', {}, h('tr', {},
       h('th', { class: 'rowlbl' }, L(['Indicator', '指标'])),
       marketList.map(m => h('th', { class: 'num' }, m.manifest.flag + ' ' + L(m.manifest.shortName))))),
-    h('tbody', {}, METRICS.map(metric => {
+    h('tbody', {}, DECISION_METRICS.map(metric => {
       const tr = h('tr', {}, h('td', { class: 'rowlbl' }, h('b', {}, L(metricLabel(metric, exitYear)))));
       const { best, worst } = rank(metric, marketList, results);
       marketList.forEach((m, i) => {

@@ -6,11 +6,11 @@
    three regional code paths. Regional facts live in regions.js.
 
    Rule vintages are effective-dated because several are moving: EPRX rules
-   effective 1 Jul 2026, and the FY2026 LTDA is in consultation, not final.
+   effective 1 Jul 2026, and LTDA Round 3 results are final as of 13 May 2026.
    --------------------------------------------------------------------------- */
 
 export const JP_NATIONAL = {
-  asOf: '2026-07-28',
+  asOf: '2026-08-04',
   timezone: 'JST',
   currency: 'JPY',
 
@@ -56,7 +56,7 @@ export const JP_NATIONAL = {
       tenor: ['Long-term award (auction-vintage specific)', '长期中标（按拍卖年份而定）'],
       obligation: ['Delivery, plus return of a share of other-market revenue', '交付义务，并返还部分其他市场收入'],
       areaSpecific: false,
-      rule: ['FY2026 solicitation in consultation 21 Jul – 3 Aug 2026', 'FY2026募集文件征询期：2026年7月21日–8月3日'],
+      rule: ['Round 3 final: 6h receives partial credit, 8h+ full credit; 30% single-country sourcing cap', '第三轮最终规则：6小时获部分信用，8小时以上获全额信用；单一国家采购上限30%'],
     },
   ],
 
@@ -100,8 +100,8 @@ export const JP_NATIONAL = {
   ],
 
   policy: {
-    ltdaConsultation: ['FY2026 LTDA solicitation documents under public consultation 21 Jul – 3 Aug 2026 — draft, not final policy.',
-                       'FY2026长期脱碳电源拍卖募集文件于2026年7月21日至8月3日公开征询 — 属草案，非最终政策。'],
+    ltdaRound3: ['LTDA Round 3 results published 13 May 2026 — final for the reviewed vintage; 6h is partly de-rated, 8h+ receives full credit and sourcing is capped.',
+                 'LTDA第三轮结果于2026年5月13日公布 — 对本次复核年份为最终结果；6小时部分折减、8小时以上全额信用并设采购来源上限。'],
     eprxVintage: ['EPRX trading rules and guide effective 1 July 2026 are the current balancing-market rule snapshot.',
                   'EPRX交易规则及指引自2026年7月1日生效，为当前调整力市场规则快照。'],
   },

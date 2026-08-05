@@ -35,19 +35,21 @@ export function renderStack(main, marketList, exitYear){
      not the same asset as a 15-year contract, so it is stacked separately rather
      than counted as secured. Markets without an auction-renewal stream simply
      show a zero-height middle segment. */
-  const secMWh = results.map((r, i) => (r.secY ? r.secY[0] : r.capY[0]) / hrs[i]);
+  const fixedMWh = results.map((r, i) => (r.secY ? r.secY[0] : r.capY[0]) / hrs[i]);
   const aucMWh = results.map((r, i) => (r.aucY ? r.aucY[0] : 0) / hrs[i]);
   const mchMWh = results.map((r, i) => r.mchY[0] / hrs[i]);
-  const tot = secMWh.map((v, i) => v + aucMWh[i] + mchMWh[i]);
+  const secMWh = fixedMWh.map((value, i) => results[i].evidenceSecuredShare > 0 ? value : 0);
+  const proxyMWh = fixedMWh.map((value, i) => value - secMWh[i] + aucMWh[i]);
+  const tot = secMWh.map((v, i) => v + proxyMWh[i] + mchMWh[i]);
 
-  const secShare = results.map(r => (r.securedShare ?? r.contractedShare) * 100);
+  const secShare = results.map(r => (r.evidenceSecuredShare || 0) * 100);
 
   barChart(c, {
     xs: marketList.map((m, i) => L(m.manifest.shortName) + ' · ' + hrs[i] + 'h'),
     mode: 'stack', bw: 40, yfmt: v => fmtUSDk(v), h: 280,
     series: [
       { name: ['Secured / contracted', '已锁定/合同化'], color: 'var(--s2)', vals: secMWh },
-      { name: ['Auction-renewal (not secured)', '拍卖续约（未锁定）'], color: 'var(--s3)', vals: aucMWh },
+      { name: ['Modelled/proxy fixed revenue', '模型化/代理固定收入'], color: 'var(--s3)', vals: proxyMWh },
       { name: ['Merchant + services (net)', '市场化+服务（净）'], color: 'var(--s1)', vals: mchMWh },
     ],
   });

@@ -338,7 +338,7 @@ function renderOutputs(parent, market, seedMarket, strategyId, exitYear, convent
     kpi(L(['Yr-1 cash per $1M', '每$1M第1年现金']), fmtUSDk(now.eb1 * 1e6 / now.net)),
     kpi(L(['kW per $1M', '每$1M可控kW']), fmtN(now.kwPerM)),
     kpi(L(['Secured share of yr-1 revenue', '第1年收入锁定占比']),
-      fmtPct((now.securedShare ?? now.contractedShare) * 100, 0)));
+      fmtPct((now.evidenceSecuredShare || 0) * 100, 0)));
 
   if (debt){
     kpis.append(

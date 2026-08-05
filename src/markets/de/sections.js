@@ -78,9 +78,9 @@ SEC_B.home = function (){
           '2026年占收入55%，预计2030年降至约5%；aFRR边际价格同比下跌35%'],
          ['The 2026 revenue mix does not survive the modelled window.','2026年的收入结构无法延续至整个建模窗口。']],
       ] },
-      { t:'why', text:['These four are not independent. Germany built the deepest BESS fleet in Europe on an ancillary market that its own build-out is now saturating, with no capacity route to fall back on and no locational price to differentiate a site. That is why tolling grew here faster than anywhere else: it is the only mechanism that converts a German merchant position into something a lender will size against, and it is why the toll tab matters more here than in any other market on this platform.',
-        '这四点并非彼此独立。德国在辅助服务市场之上建成了欧洲规模最大的储能装机，而其自身的建设正在使该市场饱和；与此同时既无可退守的容量路径，也无可区分场址的区位价格。这正是租赁模式在德国增长快于其他任何地区的原因：它是唯一能将德国市场化头寸转化为贷款人可据以放贷之物的机制，也是租赁议题在本平台所有市场中于此地最为关键的原因。'],
-        sig:['No capacity route, no zonal price, so tolling','无容量路径、无分区电价，故走租赁'] },
+      { t:'why', text:['These four are not independent. Germany built the deepest BESS fleet in Europe on an ancillary market that its own build-out is now saturating. The current auction excludes this asset, while the shorter-duration May 2027 route has no clearing price to underwrite, and there is no locational price to differentiate a site. That is why tolling grew here faster than anywhere else: it is the only mechanism that converts a German merchant position into something a lender will size against, and it is why the toll tab matters more here than in any other market on this platform.',
+        '这四点并非彼此独立。德国在辅助服务市场之上建成了欧洲规模最大的储能装机，而其自身的建设正在使该市场饱和。当前拍卖排除该类资产，2027年5月的短时长路径尚无可承销的出清价格，同时也无可区分场址的区位价格。这正是租赁模式在德国增长快于其他任何地区的原因：它是唯一能将德国市场化头寸转化为贷款人可据以放贷之物的机制，也是租赁议题在本平台所有市场中于此地最为关键的原因。'],
+        sig:['No current clearing, no zonal price, so tolling','无当前出清、无分区电价，故走租赁'] },
     ] },
 
     { t:'card', title:['Where German BESS revenue comes from, and where it is going','德国储能收入来源及其走向'], badges:['calc'], blocks:[

@@ -127,9 +127,9 @@ SEC_B.story = function (){
              '并网排队中的发电与储能项目约' + O.queueTotalGW + 'GW，其中储能约占' + O.queueBatterySharePct + '%。并网已取代技术成本成为建设的约束性瓶颈。'],
           i:['The revenue question is largely settled here. The access question is not.','此处的收入问题大体已定，而准入问题尚未解决。'] },
       ] },
-      { t:'why', text:['CAISO and ERCOT ran the same experiment from opposite ends and it is worth seeing them together. Both built roughly 15 GW of battery. Texas did it by making connection almost free and fast, and lost the merchant margin as a result. California did it against a queue that has become the binding constraint, and kept a contracted revenue line worth several times the Texan merchant one. Neither outcome is an accident of policy — each is the direct consequence of what its market chose to make scarce.',
-        'CAISO与ERCOT从相反的两端进行了同一场实验，值得对照观察。两者都建成了约15GW储能。德州的做法是使并网几乎免费且迅速，其结果是失去了市场化margin。加州则是在排队已成为约束性瓶颈的情况下完成建设，并保有了价值数倍于德州市场化收入的合同化收入。两种结果都非政策的偶然产物 — 而是各自市场选择使何种要素稀缺所带来的直接后果。'],
-        sig:['Same 15 GW, opposite scarcity, opposite outcome','同样的15GW，相反的稀缺性，相反的结果'] },
+      { t:'why', text:['CAISO and ERCOT ran the same experiment from opposite ends and it is worth seeing them together. Both built large battery fleets — 16.7 GW in CAISO and about 15 GW in ERCOT. Texas did it by making connection almost free and fast, and lost the merchant margin as a result. California did it against a queue that has become the binding constraint, and kept a contracted revenue line worth several times the Texan merchant one. Neither outcome is an accident of policy — each is the direct consequence of what its market chose to make scarce.',
+        'CAISO与ERCOT从相反的两端进行了同一场实验，值得对照观察。CAISO已建成16.7GW储能，ERCOT约15GW。德州的做法是使并网几乎免费且迅速，其结果是失去了市场化margin。加州则是在排队已成为约束性瓶颈的情况下完成建设，并保有了价值数倍于德州市场化收入的合同化收入。两种结果都非政策的偶然产物 — 而是各自市场选择使何种要素稀缺所带来的直接后果。'],
+        sig:['Large fleets, opposite scarcity, opposite outcome','大规模机组，相反的稀缺性，相反的结果'] },
       { t:'src', src:SRC.fleet, use:['Fleet growth and the queue composition','机组增长与排队构成'] },
     ] },
     { t:'card', title:['What changes next, and when','下一步变化及其时点'], badges:['official','forecast'], blocks:[
@@ -252,8 +252,8 @@ SEC_B.services = function (){
   return {
   head: ['Ancillary Services — the smallest leg, and it does not pay for duration',
          '辅助服务 — 最小的收入项，且不为时长付费'],
-  cap: ['About a fifth of an already-small merchant line, saturating against a fleet near 15 GW.',
-        '约占本已较小的市场化收入的五分之一，且正在近15GW的机组规模面前趋于饱和。'],
+  cap: ['About a fifth of an already-small merchant line, saturating against a 16.7 GW fleet.',
+        '约占本已较小的市场化收入的五分之一，且正在16.7GW的机组规模面前趋于饱和。'],
   blocks: [
     { t:'card', mt:false, title:['Where the ancillary seed comes from','辅助服务种子值的来源'], badges:['calc','verify'], blocks:[
       { t:'kpis', items:[

@@ -424,6 +424,13 @@ function rangeAuthority(path){
   return RANGE_LEAF_AUTHORITY[leaf] ?? null;
 }
 
+/* IC review metadata is a human-owned decision overlay. It is deliberately
+   classified as one restrictive subtree: automation may read and recompute from
+   it, but may neither publish nor propose changes to review conclusions,
+   evidence labels, gates or contract-risk judgements. */
+function refinementAuthority(path){
+  return path.startsWith('refinement.') ? AUTHORITY.METHODOLOGY : null;
+}
 /* ---------------------------------------------------------------------------
    Queries. Callers ask these rather than reading the tables directly, so the
    default for an unrecognised path is safe rather than permissive.
@@ -435,7 +442,7 @@ function rangeAuthority(path){
  * that forgetting to classify a new field fails closed rather than open.
  */
 export function comparisonAuthority(path){
-  return COMPARISON_AUTHORITY[path] ?? rangeAuthority(path) ?? AUTHORITY.METHODOLOGY;
+  return COMPARISON_AUTHORITY[path] ?? rangeAuthority(path) ?? refinementAuthority(path) ?? AUTHORITY.METHODOLOGY;
 }
 
 /**
@@ -444,7 +451,7 @@ export function comparisonAuthority(path){
  * so a new comparison field cannot be added without someone deciding who owns it.
  */
 export function isClassified(path){
-  return (path in COMPARISON_AUTHORITY) || rangeAuthority(path) != null;
+  return (path in COMPARISON_AUTHORITY) || rangeAuthority(path) != null || refinementAuthority(path) != null;
 }
 
 /** Authority for a manifest field. Unknown fields fail closed. */

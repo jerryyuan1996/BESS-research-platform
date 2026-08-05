@@ -141,7 +141,7 @@ export const CAISO_CONGESTION = {
         { label: ['Battery share of the queue', '储能占排队量比重'],
           value: ['≈46%', '约46%'], period: ['2025', '2025年'] },
         { label: ['Operating battery fleet', '在运储能机组'],
-          value: ['≈15 GW', '约15GW'], period: ['early 2026', '2026年初'] },
+          value: ['16.7 GW', '16.7GW'], period: ['July 2026 outlook', '2026年7月展望'] },
       ],
       capture: {
         mechanism: CAPTURE.UNCOMPENSATED,
@@ -169,7 +169,7 @@ export const CAISO_CONGESTION = {
     {
       id: 'caiso-as-saturation',
       bearsOn: 'services',
-      name: ['Ancillary saturation against a 15 GW fleet', '面对15GW机组规模的辅助服务饱和'],
+      name: ['Ancillary saturation against a 16.7 GW fleet', '面对16.7GW机组规模的辅助服务饱和'],
       shape: 'zone',
       coord: [-121.50, 37.30],
       direction: 'both',
@@ -179,7 +179,7 @@ export const CAISO_CONGESTION = {
           value: ['≈20%, estimated — no published decomposition', '约20%，估算值 — 无公开拆解数据'],
           period: ['CY2025', '2025日历年'] },
         { label: ['Fleet against a requirement that does not grow with it', '机组规模相对不随其增长的系统需求'],
-          value: ['≈15 GW operating, batteries ≈46% of a ~500 GW queue', '在运约15GW，储能约占约500GW排队量的46%'],
+          value: ['16.7 GW operating, batteries ≈46% of a ~500 GW queue', '在运16.7GW，储能约占约500GW排队量的46%'],
           period: ['2026', '2026年'] },
       ],
       capture: {

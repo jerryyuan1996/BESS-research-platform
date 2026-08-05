@@ -38,11 +38,11 @@ export function renderFindings(main, marketList, exitYear){
   const n = marketList.length;
 
   const byYield = ranked(marketList, results, (m, r) => r.yield1 * 100);
-  const bySecured = ranked(marketList, results, (m, r) => (r.securedShare ?? r.contractedShare) * 100);
+  const bySecured = ranked(marketList, results, (m, r) => (r.evidenceSecuredShare || 0) * 100);
   const byMoic = ranked(marketList, results, (m, r) => r.moic);
   const byKw = ranked(marketList, results, (m, r) => r.kwPerM);
   const byIrr = ranked(marketList, results, (m, r) => r.irrHold);
-  const byTenor = ranked(marketList, results, (m, r) => r.securedYears ?? 0);
+  const byTenor = ranked(marketList, results, (m, r) => r.evidenceSecuredYears || 0);
 
   const items = [];
 

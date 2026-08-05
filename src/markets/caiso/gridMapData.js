@@ -65,7 +65,7 @@ const points = [
     ['The trough is a policy artefact rather than a weather one, so it does not go away — the solar that creates it is not being removed. What compresses it is other batteries, and the queue is what limits how fast they arrive.',
      '该低谷是政策的产物而非天气的产物，因此不会消失 — 造就它的光伏不会被移除。压缩它的是其他储能，而排队限制了它们到位的速度。'],
     'CAISO Special Report on Battery Storage', URL.storage,
-    { operatingCapacity:['Battery fleet near 15 GW in early 2026, from 11.6 GW in 2024','2026年初储能机组接近15GW，2024年为11.6GW'] }),
+    { operatingCapacity:['CAISO battery fleet 16.7 GW in the July 2026 reliability outlook','2026年7月可靠性展望显示CAISO储能机组为16.7GW'] }),
 
   point('desertsouth', ['Desert Southwest — Riverside and Imperial', '西南沙漠区 — 里弗赛德与因皮里尔'], [-116.20, 33.60], 'generation', ['Solar and storage cluster', '光伏与储能集群'], ['current','future'],
     ['Where much of the CAISO storage fleet has been built, alongside the solar it charges from, and inside reach of the Los Angeles basin local capacity area.',
@@ -84,8 +84,8 @@ const points = [
     'CAISO 2026 NQC values', URL.nqc),
 
   point('queue', ['Interconnection queue — ~500 GW', '并网排队 — 约500GW'], [-120.90, 39.40], 'node', ['Access constraint', '准入约束'], ['future'],
-    ['Roughly 500 GW of generation and storage sits in the CAISO interconnection queue, with batteries about 46% of it, against an operating battery fleet near 15 GW.',
-     'CAISO并网排队中的发电与储能项目约500GW，其中储能约占46%，而在运储能机组约15GW。'],
+    ['Roughly 500 GW of generation and storage sits in the CAISO interconnection queue, with batteries about 46% of it, against an operating battery fleet of 16.7 GW.',
+     'CAISO并网排队中的发电与储能项目约500GW，其中储能约占46%，而在运储能机组为16.7GW。'],
     ['Interconnection has overtaken technology cost as the binding constraint on deployment here. For a developer that is the obstacle; for an incumbent it is what protects the Resource Adequacy price.',
      '在此处，并网已取代技术成本成为建设的约束性瓶颈。对开发方而言这是障碍；对在运方而言，它正是保护容量充裕度价格的因素。'],
     'CAISO Summer Loads and Resources Assessment', URL.summer,
@@ -103,7 +103,7 @@ const routes = [
           '中央谷地与南部沙漠的公用事业级光伏为沿海负荷供电，形成足够深的午间低谷，使电价每日有数小时为负。'],
     investor:['This is the merchant opportunity and it is durable, because it is created by policy rather than weather. It is also the smaller half of the revenue — the whole merchant band on this dashboard is narrower than the reported Resource Adequacy range.',
               '这是市场化收入的机会所在，且具有持续性，因为它由政策而非天气造就。但它同时也是收入中较小的一半 — 本看板整个市场化收入区间都窄于已报告的容量充裕度区间。'],
-    operatingCapacity:['Battery fleet near 15 GW, from 11.6 GW in 2024 after 45% growth','储能机组接近15GW，2024年为11.6GW，此前单年增长45%'] },
+    operatingCapacity:['Battery fleet 16.7 GW in the July 2026 reliability outlook','2026年7月可靠性展望显示储能机组为16.7GW'] },
 
   { id: 'north-south', kind:'route', name:['NP15 to SP15 — two price regions, one state','NP15至SP15 — 一州之内的两个价格区'],
     coords:[[-122.20, 37.70], [-120.50, 36.50], [-118.24, 34.05]],
@@ -146,7 +146,7 @@ export const CAISO_GRID_MAP = {
     current: {
       label: ['Current · 2026', '当前 · 2026'],
       kicker: ['A capacity contract with a trading option', '一份附带交易期权的容量合约'],
-      thesis: ['The fleet reached near 15 GW and Resource Adequacy became most of the revenue — $8.77/kW-month against merchant nearer $2.5–3. Slice of Day redefined RA obligations across 24 hourly slices, and the four-hour NQC test caps duration credit.','机组规模接近15GW，容量充裕度成为收入主体 — 每kW每月$8.77，而市场化收入约为$2.5–3。分时段机制将容量充裕度义务按24个小时时段重新定义，四小时净合格容量测试则为时长信用设定了上限。'],
+      thesis: ['The fleet reached 16.7 GW and Resource Adequacy became most of the revenue — $8.77/kW-month against merchant nearer $2.5–3. Slice of Day redefined RA obligations across 24 hourly slices, and the four-hour NQC test caps duration credit.','机组规模达到16.7GW，容量充裕度成为收入主体 — 每kW每月$8.77，而市场化收入约为$2.5–3。分时段机制将容量充裕度义务按24个小时时段重新定义，四小时净合格容量测试则为时长信用设定了上限。'],
       implication: ['Underwrite the counterparty, the tenor and the deliverability status. The spread is the small part.','承销依据应为交易对手、合约期限与可交付性状态。价差只是较小的部分。'],
     },
     future: {

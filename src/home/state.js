@@ -33,6 +33,7 @@ export const homeState = {
   labInputs: {},                     // { [marketId]: { [path]: number } }
   labDebt: {},                       // { [priced convention]: number }
   labOpenBasis: null,                // which field's evidence drawer is expanded
+  fxAsOf: null,                      // active governed translation snapshot
 };
 
 /** Resolves the waterfall market, self-healing if the id is no longer registered. */

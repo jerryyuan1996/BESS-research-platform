@@ -95,7 +95,7 @@ export function renderRegionalStrip(main, marketList, exitYear){
           h('td', { class: 'num' }, h('b', {}, typeof v === 'string' ? v : L(v))))),
         h('tr', {},
           h('td', {}, L(['Secured share (yr 1)', '第1年锁定占比'])),
-          h('td', { class: 'num' }, h('b', {}, r.na ? 'N/A' : fmtPct((r.securedShare ?? r.contractedShare) * 100, 0)))),
+          h('td', { class: 'num' }, h('b', {}, r.na ? 'N/A' : fmtPct((r.evidenceSecuredShare || 0) * 100, 0)))),
         h('tr', {},
           h('td', {}, L(['15-yr unlevered IRR', '15年无杠杆IRR'])),
           h('td', { class: 'num' }, h('b', {}, r.na ? 'N/A' : fmtIRRor(r.irrHold, r.irrHoldAbsent, L)))),

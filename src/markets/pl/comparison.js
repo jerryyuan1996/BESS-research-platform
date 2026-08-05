@@ -94,10 +94,12 @@ const economics = {
   merchGross: 78000,
   feePct: 9,
   services: 10000,
-  grantPct: 10,
+  /* No named scheme supports the former 10% seed. New-entry screening therefore
+     carries zero; a project-specific award can still be entered in the Lab. */
+  grantPct: 0,
   degr: 2,
 
-  grantNote: ['Includes a 10% capital-support assumption', '含10%资本支持假设'],
+  grantNote: ['No unnamed capital support in the new-entry base case', '新进入者基准情景不计未具名资本支持'],
   capNote: [
     '17-yr contract on 13.39% of nameplate; outlives the 15-yr window',
     '17年合同，仅覆盖铭牌容量的13.39%；期限长于15年比较窗口',
@@ -239,6 +241,9 @@ const ranges = {
 };
 
 export const comparison = {
+  /* The capacity agreement is a legacy DY2030 vintage. The last main auction has
+     ended, so a new entrant defaults to merchant + balancing pending a successor. */
+  baseStrategy: 'mer',
   archetype: {
     powerMW: 100,
     durationHours: 4,
@@ -266,10 +271,10 @@ export const comparison = {
   ]),
 
   narrative: {
-    archetype: ['100 MW · 4h · capacity contract', '100MW · 4小时 · 容量合同'],
+    archetype: ['100 MW · 4h · new-entry merchant + balancing', '100MW · 4小时 · 新进入者市场化+平衡服务'],
     thesis: [
-      'A seventeen-year contract on thirteen percent of nameplate. The tenor is real and still the longest in the set; the volume is what the regulator controls, and it was cut by four fifths in a single auction.',
-      '十七年期合同，但仅覆盖铭牌容量的13%。期限确为样本中最长；而容量由监管机构掌控，并在一次拍卖中被削减五分之四。',
+      'The December 2025 auction was the last main-auction route. New entry is screened on merchant plus balancing economics pending a successor framework; the 17-year capacity contract remains visible only as a legacy-vintage alternative.',
+      '2025年12月拍卖是最后一次主拍卖路径。在后续机制落地前，新进入者按市场化加平衡服务经济性筛选；17年容量合同仅作为历史年份备选情景保留。',
     ],
     pipelineRatio: '~13×',
   },

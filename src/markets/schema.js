@@ -161,4 +161,8 @@ export const COMPARISON_SHAPE = {
   narrative: ['archetype', 'thesis', 'pipelineRatio'],
   capabilities: CAPABILITY_FLAGS,
   economics: ECONOMICS_FIELDS,
+  refinement: [
+    'confidenceScore', 'consensus', 'currentUpdate', 'investmentGate',
+    'revenueEvidence', 'pipeline', 'contractRisk',
+  ],
 };
