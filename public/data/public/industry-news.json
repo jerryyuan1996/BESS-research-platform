@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-04T14:04:06.000Z",
+  "updatedAt": "2026-08-05T09:00:00.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -48,10 +48,50 @@
     {
       "source": "pv magazine",
       "status": "ok",
-      "items": 9
+      "items": 8
     }
   ],
   "items": [
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/photovoltaics-lead-spains-electricity-mix-for-four-consecutive-months/",
+      "source": "pv magazine",
+      "title": "Photovoltaics lead Spain’s electricity mix for four consecutive months",
+      "url": "https://www.pv-magazine.com/2026/08/05/photovoltaics-lead-spains-electricity-mix-for-four-consecutive-months/",
+      "publishedAt": "2026-08-05T09:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar generated 7,696 GWh in Spain last month, a new all-time high for monthly PV generation and equivalent to 28.3% of the country's electricity mix. The post Photovoltaics lead Spain’s electricity mix for four consecutive months appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/china-puts-battery-storage-at-center-of-renewable-energy-strategy/",
+      "source": "pv magazine",
+      "title": "China puts battery storage at center of renewable energy strategy",
+      "url": "https://www.pv-magazine.com/2026/08/05/china-puts-battery-storage-at-center-of-renewable-energy-strategy/",
+      "publishedAt": "2026-08-05T08:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "China’s latest five-year renewable energy plan, which targets more than 2.8 TW of solar and wind capacity by 2030, links energy storage with grid reliability, firm power capacity, grid-forming technology and new market-based revenue mechanisms. The post China puts battery storage at center of renewable energy strate…"
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/pm-surya-ghar-rooftop-solar-scheme-surpasses-5-million-households/",
+      "source": "pv magazine",
+      "title": "India’s rooftop solar scheme surpasses 5 million households",
+      "url": "https://www.pv-magazine.com/2026/08/05/pm-surya-ghar-rooftop-solar-scheme-surpasses-5-million-households/",
+      "publishedAt": "2026-08-05T07:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India's Ministry of New and Renewable Energy says the country's rooftop solar program has commissioned 14.8 GW of rooftop solar capacity across over 5 million households. The post India’s rooftop solar scheme surpasses 5 million households appeared first on pv magazine Global ."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/japan-tokyo-gas-enters-offtake-for-200mwh-fukushima-bess-eku-energy-nears-completion-of-first-project/",
+      "source": "Energy-Storage.news",
+      "title": "Japan: Tokyo Gas enters offtake for 200MWh Fukushima BESS, Eku Energy nears completion of first project",
+      "url": "https://www.energy-storage.news/japan-tokyo-gas-enters-offtake-for-200mwh-fukushima-bess-eku-energy-nears-completion-of-first-project/",
+      "publishedAt": "2026-08-05T05:35:14.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Japanese utility Tokyo Gas has entered into a long-term offtake agreement for a 49.7MW/202.1MWh battery storage project in Fukushima Prefecture."
+    },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/largest-bess-in-czech-republic-commissioned-supplied-by-catl-backed-cnte/",
       "source": "Energy-Storage.news",
@@ -161,46 +201,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The dual-source photovoltaic-thermal (PVT) heat pump combines solar and ambient-air heat collection in a single finned evaporator, eliminating the need for separate heat exchangers. The researchers say the simplified design could reduce installation costs. The post Researchers design PVT heat pump with single integr…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/04/clean-energy-offers-least-cost-path-to-meeting-electricity-demand-says-report/",
-      "source": "pv magazine",
-      "title": "Clean energy offers least-cost path to meeting US electricity demand",
-      "url": "https://www.pv-magazine.com/2026/08/04/clean-energy-offers-least-cost-path-to-meeting-electricity-demand-says-report/",
-      "publishedAt": "2026-08-04T09:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Study by the Electricity and Energy Innovation finds choosing a clean energy pathway to meeting America's electricity demand in 2030 would cost $5 billion less than meeting the demand with fossil fuels The post Clean energy offers least-cost path to meeting US electricity demand appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/04/france-germany-italy-spain-portugal-set-daily-solar-records-for-august/",
-      "source": "pv magazine",
-      "title": "France, Germany, Italy, Spain, Portugal set daily solar records for August",
-      "url": "https://www.pv-magazine.com/2026/08/04/france-germany-italy-spain-portugal-set-daily-solar-records-for-august/",
-      "publishedAt": "2026-08-04T09:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "AleaSoft Energy Forecasting recorded five new records for solar produced on a day in August over the weekend. Despite these records, the weekly average electricity price stood in excess of €100 ($115.10)/MWh across these markets last week. The post France, Germany, Italy, Spain, Portugal set daily solar records for…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/04/irena-opens-funding-call-for-renewable-energy-projects-in-central-america-the-caribbean/",
-      "source": "pv magazine",
-      "title": "IRENA opens funding call for renewable energy projects in Central America, the Caribbean",
-      "url": "https://www.pv-magazine.com/2026/08/04/irena-opens-funding-call-for-renewable-energy-projects-in-central-america-the-caribbean/",
-      "publishedAt": "2026-08-04T08:30:00.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Selected projects will have access to financing instruments, investment partnerships and risk reduction mechanisms. Proposals submitted before September 1 will receive priority consideration. The post IRENA opens funding call for renewable energy projects in Central America, the Caribbean appeared first on pv magazi…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/04/photovoltaics-feed-record-12-twh-into-germanys-public-grid-in-july/",
-      "source": "pv magazine",
-      "title": "Photovoltaics feed record 12 TWh into Germany’s public grid in July",
-      "url": "https://www.pv-magazine.com/2026/08/04/photovoltaics-feed-record-12-twh-into-germanys-public-grid-in-july/",
-      "publishedAt": "2026-08-04T07:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar generation surpassed the previous monthly high set in June, when photovoltaic systems delivered more than 11 TWh to the grid for the first time. The post Photovoltaics feed record 12 TWh into Germany’s public grid in July appeared first on pv magazine Global ."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/load-smoothing-cold-start-backup-and-speed-to-power-fluence-maps-the-battery-storage-opportunity-for-australian-data-centres/",
@@ -381,16 +381,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Quinbrook Infrastructure Partners has submitted a 520MW standalone BESS in the ACT to Australia's EPBC Act."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-should-treat-data-centres-as-anchor-tenants-for-clean-energy-infrastructure-says-airtrunk/",
-      "source": "Energy-Storage.news",
-      "title": "Australia should treat data centres as ‘anchor tenants’ for clean energy infrastructure, says AirTrunk",
-      "url": "https://www.energy-storage.news/australia-should-treat-data-centres-as-anchor-tenants-for-clean-energy-infrastructure-says-airtrunk/",
-      "publishedAt": "2026-07-30T02:17:10.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Large data centres should serve as “anchor tenants” for new renewable energy generation, storage, and transmission investment, leveraging the scale and longevity of digital infrastructure commitments to advance energy projects rather than waiting for supply to arrive."
     },
     {
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
