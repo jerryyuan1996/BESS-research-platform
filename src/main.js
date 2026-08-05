@@ -21,6 +21,10 @@ import './styles/market.css';
 import './styles/cockpit.css';
 import './styles/live.css';
 
+import { inject } from '@vercel/analytics';
 import { boot } from './app/app.js';
+
+// Initialize Vercel Web Analytics
+inject();
 
 boot();
