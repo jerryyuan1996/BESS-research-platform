@@ -20,11 +20,13 @@ import { why } from '../components/decisionLogic.js';
 import { kpi } from '../components/metricCard.js';
 import { barChart, scatterChart, waterfall } from '../charts/index.js';
 import {
-  NF2, fmtN, fmt1, fmtPct, fmtUSDk, fmtIRR, fmtIRRor, fmtX,
+  NF2, fmtN, fmt1, fmtPct, fmtUSDk, fmtIRRor, fmtX,
 } from '../utils/formatting.js';
 import { runCase, runBaseCase } from '../comparison/engine.js';
 import { STRATEGIES, strategyById, baseStrategy, supportedStrategies } from '../comparison/strategies.js';
-import { FX, EXIT_Y_CONTRACTED, EXIT_Y_MERCHANT, FX_NOTE, FX_SEED_DATE } from '../comparison/assumptions.js';
+import { runScenarioSet } from '../comparison/refinement.js';
+import { activeFxState } from '../comparison/fx.js';
+import { FX, EXIT_Y_CONTRACTED, EXIT_Y_MERCHANT } from '../comparison/assumptions.js';
 import { whenLoaded } from '../live/client.js';
 import { liveBadge } from '../live/liveValue.js';
 import { homeState, waterfallMarket } from './state.js';
@@ -50,21 +52,26 @@ const fxRate = (v) => (v < 0.1
 function fxRow(marketList){
   // Only show rates actually in use by the registered markets.
   const used = [...new Set(marketList.map(m => m.manifest.currency))];
+  const state = activeFxState();
   const txt = used.map(cur => {
     const mf = marketList.find(m => m.manifest.currency === cur).manifest;
-    return mf.currencySymbol + '1 = $' + fxRate(FX[cur]);
+    return mf.currencySymbol + '1 = $' + fxRate(state.rates[cur]);
   }).join(' · ');
 
   const row = h('div', { class: 'fxrow' },
     h('span', {}, 'FX: ' + txt),
-    h('span', {}, L(['Seed date: ', '种子日期：']) + FX_SEED_DATE),
-    h('span', {}, L(FX_NOTE)));
+    h('span', {}, L(['Translation FX as of: ', '折算汇率日期：']) + state.asOf),
+    h('span', {}, state.kind === 'observed'
+      ? L(['Fresh ECB observations are used by the model.', '模型采用最新欧洲央行观测值。'])
+      : L(['Dated approved seed fallback is used; IRRs remain local-currency invariant.',
+           '采用注明日期的已批准种子回退值；IRR不受折算汇率影响。'])));
 
   /* The live ECB rates are appended after the page has rendered. The engine goes
      on using the approved rates above — this block is an observation shown for
      comparison, and the visual separation is the point. If no snapshot has been
      published the row simply stays as it was. */
   const holder = h('div', { class: 'fx-observed' });
+  if (state.kind !== 'observed') return row;
 
   whenLoaded('fx-ecb', (summary) => {
     const rates = summary?.derived?.rates;
@@ -89,8 +96,8 @@ function fxRow(marketList){
       h('span', {}, parts.join(' · ')),
       liveBadge(summary),
       h('span', { class: 'obs-hint' }, L([
-        'not used by the model — approved rates above are',
-        '模型未采用此值 — 实际使用上方已批准汇率',
+        'used by the model; percentage compares with the approved seed',
+        '模型已采用；百分比为与已批准种子值的差异',
       ])));
   });
 
@@ -124,7 +131,7 @@ function renderMatrix(main, marketList, X){
      fragility (docs/migration-notes.md, B2) while producing identical output. */
   const perMarket = marketList.map(m => ({
     market: m,
-    runs: STRATEGIES.map(s => ({ s, r: runCase(m, s.id, X) }))
+    runs: STRATEGIES.map(s => ({ s, r: runCase(m, s.id, X), scenarios:runScenarioSet(m, s.id, X) }))
       .filter(x => !x.r.na && hasNoNegativeIrr(x.r)),
   })).filter(entry => entry.runs.length > 0);
   const allIrrs = perMarket.flatMap(pm => pm.runs.map(x => x.r.irrHold)).filter(v => v != null);
@@ -132,7 +139,7 @@ function renderMatrix(main, marketList, X){
 
   const rows = [];
   perMarket.forEach(({ market: m, runs }, mi) => {
-    runs.forEach(({ s, r }, i) => {
+    runs.forEach(({ s, r, scenarios }, i) => {
       const tr = h('tr', { class: 'eng-row' + (mi % 2 ? ' alt' : '') + (i === 0 ? ' grp-first' : '') });
       if (i === 0) tr.append(h('td', { class: 'mcell', rowspan: String(runs.length), style: '--mc:' + m.manifest.color },
         h('span', { class: 'mflag' }, m.manifest.flag),
@@ -145,6 +152,9 @@ function renderMatrix(main, marketList, X){
         h('td', { class: 'num' }, fmtUSDk(r.eb1 * 1e6 / r.net)),
         h('td', { class: 'num' }, r.payback ? r.payback + L([' yr', ' 年']) : '—'),
         h('td', { class: 'num' + (r.irrHold === bestIrr ? ' best' : '') }, h('b', {}, fmtIRRor(r.irrHold, r.irrHoldAbsent, L))),
+        h('td', { class: 'num scenario-triplet' },
+          [scenarios.bear, scenarios.base, scenarios.bull]
+            .map(item => fmtIRRor(item.result.irrHold, item.result.irrHoldAbsent, L)).join(' / ')),
         h('td', { class: 'num' }, fmtIRRor(r.irrExit, r.irrExitAbsent, L)),
         h('td', { class: 'num' }, h('b', {}, fmtX(r.moic))));
       rows.push(tr);
@@ -159,6 +169,7 @@ function renderMatrix(main, marketList, X){
       h('th', { class: 'num' }, L(['Yr-1 cash per $1M', '每$1M第1年现金'])),
       h('th', { class: 'num' }, L(['Payback', '回收期'])),
       h('th', { class: 'num' }, L(['15-yr IRR', '15年IRR'])),
+      h('th', { class: 'num scenario-triplet' }, L(['Bear / Base / Bull', '悲观/基准/乐观'])),
       h('th', { class: 'num' }, L(['Exit-yr ' + X + ' IRR', '第' + X + '年退出IRR'])),
       h('th', { class: 'num' }, L(['MOIC (yr ' + X + ')', 'MOIC（第' + X + '年）'])))),
     h('tbody', {}, rows))));
@@ -234,8 +245,8 @@ function frontierPoints(marketList, X){
       const r = runCase(m, s.id, X);
       if (r.na || !Number.isFinite(r.irrExit)) continue;
 
-      const secured = (r.securedShare ?? r.contractedShare) * 100;
-      const tenor = r.securedYears ?? 0;
+      const secured = (r.evidenceSecuredShare || 0) * 100;
+      const tenor = r.evidenceSecuredYears || 0;
       const isBase = s.id === baseId;
 
       pts.push({
@@ -243,8 +254,9 @@ function frontierPoints(marketList, X){
         y: r.irrExit * 100,
         color: m.manifest.color,
         hollow: !isBase,
+        clippedLow:r.irrExit < 0,
         // Only the base route is labelled; the rest are identified on hover.
-        label: isBase ? L(m.manifest.shortName) : null,
+        label: isBase ? L(m.manifest.shortName) + (r.irrExit < 0 ? ' <0%' : '') : null,
         tip: '<b>' + m.manifest.flag + ' ' + L(m.manifest.name) + '</b>' +
           '<div class="tr"><span>' + L(['Route', '路径']) + '</span><b>' + L(s.n) +
             (isBase ? L([' (base)', '（基准）']) : '') + '</b></div>' +
@@ -273,12 +285,17 @@ function renderFrontier(main, marketList, X){
 
   scatterChart(cC, {
     // A share of year-1 revenue. 100% is the ceiling, so the axis stops there.
-    xmin: 0, xmax: 100, xfmt: v => fmtN(v) + '%', yfmt: v => fmt1(v) + '%',
+    xmin: 0, xmax: 100, ymin: 0, ymax: 30, h: 640,
+    xfmt: v => fmtN(v) + '%', yfmt: v => fmt1(v) + '%',
     xlabel: ['Secured share of year-1 revenue (%) — exit IRR at year ' + X + ' on the y-axis',
              '第1年已锁定收入占比（%） — 纵轴为第' + X + '年退出IRR'],
     pts,
   });
 
+  cC.append(h('div', { class:'cap frontier-clipped-note' }, L([
+    'Routes below 0% are pinned to the 0% boundary with dashed markers so no market disappears; hover for the actual negative IRR.',
+    '退出IRR低于0%的路线以虚线标记固定在0%边界，确保市场不会消失；悬停可查看实际负值。',
+  ])));
   cC.append(h('div', { class: 'frontier-key' },
     h('span', {}, h('i', { class: 'fk-dot filled' }), L(['Base route — the one every other section reports',
                                                         '基准路径 — 本页其余部分所采用的路径'])),
@@ -352,7 +369,6 @@ function renderWaterfall(main, marketList, X){
 
 export function renderEngine(main, marketList, exitYear){
   renderMatrix(main, marketList, exitYear);
-  renderIrrChart(main, marketList, exitYear);
   renderWaterfall(main, marketList, exitYear);
   renderFrontier(main, marketList, exitYear);
 }

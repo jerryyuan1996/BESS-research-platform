@@ -7,8 +7,8 @@
       held April 2026, cleared at €135,499.99/MW/yr — about 10% lower. The newer
       auction is the one a market-entry benchmark should carry.
 
-   2. SYSTEM SERVICES ARE NO LONGER FLAT. This is the important one. DS3 expires
-      at the end of 2026, extended only until FASS go-live in May 2027 with a
+   2. SYSTEM SERVICES ARE NO LONGER FLAT. This is the important one. DS3 regulated
+      arrangements continue only until FASS go-live in May 2027 with a
       long-stop of September 2027, and effective DS3 rates have already fallen
       more than 40% since 2022. A flat fifteen-year services line models a regime
       that will not exist for fourteen of those years.
@@ -62,7 +62,7 @@ const capacity = {
    The tail is a floor, and the engine holds the last value for any year beyond
    the array — extending a floor is not an additional assumption. */
 const DS3_TO_FASS = [
-  1.00,   // yr 1  — DS3 runs to end-2026
+  1.00,   // yr 1  — DS3 regulated arrangements continue
   0.85,   // yr 2  — extension to FASS go-live; rates already declining
   0.45,   // yr 3  — FASS competitive auctions begin. The step.
   0.30,   // yr 4
@@ -121,8 +121,8 @@ const economics = {
 
   capNote: ['Reliability Option difference payments above the strike', '高于执行价时的可靠性期权差价支付'],
   servicesNote: [
-    'DS3 ends 2026; FASS competitive auctions from May 2027. Curve calibrated on GB’s frequency-response collapse.',
-    'DS3于2026年结束；FASS竞价拍卖自2027年5月启动。衰减曲线以英国调频收入崩塌为标定依据。',
+    'DS3 regulated arrangements continue until FASS competitive auctions start in May 2027 (September 2027 longstop). Curve calibrated on GB’s frequency-response collapse.',
+    'DS3受监管安排持续至FASS竞价拍卖于2027年5月启动（最迟2027年9月）。衰减曲线以英国调频收入崩塌为标定依据。',
   ],
 };
 
@@ -275,8 +275,8 @@ export const comparison = {
   narrative: {
     archetype: ['50 MW · 4h · CRM-led', '50MW · 4小时 · 容量机制主导'],
     thesis: [
-      'Still the highest capacity pay per nameplate MW in the set, but the second revenue leg is being legislated away: DS3 ends in 2026 and FASS replaces a fixed tariff with an auction. Underwrite the capacity contract and the wholesale spread, not the system-services line.',
-      '每铭牌MW容量付费仍为样本最高，但第二收入支柱正被立法取消：DS3于2026年终止，FASS将固定电价改为竞价。承销依据应为容量合同与批发价差，而非系统服务收入。',
+      'Still the highest capacity pay per nameplate MW in the set, but the second revenue leg is changing: DS3 regulated arrangements continue only until FASS replaces the tariff structure with competitive auctions, targeted for May 2027 with a September longstop. Underwrite the capacity contract and the wholesale spread, not the system-services line.',
+      '每铭牌MW容量付费仍为样本最高，但第二收入支柱正在变化：DS3受监管安排仅持续至FASS以竞价拍卖替代现行电价结构，目标为2027年5月，最迟为9月。承销依据应为容量合同与批发价差，而非系统服务收入。',
     ],
     pipelineRatio: '~10×',
   },

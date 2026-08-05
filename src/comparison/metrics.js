@@ -41,15 +41,15 @@ export const METRICS = [
   {
     id: 'securedShare', hi: true,
     label: ['Secured share of year-1 revenue', '第1年已锁定收入占比'],
-    value: (m, r) => (r.securedShare ?? r.contractedShare) * 100,
-    format: (m, r) => fmtPct((r.securedShare ?? r.contractedShare) * 100, 0),
+    value: (m, r) => (r.evidenceSecuredShare || 0) * 100,
+    format: (m, r) => fmtPct((r.evidenceSecuredShare || 0) * 100, 0),
   },
   {
     id: 'securedTenor', hi: true,
     label: ['Secured tenor (years)', '锁定年限（年）'],
-    value: (m, r) => r.securedYears ?? m.comparison.economics.contractYears ?? 0,
+    value: (m, r) => r.evidenceSecuredYears || 0,
     format: (m, r) => {
-      const y = r.securedYears ?? m.comparison.economics.contractYears ?? 0;
+      const y = r.evidenceSecuredYears || 0;
       return y || '—';
     },
   },
@@ -128,6 +128,36 @@ export const METRICS = [
     id: 'pipelineRatio', ctx: true,
     label: ['Pipeline / operating ratio (own basis)', '管线对在运倍数（各自口径）'],
     format: (m) => m.comparison.narrative.pipelineRatio,
+  },
+  {
+    id: 'executedShare', hi: true,
+    label: ['Executed project share (yr 1)', '已执行项目占比（第1年）'],
+    value: (m, r) => (r.executedShare || 0) * 100,
+    format: (m, r) => fmtPct((r.executedShare || 0) * 100, 0),
+  },
+  {
+    id: 'proxyShare', hi: false,
+    label: ['Fixed revenue based on proxy (yr 1)', '基于代理值的固定收入（第1年）'],
+    value: (m, r) => (r.proxyShare || 0) * 100,
+    format: (m, r) => fmtPct((r.proxyShare || 0) * 100, 0),
+  },
+  {
+    id: 'evidenceConfidence', hi: true,
+    label: ['Evidence confidence', '证据置信度'],
+    value: (m, r) => r.evidenceConfidenceScore,
+    format: (m, r) => r.evidenceConfidenceScore + '/10',
+  },
+  {
+    id: 'observedNpv', hi: true,
+    label: ['Observed/disclosed share of revenue NPV', '收入NPV中已观察/已披露占比'],
+    value: (m, r) => (r.evidenceNpv?.shares?.observed_disclosed || 0) * 100,
+    format: (m, r) => fmtPct((r.evidenceNpv?.shares?.observed_disclosed || 0) * 100, 0),
+  },
+  {
+    id: 'capexCompleteness', hi: true,
+    label: ['All-in capex completeness', '全口径资本开支完整度'],
+    value: (m, r) => (r.capexCompleteness?.score || 0) * 100,
+    format: (m, r) => fmtPct((r.capexCompleteness?.score || 0) * 100, 0),
   },
 ];
 

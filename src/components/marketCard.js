@@ -11,18 +11,30 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { chip } from './chip.js';
-import { meter } from './metricCard.js';
 import { fmtPct, fmtIRRor } from '../utils/formatting.js';
 import { marketFlagCode } from './navigation.js';
+
+const CONSENSUS = {
+  aligned:['Aligned', '一致'],
+  more_bullish:['More bullish', '偏乐观'],
+  stale:['Corrected', '已更正'],
+};
+const CONSENSUS_CHIP = { aligned:'good', more_bullish:'serious', stale:'warn' };
 
 /**
  * @param {object} market  registry entry ({ manifest, comparison, ... })
  * @param {object} result  comparison-engine output for that market's base strategy
+ * @param {object} scenarios owner Bear/Base/Bull results
  */
-export function marketCard(market, result){
+export function marketCard(market, result, scenarios){
   const { manifest: mf, comparison: cmp } = market;
   const href = '/markets/' + mf.slug;
 
+  const profile = cmp.refinement;
+  const scenarioIrr = item => Number.isFinite(item?.result?.irrHold)
+    ? fmtIRRor(item.result.irrHold, item.result.irrHoldAbsent, L) : 'N/M';
+  const scenarioLine = [scenarios?.bear, scenarios?.base, scenarios?.bull]
+    .map(scenarioIrr).join(' / ');
   const stat = (label, value) => h('div', { class: 'ms' },
     h('div', { class: 'l' }, L(label)),
     h('div', { class: 'v' }, value));
@@ -34,13 +46,17 @@ export function marketCard(market, result){
         h('h3', {}, L(mf.name)),
         h('div', { class: 'arch' }, L(cmp.narrative.archetype)))),
     h('div', { style: 'display:flex;align-items:center;gap:8px;flex-wrap:wrap;' },
-      chip('warn', mf.status),
+      chip('serious', ['Screening only', '仅供筛选']),
+      chip(CONSENSUS_CHIP[profile.consensus.status] || 'info',
+        CONSENSUS[profile.consensus.status] || ['Review', '复核']),
       h('span', { style: 'font-size:11.5px;color:var(--ink2);' },
-        L(['Composite ', '综合评分 ']) + cmp.score.composite + '/100')),
-    meter(cmp.score.composite, mf.color),
+        L(['Evidence ', '证据 ']) + profile.confidenceScore + '/10')),
     h('div', { class: 'mstats' },
-      stat(['Contracted share (yr 1)', '合同化占比（第1年）'], fmtPct(result.contractedShare * 100, 0)),
-      stat(['15-yr unlevered IRR', '15年无杠杆IRR'], fmtIRRor(result.irrHold, result.irrHoldAbsent, L))),
+      stat(['Bear / Base / Bull IRR', '悲观/基准/乐观IRR'], scenarioLine),
+      stat(['Secured revenue', '已锁定收入'],
+        fmtPct(result.evidenceSecuredShare * 100, 0))),
+    h('div', { class:'note', style:'margin:8px 0;' },
+      h('b', {}, L(['Next gate: ', '下一门槛：'])), profile.investmentGate?.[0] || 'Project evidence'),
     h('div', { class: 'thesis' }, L(cmp.narrative.thesis)),
     h('a', {
       class: 'enter',

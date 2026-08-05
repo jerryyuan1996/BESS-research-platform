@@ -151,8 +151,8 @@ export function buildSections(api){
             s.areaSpecific ? { chip: 'warn', text: ['Yes — area', '是 — 按区域'] } : { chip: 'info', text: ['No — national', '否 — 全国'] },
           ]) },
         { t: 'note', b: ['Rule vintage: ', '规则版本：'],
-          text: [L(N.policy.eprxVintage) + ' ' + L(N.policy.ltdaConsultation),
-                 L(N.policy.eprxVintage) + ' ' + L(N.policy.ltdaConsultation)] },
+          text: [L(N.policy.eprxVintage) + ' ' + L(N.policy.ltdaRound3),
+                 L(N.policy.eprxVintage) + ' ' + L(N.policy.ltdaRound3)] },
         { t: 'why', text: ['Four of the five channels are area-specific. That single column is the whole argument for treating Tokyo, Kyushu and Hokkaido as three allocation points: the rules are identical, the prices are not.',
                            '五个渠道中有四个按区域定价。仅此一列即足以说明为何应将东京、九州与北海道视为三个独立配置点：规则相同，价格不同。'],
           sig: ['Same rules, different prices', '规则相同，价格不同'] } ] },
@@ -313,9 +313,9 @@ export function buildSections(api){
           sig: ['One-year award ≠ long-term contract', '一年中标≠长期合同'] } ] },
 
       { t: 'card', title: ['LTDA — long-term decarbonization auction', '长期脱碳电源拍卖'],
-        badges: ['consult'], live: false, src: SRC.occtoLtda2026,
-        srcUse: ['FY2026 solicitation, in consultation', 'FY2026募集文件，征询阶段'], blocks: [
-        { t: 'note', b: ['Status: ', '状态：'], text: N.policy.ltdaConsultation },
+        badges: ['official'], live: false, src: SRC.occtoLtda2026,
+        srcUse: ['Round 3 final results and reviewed rules, 13 May 2026', '第三轮最终结果及已审定规则，2026年5月13日'], blocks: [
+        { t: 'note', b: ['Status: ', '状态：'], text: N.policy.ltdaRound3 },
         { t: 'list', items: [
           [['Fixed long-term capacity payment', '固定长期容量付费'], ['The only genuinely long contract available to a Japanese battery.', '日本储能可获得的唯一真正长期合同。']],
           [['Other-market revenue sharing applies', '适用其他市场收入分享'], ['Headline award cannot be added to full JEPX and balancing revenue — a share is returned.', '中标金额不可与完整的JEPX及调整力收入直接相加 — 部分须返还。']],

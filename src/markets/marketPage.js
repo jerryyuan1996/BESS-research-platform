@@ -15,6 +15,7 @@ import { navigate } from '../app/router.js';
 import { markets, marketPath, dashboardOwner } from './registry.js';
 import { marketNav } from '../components/navigation.js';
 import { renderFooter } from '../components/footer.js';
+import { refinementBanner } from '../components/refinementBanner.js';
 
 const DISCLAIMER = [
   'This dashboard supports, but does not replace, independent investment, legal, technical and financial analysis. Composite signals, recommended durations and suggested commercial terms are generated from the stated methodology and the data sources shown; they are not investment advice and should not be relied upon as the sole basis for a transaction decision.',
@@ -33,6 +34,8 @@ function renderPending(container, market){
       ])))));
 
   container.append(marketNav(markets, mf.id));
+  container.append(refinementBanner(market));
+
 
   container.append(h('div', { class: 'warnbox' }, L([
     'This market\'s detailed dashboard has not yet been migrated out of the legacy single-file prototype. Its comparison interface is complete, so it participates fully in every comparison on the global cockpit — the league table, the $1M engine, the certainty frontier and the waterfall all include it.',
@@ -92,4 +95,7 @@ export function renderMarketPage(container, market, tabId, regionOverride){
     region: regionOverride || market.manifest.region || null,
     market,
   });
+  const banner = refinementBanner(market);
+  const header = container.querySelector('.hdr');
+  if (banner && header) header.insertAdjacentElement('afterend', banner);
 }

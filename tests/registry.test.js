@@ -121,7 +121,7 @@ test('base strategies: capacity-backed by default, overridden where a market say
      otherwise publish the uncontracted case as the mainstream one — against
      twelve known tolled batteries, five of them already operating. */
   assert.deepEqual(markets.map(m => baseStrategy(m)),
-    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'cap', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap']);
+    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap']);
 
   // An override is only honoured when the market actually supports the route.
   for (const m of markets){

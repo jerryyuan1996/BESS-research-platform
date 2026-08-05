@@ -88,15 +88,15 @@ const NAMED_PIPELINE = [
 ];
 
 export const M = {
-  asOf: '2026-07-28',
+  asOf: '2026-08-04',
   dataDate: 'JEPX TTM Jul 2026 / CM delivery year 2029',
   modelVersion: 'jp-seed-1.0-three-region-capacity-renewal',
 
   title: ['Japan BESS Investment Dashboard', '日本储能投资看板'],
   sub: ['One national market architecture, three regional investment lenses: Tokyo, Kyushu and Hokkaido.',
         '同一全国市场架构，三个区域投资视角：东京、九州与北海道。'],
-  nextMilestone: ['Next milestone: FY2026 LTDA solicitation closes consultation 3 Aug 2026',
-                  '下一里程碑：FY2026长期脱碳电源拍卖募集文件征询于2026年8月3日结束'],
+  nextMilestone: ['Next milestone: implement the final Round 3 LTDA duration-credit and sourcing-cap rules in project bids and delivery planning',
+                  '下一里程碑：在项目投标与交付规划中落实LTDA第三轮最终时长信用及采购来源上限规则'],
   footerNote: ['Capacity Market, curtailment, connection-study caps and interconnector figures are verified against the cited official sources; all economics are illustrative seed pending the ETL listed in Data & Methodology.',
                '容量市场、弃电、并网检讨上限及联络线数据均已对照所引官方来源核验；所有经济性数值均为示例种子，待“数据与方法”页所列ETL完成后替换。'],
   seedWarn: ['Structural content is source-anchored. Every economic value — capex, merchant margin, incremental balancing value, expected-capacity factor and the auction-renewal curve — is an illustrative seed and must be replaced by the ETL in Data & Methodology before any investment use.',

@@ -18,11 +18,13 @@
    --------------------------------------------------------------------------- */
 import { irrOf, pvTail } from '../utils/finance.js';
 import {
-  FX, LIFE, EXIT_Y_CONTRACTED, EXIT_Y_MERCHANT, EXIT_Y_OPEX, EXIT_Y_AUCTION,
+  LIFE, EXIT_Y_CONTRACTED, EXIT_Y_MERCHANT, EXIT_Y_OPEX, EXIT_Y_AUCTION,
 } from './assumptions.js';
 import { servicesFactor } from './capacityLine.js';
 import { strategyById, supports, baseStrategy } from './strategies.js';
 import { buildCapex, rtbEntry, capitalFlows } from './capex.js';
+import { activeFxRate } from './fx.js';
+import { decorateDecisionResult } from './decisionResult.js';
 
 /* ---------------------------------------------------------------------------
    WHY AN IRR IS ABSENT.
@@ -102,24 +104,61 @@ function capitalOf(market, e, fx){
      development — a grant does not subsidise a developer's margin. */
   const grant = grantForMW(e, market.comparison.archetype, buildPerMW) * fx;
   const entry = rtbEntry(e, buildPerMW);
-  const capexG = (buildPerMW + entry.rtbPrice) * fx;
+  const gridContribution = e.gridContributionPerMW || 0;
+  const taxTariff = buildPerMW * (e.taxTariffPct || 0) / 100;
+  const addedCapital = gridContribution + taxTariff;
+  if (stack){
+    stack.parts.gridContribution = gridContribution;
+    stack.parts.taxTariff = taxTariff;
+    stack.total += addedCapital;
+  }
+  const capexG = (buildPerMW + addedCapital + entry.rtbPrice) * fx;
   const entryNet = capexG - grant;
 
   /* VAT is charged on the construction supply. The RTB price is excluded: an RTB
      project changes hands as a company far more often than as an asset, and the
      two are taxed differently — assuming the asset case would overstate the
      charge in most trades. */
-  const { flows, codOffset, vatDrag } = capitalFlows(e, entryNet, buildPerMW * fx);
+  const { flows, codOffset, vatDrag } = capitalFlows(e, entryNet, (buildPerMW + addedCapital) * fx);
 
   return {
     flows, codOffset, grant, capexG, stack,
     devCost: entry.devCost * fx,
     rtbPrice: entry.rtbPrice * fx,
-    buildCapexG: buildPerMW * fx,
+    buildCapexG: (buildPerMW + addedCapital) * fx,
     net: entryNet + vatDrag,
   };
 }
 
+
+const yearFactor = (options, name, year, fallback = 1) => {
+  const curve = options?.[name + 'Factors'];
+  if (Array.isArray(curve) && Number.isFinite(curve[year - 1])) return curve[year - 1];
+  const flat = options?.[name + 'Factor'];
+  return Number.isFinite(flat) ? flat : fallback;
+};
+
+const degradationFactor = (e, year) => {
+  const curve = e.warrantyDegradationCurve;
+  if (Array.isArray(curve) && Number.isFinite(curve[year - 1])){
+    const value = curve[year - 1];
+    return value > 1 ? value / 100 : Math.max(0, value);
+  }
+  return Math.pow(1 - (e.degr || 2) / 100, year - 1);
+};
+
+function lifecycleCost(e, capexG, fx, year){
+  let cost = 0;
+  for (const item of e.augmentationSchedule || []){
+    if (item?.year !== year) continue;
+    if (Number.isFinite(item.amountPerMW)) cost += item.amountPerMW * fx;
+    if (Number.isFinite(item.pctOfCapex)) cost += capexG * item.pctOfCapex / 100;
+  }
+  if (year === LIFE && Number.isFinite(e.decommissioningPerMW)){
+    cost += e.decommissioningPerMW * fx;
+  }
+  return cost;
+}
 /**
  * Lay operating cash flow after the build, and return the full vector.
  *
@@ -187,7 +226,7 @@ function grantForMW(e, archetype, capexPerMW){
  * @param {number} exitYear    5 | 7 | 10
  * @returns {object} either { na:[en,zh] } or the full per-MW USD case
  */
-export function runCase(market, strategyId, exitYear){
+export function runCase(market, strategyId, exitYear, options = {}){
   const cmp = market && market.comparison;
   if (!cmp || !cmp.economics) return { na: ['Economics unavailable', '经济性数据不可用'] };
 
@@ -202,19 +241,19 @@ export function runCase(market, strategyId, exitYear){
   if (!strat) return { na: ['Unknown strategy', '未知策略'] };
   if (!supports(market, strategyId)) return { na: strat.na };
 
-  if (cmp.economics.riskClass === 'auction-renewal'){
-    return runAuctionRenewalCase(market, strategyId, exitYear);
-  }
-  return runLegacyCase(market, strategyId, exitYear);
+  const raw = cmp.economics.riskClass === 'auction-renewal'
+    ? runAuctionRenewalCase(market, strategyId, exitYear, options)
+    : runLegacyCase(market, strategyId, exitYear, options);
+  return decorateDecisionResult(market, strategyId, raw);
 }
 
 /* The original model, unchanged. Two revenue streams: a contracted line that runs
    for contractYears then steps down by postFactor, and a degrading merchant line.
    Every pre-Japan market uses this path and its outputs are pinned by
    tests/baseline.test.js against the legacy prototype. */
-function runLegacyCase(market, strategyId, exitYear){
+function runLegacyCase(market, strategyId, exitYear, options){
   const e = market.comparison.economics;
-  const fx = FX[market.manifest.currency];
+  const fx = activeFxRate(market.manifest.currency, options.fxRates);
   if (fx == null) return { na: ['No FX rate for ' + market.manifest.currency, '缺少' + market.manifest.currency + '汇率'] };
 
   /* Network-access haircut. Where a market grants dispatch priority to incumbents
@@ -289,28 +328,33 @@ function runLegacyCase(market, strategyId, exitYear){
   const capY = [], mchY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
     const c = (y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0);
-    const d = Math.pow(1 - (e.degr || 2) / 100, y - 1);
+    const d = degradationFactor(e, y);
     const mm = y >= marketFrom
-      ? (merch + svc * servicesFactor(e.servicesCurve, y)) * d
+      ? (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y)
       : 0;
-    capY.push(c); mchY.push(mm); eb.push(c + mm - opex);
+    capY.push(c); mchY.push(mm); eb.push(c + mm - opex - lifecycleCost(e, capexG, fx, y));
   }
 
-  const irrHold = irrOf(withCapital(capital, eb));
+  const holdFlows = withCapital(capital, eb);
+  const irrHold = irrOf(holdFlows);
   let cum = -net, payback = null;
   for (let y = 1; y <= LIFE; y++){ cum += eb[y - 1]; if (cum >= 0 && payback == null) payback = y; }
 
   const X = exitYear;
-  const exitVal = pvTail(capY, EXIT_Y_CONTRACTED, X) + pvTail(mchY, EXIT_Y_MERCHANT, X)
-    - pvTail(Array(LIFE - X).fill(opex), EXIT_Y_OPEX, 0);
-  const irrExit = irrOf(withCapital(capital, eb.slice(0, X), { at: X, value: exitVal }));
+  const yContracted = options.exitYContracted ?? EXIT_Y_CONTRACTED;
+  const yMerchant = options.exitYMerchant ?? EXIT_Y_MERCHANT;
+  const yOpex = options.exitYOpex ?? EXIT_Y_OPEX;
+  const exitVal = pvTail(capY, yContracted, X) + pvTail(mchY, yMerchant, X)
+    - pvTail(Array(LIFE - X).fill(opex), yOpex, 0);
+  const exitFlows = withCapital(capital, eb.slice(0, X), { at: X, value: exitVal });
+  const irrExit = irrOf(exitFlows);
   const cumOp = eb.slice(0, X).reduce((a, b) => a + b, 0);
   const moic = (cumOp + exitVal) / net;
   const contractedShare = eb[0] > 0 ? capY[0] / (capY[0] + mchY[0]) : 0;
 
   return {
     marketId: market.manifest.id, strategyId, exitYear: X,
-    net, grant: capital.grant, capexG, eb1: eb[0], yield1: eb[0] / net, capY, mchY, eb,
+    net, grant: capital.grant, capexG, eb1: eb[0], yield1: eb[0] / net, capY, secY:capY, mchY, eb,
     irrHold, payback, exitVal, irrExit, moic, cumOp, contractedShare,
     irrHoldAbsent: irrDiagnosis(irrHold, eb, net),
     irrExitAbsent: irrDiagnosis(irrExit, eb.slice(0, X).concat(exitVal), net),
@@ -319,6 +363,7 @@ function runLegacyCase(market, strategyId, exitYear){
     capexParts: capital.stack ? capital.stack.parts : null,
     buildCapexG: capital.buildCapexG, devCost: capital.devCost, rtbPrice: capital.rtbPrice,
     constructionMonths: e.constructionMonths || 0, codOffset: capital.codOffset,
+    holdFlows, exitFlows, fxRate:fx, currency:market.manifest.currency,
     // In the legacy model every contracted unit is secured for its full tenor, so
     // secured share and secured tenor are just the contracted figures renamed.
     securedShare: contractedShare,
@@ -346,9 +391,9 @@ function runLegacyCase(market, strategyId, exitYear){
    value (renewal years are discounted at the auction/market yield, not the
    contracted yield). Collapsing them into `contracted` would have overstated both.
    --------------------------------------------------------------------------- */
-function runAuctionRenewalCase(market, strategyId, exitYear){
+function runAuctionRenewalCase(market, strategyId, exitYear, options){
   const e = market.comparison.economics;
-  const fx = FX[market.manifest.currency];
+  const fx = activeFxRate(market.manifest.currency, options.fxRates);
   if (fx == null) return { na: ['No FX rate for ' + market.manifest.currency, '缺少' + market.manifest.currency + '汇率'] };
 
   const capital = capitalOf(market, e, fx);
@@ -393,23 +438,31 @@ function runAuctionRenewalCase(market, strategyId, exitYear){
   const secY = [], aucY = [], mchY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
     const s = y <= securedYears ? secured : 0;
-    const a = y > securedYears ? ((curve[y - securedYears - 1] ?? 0) * fx) : 0;
-    const d = Math.pow(1 - (e.degr || 2) / 100, y - 1);
-    const m = (merch + svc * servicesFactor(e.servicesCurve, y)) * d;
+    const a = y > securedYears
+      ? ((curve[y - securedYears - 1] ?? 0) * fx * yearFactor(options, 'auction', y,
+        yearFactor(options, 'merchant', y))) : 0;
+    const d = degradationFactor(e, y);
+    const m = (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y);
     secY.push(s); aucY.push(a); mchY.push(m);
-    eb.push(s + a + m - opex);
+    eb.push(s + a + m - opex - lifecycleCost(e, capexG, fx, y));
   }
 
-  const irrHold = irrOf(withCapital(capital, eb));
+  const holdFlows = withCapital(capital, eb);
+  const irrHold = irrOf(holdFlows);
   let cum = -net, payback = null;
   for (let y = 1; y <= LIFE; y++){ cum += eb[y - 1]; if (cum >= 0 && payback == null) payback = y; }
 
   const X = exitYear;
-  const exitVal = pvTail(secY, EXIT_Y_CONTRACTED, X)
-    + pvTail(aucY, EXIT_Y_AUCTION, X)
-    + pvTail(mchY, EXIT_Y_MERCHANT, X)
-    - pvTail(Array(LIFE - X).fill(opex), EXIT_Y_OPEX, 0);
-  const irrExit = irrOf(withCapital(capital, eb.slice(0, X), { at: X, value: exitVal }));
+  const yContracted = options.exitYContracted ?? EXIT_Y_CONTRACTED;
+  const yAuction = options.exitYAuction ?? options.exitYMerchant ?? EXIT_Y_AUCTION;
+  const yMerchant = options.exitYMerchant ?? EXIT_Y_MERCHANT;
+  const yOpex = options.exitYOpex ?? EXIT_Y_OPEX;
+  const exitVal = pvTail(secY, yContracted, X)
+    + pvTail(aucY, yAuction, X)
+    + pvTail(mchY, yMerchant, X)
+    - pvTail(Array(LIFE - X).fill(opex), yOpex, 0);
+  const exitFlows = withCapital(capital, eb.slice(0, X), { at: X, value: exitVal });
+  const irrExit = irrOf(exitFlows);
   const cumOp = eb.slice(0, X).reduce((a, b) => a + b, 0);
   const moic = (cumOp + exitVal) / net;
 
@@ -432,6 +485,7 @@ function runAuctionRenewalCase(market, strategyId, exitYear){
     capexParts: capital.stack ? capital.stack.parts : null,
     buildCapexG: capital.buildCapexG, devCost: capital.devCost, rtbPrice: capital.rtbPrice,
     constructionMonths: e.constructionMonths || 0, codOffset: capital.codOffset,
+    holdFlows, exitFlows, fxRate:fx, currency:market.manifest.currency,
     kwPerM: 1e6 / (net / 1000),
     note: (isLtda ? award.note : null) || e.capNote || e.grantNote || null,
   };

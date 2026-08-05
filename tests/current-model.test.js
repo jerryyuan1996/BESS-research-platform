@@ -298,7 +298,7 @@ test('published base-case outcomes', () => {
     gb:          ['cap',    9.6,         3.1],
     ie:          ['cap',   13.1,         7.6],
     ro:          ['mer',   24.0,        18.1],
-    pl:          ['cap',    9.9,         3.7],
+    pl:          ['mer',    7.4,        -0.6],
     jp_tokyo:    ['ltda',  10.2,         5.8],
     jp_kyushu:   ['ltda',  10.3,         5.9],
     jp_hokkaido: ['ltda',  10.2,         5.8],
@@ -322,11 +322,14 @@ test('the ordering the cockpit asks readers to use', () => {
   assert.ok(irr('wa') > irr('ie'), 'WA’s 7h build beats Ireland');
   assert.ok(irr('pl') < irr('ie'), 'Poland falls below Ireland on the KWD cut');
 
-  // Poland's secured share collapses without its tenor changing — the
-  // distinction the league table's two rows exist to show.
+  // Poland's new-entry screen no longer inherits the final main-auction award.
+  // The legacy route remains available for vintage analysis, but is not the
+  // replicable default presented to a new entrant.
   const pl = runBaseCase(byId('pl'), 5);
-  assert.equal(pl.securedYears, 15, 'the 17-yr contract still spans the window');
-  assert.ok(pl.securedShare < 0.20, 'but it now secures under a fifth of revenue');
+  assert.equal(pl.securedYears, 0, 'new-entry base has no secured capacity tenor');
+  const legacyPl = runCase(byId('pl'), 'cap', 5);
+  assert.equal(legacyPl.securedYears, 15, 'legacy 17-yr award remains a vintage scenario');
+  assert.ok(legacyPl.securedShare < 0.20, 'legacy route secures under a fifth of revenue');
 });
 
 /* ---------------------------------------------------------------------------

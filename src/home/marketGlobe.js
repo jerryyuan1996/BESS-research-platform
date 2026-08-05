@@ -296,8 +296,16 @@ export function renderMarketGlobe(){
   svg.addEventListener('pointercancel', finishDrag);
 
   render();
-  card.append(h('div', { class:'market-globe-wrap' }, svg));
-  card.append(h('div', { class:'globe-market-links' }, MARKET_LINKS.map(marketLink)));
+  const ringLinks = MARKET_LINKS.map((entry, index) => {
+    const angle = -Math.PI / 2 + index * Math.PI * 2 / MARKET_LINKS.length;
+    const link = marketLink(entry);
+    link.style.setProperty('--link-x', (50 + Math.cos(angle) * 43).toFixed(2) + '%');
+    link.style.setProperty('--link-y', (50 + Math.sin(angle) * 43).toFixed(2) + '%');
+    return link;
+  });
+  card.append(h('div', { class:'market-globe-stage' },
+    h('div', { class:'market-globe-wrap' }, svg),
+    h('div', { class:'globe-market-links' }, ringLinks)));
   card.append(h('div', { class:'cap globe-source' }, L([
     'Country boundaries: Natural Earth via world-atlas. Western Australia boundary: ABS ASGS 2021.',
     '国界数据：Natural Earth / world-atlas；西澳边界来自 ABS ASGS 2021。',

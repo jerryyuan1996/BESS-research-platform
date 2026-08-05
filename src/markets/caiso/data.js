@@ -33,13 +33,13 @@ import { COMPONENTS, CONN_FACTORS } from './scores.js';
 
 const M = {
   asOf: '2026-08-04',
-  dataDate: 'H1 2025 RA benchmark / CY2025 merchant / Q1 2026 fleet',
+  dataDate: 'H1 2025 RA benchmark / CY2025 merchant / Jul 2026 fleet',
   modelVersion: 'caiso-seed-1.0-bilateral-ra-four-hour-nqc-ceiling',
   title: ['CAISO Battery Investment Dashboard', 'CAISO储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Bilateral Resource Adequacy; reference archetype 100 MW / 4h.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。双边容量充裕度合约；参考原型为100MW/4小时。'],
-  nextMilestone: ['Next milestone: the 2027 Resource Adequacy compliance year under Slice of Day, and whether RA prices hold as the fleet passes 15 GW against a queue in which batteries are about 46% of roughly 500 GW.',
-                  '下一里程碑：分时段机制下的2027年容量充裕度合规年度，以及在机组规模突破15GW、而约500GW排队中储能约占46%的背景下，容量充裕度价格能否维持。'],
+  nextMilestone: ['Next milestone: the 2027 Resource Adequacy compliance year under Slice of Day, and whether RA prices hold with 16.7 GW online against a queue in which batteries are about 46% of roughly 500 GW.',
+                  '下一里程碑：分时段机制下的2027年容量充裕度合规年度，以及在16.7GW在运、而约500GW排队中储能约占46%的背景下，容量充裕度价格能否维持。'],
   footerNote: ['Public and official sources collected 4 August 2026. CAISO publishes the Resource Adequacy framework in full — Slice of Day, the NQC methodology and the NQC values themselves — and no contract price at all, because RA is negotiated bilaterally. Reported RA has ranged $4.29–14.67/kW-month in unconstrained areas. The published full stack of $14.83/kW-month does not reconcile to the RA benchmark plus observed merchant, and the roughly $3/kW-month residual is recorded rather than allocated.',
                '公开及官方来源于2026年8月4日采集。CAISO完整公布容量充裕度制度框架 — 分时段机制、净合格容量方法及净合格容量数值本身 — 但完全不公布合约价格，因为容量充裕度采取双边协商。非受限区域已报告的容量充裕度价格区间为每kW每月$4.29–14.67。已公布的每kW每月$14.83全口径收入无法与容量充裕度基准加已观测市场化收入相调和，约$3/kW每月的残差予以记录而非分摊。'],
   seedWarn: ['Every value on this page is a CAISO_SEED_V1 snapshot or an illustrative placeholder. No KPI is production-complete until its live ingestion, validation and source-health check are operational. Four specific warnings: Resource Adequacy is a bilateral contract with no clearing price, so the contracted band is the widest on this platform and a specific project\'s outcome depends on its counterparty; net qualifying capacity is tested on four-hour sustained output and pays nothing beyond it, so duration above four hours earns only spread; the published full-stack figure does not reconcile and the residual is unallocated; and the §48E investment tax credit is seeded at zero here and is editable in the home-page Investment Lab.',
@@ -62,7 +62,7 @@ const M = {
     energyShareEstimatedPct: 80, asShareEstimatedPct: 20,
 
     // ---- fleet and queue ----
-    fleet2024GW: 11.6, fleet2024GrowthPct: 45, fleet2026GW: 15,
+    fleet2024GW: 11.6, fleet2024GrowthPct: 45, fleet2026GW: 16.7,
     queueTotalGW: 500, queueBatterySharePct: 46,
 
     // ---- capex and tax ----

@@ -30,6 +30,8 @@ import { chip } from '../components/chip.js';
 import { markets, comparableMarkets, DETAIL_DASHBOARDS } from '../markets/registry.js';
 import { EXIT_YEARS } from '../comparison/assumptions.js';
 import { homeState } from './state.js';
+import { whenLoaded } from '../live/client.js';
+import { setObservedFxSummary } from '../comparison/fx.js';
 import { renderMarketGrid } from './marketGrid.js';
 import { renderLeague } from './marketComparison.js';
 import { renderMarketGlobe } from './marketGlobe.js';
@@ -75,8 +77,19 @@ function exitYearSelect(){
   return sel;
 }
 
+function refreshTranslationFx(){
+  whenLoaded('fx-ecb', summary => {
+    const asOf = summary?.derived?.asOf || summary?.fetchedAt;
+    if (!asOf || homeState.fxAsOf === asOf) return;
+    if (!setObservedFxSummary(summary)) return;
+    homeState.fxAsOf = asOf;
+    requestRender();
+  });
+}
+
 export function renderHome(app){
   const list = comparableMarkets();
+  refreshTranslationFx();
   const n = list.length;
   const d = DETAIL_DASHBOARDS().length;
 
@@ -87,9 +100,9 @@ export function renderHome(app){
     title: T.title,
     sub: T.sub(n, d),
     meta: [
-      h('span', {}, h('b', {}, L(['Comparison inputs reviewed: ', '对比输入复核日期：'])), '2026-07-29'),
-      chip('serious', ['Allocation outputs are illustrative — see each market for governed evidence',
-                       '配置结果仅作示例 — 受治理证据详见各市场看板']),
+      h('span', {}, h('b', {}, L(['Comparison inputs reviewed: ', '对比输入复核日期：'])), '2026-08-04'),
+      chip('serious', ['Release Gate: screening only — not approved for underwriting',
+                       '发布门槛：仅供筛选 — 未获承销批准']),
     ],
     controls: [exitYearSelect()],
   }));
@@ -99,9 +112,7 @@ export function renderHome(app){
 
   const main = h('div');
   const universe = h('section', { class:'market-universe' });
-  const marketColumn = h('div', { class:'market-universe-cards' });
-  renderMarketGrid(marketColumn, list, homeState.exitYear);
-  universe.append(marketColumn, renderMarketGlobe());
+  renderMarketGrid(universe, list, homeState.exitYear, renderMarketGlobe());
   main.append(universe);
   renderNewsPreview(main);
   renderLeague(main, list, homeState.exitYear);

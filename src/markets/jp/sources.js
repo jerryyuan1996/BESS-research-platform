@@ -68,11 +68,11 @@ export const SRC = {
     url: 'https://www.occto.or.jp/various/capacity-market/jitsujukyukanren/2029_jitsujukyu_kanren.html',
   },
   occtoLtda2026: {
-    file: 'OCCTO — 2026 Long-Term Decarbonization Power Source Auction consultation',
-    status: ['Consultation — Draft', '征询阶段 — 草案'],
-    date: '21 Jul – 3 Aug 2026', cy: 'FY2026 auction',
+    file: 'OCCTO — Long-Term Decarbonization Power Source Auction Round 3 results',
+    status: ['Official — Final', '官方 — 最终'],
+    date: '13 May 2026', cy: 'Round 3 / FY2026 reviewed vintage',
     url: 'https://www.occto.or.jp/iken/000606.html',
-    quality: 'consult',
+    quality: 'final',
   },
   occtoSupplyPlan2025: {
     file: 'OCCTO — Aggregation of Electricity Supply Plans FY2025',
