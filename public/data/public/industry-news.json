@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-05T09:00:00.000Z",
+  "updatedAt": "2026-08-05T12:20:00.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -53,6 +53,96 @@
   ],
   "items": [
     {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/bangladesh-hits-1-gw-rooftop-solar-capacity/",
+      "source": "pv magazine",
+      "title": "Bangladesh hits 1 GW rooftop solar capacity",
+      "url": "https://www.pv-magazine.com/2026/08/05/bangladesh-hits-1-gw-rooftop-solar-capacity/",
+      "publishedAt": "2026-08-05T12:20:00.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Institute for Energy Economics and Financial Analysis finds Bangladesh's rooftop solar capacity exceeds official figures, as it makes recommendations for more supportive policy to capitalize on untapped rooftop potential. The post Bangladesh hits 1 GW rooftop solar capacity appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/thailand-registers-solar-installers-equipment-ahead-of-rooftop-pv-expansion/",
+      "source": "pv magazine",
+      "title": "Thailand registers solar installers, equipment ahead of rooftop PV expansion",
+      "url": "https://www.pv-magazine.com/2026/08/05/thailand-registers-solar-installers-equipment-ahead-of-rooftop-pv-expansion/",
+      "publishedAt": "2026-08-05T12:00:00.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Thailand is formally registering qualified solar installers and equipment ahead of launching a government-backed program that will aim to deploy rooftop solar on 500,000 households. The registration process is open until September 30. The post Thailand registers solar installers, equipment ahead of rooftop PV expans…"
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/base-power-raises-another-us1-billion-in-series-d-financing-for-us-residential-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Base Power raises another US$1 billion in Series D financing for US residential BESS",
+      "url": "https://www.energy-storage.news/base-power-raises-another-us1-billion-in-series-d-financing-for-us-residential-bess/",
+      "publishedAt": "2026-08-05T11:56:06.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Residential energy storage startup Base Power has announced a US$1 billion Series D financing at a US$13 billion post-money valuation, and the launch of its new home battery in production in Austin, Texas, US."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/fraunhofer-ise-source-energy-develop-silicon-pv-modules-for-space-satellites/",
+      "source": "pv magazine",
+      "title": "Fraunhofer ISE, Source Energy develop silicon PV modules for space satellites",
+      "url": "https://www.pv-magazine.com/2026/08/05/fraunhofer-ise-source-energy-develop-silicon-pv-modules-for-space-satellites/",
+      "publishedAt": "2026-08-05T11:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The new technology is considered a more economical alternative to the solar cells based on group III-V semiconductors that are currently used in space applications. The post Fraunhofer ISE, Source Energy develop silicon PV modules for space satellites appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/sudan-exempts-solar-pv-systems-from-custom-duties/",
+      "source": "pv magazine",
+      "title": "Sudan exempts solar systems from custom duties",
+      "url": "https://www.pv-magazine.com/2026/08/05/sudan-exempts-solar-pv-systems-from-custom-duties/",
+      "publishedAt": "2026-08-05T11:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The decision follows a fire at the country’s largest hydroelectric plant which caused power outages across four Sudanese states. The post Sudan exempts solar systems from custom duties appeared first on pv magazine Global ."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/kkrs-contourglobal-begins-construction-of-sun-at-night-solar-plus-storage-project-in-chile/",
+      "source": "Energy-Storage.news",
+      "title": "KKR’s ContourGlobal begins construction of ‘Sun at Night’ solar-plus-storage project in Chile",
+      "url": "https://www.energy-storage.news/kkrs-contourglobal-begins-construction-of-sun-at-night-solar-plus-storage-project-in-chile/",
+      "publishedAt": "2026-08-05T10:49:14.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Independent power producer (IPP) ContourGlobal has begun construction of its fourth large-scale solar PV and battery storage hybrid project in Chile."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/invinity-sells-43mwh-long-duration-flow-battery-system-to-us-midwest-rural-electric-cooperative/",
+      "source": "Energy-Storage.news",
+      "title": "Invinity sells 43MWh long-duration flow battery system to US Midwest rural electric cooperative",
+      "url": "https://www.energy-storage.news/invinity-sells-43mwh-long-duration-flow-battery-system-to-us-midwest-rural-electric-cooperative/",
+      "publishedAt": "2026-08-05T10:31:52.000Z",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Flow battery company Invinity Energy Systems has sold 43MWh of battery systems to utility Dairyland Power Cooperative for deployment across long duration energy storage (LDES) projects in the US Midwest."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/expansion-of-rooftop-solar-rebate-scheme-to-unlock-australias-missing-middle/",
+      "source": "pv magazine",
+      "title": "Australia expands rooftop solar rebate scheme",
+      "url": "https://www.pv-magazine.com/2026/08/05/expansion-of-rooftop-solar-rebate-scheme-to-unlock-australias-missing-middle/",
+      "publishedAt": "2026-08-05T10:30:00.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Australian government is increasing the installation cap permitted under its rooftops solar rebate scheme from 100 kW to 1 MW. The post Australia expands rooftop solar rebate scheme appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/the-case-for-rethinking-utility-scale-pv-economics/",
+      "source": "pv magazine",
+      "title": "The case for rethinking utility-scale PV economics",
+      "url": "https://www.pv-magazine.com/2026/08/05/the-case-for-rethinking-utility-scale-pv-economics/",
+      "publishedAt": "2026-08-05T09:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "While single-axis trackers are often regarded as the lowest-cost option for utility-scale PV, Jurchen Technology's Henner Jahnke argues that falling module prices and rising balance-of-system costs are reshaping the economics of large-scale solar. The post The case for rethinking utility-scale PV economics appeared…"
+    },
+    {
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/photovoltaics-lead-spains-electricity-mix-for-four-consecutive-months/",
       "source": "pv magazine",
       "title": "Photovoltaics lead Spain’s electricity mix for four consecutive months",
@@ -71,16 +161,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "China’s latest five-year renewable energy plan, which targets more than 2.8 TW of solar and wind capacity by 2030, links energy storage with grid reliability, firm power capacity, grid-forming technology and new market-based revenue mechanisms. The post China puts battery storage at center of renewable energy strate…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/pm-surya-ghar-rooftop-solar-scheme-surpasses-5-million-households/",
-      "source": "pv magazine",
-      "title": "India’s rooftop solar scheme surpasses 5 million households",
-      "url": "https://www.pv-magazine.com/2026/08/05/pm-surya-ghar-rooftop-solar-scheme-surpasses-5-million-households/",
-      "publishedAt": "2026-08-05T07:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "India's Ministry of New and Renewable Energy says the country's rooftop solar program has commissioned 14.8 GW of rooftop solar capacity across over 5 million households. The post India’s rooftop solar scheme surpasses 5 million households appeared first on pv magazine Global ."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/japan-tokyo-gas-enters-offtake-for-200mwh-fukushima-bess-eku-energy-nears-completion-of-first-project/",
@@ -133,36 +213,6 @@
       "summary": "Massachusetts’s Department of Energy Resources (DOER) has issued a request for proposals (RFP) for 1,000MW of energy storage in the US state."
     },
     {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/04/china-draws-a-line-under-the-solar-price-war/",
-      "source": "pv magazine",
-      "title": "China draws a line under the solar price war",
-      "url": "https://www.pv-magazine.com/2026/08/04/china-draws-a-line-under-the-solar-price-war/",
-      "publishedAt": "2026-08-04T12:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Regulators in China are calling on domestic manufacturers to end destructive below-cost competition but are yet to impose a formal price floor. The post China draws a line under the solar price war appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/04/romanias-solar-capacity-exceeds-8-5-gw/",
-      "source": "pv magazine",
-      "title": "Romania’s solar capacity exceeds 8.5 GW",
-      "url": "https://www.pv-magazine.com/2026/08/04/romanias-solar-capacity-exceeds-8-5-gw/",
-      "publishedAt": "2026-08-04T11:45:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Romania's solar market continues to grow with around 1.8 GW installed since the start of the year. The country appears on track to reach its current 2030 target of 10 GW as early as next year. The post Romania’s solar capacity exceeds 8.5 GW appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/04/distributed-solar-supplied-27-of-pakistans-electricity-in-2025/",
-      "source": "pv magazine",
-      "title": "Distributed solar supplied 27% of Pakistan’s electricity in 2025",
-      "url": "https://www.pv-magazine.com/2026/08/04/distributed-solar-supplied-27-of-pakistans-electricity-in-2025/",
-      "publishedAt": "2026-08-04T11:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Analysis by the Pakistan Solar Association finds roughly 51 TWh of generation that never appears on grid-side data, as rooftop and off-grid solar spreads faster than official statistics. The association claims unseen generation can be inferred from a deepening midday demand trough, with network design suffering as a…"
-    },
-    {
       "id": "Energy-Storage.news:https://www.energy-storage.news/prosalia-and-edp-hybridise-solar-pv-wind-projects-with-batteries-in-portugal-spain/",
       "source": "Energy-Storage.news",
       "title": "Prosalia and EDP hybridise solar PV/wind projects with batteries in Portugal, Spain",
@@ -173,16 +223,6 @@
       "summary": "IPP Prosalia has commissioned a 15MW/60MWh battery storage system at a solar PV plant in Portugal, while power group EDP has added one to a hybrid wind and solar project in Spain."
     },
     {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/04/remote-operations-emerge-as-proving-ground-for-high-renewables-future/",
-      "source": "pv magazine",
-      "title": "Australia’s remote mining companies turn to renewable hybrid power systems",
-      "url": "https://www.pv-magazine.com/2026/08/04/remote-operations-emerge-as-proving-ground-for-high-renewables-future/",
-      "publishedAt": "2026-08-04T10:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia’s remote mining operations are emerging as the proving ground for high-renewable energy systems with operational data showing several off-grid industrial sites are now consistently operating at renewable energy penetration rates above 80%. The post Australia’s remote mining companies turn to renewable hybr…"
-    },
-    {
       "id": "Energy-Storage.news:https://www.energy-storage.news/european-multi-day-energy-storage-startup-ore-energy-raises-us43-million-in-series-a/",
       "source": "Energy-Storage.news",
       "title": "European multi-day energy storage startup Ore Energy raises US$43 million in Series A",
@@ -191,16 +231,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Iron-air battery company Ore Energy has raised US$43 million in a Series A funding round to commercialise its multi-day energy storage technology."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/04/researchers-design-pvt-heat-pump-with-single-integrated-evaporator/",
-      "source": "pv magazine",
-      "title": "Researchers design PVT heat pump with single integrated evaporator",
-      "url": "https://www.pv-magazine.com/2026/08/04/researchers-design-pvt-heat-pump-with-single-integrated-evaporator/",
-      "publishedAt": "2026-08-04T10:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The dual-source photovoltaic-thermal (PVT) heat pump combines solar and ambient-air heat collection in a single finned evaporator, eliminating the need for separate heat exchangers. The researchers say the simplified design could reduce installation costs. The post Researchers design PVT heat pump with single integr…"
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/load-smoothing-cold-start-backup-and-speed-to-power-fluence-maps-the-battery-storage-opportunity-for-australian-data-centres/",
@@ -351,36 +381,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Alcemi, developer of some of the UK’s biggest projects, has entered the Romanian battery storage market, while Slovakia’s biggest project to date has gone into operation."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/axpo-and-zelestra-agree-207mw-italy-bess-toll-second-in-july-for-ipp/",
-      "source": "Energy-Storage.news",
-      "title": "Axpo and Zelestra agree 207MW Italy BESS toll, second in July for IPP",
-      "url": "https://www.energy-storage.news/axpo-and-zelestra-agree-207mw-italy-bess-toll-second-in-july-for-ipp/",
-      "publishedAt": "2026-07-30T09:22:04.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Power firm Axpo and IPP Zelestra have entered into a long-term toll for a BESS project in northern Italy, Zelestra's second deal in July."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ev-demand-in-europe-bess-in-the-us-drive-lg-energy-solutions-return-to-profit-in-q2/",
-      "source": "Energy-Storage.news",
-      "title": "EV demand in Europe, BESS in the US drive LG Energy Solution’s return to profit in Q2",
-      "url": "https://www.energy-storage.news/ev-demand-in-europe-bess-in-the-us-drive-lg-energy-solutions-return-to-profit-in-q2/",
-      "publishedAt": "2026-07-30T08:56:29.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "LG Energy Solution (LG ES) posted a profitable second quarter this year, with investments in battery storage in the US and EV cell production in Europe paying off."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/quinbrook-submits-520mw-flat-rock-bess-in-australias-act-to-epbc-act/",
-      "source": "Energy-Storage.news",
-      "title": "Quinbrook submits 520MW Flat Rock BESS in Australia’s ACT to EPBC Act",
-      "url": "https://www.energy-storage.news/quinbrook-submits-520mw-flat-rock-bess-in-australias-act-to-epbc-act/",
-      "publishedAt": "2026-07-30T05:17:40.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Quinbrook Infrastructure Partners has submitted a 520MW standalone BESS in the ACT to Australia's EPBC Act."
     },
     {
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
