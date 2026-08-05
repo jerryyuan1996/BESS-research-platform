@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-05T12:20:00.000Z",
+  "updatedAt": "2026-08-05T12:38:51.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -52,6 +52,26 @@
     }
   ],
   "items": [
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/pseg-data-center-pjm-bilateral-contract-reliability/827045/",
+      "source": "Utility Dive",
+      "title": "PSEG offers data center supply proposals in PJM’s bilateral contracting process",
+      "url": "https://www.utilitydive.com/news/pseg-data-center-pjm-bilateral-contract-reliability/827045/",
+      "publishedAt": "2026-08-05T12:38:51.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Also, Public Service Enterprise Group is &ldquo;encouraged&rdquo; by potential changes to the utility business model in New Jersey, CEO Ralph LaRossa said."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/texas-hits-pause-data-center-interconnections/827046/",
+      "source": "Utility Dive",
+      "title": "Facing an estimated 474 GW of interconnection requests, Texas hits pause on data centers",
+      "url": "https://www.utilitydive.com/news/texas-hits-pause-data-center-interconnections/827046/",
+      "publishedAt": "2026-08-05T12:23:45.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Texas Gov. Greg Abbott has called for an audit of all data centers in the Electric Reliability Council of Texas interconnection queue, leading the grid operator to delay its Batch Zero review process."
+    },
     {
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/bangladesh-hits-1-gw-rooftop-solar-capacity/",
       "source": "pv magazine",
@@ -261,26 +281,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/dte-rate-stability-data-center-projects-large-load-pipeline/826803/",
-      "source": "Utility Dive",
-      "title": "DTE ties rate stability to data center projects as large-load pipeline remains steady",
-      "url": "https://www.utilitydive.com/news/dte-rate-stability-data-center-projects-large-load-pipeline/826803/",
-      "publishedAt": "2026-08-03T12:43:44.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The company&rsquo;s $30 billion electric utility capital investment plan&nbsp;was unchanged from the first quarter, officials said during the second-quarter earnings call."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/",
-      "source": "Utility Dive",
-      "title": "PJM files backstop auction plan at FERC to meet capacity shortfall",
-      "url": "https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/",
-      "publishedAt": "2026-08-03T12:22:40.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The proposal aims to fill a capacity shortfall driven by surging data center demand, which could grow by 70 GW by 2038, according to the PJM Interconnection.&nbsp;The success of the plan depends on states taking steps to protect their retail customers from cost shifts, it said."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/you-cannot-build-a-whole-electricity-system-purely-on-solar-hybrids-squadron-energy-ceo-warns/",
