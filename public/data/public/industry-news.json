@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-05T12:38:51.000Z",
+  "updatedAt": "2026-08-06T09:00:00.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -48,10 +48,50 @@
     {
       "source": "pv magazine",
       "status": "ok",
-      "items": 8
+      "items": 7
     }
   ],
   "items": [
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/brazil-proposes-mandatory-take-back-scheme-for-solar-panels-batteries/",
+      "source": "pv magazine",
+      "title": "Brazil proposes mandatory take-back scheme for solar panels, batteries",
+      "url": "https://www.pv-magazine.com/2026/08/06/brazil-proposes-mandatory-take-back-scheme-for-solar-panels-batteries/",
+      "publishedAt": "2026-08-06T09:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A bill under review in Brazil's Chamber of Deputies stipulates that manufacturers, importers and retailers should be responsible for collecting and recycling equipment after its end-of-life. The post Brazil proposes mandatory take-back scheme for solar panels, batteries appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/india-approves-inr-5070-crore-scheme-for-5-gw-of-floating-solar-with-storage/",
+      "source": "pv magazine",
+      "title": "India targets 5 GW of floating PV with co-located storage",
+      "url": "https://www.pv-magazine.com/2026/08/06/india-approves-inr-5070-crore-scheme-for-5-gw-of-floating-solar-with-storage/",
+      "publishedAt": "2026-08-06T08:30:00.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "A newly-approved government scheme in India plans to support the development of 5 GW of floating solar on existing reservoirs and industrial ponds, to be paired with energy storage systems with a minimum storage capacity of two hours. The post India targets 5 GW of floating PV with co-located storage appeared first…"
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-books-first-big-data-centre-deals-but-manufacturing-ramp-up-delays-hit-revenues/",
+      "source": "Energy-Storage.news",
+      "title": "Fluence books first big data centre deals, but manufacturing ramp-up delays hit revenues",
+      "url": "https://www.energy-storage.news/fluence-books-first-big-data-centre-deals-but-manufacturing-ramp-up-delays-hit-revenues/",
+      "publishedAt": "2026-08-06T08:22:02.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Manufacturing delays have led Fluence to adjust its fiscal year 2026 guidance, even as the company has logged record quarterly orders and a US$6.4 billion backlog."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/transmission-logjams-and-ai-load-growth-push-data-centers-toward-on-site-solar-storage-and-vpps/",
+      "source": "pv magazine",
+      "title": "US data centers turn to on-site solar, storage, VPPs as grid delays mount",
+      "url": "https://www.pv-magazine.com/2026/08/06/transmission-logjams-and-ai-load-growth-push-data-centers-toward-on-site-solar-storage-and-vpps/",
+      "publishedAt": "2026-08-06T07:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A Reuters Events report highlights how multi-year transmission delays are forcing data center developers in the United States to deploy 56 GW of on-site generation while turning to Virtual Power Plants to unlock fast capacity. The post US data centers turn to on-site solar, storage, VPPs as grid delays mount appeare…"
+    },
     {
       "id": "Utility Dive:https://www.utilitydive.com/news/pseg-data-center-pjm-bilateral-contract-reliability/827045/",
       "source": "Utility Dive",
@@ -141,46 +181,6 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "Flow battery company Invinity Energy Systems has sold 43MWh of battery systems to utility Dairyland Power Cooperative for deployment across long duration energy storage (LDES) projects in the US Midwest."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/expansion-of-rooftop-solar-rebate-scheme-to-unlock-australias-missing-middle/",
-      "source": "pv magazine",
-      "title": "Australia expands rooftop solar rebate scheme",
-      "url": "https://www.pv-magazine.com/2026/08/05/expansion-of-rooftop-solar-rebate-scheme-to-unlock-australias-missing-middle/",
-      "publishedAt": "2026-08-05T10:30:00.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Australian government is increasing the installation cap permitted under its rooftops solar rebate scheme from 100 kW to 1 MW. The post Australia expands rooftop solar rebate scheme appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/the-case-for-rethinking-utility-scale-pv-economics/",
-      "source": "pv magazine",
-      "title": "The case for rethinking utility-scale PV economics",
-      "url": "https://www.pv-magazine.com/2026/08/05/the-case-for-rethinking-utility-scale-pv-economics/",
-      "publishedAt": "2026-08-05T09:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "While single-axis trackers are often regarded as the lowest-cost option for utility-scale PV, Jurchen Technology's Henner Jahnke argues that falling module prices and rising balance-of-system costs are reshaping the economics of large-scale solar. The post The case for rethinking utility-scale PV economics appeared…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/photovoltaics-lead-spains-electricity-mix-for-four-consecutive-months/",
-      "source": "pv magazine",
-      "title": "Photovoltaics lead Spain’s electricity mix for four consecutive months",
-      "url": "https://www.pv-magazine.com/2026/08/05/photovoltaics-lead-spains-electricity-mix-for-four-consecutive-months/",
-      "publishedAt": "2026-08-05T09:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar generated 7,696 GWh in Spain last month, a new all-time high for monthly PV generation and equivalent to 28.3% of the country's electricity mix. The post Photovoltaics lead Spain’s electricity mix for four consecutive months appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/china-puts-battery-storage-at-center-of-renewable-energy-strategy/",
-      "source": "pv magazine",
-      "title": "China puts battery storage at center of renewable energy strategy",
-      "url": "https://www.pv-magazine.com/2026/08/05/china-puts-battery-storage-at-center-of-renewable-energy-strategy/",
-      "publishedAt": "2026-08-05T08:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "China’s latest five-year renewable energy plan, which targets more than 2.8 TW of solar and wind capacity by 2030, links energy storage with grid reliability, firm power capacity, grid-forming technology and new market-based revenue mechanisms. The post China puts battery storage at center of renewable energy strate…"
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/japan-tokyo-gas-enters-offtake-for-200mwh-fukushima-bess-eku-energy-nears-completion-of-first-project/",
@@ -371,16 +371,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "IPP Eolian has begun construction on Flint Grid, a 200MW/1.06GWh energy storage project in Jersey Township, Licking County, Ohio, US."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/central-eastern-europe-uks-alcemi-buys-2-3gwh-romania-projects-slovakias-biggest-bess-brought-online/",
-      "source": "Energy-Storage.news",
-      "title": "Central & Eastern Europe: UK’s Alcemi buys 2.3GWh Romania projects, Slovakia’s biggest BESS brought online",
-      "url": "https://www.energy-storage.news/central-eastern-europe-uks-alcemi-buys-2-3gwh-romania-projects-slovakias-biggest-bess-brought-online/",
-      "publishedAt": "2026-07-30T10:30:03.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Alcemi, developer of some of the UK’s biggest projects, has entered the Romanian battery storage market, while Slovakia’s biggest project to date has gone into operation."
     },
     {
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
