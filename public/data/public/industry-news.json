@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-06T09:00:00.000Z",
+  "updatedAt": "2026-08-06T13:07:46.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -48,10 +48,120 @@
     {
       "source": "pv magazine",
       "status": "ok",
-      "items": 7
+      "items": 9
     }
   ],
   "items": [
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/eus-chinese-inverter-ban-could-be-sign-of-things-to-come-for-bess-ex-northvolt-bess-exec-says/",
+      "source": "Energy-Storage.news",
+      "title": "EU’s Chinese inverter ban could be sign of things to come for BESS, ex-Northvolt BESS exec says",
+      "url": "https://www.energy-storage.news/eus-chinese-inverter-ban-could-be-sign-of-things-to-come-for-bess-ex-northvolt-bess-exec-says/",
+      "publishedAt": "2026-08-06T13:07:46.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "There is an opportunity for locally designed and manufactured BESS solutions in Europe, with the possibility of future EU controls of Chinese imports, former head of BESS products at Northvolt said."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/dc-circuit-court-of-appeals-upholds-ferc-plan-to-speed-up-permitting-for-us-energy-projects-grid-interconnection/",
+      "source": "Energy-Storage.news",
+      "title": "DC Circuit Court of Appeals upholds FERC plan to speed up permitting for US energy projects’ grid interconnection",
+      "url": "https://www.energy-storage.news/dc-circuit-court-of-appeals-upholds-ferc-plan-to-speed-up-permitting-for-us-energy-projects-grid-interconnection/",
+      "publishedAt": "2026-08-06T12:50:06.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A US court has upheld a Federal Energy Regulatory Commission (FERC) plan to speed up the permitting process for connecting energy projects to the grid."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/pjm-bess-developers-struggles-to-get-financing-are-often-due-to-inaccurate-financial-modelling-ensights-ceo-says/",
+      "source": "Energy-Storage.news",
+      "title": "PJM BESS developers’ struggles to get financing are often due to inaccurate financial modelling, enSights CEO says",
+      "url": "https://www.energy-storage.news/pjm-bess-developers-struggles-to-get-financing-are-often-due-to-inaccurate-financial-modelling-ensights-ceo-says/",
+      "publishedAt": "2026-08-06T12:36:59.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Market conditions look favourable, but some developers are finding it difficult to prove their revenue projections will hold up."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/latvias-solar-capacity-surpasses-1-5-gw/",
+      "source": "pv magazine",
+      "title": "Latvia’s solar capacity surpasses 1.5 GW",
+      "url": "https://www.pv-magazine.com/2026/08/06/latvias-solar-capacity-surpasses-1-5-gw/",
+      "publishedAt": "2026-08-06T12:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Latvia has installed around 600 MW of solar so far this year, meaning 2026 has already broken the country’s record for solar deployed in a calendar year. Solar was Latvia’s largest source of electricity in May and June, with figures for July yet to be released. The post Latvia’s solar capacity surpasses 1.5 GW appea…"
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/finnish-push-for-data-center-flexibility/",
+      "source": "pv magazine",
+      "title": "Finnish push for data center flexibility",
+      "url": "https://www.pv-magazine.com/2026/08/06/finnish-push-for-data-center-flexibility/",
+      "publishedAt": "2026-08-06T12:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Green energy parks combining renewables grid supply with onsite generation, energy storage and energy management software can enable data centers to participate positively in the energy market. Seppo Ihalianen told pv magazine how Finland’s ecogrid.energy is implementing this approach, beginning with a 300 MW projec…"
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/orsted-turns-on-500-mwh-battery-project-with-co-located-solar-in-texas/",
+      "source": "pv magazine",
+      "title": "Ørsted turns on 500 MWh battery project with co-located solar in Texas",
+      "url": "https://www.pv-magazine.com/2026/08/06/orsted-turns-on-500-mwh-battery-project-with-co-located-solar-in-texas/",
+      "publishedAt": "2026-08-06T11:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Old 300 Storage project has reached commercial operations and is now fully integrated with the ERCOT grid, using made-in-America Tesla battery energy storage systems (BESS). It is co-located with a 430 MW solar project that was switched on in 2024. The post Ørsted turns on 500 MWh battery project with co-located…"
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
+      "source": "Energy-Storage.news",
+      "title": "Ørsted puts 500MWh Old 300 Texas BESS into operation",
+      "url": "https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
+      "publishedAt": "2026-08-06T11:21:34.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Denmark-headquartered multinational energy company Ørsted has put its 250MW/500MWh Old 300 energy storage project in Needville, Texas, US into operation."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-centrica-energy-agree-toll-99mw-297mwh-germany-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Zelestra and Centrica Energy agree toll for 99MW/297MWh Germany BESS",
+      "url": "https://www.energy-storage.news/zelestra-centrica-energy-agree-toll-99mw-297mwh-germany-bess/",
+      "publishedAt": "2026-08-06T11:17:29.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "IPP Zelestra has agreed a long-term toll for a 99MW/297MWh BESS project in Germany with the trading arm of UK-based power group Centrica."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/south-korea-proceeds-with-largest-single-site-pv-project-to-date/",
+      "source": "pv magazine",
+      "title": "South Korea proceeds with largest single-site PV project to date",
+      "url": "https://www.pv-magazine.com/2026/08/06/south-korea-proceeds-with-largest-single-site-pv-project-to-date/",
+      "publishedAt": "2026-08-06T11:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The 400 MW solar complex, scheduled for completion in 2028, is expected to supply 529 GWh of electricity annually. The project will include a 10 MW agrivoltaics array. The post South Korea proceeds with largest single-site PV project to date appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/philippines-plans-green-energy-auction-for-agrivoltaics-aquavoltaics/",
+      "source": "pv magazine",
+      "title": "Philippines plans green energy auction for agrivoltaics, aquavoltaics",
+      "url": "https://www.pv-magazine.com/2026/08/06/philippines-plans-green-energy-auction-for-agrivoltaics-aquavoltaics/",
+      "publishedAt": "2026-08-06T10:30:00.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The country's Department of Energy says its ninth green energy auction will focus on integrating solar with agriculture and aquaculture activities. The department has also announced plans for an auction targeting off-grid renewables deployment across 20 selected islands. The post Philippines plans green energy aucti…"
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/researchers-compare-pv-wind-hybrid-systems-for-community-scale-energy/",
+      "source": "pv magazine",
+      "title": "Researchers compare PV, wind, hybrid systems for community-scale energy",
+      "url": "https://www.pv-magazine.com/2026/08/06/researchers-compare-pv-wind-hybrid-systems-for-community-scale-energy/",
+      "publishedAt": "2026-08-06T09:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in China found a hybrid system combining 200 kW of PV, 200 kW of wind and a 100 kWh battery achieved a 70.8% self-sufficiency rate for a community consuming 1,000 kWh per day. While standalone PV delivered a lower levelized cost of energy, the hybrid configuration offered the best overall balance between…"
+    },
     {
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/brazil-proposes-mandatory-take-back-scheme-for-solar-panels-batteries/",
       "source": "pv magazine",
@@ -113,26 +223,6 @@
       "summary": "Texas Gov. Greg Abbott has called for an audit of all data centers in the Electric Reliability Council of Texas interconnection queue, leading the grid operator to delay its Batch Zero review process."
     },
     {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/bangladesh-hits-1-gw-rooftop-solar-capacity/",
-      "source": "pv magazine",
-      "title": "Bangladesh hits 1 GW rooftop solar capacity",
-      "url": "https://www.pv-magazine.com/2026/08/05/bangladesh-hits-1-gw-rooftop-solar-capacity/",
-      "publishedAt": "2026-08-05T12:20:00.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Institute for Energy Economics and Financial Analysis finds Bangladesh's rooftop solar capacity exceeds official figures, as it makes recommendations for more supportive policy to capitalize on untapped rooftop potential. The post Bangladesh hits 1 GW rooftop solar capacity appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/thailand-registers-solar-installers-equipment-ahead-of-rooftop-pv-expansion/",
-      "source": "pv magazine",
-      "title": "Thailand registers solar installers, equipment ahead of rooftop PV expansion",
-      "url": "https://www.pv-magazine.com/2026/08/05/thailand-registers-solar-installers-equipment-ahead-of-rooftop-pv-expansion/",
-      "publishedAt": "2026-08-05T12:00:00.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Thailand is formally registering qualified solar installers and equipment ahead of launching a government-backed program that will aim to deploy rooftop solar on 500,000 households. The registration process is open until September 30. The post Thailand registers solar installers, equipment ahead of rooftop PV expans…"
-    },
-    {
       "id": "Energy-Storage.news:https://www.energy-storage.news/base-power-raises-another-us1-billion-in-series-d-financing-for-us-residential-bess/",
       "source": "Energy-Storage.news",
       "title": "Base Power raises another US$1 billion in Series D financing for US residential BESS",
@@ -141,26 +231,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Residential energy storage startup Base Power has announced a US$1 billion Series D financing at a US$13 billion post-money valuation, and the launch of its new home battery in production in Austin, Texas, US."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/fraunhofer-ise-source-energy-develop-silicon-pv-modules-for-space-satellites/",
-      "source": "pv magazine",
-      "title": "Fraunhofer ISE, Source Energy develop silicon PV modules for space satellites",
-      "url": "https://www.pv-magazine.com/2026/08/05/fraunhofer-ise-source-energy-develop-silicon-pv-modules-for-space-satellites/",
-      "publishedAt": "2026-08-05T11:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The new technology is considered a more economical alternative to the solar cells based on group III-V semiconductors that are currently used in space applications. The post Fraunhofer ISE, Source Energy develop silicon PV modules for space satellites appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/05/sudan-exempts-solar-pv-systems-from-custom-duties/",
-      "source": "pv magazine",
-      "title": "Sudan exempts solar systems from custom duties",
-      "url": "https://www.pv-magazine.com/2026/08/05/sudan-exempts-solar-pv-systems-from-custom-duties/",
-      "publishedAt": "2026-08-05T11:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The decision follows a fire at the country’s largest hydroelectric plant which caused power outages across four Sudanese states. The post Sudan exempts solar systems from custom duties appeared first on pv magazine Global ."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/kkrs-contourglobal-begins-construction-of-sun-at-night-solar-plus-storage-project-in-chile/",
@@ -321,56 +391,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Environmental services company Veolia has been selected to operate and maintain a 350MW microgrid to power an AI data centre campus in New Albany, Ohio, US, which includes a 430MWh BESS."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/business-as-usual-just-accelerated-harmony-energy-ceo-on-life-after-alpiq-acquisition/",
-      "source": "Energy-Storage.news",
-      "title": "‘Business as usual, just accelerated’: Harmony Energy CEO on life after Alpiq acquisition",
-      "url": "https://www.energy-storage.news/business-as-usual-just-accelerated-harmony-energy-ceo-on-life-after-alpiq-acquisition/",
-      "publishedAt": "2026-07-31T11:24:41.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "We caught up with Peter Kavanagh, CEO of BESS developer Harmony Energy, after it was acquired by Switzerland-headquartered power group Alpiq."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/greenvolt-inaugurates-200mw-800mwh-capacity-market-contracted-bess-in-poland/",
-      "source": "Energy-Storage.news",
-      "title": "Greenvolt inaugurates 200MW/800MWh capacity market-contracted BESS in Poland",
-      "url": "https://www.energy-storage.news/greenvolt-inaugurates-200mw-800mwh-capacity-market-contracted-bess-in-poland/",
-      "publishedAt": "2026-07-31T10:40:19.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Greenvolt Power has inaugurated the 200MW Turośń Kościelna Battery Energy Storage Facility in Poland, which energy trader Entrix will optimise."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/thermal-energy-storage-company-1414-degrees-secures-1gw-data-centre-deal-in-south-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Thermal energy storage company 1414 Degrees secures 1GW data centre deal in South Australia",
-      "url": "https://www.energy-storage.news/thermal-energy-storage-company-1414-degrees-secures-1gw-data-centre-deal-in-south-australia/",
-      "publishedAt": "2026-07-31T03:32:11.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "1414 Degrees has signed a deal to develop up to 1GW of AI data centre infrastructure at its Aurora Energy Precinct in South Australia."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/aecon-executes-energy-storage-agreement-for-1200mwh-ontario-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Aecon executes energy storage agreement for 1,200MWh Ontario BESS",
-      "url": "https://www.energy-storage.news/aecon-executes-energy-storage-agreement-for-1200mwh-ontario-bess/",
-      "publishedAt": "2026-07-30T12:27:15.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Infrastructure and construction company Aecon Group has executed an agreement with Ontario’s Independent Electricity System Operator (IESO) for the 150MW/1,200MWh Simcoe energy storage project in Norfolk County, Ontario."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/eolian-begins-construction-on-1-06gwh-ohio-bess-largest-system-built-in-pjm/",
-      "source": "Energy-Storage.news",
-      "title": "Eolian begins construction on 1.06GWh Ohio BESS, largest system built in PJM",
-      "url": "https://www.energy-storage.news/eolian-begins-construction-on-1-06gwh-ohio-bess-largest-system-built-in-pjm/",
-      "publishedAt": "2026-07-30T12:17:14.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "IPP Eolian has begun construction on Flint Grid, a 200MW/1.06GWh energy storage project in Jersey Township, Licking County, Ohio, US."
     },
     {
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",

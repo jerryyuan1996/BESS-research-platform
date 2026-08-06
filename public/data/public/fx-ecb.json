@@ -13,10 +13,10 @@
     "licence": "ECB — free reuse with attribution",
     "attribution": "Source: European Central Bank"
   },
-  "fetchedAt": "2026-08-05T14:36:56.704Z",
+  "fetchedAt": "2026-08-06T14:38:21.626Z",
   "coverage": {
-    "from": "2026-08-05T00:00:00Z",
-    "to": "2026-08-05T00:00:00Z",
+    "from": "2026-08-06T00:00:00Z",
+    "to": "2026-08-06T00:00:00Z",
     "resolution": "P1D",
     "points": 4
   },
@@ -25,34 +25,34 @@
   },
   "series": [
     {
-      "t": "2026-08-05T00:00:00Z",
-      "v": 0.7051571559353066,
+      "t": "2026-08-06T00:00:00Z",
+      "v": 0.7042098840756558,
       "k": "AUD"
     },
     {
-      "t": "2026-08-05T00:00:00Z",
-      "v": 1.1554,
+      "t": "2026-08-06T00:00:00Z",
+      "v": 1.1542,
       "k": "EUR"
     },
     {
-      "t": "2026-08-05T00:00:00Z",
-      "v": 1.3478768082127859,
+      "t": "2026-08-06T00:00:00Z",
+      "v": 1.3467125605273904,
       "k": "GBP"
     },
     {
-      "t": "2026-08-05T00:00:00Z",
-      "v": 0.006345562390158171,
+      "t": "2026-08-06T00:00:00Z",
+      "v": 0.006335840149311083,
       "k": "JPY"
     }
   ],
   "derived": {
-    "asOf": "2026-08-05",
-    "usdPerEur": 1.1554,
+    "asOf": "2026-08-06",
+    "usdPerEur": 1.1542,
     "rates": {
-      "EUR": 1.1554,
-      "AUD": 0.7051571559353066,
-      "GBP": 1.3478768082127859,
-      "JPY": 0.006345562390158171
+      "EUR": 1.1542,
+      "AUD": 0.7042098840756558,
+      "GBP": 1.3467125605273904,
+      "JPY": 0.006335840149311083
     }
   },
   "notes": [
@@ -61,6 +61,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 96,
-  "contentChecksum": "sha256:d9e73aefcef375bf4bd781e6b7716dac8d5d88d038167243ccf16fd63e7e660d",
-  "envelopeChecksum": "sha256:f18426d8f4589d7e23464082ff5a37b9f137198ff8bece7f6ca35d5fba0212f6"
+  "contentChecksum": "sha256:2e37133ff37801417e0a1b72b72d1524134ab5b15f43a0faca441c0b347f075d",
+  "envelopeChecksum": "sha256:69a9b70a1eecdb9fcffc3cdd1ae62b3b0aecdd14c44d6a627674521a8960ac04"
 }
