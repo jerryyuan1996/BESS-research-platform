@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-07T07:30:00.000Z",
+  "updatedAt": "2026-08-07T12:45:00.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -53,14 +53,114 @@
   ],
   "items": [
     {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/solar-brings-connectivity-to-more-than-2000-communities-in-the-brazilian-amazon/",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/is-the-traditional-ppa-dying-in-southern-africa/",
       "source": "pv magazine",
-      "title": "Solar brings connectivity to more than 2,000 communities in the Brazilian Amazon",
-      "url": "https://www.pv-magazine.com/2026/08/07/solar-brings-connectivity-to-more-than-2000-communities-in-the-brazilian-amazon/",
-      "publishedAt": "2026-08-07T07:30:00.000Z",
+      "title": "Is the traditional PPA dying in Southern Africa?",
+      "url": "https://www.pv-magazine.com/2026/08/07/is-the-traditional-ppa-dying-in-southern-africa/",
+      "publishedAt": "2026-08-07T12:45:00.000Z",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "An annual report by a collaborative initiative in the Brazilian Amazon highlights the expansion of off-grid photovoltaic systems to power internet, health and education equipment in areas without access to the electricity grid. The post Solar brings connectivity to more than 2,000 communities in the Brazilian Amazon…"
+      "summary": "The latest in a series of articles on energy markets in Southern Africa looks at how the region is transitioning away from the traditional power purchase agreements (PPA) that have long driven renewable energy deployment. The post Is the traditional PPA dying in Southern Africa? appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/students-steer-solar-powered-racing-cars-to-glory-in-american-solar-challenge/",
+      "source": "pv magazine",
+      "title": "Students steer solar-powered racing cars to glory in American Solar Challenge",
+      "url": "https://www.pv-magazine.com/2026/08/07/students-steer-solar-powered-racing-cars-to-glory-in-american-solar-challenge/",
+      "publishedAt": "2026-08-07T12:40:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Following months of hard work on their solar cars, the winners of the Electrek American Solar Challenge 2026 were honored at a special awards ceremony held in Amarillo. Tesla is a long-time sponsor of the event, which is open to engineering students globally. The post Students steer solar-powered racing cars to glor…"
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/apollo-power-claims-certification-first-for-lightweight-flexible-module/",
+      "source": "pv magazine",
+      "title": "Apollo Power claims certification first for lightweight flexible module",
+      "url": "https://www.pv-magazine.com/2026/08/07/apollo-power-claims-certification-first-for-lightweight-flexible-module/",
+      "publishedAt": "2026-08-07T12:20:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Apollo Power CEO Oded Rozenberg tells pv magazine the company believes its new certification is a world first. He also revealed a new solar roofing product is planned for later in 2026. The post Apollo Power claims certification first for lightweight flexible module appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/high-energy-prices-reshape-dutch-solar-market-ahead-of-net-metering-phaseout/",
+      "source": "pv magazine",
+      "title": "High energy prices reshape Dutch solar market ahead of net-metering phaseout",
+      "url": "https://www.pv-magazine.com/2026/08/07/high-energy-prices-reshape-dutch-solar-market-ahead-of-net-metering-phaseout/",
+      "publishedAt": "2026-08-07T12:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Preliminary market data suggests residential PV sales have slowed in the Netherlands this year, while high energy prices, grid congestion and the forthcoming end of net-metering are accelerating demand for batteries. The post High energy prices reshape Dutch solar market ahead of net-metering phaseout appeared first…"
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/saudi-company-to-build-760-mw-of-solar-1077-mwh-of-bess-in-syria/",
+      "source": "pv magazine",
+      "title": "Saudi company to build 760 MW of solar, 1,077 MWh of BESS in Syria",
+      "url": "https://www.pv-magazine.com/2026/08/07/saudi-company-to-build-760-mw-of-solar-1077-mwh-of-bess-in-syria/",
+      "publishedAt": "2026-08-07T11:20:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Syria’s state-owned electric utility has signed three agreements with Saudi’s Al-Harfi Construction company to develop 760 MW of solar and 1,077 MWh of battery energy storage (BESS) capacity. The post Saudi company to build 760 MW of solar, 1,077 MWh of BESS in Syria appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/the-hydrogen-stream-over-1-billion-in-funds-for-projects-in-spain-the-netherlands/",
+      "source": "pv magazine",
+      "title": "The Hydrogen Stream: Over $1 billion in funds for projects in Spain, the Netherlands",
+      "url": "https://www.pv-magazine.com/2026/08/07/the-hydrogen-stream-over-1-billion-in-funds-for-projects-in-spain-the-netherlands/",
+      "publishedAt": "2026-08-07T11:00:00.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Spanish government has allocated €274.2 million for four renewable hydrogen projects with a combined electrolysis capacity of 102.27 MW, while the European Commission has approved a €780 million Dutch scheme to support renewable hydrogen production. The post The Hydrogen Stream: Over $1 billion in funds for proj…"
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-bnetzas-post-2029-dynamic-grid-fees-to-reward-grid-friendly-behaviour-but-more-clarity-needed/",
+      "source": "Energy-Storage.news",
+      "title": "Germany: BNetzA’s post-2029 dynamic grid fees to reward grid-friendly behaviour, but more clarity needed",
+      "url": "https://www.energy-storage.news/germany-bnetzas-post-2029-dynamic-grid-fees-to-reward-grid-friendly-behaviour-but-more-clarity-needed/",
+      "publishedAt": "2026-08-07T10:27:14.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The German regulator BNetzA's latest draft decision on grid fees from 4 August 2029 onwards still leaves uncertainty for energy storage project business cases."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/worlds-largest-cattle-station-installs-microgrid-as-primary-power-source/",
+      "source": "pv magazine",
+      "title": "World’s largest cattle station installs microgrid as primary power source",
+      "url": "https://www.pv-magazine.com/2026/08/07/worlds-largest-cattle-station-installs-microgrid-as-primary-power-source/",
+      "publishedAt": "2026-08-07T10:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The world's largest cattle station, located in South Australia, has deployed rooftop solar to tackle energy reliability and the diesel costs impacting its operations. The post World’s largest cattle station installs microgrid as primary power source appeared first on pv magazine Global ."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/emerge-renewables-starts-up-solar-glass-factory-in-india/",
+      "source": "pv magazine",
+      "title": "Emerge Renewables starts up solar glass factory in India",
+      "url": "https://www.pv-magazine.com/2026/08/07/emerge-renewables-starts-up-solar-glass-factory-in-india/",
+      "publishedAt": "2026-08-07T09:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Emerge Renewables this week announced the lighting of furnaces at its new solar glass manufacturing facility at the Keshwana Industrial Area in Rajasthan. The company says that once fully operational, the facility will be able to produce glass sufficient for 2.5 GW of modules per year. The post Emerge Renewables sta…"
+    },
+    {
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=zdljso9mhh",
+      "source": "Modo Energy",
+      "title": "Trailer: Transmission",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=zdljso9mhh",
+      "publishedAt": "2026-08-07T09:15:22.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": ""
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/solar-leads-portugals-electricity-mix-for-the-first-time-in-july/",
+      "source": "pv magazine",
+      "title": "Solar leads Portugal’s electricity mix for the first time in July",
+      "url": "https://www.pv-magazine.com/2026/08/07/solar-leads-portugals-electricity-mix-for-the-first-time-in-july/",
+      "publishedAt": "2026-08-07T09:00:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar accounted for 19% of national consumption in July, followed by hydroelectric generation (16%), wind power (13%), and biomass (5%). The post Solar leads Portugal’s electricity mix for the first time in July appeared first on pv magazine Global ."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
@@ -81,16 +181,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "EV manufacturer Ola Electric has entered India’s utility-scale battery storage market with a vertically integrated business model."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/us-announces-tariffs-minimum-import-price-on-polysilicon-imports/",
-      "source": "pv magazine",
-      "title": "US announces tariffs, minimum import price on polysilicon imports",
-      "url": "https://www.pv-magazine.com/2026/08/07/us-announces-tariffs-minimum-import-price-on-polysilicon-imports/",
-      "publishedAt": "2026-08-07T06:43:21.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Following a Section 232 investigation into polysilicon and its derivatives, the White House has announced plans to implement a 15% tariff on polysilicon imports to the United States, along with price floors for polysilicon along with solar ingots, wafers, cells and modules derived from them. The post US announces ta…"
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/zebre-submits-180mw-bess-to-australias-epbc-act-as-zen-energy-administration-fails-to-slow-pipeline/",
@@ -163,36 +253,6 @@
       "summary": "Market conditions look favourable, but some developers are finding it difficult to prove their revenue projections will hold up."
     },
     {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/latvias-solar-capacity-surpasses-1-5-gw/",
-      "source": "pv magazine",
-      "title": "Latvia’s solar capacity surpasses 1.5 GW",
-      "url": "https://www.pv-magazine.com/2026/08/06/latvias-solar-capacity-surpasses-1-5-gw/",
-      "publishedAt": "2026-08-06T12:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Latvia has installed around 600 MW of solar so far this year, meaning 2026 has already broken the country’s record for solar deployed in a calendar year. Solar was Latvia’s largest source of electricity in May and June, with figures for July yet to be released. The post Latvia’s solar capacity surpasses 1.5 GW appea…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/finnish-push-for-data-center-flexibility/",
-      "source": "pv magazine",
-      "title": "Finnish push for data center flexibility",
-      "url": "https://www.pv-magazine.com/2026/08/06/finnish-push-for-data-center-flexibility/",
-      "publishedAt": "2026-08-06T12:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Green energy parks combining renewables grid supply with onsite generation, energy storage and energy management software can enable data centers to participate positively in the energy market. Seppo Ihalianen told pv magazine how Finland’s ecogrid.energy is implementing this approach, beginning with a 300 MW projec…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/orsted-turns-on-500-mwh-battery-project-with-co-located-solar-in-texas/",
-      "source": "pv magazine",
-      "title": "Ørsted turns on 500 MWh battery project with co-located solar in Texas",
-      "url": "https://www.pv-magazine.com/2026/08/06/orsted-turns-on-500-mwh-battery-project-with-co-located-solar-in-texas/",
-      "publishedAt": "2026-08-06T11:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Old 300 Storage project has reached commercial operations and is now fully integrated with the ERCOT grid, using made-in-America Tesla battery energy storage systems (BESS). It is co-located with a 430 MW solar project that was switched on in 2024. The post Ørsted turns on 500 MWh battery project with co-located…"
-    },
-    {
       "id": "Energy-Storage.news:https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
       "source": "Energy-Storage.news",
       "title": "Ørsted puts 500MWh Old 300 Texas BESS into operation",
@@ -211,46 +271,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "IPP Zelestra has agreed a long-term toll for a 99MW/297MWh BESS project in Germany with the trading arm of UK-based power group Centrica."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/south-korea-proceeds-with-largest-single-site-pv-project-to-date/",
-      "source": "pv magazine",
-      "title": "South Korea proceeds with largest single-site PV project to date",
-      "url": "https://www.pv-magazine.com/2026/08/06/south-korea-proceeds-with-largest-single-site-pv-project-to-date/",
-      "publishedAt": "2026-08-06T11:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The 400 MW solar complex, scheduled for completion in 2028, is expected to supply 529 GWh of electricity annually. The project will include a 10 MW agrivoltaics array. The post South Korea proceeds with largest single-site PV project to date appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/philippines-plans-green-energy-auction-for-agrivoltaics-aquavoltaics/",
-      "source": "pv magazine",
-      "title": "Philippines plans green energy auction for agrivoltaics, aquavoltaics",
-      "url": "https://www.pv-magazine.com/2026/08/06/philippines-plans-green-energy-auction-for-agrivoltaics-aquavoltaics/",
-      "publishedAt": "2026-08-06T10:30:00.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The country's Department of Energy says its ninth green energy auction will focus on integrating solar with agriculture and aquaculture activities. The department has also announced plans for an auction targeting off-grid renewables deployment across 20 selected islands. The post Philippines plans green energy aucti…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/researchers-compare-pv-wind-hybrid-systems-for-community-scale-energy/",
-      "source": "pv magazine",
-      "title": "Researchers compare PV, wind, hybrid systems for community-scale energy",
-      "url": "https://www.pv-magazine.com/2026/08/06/researchers-compare-pv-wind-hybrid-systems-for-community-scale-energy/",
-      "publishedAt": "2026-08-06T09:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in China found a hybrid system combining 200 kW of PV, 200 kW of wind and a 100 kWh battery achieved a 70.8% self-sufficiency rate for a community consuming 1,000 kWh per day. While standalone PV delivered a lower levelized cost of energy, the hybrid configuration offered the best overall balance between…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/brazil-proposes-mandatory-take-back-scheme-for-solar-panels-batteries/",
-      "source": "pv magazine",
-      "title": "Brazil proposes mandatory take-back scheme for solar panels, batteries",
-      "url": "https://www.pv-magazine.com/2026/08/06/brazil-proposes-mandatory-take-back-scheme-for-solar-panels-batteries/",
-      "publishedAt": "2026-08-06T09:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A bill under review in Brazil's Chamber of Deputies stipulates that manufacturers, importers and retailers should be responsible for collecting and recycling equipment after its end-of-life. The post Brazil proposes mandatory take-back scheme for solar panels, batteries appeared first on pv magazine Global ."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-books-first-big-data-centre-deals-but-manufacturing-ramp-up-delays-hit-revenues/",
@@ -383,16 +403,6 @@
       "summary": "Habitat Energy has been appointed by Octopus Australia to provide optimisation services for two DC-coupled solar-plus-storage sites."
     },
     {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/you-cannot-build-a-whole-electricity-system-purely-on-solar-hybrids-squadron-energy-ceo-warns/",
-      "source": "Energy-Storage.news",
-      "title": "‘You cannot build a whole electricity system purely on solar hybrids’: Squadron Energy CEO warns",
-      "url": "https://www.energy-storage.news/you-cannot-build-a-whole-electricity-system-purely-on-solar-hybrids-squadron-energy-ceo-warns/",
-      "publishedAt": "2026-08-03T03:50:49.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS and solar have driven Australia past the halfway mark in NEM renewable penetration, but the technology mix is not yet broad enough."
-    },
-    {
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
       "source": "Modo Energy",
       "title": "What Happens When The State Take Risks Private Capital Won't? - GB Energy",
@@ -483,10 +493,10 @@
       "summary": "Spain has approximately 42GW of utility-scale solar and 50GW when rooftop is included, yet less than 100MW of grid-connected battery storage. In February, solar capture rates hit €1.30 per megawatt hour, a fraction of the €30–35/MWh needed for a solar project to break even. So why hasn't battery storage followed the…"
     },
     {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=6kgj1zzcgr",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3h7r7j196w",
       "source": "Modo Energy",
       "title": "The Behavioural Shift That Makes EV Flexibility Actually Work - Ohme",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=6kgj1zzcgr",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3h7r7j196w",
       "publishedAt": "2026-04-21T06:00:24.000Z",
       "category": "policy",
       "categoryLabel": "Policy & trade",
