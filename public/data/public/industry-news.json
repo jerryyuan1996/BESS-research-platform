@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-06T15:58:30.000Z",
+  "updatedAt": "2026-08-07T07:30:00.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -52,6 +52,56 @@
     }
   ],
   "items": [
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/solar-brings-connectivity-to-more-than-2000-communities-in-the-brazilian-amazon/",
+      "source": "pv magazine",
+      "title": "Solar brings connectivity to more than 2,000 communities in the Brazilian Amazon",
+      "url": "https://www.pv-magazine.com/2026/08/07/solar-brings-connectivity-to-more-than-2000-communities-in-the-brazilian-amazon/",
+      "publishedAt": "2026-08-07T07:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "An annual report by a collaborative initiative in the Brazilian Amazon highlights the expansion of off-grid photovoltaic systems to power internet, health and education equipment in areas without access to the electricity grid. The post Solar brings connectivity to more than 2,000 communities in the Brazilian Amazon…"
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
+      "source": "Energy-Storage.news",
+      "title": "Spanish government awards €360 million for co-located battery storage projects",
+      "url": "https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
+      "publishedAt": "2026-08-07T07:28:37.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Spanish Ministry of Ecological Transition (MITECO) has awarded €360 million (US$415 million) to 1.14GW of solar PV co-located with battery energy storage system (BESS) projects."
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ev-manufacturer-ola-electric-brings-cell-to-pack-vertical-integration-into-indias-utility-scale-bess-market-with-20gwh-mou/",
+      "source": "Energy-Storage.news",
+      "title": "EV manufacturer Ola Electric brings cell-to-pack vertical integration into India’s utility-scale BESS market with 20GWh MoU",
+      "url": "https://www.energy-storage.news/ev-manufacturer-ola-electric-brings-cell-to-pack-vertical-integration-into-indias-utility-scale-bess-market-with-20gwh-mou/",
+      "publishedAt": "2026-08-07T07:11:35.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "EV manufacturer Ola Electric has entered India’s utility-scale battery storage market with a vertically integrated business model."
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/us-announces-tariffs-minimum-import-price-on-polysilicon-imports/",
+      "source": "pv magazine",
+      "title": "US announces tariffs, minimum import price on polysilicon imports",
+      "url": "https://www.pv-magazine.com/2026/08/07/us-announces-tariffs-minimum-import-price-on-polysilicon-imports/",
+      "publishedAt": "2026-08-07T06:43:21.000Z",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Following a Section 232 investigation into polysilicon and its derivatives, the White House has announced plans to implement a 15% tariff on polysilicon imports to the United States, along with price floors for polysilicon along with solar ingots, wafers, cells and modules derived from them. The post US announces ta…"
+    },
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/zebre-submits-180mw-bess-to-australias-epbc-act-as-zen-energy-administration-fails-to-slow-pipeline/",
+      "source": "Energy-Storage.news",
+      "title": "ZEBRE submits 180MW BESS to Australia’s EPBC Act as ZEN Energy administration fails to slow pipeline",
+      "url": "https://www.energy-storage.news/zebre-submits-180mw-bess-to-australias-epbc-act-as-zen-energy-administration-fails-to-slow-pipeline/",
+      "publishedAt": "2026-08-07T03:53:20.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "ZEBRE has submitted the 180MW/360MWh Noblevale Battery in Queensland for federal environmental assessment under the EPBC Act."
+    },
     {
       "id": "Utility Dive:https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
       "source": "Utility Dive",
@@ -203,16 +253,6 @@
       "summary": "A bill under review in Brazil's Chamber of Deputies stipulates that manufacturers, importers and retailers should be responsible for collecting and recycling equipment after its end-of-life. The post Brazil proposes mandatory take-back scheme for solar panels, batteries appeared first on pv magazine Global ."
     },
     {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/india-approves-inr-5070-crore-scheme-for-5-gw-of-floating-solar-with-storage/",
-      "source": "pv magazine",
-      "title": "India targets 5 GW of floating PV with co-located storage",
-      "url": "https://www.pv-magazine.com/2026/08/06/india-approves-inr-5070-crore-scheme-for-5-gw-of-floating-solar-with-storage/",
-      "publishedAt": "2026-08-06T08:30:00.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "A newly-approved government scheme in India plans to support the development of 5 GW of floating solar on existing reservoirs and industrial ponds, to be paired with energy storage systems with a minimum storage capacity of two hours. The post India targets 5 GW of floating PV with co-located storage appeared first…"
-    },
-    {
       "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-books-first-big-data-centre-deals-but-manufacturing-ramp-up-delays-hit-revenues/",
       "source": "Energy-Storage.news",
       "title": "Fluence books first big data centre deals, but manufacturing ramp-up delays hit revenues",
@@ -221,16 +261,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Manufacturing delays have led Fluence to adjust its fiscal year 2026 guidance, even as the company has logged record quarterly orders and a US$6.4 billion backlog."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/06/transmission-logjams-and-ai-load-growth-push-data-centers-toward-on-site-solar-storage-and-vpps/",
-      "source": "pv magazine",
-      "title": "US data centers turn to on-site solar, storage, VPPs as grid delays mount",
-      "url": "https://www.pv-magazine.com/2026/08/06/transmission-logjams-and-ai-load-growth-push-data-centers-toward-on-site-solar-storage-and-vpps/",
-      "publishedAt": "2026-08-06T07:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A Reuters Events report highlights how multi-year transmission delays are forcing data center developers in the United States to deploy 56 GW of on-site generation while turning to Virtual Power Plants to unlock fast capacity. The post US data centers turn to on-site solar, storage, VPPs as grid delays mount appeare…"
     },
     {
       "id": "Utility Dive:https://www.utilitydive.com/news/pseg-data-center-pjm-bilateral-contract-reliability/827045/",
@@ -361,36 +391,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "BESS and solar have driven Australia past the halfway mark in NEM renewable penetration, but the technology mix is not yet broad enough."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/grid-forming-bess-not-yet-confirmed-for-minimum-system-strength-in-australia-as-aemo-launches-fault-current-trial/",
-      "source": "Energy-Storage.news",
-      "title": "Grid-forming BESS not yet confirmed for minimum system strength in Australia as AEMO launches fault current trial",
-      "url": "https://www.energy-storage.news/grid-forming-bess-not-yet-confirmed-for-minimum-system-strength-in-australia-as-aemo-launches-fault-current-trial/",
-      "publishedAt": "2026-08-03T03:29:54.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Grid-forming BESS have not yet been confirmed to meet the highest tier of system strength requirements in Australia's NEM, according to AEMO."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/antora-energy-closes-us550-million-series-c-to-scale-us-thermal-battery-deployment/",
-      "source": "Energy-Storage.news",
-      "title": "Antora Energy closes US$550 million Series C to scale US thermal battery deployment",
-      "url": "https://www.energy-storage.news/antora-energy-closes-us550-million-series-c-to-scale-us-thermal-battery-deployment/",
-      "publishedAt": "2026-07-31T11:48:18.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Thermal energy storage (TES) technology provider Antora Energy has closed a US$550 million Series C funding round to accelerate deployment of its thermal battery storage systems for industrial facilities and data centres in the US."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/veolia-to-operate-350mw-microgrid-for-ai-data-centre-in-central-ohio/",
-      "source": "Energy-Storage.news",
-      "title": "Veolia to operate 350MW microgrid for AI data centre in central Ohio",
-      "url": "https://www.energy-storage.news/veolia-to-operate-350mw-microgrid-for-ai-data-centre-in-central-ohio/",
-      "publishedAt": "2026-07-31T11:43:43.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Environmental services company Veolia has been selected to operate and maintain a 350MW microgrid to power an AI data centre campus in New Albany, Ohio, US, which includes a 430MWh BESS."
     },
     {
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
