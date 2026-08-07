@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-07T12:45:00.000Z",
+  "updatedAt": "2026-08-07T14:20:01.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -43,7 +43,7 @@
     {
       "source": "Utility Dive",
       "status": "ok",
-      "items": 5
+      "items": 4
     },
     {
       "source": "pv magazine",
@@ -52,6 +52,16 @@
     }
   ],
   "items": [
+    {
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
+      "source": "Energy-Storage.news",
+      "title": "US DOE closes US$489 million loan with Pattern Energy to support BESS, natural gas in Puerto Rico",
+      "url": "https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
+      "publishedAt": "2026-08-07T14:20:01.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The US Department of Energy (DOE) has closed a US$489.4 million loan to Amanecer Puerto Rico, a subsidiary of developer Pattern Energy to support Puerto Rico’s electric grid."
+    },
     {
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/is-the-traditional-ppa-dying-in-southern-africa/",
       "source": "pv magazine",
@@ -91,6 +101,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Preliminary market data suggests residential PV sales have slowed in the Netherlands this year, while high energy prices, grid congestion and the forthcoming end of net-metering are accelerating demand for batteries. The post High energy prices reshape Dutch solar market ahead of net-metering phaseout appeared first…"
+    },
+    {
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/august-eclipse-to-test-european-us-grids-with-solar-ramps/",
+      "source": "pv magazine",
+      "title": "August eclipse to test European, US grids with solar ramps",
+      "url": "https://www.pv-magazine.com/2026/08/07/august-eclipse-to-test-european-us-grids-with-solar-ramps/",
+      "publishedAt": "2026-08-07T11:30:00.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a new weekly update for pv magazine, Solcast, a DNV company, explores the expected impact of the forthcoming solar eclipse on August 12. The post August eclipse to test European, US grids with solar ramps appeared first on pv magazine Global ."
     },
     {
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/saudi-company-to-build-760-mw-of-solar-1077-mwh-of-bess-in-syria/",
@@ -153,16 +173,6 @@
       "summary": ""
     },
     {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/solar-leads-portugals-electricity-mix-for-the-first-time-in-july/",
-      "source": "pv magazine",
-      "title": "Solar leads Portugal’s electricity mix for the first time in July",
-      "url": "https://www.pv-magazine.com/2026/08/07/solar-leads-portugals-electricity-mix-for-the-first-time-in-july/",
-      "publishedAt": "2026-08-07T09:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar accounted for 19% of national consumption in July, followed by hydroelectric generation (16%), wind power (13%), and biomass (5%). The post Solar leads Portugal’s electricity mix for the first time in July appeared first on pv magazine Global ."
-    },
-    {
       "id": "Energy-Storage.news:https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
       "source": "Energy-Storage.news",
       "title": "Spanish government awards €360 million for co-located battery storage projects",
@@ -200,7 +210,7 @@
       "publishedAt": "2026-08-06T15:58:30.000Z",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "&nbsp;&ldquo;Fractionalized&rdquo; virtual power purchase agreements and renewable energy certificate transactions can help underwrite clean energy projects, particularly in volatile energy markets, an executive involved in the transaction told Utility Dive. &nbsp;"
+      "summary": "&nbsp;&ldquo;Fractionalized&rdquo; virtual power purchase agreements and renewable energy certificate transactions can help underwrite clean energy projects, particularly in volatile energy markets, an executive involved in the transaction told Utility Dive."
     },
     {
       "id": "Utility Dive:https://www.utilitydive.com/news/nrg-nears-12-gw-hyperscaler-deal-amid-texas-data-center-pause/827212/",
@@ -281,16 +291,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Manufacturing delays have led Fluence to adjust its fiscal year 2026 guidance, even as the company has logged record quarterly orders and a US$6.4 billion backlog."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/pseg-data-center-pjm-bilateral-contract-reliability/827045/",
-      "source": "Utility Dive",
-      "title": "PSEG offers data center supply proposals in PJM’s bilateral contracting process",
-      "url": "https://www.utilitydive.com/news/pseg-data-center-pjm-bilateral-contract-reliability/827045/",
-      "publishedAt": "2026-08-05T12:38:51.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Also, Public Service Enterprise Group is &ldquo;encouraged&rdquo; by potential changes to the utility business model in New Jersey, CEO Ralph LaRossa said."
     },
     {
       "id": "Utility Dive:https://www.utilitydive.com/news/texas-hits-pause-data-center-interconnections/827046/",
@@ -391,16 +391,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "ESN Premium speaks with Fluence's Jeff Monday and Sam Markham on the opportunity battery energy storage could provide data centres in Australia."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/habitat-energy-appointed-to-optimise-dc-coupled-614mwh-solar-plus-storage-portfolio-for-octopus-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Habitat Energy appointed to optimise DC-coupled 614MWh solar-plus-storage portfolio for Octopus Australia",
-      "url": "https://www.energy-storage.news/habitat-energy-appointed-to-optimise-dc-coupled-614mwh-solar-plus-storage-portfolio-for-octopus-australia/",
-      "publishedAt": "2026-08-04T03:28:43.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Habitat Energy has been appointed by Octopus Australia to provide optimisation services for two DC-coupled solar-plus-storage sites."
     },
     {
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
