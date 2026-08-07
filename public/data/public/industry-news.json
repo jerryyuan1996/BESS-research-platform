@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-06T13:07:46.000Z",
+  "updatedAt": "2026-08-06T15:58:30.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -53,6 +53,26 @@
   ],
   "items": [
     {
+      "id": "Utility Dive:https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
+      "source": "Utility Dive",
+      "title": "Video gamers give 110-MW Texas solar project a financing boost",
+      "url": "https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
+      "publishedAt": "2026-08-06T15:58:30.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "&nbsp;&ldquo;Fractionalized&rdquo; virtual power purchase agreements and renewable energy certificate transactions can help underwrite clean energy projects, particularly in volatile energy markets, an executive involved in the transaction told Utility Dive. &nbsp;"
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/nrg-nears-12-gw-hyperscaler-deal-amid-texas-data-center-pause/827212/",
+      "source": "Utility Dive",
+      "title": "NRG nears 1.2-GW hyperscaler deal amid Texas data center pause",
+      "url": "https://www.utilitydive.com/news/nrg-nears-12-gw-hyperscaler-deal-amid-texas-data-center-pause/827212/",
+      "publishedAt": "2026-08-06T14:16:56.000Z",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "President and CEO Robert Gaudette said NRG&rsquo;s approach to delivering customer-backed capacity would thrive in a more restrictive environment for data center development.&nbsp;"
+    },
+    {
       "id": "Energy-Storage.news:https://www.energy-storage.news/eus-chinese-inverter-ban-could-be-sign-of-things-to-come-for-bess-ex-northvolt-bess-exec-says/",
       "source": "Energy-Storage.news",
       "title": "EU’s Chinese inverter ban could be sign of things to come for BESS, ex-Northvolt BESS exec says",
@@ -61,6 +81,16 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "There is an opportunity for locally designed and manufactured BESS solutions in Europe, with the possibility of future EU controls of Chinese imports, former head of BESS products at Northvolt said."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/texas-data-center-pause-puts-us-pipeline-risk-of-delay-bnef/827185/",
+      "source": "Utility Dive",
+      "title": "Texas data center pause puts 20% of US pipeline at risk of delay: BNEF",
+      "url": "https://www.utilitydive.com/news/texas-data-center-pause-puts-us-pipeline-risk-of-delay-bnef/827185/",
+      "publishedAt": "2026-08-06T12:53:46.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The longer the moratorium stays in place, the greater the risk to Texas&rsquo; data center boom, analysts at Bloomberg NEF said."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/dc-circuit-court-of-appeals-upholds-ferc-plan-to-speed-up-permitting-for-us-energy-projects-grid-interconnection/",
@@ -273,26 +303,6 @@
       "summary": "The largest grid-scale battery energy storage system (BESS) project in the Czech Republic has gone online, supplied by a company invested in by lithium-ion OEM CATL."
     },
     {
-      "id": "Utility Dive:https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
-      "source": "Utility Dive",
-      "title": "Eversource Q2 income plunges on transmission ROE, offshore wind charges",
-      "url": "https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
-      "publishedAt": "2026-08-04T13:35:56.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Jefferies analysts cast doubt on Connecticut Light and Power&rsquo;s $1 billion advanced metering infrastructure proposal, which has a negative benefit-to-cost ratio."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
-      "source": "Utility Dive",
-      "title": "Southern Co. contracted large load rises to 17 GW",
-      "url": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
-      "publishedAt": "2026-08-04T13:20:14.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. The contract&nbsp;includes 1 GW of &ldquo;flexible demand response&rdquo; for peak shaving&nbsp;&mdash; the first such flexibility provision the company has codified with a data center customer."
-    },
-    {
       "id": "Energy-Storage.news:https://www.energy-storage.news/massachusetts-issues-rfp-seeking-1000mw-of-bess/",
       "source": "Energy-Storage.news",
       "title": "Massachusetts issues RFP seeking 1,000MW of BESS",
@@ -341,16 +351,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Habitat Energy has been appointed by Octopus Australia to provide optimisation services for two DC-coupled solar-plus-storage sites."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/",
-      "source": "Utility Dive",
-      "title": "Dominion offshore wind project cost rises nearly $300M",
-      "url": "https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/",
-      "publishedAt": "2026-08-03T16:07:45.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/you-cannot-build-a-whole-electricity-system-purely-on-solar-hybrids-squadron-energy-ceo-warns/",
