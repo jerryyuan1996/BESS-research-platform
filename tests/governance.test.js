@@ -250,6 +250,18 @@ test('discount rates and the comparison window are beyond even proposal', () => 
   }
 });
 
+/* The sponsor position is not an observation. It reaches every published return
+   on the platform, so it is classified explicitly rather than falling through
+   assumptionAuthority()'s METHODOLOGY default — an entry that is present can be
+   reviewed, and a default cannot be. */
+test('the sponsor underwriting position is declared, not defaulted', () => {
+  for (const k of ['OEM_CAPEX_MULTIPLIER', 'SPONSOR_DISCOUNT_DELTA_PP']){
+    assert.ok(Object.hasOwn(ASSUMPTION_AUTHORITY, k), `${k} must be declared in ASSUMPTION_AUTHORITY`);
+    assert.equal(assumptionAuthority(k), AUTHORITY.METHODOLOGY, `${k} must be methodology`);
+    assert.equal(canMachinePropose(assumptionAuthority(k)), false);
+  }
+});
+
 test('nothing anywhere is machine-writable except observed and derived', () => {
   const all = [
     ...Object.values(COMPARISON_AUTHORITY),

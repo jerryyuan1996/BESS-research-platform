@@ -41,6 +41,7 @@ import { enhanceMarketPage } from '../../components/pageEnhancements.js';
 import { gridMapForMarket } from '../gridMapRegistry.js';
 import { lineChart, barChart, waterfall, bandChart } from '../../charts/index.js';
 
+import { applySponsorDataset } from '../../comparison/sponsorAssumptions.js';
 import { BASE_TEXT } from './text.js';
 import { GLOSS_CORE } from './glossary.js';
 import { createFormat } from './format.js';
@@ -59,7 +60,15 @@ import { createExports } from './exports.js';
  * @param {object} [cfg.textOverrides]  market-specific additions to the shared T
  */
 export function createMarketEngine(cfg){
-  const { MKT, TABS, SRC, M, buildSections, textOverrides, regions } = cfg;
+  const { MKT, TABS, SRC, buildSections, textOverrides, regions } = cfg;
+
+  /* The sponsor's buying position is applied HERE rather than in each market's
+     data.js, for the same reason the registry applies it rather than each
+     comparison.js: the market file states what the market costs, and this is the
+     one boundary where that becomes what we pay. Every dashboard on this engine
+     therefore prices equipment and discounts cash flow exactly as the cockpit
+     does. See src/comparison/sponsorAssumptions.js. */
+  const M = applySponsorDataset(cfg.M);
 
   const T = Object.assign({}, BASE_TEXT, textOverrides || {});
 

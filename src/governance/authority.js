@@ -377,6 +377,17 @@ export const ASSUMPTION_AUTHORITY = {
   UNLEVERED: AUTHORITY.METHODOLOGY,
   EXIT_YEARS: AUTHORITY.CONFIG,
   FX_NOTE: AUTHORITY.METHODOLOGY,
+
+  /* Sponsor underwriting position (src/comparison/sponsorAssumptions.js).
+
+     Both are METHODOLOGY, and the reasoning is the same one that puts the exit
+     yields there: no feed observes them. The OEM multiplier is a negotiated
+     buying position and the discount delta is a view on the cost of capital —
+     neither is a published series, and both move every IRR the platform prints,
+     on the cockpit and on all twelve dashboards. An ETL that could propose
+     against these could restate the entire house position overnight. */
+  OEM_CAPEX_MULTIPLIER: AUTHORITY.METHODOLOGY,
+  SPONSOR_DISCOUNT_DELTA_PP: AUTHORITY.METHODOLOGY,
 };
 
 /* ---------------------------------------------------------------------------

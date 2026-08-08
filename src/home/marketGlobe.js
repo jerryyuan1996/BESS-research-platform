@@ -1,6 +1,7 @@
 import world from 'world-atlas/countries-110m.json';
 import westernAustralia from '../markets/wa/wa-state-boundary.json' with { type:'json' };
 import { MARKET_SECTORS } from './marketSectorBoundaries.js';
+import { d3Winding } from './geoWinding.js';
 import { feature } from 'topojson-client';
 import {
   geoDistance,
@@ -87,20 +88,6 @@ function marketLink([flagCode, label, route]){
       window.scrollTo(0, 0);
     },
   }, h('span', { class:`fi fi-${flagCode}`, 'aria-hidden':'true' }), L(label));
-}
-
-function d3Winding(feature){
-  const geometry = feature?.geometry;
-  if (!geometry || (geometry.type !== 'Polygon' && geometry.type !== 'MultiPolygon')) return feature;
-  const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
-  return {
-    ...feature,
-    geometry:{
-      ...geometry,
-      coordinates:(geometry.type === 'Polygon' ? polygons[0].map(ring => [...ring].reverse())
-        : polygons.map(polygon => polygon.map(ring => [...ring].reverse()))),
-    },
-  };
 }
 
 export function renderMarketGlobe(){

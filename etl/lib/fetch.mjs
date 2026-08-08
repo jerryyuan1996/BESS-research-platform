@@ -48,6 +48,12 @@ export async function httpGet(url, opts = {}){
     retries = DEFAULT_RETRIES,
     headers = {},
     log = () => {},
+    /* Some public query APIs only accept POST — Overpass rejects a long query
+       string in a URL. Kept optional so every existing caller is unchanged, and
+       routed through here rather than through a raw fetch so a POST still gets
+       the timeout, the backoff and the truthful user agent. */
+    method = 'GET',
+    body = undefined,
   } = opts;
 
   let lastError = null;
@@ -60,6 +66,8 @@ export async function httpGet(url, opts = {}){
       const res = await fetch(url, {
         signal: controller.signal,
         redirect: 'follow',
+        method,
+        body,
         headers: { 'user-agent': USER_AGENT, accept: '*/*', ...headers },
       });
 

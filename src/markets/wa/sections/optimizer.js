@@ -16,6 +16,7 @@ import { state, render } from '../state.js';
 import { NF1, fmtN, fmtAM, fmtPct, fmtIRR, fmtX } from '../ui.js';
 import { OPT } from '../data/optimizer.js';
 import { SEED } from '../data/seed.js';
+import { applySponsorLabSeed } from '../../../comparison/sponsorAssumptions.js';
 import { optimizerModel, buildDispatch, optExplanation, dispatchChart } from '../lib/optimizer.js';
 
 function renderOptimizer(main){
@@ -23,7 +24,7 @@ function renderOptimizer(main){
      this section and no longer exists on the dashboard at all. The reference
      configuration is WA's own seed; retyping economic assumptions is the home
      page's job now. */
-  if (!state.lab) state.lab = { ...SEED.lab };
+  if (!state.lab) state.lab = applySponsorLabSeed(SEED.lab);
   if (!state.rcmScn) state.rcmScn = 'BASE';
   if (!state.optStrat) state.optStrat = 'BALANCED';
   const inp = state.lab, scn = state.rcmScn, strat = state.optStrat;
