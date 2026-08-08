@@ -57,8 +57,8 @@ SEC_B.home = function (){
         ['05', ['Underwriting','项目承销'], ['Can the project connect, and what does the loss factor cost?','项目能否并网？损耗系数的代价是多少？'], 'grid'],
         ['06', ['Portfolio application','组合应用'], ['Which screened NEM opportunity passes the gates?','所筛选的NEM机会中哪一个能通过门槛？'], 'portfolio'],
       ] },
-      { t:'note', text:['Recommended presentation order: Overview → NEM Market Story → Capacity Investment Scheme → Spot & Cap Contracts → FCAS → Storage Duration → Project Pipeline → Grid, MLF & Congestion → Portfolio. NEM vs WEM and Data & Methodology are reference appendices unless a question requires them.',
-        '建议讲解顺序：总览 → NEM市场演进 → 容量投资计划 → 现货与价格上限合约 → FCAS → 储能时长 → 项目管线 → 并网、边际损耗与拥塞 → 组合。NEM与WEM对比及数据与方法作为问答附录。'] },
+      { t:'note', text:['Recommended presentation order: Overview → NEM Market Story → Capacity Investment Scheme → Spot & Cap Contracts → FCAS → Storage Duration → Project Pipeline → Grid, MLF & Congestion → Portfolio → Data & Methodology.',
+        '建议讲解顺序：总览 → NEM市场演进 → 容量投资计划 → 现货与价格上限合约 → FCAS → 储能时长 → 项目管线 → 并网、边际损耗与拥塞 → 组合 → 数据与方法。'] },
       { t:'why', text:['The six questions are sequenced so each one can veto the next. A market building storage faster than anywhere outside the US and China (02) is not the same as a revenue stack a lender will size against (03), a duration that pays for its own capex (04), a connection point whose loss factor and curtailment history you have actually read (05), or a specific opportunity worth committing capital to (06). In the NEM the veto usually falls at step 03 — the merchant case alone does not clear a lender\'s coverage test at current spreads, which is why the contracted layer decides the deal.',
         '六个问题按“逐级否决”排序：一个储能建设速度仅次于美国与中国的市场（02），不等于贷款人愿据以安排规模的收入结构（03），不等于能自行偿付造价的时长配置（04），不等于你确已查阅过损耗系数与限电历史的并网点（05），也不等于某个具体机会值得投入资本（06）。在NEM，否决通常发生在第03步 — 按当前价差，仅靠市场化收入无法通过贷款人的偿债覆盖检验，因此合同层决定交易成败。'],
         sig:['The veto usually falls at the contracted layer','否决通常发生在合同层'] },
@@ -454,8 +454,8 @@ SEC_B.capacity = function (){
         { n:['4 · Award announced','4 · 中标公告'], d:['Project, MW, MWh and state are published. Floor, ceiling, payment cap and term are not — and never will be for this scheme.','项目、MW、MWh与所在州已公布。保底价、上限、支付上限与期限则不公布 — 且本计划永远不会公布。'] },
         { n:['5 · Agreement executed and FID taken','5 · 协议签署并作出最终投资决策'], d:['The only tier at which a contracted revenue line may enter a base case. Only ' + O.preT3FidPct + '% of pre-Tender-3 awarded battery capacity had reached this tier at that time.','这是合同化收入唯一可进入基准情景的层级。第3轮之前中标的储能容量中，当时仅有' + O.preT3FidPct + '%达到该层级。'] },
       ] },
-      { t:'note', text:['Because tier 4 publishes volumes but not prices, this dashboard brackets the floor rather than asserting one: a debt-service-and-opex build-up at the low end, and the NSW LTESA Round 6 annuity cap as a same-region, same-asset-class proxy at the high end. The derivation is in src/markets/nem/comparison.js and the resulting range is what the Investment Lab on the home page varies over.',
-        '由于第4层级公布容量但不公布价格，本看板对保底价采取区间估计而非直接主张：下限为偿债与运维成本推算，上限为新南威尔士LTESA第6轮年金上限（同区域、同资产类别的代理指标）。推导过程见src/markets/nem/comparison.js，所得区间即首页投资测算模块的变动范围。'] },
+      { t:'note', text:['Because tier 4 publishes volumes but not prices, this dashboard brackets the floor rather than asserting one: a debt-service-and-opex build-up at the low end, and the NSW LTESA Round 6 annuity cap as a same-region, same-asset-class proxy at the high end. The derivation is in src/markets/nem/comparison.js and the resulting range is what the dedicated Investment Lab page varies over.',
+        '由于第4层级公布容量但不公布价格，本看板对保底价采取区间估计而非直接主张：下限为偿债与运维成本推算，上限为新南威尔士LTESA第6轮年金上限（同区域、同资产类别的代理指标）。推导过程见src/markets/nem/comparison.js，所得区间即独立投资测算页面的变动范围。'] },
       { t:'why', text:['This is the honest position and it is worth stating plainly: this dashboard does not know what a CIS agreement pays, and neither does anyone outside the transaction. What it can do is bound the answer from two independent directions and refuse to present the midpoint as a fact. The Nelson Review recommending that the successor mechanism publish its clearing prices is the strongest available evidence that this gap is real, acknowledged, and scheduled to close no earlier than ' + O.esemStart + '.',
         '这是诚实的立场，值得明说：本看板不知道CIS协议的支付水平，交易之外亦无人知晓。它能做的是从两个独立方向框定答案，并拒绝把中值当作事实呈现。Nelson评估建议后继机制公布出清价格，是关于“该缺口真实存在、已被承认、且最早在' + O.esemStart + '才可能弥合”的最有力证据。'],
         sig:['Bound the answer; do not assert the midpoint','框定答案，不主张中值'] },
@@ -690,14 +690,14 @@ SEC_B.duration = function (){
         sig:['A re-study puts you back in the queue','重新研究会让你重回队列'] },
     ] },
 
-    /* Relocated from the Investment Lab tab, which moved to the home page. The
+    /* Relocated from the Investment Lab tab, which moved to a dedicated page. The
        duration question is a market question — where the incremental MWh stops
        paying for itself — so it belongs beside the rest of this tab rather than
        inside a returns model. */
     { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
       { t:'labDur' },
-      { t:'cap', text:['Run on the seed assumptions this market publishes. The de-rating column reads 100% at every duration because the NEM has no capacity mechanism to de-rate against — that column is structurally flat here and is not an error. To retype the assumptions and price a capital structure, use the Investment Lab on the home page.',
-        '基于本市场种子假设运行。折减系数一列在所有时长下均为100%，因为NEM不存在可供折减的容量机制 — 该列在此处结构性地保持不变，并非错误。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+      { t:'cap', text:['Run on the seed assumptions this market publishes. The de-rating column reads 100% at every duration because the NEM has no capacity mechanism to de-rate against — that column is structurally flat here and is not an error. To retype the assumptions and price a capital structure, use the dedicated Investment Lab page.',
+        '基于本市场种子假设运行。折减系数一列在所有时长下均为100%，因为NEM不存在可供折减的容量机制 — 该列在此处结构性地保持不变，并非错误。如需重新输入假设并测算资本结构，请使用独立投资测算页面。'] },
       { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can carry a lower IRR and a higher NPV, and the capital committed differs by a factor of eight across this table. Where the incremental column turns negative is the point at which added MWh stops paying for itself, and in the NEM that crossover sits further out than in any other market on this platform because nothing de-rates and the four-hour capture penalty is only ' + fmtPct((1 - M.durSpreadFactor[4]) * 100, 0) + '%.',
         '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达八倍。增量列转负之处，即是新增MWh不再自负其成本的临界点；在NEM，该临界点比本平台任何其他市场都更靠后，因为此处没有任何折减机制，且四小时的捕获折减仅为' + fmtPct((1 - M.durSpreadFactor[4]) * 100, 0) + '%。'],
         sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },

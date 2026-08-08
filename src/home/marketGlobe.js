@@ -1,5 +1,6 @@
 import world from 'world-atlas/countries-110m.json';
 import westernAustralia from '../markets/wa/wa-state-boundary.json' with { type:'json' };
+import { MARKET_SECTORS } from './marketSectorBoundaries.js';
 import { feature } from 'topojson-client';
 import {
   geoDistance,
@@ -39,16 +40,21 @@ const COVERED = [
     name:['Romania', '罗马尼亚'], route:'/markets/romania', point:[25, 46] },
   { id:'pl', countryId:616, flagCode:'pl',
     name:['Poland', '波兰'], route:'/markets/poland', point:[19, 52] },
-  { id:'jp', countryId:392, flagCode:'jp',
-    name:['Japan', '日本'], route:'/markets/japan-tokyo', point:[138, 37] },
-  /* The US polygon routes to PJM, and the marker sits on the PJM footprint
-     rather than on the country centroid — a marker in Kansas would point at a
-     market that covers none of it. CAISO and ERCOT join this entry as extra
-     links below when they land; the country can only carry one polygon route,
-     so it goes to whichever market the marker is placed on. */
-  { id:'pjm', countryId:840, flagCode:'us',
+  { id:'jp_tokyo', countryId:null, flagCode:'jp',
+    name:['Japan — Tokyo', '日本 — 东京'], route:'/markets/japan-tokyo', point:[139.7, 35.7] },
+  { id:'jp_kyushu', countryId:null, flagCode:'jp',
+    name:['Japan — Kyushu', '日本 — 九州'], route:'/markets/japan-kyushu', point:[130.8, 32.8] },
+  { id:'jp_hokkaido', countryId:null, flagCode:'jp',
+    name:['Japan — Hokkaido', '日本 — 北海道'], route:'/markets/japan-hokkaido', point:[142.7, 43.3] },
+  { id:'pjm', countryId:null, flagCode:'us',
     name:['United States — PJM Interconnection', '美国 — PJM互联电网'],
     route:'/markets/pjm', point:[-79, 39.5] },
+  { id:'ercot', countryId:null, flagCode:'us',
+    name:['United States — ERCOT', '美国 — ERCOT'],
+    route:'/markets/ercot', point:[-99.3, 31.2] },
+  { id:'caiso', countryId:null, flagCode:'us',
+    name:['United States — CAISO', '美国 — CAISO'],
+    route:'/markets/caiso', point:[-119.5, 36.5] },
 ];
 
 const COVERED_BY_COUNTRY = new Map(
@@ -210,6 +216,24 @@ export function renderMarketGlobe(){
   bindRoute(waShape, waMarket.route);
   countryLayer.append(waShape);
 
+  /* Electricity-market footprints replace whole-country highlighting for the
+     United States and Japan. Their paths sit above the Natural Earth polygons
+     so each market can be selected independently. */
+  const sectorShapes = MARKET_SECTORS.map(sector => {
+    const node = S('path', {
+      class:'globe-market-sector sector-' + sector.group,
+      tabindex:'0',
+      role:'link',
+      'aria-label':L(sector.name),
+    });
+    const title = S('title');
+    title.textContent = L(sector.name);
+    node.append(title);
+    bindRoute(node, sector.route);
+    countryLayer.append(node);
+    return [d3Winding(sector.feature), node];
+  });
+
   const markers = COVERED.map(market => {
     const group = S('g', { class:'globe-marker', role:'link', tabindex:'0' });
     /* Ireland is under ten screen pixels wide at the default zoom, so the marker
@@ -230,6 +254,7 @@ export function renderMarketGlobe(){
     graticule.setAttribute('d', path(geoGraticule10()));
     countryShapes.forEach(([country, node]) => node.setAttribute('d', path(country) || ''));
     waShape.setAttribute('d', path(waBoundary) || '');
+    sectorShapes.forEach(([sector, node]) => node.setAttribute('d', path(sector) || ''));
     svg.setAttribute('data-zoom-scale', String(Math.round(projection.scale())));
     const rotation = projection.rotate();
     const centre = [-rotation[0], -rotation[1]];
@@ -307,8 +332,8 @@ export function renderMarketGlobe(){
     h('div', { class:'market-globe-wrap' }, svg),
     h('div', { class:'globe-market-links' }, ringLinks)));
   card.append(h('div', { class:'cap globe-source' }, L([
-    'Country boundaries: Natural Earth via world-atlas. Western Australia boundary: ABS ASGS 2021.',
-    '国界数据：Natural Earth / world-atlas；西澳边界来自 ABS ASGS 2021。',
+    'Country boundaries: Natural Earth via world-atlas. Market boundaries: ABS ASGS 2021, state and Japan zone maps; PJM footprint is schematic.',
+    '国界数据：Natural Earth / world-atlas；市场边界来自 ABS ASGS 2021、州级地图及日本区域地图；PJM范围为示意。',
   ])));
   return card;
 }

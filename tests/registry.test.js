@@ -203,9 +203,11 @@ test('every market exposes the full module surface', () => {
    tabs. The count is asserted rather than left free because the dashboards are
    meant to mirror one another — a market that quietly gains or loses a tab has
    stopped being comparable, which is the whole premise of the shared engine. */
-test('every dashboard has the same eleven tabs', () => {
+test('every dashboard has the same ten non-comparison tabs', () => {
   for (const m of markets){
-    assert.equal(m.tabs.length, 11, `${m.manifest.id} tab count`);
+    const ids = m.tabs.map(([id]) => id);
+    assert.equal(m.tabs.length, 10, `${m.manifest.id} tab count`);
+    assert.ok(!ids.includes('benchmark'), `${m.manifest.id}: comparison tab must be absent`);
   }
 });
 
@@ -217,9 +219,9 @@ test('no dashboard carries a project-debt or investment-lab tab', () => {
   for (const m of markets){
     const ids = m.tabs.map(([id]) => id);
     assert.ok(!ids.includes('debt'),
-      `${m.manifest.id}: project debt belongs to the home-page Investment Lab`);
+      `${m.manifest.id}: project debt belongs to the dedicated Investment Lab`);
     assert.ok(!ids.includes('lab'),
-      `${m.manifest.id}: the Investment Lab is a single cross-market section on the home page`);
+      `${m.manifest.id}: the Investment Lab belongs on its dedicated page`);
   }
 });
 

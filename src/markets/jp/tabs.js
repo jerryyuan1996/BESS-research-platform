@@ -14,14 +14,12 @@ export const TABS = [
   ['duration',  ['Storage Duration', '储能时长']],
   ['pipeline',  ['Project Pipeline', '项目管线']],
   ['grid',      ['Grid & Connection', '并网与电网约束']],
-  ['benchmark', ['Regional Benchmark', '区域对比']],
   ['portfolio', ['Portfolio', '组合与基金视图']],
   ['data',      ['Data & Methodology', '数据与方法']],
 ];
 
-/** Regional lenses. 'compare' first — it is the default and the cleanest workflow. */
+/** Regional electricity-market lenses. Each area is opened independently. */
 export const REGIONS = [
-  ['compare',  ['Compare 3 regions', '三区域对比']],
   ['tokyo',    ['Tokyo', '东京']],
   ['kyushu',   ['Kyushu', '九州']],
   ['hokkaido', ['Hokkaido', '北海道']],

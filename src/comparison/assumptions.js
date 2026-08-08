@@ -5,8 +5,8 @@
    dashboard already publishes. Everything else comes from a market's own
    comparison interface. Verbatim from the prototype (lines 683-687).
 
-   Do not change these values. They are frozen for this phase (brief section 11)
-   and tests/baseline.test.js asserts outputs against them.
+   The live model may revise these values; legacy parity tests pass their original
+   yields explicitly so a current underwriting change does not erase that proof.
    --------------------------------------------------------------------------- */
 
 /** USD per unit of local currency — illustrative mid-rates. */
@@ -38,9 +38,9 @@ export const LIFE = 15;
    auction will clear again in year 8 — pricing both at the contracted yield
    overstates any market whose capacity revenue is re-auctioned annually. Japan's
    Capacity Market main auction is exactly that case. */
-export const EXIT_Y_CONTRACTED = 0.075;   // secured / contracted cash flow
-export const EXIT_Y_MERCHANT   = 0.115;   // merchant + services cash flow
-export const EXIT_Y_OPEX       = 0.08;    // opex obligation assumed by the buyer
+export const EXIT_Y_CONTRACTED = 0.065;   // secured / contracted cash flow
+export const EXIT_Y_MERCHANT   = 0.105;   // merchant + services cash flow
+export const EXIT_Y_OPEX       = 0.07;    // opex obligation assumed by the buyer
 
 /* Auction-renewal cash flow — future auction clearings assumed but not secured.
    Set equal to the merchant yield: it is market risk, and adopting a distinct

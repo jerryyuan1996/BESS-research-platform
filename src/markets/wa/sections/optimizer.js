@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
    RCM x Energy x FCESS co-optimisation section, verbatim from the prototype
    (lines 3661-3882). Rendered as the tail of the RCM & Capacity tab — it was the
-   tail of the Investment Lab tab until that tab moved to the home page.
+   tail of the Investment Lab tab until that tab moved to a dedicated page.
    --------------------------------------------------------------------------- */
 import { h } from '../../../utils/dom.js';
 import { L } from '../../../app/i18n.js';
@@ -43,8 +43,8 @@ function renderOptimizer(main){
     h('span', { style: 'font-size:12px;color:var(--muted);margin-right:2px;' }, L(['Strategy:', '策略：'])),
     ...OPT.stratOrder.map(k => h('button', { class: 'btn' + (strat === k ? ' active' : ''), onclick: () => { state.optStrat = k; render(); } }, L(OPT.strat[k].n))));
   main.append(h('div', { class: 'card' }, scnBtns, stratBtns,
-    h('div', { class: 'cap', style: 'margin-top:8px;' }, L(['Rule vintage: ESM Rules (current effective) · WEM Procedures (current) · Capacity Year ' + state.codYear + ' · calculation: simplified / indicative. Project inputs are the WA reference configuration. To retype economic assumptions and price a capital structure, use the Investment Lab on the home page.',
-      '规则版本：ESM规则（现行生效）· WEM程序（现行）· 容量年度' + state.codYear + ' · 计算：简化/示意。项目输入采用西澳参考配置。如需重新输入经济性假设并测算资本结构，请使用首页的投资测算模块。']))));
+    h('div', { class: 'cap', style: 'margin-top:8px;' }, L(['Rule vintage: ESM Rules (current effective) · WEM Procedures (current) · Capacity Year ' + state.codYear + ' · calculation: simplified / indicative. Project inputs are the WA reference configuration. To retype economic assumptions and price a capital structure, use the dedicated Investment Lab page.',
+      '规则版本：ESM规则（现行生效）· WEM程序（现行）· 容量年度' + state.codYear + ' · 计算：简化/示意。项目输入采用西澳参考配置。如需重新输入经济性假设并测算资本结构，请使用独立投资测算页面。']))));
 
   // ---- row 1: RCM bridge + strategy profile ----
   const g1 = h('div', { class: 'grid g2' });

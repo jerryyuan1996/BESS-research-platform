@@ -17,7 +17,6 @@ const TABS = [
   ['duration',   ['Storage Duration', '储能时长']],
   ['pipeline',   ['Project Pipeline', '项目管线']],
   ['grid',       ['Grid, MLF & Congestion', '并网、边际损耗与拥塞']],
-  ['benchmark',  ['NEM vs WEM', 'NEM与WEM对比']],
   ['portfolio',  ['Portfolio', '组合与基金视图']],
   ['data',       ['Data & Methodology', '数据与方法']],
 ];

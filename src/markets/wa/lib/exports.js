@@ -89,7 +89,7 @@ function exportJson(){
       note: 'Public-source compilation. Not official data; never used for scoring.',
     },
     nemContextOnly: {
-      warning: 'NEM namespace. Used only in the WEM vs NEM comparison section. Never fed into WA capacity balance, pipeline, merchant curve or scoring.',
+      warning: 'NEM context only. Never fed into WA capacity balance, pipeline, merchant curve or scoring.',
       pipelineGW: NEM_SC.pipelineGW, pipelineMix: NEM_SC.pipelineMix.map(m => ({ tech: m.n[0], pct: m.pct })),
       fyApproved: NEM_SC.fyApproved, fyOutput: NEM_SC.fyOutput, stages: NEM_SC.stages.map(s => ({ stage: s.n[0], gw: s.gw, conversion: s.conv, typicalMonths: s.dur })),
       systemStrength: NEM_SC.sysStrength,

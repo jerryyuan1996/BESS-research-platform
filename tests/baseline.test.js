@@ -46,7 +46,7 @@ import { fileURLToPath } from 'node:url';
 
 import { markets, byId } from '../src/markets/registry.js';
 import { legacyMarket, LEGACY_VINTAGE } from './fixtures/legacy-inputs.mjs';
-import { runCase, runBaseCase, runMatrix } from '../src/comparison/engine.js';
+import { runCase } from '../src/comparison/engine.js';
 import { STRATEGIES, baseStrategy } from '../src/comparison/strategies.js';
 import {
   LIFE, FX, EXIT_Y_CONTRACTED, EXIT_Y_MERCHANT, EXIT_Y_OPEX, EXIT_Y_AUCTION,
@@ -80,21 +80,38 @@ const FIELDS = ['net', 'capexG', 'grant', 'eb1', 'yield1', 'irrHold', 'exitVal',
 const LEGACY_MARKETS = ['wa', 'gb', 'ie', 'ro', 'pl'];
 const LEGACY_STRATEGIES = ['cap', 'mer', 'toll'];
 
+/* The production rates were intentionally revised in August 2026. Keep the
+   migration parity proof on the prototype's original rates without freezing the
+   live model to them. */
+const LEGACY_EXIT_OPTIONS = {
+  exitYContracted:0.075,
+  exitYMerchant:0.115,
+  exitYOpex:0.08,
+  exitYAuction:0.115,
+};
+const runLegacyCase = (market, strategy, exitYear) =>
+  runCase(market, strategy, exitYear, LEGACY_EXIT_OPTIONS);
+const runLegacyBaseCase = (market, exitYear) =>
+  runLegacyCase(market, baseStrategy(market), exitYear);
+
 test('the fixture covers every legacy market × strategy × exit year', () => {
   assert.equal(Object.keys(baseline.cases).length, LEGACY_MARKETS.length * LEGACY_STRATEGIES.length * 3);
   assert.equal(Object.keys(baseline.cases).length, 45);
 });
 
-test('frozen assumptions still hold the prototype\'s values', () => {
+test('legacy parity explicitly retains the prototype exit yields', () => {
   assert.equal(LIFE, 15);
   // The three original rates are frozen. JPY was added for the Japan markets;
   // adding a rate cannot change any existing market's output.
   assert.equal(FX.AUD, 0.66);
   assert.equal(FX.GBP, 1.27);
   assert.equal(FX.EUR, 1.08);
-  assert.equal(EXIT_Y_CONTRACTED, 0.075);
-  assert.equal(EXIT_Y_MERCHANT, 0.115);
-  assert.equal(EXIT_Y_OPEX, 0.08);
+  assert.equal(LEGACY_EXIT_OPTIONS.exitYContracted, 0.075);
+  assert.equal(LEGACY_EXIT_OPTIONS.exitYMerchant, 0.115);
+  assert.equal(LEGACY_EXIT_OPTIONS.exitYOpex, 0.08);
+  assert.equal(EXIT_Y_CONTRACTED, 0.065);
+  assert.equal(EXIT_Y_MERCHANT, 0.105);
+  assert.equal(EXIT_Y_OPEX, 0.07);
 });
 
 test('the legacy markets are untouched by the auction-renewal branch', () => {
@@ -103,7 +120,7 @@ test('the legacy markets are untouched by the auction-renewal branch', () => {
     assert.equal(m.comparison.economics.riskClass, undefined,
       `${id} must stay on the legacy two-stream model`);
     // Legacy results still expose the new field names, as aliases.
-    const r = runBaseCase(m, 5);
+    const r = runLegacyBaseCase(m, 5);
     assert.equal(r.securedShare, r.contractedShare, `${id}: secured share must alias contracted share`);
     assert.ok(Array.isArray(r.aucY) && r.aucY.every(v => v === 0),
       `${id}: legacy markets have no auction-renewal stream`);
@@ -124,7 +141,7 @@ for (const key of Object.keys(baseline.cases)){
   test(`baseline ${key}`, () => {
     assert.ok(byId(marketId), `market ${marketId} is registered`);
     const market = legacyMarket(byId(marketId));
-    const actual = runCase(market, strategyId, exitYear);
+    const actual = runLegacyCase(market, strategyId, exitYear);
 
     if (expected.na){
       assert.ok(actual.na, `${key}: expected not-applicable, got a computed case`);
@@ -155,24 +172,24 @@ test('headline figures the prototype states in its own commentary', () => {
   const M = (id) => legacyMarket(byId(id));
 
   // "WA (−10.8% → +10.4%)" and "1.55× (WA)" / "1.06× (Romania)"
-  assert.equal(pct(runCase(M('wa'), 'cap', 5).irrHold), 10.4);
-  assert.equal(pct(runCase(M('wa'), 'mer', 5).irrHold), -10.8);
-  assert.equal(x(runBaseCase(M('wa'), 5).moic), 1.55);
-  assert.equal(x(runBaseCase(M('ro'), 5).moic), 1.06);
+  assert.equal(pct(runLegacyCase(M('wa'), 'cap', 5).irrHold), 10.4);
+  assert.equal(pct(runLegacyCase(M('wa'), 'mer', 5).irrHold), -10.8);
+  assert.equal(x(runLegacyBaseCase(M('wa'), 5).moic), 1.55);
+  assert.equal(x(runLegacyBaseCase(M('ro'), 5).moic), 1.06);
 
   // "the 2-hour markets survive (GB 8.0%, RO 5.3%), the 4-hour markets sag
   //  (PL 0.8%, IE −4.5%) and the 8-hour market collapses (WA −10.8%)"
-  assert.equal(pct(runCase(M('gb'), 'mer', 5).irrHold), 8.0);
-  assert.equal(pct(runCase(M('ro'), 'mer', 5).irrHold), 5.3);
-  assert.equal(pct(runCase(M('pl'), 'mer', 5).irrHold), 0.8);
-  assert.equal(pct(runCase(M('ie'), 'mer', 5).irrHold), -4.5);
+  assert.equal(pct(runLegacyCase(M('gb'), 'mer', 5).irrHold), 8.0);
+  assert.equal(pct(runLegacyCase(M('ro'), 'mer', 5).irrHold), 5.3);
+  assert.equal(pct(runLegacyCase(M('pl'), 'mer', 5).irrHold), 0.8);
+  assert.equal(pct(runLegacyCase(M('ie'), 'mer', 5).irrHold), -4.5);
 
   // "GB's toll bar sits ~1.8 IRR points below its merchant bar"
-  const gap = runCase(M('gb'), 'mer', 5).irrHold - runCase(M('gb'), 'toll', 5).irrHold;
+  const gap = runLegacyCase(M('gb'), 'mer', 5).irrHold - runLegacyCase(M('gb'), 'toll', 5).irrHold;
   assert.ok(Math.abs(gap * 100 - 1.8) < 0.1, `toll gap was ${gap * 100} points`);
 
   // "Romania (0%, 1.4%) ... to WA (77%, 11.6%)" on the certainty frontier
-  const ro = runBaseCase(M('ro'), 5), wa = runBaseCase(M('wa'), 5);
+  const ro = runLegacyBaseCase(M('ro'), 5), wa = runLegacyBaseCase(M('wa'), 5);
   assert.equal(Math.round(ro.contractedShare * 100), 0);
   assert.equal(pct(ro.irrExit), 1.4);
   assert.equal(Math.round(wa.contractedShare * 100), 77);
@@ -183,7 +200,7 @@ test('headline figures the prototype states in its own commentary', () => {
   assert.equal(Math.round(wa.kwPerM), 364);
 
   // "Year-1 yields sit in a narrow 11.3–14.5% band"
-  const yields = LEGACY_MARKETS.map(id => runBaseCase(M(id), 5).yield1 * 100);
+  const yields = LEGACY_MARKETS.map(id => runLegacyBaseCase(M(id), 5).yield1 * 100);
   assert.equal(Number(Math.min(...yields).toFixed(1)), 11.3);
   assert.equal(Number(Math.max(...yields).toFixed(1)), 14.5);
 });
@@ -191,7 +208,10 @@ test('headline figures the prototype states in its own commentary', () => {
 test('runMatrix flags unavailable routes instead of dropping or zeroing them', () => {
   const legacy = LEGACY_MARKETS.map(id => legacyMarket(byId(id)));
   const legacyStrats = STRATEGIES.filter(s => LEGACY_STRATEGIES.includes(s.id));
-  const rows = runMatrix(legacy, legacyStrats, 5);
+  const rows = legacy.flatMap(market => legacyStrats.map(strategy => ({
+    market, strategy,
+    result:runLegacyCase(market, strategy.id, 5),
+  })));
   assert.equal(rows.length, legacy.length * legacyStrats.length);
 
   const naRows = rows.filter(r => r.result.na);
@@ -216,7 +236,7 @@ test('the prototype declared no long-term award, and still reports none', () => 
     const m = legacyMarket(byId(id));
     assert.ok(!m.comparison.capabilities.longTermAward,
       `${id}: the frozen inputs must not claim a long-term award`);
-    assert.ok(runCase(m, 'ltda', 5).na, `${id}: ltda must report N/A`);
+    assert.ok(runLegacyCase(m, 'ltda', 5).na, `${id}: ltda must report N/A`);
   }
 });
 

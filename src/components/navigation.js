@@ -101,7 +101,7 @@ export function tabNav(tabs, activeTab, basePath){
 }
 
 /**
- * A pointer from a market dashboard to the home-page Investment Lab.
+ * A pointer from a market dashboard to the dedicated Investment Lab page.
  *
  * The Lab used to be two tabs on every dashboard. Removing them without leaving
  * a signpost would look like a feature was deleted, so each market says where its
@@ -113,18 +113,8 @@ export function tabNav(tabs, activeTab, basePath){
 export function labLink(marketId){
   const open = () => {
     homeState.labMarket = marketId;
-    navigate('/');
-    /* The Lab does not exist in the document until the home page has been built,
-       and navigate() does not promise to have finished by the time it returns.
-       Watch for the element across a few frames rather than assuming one is
-       enough; give up quietly if it never appears. */
-    let frames = 0;
-    const scroll = () => {
-      const lab = document.getElementById('lab');
-      if (lab) lab.scrollIntoView({ block: 'start' });
-      else if (frames++ < 30) requestAnimationFrame(scroll);
-    };
-    requestAnimationFrame(scroll);
+    navigate('/investment-lab');
+    window.scrollTo(0, 0);
   };
   return h('div', { class: 'lab-pointer' },
     h('span', {}, L([
@@ -133,7 +123,7 @@ export function labLink(marketId){
     ])),
     h('a', {
       class: 'btn',
-      href: '/#lab',
+      href: '/investment-lab',
       onclick: (e) => { e.preventDefault(); open(); },
     }, L(['Investment Lab & project debt ▸', '投资测算与项目债务 ▸'])));
 }

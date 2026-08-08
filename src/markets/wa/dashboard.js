@@ -42,7 +42,6 @@ import { renderFcess } from './sections/fcess.js';
 import { renderDuration } from './sections/duration.js';
 import { renderPipeline } from './sections/pipeline.js';
 import { renderGrid } from './sections/grid.js';
-import { renderBenchmark } from './sections/benchmark.js';
 import { renderPortfolio } from './sections/portfolio.js';
 import { renderData } from './sections/data.js';
 
@@ -60,7 +59,6 @@ const SECTIONS = {
   duration: renderDuration,
   pipeline: renderPipeline,
   grid: renderGrid,
-  benchmark: renderBenchmark,
   portfolio: renderPortfolio,
   data: renderData,
 };

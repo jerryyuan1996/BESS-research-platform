@@ -30,7 +30,7 @@ function decisionRows(marketList, exitYear){
 function scenarioTable(rows){
   const head = [
     ['Market', '市场'],
-    ['Bear / Base / Bull hold IRR', '悲观/基准/乐观持有IRR'],
+    ['Base / Bull hold IRR', '基准/乐观持有IRR'],
     ['Secured', '已锁定'],
     ['Executed', '已执行'],
     ['Proxy fixed', '代理固定收入'],
@@ -44,7 +44,7 @@ function scenarioTable(rows){
     h('tbody', {}, rows.map(({ market, scenarios, result, profile }) =>
       h('tr', {},
         h('td', {}, h('b', {}, market.manifest.flag + ' ' + L(market.manifest.shortName))),
-        h('td', {}, [scenarios.bear, scenarios.base, scenarios.bull].map(item => irr(item.result)).join(' / ')),
+        h('td', {}, [scenarios.base, scenarios.bull].map(item => irr(item.result)).join(' / ')),
         h('td', { class:'num' }, pct(result.evidenceSecuredShare)),
         h('td', { class:'num' }, pct(result.executedShare)),
         h('td', { class:'num' }, pct(result.proxyShare)),
@@ -150,8 +150,8 @@ export function renderRefinementOverview(main, marketList, exitYear){
       bullish + L([' more bullish than review · ', '个较复核偏乐观 · ']) +
       proxy + L([' carrying proxy fixed revenue', '个含代理固定收入']))));
   c.append(h('div', { class:'warnbox' }, L([
-    'No market clears the underwriting release gate until capex scope, project eligibility, revenue evidence and stack feasibility are complete. Point estimates below are always paired with owner Bear/Base/Bull cases.',
-    '在造价范围、项目资格、收入证据及收入叠加可行性完整前，任何市场均不通过承销发布门槛。以下点估值始终与业主悲观/基准/乐观情景并列。',
+    'No market clears the underwriting release gate until capex scope, project eligibility, revenue evidence and stack feasibility are complete. Point estimates below are paired with owner Base/Bull cases.',
+    '在造价范围、项目资格、收入证据及收入叠加可行性完整前，任何市场均不通过承销发布门槛。以下点估值与业主基准/乐观情景并列。',
   ])));
   c.append(scenarioTable(rows));
   evidenceScatter(c, rows);

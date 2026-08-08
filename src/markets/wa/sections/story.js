@@ -251,7 +251,6 @@ function renderStory(main){
     ['Storage Duration', '储能时长', 'What duration is accredited, economic and expandable?', 'duration'],
     ['Project Pipeline', '项目管线', 'Which competing projects are real and likely to reach COD?', 'pipeline'],
     ['Grid Connection', '并网与电网约束', 'Can nameplate MW become registered, deliverable and revenue-producing MW?', 'grid'],
-    ['Investment Lab', '投资测算', 'Does the project survive integrated downside and financing constraints?', 'lab'],
     ['Portfolio', '组合与基金视图', 'Which screened opportunity clears every gate at asset level?', 'portfolio'],
   ];
   bridge.append(h('div', { class:'walk' }, map.map(x => h('button', { class:'walk-step', onclick:()=>{state.tab=x[3];render();window.scrollTo(0,0);} },

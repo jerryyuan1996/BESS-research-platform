@@ -279,7 +279,7 @@ const economics = {
   feePct: 5,
   services: AS_BASE,
 
-  /* Seeded at zero and editable in the home-page Investment Lab, exactly as PJM
+  /* Seeded at zero and editable in the dedicated Investment Lab page, exactly as PJM
      does it. See ranges.grantPct for the §48E derivation and the FEOC cliff. */
   grantPct: 0,
   degr: 2,

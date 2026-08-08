@@ -23,7 +23,7 @@ function renderData(main){
     [['Official — Final','官方 — 最终'],['2026 WEM ESOO; ERA BRCP final determination (13 Mar 2026); Reserve Capacity Cycle timetable; AEMO QED; ESM Rules','2026 WEM ESOO；ERA BRCP最终决定（2026-03-13）；容量周期时间表；AEMO QED；ESM规则'],['Primary market and rule facts; the only basis for scoring','主要市场与规则事实；唯一可用于评分的依据']],
     [['Official — Draft','官方 — 草案'],['Western Power Transmission System Plan 2025','Western Power 2025输电系统规划'],['Planning context only','仅作规划背景']],
     [['Public source','公开来源'],['Project and transaction announcements, CIS award releases, market-structure compilation','项目与交易公告、CIS中标发布、市场结构汇编'],['Market structure, players, exit routes; not a substitute for official data','市场结构、参与者、退出路径；不可替代官方数据']],
-    [['NEM namespace','NEM命名空间'],['AEMO NEM Connection Scorecard, June 2026','AEMO NEM并网记分卡，2026年6月'],['WEM vs NEM section only; never scored into WA','仅用于WEM与NEM对比章节；绝不计入西澳评分']],
+    [['NEM namespace','NEM命名空间'],['AEMO NEM Connection Scorecard, June 2026','AEMO NEM并网记分卡，2026年6月'],['Context only; never scored into WA','仅作背景参考；绝不计入西澳评分']],
     [['Supplementary source','补充来源'],['Third-party modelled long-run revenue shape and locational case study','第三方模型的长期收入形态与位置案例研究'],['Fills gaps official publications do not cover; display-only, never in returns','填补官方来源未覆盖的空白；仅供展示，不进入回报测算']],
     [['Project technical study','项目技术研究'],['GPS, steady-state report, grid input package','GPS、稳态报告、电网输入包'],['Asset-specific constraints and capability (Portfolio tab)','资产约束及能力（组合页）']],
     [['Developer-reported','开发商披露'],['Charge/discharge strategy and development schedule','充放电策略及开发计划'],['Commercial thesis; not contracted','商业逻辑；未签约']],
@@ -83,7 +83,7 @@ function renderData(main){
     ['ERA Benchmark Reserve Capacity Prices (determinations & WEM Procedure)', 'https://www.erawa.com.au/markets/wholesale-electricity-market/price-setting/benchmark-reserve-capacity-prices', ['Annual', '每年'], ['BRCP determinations and benchmark-technology history', 'BRCP决定及基准技术演变历史'], true],
     ['Energy Policy WA — RCM Review & WEM Investment Certainty Review', 'https://www.wa.gov.au/government/document-collections/reserve-capacity-mechanism-review', ['On review', '评审时'], ['RCM reform history, Peak/Flexible split, fixed-price election', 'RCM改革历史、峰值/灵活拆分、固定价选择权']],
     ['DCCEEW — Capacity Investment Scheme', 'https://www.dcceew.gov.au/energy/renewable/capacity-investment-scheme', ['Per tender', '按招标'], ['WA tender outcomes and contracted revenue floors', '西澳招标结果及合同化收入底线'], true],
-    ['AEMO NEM Connection Scorecard', 'https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/participate-in-the-market/network-connections/connection-scorecard', ['Quarterly', '每季'], ['NEM namespace only — WEM vs NEM comparison section', '仅NEM命名空间 — 用于WEM与NEM对比章节']],
+    ['AEMO NEM Connection Scorecard', 'https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/participate-in-the-market/network-connections/connection-scorecard', ['Quarterly', '每季'], ['NEM context only; never scored into WA', '仅作NEM背景参考；绝不计入西澳评分']],
   ];
   const c1 = card(['Source registry (spec §15, verified 17 Jul 2026)', '数据源登记表（规范§15，2026-07-17核验）'], [statusBadge(false)]);
   c1.append(h('div', { class: 'tbl-wrap' }, h('table', {},

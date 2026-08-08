@@ -23,6 +23,7 @@ import { byId } from '../src/markets/registry.js';
 import { runCase, runBaseCase } from '../src/comparison/engine.js';
 import { baseStrategy, securedTenor } from '../src/comparison/strategies.js';
 import { capacityRevenuePerMW, servicesFactor } from '../src/comparison/capacityLine.js';
+import { OEM_CAPEX_MULTIPLIER } from '../src/comparison/sponsorAssumptions.js';
 import { LIFE } from '../src/comparison/assumptions.js';
 import { sizeProjectDebt, riskClassFor, DEBT_CONVENTIONS } from '../src/economics/projectDebt.js';
 
@@ -80,16 +81,42 @@ test('archetype durations match the products each market actually pays for', () 
   }
 });
 
-test('WA keeps the ERA’s own unit cost across the duration change', () => {
-  const cmp = byId('wa').comparison;
-  const perKWh = cmp.economics.capexPerMW / (cmp.archetype.durationHours * 1000);
-  near(perKWh, 520, 0.5, 'A$/kWh — the ERA benchmark figure');
+test('every allocation market carries the 10% sponsor capex reduction', () => {
+  const expected = {
+    wa:3276000,
+    nem:1386000,
+    gb:810000,
+    de:841500,
+    it:792000,
+    ie:1044000,
+    ro:567000,
+    pl:873000,
+    jp_tokyo:324000000,
+    jp_kyushu:324000000,
+    jp_hokkaido:324000000,
+    pjm:1202400,
+    ercot:865728,
+    caiso:1202400,
+  };
+
+  assert.equal(OEM_CAPEX_MULTIPLIER, 0.90);
+  for (const [id, capex] of Object.entries(expected)){
+    const cmp = byId(id).comparison;
+    assert.equal(cmp.economics.capexPerMW, capex, `${id}: sponsor capex`);
+    assert.equal(cmp.ranges.capexPerMW.seed, capex, `${id}: Lab seed`);
+  }
 });
 
-test('GB keeps its unit cost across the duration change', () => {
+test('WA applies the sponsor OEM buying position to the ERA unit cost', () => {
+  const cmp = byId('wa').comparison;
+  const perKWh = cmp.economics.capexPerMW / (cmp.archetype.durationHours * 1000);
+  near(perKWh, 520 * OEM_CAPEX_MULTIPLIER, 0.5, 'A$/kWh after sponsor adjustment');
+});
+
+test('GB applies the sponsor OEM buying position to its unit cost', () => {
   const cmp = byId('gb').comparison;
   const perKWh = cmp.economics.capexPerMW / (cmp.archetype.durationHours * 1000);
-  near(perKWh, 225, 1, '£/kWh — unchanged from the 2h archetype at £230/kWh');
+  near(perKWh, 225 * OEM_CAPEX_MULTIPLIER, 1, 'GBP/kWh after sponsor adjustment');
 });
 
 /* ---------------------------------------------------------------------------
@@ -270,7 +297,7 @@ test('Romania’s grant respects the scheme’s ceilings', () => {
   // At this archetype the percentage binds: 20% of €630k = €126k/MW against a
   // €138k/MW ceiling (€69k/MWh × 2h).
   const r = runCase(ro, 'mer', 5);
-  near(r.grant, 630000 * 0.20 * 1.08, 1, 'grant in USD per MW');
+  near(r.grant, 630000 * OEM_CAPEX_MULTIPLIER * 0.20 * 1.08, 1, 'grant in USD per MW');
 
   // Lengthen the duration and the per-MWh cap stops binding; raise capex and it
   // starts to. The point is that it binds at all rather than being decorative.
@@ -294,14 +321,14 @@ test('published base-case outcomes', () => {
   const pct = (v) => Number((v * 100).toFixed(1));
   const expected = {
     //            route    yr-1 yield   15-yr IRR
-    wa:          ['cap',   14.6,        11.0],
-    gb:          ['cap',    9.6,         3.1],
-    ie:          ['cap',   13.1,         7.6],
-    ro:          ['mer',   24.0,        18.1],
-    pl:          ['mer',    7.4,        -0.6],
-    jp_tokyo:    ['ltda',  10.2,         5.8],
-    jp_kyushu:   ['ltda',  10.3,         5.9],
-    jp_hokkaido: ['ltda',  10.2,         5.8],
+    wa:          ['cap',   16.2,        13.1],
+    gb:          ['cap',   10.7,         4.7],
+    ie:          ['cap',   14.6,         9.6],
+    ro:          ['mer',   26.7,        20.8],
+    pl:          ['mer',    8.2,         0.8],
+    jp_tokyo:    ['ltda',  11.3,         7.4],
+    jp_kyushu:   ['ltda',  11.4,         7.5],
+    jp_hokkaido: ['ltda',  11.3,         7.4],
   };
 
   for (const [id, [route, yield1, irr]] of Object.entries(expected)){
@@ -377,13 +404,23 @@ test('a toll never funds debt past its own tenor', () => {
 });
 
 test('leverage is not automatically accretive, and the model says so', () => {
-  // Japan's award carries a high secured share but a return below the cost of
-  // debt, so gearing subtracts. A model that always showed leverage improving
-  // returns would be arithmetic, not analysis.
+  // The sponsor capex position makes the base Japan award accretive. A stressed
+  // cost case still dilutes equity, proving the debt model responds to the
+  // return-vs-cost spread instead of forcing a positive leverage effect.
   const jp = byId('jp_tokyo');
   const d = sizeProjectDebt(runCase(jp, 'ltda', 5), { exitYear: 5, riskClass: 'ltda' });
-  assert.ok(d.irrLevered < d.irrUnlevered,
-    'Japan: an award yielding below the all-in debt rate must dilute equity');
+  assert.ok(d.irrLevered > d.irrUnlevered,
+    'Japan: the sponsor cost case now earns above the debt cost');
+
+  const stressed = {
+    ...jp,
+    comparison:{
+      ...jp.comparison,
+      economics:{ ...jp.comparison.economics, capexPerMW:jp.comparison.economics.capexPerMW * 1.25 },
+    },
+  };
+  const ds = sizeProjectDebt(runCase(stressed, 'ltda', 5), { exitYear: 5, riskClass: 'ltda' });
+  assert.ok(ds.irrLevered < ds.irrUnlevered, 'a stressed cost case must still show dilution');
 
   const wa = byId('wa');
   const dw = sizeProjectDebt(runCase(wa, 'cap', 5), { exitYear: 5, riskClass: 'contracted' });

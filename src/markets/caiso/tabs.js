@@ -20,7 +20,6 @@ const TABS = [
   ['duration',   ['Storage Duration', '储能时长']],
   ['pipeline',   ['Project Pipeline', '项目管线']],
   ['grid',       ['Interconnection & Curtailment', '并网与限电']],
-  ['benchmark',  ['CAISO vs PJM vs ERCOT', 'CAISO、PJM与ERCOT对比']],
   ['portfolio',  ['Portfolio', '组合与基金视图']],
   ['data',       ['Data & Methodology', '数据与方法']],
 ];

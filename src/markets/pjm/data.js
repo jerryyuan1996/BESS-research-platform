@@ -54,7 +54,7 @@ const M = {
                   '下一里程碑：2029/2030年度基准剩余容量拍卖，2026年12月举行 — 这是价格上下限机制下的最后一次拍卖。此后价格上限将回归至PJM估算约每MW每日$550的净新增成本基准。'],
   footerNote: ['Public and official sources collected 3 August 2026. The capacity line is taken from two PJM primary documents and is not an estimate. The merchant line is: no PJM battery revenue index is published, no PJM toll price has ever been disclosed, no US fixed opex series exists, and the Regulation/arbitrage split is estimated from FERC filings by nineteen units. Every merchant figure in this build is derived, not quoted.',
                '公开及官方来源于2026年8月3日采集。容量收入项取自两份PJM官方原始文件，非估算值。市场化收入项则为估算：PJM未发布储能收入指数，从未披露任何PJM租赁价格，不存在美国固定运维成本序列，且调频与套利的拆分系依据十九台机组的FERC申报推算。本版本所有市场化数值均为推导值而非报价。'],
-  seedWarn: ['Every value on this page is a PJM_SEED_V1 snapshot or an illustrative placeholder. No KPI is production-complete until its live ingestion, validation and source-health check are operational. Three specific warnings: a Base Residual Auction secures ONE delivery year and everything after it on this page is an analyst scenario; the observed Regulation revenue of the current ~400 MW fleet is not available to a new entrant and is carried as a band ceiling, not a base case; and the §48E investment tax credit is seeded at zero here and is editable in the home-page Investment Lab, so returns on this page exclude it.',
+  seedWarn: ['Every value on this page is a PJM_SEED_V1 snapshot or an illustrative placeholder. No KPI is production-complete until its live ingestion, validation and source-health check are operational. Three specific warnings: a Base Residual Auction secures ONE delivery year and everything after it on this page is an analyst scenario; the observed Regulation revenue of the current ~400 MW fleet is not available to a new entrant and is carried as a band ceiling, not a base case; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page, so returns on this page exclude it.',
              '本页所有数值均为PJM_SEED_V1种子快照或示例占位数据。在实时抓取、校验及源健康检测上线前，任何KPI均不可用于生产决策。三点具体警示：基准剩余容量拍卖仅锁定一个实需年度，本页其后所有年份均属分析师情景假设；当前约400MW机组所观测到的调频收入对新进入者并不可得，故仅作为区间上限而非基准情形；§48E投资税收抵免在本页种子值为零、可在首页投资实验室中调整，因此本页收益率不含该抵免。'],
 
   /* ---- official / sourced snapshot -------------------------------------
@@ -487,7 +487,7 @@ const M = {
     servicesKW: 19.2,
 
     /* The §48E ITC, seeded at zero here as it is in comparison.js. The editable
-       range 0–37% lives on the home-page Investment Lab, where the FEOC cliff and
+       range 0–37% lives on the dedicated Investment Lab page, where the FEOC cliff and
        the transfer discount are stated. */
     grantPct: 0,
 

@@ -17,7 +17,13 @@ import assert from 'node:assert/strict';
 
 import { markets, comparableMarkets } from '../src/markets/registry.js';
 import { runCase, runBaseCase } from '../src/comparison/engine.js';
+import { parseRoute } from '../src/app/router.js';
 import { STRATEGIES, supportedStrategies, baseStrategy, securedTenor } from '../src/comparison/strategies.js';
+
+test('the Investment Lab has its own route', () => {
+  assert.deepEqual(parseRoute('/investment-lab'), { name:'investmentLab', region:null });
+});
+
 import { LIFE } from '../src/comparison/assumptions.js';
 
 /* ---- the engine ---------------------------------------------------------- */

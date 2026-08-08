@@ -11,7 +11,7 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { chip } from './chip.js';
-import { fmtPct, fmtIRRor } from '../utils/formatting.js';
+import { fmtIRRor } from '../utils/formatting.js';
 import { marketFlagCode } from './navigation.js';
 
 const CONSENSUS = {
@@ -24,7 +24,7 @@ const CONSENSUS_CHIP = { aligned:'good', more_bullish:'serious', stale:'warn' };
 /**
  * @param {object} market  registry entry ({ manifest, comparison, ... })
  * @param {object} result  comparison-engine output for that market's base strategy
- * @param {object} scenarios owner Bear/Base/Bull results
+ * @param {object} scenarios owner Base/Bull results
  */
 export function marketCard(market, result, scenarios){
   const { manifest: mf, comparison: cmp } = market;
@@ -33,7 +33,7 @@ export function marketCard(market, result, scenarios){
   const profile = cmp.refinement;
   const scenarioIrr = item => Number.isFinite(item?.result?.irrHold)
     ? fmtIRRor(item.result.irrHold, item.result.irrHoldAbsent, L) : 'N/M';
-  const scenarioLine = [scenarios?.bear, scenarios?.base, scenarios?.bull]
+  const scenarioLine = [scenarios?.base, scenarios?.bull]
     .map(scenarioIrr).join(' / ');
   const stat = (label, value) => h('div', { class: 'ms' },
     h('div', { class: 'l' }, L(label)),
@@ -51,10 +51,8 @@ export function marketCard(market, result, scenarios){
         CONSENSUS[profile.consensus.status] || ['Review', '复核']),
       h('span', { style: 'font-size:11.5px;color:var(--ink2);' },
         L(['Evidence ', '证据 ']) + profile.confidenceScore + '/10')),
-    h('div', { class: 'mstats' },
-      stat(['Bear / Base / Bull IRR', '悲观/基准/乐观IRR'], scenarioLine),
-      stat(['Secured revenue', '已锁定收入'],
-        fmtPct(result.evidenceSecuredShare * 100, 0))),
+    h('div', { class: 'mstats mstats-single' },
+      stat(['Base / Bull IRR', '基准/乐观IRR'], scenarioLine)),
     h('div', { class:'note', style:'margin:8px 0;' },
       h('b', {}, L(['Next gate: ', '下一门槛：'])), profile.investmentGate?.[0] || 'Project evidence'),
     h('div', { class: 'thesis' }, L(cmp.narrative.thesis)),

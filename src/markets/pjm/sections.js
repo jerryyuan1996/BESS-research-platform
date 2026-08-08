@@ -574,7 +574,7 @@ SEC_B.data = function (){
          ['`capabilities.tolling` is false, so the route returns "no market precedent".','`capabilities.tolling`设为false，因此该路径返回“无市场先例”。'],
          ['No PJM tolling agreement was located at any price. An unpriced route is not a zero-value route.','未发现任何PJM租赁协议，亦无任何价格。无价格的路径不等于零价值路径。']],
         [{b:['The §48E tax credit','§48E税收抵免']},
-         ['Seeded at zero, with an editable 0–37% range on the home-page Investment Lab.','种子值为零，并在首页投资测算模块中提供0–37%的可编辑区间。'],
+         ['Seeded at zero, with an editable 0–37% range on the dedicated Investment Lab page.','种子值为零，并在独立投资测算页面中提供0–37%的可编辑区间。'],
          ['The platform\'s benchmarks exclude project-specific support, but the ITC reaches essentially every compliant US project — so it is exposed rather than buried.','本平台的基准剔除项目专属补贴，但ITC实际上覆盖几乎所有合规的美国项目 — 因此将其显性呈现而非隐去。']],
       ] },
       { t:'note', b:['Currency: ','货币：'],

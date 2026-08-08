@@ -153,7 +153,7 @@ function renderMatrix(main, marketList, X){
         h('td', { class: 'num' }, r.payback ? r.payback + L([' yr', ' 年']) : '—'),
         h('td', { class: 'num' + (r.irrHold === bestIrr ? ' best' : '') }, h('b', {}, fmtIRRor(r.irrHold, r.irrHoldAbsent, L))),
         h('td', { class: 'num scenario-triplet' },
-          [scenarios.bear, scenarios.base, scenarios.bull]
+          [scenarios.base, scenarios.bull]
             .map(item => fmtIRRor(item.result.irrHold, item.result.irrHoldAbsent, L)).join(' / ')),
         h('td', { class: 'num' }, fmtIRRor(r.irrExit, r.irrExitAbsent, L)),
         h('td', { class: 'num' }, h('b', {}, fmtX(r.moic))));
@@ -169,7 +169,7 @@ function renderMatrix(main, marketList, X){
       h('th', { class: 'num' }, L(['Yr-1 cash per $1M', '每$1M第1年现金'])),
       h('th', { class: 'num' }, L(['Payback', '回收期'])),
       h('th', { class: 'num' }, L(['15-yr IRR', '15年IRR'])),
-      h('th', { class: 'num scenario-triplet' }, L(['Bear / Base / Bull', '悲观/基准/乐观'])),
+      h('th', { class: 'num scenario-triplet' }, L(['Base / Bull IRR', '基准/乐观IRR'])),
       h('th', { class: 'num' }, L(['Exit-yr ' + X + ' IRR', '第' + X + '年退出IRR'])),
       h('th', { class: 'num' }, L(['MOIC (yr ' + X + ')', 'MOIC（第' + X + '年）'])))),
     h('tbody', {}, rows))));

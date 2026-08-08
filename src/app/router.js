@@ -3,6 +3,7 @@
 
    Routes
      /                          home / global cockpit
+     /investment-lab             dedicated cross-market underwriting workspace
      /markets/:slug             a market dashboard, default tab
      /markets/:slug/:tab        a market dashboard, deep-linked tab
 
@@ -42,6 +43,7 @@ export function parseRoute(pathname, search = ''){
      that fetches automatically owes its reader a page saying what it fetched,
      how stale it is, and what the automation was allowed to touch. */
   if (parts[0] === 'data' && parts.length === 1) return { name: 'data', ...view };
+  if (parts[0] === 'investment-lab' && parts.length === 1) return { name: 'investmentLab', ...view };
   if (parts[0] === 'news' && parts.length === 1) return { name: 'news', ...view };
 
 

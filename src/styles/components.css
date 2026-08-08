@@ -19,6 +19,9 @@
 .btn.active{background:var(--accent-bg); border-color:var(--s1); font-weight:600;}
 select.btn{padding:6px 8px;}
 
+.lab-access-btn{background:var(--accent-bg);border-color:var(--s1);font-weight:650;text-decoration:none;}
+.lab-access-btn:hover{text-decoration:none;}
+
 /* ---------- disclaimer ---------- */
 .disc{
   background:var(--warn-bg); border:1px solid var(--border); border-radius:10px;

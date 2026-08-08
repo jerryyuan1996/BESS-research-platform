@@ -159,8 +159,8 @@ function durationBody(main, g){
     h('span', { class: 'fbox' }, L(['Remaining peak becomes longer and flatter', '剩余峰值更长更平'])), h('span', { class: 'farr' }, '→'),
     h('span', { class: 'fbox' }, L(['Short-duration arbitrage and FCESS compress', '短时套利与FCESS收益压缩'])), h('span', { class: 'farr' }, '→'),
     h('span', { class: 'fbox', style: 'border-color:var(--s1);font-weight:600;' }, L(['Full capacity value requires longer discharge', '足额容量价值需要更长放电时长']))));
-  c5.append(h('div', { class: 'note' }, L(['WA embeds duration in a recurring capacity mechanism (ESR requirement, Peak/Flexible credits, BRCP benchmark); the NEM procures duration through tenders and contracts (CIS, LTESA). The comparator is context only and never feeds the WA composite score — see Market Benchmark tab.',
-    '西澳通过周期性容量机制内嵌时长价值（ESR要求、峰值/灵活容量信用、BRCP基准）；NEM主要通过招标与合同采购时长（CIS、LTESA）。该对比仅为背景信息，绝不计入西澳综合评分 — 见“WEM与NEM对比”页。'])));
+  c5.append(h('div', { class: 'note' }, L(['WA embeds duration in a recurring capacity mechanism (ESR requirement, Peak/Flexible credits, BRCP benchmark); the NEM procures duration through tenders and contracts (CIS, LTESA). The comparator is context only and never feeds the WA composite score.',
+    '西澳通过周期性容量机制内嵌时长价值（ESR要求、峰值/灵活容量信用、BRCP基准）；NEM主要通过招标与合同采购时长（CIS、LTESA）。该对比仅为背景信息，绝不计入西澳综合评分。'])));
   c5.append(why(['This loop is why the duration signal is self-reinforcing and the short-duration signal is self-defeating. Every battery that enters shaves the sharp peak, which lengthens and flattens what remains, which raises the hours needed for full capacity value and compresses the narrow window short-duration assets compete in. So competitor entry damages a 2-hour asset and strengthens the case for an 8-hour one. That is the structural reason to accept a higher capex per MW in exchange for hours: the hours are the part of the design that competitor behaviour makes more valuable, not less.',
     '该回路解释了为何时长信号自我强化、而短时信号自我削弱。每一个投运的电池都削平尖峰，使剩余峰值更长更平，从而抬高取得足额容量价值所需的小时数，并压缩短时资产竞争的狭窄窗口。因此竞争者进入会损害2小时资产，却强化8小时资产的论据。这正是应接受更高单位MW造价以换取小时数的结构性原因：小时数是设计中唯一会因竞争者行为而更具价值、而非更不值钱的部分。'],
     ['Entry hurts 2h, helps 8h', '进入者损害2h、有利8h']));

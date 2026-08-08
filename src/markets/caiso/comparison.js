@@ -145,7 +145,7 @@ const economics = {
     'CAISO辅助服务需求相对于16.7GW的机组规模较小，而储能约占约500GW排队量的46%。该曲线为机组规模比率，在需求被全面超额供给后保持不变。',
   ],
 
-  /* Seeded at zero and editable in the home-page Investment Lab, identical to
+  /* Seeded at zero and editable in the dedicated Investment Lab page, identical to
      PJM and ERCOT. The credit is federal and moves all three US markets by the
      same proportion. */
   grantPct: 0,

@@ -50,8 +50,8 @@ SEC_B.home = function (){
         ['05', ['Underwriting','项目承销'], ['Can the project connect, qualify and finance?','项目能否并网、取得资格并融资？'], 'grid'],
         ['06', ['Portfolio application','组合应用'], ['Which screened Romanian opportunity passes the gates?','所筛选的罗马尼亚机会中哪一个能通过门槛？'], 'portfolio'],
       ] },
-      { t:'note', text:['Recommended presentation order: Overview → Romania Market Story → Support & Adequacy → Wholesale & Intraday → Balancing & Reserves → Duration → Pipeline → Grid & Permitting → Investment Lab → Portfolio. Romania vs Poland and Data & Methodology are reference appendices unless a question requires them.',
-        '建议讲解顺序：总览 → 罗马尼亚市场演进 → 支持机制与充裕度 → 批发与日内 → 平衡与备用 → 时长 → 管线 → 并网与许可 → 投资测算 → 组合。罗波对比与数据方法作为问答附录。'] },
+      { t:'note', text:['Recommended presentation order: Overview → Romania Market Story → Support & Adequacy → Wholesale & Intraday → Balancing & Reserves → Duration → Pipeline → Grid & Permitting → Portfolio → Data & Methodology.',
+        '建议讲解顺序：总览 → 罗马尼亚市场演进 → 支持机制与充裕度 → 批发与日内 → 平衡与备用 → 时长 → 管线 → 并网与许可 → 组合 → 数据与方法。'] },
       { t:'why', text:['The six questions are sequenced so each one can veto the next. A market with wide spreads (02) is not the same as a revenue stack that a lender will size against (03), a design that suits the price shape (04), an asset that can actually connect and prequalify (05), or a specific opportunity worth committing capital to (06). In Romania the veto usually falls at step 05, which is why it must be tested before the model is built rather than after.',
         '六个问题按“逐级否决”排序：价差宽的市场（02）不等于贷款人愿据以安排规模的收入结构（03），不等于契合价格形态的设计（04），不等于能真正并网并取得预认证的资产（05），也不等于某个具体机会值得投入资本（06）。在罗马尼亚，否决通常发生在第05步 — 因此它必须在建模之前而非之后检验。'],
         sig:['The veto usually falls at connection','否决通常发生在并网环节'] },
@@ -545,14 +545,14 @@ SEC_B.duration = function (){
         sig:['Two clauses decide whether the option exists','两项条款决定选择权是否存在'] },
     ] },
     
-    /* Relocated from the Investment Lab tab, which moved to the home page. The
+    /* Relocated from the Investment Lab tab, which moved to a dedicated page. The
        duration question is a market question — where the de-rating uplift stops
        covering the MWh capex — so it belongs beside the rest of this tab rather
        than inside a returns model. */
     { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
       { t:'labDur' },
-      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the Investment Lab on the home page.',
-        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the dedicated Investment Lab page.',
+        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用独立投资测算页面。'] },
       { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
         '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
         sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },

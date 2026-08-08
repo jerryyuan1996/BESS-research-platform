@@ -4,7 +4,7 @@
    Owns the mount point, the route → page mapping, and the single render entry
    point that every component reaches through requestRender().
 
-   The shell knows about exactly two page kinds: the home cockpit, and "a market".
+   The shell knows about the home cockpit, the Lab, and market or status pages.
    It resolves a market by slug from the registry — there is no switch on market
    id anywhere in the app.
    --------------------------------------------------------------------------- */
@@ -15,6 +15,7 @@ import { applyTheme } from './theme.js';
 import { currentRoute, onRouteChange, startRouter, navigate } from './router.js';
 import { markets, bySlug } from '../markets/registry.js';
 import { renderHome } from '../home/homePage.js';
+import { renderInvestmentLabPage } from '../home/investmentLabPage.js';
 import { renderMarketPage } from '../markets/marketPage.js';
 import { renderDataStatus } from '../live/dataStatusPage.js';
 import { marketNav } from '../components/navigation.js';
@@ -46,6 +47,7 @@ export function render(){
     return void renderNotFound(app, { path: '/markets/' + route.slug });
   }
   if (route.name === 'home') return void renderHome(app);
+  if (route.name === 'investmentLab') return void renderInvestmentLabPage(app);
   if (route.name === 'data') return void renderDataStatus(app);
   if (route.name === 'news') return void renderNewsPage(app);
   renderNotFound(app, route);

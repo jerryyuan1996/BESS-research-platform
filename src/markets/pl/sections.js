@@ -52,8 +52,8 @@ SEC_B.home = function (){
         ['05', ['Underwriting','项目承销'], ['Can the project connect, certify and finance?','项目能否并网、通过认证并融资？'], 'grid'],
         ['06', ['Portfolio application','组合应用'], ['Which screened Polish opportunity passes the gates?','所筛选的波兰机会中哪一个能通过门槛？'], 'portfolio'],
       ] },
-      { t:'note', text:['Recommended presentation order: Overview → Poland Market Story → Capacity Market → Wholesale & Intraday → Balancing & Reserves → Duration → Pipeline → Grid & Connection → Investment Lab → Portfolio. Poland vs Romania and Data & Methodology are reference appendices unless a question requires them.',
-        '建议讲解顺序：总览 → 波兰市场演进 → 容量市场 → 批发与日内 → 平衡与备用 → 时长 → 管线 → 并网 → 投资测算 → 组合。波罗对比与数据方法作为问答附录。'] },
+      { t:'note', text:['Recommended presentation order: Overview → Poland Market Story → Capacity Market → Wholesale & Intraday → Balancing & Reserves → Duration → Pipeline → Grid & Connection → Portfolio → Data & Methodology.',
+        '建议讲解顺序：总览 → 波兰市场演进 → 容量市场 → 批发与日内 → 平衡与备用 → 时长 → 管线 → 并网 → 组合 → 数据与方法。'] },
       { t:'proto', text:['Data status: the capacity-auction prices, correction factors and contracted volumes shown in this build are seed values badged "verify against current documents". They set the structure of the analysis correctly but must be replaced with the published results for the specific delivery year before any transaction use.',
         '数据状态：本版本所示容量拍卖价格、折减系数与签约容量均为标注“须以现行文件核验”的种子数值。其正确反映了分析结构，但任何交易用途前须以对应交付年度的官方公布结果替换。'] },
       { t:'why', text:['The six questions are sequenced so each one can veto the next. A market that needs storage (02) is not the same as a capacity contract that pays for enough of the asset (03), a duration the correction factor rewards (04), a project that can actually obtain connection conditions and certify (05), or a specific opportunity worth committing capital to (06). In Poland the veto usually falls at step 05, because connection refusals — not capital or policy — are what ration the market.',
@@ -558,14 +558,14 @@ SEC_B.duration = function (){
         sig:['Augmentation keeps you compliant, not just richer','增容不仅带来收益，更保障合规'] },
     ] },
     
-    /* Relocated from the Investment Lab tab, which moved to the home page. The
+    /* Relocated from the Investment Lab tab, which moved to a dedicated page. The
        duration question is a market question — where the de-rating uplift stops
        covering the MWh capex — so it belongs beside the rest of this tab rather
        than inside a returns model. */
     { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
       { t:'labDur' },
-      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the Investment Lab on the home page.',
-        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the dedicated Investment Lab page.',
+        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用独立投资测算页面。'] },
       { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
         '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
         sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },

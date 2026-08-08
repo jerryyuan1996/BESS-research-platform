@@ -15,6 +15,7 @@
 .mcard .arch{font-size:11px;color:var(--muted);}
 .mcard .mstats{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
 .mcard .ms{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:6px 8px;}
+.mcard .mstats-single{grid-template-columns:1fr;}
 .mcard .ms .l{font-size:10px;color:var(--muted);line-height:1.3;}
 .mcard .ms .v{font-size:15px;font-weight:650;margin-top:1px;}
 .mcard .thesis{font-size:11.5px;color:var(--ink2);line-height:1.45;flex:1;}
@@ -100,6 +101,11 @@
 .globe-country.covered:hover,.globe-country.covered:focus{fill:var(--s1);outline:none;}
 .globe-wa{fill:color-mix(in srgb,var(--s1) 86%,var(--surface));stroke:var(--ink);stroke-width:1.35;cursor:pointer;transition:fill .16s ease;}
 .globe-wa:hover,.globe-wa:focus{fill:var(--s1);outline:none;}
+.globe-market-sector{fill:color-mix(in srgb,var(--s1) 82%,var(--surface));stroke:var(--ink);stroke-width:1.2;cursor:pointer;transition:fill .16s ease;}
+.globe-market-sector.sector-us{fill:color-mix(in srgb,var(--s2,#60a5fa) 72%,var(--surface));}
+.globe-market-sector.sector-jp{fill:color-mix(in srgb,var(--s1) 82%,var(--surface));}
+.globe-market-sector:hover,.globe-market-sector:focus{fill:var(--s1);outline:none;}
+.globe-market-sector.sector-us:hover,.globe-market-sector.sector-us:focus{fill:var(--s2,#60a5fa);}
 .globe-marker{cursor:pointer;}
 /* Invisible but hit-testable: the drawn marker is ~7px across on screen. */
 .globe-marker-hit{fill:transparent;stroke:none;}

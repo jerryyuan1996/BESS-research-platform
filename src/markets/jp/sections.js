@@ -500,14 +500,14 @@ export function buildSections(api){
                            '在本平台各市场中，增容选择权在日本的价值更高，因为时长的答案确实不确定：期待容量的处理方式可能在不同拍卖年份间修订，而市场化最优时长也随储能进入规模变化。面对移动的目标，选择权是正确的应对。'],
           sig: ['Optionality beats a duration bet', '选择权优于时长押注'] } ] },
       
-      /* Relocated from the Investment Lab tab, which moved to the home page. The
+      /* Relocated from the Investment Lab tab, which moved to a dedicated page. The
          duration question is a market question — where the de-rating uplift stops
          covering the MWh capex — so it belongs beside the rest of this tab rather
          than inside a returns model. */
       { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
         { t:'labDur' },
-        { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the Investment Lab on the home page.',
-          '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+        { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the dedicated Investment Lab page.',
+          '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用独立投资测算页面。'] },
         { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
           '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
           sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },

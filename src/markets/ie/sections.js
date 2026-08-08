@@ -53,8 +53,8 @@ SEC_B.home = function (){
         ['05', ['Underwriting','项目承销'], ['Can the project connect, finance and withstand downside?','项目能否并网、融资并承受下行情景？'], 'grid'],
         ['06', ['Portfolio application','组合应用'], ['Which screened Irish opportunity actually passes the gates?','所筛选的爱尔兰机会中哪一个能通过门槛？'], 'portfolio'],
       ] },
-      { t:'note', text:['Recommended presentation order: Overview → Ireland Market Story → Capacity Mechanism → Wholesale & Balancing → DS3/FASS → Duration → Pipeline → Grid & Connection → Investment Lab → Portfolio. Ireland vs GB and Data & Methodology are reference appendices unless a question requires them.',
-        '建议讲解顺序：总览 → 爱尔兰市场演进 → 容量机制 → 批发与平衡 → DS3/FASS → 时长 → 管线 → 并网 → 投资测算 → 组合。爱英对比与数据方法作为问答附录。'] },
+      { t:'note', text:['Recommended presentation order: Overview → Ireland Market Story → Capacity Mechanism → Wholesale & Balancing → DS3/FASS → Duration → Pipeline → Grid & Connection → Portfolio → Data & Methodology.',
+        '建议讲解顺序：总览 → 爱尔兰市场演进 → 容量机制 → 批发与平衡 → DS3/FASS → 时长 → 管线 → 并网 → 组合 → 数据与方法。'] },
       { t:'why', text:['The six questions are sequenced so each one can veto the next. A market that needs storage (02) is not the same as a revenue stack that survives FASS repricing to your COD (03), a design that clears the de-rating band (04), an asset that can actually connect with documented MEC and MIC (05), or a specific opportunity worth committing capital to (06). Any single failure ends the case, so the decision is made in this order rather than on a blended score.',
         '六个问题按“逐级否决”排序：市场需要储能（02）不等于收入结构能在FASS重新定价后延续至投运（03），不等于设计能达到折减档位（04），不等于资产能以书面MEC与MIC真正并网（05），也不等于某个具体机会值得投入资本（06）。任一环节不成立即终止，因此决策按此顺序作出，而非依赖综合评分。'],
         sig:['Sequential veto, not a scorecard','逐级否决，而非评分卡'] },
@@ -636,14 +636,14 @@ SEC_B.duration = function (){
         sig:['Secure the envelope and the MIC first','优先锁定规划范围与MIC'] },
     ] },
     
-    /* Relocated from the Investment Lab tab, which moved to the home page. The
+    /* Relocated from the Investment Lab tab, which moved to a dedicated page. The
        duration question is a market question — where the de-rating uplift stops
        covering the MWh capex — so it belongs beside the rest of this tab rather
        than inside a returns model. */
     { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
       { t:'labDur' },
-      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the Investment Lab on the home page.',
-        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用首页的投资测算模块。'] },
+      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the dedicated Investment Lab page.',
+        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用独立投资测算页面。'] },
       { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
         '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
         sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },

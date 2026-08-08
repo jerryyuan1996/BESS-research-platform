@@ -320,7 +320,7 @@ const economics = {
      different here is that the credit is available to essentially every compliant
      US project, so excluding it silently would understate the market rather than
      neutralise it. It is therefore declared as a RANGE — 0 to 37% — and appears
-     as an editable field in the home-page Investment Lab, where a reader can put
+     as an editable field in the dedicated Investment Lab page, where a reader can put
      it back in and see what it does. The band, the derivation and the FEOC cliff
      are in `ranges.grantPct` below. */
   grantPct: 0,

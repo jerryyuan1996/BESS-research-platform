@@ -57,8 +57,8 @@ const T = {
   title: ['Investment Lab — your assumptions, every market, one model',
           '投资测算 — 你的假设、全部市场、同一模型'],
   intro: [
-    'Select a market, retype any assumption inside its evidenced range, and choose whether to lever it. The engine is the one the league table and the $1M matrix above run on, so resetting every field reproduces this page exactly. Outputs remain illustrative.',
-    '选择市场，在其有据可依的区间内重新输入任何假设，并决定是否加杠杆。所用引擎与上方对比表及百万美元矩阵完全一致，因此将全部输入重置即可精确复现本页结果。输出结果仅作示例。',
+    'Select a market, retype any assumption inside its evidenced range, and choose whether to lever it. The engine is the one used by the global cockpit league table and $1M matrix, so resetting every field reproduces the cockpit exactly. Outputs remain illustrative.',
+    '选择市场，在有据可依的区间内重设任一假设，并选择是否加杠杆。该引擎与全球总看板的排名表和百万美元矩阵完全一致，因此重置所有字段即可精确复现总看板结果。输出仍仅作示例。',
   ],
 };
 

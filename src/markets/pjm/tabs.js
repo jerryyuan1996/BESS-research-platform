@@ -22,7 +22,6 @@ const TABS = [
   ['duration',   ['Storage Duration', '储能时长']],
   ['pipeline',   ['Project Pipeline', '项目管线']],
   ['grid',       ['Interconnection & Congestion', '并网与拥塞']],
-  ['benchmark',  ['PJM vs the platform', 'PJM与本平台其他市场对比']],
   ['portfolio',  ['Portfolio', '组合与基金视图']],
   ['data',       ['Data & Methodology', '数据与方法']],
 ];

@@ -488,7 +488,7 @@ SEC_B.data = function (){
          ['Recorded, not allocated.','予以记录，不作分摊。'],
          ['Assigning roughly ' + perKW(O.fullStackResidual) + ' to either leg on no evidence would move the modelled return by more than most assumptions on this page.','在毫无证据的情况下将约' + perKW(O.fullStackResidual) + '归入任一收入项，其对建模回报的影响将超过本页多数假设。']],
         [{b:['The §48E tax credit','§48E税收抵免']},
-         ['Seeded at zero, editable in the home-page Investment Lab.','种子值为零，可在首页投资测算模块中调整。'],
+         ['Seeded at zero, editable in the dedicated Investment Lab page.','种子值为零，可在独立投资测算页面中调整。'],
          ['Identical to PJM and ERCOT. Federal, so it moves all three US markets by the same proportion.','与PJM及ERCOT完全一致。该项属联邦层面，故对三个美国市场的影响比例相同。']],
       ] },
       { t:'note', b:['Currency: ','货币：'],

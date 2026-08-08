@@ -12,7 +12,6 @@ const TABS = [
   ['duration',  ['Duration & LDES', '储能时长与长时储能']],
   ['pipeline',  ['Project Pipeline', '项目管线']],
   ['grid',      ['Grid & Connection', '并网与接入']],
-  ['benchmark', ['Ireland vs GB', '爱尔兰与英国对比']],
   ['portfolio', ['Portfolio', '组合与基金视图']],
   ['data',      ['Data & Methodology', '数据与方法']],
 ];

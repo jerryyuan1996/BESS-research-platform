@@ -573,7 +573,7 @@ SEC_B.data = function (){
          ['No `naqFactor` is declared.','未声明`naqFactor`。'],
          ['ERCOT settles at the resource node, so basis is already inside the index the merchant leg is derived from. A haircut on top would deduct it twice.','ERCOT按资源节点结算，因此基差已包含在市场化收入所依据的指数之中。再叠加折减将导致重复扣减。']],
         [{b:['The §48E tax credit','§48E税收抵免']},
-         ['Seeded at zero, with an editable 0–37% range on the home-page Investment Lab.','种子值为零，并在首页投资测算模块中提供0–37%的可编辑区间。'],
+         ['Seeded at zero, with an editable 0–37% range on the dedicated Investment Lab page.','种子值为零，并在独立投资测算页面中提供0–37%的可编辑区间。'],
          ['Identical to PJM. The credit is federal, so it moves both US markets by the same proportion and reorders nothing between them.','与PJM完全一致。该抵免属联邦层面，因此对两个美国市场的影响比例相同，不改变两者之间的排序。']],
       ] },
       { t:'note', b:['Currency: ','货币：'],

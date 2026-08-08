@@ -14,8 +14,8 @@ import { runScenarioSet } from '../comparison/refinement.js';
    count is interpolated so the sentence stays true as markets are added; the
    substantive claims are the author's and are left verbatim. */
 const COMMENTARY = (n) => ([
-  'The ' + n + ' cards show owner Bear/Base/Bull returns beside evidence confidence and the first unmet approval gate. A high return is not a recommendation when the fixed revenue is a private proxy or the evidence is incomplete.',
-  n + '张卡片将业主悲观/基准/乐观回报与证据置信度及首个未满足审批门槛并列展示。当固定收入属于私有代理或证据不完整时，高回报不构成配置建议。',
+  'The ' + n + ' cards show owner Base/Bull returns beside evidence confidence and the first unmet approval gate. A high return is not a recommendation when the fixed revenue is a private proxy or the evidence is incomplete.',
+  n + '张卡片将业主基准/乐观回报与证据置信度及首个未满足审批门槛并列展示。当固定收入属于私有代理或证据不完整时，高回报不构成配置建议。',
 ]);
 
 export function renderMarketGrid(main, marketList, exitYear, lead = null){

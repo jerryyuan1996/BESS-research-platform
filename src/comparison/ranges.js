@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
    ASSUMPTION RANGES — the bounds a reader may move an input between.
 
-   The home-page Investment Lab lets a reader retype every normalized economic
+   The dedicated Investment Lab page lets a reader retype every normalized economic
    input. Left unbounded that is a random-number generator: a user can produce a
    30% IRR for Romania and the page will render it without comment. A bound is
    what turns an editable field into an argument — it says what the evidence
