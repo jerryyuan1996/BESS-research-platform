@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-07T14:23:04.000Z",
+  "updatedAt": "2026-08-07T14:20:01.000Z",
   "refreshHours": 24,
   "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
   "sources": [
@@ -43,7 +43,7 @@
     {
       "source": "Utility Dive",
       "status": "ok",
-      "items": 6
+      "items": 4
     },
     {
       "source": "pv magazine",
@@ -52,16 +52,6 @@
     }
   ],
   "items": [
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/existing-power-plants-supply-data-centers-constellation/827326/",
-      "source": "Utility Dive",
-      "title": "Existing power plants are ‘bedrock’ in supplying data centers: Constellation CEO",
-      "url": "https://www.utilitydive.com/news/existing-power-plants-supply-data-centers-constellation/827326/",
-      "publishedAt": "2026-08-07T14:23:04.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Constellation Energy expects Texas&rsquo; Batch Zero large load interconnection process will resume without &ldquo;meaningful delay.&rdquo;"
-    },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
       "source": "Energy-Storage.news",
@@ -101,16 +91,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Apollo Power CEO Oded Rozenberg tells pv magazine the company believes its new certification is a world first. He also revealed a new solar roofing product is planned for later in 2026. The post Apollo Power claims certification first for lightweight flexible module appeared first on pv magazine Global ."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/fate-of-oncors-nearly-300-gw-load-pipeline-unclear-following-texas-data-ce/827303/",
-      "source": "Utility Dive",
-      "title": "Oncor weighs impact of Texas data center freeze on nearly 300-GW load pipeline",
-      "url": "https://www.utilitydive.com/news/fate-of-oncors-nearly-300-gw-load-pipeline-unclear-following-texas-data-ce/827303/",
-      "publishedAt": "2026-08-07T12:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Executives at parent company Sempra said they support the governor's pause on new data center interconnection approvals, citing a need for durable long-term outcomes amid growing public opposition."
     },
     {
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/high-energy-prices-reshape-dutch-solar-market-ahead-of-net-metering-phaseout/",
@@ -223,16 +203,6 @@
       "summary": "ZEBRE has submitted the 180MW/360MWh Noblevale Battery in Queensland for federal environmental assessment under the EPBC Act."
     },
     {
-      "id": "Utility Dive:https://www.utilitydive.com/news/data-center-tva-income-earnings-cumberland/827282/",
-      "source": "Utility Dive",
-      "title": "Data center power sales drive $220M increase in TVA’s net income",
-      "url": "https://www.utilitydive.com/news/data-center-tva-income-earnings-cumberland/827282/",
-      "publishedAt": "2026-08-06T20:54:49.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The federal utility&rsquo;s total operating revenue was $10 billion over the first nine months of the fiscal year, up 3% year over year, with a net income of $965 million."
-    },
-    {
       "id": "Utility Dive:https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
       "source": "Utility Dive",
       "title": "Video gamers give 110-MW Texas solar project a financing boost",
@@ -321,6 +291,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Manufacturing delays have led Fluence to adjust its fiscal year 2026 guidance, even as the company has logged record quarterly orders and a US$6.4 billion backlog."
+    },
+    {
+      "id": "Utility Dive:https://www.utilitydive.com/news/texas-hits-pause-data-center-interconnections/827046/",
+      "source": "Utility Dive",
+      "title": "Facing an estimated 474 GW of interconnection requests, Texas hits pause on data centers",
+      "url": "https://www.utilitydive.com/news/texas-hits-pause-data-center-interconnections/827046/",
+      "publishedAt": "2026-08-05T12:23:45.000Z",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Texas Gov. Greg Abbott has called for an audit of all data centers in the Electric Reliability Council of Texas interconnection queue, leading the grid operator to delay its Batch Zero review process."
     },
     {
       "id": "Energy-Storage.news:https://www.energy-storage.news/base-power-raises-another-us1-billion-in-series-d-financing-for-us-residential-bess/",
