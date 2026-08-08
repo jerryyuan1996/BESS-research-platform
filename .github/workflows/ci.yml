@@ -31,6 +31,20 @@ jobs:
       - name: Build
         run: npm run build
 
+      # The confidentiality guard asserts on the BUILD OUTPUT, so it is worthless
+      # before this point — and it used to run only before this point. `npm test`
+      # above still executes tests/bundle-confidentiality.test.js, but with no
+      # dist/ to scan it skips, which is a pass that proves nothing.
+      #
+      # This step is the one that actually enforces it. REQUIRE_DIST=1 turns the
+      # "dist/ is absent" skip into a failure, so the guard cannot go green by
+      # scanning nothing. Keep it after Build; moving it earlier silently disarms
+      # the last check standing between confidential content and a publish.
+      - name: Scan the built bundle for confidential content
+        run: npm run test:bundle
+        env:
+          REQUIRE_DIST: '1'
+
       # Snapshots are machine-written and carry a checksum over their contents.
       # A hand-edited "observed" file is exactly the confusion the envelope
       # exists to prevent, so it fails the build rather than shipping.

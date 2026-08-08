@@ -23,7 +23,20 @@
    contents are the whole truth.
 
    Skips with a clear message when dist/ is absent — `npm test` must not require
-   a build. CI runs the build first, so it is enforced there.
+   a build.
+
+   THAT SKIP IS ONLY SAFE BECAUSE SOMETHING ELSE INSISTS ON THE BUILD. It did not
+   used to be. CI ran `npm test` BEFORE `npm run build` and never re-ran it, so
+   dist/ never existed while these tests ran and both of them skipped on every
+   single CI run — this file, the last line of defence, was inert for as long as
+   that ordering stood. It looked green. Locally it was masked by whatever stale
+   dist/ happened to be lying around, which is worse than nothing: it made the
+   guard appear to work while it was scanning a months-old artefact.
+
+   So enforcement is now explicit rather than assumed. `.github/workflows/ci.yml`
+   runs this file again AFTER the build with REQUIRE_DIST=1, and under that flag
+   an absent dist/ is a failure instead of a skip. A vacuous pass is no longer
+   reachable: either the bundle was scanned, or the run went red.
    --------------------------------------------------------------------------- */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -34,6 +47,30 @@ import { fileURLToPath } from 'node:url';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(REPO, 'dist');
+
+/* Set by the post-build CI step. Without it an absent dist/ is a legitimate skip
+   (a developer running `npm test` has not necessarily built); with it, an absent
+   dist/ means the step that was supposed to scan the artefact found nothing to
+   scan, which is the exact failure this file exists to make impossible. */
+const REQUIRE_DIST = process.env.REQUIRE_DIST === '1';
+
+/**
+ * True when dist/ is missing and the test should bail out early.
+ *
+ * Under REQUIRE_DIST this never returns — it throws instead, so a missing build
+ * cannot be mistaken for a clean one.
+ */
+function skipWithoutDist(t, message){
+  if (existsSync(DIST)) return false;
+  assert.ok(!REQUIRE_DIST,
+    'REQUIRE_DIST=1 but dist/ is absent, so nothing was scanned.\n' +
+    'This step runs after the build precisely so the artefact exists. Either the\n' +
+    'build did not run, it wrote somewhere other than dist/, or the step order in\n' +
+    '.github/workflows/ci.yml regressed. Do not relax this assertion: a skip here\n' +
+    'is what let the confidentiality guard sit inert through every CI run before.');
+  t.skip(message);
+  return true;
+}
 
 /**
  * Strings that must not appear in a published artefact.
@@ -84,10 +121,7 @@ async function walk(dir){
 }
 
 test('no confidential marker appears in the built bundle', async (t) => {
-  if (!existsSync(DIST)){
-    t.skip('dist/ not present — run "npm run build" first (CI always does)');
-    return;
-  }
+  if (skipWithoutDist(t, 'dist/ not present — run "npm run build" first')) return;
 
   /* Source maps are included. vite.config.js sets sourcemap:true, which
      publishes readable source, so they are scanned exactly like the code — a
@@ -113,10 +147,7 @@ test('no confidential marker appears in the built bundle', async (t) => {
 });
 
 test('the confidential local-data directory is never copied into dist', async (t) => {
-  if (!existsSync(DIST)){
-    t.skip('dist/ not present');
-    return;
-  }
+  if (skipWithoutDist(t, 'dist/ not present')) return;
   const files = await walk(DIST);
   const leaked = files.filter(f => /local-data/.test(f)).map(f => path.relative(REPO, f));
   assert.deepEqual(leaked, [], 'local-data/ must never be copied into the build output');
