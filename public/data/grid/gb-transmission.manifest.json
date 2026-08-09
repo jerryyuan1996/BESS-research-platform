@@ -1,0 +1,51 @@
+{
+ "marketId": "gb",
+ "fetchedAt": "2026-08-09",
+ "licence": {
+  "id": "odbl-1.0",
+  "name": "Open Database Licence 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "url": "https://www.openstreetmap.org/copyright",
+  "shareAlike": true,
+  "note": "Accepted for non-commercial personal study. Attribution must be shown wherever the layer is drawn."
+ },
+ "operator": "NESO / National Grid Electricity Transmission, SP Transmission, SSEN Transmission",
+ "bulkKV": 275,
+ "detailKV": 132,
+ "droppedOutsideMarket": {
+  "lines": 1297,
+  "substations": 96
+ },
+ "bands": [
+  {
+   "band": "275plus",
+   "minKV": 275,
+   "maxKV": null,
+   "backbone": true,
+   "urls": [
+    "/data/grid/gb-transmission-275plus.json"
+   ],
+   "lines": 7771,
+   "substations": 193,
+   "simplifyTolerance": 0.004,
+   "bytes": 1492529,
+   "largestPartBytes": 1492529,
+   "overBudget": false
+  },
+  {
+   "band": "132-274",
+   "minKV": 132,
+   "maxKV": 275,
+   "backbone": false,
+   "urls": [
+    "/data/grid/gb-transmission-132-274.json"
+   ],
+   "lines": 6272,
+   "substations": 570,
+   "simplifyTolerance": 0.004,
+   "bytes": 1441611,
+   "largestPartBytes": 1441611,
+   "overBudget": false
+  }
+ ]
+}

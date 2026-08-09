@@ -17,3 +17,11 @@
 }
 #tip b{color:var(--ink);}
 #tip .tr{display:flex; justify-content:space-between; gap:14px; font-variant-numeric:tabular-nums;}
+/* A stack tooltip lists every route sharing one pixel, so it is wider and taller
+   than a single-point tip and must not wrap each line into three. */
+#tip:has(.tip-stack){max-width:360px;}
+#tip .tip-stack{display:flex; flex-direction:column; gap:2px; margin-top:5px;}
+#tip .tip-stack div{white-space:nowrap;}
+#tip .tip-rule{border:0; border-top:1px solid var(--baseline); margin:6px 0;}
+/* The count inside a stacked scatter marker. */
+.scatter-stack-count{font-weight:700; fill:var(--ink);}

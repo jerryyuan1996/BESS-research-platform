@@ -1,4 +1,9 @@
 import boundary from './ireland-sem-boundary.json' with { type: 'json' };
+/* OpenStreetMap battery fleet, ODbL. Ireland is the only market carried on OSM
+   for storage, because its coverage was measured — 26 plants / 1,039 MW against
+   the roughly 1 GW ESB Networks reports as available. Regenerate with
+   etl/sources/osm-storage.mjs. */
+import storageSnapshot from './ie-storage-osm.json' with { type: 'json' };
 
 const URL = {
   boundary: 'https://gisco-services.ec.europa.eu/distribution/v2/nuts/geojson/NUTS_RG_01M_2021_4326.geojson',
@@ -353,6 +358,14 @@ export const IE_GRID_MAP = {
   },
   points,
   routes,
+  projects: storageSnapshot.projects,
+  storageLicence: storageSnapshot.licence,
+  /* Fetched at runtime, NOT imported. The snapshot is 0.8 MB and Great Britain's
+     is 2.9 MB; importing them put 3.5 MB into the bundle every visitor downloads
+     to see the home page. They live in public/data/grid/ and load only when a
+     reader opens the grid tab. Regenerate with
+     `node scripts/refresh-grid-networks.mjs ie`. */
+  transmissionManifest: '/data/grid/ie-transmission.manifest.json',
   sourceCatalog,
   scope:[
     'All-island SEM orientation only. Boundary geometry is the published Eurostat/GISCO NUTS 2021 GeoJSON for Ireland and Northern Ireland. Markers use approximate locality centroids and routes are schematic unless stated. Capacities are published nameplate, physical-transfer, under-construction or planned values—not live output, spare headroom, queue position, dispatch-down probability or an investable MIC/MEC right.',

@@ -314,6 +314,61 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 .geo-route{fill:none;stroke:var(--s5);stroke-width:2.5;opacity:.78;cursor:pointer;vector-effect:non-scaling-stroke}
 .geo-route.future{stroke-dasharray:7 5}
 .geo-route:hover,.geo-route.selected{stroke-width:4;opacity:1}
+/* ---------- transmission network (OpenStreetMap, ODbL) ---------- */
+/* Non-scaling strokes: a 400 kV line must read as a 400 kV line at every zoom,
+   and a scaled stroke would turn the backbone into a blanket at 8x. */
+.geo-transmission-line{
+  fill:none;stroke:var(--ink2);stroke-opacity:.42;stroke-width:1.6;
+  vector-effect:non-scaling-stroke;pointer-events:none;
+}
+.geo-transmission-line[data-band="bulk"]{stroke-width:2.4;stroke-opacity:.6}
+.geo-transmission-line.underground{stroke-dasharray:4 3}
+.geo-substation{fill:var(--ink2);fill-opacity:.5;stroke:none;pointer-events:none}
+/* The detail band earns its space only once the reader has zoomed in — below
+   that it is a grey blanket over the country. It is hidden rather than unloaded:
+   the bytes are already spent by the time it can be hidden, and re-fetching
+   because a reader changed their mind twice is the worse trade. */
+.geo-map-pane svg[data-zoom="1.00"] .geo-transmission-line[data-band="detail"],
+.geo-map-pane svg[data-zoom="1.00"] .geo-substation[data-band="detail"],
+.geo-map-pane svg.detail-suppressed .geo-transmission-line[data-band="detail"],
+.geo-map-pane svg.detail-suppressed .geo-substation[data-band="detail"]{display:none}
+
+/* Detailed-grid opt-in. The size is in the label because asking a reader to
+   fetch two megabytes without telling them is not a choice. */
+.geo-detail-toggle-host{display:flex;align-items:center}
+.geo-detail-toggle{
+  display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink2);
+  padding:4px 8px;border:1px solid var(--border);border-radius:8px;cursor:pointer;
+}
+.geo-detail-toggle:hover{border-color:var(--baseline)}
+
+/* ---------- project pipeline ---------- */
+.geo-project{cursor:pointer}
+.geo-project .geo-project-shape{
+  fill:var(--s1);stroke:var(--surface);stroke-width:2;vector-effect:non-scaling-stroke;
+}
+.geo-project.under_construction .geo-project-shape{
+  fill:var(--surface);stroke:var(--s1);stroke-width:2.4;stroke-dasharray:3 2;
+}
+.geo-project.cluster .geo-project-shape{fill:var(--s1);fill-opacity:.9}
+.geo-project-count{
+  font-size:10px;font-weight:700;fill:var(--surface);text-anchor:middle;pointer-events:none;
+}
+/* Italy: a zone marker carries a clearing price and deliberately no capacity,
+   so it is drawn hollow — it must not read as a sized fleet. */
+.geo-project.zone-cluster .geo-project-shape{
+  fill:var(--surface);stroke:var(--s2,#60a5fa);stroke-width:2.6;stroke-dasharray:2 2;
+}
+.geo-project-zone-label{
+  font-size:9.5px;fill:var(--ink2);text-anchor:middle;pointer-events:none;
+}
+
+/* ---------- pan and zoom (grid tab only) ---------- */
+.geo-zoom-controls{display:inline-flex;gap:4px;margin-left:auto}
+.geo-zoom-btn{min-width:30px;padding:4px 8px;font-weight:650;line-height:1}
+.geo-map-pane svg{touch-action:none}
+.geo-map-pane svg.panning{cursor:grabbing}
+
 .geo-marker{cursor:pointer}
 .geo-marker .marker-shape{stroke:var(--surface);stroke-width:2;vector-effect:non-scaling-stroke}
 .geo-marker.node .marker-halo{fill:var(--accent-bg);stroke:var(--s1);stroke-width:1;opacity:.8}
@@ -508,3 +563,16 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   .card{min-width:0;padding:14px 12px}
   .tbl-wrap{max-width:100%}
 }
+
+/* ---------- project pipeline table ---------- */
+.pipe-totals{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 10px}
+.pipe-total{
+  display:flex;align-items:baseline;gap:8px;padding:6px 10px;
+  background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:12px;
+}
+.pipe-total .l{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.03em}
+.pipe-total b{font-size:14px}
+.pipe-total .e{color:var(--ink2)}
+.pipe-table{font-size:12.5px}
+.pipe-table td.num{font-variant-numeric:tabular-nums}
+.pipe-table td.muted{color:var(--muted);font-style:italic}

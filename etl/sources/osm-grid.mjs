@@ -23,7 +23,9 @@
    whole run rather than writing a thinner file than last time.
    --------------------------------------------------------------------------- */
 import { httpGet, FetchError } from '../lib/fetch.mjs';
+import { clipGridToMarket } from '../lib/geo.mjs';
 import { TRANSMISSION_VOLTAGE } from '../../src/governance/transmissionVoltage.js';
+import { gridMapForMarket } from '../../src/markets/gridMapRegistry.js';
 
 const ENDPOINT = 'https://overpass-api.de/api/interpreter';
 
@@ -106,6 +108,38 @@ const firstVoltageKV = (tags) => {
 
 const round = (value) => Math.round(value * 10_000) / 10_000;
 
+/* Simplification tolerance in degrees. A transmission line is drawn at national
+   zoom on a 760px canvas, where 0.004° is well under a pixel — every vertex
+   below that is repo weight and nothing else. PJM returns 15,026 line ways and
+   an unsimplified snapshot is tens of megabytes, which is not a thing to put in
+   a git history that exists to be diffed. */
+export const SIMPLIFY_TOLERANCE = 0.004;
+
+/**
+ * Drop vertices closer than `tolerance` to the last kept one.
+ *
+ * Perpendicular-distance simplification (Douglas-Peucker) would be tidier, but
+ * this is the routine scripts/refresh-grid-boundaries.mjs already uses for the
+ * market boundaries, and a transmission line and a coastline want the same
+ * treatment. Endpoints are always kept: a line that loses its last vertex stops
+ * short of the substation it connects to.
+ */
+export function simplifyPath(path, tolerance = SIMPLIFY_TOLERANCE){
+  if (!Array.isArray(path) || path.length <= 2) return path;
+  const kept = [path[0]];
+  let previous = path[0];
+  for (let i = 1; i < path.length - 1; i++){
+    const dx = path[i][0] - previous[0];
+    const dy = path[i][1] - previous[1];
+    if ((dx * dx) + (dy * dy) >= tolerance * tolerance){
+      kept.push(path[i]);
+      previous = path[i];
+    }
+  }
+  kept.push(path[path.length - 1]);
+  return kept;
+}
+
 /** Overpass elements → the shape the map layer draws. */
 export function normalizeGrid(elements, { detailKV }){
   const lines = [];
@@ -123,7 +157,7 @@ export function normalizeGrid(elements, { detailKV }){
         name: el.tags.name || null,
         circuits: Number(el.tags.circuits) || null,
         underground: el.tags.power === 'cable' || el.tags.location === 'underground',
-        path: el.geometry.map(p => [round(p.lon), round(p.lat)]),
+        path: simplifyPath(el.geometry.map(p => [round(p.lon), round(p.lat)])),
       });
     } else if (el.center || (el.type === 'node' && Number.isFinite(el.lat))){
       const lon = el.center ? el.center.lon : el.lon;
@@ -183,7 +217,14 @@ export async function fetchMarketGrid(marketId, { log = () => {} } = {}){
       { url: ENDPOINT, status: error.status ?? null, retryable: true });
   }
 
-  const { lines, substations } = normalizeGrid(payload.elements, { detailKV: definition.detailKV });
+  const raw = normalizeGrid(payload.elements, { detailKV: definition.detailKV });
+
+  /* The bounding box is a rectangle and the market is not. Poland's box reaches
+     into Brandenburg, Great Britain's contains Ireland — so everything is cut to
+     the market's own boundary before it is returned. See etl/lib/geo.mjs. */
+  const boundary = gridMapForMarket(marketId)?.boundary;
+  if (!boundary) throw new Error(`osm-grid ${marketId}: no boundary to clip against`);
+  const { lines, substations, dropped } = clipGridToMarket(raw, boundary);
 
   /* A market with a declared transmission definition has a transmission network.
      Zero lines means the query failed silently or the bbox is wrong — either
@@ -192,7 +233,8 @@ export async function fetchMarketGrid(marketId, { log = () => {} } = {}){
     throw new Error(`osm-grid ${marketId}: returned no lines at ≥${definition.detailKV} kV — check the bbox and threshold`);
   }
 
-  log(`osm-grid ${marketId}: ${lines.length} lines, ${substations.length} substations`);
+  log(`osm-grid ${marketId}: ${lines.length} lines, ${substations.length} substations`
+    + ` (dropped ${dropped.lines} lines, ${dropped.substations} substations outside the market)`);
   return {
     marketId,
     licence: LICENCE,
@@ -201,5 +243,6 @@ export async function fetchMarketGrid(marketId, { log = () => {} } = {}){
     operator: definition.operator,
     lines,
     substations,
+    droppedOutsideMarket: dropped,
   };
 }

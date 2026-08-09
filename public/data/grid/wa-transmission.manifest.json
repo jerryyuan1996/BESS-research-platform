@@ -1,0 +1,51 @@
+{
+ "marketId": "wa",
+ "fetchedAt": "2026-08-09",
+ "licence": {
+  "id": "odbl-1.0",
+  "name": "Open Database Licence 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "url": "https://www.openstreetmap.org/copyright",
+  "shareAlike": true,
+  "note": "Accepted for non-commercial personal study. Attribution must be shown wherever the layer is drawn."
+ },
+ "operator": "Western Power (SWIS)",
+ "bulkKV": 330,
+ "detailKV": 132,
+ "droppedOutsideMarket": {
+  "lines": 0,
+  "substations": 0
+ },
+ "bands": [
+  {
+   "band": "330plus",
+   "minKV": 330,
+   "maxKV": null,
+   "backbone": true,
+   "urls": [
+    "/data/grid/wa-transmission-330plus.json"
+   ],
+   "lines": 82,
+   "substations": 13,
+   "simplifyTolerance": 0.004,
+   "bytes": 40755,
+   "largestPartBytes": 40755,
+   "overBudget": false
+  },
+  {
+   "band": "132-329",
+   "minKV": 132,
+   "maxKV": 330,
+   "backbone": false,
+   "urls": [
+    "/data/grid/wa-transmission-132-329.json"
+   ],
+   "lines": 314,
+   "substations": 101,
+   "simplifyTolerance": 0.004,
+   "bytes": 262783,
+   "largestPartBytes": 262783,
+   "overBudget": false
+  }
+ ]
+}

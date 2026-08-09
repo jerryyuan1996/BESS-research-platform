@@ -61,6 +61,14 @@ export const TRANSMISSION_VOLTAGE = {
   },
   it: {
     bulkKV: 380, detailKV: 132,
+    /* Italy is the one market whose RTN is large enough that a single file is
+       not a sensible delivery unit — 15,079 line segments at 132 kV. The bands
+       below are Terna's own voltage classes, and the ingestion pipeline emits
+       one file per band so the backbone can load at national zoom and the
+       132–150 kV detail only when a reader asks for it. Splitting the DELIVERY
+       does not narrow the DEFINITION: `detailKV` is still 132 and every segment
+       Terna operates is still ingested. */
+    bands: [380, 220, 132],
     operator: 'Terna',
     levels: ['380 kV', '220 kV', '150 kV', '132 kV'],
     url: 'https://www.terna.it/en/about-us/business/italian-national-grid',
@@ -164,6 +172,34 @@ function JAPAN(){
 /** The definition for a market, or null where none is declared. */
 export function voltageFor(marketId){
   return TRANSMISSION_VOLTAGE[marketId] || null;
+}
+
+/**
+ * Voltage bands a market's network is delivered in, highest first.
+ *
+ * Delivery, not definition. A market that declares no `bands` gets two — the
+ * backbone and everything else down to its floor — which is how every market
+ * behaved before Italy needed three. Splitting exists so a large network can be
+ * loaded progressively; it never changes which segments are ingested.
+ */
+export function bandsFor(marketId){
+  const definition = TRANSMISSION_VOLTAGE[marketId];
+  if (!definition) return [];
+  const edges = definition.bands
+    || [definition.bulkKV, definition.detailKV].filter((v, i, a) => a.indexOf(v) === i);
+
+  return edges.map((minKV, index) => ({
+    minKV,
+    // Open-topped for the highest band; each lower band stops below the one above.
+    maxKV: index === 0 ? Infinity : edges[index - 1],
+    /* Every band except the lowest is backbone and loads with the map. For
+       Italy that is 380 kV and 220 kV together, which is the network a reader
+       opening the page is looking for; the 132–150 kV class is the bulk of the
+       payload and none of the first read, so it waits for a zoom or an explicit
+       request. A two-band market resolves to bulk-loads, detail-waits, which is
+       how every market behaved before. */
+    backbone: index < edges.length - 1,
+  }));
 }
 
 /** Every market that declares a transmission definition. */

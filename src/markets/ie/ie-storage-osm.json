@@ -1,0 +1,447 @@
+{
+ "marketId": "ie",
+ "licence": {
+  "id": "odbl-1.0",
+  "name": "Open Database Licence 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "url": "https://www.openstreetmap.org/copyright",
+  "shareAlike": true,
+  "note": "Accepted for non-commercial personal study. Attribution must be shown wherever the layer is drawn."
+ },
+ "fetchedAt": "2026-08-09",
+ "note": "OpenStreetMap battery plants, clipped to the Irish boundary. Regenerate with etl/sources/osm-storage.mjs.",
+ "projects": [
+  {
+   "id": "ie-osm-w1001561831",
+   "marketId": "ie",
+   "name": "Mullavilly Battery Storage",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 50,
+   "durationHours": null,
+   "operator": "Mullavilly Energy Limited (Low Carbon Storage Ireland Ltd)",
+   "lon": -6.4284,
+   "lat": 54.37,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1001614044",
+   "marketId": "ie",
+   "name": "Drumkee Battery Storage",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 50,
+   "durationHours": null,
+   "operator": "Drumkee Energy Limited (Low Carbon Storage Ireland Ltd)",
+   "lon": -6.6782,
+   "lat": 54.5119,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1037292091",
+   "marketId": "ie",
+   "name": "Gorman BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 50,
+   "durationHours": 0.5,
+   "operator": "Iberdrola",
+   "lon": -6.6363,
+   "lat": 53.6993,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1051140191",
+   "marketId": "ie",
+   "name": "Porterstown BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 30,
+   "durationHours": null,
+   "operator": "Gore Street Energy",
+   "lon": -6.5408,
+   "lat": 53.2451,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1067392136",
+   "marketId": "ie",
+   "name": "Stephenstown BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 8.5,
+   "durationHours": 1,
+   "operator": "RWE",
+   "lon": -6.1886,
+   "lat": 53.6013,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1067393040",
+   "marketId": "ie",
+   "name": "Lisdrumdoagh Energy Storage Facility",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 60,
+   "durationHours": 0.5666666666666667,
+   "operator": "Highfield Storage Ltd",
+   "lon": -6.9122,
+   "lat": 54.2443,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1105530307",
+   "marketId": "ie",
+   "name": "Kells BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 50,
+   "durationHours": 0.5,
+   "operator": "ABO Wind",
+   "lon": -6.1646,
+   "lat": 54.8037,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1131251772",
+   "marketId": "ie",
+   "name": "Aghada Battery Plant",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 19,
+   "durationHours": 2,
+   "operator": "ESB Generation and Wholesale Markets",
+   "lon": -8.229,
+   "lat": 51.8368,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1132369947",
+   "marketId": "ie",
+   "name": "Castlereagh Battery Storage",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 50,
+   "durationHours": null,
+   "operator": "Energia",
+   "lon": -5.8681,
+   "lat": 54.5614,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1132925463",
+   "marketId": "ie",
+   "name": "Irishtown North Energy Storage Facility",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 26,
+   "durationHours": 0.8846153846153846,
+   "operator": "Highfield Storage Ltd",
+   "lon": -7.3724,
+   "lat": 53.5399,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1132937943",
+   "marketId": "ie",
+   "name": "Killala BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 10.8,
+   "durationHours": null,
+   "operator": "Greencoat Renewables",
+   "lon": -9.2227,
+   "lat": 54.1939,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1132970592",
+   "marketId": "ie",
+   "name": "Kylemore Way BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 30,
+   "durationHours": null,
+   "operator": "ESB Generation and Wholesale Markets",
+   "lon": -6.34,
+   "lat": 53.3348,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1209784405",
+   "marketId": "ie",
+   "name": "Cushaling Wind Farm BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 20,
+   "durationHours": 4,
+   "operator": "Statkraft",
+   "lon": -7.0881,
+   "lat": 53.2893,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1306427131",
+   "marketId": "ie",
+   "name": "Poolbeg BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 75,
+   "durationHours": 2,
+   "operator": "ESB Generation and Wholesale Markets",
+   "lon": -6.1913,
+   "lat": 53.3395,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1332848482",
+   "marketId": "ie",
+   "name": "Avonbeg Battery Storage",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 16,
+   "durationHours": null,
+   "operator": "NTR",
+   "lon": -6.5182,
+   "lat": 52.5378,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1413017181",
+   "marketId": "ie",
+   "name": "Aghada BESS 2",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 150,
+   "durationHours": 2,
+   "operator": "ESB Generation and Wholesale Markets",
+   "lon": -8.2299,
+   "lat": 51.8325,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1431378012",
+   "marketId": "ie",
+   "name": "Gorey BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 9,
+   "durationHours": null,
+   "operator": "NTR",
+   "lon": -6.2719,
+   "lat": 52.6492,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w1495889815",
+   "marketId": "ie",
+   "name": "Shannonbridge B BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 63.2,
+   "durationHours": 2.531645569620253,
+   "operator": "Lumcloon Energy Limited",
+   "lon": -8.0316,
+   "lat": 53.273,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w441087086",
+   "marketId": "ie",
+   "name": "Lumcloon 100MW BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 100,
+   "durationHours": 0.25,
+   "operator": "Lumcloon Energy Limited",
+   "lon": -7.7947,
+   "lat": 53.2274,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w502269799",
+   "marketId": "ie",
+   "name": "Southwall BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 30,
+   "durationHours": 2,
+   "operator": "ESB Generation and Wholesale Markets",
+   "lon": -6.2033,
+   "lat": 53.3382,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w744115147",
+   "marketId": "ie",
+   "name": "Kelwin-2 BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 26,
+   "durationHours": 1.0230769230769232,
+   "operator": "Statkraft",
+   "lon": -9.3942,
+   "lat": 52.5814,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w885354526",
+   "marketId": "ie",
+   "name": "Kilathmoy BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 11,
+   "durationHours": null,
+   "operator": "Statkraft",
+   "lon": -9.3423,
+   "lat": 52.4903,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w886108560",
+   "marketId": "ie",
+   "name": "Shannonbridge 100 MW BESS",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 100,
+   "durationHours": 0.25,
+   "operator": "Lumcloon Energy Limited",
+   "lon": -8.035,
+   "lat": 53.272,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  },
+  {
+   "id": "ie-osm-w935064792",
+   "marketId": "ie",
+   "name": "Kelwin-1 Compound",
+   "technology": "storage",
+   "stage": "operating",
+   "statusRaw": "operational (OSM)",
+   "capacityMW": 4.6,
+   "durationHours": null,
+   "operator": "Statkraft",
+   "lon": -9.3948,
+   "lat": 52.5812,
+   "expectedCod": null,
+   "sourceIds": [
+    "osm-storage"
+   ],
+   "evidenceDate": "2026-08-09"
+  }
+ ]
+}

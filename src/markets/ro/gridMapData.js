@@ -248,6 +248,10 @@ export const RO_GRID_MAP = {
   },
   points,
   routes,
+  /* Fetched at runtime from public/, never imported — see
+     scripts/refresh-grid-networks.mjs and
+     src/governance/transmissionVoltage.js for the voltage floor. */
+  transmissionManifest: '/data/grid/ro-transmission.manifest.json',
   sourceCatalog,
   scope:['National orientation only. Coordinates are approximate locality centroids; the map does not show spare capacity, queue priority, live output or an investable connection right.','仅用于全国方位展示。坐标为近似地点中心；地图不显示可用容量、队列优先级、实时出力或可投资并网权利。'],
 };

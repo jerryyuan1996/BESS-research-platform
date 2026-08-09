@@ -706,7 +706,26 @@ SEC_B.pipeline = function (){
   return {
     head:['Project Pipeline — official coverage gap', '项目管线 — 官方覆盖缺口'],
     cap:['Official aggregate connection, auction and adequacy evidence remains usable within its stated scope. Complete project-level MW, MWh, delivery stage and probability-weighted COD are N/A.', '官方汇总并网、拍卖及充足性证据可在其明确范围内使用。完整的项目级MW、MWh、交付阶段及概率加权投运日期均为N/A。'],
-    blocks:[ieQueueCoverageBlock()],
+    blocks:[
+      ieQueueCoverageBlock(),
+      /* The one market on this platform whose built fleet is carried on
+         OpenStreetMap. EirGrid's own connected and contracted lists are PDFs
+         with no storage flag and no coordinates; OSM coverage was measured at
+         1,039 MW against the roughly 1 GW ESB Networks reports as available, so
+         it is the better source here despite being a volunteer one. It closes
+         the operating half of the gap above and none of the pipeline half —
+         OSM records no commissioning date. */
+      { t:'card', title:['Operating and under-construction fleet — OpenStreetMap','在运及在建机组 — OpenStreetMap'],
+        badges:['illus'], blocks:[
+          { t:'project-pipeline',
+            projects:gridMapById('ie-grid-map').projects,
+            licence:gridMapById('ie-grid-map').storageLicence,
+            sourceNote:[
+              'OpenStreetMap, clipped to the island of Ireland and measured on 2026-08-09 at 1,039 MW against the roughly 1 GW ESB Networks reports as available. Volunteer-maintained, so completeness is a measurement rather than a guarantee, and no commissioning dates are published — the COD column is empty by source, not by omission.',
+              '取自OpenStreetMap，按爱尔兰岛边界裁剪，2026年8月9日实测1,039MW，而ESB Networks报告电网可用储能约1GW。该数据由志愿者维护，其完整性系实测结果而非保证；且不含投运日期 — COD列为空系数据源所致，而非遗漏。',
+            ] },
+        ] },
+    ],
   };
 };
 

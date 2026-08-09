@@ -187,11 +187,28 @@ no storage layer.
 | PJM / ERCOT / CAISO | **verified** | EIA-860M (US public domain), joined to annual EIA-860 | power, operator, status, COD; energy + coordinates via join |
 | NEM / WA | **verified** | AEMO Generation Information | power, energy, operator, status, COD; coordinates via DUID join |
 | GB | **verified** | NESO TEC Register — *already wired into the ETL* | power, operator, status, COD. **No MWh, no duration** — the register has neither and the existing connector deliberately synthesises neither. |
-| IE | candidate | EirGrid connection offers / ECP | unconfirmed |
-| IT | candidate | Terna open data + MACSE awards | unconfirmed |
-| PL | candidate | URE capacity auction results + PSE | unconfirmed |
-| JP ×3 | candidate | OCCTO LTDA award lists | unconfirmed |
-| RO | **none** | — | Nothing adequate found. OSM has one mapped battery for the whole country. Romania is the market this platform ranks *first* on merchant returns, so an empty-looking layer would be actively misleading. It renders nothing, and says why. |
+| IE | **verified** | OpenStreetMap (ODbL), boundary-clipped | 26 plants / **1,039 MW** vs ESB Networks' ~1 GW available — effectively the whole fleet. Operator on 25/26, energy on 14/26. EirGrid's own lists are PDFs with no storage flag and no coordinates. |
+| IT | **none** | — | MACSE publishes awards by *zone*, not project — no coordinates. OSM gives 11 plants / 543 MW against a fleet MACSE alone is adding 1,491 MW to. |
+| PL | **none** | — | URE publishes unit lists without coordinates. OSM gives **4** plants once clipped to Poland. |
+| JP ×3 | **none** | — | OSM returns one 50 MW plant in Kyushu and zero in Tokyo and Hokkaido, against gigawatts of LTDA awards. OCCTO publishes awards but not coordinates. |
+| RO | **none** | — | One mapped battery for the whole country. Romania is the market this platform ranks *first* on merchant returns, so an empty-looking layer would be actively misleading. |
+
+**Verification outcome (2026-08-09): one of the four candidates passed.** Storage
+renders for **8 of 14** markets; the other six render no storage layer and say
+why. The HV grid layer is unaffected and covers all 14.
+
+**A bug this found.** Bounding boxes bleed across borders. Poland's unclipped box
+returned 13 battery plants of which **nine were German** — BigBattery Lausitz,
+Neuhardenberg, EnBW units in Brandenburg — a 69% contamination rate that would
+have put 599 MW of German storage on Poland's map. `etl/lib/geo.mjs` now clips
+every fetched feature to the market's own boundary at ingest, before anything is
+written. Italy loses 5 of 16 and Ireland loses none, which is why Ireland's
+coverage figure can be trusted.
+
+Coverage is recorded as a **measurement**, not a claim: `coverage.measuredOn`,
+`plants`, `mappedMW` and the published total it was compared against are stored
+with the source, because OSM improves and degrades and a source that is complete
+today may not be next year.
 
 Two rules fall out of this and are enforced by `tests/map-sources.test.js`:
 
@@ -338,3 +355,106 @@ after its licence is confirmed.
 where the batteries are — GEM only sees storage bolted to a solar or wind farm,
 and OSM's coverage varies by two orders of magnitude between markets that this
 platform treats as comparable.
+
+---
+
+## 8 · Delivery constraints transform data, they never discard it
+
+Italy forced this rule into the pipeline. Terna's RTN reaches 132 kV, comes back
+as 15,079 segments, and an earlier version of the refresh script responded to the
+resulting 4.4 MB file by **deleting it** — silently removing the largest
+transmission network on the platform because a file was inconvenient.
+
+The pipeline now, for every market:
+
+1. **keeps the raw fetch** unsimplified in `local-data/raw/grid/` (gitignored) —
+   the ingest of record, so a representation decision can be revisited without
+   re-querying a volunteer-funded endpoint;
+2. **splits by the market's declared voltage bands** — Italy: 380 kV · 220 kV ·
+   132–150 kV, which are Terna's own classes;
+3. **escalates simplification per band** only where a band needs it, so the
+   backbone keeps full fidelity while the detail class is coarsened;
+4. **chunks a band that still will not fit**, and
+5. **writes every band regardless.** Over budget is reported as needing tiles.
+   Nothing is deleted for being large. The only failure that drops data is an
+   incomplete fetch, because a partial network is a wrong network.
+
+Italy delivers as four files, all inside budget, with the full RTN intact:
+
+| Band | Segments | Size | Tolerance |
+|---|---|---|---|
+| 380 kV+ | 1,913 | 0.58 MB | 0.004 (full) |
+| 220–379 kV | 1,900 | 0.53 MB | 0.004 (full) |
+| 132–219 kV | 11,266 | 1.49 + 0.84 MB | 0.013 (coarsened, 2 parts) |
+
+The 380 and 220 kV classes load with the map; the 132–150 kV class arrives on
+zoom past 2× or through an explicit **Detailed grid — 132–219 kV (2.4 MB)**
+toggle that states its own cost. Verified in the browser: 3,813 backbone
+segments at load, 15,079 after the detail band arrives. MACSE zones are
+independent of all of it — a procurement geography is not a voltage class.
+
+## 9 · The spreadsheet dependency
+
+`exceljs` (MIT) is a **devDependency**, scoped to the data pipeline.
+`etl/lib/workbook.mjs` is the only file that imports it, and
+`tests/etl-boundary.test.js` fails the build if anything under `src/` reaches for
+either. The bundle is unchanged at 3,370 kB.
+
+It is exceljs rather than SheetJS's `xlsx` deliberately: the `xlsx` package on
+npm is a stale 0.18.x with known advisories and SheetJS now distributes from its
+own registry — a supply-chain shape not worth taking on for a data-ingest
+convenience. No licensing or deployment constraint arises; nothing ships to the
+browser.
+
+---
+
+## 10 · The ingestion pipeline
+
+Three workbook sources now normalize into one schema, and publication is atomic.
+
+| Source | Authority | Carries | Does not carry |
+|---|---|---|---|
+| **MaStR** (DE) | statutory | MW, MWh, operator, coordinates, COD, unit id | — |
+| **EIA-860M** (PJM/ERCOT/CAISO) | statutory | MW, operator, status, COD | MWh; coordinates until the annual join |
+| **EIA-860 annual** (enrichment) | statutory | coordinates, county, utility, BA | never MWh or duration |
+| **AEMO GI** (NEM/WA) | operator | MW, MWh, owner, DUID, COD | coordinates in this vintage |
+
+Every record carries provenance: authority, dataset, publisher, source record id,
+publication date and ingestion timestamp. `authority` distinguishes a statutory
+filing from an operator survey from volunteer mapping — the same fact from three
+sources is three different claims, and the record says which.
+
+**The enrichment join** keys on EIA's own plant code (`exact`). A fallback
+matches normalised name within a single state (`name-state`), is switchable off,
+and refuses to resolve a name that occurs twice in one state rather than picking
+one. Zero-coordinate rows are rejected: 0°,0° is the Gulf of Guinea and the
+signature of an empty cell read as a number.
+
+**Reconciliation** runs after schema validation and asks the harder question —
+is this dataset plausible *given the last one we accepted*. It catches the class
+of failure where every record is individually valid: a register that halves
+overnight, a 1,000× capacity jump (named as a likely unit-conversion slip), a
+status map that stopped matching, a column that vanished into null rates,
+duplicate ids, impossible dates.
+
+**Publication is atomic and defensive.** `download → parse → normalize →
+validate → reconcile → publish`. A failure at any stage leaves the last
+known-good artifact byte-identical and writes a diagnostic beside it saying why.
+Drift warnings block by default and require `--accept-drift`, because the cost of
+a false stop is a re-run and the cost of a false publish is silently wrong
+published data. The previous version is kept as `.previous.json` so a bad
+acceptance can be reversed without a re-fetch.
+
+Writes go through `etl/lib/boundary.mjs`, which confines them to
+`public/data/public/`. The first version of the publisher called `renameSync`
+directly and `tests/governance.test.js` caught it — the atomic primitives now
+live inside the boundary, so policy and mechanism are separated and the wall has
+one door.
+
+**The dashboard reads `src/projects/registry.js`** — one interface over all four
+sources. It reports `hasSource` separately from record count, so a market with no
+verified source (Romania, Italy, Poland, Japan) renders differently from one that
+has a source and nothing in it, and `coverage()` reports `energyUnknown` so a
+caption can never imply a fleet has no energy when the source simply does not
+publish one. No `exceljs` and no workbook parsing under `src/`; the bundle is
+unchanged at 3,370 kB.

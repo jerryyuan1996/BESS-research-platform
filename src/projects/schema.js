@@ -78,6 +78,36 @@ export function validateProject(project){
   if (project?.technology !== undefined && !TECHNOLOGIES.has(project.technology)){
     problems.push(`unknown technology "${project.technology}"`);
   }
+  problems.push(...validateProvenanceBlock(project?.provenance));
+  return problems;
+}
+
+/* Provenance shape, checked here rather than only in the ETL so a record cannot
+   reach the application claiming an authority it does not have. Kept as a plain
+   check rather than an import: src/ must not depend on etl/, and this file is
+   read by the browser. See etl/lib/provenance.mjs for the writer. */
+const AUTHORITIES = new Set(['statutory', 'operator', 'community']);
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+function validateProvenanceBlock(block){
+  /* Optional for now: the OSM connectors predate provenance and are migrated
+     separately. A block that is PRESENT must be complete — a half-filled one is
+     worse than none, because it looks like an answer. */
+  if (block === undefined) return [];
+  if (!block || typeof block !== 'object') return ['provenance must be an object'];
+
+  const problems = [];
+  if (!AUTHORITIES.has(block.authority)) problems.push(`provenance: unknown authority "${block.authority}"`);
+  if (!block.dataset) problems.push('provenance: dataset is required');
+  if (!block.publisher) problems.push('provenance: publisher is required');
+  if (!ISO_DATE.test(String(block.ingestedAt || ''))) problems.push('provenance: ingestedAt must be an ISO date');
+  if (block.publishedAt != null && !ISO_DATE.test(String(block.publishedAt))){
+    problems.push('provenance: publishedAt must be an ISO date or null');
+  }
+  if (block.publishedAt && block.ingestedAt && block.publishedAt > block.ingestedAt){
+    problems.push('provenance: publishedAt is after ingestedAt');
+  }
+  if (!('sourceRecordId' in block)) problems.push('provenance: sourceRecordId must be present, null where none exists');
   return problems;
 }
 

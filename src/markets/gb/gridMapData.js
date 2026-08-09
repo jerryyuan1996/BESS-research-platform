@@ -623,6 +623,12 @@ export const GB_GRID_MAP = {
   },
   points,
   routes,
+  /* Fetched at runtime from public/, not imported: 2.9 MB has no business in the
+     bundle. 132 kV because it is transmission in the two Scottish licence areas
+     even though it is distribution in England and Wales — see
+     src/governance/transmissionVoltage.js. Regenerate with
+     `node scripts/refresh-grid-networks.mjs gb`. */
+  transmissionManifest: '/data/grid/gb-transmission.manifest.json',
   sourceCatalog,
   scope: [
     'Representative national orientation only. Markers use approximate locality centroids and do not show spare capacity, queue position, curtailment probability or an investable connection.',

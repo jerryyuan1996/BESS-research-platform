@@ -1,0 +1,51 @@
+{
+ "marketId": "de",
+ "fetchedAt": "2026-08-09",
+ "licence": {
+  "id": "odbl-1.0",
+  "name": "Open Database Licence 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "url": "https://www.openstreetmap.org/copyright",
+  "shareAlike": true,
+  "note": "Accepted for non-commercial personal study. Attribution must be shown wherever the layer is drawn."
+ },
+ "operator": "50Hertz, Amprion, TenneT DE, TransnetBW",
+ "bulkKV": 380,
+ "detailKV": 220,
+ "droppedOutsideMarket": {
+  "lines": 4422,
+  "substations": 124
+ },
+ "bands": [
+  {
+   "band": "380plus",
+   "minKV": 380,
+   "maxKV": null,
+   "backbone": true,
+   "urls": [
+    "/data/grid/de-transmission-380plus.json"
+   ],
+   "lines": 6089,
+   "substations": 236,
+   "simplifyTolerance": 0.004,
+   "bytes": 1272883,
+   "largestPartBytes": 1272883,
+   "overBudget": false
+  },
+  {
+   "band": "220-379",
+   "minKV": 220,
+   "maxKV": 380,
+   "backbone": false,
+   "urls": [
+    "/data/grid/de-transmission-220-379.json"
+   ],
+   "lines": 3257,
+   "substations": 134,
+   "simplifyTolerance": 0.004,
+   "bytes": 634593,
+   "largestPartBytes": 634593,
+   "overBudget": false
+  }
+ ]
+}

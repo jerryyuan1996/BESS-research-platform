@@ -81,39 +81,52 @@ export const PIPELINE_SOURCES = {
     },
   },
 
-  /* ---- identified but unchecked. Do not build against these yet. ---------- */
-
-  ie: CANDIDATE('EirGrid / ESB Networks connection offers and the ECP process',
-    'https://www.eirgrid.ie/', [
-      'EirGrid publishes connection offer and contracted-capacity information, and Ireland has a large contracted battery fleet. Whether any published file carries per-project MWh and coordinates has NOT been confirmed.',
-      'EirGrid发布并网报价与已签约容量信息，且爱尔兰已签约储能规模较大。但尚未确认是否有公开文件载明各项目的MWh与坐标。',
-    ]),
-
-  it: CANDIDATE('Terna open data and the MACSE auction results',
-    'https://dati.terna.it/en/transmission', [
-      'MACSE awards identify storage capacity by zone and are the contracted spine of the Italian case. Whether awards are published at project level with coordinates has NOT been confirmed.',
-      'MACSE中标结果按分区标明储能容量，构成意大利投资逻辑中的合同化主线。但尚未确认中标是否按项目层级公布并含坐标。',
-    ]),
-
-  pl: CANDIDATE('URE capacity market auction results and PSE registers',
-    'https://www.ure.gov.pl/', [
-      'Polish capacity auctions award storage units by name with a delivery year, which is a contracted pipeline rather than a queue. Coordinates and MWh have NOT been confirmed.',
-      '波兰容量拍卖按名称与交付年份授予储能机组，属合同化管线而非排队清单。坐标与MWh尚未确认。',
-    ]),
-
-  jp_tokyo: JAPAN_CANDIDATE(), jp_kyushu: JAPAN_CANDIDATE(), jp_hokkaido: JAPAN_CANDIDATE(),
-
-  /* ---- nothing adequate found ------------------------------------------- */
-
-  ro: {
-    status: 'none',
-    storage: null,
+  /* Ireland is carried on OpenStreetMap, which is unusual and needs its reason
+     stated. EirGrid's own "Connected and Contracted Generators" lists were
+     checked on 2026-08-09 and are PDFs that do not identify storage separately
+     or carry coordinates — unusable. OSM, measured the same day and clipped to
+     the Irish boundary, returns 26 battery plants totalling 1,039 MW against the
+     roughly 1 GW ESB Networks reports as available on the network. That is
+     effectively the whole fleet, with an operator on 25 of 26 and a name on 24.
+     Coverage was MEASURED, not assumed — which is the only reason OSM is
+     acceptable here and not in Italy, Poland or Japan. */
+  ie: OSM_STORAGE({
+    plants: 26, mappedMW: 1039, namedCount: 24, withEnergy: 14,
+    reference: 'ESB Networks reports over 1 GW of storage available on the Irish network',
     note: [
-      'No public project-level storage register was found for Romania. OpenStreetMap returned a single mapped battery for the whole country on 2026-08-08, which is a mapping artefact and not a market fact — Romania is the market this platform ranks first on merchant returns. The map renders no storage layer here rather than one that implies an empty market.',
-      '未找到罗马尼亚公开的项目级储能登记册。2026年8月8日OpenStreetMap全国仅返回一处已标注储能设施，此为测绘覆盖不足所致而非市场事实 — 罗马尼亚恰是本平台市场化回报排名第一的市场。因此该市场不渲染储能图层，以免呈现"市场空白"的误导。',
+      'OpenStreetMap, clipped to the Irish boundary. 26 plants totalling 1,039 MW against the roughly 1 GW ESB Networks reports as available — effectively complete, with an operator on 25 of 26 and an energy rating on 14. EirGrid publishes its connected and contracted lists as PDFs that neither flag storage nor carry coordinates, so OSM is the better source here despite being a volunteer one.',
+      '取自OpenStreetMap并按爱尔兰边界裁剪。26座电站合计1,039MW，而ESB Networks报告电网可用储能约1GW — 覆盖基本完整，其中25座有运营方、14座有能量容量。EirGrid的已并网及已签约清单以PDF发布，既未单列储能亦无坐标，因此此处OSM虽为志愿者数据仍属更优来源。',
     ],
-  },
+  }),
+
+  /* ---- measured and rejected -------------------------------------------- */
+
+  it: NO_SOURCE([
+    'Terna publishes MACSE awards by zone — Centre-South, South and Calabria, Sicily, Sardinia — not by project, so the contracted pipeline carries no coordinates. OpenStreetMap, clipped to Italy on 2026-08-09, returns 11 plants totalling 543 MW with only 8 named, against a fleet that MACSE alone is adding 1,491 MW to. Neither source can carry the map.',
+    'Terna按分区公布MACSE中标结果 — 中南部、南部与卡拉布里亚、西西里、撒丁 — 而非按项目，因此合同化管线不含坐标。2026年8月9日按意大利边界裁剪的OpenStreetMap仅返回11座电站合计543MW、其中8座有名称，而仅MACSE一项就将新增1,491MW。两者均不足以支撑地图。',
+  ]),
+
+  pl: NO_SOURCE([
+    'URE publishes capacity-auction results as unit lists without coordinates. OpenStreetMap, clipped to Poland on 2026-08-09, returns 4 plants — and the unclipped bounding box returned 13, of which nine were German assets in Brandenburg. Four mapped projects cannot represent a market carrying a capacity-market storage pipeline.',
+    'URE以机组清单形式公布容量拍卖结果，不含坐标。2026年8月9日按波兰边界裁剪的OpenStreetMap仅返回4座电站 — 未裁剪的外接矩形返回13座，其中9座实为勃兰登堡的德国资产。4个已标注项目无法代表一个拥有容量市场储能管线的市场。',
+  ]),
+
+  jp_tokyo: NO_SOURCE(JAPAN_REASON()),
+  jp_kyushu: NO_SOURCE(JAPAN_REASON()),
+  jp_hokkaido: NO_SOURCE(JAPAN_REASON()),
+
+  ro: NO_SOURCE([
+    'No public project-level storage register was found for Romania. OpenStreetMap returned a single mapped battery for the whole country on 2026-08-08, which is a mapping artefact and not a market fact — Romania is the market this platform ranks first on merchant returns. The map renders no storage layer here rather than one that implies an empty market.',
+    '未找到罗马尼亚公开的项目级储能登记册。2026年8月8日OpenStreetMap全国仅返回一处已标注储能设施，此为测绘覆盖不足所致而非市场事实 — 罗马尼亚恰是本平台市场化回报排名第一的市场。因此该市场不渲染储能图层，以免呈现"市场空白"的误导。',
+  ]),
 };
+
+function JAPAN_REASON(){
+  return [
+    'OpenStreetMap, clipped to the three Japanese areas on 2026-08-09, returns one battery plant of 50 MW in Kyushu and none at all in Tokyo or Hokkaido, against a market whose long-term decarbonisation auctions have awarded storage in gigawatts. OCCTO publishes LTDA awards but not project coordinates. Nothing here can be plotted honestly.',
+    '2026年8月9日按日本三区域边界裁剪的OpenStreetMap，仅在九州返回一座50MW储能电站，东京与北海道均为零；而该市场的长期脱碳拍卖已授予吉瓦级储能。OCCTO公布LTDA中标结果但不含项目坐标。此处无任何可如实绘制的数据。',
+  ];
+}
 
 /* EIA-860M is one dataset covering all three US markets, so it is written once.
    Prime mover code "BA" is battery storage; the monthly file carries operating
@@ -164,16 +177,31 @@ function AEMO_GI(market){
   };
 }
 
-function CANDIDATE(title, url, note){
-  return { status: 'candidate', storage: { title, url, note, fields: [] } };
+/* OpenStreetMap as a storage source, admissible ONLY where its coverage has been
+   measured against a published fleet total and found effectively complete.
+   `coverage` records that measurement so the claim can be re-checked rather than
+   trusted — OSM improves and degrades market by market, and a source that was
+   complete in August 2026 may not be next year. */
+function OSM_STORAGE({ plants, mappedMW, namedCount, withEnergy, reference, note }){
+  return {
+    status: 'verified',
+    storage: {
+      id: 'osm-storage',
+      owner: 'OpenStreetMap contributors',
+      title: 'OpenStreetMap power=plant + plant:source=battery, via Overpass',
+      url: 'https://www.openstreetmap.org/copyright',
+      licence: 'ODbL 1.0 — attribution and share-alike',
+      cadence: 'continuous, volunteer-maintained',
+      fields: ['name', 'powerMW', 'energyMWh', 'operator', 'lat', 'lon', 'status'],
+      missing: ['cod'],
+      coverage: { measuredOn: '2026-08-09', plants, mappedMW, namedCount, withEnergy, reference },
+      note,
+    },
+  };
 }
 
-function JAPAN_CANDIDATE(){
-  return CANDIDATE('OCCTO long-term decarbonisation auction (LTDA) award lists',
-    'https://www.occto.or.jp/en/', [
-      'LTDA rounds award storage capacity and the awards are the contracted basis of the Japanese case on this platform. Whether award lists carry project coordinates has NOT been confirmed.',
-      'LTDA各轮次授予储能容量，该中标结果构成本平台日本投资逻辑的合同化基础。尚未确认中标名单是否包含项目坐标。',
-    ]);
+function NO_SOURCE(note){
+  return { status: 'none', storage: null, note };
 }
 
 /** The pipeline source declaration for a market, or null where none exists. */

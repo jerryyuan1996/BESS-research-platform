@@ -257,6 +257,12 @@ function frontierPoints(marketList, X){
         clippedLow:r.irrExit < 0,
         // Only the base route is labelled; the rest are identified on hover.
         label: isBase ? L(m.manifest.shortName) + (r.irrExit < 0 ? ' <0%' : '') : null,
+        /* One line, for when this point shares a pixel with others. Thirteen
+           routes land on (0% secured, 0% exit IRR) — every merchant route with a
+           negative exit — and thirteen full tooltip blocks do not fit on screen. */
+        short: m.manifest.flag + ' <b>' + L(m.manifest.shortName) + '</b> · ' + L(s.n)
+          + (isBase ? L([' (base)', '（基准）']) : '')
+          + ' · ' + fmtIRRor(r.irrExit, r.irrExitAbsent, L),
         tip: '<b>' + m.manifest.flag + ' ' + L(m.manifest.name) + '</b>' +
           '<div class="tr"><span>' + L(['Route', '路径']) + '</span><b>' + L(s.n) +
             (isBase ? L([' (base)', '（基准）']) : '') + '</b></div>' +

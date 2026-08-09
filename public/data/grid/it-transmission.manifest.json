@@ -1,0 +1,67 @@
+{
+ "marketId": "it",
+ "fetchedAt": "2026-08-09",
+ "licence": {
+  "id": "odbl-1.0",
+  "name": "Open Database Licence 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "url": "https://www.openstreetmap.org/copyright",
+  "shareAlike": true,
+  "note": "Accepted for non-commercial personal study. Attribution must be shown wherever the layer is drawn."
+ },
+ "operator": "Terna",
+ "bulkKV": 380,
+ "detailKV": 132,
+ "droppedOutsideMarket": {
+  "lines": 3361,
+  "substations": 318
+ },
+ "bands": [
+  {
+   "band": "380plus",
+   "minKV": 380,
+   "maxKV": null,
+   "backbone": true,
+   "urls": [
+    "/data/grid/it-transmission-380plus.json"
+   ],
+   "lines": 1913,
+   "substations": 173,
+   "simplifyTolerance": 0.004,
+   "bytes": 604357,
+   "largestPartBytes": 604357,
+   "overBudget": false
+  },
+  {
+   "band": "220-379",
+   "minKV": 220,
+   "maxKV": 380,
+   "backbone": true,
+   "urls": [
+    "/data/grid/it-transmission-220-379.json"
+   ],
+   "lines": 1900,
+   "substations": 241,
+   "simplifyTolerance": 0.004,
+   "bytes": 559045,
+   "largestPartBytes": 559045,
+   "overBudget": false
+  },
+  {
+   "band": "132-219",
+   "minKV": 132,
+   "maxKV": 220,
+   "backbone": false,
+   "urls": [
+    "/data/grid/it-transmission-132-219.part1.json",
+    "/data/grid/it-transmission-132-219.part2.json"
+   ],
+   "lines": 11266,
+   "substations": 3550,
+   "simplifyTolerance": 0.013,
+   "bytes": 2439693,
+   "largestPartBytes": 1560751,
+   "overBudget": false
+  }
+ ]
+}

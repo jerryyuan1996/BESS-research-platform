@@ -224,6 +224,9 @@ export const DE_GRID_MAP = {
   },
   points,
   routes,
+  /* Fetched at runtime from public/, never imported. 380/220 kV only: the
+     Ubertragungsnetz stops there and 110 kV belongs to the DSOs. */
+  transmissionManifest: '/data/grid/de-transmission.manifest.json',
   sourceCatalog,
   scope: [
     'Representative national orientation only. Markers use approximate locality centroids and do not show spare capacity, queue position, curtailment probability or an investable connection.',

@@ -21,6 +21,7 @@
    --------------------------------------------------------------------------- */
 import { gridMapById } from '../gridMapRegistry.js';
 import { congestionFor } from '../congestionRegistry.js';
+import { MACSE_AUCTION, MACSE_ZONES, MACSE_CAPTION } from './storageZones.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
@@ -399,7 +400,15 @@ SEC_B.pipeline = function (){
   cap: ['Every other market on this platform has one contracted milestone in its development ladder. Italy has two with different counterparties, different tenors and different probabilities.',
         '本平台其他所有市场的开发阶梯中只有一个合同化里程碑。意大利有两个，且对手方、期限与概率各不相同。'],
   blocks: [
-    { t:'card', mt:false, title:['Development stage probabilities','开发阶段概率'], badges:['illus'], blocks:[
+    /* Italy's contracted pipeline is the MACSE award, and Terna publishes it as
+       a national volume with a clearing price per zone. So it is presented by
+       zone, and the capacity column says "not published by zone" rather than
+       being left blank — a blank cell reads as zero. */
+    { t:'card', mt:false, title:['MACSE auction 1 — awarded storage by zone','MACSE首轮拍卖 — 分区中标储能'],
+      badges:['official'], blocks:[
+        { t:'zone-awards', auction:MACSE_AUCTION, zones:MACSE_ZONES, caption:MACSE_CAPTION },
+      ] },
+    { t:'card', title:['Development stage probabilities','开发阶段概率'], badges:['illus'], blocks:[
       { t:'stageProb' },
       { t:'cap', text:['Illustrative weighting used to convert an announced pipeline into a probability-weighted one. Not an official Italian dataset.',
                        '用于将已公布管线转换为概率加权管线的示意权重。并非意大利官方数据集。'] },

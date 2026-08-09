@@ -20,7 +20,7 @@
    matches how the filesystem actually behaves; getting that wrong would let a
    check pass locally and fail in CI, or worse, the reverse.
    --------------------------------------------------------------------------- */
-import { writeFile, mkdir, readFile, readdir } from 'node:fs/promises';
+import { writeFile, mkdir, readFile, readdir, rename, copyFile, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -129,6 +129,66 @@ export async function readSnapshot(repoRelativePath){
   if (!existsSync(abs)) return null;
   try {
     return JSON.parse(await readFile(abs, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Atomic publication primitives.
+
+   These live here, and not in etl/lib/publish.mjs, for the reason the header
+   gives: the boundary is only a boundary if it is the sole exit. A publisher
+   that reached for `renameSync` itself would bypass every containment check
+   above, so it asks for the write instead and this module performs it.
+
+   The split is policy versus mechanism. publish.mjs decides WHETHER a dataset
+   may replace the last known-good artifact; this decides HOW bytes reach disk
+   without a reader ever seeing a half-written file.
+   --------------------------------------------------------------------------- */
+
+/**
+ * Write a file atomically: a temporary file in the SAME directory, then rename.
+ *
+ * Same directory matters — `rename` is only atomic within a filesystem, and a
+ * temp file in the OS temp directory can be on a different one, which silently
+ * degrades the guarantee to a copy.
+ */
+export async function writeAtomic(repoRelativePath, body){
+  const abs = assertWritable(repoRelativePath);
+  await mkdir(path.dirname(abs), { recursive: true });
+  const temporary = path.join(path.dirname(abs), `.${path.basename(abs)}.tmp`);
+  await writeFile(temporary, body, 'utf8');
+  await rename(temporary, abs);
+  return abs;
+}
+
+/** Copy a published artifact to another path inside the allowed root. */
+export async function copyWithin(fromRepoRelative, toRepoRelative){
+  const from = assertWritable(fromRepoRelative);
+  const to = assertWritable(toRepoRelative);
+  if (!existsSync(from)) return false;
+  await copyFile(from, to);
+  return true;
+}
+
+/** Delete a file inside the allowed root. Absent is success, not an error. */
+export async function removeWithin(repoRelativePath){
+  const abs = assertWritable(repoRelativePath);
+  if (!existsSync(abs)) return false;
+  await rm(abs);
+  return true;
+}
+
+/** Read text from inside the readable roots, or null when absent/unreadable. */
+export async function readTextIfPresent(repoRelativePath){
+  const abs = path.resolve(REPO_ROOT, repoRelativePath);
+  if (!READABLE_ROOTS.some(root => isInside(normalizeForCompare(root), normalizeForCompare(abs)))){
+    throw new BoundaryViolation(`Reads are confined to the readable roots: ${abs}`);
+  }
+  if (!existsSync(abs)) return null;
+  try {
+    return await readFile(abs, 'utf8');
   } catch {
     return null;
   }

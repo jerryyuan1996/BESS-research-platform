@@ -18,6 +18,7 @@
    --------------------------------------------------------------------------- */
 import boundary from './it-boundary.json' with { type:'json' };
 import zoneSet from './it-zones.json' with { type:'json' };
+import { macseZoneMarkers, MACSE_CAPTION } from './storageZones.js';
 
 const URL = {
   macse: 'https://www.terna.it/en/media/press-releases/detail/completed-first-macse-auction',
@@ -228,6 +229,18 @@ export const IT_GRID_MAP = {
   },
   points,
   routes,
+  /* Terna's RTN, in the voltage classes Terna itself uses: 380 kV and 220 kV
+     load with the map, and the 132–150 kV class — 11,266 segments, two thirds of
+     the payload — arrives on zoom or on request. Split for delivery only; the
+     132 kV floor is unchanged and every segment is ingested. Regenerate with
+     `npm run refresh:grid-networks it`. */
+  transmissionManifest: '/data/grid/it-transmission.manifest.json',
+  /* Italy's storage layer is zonal, not project-level, because that is how Terna
+     publishes MACSE. Independent of the transmission bands above — a MACSE zone
+     is a procurement geography, not a voltage class. See
+     src/markets/it/storageZones.js for why no per-zone capacity is shown. */
+  zoneClusters: macseZoneMarkers(),
+  storageCaption: MACSE_CAPTION,
   sourceCatalog,
   scope: [
     'Representative national orientation only. Markers use approximate locality centroids and do not show spare capacity, queue position, curtailment probability or an investable connection.',

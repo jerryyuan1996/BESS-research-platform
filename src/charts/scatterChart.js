@@ -62,10 +62,36 @@ function scatterChart(parent, cfg){
      alternative route sitting at nearly the same coordinates. */
   const ordered = [...cfg.pts].sort((a, b) => (a.hollow ? 0 : 1) - (b.hollow ? 0 : 1));
 
-  for (const p of ordered){
+  /* Points that land on the same pixel are drawn ONCE, with a count.
+
+     The clamp below is what makes this necessary. Every route with a negative
+     exit IRR is pinned to the 0% boundary, and every merchant route has a
+     secured share of exactly zero — so thirteen of the thirty-four routes on the
+     home page resolve to the same coordinate. Drawing them individually stacks
+     thirteen circles in one place: the caption promises that no market
+     disappears, and twelve of them had. A counted marker says how many are
+     there and hands the reader all of them on hover. */
+  const positioned = ordered.map(p => ({
+    p,
     // clamp guards against a point escaping the plot if a domain is ever mis-sized
-    const cx = Math.max(padL, Math.min(W - padR, X(p.x)));
-    const cy = Math.max(padT, Math.min(padT + plotH, Y(p.y)));
+    cx: Math.max(padL, Math.min(W - padR, X(p.x))),
+    cy: Math.max(padT, Math.min(padT + plotH, Y(p.y))),
+  }));
+
+  const stacks = new Map();
+  for (const item of positioned){
+    const key = `${Math.round(item.cx)},${Math.round(item.cy)}`;
+    const stack = stacks.get(key);
+    if (stack) stack.push(item);
+    else stacks.set(key, [item]);
+  }
+
+  for (const stack of stacks.values()){
+    if (stack.length > 1){
+      drawStack(stack);
+      continue;
+    }
+    const { p, cx, cy } = stack[0];
     /* Filled = the market's base route, the one every other section of the page
        reports. Hollow = an alternative route available in that market. Same
        colour, because they are the same market seen through a different
@@ -86,6 +112,57 @@ function scatterChart(parent, cfg){
       svg.append(axisText(cx + (right ? -11 : 11), cy + 4, p.label, right ? 'end' : 'start', 11));
     }
   }
+
+  /** One marker for every point sharing a pixel, carrying the count. */
+  function drawStack(stack){
+    const { cx, cy } = stack[0];
+    const points = stack.map(item => item.p);
+    /* Dashed only when EVERY member was clipped. A stack that mixes a clipped
+       route with a real one is not a "below 0%" marker and must not be drawn as
+       though it were. */
+    const allClipped = points.every(p => p.clippedLow);
+    const r = 9;
+
+    const node = S('circle', {
+      cx, cy, r,
+      fill: 'var(--surface)',
+      stroke: 'var(--ink2)',
+      'stroke-width': 2.2,
+      ...(allClipped ? { 'stroke-dasharray': '3 2' } : {}),
+    });
+
+    /* The tooltip carries all of them, so nothing is reachable only by guessing
+       which circle is on top. It uses each point's ONE-LINE form rather than its
+       full block: thirteen six-row blocks would be several screens tall, and a
+       tooltip is pointer-events:none so a reader cannot scroll it. A point that
+       declares no short form falls back to its full one — correct for the small
+       stacks, where there is room. */
+    const heading = '<b>' + points.length + L([' routes at this point', ' 条路径重合于此']) + '</b>'
+      + (allClipped ? '<div class="tr"><span>' + L(['All below 0% exit IRR', '退出IRR均低于0%'])
+        + '</span></div>' : '');
+    const compact = points.every(p => p.short);
+    const tip = heading + (compact
+      ? '<div class="tip-stack">' + points.map(p => '<div>' + p.short + '</div>').join('') + '</div>'
+      : points.map(p => p.tip).join('<hr class="tip-rule">'));
+    node.addEventListener('mousemove', ev => tipShow(tip, ev));
+    node.addEventListener('mouseleave', tipHide);
+    svg.append(node);
+
+    const count = axisText(cx, cy + 3.5, String(points.length), 'middle', 10);
+    count.setAttribute('class', 'scatter-stack-count');
+    count.setAttribute('pointer-events', 'none');
+    svg.append(count);
+
+    /* Labels of the stacked markets, listed beside the marker rather than each
+       drawn at the same coordinate — which is what made them illegible. */
+    const labels = points.map(p => p.label).filter(Boolean);
+    if (labels.length){
+      const right = cx > padL + plotW * 0.82;
+      svg.append(axisText(cx + (right ? -14 : 14), cy + 4,
+        labels.join(', '), right ? 'end' : 'start', 10.5));
+    }
+  }
+
   const wrap = h('div', { class: 'chart' }); wrap.append(svg); parent.append(wrap);
 }
 

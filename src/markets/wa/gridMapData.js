@@ -280,6 +280,10 @@ export const WA_GRID_MAP = {
   },
   points,
   routes,
+  /* Fetched at runtime from public/, never imported — see
+     scripts/refresh-grid-networks.mjs and
+     src/governance/transmissionVoltage.js for the voltage floor. */
+  transmissionManifest: '/data/grid/wa-transmission.manifest.json',
   sourceCatalog,
   scope:[
     'SWIS orientation only. Boundary geometry is assembled from published WA and ABS GeoJSON. Markers use approximate locality centroids; routes are schematic unless stated. Capacities are published nameplate, project or scenario values—not live output, spare headroom, queue position, curtailment probability or an investable connection right.',
