@@ -285,7 +285,7 @@ behaviour change, and with the current five markets the default is still Poland.
 | WA's `state.lang` reads | WA's local state exposes `lang`/`theme` as getters onto app state, so sliced WA code is unmodified |
 | Sliced code drifting from source | WA sections were extracted by line range programmatically, not retyped |
 | `localStorage` key collisions | Keys preserved exactly (`hub_lang`, `hub_theme`, `wa_lang`, `wa_cod`, `wa_snaps`) |
-| Direct navigation to `/markets/wa` 404s on deploy | `public/_redirects` SPA fallback for Cloudflare Pages |
+| Direct navigation to `/markets/wa` 404s on deploy | SPA fallback: `public/_redirects` then, the `vercel.json` rewrite now |
 
 ---
 

@@ -147,7 +147,7 @@ Live slugs: `western-australia`, `nem`, `great-britain`, `germany`, `italy`, `ir
 `poland`, `japan-tokyo`, `japan-kyushu`, `japan-hokkaido`, `pjm`, `ercot`, `caiso`.
 
 History-API routing. Direct visits and refreshes work in dev via Vite's SPA fallback and in production
-via [`public/_redirects`](public/_redirects).
+via the `rewrites` rule in [`vercel.json`](vercel.json).
 
 **The registry is the only place the app learns a market exists.** Every market card, nav item, route,
 league-table column, chart series, engine row and market count is derived from it. There is no
@@ -278,29 +278,41 @@ answers. Details: [`src/markets/_shared/README.md`](src/markets/_shared/README.m
 
 ## Deployment
 
-`dist/` is a static bundle hosted on Cloudflare Pages. **GitHub Actions builds and
-publishes it; Cloudflare does not build anything and is not connected to Git.**
+A static site hosted on Vercel. **GitHub Actions builds and publishes it; Vercel does not
+build anything and is not connected to Git.**
 
 | Setting | Value |
 |---|---|
 | Built by | `.github/workflows/ci.yml`, job `deploy` |
-| Build command | `npm run build` (in Actions, on Node 20) |
-| Uploaded directory | `dist`, as the artefact `verified-dist` |
-| Pages project | `bess-research-platform` |
-| Required secrets | `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` |
+| Build command | `npx vercel build --prod` (in Actions, on Node 20) |
+| Published directory | `.vercel/output` — the Build Output API directory |
+| Deploy command | `npx vercel deploy --prebuilt --prod` |
+| Vercel project | `bess-research-platform` |
+| Required secrets | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` |
 
-The ordering is the point. The suite runs, the bundle is built, the
-confidentiality scan reads that build, the snapshot verifier runs — and only
-then are those same bytes uploaded and deployed. Nothing is rebuilt for the
-deploy, so what shipped is what was scanned.
+The ordering is the point. The suite runs and the snapshots are verified; then
+the deploy job builds `.vercel/output`, scans **that directory** for
+confidential content, and uploads it with `--prebuilt`. No rebuild happens
+between the scan and the upload, so what shipped is what was scanned.
 
-A Cloudflare Git connection would undo this: Pages builds on push without
+`--prebuilt` is load-bearing. Without it Vercel rebuilds from source on its own
+infrastructure, producing bytes no scan in this repository has ever seen.
+
+Note that the scan target is `.vercel/output`, not `dist/`. `vercel build` runs
+the Vite build and then copies and adds to its result, so the two are not the
+same bytes; scanning one and shipping the other would put a transformation
+between the check and the thing checked. Pull requests still scan `dist/` —
+`vercel build` needs a token a fork does not have — but nothing is published
+from a pull request.
+
+A Vercel Git integration would undo all of this: it builds on push without
 waiting for Actions, and the ETL bot pushes to `main` every six hours. See
 [`docs/publishing.md`](docs/publishing.md) for the setup and for how to
 disconnect it if it was ever enabled.
 
-`public/_redirects` is copied into `dist/` and provides the SPA fallback (`/* /index.html 200`) that
-History-API routing needs, so `/markets/wa` resolves on a direct visit or a refresh.
+`vercel.json` carries the SPA rewrite (`/(.*)` → `/index.html`) that History-API routing needs, so
+`/markets/wa` resolves on a direct visit or a refresh. Vercel checks the filesystem before applying
+rewrites, so real assets and data files are still served as themselves.
 
 No Workers, no functions, no build-time environment variables, no build secrets.
 
@@ -314,9 +326,11 @@ The short version:
    the working tree and from all history on 10 August 2026, so this is no longer a containment
    measure — but the purge only rewrote *this* repository. Any clone or fork taken before that date
    still has the original objects. The published site is public either way.
-2. Cloudflare Pages → **Create a project** → **Upload assets**, named
-   `bess-research-platform`. Do *not* connect it to Git.
-3. Add the repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, so CI can publish.
+2. Create the Vercel project (or `vercel link` an existing one), named `bess-research-platform`.
+   Do *not* connect it to Git.
+3. Add the repository secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`, so CI can
+   publish. The two IDs are in `.vercel/repo.json` after linking; that file is git-ignored and stays
+   that way.
 4. GitHub → Settings → Actions → General → **Read and write permissions**, and allow Actions to
    create pull requests. The data refresh commits, and drift proposals open PRs.
 5. *(Optional, for the four ENTSO-E markets)* add a repository secret `ENTSOE_TOKEN`. Register at
@@ -425,7 +439,7 @@ change output.
 
 | | |
 |---|---|
-| [`docs/publishing.md`](docs/publishing.md) | first-time deployment walkthrough — GitHub, Cloudflare Pages, secrets, troubleshooting |
+| [`docs/publishing.md`](docs/publishing.md) | first-time deployment walkthrough — GitHub, Vercel, secrets, troubleshooting |
 | [`docs/external-view.md`](docs/external-view.md) | what the market says, where we differ, and why — read before changing an assumption |
 | [`docs/governance.md`](docs/governance.md) | who may change what, and how it is enforced — read before changing the pipeline |
 | [`docs/live-data.md`](docs/live-data.md) | the pipeline: sources, connectors, scheduling, operations |

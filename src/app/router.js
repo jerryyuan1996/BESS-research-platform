@@ -16,8 +16,15 @@
    built. Adding one is a single entry in the table below.
 
    Deployment: History-API routing needs a server-side rewrite so a direct visit
-   to /markets/wa returns index.html. public/_redirects does this on Cloudflare
-   Pages; Vite's dev server does it natively.
+   to /markets/wa returns index.html. The `rewrites` rule in vercel.json does
+   this in production; Vite's dev server does it natively.
+
+   That rule is a catch-all, and it is safe only because Vercel checks the
+   filesystem BEFORE applying rewrites — /assets/index-abc.js and
+   /data/public/fx-ecb.json are real files and are served as themselves. If a
+   future change moves the rewrite ahead of the filesystem, every asset on the
+   site starts returning the HTML shell with a 200, which looks like a blank
+   page rather than an error.
    --------------------------------------------------------------------------- */
 
 const listeners = new Set();

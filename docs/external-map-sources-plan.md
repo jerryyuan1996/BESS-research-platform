@@ -224,7 +224,7 @@ Each phase is independently reviewable and independently revertible.
 **Phase 0 — licence gate.** ✅ *cleared 2026-08-09*
 The platform is non-commercial personal study, so **ODbL share-alike is accepted**
 and **CC BY-NC-SA trackers are usable**. Both obligations still attach to the
-published Cloudflare Pages site: ODbL attribution must be visible wherever the
+published site: ODbL attribution must be visible wherever the
 layer is drawn, and the page must not be commercialised. `LICENCE` in
 `etl/sources/osm-grid.mjs` travels with the data so the renderer cannot lose it.
 

@@ -2,7 +2,8 @@ import { defineConfig } from 'vite';
 import localData from './vite-plugin-local-data.js';
 
 // Static, public, no backend. History-API routing is handled in dev by Vite's
-// SPA fallback (appType 'spa', the default) and in production by public/_redirects.
+// SPA fallback (appType 'spa', the default) and in production by the `rewrites`
+// rule in vercel.json.
 export default defineConfig({
   base: '/',
   // Confidential payloads are available to the dev server and are structurally

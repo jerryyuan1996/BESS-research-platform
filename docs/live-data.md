@@ -21,7 +21,7 @@ operational half.
         │    ├─ derive metrics                   src/derive/*.js
         │    └─ detect drift                     etl/drift/*.mjs
         │
-        ├─ commit public/data/ → main → Cloudflare Pages rebuilds
+        ├─ commit public/data/ → main → CI re-gates and redeploys
         │
         └─ if material drift:  etl/propose.mjs on a branch → pull request
 ```

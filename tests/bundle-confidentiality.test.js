@@ -1,8 +1,8 @@
 /* ---------------------------------------------------------------------------
    BUNDLE CONFIDENTIALITY.
 
-   Scans a built dist/ for markers that must never be published, and fails if it
-   finds one.
+   Scans a built artefact for markers that must never be published, and fails if
+   it finds one. Which artefact is SCAN_DIR's business — see below.
 
    This test exists because every other safeguard in this repository turned out
    to be insufficient on its own, and the failures were only visible here:
@@ -22,8 +22,8 @@
    the source: the bundle is what gets published, and it is the only thing whose
    contents are the whole truth.
 
-   Skips with a clear message when dist/ is absent — `npm test` must not require
-   a build.
+   Skips with a clear message when the output directory is absent — `npm test`
+   must not require a build.
 
    THAT SKIP IS ONLY SAFE BECAUSE SOMETHING ELSE INSISTS ON THE BUILD. It did not
    used to be. CI ran `npm test` BEFORE `npm run build` and never re-ran it, so
@@ -34,9 +34,26 @@
    guard appear to work while it was scanning a months-old artefact.
 
    So enforcement is now explicit rather than assumed. `.github/workflows/ci.yml`
-   runs this file again AFTER the build with REQUIRE_DIST=1, and under that flag
-   an absent dist/ is a failure instead of a skip. A vacuous pass is no longer
-   reachable: either the bundle was scanned, or the run went red.
+   runs this file again after the build with REQUIRE_OUTPUT=1, and under that
+   flag an absent directory is a failure instead of a skip. A vacuous pass is no
+   longer reachable: either the artefact was scanned, or the run went red.
+
+   WHICH DIRECTORY IS SCANNED IS A PARAMETER, and that matters more than it looks.
+   The publishable artefact is no longer `dist/`. Deployment is Vercel prebuilt,
+   so what is uploaded is `.vercel/output` — produced by `vercel build`, which
+   runs the Vite build and then copies, rewrites and adds to its result. Scanning
+   `dist/` and shipping `.vercel/output` would put a transformation between the
+   check and the thing checked, which is the same defect as scanning before
+   building, just harder to see.
+
+   So SCAN_DIR selects the target:
+
+     unset        dist/            — a developer's local `npm run build`
+     dist         same, explicitly — the pull-request gate, where no Vercel
+                                     token exists and `vercel build` cannot run
+     .vercel/output                — the deploy job, on the exact bytes
+                                     `vercel deploy --prebuilt` is about to
+                                     upload. This is the authoritative scan.
    --------------------------------------------------------------------------- */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -46,28 +63,34 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const DIST = path.join(REPO, 'dist');
 
-/* Set by the post-build CI step. Without it an absent dist/ is a legitimate skip
-   (a developer running `npm test` has not necessarily built); with it, an absent
-   dist/ means the step that was supposed to scan the artefact found nothing to
-   scan, which is the exact failure this file exists to make impossible. */
-const REQUIRE_DIST = process.env.REQUIRE_DIST === '1';
+/* Relative to the repository root, so a caller cannot be tricked into scanning
+   some unrelated directory that happens to be clean. */
+const SCAN_REL = process.env.SCAN_DIR || 'dist';
+const DIST = path.resolve(REPO, SCAN_REL);
+
+/* Set by the post-build CI steps. Without it an absent output directory is a
+   legitimate skip (a developer running `npm test` has not necessarily built);
+   with it, an absent directory means the step that was supposed to scan the
+   artefact found nothing to scan, which is the exact failure this file exists to
+   make impossible. */
+const REQUIRE_OUTPUT = process.env.REQUIRE_OUTPUT === '1';
 
 /**
- * True when dist/ is missing and the test should bail out early.
+ * True when the output directory is missing and the test should bail out early.
  *
- * Under REQUIRE_DIST this never returns — it throws instead, so a missing build
- * cannot be mistaken for a clean one.
+ * Under REQUIRE_OUTPUT this never returns — it throws instead, so a missing
+ * build cannot be mistaken for a clean one.
  */
 function skipWithoutDist(t, message){
   if (existsSync(DIST)) return false;
-  assert.ok(!REQUIRE_DIST,
-    'REQUIRE_DIST=1 but dist/ is absent, so nothing was scanned.\n' +
+  assert.ok(!REQUIRE_OUTPUT,
+    `REQUIRE_OUTPUT=1 but ${SCAN_REL}/ is absent, so nothing was scanned.\n` +
     'This step runs after the build precisely so the artefact exists. Either the\n' +
-    'build did not run, it wrote somewhere other than dist/, or the step order in\n' +
-    '.github/workflows/ci.yml regressed. Do not relax this assertion: a skip here\n' +
-    'is what let the confidentiality guard sit inert through every CI run before.');
+    `build did not run, it wrote somewhere other than ${SCAN_REL}/, or the step\n` +
+    'order in .github/workflows/ci.yml regressed. Do not relax this assertion: a\n' +
+    'skip here is what let the confidentiality guard sit inert through every CI\n' +
+    'run before.');
   t.skip(message);
   return true;
 }
@@ -121,13 +144,13 @@ async function walk(dir){
 }
 
 test('no confidential marker appears in the built bundle', async (t) => {
-  if (skipWithoutDist(t, 'dist/ not present — run "npm run build" first')) return;
+  if (skipWithoutDist(t, `${SCAN_REL}/ not present — run "npm run build" first`)) return;
 
   /* Source maps are included. vite.config.js sets sourcemap:true, which
      publishes readable source, so they are scanned exactly like the code — a
      marker reachable through a .map is as published as one in the bundle. */
   const files = (await walk(DIST)).filter(f => /\.(js|css|html|map|json)$/.test(f));
-  assert.ok(files.length > 0, 'dist/ contains no scannable files');
+  assert.ok(files.length > 0, `${SCAN_REL}/ contains no scannable files`);
 
   const hits = [];
   for (const file of files){
@@ -146,8 +169,8 @@ test('no confidential marker appears in the built bundle', async (t) => {
     'See docs/data-policy.md.');
 });
 
-test('the confidential local-data directory is never copied into dist', async (t) => {
-  if (skipWithoutDist(t, 'dist/ not present')) return;
+test('the confidential local-data directory is never copied into the artefact', async (t) => {
+  if (skipWithoutDist(t, `${SCAN_REL}/ not present`)) return;
   const files = await walk(DIST);
   const leaked = files.filter(f => /local-data/.test(f)).map(f => path.relative(REPO, f));
   assert.deepEqual(leaked, [], 'local-data/ must never be copied into the build output');

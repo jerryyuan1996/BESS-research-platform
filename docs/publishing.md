@@ -1,8 +1,7 @@
 # Publishing this site — a first-time walkthrough
 
-GitHub stores the code and runs the data refresh. Cloudflare Pages builds the site
-and serves it. Written for someone who has not done this before; every click is
-named.
+GitHub stores the code, runs the data refresh, and publishes the site. Vercel
+serves it. Written for someone who has not done this before; every click is named.
 
 Budget about 30 minutes. Nothing here costs money.
 
@@ -14,68 +13,67 @@ Budget about 30 minutes. Nothing here costs money.
    your laptop
         │  git push
         ▼
-   GitHub repository  ──────────────►  Cloudflare Pages
-        │                              builds `npm run build`
-        │                              serves dist/ at a public URL
+   GitHub repository
+        │
+        ├── GitHub Actions, on every push to main
+        │     npm test  ·  build  ·  scan  ·  etl:verify
+        │           │
+        │           └──► vercel build → scan .vercel/output → deploy --prebuilt
+        │                                                          │
+        │                                                          ▼
+        │                                                       Vercel
+        │                                                    serves the URL
         │
         └── GitHub Actions, every 6 hours
               fetches public market data
               commits it back to the repo
                     │
-                    └──► the push triggers a rebuild, so the site updates itself
+                    └──► that push runs the gates again, so the site updates itself
 ```
 
-Two things worth understanding before you start, because they explain most of the
-steps:
+Three things worth understanding before you start, because they explain most of
+the steps:
 
-**The repository and the website are separate things.** The repository can be
-private while the website is public. Cloudflare reads the private repo, builds it,
-and publishes only the built output.
+**The repository and the website are separate things.** The repository is private;
+the website is public. Only the built output is published.
+
+**Vercel does not build this site.** It is not connected to Git and has no access
+to the repository. GitHub Actions builds the artefact, scans it, and uploads the
+result. This is deliberate — see Step 2.
 
 **The data refresh works by committing.** The scheduled job writes JSON into
-`public/data/` and pushes it to `main`. Cloudflare sees the push and rebuilds.
-That is why `git log public/data` becomes the audit trail for every number — and
-why the job needs permission to write to the repo.
+`public/data/` and pushes it to `main`. That push re-runs every gate and, if they
+pass, redeploys. That is why `git log public/data` is the audit trail for every
+number — and why the job needs permission to write to the repo.
 
 ---
 
-## Step 0 — Make the repository private. This one matters.
+## Step 0 — Keep the repository private. This one still matters.
 
-**The confidential WA project layer is still in this repository's git history.**
+The confidential WA project layer **was** in this repository's git history. It was
+purged on 10 August 2026 with `git filter-repo`: the two prototype documents that
+carried it were removed from every commit, and the markers were redacted
+everywhere else they appeared. `legacy/README.md` records what went and why.
 
-The current files are clean — it was moved to `local-data/` in commit `49495ab`,
-and `tests/bundle-confidentiality.test.js` proves it never reaches the built site.
-But git keeps history, and the earlier commit still contains it:
+So the argument for privacy has changed, but the answer has not:
 
-```bash
-git show f7793c5:src/markets/wa/data/kemerton.js
-```
+> **Keep the GitHub repository Private.** The published website is public either
+> way; only the source is protected.
 
-That will print the site address, the financial-model capex and the Google Drive
-links. Anyone who can read the repository can run that command.
+The rewrite changed *this* repository. It could not change:
 
-So:
+- any clone or fork taken before that date, which still has the original objects;
+- old pull requests and their diffs;
+- GitHub's own unreferenced objects, which stay reachable by commit SHA until
+  GitHub garbage-collects them — that needs a support request, not a push.
 
-> **Create the GitHub repository as Private.** The published website is public
-> either way; only the source history is protected.
-
-Cloudflare Pages works with private repositories at no cost, so there is no
-trade-off to weigh here.
-
-<details>
-<summary>If you later need the repository to be public</summary>
-
-You would have to rewrite history to purge those commits — `git filter-repo`, or
-starting a fresh repository with a single initial commit from the current clean
-tree. Both are irreversible and both break every existing clone. Do not attempt it
-as a first task. Keeping the repository private is the correct answer for a
-research platform with a data room behind it.
-</details>
+Vercel works with private repositories at no cost, and in this setup it does not
+read the repository at all, so there is no trade-off to weigh here.
 
 **Also back up `local-data/` somewhere else.** It is git-ignored, which means it is
-now the only copy outside history. If you lose that folder you lose the confidential
-Portfolio analysis. Put it in the same place you keep the source documents it came
-from.
+now the only copy anywhere — history included. If you lose that folder you lose the
+confidential Portfolio analysis and the archived prototype. Put it in the same
+place you keep the source documents it came from.
 
 ---
 
@@ -119,76 +117,86 @@ git remote set-url origin https://github.com/YOUR-USERNAME/bess-research-platfor
 
 ### 1c. Check what landed
 
-Refresh the GitHub page. You should see the files, and `local-data/` should **not**
-be among them — only its `README.md`. If you see `wa-kemerton-project.json` or
-`wa-portfolio-section.js` on GitHub, stop and tell me: something is wrong with the
-`.gitignore` and those files should not be there.
+Refresh the GitHub page. Three things should be true:
+
+- `local-data/` is absent apart from its `README.md`;
+- `.vercel/` is absent entirely — it holds your project link, not shared config;
+- `deliverables/` shows only `_comparison_system/`, never a named project folder.
+
+If you see `wa-kemerton-project.json`, `wa-portfolio-section.js`, a `.vercel`
+directory or a project comparison, stop: something is wrong with `.gitignore` and
+none of those belong on a remote.
 
 ---
 
-## Step 2 — Connect Cloudflare Pages
+## Step 2 — Connect Vercel
 
-**Cloudflare does not build this site, and must not be connected to Git.**
+**Vercel does not build this site, and must not be connected to Git.**
 
-That is the opposite of the usual Pages setup, so it is worth stating why. If
-Cloudflare builds from a Git connection, it builds on *every* push to `main` and
-does not wait for GitHub Actions. The confidentiality scan, the snapshot
-verifier and the whole test suite would run beside the deployment rather than in
-front of it, and a red CI run would publish anyway. The ETL bot pushes to `main`
-every six hours, so that is not a rare edge case — it is the normal path.
+That is the opposite of the usual Vercel setup, so it is worth stating why. A Git
+integration builds on *every* push to `main` and does not wait for GitHub Actions.
+The confidentiality scan, the snapshot verifier and the whole test suite would run
+beside the deployment rather than in front of it, and a red CI run would publish
+anyway. The ETL bot pushes to `main` every six hours, so that is not a rare edge
+case — it is the normal path. Branch protection would not help either: the bot
+pushes directly, not through a pull request.
 
-Instead, `.github/workflows/ci.yml` runs the checks, and only if they all pass
-does it upload the built `dist/` and hand those exact bytes to
-`wrangler pages deploy`. The artefact that was scanned is the artefact that
-ships.
+Instead, `.github/workflows/ci.yml` runs the checks, then builds `.vercel/output`
+itself, scans **that directory**, and uploads it with
+`vercel deploy --prebuilt --prod`. The artefact that was scanned is the artefact
+that ships, with no rebuild in between.
 
-### 2a — Create the project without a Git connection
+### 2a — Create and link the project, without a Git connection
 
-1. Sign in at [dash.cloudflare.com](https://dash.cloudflare.com) (create a free
-   account if you need one — no card required).
-2. In the left sidebar: **Workers & Pages** → **Create** → **Pages** tab →
-   **Upload assets** (*not* "Connect to Git").
-3. Name the project `bess-research-platform`. The name is not cosmetic — it is
-   the `--project-name` in the workflow, it becomes part of the URL, and
-   changing one without the other breaks the deploy.
-4. Upload anything to create the project — the first real deployment from CI
-   replaces it. A folder containing an empty `index.html` is enough.
+1. Sign in at [vercel.com](https://vercel.com) (the Hobby plan is free).
+2. Create a new project named `bess-research-platform`. When it offers to import
+   a Git repository, **skip it** — choose the option to create the project
+   without one, or create it from the CLI in step 3 below.
+3. In the project folder on your laptop:
 
-> **Already connected to Git from an earlier setup?** Go to the project →
-> **Settings** → **Build** → **Git repository** → **Disconnect**. Leaving it
-> connected gives you two deployments per push: one gated, one not, racing each
-> other onto the same URL. The ungated one wins about half the time.
+   ```bash
+   npx vercel link
+   ```
 
-You do not need a build command, a build output directory, or `NODE_VERSION`
-here. Those are GitHub Actions' problem now, and it already pins Node 20.
+   Pick the project you just created. This writes `.vercel/` locally and adds
+   `.vercel` to `.gitignore`. That folder is never committed: it identifies your
+   link to the project, not shared configuration.
 
-### 2b — Create the API token
+> **Already connected to Git from an earlier setup?** Project → **Settings** →
+> **Git** → **Disconnect**. Leaving it connected gives you two deployments per
+> push: one gated, one not, racing each other onto the same URL. The ungated one
+> wins about half the time.
 
-1. Cloudflare dashboard → your profile → **API Tokens** → **Create Token**.
-2. Use the **Edit Cloudflare Workers** template, or a custom token with
-   **Account → Cloudflare Pages → Edit**. Nothing more: this token only needs to
-   publish a static site.
-3. Copy the token — it is shown once.
-4. Copy your **Account ID** too, from **Workers & Pages** → the right-hand
-   sidebar.
+You do not need to set a build command, an output directory, or a Node version in
+the Vercel dashboard. `vercel.json` carries the build settings and the SPA
+rewrite, and GitHub Actions pins Node 20.
+
+### 2b — Create the token and find the two IDs
+
+1. Vercel → your avatar → **Account Settings** → **Tokens** → **Create Token**.
+   Scope it to the team that owns the project. Copy it — it is shown once.
+2. Open `.vercel/repo.json` (or `.vercel/project.json`, depending on how you
+   linked). It contains the project id (`prj_…`) and the org/team id (`team_…`).
+   Those two are identifiers rather than credentials, but the workflow reads them
+   from secrets so that nothing about your Vercel account is committed.
 
 ### 2c — Give them to GitHub
 
 In the repository: **Settings** → **Secrets and variables** → **Actions** →
-**New repository secret**. Add both:
+**New repository secret**. Add all three:
 
 | Name | Value |
 |---|---|
-| `CLOUDFLARE_API_TOKEN` | the token from 2b |
-| `CLOUDFLARE_ACCOUNT_ID` | your account ID |
+| `VERCEL_TOKEN` | the token from 2b |
+| `VERCEL_ORG_ID` | the `team_…` id |
+| `VERCEL_PROJECT_ID` | the `prj_…` id |
 
-The deploy job checks for both before it does anything and fails with a pointed
-message if either is missing, so a half-finished setup cannot look like a
-successful publish.
+The deploy job checks for all three before it does anything and names the missing
+ones, so a half-finished setup cannot look like a successful publish.
 
-Push to `main`. Actions runs the suite, builds, scans the bundle, verifies the
-snapshots, and publishes. The first deployment takes two or three minutes and
-gives you a URL like `https://bess-research-platform.pages.dev`.
+Push to `main`. Actions runs the suite, verifies the snapshots, builds
+`.vercel/output`, scans it, and deploys. The first deployment takes two or three
+minutes and gives you a URL like `https://bess-research-platform.vercel.app`.
 
 ---
 
@@ -199,8 +207,10 @@ Open the URL and confirm:
 - [ ] The home page renders with the market grid and the league table
 - [ ] Click into a market — say Great Britain — and its tabs work
 - [ ] **Refresh the page while on `/markets/great-britain`.** It should reload
-      normally, not 404. This is what `public/_redirects` is for; if it 404s, that
-      file did not make it into `dist/`
+      normally, not 404. This is what the `rewrites` rule in `vercel.json` is for
+- [ ] Open an asset directly — the `/assets/index-*.js` the page loads. It must
+      return JavaScript, not the HTML shell. If it returns HTML, the rewrite is
+      running before the filesystem check instead of after it
 - [ ] Visit `/data`. Every feed should be listed. At this point most will say
       *Not published* — that is correct, the pipeline has not run yet
 - [ ] Visit `/markets/western-australia/portfolio`. It should say **"Project layer
@@ -249,7 +259,7 @@ four ENTSO-E markets — GB, Ireland, Romania, Poland — show as unconfigured o
 5. **Add secret**.
 
 The token is only ever read by the ETL inside GitHub Actions. It is not a build
-variable and never reaches the browser — do **not** add it to Cloudflare.
+variable and never reaches the browser — do **not** add it to Vercel.
 
 ---
 
@@ -268,7 +278,7 @@ It takes a few minutes. What you should see:
 - A step called **Check the wall held** confirming only `public/data/` changed.
 - A new commit on `main` named something like `data: refresh fx-ecb, wa-wem-prices, …`.
 - The **drift report** printed at the bottom of the run summary page.
-- Cloudflare starting a fresh deploy on its own, because of that commit.
+- CI re-running every gate on that commit and, if they pass, redeploying.
 
 Then reload `/data` on the live site. Feeds should show coverage, point counts and
 a green **Live** badge.
@@ -292,10 +302,9 @@ a green **Live** badge.
 
 If you own a domain:
 
-1. Cloudflare Pages → your project → **Custom domains** → **Set up a custom
-   domain**.
-2. Enter it. If the domain's DNS is already on Cloudflare, it configures itself.
-   If not, Cloudflare shows you the CNAME record to add at your registrar.
+1. Vercel → your project → **Settings** → **Domains** → **Add**.
+2. Enter it. Vercel shows the A or CNAME record to add at your registrar, and
+   verifies once it resolves.
 3. HTTPS is issued automatically. Allow a few minutes.
 
 ---
@@ -335,11 +344,13 @@ ever goes quiet for a couple of months, check the Actions tab first.
 
 | Symptom | Cause and fix |
 |---|---|
-| Two deployments per push, or an unreviewed change reaching the live site | The Cloudflare Git connection is still enabled and building in parallel with CI. Project → Settings → Build → **Disconnect**. Step 2a |
-| Deploy job fails immediately with a message about credentials | `CLOUDFLARE_API_TOKEN` or `CLOUDFLARE_ACCOUNT_ID` is missing or misspelled. Step 2c |
-| Deploy succeeds but the live URL is unchanged | The deployment landed on a preview branch. `--branch=main` in `ci.yml` must match the Pages production branch |
-| `wrangler` reports the project does not exist | The Pages project name is not `bess-research-platform`. Rename it, or change `--project-name` in `ci.yml` — they have to agree |
-| Deep links 404 on refresh, home page fine | `public/_redirects` did not reach `dist/`. Confirm the build output directory is `dist`, not `dist/` or `./dist` |
+| Two deployments per push, or an unreviewed change reaching the live site | The Vercel Git integration is still enabled and building in parallel with CI. Project → Settings → Git → **Disconnect**. Step 2a |
+| Deploy job fails immediately naming a missing secret | One of `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` is unset or misspelled. Step 2c |
+| Deploy succeeds but the live URL is unchanged | The `--prod` flag is missing from `vercel deploy`, so it published a preview |
+| `vercel` reports the project does not exist, or 403s | `VERCEL_PROJECT_ID` / `VERCEL_ORG_ID` do not match the token's team. All three come from the same account |
+| Deployed content differs from what CI scanned | `--prebuilt` was dropped from `vercel deploy`, so Vercel rebuilt from source. Restore it |
+| Deep links 404 on refresh, home page fine | The `rewrites` rule in `vercel.json` is missing or malformed |
+| Every page returns the HTML shell, assets included | A `routes` entry is overriding `rewrites` and running before the filesystem check. Use `rewrites`, which runs after it |
 | Actions run fails at the commit step | Workflow permissions are still read-only. Step 4 |
 | No pull request appears despite material drift | "Allow GitHub Actions to create and approve pull requests" is unticked. Step 4 |
 | `/data` shows ENTSO-E feeds as *credential may not be configured* | `ENTSOE_TOKEN` missing, or API access not yet enabled on your ENTSO-E account. Step 5 |
@@ -356,7 +367,7 @@ Nothing, at this scale.
 | | |
 |---|---|
 | GitHub | private repositories and Actions are free; this uses a few minutes of the monthly allowance |
-| Cloudflare Pages | free tier covers 500 builds/month and unlimited bandwidth; six-hourly data commits produce well under 200 |
+| Vercel | Hobby plan covers this comfortably; CI does the building, so no Vercel build minutes are consumed at all |
 | Data sources | ECB, ENTSO-E, AEMO and JEPX are all free public data |
 
 ---

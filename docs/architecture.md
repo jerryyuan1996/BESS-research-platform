@@ -212,10 +212,10 @@ unrecognised tab falls back to the market's default rather than 404ing.
 `/compare`, `/methodology` and `/portfolio` are named as future routes and are deliberately not
 built. Adding one is a single entry in `parseRoute`.
 
-`public/_redirects` covers these too — the SPA fallback is a wildcard, so no new rule was needed.
+The `vercel.json` rewrite covers these too — the SPA fallback is a wildcard, so no new rule was needed.
 
 Deployment needs a rewrite so a direct visit to `/markets/wa` returns `index.html`.
-`public/_redirects` does this on Cloudflare Pages; Vite's dev server does it natively.
+The `rewrites` rule in `vercel.json` does this in production; Vite's dev server does it natively.
 
 ## State
 
@@ -262,7 +262,7 @@ Design tokens (`--bg`, `--surface`, `--ink`, `--ink2`, `--muted`, `--grid`, `--b
 ## Live data
 
 The site fetches nothing at build time and holds no secrets. A scheduled GitHub Actions job runs the
-ETL, writes JSON snapshots into `public/data/public/`, and commits them; Cloudflare Pages rebuilds on
+ETL, writes JSON snapshots into `public/data/public/`, and commits them; CI re-runs its gates and redeploys on
 the push. The browser loads those snapshots at runtime, after first render, and shows them **beside**
 the analyst's approved values rather than in place of them.
 

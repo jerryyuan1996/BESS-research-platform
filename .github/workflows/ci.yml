@@ -34,16 +34,22 @@ jobs:
       # The confidentiality guard asserts on the BUILD OUTPUT, so it is worthless
       # before this point — and it used to run only before this point. `npm test`
       # above still executes tests/bundle-confidentiality.test.js, but with no
-      # dist/ to scan it skips, which is a pass that proves nothing.
+      # artefact to scan it skips, which is a pass that proves nothing.
       #
-      # This step is the one that actually enforces it. REQUIRE_DIST=1 turns the
-      # "dist/ is absent" skip into a failure, so the guard cannot go green by
-      # scanning nothing. Keep it after Build; moving it earlier silently disarms
-      # the last check standing between confidential content and a publish.
+      # This is the PULL-REQUEST gate. It scans dist/, because `vercel build`
+      # needs a token no fork pull request has. The authoritative scan — on the
+      # bytes actually uploaded — is in the deploy job below, and it scans
+      # .vercel/output instead.
+      #
+      # REQUIRE_OUTPUT=1 turns the "directory is absent" skip into a failure, so
+      # the guard cannot go green by scanning nothing. Keep it after Build;
+      # moving it earlier silently disarms the last check standing between
+      # confidential content and a publish.
       - name: Scan the built bundle for confidential content
         run: npm run test:bundle
         env:
-          REQUIRE_DIST: '1'
+          SCAN_DIR: dist
+          REQUIRE_OUTPUT: '1'
 
       # Snapshots are machine-written and carry a checksum over their contents.
       # A hand-edited "observed" file is exactly the confusion the envelope
@@ -51,67 +57,94 @@ jobs:
       - name: Verify snapshot integrity
         run: npm run etl:verify
 
-      # THE ARTEFACT THAT PASSED IS THE ARTEFACT THAT SHIPS.
-      #
-      # Handing dist/ to the deploy job rather than rebuilding it there is the
-      # whole point of the gate. A rebuild would produce a *different* set of
-      # bytes that no confidentiality scan had ever looked at, which is the same
-      # class of mistake as scanning before building — the check and the thing
-      # being checked would drift apart. These are the exact bytes the step
-      # above scanned.
-      - name: Keep the verified artefact
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: actions/upload-artifact@v4
-        with:
-          name: verified-dist
-          path: dist/
-          retention-days: 7
-          if-no-files-found: error
-
   deploy:
-    name: Publish the verified artefact to Cloudflare Pages
+    name: Publish the scanned artefact to Vercel
     needs: test
     # Only a push to main deploys. Pull requests run every check above and stop
-    # there — a fork PR must never be able to reach the production project.
+    # there — a fork pull request must never reach the production project or the
+    # token that publishes to it.
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      deployments: write
     # The ETL pushes to main every six hours. Without this, a slow deploy of an
     # older commit could land on top of a newer one. Newer always wins; in-flight
     # older runs are cancelled rather than queued.
     concurrency:
-      group: pages-production
+      group: vercel-production
       cancel-in-progress: true
     steps:
       # Belt and braces for a repository whose highest-frequency committer is a
-      # bot. If the secrets are absent the job stops here with an explanation
-      # rather than failing inside wrangler with a credentials error, and — more
-      # importantly — rather than appearing to have deployed when it did not.
+      # bot. If the credentials are absent the job stops here with an explanation
+      # rather than failing several steps later inside the Vercel CLI, and —
+      # more importantly — rather than appearing to have deployed when it did not.
       - name: Confirm the deploy credentials exist
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
-            echo "::error::CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are not both set."
-            echo "::error::See docs/publishing.md — until they are, nothing is published by CI."
+          missing=""
+          [ -z "$VERCEL_TOKEN" ]      && missing="$missing VERCEL_TOKEN"
+          [ -z "$VERCEL_ORG_ID" ]     && missing="$missing VERCEL_ORG_ID"
+          [ -z "$VERCEL_PROJECT_ID" ] && missing="$missing VERCEL_PROJECT_ID"
+          if [ -n "$missing" ]; then
+            echo "::error::Missing repository secret(s):$missing"
+            echo "::error::See docs/publishing.md — until they are set, CI publishes nothing."
             exit 1
           fi
 
-      - name: Fetch the artefact that passed
-        uses: actions/download-artifact@v4
-        with:
-          name: verified-dist
-          path: dist
+      - uses: actions/checkout@v4
 
-      # --branch=main marks this a production deployment on the Pages project.
-      # Any other value would publish to a preview URL instead, which looks
-      # successful and changes nothing on the live site.
-      - name: Deploy
-        uses: cloudflare/wrangler-action@v3
+      - uses: actions/setup-node@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=bess-research-platform --branch=main
+          node-version: '20'
+
+      - run: npm ci
+
+      - name: Install the Vercel CLI
+        run: npm install --no-save vercel@48
+
+      # Writes .vercel/project.json and the production environment into the
+      # workspace. Nothing here is committed — .vercel is git-ignored.
+      - name: Pull the production environment
+        run: npx vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      # Produces .vercel/output — the Build Output API directory that
+      # `--prebuilt` uploads verbatim. This is the artefact, not dist/: vercel
+      # build runs the Vite build and then copies and adds to its result, so
+      # dist/ and .vercel/output are not the same bytes.
+      - name: Build the deployment artefact
+        run: npx vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      # THE ARTEFACT THAT IS SCANNED IS THE ARTEFACT THAT SHIPS.
+      #
+      # This is the load-bearing step in the whole file. It reads the exact
+      # directory the next step uploads, in the same workspace, with no rebuild
+      # and no artefact round-trip in between — so there is no transformation
+      # standing between the check and the thing checked.
+      #
+      # REQUIRE_OUTPUT=1 means an absent .vercel/output fails instead of
+      # skipping. Zero skips is the requirement: a skip here would be a publish
+      # nothing looked at.
+      - name: Scan .vercel/output for confidential content
+        run: npm run test:bundle
+        env:
+          SCAN_DIR: .vercel/output
+          REQUIRE_OUTPUT: '1'
+
+      # --prebuilt uploads what was just scanned. Without it the Vercel platform
+      # would rebuild from source on its own infrastructure, producing bytes no
+      # scan in this workflow has ever seen — which is the exact defect this job
+      # is arranged to prevent. Do not remove the flag.
+      - name: Deploy
+        run: npx vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
