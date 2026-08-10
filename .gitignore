@@ -9,10 +9,24 @@ local-data/*
 .env
 .env.*
 
+# Spreadsheets are blanket-ignored because a developer financial model is the
+# single most likely confidential file to be dropped into this tree by accident.
+# Keep it that way — the rule is a safety net, not a formatting preference.
 *.xlsx
 *.xlsm
 *.xls
 *.csv.local
+
+# The one deliberate exception. tests/fixtures/workbooks/ holds shaped samples,
+# a few kB each, committed on purpose so the ETL transforms are testable without
+# a download — see the contract asserted in tests/etl-boundary.test.js, which
+# caps them at 200 kB and fails if a real release is committed instead.
+#
+# The blanket rule above used to swallow them silently. They were never tracked,
+# so a fresh clone had no fixtures and 38 tests failed in CI on every run while
+# passing locally for anyone whose working tree still had the files. Do not
+# remove this negation without deleting those tests.
+!tests/fixtures/workbooks/*.xlsx
 
 # ---------------------------------------------------------------------------
 # ETL run artefacts.
@@ -25,6 +39,21 @@ etl/out/
 # Scratch: downloaded source PDFs, dev-server logs, anything a run left behind.
 # Source documents are cited by URL in the source registers, not vendored.
 tmp/
+
+# ---------------------------------------------------------------------------
+# Project diligence outputs.
+#
+# deliverables/ is where the comparison workflow writes its gap reports and
+# owner question lists. Those name real projects and quote real developer
+# material, so nothing under it is committed — the default is deny.
+#
+# _comparison_system/ is the exception: it is the reusable METHOD (a skill
+# definition, reference standards, a docx builder), carries no project facts,
+# and is worth versioning. Adding a second exception here means asserting the
+# same thing about it, so read the files first.
+# ---------------------------------------------------------------------------
+deliverables/*
+!deliverables/_comparison_system/
 
 # ---------------------------------------------------------------------------
 # Build + tooling

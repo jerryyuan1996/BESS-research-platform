@@ -1,0 +1,7 @@
+interface:
+  display_name: "Compare BESS Project"
+  short_description: "Compare BESS deals with the dashboard"
+  default_prompt: "Use $compare-bess-project to compare these project materials with my dashboard and create both diligence deliverables."
+
+policy:
+  allow_implicit_invocation: true
