@@ -47,6 +47,91 @@ function median(values){
 }
 
 /**
+ * Checks for a `feed` dataset: dated records with no measured quantity.
+ *
+ * The price checks do not transfer, so these replace them rather than relax
+ * them. What can go wrong with a feed is different in kind: a parser that
+ * silently starts returning empty titles, a publisher whose links become
+ * relative, a duplicate flood from one source, or a clock skew that dates
+ * tomorrow's article today. Each is checked here.
+ *
+ * @param {object} snapshot
+ * @param {Array}  series
+ * @param {ValidationResult} r
+ * @returns {ValidationResult}
+ */
+function validateFeed(snapshot, series, r){
+  const seen = new Set();
+  let bad = 0, lastTs = null, outOfOrder = 0;
+  /* An hour of slack. Publishers legitimately post-date by minutes and clocks
+     disagree; a headline dated next week is a parse error. */
+  const horizon = Date.now() + 60 * 60 * 1000;
+
+  for (let i = 0; i < series.length; i++){
+    const item = series[i];
+    if (!item || typeof item !== 'object'){ bad++; continue; }
+
+    const t = Date.parse(item.t);
+    if (Number.isNaN(t)){
+      bad++;
+      if (bad <= 3) r.error(`series[${i}].t is not a parseable instant: ${item.t}`);
+      continue;
+    }
+    if (lastTs !== null && t < lastTs) outOfOrder++;
+    lastTs = t;
+
+    if (t > horizon){
+      r.error(`series[${i}] is dated in the future: ${item.t}`);
+    }
+    if (!item.id || typeof item.id !== 'string'){
+      bad++;
+      if (bad <= 3) r.error(`series[${i}] has no stable id`);
+      continue;
+    }
+    if (seen.has(item.id)){
+      r.error(`series[${i}] repeats id "${item.id}" — dedup ran wrong or the parser is looping`);
+    }
+    seen.add(item.id);
+
+    if (!item.title || typeof item.title !== 'string'){
+      bad++;
+      if (bad <= 3) r.error(`series[${i}] has no title`);
+    }
+    /* Absolute http(s) only. A relative link is the shape of a parser that took
+       the feed's own <link> element instead of the item's, and it would render
+       as a dead link on this origin rather than an obviously broken one. */
+    if (!/^https?:\/\//.test(String(item.url || ''))){
+      bad++;
+      if (bad <= 3) r.error(`series[${i}] has no absolute source URL: ${item.url}`);
+    }
+    if (!item.source || typeof item.source !== 'string'){
+      bad++;
+      if (bad <= 3) r.error(`series[${i}] does not name its publisher — an unattributed headline is not republishable`);
+    }
+  }
+
+  if (outOfOrder > 0){
+    r.error(`series is not chronologically ordered (${outOfOrder} items out of order)`);
+  }
+  if (bad > 0){
+    const pct = bad / series.length;
+    if (pct > 0.02) r.error(`${bad} of ${series.length} items are malformed (${(pct * 100).toFixed(1)}%)`);
+    else r.warn(`${bad} malformed items skipped (${(pct * 100).toFixed(2)}%)`);
+  }
+
+  const cov = snapshot.coverage;
+  if (cov && isFiniteNum(cov.points) && cov.points !== series.length){
+    r.error(`coverage.points (${cov.points}) does not match series length (${series.length})`);
+  }
+  if (!snapshot.units || Object.keys(snapshot.units).length === 0){
+    // Not a price unit, but the field still has to say what a record IS.
+    r.error('units must be declared — state what one record represents');
+  }
+
+  return r;
+}
+
+/**
  * Validate a freshly built snapshot, optionally against the one it would replace.
  *
  * @param {object} snapshot   the candidate
@@ -100,6 +185,13 @@ export function validateSnapshot(snapshot, dataset, previous = null){
     r.error('series is empty — refusing to publish; the previous snapshot will be kept');
     return r;
   }
+
+  /* Everything above this line is true of any published snapshot. Everything
+     below depends on what the payload IS, which the catalogue states rather than
+     this function guessing. A feed of headlines has no median to compare and no
+     units to shift, and running the price checks against it would reject every
+     item for the crime of not being a number. */
+  if (dataset.kind === 'feed') return validateFeed(snapshot, series, r);
 
   const prices = [];
   let badPoints = 0, lastTs = null, outOfOrder = 0;

@@ -25,8 +25,34 @@ const HOURS = 1;
 const DAYS = 24 * HOURS;
 
 /**
+ * What shape a dataset's `series` carries, and therefore which validation runs
+ * against it.
+ *
+ * This is declared per dataset rather than inferred, because inferring it is how
+ * `industry-news` came to be published for weeks as an orphan: it sat in
+ * public/data/public/ in a shape nothing in the catalogue described, and
+ * `npm run etl:verify` reported it as an unexplained file on every run. A
+ * dataset whose kind is not stated is a dataset nothing can check.
+ *
+ *   timeseries  observations of a number through time. `series` is
+ *               `{ t: ISO instant, v: finite number }`, chronologically
+ *               ascending. Gets the price bounds, the ordering check and the
+ *               unit-shift guard.
+ *
+ *   feed        dated records with no measured quantity — today, published
+ *               article metadata. `series` is `{ t, id, source, title, url, … }`,
+ *               chronologically ascending. Gets identity, link and ordering
+ *               checks instead. Carries no `bearsOn`: a headline is context for
+ *               a reader, never evidence about an approved assumption, and the
+ *               empty array is what stops the drift detector treating it as one.
+ *
+ * @typedef {'timeseries'|'feed'} DatasetKind
+ */
+
+/**
  * @typedef {object} Dataset
  * @property {string}   id             stable key; also the snapshot filename
+ * @property {DatasetKind} kind        payload shape; selects the validator
  * @property {string?}  marketId       registry market id, or null for global
  * @property {string?}  sourceId       governed source-registry id when registered
  * @property {string[]} title          [en, zh]
@@ -39,11 +65,15 @@ const DAYS = 24 * HOURS;
  * @property {boolean}  requiresKey    needs a CI secret to fetch
  */
 
+/** Every value `Dataset.kind` may take. */
+export const DATASET_KINDS = ['timeseries', 'feed'];
+
 /** @type {Dataset[]} */
 export const DATASETS = [
   // ---- global --------------------------------------------------------------
   {
     id: 'fx-ecb',
+    kind: 'timeseries',
     marketId: null,
     title: ['ECB euro foreign-exchange reference rates', '欧洲央行欧元外汇参考汇率'],
     connector: 'ecb',
@@ -73,6 +103,7 @@ export const DATASETS = [
      the same market, not a replacement. See docs/live-data.md. */
   {
     id: 'gb-day-ahead',
+    kind: 'timeseries',
     marketId: 'gb',
     sourceId: 'gb-entsoe-transparency',
     title: ['GB day-ahead wholesale prices', '英国日前批发电价'],
@@ -93,6 +124,7 @@ export const DATASETS = [
   // ---- Ireland · Romania · Poland — one connector, one token ---------------
   {
     id: 'ie-day-ahead',
+    kind: 'timeseries',
     marketId: 'ie',
     title: ['SEM day-ahead prices', '爱尔兰单一电力市场日前电价'],
     connector: 'entsoe',
@@ -110,6 +142,7 @@ export const DATASETS = [
   },
   {
     id: 'ro-day-ahead',
+    kind: 'timeseries',
     marketId: 'ro',
     title: ['Romania day-ahead prices', '罗马尼亚日前电价'],
     connector: 'entsoe',
@@ -127,6 +160,7 @@ export const DATASETS = [
   },
   {
     id: 'pl-day-ahead',
+    kind: 'timeseries',
     marketId: 'pl',
     title: ['Poland day-ahead prices', '波兰日前电价'],
     connector: 'entsoe',
@@ -146,6 +180,7 @@ export const DATASETS = [
   // ---- Western Australia ---------------------------------------------------
   {
     id: 'wa-wem-prices',
+    kind: 'timeseries',
     marketId: 'wa',
     title: ['WEM energy reference prices', '西澳电力市场能量参考价格'],
     connector: 'aemo-wem',
@@ -165,6 +200,7 @@ export const DATASETS = [
   // ---- Japan — three areas, one connector ---------------------------------
   {
     id: 'jp-tokyo-jepx',
+    kind: 'timeseries',
     marketId: 'jp_tokyo',
     title: ['JEPX day-ahead — Tokyo area', 'JEPX日前 — 东京地区'],
     connector: 'jepx',
@@ -182,6 +218,7 @@ export const DATASETS = [
   },
   {
     id: 'jp-kyushu-jepx',
+    kind: 'timeseries',
     marketId: 'jp_kyushu',
     title: ['JEPX day-ahead — Kyushu area', 'JEPX日前 — 九州地区'],
     connector: 'jepx',
@@ -199,6 +236,7 @@ export const DATASETS = [
   },
   {
     id: 'jp-hokkaido-jepx',
+    kind: 'timeseries',
     marketId: 'jp_hokkaido',
     title: ['JEPX day-ahead — Hokkaido area', 'JEPX日前 — 北海道地区'],
     connector: 'jepx',
@@ -211,6 +249,47 @@ export const DATASETS = [
     refreshHours: 24 * HOURS,
     staleAfterHours: 4 * DAYS,
     bearsOn: ['economics.merchGross'],
+    republishable: true,
+    requiresKey: false,
+  },
+
+  // ---- global, non-numeric -------------------------------------------------
+  /* The only `feed` dataset. It is in this catalogue rather than beside it
+     because being outside the catalogue is precisely what went wrong: the news
+     connector wrote a bespoke shape into the governed directory, no entry
+     described it, and etl:verify called it an orphaned snapshot on every run.
+     A file nothing can explain is the thing the verifier exists to surface, so
+     the fix is to explain it, not to exempt it.
+
+     `bearsOn: []` is load-bearing and not an oversight. Headlines are reader
+     context. They are not evidence about an approved assumption, they must
+     never open a drift proposal, and the governance test that walks every
+     bearsOn path would have to classify a headline as proposable for them to
+     try. Empty is the assertion that this dataset informs no model input.
+
+     What is republished is metadata only — headline, publisher, timestamp,
+     link, and a short excerpt the publisher already syndicates in the feed. No
+     article body. That is the licence position recorded in `source.licence`,
+     and it is why `republishable` can be true for content this platform does
+     not own. */
+  {
+    id: 'industry-news',
+    kind: 'feed',
+    marketId: null,
+    title: ['Industry news', '行业新闻'],
+    connector: 'news',
+    source: {
+      name: 'Publisher RSS feeds — Modo Energy, Energy-Storage.news, Utility Dive, pv magazine',
+      url: 'https://www.energy-storage.news/feed/',
+      licence: 'Publisher RSS — headline metadata and syndicated excerpt only, linked to the source',
+      attribution: 'Headlines and excerpts remain the property of their publishers',
+    },
+    refreshHours: 24 * HOURS,
+    /* Wider than the price feeds. A quiet week in trade press is normal and is
+       not a pipeline fault; flagging it stale after four days would train an
+       operator to ignore the badge that matters on the price datasets. */
+    staleAfterHours: 7 * DAYS,
+    bearsOn: [],
     republishable: true,
     requiresKey: false,
   },

@@ -42,7 +42,7 @@ const externalLink = (item, compact = false) => h('article', {
 }, h('div', { class:'news-meta' },
   h('span', { class:'news-source' }, item.source),
   h('span', { class:'news-category' }, item.categoryLabel || item.category),
-  h('time', { datetime:item.publishedAt || '' }, formatDate(item.publishedAt))),
+  h('time', { datetime:item.t || '' }, formatDate(item.t))),
 h('a', {
   class:'news-title',
   href:item.url,
@@ -56,6 +56,13 @@ async function loadNews(){
   if (!response.ok) throw new Error(`news snapshot ${response.status}`);
   return response.json();
 }
+
+/* The snapshot stores its series oldest-first, like every other dataset in the
+   catalogue. Reading order is the page's concern, not the file's. */
+const newestFirst = snapshot => [...(snapshot.series || [])].reverse();
+
+/** Publishers and their reporting state, from the connector's derived block. */
+const publishers = snapshot => snapshot.derived?.sourceStatus || [];
 
 function loadingState(){
   return h('div', { class:'news-empty' }, L(['Loading the latest public feeds…', '正在读取最新公开新闻源…']));
@@ -84,9 +91,9 @@ export function renderNewsPreview(parent){
   parent.append(card);
 
   loadNews().then(snapshot => {
-    const items = [...(snapshot.items || [])]
+    const items = newestFirst(snapshot)
       .slice(0, 30)
-      .sort((a, b) => investmentRank(b) - investmentRank(a) || String(b.publishedAt).localeCompare(String(a.publishedAt)))
+      .sort((a, b) => investmentRank(b) - investmentRank(a) || String(b.t).localeCompare(String(a.t)))
       .slice(0, 5);
     body.replaceWith(items.length
       ? h('div', { class:'news-list compact' }, items.map(item => externalLink(item, true)))
@@ -127,11 +134,11 @@ export function renderNewsPage(app){
   app.append(main);
 
   loadNews().then(snapshot => {
-    const items = snapshot.items || [];
-    const sources = snapshot.sources || [];
+    const items = newestFirst(snapshot);
+    const sources = publishers(snapshot);
     const select = h('select', { class:'btn', 'aria-label':L(['Filter by source', '按来源筛选']) },
       h('option', { value:'all' }, L(['All sources', '全部来源'])),
-      sources.map(source => h('option', { value:source.name }, source.name)));
+      sources.map(source => h('option', { value:source.source }, source.source)));
     let activeCategory = 'all';
     let activeSource = 'all';
     const newsList = h('div', { class:'news-list' });
@@ -169,9 +176,14 @@ export function renderNewsPage(app){
           href:source.homepage,
           target:'_blank',
           rel:'noopener noreferrer',
-        }, source.name),
+          /* A publisher that is being served from the last good snapshot is not
+             the same as one that is reporting, and the reader is entitled to
+             know which they are looking at. */
+          class:source.status === 'ok' ? '' : 'obs-tag',
+          title:source.status === 'ok' ? '' : `${source.status}: ${source.error || ''}`.trim(),
+        }, source.source),
       ]).filter(Boolean),
-      h('span', {}, ' · ' + L(['Latest feed item: ', '最新条目：']) + formatDate(snapshot.updatedAt)),
+      h('span', {}, ' · ' + L(['Latest feed item: ', '最新条目：']) + formatDate(snapshot.coverage?.to)),
     );
     draw();
   }).catch(() => {

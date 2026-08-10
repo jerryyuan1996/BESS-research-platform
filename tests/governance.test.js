@@ -21,7 +21,7 @@ import {
   comparisonAuthority, manifestAuthority, assumptionAuthority,
   canMachineWrite, canMachinePropose, AUTHORITY_LABEL, isClassified,
 } from '../src/governance/authority.js';
-import { DATASETS, datasetById, snapshotFile, summaryFile } from '../src/governance/datasets.js';
+import { DATASETS, DATASET_KINDS, datasetById, snapshotFile, summaryFile } from '../src/governance/datasets.js';
 import {
   classifyDrift, BAND, DRIFT_THRESHOLDS, IMPACT_THRESHOLDS, relativeDelta, impactOf,
 } from '../src/governance/materiality.js';
@@ -395,9 +395,33 @@ test('impact comparison ignores unavailable cases rather than inventing a move',
    ===================================================================== */
 
 const testDataset = () => ({
-  id: 'test-set', marketId: 'gb', title: ['T', 'T'], connector: 'x',
+  id: 'test-set', kind: 'timeseries', marketId: 'gb', title: ['T', 'T'], connector: 'x',
   source: { name: 'Src', url: 'https://example.invalid/', licence: 'open', attribution: 'a' },
   refreshHours: 6, staleAfterHours: 48, bearsOn: [], republishable: true, requiresKey: false,
+});
+
+const testFeedDataset = () => ({
+  id: 'test-feed', kind: 'feed', marketId: null, title: ['T', 'T'], connector: 'x',
+  source: { name: 'Src', url: 'https://example.invalid/', licence: 'open', attribution: 'a' },
+  refreshHours: 24, staleAfterHours: 168, bearsOn: [], republishable: true, requiresKey: false,
+});
+
+const feedItems = (n) => Array.from({ length: n }, (_, i) => ({
+  t: new Date(Date.UTC(2026, 0, 1) + i * 3600_000).toISOString(),
+  id: `Publisher:https://example.invalid/${i}`,
+  source: 'Publisher',
+  title: `Headline ${i}`,
+  url: `https://example.invalid/${i}`,
+  category: 'grid',
+  categoryLabel: 'Grid & markets',
+  summary: 'excerpt',
+}));
+
+const feedSnapshot = (items, dataset = testFeedDataset()) => buildSnapshot({
+  dataset,
+  coverage: { from: items[0]?.t ?? null, to: items.at(-1)?.t ?? null, resolution: 'event', points: items.length },
+  units: { record: 'published article metadata' },
+  series: items,
 });
 
 const series = (n, base = 50) => Array.from({ length: n }, (_, i) => ({
@@ -495,6 +519,72 @@ test('validation rejects an out-of-order or malformed series', () => {
   const r = validateSnapshot(bad, d, null);
   assert.equal(r.ok, false);
   assert.match(r.errors.join(' '), /chronologically/);
+});
+
+/* ---- feed datasets ------------------------------------------------------
+   industry-news was published for weeks in a shape no catalogue entry
+   described, so etl:verify called it an orphan on every run and the failure
+   became background noise. These pin the contract that replaced it. */
+
+test('every dataset declares a kind the validator knows how to check', () => {
+  for (const d of DATASETS){
+    assert.ok(DATASET_KINDS.includes(d.kind),
+      `${d.id}: kind "${d.kind}" is not one of ${DATASET_KINDS.join(', ')}. ` +
+      'An undeclared kind is how a snapshot ends up unverifiable.');
+  }
+});
+
+test('a feed bears on nothing — a headline is context, never evidence', () => {
+  for (const d of DATASETS.filter(x => x.kind === 'feed')){
+    assert.deepEqual(d.bearsOn, [],
+      `${d.id}: a feed cannot inform an approved assumption. Non-empty bearsOn would ` +
+      'let trade press open a drift proposal against the model.');
+  }
+});
+
+test('a well-formed feed passes the checks that reject a price series', () => {
+  const r = validateSnapshot(feedSnapshot(feedItems(5)), testFeedDataset(), null);
+  assert.deepEqual(r.errors, []);
+  assert.equal(r.ok, true);
+});
+
+test('feed validation rejects a relative link, a missing title and a duplicate id', () => {
+  const items = feedItems(4);
+  items[0].url = '/relative/path';
+  items[1].title = '';
+  items[3].id = items[2].id;
+
+  const r = validateSnapshot(feedSnapshot(items), testFeedDataset(), null);
+  assert.equal(r.ok, false);
+  const text = r.errors.join(' ');
+  assert.match(text, /absolute source URL/);
+  assert.match(text, /no title/);
+  assert.match(text, /repeats id/);
+});
+
+test('feed validation rejects an item dated in the future', () => {
+  const items = feedItems(3);
+  items[2].t = new Date(Date.now() + 7 * 24 * 3600_000).toISOString();
+
+  const r = validateSnapshot(feedSnapshot(items), testFeedDataset(), null);
+  assert.equal(r.ok, false);
+  assert.match(r.errors.join(' '), /dated in the future/);
+});
+
+test('feed validation still enforces chronological order', () => {
+  const items = feedItems(3);
+  [items[0].t, items[1].t] = [items[1].t, items[0].t];
+
+  const r = validateSnapshot(feedSnapshot(items), testFeedDataset(), null);
+  assert.equal(r.ok, false);
+  assert.match(r.errors.join(' '), /chronologically/);
+});
+
+test('the price checks never run against a feed', () => {
+  /* The regression this guards: feed items have no numeric `v`, so the
+     timeseries path would reject all of them as malformed points. */
+  const r = validateSnapshot(feedSnapshot(feedItems(5)), testFeedDataset(), null);
+  assert.doesNotMatch(r.errors.join(' '), /finite number|plausible bounds/);
 });
 
 /* =====================================================================

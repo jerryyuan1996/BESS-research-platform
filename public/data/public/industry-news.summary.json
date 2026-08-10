@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "industry-news",
+  "marketId": null,
+  "title": [
+    "Industry news",
+    "行业新闻"
+  ],
+  "authority": "observed",
+  "source": {
+    "name": "Publisher RSS feeds — Modo Energy, Energy-Storage.news, Utility Dive, pv magazine",
+    "url": "https://www.energy-storage.news/feed/",
+    "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
+    "attribution": "Headlines and excerpts remain the property of their publishers"
+  },
+  "fetchedAt": "2026-08-10T16:21:15.048Z",
+  "coverage": {
+    "from": "2026-04-21T06:00:24.000Z",
+    "to": "2026-08-10T14:19:41.000Z",
+    "resolution": "event",
+    "points": 44
+  },
+  "units": {
+    "record": "published article metadata"
+  },
+  "notes": [
+    "Public RSS metadata only: title, publisher excerpt, publication date and source link. No article body is republished."
+  ],
+  "refreshHours": 24,
+  "staleAfterHours": 168,
+  "derived": {
+    "authority": "derived",
+    "items": 44,
+    "sources": 4,
+    "sourcesReporting": 4,
+    "byCategory": {
+      "policy": 7,
+      "grid": 32,
+      "capital": 3,
+      "technology": 2
+    },
+    "sourceStatus": [
+      {
+        "source": "Modo Energy",
+        "homepage": "https://modoenergy.com/research",
+        "status": "ok",
+        "items": 20
+      },
+      {
+        "source": "Energy-Storage.news",
+        "homepage": "https://www.energy-storage.news/",
+        "status": "ok",
+        "items": 20
+      },
+      {
+        "source": "Utility Dive",
+        "homepage": "https://www.utilitydive.com/",
+        "status": "ok",
+        "items": 7
+      },
+      {
+        "source": "pv magazine",
+        "homepage": "https://www.pv-magazine.com/",
+        "status": "ok",
+        "items": 6
+      }
+    ]
+  },
+  "arbitrage": null,
+  "daily": [],
+  "sourceSnapshot": {
+    "file": "industry-news.json",
+    "contentChecksum": "sha256:f1823b0a8174287130dab1726bf29b5a5847f9466ed6fe69d0e5344954831960",
+    "points": 44
+  },
+  "summaryChecksum": "sha256:2b094bb45d237692259640dac5ef9a6cf079978cc3f768c0f9ee8dea260c2008"
+}

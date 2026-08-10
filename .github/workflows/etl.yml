@@ -54,8 +54,10 @@ jobs:
           # Absent secrets are not an error. The connector skips its dataset and
           # the previous snapshot stays in place — see etl/lib/fetch.mjs.
           ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
+        # One command. Industry news used to need a second, separate invocation
+        # because it was not a catalogue dataset; it is now, so `run.mjs` covers
+        # it along with everything else and `--only` can select it by id.
         run: |
-          node etl/news.mjs
           if [ -n "${{ inputs.only }}" ]; then
             node etl/run.mjs --only "${{ inputs.only }}"
           else

@@ -1,496 +1,513 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-07T14:20:01.000Z",
-  "refreshHours": 24,
-  "policy": "Public RSS metadata only: title, short publisher excerpt, publication date and source link. No full article body is republished.",
-  "sources": [
-    {
-      "name": "Modo Energy",
-      "feed": "https://fast.wistia.com/channels/vtx0dp52da/rss",
-      "homepage": "https://modoenergy.com/research",
-      "kind": "Public RSS"
-    },
-    {
-      "name": "Energy-Storage.news",
-      "feed": "https://www.energy-storage.news/feed/",
-      "homepage": "https://www.energy-storage.news/",
-      "kind": "Public RSS"
-    },
-    {
-      "name": "Utility Dive",
-      "feed": "https://www.utilitydive.com/feeds/news/",
-      "homepage": "https://www.utilitydive.com/",
-      "kind": "Public RSS"
-    },
-    {
-      "name": "pv magazine",
-      "feed": "https://www.pv-magazine.com/feed/",
-      "homepage": "https://www.pv-magazine.com/",
-      "kind": "Public RSS"
-    }
+  "datasetId": "industry-news",
+  "marketId": null,
+  "title": [
+    "Industry news",
+    "行业新闻"
   ],
-  "sourceStatus": [
+  "authority": "observed",
+  "source": {
+    "name": "Publisher RSS feeds — Modo Energy, Energy-Storage.news, Utility Dive, pv magazine",
+    "url": "https://www.energy-storage.news/feed/",
+    "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
+    "attribution": "Headlines and excerpts remain the property of their publishers"
+  },
+  "fetchedAt": "2026-08-10T16:21:15.048Z",
+  "coverage": {
+    "from": "2026-04-21T06:00:24.000Z",
+    "to": "2026-08-10T14:19:41.000Z",
+    "resolution": "event",
+    "points": 44
+  },
+  "units": {
+    "record": "published article metadata"
+  },
+  "series": [
     {
+      "t": "2026-04-21T06:00:24.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3h7r7j196w",
       "source": "Modo Energy",
-      "status": "ok",
-      "items": 20
-    },
-    {
-      "source": "Energy-Storage.news",
-      "status": "ok",
-      "items": 20
-    },
-    {
-      "source": "Utility Dive",
-      "status": "ok",
-      "items": 4
-    },
-    {
-      "source": "pv magazine",
-      "status": "ok",
-      "items": 9
-    }
-  ],
-  "items": [
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
-      "source": "Energy-Storage.news",
-      "title": "US DOE closes US$489 million loan with Pattern Energy to support BESS, natural gas in Puerto Rico",
-      "url": "https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
-      "publishedAt": "2026-08-07T14:20:01.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The US Department of Energy (DOE) has closed a US$489.4 million loan to Amanecer Puerto Rico, a subsidiary of developer Pattern Energy to support Puerto Rico’s electric grid."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/is-the-traditional-ppa-dying-in-southern-africa/",
-      "source": "pv magazine",
-      "title": "Is the traditional PPA dying in Southern Africa?",
-      "url": "https://www.pv-magazine.com/2026/08/07/is-the-traditional-ppa-dying-in-southern-africa/",
-      "publishedAt": "2026-08-07T12:45:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The latest in a series of articles on energy markets in Southern Africa looks at how the region is transitioning away from the traditional power purchase agreements (PPA) that have long driven renewable energy deployment. The post Is the traditional PPA dying in Southern Africa? appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/students-steer-solar-powered-racing-cars-to-glory-in-american-solar-challenge/",
-      "source": "pv magazine",
-      "title": "Students steer solar-powered racing cars to glory in American Solar Challenge",
-      "url": "https://www.pv-magazine.com/2026/08/07/students-steer-solar-powered-racing-cars-to-glory-in-american-solar-challenge/",
-      "publishedAt": "2026-08-07T12:40:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Following months of hard work on their solar cars, the winners of the Electrek American Solar Challenge 2026 were honored at a special awards ceremony held in Amarillo. Tesla is a long-time sponsor of the event, which is open to engineering students globally. The post Students steer solar-powered racing cars to glor…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/apollo-power-claims-certification-first-for-lightweight-flexible-module/",
-      "source": "pv magazine",
-      "title": "Apollo Power claims certification first for lightweight flexible module",
-      "url": "https://www.pv-magazine.com/2026/08/07/apollo-power-claims-certification-first-for-lightweight-flexible-module/",
-      "publishedAt": "2026-08-07T12:20:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Apollo Power CEO Oded Rozenberg tells pv magazine the company believes its new certification is a world first. He also revealed a new solar roofing product is planned for later in 2026. The post Apollo Power claims certification first for lightweight flexible module appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/high-energy-prices-reshape-dutch-solar-market-ahead-of-net-metering-phaseout/",
-      "source": "pv magazine",
-      "title": "High energy prices reshape Dutch solar market ahead of net-metering phaseout",
-      "url": "https://www.pv-magazine.com/2026/08/07/high-energy-prices-reshape-dutch-solar-market-ahead-of-net-metering-phaseout/",
-      "publishedAt": "2026-08-07T12:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Preliminary market data suggests residential PV sales have slowed in the Netherlands this year, while high energy prices, grid congestion and the forthcoming end of net-metering are accelerating demand for batteries. The post High energy prices reshape Dutch solar market ahead of net-metering phaseout appeared first…"
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/august-eclipse-to-test-european-us-grids-with-solar-ramps/",
-      "source": "pv magazine",
-      "title": "August eclipse to test European, US grids with solar ramps",
-      "url": "https://www.pv-magazine.com/2026/08/07/august-eclipse-to-test-european-us-grids-with-solar-ramps/",
-      "publishedAt": "2026-08-07T11:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine, Solcast, a DNV company, explores the expected impact of the forthcoming solar eclipse on August 12. The post August eclipse to test European, US grids with solar ramps appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/saudi-company-to-build-760-mw-of-solar-1077-mwh-of-bess-in-syria/",
-      "source": "pv magazine",
-      "title": "Saudi company to build 760 MW of solar, 1,077 MWh of BESS in Syria",
-      "url": "https://www.pv-magazine.com/2026/08/07/saudi-company-to-build-760-mw-of-solar-1077-mwh-of-bess-in-syria/",
-      "publishedAt": "2026-08-07T11:20:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Syria’s state-owned electric utility has signed three agreements with Saudi’s Al-Harfi Construction company to develop 760 MW of solar and 1,077 MWh of battery energy storage (BESS) capacity. The post Saudi company to build 760 MW of solar, 1,077 MWh of BESS in Syria appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/the-hydrogen-stream-over-1-billion-in-funds-for-projects-in-spain-the-netherlands/",
-      "source": "pv magazine",
-      "title": "The Hydrogen Stream: Over $1 billion in funds for projects in Spain, the Netherlands",
-      "url": "https://www.pv-magazine.com/2026/08/07/the-hydrogen-stream-over-1-billion-in-funds-for-projects-in-spain-the-netherlands/",
-      "publishedAt": "2026-08-07T11:00:00.000Z",
+      "title": "The Behavioural Shift That Makes EV Flexibility Actually Work - Ohme",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3h7r7j196w",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "The Spanish government has allocated €274.2 million for four renewable hydrogen projects with a combined electrolysis capacity of 102.27 MW, while the European Commission has approved a €780 million Dutch scheme to support renewable hydrogen production. The post The Hydrogen Stream: Over $1 billion in funds for proj…"
+      "summary": "Smart EV charging isn't just about saving money on your electricity bill, it's quietly becoming one of the most scalable sources of grid flexibility in Great Britain. Ohme has run the numbers: incentivising 22,000 customers to plug in more often drove a 32–37% increase in plug-in frequency, unlocking dispatchable fl…"
     },
     {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-bnetzas-post-2029-dynamic-grid-fees-to-reward-grid-friendly-behaviour-but-more-clarity-needed/",
-      "source": "Energy-Storage.news",
-      "title": "Germany: BNetzA’s post-2029 dynamic grid fees to reward grid-friendly behaviour, but more clarity needed",
-      "url": "https://www.energy-storage.news/germany-bnetzas-post-2029-dynamic-grid-fees-to-reward-grid-friendly-behaviour-but-more-clarity-needed/",
-      "publishedAt": "2026-08-07T10:27:14.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The German regulator BNetzA's latest draft decision on grid fees from 4 August 2029 onwards still leaves uncertainty for energy storage project business cases."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/worlds-largest-cattle-station-installs-microgrid-as-primary-power-source/",
-      "source": "pv magazine",
-      "title": "World’s largest cattle station installs microgrid as primary power source",
-      "url": "https://www.pv-magazine.com/2026/08/07/worlds-largest-cattle-station-installs-microgrid-as-primary-power-source/",
-      "publishedAt": "2026-08-07T10:00:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The world's largest cattle station, located in South Australia, has deployed rooftop solar to tackle energy reliability and the diesel costs impacting its operations. The post World’s largest cattle station installs microgrid as primary power source appeared first on pv magazine Global ."
-    },
-    {
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/07/emerge-renewables-starts-up-solar-glass-factory-in-india/",
-      "source": "pv magazine",
-      "title": "Emerge Renewables starts up solar glass factory in India",
-      "url": "https://www.pv-magazine.com/2026/08/07/emerge-renewables-starts-up-solar-glass-factory-in-india/",
-      "publishedAt": "2026-08-07T09:30:00.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Emerge Renewables this week announced the lighting of furnaces at its new solar glass manufacturing facility at the Keshwana Industrial Area in Rajasthan. The company says that once fully operational, the facility will be able to produce glass sufficient for 2.5 GW of modules per year. The post Emerge Renewables sta…"
-    },
-    {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=zdljso9mhh",
-      "source": "Modo Energy",
-      "title": "Trailer: Transmission",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=zdljso9mhh",
-      "publishedAt": "2026-08-07T09:15:22.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": ""
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
-      "source": "Energy-Storage.news",
-      "title": "Spanish government awards €360 million for co-located battery storage projects",
-      "url": "https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
-      "publishedAt": "2026-08-07T07:28:37.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Spanish Ministry of Ecological Transition (MITECO) has awarded €360 million (US$415 million) to 1.14GW of solar PV co-located with battery energy storage system (BESS) projects."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ev-manufacturer-ola-electric-brings-cell-to-pack-vertical-integration-into-indias-utility-scale-bess-market-with-20gwh-mou/",
-      "source": "Energy-Storage.news",
-      "title": "EV manufacturer Ola Electric brings cell-to-pack vertical integration into India’s utility-scale BESS market with 20GWh MoU",
-      "url": "https://www.energy-storage.news/ev-manufacturer-ola-electric-brings-cell-to-pack-vertical-integration-into-indias-utility-scale-bess-market-with-20gwh-mou/",
-      "publishedAt": "2026-08-07T07:11:35.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "EV manufacturer Ola Electric has entered India’s utility-scale battery storage market with a vertically integrated business model."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/zebre-submits-180mw-bess-to-australias-epbc-act-as-zen-energy-administration-fails-to-slow-pipeline/",
-      "source": "Energy-Storage.news",
-      "title": "ZEBRE submits 180MW BESS to Australia’s EPBC Act as ZEN Energy administration fails to slow pipeline",
-      "url": "https://www.energy-storage.news/zebre-submits-180mw-bess-to-australias-epbc-act-as-zen-energy-administration-fails-to-slow-pipeline/",
-      "publishedAt": "2026-08-07T03:53:20.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ZEBRE has submitted the 180MW/360MWh Noblevale Battery in Queensland for federal environmental assessment under the EPBC Act."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
-      "source": "Utility Dive",
-      "title": "Video gamers give 110-MW Texas solar project a financing boost",
-      "url": "https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
-      "publishedAt": "2026-08-06T15:58:30.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "&nbsp;&ldquo;Fractionalized&rdquo; virtual power purchase agreements and renewable energy certificate transactions can help underwrite clean energy projects, particularly in volatile energy markets, an executive involved in the transaction told Utility Dive."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/nrg-nears-12-gw-hyperscaler-deal-amid-texas-data-center-pause/827212/",
-      "source": "Utility Dive",
-      "title": "NRG nears 1.2-GW hyperscaler deal amid Texas data center pause",
-      "url": "https://www.utilitydive.com/news/nrg-nears-12-gw-hyperscaler-deal-amid-texas-data-center-pause/827212/",
-      "publishedAt": "2026-08-06T14:16:56.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "President and CEO Robert Gaudette said NRG&rsquo;s approach to delivering customer-backed capacity would thrive in a more restrictive environment for data center development.&nbsp;"
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/eus-chinese-inverter-ban-could-be-sign-of-things-to-come-for-bess-ex-northvolt-bess-exec-says/",
-      "source": "Energy-Storage.news",
-      "title": "EU’s Chinese inverter ban could be sign of things to come for BESS, ex-Northvolt BESS exec says",
-      "url": "https://www.energy-storage.news/eus-chinese-inverter-ban-could-be-sign-of-things-to-come-for-bess-ex-northvolt-bess-exec-says/",
-      "publishedAt": "2026-08-06T13:07:46.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "There is an opportunity for locally designed and manufactured BESS solutions in Europe, with the possibility of future EU controls of Chinese imports, former head of BESS products at Northvolt said."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/texas-data-center-pause-puts-us-pipeline-risk-of-delay-bnef/827185/",
-      "source": "Utility Dive",
-      "title": "Texas data center pause puts 20% of US pipeline at risk of delay: BNEF",
-      "url": "https://www.utilitydive.com/news/texas-data-center-pause-puts-us-pipeline-risk-of-delay-bnef/827185/",
-      "publishedAt": "2026-08-06T12:53:46.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The longer the moratorium stays in place, the greater the risk to Texas&rsquo; data center boom, analysts at Bloomberg NEF said."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/dc-circuit-court-of-appeals-upholds-ferc-plan-to-speed-up-permitting-for-us-energy-projects-grid-interconnection/",
-      "source": "Energy-Storage.news",
-      "title": "DC Circuit Court of Appeals upholds FERC plan to speed up permitting for US energy projects’ grid interconnection",
-      "url": "https://www.energy-storage.news/dc-circuit-court-of-appeals-upholds-ferc-plan-to-speed-up-permitting-for-us-energy-projects-grid-interconnection/",
-      "publishedAt": "2026-08-06T12:50:06.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A US court has upheld a Federal Energy Regulatory Commission (FERC) plan to speed up the permitting process for connecting energy projects to the grid."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/pjm-bess-developers-struggles-to-get-financing-are-often-due-to-inaccurate-financial-modelling-ensights-ceo-says/",
-      "source": "Energy-Storage.news",
-      "title": "PJM BESS developers’ struggles to get financing are often due to inaccurate financial modelling, enSights CEO says",
-      "url": "https://www.energy-storage.news/pjm-bess-developers-struggles-to-get-financing-are-often-due-to-inaccurate-financial-modelling-ensights-ceo-says/",
-      "publishedAt": "2026-08-06T12:36:59.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Market conditions look favourable, but some developers are finding it difficult to prove their revenue projections will hold up."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
-      "source": "Energy-Storage.news",
-      "title": "Ørsted puts 500MWh Old 300 Texas BESS into operation",
-      "url": "https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
-      "publishedAt": "2026-08-06T11:21:34.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Denmark-headquartered multinational energy company Ørsted has put its 250MW/500MWh Old 300 energy storage project in Needville, Texas, US into operation."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-centrica-energy-agree-toll-99mw-297mwh-germany-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Zelestra and Centrica Energy agree toll for 99MW/297MWh Germany BESS",
-      "url": "https://www.energy-storage.news/zelestra-centrica-energy-agree-toll-99mw-297mwh-germany-bess/",
-      "publishedAt": "2026-08-06T11:17:29.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "IPP Zelestra has agreed a long-term toll for a 99MW/297MWh BESS project in Germany with the trading arm of UK-based power group Centrica."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-books-first-big-data-centre-deals-but-manufacturing-ramp-up-delays-hit-revenues/",
-      "source": "Energy-Storage.news",
-      "title": "Fluence books first big data centre deals, but manufacturing ramp-up delays hit revenues",
-      "url": "https://www.energy-storage.news/fluence-books-first-big-data-centre-deals-but-manufacturing-ramp-up-delays-hit-revenues/",
-      "publishedAt": "2026-08-06T08:22:02.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Manufacturing delays have led Fluence to adjust its fiscal year 2026 guidance, even as the company has logged record quarterly orders and a US$6.4 billion backlog."
-    },
-    {
-      "id": "Utility Dive:https://www.utilitydive.com/news/texas-hits-pause-data-center-interconnections/827046/",
-      "source": "Utility Dive",
-      "title": "Facing an estimated 474 GW of interconnection requests, Texas hits pause on data centers",
-      "url": "https://www.utilitydive.com/news/texas-hits-pause-data-center-interconnections/827046/",
-      "publishedAt": "2026-08-05T12:23:45.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Texas Gov. Greg Abbott has called for an audit of all data centers in the Electric Reliability Council of Texas interconnection queue, leading the grid operator to delay its Batch Zero review process."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/base-power-raises-another-us1-billion-in-series-d-financing-for-us-residential-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Base Power raises another US$1 billion in Series D financing for US residential BESS",
-      "url": "https://www.energy-storage.news/base-power-raises-another-us1-billion-in-series-d-financing-for-us-residential-bess/",
-      "publishedAt": "2026-08-05T11:56:06.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Residential energy storage startup Base Power has announced a US$1 billion Series D financing at a US$13 billion post-money valuation, and the launch of its new home battery in production in Austin, Texas, US."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/kkrs-contourglobal-begins-construction-of-sun-at-night-solar-plus-storage-project-in-chile/",
-      "source": "Energy-Storage.news",
-      "title": "KKR’s ContourGlobal begins construction of ‘Sun at Night’ solar-plus-storage project in Chile",
-      "url": "https://www.energy-storage.news/kkrs-contourglobal-begins-construction-of-sun-at-night-solar-plus-storage-project-in-chile/",
-      "publishedAt": "2026-08-05T10:49:14.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Independent power producer (IPP) ContourGlobal has begun construction of its fourth large-scale solar PV and battery storage hybrid project in Chile."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/invinity-sells-43mwh-long-duration-flow-battery-system-to-us-midwest-rural-electric-cooperative/",
-      "source": "Energy-Storage.news",
-      "title": "Invinity sells 43MWh long-duration flow battery system to US Midwest rural electric cooperative",
-      "url": "https://www.energy-storage.news/invinity-sells-43mwh-long-duration-flow-battery-system-to-us-midwest-rural-electric-cooperative/",
-      "publishedAt": "2026-08-05T10:31:52.000Z",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Flow battery company Invinity Energy Systems has sold 43MWh of battery systems to utility Dairyland Power Cooperative for deployment across long duration energy storage (LDES) projects in the US Midwest."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/japan-tokyo-gas-enters-offtake-for-200mwh-fukushima-bess-eku-energy-nears-completion-of-first-project/",
-      "source": "Energy-Storage.news",
-      "title": "Japan: Tokyo Gas enters offtake for 200MWh Fukushima BESS, Eku Energy nears completion of first project",
-      "url": "https://www.energy-storage.news/japan-tokyo-gas-enters-offtake-for-200mwh-fukushima-bess-eku-energy-nears-completion-of-first-project/",
-      "publishedAt": "2026-08-05T05:35:14.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Japanese utility Tokyo Gas has entered into a long-term offtake agreement for a 49.7MW/202.1MWh battery storage project in Fukushima Prefecture."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/largest-bess-in-czech-republic-commissioned-supplied-by-catl-backed-cnte/",
-      "source": "Energy-Storage.news",
-      "title": "Largest BESS in Czech Republic commissioned, supplied by CATL-backed CNTE",
-      "url": "https://www.energy-storage.news/largest-bess-in-czech-republic-commissioned-supplied-by-catl-backed-cnte/",
-      "publishedAt": "2026-08-04T14:04:06.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The largest grid-scale battery energy storage system (BESS) project in the Czech Republic has gone online, supplied by a company invested in by lithium-ion OEM CATL."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/massachusetts-issues-rfp-seeking-1000mw-of-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Massachusetts issues RFP seeking 1,000MW of BESS",
-      "url": "https://www.energy-storage.news/massachusetts-issues-rfp-seeking-1000mw-of-bess/",
-      "publishedAt": "2026-08-04T12:32:11.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Massachusetts’s Department of Energy Resources (DOER) has issued a request for proposals (RFP) for 1,000MW of energy storage in the US state."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/prosalia-and-edp-hybridise-solar-pv-wind-projects-with-batteries-in-portugal-spain/",
-      "source": "Energy-Storage.news",
-      "title": "Prosalia and EDP hybridise solar PV/wind projects with batteries in Portugal, Spain",
-      "url": "https://www.energy-storage.news/prosalia-and-edp-hybridise-solar-pv-wind-projects-with-batteries-in-portugal-spain/",
-      "publishedAt": "2026-08-04T10:56:28.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "IPP Prosalia has commissioned a 15MW/60MWh battery storage system at a solar PV plant in Portugal, while power group EDP has added one to a hybrid wind and solar project in Spain."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/european-multi-day-energy-storage-startup-ore-energy-raises-us43-million-in-series-a/",
-      "source": "Energy-Storage.news",
-      "title": "European multi-day energy storage startup Ore Energy raises US$43 million in Series A",
-      "url": "https://www.energy-storage.news/european-multi-day-energy-storage-startup-ore-energy-raises-us43-million-in-series-a/",
-      "publishedAt": "2026-08-04T10:17:03.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Iron-air battery company Ore Energy has raised US$43 million in a Series A funding round to commercialise its multi-day energy storage technology."
-    },
-    {
-      "id": "Energy-Storage.news:https://www.energy-storage.news/load-smoothing-cold-start-backup-and-speed-to-power-fluence-maps-the-battery-storage-opportunity-for-australian-data-centres/",
-      "source": "Energy-Storage.news",
-      "title": "Load smoothing, cold-start backup and speed-to-power: Fluence maps the battery storage opportunity for Australian data centres",
-      "url": "https://www.energy-storage.news/load-smoothing-cold-start-backup-and-speed-to-power-fluence-maps-the-battery-storage-opportunity-for-australian-data-centres/",
-      "publishedAt": "2026-08-04T04:16:10.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ESN Premium speaks with Fluence's Jeff Monday and Sam Markham on the opportunity battery energy storage could provide data centres in Australia."
-    },
-    {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
-      "source": "Modo Energy",
-      "title": "What Happens When The State Take Risks Private Capital Won't? - GB Energy",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
-      "publishedAt": "2026-07-28T06:00:22.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "GB Energy's £1 million solar investment freed up savings a Hull hospital had left on the table for years. It's an example of what can happen when a state-backed investor takes risks the market won't. GB Energy calls itself an activist investor, built to put public money behind the frontiers where private capital mov…"
-    },
-    {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=dymytru20k",
-      "source": "Modo Energy",
-      "title": "Why Renewables Are Changing How Power Gets Priced - Renewable Exchange",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=dymytru20k",
-      "publishedAt": "2026-07-14T06:00:24.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Many people picture a power purchase agreement as a 15-year mega-deal between a tech giant and a solar farm. In reality, 99% of UK PPAs look nothing like that. Power purchase agreements now sit behind a growing chunk of how the UK's electricity supply is sourced, and getting the price wrong could mean getting locked…"
-    },
-    {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gvcgcyn80i",
-      "source": "Modo Energy",
-      "title": "How Thermal Storage Decarbonises Industrial Heat - ENERGYNEST",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gvcgcyn80i",
-      "publishedAt": "2026-06-23T06:00:00.000Z",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Two thirds of industrial energy demand is heat, not electricity, and most of it still runs on gas. Thermal storage converts cheap electricity into heat, stores it in concrete, and dispatches it when the factory needs it, undercutting the gas bill even though gas is cheaper per unit on average. Alex Robertson, CEO of…"
-    },
-    {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=g4tvkatedu",
-      "source": "Modo Energy",
-      "title": "How Battery Traders Actually Make Money - Statkraft",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=g4tvkatedu",
-      "publishedAt": "2026-06-09T06:00:19.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Most battery revenue projections stop at the day-ahead auction. But the optimisers running multi-gigawatt BESS portfolios argue that's where the money is being left on the table - re-trading a battery through intraday, balancing, and ancillary services can add 50% or more to revenue, and battery offtake structures l…"
-    },
-    {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=14rqfx7kf5",
-      "source": "Modo Energy",
-      "title": "Connections, Capacity & Clean Power: Britain's Grid Reform - NESO",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=14rqfx7kf5",
-      "publishedAt": "2026-06-02T06:00:25.000Z",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The scope of the National Energy System Operator - or NESO - has expanded from running the electricity system to planning Britain's whole energy system across electricity, gas and hydrogen, all while delivering connections reform and steering toward Clean Power 2030. That transformation is reshaping everything from…"
-    },
-    {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3ewfcky4o4",
-      "source": "Modo Energy",
-      "title": "Where Capital Is Flowing in Spanish Renewables - nTeaser",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3ewfcky4o4",
-      "publishedAt": "2026-05-26T06:00:24.000Z",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Three years ago, the best price for a ready-to-build solar project in Spain was €200,000 per megawatt — today it is €50,000. Batteries have moved the opposite way, with ready-to-build prices climbing to around €100,000 per megawatt and a 30GW pipeline now stacking up behind them. Ed Porter sits down with Carmen Izqu…"
-    },
-    {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=w6oz29pc99",
-      "source": "Modo Energy",
-      "title": "Clean Power 2030: Inside Mission Control with Chris Stark",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=w6oz29pc99",
-      "publishedAt": "2026-05-19T06:00:22.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Chris Stark is Head of UK’s Mission for Clean Power, As Head of Mission Control at DESNZ, no one sees the constraint costs, grid bottlenecks and reform of National Pricing trade-offs more clearly. The UK is building a clean power system at a pace not seen since the 1960s, connecting record volumes of wind and solar…"
-    },
-    {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=kv08rl7xf8",
-      "source": "Modo Energy",
-      "title": "Why Germany's Battery Storage Market Is Harder Than It Looks - Terralayr",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=kv08rl7xf8",
-      "publishedAt": "2026-05-12T06:00:21.000Z",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Germany sits at the centre of Europe's energy transition: over 800 distribution networks, deep intraday markets, and a flexibility gap roughly 40 times its battery fleet. But the real question isn't whether the market is big - it's whether it saturates as battery capacity grows, or scales for years yet. Philipp Man…"
-    },
-    {
+      "t": "2026-04-28T06:00:17.000Z",
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=r02yvrja6q",
       "source": "Modo Energy",
       "title": "Solar Saturation & Grid Collapse: Spain's BESS Opportunity - Modo Energy",
       "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=r02yvrja6q",
-      "publishedAt": "2026-04-28T06:00:17.000Z",
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Spain has approximately 42GW of utility-scale solar and 50GW when rooftop is included, yet less than 100MW of grid-connected battery storage. In February, solar capture rates hit €1.30 per megawatt hour, a fraction of the €30–35/MWh needed for a solar project to break even. So why hasn't battery storage followed the…"
     },
     {
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3h7r7j196w",
+      "t": "2026-05-12T06:00:21.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=kv08rl7xf8",
       "source": "Modo Energy",
-      "title": "The Behavioural Shift That Makes EV Flexibility Actually Work - Ohme",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3h7r7j196w",
-      "publishedAt": "2026-04-21T06:00:24.000Z",
+      "title": "Why Germany's Battery Storage Market Is Harder Than It Looks - Terralayr",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=kv08rl7xf8",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "Smart EV charging isn't just about saving money on your electricity bill, it's quietly becoming one of the most scalable sources of grid flexibility in Great Britain. Ohme has run the numbers: incentivising 22,000 customers to plug in more often drove a 32–37% increase in plug-in frequency, unlocking dispatchable fl…"
+      "summary": "Germany sits at the centre of Europe's energy transition: over 800 distribution networks, deep intraday markets, and a flexibility gap roughly 40 times its battery fleet. But the real question isn't whether the market is big - it's whether it saturates as battery capacity grows, or scales for years yet. Philipp Man…"
+    },
+    {
+      "t": "2026-05-19T06:00:22.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=w6oz29pc99",
+      "source": "Modo Energy",
+      "title": "Clean Power 2030: Inside Mission Control with Chris Stark",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=w6oz29pc99",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Chris Stark is Head of UK’s Mission for Clean Power, As Head of Mission Control at DESNZ, no one sees the constraint costs, grid bottlenecks and reform of National Pricing trade-offs more clearly. The UK is building a clean power system at a pace not seen since the 1960s, connecting record volumes of wind and solar…"
+    },
+    {
+      "t": "2026-05-26T06:00:24.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3ewfcky4o4",
+      "source": "Modo Energy",
+      "title": "Where Capital Is Flowing in Spanish Renewables - nTeaser",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3ewfcky4o4",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Three years ago, the best price for a ready-to-build solar project in Spain was €200,000 per megawatt — today it is €50,000. Batteries have moved the opposite way, with ready-to-build prices climbing to around €100,000 per megawatt and a 30GW pipeline now stacking up behind them. Ed Porter sits down with Carmen Izqu…"
+    },
+    {
+      "t": "2026-06-02T06:00:25.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=14rqfx7kf5",
+      "source": "Modo Energy",
+      "title": "Connections, Capacity & Clean Power: Britain's Grid Reform - NESO",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=14rqfx7kf5",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The scope of the National Energy System Operator - or NESO - has expanded from running the electricity system to planning Britain's whole energy system across electricity, gas and hydrogen, all while delivering connections reform and steering toward Clean Power 2030. That transformation is reshaping everything from…"
+    },
+    {
+      "t": "2026-06-09T06:00:19.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=g4tvkatedu",
+      "source": "Modo Energy",
+      "title": "How Battery Traders Actually Make Money - Statkraft",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=g4tvkatedu",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Most battery revenue projections stop at the day-ahead auction. But the optimisers running multi-gigawatt BESS portfolios argue that's where the money is being left on the table - re-trading a battery through intraday, balancing, and ancillary services can add 50% or more to revenue, and battery offtake structures l…"
+    },
+    {
+      "t": "2026-06-23T06:00:00.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gvcgcyn80i",
+      "source": "Modo Energy",
+      "title": "How Thermal Storage Decarbonises Industrial Heat - ENERGYNEST",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gvcgcyn80i",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Two thirds of industrial energy demand is heat, not electricity, and most of it still runs on gas. Thermal storage converts cheap electricity into heat, stores it in concrete, and dispatches it when the factory needs it, undercutting the gas bill even though gas is cheaper per unit on average. Alex Robertson, CEO of…"
+    },
+    {
+      "t": "2026-07-14T06:00:24.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=dymytru20k",
+      "source": "Modo Energy",
+      "title": "Why Renewables Are Changing How Power Gets Priced - Renewable Exchange",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=dymytru20k",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Many people picture a power purchase agreement as a 15-year mega-deal between a tech giant and a solar farm. In reality, 99% of UK PPAs look nothing like that. Power purchase agreements now sit behind a growing chunk of how the UK's electricity supply is sourced, and getting the price wrong could mean getting locked…"
+    },
+    {
+      "t": "2026-07-28T06:00:22.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
+      "source": "Modo Energy",
+      "title": "What Happens When The State Take Risks Private Capital Won't? - GB Energy",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=gecyu229bo",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "GB Energy's £1 million solar investment freed up savings a Hull hospital had left on the table for years. It's an example of what can happen when a state-backed investor takes risks the market won't. GB Energy calls itself an activist investor, built to put public money behind the frontiers where private capital mov…"
+    },
+    {
+      "t": "2026-08-04T12:32:11.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/massachusetts-issues-rfp-seeking-1000mw-of-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Massachusetts issues RFP seeking 1,000MW of BESS",
+      "url": "https://www.energy-storage.news/massachusetts-issues-rfp-seeking-1000mw-of-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Massachusetts’s Department of Energy Resources (DOER) has issued a request for proposals (RFP) for 1,000MW of energy storage in the US state."
+    },
+    {
+      "t": "2026-08-04T14:04:06.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/largest-bess-in-czech-republic-commissioned-supplied-by-catl-backed-cnte/",
+      "source": "Energy-Storage.news",
+      "title": "Largest BESS in Czech Republic commissioned, supplied by CATL-backed CNTE",
+      "url": "https://www.energy-storage.news/largest-bess-in-czech-republic-commissioned-supplied-by-catl-backed-cnte/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The largest grid-scale battery energy storage system (BESS) project in the Czech Republic has gone online, supplied by a company invested in by lithium-ion OEM CATL."
+    },
+    {
+      "t": "2026-08-05T05:35:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/japan-tokyo-gas-enters-offtake-for-200mwh-fukushima-bess-eku-energy-nears-completion-of-first-project/",
+      "source": "Energy-Storage.news",
+      "title": "Japan: Tokyo Gas enters offtake for 200MWh Fukushima BESS, Eku Energy nears completion of first project",
+      "url": "https://www.energy-storage.news/japan-tokyo-gas-enters-offtake-for-200mwh-fukushima-bess-eku-energy-nears-completion-of-first-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Japanese utility Tokyo Gas has entered into a long-term offtake agreement for a 49.7MW/202.1MWh battery storage project in Fukushima Prefecture."
+    },
+    {
+      "t": "2026-08-05T10:31:52.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/invinity-sells-43mwh-long-duration-flow-battery-system-to-us-midwest-rural-electric-cooperative/",
+      "source": "Energy-Storage.news",
+      "title": "Invinity sells 43MWh long-duration flow battery system to US Midwest rural electric cooperative",
+      "url": "https://www.energy-storage.news/invinity-sells-43mwh-long-duration-flow-battery-system-to-us-midwest-rural-electric-cooperative/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Flow battery company Invinity Energy Systems has sold 43MWh of battery systems to utility Dairyland Power Cooperative for deployment across long duration energy storage (LDES) projects in the US Midwest."
+    },
+    {
+      "t": "2026-08-05T10:49:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/kkrs-contourglobal-begins-construction-of-sun-at-night-solar-plus-storage-project-in-chile/",
+      "source": "Energy-Storage.news",
+      "title": "KKR’s ContourGlobal begins construction of ‘Sun at Night’ solar-plus-storage project in Chile",
+      "url": "https://www.energy-storage.news/kkrs-contourglobal-begins-construction-of-sun-at-night-solar-plus-storage-project-in-chile/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Independent power producer (IPP) ContourGlobal has begun construction of its fourth large-scale solar PV and battery storage hybrid project in Chile."
+    },
+    {
+      "t": "2026-08-05T11:56:06.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/base-power-raises-another-us1-billion-in-series-d-financing-for-us-residential-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Base Power raises another US$1 billion in Series D financing for US residential BESS",
+      "url": "https://www.energy-storage.news/base-power-raises-another-us1-billion-in-series-d-financing-for-us-residential-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Residential energy storage startup Base Power has announced a US$1 billion Series D financing at a US$13 billion post-money valuation, and the launch of its new home battery in production in Austin, Texas, US."
+    },
+    {
+      "t": "2026-08-06T08:22:02.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-books-first-big-data-centre-deals-but-manufacturing-ramp-up-delays-hit-revenues/",
+      "source": "Energy-Storage.news",
+      "title": "Fluence books first big data centre deals, but manufacturing ramp-up delays hit revenues",
+      "url": "https://www.energy-storage.news/fluence-books-first-big-data-centre-deals-but-manufacturing-ramp-up-delays-hit-revenues/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Manufacturing delays have led Fluence to adjust its fiscal year 2026 guidance, even as the company has logged record quarterly orders and a US$6.4 billion backlog."
+    },
+    {
+      "t": "2026-08-06T11:17:29.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-centrica-energy-agree-toll-99mw-297mwh-germany-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Zelestra and Centrica Energy agree toll for 99MW/297MWh Germany BESS",
+      "url": "https://www.energy-storage.news/zelestra-centrica-energy-agree-toll-99mw-297mwh-germany-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "IPP Zelestra has agreed a long-term toll for a 99MW/297MWh BESS project in Germany with the trading arm of UK-based power group Centrica."
+    },
+    {
+      "t": "2026-08-06T11:21:34.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
+      "source": "Energy-Storage.news",
+      "title": "Ørsted puts 500MWh Old 300 Texas BESS into operation",
+      "url": "https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Denmark-headquartered multinational energy company Ørsted has put its 250MW/500MWh Old 300 energy storage project in Needville, Texas, US into operation."
+    },
+    {
+      "t": "2026-08-06T12:36:59.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/pjm-bess-developers-struggles-to-get-financing-are-often-due-to-inaccurate-financial-modelling-ensights-ceo-says/",
+      "source": "Energy-Storage.news",
+      "title": "PJM BESS developers’ struggles to get financing are often due to inaccurate financial modelling, enSights CEO says",
+      "url": "https://www.energy-storage.news/pjm-bess-developers-struggles-to-get-financing-are-often-due-to-inaccurate-financial-modelling-ensights-ceo-says/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Market conditions look favourable, but some developers are finding it difficult to prove their revenue projections will hold up."
+    },
+    {
+      "t": "2026-08-06T12:50:06.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/dc-circuit-court-of-appeals-upholds-ferc-plan-to-speed-up-permitting-for-us-energy-projects-grid-interconnection/",
+      "source": "Energy-Storage.news",
+      "title": "DC Circuit Court of Appeals upholds FERC plan to speed up permitting for US energy projects’ grid interconnection",
+      "url": "https://www.energy-storage.news/dc-circuit-court-of-appeals-upholds-ferc-plan-to-speed-up-permitting-for-us-energy-projects-grid-interconnection/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A US court has upheld a Federal Energy Regulatory Commission (FERC) plan to speed up the permitting process for connecting energy projects to the grid."
+    },
+    {
+      "t": "2026-08-06T12:53:46.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/texas-data-center-pause-puts-us-pipeline-risk-of-delay-bnef/827185/",
+      "source": "Utility Dive",
+      "title": "Texas data center pause puts 20% of US pipeline at risk of delay: BNEF",
+      "url": "https://www.utilitydive.com/news/texas-data-center-pause-puts-us-pipeline-risk-of-delay-bnef/827185/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The longer the moratorium stays in place, the greater the risk to Texas&rsquo; data center boom, analysts at Bloomberg NEF said."
+    },
+    {
+      "t": "2026-08-06T13:07:46.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/eus-chinese-inverter-ban-could-be-sign-of-things-to-come-for-bess-ex-northvolt-bess-exec-says/",
+      "source": "Energy-Storage.news",
+      "title": "EU’s Chinese inverter ban could be sign of things to come for BESS, ex-Northvolt BESS exec says",
+      "url": "https://www.energy-storage.news/eus-chinese-inverter-ban-could-be-sign-of-things-to-come-for-bess-ex-northvolt-bess-exec-says/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "There is an opportunity for locally designed and manufactured BESS solutions in Europe, with the possibility of future EU controls of Chinese imports, former head of BESS products at Northvolt said."
+    },
+    {
+      "t": "2026-08-06T14:16:56.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/nrg-nears-12-gw-hyperscaler-deal-amid-texas-data-center-pause/827212/",
+      "source": "Utility Dive",
+      "title": "NRG nears 1.2-GW hyperscaler deal amid Texas data center pause",
+      "url": "https://www.utilitydive.com/news/nrg-nears-12-gw-hyperscaler-deal-amid-texas-data-center-pause/827212/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "President and CEO Robert Gaudette said NRG&rsquo;s approach to delivering customer-backed capacity would thrive in a more restrictive environment for data center development.&nbsp;"
+    },
+    {
+      "t": "2026-08-06T15:58:30.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
+      "source": "Utility Dive",
+      "title": "Video gamers give 110-MW Texas solar project a financing boost",
+      "url": "https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "&nbsp;&ldquo;Fractionalized&rdquo; virtual power purchase agreements and renewable energy certificate transactions can help underwrite clean energy projects, particularly in volatile energy markets, an executive involved in the transaction told Utility Dive."
+    },
+    {
+      "t": "2026-08-06T20:54:49.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/data-center-tva-income-earnings-cumberland/827282/",
+      "source": "Utility Dive",
+      "title": "Data center power sales drive $220M increase in TVA’s net income",
+      "url": "https://www.utilitydive.com/news/data-center-tva-income-earnings-cumberland/827282/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The federal utility&rsquo;s total operating revenue was $10 billion over the first nine months of the fiscal year, up 3% year over year, with a net income of $965 million."
+    },
+    {
+      "t": "2026-08-07T03:53:20.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/zebre-submits-180mw-bess-to-australias-epbc-act-as-zen-energy-administration-fails-to-slow-pipeline/",
+      "source": "Energy-Storage.news",
+      "title": "ZEBRE submits 180MW BESS to Australia’s EPBC Act as ZEN Energy administration fails to slow pipeline",
+      "url": "https://www.energy-storage.news/zebre-submits-180mw-bess-to-australias-epbc-act-as-zen-energy-administration-fails-to-slow-pipeline/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "ZEBRE has submitted the 180MW/360MWh Noblevale Battery in Queensland for federal environmental assessment under the EPBC Act."
+    },
+    {
+      "t": "2026-08-07T07:11:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ev-manufacturer-ola-electric-brings-cell-to-pack-vertical-integration-into-indias-utility-scale-bess-market-with-20gwh-mou/",
+      "source": "Energy-Storage.news",
+      "title": "EV manufacturer Ola Electric brings cell-to-pack vertical integration into India’s utility-scale BESS market with 20GWh MoU",
+      "url": "https://www.energy-storage.news/ev-manufacturer-ola-electric-brings-cell-to-pack-vertical-integration-into-indias-utility-scale-bess-market-with-20gwh-mou/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "EV manufacturer Ola Electric has entered India’s utility-scale battery storage market with a vertically integrated business model."
+    },
+    {
+      "t": "2026-08-07T07:28:37.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
+      "source": "Energy-Storage.news",
+      "title": "Spanish government awards €360 million for co-located battery storage projects",
+      "url": "https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Spanish Ministry of Ecological Transition (MITECO) has awarded €360 million (US$415 million) to 1.14GW of solar PV co-located with battery energy storage system (BESS) projects."
+    },
+    {
+      "t": "2026-08-07T09:15:22.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=zdljso9mhh",
+      "source": "Modo Energy",
+      "title": "Trailer: Transmission",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=zdljso9mhh",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": ""
+    },
+    {
+      "t": "2026-08-07T10:27:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-bnetzas-post-2029-dynamic-grid-fees-to-reward-grid-friendly-behaviour-but-more-clarity-needed/",
+      "source": "Energy-Storage.news",
+      "title": "Germany: BNetzA’s post-2029 dynamic grid fees to reward grid-friendly behaviour, but more clarity needed",
+      "url": "https://www.energy-storage.news/germany-bnetzas-post-2029-dynamic-grid-fees-to-reward-grid-friendly-behaviour-but-more-clarity-needed/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The German regulator BNetzA's latest draft decision on grid fees from 4 August 2029 onwards still leaves uncertainty for energy storage project business cases."
+    },
+    {
+      "t": "2026-08-07T12:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/fate-of-oncors-nearly-300-gw-load-pipeline-unclear-following-texas-data-ce/827303/",
+      "source": "Utility Dive",
+      "title": "Oncor weighs impact of Texas data center freeze on nearly 300-GW load pipeline",
+      "url": "https://www.utilitydive.com/news/fate-of-oncors-nearly-300-gw-load-pipeline-unclear-following-texas-data-ce/827303/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Executives at parent company Sempra said they support the governor's pause on new data center interconnection approvals, citing a need for durable long-term outcomes amid growing public opposition."
+    },
+    {
+      "t": "2026-08-07T14:20:01.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
+      "source": "Energy-Storage.news",
+      "title": "US DOE closes US$489 million loan with Pattern Energy to support BESS, natural gas in Puerto Rico",
+      "url": "https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The US Department of Energy (DOE) has closed a US$489.4 million loan to Amanecer Puerto Rico, a subsidiary of developer Pattern Energy to support Puerto Rico’s electric grid."
+    },
+    {
+      "t": "2026-08-07T14:23:04.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/existing-power-plants-supply-data-centers-constellation/827326/",
+      "source": "Utility Dive",
+      "title": "Constellation CEO: Existing power plants are ‘bedrock’ in supplying data centers",
+      "url": "https://www.utilitydive.com/news/existing-power-plants-supply-data-centers-constellation/827326/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Constellation Energy expects Texas&rsquo; Batch Zero large load interconnection process will resume without &ldquo;meaningful delay.&rdquo;"
+    },
+    {
+      "t": "2026-08-10T07:35:43.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/france-expands-renewable-curtailment-mechanism-amid-negative-prices-lowers-threshold-to-1-mw/",
+      "source": "pv magazine",
+      "title": "France expands renewable curtailment mechanism amid negative prices, lowers threshold to 1 MW",
+      "url": "https://www.pv-magazine.com/2026/08/10/france-expands-renewable-curtailment-mechanism-amid-negative-prices-lowers-threshold-to-1-mw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "France will expand its renewable curtailment mechanism to more solar and wind installations, lowering the capacity threshold from 10 MW to 1 MW in two stages from December 2026. The rules target periods of negative electricity prices, with EDF preparing affected operators for remote shutdowns while maintaining exist…"
+    },
+    {
+      "t": "2026-08-10T07:57:34.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/european-transmission-system-operators-prepare-for-solar-eclipse/",
+      "source": "pv magazine",
+      "title": "European transmission system operators prepare for solar eclipse",
+      "url": "https://www.pv-magazine.com/2026/08/10/european-transmission-system-operators-prepare-for-solar-eclipse/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "European transmission system operators are preparing for the August 12 solar eclipse, which is expected to temporarily reduce photovoltaic generation but pose no threat to electricity supply. French and German grid operators forecast PV output declines of around 9.7 GW and 2 GW, respectively, with the impact expecte…"
+    },
+    {
+      "t": "2026-08-10T08:08:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/serentica-renewables-commissions-first-phase-of-1gwh-bess-for-round-the-clock-renewable-energy-delivery-in-rajasthan-india/",
+      "source": "Energy-Storage.news",
+      "title": "Serentica Renewables commissions first phase of 1GWh BESS for round-the-clock renewable energy delivery in Rajasthan, India",
+      "url": "https://www.energy-storage.news/serentica-renewables-commissions-first-phase-of-1gwh-bess-for-round-the-clock-renewable-energy-delivery-in-rajasthan-india/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Serentica Renewables has commissioned the first phase of a battery storage project that will help deliver round-the-clock (RTC) renewable energy in Rajasthan, India."
+    },
+    {
+      "t": "2026-08-10T08:29:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/south-korea-selects-first-villages-for-community-solar-scheme/",
+      "source": "pv magazine",
+      "title": "South Korea selects first villages for community solar scheme",
+      "url": "https://www.pv-magazine.com/2026/08/10/south-korea-selects-first-villages-for-community-solar-scheme/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Sunshine Income Villages scheme plans to deploy solar installations across South Korea under a resident-led renewable energy profit-sharing model. The post South Korea selects first villages for community solar scheme appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-10T08:58:23.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/zinc-oxide-uv-shield-cuts-heterojunction-solar-cell-degradation-and-boosts-lifetime-output-by-4-8/",
+      "source": "pv magazine",
+      "title": "Zinc oxide UV shield cuts heterojunction solar cell degradation and boosts lifetime output by 4.8%",
+      "url": "https://www.pv-magazine.com/2026/08/10/zinc-oxide-uv-shield-cuts-heterojunction-solar-cell-degradation-and-boosts-lifetime-output-by-4-8/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in China have demonstrated that zinc oxide (ZnO) thin films can act as a 'sunscreen' for heterojunction solar cells, reducing UV-induced degradation while maintaining high visible-light transmission. ZnO-coated modules achieved lower projected LCOE and 4.8% higher cumulative power generation over 25 year…"
+    },
+    {
+      "t": "2026-08-10T11:51:27.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/clemson-university-designs-solar-integrated-electric-vehicle/",
+      "source": "pv magazine",
+      "title": "Clemson University designs solar-integrated electric vehicle",
+      "url": "https://www.pv-magazine.com/2026/08/10/clemson-university-designs-solar-integrated-electric-vehicle/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Deep Orange 17 is an electric vehicle prototype designed to generate more energy than it consumes during a typical day of urban commuting. The post Clemson University designs solar-integrated electric vehicle appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-10T12:29:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/tech-roundup-accure-hydrostor-shoals-and-terraflow-and-qnetic-advance-energy-storage-tech/",
+      "source": "Energy-Storage.news",
+      "title": "Tech ROUNDUP: Accure, Hydrostor, Shoals and TerraFlow, and Qnetic advance energy storage tech",
+      "url": "https://www.energy-storage.news/tech-roundup-accure-hydrostor-shoals-and-terraflow-and-qnetic-advance-energy-storage-tech/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In this news roundup, ACCURE, Hydrostor, Shoals and TerraFlow, and Qnetic claim significant advances in and for energy storage technology."
+    },
+    {
+      "t": "2026-08-10T13:18:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-ipp-avantus-closes-billion-dollar-financing-for-solar-pv-and-battery-storage-projects/",
+      "source": "Energy-Storage.news",
+      "title": "US IPP Avantus closes billion-dollar financing for solar PV and battery storage projects",
+      "url": "https://www.energy-storage.news/us-ipp-avantus-closes-billion-dollar-financing-for-solar-pv-and-battery-storage-projects/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Avantus has closed a US$1.05 billion corporate credit facility to support the company’s IPP strategy and accelerate development of its solar and energy storage portfolio."
+    },
+    {
+      "t": "2026-08-10T13:57:16.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/bangladesh-reinstates-payment-guarantees-to-attract-renewable-energy-investment/",
+      "source": "pv magazine",
+      "title": "Bangladesh reinstates payment guarantees to attract renewable energy investment",
+      "url": "https://www.pv-magazine.com/2026/08/10/bangladesh-reinstates-payment-guarantees-to-attract-renewable-energy-investment/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Bangladesh has reinstated payment guarantees for renewable energy projects to boost investor confidence and attract local and international financing. Industry stakeholders say the move could improve project bankability, unlock new solar projects and help ease the country’s ongoing power crisis. The post Bangladesh…"
+    },
+    {
+      "t": "2026-08-10T14:19:41.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/vistra-texas-data-center-pause-comanche-amazon-earnings/827434/",
+      "source": "Utility Dive",
+      "title": "Vistra supports Texas data center pause, execs say",
+      "url": "https://www.utilitydive.com/news/vistra-texas-data-center-pause-comanche-amazon-earnings/827434/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "&ldquo;I'd like to see the queues culled, at the end of the day,&rdquo; said Vistra CEO Jim Burke in a second quarter earnings call."
     }
-  ]
+  ],
+  "derived": {
+    "authority": "derived",
+    "items": 44,
+    "sources": 4,
+    "sourcesReporting": 4,
+    "byCategory": {
+      "policy": 7,
+      "grid": 32,
+      "capital": 3,
+      "technology": 2
+    },
+    "sourceStatus": [
+      {
+        "source": "Modo Energy",
+        "homepage": "https://modoenergy.com/research",
+        "status": "ok",
+        "items": 20
+      },
+      {
+        "source": "Energy-Storage.news",
+        "homepage": "https://www.energy-storage.news/",
+        "status": "ok",
+        "items": 20
+      },
+      {
+        "source": "Utility Dive",
+        "homepage": "https://www.utilitydive.com/",
+        "status": "ok",
+        "items": 7
+      },
+      {
+        "source": "pv magazine",
+        "homepage": "https://www.pv-magazine.com/",
+        "status": "ok",
+        "items": 6
+      }
+    ]
+  },
+  "notes": [
+    "Public RSS metadata only: title, publisher excerpt, publication date and source link. No article body is republished."
+  ],
+  "refreshHours": 24,
+  "staleAfterHours": 168,
+  "contentChecksum": "sha256:f1823b0a8174287130dab1726bf29b5a5847f9466ed6fe69d0e5344954831960",
+  "envelopeChecksum": "sha256:6e361cdda0cc990d981745b1aa10732602a6abe595cbcb4fcfb906442db1fcad"
 }

@@ -17,7 +17,7 @@
     "etl:verify:public-sources": "node etl/verify-public-sources.mjs",
     "refresh:grid-boundaries": "node scripts/refresh-grid-boundaries.mjs",
     "etl": "node etl/run.mjs",
-    "etl:news": "node etl/news.mjs",
+    "etl:news": "node etl/run.mjs --only industry-news",
     "etl:dry": "node etl/run.mjs --dry-run",
     "etl:verify": "node etl/verify.mjs",
     "etl:propose": "node etl/propose.mjs",

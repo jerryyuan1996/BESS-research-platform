@@ -45,12 +45,18 @@ import * as ecb from './sources/ecb.mjs';
 import * as entsoe from './sources/entsoe.mjs';
 import * as jepx from './sources/jepx.mjs';
 import * as aemoWem from './sources/aemo-wem.mjs';
+import * as news from './sources/news.mjs';
 
 const CONNECTORS = {
   ecb,
   entsoe,
   jepx,
   'aemo-wem': aemoWem,
+  /* News used to run from its own entrypoint, outside this orchestrator and
+     outside the envelope. That is how it ended up unverifiable. It is an
+     ordinary connector now — `npm run etl` covers it, and there is no second
+     command that writes into public/data/. */
+  news,
 };
 
 const argv = process.argv.slice(2);
