@@ -128,38 +128,67 @@ be among them — only its `README.md`. If you see `wa-kemerton-project.json` or
 
 ## Step 2 — Connect Cloudflare Pages
 
+**Cloudflare does not build this site, and must not be connected to Git.**
+
+That is the opposite of the usual Pages setup, so it is worth stating why. If
+Cloudflare builds from a Git connection, it builds on *every* push to `main` and
+does not wait for GitHub Actions. The confidentiality scan, the snapshot
+verifier and the whole test suite would run beside the deployment rather than in
+front of it, and a red CI run would publish anyway. The ETL bot pushes to `main`
+every six hours, so that is not a rare edge case — it is the normal path.
+
+Instead, `.github/workflows/ci.yml` runs the checks, and only if they all pass
+does it upload the built `dist/` and hand those exact bytes to
+`wrangler pages deploy`. The artefact that was scanned is the artefact that
+ships.
+
+### 2a — Create the project without a Git connection
+
 1. Sign in at [dash.cloudflare.com](https://dash.cloudflare.com) (create a free
    account if you need one — no card required).
 2. In the left sidebar: **Workers & Pages** → **Create** → **Pages** tab →
-   **Connect to Git**.
-3. Authorise Cloudflare to read your GitHub account. When GitHub asks which
-   repositories, you can grant access to **only this repository** — do that rather
-   than "All repositories".
-4. Pick `bess-research-platform` → **Begin setup**.
-5. Fill in the build settings exactly:
+   **Upload assets** (*not* "Connect to Git").
+3. Name the project `bess-research-platform`. The name is not cosmetic — it is
+   the `--project-name` in the workflow, it becomes part of the URL, and
+   changing one without the other breaks the deploy.
+4. Upload anything to create the project — the first real deployment from CI
+   replaces it. A folder containing an empty `index.html` is enough.
 
-   | Field | Value |
-   |---|---|
-   | Project name | `bess-research-platform` (becomes part of the URL) |
-   | Production branch | `main` |
-   | Framework preset | **None** |
-   | Build command | `npm run build` |
-   | Build output directory | `dist` |
+> **Already connected to Git from an earlier setup?** Go to the project →
+> **Settings** → **Build** → **Git repository** → **Disconnect**. Leaving it
+> connected gives you two deployments per push: one gated, one not, racing each
+> other onto the same URL. The ungated one wins about half the time.
 
-6. Expand **Environment variables (advanced)** and add one:
+You do not need a build command, a build output directory, or `NODE_VERSION`
+here. Those are GitHub Actions' problem now, and it already pins Node 20.
 
-   | Name | Value |
-   |---|---|
-   | `NODE_VERSION` | `20` |
+### 2b — Create the API token
 
-   This is not optional. Cloudflare's default Node version is older than this
-   project needs, and without it the build fails with a confusing dependency
-   error rather than a clear "wrong Node version" message.
+1. Cloudflare dashboard → your profile → **API Tokens** → **Create Token**.
+2. Use the **Edit Cloudflare Workers** template, or a custom token with
+   **Account → Cloudflare Pages → Edit**. Nothing more: this token only needs to
+   publish a static site.
+3. Copy the token — it is shown once.
+4. Copy your **Account ID** too, from **Workers & Pages** → the right-hand
+   sidebar.
 
-7. **Save and Deploy**.
+### 2c — Give them to GitHub
 
-The first build takes two or three minutes. When it finishes you get a URL like
-`https://bess-research-platform.pages.dev`.
+In the repository: **Settings** → **Secrets and variables** → **Actions** →
+**New repository secret**. Add both:
+
+| Name | Value |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | the token from 2b |
+| `CLOUDFLARE_ACCOUNT_ID` | your account ID |
+
+The deploy job checks for both before it does anything and fails with a pointed
+message if either is missing, so a half-finished setup cannot look like a
+successful publish.
+
+Push to `main`. Actions runs the suite, builds, scans the bundle, verifies the
+snapshots, and publishes. The first deployment takes two or three minutes and
+gives you a URL like `https://bess-research-platform.pages.dev`.
 
 ---
 
@@ -291,8 +320,9 @@ npm test
 git add -A && git commit -m "describe the change" && git push
 ```
 
-Cloudflare rebuilds on the push. If tests fail, fix them first; CI will fail
-anyway and the deploy would ship the failure.
+CI runs every gate, and publishes only if they all pass. If a test fails, nothing
+is deployed and the live site keeps serving the last artefact that did pass —
+you get a red run, not a broken site.
 
 **One scheduling quirk to know:** GitHub disables scheduled workflows in a
 repository with no activity for 60 days, and emails you when it does. The data
@@ -305,7 +335,10 @@ ever goes quiet for a couple of months, check the Actions tab first.
 
 | Symptom | Cause and fix |
 |---|---|
-| Cloudflare build fails on `npm ci` or a dependency | `NODE_VERSION` is not set to `20`. Add it in Pages → Settings → Environment variables, then **Retry deployment** |
+| Two deployments per push, or an unreviewed change reaching the live site | The Cloudflare Git connection is still enabled and building in parallel with CI. Project → Settings → Build → **Disconnect**. Step 2a |
+| Deploy job fails immediately with a message about credentials | `CLOUDFLARE_API_TOKEN` or `CLOUDFLARE_ACCOUNT_ID` is missing or misspelled. Step 2c |
+| Deploy succeeds but the live URL is unchanged | The deployment landed on a preview branch. `--branch=main` in `ci.yml` must match the Pages production branch |
+| `wrangler` reports the project does not exist | The Pages project name is not `bess-research-platform`. Rename it, or change `--project-name` in `ci.yml` — they have to agree |
 | Deep links 404 on refresh, home page fine | `public/_redirects` did not reach `dist/`. Confirm the build output directory is `dist`, not `dist/` or `./dist` |
 | Actions run fails at the commit step | Workflow permissions are still read-only. Step 4 |
 | No pull request appears despite material drift | "Allow GitHub Actions to create and approve pull requests" is unticked. Step 4 |

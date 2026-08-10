@@ -276,21 +276,31 @@ answers. Details: [`src/markets/_shared/README.md`](src/markets/_shared/README.m
 
 ## Deployment
 
-`dist/` is a static bundle suitable for Cloudflare Pages.
+`dist/` is a static bundle hosted on Cloudflare Pages. **GitHub Actions builds and
+publishes it; Cloudflare does not build anything and is not connected to Git.**
 
 | Setting | Value |
 |---|---|
-| Build command | `npm run build` |
-| Output directory | `dist` |
-| Node version | 20 |
+| Built by | `.github/workflows/ci.yml`, job `deploy` |
+| Build command | `npm run build` (in Actions, on Node 20) |
+| Uploaded directory | `dist`, as the artefact `verified-dist` |
+| Pages project | `bess-research-platform` |
+| Required secrets | `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` |
+
+The ordering is the point. The suite runs, the bundle is built, the
+confidentiality scan reads that build, the snapshot verifier runs — and only
+then are those same bytes uploaded and deployed. Nothing is rebuilt for the
+deploy, so what shipped is what was scanned.
+
+A Cloudflare Git connection would undo this: Pages builds on push without
+waiting for Actions, and the ETL bot pushes to `main` every six hours. See
+[`docs/publishing.md`](docs/publishing.md) for the setup and for how to
+disconnect it if it was ever enabled.
 
 `public/_redirects` is copied into `dist/` and provides the SPA fallback (`/* /index.html 200`) that
 History-API routing needs, so `/markets/wa` resolves on a direct visit or a refresh.
 
 No Workers, no functions, no build-time environment variables, no build secrets.
-
-Set `NODE_VERSION=20` as a Pages environment variable — the default is older than this project needs
-and the resulting failure does not say so.
 
 ### Publishing it
 
@@ -300,15 +310,17 @@ The short version:
 
 1. Push to GitHub. **Make the repository private** — the confidential WA layer is still in git
    history even though it no longer reaches the build. The published site is public either way.
-2. Cloudflare Pages → **Create a project** → connect the repository, with the settings above.
-3. GitHub → Settings → Actions → General → **Read and write permissions**, and allow Actions to
+2. Cloudflare Pages → **Create a project** → **Upload assets**, named
+   `bess-research-platform`. Do *not* connect it to Git.
+3. Add the repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, so CI can publish.
+4. GitHub → Settings → Actions → General → **Read and write permissions**, and allow Actions to
    create pull requests. The data refresh commits, and drift proposals open PRs.
-4. *(Optional, for the four ENTSO-E markets)* add a repository secret `ENTSOE_TOKEN`. Register at
+5. *(Optional, for the four ENTSO-E markets)* add a repository secret `ENTSOE_TOKEN`. Register at
    [transparency.entsoe.eu](https://transparency.entsoe.eu/) and email their service desk to have API
    access enabled — it is not automatic on signup.
 
-After that the site maintains itself: the scheduled refresh commits to `main` and Cloudflare rebuilds
-on the push.
+After that the site maintains itself: the scheduled refresh commits to `main`, CI re-runs every gate
+against the new data, and the deploy job publishes only if they all pass.
 
 Without the token the site still deploys and works — the four ENTSO-E feeds show as unconfigured on
 `/data` and every other market updates normally.

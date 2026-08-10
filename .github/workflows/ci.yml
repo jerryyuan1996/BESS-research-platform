@@ -50,3 +50,68 @@ jobs:
       # exists to prevent, so it fails the build rather than shipping.
       - name: Verify snapshot integrity
         run: npm run etl:verify
+
+      # THE ARTEFACT THAT PASSED IS THE ARTEFACT THAT SHIPS.
+      #
+      # Handing dist/ to the deploy job rather than rebuilding it there is the
+      # whole point of the gate. A rebuild would produce a *different* set of
+      # bytes that no confidentiality scan had ever looked at, which is the same
+      # class of mistake as scanning before building — the check and the thing
+      # being checked would drift apart. These are the exact bytes the step
+      # above scanned.
+      - name: Keep the verified artefact
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-dist
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error
+
+  deploy:
+    name: Publish the verified artefact to Cloudflare Pages
+    needs: test
+    # Only a push to main deploys. Pull requests run every check above and stop
+    # there — a fork PR must never be able to reach the production project.
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    # The ETL pushes to main every six hours. Without this, a slow deploy of an
+    # older commit could land on top of a newer one. Newer always wins; in-flight
+    # older runs are cancelled rather than queued.
+    concurrency:
+      group: pages-production
+      cancel-in-progress: true
+    steps:
+      # Belt and braces for a repository whose highest-frequency committer is a
+      # bot. If the secrets are absent the job stops here with an explanation
+      # rather than failing inside wrangler with a credentials error, and — more
+      # importantly — rather than appearing to have deployed when it did not.
+      - name: Confirm the deploy credentials exist
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are not both set."
+            echo "::error::See docs/publishing.md — until they are, nothing is published by CI."
+            exit 1
+          fi
+
+      - name: Fetch the artefact that passed
+        uses: actions/download-artifact@v4
+        with:
+          name: verified-dist
+          path: dist
+
+      # --branch=main marks this a production deployment on the Pages project.
+      # Any other value would publish to a preview URL instead, which looks
+      # successful and changes nothing on the live site.
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=bess-research-platform --branch=main
