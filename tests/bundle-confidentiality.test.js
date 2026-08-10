@@ -84,30 +84,30 @@ function skipWithoutDist(t, message){
  */
 const FORBIDDEN = [
   // The fund's named asset and its site
-  '[REDACTED-PROJECT]',
-  '[REDACTED-SITE]',
-  '[REDACTED-SITE]',
+  'Project Kemerton',
+  'Wellesley',
+  'Lot 5',
 
   // Confidential third-party report and the sites in it
-  '[REDACTED-ADVISER]',
-  '[REDACTED-REPORT]',
-  '[REDACTED-SITE]',
-  '[REDACTED-SITE]',
-  '[REDACTED-SITE]',
+  'Marsden Jacob',
+  'CONFIDENTIAL_THIRD_PARTY',
+  'Baldivis',
+  'Hopeland',
+  'Mimegarra',
 
   // Project technical specification
-  '[REDACTED-SPEC]',
+  'SCS4600',
 
   // Financial-model figures and document names
-  '[REDACTED-FIGURE]',
-  '[REDACTED-FIGURE]',
-  '[REDACTED-FIGURE]',
-  '[REDACTED-DOCUMENT]',
-  '[REDACTED-DOCUMENT]',
-  '[REDACTED-DOCUMENT]',
+  '242234000',
+  '254517000',
+  '249026000',
+  'Kemerton Financial Model',
+  'Kemerton GPS report',
+  'Kemerton BESS Schedule',
 
   // Links to the confidential document store
-  '[REDACTED-LINK]',
+  'drive.google.com',
 ];
 
 async function walk(dir){

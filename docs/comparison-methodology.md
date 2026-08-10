@@ -255,8 +255,11 @@ npm test                 # 74 assertions, including 45 baseline cases
 npm run test:baseline    # regenerate the fixture from the legacy prototype
 ```
 
-`tests/fixtures/generate.mjs` executes lines 683–811 of `legacy/global-cockpit-0727-v1.html`
-verbatim in Node and dumps every output. `tests/baseline.test.js` compares the modular engine
+`tests/fixtures/generate.mjs` carries lines 683–811 of the original prototype — its normalization
+layer — transcribed verbatim, and runs them in Node to dump every output. It is a copy, not a
+reader: the prototype itself has been removed from the repository and its history
+([`legacy/README.md`](../legacy/README.md)), and the generator is unaffected because it never opened
+that file. `tests/baseline.test.js` compares the modular engine
 against it at a relative tolerance of 1e-12, and separately pins the headline figures the prototype
 quotes in its own commentary.
 

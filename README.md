@@ -3,8 +3,10 @@
 Cross-market battery-storage investment research. A global cockpit that normalizes fourteen markets
 into one currency and one model, plus a detailed dashboard per market.
 
-Refactored from a single 1.65 MB HTML prototype into a modular Vite site. The prototype is kept at
-[`legacy/global-cockpit-0727-v1.html`](legacy/) for verification.
+Refactored from a single 1.65 MB HTML prototype into a modular Vite site. The prototype itself was
+removed from the repository and its history on 10 August 2026 — it carried confidential WA project
+material inline — so verification now rests on the extracted fixture rather than the original. See
+[`legacy/README.md`](legacy/README.md).
 
 ---
 
@@ -308,8 +310,10 @@ No Workers, no functions, no build-time environment variables, no build secrets.
 
 The short version:
 
-1. Push to GitHub. **Make the repository private** — the confidential WA layer is still in git
-   history even though it no longer reaches the build. The published site is public either way.
+1. Push to GitHub. **Keep the repository private.** The confidential WA material was purged from
+   the working tree and from all history on 10 August 2026, so this is no longer a containment
+   measure — but the purge only rewrote *this* repository. Any clone or fork taken before that date
+   still has the original objects. The published site is public either way.
 2. Cloudflare Pages → **Create a project** → **Upload assets**, named
    `bess-research-platform`. Do *not* connect it to Git.
 3. Add the repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, so CI can publish.

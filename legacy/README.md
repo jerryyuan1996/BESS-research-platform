@@ -1,63 +1,39 @@
 # `legacy/`
 
-`global-cockpit-0727-v1.html` — the original consolidated prototype, copied verbatim from
-`reference/Global BESS Dashboard Cockpit_0727_v1.html` (1,461,482 chars / 16,000 lines).
+## The prototype is no longer in this repository
 
-## This is not production code
+`global-cockpit-0727-v1.html` — the original 16,000-line consolidated prototype —
+was removed from the working tree **and from all Git history** on 10 August 2026,
+along with the `reference/` copy it was taken from.
 
-It exists only for:
+It had to go. The prototype predates the split between public research and
+confidential project material, so it carried the fund's WA asset inline: the deal
+name, the site, the third-party report and its figures, and links to the document
+store. `local-data/` and the production-bundle guard were both introduced later
+and neither applied to it — the guard scans `dist/`, and this file was never part
+of a build, so it sat tracked and unscanned in every clone of the repository.
 
-- behaviour comparison
-- calculation comparison
-- visual comparison
-- migration verification
+Jerry keeps a local copy outside Git, under `local-data/`. It is not obtainable
+from this repository by anyone else, by design.
 
-It is not imported by the application, not part of the build, and must not be linked from the site.
+## What this means for the baseline test
 
-## It is load-bearing for the test suite
+Nothing. Both `npm test` and `npm run test:baseline` pass without the file,
+because nothing in the suite ever read it:
 
-`tests/fixtures/generate.mjs` extracts lines 683–811 of this file — the normalization layer — and
-executes them in Node to produce `tests/fixtures/legacy-baseline.json`. `tests/baseline.test.js` then
-asserts the modular engine reproduces all 45 outputs.
+- `tests/fixtures/generate.mjs` holds lines 683–811 of the prototype — the
+  normalization layer, FX, `MARKETS`, `runCase` — **transcribed verbatim into the
+  generator**. It executes that copy. It never opened the HTML, and it names
+  `legacy/global-cockpit-0727-v1.html` only as a `generatedFrom` provenance
+  string.
+- `tests/fixtures/legacy-baseline.json` holds the resulting 45 pinned outputs.
+- `tests/baseline.test.js` reads that JSON and asserts the modular engine still
+  reproduces them.
 
-**Do not edit or move this file.** The generator addresses it by line range, and the whole point of
-the baseline is that it comes from the original rather than from the new code. Regenerate with:
+So the baseline remains fully re-derivable from a clean clone. The comparison
+still comes from the prototype's own code rather than from a restatement of it —
+that code just lives in the generator now instead of inside a 16,000-line
+document that could not be published.
 
-```bash
-npm run test:baseline
-```
-
-## Where things are in it
-
-| Lines | Contents |
-|---|---|
-| 1–314 | `<head>` + the entire 307-line design system |
-| 315–317 | `<body>`: `#app`, `#tip` |
-| 318–1212 | the global cockpit — home page |
-| 366–644 | the SVG chart library (one of six identical copies) |
-| 683–811 | the normalization layer — FX, MARKETS, `runCase` |
-| 1213–5570 | `<script type="text/plain" id="dash-wa">` — full HTML document |
-| 5571–8308 | `#dash-gb` |
-| 8309–10994 | `#dash-ie` |
-| 10995–13482 | `#dash-ro` |
-| 13483–15998 | `#dash-pl` |
-
-Each dashboard payload is a complete standalone HTML document stored as escaped text: every `</` was
-rewritten to `<\/` at build time so the embedded HTML could not terminate its own `<script>` element.
-To read one as HTML, extract the block and reverse that substitution.
-
-All five dashboards are now migrated into `src/markets/`. This file remains the authority for
-verifying them — and the source of `tests/fixtures/legacy-baseline.json`. See
-[`../docs/adding-a-market.md`](../docs/adding-a-market.md) for the extraction procedure that was
-used, and [`../docs/migration-notes.md`](../docs/migration-notes.md) §11 for what the diff of the
-four later payloads revealed.
-
-## Why it was built this way
-
-The prototype's own comment explains the iframe:
-
-> every JS context stays isolated (the dashboards all declare top-level `state`, `M`, `render`
-> and would collide if concatenated into one document)
-
-That was a workaround for six programs sharing global names, not a design choice — and it is what ES
-module scope removed. Background: [`../docs/migration-notes.md`](../docs/migration-notes.md).
+Verified after the removal: 401 tests pass, and `npm run test:baseline` produces
+a fixture identical to the committed one.

@@ -114,7 +114,7 @@ grid and RCM tabs. What is confidential is *this fund's asset* at that location.
 ### The original flags, kept for the record
 
 `src/markets/wa/data/optimizer.js` contains `MJA2026` — a scenario layer marked
-`[REDACTED-REPORT]` in the prototype, chart-reconstructed from a [REDACTED-ADVISER] Associates
+`CONFIDENTIAL_THIRD_PARTY` in the prototype, chart-reconstructed from a Marsden Jacob Associates
 report. The prototype's own comment says *"Do not expose in a public deployment."*
 
 It was migrated as-is because this phase preserves behaviour and does not change content. **It ships

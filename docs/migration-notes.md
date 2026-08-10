@@ -1,9 +1,14 @@
 # Migration notes — Phase A analysis
 
-Source of truth: `legacy/global-cockpit-0727-v1.html`
-(copied verbatim from `reference/Global BESS Dashboard Cockpit_0727_v1.html`, 1,461,482 chars / 16,000 lines).
+Source of truth: `legacy/global-cockpit-0727-v1.html`, 1,461,482 chars / 16,000 lines.
 
-This document records what the prototype actually *is*, before any code was moved. It is the
+> **The prototype is no longer in this repository.** It was removed from the working tree and from
+> all Git history on 10 August 2026 because it carried confidential WA project material inline —
+> see [`legacy/README.md`](../legacy/README.md). Every line reference below described that file
+> accurately when it was written and is preserved as a record of the migration. None of them can be
+> followed in a clean clone.
+
+This document records what the prototype actually *was*, before any code was moved. It is the
 reference for verifying that the refactor preserved behaviour.
 
 ---
