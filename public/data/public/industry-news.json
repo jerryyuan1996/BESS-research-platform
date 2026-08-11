@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-11T13:46:12.251Z",
+  "fetchedAt": "2026-08-11T19:28:30.686Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-11T13:09:25.000Z",
+    "to": "2026-08-11T13:55:02.000Z",
     "resolution": "event",
-    "points": 47
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -125,16 +125,6 @@
       "summary": "GB Energy's £1 million solar investment freed up savings a Hull hospital had left on the table for years. It's an example of what can happen when a state-backed investor takes risks the market won't. GB Energy calls itself an activist investor, built to put public money behind the frontiers where private capital mov…"
     },
     {
-      "t": "2026-08-06T11:17:29.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-centrica-energy-agree-toll-99mw-297mwh-germany-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Zelestra and Centrica Energy agree toll for 99MW/297MWh Germany BESS",
-      "url": "https://www.energy-storage.news/zelestra-centrica-energy-agree-toll-99mw-297mwh-germany-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "IPP Zelestra has agreed a long-term toll for a 99MW/297MWh BESS project in Germany with the trading arm of UK-based power group Centrica."
-    },
-    {
       "t": "2026-08-06T11:21:34.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
       "source": "Energy-Storage.news",
@@ -173,26 +163,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "There is an opportunity for locally designed and manufactured BESS solutions in Europe, with the possibility of future EU controls of Chinese imports, former head of BESS products at Northvolt said."
-    },
-    {
-      "t": "2026-08-06T15:58:30.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
-      "source": "Utility Dive",
-      "title": "Video gamers give 110-MW Texas solar project a financing boost",
-      "url": "https://www.utilitydive.com/news/video-gamers-give-110-mw-texas-solar-project-a-financing-boost/827228/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "&nbsp;&ldquo;Fractionalized&rdquo; virtual power purchase agreements and renewable energy certificate transactions can help underwrite clean energy projects, particularly in volatile energy markets, an executive involved in the transaction told Utility Dive."
-    },
-    {
-      "t": "2026-08-06T20:54:49.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/data-center-tva-income-earnings-cumberland/827282/",
-      "source": "Utility Dive",
-      "title": "Data center power sales drive $220M increase in TVA’s net income",
-      "url": "https://www.utilitydive.com/news/data-center-tva-income-earnings-cumberland/827282/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The federal utility&rsquo;s total operating revenue was $10 billion over the first nine months of the fiscal year, up 3% year over year, with a net income of $965 million."
     },
     {
       "t": "2026-08-07T03:53:20.000Z",
@@ -245,16 +215,6 @@
       "summary": "The German regulator BNetzA's latest draft decision on grid fees from 4 August 2029 onwards still leaves uncertainty for energy storage project business cases."
     },
     {
-      "t": "2026-08-07T12:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/fate-of-oncors-nearly-300-gw-load-pipeline-unclear-following-texas-data-ce/827303/",
-      "source": "Utility Dive",
-      "title": "Oncor weighs impact of Texas data center freeze on nearly 300-GW load pipeline",
-      "url": "https://www.utilitydive.com/news/fate-of-oncors-nearly-300-gw-load-pipeline-unclear-following-texas-data-ce/827303/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Executives at parent company Sempra said they support the governor's pause on new data center interconnection approvals, citing a need for durable long-term outcomes amid growing public opposition."
-    },
-    {
       "t": "2026-08-07T14:20:01.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
       "source": "Energy-Storage.news",
@@ -263,16 +223,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The US Department of Energy (DOE) has closed a US$489.4 million loan to Amanecer Puerto Rico, a subsidiary of developer Pattern Energy to support Puerto Rico’s electric grid."
-    },
-    {
-      "t": "2026-08-07T14:23:04.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/existing-power-plants-supply-data-centers-constellation/827326/",
-      "source": "Utility Dive",
-      "title": "Constellation CEO: Existing power plants are ‘bedrock’ in supplying data centers",
-      "url": "https://www.utilitydive.com/news/existing-power-plants-supply-data-centers-constellation/827326/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Constellation Energy expects Texas&rsquo; Batch Zero large load interconnection process will resume without &ldquo;meaningful delay.&rdquo;"
     },
     {
       "t": "2026-08-10T08:08:47.000Z",
@@ -312,7 +262,7 @@
       "url": "https://www.utilitydive.com/news/ppl-blackstone-joint-venture-secures-5-gw-of-gas-turbines-for-data-centers/827408/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "Although the PJM Interconnection aims to hold a backstop reliability auction in late September, CEO Vincent Sorgi said he expects bilateral contracting will be the main pathway for adding generation in the region."
+      "summary": "Although the PJM Interconnection aims to hold a backstop reliability auction in late September,&nbsp;Vincent Sorgi, PPL president and CEO, said he expects bilateral contracting will be the main pathway for adding generation in the region."
     },
     {
       "t": "2026-08-10T14:19:41.000Z",
@@ -333,6 +283,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The residential solar-and-storage provider is looking to diversify its revenue while increasing focus on &ldquo;unlocking value from the customers and assets we already have,&rdquo; CEO Mary Powell told investors."
+    },
+    {
+      "t": "2026-08-10T17:25:53.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/competitive-transmission-delivers-benefits-for-the-ai-economy-and-customers/826056/",
+      "source": "Utility Dive",
+      "title": "Competitive transmission delivers benefits for the AI economy and customers",
+      "url": "https://www.utilitydive.com/news/competitive-transmission-delivers-benefits-for-the-ai-economy-and-customers/826056/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A group of incumbent utilities asked FERC to suspend competitive bidding for some transmission projects.&nbsp;The responsive filings are in, and the record does more than rebut the complaint &mdash; it dismantles it, writes&nbsp;Jim Rossi of Vanderbilt Law School."
     },
     {
       "t": "2026-08-11T08:29:32.000Z",
@@ -493,16 +453,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Energy storage developer and system integrator Energy Vault has entered into a strategic agreement supporting hyperscaler AI data centres for a customer in Texas, US."
+    },
+    {
+      "t": "2026-08-11T13:55:02.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/rept-battero-surpasses-2025-full-year-results-in-h1-2026-launches-aidc-tailored-storage-systems/",
+      "source": "Energy-Storage.news",
+      "title": "REPT BATTERO surpasses 2025 full-year results in H1 2026, launches AIDC-tailored storage systems",
+      "url": "https://www.energy-storage.news/rept-battero-surpasses-2025-full-year-results-in-h1-2026-launches-aidc-tailored-storage-systems/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "On August 10, REPT BATTERO reported that its H1 2026 performance had already surpassed its 2025 full-year results, with residential storage cell shipments ranking first globally. The company also unveiled its new cell products for AIDC (AI Data Center), commercial vehicles, and low-altitude aircrafts."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 47,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 11,
-      "grid": 32,
+      "grid": 29,
       "capital": 2,
       "technology": 2
     },
@@ -523,7 +493,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 7
+        "items": 4
       },
       {
         "source": "pv magazine",
@@ -538,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:1381836a1256190601919eb5047c9d97b785c99ad97ab78c230383341752c2cf",
-  "envelopeChecksum": "sha256:69a6349e6d516f3e0be8a3aa84f8c21110450d1f89f6b6c2051dedf55ea72760"
+  "contentChecksum": "sha256:95276879e39f975c815e3f5d756e189db6466a794adb70434d7d8b8b8186585f",
+  "envelopeChecksum": "sha256:b2af9fb7c75ad524a550fe164123505687141b7248663bc3f72d567e7efa16a6"
 }
