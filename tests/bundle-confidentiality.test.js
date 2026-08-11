@@ -157,9 +157,14 @@ async function walk(dir){
 test('no confidential marker appears in the built bundle', async (t) => {
   if (skipWithoutDist(t, `${SCAN_REL}/ not present — run "npm run build" first`)) return;
 
-  /* Source maps are included. vite.config.js sets sourcemap:true, which
-     publishes readable source, so they are scanned exactly like the code — a
-     marker reachable through a .map is as published as one in the bundle. */
+  /* `.map` is in the filter even though vite.config.js sets sourcemap:FALSE and
+     no .map file is currently emitted. That is deliberate, and the reason is in
+     the config's own comment: a dist/ scan once found confidential names
+     reachable through a .map long after the bundle itself was clean, which is
+     why production sourcemaps were turned off. Keeping the extension here means
+     that if anyone ever turns them back on, the maps are scanned like the code
+     rather than becoming an unscanned publication channel. A marker reachable
+     through a .map is as published as one in the bundle. */
   const files = (await walk(DIST)).filter(f => /\.(js|css|html|map|json)$/.test(f));
   assert.ok(files.length > 0, `${SCAN_REL}/ contains no scannable files`);
 
