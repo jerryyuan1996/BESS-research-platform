@@ -13,57 +13,17 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-08-11T02:30:59.713Z",
+  "fetchedAt": "2026-08-11T07:41:00.704Z",
   "coverage": {
-    "from": "2025-08-11T03:00:00.000Z",
+    "from": "2025-08-11T08:00:00.000Z",
     "to": "2026-08-10T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17225
+    "points": 17215
   },
   "units": {
     "price": "AUD/MWh"
   },
   "series": [
-    {
-      "t": "2025-08-11T03:00:00.000Z",
-      "v": 89.03
-    },
-    {
-      "t": "2025-08-11T03:30:00.000Z",
-      "v": 89.63
-    },
-    {
-      "t": "2025-08-11T04:00:00.000Z",
-      "v": 89.48
-    },
-    {
-      "t": "2025-08-11T04:30:00.000Z",
-      "v": 90.02
-    },
-    {
-      "t": "2025-08-11T05:00:00.000Z",
-      "v": 91.53
-    },
-    {
-      "t": "2025-08-11T05:30:00.000Z",
-      "v": 93.96
-    },
-    {
-      "t": "2025-08-11T06:00:00.000Z",
-      "v": 90.15
-    },
-    {
-      "t": "2025-08-11T06:30:00.000Z",
-      "v": 89.02
-    },
-    {
-      "t": "2025-08-11T07:00:00.000Z",
-      "v": 100.36
-    },
-    {
-      "t": "2025-08-11T07:30:00.000Z",
-      "v": 103.72
-    },
     {
       "t": "2025-08-11T08:00:00.000Z",
       "v": 115.67
@@ -68933,6 +68893,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 96,
-  "contentChecksum": "sha256:37efdb3d905254acb5fd573bacea9602e0341b6972ebf1f00b4de1b5b4fe2f3e",
-  "envelopeChecksum": "sha256:290048750147fd1c2505a16f8ed6e43e2cc69096a9a3a97463c8e09c4d8aab79"
+  "contentChecksum": "sha256:8f0dd1a663fce54d7732cf3f4d8f5ed57329ad15dde1ce0482707b00ba0bdc16",
+  "envelopeChecksum": "sha256:805297b6fa37764a8f375409f8320df24990896b5cbe16eabea22fce0796cca5"
 }

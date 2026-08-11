@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-11T02:30:55.854Z",
+  "fetchedAt": "2026-08-11T07:40:57.391Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-10T15:40:13.000Z",
+    "to": "2026-08-11T06:35:46.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -345,26 +345,6 @@
       "summary": "Constellation Energy expects Texas&rsquo; Batch Zero large load interconnection process will resume without &ldquo;meaningful delay.&rdquo;"
     },
     {
-      "t": "2026-08-10T07:35:43.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/france-expands-renewable-curtailment-mechanism-amid-negative-prices-lowers-threshold-to-1-mw/",
-      "source": "pv magazine",
-      "title": "France expands renewable curtailment mechanism amid negative prices, lowers threshold to 1 MW",
-      "url": "https://www.pv-magazine.com/2026/08/10/france-expands-renewable-curtailment-mechanism-amid-negative-prices-lowers-threshold-to-1-mw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "France will expand its renewable curtailment mechanism to more solar and wind installations, lowering the capacity threshold from 10 MW to 1 MW in two stages from December 2026. The rules target periods of negative electricity prices, with EDF preparing affected operators for remote shutdowns while maintaining exist…"
-    },
-    {
-      "t": "2026-08-10T07:57:34.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/european-transmission-system-operators-prepare-for-solar-eclipse/",
-      "source": "pv magazine",
-      "title": "European transmission system operators prepare for solar eclipse",
-      "url": "https://www.pv-magazine.com/2026/08/10/european-transmission-system-operators-prepare-for-solar-eclipse/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "European transmission system operators are preparing for the August 12 solar eclipse, which is expected to temporarily reduce photovoltaic generation but pose no threat to electricity supply. French and German grid operators forecast PV output declines of around 9.7 GW and 2 GW, respectively, with the impact expecte…"
-    },
-    {
       "t": "2026-08-10T08:08:47.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/serentica-renewables-commissions-first-phase-of-1gwh-bess-for-round-the-clock-renewable-energy-delivery-in-rajasthan-india/",
       "source": "Energy-Storage.news",
@@ -373,26 +353,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Serentica Renewables has commissioned the first phase of a battery storage project that will help deliver round-the-clock (RTC) renewable energy in Rajasthan, India."
-    },
-    {
-      "t": "2026-08-10T08:29:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/south-korea-selects-first-villages-for-community-solar-scheme/",
-      "source": "pv magazine",
-      "title": "South Korea selects first villages for community solar scheme",
-      "url": "https://www.pv-magazine.com/2026/08/10/south-korea-selects-first-villages-for-community-solar-scheme/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Sunshine Income Villages scheme plans to deploy solar installations across South Korea under a resident-led renewable energy profit-sharing model. The post South Korea selects first villages for community solar scheme appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-10T08:58:23.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/10/zinc-oxide-uv-shield-cuts-heterojunction-solar-cell-degradation-and-boosts-lifetime-output-by-4-8/",
-      "source": "pv magazine",
-      "title": "Zinc oxide UV shield cuts heterojunction solar cell degradation and boosts lifetime output by 4.8%",
-      "url": "https://www.pv-magazine.com/2026/08/10/zinc-oxide-uv-shield-cuts-heterojunction-solar-cell-degradation-and-boosts-lifetime-output-by-4-8/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in China have demonstrated that zinc oxide (ZnO) thin films can act as a 'sunscreen' for heterojunction solar cells, reducing UV-induced degradation while maintaining high visible-light transmission. ZnO-coated modules achieved lower projected LCOE and 4.8% higher cumulative power generation over 25 year…"
     },
     {
       "t": "2026-08-10T11:51:27.000Z",
@@ -463,16 +423,46 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The residential solar-and-storage provider is looking to diversify its revenue while increasing focus on &ldquo;unlocking value from the customers and assets we already have,&rdquo; CEO Mary Powell told investors."
+    },
+    {
+      "t": "2026-08-11T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/microgrids-can-have-macro-impact/",
+      "source": "pv magazine",
+      "title": "Microgrids can have macro impact",
+      "url": "https://www.pv-magazine.com/2026/08/11/microgrids-can-have-macro-impact/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar microgrids can bring power and prosperity to communities across the Caribbean, according to Kiesha Farnum, head of partnerships and programs at the Caribbean Centre for Renewable Energy and Energy Efficiency (CCREEE). Modeling work on proposed systems examines how microgrids can impact riverine villages, fores…"
+    },
+    {
+      "t": "2026-08-11T06:25:26.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/seg-solar-opens-4-gw-texas-facility-announces-plan-to-become-the-nations-largest-crystalline-silicon-module-maker/",
+      "source": "pv magazine",
+      "title": "SEG Solar opens 4 GW Texas module factory",
+      "url": "https://www.pv-magazine.com/2026/08/11/seg-solar-opens-4-gw-texas-facility-announces-plan-to-become-the-nations-largest-crystalline-silicon-module-maker/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The company said it plans to have 10.6 GW of operational module assembly capacity by 2027, with a future HJT cell facility also planned for the U.S. The post SEG Solar opens 4 GW Texas module factory appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-11T06:35:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/biosolar-design-boosts-rooftop-pv-performance-by-23-25/",
+      "source": "pv magazine",
+      "title": "‘Biosolar’ design boosts rooftop PV performance by 23.25%",
+      "url": "https://www.pv-magazine.com/2026/08/11/biosolar-design-boosts-rooftop-pv-performance-by-23-25/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Research shows ‘biosolar’ technology can increase the performance of PV panels, with a New South Wales study finding that integrating rooftop gardens with solar panels increased PV energy generation by up to 23.25%. The post ‘Biosolar’ design boosts rooftop PV performance by 23.25% appeared first on pv magazine Glob…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 8,
-      "grid": 32,
+      "grid": 31,
       "capital": 2,
       "technology": 2
     },
@@ -499,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 5
       }
     ]
   },
@@ -508,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:bcd11ced209ade4ffda7eb2274a872bc31c0bd8634bc2f9dc578ea1763a14c97",
-  "envelopeChecksum": "sha256:7a31ae37c8112c8e56c6e9411a03eb86dca02aca92e5eea9c838931cda419072"
+  "contentChecksum": "sha256:641fe602e183e5bcb5432ccadec39745827c0d13bb9f555c4643aaa63eaa5ba4",
+  "envelopeChecksum": "sha256:db49650a4b97459eecfa8cb4679d38d4bb8c59ab971eb2a170be03276529a949"
 }
