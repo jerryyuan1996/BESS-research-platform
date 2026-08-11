@@ -55,6 +55,13 @@ tmp/
 deliverables/*
 !deliverables/_comparison_system/
 
+# The one place inside that exception where project material legitimately lands:
+# the skill stages PDF/XLSX extractions under .work/<run_id>/ before writing the
+# deliverable. Without this line the exception above would make those extracts
+# trackable — the confidential half of a run, sitting in the one directory that
+# is not deny-by-default.
+deliverables/_comparison_system/.work/
+
 # ---------------------------------------------------------------------------
 # Build + tooling
 # ---------------------------------------------------------------------------
