@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-12T13:51:31.166Z",
+  "fetchedAt": "2026-08-12T19:35:14.506Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-12T13:13:23.000Z",
+    "to": "2026-08-12T17:00:00.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -193,26 +193,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Avantus has closed a US$1.05 billion corporate credit facility to support the company’s IPP strategy and accelerate development of its solar and energy storage portfolio."
-    },
-    {
-      "t": "2026-08-10T13:27:12.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ppl-blackstone-joint-venture-secures-5-gw-of-gas-turbines-for-data-centers/827408/",
-      "source": "Utility Dive",
-      "title": "PPL-Blackstone joint venture secures 5 GW of gas turbines for data centers in Pennsylvania",
-      "url": "https://www.utilitydive.com/news/ppl-blackstone-joint-venture-secures-5-gw-of-gas-turbines-for-data-centers/827408/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Although the PJM Interconnection aims to hold a backstop reliability auction in late September,&nbsp;Vincent Sorgi, PPL president and CEO, said he expects bilateral contracting will be the main pathway for adding generation in the region."
-    },
-    {
-      "t": "2026-08-10T14:19:41.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/vistra-texas-data-center-pause-comanche-amazon-earnings/827434/",
-      "source": "Utility Dive",
-      "title": "Vistra supports Texas data center pause, execs say",
-      "url": "https://www.utilitydive.com/news/vistra-texas-data-center-pause-comanche-amazon-earnings/827434/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "&ldquo;I'd like to see the queues culled, at the end of the day,&rdquo; said Vistra CEO Jim Burke in a second quarter earnings call."
     },
     {
       "t": "2026-08-10T15:40:13.000Z",
@@ -445,6 +425,16 @@
       "summary": "Coalburn 1 is the first of three UK transmission-connected battery energy storage system (BESS) projects developed by Copenhagen Infrastructure Partners (CIP) to enter commercial operations. The post Europe’s largest battery comes online in Scotland appeared first on pv magazine Global ."
     },
     {
+      "t": "2026-08-12T13:01:39.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/",
+      "source": "Utility Dive",
+      "title": "PJM eyes data center, crypto reliability requirements after 3.8 GW of load trips offline",
+      "url": "https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The PJM Interconnection is considering setting &ldquo;ride-through&rdquo; standards after data centers tripped offline in Northern Virginia on July 22, the latest and largest such event in PJM&rsquo;s history, the grid operator said."
+    },
+    {
       "t": "2026-08-12T13:13:23.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/france-sees-sharp-rise-in-solar-module-recycling/",
       "source": "pv magazine",
@@ -453,17 +443,47 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "France collected 13,760 tonnes of end-of-life solar modules in 2025, up 40% from the previous year, as recycling activity accelerates. Government agency Soren expects annual volumes to reach nearly 180,000 tonnes by 2040, underscoring the growing importance of recycling to Europe’s industrial supply chain. The post…"
+    },
+    {
+      "t": "2026-08-12T15:02:23.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/xcel-asks-colorado-supreme-court-to-facilitate-wind-farm-interconnection/827572/",
+      "source": "Utility Dive",
+      "title": "Xcel asks Colorado Supreme Court to facilitate wind farm interconnection",
+      "url": "https://www.utilitydive.com/news/xcel-asks-colorado-supreme-court-to-facilitate-wind-farm-interconnection/827572/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "In June,&nbsp;a district court judge rejected PSCo&rsquo;s effort to acquire roughly 550 feet of easement via eminent domain to connect two nearly complete wind farms totaling more than 1 GW. The utility says the project delays are harming ratepayers."
+    },
+    {
+      "t": "2026-08-12T15:02:51.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/dominion-energy-scc-transmission-costs-data-center/827693/",
+      "source": "Utility Dive",
+      "title": "Dominion ordered to directly assign some transmission costs to data centers",
+      "url": "https://www.utilitydive.com/news/dominion-energy-scc-transmission-costs-data-center/827693/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Virginia State Corporation Commission said it may use an upcoming docket to weigh whether this policy &ldquo;could or should&rdquo; also apply to more upstream transmission costs."
+    },
+    {
+      "t": "2026-08-12T17:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/supply-constraints-will-limit-ercot-peak-demand-growth-report/827677/",
+      "source": "Utility Dive",
+      "title": "Texas hits new peak demand record, but supply constraints will limit growth",
+      "url": "https://www.utilitydive.com/news/supply-constraints-will-limit-ercot-peak-demand-growth-report/827677/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Ascend Analytics says more than 80% of new large loads seeking interconnection will not have matching generation online by 2030, even as data centers and industrial demand continue to surge."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 10,
-      "grid": 28,
-      "capital": 3,
+      "grid": 29,
+      "capital": 4,
       "technology": 2
     },
     "sourceStatus": [
@@ -483,7 +503,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 6
       },
       {
         "source": "pv magazine",
@@ -498,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:efc421a0bc8991f9150b18c0731eb02069c55e65e4f1eefcbb2ca19b315f629d",
-  "envelopeChecksum": "sha256:44aa7d8d1361a3fdf677395125388694bf3fd327eb5b079f0baa0177c613c87f"
+  "contentChecksum": "sha256:f57014dda452acb95bd5dc310788a3e52f9b42571d386d907ec51425a06bae9a",
+  "envelopeChecksum": "sha256:3096c3b745e89523cd1c2bd940ac683e717d7806aab99dc3d2575f0c7983c921"
 }
