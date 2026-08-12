@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-12T07:55:37.924Z",
+  "fetchedAt": "2026-08-12T13:51:31.166Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-12T07:27:28.000Z",
+    "to": "2026-08-12T13:13:23.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -123,66 +123,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "GB Energy's £1 million solar investment freed up savings a Hull hospital had left on the table for years. It's an example of what can happen when a state-backed investor takes risks the market won't. GB Energy calls itself an activist investor, built to put public money behind the frontiers where private capital mov…"
-    },
-    {
-      "t": "2026-08-06T11:21:34.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
-      "source": "Energy-Storage.news",
-      "title": "Ørsted puts 500MWh Old 300 Texas BESS into operation",
-      "url": "https://www.energy-storage.news/orsted-puts-500mwh-old-300-texas-bess-into-operation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Denmark-headquartered multinational energy company Ørsted has put its 250MW/500MWh Old 300 energy storage project in Needville, Texas, US into operation."
-    },
-    {
-      "t": "2026-08-06T12:36:59.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/pjm-bess-developers-struggles-to-get-financing-are-often-due-to-inaccurate-financial-modelling-ensights-ceo-says/",
-      "source": "Energy-Storage.news",
-      "title": "PJM BESS developers’ struggles to get financing are often due to inaccurate financial modelling, enSights CEO says",
-      "url": "https://www.energy-storage.news/pjm-bess-developers-struggles-to-get-financing-are-often-due-to-inaccurate-financial-modelling-ensights-ceo-says/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Market conditions look favourable, but some developers are finding it difficult to prove their revenue projections will hold up."
-    },
-    {
-      "t": "2026-08-06T12:50:06.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/dc-circuit-court-of-appeals-upholds-ferc-plan-to-speed-up-permitting-for-us-energy-projects-grid-interconnection/",
-      "source": "Energy-Storage.news",
-      "title": "DC Circuit Court of Appeals upholds FERC plan to speed up permitting for US energy projects’ grid interconnection",
-      "url": "https://www.energy-storage.news/dc-circuit-court-of-appeals-upholds-ferc-plan-to-speed-up-permitting-for-us-energy-projects-grid-interconnection/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A US court has upheld a Federal Energy Regulatory Commission (FERC) plan to speed up the permitting process for connecting energy projects to the grid."
-    },
-    {
-      "t": "2026-08-06T13:07:46.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/eus-chinese-inverter-ban-could-be-sign-of-things-to-come-for-bess-ex-northvolt-bess-exec-says/",
-      "source": "Energy-Storage.news",
-      "title": "EU’s Chinese inverter ban could be sign of things to come for BESS, ex-Northvolt BESS exec says",
-      "url": "https://www.energy-storage.news/eus-chinese-inverter-ban-could-be-sign-of-things-to-come-for-bess-ex-northvolt-bess-exec-says/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "There is an opportunity for locally designed and manufactured BESS solutions in Europe, with the possibility of future EU controls of Chinese imports, former head of BESS products at Northvolt said."
-    },
-    {
-      "t": "2026-08-07T03:53:20.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/zebre-submits-180mw-bess-to-australias-epbc-act-as-zen-energy-administration-fails-to-slow-pipeline/",
-      "source": "Energy-Storage.news",
-      "title": "ZEBRE submits 180MW BESS to Australia’s EPBC Act as ZEN Energy administration fails to slow pipeline",
-      "url": "https://www.energy-storage.news/zebre-submits-180mw-bess-to-australias-epbc-act-as-zen-energy-administration-fails-to-slow-pipeline/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ZEBRE has submitted the 180MW/360MWh Noblevale Battery in Queensland for federal environmental assessment under the EPBC Act."
-    },
-    {
-      "t": "2026-08-07T07:11:35.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ev-manufacturer-ola-electric-brings-cell-to-pack-vertical-integration-into-indias-utility-scale-bess-market-with-20gwh-mou/",
-      "source": "Energy-Storage.news",
-      "title": "EV manufacturer Ola Electric brings cell-to-pack vertical integration into India’s utility-scale BESS market with 20GWh MoU",
-      "url": "https://www.energy-storage.news/ev-manufacturer-ola-electric-brings-cell-to-pack-vertical-integration-into-indias-utility-scale-bess-market-with-20gwh-mou/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "EV manufacturer Ola Electric has entered India’s utility-scale battery storage market with a vertically integrated business model."
     },
     {
       "t": "2026-08-07T07:28:37.000Z",
@@ -335,16 +275,6 @@
       "summary": "This year has seen a shift in the financing environment for merchant BESS projects in Germany for the worse."
     },
     {
-      "t": "2026-08-11T11:01:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/market-intelligence-innovation-and-trust-the-manufacturers-new-playbook-for-staying-ahead-in-europes-storage-market/",
-      "source": "pv magazine",
-      "title": "Market intelligence, innovation, and trust: The manufacturer’s new playbook for staying ahead in Europe’s storage market",
-      "url": "https://www.pv-magazine.com/2026/08/11/market-intelligence-innovation-and-trust-the-manufacturers-new-playbook-for-staying-ahead-in-europes-storage-market/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Europe’s energy storage market is becoming increasingly segmented, with residential, C&I, and utility-scale growth following distinct country-level policy, economic, and market dynamics. For manufacturers, success increasingly depends on combining market intelligence, downstream partnerships, brand trust, and techno…"
-    },
-    {
       "t": "2026-08-11T11:15:10.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/copenhagen-infrastructure-partners-closes-on-750mwh-solar-plus-storage-project-in-mexico/",
       "source": "Energy-Storage.news",
@@ -353,26 +283,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Danish investment firm Copenhagen Infrastructure Partners (CIP) has reached financial close of the La Esperanza Solar energy storage-plus-solar PV project in the state of Campeche on Mexico’s Yucatán Peninsula."
-    },
-    {
-      "t": "2026-08-11T11:42:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/beyond-modules-why-cell-manufacturing-will-shape-indias-next-solar-growth-story/",
-      "source": "pv magazine",
-      "title": "Beyond modules: Why cell manufacturing will shape India’s next solar growth story",
-      "url": "https://www.pv-magazine.com/2026/08/11/beyond-modules-why-cell-manufacturing-will-shape-indias-next-solar-growth-story/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In just a year, ALMM-listed solar PV cell manufacturing capacity has increased from around 13 GW to roughly 31 GW across eight revisions. With a substantial pipeline of commissioned, under-construction and announced projects, capacity is expected to cross 100 GW by June 2027. The post Beyond modules: Why cell manufa…"
-    },
-    {
-      "t": "2026-08-11T12:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/philippines-eases-rules-for-own-use-solar-systems/",
-      "source": "pv magazine",
-      "title": "Philippines eases rules for own-use solar systems",
-      "url": "https://www.pv-magazine.com/2026/08/11/philippines-eases-rules-for-own-use-solar-systems/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Philippines has streamlined guidelines governing the use of micro-solar and zero-export solar systems. These PV systems no longer require certificates of compliance, while plug-and-play solar less than 1 kW in size is now exempt from building permits. The post Philippines eases rules for own-use solar systems ap…"
     },
     {
       "t": "2026-08-11T12:34:32.000Z",
@@ -405,75 +315,155 @@
       "summary": "On August 10, REPT BATTERO reported that its H1 2026 performance had already surpassed its 2025 full-year results, with residential storage cell shipments ranking first globally. The company also unveiled its new cell products for AIDC (AI Data Center), commercial vehicles, and low-altitude aircrafts."
     },
     {
-      "t": "2026-08-12T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/irelands-leap-of-faith-to-power-data-centers/",
-      "source": "pv magazine",
-      "title": "Ireland’s leap of faith to power data centers",
-      "url": "https://www.pv-magazine.com/2026/08/12/irelands-leap-of-faith-to-power-data-centers/",
+      "t": "2026-08-12T08:18:46.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-double-bess-capacity-2028-eia-reports/",
+      "source": "Energy-Storage.news",
+      "title": "US on track to double BESS capacity by 2028, EIA reports",
+      "url": "https://www.energy-storage.news/us-double-bess-capacity-2028-eia-reports/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Under Ireland’s Large Energy User Action Plan (LEAP), 10 MW-plus data centers must provide at least 80% of their energy demand through new onsite renewable energy generation and storage. But whether data centers can meaningfully contribute to Ireland’s decarbonization depends on the success of its grid buildout, rep…"
+      "summary": "Operators anticipate bringing an additional 54GW of battery storage capacity online over the next two and half years, according to the US Energy Information Administration (EIA)."
     },
     {
-      "t": "2026-08-12T05:45:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/tesla-files-tax-incentive-application-for-10-1-billion-texas-solar-cell-plant/",
+      "t": "2026-08-12T08:22:28.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/feoc-regulations-reshape-us-bess-financing-as-compliance-becomes-capital-allocation-issue/",
+      "source": "Energy-Storage.news",
+      "title": "FEOC regulations reshape US BESS financing as compliance becomes capital allocation issue",
+      "url": "https://www.energy-storage.news/feoc-regulations-reshape-us-bess-financing-as-compliance-becomes-capital-allocation-issue/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Energy-Storage.news Premium speaks with Mona Dajani of law firm Cooley, about how FEOC has changed BESS project negotiations and financing."
+    },
+    {
+      "t": "2026-08-12T08:36:18.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/octopus-australia-turns-attention-to-128mwh-dc-coupled-bess-at-solar-plus-storage-site/",
+      "source": "Energy-Storage.news",
+      "title": "Octopus Australia turns attention to 128MWh DC-coupled BESS at solar-plus-storage site",
+      "url": "https://www.energy-storage.news/octopus-australia-turns-attention-to-128mwh-dc-coupled-bess-at-solar-plus-storage-site/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Octopus Australia has shifted its focus to constructing a DC-coupled battery energy storage system (BESS) in Victoria."
+    },
+    {
+      "t": "2026-08-12T08:43:10.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/colombia-earthquake-affects-power-grid-but-no-damage-reported-at-solar-plants/",
       "source": "pv magazine",
-      "title": "Tesla files tax incentive application for $10.1 billion Texas solar cell plant",
-      "url": "https://www.pv-magazine.com/2026/08/12/tesla-files-tax-incentive-application-for-10-1-billion-texas-solar-cell-plant/",
+      "title": "Colombia: Earthquake affects power grid, but no damage reported at solar plants",
+      "url": "https://www.pv-magazine.com/2026/08/12/colombia-earthquake-affects-power-grid-but-no-damage-reported-at-solar-plants/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A magnitude-7.4 earthquake in Colombia disrupted electricity supplies, leaving up to 20% of demand unmet in some affected regions. No damage has been reported at utility-scale solar plants, with the main impacts concentrated on transmission and distribution infrastructure. The post Colombia: Earthquake affects power…"
+    },
+    {
+      "t": "2026-08-12T08:50:39.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/epec-group-lands-grid-connection-contract-for-843mwh-solar-plus-storage-site-in-queensland-australia/",
+      "source": "Energy-Storage.news",
+      "title": "EPEC Group lands grid connection contract for 843MWh solar-plus-storage site in Queensland, Australia",
+      "url": "https://www.energy-storage.news/epec-group-lands-grid-connection-contract-for-843mwh-solar-plus-storage-site-in-queensland-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "EPEC Group has been awarded a contract to cover the high-voltage connection works for the Lower Wonga Solar Farm in Queensland, Australia, by the EPC contractor INTEC Energy Solutions."
+    },
+    {
+      "t": "2026-08-12T08:55:40.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/around-14-gw-of-irregular-distributed-solar-threatens-grid-security-in-brazil-warns-tuv-rheinland/",
+      "source": "pv magazine",
+      "title": "Around 14 GW of irregular distributed solar threatens grid security in Brazil, warns TÜV Rheinland",
+      "url": "https://www.pv-magazine.com/2026/08/12/around-14-gw-of-irregular-distributed-solar-threatens-grid-security-in-brazil-warns-tuv-rheinland/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Unauthorized distributed-generation expansions in Brazil could add up to 14 GW of unregistered capacity, complicating grid planning and operation, TÜV Rheinland warns. The expansion of PV systems up to 5 MW without proper design reviews or approvals also raises electrical safety risks and compliance concerns. The po…"
+    },
+    {
+      "t": "2026-08-12T09:05:52.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/south-korea-approves-upper-limits-on-renewable-energy-setback-distances/",
+      "source": "pv magazine",
+      "title": "South Korea approves upper limits on renewable energy setback distances",
+      "url": "https://www.pv-magazine.com/2026/08/12/south-korea-approves-upper-limits-on-renewable-energy-setback-distances/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "Tesla has submitted plans for a $10.1 billion vertically integrated solar cell manufacturing campus in Fort Bend County under the internal name Project Crystal Sun, seeking property tax limitations under the Texas Jobs, Energy, Technology and Innovation Act. The post Tesla files tax incentive application for $10.1 b…"
+      "summary": "South Korea’s government has approved new national limits on the setback distances that local governments can impose on renewable energy installations in a bid to open up more suitable sites for future solar and wind projects. The post South Korea approves upper limits on renewable energy setback distances appeared…"
     },
     {
-      "t": "2026-08-12T05:47:14.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/researchers-near-100-silver-recovery-from-end-of-life-solar-panels/",
+      "t": "2026-08-12T09:34:22.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/new-online-map-shows-germanys-renewable-energy-feed-in-capacity-across-distribution-grids/",
       "source": "pv magazine",
-      "title": "Researchers near 100% silver recovery from end-of-life solar panels",
-      "url": "https://www.pv-magazine.com/2026/08/12/researchers-near-100-silver-recovery-from-end-of-life-solar-panels/",
+      "title": "New online map shows Germany’s renewable energy feed-in capacity across distribution grids",
+      "url": "https://www.pv-magazine.com/2026/08/12/new-online-map-shows-germanys-renewable-energy-feed-in-capacity-across-distribution-grids/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Researchers at the University of Newcastle have achieved almost 100% silver recovery from end-of-life solar panels using a proven mineral-processing technology they believe could make solar panel recycling more economically viable. The post Researchers near 100% silver recovery from end-of-life solar panels appeared…"
+      "summary": "A new free online map details renewable energy and storage systems connected to Germany’s 871 distribution grids, with data updated every six months. The post New online map shows Germany’s renewable energy feed-in capacity across distribution grids appeared first on pv magazine Global ."
     },
     {
-      "t": "2026-08-12T05:49:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/deye-launches-2-5-mw-ci-storage-system-with-0-ms-switching/",
-      "source": "pv magazine",
-      "title": "Deye launches 2.5 MW C&I storage system with 0 ms switching",
-      "url": "https://www.pv-magazine.com/2026/08/12/deye-launches-2-5-mw-ci-storage-system-with-0-ms-switching/",
+      "t": "2026-08-12T09:50:02.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/acciona-energia-to-add-33mw-66mwh-bess-in-spain/",
+      "source": "Energy-Storage.news",
+      "title": "Acciona Energía to add 33MW/66MWh BESS in Spain",
+      "url": "https://www.energy-storage.news/acciona-energia-to-add-33mw-66mwh-bess-in-spain/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The Chinese manufacturer said its new commercial and industrial energy storage solution combines 100 kW or 125 kW PCS units with 257.23 kWh battery clusters. It can be scaled to 2.5 MW. The post Deye launches 2.5 MW C&I storage system with 0 ms switching appeared first on pv magazine Global ."
+      "summary": "Spanish renewables developer Acciona Energía has unveiled plans to install two battery energy storage systems (BESS)."
     },
     {
-      "t": "2026-08-12T06:24:37.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/european-patent-office-revokes-hanwhas-long-disputed-passivation-patent/",
+      "t": "2026-08-12T10:04:36.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/unlimited-long-duration-long-lived-pumped-hydro-storage/",
       "source": "pv magazine",
-      "title": "European Patent Office revokes Hanwha’s long-disputed passivation patent",
-      "url": "https://www.pv-magazine.com/2026/08/12/european-patent-office-revokes-hanwhas-long-disputed-passivation-patent/",
+      "title": "Unlimited long duration, long-lived pumped hydro storage",
+      "url": "https://www.pv-magazine.com/2026/08/12/unlimited-long-duration-long-lived-pumped-hydro-storage/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The European Patent Office has revoked Hanwha Solutions’ 689 patent covering passivation technology used in silicon solar cells, citing a lack of inventive step. The decision follows years of patent litigation between Hanwha Q Cells and solar manufacturers including JinkoSolar, Longi and REC across Europe, the US an…"
+      "summary": "Solar- and wind-dominated grids need abundant long-duration storage, and off-river pumped hydro offers enormous potential, with 800,000 sites worldwide and storage capacity vastly exceeding global requirements. Pumped hydro is mature, low-cost, long-lived, and locally deployable, complementing batteries by providing…"
     },
     {
-      "t": "2026-08-12T07:27:28.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/perovskite-solar-tested-at-over-5000-m-altitude/",
+      "t": "2026-08-12T11:26:52.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/koreas-shinsung-eg-opens-350-mw-pv-module-production-line/",
       "source": "pv magazine",
-      "title": "Perovskite solar tested at over 5,000 m altitude",
-      "url": "https://www.pv-magazine.com/2026/08/12/perovskite-solar-tested-at-over-5000-m-altitude/",
+      "title": "Korea’s Shinsung E&G opens 350 MW PV module production line",
+      "url": "https://www.pv-magazine.com/2026/08/12/koreas-shinsung-eg-opens-350-mw-pv-module-production-line/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Monochrome will test a perovskite PV prototype at an altitude of around 5,150 meters during an alpine expedition in Pakistan's Karakoram region. The field trial will assess power-generation performance and durability under harsh, off-grid conditions as the company explores perovskite technology for future BIPV appli…"
+      "summary": "The South Korean company says its new PV module production line will supply high-quality n-type solar modules to a series of projects in the Saemangeum development region. The post Korea’s Shinsung E&G opens 350 MW PV module production line appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-12T11:31:49.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/sungrow-provides-bess-to-verano-energys-606mwh-chilean-hybrid-project/",
+      "source": "Energy-Storage.news",
+      "title": "Sungrow provides BESS to Verano Energy’s 606MWh Chilean hybrid project",
+      "url": "https://www.energy-storage.news/sungrow-provides-bess-to-verano-energys-606mwh-chilean-hybrid-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Independent power producer (IPP) Verano Energy has awarded the battery energy storage system (BESS) supply for its 152MW/606MWh Observatorio project to Sungrow."
+    },
+    {
+      "t": "2026-08-12T12:51:54.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/europes-largest-battery-comes-online-in-scotland/",
+      "source": "pv magazine",
+      "title": "Europe’s largest battery comes online in Scotland",
+      "url": "https://www.pv-magazine.com/2026/08/12/europes-largest-battery-comes-online-in-scotland/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Coalburn 1 is the first of three UK transmission-connected battery energy storage system (BESS) projects developed by Copenhagen Infrastructure Partners (CIP) to enter commercial operations. The post Europe’s largest battery comes online in Scotland appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-12T13:13:23.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/france-sees-sharp-rise-in-solar-module-recycling/",
+      "source": "pv magazine",
+      "title": "France sees sharp rise in solar module recycling",
+      "url": "https://www.pv-magazine.com/2026/08/12/france-sees-sharp-rise-in-solar-module-recycling/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "France collected 13,760 tonnes of end-of-life solar modules in 2025, up 40% from the previous year, as recycling activity accelerates. Government agency Soren expects annual volumes to reach nearly 180,000 tonnes by 2040, underscoring the growing importance of recycling to Europe’s industrial supply chain. The post…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 11,
-      "grid": 29,
-      "capital": 2,
+      "policy": 10,
+      "grid": 28,
+      "capital": 3,
       "technology": 2
     },
     "sourceStatus": [
@@ -499,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 8
       }
     ]
   },
@@ -508,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:e797d01697216dc74781cf82e9571309047c008faa3306bd8cf61bb1429d3a4f",
-  "envelopeChecksum": "sha256:f9628c860dbefda9951501a4d6650a2d5dabece8c6085f79c8c8cebeb5e27003"
+  "contentChecksum": "sha256:efc421a0bc8991f9150b18c0731eb02069c55e65e4f1eefcbb2ca19b315f629d",
+  "envelopeChecksum": "sha256:44aa7d8d1361a3fdf677395125388694bf3fd327eb5b079f0baa0177c613c87f"
 }
