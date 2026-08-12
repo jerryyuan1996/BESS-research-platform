@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-11T19:28:30.686Z",
+  "fetchedAt": "2026-08-12T07:55:37.924Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-11T13:55:02.000Z",
+    "to": "2026-08-12T07:27:28.000Z",
     "resolution": "event",
     "points": 44
   },
@@ -295,26 +295,6 @@
       "summary": "A group of incumbent utilities asked FERC to suspend competitive bidding for some transmission projects.&nbsp;The responsive filings are in, and the record does more than rebut the complaint &mdash; it dismantles it, writes&nbsp;Jim Rossi of Vanderbilt Law School."
     },
     {
-      "t": "2026-08-11T08:29:32.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/cyprus-first-utility-battery-project-goes-online/",
-      "source": "pv magazine",
-      "title": "Cyprus’ first utility battery project goes online",
-      "url": "https://www.pv-magazine.com/2026/08/11/cyprus-first-utility-battery-project-goes-online/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The 5 MWh battery storage facility is a step forward for Cyprus as the island grapples with record solar curtailment and a slow-moving energy-storage market. The post Cyprus’ first utility battery project goes online appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-11T08:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/czechia-installs-295-mw-of-solar-in-h1/",
-      "source": "pv magazine",
-      "title": "Czechia installs 295 MW of solar in H1",
-      "url": "https://www.pv-magazine.com/2026/08/11/czechia-installs-295-mw-of-solar-in-h1/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "While momentum in Czechia's C&I solar market remains strong, the country recorded a drop in residential solar installations over the first half of 2026. The post Czechia installs 295 MW of solar in H1 appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-11T09:04:02.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/citicore-breaks-ground-on-53mwh-solar-plus-storage-site-directly-connected-to-the-philippine-distribution-network/",
       "source": "Energy-Storage.news",
@@ -345,36 +325,6 @@
       "summary": "Australia's framework governing the energy obligations of large data centres advanced on multiple fronts last week."
     },
     {
-      "t": "2026-08-11T09:25:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/france-adds-2-9-gw-of-solar-in-h1/",
-      "source": "pv magazine",
-      "title": "France adds 2.9 GW of solar in H1",
-      "url": "https://www.pv-magazine.com/2026/08/11/france-adds-2-9-gw-of-solar-in-h1/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "France connected 1.496 GW of solar PV capacity in Q2 2026, including 48 MW paired with storage, bringing first-half additions to around 2.9 GW. The post France adds 2.9 GW of solar in H1 appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-11T09:54:47.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/el-nino-could-drive-pv-generation-curtailment-to-25-in-brazil-in-2026/",
-      "source": "pv magazine",
-      "title": "El Niño could drive PV generation curtailment to 40% in Brazil in 2026",
-      "url": "https://www.pv-magazine.com/2026/08/11/el-nino-could-drive-pv-generation-curtailment-to-25-in-brazil-in-2026/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A strong El Niño in late 2026 could push renewable generation curtailment in Brazil to 25%, with solar PV curtailment potentially reaching 40%. Additional thermal dispatch could further increase PV curtailment to 47%, raising financial risks for renewable projects. The post El Niño could drive PV generation curtailm…"
-    },
-    {
-      "t": "2026-08-11T10:07:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/cuba-receives-another-5000-solar-systems-from-china-expands-renewable-energy-incentives/",
-      "source": "pv magazine",
-      "title": "Cuba receives another 5,000 solar systems from China, expands renewable energy incentives",
-      "url": "https://www.pv-magazine.com/2026/08/11/cuba-receives-another-5000-solar-systems-from-china-expands-renewable-energy-incentives/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The photovoltaic systems will be used for rural homes and essential services. Cuba has also introduced new renewable energy incentives, including a $3.30/kWh payment rate and tax exemptions for clean energy equipment and investments. The post Cuba receives another 5,000 solar systems from China, expands renewable en…"
-    },
-    {
       "t": "2026-08-11T10:18:01.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/merchant-business-case-proven-but-tougher-financing-environment-8energies-on-german-bess-market/",
       "source": "Energy-Storage.news",
@@ -383,16 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "This year has seen a shift in the financing environment for merchant BESS projects in Germany for the worse."
-    },
-    {
-      "t": "2026-08-11T10:41:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/11/five-decades-of-research-leads-to-solar-pvs-emergence-as-the-worlds-dominant-energy-source/",
-      "source": "pv magazine",
-      "title": "Five decades of research leads to solar PV’s emergence as the world’s dominant energy source",
-      "url": "https://www.pv-magazine.com/2026/08/11/five-decades-of-research-leads-to-solar-pvs-emergence-as-the-worlds-dominant-energy-source/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A systematic review finds that solar PV emerges consistently to the backbone of future energy systems, yet many models still underestimate its role. Across the globe, solar PV is projected to supply about 61% of the world's electricity by 2050. Major milestones within 100% renewable energy systems research over five…"
     },
     {
       "t": "2026-08-11T11:01:59.000Z",
@@ -463,6 +403,66 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "On August 10, REPT BATTERO reported that its H1 2026 performance had already surpassed its 2025 full-year results, with residential storage cell shipments ranking first globally. The company also unveiled its new cell products for AIDC (AI Data Center), commercial vehicles, and low-altitude aircrafts."
+    },
+    {
+      "t": "2026-08-12T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/irelands-leap-of-faith-to-power-data-centers/",
+      "source": "pv magazine",
+      "title": "Ireland’s leap of faith to power data centers",
+      "url": "https://www.pv-magazine.com/2026/08/12/irelands-leap-of-faith-to-power-data-centers/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Under Ireland’s Large Energy User Action Plan (LEAP), 10 MW-plus data centers must provide at least 80% of their energy demand through new onsite renewable energy generation and storage. But whether data centers can meaningfully contribute to Ireland’s decarbonization depends on the success of its grid buildout, rep…"
+    },
+    {
+      "t": "2026-08-12T05:45:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/tesla-files-tax-incentive-application-for-10-1-billion-texas-solar-cell-plant/",
+      "source": "pv magazine",
+      "title": "Tesla files tax incentive application for $10.1 billion Texas solar cell plant",
+      "url": "https://www.pv-magazine.com/2026/08/12/tesla-files-tax-incentive-application-for-10-1-billion-texas-solar-cell-plant/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Tesla has submitted plans for a $10.1 billion vertically integrated solar cell manufacturing campus in Fort Bend County under the internal name Project Crystal Sun, seeking property tax limitations under the Texas Jobs, Energy, Technology and Innovation Act. The post Tesla files tax incentive application for $10.1 b…"
+    },
+    {
+      "t": "2026-08-12T05:47:14.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/researchers-near-100-silver-recovery-from-end-of-life-solar-panels/",
+      "source": "pv magazine",
+      "title": "Researchers near 100% silver recovery from end-of-life solar panels",
+      "url": "https://www.pv-magazine.com/2026/08/12/researchers-near-100-silver-recovery-from-end-of-life-solar-panels/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers at the University of Newcastle have achieved almost 100% silver recovery from end-of-life solar panels using a proven mineral-processing technology they believe could make solar panel recycling more economically viable. The post Researchers near 100% silver recovery from end-of-life solar panels appeared…"
+    },
+    {
+      "t": "2026-08-12T05:49:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/deye-launches-2-5-mw-ci-storage-system-with-0-ms-switching/",
+      "source": "pv magazine",
+      "title": "Deye launches 2.5 MW C&I storage system with 0 ms switching",
+      "url": "https://www.pv-magazine.com/2026/08/12/deye-launches-2-5-mw-ci-storage-system-with-0-ms-switching/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Chinese manufacturer said its new commercial and industrial energy storage solution combines 100 kW or 125 kW PCS units with 257.23 kWh battery clusters. It can be scaled to 2.5 MW. The post Deye launches 2.5 MW C&I storage system with 0 ms switching appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-12T06:24:37.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/european-patent-office-revokes-hanwhas-long-disputed-passivation-patent/",
+      "source": "pv magazine",
+      "title": "European Patent Office revokes Hanwha’s long-disputed passivation patent",
+      "url": "https://www.pv-magazine.com/2026/08/12/european-patent-office-revokes-hanwhas-long-disputed-passivation-patent/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The European Patent Office has revoked Hanwha Solutions’ 689 patent covering passivation technology used in silicon solar cells, citing a lack of inventive step. The decision follows years of patent litigation between Hanwha Q Cells and solar manufacturers including JinkoSolar, Longi and REC across Europe, the US an…"
+    },
+    {
+      "t": "2026-08-12T07:27:28.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/perovskite-solar-tested-at-over-5000-m-altitude/",
+      "source": "pv magazine",
+      "title": "Perovskite solar tested at over 5,000 m altitude",
+      "url": "https://www.pv-magazine.com/2026/08/12/perovskite-solar-tested-at-over-5000-m-altitude/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Monochrome will test a perovskite PV prototype at an altitude of around 5,150 meters during an alpine expedition in Pakistan's Karakoram region. The field trial will assess power-generation performance and durability under harsh, off-grid conditions as the company explores perovskite technology for future BIPV appli…"
     }
   ],
   "derived": {
@@ -508,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:95276879e39f975c815e3f5d756e189db6466a794adb70434d7d8b8b8186585f",
-  "envelopeChecksum": "sha256:b2af9fb7c75ad524a550fe164123505687141b7248663bc3f72d567e7efa16a6"
+  "contentChecksum": "sha256:e797d01697216dc74781cf82e9571309047c008faa3306bd8cf61bb1429d3a4f",
+  "envelopeChecksum": "sha256:f9628c860dbefda9951501a4d6650a2d5dabece8c6085f79c8c8cebeb5e27003"
 }
