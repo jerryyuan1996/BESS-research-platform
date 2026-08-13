@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-12T19:35:14.506Z",
+  "fetchedAt": "2026-08-13T07:57:11.683Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-12T17:00:00.000Z",
+    "to": "2026-08-13T07:50:58.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -123,16 +123,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "GB Energy's £1 million solar investment freed up savings a Hull hospital had left on the table for years. It's an example of what can happen when a state-backed investor takes risks the market won't. GB Energy calls itself an activist investor, built to put public money behind the frontiers where private capital mov…"
-    },
-    {
-      "t": "2026-08-07T07:28:37.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
-      "source": "Energy-Storage.news",
-      "title": "Spanish government awards €360 million for co-located battery storage projects",
-      "url": "https://www.energy-storage.news/spanish-government-awards-e360-million-for-co-located-battery-storage-projects/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Spanish Ministry of Ecological Transition (MITECO) has awarded €360 million (US$415 million) to 1.14GW of solar PV co-located with battery energy storage system (BESS) projects."
     },
     {
       "t": "2026-08-07T09:15:22.000Z",
@@ -325,16 +315,6 @@
       "summary": "Octopus Australia has shifted its focus to constructing a DC-coupled battery energy storage system (BESS) in Victoria."
     },
     {
-      "t": "2026-08-12T08:43:10.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/colombia-earthquake-affects-power-grid-but-no-damage-reported-at-solar-plants/",
-      "source": "pv magazine",
-      "title": "Colombia: Earthquake affects power grid, but no damage reported at solar plants",
-      "url": "https://www.pv-magazine.com/2026/08/12/colombia-earthquake-affects-power-grid-but-no-damage-reported-at-solar-plants/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A magnitude-7.4 earthquake in Colombia disrupted electricity supplies, leaving up to 20% of demand unmet in some affected regions. No damage has been reported at utility-scale solar plants, with the main impacts concentrated on transmission and distribution infrastructure. The post Colombia: Earthquake affects power…"
-    },
-    {
       "t": "2026-08-12T08:50:39.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/epec-group-lands-grid-connection-contract-for-843mwh-solar-plus-storage-site-in-queensland-australia/",
       "source": "Energy-Storage.news",
@@ -345,36 +325,6 @@
       "summary": "EPEC Group has been awarded a contract to cover the high-voltage connection works for the Lower Wonga Solar Farm in Queensland, Australia, by the EPC contractor INTEC Energy Solutions."
     },
     {
-      "t": "2026-08-12T08:55:40.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/around-14-gw-of-irregular-distributed-solar-threatens-grid-security-in-brazil-warns-tuv-rheinland/",
-      "source": "pv magazine",
-      "title": "Around 14 GW of irregular distributed solar threatens grid security in Brazil, warns TÜV Rheinland",
-      "url": "https://www.pv-magazine.com/2026/08/12/around-14-gw-of-irregular-distributed-solar-threatens-grid-security-in-brazil-warns-tuv-rheinland/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Unauthorized distributed-generation expansions in Brazil could add up to 14 GW of unregistered capacity, complicating grid planning and operation, TÜV Rheinland warns. The expansion of PV systems up to 5 MW without proper design reviews or approvals also raises electrical safety risks and compliance concerns. The po…"
-    },
-    {
-      "t": "2026-08-12T09:05:52.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/south-korea-approves-upper-limits-on-renewable-energy-setback-distances/",
-      "source": "pv magazine",
-      "title": "South Korea approves upper limits on renewable energy setback distances",
-      "url": "https://www.pv-magazine.com/2026/08/12/south-korea-approves-upper-limits-on-renewable-energy-setback-distances/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "South Korea’s government has approved new national limits on the setback distances that local governments can impose on renewable energy installations in a bid to open up more suitable sites for future solar and wind projects. The post South Korea approves upper limits on renewable energy setback distances appeared…"
-    },
-    {
-      "t": "2026-08-12T09:34:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/new-online-map-shows-germanys-renewable-energy-feed-in-capacity-across-distribution-grids/",
-      "source": "pv magazine",
-      "title": "New online map shows Germany’s renewable energy feed-in capacity across distribution grids",
-      "url": "https://www.pv-magazine.com/2026/08/12/new-online-map-shows-germanys-renewable-energy-feed-in-capacity-across-distribution-grids/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A new free online map details renewable energy and storage systems connected to Germany’s 871 distribution grids, with data updated every six months. The post New online map shows Germany’s renewable energy feed-in capacity across distribution grids appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-12T09:50:02.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/acciona-energia-to-add-33mw-66mwh-bess-in-spain/",
       "source": "Energy-Storage.news",
@@ -383,16 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Spanish renewables developer Acciona Energía has unveiled plans to install two battery energy storage systems (BESS)."
-    },
-    {
-      "t": "2026-08-12T10:04:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/unlimited-long-duration-long-lived-pumped-hydro-storage/",
-      "source": "pv magazine",
-      "title": "Unlimited long duration, long-lived pumped hydro storage",
-      "url": "https://www.pv-magazine.com/2026/08/12/unlimited-long-duration-long-lived-pumped-hydro-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar- and wind-dominated grids need abundant long-duration storage, and off-river pumped hydro offers enormous potential, with 800,000 sites worldwide and storage capacity vastly exceeding global requirements. Pumped hydro is mature, low-cost, long-lived, and locally deployable, complementing batteries by providing…"
     },
     {
       "t": "2026-08-12T11:26:52.000Z",
@@ -473,15 +413,65 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Ascend Analytics says more than 80% of new large loads seeking interconnection will not have matching generation online by 2030, even as data centers and industrial demand continue to surge."
+    },
+    {
+      "t": "2026-08-13T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/solars-infrastructure-obstacle/",
+      "source": "pv magazine",
+      "title": "Solar’s infrastructure obstacle",
+      "url": "https://www.pv-magazine.com/2026/08/13/solars-infrastructure-obstacle/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "During the development of a recent utility-scale project in Texas’ ERCOT grid interconnection zone, Levona Renewables CEO Fernando Queiroz found his team spending more time evaluating transmission infrastructure, interconnection requirements, equipment availability, and utility procurement processes than discussing…"
+    },
+    {
+      "t": "2026-08-13T05:36:30.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/worlds-largest-lfp-grid-forming-goes-online-in-china/",
+      "source": "pv magazine",
+      "title": "World’s largest LFP grid-forming goes online in China",
+      "url": "https://www.pv-magazine.com/2026/08/13/worlds-largest-lfp-grid-forming-goes-online-in-china/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The four-hour LFP project is designed to strengthen grid stability and renewable integration in northern China. The post World’s largest LFP grid-forming goes online in China appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-13T06:56:03.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/guatemala-updates-regulations-for-distributed-solar-up-to-5-mw/",
+      "source": "pv magazine",
+      "title": "Guatemala updates regulations for distributed solar up to 5 MW",
+      "url": "https://www.pv-magazine.com/2026/08/13/guatemala-updates-regulations-for-distributed-solar-up-to-5-mw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Guatemala has updated its regulatory framework for renewable distributed-generation projects of up to 5 MW, introducing new connection procedures, grid-capacity mapping and technical requirements. The new rules take effect Aug. 17, while projects already under application may remain under the previous regime unless…"
+    },
+    {
+      "t": "2026-08-13T07:47:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/global-south-utilities-completes-50-mw-solar-15-mwh-bess-project-in-central-african-republic/",
+      "source": "pv magazine",
+      "title": "Global South Utilities completes 50 MW solar, 15 MWh BESS project in Central African Republic",
+      "url": "https://www.pv-magazine.com/2026/08/13/global-south-utilities-completes-50-mw-solar-15-mwh-bess-project-in-central-african-republic/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The solar-plus-storage project has been billed as the largest infrastructure project in the Central African Republic’s history. The government says it is undergoing a phased implementation beginning with an initial 15 MW supplied to the plant's neighbouring districts. The post Global South Utilities completes 50 MW…"
+    },
+    {
+      "t": "2026-08-13T07:50:58.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/copenhagen-infrastructure-partners-commercial-operations-500mw-bess-scotland/",
+      "source": "Energy-Storage.news",
+      "title": "Copenhagen Infrastructure Partners reaches commercial operations on 500MW BESS in Scotland",
+      "url": "https://www.energy-storage.news/copenhagen-infrastructure-partners-commercial-operations-500mw-bess-scotland/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Denmark-headquartered investor Copenhagen Infrastructure Partners (CIP) has brought its 500MW, 2-hour duration Coalburn 1 battery energy storage system (BESS) into commercial operation."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 10,
+      "policy": 9,
       "grid": 29,
       "capital": 4,
       "technology": 2
@@ -509,7 +499,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 7
       }
     ]
   },
@@ -518,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f57014dda452acb95bd5dc310788a3e52f9b42571d386d907ec51425a06bae9a",
-  "envelopeChecksum": "sha256:3096c3b745e89523cd1c2bd940ac683e717d7806aab99dc3d2575f0c7983c921"
+  "contentChecksum": "sha256:9a179d4a0deffa0409ad7e74ca9aa8a2c78ed90c14e8e5048da77017831579ba",
+  "envelopeChecksum": "sha256:b6e27b1a9d313d6464f295244a9343196fb4a98fb04882902b98898861893e9e"
 }
