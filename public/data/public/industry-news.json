@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-13T07:57:11.683Z",
+  "fetchedAt": "2026-08-13T13:51:46.281Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-13T07:50:58.000Z",
+    "to": "2026-08-13T13:06:29.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -135,56 +135,6 @@
       "summary": ""
     },
     {
-      "t": "2026-08-07T10:27:14.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-bnetzas-post-2029-dynamic-grid-fees-to-reward-grid-friendly-behaviour-but-more-clarity-needed/",
-      "source": "Energy-Storage.news",
-      "title": "Germany: BNetzA’s post-2029 dynamic grid fees to reward grid-friendly behaviour, but more clarity needed",
-      "url": "https://www.energy-storage.news/germany-bnetzas-post-2029-dynamic-grid-fees-to-reward-grid-friendly-behaviour-but-more-clarity-needed/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The German regulator BNetzA's latest draft decision on grid fees from 4 August 2029 onwards still leaves uncertainty for energy storage project business cases."
-    },
-    {
-      "t": "2026-08-07T14:20:01.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
-      "source": "Energy-Storage.news",
-      "title": "US DOE closes US$489 million loan with Pattern Energy to support BESS, natural gas in Puerto Rico",
-      "url": "https://www.energy-storage.news/us-doe-closes-us489-million-loan-with-pattern-energy-to-support-bess-natural-gas-in-puerto-rico/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The US Department of Energy (DOE) has closed a US$489.4 million loan to Amanecer Puerto Rico, a subsidiary of developer Pattern Energy to support Puerto Rico’s electric grid."
-    },
-    {
-      "t": "2026-08-10T08:08:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/serentica-renewables-commissions-first-phase-of-1gwh-bess-for-round-the-clock-renewable-energy-delivery-in-rajasthan-india/",
-      "source": "Energy-Storage.news",
-      "title": "Serentica Renewables commissions first phase of 1GWh BESS for round-the-clock renewable energy delivery in Rajasthan, India",
-      "url": "https://www.energy-storage.news/serentica-renewables-commissions-first-phase-of-1gwh-bess-for-round-the-clock-renewable-energy-delivery-in-rajasthan-india/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Serentica Renewables has commissioned the first phase of a battery storage project that will help deliver round-the-clock (RTC) renewable energy in Rajasthan, India."
-    },
-    {
-      "t": "2026-08-10T12:29:32.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/tech-roundup-accure-hydrostor-shoals-and-terraflow-and-qnetic-advance-energy-storage-tech/",
-      "source": "Energy-Storage.news",
-      "title": "Tech ROUNDUP: Accure, Hydrostor, Shoals and TerraFlow, and Qnetic advance energy storage tech",
-      "url": "https://www.energy-storage.news/tech-roundup-accure-hydrostor-shoals-and-terraflow-and-qnetic-advance-energy-storage-tech/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In this news roundup, ACCURE, Hydrostor, Shoals and TerraFlow, and Qnetic claim significant advances in and for energy storage technology."
-    },
-    {
-      "t": "2026-08-10T13:18:30.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-ipp-avantus-closes-billion-dollar-financing-for-solar-pv-and-battery-storage-projects/",
-      "source": "Energy-Storage.news",
-      "title": "US IPP Avantus closes billion-dollar financing for solar PV and battery storage projects",
-      "url": "https://www.energy-storage.news/us-ipp-avantus-closes-billion-dollar-financing-for-solar-pv-and-battery-storage-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Avantus has closed a US$1.05 billion corporate credit facility to support the company’s IPP strategy and accelerate development of its solar and energy storage portfolio."
-    },
-    {
       "t": "2026-08-10T15:40:13.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/sunrun-rooftop-solar-battery-earnings/827458/",
       "source": "Utility Dive",
@@ -203,26 +153,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A group of incumbent utilities asked FERC to suspend competitive bidding for some transmission projects.&nbsp;The responsive filings are in, and the record does more than rebut the complaint &mdash; it dismantles it, writes&nbsp;Jim Rossi of Vanderbilt Law School."
-    },
-    {
-      "t": "2026-08-11T09:04:02.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/citicore-breaks-ground-on-53mwh-solar-plus-storage-site-directly-connected-to-the-philippine-distribution-network/",
-      "source": "Energy-Storage.news",
-      "title": "Citicore breaks ground on 53MWh solar-plus-storage site directly connected to the Philippine distribution network",
-      "url": "https://www.energy-storage.news/citicore-breaks-ground-on-53mwh-solar-plus-storage-site-directly-connected-to-the-philippine-distribution-network/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Citicore has broken ground on the country's first embedded solar integrated renewable energy and energy storage system (IRESS) facility."
-    },
-    {
-      "t": "2026-08-11T09:15:51.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/fields-ldes-uk-energy-storage-bess-cap-and-floor/",
-      "source": "Energy-Storage.news",
-      "title": "Interview: Field’s technical director on its 16-18-hour UK LDES battery storage projects",
-      "url": "https://www.energy-storage.news/fields-ldes-uk-energy-storage-bess-cap-and-floor/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "What led Field to submitting, and winning, 16- to 18-hour BESS projects in the UK's long-duration energy storage (LDES) cap-and-floor scheme, and what are the next steps? We hear from the firm's technical director."
     },
     {
       "t": "2026-08-11T09:19:12.000Z",
@@ -335,16 +265,6 @@
       "summary": "Spanish renewables developer Acciona Energía has unveiled plans to install two battery energy storage systems (BESS)."
     },
     {
-      "t": "2026-08-12T11:26:52.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/koreas-shinsung-eg-opens-350-mw-pv-module-production-line/",
-      "source": "pv magazine",
-      "title": "Korea’s Shinsung E&G opens 350 MW PV module production line",
-      "url": "https://www.pv-magazine.com/2026/08/12/koreas-shinsung-eg-opens-350-mw-pv-module-production-line/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The South Korean company says its new PV module production line will supply high-quality n-type solar modules to a series of projects in the Saemangeum development region. The post Korea’s Shinsung E&G opens 350 MW PV module production line appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-12T11:31:49.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/sungrow-provides-bess-to-verano-energys-606mwh-chilean-hybrid-project/",
       "source": "Energy-Storage.news",
@@ -355,16 +275,6 @@
       "summary": "Independent power producer (IPP) Verano Energy has awarded the battery energy storage system (BESS) supply for its 152MW/606MWh Observatorio project to Sungrow."
     },
     {
-      "t": "2026-08-12T12:51:54.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/europes-largest-battery-comes-online-in-scotland/",
-      "source": "pv magazine",
-      "title": "Europe’s largest battery comes online in Scotland",
-      "url": "https://www.pv-magazine.com/2026/08/12/europes-largest-battery-comes-online-in-scotland/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Coalburn 1 is the first of three UK transmission-connected battery energy storage system (BESS) projects developed by Copenhagen Infrastructure Partners (CIP) to enter commercial operations. The post Europe’s largest battery comes online in Scotland appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-12T13:01:39.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/",
       "source": "Utility Dive",
@@ -373,16 +283,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The PJM Interconnection is considering setting &ldquo;ride-through&rdquo; standards after data centers tripped offline in Northern Virginia on July 22, the latest and largest such event in PJM&rsquo;s history, the grid operator said."
-    },
-    {
-      "t": "2026-08-12T13:13:23.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/12/france-sees-sharp-rise-in-solar-module-recycling/",
-      "source": "pv magazine",
-      "title": "France sees sharp rise in solar module recycling",
-      "url": "https://www.pv-magazine.com/2026/08/12/france-sees-sharp-rise-in-solar-module-recycling/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "France collected 13,760 tonnes of end-of-life solar modules in 2025, up 40% from the previous year, as recycling activity accelerates. Government agency Soren expects annual volumes to reach nearly 180,000 tonnes by 2040, underscoring the growing importance of recycling to Europe’s industrial supply chain. The post…"
     },
     {
       "t": "2026-08-12T15:02:23.000Z",
@@ -415,46 +315,6 @@
       "summary": "Ascend Analytics says more than 80% of new large loads seeking interconnection will not have matching generation online by 2030, even as data centers and industrial demand continue to surge."
     },
     {
-      "t": "2026-08-13T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/solars-infrastructure-obstacle/",
-      "source": "pv magazine",
-      "title": "Solar’s infrastructure obstacle",
-      "url": "https://www.pv-magazine.com/2026/08/13/solars-infrastructure-obstacle/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "During the development of a recent utility-scale project in Texas’ ERCOT grid interconnection zone, Levona Renewables CEO Fernando Queiroz found his team spending more time evaluating transmission infrastructure, interconnection requirements, equipment availability, and utility procurement processes than discussing…"
-    },
-    {
-      "t": "2026-08-13T05:36:30.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/worlds-largest-lfp-grid-forming-goes-online-in-china/",
-      "source": "pv magazine",
-      "title": "World’s largest LFP grid-forming goes online in China",
-      "url": "https://www.pv-magazine.com/2026/08/13/worlds-largest-lfp-grid-forming-goes-online-in-china/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The four-hour LFP project is designed to strengthen grid stability and renewable integration in northern China. The post World’s largest LFP grid-forming goes online in China appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-13T06:56:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/guatemala-updates-regulations-for-distributed-solar-up-to-5-mw/",
-      "source": "pv magazine",
-      "title": "Guatemala updates regulations for distributed solar up to 5 MW",
-      "url": "https://www.pv-magazine.com/2026/08/13/guatemala-updates-regulations-for-distributed-solar-up-to-5-mw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Guatemala has updated its regulatory framework for renewable distributed-generation projects of up to 5 MW, introducing new connection procedures, grid-capacity mapping and technical requirements. The new rules take effect Aug. 17, while projects already under application may remain under the previous regime unless…"
-    },
-    {
-      "t": "2026-08-13T07:47:31.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/global-south-utilities-completes-50-mw-solar-15-mwh-bess-project-in-central-african-republic/",
-      "source": "pv magazine",
-      "title": "Global South Utilities completes 50 MW solar, 15 MWh BESS project in Central African Republic",
-      "url": "https://www.pv-magazine.com/2026/08/13/global-south-utilities-completes-50-mw-solar-15-mwh-bess-project-in-central-african-republic/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The solar-plus-storage project has been billed as the largest infrastructure project in the Central African Republic’s history. The government says it is undergoing a phased implementation beginning with an initial 15 MW supplied to the plant's neighbouring districts. The post Global South Utilities completes 50 MW…"
-    },
-    {
       "t": "2026-08-13T07:50:58.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/copenhagen-infrastructure-partners-commercial-operations-500mw-bess-scotland/",
       "source": "Energy-Storage.news",
@@ -463,16 +323,176 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Denmark-headquartered investor Copenhagen Infrastructure Partners (CIP) has brought its 500MW, 2-hour duration Coalburn 1 battery energy storage system (BESS) into commercial operation."
+    },
+    {
+      "t": "2026-08-13T08:03:21.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/mass-scale-reuse-pilot-project-finds-15-of-second-life-solar-modules-fail-to-meet-safety-requirements/",
+      "source": "pv magazine",
+      "title": "Mass-scale reuse pilot project finds 15% of second-life solar modules fail to meet safety requirements",
+      "url": "https://www.pv-magazine.com/2026/08/13/mass-scale-reuse-pilot-project-finds-15-of-second-life-solar-modules-fail-to-meet-safety-requirements/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in Australia identified two scalable routes for electrical safety qualification of second-life PV modules: silicone backsheet repair and faster parallel wet-leakage testing. A Queensland pilot found that 15% of 2,200 reuse-ready modules failed the wet-leakage test, highlighting the need for dedicated saf…"
+    },
+    {
+      "t": "2026-08-13T08:15:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/brazils-curtailment-compensation-offer-attracts-1539-solar-and-wind-plant-operators/",
+      "source": "pv magazine",
+      "title": "Brazil’s curtailment compensation offer attracts 1,539 solar and wind plant operators",
+      "url": "https://www.pv-magazine.com/2026/08/13/brazils-curtailment-compensation-offer-attracts-1539-solar-and-wind-plant-operators/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A total of 1,539 solar and wind power plants representing around 53 GW have applied to Brazil’s compensation mechanism for eligible curtailment events. The final compensation amounts will be determined by the applicable methodology, project contracts and assessment of eligible curtailment events. The post Brazil’s c…"
+    },
+    {
+      "t": "2026-08-13T08:35:16.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/pvcase-adds-key-export-option-to-its-solar-design-software/",
+      "source": "pv magazine",
+      "title": "PVcase adds key export option to its solar design software",
+      "url": "https://www.pv-magazine.com/2026/08/13/pvcase-adds-key-export-option-to-its-solar-design-software/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "PVcase has added PVC 2.0 export to its Ground Mount software, enabling solar engineers to transfer 3D project geometry directly to compatible tools such as PVsyst. The open standard aims to reduce manual data handling and errors while improving interoperability and consistency across solar design and simulation work…"
+    },
+    {
+      "t": "2026-08-13T08:51:05.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/arevon-energys-1200mwh-california-bess-begins-operations/",
+      "source": "Energy-Storage.news",
+      "title": "Arevon Energy’s 1,200MWh California BESS begins operations",
+      "url": "https://www.energy-storage.news/arevon-energys-1200mwh-california-bess-begins-operations/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Renewable energy developer-operator Arevon Energy has put its 300MW/1,200MWh Nighthawk Energy Storage Project in Poway, California, US into operation."
+    },
+    {
+      "t": "2026-08-13T09:01:41.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ess-inc-q2-2026-financials-sodium-ion-bess-deployment-net-losses/",
+      "source": "Energy-Storage.news",
+      "title": "ESS Inc highlights sodium-ion BESS deployment, reports net losses in Q2 2026 financials",
+      "url": "https://www.energy-storage.news/ess-inc-q2-2026-financials-sodium-ion-bess-deployment-net-losses/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "ESS Tech Inc highlighted the potential of its recent partnership with Alsym Energy and the advancement of its sodium-ion technology in its recent financial report."
+    },
+    {
+      "t": "2026-08-13T09:09:24.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/seven-trends-reshaping-battery-energy-storage-in-2026-and-beyond/",
+      "source": "Energy-Storage.news",
+      "title": "Seven trends reshaping battery energy storage in 2026 and beyond",
+      "url": "https://www.energy-storage.news/seven-trends-reshaping-battery-energy-storage-in-2026-and-beyond/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Primergy director of engineering and Energy Storage Awards 2026 judge, Aaroh Kharaya, on key trends transforming the battery storage stack."
+    },
+    {
+      "t": "2026-08-13T09:25:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bw-ess-acquires-1000mwh-yanco-bess-from-acenergy-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "BW ESS acquires 1,000MWh Yanco BESS from ACEnergy in Australia",
+      "url": "https://www.energy-storage.news/bw-ess-acquires-1000mwh-yanco-bess-from-acenergy-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BW ESS has acquired a 1,000MWh battery storage system in Riverina, New South Wales, from Australian developer ACEnergy."
+    },
+    {
+      "t": "2026-08-13T09:31:11.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/scatec-completes-1-gw-200-mwh-solar-plus-storage-project-in-egypt/",
+      "source": "pv magazine",
+      "title": "Scatec completes 1 GW/200 MWh solar-plus-storage project in Egypt",
+      "url": "https://www.pv-magazine.com/2026/08/13/scatec-completes-1-gw-200-mwh-solar-plus-storage-project-in-egypt/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Scatec has completed Egypt’s 1.1 GW Obelisk solar-plus-storage project, including a 100 MW/200 MWh BESS. The $590 million project will supply Egypt under a 25-year PPA. The post Scatec completes 1 GW/200 MWh solar-plus-storage project in Egypt appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-13T09:32:22.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/hithium-to-supply-421mwh-bess-for-gpgs-fraser-coast-project-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Hithium to supply 421MWh BESS for GPG’s Fraser Coast project in Australia",
+      "url": "https://www.energy-storage.news/hithium-to-supply-421mwh-bess-for-gpgs-fraser-coast-project-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Hithium has signed a supply agreement with GPG to deliver a 421MWh battery energy storage system for the Fraser Coast project."
+    },
+    {
+      "t": "2026-08-13T09:54:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/a-window-to-china-why-energy-storage-firms-are-seeking-ipos-and-courting-institutional-investors-in-hong-kong/",
+      "source": "Energy-Storage.news",
+      "title": "‘A window to China’: Why energy storage firms are seeking IPOs and courting institutional investors in Hong Kong",
+      "url": "https://www.energy-storage.news/a-window-to-china-why-energy-storage-firms-are-seeking-ipos-and-courting-institutional-investors-in-hong-kong/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "ESN Premium learns about Hong Kong's role as a bridge between China and the world, from energy storage solution provider RelyEZ and investment promotion agency InvestHK."
+    },
+    {
+      "t": "2026-08-13T10:05:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/finland-adds-478-mw-of-large-scale-solar-in-h1/",
+      "source": "pv magazine",
+      "title": "Finland adds 478 MW of large-scale solar in H1",
+      "url": "https://www.pv-magazine.com/2026/08/13/finland-adds-478-mw-of-large-scale-solar-in-h1/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Finland more than doubled its installed utility-scale solar capacity during the first six months of the year with the commissioning of eight solar plants larger than 1 MW. The post Finland adds 478 MW of large-scale solar in H1 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-13T10:34:12.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/solar-modules-with-built-in-buck-converters-could-raise-rooftop-pv-yield-by-up-to-20-under-partial-shading/",
+      "source": "pv magazine",
+      "title": "Solar modules with built-in buck converters could raise rooftop PV yield by up to 20% under partial shading",
+      "url": "https://www.pv-magazine.com/2026/08/13/solar-modules-with-built-in-buck-converters-could-raise-rooftop-pv-yield-by-up-to-20-under-partial-shading/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "TU Delft researchers found that smart PV modules with integrated buck converters can significantly improve energy yields under partial shading by allowing individual substrings to operate independently. The systems delivered 15%-20% more energy than string-inverter systems and 2%-3% more than systems using microinve…"
+    },
+    {
+      "t": "2026-08-13T11:54:11.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/japans-proposed-shading-rate-for-agrivoltaics-is-unreasonable-says-think-thank/",
+      "source": "pv magazine",
+      "title": "Japan’s proposed shading rate for agrivoltaics is unreasonable, says think thank",
+      "url": "https://www.pv-magazine.com/2026/08/13/japans-proposed-shading-rate-for-agrivoltaics-is-unreasonable-says-think-thank/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Japan’s Renewable Energy Foundation says proposals to introduce a maximum shading rate of 30% for agrivoltaic installations is contradicted by existing real-world examples where panel shade has helped to cultivate high-quality crops. The post Japan’s proposed shading rate for agrivoltaics is unreasonable, says think…"
+    },
+    {
+      "t": "2026-08-13T12:14:35.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/qbe-survey-finds-dc-cabling-and-plug-connections-are-most-common-causes-of-pv-fires/",
+      "source": "pv magazine",
+      "title": "QBE survey finds DC cabling and plug connections are most common causes of PV fires",
+      "url": "https://www.pv-magazine.com/2026/08/13/qbe-survey-finds-dc-cabling-and-plug-connections-are-most-common-causes-of-pv-fires/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A survey by global industrial insurer QBE in Great Britain found that the number of fires is rising nearly twice as fast as the number of new photovoltaic installations. After DC cabling and connectors, the most common causes are solar modules, battery storage systems, and inverters. The post QBE survey finds DC cab…"
+    },
+    {
+      "t": "2026-08-13T12:50:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/trina-solar-launches-typhoon-resistant-pv-modules-rated-up-to-8000-pa/",
+      "source": "pv magazine",
+      "title": "Trina Solar launches typhoon-resistant PV modules rated up to 8,000 Pa",
+      "url": "https://www.pv-magazine.com/2026/08/13/trina-solar-launches-typhoon-resistant-pv-modules-rated-up-to-8000-pa/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Trina Solar has introduced typhoon-resistant PV modules with mechanical load ratings of up to 8,000 Pa, targeting solar projects in regions exposed to extreme winds. The new range combines reinforced module frames and glass with self-locking mounting clamps and automated tracker stow strategies designed to improve r…"
+    },
+    {
+      "t": "2026-08-13T13:06:29.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/nextenergy-uk-acquires-107mw-151mwh-standalone-bess-portfolio-uk/",
+      "source": "Energy-Storage.news",
+      "title": "NextEnergy UK acquires 107MW/151MWh standalone BESS portfolio in the UK",
+      "url": "https://www.energy-storage.news/nextenergy-uk-acquires-107mw-151mwh-standalone-bess-portfolio-uk/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "NextEnergy UK has acquired a 107MW/151MWh portfolio of standalone battery energy storage system (BESS) projects in the UK."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 9,
-      "grid": 29,
+      "policy": 7,
+      "grid": 33,
       "capital": 4,
       "technology": 2
     },
@@ -499,7 +519,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 9
       }
     ]
   },
@@ -508,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:9a179d4a0deffa0409ad7e74ca9aa8a2c78ed90c14e8e5048da77017831579ba",
-  "envelopeChecksum": "sha256:b6e27b1a9d313d6464f295244a9343196fb4a98fb04882902b98898861893e9e"
+  "contentChecksum": "sha256:bc35e31582605d621f80d6f35c50d36a8a971d076931559ab65e034a28b7452c",
+  "envelopeChecksum": "sha256:fe87d372bb691d6f81eaf5d46a358fa3199b1abf3ddc9c58e95b320c1de0a1e6"
 }
