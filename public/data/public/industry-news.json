@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-13T19:28:39.366Z",
+  "fetchedAt": "2026-08-14T07:53:47.222Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-13T14:53:43.000Z",
+    "to": "2026-08-14T06:57:50.000Z",
     "resolution": "event",
     "points": 44
   },
@@ -295,36 +295,6 @@
       "summary": "Denmark-headquartered investor Copenhagen Infrastructure Partners (CIP) has brought its 500MW, 2-hour duration Coalburn 1 battery energy storage system (BESS) into commercial operation."
     },
     {
-      "t": "2026-08-13T08:03:21.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/mass-scale-reuse-pilot-project-finds-15-of-second-life-solar-modules-fail-to-meet-safety-requirements/",
-      "source": "pv magazine",
-      "title": "Mass-scale reuse pilot project finds 15% of second-life solar modules fail to meet safety requirements",
-      "url": "https://www.pv-magazine.com/2026/08/13/mass-scale-reuse-pilot-project-finds-15-of-second-life-solar-modules-fail-to-meet-safety-requirements/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in Australia identified two scalable routes for electrical safety qualification of second-life PV modules: silicone backsheet repair and faster parallel wet-leakage testing. A Queensland pilot found that 15% of 2,200 reuse-ready modules failed the wet-leakage test, highlighting the need for dedicated saf…"
-    },
-    {
-      "t": "2026-08-13T08:15:17.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/brazils-curtailment-compensation-offer-attracts-1539-solar-and-wind-plant-operators/",
-      "source": "pv magazine",
-      "title": "Brazil’s curtailment compensation offer attracts 1,539 solar and wind plant operators",
-      "url": "https://www.pv-magazine.com/2026/08/13/brazils-curtailment-compensation-offer-attracts-1539-solar-and-wind-plant-operators/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A total of 1,539 solar and wind power plants representing around 53 GW have applied to Brazil’s compensation mechanism for eligible curtailment events. The final compensation amounts will be determined by the applicable methodology, project contracts and assessment of eligible curtailment events. The post Brazil’s c…"
-    },
-    {
-      "t": "2026-08-13T08:35:16.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/pvcase-adds-key-export-option-to-its-solar-design-software/",
-      "source": "pv magazine",
-      "title": "PVcase adds key export option to its solar design software",
-      "url": "https://www.pv-magazine.com/2026/08/13/pvcase-adds-key-export-option-to-its-solar-design-software/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "PVcase has added PVC 2.0 export to its Ground Mount software, enabling solar engineers to transfer 3D project geometry directly to compatible tools such as PVsyst. The open standard aims to reduce manual data handling and errors while improving interoperability and consistency across solar design and simulation work…"
-    },
-    {
       "t": "2026-08-13T08:51:05.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/arevon-energys-1200mwh-california-bess-begins-operations/",
       "source": "Energy-Storage.news",
@@ -365,16 +335,6 @@
       "summary": "BW ESS has acquired a 1,000MWh battery storage system in Riverina, New South Wales, from Australian developer ACEnergy."
     },
     {
-      "t": "2026-08-13T09:31:11.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/scatec-completes-1-gw-200-mwh-solar-plus-storage-project-in-egypt/",
-      "source": "pv magazine",
-      "title": "Scatec completes 1 GW/200 MWh solar-plus-storage project in Egypt",
-      "url": "https://www.pv-magazine.com/2026/08/13/scatec-completes-1-gw-200-mwh-solar-plus-storage-project-in-egypt/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Scatec has completed Egypt’s 1.1 GW Obelisk solar-plus-storage project, including a 100 MW/200 MWh BESS. The $590 million project will supply Egypt under a 25-year PPA. The post Scatec completes 1 GW/200 MWh solar-plus-storage project in Egypt appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-13T09:32:22.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/hithium-to-supply-421mwh-bess-for-gpgs-fraser-coast-project-in-australia/",
       "source": "Energy-Storage.news",
@@ -393,16 +353,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "ESN Premium learns about Hong Kong's role as a bridge between China and the world, from energy storage solution provider RelyEZ and investment promotion agency InvestHK."
-    },
-    {
-      "t": "2026-08-13T10:05:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/13/finland-adds-478-mw-of-large-scale-solar-in-h1/",
-      "source": "pv magazine",
-      "title": "Finland adds 478 MW of large-scale solar in H1",
-      "url": "https://www.pv-magazine.com/2026/08/13/finland-adds-478-mw-of-large-scale-solar-in-h1/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Finland more than doubled its installed utility-scale solar capacity during the first six months of the year with the commissioning of eight solar plants larger than 1 MW. The post Finland adds 478 MW of large-scale solar in H1 appeared first on pv magazine Global ."
     },
     {
       "t": "2026-08-13T10:34:12.000Z",
@@ -463,6 +413,56 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Scatec has started full commercial operations at its gigawatt-scale Obelisk solar-plus-storage project in Egypt."
+    },
+    {
+      "t": "2026-08-14T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/off-grid-in-angola/",
+      "source": "pv magazine",
+      "title": "Off-grid in Angola",
+      "url": "https://www.pv-magazine.com/2026/08/14/off-grid-in-angola/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Portugal’s MCA group has switched on two large-scale off-grid solar-plus-storage projects in Angola since December 2025. Carlo Amado, the company’s chief operating officer of energies, spoke to pv magazine about how the projects fit into Angola’s rural electrification program, which aims to build 46 autonomous solar…"
+    },
+    {
+      "t": "2026-08-14T06:28:07.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/the-worlds-most-efficient-solar-panel-goes-on-sale-later-this-year/",
+      "source": "pv magazine",
+      "title": "The world’s most efficient solar panel goes on sale later this year",
+      "url": "https://www.pv-magazine.com/2026/08/14/the-worlds-most-efficient-solar-panel-goes-on-sale-later-this-year/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Solar manufacturer Tandem PV has secured nearly $1 billion in Letter of Intent (LOI) agreements for its next-generation solar modules. The high-efficiency panels feature a perovskite-silicon 4T (four-terminal) design. The company sees a clear path to increasing efficiency by 2% annually reaching 37% by 2030. The pos…"
+    },
+    {
+      "t": "2026-08-14T06:30:42.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/relectrify-installs-its-first-inverterless-ac1-bess-in-south-australia/",
+      "source": "pv magazine",
+      "title": "Relectrify installs inverterless BESS in South Australia",
+      "url": "https://www.pv-magazine.com/2026/08/14/relectrify-installs-its-first-inverterless-ac1-bess-in-south-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Relectrify has installed its first inverterless AC1 battery energy storage system in Renmark, South Australia in collaboration with SA-based turnkey renewable energy solutions company YES Energy. The post Relectrify installs inverterless BESS in South Australia appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-14T06:35:26.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/india-on-track-for-record-50-gw-of-solar-installations-in-2026-as-almm-ii-drives-h1-surge/",
+      "source": "pv magazine",
+      "title": "India on track for record 50 GW of solar installations in 2026",
+      "url": "https://www.pv-magazine.com/2026/08/14/india-on-track-for-record-50-gw-of-solar-installations-in-2026-as-almm-ii-drives-h1-surge/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India is on track to install a record 50 GW of solar capacity in 2026, driven by a rush to meet the ALMM-II deadline despite emerging cell supply constraints. Wood Mackenzie expects the resulting supply crunch to push system prices higher through 2027, while greater domestic manufacturing capacity gradually eases pr…"
+    },
+    {
+      "t": "2026-08-14T06:57:50.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/france-extends-tax-credit-for-cleantech-industry-for-3-years/",
+      "source": "pv magazine",
+      "title": "France extends tax credit for cleantech industry for 3 years",
+      "url": "https://www.pv-magazine.com/2026/08/14/france-extends-tax-credit-for-cleantech-industry-for-3-years/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "France is extending its C3IV green industry tax credit to support investment across the battery, wind, solar and heat pump value chains, as part of its reindustrialization strategy. The extension is expected to support around 40 projects by 2030. The post France extends tax credit for cleantech industry for 3 years…"
     }
   ],
   "derived": {
@@ -471,9 +471,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 6,
-      "grid": 32,
-      "capital": 4,
+      "policy": 7,
+      "grid": 30,
+      "capital": 5,
       "technology": 2
     },
     "sourceStatus": [
@@ -508,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:92444caa9c44963d8af667a168904f18b493f7a441113a0296ec406cf8518ca3",
-  "envelopeChecksum": "sha256:309bf6007738eabd7b901ad95094b17a5555534fa2085a464cc9f3bfce09d5e8"
+  "contentChecksum": "sha256:90744019011bc0f2a93fd2461265a88d82edd7f4e9155e657d2e18a03d419fc4",
+  "envelopeChecksum": "sha256:28c62587c18797860d4bae310c7220c71dd097492e9b6d6b32682c6450ccde1a"
 }
