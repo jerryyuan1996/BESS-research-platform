@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-14T07:53:47.222Z",
+  "fetchedAt": "2026-08-14T13:47:54.912Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-14T06:57:50.000Z",
+    "to": "2026-08-14T13:13:58.000Z",
     "resolution": "event",
     "points": 44
   },
@@ -34,9 +34,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 7,
+      "policy": 6,
       "grid": 30,
-      "capital": 5,
+      "capital": 6,
       "technology": 2
     },
     "sourceStatus": [
@@ -70,8 +70,8 @@
   "daily": [],
   "sourceSnapshot": {
     "file": "industry-news.json",
-    "contentChecksum": "sha256:90744019011bc0f2a93fd2461265a88d82edd7f4e9155e657d2e18a03d419fc4",
+    "contentChecksum": "sha256:8805ccbc7fcba1f3c1292dc95d78c04dd3e5369f4137bae893d6a1e364edf39c",
     "points": 44
   },
-  "summaryChecksum": "sha256:b18fc01adb8155bb40d216e3cd49dd80e595d26ff14447707156ba375c74f7e5"
+  "summaryChecksum": "sha256:95e7896cf9884f16030a4e8945f46636aef309f807823cd1b8276cde9d54dcc7"
 }
