@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-14T13:47:54.912Z",
+  "fetchedAt": "2026-08-14T19:17:12.003Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-14T13:13:58.000Z",
+    "to": "2026-08-14T16:02:51.000Z",
     "resolution": "event",
     "points": 44
   },
@@ -133,16 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": ""
-    },
-    {
-      "t": "2026-08-12T08:22:28.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/feoc-regulations-reshape-us-bess-financing-as-compliance-becomes-capital-allocation-issue/",
-      "source": "Energy-Storage.news",
-      "title": "FEOC regulations reshape US BESS financing as compliance becomes capital allocation issue",
-      "url": "https://www.energy-storage.news/feoc-regulations-reshape-us-bess-financing-as-compliance-becomes-capital-allocation-issue/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Energy-Storage.news Premium speaks with Mona Dajani of law firm Cooley, about how FEOC has changed BESS project negotiations and financing."
     },
     {
       "t": "2026-08-12T08:36:18.000Z",
@@ -463,6 +453,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Energy-Storage.news Premium speaks with Alon Maskovich, CEO and co-founder of enSights about BESS economics and the company’s new battery economics calculator."
+    },
+    {
+      "t": "2026-08-14T16:02:51.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/limes-reaches-rtb-stage-200mw-1gwh-huanil-bess-project-chile/",
+      "source": "Energy-Storage.news",
+      "title": "Limes reaches RTB stage for 200MW/1GWh Huañil BESS project in Chile",
+      "url": "https://www.energy-storage.news/limes-reaches-rtb-stage-200mw-1gwh-huanil-bess-project-chile/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Italian clean energy developer Limes Renewable Energy has reached the ready-to-build stage at its 200MW/1GWh Huañil project."
     }
   ],
   "derived": {
@@ -472,8 +472,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 6,
-      "grid": 30,
-      "capital": 6,
+      "grid": 31,
+      "capital": 5,
       "technology": 2
     },
     "sourceStatus": [
@@ -508,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:8805ccbc7fcba1f3c1292dc95d78c04dd3e5369f4137bae893d6a1e364edf39c",
-  "envelopeChecksum": "sha256:775fd1dd7baf664355196d72d597efdb411cca72a75010f0c1ee5ffc865eb59c"
+  "contentChecksum": "sha256:3e8a437cecc08f72b2aa298b1fa543b2f97c6a8d2354b67dd840b8056a15ca65",
+  "envelopeChecksum": "sha256:7d31ce9b8f4bbf69cabc76a19e273c568cc4aa6bcc3422e5cfa0311a63fc42a7"
 }
