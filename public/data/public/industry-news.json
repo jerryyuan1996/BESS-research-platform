@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-14T19:17:12.003Z",
+  "fetchedAt": "2026-08-15T07:00:46.664Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-14T16:02:51.000Z",
+    "to": "2026-08-15T04:00:00.000Z",
     "resolution": "event",
     "points": 44
   },
@@ -335,16 +335,6 @@
       "summary": "Origin Energy has confirmed that its 300MW/650MWh Mortlake BESS in south-west Victoria has commenced commercial operations."
     },
     {
-      "t": "2026-08-14T08:35:14.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/ireland-records-1258-mw-grid-scale-solar-generation-peak-ahead-of-eclipse/",
-      "source": "pv magazine",
-      "title": "Ireland records 1,258 MW grid-scale solar generation peak ahead of eclipse",
-      "url": "https://www.pv-magazine.com/2026/08/14/ireland-records-1258-mw-grid-scale-solar-generation-peak-ahead-of-eclipse/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The solar coaster came to Ireland this week as EirGrid recorded an all-time high peak generation followed two days later by generation lows of 8 MW during the historic solar eclipse on August 12. The post Ireland records 1,258 MW grid-scale solar generation peak ahead of eclipse appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-14T08:39:46.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/optimising-us-bess-markets-insights-from-caerus-commodities/",
       "source": "Energy-Storage.news",
@@ -463,6 +453,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Italian clean energy developer Limes Renewable Energy has reached the ready-to-build stage at its 200MW/1GWh Huañil project."
+    },
+    {
+      "t": "2026-08-15T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/15/making-the-data-center-business-case/",
+      "source": "pv magazine",
+      "title": "Making the data center business case",
+      "url": "https://www.pv-magazine.com/2026/08/15/making-the-data-center-business-case/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A data center can be built in 18 to 24 months, but connecting it to the grid is another matter, writes Laura Hoffmann-Ostenhof, Europe industry lead at modeling software supplier Gridcog. Across Europe’s established hubs – the FLAP-D cluster of Frankfurt, London, Amsterdam, Paris and Dublin – the wait for a grid con…"
     }
   ],
   "derived": {
@@ -508,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:3e8a437cecc08f72b2aa298b1fa543b2f97c6a8d2354b67dd840b8056a15ca65",
-  "envelopeChecksum": "sha256:7d31ce9b8f4bbf69cabc76a19e273c568cc4aa6bcc3422e5cfa0311a63fc42a7"
+  "contentChecksum": "sha256:f32ade6cb08404208468558a374ad35c6e9ef0fa57a3ce4daac36af9139f7129",
+  "envelopeChecksum": "sha256:aa077f60d28faa005543616c005808cdb8816389948238d1f2de314ad458f61e"
 }
