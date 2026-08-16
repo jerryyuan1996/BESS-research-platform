@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-15T07:00:46.664Z",
+  "fetchedAt": "2026-08-16T18:49:27.842Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
     "to": "2026-08-15T04:00:00.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -173,16 +173,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Independent power producer (IPP) Verano Energy has awarded the battery energy storage system (BESS) supply for its 152MW/606MWh Observatorio project to Sungrow."
-    },
-    {
-      "t": "2026-08-12T13:01:39.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/",
-      "source": "Utility Dive",
-      "title": "PJM eyes data center, crypto reliability requirements after 3.8 GW of load trips offline",
-      "url": "https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The PJM Interconnection is considering setting &ldquo;ride-through&rdquo; standards after data centers tripped offline in Northern Virginia on July 22, the latest and largest such event in PJM&rsquo;s history, the grid operator said."
     },
     {
       "t": "2026-08-12T15:02:23.000Z",
@@ -467,12 +457,12 @@
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 6,
-      "grid": 31,
+      "grid": 30,
       "capital": 5,
       "technology": 2
     },
@@ -493,7 +483,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 3
       },
       {
         "source": "pv magazine",
@@ -508,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f32ade6cb08404208468558a374ad35c6e9ef0fa57a3ce4daac36af9139f7129",
-  "envelopeChecksum": "sha256:aa077f60d28faa005543616c005808cdb8816389948238d1f2de314ad458f61e"
+  "contentChecksum": "sha256:da744e15a7afc90d4182fae94818ff5f556bd2c454d809cd3cf60d1436bfe006",
+  "envelopeChecksum": "sha256:11b5fc4ca7776186e210bd637fdb617c93eafb2b22c3d4711a6023f5c8fcba40"
 }

@@ -13,12 +13,12 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-08-16T13:03:33.197Z",
+  "fetchedAt": "2026-08-16T18:49:31.474Z",
   "coverage": {
-    "from": "2025-08-16T13:30:00.000Z",
+    "from": "2025-08-16T19:00:00.000Z",
     "to": "2026-08-15T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17204
+    "points": 17193
   },
   "units": {
     "price": "AUD/MWh"
@@ -32,15 +32,15 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17204,
-    "coverageDays": 364,
+    "points": 17193,
+    "coverageDays": 363,
     "pointsPerHour": 2,
-    "mean": 98.85,
-    "median": 96.18,
-    "stdev": 53.76,
+    "mean": 98.86,
+    "median": 96.22,
+    "stdev": 53.77,
     "p5": 18.92,
     "p95": 168.74,
-    "negativeHoursPct": 0.02976052080911416,
+    "negativeHoursPct": 0.029779561449427092,
     "spreadMean": 63.63,
     "spreadMedian": 53.61,
     "spreadP25": 35.03,
@@ -52,10 +52,10 @@
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 89136,
-    "marginPerCycle": 359.66,
+    "revenuePerMW": 89134,
+    "marginPerCycle": 359.65,
     "inputs": {
-      "chargeMean": 69.4116121872478,
+      "chargeMean": 69.41228006456822,
       "dischargeMean": 133.0402522195317,
       "durationHours": 7,
       "roundTripEfficiency": 0.85,
@@ -71,23 +71,13 @@
   },
   "daily": [
     {
-      "d": "2025-08-16",
-      "n": 5,
-      "mean": 88.81,
-      "min": 86.78,
-      "max": 93.43,
-      "spread": null,
-      "charge": null,
-      "discharge": null
-    },
-    {
       "d": "2025-08-17",
-      "n": 48,
-      "mean": 82.73,
+      "n": 42,
+      "mean": 83.01,
       "min": 21,
       "max": 153.28,
-      "spread": 47.87,
-      "charge": 58.52,
+      "spread": 47.63,
+      "charge": 58.76,
       "discharge": 106.4
     },
     {
@@ -3713,8 +3703,8 @@
   ],
   "sourceSnapshot": {
     "file": "wa-wem-prices.json",
-    "contentChecksum": "sha256:51b7273d6fcc77e3de991abafc908163f38cf58bf80b84541e81058ee805c78a",
-    "points": 17204
+    "contentChecksum": "sha256:37b50ab29c95159aad21cf35cf7d9f2fd8af58194ef372cbfd735d7b26a7f59f",
+    "points": 17193
   },
-  "summaryChecksum": "sha256:f2a0ab23f85d5dad7a7b4e285ca2b131dd1463f77f447e5f0b41d4364848e7bf"
+  "summaryChecksum": "sha256:30fae760f77847a544acd50e3052fac5f840225c8d9e3bfeac2e3c8891e619fc"
 }
