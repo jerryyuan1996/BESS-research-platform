@@ -147,8 +147,8 @@ const KEY_FILE = path.join(REPO, 'local-data', 'fingerprint-key.txt');
  * @returns {{key: string, source: string}|null}
  */
 export function loadFingerprintKey({ required = false } = {}){
-  const raw = process.env.GUARD_FINGERPRINT_KEY?.trim()
-    || (existsSync(KEY_FILE) ? readFileSync(KEY_FILE, 'utf8').trim() : '');
+  const raw = stripBom(process.env.GUARD_FINGERPRINT_KEY || '').trim()
+    || (existsSync(KEY_FILE) ? stripBom(readFileSync(KEY_FILE, 'utf8')).trim() : '');
 
   if (raw){
     if (!/^[0-9a-f]{32,}$/i.test(raw)){
@@ -205,13 +205,29 @@ function fromFile(){
   };
 }
 
+/**
+ * Strips a leading byte-order mark.
+ *
+ * Both secrets are set from a file, and on Windows the obvious way to do that
+ * (`Get-Content -Raw | gh secret set`) will carry a BOM straight into the secret
+ * if the file ever acquires one — a text editor "save as UTF-8" is enough.
+ * JSON.parse then fails on a character that is invisible in every UI that would
+ * be used to inspect the secret.
+ *
+ * Because this guard fails CLOSED, that lands as a red build with a parse error
+ * about a character nobody can see, on a secret nobody can print. Trailing
+ * whitespace and CRLF are already tolerated (JSON.parse ignores them, and the
+ * key is trimmed); a BOM is the one variant that was not, so it is now.
+ */
+const stripBom = (s) => s.charCodeAt(0) === 0xFEFF ? s.slice(1) : s;
+
 /* A malformed marker set is a failure, never an empty set. Falling back to []
    would turn a typo in a secret into a guard that silently passes everything —
    the precise failure mode this module was written to close. */
 function parse(raw, where){
   let value;
   try {
-    value = JSON.parse(raw);
+    value = JSON.parse(stripBom(raw));
   } catch (err){
     throw new Error(`${where} is not valid JSON: ${err.message}`);
   }
