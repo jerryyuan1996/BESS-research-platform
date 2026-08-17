@@ -31,8 +31,8 @@ export const manifest = {
   modelVersion: null,             // this market's own model version string
   lastVerified: null,             // 'YYYY-MM-DD' — public sources last re-checked
   sourceHealth: [
-    'SEED — no automated ingestion yet',
-    '种子数据 — 尚无自动抓取',
+    'Base case — no automated ingestion yet',
+    '基准情景 — 尚无自动抓取',
   ],
 };
 

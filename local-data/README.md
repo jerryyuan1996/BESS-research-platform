@@ -7,10 +7,24 @@ local-data/*
 !local-data/README.md
 ```
 
-## Status: interface not yet built
+## Status: built and in use
 
-This directory and `src/local/` are scaffolding for a later phase. `src/local/loader.js` is a
-documented stub that returns nothing. Do not build against it yet.
+`src/local/loader.js` works. `vite-plugin-local-data.js` substitutes the real content into the
+public stub modules when the dev server resolves them, and leaves those stubs untouched on
+`vite build`, unconditionally — the build path never has the data to begin with.
+
+Call `loadLocal(key)` for `local-data/<key>.json`, and branch on `hasLocal(key)` before rendering.
+**Absence is the normal case**; in a production build it always is.
+
+### `markers.json` is special
+
+`local-data/markers.json` is not a dataset — it is the confidential marker set the confidentiality
+guard scans for, kept here rather than in tracked source so that the detection rule stops being a
+published copy of what it protects. CI gets the same set from the `GUARD_MARKER_SET` secret.
+
+If it is missing, the guard **skips** locally and **fails** in CI. Both are deliberate; see
+`scripts/lib/markers.mjs`. After changing it, run `npm run guard:fingerprint` and update the
+committed fingerprint, which is the only place the change becomes reviewable.
 
 ## The rule that makes this directory meaningful
 

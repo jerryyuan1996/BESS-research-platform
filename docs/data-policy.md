@@ -16,8 +16,9 @@ deployed:
 - everything under `public/`
 - every value in every `comparison.js`
 - every source URL, date and status in every `sources.js`
-- every string in the bundle, whether or not any code path renders it
-- `dist/assets/*.js.map` — source maps ship by default, so the unminified source is readable
+- every string in the bundle, whether or not any code path renders it — and its comments too, if
+  source maps are ever re-enabled (`vite.config.js` sets `sourcemap: false`; see step 3 of the
+  release checklist below for why that is decided rather than default)
 
 A value that is never displayed is still in the bundle. A tab a user never opens still downloaded its
 data. "Not linked from anywhere" is not access control.
@@ -94,37 +95,76 @@ So the rule is:
 > publishable section is confidential, move the **value**. Gating a render
 > protects nothing.
 
-Three mechanisms enforce it:
+Five mechanisms enforce it:
 
 | | |
 |---|---|
 | `vite-plugin-local-data.js` | replaces two public stubs (`src/local/payload.js`, `src/local/portfolioSection.js`) with real content in dev; in a build they stay stubs, unconditionally |
-| `tests/bundle-confidentiality.test.js` | scans the built `dist/` for forbidden markers and fails the build |
+| `tests/bundle-confidentiality.test.js` | scans the built artefact **and the tracked tree** for markers, and fails the build |
+| `scripts/lib/markers.mjs` | loads the marker set and proves it has not been altered |
+| `scripts/scan-staged.mjs` | pre-commit hook: scans staged blobs before a commit exists |
 | `.gitignore` | `local-data/*` is never committed |
 
 The stubs are real files rather than Vite `virtual:` modules on purpose: the test
 suite imports the market registry in plain Node, and a virtual specifier breaks
 every test that reaches it.
 
-Note what the marker list deliberately does **not** ban: "Kemerton" alone. It is a
-real WA place — the Kemerton Strategic Industrial Area, Kemerton Terminal, the
-KEM–MRR constraint — and that geography is public and discussed throughout the
-grid and RCM tabs. What is confidential is *this fund's asset* at that location.
+### Where the marker set lives, and why not here
 
-### The original flags, kept for the record
+The markers themselves are **not in this repository**. They come from the
+`GUARD_MARKER_SET` secret in CI, or `local-data/markers.json` locally, and
+`scripts/lib/markers.mjs` carries a committed hash of the set so that a change to
+it is a visible diff and an unintended change is a red build.
 
-`src/markets/wa/data/optimizer.js` contains `MJA2026` — a scenario layer marked
-`CONFIDENTIAL_THIRD_PARTY` in the prototype, chart-reconstructed from a Marsden Jacob Associates
-report. The prototype's own comment says *"Do not expose in a public deployment."*
+This replaced a plaintext list inside the test file that exempted itself from its
+own scan — which meant the detection rule was also a published copy of every
+confidential value it protected. Tracked source now holds only the scanner, the
+fingerprint, and two structural patterns that carry no confidential content
+(a link to the document store, and the prototype's redaction-placeholder naming
+convention).
 
-It was migrated as-is because this phase preserves behaviour and does not change content. **It ships
-in the public bundle today.** Resolving it is a task for the confidential-data phase, and the options
-are: remove it, replace it with a public-source equivalent, or move it behind the `local-data/`
-mechanism below. Until then, treat any deployment of this site as a disclosure of that content.
+There are **no path exemptions left**: every tracked *text* file is scanned,
+including the guard's own source and this document. An exemption is a hole with a
+comment over it, and the previous design needed two.
 
-The same applies to `KEMERTON` in `src/markets/wa/data/kemerton.js`, which carries `CONFIDENTIAL`
-badges on individual fields (capex intensity, financial-model assumptions) and a named project,
-site address and counterparty equipment list.
+"Text" is the honest qualifier. Files containing a NUL byte are skipped — a
+marker inside a compressed container is not plaintext and a substring scan reads
+straight past it. That limit is why the pre-commit hook **refuses** staged
+document containers (PDF, Office, archive formats) outright rather than skipping
+them, with a narrow allowlist for the five ETL parser fixtures. A confidential
+report committed whole is a leak this repository has already had once, in a
+different wrapper.
+
+One judgement that decides what belongs in the set at all: the place name
+"Kemerton" is deliberately **not** a marker. It is a real WA location — the
+Kemerton Strategic Industrial Area, Kemerton Terminal, the KEM–MRR constraint —
+and that geography is public and discussed throughout the grid and RCM tabs. What
+is confidential is a particular fund's asset at that location. A marker list that
+banned the place name would either fail constantly or push someone into deleting
+legitimate public analysis.
+
+### The original flags — both resolved
+
+Two blocks were migrated out of the prototype carrying confidential content, and for a period they
+shipped in the public bundle. Both are now behind `local-data/`, and this section records what
+happened rather than what is outstanding.
+
+`src/markets/wa/data/optimizer.js` held a scenario layer chart-reconstructed from a confidential
+third-party consultant report, flagged in the prototype with a *"Do not expose in a public
+deployment"* comment that the refactor carried across without acting on. The public
+co-optimisation configuration stays in the module; the reconstructed layer moved to
+`local-data/wa-mja2026.json` and callers branch on `hasMjaData`.
+
+`src/markets/wa/data/kemerton.js` held market-level WEM capacity data — AEMO ESOO, ERA
+determinations, duration thresholds, the CRC calendar — mixed with a project underwriting layer
+naming a site, its technical specification, developer-reported trading assumptions and
+financial-model capex. The public half stayed; the project layer moved to
+`local-data/wa-kemerton-project.json` and callers branch on `hasProjectData`.
+
+The lesson worth keeping is in the second one. The prototype's own comment asserted that all
+project content was confined to the Portfolio tab. That had stopped being true — it had reached
+the duration, grid, FCESS and export layers as well — and nobody noticed, because the assertion
+was a comment rather than a test. That is why the guard scans artefacts and not intentions.
 
 ## Local / confidential data
 
@@ -143,16 +183,23 @@ local-data/*
 *.xls
 ```
 
-`src/local/` holds the loader interface and schemas for that data. **The loader is a stub.** The
-local-data interface is a later phase and is deliberately not implemented.
+`src/local/` holds the loader interface for that data, and **it is implemented**. Files placed in
+`local-data/` are read at *development* time only; `vite-plugin-local-data.js` substitutes the real
+content into two public stub modules when the dev server resolves them, and leaves those stubs
+untouched on `vite build`, unconditionally. The build path never has the data to begin with, so
+there is no branch for tree-shaking to get wrong.
 
-The intended shape: files placed in `local-data/` are read at *development* time only, and a
-local-only build variant can render them. Nothing in `local-data/` is ever copied into `dist/`. That
-still is not security — it keeps confidential data out of the public artefact, which is a different
-and more achievable goal.
+`loadLocal(key)` returns `null` for every key in a production build. The contract callers must
+respect is that **absence is the normal case** — a section renders its public layer and shows a
+withheld card, rather than leaving a hole where confidential content would have been.
+
+That still is not security. It keeps confidential data out of the public artefact, which is a
+different and more achievable goal. Anyone holding the repository and `local-data/` holds the data.
 
 **What is explicitly not being built:** authentication, a server, cloud storage, a database, or any
-scheme that pretends client-side code can keep a secret.
+scheme that pretends client-side code can keep a secret. If confidential material must reach
+someone who does not hold the repository, that needs a private deployment with server-side
+authorization — a different project, not an extension of this one.
 
 ## Before deploying
 
@@ -166,9 +213,11 @@ scheme that pretends client-side code can keep a secret.
    grep -ril "confidential" dist/
    ```
 
-3. Decide about source maps. `vite.config.js` sets `sourcemap: true`, which publishes readable
-   source. That is a reasonable default for a research site with nothing to hide; set it to `false`
-   if that changes.
+3. Leave source maps off. `vite.config.js` sets `sourcemap: false`, and that is **decided rather
+   than default**: a `dist/` scan once found confidential names reachable through a `.map` long
+   after the bundle itself was clean. The guard still filters `.map` files even though none are
+   emitted, so that turning them back on puts them under the scan rather than creating an
+   unscanned publication channel.
 4. Confirm the disclaimer still renders. Every page carries it, and it is not decoration — these are
    illustrative figures presented to investors.
 

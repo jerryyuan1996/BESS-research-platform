@@ -49,9 +49,37 @@ export const METADATA_FIELDS = [
   'timezone',      // IANA zone, for timestamped series
 ];
 
+/**
+ * The reader-facing definition of what `capacityMarket` actually asserts.
+ *
+ * The key is narrower than its name, and the gap matters. "Does this market have
+ * a capacity market" is not the question — several markets have arrangements
+ * that answer yes while paying a merchant battery nothing for adequacy. Finland
+ * is the clearest case: a statutory peak-load arrangement, and a TSO that calls
+ * its FFR/FCR/aFRR/mFRR procurement capacity markets, with no accredited
+ * adequacy payment a battery can bank.
+ *
+ * Note what is deliberately absent: any claim about duration. PJM's Base
+ * Residual Auction clears ONE DELIVERY YEAR at a time, so a definition built on
+ * "long-term" would mislabel the largest capacity market on this platform.
+ * Tenor is reported separately, from `contractYears` — or from
+ * `securedContractYears` where `riskClass` is 'auction-renewal', which is how
+ * PJM carries it and why a label reading only the former would render its
+ * one-year commitment as blank.
+ *
+ * The internal key keeps its name so no market module, fixture or test moves.
+ */
+export const RESOURCE_ADEQUACY_DEFINITION = [
+  'Payment for accredited availability or resource adequacy, excluding operating-reserve markets. Contract duration is reported separately.',
+  '为已核定的可用容量或容量充裕度支付的收入，不含运行备用市场。合约期限单独列示。',
+];
+
+/** The reader-facing name for the `capacityMarket` capability. */
+export const RESOURCE_ADEQUACY_LABEL = ['Resource adequacy revenue', '容量充裕度收入'];
+
 /** Capability flags. Absent or false means "this market does not have it". */
 export const CAPABILITY_FLAGS = [
-  'capacityMarket',     // an auction / CRM / RCM paying for availability
+  'capacityMarket',     // resource adequacy revenue — see RESOURCE_ADEQUACY_DEFINITION
   'merchant',           // exposure to wholesale energy spreads
   'ancillaryServices',  // system-service revenue
   'tolling',            // a tolling or floor structure with market precedent

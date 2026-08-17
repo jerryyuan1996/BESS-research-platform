@@ -44,7 +44,7 @@ function renderPending(container, market){
 
   container.append(h('div', { class: 'note' },
     h('b', {}, L(['Available now: ', '当前可用：'])),
-    L(['this market\'s normalized economics on the ', '该市场的归一化经济性见']),
+    L(['this market\'s economics on a like-for-like basis, on the ', '该市场的同口径经济性见']),
     h('a', { href: '/', onclick: (e) => { e.preventDefault(); navigate('/'); } },
       L(['global cockpit', '全球总看板'])),
     L(['. Migration steps are documented in docs/adding-a-market.md.',
@@ -58,7 +58,7 @@ function renderPending(container, market){
     [['Currency', '货币'], mf.currency],
     [['Capex per MW', '每MW造价'], mf.currencySymbol + e.capexPerMW.toLocaleString(mf.locale)],
     [['Contract length', '合同年限'], e.contractYears ? e.contractYears + L([' years', '年']) : L(['None', '无'])],
-    [['Seed snapshot verified', '种子数据核验日期'], mf.asOf],
+    [['Verified', '核验日期'], mf.asOf],
   ];
   container.append(h('div', { class: 'card', style: 'margin-top:14px;' },
     h('h3', {}, L(['Comparison interface — what the cockpit reads from this market', '对比接口 — 总看板读取的内容'])),

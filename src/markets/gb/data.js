@@ -20,8 +20,8 @@ const M = {
   nextMilestone: ['Next milestone: T-4 2030/31 auction parameters and the next Gate 2 offer tranche', '下一里程碑：T-4 2030/31拍卖参数及下一批Gate 2要约'],
   footerNote: ['Official FES and TEC sources re-verified 29 July 2026; Irish SEM data remains in a separate peer namespace and is excluded from GB scoring. Northern Ireland is covered in the Ireland dashboard.',
                'FES与TEC官方来源已于2026年7月29日重新核验；爱尔兰SEM数据仍保存在独立同业命名空间，不计入英国评分。北爱尔兰由爱尔兰看板覆盖。'],
-  seedWarn: ['FES system planning and the TEC project pipeline are governed official snapshots with metric-level lineage. Revenue, service, finance and some policy values remain GB_SEED_V1, analyst or third-party modelled and retain their existing badges. A queue MW is never expected delivery; a Gate 2 field is never an energisation date; realised revenue is never theoretical revenue.',
-             'FES系统规划与TEC项目管线现为带指标级溯源的受治理官方快照。收入、服务、财务及部分政策数值仍为GB_SEED_V1、分析师或第三方模型，并保留既有标识。队列MW绝不等于预期交付；Gate 2字段绝不等于送电日期；实际收入绝不等于理论收入。'],
+  seedWarn: ['FES system planning and the TEC project pipeline are governed official snapshots with metric-level lineage. Revenue, service, finance and some policy values remain base-case, analyst or third-party modelled and retain their existing badges. A queue MW is never expected delivery; a Gate 2 field is never an energisation date; realised revenue is never theoretical revenue.',
+             'FES系统规划与TEC项目管线现为带指标级溯源的受治理官方快照。收入、服务、财务及部分政策数值仍为基准情景、分析师或第三方模型，并保留既有标识。队列MW绝不等于预期交付；Gate 2字段绝不等于送电日期；实际收入绝不等于理论收入。'],
 
   systemEvolution: GB_SYSTEM_EVOLUTION,
   pipelineOfficial: GB_TEC_PIPELINE,

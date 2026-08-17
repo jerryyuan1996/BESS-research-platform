@@ -8,5 +8,5 @@
    --------------------------------------------------------------------------- */
 
 export const textOverrides = {
-  srcHealth: ['Source health: SEED — public sources refreshed Jul 2026, automated checks not yet running', '数据源状态：种子数据 — 公开来源已于2026年7月刷新，自动检测尚未运行'],
+  srcHealth: ['Source health: base case — public sources refreshed Jul 2026, automated checks not yet running', '数据源状态：基准情景 — 公开来源已于2026年7月刷新，自动检测尚未运行'],
 };

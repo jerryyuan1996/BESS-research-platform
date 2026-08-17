@@ -33,8 +33,8 @@ export const manifest = {
   modelVersion: 'caiso-seed-1.0-bilateral-ra-four-hour-nqc-ceiling',
   lastVerified: '2026-08-04',
   sourceHealth: [
-    'SEED — RA and merchant benchmarks are third-party; CPUC and CAISO framework inputs are official, automated checks not yet running',
-    '种子数据 — 容量充裕度与市场化收入基准来自第三方；CPUC与CAISO制度性输入为官方来源，自动检测尚未运行',
+    'Base case — RA and merchant benchmarks are third-party; CPUC and CAISO framework inputs are official, automated checks not yet running',
+    '基准情景 — 容量充裕度与市场化收入基准来自第三方；CPUC与CAISO制度性输入为官方来源，自动检测尚未运行',
   ],
 };
 

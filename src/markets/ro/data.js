@@ -17,8 +17,8 @@ const M = {
                   '下一里程碑：独立储能计划的首批正式授予及当前Transelectrica容量分配窗口'],
   footerNote: ['Public and official sources re-verified 26 July 2026; Polish data (Jul 2026) is held in a separate peer namespace and excluded from Romania scoring.',
                '公开及官方来源已于2026年7月26日重新核验；波兰数据（2026年7月）保存在独立同业命名空间，不计入罗马尼亚评分。'],
-  seedWarn: ['Every value on this page is a RO_SEED_V1 snapshot or an illustrative placeholder. No KPI is production-complete until its live ingestion, validation and source-health check are operational. Grants are never revenue; a scheme budget is never an award; authorisations are never operating MW; indicative grid capacity is never an ATR.',
-             '本页所有数值均为RO_SEED_V1种子快照或示例占位数据。在实时抓取、校验及源健康检测上线前，任何KPI均不可用于生产决策。补贴不等于收入；计划预算不等于正式授予；许可不等于投运容量；示意性电网容量不等于ATR。'],
+  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. Grants are never revenue; a scheme budget is never an award; authorisations are never operating MW; indicative grid capacity is never an ATR.',
+             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。补贴不等于收入；计划预算不等于正式授予；许可不等于投运容量；示意性电网容量不等于ATR。'],
 
   fx: 4.97,   // RON per EUR — illustrative mid-rate; replace with the central-bank series
   official: {

@@ -44,8 +44,8 @@ const T = {
     '覆盖' + n + '个配置市场和' + d + '个详细看板：集中展示可比市场指标及仅作示例的100万美元配置模型。',
   ]),
   disclaimer: (n) => ([
-    'The market cards, league tables and $1M engine normalize legacy seed inputs across ' + n + ' markets in a simplified, unlevered USD model. These allocation outputs are illustrative; source and evidence status remain available in each detailed market dashboard.',
-    '市场卡片、排行榜及100万美元引擎将' + n + '个市场的历史种子输入纳入简化、无杠杆的美元模型。配置结果仅作示例；各项来源及证据状态仍保留在对应市场的详细看板中。',
+    'The market cards, league tables and $1M engine put ' + n + ' markets on a like-for-like footing in a simplified, unlevered USD model. These allocation outputs are illustrative; source and evidence status remain available in each detailed market dashboard.',
+    '市场卡片、排行榜及100万美元引擎将' + n + '个市场置于同一口径，纳入简化、无杠杆的美元模型。配置结果仅作示例；各项来源及证据状态仍保留在对应市场的详细看板中。',
   ]),
   footerNote: [
     'Detailed market dashboards retain the governed public-source registry. The allocation model inherits their badges and adds only the stated FX and exit-pricing assumptions.',
