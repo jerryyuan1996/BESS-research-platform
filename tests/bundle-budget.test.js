@@ -46,20 +46,38 @@ const REQUIRE_OUTPUT = process.env.REQUIRE_OUTPUT === '1';
 const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
 
 /**
- * Budgets in gzipped kB.
+ * Budgets in gzipped kB, as Vite reports them (1 kB = 1000 bytes).
  *
- * `entry` is the whole first-load cost of the application shell plus every
- * market's manifest and comparison interface. It is high because ten markets
- * still ship their dashboards eagerly; each one converted should bring it down,
- * and this number should follow.
+ * `entry` is the whole first-load cost: the application shell, the home cockpit,
+ * and every market's manifest and comparison interface. It does NOT include any
+ * market's dashboard, sections, data or grid map — all fourteen load on demand.
+ *
+ * Ratcheted from 1290 to 320 when the remaining ten markets were split. Measured
+ * 296.52; the headroom is for ordinary growth in the shell and the comparison
+ * interfaces, not for a market leaking back in.
  */
 const BUDGET = {
-  entry: 1290,
+  entry: 320,
+
+  /* Per-market chunks, ~12% above measured. Roughly proportional to how much
+     analysis each market carries: WA is the largest because it is the one
+     hand-written dashboard, with its own optimiser, BRCP engine and export
+     layer that the shared block engine does not have. */
   markets: {
-    ro: 95,
-    jp: 125,
+    caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 95,
+    pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
+
+  /* Chunks Rollup factors out because several market chunks share them. They
+     are NOT part of the first load — a visitor who never opens a market page
+     never fetches them — but the first market visit pays for whichever it
+     needs, so they belong in the accounting. */
+  shared: { engine: 15, metrics: 12, sourceDrawer: 17 },
 };
+
+/** Every registered market must have its own chunk. Twelve dashboards, three of
+ *  which Japan shares across its three allocation points. */
+const EXPECTED_MARKET_CHUNKS = 12;
 
 /**
  * Strings that must NOT appear in the entry chunk.
@@ -71,8 +89,18 @@ const BUDGET = {
  * has to be something with exactly one home.
  */
 const MUST_NOT_BE_IN_ENTRY = {
+  wa: 'wa-grid-map',
+  nem: 'nem-grid-map',
+  gb: 'gb-grid-map',
+  de: 'de-grid-map',
+  it: 'it-grid-map',
+  ie: 'ie-grid-map',
   ro: 'ro-grid-map',
+  pl: 'pl-grid-map',
   jp: 'jp-tokyo-grid-map',
+  pjm: 'pjm-grid-map',
+  ercot: 'ercot-grid-map',
+  caiso: 'caiso-grid-map',
 };
 
 function skipWithoutDist(t){
@@ -93,7 +121,13 @@ async function chunks(){
     const buf = await readFile(path.join(dir, name));
     const entry = { name, raw: buf.length, gzip: gzipSync(buf).length, text: buf.toString('utf8') };
 
-    const market = /^market-([a-z0-9-]+)-[^.]+\.js$/.exec(name);
+    /* NON-GREEDY, and the hash is matched by length rather than by charset.
+       Vite's hash alphabet includes `-`, so a chunk can be emitted as
+       `market-ro--LSUnJfT.js` — market id, separator, then a hash whose first
+       character is another dash. A greedy `[a-z0-9-]+` captures `ro-` from that
+       and the market silently goes missing from this accounting, which is how
+       this test first reported twelve chunks as ten. */
+    const market = /^market-(.+?)-[A-Za-z0-9_-]{8}\.js$/.exec(name);
     if (market) out.markets.set(market[1], entry);
     else if (/^index-[^.]+\.js$/.test(name)) out.entry = entry;
     else out.other.push(entry);
@@ -113,6 +147,42 @@ test('the entry chunk is within its budget', async (t) => {
     'is a new static import from a market module into something the shell already\n' +
     'loads, which pulls that market\'s whole graph back in. Check what changed in\n' +
     'src/markets/registry.js, gridMapRegistry.js or congestionRegistry.js first.');
+});
+
+test('every market loads its dashboard on demand', async (t) => {
+  if (skipWithoutDist(t)) return;
+  const { markets } = await chunks();
+
+  /* Not "at least one" — all of them. A market quietly reverted to a static
+     import still renders correctly and still passes every other test; the only
+     evidence is that its chunk stopped being emitted and the entry grew. */
+  assert.equal(markets.size, EXPECTED_MARKET_CHUNKS,
+    `expected ${EXPECTED_MARKET_CHUNKS} market chunks, found ${markets.size}: ` +
+    `${[...markets.keys()].sort().join(', ') || 'none'}.\n` +
+    'A missing chunk means that market went back to shipping in the entry bundle.\n' +
+    'Check its index.js still exports loadDashboard and that nothing imports its\n' +
+    'dashboard.js statically.');
+});
+
+test('the shared chunks stay out of the first load', async (t) => {
+  if (skipWithoutDist(t)) return;
+  const { entry, other } = await chunks();
+
+  /* Rollup factors out what several market chunks share — the block engine, the
+     source drawer, the metrics helpers. That is the right outcome: they are
+     fetched once, by whichever market page is opened first, and reused. What
+     would NOT be right is any of them being pulled into the entry, which is what
+     happens the moment the home page imports one of them directly. */
+  for (const [name, budget] of Object.entries(BUDGET.shared)){
+    const chunk = other.find(c => c.name.startsWith(`${name}-`));
+    assert.ok(chunk,
+      `no ${name}-*.js chunk. It was either inlined into the entry — check whether\n` +
+      'a home-page module started importing it — or into a single market chunk,\n' +
+      'which means the markets that shared it no longer do.');
+    assert.ok(kB(chunk.gzip) <= budget,
+      `${chunk.name} is ${kB(chunk.gzip)} kB gzipped, over its ${budget} kB budget.`);
+  }
+  assert.ok(entry, 'no entry chunk');
 });
 
 test('each split market has its own chunk, within budget', async (t) => {

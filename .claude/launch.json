@@ -7,6 +7,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--", "--no-open"],
       "port": 5199
+    },
+    {
+      "name": "bess-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview", "--", "--port", "5200"],
+      "port": 5200
     }
   ]
 }
