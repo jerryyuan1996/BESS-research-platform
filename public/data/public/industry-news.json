@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-17T13:09:15.116Z",
+  "fetchedAt": "2026-08-17T19:00:57.118Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-17T13:03:30.000Z",
+    "to": "2026-08-17T14:49:26.000Z",
     "resolution": "event",
-    "points": 39
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -133,16 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": ""
-    },
-    {
-      "t": "2026-08-12T17:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/supply-constraints-will-limit-ercot-peak-demand-growth-report/827677/",
-      "source": "Utility Dive",
-      "title": "Texas hits new peak demand record, but supply constraints will limit growth",
-      "url": "https://www.utilitydive.com/news/supply-constraints-will-limit-ercot-peak-demand-growth-report/827677/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Ascend Analytics says more than 80% of new large loads seeking interconnection will not have matching generation online by 2030, even as data centers and industrial demand continue to surge."
     },
     {
       "t": "2026-08-13T09:01:41.000Z",
@@ -413,17 +403,47 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Global solar capacity has surpassed 3 TW, with China driving much of the recent expansion and emerging markets increasingly contributing to growth. As deployment accelerates, grid infrastructure, energy storage, and demand flexibility will become critical to integrating the next wave of solar capacity. The post Sola…"
+    },
+    {
+      "t": "2026-08-17T13:54:55.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-miso-pjm-cost-recovery-transmission-projects/828002/",
+      "source": "Utility Dive",
+      "title": "FERC approves MISO cost recovery plan for transmission projects built in PJM",
+      "url": "https://www.utilitydive.com/news/ferc-miso-pjm-cost-recovery-transmission-projects/828002/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In its decision affecting Exelon and Duke Energy utilities, the Federal Energy Regulatory Commission rejected calls to require the planned projects to go through a bidding process."
+    },
+    {
+      "t": "2026-08-17T14:16:39.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/doe-cancels-3-national-transmission-corridors-citing-green-new-scam/828012/",
+      "source": "Utility Dive",
+      "title": "DOE cancels 3 national transmission corridors, citing ‘Green New Scam’",
+      "url": "https://www.utilitydive.com/news/doe-cancels-3-national-transmission-corridors-citing-green-new-scam/828012/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The agency previously said the projects would provide resource adequacy support to the PJM Interconnection, bolster transmission between the Southwest Power Pool and WestConnect regions, and address a lack of&nbsp;high-voltage transmission in Tribal areas."
+    },
+    {
+      "t": "2026-08-17T14:49:26.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/agastya-energy-plans-12-gw-ingot-and-wafer-manufacturing-facility-in-andhra-pradesh/",
+      "source": "pv magazine",
+      "title": "Agastya Energy plans 12 GW ingot, wafer factory in India",
+      "url": "https://www.pv-magazine.com/2026/08/17/agastya-energy-plans-12-gw-ingot-and-wafer-manufacturing-facility-in-andhra-pradesh/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Agastya Energy plans to invest INR 78 billion ($815.8 million) to develop a 12 GW ingot and wafer manufacturing facility in Kurnool, Andhra Pradesh. The project will complement its planned 5 GW cell and module manufacturing capacity and strengthen India’s integrated solar supply chain. The post Agastya Energy plans…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 39,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 6,
-      "grid": 28,
-      "capital": 3,
+      "grid": 29,
+      "capital": 4,
       "technology": 2
     },
     "sourceStatus": [
@@ -443,13 +463,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 1
+        "items": 2
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 8
       }
     ]
   },
@@ -458,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:25698fa801161529d2b0db84b3cbbb21eb51c0f8560a1d88012095876b28c453",
-  "envelopeChecksum": "sha256:5f8f14767a1400d27e5e3e751eb695d5d845fa3a6319c7f23b8600d6bf1a4a10"
+  "contentChecksum": "sha256:810208ab03f3160b41defd29b7f7042a8912c150a0f200dc1951e3d6bac3c692",
+  "envelopeChecksum": "sha256:b7a989da9d3affbdf1913a2e5d5049d7a01f121474ec4e73377b622942e1eab6"
 }
