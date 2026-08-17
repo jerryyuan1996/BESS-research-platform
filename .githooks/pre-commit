@@ -1,0 +1,11 @@
+#!/bin/sh
+# Blocks a commit that stages confidential content.
+#
+# Enable with:  npm run guard:install   (sets core.hooksPath to this directory)
+#
+# Reads the STAGED BLOBS, not the working tree — see scripts/scan-staged.mjs for
+# why that distinction is the whole point of the hook.
+#
+# Exit 2 means the guard could not run (no marker set available). That still
+# blocks the commit: a guard that cannot scan must not report success.
+exec node scripts/scan-staged.mjs

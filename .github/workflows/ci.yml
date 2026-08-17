@@ -25,8 +25,20 @@ jobs:
       # cannot write outside public/data/ and that every comparison field is
       # classified. A pull request that widens automation's authority without
       # saying so fails here.
+      # GUARD_MARKER_SET carries the confidential marker set, which is
+      # deliberately not in the repository — see scripts/lib/markers.mjs.
+      # REQUIRE_MARKERS=1 turns "no marker set" from a legitimate local skip into
+      # a failure here, for the same reason REQUIRE_OUTPUT exists below: a guard
+      # that scans for nothing passes against everything.
+      #
+      # A fork pull request cannot read secrets and will fail this step. That is
+      # the correct direction to fail for a private repository — the alternative
+      # is a green run that scanned nothing.
       - name: Test
         run: npm test
+        env:
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          REQUIRE_MARKERS: '1'
 
       - name: Build
         run: npm run build
@@ -50,6 +62,8 @@ jobs:
         env:
           SCAN_DIR: dist
           REQUIRE_OUTPUT: '1'
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          REQUIRE_MARKERS: '1'
 
       # Snapshots are machine-written and carry a checksum over their contents.
       # A hand-edited "observed" file is exactly the confusion the envelope
@@ -138,6 +152,8 @@ jobs:
         env:
           SCAN_DIR: .vercel/output
           REQUIRE_OUTPUT: '1'
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          REQUIRE_MARKERS: '1'
 
       # --prebuilt uploads what was just scanned. Without it the Vercel platform
       # would rebuild from source on its own infrastructure, producing bytes no
