@@ -20,7 +20,9 @@ import { fileURLToPath } from 'node:url';
 
 import { simplifyPath, SIMPLIFY_TOLERANCE } from '../etl/sources/osm-grid.mjs';
 import { TRANSMISSION_VOLTAGE, bandsFor } from '../src/governance/transmissionVoltage.js';
-import { GRID_MAPS } from '../src/markets/gridMapRegistry.js';
+/* The aggregator first — see src/markets/gridMapRegistry.all.js. */
+import '../src/markets/gridMapRegistry.all.js';
+import { allGridMaps } from '../src/markets/gridMapRegistry.js';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const DIR = resolve(ROOT, 'public/data/grid');
@@ -193,7 +195,7 @@ test('no delivered file has grown past the point where a diff is reviewable', ()
 });
 
 test('every market wired to a manifest has one, and it is its own', () => {
-  const wired = GRID_MAPS.filter(map => map.transmissionManifest);
+  const wired = allGridMaps().filter(map => map.transmissionManifest);
   assert.ok(wired.length, 'no market is wired to a transmission manifest');
 
   for (const map of wired){

@@ -215,8 +215,19 @@ export function validateMarket(market){
       if (!Array.isArray(t) || typeof t[0] !== 'string' || !isPair(t[1])) at(`malformed tab entry: ${JSON.stringify(t)}`);
     }
   }
+  /* Two ways to have a dashboard, and the rule for each is tightened rather than
+     loosened. `dashboard` must still be a synchronous function — this check was
+     NOT relaxed to accommodate lazy loading, because a promise wearing that name
+     is exactly the confusion the second key exists to avoid. */
   if (market.dashboard !== undefined && typeof market.dashboard !== 'function'){
     at('dashboard must be a function (container, market) => void');
+  }
+  if (market.loadDashboard !== undefined && typeof market.loadDashboard !== 'function'){
+    at('loadDashboard must be a function returning a promise for the renderer');
+  }
+  if (market.dashboard !== undefined && market.loadDashboard !== undefined){
+    at('declare dashboard OR loadDashboard, not both — which one wins is not ' +
+       'something a reader of the market module should have to work out');
   }
 
   return problems;

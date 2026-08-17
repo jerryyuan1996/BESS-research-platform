@@ -15,7 +15,6 @@
    to register for the balancing market in FY2026 against a small requirement.
    That is saturation arriving before the requirement grows.
    --------------------------------------------------------------------------- */
-import { dashboard } from '../jp/dashboard.js';
 import { tabs } from '../jp/tabs.js';
 import { sources } from '../jp/sources.js';
 import {
@@ -139,4 +138,13 @@ export const comparison = {
   },
 };
 
-export default { manifest, comparison, sources, tabs, dashboard };
+/* The dashboard loads on demand — see src/markets/ro/index.js for the reasoning
+   and marketPage.js for the loading, failure and stale-navigation handling.
+
+   Three allocation points share ONE dashboard chunk. dashboardOwner() resolves
+   jp_tokyo/jp_kyushu/jp_hokkaido to the 'jp' module, so the loader is keyed on
+   the owner and all three visits reuse a single import. Keying it on the
+   allocation point instead would have produced three loads of the same bytes. */
+export const loadDashboard = () => import('../jp/dashboard.js').then(m => m.dashboard);
+
+export default { manifest, comparison, sources, tabs, loadDashboard };

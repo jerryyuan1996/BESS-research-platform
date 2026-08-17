@@ -1,3 +1,4 @@
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './pl-boundary-2024.json' with { type:'json' };
 
 const URL = {
@@ -346,3 +347,8 @@ export const PL_GRID_MAP = {
   sourceCatalog,
   scope:['National orientation only. Coordinates and routes are simplified locality/corridor guides; the map does not show spare capacity, queue priority, live output, curtailment probability or a bankable connection right.','仅用于全国方位展示。坐标及路径为简化地点/走廊指南；地图不显示可用容量、队列优先级、实时出力、限发概率或可融资并网权利。'],
 };
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(PL_GRID_MAP, 'pl');

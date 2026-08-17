@@ -2,15 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-import { GRID_MAPS } from '../src/markets/gridMapRegistry.js';
+/* The aggregator first: maps register themselves as market chunks load, and
+   these assertions are properties of the whole COLLECTION. See
+   src/markets/gridMapRegistry.all.js. */
+import '../src/markets/gridMapRegistry.all.js';
+import { allGridMaps } from '../src/markets/gridMapRegistry.js';
 import {
   gridMapSources, validateGridMapCollection,
 } from '../src/governance/gridMapSources.js';
 
 test('every allocation dashboard has an investor-grade public-source grid map', () => {
-  assert.equal(GRID_MAPS.length, 14);
+  assert.equal(allGridMaps().length, 14);
   assert.deepEqual(
-    GRID_MAPS.map(map => map.id),
+    allGridMaps().map(map => map.id),
     [
       'wa-grid-map', 'nem-grid-map', 'gb-grid-map', 'de-grid-map', 'it-grid-map',
       'ie-grid-map', 'ro-grid-map', 'pl-grid-map',
@@ -18,16 +22,16 @@ test('every allocation dashboard has an investor-grade public-source grid map', 
       'pjm-grid-map', 'ercot-grid-map', 'caiso-grid-map',
     ],
   );
-  assert.deepEqual(validateGridMapCollection(GRID_MAPS), []);
+  assert.deepEqual(validateGridMapCollection(allGridMaps()), []);
 });
 
 test('map source records are unique, public and future-refreshable', () => {
-  const sources = gridMapSources(GRID_MAPS);
+  const sources = gridMapSources(allGridMaps());
   const keys = sources.map(source => `${source.marketMapId}:${source.id}`);
   assert.equal(new Set(keys).size, keys.length);
-  assert.ok(sources.length >= GRID_MAPS.length * 3);
+  assert.ok(sources.length >= allGridMaps().length * 3);
 
-  for (const map of GRID_MAPS){
+  for (const map of allGridMaps()){
     assert.ok(map.sourceCatalog.some(source => ['A', 'B'].includes(source.automation)),
       `${map.id}: at least one structured/downloadable source is required`);
     const catalogUrls = new Set(map.sourceCatalog.map(source => source.url));
@@ -41,7 +45,7 @@ test('the repository exposes a read-only reachability checker for map sources', 
   const script = await readFile(new URL('../etl/verify-grid-map-sources.mjs', import.meta.url), 'utf8');
   const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
   assert.match(script, /method,\s*redirect:'follow'/);
-  assert.match(script, /GRID_MAPS/);
+  assert.match(script, /allGridMaps()/);
   assert.doesNotMatch(script, /writeFile|appendFile|createWriteStream/);
   assert.equal(pkg.scripts['etl:verify:grid-maps'], 'node etl/verify-grid-map-sources.mjs');
 });

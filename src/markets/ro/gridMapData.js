@@ -1,3 +1,4 @@
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './ro-boundary-2024.json' with { type:'json' };
 
 const URL = {
@@ -255,3 +256,8 @@ export const RO_GRID_MAP = {
   sourceCatalog,
   scope:['National orientation only. Coordinates are approximate locality centroids; the map does not show spare capacity, queue priority, live output or an investable connection right.','仅用于全国方位展示。坐标为近似地点中心；地图不显示可用容量、队列优先级、实时出力或可投资并网权利。'],
 };
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(RO_GRID_MAP, 'ro');

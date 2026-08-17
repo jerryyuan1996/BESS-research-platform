@@ -21,6 +21,7 @@
    is no CAISO equivalent of SuedLink to point at, because the thing standing
    between a developer and this market is a study process rather than a line.
    --------------------------------------------------------------------------- */
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './ca-boundary.json' with { type:'json' };
 
 const URL = {
@@ -173,3 +174,8 @@ export const CAISO_GRID_MAP = {
 };
 
 export default CAISO_GRID_MAP;
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(CAISO_GRID_MAP, 'caiso');

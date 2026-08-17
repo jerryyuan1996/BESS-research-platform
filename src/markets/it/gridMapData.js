@@ -16,6 +16,7 @@
    islands with the demand still in the north; 2035 is the system after four
    named submarine links land between 2028 and 2030.
    --------------------------------------------------------------------------- */
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './it-boundary.json' with { type:'json' };
 import zoneSet from './it-zones.json' with { type:'json' };
 import { macseZoneMarkers, MACSE_CAPTION } from './storageZones.js';
@@ -249,3 +250,8 @@ export const IT_GRID_MAP = {
 };
 
 export default IT_GRID_MAP;
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(IT_GRID_MAP, 'it');

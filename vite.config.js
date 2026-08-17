@@ -17,6 +17,26 @@ export default defineConfig({
        A dist/ scan found confidential names reachable through the .map long
        after the bundle itself was clean, so this is off for production. */
     sourcemap: false,
+    rollupOptions: {
+      output: {
+        /* NAME A MARKET CHUNK AFTER ITS MARKET.
+           Every lazily-loaded dashboard entry is called `dashboard.js`, so
+           Rollup's default naming produced `dashboard-mhaQJ28Y.js` and
+           `dashboard-C5Og3hNx.js` — two files whose names say nothing about
+           which market they are. That matters in three places a build is
+           actually read: the build summary, the network panel when someone is
+           diagnosing a slow market page, and tests/bundle-budget.test.js, which
+           attributes bytes per market and cannot do that from a hash.
+
+           The directory above the entry is the market id, which is exactly the
+           label wanted. Anything not matching that shape keeps the default. */
+        chunkFileNames(chunk){
+          const id = chunk.facadeModuleId || '';
+          const m = /[\\/]markets[\\/]([^\\/]+)[\\/]dashboard\.js$/.exec(id);
+          return m ? `assets/market-${m[1]}-[hash].js` : 'assets/[name]-[hash].js';
+        },
+      },
+    },
   },
   server: {
     // Honour PORT when the environment assigns one, so several checkouts (or

@@ -20,7 +20,11 @@ import { markets, comparableMarkets } from '../src/markets/registry.js';
 import {
   CONGESTION_REGISTERS, congestionFor, congestionForDashboard, allZones,
 } from '../src/markets/congestionRegistry.js';
-import { GRID_MAPS, gridMapForMarket, gridMapById } from '../src/markets/gridMapRegistry.js';
+/* The aggregator first: maps register themselves as market chunks load, and
+   these assertions are properties of the whole COLLECTION. See
+   src/markets/gridMapRegistry.all.js. */
+import '../src/markets/gridMapRegistry.all.js';
+import { allGridMaps, gridMapForMarket, gridMapById } from '../src/markets/gridMapRegistry.js';
 import {
   validateCongestionCollection, CAPTURE, CAPTURE_LABEL, CAPTURE_PAYS, CAPTURE_FLOW, CAPTURE_FLOW_LABEL,
   RELIEF_STATUS, RELIEF_STATUS_LABEL, reliefRunway, HORIZON_YEAR,
@@ -125,7 +129,7 @@ test('a charging mechanism never carries a relief warning on a revenue assumptio
 });
 
 test('each grid map carries the congestion register of its own market', () => {
-  for (const map of GRID_MAPS){
+  for (const map of allGridMaps()){
     assert.ok(map.marketId, `${map.id}: joined map has no marketId`);
     const register = congestionFor(map.marketId);
     assert.ok(register, `${map.id}: joined to a market with no register`);
@@ -165,7 +169,7 @@ test('a constraint sits inside the market map it is drawn on', () => {
   /* A miscoded longitude puts Poland's corridor in the Atlantic and nobody
      notices, because the projection clips it silently. Bound each constraint by
      its own map's boundary extent instead. */
-  for (const map of GRID_MAPS){
+  for (const map of allGridMaps()){
     const features = map.boundary.type === 'FeatureCollection' ? map.boundary.features : [map.boundary];
     let west = 180, east = -180, south = 90, north = -90;
     const visit = (coords) => {
@@ -213,7 +217,7 @@ test('intensity is a bounded ranking, so it can size a marker but never be print
 });
 
 test('the grid map registry still exposes every market map exactly once', () => {
-  const ids = GRID_MAPS.map(m => m.id);
+  const ids = allGridMaps().map(m => m.id);
   assert.equal(new Set(ids).size, ids.length, 'duplicate grid map id');
   for (const m of comparableMarkets()){
     const map = m.manifest.dashboardId === 'jp'

@@ -1,3 +1,4 @@
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './ireland-sem-boundary.json' with { type: 'json' };
 /* OpenStreetMap battery fleet, ODbL. Ireland is the only market carried on OSM
    for storage, because its coverage was measured — 26 plants / 1,039 MW against
@@ -372,3 +373,8 @@ export const IE_GRID_MAP = {
     '仅用于全岛SEM方位展示。边界几何来自公开的Eurostat/GISCO 2021年NUTS爱尔兰及北爱尔兰GeoJSON。标记采用近似地点中心坐标；除特别说明外线路均为示意。容量为公开铭牌、物理输送、在建或规划值，并非实时出力、可用空间、队列位置、限发概率或可投资MIC/MEC权利。',
   ],
 };
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(IE_GRID_MAP, 'ie');

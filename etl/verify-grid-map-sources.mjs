@@ -4,7 +4,10 @@
  * grid maps. It never publishes data and never writes into src/. Run it before
  * a research refresh to find moved, retired or access-controlled URLs.
  */
-import { GRID_MAPS } from '../src/markets/gridMapRegistry.js';
+/* The aggregator first — maps register themselves as market chunks load, and a
+   reachability sweep wants all of them. See src/markets/gridMapRegistry.all.js. */
+import '../src/markets/gridMapRegistry.all.js';
+import { allGridMaps } from '../src/markets/gridMapRegistry.js';
 
 const timeoutMs = Number(process.env.GRID_SOURCE_TIMEOUT_MS || 15000);
 const marketArg = process.argv.find(arg => arg.startsWith('--market='));
@@ -12,8 +15,8 @@ const marketId = marketArg?.split('=')[1] || null;
 const json = process.argv.includes('--json');
 
 const maps = marketId
-  ? GRID_MAPS.filter(map => map.id === marketId || map.id.startsWith(`${marketId}-`))
-  : GRID_MAPS;
+  ? allGridMaps().filter(map => map.id === marketId || map.id.startsWith(`${marketId}-`))
+  : allGridMaps();
 
 if (!maps.length){
   console.error(`No grid map matched "${marketId}".`);
