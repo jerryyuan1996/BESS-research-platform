@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-17T07:19:16.680Z",
+  "fetchedAt": "2026-08-17T13:09:15.116Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-17T06:50:25.000Z",
+    "to": "2026-08-17T13:03:30.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 39
   },
   "units": {
     "record": "published article metadata"
@@ -135,56 +135,6 @@
       "summary": ""
     },
     {
-      "t": "2026-08-12T09:50:02.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/acciona-energia-to-add-33mw-66mwh-bess-in-spain/",
-      "source": "Energy-Storage.news",
-      "title": "Acciona Energía to add 33MW/66MWh BESS in Spain",
-      "url": "https://www.energy-storage.news/acciona-energia-to-add-33mw-66mwh-bess-in-spain/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Spanish renewables developer Acciona Energía has unveiled plans to install two battery energy storage systems (BESS)."
-    },
-    {
-      "t": "2026-08-12T11:31:49.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/sungrow-provides-bess-to-verano-energys-606mwh-chilean-hybrid-project/",
-      "source": "Energy-Storage.news",
-      "title": "Sungrow provides BESS to Verano Energy’s 606MWh Chilean hybrid project",
-      "url": "https://www.energy-storage.news/sungrow-provides-bess-to-verano-energys-606mwh-chilean-hybrid-project/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Independent power producer (IPP) Verano Energy has awarded the battery energy storage system (BESS) supply for its 152MW/606MWh Observatorio project to Sungrow."
-    },
-    {
-      "t": "2026-08-12T13:01:39.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/",
-      "source": "Utility Dive",
-      "title": "PJM eyes data center, crypto reliability requirements after 3.8 GW of load trips offline",
-      "url": "https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The PJM Interconnection is considering setting &ldquo;ride-through&rdquo; standards after data centers tripped offline in Northern Virginia on July 22, the latest and largest such event in PJM&rsquo;s history, the grid operator said."
-    },
-    {
-      "t": "2026-08-12T15:02:23.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/xcel-asks-colorado-supreme-court-to-facilitate-wind-farm-interconnection/827572/",
-      "source": "Utility Dive",
-      "title": "Xcel asks Colorado Supreme Court to facilitate wind farm interconnection",
-      "url": "https://www.utilitydive.com/news/xcel-asks-colorado-supreme-court-to-facilitate-wind-farm-interconnection/827572/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "In June,&nbsp;a district court judge rejected PSCo&rsquo;s effort to acquire roughly 550 feet of easement via eminent domain to connect two nearly complete wind farms totaling more than 1 GW. The utility says the project delays are harming ratepayers."
-    },
-    {
-      "t": "2026-08-12T15:02:51.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/dominion-energy-scc-transmission-costs-data-center/827693/",
-      "source": "Utility Dive",
-      "title": "Dominion ordered to directly assign some transmission costs to data centers",
-      "url": "https://www.utilitydive.com/news/dominion-energy-scc-transmission-costs-data-center/827693/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Virginia State Corporation Commission said it may use an upcoming docket to weigh whether this policy &ldquo;could or should&rdquo; also apply to more upstream transmission costs."
-    },
-    {
       "t": "2026-08-12T17:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/supply-constraints-will-limit-ercot-peak-demand-growth-report/827677/",
       "source": "Utility Dive",
@@ -193,26 +143,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Ascend Analytics says more than 80% of new large loads seeking interconnection will not have matching generation online by 2030, even as data centers and industrial demand continue to surge."
-    },
-    {
-      "t": "2026-08-13T07:50:58.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/copenhagen-infrastructure-partners-commercial-operations-500mw-bess-scotland/",
-      "source": "Energy-Storage.news",
-      "title": "Copenhagen Infrastructure Partners reaches commercial operations on 500MW BESS in Scotland",
-      "url": "https://www.energy-storage.news/copenhagen-infrastructure-partners-commercial-operations-500mw-bess-scotland/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Denmark-headquartered investor Copenhagen Infrastructure Partners (CIP) has brought its 500MW, 2-hour duration Coalburn 1 battery energy storage system (BESS) into commercial operation."
-    },
-    {
-      "t": "2026-08-13T08:51:05.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/arevon-energys-1200mwh-california-bess-begins-operations/",
-      "source": "Energy-Storage.news",
-      "title": "Arevon Energy’s 1,200MWh California BESS begins operations",
-      "url": "https://www.energy-storage.news/arevon-energys-1200mwh-california-bess-begins-operations/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Renewable energy developer-operator Arevon Energy has put its 300MW/1,200MWh Nighthawk Energy Storage Project in Poway, California, US into operation."
     },
     {
       "t": "2026-08-13T09:01:41.000Z",
@@ -335,56 +265,6 @@
       "summary": "US 'multi-day' energy storage startup Noon Energy has made an agreement with renewables platform Sabanci Renewables, to deploy 1GW of Noon’s technology for AI infrastructure in the US."
     },
     {
-      "t": "2026-08-14T10:35:50.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/dewa-study-assesses-pv-cleaning-robot-performance-and-safety/",
-      "source": "pv magazine",
-      "title": "DEWA study assesses PV cleaning robot performance and safety",
-      "url": "https://www.pv-magazine.com/2026/08/14/dewa-study-assesses-pv-cleaning-robot-performance-and-safety/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A research from Dubai Electricity and Water Authority have evaluated five autonomous PV cleaning robots under desert conditions. The researchers found cleaning efficiencies of 69% to 99%, while also identifying battery, corrosion, ingress-protection and mechanical reliability issues. The post DEWA study assesses PV…"
-    },
-    {
-      "t": "2026-08-14T10:42:11.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/what-makes-women-join-stay-and-progress-in-solar/",
-      "source": "pv magazine",
-      "title": "What makes women join, stay and progress in Solar+?",
-      "url": "https://www.pv-magazine.com/2026/08/14/what-makes-women-join-stay-and-progress-in-solar/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "This week, Women in Solar+ Europe (WiSEu) announces its first contribution to SolarPower Europe’s Solar Jobs Report 2026. The article will explore women’s representation across the Solar+ industries and the factors influencing their attraction, retention and career progression. But to tell that story, WiSEu needs da…"
-    },
-    {
-      "t": "2026-08-14T10:54:19.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/chinese-pv-industry-brief-longi-plans-100-mw-perovskite-silicon-tandem-solar-cell-pilot-line/",
-      "source": "pv magazine",
-      "title": "Chinese PV Industry Brief: Longi plans 100 MW perovskite-silicon tandem solar cell pilot line",
-      "url": "https://www.pv-magazine.com/2026/08/14/chinese-pv-industry-brief-longi-plans-100-mw-perovskite-silicon-tandem-solar-cell-pilot-line/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "In other news, Tongwei advanced its planned acquisition of polysilicon maker Lihao Clean Energy to the final negotiation stage, while Trina Solar outlined plans for THBC mass production in H2 2026 and GW-scale perovskite tandem capacity by 2029. The post Chinese PV Industry Brief: Longi plans 100 MW perovskite-silic…"
-    },
-    {
-      "t": "2026-08-14T11:07:26.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/kit-develops-hybrid-solar-system-with-radiative-cooling/",
-      "source": "pv magazine",
-      "title": "KIT develops hybrid solar system with radiative cooling",
-      "url": "https://www.pv-magazine.com/2026/08/14/kit-develops-hybrid-solar-system-with-radiative-cooling/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "KIT researchers have developed a hybrid system that combines photovoltaics and passive radiative cooling to simultaneously generate electricity, heat, and cooling from a single surface. A prototype achieved cooling of up to 6.5 C below ambient temperature, 60.6 W/m² of electrical power density, and heat temperatures…"
-    },
-    {
-      "t": "2026-08-14T12:37:02.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/when-heat-becomes-a-stress-test-what-extreme-temperatures-mean-for-photovoltaic-systems-and-battery-storage/",
-      "source": "pv magazine",
-      "title": "When heat becomes a stress test: What extreme temperatures mean for photovoltaic systems and battery storage",
-      "url": "https://www.pv-magazine.com/2026/08/14/when-heat-becomes-a-stress-test-what-extreme-temperatures-mean-for-photovoltaic-systems-and-battery-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Photovoltaics rely on sunlight. Battery storage systems rely on absorbing and releasing energy precisely when the power grid needs it. Both sound like an ideal combination for hot summer days: plenty of sunshine, high generation, increased electricity demand due to cooling, and greater grid flexibility. In practice,…"
-    },
-    {
       "t": "2026-08-14T13:13:58.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/data-accuracy-is-one-of-the-most-important-things-ensights-ceo-on-bess-economics-in-pjm/",
       "source": "Energy-Storage.news",
@@ -403,16 +283,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Italian clean energy developer Limes Renewable Energy has reached the ready-to-build stage at its 200MW/1GWh Huañil project."
-    },
-    {
-      "t": "2026-08-15T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/15/making-the-data-center-business-case/",
-      "source": "pv magazine",
-      "title": "Making the data center business case",
-      "url": "https://www.pv-magazine.com/2026/08/15/making-the-data-center-business-case/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A data center can be built in 18 to 24 months, but connecting it to the grid is another matter, writes Laura Hoffmann-Ostenhof, Europe industry lead at modeling software supplier Gridcog. Across Europe’s established hubs – the FLAP-D cluster of Frankfurt, London, Amsterdam, Paris and Dublin – the wait for a grid con…"
     },
     {
       "t": "2026-08-17T01:24:30.000Z",
@@ -435,45 +305,125 @@
       "summary": "Melbourne-based battery technology company Relectrify has installed its first AC1 battery energy storage system (BESS) in Renmark, South Australia, in partnership with YES Energy."
     },
     {
-      "t": "2026-08-17T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/pursuing-efficiency/",
-      "source": "pv magazine",
-      "title": "Pursuing efficiency",
-      "url": "https://www.pv-magazine.com/2026/08/17/pursuing-efficiency/",
+      "t": "2026-08-17T08:29:37.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/megarevo-customer-focused-microgrid-solutions-scales-european-operations/",
+      "source": "Energy-Storage.news",
+      "title": "Megarevo differentiates with customer-focused microgrid solutions as it scales European operations",
+      "url": "https://www.energy-storage.news/megarevo-customer-focused-microgrid-solutions-scales-european-operations/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "SolarEdge CEO Shuki Nir sits down with pv magazine to discuss recent changes to the company’s offer, developments in the commercial and industrial (C&I) segment, plans to capitalize on an expected AI data center boom, and market trends on both sides of the Atlantic. The post Pursuing efficiency appeared first on pv…"
+      "summary": "Brian Yaw, founder of Megarevo, discussed the company’s approach to commercial and industrial energy storage, their competitive strategy, and plans for the European market with Energy-Storage.news at Intersolar Europe 2026."
     },
     {
-      "t": "2026-08-17T06:41:35.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/section-232-minimum-import-prices-force-foreign-solar-to-match-u-s-production-costs/",
+      "t": "2026-08-17T08:43:52.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/chinese-scientists-achieve-record-breaking-24-0-efficieny-for-meter-scale-perovskite-solar-modules/",
       "source": "pv magazine",
-      "title": "Section 232 minimum import prices force foreign solar to match U.S. production costs",
-      "url": "https://www.pv-magazine.com/2026/08/17/section-232-minimum-import-prices-force-foreign-solar-to-match-u-s-production-costs/",
+      "title": "Chinese scientists achieve record-breaking 24.0% efficieny for large-area perovskite solar modules",
+      "url": "https://www.pv-magazine.com/2026/08/17/chinese-scientists-achieve-record-breaking-24-0-efficieny-for-meter-scale-perovskite-solar-modules/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers achieved a certified 24.0% efficiency on an 810 cm² perovskite module and 22.0% on a 0.72 m² module by combining high-saturated-vapor-pressure (SVP) processing with lead carboxylate passivation. The approach also delivered strong durability, with modules retaining 96% of their initial efficiency after 2,…"
+    },
+    {
+      "t": "2026-08-17T09:12:30.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/solinteg-launches-10-30-kw-three-phase-hybrid-inverter-with-4-mppts-dual-high-voltage-battery-inputs/",
+      "source": "pv magazine",
+      "title": "Solinteg launches 10–30 kW three-phase hybrid inverter with 4 MPPTs, dual high-voltage battery inputs",
+      "url": "https://www.pv-magazine.com/2026/08/17/solinteg-launches-10-30-kw-three-phase-hybrid-inverter-with-4-mppts-dual-high-voltage-battery-inputs/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solinteg has launched the M2HT 10–30K series of three-phase high-voltage hybrid inverters for residential and light-commercial solar-plus-storage systems, with eight models ranging from 9.9 kW to 30 kW. The inverters feature four MPPTs, dual high-voltage battery inputs, backup capabilities, and energy-management fun…"
+    },
+    {
+      "t": "2026-08-17T10:00:27.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-and-german-utility-leag-begin-construction-of-second-large-scale-bess-project-under-partnership/",
+      "source": "Energy-Storage.news",
+      "title": "Fluence and German utility LEAG begin construction of second large-scale BESS project under partnership",
+      "url": "https://www.energy-storage.news/fluence-and-german-utility-leag-begin-construction-of-second-large-scale-bess-project-under-partnership/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Fluence and utility LEAG have begun construction of a second battery storage project in Germany, through a partnership that is also deploying Europe’s largest BESS to date."
+    },
+    {
+      "t": "2026-08-17T10:11:00.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/econergy-signs-financing-agreements-for-150mw-solar-plus-storage-project-in-romania/",
+      "source": "Energy-Storage.news",
+      "title": "Econergy signs financing agreements for 150MW solar-plus-storage project in Romania",
+      "url": "https://www.energy-storage.news/econergy-signs-financing-agreements-for-150mw-solar-plus-storage-project-in-romania/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Independent power producer (IPP) Econergy has signed financing agreements for its Părău 2 solar and energy storage project in Brașov County, Romania."
+    },
+    {
+      "t": "2026-08-17T10:19:30.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/portugal-installs-372-mw-of-solar-in-h1/",
+      "source": "pv magazine",
+      "title": "Portugal installs 372 MW of solar in December-May",
+      "url": "https://www.pv-magazine.com/2026/08/17/portugal-installs-372-mw-of-solar-in-h1/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Portugal’s total solar capacity is now estimated above 7 GW. While the country is one of Europe’s leading nations for renewable energy generation, the sector is facing substantial regulatory challenges that are forming barriers to future investment. The post Portugal installs 372 MW of solar in December-May appeared…"
+    },
+    {
+      "t": "2026-08-17T10:20:41.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/battery-storage-unlocks-the-era-of-anytime-solar-climate-consultancy-ember-says-in-new-report/",
+      "source": "Energy-Storage.news",
+      "title": "Battery storage unlocks the era of ‘anytime solar,’ climate consultancy Ember says in new report",
+      "url": "https://www.energy-storage.news/battery-storage-unlocks-the-era-of-anytime-solar-climate-consultancy-ember-says-in-new-report/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A new report from climate consultancy Ember highlights the important relationship between energy storage and solar, unlocking the “era of anytime solar.”"
+    },
+    {
+      "t": "2026-08-17T11:32:56.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/energy-storage-cell-shipment-data-for-h1-2026-reveal-three-structural-shifts/",
+      "source": "pv magazine",
+      "title": "Energy storage cell shipment data for H1 2026 reveal three structural shifts",
+      "url": "https://www.pv-magazine.com/2026/08/17/energy-storage-cell-shipment-data-for-h1-2026-reveal-three-structural-shifts/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In the first half of 2026, global energy storage cell shipments reached 467.84 GWh, up 94.8% year on year, just one data point from InfoLink Consulting, which examines each of these shifts in turn. The post Energy storage cell shipment data for H1 2026 reveal three structural shifts appeared first on pv magazine Glo…"
+    },
+    {
+      "t": "2026-08-17T11:38:54.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/new-zealand-to-simplify-small-medium-sized-solar-installations/",
+      "source": "pv magazine",
+      "title": "New Zealand to simplify small, medium-sized solar installations",
+      "url": "https://www.pv-magazine.com/2026/08/17/new-zealand-to-simplify-small-medium-sized-solar-installations/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "The Trump Administration has unveiled a comprehensive Section 232 trade framework on polysilicon and downstream solar components, establishing stage-by-stage import price floors and a 15% tariff to force foreign equipment pricing into direct alignment with U.S. manufacturing costs. The post Section 232 minimum impor…"
+      "summary": "The New Zealand government is moving ahead with a series of recommendations designed to simplify installing small- and medium-sized solar systems, including plans to legalize plug-in solar. The post New Zealand to simplify small, medium-sized solar installations appeared first on pv magazine Global ."
     },
     {
-      "t": "2026-08-17T06:50:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/saatvik-solar-to-add-3-6-gw-of-cell-manufacturing-capacity-in-odisha/",
+      "t": "2026-08-17T12:00:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/from-lead-gen-to-pto-how-one-ai-platform-is-streamlining-solar-sales-and-operations/",
       "source": "pv magazine",
-      "title": "Saatvik Solar to add 3.6 GW of cell manufacturing capacity in India",
-      "url": "https://www.pv-magazine.com/2026/08/17/saatvik-solar-to-add-3-6-gw-of-cell-manufacturing-capacity-in-odisha/",
+      "title": "When solar is sold by AI agents",
+      "url": "https://www.pv-magazine.com/2026/08/17/from-lead-gen-to-pto-how-one-ai-platform-is-streamlining-solar-sales-and-operations/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Saatvik Solar Industries is planning to add 3.6 GW of solar cell manufacturing capacity at Gopalpur, Odisha, as its existing 2.4 GW cell and 4 GW module manufacturing facility at the site nears commissioning. The post Saatvik Solar to add 3.6 GW of cell manufacturing capacity in India appeared first on pv magazine G…"
+      "summary": "Wave Sales says its new AI voice agents can increase customer satisfaction and cut installer soft costs by helping to guide home solar customers through a multi-month installation process using the company’s proprietary memory layer and industry-specific integrations. The post When solar is sold by AI agents appeare…"
+    },
+    {
+      "t": "2026-08-17T13:03:30.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/solar-crosses-3-tw-threshold/",
+      "source": "pv magazine",
+      "title": "Solar crosses 3 TW threshold",
+      "url": "https://www.pv-magazine.com/2026/08/17/solar-crosses-3-tw-threshold/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Global solar capacity has surpassed 3 TW, with China driving much of the recent expansion and emerging markets increasingly contributing to growth. As deployment accelerates, grid infrastructure, energy storage, and demand flexibility will become critical to integrating the next wave of solar capacity. The post Sola…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 39,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 7,
-      "grid": 30,
-      "capital": 5,
+      "policy": 6,
+      "grid": 28,
+      "capital": 3,
       "technology": 2
     },
     "sourceStatus": [
@@ -493,13 +443,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 1
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 7
       }
     ]
   },
@@ -508,6 +458,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:ca4e803f078e893b5467c9f59d0eb469d302dc34e80a80ac6f8dbce54b32542c",
-  "envelopeChecksum": "sha256:758076cb9b953fa47010723ac9ef72dc34c67d6108699b19641bd71e33a27c99"
+  "contentChecksum": "sha256:25698fa801161529d2b0db84b3cbbb21eb51c0f8560a1d88012095876b28c453",
+  "envelopeChecksum": "sha256:5f8f14767a1400d27e5e3e751eb695d5d845fa3a6319c7f23b8600d6bf1a4a10"
 }
