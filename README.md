@@ -279,7 +279,10 @@ answers. Details: [`src/markets/_shared/README.md`](src/markets/_shared/README.m
 ## Deployment
 
 A static site hosted on Vercel. **GitHub Actions builds and publishes it; Vercel does not
-build anything and is not connected to Git.**
+build anything.** Git-triggered builds are refused by `git.deploymentEnabled: false` in
+`vercel.json` — the integration was found enabled and producing unscanned Preview builds on
+2026-08-17, so this is now asserted in the repository rather than assumed of the dashboard. See
+[`docs/publishing.md`](docs/publishing.md).
 
 | Setting | Value |
 |---|---|
@@ -305,10 +308,12 @@ between the check and the thing checked. Pull requests still scan `dist/` —
 `vercel build` needs a token a fork does not have — but nothing is published
 from a pull request.
 
-A Vercel Git integration would undo all of this: it builds on push without
-waiting for Actions, and the ETL bot pushes to `main` every six hours. See
-[`docs/publishing.md`](docs/publishing.md) for the setup and for how to
-disconnect it if it was ever enabled.
+A Vercel Git integration undoes all of this: it builds on push without waiting for
+Actions, and the ETL bot pushes to `main` every six hours. It was enabled — on
+2026-08-17 a pull request drew two platform-built Preview deployments, the first
+published before CI had started and while it was failing. `vercel.json` now sets
+`git.deploymentEnabled: false`. See [`docs/publishing.md`](docs/publishing.md) for
+the dashboard disconnect, which is the second control and still worth having.
 
 `vercel.json` carries the SPA rewrite (`/(.*)` → `/index.html`) that History-API routing needs, so
 `/markets/wa` resolves on a direct visit or a refresh. Vercel checks the filesystem before applying
