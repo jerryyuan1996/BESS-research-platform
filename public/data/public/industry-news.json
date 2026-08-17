@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-16T18:49:27.842Z",
+  "fetchedAt": "2026-08-17T01:57:38.574Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-15T04:00:00.000Z",
+    "to": "2026-08-17T01:35:31.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -135,26 +135,6 @@
       "summary": ""
     },
     {
-      "t": "2026-08-12T08:36:18.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/octopus-australia-turns-attention-to-128mwh-dc-coupled-bess-at-solar-plus-storage-site/",
-      "source": "Energy-Storage.news",
-      "title": "Octopus Australia turns attention to 128MWh DC-coupled BESS at solar-plus-storage site",
-      "url": "https://www.energy-storage.news/octopus-australia-turns-attention-to-128mwh-dc-coupled-bess-at-solar-plus-storage-site/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Octopus Australia has shifted its focus to constructing a DC-coupled battery energy storage system (BESS) in Victoria."
-    },
-    {
-      "t": "2026-08-12T08:50:39.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/epec-group-lands-grid-connection-contract-for-843mwh-solar-plus-storage-site-in-queensland-australia/",
-      "source": "Energy-Storage.news",
-      "title": "EPEC Group lands grid connection contract for 843MWh solar-plus-storage site in Queensland, Australia",
-      "url": "https://www.energy-storage.news/epec-group-lands-grid-connection-contract-for-843mwh-solar-plus-storage-site-in-queensland-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "EPEC Group has been awarded a contract to cover the high-voltage connection works for the Lower Wonga Solar Farm in Queensland, Australia, by the EPC contractor INTEC Energy Solutions."
-    },
-    {
       "t": "2026-08-12T09:50:02.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/acciona-energia-to-add-33mw-66mwh-bess-in-spain/",
       "source": "Energy-Storage.news",
@@ -173,6 +153,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Independent power producer (IPP) Verano Energy has awarded the battery energy storage system (BESS) supply for its 152MW/606MWh Observatorio project to Sungrow."
+    },
+    {
+      "t": "2026-08-12T13:01:39.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/",
+      "source": "Utility Dive",
+      "title": "PJM eyes data center, crypto reliability requirements after 3.8 GW of load trips offline",
+      "url": "https://www.utilitydive.com/news/pjm-nerc-data-center-crypto-reliability-standards/827653/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The PJM Interconnection is considering setting &ldquo;ride-through&rdquo; standards after data centers tripped offline in Northern Virginia on July 22, the latest and largest such event in PJM&rsquo;s history, the grid operator said."
     },
     {
       "t": "2026-08-12T15:02:23.000Z",
@@ -453,16 +443,36 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A data center can be built in 18 to 24 months, but connecting it to the grid is another matter, writes Laura Hoffmann-Ostenhof, Europe industry lead at modeling software supplier Gridcog. Across Europe’s established hubs – the FLAP-D cluster of Frankfurt, London, Amsterdam, Paris and Dublin – the wait for a grid con…"
+    },
+    {
+      "t": "2026-08-17T01:24:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australian-renewable-energy-agency-backs-unsw-research-into-grid-forming-battery-storage-and-system-strength/",
+      "source": "Energy-Storage.news",
+      "title": "Australian Renewable Energy Agency backs UNSW research into grid-forming battery storage and system strength",
+      "url": "https://www.energy-storage.news/australian-renewable-energy-agency-backs-unsw-research-into-grid-forming-battery-storage-and-system-strength/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "UNSW receives AU$6.52 million to study how solar, wind and battery storage interact with grid protection systems as Australia transitions to renewables."
+    },
+    {
+      "t": "2026-08-17T01:35:31.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/relectrify-installs-first-ac1-inverterless-battery-storage-system-in-south-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Relectrify installs first AC1 inverterless battery storage system in South Australia",
+      "url": "https://www.energy-storage.news/relectrify-installs-first-ac1-inverterless-battery-storage-system-in-south-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Melbourne-based battery technology company Relectrify has installed its first AC1 battery energy storage system (BESS) in Renmark, South Australia, in partnership with YES Energy."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 6,
-      "grid": 30,
+      "grid": 31,
       "capital": 5,
       "technology": 2
     },
@@ -483,7 +493,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 4
       },
       {
         "source": "pv magazine",
@@ -498,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:da744e15a7afc90d4182fae94818ff5f556bd2c454d809cd3cf60d1436bfe006",
-  "envelopeChecksum": "sha256:11b5fc4ca7776186e210bd637fdb617c93eafb2b22c3d4711a6023f5c8fcba40"
+  "contentChecksum": "sha256:d311d8d33709e2c36426c579334d31ee8041126c3c422402e49d81d19b2c9582",
+  "envelopeChecksum": "sha256:53f90efaf47ca28f0ccaa624f62162ac72a228b1c06077430b5f5dbaa482bfbf"
 }
