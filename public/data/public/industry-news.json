@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-17T01:57:38.574Z",
+  "fetchedAt": "2026-08-17T07:19:16.680Z",
   "coverage": {
     "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-17T01:35:31.000Z",
+    "to": "2026-08-17T06:50:25.000Z",
     "resolution": "event",
     "points": 44
   },
@@ -335,36 +335,6 @@
       "summary": "US 'multi-day' energy storage startup Noon Energy has made an agreement with renewables platform Sabanci Renewables, to deploy 1GW of Noon’s technology for AI infrastructure in the US."
     },
     {
-      "t": "2026-08-14T09:34:16.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/vikram-solar-inaugurates-6-gw-solar-pv-module-plant-at-gangaikondan/",
-      "source": "pv magazine",
-      "title": "Vikram Solar inaugurates 6 GW solar PV module factory in India",
-      "url": "https://www.pv-magazine.com/2026/08/14/vikram-solar-inaugurates-6-gw-solar-pv-module-plant-at-gangaikondan/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Vikram Solar has inaugurated a 6 GW solar PV module manufacturing plant at Gangaikondan in Tirunelveli district, Tamil Nadu. Following the commissioning of the new production line, the company's total solar PV module manufacturing capacity has increased to 15.5 GW per year. The post Vikram Solar inaugurates 6 GW sol…"
-    },
-    {
-      "t": "2026-08-14T09:48:56.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/partial-u-s-eclipse-produced-similar-daily-solar-energy-losses-to-higher-obscurationeuropean-locations/",
-      "source": "pv magazine",
-      "title": "Partial U.S. eclipse produced similar daily solar energy losses to higher-obscuration European locations",
-      "url": "https://www.pv-magazine.com/2026/08/14/partial-u-s-eclipse-produced-similar-daily-solar-energy-losses-to-higher-obscurationeuropean-locations/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that the Aug. 12 solar eclipse caused highly variable irradiance losses across Europe and North America, shaped by obscuration, cloud cover, and the timing of the eclipse. However, eclipse-related power-market impacts varied much more, showing…"
-    },
-    {
-      "t": "2026-08-14T09:52:57.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/pvfarm-rolls-out-re-stack-software-for-utility-scale-bess-planning/",
-      "source": "pv magazine",
-      "title": "PVFarm rolls out RE STACK software for utility-scale BESS planning",
-      "url": "https://www.pv-magazine.com/2026/08/14/pvfarm-rolls-out-re-stack-software-for-utility-scale-bess-planning/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The new tool works across geographies, manufacturer, and sites, and is design to make site planning both faster and comprehensive. The post PVFarm rolls out RE STACK software for utility-scale BESS planning appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-14T10:35:50.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/14/dewa-study-assesses-pv-cleaning-robot-performance-and-safety/",
       "source": "pv magazine",
@@ -422,7 +392,7 @@
       "url": "https://www.energy-storage.news/data-accuracy-is-one-of-the-most-important-things-ensights-ceo-on-bess-economics-in-pjm/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news Premium speaks with Alon Maskovich, CEO and co-founder of enSights about BESS economics and the company’s new battery economics calculator."
+      "summary": "Energy-Storage.news speaks with Alon Maskovich, CEO and co-founder of enSights about BESS economics and the company’s new battery economics calculator."
     },
     {
       "t": "2026-08-14T16:02:51.000Z",
@@ -463,6 +433,36 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Melbourne-based battery technology company Relectrify has installed its first AC1 battery energy storage system (BESS) in Renmark, South Australia, in partnership with YES Energy."
+    },
+    {
+      "t": "2026-08-17T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/pursuing-efficiency/",
+      "source": "pv magazine",
+      "title": "Pursuing efficiency",
+      "url": "https://www.pv-magazine.com/2026/08/17/pursuing-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "SolarEdge CEO Shuki Nir sits down with pv magazine to discuss recent changes to the company’s offer, developments in the commercial and industrial (C&I) segment, plans to capitalize on an expected AI data center boom, and market trends on both sides of the Atlantic. The post Pursuing efficiency appeared first on pv…"
+    },
+    {
+      "t": "2026-08-17T06:41:35.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/section-232-minimum-import-prices-force-foreign-solar-to-match-u-s-production-costs/",
+      "source": "pv magazine",
+      "title": "Section 232 minimum import prices force foreign solar to match U.S. production costs",
+      "url": "https://www.pv-magazine.com/2026/08/17/section-232-minimum-import-prices-force-foreign-solar-to-match-u-s-production-costs/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Trump Administration has unveiled a comprehensive Section 232 trade framework on polysilicon and downstream solar components, establishing stage-by-stage import price floors and a 15% tariff to force foreign equipment pricing into direct alignment with U.S. manufacturing costs. The post Section 232 minimum impor…"
+    },
+    {
+      "t": "2026-08-17T06:50:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/saatvik-solar-to-add-3-6-gw-of-cell-manufacturing-capacity-in-odisha/",
+      "source": "pv magazine",
+      "title": "Saatvik Solar to add 3.6 GW of cell manufacturing capacity in India",
+      "url": "https://www.pv-magazine.com/2026/08/17/saatvik-solar-to-add-3-6-gw-of-cell-manufacturing-capacity-in-odisha/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Saatvik Solar Industries is planning to add 3.6 GW of solar cell manufacturing capacity at Gopalpur, Odisha, as its existing 2.4 GW cell and 4 GW module manufacturing facility at the site nears commissioning. The post Saatvik Solar to add 3.6 GW of cell manufacturing capacity in India appeared first on pv magazine G…"
     }
   ],
   "derived": {
@@ -471,8 +471,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 6,
-      "grid": 31,
+      "policy": 7,
+      "grid": 30,
       "capital": 5,
       "technology": 2
     },
@@ -508,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d311d8d33709e2c36426c579334d31ee8041126c3c422402e49d81d19b2c9582",
-  "envelopeChecksum": "sha256:53f90efaf47ca28f0ccaa624f62162ac72a228b1c06077430b5f5dbaa482bfbf"
+  "contentChecksum": "sha256:ca4e803f078e893b5467c9f59d0eb469d302dc34e80a80ac6f8dbce54b32542c",
+  "envelopeChecksum": "sha256:758076cb9b953fa47010723ac9ef72dc34c67d6108699b19641bd71e33a27c99"
 }
