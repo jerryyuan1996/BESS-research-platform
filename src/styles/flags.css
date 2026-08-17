@@ -23,4 +23,7 @@
 .fi-pl{background-image:url("../../node_modules/flag-icons/flags/4x3/pl.svg");}
 .fi-jp{background-image:url("../../node_modules/flag-icons/flags/4x3/jp.svg");}
 .fi-us{background-image:url("../../node_modules/flag-icons/flags/4x3/us.svg");}
+/* Finland. The class prefix `fi-` is the flag-icons convention and Finland's
+   country code is also `fi`, so this genuinely reads `.fi-fi` — not a typo. */
+.fi-fi{background-image:url("../../node_modules/flag-icons/flags/4x3/fi.svg");}
 .fi-un{background-image:url("../../node_modules/flag-icons/flags/4x3/un.svg");}

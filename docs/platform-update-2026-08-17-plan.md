@@ -941,3 +941,111 @@ The prose case is the one to think about: in "a single seed is indefensible" the
 argument — *a single point estimate* — and replacing it mechanically would flatten the sentence.
 Each is a bilingual pair in a market's own data module, so this is a per-market copy edit rather
 than a dictionary change. Recommend folding it into round 6 with the rest of the editorial pass.
+
+---
+
+# Round 3 — Finland, stage 1 of 2. 2026-08-18
+
+**Delivered: the evidence pack, the comparison interface and the feed wiring.
+Not delivered: registration, because the platform's contract needs more than
+§1.7 said it did.**
+
+## The correction to §1.7
+
+`docs/adding-a-market.md` says registering a market is a new directory and two
+lines, and that the dashboard can follow later. The first half is true and the
+second half is true, but between them sits something neither the doc nor §1.7 of
+this plan accounted for: **the grid layer is a hard gate, not an optional
+surface.**
+
+Adding `fi` to `registeredMarkets` fails seventeen assertions:
+
+| Missing | Test |
+|---|---|
+| congestion register | `fi: no congestion register — it would be absent from the home comparison` |
+| grid map | `fi: no grid map resolves for this market` |
+| transmission voltage row | `fi: no transmission voltage definition` |
+| pipeline source declaration | `fi: no pipeline source declaration` |
+| dashboard, eager or lazy | `fi: no dashboard, eager or lazy` |
+| non-null `modelVersion` | `fi: manifest.modelVersion is still null` |
+| `COMPARISON_AUTHORITY` entries | authority.js ownership |
+| `source` on every range, symmetric dispersed bands | ranges validation |
+
+Those tests are right and the plan was wrong. A registered market is one the
+home page can draw a map for and compare constraints across; a market without
+that is not "partially registered", it is a market whose home-page surfaces
+would silently render empty.
+
+**So Finland is built and deliberately not registered.** `src/markets/fi/` is
+complete as far as evidence allows and `registry.js` carries a comment saying
+why the import is absent. Nothing imports the module, so Vite tree-shakes it out
+— the entry chunk is unchanged at 296.53 kB gzip, verified.
+
+## What the evidence established
+
+Read on 2026-08-18 and recorded in `src/markets/fi/sources.js`.
+
+**`capacityMarket: false` is now evidenced rather than assumed, and the reason is
+better than "storage cannot participate".** Finland *has* a capacity mechanism —
+peak load capacity under act 117/2011, administered by Finextra. The Energy
+Authority procured **no capacity at all** for 1 Nov 2025 – 31 Oct 2026, and
+nothing has been held in the strategic reserve since July 2022, because after
+Olkiluoto 3 the national adequacy assessments show no concern against the
+LOLE 2.1 h/yr standard adopted in March 2022. A dormant strategic reserve held
+outside the market is not resource adequacy revenue on either count.
+
+**The saturation gate is not a hypothetical, and it is the headline.** Fingrid's
+2026 obligations against the announced battery fleet:
+
+| Product | 2026 obligation |
+|---|---|
+| FCR-D up | 309 MW |
+| FCR-D down | 298 MW |
+| FCR-N | 128 MW |
+| FFR | 0–60 MW |
+| aFRR | ~50 MW |
+| mFRR up / down | 880–1,300 MW / 575 MW |
+
+The fast products a battery actually wins total under 800 MW. Finland had about
+250 MW of BESS operational in mid-2025, with Statkraft/OX2's 235 MW, Nivala's
+70 MW and Uusikaupunki's 50 MW announced or under construction on top.
+
+And Fingrid's own 2026–2036 forecast does not rescue it, because **the growth is
+in the wrong products**: mFRR down rises 567 → 1,100 MW and mFRR up 290 → 530 MW,
+while **FCR-N declines 128 → 105 MW**. Growth sits in slower products where a
+battery competes with demand response and thermal plant on cost.
+
+**So the services leg is published as zero, and says so.** That is not an
+estimate — it is a refusal, recorded in `servicesNote` and gated as FI-1. It
+understates the asset substantially, which is the intended direction: a market
+held out of the ranking with a visibly incomplete revenue line invites scrutiny;
+a plausible number inside the ranking does not.
+
+**Licence gates the Fingrid feed, not the connector.** The open-data API is free
+but needs a registered key, and the licence text sits behind that registration —
+so redistribution terms are not established and no Fingrid series may be
+republished yet. Gate FI-2. The ENTSO-E day-ahead feed has no such problem and
+its domain code is wired: `fi: '10YFI-1--------U'`.
+
+## Corrections to earlier drafts of this plan
+
+- The §1.1 table said Finland pays for capacity through "nothing". It has a
+  mechanism; it is dormant. The distinction is the interesting part.
+- §1.4's `tolling: false` holds — no repeatable public precedent was found.
+- The fifteenth-colour decision is implemented as `manifest.pattern: 'hatch'`
+  with Finland reusing `--s2`, per decision 2.
+
+## Stage 2 — what registration needs
+
+1. `fi/congestion.js` — Finland's constraint zones. The north–south transfer
+   limit is the obvious candidate and is publicly documented by Fingrid.
+2. `fi/gridMapData.js` — 400/110 kV substations with **real coordinates** from
+   Fingrid's published network, plus the constraint corridor.
+3. The transmission voltage row, and a pipeline source declaration.
+4. `modelVersion`, once there is a model to version.
+5. `COMPARISON_AUTHORITY` entries and `source` on every range.
+6. Then the two-line registration, and the dashboard at leisure.
+
+None of that is blocked on anything except research time. It is separated
+because placeholder coordinates would satisfy every test and publish geography
+nobody checked — which is the failure this platform is built to make impossible.

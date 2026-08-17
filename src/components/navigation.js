@@ -38,6 +38,7 @@ const COUNTRY_FLAGS = {
   pjm: 'us',
   ercot: 'us',
   caiso: 'us',
+  fi: 'fi',
 };
 export const marketFlagCode = market => COUNTRY_FLAGS[market.manifest.id]
   || COUNTRY_FLAGS[market.manifest.dashboardId]
