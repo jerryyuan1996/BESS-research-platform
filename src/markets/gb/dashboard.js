@@ -13,6 +13,7 @@ import { TABS } from './tabs.js';
 import { SRC } from './sources.js';
 import { M } from './data.js';
 import { buildSections } from './sections.js';
+import './gridMapData.js';   // side effect: registers this market's grid map
 import { textOverrides } from './text.js';
 
 const engine = createMarketEngine({

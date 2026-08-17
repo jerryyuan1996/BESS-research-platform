@@ -8,7 +8,7 @@ import assert from 'node:assert/strict';
 
 import {
   markets, byId, bySlug, marketIds, comparableMarkets,
-  ALLOCATION_MARKETS, DETAIL_DASHBOARDS,
+  ALLOCATION_MARKETS, DETAIL_DASHBOARDS, hasDashboard, resolveDashboard,
 } from '../src/markets/registry.js';
 import { validateMarket, validateRegistry } from '../src/utils/validation.js';
 import { REQUIRED_MANIFEST_FIELDS, METADATA_FIELDS } from '../src/markets/schema.js';
@@ -193,10 +193,36 @@ test('forward saturation is a curve, never folded into the seed', () => {
 test('every market exposes the full module surface', () => {
   for (const m of markets){
     const id = m.manifest.id;
-    assert.equal(typeof m.dashboard, 'function', `${id}: no dashboard`);
+    /* A dashboard may be in the main bundle or in its own chunk. Both are a
+       dashboard; the difference is only when the code arrives. What is NOT
+       acceptable is declaring both, because then which one renders depends on
+       resolution order — src/utils/validation.js rejects that. */
+    assert.ok(hasDashboard(m), `${id}: no dashboard, eager or lazy`);
+    assert.ok(!(m.dashboard && m.loadDashboard),
+      `${id}: declares both dashboard and loadDashboard`);
     assert.ok(Array.isArray(m.tabs) && m.tabs.length > 0, `${id}: no tabs`);
     assert.ok(m.sources && Object.keys(m.sources).length > 0, `${id}: empty source register`);
   }
+});
+
+test('a lazy dashboard resolves to a renderer, and Japan shares one chunk', async () => {
+  /* The delegation is the part worth asserting. Three allocation points share
+     one dashboard module, so resolveDashboard must key on the OWNER: keyed on
+     the allocation point it would import the same bytes three times, which is
+     the naive split this test exists to catch. */
+  const lazy = markets.filter(m => typeof m.loadDashboard === 'function');
+  assert.ok(lazy.length > 0, 'expected at least one market to load its dashboard on demand');
+
+  for (const m of lazy){
+    const fn = await resolveDashboard(m);
+    assert.equal(typeof fn, 'function', `${m.manifest.id}: did not resolve to a renderer`);
+  }
+
+  const jp = ['jp_tokyo', 'jp_kyushu', 'jp_hokkaido'].map(byId).filter(Boolean);
+  assert.equal(jp.length, 3, 'the three Japan allocation points should be registered');
+  const resolved = await Promise.all(jp.map(resolveDashboard));
+  assert.equal(new Set(resolved).size, 1,
+    'the three Japan markets must resolve to the SAME renderer — one chunk, not three');
 });
 
 /* Thirteen since 2026-07-30, when Project Debt was added next to the revenue

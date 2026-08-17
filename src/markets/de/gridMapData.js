@@ -1,3 +1,4 @@
+import { registerGridMap } from '../gridMapRegistry.js';
 /* ---------------------------------------------------------------------------
    Germany — interactive grid map.
 
@@ -235,3 +236,8 @@ export const DE_GRID_MAP = {
 };
 
 export default DE_GRID_MAP;
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(DE_GRID_MAP, 'de');

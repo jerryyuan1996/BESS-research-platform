@@ -19,6 +19,7 @@
    energising. 2035 is the ISP's optimal development path, by which point the
    named projects below have either landed or slipped.
    --------------------------------------------------------------------------- */
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './au-boundary.json' with { type:'json' };
 import zoneSet from './nem-zones.json' with { type:'json' };
 
@@ -626,3 +627,8 @@ export const NEM_GRID_MAP = {
 };
 
 export default NEM_GRID_MAP;
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(NEM_GRID_MAP, 'nem');

@@ -26,6 +26,7 @@
    congestion register says so rather than borrowing the confidence of a funded
    project with a commissioning date.
    --------------------------------------------------------------------------- */
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './us-boundary.json' with { type:'json' };
 
 const URL = {
@@ -212,3 +213,8 @@ export const PJM_GRID_MAP = {
 };
 
 export default PJM_GRID_MAP;
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(PJM_GRID_MAP, 'pjm');

@@ -25,6 +25,7 @@
    the large-load queue, which is the only thing on the horizon large enough to
    change the price.
    --------------------------------------------------------------------------- */
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './tx-boundary.json' with { type:'json' };
 
 const URL = {
@@ -187,3 +188,8 @@ export const ERCOT_GRID_MAP = {
 };
 
 export default ERCOT_GRID_MAP;
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(ERCOT_GRID_MAP, 'ercot');

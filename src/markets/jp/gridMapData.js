@@ -1,3 +1,4 @@
+import { registerGridMap } from '../gridMapRegistry.js';
 import prefectures from './jp-prefectures-lite.json' with { type:'json' };
 import zoneSet from './jp-zones.json' with { type:'json' };
 
@@ -616,3 +617,12 @@ export const JP_GRID_MAPS = {
 };
 
 export default JP_GRID_MAPS;
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+/* Three areas are three ALLOCATION markets sharing one dashboard, so each
+   map registers against its own market id rather than against 'jp'. */
+registerGridMap(TOKYO_GRID_MAP, 'jp_tokyo');
+registerGridMap(KYUSHU_GRID_MAP, 'jp_kyushu');
+registerGridMap(HOKKAIDO_GRID_MAP, 'jp_hokkaido');

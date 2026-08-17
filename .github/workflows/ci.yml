@@ -79,6 +79,17 @@ jobs:
           GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
           REQUIRE_MARKERS: '1'
 
+      # Code splitting decays silently: one static import from a market module
+      # into the shell pulls that market's whole graph back into the entry chunk,
+      # the site still works, and the only symptom is a slower first paint. Runs
+      # after Build for the same reason the confidentiality scan does — there is
+      # nothing to measure before it.
+      - name: Check the bundle budgets
+        run: npm run test:budget
+        env:
+          SCAN_DIR: dist
+          REQUIRE_OUTPUT: '1'
+
       # Snapshots are machine-written and carry a checksum over their contents.
       # A hand-edited "observed" file is exactly the confusion the envelope
       # exists to prevent, so it fails the build rather than shipping.

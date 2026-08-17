@@ -1,3 +1,4 @@
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './wa-swis-context-boundary.json' with { type: 'json' };
 
 const URL = {
@@ -290,3 +291,8 @@ export const WA_GRID_MAP = {
     '仅用于SWIS方位展示。边界几何来自公开的西澳州及ABS GeoJSON。标记采用近似地点中心坐标；除特别说明外线路均为示意。容量为公开铭牌、项目或情景值，并非实时出力、可用空间、队列位置、限发概率或可投资并网权利。',
   ],
 };
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(WA_GRID_MAP, 'wa');

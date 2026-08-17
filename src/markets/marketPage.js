@@ -12,10 +12,74 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
-import { markets, marketPath, dashboardOwner } from './registry.js';
+import { markets, marketPath, hasDashboard, resolveDashboard } from './registry.js';
 import { marketNav } from '../components/navigation.js';
 import { renderFooter } from '../components/footer.js';
 import { refinementBanner } from '../components/refinementBanner.js';
+
+/* ---------------------------------------------------------------------------
+   THE ASYNC BOUNDARY.
+
+   Market dashboards load on demand, so between "the reader asked for Romania"
+   and "Romania can be drawn" there is a gap. Three states live in that gap, and
+   the page has to mean something in all of them:
+
+     loading   a skeleton, not an empty #app. A blank page is indistinguishable
+               from a broken one, and on a slow connection this is what a first
+               visit looks like for most of a second.
+     failure   a chunk that 404s is a REAL production case, not a hypothetical:
+               a redeploy replaces hashed filenames, and a reader whose tab has
+               been open across one gets a request for bytes that no longer
+               exist. That must offer a reload, not a white screen.
+     stale     the reader navigated again before the chunk arrived. Rendering
+               then puts the previous page's content under the current URL.
+
+   `renderToken` is the guard for the third. Every render attempt takes the next
+   token; a resolution whose token is no longer current does nothing. One counter
+   for the whole module is enough because #app hosts one page at a time.
+   --------------------------------------------------------------------------- */
+let renderToken = 0;
+
+/** A market header with a skeleton where the dashboard will be. */
+function renderLoading(container, market){
+  const mf = market.manifest;
+  container.append(h('div', { class: 'hdr' }, h('div', {},
+    h('div', { class: 'kicker' }, mf.flag + ' ' + L(mf.shortName)),
+    h('h1', {}, L(mf.name)),
+    h('div', { class: 'sub' }, L(['Loading the dashboard…', '正在加载看板…'])))));
+  container.append(marketNav(markets, mf.id));
+  /* Three bars rather than a spinner: it says "content is coming and roughly
+     this shape", which a spinner does not. aria-busy so a screen reader is told
+     the same thing rather than being read an empty region. */
+  container.append(h('div', { class: 'dash-skeleton', 'aria-busy': 'true',
+    'aria-label': L(['Loading', '加载中']) },
+    h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' })));
+}
+
+/** A chunk that would not load. Recoverable, and says so. */
+function renderLoadFailure(container, market, err){
+  const mf = market.manifest;
+  container.innerHTML = '';
+  container.append(h('div', { class: 'hdr' }, h('div', {},
+    h('div', { class: 'kicker' }, mf.flag + ' ' + L(mf.shortName)),
+    h('h1', {}, L(mf.name)))));
+  container.append(marketNav(markets, mf.id));
+  container.append(h('div', { class: 'warnbox' }, L([
+    'This market\'s dashboard could not be loaded. The most likely cause is that the site was updated while this page was open, which replaces the files this tab was going to request. Reloading fixes that.',
+    '本市场看板加载失败。最可能的原因是本页打开期间站点已更新，导致本标签页请求的文件已被替换。刷新即可解决。',
+  ])));
+  container.append(h('div', {},
+    h('button', { class: 'btn', onclick: () => window.location.reload() },
+      L(['Reload the page', '刷新页面']))));
+  /* The cockpit does not depend on this chunk, so it is a genuine way out
+     rather than a consolation link. */
+  container.append(h('div', { class: 'note' },
+    L(['Every other market and the global cockpit are unaffected — ', '其他市场与全球总看板不受影响 — ']),
+    h('a', { href: '/', onclick: (e) => { e.preventDefault(); navigate('/'); } },
+      L(['return to the cockpit', '返回总看板'])), '.'));
+  container.append(renderFooter([DISCLAIMER]));
+  console.error('[market] dashboard chunk failed to load for %s:', mf.id, err);
+}
 
 const DISCLAIMER = [
   'This dashboard supports, but does not replace, independent investment, legal, technical and financial analysis. Composite signals, recommended durations and suggested commercial terms are generated from the stated methodology and the data sources shown; they are not investment advice and should not be relied upon as the sole basis for a transaction decision.',
@@ -80,22 +144,49 @@ function renderPending(container, market){
  * @param {string|null} regionOverride  from ?region=, e.g. 'compare'
  */
 export function renderMarketPage(container, market, tabId, regionOverride){
+  if (!hasDashboard(market)) return renderPending(container, market);
+
   /* A market may delegate its dashboard to another module. Tokyo, Kyushu and
      Hokkaido are separate allocation points that share one Japan dashboard; the
-     shared renderer is told which regional lens to open in.
+     shared renderer is told which regional lens to open in. resolveDashboard()
+     handles that delegation, so three visits share one chunk.
 
      The URL still names the allocation point the visitor asked for, so links,
      the back button and the market nav all stay consistent. */
-  const owner = dashboardOwner(market);
-  if (typeof owner.dashboard !== 'function') return renderPending(container, market);
+  const token = ++renderToken;
+  const pending = resolveDashboard(market);
 
-  owner.dashboard(container, {
-    tabId,
-    basePath: marketPath(market),
-    region: regionOverride || market.manifest.region || null,
-    market,
+  /* A chunk already in memory resolves in a microtask, so showing a skeleton
+     unconditionally would flash it on every subsequent visit to the same market.
+     The delay is longer than a warm import and shorter than a cold one. */
+  const skeletonTimer = setTimeout(() => {
+    if (token === renderToken && !container.firstChild) renderLoading(container, market);
+  }, 120);
+
+  pending.then(dashboard => {
+    clearTimeout(skeletonTimer);
+    /* STALE NAVIGATION. Between the request and the resolve the reader may have
+       gone somewhere else — clicked another market, hit back, changed language.
+       The container is then either detached or already owned by another page,
+       and rendering into it produces the previous page's content under the
+       current URL. The token is what makes that non-negotiable rather than
+       best-effort. */
+    if (token !== renderToken) return;
+    if (typeof dashboard !== 'function') return renderPending(container, market);
+
+    container.innerHTML = '';
+    dashboard(container, {
+      tabId,
+      basePath: marketPath(market),
+      region: regionOverride || market.manifest.region || null,
+      market,
+    });
+    const banner = refinementBanner(market);
+    const header = container.querySelector('.hdr');
+    if (banner && header) header.insertAdjacentElement('afterend', banner);
+  }).catch(err => {
+    clearTimeout(skeletonTimer);
+    if (token !== renderToken) return;
+    renderLoadFailure(container, market, err);
   });
-  const banner = refinementBanner(market);
-  const header = container.querySelector('.hdr');
-  if (banner && header) header.insertAdjacentElement('afterend', banner);
 }

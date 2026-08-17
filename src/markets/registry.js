@@ -101,8 +101,42 @@ export const comparableMarkets = () => markets.filter(m => m.comparison);
 /** Markets whose normalized inputs are complete enough to enter the engine. */
 export const engineReadyMarkets = () => markets.filter(m => m.comparison && m.comparison.engineReady !== false);
 
-/** Markets with a migrated dashboard. The rest render a pending-migration page. */
-export const dashboardMarkets = () => markets.filter(m => typeof m.dashboard === 'function');
+/**
+ * Markets with a migrated dashboard. The rest render a pending-migration page.
+ *
+ * Two shapes count, and the difference is only about WHEN the code arrives:
+ *
+ *   dashboard      a synchronous renderer, in the main bundle
+ *   loadDashboard  a function returning a promise for that renderer
+ *
+ * A market that has neither has not been migrated. See hasDashboard().
+ */
+export const dashboardMarkets = () => markets.filter(hasDashboard);
+
+/** True when a market can render a dashboard, eagerly or on demand. */
+export const hasDashboard = (market) =>
+  typeof market?.dashboard === 'function' || typeof market?.loadDashboard === 'function';
+
+/**
+ * Resolves a market's dashboard renderer, loading its chunk if needed.
+ *
+ * Always async, even for a market whose renderer is already in the bundle, so
+ * the caller has ONE path to get right rather than two. A caller that sometimes
+ * awaits and sometimes does not is a caller that will eventually render a market
+ * page into a container the router has already moved on from.
+ *
+ * Resolves to null when the market has no dashboard at all — the
+ * pending-migration case, which is not an error.
+ *
+ * @param {object} market  an allocation point, not necessarily the owner
+ * @returns {Promise<Function|null>}
+ */
+export async function resolveDashboard(market){
+  const owner = dashboardOwner(market);
+  if (typeof owner.dashboard === 'function') return owner.dashboard;
+  if (typeof owner.loadDashboard === 'function') return owner.loadDashboard();
+  return null;
+}
 
 /** Route path for a market. */
 export const marketPath = (market) => '/markets/' + market.manifest.slug;

@@ -1,3 +1,4 @@
+import { registerGridMap } from '../gridMapRegistry.js';
 import boundary from './gb-boundary-2024.json' with { type: 'json' };
 
 const URL = {
@@ -635,3 +636,8 @@ export const GB_GRID_MAP = {
     '仅用于代表性全国方位展示。标记采用近似地点中心坐标，不显示可用容量、队列位置、限发概率或可投资并网权利。',
   ],
 };
+
+/* Self-registration. The registry no longer imports the map modules — it would
+   have pulled all twelve into every visitor's first download — so each map
+   announces itself as its market's chunk loads. See gridMapRegistry.js. */
+registerGridMap(GB_GRID_MAP, 'gb');
