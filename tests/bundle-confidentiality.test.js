@@ -412,6 +412,45 @@ test('the marker set matches its committed fingerprint', (t) => {
     'the right set under the wrong key fails identically to the wrong set.');
 });
 
+test('every CI step that requires markers is given both secrets', () => {
+  /* This test exists because the omission happened. The HMAC key was added to
+     the loader and to the local key file, and never wired into ci.yml — so the
+     first pull-request run passed REQUIRE_MARKERS=1 with the marker set and no
+     key, and went red on the fingerprint check.
+
+     The guard behaved correctly: it refused to report a set verified when it
+     had no key to verify it with. But the failure surfaced in CI, minutes after
+     a push, for a defect that is visible in a file sitting in the repository.
+
+     REQUIRE_MARKERS is a promise that the run will actually scan and verify.
+     Both secrets are what it takes to keep that promise, so the pairing is
+     asserted rather than remembered. Parsed with indentation-aware matching
+     rather than a YAML library: the workflow is the only consumer, and adding a
+     dependency to this file — which is the last line of defence — is a worse
+     trade than a regex over a file whose shape is fixed. */
+  const yml = readFileSync(path.join(REPO, '.github/workflows/ci.yml'), 'utf8');
+
+  /* Each `env:` block, as the lines indented under it. */
+  const blocks = [...yml.matchAll(/^(\s+)env:\n((?:\1\s+\S.*\n?)*)/gm)].map(m => m[2]);
+  const requiring = blocks.filter(b => /REQUIRE_MARKERS:\s*'?1'?/.test(b));
+
+  assert.ok(requiring.length >= 3,
+    `expected at least 3 CI steps to set REQUIRE_MARKERS, found ${requiring.length}. ` +
+    'If a step was removed, confirm that was intended — each one is a scan that no longer runs.');
+
+  for (const block of requiring){
+    const first = block.trim().split('\n')[0].trim();
+    for (const secret of ['GUARD_MARKER_SET', 'GUARD_FINGERPRINT_KEY']){
+      assert.match(block, new RegExp(`${secret}:\\s*\\$\\{\\{\\s*secrets\\.${secret}\\s*\\}\\}`),
+        `A CI step sets REQUIRE_MARKERS but does not pass ${secret}.\n` +
+        `The env block begins: ${first}\n` +
+        'REQUIRE_MARKERS promises the run will scan AND verify. Without the marker\n' +
+        'set it cannot scan; without the fingerprint key it cannot verify, and it\n' +
+        'will fail closed in CI rather than here.');
+    }
+  }
+});
+
 test('no marker is readable in tracked source', (t) => {
   /* The inverse assertion, and the one that makes the redesign real rather than
      merely tidy. Everything else here asks "did confidential content leak into
