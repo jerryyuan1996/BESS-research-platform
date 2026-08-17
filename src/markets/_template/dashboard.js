@@ -46,7 +46,7 @@ export function dashboard(container, { tabId, basePath }){
     title: manifest.name,
     sub: ['One-line description of this market dashboard.', '本市场看板的一句话说明。'],
     meta: [
-      h('span', {}, h('b', {}, L(['Seed snapshot verified: ', '种子数据核验日期：'])), manifest.asOf || '—'),
+      h('span', {}, h('b', {}, L(['Verified: ', '核验日期：'])), manifest.asOf || '—'),
     ],
   }));
   container.append(renderDisclaimer(DISCLAIMER));

@@ -21,7 +21,7 @@ import { L } from '../app/i18n.js';
 export const BADGE_LABELS = {
   official:   ['Verified official source', '已核验官方来源'],
   calc:       ['Calculated from official data', '基于官方数据计算'],
-  illus:      ['Illustrative seed — not official', '示例种子 — 非官方'],
+  illus:      ['Illustrative — not official', '示例数据 — 非官方'],
   forecast:   ['Forecast', '预测'],
   dev:        ['Developer-reported', '开发商披露'],
   tp:         ['Third-party modelled', '第三方模型'],
@@ -66,14 +66,27 @@ export function badge(type, label){
 }
 
 /**
- * Seed vs live-ETL provenance tag.
- * @param {boolean} live
- * @param {string} [seedTag]  each market's own seed identifier; WA's is the default
+ * Whether a block's numbers are the approved base case or are waiting on a feed.
+ *
+ * This used to print the raw identifiers — `SEED_JSON_V1`, `GB_SEED_V1`,
+ * `LIVE_ETL_REQUIRED` — straight onto the page. They are internal build tags,
+ * and a reader who does not work on this codebase cannot tell whether
+ * `LIVE_ETL_REQUIRED` means the number is live, is stale, or is broken.
+ *
+ * The distinction they were drawing is real and worth keeping, so the badge
+ * stays; only the words change. The market's own tag is still accepted, because
+ * every market passes one and `mkt.js` is not the place to litigate vocabulary,
+ * but it identifies a build rather than telling a reader anything and so is no
+ * longer rendered. It belongs on the Data & Methodology tab with the rest of the
+ * provenance detail.
+ *
+ * @param {boolean} live   true when this block is waiting on an automated feed
+ * @param {string} [seedTag]  the market's build tag. Accepted, not displayed.
  */
-export function statusBadge(live, seedTag = 'SEED_JSON_V1'){
+export function statusBadge(live, seedTag){          // eslint-disable-line no-unused-vars
   return live
-    ? h('span', { class: 'badge etl' }, 'LIVE_ETL_REQUIRED')
-    : h('span', { class: 'badge seed' }, seedTag);
+    ? h('span', { class: 'badge etl' }, L(['Live feed pending', '实时数据待接入']))
+    : h('span', { class: 'badge seed' }, L(['Base case', '基准情景']));
 }
 
 /** Resolves a badge spec that may be a key string or an already-built node. */

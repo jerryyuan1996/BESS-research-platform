@@ -72,8 +72,45 @@ import { existsSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  loadMarkers, loadFingerprintKey, scanText, fingerprintOf, MARKER_FINGERPRINT,
+} from '../scripts/lib/markers.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+const git = (args) => execFileSync('git', args, { cwd: REPO, maxBuffer: 1 << 28 });
+
+/** Paths with staged content. Empty when the index is clean. */
+function stagedPaths(){
+  try {
+    return git(['diff', '--cached', '--name-only', '-z', '--diff-filter=ACMR'])
+      .toString().split('\0').filter(Boolean);
+  } catch {
+    /* No git, or no HEAD to diff against in a fresh repository. The tracked-tree
+       scan above already fails loudly when git is unusable, so staying quiet
+       here avoids reporting the same broken checkout twice. */
+    return [];
+  }
+}
+
+/**
+ * One staged blob.
+ *
+ * Three outcomes, not two. "Binary" and "could not read" are different: the
+ * first is a known limit, the second means a staged file went unscanned, and
+ * collapsing them into a single null let an unreadable blob be counted as clean.
+ *
+ * @returns {{text: string}|{binary: true}|{error: Error}}
+ */
+function stagedBlob(rel){
+  let buf;
+  try {
+    buf = git(['show', `:${rel}`]);
+  } catch (err){
+    return { error: err };
+  }
+  return buf.includes(0) ? { binary: true } : { text: buf.toString('utf8') };
+}
 
 /* Relative to the repository root, so a caller cannot be tricked into scanning
    some unrelated directory that happens to be clean. */
@@ -107,42 +144,50 @@ function skipWithoutDist(t, message){
 }
 
 /**
- * Strings that must not appear in a published artefact.
+ * The marker set is no longer written here.
  *
- * Note what is deliberately NOT here: "Kemerton" on its own. It is a real WA
- * place — the Kemerton Strategic Industrial Area, Kemerton Terminal, the KEM–MRR
- * constraint — and that geography is public and discussed freely in the grid and
- * RCM tabs. What is confidential is THIS fund's asset at that location. A marker
- * list that banned the place name would either fail constantly or push someone
- * into deleting legitimate public analysis.
+ * It used to be: a plaintext array in this file, which exempted itself from its
+ * own scan. So the detection rule was also a published copy of the confidential
+ * values — every marker written into tracked source in order to be banned
+ * everywhere else. That is backwards, and with a second live deal arriving it
+ * stopped being survivable.
+ *
+ * The values now come from a repository secret in CI, or local-data/markers.json
+ * on a developer's machine, and a committed fingerprint proves the set has not
+ * been altered. See scripts/lib/markers.mjs, which carries the full reasoning
+ * and the structural patterns that legitimately stay in the open.
+ *
+ * What that file's header explains and this one should not repeat: why absence
+ * is a skip locally and a failure in CI, and why the fingerprint exists on top
+ * of fail-closed.
+ *
+ * One judgement worth keeping visible here, because it decides what belongs in
+ * the set at all. "Kemerton" on its own is deliberately NOT a marker. It is a
+ * real WA place — the Kemerton Strategic Industrial Area, Kemerton Terminal, the
+ * KEM–MRR constraint — and that geography is public and discussed freely in the
+ * grid and RCM tabs. What is confidential is a particular fund's asset at that
+ * location. A marker list that banned the place name would either fail
+ * constantly or push someone into deleting legitimate public analysis.
  */
-const FORBIDDEN = [
-  // The fund's named asset and its site
-  'Project Kemerton',
-  'Wellesley',
-  'Lot 5',
+const REQUIRE_MARKERS = process.env.REQUIRE_MARKERS === '1';
 
-  // Confidential third-party report and the sites in it
-  'Marsden Jacob',
-  'CONFIDENTIAL_THIRD_PARTY',
-  'Baldivis',
-  'Hopeland',
-  'Mimegarra',
+/**
+ * Loads the marker set, or reports why the test cannot run.
+ *
+ * Under REQUIRE_MARKERS this throws rather than returning null, so CI without a
+ * secret goes red instead of scanning for nothing.
+ */
+function markerSet(){
+  const loaded = loadMarkers({ required: REQUIRE_MARKERS });
+  return loaded;
+}
 
-  // Project technical specification
-  'SCS4600',
-
-  // Financial-model figures and document names
-  '242234000',
-  '254517000',
-  '249026000',
-  'Kemerton Financial Model',
-  'Kemerton GPS report',
-  'Kemerton BESS Schedule',
-
-  // Links to the confidential document store
-  'drive.google.com',
-];
+/** True when no marker set is available and the test should bail out early. */
+function skipWithoutMarkers(t, loaded){
+  if (loaded) return false;
+  t.skip('no marker set available — place local-data/markers.json to scan locally');
+  return true;
+}
 
 async function walk(dir){
   const out = [];
@@ -156,6 +201,8 @@ async function walk(dir){
 
 test('no confidential marker appears in the built bundle', async (t) => {
   if (skipWithoutDist(t, `${SCAN_REL}/ not present — run "npm run build" first`)) return;
+  const loaded = markerSet();
+  if (skipWithoutMarkers(t, loaded)) return;
 
   /* `.map` is in the filter even though vite.config.js sets sourcemap:FALSE and
      no .map file is currently emitted. That is deliberate, and the reason is in
@@ -171,10 +218,12 @@ test('no confidential marker appears in the built bundle', async (t) => {
   const hits = [];
   for (const file of files){
     const text = await readFile(file, 'utf8');
-    for (const marker of FORBIDDEN){
-      if (text.includes(marker)){
-        hits.push(`${path.relative(REPO, file)} contains "${marker}"`);
-      }
+    /* Markers are reported redacted. An assertion message ends up in CI logs,
+       which on a public build log is a more accessible publication channel than
+       the repository ever was — printing the marker to report finding it would
+       leak it in the course of complaining about the leak. */
+    for (const hit of scanText(text, loaded.markers)){
+      hits.push(`${path.relative(REPO, file)} contains ${hit}`);
     }
   }
 
@@ -223,21 +272,27 @@ test('the local-data payloads are git-ignored', async () => {
    ship?" but "is it in the repository at all?".
    =========================================================================== */
 
-/**
- * Files allowed to contain markers, because naming them is their job.
- *
- * Deliberately exact paths rather than patterns. `tests/*` would have exempted
- * the whole suite, and a fixture quietly carrying real project figures is
- * precisely the thing worth catching.
- */
-const MARKER_DECLARATION_SITES = [
-  // This file. The FORBIDDEN list above is the detection rule itself.
-  'tests/bundle-confidentiality.test.js',
-  // Explains which markers are withheld and why "Kemerton" alone is not one.
-  'docs/data-policy.md',
-];
+/* THERE ARE NO LONGER ANY EXEMPTIONS, and that is the point of the redesign.
+   `MARKER_DECLARATION_SITES` used to exempt this file and docs/data-policy.md,
+   because both named markers in order to explain them. Both have stopped doing
+   so — the values live outside the repository now, and the policy document
+   describes the third-party report by role rather than by name — so the scan
+   covers every tracked TEXT file with no path carved out.
 
-test('no confidential marker appears in any tracked file', () => {
+   "Text" is load-bearing, not hedging: the loop below skips anything containing
+   a NUL byte, because a marker inside a compressed container is not plaintext
+   and a substring scan reads past it. That is an acknowledged limit of scanning
+   the tree, and it is why scripts/scan-staged.mjs REFUSES staged document
+   containers rather than skipping them — the gap is closed at the point where a
+   file becomes committable, not here.
+
+   An exemption is a hole with a comment over it. The previous design needed two
+   and had to test that each was still telling the truth; this one needs none. */
+
+test('no confidential marker appears in any tracked file', (t) => {
+  const loaded = markerSet();
+  if (skipWithoutMarkers(t, loaded)) return;
+
   /* `git ls-files` rather than a directory walk, because TRACKED is the exact
      boundary that matters. It excludes local-data/ and every other ignored
      path — which are supposed to hold this material — and it includes anything
@@ -263,8 +318,6 @@ test('no confidential marker appears in any tracked file', () => {
   let scanned = 0;
 
   for (const rel of tracked){
-    if (MARKER_DECLARATION_SITES.includes(rel)) continue;
-
     let text;
     try {
       text = readFileSync(path.join(REPO, rel), 'utf8');
@@ -279,8 +332,34 @@ test('no confidential marker appears in any tracked file', () => {
     if (text.includes('\0')) continue;
 
     scanned++;
-    for (const marker of FORBIDDEN){
-      if (text.includes(marker)) hits.push(`${rel} contains "${marker}"`);
+    for (const hit of scanText(text, loaded.markers)) hits.push(`${rel} contains ${hit}`);
+  }
+
+  /* THIS LOOP READ THE WORKING TREE, and the paths came from the index. Those
+     are different contents whenever the two disagree — stage a confidential
+     file, revert the working copy, and everything above reads clean bytes while
+     the blob sits in the index ready to commit.
+
+     In CI they cannot disagree: a fresh checkout has index, HEAD and working
+     tree identical, which is why the gap was invisible there. Locally they
+     disagree constantly, and locally is where commits are made.
+
+     So anything staged is scanned again, as the blob itself. The pre-commit
+     hook (scripts/scan-staged.mjs) is the real answer and runs before the
+     commit exists; this closes the same hole for anyone running `npm test` with
+     a dirty index, and costs nothing when the index is clean. */
+  for (const rel of stagedPaths()){
+    const result = stagedBlob(rel);
+    /* Unreadable is not clean. A blob git would not hand over is unscanned, and
+       counting it as a pass is the vacuous-pass failure in miniature. */
+    assert.ok(!result.error,
+      `${rel} is staged but its blob could not be read, so it was not scanned.\n` +
+      `git show failed: ${result.error?.message}\n` +
+      'Do not convert this to a skip.');
+    if (result.binary) continue;
+    scanned++;
+    for (const hit of scanText(result.text, loaded.markers)){
+      hits.push(`${rel} (STAGED CONTENT) contains ${hit}`);
     }
   }
 
@@ -295,28 +374,105 @@ test('no confidential marker appears in any tracked file', () => {
     'object stays reachable by SHA. See docs/data-policy.md.');
 });
 
-test('the marker list itself has not been redacted away', () => {
+test('the marker set matches its committed fingerprint', (t) => {
   /* The failure mode this exists for actually happened. The August 2026 history
-     purge redacted markers by CONTENT, which rewrote this file's own FORBIDDEN
-     list into '[REDACTED-PROJECT]' — leaving a guard that scanned for a string
-     no bundle would ever contain and passed against anything. It was caught and
-     both files were restored byte-for-byte.
+     purge redacted markers by CONTENT, which rewrote this file's own marker list
+     into '[REDACTED-PROJECT]' — leaving a guard that scanned for a string no
+     bundle would ever contain and passed against anything. It was caught by
+     inspection, not by a test, which is the part worth fixing.
 
-     So the exemptions above are asserted, not assumed: each declaration site
-     must still contain what it is exempt for. An exemption that has stopped
-     being true is a hole with a comment over it. */
-  for (const rel of MARKER_DECLARATION_SITES){
-    const text = readFileSync(path.join(REPO, rel), 'utf8');
-    const present = FORBIDDEN.filter(m => text.includes(m));
-    assert.ok(present.length > 0,
-      `${rel} is exempt from the marker scan but no longer contains any marker.\n` +
-      'Either it was redacted — in which case the guard is now inert and must be\n' +
-      'restored — or it genuinely stopped declaring markers, in which case drop\n' +
-      'it from MARKER_DECLARATION_SITES so it gets scanned like everything else.');
+     Fail-closed catches a MISSING set. It cannot catch one that has been quietly
+     shortened, because a set of thirteen scans perfectly happily. The fingerprint
+     can: it is a hash over the sorted set, committed in scripts/lib/markers.mjs,
+     so any change to the set is a visible diff someone has to justify and any
+     unintended change is a red run. The hash cannot be reversed into the
+     markers, so nothing is published by asserting on it. */
+  const loaded = markerSet();
+  if (skipWithoutMarkers(t, loaded)) return;
+
+  /* The key is a second secret and can legitimately be absent when the marker
+     set is not — a developer may hold the set for scanning and not the key for
+     verifying. Under REQUIRE_MARKERS both are required. */
+  const keyed = loadFingerprintKey({ required: REQUIRE_MARKERS });
+  if (!keyed){
+    t.skip('no fingerprint key available — place local-data/fingerprint-key.txt to verify');
+    return;
   }
 
-  // The guard cannot detect what it does not name.
-  const self = readFileSync(path.join(REPO, 'tests/bundle-confidentiality.test.js'), 'utf8');
-  const missing = FORBIDDEN.filter(m => !self.includes(m));
-  assert.deepEqual(missing, [], 'every FORBIDDEN entry must be literally present in this file');
+  const actual = fingerprintOf(loaded.markers, keyed.key);
+  assert.equal(actual.count, MARKER_FINGERPRINT.count,
+    `the marker set has ${actual.count} entries, the committed fingerprint expects ` +
+    `${MARKER_FINGERPRINT.count}. If this change is deliberate, regenerate with ` +
+    '"npm run guard:fingerprint" and justify the diff in review.');
+  assert.equal(actual.hmacSha256, MARKER_FINGERPRINT.hmacSha256,
+    'the marker set does not match the committed fingerprint.\n' +
+    'Either it was altered without updating scripts/lib/markers.mjs, or it was\n' +
+    'altered without anyone intending it — which is exactly the case this catches.\n' +
+    'A mismatch can also mean the wrong fingerprint KEY: the digest is keyed, so\n' +
+    'the right set under the wrong key fails identically to the wrong set.');
+});
+
+test('every CI step that requires markers is given both secrets', () => {
+  /* This test exists because the omission happened. The HMAC key was added to
+     the loader and to the local key file, and never wired into ci.yml — so the
+     first pull-request run passed REQUIRE_MARKERS=1 with the marker set and no
+     key, and went red on the fingerprint check.
+
+     The guard behaved correctly: it refused to report a set verified when it
+     had no key to verify it with. But the failure surfaced in CI, minutes after
+     a push, for a defect that is visible in a file sitting in the repository.
+
+     REQUIRE_MARKERS is a promise that the run will actually scan and verify.
+     Both secrets are what it takes to keep that promise, so the pairing is
+     asserted rather than remembered. Parsed with indentation-aware matching
+     rather than a YAML library: the workflow is the only consumer, and adding a
+     dependency to this file — which is the last line of defence — is a worse
+     trade than a regex over a file whose shape is fixed. */
+  const yml = readFileSync(path.join(REPO, '.github/workflows/ci.yml'), 'utf8');
+
+  /* Each `env:` block, as the lines indented under it. */
+  const blocks = [...yml.matchAll(/^(\s+)env:\n((?:\1\s+\S.*\n?)*)/gm)].map(m => m[2]);
+  const requiring = blocks.filter(b => /REQUIRE_MARKERS:\s*'?1'?/.test(b));
+
+  assert.ok(requiring.length >= 3,
+    `expected at least 3 CI steps to set REQUIRE_MARKERS, found ${requiring.length}. ` +
+    'If a step was removed, confirm that was intended — each one is a scan that no longer runs.');
+
+  for (const block of requiring){
+    const first = block.trim().split('\n')[0].trim();
+    for (const secret of ['GUARD_MARKER_SET', 'GUARD_FINGERPRINT_KEY']){
+      assert.match(block, new RegExp(`${secret}:\\s*\\$\\{\\{\\s*secrets\\.${secret}\\s*\\}\\}`),
+        `A CI step sets REQUIRE_MARKERS but does not pass ${secret}.\n` +
+        `The env block begins: ${first}\n` +
+        'REQUIRE_MARKERS promises the run will scan AND verify. Without the marker\n' +
+        'set it cannot scan; without the fingerprint key it cannot verify, and it\n' +
+        'will fail closed in CI rather than here.');
+    }
+  }
+});
+
+test('no marker is readable in tracked source', (t) => {
+  /* The inverse assertion, and the one that makes the redesign real rather than
+     merely tidy. Everything else here asks "did confidential content leak into
+     a file that should not have it". This asks whether the GUARD is once again
+     publishing what it protects — the defect the previous design shipped with,
+     which would come straight back the moment someone finds it convenient to
+     paste the list into a constant "just for local testing".
+
+     It is the tracked-tree scan pointed at itself, with no exemption to hide
+     behind, so it is nearly free: if any marker were readable in tracked source,
+     the test above would already be red. Stated separately because the intent is
+     different and a future reader should not have to infer it. */
+  const loaded = markerSet();
+  if (skipWithoutMarkers(t, loaded)) return;
+
+  for (const rel of ['tests/bundle-confidentiality.test.js', 'scripts/lib/markers.mjs',
+                     'scripts/scan-staged.mjs', 'docs/data-policy.md']){
+    const text = readFileSync(path.join(REPO, rel), 'utf8');
+    assert.deepEqual(scanText(text, loaded.markers), [],
+      `${rel} contains a confidential marker.\n` +
+      'The guard must not republish what it protects. Marker VALUES belong in\n' +
+      'local-data/markers.json or the GUARD_MARKER_SET secret; only patterns\n' +
+      'and logic belong in tracked source. See scripts/lib/markers.mjs.');
+  }
 });

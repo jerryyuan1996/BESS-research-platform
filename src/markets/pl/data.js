@@ -17,8 +17,8 @@ const M = {
                   '下一里程碑：下一次容量市场拍卖参数与折减系数，以及当前并网条件申请窗口'],
   footerNote: ['Sources re-verified 26 July 2026; Romanian data (Jul 2026) is held in a separate peer namespace and excluded from Poland scoring. Capacity-auction prices, correction factors and contracted volumes in this build are seed values that must be replaced with the published auction results before any transaction use.',
                '来源已于2026年7月26日重新核验；罗马尼亚数据（2026年7月）保存在独立同业命名空间，不计入波兰评分。本版本中的容量拍卖价格、折减系数与签约容量均为种子数值，任何交易用途前须以官方公布的拍卖结果替换。'],
-  seedWarn: ['Every value on this page is a PL_SEED_V1 snapshot or an illustrative placeholder, and the capacity-market figures in particular are unverified seeds. No KPI is production-complete until its live ingestion, validation and source-health check are operational. A correction factor is never nameplate MW; connection conditions are never an executed connection agreement; a capacity contract is an obligation as well as a payment.',
-             '本页所有数值均为PL_SEED_V1种子快照或示例占位数据，其中容量市场数值尤属未经核验的种子。在实时抓取、校验及源健康检测上线前，任何KPI均不可用于生产决策。折减系数不等于铭牌MW；并网条件不等于已签并网合同；容量合同既是付费也是义务。'],
+  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder, and the capacity-market figures in particular are unverified. No figure is production-complete until its live feed, validation and source-health check are running. A correction factor is never nameplate MW; connection conditions are never an executed connection agreement; a capacity contract is an obligation as well as a payment.',
+             '本页所有数值均为已批准的基准情景快照或示例占位数据，其中容量市场数值尤未经核验。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。折减系数不等于铭牌MW；并网条件不等于已签并网合同；容量合同既是付费也是义务。'],
 
   fx: 4.27,   // PLN per EUR — illustrative mid-rate; replace with the central-bank series
   official: {

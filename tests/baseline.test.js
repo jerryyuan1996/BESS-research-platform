@@ -56,6 +56,45 @@ import { pvTail } from '../src/utils/finance.js';
 const baseline = JSON.parse(readFileSync(
   fileURLToPath(new URL('./fixtures/legacy-baseline.json', import.meta.url)), 'utf8'));
 
+/* ---------------------------------------------------------------------------
+   RELABELLING, and why the fixture was not regenerated instead.
+
+   The fixture pins the prototype's WORDING for an unavailable route, not just
+   which routes are unavailable. The August 2026 vocabulary pass restyled one of
+   those labels — "No capacity mechanism" became "No resource adequacy revenue",
+   because the old wording asserts something false about several markets: Finland
+   has capacity arrangements and a TSO that calls its reserve procurement a
+   capacity market, while paying a merchant battery nothing for accredited
+   adequacy. See RESOURCE_ADEQUACY_DEFINITION in src/markets/schema.js.
+
+   The CONDITION that produces the label did not change, and neither did any
+   number: a regeneration of the fixture immediately before the relabelling was
+   byte-identical to the committed one.
+
+   Two wrong ways to resolve it, for the next person who meets this:
+
+     Regenerate the fixture. It says "do not hand-edit" and it means it — the
+     file is a verbatim dump of the prototype's own normalization layer, and
+     rewriting it to match today's engine destroys claim (a) above, which is the
+     migration's central proof. A fixture edited to agree with the code proves
+     that the code agrees with itself.
+
+     Assert only that a case is not-applicable. That keeps the test green and
+     throws away the part worth keeping: "unavailable because there is no
+     adequacy revenue" and "unavailable because there is no toll precedent" are
+     different claims, and the fixture is the only thing checking they have not
+     been swapped.
+
+   So the label is translated on the way out. The reason is still asserted; only
+   its current spelling lives here. A new entry needs a matching change in
+   src/comparison/strategies.js and should be as rare as a vocabulary pass.
+   --------------------------------------------------------------------------- */
+const NA_RELABELLED = new Map([
+  ['No capacity mechanism', 'No resource adequacy revenue'],
+]);
+
+const relabelled = (legacyText) => NA_RELABELLED.get(legacyText) ?? legacyText;
+
 /* Relative tolerance. The two implementations run the same arithmetic in the same
    order, so agreement is normally exact; a relative tolerance leaves room for
    nothing more than double-rounding noise. */
@@ -145,7 +184,7 @@ for (const key of Object.keys(baseline.cases)){
 
     if (expected.na){
       assert.ok(actual.na, `${key}: expected not-applicable, got a computed case`);
-      assert.equal(actual.na[0], expected.na, `${key}: not-applicable reason changed`);
+      assert.equal(actual.na[0], relabelled(expected.na), `${key}: not-applicable reason changed`);
       // The brief is explicit: never a silent zero.
       assert.equal(actual.irrHold, undefined, `${key}: an N/A case must not carry an IRR`);
       assert.equal(actual.moic, undefined, `${key}: an N/A case must not carry a MOIC`);
@@ -218,7 +257,7 @@ test('runMatrix flags unavailable routes instead of dropping or zeroing them', (
   // RO: no cap, no toll. WA/IE/PL: no toll. => 2 + 3 = 5
   assert.equal(naRows.length, 5);
   const roCap = rows.find(r => r.market.manifest.id === 'ro' && r.strategy.id === 'cap');
-  assert.equal(roCap.result.na[0], 'No capacity mechanism');
+  assert.equal(roCap.result.na[0], relabelled('No capacity mechanism'));
   const waToll = rows.find(r => r.market.manifest.id === 'wa' && r.strategy.id === 'toll');
   assert.equal(waToll.result.na[0], 'No market precedent');
 });

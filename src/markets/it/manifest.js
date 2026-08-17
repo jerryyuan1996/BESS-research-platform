@@ -28,8 +28,8 @@ export const manifest = {
   modelVersion: 'it-seed-1.0-macse-vs-toll',
   lastVerified: '2026-08-01',
   sourceHealth: [
-    'SEED — public sources collected Aug 2026, automated checks not yet running',
-    '种子数据 — 公开来源于2026年8月采集，自动检测尚未运行',
+    'Base case — public sources collected Aug 2026, automated checks not yet running',
+    '基准情景 — 公开来源于2026年8月采集，自动检测尚未运行',
   ],
 };
 

@@ -496,7 +496,7 @@ export const AUTHORITY_LABEL = {
   [AUTHORITY.DERIVED_OBSERVED]: ['Derived-observed — deterministic calculation from official data', '观察衍生 — 基于官方数据的确定性计算'],
   [AUTHORITY.OFFICIAL_FORECAST]: ['Official forecast — source pathway and vintage preserved', '官方预测 — 保留来源情景与版本'],
   [AUTHORITY.ANALYST_SCENARIO]: ['Analyst scenario — human-approved forward case', '分析师情景 — 人工批准的前瞻情景'],
-  [AUTHORITY.ILLUSTRATIVE_SEED]: ['Illustrative seed — excluded from investment metrics', '示例种子 — 不计入投资指标'],
+  [AUTHORITY.ILLUSTRATIVE_SEED]: ['Illustrative — excluded from investment metrics', '示例数据 — 不计入投资指标'],
   [AUTHORITY.ANALYST]: ['Analyst assumption — automation may propose, not change', '分析师假设 — 自动化仅可建议，不可更改'],
   [AUTHORITY.METHODOLOGY]: ['Analyst methodology — human-set only', '分析师方法论 — 仅由人工设定'],
   [AUTHORITY.CONFIG]: ['Configuration', '配置'],

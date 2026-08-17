@@ -63,8 +63,8 @@ function fxRow(marketList){
     h('span', {}, L(['Translation FX as of: ', '折算汇率日期：']) + state.asOf),
     h('span', {}, state.kind === 'observed'
       ? L(['Fresh ECB observations are used by the model.', '模型采用最新欧洲央行观测值。'])
-      : L(['Dated approved seed fallback is used; IRRs remain local-currency invariant.',
-           '采用注明日期的已批准种子回退值；IRR不受折算汇率影响。'])));
+      : L(['Using the last approved exchange rates; IRRs remain local-currency invariant.',
+           '采用上一次批准的汇率；IRR不受折算汇率影响。'])));
 
   /* The live ECB rates are appended after the page has rendered. The engine goes
      on using the approved rates above — this block is an observation shown for
@@ -96,8 +96,8 @@ function fxRow(marketList){
       h('span', {}, parts.join(' · ')),
       liveBadge(summary),
       h('span', { class: 'obs-hint' }, L([
-        'used by the model; percentage compares with the approved seed',
-        '模型已采用；百分比为与已批准种子值的差异',
+        'used by the model; percentage compares with the last approved rate',
+        '模型已采用；百分比为与上一次批准汇率的差异',
       ])));
   });
 

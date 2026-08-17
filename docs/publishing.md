@@ -37,9 +37,26 @@ the steps:
 **The repository and the website are separate things.** The repository is private;
 the website is public. Only the built output is published.
 
-**Vercel does not build this site.** It is not connected to Git and has no access
-to the repository. GitHub Actions builds the artefact, scans it, and uploads the
-result. This is deliberate — see Step 2.
+**Vercel does not build this site.** GitHub Actions builds the artefact, scans it,
+and uploads the result with `--prebuilt`. This is deliberate — see Step 2.
+
+> **This page used to say Vercel "is not connected to Git", and on 2026-08-17 that
+> stopped being true.** A pull request drew two `vercel[bot]` Preview deployments,
+> the first of them built and published three minutes *before* CI started and
+> while the run was red — a build from source, on Vercel's infrastructure,
+> producing bytes no scan in the workflow had ever seen. Nothing leaked: the
+> previews were behind Vercel Authentication and the content passes every scan.
+> The mechanism was the problem, not the outcome.
+>
+> `vercel.json` now sets `git.deploymentEnabled: false`, which refuses
+> Git-triggered builds from inside the repository, where the setting is
+> reviewable and travels with the commit. **The dashboard disconnect in Step 2a is
+> still worth doing** — a project setting cannot be reverted by editing a file,
+> and two controls for something this load-bearing is the right number.
+>
+> The lesson for this document: a claim about infrastructure decays silently.
+> This one had been false for some unknown period before a bot comment made it
+> visible.
 
 **The data refresh works by committing.** The scheduled job writes JSON into
 `public/data/` and pushes it to `main`. That push re-runs every gate and, if they

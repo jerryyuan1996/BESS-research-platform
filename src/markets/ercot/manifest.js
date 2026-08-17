@@ -36,8 +36,8 @@ export const manifest = {
   modelVersion: 'ercot-seed-1.0-energy-only-toll-led-two-hour',
   lastVerified: '2026-08-04',
   sourceHealth: [
-    'SEED — fleet and market-design inputs from ERCOT primary sources; revenue and toll legs are derived from third-party indices, automated checks not yet running',
-    '种子数据 — 装机与市场机制输入取自ERCOT官方来源；收入与租赁项为依据第三方指数的推导值，自动检测尚未运行',
+    'Base case — fleet and market-design inputs from ERCOT primary sources; revenue and toll legs are derived from third-party indices, automated checks not yet running',
+    '基准情景 — 装机与市场机制输入取自ERCOT官方来源；收入与租赁项为依据第三方指数的推导值，自动检测尚未运行',
   ],
 };
 

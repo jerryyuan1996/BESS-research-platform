@@ -48,6 +48,7 @@ import {
   labFieldsFor, LAB_GROUPS, DEBT_FIELDS, DEBT_RANGES,
   clampToRange, isMoved, readPath, DISPERSION_NOTE,
 } from '../comparison/ranges.js';
+import { RESOURCE_ADEQUACY_LABEL, RESOURCE_ADEQUACY_DEFINITION } from '../markets/schema.js';
 import { congestionFor } from '../markets/congestionRegistry.js';
 import { CAPTURE_FLOW, reliefRunway } from '../governance/congestion.js';
 import { RUNWAY_FROM } from '../components/congestionPanel.js';
@@ -137,6 +138,17 @@ function renderControls(parent, marketList, market, strategyId){
       L(s.n), s.id === strategyId,
       () => { homeState.labStrategy = s.id; rerender(); })))));
 
+  /* What "capacity-backed" counts as, stated where the reader chooses it.
+     The term does more work than it looks: several markets run arrangements
+     they call capacity markets while paying a merchant battery nothing for
+     accredited adequacy, and whether this route is offered at all turns on that
+     distinction. Definition lives in markets/schema.js so the methodology page
+     and this control cannot drift apart. */
+  if (routes.some(s => s.id === 'cap')){
+    parent.append(h('div', { class: 'lab-ctl-note cap' },
+      h('b', {}, L(RESOURCE_ADEQUACY_LABEL)), ' — ', L(RESOURCE_ADEQUACY_DEFINITION)));
+  }
+
   parent.append(h('div', { class: 'lab-ctl' },
     h('div', { class: 'lab-ctl-lbl' }, L(['Capital structure', '资本结构'])),
     h('div', { class: 'seg' },
@@ -200,9 +212,9 @@ function reliefWarning(market, fieldKey){
     chip('warn', L(['relief in ' + runway + ' yr', runway + '年后缓解'])),
     h('span', {}, L([
       L(zone.name) + ' is relieved by ' + L(zone.relief.project) + ' in ' + zone.relief.expected
-        + '. This seed is a present-tense observation; holding it flat assumes the project does not arrive.',
+        + '. That is a present-tense observation; holding it flat assumes the project does not arrive.',
       L(zone.name) + '将由' + L(zone.relief.project) + '于' + zone.relief.expected
-        + '年缓解。该种子值反映的是当前观测；若保持不变，即等同于假设该工程不会建成。',
+        + '年缓解。该数值反映的是当前观测；若保持不变，即等同于假设该工程不会建成。',
     ])));
 }
 
@@ -236,7 +248,7 @@ function renderField(parent, field, market, overrides){
       h('span', {}, fmtValue(range.min, field, mf, range) + ' – ' + fmtValue(range.max, field, mf, range)),
       chip(KIND_TONE[range.kind] || 'info', L(KIND_LABEL[range.kind] || KIND_LABEL.dispersed)),
       range.gate ? chip('serious', L(['gate ' + range.gate, '研究缺口 ' + range.gate])) : null,
-      moved ? chip('warn', L(['seed ', '种子值 ']) + fmtValue(range.seed, field, mf, range)) : null),
+      moved ? chip('warn', L(['base ', '基准值 ']) + fmtValue(range.seed, field, mf, range)) : null),
     reliefWarning(market, field.key),
     basisDrawer(field.key, range));
 
@@ -259,9 +271,9 @@ function renderAssumptions(parent, market, fields, overrides){
 
   const head = h('div', { class: 'lab-form-head' },
     h('span', {}, moved.length
-      ? L([moved.length + ' input' + (moved.length === 1 ? '' : 's') + ' moved off seed',
-           '已有' + moved.length + '项输入偏离种子值'])
-      : L(['All inputs at seed — outputs match the page above', '全部输入为种子值 — 输出与上方页面一致'])),
+      ? L([moved.length + ' input' + (moved.length === 1 ? '' : 's') + ' changed',
+           '已有' + moved.length + '项输入被调整'])
+      : L(['All inputs at base case — outputs match the page above', '全部输入为基准值 — 输出与上方页面一致'])),
     h('button', {
       class: 'btn',
       disabled: moved.length ? null : 'disabled',
@@ -270,7 +282,7 @@ function renderAssumptions(parent, market, fields, overrides){
         homeState.labDebt = {};
         rerender();
       },
-    }, L(['Reset to seeds', '重置为种子值'])));
+    }, L(['Reset to base case', '重置为基准情景'])));
   c.append(head);
 
   for (const group of LAB_GROUPS){

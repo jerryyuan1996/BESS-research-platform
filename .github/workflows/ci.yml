@@ -25,8 +25,33 @@ jobs:
       # cannot write outside public/data/ and that every comparison field is
       # classified. A pull request that widens automation's authority without
       # saying so fails here.
+      #
+      # TWO secrets, and both are required wherever REQUIRE_MARKERS is set:
+      #
+      #   GUARD_MARKER_SET       the confidential marker set, deliberately not in
+      #                          the repository — see scripts/lib/markers.mjs
+      #   GUARD_FINGERPRINT_KEY  the HMAC key that proves the set was not altered
+      #
+      # The first pull-request run passed only the marker set and went red on the
+      # fingerprint check. That is the mechanism working: it refused to report a
+      # set verified when it had no key to verify it with. Keep the two together
+      # — a step with REQUIRE_MARKERS and one secret cannot finish what it was
+      # asked to do. tests/bundle-confidentiality.test.js asserts the pairing, so
+      # the next omission fails locally instead of six minutes into CI.
+      #
+      # REQUIRE_MARKERS=1 turns "no marker set" from a legitimate local skip into
+      # a failure here, for the same reason REQUIRE_OUTPUT exists below: a guard
+      # that scans for nothing passes against everything.
+      #
+      # A fork pull request cannot read secrets and will fail this step. That is
+      # the correct direction to fail for a private repository — the alternative
+      # is a green run that scanned nothing.
       - name: Test
         run: npm test
+        env:
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+          REQUIRE_MARKERS: '1'
 
       - name: Build
         run: npm run build
@@ -50,6 +75,9 @@ jobs:
         env:
           SCAN_DIR: dist
           REQUIRE_OUTPUT: '1'
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+          REQUIRE_MARKERS: '1'
 
       # Snapshots are machine-written and carry a checksum over their contents.
       # A hand-edited "observed" file is exactly the confusion the envelope
@@ -138,6 +166,9 @@ jobs:
         env:
           SCAN_DIR: .vercel/output
           REQUIRE_OUTPUT: '1'
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+          REQUIRE_MARKERS: '1'
 
       # --prebuilt uploads what was just scanned. Without it the Vercel platform
       # would rebuild from source on its own infrastructure, producing bytes no

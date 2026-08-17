@@ -49,8 +49,8 @@ export const manifest = {
   modelVersion: 'jp-seed-1.0-three-region-capacity-renewal',
   lastVerified: '2026-07-28',
   sourceHealth: [
-    'SEED — structure anchored to OCCTO/TSO sources; economics pending ETL',
-    '种子数据 — 结构已锚定OCCTO及电网运营商来源；经济性待ETL完成',
+    'Base case — structure anchored to OCCTO/TSO sources; economics pending ETL',
+    '基准情景 — 结构已锚定OCCTO及电网运营商来源；经济性待ETL完成',
   ],
 };
 

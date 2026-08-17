@@ -17,8 +17,8 @@ const M = {
                   '下一里程碑：DASSA上线（目标2027年，须核验） · DS3监管安排最终截止2027-09-30 · Celtic互联预计2028年'],
   footerNote: ['Public and official sources re-verified 26 July 2026; GB data (Jul 2026) is held in a separate peer namespace and excluded from Ireland scoring. This dashboard covers the all-island SEM, including Northern Ireland.',
                '公开及官方来源已于2026年7月26日重新核验；英国数据（2026年7月）保存在独立同业命名空间，不计入爱尔兰评分。本看板覆盖包含北爱尔兰在内的全岛单一电力市场。'],
-  seedWarn: ['Every value on this page is an IE_SEED_V1 snapshot or an illustrative placeholder. No KPI is production-complete until its live ingestion, validation and source-health check are operational. Legacy DS3 revenue is never a long-run floor; a wide day-ahead spread is not proof of dispatchability; nameplate MW is never de-rated MW; MEC is never MIC; a consultation is never settled policy.',
-             '本页所有数值均为IE_SEED_V1种子快照或示例占位数据。在实时抓取、校验及源健康检测上线前，任何KPI均不可用于生产决策。DS3历史收入绝非长期下限；日前价差宽不等于可调度性；铭牌MW不等于折减后MW；MEC不等于MIC；征询文件不等于既定政策。'],
+  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. Legacy DS3 revenue is never a long-run floor; a wide day-ahead spread is not proof of dispatchability; nameplate MW is never de-rated MW; MEC is never MIC; a consultation is never settled policy.',
+             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。DS3历史收入绝非长期下限；日前价差宽不等于可调度性；铭牌MW不等于折减后MW；MEC不等于MIC；征询文件不等于既定政策。'],
 
   official: {
     crmPrice: 149.96, crmDY: '2028/29', crmAwardedMW: 5942, crmAgreementYears: 10,

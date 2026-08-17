@@ -73,7 +73,7 @@ function lineChart(parent, cfg){
   wrap.append(svg);
   const lg = legendRow(cfg.series); if (lg) wrap.append(lg);
   if (cfg.series.some(s => s.dash)) wrap.append(h('div', { style: 'font-size:10.5px;color:var(--muted);margin-top:3px;' },
-    L(['* dashed = illustrative seed series', '* 虚线 = 示例种子序列'])));
+    L(['* dashed = illustrative', '* 虚线 = 示例数据'])));
   parent.append(wrap);
   return wrap;
 }

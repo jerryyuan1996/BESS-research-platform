@@ -18,9 +18,14 @@ export const STRATEGIES = [
   {
     id: 'cap',
     n: ['Capacity-backed', '容量支撑'],
-    d: ['Capacity / CRM contract + merchant + services', '容量合同 + 市场化 + 系统服务'],
+    d: ['Resource adequacy revenue + merchant + services', '容量充裕度收入 + 市场化 + 系统服务'],
     requires: 'capacityMarket',
-    na: ['No capacity mechanism', '无容量机制'],
+    /* NOT "no capacity mechanism". That reads as a claim about the market and is
+       false in several: Finland runs a statutory peak-load arrangement and its
+       TSO calls its reserve procurement a capacity market, yet neither pays a
+       merchant battery for accredited adequacy. What this route needs is the
+       narrower thing — see RESOURCE_ADEQUACY_DEFINITION below. */
+    na: ['No resource adequacy revenue', '无容量充裕度收入'],
   },
   {
     id: 'mer',

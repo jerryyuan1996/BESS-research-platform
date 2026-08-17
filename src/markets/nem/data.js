@@ -36,8 +36,8 @@ const M = {
                   '下一里程碑：容量投资计划第10轮招标于2026年8月18日截标 — 据报为该计划2027年结束前最后一轮可调度电源招标'],
   footerNote: ['Public and official sources collected 1 August 2026; Western Australian data is held in a separate peer namespace and excluded from NEM scoring. No CIS floor, ceiling or payment cap has been published for any project, and no Australian BESS toll price has ever been disclosed — every contracted figure in this build is a derived bracket, not a quotation.',
                '公开及官方来源于2026年8月1日采集；西澳数据保存在独立同业命名空间，不计入NEM评分。任何项目的CIS保底价、上限与支付上限均未公布，澳大利亚亦从未披露过储能租赁价格 — 本版本中所有合同类数值均为推导区间，而非报价。'],
-  seedWarn: ['Every value on this page is a NEM_SEED_V1 snapshot or an illustrative placeholder. No KPI is production-complete until its live ingestion, validation and source-health check are operational. A CIS agreement is a collar, not a fixed payment; an awarded megawatt is never a financial-investment decision; a connection application is never a connection; and a marginal loss factor is a live annual variable, not a discount agreed at financial close.',
-             '本页所有数值均为NEM_SEED_V1种子快照或示例占位数据。在实时抓取、校验及源健康检测上线前，任何KPI均不可用于生产决策。CIS协议是双向保底—分成结构，而非固定付费；中标兆瓦绝不等于最终投资决策；并网申请绝不等于并网；边际损耗系数是逐年变动的活变量，而非融资交割时锁定的折扣。'],
+  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. A CIS agreement is a collar, not a fixed payment; an awarded megawatt is never a financial-investment decision; a connection application is never a connection; and a marginal loss factor is a live annual variable, not a discount agreed at financial close.',
+             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。CIS协议是双向保底—分成结构，而非固定付费；中标兆瓦绝不等于最终投资决策；并网申请绝不等于并网；边际损耗系数是逐年变动的活变量，而非融资交割时锁定的折扣。'],
 
   /* ---- official / sourced snapshot -------------------------------------
      Only values that come from a named publication sit here. Illustrative

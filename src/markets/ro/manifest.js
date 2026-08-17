@@ -23,8 +23,8 @@ export const manifest = {
   modelVersion: 'ro-seed-1.0-support-structure-pl-benchmark',
   lastVerified: '2026-07-26',
   sourceHealth: [
-    'SEED — public sources refreshed Jul 2026, automated checks not yet running',
-    '种子数据 — 公开来源已于2026年7月刷新，自动检测尚未运行',
+    'Base case — public sources refreshed Jul 2026, automated checks not yet running',
+    '基准情景 — 公开来源已于2026年7月刷新，自动检测尚未运行',
   ],
 };
 

@@ -38,8 +38,8 @@ export const manifest = {
   modelVersion: 'pjm-seed-1.0-rpm-auction-renewal-two-leg-merchant',
   lastVerified: '2026-08-03',
   sourceHealth: [
-    'SEED — capacity inputs taken from PJM primary documents; merchant and Regulation legs are derived, automated checks not yet running',
-    '种子数据 — 容量输入取自PJM官方原始文件；市场化与调频收入项为推导值，自动检测尚未运行',
+    'Base case — capacity inputs taken from PJM primary documents; merchant and Regulation legs are derived, automated checks not yet running',
+    '基准情景 — 容量输入取自PJM官方原始文件；市场化与调频收入项为推导值，自动检测尚未运行',
   ],
 };
 

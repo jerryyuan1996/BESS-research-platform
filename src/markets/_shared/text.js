@@ -6,7 +6,7 @@
    that does today, and it re-states srcHealth with the same wording.
    --------------------------------------------------------------------------- */
 const T = {
-  asOf: ['Seed snapshot verified', '种子数据核验日期'],
+  asOf: ['Verified', '核验日期'],
   dataDate: ['Latest data date', '最新数据日期'],
   themeLbl: ['Theme', '主题'],
   codYearLbl: ['Forecast COD year', '预计投运容量年度'],
@@ -25,7 +25,7 @@ const T = {
   total: ['Total', '合计'],
   downloadCsv: ['Download KPI CSV', '下载KPI CSV'],
   downloadJson: ['Download seed JSON', '下载种子JSON'],
-  srcHealth: ['Source health: SEED — public sources refreshed Jul 2026, automated checks not yet running', '数据源状态：种子数据 — 公开来源已于2026年7月刷新，自动检测尚未运行'],
+  srcHealth: ['Source health: base case — public sources refreshed Jul 2026, automated checks not yet running', '数据源状态：基准情景 — 公开来源已于2026年7月刷新，自动检测尚未运行'],
 };
 
 export { T as BASE_TEXT };
