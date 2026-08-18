@@ -1273,3 +1273,258 @@ to the *type* — a module missing them parses, and a market can sit built-but-u
 optional to a *registered* market. The comment now says so, lists what else a registered market
 needs that does not appear in the export at all, and points at Step 6 of
 `docs/adding-a-market.md`.
+
+---
+
+# Round 5 — the dossier layer and the first transcribed model
+
+Merged as PR #6. Project material is git-ignored throughout; what follows describes only what the
+tracked tree gained.
+
+## What shipped
+
+`src/projects/dossier/` — the shell: registry with a fixed tab vocabulary, a page that 404s for
+every unknown slug, and a block wrapper giving dossiers the presentational half of the shared
+vocabulary while making the engine-dependent half fail with an explanation.
+
+`src/projects/dossier/model.js` — the model interface. A project model supplies inputs and a pure
+`calculate(inputs)`; the platform supplies controls, tables, charts and formatting. No project model
+creates DOM, CSS or SVG. The interface refuses to publish outputs when the transcription cannot show
+its working: no golden checks, failing goldens, an input without provenance, or a comparison row
+without an explanation all block. Tolerance is explicit and absent means exact.
+
+`src/components/dossierModelPanel.js` — the renderer, including the gap ledger and the five-column
+platform comparison. The platform value is read at render time and never written into project
+inputs; nothing in the interface lets a shared-engine value silently replace a project assumption.
+
+## Why the golden coverage is as heavy as it is
+
+Two wrong formulas reproduced the base case exactly during the first transcription:
+
+- an inclusive month-count rule verified against one of the two sites, which was wrong for the other
+  and diverged in a single period out of sixty-one;
+- a price table with one year mistyped, which surfaced only in 2044.
+
+Every headline metric passed in both cases. Checking the headline is therefore not evidence, and the
+standard for a transcription is per-line reconciliation: every period of every cash-flow line, every
+named scenario, every sensitivity cell, every annual row.
+
+Two structural traps also showed up and are worth carrying forward. Where a workbook holds one
+scenario at a time in a switch cell, it cannot witness the scenarios it is not currently set to —
+those goldens have to come from the rendered dashboard. And where a metric is identical at the
+default capital structure, no base-case golden can tell the two lines apart; the separating case has
+to be declared deliberately.
+
+## Two tolerance regimes, declared rather than averaged
+
+Spreadsheet IRR functions are iterative solvers that stop at their own convergence threshold. A port
+that bisects further lands a few nanounits away on every solved rate, while the underlying cash
+flows agree exactly. Rates are therefore checked against a workbook at `1e-8` and against another
+bisecting implementation at `1e-9`, and the ledger records why. Declaring one tolerance for both
+would have claimed agreement the workbook cannot give.
+
+## The failure mode the comparison table nearly shipped
+
+Two comparison rows were wrong at review. One stated a direction backwards — the project sits above
+the platform reference, not below. The other pointed at the wrong field entirely, comparing a
+discount rate against the platform's degradation rate, and rendered a plausible-looking "0.1% vs
+2.0%".
+
+A comparison row that points at the wrong field is worse than an absent row, because nothing on
+screen shows the reader it is wrong. Both are now correct, the surviving rows explain the platform's
+own sponsor-procurement adjustment rather than presenting an unadjusted number, and the
+non-comparable case is demonstrated by a value the platform genuinely withholds instead of by a
+contrived pair.
+
+## Tabs
+
+`sensitivity` and `annual` joined the dossier tab vocabulary. It is a whitelist and an unknown
+section id is dropped with a console warning — which, since every real dossier is git-ignored, would
+only ever appear on the author's machine. Both ids are asserted, and a shape-check dossier proves
+the shell accepts a full analysis without tripping validation.
+
+## Gates
+
+449 tests, 90 structural tests, staged-blob scan clean, marker fingerprint matching, and a
+production build verified by term scan to contain no project content.
+
+## Carried into the next round
+
+The second dossier repeats this process for the Western Australia project. Its codename is itself a
+confidential marker, unlike Finland's, so its slug and every tracked mention must avoid it — and
+note that commit messages, PR titles and PR bodies are not covered by any existing gate.
+
+---
+
+# Round 5, second dossier — a staged acquisition in Western Australia
+
+The second transcription is a two-vehicle transaction: a development vehicle
+funds the project from signing to financial close, and a construction vehicle
+buys it there. Two workbooks, one shared number — the price between them.
+
+## Deliberately not generalised
+
+The staged structure is specific to this transaction. Nothing about it has been
+promoted into the market pages, the build pathway or the shared comparison
+vocabulary, and the dossier says so on its own overview tab. One deal is not a
+pattern; a second staged deal would be the evidence that justified changing any
+shared model, and there is no second one.
+
+The only shared-code changes this dossier required were two number formats
+(`dec2`, `x2`) — a model denominated in millions renders as whole units under
+the existing `money`, and an exit price of 51.2 against one of 51.8 is a
+different transaction that both render as "51".
+
+## A different evidence problem from the first transcription
+
+The Finland workbook carried cached formula results, so the transcription could
+be diffed against the model's own answers line by line. These two workbooks were
+saved without them. What they carry instead is the author's own assertions:
+audit rows testing the model against typed constants, and a published two-sided
+sensitivity table. Those became the golden basis — all 42 published cells, the
+six audit constants, and the three solved exit prices.
+
+Where a workbook states what it should produce, that statement is evidence. It
+is weaker than a computed result, because it can be stale, and the ledger records
+two places where it visibly is: a goal-sought exit price about A$4k from the
+closed-form answer, and an IRR column whose seven printed cells are not
+consistently rounded.
+
+## Withholding along one axis but not another
+
+The construction vehicle's dividends are an output of an annual three-statement
+engine, pasted into the returns sheet as values. They are valid at exactly one
+operating point, so the model refuses to report a return once any input that
+engine depended on has moved — capex, contingency, gearing, escalation, capacity
+price — while leaving the pricing inputs live, because those sit outside the
+engine entirely.
+
+That distinction is the whole point. Gearing is the input that would mislead
+most: raising leverage cuts the equity cheque on this page while leaving
+untouched the dividends that would have to service the extra debt, so the return
+would improve for a reason that does not exist. It now reads N/A against a
+ledger entry.
+
+A gearing sensitivity grid was drafted and dropped, because every cell would
+have read N/A — the correct answer and a useless chart. The two grids that
+shipped vary only inputs the frozen series survives.
+
+## What the transcription is for
+
+One price sets both sides. The development vehicle needs at least A$51.20m to
+reach its target multiple; the construction vehicle clears 12% only up to
+A$74.48m. The window between them is A$23.28m wide and the pre-agreed price sits
+at its very bottom. At the current asking price the construction vehicle falls
+below 11% with a negative NPV — the deal does not fail, it stops being one that
+side should sign. The window is the finding; neither number in it is.
+
+## Still outstanding
+
+The annual three-statement engine is not transcribed. Until it is, gap W-1
+stands and the returns respond to price but not to the project.
+
+---
+
+# Round 5, second dossier — the project engine replaces the frozen series
+
+The construction vehicle's returns were carried as a pasted distribution series,
+valid at one operating point and withheld whenever any input behind it moved.
+That gap is now closed: the integrated cash-flow and financing engine is
+transcribed, and every driver is live.
+
+## What was built, and what was deliberately left out
+
+The engine is a project cash-flow and financing model, not a three-statement
+investor dashboard. Revenue by product, operating cost, tax and the payment lag,
+the senior debt schedule, the augmentation reserve and the distribution test are
+all reproduced. The profit-and-loss and balance-sheet schedules of the source are
+reproduced **only** where they feed something a cash-flow reader needs — written
+down value for depreciation, retained earnings because the distribution is capped
+by them, and the balance check that proves the transcription closes. Nothing
+renders a balance sheet for its own sake.
+
+The investor-facing output stays cash-flow-led: sources and uses at close,
+construction funding and the equity requirement, revenue and EBITDA, the
+EBITDA-to-CFADS bridge, the debt schedule with cover ratios, base and floor
+distributable cash, equity return with sensitivities, and the augmentation and
+lifecycle spend.
+
+No shared market engine touches any project return. The platform appears in one
+place, the four-column comparison table, as a reference beside the project's own
+value — never in place of it.
+
+## The golden is the true-dated vector, not the legacy annual rows
+
+The source carries annual IRR rows inside the engine sheet and marks them legacy;
+from v12 the sheet that governs is a dated cash-flow vector. That vector — 
+twenty-five base and twenty-two floor distributions on their real dates — is the
+return golden here. All fifty values reproduce to within a cent, and the three
+published headline returns to within the goal-seek tolerance already recorded.
+
+Interactive returns were withheld until that reconciliation held. Thirteen
+drivers are now asserted to move the equity return, because an engine that
+reconciles but does not respond would have reproduced the old failure with better
+provenance.
+
+## One conflict the reconciliation exposed, and why it is not resolved here
+
+The workbook describes the cost of carrying the capacity security three ways that
+cannot all be true: a live formula computing 2.5% of face, a retirement note
+implying zero, and a published distribution vector that can only be reproduced at
+7.5%. The engine matches all fifty published distributions at 7.5% and at no
+other value, which establishes what the published numbers were built on — and
+establishes nothing about which rate applies going forward, because that depends
+on whether a credit facility survived a decision made after the vector was
+pasted.
+
+So 7.5% is the default, for that reason and stated as that reason. The control
+moves, the ledger carries the conflict, and the model reports whether the current
+setting still ties to the published vector. At the live formula value the equity
+IRR is about 13 basis points higher and the NPV about A$2.6m higher.
+
+Two smaller findings came out of the same pass: a variable grid fee charged on
+four fifths of throughput, because the source multiplies a daily figure by an
+annual cycle count; and a small-company tax rate and revenue threshold that are
+declared and never used.
+
+## Names
+
+The vendor and the reference-model provider are named in the evidence ledger,
+where provenance requires it, and masked by role everywhere else. Unmasking the
+vendor for a defined audience is a deal-team decision, not a default. Neither
+name is in tracked source, and the production build is verified clean of both.
+
+---
+
+## Correction: a reproduction and an underwriting case are different claims
+
+The first version of the project engine defaulted the disputed input to the value
+that reproduces the source and called that the model. That conflated two things
+which need separating.
+
+**Published reference case.** Locked at the rate the source's own distribution
+vector was built on. Its outputs are shown unconditionally, because they are a
+verified reproduction — fifty distributions to the cent — and withholding
+verified evidence helps nobody. The lock is asserted rather than assumed: the
+reconciliation fails if that rate ever stops being the only one that reproduces.
+
+**Current underwriting case.** Unresolved, because the applicable rate depends on
+a commercial question nobody has answered yet. Its headline returns are `N/A`
+against the ledger reference until the rate is confirmed — not defaulted to the
+published rate, which would quietly turn a reproduction into a forecast, and not
+defaulted to the live formula, which would pick a side of the conflict.
+
+Both blocks sit adjacent in the headline panel, the second empty. That states the
+position more plainly than a caption could: the transcription is proven and the
+forward assumption is not settled.
+
+The effect is published as a three-point sensitivity rather than hidden, and each
+row names its comparison basis explicitly — "from 7.5% to 2.5%: +13 bp,
++A$2.57m" — so neither the direction nor the endpoints can be misread off the
+table. A delta with no stated basis is the kind of number that gets quoted
+backwards.
+
+Four assertions guard the split: the reference case is always populated, the
+current case is empty until confirmed, confirming opens the current case without
+disturbing the reference, and the three candidate rates produce three distinct
+returns.

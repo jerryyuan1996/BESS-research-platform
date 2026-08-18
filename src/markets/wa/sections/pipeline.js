@@ -23,8 +23,8 @@ import { renderWaQueueCoverage } from '../officialPlanningSection.js';
 // ---------------- PIPELINE ----------------
 function renderPipeline(main){
   sectionHead(main, ['Project Pipeline — real WA register, probability-weighted (MW and MWh separated)', '项目管线 — 西澳真实项目登记，概率加权（MW与MWh分列）'],
-    ['Populated with the real WA BESS universe (operating fleet + committed + development-stage) and its financing status. Stage probabilities are the spec §10.2 defaults and editable below; the probability-weighted chart recomputes immediately. Source: Crestone WA BESS pack, 2026-07.',
-     '现已载入西澳真实BESS项目集（在运+已承诺+开发阶段）及其融资状态。阶段概率为规范§10.2默认值、可在下方编辑；概率加权图表即时重算。来源：Crestone西澳资料，2026-07。']);
+    ['Populated with the real WA BESS universe (operating fleet + committed + development-stage) and its financing status. Stage probabilities are the spec §10.2 defaults and editable below; the probability-weighted chart recomputes immediately. Source: Infra fund WA BESS pack, 2026-07.',
+     '现已载入西澳真实BESS项目集（在运+已承诺+开发阶段）及其融资状态。阶段概率为规范§10.2默认值、可在下方编辑；概率加权图表即时重算。来源：基础设施基金西澳资料，2026-07。']);
 
   renderWaQueueCoverage(main);
 
@@ -118,7 +118,7 @@ function renderPipeline(main){
         h('td', { class:'num' }, mwTxt(p.mw) + (p.est?'*':'')), h('td', { class:'num' }, mwTxt(p.mwh) + (p.est?'*':'')),
         h('td', { class:'num' }, String(p.cod)), h('td', {}, L(st.n)), h('td', { class:'num' }, st.p+'%'),
         h('td', {}, L(p.fin)), h('td', {}, L(p.rev))); })))));
-  c4.append(h('div', { class:'cap' }, L(['A = financed / debt approved · B = balance-sheet or government funded · C = unfinanced. * MW/MWh undisclosed, estimated. Third-party developments are listed by developer; naming similarities between separate projects are not evidence of a shared site or entity. Source: Crestone WA financing review 2026-07.','A=已融资/已批债 · B=表内或政府出资 · C=未融资。*MW/MWh未披露、为估算。第三方项目按开发商列示；不同项目名称相近并不表示同一场址或主体。来源：Crestone西澳融资评审 2026-07。'])));
+  c4.append(h('div', { class:'cap' }, L(['A = financed / debt approved · B = balance-sheet or government funded · C = unfinanced. * MW/MWh undisclosed, estimated. Third-party developments are listed by developer; naming similarities between separate projects are not evidence of a shared site or entity. Source: Infra fund WA financing review 2026-07.','A=已融资/已批债 · B=表内或政府出资 · C=未融资。*MW/MWh未披露、为估算。第三方项目按开发商列示；不同项目名称相近并不表示同一场址或主体。来源：基础设施基金西澳融资评审 2026-07。'])));
   c4.append(why(['Read the register by the two right-hand columns. "Financing status" plus "revenue lock" together predict delivery better than stage or size: every project with bank debt also has a contracted revenue anchor, and every project with neither is a development option rather than committed capacity. Use this to build the competitor set for the capacity balance — count A and B at high probability, discount C heavily, and re-check after each financial close announcement rather than each project announcement.',
     '登记表应按右侧两列解读。"融资状态"加"收入锁定"共同对交付的预测力强于阶段或规模：所有取得银行债务的项目均具备合同化收入锚，而两者皆无的项目实为开发期权而非已承诺容量。可据此构建容量平衡的竞争者集合 — A、B类按高概率计入，C类大幅折减，并在每次融资交割公告（而非项目公告）后复核。'],
     ['Financing + offtake predicts delivery', '融资加售电预测交付']));

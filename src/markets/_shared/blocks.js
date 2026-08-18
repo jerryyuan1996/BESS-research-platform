@@ -144,6 +144,63 @@ function B(parent, b){
     /* How a project actually gets built. A block rather than a section so that
        a market can place it where its own argument wants it — Finland puts it
        under Grid Connection, next to the constraint that decides the project. */
+    /* ---- shapes a deal file needs, in the shared vocabulary --------------
+       `structure` and `sensGrid` live here rather than in projects/dossier/ so
+       there is ONE block vocabulary: a market that later wants an ownership
+       diagram should not have to discover a second renderer. They are small and
+       pure-DOM, so carrying them costs a market chunk almost nothing.
+
+       The `model` block is deliberately NOT here. It pulls in the whole model
+       panel, and no market can use it — wiring it into the shared switch put
+       that weight into all thirteen market chunks to serve a block only a
+       confidential dossier can contain. It is handled in
+       projects/dossier/blocks.js instead. */
+    case 'structure': {
+      /* An ownership and contract diagram as nested boxes rather than SVG.
+         A deal structure is a tree with labelled edges, and a tree of divs
+         reflows on a phone, prints, and is readable by a screen reader —
+         none of which a hand-positioned SVG does. */
+      const wrap = h('div', { class: 'deal-structure' });
+      const node = (n, depth) => {
+        const el = h('div', { class: 'ds-node depth-' + Math.min(depth, 3) },
+          h('div', { class: 'ds-role' }, L(n.role)),
+          n.name ? h('div', { class: 'ds-name' }, L(n.name)) : null,
+          n.note ? h('div', { class: 'ds-note' }, L(n.note)) : null);
+        if (n.children?.length){
+          const kids = h('div', { class: 'ds-children' });
+          for (const c of n.children){
+            if (c.edge) kids.append(h('div', { class: 'ds-edge' }, L(c.edge)));
+            kids.append(node(c, depth + 1));
+          }
+          el.append(kids);
+        }
+        return el;
+      };
+      for (const root of (b.nodes || [])) wrap.append(node(root, 0));
+      if (b.cap) wrap.append(h('div', { class: 'cap' }, L(b.cap)));
+      parent.append(wrap);
+      break;
+    }
+    case 'sensGrid': {
+      /* Two-axis sensitivity with the base case marked. The marked cell is the
+         point: a grid of numbers without one says which combinations were
+         tested and not which one is being proposed. */
+      const w = h('div', { class: 'tbl-wrap' });
+      const rows = b.rows || [];
+      w.append(h('table', { class: 'sens-grid' },
+        h('thead', {},
+          h('tr', {},
+            h('th', {}, L(b.rowLabel || ['', ''])),
+            ...(b.cols || []).map(c => h('th', { class: 'num' }, L(c))))),
+        h('tbody', {}, rows.map((r, ri) => h('tr', {},
+          h('td', {}, h('b', {}, L(r.label))),
+          ...(r.values || []).map((v, ci) => h('td', {
+            class: 'num' + (b.base && b.base[0] === ri && b.base[1] === ci ? ' sens-base' : ''),
+          }, String(v))))))));
+      parent.append(w);
+      if (b.cap) parent.append(h('div', { class: 'cap' }, L(b.cap)));
+      break;
+    }
     case 'pathway':
       if (b.pathway) parent.append(buildPathwayPanel(b.pathway, { sourceFor: b.sourceFor }));
       break;

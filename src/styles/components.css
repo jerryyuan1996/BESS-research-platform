@@ -593,3 +593,32 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 .pipe-table{font-size:12.5px}
 .pipe-table td.num{font-variant-numeric:tabular-nums}
 .pipe-table td.muted{color:var(--muted);font-style:italic}
+
+/* ---- dossier blocks -------------------------------------------------------
+   A deal structure is a tree with labelled edges. Nested boxes rather than an
+   SVG diagram: this reflows on a phone, prints, and is readable in order by a
+   screen reader, none of which hand-positioned SVG does. */
+.deal-structure{margin:10px 0;}
+.ds-node{border:1px solid var(--line); border-radius:9px; padding:8px 10px; margin:6px 0; background:var(--card-bg);}
+.ds-node.depth-1{margin-left:14px;} .ds-node.depth-2{margin-left:28px;} .ds-node.depth-3{margin-left:42px;}
+.ds-role{font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted);}
+.ds-name{font-size:13px; font-weight:600; color:var(--ink); margin-top:2px;}
+.ds-note{font-size:11.5px; color:var(--ink2); margin-top:3px;}
+.ds-edge{font-size:11px; color:var(--muted); margin:4px 0 0 14px;}
+.ds-edge::before{content:'└ '; opacity:.6;}
+
+/* The base cell is the point of a sensitivity grid: without it the table says
+   which combinations were tested, not which one is being proposed. */
+.sens-grid td.sens-base{background:var(--good-bg); font-weight:700; color:var(--ink);
+  outline:1.5px solid var(--good); outline-offset:-1.5px;}
+
+/* Dossier cards on a market's Portfolio tab. Present only in a development
+   build with local-data/dossiers/ populated; a published build renders the
+   withheld card instead and these rules match nothing. */
+.dossier-list{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; margin-top:10px;}
+.dossier-card{display:block; border:1px solid var(--border); border-radius:10px; padding:11px 13px;
+  background:var(--bg); text-decoration:none; color:inherit;}
+.dossier-card:hover{border-color:var(--s1); background:var(--accent-bg); text-decoration:none;}
+.dc-name{font-size:13.5px; font-weight:650; color:var(--ink);}
+.dc-sub{font-size:11.5px; color:var(--muted); margin-top:3px;}
+.dc-headline{font-size:12px; color:var(--ink2); margin-top:6px;}

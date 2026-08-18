@@ -4,6 +4,8 @@
    Routes
      /                          home / global cockpit
      /investment-lab             dedicated cross-market underwriting workspace
+     /projects/:slug            a project dossier, absent from every build
+     /projects/:slug/:tab       a dossier, deep-linked tab
      /markets/:slug             a market dashboard, default tab
      /markets/:slug/:tab        a market dashboard, deep-linked tab
 
@@ -12,8 +14,8 @@
    prototype's overlay could not do. A market that does not recognise the tab id
    falls back to its default tab rather than 404ing.
 
-   Future routes named in the brief (/compare, /methodology, /portfolio) are not
-   built. Adding one is a single entry in the table below.
+   Future routes named in the brief (/compare, /methodology) are not built.
+   Adding one is a single entry in the table below.
 
    Deployment: History-API routing needs a server-side rewrite so a direct visit
    to /markets/wa returns index.html. The `rewrites` rule in vercel.json does
@@ -51,6 +53,19 @@ export function parseRoute(pathname, search = ''){
      how stale it is, and what the automation was allowed to touch. */
   if (parts[0] === 'data' && parts.length === 1) return { name: 'data', ...view };
   if (parts[0] === 'investment-lab' && parts.length === 1) return { name: 'investmentLab', ...view };
+
+  /* /projects/:slug — a project dossier. Confidential in its entirety, so in a
+     production build every slug resolves to nothing and the page renders a 404.
+     That is deliberate: a "withheld" page appearing only for real slugs would
+     confirm which deal codenames exist. See projects/dossier/page.js. */
+  if (parts[0] === 'projects' && parts.length >= 2){
+    return {
+      name: 'dossier',
+      slug: decodeURIComponent(parts[1]),
+      tab: parts[2] ? decodeURIComponent(parts[2]) : null,
+      ...view,
+    };
+  }
   if (parts[0] === 'news' && parts.length === 1) return { name: 'news', ...view };
 
 

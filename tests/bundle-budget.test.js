@@ -70,18 +70,26 @@ const BUDGET = {
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
 
-  /* Chunks Rollup factors out because several market chunks share them. They
-     are NOT part of the first load — a visitor who never opens a market page
-     never fetches them — but the first market visit pays for whichever it
-     needs, so they belong in the accounting.
+  /* Chunks Rollup factors out because several MARKET chunks share them. Not
+     part of the first load — a visitor who never opens a market page never
+     fetches them — but the first market visit pays for whichever it needs, so
+     they belong in that accounting.
 
      A COMBINED BUDGET, NOT PER-CHUNK NAMES. The first version listed
      `sourceDrawer` by name and broke the moment the build-pathway panel was
-     added: Rollup regrouped the same modules under a different chunk name, and
-     the test failed while the property it cared about was still true. Chunk
-     names are Rollup's business. What matters is that the shared code exists
-     outside the entry and stays within a total. */
+     added: Rollup regrouped the same modules under a different chunk name and
+     the test failed while the property it cared about was still true.
+
+     FEATURE CHUNKS ARE EXCLUDED, and getting that wrong is what this comment is
+     for. The dossier shell is not shared by market chunks — it is fetched only
+     by /projects/*, which in a published build is a typo. Counting it here made
+     the failure message ("what a first market visit pays") untrue, and would
+     have pushed someone into raising a budget to accommodate bytes no market
+     visitor downloads. */
   sharedTotal: 55,
+
+  /* Chunks belonging to one feature, fetched only on that feature's route. */
+  features: { 'dossier-shell': 8 },
 };
 
 /** Every registered market must have its own chunk. Thirteen dashboards for
@@ -104,6 +112,10 @@ const SHARED_OUT_OF_ENTRY = {
   'source drawer': 'source-drawer',
   'block engine': 'Model version: ',
   'build pathway': 'How a project actually gets built here',
+  /* The dossier shell exists only to render a 404 in a published build.
+     Shipping it to every visitor so an unreachable route can say "not found"
+     would be the worst version of eager loading there is. */
+  'dossier shell': 'No project page exists at that address',
 };
 
 /**
@@ -144,7 +156,7 @@ async function chunks(){
   const dir = path.join(DIST, 'assets');
   const files = (await readdir(dir)).filter(f => f.endsWith('.js'));
 
-  const out = { entry: null, markets: new Map(), other: [] };
+  const out = { entry: null, markets: new Map(), other: [], features: new Map() };
   for (const name of files){
     const buf = await readFile(path.join(dir, name));
     const entry = { name, raw: buf.length, gzip: gzipSync(buf).length, text: buf.toString('utf8') };
@@ -156,8 +168,10 @@ async function chunks(){
        and the market silently goes missing from this accounting, which is how
        this test first reported twelve chunks as ten. */
     const market = /^market-(.+?)-[A-Za-z0-9_-]{8}\.js$/.exec(name);
+    const feature = Object.keys(BUDGET.features).find(f => name.startsWith(f + '-'));
     if (market) out.markets.set(market[1], entry);
     else if (/^index-[^.]+\.js$/.test(name)) out.entry = entry;
+    else if (feature) out.features.set(feature, entry);
     else out.other.push(entry);
   }
   return out;
@@ -194,8 +208,14 @@ test('every market loads its dashboard on demand', async (t) => {
 
 test('the shared chunks stay out of the first load', async (t) => {
   if (skipWithoutDist(t)) return;
-  const { entry, other } = await chunks();
+  const { entry, other, features, markets } = await chunks();
   assert.ok(entry, 'no entry chunk');
+
+  /* Search EVERY non-entry chunk, not just the market-shared ones. The first
+     version searched `other` alone and broke the moment the dossier shell was
+     reclassified into its own bucket — the staleness assertion below caught it,
+     which is the assertion earning its keep on its author. */
+  const elsewhere = [...other, ...features.values(), ...markets.values()];
 
   /* Rollup factors out what several market chunks share — the block engine, the
      source drawer, the pathway panel. That is the right outcome: fetched once by
@@ -207,17 +227,34 @@ test('the shared chunks stay out of the first load', async (t) => {
       `the ${what} is in the entry chunk, so every visitor downloads it. ` +
       'Something on the home page now imports it directly; shared market code ' +
       'belongs in a shared chunk, fetched on the first market visit.');
-    assert.ok(other.some(c => c.text.includes(marker)),
-      `the ${what} is in neither the entry nor a shared chunk — the marker ` +
+    assert.ok(elsewhere.some(c => c.text.includes(marker)),
+      `the ${what} is in neither the entry nor any other chunk — the marker ` +
       `"${marker}" has gone stale and this assertion no longer checks anything.`);
   }
 
   assert.ok(other.length > 0, 'no shared chunks at all — the split has collapsed');
   const sharedGzip = other.reduce((a, c) => a + c.gzip, 0);
   assert.ok(kB(sharedGzip) <= BUDGET.sharedTotal,
-    `shared chunks total ${kB(sharedGzip)} kB gzipped across ${other.length} files, ` +
+    `market-shared chunks total ${kB(sharedGzip)} kB gzipped across ${other.length} files, ` +
     `over the ${BUDGET.sharedTotal} kB budget. This is what a first market visit ` +
-    'pays on top of its own market chunk.');
+    'pays on top of its own market chunk. Feature chunks are counted separately.');
+});
+
+test('feature chunks exist, stay out of the entry, and stay small', async (t) => {
+  if (skipWithoutDist(t)) return;
+  const { features } = await chunks();
+
+  /* A feature chunk is fetched only on its own route. The dossier shell's route
+     is unreachable in a published build, so every byte here is paid by a typo —
+     which is the argument for keeping it tiny rather than for deleting it. */
+  for (const [name, budget] of Object.entries(BUDGET.features)){
+    const chunk = features.get(name);
+    assert.ok(chunk,
+      `no ${name}-*.js chunk. Either the feature stopped loading on demand — ` +
+      'check its dynamic import — or it was inlined into the entry.');
+    assert.ok(kB(chunk.gzip) <= budget,
+      `${chunk.name} is ${kB(chunk.gzip)} kB gzipped, over its ${budget} kB budget.`);
+  }
 });
 
 test('each split market has its own chunk, within budget', async (t) => {

@@ -33,6 +33,10 @@ function renderNotFound(app, route){
       L(['return to the global cockpit', '返回全球总看板'])), '.'));
 }
 
+/* Guards a stale dossier render, exactly as marketPage.js guards a stale market
+   one: the reader may navigate again before the chunk resolves. */
+let dossierToken = 0;
+
 /** Renders the current route into #app. This is the app's only render entry point. */
 export function render(){
   const route = currentRoute();
@@ -45,6 +49,27 @@ export function render(){
     const market = bySlug(route.slug);
     if (market) return void renderMarketPage(app, market, route.tab, route.region);
     return void renderNotFound(app, { path: '/markets/' + route.slug });
+  }
+  /* LOADED ON DEMAND, and for this route that matters more than for a market.
+     In a published build no dossier exists, so the shell's only job is to render
+     a 404 — and shipping the block engine, the structure renderer and the
+     sensitivity grid to every visitor so that an unreachable route can say
+     "not found" is the worst version of eager loading there is.
+
+     The chunk arrives only if someone actually visits /projects/*, which in a
+     published build is a typo or a stale link. Failure is handled the same way
+     as a market chunk: a reload, not a white screen. */
+  if (route.name === 'dossier'){
+    const token = ++dossierToken;
+    import('../projects/dossier/page.js')
+      .then(m => { if (token === dossierToken) m.renderDossierPage(app, route.slug, route.tab); })
+      .catch(err => {
+        if (token !== dossierToken) return;
+        console.error('[dossier] shell failed to load:', err);
+        app.innerHTML = '';
+        renderNotFound(app, { path: '/projects/' + (route.slug || '') });
+      });
+    return;
   }
   if (route.name === 'home') return void renderHome(app);
   if (route.name === 'investmentLab') return void renderInvestmentLabPage(app);
