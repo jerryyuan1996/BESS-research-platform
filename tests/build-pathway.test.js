@@ -12,7 +12,7 @@ import assert from 'node:assert/strict';
 
 import {
   STAGES, STAGE_LABEL, OWNER, OWNER_LABEL, DURATION_BASIS, DURATION_BASIS_LABEL,
-  validateBuildPathway, pathwayMonths, orderDeviation,
+  validateBuildPathway, prerequisites, prerequisitesBefore,
 } from '../src/governance/buildPathway.js';
 import { allBuildPathways, buildPathwayFor, hasBuildPathway, pathwayMarketIds } from '../src/markets/buildPathwayRegistry.js';
 import { markets, byId } from '../src/markets/registry.js';
@@ -66,58 +66,70 @@ test('a pathway states what it does not know', () => {
   }
 });
 
-test('parallel stages are excluded from the elapsed total', () => {
-  /* The single most likely misreading: summing nine rows into a programme
-     nobody has run. WA runs consent alongside studies, so its total must be
-     lower than the naive sum. */
+test('a stage that overlaps another names one this market actually has', () => {
+  /* `parallelWith` is a display hint now rather than an input to any total —
+     the elapsed sum was removed because dropping parallel stages is not a
+     critical path. It still must not point at a stage the market lacks, which
+     would render an annotation naming nothing. */
   for (const p of allBuildPathways()){
-    const total = pathwayMonths(p);
-    assert.ok(total, `${p.marketId}: no elapsed total`);
-
-    const naive = p.stages
-      .filter(s => Array.isArray(s.months))
-      .reduce((a, s) => a + s.months[1], 0);
-    assert.ok(total.max <= naive, `${p.marketId}: total exceeds the naive sum`);
-
-    if (total.parallel > 0){
-      assert.ok(total.max < naive,
-        `${p.marketId}: declares parallel stages but the total is the naive sum`);
-    }
-    /* And a parallel stage must name a stage that actually exists in THIS
-       market's pathway, not merely in the vocabulary. */
     const ids = new Set(p.stages.map(s => s.id));
     for (const stage of p.stages.filter(s => s.parallelWith)){
       assert.ok(ids.has(stage.parallelWith),
-        `${p.marketId}/${stage.id}: runs parallel with a stage this market does not have`);
+        `${p.marketId}/${stage.id}: overlaps a stage this market does not have`);
+      assert.notEqual(stage.parallelWith, stage.id,
+        `${p.marketId}/${stage.id}: cannot overlap itself`);
     }
   }
 });
 
-test('the ordering difference between WA and Finland is real and computed', () => {
-  /* This is the section's headline finding, and it is derived rather than
-     written so it cannot drift away from the stages that produce it.
+test('the WA/Finland difference is modelled as gates, not as an order', () => {
+  /* THE SECTION'S HEADLINE FINDING, asserted against the model that produces it.
 
-     Finland gates the letter of intent on environmental evidence and the
-     connection agreement on final planning consent; WA permits more of the same
-     work to run in parallel. If someone reorders either market's stages, this
-     test is what says the prose above them is now wrong. */
+     An earlier version asserted "Finland must show consent running before the
+     connection application" — a stage-level claim that could not express what
+     Fingrid publishes. Finland gates TWO different instruments on TWO different
+     artefacts drawn from the same consent stage, and a total order collapses
+     both into one statement. */
   const wa = buildPathwayFor('wa');
   const fi = buildPathwayFor('fi');
   assert.ok(wa && fi);
 
-  assert.deepEqual(orderDeviation(wa), [],
-    'WA is expected to follow the conventional order');
+  const fiGates = prerequisites(fi);
+  assert.equal(fiGates.length, 2,
+    'Finland publishes two consent checkpoints — one at the letter of intent, one at the connection agreement');
 
-  const fiDev = orderDeviation(fi);
-  assert.ok(fiDev.length > 0, 'Finland is expected to depart from the conventional order');
-  assert.ok(fiDev.some(d => d.runsEarlier === 'consent' && d.insteadOf === 'application'),
-    'Finland must show consent running before the connection application');
+  const loi = fiGates.find(g => g.before === 'application');
+  assert.ok(loi, 'Finland must gate the letter of intent');
+  assert.match(loi.requires[0], /EIA|environmental/i,
+    'the letter of intent is gated on environmental evidence, not on final consent');
 
-  /* And the parallelism is the other half of the same contrast. */
-  assert.ok(wa.stages.some(s => s.parallelWith === 'studies'),
-    'WA must show a stage running parallel with studies');
-  assert.equal(fi.stages.filter(s => s.parallelWith).length, 0,
-    'Finland gates rather than parallelises in this model — no stage should be marked parallel');
+  const agreement = fiGates.find(g => g.before === 'studies');
+  assert.ok(agreement, 'Finland must gate the connection agreement');
+  assert.match(agreement.requires[0], /land-use plan|building permit/i,
+    'the connection agreement is gated on final planning consent');
+
+  /* The two edges come from the same stage and gate different instruments.
+     That is precisely what a stage-level ordering could not say, so it is the
+     assertion that would fail if someone collapsed the model back. */
+  assert.equal(loi.requiresFrom, agreement.requiresFrom,
+    'both Finnish gates draw on the same consent stage');
+  assert.notEqual(loi.before, agreement.before,
+    'the two gates bind at different instruments — collapsing them loses the finding');
+
+  /* WA's published gating rule is the GPS sequencing, and notably NOT a
+     development approval gating the access process. */
+  const waGates = prerequisites(wa);
+  assert.equal(waGates.length, 1, 'WA publishes one gating rule in this model');
+  assert.equal(waGates[0].before, 'compliance');
+  assert.match(waGates[0].requires[0], /ETAC|Electricity Transfer Access/i,
+    'the GPS submission is gated on the ETAC application');
+  assert.ok(!waGates.some(g => g.before === 'studies' && g.requiresFrom === 'consent'),
+    'WA must NOT gate its access process on consent — that is the difference from Finland');
+
+  /* And the annotation the renderer draws must resolve for a gated stage. */
+  assert.equal(prerequisitesBefore(fi, 'application').length, 1);
+  assert.equal(prerequisitesBefore(wa, 'compliance').length, 1);
+  assert.equal(prerequisitesBefore(wa, 'studies').length, 0);
 });
 
 test('every stage cites a source that exists in its market register', async () => {
@@ -131,6 +143,12 @@ test('every stage cites a source that exists in its market register', async () =
         `${p.marketId}/${stage.id}: sourceKey "${stage.sourceKey}" is not in the market's source register`);
       assert.ok(SRC[stage.sourceKey].url !== undefined,
         `${p.marketId}/${stage.id}: cited source has no url field`);
+    }
+    /* A gating rule without a citation is folklore, and a gating rule is the
+       strongest claim this section makes. */
+    for (const edge of prerequisites(p)){
+      assert.ok(SRC[edge.sourceKey],
+        `${p.marketId}/${edge.id}: sourceKey "${edge.sourceKey}" is not in the market's source register`);
     }
   }
 });

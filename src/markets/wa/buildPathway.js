@@ -48,6 +48,23 @@ export const WA_BUILD_PATHWAY = {
     '此为公开框架而非项目计划。开发商与西澳电网公司之间的往来函件不属公开信息，队列位置、研究结果及协商日期亦然。各阶段的顺序与所依据的规则文件均有据可查；而各阶段耗时系依据其他项目的公开公告推断，因而区间较宽。',
   ],
 
+  /* One published gating rule, and it is the non-obvious one. Western Power and
+     AEMO do not gate the access process on a development approval — which is
+     what "more work proceeds in parallel" means concretely — but the GPS
+     submission cannot start before the ETAC application exists. */
+  prerequisites: [
+    {
+      id: 'wa-gps-after-etac',
+      requiresFrom: 'studies',
+      requires: ['A submitted Electricity Transfer Access Contract application',
+                 '已提交的电力传输接入合同（ETAC）申请'],
+      before: 'compliance',
+      instrument: ['Generator Performance Standards submission to Western Power and AEMO',
+                   '向西澳电网公司与AEMO提交的发电机性能标准（GPS）'],
+      sourceKey: 'registration',
+    },
+  ],
+
   stages: [
     {
       id: 'site',

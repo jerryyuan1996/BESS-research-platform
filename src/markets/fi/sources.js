@@ -260,6 +260,23 @@ export const SRC = {
     lastChecked: '2026-08-18',
     freshness: 'Current',
   },
+
+  reserveParticipation: {
+    file: 'Fingrid — how to participate in the reserve markets',
+    status: ['Official — Final', '官方 — 最终'],
+    date: '2026',
+    cy: 'Prequalification is per reserve product, each with its own technical requirements and approval. Entry is not tied to an annual capacity-certification cycle, unlike the WEM Reserve Capacity Cycle.',
+    url: 'https://www.fingrid.fi/en/electricity-market/reserves/reserve-products/how-to-participate-in-the-reserve-markets/',
+    authority: 'observed',
+    historical: 'n/a — a process page',
+    forecast: 'None',
+    frequency: 'As revised',
+    format: 'HTML',
+    machineReadable: 'No',
+    automation: 'C — a published process is read, not ingested',
+    lastChecked: '2026-08-18',
+    freshness: 'Current',
+  },
 };
 
 export const sources = SRC;

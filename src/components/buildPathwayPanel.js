@@ -16,12 +16,15 @@
         "who can stop me". A Gantt bar hides that; a column does not.
      2. The DURATION BASIS sits next to every duration. A range whose provenance
         is invisible reads as a measurement, and most of these are conventions.
-     3. Stages that run in PARALLEL are marked and excluded from the total, so
-        nobody sums nine rows into a programme nobody has run.
+     3. PREREQUISITES are rendered as explicit edges — this artefact before that
+        instrument — rather than as an implied sequence. Absence of an edge means
+        unordered, not simultaneous.
 
-   The order deviation is computed rather than written, so the sentence
-   "consent runs before application here" cannot drift out of step with the rows
-   above it.
+   THERE IS NO ELAPSED TOTAL, deliberately. An earlier version summed the
+   sequential stages and dropped every parallel one, which is not a critical
+   path: it silently assumed a parallel stage never extends beyond the stage it
+   runs alongside. The per-stage ranges and their basis labels stay, because
+   those are the things the sources actually support.
    --------------------------------------------------------------------------- */
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
@@ -30,7 +33,7 @@ import { badge } from './badge.js';
 import { chip } from './chip.js';
 import {
   STAGE_LABEL, OWNER_LABEL, DURATION_BASIS, DURATION_BASIS_LABEL,
-  pathwayMonths, orderDeviation,
+  prerequisites, prerequisitesBefore,
 } from '../governance/buildPathway.js';
 
 /* A convention-based duration is the weakest thing on the page and is toned to
@@ -53,8 +56,7 @@ const months = (stage) => (Array.isArray(stage.months)
  *   the same register the rest of the dashboard uses
  */
 export function buildPathwayPanel(pathway, { sourceFor } = {}){
-  const total = pathwayMonths(pathway);
-  const deviations = orderDeviation(pathway);
+  const gates = prerequisites(pathway);
 
   const c = card(
     ['How a project actually gets built here', '项目实际建设流程'],
@@ -66,32 +68,38 @@ export function buildPathwayPanel(pathway, { sourceFor } = {}){
      durations as commitments has been misled by the time they reach a footnote. */
   c.append(h('div', { class: 'warnbox' }, L(pathway.limit)));
 
-  if (total){
-    c.append(h('div', { class: 'kpis' },
-      kpiBlock(['Stages', '阶段数'], String(pathway.stages.length), null),
-      kpiBlock(['Elapsed, sequential', '顺序推进总耗时'],
-        total.min + '–' + total.max + '<small> months</small>',
-        total.parallel
-          ? [total.parallel + ' stage(s) run in parallel and are excluded',
-             '有' + total.parallel + '个阶段并行推进，未计入合计']
-          : ['No stages run in parallel', '无并行阶段']),
-      kpiBlock(['Order', '流程顺序'],
-        deviations.length ? String(deviations.length) : '—',
-        deviations.length
-          ? ['Departure(s) from the conventional order — see below', '与常规顺序存在差异 — 详见下文']
-          : ['Conventional order', '常规顺序'])));
-  }
+  c.append(h('div', { class: 'kpis' },
+    kpiBlock(['Stages', '阶段数'], String(pathway.stages.length), null),
+    kpiBlock(['Published gating rules', '已公布的前置规则'],
+      gates.length ? String(gates.length) : '—',
+      gates.length
+        ? ['An artefact that must be in hand before an instrument can be signed', '签署相应法律文件前必须先行取得的成果']
+        : ['None published for this market', '本市场未公布相关规则'])));
 
-  /* Computed, not written. The whole value of this sentence is that it stays
-     true when someone reorders the stages above. */
-  if (deviations.length){
-    c.append(h('div', { class: 'note' },
-      h('b', {}, L(['Ordering. ', '顺序差异。'])),
-      L(deviations.map(d =>
-        L(STAGE_LABEL[d.runsEarlier]) + ' → ' + L(STAGE_LABEL[d.insteadOf])).join(' · ')),
-      ' ',
-      L(['This market gates those stages earlier than the conventional sequence. The workstreams may still overlap; what differs is which approvals must be in hand before the next instrument can be signed, and that changes where a programme puts capital at risk.',
-         '本市场对上述阶段的把关时点早于常规顺序。各项工作仍可能并行推进；差异在于签署下一份法律文件前必须先行取得哪些许可，而这改变了开发计划中资金承压的时点。'])));
+  /* Rendered from the edges, not from the row order. Each line names the
+     artefact, where it comes from and what it gates — which is what the
+     operators publish, and is finer than "stage A precedes stage B". */
+  if (gates.length){
+    const list = h('div', { class: 'note' },
+      h('b', {}, L(['Gating rules. ', '前置规则。'])));
+    for (const g of gates){
+      const src = sourceFor ? sourceFor(g.sourceKey) : null;
+      list.append(h('div', { style: 'margin-top:5px;' },
+        L(g.requires),
+        ' → ',
+        h('b', {}, L(g.instrument)),
+        h('span', { class: 'cap', style: 'margin-left:6px;' },
+          L(['from ', '来自']) + L(STAGE_LABEL[g.requiresFrom] || ['', ''])),
+        src?.url
+          ? h('a', { href: src.url, target: '_blank', rel: 'noopener', style: 'margin-left:6px;' },
+              L(['source', '来源']))
+          : null));
+    }
+    list.append(h('div', { class: 'cap', style: 'margin-top:6px;' }, L([
+      'Anything not joined by a rule above is unordered rather than simultaneous — the workstreams may overlap, and where a market publishes no rule this section does not invent one.',
+      '未被上述规则关联的环节属于无先后约束，而非同时进行 — 各项工作可能重叠；若某市场未公布相关规则，本节不作推断。',
+    ])));
+    c.append(list);
   }
 
   const wrap = h('div', { class: 'tbl-wrap' });
@@ -108,7 +116,10 @@ export function buildPathwayPanel(pathway, { sourceFor } = {}){
         h('td', {},
           h('b', {}, L(label)),
           stage.parallelWith
-            ? chip('info', L(['parallel with ', '与…并行']) + L(STAGE_LABEL[stage.parallelWith] || ['', '']))
+            ? chip('info', L(['commonly overlaps ', '通常与…重叠']) + L(STAGE_LABEL[stage.parallelWith] || ['', '']))
+            : null,
+          prerequisitesBefore(pathway, stage.id).length
+            ? chip('warn', L(['gated', '有前置条件']))
             : null),
         h('td', {}, L(OWNER_LABEL[stage.owner] || ['', ''])),
         h('td', {}, L(stage.instrument)),

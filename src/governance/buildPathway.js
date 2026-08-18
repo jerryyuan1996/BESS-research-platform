@@ -16,13 +16,24 @@
    Mapping all of them onto ONE VOCABULARY is what makes two markets legible side
    by side, and it is the same trick the comparison interface plays on revenue.
 
-   But the SEQUENCE is market-specific and must stay that way. Finland gates the
-   letter of intent on environmental evidence and the connection agreement on
-   final planning consent; Western Australia permits more of the same work to
-   proceed in parallel. An earlier draft enforced a single order, Finland failed
-   it immediately, and the failure was the model's rather than Finland's — a
-   schema that normalises away where the gates bind destroys the most useful
-   thing this section has to say.
+   AND THERE IS NO SEQUENCE AT ALL, which took two attempts to get right.
+
+   The first draft enforced one order and Finland failed it immediately. The
+   second relaxed the rule but kept measuring each market against a reference
+   order — corrected prose over an unchanged total-order model, which is worse
+   than either, because the implementation quietly contradicted the page.
+
+   A total order cannot represent what Fingrid actually publishes. Finland has
+   TWO consent checkpoints binding at two different instruments: environmental
+   evidence before the letter of intent, final planning consent before the
+   connection agreement. "Consent comes before application" collapses both into
+   one claim and loses which artefact gates which document.
+
+   So the model is a PARTIAL ORDER: `prerequisites` are explicit edges saying
+   this artefact must be in hand before that instrument. Everything not joined
+   by an edge is unordered, which is the honest description of two workstreams
+   that overlap. `stages` is presentation order and carries no meaning beyond
+   the order rows appear in.
 
    The vocabulary is deliberately coarse. A market that needs a tenth stage is
    telling you something about the market, and should say it in `note` rather
@@ -53,22 +64,13 @@
 /**
  * The canonical spine: WHICH STAGES EXIST, not what order a market runs them in.
  *
- * The first draft enforced this order and Finland immediately failed it, which
- * was the validator being right and the model being wrong. Finland shows consent
- * before the connection application because Fingrid gates on it twice — the
- * letter of intent on environmental evidence, the connection agreement on final
- * planning consent — while Western Australia permits more of the two to run in
- * parallel. That difference is not noise to be normalised away; it is the most
- * useful thing a sponsor moving between the two markets could be told, and a
- * schema that forbade it would have hidden it.
+ * THE ORDER OF THIS ARRAY IS NOT A CLAIM. It is the order stages are listed in
+ * so that two markets' tables can be read side by side; it is not a sequence any
+ * project follows and nothing computes on it.
  *
- * So the spine fixes the vocabulary and each market declares its own sequence.
- * The listed order below is the REFERENCE, used by `orderDeviation()` to say how
- * a market departs from it; departures are findings, not errors.
- *
- * Some stages also run PARALLEL rather than sequentially. `parallelWith` says so
- * explicitly, because a reader summing nine durations would otherwise get a
- * programme nobody has ever run.
+ * What ordering a market actually has lives in `prerequisites` — explicit edges
+ * between an artefact and the instrument it gates. See the header for why a
+ * total order could not express Finland's two consent checkpoints.
  */
 export const STAGES = [
   'site',        // site control, land rights, land-use status
@@ -162,10 +164,10 @@ export function validateBuildPathway(pathway){
   for (const stage of pathway.stages){
     const index = STAGES.indexOf(stage.id);
     if (index < 0){ at(`unknown stage "${stage.id}" — the vocabulary is fixed, see STAGES`); continue; }
-    /* Order is NOT checked. A market declares its own sequence and a departure
-       from the reference order is a finding — see orderDeviation(). What is
-       checked is that a stage appears once: the same stage twice is a modelling
-       error, not a market that does it twice. */
+    /* Order is NOT checked, because the array order is presentation only —
+       ordering lives in `prerequisites`. What IS checked is that a stage appears
+       once: the same stage twice is a modelling error, not a market that runs it
+       twice. */
     if (seen.has(stage.id)) at(`stage "${stage.id}" appears more than once`);
     seen.add(stage.id);
 
@@ -184,50 +186,43 @@ export function validateBuildPathway(pathway){
     }
     if (!stage.sourceKey) at(`${stage.id}: no sourceKey — every stage cites the register entry behind it`);
   }
+
+  /* PREREQUISITES. Optional — a market may genuinely publish no gating rule —
+     but every edge declared must resolve, name its artefact, and cite a source.
+     An edge pointing at a stage this market does not have is the failure mode
+     that would otherwise render as a silently missing annotation. */
+  const stageIds = new Set((pathway.stages || []).map(s => s.id));
+  for (const edge of pathway.prerequisites || []){
+    if (!edge.id) at('a prerequisite has no id');
+    if (!stageIds.has(edge.before)) at(`prerequisite ${edge.id}: "before" names a stage this market does not have`);
+    if (!stageIds.has(edge.requiresFrom)) at(`prerequisite ${edge.id}: "requiresFrom" names a stage this market does not have`);
+    if (edge.before === edge.requiresFrom) at(`prerequisite ${edge.id}: a stage cannot gate itself`);
+    if (!isPair(edge.requires)) at(`prerequisite ${edge.id}: requires must be an [en, zh] pair naming the artefact`);
+    if (!isPair(edge.instrument)) at(`prerequisite ${edge.id}: instrument must name what cannot be signed without it`);
+    if (!edge.sourceKey) at(`prerequisite ${edge.id}: no sourceKey — a gating rule without a citation is folklore`);
+  }
   return problems;
 }
 
 /**
- * How a market's sequence departs from the reference order.
+ * The prerequisite edges a market declares, validated against its own stages.
  *
- * Returns the stages that run earlier than the reference expects, each with what
- * it now precedes. Empty means the market follows the conventional order.
+ * An edge says: the artefact named in `requires`, produced by stage
+ * `requiresFrom`, must be in hand before the instrument at stage `before` can be
+ * signed. That is the unit Fingrid and Western Power actually publish, and it is
+ * finer than "stage A precedes stage B" — Finland gates two different documents
+ * on two different artefacts from the same consent stage, which a stage-level
+ * ordering cannot say.
  *
- * This exists to be RENDERED, not merely asserted: "consent precedes
- * application" is the sentence a sponsor needs, and computing it from the data
- * means it cannot drift out of step with the stages the page draws.
+ * Absence of an edge means UNORDERED, not simultaneous. Two workstreams with no
+ * edge between them may overlap, run in either order, or not overlap at all;
+ * what the market has not published, this does not invent.
  */
-export function orderDeviation(pathway){
-  const actual = (pathway.stages || []).map(s => s.id).filter(id => STAGES.includes(id));
-  const out = [];
-  for (let i = 0; i < actual.length; i++){
-    for (let j = i + 1; j < actual.length; j++){
-      /* A pair is inverted when the market runs `later` before `earlier`
-         relative to the reference order. */
-      if (STAGES.indexOf(actual[i]) > STAGES.indexOf(actual[j])){
-        out.push({ runsEarlier: actual[i], insteadOf: actual[j] });
-      }
-    }
-  }
-  return out;
+export function prerequisites(pathway){
+  return [...(pathway.prerequisites || [])];
 }
 
-/**
- * Total elapsed months, treating parallel stages as overlapping rather than
- * additive.
- *
- * A nine-stage list summed naively describes a programme nobody has run, which
- * is the single most likely way this data gets misread. Stages declaring
- * `parallelWith` contribute nothing to the total; the stage they run alongside
- * carries the time.
- */
-export function pathwayMonths(pathway){
-  const sequential = (pathway.stages || []).filter(s => !s.parallelWith && Array.isArray(s.months));
-  if (!sequential.length) return null;
-  return {
-    min: sequential.reduce((a, s) => a + s.months[0], 0),
-    max: sequential.reduce((a, s) => a + s.months[1], 0),
-    counted: sequential.length,
-    parallel: (pathway.stages || []).filter(s => s.parallelWith).length,
-  };
+/** Edges that gate a given stage. Used by the renderer to annotate a row. */
+export function prerequisitesBefore(pathway, stageId){
+  return prerequisites(pathway).filter(p => p.before === stageId);
 }

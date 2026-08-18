@@ -52,6 +52,32 @@ export const FI_BUILD_PATHWAY = {
     '此为公开框架而非项目计划。Fingrid公布了并网协议各阶段及电网规范要求，但不公布队列位置、研究结果或协商日期，与开发商的往来函件亦不公开。相较西澳，此处各阶段耗时更多依赖行业惯例，因为芬兰可供推断的电网级储能公开许可记录较少。',
   ],
 
+  /* THE TWO GATES FINGRID PUBLISHES, as edges rather than as an order.
+
+     A stage-level sequence could say only "consent before application" and
+     would lose the fact that these are two different artefacts gating two
+     different instruments. That distinction is the whole Finnish finding. */
+  prerequisites: [
+    {
+      id: 'fi-loi-evidence',
+      requiresFrom: 'consent',
+      requires: ['Published EIA programme and secured rights to the project area',
+                 '已发布的环评方案与已取得的项目用地权利'],
+      before: 'application',
+      instrument: ['Letter of intent', '意向书'],
+      sourceKey: 'connectionPhases',
+    },
+    {
+      id: 'fi-agreement-consent',
+      requiresFrom: 'consent',
+      requires: ['Legally valid land-use plan and building permits',
+                 '合法有效的土地利用规划与建筑许可'],
+      before: 'studies',
+      instrument: ['Connection agreement', '并网协议'],
+      sourceKey: 'connectionPhases',
+    },
+  ],
+
   stages: [
     {
       id: 'site',
@@ -131,10 +157,10 @@ export const FI_BUILD_PATHWAY = {
       months: [3, 9],
       durationBasis: DURATION_BASIS.CONVENTION,
       cost: ['Development', '开发成本'],
-      sourceKey: 'reserveObligations',
+      sourceKey: 'reserveParticipation',
       note: [
-        'PER PRODUCT, and that is the detail the revenue line turns on. Prequalification is not a single approval — each reserve product has its own, and a megawatt qualified for one is not thereby qualified for another. It is also continuous rather than calendar-bound, which is the opposite of the Reserve Capacity Cycle a WA project must hit. No cycle to miss, and no certified revenue to bank either.',
-        '按品种分别进行，而这正是收入项的关键所在。预审并非一次性批准 — 每个备用品种各自设有预审，某一品种合格并不意味着其他品种亦合格。此外，预审为持续性而非按日历周期进行，与西澳项目必须赶上的备用容量周期恰好相反。既没有会错过的周期，也没有可锁定的认证收入。',
+        'PER PRODUCT, and that is the detail the revenue line turns on. Prequalification is not a single approval — each reserve product has its own technical requirements and its own approval, and a megawatt qualified for one is not thereby qualified for another. Crucially it is NOT TIED TO AN ANNUAL CAPACITY-CERTIFICATION CYCLE, unlike the WEM Reserve Capacity Cycle a WA project must land on. No cycle to miss, and no certified revenue to bank either.',
+        '按品种分别进行，而这正是收入项的关键所在。预审并非一次性批准 — 每个备用品种各有其技术要求与审批，某一品种合格并不意味着其他品种亦合格。关键在于，其并不与年度容量认证周期挂钩，这与西澳项目必须赶上的备用容量周期不同。既没有会错过的周期，也没有可锁定的认证收入。',
       ],
     },
     {
@@ -173,7 +199,7 @@ export const FI_BUILD_PATHWAY = {
       months: [1, 4],
       durationBasis: DURATION_BASIS.CONVENTION,
       cost: ['Capex', '资本开支'],
-      sourceKey: 'reserveObligations',
+      sourceKey: 'reserveParticipation',
       note: [
         'Shorter than Western Australia\'s equivalent because there is no capacity certification to clear and no annual cycle to land on — the asset begins earning when it is prequalified and delivering. The same fact that removes the certified revenue removes the calendar risk.',
         '较西澳同阶段更短，因为无需通过容量认证，也无需赶上年度周期 — 资产在通过预审并开始交付时即产生收入。消除了认证收入的同一事实，也消除了日历风险。',
