@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-18T01:53:47.927Z",
+  "fetchedAt": "2026-08-18T07:07:56.925Z",
   "coverage": {
-    "from": "2026-04-21T06:00:24.000Z",
-    "to": "2026-08-17T14:49:26.000Z",
+    "from": "2026-04-28T06:00:18.000Z",
+    "to": "2026-08-18T06:00:34.000Z",
     "resolution": "event",
     "points": 40
   },
@@ -25,21 +25,11 @@
   },
   "series": [
     {
-      "t": "2026-04-21T06:00:24.000Z",
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3h7r7j196w",
-      "source": "Modo Energy",
-      "title": "The Behavioural Shift That Makes EV Flexibility Actually Work - Ohme",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3h7r7j196w",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Smart EV charging isn't just about saving money on your electricity bill, it's quietly becoming one of the most scalable sources of grid flexibility in Great Britain. Ohme has run the numbers: incentivising 22,000 customers to plug in more often drove a 32–37% increase in plug-in frequency, unlocking dispatchable fl…"
-    },
-    {
-      "t": "2026-04-28T06:00:17.000Z",
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=r02yvrja6q",
+      "t": "2026-04-28T06:00:18.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3fopvtezyh",
       "source": "Modo Energy",
       "title": "Solar Saturation & Grid Collapse: Spain's BESS Opportunity - Modo Energy",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=r02yvrja6q",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3fopvtezyh",
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Spain has approximately 42GW of utility-scale solar and 50GW when rooftop is included, yet less than 100MW of grid-connected battery storage. In February, solar capture rates hit €1.30 per megawatt hour, a fraction of the €30–35/MWh needed for a solar project to break even. So why hasn't battery storage followed the…"
@@ -133,26 +123,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": ""
-    },
-    {
-      "t": "2026-08-13T09:01:41.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ess-inc-q2-2026-financials-sodium-ion-bess-deployment-net-losses/",
-      "source": "Energy-Storage.news",
-      "title": "ESS Inc highlights sodium-ion BESS deployment, reports net losses in Q2 2026 financials",
-      "url": "https://www.energy-storage.news/ess-inc-q2-2026-financials-sodium-ion-bess-deployment-net-losses/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "ESS Tech Inc highlighted the potential of its recent partnership with Alsym Energy and the advancement of its sodium-ion technology in its recent financial report."
-    },
-    {
-      "t": "2026-08-13T09:09:24.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/seven-trends-reshaping-battery-energy-storage-in-2026-and-beyond/",
-      "source": "Energy-Storage.news",
-      "title": "Seven trends reshaping battery energy storage in 2026 and beyond",
-      "url": "https://www.energy-storage.news/seven-trends-reshaping-battery-energy-storage-in-2026-and-beyond/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Primergy director of engineering and Energy Storage Awards 2026 judge, Aaroh Kharaya, on key trends transforming the battery storage stack."
     },
     {
       "t": "2026-08-13T09:25:36.000Z",
@@ -305,26 +275,6 @@
       "summary": "Brian Yaw, founder of Megarevo, discussed the company’s approach to commercial and industrial energy storage, their competitive strategy, and plans for the European market with Energy-Storage.news at Intersolar Europe 2026."
     },
     {
-      "t": "2026-08-17T08:43:52.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/chinese-scientists-achieve-record-breaking-24-0-efficieny-for-meter-scale-perovskite-solar-modules/",
-      "source": "pv magazine",
-      "title": "Chinese scientists achieve record-breaking 24.0% efficieny for large-area perovskite solar modules",
-      "url": "https://www.pv-magazine.com/2026/08/17/chinese-scientists-achieve-record-breaking-24-0-efficieny-for-meter-scale-perovskite-solar-modules/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers achieved a certified 24.0% efficiency on an 810 cm² perovskite module and 22.0% on a 0.72 m² module by combining high-saturated-vapor-pressure (SVP) processing with lead carboxylate passivation. The approach also delivered strong durability, with modules retaining 96% of their initial efficiency after 2,…"
-    },
-    {
-      "t": "2026-08-17T09:12:30.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/solinteg-launches-10-30-kw-three-phase-hybrid-inverter-with-4-mppts-dual-high-voltage-battery-inputs/",
-      "source": "pv magazine",
-      "title": "Solinteg launches 10–30 kW three-phase hybrid inverter with 4 MPPTs, dual high-voltage battery inputs",
-      "url": "https://www.pv-magazine.com/2026/08/17/solinteg-launches-10-30-kw-three-phase-hybrid-inverter-with-4-mppts-dual-high-voltage-battery-inputs/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solinteg has launched the M2HT 10–30K series of three-phase high-voltage hybrid inverters for residential and light-commercial solar-plus-storage systems, with eight models ranging from 9.9 kW to 30 kW. The inverters feature four MPPTs, dual high-voltage battery inputs, backup capabilities, and energy-management fun…"
-    },
-    {
       "t": "2026-08-17T10:00:27.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-and-german-utility-leag-begin-construction-of-second-large-scale-bess-project-under-partnership/",
       "source": "Energy-Storage.news",
@@ -343,16 +293,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Independent power producer (IPP) Econergy has signed financing agreements for its Părău 2 solar and energy storage project in Brașov County, Romania."
-    },
-    {
-      "t": "2026-08-17T10:19:30.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/17/portugal-installs-372-mw-of-solar-in-h1/",
-      "source": "pv magazine",
-      "title": "Portugal installs 372 MW of solar in December-May",
-      "url": "https://www.pv-magazine.com/2026/08/17/portugal-installs-372-mw-of-solar-in-h1/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Portugal’s total solar capacity is now estimated above 7 GW. While the country is one of Europe’s leading nations for renewable energy generation, the sector is facing substantial regulatory challenges that are forming barriers to future investment. The post Portugal installs 372 MW of solar in December-May appeared…"
     },
     {
       "t": "2026-08-17T10:20:41.000Z",
@@ -423,6 +363,66 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Agastya Energy plans to invest INR 78 billion ($815.8 million) to develop a 12 GW ingot and wafer manufacturing facility in Kurnool, Andhra Pradesh. The project will complement its planned 5 GW cell and module manufacturing capacity and strengthen India’s integrated solar supply chain. The post Agastya Energy plans…"
+    },
+    {
+      "t": "2026-08-18T02:03:59.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ausgrids-plus-grid-storage-breaks-ground-on-400mwh-steel-river-east-bess-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Ausgrid’s PLUS Grid Storage breaks ground on 400MWh Steel River East BESS in Australia",
+      "url": "https://www.energy-storage.news/ausgrids-plus-grid-storage-breaks-ground-on-400mwh-steel-river-east-bess-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Construction has officially started on the 200MW/400MWh Steel River East battery energy storage system (BESS) in Newcastle, New South Wales, marking the first project delivery for developer PLUS Grid Storage."
+    },
+    {
+      "t": "2026-08-18T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/18/solars-infrastructure-obstacle-2/",
+      "source": "pv magazine",
+      "title": "Solar’s infrastructure obstacle",
+      "url": "https://www.pv-magazine.com/2026/08/18/solars-infrastructure-obstacle-2/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "During the development of a recent utility-scale project in Texas’ ERCOT grid interconnection zone, Levona Renewables CEO Fernando Queiroz found his team spending more time evaluating transmission infrastructure, interconnection requirements, equipment availability, and utility procurement processes than discussing…"
+    },
+    {
+      "t": "2026-08-18T04:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/18/proposed-grid-2-0-protocol-would-enable-connect-and-manage-for-both-load-and-generation/",
+      "source": "pv magazine",
+      "title": "Proposed Grid 2.0 protocol would enable ‘connect and manage’ for both load and generation",
+      "url": "https://www.pv-magazine.com/2026/08/18/proposed-grid-2-0-protocol-would-enable-connect-and-manage-for-both-load-and-generation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Senior staff at AES Corporation and Fluence have published a protocol designed as a universal means to scale flexible interconnection of both new loads and new generators. They have launched a standards development process modeled after the process that brought forth the internet. The post Proposed Grid 2.0 protocol…"
+    },
+    {
+      "t": "2026-08-18T04:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/18/california-advances-slate-of-community-solar-balcony-solar-and-virtual-power-plant-bills/",
+      "source": "pv magazine",
+      "title": "California advances slate of community solar, balcony solar, and virtual power plant bills",
+      "url": "https://www.pv-magazine.com/2026/08/18/california-advances-slate-of-community-solar-balcony-solar-and-virtual-power-plant-bills/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The California legislature moved four major clean energy bills to floor votes while holding a smart meter data access bill in committee. The post California advances slate of community solar, balcony solar, and virtual power plant bills appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-18T04:53:04.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/chinas-energy-storage-market-doubles-in-size-for-second-consecutive-year-as-price-inflection-point-emerges/",
+      "source": "Energy-Storage.news",
+      "title": "China’s energy storage market doubles in size for second consecutive year as price inflection point emerges",
+      "url": "https://www.energy-storage.news/chinas-energy-storage-market-doubles-in-size-for-second-consecutive-year-as-price-inflection-point-emerges/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Energy storage deployments in China saw significant year-over-year growth in 2025 as the market size effectively doubled."
+    },
+    {
+      "t": "2026-08-18T06:00:34.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=ai0jcb4oa9",
+      "source": "Modo Energy",
+      "title": "How Poland Is Building a Renewable Power System - R.Power Renewables",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=ai0jcb4oa9",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     }
   ],
   "derived": {
@@ -431,10 +431,10 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 6,
-      "grid": 28,
-      "capital": 4,
-      "technology": 2
+      "grid": 29,
+      "policy": 5,
+      "capital": 5,
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -468,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:e921fb5e6c75b269fe69ed81d7454adc63e4bb7868214ee42024cb9398f3804b",
-  "envelopeChecksum": "sha256:9a7644817d083d1317afaca1dcc1be9439f2356c050089637016a0562ea11595"
+  "contentChecksum": "sha256:241f00772b59e9b83806e7a7810ae41c5fde0d9c0481de0c1df30157374ae3ff",
+  "envelopeChecksum": "sha256:ef6d12048b6db8e16f9a82bfb09fa50b2285a81a81658a80ddde70ce5a81b871"
 }
