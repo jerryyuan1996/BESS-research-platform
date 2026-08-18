@@ -119,8 +119,30 @@ export function validateMarket(market){
   if (!e){
     at('comparison.economics is missing');
   } else {
+    /* A required field may be null ONLY when the market declares it unavailable
+       and is out of the engine. See UNAVAILABLE_REQUIRES_UNREADY in
+       markets/schema.js: null means "not evidenced", zero would mean "earns
+       nothing", and the difference is the whole point. */
+    const unavailable = e.unavailable || {};
+    const unready = cmp.engineReady === false;
     for (const f of ECONOMICS_FIELDS.required){
-      if (!isNum(e[f])) at(`economics.${f} must be a number`);
+      if (isNum(e[f])) continue;
+      if (e[f] === null && unavailable[f]){
+        if (!unready){
+          at(`economics.${f} is null but the market is engine-ready — an engine-ready market cannot carry an unevidenced field`);
+        } else if (!isPair(unavailable[f])){
+          at(`economics.unavailable.${f} must be an [en, zh] reason`);
+        }
+        continue;
+      }
+      at(`economics.${f} must be a number, or null with an entry in economics.unavailable`);
+    }
+    for (const f of Object.keys(unavailable)){
+      if (!ECONOMICS_FIELDS.required.includes(f)){
+        at(`economics.unavailable.${f} names a field that is not required — remove it or the declaration is decoration`);
+      } else if (e[f] !== null){
+        at(`economics.unavailable.${f} is declared but economics.${f} is not null`);
+      }
     }
     // Capability-conditional fields: required only where the capability is claimed.
     // Which fields satisfy `capacityMarket` depends on the risk class.

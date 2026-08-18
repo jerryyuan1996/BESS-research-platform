@@ -31,8 +31,9 @@
 
      3. SCARCITY SITS WITH THE INCUMBENT. The 1,800 MW already contracted holds
         something the next 30,000 MW of requests cannot obtain in the south until
-        2029. In a market whose reserve products are already thin against the
-        fleet, a closed door is the strongest thing protecting the price.
+        2029. In a market where connected storage already exceeds the
+        fast-reserve obligation, a closed door is the strongest thing protecting
+        the price.
 
    Cut P1 is the internal bottleneck behind all of it: the north–south transfer
    limit separating a wind-heavy north and west from a consumption-heavy south.

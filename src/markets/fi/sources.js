@@ -136,29 +136,67 @@ export const SRC = {
   },
 
   // ---- the fleet the saturation gate measures -------------------------------
+  /* THREE ENTRIES, NOT ONE. An earlier draft put the aggregate and the project
+     announcements behind a single citation, which made an operator statistic and
+     a developer press release look like the same class of evidence. They are
+     not, and the saturation argument leans on the first. */
   storageFleet: {
-    file: 'Fingrid open data — total installed battery energy storage capacity, with developer announcements',
-    status: ['Developer-reported', '开发商披露'],
-    date: '2026',
-    cy: 'About 250 MW of BESS operational mid-2025. Announced and under construction: Statkraft/OX2 235 MW (110 MW/220 MWh and 125 MW/250 MWh), Nivala 70 MW/140 MWh, Uusikaupunki 50 MW/100 MWh. See the saturation gate in comparison.js.',
-    url: 'https://data.fingrid.fi/en/datasets/424',
+    file: 'Fingrid — combined capacity of electricity storages in Finland exceeds 1,000 MW',
+    status: ['Official — Final', '官方 — 最终'],
+    date: '2026-02',
+    cy: 'About 1,050 MW connected in early February 2026: 261 systems of 1 MW and above totalling ~980 MW, plus ~70 MW of smaller batteries tracked through the reserve markets. 56% on the distribution grid, 44% on transmission. All storage types, not batteries alone.',
+    url: 'https://www.fingrid.fi/en/news/news/2026/the-combined-capacity-of-electricity-storages-in-finland-now-exceeds-1000-mw/',
     authority: 'observed',
-    historical: 'Fingrid publishes installed BESS capacity as a series',
-    forecast: 'Developer announcements are not a financed pipeline',
-    frequency: 'Continuous for the Fingrid series',
-    format: 'REST API',
-    machineReadable: 'Yes',
-    automation: 'B — blocked on the licence question below, not on the connector',
+    historical: 'Fingrid also publishes installed battery capacity as a series',
+    forecast: 'None; the release notes many further connections are expected',
+    frequency: 'Ad hoc release; the underlying series is continuous',
+    format: 'HTML release; the series is REST API',
+    machineReadable: 'Yes, for the series',
+    automation: 'A — the series is CC Attribution, see the licence entry below',
     lastChecked: '2026-08-18',
     freshness: 'Current',
   },
 
-  // ---- licence, which gates publication rather than ingestion ---------------
-  fingridApiTerms: {
-    file: 'Fingrid open data — API terms of use',
+  statkraftOx2: {
+    file: 'Statkraft — seven-year optimisation agreement for OX2 batteries in Finland',
+    status: ['Developer-reported', '开发商披露'],
+    date: '2026',
+    cy: '235 MW across two sites under construction — 110 MW/220 MWh and 125 MW/250 MWh — under a seven-year optimisation agreement.',
+    url: 'https://www.statkraft.com/newsroom/news-and-stories/2026/statkraft-signs-contract-with-OX2-to-optimize-large-scale-batteries-in-finland/',
+    authority: 'observed',
+    historical: 'n/a — a single transaction',
+    forecast: 'None',
+    frequency: 'One-off',
+    format: 'HTML release',
+    machineReadable: 'No',
+    automation: 'C — a counterparty announcement is read, not ingested',
+    lastChecked: '2026-08-18',
+    freshness: 'Current',
+  },
+
+  tradePress: {
+    file: 'Trade press — Nivala and Uusikaupunki project reports',
     status: ['Verify against current documents', '须以现行文件核验'],
     date: '2026',
-    cy: 'Free, but a registered API key is required and the licence text sits behind that registration. Redistribution terms are NOT established from the public page, so no Fingrid series may be republished until they are read. This is why the reserve-price feed is proposed rather than wired.',
+    cy: 'Nivala 70 MW/140 MWh and Uusikaupunki 50 MW/100 MWh, both reported for 2026. NOT confirmed against a developer or operator statement — these two carry the weakest evidence on this page and are shown because omitting known projects would understate the fleet, not because the citation is strong.',
+    url: 'https://www.energy-storage.news/tag/finland/',
+    authority: 'third-party',
+    historical: 'n/a',
+    forecast: 'None',
+    frequency: 'Ad hoc',
+    format: 'HTML',
+    machineReadable: 'No',
+    automation: 'C — trade press is corroboration, never a primary register',
+    lastChecked: '2026-08-18',
+    freshness: 'Current, unverified against a primary source',
+  },
+
+  // ---- licence, which gates publication rather than ingestion ---------------
+  fingridApiTerms: {
+    file: 'Fingrid open data — dataset licence and API terms',
+    status: ['Official — Final', '官方 — 最终'],
+    date: '2026',
+    cy: 'The datasets themselves declare CREATIVE COMMONS ATTRIBUTION, with downloads in JSON, CSV, XLSX and XML — so republication is permitted with attribution. What still requires action is the API path specifically: a registered key, and the terms accepted at registration. Gate FI-2 is therefore "provision the key, accept and record the API terms, implement attribution", not "redistribution rights are unknown".',
     url: 'https://data.fingrid.fi/en/instructions',
     authority: 'observed',
     historical: 'n/a',
@@ -166,7 +204,7 @@ export const SRC = {
     frequency: 'n/a',
     format: 'HTML',
     machineReadable: 'No',
-    automation: 'C — a licence is read by a person',
+    automation: 'C — a licence is read and accepted by a person',
     lastChecked: '2026-08-18',
     freshness: 'Current',
   },

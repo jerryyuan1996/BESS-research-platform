@@ -6,12 +6,24 @@
    and same limits as every other map on this platform, stated again in `scope`
    because a map invites more trust than a table does.
 
-   WHY THE MARKERS ARE LOCALITIES RATHER THAN SUBSTATIONS. Fingrid operates about
-   138 substations and roughly 14,900 km of line, of which 5,400 km is 400 kV.
-   Plotting the network faithfully would need the operator's own geodata under
-   its own licence; plotting a dozen substations from memory would be worse than
-   plotting none. So the markers are municipalities and regions, which are public
-   geography, and each one names what it stands for.
+   THIS IS A THEMATIC CONSTRAINT MAP, NOT A NETWORK MAP, and that is a change of
+   scope rather than a limitation of one.
+
+   §1.2 of the round 3 plan specified "Fingrid 400/110 kV nodes + the constraint
+   corridor" — real substations. That is not what this is. Fingrid operates about
+   138 substations and roughly 14,900 km of line, 5,400 km of it at 400 kV, and
+   plotting that faithfully needs the operator's own geodata under its own
+   licence. Plotting a dozen substations from memory would have been worse than
+   plotting none.
+
+   So the acceptance criterion was revised, deliberately and in writing: the
+   markers are municipal and regional centroids standing for the places the
+   ARGUMENT is about — where the load is, where the wind is, where the transfer
+   limit runs, where connections are closed. Each names what it stands for.
+
+   The two are not equivalent and the difference matters to a reader deciding
+   whether a site is connectable. Building the real network layer stays on the
+   list; see docs/adding-a-market.md and the round 3 notes in the plan.
 
    WHAT THE THREE PERIODS SHOW, and it is not the usual story. In Germany the
    generation moved away from the load and a corridor is being built to close the
@@ -91,8 +103,8 @@ const points = [
     ['Revenue mechanism', '收入机制'], ['current', 'future'],
     ['FFR, FCR-N, FCR-D up and down, aFRR and mFRR are procured nationally, not by location. The fast products a battery wins total under 800 MW of obligation for 2026.',
      'FFR、FCR-N、FCR-D上调与下调、aFRR及mFRR均按全国而非按区域采购。2026年储能可参与的快速品种需求合计不足800MW。'],
-    ['This is the revenue line and the risk in the same sentence. Against under 800 MW of fast-reserve obligation, Finland had about 250 MW of batteries operating in mid-2025 with several hundred more announced — which is why this dashboard withholds a reserve revenue level rather than publishing one.',
-     '收入与风险同在于此。面对不足800MW的快速备用需求，芬兰2025年年中约有250MW储能运行，另有数百MW已公布 — 这正是本看板暂缓发布备用收入水平的原因。'],
+    ['This is the revenue line and the risk in the same sentence. Against about 795 MW of fast-reserve obligation, connected storage passed 1,050 MW in February 2026 — the competing fleet already exceeds the demand it competes for, which is why this dashboard withholds a reserve revenue level rather than publishing one.',
+     '收入与风险同在于此。面对约795MW的快速备用需求，已并网储能于2026年2月已超过1,050MW — 竞争机组规模已超过其所竞争的需求，这正是本看板暂缓发布备用收入水平的原因。'],
     'Fingrid — power system reserves', URL.reserves),
 
   /* ---- plan -------------------------------------------------------------- */
@@ -177,8 +189,8 @@ export const FI_GRID_MAP = {
   routes,
   sourceCatalog,
   scope: [
-    'Representative national orientation only. Markers are approximate municipal and regional centroids, not substation positions, and show no spare capacity, queue position, curtailment probability or investable connection. Fingrid operates roughly 14,900 km of line and about 138 substations; none of that network is drawn here. The outline is the Republic of Finland, which is also the bidding zone — unlike most maps on this platform, the country and the market are the same shape.',
-    '仅用于代表性国家方位展示。标记为近似的市镇及区域中心坐标，并非变电站位置，且不显示可用容量、队列位置、限电概率或可投资并网权利。Fingrid运营约14,900公里线路及约138座变电站，本图未绘制该电网。底图轮廓为芬兰共和国，同时也是其报价区 — 与本平台多数地图不同，此处国家与市场范围一致。',
+    'A THEMATIC CONSTRAINT MAP, not a network map. Markers are approximate municipal and regional centroids standing for the places the analysis is about, not substation positions, and show no spare capacity, queue position, curtailment probability or investable connection. Fingrid operates roughly 14,900 km of line and about 138 substations; none of that network is drawn here. The outline is the Republic of Finland, which is also the bidding zone — unlike most maps on this platform, the country and the market are the same shape.',
+    '这是一张主题性约束地图，而非电网结构图。标记为近似的市镇及区域中心坐标，代表分析所涉及的区位，并非变电站位置，且不显示可用容量、队列位置、限电概率或可投资并网权利。Fingrid运营约14,900公里线路及约138座变电站，本图未绘制该电网。底图轮廓为芬兰共和国，同时也是其报价区 — 与本平台多数地图不同，此处国家与市场范围一致。',
   ],
 };
 

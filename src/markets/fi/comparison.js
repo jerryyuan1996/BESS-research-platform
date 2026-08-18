@@ -43,14 +43,24 @@
      FCR-D down  298 MW        aFRR      ~50 MW
      FFR         0–60 MW       mFRR up   880–1,300 MW · down 575 MW
 
-   Against a battery fleet of roughly 250 MW operational in mid-2025, with
-   Statkraft/OX2's 235 MW, Nivala's 70 MW and Uusikaupunki's 50 MW announced or
-   under construction on top.
+   Against connected storage that passed 1,050 MW in early February 2026 —
+   261 systems of 1 MW and above totalling ~980 MW, plus ~70 MW of smaller
+   batteries tracked through the reserve markets.
 
    Read those two lists together. The FAST products a battery actually wins —
-   FFR, FCR-D, FCR-N — total under 800 MW of obligation, and the announced fleet
-   alone approaches that. This is not a market with room for an assumed level to
-   persist; it is one where the binding question is how fast the price falls.
+   FFR, FCR-D, FCR-N — total about 795 MW of obligation, and CONNECTED STORAGE
+   ALREADY EXCEEDS IT. Not approaches it: exceeds it. This is not a market with
+   room for an assumed level to persist; the binding question is how fast the
+   price falls.
+
+   Two qualifications, because the comparison is not exact and pretending
+   otherwise would be the same error in the opposite direction. The 1,050 MW is
+   all storage of 1 MW and above rather than batteries alone, and 56% of it sits
+   on the distribution grid against 44% on transmission. Distribution-connected
+   storage does reach the reserve markets, but not every megawatt is prequalified
+   for every product — so this is an upper bound on the competing fleet, not a
+   measured one. It is still the right order of magnitude, and the direction is
+   not in doubt.
 
    And the requirement forecast does not rescue it, because the growth is in the
    wrong products. Fingrid's own 2026–2036 forecast has mFRR down rising 567 →
@@ -103,21 +113,29 @@ const economics = {
   merchGross: 78000,
   feePct: 10,
 
-  /* GATE FI-1. Zero is not an estimate of Finnish reserve revenue — it is a
-     refusal to publish one. Reserve income is the LARGEST real revenue line in
-     this market and setting it to zero understates the asset substantially. That
-     is the intended direction of the error: a market held out of the ranking
-     with a visibly incomplete revenue line invites scrutiny, while a plausible
-     number in the ranking does not. See the header and `engineReady`. */
-  services: 0,
+  /* GATE FI-1. NULL, not zero, and the distinction is the point.
+
+     An earlier draft wrote 0 and explained the refusal in the note below. That
+     is the wrong machine representation: prose says "unknown", the object says
+     "zero", and every consumer reads the object. Zero is a claim — that a
+     Finnish battery earns nothing from reserves — which is false, and false in
+     the way that survives being copied into an export.
+
+     null says "not evidenced", `unavailable` says why in a form a machine can
+     carry, and validation refuses the combination on an engine-ready market.
+     See UNAVAILABLE_REQUIRES_UNREADY in markets/schema.js. */
+  services: null,
+
+  unavailable: {
+    services: [
+      'Reserve revenue is not published for Finland. Fast-reserve obligations total about 795 MW while connected storage passed 1,050 MW in February 2026, and Fingrid forecasts FCR-N declining while growth sits in slower products. A level published before eligible-versus-procured MW can be tracked per product would be a forecast that today persists. Gate FI-1.',
+      '芬兰的备用收入不予发布。快速备用需求合计约795MW，而已并网储能于2026年2月已超过1,050MW；且Fingrid预测FCR-N需求下降，增长集中于响应较慢的产品。在能够按品种跟踪合格容量与采购容量之前发布任何水平值，等同于假设当前状况将长期持续。研究缺口FI-1。',
+    ],
+  },
 
   grantPct: 0,
   degr: 2,
 
-  servicesNote: [
-    'Reserve revenue is withheld, not estimated at zero. Finland\'s fast-reserve obligations total under 800 MW while the announced battery fleet approaches that on its own, and Fingrid\'s own forecast has FCR-N declining while growth sits in slower products. A level published before that ratio can be tracked would be a forecast that today persists. Gate FI-1.',
-    '备用收入为暂缓发布而非估计为零。芬兰快速备用需求合计不足800MW，而已公布的储能规模已接近该水平；且Fingrid自身预测显示FCR-N需求下降，增长集中于响应较慢的产品。在该比值可被持续跟踪之前发布任何水平值，等同于假设当前状况将长期持续。研究缺口FI-1。',
-  ],
 };
 
 const ranges = {
@@ -217,14 +235,15 @@ export const comparison = {
   narrative: {
     archetype: ['50 MW · 2h · reserve-led', '50MW · 2小时 · 备用主导'],
     thesis: [
-      'Europe\'s clearest fast-reserve market, and the clearest test of whether a reserve-led thesis survives its own buildout. Wind is the swing producer, the day-ahead market moved to 15-minute settlement in October 2025, and the strategic reserve has been dormant since 2022 because Olkiluoto 3 removed the adequacy problem. What is not yet answerable is the price path: fast-reserve obligations total under 800 MW and the announced battery fleet approaches that alone, so the revenue line is withheld rather than assumed.',
-      '欧洲最典型的快速备用市场，也是"备用主导"投资逻辑能否经受住自身装机扩张考验的最清晰样本。风电为边际调节电源，日前市场已于2025年10月转为15分钟结算，而战略备用自2022年起处于休眠状态 — 原因是Olkiluoto 3核电机组投运后充裕度问题已消失。尚无法回答的是价格路径：快速备用需求合计不足800MW，仅已公布的储能项目即接近该规模，故收入项暂缓发布而非直接假设。',
+      'Europe\'s clearest fast-reserve market, and the clearest test of whether a reserve-led thesis survives its own buildout. Wind is the swing producer, the day-ahead market moved to 15-minute settlement in October 2025, and the strategic reserve has been dormant since 2022 because Olkiluoto 3 removed the adequacy problem. What is not yet answerable is the price path: fast-reserve obligations total about 795 MW while connected storage passed 1,050 MW in February 2026, so the revenue line is withheld rather than assumed.',
+      '欧洲最典型的快速备用市场，也是"备用主导"投资逻辑能否经受住自身装机扩张考验的最清晰样本。风电为边际调节电源，日前市场已于2025年10月转为15分钟结算，而战略备用自2022年起处于休眠状态 — 原因是Olkiluoto 3核电机组投运后充裕度问题已消失。尚无法回答的是价格路径：快速备用需求合计约795MW，而已并网储能于2026年2月已超过1,050MW，故收入项暂缓发布而非直接假设。',
     ],
-    /* Fast-reserve obligation against the announced fleet, which is the ratio the
-       thesis turns on. Announced is not financed — the number is deliberately
+    /* Connected storage against the fast-reserve obligation — 1,050 against
+       795 MW. Above 1.0 means the competing fleet already exceeds the demand it
+       competes for, which is the ratio the whole thesis turns on. Deliberately
        the optimistic reading of supply, because that is the conservative reading
        of price. */
-    pipelineRatio: '~0.8x',
+    pipelineRatio: '~1.3x',
   },
 };
 

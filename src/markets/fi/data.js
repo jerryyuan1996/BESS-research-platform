@@ -75,13 +75,42 @@ const M = {
     reinforcementMW: 1500,
   },
 
-  /* ---- the fleet the saturation gate measures ---------------------------- */
+  /* ---- the fleet the saturation gate measures ----------------------------
+     CORRECTED 2026-08-18. An earlier draft carried ~250 MW operational plus
+     announcements, which was mid-2025 data and understated the position by a
+     factor of four. Fingrid reported connected storage passing 1,050 MW in
+     early February 2026 — and that strengthens the saturation argument rather
+     than softening it: connected storage now EXCEEDS the fast-reserve
+     obligation outright.
+
+     Two qualifications travel with the number and must not be dropped. It
+     counts all storage of 1 MW and above, not batteries alone; and 56% of it
+     sits on the distribution grid against 44% on transmission. Distribution-
+     connected storage can reach the reserve markets, but not every megawatt is
+     prequalified for every product, so this is an upper bound on the competing
+     fleet rather than a measured one. */
   fleet: {
-    operationalMidPoint2025MW: 250,
+    connectedMW: 1050,
+    connectedAsOf: '2026-02',
+    countedSystems: 261,
+    countedSystemsMW: 980,
+    smallBatteryEstimateMW: 70,
+    distributionSharePct: 56,
+    transmissionSharePct: 44,
+    /* Individually cited. The aggregate above is Fingrid's; each project below
+       is its own announcement and carries its own source, because "the fleet is
+       1,050 MW" and "this specific project exists" are different claims with
+       different evidence. */
     announced: [
-      { name: ['Statkraft / OX2, two sites', 'Statkraft / OX2，两处场址'], mw: 235, mwh: 470, status: ['Under construction', '在建'] },
-      { name: ['Nivala', 'Nivala'], mw: 70, mwh: 140, status: ['Announced for 2026', '公布于2026年投运'] },
-      { name: ['Uusikaupunki', 'Uusikaupunki'], mw: 50, mwh: 100, status: ['Announced for summer 2026', '公布于2026年夏季投运'] },
+      { name: ['Statkraft / OX2, two sites', 'Statkraft / OX2，两处场址'], mw: 235, mwh: 470,
+        status: ['Under construction; seven-year optimisation agreement', '在建；签有七年期优化协议'],
+        src: 'statkraftOx2' },
+      { name: ['Nivala', 'Nivala'], mw: 70, mwh: 140,
+        status: ['Reported for 2026', '据报道于2026年投运'],
+        src: 'tradePress' },
+      { name: ['Uusikaupunki', 'Uusikaupunki'], mw: 50, mwh: 100,
+        status: ['Reported for summer 2026', '据报道于2026年夏季投运'],
+        src: 'tradePress' },
     ],
   },
 

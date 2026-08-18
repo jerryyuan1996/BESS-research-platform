@@ -1,7 +1,16 @@
 # Adding a market
 
-The whole architecture is built around making this cheap. Adding a market touches **one new
-directory** and **two lines** of an existing file.
+The whole architecture is built around making this cheap — but "cheap" has a specific meaning
+here, and this page used to overstate it.
+
+**Wiring a market touches one new directory and two lines.** Nothing else in the application needs
+to change: the cards, the nav, the routes, the league table and the $1M engine all derive from the
+registry.
+
+**Registering one requires considerably more**, because the structural tests hold every registered
+market to the same contract. Finland was added in August 2026 and failed seventeen assertions on
+first attempt, every one of them naming something real. The full list is in
+[Step 6](#step-6--the-registration-contract). Read it before estimating the work.
 
 ---
 
@@ -38,9 +47,52 @@ Japan is now live. With no other edits it appears in:
 | `$1M` waterfall market selector | same |
 | Header kicker, market counts, captions | derived, never literal |
 
-The dashboard is optional and can come later. Until `dashboard.js` is wired into
-`index.js`, `/markets/japan` renders a documented pending-migration page that shows what the
-cockpit reads from the market — and everything above still works.
+**The dashboard is NOT optional.** This page said it was, and the delivery note for the Japan
+round repeated it. The tests disagree: `every market exposes the full module surface` requires a
+`dashboard` or a `loadDashboard`, and `every dashboard has the same ten non-comparison tabs`
+requires the tab strip to match every other market's.
+
+What is true is the weaker statement: a market can be *built* before it is *registered*, and the
+pending-migration page exists for a market whose module is present but not yet in the registry
+array. That is a real intermediate state and it is worth using — Finland sat in it for a day.
+
+---
+
+## Step 6 — the registration contract
+
+Adding the import and the array entry makes the market real to every surface at once, so the tests
+insist it can answer every question those surfaces ask. All of these are required:
+
+| Required | Where | What fails without it |
+|---|---|---|
+| congestion register | `<market>/congestion.js`, joined in `congestionRegistry.js` | `no congestion register — it would be absent from the home comparison` |
+| grid map | `<market>/gridMapData.js`, self-registering, plus a boundary | `no grid map resolves for this market` |
+| transmission voltage row | `governance/transmissionVoltage.js` | `no transmission voltage definition` |
+| bounding box | `etl/sources/osm-grid.mjs` | `no bounding box` |
+| pipeline source declaration | `governance/projectPipelineSources.js` — `NO_SOURCE` counts, silence does not | `no pipeline source declaration` |
+| dashboard | `<market>/dashboard.js` + the standard ten tabs | `no dashboard, eager or lazy` |
+| non-null `modelVersion` | `manifest.js` | `manifest.modelVersion is still null` |
+| decision profile | `markets/decisionProfiles.js` | an unclassified `refinement` field |
+| authority classification | `governance/authority.js` for any new field | `add these to COMPARISON_AUTHORITY` |
+| `source` on every range, symmetric dispersed bands | `<market>/comparison.js` | `needs a source`, `a computed dispersed band must be symmetric` |
+| country flag | `components/navigation.js` **and** `styles/flags.css` | silent UN placeholder, no test |
+
+Several hardcoded lists also need the new market appended: the expected market ids and counts in
+`tests/registry.test.js`, the grid-map id list in `tests/grid-maps.test.js`, and the chunk count and
+per-market budget in `tests/bundle-budget.test.js`. Those are deliberate — a market appearing in a
+count without anyone noticing is exactly what they prevent.
+
+### A market that is not ready for the engine
+
+`comparison.engineReady: false` registers a market while keeping it out of the league table, the
+$1M engine and the certainty frontier. Use it when the structure is evidenced and a revenue line is
+not.
+
+An unevidenced required field is `null`, never `0`, and the market declares why in
+`economics.unavailable` — see `UNAVAILABLE_REQUIRES_UNREADY` in `markets/schema.js`. Zero is a
+claim that the market earns nothing; null is the absence of a claim. Validation refuses a null
+required field on an engine-ready market, and `tests/registry.test.js` asserts that nothing computes
+on an unready market's economics.
 
 ---
 

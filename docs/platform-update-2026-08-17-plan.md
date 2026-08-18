@@ -1134,3 +1134,85 @@ Finland-specific capex, opex and fees · FI-4 a captured-spread backtest on
 15-minute settlement · FI-5 the north/south split of the connection queue.
 
 FI-1 and FI-2 are what `engineReady: false` waits on.
+
+
+---
+
+# Round 3, stage 2 — corrections after review. 2026-08-18
+
+Six issues raised on the stage 2 commit. All applied.
+
+## 1. The fleet number was stale, and the correction strengthens the thesis
+
+The saturation argument used ~250 MW operational (mid-2025) plus 355 MW announced. The current
+figure is **about 1,050 MW connected as of early February 2026** — 261 systems of 1 MW and above
+totalling ~980 MW, plus ~70 MW of smaller batteries tracked through the reserve markets.
+
+That changes the conclusion's force, not its direction. Connected storage no longer *approaches*
+the ~795 MW fast-reserve obligation; it **exceeds** it. `pipelineRatio` moves from `~0.8x` to
+`~1.3x`.
+
+Two qualifications now travel with the number everywhere it appears, because dropping them would
+be the same error inverted: it counts **all** storage of 1 MW and above rather than batteries
+alone, and **56% is distribution-connected** against 44% on transmission. Distribution-connected
+storage does reach the reserve markets, but not every megawatt is prequalified for every product —
+so this is an upper bound on the competing fleet, not a measured one.
+
+## 2. FI-2 conflated two different things
+
+The gate said redistribution rights were unknown. They are not: the datasets publicly declare
+**Creative Commons Attribution**, with downloads in JSON, CSV, XLSX and XML. What actually requires
+action is narrower and specific to the API path — provision a key, accept and record the terms
+presented at registration, and implement the attribution. FI-2 is reworded to that, and
+`sources.js` now records the licence as observed rather than unread.
+
+## 3. `services: 0` was the wrong machine representation
+
+Corrected, and this was the most important of the six. Prose said "withheld"; the object said
+`0`; every consumer reads the object. Zero is a **claim** — that a Finnish battery earns nothing
+from reserves — and it is the kind of false that survives being copied into an export.
+
+Finland now carries `services: null` with a machine-readable reason in `economics.unavailable`.
+Supporting changes:
+
+- `markets/schema.js` documents the contract (`UNAVAILABLE_REQUIRES_UNREADY`).
+- `utils/validation.js` accepts a null required field **only** when the market is
+  `engineReady: false` **and** the field is declared in `unavailable` — and rejects a declaration
+  whose field is not actually null, so the two cannot drift apart.
+- `comparison/vintage.js` no longer demands a number for a leg declared unavailable, and requires
+  it to be null in all three cases rather than one.
+- `governance/authority.js` classifies `economics.unavailable.services` as METHODOLOGY, so
+  automation can never close the gap by supplying a number.
+- **A new test**, `an unready market publishes no number anything can compute on`, asserts the
+  representation directly: every declared field is null and not zero, every engine route returns
+  `na` rather than a computed case, and the market is absent from `engineReadyMarkets()`.
+
+## 4. Fleet evidence split into three sources
+
+One citation covered an operator statistic and two press reports, which made them look like the
+same class of evidence. Now: `storageFleet` (Fingrid, the aggregate), `statkraftOx2` (the named
+235 MW agreement), and `tradePress` (Nivala and Uusikaupunki) — the last labelled in its own entry
+and on the pipeline tab as **the weakest citations on the page**, shown because omitting known
+projects would understate the fleet, not because the sourcing is strong.
+
+## 5. The grid map is a scope change, now stated as one
+
+§1.2 specified "Fingrid 400/110 kV nodes". What was built is municipal and regional centroids
+standing for the places the argument is about. Those are not equivalent, and the difference matters
+to a reader deciding whether a site is connectable.
+
+The acceptance criterion is therefore **revised in writing rather than quietly met**: this is a
+**thematic constraint map**, and both the module header and the reader-facing `scope` note now say
+so in those words. Building the real network layer — which needs Fingrid's geodata under its own
+licence — stays on the list.
+
+## 6. `docs/adding-a-market.md` corrected
+
+It promised "one new directory and two lines". That is true of *wiring* a market and false of
+*registering* one. It now separates the two, and a new **Step 6 — the registration contract**
+tabulates all eleven requirements with the assertion each one fails, plus the hardcoded lists that
+need appending.
+
+The claim that the dashboard "is optional and can come later" is also removed: the tests require a
+dashboard and the standard ten tabs. The weaker true statement — that a market can be built before
+it is registered — replaces it.

@@ -8,9 +8,10 @@ import assert from 'node:assert/strict';
 
 import {
   markets, byId, bySlug, marketIds, comparableMarkets,
-  ALLOCATION_MARKETS, DETAIL_DASHBOARDS, hasDashboard, resolveDashboard,
+  ALLOCATION_MARKETS, DETAIL_DASHBOARDS, hasDashboard, resolveDashboard, engineReadyMarkets,
 } from '../src/markets/registry.js';
 import { validateMarket, validateRegistry } from '../src/utils/validation.js';
+import { runCase } from '../src/comparison/engine.js';
 import { REQUIRED_MANIFEST_FIELDS, METADATA_FIELDS } from '../src/markets/schema.js';
 import { FX } from '../src/comparison/assumptions.js';
 import { supportedStrategies, baseStrategy, STRATEGIES } from '../src/comparison/strategies.js';
@@ -210,6 +211,56 @@ test('every market exposes the full module surface', () => {
       `${id}: declares both dashboard and loadDashboard`);
     assert.ok(Array.isArray(m.tabs) && m.tabs.length > 0, `${id}: no tabs`);
     assert.ok(m.sources && Object.keys(m.sources).length > 0, `${id}: empty source register`);
+  }
+});
+
+test('an unready market publishes no number anything can compute on', async () => {
+  /* THE POINT OF engineReady:false, asserted rather than trusted.
+
+     Finland declines to publish a reserve revenue level. `engineReady:false`
+     keeps it out of the league table and the $1M engine, but a flag only
+     protects the consumers that check it — and `economics.services` is an
+     ordinary property any future export or component could read.
+
+     So this asserts the representation itself. An unevidenced required field is
+     null, never zero: zero is a claim that the market earns nothing, which is
+     false and is the kind of false that survives being copied into a
+     spreadsheet. And every engine entry point must decline the market rather
+     than compute a number from the hole. */
+  const unready = markets.filter(m => m.comparison?.engineReady === false);
+  assert.ok(unready.length > 0, 'expected at least one market to be registered but unready');
+
+  for (const m of unready){
+    const e = m.comparison.economics;
+    const declared = Object.keys(e.unavailable || {});
+    assert.ok(declared.length > 0,
+      `${m.manifest.id}: unready but declares nothing unavailable — then why is it unready?`);
+
+    for (const field of declared){
+      assert.equal(e[field], null,
+        `${m.manifest.id}: economics.${field} is declared unavailable but is not null`);
+      assert.notEqual(e[field], 0,
+        `${m.manifest.id}: economics.${field} is 0 — zero is a claim, null is the absence of one`);
+    }
+
+    /* Every route the engine offers must return the unavailable marker rather
+       than a computed case. This is the assertion that would fail if someone
+       "helpfully" defaulted a null to zero inside the engine. */
+    for (const strategy of ['cap', 'mer', 'toll', 'ltda']){
+      const result = runCase(m, strategy, 5);
+      assert.ok(result.na,
+        `${m.manifest.id}/${strategy}: computed a case for an unready market`);
+      assert.equal(result.irrHold, undefined,
+        `${m.manifest.id}/${strategy}: an unready market must not carry an IRR`);
+      assert.equal(result.moic, undefined,
+        `${m.manifest.id}/${strategy}: an unready market must not carry a MOIC`);
+    }
+  }
+
+  /* And the cockpit's own list must exclude them, so no chart is handed one. */
+  const ready = engineReadyMarkets();
+  for (const m of unready){
+    assert.ok(!ready.includes(m), `${m.manifest.id}: unready but inside engineReadyMarkets()`);
   }
 });
 

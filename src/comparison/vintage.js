@@ -125,6 +125,11 @@ export function validateMerchantVintage(market, strategyId){
   for (const k of ['downside', 'base', 'upside']){
     if (!c[k]){ problems.push(`merchantVintage.cases.${k} is missing`); continue; }
     for (const leg of ['merchGross', 'services']){
+      /* null is legitimate for a leg the market declares unavailable — see
+         economics.unavailable. It must be null in ALL THREE cases though: a
+         vintage with a number on one side and a hole on the other describes a
+         range that does not exist. */
+      if (c[k][leg] === null && e.unavailable?.[leg]) continue;
       if (!Number.isFinite(c[k][leg])) problems.push(`merchantVintage.cases.${k}.${leg} must be a number`);
     }
   }
@@ -132,7 +137,13 @@ export function validateMerchantVintage(market, strategyId){
     if (!(c.downside.merchGross <= c.base.merchGross && c.base.merchGross <= c.upside.merchGross)){
       problems.push('merchantVintage arbitrage cases must run downside ≤ base ≤ upside');
     }
-    if (!(c.downside.services <= c.base.services && c.base.services <= c.upside.services)){
+    /* An unavailable leg has no ordering to check. Finland publishes no reserve
+       level, so `services` is null across all three cases — asserting
+       null <= null <= null would pass by coercion and mean nothing, and
+       asserting a number would fail a market that is correctly declining to
+       claim one. See economics.unavailable. */
+    if (c.base.services !== null
+      && !(c.downside.services <= c.base.services && c.base.services <= c.upside.services)){
       problems.push('merchantVintage ancillary cases must run downside ≤ base ≤ upside');
     }
     /* The seed IS the base case. If they can differ, the declaration is
@@ -140,7 +151,7 @@ export function validateMerchantVintage(market, strategyId){
     if (Math.abs(c.base.merchGross - e.merchGross) > 1){
       problems.push(`economics.merchGross (${e.merchGross}) is not the declared base case (${c.base.merchGross})`);
     }
-    if (Math.abs(c.base.services - e.services) > 1){
+    if (e.services !== null && Math.abs(c.base.services - e.services) > 1){
       problems.push(`economics.services (${e.services}) is not the declared base case (${c.base.services})`);
     }
   }

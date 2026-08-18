@@ -149,6 +149,38 @@ export const RENEWAL_SCENARIO_YEAR_FIELDS = [
 export const MULTI_REGION_FIELDS = ['dashboardId', 'region'];
 
 /** Economics fields the engine reads, in native currency, per MW per year. */
+/* ---------------------------------------------------------------------------
+   UNAVAILABLE ECONOMICS, and why null rather than zero.
+
+   A market can be registered before every revenue line can be evidenced.
+   Finland is the case: its reserve income is the largest real line in the
+   market and the one the evidence cannot yet size, so the platform declines to
+   publish a level.
+
+   The first attempt wrote `services: 0` and explained the refusal in prose. That
+   is the wrong machine representation, and the reason is precise: prose says
+   "unknown", the object says "zero", and every consumer reads the object. Zero
+   is a CLAIM — it says this market earns nothing from reserves, which is false
+   and is the sort of false that survives being copied into an export.
+
+   So an unavailable field is `null`, and the market declares WHY in
+   `economics.unavailable`, keyed by field. Validation accepts a null required
+   field only when both hold: the market is `engineReady: false`, and the field
+   is named in `unavailable`. A market cannot go unready-and-silent, and it
+   cannot go engine-ready with a hole.
+
+       economics: {
+         services: null,
+         unavailable: {
+           services: ['why, in English', '中文说明'],
+         },
+       }
+
+   tests/registry.test.js asserts that nothing computes on an unready market's
+   economics while it is unready.
+   --------------------------------------------------------------------------- */
+export const UNAVAILABLE_REQUIRES_UNREADY = true;
+
 export const ECONOMICS_FIELDS = {
   required: [
     'capexPerMW',       // all-in installed cost
