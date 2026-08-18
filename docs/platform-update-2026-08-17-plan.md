@@ -1493,3 +1493,38 @@ The vendor and the reference-model provider are named in the evidence ledger,
 where provenance requires it, and masked by role everywhere else. Unmasking the
 vendor for a defined audience is a deal-team decision, not a default. Neither
 name is in tracked source, and the production build is verified clean of both.
+
+---
+
+## Correction: a reproduction and an underwriting case are different claims
+
+The first version of the project engine defaulted the disputed input to the value
+that reproduces the source and called that the model. That conflated two things
+which need separating.
+
+**Published reference case.** Locked at the rate the source's own distribution
+vector was built on. Its outputs are shown unconditionally, because they are a
+verified reproduction — fifty distributions to the cent — and withholding
+verified evidence helps nobody. The lock is asserted rather than assumed: the
+reconciliation fails if that rate ever stops being the only one that reproduces.
+
+**Current underwriting case.** Unresolved, because the applicable rate depends on
+a commercial question nobody has answered yet. Its headline returns are `N/A`
+against the ledger reference until the rate is confirmed — not defaulted to the
+published rate, which would quietly turn a reproduction into a forecast, and not
+defaulted to the live formula, which would pick a side of the conflict.
+
+Both blocks sit adjacent in the headline panel, the second empty. That states the
+position more plainly than a caption could: the transcription is proven and the
+forward assumption is not settled.
+
+The effect is published as a three-point sensitivity rather than hidden, and each
+row names its comparison basis explicitly — "from 7.5% to 2.5%: +13 bp,
++A$2.57m" — so neither the direction nor the endpoints can be misread off the
+table. A delta with no stated basis is the kind of number that gets quoted
+backwards.
+
+Four assertions guard the split: the reference case is always populated, the
+current case is empty until confirmed, confirming opens the current case without
+disturbing the reference, and the three candidate rates produce three distinct
+returns.
