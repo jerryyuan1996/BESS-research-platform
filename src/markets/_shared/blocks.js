@@ -18,6 +18,7 @@ import { sourceDrawer } from '../../components/sourceDrawer.js';
 import { renderGeographicGridMap } from '../../components/geographicGridMap.js';
 import { renderProjectPipeline, renderZoneAwards } from '../../projects/pipelineTable.js';
 import { renderCongestionRegister } from '../../components/congestionPanel.js';
+import { buildPathwayPanel } from '../../components/buildPathwayPanel.js';
 import { lineChart, barChart, waterfall, bandChart } from '../../charts/index.js';
 import { GLOSS_CORE } from './glossary.js';
 
@@ -140,6 +141,12 @@ function B(parent, b){
       break;
     case 'src': parent.append(sourceDrawer(b.src, b.use)); break;
     case 'geo-grid-map': renderGeographicGridMap(parent, b.data); break;
+    /* How a project actually gets built. A block rather than a section so that
+       a market can place it where its own argument wants it — Finland puts it
+       under Grid Connection, next to the constraint that decides the project. */
+    case 'pathway':
+      if (b.pathway) parent.append(buildPathwayPanel(b.pathway, { sourceFor: b.sourceFor }));
+      break;
     /* The pipeline table and the map read one set of canonical project records,
        so a market cannot publish two different fleets. */
     case 'project-pipeline': renderProjectPipeline(parent, b); break;
