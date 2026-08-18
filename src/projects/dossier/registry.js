@@ -29,6 +29,8 @@ export const DOSSIER_TABS = [
   ['pathway',     ['Build pathway', '建设路径']],
   ['transaction', ['Transaction', '交易结构']],
   ['model',       ['Model', '财务模型']],
+  ['sensitivity', ['Sensitivity', '敏感性分析']],
+  ['annual',      ['Annual cash flow', '年度现金流']],
   ['evidence',    ['Evidence', '证据来源']],
 ];
 

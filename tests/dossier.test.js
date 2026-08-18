@@ -94,6 +94,28 @@ test('the dossier tab vocabulary is fixed and complete', () => {
   for (const [, label] of DOSSIER_TABS){
     assert.ok(Array.isArray(label) && label.length === 2, 'every tab needs an [en, zh] label');
   }
+
+  /* A transcribed model is not one tab's worth of material: the outputs, the
+     sensitivity grids and the annual roll-up are separate reading surfaces, and
+     a section id the vocabulary does not know is DROPPED rather than shown.
+     That failure is silent by design, so the vocabulary is asserted here. */
+  for (const id of ['model', 'sensitivity', 'annual']){
+    assert.ok(ids.includes(id), `${id} must be a known section id`);
+  }
+});
+
+test('a dossier may carry the full analysis without tripping validation', () => {
+  /* The real dossiers are git-ignored, so what can be checked here is that the
+     shell accepts the SHAPE they use. Without this, adding a section to a local
+     dossier would fail only on the author's machine, at console.warn volume. */
+  const analysis = {
+    slug: 'shape-check', marketId: 'fi', name: ['N', 'N'],
+    sections: {
+      overview: { blocks: [] }, model: { blocks: [] },
+      sensitivity: { blocks: [] }, annual: { blocks: [] },
+    },
+  };
+  assert.deepEqual(validateDossier(analysis), []);
 });
 
 test('dossierPath builds the route the router parses', () => {
