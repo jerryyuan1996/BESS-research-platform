@@ -135,6 +135,24 @@ export const MARKET_DECISION_PROFILES = {
       services: placeholder(['DS3/FASS value and transition curve are only partly sourced.', 'DS3/FASS价值及过渡曲线仅部分有来源支持。']),
     },
   }),
+  /* Finland is the lowest confidence score on the platform, and deliberately so:
+     the structure is verified end to end while the largest revenue line is
+     withheld. A score that rewarded the quality of the structural evidence would
+     read as confidence in a number this market declines to publish. */
+  fi: profile({
+    confidenceScore: 3,
+    consensus: { status:'stale', summary:['Structure verified against Fingrid and the Energy Authority; reserve revenue withheld pending a saturation measure. Not comparable to a market with complete economics.', '市场结构已依据Fingrid与能源局核验；备用收入在饱和度指标建立前暂缓发布。不可与经济性完整的市场直接比较。'], sources:['Fingrid power system reserves', 'Energy Authority national report'] },
+    currentUpdate: ['The case needs eligible-versus-procured reserve MW by product, the Fingrid open-data licence resolved, and a captured-spread backtest on 15-minute settlement.', '该案例需要分品种的合格容量与采购容量对比、明确Fingrid开放数据许可条款，以及基于15分钟结算的捕获价差回测。'],
+    currentRunRateFactor: 0.5,
+    investmentGate: ['Reserve saturation measure', 'Fingrid data licence', 'Contracted connection right', '15-minute captured-spread backtest'],
+    revenueEvidence: {
+      cap: proxy(['The peak load capacity mechanism exists in law and procured nothing for 2025-26; there is no adequacy revenue to model.', '峰荷容量机制在法律上存在，但2025-26年度未采购任何容量；无充裕度收入可建模。'], ['Not applicable']),
+      toll: proxy(['No repeatable public tolling precedent has been read.', '未获取可复制的公开租赁先例。'], ['Private bilateral market']),
+      ltda: proxy(['No long-term award route exists in this market.', '本市场不存在长期中标路径。'], ['Not applicable']),
+      merchant: derived(['Day-ahead capture is modelled from the published price record and the 15-minute market time unit.', '日前捕获收入依据已公布价格记录及15分钟结算周期建模。'], ['ENTSO-E Transparency Platform']),
+      services: proxy(['Withheld. Connected storage passed 1,050 MW in February 2026 against fast-reserve obligations summing to about 795 MW — an acute saturation warning rather than a measured oversupply, since the obligation aggregates separately procured products — and Fingrid forecasts FCR-N declining. A level published now would be a forecast that today persists.', '暂缓发布。2026年2月已并网储能超过1,050MW，而快速备用需求合计约795MW — 鉴于需求方为多个独立采购品种的合计，这构成强烈的饱和预警而非已测得的供给过剩 — 且Fingrid预测FCR-N需求下降。此时发布任何水平值都等同于假设当前状况将长期持续。'], ['Fingrid power system reserves']),
+    },
+  }),
   ro: profile({
     confidenceScore: 4,
     consensus: { status:'more_bullish', summary:['High opportunity / low evidence confidence; observed prices and spreads are not captured project revenue.', '高机会/低证据置信度；已观测价格与价差并非项目捕获收入。'], sources:['OPCOM FY2025', 'IC consolidated review'] },

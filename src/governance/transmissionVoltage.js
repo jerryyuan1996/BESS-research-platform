@@ -97,6 +97,16 @@ export const TRANSMISSION_VOLTAGE = {
       'PSE拥有并运营的超高压电网为220kV与400kV线路。110kV归配电运营商所有，因此输电定义在220kV处有明确下限，其下不存在次输电层级。',
     ],
   },
+  fi: {
+    bulkKV: 400, detailKV: 110,
+    operator: 'Fingrid',
+    levels: ['400 kV', '220 kV', '110 kV'],
+    url: 'https://www.fingrid.fi/en/grid/development/power-transmission-grid-of-fingrid/',
+    basis: [
+      'Fingrid defines the main grid as the 400 kV, 220 kV and 110 kV high-voltage lines and substations in meshed operation — about 14,900 km of line and 138 substations, of which 5,400 km is 400 kV. Finland is one of the few systems where 110 kV is unambiguously transmission rather than distribution, because the operator says so and operates it.',
+      'Fingrid将主网定义为处于网状运行的400kV、220kV与110kV高压线路及变电站 — 约14,900公里线路、138座变电站，其中400kV线路5,400公里。芬兰是少数几个110kV明确属于输电而非配电的系统之一，因为运营商如此定义并如此运营。',
+    ],
+  },
   jp_tokyo: JAPAN(),
   jp_kyushu: JAPAN(),
   jp_hokkaido: JAPAN(),

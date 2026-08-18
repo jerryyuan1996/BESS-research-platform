@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { markets, byId } from '../src/markets/registry.js';
+import { markets, engineReadyMarkets, byId } from '../src/markets/registry.js';
 import { validateDecisionProfiles } from '../src/markets/decisionProfiles.js';
 import {
   REVENUE_EVIDENCE_CLASS,
@@ -129,7 +129,14 @@ test('portfolio stress exposes correlated merchant and evidence-only downside', 
   const portfolio = runPortfolioScenarios(markets, 5);
   assert.ok(portfolio.correlatedMerchant.irr < portfolio.base.irr);
   assert.ok(portfolio.evidenceOnly.irr < portfolio.base.irr);
-  assert.equal(portfolio.base.markets, markets.length);
+  /* Not markets.length. A registered market only enters the portfolio if its
+     normalized inputs are complete — Finland registers with engineReady:false
+     because its reserve revenue line is withheld, so it is a market the cockpit
+     shows and the portfolio must not price. Asserting against the full registry
+     would make that exclusion look like a bug the first time it was used. */
+  assert.equal(portfolio.base.markets, engineReadyMarkets().length);
+  assert.ok(engineReadyMarkets().length < markets.length,
+    'expected at least one registered market to be held out of the engine');
 });
 
 test('FX uses fresh observations and rejects stale snapshots', () => {

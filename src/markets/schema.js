@@ -15,12 +15,31 @@
    A market module's default export:
 
      {
-       manifest,      // identity + metadata          (required)
-       comparison,    // normalized comparison inputs (required for home-page participation)
-       sources,       // source register              (optional)
-       tabs,          // [[id, [en, zh]], ...]        (optional)
-       dashboard,     // (container, market) => void  (optional)
+       manifest,       // identity + metadata           (required)
+       comparison,     // normalized comparison inputs  (required for home-page participation)
+       sources,        // source register               (required once registered)
+       tabs,           // [[id, [en, zh]], ...]         (required once registered — the standard ten)
+       loadDashboard,  // () => Promise<renderer>       (required once registered)
      }
+
+   "OPTIONAL" USED TO APPEAR AGAINST THE LAST THREE, and it was wrong in a way
+   worth naming, because it set the wrong expectation for how much work adding a
+   market is.
+
+   They are optional to the TYPE — a module missing them still parses, and a
+   market can legitimately sit built-but-unregistered while they are written.
+   They are not optional to a REGISTERED market: the structural tests require a
+   source register, the standard ten tabs and a dashboard, along with a
+   congestion register, a grid map, a transmission voltage row, a bounding box, a
+   pipeline declaration and a decision profile that do not appear in this export
+   at all.
+
+   `dashboard` (synchronous) is still accepted in place of `loadDashboard`, but
+   every registered market uses the lazy form — see marketPage.js. Declaring both
+   is rejected.
+
+   The full contract, with the assertion each omission fails, is Step 6 of
+   docs/adding-a-market.md.
 
    A market with manifest + comparison but no dashboard still appears everywhere
    on the home page; its route renders a "pending migration" page.
@@ -149,6 +168,38 @@ export const RENEWAL_SCENARIO_YEAR_FIELDS = [
 export const MULTI_REGION_FIELDS = ['dashboardId', 'region'];
 
 /** Economics fields the engine reads, in native currency, per MW per year. */
+/* ---------------------------------------------------------------------------
+   UNAVAILABLE ECONOMICS, and why null rather than zero.
+
+   A market can be registered before every revenue line can be evidenced.
+   Finland is the case: its reserve income is the largest real line in the
+   market and the one the evidence cannot yet size, so the platform declines to
+   publish a level.
+
+   The first attempt wrote `services: 0` and explained the refusal in prose. That
+   is the wrong machine representation, and the reason is precise: prose says
+   "unknown", the object says "zero", and every consumer reads the object. Zero
+   is a CLAIM — it says this market earns nothing from reserves, which is false
+   and is the sort of false that survives being copied into an export.
+
+   So an unavailable field is `null`, and the market declares WHY in
+   `economics.unavailable`, keyed by field. Validation accepts a null required
+   field only when both hold: the market is `engineReady: false`, and the field
+   is named in `unavailable`. A market cannot go unready-and-silent, and it
+   cannot go engine-ready with a hole.
+
+       economics: {
+         services: null,
+         unavailable: {
+           services: ['why, in English', '中文说明'],
+         },
+       }
+
+   tests/registry.test.js asserts that nothing computes on an unready market's
+   economics while it is unready.
+   --------------------------------------------------------------------------- */
+export const UNAVAILABLE_REQUIRES_UNREADY = true;
+
 export const ECONOMICS_FIELDS = {
   required: [
     'capexPerMW',       // all-in installed cost

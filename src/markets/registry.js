@@ -46,9 +46,15 @@ import it from './it/index.js';
 import pjm from './pjm/index.js';
 import ercot from './ercot/index.js';
 import caiso from './caiso/index.js';
+/* Finland, added in the 2026-08 round. Appended, like the US markets, because
+   registry order is the tie-break for best/worst highlighting in the league
+   table. It registers with engineReady:false — see fi/comparison.js — so it
+   appears on the cards, in the nav and on the map while staying out of every
+   numeric comparison until its reserve revenue line is evidenced. */
+import fi from './fi/index.js';
 import { applySponsorAssumptions } from '../comparison/sponsorAssumptions.js';
 
-const registeredMarkets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso];
+const registeredMarkets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso, fi];
 
 /* Decision metadata is a comparison concern shared by every global component.
    Attach it once at registration without mutating the market module, so detail

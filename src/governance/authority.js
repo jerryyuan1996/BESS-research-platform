@@ -207,6 +207,10 @@ export const COMPARISON_AUTHORITY = {
   // approved: ANALYST_SCENARIO is exactly that class.
   'economics.servicesCurve': AUTHORITY.ANALYST_SCENARIO,
   'economics.servicesNote': AUTHORITY.METHODOLOGY,
+  /* Why a required field carries no value. Methodology, not analyst assumption:
+     it is a statement about what the evidence supports, and automation must
+     never be able to close it by supplying a number. */
+  'economics.unavailable.services': AUTHORITY.METHODOLOGY,
 
   // Network-access haircut. What is lost when a market's access regime
   // deprioritises you. Observable in principle from constraint data, which is
@@ -338,6 +342,10 @@ export const MANIFEST_AUTHORITY = {
   locale: AUTHORITY.CONFIG,
   timezone: AUTHORITY.CONFIG,
   color: AUTHORITY.CONFIG,
+  /* The second visual channel, for markets past the fourteen-hue palette
+     ceiling. Presentation exactly like `color` — it carries no market fact, so
+     it is classified the same way rather than as a judgement. */
+  pattern: AUTHORITY.CONFIG,
   dashboardId: AUTHORITY.CONFIG,
   region: AUTHORITY.CONFIG,
 

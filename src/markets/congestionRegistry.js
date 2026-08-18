@@ -22,6 +22,7 @@ import { IT_CONGESTION } from './it/congestion.js';
 import { PJM_CONGESTION } from './pjm/congestion.js';
 import { ERCOT_CONGESTION } from './ercot/congestion.js';
 import { CAISO_CONGESTION } from './caiso/congestion.js';
+import { FI_CONGESTION } from './fi/congestion.js';
 
 export const CONGESTION_REGISTERS = [
   WA_CONGESTION,
@@ -31,6 +32,7 @@ export const CONGESTION_REGISTERS = [
   IT_CONGESTION,
   IE_CONGESTION,
   RO_CONGESTION,
+  FI_CONGESTION,
   PL_CONGESTION,
   JP_CONGESTION.tokyo,
   JP_CONGESTION.kyushu,

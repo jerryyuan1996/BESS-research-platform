@@ -941,3 +941,335 @@ The prose case is the one to think about: in "a single seed is indefensible" the
 argument — *a single point estimate* — and replacing it mechanically would flatten the sentence.
 Each is a bilingual pair in a market's own data module, so this is a per-market copy edit rather
 than a dictionary change. Recommend folding it into round 6 with the rest of the editorial pass.
+
+---
+
+# Round 3 — Finland, stage 1 of 2. 2026-08-18
+
+**Stage 1 delivered the evidence pack and comparison interface. Stage 2, below,
+completed the grid layer and Finland is now registered — fifteen allocation
+points, `engineReady: false`.**
+
+## The correction to §1.7
+
+`docs/adding-a-market.md` says registering a market is a new directory and two
+lines, and that the dashboard can follow later. The first half is true and the
+second half is true, but between them sits something neither the doc nor §1.7 of
+this plan accounted for: **the grid layer is a hard gate, not an optional
+surface.**
+
+Adding `fi` to `registeredMarkets` fails seventeen assertions:
+
+| Missing | Test |
+|---|---|
+| congestion register | `fi: no congestion register — it would be absent from the home comparison` |
+| grid map | `fi: no grid map resolves for this market` |
+| transmission voltage row | `fi: no transmission voltage definition` |
+| pipeline source declaration | `fi: no pipeline source declaration` |
+| dashboard, eager or lazy | `fi: no dashboard, eager or lazy` |
+| non-null `modelVersion` | `fi: manifest.modelVersion is still null` |
+| `COMPARISON_AUTHORITY` entries | authority.js ownership |
+| `source` on every range, symmetric dispersed bands | ranges validation |
+
+Those tests are right and the plan was wrong. A registered market is one the
+home page can draw a map for and compare constraints across; a market without
+that is not "partially registered", it is a market whose home-page surfaces
+would silently render empty.
+
+**So Finland is built and deliberately not registered.** `src/markets/fi/` is
+complete as far as evidence allows and `registry.js` carries a comment saying
+why the import is absent. Nothing imports the module, so Vite tree-shakes it out
+— the entry chunk is unchanged at 296.53 kB gzip, verified.
+
+## What the evidence established
+
+Read on 2026-08-18 and recorded in `src/markets/fi/sources.js`.
+
+**`capacityMarket: false` is now evidenced rather than assumed, and the reason is
+better than "storage cannot participate".** Finland *has* a capacity mechanism —
+peak load capacity under act 117/2011, administered by Finextra. The Energy
+Authority procured **no capacity at all** for 1 Nov 2025 – 31 Oct 2026, and
+nothing has been held in the strategic reserve since July 2022, because after
+Olkiluoto 3 the national adequacy assessments show no concern against the
+LOLE 2.1 h/yr standard adopted in March 2022. A dormant strategic reserve held
+outside the market is not resource adequacy revenue on either count.
+
+**The saturation gate is not a hypothetical, and it is the headline.** Fingrid's
+2026 obligations against the announced battery fleet:
+
+| Product | 2026 obligation |
+|---|---|
+| FCR-D up | 309 MW |
+| FCR-D down | 298 MW |
+| FCR-N | 128 MW |
+| FFR | 0–60 MW |
+| aFRR | ~50 MW |
+| mFRR up / down | 880–1,300 MW / 575 MW |
+
+The fast products a battery actually wins total under 800 MW. Finland had about
+250 MW of BESS operational in mid-2025, with Statkraft/OX2's 235 MW, Nivala's
+70 MW and Uusikaupunki's 50 MW announced or under construction on top.
+
+And Fingrid's own 2026–2036 forecast does not rescue it, because **the growth is
+in the wrong products**: mFRR down rises 567 → 1,100 MW and mFRR up 290 → 530 MW,
+while **FCR-N declines 128 → 105 MW**. Growth sits in slower products where a
+battery competes with demand response and thermal plant on cost.
+
+**So the services leg is published as zero, and says so.** That is not an
+estimate — it is a refusal, recorded in `servicesNote` and gated as FI-1. It
+understates the asset substantially, which is the intended direction: a market
+held out of the ranking with a visibly incomplete revenue line invites scrutiny;
+a plausible number inside the ranking does not.
+
+**Licence gates the Fingrid feed, not the connector.** The open-data API is free
+but needs a registered key, and the licence text sits behind that registration —
+so redistribution terms are not established and no Fingrid series may be
+republished yet. Gate FI-2. The ENTSO-E day-ahead feed has no such problem and
+its domain code is wired: `fi: '10YFI-1--------U'`.
+
+## Corrections to earlier drafts of this plan
+
+- The §1.1 table said Finland pays for capacity through "nothing". It has a
+  mechanism; it is dormant. The distinction is the interesting part.
+- §1.4's `tolling: false` holds — no repeatable public precedent was found.
+- The fifteenth-colour decision is implemented as `manifest.pattern: 'hatch'`
+  with Finland reusing `--s2`, per decision 2.
+
+## Stage 2 — what registration needs
+
+1. `fi/congestion.js` — Finland's constraint zones. The north–south transfer
+   limit is the obvious candidate and is publicly documented by Fingrid.
+2. `fi/gridMapData.js` — 400/110 kV substations with **real coordinates** from
+   Fingrid's published network, plus the constraint corridor.
+3. The transmission voltage row, and a pipeline source declaration.
+4. `modelVersion`, once there is a model to version.
+5. `COMPARISON_AUTHORITY` entries and `source` on every range.
+6. Then the two-line registration, and the dashboard at leisure.
+
+None of that is blocked on anything except research time. It is separated
+because placeholder coordinates would satisfy every test and publish geography
+nobody checked — which is the failure this platform is built to make impossible.
+
+
+---
+
+# Round 3, stage 2 — Finland registered. 2026-08-18
+
+Fifteen allocation points. `npm test` 418/418, confidentiality 7/7, budget 5/5,
+all with zero skips.
+
+## What registration actually required
+
+Stage 1 listed eight blocking assertions. All are closed:
+
+| Was missing | Now |
+|---|---|
+| congestion register | `fi/congestion.js` — two zones |
+| grid map | `fi/gridMapData.js` + a generated boundary |
+| transmission voltage row | 400/220/110 kV, Fingrid |
+| pipeline source declaration | `NO_SOURCE`, with the reason |
+| dashboard | ten tabs on the shared block engine, loaded on demand |
+| `modelVersion` | `fi-1.0-reserve-led-services-withheld` |
+| authority classification | `manifest.pattern` → CONFIG |
+| ranges | `source` on every one; the `services` band removed entirely |
+
+## Three things worth reviewing
+
+**A new congestion capture mechanism.** Finland fits none of the existing ones.
+Romania charges for congestion, Italy pays for it, the NEM does neither but the
+asset still runs. Fingrid simply refuses to connect: new grid storage
+connections in southern Finland are restricted until 2029, against more than
+30 GW of requests and about 1.8 GW contracted, with capacity still available in
+Ostrobothnia and the north. Nothing is auctioned and nothing is compensated, so
+`CAPTURE.CONNECTION_MORATORIUM` was added — money flow `neither`, the same
+answer `UNCOMPENSATED` gives for a different reason. Forcing it into either
+existing value would have implied a transaction that is not on offer.
+
+That constraint is also the whole locational signal, because Finland is one
+bidding zone: siting north or south changes no revenue line in the model, only
+whether the project exists.
+
+**No `services` band, deliberately.** Every other range lets a reader move a
+value inside evidenced bounds. This one has no value to move — a zero-width band
+fails the Lab's own rule, and a band with width would invite a reader to type in
+the number this market declines to publish and then read the output as sourced.
+
+**A latent bug Finland was the first to trigger.** `home/normalizationView.js`
+indexed `runBaseCase(...).capY[0]` for every market it was handed. For an
+`engineReady: false` market that call returns `{ na }`, so the stacked chart did
+not render a short bar — it threw and took the whole home page with it. The flag
+has existed since the registry was written and nothing had ever exercised it.
+The chart now filters to engine-ready markets and states how many it held out,
+rather than quietly drawing fewer bars than its caption claims.
+
+Worth noting how it was found: dev rendered perfectly and the built artefact
+failed, because the error surfaced through the lazy chunk's load path. A
+temporary sourcemap build located it; sourcemaps are back off and zero `.map`
+files are emitted.
+
+## The map is honest about what it is not
+
+Fingrid operates about 138 substations and 14,900 km of line, 5,400 km of it at
+400 kV. None of that network is drawn. The markers are municipal and regional
+centroids — the same convention every other map here uses — and `scope` says so.
+Plotting a dozen substations from memory would have been worse than plotting
+none.
+
+## Cost of the fifteenth market
+
+| | gzip |
+|---|---|
+| home before Finland | 296.52 kB |
+| home after Finland | 304.56 kB |
+| Finland's own chunk | 15.15 kB |
+
+**About 8 kB on the home page for a whole new market**, against the ~100 kB it
+would have cost before round 2. That is the clearest single measure of what the
+split bought.
+
+## Gates carried forward
+
+FI-1 reserve saturation · FI-2 the Fingrid open-data licence · FI-3
+Finland-specific capex, opex and fees · FI-4 a captured-spread backtest on
+15-minute settlement · FI-5 the north/south split of the connection queue.
+
+FI-1 and FI-2 are what `engineReady: false` waits on.
+
+
+---
+
+# Round 3, stage 2 — corrections after review. 2026-08-18
+
+Six issues raised on the stage 2 commit. All applied.
+
+## 1. The fleet number was stale, and the correction strengthens the thesis
+
+The saturation argument used ~250 MW operational (mid-2025) plus 355 MW announced. The current
+figure is **about 1,050 MW connected as of early February 2026** — 261 systems of 1 MW and above
+totalling ~980 MW, plus ~70 MW of smaller batteries tracked through the reserve markets.
+
+That changes the conclusion's force, not its direction. Connected storage no longer *approaches*
+the ~795 MW fast-reserve obligation; it **exceeds** it. `pipelineRatio` moves from `~0.8x` to
+`~1.3x`.
+
+Two qualifications now travel with the number everywhere it appears, because dropping them would
+be the same error inverted: it counts **all** storage of 1 MW and above rather than batteries
+alone, and **56% is distribution-connected** against 44% on transmission. Distribution-connected
+storage does reach the reserve markets, but not every megawatt is prequalified for every product —
+so this is an upper bound on the competing fleet, not a measured one.
+
+## 2. FI-2 conflated two different things
+
+The gate said redistribution rights were unknown. They are not: the datasets publicly declare
+**Creative Commons Attribution**, with downloads in JSON, CSV, XLSX and XML. What actually requires
+action is narrower and specific to the API path — provision a key, accept and record the terms
+presented at registration, and implement the attribution. FI-2 is reworded to that, and
+`sources.js` now records the licence as observed rather than unread.
+
+## 3. `services: 0` was the wrong machine representation
+
+Corrected, and this was the most important of the six. Prose said "withheld"; the object said
+`0`; every consumer reads the object. Zero is a **claim** — that a Finnish battery earns nothing
+from reserves — and it is the kind of false that survives being copied into an export.
+
+Finland now carries `services: null` with a machine-readable reason in `economics.unavailable`.
+Supporting changes:
+
+- `markets/schema.js` documents the contract (`UNAVAILABLE_REQUIRES_UNREADY`).
+- `utils/validation.js` accepts a null required field **only** when the market is
+  `engineReady: false` **and** the field is declared in `unavailable` — and rejects a declaration
+  whose field is not actually null, so the two cannot drift apart.
+- `comparison/vintage.js` no longer demands a number for a leg declared unavailable, and requires
+  it to be null in all three cases rather than one.
+- `governance/authority.js` classifies `economics.unavailable.services` as METHODOLOGY, so
+  automation can never close the gap by supplying a number.
+- **A new test**, `an unready market publishes no number anything can compute on`, asserts the
+  representation directly: every declared field is null and not zero, every engine route returns
+  `na` rather than a computed case, and the market is absent from `engineReadyMarkets()`.
+
+## 4. Fleet evidence split into three sources
+
+One citation covered an operator statistic and two press reports, which made them look like the
+same class of evidence. Now: `storageFleet` (Fingrid, the aggregate), `statkraftOx2` (the named
+235 MW agreement), and `tradePress` (Nivala and Uusikaupunki) — the last labelled in its own entry
+and on the pipeline tab as **the weakest citations on the page**, shown because omitting known
+projects would understate the fleet, not because the sourcing is strong.
+
+## 5. The grid map is a scope change, now stated as one
+
+§1.2 specified "Fingrid 400/110 kV nodes". What was built is municipal and regional centroids
+standing for the places the argument is about. Those are not equivalent, and the difference matters
+to a reader deciding whether a site is connectable.
+
+The acceptance criterion is therefore **revised in writing rather than quietly met**: this is a
+**thematic constraint map**, and both the module header and the reader-facing `scope` note now say
+so in those words. Building the real network layer — which needs Fingrid's geodata under its own
+licence — stays on the list.
+
+## 6. `docs/adding-a-market.md` corrected
+
+It promised "one new directory and two lines". That is true of *wiring* a market and false of
+*registering* one. It now separates the two, and a new **Step 6 — the registration contract**
+tabulates all eleven requirements with the assertion each one fails, plus the hardcoded lists that
+need appending.
+
+The claim that the dashboard "is optional and can come later" is also removed: the tests require a
+dashboard and the standard ten tabs. The weaker true statement — that a market can be built before
+it is registered — replaces it.
+
+
+---
+
+# Round 3, stage 2 — second review pass. 2026-08-18
+
+Three findings, all applied.
+
+## 1. `pipelineRatio` was carrying the wrong quantity, and the claim was too strong
+
+`narrative.pipelineRatio` renders in the league table as **"Pipeline / operating ratio (own
+basis)"** and every other market puts pipeline-to-operating there. Finland's `~1.3x` was connected
+storage divided by summed fast-reserve obligations — a different quantity in a shared column, which
+would have made one cell mean something different from the other fourteen. It even used a lowercase
+`x` where the rest use `×`, which was the tell.
+
+- `pipelineRatio` is now **`~29×`** — more than 30,000 MW of connection requests against about
+  1,050 MW connected, which is what the field means, on Finland's own basis.
+- The saturation comparison moved to `data.js` under `saturation`, with its caveats attached to it
+  rather than left in prose elsewhere.
+
+**And the claim itself was overstated.** "Already failed on volume" and "the competing fleet
+exceeds the demand it competes for" are not supported by that comparison, because:
+
+- the 795 MW is a **sum across distinct products** — FFR, FCR-D up, FCR-D down, FCR-N — procured
+  separately with their own prequalification and clearing, so a megawatt is not fungible across
+  them and the sum is an accounting convenience rather than one market to be filled;
+- the 1,050 MW counts **all storage of 1 MW and above**, 56% of it distribution-connected, so not
+  every megawatt is prequalified for every product.
+
+Everywhere it appears — comparison header and thesis, `economics.unavailable`, the dashboard's
+overview, reserve and pipeline tabs, the grid map, the congestion register and the decision
+profile — this now reads **"an acute saturation warning rather than a measured oversupply"**, with
+the two reasons stated where there is room for them.
+
+That is still enough to justify the withheld line: the margin for an assumed level to persist is
+thin enough that publishing one would be a forecast rather than an observation. It is not enough to
+assert oversupply, and the earlier wording did.
+
+## 2. Stale FI-2 statements
+
+Four remained after the licence was corrected — `data.js`'s next milestone, `comparison.js`'s
+"needs its licence read first", `sources.js`'s "once its licence is confirmed", and
+`projectPipelineSources.js`'s "cannot yet be republished". All now reference provisioning the API
+key, recording the terms accepted at registration, and implementing CC Attribution.
+
+The pipeline declaration also gained the point that matters there: even with the licence resolved,
+Fingrid publishes an **aggregate**, so FI-2 unlocks a series and not coordinates. There is still
+nothing project-level to plot.
+
+## 3. `schema.js` contradicted the corrected registration contract
+
+Its module-surface comment marked `sources`, `tabs` and `dashboard` **optional**. They are optional
+to the *type* — a module missing them parses, and a market can sit built-but-unregistered — and not
+optional to a *registered* market. The comment now says so, lists what else a registered market
+needs that does not appear in the export at all, and points at Step 6 of
+`docs/adding-a-market.md`.

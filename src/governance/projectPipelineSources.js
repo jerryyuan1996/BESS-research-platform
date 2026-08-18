@@ -119,6 +119,10 @@ export const PIPELINE_SOURCES = {
     'No public project-level storage register was found for Romania. OpenStreetMap returned a single mapped battery for the whole country on 2026-08-08, which is a mapping artefact and not a market fact — Romania is the market this platform ranks first on merchant returns. The map renders no storage layer here rather than one that implies an empty market.',
     '未找到罗马尼亚公开的项目级储能登记册。2026年8月8日OpenStreetMap全国仅返回一处已标注储能设施，此为测绘覆盖不足所致而非市场事实 — 罗马尼亚恰是本平台市场化回报排名第一的市场。因此该市场不渲染储能图层，以免呈现"市场空白"的误导。',
   ]),
+  fi: NO_SOURCE([
+    'Fingrid publishes storage capacity as an aggregate series, not a project-level register — so even with the licence resolved there is nothing project-level to plot. The series is Creative Commons Attribution and republishable; what gate FI-2 covers is provisioning the API key and implementing attribution, which would give the aggregate, not coordinates. Project-level knowledge of the Finnish fleet is developer announcements, a pipeline of intentions rather than a register. The map renders no storage layer rather than one built from press releases.',
+    'Fingrid公布的是储能容量的汇总序列，而非项目级登记册 — 因此即便许可问题解决，也不存在可供绘制的项目级数据。该序列采用知识共享署名许可，可以转载；研究缺口FI-2所涵盖的是申请API密钥与落实署名要求，而这只能获得汇总值而非坐标。目前对芬兰储能机组的项目级了解来自开发商公告，属意向性管线而非登记册。因此该市场不渲染储能图层，而非依据新闻稿构建图层。',
+  ]),
 };
 
 function JAPAN_REASON(){

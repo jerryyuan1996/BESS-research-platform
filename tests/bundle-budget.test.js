@@ -53,8 +53,10 @@ const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
  * market's dashboard, sections, data or grid map — all fourteen load on demand.
  *
  * Ratcheted from 1290 to 320 when the remaining ten markets were split. Measured
- * 296.52; the headroom is for ordinary growth in the shell and the comparison
- * interfaces, not for a market leaking back in.
+ * 296.52 then, 304.35 after Finland registered — a fifteenth market costs about
+ * 8 kB on the home page instead of the ~100 kB it would have before the split,
+ * which is the clearest single measure of what the split bought. The headroom is
+ * for that kind of growth, not for a market leaking back in.
  */
 const BUDGET = {
   entry: 320,
@@ -64,7 +66,7 @@ const BUDGET = {
      hand-written dashboard, with its own optimiser, BRCP engine and export
      layer that the shared block engine does not have. */
   markets: {
-    caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 95,
+    fi: 18, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 95,
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
 
@@ -75,9 +77,9 @@ const BUDGET = {
   shared: { engine: 15, metrics: 12, sourceDrawer: 17 },
 };
 
-/** Every registered market must have its own chunk. Twelve dashboards, three of
- *  which Japan shares across its three allocation points. */
-const EXPECTED_MARKET_CHUNKS = 12;
+/** Every registered market must have its own chunk. Thirteen dashboards for
+ *  fifteen allocation points — Japan shares one across its three. */
+const EXPECTED_MARKET_CHUNKS = 13;
 
 /**
  * Strings that must NOT appear in the entry chunk.
@@ -101,6 +103,7 @@ const MUST_NOT_BE_IN_ENTRY = {
   pjm: 'pjm-grid-map',
   ercot: 'ercot-grid-map',
   caiso: 'caiso-grid-map',
+  fi: 'fi-grid-map',
 };
 
 function skipWithoutDist(t){

@@ -42,6 +42,7 @@ const DOMAIN = {
   ie: '10Y1001A1001A59C',    // SEM — the all-island Irish market
   ro: '10YRO-TEL------P',
   pl: '10YPL-AREA-----S',
+  fi: '10YFI-1--------U',    // Finland, Fingrid BZ / CA / MBA
 };
 
 /** ISO 4217 per market, used to label the snapshot's units. */
