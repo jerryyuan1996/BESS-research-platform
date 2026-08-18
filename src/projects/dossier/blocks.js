@@ -22,6 +22,7 @@
    --------------------------------------------------------------------------- */
 import { createBlocks } from '../../markets/_shared/blocks.js';
 import { fmtN, fmt1 } from '../../utils/formatting.js';
+import { dossierModelPanel } from '../../components/dossierModelPanel.js';
 
 /** Blocks that need a market engine. Named so the failure explains itself. */
 const ENGINE_ONLY = [
@@ -48,7 +49,7 @@ function unsupported(name){
 export function dossierBlocks(){
   const engineOnly = Object.fromEntries(ENGINE_ONLY.map(n => [n, unsupported(n)]));
 
-  return createBlocks({
+  const shared = createBlocks({
     /* No seed tag: a dossier has no market build to stamp, and statusBadge()
        renders "Base case" / "Live feed pending" from the tag-free path. */
     MKT: { seedTag: '' },
@@ -74,4 +75,23 @@ export function dossierBlocks(){
       exportJson: engineOnly.exportJson,
     },
   });
+
+  /* THE `model` BLOCK IS HANDLED HERE, NOT IN THE SHARED SWITCH.
+
+     It pulls in the whole model panel, and no market dashboard can use it —
+     putting it in _shared/blocks.js shipped that weight to all thirteen market
+     chunks so that a block only a confidential dossier can contain would
+     render. The shared vocabulary handles everything else, so this wrapper
+     intercepts one type and delegates the rest. */
+  const B = (parent, b) => {
+    if (!b) return;
+    if (Array.isArray(b)){ b.forEach(x => B(parent, x)); return; }
+    if (b.t === 'model'){
+      if (b.model) parent.append(dossierModelPanel(b.model, { marketId: b.marketId }));
+      return;
+    }
+    shared.B(parent, b);
+  };
+
+  return { ...shared, B };
 }

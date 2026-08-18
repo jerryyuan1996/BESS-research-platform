@@ -144,11 +144,17 @@ function B(parent, b){
     /* How a project actually gets built. A block rather than a section so that
        a market can place it where its own argument wants it — Finland puts it
        under Grid Connection, next to the constraint that decides the project. */
-    /* ---- dossier blocks -------------------------------------------------
-       Two shapes the market dashboards never needed and a deal file always
-       does. Kept here rather than in projects/dossier/ so there is ONE block
-       vocabulary: a market that later wants an ownership diagram should not
-       have to discover a second renderer. */
+    /* ---- shapes a deal file needs, in the shared vocabulary --------------
+       `structure` and `sensGrid` live here rather than in projects/dossier/ so
+       there is ONE block vocabulary: a market that later wants an ownership
+       diagram should not have to discover a second renderer. They are small and
+       pure-DOM, so carrying them costs a market chunk almost nothing.
+
+       The `model` block is deliberately NOT here. It pulls in the whole model
+       panel, and no market can use it — wiring it into the shared switch put
+       that weight into all thirteen market chunks to serve a block only a
+       confidential dossier can contain. It is handled in
+       projects/dossier/blocks.js instead. */
     case 'structure': {
       /* An ownership and contract diagram as nested boxes rather than SVG.
          A deal structure is a tree with labelled edges, and a tree of divs
