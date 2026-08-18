@@ -49,6 +49,15 @@ const PAYLOAD_STUB = 'src/local/payload.js';
 const SECTION_STUB = 'src/local/portfolioSection.js';
 const SECTION_FILE = 'wa-portfolio-section.js';
 
+/* A third substitution, and the one that generalises the pattern: N confidential
+   project dossiers rather than one hardcoded section.
+
+   Each file in local-data/dossiers/ default-exports a dossier. The stub becomes
+   an index that imports them by absolute path — real modules Vite can resolve in
+   serve mode, and nothing the bundler ever sees in a build. */
+const DOSSIER_STUB = 'src/local/dossiers.js';
+const DOSSIER_DIR = 'dossiers';
+
 export default function localData({ dir = 'local-data' } = {}){
   let isBuild = false;
   let root = process.cwd();
@@ -93,6 +102,31 @@ export default function localData({ dir = 'local-data' } = {}){
       /* Substitute the payload stub's contents. Matching on the resolved path
          means the module stays a real file that Node can import, while Vite sees
          generated code carrying the datasets. */
+      /* Dossiers first — a separate stub with a different shape.
+
+         The generated module IMPORTS each dossier by absolute path rather than
+         inlining it. They are real ES modules with their own imports, not JSON,
+         so inlining would mean re-implementing module resolution; and letting
+         Vite resolve them keeps hot-reload working when one is edited. */
+      if (samePath(id, path.resolve(root, DOSSIER_STUB))){
+        const empty = 'export const DOSSIERS = [];\nexport const AVAILABLE = false;\nexport default DOSSIERS;\n';
+        if (isBuild) return empty;
+
+        const dossierDir = path.resolve(root, dir, DOSSIER_DIR);
+        if (!existsSync(dossierDir)) return empty;
+
+        const files = (await readdir(dossierDir)).filter(n => n.endsWith('.js')).sort();
+        if (!files.length) return empty;
+
+        this.info?.(`local-data: loaded ${files.length} dossier(s) for development only`);
+        const imports = files
+          .map((name, i) => `import d${i} from ${JSON.stringify(path.join(dossierDir, name))};`)
+          .join('\n');
+        const names = files.map((_, i) => `d${i}`).join(', ');
+        return `${imports}\nexport const DOSSIERS = [${names}];\n`
+          + 'export const AVAILABLE = true;\nexport default DOSSIERS;\n';
+      }
+
       if (!samePath(id, path.resolve(root, PAYLOAD_STUB))) return null;
 
       // The whole point: in a build there is no code path that reads the files.
@@ -132,11 +166,11 @@ export default function localData({ dir = 'local-data' } = {}){
       server.watcher.add(abs);
       const invalidate = (file) => {
         if (!file.startsWith(abs)) return;
-        const mod = server.moduleGraph.getModuleById(path.resolve(root, PAYLOAD_STUB));
-        if (mod){
-          server.moduleGraph.invalidateModule(mod);
-          server.ws.send({ type: 'full-reload' });
+        for (const stub of [PAYLOAD_STUB, DOSSIER_STUB]){
+          const mod = server.moduleGraph.getModuleById(path.resolve(root, stub));
+          if (mod) server.moduleGraph.invalidateModule(mod);
         }
+        server.ws.send({ type: 'full-reload' });
       };
       server.watcher.on('add', invalidate);
       server.watcher.on('change', invalidate);

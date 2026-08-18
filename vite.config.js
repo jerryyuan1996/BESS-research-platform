@@ -33,7 +33,11 @@ export default defineConfig({
         chunkFileNames(chunk){
           const id = chunk.facadeModuleId || '';
           const m = /[\\/]markets[\\/]([^\\/]+)[\\/]dashboard\.js$/.exec(id);
-          return m ? `assets/market-${m[1]}-[hash].js` : 'assets/[name]-[hash].js';
+          if (m) return `assets/market-${m[1]}-[hash].js`;
+          /* The dossier shell's entry module is page.js, which would otherwise
+             emit as `page-<hash>.js` and say nothing about what it holds. */
+          if (/[\\/]projects[\\/]dossier[\\/]page\.js$/.test(id)) return 'assets/dossier-shell-[hash].js';
+          return 'assets/[name]-[hash].js';
         },
       },
     },

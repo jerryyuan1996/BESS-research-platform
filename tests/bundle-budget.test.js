@@ -104,6 +104,10 @@ const SHARED_OUT_OF_ENTRY = {
   'source drawer': 'source-drawer',
   'block engine': 'Model version: ',
   'build pathway': 'How a project actually gets built here',
+  /* The dossier shell exists only to render a 404 in a published build.
+     Shipping it to every visitor so an unreachable route can say "not found"
+     would be the worst version of eager loading there is. */
+  'dossier shell': 'No project page exists at that address',
 };
 
 /**
