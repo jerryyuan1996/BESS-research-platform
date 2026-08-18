@@ -8,7 +8,7 @@
 // ============================================================================
 //  REAL MARKET DATA — wired in 2026-07 from two external source packs:
 //   (1) Western Power "Major Customer Connections Insights", quarterly, June 2026  → WP_QUEUE
-//   (2) Crestone "WA BESS RCM revenue forecast" / 西澳立项会材料 (2026-07-23)        → WA_FLEET / WA_PIPELINE / WA_FIN
+//   (2) Infra fund "WA BESS RCM revenue forecast" / 西澳立项会材料 (2026-07-23)        → WA_FLEET / WA_PIPELINE / WA_FIN
 //  Badged 'official' where the underlying figure is a published regulator/utility
 //  value; 'illus' where a specific MW/MWh split was undisclosed and estimated.
 // ============================================================================
