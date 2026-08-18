@@ -1422,3 +1422,74 @@ side should sign. The window is the finding; neither number in it is.
 
 The annual three-statement engine is not transcribed. Until it is, gap W-1
 stands and the returns respond to price but not to the project.
+
+---
+
+# Round 5, second dossier — the project engine replaces the frozen series
+
+The construction vehicle's returns were carried as a pasted distribution series,
+valid at one operating point and withheld whenever any input behind it moved.
+That gap is now closed: the integrated cash-flow and financing engine is
+transcribed, and every driver is live.
+
+## What was built, and what was deliberately left out
+
+The engine is a project cash-flow and financing model, not a three-statement
+investor dashboard. Revenue by product, operating cost, tax and the payment lag,
+the senior debt schedule, the augmentation reserve and the distribution test are
+all reproduced. The profit-and-loss and balance-sheet schedules of the source are
+reproduced **only** where they feed something a cash-flow reader needs — written
+down value for depreciation, retained earnings because the distribution is capped
+by them, and the balance check that proves the transcription closes. Nothing
+renders a balance sheet for its own sake.
+
+The investor-facing output stays cash-flow-led: sources and uses at close,
+construction funding and the equity requirement, revenue and EBITDA, the
+EBITDA-to-CFADS bridge, the debt schedule with cover ratios, base and floor
+distributable cash, equity return with sensitivities, and the augmentation and
+lifecycle spend.
+
+No shared market engine touches any project return. The platform appears in one
+place, the four-column comparison table, as a reference beside the project's own
+value — never in place of it.
+
+## The golden is the true-dated vector, not the legacy annual rows
+
+The source carries annual IRR rows inside the engine sheet and marks them legacy;
+from v12 the sheet that governs is a dated cash-flow vector. That vector — 
+twenty-five base and twenty-two floor distributions on their real dates — is the
+return golden here. All fifty values reproduce to within a cent, and the three
+published headline returns to within the goal-seek tolerance already recorded.
+
+Interactive returns were withheld until that reconciliation held. Thirteen
+drivers are now asserted to move the equity return, because an engine that
+reconciles but does not respond would have reproduced the old failure with better
+provenance.
+
+## One conflict the reconciliation exposed, and why it is not resolved here
+
+The workbook describes the cost of carrying the capacity security three ways that
+cannot all be true: a live formula computing 2.5% of face, a retirement note
+implying zero, and a published distribution vector that can only be reproduced at
+7.5%. The engine matches all fifty published distributions at 7.5% and at no
+other value, which establishes what the published numbers were built on — and
+establishes nothing about which rate applies going forward, because that depends
+on whether a credit facility survived a decision made after the vector was
+pasted.
+
+So 7.5% is the default, for that reason and stated as that reason. The control
+moves, the ledger carries the conflict, and the model reports whether the current
+setting still ties to the published vector. At the live formula value the equity
+IRR is about 13 basis points higher and the NPV about A$2.6m higher.
+
+Two smaller findings came out of the same pass: a variable grid fee charged on
+four fifths of throughput, because the source multiplies a daily figure by an
+annual cycle count; and a small-company tax rate and revenue threshold that are
+declared and never used.
+
+## Names
+
+The vendor and the reference-model provider are named in the evidence ledger,
+where provenance requires it, and masked by role everywhere else. Unmasking the
+vendor for a defined audience is a deal-team decision, not a default. Neither
+name is in tracked source, and the production build is verified clean of both.
