@@ -34,7 +34,7 @@ import { card } from './card.js';
 import { badge } from './badge.js';
 import { chip } from './chip.js';
 import { kpi } from './metricCard.js';
-import { fmtN, fmt1, fmtPct } from '../utils/formatting.js';
+import { fmtN, fmt1, fmtPct, fmtX, NF2 } from '../utils/formatting.js';
 import { byId } from '../markets/registry.js';
 import {
   GAP_LABEL, GAP_SEVERITY, GAP_SEVERITY_LABEL,
@@ -56,6 +56,11 @@ function fmtValue(v, unit){
     case 'x':     return fmt1(v) + '×';
     case 'yr':    return fmtN(v) + ' yr';
     case 'money': return fmtN(Math.round(v));
+    /* A model denominated in millions loses its meaning at integer precision:
+       an exit price of 51.2 and one of 51.8 are a different deal, and both
+       render as "51" under `money`. */
+    case 'dec2':  return NF2.format(v);
+    case 'x2':    return fmtX(v);
     default:      return typeof v === 'number' ? fmtN(v) : String(v);
   }
 }
