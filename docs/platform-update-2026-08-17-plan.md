@@ -1353,3 +1353,72 @@ production build verified by term scan to contain no project content.
 The second dossier repeats this process for the Western Australia project. Its codename is itself a
 confidential marker, unlike Finland's, so its slug and every tracked mention must avoid it — and
 note that commit messages, PR titles and PR bodies are not covered by any existing gate.
+
+---
+
+# Round 5, second dossier — a staged acquisition in Western Australia
+
+The second transcription is a two-vehicle transaction: a development vehicle
+funds the project from signing to financial close, and a construction vehicle
+buys it there. Two workbooks, one shared number — the price between them.
+
+## Deliberately not generalised
+
+The staged structure is specific to this transaction. Nothing about it has been
+promoted into the market pages, the build pathway or the shared comparison
+vocabulary, and the dossier says so on its own overview tab. One deal is not a
+pattern; a second staged deal would be the evidence that justified changing any
+shared model, and there is no second one.
+
+The only shared-code changes this dossier required were two number formats
+(`dec2`, `x2`) — a model denominated in millions renders as whole units under
+the existing `money`, and an exit price of 51.2 against one of 51.8 is a
+different transaction that both render as "51".
+
+## A different evidence problem from the first transcription
+
+The Finland workbook carried cached formula results, so the transcription could
+be diffed against the model's own answers line by line. These two workbooks were
+saved without them. What they carry instead is the author's own assertions:
+audit rows testing the model against typed constants, and a published two-sided
+sensitivity table. Those became the golden basis — all 42 published cells, the
+six audit constants, and the three solved exit prices.
+
+Where a workbook states what it should produce, that statement is evidence. It
+is weaker than a computed result, because it can be stale, and the ledger records
+two places where it visibly is: a goal-sought exit price about A$4k from the
+closed-form answer, and an IRR column whose seven printed cells are not
+consistently rounded.
+
+## Withholding along one axis but not another
+
+The construction vehicle's dividends are an output of an annual three-statement
+engine, pasted into the returns sheet as values. They are valid at exactly one
+operating point, so the model refuses to report a return once any input that
+engine depended on has moved — capex, contingency, gearing, escalation, capacity
+price — while leaving the pricing inputs live, because those sit outside the
+engine entirely.
+
+That distinction is the whole point. Gearing is the input that would mislead
+most: raising leverage cuts the equity cheque on this page while leaving
+untouched the dividends that would have to service the extra debt, so the return
+would improve for a reason that does not exist. It now reads N/A against a
+ledger entry.
+
+A gearing sensitivity grid was drafted and dropped, because every cell would
+have read N/A — the correct answer and a useless chart. The two grids that
+shipped vary only inputs the frozen series survives.
+
+## What the transcription is for
+
+One price sets both sides. The development vehicle needs at least A$51.20m to
+reach its target multiple; the construction vehicle clears 12% only up to
+A$74.48m. The window between them is A$23.28m wide and the pre-agreed price sits
+at its very bottom. At the current asking price the construction vehicle falls
+below 11% with a negative NPV — the deal does not fail, it stops being one that
+side should sign. The window is the finding; neither number in it is.
+
+## Still outstanding
+
+The annual three-statement engine is not transcribed. Until it is, gap W-1
+stands and the returns respond to price but not to the project.
