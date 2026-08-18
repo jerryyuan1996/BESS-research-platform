@@ -16,6 +16,8 @@
    structure. What differs is what fills them.
    --------------------------------------------------------------------------- */
 
+import { buildPathwayFor } from '../buildPathwayRegistry.js';
+
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
   const { L, M, SRC, fmtN } = api;
@@ -160,7 +162,13 @@ export function buildSections(api){
   ] });
 
   // ---------------- Grid connection — the binding constraint ----------------
-  SEC_B.grid = () => ({ t: 'card', title: ['Grid connection — the constraint that decides the project', '并网 — 决定项目成败的约束'], badges: ['official'], live: false, blocks: [
+  /* The grid tab renders TWO sibling blocks rather than one card: the
+     constraint, then how a project is actually built against it. In Finland
+     those are the same argument — where you can connect decides the project,
+     and the sequence is what you do about it — so splitting them across two
+     tabs would split one story across two pages. */
+  SEC_B.grid = () => ({ blocks: [
+    { t: 'card', title: ['Grid connection — the constraint that decides the project', '并网 — 决定项目成败的约束'], badges: ['official'], live: false, blocks: [
     { t: 'kpis', items: [
       { l: ['Storage connection requests', '储能并网申请'], v: '>' + fmtN(M.connection.requestsMW) + '<small> MW</small>' },
       { l: ['Already contracted', '已签约'], v: '~' + fmtN(M.connection.contractedMW) + '<small> MW</small>' },
@@ -176,7 +184,11 @@ export function buildSections(api){
       '该限制此前至2027年初，后被延长 — 原因是并网需求增长而非工程延误。应将2029年视为一个已显现偏差方向的预测。与此同时，已签约的1,800MW持有后续30,000MW申请无法购得的资源，这是保护在运方备用收入价格的最强因素。',
     ], sig: [['Extended once already', '已延期一次'], ['Scarcity favours the incumbent', '稀缺性有利于在运方']] },
     { t: 'src', src: SRC.reserveObligations, use: ['Main grid scale and the reinforcement programme', '主网规模与加强工程'] },
+    ] },
+    { t: 'pathway', pathway: buildPathwayFor('fi'), sourceFor: (k) => SRC[k] },
   ] });
+
+
 
   // ---------------- Portfolio ----------------------------------------------
   SEC_B.portfolio = () => ({ t: 'card', title: ['Portfolio view', '组合视图'], badges: ['illus'], live: false, blocks: [

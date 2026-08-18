@@ -73,13 +73,38 @@ const BUDGET = {
   /* Chunks Rollup factors out because several market chunks share them. They
      are NOT part of the first load — a visitor who never opens a market page
      never fetches them — but the first market visit pays for whichever it
-     needs, so they belong in the accounting. */
-  shared: { engine: 15, metrics: 12, sourceDrawer: 17 },
+     needs, so they belong in the accounting.
+
+     A COMBINED BUDGET, NOT PER-CHUNK NAMES. The first version listed
+     `sourceDrawer` by name and broke the moment the build-pathway panel was
+     added: Rollup regrouped the same modules under a different chunk name, and
+     the test failed while the property it cared about was still true. Chunk
+     names are Rollup's business. What matters is that the shared code exists
+     outside the entry and stays within a total. */
+  sharedTotal: 55,
 };
 
 /** Every registered market must have its own chunk. Thirteen dashboards for
  *  fifteen allocation points — Japan shares one across its three. */
 const EXPECTED_MARKET_CHUNKS = 13;
+
+/**
+ * Shared modules that must live OUTSIDE the entry chunk, identified by a marker
+ * in their own output rather than by the chunk that happens to hold them.
+ *
+ * This is the assertion the per-chunk-name version was really trying to make:
+ * a home-page import of any of these pulls it into the first load, which is the
+ * regression worth catching. Which shared chunk it lands in is not.
+ */
+const SHARED_OUT_OF_ENTRY = {
+  /* Markers must be STRING LITERALS, not identifiers. `createMarketEngine` was
+     the first attempt and it fails for a reason worth remembering: minification
+     renames functions, so an identifier-based probe silently matches nothing and
+     the assertion below is what catches that rather than a false pass. */
+  'source drawer': 'source-drawer',
+  'block engine': 'Model version: ',
+  'build pathway': 'How a project actually gets built here',
+};
 
 /**
  * Strings that must NOT appear in the entry chunk.
@@ -170,22 +195,29 @@ test('every market loads its dashboard on demand', async (t) => {
 test('the shared chunks stay out of the first load', async (t) => {
   if (skipWithoutDist(t)) return;
   const { entry, other } = await chunks();
+  assert.ok(entry, 'no entry chunk');
 
   /* Rollup factors out what several market chunks share — the block engine, the
-     source drawer, the metrics helpers. That is the right outcome: they are
-     fetched once, by whichever market page is opened first, and reused. What
-     would NOT be right is any of them being pulled into the entry, which is what
-     happens the moment the home page imports one of them directly. */
-  for (const [name, budget] of Object.entries(BUDGET.shared)){
-    const chunk = other.find(c => c.name.startsWith(`${name}-`));
-    assert.ok(chunk,
-      `no ${name}-*.js chunk. It was either inlined into the entry — check whether\n` +
-      'a home-page module started importing it — or into a single market chunk,\n' +
-      'which means the markets that shared it no longer do.');
-    assert.ok(kB(chunk.gzip) <= budget,
-      `${chunk.name} is ${kB(chunk.gzip)} kB gzipped, over its ${budget} kB budget.`);
+     source drawer, the pathway panel. That is the right outcome: fetched once by
+     whichever market page is opened first, then reused. What would NOT be right
+     is any of them being pulled into the entry, which is what happens the moment
+     a home-page module imports one directly. */
+  for (const [what, marker] of Object.entries(SHARED_OUT_OF_ENTRY)){
+    assert.ok(!entry.text.includes(marker),
+      `the ${what} is in the entry chunk, so every visitor downloads it. ` +
+      'Something on the home page now imports it directly; shared market code ' +
+      'belongs in a shared chunk, fetched on the first market visit.');
+    assert.ok(other.some(c => c.text.includes(marker)),
+      `the ${what} is in neither the entry nor a shared chunk — the marker ` +
+      `"${marker}" has gone stale and this assertion no longer checks anything.`);
   }
-  assert.ok(entry, 'no entry chunk');
+
+  assert.ok(other.length > 0, 'no shared chunks at all — the split has collapsed');
+  const sharedGzip = other.reduce((a, c) => a + c.gzip, 0);
+  assert.ok(kB(sharedGzip) <= BUDGET.sharedTotal,
+    `shared chunks total ${kB(sharedGzip)} kB gzipped across ${other.length} files, ` +
+    `over the ${BUDGET.sharedTotal} kB budget. This is what a first market visit ` +
+    'pays on top of its own market chunk.');
 });
 
 test('each split market has its own chunk, within budget', async (t) => {

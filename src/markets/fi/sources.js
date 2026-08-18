@@ -208,6 +208,58 @@ export const SRC = {
     lastChecked: '2026-08-18',
     freshness: 'Current',
   },
+
+  // ---- added with the build pathway (round 4) -------------------------------
+  connectionPhases: {
+    file: 'Fingrid — connection to the main grid: connection agreement phases and general connection terms',
+    status: ['Official — Final', '官方 — 最终'],
+    date: '2026',
+    cy: 'A main grid connection is agreed by connection agreement, whose prerequisites include a legally valid land-use plan and building permits. The preceding letter of intent requires the EIA programme published and rights to the project area secured, and describes the route to the connection agreement.',
+    url: 'https://www.fingrid.fi/en/grid/grid-connection-agreement-phases/',
+    authority: 'observed',
+    historical: 'Process pages, not project records',
+    forecast: 'None',
+    frequency: 'As revised',
+    format: 'HTML',
+    machineReadable: 'No',
+    automation: 'C — a published process is read, not ingested',
+    lastChecked: '2026-08-18',
+    freshness: 'Current',
+  },
+
+  gridCode: {
+    file: 'Fingrid — grid code specifications; SJV2024 for grid energy storage systems',
+    status: ['Official — Final', '官方 — 最终'],
+    date: '2025-03-20',
+    cy: 'The Energy Authority adopted VJV2024 and SJV2024 on 20 March 2025. SJV2024 is a dedicated code for GRID ENERGY STORAGE SYSTEMS, applying from 0.8 kW, with requirements by type class A to D according to capacity and connection voltage.',
+    url: 'https://www.fingrid.fi/en/grid/grid-connection-agreement-phases/grid-code-specifications/',
+    authority: 'observed',
+    historical: 'Superseded specifications remain published',
+    forecast: 'None',
+    frequency: 'As revised',
+    format: 'HTML / PDF',
+    machineReadable: 'No',
+    automation: 'C',
+    lastChecked: '2026-08-18',
+    freshness: 'Current',
+  },
+
+  connectionRestriction: {
+    file: 'Fingrid — restrictions on new energy storage facility connections in southern Finland',
+    status: ['Official — Final', '官方 — 最终'],
+    date: '2025',
+    cy: 'New grid energy storage connections in southern Finland restricted until 2029, when the Hikia-Toivila reinforcement completes. Previously to early 2027 and extended. More than 30,000 MW of storage connection requests against about 1,800 MW contracted; several thousand MW available in Ostrobothnia and the north.',
+    url: 'https://www.fingrid.fi/en/news/news/2025/fingrid-secures-transmission-capacity-for-growth-in-electricity-consumption-and-new-industrial-investments--restrictions-on-new-energy-storage-facility-connections-continued-in-southern-finland/',
+    authority: 'observed',
+    historical: 'Restated as the restriction is revised',
+    forecast: 'Relief stated as 2029',
+    frequency: 'As revised',
+    format: 'HTML',
+    machineReadable: 'No',
+    automation: 'B — release monitor',
+    lastChecked: '2026-08-18',
+    freshness: 'Current',
+  },
 };
 
 export const sources = SRC;
