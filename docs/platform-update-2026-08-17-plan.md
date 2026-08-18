@@ -1216,3 +1216,60 @@ need appending.
 The claim that the dashboard "is optional and can come later" is also removed: the tests require a
 dashboard and the standard ten tabs. The weaker true statement — that a market can be built before
 it is registered — replaces it.
+
+
+---
+
+# Round 3, stage 2 — second review pass. 2026-08-18
+
+Three findings, all applied.
+
+## 1. `pipelineRatio` was carrying the wrong quantity, and the claim was too strong
+
+`narrative.pipelineRatio` renders in the league table as **"Pipeline / operating ratio (own
+basis)"** and every other market puts pipeline-to-operating there. Finland's `~1.3x` was connected
+storage divided by summed fast-reserve obligations — a different quantity in a shared column, which
+would have made one cell mean something different from the other fourteen. It even used a lowercase
+`x` where the rest use `×`, which was the tell.
+
+- `pipelineRatio` is now **`~29×`** — more than 30,000 MW of connection requests against about
+  1,050 MW connected, which is what the field means, on Finland's own basis.
+- The saturation comparison moved to `data.js` under `saturation`, with its caveats attached to it
+  rather than left in prose elsewhere.
+
+**And the claim itself was overstated.** "Already failed on volume" and "the competing fleet
+exceeds the demand it competes for" are not supported by that comparison, because:
+
+- the 795 MW is a **sum across distinct products** — FFR, FCR-D up, FCR-D down, FCR-N — procured
+  separately with their own prequalification and clearing, so a megawatt is not fungible across
+  them and the sum is an accounting convenience rather than one market to be filled;
+- the 1,050 MW counts **all storage of 1 MW and above**, 56% of it distribution-connected, so not
+  every megawatt is prequalified for every product.
+
+Everywhere it appears — comparison header and thesis, `economics.unavailable`, the dashboard's
+overview, reserve and pipeline tabs, the grid map, the congestion register and the decision
+profile — this now reads **"an acute saturation warning rather than a measured oversupply"**, with
+the two reasons stated where there is room for them.
+
+That is still enough to justify the withheld line: the margin for an assumed level to persist is
+thin enough that publishing one would be a forecast rather than an observation. It is not enough to
+assert oversupply, and the earlier wording did.
+
+## 2. Stale FI-2 statements
+
+Four remained after the licence was corrected — `data.js`'s next milestone, `comparison.js`'s
+"needs its licence read first", `sources.js`'s "once its licence is confirmed", and
+`projectPipelineSources.js`'s "cannot yet be republished". All now reference provisioning the API
+key, recording the terms accepted at registration, and implementing CC Attribution.
+
+The pipeline declaration also gained the point that matters there: even with the licence resolved,
+Fingrid publishes an **aggregate**, so FI-2 unlocks a series and not coordinates. There is still
+nothing project-level to plot.
+
+## 3. `schema.js` contradicted the corrected registration contract
+
+Its module-surface comment marked `sources`, `tabs` and `dashboard` **optional**. They are optional
+to the *type* — a module missing them parses, and a market can sit built-but-unregistered — and not
+optional to a *registered* market. The comment now says so, lists what else a registered market
+needs that does not appear in the export at all, and points at Step 6 of
+`docs/adding-a-market.md`.

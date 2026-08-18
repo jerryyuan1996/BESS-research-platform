@@ -26,7 +26,7 @@ export const SRC = {
     frequency: 'Annual, with the forecast reissued as the transition proceeds',
     format: 'HTML tables',
     machineReadable: 'Partial — the same series are in the open-data API',
-    automation: 'B — a page monitor would work; the API is the better route once its licence is confirmed',
+    automation: 'B — a page monitor would work; the API is the better route once the key is provisioned and CC Attribution is implemented',
     lastChecked: '2026-08-18',
     freshness: 'Current 2026 obligation period',
   },

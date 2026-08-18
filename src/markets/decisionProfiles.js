@@ -150,7 +150,7 @@ export const MARKET_DECISION_PROFILES = {
       toll: proxy(['No repeatable public tolling precedent has been read.', '未获取可复制的公开租赁先例。'], ['Private bilateral market']),
       ltda: proxy(['No long-term award route exists in this market.', '本市场不存在长期中标路径。'], ['Not applicable']),
       merchant: derived(['Day-ahead capture is modelled from the published price record and the 15-minute market time unit.', '日前捕获收入依据已公布价格记录及15分钟结算周期建模。'], ['ENTSO-E Transparency Platform']),
-      services: proxy(['Withheld. Fast-reserve obligations total under 800 MW against a fleet approaching that, and Fingrid forecasts FCR-N declining — a level published now would be a forecast that today persists.', '暂缓发布。快速备用需求合计不足800MW，而机组规模已接近该水平，且Fingrid预测FCR-N需求下降 — 此时发布任何水平值都等同于假设当前状况将长期持续。'], ['Fingrid power system reserves']),
+      services: proxy(['Withheld. Connected storage passed 1,050 MW in February 2026 against fast-reserve obligations summing to about 795 MW — an acute saturation warning rather than a measured oversupply, since the obligation aggregates separately procured products — and Fingrid forecasts FCR-N declining. A level published now would be a forecast that today persists.', '暂缓发布。2026年2月已并网储能超过1,050MW，而快速备用需求合计约795MW — 鉴于需求方为多个独立采购品种的合计，这构成强烈的饱和预警而非已测得的供给过剩 — 且Fingrid预测FCR-N需求下降。此时发布任何水平值都等同于假设当前状况将长期持续。'], ['Fingrid power system reserves']),
     },
   }),
   ro: profile({

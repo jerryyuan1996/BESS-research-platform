@@ -47,20 +47,28 @@
    261 systems of 1 MW and above totalling ~980 MW, plus ~70 MW of smaller
    batteries tracked through the reserve markets.
 
-   Read those two lists together. The FAST products a battery actually wins —
-   FFR, FCR-D, FCR-N — total about 795 MW of obligation, and CONNECTED STORAGE
-   ALREADY EXCEEDS IT. Not approaches it: exceeds it. This is not a market with
-   room for an assumed level to persist; the binding question is how fast the
-   price falls.
+   Read those two lists together and the result is an ACUTE SATURATION WARNING.
+   Connected storage of ~1,050 MW stands against fast-reserve obligations
+   summing to about 795 MW.
 
-   Two qualifications, because the comparison is not exact and pretending
-   otherwise would be the same error in the opposite direction. The 1,050 MW is
-   all storage of 1 MW and above rather than batteries alone, and 56% of it sits
-   on the distribution grid against 44% on transmission. Distribution-connected
-   storage does reach the reserve markets, but not every megawatt is prequalified
-   for every product — so this is an upper bound on the competing fleet, not a
-   measured one. It is still the right order of magnitude, and the direction is
-   not in doubt.
+   That is a warning and not a proof, and the difference is worth being exact
+   about, because overstating it would be the same failure as the understatement
+   it replaced:
+
+     · The 795 MW is a SUM ACROSS DISTINCT PRODUCTS — FFR, FCR-D up, FCR-D down,
+       FCR-N — procured separately, with their own prequalification and their own
+       clearing. A megawatt is not fungible across them, so the sum is an
+       accounting convenience rather than a single market to be filled.
+     · The 1,050 MW counts all storage of 1 MW and above rather than batteries
+       alone, and 56% of it sits on the distribution grid. Distribution-connected
+       storage does reach the reserve markets, but not every megawatt is
+       prequalified for every product.
+
+   So this is an upper bound on competition set against an aggregate of separate
+   demands. What it does NOT establish is that the competing fleet exceeds the
+   demand it competes for. What it does establish is that the margin for an
+   assumed revenue level to persist is thin enough that publishing one would be a
+   forecast rather than an observation — which is all the withheld line needs.
 
    And the requirement forecast does not rescue it, because the growth is in the
    wrong products. Fingrid's own 2026–2036 forecast has mFRR down rising 567 →
@@ -71,8 +79,10 @@
    A single flat `services` number here would be indefensible, and a rising one
    would be worse. Hence GATE FI-1 below: the services leg is not published until
    eligible/prequalified storage MW against procured MW per product can be
-   tracked, which needs the Fingrid open-data series — which needs its licence
-   read first (GATE FI-2).
+   tracked. That needs the Fingrid open-data series, which is published under
+   Creative Commons Attribution and is therefore republishable — what remains is
+   provisioning the API key, recording the terms accepted at registration and
+   implementing the attribution (GATE FI-2).
 
    ---------------------------------------------------------------------------
    WHAT IS SOLID
@@ -128,8 +138,8 @@ const economics = {
 
   unavailable: {
     services: [
-      'Reserve revenue is not published for Finland. Fast-reserve obligations total about 795 MW while connected storage passed 1,050 MW in February 2026, and Fingrid forecasts FCR-N declining while growth sits in slower products. A level published before eligible-versus-procured MW can be tracked per product would be a forecast that today persists. Gate FI-1.',
-      '芬兰的备用收入不予发布。快速备用需求合计约795MW，而已并网储能于2026年2月已超过1,050MW；且Fingrid预测FCR-N需求下降，增长集中于响应较慢的产品。在能够按品种跟踪合格容量与采购容量之前发布任何水平值，等同于假设当前状况将长期持续。研究缺口FI-1。',
+      'Reserve revenue is not published for Finland. Connected storage passed 1,050 MW in February 2026 against fast-reserve obligations summing to about 795 MW — an acute saturation warning, not a measured oversupply, since that sum aggregates separately procured products and the fleet includes capacity not prequalified for all of them. Fingrid also forecasts FCR-N declining while growth sits in slower products. A level published before eligible-versus-procured MW can be tracked per product would be a forecast that today persists. Gate FI-1.',
+      '芬兰的备用收入不予发布。2026年2月已并网储能超过1,050MW，而快速备用需求合计约795MW — 鉴于该合计数涵盖多个独立采购品种、且机组中包含未通过全部品种预审的容量，这构成强烈的饱和预警而非已测得的供给过剩。此外Fingrid预测FCR-N需求下降，增长集中于响应较慢的产品。在能够按品种跟踪合格容量与采购容量之前发布任何水平值，等同于假设当前状况将长期持续。研究缺口FI-1。',
     ],
   },
 
@@ -236,14 +246,19 @@ export const comparison = {
     archetype: ['50 MW · 2h · reserve-led', '50MW · 2小时 · 备用主导'],
     thesis: [
       'Europe\'s clearest fast-reserve market, and the clearest test of whether a reserve-led thesis survives its own buildout. Wind is the swing producer, the day-ahead market moved to 15-minute settlement in October 2025, and the strategic reserve has been dormant since 2022 because Olkiluoto 3 removed the adequacy problem. What is not yet answerable is the price path: fast-reserve obligations total about 795 MW while connected storage passed 1,050 MW in February 2026, so the revenue line is withheld rather than assumed.',
-      '欧洲最典型的快速备用市场，也是"备用主导"投资逻辑能否经受住自身装机扩张考验的最清晰样本。风电为边际调节电源，日前市场已于2025年10月转为15分钟结算，而战略备用自2022年起处于休眠状态 — 原因是Olkiluoto 3核电机组投运后充裕度问题已消失。尚无法回答的是价格路径：快速备用需求合计约795MW，而已并网储能于2026年2月已超过1,050MW，故收入项暂缓发布而非直接假设。',
+      '欧洲最典型的快速备用市场，也是"备用主导"投资逻辑能否经受住自身装机扩张考验的最清晰样本。风电为边际调节电源，日前市场已于2025年10月转为15分钟结算，而战略备用自2022年起处于休眠状态 — 原因是Olkiluoto 3核电机组投运后充裕度问题已消失。尚无法回答的是价格路径：已并网储能于2026年2月已超过1,050MW，而快速备用需求合计约795MW — 这构成强烈的饱和预警，而非已测得的供给过剩，故收入项暂缓发布而非直接假设。',
     ],
-    /* Connected storage against the fast-reserve obligation — 1,050 against
-       795 MW. Above 1.0 means the competing fleet already exceeds the demand it
-       competes for, which is the ratio the whole thesis turns on. Deliberately
-       the optimistic reading of supply, because that is the conservative reading
-       of price. */
-    pipelineRatio: '~1.3x',
+    /* PIPELINE TO OPERATING, which is what this field means everywhere else on
+       the platform — not the saturation ratio, which an earlier draft put here.
+       Finland's own basis: more than 30,000 MW of storage connection requests
+       against about 1,050 MW connected.
+
+       The saturation comparison — connected storage against the summed
+       fast-reserve obligation — is a different quantity and lives in data.js
+       under `saturation`, where it can carry the qualifications it needs. Two
+       ratios in one field would have made the league table's column mean
+       something different for one market than for the other fourteen. */
+    pipelineRatio: '~29×',
   },
 };
 

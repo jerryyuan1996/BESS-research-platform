@@ -103,8 +103,8 @@ const points = [
     ['Revenue mechanism', '收入机制'], ['current', 'future'],
     ['FFR, FCR-N, FCR-D up and down, aFRR and mFRR are procured nationally, not by location. The fast products a battery wins total under 800 MW of obligation for 2026.',
      'FFR、FCR-N、FCR-D上调与下调、aFRR及mFRR均按全国而非按区域采购。2026年储能可参与的快速品种需求合计不足800MW。'],
-    ['This is the revenue line and the risk in the same sentence. Against about 795 MW of fast-reserve obligation, connected storage passed 1,050 MW in February 2026 — the competing fleet already exceeds the demand it competes for, which is why this dashboard withholds a reserve revenue level rather than publishing one.',
-     '收入与风险同在于此。面对约795MW的快速备用需求，已并网储能于2026年2月已超过1,050MW — 竞争机组规模已超过其所竞争的需求，这正是本看板暂缓发布备用收入水平的原因。'],
+    ['This is the revenue line and the risk in the same sentence. Against about 795 MW of fast-reserve obligation, connected storage passed 1,050 MW in February 2026 — an acute saturation warning, though the obligation is a sum across separately procured products and the fleet includes capacity not prequalified for all of them. It is why this dashboard withholds a reserve revenue level rather than publishing one.',
+     '收入与风险同在于此。面对约795MW的快速备用需求，已并网储能于2026年2月已超过1,050MW — 这构成强烈的饱和预警，但需求方为多个独立采购品种的合计，机组方亦包含未通过全部品种预审的容量。这正是本看板暂缓发布备用收入水平的原因。'],
     'Fingrid — power system reserves', URL.reserves),
 
   /* ---- plan -------------------------------------------------------------- */

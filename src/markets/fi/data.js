@@ -20,8 +20,8 @@ const M = {
   title: ['Finland Battery Investment Dashboard', '芬兰储能投资看板'],
   sub: ['Reserve-led market research: what the system pays for, what it has stopped paying for, and why the largest revenue line on this page is deliberately blank.',
         '备用主导型市场研究：系统为何付费、已停止为何付费，以及本页最大收入项为何刻意留白。'],
-  nextMilestone: ['Next milestone: the Fingrid open-data licence (gate FI-2), which unlocks the eligible-versus-procured reserve measure the revenue line waits on',
-                  '下一里程碑：明确Fingrid开放数据许可条款（研究缺口FI-2），据此建立收入项所依赖的合格容量与采购容量对比指标'],
+  nextMilestone: ['Next milestone: provision the Fingrid API key and implement its CC Attribution terms (gate FI-2), which unlocks the per-product eligible-versus-procured measure the revenue line waits on',
+                  '下一里程碑：申请Fingrid API密钥并落实其CC署名条款（研究缺口FI-2），据此建立收入项所依赖的分品种合格容量与采购容量对比指标'],
   footerNote: ['Public sources verified 18 August 2026. This market is registered with engineReady:false and is excluded from the league table, the $1M engine and the certainty frontier by design.',
                '公开来源已于2026年8月18日核验。本市场以engineReady:false注册，按设计不计入同口径对比表、百万美元引擎及确定性前沿。'],
   seedWarn: ['Every value on this page is an approved base-case snapshot or a published official figure. The reserve revenue line is WITHHELD rather than estimated — see the Reserve Markets tab. A reserve obligation is never a captured price; an announced project is never a financed one; an available connection in the north is never a connection in the south.',
@@ -111,6 +111,26 @@ const M = {
       { name: ['Uusikaupunki', 'Uusikaupunki'], mw: 50, mwh: 100,
         status: ['Reported for summer 2026', '据报道于2026年夏季投运'],
         src: 'tradePress' },
+    ],
+  },
+
+  /* ---- the saturation comparison, kept out of pipelineRatio ---------------
+     `narrative.pipelineRatio` means pipeline-to-operating everywhere on this
+     platform, and an earlier draft put this ratio there. It is a different
+     quantity and it needs qualifications a league-table cell cannot carry, so
+     it lives here with them attached. */
+  saturation: {
+    connectedMW: 1050,
+    fastObligationMW: 795,
+    ratio: '~1.3×',
+    /* Read as a WARNING, not a measurement. Both sides are approximations
+       pointing the same way, and neither is the clean quantity the ratio
+       implies. */
+    caveats: [
+      ['The obligation is a sum across distinct products — FFR, FCR-D up, FCR-D down, FCR-N — procured separately with their own prequalification and clearing. A megawatt is not fungible across them.',
+       '需求为多个独立品种的合计 — FFR、FCR-D上调、FCR-D下调、FCR-N — 各自单独采购、单独预审、单独出清。同一MW并不能在各品种间通用。'],
+      ['The fleet counts all storage of 1 MW and above rather than batteries alone, and 56% is distribution-connected. Not every megawatt is prequalified for every product.',
+       '机组规模涵盖1MW及以上所有储能类型而非仅电池，且56%接入配电网。并非每一MW都已通过所有品种的预审。'],
     ],
   },
 

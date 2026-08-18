@@ -15,12 +15,31 @@
    A market module's default export:
 
      {
-       manifest,      // identity + metadata          (required)
-       comparison,    // normalized comparison inputs (required for home-page participation)
-       sources,       // source register              (optional)
-       tabs,          // [[id, [en, zh]], ...]        (optional)
-       dashboard,     // (container, market) => void  (optional)
+       manifest,       // identity + metadata           (required)
+       comparison,     // normalized comparison inputs  (required for home-page participation)
+       sources,        // source register               (required once registered)
+       tabs,           // [[id, [en, zh]], ...]         (required once registered — the standard ten)
+       loadDashboard,  // () => Promise<renderer>       (required once registered)
      }
+
+   "OPTIONAL" USED TO APPEAR AGAINST THE LAST THREE, and it was wrong in a way
+   worth naming, because it set the wrong expectation for how much work adding a
+   market is.
+
+   They are optional to the TYPE — a module missing them still parses, and a
+   market can legitimately sit built-but-unregistered while they are written.
+   They are not optional to a REGISTERED market: the structural tests require a
+   source register, the standard ten tabs and a dashboard, along with a
+   congestion register, a grid map, a transmission voltage row, a bounding box, a
+   pipeline declaration and a decision profile that do not appear in this export
+   at all.
+
+   `dashboard` (synchronous) is still accepted in place of `loadDashboard`, but
+   every registered market uses the lazy form — see marketPage.js. Declaring both
+   is rejected.
+
+   The full contract, with the assertion each omission fails, is Step 6 of
+   docs/adding-a-market.md.
 
    A market with manifest + comparison but no dashboard still appears everywhere
    on the home page; its route renders a "pending migration" page.
