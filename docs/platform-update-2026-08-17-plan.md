@@ -1273,3 +1273,83 @@ to the *type* — a module missing them parses, and a market can sit built-but-u
 optional to a *registered* market. The comment now says so, lists what else a registered market
 needs that does not appear in the export at all, and points at Step 6 of
 `docs/adding-a-market.md`.
+
+---
+
+# Round 5 — the dossier layer and the first transcribed model
+
+Merged as PR #6. Project material is git-ignored throughout; what follows describes only what the
+tracked tree gained.
+
+## What shipped
+
+`src/projects/dossier/` — the shell: registry with a fixed tab vocabulary, a page that 404s for
+every unknown slug, and a block wrapper giving dossiers the presentational half of the shared
+vocabulary while making the engine-dependent half fail with an explanation.
+
+`src/projects/dossier/model.js` — the model interface. A project model supplies inputs and a pure
+`calculate(inputs)`; the platform supplies controls, tables, charts and formatting. No project model
+creates DOM, CSS or SVG. The interface refuses to publish outputs when the transcription cannot show
+its working: no golden checks, failing goldens, an input without provenance, or a comparison row
+without an explanation all block. Tolerance is explicit and absent means exact.
+
+`src/components/dossierModelPanel.js` — the renderer, including the gap ledger and the five-column
+platform comparison. The platform value is read at render time and never written into project
+inputs; nothing in the interface lets a shared-engine value silently replace a project assumption.
+
+## Why the golden coverage is as heavy as it is
+
+Two wrong formulas reproduced the base case exactly during the first transcription:
+
+- an inclusive month-count rule verified against one of the two sites, which was wrong for the other
+  and diverged in a single period out of sixty-one;
+- a price table with one year mistyped, which surfaced only in 2044.
+
+Every headline metric passed in both cases. Checking the headline is therefore not evidence, and the
+standard for a transcription is per-line reconciliation: every period of every cash-flow line, every
+named scenario, every sensitivity cell, every annual row.
+
+Two structural traps also showed up and are worth carrying forward. Where a workbook holds one
+scenario at a time in a switch cell, it cannot witness the scenarios it is not currently set to —
+those goldens have to come from the rendered dashboard. And where a metric is identical at the
+default capital structure, no base-case golden can tell the two lines apart; the separating case has
+to be declared deliberately.
+
+## Two tolerance regimes, declared rather than averaged
+
+Spreadsheet IRR functions are iterative solvers that stop at their own convergence threshold. A port
+that bisects further lands a few nanounits away on every solved rate, while the underlying cash
+flows agree exactly. Rates are therefore checked against a workbook at `1e-8` and against another
+bisecting implementation at `1e-9`, and the ledger records why. Declaring one tolerance for both
+would have claimed agreement the workbook cannot give.
+
+## The failure mode the comparison table nearly shipped
+
+Two comparison rows were wrong at review. One stated a direction backwards — the project sits above
+the platform reference, not below. The other pointed at the wrong field entirely, comparing a
+discount rate against the platform's degradation rate, and rendered a plausible-looking "0.1% vs
+2.0%".
+
+A comparison row that points at the wrong field is worse than an absent row, because nothing on
+screen shows the reader it is wrong. Both are now correct, the surviving rows explain the platform's
+own sponsor-procurement adjustment rather than presenting an unadjusted number, and the
+non-comparable case is demonstrated by a value the platform genuinely withholds instead of by a
+contrived pair.
+
+## Tabs
+
+`sensitivity` and `annual` joined the dossier tab vocabulary. It is a whitelist and an unknown
+section id is dropped with a console warning — which, since every real dossier is git-ignored, would
+only ever appear on the author's machine. Both ids are asserted, and a shape-check dossier proves
+the shell accepts a full analysis without tripping validation.
+
+## Gates
+
+449 tests, 90 structural tests, staged-blob scan clean, marker fingerprint matching, and a
+production build verified by term scan to contain no project content.
+
+## Carried into the next round
+
+The second dossier repeats this process for the Western Australia project. Its codename is itself a
+confidential marker, unlike Finland's, so its slug and every tracked mention must avoid it — and
+note that commit messages, PR titles and PR bodies are not covered by any existing gate.
