@@ -97,9 +97,10 @@ test('the ordering difference between WA and Finland is real and computed', () =
   /* This is the section's headline finding, and it is derived rather than
      written so it cannot drift away from the stages that produce it.
 
-     Finland makes consent a prerequisite of the connection agreement; WA runs
-     the two in parallel. If someone reorders either market's stages, this test
-     is what says the prose above them is now wrong. */
+     Finland gates the letter of intent on environmental evidence and the
+     connection agreement on final planning consent; WA permits more of the same
+     work to run in parallel. If someone reorders either market's stages, this
+     test is what says the prose above them is now wrong. */
   const wa = buildPathwayFor('wa');
   const fi = buildPathwayFor('fi');
   assert.ok(wa && fi);
@@ -116,7 +117,7 @@ test('the ordering difference between WA and Finland is real and computed', () =
   assert.ok(wa.stages.some(s => s.parallelWith === 'studies'),
     'WA must show a stage running parallel with studies');
   assert.equal(fi.stages.filter(s => s.parallelWith).length, 0,
-    'Finland front-loads rather than parallelises — no stage should be marked parallel');
+    'Finland gates rather than parallelises in this model — no stage should be marked parallel');
 });
 
 test('every stage cites a source that exists in its market register', async () => {

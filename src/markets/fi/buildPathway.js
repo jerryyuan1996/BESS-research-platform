@@ -4,21 +4,26 @@
    Reconstructed from Fingrid's published connection-agreement phases, its grid
    code specifications, and the connection restriction covering southern Finland.
 
-   THE ORDER IS INVERTED RELATIVE TO WESTERN AUSTRALIA, and that is the single
-   most useful thing this page says. In WA, connection and consent run in
-   parallel: a sponsor can be negotiating an Access Offer while the environmental
-   referral is still open. In Finland consent comes FIRST and is a prerequisite —
-   a main grid connection agreement requires a legally valid land-use plan and
-   building permits, and the letter of intent that precedes it requires the EIA
-   programme published and rights to the project area secured.
+   FINLAND FRONT-LOADS, and the precision matters more than the slogan. This is
+   not a simple inversion of Western Australia — both markets do connection work
+   and consenting work over an overlapping period. What differs is WHICH GATES
+   BIND AT WHICH POINT, and Fingrid states two of them:
 
-   So the Finnish programme front-loads its risk. Everything expensive happens
-   after the consenting authority has already said yes, which is slower to start
-   and much less likely to strand capital. The WA programme parallelises, which
-   is faster and puts real money at risk against an approval nobody has granted
-   yet. Neither is better; they fail differently, and a sponsor moving between
-   the two markets who assumes the order carries over will be wrong in an
-   expensive direction.
+     · Site control and environmental evidence come before the LETTER OF INTENT.
+       The LOI requires the EIA programme published and rights to the project
+       area secured.
+     · Final planning consent comes before the CONNECTION AGREEMENT. A legally
+       valid land-use plan and building permits are its prerequisites.
+
+   Western Australia permits more of the connection and consenting work to
+   proceed in parallel: a sponsor can be negotiating an Access Offer while an
+   environmental referral is still open, and the development approval is not a
+   precondition of the access process.
+
+   So the Finnish programme carries less consenting risk into its expensive
+   stages, and the Australian one reaches those stages sooner. Neither is better;
+   they fail differently, and a sponsor moving between the two who assumes the
+   gating carries over will be wrong in an expensive direction.
 
    THE SECOND FINNISH FACT is that the answer to "can I connect" is currently
    geographic and binary. New grid energy storage connections in southern Finland
@@ -38,8 +43,8 @@ export const FI_BUILD_PATHWAY = {
   marketId: 'fi',
 
   summary: [
-    'Consent first, then connection — the reverse of Western Australia. A main grid connection agreement requires a legally valid land-use plan and building permits, and the letter of intent preceding it requires the EIA programme published and project-area rights secured. Before any of that, the binding question is geographic: southern connections are restricted until 2029 while Ostrobothnia and the north have capacity today, and in a single bidding zone moving north costs nothing in modelled revenue.',
-    '先许可、后并网 — 与西澳顺序相反。主网并网协议要求具备合法有效的土地利用规划与建筑许可，而在此之前的意向书则要求已发布环评方案并取得项目用地权利。而在这一切之前，决定性问题是地理性的：南部并网受限至2029年，博滕区与北部当前仍有容量；在单一报价区内，北移不会造成模型收入损失。',
+    'Front-loaded rather than inverted. Site control and environmental evidence come before the letter of intent, which requires the EIA programme published and project-area rights secured; final planning consent comes before the connection agreement, whose prerequisites are a legally valid land-use plan and building permits. Western Australia lets more of this run in parallel. Before any of it, the binding question is geographic: southern connections are restricted until 2029 while Ostrobothnia and the north have capacity today, and in a single bidding zone moving north costs nothing in modelled revenue.',
+    '并非顺序颠倒，而是前置化。场址控制与环境证据须先于意向书取得 — 意向书要求已发布环评方案并取得项目用地权利；最终规划许可须先于并网协议 — 并网协议以合法有效的土地利用规划与建筑许可为前提。西澳则允许更多环节并行推进。而在这一切之前，决定性问题是地理性的：南部并网受限至2029年，博滕区与北部当前仍有容量；在单一报价区内，北移不会造成模型收入损失。',
   ],
 
   limit: [
@@ -72,8 +77,8 @@ export const FI_BUILD_PATHWAY = {
       cost: ['Development', '开发成本'],
       sourceKey: 'connectionPhases',
       note: [
-        'Placed BEFORE the application rather than beside it, because Fingrid makes it a prerequisite: a legally valid land-use plan and building permits are conditions of the connection agreement, and a published EIA programme plus project-area rights are conditions of the letter of intent that precedes it. This single ordering difference is what makes the Finnish and Australian programmes different animals.',
-        '该阶段置于申请之前而非与之并行，因为Fingrid将其设为前置条件：合法有效的土地利用规划与建筑许可是并网协议的成立条件，而已发布的环评方案与项目用地权利则是其前置意向书的条件。仅此一项顺序差异，就使芬兰与澳大利亚的开发流程成为两种不同的模式。',
+        'Shown before the application because Fingrid gates on it twice, and the two gates bind at different points. The letter of intent requires a published EIA programme and project-area rights; the connection agreement requires a legally valid land-use plan and building permits. Consenting work still overlaps the connection process in practice — what does NOT happen is reaching either instrument without the corresponding consent in hand. Western Australia permits more of the two to run together.',
+        '该阶段列于申请之前，因为Fingrid在两个节点上分别设有前置条件。意向书要求已发布环评方案并取得项目用地权利；并网协议要求具备合法有效的土地利用规划与建筑许可。实务中许可工作仍与并网流程有所重叠 — 但不可能在缺少相应许可的情况下取得上述任一文件。西澳则允许两者更大程度地并行推进。',
       ],
     },
     {
@@ -100,8 +105,8 @@ export const FI_BUILD_PATHWAY = {
       cost: ['Development, then capex', '先计入开发成本，后转入资本开支'],
       sourceKey: 'connectionPhases',
       note: [
-        'The connection agreement is the instrument, and its prerequisites are the consents already obtained at the previous stage. A project arriving here without a valid land-use plan and building permit is not early — it is not eligible.',
-        '并网协议是核心法律文件，其成立条件即为上一阶段已取得的各项许可。项目若在缺少有效土地利用规划与建筑许可的情况下推进至此，并非进度超前 — 而是不具备条件。',
+        'The connection agreement is the instrument, and a legally valid land-use plan and building permits are its stated prerequisites. A project arriving here without them is not early — it is not eligible. That is the second of the two consent gates Fingrid sets; the first sits at the letter of intent.',
+        '并网协议是核心法律文件，合法有效的土地利用规划与建筑许可是其明确的前置条件。项目若在缺少上述文件的情况下推进至此，并非进度超前 — 而是不具备条件。这是Fingrid两道许可关口中的第二道，第一道设在意向书环节。',
       ],
     },
     {

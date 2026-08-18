@@ -90,8 +90,8 @@ export function buildPathwayPanel(pathway, { sourceFor } = {}){
       L(deviations.map(d =>
         L(STAGE_LABEL[d.runsEarlier]) + ' → ' + L(STAGE_LABEL[d.insteadOf])).join(' · ')),
       ' ',
-      L(['This market runs those stages earlier than the conventional sequence, which changes where a programme puts capital at risk.',
-         '本市场将上述阶段置于常规顺序之前，这改变了开发计划中资金承压的时点。'])));
+      L(['This market gates those stages earlier than the conventional sequence. The workstreams may still overlap; what differs is which approvals must be in hand before the next instrument can be signed, and that changes where a programme puts capital at risk.',
+         '本市场对上述阶段的把关时点早于常规顺序。各项工作仍可能并行推进；差异在于签署下一份法律文件前必须先行取得哪些许可，而这改变了开发计划中资金承压的时点。'])));
   }
 
   const wrap = h('div', { class: 'tbl-wrap' });

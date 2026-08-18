@@ -13,12 +13,17 @@
    re-plans around the next one. Nothing in the connection process cares about
    that calendar, so the two have to be run against each other from the start.
 
-   The second thing: connection and consent are PARALLEL here. Western Power's
-   process and the planning and environmental approvals proceed independently,
-   which is the opposite of Finland — where a legally valid land-use plan and
-   building permit are prerequisites to the connection agreement itself. Two
-   markets, two orders, and the order changes what a development programme looks
-   like more than any single duration does.
+   The second thing: WA PERMITS MORE OF THE CONNECTION AND CONSENTING WORK TO
+   PROCEED IN PARALLEL. Western Power's access process and the planning and
+   environmental approvals advance independently — a sponsor can be negotiating
+   an Access Offer while an environmental referral is still open, and a
+   development approval is not a stated precondition of the access process.
+
+   Finland front-loads instead: site control and environmental evidence before
+   the letter of intent, final planning consent before the connection agreement.
+   Both markets overlap the two workstreams to some degree; what differs is which
+   gates bind at which point, and that difference changes what a development
+   programme risks more than any single duration does.
 
    DURATIONS ARE THE WEAK PART and are marked accordingly. Western Power and
    AEMO publish process steps, not elapsed times. Where a range appears against
@@ -97,8 +102,8 @@ export const WA_BUILD_PATHWAY = {
       cost: ['Development', '开发成本'],
       sourceKey: 'consent',
       note: [
-        'Runs alongside the connection process rather than before it — the opposite of Finland. The spread is real rather than a hedge: Binningup was determined not a controlled action within a month of referral in January 2026, while sector averages run to about twelve months federally and fourteen for a development application. Synergy\'s Tathra was decided by the WA EPA not to require formal Part IV assessment, which is the outcome that makes a programme fast.',
-        '该阶段与并网流程并行而非在其之前 — 与芬兰相反。区间宽并非保守取值：Binningup项目于2026年1月转介后一个月内即被认定为非受控行为；而行业平均值约为联邦层面12个月、开发许可14个月。Synergy的Tathra项目经西澳环保局决定无需按第四部分正式评估，此种结果正是加快进度的关键。',
+        'Runs alongside the connection process rather than gating it, which is where WA and Finland differ — Fingrid makes final planning consent a prerequisite of the connection agreement, and Western Power does not. The spread is real rather than a hedge: Binningup was determined not a controlled action within a month of referral in January 2026, while sector averages run to about twelve months federally and fourteen for a development application. Synergy\'s Tathra was decided by the WA EPA not to require formal Part IV assessment, which is the outcome that makes a programme fast.',
+        '该阶段与并网流程并行推进，而非成为其前置条件 — 这正是西澳与芬兰的差异所在：Fingrid将最终规划许可设为并网协议的前提，西澳电网公司则未如此规定。区间宽并非保守取值：Binningup项目于2026年1月转介后一个月内即被认定为非受控行为；而行业平均值约为联邦层面12个月、开发许可14个月。Synergy的Tathra项目经西澳环保局决定无需按第四部分正式评估，此种结果正是加快进度的关键。',
       ],
     },
     {

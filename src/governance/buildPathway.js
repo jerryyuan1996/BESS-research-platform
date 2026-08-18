@@ -16,12 +16,13 @@
    Mapping all of them onto ONE VOCABULARY is what makes two markets legible side
    by side, and it is the same trick the comparison interface plays on revenue.
 
-   But the SEQUENCE is market-specific and must stay that way. Finland puts
-   consent before the connection application; Western Australia runs them in
-   parallel. An earlier draft enforced a single order, Finland failed it
-   immediately, and the failure was the model's rather than Finland's — a schema
-   that normalises away the ordering difference destroys the most useful thing
-   this section has to say.
+   But the SEQUENCE is market-specific and must stay that way. Finland gates the
+   letter of intent on environmental evidence and the connection agreement on
+   final planning consent; Western Australia permits more of the same work to
+   proceed in parallel. An earlier draft enforced a single order, Finland failed
+   it immediately, and the failure was the model's rather than Finland's — a
+   schema that normalises away where the gates bind destroys the most useful
+   thing this section has to say.
 
    The vocabulary is deliberately coarse. A market that needs a tenth stage is
    telling you something about the market, and should say it in `note` rather
@@ -53,12 +54,13 @@
  * The canonical spine: WHICH STAGES EXIST, not what order a market runs them in.
  *
  * The first draft enforced this order and Finland immediately failed it, which
- * was the validator being right and the model being wrong. Finland puts consent
- * BEFORE the connection application because Fingrid makes a valid land-use plan
- * and building permit prerequisites of the connection agreement; Western
- * Australia runs the two in parallel. That difference is not noise to be
- * normalised away — it is the most useful thing a sponsor moving between the two
- * markets could be told, and a schema that forbade it would have hidden it.
+ * was the validator being right and the model being wrong. Finland shows consent
+ * before the connection application because Fingrid gates on it twice — the
+ * letter of intent on environmental evidence, the connection agreement on final
+ * planning consent — while Western Australia permits more of the two to run in
+ * parallel. That difference is not noise to be normalised away; it is the most
+ * useful thing a sponsor moving between the two markets could be told, and a
+ * schema that forbade it would have hidden it.
  *
  * So the spine fixes the vocabulary and each market declares its own sequence.
  * The listed order below is the REFERENCE, used by `orderDeviation()` to say how
