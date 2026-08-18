@@ -29,8 +29,22 @@ export function renderStack(main, marketList, exitYear){
      '同一台机器，不同报酬结构 — 第1年每MWh装机收入（美元，基准策略）'],
     [badge('calc')]);
 
-  const results = marketList.map(m => runBaseCase(m, exitYear));
-  const hrs = marketList.map(m => m.comparison.archetype.durationHours);
+  /* ENGINE-READY ONLY, and this is not a filter for tidiness.
+
+     runBaseCase returns { na } for a market whose normalized inputs are
+     incomplete — there is no capY, no mchY, nothing to divide by duration. Every
+     line below indexes those arrays, so an unready market does not produce a
+     short bar here, it throws and takes the whole home page with it.
+
+     Finland is the first market to register with engineReady:false and was the
+     first to prove that: the flag has existed since the registry was written and
+     nothing had ever exercised it. The league table and the $1M engine handle
+     `na` because they were built to show unavailable routes; this chart was
+     built on the assumption that every market it is handed computes. */
+  const drawable = marketList.filter(m => m.comparison?.engineReady !== false);
+  const results = drawable.map(m => runBaseCase(m, exitYear));
+  const hrs = drawable.map(m => m.comparison.archetype.durationHours);
+  const held = marketList.length - drawable.length;
   /* Three segments, not two. A capacity payment that must be re-won each year is
      not the same asset as a 15-year contract, so it is stacked separately rather
      than counted as secured. Markets without an auction-renewal stream simply
@@ -45,7 +59,7 @@ export function renderStack(main, marketList, exitYear){
   const secShare = results.map(r => (r.evidenceSecuredShare || 0) * 100);
 
   barChart(c, {
-    xs: marketList.map((m, i) => L(m.manifest.shortName) + ' · ' + hrs[i] + 'h'),
+    xs: drawable.map((m, i) => L(m.manifest.shortName) + ' · ' + hrs[i] + 'h'),
     mode: 'stack', bw: 40, yfmt: v => fmtUSDk(v), h: 280,
     series: [
       { name: ['Secured / contracted', '已锁定/合同化'], color: 'var(--s2)', vals: secMWh },
@@ -54,13 +68,20 @@ export function renderStack(main, marketList, exitYear){
     ],
   });
 
+  if (held > 0){
+    c.append(h('div', { class: 'cap' }, L([
+      held + ' market' + (held === 1 ? '' : 's') + ' held out of this chart: their normalized inputs are incomplete, so there is no revenue to stack. They appear on the market cards and in their own dashboards.',
+      '有' + held + '个市场未纳入本图：其归一化输入尚不完整，无收入可供堆叠。这些市场仍出现在市场卡片及各自看板中。',
+    ])));
+  }
+
   c.append(h('div', { class: 'cap' }, L([
     'Per MWh of energy installed — the unit an investor actually buys. Dividing by duration removes the distortion that made long-duration markets look better paid simply because they are bigger machines.',
     '按已装机MWh计 — 这才是投资人真正购买的单位。除以时长后，即可消除"长时市场因机器更大而显得报酬更高"的失真。',
   ])));
 
   c.append(why(COMMENTARY(
-    fmtUSDk(Math.min(...tot)), fmtUSDk(Math.max(...tot)), marketList.length,
+    fmtUSDk(Math.min(...tot)), fmtUSDk(Math.max(...tot)), drawable.length,
     fmtPct(Math.min(...secShare), 0), fmtPct(Math.max(...secShare), 0)),
     ['Per MWh, pay converges — payers do not', '按MWh报酬趋同，付款方不同']));
   main.append(c);

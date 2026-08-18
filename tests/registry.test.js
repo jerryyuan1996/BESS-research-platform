@@ -17,18 +17,21 @@ import { supportedStrategies, baseStrategy, STRATEGIES } from '../src/comparison
 import { merchantVintage, firstUncoveredMerchantYear } from '../src/comparison/vintage.js';
 
 test('the registry contains every allocation market', () => {
-  assert.deepEqual(marketIds(), ['wa', 'nem', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido', 'pjm', 'ercot', 'caiso']);
+  assert.deepEqual(marketIds(), ['wa', 'nem', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido', 'pjm', 'ercot', 'caiso', 'fi']);
 });
 
 test('allocation markets and detail dashboards are counted separately', () => {
   // Three Japan allocation points share one research dashboard.
-  assert.equal(ALLOCATION_MARKETS().length, 14);
-  assert.equal(DETAIL_DASHBOARDS().length, 12);
+  assert.equal(ALLOCATION_MARKETS().length, 15);
+  assert.equal(DETAIL_DASHBOARDS().length, 13);
   const jp = ALLOCATION_MARKETS().filter(m => m.manifest.dashboardId === 'jp');
   assert.equal(jp.length, 3);
   assert.deepEqual(jp.map(m => m.manifest.region), ['tokyo', 'kyushu', 'hokkaido']);
-  // All three resolve to the same dashboard function.
-  assert.equal(new Set(jp.map(m => m.dashboard)).size, 1);
+  /* That all three resolve to ONE dashboard is asserted in 'a lazy dashboard
+     resolves to a renderer, and Japan shares one chunk' below. It cannot be
+     checked here any more: since every market loads on demand, `m.dashboard` is
+     undefined for all of them, and a Set of three undefineds has size 1 — the
+     assertion would pass without testing anything. */
 });
 
 test('the whole registry validates', () => {
@@ -121,7 +124,12 @@ test('base strategies: capacity-backed by default, overridden where a market say
      otherwise publish the uncontracted case as the mainstream one — against
      twelve known tolled batteries, five of them already operating. */
   assert.deepEqual(markets.map(m => baseStrategy(m)),
-    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap']);
+    /* Finland is 'mer' and takes the default rather than an override, for the
+       same reason Romania and Germany do: no capacity mechanism the engine can
+       price, so merchant is what remains. It reaches that answer differently —
+       Finland HAS a mechanism, dormant since 2022 — but the route available to
+       a sponsor is the same one. */
+    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap', 'mer']);
 
   // An override is only honoured when the market actually supports the route.
   for (const m of markets){

@@ -83,6 +83,22 @@ export const CAPTURE = {
      ACCESS_AUCTION — same instrument shape, opposite money flow — and the
      reason that one is not reused here. */
   LOCATIONAL_PROCUREMENT: 'locational-procurement',
+
+  /* THE CONSTRAINT IS MANAGED BY REFUSING TO CONNECT, so there is no capture at
+     all — not "nobody pays for it" but "the asset cannot exist there".
+
+     Finland is the case this exists for. Fingrid has restricted new grid energy
+     storage connections in southern Finland until 2029, against more than
+     30 GW of storage connection requests and about 1.8 GW already contracted,
+     while several thousand megawatts remain available in Ostrobothnia and the
+     north. Nothing is auctioned and nothing is compensated; the answer to the
+     constraint is to build somewhere else.
+
+     Distinct from ACCESS_AUCTION, where the developer pays a price and gets a
+     position, and from UNCOMPENSATED, which describes an asset that exists and
+     is constrained off without payment. Here there is no price and no asset.
+     Forcing it into either would imply a transaction that is not on offer. */
+  CONNECTION_MORATORIUM: 'connection-moratorium',
 };
 
 export const CAPTURE_LABEL = {
@@ -95,6 +111,7 @@ export const CAPTURE_LABEL = {
   [CAPTURE.UNCOMPENSATED]: ['No compensation', '无补偿机制'],
   [CAPTURE.LOSS_FACTOR]: ['Loss factor', '边际损耗系数'],
   [CAPTURE.ZONAL_PRICE]: ['Zonal price', '分区电价'],
+  [CAPTURE.CONNECTION_MORATORIUM]: ['Connection moratorium', '并网暂停'],
   [CAPTURE.LOCATIONAL_PROCUREMENT]: ['Zonal procurement', '分区采购'],
 };
 
@@ -123,6 +140,12 @@ export const CAPTURE_FLOW = {
   /* The NEM's marginal loss factor is a permanent settlement haircut. */
   [CAPTURE.LOSS_FACTOR]: 'charges',
   [CAPTURE.UNCOMPENSATED]: 'neither',
+  /* Finland: nothing changes hands because nothing is connected. 'neither' is
+     the honest answer and it is the same answer UNCOMPENSATED gives for a
+     different reason — there, an asset exists and is not paid; here, the asset
+     is refused. The money flow is identical; the vocabulary keeps the reason
+     distinguishable. */
+  [CAPTURE.CONNECTION_MORATORIUM]: 'neither',
 };
 
 export const CAPTURE_FLOW_LABEL = {

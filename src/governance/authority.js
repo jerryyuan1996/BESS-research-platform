@@ -338,6 +338,10 @@ export const MANIFEST_AUTHORITY = {
   locale: AUTHORITY.CONFIG,
   timezone: AUTHORITY.CONFIG,
   color: AUTHORITY.CONFIG,
+  /* The second visual channel, for markets past the fourteen-hue palette
+     ceiling. Presentation exactly like `color` — it carries no market fact, so
+     it is classified the same way rather than as a judgement. */
+  pattern: AUTHORITY.CONFIG,
   dashboardId: AUTHORITY.CONFIG,
   region: AUTHORITY.CONFIG,
 

@@ -36,6 +36,10 @@ const TARGETS = [
      in one corner of it. The 110m outline includes Alaska and Hawaii, which the
      view bounds crop out. */
   { id: 840, out: 'src/markets/pjm/us-boundary.json', name: 'United States' },
+  /* Finland is a single bidding zone covering the whole country, so unlike
+     the NEM and PJM the outline IS the market and no view-bounds crop is
+     needed. */
+  { id: 246, out: 'src/markets/fi/fi-boundary.json', name: 'Finland' },
 ];
 
 const round = (n, dp = 3) => Number(n.toFixed(dp));

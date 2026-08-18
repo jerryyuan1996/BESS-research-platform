@@ -1,8 +1,6 @@
 /* Finland market module.
 
-   Comparison interface and source register only — no dashboard yet, which is a
-   supported state: /markets/finland renders the documented pending page and
-   every other surface works. See docs/adding-a-market.md.
+   Comparison interface, source register and a dashboard loaded on demand.
 
    `engineReady: false` in comparison.js keeps Finland out of the league table,
    the $1M engine and the certainty frontier until its revenue line is
@@ -14,4 +12,7 @@ import { comparison } from './comparison.js';
 import { sources } from './sources.js';
 import { tabs } from './tabs.js';
 
-export default { manifest, comparison, sources, tabs };
+/* Loaded on demand, like every other market. See src/markets/ro/index.js. */
+export const loadDashboard = () => import('./dashboard.js').then(m => m.dashboard);
+
+export default { manifest, comparison, sources, tabs, loadDashboard };

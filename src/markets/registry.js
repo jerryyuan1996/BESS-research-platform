@@ -46,27 +46,15 @@ import it from './it/index.js';
 import pjm from './pjm/index.js';
 import ercot from './ercot/index.js';
 import caiso from './caiso/index.js';
-/* FINLAND IS BUILT BUT NOT YET REGISTERED, and the missing line is deliberate.
-   src/markets/fi/ carries a verified source register, a manifest and a complete
-   comparison interface. What it does not yet have is the grid layer this
-   registry's structural tests require of every registered market: a congestion
-   register, a grid map with real substation coordinates, a transmission voltage
-   definition and a pipeline source declaration.
-
-   docs/adding-a-market.md says the dashboard can come later, and that is true.
-   It does NOT say the grid layer can, and the tests are the authority: adding
-   `fi` to the array below fails seventeen assertions naming exactly what is
-   missing. Registering it with placeholder coordinates would satisfy them and
-   publish geography nobody checked, which is the one thing this platform must
-   not do.
-
-   To register: build fi/congestion.js and fi/gridMapData.js from Fingrid's
-   published network, add the voltage row, then add the import and the array
-   entry. See docs/adding-a-market.md and the round 3 notes in
-   docs/platform-update-2026-08-17-plan.md. */
+/* Finland, added in the 2026-08 round. Appended, like the US markets, because
+   registry order is the tie-break for best/worst highlighting in the league
+   table. It registers with engineReady:false — see fi/comparison.js — so it
+   appears on the cards, in the nav and on the map while staying out of every
+   numeric comparison until its reserve revenue line is evidenced. */
+import fi from './fi/index.js';
 import { applySponsorAssumptions } from '../comparison/sponsorAssumptions.js';
 
-const registeredMarkets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso];
+const registeredMarkets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso, fi];
 
 /* Decision metadata is a comparison concern shared by every global component.
    Attach it once at registration without mutating the market module, so detail

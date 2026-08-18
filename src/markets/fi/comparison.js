@@ -122,31 +122,34 @@ const economics = {
 
 const ranges = {
   devCostPct: limits(0, 0, 15, {
-    kind: 'dispersed',
-    basis: ['No Finnish development-cost benchmark has been read. Zero is the platform convention where installed-cost benchmarks are EPC scope.',
-            '尚未获取芬兰开发成本基准。在安装成本基准为EPC口径时，本平台惯例取零。'],
+    basis: ['Development cost as a share of build capex. Zero-seeded because published installed-cost benchmarks are EPC scope and already exclude it. No Finnish development-cost benchmark has been read, so the ceiling is the platform convention rather than a local observation.',
+            '开发成本占建设造价的比例。种子值取零，因为公开的安装成本基准属EPC口径、本就不含该项。尚未获取芬兰本地开发成本基准，故上限采用平台惯例而非本地观测值。'],
+    source: 'No published Finnish series; bound is the platform convention',
     gate: 'FI-3',
   }),
   rtbPremiumPct: limits(0, 0, 200, {
-    kind: 'dispersed',
-    basis: ['No observed Finnish ready-to-build transaction price.', '无芬兰可开工项目交易价格观测值。'],
+    basis: ['The margin a ready-to-build seller takes over development cost. No Finnish RTB trade is published — and in a market where the scarce asset is a contracted southern connection, the premium at a connected site is exactly the number nobody discloses.',
+            '可开工项目卖方在开发成本之上收取的溢价。芬兰无公开的RTB交易 — 而在稀缺资产为已签约南部并网容量的市场中，已并网场址的溢价恰恰是无人披露的数据。'],
+    source: 'Never published, in any market',
     gate: 'FI-3',
   }),
   constructionMonths: limits(12, 9, 24, {
-    kind: 'dispersed',
-    basis: ['Platform convention. Finnish build programmes are not separately evidenced here.',
-            '平台惯例。芬兰建设周期未单独取证。'],
+    basis: ['Platform convention for a 2-hour build. Finnish programmes are not separately evidenced, though the announced fleet reaching commercial operation through 2026 suggests nothing unusual.',
+            '2小时项目建设周期的平台惯例。芬兰本地工期未单独取证，但已公布机组于2026年前后陆续投运，表明并无异常。'],
+    source: 'Platform convention; developer announcements for corroboration only',
     gate: 'FI-3',
   }),
   capexPerMW: band(economics.capexPerMW, 180 * 2000, 260 * 2000, {
     kind: 'dispersed',
     basis: ['The 2026 European turnkey range, €180–260/kWh installed, applied at the 2-hour reference. No Finland-specific capex has been observed.',
             '2026年欧洲整包价区间每千瓦时180–260欧元，按2小时参考时长换算。尚无芬兰本地造价观测值。'],
+    source: 'European turnkey benchmark; no Finnish observation',
     gate: 'FI-3',
   }),
   opexPerMW: band(economics.opexPerMW, null, null, {
     kind: 'dispersed',
     basis: ['Platform convention pending a Finnish operating benchmark.', '平台惯例，待取得芬兰运维基准。'],
+    source: 'Platform convention; no Finnish operating benchmark read',
     gate: 'FI-3',
   }),
   merchGross: band(economics.merchGross, null, null, {
@@ -157,20 +160,21 @@ const ranges = {
     gate: 'FI-4',
   }),
   feePct: limits(economics.feePct, 6, 12, {
-    kind: 'dispersed',
-    basis: ['Platform optimiser-fee convention.', '平台优化商费率惯例。'],
+    basis: ['Platform optimiser-fee convention. Finland has an active third-party optimisation market — Statkraft contracted OX2 batteries on a seven-year agreement — but no fee is disclosed in any of it.',
+            '平台优化商费率惯例。芬兰存在活跃的第三方优化服务市场 — Statkraft已就OX2储能项目签署七年期协议 — 但其中均未披露费率。'],
+    source: 'No disclosed Finnish optimiser fee; platform convention',
     gate: 'FI-3',
   }),
-  services: band(economics.services, null, null, {
-    kind: 'dispersed',
-    basis: ['Withheld pending the saturation gate. See servicesNote — this is the largest real revenue line in the market and the one the evidence cannot yet size.',
-            '因饱和度研究缺口暂缓发布。参见servicesNote — 该项为本市场最大的实际收入来源，亦是现有证据尚无法量化的部分。'],
-    gate: 'FI-1',
-  }),
+  /* NO BAND FOR `services`, deliberately. Every other range here lets a reader
+     move a value inside evidenced bounds; this one has no value to move. A band
+     of zero width fails the Lab's own rule that a band must have width, and a
+     band with width would invite a reader to type in the number this market
+     declines to publish and then read the output as though it were sourced.
+     The withheld leg is stated in `servicesNote` and gated FI-1 instead. */
   degr: limits(economics.degr, 1, 3, {
-    kind: 'dispersed',
-    basis: ['Platform seed held constant across every market. No Finnish measured series is published.',
-            '全平台统一取值。芬兰无公开实测衰减序列。'],
+    basis: ['The platform value, held constant across every market. No operator or OEM publishes a measured Finnish degradation series, and a fast-reserve duty cycle is not the one most published curves describe.',
+            '全平台统一取值。无运营商或设备商公布芬兰实测衰减序列，且快速备用的充放循环特征与多数公开曲线所描述的工况不同。'],
+    source: 'Platform value; no measured series published in any market',
     gate: 'FI-3',
   }),
 };

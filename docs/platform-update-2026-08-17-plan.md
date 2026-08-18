@@ -946,9 +946,9 @@ than a dictionary change. Recommend folding it into round 6 with the rest of the
 
 # Round 3 — Finland, stage 1 of 2. 2026-08-18
 
-**Delivered: the evidence pack, the comparison interface and the feed wiring.
-Not delivered: registration, because the platform's contract needs more than
-§1.7 said it did.**
+**Stage 1 delivered the evidence pack and comparison interface. Stage 2, below,
+completed the grid layer and Finland is now registered — fifteen allocation
+points, `engineReady: false`.**
 
 ## The correction to §1.7
 
@@ -1049,3 +1049,88 @@ its domain code is wired: `fi: '10YFI-1--------U'`.
 None of that is blocked on anything except research time. It is separated
 because placeholder coordinates would satisfy every test and publish geography
 nobody checked — which is the failure this platform is built to make impossible.
+
+
+---
+
+# Round 3, stage 2 — Finland registered. 2026-08-18
+
+Fifteen allocation points. `npm test` 418/418, confidentiality 7/7, budget 5/5,
+all with zero skips.
+
+## What registration actually required
+
+Stage 1 listed eight blocking assertions. All are closed:
+
+| Was missing | Now |
+|---|---|
+| congestion register | `fi/congestion.js` — two zones |
+| grid map | `fi/gridMapData.js` + a generated boundary |
+| transmission voltage row | 400/220/110 kV, Fingrid |
+| pipeline source declaration | `NO_SOURCE`, with the reason |
+| dashboard | ten tabs on the shared block engine, loaded on demand |
+| `modelVersion` | `fi-1.0-reserve-led-services-withheld` |
+| authority classification | `manifest.pattern` → CONFIG |
+| ranges | `source` on every one; the `services` band removed entirely |
+
+## Three things worth reviewing
+
+**A new congestion capture mechanism.** Finland fits none of the existing ones.
+Romania charges for congestion, Italy pays for it, the NEM does neither but the
+asset still runs. Fingrid simply refuses to connect: new grid storage
+connections in southern Finland are restricted until 2029, against more than
+30 GW of requests and about 1.8 GW contracted, with capacity still available in
+Ostrobothnia and the north. Nothing is auctioned and nothing is compensated, so
+`CAPTURE.CONNECTION_MORATORIUM` was added — money flow `neither`, the same
+answer `UNCOMPENSATED` gives for a different reason. Forcing it into either
+existing value would have implied a transaction that is not on offer.
+
+That constraint is also the whole locational signal, because Finland is one
+bidding zone: siting north or south changes no revenue line in the model, only
+whether the project exists.
+
+**No `services` band, deliberately.** Every other range lets a reader move a
+value inside evidenced bounds. This one has no value to move — a zero-width band
+fails the Lab's own rule, and a band with width would invite a reader to type in
+the number this market declines to publish and then read the output as sourced.
+
+**A latent bug Finland was the first to trigger.** `home/normalizationView.js`
+indexed `runBaseCase(...).capY[0]` for every market it was handed. For an
+`engineReady: false` market that call returns `{ na }`, so the stacked chart did
+not render a short bar — it threw and took the whole home page with it. The flag
+has existed since the registry was written and nothing had ever exercised it.
+The chart now filters to engine-ready markets and states how many it held out,
+rather than quietly drawing fewer bars than its caption claims.
+
+Worth noting how it was found: dev rendered perfectly and the built artefact
+failed, because the error surfaced through the lazy chunk's load path. A
+temporary sourcemap build located it; sourcemaps are back off and zero `.map`
+files are emitted.
+
+## The map is honest about what it is not
+
+Fingrid operates about 138 substations and 14,900 km of line, 5,400 km of it at
+400 kV. None of that network is drawn. The markers are municipal and regional
+centroids — the same convention every other map here uses — and `scope` says so.
+Plotting a dozen substations from memory would have been worse than plotting
+none.
+
+## Cost of the fifteenth market
+
+| | gzip |
+|---|---|
+| home before Finland | 296.52 kB |
+| home after Finland | 304.56 kB |
+| Finland's own chunk | 15.15 kB |
+
+**About 8 kB on the home page for a whole new market**, against the ~100 kB it
+would have cost before round 2. That is the clearest single measure of what the
+split bought.
+
+## Gates carried forward
+
+FI-1 reserve saturation · FI-2 the Fingrid open-data licence · FI-3
+Finland-specific capex, opex and fees · FI-4 a captured-spread backtest on
+15-minute settlement · FI-5 the north/south split of the connection queue.
+
+FI-1 and FI-2 are what `engineReady: false` waits on.

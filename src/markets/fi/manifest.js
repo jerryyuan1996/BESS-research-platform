@@ -42,9 +42,11 @@ export const manifest = {
 
   asOf: '2026-08-18',
   dataDate: '2026 obligation period; FCR yearly market for delivery year 2026',
-  /* Left null deliberately: there is no model version until the economics pass
-     their gates. A version string here would imply a model that has been run. */
-  modelVersion: null,
+  /* Names what the model IS, including the part it declines to model. A version
+     string is an identifier for a set of choices, and "services withheld" is one
+     of the choices — a later version that publishes a reserve level must not be
+     mistakable for this one. */
+  modelVersion: 'fi-1.0-reserve-led-services-withheld',
   lastVerified: '2026-08-18',
   sourceHealth: [
     'Structure verified against Fingrid and the Energy Authority on 2026-08-18. Per-MW economics are not yet complete — the market is deliberately excluded from the allocation engine.',
