@@ -86,6 +86,25 @@
   .print-snap-gaps{ margin:4px 0 0 16px; font-size:var(--fs-2xs); }
   .print-snap-gaps li{ break-inside:avoid; }
 
+  /* ---- section claim ---------------------------------------------------- */
+  /* The claim, its caveat and its evidence are one statement and must not be
+     split across a page boundary — a claim whose limitation landed on the next
+     sheet would be worse on paper than not printing it at all. `break-after`
+     keeps it with the section it frames. */
+  .claim{
+    break-inside:avoid; break-after:avoid;
+    border-inline-start:2px solid var(--ink) !important;
+    max-width:none;
+  }
+  .claim-text{ color:var(--ink) !important; }
+  .claim-caveat, .claim-meta, .claim-attribution{ color:var(--ink2) !important; opacity:1 !important; }
+  /* A printed evidence link is useless as a link and essential as a citation,
+     so the destination is printed after it. */
+  .claim-evidence::after{
+    content:' <' attr(href) '>';
+    font-size:var(--fs-micro); word-break:break-all;
+  }
+
   /* ---- tables ----------------------------------------------------------- */
   /* A table crossing a page boundary repeats its header, or every column on
      the second sheet is unlabelled. */

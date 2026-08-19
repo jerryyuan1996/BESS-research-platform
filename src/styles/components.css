@@ -634,3 +634,47 @@ details summary{cursor:pointer; font-size:var(--fs-sm); font-weight:var(--fw-med
   /* The glyph and the border carry the tier when the palette is replaced. */
   .badge-warning{ border-color:CanvasText; }
 }
+
+/* ---- section claim ---------------------------------------------------------
+   The argument, directly under the heading and above the evidence. A left rule
+   rather than a filled panel: a claim is part of the section, not a callout
+   sitting beside it, and a coloured box would read as a warning.
+
+   The caveat is inside the same block by construction. Keeping it visually
+   attached is not decoration — for the capacity claim it carries the difference
+   between a benchmark and a payment, and for the grid claim it is the reason
+   the sentence stops where it does. */
+.claim{
+  margin:10px 0 14px;
+  padding:0 0 0 12px;
+  border-inline-start:2px solid var(--s1);
+  max-width:78ch;
+}
+.claim-text{
+  font-size:var(--fs-md); line-height:1.45; color:var(--ink);
+  font-weight:var(--fw-medium);
+}
+.claim-caveat{
+  font-size:var(--fs-xs); line-height:1.5; color:var(--ink2); margin-top:6px;
+}
+/* Subordinate: it matters to a reader checking the claim, not reading it. */
+.claim-meta{
+  font-size:var(--fs-2xs); color:var(--muted); margin-top:7px;
+  display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline;
+}
+.claim-basis{ white-space:nowrap; }
+.claim-evidence-label{ white-space:nowrap; }
+.claim-evidence{
+  color:var(--ink2); text-decoration:underline; text-underline-offset:2px;
+  /* Long publication titles must wrap rather than push the row wide at 375px. */
+  overflow-wrap:anywhere;
+}
+.claim-evidence:hover{ color:var(--s1); }
+.claim-evidence:focus-visible{ outline:2px solid var(--s1); outline-offset:2px; }
+.claim-evidence-nolink{ color:var(--muted); font-style:italic; }
+.claim-attribution{ font-size:var(--fs-2xs); color:var(--ink2); margin-top:4px; }
+
+@media (max-width:560px){
+  .claim{ padding-inline-start:10px; }
+  .claim-text{ font-size:var(--fs-sm); }
+}
