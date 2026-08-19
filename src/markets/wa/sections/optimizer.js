@@ -100,7 +100,7 @@ function renderOptimizer(main){
   main.append(g1);
 
   // ---- daily dispatch ----
-  const cDisp = card(['DailyDispatchAllocationChart — illustrative 24-hour co-optimisation', '每日调度分配图 — 示例24小时协同优化'], [badge('illus'), statusBadge(true)]);
+  const cDisp = card(['DailyDispatchAllocationChart — illustrative 24-hour co-optimisation', '每日调度分配图 — 示例24小时协同优化'], [statusBadge(true)]);
   dispatchChart(cDisp, D);
   cDisp.append(h('div', { class: 'cap' }, L(['Charge (blue, below axis) fills SOC during the midday solar trough; discharge (green) targets the evening peak; FCESS enabled MW (dashed) uses shoulder headroom within the MW envelope; SOC (violet) stays above the RCM Energy Floor (red dashed), which is highest at the start of the obligation window and declines as remaining obligation hours fall. Strategy = ' + L(m.st.n) + '.',
     '充电（蓝，轴下）在午间光伏低谷补充SOC；放电（绿）瞄准傍晚高峰；FCESS成交MW（虚线）在MW包络内利用平段裕度；SOC（紫）始终高于RCM最低保障电量（红虚线）— 其在义务时段起始最高、随剩余义务小时减少而下降。策略 = ' + L(m.st.n) + '。'])));

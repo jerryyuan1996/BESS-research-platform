@@ -131,7 +131,7 @@ function renderEnergy(main){
   const S = mjaSeries();
   const fyL = S.years.map(y => "'" + String(y).slice(2));
   const rc = mjaReconcile(MJA2026.recon2035);
-  const cSup = card(['Supplementary long-run revenue shape — filling the gap official sources leave', '补充性长期收入形态 — 填补官方来源未覆盖的空白'], [badge('supp'), badge('conf'), badge('recon'), badge('gross')]);
+  const cSup = card(['Supplementary long-run revenue shape — filling the gap official sources leave', '补充性长期收入形态 — 填补官方来源未覆盖的空白'], [badge('conf'), badge('recon')]);
   cSup.append(h('div', { class: 'note' }, h('b', {}, L(['Why this section exists: ', '本节存在的理由：'])),
     L(['AEMO and the ERA publish nothing on forward project-level revenue beyond the capacity-price determination. This third-party modelled layer is used only to fill that one gap — the shape of a storage revenue curve over an asset life. It is confidential, chart-reconstructed, gross-basis and expressed in June 2025 real dollars. It is display-only and is never fed into the Investment Lab.',
       'AEMO与ERA除容量价格决定外未发布任何项目层面的前瞻收入。此第三方模型层仅用于填补这一空白 — 即资产全生命周期内储能收入曲线的形态。其为保密、图表重构、毛值口径、以2025年6月不变价表示，仅供展示，绝不进入投资测算。'])));
@@ -153,7 +153,7 @@ function renderEnergy(main){
   cSup.append(h('div', { class: 'cap' }, L(['Plateau of ~A$140–160M/yr while duration protection holds, a step down to ~A$95–105M as protection expires into a longer requirement and the cell degrades, then a reset after the year-15 refurbishment (FY' + S.refurbFY + '). Capacity is ~52% of the gross stack; the gap between the two lines is charging cost plus round-trip loss — roughly two-thirds of gross discharge sales.',
     '在时长保护有效期内维持约A$140–160M/年平台；随保护到期进入更长时长要求且电芯衰减，降至约A$95–105M；第15年大修（FY' + S.refurbFY + '）后重置。容量约占毛值栈的52%；两线差额为充电成本加往返损耗 — 约为毛放电销售额的三分之二。'])));
   cSup.append(h('div', { class: 'kpis' },
-    kpi(L(['Gross discharge sales (sample year)', '毛放电销售（示例年）']), fmtAM(rc.grossSales), { text: 'DWP A$' + MJA2026.recon2035.dwp + '/MWh × ' + MJA2026.recon2035.cfPct + '% CF' }, [badge('gross')]),
+    kpi(L(['Gross discharge sales, gross not net (sample year)', '毛放电销售（毛值非净值，示例年）']), fmtAM(rc.grossSales), { text: 'DWP A$' + MJA2026.recon2035.dwp + '/MWh × ' + MJA2026.recon2035.cfPct + '% CF' }, []),
     kpi(L(['− Charging cost', '− 充电成本']), fmtAM(rc.chargeCost), { text: 'LWP A$' + MJA2026.recon2035.lwp + '/MWh ÷ ' + MJA2026.recon2035.rte + '% RTE', cls: 'down' }),
     kpi(L(['Net energy margin', '净现货收益']), fmtAM(rc.netMargin), { text: L(['before degradation, fees, outages', '未计衰减、费用、停运']) }, [badge('calc')]),
     kpi(L(['Charge–discharge price spread', '充放电价差']), 'A$' + MJA2026.assumptions.spreadEarly + ' → A$' + MJA2026.assumptions.spreadLate + '<small>/MWh</small>', { text: L(['widens over asset life', '全生命期内扩大']) }, [badge('recon')]),

@@ -126,7 +126,7 @@ shadow RCP                   = exact ESM Rules formula, validated against publis
 
 /* Confidential: names the report, its author and its vintage. */
 function renderMjaSourceEntry(main){
-  const cMja = card(['Supplementary third-party source — used only where official publications are silent', '补充性第三方来源 — 仅用于官方来源缺失之处'], [badge('supp'), badge('conf')]);
+  const cMja = card(['Supplementary third-party source — used only where official publications are silent', '补充性第三方来源 — 仅用于官方来源缺失之处'], [badge('conf')]);
   const mjaMeta = [
     [['Source', '来源'], MJA2026.sourceName + ' — ' + MJA2026.reportTitle],
     [['Vintage', '版本'], MJA2026.reportDate],
@@ -151,8 +151,7 @@ function renderDataTail(main){
   const c3 = card(['Data-quality badge legend & seed status', '数据质量标识说明与种子状态'], [statusBadge(false)]);
   c3.append(h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;' },
     badge('official'), badge('calc'), badge('illus'), badge('forecast'), badge('dev'), badge('public'),
-    h('span', { class: 'badge seed' }, 'SEED_JSON_V1'), h('span', { class: 'badge etl' }, 'LIVE_ETL_REQUIRED'),
-    badge('supp'), badge('nem'), badge('conf'), badge('recon'), badge('gross'), badge('final'), badge('draft'), badge('project'), badge('model'), badge('superseded')));
+    badge('supp'), badge('nem'), badge('conf'), badge('recon'), badge('final'), badge('draft'), badge('project'), badge('model'), badge('superseded')));
   c3.append(h('div', { class: 'cap' }, L(['Official values, refreshed July 2026: 2028-29 BRCP A$488,500/MW/yr for both Peak and Flexible Capacity (ERA final determination, 13 Mar 2026; 200 MW / 1,200 MWh six-hour benchmark at 330 kV) · 2027-28 Peak RCP A$360,700/MW/yr · 2028-29 Peak RCR 6,323 MW · existing + committed ≈ +347 MW vs RCR, of which 1,666 MW battery · ESR Duration Requirement 14 Trading Intervals (7 h) for 2028-29, 12 (6 h) for 2027-28, 8 (4 h) for cycles to 2024 · Q1 2026 fleet ~1,275 MW / 5,140 MWh · Q1 2026 spread ~A$13/MWh (from ~A$51) · Q1 2026 battery FCESS revenue ~A$4.2M (from ~A$8.6M) · Q1 2026 enablement cost ~A$5.1M (−75%) with batteries at 83% of contingency and regulation volume · storage supplied a record 37.2% of SWIS peak demand on 9 May 2026. Q1 2026 remains the latest published AEMO QED at the verification date. Everything else is calculated, public-source or illustrative and is labelled accordingly. Pre- and post-October-2023 WEM reform data must never be combined without adjustment.',
     '官方数值，2026年7月刷新：2028-29 BRCP峰值与灵活容量均为A$488,500/MW/年（ERA最终决定，2026-03-13；基准为330kV下200MW/1,200MWh六小时电池） · 2027-28峰值RCP A$360,700/MW/年 · 2028-29峰值RCR 6,323 MW · 现有+已承诺≈高于RCR 347 MW，其中电池1,666 MW · ESR时长要求：2028-29为14个交易时段（7小时）、2027-28为12个（6小时）、截至2024周期为8个（4小时） · 2026Q1装机约1,275 MW/5,140 MWh · 2026Q1价差约A$13/MWh（由约A$51） · 2026Q1电池FCESS收入约A$4.2M（由约A$8.6M） · 2026Q1成交成本约A$5.1M（−75%），电池占事故与调频成交量83% · 2026年5月9日储能创纪录供给SWIS峰值需求37.2%。截至核验日，2026Q1仍为AEMO最新发布的QED。其余内容均为计算、公开来源或示例数据并相应标注。2023年10月WEM改革前后的数据未经调整不得合并使用。'])));
   c3.append(h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;' },
