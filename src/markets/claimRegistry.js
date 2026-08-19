@@ -1,22 +1,40 @@
 /* ---------------------------------------------------------------------------
-   WHICH MARKETS HAVE ACCEPTED CLAIMS.
+   ACCEPTED CLAIMS, REGISTERED BY THE MARKET THAT OWNS THEM.
 
-   Registration, like every other market capability here — a market appears when
-   it registers, and a market with no reviewed claims simply is not in this map.
-   That is the normal state: fourteen of fifteen are absent today.
+   Registration rather than a static import map, and for a measured reason: an
+   import map put every market's claim prose into the shared bundle, and the
+   bundle-budget test caught it 60 bytes over. Two markets' claims did that.
+   Fifteen markets of bilingual argument would have quietly become something
+   every reader downloads to render one page.
 
-   Kept out of the market modules so that adding claims to a market is one edit
-   in one place and cannot half-happen.
+   So a market's claims travel inside its own lazily-loaded dashboard chunk,
+   which calls registerClaims() when that chunk loads. The dashboard renders
+   before the page enhancements run, so the claims are always present by the
+   time anything asks for one.
+
+   Same shape as gridMapRegistry, for the same reason it was built that way.
    --------------------------------------------------------------------------- */
-import { CLAIMS as WA_CLAIMS } from './wa/claims.js';
-import { CLAIMS as PJM_CLAIMS } from './pjm/claims.js';
 
-const BY_MARKET = { wa: WA_CLAIMS, pjm: PJM_CLAIMS };
+const BY_MARKET = new Map();
+
+/**
+ * Register one market's accepted claims. Called from that market's dashboard.
+ *
+ * @param {string} marketId
+ * @param {object} claims  section id -> claim
+ */
+export function registerClaims(marketId, claims){
+  if (!marketId || !claims) return;
+  BY_MARKET.set(marketId, claims);
+}
 
 /** The claim for one section, or null. Null is the answer for most sections. */
 export function claimFor(marketId, sectionId){
-  return BY_MARKET[marketId]?.[sectionId] ?? null;
+  return BY_MARKET.get(marketId)?.[sectionId] ?? null;
 }
 
-/** Markets carrying reviewed claims. */
-export const marketsWithClaims = () => Object.keys(BY_MARKET);
+/** Markets that have registered reviewed claims. Empty until a dashboard loads. */
+export const marketsWithClaims = () => [...BY_MARKET.keys()];
+
+/** Test seam. Never called by the application. */
+export function __resetClaims(){ BY_MARKET.clear(); }

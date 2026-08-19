@@ -277,3 +277,23 @@ test('a decimal point is not a sentence boundary', () => {
     basis: CLAIM_BASIS.MEASURED, evidence: ['bra2829'],
   }, pjm, 'capacity').some(p => /exactly one sentence/.test(p)));
 });
+
+test('a dotted abbreviation is refused as house style, not silently mis-parsed', () => {
+  /* The one-sentence rule looks for a terminator followed by whitespace, which
+     cannot tell "U.S. market" from a sentence break. Rather than leave that as
+     a known weakness, claim copy may not use dotted abbreviations at all — and
+     the message says what to write instead. The validator is a house-style
+     guard, not a parser, and this is where that shows. */
+  const bad = validateClaim({
+    readiness: READINESS.SUPPORTED, basis: CLAIM_BASIS.MEASURED, evidence: ['bra2829'],
+    text: ['The U.S. market cleared at the cap.', '美国市场以上限出清。'],
+  }, pjm, 'capacity');
+  assert.ok(bad.some(p => /house style/.test(p)));
+  assert.ok(bad.some(p => /US, not/.test(p)), 'the message must say what to write instead');
+
+  /* The undotted form passes. */
+  assert.deepEqual(validateClaim({
+    readiness: READINESS.SUPPORTED, basis: CLAIM_BASIS.MEASURED, evidence: ['bra2829'],
+    text: ['The US market cleared at the cap of $325.00 per MW-day.', '美国市场以每MW日325.00美元的上限出清。'],
+  }, pjm, 'capacity'), []);
+});

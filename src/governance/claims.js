@@ -158,15 +158,25 @@ export function gapIds(market){
    how a second sentence actually begins — plus a semicolon, which is how one
    gets smuggled in without one.
 
-   Known limit: an abbreviation like "U.S. Government" would trip this. No claim
-   uses one, and a false positive here is a review prompt rather than a silent
-   pass, which is the right direction for this check to fail in. */
+   THIS IS A HOUSE-STYLE GUARD, NOT A SENTENCE PARSER. It does not understand
+   English; it enforces a convention that keeps claims quotable. A dotted
+   abbreviation would defeat a terminator-plus-whitespace rule, so claim copy
+   does not use one — write US, not U.S. That is checked explicitly below rather
+   than left as a known weakness, because "no claim uses one today" is not a
+   property anybody maintains. */
+const DOTTED_ABBREVIATION = /(?:^|[^A-Za-z])(?:[A-Za-z]\.){2,}/;
 function isOneSentence(text){
   const t = text.trim();
   if (!/[.!?]$/.test(t)) return false;
   const body = t.slice(0, -1);
   if (body.includes(';')) return false;
   return !/[.!?]\s/.test(body);
+}
+
+/** House style: no dotted abbreviations, which this guard cannot tell from a
+    sentence break. Write US, EU, ERA — not U.S., E.U., E.R.A. */
+function hasDottedAbbreviation(text){
+  return DOTTED_ABBREVIATION.test(text);
 }
 
 const isPair = (v) => Array.isArray(v) && typeof v[0] === 'string' && typeof v[1] === 'string';
@@ -217,7 +227,10 @@ export function validateClaim(claim, market, sectionId, ownership){
   if (needsText){
     if (!isPair(claim.text)) problems.push('a drafted claim needs [en, zh] text');
     else {
-      if (!isOneSentence(claim.text[0]))
+      if (hasDottedAbbreviation(claim.text[0]))
+        problems.push('house style: write abbreviations without full stops (US, not U.S.) — ' +
+                      'a dotted abbreviation is indistinguishable from a sentence break here');
+      else if (!isOneSentence(claim.text[0]))
         problems.push('the English claim must be exactly one sentence: ' + claim.text[0].slice(0, 60));
       if (!/[。！？]$/.test(claim.text[1].trim()))
         problems.push('the Chinese claim must end in a full-width stop');

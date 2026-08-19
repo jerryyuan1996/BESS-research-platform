@@ -7,7 +7,7 @@
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CLAIMS } from '../src/markets/wa/claims.js';
@@ -26,18 +26,39 @@ test('only a supported claim can render', () => {
   assert.match(COMPONENT, /!claim\.text\[0\]\) return null/);
 });
 
+test('claims register from the market chunk, not the shared bundle', async () => {
+  /* An import map put every market's claim prose in the shared bundle and the
+     budget test caught it 60 bytes over. Claims now register when a market's
+     dashboard chunk loads, so the registry is EMPTY until one does — which is
+     the property worth asserting, because a static import would silently make
+     it non-empty again. */
+  const { marketsWithClaims: live, __resetClaims } = await import('../src/markets/claimRegistry.js');
+  __resetClaims();
+  assert.deepEqual(live(), [], 'nothing is registered before a dashboard loads');
+
+  const { registerClaims } = await import('../src/markets/claimRegistry.js');
+  registerClaims('wa', CLAIMS);
+  assert.deepEqual(live(), ['wa']);
+});
+
 test('the registry only exposes markets whose claims were reviewed', () => {
   /* Registration, not enumeration: a market appears here when its claims have
      been through evidence review, and most have not. Asserted as a property
      rather than a fixed list, so adding a reviewed market is not a test edit —
      but a market appearing WITHOUT review still fails. */
-  const registered = marketsWithClaims().sort();
-  assert.deepEqual(registered, ['pjm', 'wa'],
-    'only reviewed markets may register claims');
+  /* Which markets CAN register is a source-tree property, checked statically:
+     a market may ship a claims module only if it also has a source review. */
+  const withClaims = readdirSync(path.join(REPO, 'src/markets'))
+    .filter(d => existsSync(path.join(REPO, 'src/markets', d, 'claims.js')))
+    .sort();
+  assert.deepEqual(withClaims, ['pjm', 'wa'], 'only reviewed markets may ship claims');
 
-  for (const id of registered){
+  for (const id of withClaims){
     assert.ok(existsSync(path.join(REPO, 'src/markets', id, 'sourceReview.js')),
-      `${id} registers claims but has no source review record`);
+      `${id} ships claims but has no source review record`);
+    const dash = readFileSync(path.join(REPO, 'src/markets', id, 'dashboard.js'), 'utf8');
+    assert.match(dash, /registerClaims\(/,
+      `${id} ships claims but never registers them, so they would never render`);
   }
 
   /* Unregistered markets and non-claim sections resolve to null, never to a

@@ -27,12 +27,12 @@ export const CLAIMS = {
        and a broken reference is avoided. */
     evidence: ['bra2829'],
     text: [
-      'Every price in PJM’s 2028/2029 Base Residual Auction cleared at the VRR Curve cap of $325.00 per MW-day UCAP, so the cap bound the result across all sixteen modelled locational deliverability areas.',
-      'PJM 2028/2029年度基本剩余容量拍卖的所有价格均以VRR曲线上限每MW·日325.00美元（UCAP口径）出清，故该上限对全部十六个已建模区域可交付区的结果均构成实际约束。',
+      'Every price in PJM’s 2028/2029 Base Residual Auction cleared at the VRR Curve cap of $325.00 per MW-day UCAP, making the ceiling binding on the clearing price in all sixteen modelled locational deliverability areas.',
+      'PJM 2028/2029年度基本剩余容量拍卖的所有价格均以VRR曲线上限每MW·日325.00美元（UCAP口径）出清，因此该价格上限在全部十六个建模区域可交付区（LDA）均对出清价格形成实际约束。',
     ],
     caveat: [
-      'The same cap and floor applied to the 2026/2027 and 2027/2028 auctions, and offers above the cap were not cleared. The report does not say who imposed the collar or whether any approval beyond PJM was required, and it does not attribute the auction’s shortfall against the reliability requirement to the cap — neither is claimed here.',
-      '同一上下限亦适用于2026/2027与2027/2028年度拍卖，且高于上限的报价未获出清。该报告未说明该价格区间由何方设定、是否需PJM以外的批准，亦未将本次拍卖低于可靠性需求的缺口归因于该上限 — 此处均不作主张。',
+      'The claim is about the clearing PRICE only. The auction report does not establish who originally imposed or approved the collar, whether further regulatory approval was required, that the cap caused the capacity shortfall against the reliability requirement, or what prices and procured volumes would have been without it. None of those is claimed here.',
+      '本结论仅涉及出清价格。该拍卖报告并未确立：该价格区间最初由何方设定或批准、是否需要额外的监管批准、该上限是否导致了相对可靠性需求的容量缺口，以及若无该上限时的出清价格与采购量将会如何。以上均不作主张。',
     ],
   },
 };
