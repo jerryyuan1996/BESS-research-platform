@@ -26,7 +26,7 @@ const table = (head, rows, numeric = []) => h('div', { class:'tbl-wrap' }, h('ta
 ));
 
 const flow = items => h('div', { class:'flow' }, items.flatMap((item, index) => {
-  const box = h('span', { class:'fbox', style:index === items.length - 1 ? 'border-color:var(--s1);font-weight:600;' : '' }, L(item));
+  const box = h('span', { class:'fbox', style:index === items.length - 1 ? 'border-color:var(--s1);font-weight:var(--fw-medium);' : '' }, L(item));
   return index === 0 ? [box] : [h('span', { class:'farr' }, '→'), box];
 }));
 

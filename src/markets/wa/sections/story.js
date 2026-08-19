@@ -71,7 +71,7 @@ function renderStory(main){
   rhT.append(h('div', { class:'flow' },
     h('span', { class:'fbox' }, L(['160 MW OCGT + 14 h fuel','160MW OCGT+14小时燃料'])), h('span', { class:'farr' }, '→'),
     h('span', { class:'fbox' }, '200 MW / 800 MWh · 4h'), h('span', { class:'farr' }, '→'),
-    h('span', { class:'fbox', style:'border-color:var(--s1);font-weight:650;' }, '200 MW / 1,200 MWh · 6h · 330 kV')));
+    h('span', { class:'fbox', style:'border-color:var(--s1);font-weight:var(--fw-medium);' }, '200 MW / 1,200 MWh · 6h · 330 kV')));
   rhT.append(why(['When the benchmark was a gas peaker, the BRCP tracked turbine and fuel costs and was indifferent to storage duration. Since the Coordinator of Energy re-determined it as a battery, the capacity price inherits battery cost curves and battery hours — which is why the 2028-29 BRCP jumped to ' + fmtA(SEED.brcp2829) + '/MW/yr (both Peak and Flexible) from ' + fmtA(SEED.rcp2728) + ' on a 6-hour, 1,200 MWh reference machine. Consequence: falling cell prices now push the capacity price down while a rising duration requirement pushes it up, so BRCP direction is a policy-and-cost race, not a trend to extrapolate.',
     '当基准为燃气调峰机组时，BRCP跟随涡轮与燃料成本，对储能时长无差别。自能源协调官将其重新认定为电池后，容量价格即继承电池成本曲线与电池时长 — 这正是2028-29 BRCP以6小时、1,200MWh参考机组为基准跃升至' + fmtA(SEED.brcp2829) + '/MW/年（峰值与灵活相同），高于' + fmtA(SEED.rcp2728) + '的原因。结论：电芯价格下行压低容量价格，时长要求上行推高容量价格，因此BRCP方向是政策与成本的竞赛，而非可外推的趋势。'],
     ['BRCP now inherits battery economics', 'BRCP现继承电池经济性']));

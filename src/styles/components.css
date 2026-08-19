@@ -6,41 +6,41 @@
    --------------------------------------------------------------------------- */
 /* ---------- header ---------- */
 .hdr{padding:20px 0 12px; display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start; justify-content:space-between;}
-.hdr h1{font-size:22px; font-weight:650; letter-spacing:-.01em;}
-.hdr .sub{color:var(--ink2); font-size:13px; margin-top:2px; max-width:640px;}
-.hdr-meta{display:flex; flex-wrap:wrap; gap:8px 14px; font-size:12px; color:var(--muted); margin-top:8px; align-items:center;}
-.hdr-meta b{color:var(--ink2); font-weight:600;}
+.hdr h1{font-size:var(--fs-2xl); font-weight:var(--fw-medium); letter-spacing:-.01em;}
+.hdr .sub{color:var(--ink2); font-size:var(--fs-sm); margin-top:2px; max-width:640px;}
+.hdr-meta{display:flex; flex-wrap:wrap; gap:8px 14px; font-size:var(--fs-xs); color:var(--muted); margin-top:8px; align-items:center;}
+.hdr-meta b{color:var(--ink2); font-weight:var(--fw-medium);}
 .ctrls{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
 .btn{
   border:1px solid var(--border); background:var(--surface); color:var(--ink);
-  border-radius:8px; padding:6px 12px; font-size:13px; cursor:pointer; font-family:inherit;
+  border-radius:var(--r-md); padding:6px 12px; font-size:var(--fs-sm); cursor:pointer; font-family:inherit;
 }
 .btn:hover{border-color:var(--baseline);}
-.btn.active{background:var(--accent-bg); border-color:var(--s1); font-weight:600;}
+.btn.active{background:var(--accent-bg); border-color:var(--s1); font-weight:var(--fw-medium);}
 select.btn{padding:6px 8px;}
 
-.lab-access-btn{background:var(--accent-bg);border-color:var(--s1);font-weight:650;text-decoration:none;}
+.lab-access-btn{background:var(--accent-bg);border-color:var(--s1);font-weight:var(--fw-medium);text-decoration:none;}
 .lab-access-btn:hover{text-decoration:none;}
 
 /* ---------- disclaimer ---------- */
 .disc{
-  background:var(--warn-bg); border:1px solid var(--border); border-radius:10px;
-  padding:10px 14px; font-size:12px; color:var(--ink2); margin:8px 0 14px;
+  background:var(--warn-bg); border:1px solid var(--border); border-radius:var(--r-lg);
+  padding:10px 14px; font-size:var(--fs-xs); color:var(--ink2); margin:8px 0 14px;
 }
 .disc b{color:var(--ink);}
 /* ---------- kpis ---------- */
 .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; margin:10px 0;}
-.kpi{background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:10px 12px;}
-.kpi .lbl{font-size:11.5px; color:var(--muted); line-height:1.35; min-height:30px;}
-.kpi .val{font-size:21px; font-weight:650; margin-top:3px; letter-spacing:-.01em;}
-.kpi .val small{font-size:12px; font-weight:500; color:var(--ink2);}
-.kpi .delta{font-size:12px; margin-top:2px; color:var(--ink2);}
+.kpi{background:var(--bg); border:1px solid var(--border); border-radius:var(--r-lg); padding:10px 12px;}
+.kpi .lbl{font-size:var(--fs-2xs); color:var(--muted); line-height:1.35; min-height:30px;}
+.kpi .val{font-size:var(--fs-2xl); font-weight:var(--fw-medium); margin-top:3px; letter-spacing:-.01em;}
+.kpi .val small{font-size:var(--fs-xs); font-weight:var(--fw-medium); color:var(--ink2);}
+.kpi .delta{font-size:var(--fs-xs); margin-top:2px; color:var(--ink2);}
 .delta.up{color:var(--good);} .delta.down{color:var(--critical);}
 
 /* ---------- chips & badges ---------- */
 .chip{
-  display:inline-flex; align-items:center; gap:5px; border-radius:999px;
-  font-size:11.5px; font-weight:600; padding:3px 10px; border:1px solid var(--border); white-space:nowrap;
+  display:inline-flex; align-items:center; gap:5px; border-radius:var(--r-pill);
+  font-size:var(--fs-2xs); font-weight:var(--fw-medium); padding:3px 10px; border:1px solid var(--border); white-space:nowrap;
 }
 .chip::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--muted); flex:none;}
 .chip.good{background:var(--good-bg);} .chip.good::before{background:var(--good);}
@@ -49,7 +49,7 @@ select.btn{padding:6px 8px;}
 .chip.critical{background:var(--critical-bg);} .chip.critical::before{background:var(--critical);}
 .chip.info{background:var(--accent-bg);} .chip.info::before{background:var(--s1);}
 .badge{
-  display:inline-block; border-radius:6px; font-size:10.5px; font-weight:600; padding:2px 7px;
+  display:inline-block; border-radius:var(--r-sm); font-size:var(--fs-micro); font-weight:var(--fw-medium); padding:2px 7px;
   border:1px solid var(--border); color:var(--ink2); vertical-align:middle; white-space:nowrap;
 }
 .badge.official{border-color:var(--good); color:var(--good);}
@@ -65,41 +65,41 @@ select.btn{padding:6px 8px;}
 
 /* ---------- tables ---------- */
 .tbl-wrap{overflow-x:auto; margin-top:8px;}
-table{border-collapse:collapse; width:100%; font-size:12.5px;}
+table{border-collapse:collapse; width:100%; font-size:var(--fs-xs);}
 th{
-  text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em;
-  color:var(--muted); font-weight:600; padding:6px 10px 6px 0; border-bottom:1px solid var(--baseline); white-space:nowrap;
+  text-align:left; font-size:var(--fs-micro); text-transform:uppercase; letter-spacing:.05em;
+  color:var(--muted); font-weight:var(--fw-medium); padding:6px 10px 6px 0; border-bottom:1px solid var(--baseline); white-space:nowrap;
 }
 td{padding:6px 10px 6px 0; border-bottom:1px solid var(--grid); vertical-align:top; color:var(--ink2);}
-td b{color:var(--ink); font-weight:600;}
+td b{color:var(--ink); font-weight:var(--fw-medium);}
 td.num, th.num{text-align:right; font-variant-numeric:tabular-nums;}
 tr:last-child td{border-bottom:none;}
 /* ---------- meters ---------- */
-.meter{height:10px; border-radius:5px; background:var(--grid); overflow:hidden; margin:6px 0 2px;}
-.meter > div{height:100%; border-radius:5px;}
-.score-row{display:flex; align-items:center; gap:10px; font-size:12px; margin:4px 0;}
+.meter{height:10px; border-radius:var(--r-sm); background:var(--grid); overflow:hidden; margin:6px 0 2px;}
+.meter > div{height:100%; border-radius:var(--r-sm);}
+.score-row{display:flex; align-items:center; gap:10px; font-size:var(--fs-xs); margin:4px 0;}
 .score-row .sr-lbl{flex:0 0 218px; color:var(--ink2); line-height:1.3;}
-.score-row .sr-bar{flex:1; height:8px; background:var(--grid); border-radius:4px; overflow:hidden;}
-.score-row .sr-bar > div{height:100%; border-radius:4px; background:var(--s1);}
+.score-row .sr-bar{flex:1; height:8px; background:var(--grid); border-radius:var(--r-sm); overflow:hidden;}
+.score-row .sr-bar > div{height:100%; border-radius:var(--r-sm); background:var(--s1);}
 .score-row .sr-val{flex:0 0 76px; text-align:right; font-variant-numeric:tabular-nums; color:var(--ink);}
 
 /* ---------- misc ---------- */
 .flow{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:10px 0;}
-.flow .fbox{background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:6px 10px; font-size:12px; color:var(--ink2); max-width:200px;}
-.flow .farr{color:var(--muted); font-size:14px;}
+.flow .fbox{background:var(--bg); border:1px solid var(--border); border-radius:var(--r-md); padding:6px 10px; font-size:var(--fs-xs); color:var(--ink2); max-width:200px;}
+.flow .farr{color:var(--muted); font-size:var(--fs-md);}
 .flow.economics-dna-flow{flex-wrap:nowrap;overflow-x:auto;align-items:stretch}
-.flow.economics-dna-flow .fbox{flex:1 1 0;min-width:125px;max-width:none;font-size:11px}
+.flow.economics-dna-flow .fbox{flex:1 1 0;min-width:125px;max-width:none;font-size:var(--fs-2xs)}
 .flow.economics-dna-flow .farr{flex:0 0 auto;align-self:center}
 
-.note{background:var(--accent-bg); border:1px solid var(--border); border-radius:10px; padding:10px 14px; font-size:12.5px; color:var(--ink2); margin:10px 0;}
-.warnbox{background:var(--serious-bg); border:1px solid var(--serious); border-radius:10px; padding:10px 14px; font-size:12.5px; color:var(--ink); margin:10px 0;}
+.note{background:var(--accent-bg); border:1px solid var(--border); border-radius:var(--r-lg); padding:10px 14px; font-size:var(--fs-xs); color:var(--ink2); margin:10px 0;}
+.warnbox{background:var(--serious-bg); border:1px solid var(--serious); border-radius:var(--r-lg); padding:10px 14px; font-size:var(--fs-xs); color:var(--ink); margin:10px 0;}
 
 /* Placeholder while a market's dashboard chunk loads. Bars rather than a
    spinner: it says content is coming and roughly what shape, which a spinner
    does not. Only visible on a cold load — marketPage.js waits 120ms before
    mounting it, which a warm import beats. */
 .dash-skeleton{margin:14px 0;}
-.dash-skeleton .sk-bar{height:74px; border-radius:10px; margin-bottom:10px;
+.dash-skeleton .sk-bar{height:74px; border-radius:var(--r-lg); margin-bottom:10px;
   background:linear-gradient(90deg, var(--card-bg) 25%, var(--line) 37%, var(--card-bg) 63%);
   background-size:400% 100%; animation:sk-shimmer 1.4s ease-in-out infinite;}
 .dash-skeleton .sk-bar:nth-child(2){height:190px;}
@@ -110,19 +110,19 @@ tr:last-child td{border-bottom:none;}
 @media(prefers-reduced-motion:reduce){
   .dash-skeleton .sk-bar{animation:none; background:var(--card-bg); border:1px solid var(--line);}
 }
-.reco{background:var(--good-bg); border:1px solid var(--good); border-radius:10px; padding:12px 14px; font-size:13px; margin:10px 0;}
-.inp{border:1px solid var(--border); background:var(--bg); color:var(--ink); border-radius:7px; padding:5px 8px; font-size:12.5px; font-family:inherit; width:100%; font-variant-numeric:tabular-nums;}
+.reco{background:var(--good-bg); border:1px solid var(--good); border-radius:var(--r-lg); padding:12px 14px; font-size:var(--fs-sm); margin:10px 0;}
+.inp{border:1px solid var(--border); background:var(--bg); color:var(--ink); border-radius:var(--r-md); padding:5px 8px; font-size:var(--fs-xs); font-family:inherit; width:100%; font-variant-numeric:tabular-nums;}
 .inp:focus{outline:2px solid var(--s1); outline-offset:0;}
 .frm{display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:8px 12px; margin:10px 0;}
-.frm label{font-size:11px; color:var(--muted); display:block;}
+.frm label{font-size:var(--fs-2xs); color:var(--muted); display:block;}
 details{margin:8px 0;}
-details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink2); padding:4px 0;}
-.footer{margin-top:30px; border-top:1px solid var(--border); padding-top:14px; font-size:11.5px; color:var(--muted);}
+details summary{cursor:pointer; font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--ink2); padding:4px 0;}
+.footer{margin-top:30px; border-top:1px solid var(--border); padding-top:14px; font-size:var(--fs-2xs); color:var(--muted);}
 .actions li{margin:8px 0 8px 18px; color:var(--ink2);}
-.actions .trig{display:block; font-size:11.5px; color:var(--muted); margin-top:2px;}
+.actions .trig{display:block; font-size:var(--fs-2xs); color:var(--muted); margin-top:2px;}
 .case{border-left:3px solid var(--s1); padding:2px 0 2px 12px; margin:12px 0;}
-.case h4{font-size:13px; margin-bottom:3px;}
-.case p{font-size:12.5px; color:var(--ink2);}
+.case h4{font-size:var(--fs-sm); margin-bottom:3px;}
+.case p{font-size:var(--fs-xs); color:var(--ink2);}
 /* ---------- Kemerton underwriting extensions ---------- */
 .badge.final{border-color:var(--good);color:var(--good);background:var(--good-bg)}
 .badge.draft{border-color:var(--warn);color:var(--warn);background:var(--warn-bg)}
@@ -131,27 +131,27 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 .badge.contract{border-color:var(--good);color:var(--good)}
 .badge.superseded{border-color:var(--muted);color:var(--muted);text-decoration:line-through}
 .threshold{position:relative;margin:14px 4px 8px;padding-top:34px}
-.threshold-track{height:12px;border-radius:7px;background:linear-gradient(90deg,var(--good-bg),var(--warn-bg) 65%,var(--critical-bg));border:1px solid var(--border);position:relative}
-.threshold-fill{position:absolute;left:0;top:0;height:100%;border-radius:7px;background:var(--s1);opacity:.45}
-.threshold-mark{position:absolute;top:-29px;transform:translateX(-50%);font-size:10.5px;color:var(--ink2);text-align:center;white-space:nowrap}
+.threshold-track{height:12px;border-radius:var(--r-md);background:linear-gradient(90deg,var(--good-bg),var(--warn-bg) 65%,var(--critical-bg));border:1px solid var(--border);position:relative}
+.threshold-fill{position:absolute;left:0;top:0;height:100%;border-radius:var(--r-md);background:var(--s1);opacity:.45}
+.threshold-mark{position:absolute;top:-29px;transform:translateX(-50%);font-size:var(--fs-micro);color:var(--ink2);text-align:center;white-space:nowrap}
 .threshold-mark::after{content:"";position:absolute;left:50%;top:24px;width:1px;height:20px;background:var(--ink2)}
-.threshold-mark.asset{font-weight:700;color:var(--s1);top:-45px}
+.threshold-mark.asset{font-weight:var(--fw-bold);color:var(--s1);top:-45px}
 .threshold-mark.asset::after{width:3px;background:var(--s1)}
 .waterfall-list{display:grid;gap:7px;margin-top:10px}
-.wf-row{display:grid;grid-template-columns:minmax(210px,1fr) 110px minmax(180px,1.2fr);gap:10px;align-items:center;font-size:12px;padding:5px 0;border-bottom:1px solid var(--grid)}
-.wf-row:last-child{border-bottom:none}.wf-row .v{text-align:right;font-weight:650;color:var(--ink)}
+.wf-row{display:grid;grid-template-columns:minmax(210px,1fr) 110px minmax(180px,1.2fr);gap:10px;align-items:center;font-size:var(--fs-xs);padding:5px 0;border-bottom:1px solid var(--grid)}
+.wf-row:last-child{border-bottom:none}.wf-row .v{text-align:right;font-weight:var(--fw-medium);color:var(--ink)}
 .source-drawer{margin-top:10px;border-top:1px solid var(--grid);padding-top:6px}
-.source-drawer summary{font-size:11.5px;color:var(--muted)}
+.source-drawer summary{font-size:var(--fs-2xs);color:var(--muted)}
 .source-list{display:grid;gap:10px;margin-top:8px}
 .source-list-item{padding-top:10px;border-top:1px solid var(--grid)}
 .source-list-item:first-child{padding-top:0;border-top:0}
-.metric-note-ref{margin-left:2px;color:var(--s1);font-size:9px;vertical-align:super}
+.metric-note-ref{margin-left:2px;color:var(--s1);font-size:var(--fs-micro);vertical-align:super}
 .metric-footnotes{
   margin-top:16px;
   padding:10px 12px;
   border-top:1px solid var(--grid);
   color:var(--muted);
-  font-size:10.5px;
+  font-size:var(--fs-micro);
   line-height:1.55;
 }
 .metric-footnotes p{margin:2px 0}
@@ -171,7 +171,7 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 .geo-grid-map.compact .geo-map-shell{grid-template-columns:minmax(0,1fr) minmax(185px,220px);min-height:340px}
 .geo-grid-map.compact .geo-map-pane svg{min-height:340px}
 .geo-grid-map.compact .geo-map-detail{padding:12px 10px;max-height:340px;overflow:auto}
-.geo-grid-map.compact .geo-map-detail h4{font-size:14px}
+.geo-grid-map.compact .geo-map-detail h4{font-size:var(--fs-md)}
 .geo-grid-map.compact .geo-detail-type{margin-bottom:8px}
 .geo-grid-map.compact .geo-detail-section{margin-top:8px;padding-top:8px}
 .geo-grid-map.compact .geo-map-scope{display:none}
@@ -183,37 +183,37 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   .geo-grid-map.compact .geo-map-shell{grid-template-columns:1fr}
   .geo-grid-map.compact .geo-map-detail{max-height:none}
 }
-.source-grid{display:grid;grid-template-columns:130px 1fr;gap:5px 10px;font-size:11.5px;color:var(--ink2);margin-top:6px}
+.source-grid{display:grid;grid-template-columns:130px 1fr;gap:5px 10px;font-size:var(--fs-2xs);color:var(--ink2);margin-top:6px}
 .source-grid b{color:var(--ink)}
 .status-ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:7px;margin:10px 0}
-.status-step{border:1px solid var(--border);border-radius:9px;background:var(--bg);padding:9px 10px;font-size:11.5px}
+.status-step{border:1px solid var(--border);border-radius:var(--r-md);background:var(--bg);padding:9px 10px;font-size:var(--fs-2xs)}
 .status-step b{display:block;color:var(--ink);margin-bottom:3px}.status-step span{color:var(--ink2)}
 .ic-summary{border-left:4px solid var(--serious);background:var(--serious-bg);padding:12px 14px;border-radius:0 10px 10px 0;margin:12px 0}
 
 /* ---------- decision-logic footnotes (one under every chart / stat block) ---------- */
-.why{margin:9px 0 2px;padding:8px 11px 8px 13px;border-left:3px solid var(--s1);background:var(--accent-bg);border-radius:0 8px 8px 0;font-size:11.5px;line-height:1.55;color:var(--ink2)}
-.why b{color:var(--ink);font-weight:650}
-.why .sig{display:inline-block;margin-left:6px;padding:1px 6px;border:1px solid var(--border);border-radius:20px;font-size:10px;color:var(--muted);white-space:nowrap}
+.why{margin:9px 0 2px;padding:8px 11px 8px 13px;border-left:3px solid var(--s1);background:var(--accent-bg);border-radius:0 8px 8px 0;font-size:var(--fs-2xs);line-height:1.55;color:var(--ink2)}
+.why b{color:var(--ink);font-weight:var(--fw-medium)}
+.why .sig{display:inline-block;margin-left:6px;padding:1px 6px;border:1px solid var(--border);border-radius:var(--r-pill);font-size:var(--fs-micro);color:var(--muted);white-space:nowrap}
 .badge.supp{border-color:var(--s3);color:var(--s3)}
 .badge.nem{border-color:var(--s6);color:var(--s6)}
 .badge.public{border-color:var(--s2);color:var(--s2)}
 /* ---------- market-structure blocks (players, exit routes, holders) ---------- */
 .player-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:9px;margin:10px 0}
-.player{border:1px solid var(--border);border-radius:10px;background:var(--bg);padding:10px 11px}
-.player .ptype{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-.player h4{font-size:13px;margin:3px 0 4px}
-.player .pmet{font-size:12px;font-weight:650;color:var(--s1);font-variant-numeric:tabular-nums}
-.player p{font-size:11.5px;color:var(--ink2);margin-top:4px}
-.exit{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:start;padding:9px 0;border-bottom:1px solid var(--grid);font-size:12.5px}
+.player{border:1px solid var(--border);border-radius:var(--r-lg);background:var(--bg);padding:10px 11px}
+.player .ptype{font-size:var(--fs-micro);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.player h4{font-size:var(--fs-sm);margin:3px 0 4px}
+.player .pmet{font-size:var(--fs-xs);font-weight:var(--fw-medium);color:var(--s1);font-variant-numeric:tabular-nums}
+.player p{font-size:var(--fs-2xs);color:var(--ink2);margin-top:4px}
+.exit{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:start;padding:9px 0;border-bottom:1px solid var(--grid);font-size:var(--fs-xs)}
 .exit:last-child{border-bottom:none}
-.exit .ename{font-weight:650;color:var(--ink)}
-.exit .ecase{font-size:11.5px;color:var(--muted);margin-top:3px}
+.exit .ename{font-weight:var(--fw-medium);color:var(--ink)}
+.exit .ecase{font-size:var(--fs-2xs);color:var(--muted);margin-top:3px}
 .cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
-.cmp>div{border:1px solid var(--border);border-radius:10px;padding:11px 12px;background:var(--bg)}
-.cmp .cmp-h{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:5px}
-.cmp .cmp-v{font-size:19px;font-weight:650;font-variant-numeric:tabular-nums}
-.cmp .cmp-s{font-size:11.5px;color:var(--ink2);margin-top:3px}
-@media (max-width:760px){.wf-row{grid-template-columns:1fr}.wf-row .v{text-align:left}.source-grid{grid-template-columns:1fr}.threshold-mark{font-size:9px}.exit{grid-template-columns:1fr}.cmp{grid-template-columns:1fr}}
+.cmp>div{border:1px solid var(--border);border-radius:var(--r-lg);padding:11px 12px;background:var(--bg)}
+.cmp .cmp-h{font-size:var(--fs-2xs);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:5px}
+.cmp .cmp-v{font-size:var(--fs-xl);font-weight:var(--fw-medium);font-variant-numeric:tabular-nums}
+.cmp .cmp-s{font-size:var(--fs-2xs);color:var(--ink2);margin-top:3px}
+@media (max-width:760px){.wf-row{grid-template-columns:1fr}.wf-row .v{text-align:left}.source-grid{grid-template-columns:1fr}.threshold-mark{font-size:var(--fs-micro)}.exit{grid-template-columns:1fr}.cmp{grid-template-columns:1fr}}
 @media (max-width:640px){ .score-row .sr-lbl{flex-basis:130px;} .g2{grid-template-columns:1fr;} }
 
 /* ---------- regional-lens badges (multi-region markets) ----------
@@ -228,7 +228,7 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 .geo-grid-map{
   margin-top:10px;
   border:1px solid var(--border);
-  border-radius:14px;
+  border-radius:var(--r-lg);
   overflow:hidden;
   background:var(--bg);
 }
@@ -259,8 +259,8 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 .geo-layer-group legend{
   float:left;
   margin:7px 2px 0 0;
-  font-size:10.5px;
-  font-weight:650;
+  font-size:var(--fs-micro);
+  font-weight:var(--fw-medium);
   color:var(--muted);
   text-transform:uppercase;
   letter-spacing:.05em;
@@ -270,18 +270,18 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   align-items:center;
   gap:5px;
   border:1px solid var(--border);
-  border-radius:999px;
+  border-radius:var(--r-pill);
   padding:5px 8px;
   background:var(--bg);
   color:var(--ink2);
-  font-size:11px;
+  font-size:var(--fs-2xs);
   cursor:pointer;
 }
 .geo-layer-toggle input{width:14px;height:14px;margin:0;accent-color:var(--s1)}
 .geo-layer-toggle span{width:7px;height:7px;border-radius:50%;background:var(--muted)}
 .geo-layer-toggle.node span{background:var(--s1)}
 .geo-layer-toggle.generation span{background:var(--s2)}
-.geo-layer-toggle.load span{background:var(--s6);border-radius:2px}
+.geo-layer-toggle.load span{background:var(--s6);border-radius:var(--r-xs)}
 .geo-layer-toggle.route span{background:var(--s5);width:11px;height:2px;border-radius:0}
 .geo-map-context{
   display:grid;
@@ -291,24 +291,24 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   padding:12px 14px;
   border-bottom:1px solid var(--grid);
   background:var(--accent-bg);
-  font-size:12px;
+  font-size:var(--fs-xs);
 }
 .geo-context-kicker{
   color:var(--s1);
-  font-size:10.5px;
-  font-weight:700;
+  font-size:var(--fs-micro);
+  font-weight:var(--fw-bold);
   text-transform:uppercase;
   letter-spacing:.06em;
 }
-.geo-map-context b{font-size:12.5px;line-height:1.45}
+.geo-map-context b{font-size:var(--fs-xs);line-height:1.45}
 .geo-map-context p{margin:0;color:var(--ink2);line-height:1.45}
 .geo-map-toolbar{padding:8px 12px 0}
 .geo-map-toolbar label{
   display:flex;
   align-items:center;
   gap:9px;
-  font-size:10.5px;
-  font-weight:650;
+  font-size:var(--fs-micro);
+  font-weight:var(--fw-medium);
   color:var(--muted);
   text-transform:uppercase;
   letter-spacing:.05em;
@@ -327,7 +327,7 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 }
 .geo-map-pane svg{display:block;width:100%;height:100%;min-height:560px}
 .geo-country{fill:var(--map-land,var(--bg));stroke:var(--map-coast,var(--baseline));stroke-width:1.6;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.geo-region-label{fill:var(--map-coast,var(--muted));stroke:var(--map-land,var(--bg));stroke-width:3px;paint-order:stroke fill;font-size:10px;font-weight:700;letter-spacing:.04em;opacity:.82;pointer-events:none}
+.geo-region-label{fill:var(--map-coast,var(--muted));stroke:var(--map-land,var(--bg));stroke-width:3px;paint-order:stroke fill;font-size:var(--fs-micro);font-weight:var(--fw-bold);letter-spacing:.04em;opacity:.82;pointer-events:none}
 .geo-route{fill:none;stroke:var(--s5);stroke-width:2.5;opacity:.78;cursor:pointer;vector-effect:non-scaling-stroke}
 .geo-route.future{stroke-dasharray:7 5}
 .geo-route:hover,.geo-route.selected{stroke-width:4;opacity:1}
@@ -354,8 +354,8 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
    fetch two megabytes without telling them is not a choice. */
 .geo-detail-toggle-host{display:flex;align-items:center}
 .geo-detail-toggle{
-  display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink2);
-  padding:4px 8px;border:1px solid var(--border);border-radius:8px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-2xs);color:var(--ink2);
+  padding:4px 8px;border:1px solid var(--border);border-radius:var(--r-md);cursor:pointer;
 }
 .geo-detail-toggle:hover{border-color:var(--baseline)}
 
@@ -369,7 +369,7 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 }
 .geo-project.cluster .geo-project-shape{fill:var(--s1);fill-opacity:.9}
 .geo-project-count{
-  font-size:10px;font-weight:700;fill:var(--surface);text-anchor:middle;pointer-events:none;
+  font-size:var(--fs-micro);font-weight:var(--fw-bold);fill:var(--surface);text-anchor:middle;pointer-events:none;
 }
 /* Italy: a zone marker carries a clearing price and deliberately no capacity,
    so it is drawn hollow — it must not read as a sized fleet. */
@@ -377,12 +377,12 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   fill:var(--surface);stroke:var(--s2,#60a5fa);stroke-width:2.6;stroke-dasharray:2 2;
 }
 .geo-project-zone-label{
-  font-size:9.5px;fill:var(--ink2);text-anchor:middle;pointer-events:none;
+  font-size:var(--fs-micro);fill:var(--ink2);text-anchor:middle;pointer-events:none;
 }
 
 /* ---------- pan and zoom (grid tab only) ---------- */
 .geo-zoom-controls{display:inline-flex;gap:4px;margin-left:auto}
-.geo-zoom-btn{min-width:30px;padding:4px 8px;font-weight:650;line-height:1}
+.geo-zoom-btn{min-width:30px;padding:4px 8px;font-weight:var(--fw-medium);line-height:1}
 .geo-map-pane svg{touch-action:none}
 .geo-map-pane svg.panning{cursor:grabbing}
 
@@ -425,17 +425,17 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   max-width:calc(100% - 24px);
   padding:7px 9px;
   border:1px solid var(--border);
-  border-radius:8px;
+  border-radius:var(--r-md);
   background:var(--surface);
   box-shadow:0 2px 10px rgba(0,0,0,.08);
-  font-size:10.5px;
+  font-size:var(--fs-micro);
   color:var(--ink2);
 }
 .geo-map-legend span{display:inline-flex;align-items:center;gap:5px}
 .geo-symbol{display:inline-block;width:8px;height:8px;background:var(--muted);border-radius:50%}
 .geo-symbol.node{background:var(--s1);box-shadow:0 0 0 3px var(--accent-bg)}
 .geo-symbol.generation{background:var(--s2);clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:0}
-.geo-symbol.load{background:var(--s6);border-radius:2px}
+.geo-symbol.load{background:var(--s6);border-radius:var(--r-xs)}
 .geo-symbol.route{width:13px;height:2px;background:var(--s5);border-radius:0}
 .geo-symbol.constraint{background:color-mix(in srgb,var(--critical) 45%,transparent);
   border:1px solid var(--critical);width:10px;height:10px}
@@ -476,14 +476,14 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
   font:700 10px/1.2 system-ui,sans-serif;letter-spacing:.06em;
   text-transform:uppercase;opacity:.72;pointer-events:none}
 .geo-symbol.zone{background:color-mix(in srgb,var(--s6) 16%,transparent);
-  border:1px solid color-mix(in srgb,var(--s6) 55%,transparent);width:11px;height:9px;border-radius:2px}
-.geo-layer-toggle.zone span{width:11px;height:9px;border-radius:2px;
+  border:1px solid color-mix(in srgb,var(--s6) 55%,transparent);width:11px;height:9px;border-radius:var(--r-xs)}
+.geo-layer-toggle.zone span{width:11px;height:9px;border-radius:var(--r-xs);
   background:color-mix(in srgb,var(--s6) 16%,transparent);
   border:1px solid color-mix(in srgb,var(--s6) 55%,transparent)}
 .geo-detail-eyebrow.zone{color:var(--s6)}
-.geo-zone-caveat{margin:8px 0;padding:8px 10px;border-radius:6px;
+.geo-zone-caveat{margin:8px 0;padding:8px 10px;border-radius:var(--r-sm);
   background:var(--accent-bg);border-left:2px solid var(--s6);
-  font-size:11.5px;line-height:1.45;color:var(--ink2)}
+  font-size:var(--fs-2xs);line-height:1.45;color:var(--ink2)}
 
 /* ---- planned-build layer -------------------------------------------------
    The market's network-plan register, drawn on the map. Deliberately styled as
@@ -515,43 +515,43 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 .geo-symbol.plan{width:13px;height:0;border-top:2px dashed var(--s3);background:none;border-radius:0}
 .geo-layer-toggle.plan span{width:11px;height:0;border-radius:0;background:none;
   border-top:2px dashed var(--s3)}
-.geo-metric-period{color:var(--muted);font-size:10.5px}
-.geo-capture-tag,.geo-relief-tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;
-  font-style:normal;font-size:9.5px;font-weight:600;letter-spacing:.02em;
+.geo-metric-period{color:var(--muted);font-size:var(--fs-micro)}
+.geo-capture-tag,.geo-relief-tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:var(--r-pill);
+  font-style:normal;font-size:var(--fs-micro);font-weight:var(--fw-medium);letter-spacing:.02em;
   background:var(--good-bg);color:var(--ink);border:1px solid var(--good)}
 .geo-capture-tag.charges{background:var(--critical-bg);border-color:var(--critical)}
 .geo-capture-tag.neither{background:var(--warn-bg);border-color:var(--warn)}
 .geo-relief-tag{background:var(--accent-bg);border-color:var(--border)}
-.geo-capture-warn{color:var(--critical);font-weight:600}
-.geo-runway{margin-top:5px;font-weight:600}
+.geo-capture-warn{color:var(--critical);font-weight:var(--fw-medium)}
+.geo-runway{margin-top:5px;font-weight:var(--fw-medium)}
 
 .geo-map-detail{padding:18px 16px;background:var(--bg)}
 .geo-detail-eyebrow{
-  font-size:10.5px;
-  font-weight:700;
+  font-size:var(--fs-micro);
+  font-weight:var(--fw-bold);
   color:var(--s1);
   text-transform:uppercase;
   letter-spacing:.06em;
 }
-.geo-map-detail h4{font-size:18px;margin:5px 0 3px;line-height:1.25}
-.geo-detail-type{font-size:11px;color:var(--muted);margin-bottom:18px}
-.geo-detail-facts{display:grid;gap:0;margin:12px 0 2px;border:1px solid var(--grid);border-radius:8px;background:var(--surface);overflow:hidden}
+.geo-map-detail h4{font-size:var(--fs-lg);margin:5px 0 3px;line-height:1.25}
+.geo-detail-type{font-size:var(--fs-2xs);color:var(--muted);margin-bottom:18px}
+.geo-detail-facts{display:grid;gap:0;margin:12px 0 2px;border:1px solid var(--grid);border-radius:var(--r-md);background:var(--surface);overflow:hidden}
 .geo-detail-facts>div{display:grid;grid-template-columns:minmax(88px,.7fr) minmax(0,1.3fr);gap:9px;padding:8px 9px;border-top:1px solid var(--grid)}
 .geo-detail-facts>div:first-child{border-top:0}
-.geo-detail-facts dt{font-size:9.5px;line-height:1.35;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.035em}
-.geo-detail-facts dd{margin:0;font-size:11.5px;line-height:1.42;color:var(--ink);overflow-wrap:anywhere}
+.geo-detail-facts dt{font-size:var(--fs-micro);line-height:1.35;font-weight:var(--fw-bold);color:var(--muted);text-transform:uppercase;letter-spacing:.035em}
+.geo-detail-facts dd{margin:0;font-size:var(--fs-2xs);line-height:1.42;color:var(--ink);overflow-wrap:anywhere}
 .geo-detail-section{margin-top:14px;padding-top:13px;border-top:1px solid var(--grid)}
-.geo-detail-section span{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.geo-detail-section p{font-size:12.5px;line-height:1.55;color:var(--ink2);margin:5px 0 0}
+.geo-detail-section span{font-size:var(--fs-micro);font-weight:var(--fw-bold);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.geo-detail-section p{font-size:var(--fs-xs);line-height:1.55;color:var(--ink2);margin:5px 0 0}
 .geo-detail-section.investor{border-left:3px solid var(--s1);padding:10px 0 0 11px}
 .geo-detail-section.investor p{color:var(--ink)}
 .geo-detail-section.organisations{margin-top:12px}
 .geo-company-list{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.geo-company-list i{padding:4px 7px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:10.5px;font-style:normal;line-height:1.2;color:var(--ink2)}
-.geo-detail-section p.geo-company-caveat{margin-top:7px;font-size:10.5px;color:var(--muted)}
-.geo-source-link{display:inline-block;margin-top:18px;font-size:11px;line-height:1.4}
-.geo-empty{font-size:12.5px;color:var(--muted)}
-.geo-map-scope{padding:10px 12px;border-top:1px solid var(--grid);background:var(--surface);font-size:10.5px;line-height:1.5;color:var(--muted)}
+.geo-company-list i{padding:4px 7px;border:1px solid var(--border);border-radius:var(--r-pill);background:var(--surface);font-size:var(--fs-micro);font-style:normal;line-height:1.2;color:var(--ink2)}
+.geo-detail-section p.geo-company-caveat{margin-top:7px;font-size:var(--fs-micro);color:var(--muted)}
+.geo-source-link{display:inline-block;margin-top:18px;font-size:var(--fs-2xs);line-height:1.4}
+.geo-empty{font-size:var(--fs-xs);color:var(--muted)}
+.geo-map-scope{padding:10px 12px;border-top:1px solid var(--grid);background:var(--surface);font-size:var(--fs-micro);line-height:1.5;color:var(--muted)}
 .geo-map-scope b{color:var(--ink2)}
 @media (max-width:900px){
   .geo-map-controls{flex-direction:column}
@@ -563,7 +563,7 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 }
 @media (max-width:560px){
   .geo-period-group{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
-  .geo-period-btn{padding:6px 5px;font-size:11px}
+  .geo-period-btn{padding:6px 5px;font-size:var(--fs-2xs)}
   .geo-layer-group legend{width:100%;float:none}
   .geo-map-toolbar label{align-items:flex-start;flex-direction:column}
   .geo-location-select{max-width:100%;min-width:0}
@@ -585,12 +585,12 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
 .pipe-totals{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 10px}
 .pipe-total{
   display:flex;align-items:baseline;gap:8px;padding:6px 10px;
-  background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:12px;
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);font-size:var(--fs-xs);
 }
-.pipe-total .l{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.03em}
-.pipe-total b{font-size:14px}
+.pipe-total .l{color:var(--muted);font-size:var(--fs-micro);text-transform:uppercase;letter-spacing:.03em}
+.pipe-total b{font-size:var(--fs-md)}
 .pipe-total .e{color:var(--ink2)}
-.pipe-table{font-size:12.5px}
+.pipe-table{font-size:var(--fs-xs)}
 .pipe-table td.num{font-variant-numeric:tabular-nums}
 .pipe-table td.muted{color:var(--muted);font-style:italic}
 
@@ -599,26 +599,26 @@ details summary{cursor:pointer; font-size:13px; font-weight:600; color:var(--ink
    SVG diagram: this reflows on a phone, prints, and is readable in order by a
    screen reader, none of which hand-positioned SVG does. */
 .deal-structure{margin:10px 0;}
-.ds-node{border:1px solid var(--line); border-radius:9px; padding:8px 10px; margin:6px 0; background:var(--card-bg);}
+.ds-node{border:1px solid var(--line); border-radius:var(--r-md); padding:8px 10px; margin:6px 0; background:var(--card-bg);}
 .ds-node.depth-1{margin-left:14px;} .ds-node.depth-2{margin-left:28px;} .ds-node.depth-3{margin-left:42px;}
-.ds-role{font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted);}
-.ds-name{font-size:13px; font-weight:600; color:var(--ink); margin-top:2px;}
-.ds-note{font-size:11.5px; color:var(--ink2); margin-top:3px;}
-.ds-edge{font-size:11px; color:var(--muted); margin:4px 0 0 14px;}
+.ds-role{font-size:var(--fs-micro); text-transform:uppercase; letter-spacing:.04em; color:var(--muted);}
+.ds-name{font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--ink); margin-top:2px;}
+.ds-note{font-size:var(--fs-2xs); color:var(--ink2); margin-top:3px;}
+.ds-edge{font-size:var(--fs-2xs); color:var(--muted); margin:4px 0 0 14px;}
 .ds-edge::before{content:'└ '; opacity:.6;}
 
 /* The base cell is the point of a sensitivity grid: without it the table says
    which combinations were tested, not which one is being proposed. */
-.sens-grid td.sens-base{background:var(--good-bg); font-weight:700; color:var(--ink);
+.sens-grid td.sens-base{background:var(--good-bg); font-weight:var(--fw-bold); color:var(--ink);
   outline:1.5px solid var(--good); outline-offset:-1.5px;}
 
 /* Dossier cards on a market's Portfolio tab. Present only in a development
    build with local-data/dossiers/ populated; a published build renders the
    withheld card instead and these rules match nothing. */
 .dossier-list{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; margin-top:10px;}
-.dossier-card{display:block; border:1px solid var(--border); border-radius:10px; padding:11px 13px;
+.dossier-card{display:block; border:1px solid var(--border); border-radius:var(--r-lg); padding:11px 13px;
   background:var(--bg); text-decoration:none; color:inherit;}
 .dossier-card:hover{border-color:var(--s1); background:var(--accent-bg); text-decoration:none;}
-.dc-name{font-size:13.5px; font-weight:650; color:var(--ink);}
-.dc-sub{font-size:11.5px; color:var(--muted); margin-top:3px;}
-.dc-headline{font-size:12px; color:var(--ink2); margin-top:6px;}
+.dc-name{font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--ink);}
+.dc-sub{font-size:var(--fs-2xs); color:var(--muted); margin-top:3px;}
+.dc-headline{font-size:var(--fs-xs); color:var(--ink2); margin-top:6px;}

@@ -79,14 +79,14 @@ function B(parent, b){
     case 'warn':   parent.append(h('div', { class: 'warnbox' }, L(b.text))); break;
     case 'proto':  parent.append(h('div', { class: 'proto' }, L(b.text))); break;
     case 'band-story': parent.append(h('div', { class: 'story-band' }, h('b', {}, L(b.b)), h('p', {}, L(b.text)))); break;
-    case 'p':      parent.append(h('div', { style: 'font-size:12.5px;color:var(--ink2);margin:8px 0;' }, L(b.text))); break;
+    case 'p':      parent.append(h('div', { style: 'font-size:var(--fs-xs);color:var(--ink2);margin:8px 0;' }, L(b.text))); break;
     case 'cap':    parent.append(h('div', { class: 'cap' }, L(b.text))); break;
-    case 'sub':    parent.append(h('div', { style: 'font-size:11.5px;color:var(--muted);margin:8px 0 4px;' }, L(b.text))); break;
+    case 'sub':    parent.append(h('div', { style: 'font-size:var(--fs-2xs);color:var(--muted);margin:8px 0 4px;' }, L(b.text))); break;
     case 'chip':   parent.append(h('div', { style: 'margin:8px 0;' }, chip(b.cls, L(b.text)))); break;
     case 'why':    parent.append(why(b.text, b.sig)); break;
     case 'flow':
       parent.append(h('div', { class: 'flow' }, b.items.flatMap((x, i) => {
-        const box = h('span', { class: 'fbox', style: (i === b.items.length - 1 && b.strongLast !== false) ? 'border-color:var(--s1);font-weight:600;' : '' }, L(x));
+        const box = h('span', { class: 'fbox', style: (i === b.items.length - 1 && b.strongLast !== false) ? 'border-color:var(--s1);font-weight:var(--fw-medium);' : '' }, L(x));
         return i === 0 ? [box] : [h('span', { class: 'farr' }, b.sep || '→'), box];
       })));
       break;
@@ -137,7 +137,7 @@ function B(parent, b){
         h('div', {}, L(r.l)), h('div', { class: 'v' }, r.v), h('div', {}, L(r.n))))));
       break;
     case 'ic':
-      parent.append(h('div', { class: 'ic-summary' }, h('b', {}, L(b.b)), h('div', { style:'margin-top:5px;font-size:12.5px;color:var(--ink2)' }, L(b.text))));
+      parent.append(h('div', { class: 'ic-summary' }, h('b', {}, L(b.b)), h('div', { style:'margin-top:5px;font-size:var(--fs-xs);color:var(--ink2)' }, L(b.text))));
       break;
     case 'src': parent.append(sourceDrawer(b.src, b.use)); break;
     case 'geo-grid-map': renderGeographicGridMap(parent, b.data); break;

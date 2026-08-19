@@ -38,10 +38,10 @@ function renderOptimizer(main){
 
   // ---- controls ----
   const scnBtns = h('div', { style: 'display:flex;gap:6px;flex-wrap:wrap;align-items:center;' },
-    h('span', { style: 'font-size:12px;color:var(--muted);margin-right:2px;' }, L(['RCM scenario:', 'RCM情景：'])),
+    h('span', { style: 'font-size:var(--fs-xs);color:var(--muted);margin-right:2px;' }, L(['RCM scenario:', 'RCM情景：'])),
     ...['HIGH', 'BASE', 'LOW', 'CUSTOM'].map(k => h('button', { class: 'btn' + (scn === k ? ' active' : ''), onclick: () => { state.rcmScn = k; render(); } }, L(OPT.scnLabel[k]))));
   const stratBtns = h('div', { style: 'display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;' },
-    h('span', { style: 'font-size:12px;color:var(--muted);margin-right:2px;' }, L(['Strategy:', '策略：'])),
+    h('span', { style: 'font-size:var(--fs-xs);color:var(--muted);margin-right:2px;' }, L(['Strategy:', '策略：'])),
     ...OPT.stratOrder.map(k => h('button', { class: 'btn' + (strat === k ? ' active' : ''), onclick: () => { state.optStrat = k; render(); } }, L(OPT.strat[k].n))));
   main.append(h('div', { class: 'card' }, scnBtns, stratBtns,
     h('div', { class: 'cap', style: 'margin-top:8px;' }, L(['Rule vintage: ESM Rules (current effective) · WEM Procedures (current) · Capacity Year ' + state.codYear + ' · calculation: simplified / indicative. Project inputs are the WA reference configuration. To retype economic assumptions and price a capital structure, use the dedicated Investment Lab page.',
@@ -173,7 +173,7 @@ function renderOptimizer(main){
   const cExp = card(['StrategyExplanationCard', '策略解读卡'], [badge('illus'), statusBadge(false)]);
   cExp.append(h('div', { style: 'margin:4px 0 8px;' }, chip(scn === 'HIGH' ? 'good' : scn === 'LOW' ? 'serious' : 'info', L(OPT.scnLabel[scn])), ' ', chip('info', L(m.st.n))));
   optExplanation(scn, strat, m, inp).forEach(x => cExp.append(
-    h('div', { style: 'margin:8px 0;' }, h('div', { style: 'font-size:12px;font-weight:650;margin-bottom:2px;' }, L(x.h)), h('div', { style: 'font-size:12.5px;color:var(--ink2);' }, L(x.b)))));
+    h('div', { style: 'margin:8px 0;' }, h('div', { style: 'font-size:var(--fs-xs);font-weight:var(--fw-medium);margin-bottom:2px;' }, L(x.h)), h('div', { style: 'font-size:var(--fs-xs);color:var(--ink2);' }, L(x.b)))));
   g3.append(cExp);
   main.append(g3);
 
@@ -239,7 +239,7 @@ function renderOptimizer(main){
   ];
   const cVal = card(['No-double-counting validation (spec §11.2 / §15.2)', '防重复计算校验（规范§11.2/§15.2）'], [statusBadge(false)]);
   cVal.append(h('div', { style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 16px;margin-top:6px;' },
-    checks.map(c => h('div', { style: 'font-size:12.5px;color:var(--ink2);' }, chip('good', '✓'), ' ', L(c)))));
+    checks.map(c => h('div', { style: 'font-size:var(--fs-xs);color:var(--ink2);' }, chip('good', '✓'), ' ', L(c)))));
   cVal.append(h('div', { class: 'reco', style: 'margin-top:12px;' }, h('b', {}, L(['Investment message: ', '投资要义：'])),
     L(['In the WEM, RCM is the asset\'s reliability and availability envelope, not a separate five-minute trading product. The optimizer co-optimises Energy and FCESS within that envelope. When RCM value is high, preserving SOC and avoiding refunds can be worth more than a moderate merchant spread; when RCM value is low, surplus MWh can be used more aggressively — but Capacity Credit obligations already held remain binding. The Lab separates RCM market assumptions from daily optimizer strategy and quantifies both.',
        '在西澳WEM中，RCM是资产的可靠性与可用性边界，而非独立的五分钟交易产品。优化商在该边界内协同优化现货与FCESS。当RCM价值高时，保留SOC并避免退款的价值可能高于中等现货价差；当RCM价值低时，富余MWh可更积极使用 — 但已持有的容量信用义务仍然有效。本模块将RCM市场假设与日常优化策略分开，并分别量化两者的贡献。'])));

@@ -23,13 +23,13 @@ function bandChart(parent, cfg){
   for (const z of (cfg.zones || [])){
     const x1 = X(Math.max(0, z.from - 0.5)), x2 = X(Math.min(n - 1, z.to + 0.5));
     if (z.from > 0) svg.append(S('rect', { x: x1, y: padT, width: Math.max(0, x2 - x1), height: plotH, fill: 'var(--muted)', opacity: 0.06 }));
-    svg.append(axisText((x1 + x2) / 2, padT - 8, L(z.label), 'middle', 9.5));
+    svg.append(axisText((x1 + x2) / 2, padT - 8, L(z.label), 'middle', 'var(--fs-micro)'));
   }
   for (const tv of ticks){
     svg.append(S('line', { x1: padL, x2: W - padR, y1: Y(tv), y2: Y(tv), stroke: 'var(--grid)', 'stroke-width': 1 }));
     svg.append(axisText(padL - 8, Y(tv) + 3.5, yf(tv), 'end'));
   }
-  xs.forEach((x, i) => svg.append(axisText(X(i), H - 12, x, 'middle', 9.5)));
+  xs.forEach((x, i) => svg.append(axisText(X(i), H - 12, x, 'middle', 'var(--fs-micro)')));
   const linePath = arr => arr.map((v, i) => (i ? 'L' : 'M') + X(i) + ',' + Y(v)).join(' ');
   let poly = ''; for (let i = 0; i < n; i++) poly += (i ? 'L' : 'M') + X(i) + ',' + Y(cfg.high[i]);
   for (let i = n - 1; i >= 0; i--) poly += 'L' + X(i) + ',' + Y(cfg.low[i]);
@@ -40,13 +40,13 @@ function bandChart(parent, cfg){
   if (cfg.official != null){
     svg.append(S('circle', { cx: X(cfg.official.i), cy: Y(cfg.official.y), r: 6, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 1.6 }));
     svg.append(S('circle', { cx: X(cfg.official.i), cy: Y(cfg.official.y), r: 3, fill: 'var(--ink)' }));
-    svg.append(axisText(X(cfg.official.i) + 8, Y(cfg.official.y) - 8, L(['official', '官方']), 'start', 10));
+    svg.append(axisText(X(cfg.official.i) + 8, Y(cfg.official.y) - 8, L(['official', '官方']), 'start', 'var(--fs-micro)'));
   }
   const ei = n - 1;
   svg.append(S('circle', { cx: X(ei), cy: Y(cfg.base[ei]), r: 4.5, fill: cfg.color || 'var(--s1)', stroke: 'var(--surface)', 'stroke-width': 2 }));
-  svg.append(axisText(W - padR + 4, Y(cfg.base[ei]) + 3.5, yf(cfg.base[ei]), 'start', 10.5));
-  svg.append(axisText(W - padR + 4, Y(cfg.high[ei]) + 3.5, yf(cfg.high[ei]), 'start', 9.5));
-  svg.append(axisText(W - padR + 4, Y(cfg.low[ei]) + 3.5, yf(cfg.low[ei]), 'start', 9.5));
+  svg.append(axisText(W - padR + 4, Y(cfg.base[ei]) + 3.5, yf(cfg.base[ei]), 'start', 'var(--fs-micro)'));
+  svg.append(axisText(W - padR + 4, Y(cfg.high[ei]) + 3.5, yf(cfg.high[ei]), 'start', 'var(--fs-micro)'));
+  svg.append(axisText(W - padR + 4, Y(cfg.low[ei]) + 3.5, yf(cfg.low[ei]), 'start', 'var(--fs-micro)'));
   const cross = S('line', { y1: padT, y2: padT + plotH, stroke: 'var(--baseline)', 'stroke-width': 1, visibility: 'hidden' });
   svg.append(cross);
   const ov = S('rect', { x: padL, y: padT, width: plotW, height: plotH, fill: 'transparent' });

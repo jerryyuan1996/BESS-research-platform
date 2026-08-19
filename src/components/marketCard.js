@@ -49,7 +49,7 @@ export function marketCard(market, result, scenarios){
       chip('serious', ['Screening only', '仅供筛选']),
       chip(CONSENSUS_CHIP[profile.consensus.status] || 'info',
         CONSENSUS[profile.consensus.status] || ['Review', '复核']),
-      h('span', { style: 'font-size:11.5px;color:var(--ink2);' },
+      h('span', { style: 'font-size:var(--fs-2xs);color:var(--ink2);' },
         L(['Evidence ', '证据 ']) + profile.confidenceScore + '/10')),
     h('div', { class: 'mstats mstats-single' },
       stat(['Base / Bull IRR', '基准/乐观IRR'], scenarioLine)),

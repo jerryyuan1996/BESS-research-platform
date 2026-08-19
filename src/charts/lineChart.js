@@ -28,7 +28,7 @@ function lineChart(parent, cfg){
   xs.forEach((x, i) => svg.append(axisText(X(i), H - 10, x)));
   for (const r of (cfg.refs || [])){
     svg.append(S('line', { x1: padL, x2: W - padR, y1: Y(r.y), y2: Y(r.y), stroke: r.color || 'var(--muted)', 'stroke-width': 1.2, 'stroke-dasharray': '2 3' }));
-    svg.append(axisText(W - padR, Y(r.y) - 4, L(r.label), 'end', 10));
+    svg.append(axisText(W - padR, Y(r.y) - 4, L(r.label), 'end', 'var(--fs-micro)'));
   }
   const cross = S('line', { y1: padT, y2: padT + plotH, stroke: 'var(--baseline)', 'stroke-width': 1, visibility: 'hidden' });
   svg.append(cross);
@@ -51,7 +51,7 @@ function lineChart(parent, cfg){
     const s = cfg.series[a.si], v = s.vals[a.i];
     if (v == null) continue;
     svg.append(S('circle', { cx: X(a.i), cy: Y(v), r: 5.5, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 1.4 }));
-    svg.append(axisText(X(a.i), Y(v) - 10, a.text, a.i > n / 2 ? 'end' : 'start', 10.5));
+    svg.append(axisText(X(a.i), Y(v) - 10, a.text, a.i > n / 2 ? 'end' : 'start', 'var(--fs-micro)'));
   }
   const ov = S('rect', { x: padL, y: padT, width: plotW, height: plotH, fill: 'transparent' });
   ov.addEventListener('mousemove', ev => {
@@ -63,7 +63,7 @@ function lineChart(parent, cfg){
     let html = `<b>${xs[bi]}</b>`;
     for (const s of cfg.series){
       const v = s.vals[bi];
-      html += `<div class="tr"><span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${s.color};margin-right:5px"></span>${L(s.name)}</span><b>${v == null ? '—' : (cfg.yfmt || fmtN)(v)}</b></div>`;
+      html += `<div class="tr"><span><span style="display:inline-block;width:8px;height:8px;border-radius:var(--r-xs);background:${s.color};margin-right:5px"></span>${L(s.name)}</span><b>${v == null ? '—' : (cfg.yfmt || fmtN)(v)}</b></div>`;
     }
     tipShow(html, ev);
   });
@@ -72,7 +72,7 @@ function lineChart(parent, cfg){
   const wrap = h('div', { class: 'chart' });
   wrap.append(svg);
   const lg = legendRow(cfg.series); if (lg) wrap.append(lg);
-  if (cfg.series.some(s => s.dash)) wrap.append(h('div', { style: 'font-size:10.5px;color:var(--muted);margin-top:3px;' },
+  if (cfg.series.some(s => s.dash)) wrap.append(h('div', { style: 'font-size:var(--fs-micro);color:var(--muted);margin-top:3px;' },
     L(['* dashed = illustrative', '* 虚线 = 示例数据'])));
   parent.append(wrap);
   return wrap;

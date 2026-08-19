@@ -25,23 +25,23 @@
 
 .obs-row{
   display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 14px;
-  font-size:12px; padding:5px 0;
+  font-size:var(--fs-xs); padding:5px 0;
   border-top:1px solid var(--border);
 }
 .obs-row:first-child{ border-top:0; }
 
 .obs-label{ color:var(--ink2); min-width:9rem; }
 .obs-approved b{ color:var(--ink); }
-.obs-observed b{ color:var(--ink2); font-weight:600; }
+.obs-observed b{ color:var(--ink2); font-weight:var(--fw-medium); }
 
 /* A tag, not a badge — smaller and quieter, because it repeats on every row and
    full badge weight would turn the block into a wall of chips. */
 .obs-tag{
-  font-size:9.5px; text-transform:uppercase; letter-spacing:.06em;
+  font-size:var(--fs-micro); text-transform:uppercase; letter-spacing:.06em;
   color:var(--muted); margin-right:4px;
 }
 
-.obs-delta{ font-variant-numeric:tabular-nums; font-size:11.5px; }
+.obs-delta{ font-variant-numeric:tabular-nums; font-size:var(--fs-2xs); }
 .obs-delta.up   { color:var(--good); }
 .obs-delta.down { color:var(--critical); }
 .obs-delta.flat { color:var(--muted); }
@@ -54,7 +54,7 @@
 
 .fx-observed{
   display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px;
-  font-size:11.5px; color:var(--muted); margin-top:4px;
+  font-size:var(--fs-2xs); color:var(--muted); margin-top:4px;
   padding-left:10px; border-left:2px solid var(--border);
 }
 .fx-observed:empty{ display:none; }   /* no snapshot published — leave no trace */
@@ -63,19 +63,19 @@
 
 /* ---- data-status page ---------------------------------------------------- */
 
-.ds-table{ width:100%; border-collapse:collapse; font-size:12px; }
+.ds-table{ width:100%; border-collapse:collapse; font-size:var(--fs-xs); }
 .ds-table th, .ds-table td{
   text-align:left; padding:7px 10px; border-bottom:1px solid var(--border);
   vertical-align:top;
 }
-.ds-table th{ color:var(--muted); font-weight:600; font-size:11px;
+.ds-table th{ color:var(--muted); font-weight:var(--fw-medium); font-size:var(--fs-2xs);
   text-transform:uppercase; letter-spacing:.05em; }
 .ds-table td.num{ text-align:right; font-variant-numeric:tabular-nums; }
 .ds-table tr.absent td{ color:var(--muted); }
 
 .ds-auth{
-  font-size:9.5px; text-transform:uppercase; letter-spacing:.06em;
-  padding:1px 5px; border:1px solid var(--border); border-radius:3px;
+  font-size:var(--fs-micro); text-transform:uppercase; letter-spacing:.06em;
+  padding:1px 5px; border:1px solid var(--border); border-radius:var(--r-xs);
   color:var(--muted); white-space:nowrap;
 }
 .ds-auth.observed  { border-color:var(--s2); color:var(--s2); }
@@ -84,7 +84,7 @@
 .ds-auth.methodology{ border-color:var(--serious); color:var(--serious); }
 
 @media (max-width:720px){
-  .obs-row{ font-size:11.5px; }
+  .obs-row{ font-size:var(--fs-2xs); }
   .obs-label{ min-width:100%; }
   .ds-table{ display:block; overflow-x:auto; }
 }

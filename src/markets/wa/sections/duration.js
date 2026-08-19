@@ -102,7 +102,7 @@ function durationBody(main, g){
   // Duration-Need Index (editable)
   const c2 = card(['Duration-Need Index — every component visible and editable', '时长需求指数 — 分项全部可见、可编辑'], [badge('calc'), badge('illus'), statusBadge(true)]);
   const dniHead = h('div', { style: 'display:flex;align-items:center;gap:12px;margin:8px 0;flex-wrap:wrap;' },
-    h('span', { style: 'font-size:26px;font-weight:650;' }, dni + ' / 100'), chip(dband.c, L(dband.n)));
+    h('span', { style: 'font-size:var(--fs-2xl);font-weight:var(--fw-medium);' }, dni + ' / 100'), chip(dband.c, L(dband.n)));
   c2.append(dniHead);
   c2.append(h('div', { class: 'meter' }, h('div', { style: `width:${dni}%;background:var(--s1);` })));
   c2.append(h('div', { class: 'cap', style: 'margin-top:6px;' }, L(dband.d)));
@@ -158,7 +158,7 @@ function durationBody(main, g){
     h('span', { class: 'fbox' }, L(['Sharp peak is reduced', '尖峰被削平'])), h('span', { class: 'farr' }, '→'),
     h('span', { class: 'fbox' }, L(['Remaining peak becomes longer and flatter', '剩余峰值更长更平'])), h('span', { class: 'farr' }, '→'),
     h('span', { class: 'fbox' }, L(['Short-duration arbitrage and FCESS compress', '短时套利与FCESS收益压缩'])), h('span', { class: 'farr' }, '→'),
-    h('span', { class: 'fbox', style: 'border-color:var(--s1);font-weight:600;' }, L(['Full capacity value requires longer discharge', '足额容量价值需要更长放电时长']))));
+    h('span', { class: 'fbox', style: 'border-color:var(--s1);font-weight:var(--fw-medium);' }, L(['Full capacity value requires longer discharge', '足额容量价值需要更长放电时长']))));
   c5.append(h('div', { class: 'note' }, L(['WA embeds duration in a recurring capacity mechanism (ESR requirement, Peak/Flexible credits, BRCP benchmark); the NEM procures duration through tenders and contracts (CIS, LTESA). The comparator is context only and never feeds the WA composite score.',
     '西澳通过周期性容量机制内嵌时长价值（ESR要求、峰值/灵活容量信用、BRCP基准）；NEM主要通过招标与合同采购时长（CIS、LTESA）。该对比仅为背景信息，绝不计入西澳综合评分。'])));
   c5.append(why(['This loop is why the duration signal is self-reinforcing and the short-duration signal is self-defeating. Every battery that enters shaves the sharp peak, which lengthens and flattens what remains, which raises the hours needed for full capacity value and compresses the narrow window short-duration assets compete in. So competitor entry damages a 2-hour asset and strengthens the case for an 8-hour one. That is the structural reason to accept a higher capex per MW in exchange for hours: the hours are the part of the design that competitor behaviour makes more valuable, not less.',
@@ -174,7 +174,7 @@ function durationBody(main, g){
     : { n: ['Strong real option — staged MWh investment may be preferable', '强实物期权 — 分期MWh投资可能更优'], c: 'good' };
   const c6 = card(['Augmentation-readiness score (0–2 each)', '增容准备度评分（每项0–2分）'], [badge('illus'), statusBadge(true)]);
   c6.append(h('div', { style: 'display:flex;align-items:center;gap:12px;margin:8px 0;flex-wrap:wrap;' },
-    h('span', { style: 'font-size:26px;font-weight:650;' }, augScore + ' / 18'), chip(augBand.c, L(augBand.n))));
+    h('span', { style: 'font-size:var(--fs-2xl);font-weight:var(--fw-medium);' }, augScore + ' / 18'), chip(augBand.c, L(augBand.n))));
   c6.append(h('div', { class: 'tbl-wrap' }, h('table', {}, h('tbody', {}, SEED.augItems.map((it, i) => h('tr', {},
     h('td', {}, L(it)),
     h('td', { class: 'num' }, (() => {
@@ -205,7 +205,7 @@ function durationBody(main, g){
   cQ.append(h('div', { class: 'flow' },
     h('span', { class: 'fbox' }, L(['Q1 · economically dispatched ~6 h', '问题1 · 经济调度约6小时'])), h('span', { class: 'farr' }, '<'),
     h('span', { class: 'fbox' }, L(['Q2 · must hold ' + esrAtYear(state.codYear) + ' h to keep credits', '问题2 · 须具备' + esrAtYear(state.codYear) + '小时以保留信用'])), h('span', { class: 'farr' }, '<'),
-    h('span', { class: 'fbox', style: 'border-color:var(--s1);font-weight:650;' }, L(['Q3 · build ' + SEED.durationSig.recoInitial + ' h, option to ' + SEED.durationSig.recoExpand + ' h', '问题3 · 建' + SEED.durationSig.recoInitial + '小时，保留至' + SEED.durationSig.recoExpand + '小时期权']))));
+    h('span', { class: 'fbox', style: 'border-color:var(--s1);font-weight:var(--fw-medium);' }, L(['Q3 · build ' + SEED.durationSig.recoInitial + ' h, option to ' + SEED.durationSig.recoExpand + ' h', '问题3 · 建' + SEED.durationSig.recoInitial + '小时，保留至' + SEED.durationSig.recoExpand + '小时期权']))));
   cQ.append(why(['The inequality is the design rule: build to the accreditation requirement plus margin, not to the economically-dispatched hours. Hours between question 1 and question 2 look idle in a dispatch model but are earning capacity revenue by keeping credits un-derated — which is why a pure dispatch optimisation will always recommend a shorter asset than the RCM rewards. When a model and the rules disagree on duration, the rules win, because they set the revenue the debt is sized against.',
     '该不等式即设计准则：应按认证要求加余量建设，而非按经济调度小时数建设。介于问题1与问题2之间的小时在调度模型中看似闲置，实则通过避免信用折减而赚取容量收入 — 这正是纯调度优化总会建议比RCM所奖励更短的资产的原因。当模型与规则在时长上不一致时，以规则为准，因为规则决定债务规模所依据的收入。'],
     ['Rules win over dispatch models', '规则优先于调度模型']));

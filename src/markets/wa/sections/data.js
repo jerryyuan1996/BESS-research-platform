@@ -105,7 +105,7 @@ function renderData(main){
   if (hasMjaData) renderMjaSourceEntry(main);
 
   const c2 = card(['Core formulas (spec §6.4, §8.4, §13.5)', '核心公式（规范§6.4、§8.4、§13.5）'], [statusBadge(false)]);
-  c2.append(h('pre', { style: 'font-size:11.5px;line-height:1.7;color:var(--ink2);overflow-x:auto;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:8px;' },
+  c2.append(h('pre', { style: 'font-size:var(--fs-2xs);line-height:1.7;color:var(--ink2);overflow-x:auto;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:12px;margin-top:8px;' },
 `capacity_supply_ratio        = assigned_peak_capacity_credits / peak_RCR          = 6,670 / 6,323 = 105.5%
 upper_deadband_headroom_MW   = peak_RCR × 1.05 − expected_total_capacity_credits  = 6,639 − 6,670 = −31 MW
 expected_capacity_credit_MW  = project_MW × stage_prob × on_time_prob × CRC_factor × NAQ_factor × availability_factor

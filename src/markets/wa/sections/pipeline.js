@@ -132,7 +132,7 @@ function renderPipeline(main){
     h('tbody', {}, WA_FIN.financed.map(d => h('tr', {},
       h('td', {}, h('b', {}, d.p)), h('td', {}, d.size + ' · ' + d.dev),
       h('td', {}, L(d.struct), h('div', { class:'cap', style:'margin:3px 0 0;' }, d.when)),
-      h('td', { style:'font-size:11px;line-height:1.4;' }, d.banks), h('td', {}, L(d.rev))))))));
+      h('td', { style:'font-size:var(--fs-2xs);line-height:1.4;' }, d.banks), h('td', {}, L(d.rev))))))));
   cFin.append(h('div', { class:'reco' }, h('b', {}, L(['Bankability takeaway: ','可融资性结论：'])),
     L(['Every WA project that reached bank debt did so inside a portfolio or platform facility and with a contracted revenue anchor (an AEMO capacity contract, CIS or RCM credits). No WA precedent exists for standalone, fully merchant BESS debt. For a first-time mid-cap sponsor, banks will likely require higher equity, completion support, cost-overrun cover, a debt-service reserve (DSRA) and a cash sweep. Merchant-debt precedents do exist in Australia, but only in the eastern NEM.',
       '所有取得银行债务的西澳项目，均在组合或平台融资之内、且带有合同化收入锚（AEMO容量合约、CIS或RCM信用）。西澳尚无独立、完全市场化的BESS融资先例。对首次进入的中型发起人，银行更可能要求较高股权比例、完工担保、成本超支兜底、还贷备用金(DSRA)与现金清扫。澳洲确实存在市场化融资先例，但仅见于东部NEM。'])));

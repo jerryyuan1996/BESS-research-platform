@@ -134,8 +134,8 @@ export function renderFindings(main, marketList, exitYear){
 
   c.append(h('div', {}, items.map(f =>
     h('div', { style: 'padding:8px 0;border-bottom:1px solid var(--grid);' },
-      h('div', { style: 'font-size:13px;font-weight:650;' }, L(f.title)),
-      h('div', { style: 'font-size:12px;color:var(--ink2);margin-top:3px;' }, L(f.body))))));
+      h('div', { style: 'font-size:var(--fs-sm);font-weight:var(--fw-medium);' }, L(f.title)),
+      h('div', { style: 'font-size:var(--fs-xs);color:var(--ink2);margin-top:3px;' }, L(f.body))))));
 
   c.append(why([
     'These readings are recomputed from the engine every render, so they cannot go stale the way hand-written commentary does. The claims are structural — the shape of each sentence holds as markets are added; only the names and numbers move. If a data refresh overturns the shape of one (for example, if merchant IRRs stop sorting by duration), that is a market-regime change worth a full committee discussion, not a model recalibration.',

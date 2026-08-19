@@ -32,7 +32,7 @@ function barChart(parent, cfg){
   }
   xs.forEach((x, i) => {
     const cx = padL + band * (i + 0.5);
-    svg.append(cfg.rotX ? axisText(cx, H - padB + 14, x, 'end', 10, -30) : axisText(cx, H - 10, x));
+    svg.append(cfg.rotX ? axisText(cx, H - padB + 14, x, 'end', 'var(--fs-micro)', -30) : axisText(cx, H - 10, x));
   });
   const addBarTip = (r, name, val, cat) => {
     r.addEventListener('mousemove', ev => tipShow(`<b>${cat}</b><div class="tr"><span>${name}</span><b>${(cfg.yfmt || fmtN)(val)}</b></div>`, ev));
@@ -63,14 +63,14 @@ function barChart(parent, cfg){
         const bar = S('path', { d: v < 0 ? roundBotRect(x0, yTop, bw, hgt, 4) : roundTopRect(x0, yTop, bw, hgt, 4), fill: s.color });
         addBarTip(bar, L(s.name), v, x); svg.append(bar);
         if (cfg.labels && m === 1)
-          svg.append(axisText(x0 + bw / 2, v < 0 ? yTop + hgt + 12 : yTop - 5, (cfg.yfmt || fmtN)(v), 'middle', 10));
+          svg.append(axisText(x0 + bw / 2, v < 0 ? yTop + hgt + 12 : yTop - 5, (cfg.yfmt || fmtN)(v), 'middle', 'var(--fs-micro)'));
       });
     }
   });
   svg.append(S('line', { x1: padL, x2: W - padR, y1: Y(0), y2: Y(0), stroke: 'var(--baseline)', 'stroke-width': 1 }));
   for (const r of (cfg.refs || [])){
     svg.append(S('line', { x1: padL, x2: W - padR, y1: Y(r.y), y2: Y(r.y), stroke: r.color || 'var(--muted)', 'stroke-width': 1.2, 'stroke-dasharray': '2 3' }));
-    svg.append(axisText(W - padR, Y(r.y) - 4, L(r.label), 'end', 10));
+    svg.append(axisText(W - padR, Y(r.y) - 4, L(r.label), 'end', 'var(--fs-micro)'));
   }
   const wrap = h('div', { class: 'chart' });
   wrap.append(svg);

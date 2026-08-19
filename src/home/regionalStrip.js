@@ -78,7 +78,7 @@ export function renderRegionalStrip(main, marketList, exitYear){
     if (!copy) continue;
 
     const c = spacedCard(copy.title, [badge('official'), badge('calc')]);
-    c.append(h('div', { style: 'font-size:12.5px;color:var(--ink2);margin:6px 0 10px;' }, L(copy.intro)));
+    c.append(h('div', { style: 'font-size:var(--fs-xs);color:var(--ink2);margin:6px 0 10px;' }, L(copy.intro)));
 
     const grid = h('div', { class: 'grid g3' });
     for (const m of group){

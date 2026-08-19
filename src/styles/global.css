@@ -6,7 +6,7 @@ html{scroll-behavior:smooth;}
 body{
   background:var(--bg); color:var(--ink);
   font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;
-  font-size:14px; line-height:1.5;
+  font-size:var(--fs-md); line-height:1.5;
 }
 #app{max-width:1320px; margin:0 auto; padding:0 20px 60px;}
 a{color:var(--s1); text-decoration:none;}

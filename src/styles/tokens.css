@@ -1,11 +1,72 @@
 /* ---------------------------------------------------------------------------
-   Design tokens. Extracted verbatim from the prototype <style> block (lines 8-34).
-   Colour semantics are preserved exactly: --s1..--s8 are the series ramp, --good/--warn/
-   --serious/--critical the status ramp, and each has a matching translucent *-bg.
-   Three theme paths: light default, prefers-color-scheme dark, explicit [data-theme].
+   Design tokens.
+
+   Colour semantics: --s1..--s14 are the market series ramp, --good/--warn/
+   --serious/--critical the status ramp, each with a matching translucent *-bg.
+   Three theme paths: light default, prefers-color-scheme dark, explicit
+   [data-theme].
+
+   ---------------------------------------------------------------------------
+   TYPE, SPACE AND RADIUS ARE TOKENS TOO, AND WERE NOT
+
+   Before this round the stylesheets carried 161 font-size declarations across
+   TWENTY-ONE distinct values between 9px and 22px. Not a scale — an accretion.
+   Nothing enforced a relationship between 10.5px and 11px, so both existed, and
+   a reader saw the difference as noise rather than hierarchy.
+
+   The scale below collapses those to eight steps. It stays deliberately dense:
+   the reference is a printed investment memo, not a marketing page, and density
+   is a feature for a reader comparing fifteen markets. What changes is that the
+   density is now decided once.
+
+   The same argument applies to space and radius, which had eight and nine
+   ad-hoc values respectively.
+
+   ---------------------------------------------------------------------------
+   ONE FONT STACK, DELIBERATELY
+
+   The plan proposed a serif or high-contrast sans for headings. That is the
+   right instinct for the reference documents, and it is not taken here: a
+   webfont makes a static research site depend on a font host at read time,
+   which is a real cost for a page whose whole argument is that its evidence is
+   self-contained. Hierarchy is carried by the scale, weight and colour instead.
+   Overruling this is a one-line change in --font-sans plus a preload.
+
+   Numbers are tabular everywhere they are compared, which matters more for this
+   audience than the choice of face.
    --------------------------------------------------------------------------- */
 :root{
   color-scheme: light;
+
+  /* Type scale. Steps are named by role, not by size, so a change of density
+     does not require renaming every use. */
+  --fs-micro: 10px;   /* chip text, dense captions */
+  --fs-2xs:   11px;   /* table cells, badges */
+  --fs-xs:    12px;   /* secondary body, source lines */
+  --fs-sm:    13px;   /* body, controls */
+  --fs-md:    14px;   /* emphasis body, KPI labels */
+  --fs-lg:    17px;   /* block headings */
+  --fs-xl:    19px;   /* section titles */
+  --fs-2xl:   22px;   /* page title */
+
+  --lh-tight: 1.25;
+  --lh-body:  1.5;
+
+  --fw-normal: 400;
+  --fw-medium: 600;
+  --fw-bold:   700;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei",
+               "PingFang SC", sans-serif;
+
+  /* Space scale, a 2px grid up to 8 then a 4px grid. */
+  --sp-1: 2px; --sp-2: 4px;  --sp-3: 6px;  --sp-4: 8px;
+  --sp-5: 10px; --sp-6: 12px; --sp-7: 14px; --sp-8: 16px;
+  --sp-9: 20px; --sp-10: 24px; --sp-12: 32px;
+
+  /* Radius. --r-pill is the only one that is not on the scale, because a pill
+     is a shape rather than a size. */
+  --r-xs: 2px; --r-sm: 5px; --r-md: 8px; --r-lg: 10px; --r-pill: 999px;
   --bg:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
   --grid:#e1e0d9; --baseline:#c3c2b7; --border:rgba(11,11,11,.10);
   --map-water:#eef3f6; --map-land:#dfe8e6; --map-coast:#708394;

@@ -127,7 +127,7 @@ function kemertonNetworkCard(){
     h('span',{class:'fbox'},L(['Connection application','并网申请'])),h('span',{class:'farr'},'→'),
     h('span',{class:'fbox'},L(['GPS / compliance','GPS/合规'])),h('span',{class:'farr'},'→'),
     h('span',{class:'fbox'},'CRC'),h('span',{class:'farr'},'→'),
-    h('span',{class:'fbox',style:'border-color:var(--serious);font-weight:650;'},'NAQ'),h('span',{class:'farr'},'→'),
+    h('span',{class:'fbox',style:'border-color:var(--serious);font-weight:var(--fw-medium);'},'NAQ'),h('span',{class:'farr'},'→'),
     h('span',{class:'fbox'},L(['Assigned Capacity Credits','获配容量信用'])),h('span',{class:'farr'},'→'),
     h('span',{class:'fbox'},L(['Capacity revenue','容量收入']))));
   kd.append(h('div',{class:'note'},L(['Project studies identify potential overloads on KEM–PNJ/BSN 81 and PIC–MRR 81 under relevant contingencies, plus charging constraints during some planned-outage conditions. Western Power planning also identifies KEM–MRR constraints. These findings must feed the project NAQ, dispatch and recharge cases.','项目研究在相关事故场景下识别KEM–PNJ/BSN 81及PIC–MRR 81潜在过载，并在部分计划停运条件下识别充电约束。Western Power规划亦识别KEM–MRR约束。这些结果必须进入项目NAQ、调度及补能情景。'])));

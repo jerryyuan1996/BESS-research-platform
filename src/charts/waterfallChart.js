@@ -35,10 +35,10 @@ function waterfall(parent, cfg){
     bar.addEventListener('mousemove', ev => tipShow(`<b>${L(b.l)}</b><div class="tr"><span></span><b>${(b.t === 'd' && b.v > 0 ? '+' : '') + (cfg.yfmt || fmtN)(b.v)}</b></div>`, ev));
     bar.addEventListener('mouseleave', tipHide);
     svg.append(bar);
-    svg.append(axisText(x0 + bw / 2, yTop - 5, (b.t === 'd' && b.v > 0 ? '+' : '') + (cfg.yfmt || fmtN)(b.v), 'middle', 10));
+    svg.append(axisText(x0 + bw / 2, yTop - 5, (b.t === 'd' && b.v > 0 ? '+' : '') + (cfg.yfmt || fmtN)(b.v), 'middle', 'var(--fs-micro)'));
     if (i < n - 1)
       svg.append(S('line', { x1: x0 + bw, x2: padL + band * (i + 1.5) - bw / 2, y1: Y(b.to), y2: Y(b.to), stroke: 'var(--baseline)', 'stroke-width': 1 }));
-    svg.append(axisText(padL + band * (i + 0.5) + 4, H - padB + 14, L(b.l), 'end', 9.5, -30));
+    svg.append(axisText(padL + band * (i + 0.5) + 4, H - padB + 14, L(b.l), 'end', 'var(--fs-micro)', -30));
   });
   svg.append(S('line', { x1: padL, x2: W - padR, y1: Y(Math.max(0, lo)), y2: Y(Math.max(0, lo)), stroke: 'var(--baseline)', 'stroke-width': 1 }));
   const wrap = h('div', { class: 'chart' });

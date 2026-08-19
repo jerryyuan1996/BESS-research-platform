@@ -57,7 +57,7 @@ function scatterChart(parent, cfg){
     svg.append(S('line', { y1: padT, y2: padT + plotH, x1: X(tv), x2: X(tv), stroke: 'var(--grid)', 'stroke-width': 1 }));
     svg.append(axisText(X(tv), H - 26, (cfg.xfmt || fmtN)(tv)));
   }
-  svg.append(axisText(padL + plotW / 2, H - 8, L(cfg.xlabel), 'middle', 10.5));
+  svg.append(axisText(padL + plotW / 2, H - 8, L(cfg.xlabel), 'middle', 'var(--fs-micro)'));
   /* Hollow points are drawn first so a filled one is never hidden behind an
      alternative route sitting at nearly the same coordinates. */
   const ordered = [...cfg.pts].sort((a, b) => (a.hollow ? 0 : 1) - (b.hollow ? 0 : 1));
@@ -109,7 +109,7 @@ function scatterChart(parent, cfg){
     if (p.label){
       // flip the label inward when the point sits near the right edge
       const right = cx > padL + plotW * 0.82;
-      svg.append(axisText(cx + (right ? -11 : 11), cy + 4, p.label, right ? 'end' : 'start', 11));
+      svg.append(axisText(cx + (right ? -11 : 11), cy + 4, p.label, right ? 'end' : 'start', 'var(--fs-2xs)'));
     }
   }
 
@@ -148,7 +148,7 @@ function scatterChart(parent, cfg){
     node.addEventListener('mouseleave', tipHide);
     svg.append(node);
 
-    const count = axisText(cx, cy + 3.5, String(points.length), 'middle', 10);
+    const count = axisText(cx, cy + 3.5, String(points.length), 'middle', 'var(--fs-micro)');
     count.setAttribute('class', 'scatter-stack-count');
     count.setAttribute('pointer-events', 'none');
     svg.append(count);
@@ -159,7 +159,7 @@ function scatterChart(parent, cfg){
     if (labels.length){
       const right = cx > padL + plotW * 0.82;
       svg.append(axisText(cx + (right ? -14 : 14), cy + 4,
-        labels.join(', '), right ? 'end' : 'start', 10.5));
+        labels.join(', '), right ? 'end' : 'start', 'var(--fs-micro)'));
     }
   }
 

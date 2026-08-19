@@ -47,13 +47,13 @@ function renderHome(main){
   const cA = card(['Card A — Overall WA Storage Signal', 'Card A — 西澳储能综合信号'], [statusBadge(false), badge('illus')]);
   cA.append(h('div', { style: 'display:flex;align-items:center;gap:12px;margin:10px 0;flex-wrap:wrap;' },
     chip('warn', L(SEED.overall.statusL)),
-    h('span', { style: 'font-size:13px;color:var(--ink2);' },
+    h('span', { style: 'font-size:var(--fs-sm);color:var(--ink2);' },
       L(['Composite score', '综合评分']) + ': ', h('b', { style: 'color:var(--ink)' }, comp + ' / 100'),
       ' · ' + L(['Confidence', '置信度']) + ': ' + SEED.overall.confidence + '%',
       ' · ' + L(['Target COD window', '目标投运窗口']) + ': ' + SEED.overall.codWindow)));
   cA.append(h('div', { class: 'meter' }, h('div', { style: `width:${comp}%;background:var(--warn);` })));
-  cA.append(h('div', { style: 'font-size:12.5px;color:var(--ink2);margin:8px 0;' }, L(SEED.overall.rationale)));
-  cA.append(h('div', { style: 'font-size:11px;color:var(--muted);margin-top:6px;' },
+  cA.append(h('div', { style: 'font-size:var(--fs-xs);color:var(--ink2);margin:8px 0;' }, L(SEED.overall.rationale)));
+  cA.append(h('div', { style: 'font-size:var(--fs-2xs);color:var(--muted);margin-top:6px;' },
     L(['Component scores (spec §5.2 weights — never hidden behind the composite):', '分项评分（规范§5.2权重 — 不隐藏于综合分之后）：'])));
   cA.append(scoreRows(SEED.components.map(c => ({ n: c.n, w: c.w, s: c.s })), 100));
   cA.append(why(['The composite is deliberately not a go/no-go number. The two heaviest weights — RCM outlook (25%) and connection/NAQ risk (20%) — are the only components a sponsor can contract or de-risk before FID; the weak components (arbitrage 40, pipeline 38, FCESS 30) are market-wide and cannot be fixed by a better project. A score of ' + comp + ' with that split means "invest selectively where the contractable 45% is strong", not "invest because the market scores mid-70s".',
@@ -140,7 +140,7 @@ function renderHome(main){
     h('span', { class: 'fbox' }, L(['Thermal retirement gap', '火电退出缺口'])), h('span', { class: 'farr' }, '+'),
     h('span', { class: 'fbox' }, L(['Short-duration MW saturation', '短时MW饱和'])), h('span', { class: 'farr' }, '+'),
     h('span', { class: 'fbox' }, L(['Duration-differentiated capacity rules', '按时长差异化的容量规则'])), h('span', { class: 'farr' }, '='),
-    h('span', { class: 'fbox', style: 'border-color:var(--good);font-weight:600;' }, L(['Longer-duration investment signal', '更长时长投资信号']))));
+    h('span', { class: 'fbox', style: 'border-color:var(--good);font-weight:var(--fw-medium);' }, L(['Longer-duration investment signal', '更长时长投资信号']))));
   cE.append(why(['This is the only signal strengthening, and it is the one WA pays for through a recurring rule rather than a one-off tender. The fleet averages ' + NF1.format(SEED.fleetAvgHours) + ' h against a ' + esrAtYear(state.codYear) + ' h requirement, so most existing MW is de-rated and the incumbent fleet cannot simply extend. Build to ' + SEED.durationSig.recoInitial + ' h with a documented path to ' + SEED.durationSig.recoExpand + ' h, and judge the last hour on its own incremental NPV — hours are the asset’s scarcest and most policy-exposed attribute.',
     '这是唯一走强的信号，且西澳通过周期性规则而非一次性招标为其付费。存量加权平均' + NF1.format(SEED.fleetAvgHours) + '小时，对应' + esrAtYear(state.codYear) + '小时要求，因此多数既有MW已被折减且难以简单延长。建议按' + SEED.durationSig.recoInitial + '小时建设并保留明确的' + SEED.durationSig.recoExpand + '小时增容路径，且以最后一小时自身的增量NPV作判断 — 时长是资产最稀缺、最受政策影响的属性。'],
     ['Incumbent fleet cannot follow', '存量机组难以跟随']));
@@ -192,14 +192,14 @@ function renderHome(main){
 
   // Revenue Driver Bridge — nameplate → capacity + net merchant + FCESS = net operating revenue
   const cRD = card(['Revenue Driver Bridge — how nameplate MW becomes net operating revenue', '收入驱动桥 — 铭牌MW如何变为净运营收入'], [badge('calc'), statusBadge(false)]);
-  const fbox = (t, strong) => h('span', { class: 'fbox', style: strong ? 'border-color:var(--s1);font-weight:600;' : '' }, L(t));
+  const fbox = (t, strong) => h('span', { class: 'fbox', style: strong ? 'border-color:var(--s1);font-weight:var(--fw-medium);' : '' }, L(t));
   const arr = () => h('span', { class: 'farr' }, '→');
-  cRD.append(h('div', { style: 'font-size:11.5px;color:var(--muted);margin-bottom:4px;' }, L(['Capacity channel (RCM)', '容量通道（RCM）'])));
+  cRD.append(h('div', { style: 'font-size:var(--fs-2xs);color:var(--muted);margin-bottom:4px;' }, L(['Capacity channel (RCM)', '容量通道（RCM）'])));
   cRD.append(h('div', { class: 'flow' },
     fbox(['Nameplate MW / MWh', '铭牌MW/MWh']), arr(), fbox(['DSOC / CMD', 'DSOC/CMD']), arr(),
     fbox(['CRC × duration de-rating', 'CRC×时长折减']), arr(), fbox(['NAQ', 'NAQ']), arr(),
     fbox(['Capacity Credits × RCP', '容量信用×RCP'], true)));
-  cRD.append(h('div', { style: 'font-size:11.5px;color:var(--muted);margin:8px 0 4px;' }, L(['Merchant channel (net, not gross)', '市场化通道（净值，非毛值）'])));
+  cRD.append(h('div', { style: 'font-size:var(--fs-2xs);color:var(--muted);margin:8px 0 4px;' }, L(['Merchant channel (net, not gross)', '市场化通道（净值，非毛值）'])));
   cRD.append(h('div', { class: 'flow' },
     fbox(['Gross discharge sales', '毛放电销售额']), arr(), fbox(['− charging cost', '− 充电成本']), arr(),
     fbox(['− loss / MLF / curtailment', '− 损失/MLF/限电']), arr(), fbox(['− degradation & fees', '− 衰减与费用']), arr(),

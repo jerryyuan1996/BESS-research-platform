@@ -98,7 +98,7 @@ function renderBrcp(main){
   wfSteps.push({ l: ['Fixed O&M', '固定运维'], v: (yB.comp.om - yA.comp.om) / CC * 1e3, t: 'd' });
   wfSteps.push({ l: [yB.cy + ' base', yB.cy + ' 基准'], v: yB.brcp / 1000, t: 'total' });
   const c4 = card(['BRCPDriverWaterfall (base case, A$000/MW/yr)', 'BRCP驱动因素瀑布图（基准，A$000/MW/年）'], [badge('calc'), badge('illus'), statusBadge(true)]);
-  c4.append(h('div', { style: 'margin:6px 0;' }, h('label', { style: 'font-size:11px;color:var(--muted);margin-right:6px;' }, L(['Year transition', '年度过渡'])),
+  c4.append(h('div', { style: 'margin:6px 0;' }, h('label', { style: 'font-size:var(--fs-2xs);color:var(--muted);margin-right:6px;' }, L(['Year transition', '年度过渡'])),
     (() => { const sel = h('select', { class: 'inp', style: 'width:auto;display:inline-block;', onchange: e => { state.brcpWfTo = +e.target.value; render(); } },
       BRCP.years.slice(1).map((cy, idx) => { const o = h('option', { value: idx + 1 }, BRCP.years[idx] + ' → ' + cy); if (idx + 1 === ti) o.selected = true; return o; })); return sel; })()));
   waterfall(c4, { steps: wfSteps, yfmt: v => (v < 0 ? '−' : '') + 'A$' + fmtN(Math.abs(v)) + 'k', floor: Math.min(yA.brcp, yB.brcp) / 1000 - 35, h: 280 });
