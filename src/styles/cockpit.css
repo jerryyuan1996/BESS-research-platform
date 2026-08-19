@@ -227,3 +227,27 @@
   .lab-ctl-note{margin-left:0;}
   .lab-form{grid-template-columns:1fr;}
 }
+
+/* ---- regional orientation --------------------------------------------------
+   A 3px rule on the leading edge of a market card, and nothing else. The region
+   is named in `.mregion` next to it, so the colour adds speed for a reader
+   scanning a familiar grid and carries nothing on its own.
+
+   Not applied to charts, status, methodology or any navigation state: those
+   keep their own meanings, which a regional tint must never override.
+
+   Dropped in print and under forced colours, where it would be either
+   meaningless or an override of the reader's own palette. */
+.mcard[data-region]{ border-inline-start:3px solid var(--border); }
+.mcard[data-region="americas"]{ border-inline-start-color:var(--region-americas); }
+.mcard[data-region="europe"]  { border-inline-start-color:var(--region-europe); }
+.mcard[data-region="asia"]    { border-inline-start-color:var(--region-asia); }
+.mcard[data-region="oceania"] { border-inline-start-color:var(--region-oceania); }
+.mregion{ color:var(--ink2); font-weight:var(--fw-medium); }
+
+@media print{
+  .mcard[data-region]{ border-inline-start-color:var(--grid) !important; }
+}
+@media (forced-colors: active){
+  .mcard[data-region]{ border-inline-start-color:CanvasText; }
+}

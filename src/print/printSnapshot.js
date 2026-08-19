@@ -54,11 +54,20 @@ const STATUS_LABEL = {
 export function renderPrintSnapshot(ctx){
   wireStamp();
 
+  /* MODEL VERSION IS PROVENANCE, NOT DISPLAY COPY.
+
+     It is reproduced exactly as the market or model declares it, including
+     historical identifiers whose naming convention has since been abandoned.
+     An export that quietly modernises an identifier cannot be matched back to
+     the run that produced it, which defeats the purpose of printing it at all.
+
+     It sits in the metadata, labelled as a version, rather than in the line a
+     reader takes as the model's name. */
   const meta = [];
-  meta.push([L(['Model', '模型']), ctx.model.id + (ctx.model.version ? ' ' + ctx.model.version : '')]);
-  if (ctx.model.vintage) meta.push([L(['Assumption vintage', '假设版本日期']), ctx.model.vintage]);
+  meta.push([L(['Model', '模型']), ctx.model.id]);
   if (ctx.scenario) meta.push([L(['Scenario', '情景']), L(ctx.scenario.name)]);
   meta.push([L(['Status', '状态']), L(STATUS_LABEL[ctx.status] || ['—', '—'])]);
+  if (ctx.model.vintage) meta.push([L(['Assumption vintage', '假设版本日期']), ctx.model.vintage]);
 
   const root = h('section', { class: 'print-snap', 'data-print-snapshot': ctx.status });
 
@@ -71,6 +80,14 @@ export function renderPrintSnapshot(ctx){
   head.append(h('dt', {}, L(['Printed', '打印时间'])),
               h('dd', {}, h('time', { 'data-print-stamp': '' }, '—')));
   root.append(head);
+
+  /* Calculation provenance, last and in its own line, so the identifier is
+     legible as a reference rather than read as part of the model's name. */
+  if (ctx.model.version){
+    root.append(h('p', { class: 'print-snap-provenance' },
+      h('span', {}, L(['Model version', '模型版本']) + ': '),
+      h('code', {}, ctx.model.version)));
+  }
 
   /* A withheld or failed run says so here, in place of the numbers. The reason
      is not shortened for print: it is the most important thing on the page. */

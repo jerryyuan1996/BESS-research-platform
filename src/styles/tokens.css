@@ -102,6 +102,33 @@
      cannot express themselves that way.
      --------------------------------------------------------------------- */
   --bp-sm: 560px; --bp-md: 720px; --bp-lg: 900px; --bp-xl: 1050px;
+
+  /* ---------------------------------------------------------------------
+     REGIONAL ACCENTS — ORIENTATION ONLY.
+
+     Fifteen markets is more than a reader holds in their head. These four
+     hues answer "roughly where am I" and nothing else. They are drawn from
+     outside the series ramp so a regional accent can never read as a data
+     series, and they never override the status or methodology colours.
+
+     THEY ARE NOT MUTUALLY DISTINGUISHABLE UNDER COLOUR-VISION DEFICIENCY,
+     AND THE DESIGN DOES NOT ASK THEM TO BE. Simulated against each other,
+     europe collapses onto oceania at 1.06:1 under deuteranopia and americas
+     onto asia at 1.01:1 under tritanopia. Four hues that each hold 3:1
+     against the page cannot also hold a usable separation from each other
+     across all three deficiencies — the space is not there.
+
+     So the region is ALWAYS named in text wherever an accent appears, and no
+     navigation state is carried by hue: active, hover and focus are border,
+     weight and background, which survive both simulation and grayscale.
+     Remove the accent entirely and nothing becomes unknowable, which is the
+     test it has to pass.
+
+     What IS asserted, in tests/regions.test.js, is that each accent clears
+     3:1 against both the page and the card behind it, so the boundary it
+     draws is visible at all. */
+  --region-americas:#8e2f5f; --region-europe:#2f5fd0;
+  --region-asia:#a35f00;     --region-oceania:#0f7c86;
   --bg:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
   --grid:#e1e0d9; --baseline:#c3c2b7; --border:rgba(11,11,11,.10);
   --map-water:#eef3f6; --map-land:#dfe8e6; --map-coast:#708394;
@@ -128,6 +155,10 @@
     --s1:#3987e5; --s2:#199e70; --s3:#c98500; --s4:#008300; --s5:#9085e9; --s6:#e66767; --s7:#d55181; --s8:#d95926;
     --s9:#1aa9ba; --s10:#b45fd0; --s11:#8aa832;
     --s12:#7d9ab8; --s13:#d4607f; --s14:#d9a520;
+    /* Lightened for a dark page. The same argument about mutual
+       separation applies, and the same text label carries the meaning. */
+    --region-americas:#e07aa8; --region-europe:#7aa3ff;
+    --region-asia:#e0a13a;     --region-oceania:#45c2ce;
     --good-bg:rgba(12,163,12,.18); --warn-bg:rgba(250,178,25,.14); --serious-bg:rgba(236,131,90,.15); --critical-bg:rgba(208,59,59,.20);
     --accent-bg:rgba(57,135,229,.14);
   }
@@ -144,6 +175,10 @@
      fourteen made that visible; it was wrong for the first eleven too. */
   --s9:#1aa9ba; --s10:#b45fd0; --s11:#8aa832;
   --s12:#7d9ab8; --s13:#d4607f; --s14:#d9a520;
+  /* Lightened for a dark page. The same argument about mutual
+     separation applies, and the same text label carries the meaning. */
+  --region-americas:#e07aa8; --region-europe:#7aa3ff;
+  --region-asia:#e0a13a;     --region-oceania:#45c2ce;
   --good-bg:rgba(12,163,12,.18); --warn-bg:rgba(250,178,25,.14); --serious-bg:rgba(236,131,90,.15); --critical-bg:rgba(208,59,59,.20);
   --accent-bg:rgba(57,135,229,.14);
 }

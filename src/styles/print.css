@@ -77,6 +77,12 @@
   .print-snap-table td.num, .print-snap-table th.num{
     text-align:right; font-variant-numeric:tabular-nums;
   }
+  /* Provenance reads as a reference, not as a heading. Monospace because it is
+     an identifier that may need to be transcribed exactly. */
+  .print-snap-provenance{
+    font-size:var(--fs-micro); color:var(--ink2) !important; margin:6px 0 0;
+  }
+  .print-snap-provenance code{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
   .print-snap-gaps{ margin:4px 0 0 16px; font-size:var(--fs-2xs); }
   .print-snap-gaps li{ break-inside:avoid; }
 

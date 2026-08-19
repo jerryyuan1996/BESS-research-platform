@@ -13,6 +13,7 @@ import { navigate } from '../app/router.js';
 import { chip } from './chip.js';
 import { fmtIRRor } from '../utils/formatting.js';
 import { marketFlagCode } from './navigation.js';
+import { regionFor } from '../markets/regions.js';
 
 const CONSENSUS = {
   aligned:['Aligned', '一致'],
@@ -39,12 +40,20 @@ export function marketCard(market, result, scenarios){
     h('div', { class: 'l' }, L(label)),
     h('div', { class: 'v' }, value));
 
-  return h('div', { class: 'mcard' },
+  /* The regional accent is orientation only, and the region is NAMED beside
+     it. Remove the colour and the card still says where it is; that is the
+     condition on using colour here at all. */
+  const region = regionFor(mf.id);
+
+  return h('div', { class: 'mcard', 'data-region': region ? region.id : null },
     h('div', { class: 'mhead' },
       h('span', { class: `flag fi fi-${marketFlagCode(market)}`, 'aria-hidden':'true' }),
       h('div', {},
         h('h3', {}, L(mf.name)),
-        h('div', { class: 'arch' }, L(cmp.narrative.archetype)))),
+        h('div', { class: 'arch' },
+          region ? h('span', { class: 'mregion' }, L(region.label)) : null,
+          region ? ' · ' : null,
+          L(cmp.narrative.archetype)))),
     h('div', { style: 'display:flex;align-items:center;gap:8px;flex-wrap:wrap;' },
       chip('serious', ['Screening only', '仅供筛选']),
       chip(CONSENSUS_CHIP[profile.consensus.status] || 'info',
