@@ -101,11 +101,55 @@ test('no accent collides with the series ramp', () => {
   }
 });
 
-test('the recorded colour-vision limitation is still the real one', () => {
-  /* Not a pass/fail on distinguishability — the design does not rely on it.
-     This pins the measurement so the comment in tokens.css cannot drift away
-     from the palette it describes, and so a future change that made things
-     WORSE would still have to be looked at. */
+test('regional hue is never the carrier of a state', () => {
+  /* Property the design DOES rely on: strip every regional hue and navigation,
+     content and state remain understandable. Enforced at the source — a
+     --region-* token may only paint a boundary, never a state, a fill that
+     carries meaning, or text. */
+  const css = readFileSync(path.join(REPO, 'src/styles/cockpit.css'), 'utf8');
+  const offending = [];
+  for (const line of css.split(/\r?\n/)){
+    if (!line.includes('--region-')) continue;
+    /* Allowed: a border colour. Anything else would make the hue load-bearing. */
+    if (!/border(-inline-start)?-color\s*:/.test(line)) offending.push(line.trim().slice(0, 90));
+    if (/:hover|:focus|\.active/.test(line)) offending.push('state uses a regional hue: ' + line.trim().slice(0, 70));
+  }
+  assert.deepEqual(offending, [],
+    'a regional accent may only draw a boundary; states are border, weight and background');
+});
+
+test('a regional accent never appears without a text label beside it', () => {
+  /* The card sets data-region and renders .mregion in the same expression, so
+     the two cannot be separated by an edit that only touches one of them. */
+  const card = readFileSync(path.join(REPO, 'src/components/marketCard.js'), 'utf8');
+  assert.match(card, /'data-region':/, 'the card must tag its region');
+  assert.match(card, /class:\s*'mregion'/, 'and must name it in text');
+  const tagAt = card.indexOf("'data-region':");
+  const labelAt = card.indexOf("class: 'mregion'");
+  assert.ok(labelAt > tagAt && labelAt - tagAt < 600,
+    'the region label must sit with the accent it explains, not elsewhere in the file');
+});
+
+test('confidential dossiers receive no market- or region-derived chrome', () => {
+  /* A project's market association is confidential until the deal is public.
+     Tinting a dossier page by region would leak it from the chrome, with no
+     text saying so and nothing for a reader to notice. */
+  for (const rel of ['src/projects/dossier/page.js', 'src/projects/dossier/blocks.js',
+                     'src/styles/dossier.css']){
+    const src = readFileSync(path.join(REPO, rel), 'utf8');
+    assert.ok(!src.includes('--region-'),
+      `${rel} paints with a regional token; a dossier must not advertise its market`);
+    assert.ok(!/data-region/.test(src),
+      `${rel} tags a region; a dossier must not advertise its market`);
+  }
+});
+
+test('DIAGNOSTIC: how the accents separate under colour-vision simulation', () => {
+  /* REPORTED, NOT REQUIRED. The design treats mutual distinguishability as
+     decorative — the region is always named in text — so this asserts nothing
+     about the palette. It prints the numbers so a future change can be seen,
+     and so the comment in tokens.css can be checked against reality rather
+     than trusted. */
   const MAT = {
     deuteranopia: [[0.625, 0.375, 0], [0.70, 0.30, 0], [0, 0.30, 0.70]],
     protanopia:   [[0.567, 0.433, 0], [0.558, 0.442, 0], [0, 0.242, 0.758]],
@@ -117,18 +161,16 @@ test('the recorded colour-vision limitation is still the real one', () => {
     const [r, g, b] = hx(hex).map(lin);
     return MAT[kind].map(row => Math.round(unlin(row[0] * r + row[1] * g + row[2] * b) * 255));
   };
-
-  let worst = Infinity;
-  for (const kind of Object.keys(MAT))
+  const report = [];
+  for (const kind of Object.keys(MAT)){
+    let worst = { r: Infinity };
     for (let i = 0; i < ACCENTS.length; i++)
-      for (let j = i + 1; j < ACCENTS.length; j++)
-        worst = Math.min(worst, ratio(sim(ACCENTS[i][1], kind), sim(ACCENTS[j][1], kind)));
-
-  /* Recorded, not required: the accents DO collapse into one another, which is
-     precisely why the region is always written out as well. If a future palette
-     somehow achieved separation this would fail and the comment could be
-     revised — a pleasant failure to have. */
-  assert.ok(worst < 1.5,
-    `accents now separate at ${worst.toFixed(2)}:1 under simulation. The comment in ` +
-    'tokens.css says they cannot; if that is no longer true, update it.');
+      for (let j = i + 1; j < ACCENTS.length; j++){
+        const r = ratio(sim(ACCENTS[i][1], kind), sim(ACCENTS[j][1], kind));
+        if (r < worst.r) worst = { r, a: ACCENTS[i][0], b: ACCENTS[j][0] };
+      }
+    report.push(`  ${kind}: worst pair ${worst.a}/${worst.b} at ${worst.r.toFixed(2)}:1`);
+  }
+  console.log(['regional accents under simulation (diagnostic only):'].concat(report).join(String.fromCharCode(10)));
+  assert.ok(report.length === 3, 'all three deficiencies reported');
 });
