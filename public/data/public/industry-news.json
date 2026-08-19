@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-19T13:12:50.617Z",
+  "fetchedAt": "2026-08-19T18:56:20.328Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-19T12:41:37.000Z",
+    "to": "2026-08-19T14:06:28.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 40
   },
   "units": {
     "record": "published article metadata"
@@ -125,36 +125,6 @@
       "summary": ""
     },
     {
-      "t": "2026-08-14T08:15:02.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/edify-energy-financial-close-1200mwh-solar-plus-storage-queensland-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Edify Energy reaches financial close on 1,200MWh solar-plus-storage projects in Queensland, Australia",
-      "url": "https://www.energy-storage.news/edify-energy-financial-close-1200mwh-solar-plus-storage-queensland-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australian developer Edify Energy has reached financial close on the Ganymirra and Majors Creek solar-plus-storage projects near Townsville in North Queensland, featuring 360MWp of solar generation and 300MW/1,200MWh of battery storage."
-    },
-    {
-      "t": "2026-08-14T08:17:20.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/squadron-energy-au2-billion-refinancing-hybrid-asset-growth-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Squadron Energy secures AU$2.7 billion refinancing to support hybrid asset growth in Australia",
-      "url": "https://www.energy-storage.news/squadron-energy-au2-billion-refinancing-hybrid-asset-growth-australia/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Squadron Energy has completed a refinancing of its Australian renewable energy portfolio, securing total debt commitments of more than AU$2.7 billion (US$1.76 billion)."
-    },
-    {
-      "t": "2026-08-14T08:19:13.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/origin-energy-650mwh-mortlake-bess-commercial-operations-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Origin Energy’s 650MWh Mortlake BESS begins commercial operations in Australia",
-      "url": "https://www.energy-storage.news/origin-energy-650mwh-mortlake-bess-commercial-operations-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Origin Energy has confirmed that its 300MW/650MWh Mortlake BESS in south-west Victoria has commenced commercial operations."
-    },
-    {
       "t": "2026-08-14T08:39:46.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/optimising-us-bess-markets-insights-from-caerus-commodities/",
       "source": "Energy-Storage.news",
@@ -255,26 +225,6 @@
       "summary": "A new report from climate consultancy Ember highlights the important relationship between energy storage and solar, unlocking the “era of anytime solar.”"
     },
     {
-      "t": "2026-08-17T13:54:55.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-miso-pjm-cost-recovery-transmission-projects/828002/",
-      "source": "Utility Dive",
-      "title": "FERC approves MISO cost recovery plan for transmission projects built in PJM",
-      "url": "https://www.utilitydive.com/news/ferc-miso-pjm-cost-recovery-transmission-projects/828002/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In its decision affecting Exelon and Duke Energy utilities, the Federal Energy Regulatory Commission rejected calls to require the planned projects to go through a bidding process."
-    },
-    {
-      "t": "2026-08-17T14:16:39.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/doe-cancels-3-national-transmission-corridors-citing-green-new-scam/828012/",
-      "source": "Utility Dive",
-      "title": "DOE cancels 3 national transmission corridors, citing ‘Green New Scam’",
-      "url": "https://www.utilitydive.com/news/doe-cancels-3-national-transmission-corridors-citing-green-new-scam/828012/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The agency previously said the projects would provide resource adequacy support to the PJM Interconnection, bolster transmission between the Southwest Power Pool and WestConnect regions, and address a lack of&nbsp;high-voltage transmission in tribal areas."
-    },
-    {
       "t": "2026-08-18T02:03:59.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/ausgrids-plus-grid-storage-breaks-ground-on-400mwh-steel-river-east-bess-in-australia/",
       "source": "Energy-Storage.news",
@@ -343,16 +293,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Etapro has deployed digital twin and predictive analytics at MGA Thermal's 5MWh thermal energy storage demonstration plant in Australia."
-    },
-    {
-      "t": "2026-08-19T06:43:45.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/freyr-energy-launches-sic-solar-inverters-for-residential-rooftops/",
-      "source": "pv magazine",
-      "title": "Freyr Energy launches silicon carbide inverters for residential applications",
-      "url": "https://www.pv-magazine.com/2026/08/19/freyr-energy-launches-sic-solar-inverters-for-residential-rooftops/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The 3 kW and 5 kW single-phase solar inverters offer up to 97.8% conversion efficiency. These feature SiC technology, Wi-Fi and Bluetooth connectivity, and a 10-year warranty. The post Freyr Energy launches silicon carbide inverters for residential applications appeared first on pv magazine Global ."
     },
     {
       "t": "2026-08-19T06:57:22.000Z",
@@ -443,18 +383,58 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Plug-in (balcony) solar is a low-cost, plug-and-play alternative to traditional rooftop PV, gaining traction in the U.S. as states adopt legislation exempting small systems from interconnection requirements. Most states cap systems at 1,200 W and require UL 3700 safety certification, addressing risks such as circuit…"
+    },
+    {
+      "t": "2026-08-19T13:22:28.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/megasol-equips-its-solar-panels-with-an-anti-glare-surface/",
+      "source": "pv magazine",
+      "title": "Megasol equips its solar panels with anti-glare surface",
+      "url": "https://www.pv-magazine.com/2026/08/19/megasol-equips-its-solar-panels-with-an-anti-glare-surface/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Swiss manufacturer has made its ZRM+ anti-glare surface a standard feature across all Level Up solar roof modules. The microstructured glass reduces glare while maintaining a matte finish and the system’s technical performance. The post Megasol equips its solar panels with anti-glare surface appeared first on pv…"
+    },
+    {
+      "t": "2026-08-19T13:34:19.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/egyptian-government-minister-lays-foundation-stone-sungrow-begins-constructing-mea-first-specialised-bess-factory/",
+      "source": "Energy-Storage.news",
+      "title": "Egyptian government minister lays foundation stone as Sungrow begins constructing MEA’s first specialised BESS factory",
+      "url": "https://www.energy-storage.news/egyptian-government-minister-lays-foundation-stone-sungrow-begins-constructing-mea-first-specialised-bess-factory/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Egypt’s Minister of Industry laid the foundation stone at Sungrow’s BESS factory site in the Suez Canal Economic Zone earlier this week."
+    },
+    {
+      "t": "2026-08-19T13:57:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-utilities-appalachian-power-and-3ce-launch-rfps-seeking-bess-capacity-in-virginia-california/",
+      "source": "Energy-Storage.news",
+      "title": "US utilities Appalachian Power and 3CE launch RFPS seeking BESS capacity in Virginia, California",
+      "url": "https://www.energy-storage.news/us-utilities-appalachian-power-and-3ce-launch-rfps-seeking-bess-capacity-in-virginia-california/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Utility Appalachian Power (APCo) is seeking up to 800MW total of energy storage resources via two new requests for proposals (RFPs) in Virginia, US."
+    },
+    {
+      "t": "2026-08-19T14:06:28.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-capacity-markets-create-major-disconnect-for-ldes-financing-says-camelots-raafe-khan/",
+      "source": "Energy-Storage.news",
+      "title": "US capacity markets create ‘major disconnect’ for LDES financing, says Camelot’s Raafe Khan",
+      "url": "https://www.energy-storage.news/us-capacity-markets-create-major-disconnect-for-ldes-financing-says-camelots-raafe-khan/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Energy-Storage.news speaks with Raafe Khan, head of energy storage at Camelot Energy Group, ahead of the upcoming Battery Asset Management Summit (BAMS) USA in Garden Grove, California."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 40,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 31,
-      "policy": 5,
-      "capital": 4,
-      "technology": 2
+      "grid": 28,
+      "policy": 6,
+      "capital": 3,
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -473,7 +453,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 1
       },
       {
         "source": "pv magazine",
@@ -488,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:a63e64ae1900703e00de02ebcb53ddf9f7415d63a17f5d2cacc0da6f1cc7b367",
-  "envelopeChecksum": "sha256:76ad1f01ba131f21a2c6d11a59d97da0f8144c91ea39be79f4425d09566fb4f0"
+  "contentChecksum": "sha256:388010475435c6646936ba6eec5e91041e1cece80165529eeab5ef948629a733",
+  "envelopeChecksum": "sha256:13f948be8a24fea517551e243ef56783c2b7280819b5eb181e655e64d9608dcd"
 }
