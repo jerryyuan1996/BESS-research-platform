@@ -11,7 +11,7 @@
 export const sources = {
   regulatorDetermination: {
     file: 'Regulator — 2028 capacity price determination',
-    status: ['Official — Final', '官方 — 最终'],   // drives the quality badge
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},   // drives the quality badge
     date: '1 January 2026',                        // as printed on the source
     cy: '2028-29',                                 // period the figure applies to
     url: 'https://example.org/determination',
@@ -20,7 +20,7 @@ export const sources = {
 
   tsoOutlook: {
     file: 'TSO — capacity adequacy outlook',
-    status: ['Official — Draft', '官方 — 草案'],
+    status: ['Official — Draft', '官方 — 草案'], provenance:{authority:'official',publication:'draft',availability:'public',verification:'verified'},
     date: '1 March 2026',
     cy: '2026-2035',
     url: 'https://example.org/outlook',

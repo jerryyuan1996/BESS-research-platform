@@ -66,29 +66,75 @@ export const CLAIM_BASIS = {
   MODELLED: 'modelled',
 };
 
-/**
- * What the evidence IS. Derived from the record's own status, never asserted by
- * the claim — a claim does not get to promote its own sources.
- */
-export const PROVENANCE = {
+/* ---------------------------------------------------------------------------
+   FOUR INDEPENDENT DIMENSIONS OF A SOURCE RECORD.
+
+   These were one string — "Official — Final", "Public source",
+   "Public-source compilation" — and that string was being pattern-matched for
+   authority. It cannot carry authority reliably, because it is not about
+   authority alone.
+
+   "Public-source compilation" is a THIRD-PARTY aggregation that happens to be
+   publicly available, and a prefix match read it as official. "Public source"
+   says where you can get it, not who published it. "Verify against current
+   documents" says the record needs re-checking and nothing about its author.
+
+   So each dimension is now its own field on the record, set explicitly. There
+   is NO inference and NO fallback: a record with a missing or unrecognised
+   authority throws, because the alternative is a claim resting on a source
+   nobody classified.
+   --------------------------------------------------------------------------- */
+
+/** Who stands behind the record. */
+export const AUTHORITY = {
   OFFICIAL: 'official',
   THIRD_PARTY: 'third-party',
   DEVELOPER: 'developer-reported',
-  /** Explicitly flagged as needing re-verification. Cannot support `supported`. */
-  UNVERIFIED: 'unverified',
-  /** A declared coverage gap. Never affirmative support, for anything. */
-  GAP: 'gap',
+  /** Produced by this platform — a model assumption, or a declared gap. */
+  INTERNAL: 'internal',
+  /** Explicitly not yet decided. Fails validation; it is not a category. */
+  UNCLASSIFIED: 'unclassified',
 };
 
-/** Classify one evidence record from its own declared status. */
-export function provenanceOf(record){
-  const status = record?.status?.[0] ?? '';
-  if (/^Not verified/i.test(status)) return PROVENANCE.GAP;
-  if (/^Verify against/i.test(status)) return PROVENANCE.UNVERIFIED;
-  if (/^Developer-reported/i.test(status)) return PROVENANCE.DEVELOPER;
-  if (/^Third[- ]party/i.test(status)) return PROVENANCE.THIRD_PARTY;
-  if (/^Official|^Public/i.test(status)) return PROVENANCE.OFFICIAL;
-  return PROVENANCE.UNVERIFIED;
+/** Where the document is in its own publication cycle. */
+export const PUBLICATION = {
+  FINAL: 'final', DRAFT: 'draft', CONSULTATION: 'consultation', SUPERSEDED: 'superseded',
+};
+
+/** How the record may be handled. */
+export const AVAILABILITY = { PUBLIC: 'public', CONFIDENTIAL: 'confidential', RESTRICTED: 'restricted' };
+
+/** Whether the record has been checked against its source recently enough. */
+export const VERIFICATION = { VERIFIED: 'verified', REQUIRES: 'requires-reverification' };
+
+/**
+ * Read a record's declared authority. Never inferred, never defaulted.
+ *
+ * @throws if the record carries no explicit provenance, or an unknown value.
+ */
+export function authorityOf(record, id = '?'){
+  const a = record?.provenance?.authority;
+  if (!a)
+    throw new Error(`source record "${id}" has no explicit provenance.authority. ` +
+      'Classify it — authority is not derivable from the display status, which is ' +
+      'what "Public-source compilation" being read as official demonstrated.');
+  if (!Object.values(AUTHORITY).includes(a))
+    throw new Error(`source record "${id}" has unknown authority "${a}"`);
+  return a;
+}
+
+/** Verification state, explicit and required. */
+export function verificationOf(record, id = '?'){
+  const v = record?.provenance?.verification;
+  if (!v || !Object.values(VERIFICATION).includes(v))
+    throw new Error(`source record "${id}" has no explicit provenance.verification`);
+  return v;
+}
+
+/** A declared coverage gap: internal authority AND awaiting verification. */
+export function isGapRecord(record){
+  return record?.provenance?.authority === AUTHORITY.INTERNAL
+      && record?.provenance?.verification === VERIFICATION.REQUIRES;
 }
 
 /** Every evidence record available to a market, keyed by id. */
@@ -98,7 +144,7 @@ export const evidenceIds = (market) => new Set(Object.keys(evidenceRecords(marke
 /** Ids in a market that are declared coverage gaps rather than sources. */
 export function gapIds(market){
   const src = evidenceRecords(market);
-  return new Set(Object.keys(src).filter(k => provenanceOf(src[k]) === PROVENANCE.GAP));
+  return new Set(Object.keys(src).filter(k => isGapRecord(src[k])));
 }
 
 /* One sentence. A semicolon is how a second one gets smuggled in. */
@@ -181,8 +227,14 @@ export function validateClaim(claim, market, sectionId, ownership){
   if (claim.readiness === READINESS.SUPPORTED){
     if (!ev.length) problems.push('a supported claim must cite affirmative evidence');
     for (const id of ev){
-      const p = provenanceOf(records[id]);
-      if (p === PROVENANCE.UNVERIFIED)
+      if (!records[id]) continue;                 // already reported as unresolvable
+      /* Unclassified authority throws — a claim may not rest on a record that
+         nobody has classified. */
+      const a = authorityOf(records[id], id);
+      if (a === AUTHORITY.UNCLASSIFIED)
+        problems.push(`"${id}" has unclassified authority; classify the record before ` +
+                      'a published claim rests on it');
+      if (verificationOf(records[id], id) === VERIFICATION.REQUIRES)
         problems.push(`"${id}" is flagged for re-verification, so this claim is incomplete, ` +
                       'not supported, until the record is re-checked');
     }
@@ -197,8 +249,8 @@ export function validateClaim(claim, market, sectionId, ownership){
   /* A third-party or developer-reported record MAY support a claim, but the
      claim must attribute it, so a reader is never told something rests on an
      official source when it rests on a vendor's own figure. */
-  const needsAttribution = ev.filter(id =>
-    [PROVENANCE.THIRD_PARTY, PROVENANCE.DEVELOPER].includes(provenanceOf(records[id])));
+  const needsAttribution = ev.filter(id => records[id] &&
+    [AUTHORITY.THIRD_PARTY, AUTHORITY.DEVELOPER].includes(authorityOf(records[id], id)));
   if (needsAttribution.length && !claim.attribution)
     problems.push('evidence from ' + needsAttribution.join(', ') + ' is third-party or ' +
                   'developer-reported; set attribution so its provenance stays visible');

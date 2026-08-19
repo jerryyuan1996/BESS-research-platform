@@ -16,7 +16,7 @@ export const SRC = {
   // ---- system operator: reserves -------------------------------------------
   reserveObligations: {
     file: 'Fingrid — Power system reserves: obligations and procurement forecast',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2026',
     cy: 'FFR 0–60 MW · FCR-D up 309 MW · FCR-D down 298 MW · FCR-N 128 MW · aFRR ~50 MW · mFRR up 880–1,300 MW · mFRR down 575 MW',
     url: 'https://www.fingrid.fi/en/electricity-market/reserves/power-system-reserves/',
@@ -33,7 +33,7 @@ export const SRC = {
 
   reserveForecast: {
     file: 'Fingrid — reserve requirement forecast 2026–2036',
-    status: ['Official — Draft', '官方 — 草案'],
+    status: ['Official — Draft', '官方 — 草案'], provenance:{authority:'official',publication:'draft',availability:'public',verification:'verified'},
     date: '2026',
     cy: 'FCR-N 128 MW (2026) → 105 MW (2035–36) · mFRR up 290 → 530 MW (2033+) · mFRR down 567 → 1,100 MW (2032+)',
     url: 'https://www.fingrid.fi/en/electricity-market/reserves/power-system-reserves/',
@@ -50,7 +50,7 @@ export const SRC = {
 
   fcrYearly2026: {
     file: 'Fingrid — procurement of frequency containment reserves from the yearly market 2026',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2025',
     cy: 'FCR-D up 237.0 MW at €3.50/MW,h · FCR-D down 163.0 MW at €6.00/MW,h. Fingrid states yearly-market volumes and prices fall across all FCR products for 2026, moving volume to the hourly market.',
     url: 'https://www.fingrid.fi/en/news/news/2025/procurement-of-frequency-containment-reserves-from-yearly-market-2026/',
@@ -68,7 +68,7 @@ export const SRC = {
   // ---- adequacy: the reason capacityMarket is false ------------------------
   peakLoadCapacity: {
     file: 'Fingrid / Finextra — peak load capacity under act 117/2011',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2025',
     cy: 'The Energy Authority procured NO capacity for the period 1 Nov 2025 – 31 Oct 2026. No capacity has been held in the strategic reserve since July 2022.',
     url: 'https://www.fingrid.fi/en/grid/peak-load-capacity/',
@@ -85,7 +85,7 @@ export const SRC = {
 
   adequacyStandard: {
     file: 'Energy Authority — national report on electricity and gas markets in Finland',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2024',
     cy: 'Reliability standard LOLE 2.1 h/yr, adopted by the Government in March 2022. National resource adequacy assessments have shown no concern preventing that standard since Olkiluoto 3 entered service.',
     url: 'https://energiavirasto.fi/en/frontpage',
@@ -103,7 +103,7 @@ export const SRC = {
   // ---- prices ---------------------------------------------------------------
   dayAhead: {
     file: 'ENTSO-E Transparency Platform — Finland day-ahead prices',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2026',
     cy: 'Bidding zone 10YFI-1--------U (Finland, Fingrid BZ/CA/MBA). Wired through the same connector and token as GB, IE, RO and PL.',
     url: 'https://transparency.entsoe.eu/',
@@ -120,7 +120,7 @@ export const SRC = {
 
   marketStructure: {
     file: 'Nordic day-ahead market — 15-minute market time unit',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2025',
     cy: 'Day-ahead trading moved from hourly to 15-minute resolution on 1 October 2025. Finland reached −500 €/MWh in 2024; negative-price hours have risen with wind penetration.',
     url: 'https://www.nordpoolgroup.com/',
@@ -142,7 +142,7 @@ export const SRC = {
      not, and the saturation argument leans on the first. */
   storageFleet: {
     file: 'Fingrid — combined capacity of electricity storages in Finland exceeds 1,000 MW',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2026-02',
     cy: 'About 1,050 MW connected in early February 2026: 261 systems of 1 MW and above totalling ~980 MW, plus ~70 MW of smaller batteries tracked through the reserve markets. 56% on the distribution grid, 44% on transmission. All storage types, not batteries alone.',
     url: 'https://www.fingrid.fi/en/news/news/2026/the-combined-capacity-of-electricity-storages-in-finland-now-exceeds-1000-mw/',
@@ -159,7 +159,7 @@ export const SRC = {
 
   statkraftOx2: {
     file: 'Statkraft — seven-year optimisation agreement for OX2 batteries in Finland',
-    status: ['Developer-reported', '开发商披露'],
+    status: ['Developer-reported', '开发商披露'], provenance:{authority:'developer-reported',publication:'final',availability:'public',verification:'verified'},
     date: '2026',
     cy: '235 MW across two sites under construction — 110 MW/220 MWh and 125 MW/250 MWh — under a seven-year optimisation agreement.',
     url: 'https://www.statkraft.com/newsroom/news-and-stories/2026/statkraft-signs-contract-with-OX2-to-optimize-large-scale-batteries-in-finland/',
@@ -176,7 +176,7 @@ export const SRC = {
 
   tradePress: {
     file: 'Trade press — Nivala and Uusikaupunki project reports',
-    status: ['Verify against current documents', '须以现行文件核验'],
+    status: ['Verify against current documents', '须以现行文件核验'], provenance:{authority:'unclassified',publication:'final',availability:'public',verification:'requires-reverification'},
     date: '2026',
     cy: 'Nivala 70 MW/140 MWh and Uusikaupunki 50 MW/100 MWh, both reported for 2026. NOT confirmed against a developer or operator statement — these two carry the weakest evidence on this page and are shown because omitting known projects would understate the fleet, not because the citation is strong.',
     url: 'https://www.energy-storage.news/tag/finland/',
@@ -194,7 +194,7 @@ export const SRC = {
   // ---- licence, which gates publication rather than ingestion ---------------
   fingridApiTerms: {
     file: 'Fingrid open data — dataset licence and API terms',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2026',
     cy: 'The datasets themselves declare CREATIVE COMMONS ATTRIBUTION, with downloads in JSON, CSV, XLSX and XML — so republication is permitted with attribution. What still requires action is the API path specifically: a registered key, and the terms accepted at registration. Gate FI-2 is therefore "provision the key, accept and record the API terms, implement attribution", not "redistribution rights are unknown".',
     url: 'https://data.fingrid.fi/en/instructions',
@@ -212,7 +212,7 @@ export const SRC = {
   // ---- added with the build pathway (round 4) -------------------------------
   connectionPhases: {
     file: 'Fingrid — connection to the main grid: connection agreement phases and general connection terms',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2026',
     cy: 'A main grid connection is agreed by connection agreement, whose prerequisites include a legally valid land-use plan and building permits. The preceding letter of intent requires the EIA programme published and rights to the project area secured, and describes the route to the connection agreement.',
     url: 'https://www.fingrid.fi/en/grid/grid-connection-agreement-phases/',
@@ -229,7 +229,7 @@ export const SRC = {
 
   gridCode: {
     file: 'Fingrid — grid code specifications; SJV2024 for grid energy storage systems',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2025-03-20',
     cy: 'The Energy Authority adopted VJV2024 and SJV2024 on 20 March 2025. SJV2024 is a dedicated code for GRID ENERGY STORAGE SYSTEMS, applying from 0.8 kW, with requirements by type class A to D according to capacity and connection voltage.',
     url: 'https://www.fingrid.fi/en/grid/grid-connection-agreement-phases/grid-code-specifications/',
@@ -246,7 +246,7 @@ export const SRC = {
 
   connectionRestriction: {
     file: 'Fingrid — restrictions on new energy storage facility connections in southern Finland',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2025',
     cy: 'New grid energy storage connections in southern Finland restricted until 2029, when the Hikia-Toivila reinforcement completes. Previously to early 2027 and extended. More than 30,000 MW of storage connection requests against about 1,800 MW contracted; several thousand MW available in Ostrobothnia and the north.',
     url: 'https://www.fingrid.fi/en/news/news/2025/fingrid-secures-transmission-capacity-for-growth-in-electricity-consumption-and-new-industrial-investments--restrictions-on-new-energy-storage-facility-connections-continued-in-southern-finland/',
@@ -263,7 +263,7 @@ export const SRC = {
 
   reserveParticipation: {
     file: 'Fingrid — how to participate in the reserve markets',
-    status: ['Official — Final', '官方 — 最终'],
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '2026',
     cy: 'Prequalification is per reserve product, each with its own technical requirements and approval. Entry is not tied to an annual capacity-certification cycle, unlike the WEM Reserve Capacity Cycle.',
     url: 'https://www.fingrid.fi/en/electricity-market/reserves/reserve-products/how-to-participate-in-the-reserve-markets/',

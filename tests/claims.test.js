@@ -12,22 +12,73 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { markets } from '../src/markets/registry.js';
 import {
-  validateClaim, evidenceIds, gapIds, provenanceOf, evidenceRecords,
-  CLAIM_BASIS, PROVENANCE, READINESS, NO_CLAIM_SECTIONS,
+  validateClaim, evidenceIds, gapIds, evidenceRecords, authorityOf, verificationOf,
+  CLAIM_BASIS, AUTHORITY, VERIFICATION, READINESS, NO_CLAIM_SECTIONS,
 } from '../src/governance/claims.js';
+import { markets as allMarkets } from '../src/markets/registry.js';
 
 const market = (id) => markets.find(m => m.manifest.id === id);
 const wa = market('wa'), pjm = market('pjm'), fi = market('fi');
 
 /* ---- provenance is read from the record, never asserted by the claim ------ */
 
-test('provenance is classified from the record own declared status', () => {
+test('authority is read from an explicit field, never inferred', () => {
   const p = evidenceRecords(pjm);
-  assert.equal(provenanceOf(p.bra2829), PROVENANCE.OFFICIAL);
-  assert.equal(provenanceOf(p.tb4), PROVENANCE.THIRD_PARTY);
-  assert.equal(provenanceOf(p.tollGap), PROVENANCE.GAP);
-  assert.equal(provenanceOf(evidenceRecords(wa).consent), PROVENANCE.UNVERIFIED);
-  assert.equal(provenanceOf(evidenceRecords(fi).statkraftOx2), PROVENANCE.DEVELOPER);
+  assert.equal(authorityOf(p.bra2829, 'bra2829'), AUTHORITY.OFFICIAL);
+  assert.equal(authorityOf(p.tb4, 'tb4'), AUTHORITY.THIRD_PARTY);
+  assert.equal(authorityOf(evidenceRecords(fi).statkraftOx2, 'x'), AUTHORITY.DEVELOPER);
+});
+
+test('public availability never implies official authority', () => {
+  /* The failure that forced this migration. A public-source COMPILATION is a
+     third-party aggregation that happens to be publicly available. */
+  const mkt = evidenceRecords(wa).mkt;
+  assert.equal(mkt.provenance.availability, 'public');
+  assert.equal(authorityOf(mkt, 'mkt'), AUTHORITY.THIRD_PARTY,
+    'a publicly available compilation is not an official source');
+});
+
+test('final publication state never implies official authority', () => {
+  const tb4 = evidenceRecords(pjm).tb4;
+  assert.equal(tb4.provenance.publication, 'final');
+  assert.equal(authorityOf(tb4, 'tb4'), AUTHORITY.THIRD_PARTY);
+});
+
+test('a record with no explicit provenance throws', () => {
+  assert.throws(() => authorityOf({ file: 'x', status: ['Official — Final', 'x'] }, 'ghost'),
+    /no explicit provenance.authority/);
+  assert.throws(() => authorityOf({ provenance: { authority: 'plausible' } }, 'ghost'),
+    /unknown authority/);
+  assert.throws(() => verificationOf({ provenance: { authority: 'official' } }, 'ghost'),
+    /no explicit provenance.verification/);
+});
+
+test('every source record in every market is explicitly classified', () => {
+  /* Fail closed across the whole platform: an unclassified record is allowed to
+     exist, but it is named here and cannot support a published claim. */
+  const unclassified = [];
+  for (const m of allMarkets){
+    const src = evidenceRecords(m);
+    for (const [id, rec] of Object.entries(src)){
+      const a = authorityOf(rec, id);            // throws if absent or unknown
+      verificationOf(rec, id);
+      if (a === AUTHORITY.UNCLASSIFIED) unclassified.push(`${m.manifest.id}:${id}`);
+    }
+  }
+  console.log('unclassified authority, pending human decision: ' + unclassified.length);
+  for (const u of unclassified) console.log('  ' + u);
+  assert.ok(unclassified.length <= 13, 'the unclassified backlog must not grow');
+});
+
+test('an unclassified record cannot support a published claim', () => {
+  const wl = Object.entries(evidenceRecords(wa))
+    .find(([, r]) => r.provenance.authority === AUTHORITY.UNCLASSIFIED);
+  if (!wl) return;
+  const problems = validateClaim({
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: [wl[0]],
+  }, wa, 'grid');
+  assert.ok(problems.some(p => /unclassified authority|re-verification/.test(p)));
 });
 
 test('PJM carries five declared gap records, and they are known ids', () => {
