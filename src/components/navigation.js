@@ -108,13 +108,30 @@ export function tabStrip(...children){
  * A ResizeObserver fires when the element first has a box, so it cannot run too
  * early, and it also handles rotation and window resize for free.
  */
+/**
+ * Which edge, if any, has tabs beyond it.
+ *
+ * Extracted from the DOM so the decision can be tested directly: the states
+ * that matter are the transitions — narrowing an already-mounted strip until it
+ * overflows, and widening it again so a stale hint is cleared. Both are real
+ * responsive behaviour (a rotation is exactly this), and both were previously
+ * only reachable through a browser.
+ *
+ * @returns {'left'|'right'|'both'|null} null when everything fits
+ */
+export function overflowHint(scrollWidth, clientWidth, scrollLeft){
+  const slack = scrollWidth - clientWidth;
+  if (slack <= 1) return null;
+  const atStart = scrollLeft <= 1;
+  const atEnd = scrollLeft >= slack - 1;
+  return atStart ? 'right' : atEnd ? 'left' : 'both';
+}
+
 function initTabStrip(el){
   const update = () => {
-    const slack = el.scrollWidth - el.clientWidth;
-    if (slack <= 1){ el.removeAttribute('data-overflow'); return; }
-    const atStart = el.scrollLeft <= 1;
-    const atEnd = el.scrollLeft >= slack - 1;
-    el.setAttribute('data-overflow', atStart ? 'right' : atEnd ? 'left' : 'both');
+    const hint = overflowHint(el.scrollWidth, el.clientWidth, el.scrollLeft);
+    if (hint) el.setAttribute('data-overflow', hint);
+    else el.removeAttribute('data-overflow');
   };
 
   el.addEventListener('scroll', () => settle(), { passive: true });
@@ -136,7 +153,11 @@ function initTabStrip(el){
     if (positioned && !el.isConnected){
       el.__stripObserver?.disconnect();
       el.__stripObserver = null;
-      el.removeEventListener('scroll', settle);
+      if (el.__stripRecheck && typeof window !== 'undefined'){
+        window.removeEventListener('resize', el.__stripRecheck);
+        window.removeEventListener('orientationchange', el.__stripRecheck);
+        el.__stripRecheck = null;
+      }
       return;
     }
     if (!positioned && el.clientWidth > 0){
@@ -166,6 +187,29 @@ function initTabStrip(el){
   if (typeof ResizeObserver === 'function'){
     el.__stripObserver = new ResizeObserver(settle);
     el.__stripObserver.observe(el);
+  }
+
+  /* A RESIZE OBSERVER WATCHES THE BOX, AND THE BOX IS NOT WHAT CHANGES.
+
+     The strip is full-width, so narrowing the window changes its width and the
+     observer fires — but the property that decides the hint is scrollWidth,
+     which changes when the media query flips flex-wrap, not when the border box
+     resizes. Those are the same event often enough to look correct and not
+     always: resizing an already-mounted desktop page down to mobile left two
+     strips scrollable with no hint at all.
+
+     Listening for the viewport directly closes it. The media query is the thing
+     that actually changes the layout, so it is what gets listened to, with a
+     plain resize handler for the widths between steps. */
+  const recheck = () => settle();
+  if (typeof window !== 'undefined' && window.addEventListener){
+    window.addEventListener('resize', recheck, { passive: true });
+    window.addEventListener('orientationchange', recheck, { passive: true });
+    if (window.matchMedia){
+      const mq = window.matchMedia('(max-width:720px)');
+      if (mq.addEventListener) mq.addEventListener('change', recheck);
+    }
+    el.__stripRecheck = recheck;
   }
   setTimeout(settle, 0);
 }

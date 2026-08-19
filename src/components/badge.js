@@ -50,19 +50,36 @@ export const STATE_BADGES = new Set([
  * policy target being read as a financed pipeline, so it sits beside the figure
  * as a qualification rather than sinking into prose.
  */
+/**
+ * Types that are no longer chips, and how each is worded.
+ *
+ * `kind` is the classification; `value` is the display vocabulary. They are
+ * separate fields because the prefix and the value must each add something —
+ * "Source: Verified official source" says "source" twice and the reader learns
+ * nothing from the repetition.
+ *
+ * THIS DOES NOT CHANGE THE EVIDENCE CLASSIFICATION. BADGE_LABELS still carries
+ * the full wording each type was registered under, and every authority and
+ * provenance check reads from there. What changes is the four words on screen.
+ *
+ * `policy` keeps a full sentence deliberately: it exists to stop a policy
+ * target being read as a financed pipeline, and "Scope: Policy" would lose the
+ * whole point of it.
+ */
 export const DEMOTED_BADGES = {
-  official: ['Source', '来源'],
-  public:   ['Source', '来源'],
-  supp:     ['Source', '来源'],
-  dev:      ['Source', '来源'],
-  tp:       ['Source', '来源'],
-  project:  ['Source', '来源'],
-  calc:     ['Method', '方法'],
-  recon:    ['Method', '方法'],
-  model:    ['Basis', '口径'],
-  peer:     ['Context', '背景'],
-  nem:      ['Context', '背景'],
-  policy:   ['Scope', '适用范围'],
+  official: { kind: ['Source', '来源'],  value: ['Official', '官方'] },
+  public:   { kind: ['Source', '来源'],  value: ['Public', '公开'] },
+  supp:     { kind: ['Source', '来源'],  value: ['Supplementary', '补充'] },
+  dev:      { kind: ['Source', '来源'],  value: ['Developer', '开发商'] },
+  tp:       { kind: ['Source', '来源'],  value: ['Third party', '第三方'] },
+  project:  { kind: ['Source', '来源'],  value: ['Project study', '项目研究'] },
+  calc:     { kind: ['Method', '方法'],  value: ['Calculated', '计算得出'] },
+  recon:    { kind: ['Method', '方法'],  value: ['Reconstructed', '图表重构'] },
+  model:    { kind: ['Method', '方法'],  value: ['Modelled', '模型推算'] },
+  peer:     { kind: ['Context', '背景'], value: ['Peer market', '同业市场'] },
+  nem:      { kind: ['Context', '背景'], value: ['NEM', 'NEM'] },
+  policy:   { kind: ['Scope', '适用范围'],
+              value: ['Policy target — not financed pipeline', '政策目标 — 非已融资管线'] },
 };
 
 export const BADGE_LABELS = {
@@ -104,16 +121,30 @@ export const BADGE_LABELS = {
  */
 /** A demoted type rendered as a labelled note rather than a chip. */
 function demotedNote(type, label){
-  const kind = DEMOTED_BADGES[type];
-  const text = label !== undefined ? label : BADGE_LABELS[type];
+  const spec = DEMOTED_BADGES[type];
+  /* An explicit label from the call site wins — a few blocks say something more
+     specific than the type's default and should keep saying it. */
+  const text = label !== undefined ? label : spec.value;
   return h('span', { class: 'meta-note meta-' + type },
-    h('span', { class: 'meta-kind' }, L(kind) + ': '),
+    h('span', { class: 'meta-kind' }, L(spec.kind) + ': '),
     h('span', { class: 'meta-value' }, L(text)));
 }
 
 /**
- * @param {string} type  CSS modifier and dictionary key
- * @param {[string,string]|string} [label]  explicit override
+ * A SEMANTIC ANNOTATION DISPATCHER, not simply a chip factory.
+ *
+ * The name is historical. What this returns depends on what the type MEANS: a
+ * bounded state becomes a chip, and provenance, methodology or qualification
+ * becomes a labelled note. Both are annotations on a block; only one of them is
+ * worth a reader's first glance.
+ *
+ * Keeping one entry point is deliberate. It is the single place that decides
+ * what deserves the scanning layer, so a demoted type cannot be promoted back
+ * into it by an edit at a call site — and there are six hundred call sites.
+ *
+ * @param {string} type  the annotation type
+ * @param {[string,string]|string} [label]  explicit override of the value text
+ * @returns {HTMLElement} a chip for a state, a labelled note otherwise
  */
 export function badge(type, label){
   if (DEMOTED_BADGES[type]) return demotedNote(type, label);
