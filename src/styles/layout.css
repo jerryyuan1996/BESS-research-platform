@@ -21,6 +21,12 @@
 }
 .tab-btn:hover{background:var(--surface); border-color:var(--border);}
 .tab-btn.active{background:var(--surface); border-color:var(--s1); color:var(--ink); font-weight:var(--fw-medium);}
+/* The tabs are links, so they are keyboard-reachable already. What was missing
+   is seeing where the focus is — particularly in the scrolling strip, where the
+   focused tab may have just been scrolled in from off-screen. */
+.tab-btn:focus-visible{
+  outline:2px solid var(--s1); outline-offset:2px; border-radius:var(--r-md);
+}
 
 /* ---------- layout ---------- */
 .grid{display:grid; gap:14px;}
@@ -53,9 +59,22 @@
   .tabs{
     flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none;
     scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch;
-    /* The fade sits on the container, so it stays put while the tabs move. */
-    -webkit-mask-image:linear-gradient(to right,#000 calc(100% - 24px),transparent);
-    mask-image:linear-gradient(to right,#000 calc(100% - 24px),transparent);
+  }
+  /* The fade appears only on a side that actually has more tabs, and moves as
+     the strip scrolls — `data-overflow` is set by initTabStrip. A permanent
+     fade on both edges would be decoration; this is the content reporting its
+     own state, which is why there is no badge and no "swipe for more". */
+  .tabs[data-overflow="right"]{
+    -webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);
+    mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);
+  }
+  .tabs[data-overflow="left"]{
+    -webkit-mask-image:linear-gradient(to left,#000 calc(100% - 28px),transparent);
+    mask-image:linear-gradient(to left,#000 calc(100% - 28px),transparent);
+  }
+  .tabs[data-overflow="both"]{
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 28px,#000 calc(100% - 28px),transparent);
+    mask-image:linear-gradient(to right,transparent,#000 28px,#000 calc(100% - 28px),transparent);
   }
   .tabs::-webkit-scrollbar{display:none;}
   .tab-btn{scroll-snap-align:start; flex:0 0 auto;}

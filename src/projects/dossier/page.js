@@ -31,7 +31,7 @@ import { h } from '../../utils/dom.js';
 import { L } from '../../app/i18n.js';
 import { navigate } from '../../app/router.js';
 import { markets, byId } from '../../markets/registry.js';
-import { marketNav } from '../../components/navigation.js';
+import { marketNav, tabStrip } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
 import { badge } from '../../components/badge.js';
 import { dossierBlocks } from './blocks.js';
@@ -88,7 +88,7 @@ export function renderDossierPage(container, slug, tabId){
 
   /* The dossier's own tab strip. Real hrefs so the tabs are linkable and
      middle-clickable, matching every other tabbed surface here. */
-  container.append(h('div', { class: 'tabs' }, tabs.map(([id, label]) => {
+  container.append(tabStrip(tabs.map(([id, label]) => {
     const href = dossierPath(d) + (id === tabs[0][0] ? '' : '/' + id);
     return h('a', {
       class: 'tab-btn' + (id === active ? ' active' : ''),

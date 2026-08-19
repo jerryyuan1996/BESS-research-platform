@@ -65,6 +65,93 @@ function groupedTabs(tabs){
   return { ordered, revenue };
 }
 
+/* ---------------------------------------------------------------------------
+   THE TAB STRIP, ONCE, FOR ALL THREE PLACES THAT BUILD ONE.
+
+   Below the --bp-md step the strip scrolls sideways rather than wrapping, which
+   recovered a third of the mobile viewport. Scrolling introduces two problems a
+   wrapped strip does not have, and both are solved here rather than in each
+   caller.
+
+   THE ACTIVE TAB CAN START OFF-SCREEN. Arriving at the tenth tab of sixteen
+   would show the first four and no indication that the current one exists. It
+   is scrolled into view on mount — by setting `scrollLeft` rather than calling
+   `scrollIntoView`, which would also scroll the PAGE vertically and land the
+   reader below the heading they just navigated to.
+
+   OFF-SCREEN TABS NEED TO BE VISIBLE AS A FACT, NOT AS AN INSTRUCTION. The
+   strip carries a `data-overflow` attribute saying which side is cut off, and
+   the stylesheet fades that edge. No badge, no arrows, no "swipe for more" —
+   the content itself is the signal, and a fade that appears only on the side
+   with more content is a truthful one.
+
+   Keyboard access needs nothing added: the tabs are real links, so they are
+   focusable and followable already, and a browser scrolls a focused element in
+   an overflow container into view on its own. What was missing is a visible
+   focus ring, which is in the stylesheet.
+   --------------------------------------------------------------------------- */
+export function tabStrip(...children){
+  const el = h('div', { class: 'tabs' }, ...children);
+  initTabStrip(el);
+  return el;
+}
+
+/**
+ * Wire the overflow hint and the initial scroll position.
+ *
+ * OBSERVER-DRIVEN, NOT TIMER-DRIVEN. The first version measured inside a
+ * requestAnimationFrame and bailed when the element was not yet connected —
+ * which it never was, because every caller builds the strip and appends it
+ * afterwards. The result looked harmless: the strip scrolled, and simply had no
+ * fade and no initial positioning, on every page.
+ *
+ * A ResizeObserver fires when the element first has a box, so it cannot run too
+ * early, and it also handles rotation and window resize for free.
+ */
+function initTabStrip(el){
+  const update = () => {
+    const slack = el.scrollWidth - el.clientWidth;
+    if (slack <= 1){ el.removeAttribute('data-overflow'); return; }
+    const atStart = el.scrollLeft <= 1;
+    const atEnd = el.scrollLeft >= slack - 1;
+    el.setAttribute('data-overflow', atStart ? 'right' : atEnd ? 'left' : 'both');
+  };
+
+  el.addEventListener('scroll', update, { passive: true });
+
+  let positioned = false;
+  const settle = () => {
+    if (!positioned && el.clientWidth > 0){
+      positioned = true;
+      const active = el.querySelector('.tab-btn.active');
+      if (active && el.scrollWidth > el.clientWidth){
+        /* scrollLeft, not scrollIntoView: the latter scrolls the PAGE as well,
+           landing the reader below the heading they just navigated to. */
+        el.scrollLeft = active.offsetLeft - (el.clientWidth - active.offsetWidth) / 2;
+      }
+    }
+    update();
+  };
+
+  /* THE OBSERVER IS RETAINED ON THE ELEMENT, DELIBERATELY.
+
+     `new ResizeObserver(fn).observe(el)` keeps no reference to the observer, and
+     an observer with no strong reference may be collected — after which the
+     callback simply stops arriving. It fails silently and intermittently, which
+     is the worst way for it to fail. Hanging it off the element ties its
+     lifetime to the strip's.
+
+     The timeout is not redundant. Callers build the strip and append it
+     afterwards, so at `observe()` time the element has no box; a browser that
+     reports nothing until the next resize would leave the strip unhinted
+     forever. One task later it is in the document and measurable. */
+  if (typeof ResizeObserver === 'function'){
+    el.__stripObserver = new ResizeObserver(settle);
+    el.__stripObserver.observe(el);
+  }
+  setTimeout(settle, 0);
+}
+
 /**
  * @param {Array} markets  registry entries
  * @param {string} activeId  market id, or 'home'
@@ -76,7 +163,7 @@ export function marketNav(markets, activeId){
     onclick: (e) => { e.preventDefault(); navigate(href); },
   }, flag && h('span', { class:`market-flag fi fi-${flag}`, 'aria-hidden':'true' }), label);
 
-  return h('div', { class: 'tabs' },
+  return tabStrip(
     link('/', L(['◂ Global cockpit', '◂ 全球总看板']), activeId === 'home'),
     markets.map(m => link(
       '/markets/' + m.manifest.slug,
@@ -94,7 +181,7 @@ export function marketNav(markets, activeId){
 export function tabNav(tabs, activeTab, basePath){
   const { ordered, revenue } = groupedTabs(tabs);
   const revenueIds = new Set(revenue.map(([id]) => id));
-  return h('div', { class: 'tabs' }, ordered.map(([id, name]) => h('a', {
+  return tabStrip(ordered.map(([id, name]) => h('a', {
     class: 'tab-btn' + ((activeTab === id || (id === revenue[0]?.[0] && revenueIds.has(activeTab))) ? ' active' : ''),
     href: basePath + '/' + id,
     onclick: (e) => { e.preventDefault(); navigate(basePath + '/' + id); window.scrollTo(0, 0); },
