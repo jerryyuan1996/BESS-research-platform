@@ -53,6 +53,8 @@ import { congestionFor } from '../markets/congestionRegistry.js';
 import { CAPTURE_FLOW, reliefRunway } from '../governance/congestion.js';
 import { RUNWAY_FROM } from '../components/congestionPanel.js';
 import { homeState, labMarket, labOverrides } from './state.js';
+import { createPrintContext, PRINT_STATUS } from '../print/printContext.js';
+import { renderPrintSnapshot } from '../print/printSnapshot.js';
 
 const T = {
   title: ['Investment Lab — your assumptions, every market, one model',
@@ -319,7 +321,72 @@ function deltaChip(now, seed, fmt){
   return { text: (d > 0 ? '+' : '−') + fmt(Math.abs(d)), cls: d > 0 ? 'good' : 'bad' };
 }
 
-function renderOutputs(parent, market, seedMarket, strategyId, exitYear, conventions){
+
+/* ---------------------------------------------------------------------------
+   THE LAB'S PRINT ADAPTER.
+
+   Same contract as the dossier's, different everything else. The Lab runs a
+   shared market engine over app-level state with per-field overrides and a
+   named strategy; a dossier runs its own pure function over closure-local
+   inputs. Nothing is gained by making those look alike, so each owns the six
+   lines that describe its own run and both hand the result to one renderer.
+
+   Built from `now` — the case that was just run — and from the same `fields`
+   and `overrides` that produced it. No control is read at print time.
+
+   `extra` carries what the Lab has and a dossier does not: the strategy, the
+   exit year and whether the levered view is on. Those belong on the printed
+   sheet and there is no reason to flatten them into the assumption table to
+   make the two tools look symmetrical.
+   --------------------------------------------------------------------------- */
+/* The field `unit` keys are internal. On a printed sheet a column reading
+   "cur" is worse than no column. */
+const UNIT_LABEL = { cur: 'currency', pct: '%', frac: '%', yr: 'years', mo: 'months' };
+
+function labPrintContext(market, seedMarket, fields, overrides, strategyId, exitYear, now, kpiRows){
+  const mf = seedMarket.manifest;
+  const assumptions = fields.map(f => {
+    const current = Number.isFinite(overrides[f.key]) ? overrides[f.key] : f.value;
+    const moved = Math.abs(current - f.range.seed) > 1e-9;
+    return {
+      label: f.label,
+      value: fmtValue(current, f, mf, f.range),
+      unit: UNIT_LABEL[f.unit] ?? null,
+      source: f.range.gate ? 'research gap ' + f.range.gate : null,
+      /* Whether the reader moved this is the single most useful thing on a
+         printed assumption sheet: it separates the house view from the case
+         being argued. */
+      status: moved
+        ? 'changed from base ' + fmtValue(f.range.seed, f, mf, f.range)
+        : 'base case',
+    };
+  });
+
+  const failed = !!now.na;
+  return createPrintContext({
+    status: failed ? PRINT_STATUS.FAILED : PRINT_STATUS.OK,
+    statusReason: failed
+      ? [String(now.na), String(now.na)]
+      : null,
+    scenario: { id: strategyId, name: strategyById(strategyId).n },
+    model: {
+      id: 'Investment Lab — ' + L(seedMarket.manifest.shortName),
+      version: seedMarket.manifest.modelVersion ?? null,
+      vintage: seedMarket.manifest.asAt ?? null,
+    },
+    assumptions,
+    gaps: [],
+    outputs: failed ? [] : kpiRows,
+    extra: [
+      { label: ['Strategy', '策略'], value: L(strategyById(strategyId).n) },
+      { label: ['Exit year', '退出年份'], value: String(exitYear) },
+      { label: ['Capital structure', '资本结构'],
+        value: homeState.labLevered ? 'Levered' : 'Unlevered' },
+    ],
+  });
+}
+
+function renderOutputs(parent, market, seedMarket, strategyId, exitYear, conventions, fields, overrides){
   const now = runCase(market, strategyId, exitYear);
   const seed = runCase(seedMarket, strategyId, exitYear);
   const stratName = strategyById(strategyId).n;
@@ -331,6 +398,11 @@ function renderOutputs(parent, market, seedMarket, strategyId, exitYear, convent
 
   if (now.na){
     c.append(h('div', { class: 'warnbox' }, '⚠ ' + L(now.na)));
+    /* A case the engine cannot run still prints — saying what was assumed and
+       why there is no result. A blank space is indistinguishable from a case
+       nobody tried. */
+    c.append(renderPrintSnapshot(
+      labPrintContext(market, seedMarket, fields, overrides, strategyId, exitYear, now, [])));
     parent.append(c);
     return null;
   }
@@ -367,6 +439,16 @@ function renderOutputs(parent, market, seedMarket, strategyId, exitYear, convent
           cls: debt.irrLevered != null && debt.irrUnlevered != null
             && debt.irrLevered < debt.irrUnlevered ? 'bad' : null }));
   }
+  /* Immediately before the outputs, built from the case just run. */
+  c.append(renderPrintSnapshot(labPrintContext(
+    market, seedMarket, fields, overrides, strategyId, exitYear, now,
+    /* Read back from the KPI nodes just built, so the printed figures are
+       literally the ones on screen rather than a second formatting of the same
+       result. `.lbl` and `.val` are metricCard's own classes. */
+    [...kpis.children].map(k => {
+      const label = k.querySelector('.lbl')?.textContent?.trim() ?? '';
+      return { label: [label, label], value: k.querySelector('.val')?.textContent?.trim() ?? '' };
+    }).filter(o => o.label[0] && o.value))));
   c.append(kpis);
 
   /* The $1M recovery path, on the same basis as the cockpit's waterfall so the
@@ -430,7 +512,7 @@ export function renderInvestmentLab(main, marketList, exitYear){
 
   const body = h('div', { class: 'lab-body' });
   renderAssumptions(body, seedMarket, fields, overrides);
-  renderOutputs(body, market, seedMarket, strategyId, exitYear, conventions);
+  renderOutputs(body, market, seedMarket, strategyId, exitYear, conventions, fields, overrides);
   main.append(body);
 
   if (homeState.labLevered){

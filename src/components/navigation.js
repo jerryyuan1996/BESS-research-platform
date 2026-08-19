@@ -117,10 +117,28 @@ function initTabStrip(el){
     el.setAttribute('data-overflow', atStart ? 'right' : atEnd ? 'left' : 'both');
   };
 
-  el.addEventListener('scroll', update, { passive: true });
+  el.addEventListener('scroll', () => settle(), { passive: true });
 
   let positioned = false;
   const settle = () => {
+    /* SELF-DISCONNECT ONCE THE STRIP LEAVES THE DOCUMENT.
+
+       Market panels mount and unmount on every tab change, so a session builds
+       dozens of strips. Each discarded one would otherwise keep an observer
+       alive for as long as anything referenced the element — and the element
+       references the observer, so the pair keeps each other reachable until the
+       whole cycle is collected. Cutting the link explicitly means a removed
+       strip stops costing anything the moment it is removed, rather than
+       whenever the collector next runs.
+
+       Guarded on `positioned` so this cannot fire before the first mount, when
+       the element is legitimately not yet connected. */
+    if (positioned && !el.isConnected){
+      el.__stripObserver?.disconnect();
+      el.__stripObserver = null;
+      el.removeEventListener('scroll', settle);
+      return;
+    }
     if (!positioned && el.clientWidth > 0){
       positioned = true;
       const active = el.querySelector('.tab-btn.active');

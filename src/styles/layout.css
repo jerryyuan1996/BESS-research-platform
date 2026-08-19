@@ -82,7 +82,10 @@
   .revenue-subtabs::-webkit-scrollbar{display:none;}
 }
 
-@media print{ .tabs,.ctrls{display:none;} }
+/* Print rules live in print.css, which is imported last so its block wins
+   without !important on every rule. The stray declaration that used to sit
+   here hid controls and nothing else, which is what made a printed sheet
+   able to show an IRR with no assumptions at all. */
 
 /* ---------- market-story subpages ---------- */
 .story-subtabs{

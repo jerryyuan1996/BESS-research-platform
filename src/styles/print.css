@@ -1,0 +1,117 @@
+/* ---------------------------------------------------------------------------
+   PRINT.
+
+   For this audience a printed or PDF'd page is a deliverable, not a fallback.
+   The rules below are about one thing: a sheet of paper must not be able to
+   mislead in a way the screen could not.
+
+   WHAT IS REMOVED. Controls, navigation and anything that only makes sense
+   under a cursor. A slider printed as a slider tells the reader nothing about
+   where it was set.
+
+   WHAT REPLACES THEM. The assumption snapshot, hidden on screen and shown here,
+   generated from the same calculation run as the numbers beside it. See
+   src/print/printContext.js.
+
+   WHAT IS PRESERVED AT FULL WEIGHT. Titles, methodology labels, source
+   citations, caveats, gap notices and withheld-output reasons. These are the
+   parts most likely to be dismissed as chrome and are exactly what makes a
+   number usable. Nothing here is greyed, shrunk or collapsed for print.
+   --------------------------------------------------------------------------- */
+
+/* The snapshot exists in the DOM at all times so tests can read it and so the
+   browser has nothing to assemble at print time. It is simply not shown on a
+   screen that already has the controls. */
+.print-snap{ display:none; }
+
+@media print{
+  /* ---- what disappears -------------------------------------------------- */
+  /* Controls, not their values: the values are in the snapshot. */
+  .tabs, .ctrls, .frm, .seg, .lab-ctl, .story-subtabs, .revenue-subtabs,
+  .theme-toggle, .lang-toggle, .globe-market-links,
+  input, select, button, .btn, .walk-step,
+  [role="tablist"], [contenteditable]{
+    display:none !important;
+  }
+
+  .print-snap{ display:block; }
+
+  /* ---- what must survive ------------------------------------------------ */
+  /* Kept explicitly rather than by omission, because a future rule that hides
+     "secondary" content should have to argue with this list. */
+  .sect > h2, .card h3, .print-snap-title, .print-snap-subtitle,
+  .cap, .src, .why, .note, .warn, .warnbox, .gap-ledger, .print-snap-gaps,
+  .print-snap-status, .badge, .chip, thead, caption{
+    display:revert !important;
+    color:var(--ink) !important;
+    opacity:1 !important;
+  }
+  /* A caveat that prints in light grey is a caveat that does not print. */
+  .cap, .src, .note{ color:var(--ink2) !important; }
+  .warn, .warnbox, .print-snap-status{
+    border:1px solid var(--ink) !important;
+    padding:6px 8px;
+    break-inside:avoid;
+  }
+
+  /* ---- the snapshot travels with its outputs ---------------------------- */
+  /* The snapshot and the first block after it stay on one sheet, so an IRR
+     cannot begin a page whose assumptions ended the last one. */
+  .print-snap{
+    break-inside:avoid;
+    break-after:avoid;
+    border:1px solid var(--ink);
+    padding:8px 10px;
+    margin:0 0 10px;
+  }
+  .print-snap-meta{
+    display:grid; grid-template-columns:auto 1fr auto 1fr; gap:2px 10px;
+    font-size:var(--fs-2xs); margin:4px 0 8px;
+  }
+  .print-snap-meta dt{ color:var(--ink2); }
+  .print-snap-meta dd{ font-weight:var(--fw-medium); }
+  .print-snap-table{ width:100%; border-collapse:collapse; font-size:var(--fs-2xs); }
+  .print-snap-table th, .print-snap-table td{
+    border-bottom:1px solid var(--grid); padding:3px 5px; text-align:left;
+  }
+  .print-snap-table td.num, .print-snap-table th.num{
+    text-align:right; font-variant-numeric:tabular-nums;
+  }
+  .print-snap-gaps{ margin:4px 0 0 16px; font-size:var(--fs-2xs); }
+  .print-snap-gaps li{ break-inside:avoid; }
+
+  /* ---- tables ----------------------------------------------------------- */
+  /* A table crossing a page boundary repeats its header, or every column on
+     the second sheet is unlabelled. */
+  thead{ display:table-header-group; }
+  tfoot{ display:table-footer-group; }
+  tr, .kpi, .card{ break-inside:avoid; }
+  /* On screen a wide table scrolls inside its wrapper. Paper cannot scroll, so
+     the wrapper must stop clipping and let the table shrink to the sheet. */
+  .tbl-wrap{ overflow:visible !important; max-width:100% !important; }
+  table{ width:100% !important; font-size:var(--fs-micro); }
+
+  /* ---- charts ----------------------------------------------------------- */
+  /* SVG charts are laid out to a viewBox; without this they print at their
+     intrinsic width and lose whatever falls past the margin. */
+  svg{ max-width:100% !important; height:auto !important; break-inside:avoid; }
+  .chart{ overflow:visible !important; break-inside:avoid; }
+
+  /* ---- page ------------------------------------------------------------- */
+  body{ background:#fff !important; color:#000 !important; }
+  #app{ max-width:none; padding:0; }
+  a{ color:inherit !important; text-decoration:none !important; }
+  .card{ border:1px solid var(--grid) !important; background:none !important; }
+
+  /* The edge fade is a scrolling affordance. On paper there is no scrolling,
+     and a mask would silently crop the last tab of a strip that is not even
+     shown. Cleared defensively in case a strip is ever printed. */
+  .tabs[data-overflow]{ -webkit-mask-image:none !important; mask-image:none !important; }
+}
+
+/* Forced-colours mode replaces the palette with the reader's own. A mask is not
+   a colour, so it survives that substitution and can hide content the reader
+   explicitly asked to see. The overflow hint is decoration; it goes. */
+@media (forced-colors: active){
+  .tabs[data-overflow]{ -webkit-mask-image:none !important; mask-image:none !important; }
+}

@@ -35,6 +35,8 @@ import { badge } from './badge.js';
 import { chip } from './chip.js';
 import { kpi } from './metricCard.js';
 import { fmtN, fmt1, fmtPct, fmtX, NF2 } from '../utils/formatting.js';
+import { createPrintContext, PRINT_STATUS } from '../print/printContext.js';
+import { renderPrintSnapshot } from '../print/printSnapshot.js';
 import { byId } from '../markets/registry.js';
 import {
   GAP_LABEL, GAP_SEVERITY, GAP_SEVERITY_LABEL,
@@ -94,7 +96,8 @@ export function dossierModelPanel(model, { marketId } = {}){
 
   const recompute = () => {
     outputs.innerHTML = '';
-    renderOutputs(outputs, model, inputs, verdict);
+    renderOutputs(outputs, model, inputs, verdict,
+      (model.scenarios || []).find(x => x.id === activeScenario) || null);
   };
 
   /* ---- scenarios --------------------------------------------------------- */
@@ -167,7 +170,60 @@ export function dossierModelPanel(model, { marketId } = {}){
   return c;
 }
 
-function renderOutputs(parent, model, inputs, verdict){
+/* ---------------------------------------------------------------------------
+   THE DOSSIER'S PRINT ADAPTER.
+
+   Built here, inside the same synchronous pass that clears `outputs` and
+   rebuilds it, from the very `inputs` object about to be handed to
+   `calculate()`. Nothing re-reads a control, so the snapshot and the numbers
+   below it cannot describe different input sets: a re-render replaces both or
+   neither.
+
+   The three withholding paths each produce a context too. A failed golden set,
+   a blocking gap or a throw must still PRINT — saying what was withheld and
+   why — rather than printing nothing, which on paper is indistinguishable from
+   a model that was never run. */
+export function printContextFor(model, inputs, verdict, scenario, out, status, reason){
+  const assumptions = model.inputs.map(spec => ({
+    label: spec.label,
+    value: formatInput(inputs[spec.key], spec),
+    unit: spec.unit ?? null,
+    source: spec.source ?? null,
+    status: spec.gapId ? 'see gap ' + spec.gapId : null,
+  }));
+
+  const material = (model.gaps || []).filter(g => g.severity !== 'noted');
+
+  const outputs = status === PRINT_STATUS.OK && out
+    ? (model.kpis || []).map(k => ({
+        label: k.label, value: fmtValue(readPath(out, k.path), k.unit), unit: null,
+      }))
+    : [];
+
+  return createPrintContext({
+    status,
+    statusReason: reason ?? null,
+    scenario: scenario ? { id: scenario.id, name: scenario.name } : null,
+    model: {
+      id: L(model.name),
+      version: model.version ?? null,
+      vintage: model.vintage ?? null,
+    },
+    assumptions,
+    gaps: material.map(g => ({ id: g.id, severity: g.severity, what: g.what })),
+    outputs,
+  });
+}
+
+/** An input value as the reader set it, not as the engine stores it. */
+function formatInput(value, spec){
+  if (value == null) return 'N/A';
+  if (typeof value !== 'number') return String(value);
+  if (spec.step && spec.step >= 1) return NF2.format(value).replace(/\.00$/, '');
+  return NF2.format(value);
+}
+
+function renderOutputs(parent, model, inputs, verdict, scenario){
   /* A model that fails its goldens does not get to show numbers. */
   const failed = verdict.golden.filter(g => !g.ok);
   if (failed.length){
@@ -176,12 +232,22 @@ function renderOutputs(parent, model, inputs, verdict){
       L(['This transcription does not reproduce its source model, so its numbers are not shown. Failing cases: ',
          '本次转录未能复现源模型，故不展示其数值。未通过的用例：']),
       failed.map(f => f.id).join(', ')));
+    parent.append(renderPrintSnapshot(printContextFor(model, inputs, verdict, scenario, null,
+      PRINT_STATUS.WITHHELD,
+      ['Outputs withheld: this transcription does not reproduce its source model. Failing golden checks: '
+        + failed.map(f => f.id).join(', '),
+       '输出暂缓发布：本次转录未能复现源模型。未通过的基准校验：'
+        + failed.map(f => f.id).join(', ')])));
     return;
   }
   if (verdict.blocking.length){
     parent.append(h('div', { class: 'warnbox' },
       h('b', {}, L(['Blocking gap — outputs withheld. ', '阻断性缺口 — 输出暂缓发布。'])),
       verdict.blocking.map(g => L(g.what)).join(' · ')));
+    parent.append(renderPrintSnapshot(printContextFor(model, inputs, verdict, scenario, null,
+      PRINT_STATUS.WITHHELD,
+      ['Outputs withheld by a blocking gap: ' + verdict.blocking.map(g => g.what[0]).join(' · '),
+       '因阻断性缺口暂缓发布输出：' + verdict.blocking.map(g => g.what[1]).join(' · ')])));
     return;
   }
 
@@ -191,8 +257,16 @@ function renderOutputs(parent, model, inputs, verdict){
   } catch (err){
     parent.append(h('div', { class: 'warnbox' },
       L(['The model threw on these inputs: ', '模型在当前输入下报错：']) + err.message));
+    parent.append(renderPrintSnapshot(printContextFor(model, inputs, verdict, scenario, null,
+      PRINT_STATUS.FAILED,
+      ['The model did not produce a result for these inputs: ' + err.message,
+       '模型在当前输入下未能得出结果：' + err.message])));
     return;
   }
+
+  /* Immediately before the outputs, so a page break cannot separate them. */
+  parent.append(renderPrintSnapshot(
+    printContextFor(model, inputs, verdict, scenario, out, PRINT_STATUS.OK, null)));
 
   if (model.kpis?.length){
     parent.append(h('div', { class: 'kpis' }, model.kpis.map(k => {
