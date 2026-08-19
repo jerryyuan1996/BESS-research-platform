@@ -147,8 +147,27 @@ export function gapIds(market){
   return new Set(Object.keys(src).filter(k => isGapRecord(src[k])));
 }
 
-/* One sentence. A semicolon is how a second one gets smuggled in. */
-const SENTENCE = /^[^.!?;]+[.!?]$/;
+/* ONE SENTENCE, AND A DECIMAL POINT IS NOT A SENTENCE BOUNDARY.
+
+   The first version rejected any internal period, which rejected the first
+   claim that quoted a price: "$325.00 per MW-day" reads as two sentences to a
+   naive matcher. A number is the most likely thing a decision-useful claim
+   contains, so that was a bug waiting for the first good sentence.
+
+   The boundary that matters is a terminator FOLLOWED BY WHITESPACE, which is
+   how a second sentence actually begins — plus a semicolon, which is how one
+   gets smuggled in without one.
+
+   Known limit: an abbreviation like "U.S. Government" would trip this. No claim
+   uses one, and a false positive here is a review prompt rather than a silent
+   pass, which is the right direction for this check to fail in. */
+function isOneSentence(text){
+  const t = text.trim();
+  if (!/[.!?]$/.test(t)) return false;
+  const body = t.slice(0, -1);
+  if (body.includes(';')) return false;
+  return !/[.!?]\s/.test(body);
+}
 
 const isPair = (v) => Array.isArray(v) && typeof v[0] === 'string' && typeof v[1] === 'string';
 
@@ -198,7 +217,7 @@ export function validateClaim(claim, market, sectionId, ownership){
   if (needsText){
     if (!isPair(claim.text)) problems.push('a drafted claim needs [en, zh] text');
     else {
-      if (!SENTENCE.test(claim.text[0].trim()))
+      if (!isOneSentence(claim.text[0]))
         problems.push('the English claim must be exactly one sentence: ' + claim.text[0].slice(0, 60));
       if (!/[。！？]$/.test(claim.text[1].trim()))
         problems.push('the Chinese claim must end in a full-width stop');

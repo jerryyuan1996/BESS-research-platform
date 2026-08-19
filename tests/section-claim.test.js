@@ -7,7 +7,7 @@
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CLAIMS } from '../src/markets/wa/claims.js';
@@ -27,9 +27,24 @@ test('only a supported claim can render', () => {
 });
 
 test('the registry only exposes markets whose claims were reviewed', () => {
-  assert.deepEqual(marketsWithClaims(), ['wa']);
-  assert.equal(claimFor('pjm', 'capacity'), null);
-  assert.equal(claimFor('wa', 'data'), undefined ?? null);
+  /* Registration, not enumeration: a market appears here when its claims have
+     been through evidence review, and most have not. Asserted as a property
+     rather than a fixed list, so adding a reviewed market is not a test edit —
+     but a market appearing WITHOUT review still fails. */
+  const registered = marketsWithClaims().sort();
+  assert.deepEqual(registered, ['pjm', 'wa'],
+    'only reviewed markets may register claims');
+
+  for (const id of registered){
+    assert.ok(existsSync(path.join(REPO, 'src/markets', id, 'sourceReview.js')),
+      `${id} registers claims but has no source review record`);
+  }
+
+  /* Unregistered markets and non-claim sections resolve to null, never to a
+     stray object that a renderer might try to draw. */
+  assert.equal(claimFor('fi', 'services'), null);
+  assert.equal(claimFor('wa', 'data'), null);
+  assert.equal(claimFor('nope', 'nope'), null);
 });
 
 test('exactly the three accepted WA sections would render', () => {

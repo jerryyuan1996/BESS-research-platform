@@ -9,8 +9,9 @@
    in one place and cannot half-happen.
    --------------------------------------------------------------------------- */
 import { CLAIMS as WA_CLAIMS } from './wa/claims.js';
+import { CLAIMS as PJM_CLAIMS } from './pjm/claims.js';
 
-const BY_MARKET = { wa: WA_CLAIMS };
+const BY_MARKET = { wa: WA_CLAIMS, pjm: PJM_CLAIMS };
 
 /** The claim for one section, or null. Null is the answer for most sections. */
 export function claimFor(marketId, sectionId){

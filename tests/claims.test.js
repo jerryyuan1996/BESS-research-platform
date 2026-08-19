@@ -257,3 +257,23 @@ test('absence is a valid state at every level', () => {
   assert.equal(NO_CLAIM_SECTIONS.has('data'), true);
   assert.equal(NO_CLAIM_SECTIONS.has('portfolio'), true);
 });
+
+test('a decimal point is not a sentence boundary', () => {
+  /* The first claim that quoted a price failed this check: "$325.00 per MW-day"
+     reads as two sentences to a naive matcher. A number is the most likely
+     thing a decision-useful claim contains, so the check had to learn the
+     difference between a decimal and a full stop. */
+  assert.deepEqual(validateClaim({
+    readiness: READINESS.SUPPORTED,
+    text: ['Every price cleared at the cap of $325.00 per MW-day UCAP.',
+           '所有价格均以每MW`日325.00美元的上限出清。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['bra2829'],
+  }, pjm, 'capacity'), []);
+
+  /* And still catches a genuine second sentence. */
+  assert.ok(validateClaim({
+    readiness: READINESS.SUPPORTED,
+    text: ['It cleared at $325.00. That is the cap.', '中文。中文。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['bra2829'],
+  }, pjm, 'capacity').some(p => /exactly one sentence/.test(p)));
+});
