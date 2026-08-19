@@ -180,8 +180,21 @@ export function validateClaim(claim, market, sectionId, ownership){
   const gp = claim.gaps ?? [];
 
   /* ---- text ------------------------------------------------------------- */
+  /* A supported claim must have text — that is what publication means.
+     An INCOMPLETE one may or may not: sometimes a sentence is drafted and held
+     back pending verification, and sometimes nothing can be drafted at all
+     because the underlying figures have not been read. Requiring a draft in the
+     second case would have forced writing a sentence in order to record that
+     there was nothing to write, which is the pressure this whole design exists
+     to remove. Either way it must say why it is not published. */
+  const drafted = Array.isArray(claim.text);
   const needsText = claim.readiness === READINESS.SUPPORTED
-                 || claim.readiness === READINESS.INCOMPLETE;
+                 || (claim.readiness === READINESS.INCOMPLETE && drafted);
+  if (claim.readiness === READINESS.SUPPORTED && !drafted)
+    problems.push('a supported claim must carry its text');
+  if (claim.readiness === READINESS.INCOMPLETE && !drafted
+      && !isPair(claim.note) && !isPair(claim.reason))
+    problems.push('an incomplete section with no draft must record why, in [en, zh]');
   if (needsText){
     if (!isPair(claim.text)) problems.push('a drafted claim needs [en, zh] text');
     else {
@@ -192,7 +205,7 @@ export function validateClaim(claim, market, sectionId, ownership){
     }
     if (!Object.values(CLAIM_BASIS).includes(claim.basis))
       problems.push('basis must be one of ' + Object.values(CLAIM_BASIS).join(', '));
-  } else if (claim.text){
+  } else if (claim.text && claim.readiness !== READINESS.INCOMPLETE){
     problems.push(`readiness "${claim.readiness}" must not carry claim text`);
   }
 
@@ -249,8 +262,13 @@ export function validateClaim(claim, market, sectionId, ownership){
   /* A third-party or developer-reported record MAY support a claim, but the
      claim must attribute it, so a reader is never told something rests on an
      official source when it rests on a vendor's own figure. */
-  const needsAttribution = ev.filter(id => records[id] &&
-    [AUTHORITY.THIRD_PARTY, AUTHORITY.DEVELOPER].includes(authorityOf(records[id], id)));
+  /* A PUBLICATION requirement, so it applies to supported claims only. An
+     incomplete section citing an unattributable third-party source is not
+     breaking the rule — it is the reason the section is incomplete, and
+     demanding attribution there would make the state impossible to record. */
+  const needsAttribution = claim.readiness !== READINESS.SUPPORTED ? [] :
+    ev.filter(id => records[id] &&
+      [AUTHORITY.THIRD_PARTY, AUTHORITY.DEVELOPER].includes(authorityOf(records[id], id)));
   if (needsAttribution.length && !claim.attribution)
     problems.push('evidence from ' + needsAttribution.join(', ') + ' is third-party or ' +
                   'developer-reported; set attribution so its provenance stays visible');
