@@ -21,6 +21,12 @@
    block engine, so a dossier is data rather than code. Nothing in this file
    knows what a transaction or a sensitivity grid contains.
    --------------------------------------------------------------------------- */
+/* The dossier's own stylesheet, imported HERE rather than in main.js so it
+   travels with this lazily-loaded chunk. A published build has no dossiers at
+   all, and a market reader has no use for these rules; importing it eagerly
+   made every visitor download the styling for a page they cannot open. */
+import '../../styles/dossier.css';
+
 import { h } from '../../utils/dom.js';
 import { L } from '../../app/i18n.js';
 import { navigate } from '../../app/router.js';

@@ -1,0 +1,43 @@
+/* ---------------------------------------------------------------------------
+   DOSSIER LAYER — loaded with the dossier, not with the platform.
+
+   These rules style project dossiers and the model panel. They used to sit in
+   components.css, which main.js imports eagerly, so every reader of every
+   market page downloaded them in order to render nothing: the dossier JS is
+   lazy and, in a published build, there are no dossiers at all.
+
+   Importing this from the lazy dossier entry instead makes the stylesheet a
+   dependency of that chunk, so Vite emits it as its own CSS file and the
+   browser fetches it only when a dossier is actually opened. The boundary is
+   asserted in tests/bundle-budget.test.js — the main stylesheet must not
+   contain these selectors.
+   --------------------------------------------------------------------------- */
+
+/* ---- dossier blocks -------------------------------------------------------
+   A deal structure is a tree with labelled edges. Nested boxes rather than an
+   SVG diagram: this reflows on a phone, prints, and is readable in order by a
+   screen reader, none of which hand-positioned SVG does. */
+.deal-structure{margin:10px 0;}
+.ds-node{border:1px solid var(--border); border-radius:var(--r-md); padding:8px 10px; margin:6px 0; background:var(--surface);}
+.ds-node.depth-1{margin-left:14px;} .ds-node.depth-2{margin-left:28px;} .ds-node.depth-3{margin-left:42px;}
+.ds-role{font-size:var(--fs-micro); text-transform:uppercase; letter-spacing:.04em; color:var(--muted);}
+.ds-name{font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--ink); margin-top:2px;}
+.ds-note{font-size:var(--fs-2xs); color:var(--ink2); margin-top:3px;}
+.ds-edge{font-size:var(--fs-2xs); color:var(--muted); margin:4px 0 0 14px;}
+.ds-edge::before{content:'└ '; opacity:.6;}
+
+/* The base cell is the point of a sensitivity grid: without it the table says
+   which combinations were tested, not which one is being proposed. */
+.sens-grid td.sens-base{background:var(--good-bg); font-weight:var(--fw-bold); color:var(--ink);
+  outline:1.5px solid var(--good); outline-offset:-1.5px;}
+
+/* Dossier cards on a market's Portfolio tab. Present only in a development
+   build with local-data/dossiers/ populated; a published build renders the
+   withheld card instead and these rules match nothing. */
+.dossier-list{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; margin-top:10px;}
+.dossier-card{display:block; border:1px solid var(--border); border-radius:var(--r-lg); padding:11px 13px;
+  background:var(--bg); text-decoration:none; color:inherit;}
+.dossier-card:hover{border-color:var(--s1); background:var(--accent-bg); text-decoration:none;}
+.dc-name{font-size:var(--fs-sm); font-weight:var(--fw-medium); color:var(--ink);}
+.dc-sub{font-size:var(--fs-2xs); color:var(--muted); margin-top:3px;}
+.dc-headline{font-size:var(--fs-xs); color:var(--ink2); margin-top:6px;}

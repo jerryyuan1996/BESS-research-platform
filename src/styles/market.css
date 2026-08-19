@@ -33,4 +33,4 @@
 .gate .gname{font-weight:var(--fw-medium);color:var(--ink);}
 .gate .gstat{text-align:right;}
 .proto{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--r-lg);padding:10px 12px;font-size:var(--fs-xs);color:var(--ink2);}
-@media (max-width:760px){.story-intro{grid-template-columns:1fr}.timeline::before{left:66px}.tl-item{grid-template-columns:54px 1fr;gap:22px}.tl-body::before{left:-28px}.gate{grid-template-columns:1fr}.gate .gstat{text-align:left}}
+@media (max-width:720px){.story-intro{grid-template-columns:1fr}.timeline::before{left:66px}.tl-item{grid-template-columns:54px 1fr;gap:22px}.tl-body::before{left:-28px}.gate{grid-template-columns:1fr}.gate .gstat{text-align:left}}

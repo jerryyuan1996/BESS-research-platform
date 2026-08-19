@@ -35,6 +35,34 @@
 .sect{margin-bottom:22px;}
 .sect > h2{font-size:var(--fs-lg); font-weight:var(--fw-medium); margin-bottom:4px;}
 .sect > .cap{font-size:var(--fs-sm); color:var(--ink2); margin-bottom:12px; max-width:900px;}
+/* ---------- navigation below --bp-md ----------------------------------------
+   A market page carries sixteen tabs. They wrap, so nothing overflows and the
+   page looks fine — which is why this went unnoticed: at 375px the strip is
+   213px tall and the sticky chrome totals 428px, 53% of the viewport, before
+   any content at all.
+
+   Below 720px the strip scrolls sideways instead of growing downwards. Two rows
+   still fit above that, which is a reasonable use of vertical space; three or
+   more is not.
+
+   `scrollbar-width:none` hides the bar rather than the overflow — the strip is
+   still scrollable by touch, wheel and keyboard, and the fade on the right edge
+   is what signals there is more. `scroll-snap` keeps a tab from being left
+   half-visible after a flick. */
+@media (max-width:720px){
+  .tabs{
+    flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none;
+    scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch;
+    /* The fade sits on the container, so it stays put while the tabs move. */
+    -webkit-mask-image:linear-gradient(to right,#000 calc(100% - 24px),transparent);
+    mask-image:linear-gradient(to right,#000 calc(100% - 24px),transparent);
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab-btn{scroll-snap-align:start; flex:0 0 auto;}
+  .revenue-subtabs{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none;}
+  .revenue-subtabs::-webkit-scrollbar{display:none;}
+}
+
 @media print{ .tabs,.ctrls{display:none;} }
 
 /* ---------- market-story subpages ---------- */

@@ -103,3 +103,45 @@ test('an SVG font-size is set through style, never as a presentation attribute',
   assert.deepEqual(bad, [],
     'set element.style.fontSize instead, so the custom property resolves\n' + bad.join('\n'));
 });
+
+test('only the four sanctioned breakpoints are used', () => {
+  /* Seven ad-hoc max-widths were in use with no relationship between them:
+     1050, 900, 760, 720, 700, 640 and 560. Each was defensible where it was
+     written; the set was not.
+
+     The four that remain were chosen from measured failure points, and the
+     measurement is recorded in tokens.css beside them. A fifth should be added
+     the same way — by measuring something that breaks — rather than by picking
+     a number that suits one rule. */
+  const allowed = new Set([560, 720, 900, 1050]);
+  const bad = [];
+  for (const f of files.filter(x => x.endsWith('.css'))){
+    read(f).split(/\r?\n/).forEach((line, i) => {
+      /* @media only. `max-width` is also a sizing property — a chart legend
+         capped at 280px is not a breakpoint and has nothing to do with the
+         responsive system. Matching both was the first version of this test,
+         and it reported eight failures that were all correct code. */
+      if (!line.includes('@media')) return;
+      for (const m of line.matchAll(/max-width:\s*([0-9]+)px/g)){
+        const px = Number(m[1]);
+        if (!allowed.has(px)) bad.push(`${rel(f)}:${i + 1}  max-width:${px}px`);
+      }
+    });
+  }
+  assert.deepEqual(bad, [],
+    'use 560, 720, 900 or 1050, or add a step to tokens.css with the measurement '
+    + 'that justifies it\n' + bad.join('\n'));
+});
+
+test('the breakpoint steps are declared and ordered', () => {
+  const css = readFileSync(TOKENS, 'utf8');
+  const steps = ['--bp-sm', '--bp-md', '--bp-lg', '--bp-xl'];
+  const px = steps.map(name => {
+    const m = css.match(new RegExp(name + ':\\s*([0-9]+)px'));
+    assert.ok(m, `${name} is missing from tokens.css`);
+    return Number(m[1]);
+  });
+  for (let k = 1; k < px.length; k++){
+    assert.ok(px[k] > px[k - 1], `${steps[k]} must be wider than ${steps[k - 1]}`);
+  }
+});

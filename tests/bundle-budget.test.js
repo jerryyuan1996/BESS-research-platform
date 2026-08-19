@@ -294,3 +294,63 @@ test('market payloads are absent from the entry chunk, not merely duplicated', a
       'longer checking anything. Pick a new one from what the market actually ships.');
   }
 });
+
+/* ---------------------------------------------------------------------------
+   CSS CROSSES THE LAZY BOUNDARY TOO, AND IT IS EASIER TO MISS.
+
+   A dynamic import splits JavaScript automatically, so a lazily-loaded module
+   is obviously lazy. Its stylesheet is not: CSS reaches the bundle through
+   whichever module imports it, and the natural place to put a rule — the shared
+   components stylesheet — is imported eagerly from main.js. That is how the
+   dossier and model-panel rules ended up in the main stylesheet: every reader
+   of every market page downloaded them in order to render nothing, because the
+   dossier JS is lazy and a published build contains no dossiers at all.
+
+   Nothing about the page looked wrong, which is why this is a test rather than
+   a convention.
+   --------------------------------------------------------------------------- */
+
+/** The stylesheets in the output directory, by role. */
+async function styles(){
+  const dir = path.join(DIST, 'assets');
+  const files = (await readdir(dir)).filter(f => f.endsWith('.css'));
+  const out = { main: null, lazy: [] };
+  for (const name of files){
+    const text = await readFile(path.join(dir, name), 'utf8');
+    const entry = { name, bytes: Buffer.byteLength(text), text };
+    if (/^index-[^.]+\.css$/.test(name)) out.main = entry;
+    else out.lazy.push(entry);
+  }
+  return out;
+}
+
+/* Selectors that may appear ONLY in a lazily-loaded stylesheet. Chosen to be
+   distinctive: `.ds-node` and `.dc-name` exist nowhere else, so a match is
+   evidence rather than a coincidence. */
+const DOSSIER_ONLY = ['.ds-node', '.ds-role', '.dc-name', '.dossier-card', '.sens-base'];
+
+test('dossier styling stays out of the main stylesheet', async (t) => {
+  if (skipWithoutDist(t)) return;
+  const css = await styles();
+  assert.ok(css.main, `no index-*.css in ${SCAN_REL}/assets — the main stylesheet was not found`);
+
+  const leaked = DOSSIER_ONLY.filter(sel => css.main.text.includes(sel));
+  assert.deepEqual(leaked, [],
+    'these selectors are in the eagerly-loaded stylesheet and should travel with ' +
+    'the dossier chunk instead. Import the rule from a module inside the lazy ' +
+    'boundary — src/projects/dossier/ — rather than from src/styles/components.css.');
+});
+
+test('the dossier stylesheet exists as its own chunk', async (t) => {
+  if (skipWithoutDist(t)) return;
+  const css = await styles();
+
+  /* The complement of the test above. Without this, deleting the rules
+     altogether would also pass, and the styling would be silently gone. */
+  const carrier = css.lazy.find(f => DOSSIER_ONLY.every(sel => f.text.includes(sel)));
+  assert.ok(carrier,
+    'no lazily-loaded stylesheet carries the dossier rules. They are either ' +
+    'missing entirely or split across chunks; both are worse than the leak.');
+  assert.ok(carrier.bytes < 8 * 1024,
+    `the dossier stylesheet is ${(carrier.bytes / 1024).toFixed(1)} kB, over its 8 kB budget`);
+});

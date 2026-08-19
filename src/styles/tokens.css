@@ -67,6 +67,41 @@
   /* Radius. --r-pill is the only one that is not on the scale, because a pill
      is a shape rather than a size. */
   --r-xs: 2px; --r-sm: 5px; --r-md: 8px; --r-lg: 10px; --r-pill: 999px;
+
+  /* ---------------------------------------------------------------------
+     RESPONSIVE STEPS.
+
+     Declared here for the record and for the test that enforces them; the
+     @media rules use the literal values, because a custom property cannot be
+     read inside a media query.
+
+     Seven ad-hoc max-widths were in use — 1050, 900, 760, 720, 700, 640 and
+     560 — with no relationship between them. These four were chosen from where
+     content measurably fails, not by copying a device list:
+
+       --bp-xl 1050px  the widest dashboard tables stop fitting beside a second
+                       column and drop to full width.
+
+       --bp-lg  900px  side-by-side panels stack. Below this a two-panel row
+                       gives each panel less than its comfortable reading width.
+
+       --bp-md  720px  NAVIGATION IS THE BINDING CONSTRAINT HERE. A market page
+                       carries sixteen tabs, about 1440px laid end to end. They
+                       wrap, so nothing overflows and nothing looks broken — but
+                       at 375px the strip is 213px tall and the sticky chrome
+                       totals 428px, which is 53% of the viewport before any
+                       content. Two rows still fit at 720px; below it the strip
+                       scrolls horizontally instead of growing downwards.
+                       Fixed multi-column grids collapse at the same point.
+
+       --bp-sm  560px  dense label-and-value rows drop their fixed label column
+                       and stack.
+
+     Anything fluid stays fluid: the content grids use auto-fit with a minmax
+     floor and need no breakpoint at all. These four exist for the layouts that
+     cannot express themselves that way.
+     --------------------------------------------------------------------- */
+  --bp-sm: 560px; --bp-md: 720px; --bp-lg: 900px; --bp-xl: 1050px;
   --bg:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
   --grid:#e1e0d9; --baseline:#c3c2b7; --border:rgba(11,11,11,.10);
   --map-water:#eef3f6; --map-land:#dfe8e6; --map-coast:#708394;
