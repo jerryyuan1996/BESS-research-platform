@@ -1528,3 +1528,43 @@ Four assertions guard the split: the reference case is always populated, the
 current case is empty until confirmed, confirming opens the current case without
 disturbing the reference, and the three candidate rates produce three distinct
 returns.
+
+---
+
+## W-9 resolved, and the resolution went the other way
+
+Confirmed 19 August 2026: the credit facility survived, at an expected return of
+15% p.a. on the base case. On the workbook's own definition of the total —
+bank-guarantee fee plus facility return — the applicable rate is 17.5%.
+
+That is higher than the 7.5% the published distribution vector was built on,
+because the vector assumed a 5% facility return. The underwriting case is
+therefore **worse** than the published dashboard, not better:
+
+- equity IRR 12.89% against a published 13.15% — 26 basis points lower
+- equity NPV A$18.14m against A$23.28m — A$5.15m lower
+- the carrying cost is about A$2.27m a year for the five years to release,
+  against the A$0.97m the published numbers assumed
+
+This is why the current case was withheld rather than defaulted. Had it been
+defaulted to either candidate on the table at the time — the published 7.5% or
+the live formula's 2.5% — the model would have shown a return better than the
+one now confirmed, and the error would have been invisible because both values
+had a defensible story behind them.
+
+The reference case stays locked at 7.5% and stays a reproduction. It is retained
+precisely because existing paper quotes it, and the dossier now says plainly
+that anything quoting those figures is quoting a basis the transaction no longer
+sits on.
+
+**The bargaining window moved with it.** What the construction vehicle can pay
+and still clear its hurdle depends on the distributions it will actually
+receive, so the ceiling is now computed on the confirmed basis: it falls from
+A$74.48m to A$69.34m, narrowing the window from A$23.28m to A$18.13m. The
+pre-agreed price still sits at the floor. Computing that ceiling off the
+reference case would have quoted a bargaining range the deal no longer has.
+
+W-9 stays material and changes character: it is no longer an unresolved input,
+it is a live divergence between what the published dashboard says and what the
+transaction now costs. The withholding path is kept and separately asserted, so
+the next unresolved input cannot quietly acquire a default.
