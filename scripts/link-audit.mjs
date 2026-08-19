@@ -100,25 +100,49 @@ async function probe(url){
   return { error: 'no response' };
 }
 
-/** Every distinct URL in the platform, with the records that use it. */
+/**
+ * The full accounting of what this audit covers.
+ *
+ * SELF-RECONCILING BY CONSTRUCTION. A report that says "29 healthy" without
+ * saying 29 of what invites the reader to assume it means everything. Every
+ * record is placed in exactly one bucket — exempt, unexempted-and-URL-less, or
+ * attributed to a unique URL — and the totals are asserted to add up before
+ * anything is printed.
+ */
 export function collectUrls(only){
-  const seen = new Map();
+  const byUrl = new Map();
+  const exempt = [];
+  const missingUrl = [];
+  let totalRecords = 0;
+
+  /* Japan's three allocation points share one register; count it once. */
   const registers = [...new Map(markets.map(m => [m.sources, m])).values()];
   for (const m of registers){
     if (only && m.manifest.id !== only) continue;
     for (const [id, rec] of Object.entries(evidenceRecords(m))){
+      totalRecords++;
       const key = `${m.manifest.id}:${id}`;
       if (!rec.url){
-        if (!URL_EXEMPT[key]) seen.set(key, { key, url: null });
+        if (URL_EXEMPT[key]) exempt.push(key); else missingUrl.push(key);
         continue;
       }
-      const entry = seen.get(rec.url) || { url: rec.url, keys: [] };
-      entry.keys = entry.keys || [];
+      const entry = byUrl.get(rec.url) || { url: rec.url, keys: [] };
       entry.keys.push(key);
-      seen.set(rec.url, entry);
+      byUrl.set(rec.url, entry);
     }
   }
-  return [...seen.values()].filter(e => e.url);
+
+  const targets = [...byUrl.values()];
+  const attributed = targets.reduce((a, t) => a + t.keys.length, 0);
+  const accounted = attributed + exempt.length + missingUrl.length;
+  if (accounted !== totalRecords){
+    throw new Error(`link audit accounting does not reconcile: ${accounted} placed ` +
+                    `against ${totalRecords} records`);
+  }
+
+  return Object.assign(targets, {
+    census: { totalRecords, exempt, missingUrl, uniqueUrls: targets.length, attributed },
+  });
 }
 
 async function main(){
@@ -157,9 +181,35 @@ async function main(){
 
   if (asJson){ console.log(JSON.stringify({ counts, results }, null, 2)); return; }
 
+  const census = targets.census;
+  const categorised = Object.values(counts).reduce((a, b) => a + b, 0);
+  /* The check that makes the numbers mean something: every unique URL attempted
+     lands in exactly one category. */
+  if (categorised !== census.uniqueUrls){
+    console.log('  ACCOUNTING ERROR: ' + categorised + ' categorised results against ' +
+                census.uniqueUrls + ' unique urls attempted. Treat this run as void.');
+  }
+
   console.log('link health, ' + new Date().toISOString().slice(0, 10) +
               ' — informational, no build depends on this');
-  for (const [k, v] of Object.entries(counts)) console.log('  ' + k.padEnd(20) + v);
+  console.log('');
+  console.log('  source records                 ' + census.totalRecords);
+  console.log('    without a url, exempt        ' + census.exempt.length +
+              (census.exempt.length ? '  (' + census.exempt.join(', ') + ')' : ''));
+  console.log('    without a url, NOT exempt    ' + census.missingUrl.length +
+              (census.missingUrl.length ? '  (' + census.missingUrl.join(', ') + ')' : ''));
+  console.log('    carrying a url               ' + census.attributed);
+  console.log('  unique urls attempted          ' + census.uniqueUrls);
+  console.log('');
+  for (const [k, v] of Object.entries(counts)){
+    const affected = results.filter(r => r.health === k)
+      .reduce((a, r) => a + r.keys.length, 0);
+    console.log('  ' + k.padEnd(20) + String(v).padStart(4) + ' urls, ' +
+                String(affected).padStart(4) + ' records');
+  }
+  console.log('  ' + 'TOTAL'.padEnd(20) + String(categorised).padStart(4) + ' urls, ' +
+              String(census.attributed).padStart(4) + ' records' +
+              (categorised === census.uniqueUrls ? '   (reconciles)' : '   (DOES NOT RECONCILE)'));
 
   /* A run that mostly timed out is a report about the network, not the links.
      Saying so is the difference between a useful audit and a misleading one. */

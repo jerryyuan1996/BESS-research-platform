@@ -51,7 +51,11 @@ test('the registry only exposes markets whose claims were reviewed', () => {
   const withClaims = readdirSync(path.join(REPO, 'src/markets'))
     .filter(d => existsSync(path.join(REPO, 'src/markets', d, 'claims.js')))
     .sort();
-  assert.deepEqual(withClaims, ['pjm', 'wa'], 'only reviewed markets may ship claims');
+  /* Held as a property, which is what the comment above always promised and
+     what the literal list underneath it was quietly breaking — Finland's review
+     landing turned a passing test red for the one reason it should not, a
+     reviewed market being added. The property below is the real assertion. */
+  assert.ok(withClaims.length, 'at least one market has been through review');
 
   for (const id of withClaims){
     assert.ok(existsSync(path.join(REPO, 'src/markets', id, 'sourceReview.js')),
@@ -63,7 +67,9 @@ test('the registry only exposes markets whose claims were reviewed', () => {
 
   /* Unregistered markets and non-claim sections resolve to null, never to a
      stray object that a renderer might try to draw. */
-  assert.equal(claimFor('fi', 'services'), null);
+  /* `de` has been through no review and ships no claims module at all — the
+     case `fi` used to stand for, before Finland was reviewed. */
+  assert.equal(claimFor('de', 'services'), null);
   assert.equal(claimFor('wa', 'data'), null);
   assert.equal(claimFor('nope', 'nope'), null);
 });
@@ -128,4 +134,22 @@ test('the claim block cannot be split across a printed page', () => {
 test('the claim region is announced before it is read', () => {
   assert.match(COMPONENT, /'aria-label'/);
   assert.match(COMPONENT, /Section claim/);
+});
+
+test('a bilingual attribution is resolved, not concatenated', () => {
+  /* Finland's duration claim is the first to render an attribution at all, and
+     it is a pair. The component appended `claim.attribution` directly, which
+     for an array prints the English AND the Chinese, in both languages. A bare
+     proper name — "Modo Energy" — still passes through unchanged. */
+  assert.match(COMPONENT, /Array\.isArray\(claim\.attribution\)\s*\?\s*L\(claim\.attribution\)/,
+    'a pair must resolve through L() before it reaches the page');
+  assert.ok(!/\+ claim\.attribution\b/.test(COMPONENT),
+    'the raw value must never be concatenated into the label');
+});
+
+test('reported renders with its own label rather than falling through', () => {
+  /* An unlabelled basis is not an error in the renderer — the meta line just
+     omits it — so a missing entry would silently drop the one thing that says
+     this sentence is a disclosure and not a measurement. */
+  assert.match(COMPONENT, /reported:\s*\['Reported', '企业披露'\]/);
 });

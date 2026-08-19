@@ -9,7 +9,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { markets } from '../src/markets/registry.js';
-import { CLAIMS } from '../src/markets/wa/claims.js';
+import { DISPOSITIONS as CLAIMS } from '../src/markets/wa/dispositions.js';
+import { CLAIMS as WA_RUNTIME } from '../src/markets/wa/claims.js';
 import { REVIEW } from '../src/markets/wa/sourceReview.js';
 import { validateClaim, READINESS, NO_CLAIM_SECTIONS } from '../src/governance/claims.js';
 import { openedTheDocument } from '../src/governance/sourceReview.js';

@@ -26,7 +26,32 @@ test('authority is read from an explicit field, never inferred', () => {
   const p = evidenceRecords(pjm);
   assert.equal(authorityOf(p.bra2829, 'bra2829'), AUTHORITY.OFFICIAL);
   assert.equal(authorityOf(p.tb4, 'tb4'), AUTHORITY.THIRD_PARTY);
-  assert.equal(authorityOf(evidenceRecords(fi).statkraftOx2, 'x'), AUTHORITY.DEVELOPER);
+  /* PUBLISHER, NOT DEVELOPER. Statkraft published this and OX2 builds the
+     sites, so counterparty-reported is the accurate category — a commercial
+     party describing its own transaction. It was classified developer-reported,
+     which named the wrong party and implied a closeness to the asset that the
+     publisher does not have. */
+  assert.equal(authorityOf(evidenceRecords(fi).statkraftOx2, 'x'), AUTHORITY.COUNTERPARTY);
+});
+
+test('self-reported and independent are different, and both are non-official', () => {
+  /* The distinction the fourth category exists to keep. Counterparty and
+     developer are both parties with a position in what they describe; a
+     third-party analyst is not. Folding any of them together would let a
+     reader discount them identically when they fail differently. */
+  for (const a of [AUTHORITY.DEVELOPER, AUTHORITY.COUNTERPARTY, AUTHORITY.THIRD_PARTY])
+    assert.notEqual(a, AUTHORITY.OFFICIAL);
+  assert.notEqual(AUTHORITY.COUNTERPARTY, AUTHORITY.DEVELOPER);
+  assert.notEqual(AUTHORITY.COUNTERPARTY, AUTHORITY.THIRD_PARTY);
+
+  /* And every one of the three obliges a supported claim to attribute it. */
+  const base = {
+    readiness: READINESS.SUPPORTED, basis: CLAIM_BASIS.REPORTED,
+    text: ['A sentence.', '一句话。'], evidence: ['statkraftOx2'],
+  };
+  assert.ok(validateClaim(base, fi, 'duration').some(p => /attribution/.test(p)));
+  assert.deepEqual(
+    validateClaim({ ...base, attribution: 'Statkraft' }, fi, 'duration'), []);
 });
 
 test('public availability never implies official authority', () => {

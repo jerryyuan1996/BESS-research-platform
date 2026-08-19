@@ -129,9 +129,17 @@ export function buildSections(api){
         rows: slowRows() },
       { t: 'cap', text: ['The slower products, where a battery competes with demand response and thermal plant on cost.',
                          '响应较慢的品种，储能在此与需求响应及火电机组进行成本竞争。'] },
-      { t: 'note', b: ['The forecast does not rescue it. ', '预测无法改变这一状况。'], text: [
-        'Fingrid\'s own 2026–2036 requirement forecast has mFRR down rising 567 → 1,100 MW and mFRR up 290 → 530 MW, while FCR-N declines 128 → 105 MW. The growth is in the slower products.',
-        'Fingrid自身的2026–2036年需求预测显示，mFRR下调由567MW升至1,100MW、mFRR上调由290MW升至530MW，而FCR-N由128MW降至105MW。增长集中于响应较慢的品种。',
+      /* CORRECTED 2026-08-19 AGAINST THE SOURCE. This note previously read "The
+         forecast does not rescue it" and supported that by naming mFRR up, mFRR
+         down and a declining FCR-N. The same Fingrid table also shows FCR-D up
+         rising 307 → 379 MW and FCR-D down rising 296 → 366 MW — the two largest
+         fast products, both growing. Naming the one fast product that falls and
+         omitting the two that rise made the fast block look flat or shrinking
+         when it grows about 16%. The relative point survives and is the real one;
+         the absolute one was wrong. */
+      { t: 'note', b: ['Both grow — the slower products grow far faster. ', '两类品种均增长 — 但较慢品种增速远高。'], text: [
+        'On Fingrid\'s 2026–2036 forecast, combined FFR, FCR-N and FCR-D procurement rises from about 734 MW to about 853 MW, roughly +16%, while combined aFRR and mFRR rises from about 960 MW to about 1,850 MW, roughly +93%. Fast-product procurement therefore increases rather than declines, and the weight of the growth sits in the slower products. This is Fingrid\'s non-binding forecast of AVERAGE PROCUREMENT, updated annually; it is not the national reserve-obligation table above, and the two are different measures that must not be differenced. It establishes neither prices nor storage awards, and nothing in it can be converted into a reserve-revenue line.',
+        '根据Fingrid的2026–2036年预测，FFR、FCR-N与FCR-D合计采购量由约734MW升至约853MW，增幅约16%；而aFRR与mFRR合计采购量由约960MW升至约1,850MW，增幅约93%。因此快速品种的采购量是增长而非下降，只是增量主要集中于响应较慢的品种。此为Fingrid不具约束力的平均采购量预测，每年更新；它并非上方的全国备用需求表，二者口径不同，不得相减。该预测既未确立价格，也未确立储能中标情况，其中任何数据均无法据以推算备用收入。',
       ] },
       { t: 'warn', text: M.reserves.withheldNote || [
         'This dashboard publishes NO reserve revenue level for Finland. Against about ' + fmtN(M.reserves.fastTotalMW) + ' MW of fast-reserve obligation, connected storage passed ' + fmtN(M.fleet.connectedMW) + ' MW in February 2026. That is an acute saturation warning rather than proof of oversupply: the obligation is a SUM across distinct products with their own prequalification and clearing, and the fleet figure is all storage of 1 MW and above with ' + M.fleet.distributionSharePct + '% distribution-connected, so not every megawatt is prequalified for every product. A revenue level published before eligible-versus-procured MW can be tracked per product would be a forecast that today persists. Gate FI-1.',

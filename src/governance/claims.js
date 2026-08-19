@@ -58,12 +58,29 @@ export const READINESS_LABEL = {
   [READINESS.NONE]:       ['Descriptive or referential — no claim intended', '描述性或索引性 — 不设结论'],
 };
 
-/** What kind of assertion the sentence makes. Nothing to do with source quality. */
+/**
+ * What kind of assertion the sentence makes. Nothing to do with source quality.
+ *
+ * REPORTED IS NOT MEASURED. Finland's duration claim was drafted as `measured`
+ * because two capacities were divided into two power ratings and the arithmetic
+ * is exact. The arithmetic is not the question: the numbers are a counterparty's
+ * stated design for facilities still under construction, so nothing has been
+ * measured and there is no operating asset to measure. `measured` would have
+ * told a reader the fleet was metered.
+ *
+ * This is a separate axis from provenance. `reported` says the sentence rests on
+ * a disclosure; `authority: developer-reported` on the record says who disclosed
+ * it; `attribution` on the claim puts the name on the page. A claim can be
+ * `reported` from an official publisher, and `measured` from a third party.
+ * Collapsing any two of those three would lose a distinction that has already
+ * mattered once here.
+ */
 export const CLAIM_BASIS = {
   MEASURED: 'measured',
   FORECAST: 'forecast',
   POLICY: 'policy',
   MODELLED: 'modelled',
+  REPORTED: 'reported',
 };
 
 /* ---------------------------------------------------------------------------
@@ -85,11 +102,30 @@ export const CLAIM_BASIS = {
    nobody classified.
    --------------------------------------------------------------------------- */
 
-/** Who stands behind the record. */
+/**
+ * Who stands behind the record.
+ *
+ * THREE KINDS OF NON-OFFICIAL, AND THEY ARE NOT INTERCHANGEABLE. `third-party`
+ * is an independent analyst with no position in what it describes. The other two
+ * are self-interested and must never be folded into it.
+ *
+ * `developer-reported` is the party that builds or owns the asset describing its
+ * own asset. `counterparty-reported` is a commercial party to a transaction
+ * describing that transaction — Statkraft announcing the batteries it contracted
+ * to optimise is not the developer of them (OX2 is), so calling it
+ * developer-reported misnames who is speaking and quietly overstates how close
+ * the source is to the physical asset.
+ *
+ * Both are self-reported and both oblige a claim to attribute them. The
+ * distinction is which interest is being served, which is what a reader needs to
+ * discount correctly.
+ */
 export const AUTHORITY = {
   OFFICIAL: 'official',
   THIRD_PARTY: 'third-party',
   DEVELOPER: 'developer-reported',
+  /** A commercial party to the transaction, describing its own deal. */
+  COUNTERPARTY: 'counterparty-reported',
   /** Produced by this platform — a model assumption, or a declared gap. */
   INTERNAL: 'internal',
   /** Explicitly not yet decided. Fails validation; it is not a category. */
@@ -300,10 +336,16 @@ export function validateClaim(claim, market, sectionId, ownership){
      demanding attribution there would make the state impossible to record. */
   const needsAttribution = claim.readiness !== READINESS.SUPPORTED ? [] :
     ev.filter(id => records[id] &&
-      [AUTHORITY.THIRD_PARTY, AUTHORITY.DEVELOPER].includes(authorityOf(records[id], id)));
+      [AUTHORITY.THIRD_PARTY, AUTHORITY.DEVELOPER, AUTHORITY.COUNTERPARTY]
+        .includes(authorityOf(records[id], id)));
   if (needsAttribution.length && !claim.attribution)
-    problems.push('evidence from ' + needsAttribution.join(', ') + ' is third-party or ' +
-                  'developer-reported; set attribution so its provenance stays visible');
+    problems.push('evidence from ' + needsAttribution.join(', ') + ' is not official — ' +
+                  'third-party, developer-reported or counterparty-reported; set attribution ' +
+                  'so its provenance stays visible');
+  /* A proper name may be a bare string; anything with words in it must be a
+     pair, or one language reads the other's sentence. */
+  if (claim.attribution && typeof claim.attribution !== 'string' && !isPair(claim.attribution))
+    problems.push('attribution must be a plain name or an [en, zh] pair');
 
   /* ---- section ownership and declared external dependencies -------------- */
   const declaredExternal = new Set();

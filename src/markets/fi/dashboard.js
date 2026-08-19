@@ -14,6 +14,17 @@ import { SRC } from './sources.js';
 import { M } from './data.js';
 import { buildSections } from './sections.js';
 import './gridMapData.js';   // side effect: registers this market's grid map
+import { CLAIMS } from './claims.js';
+import { registerClaims } from '../claimRegistry.js';
+
+/* Registered from the dashboard so the claim prose travels in this market's
+   own lazy chunk rather than in the bundle every reader downloads.
+
+   Seven of the eight dispositions here publish nothing. They register anyway,
+   because the renderer gates on readiness and the record of WHY a section does
+   not argue is worth keeping next to the one that does — the same shape WA
+   uses for its five incomplete sections. */
+registerClaims('fi', CLAIMS);
 
 const engine = createMarketEngine({
   MKT, TABS, SRC, M, buildSections,

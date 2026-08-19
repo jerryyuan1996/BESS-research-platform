@@ -70,11 +70,21 @@
    assumed revenue level to persist is thin enough that publishing one would be a
    forecast rather than an observation — which is all the withheld line needs.
 
-   And the requirement forecast does not rescue it, because the growth is in the
-   wrong products. Fingrid's own 2026–2036 forecast has mFRR down rising 567 →
-   1,100 MW and mFRR up 290 → 530 MW, while FCR-N DECLINES 128 → 105 MW. The
-   growth is in slower products where a battery competes against demand response
-   and thermal plant on cost, not in the fast products where it has an advantage.
+   The requirement forecast tilts against a battery without rescuing or dooming
+   anything, and the earlier wording here overstated it. CORRECTED 2026-08-19
+   against the source: on Fingrid's 2026–2036 forecast the fast block — FFR,
+   FCR-N and FCR-D — rises from about 734 MW to about 853 MW, roughly +16%,
+   because FCR-D up (307 → 379) and FCR-D down (296 → 366) both grow even as
+   FCR-N declines 128 → 105. The slower block, aFRR and mFRR, rises from about
+   960 MW to about 1,850 MW, roughly +93%. So fast procurement GROWS; the weight
+   of the growth simply sits in the slower products, where a battery competes
+   against demand response and thermal plant on cost rather than where it has an
+   advantage. That is the real point and it survives; "the growth is in the
+   wrong products" was the wrong way to say it, because it implied the fast
+   products were shrinking.
+
+   Both figures are a non-binding forecast of AVERAGE PROCUREMENT, which is a
+   different measure from the obligation table. They are never differenced.
 
    A single flat `services` number here would be indefensible, and a rising one
    would be worse. Hence GATE FI-1 below: the services leg is not published until
@@ -138,8 +148,8 @@ const economics = {
 
   unavailable: {
     services: [
-      'Reserve revenue is not published for Finland. Connected storage passed 1,050 MW in February 2026 against fast-reserve obligations summing to about 795 MW — an acute saturation warning, not a measured oversupply, since that sum aggregates separately procured products and the fleet includes capacity not prequalified for all of them. Fingrid also forecasts FCR-N declining while growth sits in slower products. A level published before eligible-versus-procured MW can be tracked per product would be a forecast that today persists. Gate FI-1.',
-      '芬兰的备用收入不予发布。2026年2月已并网储能超过1,050MW，而快速备用需求合计约795MW — 鉴于该合计数涵盖多个独立采购品种、且机组中包含未通过全部品种预审的容量，这构成强烈的饱和预警而非已测得的供给过剩。此外Fingrid预测FCR-N需求下降，增长集中于响应较慢的产品。在能够按品种跟踪合格容量与采购容量之前发布任何水平值，等同于假设当前状况将长期持续。研究缺口FI-1。',
+      'Reserve revenue is not published for Finland. Connected storage passed 1,050 MW in February 2026 against fast-reserve obligations summing to about 795 MW — an acute saturation warning, not a measured oversupply, since that sum aggregates separately procured products and the fleet includes capacity not prequalified for all of them. Fingrid’s non-binding procurement forecast has the fast products rising about 16% to 2036 and the slower products about 93%, so demand grows on both sides and tilts toward where a battery competes on cost. A level published before eligible-versus-procured MW can be tracked per product would be a forecast that today persists. Gate FI-1.',
+      '芬兰的备用收入不予发布。2026年2月已并网储能超过1,050MW，而快速备用需求合计约795MW — 鉴于该合计数涵盖多个独立采购品种、且机组中包含未通过全部品种预审的容量，这构成强烈的饱和预警而非已测得的供给过剩。Fingrid不具约束力的采购预测显示，至2036年快速品种增长约16%、较慢品种增长约93%，即两类需求均在增长，且增量偏向储能需以成本竞争的品种。在能够按品种跟踪合格容量与采购容量之前发布任何水平值，等同于假设当前状况将长期持续。研究缺口FI-1。',
     ],
   },
 

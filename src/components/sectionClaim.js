@@ -41,6 +41,9 @@ const BASIS_LABEL = {
   forecast: ['Forecast', '预测'],
   policy:   ['Administered rule', '行政规则'],
   modelled: ['Modelled', '模型推算'],
+  /* A party stated it. Distinct from measured, which would tell a reader the
+     thing had been observed — wrong for a facility still under construction. */
+  reported: ['Reported', '企业披露'],
 };
 
 /**
@@ -99,9 +102,15 @@ export function sectionClaim(claim, market){
   }
   if (meta.childNodes.length) root.append(meta);
 
+  /* Attribution is either a proper name that does not translate ("Modo Energy")
+     or a phrase that must — "Statkraft, announcing its own agreement". Both are
+     accepted and a pair is resolved, because concatenating the array would have
+     printed the English and the Chinese into one line, in both languages. No
+     claim had rendered an attribution before Finland, so nothing caught it. */
   if (claim.attribution){
+    const who = Array.isArray(claim.attribution) ? L(claim.attribution) : claim.attribution;
     root.append(h('p', { class: 'claim-attribution' },
-      L(['Attributed to: ', '出处：']) + claim.attribution));
+      L(['Attributed to: ', '出处：']) + who));
   }
 
   return root;

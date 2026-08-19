@@ -60,3 +60,25 @@ test('the audit is not wired into any blocking gate', () => {
       assert.ok(!/link-audit/.test(cmd), `${name} must not run the link audit`);
   }
 });
+
+test('the census reconciles: every record lands in exactly one bucket', () => {
+  /* A report saying "29 healthy" without saying 29 of what invites the reader
+     to assume it covered everything. collectUrls throws rather than return an
+     accounting that does not add up. */
+  const targets = collectUrls();
+  const c = targets.census;
+  assert.equal(c.attributed + c.exempt.length + c.missingUrl.length, c.totalRecords,
+    'records with urls, exempt records and unexempted gaps must sum to the total');
+  assert.equal(c.uniqueUrls, targets.length);
+  assert.ok(c.uniqueUrls < c.attributed,
+    'several records share an address, so unique urls must be fewer than records');
+  assert.deepEqual(c.missingUrl, [],
+    'a record with no url and no exemption should have been caught by the PR gate');
+});
+
+test('a filtered run reconciles too', () => {
+  const t = collectUrls('pjm');
+  const c = t.census;
+  assert.equal(c.attributed + c.exempt.length + c.missingUrl.length, c.totalRecords);
+  assert.ok(c.totalRecords > 0 && c.totalRecords < 40, 'one market only');
+});

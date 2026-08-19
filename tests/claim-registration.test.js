@@ -97,5 +97,10 @@ test('print receives the same claim element as the screen', () => {
   const comp = readFileSync(path.join(REPO, 'src/components/sectionClaim.js'), 'utf8');
   assert.equal((comp.match(/class: 'claim'/g) || []).length, 1,
     'exactly one claim element is built');
-  assert.ok(!/print/i.test(comp), 'the component has no print-specific branch');
+  /* Comments stripped first. This asserted against the whole file and went red
+     when a comment used the word "printed" to describe a string-concatenation
+     bug — a prose match, not a print branch. What matters is that no CODE
+     branches on print. */
+  const code = comp.replace(/\/\*[\s\S]*?\*\//g, '');
+  assert.ok(!/print/i.test(code), 'the component has no print-specific branch');
 });

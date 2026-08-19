@@ -1,7 +1,15 @@
 /* ---------------------------------------------------------------------------
    PJM SECTION CLAIMS.
 
-   One section reviewed so far: capacity. The rest are not drafted.
+   Three sections publish: capacity, duration and story.
+
+   ---------------------------------------------------------------------------
+   ONLY THE PUBLISHED CLAIMS SHIP
+
+   The five sections that publish nothing live in dispositions.js, which no
+   runtime module imports. The boundary is the same in every claim-enabled
+   market — see the note in the Finland module for the budget failure that
+   forced it. PJM had the same defect and merely enough headroom to hide it.
 
    THE CAPACITY CLAIM CHANGED WHEN THE DOCUMENT WAS OPENED. Two wordings were
    prepared in advance — one for a collar that bound and one for a collar that

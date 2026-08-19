@@ -73,7 +73,12 @@ export const REVIEW = {
     confirmedTitle: 'ELCC Class Ratings for the 2028/2029 Base Residual Auction',
     confirmedPublisher: 'PJM Interconnection, L.L.C.',
     confirmedDate: '25 February 2026',
-    locator: 'ELCC Class Ratings table, p.1; RAA Schedule 9.2 note, sections C(2) and D(1)(b), p.1',
+    reviewedUrl: 'https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/28-29-bra-elcc-class-ratings.pdf',
+    /* The landing page is a fallback, not the source. It carries no ratings —
+       following through to the document is what turned a publication status
+       into an analytical proposition. */
+    fallbackUrl: 'https://www.pjm.com/planning/resource-adequacy-planning/effective-load-carrying-capability',
+    locator: 'ELCC Class Ratings table, p.1 of the class-ratings PDF; RAA Schedule 9.2 note, sections C(2) and D(1)(b), p.1',
     establishes: [
       'The class ratings applied to the 2028/2029 BRA, by storage duration: 4-hr Storage 59%, 6-hr Storage 68%, 8-hr Storage 71%, 10-hr Storage 78%.',
       'For comparison in the same table: Onshore Wind 34%, Tracking Solar 10%, Gas Combined Cycle 78%, Nuclear 96%, Demand Resource 91%.',

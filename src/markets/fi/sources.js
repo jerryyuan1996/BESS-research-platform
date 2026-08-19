@@ -159,7 +159,14 @@ export const SRC = {
 
   statkraftOx2: {
     file: 'Statkraft — seven-year optimisation agreement for OX2 batteries in Finland',
-    status: ['Developer-reported', '开发商披露'], provenance:{authority:'developer-reported',publication:'final',availability:'public',verification:'verified'},
+    /* PUBLISHER IS STATKRAFT; THE DEVELOPER IS OX2. This was classified
+       developer-reported, which named the wrong party: Statkraft is the
+       offtaker and optimiser, not the builder, so the record was implicitly
+       claiming a closeness to the asset that its publisher does not have.
+       Counterparty-reported says what it is — a commercial party to the deal,
+       describing the deal. Still self-reported, still requires attribution,
+       still not independent research. */
+    status: ['Counterparty-reported', '交易对手方披露'], provenance:{authority:'counterparty-reported',publication:'final',availability:'public',verification:'verified'},
     date: '2026',
     cy: '235 MW across two sites under construction — 110 MW/220 MWh and 125 MW/250 MWh — under a seven-year optimisation agreement.',
     url: 'https://www.statkraft.com/newsroom/news-and-stories/2026/statkraft-signs-contract-with-OX2-to-optimize-large-scale-batteries-in-finland/',
@@ -259,6 +266,28 @@ export const SRC = {
     automation: 'B — release monitor',
     lastChecked: '2026-08-18',
     freshness: 'Current',
+  },
+
+  /* A DECLARED COVERAGE GAP, as a first-class record.
+
+     Finland already declares this in comparison.economics.unavailable, which is
+     what keeps the number off the page. But a claim cannot CITE that: the claim
+     schema resolves gaps against the source register, so a withheld line that
+     lives only on the comparison object is invisible to the one mechanism built
+     to stop a section arguing past it. Gate FI-1 becomes a record so a blocked
+     disposition can name it.
+
+     Internal authority and requires-reverification, which together are what the
+     schema recognises as a gap rather than a source — it can never be counted
+     as affirmative evidence. */
+  reserveRevenueGap: {
+    file: 'Finnish reserve revenue line — coverage gap (gate FI-1): no published clearing-price series, and no eligible-versus-procured basis per product',
+    status: ['Not verified', '未核实'],
+    provenance: { authority: 'internal', publication: 'draft', availability: 'restricted',
+                  verification: 'requires-reverification' },
+    date: '2026-08',
+    cy: 'Reserve revenue, all products',
+    url: 'https://data.fingrid.fi/en/instructions',
   },
 
   reserveParticipation: {
