@@ -1,102 +1,208 @@
 /* ---------------------------------------------------------------------------
-   CLAIM VALIDATION — the mechanical half, demonstrated on the pilot.
+   CLAIM VALIDATION — the mechanical half.
 
-   What is checked here is the part a machine can own: one sentence, a declared
-   basis, and evidence ids that resolve to records in the section's own market.
-   Whether a claim is analytically sound is human review, and no test in this
-   file should ever be read as standing in for it.
+   Four things are modelled separately because they fail separately: readiness,
+   basis, provenance and gaps. The tests below are organised the same way.
+
+   What is NOT checked, anywhere: whether a claim is true, whether its evidence
+   supports it, or whether a causal verb is earned. That is human review, and a
+   passing suite here says nothing about it.
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { markets } from '../src/markets/registry.js';
 import {
-  validateClaim, evidenceIds, CLAIM_BASIS, READINESS, NO_CLAIM_SECTIONS,
+  validateClaim, evidenceIds, gapIds, provenanceOf, evidenceRecords,
+  CLAIM_BASIS, PROVENANCE, READINESS, NO_CLAIM_SECTIONS,
 } from '../src/governance/claims.js';
 
 const market = (id) => markets.find(m => m.manifest.id === id);
+const wa = market('wa'), pjm = market('pjm'), fi = market('fi');
 
-test('a well-formed claim on real evidence validates', () => {
-  const claim = {
-    text: ['Capacity payments set the floor for WA storage revenue, at a price the regulator has already fixed for 2028-29.',
-           '容量收入构成西澳储能收益的下限，且该价格已由监管机构就2028-29年度确定。'],
-    basis: CLAIM_BASIS.MEASURED,
-    evidence: ['brcp', 'crc'],
-  };
-  assert.deepEqual(validateClaim(claim, market('wa')), []);
+/* ---- provenance is read from the record, never asserted by the claim ------ */
+
+test('provenance is classified from the record own declared status', () => {
+  const p = evidenceRecords(pjm);
+  assert.equal(provenanceOf(p.bra2829), PROVENANCE.OFFICIAL);
+  assert.equal(provenanceOf(p.tb4), PROVENANCE.THIRD_PARTY);
+  assert.equal(provenanceOf(p.tollGap), PROVENANCE.GAP);
+  assert.equal(provenanceOf(evidenceRecords(wa).consent), PROVENANCE.UNVERIFIED);
+  assert.equal(provenanceOf(evidenceRecords(fi).statkraftOx2), PROVENANCE.DEVELOPER);
 });
 
-test('a retired or mistyped evidence id cannot pass', () => {
-  /* The failure this validation exists for. An unresolvable id would otherwise
-     render a confident sentence whose support does not exist. */
-  const claim = {
-    text: ['Something is true.', '某事成立。'],
-    basis: CLAIM_BASIS.MEASURED,
-    evidence: ['brcp', 'noSuchRecord'],
-  };
-  const problems = validateClaim(claim, market('wa'));
-  assert.equal(problems.length, 1);
-  assert.match(problems[0], /"noSuchRecord" does not resolve in wa/);
+test('PJM carries five declared gap records, and they are known ids', () => {
+  /* Which is why a special-case rejection was not enough: they resolve like any
+     other id, so the separation has to be structural. */
+  const gaps = gapIds(pjm);
+  assert.deepEqual([...gaps].sort(),
+    ['opexGap', 'regForwardGap', 'regShareGap', 'taxGap', 'tollGap']);
+  for (const g of gaps) assert.ok(evidenceIds(pjm).has(g));
 });
 
-test('an id belonging to another market does not resolve', () => {
-  /* PJM's auction record is real, and it is not WA evidence. */
-  assert.ok(evidenceIds(market('pjm')).has('bra2829'));
+/* ---- affirmative support and deficiency never share a field -------------- */
+
+test('a gap record cannot be affirmative evidence', () => {
   const problems = validateClaim({
-    text: ['A claim.', '一项结论。'], basis: CLAIM_BASIS.MEASURED, evidence: ['bra2829'],
-  }, market('wa'));
-  assert.match(problems[0], /does not resolve in wa/);
+    readiness: READINESS.SUPPORTED,
+    text: ['A claim.', '一项结论。'], basis: CLAIM_BASIS.MEASURED,
+    evidence: ['bra2829', 'regForwardGap'],
+  }, pjm, 'services');
+  assert.ok(problems.some(p => /declared coverage gap/.test(p)));
 });
 
-test('a claim must be one sentence', () => {
-  const two = validateClaim({
-    text: ['This is one point. And this is another.', '这是一点。这是另一点。'],
-    basis: CLAIM_BASIS.MEASURED, evidence: ['brcp'],
-  }, market('wa'));
-  assert.ok(two.some(p => /exactly one sentence/.test(p)));
-
-  /* A semicolon is the usual way a second sentence gets smuggled in. */
-  const smuggled = validateClaim({
-    text: ['Revenue is capacity-led; arbitrage is thin.', '收入以容量为主；套利较薄。'],
-    basis: CLAIM_BASIS.MEASURED, evidence: ['brcp'],
-  }, market('wa'));
-  assert.ok(smuggled.some(p => /exactly one sentence/.test(p)));
-});
-
-test('the basis must be declared, so a forecast cannot read as fact', () => {
+test('a source record cannot masquerade as a gap', () => {
   const problems = validateClaim({
-    text: ['Reserve prices fall through 2030.', '备用价格将持续下降至2030年。'],
-    evidence: ['reserveForecast'],
-  }, market('fi'));
-  assert.ok(problems.some(p => /basis must be one of/.test(p)));
+    readiness: READINESS.BLOCKED, gaps: ['bra2829'],
+    reason: ['r', 'r。'], requires: ['x', 'x。'],
+  }, pjm, 'capacity');
+  assert.ok(problems.some(p => /is a source record, not a declared gap/.test(p)));
+});
 
-  /* Declared as a forecast, the same sentence is acceptable to the validator —
-     whether the wording conveys forecast-ness is the reviewer's call. */
+test('a supported claim cannot carry gaps at all', () => {
+  const problems = validateClaim({
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['bra2829'], gaps: ['tollGap'],
+  }, pjm, 'capacity');
+  assert.ok(problems.some(p => /cannot carry gaps/.test(p)));
+});
+
+/* ---- verification-required demotes to incomplete ------------------------- */
+
+test('a record flagged for re-verification cannot support a published claim', () => {
+  const claim = {
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['consent'],
+  };
+  assert.ok(validateClaim(claim, wa, 'grid').some(p => /incomplete, not supported/.test(p)));
+
+  /* The same evidence is fine once the claim stops claiming to be published. */
+  assert.deepEqual(validateClaim({ ...claim, readiness: READINESS.INCOMPLETE }, wa, 'grid'), []);
+});
+
+/* ---- third party may support, with attribution --------------------------- */
+
+test('third-party evidence supports a claim only with visible attribution', () => {
+  const base = {
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['tb4'],
+  };
+  assert.ok(validateClaim(base, pjm, 'energy').some(p => /attribution/.test(p)));
+  assert.deepEqual(validateClaim({ ...base, attribution: 'Modo Energy' }, pjm, 'energy'), []);
+});
+
+/* ---- basis and provenance are orthogonal --------------------------------- */
+
+test('basis describes the assertion, not the source authority', () => {
+  /* A modelled assertion on official inputs is legitimate, and so is a measured
+     one on a third party data set. Neither combination is refused. */
   assert.deepEqual(validateClaim({
-    text: ['Reserve prices fall through 2030.', '备用价格将持续下降至2030年。'],
-    basis: CLAIM_BASIS.FORECAST, evidence: ['reserveForecast'],
-  }, market('fi')), []);
+    readiness: READINESS.SUPPORTED, text: ['A modelled result.', '一项模型结果。'],
+    basis: CLAIM_BASIS.MODELLED, evidence: ['bra2829'],
+  }, pjm, 'capacity'), []);
+
+  assert.deepEqual(validateClaim({
+    readiness: READINESS.SUPPORTED, text: ['A measured result.', '一项实测结果。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['tb4'], attribution: 'Modo Energy',
+  }, pjm, 'energy'), []);
 });
 
-test('a claim citing nothing is refused', () => {
+/* ---- readiness shapes --------------------------------------------------- */
+
+test('blocked carries no text, names its gaps, and says what would unblock it', () => {
+  const withText = validateClaim({
+    readiness: READINESS.BLOCKED, text: ['Should not be here.', '不应存在。'],
+    reason: ['r', 'r。'], gaps: ['regForwardGap'], requires: ['x', 'x。'],
+  }, pjm, 'services');
+  assert.ok(withText.some(p => /must not carry claim text/.test(p)));
+
+  assert.ok(validateClaim({
+    readiness: READINESS.BLOCKED, reason: ['r', 'r。'], gaps: [], requires: ['x', 'x。'],
+  }, pjm, 'services').some(p => /must name the gap records/.test(p)));
+
+  assert.deepEqual(validateClaim({
+    readiness: READINESS.BLOCKED, reason: ['Reserve revenue is withheld.', '备用收入暂缓发布。'],
+    gaps: ['regForwardGap'],
+    requires: ['A published forward clearing price and battery award share.',
+               '已发布的远期出清价格与电池中标份额。'],
+  }, pjm, 'services'), []);
+});
+
+test('none records a reason and nothing else', () => {
+  assert.deepEqual(validateClaim({
+    readiness: READINESS.NONE,
+    reason: ['Methodology page — shows the working rather than arguing a case.',
+             '方法说明页 — 展示计算过程而非提出结论。'],
+  }, wa, 'data'), []);
+  assert.ok(validateClaim({
+    readiness: READINESS.NONE, gaps: ['tollGap'], reason: ['r', 'r。'],
+  }, pjm, 'data').some(p => /records a reason, not gaps/.test(p)));
+});
+
+/* ---- section ownership and declared external dependencies ---------------- */
+
+const OWNERSHIP = new Map([['brcp', 'rcm'], ['esoo', 'rcm'], ['mkt', 'story'],
+                           ['cis', 'pipeline'], ['cef', 'grid']]);
+
+test('evidence from another section must be declared as external', () => {
+  const undeclared = validateClaim({
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['brcp'],
+  }, wa, 'energy', OWNERSHIP);
+  assert.ok(undeclared.some(p => /belongs to section "rcm", not "energy"/.test(p)));
+
+  assert.deepEqual(validateClaim({
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['brcp'],
+    external: [{ section: 'rcm', evidence: ['brcp'],
+                 why: 'the capacity price is the floor this section measures against' }],
+  }, wa, 'energy', OWNERSHIP), []);
+});
+
+test('an external declaration must name the section that actually owns the record', () => {
   const problems = validateClaim({
-    text: ['Something is true.', '某事成立。'], basis: CLAIM_BASIS.MEASURED, evidence: [],
-  }, market('wa'));
-  assert.ok(problems.some(p => /at least one evidence id/.test(p)));
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['brcp'],
+    external: [{ section: 'pipeline', evidence: ['brcp'], why: 'because' }],
+  }, wa, 'energy', OWNERSHIP);
+  assert.ok(problems.some(p => /owned by section "rcm", not "pipeline"/.test(p)));
 });
 
-test('an external dependency must declare itself', () => {
+test('an external declaration cannot cite evidence the claim does not use', () => {
   const problems = validateClaim({
-    text: ['A claim.', '一项结论。'], basis: CLAIM_BASIS.MEASURED, evidence: ['brcp'],
-    external: [{ section: 'grid' }],
-  }, market('wa'));
-  assert.ok(problems.some(p => /name the section and why/.test(p)));
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['esoo'],
+    external: [{ section: 'rcm', evidence: ['esoo', 'brcp'], why: 'because' }],
+  }, wa, 'rcm', OWNERSHIP);
+  assert.ok(problems.some(p => /which the claim does not use/.test(p)));
 });
 
-test('absence is a valid state, not a validation failure', () => {
-  /* A blocked or descriptive section carries no claim, and that must not read
-     as an error — otherwise the pressure is to write something. */
-  assert.deepEqual(validateClaim(null, market('fi')), []);
-  assert.deepEqual(validateClaim(undefined, market('wa')), []);
-  for (const id of NO_CLAIM_SECTIONS) assert.ok(typeof id === 'string');
-  assert.ok(Object.values(READINESS).includes('blocked'));
+/* ---- resolution and absence --------------------------------------------- */
+
+test('an unresolvable or foreign id cannot pass', () => {
+  assert.ok(validateClaim({
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['noSuchRecord'],
+  }, wa, 'rcm').some(p => /does not resolve in wa/.test(p)));
+
+  /* A real PJM record is still not WA evidence. */
+  assert.ok(validateClaim({
+    readiness: READINESS.SUPPORTED, text: ['A claim.', '一项结论。'],
+    basis: CLAIM_BASIS.MEASURED, evidence: ['bra2829'],
+  }, wa, 'rcm').some(p => /does not resolve in wa/.test(p)));
+});
+
+test('a claim must be one sentence, and a semicolon is two', () => {
+  for (const en of ['This is one. And another.', 'Capacity leads; arbitrage is thin.']){
+    assert.ok(validateClaim({
+      readiness: READINESS.SUPPORTED, text: [en, '中文。'],
+      basis: CLAIM_BASIS.MEASURED, evidence: ['brcp'],
+    }, wa, 'rcm').some(p => /exactly one sentence/.test(p)));
+  }
+});
+
+test('absence is a valid state at every level', () => {
+  assert.deepEqual(validateClaim(null, wa, 'rcm'), []);
+  assert.deepEqual(validateClaim(undefined, fi, 'services'), []);
+  assert.equal(NO_CLAIM_SECTIONS.has('data'), true);
+  assert.equal(NO_CLAIM_SECTIONS.has('portfolio'), true);
 });

@@ -6,129 +6,236 @@
    most dangerous line on the page: it is the part a reader quotes.
 
    ---------------------------------------------------------------------------
-   WHAT THIS MODULE ENFORCES
+   FOUR THINGS ARE MODELLED SEPARATELY, BECAUSE THEY FAIL SEPARATELY
 
-   Only the mechanical properties, and it says so loudly because the gap
-   between "validated" and "sound" is exactly where a bad claim survives:
+   READINESS   whether a claim may be published at all
+   BASIS       what KIND of assertion it is — measured, forecast, policy, modelled
+   PROVENANCE  what the EVIDENCE is — official, third party, developer, unverified
+   GAPS        what is missing, kept apart from what supports
 
-     · one sentence, so a claim cannot become a paragraph of hedging;
-     · every evidence id resolves to a record in the section's own market —
-       a retired or mistyped id fails rather than rendering an unsupported
-       sentence with a confident full stop;
-     · evidence cited from outside the section declares that dependency;
-     · a claim that rests on a forecast, a policy target or an illustrative
-       calculation declares its basis, so the reader is told what kind of thing
-       it is before they act on it.
+   Basis and provenance are orthogonal and were briefly conflated. A modelled
+   assertion can rest on official inputs; a measured one can rest on a third
+   party's meter data. Folding them into one field would let "official" imply
+   "fact" and "modelled" imply "weak", and neither follows.
+
+   AFFIRMATIVE SUPPORT AND DEFICIENCY NEVER SHARE A FIELD. `evidence` holds
+   records capable of supporting the claim; `gaps` holds declared coverage-gap
+   records. A gap record resolves like any other id, so without this separation
+   a claim could cite the absence of evidence AS evidence and pass every check.
 
    ---------------------------------------------------------------------------
-   WHAT IT CANNOT ENFORCE, AND MUST NOT PRETEND TO
+   WHAT THIS MODULE CANNOT ENFORCE, AND MUST NOT PRETEND TO
 
-   Whether the claim is true. Whether the evidence actually supports it.
-   Whether a causal verb is earned. Whether "modest" is the right word for a
-   9% spread. Those are editorial judgements, made by a person, market by
-   market. A test that appeared to check them would license skipping the review
-   that actually does.
-
-   So: this file blocks what is checkably wrong, and the review does the rest.
+   Whether the claim is true. Whether the evidence supports it. Whether a causal
+   verb is earned. Whether "modest" is the right word for a 9% spread. Those are
+   editorial judgements, made by a person, market by market. A test that
+   appeared to check them would license skipping the review that actually does.
    --------------------------------------------------------------------------- */
 
-/** What kind of thing the claim rests on. Declared, never inferred. */
-export const CLAIM_BASIS = {
-  /** Observed, published, and final. The strongest thing a claim can stand on. */
-  MEASURED: 'measured',
-  /** A published forecast. The claim must read as a forecast, not as fact. */
-  FORECAST: 'forecast',
-  /** A policy target or announced intent, which is not a financed pipeline. */
-  POLICY: 'policy',
-  /** This platform's own calculation over declared inputs. */
-  MODELLED: 'modelled',
-};
-
-/** Readiness of a section to carry a claim at all. */
+/**
+ * Whether a claim may be published, and what it must carry if not.
+ *
+ * `incomplete` is the state that does the most work: it holds a DRAFTED claim
+ * that is not published, together with the records blocking approval. Without
+ * it, a section with promising but unverified evidence has only "publish
+ * anyway" or "pretend there is nothing to say".
+ */
 export const READINESS = {
+  /** Publishable: claim text, affirmative evidence, no gap or unverified record. */
   SUPPORTED: 'supported',
+  /** Drafted, NOT published. Records what is unresolved or unverified. */
   INCOMPLETE: 'incomplete',
-  NOT_APPLICABLE: 'not-applicable',
+  /** No claim text at all. Records the gaps and what would unblock it. */
   BLOCKED: 'blocked',
+  /** Deliberate absence: the section is descriptive or referential. */
+  NONE: 'none',
 };
 
 export const READINESS_LABEL = {
-  [READINESS.SUPPORTED]: ['Claim supported by current section evidence', '现有分节证据可支持结论'],
-  [READINESS.INCOMPLETE]: ['Claim possible, evidence incomplete or stale', '可提出结论，但证据不完整或已过时'],
-  [READINESS.NOT_APPLICABLE]: ['Descriptive or referential — no claim intended', '描述性或索引性 — 不设结论'],
-  [READINESS.BLOCKED]: ['Blocked by an identified research gap', '受既有研究缺口阻断'],
+  [READINESS.SUPPORTED]:  ['Supported by section evidence', '有分节证据支持'],
+  [READINESS.INCOMPLETE]: ['Drafted — evidence incomplete or unverified', '已起草 — 证据不完整或未核验'],
+  [READINESS.BLOCKED]:    ['Blocked by a research gap', '受研究缺口阻断'],
+  [READINESS.NONE]:       ['Descriptive or referential — no claim intended', '描述性或索引性 — 不设结论'],
 };
 
-/* One sentence. Ends once, and does not smuggle a second in behind a
-   semicolon — a claim a reader can only half-quote is not one sentence. */
-const SENTENCE = /^[^.!?;]+[.!?]$/;
+/** What kind of assertion the sentence makes. Nothing to do with source quality. */
+export const CLAIM_BASIS = {
+  MEASURED: 'measured',
+  FORECAST: 'forecast',
+  POLICY: 'policy',
+  MODELLED: 'modelled',
+};
 
 /**
- * Validate a claim against the market whose section carries it.
+ * What the evidence IS. Derived from the record's own status, never asserted by
+ * the claim — a claim does not get to promote its own sources.
+ */
+export const PROVENANCE = {
+  OFFICIAL: 'official',
+  THIRD_PARTY: 'third-party',
+  DEVELOPER: 'developer-reported',
+  /** Explicitly flagged as needing re-verification. Cannot support `supported`. */
+  UNVERIFIED: 'unverified',
+  /** A declared coverage gap. Never affirmative support, for anything. */
+  GAP: 'gap',
+};
+
+/** Classify one evidence record from its own declared status. */
+export function provenanceOf(record){
+  const status = record?.status?.[0] ?? '';
+  if (/^Not verified/i.test(status)) return PROVENANCE.GAP;
+  if (/^Verify against/i.test(status)) return PROVENANCE.UNVERIFIED;
+  if (/^Developer-reported/i.test(status)) return PROVENANCE.DEVELOPER;
+  if (/^Third[- ]party/i.test(status)) return PROVENANCE.THIRD_PARTY;
+  if (/^Official|^Public/i.test(status)) return PROVENANCE.OFFICIAL;
+  return PROVENANCE.UNVERIFIED;
+}
+
+/** Every evidence record available to a market, keyed by id. */
+export const evidenceRecords = (market) => market?.sources?.SRC ?? market?.sources ?? {};
+export const evidenceIds = (market) => new Set(Object.keys(evidenceRecords(market)));
+
+/** Ids in a market that are declared coverage gaps rather than sources. */
+export function gapIds(market){
+  const src = evidenceRecords(market);
+  return new Set(Object.keys(src).filter(k => provenanceOf(src[k]) === PROVENANCE.GAP));
+}
+
+/* One sentence. A semicolon is how a second one gets smuggled in. */
+const SENTENCE = /^[^.!?;]+[.!?]$/;
+
+const isPair = (v) => Array.isArray(v) && typeof v[0] === 'string' && typeof v[1] === 'string';
+
+/**
+ * Validate a section claim.
  *
- * @param {object} claim   { text:[en,zh], evidence:string[], basis, external?, note? }
- * @param {object} market  a registry entry; its sources supply the id namespace
+ * @param {object} claim  { readiness, text?, basis?, evidence?, gaps?, external?, reason? }
+ * @param {object} market a registry entry — supplies the evidence namespace
+ * @param {string} sectionId  the section the claim belongs to
+ * @param {Map<string,string>} [ownership]  evidence id -> owning section id.
+ *        When absent, the cross-section rules cannot be checked and say so
+ *        rather than passing silently.
  * @returns {string[]} problems; empty means mechanically acceptable
  */
-export function validateClaim(claim, market){
+export function validateClaim(claim, market, sectionId, ownership){
   const problems = [];
-  if (!claim) return problems;                       // absence is a valid state
+  if (!claim) return problems;                        // absence is a valid state
 
-  const text = claim.text;
-  if (!Array.isArray(text) || !text[0] || !text[1]){
-    problems.push('a claim needs [en, zh] text');
-  } else {
-    if (!SENTENCE.test(text[0].trim()))
-      problems.push('the English claim must be exactly one sentence: ' + text[0].slice(0, 60));
-    /* Chinese uses a full-width stop and no space before it. */
-    if (!/[。！？]$/.test(text[1].trim()))
-      problems.push('the Chinese claim must end in a full-width stop');
+  if (!Object.values(READINESS).includes(claim.readiness)){
+    problems.push('readiness must be one of ' + Object.values(READINESS).join(', '));
+    return problems;
   }
 
-  if (!Object.values(CLAIM_BASIS).includes(claim.basis))
-    problems.push('basis must be one of ' + Object.values(CLAIM_BASIS).join(', ') +
-                  ' — a reader must be told whether this is measured, forecast, policy or modelled');
-
+  const records = evidenceRecords(market);
   const known = evidenceIds(market);
-  if (!Array.isArray(claim.evidence) || !claim.evidence.length){
-    problems.push('a claim must cite at least one evidence id');
-  } else {
-    for (const id of claim.evidence){
-      if (!known.has(id))
-        problems.push(`evidence id "${id}" does not resolve in ${market?.manifest?.id ?? '?'} — ` +
-                      'it is retired, mistyped, or belongs to another market');
+  const gaps = gapIds(market);
+  const marketId = market?.manifest?.id ?? '?';
+  const ev = claim.evidence ?? [];
+  const gp = claim.gaps ?? [];
+
+  /* ---- text ------------------------------------------------------------- */
+  const needsText = claim.readiness === READINESS.SUPPORTED
+                 || claim.readiness === READINESS.INCOMPLETE;
+  if (needsText){
+    if (!isPair(claim.text)) problems.push('a drafted claim needs [en, zh] text');
+    else {
+      if (!SENTENCE.test(claim.text[0].trim()))
+        problems.push('the English claim must be exactly one sentence: ' + claim.text[0].slice(0, 60));
+      if (!/[。！？]$/.test(claim.text[1].trim()))
+        problems.push('the Chinese claim must end in a full-width stop');
+    }
+    if (!Object.values(CLAIM_BASIS).includes(claim.basis))
+      problems.push('basis must be one of ' + Object.values(CLAIM_BASIS).join(', '));
+  } else if (claim.text){
+    problems.push(`readiness "${claim.readiness}" must not carry claim text`);
+  }
+
+  if ((claim.readiness === READINESS.BLOCKED || claim.readiness === READINESS.NONE)
+      && !isPair(claim.reason)){
+    problems.push(`readiness "${claim.readiness}" must record a reason in [en, zh]`);
+  }
+
+  /* ---- ids resolve ------------------------------------------------------- */
+  for (const id of [...ev, ...gp]){
+    if (!known.has(id))
+      problems.push(`evidence id "${id}" does not resolve in ${marketId} — retired, ` +
+                    'mistyped, or belonging to another market');
+  }
+
+  /* ---- affirmative support is never a gap -------------------------------- */
+  for (const id of ev){
+    if (gaps.has(id))
+      problems.push(`"${id}" is a declared coverage gap and cannot be affirmative evidence; ` +
+                    'move it to gaps[]');
+  }
+  for (const id of gp){
+    if (known.has(id) && !gaps.has(id))
+      problems.push(`"${id}" is a source record, not a declared gap; move it to evidence[]`);
+  }
+  if (gp.length && claim.readiness === READINESS.SUPPORTED)
+    problems.push('a supported claim cannot carry gaps[] — it is incomplete or blocked');
+  if (gp.length && claim.readiness === READINESS.NONE)
+    problems.push('a deliberate absence records a reason, not gaps');
+
+  /* ---- readiness against the provenance actually cited ------------------- */
+  if (claim.readiness === READINESS.SUPPORTED){
+    if (!ev.length) problems.push('a supported claim must cite affirmative evidence');
+    for (const id of ev){
+      const p = provenanceOf(records[id]);
+      if (p === PROVENANCE.UNVERIFIED)
+        problems.push(`"${id}" is flagged for re-verification, so this claim is incomplete, ` +
+                      'not supported, until the record is re-checked');
+    }
+  }
+  if (claim.readiness === READINESS.BLOCKED){
+    if (!gp.length) problems.push('a blocked claim must name the gap records blocking it');
+    if (!isPair(claim.requires))
+      problems.push('a blocked claim must state what evidence would unblock it, in [en, zh]');
+  }
+
+  /* ---- provenance stays visible ------------------------------------------ */
+  /* A third-party or developer-reported record MAY support a claim, but the
+     claim must attribute it, so a reader is never told something rests on an
+     official source when it rests on a vendor's own figure. */
+  const needsAttribution = ev.filter(id =>
+    [PROVENANCE.THIRD_PARTY, PROVENANCE.DEVELOPER].includes(provenanceOf(records[id])));
+  if (needsAttribution.length && !claim.attribution)
+    problems.push('evidence from ' + needsAttribution.join(', ') + ' is third-party or ' +
+                  'developer-reported; set attribution so its provenance stays visible');
+
+  /* ---- section ownership and declared external dependencies -------------- */
+  const declaredExternal = new Set();
+  for (const dep of claim.external ?? []){
+    if (!dep.section || !Array.isArray(dep.evidence) || !dep.evidence.length || !dep.why){
+      problems.push('an external dependency must name the section, the evidence ids ' +
+                    'crossing the boundary, and why they are needed');
+      continue;
+    }
+    for (const id of dep.evidence){
+      declaredExternal.add(id);
+      if (!ev.includes(id) && !gp.includes(id))
+        problems.push(`external declaration cites "${id}", which the claim does not use`);
+      if (ownership && ownership.get(id) && ownership.get(id) !== dep.section)
+        problems.push(`"${id}" is owned by section "${ownership.get(id)}", not "${dep.section}"`);
     }
   }
 
-  /* Evidence borrowed from another section is allowed and must be declared, so
-     a reader following the claim knows where to look and a later edit to that
-     other section cannot silently undermine this one. */
-  if (claim.external?.length){
-    for (const dep of claim.external){
-      if (!dep.section || !dep.why)
-        problems.push('an external dependency must name the section and why it is needed');
+  if (ownership){
+    for (const id of ev){
+      const owner = ownership.get(id);
+      if (owner && owner !== sectionId && !declaredExternal.has(id))
+        problems.push(`"${id}" belongs to section "${owner}", not "${sectionId}"; declare it ` +
+                      'in external[] or cite evidence this section owns');
     }
   }
 
   return problems;
 }
 
-/** Every evidence id available to a market, as a set. */
-export function evidenceIds(market){
-  const src = market?.sources?.SRC ?? market?.sources ?? {};
-  return new Set(Object.keys(src));
-}
-
 /**
- * Section types that are descriptive or referential by nature.
+ * Section types that argue nothing by design.
  *
- * These are NOT failures of coverage. A methodology page argues nothing — it
- * shows the working — and a portfolio page is an index. Recording them as
- * deliberate keeps a coverage percentage from being read as a to-do list.
+ * Recorded as deliberate so a coverage percentage cannot read them as a to-do
+ * list. A methodology page shows the working; a portfolio page is an index.
  */
 export const NO_CLAIM_SECTIONS = new Set(['data', 'portfolio']);
-
-/** First-pass readiness for a section, refined by human review. */
-export function defaultReadiness(tabId){
-  return NO_CLAIM_SECTIONS.has(tabId) ? READINESS.NOT_APPLICABLE : READINESS.INCOMPLETE;
-}
