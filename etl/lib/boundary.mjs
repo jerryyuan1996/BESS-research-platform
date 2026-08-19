@@ -159,8 +159,48 @@ export async function writeAtomic(repoRelativePath, body){
   await mkdir(path.dirname(abs), { recursive: true });
   const temporary = path.join(path.dirname(abs), `.${path.basename(abs)}.tmp`);
   await writeFile(temporary, body, 'utf8');
-  await rename(temporary, abs);
+  await renameWithRetry(temporary, abs);
   return abs;
+}
+
+/* Windows can refuse the rename with EPERM even when the path is writable and
+   nothing is wrong with it: any process holding a transient handle on the
+   destination — a file watcher, an indexer, a scanner — blocks the replace for
+   a few milliseconds. POSIX has no equivalent, so this failure only ever shows
+   up on one platform and only under load, which is exactly the shape of a bug
+   that reaches production untested. It surfaced as an intermittent test
+   failure while a dev server was watching the output directory.
+
+   Retrying is correct rather than merely convenient: the rename is the atomic
+   step, so a failed attempt has changed nothing and a later attempt sees the
+   same state. Only the transient permission and lock codes are retried;
+   anything else is a real error and is rethrown at once.
+
+   The temporary file is removed if every attempt fails, so a blocked write does
+   not leave a dotfile behind for the next run to trip over. */
+const TRANSIENT_RENAME = new Set(['EPERM', 'EACCES', 'EBUSY']);
+
+async function renameWithRetry(from, to, attempts = 8){
+  for (let k = 0; k < attempts; k++){
+    try {
+      await rename(from, to);
+      return;
+    } catch (err){
+      const last = k === attempts - 1;
+      if (!TRANSIENT_RENAME.has(err.code) || last){
+        await rm(from, { force: true }).catch(() => {});
+        if (last && TRANSIENT_RENAME.has(err.code)){
+          throw new Error(
+            `could not replace ${path.basename(to)} after ${attempts} attempts: ` +
+            `${err.code}. Another process is holding the file — on Windows this is ` +
+            'usually a file watcher, indexer or scanner on the output directory.',
+            { cause: err });
+        }
+        throw err;
+      }
+      await new Promise(r => setTimeout(r, 10 * (k + 1)));
+    }
+  }
 }
 
 /** Copy a published artifact to another path inside the allowed root. */
