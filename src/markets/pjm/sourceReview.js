@@ -40,6 +40,71 @@ export const REVIEW = {
     excerpt: 'For the 2028/2029 BRA, all prices cleared at the cap ($325.00). In the 2027/2028 BRA, the RTO cleared at the price cap of $333.44.',
   },
 
+
+  /* ---- opened for the batch --------------------------------------------- */
+
+  regRedesign: {
+    reviewedAt: '2026-08-19',
+    access: ACCESS.PUBLISHER,
+    confirmedTitle: 'Regulation Redesign Phase 1 Frequently Asked Questions (FAQ)',
+    confirmedPublisher: 'PJM Interconnection, L.L.C.',
+    confirmedDate: 'revised 4 April 2025',
+    locator: 'Q1/A1 p.1; Q2/A2 p.1; Q5/A5 and Table A5 p.1-2; Q21/A21 and Q22/A22; implementation timeline rows 8-9',
+    establishes: [
+      'A1 — "As filed and approved by FERC, Regulation Redesign Phase 1 is scheduled to go live on Oct. 1, 2025." FERC approval IS established here, unlike the capacity collar.',
+      'A5 — "Regulation Redesign Phase 1 consolidates the current RegA and RegD bidirectional signals into a single bidirectional signal that all resources assigned Regulation will follow."',
+      'Table A5 row 1 — the change is from two bidirectional signals to one that all resources assigned Regulation in a market interval follow.',
+      'Table A5 row 3 — performance scoring changes from accuracy, delay and precision.',
+      'A21/A22 — PJM stopped the qualification test for new RegD resources on 1 Sep 2025 and retesting for existing RegD resources on 22 Sep 2025.',
+      'A2 — RegUp and RegDn arrive in Phase 2, also FERC-approved, going live 1 Oct 2026.',
+      'Timeline — Phase 1 market opened 25 Sep 2025; cutover 1 Oct 2025 at 00:00.',
+    ],
+    doesNotEstablish: [
+      'Any regulation clearing price, revenue, or the share of regulation awarded to batteries. The FAQ carries none, and the section argument needs all three.',
+      'What consolidation does to storage revenue. RegD was the fast signal storage competed in; whether merging it into one signal helps or harms a battery is precisely the open question, and this document does not answer it.',
+      'Whether storage is advantaged or disadvantaged by the new performance scoring.',
+    ],
+    excerpt: 'Regulation Redesign Phase 1 consolidates the current RegA and RegD bidirectional signals into a single bidirectional signal that all resources assigned Regulation will follow.',
+  },
+
+  elcc2829: {
+    reviewedAt: '2026-08-19',
+    access: ACCESS.PUBLISHER,
+    confirmedTitle: 'ELCC Class Ratings for the 2028/2029 Base Residual Auction',
+    confirmedPublisher: 'PJM Interconnection, L.L.C.',
+    confirmedDate: '25 February 2026',
+    locator: 'ELCC Class Ratings table, p.1; RAA Schedule 9.2 note, sections C(2) and D(1)(b), p.1',
+    establishes: [
+      'The class ratings applied to the 2028/2029 BRA, by storage duration: 4-hr Storage 59%, 6-hr Storage 68%, 8-hr Storage 71%, 10-hr Storage 78%.',
+      'For comparison in the same table: Onshore Wind 34%, Tracking Solar 10%, Gas Combined Cycle 78%, Nuclear 96%, Demand Resource 91%.',
+      'Duration converts directly into accredited capacity, and therefore into what a capacity price is paid on.',
+      'Pursuant to RAA Schedule 9.2 — no class rating is determined for Combination Resources, the Complex Hybrid Class, or any class whose members are too distinct for one rating; those get a resource-specific ELCC analysis instead.',
+    ],
+    doesNotEstablish: [
+      'Any revenue figure. A rating is a quantity multiplier, not a price, and the two must not be combined into a revenue claim from this document alone.',
+      'A rating for a hybrid or co-located resource, which is explicitly excluded from class rating and analysed resource-specifically.',
+      'That the ratings are stable. They are stated for this auction; the 2027/2028 ratings are a separate record and were not opened.',
+      'Why the ratings sit where they do. No methodology is reproduced here.',
+    ],
+    excerpt: '4-hr Storage 59%  6-hr Storage 68%  8-hr Storage 71%  10-hr Storage 78%',
+  },
+
+  ancillaryLanding: {
+    reviewedAt: '2026-08-19',
+    access: ACCESS.LANDING_PAGE,
+    confirmedTitle: 'Ancillary Services',
+    confirmedPublisher: 'PJM Interconnection, L.L.C.',
+    confirmedDate: 'Phase 2 materials dated to 10 August 2026',
+    locator: 'pjm.com ancillary-services index; "Market-Based Regulation" section',
+    establishes: [
+      'PJM operates four ancillary service markets, of which the Regulation Market is real-time only.',
+      'The Regulation Redesign is in two phases, with Phase 1 and Phase 2 material sets published.',
+    ],
+    doesNotEstablish: [
+      'Any clearing price, revenue figure, or storage share of regulation awards. The page carries none, which is why the section rests on gap records rather than on this.',
+    ],
+  },
+
   collar: {
     reviewedAt: '2026-08-19',
     access: ACCESS.INACCESSIBLE,

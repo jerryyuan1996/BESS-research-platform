@@ -14,6 +14,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { validateReview, openedTheDocument, ACCESS } from '../src/governance/sourceReview.js';
 import { REVIEW } from '../src/markets/wa/sourceReview.js';
+import { REVIEW as PJM_REVIEW } from '../src/markets/pjm/sourceReview.js';
 import { markets } from '../src/markets/registry.js';
 import { evidenceRecords } from '../src/governance/claims.js';
 
@@ -106,4 +107,25 @@ test('REPORT: what the WA pass actually opened', () => {
     '  AEMO (esoo, qed, crc) returns 403 to automated fetch; archive fallback unavailable.',
   ].join(String.fromCharCode(10)));
   assert.ok(opened >= 1);
+});
+
+test('every PJM review record is well formed and ids resolve', () => {
+  const pjm = markets.find(m => m.manifest.id === 'pjm');
+  const known = evidenceRecords(pjm);
+  for (const [id, r] of Object.entries(PJM_REVIEW)){
+    assert.deepEqual(validateReview(r, id), [], `${id} review is malformed`);
+    /* `ancillaryLanding` is a page reviewed on the way to a document rather
+       than a register id, and is allowed to have no source record. Anything
+       else must correspond to one. */
+    if (id !== 'ancillaryLanding')
+      assert.ok(known[id], `review record "${id}" has no matching source record`);
+  }
+});
+
+test('REPORT: what the PJM pass opened', () => {
+  const lines = [];
+  for (const [id, r] of Object.entries(PJM_REVIEW))
+    lines.push(`  ${id.padEnd(18)} ${r.access}`);
+  console.log(['PJM source review 2026-08-19:', ...lines].join(String.fromCharCode(10)));
+  assert.ok(Object.keys(PJM_REVIEW).length >= 4);
 });
