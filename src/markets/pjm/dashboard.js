@@ -14,6 +14,12 @@ import { SRC } from './sources.js';
 import { M } from './data.js';
 import { buildSections } from './sections.js';
 import './gridMapData.js';   // side effect: registers this market's grid map
+import { CLAIMS } from './claims.js';
+import { registerClaims } from '../claimRegistry.js';
+
+/* Registered from the dashboard so the claim prose travels in this market's
+   own lazy chunk rather than in the bundle every reader downloads. */
+registerClaims('pjm', CLAIMS);
 
 const engine = createMarketEngine({
   MKT, TABS, SRC, M, buildSections,

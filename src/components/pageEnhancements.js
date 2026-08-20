@@ -2,6 +2,9 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { card } from './card.js';
 import { renderGeographicGridMap } from './geographicGridMap.js';
+import { sectionClaim } from './sectionClaim.js';
+import { claimFor } from '../markets/claimRegistry.js';
+import { byId } from '../markets/registry.js';
 
 function drawersOwnedBy(cardNode){
   return [...cardNode.querySelectorAll('.source-drawer')]
@@ -241,4 +244,32 @@ export function enhanceMarketPage(root, { overviewMap = null, marketId = '', tab
   consolidateSourceDrawers(root);
   storySubTabs(root, tabId);
   placeMetricFootnotes(root);
+  placeSectionClaim(root, marketId, tabId);
+}
+
+/* ---------------------------------------------------------------------------
+   The claim goes under the section heading and above everything the section
+   shows, which is the one position that makes it an argument rather than a
+   summary. Inserted after the section renders, from the market's accepted
+   claims, so no section module needs to know claims exist and every market gets
+   the behaviour the moment its claims are reviewed.
+
+   Nothing is inserted unless a supported claim exists — no container, no
+   placeholder, and no unpublished draft anywhere in the DOM.
+   --------------------------------------------------------------------------- */
+function placeSectionClaim(root, marketId, tabId){
+  if (!marketId || !tabId) return;
+  const claim = claimFor(marketId, tabId);
+  if (!claim) return;
+
+  const market = byId(marketId);
+  const block = sectionClaim(claim, market);
+  if (!block) return;                     // incomplete, blocked, or none
+
+  const sect = root.querySelector('.sect');
+  if (!sect) return;
+  /* After the heading and its caption, before the first figure. */
+  const cap = sect.querySelector(':scope > .cap');
+  const anchor = cap || sect.querySelector(':scope > h2');
+  if (anchor) anchor.after(block); else sect.prepend(block);
 }

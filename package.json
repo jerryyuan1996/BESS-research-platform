@@ -30,7 +30,8 @@
     "refresh:market-boundaries": "node scripts/generate-market-boundaries.mjs",
     "refresh:market-zones": "node scripts/generate-market-zones.mjs",
     "refresh:grid-networks": "node scripts/refresh-grid-networks.mjs",
-    "refresh:storage": "node scripts/refresh-storage.mjs"
+    "refresh:storage": "node scripts/refresh-storage.mjs",
+    "audit:links": "node scripts/link-audit.mjs"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

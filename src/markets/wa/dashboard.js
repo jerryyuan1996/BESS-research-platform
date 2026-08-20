@@ -44,6 +44,12 @@ import { renderPipeline } from './sections/pipeline.js';
 import { renderGrid } from './sections/grid.js';
 import { renderPortfolio } from './sections/portfolio.js';
 import { renderData } from './sections/data.js';
+import { CLAIMS } from './claims.js';
+import { registerClaims } from '../claimRegistry.js';
+
+/* Registered from the dashboard so the claim prose travels in this market's
+   own lazy chunk rather than in the bundle every reader downloads. */
+registerClaims('wa', CLAIMS);
 
 /* Tab id → section renderer. The BRCP forecast and the RCM × Energy × FCESS
    co-optimisation are not entries here: both render as the tail of the rcm tab.

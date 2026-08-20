@@ -66,3 +66,111 @@ test('REPORT: claim coverage by market', () => {
 
   assert.ok(total >= 0, 'the report ran');
 });
+
+/* ---------------------------------------------------------------------------
+   THE GOVERNED COUNT.
+
+   The report above reads the old per-section slot and is informational. This is
+   the number quoted when a market is signed off: how many sections publish a
+   claim, out of every analytical section on the platform.
+
+   TWO COUNTS THAT MUST AGREE. "Governed" is what the claim modules declare;
+   "reader-visible" is what the renderer would put on a page. They are computed
+   separately here on purpose — if the gate ever loosened, a blocked or
+   incomplete draft would raise the second without the first, and this test is
+   where that shows up.
+   --------------------------------------------------------------------------- */
+import { markets as allMarkets } from '../src/markets/registry.js';
+import { READINESS, NO_CLAIM_SECTIONS, validateClaim } from '../src/governance/claims.js';
+import { CLAIMS as WA_RUNTIME } from '../src/markets/wa/claims.js';
+import { CLAIMS as PJM_RUNTIME } from '../src/markets/pjm/claims.js';
+import { CLAIMS as FI_RUNTIME } from '../src/markets/fi/claims.js';
+import { DISPOSITIONS as WA_ALL } from '../src/markets/wa/dispositions.js';
+import { DISPOSITIONS as PJM_ALL } from '../src/markets/pjm/dispositions.js';
+import { DISPOSITIONS as FI_ALL } from '../src/markets/fi/dispositions.js';
+
+/* The three markets that have been through evidence review. Runtime is what a
+   reader downloads; all is what was decided. */
+const REVIEWED = {
+  wa:  { runtime: WA_RUNTIME,  all: WA_ALL },
+  pjm: { runtime: PJM_RUNTIME, all: PJM_ALL },
+  fi:  { runtime: FI_RUNTIME,  all: FI_ALL },
+};
+
+test('governed and reader-visible coverage agree at 7/150', () => {
+  let governed = 0, readerVisible = 0;
+
+  for (const { all } of Object.values(REVIEWED)){
+    for (const [sid, c] of Object.entries(all)){
+      assert.ok(!NO_CLAIM_SECTIONS.has(sid), `${sid} argues nothing by design`);
+      if (c.readiness === READINESS.SUPPORTED) governed++;
+      /* The renderer's own gate, applied to the data rather than asserted
+         against the source: supported, and carrying text. */
+      if (c.readiness === READINESS.SUPPORTED && Array.isArray(c.text) && c.text[0])
+        readerVisible++;
+    }
+  }
+
+  const analytical = allMarkets.length * 10;
+  assert.equal(analytical, 150, 'fifteen markets, ten sections each');
+  assert.equal(governed, 7, 'WA three, PJM three, Finland one');
+  assert.equal(readerVisible, governed,
+    'a claim that renders but is not governed, or vice versa, is the bug this catches');
+});
+
+test('THE BUNDLE BOUNDARY: only supported claims enter a runtime chunk', () => {
+  /* The property, for every claim-enabled market rather than for Finland alone.
+     Finland's chunk went over budget because seven sections that render NOTHING
+     each shipped a bilingual paragraph saying why. WA and PJM had the same
+     defect and only enough headroom to hide it, which is why this is asserted
+     as a property and not left to whichever market trips a budget first. */
+  for (const [mid, { runtime, all }] of Object.entries(REVIEWED)){
+    for (const [sid, c] of Object.entries(runtime)){
+      assert.equal(c.readiness, READINESS.SUPPORTED,
+        `${mid}/${sid} renders nothing, so its prose belongs in dispositions.js`);
+      assert.ok(Array.isArray(c.text) && c.text[0], `${mid}/${sid} must carry its sentence`);
+    }
+    /* Nothing is lost by the split: runtime is exactly the supported subset. */
+    const supported = Object.entries(all)
+      .filter(([, c]) => c.readiness === READINESS.SUPPORTED).map(([sid]) => sid).sort();
+    assert.deepEqual(Object.keys(runtime).sort(), supported,
+      `${mid} runtime and its supported dispositions have drifted apart`);
+  }
+});
+
+test('every analytical section has a governed disposition, published or not', () => {
+  /* What the split must not cost. PJM carried three dispositions against eight
+     analytical sections: a coverage count cannot distinguish a section that was
+     examined and declined from one nobody opened, because both read as silence.
+     Holding unpublished prose out of the bundle is only safe while every section
+     is still accounted for somewhere. */
+  for (const [mid, { all }] of Object.entries(REVIEWED)){
+    const market = allMarkets.find(m => m.manifest.id === mid);
+    const analytical = (market.tabs || [])
+      .map(t => (Array.isArray(t) ? t[0] : t.id))
+      .filter(id => id && !NO_CLAIM_SECTIONS.has(id));
+
+    assert.equal(analytical.length, 8, `${mid} should have eight analytical sections`);
+    for (const sid of analytical)
+      assert.ok(all[sid], `${mid}/${sid} has no disposition — examined and declined, or never opened?`);
+    for (const sid of Object.keys(all))
+      assert.ok(analytical.includes(sid), `${mid}/${sid} is a disposition for no section`);
+
+    /* And every one of them still validates against the schema. */
+    for (const [sid, c] of Object.entries(all))
+      assert.deepEqual(validateClaim(c, market, sid), [], `${mid}/${sid} is malformed`);
+  }
+});
+
+test('nothing unpublished carries a sentence that could be rendered', () => {
+  /* A blocked or none disposition with `text` is one loosened gate away from
+     appearing as a finding. An incomplete one MAY hold a draft — that is what
+     the state is for — but it must never be in a runtime chunk. */
+  for (const [mid, { all }] of Object.entries(REVIEWED)){
+    for (const [sid, c] of Object.entries(all)){
+      if (c.readiness === READINESS.SUPPORTED) continue;
+      if (c.readiness === READINESS.INCOMPLETE) continue;
+      assert.ok(!c.text, `${mid}/${sid} is ${c.readiness} and must carry no text`);
+    }
+  }
+});

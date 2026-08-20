@@ -1568,3 +1568,66 @@ W-9 stays material and changes character: it is no longer an unresolved input,
 it is a live divergence between what the published dashboard says and what the
 transaction now costs. The withholding path is kept and separately asserted, so
 the next unresolved input cannot quietly acquire a default.
+
+---
+
+# Editorial claim round — WA pilot halted at the evidence gate
+
+Working WA in dependency order produced one result eight times, and it is worth
+recording as a finding about the round rather than as eight separate outcomes.
+
+## The rule that stopped it
+
+A claim may be drafted only after opening the material that supports it. A
+title, a filename, a status label or a URL is not evidence, and retained
+platform data may guide a review but cannot stand in for the cited source.
+
+## What the register actually contains
+
+Fourteen of WA's fifteen records are a URL and a description. The documents
+themselves — the Statement of Opportunities, the reserve-capacity price
+determination, the quarterly dynamics report, the market rules, the transmission
+plan — are external and were not opened. The repository holds no excerpt store:
+`docs/` carries architecture and methodology, not retained source text.
+
+The fifteenth, the market study behind the pipeline section, has NO url at all
+and names no author. Its authority was migrated to third-party, which means it
+now requires attribution before it can support a claim — and attribution is
+exactly what cannot be produced from the record as it stands.
+
+## Disposition
+
+All eight WA analytical sections are `incomplete`. Not one is blocked: nothing
+here is unknowable, and every item resolves by reading a document that exists.
+The distinction matters, because blocked would imply a research gap and this is
+an access gap.
+
+This is the rule working rather than failing. Under the previous approach four
+of these would have been drafted from titles and derived data, and two of the
+three claims that reached review had already asserted more than the evidence
+established — a guaranteed floor that the section's own caveat denies, and a
+price collar whose binding was never checked.
+
+## What unblocks each section
+
+  rcm       the payment-chain rule text: assigned Capacity Credits and the
+            applicable RCP, and whether BRCP enters payment at all
+  story     the Coordinator review establishing the battery reference plant,
+            and separately the pricing methodology, before any inference about
+            cost curves or duration policy
+  duration  four elements from the ESOO directly: fourteen intervals, the
+            2028-29 effective period, the grandfathering boundary, and the
+            full-credit consequence
+  energy    the quarterly report itself, for both figures and confirmation
+            that the two periods are comparable
+  pipeline  the author of the market study, then the concentration and exit
+            findings
+  grid      re-verification of the consent material, which also resolves one
+            unclassified record
+  fcess     the revenue and enablement-share figures
+  home      nothing of its own; it needs accepted dependencies from the above
+
+## Coverage
+
+Zero of 150, unchanged, and correctly so. PJM is not started: the sequence was
+WA first, and WA is not accepted.
