@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-20T07:09:36.838Z",
+  "fetchedAt": "2026-08-20T13:14:37.781Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-20T07:01:28.000Z",
+    "to": "2026-08-20T12:20:00.000Z",
     "resolution": "event",
     "points": 40
   },
@@ -123,46 +123,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": ""
-    },
-    {
-      "t": "2026-08-14T16:02:51.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/limes-reaches-rtb-stage-200mw-1gwh-huanil-bess-project-chile/",
-      "source": "Energy-Storage.news",
-      "title": "Limes reaches RTB stage for 200MW/1GWh Huañil BESS project in Chile",
-      "url": "https://www.energy-storage.news/limes-reaches-rtb-stage-200mw-1gwh-huanil-bess-project-chile/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Italian clean energy developer Limes Renewable Energy has reached the ready-to-build stage at its 200MW/1GWh Huañil project."
-    },
-    {
-      "t": "2026-08-17T01:24:30.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australian-renewable-energy-agency-backs-unsw-research-into-grid-forming-battery-storage-and-system-strength/",
-      "source": "Energy-Storage.news",
-      "title": "Australian Renewable Energy Agency backs UNSW research into grid-forming battery storage and system strength",
-      "url": "https://www.energy-storage.news/australian-renewable-energy-agency-backs-unsw-research-into-grid-forming-battery-storage-and-system-strength/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "UNSW receives AU$6.52 million to study how solar, wind and battery storage interact with grid protection systems as Australia transitions to renewables."
-    },
-    {
-      "t": "2026-08-17T01:35:31.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/relectrify-installs-first-ac1-inverterless-battery-storage-system-in-south-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Relectrify installs first AC1 inverterless battery storage system in South Australia",
-      "url": "https://www.energy-storage.news/relectrify-installs-first-ac1-inverterless-battery-storage-system-in-south-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Melbourne-based battery technology company Relectrify has installed its first AC1 battery energy storage system (BESS) in Renmark, South Australia, in partnership with YES Energy."
-    },
-    {
-      "t": "2026-08-17T08:29:37.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/megarevo-customer-focused-microgrid-solutions-scales-european-operations/",
-      "source": "Energy-Storage.news",
-      "title": "Megarevo differentiates with customer-focused microgrid solutions as it scales European operations",
-      "url": "https://www.energy-storage.news/megarevo-customer-focused-microgrid-solutions-scales-european-operations/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Brian Yaw, founder of Megarevo, discussed the company’s approach to commercial and industrial energy storage, their competitive strategy, and plans for the European market with Energy-Storage.news at Intersolar Europe 2026."
     },
     {
       "t": "2026-08-17T10:00:27.000Z",
@@ -285,36 +245,6 @@
       "summary": "Enel Green Power, part of the Italy-based power group Enel, has launched construction on another large-scale BESS in Chile."
     },
     {
-      "t": "2026-08-19T12:05:18.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/grid-and-storage-readiness-to-drive-next-phase-of-renewable-energy-growth-icra/",
-      "source": "pv magazine",
-      "title": "India’s under-construction renewable pipeline surpasses 150 GW",
-      "url": "https://www.pv-magazine.com/2026/08/19/grid-and-storage-readiness-to-drive-next-phase-of-renewable-energy-growth-icra/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Renewable energy project pipeline remains strong with more than 150 GW of projects under construction as on June 30, 2026 even as bidding activity slows. However, curtailment concerns underscore the need for expansion in transmission network and storage capacity. The post India’s under-construction renewable pipelin…"
-    },
-    {
-      "t": "2026-08-19T12:41:37.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/ensuring-safety-of-plug-in-solar/",
-      "source": "pv magazine",
-      "title": "Ensuring safety of plug-in solar",
-      "url": "https://www.pv-magazine.com/2026/08/19/ensuring-safety-of-plug-in-solar/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Plug-in (balcony) solar is a low-cost, plug-and-play alternative to traditional rooftop PV, gaining traction in the U.S. as states adopt legislation exempting small systems from interconnection requirements. Most states cap systems at 1,200 W and require UL 3700 safety certification, addressing risks such as circuit…"
-    },
-    {
-      "t": "2026-08-19T13:22:28.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/megasol-equips-its-solar-panels-with-an-anti-glare-surface/",
-      "source": "pv magazine",
-      "title": "Megasol equips its solar panels with anti-glare surface",
-      "url": "https://www.pv-magazine.com/2026/08/19/megasol-equips-its-solar-panels-with-an-anti-glare-surface/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Swiss manufacturer has made its ZRM+ anti-glare surface a standard feature across all Level Up solar roof modules. The microstructured glass reduces glare while maintaining a matte finish and the system’s technical performance. The post Megasol equips its solar panels with anti-glare surface appeared first on pv…"
-    },
-    {
       "t": "2026-08-19T13:34:19.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/egyptian-government-minister-lays-foundation-stone-sungrow-begins-constructing-mea-first-specialised-bess-factory/",
       "source": "Energy-Storage.news",
@@ -362,7 +292,7 @@
       "url": "https://www.energy-storage.news/one-market-into-many-aer-says-battery-storage-systems-are-reshaping-australias-nem/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The ARE has found that growth in renewable energy and battery storage eased pressure across Australia's wholesale electricity market in 2025."
+      "summary": "The AER has found that growth in renewable energy and battery storage eased pressure across Australia's wholesale electricity market in 2025."
     },
     {
       "t": "2026-08-20T03:52:43.000Z",
@@ -373,26 +303,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Windlab and Squadron Energy have referred a 500MW BESS at the Bungaban solar-plus-storage project in Queensland for approval."
-    },
-    {
-      "t": "2026-08-20T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/new-materials-in-the-frame/",
-      "source": "pv magazine",
-      "title": "New materials in the frame",
-      "url": "https://www.pv-magazine.com/2026/08/20/new-materials-in-the-frame/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar cells, encapsulants, glass, backsheets, and virtually every PV module component have seen rapid changes and improvements over the past 10 years. During that time, module frames have seen relatively little innovation and remain a simple piece of formed aluminum. However, quality concerns, supply chain diversifi…"
-    },
-    {
-      "t": "2026-08-20T05:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/blocked-bess-in-britain-clearstones-appeal-fails-for-150-mw-site-at-axminster/",
-      "source": "pv magazine",
-      "title": "Blocked BESS in Britain: Clearstone’s appeal fails for 150 MW site at Axminster",
-      "url": "https://www.pv-magazine.com/2026/08/20/blocked-bess-in-britain-clearstones-appeal-fails-for-150-mw-site-at-axminster/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Clearstone Energy’s proposed 150 MW Axminster Energy Hub BESS appeal was dismissed by planning inspector Helen Heward on August 13, 2026, despite the developer’s compliance with relevant fire-safety guidance and use of Wärtsilä Quantum 1 technology. The decision centred on concerns over explosion mitigation and the…"
     },
     {
       "t": "2026-08-20T05:31:48.000Z",
@@ -423,6 +333,96 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "UNSW and DAS Solar used Quokka3 simulations to identify cut-induced losses in back-contact TOPCon cells, finding that gap-region cutting reduces efficiency losses by around 50% compared with emitter-region cutting. They recommend an optimized 0.3 mm gap width, particularly important under low irradiance, to minimize…"
+    },
+    {
+      "t": "2026-08-20T08:10:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/mexican-solar-installers-report-risks-of-kidnapping-and-extortion/",
+      "source": "pv magazine",
+      "title": "Mexican solar installers report risks of kidnapping and extortion",
+      "url": "https://www.pv-magazine.com/2026/08/20/mexican-solar-installers-report-risks-of-kidnapping-and-extortion/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Mexican solar installers and business owners are reporting kidnappings, extortion, equipment theft, and other security incidents in several states, according to the CPEF, an association representing PV integrators. The post Mexican solar installers report risks of kidnapping and extortion appeared first on pv magazi…"
+    },
+    {
+      "t": "2026-08-20T09:24:58.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/even-at-100-meters-pv-makes-neighbours-more-likely-to-go-green/",
+      "source": "pv magazine",
+      "title": "Even at 100 meters, PV makes neighbours more likely to go green",
+      "url": "https://www.pv-magazine.com/2026/08/20/even-at-100-meters-pv-makes-neighbours-more-likely-to-go-green/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Research from Switzerland finds homeowners whose neighbors install a solar system become more likely to install a solar system themselves, adopt an electric vehicle and reduce their electricity consumption. The post Even at 100 meters, PV makes neighbours more likely to go green appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-20T09:57:07.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/the-summer-solar-carried-the-water/",
+      "source": "pv magazine",
+      "title": "The summer solar carried the water",
+      "url": "https://www.pv-magazine.com/2026/08/20/the-summer-solar-carried-the-water/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Europe’s hydro fleet produced less power in the summer of 2026 than it did in the drought summer of 2022, and reservoir stocks finished the period 7.7% below their eleven-year median with France under its historical floor. Over those same four years solar generation across the affected systems rose by 39 TWh. That s…"
+    },
+    {
+      "t": "2026-08-20T10:17:21.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/australian-grid-operator-announces-curtailment-drill-for-rooftop-pv/",
+      "source": "pv magazine",
+      "title": "Australian grid operator announces curtailment drill for rooftop PV",
+      "url": "https://www.pv-magazine.com/2026/08/20/australian-grid-operator-announces-curtailment-drill-for-rooftop-pv/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Australia’s grid operator will complete its annual test of its ability to temporarily curtail rooftop solar generation on August 25. Solar systems in the state will be curtailed for up to one hour, expected to cause the loss of around 1.5 kWh of generation per installation. The post Australian grid operator an…"
+    },
+    {
+      "t": "2026-08-20T10:39:29.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/lg-energy-solution-begins-lfp-and-nmc-bess-and-ev-cell-production-at-michigan-factory/",
+      "source": "Energy-Storage.news",
+      "title": "LG Energy Solution begins LFP and NMC BESS and EV cell production at Michigan factory",
+      "url": "https://www.energy-storage.news/lg-energy-solution-begins-lfp-and-nmc-bess-and-ev-cell-production-at-michigan-factory/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Two South Korean-headquartered companies, LG Energy Solution and DeltaX are establishing battery cell factories in the US."
+    },
+    {
+      "t": "2026-08-20T10:43:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-roundup-bess-projects-and-deals-for-edp-renewables-tucson-electric-power-and-edf/",
+      "source": "Energy-Storage.news",
+      "title": "US ROUNDUP: BESS projects and deals for EDP Renewables, Tucson Electric Power, and EDF",
+      "url": "https://www.energy-storage.news/us-roundup-bess-projects-and-deals-for-edp-renewables-tucson-electric-power-and-edf/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In this US news roundup, BESS projects in California, Arizona, and Nevada advance from EDP Renewables, Tucson Electric Power, and EDF Power Solutions North America."
+    },
+    {
+      "t": "2026-08-20T10:58:50.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/denmark-begreen-enlists-danske-commodities-for-co-located-bess-optimisation/",
+      "source": "Energy-Storage.news",
+      "title": "Denmark: BeGreen enlists Danske Commodities for co-located BESS optimisation",
+      "url": "https://www.energy-storage.news/denmark-begreen-enlists-danske-commodities-for-co-located-bess-optimisation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Danske Commodities will optimise a BESS project that developer-operator BeGreen has added to a solar PV plant in Denmark, which the trading house already operates for BeGreen."
+    },
+    {
+      "t": "2026-08-20T11:10:59.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/handling-cell-imbalances-communications-interoperability-and-other-blockers-to-bess-asset-success/",
+      "source": "Energy-Storage.news",
+      "title": "Handling cell imbalances, communications interoperability and other blockers to BESS asset success",
+      "url": "https://www.energy-storage.news/handling-cell-imbalances-communications-interoperability-and-other-blockers-to-bess-asset-success/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Orchestrating battery storage components, containers, systems and portfolios is key to successful operation, says Ryan Franks."
+    },
+    {
+      "t": "2026-08-20T12:20:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/malaysia-issues-guidelines-for-residential-solar-under-net-metering/",
+      "source": "pv magazine",
+      "title": "Malaysia issues guidelines for residential solar under net metering",
+      "url": "https://www.pv-magazine.com/2026/08/20/malaysia-issues-guidelines-for-residential-solar-under-net-metering/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Malaysia’s energy regulator has issued updated guidelines for rooftop solar installations under the NEM Rakyat and NEM GoMEn schemes, covering system capacities, eligibility, grid connection and technical requirements. The post Malaysia issues guidelines for residential solar under net metering appeared first on pv…"
     }
   ],
   "derived": {
@@ -468,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d07da32485fc176e9d6468c77f4dddd2c2dccce55d7b2e8d37bb8f463e96b2b3",
-  "envelopeChecksum": "sha256:5e1a95be530330207b6f6f3afc13ce5def5875489ef05ee32818d89ba60785b3"
+  "contentChecksum": "sha256:b544a4e365c9170cab74ddebe376fb3342751187a15dac1cd48e9d1ed85ccbfd",
+  "envelopeChecksum": "sha256:5a6fcdaf05966a06c36be1742a3b3b534225285d91ccd2343b443197ca76c6fe"
 }
