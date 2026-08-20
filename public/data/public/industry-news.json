@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-20T13:14:37.781Z",
+  "fetchedAt": "2026-08-20T19:03:24.121Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-20T12:20:00.000Z",
+    "to": "2026-08-20T15:16:56.000Z",
     "resolution": "event",
     "points": 40
   },
@@ -205,16 +205,6 @@
       "summary": "US startup Form Energy has secured a US$750 million Series G financing round led by global investment management firm T. Rowe Price."
     },
     {
-      "t": "2026-08-18T13:37:03.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/iso-ne-asset-condition-transmission-projects-blumenthal-eversource-ferc/828124/",
-      "source": "Utility Dive",
-      "title": "ISO-NE to review ‘asset condition’ transmission projects under proposal filed at FERC",
-      "url": "https://www.utilitydive.com/news/iso-ne-asset-condition-transmission-projects-blumenthal-eversource-ferc/828124/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The class of projects, which are chosen and built by transmission owners, mainly to replace aging infrastructure, with limited oversight, have long been a source of complaint by New England states and ratepayer advocates."
-    },
-    {
       "t": "2026-08-19T02:47:13.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/etapro-deploys-digital-twin-and-predictive-analytics-at-mga-thermals-5mwh-tomago-plant-in-australia/",
       "source": "Energy-Storage.news",
@@ -303,16 +293,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Windlab and Squadron Energy have referred a 500MW BESS at the Bungaban solar-plus-storage project in Queensland for approval."
-    },
-    {
-      "t": "2026-08-20T05:31:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/essential-system-testing-every-solar-project-needs-for-long-term-performance/",
-      "source": "pv magazine",
-      "title": "Essential system testing every solar project needs for long-term performance",
-      "url": "https://www.pv-magazine.com/2026/08/20/essential-system-testing-every-solar-project-needs-for-long-term-performance/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Comprehensive proactive testing across all operational stages, from commissioning to routine maintenance, is essential to identify hidden electrical, structural, and communication faults before they trigger severe safety risks, costly downtime, and lost energy revenue. The post Essential system testing every solar p…"
     },
     {
       "t": "2026-08-20T05:41:18.000Z",
@@ -423,6 +403,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Malaysia’s energy regulator has issued updated guidelines for rooftop solar installations under the NEM Rakyat and NEM GoMEn schemes, covering system capacities, eligibility, grid connection and technical requirements. The post Malaysia issues guidelines for residential solar under net metering appeared first on pv…"
+    },
+    {
+      "t": "2026-08-20T13:41:48.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-spp-topology-optimization-grid-congestion/828366/",
+      "source": "Utility Dive",
+      "title": "FERC approves SPP ‘topology optimization’ plan for cutting grid congestion",
+      "url": "https://www.utilitydive.com/news/ferc-spp-topology-optimization-grid-congestion/828366/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Midcontinent Independent System Operator&rsquo;s power market has saved nearly $100 million this year under a similar approach for topology reconfiguration."
+    },
+    {
+      "t": "2026-08-20T15:16:56.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/dukes-carolinas-resource-plan-solar-gas-nuclear/828402/",
+      "source": "Utility Dive",
+      "title": "Duke’s Carolinas resource plan targets 18.5 GW new solar by 2041",
+      "url": "https://www.utilitydive.com/news/dukes-carolinas-resource-plan-solar-gas-nuclear/828402/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The utility&rsquo;s North Carolina and South Carolina&nbsp; territory &ldquo;continues to experience significant growth,&rdquo; with both states ranked among the fastest-growing, Duke told South Carolina regulators."
     }
   ],
   "derived": {
@@ -453,13 +453,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 1
+        "items": 2
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 7
       }
     ]
   },
@@ -468,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:b544a4e365c9170cab74ddebe376fb3342751187a15dac1cd48e9d1ed85ccbfd",
-  "envelopeChecksum": "sha256:5a6fcdaf05966a06c36be1742a3b3b534225285d91ccd2343b443197ca76c6fe"
+  "contentChecksum": "sha256:b7e5a968435a63b7b8fcbe6f3b18d551d356d18342ac749674765a2dba8e4c0e",
+  "envelopeChecksum": "sha256:0afd8c554b5e2ac4122e604ebc6027b750ee86f2254998e4e8db00875abb6301"
 }
