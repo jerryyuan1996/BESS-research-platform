@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-19T18:56:20.328Z",
+  "fetchedAt": "2026-08-20T07:09:36.838Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-19T14:06:28.000Z",
+    "to": "2026-08-20T07:01:28.000Z",
     "resolution": "event",
     "points": 40
   },
@@ -123,36 +123,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": ""
-    },
-    {
-      "t": "2026-08-14T08:39:46.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/optimising-us-bess-markets-insights-from-caerus-commodities/",
-      "source": "Energy-Storage.news",
-      "title": "Optimising US BESS markets: Insights from Caerus Commodities",
-      "url": "https://www.energy-storage.news/optimising-us-bess-markets-insights-from-caerus-commodities/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Casey Keller, founding partner at Caerus Commodities, shares critical lessons from optimising battery storage, ahead of the 2026 US Battery Asset Management Summit taking place in California on 15-16 September."
-    },
-    {
-      "t": "2026-08-14T09:06:52.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/multi-day-energy-storage-startup-noon-energy-makes-1gw-us-ai-infrastructure-deployment-agreement/",
-      "source": "Energy-Storage.news",
-      "title": "‘Multi-day’ energy storage startup Noon Energy makes 1GW US AI infrastructure deployment agreement",
-      "url": "https://www.energy-storage.news/multi-day-energy-storage-startup-noon-energy-makes-1gw-us-ai-infrastructure-deployment-agreement/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US 'multi-day' energy storage startup Noon Energy has made an agreement with renewables platform Sabanci Renewables, to deploy 1GW of Noon’s technology for AI infrastructure in the US."
-    },
-    {
-      "t": "2026-08-14T13:13:58.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/data-accuracy-is-one-of-the-most-important-things-ensights-ceo-on-bess-economics-in-pjm/",
-      "source": "Energy-Storage.news",
-      "title": "‘Data accuracy is one of the most important things’: enSights CEO on BESS economics in PJM",
-      "url": "https://www.energy-storage.news/data-accuracy-is-one-of-the-most-important-things-ensights-ceo-on-bess-economics-in-pjm/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news speaks with Alon Maskovich, CEO and co-founder of enSights about BESS economics and the company’s new battery economics calculator."
     },
     {
       "t": "2026-08-14T16:02:51.000Z",
@@ -295,36 +265,6 @@
       "summary": "Etapro has deployed digital twin and predictive analytics at MGA Thermal's 5MWh thermal energy storage demonstration plant in Australia."
     },
     {
-      "t": "2026-08-19T06:57:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/chinese-automotive-glass-giant-announces-vehicle-integrated-solar-roof/",
-      "source": "pv magazine",
-      "title": "Chinese automotive glass giant announces vehicle-integrated solar roof",
-      "url": "https://www.pv-magazine.com/2026/08/19/chinese-automotive-glass-giant-announces-vehicle-integrated-solar-roof/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Fuyao Glass has confirmed mass-production capabilities for solar sunroof glass, with photovoltaic cells embedded in laminated automotive glass to power auxiliary vehicle loads. While reports have linked the technology to BYD models and cited high output and efficiency figures, these claims remain unconfirmed as Fuya…"
-    },
-    {
-      "t": "2026-08-19T07:29:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/low-concentrator-photovoltaic-receiver-for-wireless-laser-power-transmission/",
-      "source": "pv magazine",
-      "title": "Low concentrator photovoltaic receiver for wireless laser power transmission",
-      "url": "https://www.pv-magazine.com/2026/08/19/low-concentrator-photovoltaic-receiver-for-wireless-laser-power-transmission/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in Spain have developed a 3 × 3 low-concentrator photovoltaic (LCPV) receiver combining crossed compound parabolic concentrator (CCPC) optics with current-based cell grouping for wireless laser power transmission (WLPT) under non-uniform irradiance. The prototype achieved 16.3% power conversion efficienc…"
-    },
-    {
-      "t": "2026-08-19T08:35:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/turkiyes-pv-module-manufacturing-capacity-tops-13-2-gw/",
-      "source": "pv magazine",
-      "title": "Türkiye’s PV module manufacturing capacity tops 13.2 GW",
-      "url": "https://www.pv-magazine.com/2026/08/19/turkiyes-pv-module-manufacturing-capacity-tops-13-2-gw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Turkey has 13.2 GW of operational solar module manufacturing capacity, exceeding the 9.7 GW combined capacity of Italy, Germany, Spain, France, and the Netherlands, according to new figures released by Sinovoltaics. The country's current cell manufacturing capacity is around 2.5 GW, while wafer capacity stands at ap…"
-    },
-    {
       "t": "2026-08-19T10:31:15.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/germany-bess-market-in-strong-position-but-policy-questions-on-grid-fees-connections-and-fcas-cloud-certainty/",
       "source": "Energy-Storage.news",
@@ -335,16 +275,6 @@
       "summary": "The grid-scale energy storage market in Germany is in a strong position but key questions around grid fees, grid connections, FCAs and the upcoming capacity market remain, speakers at the upcoming Energy Storage Summit Germany 2026 said."
     },
     {
-      "t": "2026-08-19T11:39:16.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/czechias-largest-bess-goes-online/",
-      "source": "pv magazine",
-      "title": "Czechia’s largest BESS goes online",
-      "url": "https://www.pv-magazine.com/2026/08/19/czechias-largest-bess-goes-online/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Suas Group and EIF expect the BESS Lipnice facility to achieve a five- to eight-year payback by combining day-ahead and intraday market trading with algorithmic management. The post Czechia’s largest BESS goes online appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-19T11:39:46.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/enel-starts-building-100mw-grid-forming-bess-at-chile-solar-pv-plant/",
       "source": "Energy-Storage.news",
@@ -353,16 +283,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Enel Green Power, part of the Italy-based power group Enel, has launched construction on another large-scale BESS in Chile."
-    },
-    {
-      "t": "2026-08-19T11:44:38.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/19/south-africas-eskom-backtracks-on-proposed-solar-registration-fines/",
-      "source": "pv magazine",
-      "title": "South Africa’s Eskom backtracks on proposed solar registration fines",
-      "url": "https://www.pv-magazine.com/2026/08/19/south-africas-eskom-backtracks-on-proposed-solar-registration-fines/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The utility previously warned that customers with unregistered solar systems after a September 30 deadline would face fines or disconnection. It will no longer impose such measures after pushback from stakeholders. The post South Africa’s Eskom backtracks on proposed solar registration fines appeared first on pv mag…"
     },
     {
       "t": "2026-08-19T12:05:18.000Z",
@@ -423,6 +343,86 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "Energy-Storage.news speaks with Raafe Khan, head of energy storage at Camelot Energy Group, ahead of the upcoming Battery Asset Management Summit (BAMS) USA in Garden Grove, California."
+    },
+    {
+      "t": "2026-08-20T03:45:53.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/apa-to-build-104mwh-battery-storage-system-for-evolution-minings-ernest-henry-operations-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "APA to build 104MWh battery storage system for Evolution Mining’s Ernest Henry operations in Australia",
+      "url": "https://www.energy-storage.news/apa-to-build-104mwh-battery-storage-system-for-evolution-minings-ernest-henry-operations-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "APA Group has taken a final investment decision to construct, own and operate the 104MWh Sybella Creek solar-plus-storage site in Australia."
+    },
+    {
+      "t": "2026-08-20T03:50:45.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/one-market-into-many-aer-says-battery-storage-systems-are-reshaping-australias-nem/",
+      "source": "Energy-Storage.news",
+      "title": "‘One market into many’: AER says battery storage systems are reshaping Australia’s NEM",
+      "url": "https://www.energy-storage.news/one-market-into-many-aer-says-battery-storage-systems-are-reshaping-australias-nem/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The ARE has found that growth in renewable energy and battery storage eased pressure across Australia's wholesale electricity market in 2025."
+    },
+    {
+      "t": "2026-08-20T03:52:43.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/windlab-squadron-energy-submit-500mw-battery-storage-system-for-federal-assessment-in-queensland-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Windlab, Squadron Energy submit 500MW battery storage system for federal assessment in Queensland, Australia",
+      "url": "https://www.energy-storage.news/windlab-squadron-energy-submit-500mw-battery-storage-system-for-federal-assessment-in-queensland-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Windlab and Squadron Energy have referred a 500MW BESS at the Bungaban solar-plus-storage project in Queensland for approval."
+    },
+    {
+      "t": "2026-08-20T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/new-materials-in-the-frame/",
+      "source": "pv magazine",
+      "title": "New materials in the frame",
+      "url": "https://www.pv-magazine.com/2026/08/20/new-materials-in-the-frame/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar cells, encapsulants, glass, backsheets, and virtually every PV module component have seen rapid changes and improvements over the past 10 years. During that time, module frames have seen relatively little innovation and remain a simple piece of formed aluminum. However, quality concerns, supply chain diversifi…"
+    },
+    {
+      "t": "2026-08-20T05:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/blocked-bess-in-britain-clearstones-appeal-fails-for-150-mw-site-at-axminster/",
+      "source": "pv magazine",
+      "title": "Blocked BESS in Britain: Clearstone’s appeal fails for 150 MW site at Axminster",
+      "url": "https://www.pv-magazine.com/2026/08/20/blocked-bess-in-britain-clearstones-appeal-fails-for-150-mw-site-at-axminster/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Clearstone Energy’s proposed 150 MW Axminster Energy Hub BESS appeal was dismissed by planning inspector Helen Heward on August 13, 2026, despite the developer’s compliance with relevant fire-safety guidance and use of Wärtsilä Quantum 1 technology. The decision centred on concerns over explosion mitigation and the…"
+    },
+    {
+      "t": "2026-08-20T05:31:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/essential-system-testing-every-solar-project-needs-for-long-term-performance/",
+      "source": "pv magazine",
+      "title": "Essential system testing every solar project needs for long-term performance",
+      "url": "https://www.pv-magazine.com/2026/08/20/essential-system-testing-every-solar-project-needs-for-long-term-performance/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Comprehensive proactive testing across all operational stages, from commissioning to routine maintenance, is essential to identify hidden electrical, structural, and communication faults before they trigger severe safety risks, costly downtime, and lost energy revenue. The post Essential system testing every solar p…"
+    },
+    {
+      "t": "2026-08-20T05:41:18.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/byd-comienza-a-vender-kits-solares-de-48-kwp-en-233-concesionarios-en-brasil/",
+      "source": "pv magazine",
+      "title": "BYD starts sales of 4.8 kW solar kits in Brazil",
+      "url": "https://www.pv-magazine.com/2026/08/20/byd-comienza-a-vender-kits-solares-de-48-kwp-en-233-concesionarios-en-brasil/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BYD has started selling 4.8 kWp solar kits through its 233 dealerships in Brazil, with packages covering equipment, installation, utility approval, and one year of insurance. The kits use eight 600 W modules manufactured at BYD’s Campinas facility and are available to consumers regardless of vehicle ownership. The p…"
+    },
+    {
+      "t": "2026-08-20T07:01:28.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/where-and-how-to-cut-back-contact-topcon-solar-cells-to-minimize-recombination-losses/",
+      "source": "pv magazine",
+      "title": "Where and how to cut back-contact TOPCon solar cells to minimize recombination losses",
+      "url": "https://www.pv-magazine.com/2026/08/20/where-and-how-to-cut-back-contact-topcon-solar-cells-to-minimize-recombination-losses/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "UNSW and DAS Solar used Quokka3 simulations to identify cut-induced losses in back-contact TOPCon cells, finding that gap-region cutting reduces efficiency losses by around 50% compared with emitter-region cutting. They recommend an optimized 0.3 mm gap width, particularly important under low irradiance, to minimize…"
     }
   ],
   "derived": {
@@ -468,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:388010475435c6646936ba6eec5e91041e1cece80165529eeab5ef948629a733",
-  "envelopeChecksum": "sha256:13f948be8a24fea517551e243ef56783c2b7280819b5eb181e655e64d9608dcd"
+  "contentChecksum": "sha256:d07da32485fc176e9d6468c77f4dddd2c2dccce55d7b2e8d37bb8f463e96b2b3",
+  "envelopeChecksum": "sha256:5e1a95be530330207b6f6f3afc13ce5def5875489ef05ee32818d89ba60785b3"
 }
