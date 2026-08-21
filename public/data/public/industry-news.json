@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-21T02:00:20.946Z",
+  "fetchedAt": "2026-08-21T07:10:50.958Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-20T22:16:04.000Z",
+    "to": "2026-08-21T05:41:20.000Z",
     "resolution": "event",
-    "points": 40
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -285,26 +285,6 @@
       "summary": "Windlab and Squadron Energy have referred a 500MW BESS at the Bungaban solar-plus-storage project in Queensland for approval."
     },
     {
-      "t": "2026-08-20T05:41:18.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/byd-comienza-a-vender-kits-solares-de-48-kwp-en-233-concesionarios-en-brasil/",
-      "source": "pv magazine",
-      "title": "BYD starts sales of 4.8 kW solar kits in Brazil",
-      "url": "https://www.pv-magazine.com/2026/08/20/byd-comienza-a-vender-kits-solares-de-48-kwp-en-233-concesionarios-en-brasil/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BYD has started selling 4.8 kWp solar kits through its 233 dealerships in Brazil, with packages covering equipment, installation, utility approval, and one year of insurance. The kits use eight 600 W modules manufactured at BYD’s Campinas facility and are available to consumers regardless of vehicle ownership. The p…"
-    },
-    {
-      "t": "2026-08-20T07:01:28.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/where-and-how-to-cut-back-contact-topcon-solar-cells-to-minimize-recombination-losses/",
-      "source": "pv magazine",
-      "title": "Where and how to cut back-contact TOPCon solar cells to minimize recombination losses",
-      "url": "https://www.pv-magazine.com/2026/08/20/where-and-how-to-cut-back-contact-topcon-solar-cells-to-minimize-recombination-losses/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "UNSW and DAS Solar used Quokka3 simulations to identify cut-induced losses in back-contact TOPCon cells, finding that gap-region cutting reduces efficiency losses by around 50% compared with emitter-region cutting. They recommend an optimized 0.3 mm gap width, particularly important under low irradiance, to minimize…"
-    },
-    {
       "t": "2026-08-20T08:10:59.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/mexican-solar-installers-report-risks-of-kidnapping-and-extortion/",
       "source": "pv magazine",
@@ -412,7 +392,7 @@
       "url": "https://www.utilitydive.com/news/dukes-carolinas-resource-plan-solar-gas-nuclear/828402/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The utility&rsquo;s North Carolina and South Carolina&nbsp; territory &ldquo;continues to experience significant growth,&rdquo; with both states ranked among the fastest-growing, Duke told South Carolina regulators."
+      "summary": "The utility&rsquo;s North Carolina and South Carolina territory &ldquo;continues to experience significant growth,&rdquo; with both states ranked among the fastest-growing, Duke told South Carolina regulators."
     },
     {
       "t": "2026-08-20T22:16:04.000Z",
@@ -422,17 +402,47 @@
       "url": "https://www.energy-storage.news/are-conventional-bess-degradation-guarantees-restricting-asset-value/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Battery energy storage projects must respond to changing market conditions over their operating lives. Their degradation guarantees need to evolve with them, writes Faisal Mohd, BESS solutions director at Envision Energy Australia. Anyone who has negotiated a utility-scale battery energy storage system (BESS) Supply…"
+      "summary": "Battery energy storage degradation guarantees need to evolve as the surrounding market does, writes Faisal Mohd at Envision Energy Australia."
+    },
+    {
+      "t": "2026-08-21T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/solar-powerhouse-to-storage-leader/",
+      "source": "pv magazine",
+      "title": "Solar powerhouse to storage leader",
+      "url": "https://www.pv-magazine.com/2026/08/21/solar-powerhouse-to-storage-leader/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chile is transforming in a bid to avoid becoming a victim of its own solar success. Developers have flooded the Atacama Desert with solar projects, turning Chile into a PV powerhouse but also drastically reducing revenues and driving some operators into bankruptcy. S&P Global Energy’s Ángel Cancino sees the country…"
+    },
+    {
+      "t": "2026-08-21T05:04:02.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/bombshell-report-alleges-u-s-solar-recycling-is-mostly-landfilling-offshoring-in-disguise/",
+      "source": "pv magazine",
+      "title": "Report alleges U.S. solar recycling is mostly landfilling, offshoring in disguise",
+      "url": "https://www.pv-magazine.com/2026/08/21/bombshell-report-alleges-u-s-solar-recycling-is-mostly-landfilling-offshoring-in-disguise/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A new white paper from Sustainable Source Studios cites regulatory filings, industry disclosures and IEA lifecycle datasets in concluding that most U.S. solar module recycling yields degraded, landfilled, or offshored material. The post Report alleges U.S. solar recycling is mostly landfilling, offshoring in disguis…"
+    },
+    {
+      "t": "2026-08-21T05:41:20.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/bangladesh-mandates-solar-charging-for-millions-of-electric-rickshaws/",
+      "source": "pv magazine",
+      "title": "Bangladesh mandates solar charging for millions of electric rickshaws",
+      "url": "https://www.pv-magazine.com/2026/08/21/bangladesh-mandates-solar-charging-for-millions-of-electric-rickshaws/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Bangladesh plans to require millions of battery-powered auto-rickshaws to use solar-powered charging stations as a condition of registration, aiming to reduce pressure on the electricity grid. Industry representatives say the policy could spur investment in solar charging infrastructure, create jobs and expand renew…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 40,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 28,
-      "policy": 6,
+      "policy": 7,
       "capital": 3,
       "technology": 3
     },
@@ -459,7 +469,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 8
       }
     ]
   },
@@ -468,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:76546453f3ea2c307d5efe670efab12b25bc55a60f5c2b5ceaba86fc113698fd",
-  "envelopeChecksum": "sha256:4638faefe72ddf3490721d80538a0531af3551510026f1db9059918329fe05b8"
+  "contentChecksum": "sha256:d746ca0952b4d5585ce124ffc871e7ca97583959446ca96b3b3010964a882c9c",
+  "envelopeChecksum": "sha256:a14c5b113fb9e100f0ecfefebce81e860321fc9f1d49d2894df61c5ce10d7ff5"
 }
