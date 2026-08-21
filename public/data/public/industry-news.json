@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-20T19:03:24.121Z",
+  "fetchedAt": "2026-08-21T02:00:20.946Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-20T15:16:56.000Z",
+    "to": "2026-08-20T22:16:04.000Z",
     "resolution": "event",
     "points": 40
   },
@@ -123,16 +123,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": ""
-    },
-    {
-      "t": "2026-08-17T10:00:27.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-and-german-utility-leag-begin-construction-of-second-large-scale-bess-project-under-partnership/",
-      "source": "Energy-Storage.news",
-      "title": "Fluence and German utility LEAG begin construction of second large-scale BESS project under partnership",
-      "url": "https://www.energy-storage.news/fluence-and-german-utility-leag-begin-construction-of-second-large-scale-bess-project-under-partnership/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Fluence and utility LEAG have begun construction of a second battery storage project in Germany, through a partnership that is also deploying Europe’s largest BESS to date."
     },
     {
       "t": "2026-08-17T10:11:00.000Z",
@@ -423,6 +413,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The utility&rsquo;s North Carolina and South Carolina&nbsp; territory &ldquo;continues to experience significant growth,&rdquo; with both states ranked among the fastest-growing, Duke told South Carolina regulators."
+    },
+    {
+      "t": "2026-08-20T22:16:04.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/are-conventional-bess-degradation-guarantees-restricting-asset-value/",
+      "source": "Energy-Storage.news",
+      "title": "Are conventional BESS degradation guarantees restricting asset value?",
+      "url": "https://www.energy-storage.news/are-conventional-bess-degradation-guarantees-restricting-asset-value/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Battery energy storage projects must respond to changing market conditions over their operating lives. Their degradation guarantees need to evolve with them, writes Faisal Mohd, BESS solutions director at Envision Energy Australia. Anyone who has negotiated a utility-scale battery energy storage system (BESS) Supply…"
     }
   ],
   "derived": {
@@ -468,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:b7e5a968435a63b7b8fcbe6f3b18d551d356d18342ac749674765a2dba8e4c0e",
-  "envelopeChecksum": "sha256:0afd8c554b5e2ac4122e604ebc6027b750ee86f2254998e4e8db00875abb6301"
+  "contentChecksum": "sha256:76546453f3ea2c307d5efe670efab12b25bc55a60f5c2b5ceaba86fc113698fd",
+  "envelopeChecksum": "sha256:4638faefe72ddf3490721d80538a0531af3551510026f1db9059918329fe05b8"
 }
