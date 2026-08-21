@@ -13,10 +13,10 @@
     "licence": "ECB — free reuse with attribution",
     "attribution": "Source: European Central Bank"
   },
-  "fetchedAt": "2026-08-21T13:14:11.290Z",
+  "fetchedAt": "2026-08-21T19:00:14.809Z",
   "coverage": {
-    "from": "2026-08-20T00:00:00Z",
-    "to": "2026-08-20T00:00:00Z",
+    "from": "2026-08-21T00:00:00Z",
+    "to": "2026-08-21T00:00:00Z",
     "resolution": "P1D",
     "points": 4
   },
@@ -30,23 +30,23 @@
   "refreshHours": 24,
   "staleAfterHours": 96,
   "derived": {
-    "asOf": "2026-08-20",
-    "usdPerEur": 1.1681,
+    "asOf": "2026-08-21",
+    "usdPerEur": 1.1699,
     "rates": {
-      "EUR": 1.1681,
-      "AUD": 0.7106095632072028,
-      "GBP": 1.3626130067074949,
-      "JPY": 0.006298732812078728
+      "EUR": 1.1699,
+      "AUD": 0.7168065682249861,
+      "GBP": 1.3655888875919224,
+      "JPY": 0.006301303457933858
     }
   },
   "arbitrage": null,
   "daily": [
     {
-      "d": "2026-08-20",
+      "d": "2026-08-21",
       "n": 4,
       "mean": 0.81,
       "min": 0.01,
-      "max": 1.36,
+      "max": 1.37,
       "spread": 0.81,
       "charge": null,
       "discharge": 0.81
@@ -54,8 +54,8 @@
   ],
   "sourceSnapshot": {
     "file": "fx-ecb.json",
-    "contentChecksum": "sha256:654235fb830433924d770431e94e8a24b64c2e8606a01cd75e0879afe83bf66e",
+    "contentChecksum": "sha256:a65ee2c14eade41a28e02f68be3c7c4c3035c89af4f8268f04f3b44ae982a138",
     "points": 4
   },
-  "summaryChecksum": "sha256:b5d8fea5e62d88e04829b6d2139a93e297b26a0406a58f78d57524de0b8677ae"
+  "summaryChecksum": "sha256:e1e3d5db00a7116d5fc89bbe1765eeb518abc60a5a5b419a30ecc8e52a8302a9"
 }
