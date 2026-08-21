@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-21T07:10:50.958Z",
+  "fetchedAt": "2026-08-21T13:14:10.666Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-21T05:41:20.000Z",
+    "to": "2026-08-21T13:13:15.000Z",
     "resolution": "event",
-    "points": 41
+    "points": 37
   },
   "units": {
     "record": "published article metadata"
@@ -123,36 +123,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": ""
-    },
-    {
-      "t": "2026-08-17T10:11:00.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/econergy-signs-financing-agreements-for-150mw-solar-plus-storage-project-in-romania/",
-      "source": "Energy-Storage.news",
-      "title": "Econergy signs financing agreements for 150MW solar-plus-storage project in Romania",
-      "url": "https://www.energy-storage.news/econergy-signs-financing-agreements-for-150mw-solar-plus-storage-project-in-romania/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Independent power producer (IPP) Econergy has signed financing agreements for its Părău 2 solar and energy storage project in Brașov County, Romania."
-    },
-    {
-      "t": "2026-08-17T10:20:41.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/battery-storage-unlocks-the-era-of-anytime-solar-climate-consultancy-ember-says-in-new-report/",
-      "source": "Energy-Storage.news",
-      "title": "Battery storage unlocks the era of ‘anytime solar,’ climate consultancy Ember says in new report",
-      "url": "https://www.energy-storage.news/battery-storage-unlocks-the-era-of-anytime-solar-climate-consultancy-ember-says-in-new-report/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A new report from climate consultancy Ember highlights the important relationship between energy storage and solar, unlocking the “era of anytime solar.”"
-    },
-    {
-      "t": "2026-08-18T02:03:59.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ausgrids-plus-grid-storage-breaks-ground-on-400mwh-steel-river-east-bess-in-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Ausgrid’s PLUS Grid Storage breaks ground on 400MWh Steel River East BESS in Australia",
-      "url": "https://www.energy-storage.news/ausgrids-plus-grid-storage-breaks-ground-on-400mwh-steel-river-east-bess-in-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Construction has officially started on the 200MW/400MWh Steel River East battery energy storage system (BESS) in Newcastle, New South Wales, marking the first project delivery for developer PLUS Grid Storage."
     },
     {
       "t": "2026-08-18T04:53:04.000Z",
@@ -285,46 +255,6 @@
       "summary": "Windlab and Squadron Energy have referred a 500MW BESS at the Bungaban solar-plus-storage project in Queensland for approval."
     },
     {
-      "t": "2026-08-20T08:10:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/mexican-solar-installers-report-risks-of-kidnapping-and-extortion/",
-      "source": "pv magazine",
-      "title": "Mexican solar installers report risks of kidnapping and extortion",
-      "url": "https://www.pv-magazine.com/2026/08/20/mexican-solar-installers-report-risks-of-kidnapping-and-extortion/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Mexican solar installers and business owners are reporting kidnappings, extortion, equipment theft, and other security incidents in several states, according to the CPEF, an association representing PV integrators. The post Mexican solar installers report risks of kidnapping and extortion appeared first on pv magazi…"
-    },
-    {
-      "t": "2026-08-20T09:24:58.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/even-at-100-meters-pv-makes-neighbours-more-likely-to-go-green/",
-      "source": "pv magazine",
-      "title": "Even at 100 meters, PV makes neighbours more likely to go green",
-      "url": "https://www.pv-magazine.com/2026/08/20/even-at-100-meters-pv-makes-neighbours-more-likely-to-go-green/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Research from Switzerland finds homeowners whose neighbors install a solar system become more likely to install a solar system themselves, adopt an electric vehicle and reduce their electricity consumption. The post Even at 100 meters, PV makes neighbours more likely to go green appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-20T09:57:07.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/the-summer-solar-carried-the-water/",
-      "source": "pv magazine",
-      "title": "The summer solar carried the water",
-      "url": "https://www.pv-magazine.com/2026/08/20/the-summer-solar-carried-the-water/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Europe’s hydro fleet produced less power in the summer of 2026 than it did in the drought summer of 2022, and reservoir stocks finished the period 7.7% below their eleven-year median with France under its historical floor. Over those same four years solar generation across the affected systems rose by 39 TWh. That s…"
-    },
-    {
-      "t": "2026-08-20T10:17:21.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/australian-grid-operator-announces-curtailment-drill-for-rooftop-pv/",
-      "source": "pv magazine",
-      "title": "Australian grid operator announces curtailment drill for rooftop PV",
-      "url": "https://www.pv-magazine.com/2026/08/20/australian-grid-operator-announces-curtailment-drill-for-rooftop-pv/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Australia’s grid operator will complete its annual test of its ability to temporarily curtail rooftop solar generation on August 25. Solar systems in the state will be curtailed for up to one hour, expected to cause the loss of around 1.5 kWh of generation per installation. The post Australian grid operator an…"
-    },
-    {
       "t": "2026-08-20T10:39:29.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/lg-energy-solution-begins-lfp-and-nmc-bess-and-ev-cell-production-at-michigan-factory/",
       "source": "Energy-Storage.news",
@@ -365,16 +295,6 @@
       "summary": "Orchestrating battery storage components, containers, systems and portfolios is key to successful operation, says Ryan Franks."
     },
     {
-      "t": "2026-08-20T12:20:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/20/malaysia-issues-guidelines-for-residential-solar-under-net-metering/",
-      "source": "pv magazine",
-      "title": "Malaysia issues guidelines for residential solar under net metering",
-      "url": "https://www.pv-magazine.com/2026/08/20/malaysia-issues-guidelines-for-residential-solar-under-net-metering/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Malaysia’s energy regulator has issued updated guidelines for rooftop solar installations under the NEM Rakyat and NEM GoMEn schemes, covering system capacities, eligibility, grid connection and technical requirements. The post Malaysia issues guidelines for residential solar under net metering appeared first on pv…"
-    },
-    {
       "t": "2026-08-20T13:41:48.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/ferc-spp-topology-optimization-grid-congestion/828366/",
       "source": "Utility Dive",
@@ -405,46 +325,86 @@
       "summary": "Battery energy storage degradation guarantees need to evolve as the surrounding market does, writes Faisal Mohd at Envision Energy Australia."
     },
     {
-      "t": "2026-08-21T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/solar-powerhouse-to-storage-leader/",
-      "source": "pv magazine",
-      "title": "Solar powerhouse to storage leader",
-      "url": "https://www.pv-magazine.com/2026/08/21/solar-powerhouse-to-storage-leader/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chile is transforming in a bid to avoid becoming a victim of its own solar success. Developers have flooded the Atacama Desert with solar projects, turning Chile into a PV powerhouse but also drastically reducing revenues and driving some operators into bankruptcy. S&P Global Energy’s Ángel Cancino sees the country…"
-    },
-    {
-      "t": "2026-08-21T05:04:02.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/bombshell-report-alleges-u-s-solar-recycling-is-mostly-landfilling-offshoring-in-disguise/",
-      "source": "pv magazine",
-      "title": "Report alleges U.S. solar recycling is mostly landfilling, offshoring in disguise",
-      "url": "https://www.pv-magazine.com/2026/08/21/bombshell-report-alleges-u-s-solar-recycling-is-mostly-landfilling-offshoring-in-disguise/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A new white paper from Sustainable Source Studios cites regulatory filings, industry disclosures and IEA lifecycle datasets in concluding that most U.S. solar module recycling yields degraded, landfilled, or offshored material. The post Report alleges U.S. solar recycling is mostly landfilling, offshoring in disguis…"
-    },
-    {
-      "t": "2026-08-21T05:41:20.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/bangladesh-mandates-solar-charging-for-millions-of-electric-rickshaws/",
-      "source": "pv magazine",
-      "title": "Bangladesh mandates solar charging for millions of electric rickshaws",
-      "url": "https://www.pv-magazine.com/2026/08/21/bangladesh-mandates-solar-charging-for-millions-of-electric-rickshaws/",
+      "t": "2026-08-21T09:36:58.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/indias-bess-supply-chain-suffers-a-policy-intent-and-operational-capacity-gap-with-battery-cell-self-sufficiency-a-decade-or-more-away/",
+      "source": "Energy-Storage.news",
+      "title": "India’s BESS supply chain suffers a ‘policy intent and operational capacity’ gap, with battery cell self-sufficiency a decade or more away",
+      "url": "https://www.energy-storage.news/indias-bess-supply-chain-suffers-a-policy-intent-and-operational-capacity-gap-with-battery-cell-self-sufficiency-a-decade-or-more-away/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "Bangladesh plans to require millions of battery-powered auto-rickshaws to use solar-powered charging stations as a condition of registration, aiming to reduce pressure on the electricity grid. Industry representatives say the policy could spur investment in solar charging infrastructure, create jobs and expand renew…"
+      "summary": "India’s battery storage sector will remain far from self-sufficient in cell supply for at least a decade, Wood Mackenzie says."
+    },
+    {
+      "t": "2026-08-21T09:58:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/new-jersey-board-of-public-utilities-releases-150mw-btm-energy-storage-proposal/",
+      "source": "Energy-Storage.news",
+      "title": "New Jersey Board of Public Utilities releases 150MW BTM energy storage proposal",
+      "url": "https://www.energy-storage.news/new-jersey-board-of-public-utilities-releases-150mw-btm-energy-storage-proposal/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The New Jersey Board of Public Utilities (NJBPU) has released a proposal for the next phase of its Garden State Energy Storage Programme (GSESP) consisting of approximately 150MW of energy storage capacity in the US state."
+    },
+    {
+      "t": "2026-08-21T11:08:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/inclusion-means-judging-ideas-on-their-merits/",
+      "source": "pv magazine",
+      "title": "‘Inclusion means judging ideas on their merits’",
+      "url": "https://www.pv-magazine.com/2026/08/21/inclusion-means-judging-ideas-on-their-merits/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This week Women in Solar+ Europe gives voice to Janine Wirth, Founder and Managing Director of Germany's Ilanco GmbH. As a woman in a male-dominated, engineering-driven industry, she has faced questions about how she could develop a technical solution without the “expected” background. She argues that inclusion mean…"
+    },
+    {
+      "t": "2026-08-21T11:24:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/silicon-dioxide-coating-boosts-pv-module-light-transmission-thermal-performance/",
+      "source": "pv magazine",
+      "title": "Silicon dioxide coating boosts PV module light transmission, thermal performance",
+      "url": "https://www.pv-magazine.com/2026/08/21/silicon-dioxide-coating-boosts-pv-module-light-transmission-thermal-performance/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "An international research team developed a porous silicon dioxide coating for PV cover glass that combines anti-reflection with passive radiative cooling, increasing solar transmittance while enhancing mid-infrared emissivity. The coating achieved 91.0% solar transmittance and 90% emissivity, with the researchers no…"
+    },
+    {
+      "t": "2026-08-21T12:40:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/chinas-jiangsu-province-crosses-100-gw-solar-milestone-as-distributed-pv-drives-growth/",
+      "source": "pv magazine",
+      "title": "China’s Jiangsu province crosses 100 GW solar milestone",
+      "url": "https://www.pv-magazine.com/2026/08/21/chinas-jiangsu-province-crosses-100-gw-solar-milestone-as-distributed-pv-drives-growth/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Jiangsu Province in eastern China has surpassed 100 GW of installed solar PV capacity, becoming the country’s first provincial-level region to reach the milestone, with distributed solar accounting for nearly 70% of capacity. The province plans further rapid expansion through 2030 and 2035, while upgrading grids, st…"
+    },
+    {
+      "t": "2026-08-21T13:08:38.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/company-wasnt-ready-in-2021-ess-inc-ceo-on-pivoting-away-from-iron-flow-batteries-to-sodium-ion/",
+      "source": "Energy-Storage.news",
+      "title": "‘Company wasn’t ready in 2021’: ESS Inc CEO on pivoting away from iron flow batteries to sodium-ion",
+      "url": "https://www.energy-storage.news/company-wasnt-ready-in-2021-ess-inc-ceo-on-pivoting-away-from-iron-flow-batteries-to-sodium-ion/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Why should people take ESS Inc and its pivot to sodium-ion BESS seriously, having failed to deliver on its iron flow battery promises since going public in 2021? We catch up with new CEO Drew Buckley about how he hopes to turn the ship around."
+    },
+    {
+      "t": "2026-08-21T13:13:15.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/utility-scale-projects-drive-new-zealands-solar-rollout/",
+      "source": "pv magazine",
+      "title": "Utility-scale projects drive New Zealand’s solar rollout",
+      "url": "https://www.pv-magazine.com/2026/08/21/utility-scale-projects-drive-new-zealands-solar-rollout/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "New Zealand enjoyed a record year for solar additions in 2025, buoyed by the commissioning of seven utility-scale plants. An additional 930 MW of solar is due to come online over the next three years. The post Utility-scale projects drive New Zealand’s solar rollout appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 41,
+    "items": 37,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 28,
+      "grid": 23,
       "policy": 7,
       "capital": 3,
-      "technology": 3
+      "technology": 4
     },
     "sourceStatus": [
       {
@@ -469,7 +429,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 4
       }
     ]
   },
@@ -478,6 +438,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d746ca0952b4d5585ce124ffc871e7ca97583959446ca96b3b3010964a882c9c",
-  "envelopeChecksum": "sha256:a14c5b113fb9e100f0ecfefebce81e860321fc9f1d49d2894df61c5ce10d7ff5"
+  "contentChecksum": "sha256:d4ab61f7c32edb4f48721dbf8d38c8f17aaf71a52d8f2cc218a1bde49d6ced9e",
+  "envelopeChecksum": "sha256:ae5f4b0509194d602da43788015a47378fd8f0f7d5c471bb976bef3884ecf0ac"
 }
