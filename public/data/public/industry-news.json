@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-21T19:00:13.963Z",
+  "fetchedAt": "2026-08-22T07:03:01.063Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-21T13:18:34.000Z",
+    "to": "2026-08-22T04:00:00.000Z",
     "resolution": "event",
-    "points": 39
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -355,6 +355,16 @@
       "summary": "This week Women in Solar+ Europe gives voice to Janine Wirth, Founder and Managing Director of Germany's Ilanco GmbH. As a woman in a male-dominated, engineering-driven industry, she has faced questions about how she could develop a technical solution without the “expected” background. She argues that inclusion mean…"
     },
     {
+      "t": "2026-08-21T11:12:58.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ercot-texas-puc-data-center-audit/828472/",
+      "source": "Utility Dive",
+      "title": "ERCOT aims to complete Texas governor’s data center audit by December",
+      "url": "https://www.utilitydive.com/news/ercot-texas-puc-data-center-audit/828472/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The pause on new data center interconnections could impact the Electric Reliability Council of Texas&rsquo; upcoming long-term load forecast and reliability assessment, officials said Thursday."
+    },
+    {
       "t": "2026-08-21T11:24:48.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/silicon-dioxide-coating-boosts-pv-module-light-transmission-thermal-performance/",
       "source": "pv magazine",
@@ -372,7 +382,7 @@
       "url": "https://www.utilitydive.com/news/pjm-surplus-interconnection-service/828473/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "In need of capacity, the PJM&rsquo;s surplus interconnection process has produced limited results while MISO and SPP were studying roughly 15 GW and 14 GW each in the first half this year."
+      "summary": "PJM&rsquo;s surplus interconnection process has produced limited results while MISO and SPP are studying about 15 GW and 14 GW, respectively&nbsp;&mdash; mostly battery storage. PJM's current rules hinder hybrid projects, observers say."
     },
     {
       "t": "2026-08-21T12:40:00.000Z",
@@ -413,15 +423,25 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Austria plans to overhaul its solar subsidy framework from 2027, shifting support from standard PV systems toward battery storage, energy management systems and specialized solar applications. The government aims to accelerate storage deployment, with up to 8 GW of market-oriented capacity by 2030, while industry gr…"
+    },
+    {
+      "t": "2026-08-22T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/22/ac-coupled-vs-dc-coupled/",
+      "source": "pv magazine",
+      "title": "AC-Coupled vs. DC-Coupled",
+      "url": "https://www.pv-magazine.com/2026/08/22/ac-coupled-vs-dc-coupled/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Growing applications for battery storage mean the optimal system design may not be the most obvious. Jakir Hossain and Mujtaba Abdelwahab of Storlytics Energy Storage present a simulation-based comparison of AC vs. DC coupling showing how realistic dispatch modeling rather than generic assumptions fundamentally chan…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 39,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 24,
+      "grid": 26,
       "policy": 8,
       "capital": 3,
       "technology": 4
@@ -443,13 +463,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 4
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 5
+        "items": 6
       }
     ]
   },
@@ -458,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:bf8b03e06d904c3b82d9b11e799ba1d741e11ac3595ac2e374500f554e1d1cae",
-  "envelopeChecksum": "sha256:8f6e52a36e5df4d1aa46298ad9b034193f639629f63b98b75dbda68cb5cdf710"
+  "contentChecksum": "sha256:776bcf71deee332441872c9f858b5e433336ac68dd27c2e7d1bb763800761b35",
+  "envelopeChecksum": "sha256:cf35a3a35cd1d839051cda500b06d3901db51f8cdf367d131a9598cb68f07869"
 }
