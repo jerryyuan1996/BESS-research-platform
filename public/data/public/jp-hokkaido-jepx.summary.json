@@ -13,12 +13,12 @@
     "licence": "JEPX published market data — attribution required",
     "attribution": "Source: JEPX spot market data"
   },
-  "fetchedAt": "2026-08-21T19:00:47.462Z",
+  "fetchedAt": "2026-08-22T01:54:08.235Z",
   "coverage": {
-    "from": "2025-08-21T19:30:00.000Z",
-    "to": "2026-08-22T14:30:00.000Z",
+    "from": "2025-08-22T02:00:00.000Z",
+    "to": "2026-08-23T14:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17559
+    "points": 17594
   },
   "units": {
     "price": "JPY/MWh"
@@ -32,31 +32,31 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17559,
-    "coverageDays": 366,
+    "points": 17594,
+    "coverageDays": 367,
     "pointsPerHour": 2,
-    "mean": 13063.03,
-    "median": 11670,
-    "stdev": 6379.62,
-    "p5": 2500,
-    "p95": 24460,
+    "mean": 13069.76,
+    "median": 11680,
+    "stdev": 6379.89,
+    "p5": 2526,
+    "p95": 24370,
     "negativeHoursPct": 0,
-    "spreadMean": 11737.96,
-    "spreadMedian": 10402.5,
+    "spreadMean": 11750.56,
+    "spreadMedian": 10426.25,
     "spreadP25": 6582.92,
     "spreadP75": 16419.58,
     "spreadDays": 366,
-    "chargeMean": 7439.92,
-    "dischargeMean": 19177.88,
+    "chargeMean": 7433.24,
+    "dischargeMean": 19183.8,
     "durationHours": 6
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 15502124,
-    "marginPerCycle": 62550.18,
+    "revenuePerMW": 15522611,
+    "marginPerCycle": 62632.84,
     "inputs": {
-      "chargeMean": 7439.9225865209555,
-      "dischargeMean": 19177.880236794153,
+      "chargeMean": 7433.239981785073,
+      "dischargeMean": 19183.7955373406,
       "durationHours": 6,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
@@ -72,12 +72,12 @@
   "daily": [
     {
       "d": "2025-08-22",
-      "n": 39,
-      "mean": 14667.44,
-      "min": 10970,
+      "n": 26,
+      "mean": 15999.23,
+      "min": 11100,
       "max": 20450,
-      "spread": 7859.17,
-      "charge": 11282.5,
+      "spread": 6168.33,
+      "charge": 12973.33,
       "discharge": 19141.67
     },
     {
@@ -3729,12 +3729,22 @@
       "spread": 14613.33,
       "charge": 9308.33,
       "discharge": 23921.67
+    },
+    {
+      "d": "2026-08-23",
+      "n": 48,
+      "mean": 15243.54,
+      "min": 6000,
+      "max": 24000,
+      "spread": 12470,
+      "charge": 8836.67,
+      "discharge": 21306.67
     }
   ],
   "sourceSnapshot": {
     "file": "jp-hokkaido-jepx.json",
-    "contentChecksum": "sha256:0a2e277f7fd3a9ff4bedcaab7ec751c704f4d728beeaaa30620f860f6e4ac993",
-    "points": 17559
+    "contentChecksum": "sha256:6aea3d2ae110158db1bd553a75546e1f4165b36faa5ddde1d7c7c74e8b7bcb82",
+    "points": 17594
   },
-  "summaryChecksum": "sha256:cfd3f28e7308ca2cbdd46f84ede3ddebb1247f971bfbece3d1fd381b04b2f720"
+  "summaryChecksum": "sha256:1331904a62e30ad64497f597075a7ac88c96d96cc837628e09e633522b4edd16"
 }
