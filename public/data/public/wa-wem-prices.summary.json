@@ -13,12 +13,12 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-08-24T13:17:00.477Z",
+  "fetchedAt": "2026-08-24T19:03:17.981Z",
   "coverage": {
-    "from": "2025-08-24T13:30:00.000Z",
+    "from": "2025-08-24T19:30:00.000Z",
     "to": "2026-08-23T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17204
+    "points": 17192
   },
   "units": {
     "price": "AUD/MWh"
@@ -32,30 +32,30 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17204,
-    "coverageDays": 364,
+    "points": 17192,
+    "coverageDays": 363,
     "pointsPerHour": 2,
-    "mean": 99.3,
-    "median": 96.69,
-    "stdev": 53.76,
-    "p5": 19.33,
-    "p95": 169.48,
-    "negativeHoursPct": 0.02976052080911416,
-    "spreadMean": 63.08,
+    "mean": 99.31,
+    "median": 96.72,
+    "stdev": 53.78,
+    "p5": 19.32,
+    "p95": 169.55,
+    "negativeHoursPct": 0.029781293624941835,
+    "spreadMean": 63.03,
     "spreadMedian": 53.54,
     "spreadP25": 34.58,
     "spreadP75": 80.84,
     "spreadDays": 354,
-    "chargeMean": 70.18,
+    "chargeMean": 70.24,
     "dischargeMean": 133.26,
     "durationHours": 7
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 87950,
-    "marginPerCycle": 354.87,
+    "revenuePerMW": 87837,
+    "marginPerCycle": 354.42,
     "inputs": {
-      "chargeMean": 70.18224374495561,
+      "chargeMean": 70.23751008878128,
       "dischargeMean": 133.26344632768343,
       "durationHours": 7,
       "roundTripEfficiency": 0.85,
@@ -71,23 +71,13 @@
   },
   "daily": [
     {
-      "d": "2025-08-24",
-      "n": 5,
-      "mean": 89.61,
-      "min": 81.44,
-      "max": 92.86,
-      "spread": null,
-      "charge": null,
-      "discharge": null
-    },
-    {
       "d": "2025-08-25",
-      "n": 48,
-      "mean": 305.65,
+      "n": 41,
+      "mean": 343.29,
       "min": 76.26,
       "max": 900,
-      "spread": 576.22,
-      "charge": 90.33,
+      "spread": 556.66,
+      "charge": 109.89,
       "discharge": 666.55
     },
     {
@@ -3713,8 +3703,8 @@
   ],
   "sourceSnapshot": {
     "file": "wa-wem-prices.json",
-    "contentChecksum": "sha256:4cd337b2bcb8762d56a3422336c5a3419275a88390b501c3818389d107d16615",
-    "points": 17204
+    "contentChecksum": "sha256:37da550af2eefdcba422f7c70f4e1cb653bb8ab8449304e461129bd0c6ab8548",
+    "points": 17192
   },
-  "summaryChecksum": "sha256:d2a47736d774515e4e98b61a2170a57869cecb0545e96626c6500aea1e4411ab"
+  "summaryChecksum": "sha256:c2706b9a86d258d6f0cf64d913c9bfc3992aef38cc6f89109e8b1775d279daf9"
 }
