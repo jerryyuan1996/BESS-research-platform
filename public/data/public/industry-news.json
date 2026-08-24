@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-24T07:31:30.111Z",
+  "fetchedAt": "2026-08-24T13:16:56.556Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-24T05:50:46.000Z",
+    "to": "2026-08-24T13:08:13.000Z",
     "resolution": "event",
-    "points": 40
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -123,16 +123,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": ""
-    },
-    {
-      "t": "2026-08-18T04:53:04.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/chinas-energy-storage-market-doubles-in-size-for-second-consecutive-year-as-price-inflection-point-emerges/",
-      "source": "Energy-Storage.news",
-      "title": "China’s energy storage market doubles in size for second consecutive year as price inflection point emerges",
-      "url": "https://www.energy-storage.news/chinas-energy-storage-market-doubles-in-size-for-second-consecutive-year-as-price-inflection-point-emerges/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy storage deployments in China saw significant year-over-year growth in 2025 as the market size effectively doubled."
     },
     {
       "t": "2026-08-18T06:00:34.000Z",
@@ -345,6 +335,16 @@
       "summary": "The New Jersey Board of Public Utilities (NJBPU) has released a proposal for the next phase of its Garden State Energy Storage Programme (GSESP) consisting of approximately 150MW of energy storage capacity in the US state."
     },
     {
+      "t": "2026-08-21T11:12:58.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ercot-texas-puc-data-center-audit/828472/",
+      "source": "Utility Dive",
+      "title": "ERCOT aims to complete Texas governor’s data center audit by December",
+      "url": "https://www.utilitydive.com/news/ercot-texas-puc-data-center-audit/828472/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The pause on new data center interconnections could impact the Electric Reliability Council of Texas&rsquo; upcoming long-term load forecast and reliability assessment, officials said Thursday."
+    },
+    {
       "t": "2026-08-21T12:34:58.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/pjm-surplus-interconnection-service/828473/",
       "source": "Utility Dive",
@@ -352,17 +352,7 @@
       "url": "https://www.utilitydive.com/news/pjm-surplus-interconnection-service/828473/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "In need of capacity, the PJM&rsquo;s surplus interconnection process has produced limited results while MISO and SPP were studying roughly 15 GW and 14 GW each in the first half this year."
-    },
-    {
-      "t": "2026-08-21T12:40:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/chinas-jiangsu-province-crosses-100-gw-solar-milestone-as-distributed-pv-drives-growth/",
-      "source": "pv magazine",
-      "title": "China’s Jiangsu province crosses 100 GW solar milestone",
-      "url": "https://www.pv-magazine.com/2026/08/21/chinas-jiangsu-province-crosses-100-gw-solar-milestone-as-distributed-pv-drives-growth/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Jiangsu Province in eastern China has surpassed 100 GW of installed solar PV capacity, becoming the country’s first provincial-level region to reach the milestone, with distributed solar accounting for nearly 70% of capacity. The province plans further rapid expansion through 2030 and 2035, while upgrading grids, st…"
+      "summary": "PJM&rsquo;s surplus interconnection process has produced limited results while MISO and SPP are studying about 15 GW and 14 GW, respectively&nbsp;&mdash; mostly battery storage. PJM's current rules hinder hybrid projects, observers say."
     },
     {
       "t": "2026-08-21T13:08:38.000Z",
@@ -375,46 +365,6 @@
       "summary": "Why should people take ESS Inc and its pivot to sodium-ion BESS seriously, having failed to deliver on its iron flow battery promises since going public in 2021? We catch up with new CEO Drew Buckley about how he hopes to turn the ship around."
     },
     {
-      "t": "2026-08-21T13:13:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/utility-scale-projects-drive-new-zealands-solar-rollout/",
-      "source": "pv magazine",
-      "title": "Utility-scale projects drive New Zealand’s solar rollout",
-      "url": "https://www.pv-magazine.com/2026/08/21/utility-scale-projects-drive-new-zealands-solar-rollout/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "New Zealand enjoyed a record year for solar additions in 2025, buoyed by the commissioning of seven utility-scale plants. An additional 930 MW of solar is due to come online over the next three years. The post Utility-scale projects drive New Zealand’s solar rollout appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-21T13:18:34.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/austria-announces-energy-storage-offensive-shifting-solar-subsidy-focus/",
-      "source": "pv magazine",
-      "title": "Austria announces energy storage offensive, shifting solar subsidy focus",
-      "url": "https://www.pv-magazine.com/2026/08/21/austria-announces-energy-storage-offensive-shifting-solar-subsidy-focus/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Austria plans to overhaul its solar subsidy framework from 2027, shifting support from standard PV systems toward battery storage, energy management systems and specialized solar applications. The government aims to accelerate storage deployment, with up to 8 GW of market-oriented capacity by 2030, while industry gr…"
-    },
-    {
-      "t": "2026-08-22T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/22/ac-coupled-vs-dc-coupled/",
-      "source": "pv magazine",
-      "title": "AC-Coupled vs. DC-Coupled",
-      "url": "https://www.pv-magazine.com/2026/08/22/ac-coupled-vs-dc-coupled/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Growing applications for battery storage mean the optimal system design may not be the most obvious. Jakir Hossain and Mujtaba Abdelwahab of Storlytics Energy Storage present a simulation-based comparison of AC vs. DC coupling showing how realistic dispatch modeling rather than generic assumptions fundamentally chan…"
-    },
-    {
-      "t": "2026-08-24T05:36:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/quinbrook-advances-plans-for-polysilicon-production-plant/",
-      "source": "pv magazine",
-      "title": "Quinbrook advances plans for polysilicon factory in Australia",
-      "url": "https://www.pv-magazine.com/2026/08/24/quinbrook-advances-plans-for-polysilicon-production-plant/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Quinbrook Infrastructure Partners’ plans to build a polysilicon plant in Queensland to supply solar panel manufacturers have taken another step forward following the recent signing of an agreement with the local government authority. The post Quinbrook advances plans for polysilicon factory in Australia appeared fir…"
-    },
-    {
       "t": "2026-08-24T05:50:46.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/seci-discovers-inr-5-99-kwh-tariff-for-4-hour-peak-renewable-power/",
       "source": "pv magazine",
@@ -423,18 +373,78 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "SECI has discovered a lowest tariff of INR 5.99 ($0.068)/kWh in its 1.5 GW tender for four-hour assured peak renewable power. Waaree Energies secured 700 MW, while NTPC REL and ACME Solar won 500 MW and 300 MW, respectively. The post India hits $0.068/kWh tariff in 4-hour peak renewable power tender appeared first o…"
+    },
+    {
+      "t": "2026-08-24T08:23:24.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/invinity-confirms-epc-contract-award-for-2-1gwh-landmark-flow-battery-in-switzerland/",
+      "source": "Energy-Storage.news",
+      "title": "Invinity confirms EPC contract award for 2.1GWh ‘landmark’ flow battery in Switzerland",
+      "url": "https://www.energy-storage.news/invinity-confirms-epc-contract-award-for-2-1gwh-landmark-flow-battery-in-switzerland/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Invinity Energy Systems has hired an EPC partner for its gigawatt-hour-scale vanadium redox flow battery (VRFB) energy storage project in Laufenberg, Switzerland."
+    },
+    {
+      "t": "2026-08-24T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/two-years-at-5200-meters-poweroad-bess-proven-in-extreme-altitude/",
+      "source": "pv magazine",
+      "title": "Two years at 5,200 meters: POWEROAD BESS proven in extreme altitude",
+      "url": "https://www.pv-magazine.com/2026/08/24/two-years-at-5200-meters-poweroad-bess-proven-in-extreme-altitude/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "At 5,200 meters above sea level, where extreme weather, unstable grid conditions, and limited site access make energy reliability a constant challenge, POWEROAD has achieved more than 800 days of stable operation for its Everest Base Camp energy storage project. The post Two years at 5,200 meters: POWEROAD BESS prov…"
+    },
+    {
+      "t": "2026-08-24T09:09:09.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/norway-installs-43-mw-of-solar-in-january-july/",
+      "source": "pv magazine",
+      "title": "Norway installs 43 MW of solar in January-July",
+      "url": "https://www.pv-magazine.com/2026/08/24/norway-installs-43-mw-of-solar-in-january-july/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "As Norway’s cumulative solar capacity moves closer to 1 GW, the country’s C&I market accounts for the majority of new installations while its residential market stalls. The post Norway installs 43 MW of solar in January-July appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-24T11:24:58.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/india-adds-3-gw-of-open-access-solar-in-q2/",
+      "source": "pv magazine",
+      "title": "India adds 3 GW of open-access solar in Q2",
+      "url": "https://www.pv-magazine.com/2026/08/24/india-adds-3-gw-of-open-access-solar-in-q2/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India added a record 3 GW of open-access solar capacity in the second quarter of 2026, taking cumulative installations to 36 GW. First-half additions reached nearly 6 GW, up 42% year on year, driven by strong C&I demand and regulatory deadlines. The post India adds 3 GW of open-access solar in Q2 appeared first on p…"
+    },
+    {
+      "t": "2026-08-24T11:31:50.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/researchers-use-virtual-reality-to-increase-understanding-of-agrivoltaics/",
+      "source": "pv magazine",
+      "title": "Researchers use virtual reality to increase understanding of agrivoltaics",
+      "url": "https://www.pv-magazine.com/2026/08/24/researchers-use-virtual-reality-to-increase-understanding-of-agrivoltaics/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Research from Denmark finds using immersive virtual reality can help citizens understand the dual-use logic of agrivoltaics. Participants in the research evaluated agrivoltaics as greener, more innovative and at least as acceptable as conventional solar parks. The post Researchers use virtual reality to increase und…"
+    },
+    {
+      "t": "2026-08-24T13:08:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/moldova-simplifies-rules-governing-solar-heat-pumps-storage-systems/",
+      "source": "pv magazine",
+      "title": "Moldova simplifies rules governing solar, heat pumps, storage systems",
+      "url": "https://www.pv-magazine.com/2026/08/24/moldova-simplifies-rules-governing-solar-heat-pumps-storage-systems/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Legislative changes in Moldova allow solar panels, heat pumps and energy storage systems to be installed without a building permit or urban planning certificate under certain circumstances. The post Moldova simplifies rules governing solar, heat pumps, storage systems appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 40,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 23,
-      "policy": 10,
+      "grid": 24,
+      "policy": 9,
       "capital": 3,
-      "technology": 4
+      "technology": 5
     },
     "sourceStatus": [
       {
@@ -453,7 +463,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 4
       },
       {
         "source": "pv magazine",
@@ -468,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:04f02778732b03adbf5c4d4c79cb3e66b0939f6c4b7336ab0ab2243a93feb851",
-  "envelopeChecksum": "sha256:06f63dee4bbb779c78f2dbea8ff9002bb640c987d469032eb2f8759af2111f32"
+  "contentChecksum": "sha256:65d7e72ac1b48a935e05c14389cf02e5192243ac0a55e37f8fca22297553a569",
+  "envelopeChecksum": "sha256:afdc9535df2576e6586229f9ba6c8b537e023d3daefdf252ef0ea1f21fe46bdf"
 }
