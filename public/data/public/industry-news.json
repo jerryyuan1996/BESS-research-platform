@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-23T18:50:59.118Z",
+  "fetchedAt": "2026-08-24T07:31:30.111Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-22T04:00:00.000Z",
+    "to": "2026-08-24T05:50:46.000Z",
     "resolution": "event",
     "points": 40
   },
@@ -345,26 +345,6 @@
       "summary": "The New Jersey Board of Public Utilities (NJBPU) has released a proposal for the next phase of its Garden State Energy Storage Programme (GSESP) consisting of approximately 150MW of energy storage capacity in the US state."
     },
     {
-      "t": "2026-08-21T11:08:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/inclusion-means-judging-ideas-on-their-merits/",
-      "source": "pv magazine",
-      "title": "‘Inclusion means judging ideas on their merits’",
-      "url": "https://www.pv-magazine.com/2026/08/21/inclusion-means-judging-ideas-on-their-merits/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "This week Women in Solar+ Europe gives voice to Janine Wirth, Founder and Managing Director of Germany's Ilanco GmbH. As a woman in a male-dominated, engineering-driven industry, she has faced questions about how she could develop a technical solution without the “expected” background. She argues that inclusion mean…"
-    },
-    {
-      "t": "2026-08-21T11:24:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/21/silicon-dioxide-coating-boosts-pv-module-light-transmission-thermal-performance/",
-      "source": "pv magazine",
-      "title": "Silicon dioxide coating boosts PV module light transmission, thermal performance",
-      "url": "https://www.pv-magazine.com/2026/08/21/silicon-dioxide-coating-boosts-pv-module-light-transmission-thermal-performance/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "An international research team developed a porous silicon dioxide coating for PV cover glass that combines anti-reflection with passive radiative cooling, increasing solar transmittance while enhancing mid-infrared emissivity. The coating achieved 91.0% solar transmittance and 90% emissivity, with the researchers no…"
-    },
-    {
       "t": "2026-08-21T12:34:58.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/pjm-surplus-interconnection-service/828473/",
       "source": "Utility Dive",
@@ -423,6 +403,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Growing applications for battery storage mean the optimal system design may not be the most obvious. Jakir Hossain and Mujtaba Abdelwahab of Storlytics Energy Storage present a simulation-based comparison of AC vs. DC coupling showing how realistic dispatch modeling rather than generic assumptions fundamentally chan…"
+    },
+    {
+      "t": "2026-08-24T05:36:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/quinbrook-advances-plans-for-polysilicon-production-plant/",
+      "source": "pv magazine",
+      "title": "Quinbrook advances plans for polysilicon factory in Australia",
+      "url": "https://www.pv-magazine.com/2026/08/24/quinbrook-advances-plans-for-polysilicon-production-plant/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Quinbrook Infrastructure Partners’ plans to build a polysilicon plant in Queensland to supply solar panel manufacturers have taken another step forward following the recent signing of an agreement with the local government authority. The post Quinbrook advances plans for polysilicon factory in Australia appeared fir…"
+    },
+    {
+      "t": "2026-08-24T05:50:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/seci-discovers-inr-5-99-kwh-tariff-for-4-hour-peak-renewable-power/",
+      "source": "pv magazine",
+      "title": "India hits $0.068/kWh tariff in 4-hour peak renewable power tender",
+      "url": "https://www.pv-magazine.com/2026/08/24/seci-discovers-inr-5-99-kwh-tariff-for-4-hour-peak-renewable-power/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "SECI has discovered a lowest tariff of INR 5.99 ($0.068)/kWh in its 1.5 GW tender for four-hour assured peak renewable power. Waaree Energies secured 700 MW, while NTPC REL and ACME Solar won 500 MW and 300 MW, respectively. The post India hits $0.068/kWh tariff in 4-hour peak renewable power tender appeared first o…"
     }
   ],
   "derived": {
@@ -431,8 +431,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 25,
-      "policy": 8,
+      "grid": 23,
+      "policy": 10,
       "capital": 3,
       "technology": 4
     },
@@ -468,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:49f81d08d75431d6583815a444ec3341705e3b20b83d3a086b8ee8db5af37e79",
-  "envelopeChecksum": "sha256:24019c15d6826f6ce2bbc71655892b88e4146e50cdd4363445496575246cc790"
+  "contentChecksum": "sha256:04f02778732b03adbf5c4d4c79cb3e66b0939f6c4b7336ab0ab2243a93feb851",
+  "envelopeChecksum": "sha256:06f63dee4bbb779c78f2dbea8ff9002bb640c987d469032eb2f8759af2111f32"
 }
