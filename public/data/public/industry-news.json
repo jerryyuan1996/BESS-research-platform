@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-25T07:11:52.693Z",
+  "fetchedAt": "2026-08-25T13:14:32.148Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-25T07:01:34.000Z",
+    "to": "2026-08-25T13:00:49.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -133,36 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-08-19T10:31:15.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-bess-market-in-strong-position-but-policy-questions-on-grid-fees-connections-and-fcas-cloud-certainty/",
-      "source": "Energy-Storage.news",
-      "title": "Germany BESS market in strong position but policy questions on grid fees, connections and FCAs cloud certainty",
-      "url": "https://www.energy-storage.news/germany-bess-market-in-strong-position-but-policy-questions-on-grid-fees-connections-and-fcas-cloud-certainty/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The grid-scale energy storage market in Germany is in a strong position but key questions around grid fees, grid connections, FCAs and the upcoming capacity market remain, speakers at the upcoming Energy Storage Summit Germany 2026 said."
-    },
-    {
-      "t": "2026-08-19T11:39:46.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/enel-starts-building-100mw-grid-forming-bess-at-chile-solar-pv-plant/",
-      "source": "Energy-Storage.news",
-      "title": "Enel starts building 100MW grid-forming BESS at Chile solar PV plant",
-      "url": "https://www.energy-storage.news/enel-starts-building-100mw-grid-forming-bess-at-chile-solar-pv-plant/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Enel Green Power, part of the Italy-based power group Enel, has launched construction on another large-scale BESS in Chile."
-    },
-    {
-      "t": "2026-08-19T13:34:19.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/egyptian-government-minister-lays-foundation-stone-sungrow-begins-constructing-mea-first-specialised-bess-factory/",
-      "source": "Energy-Storage.news",
-      "title": "Egyptian government minister lays foundation stone as Sungrow begins constructing MEA’s first specialised BESS factory",
-      "url": "https://www.energy-storage.news/egyptian-government-minister-lays-foundation-stone-sungrow-begins-constructing-mea-first-specialised-bess-factory/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Egypt’s Minister of Industry laid the foundation stone at Sungrow’s BESS factory site in the Suez Canal Economic Zone earlier this week."
     },
     {
       "t": "2026-08-19T13:57:35.000Z",
@@ -355,26 +325,6 @@
       "summary": "Data center agreements in Wisconsin fail to protect ratepayers, Microsoft says. Separately, PowerHouse Hillwood has accused Exelon&rsquo;s ComEd of using monopoly power to quash an agreement for an Illinois data center."
     },
     {
-      "t": "2026-08-24T13:08:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/moldova-simplifies-rules-governing-solar-heat-pumps-storage-systems/",
-      "source": "pv magazine",
-      "title": "Moldova simplifies rules governing solar, heat pumps, storage systems",
-      "url": "https://www.pv-magazine.com/2026/08/24/moldova-simplifies-rules-governing-solar-heat-pumps-storage-systems/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Legislative changes in Moldova allow solar panels, heat pumps and energy storage systems to be installed without a building permit or urban planning certificate under certain circumstances. The post Moldova simplifies rules governing solar, heat pumps, storage systems appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-24T13:20:01.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/ai-platform-aims-to-transform-solar-site-assessment-3/",
-      "source": "pv magazine",
-      "title": "AI platform aims to transform solar site assessment",
-      "url": "https://www.pv-magazine.com/2026/08/24/ai-platform-aims-to-transform-solar-site-assessment-3/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Learnewable uses AI-based insights to detail local solar opposition before developers invest time or energy in projects. The post AI platform aims to transform solar site assessment appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-24T13:32:42.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/cesas-scott-murtishaw-on-safety-misinformation-and-californias-bess-milestones/",
       "source": "Energy-Storage.news",
@@ -383,16 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Scott Murtishaw, executive director at the California Energy Storage Alliance, discusses local opposition, safety misconceptions, and why the state's containerised projects have proven safe."
-    },
-    {
-      "t": "2026-08-24T14:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/24/cost-savings-top-disaster-prep-in-japan-solar-storage-survey/",
-      "source": "pv magazine",
-      "title": "Cost savings top disaster prep in Japan solar-storage survey",
-      "url": "https://www.pv-magazine.com/2026/08/24/cost-savings-top-disaster-prep-in-japan-solar-storage-survey/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Battery storage is emerging as a financial tool for Japanese households rather than just a disaster-preparedness measure, according to a new survey of residential solar and storage prospects. The post Cost savings top disaster prep in Japan solar-storage survey appeared first on pv magazine Global ."
     },
     {
       "t": "2026-08-24T14:24:43.000Z",
@@ -405,36 +345,6 @@
       "summary": "Sunrun has agreed with distributed energy resource platform Voltus to support its Bring Your Own Capacity (BYOC) programmes for AI hyperscalers."
     },
     {
-      "t": "2026-08-25T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/brazils-plan-for-a-battery-supply-chain/",
-      "source": "pv magazine",
-      "title": "Brazil’s plan for a battery supply chain",
-      "url": "https://www.pv-magazine.com/2026/08/25/brazils-plan-for-a-battery-supply-chain/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Battery manufacturing in Brazil is being spurred by local content requirements for country’s December 2026 energy storage auction, as well as the financing terms from Brazilian development bank BNDES that are favorable to locally made products. Domestic and foreign suppliers are already announcing investments in bat…"
-    },
-    {
-      "t": "2026-08-25T04:49:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/enphase-enters-commercial-battery-storage-market-announces-iq-battery-c80/",
-      "source": "pv magazine",
-      "title": "Enphase enters commercial battery storage market, announces IQ Battery C80",
-      "url": "https://www.pv-magazine.com/2026/08/25/enphase-enters-commercial-battery-storage-market-announces-iq-battery-c80/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Enphase Energy has opened U.S. pre-orders for its IQ Battery C80, a fully integrated, AC-coupled commercial energy storage system designed to scale up to multi-megawatt-hour deployments. The post Enphase enters commercial battery storage market, announces IQ Battery C80 appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-25T04:52:18.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/40-gw-project-pipeline-has-australias-energy-transition-on-track/",
-      "source": "pv magazine",
-      "title": "40 GW project pipeline has Australia’s energy transition on track",
-      "url": "https://www.pv-magazine.com/2026/08/25/40-gw-project-pipeline-has-australias-energy-transition-on-track/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A pipeline of about 40 GW of grid-scale renewable generation and energy storage has Australia on track to maintain electricity reliability as ageing coal-fired power stations retire but the market operator warns the transition depends on these projects being delivered, not just announced. The post 40 GW project pipe…"
-    },
-    {
       "t": "2026-08-25T05:21:37.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/battery-storage-investors-feeling-the-pinch-as-arbitrage-spreads-narrow-across-australias-nem/",
       "source": "Energy-Storage.news",
@@ -445,34 +355,114 @@
       "summary": "BESS developers who built business cases on assumptions of faster coal plant closures are now absorbing the consequences of that timeline slipping."
     },
     {
-      "t": "2026-08-25T06:31:07.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/uk-approves-400-mw-solar-project-with-600-mw-co-located-battery/",
-      "source": "pv magazine",
-      "title": "UK approves 400 MW solar project with 600 MW co-located battery",
-      "url": "https://www.pv-magazine.com/2026/08/25/uk-approves-400-mw-solar-project-with-600-mw-co-located-battery/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Beacon Fen Energy Park secured planning consent from the UK government. The development consent order means construction of the 400 MW solar, 600 MW battery energy storage system (BESS) can begin. The post UK approves 400 MW solar project with 600 MW co-located battery appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-25T07:01:34.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/la-fotovoltaica-semitransparente-reduce-hasta-cinco-grados-la-temperatura-en-invernaderos-segun-la-uja/",
-      "source": "pv magazine",
-      "title": "Semi-transparent PV reduces greenhouse temperatures by up to 5 C",
-      "url": "https://www.pv-magazine.com/2026/08/25/la-fotovoltaica-semitransparente-reduce-hasta-cinco-grados-la-temperatura-en-invernaderos-segun-la-uja/",
+      "t": "2026-08-25T08:07:39.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-battery-storage-contracts-shift-from-physical-tolls-toward-commoditised-products/",
+      "source": "Energy-Storage.news",
+      "title": "Australia’s battery storage contracts shift from ‘physical tolls’ toward commoditised products",
+      "url": "https://www.energy-storage.news/australias-battery-storage-contracts-shift-from-physical-tolls-toward-commoditised-products/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Semi-transparent photovoltaic modules can reduce greenhouse temperatures by up to 5 C while cutting water losses by more than 60%, according to research from the University of Jaén. The study compared CdTe and amorphous silicon technologies, highlighting the role of spectral transmission in balancing solar generatio…"
+      "summary": "Australia's BESS market evolves from physical tolls to commoditised contracts as spreads compress & investor return expectations rise to 14%."
+    },
+    {
+      "t": "2026-08-25T08:09:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/uk-government-launches-28-million-ultra-long-duration-energy-storage-challenge/",
+      "source": "Energy-Storage.news",
+      "title": "UK government launches £28 million Ultra-Long Duration Energy Storage Challenge",
+      "url": "https://www.energy-storage.news/uk-government-launches-28-million-ultra-long-duration-energy-storage-challenge/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The UK government has launched a new grant funding programme for energy storage technologies that can provide inter-day and seasonal energy shifting applications."
+    },
+    {
+      "t": "2026-08-25T08:50:52.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/azo-based-hjt-solar-cells-more-vulnerable-to-damp-heat-induced-degradation-study-finds/",
+      "source": "pv magazine",
+      "title": "AZO-based HJT solar cells more vulnerable to damp-heat-induced degradation, study finds",
+      "url": "https://www.pv-magazine.com/2026/08/25/azo-based-hjt-solar-cells-more-vulnerable-to-damp-heat-induced-degradation-study-finds/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "German researchers have found that aluminum-doped zinc oxide-based silicon heterojunction cells are more vulnerable to damp-heat-induced degradation than their indium tin oxide-based counterparts. To address this issue, they introduced a magnesium fluoride capping layer that significantly improved damp-heat stabilit…"
+    },
+    {
+      "t": "2026-08-25T09:01:11.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/greece-introduces-new-spatial-planning-rules-for-pv/",
+      "source": "pv magazine",
+      "title": "Greece introduces new spatial planning rules for PV",
+      "url": "https://www.pv-magazine.com/2026/08/25/greece-introduces-new-spatial-planning-rules-for-pv/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Greece has introduced a new spatial planning framework for renewable energy and storage, tightening siting rules for PV and expanding protected areas. The rules cap PV land use at 1.5% in each of 74 regional units but exempt permitted projects. The post Greece introduces new spatial planning rules for PV appeared fi…"
+    },
+    {
+      "t": "2026-08-25T09:08:38.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/oman-seeks-consultants-for-renewable-energy-feasibility-study/",
+      "source": "pv magazine",
+      "title": "Oman seeks consultants for renewable energy feasibility study",
+      "url": "https://www.pv-magazine.com/2026/08/25/oman-seeks-consultants-for-renewable-energy-feasibility-study/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A tender in Oman is searching for a techno-economic consultant to complete a feasibility study on renewable energy projects in the governorate of Musandam. The deadline for applications is September 24. The post Oman seeks consultants for renewable energy feasibility study appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-25T10:12:06.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/a-closer-look-at-catl-tener-s-6-017-mwh-bess/",
+      "source": "pv magazine",
+      "title": "A closer look at CATL Tener S 6.017 MWh BESS",
+      "url": "https://www.pv-magazine.com/2026/08/25/a-closer-look-at-catl-tener-s-6-017-mwh-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Not quite a mystery from CATL, but it’s now clear what the Tener S battery energy storage system (BESS) actually can do. The post A closer look at CATL Tener S 6.017 MWh BESS appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-25T11:01:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-fcas-should-come-with-a-reduction-in-bkz-fee-developer-says/",
+      "source": "Energy-Storage.news",
+      "title": "Germany: FCAs should come with a reduction in BKZ fee, developer says",
+      "url": "https://www.energy-storage.news/germany-fcas-should-come-with-a-reduction-in-bkz-fee-developer-says/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "If BESS are to be given restricted grid access, they should be given a commensurate reduction in the BKZ fee, Marie-Sophie Braun, head of markets & regulatory affairs for developer Kyon Energy, said."
+    },
+    {
+      "t": "2026-08-25T11:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/sweden-could-face-150000-metric-tons-of-end-of-life-panels-annually/",
+      "source": "pv magazine",
+      "title": "Sweden could face 150,000 metric tons of end-of-life panels annually",
+      "url": "https://www.pv-magazine.com/2026/08/25/sweden-could-face-150000-metric-tons-of-end-of-life-panels-annually/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Sweden decommissioned just 17 metric tons (MT) of solar panels in 2021, but a new industry roadmap warns that figure could reach 150,000 MT per year by around 2060, and says current recycling and reuse systems are not yet equipped to handle it. The post Sweden could face 150,000 metric tons of end-of-life panels ann…"
+    },
+    {
+      "t": "2026-08-25T11:50:55.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/residential-pv-can-trigger-rebound-effects-under-south-koreas-tiered-electricity-tariffs/",
+      "source": "pv magazine",
+      "title": "Residential PV can trigger rebound effects under South Korea’s tiered electricity tariffs",
+      "url": "https://www.pv-magazine.com/2026/08/25/residential-pv-can-trigger-rebound-effects-under-south-koreas-tiered-electricity-tariffs/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Research finds households in South Korea moving into lower tariff tiers after installing PV systems can offset 11% to 22% of expected energy savings, while net metering can further amplify the rebound effect. The post Residential PV can trigger rebound effects under South Korea’s tiered electricity tariffs appeared…"
+    },
+    {
+      "t": "2026-08-25T13:00:49.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/portugals-largest-solar-plant-enters-administration-amid-low-output-falling-power-prices/",
+      "source": "pv magazine",
+      "title": "Portugal’s largest solar plant enters administration amid low output, falling power prices",
+      "url": "https://www.pv-magazine.com/2026/08/25/portugals-largest-solar-plant-enters-administration-amid-low-output-falling-power-prices/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Welink Energy Portugal 2 UK, owner of Portugal’s 220 MW Solara4 solar plant, entered administration after weak generation, low wholesale power prices, technical issues and rising costs strained revenues and cash flow. The plant remains operational as administrators seek performance improvements and a potential sale.…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 25,
-      "policy": 10,
+      "grid": 27,
+      "policy": 7,
       "capital": 5,
       "technology": 4
     },
@@ -499,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 7
       }
     ]
   },
@@ -508,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:30d9bcbfa6c3b599ab941f7bb25eb4aaf222d83dca782a7ad86e81e0a5451595",
-  "envelopeChecksum": "sha256:685b9f5f205a68d6bcff8b7513f04a5e70d71cac0e49115302b6bed74d80ca65"
+  "contentChecksum": "sha256:a3f54e5cccba2e71fbfb8ba6f866c2dbfd9620cf4def040ebe0e1e7f293ff13c",
+  "envelopeChecksum": "sha256:6f8e581034d394971e8900b5ecfe380bea9c748d1603790aa1202f49b329a1a0"
 }
