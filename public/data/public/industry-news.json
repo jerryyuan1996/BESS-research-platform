@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-26T07:11:49.033Z",
+  "fetchedAt": "2026-08-26T13:26:01.477Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-26T06:19:57.000Z",
+    "to": "2026-08-26T12:55:31.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -133,46 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-08-20T03:50:45.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/one-market-into-many-aer-says-battery-storage-systems-are-reshaping-australias-nem/",
-      "source": "Energy-Storage.news",
-      "title": "‘One market into many’: AER says battery storage systems are reshaping Australia’s NEM",
-      "url": "https://www.energy-storage.news/one-market-into-many-aer-says-battery-storage-systems-are-reshaping-australias-nem/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The AER has found that growth in renewable energy and battery storage eased pressure across Australia's wholesale electricity market in 2025."
-    },
-    {
-      "t": "2026-08-20T03:52:43.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/windlab-squadron-energy-submit-500mw-battery-storage-system-for-federal-assessment-in-queensland-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Windlab, Squadron Energy submit 500MW battery storage system for federal assessment in Queensland, Australia",
-      "url": "https://www.energy-storage.news/windlab-squadron-energy-submit-500mw-battery-storage-system-for-federal-assessment-in-queensland-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Windlab and Squadron Energy have referred a 500MW BESS at the Bungaban solar-plus-storage project in Queensland for approval."
-    },
-    {
-      "t": "2026-08-20T10:39:29.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/lg-energy-solution-begins-lfp-and-nmc-bess-and-ev-cell-production-at-michigan-factory/",
-      "source": "Energy-Storage.news",
-      "title": "LG Energy Solution begins LFP and NMC BESS and EV cell production at Michigan factory",
-      "url": "https://www.energy-storage.news/lg-energy-solution-begins-lfp-and-nmc-bess-and-ev-cell-production-at-michigan-factory/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Two South Korean-headquartered companies, LG Energy Solution and DeltaX are establishing battery cell factories in the US."
-    },
-    {
-      "t": "2026-08-20T10:43:35.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-roundup-bess-projects-and-deals-for-edp-renewables-tucson-electric-power-and-edf/",
-      "source": "Energy-Storage.news",
-      "title": "US ROUNDUP: BESS projects and deals for EDP Renewables, Tucson Electric Power, and EDF",
-      "url": "https://www.energy-storage.news/us-roundup-bess-projects-and-deals-for-edp-renewables-tucson-electric-power-and-edf/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In this US news roundup, BESS projects in California, Arizona, and Nevada advance from EDP Renewables, Tucson Electric Power, and EDF Power Solutions North America."
     },
     {
       "t": "2026-08-20T10:58:50.000Z",
@@ -325,26 +285,6 @@
       "summary": "If BESS are to be given restricted grid access, they should be given a commensurate reduction in the BKZ fee, Marie-Sophie Braun, head of markets & regulatory affairs for developer Kyon Energy, said."
     },
     {
-      "t": "2026-08-25T11:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/sweden-could-face-150000-metric-tons-of-end-of-life-panels-annually/",
-      "source": "pv magazine",
-      "title": "Sweden could face 150,000 metric tons of end-of-life panels annually",
-      "url": "https://www.pv-magazine.com/2026/08/25/sweden-could-face-150000-metric-tons-of-end-of-life-panels-annually/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sweden decommissioned just 17 metric tons (MT) of solar panels in 2021, but a new industry roadmap warns that figure could reach 150,000 MT per year by around 2060, and says current recycling and reuse systems are not yet equipped to handle it. The post Sweden could face 150,000 metric tons of end-of-life panels ann…"
-    },
-    {
-      "t": "2026-08-25T11:50:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/residential-pv-can-trigger-rebound-effects-under-south-koreas-tiered-electricity-tariffs/",
-      "source": "pv magazine",
-      "title": "Residential PV can trigger rebound effects under South Korea’s tiered electricity tariffs",
-      "url": "https://www.pv-magazine.com/2026/08/25/residential-pv-can-trigger-rebound-effects-under-south-koreas-tiered-electricity-tariffs/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Research finds households in South Korea moving into lower tariff tiers after installing PV systems can offset 11% to 22% of expected energy savings, while net metering can further amplify the rebound effect. The post Residential PV can trigger rebound effects under South Korea’s tiered electricity tariffs appeared…"
-    },
-    {
       "t": "2026-08-25T12:55:23.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/us-canada-trade-war-threatens-electricity-imports-prices/828689/",
       "source": "Utility Dive",
@@ -353,16 +293,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "If Canada opts&nbsp;to reduce or eliminate electricity&nbsp;exports to New England, the impact would be largely financial &mdash; at least under typical weather conditions, according to the region's grid operator. A previous 25% tariff in 2025 lasted only a day."
-    },
-    {
-      "t": "2026-08-25T13:00:49.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/portugals-largest-solar-plant-enters-administration-amid-low-output-falling-power-prices/",
-      "source": "pv magazine",
-      "title": "Portugal’s largest solar plant enters administration amid low output, falling power prices",
-      "url": "https://www.pv-magazine.com/2026/08/25/portugals-largest-solar-plant-enters-administration-amid-low-output-falling-power-prices/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Welink Energy Portugal 2 UK, owner of Portugal’s 220 MW Solara4 solar plant, entered administration after weak generation, low wholesale power prices, technical issues and rising costs strained revenues and cash flow. The plant remains operational as administrators seek performance improvements and a potential sale.…"
     },
     {
       "t": "2026-08-25T13:22:29.000Z",
@@ -385,26 +315,6 @@
       "summary": "Raafe Khan of Camelot Energy Group breaks down financial realities, market contradictions, and other dynamics shaping the energy storage space."
     },
     {
-      "t": "2026-08-25T13:54:42.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/irish-electricity-generation-by-grid-scale-pv-up-51-in-2025/",
-      "source": "pv magazine",
-      "title": "Irish electricity generation by grid-scale PV up 51% in 2025",
-      "url": "https://www.pv-magazine.com/2026/08/25/irish-electricity-generation-by-grid-scale-pv-up-51-in-2025/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Grid-scale solar farms generated 1.1 GWh of electricity in 2025, 4% of the total and a 51% increase compared with 2024. Electricity storage output from pumped hydro and batteries contributed a small share. Coal fired power plant generation, meanwhile, decreased its share by 52% from 2024. The post Irish electricity…"
-    },
-    {
-      "t": "2026-08-25T14:08:17.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/sharp-unveils-11-5-kwh-battery-for-residential-use/",
-      "source": "pv magazine",
-      "title": "Sharp unveils 11.5 kWh battery for residential use",
-      "url": "https://www.pv-magazine.com/2026/08/25/sharp-unveils-11-5-kwh-battery-for-residential-use/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sharp is launching its Japan-made 11.5 kWh Eee Storage battery, offering 21% more capacity in a 35% smaller footprint, with AI-powered energy management and enhanced whole-home backup capabilities. Available in Japan from September 8, 2026, the system targets higher solar self-consumption and delivers up to 4.2 kVA…"
-    },
-    {
       "t": "2026-08-25T15:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/data-centers-vanish-grid-seconds-reliability-rules/827035/",
       "source": "Utility Dive",
@@ -425,16 +335,6 @@
       "summary": "The comparatively modest maximum annual incentive of $200/kW over 10 years reflects the &ldquo;private resilience value of residential energy storage systems,&rdquo; state regulators said."
     },
     {
-      "t": "2026-08-25T15:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/kepco-targets-south-korean-inverter-competitiveness-with-new-tech-subsidiary/",
-      "source": "pv magazine",
-      "title": "Kepco targets South Korean inverter competitiveness with new tech subsidiary",
-      "url": "https://www.pv-magazine.com/2026/08/25/kepco-targets-south-korean-inverter-competitiveness-with-new-tech-subsidiary/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Korean state utility Kepco has launched a technology-commercialization subsidiary aimed at bringing thousands of its patents to market, with domestic solar-inverter manufacturers among the first industry partners. The post Kepco targets South Korean inverter competitiveness with new tech subsidiary appeared fi…"
-    },
-    {
       "t": "2026-08-26T03:35:34.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/up-to-six-months-faster-dc-coupling-expedites-hybrid-solar-plus-storage-grid-connection-approvals-in-australia/",
       "source": "Energy-Storage.news",
@@ -445,34 +345,134 @@
       "summary": "DC-coupled solar-plus-storage projects can reduce the time needed for grid connection approval compared with AC-coupled designs."
     },
     {
-      "t": "2026-08-26T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/argentinas-next-era/",
+      "t": "2026-08-26T07:41:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/high-gas-prices-lower-solar-output-drive-up-european-electricity-costs/",
       "source": "pv magazine",
-      "title": "Argentina’s next era",
-      "url": "https://www.pv-magazine.com/2026/08/26/argentinas-next-era/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Argentina’s solar sector is entering a new phase, writes pv magazine’s Luis Ini. As the country’s installed PV capacity nears 2.6 GW, demand is growing. This stems from the mining sector, projects connected to distribution grids, the upturn in self-consumption following tariff rises, and the first national tenders f…"
-    },
-    {
-      "t": "2026-08-26T05:45:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/wa-seeks-1-8-gw-of-renewable-energy-generation-in-new-cis-tender/",
-      "source": "pv magazine",
-      "title": "Australia seeks 1.8 GW of renewable energy generation in new CIS tender",
-      "url": "https://www.pv-magazine.com/2026/08/26/wa-seeks-1-8-gw-of-renewable-energy-generation-in-new-cis-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The federal government has launched the latest tender under its flagship Capacity Investment Scheme, seeking another 1.8 GW of new solar and wind capacity in Western Australia. The post Australia seeks 1.8 GW of renewable energy generation in new CIS tender appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-26T06:19:57.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/brazilian-water-tank-maker-presents-new-floating-pv-solution/",
-      "source": "pv magazine",
-      "title": "Brazilian water tank maker presents new floating PV solution",
-      "url": "https://www.pv-magazine.com/2026/08/26/brazilian-water-tank-maker-presents-new-floating-pv-solution/",
+      "title": "High gas prices, lower solar output drive up European electricity costs",
+      "url": "https://www.pv-magazine.com/2026/08/26/high-gas-prices-lower-solar-output-drive-up-european-electricity-costs/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Fortlev Solar has presented Aquafort, a modular HDPE floating PV system for reservoirs, lakes, ponds and dams, at Intersolar South America 2026. The system supports M10 and M12 modules, features dedicated maintenance floats, and has a stated 25-year service life. The post Brazilian water tank maker presents new floa…"
+      "summary": "Analysis by AleaSoft Energy Forecasting finds the weekly average electricity price was above €110 ($128.35)/MWh across major European markets last week as TTF gas futures prices reached their highest level since January 2023. The post High gas prices, lower solar output drive up European electricity costs appeared f…"
+    },
+    {
+      "t": "2026-08-26T08:04:20.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/new-subcell-current-metrology-for-perovskite-silicon-tandem-solar-cells/",
+      "source": "pv magazine",
+      "title": "New subcell current metrology for perovskite-silicon tandem solar cells",
+      "url": "https://www.pv-magazine.com/2026/08/26/new-subcell-current-metrology-for-perovskite-silicon-tandem-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Fraunhofer ISE researchers developed a millisecond-scale electrical method to separately measure perovskite and silicon subcell currents in tandem solar cells using the silicon cell’s capacitive charge reservoir. The approach can be integrated into standard j–V testing without additional hardware, potentially enabli…"
+    },
+    {
+      "t": "2026-08-26T08:16:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/irelands-sixth-renewables-auction-puts-solar-to-the-test-under-new-nzia-rules/",
+      "source": "pv magazine",
+      "title": "Ireland’s sixth renewables auction puts solar to the test under new NZIA rules",
+      "url": "https://www.pv-magazine.com/2026/08/26/irelands-sixth-renewables-auction-puts-solar-to-the-test-under-new-nzia-rules/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The results of Ireland’s sixth Renewable Electricity Support Scheme (RESS 6) are due to be announced on December 2. Leanne Donovan, Solar Ireland’s policy manager, told pv magazine that “cost competitiveness will remain the dominant factor” even with the new pricing framework. The post Ireland’s sixth renewables auc…"
+    },
+    {
+      "t": "2026-08-26T08:49:15.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/indonesia-aims-for-100-gw-solar-target-by-2029/",
+      "source": "pv magazine",
+      "title": "Indonesia aims for 100 GW solar target by 2029",
+      "url": "https://www.pv-magazine.com/2026/08/26/indonesia-aims-for-100-gw-solar-target-by-2029/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Indonesian President Prabowo Subianto has said the government is serious about realizing its 100 GW solar program, with construction targeted within three years. The post Indonesia aims for 100 GW solar target by 2029 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-26T09:55:55.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/hinen-launches-13-68-kwh-residential-energy-storage-system/",
+      "source": "pv magazine",
+      "title": "Hinen launches 13.68 kWh residential energy storage system",
+      "url": "https://www.pv-magazine.com/2026/08/26/hinen-launches-13-68-kwh-residential-energy-storage-system/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Hinen’s A15 residential energy storage system combines 3.6 kW to 15 kW hybrid inverters with 14.4 kWh LFP battery modules, each offering 13.68 kWh of usable capacity. Up to six batteries can be connected in parallel for 86.4 kWh nominal and 82.08 kWh usable capacity, with more than 8,000 cycles, IP65 protection and…"
+    },
+    {
+      "t": "2026-08-26T10:16:12.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/saudi-power-procurement-company-awards-2gw-8gwh-battery-storage-contracts/",
+      "source": "Energy-Storage.news",
+      "title": "Saudi Power Procurement Company awards 2GW/8GWh of battery storage contracts",
+      "url": "https://www.energy-storage.news/saudi-power-procurement-company-awards-2gw-8gwh-battery-storage-contracts/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Saudi Arabia’s Principal Buyer of electricity has awarded four service contracts for large-scale battery storage projects to consortia featuring ACWA Power and Engie."
+    },
+    {
+      "t": "2026-08-26T10:26:17.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-bess-roundup-alpiq-buys-from-eco-stor-catl-backed-cnte-supplies-units-terralayrs-vattenfall-toll-online/",
+      "source": "Energy-Storage.news",
+      "title": "Germany BESS ROUNDUP: Alpiq buys from Eco Stor, CATL-backed CNTE supplies units, Terralayr’s Vattenfall toll online",
+      "url": "https://www.energy-storage.news/germany-bess-roundup-alpiq-buys-from-eco-stor-catl-backed-cnte-supplies-units-terralayrs-vattenfall-toll-online/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A trio of BESS updates in Germany from power firm Alpiq, CATL-backed system integrator CNTE and virtual tolling platform Terralayr, totalling around 260MW of operational capacity."
+    },
+    {
+      "t": "2026-08-26T10:33:08.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ford-energys-grid-scale-bess-product-an-analysis/",
+      "source": "Energy-Storage.news",
+      "title": "Ford Energy’s grid-scale BESS product: an analysis",
+      "url": "https://www.energy-storage.news/ford-energys-grid-scale-bess-product-an-analysis/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In May, US automotive group Ford made the surprise announcement that it was launching a BESS product via new division Ford Energy. In this deep dive article, we look at its product's specifications and how they compare to other existing solutions."
+    },
+    {
+      "t": "2026-08-26T11:05:49.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-tech-roundup-software-tie-ins-and-technology-partnerships-gas-bess-hybrids-bring-speed-to-power/",
+      "source": "Energy-Storage.news",
+      "title": "US TECH ROUNDUP: Software tie-ins and technology partnerships, gas-BESS hybrids bring speed-to-power",
+      "url": "https://www.energy-storage.news/us-tech-roundup-software-tie-ins-and-technology-partnerships-gas-bess-hybrids-bring-speed-to-power/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "In this news roundup, Eos and WATTMORE; Gotion and Gamma Technologies; Middle River Power and PowerTransitions; and Electra AI and MinTech are advancing battery energy storage system (BESS) technology in the US."
+    },
+    {
+      "t": "2026-08-26T12:21:52.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/ecoprogetti-upgrades-pv-module-line-in-south-africa/",
+      "source": "pv magazine",
+      "title": "Ecoprogetti upgrades PV module line in South Africa",
+      "url": "https://www.pv-magazine.com/2026/08/26/ecoprogetti-upgrades-pv-module-line-in-south-africa/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The solar equipment manufacturer completed a project rescue on a PV module line in South Africa that previously faced integration challenges. The newly-operational 200 MW line produces modules primarily for the local market. The post Ecoprogetti upgrades PV module line in South Africa appeared first on pv magazine G…"
+    },
+    {
+      "t": "2026-08-26T12:23:37.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/english-soccer-club-southampton-fc-offers-two-for-one-solar-panels/",
+      "source": "pv magazine",
+      "title": "English soccer club Southampton FC offers two-for-one solar panels",
+      "url": "https://www.pv-magazine.com/2026/08/26/english-soccer-club-southampton-fc-offers-two-for-one-solar-panels/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Southampton FC fans can access discounted rooftop solar panels through leasing company Utilita Home, with potential annual energy savings and a chance to win match tickets and a signed shirt. The post English soccer club Southampton FC offers two-for-one solar panels appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-26T12:28:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/ai-optimizer-to-trade-baltic-hybrid-solar-storage-assets/",
+      "source": "pv magazine",
+      "title": "AI optimizer to trade Baltic hybrid solar-storage assets",
+      "url": "https://www.pv-magazine.com/2026/08/26/ai-optimizer-to-trade-baltic-hybrid-solar-storage-assets/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Finnish battery optimizer Capalo AI has partnered with Danish developer European Energy to provide trading and market-access services for two hybrid solar-plus-storage projects in Lithuania and Latvia. The post AI optimizer to trade Baltic hybrid solar-storage assets appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-26T12:55:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/espana-exigira-a-los-centros-de-datos-un-80-de-renovables-adicionales-y-datos-bajo-control-europeo/",
+      "source": "pv magazine",
+      "title": "Spain to require data centers to source 80% of electricity from renewables",
+      "url": "https://www.pv-magazine.com/2026/08/26/espana-exigira-a-los-centros-de-datos-un-80-de-renovables-adicionales-y-datos-bajo-control-europeo/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Spain has proposed new rules requiring data centers to source at least 80% of their electricity from additional renewable generation, with hourly matching of consumption and supply. The framework would apply to facilities of at least 1 MW and introduce grid access, water efficiency and EU data sovereignty requiremen…"
     }
   ],
   "derived": {
@@ -483,8 +483,8 @@
     "byCategory": {
       "grid": 26,
       "policy": 11,
-      "capital": 5,
-      "technology": 3
+      "capital": 4,
+      "technology": 4
     },
     "sourceStatus": [
       {
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:eaade4cf7b7bc7ac7cd9bf0aa5d64a151d45075aaf3f0b99b1ef2ea8865a99b9",
-  "envelopeChecksum": "sha256:6b2c14f5df9447865024592ffff5b0de3ae0aace717991db562b3ee69b6a869e"
+  "contentChecksum": "sha256:117be51849f295cde0afb2a445b3e76746c1c5056923b29d7862c807df73aad8",
+  "envelopeChecksum": "sha256:9620ac3ac9d10effd558521b531998aaf0c7ea4bf933608ced881b3740236424"
 }
