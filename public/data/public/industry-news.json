@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-25T19:00:59.567Z",
+  "fetchedAt": "2026-08-26T07:11:49.033Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-25T15:45:00.000Z",
+    "to": "2026-08-26T06:19:57.000Z",
     "resolution": "event",
-    "points": 46
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -135,16 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-08-20T03:45:53.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/apa-to-build-104mwh-battery-storage-system-for-evolution-minings-ernest-henry-operations-in-australia/",
-      "source": "Energy-Storage.news",
-      "title": "APA to build 104MWh battery storage system for Evolution Mining’s Ernest Henry operations in Australia",
-      "url": "https://www.energy-storage.news/apa-to-build-104mwh-battery-storage-system-for-evolution-minings-ernest-henry-operations-in-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "APA Group has taken a final investment decision to construct, own and operate the 104MWh Sybella Creek solar-plus-storage site in Australia."
-    },
-    {
       "t": "2026-08-20T03:50:45.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/one-market-into-many-aer-says-battery-storage-systems-are-reshaping-australias-nem/",
       "source": "Energy-Storage.news",
@@ -235,16 +225,6 @@
       "summary": "The New Jersey Board of Public Utilities (NJBPU) has released a proposal for the next phase of its Garden State Energy Storage Programme (GSESP) consisting of approximately 150MW of energy storage capacity in the US state."
     },
     {
-      "t": "2026-08-21T11:12:58.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ercot-texas-puc-data-center-audit/828472/",
-      "source": "Utility Dive",
-      "title": "ERCOT aims to complete Texas governor’s data center audit by December",
-      "url": "https://www.utilitydive.com/news/ercot-texas-puc-data-center-audit/828472/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The pause on new data center interconnections could impact the Electric Reliability Council of Texas&rsquo; upcoming long-term load forecast and reliability assessment, officials said Thursday."
-    },
-    {
       "t": "2026-08-21T12:34:58.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/pjm-surplus-interconnection-service/828473/",
       "source": "Utility Dive",
@@ -333,36 +313,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "The UK government has launched a new grant funding programme for energy storage technologies that can provide inter-day and seasonal energy shifting applications."
-    },
-    {
-      "t": "2026-08-25T09:01:11.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/greece-introduces-new-spatial-planning-rules-for-pv/",
-      "source": "pv magazine",
-      "title": "Greece introduces new spatial planning rules for PV",
-      "url": "https://www.pv-magazine.com/2026/08/25/greece-introduces-new-spatial-planning-rules-for-pv/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Greece has introduced a new spatial planning framework for renewable energy and storage, tightening siting rules for PV and expanding protected areas. The rules cap PV land use at 1.5% in each of 74 regional units but exempt permitted projects. The post Greece introduces new spatial planning rules for PV appeared fi…"
-    },
-    {
-      "t": "2026-08-25T09:08:38.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/oman-seeks-consultants-for-renewable-energy-feasibility-study/",
-      "source": "pv magazine",
-      "title": "Oman seeks consultants for renewable energy feasibility study",
-      "url": "https://www.pv-magazine.com/2026/08/25/oman-seeks-consultants-for-renewable-energy-feasibility-study/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A tender in Oman is searching for a techno-economic consultant to complete a feasibility study on renewable energy projects in the governorate of Musandam. The deadline for applications is September 24. The post Oman seeks consultants for renewable energy feasibility study appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-25T10:12:06.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/25/a-closer-look-at-catl-tener-s-6-017-mwh-bess/",
-      "source": "pv magazine",
-      "title": "A closer look at CATL Tener S 6.017 MWh BESS",
-      "url": "https://www.pv-magazine.com/2026/08/25/a-closer-look-at-catl-tener-s-6-017-mwh-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Not quite a mystery from CATL, but it’s now clear what the Tener S battery energy storage system (BESS) actually can do. The post A closer look at CATL Tener S 6.017 MWh BESS appeared first on pv magazine Global ."
     },
     {
       "t": "2026-08-25T11:01:35.000Z",
@@ -483,16 +433,56 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "South Korean state utility Kepco has launched a technology-commercialization subsidiary aimed at bringing thousands of its patents to market, with domestic solar-inverter manufacturers among the first industry partners. The post Kepco targets South Korean inverter competitiveness with new tech subsidiary appeared fi…"
+    },
+    {
+      "t": "2026-08-26T03:35:34.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/up-to-six-months-faster-dc-coupling-expedites-hybrid-solar-plus-storage-grid-connection-approvals-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "‘Up to six months faster’: DC-coupling expedites hybrid solar-plus-storage grid connection approvals in Australia",
+      "url": "https://www.energy-storage.news/up-to-six-months-faster-dc-coupling-expedites-hybrid-solar-plus-storage-grid-connection-approvals-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "DC-coupled solar-plus-storage projects can reduce the time needed for grid connection approval compared with AC-coupled designs."
+    },
+    {
+      "t": "2026-08-26T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/argentinas-next-era/",
+      "source": "pv magazine",
+      "title": "Argentina’s next era",
+      "url": "https://www.pv-magazine.com/2026/08/26/argentinas-next-era/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Argentina’s solar sector is entering a new phase, writes pv magazine’s Luis Ini. As the country’s installed PV capacity nears 2.6 GW, demand is growing. This stems from the mining sector, projects connected to distribution grids, the upturn in self-consumption following tariff rises, and the first national tenders f…"
+    },
+    {
+      "t": "2026-08-26T05:45:09.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/wa-seeks-1-8-gw-of-renewable-energy-generation-in-new-cis-tender/",
+      "source": "pv magazine",
+      "title": "Australia seeks 1.8 GW of renewable energy generation in new CIS tender",
+      "url": "https://www.pv-magazine.com/2026/08/26/wa-seeks-1-8-gw-of-renewable-energy-generation-in-new-cis-tender/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The federal government has launched the latest tender under its flagship Capacity Investment Scheme, seeking another 1.8 GW of new solar and wind capacity in Western Australia. The post Australia seeks 1.8 GW of renewable energy generation in new CIS tender appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-26T06:19:57.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/brazilian-water-tank-maker-presents-new-floating-pv-solution/",
+      "source": "pv magazine",
+      "title": "Brazilian water tank maker presents new floating PV solution",
+      "url": "https://www.pv-magazine.com/2026/08/26/brazilian-water-tank-maker-presents-new-floating-pv-solution/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Fortlev Solar has presented Aquafort, a modular HDPE floating PV system for reservoirs, lakes, ponds and dams, at Intersolar South America 2026. The system supports M10 and M12 modules, features dedicated maintenance floats, and has a stated 25-year service life. The post Brazilian water tank maker presents new floa…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 46,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 9,
+      "grid": 26,
+      "policy": 11,
       "capital": 5,
       "technology": 3
     },
@@ -513,7 +503,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 5
       },
       {
         "source": "pv magazine",
@@ -528,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:941382b4a5328bd5a40046844ecbdfa9fd43c20048ff1aa501ebe1f40ce8fc33",
-  "envelopeChecksum": "sha256:f3d9649322da3d2189942bdb83415a988662eb987c54490347624b2dd0edde26"
+  "contentChecksum": "sha256:eaade4cf7b7bc7ac7cd9bf0aa5d64a151d45075aaf3f0b99b1ef2ea8865a99b9",
+  "envelopeChecksum": "sha256:6b2c14f5df9447865024592ffff5b0de3ae0aace717991db562b3ee69b6a869e"
 }
