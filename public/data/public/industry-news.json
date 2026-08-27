@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-26T20:07:48.399Z",
+  "fetchedAt": "2026-08-27T09:56:34.438Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-26T16:35:12.000Z",
+    "to": "2026-08-27T09:49:32.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -135,26 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-08-20T10:58:50.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/denmark-begreen-enlists-danske-commodities-for-co-located-bess-optimisation/",
-      "source": "Energy-Storage.news",
-      "title": "Denmark: BeGreen enlists Danske Commodities for co-located BESS optimisation",
-      "url": "https://www.energy-storage.news/denmark-begreen-enlists-danske-commodities-for-co-located-bess-optimisation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Danske Commodities will optimise a BESS project that developer-operator BeGreen has added to a solar PV plant in Denmark, which the trading house already operates for BeGreen."
-    },
-    {
-      "t": "2026-08-20T11:10:59.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/handling-cell-imbalances-communications-interoperability-and-other-blockers-to-bess-asset-success/",
-      "source": "Energy-Storage.news",
-      "title": "Handling cell imbalances, communications interoperability and other blockers to BESS asset success",
-      "url": "https://www.energy-storage.news/handling-cell-imbalances-communications-interoperability-and-other-blockers-to-bess-asset-success/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Orchestrating battery storage components, containers, systems and portfolios is key to successful operation, says Ryan Franks."
-    },
-    {
       "t": "2026-08-20T22:16:04.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/are-conventional-bess-degradation-guarantees-restricting-asset-value/",
       "source": "Energy-Storage.news",
@@ -203,16 +183,6 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "Invinity Energy Systems has hired an EPC partner for its gigawatt-hour-scale vanadium redox flow battery (VRFB) energy storage project in Laufenberg, Switzerland."
-    },
-    {
-      "t": "2026-08-24T13:05:21.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/microsoft-powerhouse-hillwood-data-center-service-ferc/828566/",
-      "source": "Utility Dive",
-      "title": "Microsoft, PowerHouse Hillwood dispute data center service agreements",
-      "url": "https://www.utilitydive.com/news/microsoft-powerhouse-hillwood-data-center-service-ferc/828566/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Data center agreements in Wisconsin fail to protect ratepayers, Microsoft says. Separately, PowerHouse Hillwood has accused Exelon&rsquo;s ComEd of using monopoly power to quash an agreement for an Illinois data center."
     },
     {
       "t": "2026-08-24T13:32:42.000Z",
@@ -335,36 +305,6 @@
       "summary": "DC-coupled solar-plus-storage projects can reduce the time needed for grid connection approval compared with AC-coupled designs."
     },
     {
-      "t": "2026-08-26T08:16:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/irelands-sixth-renewables-auction-puts-solar-to-the-test-under-new-nzia-rules/",
-      "source": "pv magazine",
-      "title": "Ireland’s sixth renewables auction puts solar to the test under new NZIA rules",
-      "url": "https://www.pv-magazine.com/2026/08/26/irelands-sixth-renewables-auction-puts-solar-to-the-test-under-new-nzia-rules/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The results of Ireland’s sixth Renewable Electricity Support Scheme (RESS 6) are due to be announced on December 2. Leanne Donovan, Solar Ireland’s policy manager, told pv magazine that “cost competitiveness will remain the dominant factor” even with the new pricing framework. The post Ireland’s sixth renewables auc…"
-    },
-    {
-      "t": "2026-08-26T08:49:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/indonesia-aims-for-100-gw-solar-target-by-2029/",
-      "source": "pv magazine",
-      "title": "Indonesia aims for 100 GW solar target by 2029",
-      "url": "https://www.pv-magazine.com/2026/08/26/indonesia-aims-for-100-gw-solar-target-by-2029/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Indonesian President Prabowo Subianto has said the government is serious about realizing its 100 GW solar program, with construction targeted within three years. The post Indonesia aims for 100 GW solar target by 2029 appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-26T09:55:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/hinen-launches-13-68-kwh-residential-energy-storage-system/",
-      "source": "pv magazine",
-      "title": "Hinen launches 13.68 kWh residential energy storage system",
-      "url": "https://www.pv-magazine.com/2026/08/26/hinen-launches-13-68-kwh-residential-energy-storage-system/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Hinen’s A15 residential energy storage system combines 3.6 kW to 15 kW hybrid inverters with 14.4 kWh LFP battery modules, each offering 13.68 kWh of usable capacity. Up to six batteries can be connected in parallel for 86.4 kWh nominal and 82.08 kWh usable capacity, with more than 8,000 cycles, IP65 protection and…"
-    },
-    {
       "t": "2026-08-26T10:16:12.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/saudi-power-procurement-company-awards-2gw-8gwh-battery-storage-contracts/",
       "source": "Energy-Storage.news",
@@ -405,36 +345,6 @@
       "summary": "In this news roundup, Eos and WATTMORE; Gotion and Gamma Technologies; Middle River Power and PowerTransitions; and Electra AI and MinTech are advancing battery energy storage system (BESS) technology in the US."
     },
     {
-      "t": "2026-08-26T12:21:52.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/ecoprogetti-upgrades-pv-module-line-in-south-africa/",
-      "source": "pv magazine",
-      "title": "Ecoprogetti upgrades PV module line in South Africa",
-      "url": "https://www.pv-magazine.com/2026/08/26/ecoprogetti-upgrades-pv-module-line-in-south-africa/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The solar equipment manufacturer completed a project rescue on a PV module line in South Africa that previously faced integration challenges. The newly-operational 200 MW line produces modules primarily for the local market. The post Ecoprogetti upgrades PV module line in South Africa appeared first on pv magazine G…"
-    },
-    {
-      "t": "2026-08-26T12:23:37.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/english-soccer-club-southampton-fc-offers-two-for-one-solar-panels/",
-      "source": "pv magazine",
-      "title": "English soccer club Southampton FC offers two-for-one solar panels",
-      "url": "https://www.pv-magazine.com/2026/08/26/english-soccer-club-southampton-fc-offers-two-for-one-solar-panels/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Southampton FC fans can access discounted rooftop solar panels through leasing company Utilita Home, with potential annual energy savings and a chance to win match tickets and a signed shirt. The post English soccer club Southampton FC offers two-for-one solar panels appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-26T12:28:17.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/ai-optimizer-to-trade-baltic-hybrid-solar-storage-assets/",
-      "source": "pv magazine",
-      "title": "AI optimizer to trade Baltic hybrid solar-storage assets",
-      "url": "https://www.pv-magazine.com/2026/08/26/ai-optimizer-to-trade-baltic-hybrid-solar-storage-assets/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Finnish battery optimizer Capalo AI has partnered with Danish developer European Energy to provide trading and market-access services for two hybrid solar-plus-storage projects in Lithuania and Latvia. The post AI optimizer to trade Baltic hybrid solar-storage assets appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-26T12:55:31.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/espana-exigira-a-los-centros-de-datos-un-80-de-renovables-adicionales-y-datos-bajo-control-europeo/",
       "source": "pv magazine",
@@ -453,16 +363,86 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The California state Assembly has passed SB 868, known as the Plug and Play Solar Act. Pending Senate concurrence in amendments made to the bill by the Assembly, California is one step away from passing its highly-anticipated plug-in solar legislation. The post California plug-in solar bill earns approval of both le…"
+    },
+    {
+      "t": "2026-08-26T21:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/26/plug-in-solar-panels-now-legal-in-the-uk/",
+      "source": "pv magazine",
+      "title": "Plug-in solar panels now legal in the UK",
+      "url": "https://www.pv-magazine.com/2026/08/26/plug-in-solar-panels-now-legal-in-the-uk/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Regulations come into force allowing 800 W plug-in solar kits to be installed in England, Wales and Scotland. Plug-in batteries currently excluded, but under investigation. The post Plug-in solar panels now legal in the UK appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-27T02:44:45.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/reliability-outlook-improves-but-australias-nem-still-needs-system-security-investment-aemo-finds/",
+      "source": "Energy-Storage.news",
+      "title": "Reliability outlook improves, but Australia’s NEM still needs system security investment, AEMO finds",
+      "url": "https://www.energy-storage.news/reliability-outlook-improves-but-australias-nem-still-needs-system-security-investment-aemo-finds/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "AEMO has published its 2026 ESOO, finding a clearer pathway to maintaining a reliable electricity supply across the NEM in the coming decade."
+    },
+    {
+      "t": "2026-08-27T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/scaling-up-in-brazil/",
+      "source": "pv magazine",
+      "title": "Scaling up in Brazil",
+      "url": "https://www.pv-magazine.com/2026/08/27/scaling-up-in-brazil/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The 752 MW (AC) Assú Sol solar complex in northeastern Brazil is the largest operational PV project in multinational energy company Engie’s global portfolio. Guilherme Ferrari, renewable energy and storage director at Engie Brasil, spoke to pv magazine about the construction of the complex and the next phase of the…"
+    },
+    {
+      "t": "2026-08-27T05:27:20.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/solar-group-presents-mounting-system-for-fibre-cement-roof/",
+      "source": "pv magazine",
+      "title": "Solar Group presents mounting system for fibre-cement roof",
+      "url": "https://www.pv-magazine.com/2026/08/27/solar-group-presents-mounting-system-for-fibre-cement-roof/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar Group unveiled Fibro+, a simplified mounting system for PV modules on fiber-cement roofs, designed to reduce components and installation steps. The company claims the system can cut installation time by up to 30% and labor costs by up to 25%, while offering structural strength and a 12-year warranty. The post…"
+    },
+    {
+      "t": "2026-08-27T06:12:57.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/heat-pump-carnot-battery-system-for-residential-pv-storage/",
+      "source": "pv magazine",
+      "title": "Heat pump-Carnot battery system for residential PV storage",
+      "url": "https://www.pv-magazine.com/2026/08/27/heat-pump-carnot-battery-system-for-residential-pv-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Italian researchers have developed a reversible heat pump-ORC Carnot battery that stores surplus residential PV electricity as heat and converts it back into electricity when needed. Simulations showed that optimizing the ORC expander speed could raise round-trip efficiency to 35%, while enabling the system to meet…"
+    },
+    {
+      "t": "2026-08-27T06:16:54.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/vsl-powerhive-launches-261-kwh-liquid-cooled-bess-for-ci-segment/",
+      "source": "pv magazine",
+      "title": "VSL PowerHive launches 261 kWh liquid-cooled BESS for C&I applications",
+      "url": "https://www.pv-magazine.com/2026/08/27/vsl-powerhive-launches-261-kwh-liquid-cooled-bess-for-ci-segment/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "VSL PowerHive has launched the P261, a 125 kW/261 kWh liquid-cooled BESS for commercial and industrial applications in India and international markets. The LFP-based system supports solar energy storage, peak-load management, backup power, EV charging, diesel generator reduction and microgrid applications. The post…"
+    },
+    {
+      "t": "2026-08-27T09:49:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/africas-first-24-7-solar-baseload-power-plant-enabled-by-batteries-goes-online-at-drc-copper-mine/",
+      "source": "Energy-Storage.news",
+      "title": "Africa’s first 24/7 ‘solar baseload’ power plant, enabled by batteries, goes online at DRC copper mine",
+      "url": "https://www.energy-storage.news/africas-first-24-7-solar-baseload-power-plant-enabled-by-batteries-goes-online-at-drc-copper-mine/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar-plus-storage project, claimed as the first of its kind in Africa to deliver 24/7 renewable electricity, has come online at a copper mine in the Democratic Republic of the Congo (DRC)."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 24,
-      "policy": 11,
+      "grid": 25,
+      "policy": 8,
       "capital": 4,
       "technology": 4
     },
@@ -483,13 +463,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 3
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 7
       }
     ]
   },
@@ -498,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:82adbe87b57ecf59c109a53e988dc38416a673b7acd5c09b8aeceab99b741b41",
-  "envelopeChecksum": "sha256:ad83790094a4fff132b93eada5bc1db45a2b8a6cc21650beaf1a10859fe0587a"
+  "contentChecksum": "sha256:ba6f11a8e4ae8fdf0f269e9f5d74677119b219455f341d44d61a73a21982e85c",
+  "envelopeChecksum": "sha256:37e37f670067bf89490a38a77e46461f034ab3036cfb1c0c5a07d3f5e2bd20ad"
 }
