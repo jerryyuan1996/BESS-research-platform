@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-27T22:19:24.619Z",
+  "fetchedAt": "2026-08-28T11:29:49.666Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-27T14:55:50.000Z",
+    "to": "2026-08-28T11:18:00.000Z",
     "resolution": "event",
-    "points": 41
+    "points": 40
   },
   "units": {
     "record": "published article metadata"
@@ -133,46 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-08-21T09:58:35.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/new-jersey-board-of-public-utilities-releases-150mw-btm-energy-storage-proposal/",
-      "source": "Energy-Storage.news",
-      "title": "New Jersey Board of Public Utilities releases 150MW BTM energy storage proposal",
-      "url": "https://www.energy-storage.news/new-jersey-board-of-public-utilities-releases-150mw-btm-energy-storage-proposal/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The New Jersey Board of Public Utilities (NJBPU) has released a proposal for the next phase of its Garden State Energy Storage Programme (GSESP) consisting of approximately 150MW of energy storage capacity in the US state."
-    },
-    {
-      "t": "2026-08-21T13:08:38.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/company-wasnt-ready-in-2021-ess-inc-ceo-on-pivoting-away-from-iron-flow-batteries-to-sodium-ion/",
-      "source": "Energy-Storage.news",
-      "title": "‘Company wasn’t ready in 2021’: ESS Inc CEO on pivoting away from iron flow batteries to sodium-ion",
-      "url": "https://www.energy-storage.news/company-wasnt-ready-in-2021-ess-inc-ceo-on-pivoting-away-from-iron-flow-batteries-to-sodium-ion/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Why should people take ESS Inc and its pivot to sodium-ion BESS seriously, having failed to deliver on its iron flow battery promises since going public in 2021? We catch up with new CEO Drew Buckley about how he hopes to turn the ship around."
-    },
-    {
-      "t": "2026-08-24T08:23:24.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/invinity-confirms-epc-contract-award-for-2-1gwh-landmark-flow-battery-in-switzerland/",
-      "source": "Energy-Storage.news",
-      "title": "Invinity confirms EPC contract award for 2.1GWh ‘landmark’ flow battery in Switzerland",
-      "url": "https://www.energy-storage.news/invinity-confirms-epc-contract-award-for-2-1gwh-landmark-flow-battery-in-switzerland/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Invinity Energy Systems has hired an EPC partner for its gigawatt-hour-scale vanadium redox flow battery (VRFB) energy storage project in Laufenberg, Switzerland."
-    },
-    {
-      "t": "2026-08-24T13:32:42.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/cesas-scott-murtishaw-on-safety-misinformation-and-californias-bess-milestones/",
-      "source": "Energy-Storage.news",
-      "title": "CESA’s Scott Murtishaw on safety, misinformation, and California’s BESS milestones",
-      "url": "https://www.energy-storage.news/cesas-scott-murtishaw-on-safety-misinformation-and-californias-bess-milestones/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Scott Murtishaw, executive director at the California Energy Storage Alliance, discusses local opposition, safety misconceptions, and why the state's containerised projects have proven safe."
     },
     {
       "t": "2026-08-24T14:24:43.000Z",
@@ -335,26 +295,6 @@
       "summary": "A roundup of large-scale battery energy storage system (BESS) projects being financed, acquired or contracted in Poland, Lithuania, Latvia, Finland and Romania."
     },
     {
-      "t": "2026-08-27T10:05:01.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/albanias-solar-market-shifts-toward-storage-market-integration/",
-      "source": "pv magazine",
-      "title": "Albania’s solar market shifts toward storage, market integration",
-      "url": "https://www.pv-magazine.com/2026/08/27/albanias-solar-market-shifts-toward-storage-market-integration/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Albania’s solar market is continuing to develop with a growing project pipeline alongside new regulations that are reshaping its electricity market, setting the groundwork for storage deployments and improving conditions for self-producers. The post Albania’s solar market shifts toward storage, market integration ap…"
-    },
-    {
-      "t": "2026-08-27T11:09:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/sungrow-breaks-ground-on-10-gwh-battery-storage-factory-in-egypt/",
-      "source": "pv magazine",
-      "title": "Sungrow breaks ground on 10 GWh battery storage factory in Egypt",
-      "url": "https://www.pv-magazine.com/2026/08/27/sungrow-breaks-ground-on-10-gwh-battery-storage-factory-in-egypt/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sungrow has begun construction of a $50 million BESS factory in Egypt’s Suez Canal Economic Zone, targeting 10 GWh of annual production and an April 2027 start. The facility will supply Egypt’s growing storage market, including Scatec’s Energy Valley project, while strengthening Sungrow’s localized manufacturing pre…"
-    },
-    {
       "t": "2026-08-27T11:34:26.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/18gwh-of-bess-comes-online-in-july-year-to-date-total-up-27/",
       "source": "Energy-Storage.news",
@@ -363,26 +303,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A total of 18GWh of large-scale BESS capacity came online in July 2026, of which China accounted for 70%."
-    },
-    {
-      "t": "2026-08-27T11:40:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/plug-in-solar-panels-now-legal-in-the-uk/",
-      "source": "pv magazine",
-      "title": "UPDATE: Plug-in solar panels now legal in the UK",
-      "url": "https://www.pv-magazine.com/2026/08/27/plug-in-solar-panels-now-legal-in-the-uk/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Regulations come into force allowing 800 W plug-in solar kits to be installed in England, Wales and Scotland. Plug-in batteries currently excluded, but under investigation. The post UPDATE: Plug-in solar panels now legal in the UK appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-27T11:50:45.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/irelands-pv-capacity-reaches-3-gw/",
-      "source": "pv magazine",
-      "title": "Ireland’s PV capacity reaches 3 GW",
-      "url": "https://www.pv-magazine.com/2026/08/27/irelands-pv-capacity-reaches-3-gw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "“With continued investment in solar – across homes, farms, businesses and large grid-scale projects – Ireland is building a growing source of homegrown, clean electricity, and strengthening our energy security,” said Ireland's Minister for Climate, Energy and the Environment, Darragh O'Brien following the milestone.…"
     },
     {
       "t": "2026-08-27T13:02:31.000Z",
@@ -395,26 +315,6 @@
       "summary": "Overall wholesale power costs in the PJM Interconnection jumped 46% to $56.7 billion &nbsp; so far&nbsp;this year, driven by rising energy and capacity costs, per the grid operator&rsquo;s market monitor."
     },
     {
-      "t": "2026-08-27T13:33:53.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/japans-29th-solar-auction-allocates-38-2-mw-of-pv-capacity/",
-      "source": "pv magazine",
-      "title": "Japan’s 29th solar auction allocates 38.2 MW of PV capacity",
-      "url": "https://www.pv-magazine.com/2026/08/27/japans-29th-solar-auction-allocates-38-2-mw-of-pv-capacity/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Japan selected eight PV projects ranging between 400 kW and 29.9 MW in its latest procurement exercise. The post Japan’s 29th solar auction allocates 38.2 MW of PV capacity appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-27T13:37:18.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/battery-boom-brings-round-the-clock-solar-closer-ember-says/",
-      "source": "pv magazine",
-      "title": "Battery boom brings round-the-clock solar closer, Ember says",
-      "url": "https://www.pv-magazine.com/2026/08/27/battery-boom-brings-round-the-clock-solar-closer-ember-says/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar PV supplied more than 10% of global electricity in the first half of 2026, but generation remains heavily concentrated around midday. Ember says rapidly expanding, cheaper battery storage could shift 34% of new daily solar generation to non-solar hours in 2026, bringing round-the-clock solar closer. The post B…"
-    },
-    {
       "t": "2026-08-27T14:38:51.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/duke-energy-florida-psc-large-load-rate/828951/",
       "source": "Utility Dive",
@@ -425,26 +325,116 @@
       "summary": "Duke Energy Florida&rsquo;s proposal &ldquo;doesn't attempt to comply with the most basic provisions&rdquo; of Florida&rsquo;s new data center law, the state&rsquo;s public counsel, Walt Trierweiler, said at a hearing."
     },
     {
-      "t": "2026-08-27T14:55:50.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/27/https-www-pv-magazine-com-2026-08-27-solarwindow-launches-flexible-self-adhesive-solar-film/",
-      "source": "pv magazine",
-      "title": "SolarWindow launches 0.85 mm-thick, self-adhesive solar film",
-      "url": "https://www.pv-magazine.com/2026/08/27/https-www-pv-magazine-com-2026-08-27-solarwindow-launches-flexible-self-adhesive-solar-film/",
+      "t": "2026-08-28T01:46:21.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ausconnex-starts-construction-on-au65-million-community-battery-programme-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Ausconnex starts construction on AU$65 million community battery programme in Australia",
+      "url": "https://www.energy-storage.news/ausconnex-starts-construction-on-au65-million-community-battery-programme-in-australia/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "SolarWindow has launched ElectroFlex, an ultra-thin, flexible, self-adhesive solar product for flat and curved surfaces. The new product features 24.4% cell efficiency and targets transportation, aerospace, buildings and other weight-sensitive applications. The post SolarWindow launches 0.85 mm-thick, self-adhesive…"
+      "summary": "Ausconnex has begun construction on the first of eight community BESS planned across Greater Western Sydney, Australia."
+    },
+    {
+      "t": "2026-08-28T03:22:11.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/octopus-australia-submits-4-8gwh-hanworth-battery-project-for-epbc-act-approval/",
+      "source": "Energy-Storage.news",
+      "title": "Octopus Australia submits 4.8GWh Hanworth Battery Project for EPBC Act approval",
+      "url": "https://www.energy-storage.news/octopus-australia-submits-4-8gwh-hanworth-battery-project-for-epbc-act-approval/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Octopus Australia, via its development partner Enervest, has submitted a 1.2GW/4.8GWh BESS for assessment under Australia's EPBC Act."
+    },
+    {
+      "t": "2026-08-28T05:34:25.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/interim-reports-of-catl-eve-rept-and-other-listed-chinese-bess-players-leaders-see-steady-earnings-growth-second-tier-returns-to-profitability/",
+      "source": "Energy-Storage.news",
+      "title": "Interim reports of CATL, EVE, REPT and other listed Chinese BESS players: Leaders see steady earnings growth, second‑tier returns to profitability",
+      "url": "https://www.energy-storage.news/interim-reports-of-catl-eve-rept-and-other-listed-chinese-bess-players-leaders-see-steady-earnings-growth-second-tier-returns-to-profitability/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "China’s listed battery storage companies have entered the peak interim reporting season, with H1 2026 likely marking the broadest profit recovery in recent years."
+    },
+    {
+      "t": "2026-08-28T07:45:03.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/solvent-free-perovskite-silicon-tandem-solar-cell-achieves-27-3-efficiency/",
+      "source": "pv magazine",
+      "title": "Solvent-free perovskite-silicon tandem solar cell achieves 27.3% efficiency",
+      "url": "https://www.pv-magazine.com/2026/08/28/solvent-free-perovskite-silicon-tandem-solar-cell-achieves-27-3-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "German researchers have developed a fully solvent-free perovskite-silicon tandem solar cell using sequential evaporation, achieving a power conversion efficiency of 27.1%. The scalable approach also demonstrated significant stability, retaining 97.06% of its initial efficiency after 6,800 hours of dark storage under…"
+    },
+    {
+      "t": "2026-08-28T08:17:32.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/chinese-pv-industry-brief-leading-pv-manufacturers-report-h1-losses/",
+      "source": "pv magazine",
+      "title": "Chinese PV Industry Brief: Leading solar manufacturers report H1 losses",
+      "url": "https://www.pv-magazine.com/2026/08/28/chinese-pv-industry-brief-leading-pv-manufacturers-report-h1-losses/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Persistent oversupply and low module prices continue to weigh on the profitability of China’s leading PV manufacturers. The post Chinese PV Industry Brief: Leading solar manufacturers report H1 losses appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-28T10:04:23.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/europes-solar-resource-surplus-continues-before-late-august-cloud-shift/",
+      "source": "pv magazine",
+      "title": "Europe’s solar resource surplus continues before late-August cloud shift",
+      "url": "https://www.pv-magazine.com/2026/08/28/europes-solar-resource-surplus-continues-before-late-august-cloud-shift/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that Europe’s solar irradiance averaged 5% above the 2007–2025 norm in August 2026, with nearly three-quarters of the continent seeing above-average levels due to persistent high pressure and clear skies. Conditions shifted later in the month a…"
+    },
+    {
+      "t": "2026-08-28T10:10:33.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/canadas-solar-sector-sees-growing-momentum-across-differing-provincial-markets/",
+      "source": "pv magazine",
+      "title": "Canada’s solar sector sees growing momentum across differing provincial markets",
+      "url": "https://www.pv-magazine.com/2026/08/28/canadas-solar-sector-sees-growing-momentum-across-differing-provincial-markets/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "While Canada’s provinces and territories continue to prioritise solar to different degrees, US tariff uncertainty is reinforcing national-level plans to invest in renewables and more integrated energy infrastructure. The post Canada’s solar sector sees growing momentum across differing provincial markets appeared fi…"
+    },
+    {
+      "t": "2026-08-28T10:50:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/equal-participation-by-both-parents-in-childcare-can-enable-dramatic-advancements-in-womens-careers/",
+      "source": "pv magazine",
+      "title": "‘Equal participation by both parents in childcare can enable dramatic advancements in women’s careers’",
+      "url": "https://www.pv-magazine.com/2026/08/28/equal-participation-by-both-parents-in-childcare-can-enable-dramatic-advancements-in-womens-careers/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This week Women in Solar+ Europe gives voice to Jana Plananska, founder of Switzerland's Jana Plananska Mobility Solutions GmbH. She says Childcare support and flexible working arrangements are essential for attracting and retaining diverse talent, particularly women, while enabling continued career development. Ext…"
+    },
+    {
+      "t": "2026-08-28T11:03:56.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-storage-awards-2026-one-week-left-to-enter-the-industry-leading-celebration-of-excellence/",
+      "source": "Energy-Storage.news",
+      "title": "Energy Storage Awards 2026: One week left to enter the industry-leading celebration of excellence",
+      "url": "https://www.energy-storage.news/energy-storage-awards-2026-one-week-left-to-enter-the-industry-leading-celebration-of-excellence/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Entries for the Energy Storage Awards 2026 close soon, and with it, the last chance to take the stage alongside the industry’s finest, and Special Guest Speaker, Ben Fogle."
+    },
+    {
+      "t": "2026-08-28T11:18:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/wood-mackenzie-raises-latin-america-storage-forecast-to-34-gw-by-2035/",
+      "source": "pv magazine",
+      "title": "Wood Mackenzie raises Latin America storage forecast to 34 GW by 2035",
+      "url": "https://www.pv-magazine.com/2026/08/28/wood-mackenzie-raises-latin-america-storage-forecast-to-34-gw-by-2035/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Wood Mackenzie forecasts Latin America’s energy storage capacity to surge from 2.5 GW in 2025 to 34 GW by 2035, driven by renewable curtailment, grid constraints, auctions, and supportive policies. Chile leads deployment, while Mexico, Brazil, Argentina, and the Dominican Republic are scaling up, though unclear reve…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 41,
+    "items": 40,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
+      "grid": 28,
       "policy": 6,
       "capital": 4,
-      "technology": 4
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -469,7 +459,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 6
       }
     ]
   },
@@ -478,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:ff838ab96d3ae0f959eb62771040d098e46c012a5647ae263c8da924acf8cd3a",
-  "envelopeChecksum": "sha256:c2e6151ea54c15b9497d78f4f81eb9af87ef1354567534150967ebd3ada4b597"
+  "contentChecksum": "sha256:f1df42d63a22f55f9626148c622a2456cd522139765459d7da3947ce00296374",
+  "envelopeChecksum": "sha256:d6fcd2eb2800f949170b71021e3a8cb7c845325e289b6de53c41e078042509cb"
 }
