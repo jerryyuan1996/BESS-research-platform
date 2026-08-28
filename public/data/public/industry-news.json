@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-28T11:29:49.666Z",
+  "fetchedAt": "2026-08-28T22:26:11.636Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-28T11:18:00.000Z",
+    "to": "2026-08-28T14:11:36.000Z",
     "resolution": "event",
     "points": 40
   },
@@ -135,36 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-08-24T14:24:43.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-data-centre-power-goes-distributed-sunrun-signs-vpp-deal-with-google-supplier-voltus/",
-      "source": "Energy-Storage.news",
-      "title": "US data centre power goes distributed: Sunrun signs VPP deal with Google supplier Voltus",
-      "url": "https://www.energy-storage.news/us-data-centre-power-goes-distributed-sunrun-signs-vpp-deal-with-google-supplier-voltus/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Sunrun has agreed with distributed energy resource platform Voltus to support its Bring Your Own Capacity (BYOC) programmes for AI hyperscalers."
-    },
-    {
-      "t": "2026-08-25T05:21:37.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/battery-storage-investors-feeling-the-pinch-as-arbitrage-spreads-narrow-across-australias-nem/",
-      "source": "Energy-Storage.news",
-      "title": "Battery storage investors ‘feeling the pinch’ as arbitrage spreads narrow across Australia’s NEM",
-      "url": "https://www.energy-storage.news/battery-storage-investors-feeling-the-pinch-as-arbitrage-spreads-narrow-across-australias-nem/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS developers who built business cases on assumptions of faster coal plant closures are now absorbing the consequences of that timeline slipping."
-    },
-    {
-      "t": "2026-08-25T08:07:39.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-battery-storage-contracts-shift-from-physical-tolls-toward-commoditised-products/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s battery storage contracts shift from ‘physical tolls’ toward commoditised products",
-      "url": "https://www.energy-storage.news/australias-battery-storage-contracts-shift-from-physical-tolls-toward-commoditised-products/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia's BESS market evolves from physical tolls to commoditised contracts as spreads compress & investor return expectations rise to 14%."
-    },
-    {
       "t": "2026-08-25T08:09:32.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/uk-government-launches-28-million-ultra-long-duration-energy-storage-challenge/",
       "source": "Energy-Storage.news",
@@ -203,16 +173,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Raafe Khan of Camelot Energy Group breaks down financial realities, market contradictions, and other dynamics shaping the energy storage space."
-    },
-    {
-      "t": "2026-08-25T15:35:09.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/new-jersey-seeks-150-mw-of-behind-the-meter-storage-to-support-vpp/828727/",
-      "source": "Utility Dive",
-      "title": "New Jersey seeks 150 MW of behind-the-meter storage to support VPP",
-      "url": "https://www.utilitydive.com/news/new-jersey-seeks-150-mw-of-behind-the-meter-storage-to-support-vpp/828727/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The comparatively modest maximum annual incentive of $200/kW over 10 years reflects the &ldquo;private resilience value of residential energy storage systems,&rdquo; state regulators said."
     },
     {
       "t": "2026-08-26T03:35:34.000Z",
@@ -355,16 +315,6 @@
       "summary": "China’s listed battery storage companies have entered the peak interim reporting season, with H1 2026 likely marking the broadest profit recovery in recent years."
     },
     {
-      "t": "2026-08-28T07:45:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/solvent-free-perovskite-silicon-tandem-solar-cell-achieves-27-3-efficiency/",
-      "source": "pv magazine",
-      "title": "Solvent-free perovskite-silicon tandem solar cell achieves 27.3% efficiency",
-      "url": "https://www.pv-magazine.com/2026/08/28/solvent-free-perovskite-silicon-tandem-solar-cell-achieves-27-3-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "German researchers have developed a fully solvent-free perovskite-silicon tandem solar cell using sequential evaporation, achieving a power conversion efficiency of 27.1%. The scalable approach also demonstrated significant stability, retaining 97.06% of its initial efficiency after 6,800 hours of dark storage under…"
-    },
-    {
       "t": "2026-08-28T08:17:32.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/chinese-pv-industry-brief-leading-pv-manufacturers-report-h1-losses/",
       "source": "pv magazine",
@@ -395,16 +345,6 @@
       "summary": "While Canada’s provinces and territories continue to prioritise solar to different degrees, US tariff uncertainty is reinforcing national-level plans to invest in renewables and more integrated energy infrastructure. The post Canada’s solar sector sees growing momentum across differing provincial markets appeared fi…"
     },
     {
-      "t": "2026-08-28T10:50:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/equal-participation-by-both-parents-in-childcare-can-enable-dramatic-advancements-in-womens-careers/",
-      "source": "pv magazine",
-      "title": "‘Equal participation by both parents in childcare can enable dramatic advancements in women’s careers’",
-      "url": "https://www.pv-magazine.com/2026/08/28/equal-participation-by-both-parents-in-childcare-can-enable-dramatic-advancements-in-womens-careers/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "This week Women in Solar+ Europe gives voice to Jana Plananska, founder of Switzerland's Jana Plananska Mobility Solutions GmbH. She says Childcare support and flexible working arrangements are essential for attracting and retaining diverse talent, particularly women, while enabling continued career development. Ext…"
-    },
-    {
       "t": "2026-08-28T11:03:56.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/energy-storage-awards-2026-one-week-left-to-enter-the-industry-leading-celebration-of-excellence/",
       "source": "Energy-Storage.news",
@@ -423,6 +363,66 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Wood Mackenzie forecasts Latin America’s energy storage capacity to surge from 2.5 GW in 2025 to 34 GW by 2035, driven by renewable curtailment, grid constraints, auctions, and supportive policies. Chile leads deployment, while Mexico, Brazil, Argentina, and the Dominican Republic are scaling up, though unclear reve…"
+    },
+    {
+      "t": "2026-08-28T12:55:54.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-hot-takes-analysis-and-unofficial-news-from-across-the-sector/",
+      "source": "Energy-Storage.news",
+      "title": "BESS Industry Buzz: hot takes, analysis and unofficial news from across the sector",
+      "url": "https://www.energy-storage.news/bess-industry-buzz-hot-takes-analysis-and-unofficial-news-from-across-the-sector/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A roundup of some of the best user-posted views, analysis and reveals from across the energy storage community in the past week."
+    },
+    {
+      "t": "2026-08-28T13:08:33.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/mobile-bess-provider-nomad-begins-life-under-new-ownership-with-us-doe-approval-of-vermont-pilot/",
+      "source": "Energy-Storage.news",
+      "title": "Mobile BESS provider Nomad begins life under new ownership with US DOE approval of Vermont pilot",
+      "url": "https://www.energy-storage.news/mobile-bess-provider-nomad-begins-life-under-new-ownership-with-us-doe-approval-of-vermont-pilot/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Nomad Power Solutions has announced that the US Department of Energy (DOE) Office of Electricity has authorised the advancement of an energy storage demonstration project in Vermont."
+    },
+    {
+      "t": "2026-08-28T13:12:20.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ontario-municipality-rejects-bedrock-energys-canada-compressed-air-energy-storage-project-rejected/",
+      "source": "Energy-Storage.news",
+      "title": "Ontario municipality rejects Bedrock Energy’s Canada compressed air energy storage project",
+      "url": "https://www.energy-storage.news/ontario-municipality-rejects-bedrock-energys-canada-compressed-air-energy-storage-project-rejected/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Geothermal energy company Bedrock Energy has had its proposed compressed air energy storage (CAES) project in Huron County, Ontario, Canada rejected."
+    },
+    {
+      "t": "2026-08-28T13:25:26.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/the-hydrogen-stream-africas-first-full-stack-pv-driven-hydrogen-hub-powers-up-in-namibia/",
+      "source": "pv magazine",
+      "title": "The Hydrogen Stream: Africa’s first PV-driven hydrogen hub powers up",
+      "url": "https://www.pv-magazine.com/2026/08/28/the-hydrogen-stream-africas-first-full-stack-pv-driven-hydrogen-hub-powers-up-in-namibia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Cbm-Tech has launched a green hydrogen hub in Walvis Bay combining 5 MW of solar, a 5 MW PEM electrolyzer and 5.9 MWh of battery storage. The post The Hydrogen Stream: Africa’s first PV-driven hydrogen hub powers up appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-08-28T13:38:09.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/28/investments-in-co-located-solar-plus-storage-reach-25-billion-in-h1-says-bloombergnef/",
+      "source": "pv magazine",
+      "title": "Investments in co-located solar-plus-storage reach $25 billion in H1, says BloombergNEF",
+      "url": "https://www.pv-magazine.com/2026/08/28/investments-in-co-located-solar-plus-storage-reach-25-billion-in-h1-says-bloombergnef/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Global renewable energy investment reached $327.5 billion in the first half of 2026, as capital shifted toward solar-plus-storage projects amid growing revenue uncertainty. US investment surged ahead of tax credit deadlines, while weaker activity in China and offshore wind weighed on the global outlook. The post Inv…"
+    },
+    {
+      "t": "2026-08-28T14:11:36.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ohio-ratepayer-advocate-ferc-local-transmission/829066/",
+      "source": "Utility Dive",
+      "title": "Ohio ratepayer advocate urges FERC to resolve 3-year-old local transmission complaint",
+      "url": "https://www.utilitydive.com/news/ohio-ratepayer-advocate-ferc-local-transmission/829066/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Since the complaint was filed, FirstEnergy, AEP and other Ohio utilities have planned more than $4.3 billion in local transmission without adequate oversight, the Office of the Ohio Consumers' Counsel said."
     }
   ],
   "derived": {
@@ -432,8 +432,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 28,
-      "policy": 6,
-      "capital": 4,
+      "policy": 7,
+      "capital": 3,
       "technology": 2
     },
     "sourceStatus": [
@@ -468,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f1df42d63a22f55f9626148c622a2456cd522139765459d7da3947ce00296374",
-  "envelopeChecksum": "sha256:d6fcd2eb2800f949170b71021e3a8cb7c845325e289b6de53c41e078042509cb"
+  "contentChecksum": "sha256:f84e5b28401b8ce8c68241b26d8ecacc3d19dfce3a0fc74bc3a2910a5c1c9ed7",
+  "envelopeChecksum": "sha256:bea18d570f7255e96bc087c4402132abf011887c92bba1ae0039c27814586f9e"
 }
