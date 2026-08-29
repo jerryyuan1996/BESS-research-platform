@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-28T22:26:11.636Z",
+  "fetchedAt": "2026-08-29T07:09:39.602Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-28T14:11:36.000Z",
+    "to": "2026-08-29T04:00:00.000Z",
     "resolution": "event",
-    "points": 40
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -423,15 +423,25 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Since the complaint was filed, FirstEnergy, AEP and other Ohio utilities have planned more than $4.3 billion in local transmission without adequate oversight, the Office of the Ohio Consumers' Counsel said."
+    },
+    {
+      "t": "2026-08-29T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/08/29/chiles-hybrid-heroics/",
+      "source": "pv magazine",
+      "title": "Chile’s hybrid heroics",
+      "url": "https://www.pv-magazine.com/2026/08/29/chiles-hybrid-heroics/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In 2024, Chile passed a law incentivizing battery development paired with utility-scale solar. This move quickly led to a flood of big battery project announcements, as the capacity payments model combined with arbitrage revenue means hybrid solar and storage is very profitable. By the end of 2026, Chile is expected…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 40,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 28,
+      "grid": 29,
       "policy": 7,
       "capital": 3,
       "technology": 2
@@ -459,7 +469,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 7
       }
     ]
   },
@@ -468,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f84e5b28401b8ce8c68241b26d8ecacc3d19dfce3a0fc74bc3a2910a5c1c9ed7",
-  "envelopeChecksum": "sha256:bea18d570f7255e96bc087c4402132abf011887c92bba1ae0039c27814586f9e"
+  "contentChecksum": "sha256:e5844130b1e04e8b9c3212fc14b1ae6d55f9d81bc40bd2f6762da8b3c0e1d6f1",
+  "envelopeChecksum": "sha256:6819b3ce359119a18b927af0de3475c68424b5f7a6dacef90aa91190342cb4e9"
 }
