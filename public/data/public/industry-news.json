@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-08-31T22:54:15.124Z",
+  "fetchedAt": "2026-09-01T05:17:11.443Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-08-31T15:30:00.000Z",
+    "to": "2026-09-01T04:00:00.000Z",
     "resolution": "event",
     "points": 46
   },
@@ -325,16 +325,6 @@
       "summary": "CIP has acquired full ownership of the 104MW Gawara Baya wind-plus-storage project in North Queensland, Australia, from developer Windlab."
     },
     {
-      "t": "2026-08-31T06:20:30.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/intersolar-2026-armazenamento-traz-novo-animo-para-o-setor-em-ano-de-desaceleracao-solar/",
-      "source": "pv magazine",
-      "title": "Brazil’s Intersolar SA 2026 highlights storage momentum amid solar slowdown",
-      "url": "https://www.pv-magazine.com/2026/08/31/intersolar-2026-armazenamento-traz-novo-animo-para-o-setor-em-ano-de-desaceleracao-solar/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Energy storage is emerging as one of the key growth areas for Brazil’s solar industry. Manufacturers are expanding their battery portfolios and seeking local partnerships to meet domestic content requirements for the country’s first storage auction. At the same time, slowing growth in solar generation is putting pre…"
-    },
-    {
       "t": "2026-08-31T08:23:26.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/denmark-adds-337-mw-of-solar-in-h1/",
       "source": "pv magazine",
@@ -483,6 +473,16 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "China’s emerging renewable energy real estate investment trust (REIT) market could give developers a new way to recycle capital from operating solar assets into the next generation of projects. The post Can REITs become a capital-recycling engine for renewables? appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-01T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/shipping-gigawatt-hours-of-battery-storage/",
+      "source": "pv magazine",
+      "title": "Shipping gigawatt-hours of battery storage",
+      "url": "https://www.pv-magazine.com/2026/09/01/shipping-gigawatt-hours-of-battery-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BW ESS has broken ground at the 5.7 GWh Klostermansfeld battery energy storage system (BESS), making a splash in the German market and building on utility-scale BESS experience gained in the United Kingdom. Now the company is targeting a 20-fold increase in deployed energy storage capacity, while expanding in more m…"
     }
   ],
   "derived": {
@@ -491,8 +491,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 34,
-      "policy": 6,
+      "grid": 35,
+      "policy": 5,
       "capital": 4,
       "technology": 2
     },
@@ -528,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:836cb6e648b9d62cb4bfb37fddbb20c0d67c348ac2d481e7374a936c342c240b",
-  "envelopeChecksum": "sha256:57f3d4b33054f55e9e02be6495a2b639b6e1a4d1d6119bb09bf96aeacc149c0d"
+  "contentChecksum": "sha256:40f3b81b104f4bca97b165bba900a75286e2139e453b8ef1160f4fbac313ae7f",
+  "envelopeChecksum": "sha256:7ed10aff517212231e4e3e0d6688ef1c28cd24c1bd5a91d9254be2f0813855d4"
 }
