@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-01T05:17:11.443Z",
+  "fetchedAt": "2026-09-01T11:44:49.611Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-01T04:00:00.000Z",
+    "to": "2026-09-01T11:39:59.000Z",
     "resolution": "event",
-    "points": 46
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -133,36 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-08-26T10:16:12.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/saudi-power-procurement-company-awards-2gw-8gwh-battery-storage-contracts/",
-      "source": "Energy-Storage.news",
-      "title": "Saudi Power Procurement Company awards 2GW/8GWh of battery storage contracts",
-      "url": "https://www.energy-storage.news/saudi-power-procurement-company-awards-2gw-8gwh-battery-storage-contracts/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Saudi Arabia’s Principal Buyer of electricity has awarded four service contracts for large-scale battery storage projects to consortia featuring ACWA Power and Engie."
-    },
-    {
-      "t": "2026-08-26T10:26:17.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-bess-roundup-alpiq-buys-from-eco-stor-catl-backed-cnte-supplies-units-terralayrs-vattenfall-toll-online/",
-      "source": "Energy-Storage.news",
-      "title": "Germany BESS ROUNDUP: Alpiq buys from Eco Stor, CATL-backed CNTE supplies units, Terralayr’s Vattenfall toll online",
-      "url": "https://www.energy-storage.news/germany-bess-roundup-alpiq-buys-from-eco-stor-catl-backed-cnte-supplies-units-terralayrs-vattenfall-toll-online/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A trio of BESS updates in Germany from power firm Alpiq, CATL-backed system integrator CNTE and virtual tolling platform Terralayr, totalling around 260MW of operational capacity."
-    },
-    {
-      "t": "2026-08-26T10:33:08.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ford-energys-grid-scale-bess-product-an-analysis/",
-      "source": "Energy-Storage.news",
-      "title": "Ford Energy’s grid-scale BESS product: an analysis",
-      "url": "https://www.energy-storage.news/ford-energys-grid-scale-bess-product-an-analysis/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In May, US automotive group Ford made the surprise announcement that it was launching a BESS product via new division Ford Energy. In this deep dive article, we look at its product's specifications and how they compare to other existing solutions."
     },
     {
       "t": "2026-08-26T11:05:49.000Z",
@@ -325,26 +295,6 @@
       "summary": "CIP has acquired full ownership of the 104MW Gawara Baya wind-plus-storage project in North Queensland, Australia, from developer Windlab."
     },
     {
-      "t": "2026-08-31T08:23:26.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/denmark-adds-337-mw-of-solar-in-h1/",
-      "source": "pv magazine",
-      "title": "Denmark adds 337 MW of solar in H1",
-      "url": "https://www.pv-magazine.com/2026/08/31/denmark-adds-337-mw-of-solar-in-h1/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Denmark installed more solar during the first half of 2026 than it did during the first half of 2025, with market growth currently driven by larger-scale projects. The post Denmark adds 337 MW of solar in H1 appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-31T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/journey-ahead-ja-roadshow-2026-to-spotlight-integrated-energy-solutions/",
-      "source": "pv magazine",
-      "title": "Journey Ahead: JA Roadshow 2026 to spotlight integrated energy solutions",
-      "url": "https://www.pv-magazine.com/2026/08/31/journey-ahead-ja-roadshow-2026-to-spotlight-integrated-energy-solutions/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "As energy resilience rises on the agenda across Europe, JA’s first roadshow, Journey Ahead: JA Roadshow 2026, will bring the company's expanding PV and energy storage portfolio directly to customers, demonstrating how integrated technologies can support greater grid resilience and meet evolving energy needs. The pos…"
-    },
-    {
       "t": "2026-08-31T09:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/spons/the-rules-of-data-center-development-are-evolving-is-your-strategy-1/828795/",
       "source": "Utility Dive",
@@ -355,26 +305,6 @@
       "summary": "Data center capacity continues to expand."
     },
     {
-      "t": "2026-08-31T10:30:35.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/chinese-pv-industry-brief-another-5-major-solar-manufacturers-announce-h1-losses/",
-      "source": "pv magazine",
-      "title": "Chinese PV Industry Brief: Another 5 major solar manufacturers announce H1 losses",
-      "url": "https://www.pv-magazine.com/2026/08/31/chinese-pv-industry-brief-another-5-major-solar-manufacturers-announce-h1-losses/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Longi, TCL Zhonghuan, GCL Technology, Daqo and Xinte Energy remained in the red, despite signs of operational stabilization. The post Chinese PV Industry Brief: Another 5 major solar manufacturers announce H1 losses appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-08-31T11:01:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/india-adds-6-6-gw-of-rooftop-solar-in-h1-2026/",
-      "source": "pv magazine",
-      "title": "India adds 6.6 GW of rooftop solar in H1",
-      "url": "https://www.pv-magazine.com/2026/08/31/india-adds-6-6-gw-of-rooftop-solar-in-h1-2026/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Q2 installations reached 3.8 GW, up 41% quarter-on-quarter and 136% year-on-year The post India adds 6.6 GW of rooftop solar in H1 appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-08-31T11:07:10.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/catl-targets-opportunities-in-brazils-capacity-reserve-auction-as-regulator-receives-nearly-300gw-of-bids/",
       "source": "Energy-Storage.news",
@@ -383,16 +313,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "CATL has formed a partnership to work on projects awarded contracts through Brazil’s first national energy storage auction programme, which received more than 6,000 bids."
-    },
-    {
-      "t": "2026-08-31T12:18:28.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/storing-renewables-with-firebrick-thermal-batteries/",
-      "source": "pv magazine",
-      "title": "Storing renewables with firebrick thermal batteries",
-      "url": "https://www.pv-magazine.com/2026/08/31/storing-renewables-with-firebrick-thermal-batteries/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Electrified Thermal Solutions is developing a firebrick-based thermal battery that converts low-cost electricity into high-temperature heat for energy-intensive industries. The technology could pair with solar and wind to absorb surplus generation and deliver round-the-clock industrial heat at costs competitive with…"
     },
     {
       "t": "2026-08-31T13:20:51.000Z",
@@ -415,16 +335,6 @@
       "summary": "Rural and distributed battery energy storage system (BESS) projects could be emerging as critical infrastructure in the US as grid reliability risks intensify nationwide."
     },
     {
-      "t": "2026-08-31T13:54:18.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/u-s-startup-exceeds-10-solar-to-hydrogen-efficiency-with-100-cm%c2%b2-module/",
-      "source": "pv magazine",
-      "title": "U.S. startup exceeds 10% solar-to-hydrogen efficiency with 100 cm² module",
-      "url": "https://www.pv-magazine.com/2026/08/31/u-s-startup-exceeds-10-solar-to-hydrogen-efficiency-with-100-cm%c2%b2-module/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "SunHydrogen has achieved solar-to-hydrogen conversion efficiencies above 10% with its 100 cm² modules in tests at Sparc Hydrogen’s laboratories. The U.S. company is now targeting efficiencies approaching 15% while working to scale the technology to larger, manufacturable modules. The post U.S. startup exceeds 10% so…"
-    },
-    {
       "t": "2026-08-31T13:55:45.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/trump-cites-unusual-and-extraordinary-threat-in-executive-order-banning-inverter-bess-transformer-imports/",
       "source": "Energy-Storage.news",
@@ -433,26 +343,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "US President Donald Trump has banned the import of inverters, transformers and other power equipment that pose a potential risk to US grid security."
-    },
-    {
-      "t": "2026-08-31T14:21:53.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/el-mercado-mundial-de-om-solar-alcanza-348-gw-y-acelera-su-concentracion/",
-      "source": "pv magazine",
-      "title": "Global solar O&M market reaches 348 GW as consolidation accelerates",
-      "url": "https://www.pv-magazine.com/2026/08/31/el-mercado-mundial-de-om-solar-alcanza-348-gw-y-acelera-su-concentracion/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The global solar PV O&M market reached 348 GW in 2025, with the 15 largest providers controlling 57% of managed capacity as consolidation accelerated. NovaSource remained the global leader, while rapid portfolio growth reshaped provider rankings and regional markets. The post Global solar O&M market reaches 348 GW a…"
-    },
-    {
-      "t": "2026-08-31T14:35:49.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/austrian-startup-offers-hybrid-pv-wind-system-for-off-grid-applications/",
-      "source": "pv magazine",
-      "title": "Austrian startup offers hybrid PV-wind system for off-grid applications",
-      "url": "https://www.pv-magazine.com/2026/08/31/austrian-startup-offers-hybrid-pv-wind-system-for-off-grid-applications/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Novventos Clean Energy has developed a container-based hybrid system combining modular photovoltaics with small vertical-axis wind turbines for off-grid and temporary applications. The post Austrian startup offers hybrid PV-wind system for off-grid applications appeared first on pv magazine Global ."
     },
     {
       "t": "2026-08-31T14:38:56.000Z",
@@ -465,35 +355,135 @@
       "summary": "The state alleges the Trump administration &ldquo;abuses its authority&rdquo; by diminishing the value of offshore wind energy leases before it makes an &ldquo;unrefusable offer&rdquo; to developers."
     },
     {
-      "t": "2026-08-31T15:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/08/31/can-reits-become-a-capital-recycling-engine-for-renewables/",
+      "t": "2026-09-01T07:29:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/japan-to-exclude-silicon-solar-from-new-subsidies-prioritize-perovskite/",
       "source": "pv magazine",
-      "title": "Can REITs become a capital-recycling engine for renewables?",
-      "url": "https://www.pv-magazine.com/2026/08/31/can-reits-become-a-capital-recycling-engine-for-renewables/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "China’s emerging renewable energy real estate investment trust (REIT) market could give developers a new way to recycle capital from operating solar assets into the next generation of projects. The post Can REITs become a capital-recycling engine for renewables? appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-01T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/shipping-gigawatt-hours-of-battery-storage/",
-      "source": "pv magazine",
-      "title": "Shipping gigawatt-hours of battery storage",
-      "url": "https://www.pv-magazine.com/2026/09/01/shipping-gigawatt-hours-of-battery-storage/",
+      "title": "Japan to exclude silicon solar from new subsidies, prioritize perovskite",
+      "url": "https://www.pv-magazine.com/2026/09/01/japan-to-exclude-silicon-solar-from-new-subsidies-prioritize-perovskite/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "BW ESS has broken ground at the 5.7 GWh Klostermansfeld battery energy storage system (BESS), making a splash in the German market and building on utility-scale BESS experience gained in the United Kingdom. Now the company is targeting a 20-fold increase in deployed energy storage capacity, while expanding in more m…"
+      "summary": "Japan's Ministry of the Environment (MOE) plans to exclude conventional silicon solar panels from newly implemented subsidy programs beginning in fiscal 2027, while prioritizing perovskite and other next-generation solar technologies. The post Japan to exclude silicon solar from new subsidies, prioritize perovskite…"
+    },
+    {
+      "t": "2026-09-01T07:35:36.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/mexicos-cfe-plans-to-deploy-5-4-gw-of-solar-by-2030/",
+      "source": "pv magazine",
+      "title": "Mexico’s CFE plans to deploy 5.4 GW of solar by 2030",
+      "url": "https://www.pv-magazine.com/2026/09/01/mexicos-cfe-plans-to-deploy-5-4-gw-of-solar-by-2030/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Mexico’s CFE plans MXN 651 billion ($32.9 billion) of investment through 2030, including 18.6 GW of new generation capacity, 82% of which it classifies as renewable. The program includes 5.48 GW of identified solar projects and mentions battery storage, although it sets no specific storage capacity or investment tar…"
+    },
+    {
+      "t": "2026-09-01T08:44:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/philippines-to-develop-pv-exemption-areas/",
+      "source": "pv magazine",
+      "title": "Philippines to develop PV exemption areas",
+      "url": "https://www.pv-magazine.com/2026/09/01/philippines-to-develop-pv-exemption-areas/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Government officials in the Philippines are working to set boundaries between which lands can be used for solar projects and which should remain reserved for food production. The post Philippines to develop PV exemption areas appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-01T09:42:20.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/return-financial-close-vattenfall-toll-800mwh-dutch-netherlands-battery-storage/",
+      "source": "Energy-Storage.news",
+      "title": "Return secures financial close, Vattenfall toll for 800MWh Dutch battery",
+      "url": "https://www.energy-storage.news/return-financial-close-vattenfall-toll-800mwh-dutch-netherlands-battery-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BESS owner-operator Return has signed a long-term toll with power firm Vattenfall for its 200MW/800MWh Sirius BESS project in the Netherlands, concurrent with financial close."
+    },
+    {
+      "t": "2026-09-01T09:52:34.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/new-research-confirms-negligible-letid-degradation-in-topcon-solar-cells/",
+      "source": "pv magazine",
+      "title": "New research confirms negligible LeTID degradation in TOPCon solar cells",
+      "url": "https://www.pv-magazine.com/2026/09/01/new-research-confirms-negligible-letid-degradation-in-topcon-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US researchers have found that light- and elevated-temperature-induced degradation (LeTID) has a limited impact on n-type TOPCon solar cells compared with earlier p-type PERC technology. Optimized firing conditions and laser-enhanced contact optimization (LECO) can further suppress degradation, with industrial TOPCo…"
+    },
+    {
+      "t": "2026-09-01T10:04:15.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/atw-unveils-screen-printing-solution-for-copper-metallized-solar-cell/",
+      "source": "pv magazine",
+      "title": "ATW unveils screen-printing solution for copper-metallized solar cell",
+      "url": "https://www.pv-magazine.com/2026/09/01/atw-unveils-screen-printing-solution-for-copper-metallized-solar-cell/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "China’s Wuxi Autowell Technology has launched screen-printing equipment for copper and silver-coated copper pastes targeting TOPCon, back-contact, and next-generation solar cells. The product line includes cell-printing and print-on-print systems, as well as a curing furnace designed to prevent copper oxidation. The…"
+    },
+    {
+      "t": "2026-09-01T10:17:36.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/indias-solar-module-capacity-outpaces-demand-leaving-factories-running-at-just-35-40-utilization/",
+      "source": "pv magazine",
+      "title": "India’s solar module overcapacity pushes factory utilization to 35–40%",
+      "url": "https://www.pv-magazine.com/2026/09/01/indias-solar-module-capacity-outpaces-demand-leaving-factories-running-at-just-35-40-utilization/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India’s solar module manufacturing capacity has surged to 233 GW, outpacing domestic demand and pushing factory utilization down to 35–40%. A new IEEFA-JMK Research report warns that continued capacity additions could intensify pressure on margins and increase the risk of stranded assets. The post India’s solar modu…"
+    },
+    {
+      "t": "2026-09-01T10:41:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/ukraine-auctions-150-mw-of-solar/",
+      "source": "pv magazine",
+      "title": "Ukraine auctions 150 MW of solar",
+      "url": "https://www.pv-magazine.com/2026/09/01/ukraine-auctions-150-mw-of-solar/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Ukraine will host two auctions, one for 50 MW of solar and another for 100 MW of solar-plus-storage, on September 25. The post Ukraine auctions 150 MW of solar appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-01T10:50:42.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/una-startup-estadounidense-desarrolla-drones-para-modificar-nubes-y-aumentar-hasta-un-30-la-produccion-de-plantas-fotovoltaicas/",
+      "source": "pv magazine",
+      "title": "US startup develops drones to modify clouds, boost PV plant output by up to 30%",
+      "url": "https://www.pv-magazine.com/2026/09/01/una-startup-estadounidense-desarrolla-drones-para-modificar-nubes-y-aumentar-hasta-un-30-la-produccion-de-plantas-fotovoltaicas/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US startup Meteoric Technologies is developing autonomous drones designed to modify clouds and increase solar radiation reaching PV plants. The company claims the technology could boost annual PV generation by 10% to 30%. The post US startup develops drones to modify clouds, boost PV plant output by up to 30% appear…"
+    },
+    {
+      "t": "2026-09-01T10:58:09.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-utility-scale-battery-energy-storage-capacity-almost-doubled-during-first-18-months-of-trumps-second-term/",
+      "source": "Energy-Storage.news",
+      "title": "US utility-scale battery energy storage capacity almost doubled during first 18 months of Trump’s second term",
+      "url": "https://www.energy-storage.news/us-utility-scale-battery-energy-storage-capacity-almost-doubled-during-first-18-months-of-trumps-second-term/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The US energy storage industry broke deployment records in Q2 2026 in gigawatt-hour (GWh) terms, underpinned by growth in the utility-scale segment."
+    },
+    {
+      "t": "2026-09-01T11:16:15.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-energy-storage-market-bw-ess-challenge-grid-regulatory-clarity-keep-pace-market/",
+      "source": "Energy-Storage.news",
+      "title": "‘Challenge for grid and regulatory clarity to keep pace with market’: BW ESS on Germany",
+      "url": "https://www.energy-storage.news/germany-energy-storage-market-bw-ess-challenge-grid-regulatory-clarity-keep-pace-market/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "We hear from Nikhil Koppaka, senior commercial manager for BESS owner-operator BW ESS on the big opportunities and challenges in Germany's grid-scale energy storage market."
+    },
+    {
+      "t": "2026-09-01T11:39:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/el-aumento-de-los-precios-negativos-redefine-las-senales-de-mercado-para-la-solar-el-almacenamiento-y-los-ppas-en-europa/",
+      "source": "pv magazine",
+      "title": "Negative prices reshape Europe’s solar, storage and PPA markets",
+      "url": "https://www.pv-magazine.com/2026/09/01/el-aumento-de-los-precios-negativos-redefine-las-senales-de-mercado-para-la-solar-el-almacenamiento-y-los-ppas-en-europa/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "According to S&P Global, rising negative electricity prices are reshaping solar, storage and PPAs across Europe. Wider price spreads are strengthening the case for batteries and more structured renewable energy ontracts. The post Negative prices reshape Europe’s solar, storage and PPA markets appeared first on pv ma…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 46,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 35,
-      "policy": 5,
-      "capital": 4,
+      "grid": 34,
+      "policy": 6,
+      "capital": 3,
       "technology": 2
     },
     "sourceStatus": [
@@ -519,7 +509,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 10
+        "items": 9
       }
     ]
   },
@@ -528,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:40f3b81b104f4bca97b165bba900a75286e2139e453b8ef1160f4fbac313ae7f",
-  "envelopeChecksum": "sha256:7ed10aff517212231e4e3e0d6688ef1c28cd24c1bd5a91d9254be2f0813855d4"
+  "contentChecksum": "sha256:ed0272d9aa12506a4db19faaaeedd87502112488744d4ecf35f9070976ac82c0",
+  "envelopeChecksum": "sha256:14d00a3b09cfd70363771105ce58e21c7ef95c841baa7a72b8499c8b76f1ac4b"
 }
