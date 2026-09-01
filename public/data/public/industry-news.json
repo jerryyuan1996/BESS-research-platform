@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-01T11:44:49.611Z",
+  "fetchedAt": "2026-09-01T16:43:35.441Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-01T11:39:59.000Z",
+    "to": "2026-09-01T15:08:20.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -135,16 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-08-26T11:05:49.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-tech-roundup-software-tie-ins-and-technology-partnerships-gas-bess-hybrids-bring-speed-to-power/",
-      "source": "Energy-Storage.news",
-      "title": "US TECH ROUNDUP: Software tie-ins and technology partnerships, gas-BESS hybrids bring speed-to-power",
-      "url": "https://www.energy-storage.news/us-tech-roundup-software-tie-ins-and-technology-partnerships-gas-bess-hybrids-bring-speed-to-power/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "In this news roundup, Eos and WATTMORE; Gotion and Gamma Technologies; Middle River Power and PowerTransitions; and Electra AI and MinTech are advancing battery energy storage system (BESS) technology in the US."
-    },
-    {
       "t": "2026-08-27T02:44:45.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/reliability-outlook-improves-but-australias-nem-still-needs-system-security-investment-aemo-finds/",
       "source": "Energy-Storage.news",
@@ -183,16 +173,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A total of 18GWh of large-scale BESS capacity came online in July 2026, of which China accounted for 70%."
-    },
-    {
-      "t": "2026-08-27T14:38:51.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/duke-energy-florida-psc-large-load-rate/828951/",
-      "source": "Utility Dive",
-      "title": "Duke Energy Florida asks to punt on rate for large load customers",
-      "url": "https://www.utilitydive.com/news/duke-energy-florida-psc-large-load-rate/828951/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Duke Energy Florida&rsquo;s proposal &ldquo;doesn't attempt to comply with the most basic provisions&rdquo; of Florida&rsquo;s new data center law, the state&rsquo;s public counsel, Walt Trierweiler, said at a hearing."
     },
     {
       "t": "2026-08-28T01:46:21.000Z",
@@ -355,36 +335,6 @@
       "summary": "The state alleges the Trump administration &ldquo;abuses its authority&rdquo; by diminishing the value of offshore wind energy leases before it makes an &ldquo;unrefusable offer&rdquo; to developers."
     },
     {
-      "t": "2026-09-01T07:29:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/japan-to-exclude-silicon-solar-from-new-subsidies-prioritize-perovskite/",
-      "source": "pv magazine",
-      "title": "Japan to exclude silicon solar from new subsidies, prioritize perovskite",
-      "url": "https://www.pv-magazine.com/2026/09/01/japan-to-exclude-silicon-solar-from-new-subsidies-prioritize-perovskite/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Japan's Ministry of the Environment (MOE) plans to exclude conventional silicon solar panels from newly implemented subsidy programs beginning in fiscal 2027, while prioritizing perovskite and other next-generation solar technologies. The post Japan to exclude silicon solar from new subsidies, prioritize perovskite…"
-    },
-    {
-      "t": "2026-09-01T07:35:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/mexicos-cfe-plans-to-deploy-5-4-gw-of-solar-by-2030/",
-      "source": "pv magazine",
-      "title": "Mexico’s CFE plans to deploy 5.4 GW of solar by 2030",
-      "url": "https://www.pv-magazine.com/2026/09/01/mexicos-cfe-plans-to-deploy-5-4-gw-of-solar-by-2030/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Mexico’s CFE plans MXN 651 billion ($32.9 billion) of investment through 2030, including 18.6 GW of new generation capacity, 82% of which it classifies as renewable. The program includes 5.48 GW of identified solar projects and mentions battery storage, although it sets no specific storage capacity or investment tar…"
-    },
-    {
-      "t": "2026-09-01T08:44:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/philippines-to-develop-pv-exemption-areas/",
-      "source": "pv magazine",
-      "title": "Philippines to develop PV exemption areas",
-      "url": "https://www.pv-magazine.com/2026/09/01/philippines-to-develop-pv-exemption-areas/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Government officials in the Philippines are working to set boundaries between which lands can be used for solar projects and which should remain reserved for food production. The post Philippines to develop PV exemption areas appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-01T09:42:20.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/return-financial-close-vattenfall-toll-800mwh-dutch-netherlands-battery-storage/",
       "source": "Energy-Storage.news",
@@ -393,16 +343,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "BESS owner-operator Return has signed a long-term toll with power firm Vattenfall for its 200MW/800MWh Sirius BESS project in the Netherlands, concurrent with financial close."
-    },
-    {
-      "t": "2026-09-01T09:52:34.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/new-research-confirms-negligible-letid-degradation-in-topcon-solar-cells/",
-      "source": "pv magazine",
-      "title": "New research confirms negligible LeTID degradation in TOPCon solar cells",
-      "url": "https://www.pv-magazine.com/2026/09/01/new-research-confirms-negligible-letid-degradation-in-topcon-solar-cells/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US researchers have found that light- and elevated-temperature-induced degradation (LeTID) has a limited impact on n-type TOPCon solar cells compared with earlier p-type PERC technology. Optimized firing conditions and laser-enhanced contact optimization (LECO) can further suppress degradation, with industrial TOPCo…"
     },
     {
       "t": "2026-09-01T10:04:15.000Z",
@@ -473,6 +413,66 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "According to S&P Global, rising negative electricity prices are reshaping solar, storage and PPAs across Europe. Wider price spreads are strengthening the case for batteries and more structured renewable energy ontracts. The post Negative prices reshape Europe’s solar, storage and PPA markets appeared first on pv ma…"
+    },
+    {
+      "t": "2026-09-01T11:48:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/three-years-on-how-much-has-the-eu-batteries-regulation-changed-the-bess-market/",
+      "source": "Energy-Storage.news",
+      "title": "Three years on: how much has the EU Batteries Regulation changed the BESS market?",
+      "url": "https://www.energy-storage.news/three-years-on-how-much-has-the-eu-batteries-regulation-changed-the-bess-market/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Three years after the EU Batteries Regulation (EUBR) entered into force, it is becoming easier to separate regulatory expectations from measurable market impacts, writes patent lawyer Chloe Flower."
+    },
+    {
+      "t": "2026-09-01T12:03:21.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/midsummer-shelves-plans-for-solar-cell-factory-in-sweden/",
+      "source": "pv magazine",
+      "title": "Midsummer shelves plans for solar cell factory in Sweden",
+      "url": "https://www.pv-magazine.com/2026/09/01/midsummer-shelves-plans-for-solar-cell-factory-in-sweden/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The Swedish solar manufacturer says it wants to focus on international expansion with a significantly less capital-intensive business and financing model for new factories. The post Midsummer shelves plans for solar cell factory in Sweden appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-01T13:04:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/clivet-launches-vrf-air-to-air-heat-pumps-with-inverter-free-pv-integration/",
+      "source": "pv magazine",
+      "title": "Clivet launches VRF air-to-air heat pumps with inverter-free PV integration",
+      "url": "https://www.pv-magazine.com/2026/09/01/clivet-launches-vrf-air-to-air-heat-pumps-with-inverter-free-pv-integration/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Clivet’s CVT9 VRF range offers 25.2–45 kW per module and up to 90 kW in two-module configurations. The system reportedly delivers SEER up to 8.58 and SCOP up to 4.93. Integrated PV management enables direct 400–600 V DC solar input without a conventional PV inverter, The post Clivet launches VRF air-to-air heat pump…"
+    },
+    {
+      "t": "2026-09-01T13:39:43.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/worlds-largest-solar-storage-microgrid-goes-online-in-saudi-arabia/",
+      "source": "pv magazine",
+      "title": "World’s largest solar-storage microgrid goes online in Saudi Arabia",
+      "url": "https://www.pv-magazine.com/2026/09/01/worlds-largest-solar-storage-microgrid-goes-online-in-saudi-arabia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Red Sea multi-utility project in Saudi Arabia has reached full commercial operation, bringing a 358 MWac solar plant and 1.2 GWh battery energy storage system into an isolated utility network supplying tourism facilities, desalination, cooling, water treatment and other infrastructure. The post World’s largest s…"
+    },
+    {
+      "t": "2026-09-01T13:48:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/china-restores-2-lithium-ion-battery-tax-after-11-year-exemption/",
+      "source": "pv magazine",
+      "title": "China restores 2% lithium-ion battery tax after 11-year exemption",
+      "url": "https://www.pv-magazine.com/2026/09/01/china-restores-2-lithium-ion-battery-tax-after-11-year-exemption/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "China has begun taxing lithium-ion batteries at 2% from Sept. 1, 2026, ending a decade-long exemption; the rate will rise to 4% in September 2027, while emerging technologies such as sodium-ion and solid-state batteries remain temporarily exempt. The tax applies to cells, packs and battery clusters—not complete BESS…"
+    },
+    {
+      "t": "2026-09-01T15:08:20.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/trump-grid-order-likely-to-cause-energy-storage-delays-cancellations-bloo/829306/",
+      "source": "Utility Dive",
+      "title": "Trump grid order likely to cause energy storage delays, cancellations: BloombergNEF",
+      "url": "https://www.utilitydive.com/news/trump-grid-order-likely-to-cause-energy-storage-delays-cancellations-bloo/829306/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Aug. 26 executive order, previous executive actions and the Treasury Department&rsquo;s Foreign Entity of Concern guidance are likely to hit battery and inverter supply chains particularly hard, an industry analyst tells Utility Dive."
     }
   ],
   "derived": {
@@ -483,8 +483,8 @@
     "byCategory": {
       "grid": 34,
       "policy": 6,
-      "capital": 3,
-      "technology": 2
+      "capital": 4,
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:ed0272d9aa12506a4db19faaaeedd87502112488744d4ecf35f9070976ac82c0",
-  "envelopeChecksum": "sha256:14d00a3b09cfd70363771105ce58e21c7ef95c841baa7a72b8499c8b76f1ac4b"
+  "contentChecksum": "sha256:8075cabcf6985a5626e795630e99776919c502c58230a9decf205ef47b64f68d",
+  "envelopeChecksum": "sha256:ec93cb29a4dd3fa0daab2ee4a9e240f5d7457313e8af21b64103d0dc35785007"
 }
