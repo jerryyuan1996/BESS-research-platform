@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-01T16:43:35.441Z",
+  "fetchedAt": "2026-09-01T21:06:24.438Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-09-01T15:08:20.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -465,6 +465,16 @@
       "summary": "China has begun taxing lithium-ion batteries at 2% from Sept. 1, 2026, ending a decade-long exemption; the rate will rise to 4% in September 2027, while emerging technologies such as sodium-ion and solid-state batteries remain temporarily exempt. The tax applies to cells, packs and battery clusters—not complete BESS…"
     },
     {
+      "t": "2026-09-01T14:36:51.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/wildfire-costs-california-legislature-solar/829295/",
+      "source": "Utility Dive",
+      "title": "Wildfire costs loom over California legislative session that passed solar, data center bills",
+      "url": "https://www.utilitydive.com/news/wildfire-costs-california-legislature-solar/829295/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Legislature&rsquo;s decision not to shield utilities from wildfire liability caused stock prices for Pacific Gas and Electric and Edison International to tumble by 20% and 23%. Bills that passed included proposals on balcony solar and data center rate structures."
+    },
+    {
       "t": "2026-09-01T15:08:20.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/trump-grid-order-likely-to-cause-energy-storage-delays-cancellations-bloo/829306/",
       "source": "Utility Dive",
@@ -477,11 +487,11 @@
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 34,
+      "grid": 35,
       "policy": 6,
       "capital": 4,
       "technology": 1
@@ -503,7 +513,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 5
+        "items": 6
       },
       {
         "source": "pv magazine",
@@ -518,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:8075cabcf6985a5626e795630e99776919c502c58230a9decf205ef47b64f68d",
-  "envelopeChecksum": "sha256:ec93cb29a4dd3fa0daab2ee4a9e240f5d7457313e8af21b64103d0dc35785007"
+  "contentChecksum": "sha256:00a06bbba96ada4a70b40d3e5223631ccffa88b6417644336206d7f37f6dc738",
+  "envelopeChecksum": "sha256:a57b88bd6d4611789e4783b631c0f1e501aa2ab33c1d4a639cfa5e6981509115"
 }
