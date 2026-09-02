@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-01T21:06:24.438Z",
+  "fetchedAt": "2026-09-02T04:42:22.867Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-01T15:08:20.000Z",
+    "to": "2026-09-02T04:32:32.000Z",
     "resolution": "event",
     "points": 46
   },
@@ -133,16 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-08-27T02:44:45.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/reliability-outlook-improves-but-australias-nem-still-needs-system-security-investment-aemo-finds/",
-      "source": "Energy-Storage.news",
-      "title": "Reliability outlook improves, but Australia’s NEM still needs system security investment, AEMO finds",
-      "url": "https://www.energy-storage.news/reliability-outlook-improves-but-australias-nem-still-needs-system-security-investment-aemo-finds/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "AEMO has published its 2026 ESOO, finding a clearer pathway to maintaining a reliable electricity supply across the NEM in the coming decade."
     },
     {
       "t": "2026-08-27T09:49:32.000Z",
@@ -483,6 +473,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The Aug. 26 executive order, previous executive actions and the Treasury Department&rsquo;s Foreign Entity of Concern guidance are likely to hit battery and inverter supply chains particularly hard, an industry analyst tells Utility Dive."
+    },
+    {
+      "t": "2026-09-02T04:32:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/arena-marks-100th-community-battery-installed-funds-three-new-projects-across-australia/",
+      "source": "Energy-Storage.news",
+      "title": "ARENA marks 100th community battery installed, funds three new projects across Australia",
+      "url": "https://www.energy-storage.news/arena-marks-100th-community-battery-installed-funds-three-new-projects-across-australia/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The Australian Renewable Energy Agency (ARENA) has confirmed the installation of the 100th community battery storage system under its Community Batteries Funding Initiative."
     }
   ],
   "derived": {
@@ -491,9 +491,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 35,
+      "grid": 34,
       "policy": 6,
-      "capital": 4,
+      "capital": 5,
       "technology": 1
     },
     "sourceStatus": [
@@ -528,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:00a06bbba96ada4a70b40d3e5223631ccffa88b6417644336206d7f37f6dc738",
-  "envelopeChecksum": "sha256:a57b88bd6d4611789e4783b631c0f1e501aa2ab33c1d4a639cfa5e6981509115"
+  "contentChecksum": "sha256:0e131d575ae24b76522d57066552253d209335889bf9d5ca326e5a0f0846272b",
+  "envelopeChecksum": "sha256:3eb2c69a5948db942acbabcce1baf60ed853241e905f8e7a92736db5497eef4c"
 }
