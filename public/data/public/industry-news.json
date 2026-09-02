@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-02T11:26:13.410Z",
+  "fetchedAt": "2026-09-02T16:39:23.663Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-02T11:13:43.000Z",
+    "to": "2026-09-02T14:38:00.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 47
   },
   "units": {
     "record": "published article metadata"
@@ -135,26 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-08-28T01:46:21.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ausconnex-starts-construction-on-au65-million-community-battery-programme-in-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Ausconnex starts construction on AU$65 million community battery programme in Australia",
-      "url": "https://www.energy-storage.news/ausconnex-starts-construction-on-au65-million-community-battery-programme-in-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Ausconnex has begun construction on the first of eight community BESS planned across Greater Western Sydney, Australia."
-    },
-    {
-      "t": "2026-08-28T03:22:11.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/octopus-australia-submits-4-8gwh-hanworth-battery-project-for-epbc-act-approval/",
-      "source": "Energy-Storage.news",
-      "title": "Octopus Australia submits 4.8GWh Hanworth Battery Project for EPBC Act approval",
-      "url": "https://www.energy-storage.news/octopus-australia-submits-4-8gwh-hanworth-battery-project-for-epbc-act-approval/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Octopus Australia, via its development partner Enervest, has submitted a 1.2GW/4.8GWh BESS for assessment under Australia's EPBC Act."
-    },
-    {
       "t": "2026-08-28T05:34:25.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/interim-reports-of-catl-eve-rept-and-other-listed-chinese-bess-players-leaders-see-steady-earnings-growth-second-tier-returns-to-profitability/",
       "source": "Energy-Storage.news",
@@ -203,16 +183,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Geothermal energy company Bedrock Energy has had its proposed compressed air energy storage (CAES) project in Huron County, Ontario, Canada rejected."
-    },
-    {
-      "t": "2026-08-28T14:11:36.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ohio-ratepayer-advocate-ferc-local-transmission/829066/",
-      "source": "Utility Dive",
-      "title": "Ohio ratepayer advocate urges FERC to resolve 3-year-old local transmission complaint",
-      "url": "https://www.utilitydive.com/news/ohio-ratepayer-advocate-ferc-local-transmission/829066/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Since the complaint was filed, FirstEnergy, AEP and other Ohio utilities have planned more than $4.3 billion in local transmission without adequate oversight, the Office of the Ohio Consumers' Counsel said."
     },
     {
       "t": "2026-08-31T05:12:34.000Z",
@@ -335,6 +305,16 @@
       "summary": "Three years after the EU Batteries Regulation (EUBR) entered into force, it is becoming easier to separate regulatory expectations from measurable market impacts, writes patent lawyer Chloe Flower."
     },
     {
+      "t": "2026-09-01T14:36:51.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/wildfire-costs-california-legislature-solar/829295/",
+      "source": "Utility Dive",
+      "title": "Wildfire costs loom over California legislative session that passed solar, data center bills",
+      "url": "https://www.utilitydive.com/news/wildfire-costs-california-legislature-solar/829295/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The California Legislature did not vote on a wildfire reform bill during a special session Tuesday, effectively killing the proposal. The bill had implications for electric utilities."
+    },
+    {
       "t": "2026-09-01T15:08:20.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/trump-grid-order-likely-to-cause-energy-storage-delays-cancellations-bloo/829306/",
       "source": "Utility Dive",
@@ -342,7 +322,7 @@
       "url": "https://www.utilitydive.com/news/trump-grid-order-likely-to-cause-energy-storage-delays-cancellations-bloo/829306/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The Aug. 26 executive order, previous executive actions and the Treasury Department&rsquo;s Foreign Entity of Concern guidance are likely to hit battery and inverter supply chains particularly hard, an industry analyst tells Utility Dive."
+      "summary": "The Aug. 26 executive order, previous executive actions and the Treasury Department&rsquo;s foreign entity of concern guidance are likely to hit battery and inverter supply chains particularly hard, an industry analyst told Utility Dive."
     },
     {
       "t": "2026-09-02T04:32:32.000Z",
@@ -353,36 +333,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "The Australian Renewable Energy Agency (ARENA) has confirmed the installation of the 100th community battery storage system under its Community Batteries Funding Initiative."
-    },
-    {
-      "t": "2026-09-02T05:46:19.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/korean-researchers-achieve-world-record-26-7-efficiency-for-sub-1-cm%c2%b2-perovskite-cigs-tandem-solar-cell/",
-      "source": "pv magazine",
-      "title": "Korean researchers achieve world-record 26.7% efficiency for sub-1 cm² perovskite-CIGS tandem solar cell",
-      "url": "https://www.pv-magazine.com/2026/09/02/korean-researchers-achieve-world-record-26-7-efficiency-for-sub-1-cm%c2%b2-perovskite-cigs-tandem-solar-cell/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The result was confirmed by Germany's Fraunhofer Institute for Solar Energy Systems (Fraunhofer ISE) and included in the Best Research-Cell Efficiency Chart maintained by the US Department of Energy's National Laboratory of the Rookies. The post Korean researchers achieve world-record 26.7% efficiency for sub-1 cm²…"
-    },
-    {
-      "t": "2026-09-02T06:08:56.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/bangladesh-introduces-0-086-kwh-tariff-for-net-metered-rooftop-solar/",
-      "source": "pv magazine",
-      "title": "Bangladesh introduces $0.086/kWh tariff for net-metered rooftop solar",
-      "url": "https://www.pv-magazine.com/2026/09/02/bangladesh-introduces-0-086-kwh-tariff-for-net-metered-rooftop-solar/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Bangladesh has introduced a BDT 10.50 ($0.086)/kWh tariff for surplus electricity from eligible rooftop solar systems under its net-metering regime. The incentive will apply to systems installed by Feb. 28, 2027, for a three-year period. The post Bangladesh introduces $0.086/kWh tariff for net-metered rooftop solar…"
-    },
-    {
-      "t": "2026-09-02T07:14:19.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/perovskite-solar-cell-based-on-seed-crystals-achieves-23-51-efficiency/",
-      "source": "pv magazine",
-      "title": "Perovskite solar cell based on seed crystals achieves 23.51% efficiency",
-      "url": "https://www.pv-magazine.com/2026/09/02/perovskite-solar-cell-based-on-seed-crystals-achieves-23-51-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers have developed a seed-assisted crystallization strategy to produce pure α-phase FAPbI3 perovskite without conventional chemical stabilizers. The resulting device reached 23.51% efficiency and retained 99% of its initial performance after 3,000 hours of unencapsulated operation. The post Perovskite solar…"
     },
     {
       "t": "2026-09-02T07:36:44.000Z",
@@ -473,17 +423,87 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "Canadian Solar’s quarterly battery storage shipments increased 73% year-on-year, with 3.7GWh delivered in the second quarter of 2026."
+    },
+    {
+      "t": "2026-09-02T11:43:43.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/hyperstrong-starts-building-leags-1-6gwh-germany-bess-under-turnkey-contract/",
+      "source": "Energy-Storage.news",
+      "title": "Hyperstrong starts building LEAG’s 1.6GWh Germany BESS under turnkey contract",
+      "url": "https://www.energy-storage.news/hyperstrong-starts-building-leags-1-6gwh-germany-bess-under-turnkey-contract/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Power generator LEAG and its turnkey BESS construction partner HyperStrong have started building a 400MW/1,600MWh project in Germany, while Sunotec has done the same on a 441MWh project."
+    },
+    {
+      "t": "2026-09-02T11:51:20.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/eu-approves-e2-billion-fund-to-decarbonize-greek-islands/",
+      "source": "pv magazine",
+      "title": "EU approves €2 billion fund to decarbonize Greek islands",
+      "url": "https://www.pv-magazine.com/2026/09/02/eu-approves-e2-billion-fund-to-decarbonize-greek-islands/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The European Commission and EIB have approved a €2 billion fund to support grid interconnections, renewable energy, storage and electric mobility across Greece’s islands. The program aims to reduce reliance on costly oil-fired generation while strengthening island energy security and accelerating decarbonization. Th…"
+    },
+    {
+      "t": "2026-09-02T12:16:19.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/one-nuclear-energy-executes-loi-for-2-88gwh-bess-and-gas-plant-co-located-with-louisiana-data-centre/",
+      "source": "Energy-Storage.news",
+      "title": "ONE Nuclear Energy executes LOI for 2.88GWh BESS and gas plant co-located with Louisiana data centre",
+      "url": "https://www.energy-storage.news/one-nuclear-energy-executes-loi-for-2-88gwh-bess-and-gas-plant-co-located-with-louisiana-data-centre/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "ONE Nuclear Energy has executed a binding letter of intent to develop a 2.88GW natural gas plant and 700MW/2.88GWh energy storage system, co-located with a high-capacity data centre campus."
+    },
+    {
+      "t": "2026-09-02T12:34:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/que-ocurre-con-un-proyecto-fotovoltaico-rtb-si-un-incendio-forestal-afecta-a-los-terrenos/",
+      "source": "pv magazine",
+      "title": "What happens to a ready-to-build solar project if a wildfire hits the site?",
+      "url": "https://www.pv-magazine.com/2026/09/02/que-ocurre-con-un-proyecto-fotovoltaico-rtb-si-un-incendio-forestal-afecta-a-los-terrenos/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "What happens if a wildfire affects a ready-to-build (RTB) solar project? Can developers recover their financial guarantees if the project becomes unviable? Jochen Beckmann, a lawyer at Rödl Barcelona, analyzes the key legal and administrative implications for pv magazine . The post What happens to a ready-to-build s…"
+    },
+    {
+      "t": "2026-09-02T13:32:37.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/eu-approves-german-capacity-mechanism/",
+      "source": "pv magazine",
+      "title": "EU approves German capacity mechanism",
+      "url": "https://www.pv-magazine.com/2026/09/02/eu-approves-german-capacity-mechanism/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The European Commission has approved Germany’s capacity mechanism, clearing the way for up to €35.2 billion in state support for generation, storage and demand-side flexibility. The scheme will use competitive auctions and require new gas-fired power plants to be hydrogen-ready, with climate-neutral operation requir…"
+    },
+    {
+      "t": "2026-09-02T13:54:09.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/analysts-say-fervo-google-geothermal-deal-underscores-baseload-power-scarci/829419/",
+      "source": "Utility Dive",
+      "title": "Fervo-Google geothermal deal underscores baseload power scarcity, analysts say",
+      "url": "https://www.utilitydive.com/news/analysts-say-fervo-google-geothermal-deal-underscores-baseload-power-scarci/829419/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Key risks remain, however, including &ldquo;first-of-a-kind execution,&rdquo; interconnection bottlenecks, capital intensity and competing technology paths, according to a&nbsp;research note from financial services company William Blair."
+    },
+    {
+      "t": "2026-09-02T14:38:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/interregional-transmission-expansion-pjm-eca-study/829430/",
+      "source": "Utility Dive",
+      "title": "Transmission expansion could spur billions in savings, especially in PJM: study",
+      "url": "https://www.utilitydive.com/news/interregional-transmission-expansion-pjm-eca-study/829430/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "About a dozen inter- and intraregional projects in the Eastern Interconnection could help meet load growth, lower retail electric rates, bolster reliability and support U.S. security, the study found."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 47,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 31,
-      "policy": 7,
-      "capital": 4,
+      "grid": 33,
+      "policy": 6,
+      "capital": 5,
       "technology": 3
     },
     "sourceStatus": [
@@ -503,7 +523,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 5
+        "items": 7
       },
       {
         "source": "pv magazine",
@@ -518,6 +538,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:e11f6f5aba229addbbe2353ecd3a85aa2f15d211b1ece21fc8d4a24426f21ce9",
-  "envelopeChecksum": "sha256:5eac00b95eadf8f2dcefc1110fed348f8a9d94bf85b0f994ebdbf23057b6f606"
+  "contentChecksum": "sha256:c159a4dafe91312e3508d1fe618342779b9c8a504802041aebf967718483b196",
+  "envelopeChecksum": "sha256:5b0459c80913701a8b49e351c444bea73215c60928774f2093b95f67124cde33"
 }
