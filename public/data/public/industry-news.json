@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-02T16:39:23.663Z",
+  "fetchedAt": "2026-09-02T21:06:55.031Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-02T14:38:00.000Z",
+    "to": "2026-09-02T15:40:23.000Z",
     "resolution": "event",
     "points": 47
   },
@@ -203,16 +203,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "CIP has acquired full ownership of the 104MW Gawara Baya wind-plus-storage project in North Queensland, Australia, from developer Windlab."
-    },
-    {
-      "t": "2026-08-31T09:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/spons/the-rules-of-data-center-development-are-evolving-is-your-strategy-1/828795/",
-      "source": "Utility Dive",
-      "title": "The rules of data center development are evolving. Is your strategy?",
-      "url": "https://www.utilitydive.com/spons/the-rules-of-data-center-development-are-evolving-is-your-strategy-1/828795/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Data center capacity continues to expand."
     },
     {
       "t": "2026-08-31T11:07:10.000Z",
@@ -493,6 +483,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "About a dozen inter- and intraregional projects in the Eastern Interconnection could help meet load growth, lower retail electric rates, bolster reliability and support U.S. security, the study found."
+    },
+    {
+      "t": "2026-09-02T15:40:23.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/pge-sees-rising-interest-in-customer-driven-flexible-interconnection-pil/829447/",
+      "source": "Utility Dive",
+      "title": "PG&E sees rising interest in ‘customer-driven’ flexible interconnection pilot",
+      "url": "https://www.utilitydive.com/news/pge-sees-rising-interest-in-customer-driven-flexible-interconnection-pil/829447/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Flex Connect program allows larger distribution-connected loads to energize in months instead of waiting &ldquo;several years&rdquo; for firm interconnection, the Northern California utility says."
     }
   ],
   "derived": {
@@ -538,6 +538,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:c159a4dafe91312e3508d1fe618342779b9c8a504802041aebf967718483b196",
-  "envelopeChecksum": "sha256:5b0459c80913701a8b49e351c444bea73215c60928774f2093b95f67124cde33"
+  "contentChecksum": "sha256:f522147e664d416899b48319d92781f02011b1ec5f879a1c75c637787db57577",
+  "envelopeChecksum": "sha256:f85257812fd22986e3fc9f05c4c840c3c0f0c8b234a56e861273ebe575f987e8"
 }
