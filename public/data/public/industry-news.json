@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-02T04:42:22.867Z",
+  "fetchedAt": "2026-09-02T11:26:13.410Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-02T04:32:32.000Z",
+    "to": "2026-09-02T11:13:43.000Z",
     "resolution": "event",
-    "points": 46
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -133,36 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-08-27T09:49:32.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/africas-first-24-7-solar-baseload-power-plant-enabled-by-batteries-goes-online-at-drc-copper-mine/",
-      "source": "Energy-Storage.news",
-      "title": "Africa’s first 24/7 ‘solar baseload’ power plant, enabled by batteries, goes online at DRC copper mine",
-      "url": "https://www.energy-storage.news/africas-first-24-7-solar-baseload-power-plant-enabled-by-batteries-goes-online-at-drc-copper-mine/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar-plus-storage project, claimed as the first of its kind in Africa to deliver 24/7 renewable electricity, has come online at a copper mine in the Democratic Republic of the Congo (DRC)."
-    },
-    {
-      "t": "2026-08-27T10:00:10.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/roundup-greenvolt-elesela-enlight-european-energy-gen-i-large-scale-bess-projects-forward-cee-baltics/",
-      "source": "Energy-Storage.news",
-      "title": "ROUNDUP: Greenvolt, Elesela, Enlight, European Energy and GEN-I move large-scale BESS projects forward in CEE and Baltics",
-      "url": "https://www.energy-storage.news/roundup-greenvolt-elesela-enlight-european-energy-gen-i-large-scale-bess-projects-forward-cee-baltics/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A roundup of large-scale battery energy storage system (BESS) projects being financed, acquired or contracted in Poland, Lithuania, Latvia, Finland and Romania."
-    },
-    {
-      "t": "2026-08-27T11:34:26.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/18gwh-of-bess-comes-online-in-july-year-to-date-total-up-27/",
-      "source": "Energy-Storage.news",
-      "title": "18GWh of BESS comes online in July, year-to-date total up 27%",
-      "url": "https://www.energy-storage.news/18gwh-of-bess-comes-online-in-july-year-to-date-total-up-27/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A total of 18GWh of large-scale BESS capacity came online in July 2026, of which China accounted for 70%."
     },
     {
       "t": "2026-08-28T01:46:21.000Z",
@@ -335,46 +305,6 @@
       "summary": "BESS owner-operator Return has signed a long-term toll with power firm Vattenfall for its 200MW/800MWh Sirius BESS project in the Netherlands, concurrent with financial close."
     },
     {
-      "t": "2026-09-01T10:04:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/atw-unveils-screen-printing-solution-for-copper-metallized-solar-cell/",
-      "source": "pv magazine",
-      "title": "ATW unveils screen-printing solution for copper-metallized solar cell",
-      "url": "https://www.pv-magazine.com/2026/09/01/atw-unveils-screen-printing-solution-for-copper-metallized-solar-cell/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "China’s Wuxi Autowell Technology has launched screen-printing equipment for copper and silver-coated copper pastes targeting TOPCon, back-contact, and next-generation solar cells. The product line includes cell-printing and print-on-print systems, as well as a curing furnace designed to prevent copper oxidation. The…"
-    },
-    {
-      "t": "2026-09-01T10:17:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/indias-solar-module-capacity-outpaces-demand-leaving-factories-running-at-just-35-40-utilization/",
-      "source": "pv magazine",
-      "title": "India’s solar module overcapacity pushes factory utilization to 35–40%",
-      "url": "https://www.pv-magazine.com/2026/09/01/indias-solar-module-capacity-outpaces-demand-leaving-factories-running-at-just-35-40-utilization/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "India’s solar module manufacturing capacity has surged to 233 GW, outpacing domestic demand and pushing factory utilization down to 35–40%. A new IEEFA-JMK Research report warns that continued capacity additions could intensify pressure on margins and increase the risk of stranded assets. The post India’s solar modu…"
-    },
-    {
-      "t": "2026-09-01T10:41:31.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/ukraine-auctions-150-mw-of-solar/",
-      "source": "pv magazine",
-      "title": "Ukraine auctions 150 MW of solar",
-      "url": "https://www.pv-magazine.com/2026/09/01/ukraine-auctions-150-mw-of-solar/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Ukraine will host two auctions, one for 50 MW of solar and another for 100 MW of solar-plus-storage, on September 25. The post Ukraine auctions 150 MW of solar appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-01T10:50:42.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/una-startup-estadounidense-desarrolla-drones-para-modificar-nubes-y-aumentar-hasta-un-30-la-produccion-de-plantas-fotovoltaicas/",
-      "source": "pv magazine",
-      "title": "US startup develops drones to modify clouds, boost PV plant output by up to 30%",
-      "url": "https://www.pv-magazine.com/2026/09/01/una-startup-estadounidense-desarrolla-drones-para-modificar-nubes-y-aumentar-hasta-un-30-la-produccion-de-plantas-fotovoltaicas/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US startup Meteoric Technologies is developing autonomous drones designed to modify clouds and increase solar radiation reaching PV plants. The company claims the technology could boost annual PV generation by 10% to 30%. The post US startup develops drones to modify clouds, boost PV plant output by up to 30% appear…"
-    },
-    {
       "t": "2026-09-01T10:58:09.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/us-utility-scale-battery-energy-storage-capacity-almost-doubled-during-first-18-months-of-trumps-second-term/",
       "source": "Energy-Storage.news",
@@ -395,16 +325,6 @@
       "summary": "We hear from Nikhil Koppaka, senior commercial manager for BESS owner-operator BW ESS on the big opportunities and challenges in Germany's grid-scale energy storage market."
     },
     {
-      "t": "2026-09-01T11:39:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/el-aumento-de-los-precios-negativos-redefine-las-senales-de-mercado-para-la-solar-el-almacenamiento-y-los-ppas-en-europa/",
-      "source": "pv magazine",
-      "title": "Negative prices reshape Europe’s solar, storage and PPA markets",
-      "url": "https://www.pv-magazine.com/2026/09/01/el-aumento-de-los-precios-negativos-redefine-las-senales-de-mercado-para-la-solar-el-almacenamiento-y-los-ppas-en-europa/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "According to S&P Global, rising negative electricity prices are reshaping solar, storage and PPAs across Europe. Wider price spreads are strengthening the case for batteries and more structured renewable energy ontracts. The post Negative prices reshape Europe’s solar, storage and PPA markets appeared first on pv ma…"
-    },
-    {
       "t": "2026-09-01T11:48:36.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/three-years-on-how-much-has-the-eu-batteries-regulation-changed-the-bess-market/",
       "source": "Energy-Storage.news",
@@ -413,56 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Three years after the EU Batteries Regulation (EUBR) entered into force, it is becoming easier to separate regulatory expectations from measurable market impacts, writes patent lawyer Chloe Flower."
-    },
-    {
-      "t": "2026-09-01T12:03:21.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/midsummer-shelves-plans-for-solar-cell-factory-in-sweden/",
-      "source": "pv magazine",
-      "title": "Midsummer shelves plans for solar cell factory in Sweden",
-      "url": "https://www.pv-magazine.com/2026/09/01/midsummer-shelves-plans-for-solar-cell-factory-in-sweden/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The Swedish solar manufacturer says it wants to focus on international expansion with a significantly less capital-intensive business and financing model for new factories. The post Midsummer shelves plans for solar cell factory in Sweden appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-01T13:04:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/clivet-launches-vrf-air-to-air-heat-pumps-with-inverter-free-pv-integration/",
-      "source": "pv magazine",
-      "title": "Clivet launches VRF air-to-air heat pumps with inverter-free PV integration",
-      "url": "https://www.pv-magazine.com/2026/09/01/clivet-launches-vrf-air-to-air-heat-pumps-with-inverter-free-pv-integration/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Clivet’s CVT9 VRF range offers 25.2–45 kW per module and up to 90 kW in two-module configurations. The system reportedly delivers SEER up to 8.58 and SCOP up to 4.93. Integrated PV management enables direct 400–600 V DC solar input without a conventional PV inverter, The post Clivet launches VRF air-to-air heat pump…"
-    },
-    {
-      "t": "2026-09-01T13:39:43.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/worlds-largest-solar-storage-microgrid-goes-online-in-saudi-arabia/",
-      "source": "pv magazine",
-      "title": "World’s largest solar-storage microgrid goes online in Saudi Arabia",
-      "url": "https://www.pv-magazine.com/2026/09/01/worlds-largest-solar-storage-microgrid-goes-online-in-saudi-arabia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Red Sea multi-utility project in Saudi Arabia has reached full commercial operation, bringing a 358 MWac solar plant and 1.2 GWh battery energy storage system into an isolated utility network supplying tourism facilities, desalination, cooling, water treatment and other infrastructure. The post World’s largest s…"
-    },
-    {
-      "t": "2026-09-01T13:48:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/01/china-restores-2-lithium-ion-battery-tax-after-11-year-exemption/",
-      "source": "pv magazine",
-      "title": "China restores 2% lithium-ion battery tax after 11-year exemption",
-      "url": "https://www.pv-magazine.com/2026/09/01/china-restores-2-lithium-ion-battery-tax-after-11-year-exemption/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "China has begun taxing lithium-ion batteries at 2% from Sept. 1, 2026, ending a decade-long exemption; the rate will rise to 4% in September 2027, while emerging technologies such as sodium-ion and solid-state batteries remain temporarily exempt. The tax applies to cells, packs and battery clusters—not complete BESS…"
-    },
-    {
-      "t": "2026-09-01T14:36:51.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/wildfire-costs-california-legislature-solar/829295/",
-      "source": "Utility Dive",
-      "title": "Wildfire costs loom over California legislative session that passed solar, data center bills",
-      "url": "https://www.utilitydive.com/news/wildfire-costs-california-legislature-solar/829295/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Legislature&rsquo;s decision not to shield utilities from wildfire liability caused stock prices for Pacific Gas and Electric and Edison International to tumble by 20% and 23%. Bills that passed included proposals on balcony solar and data center rate structures."
     },
     {
       "t": "2026-09-01T15:08:20.000Z",
@@ -483,18 +353,138 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "The Australian Renewable Energy Agency (ARENA) has confirmed the installation of the 100th community battery storage system under its Community Batteries Funding Initiative."
+    },
+    {
+      "t": "2026-09-02T05:46:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/korean-researchers-achieve-world-record-26-7-efficiency-for-sub-1-cm%c2%b2-perovskite-cigs-tandem-solar-cell/",
+      "source": "pv magazine",
+      "title": "Korean researchers achieve world-record 26.7% efficiency for sub-1 cm² perovskite-CIGS tandem solar cell",
+      "url": "https://www.pv-magazine.com/2026/09/02/korean-researchers-achieve-world-record-26-7-efficiency-for-sub-1-cm%c2%b2-perovskite-cigs-tandem-solar-cell/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The result was confirmed by Germany's Fraunhofer Institute for Solar Energy Systems (Fraunhofer ISE) and included in the Best Research-Cell Efficiency Chart maintained by the US Department of Energy's National Laboratory of the Rookies. The post Korean researchers achieve world-record 26.7% efficiency for sub-1 cm²…"
+    },
+    {
+      "t": "2026-09-02T06:08:56.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/bangladesh-introduces-0-086-kwh-tariff-for-net-metered-rooftop-solar/",
+      "source": "pv magazine",
+      "title": "Bangladesh introduces $0.086/kWh tariff for net-metered rooftop solar",
+      "url": "https://www.pv-magazine.com/2026/09/02/bangladesh-introduces-0-086-kwh-tariff-for-net-metered-rooftop-solar/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Bangladesh has introduced a BDT 10.50 ($0.086)/kWh tariff for surplus electricity from eligible rooftop solar systems under its net-metering regime. The incentive will apply to systems installed by Feb. 28, 2027, for a three-year period. The post Bangladesh introduces $0.086/kWh tariff for net-metered rooftop solar…"
+    },
+    {
+      "t": "2026-09-02T07:14:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/perovskite-solar-cell-based-on-seed-crystals-achieves-23-51-efficiency/",
+      "source": "pv magazine",
+      "title": "Perovskite solar cell based on seed crystals achieves 23.51% efficiency",
+      "url": "https://www.pv-magazine.com/2026/09/02/perovskite-solar-cell-based-on-seed-crystals-achieves-23-51-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers have developed a seed-assisted crystallization strategy to produce pure α-phase FAPbI3 perovskite without conventional chemical stabilizers. The resulting device reached 23.51% efficiency and retained 99% of its initial performance after 3,000 hours of unencapsulated operation. The post Perovskite solar…"
+    },
+    {
+      "t": "2026-09-02T07:36:44.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/eswatini-namibia-open-rooftop-solar-application-portals/",
+      "source": "pv magazine",
+      "title": "Eswatini, Namibia open rooftop solar application portals",
+      "url": "https://www.pv-magazine.com/2026/09/02/eswatini-namibia-open-rooftop-solar-application-portals/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The two African nations opened digital platforms for embedded generation applications this week. Eswatini’s covers applications up to 2 MW, while Namibia’s accepts applications up to 500 kW. The post Eswatini, Namibia open rooftop solar application portals appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-02T07:54:15.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/italy-gives-national-strategic-interest-designation-to-sardinia-data-centre-with-hybrid-energy-storage-hub/",
+      "source": "Energy-Storage.news",
+      "title": "Italy gives national strategic interest designation to Sardinia data centre with hybrid energy storage hub",
+      "url": "https://www.energy-storage.news/italy-gives-national-strategic-interest-designation-to-sardinia-data-centre-with-hybrid-energy-storage-hub/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Italian government has declared an AI data centre in development by Energy Vault, featuring hybrid energy storage technologies, to be of strategic national interest."
+    },
+    {
+      "t": "2026-09-02T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/new-materials-in-the-frame/",
+      "source": "pv magazine",
+      "title": "New materials in the frame",
+      "url": "https://www.pv-magazine.com/2026/09/02/new-materials-in-the-frame/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar cells, encapsulants, glass, backsheets, and virtually every PV module component have seen rapid changes and improvements over the past 10 years. During that time, module frames have seen relatively little innovation and remain a simple piece of formed aluminum. However, quality concerns, supply chain diversifi…"
+    },
+    {
+      "t": "2026-09-02T08:48:03.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/solar-seasonal-storage-system-achieves-4-1-heat-pump-cop-in-greenhouse-heating/",
+      "source": "pv magazine",
+      "title": "Solar seasonal storage system achieves 4.1 heat pump COP in greenhouse heating",
+      "url": "https://www.pv-magazine.com/2026/09/02/solar-seasonal-storage-system-achieves-4-1-heat-pump-cop-in-greenhouse-heating/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Korean researchers have demonstrated a small-scale solar seasonal thermal storage system integrated with heat pumps for greenhouse heating over three years. The system achieved average thermal storage efficiency of 55.1%, while the dual-source heat pump recorded an average COP of 4.1. The post Solar seasonal s…"
+    },
+    {
+      "t": "2026-09-02T09:23:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bw-ess-starts-building-515mwh-italy-bess-buys-675mwh-projects-in-spain/",
+      "source": "Energy-Storage.news",
+      "title": "BW ESS starts building 515MWh Italy BESS; buys 675MWh projects in Spain",
+      "url": "https://www.energy-storage.news/bw-ess-starts-building-515mwh-italy-bess-buys-675mwh-projects-in-spain/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BESS owner-operator BW ESS has progressed large-scale projects in Italy and Spain, totalling almost 1.2GWh and set to come online in 2027/28."
+    },
+    {
+      "t": "2026-09-02T09:28:40.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/hydrostor-secures-grid-connection-for-200-mw-1600-mwh-compressed-air-storage-project-in-australia/",
+      "source": "pv magazine",
+      "title": "Hydrostor secures grid connection for 200 MW/1,600 MWh compressed air storage project in Australia",
+      "url": "https://www.pv-magazine.com/2026/09/02/hydrostor-secures-grid-connection-for-200-mw-1600-mwh-compressed-air-storage-project-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Hydrostor has secured grid connection approval for its 200 MW/1,600 MWh Silver City compressed-air energy storage project in Broken Hill, New South Wales. The eight-hour storage facility will strengthen grid reliability, support renewables, and provide backup power and long-term energy security for the region. The p…"
+    },
+    {
+      "t": "2026-09-02T10:49:02.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/batteries-key-to-mini-grid-electrification-in-burkina-faso-mali-nigeria-senegal/",
+      "source": "pv magazine",
+      "title": "Batteries key to mini-grid electrification in Burkina Faso, Mali, Nigeria, Senegal",
+      "url": "https://www.pv-magazine.com/2026/09/02/batteries-key-to-mini-grid-electrification-in-burkina-faso-mali-nigeria-senegal/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Research by the International Renewable Energy Agency finds over 397,000 settlements across the four countries could be served by mini-grids with batteries. The post Batteries key to mini-grid electrification in Burkina Faso, Mali, Nigeria, Senegal appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-02T10:52:20.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/texas-instruments-introduces-chip-level-diagnostics-to-improve-grid-scale-battery-cell-safety/",
+      "source": "pv magazine",
+      "title": "Texas Instruments introduces chip-level diagnostics to improve grid-scale battery cell safety",
+      "url": "https://www.pv-magazine.com/2026/09/02/texas-instruments-introduces-chip-level-diagnostics-to-improve-grid-scale-battery-cell-safety/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Texas Instruments’ new BQ79826Z-Q1 battery monitor integrates EIS to actively diagnose LFP cell health, improving accuracy over traditional voltage-based BMS monitoring. Its 26-channel design reportedly enhances BESS safety and bankability while reducing system complexity and costs, with commercial systems potential…"
+    },
+    {
+      "t": "2026-09-02T11:13:43.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/canadian-solar-ships-3-7gwh-of-bess-in-q2-2026-company-is-actively-validating-15000-cycle-sodium-ion-product/",
+      "source": "Energy-Storage.news",
+      "title": "Canadian Solar ships 3.7GWh of BESS in Q2 2026, company is ‘actively validating’ 15,000+ cycle sodium-ion product",
+      "url": "https://www.energy-storage.news/canadian-solar-ships-3-7gwh-of-bess-in-q2-2026-company-is-actively-validating-15000-cycle-sodium-ion-product/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Canadian Solar’s quarterly battery storage shipments increased 73% year-on-year, with 3.7GWh delivered in the second quarter of 2026."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 46,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 34,
-      "policy": 6,
-      "capital": 5,
-      "technology": 1
+      "grid": 31,
+      "policy": 7,
+      "capital": 4,
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -513,7 +503,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 5
       },
       {
         "source": "pv magazine",
@@ -528,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:0e131d575ae24b76522d57066552253d209335889bf9d5ca326e5a0f0846272b",
-  "envelopeChecksum": "sha256:3eb2c69a5948db942acbabcce1baf60ed853241e905f8e7a92736db5497eef4c"
+  "contentChecksum": "sha256:e11f6f5aba229addbbe2353ecd3a85aa2f15d211b1ece21fc8d4a24426f21ce9",
+  "envelopeChecksum": "sha256:5eac00b95eadf8f2dcefc1110fed348f8a9d94bf85b0f994ebdbf23057b6f606"
 }
