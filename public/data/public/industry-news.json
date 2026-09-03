@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-02T21:06:55.031Z",
+  "fetchedAt": "2026-09-03T04:38:47.545Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-02T15:40:23.000Z",
+    "to": "2026-09-03T03:32:57.000Z",
     "resolution": "event",
     "points": 47
   },
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-08-28T05:34:25.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/interim-reports-of-catl-eve-rept-and-other-listed-chinese-bess-players-leaders-see-steady-earnings-growth-second-tier-returns-to-profitability/",
-      "source": "Energy-Storage.news",
-      "title": "Interim reports of CATL, EVE, REPT and other listed Chinese BESS players: Leaders see steady earnings growth, second‑tier returns to profitability",
-      "url": "https://www.energy-storage.news/interim-reports-of-catl-eve-rept-and-other-listed-chinese-bess-players-leaders-see-steady-earnings-growth-second-tier-returns-to-profitability/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "China’s listed battery storage companies have entered the peak interim reporting season, with H1 2026 likely marking the broadest profit recovery in recent years."
-    },
-    {
-      "t": "2026-08-28T11:03:56.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-storage-awards-2026-one-week-left-to-enter-the-industry-leading-celebration-of-excellence/",
-      "source": "Energy-Storage.news",
-      "title": "Energy Storage Awards 2026: One week left to enter the industry-leading celebration of excellence",
-      "url": "https://www.energy-storage.news/energy-storage-awards-2026-one-week-left-to-enter-the-industry-leading-celebration-of-excellence/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Entries for the Energy Storage Awards 2026 close soon, and with it, the last chance to take the stage alongside the industry’s finest, and Special Guest Speaker, Ben Fogle."
     },
     {
       "t": "2026-08-28T12:55:54.000Z",
@@ -493,6 +473,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The Flex Connect program allows larger distribution-connected loads to energize in months instead of waiting &ldquo;several years&rdquo; for firm interconnection, the Northern California utility says."
+    },
+    {
+      "t": "2026-09-03T03:24:39.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/synergy-fined-au1-2-million-over-kwinana-battery-software-error-that-inflated-wholesale-prices-in-western-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Synergy fined AU$1.2 million over Kwinana battery software error that inflated wholesale prices in Western Australia",
+      "url": "https://www.energy-storage.news/synergy-fined-au1-2-million-over-kwinana-battery-software-error-that-inflated-wholesale-prices-in-western-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Western Australia's ERA has fined state-owned energy company Synergy AU$1.2 million (US$785,600) after a software error at the Kwinana BESS."
+    },
+    {
+      "t": "2026-09-03T03:32:57.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/amazon-signs-first-asia-pacific-standalone-battery-storage-tolling-deal-for-50mw-bess-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Amazon signs first Asia Pacific standalone battery storage tolling deal for 50MW BESS in Australia",
+      "url": "https://www.energy-storage.news/amazon-signs-first-asia-pacific-standalone-battery-storage-tolling-deal-for-50mw-bess-in-australia/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Anza Power has signed a tolling agreement with Amazon Australia for the 50MW/200MWh Bairnsdale BESS in East Gippsland, Victoria."
     }
   ],
   "derived": {
@@ -501,9 +501,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 33,
+      "grid": 32,
       "policy": 6,
-      "capital": 5,
+      "capital": 6,
       "technology": 3
     },
     "sourceStatus": [
@@ -538,6 +538,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f522147e664d416899b48319d92781f02011b1ec5f879a1c75c637787db57577",
-  "envelopeChecksum": "sha256:f85257812fd22986e3fc9f05c4c840c3c0f0c8b234a56e861273ebe575f987e8"
+  "contentChecksum": "sha256:ef06e47a19ba1a7f8be712867c0557f1a5a7f8c361a01d2f25b900918a38cb0c",
+  "envelopeChecksum": "sha256:6457a8d8e5132428a382995b58a291d4a4fc952a39c449f77971e55cca0dfb44"
 }
