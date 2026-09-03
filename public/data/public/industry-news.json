@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-03T04:38:47.545Z",
+  "fetchedAt": "2026-09-03T11:22:24.072Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-03T03:32:57.000Z",
+    "to": "2026-09-03T11:00:49.000Z",
     "resolution": "event",
-    "points": 47
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -133,16 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-08-28T12:55:54.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-hot-takes-analysis-and-unofficial-news-from-across-the-sector/",
-      "source": "Energy-Storage.news",
-      "title": "BESS Industry Buzz: hot takes, analysis and unofficial news from across the sector",
-      "url": "https://www.energy-storage.news/bess-industry-buzz-hot-takes-analysis-and-unofficial-news-from-across-the-sector/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A roundup of some of the best user-posted views, analysis and reveals from across the energy storage community in the past week."
     },
     {
       "t": "2026-08-28T13:08:33.000Z",
@@ -305,16 +295,6 @@
       "summary": "The Australian Renewable Energy Agency (ARENA) has confirmed the installation of the 100th community battery storage system under its Community Batteries Funding Initiative."
     },
     {
-      "t": "2026-09-02T07:36:44.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/eswatini-namibia-open-rooftop-solar-application-portals/",
-      "source": "pv magazine",
-      "title": "Eswatini, Namibia open rooftop solar application portals",
-      "url": "https://www.pv-magazine.com/2026/09/02/eswatini-namibia-open-rooftop-solar-application-portals/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The two African nations opened digital platforms for embedded generation applications this week. Eswatini’s covers applications up to 2 MW, while Namibia’s accepts applications up to 500 kW. The post Eswatini, Namibia open rooftop solar application portals appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-02T07:54:15.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/italy-gives-national-strategic-interest-designation-to-sardinia-data-centre-with-hybrid-energy-storage-hub/",
       "source": "Energy-Storage.news",
@@ -325,26 +305,6 @@
       "summary": "The Italian government has declared an AI data centre in development by Energy Vault, featuring hybrid energy storage technologies, to be of strategic national interest."
     },
     {
-      "t": "2026-09-02T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/new-materials-in-the-frame/",
-      "source": "pv magazine",
-      "title": "New materials in the frame",
-      "url": "https://www.pv-magazine.com/2026/09/02/new-materials-in-the-frame/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar cells, encapsulants, glass, backsheets, and virtually every PV module component have seen rapid changes and improvements over the past 10 years. During that time, module frames have seen relatively little innovation and remain a simple piece of formed aluminum. However, quality concerns, supply chain diversifi…"
-    },
-    {
-      "t": "2026-09-02T08:48:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/solar-seasonal-storage-system-achieves-4-1-heat-pump-cop-in-greenhouse-heating/",
-      "source": "pv magazine",
-      "title": "Solar seasonal storage system achieves 4.1 heat pump COP in greenhouse heating",
-      "url": "https://www.pv-magazine.com/2026/09/02/solar-seasonal-storage-system-achieves-4-1-heat-pump-cop-in-greenhouse-heating/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Korean researchers have demonstrated a small-scale solar seasonal thermal storage system integrated with heat pumps for greenhouse heating over three years. The system achieved average thermal storage efficiency of 55.1%, while the dual-source heat pump recorded an average COP of 4.1. The post Solar seasonal s…"
-    },
-    {
       "t": "2026-09-02T09:23:30.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bw-ess-starts-building-515mwh-italy-bess-buys-675mwh-projects-in-spain/",
       "source": "Energy-Storage.news",
@@ -353,36 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "BESS owner-operator BW ESS has progressed large-scale projects in Italy and Spain, totalling almost 1.2GWh and set to come online in 2027/28."
-    },
-    {
-      "t": "2026-09-02T09:28:40.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/hydrostor-secures-grid-connection-for-200-mw-1600-mwh-compressed-air-storage-project-in-australia/",
-      "source": "pv magazine",
-      "title": "Hydrostor secures grid connection for 200 MW/1,600 MWh compressed air storage project in Australia",
-      "url": "https://www.pv-magazine.com/2026/09/02/hydrostor-secures-grid-connection-for-200-mw-1600-mwh-compressed-air-storage-project-in-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Hydrostor has secured grid connection approval for its 200 MW/1,600 MWh Silver City compressed-air energy storage project in Broken Hill, New South Wales. The eight-hour storage facility will strengthen grid reliability, support renewables, and provide backup power and long-term energy security for the region. The p…"
-    },
-    {
-      "t": "2026-09-02T10:49:02.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/batteries-key-to-mini-grid-electrification-in-burkina-faso-mali-nigeria-senegal/",
-      "source": "pv magazine",
-      "title": "Batteries key to mini-grid electrification in Burkina Faso, Mali, Nigeria, Senegal",
-      "url": "https://www.pv-magazine.com/2026/09/02/batteries-key-to-mini-grid-electrification-in-burkina-faso-mali-nigeria-senegal/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Research by the International Renewable Energy Agency finds over 397,000 settlements across the four countries could be served by mini-grids with batteries. The post Batteries key to mini-grid electrification in Burkina Faso, Mali, Nigeria, Senegal appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-02T10:52:20.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/texas-instruments-introduces-chip-level-diagnostics-to-improve-grid-scale-battery-cell-safety/",
-      "source": "pv magazine",
-      "title": "Texas Instruments introduces chip-level diagnostics to improve grid-scale battery cell safety",
-      "url": "https://www.pv-magazine.com/2026/09/02/texas-instruments-introduces-chip-level-diagnostics-to-improve-grid-scale-battery-cell-safety/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Texas Instruments’ new BQ79826Z-Q1 battery monitor integrates EIS to actively diagnose LFP cell health, improving accuracy over traditional voltage-based BMS monitoring. Its 26-channel design reportedly enhances BESS safety and bankability while reducing system complexity and costs, with commercial systems potential…"
     },
     {
       "t": "2026-09-02T11:13:43.000Z",
@@ -403,16 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Power generator LEAG and its turnkey BESS construction partner HyperStrong have started building a 400MW/1,600MWh project in Germany, while Sunotec has done the same on a 441MWh project."
-    },
-    {
-      "t": "2026-09-02T11:51:20.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/eu-approves-e2-billion-fund-to-decarbonize-greek-islands/",
-      "source": "pv magazine",
-      "title": "EU approves €2 billion fund to decarbonize Greek islands",
-      "url": "https://www.pv-magazine.com/2026/09/02/eu-approves-e2-billion-fund-to-decarbonize-greek-islands/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The European Commission and EIB have approved a €2 billion fund to support grid interconnections, renewable energy, storage and electric mobility across Greece’s islands. The program aims to reduce reliance on costly oil-fired generation while strengthening island energy security and accelerating decarbonization. Th…"
     },
     {
       "t": "2026-09-02T12:16:19.000Z",
@@ -493,18 +413,78 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Anza Power has signed a tolling agreement with Amazon Australia for the 50MW/200MWh Bairnsdale BESS in East Gippsland, Victoria."
+    },
+    {
+      "t": "2026-09-03T05:33:58.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/data-centres-and-the-clean-energy-imperative-powering-indias-digital-economy-sustainably/",
+      "source": "pv magazine",
+      "title": "Data Centres and the clean energy imperative: Powering India’s digital economy sustainably",
+      "url": "https://www.pv-magazine.com/2026/09/03/data-centres-and-the-clean-energy-imperative-powering-indias-digital-economy-sustainably/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India’s digital economy will ultimately be supported by physical systems: substations, transmission lines, renewable plants, batteries and control platforms. If these systems are planned with the same precision and urgency as the computing infrastructure they serve, data-centre growth can strengthen both economic co…"
+    },
+    {
+      "t": "2026-09-03T05:57:29.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/el-senado-de-brasil-aprueba-una-ley-que-vincula-incentivos-para-centros-de-datos-al-uso-de-energia-renovable/",
+      "source": "pv magazine",
+      "title": "Brazil approves law linking data center incentives to renewable energy use",
+      "url": "https://www.pv-magazine.com/2026/09/03/el-senado-de-brasil-aprueba-una-ley-que-vincula-incentivos-para-centros-de-datos-al-uso-de-energia-renovable/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Brazil’s Senate has approved Redata, a tax incentive regime requiring data centers to meet their electricity demand with renewable or low-emission energy. The new provisions could boost demand for solar and wind projects, PPAs and self-generation as Brazil’s data center market expands. The post Brazil approves law l…"
+    },
+    {
+      "t": "2026-09-03T08:21:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/climate-groups-slam-germanys-pro-gas-capacity-market-design-as-european-commission-grants-state-aid-approval/",
+      "source": "Energy-Storage.news",
+      "title": "Climate groups slam Germany’s ‘pro-gas’ capacity market design as European Commission grants state aid approval",
+      "url": "https://www.energy-storage.news/climate-groups-slam-germanys-pro-gas-capacity-market-design-as-european-commission-grants-state-aid-approval/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The European Commission’s late approval of Germany’s capacity market auctions leaves no room for public scrutiny, according to environmental law charity ClientEarth."
+    },
+    {
+      "t": "2026-09-03T08:56:53.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/south-korea-posts-fifth-highest-power-demand-on-record-amid-heat/",
+      "source": "pv magazine",
+      "title": "South Korea posts fifth-highest power demand on record",
+      "url": "https://www.pv-magazine.com/2026/09/03/south-korea-posts-fifth-highest-power-demand-on-record-amid-heat/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "South Korea's market electricity demand reached 95.3 GW on Aug. 7, the fifth-highest level on record, as the government said combined market and behind-the-meter solar generation met about one-quarter of total daytime demand during the heat wave. The post South Korea posts fifth-highest power demand on record appear…"
+    },
+    {
+      "t": "2026-09-03T10:47:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/chinese-scientists-build-27-39-efficient-inverted-perovskite-solar-cell-based-on-new-molecular-design/",
+      "source": "pv magazine",
+      "title": "Chinese scientists build 27.39%-efficient inverted perovskite solar cell based on new molecular design",
+      "url": "https://www.pv-magazine.com/2026/09/03/chinese-scientists-build-27-39-efficient-inverted-perovskite-solar-cell-based-on-new-molecular-design/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese researchers have developed a molecular additive that reduces defects in perovskite solar cells, enabling a power conversion efficiency of 27.39%. The approach was also used in bifacial mini-modules with efficiencies above 22% and 99.6% power retention after more than 5,000 hours of continuous operation. The…"
+    },
+    {
+      "t": "2026-09-03T11:00:49.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/chinese-inverter-and-bess-makers-stress-compliance-as-us-restrictions-widen/",
+      "source": "pv magazine",
+      "title": "Chinese inverter and BESS makers stress compliance as US restrictions widen",
+      "url": "https://www.pv-magazine.com/2026/09/03/chinese-inverter-and-bess-makers-stress-compliance-as-us-restrictions-widen/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese suppliers are emphasizing compliance, limited U.S. exposure and geographic diversification as Washington broadens restrictions on power equipment. The post Chinese inverter and BESS makers stress compliance as US restrictions widen appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 47,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 32,
-      "policy": 6,
+      "grid": 29,
+      "policy": 8,
       "capital": 6,
-      "technology": 3
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -529,7 +509,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 7
       }
     ]
   },
@@ -538,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:ef06e47a19ba1a7f8be712867c0557f1a5a7f8c361a01d2f25b900918a38cb0c",
-  "envelopeChecksum": "sha256:6457a8d8e5132428a382995b58a291d4a4fc952a39c449f77971e55cca0dfb44"
+  "contentChecksum": "sha256:e02d4ddfa2b623b0b696703d96bca4f455866d3885011f8529c67ce3bf77e3ce",
+  "envelopeChecksum": "sha256:ec8ae0d4da6d114aa64ed1e8030c6b88ea9ee6288b84efe4a8393ff5b5d868d3"
 }
