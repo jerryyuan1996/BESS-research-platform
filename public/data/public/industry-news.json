@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-03T11:22:24.072Z",
+  "fetchedAt": "2026-09-03T16:30:29.932Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-03T11:00:49.000Z",
+    "to": "2026-09-03T14:00:00.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -135,36 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-08-28T13:08:33.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/mobile-bess-provider-nomad-begins-life-under-new-ownership-with-us-doe-approval-of-vermont-pilot/",
-      "source": "Energy-Storage.news",
-      "title": "Mobile BESS provider Nomad begins life under new ownership with US DOE approval of Vermont pilot",
-      "url": "https://www.energy-storage.news/mobile-bess-provider-nomad-begins-life-under-new-ownership-with-us-doe-approval-of-vermont-pilot/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Nomad Power Solutions has announced that the US Department of Energy (DOE) Office of Electricity has authorised the advancement of an energy storage demonstration project in Vermont."
-    },
-    {
-      "t": "2026-08-28T13:12:20.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ontario-municipality-rejects-bedrock-energys-canada-compressed-air-energy-storage-project-rejected/",
-      "source": "Energy-Storage.news",
-      "title": "Ontario municipality rejects Bedrock Energy’s Canada compressed air energy storage project",
-      "url": "https://www.energy-storage.news/ontario-municipality-rejects-bedrock-energys-canada-compressed-air-energy-storage-project-rejected/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Geothermal energy company Bedrock Energy has had its proposed compressed air energy storage (CAES) project in Huron County, Ontario, Canada rejected."
-    },
-    {
-      "t": "2026-08-31T05:12:34.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-is-a-market-made-for-batteries-wartsila-strategy-lead-on-volatility-and-the-business-case-for-energy-storage/",
-      "source": "Energy-Storage.news",
-      "title": "‘Australia is a market made for batteries’: Wärtsilä strategy lead on volatility and the business case for energy storage",
-      "url": "https://www.energy-storage.news/australia-is-a-market-made-for-batteries-wartsila-strategy-lead-on-volatility-and-the-business-case-for-energy-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Speaking to ESN Premium, Kashish Shah of Wärtsilä explains why Australia's volatile market structure makes it uniquely suited for battery storage."
-    },
-    {
       "t": "2026-08-31T05:33:45.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/copenhagen-infrastructure-partners-acquires-104mw-grid-forming-bess-project-from-windlab-in-australia/",
       "source": "Energy-Storage.news",
@@ -183,16 +153,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "CATL has formed a partnership to work on projects awarded contracts through Brazil’s first national energy storage auction programme, which received more than 6,000 bids."
-    },
-    {
-      "t": "2026-08-31T13:20:51.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-oklo-advanced-nuclear-ferc-interconnection/829150/",
-      "source": "Utility Dive",
-      "title": "PJM drops Oklo advanced nuclear project from interconnection study cycle",
-      "url": "https://www.utilitydive.com/news/pjm-oklo-advanced-nuclear-ferc-interconnection/829150/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Oklo asked the Federal Energy Regulatory Commission to order the PJM Interconnection to reinstate its 750-MW, mixed-technology project. PJM reportedly told Oklo that it never showed the project could ride through a sudden drop in grid voltage."
     },
     {
       "t": "2026-08-31T13:46:38.000Z",
@@ -345,26 +305,6 @@
       "summary": "ONE Nuclear Energy has executed a binding letter of intent to develop a 2.88GW natural gas plant and 700MW/2.88GWh energy storage system, co-located with a high-capacity data centre campus."
     },
     {
-      "t": "2026-09-02T12:34:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/que-ocurre-con-un-proyecto-fotovoltaico-rtb-si-un-incendio-forestal-afecta-a-los-terrenos/",
-      "source": "pv magazine",
-      "title": "What happens to a ready-to-build solar project if a wildfire hits the site?",
-      "url": "https://www.pv-magazine.com/2026/09/02/que-ocurre-con-un-proyecto-fotovoltaico-rtb-si-un-incendio-forestal-afecta-a-los-terrenos/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "What happens if a wildfire affects a ready-to-build (RTB) solar project? Can developers recover their financial guarantees if the project becomes unviable? Jochen Beckmann, a lawyer at Rödl Barcelona, analyzes the key legal and administrative implications for pv magazine . The post What happens to a ready-to-build s…"
-    },
-    {
-      "t": "2026-09-02T13:32:37.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/02/eu-approves-german-capacity-mechanism/",
-      "source": "pv magazine",
-      "title": "EU approves German capacity mechanism",
-      "url": "https://www.pv-magazine.com/2026/09/02/eu-approves-german-capacity-mechanism/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The European Commission has approved Germany’s capacity mechanism, clearing the way for up to €35.2 billion in state support for generation, storage and demand-side flexibility. The scheme will use competitive auctions and require new gas-fired power plants to be hydrogen-ready, with climate-neutral operation requir…"
-    },
-    {
       "t": "2026-09-02T13:54:09.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/analysts-say-fervo-google-geothermal-deal-underscores-baseload-power-scarci/829419/",
       "source": "Utility Dive",
@@ -415,26 +355,6 @@
       "summary": "Anza Power has signed a tolling agreement with Amazon Australia for the 50MW/200MWh Bairnsdale BESS in East Gippsland, Victoria."
     },
     {
-      "t": "2026-09-03T05:33:58.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/data-centres-and-the-clean-energy-imperative-powering-indias-digital-economy-sustainably/",
-      "source": "pv magazine",
-      "title": "Data Centres and the clean energy imperative: Powering India’s digital economy sustainably",
-      "url": "https://www.pv-magazine.com/2026/09/03/data-centres-and-the-clean-energy-imperative-powering-indias-digital-economy-sustainably/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "India’s digital economy will ultimately be supported by physical systems: substations, transmission lines, renewable plants, batteries and control platforms. If these systems are planned with the same precision and urgency as the computing infrastructure they serve, data-centre growth can strengthen both economic co…"
-    },
-    {
-      "t": "2026-09-03T05:57:29.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/el-senado-de-brasil-aprueba-una-ley-que-vincula-incentivos-para-centros-de-datos-al-uso-de-energia-renovable/",
-      "source": "pv magazine",
-      "title": "Brazil approves law linking data center incentives to renewable energy use",
-      "url": "https://www.pv-magazine.com/2026/09/03/el-senado-de-brasil-aprueba-una-ley-que-vincula-incentivos-para-centros-de-datos-al-uso-de-energia-renovable/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Brazil’s Senate has approved Redata, a tax incentive regime requiring data centers to meet their electricity demand with renewable or low-emission energy. The new provisions could boost demand for solar and wind projects, PPAs and self-generation as Brazil’s data center market expands. The post Brazil approves law l…"
-    },
-    {
       "t": "2026-09-03T08:21:36.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/climate-groups-slam-germanys-pro-gas-capacity-market-design-as-european-commission-grants-state-aid-approval/",
       "source": "Energy-Storage.news",
@@ -458,7 +378,7 @@
       "t": "2026-09-03T10:47:31.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/chinese-scientists-build-27-39-efficient-inverted-perovskite-solar-cell-based-on-new-molecular-design/",
       "source": "pv magazine",
-      "title": "Chinese scientists build 27.39%-efficient inverted perovskite solar cell based on new molecular design",
+      "title": "Chinese researchers build 27.39%-efficient inverted perovskite solar cell based on new molecular design",
       "url": "https://www.pv-magazine.com/2026/09/03/chinese-scientists-build-27-39-efficient-inverted-perovskite-solar-cell-based-on-new-molecular-design/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
@@ -473,18 +393,78 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Chinese suppliers are emphasizing compliance, limited U.S. exposure and geographic diversification as Washington broadens restrictions on power equipment. The post Chinese inverter and BESS makers stress compliance as US restrictions widen appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-03T11:23:24.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/google-partners-with-mn8-energy-and-eos-on-west-virginia-solar-plus-ldes-project/",
+      "source": "Energy-Storage.news",
+      "title": "Google partners with MN8 Energy and Eos on West Virginia solar-plus-LDES project",
+      "url": "https://www.energy-storage.news/google-partners-with-mn8-energy-and-eos-on-west-virginia-solar-plus-ldes-project/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Developer-operator MN8 Energy, zinc hybrid cathode battery and storage system maker Eos Energy Enterprises, and tech giant Google are backing a multi-technology renewables project on the PJM grid in the US."
+    },
+    {
+      "t": "2026-09-03T11:26:29.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/engie-starts-up-251mw-bess-projects-in-chile-grenergy-sells-fourth-phase-of-atacama-solar-plus-storage-complex/",
+      "source": "Energy-Storage.news",
+      "title": "Engie starts up 251MW BESS projects in Chile, Grenergy sells fourth phase of Atacama solar-plus-storage complex",
+      "url": "https://www.energy-storage.news/engie-starts-up-251mw-bess-projects-in-chile-grenergy-sells-fourth-phase-of-atacama-solar-plus-storage-complex/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Power firm Engie and IPP Grenergy are advancing three solar-plus-BESS projects in Chile."
+    },
+    {
+      "t": "2026-09-03T11:52:27.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/inertia-in-germany-is-first-bankable-long-term-revenue-stream-could-boost-battery-storage-irr-by-1-2pp/",
+      "source": "Energy-Storage.news",
+      "title": "Inertia in Germany is ‘first bankable long-term revenue stream,’ could boost battery storage IRR by 1-2pp",
+      "url": "https://www.energy-storage.news/inertia-in-germany-is-first-bankable-long-term-revenue-stream-could-boost-battery-storage-irr-by-1-2pp/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Inertia could provide a strong boost to BESS project returns in Germany, but operators are still waiting for the first prequalified inverters."
+    },
+    {
+      "t": "2026-09-03T12:02:30.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/solar-reaches-new-power-highs-in-portugal-in-august/",
+      "source": "pv magazine",
+      "title": "Solar reaches new power generation highs in Portugal in August",
+      "url": "https://www.pv-magazine.com/2026/09/03/solar-reaches-new-power-highs-in-portugal-in-august/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar power generation in Portugal reached a record 3.85 GW in August, supported by continued growth in installed PV capacity. Renewables supplied 52% of electricity consumption during the month, while net imports accounted for 36%. The post Solar reaches new power generation highs in Portugal in August appeared fir…"
+    },
+    {
+      "t": "2026-09-03T13:58:32.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/chinas-solar-capacity-hits-1-28-tw-accounts-for-31-5-of-total-power-capacity/",
+      "source": "pv magazine",
+      "title": "China’s solar capacity hits 1.28 TW, accounts for 31.5% of total power capacity",
+      "url": "https://www.pv-magazine.com/2026/09/03/chinas-solar-capacity-hits-1-28-tw-accounts-for-31-5-of-total-power-capacity/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "China’s cumulative solar capacity reached 1.286 TW at the end of July, overtaking coal for the first time and accounting for around 31.5% of total installed power capacity. The milestone comes as the PV sector faces slowing installations, grid-integration constraints and overcapacity, shifting the focus from rapid d…"
+    },
+    {
+      "t": "2026-09-03T14:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/03/pv-progress-across-latin-america/",
+      "source": "pv magazine",
+      "title": "PV Progress across Latin America",
+      "url": "https://www.pv-magazine.com/2026/09/03/pv-progress-across-latin-america/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "InfoLink’s Jenny Lin shares the latest analysis on the key markets accounting for nearly 80% of Latin America’s total PV capacity as solar continues to grow its share of regional electricity generation. Following years of accelerating deployment, Latin America is entering a new phase – one requiring investment in en…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 8,
+      "grid": 27,
+      "policy": 7,
       "capital": 6,
-      "technology": 2
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -503,13 +483,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 7
+        "items": 6
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 6
       }
     ]
   },
@@ -518,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:e02d4ddfa2b623b0b696703d96bca4f455866d3885011f8529c67ce3bf77e3ce",
-  "envelopeChecksum": "sha256:ec8ae0d4da6d114aa64ed1e8030c6b88ea9ee6288b84efe4a8393ff5b5d868d3"
+  "contentChecksum": "sha256:a79e71ca4f0265192b358b8bb848a664dc56004608b917f816bdf5031d4935ad",
+  "envelopeChecksum": "sha256:1d1674cef5c1bc6befc6a9b71eed9cedf01e9722c463ddbc856660184cabdad8"
 }
