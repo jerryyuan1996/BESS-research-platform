@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-04T11:30:46.012Z",
+  "fetchedAt": "2026-09-04T16:26:41.391Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-04T11:30:00.000Z",
+    "to": "2026-09-04T15:15:00.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -135,26 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-08-31T14:38:56.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/california-sues-trump-admin-offshore-wind-extortion-racket/829176/",
-      "source": "Utility Dive",
-      "title": "California sues Trump administration over offshore wind ‘extortion racket’",
-      "url": "https://www.utilitydive.com/news/california-sues-trump-admin-offshore-wind-extortion-racket/829176/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The state alleges the Trump administration &ldquo;abuses its authority&rdquo; by diminishing the value of offshore wind energy leases before it makes an &ldquo;unrefusable offer&rdquo; to developers."
-    },
-    {
-      "t": "2026-09-01T09:42:20.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/return-financial-close-vattenfall-toll-800mwh-dutch-netherlands-battery-storage/",
-      "source": "Energy-Storage.news",
-      "title": "Return secures financial close, Vattenfall toll for 800MWh Dutch battery",
-      "url": "https://www.energy-storage.news/return-financial-close-vattenfall-toll-800mwh-dutch-netherlands-battery-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS owner-operator Return has signed a long-term toll with power firm Vattenfall for its 200MW/800MWh Sirius BESS project in the Netherlands, concurrent with financial close."
-    },
-    {
       "t": "2026-09-01T10:58:09.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/us-utility-scale-battery-energy-storage-capacity-almost-doubled-during-first-18-months-of-trumps-second-term/",
       "source": "Energy-Storage.news",
@@ -183,16 +163,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Three years after the EU Batteries Regulation (EUBR) entered into force, it is becoming easier to separate regulatory expectations from measurable market impacts, writes patent lawyer Chloe Flower."
-    },
-    {
-      "t": "2026-09-01T14:36:51.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/wildfire-costs-california-legislature-solar/829295/",
-      "source": "Utility Dive",
-      "title": "Wildfire costs loom over California legislative session that passed solar, data center bills",
-      "url": "https://www.utilitydive.com/news/wildfire-costs-california-legislature-solar/829295/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The California Legislature did not vote on a wildfire reform bill during a special session Tuesday, effectively killing the proposal. The bill had implications for electric utilities."
     },
     {
       "t": "2026-09-01T15:08:20.000Z",
@@ -355,6 +325,16 @@
       "summary": "Inertia could provide a strong boost to BESS project returns in Germany, but operators are still waiting for the first prequalified inverters."
     },
     {
+      "t": "2026-09-03T15:40:55.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/land-based-wind-power-pipeline-shrinks-as-price-gap-with-solar-widens/829573/",
+      "source": "Utility Dive",
+      "title": "Land-based wind power pipeline shrinks as price gap with solar widens",
+      "url": "https://www.utilitydive.com/news/land-based-wind-power-pipeline-shrinks-as-price-gap-with-solar-widens/829573/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "John Hensley, senior vice president of markets and policy analysis at ACP, told Utility Dive that his organization has&nbsp;calculated at least 44 GW of wind projects&nbsp;are &ldquo;stuck&rdquo; in review at the&nbsp;U.S. Department of Defense."
+    },
+    {
       "t": "2026-09-04T05:11:01.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/chinas-half-year-energy-storage-deployments-post-first-ever-decline-to-22gw-59gwh-while-overseas-orders-surge-83/",
       "source": "Energy-Storage.news",
@@ -373,56 +353,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Energy Vault has completed the acquisition of the underlying project land for its 125MW/1,000MWh Stoney Creek battery energy storage system (BESS) in northern New South Wales, Australia."
-    },
-    {
-      "t": "2026-09-04T08:09:24.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/multi-source-heat-pump-test-bench-explores-coupling-with-solar-thermal-storage/",
-      "source": "pv magazine",
-      "title": "Multi-source heat pump test bench explores coupling with solar, thermal storage",
-      "url": "https://www.pv-magazine.com/2026/09/04/multi-source-heat-pump-test-bench-explores-coupling-with-solar-thermal-storage/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "China-based Micronewton has supplied a university laboratory system featuring a water-to-air heat exchanger test bench capable of comparing air-, water- and ground-source heat pump operation. The experimental platform integrates solar generation and thermal energy storage. The post Multi-source heat pump test bench…"
-    },
-    {
-      "t": "2026-09-04T08:30:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/chinese-pv-industry-brief-inverter-manufacturers-post-mixed-h1-results-as-storage-gains-ground/",
-      "source": "pv magazine",
-      "title": "Chinese PV Industry Brief: Inverter manufacturers post mixed H1 results as storage gains ground",
-      "url": "https://www.pv-magazine.com/2026/09/04/chinese-pv-industry-brief-inverter-manufacturers-post-mixed-h1-results-as-storage-gains-ground/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese inverter manufacturers reported mixed first-half 2026 results, as energy storage emerged as a key growth driver, offsetting weaker demand across some traditional inverter segments. The post Chinese PV Industry Brief: Inverter manufacturers post mixed H1 results as storage gains ground appeared first on pv ma…"
-    },
-    {
-      "t": "2026-09-04T08:48:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/unsw-researchers-secure-64-8-million-in-funding-for-12-separate-solar-projects/",
-      "source": "pv magazine",
-      "title": "Australia continues heavy investment in solar research",
-      "url": "https://www.pv-magazine.com/2026/09/04/unsw-researchers-secure-64-8-million-in-funding-for-12-separate-solar-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The University of New South Wales has secured AUD 64.8 million ($46.6 million) from ARENA for 12 ultra-low-cost solar research projects, its largest single investment in photovoltaic research. The projects span tandem and perovskite technologies, AI-driven materials discovery and solar farm operations, module durabi…"
-    },
-    {
-      "t": "2026-09-04T08:55:24.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/vertical-rooftop-pv-arrives-in-ireland/",
-      "source": "pv magazine",
-      "title": "Vertical rooftop PV arrives in Ireland",
-      "url": "https://www.pv-magazine.com/2026/09/04/vertical-rooftop-pv-arrives-in-ireland/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Vertical PV specialist Over Easy Solar has deployed its first installation in Ireland. The 5.37 kW vertical system is paired with a green roof in Dublin. The post Vertical rooftop PV arrives in Ireland appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-04T09:07:44.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/france-updates-list-of-certified-low-carbon-photovoltaic-modules/",
-      "source": "pv magazine",
-      "title": "France updates list of certified low-carbon photovoltaic modules",
-      "url": "https://www.pv-magazine.com/2026/09/04/france-updates-list-of-certified-low-carbon-photovoltaic-modules/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Certisolis has updated its list of PV modules holding Simplified Carbon Assessment (ECS) certificates, required for certain French solar support schemes. The certification body has also introduced new tools and procedures to ease the transition to updated carbon-assessment rules. The post France updates list of cert…"
     },
     {
       "t": "2026-09-04T09:41:32.000Z",
@@ -462,17 +392,87 @@
       "url": "https://www.energy-storage.news/bess-industry-buzz-german-grid-attack-revenue-cannibilisation-catls-price-cut-sodium-ions-ramp-up-and-more/",
       "category": "technology",
       "categoryLabel": "Technology",
-      "summary": "A roundup of some of user-posted analysis, views and unofficial news from across the industry this past week, this time looking at this week's sabotage attack on the German grid, BESS revenues and electricity market activity, CATL's LFP price cut and various non-lithium news."
+      "summary": "A roundup of user-posted analysis, views and unofficial news from across the industry this past week, this time looking at this week's sabotage attack on the German grid, BESS revenues and electricity market activity, CATL's LFP price cut and various non-lithium news."
     },
     {
       "t": "2026-09-04T11:30:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/new-products-emerge-in-southern-africas-renewables-market/",
       "source": "pv magazine",
-      "title": "New products emerge in Southern Africa’s renewables market",
+      "title": "New energy products emerge in Southern Africa’s renewables market",
       "url": "https://www.pv-magazine.com/2026/09/04/new-products-emerge-in-southern-africas-renewables-market/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The final article in a series on energy markets in Southern Africa explores how the liberalisation of the region’s electricity markets is bringing a shift from purely selling variable electricity towards products that are tailored to specific customer and system needs. The post New products emerge in Southern Africa…"
+      "summary": "The final article in a series on energy markets in Southern Africa explores how the liberalisation of the region’s electricity markets is bringing a shift from purely selling variable electricity towards products that are tailored to specific customer and system needs. The post New energy products emerge in Southern…"
+    },
+    {
+      "t": "2026-09-04T11:53:37.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/a-circular-future-for-renewables/",
+      "source": "pv magazine",
+      "title": "A circular future for renewables",
+      "url": "https://www.pv-magazine.com/2026/09/04/a-circular-future-for-renewables/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Circular economy models encourage the extension of the lifecycle of both wind turbines and solar PV modules and the IEC is planning the appropriate standards. The post A circular future for renewables appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-04T12:19:09.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/tuv-rheinland-validates-4-kwh-generation-in-apteras-solar-electric-vehicle/",
+      "source": "pv magazine",
+      "title": "TÜV Rheinland validates 4 kWh generation in Aptera’s solar electric vehicle",
+      "url": "https://www.pv-magazine.com/2026/09/04/tuv-rheinland-validates-4-kwh-generation-in-apteras-solar-electric-vehicle/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Independent third-party testing measured more than 4 kWh of usable solar energy delivered post-conversion to the vehicle’s high-voltage battery. The post TÜV Rheinland validates 4 kWh generation in Aptera’s solar electric vehicle appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-04T13:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/the-hydrogen-stream-posco-bhp-advance-hydrogen-reduction-ironmaking-technology/",
+      "source": "pv magazine",
+      "title": "The Hydrogen Stream: Posco, BHP advance hydrogen reduction ironmaking technology",
+      "url": "https://www.pv-magazine.com/2026/09/04/the-hydrogen-stream-posco-bhp-advance-hydrogen-reduction-ironmaking-technology/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "In other news, the Valencian government approved €76 million for BP-led renewable hydrogen and sustainable biofuel projects, while NaTran and Creos Deutschland started construction of the German section of the cross-border mosaHYc hydrogen network. Meanwhile, Uniper completed the expressions of interest phase for it…"
+    },
+    {
+      "t": "2026-09-04T13:19:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/equinors-east-point-energy-begins-operations-at-200mwh-texas-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Equinor’s East Point Energy begins operations at 200MWh Texas BESS",
+      "url": "https://www.energy-storage.news/equinors-east-point-energy-begins-operations-at-200mwh-texas-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "East Point Energy, owned by Norwegian state-owned energy company Equinor has completed construction and started operations at the 100MW/200MWh Citrus Flatts energy storage project in Harlingen, Texas, US."
+    },
+    {
+      "t": "2026-09-04T13:30:47.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/why-agrivoltaics-have-yet-to-take-off-in-switzerland/",
+      "source": "pv magazine",
+      "title": "Why agrivoltaics have yet to take off in Switzerland",
+      "url": "https://www.pv-magazine.com/2026/09/04/why-agrivoltaics-have-yet-to-take-off-in-switzerland/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Agrivoltaics account for virtually none of Switzerland’s installed solar capacity, despite having the potential to generate far more electricity than the country currently consumes. A new ZHAW report identifies legal and administrative hurdles as key barriers and calls for regulatory reform, greater investment certa…"
+    },
+    {
+      "t": "2026-09-04T14:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/solars-infrastructure-obstacle-2/",
+      "source": "pv magazine",
+      "title": "Solar’s infrastructure obstacle",
+      "url": "https://www.pv-magazine.com/2026/09/04/solars-infrastructure-obstacle-2/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "During the development of a recent utility-scale project in Texas’ ERCOT grid interconnection zone, Levona Renewables CEO Fernando Queiroz found his team spending more time evaluating transmission infrastructure, interconnection requirements, equipment availability, and utility procurement processes than discussing…"
+    },
+    {
+      "t": "2026-09-04T15:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/south-korea-to-double-2027-budget-for-farm-solar-agrivoltaics/",
+      "source": "pv magazine",
+      "title": "South Korea to double 2027 budget for farm solar, agrivoltaics",
+      "url": "https://www.pv-magazine.com/2026/09/04/south-korea-to-double-2027-budget-for-farm-solar-agrivoltaics/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "South Korea plans to double government funding for factory rooftop solar and agrivoltaics to KRW 1.8 trillion ($1.3 billion) in 2027, as a new law regulating dual-use solar on farmland takes effect in December. The post South Korea to double 2027 budget for farm solar, agrivoltaics appeared first on pv magazine Glob…"
     }
   ],
   "derived": {
@@ -481,8 +481,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 28,
-      "policy": 5,
+      "grid": 26,
+      "policy": 7,
       "capital": 7,
       "technology": 5
     },
@@ -503,13 +503,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 5
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:4073c111332ef8fec31df6b99e8f820f25184f00e0200a8069dda0a8a8b48cf3",
-  "envelopeChecksum": "sha256:31d111e2004f10d5b94ac1300a9e91c39e6d027429907f8e8860b5673109fc1b"
+  "contentChecksum": "sha256:fe1bbb685b6fdc9f8bbff2974063f25f8f93aa81dff69a2bc2c17e0a804a27fd",
+  "envelopeChecksum": "sha256:54115f9c975eb7ebb3cd44887beb3046ca57f8fce1cbed9f06b17621781b522e"
 }
