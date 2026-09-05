@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-04T16:26:41.391Z",
+  "fetchedAt": "2026-09-05T04:36:35.623Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-04T15:15:00.000Z",
+    "to": "2026-09-05T04:00:00.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -365,16 +365,6 @@
       "summary": "Tesla was one of the pioneers of the grid-scale battery storage market, but has faced increasing competition in the past few years. In this article we look under the hood of its latest grid-scale BESS product, the Megapack 3."
     },
     {
-      "t": "2026-09-04T11:01:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/el-nino-transition-and-a-subtropical-shift-reshape-asias-summer-solar-resource/",
-      "source": "pv magazine",
-      "title": "El Niño transition and a subtropical shift reshape Asia’s summer solar resource",
-      "url": "https://www.pv-magazine.com/2026/09/04/el-nino-transition-and-a-subtropical-shift-reshape-asias-summer-solar-resource/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that Summer 2026 brought sharply contrasting solar conditions across Asia, as a northward-shifted Western Pacific Subtropical High reduced irradiance in Northeast China while boosting it across central China. Farther south, developing El Niño c…"
-    },
-    {
       "t": "2026-09-04T11:13:29.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/do-not-wait-until-you-feel-completely-ready/",
       "source": "pv magazine",
@@ -473,6 +463,16 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "South Korea plans to double government funding for factory rooftop solar and agrivoltaics to KRW 1.8 trillion ($1.3 billion) in 2027, as a new law regulating dual-use solar on farmland takes effect in December. The post South Korea to double 2027 budget for farm solar, agrivoltaics appeared first on pv magazine Glob…"
+    },
+    {
+      "t": "2026-09-05T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/05/irelands-leap-of-faith-to-power-data-centers/",
+      "source": "pv magazine",
+      "title": "Ireland’s leap of faith to power data centers",
+      "url": "https://www.pv-magazine.com/2026/09/05/irelands-leap-of-faith-to-power-data-centers/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Under Ireland’s Large Energy User Action Plan (LEAP), 10 MW-plus data centers must provide at least 80% of their energy demand through new onsite renewable energy generation and storage. But whether data centers can meaningfully contribute to Ireland’s decarbonization depends on the success of its grid buildout, rep…"
     }
   ],
   "derived": {
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:fe1bbb685b6fdc9f8bbff2974063f25f8f93aa81dff69a2bc2c17e0a804a27fd",
-  "envelopeChecksum": "sha256:54115f9c975eb7ebb3cd44887beb3046ca57f8fce1cbed9f06b17621781b522e"
+  "contentChecksum": "sha256:d298c5ea246814b283ea8e5cf674c0fc9ff88d982bfbfa7a4b30f1de9e363d1f",
+  "envelopeChecksum": "sha256:938edff41493e514da6d10edfd6c3ec5679464106ba556edaa8bf619b51d3e83"
 }
