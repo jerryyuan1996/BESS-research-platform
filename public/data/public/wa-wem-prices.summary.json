@@ -13,12 +13,12 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-09-06T15:31:55.516Z",
+  "fetchedAt": "2026-09-06T20:28:44.844Z",
   "coverage": {
-    "from": "2025-09-06T16:00:00.000Z",
+    "from": "2025-09-06T20:30:00.000Z",
     "to": "2026-09-05T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17199
+    "points": 17190
   },
   "units": {
     "price": "AUD/MWh"
@@ -32,15 +32,15 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17199,
+    "points": 17190,
     "coverageDays": 363,
     "pointsPerHour": 2,
     "mean": 98.9,
-    "median": 97.07,
-    "stdev": 49.69,
-    "p5": 23.13,
-    "p95": 165.38,
-    "negativeHoursPct": 0.02750159893017036,
+    "median": 97.08,
+    "stdev": 49.7,
+    "p5": 23.1,
+    "p95": 165.39,
+    "negativeHoursPct": 0.027515997673065735,
     "spreadMean": 59.71,
     "spreadMedian": 52.55,
     "spreadP25": 33.62,
@@ -52,10 +52,10 @@
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 81703,
-    "marginPerCycle": 329.67,
+    "revenuePerMW": 81701,
+    "marginPerCycle": 329.66,
     "inputs": {
-      "chargeMean": 71.4889184826473,
+      "chargeMean": 71.48988700564972,
       "dischargeMean": 131.1998870056495,
       "durationHours": 7,
       "roundTripEfficiency": 0.85,
@@ -72,12 +72,12 @@
   "daily": [
     {
       "d": "2025-09-07",
-      "n": 48,
-      "mean": 113.6,
+      "n": 39,
+      "mean": 117.5,
       "min": 13.82,
       "max": 254.45,
-      "spread": 92.12,
-      "charge": 73.29,
+      "spread": 91.77,
+      "charge": 73.64,
       "discharge": 165.41
     },
     {
@@ -3703,8 +3703,8 @@
   ],
   "sourceSnapshot": {
     "file": "wa-wem-prices.json",
-    "contentChecksum": "sha256:ce447219d1c8ef1d35eacc6e13756a9bb2c61d7444859c28f5eab4ff541ed5a3",
-    "points": 17199
+    "contentChecksum": "sha256:62b683999331cafbc50ee09aa98e48c2dbf5b285390ce96ed2ac5092a0733ab4",
+    "points": 17190
   },
-  "summaryChecksum": "sha256:94f22a4991f7e2685a34472fc52080e621ab8eb19070e581547abfcb3c85ff2a"
+  "summaryChecksum": "sha256:598da7f58238d0ba8a23040e0fe8a2f0d26c3b4afc30dcd7c31df8b2a700c1f8"
 }
