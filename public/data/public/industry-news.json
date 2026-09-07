@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-05T04:36:35.623Z",
+  "fetchedAt": "2026-09-07T04:50:27.321Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-05T04:00:00.000Z",
+    "to": "2026-09-07T04:00:00.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-01T10:58:09.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-utility-scale-battery-energy-storage-capacity-almost-doubled-during-first-18-months-of-trumps-second-term/",
-      "source": "Energy-Storage.news",
-      "title": "US utility-scale battery energy storage capacity almost doubled during first 18 months of Trump’s second term",
-      "url": "https://www.energy-storage.news/us-utility-scale-battery-energy-storage-capacity-almost-doubled-during-first-18-months-of-trumps-second-term/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The US energy storage industry broke deployment records in Q2 2026 in gigawatt-hour (GWh) terms, underpinned by growth in the utility-scale segment."
-    },
-    {
-      "t": "2026-09-01T11:16:15.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-energy-storage-market-bw-ess-challenge-grid-regulatory-clarity-keep-pace-market/",
-      "source": "Energy-Storage.news",
-      "title": "‘Challenge for grid and regulatory clarity to keep pace with market’: BW ESS on Germany",
-      "url": "https://www.energy-storage.news/germany-energy-storage-market-bw-ess-challenge-grid-regulatory-clarity-keep-pace-market/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "We hear from Nikhil Koppaka, senior commercial manager for BESS owner-operator BW ESS on the big opportunities and challenges in Germany's grid-scale energy storage market."
     },
     {
       "t": "2026-09-01T11:48:36.000Z",
@@ -365,16 +345,6 @@
       "summary": "Tesla was one of the pioneers of the grid-scale battery storage market, but has faced increasing competition in the past few years. In this article we look under the hood of its latest grid-scale BESS product, the Megapack 3."
     },
     {
-      "t": "2026-09-04T11:13:29.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/do-not-wait-until-you-feel-completely-ready/",
-      "source": "pv magazine",
-      "title": "‘Do not wait until you feel completely ready’",
-      "url": "https://www.pv-magazine.com/2026/09/04/do-not-wait-until-you-feel-completely-ready/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "This week, Women in Solar+ Europe gives voice to Angelica Almi, Head of Legal at Kataclima and co-founder of Italia Rinnovabile. Her message is clear: approach every professional relationship with curiosity, respect and authenticity, turn challenges into strengths, and embrace unexpected opportunities with courage a…"
-    },
-    {
       "t": "2026-09-04T11:14:49.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-german-grid-attack-revenue-cannibilisation-catls-price-cut-sodium-ions-ramp-up-and-more/",
       "source": "Energy-Storage.news",
@@ -473,6 +443,36 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Under Ireland’s Large Energy User Action Plan (LEAP), 10 MW-plus data centers must provide at least 80% of their energy demand through new onsite renewable energy generation and storage. But whether data centers can meaningfully contribute to Ireland’s decarbonization depends on the success of its grid buildout, rep…"
+    },
+    {
+      "t": "2026-09-07T03:33:07.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/optigrid-to-optimise-vena-energys-408mw-bellambi-heights-bess-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "OptiGrid to optimise Vena Energy’s 408MW Bellambi Heights BESS in Australia",
+      "url": "https://www.energy-storage.news/optigrid-to-optimise-vena-energys-408mw-bellambi-heights-bess-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "OptiGrid has been selected by Vena Energy to provide trading optimisation services for the 408MW Bellambi Heights BESS in Australia."
+    },
+    {
+      "t": "2026-09-07T03:54:29.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/edf-power-solutions-australia-seeks-epbc-act-approval-for-4gwh-pumped-hydro-plant/",
+      "source": "Energy-Storage.news",
+      "title": "EDF Power Solutions Australia seeks EPBC Act approval for 4GWh pumped hydro plant",
+      "url": "https://www.energy-storage.news/edf-power-solutions-australia-seeks-epbc-act-approval-for-4gwh-pumped-hydro-plant/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "EDF Power Solutions Australia has referred the Wala Wala Pumped Hydro Energy Storage project, a 300-400MW facility in NSW."
+    },
+    {
+      "t": "2026-09-07T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/heterojunctions-long-road-to-the-us-solar-factory/",
+      "source": "pv magazine",
+      "title": "Heterojunction’s long road to the US solar factory",
+      "url": "https://www.pv-magazine.com/2026/09/07/heterojunctions-long-road-to-the-us-solar-factory/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "For a cell technology that has spent much of the past three decades on the verge of a breakthrough, heterojunction (HJT) is enjoying another moment in the spotlight. This time, however, the setting is somewhat unexpected – rather than the established manufacturing centers of China and Southeast Asia, some of the mos…"
     }
   ],
   "derived": {
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d298c5ea246814b283ea8e5cf674c0fc9ff88d982bfbfa7a4b30f1de9e363d1f",
-  "envelopeChecksum": "sha256:938edff41493e514da6d10edfd6c3ec5679464106ba556edaa8bf619b51d3e83"
+  "contentChecksum": "sha256:5934a8f73d7e4b855e1af3db13b74eb946be14b3195fa4061563e96d9f96533a",
+  "envelopeChecksum": "sha256:1dc27bceda9439a2d2acfb485cd4266fcc99b412b835f8f7c77bdecd095c9d5f"
 }
