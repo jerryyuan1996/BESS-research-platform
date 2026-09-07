@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-07T04:50:27.321Z",
+  "fetchedAt": "2026-09-07T12:43:03.126Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-07T04:00:00.000Z",
+    "to": "2026-09-07T12:41:11.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -135,16 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-01T11:48:36.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/three-years-on-how-much-has-the-eu-batteries-regulation-changed-the-bess-market/",
-      "source": "Energy-Storage.news",
-      "title": "Three years on: how much has the EU Batteries Regulation changed the BESS market?",
-      "url": "https://www.energy-storage.news/three-years-on-how-much-has-the-eu-batteries-regulation-changed-the-bess-market/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Three years after the EU Batteries Regulation (EUBR) entered into force, it is becoming easier to separate regulatory expectations from measurable market impacts, writes patent lawyer Chloe Flower."
-    },
-    {
       "t": "2026-09-01T15:08:20.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/trump-grid-order-likely-to-cause-energy-storage-delays-cancellations-bloo/829306/",
       "source": "Utility Dive",
@@ -153,16 +143,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The Aug. 26 executive order, previous executive actions and the Treasury Department&rsquo;s foreign entity of concern guidance are likely to hit battery and inverter supply chains particularly hard, an industry analyst told Utility Dive."
-    },
-    {
-      "t": "2026-09-02T04:32:32.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/arena-marks-100th-community-battery-installed-funds-three-new-projects-across-australia/",
-      "source": "Energy-Storage.news",
-      "title": "ARENA marks 100th community battery installed, funds three new projects across Australia",
-      "url": "https://www.energy-storage.news/arena-marks-100th-community-battery-installed-funds-three-new-projects-across-australia/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The Australian Renewable Energy Agency (ARENA) has confirmed the installation of the 100th community battery storage system under its Community Batteries Funding Initiative."
     },
     {
       "t": "2026-09-02T07:54:15.000Z",
@@ -355,46 +335,6 @@
       "summary": "A roundup of user-posted analysis, views and unofficial news from across the industry this past week, this time looking at this week's sabotage attack on the German grid, BESS revenues and electricity market activity, CATL's LFP price cut and various non-lithium news."
     },
     {
-      "t": "2026-09-04T11:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/new-products-emerge-in-southern-africas-renewables-market/",
-      "source": "pv magazine",
-      "title": "New energy products emerge in Southern Africa’s renewables market",
-      "url": "https://www.pv-magazine.com/2026/09/04/new-products-emerge-in-southern-africas-renewables-market/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The final article in a series on energy markets in Southern Africa explores how the liberalisation of the region’s electricity markets is bringing a shift from purely selling variable electricity towards products that are tailored to specific customer and system needs. The post New energy products emerge in Southern…"
-    },
-    {
-      "t": "2026-09-04T11:53:37.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/a-circular-future-for-renewables/",
-      "source": "pv magazine",
-      "title": "A circular future for renewables",
-      "url": "https://www.pv-magazine.com/2026/09/04/a-circular-future-for-renewables/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Circular economy models encourage the extension of the lifecycle of both wind turbines and solar PV modules and the IEC is planning the appropriate standards. The post A circular future for renewables appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-04T12:19:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/tuv-rheinland-validates-4-kwh-generation-in-apteras-solar-electric-vehicle/",
-      "source": "pv magazine",
-      "title": "TÜV Rheinland validates 4 kWh generation in Aptera’s solar electric vehicle",
-      "url": "https://www.pv-magazine.com/2026/09/04/tuv-rheinland-validates-4-kwh-generation-in-apteras-solar-electric-vehicle/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Independent third-party testing measured more than 4 kWh of usable solar energy delivered post-conversion to the vehicle’s high-voltage battery. The post TÜV Rheinland validates 4 kWh generation in Aptera’s solar electric vehicle appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-04T13:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/the-hydrogen-stream-posco-bhp-advance-hydrogen-reduction-ironmaking-technology/",
-      "source": "pv magazine",
-      "title": "The Hydrogen Stream: Posco, BHP advance hydrogen reduction ironmaking technology",
-      "url": "https://www.pv-magazine.com/2026/09/04/the-hydrogen-stream-posco-bhp-advance-hydrogen-reduction-ironmaking-technology/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "In other news, the Valencian government approved €76 million for BP-led renewable hydrogen and sustainable biofuel projects, while NaTran and Creos Deutschland started construction of the German section of the cross-border mosaHYc hydrogen network. Meanwhile, Uniper completed the expressions of interest phase for it…"
-    },
-    {
       "t": "2026-09-04T13:19:36.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/equinors-east-point-energy-begins-operations-at-200mwh-texas-bess/",
       "source": "Energy-Storage.news",
@@ -403,46 +343,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "East Point Energy, owned by Norwegian state-owned energy company Equinor has completed construction and started operations at the 100MW/200MWh Citrus Flatts energy storage project in Harlingen, Texas, US."
-    },
-    {
-      "t": "2026-09-04T13:30:47.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/why-agrivoltaics-have-yet-to-take-off-in-switzerland/",
-      "source": "pv magazine",
-      "title": "Why agrivoltaics have yet to take off in Switzerland",
-      "url": "https://www.pv-magazine.com/2026/09/04/why-agrivoltaics-have-yet-to-take-off-in-switzerland/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Agrivoltaics account for virtually none of Switzerland’s installed solar capacity, despite having the potential to generate far more electricity than the country currently consumes. A new ZHAW report identifies legal and administrative hurdles as key barriers and calls for regulatory reform, greater investment certa…"
-    },
-    {
-      "t": "2026-09-04T14:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/solars-infrastructure-obstacle-2/",
-      "source": "pv magazine",
-      "title": "Solar’s infrastructure obstacle",
-      "url": "https://www.pv-magazine.com/2026/09/04/solars-infrastructure-obstacle-2/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "During the development of a recent utility-scale project in Texas’ ERCOT grid interconnection zone, Levona Renewables CEO Fernando Queiroz found his team spending more time evaluating transmission infrastructure, interconnection requirements, equipment availability, and utility procurement processes than discussing…"
-    },
-    {
-      "t": "2026-09-04T15:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/04/south-korea-to-double-2027-budget-for-farm-solar-agrivoltaics/",
-      "source": "pv magazine",
-      "title": "South Korea to double 2027 budget for farm solar, agrivoltaics",
-      "url": "https://www.pv-magazine.com/2026/09/04/south-korea-to-double-2027-budget-for-farm-solar-agrivoltaics/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "South Korea plans to double government funding for factory rooftop solar and agrivoltaics to KRW 1.8 trillion ($1.3 billion) in 2027, as a new law regulating dual-use solar on farmland takes effect in December. The post South Korea to double 2027 budget for farm solar, agrivoltaics appeared first on pv magazine Glob…"
-    },
-    {
-      "t": "2026-09-05T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/05/irelands-leap-of-faith-to-power-data-centers/",
-      "source": "pv magazine",
-      "title": "Ireland’s leap of faith to power data centers",
-      "url": "https://www.pv-magazine.com/2026/09/05/irelands-leap-of-faith-to-power-data-centers/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Under Ireland’s Large Energy User Action Plan (LEAP), 10 MW-plus data centers must provide at least 80% of their energy demand through new onsite renewable energy generation and storage. But whether data centers can meaningfully contribute to Ireland’s decarbonization depends on the success of its grid buildout, rep…"
     },
     {
       "t": "2026-09-07T03:33:07.000Z",
@@ -465,14 +365,114 @@
       "summary": "EDF Power Solutions Australia has referred the Wala Wala Pumped Hydro Energy Storage project, a 300-400MW facility in NSW."
     },
     {
-      "t": "2026-09-07T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/heterojunctions-long-road-to-the-us-solar-factory/",
+      "t": "2026-09-07T06:53:54.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/macquarie-backed-blueleaf-energy-and-universal-peak-close-financing-on-malaysia-tender-winning-bess-project/",
+      "source": "Energy-Storage.news",
+      "title": "Macquarie-backed Blueleaf Energy and Universal Peak close financing on Malaysia tender-winning BESS project",
+      "url": "https://www.energy-storage.news/macquarie-backed-blueleaf-energy-and-universal-peak-close-financing-on-malaysia-tender-winning-bess-project/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Blueleaf Energy and Universal Peak have closed financing for a 100MW/400MWh battery storage project, which was one of four winning bids in a Malaysian government tender."
+    },
+    {
+      "t": "2026-09-07T09:14:53.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/switzerland-now-has-1860-active-local-electricity-communities/",
       "source": "pv magazine",
-      "title": "Heterojunction’s long road to the US solar factory",
-      "url": "https://www.pv-magazine.com/2026/09/07/heterojunctions-long-road-to-the-us-solar-factory/",
+      "title": "Switzerland has 1,860 active local electricity communities",
+      "url": "https://www.pv-magazine.com/2026/09/07/switzerland-now-has-1860-active-local-electricity-communities/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "For a cell technology that has spent much of the past three decades on the verge of a breakthrough, heterojunction (HJT) is enjoying another moment in the spotlight. This time, however, the setting is somewhat unexpected – rather than the established manufacturing centers of China and Southeast Asia, some of the mos…"
+      "summary": "Switzerland has around 1,860 active local electricity communities just six months after their introduction, highlighting strong early uptake despite regulatory and administrative hurdles. The post Switzerland has 1,860 active local electricity communities appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-07T10:22:32.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/tunisia-allocates-455-mw-of-pv-in-sixth-licensing-round/",
+      "source": "pv magazine",
+      "title": "Tunisia allocates 455 MW of PV in sixth licensing round",
+      "url": "https://www.pv-magazine.com/2026/09/07/tunisia-allocates-455-mw-of-pv-in-sixth-licensing-round/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Tunisia approved 309 renewable energy projects totaling 455 MW under its authorization scheme, following a heavily oversubscribed 200 MW tender. The projects will sell electricity exclusively to national utility STEG at tariffs ranging from $0.049/kWh to $0.074/kWh. The post Tunisia allocates 455 MW of PV in sixth l…"
+    },
+    {
+      "t": "2026-09-07T10:33:29.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/mongolia-completes-first-renewable-energy-auction/",
+      "source": "pv magazine",
+      "title": "Mongolia completes first renewable energy auction",
+      "url": "https://www.pv-magazine.com/2026/09/07/mongolia-completes-first-renewable-energy-auction/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The auction procured 220 MW of solar and 135 MW/440 MWh of battery energy storage across five projects. A second auction, covering renewable energy projects with a stabilisation solution in Mongolia’s Gobi region, is scheduled to take place on September 11. The post Mongolia completes first renewable energy auction…"
+    },
+    {
+      "t": "2026-09-07T10:56:23.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/pakistan-regulator-approves-mandatory-energy-storage-component-renewables-auction/",
+      "source": "Energy-Storage.news",
+      "title": "Pakistan’s regulator approves mandatory energy storage component for renewables auction",
+      "url": "https://www.energy-storage.news/pakistan-regulator-approves-mandatory-energy-storage-component-renewables-auction/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Pakistan's National Electric Power Regulatory Authority (NEPRA) has approved plans to require bidders in a renewable energy auction to include energy storage."
+    },
+    {
+      "t": "2026-09-07T11:25:08.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/uzbekistan-has-now-2-5-gw-of-solar-under-net-metering/",
+      "source": "pv magazine",
+      "title": "Uzbekistan has now 2.5 GW of solar under net metering",
+      "url": "https://www.pv-magazine.com/2026/09/07/uzbekistan-has-now-2-5-gw-of-solar-under-net-metering/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Uzbekistan added 509.7 MW of PV capacity under its Solar House net metering scheme in the first eight months of 2026. The post Uzbekistan has now 2.5 GW of solar under net metering appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-07T11:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/europes-pv-waste-could-yield-up-to-63-gw-of-new-solar-capacity/",
+      "source": "pv magazine",
+      "title": "Europe’s PV waste could yield up to 63 GW of new solar capacity",
+      "url": "https://www.pv-magazine.com/2026/09/07/europes-pv-waste-could-yield-up-to-63-gw-of-new-solar-capacity/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Recovering silicon from Europe's end-of-life solar panels won't meaningfully cut import reliance unless the region's ingot and wafer manufacturing base grows to absorb it, a SINTEF Industry researcher tells pv magazine. The post Europe’s PV waste could yield up to 63 GW of new solar capacity appeared first on pv mag…"
+    },
+    {
+      "t": "2026-09-07T11:54:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/zambias-pv-capacity-tops-841-mw/",
+      "source": "pv magazine",
+      "title": "Zambia’s PV capacity tops 841 MW",
+      "url": "https://www.pv-magazine.com/2026/09/07/zambias-pv-capacity-tops-841-mw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Zambia’s installed solar PV capacity has surged from 88 MW in 2021 to approximately 841 MW in 2026, including around 584 MW of identified utility-scale projects and 30 MW under net metering. The post Zambia’s PV capacity tops 841 MW appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-07T11:55:14.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/serbian-utility-looks-to-acquire-jointly-develop-renewable-energy-projects/",
+      "source": "pv magazine",
+      "title": "Serbian utility looks to acquire, jointly develop renewable energy projects",
+      "url": "https://www.pv-magazine.com/2026/09/07/serbian-utility-looks-to-acquire-jointly-develop-renewable-energy-projects/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The call to acquire or jointly develop renewable energy projects includes solar PV plants larger than 50 MW that can be connected to Serbia's transmission system. The post Serbian utility looks to acquire, jointly develop renewable energy projects appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-07T12:00:03.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/seci-tenders-700-mw-of-solar-capacity-for-ci-offtake/",
+      "source": "pv magazine",
+      "title": "India tenders 700 MW of solar capacity for C&I offtake",
+      "url": "https://www.pv-magazine.com/2026/09/07/seci-tenders-700-mw-of-solar-capacity-for-ci-offtake/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar Energy Corp. of India (SECI) has launched a tender for 700 MW of interstate transmission system (ISTS)-connected solar PV projects in special economic zones (SEZs) or areas designated as export-oriented units (EOUs) in India, with the electricity earmarked for a commercial and industrial (C&I) consumer in Odis…"
+    },
+    {
+      "t": "2026-09-07T12:41:11.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/latvia-expands-residential-solar-and-battery-rebate-scheme/",
+      "source": "pv magazine",
+      "title": "Latvia expands residential solar and battery rebate scheme",
+      "url": "https://www.pv-magazine.com/2026/09/07/latvia-expands-residential-solar-and-battery-rebate-scheme/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Latvia has expanded its €85 million household renewable energy support program, raising grants for eligible households and increasing the minimum supported battery capacity from 5 kWh to 10 kWh. The scheme had supported 15,700 projects as of May 2026, including more than 14,000 applications for solar PV and over 2,0…"
     }
   ],
   "derived": {
@@ -481,10 +481,10 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 26,
-      "policy": 7,
+      "grid": 25,
+      "policy": 9,
       "capital": 7,
-      "technology": 5
+      "technology": 4
     },
     "sourceStatus": [
       {
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:5934a8f73d7e4b855e1af3db13b74eb946be14b3195fa4061563e96d9f96533a",
-  "envelopeChecksum": "sha256:1dc27bceda9439a2d2acfb485cd4266fcc99b412b835f8f7c77bdecd095c9d5f"
+  "contentChecksum": "sha256:9e64fdcd9315b9ed3f61654b13dc057fb32916f78eacfb28d98f2a303a35be86",
+  "envelopeChecksum": "sha256:e151114917600d82f7331c842549ebad4141234985dcc146c533800dac4fdb27"
 }
