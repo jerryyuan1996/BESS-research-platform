@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-08T16:42:13.839Z",
+  "fetchedAt": "2026-09-08T21:14:01.367Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-08T15:08:11.000Z",
+    "to": "2026-09-08T16:00:38.000Z",
     "resolution": "event",
     "points": 41
   },
@@ -183,16 +183,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Inertia could provide a strong boost to BESS project returns in Germany, but operators are still waiting for the first prequalified inverters."
-    },
-    {
-      "t": "2026-09-03T15:40:55.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/land-based-wind-power-pipeline-shrinks-as-price-gap-with-solar-widens/829573/",
-      "source": "Utility Dive",
-      "title": "Land-based wind power pipeline shrinks as price gap with solar widens",
-      "url": "https://www.utilitydive.com/news/land-based-wind-power-pipeline-shrinks-as-price-gap-with-solar-widens/829573/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "John Hensley, senior vice president of markets and policy analysis at ACP, told Utility Dive that his organization has&nbsp;calculated at least 44 GW of wind projects&nbsp;are &ldquo;stuck&rdquo; in review at the&nbsp;U.S. Department of Defense."
     },
     {
       "t": "2026-09-04T05:11:01.000Z",
@@ -433,6 +423,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "We are pleased to announce that we’re now working on the 2027 edition of the Energy Storage Report, our annual publication looking at the big trends shaping the industry."
+    },
+    {
+      "t": "2026-09-08T16:00:38.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/google-backs-solar-storage-project-at-former-west-virginia-coal-mine/829812/",
+      "source": "Utility Dive",
+      "title": "Google backs solar-storage project at former West Virginia coal mine",
+      "url": "https://www.utilitydive.com/news/google-backs-solar-storage-project-at-former-west-virginia-coal-mine/829812/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The project is being developed by MN8 and will include 100 MWh of long-duration Eos Energy Enterprises zinc-based storage alongside lithium-ion batteries."
     }
   ],
   "derived": {
@@ -441,8 +441,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 19,
-      "policy": 12,
+      "grid": 20,
+      "policy": 11,
       "capital": 6,
       "technology": 4
     },
@@ -478,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f2f81903849f4f2c32f064da882899928702b870fbc31e10f675ca71539a2664",
-  "envelopeChecksum": "sha256:e7c8303d75debec53d4d3bec6c988693fb13ad9171b6d63444e793741d657769"
+  "contentChecksum": "sha256:ffd76302e792c1d8c7af0ed2ceb0a4c6c75098da6c1ba0c9f05799472f71a3c5",
+  "envelopeChecksum": "sha256:5813ca96499a26ef7eea64414fce40d538917204c6ee39d0c9cb60d0340bac41"
 }
