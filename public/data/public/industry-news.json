@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-08T11:26:03.391Z",
+  "fetchedAt": "2026-09-08T16:42:13.839Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-08T11:15:04.000Z",
+    "to": "2026-09-08T15:08:11.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -133,36 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-02T14:38:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/interregional-transmission-expansion-pjm-eca-study/829430/",
-      "source": "Utility Dive",
-      "title": "Transmission expansion could spur billions in savings, especially in PJM: study",
-      "url": "https://www.utilitydive.com/news/interregional-transmission-expansion-pjm-eca-study/829430/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "About a dozen inter- and intraregional projects in the Eastern Interconnection could help meet load growth, lower retail electric rates, bolster reliability and support U.S. security, the study found."
-    },
-    {
-      "t": "2026-09-02T15:40:23.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/pge-sees-rising-interest-in-customer-driven-flexible-interconnection-pil/829447/",
-      "source": "Utility Dive",
-      "title": "PG&E sees rising interest in ‘customer-driven’ flexible interconnection pilot",
-      "url": "https://www.utilitydive.com/news/pge-sees-rising-interest-in-customer-driven-flexible-interconnection-pil/829447/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Flex Connect program allows larger distribution-connected loads to energize in months instead of waiting &ldquo;several years&rdquo; for firm interconnection, the Northern California utility says."
-    },
-    {
-      "t": "2026-09-03T03:24:39.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/synergy-fined-au1-2-million-over-kwinana-battery-software-error-that-inflated-wholesale-prices-in-western-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Synergy fined AU$1.2 million over Kwinana battery software error that inflated wholesale prices in Western Australia",
-      "url": "https://www.energy-storage.news/synergy-fined-au1-2-million-over-kwinana-battery-software-error-that-inflated-wholesale-prices-in-western-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Western Australia's ERA has fined state-owned energy company Synergy AU$1.2 million (US$785,600) after a software error at the Kwinana BESS."
     },
     {
       "t": "2026-09-03T03:32:57.000Z",
@@ -335,26 +305,6 @@
       "summary": "EPC Renewables has signed an MoU with state-linked utility Energy Fiji Limited for the development of the Yaqara Solar & Battery Project."
     },
     {
-      "t": "2026-09-08T05:46:45.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/new-optimization-method-improves-heat-pump-sizing-by-accounting-for-part-load-efficiency/",
-      "source": "pv magazine",
-      "title": "New optimization method improves heat pump sizing by accounting for part-load efficiency",
-      "url": "https://www.pv-magazine.com/2026/09/08/new-optimization-method-improves-heat-pump-sizing-by-accounting-for-part-load-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Austrian researchers have developed an optimization framework that accounts for part-load efficiency when sizing and operating heat pumps, enabling more realistic system planning. A case study in Innsbruck found the approach could cut electricity consumption by 4.5% and annual costs by 2.9%, while relaxed formulatio…"
-    },
-    {
-      "t": "2026-09-08T07:40:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/european-markets-set-daily-solar-records-for-september/",
-      "source": "pv magazine",
-      "title": "European markets set daily solar records for September",
-      "url": "https://www.pv-magazine.com/2026/09/08/european-markets-set-daily-solar-records-for-september/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Italy, Spain and Portugal all set new records for solar produced on a September day last week but also recorded their highest daily electricity prices in several years as gas prices rose to their highest level since early 2023. The post European markets set daily solar records for September appeared first on pv maga…"
-    },
-    {
       "t": "2026-09-08T07:46:39.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/pan-european-battery-storage-and-renewable-energy-platform-aukera-closes-e460-million-credit-facility/",
       "source": "Energy-Storage.news",
@@ -363,46 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Aukera has closed a €460 million (US$534.23 million) structured credit facility to advance its project pipeline in five European markets."
-    },
-    {
-      "t": "2026-09-08T07:48:14.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/jordan-issues-first-200-renewables-approvals-under-new-grid-connection-rules/",
-      "source": "pv magazine",
-      "title": "Jordan issues first 200 renewables approvals under new grid-connection rules",
-      "url": "https://www.pv-magazine.com/2026/09/08/jordan-issues-first-200-renewables-approvals-under-new-grid-connection-rules/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Jordan’s energy regulator has approved the first 200 renewable energy systems under the country’s amended Renewable Energy and Energy Efficiency Law. The approvals cover residential and other eligible applicants, as authorities begin processing pending grid-connection requests nationwide. The post Jordan issues firs…"
-    },
-    {
-      "t": "2026-09-08T07:55:43.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/lebanon-extends-deadline-for-350-mw-solar-tender/",
-      "source": "pv magazine",
-      "title": "Lebanon extends deadline for 350 MW solar tender",
-      "url": "https://www.pv-magazine.com/2026/09/08/lebanon-extends-deadline-for-350-mw-solar-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The deadline extension gives interested investors and developers additional time to submit applications, while all other tender terms and requirements remain unchanged. The post Lebanon extends deadline for 350 MW solar tender appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-08T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/great-power-successfully-completes-full-scale-fire-test/",
-      "source": "pv magazine",
-      "title": "Great Power successfully completes full-scale fire test",
-      "url": "https://www.pv-magazine.com/2026/09/08/great-power-successfully-completes-full-scale-fire-test/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Great Power has completed a full-scale fire test of its 5 MWh energy storage system, with no fire propagation to adjacent containers, no structural collapse, and no thermal runaway observed in any adjacent module. The post Great Power successfully completes full-scale fire test appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-08T09:03:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/liberia-renews-suspension-of-import-tariffs-on-off-grid-solar-products/",
-      "source": "pv magazine",
-      "title": "Liberia renews suspension of import tariffs on off-grid solar products",
-      "url": "https://www.pv-magazine.com/2026/09/08/liberia-renews-suspension-of-import-tariffs-on-off-grid-solar-products/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Liberia's suspension of import tariffs on off-grid solar products has been extended as the country looks to stimulate private investment and expand access to clean energy. The post Liberia renews suspension of import tariffs on off-grid solar products appeared first on pv magazine Global ."
     },
     {
       "t": "2026-09-08T10:00:48.000Z",
@@ -453,18 +363,88 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Analysis from Solar Macedonia says both standalone and co-located battery projects are beginning to materialise, while recent drought conditions have been favorable to the economic viability of solar projects. The post North Macedonia’s BESS market begins to develop appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-08T11:44:56.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/hina-battery-scales-korean-sodium-ion-partnership-from-15-mwh-to-10-gwh/",
+      "source": "pv magazine",
+      "title": "HiNa Battery scales Korean sodium-ion partnership from 15 MWh to 10 GWh",
+      "url": "https://www.pv-magazine.com/2026/09/08/hina-battery-scales-korean-sodium-ion-partnership-from-15-mwh-to-10-gwh/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "HiNa Battery signed a five-year deal to supply South Korea’s Volta with 10 GWh of sodium-ion batteries, expanding an earlier 15 MWh storage partnership. The agreement highlights sodium-ion technology’s shift toward GWh-scale energy storage deployments, though LFP batteries remain dominant in the market. The post HiN…"
+    },
+    {
+      "t": "2026-09-08T12:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/south-korea-to-expand-renewable-monitoring-mandate-to-20-kw/",
+      "source": "pv magazine",
+      "title": "South Korea to expand renewable monitoring mandate to 20 kW",
+      "url": "https://www.pv-magazine.com/2026/09/08/south-korea-to-expand-renewable-monitoring-mandate-to-20-kw/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The South Korean government says it will require far smaller solar, wind and fuel-cell installations to carry real-time monitoring and remote-control capability from 2027, easing the switch to commercial mobile networks along the way. The post South Korea to expand renewable monitoring mandate to 20 kW appeared firs…"
+    },
+    {
+      "t": "2026-09-08T12:23:20.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/togo-kicks-off-solar-tender/",
+      "source": "pv magazine",
+      "title": "Togo kicks off solar tender",
+      "url": "https://www.pv-magazine.com/2026/09/08/togo-kicks-off-solar-tender/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Togo is tendering a solar project to be built in the northern part of its capital, Lomé. The planned capacity of the plant has not been disclosed. The deadline for prequalification is September 15. The post Togo kicks off solar tender appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-08T12:27:55.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/solarworld-rays-power-form-jv-for-2-4-gw-solar-cell-manufacturing-facility/",
+      "source": "pv magazine",
+      "title": "Solarworld, Rays Power plan 2.4 GW solar cell factory in India",
+      "url": "https://www.pv-magazine.com/2026/09/08/solarworld-rays-power-form-jv-for-2-4-gw-solar-cell-manufacturing-facility/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solarworld Energy Solutions and Rays Power Infra have formed a 50:50 joint venture to build a 2.4 GW n-type TOPCon solar cell factory in Madhya Pradesh, India. The $105.5 million facility is expected to begin commercial production in June 2027. The post Solarworld, Rays Power plan 2.4 GW solar cell factory in India…"
+    },
+    {
+      "t": "2026-09-08T12:55:51.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/france-seeks-recyclers-for-cdte-cigs-solar-modules/",
+      "source": "pv magazine",
+      "title": "France seeks recyclers for CdTe, CIGS solar modules",
+      "url": "https://www.pv-magazine.com/2026/09/08/france-seeks-recyclers-for-cdte-cigs-solar-modules/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Soren is seeking companies to develop thin-film PV module recycling solutions in France for CdTe and CIGS technologies, with proposals due Oct. 21, 2026. The selected solution will prioritize a 1,300-tonne batch of CdTe modules as recycling volumes are projected to rise sharply through 2037. The post France seeks re…"
+    },
+    {
+      "t": "2026-09-08T13:07:53.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/eu-deploys-33-8-gw-of-solar-in-h1/",
+      "source": "pv magazine",
+      "title": "EU deploys 33.8 GW of solar in H1",
+      "url": "https://www.pv-magazine.com/2026/09/08/eu-deploys-33-8-gw-of-solar-in-h1/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "SolarPower Europe expects the EU to install 68.1 GW of solar capacity in 2026, just 2.1% below the record 69.6 GW added in 2025. The outlook has improved since December, but policy uncertainty, reduced support and grid constraints continue to pose risks to growth. The post EU deploys 33.8 GW of solar in H1 appeared…"
+    },
+    {
+      "t": "2026-09-08T15:08:11.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/announcement-the-energy-storage-report-will-be-back-in-2027/",
+      "source": "Energy-Storage.news",
+      "title": "Announcement: The Energy Storage Report will be back in 2027",
+      "url": "https://www.energy-storage.news/announcement-the-energy-storage-report-will-be-back-in-2027/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "We are pleased to announce that we’re now working on the 2027 edition of the Energy Storage Report, our annual publication looking at the big trends shaping the industry."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 24,
-      "policy": 10,
+      "grid": 19,
+      "policy": 12,
       "capital": 6,
-      "technology": 3
+      "technology": 4
     },
     "sourceStatus": [
       {
@@ -483,7 +463,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 1
       },
       {
         "source": "pv magazine",
@@ -498,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:8a5c2a5a14df2d2a48decaf3be31d928449d1494f9de06ca5c7ddc4e4fe7d9f5",
-  "envelopeChecksum": "sha256:e3d6493c90b96897dffdfd38ecaf51ab5397bd6898061aeac4d6bdd4a9960fc9"
+  "contentChecksum": "sha256:f2f81903849f4f2c32f064da882899928702b870fbc31e10f675ca71539a2664",
+  "envelopeChecksum": "sha256:e7c8303d75debec53d4d3bec6c988693fb13ad9171b6d63444e793741d657769"
 }
