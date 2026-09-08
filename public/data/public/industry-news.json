@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-08T04:46:11.703Z",
+  "fetchedAt": "2026-09-08T11:26:03.391Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-07T13:27:09.000Z",
+    "to": "2026-09-08T11:15:04.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -133,76 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-01T15:08:20.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/trump-grid-order-likely-to-cause-energy-storage-delays-cancellations-bloo/829306/",
-      "source": "Utility Dive",
-      "title": "Trump grid order likely to cause energy storage delays, cancellations: BloombergNEF",
-      "url": "https://www.utilitydive.com/news/trump-grid-order-likely-to-cause-energy-storage-delays-cancellations-bloo/829306/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Aug. 26 executive order, previous executive actions and the Treasury Department&rsquo;s foreign entity of concern guidance are likely to hit battery and inverter supply chains particularly hard, an industry analyst told Utility Dive."
-    },
-    {
-      "t": "2026-09-02T07:54:15.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/italy-gives-national-strategic-interest-designation-to-sardinia-data-centre-with-hybrid-energy-storage-hub/",
-      "source": "Energy-Storage.news",
-      "title": "Italy gives national strategic interest designation to Sardinia data centre with hybrid energy storage hub",
-      "url": "https://www.energy-storage.news/italy-gives-national-strategic-interest-designation-to-sardinia-data-centre-with-hybrid-energy-storage-hub/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Italian government has declared an AI data centre in development by Energy Vault, featuring hybrid energy storage technologies, to be of strategic national interest."
-    },
-    {
-      "t": "2026-09-02T09:23:30.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bw-ess-starts-building-515mwh-italy-bess-buys-675mwh-projects-in-spain/",
-      "source": "Energy-Storage.news",
-      "title": "BW ESS starts building 515MWh Italy BESS; buys 675MWh projects in Spain",
-      "url": "https://www.energy-storage.news/bw-ess-starts-building-515mwh-italy-bess-buys-675mwh-projects-in-spain/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS owner-operator BW ESS has progressed large-scale projects in Italy and Spain, totalling almost 1.2GWh and set to come online in 2027/28."
-    },
-    {
-      "t": "2026-09-02T11:13:43.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/canadian-solar-ships-3-7gwh-of-bess-in-q2-2026-company-is-actively-validating-15000-cycle-sodium-ion-product/",
-      "source": "Energy-Storage.news",
-      "title": "Canadian Solar ships 3.7GWh of BESS in Q2 2026, company is ‘actively validating’ 15,000+ cycle sodium-ion product",
-      "url": "https://www.energy-storage.news/canadian-solar-ships-3-7gwh-of-bess-in-q2-2026-company-is-actively-validating-15000-cycle-sodium-ion-product/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Canadian Solar’s quarterly battery storage shipments increased 73% year-on-year, with 3.7GWh delivered in the second quarter of 2026."
-    },
-    {
-      "t": "2026-09-02T11:43:43.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/hyperstrong-starts-building-leags-1-6gwh-germany-bess-under-turnkey-contract/",
-      "source": "Energy-Storage.news",
-      "title": "Hyperstrong starts building LEAG’s 1.6GWh Germany BESS under turnkey contract",
-      "url": "https://www.energy-storage.news/hyperstrong-starts-building-leags-1-6gwh-germany-bess-under-turnkey-contract/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Power generator LEAG and its turnkey BESS construction partner HyperStrong have started building a 400MW/1,600MWh project in Germany, while Sunotec has done the same on a 441MWh project."
-    },
-    {
-      "t": "2026-09-02T12:16:19.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/one-nuclear-energy-executes-loi-for-2-88gwh-bess-and-gas-plant-co-located-with-louisiana-data-centre/",
-      "source": "Energy-Storage.news",
-      "title": "ONE Nuclear Energy executes LOI for 2.88GWh BESS and gas plant co-located with Louisiana data centre",
-      "url": "https://www.energy-storage.news/one-nuclear-energy-executes-loi-for-2-88gwh-bess-and-gas-plant-co-located-with-louisiana-data-centre/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ONE Nuclear Energy has executed a binding letter of intent to develop a 2.88GW natural gas plant and 700MW/2.88GWh energy storage system, co-located with a high-capacity data centre campus."
-    },
-    {
-      "t": "2026-09-02T13:54:09.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/analysts-say-fervo-google-geothermal-deal-underscores-baseload-power-scarci/829419/",
-      "source": "Utility Dive",
-      "title": "Fervo-Google geothermal deal underscores baseload power scarcity, analysts say",
-      "url": "https://www.utilitydive.com/news/analysts-say-fervo-google-geothermal-deal-underscores-baseload-power-scarci/829419/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Key risks remain, however, including &ldquo;first-of-a-kind execution,&rdquo; interconnection bottlenecks, capital intensity and competing technology paths, according to a&nbsp;research note from financial services company William Blair."
     },
     {
       "t": "2026-09-02T14:38:00.000Z",
@@ -385,96 +315,156 @@
       "summary": "Pakistan's National Electric Power Regulatory Authority (NEPRA) has approved plans to require bidders in a renewable energy auction to include energy storage."
     },
     {
-      "t": "2026-09-07T11:25:08.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/uzbekistan-has-now-2-5-gw-of-solar-under-net-metering/",
-      "source": "pv magazine",
-      "title": "Uzbekistan has now 2.5 GW of solar under net metering",
-      "url": "https://www.pv-magazine.com/2026/09/07/uzbekistan-has-now-2-5-gw-of-solar-under-net-metering/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Uzbekistan added 509.7 MW of PV capacity under its Solar House net metering scheme in the first eight months of 2026. The post Uzbekistan has now 2.5 GW of solar under net metering appeared first on pv magazine Global ."
+      "t": "2026-09-08T04:55:01.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/octopus-australia-refers-2gwh-blackstone-bess-for-epbc-act-assessment-in-queensland/",
+      "source": "Energy-Storage.news",
+      "title": "Octopus Australia refers 2GWh Blackstone BESS for EPBC Act assessment in Queensland",
+      "url": "https://www.energy-storage.news/octopus-australia-refers-2gwh-blackstone-bess-for-epbc-act-assessment-in-queensland/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Octopus Australia has referred the Blackstone battery energy storage system (BESS), a 500MW/2,000MWh standalone facility, to Australia's federal government for assessment under the Environment Protection and Biodiversity Conservation (EPBC) Act."
     },
     {
-      "t": "2026-09-07T11:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/europes-pv-waste-could-yield-up-to-63-gw-of-new-solar-capacity/",
-      "source": "pv magazine",
-      "title": "Europe’s PV waste could yield up to 63 GW of new solar capacity",
-      "url": "https://www.pv-magazine.com/2026/09/07/europes-pv-waste-could-yield-up-to-63-gw-of-new-solar-capacity/",
+      "t": "2026-09-08T04:57:17.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-fiji-partners-with-epc-renewables-on-240mwh-solar-plus-storage-site/",
+      "source": "Energy-Storage.news",
+      "title": "Energy Fiji partners with EPC Renewables on 240MWh solar-plus-storage site",
+      "url": "https://www.energy-storage.news/energy-fiji-partners-with-epc-renewables-on-240mwh-solar-plus-storage-site/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Recovering silicon from Europe's end-of-life solar panels won't meaningfully cut import reliance unless the region's ingot and wafer manufacturing base grows to absorb it, a SINTEF Industry researcher tells pv magazine. The post Europe’s PV waste could yield up to 63 GW of new solar capacity appeared first on pv mag…"
+      "summary": "EPC Renewables has signed an MoU with state-linked utility Energy Fiji Limited for the development of the Yaqara Solar & Battery Project."
     },
     {
-      "t": "2026-09-07T11:54:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/zambias-pv-capacity-tops-841-mw/",
+      "t": "2026-09-08T05:46:45.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/new-optimization-method-improves-heat-pump-sizing-by-accounting-for-part-load-efficiency/",
       "source": "pv magazine",
-      "title": "Zambia’s PV capacity tops 841 MW",
-      "url": "https://www.pv-magazine.com/2026/09/07/zambias-pv-capacity-tops-841-mw/",
+      "title": "New optimization method improves heat pump sizing by accounting for part-load efficiency",
+      "url": "https://www.pv-magazine.com/2026/09/08/new-optimization-method-improves-heat-pump-sizing-by-accounting-for-part-load-efficiency/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Zambia’s installed solar PV capacity has surged from 88 MW in 2021 to approximately 841 MW in 2026, including around 584 MW of identified utility-scale projects and 30 MW under net metering. The post Zambia’s PV capacity tops 841 MW appeared first on pv magazine Global ."
+      "summary": "Austrian researchers have developed an optimization framework that accounts for part-load efficiency when sizing and operating heat pumps, enabling more realistic system planning. A case study in Innsbruck found the approach could cut electricity consumption by 4.5% and annual costs by 2.9%, while relaxed formulatio…"
     },
     {
-      "t": "2026-09-07T11:55:14.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/serbian-utility-looks-to-acquire-jointly-develop-renewable-energy-projects/",
+      "t": "2026-09-08T07:40:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/european-markets-set-daily-solar-records-for-september/",
       "source": "pv magazine",
-      "title": "Serbian utility looks to acquire, jointly develop renewable energy projects",
-      "url": "https://www.pv-magazine.com/2026/09/07/serbian-utility-looks-to-acquire-jointly-develop-renewable-energy-projects/",
+      "title": "European markets set daily solar records for September",
+      "url": "https://www.pv-magazine.com/2026/09/08/european-markets-set-daily-solar-records-for-september/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Italy, Spain and Portugal all set new records for solar produced on a September day last week but also recorded their highest daily electricity prices in several years as gas prices rose to their highest level since early 2023. The post European markets set daily solar records for September appeared first on pv maga…"
+    },
+    {
+      "t": "2026-09-08T07:46:39.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/pan-european-battery-storage-and-renewable-energy-platform-aukera-closes-e460-million-credit-facility/",
+      "source": "Energy-Storage.news",
+      "title": "Pan-European battery storage and renewable energy platform Aukera closes €460 million credit facility",
+      "url": "https://www.energy-storage.news/pan-european-battery-storage-and-renewable-energy-platform-aukera-closes-e460-million-credit-facility/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Aukera has closed a €460 million (US$534.23 million) structured credit facility to advance its project pipeline in five European markets."
+    },
+    {
+      "t": "2026-09-08T07:48:14.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/jordan-issues-first-200-renewables-approvals-under-new-grid-connection-rules/",
+      "source": "pv magazine",
+      "title": "Jordan issues first 200 renewables approvals under new grid-connection rules",
+      "url": "https://www.pv-magazine.com/2026/09/08/jordan-issues-first-200-renewables-approvals-under-new-grid-connection-rules/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Jordan’s energy regulator has approved the first 200 renewable energy systems under the country’s amended Renewable Energy and Energy Efficiency Law. The approvals cover residential and other eligible applicants, as authorities begin processing pending grid-connection requests nationwide. The post Jordan issues firs…"
+    },
+    {
+      "t": "2026-09-08T07:55:43.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/lebanon-extends-deadline-for-350-mw-solar-tender/",
+      "source": "pv magazine",
+      "title": "Lebanon extends deadline for 350 MW solar tender",
+      "url": "https://www.pv-magazine.com/2026/09/08/lebanon-extends-deadline-for-350-mw-solar-tender/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The deadline extension gives interested investors and developers additional time to submit applications, while all other tender terms and requirements remain unchanged. The post Lebanon extends deadline for 350 MW solar tender appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-08T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/great-power-successfully-completes-full-scale-fire-test/",
+      "source": "pv magazine",
+      "title": "Great Power successfully completes full-scale fire test",
+      "url": "https://www.pv-magazine.com/2026/09/08/great-power-successfully-completes-full-scale-fire-test/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Great Power has completed a full-scale fire test of its 5 MWh energy storage system, with no fire propagation to adjacent containers, no structural collapse, and no thermal runaway observed in any adjacent module. The post Great Power successfully completes full-scale fire test appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-08T09:03:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/liberia-renews-suspension-of-import-tariffs-on-off-grid-solar-products/",
+      "source": "pv magazine",
+      "title": "Liberia renews suspension of import tariffs on off-grid solar products",
+      "url": "https://www.pv-magazine.com/2026/09/08/liberia-renews-suspension-of-import-tariffs-on-off-grid-solar-products/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Liberia's suspension of import tariffs on off-grid solar products has been extended as the country looks to stimulate private investment and expand access to clean energy. The post Liberia renews suspension of import tariffs on off-grid solar products appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-08T10:00:48.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/belgium-edf-inaugurates-600mwh-bess-engie-starts-building-296mwh-project/",
+      "source": "Energy-Storage.news",
+      "title": "Belgium: EDF inaugurates 600MWh BESS, Engie starts building 296MWh project",
+      "url": "https://www.energy-storage.news/belgium-edf-inaugurates-600mwh-bess-engie-starts-building-296mwh-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "EDF Power Solutions has put a 150MW/600MWh BESS in Belgium into commercial operation while Engie has started building a 74MW/296MWh project."
+    },
+    {
+      "t": "2026-09-08T10:32:56.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/yemens-largest-solar-plant-set-to-double-to-240-mw/",
+      "source": "pv magazine",
+      "title": "Yemen’s largest solar plant set to double to 240 MW",
+      "url": "https://www.pv-magazine.com/2026/09/08/yemens-largest-solar-plant-set-to-double-to-240-mw/",
       "category": "capital",
       "categoryLabel": "Capital & M&A",
-      "summary": "The call to acquire or jointly develop renewable energy projects includes solar PV plants larger than 50 MW that can be connected to Serbia's transmission system. The post Serbian utility looks to acquire, jointly develop renewable energy projects appeared first on pv magazine Global ."
+      "summary": "Yemen is expanding its largest solar power plant in Aden from 120 MW to 240 MW with UAE funding, while plans for a separate 50 MW project in Hadhramaut are also advancing. The projects form part of a growing pipeline of utility-scale solar developments across the country. The post Yemen’s largest solar plant set to…"
     },
     {
-      "t": "2026-09-07T12:00:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/seci-tenders-700-mw-of-solar-capacity-for-ci-offtake/",
+      "t": "2026-09-08T10:45:15.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/it-looks-like-there-could-be-an-undersupply-of-the-highest-efficiency/",
       "source": "pv magazine",
-      "title": "India tenders 700 MW of solar capacity for C&I offtake",
-      "url": "https://www.pv-magazine.com/2026/09/07/seci-tenders-700-mw-of-solar-capacity-for-ci-offtake/",
+      "title": "‘It looks like there could be an undersupply of the highest efficiency’",
+      "url": "https://www.pv-magazine.com/2026/09/08/it-looks-like-there-could-be-an-undersupply-of-the-highest-efficiency/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Solar Energy Corp. of India (SECI) has launched a tender for 700 MW of interstate transmission system (ISTS)-connected solar PV projects in special economic zones (SEZs) or areas designated as export-oriented units (EOUs) in India, with the electricity earmarked for a commercial and industrial (C&I) consumer in Odis…"
+      "summary": "Alastair Mounsey, VP for Europe discusses JA's solar moduel module strategy, why quality matters, and the growing role of energy storage in the business. The post ‘It looks like there could be an undersupply of the highest efficiency’ appeared first on pv magazine Global ."
     },
     {
-      "t": "2026-09-07T12:41:11.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/latvia-expands-residential-solar-and-battery-rebate-scheme/",
-      "source": "pv magazine",
-      "title": "Latvia expands residential solar and battery rebate scheme",
-      "url": "https://www.pv-magazine.com/2026/09/07/latvia-expands-residential-solar-and-battery-rebate-scheme/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Latvia has expanded its €85 million household renewable energy support program, raising grants for eligible households and increasing the minimum supported battery capacity from 5 kWh to 10 kWh. The scheme had supported 15,700 projects as of May 2026, including more than 14,000 applications for solar PV and over 2,0…"
+      "t": "2026-09-08T11:01:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/pjm-targets-data-centre-demand-with-6gw-backstop-auction-bess-expected-to-have-competitive-edge/",
+      "source": "Energy-Storage.news",
+      "title": "PJM targets data centre demand with 6GW backstop auction; BESS expected to have competitive edge",
+      "url": "https://www.energy-storage.news/pjm-targets-data-centre-demand-with-6gw-backstop-auction-bess-expected-to-have-competitive-edge/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "PJM has proposed a major overhaul of how it procures power capacity in response to surging data centre demand that has driven auction prices up more than 1,000% in two years and threatens to add US$70 per month to average household electricity bills by 2028."
     },
     {
-      "t": "2026-09-07T13:03:34.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/nigeria-tenders-100-mw-solar-project/",
+      "t": "2026-09-08T11:15:04.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/north-macedonias-bess-market-begins-to-develop/",
       "source": "pv magazine",
-      "title": "Nigeria tenders 100 MW solar project",
-      "url": "https://www.pv-magazine.com/2026/09/07/nigeria-tenders-100-mw-solar-project/",
+      "title": "North Macedonia’s BESS market begins to develop",
+      "url": "https://www.pv-magazine.com/2026/09/08/north-macedonias-bess-market-begins-to-develop/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "A tender is open in Nigeria advertising the construction and installation of a 100 MW solar project to be built in the country’s central Niger state. The deadline for prequalification is October 13. The post Nigeria tenders 100 MW solar project appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-07T13:27:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/07/italy-deploys-2-61-gw-of-solar-in-h1/",
-      "source": "pv magazine",
-      "title": "Italy deploys 2.61 GW of solar in H1",
-      "url": "https://www.pv-magazine.com/2026/09/07/italy-deploys-2-61-gw-of-solar-in-h1/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Italy added 2.9 GW of renewable energy capacity in the first half of 2026, with solar accounting for 2.6 GW. Cumulative PV capacity reached approximately 46.8 GW at the end of June. The post Italy deploys 2.61 GW of solar in H1 appeared first on pv magazine Global ."
+      "summary": "Analysis from Solar Macedonia says both standalone and co-located battery projects are beginning to materialise, while recent drought conditions have been favorable to the economic viability of solar projects. The post North Macedonia’s BESS market begins to develop appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 25,
-      "policy": 8,
-      "capital": 7,
-      "technology": 4
+      "grid": 24,
+      "policy": 10,
+      "capital": 6,
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -493,13 +483,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 5
+        "items": 3
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -508,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:3479667815d22018e385ea5e7c3bba39b6fb377e8268af3c9e8eb718a7e49837",
-  "envelopeChecksum": "sha256:d9b56871c94e634817ee1182b649c102f60f56894d254f00539a77c3b5e27fed"
+  "contentChecksum": "sha256:8a5c2a5a14df2d2a48decaf3be31d928449d1494f9de06ca5c7ddc4e4fe7d9f5",
+  "envelopeChecksum": "sha256:e3d6493c90b96897dffdfd38ecaf51ab5397bd6898061aeac4d6bdd4a9960fc9"
 }
