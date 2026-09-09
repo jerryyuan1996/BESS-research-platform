@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-09T11:31:34.098Z",
+  "fetchedAt": "2026-09-09T16:43:37.686Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-09T10:59:41.000Z",
+    "to": "2026-09-09T13:57:18.000Z",
     "resolution": "event",
-    "points": 40
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-04T05:15:26.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-vault-secures-full-land-ownership-for-1gwh-stoney-creek-bess-in-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Energy Vault secures full land ownership for 1GWh Stoney Creek BESS in Australia",
-      "url": "https://www.energy-storage.news/energy-vault-secures-full-land-ownership-for-1gwh-stoney-creek-bess-in-australia/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Energy Vault has completed the acquisition of the underlying project land for its 125MW/1,000MWh Stoney Creek battery energy storage system (BESS) in northern New South Wales, Australia."
-    },
-    {
-      "t": "2026-09-04T09:41:32.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/under-the-hood-inside-teslas-megapack-3-as-texas-production-begins/",
-      "source": "Energy-Storage.news",
-      "title": "Under the hood: Inside Tesla’s Megapack 3 as Texas production begins",
-      "url": "https://www.energy-storage.news/under-the-hood-inside-teslas-megapack-3-as-texas-production-begins/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Tesla was one of the pioneers of the grid-scale battery storage market, but has faced increasing competition in the past few years. In this article we look under the hood of its latest grid-scale BESS product, the Megapack 3."
     },
     {
       "t": "2026-09-04T11:14:49.000Z",
@@ -302,7 +282,7 @@
       "url": "https://www.energy-storage.news/at-least-six-months-ahead-of-go-live-optigrid-on-the-ideal-onboarding-runway-for-battery-storage-systems/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "In this interview with ESN Premium, Sahand Karimi of OptiGrid discusses how BESS warranties and constraint management shape trading behaviour"
+      "summary": "In this interview with ESN Premium, Sahand Karimi of OptiGrid discusses how BESS warranties and constraint management shape trading behaviour."
     },
     {
       "t": "2026-09-09T05:19:31.000Z",
@@ -325,16 +305,6 @@
       "summary": "Ayala's ACEN Corp has loaned PHP9 billion (US$144 million) to subsidiaries within the group for renewable energy and battery storage projects."
     },
     {
-      "t": "2026-09-09T08:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/sri-lanka-proposes-bess-inclusive-feed-in-tariffs-draws-pricing-pushback/",
-      "source": "pv magazine",
-      "title": "Sri Lanka proposes BESS-inclusive feed-in tariffs, draws pricing pushback",
-      "url": "https://www.pv-magazine.com/2026/09/09/sri-lanka-proposes-bess-inclusive-feed-in-tariffs-draws-pricing-pushback/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sri Lanka's proposed battery storage tariffs have drawn early criticism from within the national grid operator, which says the rates far exceed prices already secured through competitive tenders. The post Sri Lanka proposes BESS-inclusive feed-in tariffs, draws pricing pushback appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-09T08:41:40.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/uk-roundup-bess-planning-approvals-acquisitions-and-optimisation-deals-with-field-eelpower-edf/",
       "source": "Energy-Storage.news",
@@ -343,16 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "This edition of news in brief brings you BESS news from the UK market featuring Field, Eelpower and EDF, as reported by our colleagues at Solar Power Portal."
-    },
-    {
-      "t": "2026-09-09T08:42:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/the-netherlands-installs-1-4-gw-of-solar-in-2025/",
-      "source": "pv magazine",
-      "title": "Netherlands installs 1.4 GW of solar in 2025",
-      "url": "https://www.pv-magazine.com/2026/09/09/the-netherlands-installs-1-4-gw-of-solar-in-2025/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Official statistics from the Netherlands show the drop in annual solar installations last year was larger than estimates indicated. Annual deployments are now forecast to stabilise around 1.3 GW through to 2028. The post Netherlands installs 1.4 GW of solar in 2025 appeared first on pv magazine Global ."
     },
     {
       "t": "2026-09-09T09:00:00.000Z",
@@ -423,15 +383,65 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Switzerland’s largest battery storage facility has begun operations in Gurtnellen, combining 50 MW and 8.4 MW systems developed by Axpo and Energie Uri. The Fluence-supplied project will support grid flexibility. The post Switzerland’s largest battery storage facility goes online appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-09T11:50:18.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/black-hills-energy-to-begin-construction-on-200mwh-colorado-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Black Hills Energy to begin construction on 200MWh Colorado BESS",
+      "url": "https://www.energy-storage.news/black-hills-energy-to-begin-construction-on-200mwh-colorado-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Utility Black Hills Energy has announced it will move forward with the construction of a 50MW/200MWh energy storage facility at its Pueblo Airport Generating Station (PAGS) in Colorado, US."
+    },
+    {
+      "t": "2026-09-09T12:10:29.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/sungrow-turns-to-samsung-sdi-battery-cells-to-sustain-its-energy-storage-business/",
+      "source": "pv magazine",
+      "title": "Sungrow turns to Samsung SDI battery cells to sustain its energy storage business",
+      "url": "https://www.pv-magazine.com/2026/09/09/sungrow-turns-to-samsung-sdi-battery-cells-to-sustain-its-energy-storage-business/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "ungrow plans to procure Samsung SDI battery cells for its energy storage systems, primarily to support continued deliveries to the U.S. market amid tightening restrictions on China-linked supply chains. The potential three-year, multi-GWh LFP deal could leverage Samsung SDI’s expanding U.S. production footprint, alt…"
+    },
+    {
+      "t": "2026-09-09T12:16:04.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/africas-solar-panel-manufacturing-capacity-to-reach-3-5-gw-this-year/",
+      "source": "pv magazine",
+      "title": "Africa’s solar panel manufacturing capacity to reach 3.5 GW this year",
+      "url": "https://www.pv-magazine.com/2026/09/09/africas-solar-panel-manufacturing-capacity-to-reach-3-5-gw-this-year/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Report from Ember and Africa Tech Futures Lab says solar panel manufacturing output will reach around 3.5 GW in 2026, led by new plants in Egypt and Tanzania that are geared predominantly towards US export. The post Africa’s solar panel manufacturing capacity to reach 3.5 GW this year appeared first on pv magazine G…"
+    },
+    {
+      "t": "2026-09-09T13:28:57.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/catl-upgraded-to-aaa-wartsila-downgraded-to-bb-in-bankability-report-q2-update/",
+      "source": "Energy-Storage.news",
+      "title": "CATL upgraded to AAA, Wärtsilä downgraded to BB in Bankability Report Q2 update",
+      "url": "https://www.energy-storage.news/catl-upgraded-to-aaa-wartsila-downgraded-to-bb-in-bankability-report-q2-update/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The global battery energy storage market is entering a new phase, with shifting cell prices, intensifying competition and rapid international expansion reshaping the supplier landscape."
+    },
+    {
+      "t": "2026-09-09T13:57:18.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/west-virginia-regulators-reject-delay-marl-proceedings-nextera/829906/",
+      "source": "Utility Dive",
+      "title": "West Virginia regulators reject delay in review of NextEra’s MARL project",
+      "url": "https://www.utilitydive.com/news/west-virginia-regulators-reject-delay-marl-proceedings-nextera/829906/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The MidAtlantic Resiliency Link was selected by PJM Interconnection in 2023 as part of its regional&nbsp;expansion plan, but there are questions about the need for the project and its route."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 40,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 24,
+      "grid": 25,
       "policy": 9,
       "capital": 4,
       "technology": 3
@@ -453,7 +463,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 1
+        "items": 2
       },
       {
         "source": "pv magazine",
@@ -468,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:e8d6c0149f03586aafcbfae6d616972166e98e4d82d3695c565824af3898dd8e",
-  "envelopeChecksum": "sha256:b659f7363a02800b422c1836ba4b9acacb58702cb4f8b29132609707f2da97ce"
+  "contentChecksum": "sha256:122315e74e0cfb9f0975722bc73c3a6c0dbba8e6321d06b5ce70e13ef6cc4381",
+  "envelopeChecksum": "sha256:7ddbf27a9489314d855234345bc6be5bbc0c8de5840f10ba27b4acd758383c45"
 }
