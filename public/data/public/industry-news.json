@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-09T16:43:37.686Z",
+  "fetchedAt": "2026-09-09T20:59:07.706Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-09T13:57:18.000Z",
+    "to": "2026-09-09T17:03:46.000Z",
     "resolution": "event",
-    "points": 41
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -262,7 +262,7 @@
       "url": "https://www.utilitydive.com/news/google-backs-solar-storage-project-at-former-west-virginia-coal-mine/829812/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The project is being developed by MN8 and will include 100 MWh of long-duration Eos Energy Enterprises zinc-based storage alongside lithium-ion batteries."
+      "summary": "The project MN8 is developing will include 100 MWh of long-duration Eos Energy Enterprises zinc-based storage alongside lithium-ion batteries."
     },
     {
       "t": "2026-09-09T04:02:01.000Z",
@@ -432,16 +432,36 @@
       "url": "https://www.utilitydive.com/news/west-virginia-regulators-reject-delay-marl-proceedings-nextera/829906/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The MidAtlantic Resiliency Link was selected by PJM Interconnection in 2023 as part of its regional&nbsp;expansion plan, but there are questions about the need for the project and its route."
+      "summary": "The PJM Interconnection selected the MidAtlantic Resiliency Link in 2023 as part of its regional expansion plan, but there are questions about the need for the project and its route."
+    },
+    {
+      "t": "2026-09-09T16:10:20.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/front-of-meter-solar-storage-could-serve-32-of-californias-2032-peak-loa/829935/",
+      "source": "Utility Dive",
+      "title": "Front-of-meter solar, storage could serve 32% of California’s 2032 peak load: study",
+      "url": "https://www.utilitydive.com/news/front-of-meter-solar-storage-could-serve-32-of-californias-2032-peak-loa/829935/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "An analysis commissioned by the Coalition for Community Solar Access found untapped opportunity for 3,100 distribution-connected projects in the state&rsquo;s three investor-owned utility territories."
+    },
+    {
+      "t": "2026-09-09T17:03:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/suniva-raises-835-million-to-drive-4-5-gw-in-new-domestic-cell-capacity/",
+      "source": "pv magazine",
+      "title": "Suniva raises $835 million to drive 4.5 GW in new solar cell capacity",
+      "url": "https://www.pv-magazine.com/2026/09/09/suniva-raises-835-million-to-drive-4-5-gw-in-new-domestic-cell-capacity/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The domestic solar cell manufacturer is building a new $600 million facility in Laurens County, South Carolina, with a planned opening in late 2027 and an expected 564 manufacturing jobs at full capacity. The post Suniva raises $835 million to drive 4.5 GW in new solar cell capacity appeared first on pv magazine Glo…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 41,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 25,
+      "grid": 27,
       "policy": 9,
       "capital": 4,
       "technology": 3
@@ -463,13 +483,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 2
+        "items": 3
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -478,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:122315e74e0cfb9f0975722bc73c3a6c0dbba8e6321d06b5ce70e13ef6cc4381",
-  "envelopeChecksum": "sha256:7ddbf27a9489314d855234345bc6be5bbc0c8de5840f10ba27b4acd758383c45"
+  "contentChecksum": "sha256:77c7dde1e6d5bdf801981e4a118aa2b344b16c984594832b52d715be832e2475",
+  "envelopeChecksum": "sha256:be0f68ee121d821663d9c380d4780cdeccd70d335fb9bf271cc6642d88eb02d2"
 }
