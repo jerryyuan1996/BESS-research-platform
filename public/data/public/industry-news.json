@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-09T04:49:39.915Z",
+  "fetchedAt": "2026-09-09T11:31:34.098Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-09T04:25:07.000Z",
+    "to": "2026-09-09T10:59:41.000Z",
     "resolution": "event",
     "points": 40
   },
@@ -133,46 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-03T11:23:24.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/google-partners-with-mn8-energy-and-eos-on-west-virginia-solar-plus-ldes-project/",
-      "source": "Energy-Storage.news",
-      "title": "Google partners with MN8 Energy and Eos on West Virginia solar-plus-LDES project",
-      "url": "https://www.energy-storage.news/google-partners-with-mn8-energy-and-eos-on-west-virginia-solar-plus-ldes-project/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Developer-operator MN8 Energy, zinc hybrid cathode battery and storage system maker Eos Energy Enterprises, and tech giant Google are backing a multi-technology renewables project on the PJM grid in the US."
-    },
-    {
-      "t": "2026-09-03T11:26:29.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/engie-starts-up-251mw-bess-projects-in-chile-grenergy-sells-fourth-phase-of-atacama-solar-plus-storage-complex/",
-      "source": "Energy-Storage.news",
-      "title": "Engie starts up 251MW BESS projects in Chile, Grenergy sells fourth phase of Atacama solar-plus-storage complex",
-      "url": "https://www.energy-storage.news/engie-starts-up-251mw-bess-projects-in-chile-grenergy-sells-fourth-phase-of-atacama-solar-plus-storage-complex/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Power firm Engie and IPP Grenergy are advancing three solar-plus-BESS projects in Chile."
-    },
-    {
-      "t": "2026-09-03T11:52:27.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/inertia-in-germany-is-first-bankable-long-term-revenue-stream-could-boost-battery-storage-irr-by-1-2pp/",
-      "source": "Energy-Storage.news",
-      "title": "Inertia in Germany is ‘first bankable long-term revenue stream,’ could boost battery storage IRR by 1-2pp",
-      "url": "https://www.energy-storage.news/inertia-in-germany-is-first-bankable-long-term-revenue-stream-could-boost-battery-storage-irr-by-1-2pp/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Inertia could provide a strong boost to BESS project returns in Germany, but operators are still waiting for the first prequalified inverters."
-    },
-    {
-      "t": "2026-09-04T05:11:01.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/chinas-half-year-energy-storage-deployments-post-first-ever-decline-to-22gw-59gwh-while-overseas-orders-surge-83/",
-      "source": "Energy-Storage.news",
-      "title": "China’s half-year energy storage deployments post first-ever decline to 22GW/59GWh, while overseas orders surge 83%",
-      "url": "https://www.energy-storage.news/chinas-half-year-energy-storage-deployments-post-first-ever-decline-to-22gw-59gwh-while-overseas-orders-surge-83/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "CNESA's report is a comprehensive overview of China’s energy storage sector in H1 2026 and outlines the industry outlook under the 15th Five-Year Plan."
     },
     {
       "t": "2026-09-04T05:15:26.000Z",
@@ -295,16 +255,6 @@
       "summary": "EDF Power Solutions has put a 150MW/600MWh BESS in Belgium into commercial operation while Engie has started building a 74MW/296MWh project."
     },
     {
-      "t": "2026-09-08T10:45:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/it-looks-like-there-could-be-an-undersupply-of-the-highest-efficiency/",
-      "source": "pv magazine",
-      "title": "‘It looks like there could be an undersupply of the highest efficiency’",
-      "url": "https://www.pv-magazine.com/2026/09/08/it-looks-like-there-could-be-an-undersupply-of-the-highest-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Alastair Mounsey, VP for Europe discusses JA's solar moduel module strategy, why quality matters, and the growing role of energy storage in the business. The post ‘It looks like there could be an undersupply of the highest efficiency’ appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-08T11:01:36.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/pjm-targets-data-centre-demand-with-6gw-backstop-auction-bess-expected-to-have-competitive-edge/",
       "source": "Energy-Storage.news",
@@ -313,76 +263,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "PJM has proposed a major overhaul of how it procures power capacity in response to surging data centre demand that has driven auction prices up more than 1,000% in two years and threatens to add US$70 per month to average household electricity bills by 2028."
-    },
-    {
-      "t": "2026-09-08T11:15:04.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/north-macedonias-bess-market-begins-to-develop/",
-      "source": "pv magazine",
-      "title": "North Macedonia’s BESS market begins to develop",
-      "url": "https://www.pv-magazine.com/2026/09/08/north-macedonias-bess-market-begins-to-develop/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Analysis from Solar Macedonia says both standalone and co-located battery projects are beginning to materialise, while recent drought conditions have been favorable to the economic viability of solar projects. The post North Macedonia’s BESS market begins to develop appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-08T11:44:56.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/hina-battery-scales-korean-sodium-ion-partnership-from-15-mwh-to-10-gwh/",
-      "source": "pv magazine",
-      "title": "HiNa Battery scales Korean sodium-ion partnership from 15 MWh to 10 GWh",
-      "url": "https://www.pv-magazine.com/2026/09/08/hina-battery-scales-korean-sodium-ion-partnership-from-15-mwh-to-10-gwh/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "HiNa Battery signed a five-year deal to supply South Korea’s Volta with 10 GWh of sodium-ion batteries, expanding an earlier 15 MWh storage partnership. The agreement highlights sodium-ion technology’s shift toward GWh-scale energy storage deployments, though LFP batteries remain dominant in the market. The post HiN…"
-    },
-    {
-      "t": "2026-09-08T12:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/south-korea-to-expand-renewable-monitoring-mandate-to-20-kw/",
-      "source": "pv magazine",
-      "title": "South Korea to expand renewable monitoring mandate to 20 kW",
-      "url": "https://www.pv-magazine.com/2026/09/08/south-korea-to-expand-renewable-monitoring-mandate-to-20-kw/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The South Korean government says it will require far smaller solar, wind and fuel-cell installations to carry real-time monitoring and remote-control capability from 2027, easing the switch to commercial mobile networks along the way. The post South Korea to expand renewable monitoring mandate to 20 kW appeared firs…"
-    },
-    {
-      "t": "2026-09-08T12:23:20.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/togo-kicks-off-solar-tender/",
-      "source": "pv magazine",
-      "title": "Togo kicks off solar tender",
-      "url": "https://www.pv-magazine.com/2026/09/08/togo-kicks-off-solar-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Togo is tendering a solar project to be built in the northern part of its capital, Lomé. The planned capacity of the plant has not been disclosed. The deadline for prequalification is September 15. The post Togo kicks off solar tender appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-08T12:27:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/solarworld-rays-power-form-jv-for-2-4-gw-solar-cell-manufacturing-facility/",
-      "source": "pv magazine",
-      "title": "Solarworld, Rays Power plan 2.4 GW solar cell factory in India",
-      "url": "https://www.pv-magazine.com/2026/09/08/solarworld-rays-power-form-jv-for-2-4-gw-solar-cell-manufacturing-facility/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solarworld Energy Solutions and Rays Power Infra have formed a 50:50 joint venture to build a 2.4 GW n-type TOPCon solar cell factory in Madhya Pradesh, India. The $105.5 million facility is expected to begin commercial production in June 2027. The post Solarworld, Rays Power plan 2.4 GW solar cell factory in India…"
-    },
-    {
-      "t": "2026-09-08T12:55:51.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/france-seeks-recyclers-for-cdte-cigs-solar-modules/",
-      "source": "pv magazine",
-      "title": "France seeks recyclers for CdTe, CIGS solar modules",
-      "url": "https://www.pv-magazine.com/2026/09/08/france-seeks-recyclers-for-cdte-cigs-solar-modules/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Soren is seeking companies to develop thin-film PV module recycling solutions in France for CdTe and CIGS technologies, with proposals due Oct. 21, 2026. The selected solution will prioritize a 1,300-tonne batch of CdTe modules as recycling volumes are projected to rise sharply through 2037. The post France seeks re…"
-    },
-    {
-      "t": "2026-09-08T13:07:53.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/08/eu-deploys-33-8-gw-of-solar-in-h1/",
-      "source": "pv magazine",
-      "title": "EU deploys 33.8 GW of solar in H1",
-      "url": "https://www.pv-magazine.com/2026/09/08/eu-deploys-33-8-gw-of-solar-in-h1/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "SolarPower Europe expects the EU to install 68.1 GW of solar capacity in 2026, just 2.1% below the record 69.6 GW added in 2025. The outlook has improved since December, but policy uncertainty, reduced support and grid constraints continue to pose risks to growth. The post EU deploys 33.8 GW of solar in H1 appeared…"
     },
     {
       "t": "2026-09-08T15:08:11.000Z",
@@ -423,6 +303,126 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "In this interview with ESN Premium, Sahand Karimi of OptiGrid discusses how BESS warranties and constraint management shape trading behaviour"
+    },
+    {
+      "t": "2026-09-09T05:19:31.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/catl-eve-energy-lead-chinese-manufacturers-battery-storage-cell-price-hikes/",
+      "source": "Energy-Storage.news",
+      "title": "CATL, EVE Energy lead Chinese manufacturers’ battery storage cell price hikes",
+      "url": "https://www.energy-storage.news/catl-eve-energy-lead-chinese-manufacturers-battery-storage-cell-price-hikes/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A new wave of cell price hikes is sweeping the battery energy storage industry. Major manufacturers have initiated price increases, with smaller producers quickly following suit."
+    },
+    {
+      "t": "2026-09-09T06:24:04.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/philippines-ayala-corps-renewable-energy-platform-lends-php9-billion-to-subsidiaries-for-solar-bess-projects/",
+      "source": "Energy-Storage.news",
+      "title": "Philippines: Ayala Corp’s renewable energy platform lends PHP9 billion to subsidiaries for solar, BESS projects",
+      "url": "https://www.energy-storage.news/philippines-ayala-corps-renewable-energy-platform-lends-php9-billion-to-subsidiaries-for-solar-bess-projects/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Ayala's ACEN Corp has loaned PHP9 billion (US$144 million) to subsidiaries within the group for renewable energy and battery storage projects."
+    },
+    {
+      "t": "2026-09-09T08:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/sri-lanka-proposes-bess-inclusive-feed-in-tariffs-draws-pricing-pushback/",
+      "source": "pv magazine",
+      "title": "Sri Lanka proposes BESS-inclusive feed-in tariffs, draws pricing pushback",
+      "url": "https://www.pv-magazine.com/2026/09/09/sri-lanka-proposes-bess-inclusive-feed-in-tariffs-draws-pricing-pushback/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Sri Lanka's proposed battery storage tariffs have drawn early criticism from within the national grid operator, which says the rates far exceed prices already secured through competitive tenders. The post Sri Lanka proposes BESS-inclusive feed-in tariffs, draws pricing pushback appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-09T08:41:40.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/uk-roundup-bess-planning-approvals-acquisitions-and-optimisation-deals-with-field-eelpower-edf/",
+      "source": "Energy-Storage.news",
+      "title": "UK ROUNDUP: BESS planning approvals, acquisitions and optimisation deals with Field, Eelpower & EDF",
+      "url": "https://www.energy-storage.news/uk-roundup-bess-planning-approvals-acquisitions-and-optimisation-deals-with-field-eelpower-edf/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This edition of news in brief brings you BESS news from the UK market featuring Field, Eelpower and EDF, as reported by our colleagues at Solar Power Portal."
+    },
+    {
+      "t": "2026-09-09T08:42:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/the-netherlands-installs-1-4-gw-of-solar-in-2025/",
+      "source": "pv magazine",
+      "title": "Netherlands installs 1.4 GW of solar in 2025",
+      "url": "https://www.pv-magazine.com/2026/09/09/the-netherlands-installs-1-4-gw-of-solar-in-2025/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Official statistics from the Netherlands show the drop in annual solar installations last year was larger than estimates indicated. Annual deployments are now forecast to stabilise around 1.3 GW through to 2028. The post Netherlands installs 1.4 GW of solar in 2025 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-09T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/sodium-ion-storage-powers-fully-off-grid-solar-home-in-germany/",
+      "source": "pv magazine",
+      "title": "Sodium-ion storage powers fully off-grid solar home in Germany",
+      "url": "https://www.pv-magazine.com/2026/09/09/sodium-ion-storage-powers-fully-off-grid-solar-home-in-germany/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "A homeowner in Augsburg has paired 270 kWh of BIWATT sodium-ion storage with 49 kWp of solar, creating a fully off-grid household energy system with local distributor SALZSTROM providing the solution. The post Sodium-ion storage powers fully off-grid solar home in Germany appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-09T09:31:22.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/italian-solar-redrew-the-day-but-gas-still-sets-the-price/",
+      "source": "pv magazine",
+      "title": "Italian solar redrew the day, but gas still sets the price",
+      "url": "https://www.pv-magazine.com/2026/09/09/italian-solar-redrew-the-day-but-gas-still-sets-the-price/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar growth softened Italy’s midday power squeeze in summer 2026, but higher heat-driven demand and weaker hydro and wind left gas to cover most of the 7.9 TWh supply gap. The result was a sharper evening exposure: gas generation surged, prices rose most after sunset, and solar-heavy southern zones increasingly fac…"
+    },
+    {
+      "t": "2026-09-09T09:42:30.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/frances-pv-capacity-reaches-34-gw/",
+      "source": "pv magazine",
+      "title": "France’s installed PV capacity hits 34 GW",
+      "url": "https://www.pv-magazine.com/2026/09/09/frances-pv-capacity-reaches-34-gw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "France connected 3 GW of new solar capacity in the first half of 2026, slightly above the 2.9 GW deployed in the same period of 2025. Large-scale installations above 500 kW accounted for 28% of newly connected capacity, despite representing just 0.3% of new connections. Systems below 9 kW dominated installation numb…"
+    },
+    {
+      "t": "2026-09-09T09:47:21.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/eu-policymakers-look-to-raise-iaa-made-in-europe-threshold-to-50/",
+      "source": "pv magazine",
+      "title": "EU policymakers look to raise IAA Made in Europe threshold to 50%",
+      "url": "https://www.pv-magazine.com/2026/09/09/eu-policymakers-look-to-raise-iaa-made-in-europe-threshold-to-50/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The EU's rapporteurs on the proposed Industrial Accelerator Act are also calling for increased EU content in solar panels and for stricter component requirements against circumvention. The post EU policymakers look to raise IAA Made in Europe threshold to 50% appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-09T10:13:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-storage-canada-recommends-ontario-to-unlock-btm-battery-capacity-ahead-of-electricity-supply-crunch/",
+      "source": "Energy-Storage.news",
+      "title": "Energy Storage Canada recommends Ontario to unlock BTM battery capacity ahead of electricity supply crunch",
+      "url": "https://www.energy-storage.news/energy-storage-canada-recommends-ontario-to-unlock-btm-battery-capacity-ahead-of-electricity-supply-crunch/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Trade association Energy Storage Canada (ESC) has recommended establishing a Distributed Reliability Track for behind-the-meter (BTM) and distribution-connected energy storage in Ontario."
+    },
+    {
+      "t": "2026-09-09T10:52:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/from-more-than-50-to-just-under-10-gigawatts-ukraine-does-not-need-its-old-energy-system-back/",
+      "source": "pv magazine",
+      "title": "From more than 50 GW to under 10 GW: Ukraine doesn’t need its old energy system back",
+      "url": "https://www.pv-magazine.com/2026/09/09/from-more-than-50-to-just-under-10-gigawatts-ukraine-does-not-need-its-old-energy-system-back/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Six air-raid alerts on the first day, backup generators on almost every street corner, and discussions about the rapid reconstruction of severely damaged energy infrastructure: my trip to Kyiv and Lviv showed me why decentralized solar and energy storage are far more than climate technologies for Ukraine. They are p…"
+    },
+    {
+      "t": "2026-09-09T10:59:41.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/switzerlands-largest-battery-storage-facility-goes-online/",
+      "source": "pv magazine",
+      "title": "Switzerland’s largest battery storage facility goes online",
+      "url": "https://www.pv-magazine.com/2026/09/09/switzerlands-largest-battery-storage-facility-goes-online/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Switzerland’s largest battery storage facility has begun operations in Gurtnellen, combining 50 MW and 8.4 MW systems developed by Axpo and Energie Uri. The Fluence-supplied project will support grid flexibility. The post Switzerland’s largest battery storage facility goes online appeared first on pv magazine Global ."
     }
   ],
   "derived": {
@@ -431,10 +431,10 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 21,
-      "policy": 11,
+      "grid": 24,
+      "policy": 9,
       "capital": 4,
-      "technology": 4
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -468,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:7476c93465a9792c62da65dd4f0eb31e22ba4d86c730d6bfd44f0a72798c6c7a",
-  "envelopeChecksum": "sha256:c18f7b42715078f7a4a579307a7294641c171dcf596b9f2e8cb63436e7464b29"
+  "contentChecksum": "sha256:e8d6c0149f03586aafcbfae6d616972166e98e4d82d3695c565824af3898dd8e",
+  "envelopeChecksum": "sha256:b659f7363a02800b422c1836ba4b9acacb58702cb4f8b29132609707f2da97ce"
 }
