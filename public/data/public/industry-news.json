@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-10T04:50:48.410Z",
+  "fetchedAt": "2026-09-10T11:27:53.428Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-09T17:03:46.000Z",
+    "to": "2026-09-10T11:01:04.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-04T11:14:49.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-german-grid-attack-revenue-cannibilisation-catls-price-cut-sodium-ions-ramp-up-and-more/",
-      "source": "Energy-Storage.news",
-      "title": "BESS Industry Buzz: German grid attack, revenue cannibilisation, CATL’s price cut, sodium-ion’s ramp-up and more",
-      "url": "https://www.energy-storage.news/bess-industry-buzz-german-grid-attack-revenue-cannibilisation-catls-price-cut-sodium-ions-ramp-up-and-more/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "A roundup of user-posted analysis, views and unofficial news from across the industry this past week, this time looking at this week's sabotage attack on the German grid, BESS revenues and electricity market activity, CATL's LFP price cut and various non-lithium news."
-    },
-    {
-      "t": "2026-09-04T13:19:36.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/equinors-east-point-energy-begins-operations-at-200mwh-texas-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Equinor’s East Point Energy begins operations at 200MWh Texas BESS",
-      "url": "https://www.energy-storage.news/equinors-east-point-energy-begins-operations-at-200mwh-texas-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "East Point Energy, owned by Norwegian state-owned energy company Equinor has completed construction and started operations at the 100MW/200MWh Citrus Flatts energy storage project in Harlingen, Texas, US."
     },
     {
       "t": "2026-09-07T03:33:07.000Z",
@@ -315,36 +295,6 @@
       "summary": "This edition of news in brief brings you BESS news from the UK market featuring Field, Eelpower and EDF, as reported by our colleagues at Solar Power Portal."
     },
     {
-      "t": "2026-09-09T09:31:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/italian-solar-redrew-the-day-but-gas-still-sets-the-price/",
-      "source": "pv magazine",
-      "title": "Italian solar redrew the day, but gas still sets the price",
-      "url": "https://www.pv-magazine.com/2026/09/09/italian-solar-redrew-the-day-but-gas-still-sets-the-price/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar growth softened Italy’s midday power squeeze in summer 2026, but higher heat-driven demand and weaker hydro and wind left gas to cover most of the 7.9 TWh supply gap. The result was a sharper evening exposure: gas generation surged, prices rose most after sunset, and solar-heavy southern zones increasingly fac…"
-    },
-    {
-      "t": "2026-09-09T09:42:30.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/frances-pv-capacity-reaches-34-gw/",
-      "source": "pv magazine",
-      "title": "France’s installed PV capacity hits 34 GW",
-      "url": "https://www.pv-magazine.com/2026/09/09/frances-pv-capacity-reaches-34-gw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "France connected 3 GW of new solar capacity in the first half of 2026, slightly above the 2.9 GW deployed in the same period of 2025. Large-scale installations above 500 kW accounted for 28% of newly connected capacity, despite representing just 0.3% of new connections. Systems below 9 kW dominated installation numb…"
-    },
-    {
-      "t": "2026-09-09T09:47:21.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/eu-policymakers-look-to-raise-iaa-made-in-europe-threshold-to-50/",
-      "source": "pv magazine",
-      "title": "EU policymakers look to raise IAA Made in Europe threshold to 50%",
-      "url": "https://www.pv-magazine.com/2026/09/09/eu-policymakers-look-to-raise-iaa-made-in-europe-threshold-to-50/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The EU's rapporteurs on the proposed Industrial Accelerator Act are also calling for increased EU content in solar panels and for stricter component requirements against circumvention. The post EU policymakers look to raise IAA Made in Europe threshold to 50% appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-09T10:13:47.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/energy-storage-canada-recommends-ontario-to-unlock-btm-battery-capacity-ahead-of-electricity-supply-crunch/",
       "source": "Energy-Storage.news",
@@ -355,26 +305,6 @@
       "summary": "Trade association Energy Storage Canada (ESC) has recommended establishing a Distributed Reliability Track for behind-the-meter (BTM) and distribution-connected energy storage in Ontario."
     },
     {
-      "t": "2026-09-09T10:52:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/from-more-than-50-to-just-under-10-gigawatts-ukraine-does-not-need-its-old-energy-system-back/",
-      "source": "pv magazine",
-      "title": "From more than 50 GW to under 10 GW: Ukraine doesn’t need its old energy system back",
-      "url": "https://www.pv-magazine.com/2026/09/09/from-more-than-50-to-just-under-10-gigawatts-ukraine-does-not-need-its-old-energy-system-back/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Six air-raid alerts on the first day, backup generators on almost every street corner, and discussions about the rapid reconstruction of severely damaged energy infrastructure: my trip to Kyiv and Lviv showed me why decentralized solar and energy storage are far more than climate technologies for Ukraine. They are p…"
-    },
-    {
-      "t": "2026-09-09T10:59:41.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/switzerlands-largest-battery-storage-facility-goes-online/",
-      "source": "pv magazine",
-      "title": "Switzerland’s largest battery storage facility goes online",
-      "url": "https://www.pv-magazine.com/2026/09/09/switzerlands-largest-battery-storage-facility-goes-online/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Switzerland’s largest battery storage facility has begun operations in Gurtnellen, combining 50 MW and 8.4 MW systems developed by Axpo and Energie Uri. The Fluence-supplied project will support grid flexibility. The post Switzerland’s largest battery storage facility goes online appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-09T11:50:18.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/black-hills-energy-to-begin-construction-on-200mwh-colorado-bess/",
       "source": "Energy-Storage.news",
@@ -383,26 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Utility Black Hills Energy has announced it will move forward with the construction of a 50MW/200MWh energy storage facility at its Pueblo Airport Generating Station (PAGS) in Colorado, US."
-    },
-    {
-      "t": "2026-09-09T12:10:29.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/sungrow-turns-to-samsung-sdi-battery-cells-to-sustain-its-energy-storage-business/",
-      "source": "pv magazine",
-      "title": "Sungrow turns to Samsung SDI battery cells to sustain its energy storage business",
-      "url": "https://www.pv-magazine.com/2026/09/09/sungrow-turns-to-samsung-sdi-battery-cells-to-sustain-its-energy-storage-business/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "ungrow plans to procure Samsung SDI battery cells for its energy storage systems, primarily to support continued deliveries to the U.S. market amid tightening restrictions on China-linked supply chains. The potential three-year, multi-GWh LFP deal could leverage Samsung SDI’s expanding U.S. production footprint, alt…"
-    },
-    {
-      "t": "2026-09-09T12:16:04.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/africas-solar-panel-manufacturing-capacity-to-reach-3-5-gw-this-year/",
-      "source": "pv magazine",
-      "title": "Africa’s solar panel manufacturing capacity to reach 3.5 GW this year",
-      "url": "https://www.pv-magazine.com/2026/09/09/africas-solar-panel-manufacturing-capacity-to-reach-3-5-gw-this-year/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Report from Ember and Africa Tech Futures Lab says solar panel manufacturing output will reach around 3.5 GW in 2026, led by new plants in Egypt and Tanzania that are geared predominantly towards US export. The post Africa’s solar panel manufacturing capacity to reach 3.5 GW this year appeared first on pv magazine G…"
     },
     {
       "t": "2026-09-09T13:28:57.000Z",
@@ -435,26 +345,136 @@
       "summary": "An analysis commissioned by the Coalition for Community Solar Access found untapped opportunity for 3,100 distribution-connected projects in the state&rsquo;s three investor-owned utility territories."
     },
     {
-      "t": "2026-09-09T17:03:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/09/suniva-raises-835-million-to-drive-4-5-gw-in-new-domestic-cell-capacity/",
+      "t": "2026-09-10T06:02:49.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/colombias-new-government-puts-1-35-billion-solar-program-for-low-income-households-under-review/",
       "source": "pv magazine",
-      "title": "Suniva raises $835 million to drive 4.5 GW in new solar cell capacity",
-      "url": "https://www.pv-magazine.com/2026/09/09/suniva-raises-835-million-to-drive-4-5-gw-in-new-domestic-cell-capacity/",
+      "title": "Colombia’s new government puts $1.35 billion solar program for low-income households under review",
+      "url": "https://www.pv-magazine.com/2026/09/10/colombias-new-government-puts-1-35-billion-solar-program-for-low-income-households-under-review/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Colombia’s new energy minister has placed the Colombia Solar program under review, citing a lack of progress on a COP 4.2 trillion ($1.35 billion) agreement that currently has “zero connected users.” The review comes as Colombia and the United States deepen energy cooperation through new agreements on strategic mine…"
+    },
+    {
+      "t": "2026-09-10T06:26:43.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/enerparcs-sister-company-pvwerk-files-for-restructuring-under-self-administration/",
+      "source": "pv magazine",
+      "title": "Enerparc’s sister company Pvwerk files for restructuring under self-administration",
+      "url": "https://www.pv-magazine.com/2026/09/10/enerparcs-sister-company-pvwerk-files-for-restructuring-under-self-administration/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The domestic solar cell manufacturer is building a new $600 million facility in Laurens County, South Carolina, with a planned opening in late 2027 and an expected 564 manufacturing jobs at full capacity. The post Suniva raises $835 million to drive 4.5 GW in new solar cell capacity appeared first on pv magazine Glo…"
+      "summary": "Enerparc sister company Pvwerk has filed for restructuring under self-administration, while continuing its business operations. The company aims to complete around 100 solar and battery storage projects commissioned by Enerparc that are currently under construction. The post Enerparc’s sister company Pvwerk files fo…"
+    },
+    {
+      "t": "2026-09-10T07:11:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/thailand-paves-the-way-for-10-gw-of-rooftop-solar/",
+      "source": "pv magazine",
+      "title": "Thailand paves the way for 10 GW of rooftop solar",
+      "url": "https://www.pv-magazine.com/2026/09/10/thailand-paves-the-way-for-10-gw-of-rooftop-solar/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Thailand’s new Power Development Plan targets 50% clean energy within 10 years and another 10 GW of rooftop solar. The post Thailand paves the way for 10 GW of rooftop solar appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-10T07:29:51.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/wattpower-introduces-506-kw-grid-forming-inverter-for-utility-scale-solar/",
+      "source": "pv magazine",
+      "title": "WattPower introduces 506 kW grid-forming inverter for utility-scale solar",
+      "url": "https://www.pv-magazine.com/2026/09/10/wattpower-introduces-506-kw-grid-forming-inverter-for-utility-scale-solar/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "WattPower says its 506KTL inverter has a maximum efficiency of 99.1% and a European efficiency of 98.8%. The post WattPower introduces 506 kW grid-forming inverter for utility-scale solar appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-10T08:01:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/south-korea-launches-committee-to-rebuild-domestic-solar-manufacturing/",
+      "source": "pv magazine",
+      "title": "South Korea sets up committee to rebuild domestic solar manufacturing",
+      "url": "https://www.pv-magazine.com/2026/09/10/south-korea-launches-committee-to-rebuild-domestic-solar-manufacturing/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The South Korean government has launched a committee to rebuild the country's domestic solar supply chain and push next-generation cell technology, as Chinese manufacturers continue to gain ground in its home market. The post South Korea sets up committee to rebuild domestic solar manufacturing appeared first on pv…"
+    },
+    {
+      "t": "2026-09-10T09:17:46.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ore-energys-iron-air-technology-ldes-applications-trade-offs-deployments-and-next-gen-cells/",
+      "source": "Energy-Storage.news",
+      "title": "Ore Energy’s iron-air technology: LDES applications, trade-offs, deployments and next-gen cells",
+      "url": "https://www.energy-storage.news/ore-energys-iron-air-technology-ldes-applications-trade-offs-deployments-and-next-gen-cells/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "We look at the iron-air battery technology of startup Ore Energy, including how it works and technology developments it is pursuing after a recent US$43 million fundraise."
+    },
+    {
+      "t": "2026-09-10T09:27:23.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/longi-soochow-university-unveil-34-0-perovskite-silicon-tandem-solar-cell-based-on-dual-anchored-interfacial-design/",
+      "source": "pv magazine",
+      "title": "Longi, Soochow University unveil 34.0% perovskite-silicon tandem solar cell based on dual-anchored interfacial design",
+      "url": "https://www.pv-magazine.com/2026/09/10/longi-soochow-university-unveil-34-0-perovskite-silicon-tandem-solar-cell-based-on-dual-anchored-interfacial-design/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Soochow University and Longi researchers developed a ZrO₂ interfacial strategy that reduces recombination and leakage while improving charge extraction in perovskite-silicon tandem solar cells. The resulting device achieved 2.014 V open-circuit voltage and retained 84% of its initial efficiency after 2,000 hours. Th…"
+    },
+    {
+      "t": "2026-09-10T09:48:27.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/two-step-process-turns-end-of-life-pv-backsheets-into-supercapacitor-electrodes/",
+      "source": "pv magazine",
+      "title": "Two-step process turns end-of-life PV backsheets into supercapacitor electrodes",
+      "url": "https://www.pv-magazine.com/2026/09/10/two-step-process-turns-end-of-life-pv-backsheets-into-supercapacitor-electrodes/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese researchers have developed a two-step process to recycle waste TPT solar backsheets into hierarchical porous carbon for supercapacitor electrodes. The resulting material achieved a specific capacitance of 469 F/g and retained 92.4% of its initial capacitance after 10,000 cycles. The post Two-step process tur…"
+    },
+    {
+      "t": "2026-09-10T09:56:09.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/suriname-tenders-solar-storage-minigrids/",
+      "source": "pv magazine",
+      "title": "Suriname tenders solar-storage minigrids",
+      "url": "https://www.pv-magazine.com/2026/09/10/suriname-tenders-solar-storage-minigrids/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A tender is open in Suriname for the design, supply and installation of solar-storage minigrids and water infrastructure for rural communities across the country. The deadline for bids is October 30. The post Suriname tenders solar-storage minigrids appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-10T10:09:34.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/merchant-bess-switched-on-at-operational-solar-site-in-romania/",
+      "source": "pv magazine",
+      "title": "Merchant BESS switched on at operational solar site in Romania",
+      "url": "https://www.pv-magazine.com/2026/09/10/merchant-bess-switched-on-at-operational-solar-site-in-romania/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Econergy has launched commercial operations at its 70 MW/141 MWh Părău 1 battery project in Romania, paired with an existing 92 MW solar plant to create a 162 MW hybrid site. The fully merchant BESS can charge from the grid during low or negative prices, with Econergy expecting €9.7 million in storage revenue. The p…"
+    },
+    {
+      "t": "2026-09-10T10:32:08.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/nordic-roundup-flower-volvo-and-delta-capacity-launch-bess-projects/",
+      "source": "Energy-Storage.news",
+      "title": "Nordic ROUNDUP: Flower, Volvo and Delta Capacity launch BESS projects",
+      "url": "https://www.energy-storage.news/nordic-roundup-flower-volvo-and-delta-capacity-launch-bess-projects/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A roundup of large-scale BESS news from in and around the Nordic region, with Sweden-based Flower building a project in Germany, Volvo launching one in Sweden and Delta Capacity securing a toll for one in Finland."
+    },
+    {
+      "t": "2026-09-10T11:01:04.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/japans-idemitsu-sets-up-u-s-lab-for-space-grade-cigs-solar-cells/",
+      "source": "pv magazine",
+      "title": "Japan’s Idemitsu sets up U.S. lab for space-grade CIGS solar cells",
+      "url": "https://www.pv-magazine.com/2026/09/10/japans-idemitsu-sets-up-u-s-lab-for-space-grade-cigs-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Japanese oil refiner says its development laboratory in South Carolina will conduct prototypes of space-grade copper indium gallium-selenide solar cells as it works toward commercialising the technology. The post Japan’s Idemitsu sets up U.S. lab for space-grade CIGS solar cells appeared first on pv magazine Glo…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
-      "policy": 9,
-      "capital": 4,
-      "technology": 2
+      "grid": 28,
+      "policy": 12,
+      "capital": 3,
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -479,7 +499,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 10
       }
     ]
   },
@@ -488,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:3a1e5d10bf092528b2c0d97bd20b7d850d7556b8aec81fc16496209bcd63d12c",
-  "envelopeChecksum": "sha256:2d51b9fe929d427fd3d8c5f8a74b54ce5e7553d0951079799e349189c90c8164"
+  "contentChecksum": "sha256:f9cb2d2db8ed8f00d479368eb243222f421a99648595c85b579e6b4fdc586a06",
+  "envelopeChecksum": "sha256:653377061b38dcc104bc5f7d784602ff5e1f508c6bba7596c01d5c7f68c960ff"
 }
