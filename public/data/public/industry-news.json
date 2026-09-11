@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-11T11:29:38.083Z",
+  "fetchedAt": "2026-09-11T16:34:03.688Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-11T11:20:03.000Z",
+    "to": "2026-09-11T15:22:59.000Z",
     "resolution": "event",
-    "points": 41
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -133,46 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-07T10:56:23.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/pakistan-regulator-approves-mandatory-energy-storage-component-renewables-auction/",
-      "source": "Energy-Storage.news",
-      "title": "Pakistan’s regulator approves mandatory energy storage component for renewables auction",
-      "url": "https://www.energy-storage.news/pakistan-regulator-approves-mandatory-energy-storage-component-renewables-auction/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Pakistan's National Electric Power Regulatory Authority (NEPRA) has approved plans to require bidders in a renewable energy auction to include energy storage."
-    },
-    {
-      "t": "2026-09-08T04:55:01.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/octopus-australia-refers-2gwh-blackstone-bess-for-epbc-act-assessment-in-queensland/",
-      "source": "Energy-Storage.news",
-      "title": "Octopus Australia refers 2GWh Blackstone BESS for EPBC Act assessment in Queensland",
-      "url": "https://www.energy-storage.news/octopus-australia-refers-2gwh-blackstone-bess-for-epbc-act-assessment-in-queensland/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Octopus Australia has referred the Blackstone battery energy storage system (BESS), a 500MW/2,000MWh standalone facility, to Australia's federal government for assessment under the Environment Protection and Biodiversity Conservation (EPBC) Act."
-    },
-    {
-      "t": "2026-09-08T04:57:17.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-fiji-partners-with-epc-renewables-on-240mwh-solar-plus-storage-site/",
-      "source": "Energy-Storage.news",
-      "title": "Energy Fiji partners with EPC Renewables on 240MWh solar-plus-storage site",
-      "url": "https://www.energy-storage.news/energy-fiji-partners-with-epc-renewables-on-240mwh-solar-plus-storage-site/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "EPC Renewables has signed an MoU with state-linked utility Energy Fiji Limited for the development of the Yaqara Solar & Battery Project."
-    },
-    {
-      "t": "2026-09-08T07:46:39.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/pan-european-battery-storage-and-renewable-energy-platform-aukera-closes-e460-million-credit-facility/",
-      "source": "Energy-Storage.news",
-      "title": "Pan-European battery storage and renewable energy platform Aukera closes €460 million credit facility",
-      "url": "https://www.energy-storage.news/pan-european-battery-storage-and-renewable-energy-platform-aukera-closes-e460-million-credit-facility/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Aukera has closed a €460 million (US$534.23 million) structured credit facility to advance its project pipeline in five European markets."
     },
     {
       "t": "2026-09-08T10:00:48.000Z",
@@ -375,26 +335,6 @@
       "summary": "Data centers and a manufacturing expansion will drive U.S. electricity use 2% higher this year and next, the U.S. Energy Information Administration said Wednesday."
     },
     {
-      "t": "2026-09-11T07:27:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/why-german-energy-provider-rabot-energy-is-selling-a-2-kwh-ac-only-battery-no-solar-required/",
-      "source": "pv magazine",
-      "title": "Why German energy provider Rabot Energy is selling a 2 kWh AC-only battery, no solar required",
-      "url": "https://www.pv-magazine.com/2026/09/11/why-german-energy-provider-rabot-energy-is-selling-a-2-kwh-ac-only-battery-no-solar-required/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Rabot Energy launched Rabot Flow, a 2.12 kWh plug-and-play home battery for German apartment renters that uses dynamic tariffs to charge when grid electricity is cheap and discharge during price spikes. Sold at cost and requiring no electrician or smart meter, the Marstek-based battery promises around €120–€130 in a…"
-    },
-    {
-      "t": "2026-09-11T08:53:38.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/chinese-scientists-achieve-record-breaking-27-35-efficiency-for-perovskite-organic-tandem-solar-cell/",
-      "source": "pv magazine",
-      "title": "Chinese scientists achieve record-breaking 27.35% efficiency for perovskite-organic tandem solar cell",
-      "url": "https://www.pv-magazine.com/2026/09/11/chinese-scientists-achieve-record-breaking-27-35-efficiency-for-perovskite-organic-tandem-solar-cell/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Nanjing University researchers developed a perovskite-organic tandem solar cell using a novel low-bandgap acceptor to boost near-infrared light harvesting and improve photocurrent matching. The device achieved a 27.35% efficiency, while retaining 80% of its initial performance after 744 hours of continuous illuminat…"
-    },
-    {
       "t": "2026-09-11T10:36:51.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/the-hydrogen-stream-aem-electrolysis-could-deliver-hydrogen-at-3-27-kg-say-repsol-p2hp/",
       "source": "pv magazine",
@@ -433,17 +373,97 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "This week, Women in Solar+ Europe gives voice to Hanna König, Head of Division Project Execution, at Germany's Enertrag SE. She says the most important element of an inclusive organisational culture is ensuring that everyone feels safe to contribute ideas and opinions, particularly when they disagree with the majori…"
+    },
+    {
+      "t": "2026-09-11T11:33:47.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/solarize-africa-the-case-of-madagascar/",
+      "source": "pv magazine",
+      "title": "Solarize Africa: The case of Madagascar",
+      "url": "https://www.pv-magazine.com/2026/09/11/solarize-africa-the-case-of-madagascar/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Madagascar’s diesel-dependent power system faces high costs and chronic blackouts, making solar PV and battery storage an increasingly attractive route to reliable, affordable electrification. Five solar-diesel hybrid projects demonstrate that PV can significantly reduce fuel consumption and electricity prices, offe…"
+    },
+    {
+      "t": "2026-09-11T11:37:33.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/array-technologies-triples-its-u-s-manufacturing-footprint/",
+      "source": "pv magazine",
+      "title": "Array Technologies triples its U.S. manufacturing footprint",
+      "url": "https://www.pv-magazine.com/2026/09/11/array-technologies-triples-its-u-s-manufacturing-footprint/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Albuquerque solar tracker manufacturing facility will employ about 300 people and enable it to bring production in house rather than sourcing components from other suppliers. The post Array Technologies triples its U.S. manufacturing footprint appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-11T12:32:12.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/lebanon-issues-new-provisions-for-solar-up-to-1-5-mw/",
+      "source": "pv magazine",
+      "title": "Lebanon issues new provisions for solar up to 1.5 MW",
+      "url": "https://www.pv-magazine.com/2026/09/11/lebanon-issues-new-provisions-for-solar-up-to-1-5-mw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Lebanon has introduced new permitting and safety rules for PV systems up to 1.5 MW, establishing municipal oversight and technical requirements for installations. The post Lebanon issues new provisions for solar up to 1.5 MW appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-11T13:07:15.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-beijings-manufacturing-ban-responsible-data-centre-policy-ldes-economics-and-more/",
+      "source": "Energy-Storage.news",
+      "title": "BESS Industry Buzz: Beijing’s manufacturing ban, ‘responsible’ data centre policy, LDES economics and more",
+      "url": "https://www.energy-storage.news/bess-industry-buzz-beijings-manufacturing-ban-responsible-data-centre-policy-ldes-economics-and-more/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Our collection of user-posted analysis, views, and unofficial news, gathered from our networks on LinkedIn, returns for its third outing."
+    },
+    {
+      "t": "2026-09-11T13:28:02.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/axpo-and-energieuri-commission-switzerlands-largest-operational-bess-facility/",
+      "source": "Energy-Storage.news",
+      "title": "Axpo and energieUri commission Switzerland’s largest operational BESS facility",
+      "url": "https://www.energy-storage.news/axpo-and-energieuri-commission-switzerlands-largest-operational-bess-facility/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Utility and power firms Axpo and energieUri have commissioned two large-scale battery energy storage system (BESS) projects in Gurtnellen, Canton Uri."
+    },
+    {
+      "t": "2026-09-11T13:33:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/metlen-agrees-to-sell-165mw-725mwh-chile-solar-plus-storage-project/",
+      "source": "Energy-Storage.news",
+      "title": "Metlen agrees to sell 165MW/725MWh Chile solar-plus-storage project",
+      "url": "https://www.energy-storage.news/metlen-agrees-to-sell-165mw-725mwh-chile-solar-plus-storage-project/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Greek renewables developer Metlen Energy & Metals has signed an agreement with utility Copec for the sale of the Tamarico II solar-plus-storage project in Chile’s Atacama region."
+    },
+    {
+      "t": "2026-09-11T14:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/latvenergo-to-expand-solar-and-battery-storage-push-alongside-wind-acquisitions-in-the-baltics/",
+      "source": "pv magazine",
+      "title": "Latvenergo expands Baltic battery storage, solar push alongside wind deals",
+      "url": "https://www.pv-magazine.com/2026/09/11/latvenergo-to-expand-solar-and-battery-storage-push-alongside-wind-acquisitions-in-the-baltics/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Latvenergo is folding solar and battery assets into a broader wind-acquisition drive as part of its push to diversify Baltic power generation and strengthen regional energy security. The post Latvenergo expands Baltic battery storage, solar push alongside wind deals appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-11T15:22:59.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/premier-energies-rct-india-plan-12gwh-bess-manufacturing-facility-in-telangana/",
+      "source": "Energy-Storage.news",
+      "title": "Premier Energies, RCT India plan 12GWh BESS manufacturing facility in Telangana",
+      "url": "https://www.energy-storage.news/premier-energies-rct-india-plan-12gwh-bess-manufacturing-facility-in-telangana/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Premier Energies and RCT India have established a joint venture to develop a 12GWh BESS manufacturing facility in Telangana, India."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 41,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 26,
-      "policy": 10,
-      "capital": 4,
+      "grid": 27,
+      "policy": 9,
+      "capital": 6,
       "technology": 1
     },
     "sourceStatus": [
@@ -469,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 8
       }
     ]
   },
@@ -478,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:761bcd3a05b65e9ccf6cde2fdaf5379632996598a99039b6c232882eb5c826cf",
-  "envelopeChecksum": "sha256:73d8266c74211607c60f1c90829d71d35fc2985c4e5e7a9a799a44d47386576b"
+  "contentChecksum": "sha256:0c167d068e583872da09e80747d46ad56469ffce6b53b52ee97bccc9ee7be066",
+  "envelopeChecksum": "sha256:98b70af4cf4ef43d57b60e5fc908f718f259ca47a418b74aa1d33b99321669d3"
 }
