@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-11T16:34:03.688Z",
+  "fetchedAt": "2026-09-11T21:01:53.503Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-09-11T15:22:59.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 42
   },
   "units": {
     "record": "published article metadata"
@@ -165,16 +165,6 @@
       "summary": "We are pleased to announce that we’re now working on the 2027 edition of the Energy Storage Report, our annual publication looking at the big trends shaping the industry."
     },
     {
-      "t": "2026-09-08T16:00:38.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/google-backs-solar-storage-project-at-former-west-virginia-coal-mine/829812/",
-      "source": "Utility Dive",
-      "title": "Google backs solar-storage project at former West Virginia coal mine",
-      "url": "https://www.utilitydive.com/news/google-backs-solar-storage-project-at-former-west-virginia-coal-mine/829812/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The project MN8 is developing will include 100 MWh of long-duration Eos Energy Enterprises zinc-based storage alongside lithium-ion batteries."
-    },
-    {
       "t": "2026-09-09T04:02:01.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/australias-nem-bess-fleet-earns-au29-million-in-august-as-capture-rate-climbs-to-54/",
       "source": "Energy-Storage.news",
@@ -253,16 +243,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The global battery energy storage market is entering a new phase, with shifting cell prices, intensifying competition and rapid international expansion reshaping the supplier landscape."
-    },
-    {
-      "t": "2026-09-09T13:57:18.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/west-virginia-regulators-reject-delay-marl-proceedings-nextera/829906/",
-      "source": "Utility Dive",
-      "title": "West Virginia regulators reject delay in review of NextEra’s MARL project",
-      "url": "https://www.utilitydive.com/news/west-virginia-regulators-reject-delay-marl-proceedings-nextera/829906/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The PJM Interconnection selected the MidAtlantic Resiliency Link in 2023 as part of its regional expansion plan, but there are questions about the need for the project and its route."
     },
     {
       "t": "2026-09-09T16:10:20.000Z",
@@ -445,6 +425,16 @@
       "summary": "Latvenergo is folding solar and battery assets into a broader wind-acquisition drive as part of its push to diversify Baltic power generation and strengthen regional energy security. The post Latvenergo expands Baltic battery storage, solar push alongside wind deals appeared first on pv magazine Global ."
     },
     {
+      "t": "2026-09-11T14:57:52.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/pennsylvania-puc-to-consider-rates-and-curtailment-as-data-centers-grow/830174/",
+      "source": "Utility Dive",
+      "title": "Pennsylvania PUC to consider ratemaking, ROE and curtailment as data centers grow",
+      "url": "https://www.utilitydive.com/news/pennsylvania-puc-to-consider-rates-and-curtailment-as-data-centers-grow/830174/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The decisions come &ldquo;amid growing concern about the balance between rapidly increasing electricity demand and the resources available to serve that demand&rdquo; in PJM territory, the&nbsp;Pennsylvania PUC said."
+    },
+    {
       "t": "2026-09-11T15:22:59.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/premier-energies-rct-india-plan-12gwh-bess-manufacturing-facility-in-telangana/",
       "source": "Energy-Storage.news",
@@ -457,11 +447,11 @@
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 42,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
+      "grid": 26,
       "policy": 9,
       "capital": 6,
       "technology": 1
@@ -483,7 +473,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 3
       },
       {
         "source": "pv magazine",
@@ -498,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:0c167d068e583872da09e80747d46ad56469ffce6b53b52ee97bccc9ee7be066",
-  "envelopeChecksum": "sha256:98b70af4cf4ef43d57b60e5fc908f718f259ca47a418b74aa1d33b99321669d3"
+  "contentChecksum": "sha256:ba381d1acbaa8c27fac97cbf2ae238d5eee8eb673615f4866865ec2cc3d0921d",
+  "envelopeChecksum": "sha256:88fda73441dc0443b4197816170adb3271d06603859ad9befd1def12bfd26165"
 }
