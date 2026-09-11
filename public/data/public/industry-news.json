@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-11T04:47:46.991Z",
+  "fetchedAt": "2026-09-11T11:29:38.083Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-11T04:00:00.000Z",
+    "to": "2026-09-11T11:20:03.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -315,26 +315,6 @@
       "summary": "An analysis commissioned by the Coalition for Community Solar Access found untapped opportunity for 3,100 distribution-connected projects in the state&rsquo;s three investor-owned utility territories."
     },
     {
-      "t": "2026-09-10T07:29:51.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/wattpower-introduces-506-kw-grid-forming-inverter-for-utility-scale-solar/",
-      "source": "pv magazine",
-      "title": "WattPower introduces 506 kW grid-forming inverter for utility-scale solar",
-      "url": "https://www.pv-magazine.com/2026/09/10/wattpower-introduces-506-kw-grid-forming-inverter-for-utility-scale-solar/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "WattPower says its 506KTL inverter has a maximum efficiency of 99.1% and a European efficiency of 98.8%. The post WattPower introduces 506 kW grid-forming inverter for utility-scale solar appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-10T08:01:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/south-korea-launches-committee-to-rebuild-domestic-solar-manufacturing/",
-      "source": "pv magazine",
-      "title": "South Korea sets up committee to rebuild domestic solar manufacturing",
-      "url": "https://www.pv-magazine.com/2026/09/10/south-korea-launches-committee-to-rebuild-domestic-solar-manufacturing/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The South Korean government has launched a committee to rebuild the country's domestic solar supply chain and push next-generation cell technology, as Chinese manufacturers continue to gain ground in its home market. The post South Korea sets up committee to rebuild domestic solar manufacturing appeared first on pv…"
-    },
-    {
       "t": "2026-09-10T09:17:46.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/ore-energys-iron-air-technology-ldes-applications-trade-offs-deployments-and-next-gen-cells/",
       "source": "Energy-Storage.news",
@@ -345,46 +325,6 @@
       "summary": "We look at the iron-air battery technology of startup Ore Energy, including how it works and technology developments it is pursuing after a recent US$43 million fundraise."
     },
     {
-      "t": "2026-09-10T09:27:23.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/longi-soochow-university-unveil-34-0-perovskite-silicon-tandem-solar-cell-based-on-dual-anchored-interfacial-design/",
-      "source": "pv magazine",
-      "title": "Longi, Soochow University unveil 34.0% perovskite-silicon tandem solar cell based on dual-anchored interfacial design",
-      "url": "https://www.pv-magazine.com/2026/09/10/longi-soochow-university-unveil-34-0-perovskite-silicon-tandem-solar-cell-based-on-dual-anchored-interfacial-design/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Soochow University and Longi researchers developed a ZrO₂ interfacial strategy that reduces recombination and leakage while improving charge extraction in perovskite-silicon tandem solar cells. The resulting device achieved 2.014 V open-circuit voltage and retained 84% of its initial efficiency after 2,000 hours. Th…"
-    },
-    {
-      "t": "2026-09-10T09:48:27.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/two-step-process-turns-end-of-life-pv-backsheets-into-supercapacitor-electrodes/",
-      "source": "pv magazine",
-      "title": "Two-step process turns end-of-life PV backsheets into supercapacitor electrodes",
-      "url": "https://www.pv-magazine.com/2026/09/10/two-step-process-turns-end-of-life-pv-backsheets-into-supercapacitor-electrodes/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese researchers have developed a two-step process to recycle waste TPT solar backsheets into hierarchical porous carbon for supercapacitor electrodes. The resulting material achieved a specific capacitance of 469 F/g and retained 92.4% of its initial capacitance after 10,000 cycles. The post Two-step process tur…"
-    },
-    {
-      "t": "2026-09-10T09:56:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/suriname-tenders-solar-storage-minigrids/",
-      "source": "pv magazine",
-      "title": "Suriname tenders solar-storage minigrids",
-      "url": "https://www.pv-magazine.com/2026/09/10/suriname-tenders-solar-storage-minigrids/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A tender is open in Suriname for the design, supply and installation of solar-storage minigrids and water infrastructure for rural communities across the country. The deadline for bids is October 30. The post Suriname tenders solar-storage minigrids appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-10T10:09:34.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/merchant-bess-switched-on-at-operational-solar-site-in-romania/",
-      "source": "pv magazine",
-      "title": "Merchant BESS switched on at operational solar site in Romania",
-      "url": "https://www.pv-magazine.com/2026/09/10/merchant-bess-switched-on-at-operational-solar-site-in-romania/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Econergy has launched commercial operations at its 70 MW/141 MWh Părău 1 battery project in Romania, paired with an existing 92 MW solar plant to create a 162 MW hybrid site. The fully merchant BESS can charge from the grid during low or negative prices, with Econergy expecting €9.7 million in storage revenue. The p…"
-    },
-    {
       "t": "2026-09-10T10:32:08.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/nordic-roundup-flower-volvo-and-delta-capacity-launch-bess-projects/",
       "source": "Energy-Storage.news",
@@ -393,16 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A roundup of large-scale BESS news from in and around the Nordic region, with Sweden-based Flower building a project in Germany, Volvo launching one in Sweden and Delta Capacity securing a toll for one in Finland."
-    },
-    {
-      "t": "2026-09-10T11:01:04.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/japans-idemitsu-sets-up-u-s-lab-for-space-grade-cigs-solar-cells/",
-      "source": "pv magazine",
-      "title": "Japan’s Idemitsu sets up U.S. lab for space-grade CIGS solar cells",
-      "url": "https://www.pv-magazine.com/2026/09/10/japans-idemitsu-sets-up-u-s-lab-for-space-grade-cigs-solar-cells/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Japanese oil refiner says its development laboratory in South Carolina will conduct prototypes of space-grade copper indium gallium-selenide solar cells as it works toward commercialising the technology. The post Japan’s Idemitsu sets up U.S. lab for space-grade CIGS solar cells appeared first on pv magazine Glo…"
     },
     {
       "t": "2026-09-10T11:48:59.000Z",
@@ -435,26 +365,6 @@
       "summary": "Developer SMT Energy and Software-focused energy storage system integrator FlexGen have announced the start of operations of a 160MW/320MWh energy storage facility Houston, Texas, US."
     },
     {
-      "t": "2026-09-10T12:54:58.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/romania-allocates-e650-million-for-solar-storage-at-public-buildings/",
-      "source": "pv magazine",
-      "title": "Romania allocates €650 million for solar, storage at public buildings",
-      "url": "https://www.pv-magazine.com/2026/09/10/romania-allocates-e650-million-for-solar-storage-at-public-buildings/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "New subsidy schemes in Romania will cover up to 100% of the costs associated with installing solar-plus-storage at public institutions, or with adding storage to existing PV installations. Calls for proposals open tomorrow. The post Romania allocates €650 million for solar, storage at public buildings appeared first…"
-    },
-    {
-      "t": "2026-09-10T14:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/10/midsummer-indonesian-firm-sign-deal-to-build-cigs-thin-film-solar-manufacturing-plant/",
-      "source": "pv magazine",
-      "title": "Midsummer, Indonesian firm sign deal for CIGS thin-film solar manufacturing plant",
-      "url": "https://www.pv-magazine.com/2026/09/10/midsummer-indonesian-firm-sign-deal-to-build-cigs-thin-film-solar-manufacturing-plant/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Midsummer's minority stake in a new Indonesian joint venture marks its second copper indium gallium selenide (CIGS) manufacturing partnership abroad, following a similar equipment-and-know-how deal in Colombia and a decision to shelve its own planned Swedish factory. The post Midsummer, Indonesian firm sign deal for…"
-    },
-    {
       "t": "2026-09-10T14:18:06.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/data-centers-manufacturing-us-electricity-use-eia/830038/",
       "source": "Utility Dive",
@@ -465,25 +375,75 @@
       "summary": "Data centers and a manufacturing expansion will drive U.S. electricity use 2% higher this year and next, the U.S. Energy Information Administration said Wednesday."
     },
     {
-      "t": "2026-09-11T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/socket-to-the-sun/",
+      "t": "2026-09-11T07:27:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/why-german-energy-provider-rabot-energy-is-selling-a-2-kwh-ac-only-battery-no-solar-required/",
       "source": "pv magazine",
-      "title": "Socket to the sun",
-      "url": "https://www.pv-magazine.com/2026/09/11/socket-to-the-sun/",
+      "title": "Why German energy provider Rabot Energy is selling a 2 kWh AC-only battery, no solar required",
+      "url": "https://www.pv-magazine.com/2026/09/11/why-german-energy-provider-rabot-energy-is-selling-a-2-kwh-ac-only-battery-no-solar-required/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Ten states in the United States have passed laws permitting plug-in solar, with more to follow imminently. Low-income households, renters and temporary workers under pressure from high electricity bills are welcoming plug-in solar as a low-cost, portable and convenient solution. Precise business models have yet to e…"
+      "summary": "Rabot Energy launched Rabot Flow, a 2.12 kWh plug-and-play home battery for German apartment renters that uses dynamic tariffs to charge when grid electricity is cheap and discharge during price spikes. Sold at cost and requiring no electrician or smart meter, the Marstek-based battery promises around €120–€130 in a…"
+    },
+    {
+      "t": "2026-09-11T08:53:38.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/chinese-scientists-achieve-record-breaking-27-35-efficiency-for-perovskite-organic-tandem-solar-cell/",
+      "source": "pv magazine",
+      "title": "Chinese scientists achieve record-breaking 27.35% efficiency for perovskite-organic tandem solar cell",
+      "url": "https://www.pv-magazine.com/2026/09/11/chinese-scientists-achieve-record-breaking-27-35-efficiency-for-perovskite-organic-tandem-solar-cell/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Nanjing University researchers developed a perovskite-organic tandem solar cell using a novel low-bandgap acceptor to boost near-infrared light harvesting and improve photocurrent matching. The device achieved a 27.35% efficiency, while retaining 80% of its initial performance after 744 hours of continuous illuminat…"
+    },
+    {
+      "t": "2026-09-11T10:36:51.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/the-hydrogen-stream-aem-electrolysis-could-deliver-hydrogen-at-3-27-kg-say-repsol-p2hp/",
+      "source": "pv magazine",
+      "title": "The Hydrogen Stream: AEM electrolysis could deliver hydrogen at $3.27/kg, say Repsol, P2HP",
+      "url": "https://www.pv-magazine.com/2026/09/11/the-hydrogen-stream-aem-electrolysis-could-deliver-hydrogen-at-3-27-kg-say-repsol-p2hp/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Power to Hydrogen (P2H2) and Repsol completed a 1,250-hour pilot of P2H2’s hybrid AEM electrolyzer technology, demonstrating operation at 40% to 100% load, pressures up to 30 bar and hydrogen purity of up to 99.9%. P2H2 projects an LCOH of €3.86 ($4.47)/kg, potentially falling to €2.82/kg under optimized renewable e…"
+    },
+    {
+      "t": "2026-09-11T10:51:22.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/south-korea-forecast-to-add-3-5-gw-of-solar-in-2026/",
+      "source": "pv magazine",
+      "title": "South Korea forecast to add 3.5 GW of solar in 2026",
+      "url": "https://www.pv-magazine.com/2026/09/11/south-korea-forecast-to-add-3-5-gw-of-solar-in-2026/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Export–Import Bank of Korea says the country is on track to add more this solar this year than last year, as the Korean government works on developing a distributed power grid that facilitates greater integration of distributed energy resources. The post South Korea forecast to add 3.5 GW of solar in 2026 appear…"
+    },
+    {
+      "t": "2026-09-11T11:09:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/sunny-north-and-cloudy-south-as-super-el-nino-defines-south-american-winter/",
+      "source": "pv magazine",
+      "title": "Sunny north and cloudy south as Super El Niño defines South American winter",
+      "url": "https://www.pv-magazine.com/2026/09/11/sunny-north-and-cloudy-south-as-super-el-nino-defines-south-american-winter/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that Super El Niño drove a sharp north–south irradiance divide across South America in winter 2026, with sunnier conditions in the north and persistent cloud reducing solar irradiance across much of the south. Two rare August snowstorms in Chil…"
+    },
+    {
+      "t": "2026-09-11T11:20:03.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/i-make-a-point-of-thanking-people-for-asking-critical-questions-and-disagreeing-openly/",
+      "source": "pv magazine",
+      "title": "‘I make a point of thanking people for asking critical questions and disagreeing openly’",
+      "url": "https://www.pv-magazine.com/2026/09/11/i-make-a-point-of-thanking-people-for-asking-critical-questions-and-disagreeing-openly/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This week, Women in Solar+ Europe gives voice to Hanna König, Head of Division Project Execution, at Germany's Enertrag SE. She says the most important element of an inclusive organisational culture is ensuring that everyone feels safe to contribute ideas and opinions, particularly when they disagree with the majori…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
+      "grid": 26,
       "policy": 10,
-      "capital": 5,
+      "capital": 4,
       "technology": 1
     },
     "sourceStatus": [
@@ -509,7 +469,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 10
+        "items": 6
       }
     ]
   },
@@ -518,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:53b15aaa3366ef91055190fe2a20b7ffc2f395b172c16de1f7259adafb8aa3ba",
-  "envelopeChecksum": "sha256:284a2aa4d84c379f3aea56237e70d2765cdf1108141920b277edc140389ce731"
+  "contentChecksum": "sha256:761bcd3a05b65e9ccf6cde2fdaf5379632996598a99039b6c232882eb5c826cf",
+  "envelopeChecksum": "sha256:73d8266c74211607c60f1c90829d71d35fc2985c4e5e7a9a799a44d47386576b"
 }
