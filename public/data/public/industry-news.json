@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-11T21:01:53.503Z",
+  "fetchedAt": "2026-09-12T04:41:57.514Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-09-11T15:22:59.000Z",
@@ -428,7 +428,7 @@
       "t": "2026-09-11T14:57:52.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/pennsylvania-puc-to-consider-rates-and-curtailment-as-data-centers-grow/830174/",
       "source": "Utility Dive",
-      "title": "Pennsylvania PUC to consider ratemaking, ROE and curtailment as data centers grow",
+      "title": "Pennsylvania PUC to consider ratemaking, ROE and curtailment as data center load grows",
       "url": "https://www.utilitydive.com/news/pennsylvania-puc-to-consider-rates-and-curtailment-as-data-centers-grow/830174/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
@@ -488,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:ba381d1acbaa8c27fac97cbf2ae238d5eee8eb673615f4866865ec2cc3d0921d",
-  "envelopeChecksum": "sha256:88fda73441dc0443b4197816170adb3271d06603859ad9befd1def12bfd26165"
+  "contentChecksum": "sha256:aa8178c6d31479a8149622138117e0b42565679a55450becc37d1851abe41840",
+  "envelopeChecksum": "sha256:46a5ead624eb6b1655b1b20b92ec938ed0d1e0f455a2d7c0fb83331df97a9612"
 }
