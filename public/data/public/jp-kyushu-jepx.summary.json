@@ -13,7 +13,7 @@
     "licence": "JEPX published market data — attribution required",
     "attribution": "Source: JEPX spot market data"
   },
-  "fetchedAt": "2026-09-13T20:38:44.095Z",
+  "fetchedAt": "2026-09-13T20:54:51.788Z",
   "coverage": {
     "from": "2025-09-13T21:00:00.000Z",
     "to": "2026-09-14T14:30:00.000Z",
@@ -3736,5 +3736,5 @@
     "contentChecksum": "sha256:1ea056e12de04564255fb530fa4ce47d05306fda431f3d6469dcedc6dd594e50",
     "points": 17556
   },
-  "summaryChecksum": "sha256:d4ed1f0b903738f3c05bfc9a9630fb323ed6b13e91908f095760681439414bf1"
+  "summaryChecksum": "sha256:d9a8a1225ed5a0cd57e5a3260992000dc2be4423e048d66aaad4fead9f1fdedc"
 }
