@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-13T20:54:29.772Z",
+  "fetchedAt": "2026-09-14T05:03:42.725Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-12T09:00:00.000Z",
+    "to": "2026-09-14T05:02:06.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -133,16 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-08T10:00:48.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/belgium-edf-inaugurates-600mwh-bess-engie-starts-building-296mwh-project/",
-      "source": "Energy-Storage.news",
-      "title": "Belgium: EDF inaugurates 600MWh BESS, Engie starts building 296MWh project",
-      "url": "https://www.energy-storage.news/belgium-edf-inaugurates-600mwh-bess-engie-starts-building-296mwh-project/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "EDF Power Solutions has put a 150MW/600MWh BESS in Belgium into commercial operation while Engie has started building a 74MW/296MWh project."
     },
     {
       "t": "2026-09-08T11:01:36.000Z",
@@ -315,16 +305,6 @@
       "summary": "Data centers and a manufacturing expansion will drive U.S. electricity use 2% higher this year and next, the U.S. Energy Information Administration said Wednesday."
     },
     {
-      "t": "2026-09-11T11:09:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/sunny-north-and-cloudy-south-as-super-el-nino-defines-south-american-winter/",
-      "source": "pv magazine",
-      "title": "Sunny north and cloudy south as Super El Niño defines South American winter",
-      "url": "https://www.pv-magazine.com/2026/09/11/sunny-north-and-cloudy-south-as-super-el-nino-defines-south-american-winter/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that Super El Niño drove a sharp north–south irradiance divide across South America in winter 2026, with sunnier conditions in the north and persistent cloud reducing solar irradiance across much of the south. Two rare August snowstorms in Chil…"
-    },
-    {
       "t": "2026-09-11T11:20:03.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/11/i-make-a-point-of-thanking-people-for-asking-critical-questions-and-disagreeing-openly/",
       "source": "pv magazine",
@@ -453,6 +433,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The space economy could be worth as much at $2 trillion by 2040 – according to a recent report by professional services provider PwC. The cisLunar orbit, between the earth and the moon, is particularly promising. But all of it requires power and, as it has for decades, that means PV – and both the technology and sup…"
+    },
+    {
+      "t": "2026-09-14T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/spacebound-silicon/",
+      "source": "pv magazine",
+      "title": "Spacebound silicon",
+      "url": "https://www.pv-magazine.com/2026/09/14/spacebound-silicon/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar has a long history in powering satellites and space exploration, and high-powered devices based on multijunction PV cells made from “III-V” materials such as gallium arsenide or indium gallium phosphide have supplied this niche market as far back as the 1960s. But those devices are made with rare materials and…"
+    },
+    {
+      "t": "2026-09-14T05:02:06.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/lava-blue-commissions-australias-first-grid-nas-battery-as-zebre-sees-360mwh-bess-waved-through-epbc-act/",
+      "source": "Energy-Storage.news",
+      "title": "Lava Blue commissions Australia’s first grid NAS battery as ZEBRE sees 360MWh BESS waved through EPBC Act",
+      "url": "https://www.energy-storage.news/lava-blue-commissions-australias-first-grid-nas-battery-as-zebre-sees-360mwh-bess-waved-through-epbc-act/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Lava Blue commissions Australia's first grid-connected sodium-sulfur BESS, while ZEBRE's 360MWh Noblevale BESS clears EPBC review."
     }
   ],
   "derived": {
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:beed8a823ea25ce6531a03145393adf1351c09d211343c381b11ebf696e8f597",
-  "envelopeChecksum": "sha256:229611b4632380ff3e236a86553cf9debb832fb64a7c1d753e894a3129a13892"
+  "contentChecksum": "sha256:e60269fbff83d816e695003e996a617f4eaffe86794f40a0570cdcfb1dccee58",
+  "envelopeChecksum": "sha256:cb1daacdab4c61fce2467233a32ee68a7b44848860a4842b1997b743effe55c1"
 }
