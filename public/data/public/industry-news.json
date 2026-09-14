@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-14T12:57:59.874Z",
+  "fetchedAt": "2026-09-14T21:53:47.148Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-14T12:13:39.000Z",
+    "to": "2026-09-14T15:18:50.000Z",
     "resolution": "event",
     "points": 41
   },
@@ -135,36 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-09T04:02:01.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-nem-bess-fleet-earns-au29-million-in-august-as-capture-rate-climbs-to-54/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s NEM BESS fleet earns AU$29 million in August as capture rate climbs to 54%",
-      "url": "https://www.energy-storage.news/australias-nem-bess-fleet-earns-au29-million-in-august-as-capture-rate-climbs-to-54/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia's 58 grid-scale battery storage systems in the NEM generated a combined AU$28.79 million in estimated gross energy and FCAS revenue."
-    },
-    {
-      "t": "2026-09-09T04:25:07.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/at-least-six-months-ahead-of-go-live-optigrid-on-the-ideal-onboarding-runway-for-battery-storage-systems/",
-      "source": "Energy-Storage.news",
-      "title": "‘At least six months ahead of go live’: OptiGrid on the ideal onboarding runway for battery storage systems",
-      "url": "https://www.energy-storage.news/at-least-six-months-ahead-of-go-live-optigrid-on-the-ideal-onboarding-runway-for-battery-storage-systems/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In this interview with ESN Premium, Sahand Karimi of OptiGrid discusses how BESS warranties and constraint management shape trading behaviour."
-    },
-    {
-      "t": "2026-09-09T05:19:31.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/catl-eve-energy-lead-chinese-manufacturers-battery-storage-cell-price-hikes/",
-      "source": "Energy-Storage.news",
-      "title": "CATL, EVE Energy lead Chinese manufacturers’ battery storage cell price hikes",
-      "url": "https://www.energy-storage.news/catl-eve-energy-lead-chinese-manufacturers-battery-storage-cell-price-hikes/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A new wave of cell price hikes is sweeping the battery energy storage industry. Major manufacturers have initiated price increases, with smaller producers quickly following suit."
-    },
-    {
       "t": "2026-09-09T06:24:04.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/philippines-ayala-corps-renewable-energy-platform-lends-php9-billion-to-subsidiaries-for-solar-bess-projects/",
       "source": "Energy-Storage.news",
@@ -265,16 +235,6 @@
       "summary": "Developer SMT Energy and Software-focused energy storage system integrator FlexGen have announced the start of operations of a 160MW/320MWh energy storage facility Houston, Texas, US."
     },
     {
-      "t": "2026-09-10T14:18:06.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/data-centers-manufacturing-us-electricity-use-eia/830038/",
-      "source": "Utility Dive",
-      "title": "Solar generation expected to grow 21% this year, 18% in 2027: EIA",
-      "url": "https://www.utilitydive.com/news/data-centers-manufacturing-us-electricity-use-eia/830038/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Data centers and a manufacturing expansion will drive U.S. electricity use 2% higher this year and next, the U.S. Energy Information Administration said Wednesday."
-    },
-    {
       "t": "2026-09-11T13:07:15.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-beijings-manufacturing-ban-responsible-data-centre-policy-ldes-economics-and-more/",
       "source": "Energy-Storage.news",
@@ -325,16 +285,6 @@
       "summary": "Premier Energies and RCT India have established a joint venture to develop a 12GWh BESS manufacturing facility in Telangana, India."
     },
     {
-      "t": "2026-09-14T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/spacebound-silicon/",
-      "source": "pv magazine",
-      "title": "Spacebound silicon",
-      "url": "https://www.pv-magazine.com/2026/09/14/spacebound-silicon/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar has a long history in powering satellites and space exploration, and high-powered devices based on multijunction PV cells made from “III-V” materials such as gallium arsenide or indium gallium phosphide have supplied this niche market as far back as the 1960s. But those devices are made with rare materials and…"
-    },
-    {
       "t": "2026-09-14T05:02:06.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/lava-blue-commissions-australias-first-grid-nas-battery-as-zebre-sees-360mwh-bess-waved-through-epbc-act/",
       "source": "Energy-Storage.news",
@@ -343,16 +293,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Lava Blue commissions Australia's first grid-connected sodium-sulfur BESS, while ZEBRE's 360MWh Noblevale BESS clears EPBC review."
-    },
-    {
-      "t": "2026-09-14T06:22:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/department-of-commerce-finalizes-trade-duties-on-solar-imports-from-india-indonesia-and-laos/",
-      "source": "pv magazine",
-      "title": "U.S. government finalizes trade duties on solar imports from India, Indonesia, and Laos",
-      "url": "https://www.pv-magazine.com/2026/09/14/department-of-commerce-finalizes-trade-duties-on-solar-imports-from-india-indonesia-and-laos/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The U.S. Department of Commerce has issued final dumping and subsidy duty rates on solar imports from India, Indonesia, and Laos, setting combined margins as high as 234% for India, 178% for Indonesia, and 103% for Laos. The post U.S. government finalizes trade duties on solar imports from India, Indonesia, and Laos…"
     },
     {
       "t": "2026-09-14T07:33:18.000Z",
@@ -433,6 +373,66 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Research from China deployed lead halide perovskites 10 meters below the surface of the South China Sea. The cells generated 324 mWh, enough to charge lithium-ion batteries, when submerged for two hours. The post Researchers find perovskite solar functions 10 meters below sea surface appeared first on pv magazine Gl…"
+    },
+    {
+      "t": "2026-09-14T13:26:21.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-capacity-market-contracts-bankable-base-layer-alongside-merchant-revenues-rwe/",
+      "source": "Energy-Storage.news",
+      "title": "Competitive TCO, detailed specs and strong local presence key for BESS supplier success in Germany, RWE says",
+      "url": "https://www.energy-storage.news/germany-capacity-market-contracts-bankable-base-layer-alongside-merchant-revenues-rwe/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "We hear from the BESS lead at RWE Renewables Europe & Australia ahead of the Energy Storage Summit Germany 2026, discussing the major trends, challenges and opportunities in the country’s grid-scale storage market."
+    },
+    {
+      "t": "2026-09-14T13:34:20.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-energy-storage-companies-secure-financing-and-launch-compliance-services-amid-regulatory-shifts/",
+      "source": "Energy-Storage.news",
+      "title": "US energy storage companies secure financing and launch compliance services amid regulatory shifts",
+      "url": "https://www.energy-storage.news/us-energy-storage-companies-secure-financing-and-launch-compliance-services-amid-regulatory-shifts/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Heron Power and NeoVolta have secured significant credit facilities, while Carina Energy has launched a FEOC compliance support practice to help developers navigate increasingly complex regulatory requirements."
+    },
+    {
+      "t": "2026-09-14T14:16:37.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/constellation-energy-purchase-609-mw-rhode-island-gas-plant-shell/830270/",
+      "source": "Utility Dive",
+      "title": "Constellation Energy in deal to buy 609-MW Rhode Island gas plant from Shell",
+      "url": "https://www.utilitydive.com/news/constellation-energy-purchase-609-mw-rhode-island-gas-plant-shell/830270/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The deal expands Constellation&rsquo;s ISO New England portfolio. In a separate transaction, Shell acquired a 169-MW Pennsylvania gas portfolio to grow its PJM Interconnection position."
+    },
+    {
+      "t": "2026-09-14T14:26:53.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/sungrow-raises-inverter-storage-prices-by-up-to-15/",
+      "source": "pv magazine",
+      "title": "Sungrow raises inverter, storage prices by up to 15%",
+      "url": "https://www.pv-magazine.com/2026/09/14/sungrow-raises-inverter-storage-prices-by-up-to-15/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Sungrow will raise prices for solar inverters and energy storage products by 5% to 15% from Sept. 20, citing rising raw material and component costs. The move, its second price increase this year, reflects broader cost pressures across China’s inverter and storage supply chains. The post Sungrow raises inverter, sto…"
+    },
+    {
+      "t": "2026-09-14T14:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/canadian-province-launches-second-green-choice-renewable-procurement-round/",
+      "source": "pv magazine",
+      "title": "Canadian province launches second renewable procurement round",
+      "url": "https://www.pv-magazine.com/2026/09/14/canadian-province-launches-second-green-choice-renewable-procurement-round/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Nova Scotia is seeking 350 MW of new renewable capacity, in a program that has so far been dominated by wind, to expand a scheme that lets large industrial and institutional customers buy clean power directly from the provincial grid. The post Canadian province launches second renewable procurement round appeared fi…"
+    },
+    {
+      "t": "2026-09-14T15:18:50.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/anker-solix-xe-energy-freedom-made-simple/",
+      "source": "Energy-Storage.news",
+      "title": "Anker SOLIX XE: Energy freedom made simple",
+      "url": "https://www.energy-storage.news/anker-solix-xe-energy-freedom-made-simple/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Anker SOLIX, a global leader in smart energy, introduces the XE system, the next-generation true all-in-one home energy storage system."
     }
   ],
   "derived": {
@@ -442,8 +442,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 27,
-      "policy": 8,
-      "capital": 5,
+      "policy": 7,
+      "capital": 6,
       "technology": 1
     },
     "sourceStatus": [
@@ -478,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:fb99978c195e3a9f3839078d06b1b354e9c2afd33d45aaf2b4493ec2fffc249a",
-  "envelopeChecksum": "sha256:12b34a5867271121ed24d1217d8faa61061d90e65b76cd850a59b720de33c086"
+  "contentChecksum": "sha256:4c40e937844f87b781bc9af22d491011b6d9306d67b0e61f9c90e193954e15b2",
+  "envelopeChecksum": "sha256:adf79cec5300dcefd6919c220d1fadf42376a92058b8c37a84822d811b22d30c"
 }
