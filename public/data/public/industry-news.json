@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-15T11:51:28.104Z",
+  "fetchedAt": "2026-09-15T17:05:10.748Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-15T11:21:15.000Z",
+    "to": "2026-09-15T14:27:25.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -133,16 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-10T10:32:08.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/nordic-roundup-flower-volvo-and-delta-capacity-launch-bess-projects/",
-      "source": "Energy-Storage.news",
-      "title": "Nordic ROUNDUP: Flower, Volvo and Delta Capacity launch BESS projects",
-      "url": "https://www.energy-storage.news/nordic-roundup-flower-volvo-and-delta-capacity-launch-bess-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A roundup of large-scale BESS news from in and around the Nordic region, with Sweden-based Flower building a project in Germany, Volvo launching one in Sweden and Delta Capacity securing a toll for one in Finland."
     },
     {
       "t": "2026-09-10T11:48:59.000Z",
@@ -285,16 +275,6 @@
       "summary": "The deal expands Constellation&rsquo;s ISO New England portfolio. In a separate transaction, Shell acquired a 169-MW Pennsylvania gas portfolio to grow its PJM Interconnection position."
     },
     {
-      "t": "2026-09-14T14:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/canadian-province-launches-second-green-choice-renewable-procurement-round/",
-      "source": "pv magazine",
-      "title": "Canadian province launches second renewable procurement round",
-      "url": "https://www.pv-magazine.com/2026/09/14/canadian-province-launches-second-green-choice-renewable-procurement-round/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Nova Scotia is seeking 350 MW of new renewable capacity, in a program that has so far been dominated by wind, to expand a scheme that lets large industrial and institutional customers buy clean power directly from the provincial grid. The post Canadian province launches second renewable procurement round appeared fi…"
-    },
-    {
       "t": "2026-09-14T15:18:50.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/anker-solix-xe-energy-freedom-made-simple/",
       "source": "Energy-Storage.news",
@@ -325,36 +305,6 @@
       "summary": "India's storage market remains focused on short-duration firming, but conversations about long-duration storage are already underway."
     },
     {
-      "t": "2026-09-15T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/renewables-24-7an-exhibit-and-a-statement/",
-      "source": "pv magazine",
-      "title": "Renewables 24/7: An exhibit and a statement",
-      "url": "https://www.pv-magazine.com/2026/09/15/renewables-24-7an-exhibit-and-a-statement/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Proving that it’s possible and that it’s worth it, The smarter E Europe demonstrated the benefits of an energy system based on 100% renewable electricity with a major special exhibit. The post Renewables 24/7: An exhibit and a statement appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-15T04:02:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/a-modern-economy-runs-on-electricity/",
-      "source": "pv magazine",
-      "title": "‘A modern economy runs on electricity’",
-      "url": "https://www.pv-magazine.com/2026/09/15/a-modern-economy-runs-on-electricity/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Renewable energy, 24/7. Many still associate this with terms like “mammoth task,” “challenge,” and “radical change.” While these are not entirely inaccurate in describing the energy transition, they obscure the essential point that renewable energy actually presents a huge economic opportunity. As part of our Renewa…"
-    },
-    {
-      "t": "2026-09-15T05:34:06.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/gamechange-countersues-nextpower-in-expanding-solar-tracker-patent-war/",
-      "source": "pv magazine",
-      "title": "GameChange sues Nextpower in expanding solar tracker patent war",
-      "url": "https://www.pv-magazine.com/2026/09/15/gamechange-countersues-nextpower-in-expanding-solar-tracker-patent-war/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar tracking rivals are now locked in dueling federal lawsuits over proprietary hardware and control software. The post GameChange sues Nextpower in expanding solar tracker patent war appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-15T06:18:42.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/actis-subsidiary-nozomi-energy-closes-financing-on-japanese-capacity-market-winning-bess/",
       "source": "Energy-Storage.news",
@@ -363,16 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Sustainable infrastructure investor Actis’s renewable energy platform in Japan has closed financing on a 50MW/196MWh battery storage project."
-    },
-    {
-      "t": "2026-09-15T07:51:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/lithuania-moves-to-support-residential-pv/",
-      "source": "pv magazine",
-      "title": "Lithuania moves to support residential PV",
-      "url": "https://www.pv-magazine.com/2026/09/15/lithuania-moves-to-support-residential-pv/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Lithuania’s Ministry of Energy says it plans to remove obstacles to installing solar on apartment balconies and will coordinate support for solar plants and storage systems as part of a wider package of energy infrastructure measures. The post Lithuania moves to support residential PV appeared first on pv magazine G…"
     },
     {
       "t": "2026-09-15T08:48:18.000Z",
@@ -443,16 +383,66 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "European PPA prices rose 2.2% in August, led by a 4.9% increase in the United Kingdom, while announced PPA capacity fell sharply to 335 MW. Corporate buyers dominated PPA activity, as storage-related agreements held steady at 869 MW and included major BESS deals in the United Kingdom and the Netherlands. The post PP…"
+    },
+    {
+      "t": "2026-09-15T12:09:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/california-cold-storage-provider-sues-solar-businesses-over-1-billion-rooftop-fire/",
+      "source": "pv magazine",
+      "title": "California cold-storage provider sues solar businesses over $1 billion rooftop fire",
+      "url": "https://www.pv-magazine.com/2026/09/15/california-cold-storage-provider-sues-solar-businesses-over-1-billion-rooftop-fire/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Cold-storage giant Lineage claims a $1 billion fire at its 46,451.52 m² facility was ignited by an improperly maintained rooftop solar array following ignored safety warnings. The post California cold-storage provider sues solar businesses over $1 billion rooftop fire appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-15T12:26:40.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/the-value-of-solar-pv-in-northern-regions-is-widely-underestimated/",
+      "source": "pv magazine",
+      "title": "The value of solar PV in Northern regions is widely underestimated",
+      "url": "https://www.pv-magazine.com/2026/09/15/the-value-of-solar-pv-in-northern-regions-is-widely-underestimated/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Contrary to conventional perceptions, solar PV can be an important component of a viable Arctic energy system, thanks to the region’s long summer days. Its low cost makes it competitive even in areas with long, dark winters, particularly when other renewable energy sources provide insufficient output. The post The v…"
+    },
+    {
+      "t": "2026-09-15T13:34:55.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/greece-clears-way-for-balcony-pv-systems-up-to-800-w/",
+      "source": "pv magazine",
+      "title": "Greece clears way for balcony PV systems up to 800 W",
+      "url": "https://www.pv-magazine.com/2026/09/15/greece-clears-way-for-balcony-pv-systems-up-to-800-w/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Greece has overhauled its self-consumption rules, permitting plug-in balcony solar systems up to 800 W and standalone batteries for the first time. The framework also simplifies installation procedures, supports storage additions and expands self-consumption opportunities for islands, public entities and residential…"
+    },
+    {
+      "t": "2026-09-15T14:15:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/spain-added-10-1-gw-of-solar-in-2025/",
+      "source": "pv magazine",
+      "title": "Spain added 10.1 GW of solar in 2025",
+      "url": "https://www.pv-magazine.com/2026/09/15/spain-added-10-1-gw-of-solar-in-2025/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Spain installed 10.1 GW of new solar capacity in 2025, including 8.97 GW of ground-mounted PV and 1.14 GW of self-consumption systems, according to Spanish PV association UNEF. The trade body says falling captured prices are increasing pressure on new projects and underscoring the need for storage and greater electr…"
+    },
+    {
+      "t": "2026-09-15T14:27:25.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/flexible-connection-agreements-fcas-in-germany-a-necessary-evil/",
+      "source": "Energy-Storage.news",
+      "title": "Flexible connection agreements (FCAs) in Germany: a necessary evil",
+      "url": "https://www.energy-storage.news/flexible-connection-agreements-fcas-in-germany-a-necessary-evil/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Flexible Connection Agreements (FCAs) must not be used simply to exclude BESS from connecting to the grid, but the industry will have to make do with them and all their imperfections for the foreseeable."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 6,
+      "grid": 27,
+      "policy": 7,
       "capital": 6,
       "technology": 1
     },
@@ -479,7 +469,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 8
       }
     ]
   },
@@ -488,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:2c1de8fb3d2b0bc46d3b980616094a5dc62adbd3359d5ec64db6ca3a7695ce35",
-  "envelopeChecksum": "sha256:d91cefa1c143c9f9d4d2f7bb9be8e7d6ee79bbc671e9a98400149ae86ce1b91f"
+  "contentChecksum": "sha256:d3bd2bdc22e6b884ac355495f089304e1f9a5107de75cfc7a28b6096a350b017",
+  "envelopeChecksum": "sha256:4f16bdb24682bfdc952c3f52047146d0291ba33a38805d828b732085e7ab0121"
 }
