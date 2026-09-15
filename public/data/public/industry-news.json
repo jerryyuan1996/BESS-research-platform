@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-15T17:05:10.748Z",
+  "fetchedAt": "2026-09-15T21:26:45.397Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-09-15T14:27:25.000Z",
@@ -195,16 +195,6 @@
       "summary": "Greek renewables developer Metlen Energy & Metals has signed an agreement with utility Copec for the sale of the Tamarico II solar-plus-storage project in Chile’s Atacama region."
     },
     {
-      "t": "2026-09-11T14:57:52.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/pennsylvania-puc-to-consider-rates-and-curtailment-as-data-centers-grow/830174/",
-      "source": "Utility Dive",
-      "title": "Pennsylvania PUC to consider ratemaking, ROE and curtailment as data center load grows",
-      "url": "https://www.utilitydive.com/news/pennsylvania-puc-to-consider-rates-and-curtailment-as-data-centers-grow/830174/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The decisions come &ldquo;amid growing concern about the balance between rapidly increasing electricity demand and the resources available to serve that demand&rdquo; in PJM territory, the&nbsp;Pennsylvania PUC said."
-    },
-    {
       "t": "2026-09-11T15:22:59.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/premier-energies-rct-india-plan-12gwh-bess-manufacturing-facility-in-telangana/",
       "source": "Energy-Storage.news",
@@ -246,10 +236,10 @@
     },
     {
       "t": "2026-09-14T13:26:21.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-capacity-market-contracts-bankable-base-layer-alongside-merchant-revenues-rwe/",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/competitive-tco-detailed-specs-strong-local-presence-key-bess-supplier-success-germany-rwe-says/",
       "source": "Energy-Storage.news",
       "title": "Competitive TCO, detailed specs and strong local presence key for BESS supplier success in Germany, RWE says",
-      "url": "https://www.energy-storage.news/germany-capacity-market-contracts-bankable-base-layer-alongside-merchant-revenues-rwe/",
+      "url": "https://www.energy-storage.news/competitive-tco-detailed-specs-strong-local-presence-key-bess-supplier-success-germany-rwe-says/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "We hear from the BESS lead at RWE Renewables Europe & Australia ahead of the Energy Storage Summit Germany 2026, discussing the major trends, challenges and opportunities in the country’s grid-scale storage market."
@@ -425,6 +415,16 @@
       "summary": "Spain installed 10.1 GW of new solar capacity in 2025, including 8.97 GW of ground-mounted PV and 1.14 GW of self-consumption systems, according to Spanish PV association UNEF. The trade body says falling captured prices are increasing pressure on new projects and underscoring the need for storage and greater electr…"
     },
     {
+      "t": "2026-09-15T14:26:19.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/pjms-reliability-could-start-failing-by-2030-if-data-center-growth-continu/830405/",
+      "source": "Utility Dive",
+      "title": "PJM’s reliability could start failing by 2030 if data center growth continues: report",
+      "url": "https://www.utilitydive.com/news/pjms-reliability-could-start-failing-by-2030-if-data-center-growth-continu/830405/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a worst-case scenario, the modeled loss of load expectation is &ldquo;over 100 times worse than PJM&rsquo;s planning criterion,&rdquo; indicating an expectation of &ldquo;more than 13 days with loss of load events per year,&rdquo; said the study commissioned by the Pennsylvania PUC."
+    },
+    {
       "t": "2026-09-15T14:27:25.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/flexible-connection-agreements-fcas-in-germany-a-necessary-evil/",
       "source": "Energy-Storage.news",
@@ -478,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d3bd2bdc22e6b884ac355495f089304e1f9a5107de75cfc7a28b6096a350b017",
-  "envelopeChecksum": "sha256:4f16bdb24682bfdc952c3f52047146d0291ba33a38805d828b732085e7ab0121"
+  "contentChecksum": "sha256:9560a5415513a313979d90a9f42694d30671e6d273eaf0bf6de2418ebcd89095",
+  "envelopeChecksum": "sha256:9a6d43ada6a63146e1f77df156dddf430b1fc9716a899ba5a88c37026b2c8724"
 }
