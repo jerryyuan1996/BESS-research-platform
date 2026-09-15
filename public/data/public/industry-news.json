@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-14T21:53:47.148Z",
+  "fetchedAt": "2026-09-15T05:00:09.458Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-14T15:18:50.000Z",
+    "to": "2026-09-15T04:02:00.000Z",
     "resolution": "event",
     "points": 41
   },
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-09T06:24:04.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/philippines-ayala-corps-renewable-energy-platform-lends-php9-billion-to-subsidiaries-for-solar-bess-projects/",
-      "source": "Energy-Storage.news",
-      "title": "Philippines: Ayala Corp’s renewable energy platform lends PHP9 billion to subsidiaries for solar, BESS projects",
-      "url": "https://www.energy-storage.news/philippines-ayala-corps-renewable-energy-platform-lends-php9-billion-to-subsidiaries-for-solar-bess-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Ayala's ACEN Corp has loaned PHP9 billion (US$144 million) to subsidiaries within the group for renewable energy and battery storage projects."
-    },
-    {
-      "t": "2026-09-09T08:41:40.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/uk-roundup-bess-planning-approvals-acquisitions-and-optimisation-deals-with-field-eelpower-edf/",
-      "source": "Energy-Storage.news",
-      "title": "UK ROUNDUP: BESS planning approvals, acquisitions and optimisation deals with Field, Eelpower & EDF",
-      "url": "https://www.energy-storage.news/uk-roundup-bess-planning-approvals-acquisitions-and-optimisation-deals-with-field-eelpower-edf/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "This edition of news in brief brings you BESS news from the UK market featuring Field, Eelpower and EDF, as reported by our colleagues at Solar Power Portal."
     },
     {
       "t": "2026-09-09T10:13:47.000Z",
@@ -295,26 +275,6 @@
       "summary": "Lava Blue commissions Australia's first grid-connected sodium-sulfur BESS, while ZEBRE's 360MWh Noblevale BESS clears EPBC review."
     },
     {
-      "t": "2026-09-14T07:33:18.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/noria-energy-launches-single-axis-tracker-for-floating-solar-applications/",
-      "source": "pv magazine",
-      "title": "Noria Energy launches single-axis tracker for floating solar applications",
-      "url": "https://www.pv-magazine.com/2026/09/14/noria-energy-launches-single-axis-tracker-for-floating-solar-applications/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The U.S.-made Airon tracker delivers up to 20% more generation than fixed-tilt floating photovoltaics at a parity installed cost, with commercial deliveries scheduled to begin in mid-2027. The post Noria Energy launches single-axis tracker for floating solar applications appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-14T07:37:27.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/georgia-tech-bert-thin-films-build-24-3-efficient-copper-contacted-topcon-solar-cell-via-leco/",
-      "source": "pv magazine",
-      "title": "Georgia Tech, Bert Thin Films build 24.3%-efficient copper-contacted TOPCon solar cell via LECO",
-      "url": "https://www.pv-magazine.com/2026/09/14/georgia-tech-bert-thin-films-build-24-3-efficient-copper-contacted-topcon-solar-cell-via-leco/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Georgia Tech-led researchers developed a 24.3%-efficient n-TOPCon solar cell using screen-printed rear copper contacts and LECO, nearly matching a 24.5% silver-contacted reference. The approach sharply reduced contact resistance while limiting copper diffusion, highlighting its potential to lower silver consumption…"
-    },
-    {
       "t": "2026-09-14T07:47:27.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/trina-signs-1gwh-mou-to-help-developer-meet-unique-technical-and-delivery-requirements-of-japans-battery-storage-market/",
       "source": "Energy-Storage.news",
@@ -433,6 +393,46 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Anker SOLIX, a global leader in smart energy, introduces the XE system, the next-generation true all-in-one home energy storage system."
+    },
+    {
+      "t": "2026-09-15T03:44:50.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/trina-storage-to-supply-562mwh-bess-for-frontier-energy-solar-plus-storage-project-in-western-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Trina Storage to supply 562MWh BESS for Frontier Energy solar-plus-storage project in Western Australia",
+      "url": "https://www.energy-storage.news/trina-storage-to-supply-562mwh-bess-for-frontier-energy-solar-plus-storage-project-in-western-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Trina Storage has been selected to supply the BESS for Stage One of Frontier Energy's Waroona Renewable Energy Project."
+    },
+    {
+      "t": "2026-09-15T03:50:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/long-duration-energy-storage-conversation-gains-traction-in-india-despite-4-hour-battery-storage-focus/",
+      "source": "Energy-Storage.news",
+      "title": "Long-duration energy storage conversation gains traction in India despite 4-hour battery storage focus",
+      "url": "https://www.energy-storage.news/long-duration-energy-storage-conversation-gains-traction-in-india-despite-4-hour-battery-storage-focus/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India's storage market remains focused on short-duration firming, but conversations about long-duration storage are already underway."
+    },
+    {
+      "t": "2026-09-15T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/renewables-24-7an-exhibit-and-a-statement/",
+      "source": "pv magazine",
+      "title": "Renewables 24/7: An exhibit and a statement",
+      "url": "https://www.pv-magazine.com/2026/09/15/renewables-24-7an-exhibit-and-a-statement/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Proving that it’s possible and that it’s worth it, The smarter E Europe demonstrated the benefits of an energy system based on 100% renewable electricity with a major special exhibit. The post Renewables 24/7: An exhibit and a statement appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-15T04:02:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/a-modern-economy-runs-on-electricity/",
+      "source": "pv magazine",
+      "title": "‘A modern economy runs on electricity’",
+      "url": "https://www.pv-magazine.com/2026/09/15/a-modern-economy-runs-on-electricity/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Renewable energy, 24/7. Many still associate this with terms like “mammoth task,” “challenge,” and “radical change.” While these are not entirely inaccurate in describing the energy transition, they obscure the essential point that renewable energy actually presents a huge economic opportunity. As part of our Renewa…"
     }
   ],
   "derived": {
@@ -478,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:4c40e937844f87b781bc9af22d491011b6d9306d67b0e61f9c90e193954e15b2",
-  "envelopeChecksum": "sha256:adf79cec5300dcefd6919c220d1fadf42376a92058b8c37a84822d811b22d30c"
+  "contentChecksum": "sha256:4601343e61dcfda6af15d96218e7e10c7e2a4eb71bd931487cf6a5e4f0b262f6",
+  "envelopeChecksum": "sha256:235f32701eea2a3684068ce2f387028eb343c5bb9b9d2f1befeb33bac265eb65"
 }
