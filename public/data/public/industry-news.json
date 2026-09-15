@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-15T05:00:09.458Z",
+  "fetchedAt": "2026-09-15T11:51:28.104Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-15T04:02:00.000Z",
+    "to": "2026-09-15T11:21:15.000Z",
     "resolution": "event",
-    "points": 41
+    "points": 42
   },
   "units": {
     "record": "published article metadata"
@@ -135,46 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-09T10:13:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-storage-canada-recommends-ontario-to-unlock-btm-battery-capacity-ahead-of-electricity-supply-crunch/",
-      "source": "Energy-Storage.news",
-      "title": "Energy Storage Canada recommends Ontario to unlock BTM battery capacity ahead of electricity supply crunch",
-      "url": "https://www.energy-storage.news/energy-storage-canada-recommends-ontario-to-unlock-btm-battery-capacity-ahead-of-electricity-supply-crunch/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Trade association Energy Storage Canada (ESC) has recommended establishing a Distributed Reliability Track for behind-the-meter (BTM) and distribution-connected energy storage in Ontario."
-    },
-    {
-      "t": "2026-09-09T11:50:18.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/black-hills-energy-to-begin-construction-on-200mwh-colorado-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Black Hills Energy to begin construction on 200MWh Colorado BESS",
-      "url": "https://www.energy-storage.news/black-hills-energy-to-begin-construction-on-200mwh-colorado-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Utility Black Hills Energy has announced it will move forward with the construction of a 50MW/200MWh energy storage facility at its Pueblo Airport Generating Station (PAGS) in Colorado, US."
-    },
-    {
-      "t": "2026-09-09T13:28:57.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/catl-upgraded-to-aaa-wartsila-downgraded-to-bb-in-bankability-report-q2-update/",
-      "source": "Energy-Storage.news",
-      "title": "CATL upgraded to AAA, Wärtsilä downgraded to BB in Bankability Report Q2 update",
-      "url": "https://www.energy-storage.news/catl-upgraded-to-aaa-wartsila-downgraded-to-bb-in-bankability-report-q2-update/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The global battery energy storage market is entering a new phase, with shifting cell prices, intensifying competition and rapid international expansion reshaping the supplier landscape."
-    },
-    {
-      "t": "2026-09-10T09:17:46.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ore-energys-iron-air-technology-ldes-applications-trade-offs-deployments-and-next-gen-cells/",
-      "source": "Energy-Storage.news",
-      "title": "Ore Energy’s iron-air technology: LDES applications, trade-offs, deployments and next-gen cells",
-      "url": "https://www.energy-storage.news/ore-energys-iron-air-technology-ldes-applications-trade-offs-deployments-and-next-gen-cells/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "We look at the iron-air battery technology of startup Ore Energy, including how it works and technology developments it is pursuing after a recent US$43 million fundraise."
-    },
-    {
       "t": "2026-09-10T10:32:08.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/nordic-roundup-flower-volvo-and-delta-capacity-launch-bess-projects/",
       "source": "Energy-Storage.news",
@@ -285,36 +245,6 @@
       "summary": "Trina Storage, the battery storage arm of major Chinese solar PV company Trinasolar, has signed a 1GWh MoU to supply products in Japan."
     },
     {
-      "t": "2026-09-14T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/anker-solix-launches-xe-the-next-generation-all-in-one-home-energy-storage/",
-      "source": "pv magazine",
-      "title": "Anker SOLIX launches XE, the next-generation all-in-one home energy storage",
-      "url": "https://www.pv-magazine.com/2026/09/14/anker-solix-launches-xe-the-next-generation-all-in-one-home-energy-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The system, launched in the UK and Ireland, removes the barriers that have kept home energy storage from the mainstream. The post Anker SOLIX launches XE, the next-generation all-in-one home energy storage appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-14T09:25:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/india-adds-8-2-gwh-of-new-bess-capacity-in-h1/",
-      "source": "pv magazine",
-      "title": "India adds 8.2 GWh of new BESS capacity in H1",
-      "url": "https://www.pv-magazine.com/2026/09/14/india-adds-8-2-gwh-of-new-bess-capacity-in-h1/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "New analysis reveals India added 8.2 GWh of battery energy storage in H1 2026, overwhelming last year’s figures and signaling a major shift in the subcontinent’s storage sector. The post India adds 8.2 GWh of new BESS capacity in H1 appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-14T09:57:02.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/australia-to-introduce-technical-code-for-consumer-energy-resources/",
-      "source": "pv magazine",
-      "title": "Australia to introduce technical code for consumer energy resources",
-      "url": "https://www.pv-magazine.com/2026/09/14/australia-to-introduce-technical-code-for-consumer-energy-resources/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia's new regulatory framework for solar inverters, batteries and other consumer energy resources will require suppliers to register products and prove compliance with a technical code. It also introduces national-level accreditation for installers. The post Australia to introduce technical code for consumer e…"
-    },
-    {
       "t": "2026-09-14T09:58:25.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/masdar-luxcara-eur5-billion-partnership-germany-bess-wind-projects/",
       "source": "Energy-Storage.news",
@@ -323,16 +253,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "UAE state-owned renewables company Masdar has partnered with Germany’s Luxcara for battery storage and wind energy projects."
-    },
-    {
-      "t": "2026-09-14T12:13:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/researchers-find-perovskite-solar-functions-10-meters-below-sea-surface/",
-      "source": "pv magazine",
-      "title": "Researchers find perovskite solar functions 10 meters below sea surface",
-      "url": "https://www.pv-magazine.com/2026/09/14/researchers-find-perovskite-solar-functions-10-meters-below-sea-surface/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Research from China deployed lead halide perovskites 10 meters below the surface of the South China Sea. The cells generated 324 mWh, enough to charge lithium-ion batteries, when submerged for two hours. The post Researchers find perovskite solar functions 10 meters below sea surface appeared first on pv magazine Gl…"
     },
     {
       "t": "2026-09-14T13:26:21.000Z",
@@ -363,16 +283,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "The deal expands Constellation&rsquo;s ISO New England portfolio. In a separate transaction, Shell acquired a 169-MW Pennsylvania gas portfolio to grow its PJM Interconnection position."
-    },
-    {
-      "t": "2026-09-14T14:26:53.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/14/sungrow-raises-inverter-storage-prices-by-up-to-15/",
-      "source": "pv magazine",
-      "title": "Sungrow raises inverter, storage prices by up to 15%",
-      "url": "https://www.pv-magazine.com/2026/09/14/sungrow-raises-inverter-storage-prices-by-up-to-15/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sungrow will raise prices for solar inverters and energy storage products by 5% to 15% from Sept. 20, citing rising raw material and component costs. The move, its second price increase this year, reflects broader cost pressures across China’s inverter and storage supply chains. The post Sungrow raises inverter, sto…"
     },
     {
       "t": "2026-09-14T14:30:00.000Z",
@@ -433,16 +343,116 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Renewable energy, 24/7. Many still associate this with terms like “mammoth task,” “challenge,” and “radical change.” While these are not entirely inaccurate in describing the energy transition, they obscure the essential point that renewable energy actually presents a huge economic opportunity. As part of our Renewa…"
+    },
+    {
+      "t": "2026-09-15T05:34:06.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/gamechange-countersues-nextpower-in-expanding-solar-tracker-patent-war/",
+      "source": "pv magazine",
+      "title": "GameChange sues Nextpower in expanding solar tracker patent war",
+      "url": "https://www.pv-magazine.com/2026/09/15/gamechange-countersues-nextpower-in-expanding-solar-tracker-patent-war/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar tracking rivals are now locked in dueling federal lawsuits over proprietary hardware and control software. The post GameChange sues Nextpower in expanding solar tracker patent war appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-15T06:18:42.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/actis-subsidiary-nozomi-energy-closes-financing-on-japanese-capacity-market-winning-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Actis subsidiary Nozomi Energy closes financing on Japanese capacity market-winning BESS",
+      "url": "https://www.energy-storage.news/actis-subsidiary-nozomi-energy-closes-financing-on-japanese-capacity-market-winning-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Sustainable infrastructure investor Actis’s renewable energy platform in Japan has closed financing on a 50MW/196MWh battery storage project."
+    },
+    {
+      "t": "2026-09-15T07:51:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/lithuania-moves-to-support-residential-pv/",
+      "source": "pv magazine",
+      "title": "Lithuania moves to support residential PV",
+      "url": "https://www.pv-magazine.com/2026/09/15/lithuania-moves-to-support-residential-pv/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Lithuania’s Ministry of Energy says it plans to remove obstacles to installing solar on apartment balconies and will coordinate support for solar plants and storage systems as part of a wider package of energy infrastructure measures. The post Lithuania moves to support residential PV appeared first on pv magazine G…"
+    },
+    {
+      "t": "2026-09-15T08:48:18.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/uganda-switches-on-24-mw-solar-project/",
+      "source": "pv magazine",
+      "title": "Uganda switches on 24 MW solar project",
+      "url": "https://www.pv-magazine.com/2026/09/15/uganda-switches-on-24-mw-solar-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Amea Power’s 24 MW PV plant is expected to supply energy to over 192,000 households in Uganda's northwestern Nile region. The post Uganda switches on 24 MW solar project appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-15T09:31:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/what-makes-a-german-bess-project-bankable-lenders-owners-weigh-in-at-energy-storage-summit-germany/",
+      "source": "Energy-Storage.news",
+      "title": "What makes a German BESS project bankable? Lenders, owners weigh in at Energy Storage Summit Germany",
+      "url": "https://www.energy-storage.news/what-makes-a-german-bess-project-bankable-lenders-owners-weigh-in-at-energy-storage-summit-germany/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BESS project owners, lenders and optimisers kicked off the Energy Storage Summit Germany 2026 today in Berlin with a discussion on developing a bankable project."
+    },
+    {
+      "t": "2026-09-15T10:14:53.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/flanders-to-cut-subsidies-for-large-solar-parks/",
+      "source": "pv magazine",
+      "title": "Flanders to cut subsidies for large solar parks",
+      "url": "https://www.pv-magazine.com/2026/09/15/flanders-to-cut-subsidies-for-large-solar-parks/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Flemish government is reducing the subsidy available to solar park owners during periods of negative price hours. The move is expected to save around €189 million ($206.5 million). The post Flanders to cut subsidies for large solar parks appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-15T10:47:25.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/cee-roundup-engie-buys-876mwh-poland-project-econergy-connects-co-located-bess-in-romania-inion-software-launches-lithuania-vpp/",
+      "source": "Energy-Storage.news",
+      "title": "CEE ROUNDUP: Engie buys 876MWh Poland project, Econergy connects co-located BESS in Romania, Inion Software launches Lithuania VPP",
+      "url": "https://www.energy-storage.news/cee-roundup-engie-buys-876mwh-poland-project-econergy-connects-co-located-bess-in-romania-inion-software-launches-lithuania-vpp/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This edition of news in brief from around the world in energy storage features Engie, Econergy and Inion Software in Central and Eastern Europe."
+    },
+    {
+      "t": "2026-09-15T10:55:10.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-data-centre-buildout-sees-massachusetts-release-responsible-development-framework-one-nuclear-proposes-louisiana-portfolio/",
+      "source": "Energy-Storage.news",
+      "title": "US data centre buildout sees Massachusetts release responsible development framework, ONE Nuclear proposes Louisiana portfolio",
+      "url": "https://www.energy-storage.news/us-data-centre-buildout-sees-massachusetts-release-responsible-development-framework-one-nuclear-proposes-louisiana-portfolio/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Massachusetts Governor Maura Healey has released a comprehensive framework establishing principles and expectations for responsible data centre development in the state."
+    },
+    {
+      "t": "2026-09-15T11:02:28.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/researchers-find-strong-vendor-to-vendor-variation-in-uvid-performance-of-topcon-solar-cells/",
+      "source": "pv magazine",
+      "title": "Researchers find strong vendor-to-vendor variation in UVID performance of TOPCon solar cells",
+      "url": "https://www.pv-magazine.com/2026/09/15/researchers-find-strong-vendor-to-vendor-variation-in-uvid-performance-of-topcon-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US researchers found significant manufacturer-dependent differences in UV-induced degradation and light-assisted recovery among commercial TOPCon solar cells. The results highlight the need for controlled light soaking before testing and for accounting for daily dark-degradation and recovery cycles in performance mo…"
+    },
+    {
+      "t": "2026-09-15T11:21:15.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/ppa-prices-rise-2-2-in-europe-in-august/",
+      "source": "pv magazine",
+      "title": "PPA prices rise 2.2% in Europe in August",
+      "url": "https://www.pv-magazine.com/2026/09/15/ppa-prices-rise-2-2-in-europe-in-august/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "European PPA prices rose 2.2% in August, led by a 4.9% increase in the United Kingdom, while announced PPA capacity fell sharply to 335 MW. Corporate buyers dominated PPA activity, as storage-related agreements held steady at 869 MW and included major BESS deals in the United Kingdom and the Netherlands. The post PP…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 41,
+    "items": 42,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
-      "policy": 7,
+      "grid": 29,
+      "policy": 6,
       "capital": 6,
       "technology": 1
     },
@@ -469,7 +479,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -478,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:4601343e61dcfda6af15d96218e7e10c7e2a4eb71bd931487cf6a5e4f0b262f6",
-  "envelopeChecksum": "sha256:235f32701eea2a3684068ce2f387028eb343c5bb9b9d2f1befeb33bac265eb65"
+  "contentChecksum": "sha256:2c1de8fb3d2b0bc46d3b980616094a5dc62adbd3359d5ec64db6ca3a7695ce35",
+  "envelopeChecksum": "sha256:d91cefa1c143c9f9d4d2f7bb9be8e7d6ee79bbc671e9a98400149ae86ce1b91f"
 }
