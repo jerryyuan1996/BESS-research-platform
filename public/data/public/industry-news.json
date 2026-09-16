@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-16T11:44:35.395Z",
+  "fetchedAt": "2026-09-16T17:05:15.916Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-16T11:00:18.000Z",
+    "to": "2026-09-16T14:45:00.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -135,36 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-14T07:47:27.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/trina-signs-1gwh-mou-to-help-developer-meet-unique-technical-and-delivery-requirements-of-japans-battery-storage-market/",
-      "source": "Energy-Storage.news",
-      "title": "Trina signs 1GWh MoU to help developer meet ‘unique technical and delivery requirements’ of Japan’s battery storage market",
-      "url": "https://www.energy-storage.news/trina-signs-1gwh-mou-to-help-developer-meet-unique-technical-and-delivery-requirements-of-japans-battery-storage-market/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Trina Storage, the battery storage arm of major Chinese solar PV company Trinasolar, has signed a 1GWh MoU to supply products in Japan."
-    },
-    {
-      "t": "2026-09-14T09:58:25.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/masdar-luxcara-eur5-billion-partnership-germany-bess-wind-projects/",
-      "source": "Energy-Storage.news",
-      "title": "Masdar, clean energy investor Luxcara form €5 billion partnership for Germany BESS and wind projects",
-      "url": "https://www.energy-storage.news/masdar-luxcara-eur5-billion-partnership-germany-bess-wind-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "UAE state-owned renewables company Masdar has partnered with Germany’s Luxcara for battery storage and wind energy projects."
-    },
-    {
-      "t": "2026-09-14T13:26:21.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/competitive-tco-detailed-specs-strong-local-presence-key-bess-supplier-success-germany-rwe-says/",
-      "source": "Energy-Storage.news",
-      "title": "Competitive TCO, detailed specs and strong local presence key for BESS supplier success in Germany, RWE says",
-      "url": "https://www.energy-storage.news/competitive-tco-detailed-specs-strong-local-presence-key-bess-supplier-success-germany-rwe-says/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "We hear from the BESS lead at RWE Renewables Europe & Australia ahead of the Energy Storage Summit Germany 2026, discussing the major trends, challenges and opportunities in the country’s grid-scale storage market."
-    },
-    {
       "t": "2026-09-14T13:34:20.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/us-energy-storage-companies-secure-financing-and-launch-compliance-services-amid-regulatory-shifts/",
       "source": "Energy-Storage.news",
@@ -258,7 +228,7 @@
       "t": "2026-09-15T14:26:19.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/pjms-reliability-could-start-failing-by-2030-if-data-center-growth-continu/830405/",
       "source": "Utility Dive",
-      "title": "PJM’s reliability could start failing by 2030 if data center growth continues: report",
+      "title": "PJM faces 2030 reliability crisis if data center load growth continues: report",
       "url": "https://www.utilitydive.com/news/pjms-reliability-could-start-failing-by-2030-if-data-center-growth-continu/830405/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
@@ -333,16 +303,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "OCP Green Energy has completed the installation of a 25MW/125MWh battery energy storage system (BESS) in Benguerir, Morocco."
-    },
-    {
-      "t": "2026-09-16T07:59:02.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/namibias-first-merchant-solar-plant-enters-operation/",
-      "source": "pv magazine",
-      "title": "Namibia’s first merchant solar plant enters operation",
-      "url": "https://www.pv-magazine.com/2026/09/16/namibias-first-merchant-solar-plant-enters-operation/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The 19.3 MW PV project is the second purpose-built merchant solar plant to trade electricity on the Southern African Power Pool. The post Namibia’s first merchant solar plant enters operation appeared first on pv magazine Global ."
     },
     {
       "t": "2026-09-16T08:29:35.000Z",
@@ -443,18 +403,78 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Belgian non-profit organisation RELP is working with the West African nation to design and structure a competitive procurement program for solar PV and battery storage projects. The post Guinea plans solar, storage procurement program appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-16T11:49:20.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/california-bess-projects-have-grid-interconnection-cost-advantage-over-other-us-markets-developer-says/",
+      "source": "Energy-Storage.news",
+      "title": "California BESS projects have grid interconnection cost advantage over other US markets, developer says",
+      "url": "https://www.energy-storage.news/california-bess-projects-have-grid-interconnection-cost-advantage-over-other-us-markets-developer-says/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Interconnection costs for utility-scale energy storage in California are significantly lower than in other major US markets, with developers also benefiting from network upgrade cost reimbursements unavailable elsewhere, according to a senior executive at Rev Renewables."
+    },
+    {
+      "t": "2026-09-16T12:22:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/a-really-hard-problem-gridmatic-cco-on-the-challenges-of-bess-revenue-forecasting-the-role-of-ai-and-load-co-location/",
+      "source": "Energy-Storage.news",
+      "title": "‘A really hard problem’: Gridmatic CCO on the challenges of BESS revenue forecasting, the role of AI and load co-location",
+      "url": "https://www.energy-storage.news/a-really-hard-problem-gridmatic-cco-on-the-challenges-of-bess-revenue-forecasting-the-role-of-ai-and-load-co-location/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Energy-Storage.news Premium speaks with David Miller, CCO of optimiser Gridmatic, at the 2026 US Battery Asset Management Summit in Garden Grove, California."
+    },
+    {
+      "t": "2026-09-16T12:34:24.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/norway-passes-1-gw-solar-milestone/",
+      "source": "pv magazine",
+      "title": "Norway hits 1 GW solar milestone",
+      "url": "https://www.pv-magazine.com/2026/09/16/norway-passes-1-gw-solar-milestone/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Multiconsult's Hassan Gholami tells pv magazine that with Norway's achievement coinciding with a market slowdown, the country needs to develop its large-scale market and encourage solar energy sharing to ramp up annual deployments. The post Norway hits 1 GW solar milestone appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-16T13:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/investment-tax-credit-glut-gives-corporate-buyers-more-leverage/830267/",
+      "source": "Utility Dive",
+      "title": "Investment tax credit glut gives corporate buyers more leverage, report says",
+      "url": "https://www.utilitydive.com/news/investment-tax-credit-glut-gives-corporate-buyers-more-leverage/830267/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "More clean energy tax credits are hitting the market. Credits tied to electricity production are holding their value, while&nbsp;investment tax credits based on the cost of building&nbsp;face price pressure as buyers weigh uncertainty over new federal rules."
+    },
+    {
+      "t": "2026-09-16T13:16:27.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/sodium-ion-still-very-much-on-the-fringe-german-market-sources-on-technology-and-procurement/",
+      "source": "Energy-Storage.news",
+      "title": "‘Sodium-ion still very much on the fringe’: German market sources on technology and procurement",
+      "url": "https://www.energy-storage.news/sodium-ion-still-very-much-on-the-fringe-german-market-sources-on-technology-and-procurement/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "LFP is the de facto choice for the German BESS market today with sodium-ion still far from bankable, but that doesn’t mean choosing a supplier is necessarily straightforward."
+    },
+    {
+      "t": "2026-09-16T14:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/polands-solar-pipeline-hits-40-6-gw/",
+      "source": "pv magazine",
+      "title": "Poland’s solar pipeline hits 40.6 GW",
+      "url": "https://www.pv-magazine.com/2026/09/16/polands-solar-pipeline-hits-40-6-gw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "An independent Polish research institute says its latest database of solar projects with grid-connection conditions has grown to 40.6 GW, even as the number of tracked projects fell under a revised methodology that excludes inactive projects. The post Poland’s solar pipeline hits 40.6 GW appeared first on pv magazin…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
+      "grid": 28,
       "policy": 8,
       "capital": 5,
-      "technology": 2
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -473,13 +493,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 2
+        "items": 3
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 10
       }
     ]
   },
@@ -488,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:9d8c6c1d39d640139052563f9b423debb3678cdd4996b8ac596934be475214b3",
-  "envelopeChecksum": "sha256:5ee62991be4dfea732ceea9212f035c29fb19f70fb9696cc7bad3f85f2d3a814"
+  "contentChecksum": "sha256:19550bba74e77b7ca81e6457252c83b4b3ea80a72e37983cc288199fd63f1b7d",
+  "envelopeChecksum": "sha256:da6d0a302da05a64e306b51858fa7b584d8c46845168225adc4052846ee9bb6b"
 }
