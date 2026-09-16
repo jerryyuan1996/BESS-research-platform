@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-16T04:55:36.350Z",
+  "fetchedAt": "2026-09-16T11:44:35.395Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-16T04:40:11.000Z",
+    "to": "2026-09-16T11:00:18.000Z",
     "resolution": "event",
-    "points": 41
+    "points": 42
   },
   "units": {
     "record": "published article metadata"
@@ -135,36 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-11T13:33:35.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/metlen-agrees-to-sell-165mw-725mwh-chile-solar-plus-storage-project/",
-      "source": "Energy-Storage.news",
-      "title": "Metlen agrees to sell 165MW/725MWh Chile solar-plus-storage project",
-      "url": "https://www.energy-storage.news/metlen-agrees-to-sell-165mw-725mwh-chile-solar-plus-storage-project/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Greek renewables developer Metlen Energy & Metals has signed an agreement with utility Copec for the sale of the Tamarico II solar-plus-storage project in Chile’s Atacama region."
-    },
-    {
-      "t": "2026-09-11T15:22:59.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/premier-energies-rct-india-plan-12gwh-bess-manufacturing-facility-in-telangana/",
-      "source": "Energy-Storage.news",
-      "title": "Premier Energies, RCT India plan 12GWh BESS manufacturing facility in Telangana",
-      "url": "https://www.energy-storage.news/premier-energies-rct-india-plan-12gwh-bess-manufacturing-facility-in-telangana/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Premier Energies and RCT India have established a joint venture to develop a 12GWh BESS manufacturing facility in Telangana, India."
-    },
-    {
-      "t": "2026-09-14T05:02:06.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/lava-blue-commissions-australias-first-grid-nas-battery-as-zebre-sees-360mwh-bess-waved-through-epbc-act/",
-      "source": "Energy-Storage.news",
-      "title": "Lava Blue commissions Australia’s first grid NAS battery as ZEBRE sees 360MWh BESS waved through EPBC Act",
-      "url": "https://www.energy-storage.news/lava-blue-commissions-australias-first-grid-nas-battery-as-zebre-sees-360mwh-bess-waved-through-epbc-act/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Lava Blue commissions Australia's first grid-connected sodium-sulfur BESS, while ZEBRE's 360MWh Noblevale BESS clears EPBC review."
-    },
-    {
       "t": "2026-09-14T07:47:27.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/trina-signs-1gwh-mou-to-help-developer-meet-unique-technical-and-delivery-requirements-of-japans-battery-storage-market/",
       "source": "Energy-Storage.news",
@@ -265,16 +235,6 @@
       "summary": "BESS project owners, lenders and optimisers kicked off the Energy Storage Summit Germany 2026 today in Berlin with a discussion on developing a bankable project."
     },
     {
-      "t": "2026-09-15T10:14:53.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/flanders-to-cut-subsidies-for-large-solar-parks/",
-      "source": "pv magazine",
-      "title": "Flanders to cut subsidies for large solar parks",
-      "url": "https://www.pv-magazine.com/2026/09/15/flanders-to-cut-subsidies-for-large-solar-parks/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Flemish government is reducing the subsidy available to solar park owners during periods of negative price hours. The move is expected to save around €189 million ($206.5 million). The post Flanders to cut subsidies for large solar parks appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-15T10:47:25.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/cee-roundup-engie-buys-876mwh-poland-project-econergy-connects-co-located-bess-in-romania-inion-software-launches-lithuania-vpp/",
       "source": "Energy-Storage.news",
@@ -293,66 +253,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Massachusetts Governor Maura Healey has released a comprehensive framework establishing principles and expectations for responsible data centre development in the state."
-    },
-    {
-      "t": "2026-09-15T11:02:28.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/researchers-find-strong-vendor-to-vendor-variation-in-uvid-performance-of-topcon-solar-cells/",
-      "source": "pv magazine",
-      "title": "Researchers find strong vendor-to-vendor variation in UVID performance of TOPCon solar cells",
-      "url": "https://www.pv-magazine.com/2026/09/15/researchers-find-strong-vendor-to-vendor-variation-in-uvid-performance-of-topcon-solar-cells/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US researchers found significant manufacturer-dependent differences in UV-induced degradation and light-assisted recovery among commercial TOPCon solar cells. The results highlight the need for controlled light soaking before testing and for accounting for daily dark-degradation and recovery cycles in performance mo…"
-    },
-    {
-      "t": "2026-09-15T11:21:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/ppa-prices-rise-2-2-in-europe-in-august/",
-      "source": "pv magazine",
-      "title": "PPA prices rise 2.2% in Europe in August",
-      "url": "https://www.pv-magazine.com/2026/09/15/ppa-prices-rise-2-2-in-europe-in-august/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "European PPA prices rose 2.2% in August, led by a 4.9% increase in the United Kingdom, while announced PPA capacity fell sharply to 335 MW. Corporate buyers dominated PPA activity, as storage-related agreements held steady at 869 MW and included major BESS deals in the United Kingdom and the Netherlands. The post PP…"
-    },
-    {
-      "t": "2026-09-15T12:09:17.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/california-cold-storage-provider-sues-solar-businesses-over-1-billion-rooftop-fire/",
-      "source": "pv magazine",
-      "title": "California cold-storage provider sues solar businesses over $1 billion rooftop fire",
-      "url": "https://www.pv-magazine.com/2026/09/15/california-cold-storage-provider-sues-solar-businesses-over-1-billion-rooftop-fire/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Cold-storage giant Lineage claims a $1 billion fire at its 46,451.52 m² facility was ignited by an improperly maintained rooftop solar array following ignored safety warnings. The post California cold-storage provider sues solar businesses over $1 billion rooftop fire appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-15T12:26:40.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/the-value-of-solar-pv-in-northern-regions-is-widely-underestimated/",
-      "source": "pv magazine",
-      "title": "The value of solar PV in Northern regions is widely underestimated",
-      "url": "https://www.pv-magazine.com/2026/09/15/the-value-of-solar-pv-in-northern-regions-is-widely-underestimated/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Contrary to conventional perceptions, solar PV can be an important component of a viable Arctic energy system, thanks to the region’s long summer days. Its low cost makes it competitive even in areas with long, dark winters, particularly when other renewable energy sources provide insufficient output. The post The v…"
-    },
-    {
-      "t": "2026-09-15T13:34:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/greece-clears-way-for-balcony-pv-systems-up-to-800-w/",
-      "source": "pv magazine",
-      "title": "Greece clears way for balcony PV systems up to 800 W",
-      "url": "https://www.pv-magazine.com/2026/09/15/greece-clears-way-for-balcony-pv-systems-up-to-800-w/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Greece has overhauled its self-consumption rules, permitting plug-in balcony solar systems up to 800 W and standalone batteries for the first time. The framework also simplifies installation procedures, supports storage additions and expands self-consumption opportunities for islands, public entities and residential…"
-    },
-    {
-      "t": "2026-09-15T14:15:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/15/spain-added-10-1-gw-of-solar-in-2025/",
-      "source": "pv magazine",
-      "title": "Spain added 10.1 GW of solar in 2025",
-      "url": "https://www.pv-magazine.com/2026/09/15/spain-added-10-1-gw-of-solar-in-2025/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Spain installed 10.1 GW of new solar capacity in 2025, including 8.97 GW of ground-mounted PV and 1.14 GW of self-consumption systems, according to Spanish PV association UNEF. The trade body says falling captured prices are increasing pressure on new projects and underscoring the need for storage and greater electr…"
     },
     {
       "t": "2026-09-15T14:26:19.000Z",
@@ -395,16 +295,6 @@
       "summary": "Palisade Investment Partners has acquired 100% interests in two development-stage renewable energy projects through Intera Renewables."
     },
     {
-      "t": "2026-09-16T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/an-energy-system-for-climate-goals/",
-      "source": "pv magazine",
-      "title": "An energy system for climate goals",
-      "url": "https://www.pv-magazine.com/2026/09/16/an-energy-system-for-climate-goals/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a study commissioned by The smarter E Europe, Fraunhofer Institute for Solar Energy Systems (ISE) calculated the path toward Renewables 24/7 mapping supply and demand on Germany’s electricity grid for every single hour through 2045. The post An energy system for climate goals appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-16T04:16:43.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/dubai-supreme-council-of-energy-targets-1000-2000mw-battery-storage-to-support-round-the-clock-solar-supply/",
       "source": "Energy-Storage.news",
@@ -433,18 +323,138 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Recent moves from the US federal government could prove more damaging to US renewable energy deployment than foreign entity of concern (FEOC) compliance requirements, according to legal and industry experts."
+    },
+    {
+      "t": "2026-09-16T07:36:13.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/moroccos-first-large-scale-lfp-battery-storage-system-prepares-for-action/",
+      "source": "Energy-Storage.news",
+      "title": "Morocco’s first large-scale LFP battery storage system prepares for action",
+      "url": "https://www.energy-storage.news/moroccos-first-large-scale-lfp-battery-storage-system-prepares-for-action/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "OCP Green Energy has completed the installation of a 25MW/125MWh battery energy storage system (BESS) in Benguerir, Morocco."
+    },
+    {
+      "t": "2026-09-16T07:59:02.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/namibias-first-merchant-solar-plant-enters-operation/",
+      "source": "pv magazine",
+      "title": "Namibia’s first merchant solar plant enters operation",
+      "url": "https://www.pv-magazine.com/2026/09/16/namibias-first-merchant-solar-plant-enters-operation/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The 19.3 MW PV project is the second purpose-built merchant solar plant to trade electricity on the Southern African Power Pool. The post Namibia’s first merchant solar plant enters operation appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-16T08:29:35.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/south-korea-to-replace-15-year-old-renewable-support-scheme-with-auctions/",
+      "source": "pv magazine",
+      "title": "South Korea to replace 15-year-old renewable support scheme with auctions",
+      "url": "https://www.pv-magazine.com/2026/09/16/south-korea-to-replace-15-year-old-renewable-support-scheme-with-auctions/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Korea will scrap its 15-year-old Renewable Portfolio Standard (RPS) for competitive auctions and long-term fixed-price power contracts starting Jan. 1, 2027. The post South Korea to replace 15-year-old renewable support scheme with auctions appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-16T08:31:12.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/parapet-walls-reshape-airflow-soiling-patterns-in-rooftop-pv-systems/",
+      "source": "pv magazine",
+      "title": "Parapet walls reshape airflow, soiling patterns in rooftop PV systems",
+      "url": "https://www.pv-magazine.com/2026/09/16/parapet-walls-reshape-airflow-soiling-patterns-in-rooftop-pv-systems/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "UK researchers found that rooftop parapets reshape airflow and PV dust deposition, with effects varying by wind speed, particle size, panel tilt, and array position. Their wind-tunnel study shows that parapet height alone cannot predict soiling, highlighting the need for site-specific PV design and maintenance strat…"
+    },
+    {
+      "t": "2026-09-16T08:36:07.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/hithium-launches-4-mwh-sodium-ion-bess-with-new-785ah-cell/",
+      "source": "pv magazine",
+      "title": "Hithium launches 4 MWh sodium-ion BESS with new 785Ah cell",
+      "url": "https://www.pv-magazine.com/2026/09/16/hithium-launches-4-mwh-sodium-ion-bess-with-new-785ah-cell/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Hithium unveiled the ∞Power N4.0MWh, a 4 MWh sodium-ion storage system featuring a 785 Ah cell, 20,000-cycle life, and 30-year design life. Full-scale production is planned for 2027, initially targeting utilities before expanding to commercial, industrial, and residential markets. The post Hithium launches 4 MWh sod…"
+    },
+    {
+      "t": "2026-09-16T08:36:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/symmetry-breaking-molecular-strategy-pushes-inverted-perovskite-solar-cell-efficiency-to-26-32/",
+      "source": "pv magazine",
+      "title": "Symmetry-breaking molecular strategy pushes inverted perovskite solar cell efficiency to 26.32%",
+      "url": "https://www.pv-magazine.com/2026/09/16/symmetry-breaking-molecular-strategy-pushes-inverted-perovskite-solar-cell-efficiency-to-26-32/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers used symmetry-breaking co-assembly to improve SAM coverage and interface quality in inverted perovskite solar cells, achieving a 26.32% efficiency and a certified result of 25.67%. An encapsulated device retained 93% of its initial efficiency after 1,150 hours of maximum power point operation. The post S…"
+    },
+    {
+      "t": "2026-09-16T08:41:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/overcapacity-in-modules-underdeveloped-upstream-the-next-challenge-for-solar-manufacturing/",
+      "source": "pv magazine",
+      "title": "Overcapacity in modules, underdeveloped upstream: The next challenge for Indian PV manufacturing",
+      "url": "https://www.pv-magazine.com/2026/09/16/overcapacity-in-modules-underdeveloped-upstream-the-next-challenge-for-solar-manufacturing/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Solar cell manufacturing is significantly more capital-intensive and technologically more challenging than module manufacturing, with manufacturers remaining reliant on imported equipment. Consequently, ongoing geopolitical uncertainties affecting equipment sourcing, coupled with plant stabilisation challenges follo…"
+    },
+    {
+      "t": "2026-09-16T09:12:42.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/zambia-inks-ppa-for-500-mw-solar-project/",
+      "source": "pv magazine",
+      "title": "Zambia inks PPA for 500 MW solar project",
+      "url": "https://www.pv-magazine.com/2026/09/16/zambia-inks-ppa-for-500-mw-solar-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Hungary-based developer EnerSynk Group says the 25-year power purchase agreement allows it to advance development of its planned 500 MW solar project to the next phase, including financing and implementation planning. The post Zambia inks PPA for 500 MW solar project appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-16T09:26:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/byd-launches-62-mwh-gc-block-for-gigawatt-scale-battery-storage-plants/",
+      "source": "pv magazine",
+      "title": "BYD launches 62 MWh GC Block for gigawatt-scale battery storage plants",
+      "url": "https://www.pv-magazine.com/2026/09/16/byd-launches-62-mwh-gc-block-for-gigawatt-scale-battery-storage-plants/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BYD Energy Storage has launched a standardized battery storage unit with three configurations covering two- to six-hour applications and up to 62 MWh of capacity. The post BYD launches 62 MWh GC Block for gigawatt-scale battery storage plants appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-16T09:31:07.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/from-grid-code-to-grid-connection-what-makes-a-grid-forming-bess-work-in-the-real-world/",
+      "source": "Energy-Storage.news",
+      "title": "From grid code to grid connection: what makes a grid-forming BESS work in the real world?",
+      "url": "https://www.energy-storage.news/from-grid-code-to-grid-connection-what-makes-a-grid-forming-bess-work-in-the-real-world/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Sinexcel technical director Luke Lu discusses what goes into a successful grid-forming battery energy storage system (BESS) project."
+    },
+    {
+      "t": "2026-09-16T10:30:52.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-salzgitter-flachstahl-german-solar-plus-storage-ppa-steelmaking/",
+      "source": "Energy-Storage.news",
+      "title": "Zelestra, Salzgitter Flachstahl sign German solar-plus-storage PPA to power steelmaking",
+      "url": "https://www.energy-storage.news/zelestra-salzgitter-flachstahl-german-solar-plus-storage-ppa-steelmaking/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Zelestra and steelmaker Salzgitter Flachstahl have signed a PPA for a new solar-plus-storage portfolio in Germany."
+    },
+    {
+      "t": "2026-09-16T11:00:18.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/guinea-plans-solar-storage-procurement-program/",
+      "source": "pv magazine",
+      "title": "Guinea plans solar, storage procurement program",
+      "url": "https://www.pv-magazine.com/2026/09/16/guinea-plans-solar-storage-procurement-program/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Belgian non-profit organisation RELP is working with the West African nation to design and structure a competitive procurement program for solar PV and battery storage projects. The post Guinea plans solar, storage procurement program appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 41,
+    "items": 42,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 26,
-      "policy": 9,
+      "grid": 27,
+      "policy": 8,
       "capital": 5,
-      "technology": 1
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -469,7 +479,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -478,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:10a6618ac4ce4d851db3649b2ed0e0b51f8282369fd9161fe88754fe73cbb322",
-  "envelopeChecksum": "sha256:49a9ecd6db7b24dc0380621607cfc87fcf07b1dae2eadc8537763ec58982cb93"
+  "contentChecksum": "sha256:9d8c6c1d39d640139052563f9b423debb3678cdd4996b8ac596934be475214b3",
+  "envelopeChecksum": "sha256:5ee62991be4dfea732ceea9212f035c29fb19f70fb9696cc7bad3f85f2d3a814"
 }
