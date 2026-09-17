@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-17T04:58:39.252Z",
+  "fetchedAt": "2026-09-17T11:49:12.416Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-17T04:00:00.000Z",
+    "to": "2026-09-17T09:14:31.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-14T13:34:20.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-energy-storage-companies-secure-financing-and-launch-compliance-services-amid-regulatory-shifts/",
-      "source": "Energy-Storage.news",
-      "title": "US energy storage companies secure financing and launch compliance services amid regulatory shifts",
-      "url": "https://www.energy-storage.news/us-energy-storage-companies-secure-financing-and-launch-compliance-services-amid-regulatory-shifts/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Heron Power and NeoVolta have secured significant credit facilities, while Carina Energy has launched a FEOC compliance support practice to help developers navigate increasingly complex regulatory requirements."
-    },
-    {
-      "t": "2026-09-14T15:18:50.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/anker-solix-xe-energy-freedom-made-simple/",
-      "source": "Energy-Storage.news",
-      "title": "Anker SOLIX XE: Energy freedom made simple",
-      "url": "https://www.energy-storage.news/anker-solix-xe-energy-freedom-made-simple/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Anker SOLIX, a global leader in smart energy, introduces the XE system, the next-generation true all-in-one home energy storage system."
     },
     {
       "t": "2026-09-15T03:44:50.000Z",
@@ -295,66 +275,6 @@
       "summary": "OCP Green Energy has completed the installation of a 25MW/125MWh battery energy storage system (BESS) in Benguerir, Morocco."
     },
     {
-      "t": "2026-09-16T08:31:12.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/parapet-walls-reshape-airflow-soiling-patterns-in-rooftop-pv-systems/",
-      "source": "pv magazine",
-      "title": "Parapet walls reshape airflow, soiling patterns in rooftop PV systems",
-      "url": "https://www.pv-magazine.com/2026/09/16/parapet-walls-reshape-airflow-soiling-patterns-in-rooftop-pv-systems/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "UK researchers found that rooftop parapets reshape airflow and PV dust deposition, with effects varying by wind speed, particle size, panel tilt, and array position. Their wind-tunnel study shows that parapet height alone cannot predict soiling, highlighting the need for site-specific PV design and maintenance strat…"
-    },
-    {
-      "t": "2026-09-16T08:36:07.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/hithium-launches-4-mwh-sodium-ion-bess-with-new-785ah-cell/",
-      "source": "pv magazine",
-      "title": "Hithium launches 4 MWh sodium-ion BESS with new 785Ah cell",
-      "url": "https://www.pv-magazine.com/2026/09/16/hithium-launches-4-mwh-sodium-ion-bess-with-new-785ah-cell/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Hithium unveiled the ∞Power N4.0MWh, a 4 MWh sodium-ion storage system featuring a 785 Ah cell, 20,000-cycle life, and 30-year design life. Full-scale production is planned for 2027, initially targeting utilities before expanding to commercial, industrial, and residential markets. The post Hithium launches 4 MWh sod…"
-    },
-    {
-      "t": "2026-09-16T08:36:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/symmetry-breaking-molecular-strategy-pushes-inverted-perovskite-solar-cell-efficiency-to-26-32/",
-      "source": "pv magazine",
-      "title": "Symmetry-breaking molecular strategy pushes inverted perovskite solar cell efficiency to 26.32%",
-      "url": "https://www.pv-magazine.com/2026/09/16/symmetry-breaking-molecular-strategy-pushes-inverted-perovskite-solar-cell-efficiency-to-26-32/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers used symmetry-breaking co-assembly to improve SAM coverage and interface quality in inverted perovskite solar cells, achieving a 26.32% efficiency and a certified result of 25.67%. An encapsulated device retained 93% of its initial efficiency after 1,150 hours of maximum power point operation. The post S…"
-    },
-    {
-      "t": "2026-09-16T08:41:19.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/overcapacity-in-modules-underdeveloped-upstream-the-next-challenge-for-solar-manufacturing/",
-      "source": "pv magazine",
-      "title": "Overcapacity in modules, underdeveloped upstream: The next challenge for Indian PV manufacturing",
-      "url": "https://www.pv-magazine.com/2026/09/16/overcapacity-in-modules-underdeveloped-upstream-the-next-challenge-for-solar-manufacturing/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Solar cell manufacturing is significantly more capital-intensive and technologically more challenging than module manufacturing, with manufacturers remaining reliant on imported equipment. Consequently, ongoing geopolitical uncertainties affecting equipment sourcing, coupled with plant stabilisation challenges follo…"
-    },
-    {
-      "t": "2026-09-16T09:12:42.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/zambia-inks-ppa-for-500-mw-solar-project/",
-      "source": "pv magazine",
-      "title": "Zambia inks PPA for 500 MW solar project",
-      "url": "https://www.pv-magazine.com/2026/09/16/zambia-inks-ppa-for-500-mw-solar-project/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Hungary-based developer EnerSynk Group says the 25-year power purchase agreement allows it to advance development of its planned 500 MW solar project to the next phase, including financing and implementation planning. The post Zambia inks PPA for 500 MW solar project appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-16T09:26:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/byd-launches-62-mwh-gc-block-for-gigawatt-scale-battery-storage-plants/",
-      "source": "pv magazine",
-      "title": "BYD launches 62 MWh GC Block for gigawatt-scale battery storage plants",
-      "url": "https://www.pv-magazine.com/2026/09/16/byd-launches-62-mwh-gc-block-for-gigawatt-scale-battery-storage-plants/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BYD Energy Storage has launched a standardized battery storage unit with three configurations covering two- to six-hour applications and up to 62 MWh of capacity. The post BYD launches 62 MWh GC Block for gigawatt-scale battery storage plants appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-16T09:31:07.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/from-grid-code-to-grid-connection-what-makes-a-grid-forming-bess-work-in-the-real-world/",
       "source": "Energy-Storage.news",
@@ -473,18 +393,88 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Christian Breyer and Mark Z. Jacobson, two prominent scientists tracking the global rollout of renewable energy systems provide an update on solar’s role in the equation. Frustratingly, political and regulatory blocks continue threatening to derail progress but the economic, environmental and grid flexibility benefi…"
+    },
+    {
+      "t": "2026-09-17T05:43:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/india-could-add-9-15-gw-of-residential-rooftop-solar-annually-through-2030-isma/",
+      "source": "pv magazine",
+      "title": "India could add up to 15 GW of residential rooftop solar annually through 2030",
+      "url": "https://www.pv-magazine.com/2026/09/17/india-could-add-9-15-gw-of-residential-rooftop-solar-annually-through-2030-isma/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "ISMA estimates annual residential rooftop solar installations of 9-15 GW between 2026 and 2030, reflecting the market’s transition towards sustained scale-up. The post India could add up to 15 GW of residential rooftop solar annually through 2030 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-17T06:27:03.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/global-residential-storage-market-to-hit-46-1-gwh-in-2026/",
+      "source": "pv magazine",
+      "title": "Global residential storage market to hit 46.1 GWh in 2026",
+      "url": "https://www.pv-magazine.com/2026/09/17/global-residential-storage-market-to-hit-46-1-gwh-in-2026/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "InfoLink Consulting expects global residential energy storage capacity additions to reach 46.1 GWh in 2026, led by Europe, Oceania, and Asia. Fox ESS, Sigenergy, and Deye ranked as the top three suppliers by shipment volume in the first half of 2026. The post Global residential storage market to hit 46.1 GWh in 2026…"
+    },
+    {
+      "t": "2026-09-17T06:38:37.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/iberian-bess-market-needs-more-flexibility-clearer-frameworks-and-faster-permitting/",
+      "source": "Energy-Storage.news",
+      "title": "Iberian BESS market needs more flexibility, clearer frameworks and faster permitting",
+      "url": "https://www.energy-storage.news/iberian-bess-market-needs-more-flexibility-clearer-frameworks-and-faster-permitting/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "At last week’s Battery & Energy Tech Expo in Barcelona, Spain, panellists highlighted some of the challenges that companies are facing for a faster deployment of BESS."
+    },
+    {
+      "t": "2026-09-17T06:48:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ihas-delhi-declaration-calls-for-policy-overhaul-to-unlock-indias-288gw-pumped-hydro-energy-storage-potential/",
+      "source": "Energy-Storage.news",
+      "title": "IHA’s Delhi Declaration calls for policy overhaul to unlock India’s 288GW pumped hydro energy storage potential",
+      "url": "https://www.energy-storage.news/ihas-delhi-declaration-calls-for-policy-overhaul-to-unlock-indias-288gw-pumped-hydro-energy-storage-potential/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "IHA has urged India to accelerate pumped storage through faster clearances, stronger revenues and improved coordination."
+    },
+    {
+      "t": "2026-09-17T06:51:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/pv-inverters-provide-reactive-power-to-milans-grid-at-night/",
+      "source": "pv magazine",
+      "title": "PV inverters provide reactive power to Milan’s grid at night",
+      "url": "https://www.pv-magazine.com/2026/09/17/pv-inverters-provide-reactive-power-to-milans-grid-at-night/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in Milan used PV inverters to supply 500 kVAr of reactive power to the distribution grid for four hours overnight. The trial showed that existing solar equipment can support voltage regulation even when it is not generating electricity. The post PV inverters provide reactive power to Milan’s grid at nigh…"
+    },
+    {
+      "t": "2026-09-17T07:08:42.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/china-targets-perovskite-solar-advanced-batteries-in-five-year-plan/",
+      "source": "pv magazine",
+      "title": "China targets perovskite solar, advanced batteries in five-year plan",
+      "url": "https://www.pv-magazine.com/2026/09/17/china-targets-perovskite-solar-advanced-batteries-in-five-year-plan/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "China has identified perovskite solar and next-generation batteries as strategic priorities in its 2026-30 industrial roadmap. The plan also calls for tighter oversight of manufacturing capacity and price competition. The post China targets perovskite solar, advanced batteries in five-year plan appeared first on pv…"
+    },
+    {
+      "t": "2026-09-17T09:14:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/scientists-build-17-efficient-semi-transparent-perovskite-solar-cell-based-on-sputter-resistant-aluminum-oxide-layer/",
+      "source": "pv magazine",
+      "title": "Scientists build 17%-efficient semi-transparent perovskite solar cell based on sputter-resistant aluminum oxide layer",
+      "url": "https://www.pv-magazine.com/2026/09/17/scientists-build-17-efficient-semi-transparent-perovskite-solar-cell-based-on-sputter-resistant-aluminum-oxide-layer/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers replaced the conventional 20 nm SnOₓ buffer layer with just 3 nm of ALD-deposited AlOₓ, which protected inverted perovskite cells from ITO sputtering damage while maintaining efficient charge extraction. The resulting devices achieved efficiencies above 17% in semi-transparent cells and 26% in perovskite…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 29,
-      "policy": 8,
-      "capital": 5,
-      "technology": 3
+      "policy": 9,
+      "capital": 4,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -509,7 +499,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 10
+        "items": 9
       }
     ]
   },
@@ -518,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:25cabd1ece0ebc159a5c1c657e88a43e32f45d214b2bf354d7a6f569d02897be",
-  "envelopeChecksum": "sha256:2ccdd65b7ee6573d5fcd7a2ea45897761e9063d7e2f447856d094fefa3621693"
+  "contentChecksum": "sha256:380cfbb2b73900bea26bdf749d0261851b266e8a5fac20e524e18129d8317e4b",
+  "envelopeChecksum": "sha256:c964d0fde01b9008af96e2e537372af3b47f584f92931b0a405abe609a28c81e"
 }
