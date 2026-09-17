@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-16T17:05:15.916Z",
+  "fetchedAt": "2026-09-17T04:58:39.252Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-16T14:45:00.000Z",
+    "to": "2026-09-17T04:00:00.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -143,16 +143,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Heron Power and NeoVolta have secured significant credit facilities, while Carina Energy has launched a FEOC compliance support practice to help developers navigate increasingly complex regulatory requirements."
-    },
-    {
-      "t": "2026-09-14T14:16:37.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/constellation-energy-purchase-609-mw-rhode-island-gas-plant-shell/830270/",
-      "source": "Utility Dive",
-      "title": "Constellation Energy in deal to buy 609-MW Rhode Island gas plant from Shell",
-      "url": "https://www.utilitydive.com/news/constellation-energy-purchase-609-mw-rhode-island-gas-plant-shell/830270/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The deal expands Constellation&rsquo;s ISO New England portfolio. In a separate transaction, Shell acquired a 169-MW Pennsylvania gas portfolio to grow its PJM Interconnection position."
     },
     {
       "t": "2026-09-14T15:18:50.000Z",
@@ -305,16 +295,6 @@
       "summary": "OCP Green Energy has completed the installation of a 25MW/125MWh battery energy storage system (BESS) in Benguerir, Morocco."
     },
     {
-      "t": "2026-09-16T08:29:35.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/south-korea-to-replace-15-year-old-renewable-support-scheme-with-auctions/",
-      "source": "pv magazine",
-      "title": "South Korea to replace 15-year-old renewable support scheme with auctions",
-      "url": "https://www.pv-magazine.com/2026/09/16/south-korea-to-replace-15-year-old-renewable-support-scheme-with-auctions/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Korea will scrap its 15-year-old Renewable Portfolio Standard (RPS) for competitive auctions and long-term fixed-price power contracts starting Jan. 1, 2027. The post South Korea to replace 15-year-old renewable support scheme with auctions appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-16T08:31:12.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/parapet-walls-reshape-airflow-soiling-patterns-in-rooftop-pv-systems/",
       "source": "pv magazine",
@@ -455,6 +435,26 @@
       "summary": "LFP is the de facto choice for the German BESS market today with sodium-ion still far from bankable, but that doesn’t mean choosing a supplier is necessarily straightforward."
     },
     {
+      "t": "2026-09-16T13:33:25.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/state-led-planning-could-advance-clean-energy-in-deregulated-markets-repor/830529/",
+      "source": "Utility Dive",
+      "title": "State-led planning could advance clean energy in deregulated markets: report",
+      "url": "https://www.utilitydive.com/news/state-led-planning-could-advance-clean-energy-in-deregulated-markets-repor/830529/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "States should step in with new long-term planning processes to bolster nuclear, offshore wind and other technologies that face major barriers, according to the Clean Air Task Force."
+    },
+    {
+      "t": "2026-09-16T14:33:14.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/rising-utility-costs-could-put-pressure-on-cities-finances-sp-experts-wa/830557/",
+      "source": "Utility Dive",
+      "title": "Utility costs could put pressure on cities’ finances, S&P experts warn",
+      "url": "https://www.utilitydive.com/news/rising-utility-costs-could-put-pressure-on-cities-finances-sp-experts-wa/830557/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Rates are high compared to household income in many places, and over time, this could reduce flexibility for public finance entities, say&nbsp;S&amp;P Global analysts. This isn&rsquo;t currently leading to significant bond rating actions, but it&rsquo;s a &ldquo;simmering risk.&rdquo;"
+    },
+    {
       "t": "2026-09-16T14:45:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/polands-solar-pipeline-hits-40-6-gw/",
       "source": "pv magazine",
@@ -463,15 +463,25 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "An independent Polish research institute says its latest database of solar projects with grid-connection conditions has grown to 40.6 GW, even as the number of tracked projects fell under a revised methodology that excludes inactive projects. The post Poland’s solar pipeline hits 40.6 GW appeared first on pv magazin…"
+    },
+    {
+      "t": "2026-09-17T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/global-progress-on-100-renewables/",
+      "source": "pv magazine",
+      "title": "Global progress on 100% renewables",
+      "url": "https://www.pv-magazine.com/2026/09/17/global-progress-on-100-renewables/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Christian Breyer and Mark Z. Jacobson, two prominent scientists tracking the global rollout of renewable energy systems provide an update on solar’s role in the equation. Frustratingly, political and regulatory blocks continue threatening to derail progress but the economic, environmental and grid flexibility benefi…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 28,
+      "grid": 29,
       "policy": 8,
       "capital": 5,
       "technology": 3
@@ -493,7 +503,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 4
       },
       {
         "source": "pv magazine",
@@ -508,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:19550bba74e77b7ca81e6457252c83b4b3ea80a72e37983cc288199fd63f1b7d",
-  "envelopeChecksum": "sha256:da6d0a302da05a64e306b51858fa7b584d8c46845168225adc4052846ee9bb6b"
+  "contentChecksum": "sha256:25cabd1ece0ebc159a5c1c657e88a43e32f45d214b2bf354d7a6f569d02897be",
+  "envelopeChecksum": "sha256:2ccdd65b7ee6573d5fcd7a2ea45897761e9063d7e2f447856d094fefa3621693"
 }
