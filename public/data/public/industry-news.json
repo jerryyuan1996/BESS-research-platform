@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-17T11:49:12.416Z",
+  "fetchedAt": "2026-09-17T17:05:50.516Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-17T09:14:31.000Z",
+    "to": "2026-09-17T15:42:04.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -135,36 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-15T03:44:50.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/trina-storage-to-supply-562mwh-bess-for-frontier-energy-solar-plus-storage-project-in-western-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Trina Storage to supply 562MWh BESS for Frontier Energy solar-plus-storage project in Western Australia",
-      "url": "https://www.energy-storage.news/trina-storage-to-supply-562mwh-bess-for-frontier-energy-solar-plus-storage-project-in-western-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Trina Storage has been selected to supply the BESS for Stage One of Frontier Energy's Waroona Renewable Energy Project."
-    },
-    {
-      "t": "2026-09-15T03:50:30.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/long-duration-energy-storage-conversation-gains-traction-in-india-despite-4-hour-battery-storage-focus/",
-      "source": "Energy-Storage.news",
-      "title": "Long-duration energy storage conversation gains traction in India despite 4-hour battery storage focus",
-      "url": "https://www.energy-storage.news/long-duration-energy-storage-conversation-gains-traction-in-india-despite-4-hour-battery-storage-focus/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "India's storage market remains focused on short-duration firming, but conversations about long-duration storage are already underway."
-    },
-    {
-      "t": "2026-09-15T06:18:42.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/actis-subsidiary-nozomi-energy-closes-financing-on-japanese-capacity-market-winning-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Actis subsidiary Nozomi Energy closes financing on Japanese capacity market-winning BESS",
-      "url": "https://www.energy-storage.news/actis-subsidiary-nozomi-energy-closes-financing-on-japanese-capacity-market-winning-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sustainable infrastructure investor Actis’s renewable energy platform in Japan has closed financing on a 50MW/196MWh battery storage project."
-    },
-    {
       "t": "2026-09-15T09:31:36.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/what-makes-a-german-bess-project-bankable-lenders-owners-weigh-in-at-energy-storage-summit-germany/",
       "source": "Energy-Storage.news",
@@ -193,16 +163,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Massachusetts Governor Maura Healey has released a comprehensive framework establishing principles and expectations for responsible data centre development in the state."
-    },
-    {
-      "t": "2026-09-15T14:26:19.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/pjms-reliability-could-start-failing-by-2030-if-data-center-growth-continu/830405/",
-      "source": "Utility Dive",
-      "title": "PJM faces 2030 reliability crisis if data center load growth continues: report",
-      "url": "https://www.utilitydive.com/news/pjms-reliability-could-start-failing-by-2030-if-data-center-growth-continu/830405/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a worst-case scenario, the modeled loss of load expectation is &ldquo;over 100 times worse than PJM&rsquo;s planning criterion,&rdquo; indicating an expectation of &ldquo;more than 13 days with loss of load events per year,&rdquo; said the study commissioned by the Pennsylvania PUC."
     },
     {
       "t": "2026-09-15T14:27:25.000Z",
@@ -295,16 +255,6 @@
       "summary": "Zelestra and steelmaker Salzgitter Flachstahl have signed a PPA for a new solar-plus-storage portfolio in Germany."
     },
     {
-      "t": "2026-09-16T11:00:18.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/guinea-plans-solar-storage-procurement-program/",
-      "source": "pv magazine",
-      "title": "Guinea plans solar, storage procurement program",
-      "url": "https://www.pv-magazine.com/2026/09/16/guinea-plans-solar-storage-procurement-program/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Belgian non-profit organisation RELP is working with the West African nation to design and structure a competitive procurement program for solar PV and battery storage projects. The post Guinea plans solar, storage procurement program appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-16T11:49:20.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/california-bess-projects-have-grid-interconnection-cost-advantage-over-other-us-markets-developer-says/",
       "source": "Energy-Storage.news",
@@ -323,16 +273,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Energy-Storage.news Premium speaks with David Miller, CCO of optimiser Gridmatic, at the 2026 US Battery Asset Management Summit in Garden Grove, California."
-    },
-    {
-      "t": "2026-09-16T12:34:24.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/norway-passes-1-gw-solar-milestone/",
-      "source": "pv magazine",
-      "title": "Norway hits 1 GW solar milestone",
-      "url": "https://www.pv-magazine.com/2026/09/16/norway-passes-1-gw-solar-milestone/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Multiconsult's Hassan Gholami tells pv magazine that with Norway's achievement coinciding with a market slowdown, the country needs to develop its large-scale market and encourage solar energy sharing to ramp up annual deployments. The post Norway hits 1 GW solar milestone appeared first on pv magazine Global ."
     },
     {
       "t": "2026-09-16T13:00:00.000Z",
@@ -373,36 +313,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Rates are high compared to household income in many places, and over time, this could reduce flexibility for public finance entities, say&nbsp;S&amp;P Global analysts. This isn&rsquo;t currently leading to significant bond rating actions, but it&rsquo;s a &ldquo;simmering risk.&rdquo;"
-    },
-    {
-      "t": "2026-09-16T14:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/16/polands-solar-pipeline-hits-40-6-gw/",
-      "source": "pv magazine",
-      "title": "Poland’s solar pipeline hits 40.6 GW",
-      "url": "https://www.pv-magazine.com/2026/09/16/polands-solar-pipeline-hits-40-6-gw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "An independent Polish research institute says its latest database of solar projects with grid-connection conditions has grown to 40.6 GW, even as the number of tracked projects fell under a revised methodology that excludes inactive projects. The post Poland’s solar pipeline hits 40.6 GW appeared first on pv magazin…"
-    },
-    {
-      "t": "2026-09-17T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/global-progress-on-100-renewables/",
-      "source": "pv magazine",
-      "title": "Global progress on 100% renewables",
-      "url": "https://www.pv-magazine.com/2026/09/17/global-progress-on-100-renewables/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Christian Breyer and Mark Z. Jacobson, two prominent scientists tracking the global rollout of renewable energy systems provide an update on solar’s role in the equation. Frustratingly, political and regulatory blocks continue threatening to derail progress but the economic, environmental and grid flexibility benefi…"
-    },
-    {
-      "t": "2026-09-17T05:43:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/india-could-add-9-15-gw-of-residential-rooftop-solar-annually-through-2030-isma/",
-      "source": "pv magazine",
-      "title": "India could add up to 15 GW of residential rooftop solar annually through 2030",
-      "url": "https://www.pv-magazine.com/2026/09/17/india-could-add-9-15-gw-of-residential-rooftop-solar-annually-through-2030-isma/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ISMA estimates annual residential rooftop solar installations of 9-15 GW between 2026 and 2030, reflecting the market’s transition towards sustained scale-up. The post India could add up to 15 GW of residential rooftop solar annually through 2030 appeared first on pv magazine Global ."
     },
     {
       "t": "2026-09-17T06:27:03.000Z",
@@ -463,18 +373,118 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Researchers replaced the conventional 20 nm SnOₓ buffer layer with just 3 nm of ALD-deposited AlOₓ, which protected inverted perovskite cells from ITO sputtering damage while maintaining efficient charge extraction. The resulting devices achieved efficiencies above 17% in semi-transparent cells and 26% in perovskite…"
+    },
+    {
+      "t": "2026-09-17T11:51:08.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/spain-launches-capacity-market-as-grid-investment-rises-above-e17-billion/",
+      "source": "pv magazine",
+      "title": "Spain launches capacity market as grid investment rises above €17 billion",
+      "url": "https://www.pv-magazine.com/2026/09/17/spain-launches-capacity-market-as-grid-investment-rises-above-e17-billion/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Spain is introducing a new mechanism to remunerate generation, battery storage and demand for providing firm capacity and flexibility, while increasing planned electricity grid investment through 2030 to more than €17 billion ($19.5 billion). The post Spain launches capacity market as grid investment rises above €17…"
+    },
+    {
+      "t": "2026-09-17T12:06:25.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/commissioning-delays-and-technical-gaps-plague-battery-storage-handovers-industry-experts-warn/",
+      "source": "Energy-Storage.news",
+      "title": "Commissioning delays and technical gaps plague battery storage handovers, industry experts warn",
+      "url": "https://www.energy-storage.news/commissioning-delays-and-technical-gaps-plague-battery-storage-handovers-industry-experts-warn/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The transition of battery energy storage systems (BESS) from development to operations remains fraught with technical gaps and communication breakdowns."
+    },
+    {
+      "t": "2026-09-17T12:09:09.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/contracted-revenue-key-to-california-bess-financing-as-merchant-market-weakens-esvolta-ceo-explains/",
+      "source": "Energy-Storage.news",
+      "title": "Contracted revenue key to California BESS financing as merchant market weakens, esVolta CEO explains",
+      "url": "https://www.energy-storage.news/contracted-revenue-key-to-california-bess-financing-as-merchant-market-weakens-esvolta-ceo-explains/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Energy-Storage.news Premium speaks with Randolph Mann, CEO at developer esVolta at the 2026 US Battery Asset Management Summit in Garden Grove, California."
+    },
+    {
+      "t": "2026-09-17T12:21:07.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/bangladesh-launches-123-million-rooftop-solar-fund/",
+      "source": "pv magazine",
+      "title": "Bangladesh launches $123 million rooftop solar fund",
+      "url": "https://www.pv-magazine.com/2026/09/17/bangladesh-launches-123-million-rooftop-solar-fund/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Bangladesh has launched a $123 million fund to provide concessional financing for rooftop solar and other renewable energy projects. The government is also seeking international funding to install 4 GW of rooftop solar before next summer. The post Bangladesh launches $123 million rooftop solar fund appeared first on…"
+    },
+    {
+      "t": "2026-09-17T12:35:03.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/first-solar-drops-topcon-patent-complaint/",
+      "source": "pv magazine",
+      "title": "First Solar drops TOPCon patent complaint",
+      "url": "https://www.pv-magazine.com/2026/09/17/first-solar-drops-topcon-patent-complaint/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The thin-film manufacturer withdrew its Section 337 filing before the USITC following new Section 232 import restrictions, while federal court patent battles against domestic and foreign manufacturers move forward. The post First Solar drops TOPCon patent complaint appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-17T12:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/taiwan-adds-carbon-footprint-requirement-to-high-efficiency-pv-module-standard/",
+      "source": "pv magazine",
+      "title": "Taiwan adds carbon-footprint requirement to high-efficiency PV module standard",
+      "url": "https://www.pv-magazine.com/2026/09/17/taiwan-adds-carbon-footprint-requirement-to-high-efficiency-pv-module-standard/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Taiwan has tied its voluntary high-efficiency solar module certification to a new emissions-based qualification bar, tightening durability testing along the way. The post Taiwan adds carbon-footprint requirement to high-efficiency PV module standard appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-17T13:25:53.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/hithium-unveils-20000-cycle-sodium-ion-cell-and-4mwh-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Hithium unveils 20,000-cycle sodium-ion cell and 4MWh BESS",
+      "url": "https://www.energy-storage.news/hithium-unveils-20000-cycle-sodium-ion-cell-and-4mwh-bess/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Hithium hosted a launch yesterday for its new sodium-ion (Na-ion) battery cell and energy storage system product line, promising a 30-year expected operational lifetime."
+    },
+    {
+      "t": "2026-09-17T13:56:11.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/alpex-solar-inaugurates-2-2-gw-topcon-cell-manufacturing-facility-in-uttar-pradesh/",
+      "source": "pv magazine",
+      "title": "Alpex Solar inaugurates 2.2 GW TOPCon cell factory in India",
+      "url": "https://www.pv-magazine.com/2026/09/17/alpex-solar-inaugurates-2-2-gw-topcon-cell-manufacturing-facility-in-uttar-pradesh/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Alpex Solar has inaugurated a G12R TOPCon solar cell factory in Uttar Pradesh, expanding its vertically integrated manufacturing operations. The post Alpex Solar inaugurates 2.2 GW TOPCon cell factory in India appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-17T14:31:21.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/house-passes-ratepayer-protection-bill-data-centers/830658/",
+      "source": "Utility Dive",
+      "title": "House passes ratepayer protection bill to limit data center cost shifts",
+      "url": "https://www.utilitydive.com/news/house-passes-ratepayer-protection-bill-data-centers/830658/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The bill would &ldquo;largely reinforce&rdquo; a transition that is already underway as more states adopt large-load tariffs and is&nbsp;unlikely to pass the Senate before the midterm elections, according to ClearView Energy Partners."
+    },
+    {
+      "t": "2026-09-17T15:42:04.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/meta-apex-clean-energy-144-mw-texas-solar-ppa/830675/",
+      "source": "Utility Dive",
+      "title": "Meta, Apex Clean Energy agree to 144-MW Texas solar PPA",
+      "url": "https://www.utilitydive.com/news/meta-apex-clean-energy-144-mw-texas-solar-ppa/830675/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Meta will receive &ldquo;exclusive rights to all environmental attributes associated with energy&rdquo; from the project, including all renewable energy credits, according to Apex."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 9,
+      "grid": 28,
+      "policy": 10,
       "capital": 4,
-      "technology": 2
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -493,7 +503,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 5
       },
       {
         "source": "pv magazine",
@@ -508,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:380cfbb2b73900bea26bdf749d0261851b266e8a5fac20e524e18129d8317e4b",
-  "envelopeChecksum": "sha256:c964d0fde01b9008af96e2e537372af3b47f584f92931b0a405abe609a28c81e"
+  "contentChecksum": "sha256:29c8f67343daaacf237d4cf96eddabf0e099badcd7cf0bd4e711d4c9e31f8eb0",
+  "envelopeChecksum": "sha256:dd924c0114445a6781675b36e78674c7598d7f16beee70f1fc80840f0351e7b4"
 }

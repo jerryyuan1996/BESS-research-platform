@@ -13,12 +13,12 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-09-17T11:49:16.962Z",
+  "fetchedAt": "2026-09-17T17:05:53.835Z",
   "coverage": {
-    "from": "2025-09-17T12:00:00.000Z",
+    "from": "2025-09-17T17:30:00.000Z",
     "to": "2026-09-16T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17207
+    "points": 17196
   },
   "units": {
     "price": "AUD/MWh"
@@ -32,15 +32,15 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17207,
-    "coverageDays": 364,
+    "points": 17196,
+    "coverageDays": 363,
     "pointsPerHour": 2,
-    "mean": 98.61,
-    "median": 96.89,
-    "stdev": 49.06,
-    "p5": 24.99,
-    "p95": 163.78,
-    "negativeHoursPct": 0.026268379148021156,
+    "mean": 98.6,
+    "median": 96.88,
+    "stdev": 49.07,
+    "p5": 24.98,
+    "p95": 163.8,
+    "negativeHoursPct": 0.026285182600604792,
     "spreadMean": 57.94,
     "spreadMedian": 52.06,
     "spreadP25": 33.18,
@@ -71,19 +71,9 @@
   },
   "daily": [
     {
-      "d": "2025-09-17",
-      "n": 8,
-      "mean": 123.22,
-      "min": 98.2,
-      "max": 162.49,
-      "spread": null,
-      "charge": null,
-      "discharge": null
-    },
-    {
       "d": "2025-09-18",
-      "n": 48,
-      "mean": 104.27,
+      "n": 45,
+      "mean": 104.72,
       "min": 56.8,
       "max": 151.93,
       "spread": 61.92,
@@ -3713,8 +3703,8 @@
   ],
   "sourceSnapshot": {
     "file": "wa-wem-prices.json",
-    "contentChecksum": "sha256:0a282d1493ffbc32a232f2466bd68824c036d78844fed886802b95c1daf86921",
-    "points": 17207
+    "contentChecksum": "sha256:d908ad5257565c4f8c77bd486ebd173c81a37e3e5c8e902b820803795bd74660",
+    "points": 17196
   },
-  "summaryChecksum": "sha256:a1631c3a659acf12a656bcee36ec8e6378d08eabf5a460f35b6b95dabd37bc54"
+  "summaryChecksum": "sha256:786dadbf7bcbc1bb8e6612306124552573c4bc1e573838581b2b8085beececf4"
 }
