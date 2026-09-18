@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-18T11:24:16.381Z",
+  "fetchedAt": "2026-09-18T16:30:09.795Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-18T11:03:49.000Z",
+    "to": "2026-09-18T14:09:13.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-15T14:27:25.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/flexible-connection-agreements-fcas-in-germany-a-necessary-evil/",
-      "source": "Energy-Storage.news",
-      "title": "Flexible connection agreements (FCAs) in Germany: a necessary evil",
-      "url": "https://www.energy-storage.news/flexible-connection-agreements-fcas-in-germany-a-necessary-evil/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Flexible Connection Agreements (FCAs) must not be used simply to exclude BESS from connecting to the grid, but the industry will have to make do with them and all their imperfections for the foreseeable."
-    },
-    {
-      "t": "2026-09-16T03:45:35.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-nsw-invests-in-microgrid-scoping-following-far-west-transmission-outage/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s NSW invests in microgrid scoping following Far West transmission outage",
-      "url": "https://www.energy-storage.news/australias-nsw-invests-in-microgrid-scoping-following-far-west-transmission-outage/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The New South Wales government in Australia is investing AU$3 million (US$2.1 million) to scope new solar-plus-storage-powered microgrid projects across four remote communities in the state's Far West."
     },
     {
       "t": "2026-09-16T03:51:13.000Z",
@@ -375,46 +355,6 @@
       "summary": "All BESS and demand response projects selected under ASL's 2023 firming tender for New South Wales, Australia, are now operational."
     },
     {
-      "t": "2026-09-18T07:31:07.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/after-30-years-in-hot-arid-climate-arco-solar-modules-still-deliver-about-half-their-original-power/",
-      "source": "pv magazine",
-      "title": "After 30 years in hot-arid climate, Arco solar modules still deliver about half their original power",
-      "url": "https://www.pv-magazine.com/2026/09/18/after-30-years-in-hot-arid-climate-arco-solar-modules-still-deliver-about-half-their-original-power/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Algerian researchers found that 64 aged Arco Solar modules retained an average of 53% of their original 43 W rated power after three decades of outdoor exposure. The assessment revealed substantial power variation, widespread discoloration and browning, moisture-related insulation concerns, and hot spots in 46% of t…"
-    },
-    {
-      "t": "2026-09-18T09:26:17.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/china-topcon-solar-cell-prices-fall-for-third-week-as-export-buying-fades-and-wafer-costs-ease/",
-      "source": "pv magazine",
-      "title": "China TOPCon solar cell prices fall for third week as export buying fades and wafer costs ease",
-      "url": "https://www.pv-magazine.com/2026/09/18/china-topcon-solar-cell-prices-fall-for-third-week-as-export-buying-fades-and-wafer-costs-ease/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine , OPIS, a Dow Jones company, provides a quick look at the main price trends in the global PV industry. The post China TOPCon solar cell prices fall for third week as export buying fades and wafer costs ease appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-18T09:40:38.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/azerbaijan-inaugurates-100-mw-solar-project/",
-      "source": "pv magazine",
-      "title": "Azerbaijan inaugurates 100 MW solar project",
-      "url": "https://www.pv-magazine.com/2026/09/18/azerbaijan-inaugurates-100-mw-solar-project/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The project was awarded under Azerbaijan's first solar auction. Its inauguration takes the country's operational solar capacity to 378.2 MW, according to government sources. The post Azerbaijan inaugurates 100 MW solar project appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-18T09:59:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/construction-begins-on-2-gw-green-hydrogen-plant-in-spain/",
-      "source": "pv magazine",
-      "title": "Construction begins on 2 GW green hydrogen plant in Spain",
-      "url": "https://www.pv-magazine.com/2026/09/18/construction-begins-on-2-gw-green-hydrogen-plant-in-spain/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Moeve has begun construction of the Andalusian Green Hydrogen Valley, a €3 billion project featuring up to 2 GW of electrolyzer capacity across hubs in Huelva and Cádiz. The complex is expected to produce up to 300,000 metric tons of renewable hydrogen annually for industrial applications, renewable fuels and ammoni…"
-    },
-    {
       "t": "2026-09-18T09:59:47.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/us-international-development-finance-corporation-supports-ukraine-bess-portfolio/",
       "source": "Energy-Storage.news",
@@ -423,16 +363,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The US has pledged financial support towards an existing 400MWh battery energy storage system (BESS) portfolio in Ukraine."
-    },
-    {
-      "t": "2026-09-18T10:03:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/grew-solar-caelux-to-produce-perovskite-silicon-tandem-modules-in-india/",
-      "source": "pv magazine",
-      "title": "Grew Solar, Caelux to produce perovskite-silicon tandem modules in India",
-      "url": "https://www.pv-magazine.com/2026/09/18/grew-solar-caelux-to-produce-perovskite-silicon-tandem-modules-in-india/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Grew Solar and Caelux are targeting efficiencies of 29% and up for their 4 GW Indian perovskite-silicon tandem line, with commercial production tipped to begin in 2028. The post Grew Solar, Caelux to produce perovskite-silicon tandem modules in India appeared first on pv magazine Global ."
     },
     {
       "t": "2026-09-18T10:53:05.000Z",
@@ -453,16 +383,66 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "There are 54 countries in the African Continent. Rooftop solar photovoltaics is growing rapidly in some African nations, but uptake is highly uneven across countries and is not measured comprehensively across all nations. It is clear that South Africa is far ahead of the rest of the continent (71% of all rooftop PV…"
+    },
+    {
+      "t": "2026-09-18T11:37:32.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/inclusion-by-design-the-leadership-behaviours-pv-innovation-needs/",
+      "source": "pv magazine",
+      "title": "Inclusion by design: The leadership behaviours PV innovation needs",
+      "url": "https://www.pv-magazine.com/2026/09/18/inclusion-by-design-the-leadership-behaviours-pv-innovation-needs/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Women in Solar+ Europe reflects this week on the leadership behaviours needed to strengthen innovation, psychological safety and collaboration across PV research and industry, following its workshop at EU PVSEC 2026 this week, co-organised with WIP Renewables. The discussion connected inclusion with how expertise sh…"
+    },
+    {
+      "t": "2026-09-18T11:41:34.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/google-esvolta-pilot-uses-battery-storage-to-time-shift-renewable-energy-credits/",
+      "source": "pv magazine",
+      "title": "Google, esVolta pilot uses battery storage to ‘time-shift’ renewable energy credits",
+      "url": "https://www.pv-magazine.com/2026/09/18/google-esvolta-pilot-uses-battery-storage-to-time-shift-renewable-energy-credits/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "LevelTen Energy, esVolta and Quintrace have piloted a way to bank surplus solar power in batteries and release it, together with hourly verified renewable credits, when Google’s electricity demand outstrips its clean-energy supply. The post Google, esVolta pilot uses battery storage to ‘time-shift’ renewable energy…"
+    },
+    {
+      "t": "2026-09-18T12:36:40.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/jupiter-power-closes-us1-4-billion-financing-for-10-us-bess-projects-totalling-3-8gwh/",
+      "source": "Energy-Storage.news",
+      "title": "Jupiter Power closes US$1.4 billion financing for 10 US BESS projects totalling 3.8GWh",
+      "url": "https://www.energy-storage.news/jupiter-power-closes-us1-4-billion-financing-for-10-us-bess-projects-totalling-3-8gwh/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US battery energy storage system (BESS) developer-operator Jupiter Power has closed a US$1.4 billion financing, supporting 10 US BESS projects totalling 3,600MWh of capacity."
+    },
+    {
+      "t": "2026-09-18T12:36:43.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-roundup-eos-draws-us87-million-doe-loan-flexgen-lightshift-expand-to-16-projects-georgia-power-energises-128mw-facility/",
+      "source": "Energy-Storage.news",
+      "title": "US ROUNDUP: Eos draws US$87 million DOE loan, FlexGen-Lightshift expand to 16 projects, Georgia Power energises 128MW facility",
+      "url": "https://www.energy-storage.news/us-roundup-eos-draws-us87-million-doe-loan-flexgen-lightshift-expand-to-16-projects-georgia-power-energises-128mw-facility/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In this US news roundup, Eos has received an advance on its DOE loan, FlexGen and Lighshift have partnered on 16 BESS projects, and Georgia Power has energised a 128MW BESS."
+    },
+    {
+      "t": "2026-09-18T14:09:13.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/microsoft-virginia-scc-data-center-transmission/830775/",
+      "source": "Utility Dive",
+      "title": "Microsoft ‘preserving its ability’ to challenge data center transmission costs decision",
+      "url": "https://www.utilitydive.com/news/microsoft-virginia-scc-data-center-transmission/830775/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The company has until November to formally appeal the Virginia State Corporation Commission&rsquo;s order&nbsp;to directly assign some costs of transmission. Dominion Energy has an October deadline to propose compliant policy changes."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 25,
-      "policy": 11,
+      "grid": 24,
+      "policy": 10,
       "capital": 4,
       "technology": 3
     },
@@ -483,13 +463,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 7
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 3
       }
     ]
   },
@@ -498,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:02cf0b57fcde3da7d6db9a1508fee3d38f7f1786616b2743c0cc09b2dc6a378d",
-  "envelopeChecksum": "sha256:4cdc0b255dffec041170010befdc1b2e787b968194b81fd9ba22be474bb28b05"
+  "contentChecksum": "sha256:f25e87639089eb7209b9445403b157f293c407f6e3e99b04619c631850ba8b8a",
+  "envelopeChecksum": "sha256:cad0bd89111789a9965d538b95193bf24d78a391b984ddc07ad52bbff7f5bb30"
 }
