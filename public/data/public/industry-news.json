@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-18T04:50:52.412Z",
+  "fetchedAt": "2026-09-18T11:24:16.381Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-18T00:25:42.000Z",
+    "to": "2026-09-18T11:03:49.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-15T10:47:25.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/cee-roundup-engie-buys-876mwh-poland-project-econergy-connects-co-located-bess-in-romania-inion-software-launches-lithuania-vpp/",
-      "source": "Energy-Storage.news",
-      "title": "CEE ROUNDUP: Engie buys 876MWh Poland project, Econergy connects co-located BESS in Romania, Inion Software launches Lithuania VPP",
-      "url": "https://www.energy-storage.news/cee-roundup-engie-buys-876mwh-poland-project-econergy-connects-co-located-bess-in-romania-inion-software-launches-lithuania-vpp/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "This edition of news in brief from around the world in energy storage features Engie, Econergy and Inion Software in Central and Eastern Europe."
-    },
-    {
-      "t": "2026-09-15T10:55:10.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-data-centre-buildout-sees-massachusetts-release-responsible-development-framework-one-nuclear-proposes-louisiana-portfolio/",
-      "source": "Energy-Storage.news",
-      "title": "US data centre buildout sees Massachusetts release responsible development framework, ONE Nuclear proposes Louisiana portfolio",
-      "url": "https://www.energy-storage.news/us-data-centre-buildout-sees-massachusetts-release-responsible-development-framework-one-nuclear-proposes-louisiana-portfolio/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Massachusetts Governor Maura Healey has released a comprehensive framework establishing principles and expectations for responsible data centre development in the state."
     },
     {
       "t": "2026-09-15T14:27:25.000Z",
@@ -325,46 +305,6 @@
       "summary": "IHA has urged India to accelerate pumped storage through faster clearances, stronger revenues and improved coordination."
     },
     {
-      "t": "2026-09-17T06:51:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/pv-inverters-provide-reactive-power-to-milans-grid-at-night/",
-      "source": "pv magazine",
-      "title": "PV inverters provide reactive power to Milan’s grid at night",
-      "url": "https://www.pv-magazine.com/2026/09/17/pv-inverters-provide-reactive-power-to-milans-grid-at-night/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in Milan used PV inverters to supply 500 kVAr of reactive power to the distribution grid for four hours overnight. The trial showed that existing solar equipment can support voltage regulation even when it is not generating electricity. The post PV inverters provide reactive power to Milan’s grid at nigh…"
-    },
-    {
-      "t": "2026-09-17T07:08:42.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/china-targets-perovskite-solar-advanced-batteries-in-five-year-plan/",
-      "source": "pv magazine",
-      "title": "China targets perovskite solar, advanced batteries in five-year plan",
-      "url": "https://www.pv-magazine.com/2026/09/17/china-targets-perovskite-solar-advanced-batteries-in-five-year-plan/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "China has identified perovskite solar and next-generation batteries as strategic priorities in its 2026-30 industrial roadmap. The plan also calls for tighter oversight of manufacturing capacity and price competition. The post China targets perovskite solar, advanced batteries in five-year plan appeared first on pv…"
-    },
-    {
-      "t": "2026-09-17T09:14:31.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/scientists-build-17-efficient-semi-transparent-perovskite-solar-cell-based-on-sputter-resistant-aluminum-oxide-layer/",
-      "source": "pv magazine",
-      "title": "Scientists build 17%-efficient semi-transparent perovskite solar cell based on sputter-resistant aluminum oxide layer",
-      "url": "https://www.pv-magazine.com/2026/09/17/scientists-build-17-efficient-semi-transparent-perovskite-solar-cell-based-on-sputter-resistant-aluminum-oxide-layer/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers replaced the conventional 20 nm SnOₓ buffer layer with just 3 nm of ALD-deposited AlOₓ, which protected inverted perovskite cells from ITO sputtering damage while maintaining efficient charge extraction. The resulting devices achieved efficiencies above 17% in semi-transparent cells and 26% in perovskite…"
-    },
-    {
-      "t": "2026-09-17T11:51:08.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/spain-launches-capacity-market-as-grid-investment-rises-above-e17-billion/",
-      "source": "pv magazine",
-      "title": "Spain launches capacity market as grid investment rises above €17 billion",
-      "url": "https://www.pv-magazine.com/2026/09/17/spain-launches-capacity-market-as-grid-investment-rises-above-e17-billion/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Spain is introducing a new mechanism to remunerate generation, battery storage and demand for providing firm capacity and flexibility, while increasing planned electricity grid investment through 2030 to more than €17 billion ($19.5 billion). The post Spain launches capacity market as grid investment rises above €17…"
-    },
-    {
       "t": "2026-09-17T12:06:25.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/commissioning-delays-and-technical-gaps-plague-battery-storage-handovers-industry-experts-warn/",
       "source": "Energy-Storage.news",
@@ -385,36 +325,6 @@
       "summary": "Energy-Storage.news Premium speaks with Randolph Mann, CEO at developer esVolta at the 2026 US Battery Asset Management Summit in Garden Grove, California."
     },
     {
-      "t": "2026-09-17T12:21:07.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/bangladesh-launches-123-million-rooftop-solar-fund/",
-      "source": "pv magazine",
-      "title": "Bangladesh launches $123 million rooftop solar fund",
-      "url": "https://www.pv-magazine.com/2026/09/17/bangladesh-launches-123-million-rooftop-solar-fund/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Bangladesh has launched a $123 million fund to provide concessional financing for rooftop solar and other renewable energy projects. The government is also seeking international funding to install 4 GW of rooftop solar before next summer. The post Bangladesh launches $123 million rooftop solar fund appeared first on…"
-    },
-    {
-      "t": "2026-09-17T12:35:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/first-solar-drops-topcon-patent-complaint/",
-      "source": "pv magazine",
-      "title": "First Solar drops TOPCon patent complaint",
-      "url": "https://www.pv-magazine.com/2026/09/17/first-solar-drops-topcon-patent-complaint/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The thin-film manufacturer withdrew its Section 337 filing before the USITC following new Section 232 import restrictions, while federal court patent battles against domestic and foreign manufacturers move forward. The post First Solar drops TOPCon patent complaint appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-17T12:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/taiwan-adds-carbon-footprint-requirement-to-high-efficiency-pv-module-standard/",
-      "source": "pv magazine",
-      "title": "Taiwan adds carbon-footprint requirement to high-efficiency PV module standard",
-      "url": "https://www.pv-magazine.com/2026/09/17/taiwan-adds-carbon-footprint-requirement-to-high-efficiency-pv-module-standard/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Taiwan has tied its voluntary high-efficiency solar module certification to a new emissions-based qualification bar, tightening durability testing along the way. The post Taiwan adds carbon-footprint requirement to high-efficiency PV module standard appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-17T13:25:53.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/hithium-unveils-20000-cycle-sodium-ion-cell-and-4mwh-bess/",
       "source": "Energy-Storage.news",
@@ -423,16 +333,6 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "Hithium hosted a launch yesterday for its new sodium-ion (Na-ion) battery cell and energy storage system product line, promising a 30-year expected operational lifetime."
-    },
-    {
-      "t": "2026-09-17T13:56:11.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/17/alpex-solar-inaugurates-2-2-gw-topcon-cell-manufacturing-facility-in-uttar-pradesh/",
-      "source": "pv magazine",
-      "title": "Alpex Solar inaugurates 2.2 GW TOPCon cell factory in India",
-      "url": "https://www.pv-magazine.com/2026/09/17/alpex-solar-inaugurates-2-2-gw-topcon-cell-manufacturing-facility-in-uttar-pradesh/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Alpex Solar has inaugurated a G12R TOPCon solar cell factory in Uttar Pradesh, expanding its vertically integrated manufacturing operations. The post Alpex Solar inaugurates 2.2 GW TOPCon cell factory in India appeared first on pv magazine Global ."
     },
     {
       "t": "2026-09-17T14:31:21.000Z",
@@ -473,15 +373,95 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "All BESS and demand response projects selected under ASL's 2023 firming tender for New South Wales, Australia, are now operational."
+    },
+    {
+      "t": "2026-09-18T07:31:07.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/after-30-years-in-hot-arid-climate-arco-solar-modules-still-deliver-about-half-their-original-power/",
+      "source": "pv magazine",
+      "title": "After 30 years in hot-arid climate, Arco solar modules still deliver about half their original power",
+      "url": "https://www.pv-magazine.com/2026/09/18/after-30-years-in-hot-arid-climate-arco-solar-modules-still-deliver-about-half-their-original-power/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Algerian researchers found that 64 aged Arco Solar modules retained an average of 53% of their original 43 W rated power after three decades of outdoor exposure. The assessment revealed substantial power variation, widespread discoloration and browning, moisture-related insulation concerns, and hot spots in 46% of t…"
+    },
+    {
+      "t": "2026-09-18T09:26:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/china-topcon-solar-cell-prices-fall-for-third-week-as-export-buying-fades-and-wafer-costs-ease/",
+      "source": "pv magazine",
+      "title": "China TOPCon solar cell prices fall for third week as export buying fades and wafer costs ease",
+      "url": "https://www.pv-magazine.com/2026/09/18/china-topcon-solar-cell-prices-fall-for-third-week-as-export-buying-fades-and-wafer-costs-ease/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a new weekly update for pv magazine , OPIS, a Dow Jones company, provides a quick look at the main price trends in the global PV industry. The post China TOPCon solar cell prices fall for third week as export buying fades and wafer costs ease appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-18T09:40:38.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/azerbaijan-inaugurates-100-mw-solar-project/",
+      "source": "pv magazine",
+      "title": "Azerbaijan inaugurates 100 MW solar project",
+      "url": "https://www.pv-magazine.com/2026/09/18/azerbaijan-inaugurates-100-mw-solar-project/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The project was awarded under Azerbaijan's first solar auction. Its inauguration takes the country's operational solar capacity to 378.2 MW, according to government sources. The post Azerbaijan inaugurates 100 MW solar project appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-18T09:59:22.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/construction-begins-on-2-gw-green-hydrogen-plant-in-spain/",
+      "source": "pv magazine",
+      "title": "Construction begins on 2 GW green hydrogen plant in Spain",
+      "url": "https://www.pv-magazine.com/2026/09/18/construction-begins-on-2-gw-green-hydrogen-plant-in-spain/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Moeve has begun construction of the Andalusian Green Hydrogen Valley, a €3 billion project featuring up to 2 GW of electrolyzer capacity across hubs in Huelva and Cádiz. The complex is expected to produce up to 300,000 metric tons of renewable hydrogen annually for industrial applications, renewable fuels and ammoni…"
+    },
+    {
+      "t": "2026-09-18T09:59:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-international-development-finance-corporation-supports-ukraine-bess-portfolio/",
+      "source": "Energy-Storage.news",
+      "title": "US International Development Finance Corporation supports Ukraine BESS portfolio",
+      "url": "https://www.energy-storage.news/us-international-development-finance-corporation-supports-ukraine-bess-portfolio/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The US has pledged financial support towards an existing 400MWh battery energy storage system (BESS) portfolio in Ukraine."
+    },
+    {
+      "t": "2026-09-18T10:03:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/grew-solar-caelux-to-produce-perovskite-silicon-tandem-modules-in-india/",
+      "source": "pv magazine",
+      "title": "Grew Solar, Caelux to produce perovskite-silicon tandem modules in India",
+      "url": "https://www.pv-magazine.com/2026/09/18/grew-solar-caelux-to-produce-perovskite-silicon-tandem-modules-in-india/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Grew Solar and Caelux are targeting efficiencies of 29% and up for their 4 GW Indian perovskite-silicon tandem line, with commercial production tipped to begin in 2028. The post Grew Solar, Caelux to produce perovskite-silicon tandem modules in India appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-18T10:53:05.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-energy-storage-summit-germany-takeaways/",
+      "source": "Energy-Storage.news",
+      "title": "BESS Industry Buzz: Energy Storage Summit Germany takeaways",
+      "url": "https://www.energy-storage.news/bess-industry-buzz-energy-storage-summit-germany-takeaways/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A roundup of some of our key takeaways from the Energy Storage Summit Germany this week, including around FCAs, inertia, the capacity market (CM), EU restrictions on China, and the future of one very notable system integrator."
+    },
+    {
+      "t": "2026-09-18T11:03:49.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/very-low-cost-rooftop-solar-slashes-domestic-energy-cost-part-3-african-countries/",
+      "source": "pv magazine",
+      "title": "Very low cost rooftop solar slashes domestic energy cost – Part 3: African Countries",
+      "url": "https://www.pv-magazine.com/2026/09/18/very-low-cost-rooftop-solar-slashes-domestic-energy-cost-part-3-african-countries/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "There are 54 countries in the African Continent. Rooftop solar photovoltaics is growing rapidly in some African nations, but uptake is highly uneven across countries and is not measured comprehensively across all nations. It is clear that South Africa is far ahead of the rest of the continent (71% of all rooftop PV…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
+      "grid": 25,
       "policy": 11,
       "capital": 4,
       "technology": 3
@@ -509,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 6
       }
     ]
   },
@@ -518,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d14e8ba65ede60594c6c1b3ef2aa8627ac8186ba59e6f5d1f46777107e858070",
-  "envelopeChecksum": "sha256:6f501262319fd7242db0556fa8418a542498e9706380d3770dc5181bc44ae7ed"
+  "contentChecksum": "sha256:02cf0b57fcde3da7d6db9a1508fee3d38f7f1786616b2743c0cc09b2dc6a378d",
+  "envelopeChecksum": "sha256:4cdc0b255dffec041170010befdc1b2e787b968194b81fd9ba22be474bb28b05"
 }
