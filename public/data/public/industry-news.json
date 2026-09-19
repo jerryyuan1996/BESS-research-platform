@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-18T16:30:09.795Z",
+  "fetchedAt": "2026-09-19T04:43:27.760Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-18T14:09:13.000Z",
+    "to": "2026-09-19T04:00:00.000Z",
     "resolution": "event",
     "points": 41
   },
@@ -375,16 +375,6 @@
       "summary": "A roundup of some of our key takeaways from the Energy Storage Summit Germany this week, including around FCAs, inertia, the capacity market (CM), EU restrictions on China, and the future of one very notable system integrator."
     },
     {
-      "t": "2026-09-18T11:03:49.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/very-low-cost-rooftop-solar-slashes-domestic-energy-cost-part-3-african-countries/",
-      "source": "pv magazine",
-      "title": "Very low cost rooftop solar slashes domestic energy cost – Part 3: African Countries",
-      "url": "https://www.pv-magazine.com/2026/09/18/very-low-cost-rooftop-solar-slashes-domestic-energy-cost-part-3-african-countries/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "There are 54 countries in the African Continent. Rooftop solar photovoltaics is growing rapidly in some African nations, but uptake is highly uneven across countries and is not measured comprehensively across all nations. It is clear that South Africa is far ahead of the rest of the continent (71% of all rooftop PV…"
-    },
-    {
       "t": "2026-09-18T11:37:32.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/18/inclusion-by-design-the-leadership-behaviours-pv-innovation-needs/",
       "source": "pv magazine",
@@ -433,6 +423,16 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "The company has until November to formally appeal the Virginia State Corporation Commission&rsquo;s order&nbsp;to directly assign some costs of transmission. Dominion Energy has an October deadline to propose compliant policy changes."
+    },
+    {
+      "t": "2026-09-19T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/19/green-hydrogens-growing-share-in-chemical-production/",
+      "source": "pv magazine",
+      "title": "Green hydrogen’s growing share in chemical production",
+      "url": "https://www.pv-magazine.com/2026/09/19/green-hydrogens-growing-share-in-chemical-production/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The chemical industry requires enormous amounts of hydrogen for a wide range of products and processes. In the final part of pv magazine 's Renewables 24/7 series, we head to the world’s largest chemical plant in Ludwigshafen, Germany, BASF and Siemens Energy are demonstrating how to integrate a green electricity-po…"
     }
   ],
   "derived": {
@@ -478,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f25e87639089eb7209b9445403b157f293c407f6e3e99b04619c631850ba8b8a",
-  "envelopeChecksum": "sha256:cad0bd89111789a9965d538b95193bf24d78a391b984ddc07ad52bbff7f5bb30"
+  "contentChecksum": "sha256:24a98353a33ba09b618c651781a8d48bea320581593003399cb1e692d1b0fefd",
+  "envelopeChecksum": "sha256:2934a294ac58cc2561c5968e0777cd0058d6860edfd4d2d3b789bb85da10c879"
 }
