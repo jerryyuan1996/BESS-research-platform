@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-19T15:56:37.300Z",
+  "fetchedAt": "2026-09-19T20:47:10.197Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-09-19T09:00:00.000Z",
@@ -73,5 +73,5 @@
     "contentChecksum": "sha256:fc5d8a8c1b22b9aa8489c79631fd3003d13dfa622a9c433c865b3501240a3a3d",
     "points": 43
   },
-  "summaryChecksum": "sha256:8e18f5921da41bf85e5dd4305c1572a66a7b7649e6ebf69261e7240945abe76a"
+  "summaryChecksum": "sha256:8ada92b4c1265ba3965d5ebbe428876e7e3684b571e24a9260c3e8f0787761fe"
 }
