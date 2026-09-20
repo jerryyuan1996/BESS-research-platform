@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-20T16:13:06.666Z",
+  "fetchedAt": "2026-09-20T20:53:40.170Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-09-19T09:00:00.000Z",
@@ -70,8 +70,8 @@
   "daily": [],
   "sourceSnapshot": {
     "file": "industry-news.json",
-    "contentChecksum": "sha256:0d9ca49b7f4eb4ead1849ca8dfb267f3351c11f3c5272dbe51b016241499c5ce",
+    "contentChecksum": "sha256:fc5d8a8c1b22b9aa8489c79631fd3003d13dfa622a9c433c865b3501240a3a3d",
     "points": 43
   },
-  "summaryChecksum": "sha256:83b00f99cba1a95c4d12a80b55c1ea45113d6ed23b620df9c2e1cfbbecf5aa84"
+  "summaryChecksum": "sha256:0d2b6e5cd0f2c27f79ebab3842a4608fae494c56fdd2150fd4b7548e1bf23159"
 }

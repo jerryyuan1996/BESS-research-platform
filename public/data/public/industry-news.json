@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-20T16:13:06.666Z",
+  "fetchedAt": "2026-09-20T20:53:40.170Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-09-19T09:00:00.000Z",
@@ -402,7 +402,7 @@
       "url": "https://www.utilitydive.com/news/microsoft-virginia-scc-data-center-transmission/830775/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "It has until November to formally appeal the Virginia State Corporation Commission&rsquo;s order&nbsp;to directly assign some costs of transmission. Dominion Energy has an October deadline to propose compliant policy changes."
+      "summary": "The company has until November to formally appeal the Virginia State Corporation Commission&rsquo;s order&nbsp;to directly assign some costs of transmission. Dominion Energy has an October deadline to propose compliant policy changes."
     },
     {
       "t": "2026-09-19T04:00:00.000Z",
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:0d9ca49b7f4eb4ead1849ca8dfb267f3351c11f3c5272dbe51b016241499c5ce",
-  "envelopeChecksum": "sha256:c467b98f695a7d82bf1e064b85c8d5b52b88aa4bfbc96b3bab6ec18f4d659d91"
+  "contentChecksum": "sha256:fc5d8a8c1b22b9aa8489c79631fd3003d13dfa622a9c433c865b3501240a3a3d",
+  "envelopeChecksum": "sha256:42107299d389e23e7a98cbd98eca1a2cf830ec6eba1f9d3a50fc5778da69099f"
 }
