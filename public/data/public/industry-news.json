@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-20T20:53:40.170Z",
+  "fetchedAt": "2026-09-21T12:57:11.004Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-19T09:00:00.000Z",
+    "to": "2026-09-21T12:57:00.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -135,66 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-16T03:51:13.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/palisade-acquires-3-2gwh-of-battery-storage-in-australia-through-two-development-stage-projects/",
-      "source": "Energy-Storage.news",
-      "title": "Palisade acquires 3.2GWh of battery storage in Australia through two development-stage projects",
-      "url": "https://www.energy-storage.news/palisade-acquires-3-2gwh-of-battery-storage-in-australia-through-two-development-stage-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Palisade Investment Partners has acquired 100% interests in two development-stage renewable energy projects through Intera Renewables."
-    },
-    {
-      "t": "2026-09-16T04:16:43.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/dubai-supreme-council-of-energy-targets-1000-2000mw-battery-storage-to-support-round-the-clock-solar-supply/",
-      "source": "Energy-Storage.news",
-      "title": "Dubai Supreme Council of Energy targets 1,000-2,000MW battery storage to support round-the-clock solar supply",
-      "url": "https://www.energy-storage.news/dubai-supreme-council-of-energy-targets-1000-2000mw-battery-storage-to-support-round-the-clock-solar-supply/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Dubai is planning to build 1,000MW of lithium-ion battery storage, expandable to 2,000MW and delivering 6,000MWh of capacity, according to panellists speaking on the \"Key Trends from Early Middle East BESS Projects\" panel at Energy Storage Summit Middle East 2026."
-    },
-    {
-      "t": "2026-09-16T04:37:33.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/trumps-power-equipment-ban-us-bess-market-implications-and-the-supply-chain-dilemma/",
-      "source": "Energy-Storage.news",
-      "title": "Trump’s power equipment ban: US BESS market implications and the supply chain dilemma",
-      "url": "https://www.energy-storage.news/trumps-power-equipment-ban-us-bess-market-implications-and-the-supply-chain-dilemma/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "On 26 August, US President Donald Trump banned the import of inverters, transformers and other power equipment citing a potential risk to US grid security, via emergency executive order (EO)."
-    },
-    {
-      "t": "2026-09-16T04:40:11.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/fcc-inverter-ban-poses-greater-threat-to-us-renewables-than-feoc-compliance-industry-experts-warn/",
-      "source": "Energy-Storage.news",
-      "title": "FCC inverter ban poses greater threat to US renewables than FEOC compliance, industry experts warn",
-      "url": "https://www.energy-storage.news/fcc-inverter-ban-poses-greater-threat-to-us-renewables-than-feoc-compliance-industry-experts-warn/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Recent moves from the US federal government could prove more damaging to US renewable energy deployment than foreign entity of concern (FEOC) compliance requirements, according to legal and industry experts."
-    },
-    {
-      "t": "2026-09-16T07:36:13.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/moroccos-first-large-scale-lfp-battery-storage-system-prepares-for-action/",
-      "source": "Energy-Storage.news",
-      "title": "Morocco’s first large-scale LFP battery storage system prepares for action",
-      "url": "https://www.energy-storage.news/moroccos-first-large-scale-lfp-battery-storage-system-prepares-for-action/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "OCP Green Energy has completed the installation of a 25MW/125MWh battery energy storage system (BESS) in Benguerir, Morocco."
-    },
-    {
-      "t": "2026-09-16T09:31:07.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/from-grid-code-to-grid-connection-what-makes-a-grid-forming-bess-work-in-the-real-world/",
-      "source": "Energy-Storage.news",
-      "title": "From grid code to grid connection: what makes a grid-forming BESS work in the real world?",
-      "url": "https://www.energy-storage.news/from-grid-code-to-grid-connection-what-makes-a-grid-forming-bess-work-in-the-real-world/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sinexcel technical director Luke Lu discusses what goes into a successful grid-forming battery energy storage system (BESS) project."
-    },
-    {
       "t": "2026-09-16T10:30:52.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-salzgitter-flachstahl-german-solar-plus-storage-ppa-steelmaking/",
       "source": "Energy-Storage.news",
@@ -225,16 +165,6 @@
       "summary": "Energy-Storage.news Premium speaks with David Miller, CCO of optimiser Gridmatic, at the 2026 US Battery Asset Management Summit in Garden Grove, California."
     },
     {
-      "t": "2026-09-16T13:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/investment-tax-credit-glut-gives-corporate-buyers-more-leverage/830267/",
-      "source": "Utility Dive",
-      "title": "Investment tax credit glut gives corporate buyers more leverage, report says",
-      "url": "https://www.utilitydive.com/news/investment-tax-credit-glut-gives-corporate-buyers-more-leverage/830267/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "More clean energy tax credits are hitting the market. Credits tied to electricity production are holding their value, while&nbsp;investment tax credits based on the cost of building&nbsp;face price pressure as buyers weigh uncertainty over new federal rules."
-    },
-    {
       "t": "2026-09-16T13:16:27.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/sodium-ion-still-very-much-on-the-fringe-german-market-sources-on-technology-and-procurement/",
       "source": "Energy-Storage.news",
@@ -243,16 +173,6 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "LFP is the de facto choice for the German BESS market today with sodium-ion still far from bankable, but that doesn’t mean choosing a supplier is necessarily straightforward."
-    },
-    {
-      "t": "2026-09-16T13:33:25.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/state-led-planning-could-advance-clean-energy-in-deregulated-markets-repor/830529/",
-      "source": "Utility Dive",
-      "title": "State-led planning could advance clean energy in deregulated markets: report",
-      "url": "https://www.utilitydive.com/news/state-led-planning-could-advance-clean-energy-in-deregulated-markets-repor/830529/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "States should step in with new long-term planning processes to bolster nuclear, offshore wind and other technologies that face major barriers, according to the Clean Air Task Force."
     },
     {
       "t": "2026-09-16T14:33:14.000Z",
@@ -402,57 +322,137 @@
       "url": "https://www.utilitydive.com/news/microsoft-virginia-scc-data-center-transmission/830775/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "The company has until November to formally appeal the Virginia State Corporation Commission&rsquo;s order&nbsp;to directly assign some costs of transmission. Dominion Energy has an October deadline to propose compliant policy changes."
+      "summary": "It has until November to formally appeal the Virginia State Corporation Commission&rsquo;s order&nbsp;to directly assign some costs of transmission. Dominion Energy has an October deadline to propose compliant policy changes."
     },
     {
-      "t": "2026-09-19T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/19/green-hydrogens-growing-share-in-chemical-production/",
-      "source": "pv magazine",
-      "title": "Green hydrogen’s growing share in chemical production",
-      "url": "https://www.pv-magazine.com/2026/09/19/green-hydrogens-growing-share-in-chemical-production/",
+      "t": "2026-09-21T08:34:13.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/flow-power-breaks-ground-on-223mwh-bennetts-creek-bess-in-victoria-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Flow Power breaks ground on 223MWh Bennetts Creek BESS in Victoria, Australia",
+      "url": "https://www.energy-storage.news/flow-power-breaks-ground-on-223mwh-bennetts-creek-bess-in-victoria-australia/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The chemical industry requires enormous amounts of hydrogen for a wide range of products and processes. In the final part of pv magazine 's Renewables 24/7 series, we head to the world’s largest chemical plant in Ludwigshafen, Germany, BASF and Siemens Energy are demonstrating how to integrate a green electricity-po…"
+      "summary": "Flow Power has broken ground on its 100MW/223MWh Bennetts Creek BESS in Victoria, its first large-scale standalone BESS project."
     },
     {
-      "t": "2026-09-19T07:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/19/german-grid-operator-dispute-limits-battery-use-at-new-solar-storage-hybrid-plant/",
-      "source": "pv magazine",
-      "title": "German grid operator dispute limits battery use at new solar-storage hybrid plant",
-      "url": "https://www.pv-magazine.com/2026/09/19/german-grid-operator-dispute-limits-battery-use-at-new-solar-storage-hybrid-plant/",
+      "t": "2026-09-21T08:36:39.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/554mw-of-battery-storage-enters-aemos-market-management-system-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "554MW of battery storage enters AEMO’s Market Management System in Australia",
+      "url": "https://www.energy-storage.news/554mw-of-battery-storage-enters-aemos-market-management-system-in-australia/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Grid operator Eon Edis has withdrawn previously agreed import capacity for a newly opened 69 MW solar-plus-storage plant in northeastern Germany, limiting its 76.5 MWh battery to storing only power generated on-site. The post German grid operator dispute limits battery use at new solar-storage hybrid plant appeared…"
+      "summary": "The Tailem Bend BESS 3 in South Australia and Wooreen BESS in Victoria have both entered the AEMO Market Management System (MMS)."
     },
     {
-      "t": "2026-09-19T07:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/19/solar-module-imports-drop-48-in-brazil-in-h1/",
+      "t": "2026-09-21T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/21/how-grid-forming-and-ai-technologies-are-helping-overcome-barriers-to-renewable-growth/",
       "source": "pv magazine",
-      "title": "Solar module imports drop 48% in Brazil in H1",
-      "url": "https://www.pv-magazine.com/2026/09/19/solar-module-imports-drop-48-in-brazil-in-h1/",
+      "title": "How grid-forming and AI technologies are helping overcome barriers to renewable growth",
+      "url": "https://www.pv-magazine.com/2026/09/21/how-grid-forming-and-ai-technologies-are-helping-overcome-barriers-to-renewable-growth/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Brazil’s PV module imports fell 48% year on year to 5.48 GW in the first half of 2026, driven by an 82% decline in demand from utility-scale projects amid widespread curtailment. Distributed generation imports fell 39%, while average module prices rose 12.9% following China’s phaseout of a 9% export incentive. The p…"
+      "summary": "The imbalance between rapid growth in installed renewable capacity and the grid's ability to accommodate it has become a practical challenge to both grid security and economic performance. Huawei has positioned its products as solutions to three key barriers to renewable deployment. The post How grid-forming and AI…"
     },
     {
-      "t": "2026-09-19T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/19/teslas-10-1-billion-texas-solar-gigafactory-clears-key-tax-hurdle/",
+      "t": "2026-09-21T09:41:35.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/21/french-startup-repurposes-ev-batteries-for-solar-energy-storage/",
       "source": "pv magazine",
-      "title": "Tesla’s $10.1 billion Texas solar gigafactory clears key tax hurdle",
-      "url": "https://www.pv-magazine.com/2026/09/19/teslas-10-1-billion-texas-solar-gigafactory-clears-key-tax-hurdle/",
+      "title": "French startup repurposes EV batteries for solar energy storage",
+      "url": "https://www.pv-magazine.com/2026/09/21/french-startup-repurposes-ev-batteries-for-solar-energy-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Battwoo is repurposing electric vehicle batteries for stationary energy storage, targeting solar self-consumption and other commercial and industrial applications. The company says its refurbished systems can cost around 30% less than new batteries while extending battery service life by several decades. The post Fr…"
+    },
+    {
+      "t": "2026-09-21T09:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/21/slovakia-slashes-residential-solar-subsidy-shifts-support-toward-heat-pumps/",
+      "source": "pv magazine",
+      "title": "Slovakia slashes residential solar subsidy, shifts support toward heat pumps",
+      "url": "https://www.pv-magazine.com/2026/09/21/slovakia-slashes-residential-solar-subsidy-shifts-support-toward-heat-pumps/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Slovakia's state energy agency is overhauling its household renewable-energy subsidy program, cutting the maximum grant for rooftop solar by more than 70% while increasing support for heat pumps and biomass boilers. The post Slovakia slashes residential solar subsidy, shifts support toward heat pumps appeared first…"
+    },
+    {
+      "t": "2026-09-21T09:54:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/already-operating-battery-storage-projects-are-key-to-making-the-business-case-for-the-next-assets-bankable/",
+      "source": "Energy-Storage.news",
+      "title": "Already-operating battery storage projects are key to making the business case for the next assets bankable",
+      "url": "https://www.energy-storage.news/already-operating-battery-storage-projects-are-key-to-making-the-business-case-for-the-next-assets-bankable/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Existing assets can provide crucial benchmarks in sizing and other crucial battery storage design decisions, writes Ashutosh Vats, head of BESS business development at 3E."
+    },
+    {
+      "t": "2026-09-21T10:50:12.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/poland-market-shifting-to-selective-capital-disciplined-phase-where-execution-quality-matters/",
+      "source": "Energy-Storage.news",
+      "title": "Poland market shifting to ‘selective, capital-disciplined phase where execution quality matters’",
+      "url": "https://www.energy-storage.news/poland-market-shifting-to-selective-capital-disciplined-phase-where-execution-quality-matters/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Poland's grid-scale storage market has reached an impressive scale in the last few years, helped by the capacity market and various government schemes, but numerous challenges now need to be overcome."
+    },
+    {
+      "t": "2026-09-21T10:55:01.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/21/finland-proposes-priority-system-for-grid-connections/",
+      "source": "pv magazine",
+      "title": "Finland proposes priority system for grid connections",
+      "url": "https://www.pv-magazine.com/2026/09/21/finland-proposes-priority-system-for-grid-connections/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "A 7-0 vote by Lamar Consolidated Independent School District approves property tax incentives for Project Crystal Sun, advancing plans for a vertically integrated solar cell and module facility in Fort Bend County. The post Tesla’s $10.1 billion Texas solar gigafactory clears key tax hurdle appeared first on pv maga…"
+      "summary": "Finland’s government is proposing a priority system for electricity network connections in areas of scarce grid capacity in a bid to incentivise large electricity consumers and standalone storage systems to locate in areas where the grid is less congested. The post Finland proposes priority system for grid connectio…"
     },
     {
-      "t": "2026-09-19T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/19/uk-regulator-plans-bess-fees-to-cut-grid-connection-queue/",
-      "source": "pv magazine",
-      "title": "UK regulator plans BESS fees to cut grid connection queue",
-      "url": "https://www.pv-magazine.com/2026/09/19/uk-regulator-plans-bess-fees-to-cut-grid-connection-queue/",
+      "t": "2026-09-21T12:13:42.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-energy-storage-industry-targets-225gw-1twh-deployment-by-end-of-2032-according-to-energy-storage-coalition/",
+      "source": "Energy-Storage.news",
+      "title": "US energy storage industry targets 225GW/1TWh deployment by end of 2032, according to Energy Storage Coalition",
+      "url": "https://www.energy-storage.news/us-energy-storage-industry-targets-225gw-1twh-deployment-by-end-of-2032-according-to-energy-storage-coalition/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Financial commitment for battery energy storage systems (BESS) nears approval in a bid to further cut overcapacity in Great Britain’s connection queue. Despite recent grid connection reform efforts, the connection queue is still more than double what’s needed for 2030 targets. The post UK regulator plans BESS fees t…"
+      "summary": "The US energy storage industry is targeting 225GW/1TWh of storage deployment by the end of 2032, according to an analysis published by the Energy Storage Coalition (ESC)."
+    },
+    {
+      "t": "2026-09-21T12:16:38.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/google-backed-pilot-demonstrates-hourly-carbon-accounting-for-us-bess-using-granular-certificates/",
+      "source": "Energy-Storage.news",
+      "title": "Google-backed pilot demonstrates hourly carbon accounting for US BESS using granular certificates",
+      "url": "https://www.energy-storage.news/google-backed-pilot-demonstrates-hourly-carbon-accounting-for-us-bess-using-granular-certificates/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A US battery storage pilot sponsored by tech giant Google has demonstrated how batteries can capture surplus renewable energy and deliver it during hours with greater fossil generation."
+    },
+    {
+      "t": "2026-09-21T12:25:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/21/canada-trade-tribunal-rescinds-order-on-chinese-solar-modules-laminates/",
+      "source": "pv magazine",
+      "title": "Canada trade tribunal rescinds order on Chinese solar modules, laminates",
+      "url": "https://www.pv-magazine.com/2026/09/21/canada-trade-tribunal-rescinds-order-on-chinese-solar-modules-laminates/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Canada's trade tribunal has terminated a five-year review of anti-dumping and countervailing duties on Chinese solar modules and laminates, rescinding the order after finding the review lacked domestic-producer support. The post Canada trade tribunal rescinds order on Chinese solar modules, laminates appeared first…"
+    },
+    {
+      "t": "2026-09-21T12:52:40.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/21/chinese-scientists-build-33-3-efficient-perovskite-silicon-tandem-solar-cell-processed-in-ambient-air/",
+      "source": "pv magazine",
+      "title": "Chinese scientists build 33.3%-efficient perovskite-silicon tandem solar cell processed in ambient air",
+      "url": "https://www.pv-magazine.com/2026/09/21/chinese-scientists-build-33-3-efficient-perovskite-silicon-tandem-solar-cell-processed-in-ambient-air/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese researchers developed a PNCC polymer hole-transport layer that enables efficient and stable perovskite solar cells to be fabricated under ambient conditions. The material was used in a perovskite-silicon tandem cell that achieved 33.3% efficiency and a certified efficiency of 33.0%. The post Chinese scientis…"
+    },
+    {
+      "t": "2026-09-21T12:57:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/21/malaysia-sets-fixed-grid-charge-10-year-contracts-for-corporate-solar/",
+      "source": "pv magazine",
+      "title": "Malaysia sets fixed grid charge, 10-year contracts for corporate solar",
+      "url": "https://www.pv-magazine.com/2026/09/21/malaysia-sets-fixed-grid-charge-10-year-contracts-for-corporate-solar/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Malaysian government has unveiled a package of measures to accelerate its Corporate Renewable Energy Supply Scheme, including a fixed grid-access charge for firm power and mandatory 10-year contracts, aimed at improving project bankability and encouraging development. The post Malaysia sets fixed grid charge, 10…"
     }
   ],
   "derived": {
@@ -462,8 +462,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 25,
-      "policy": 11,
-      "capital": 4,
+      "policy": 10,
+      "capital": 5,
       "technology": 3
     },
     "sourceStatus": [
@@ -483,13 +483,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 7
+        "items": 5
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 5
+        "items": 7
       }
     ]
   },
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:fc5d8a8c1b22b9aa8489c79631fd3003d13dfa622a9c433c865b3501240a3a3d",
-  "envelopeChecksum": "sha256:42107299d389e23e7a98cbd98eca1a2cf830ec6eba1f9d3a50fc5778da69099f"
+  "contentChecksum": "sha256:47d5cad852246118ef75c7205c4ab3fe1dfd627ce23c07e8cd12e82b0c5dcfb2",
+  "envelopeChecksum": "sha256:ec94b295776601cd750d2ab33199bf73a907e92687689b8b6676fcc12bac5980"
 }
