@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-22T11:47:03.617Z",
+  "fetchedAt": "2026-09-22T17:01:45.612Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-22T11:09:59.000Z",
+    "to": "2026-09-22T15:30:00.000Z",
     "resolution": "event",
     "points": 44
   },
@@ -143,16 +143,6 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "Hithium hosted a launch yesterday for its new sodium-ion (Na-ion) battery cell and energy storage system product line, promising a 30-year expected operational lifetime."
-    },
-    {
-      "t": "2026-09-17T15:42:04.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/meta-apex-clean-energy-144-mw-texas-solar-ppa/830675/",
-      "source": "Utility Dive",
-      "title": "Meta, Apex Clean Energy agree to 144-MW Texas solar PPA",
-      "url": "https://www.utilitydive.com/news/meta-apex-clean-energy-144-mw-texas-solar-ppa/830675/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Meta will receive &ldquo;exclusive rights to all environmental attributes associated with energy&rdquo; from the project, including all renewable energy credits, according to Apex."
     },
     {
       "t": "2026-09-18T00:25:42.000Z",
@@ -325,56 +315,6 @@
       "summary": "Covenergo and Delta Capacity have begun construction on AKKU One, a standalone 125MW/300MWh battery energy storage system (BESS) in Lapinlahti, Finland, with commissioning targeted for the fourth quarter of 2027."
     },
     {
-      "t": "2026-09-22T08:54:24.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/how-to-make-renewables-auctions-resilient-to-supply-chain-shocks/",
-      "source": "pv magazine",
-      "title": "How to make renewables auctions resilient to supply chain shocks",
-      "url": "https://www.pv-magazine.com/2026/09/22/how-to-make-renewables-auctions-resilient-to-supply-chain-shocks/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "International Renewable Energy Agency (IRENA) says renewable energy auctions can be designed to mitigate supply chain shocks but warns there are trade-offs to consider, with countries advised that local content requirements and procurement preferences should be used selectively. The post How to make renewables aucti…"
-    },
-    {
-      "t": "2026-09-22T09:16:11.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/grids-grids-grids-and-more-eupvsec-2026/",
-      "source": "pv magazine",
-      "title": "Grids, grids, grids, and more: EUPVSEC 2026",
-      "url": "https://www.pv-magazine.com/2026/09/22/grids-grids-grids-and-more-eupvsec-2026/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Now in its 43rd year, the European Photovoltaic Solar Energy Conference (EUPVSEC) got underway this week in Rotterdam. Sessions on the first day point to a European solar industry becoming more conscious of its place in the wider energy world, and focussing on its connections and relationships with policymakers, the…"
-    },
-    {
-      "t": "2026-09-22T09:28:05.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/sri-lanka-replaces-net-metering-with-feed-in-tariffs-for-rooftop-solar/",
-      "source": "pv magazine",
-      "title": "Sri Lanka replaces net metering with feed-in tariffs for rooftop solar",
-      "url": "https://www.pv-magazine.com/2026/09/22/sri-lanka-replaces-net-metering-with-feed-in-tariffs-for-rooftop-solar/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Sri Lanka has discontinued net metering for new rooftop solar systems, requiring new installations to operate under its Net Plus feed-in tariff scheme with agreements capped at 12 years. The change comes as the country’s rooftop PV capacity reached 1.94 GW at the end of 2025, following rapid growth in installations…"
-    },
-    {
-      "t": "2026-09-22T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/vietnam-pushes-provinces-to-accelerate-rooftop-solar-rollout/",
-      "source": "pv magazine",
-      "title": "Vietnam pushes provinces to accelerate rooftop solar rollout",
-      "url": "https://www.pv-magazine.com/2026/09/22/vietnam-pushes-provinces-to-accelerate-rooftop-solar-rollout/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Vietnamese government has ordered provinces to accelerate rooftop solar support after most missed a national deadline, even as looser surplus-power rules have yet to produce a single recorded sale. The post Vietnam pushes provinces to accelerate rooftop solar rollout appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-22T09:54:30.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/ai-assisted-method-maps-pv-module-losses-from-a-single-luminescence-image/",
-      "source": "pv magazine",
-      "title": "AI-assisted method maps PV module losses from a single luminescence image",
-      "url": "https://www.pv-magazine.com/2026/09/22/ai-assisted-method-maps-pv-module-losses-from-a-single-luminescence-image/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "An international research team has developed an AI-assisted method that quantifies PV module power losses from a single luminescence image. The approach achieved an overall error of around 0.5% in tests on 300 field-retrieved modules and was demonstrated using drone-based imaging at a 186 kW solar farm. The post AI-…"
-    },
-    {
       "t": "2026-09-22T10:05:13.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/segen-zopa-bank-launch-uk-residential-solar-financing/",
       "source": "pv magazine",
@@ -463,6 +403,66 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Nearly 21GWh of grid-scale BESS came online globally last month, of which around a fifth was in Saudi Arabia while the majority was in China."
+    },
+    {
+      "t": "2026-09-22T12:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/poweroad-flex-261-series-passes-large-scale-fire-test-conducted-to-c800-and-ul-9540a/",
+      "source": "pv magazine",
+      "title": "POWEROAD FLEX 261 Series passes large-scale fire test conducted to C800 and UL 9540A",
+      "url": "https://www.pv-magazine.com/2026/09/22/poweroad-flex-261-series-passes-large-scale-fire-test-conducted-to-c800-and-ul-9540a/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The FLEX 261 Series – including FLEX 261, FLEX 261 AIO, and FLEX 261 AIO-3S – completed a Large-Scale Fire Test (LSFT) under CSA C800 and UL 9540A standards, with results showing no flame propagation to target BESS units. The post POWEROAD FLEX 261 Series passes large-scale fire test conducted to C800 and UL 9540A a…"
+    },
+    {
+      "t": "2026-09-22T14:04:27.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/new-england-maine-rto-adder-complaint-ferc/830999/",
+      "source": "Utility Dive",
+      "title": "New England states back Maine’s RTO adder complaint",
+      "url": "https://www.utilitydive.com/news/new-england-maine-rto-adder-complaint-ferc/830999/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The complaint at the Federal Energy Regulatory Commission is part of a trend of states seeking to end an extra 0.5% return utilities can earn for voluntarily joining a transmission organization."
+    },
+    {
+      "t": "2026-09-22T14:35:34.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/ira-stimulated-u-s-solar-manufacturing-capex-to-reach-12-2-billion-by-end-2026/",
+      "source": "pv magazine",
+      "title": "IRA-stimulated U.S. solar manufacturing capex to reach $12.2 billion by end 2026",
+      "url": "https://www.pv-magazine.com/2026/09/22/ira-stimulated-u-s-solar-manufacturing-capex-to-reach-12-2-billion-by-end-2026/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "A new report by Terawatt PV Research provides the first detailed bottom-up analysis of U.S. PV manufacturing sites, including capital expenditure, productivity and technology. The findings reveal that PV manufacturing capex since the introduction of the Inflation Reduction Act accounts for more than half of all inve…"
+    },
+    {
+      "t": "2026-09-22T14:46:43.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/eu-prepares-minimum-energy-efficiency-standards-for-data-centers/",
+      "source": "pv magazine",
+      "title": "EU prepares minimum energy-efficiency standards for data centers",
+      "url": "https://www.pv-magazine.com/2026/09/22/eu-prepares-minimum-energy-efficiency-standards-for-data-centers/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The European Commission has proposed a classification and labeling system for data centers and launched a consultation on minimum energy-efficiency standards. EU data center electricity consumption could rise from 68 TWh in 2024 to 114 TWh by 2030, driven largely by growing AI workloads. The post EU prepares minimum…"
+    },
+    {
+      "t": "2026-09-22T14:53:40.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/california-tightens-oversight-of-data-center-energy-use-grid-costs/831037/",
+      "source": "Utility Dive",
+      "title": "California tightens oversight of data center energy use, grid costs",
+      "url": "https://www.utilitydive.com/news/california-tightens-oversight-of-data-center-energy-use-grid-costs/831037/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Bills signed by Gov. Gavin Newsom include regulations aimed at ensuring data centers pay for infrastructure needed to serve them and bear a larger share of wildfire mitigation and liability costs."
+    },
+    {
+      "t": "2026-09-22T15:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/kenya-backdates-solar-export-charges-by-over-a-year/",
+      "source": "pv magazine",
+      "title": "Kenya backdates solar export charges by over a year",
+      "url": "https://www.pv-magazine.com/2026/09/22/kenya-backdates-solar-export-charges-by-over-a-year/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Kenya's energy regulator has codified charges for unauthorized solar exports and confirmed its net-metering credit rate – retroactive by more than a year, with no explanation given. The post Kenya backdates solar export charges by over a year appeared first on pv magazine Global ."
     }
   ],
   "derived": {
@@ -471,9 +471,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
-      "policy": 10,
-      "capital": 5,
+      "grid": 28,
+      "policy": 8,
+      "capital": 6,
       "technology": 2
     },
     "sourceStatus": [
@@ -493,13 +493,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 5
+        "items": 6
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 7
       }
     ]
   },
@@ -508,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:05524aa963dd3d1d4531f73792d4d338f7939039e4501b287351aebfcbe48928",
-  "envelopeChecksum": "sha256:f2f7592cfd0d29cc0e339f7b967565059c1bbe23d876b725e635f5a90729a399"
+  "contentChecksum": "sha256:c2c73a441d45f323ff2aadc4dd5dc61707c1619dd1242d0fda78fd2ccbfc27b2",
+  "envelopeChecksum": "sha256:c0e2f2bfbdfab30a1f357122db59cba409a7210b2ebc4370174f0097456fcbc4"
 }
