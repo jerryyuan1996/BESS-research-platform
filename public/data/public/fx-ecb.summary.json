@@ -13,7 +13,7 @@
     "licence": "ECB — free reuse with attribution",
     "attribution": "Source: European Central Bank"
   },
-  "fetchedAt": "2026-09-22T05:06:05.388Z",
+  "fetchedAt": "2026-09-22T11:47:04.382Z",
   "coverage": {
     "from": "2026-09-21T00:00:00Z",
     "to": "2026-09-21T00:00:00Z",
@@ -57,5 +57,5 @@
     "contentChecksum": "sha256:55eb8188a83d1689bbf23b3c998f5082a1c689e9300d9bc4a15ff5f281bb1e42",
     "points": 4
   },
-  "summaryChecksum": "sha256:574b359c5dc71f9f339c1877cff4f8bd57e55d9f87fd92d1e160c900de72c8be"
+  "summaryChecksum": "sha256:cd7155128d2381de387f5a8558cb356482baff24b98a3b5f27ea6326c3193f99"
 }
