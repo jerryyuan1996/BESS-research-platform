@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-21T22:01:25.895Z",
+  "fetchedAt": "2026-09-22T05:06:04.724Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-21T15:00:57.000Z",
+    "to": "2026-09-22T04:52:49.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -315,26 +315,6 @@
       "summary": "The Tailem Bend BESS 3 in South Australia and Wooreen BESS in Victoria have both entered the AEMO Market Management System (MMS)."
     },
     {
-      "t": "2026-09-21T09:41:35.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/21/french-startup-repurposes-ev-batteries-for-solar-energy-storage/",
-      "source": "pv magazine",
-      "title": "French startup repurposes EV batteries for solar energy storage",
-      "url": "https://www.pv-magazine.com/2026/09/21/french-startup-repurposes-ev-batteries-for-solar-energy-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Battwoo is repurposing electric vehicle batteries for stationary energy storage, targeting solar self-consumption and other commercial and industrial applications. The company says its refurbished systems can cost around 30% less than new batteries while extending battery service life by several decades. The post Fr…"
-    },
-    {
-      "t": "2026-09-21T09:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/21/slovakia-slashes-residential-solar-subsidy-shifts-support-toward-heat-pumps/",
-      "source": "pv magazine",
-      "title": "Slovakia slashes residential solar subsidy, shifts support toward heat pumps",
-      "url": "https://www.pv-magazine.com/2026/09/21/slovakia-slashes-residential-solar-subsidy-shifts-support-toward-heat-pumps/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Slovakia's state energy agency is overhauling its household renewable-energy subsidy program, cutting the maximum grant for rooftop solar by more than 70% while increasing support for heat pumps and biomass boilers. The post Slovakia slashes residential solar subsidy, shifts support toward heat pumps appeared first…"
-    },
-    {
       "t": "2026-09-21T09:54:30.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/already-operating-battery-storage-projects-are-key-to-making-the-business-case-for-the-next-assets-bankable/",
       "source": "Energy-Storage.news",
@@ -473,16 +453,46 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The Public Utility Commission of Texas backed off the standards it proposed in March, eliminating a&nbsp;non-refundable interconnection fee, halving its&nbsp;financial security requirement and extending&nbsp;energization milestone deadlines."
+    },
+    {
+      "t": "2026-09-22T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/the-great-british-takeoff/",
+      "source": "pv magazine",
+      "title": "The great British takeoff",
+      "url": "https://www.pv-magazine.com/2026/09/22/the-great-british-takeoff/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Despite grid connection headaches and the realities of securing planning approval, solar deployment in the United Kingdom has returned to healthy volumes with a growing capacity pipeline. With ambitious capacity targets set for 2030, pv magazine catches up with Solar Energy UK’s Chris Hewett for the latest on a mark…"
+    },
+    {
+      "t": "2026-09-22T04:51:24.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/u-s-solar-capacity-nears-300-gw-enough-to-power-50-million-homes/",
+      "source": "pv magazine",
+      "title": "U.S. solar capacity nears 300 GW, enough to power 50 million homes",
+      "url": "https://www.pv-magazine.com/2026/09/22/u-s-solar-capacity-nears-300-gw-enough-to-power-50-million-homes/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "National cumulative solar deployment hits 299.4 GW as utility-scale additions propel a 45% year-over-year Q2 expansion, while manufacturing investments and red-state project builds reach historic highs. The post U.S. solar capacity nears 300 GW, enough to power 50 million homes appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-22T04:52:49.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/nsw-opens-consultation-on-mandatory-solar-panel-recycling-scheme/",
+      "source": "pv magazine",
+      "title": "Australian state opens consultation on mandatory solar panel recycling scheme",
+      "url": "https://www.pv-magazine.com/2026/09/22/nsw-opens-consultation-on-mandatory-solar-panel-recycling-scheme/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The New South Wales government has opened consultation on a proposal to introduce a mandatory solar panel recycling scheme that would require brand owners to take financial responsibility for end-of-life solar waste. The post Australian state opens consultation on mandatory solar panel recycling scheme appeared firs…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 27,
-      "policy": 10,
+      "policy": 11,
       "capital": 5,
       "technology": 3
     },
@@ -509,7 +519,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -518,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:54be98da01d25274f0d596311a3738057b28422771d04fed8d2fc7c8933d2c97",
-  "envelopeChecksum": "sha256:f27c5f6bae59582f6eafd962b7a2d736d042754f08bdbce983fe3ec33104b534"
+  "contentChecksum": "sha256:28e6e0ecd39262a96cbe07dc8930d384838c025e8a3dddbc34b7c77c8c244bd5",
+  "envelopeChecksum": "sha256:81e1fb41eefe630d161b54fbca449db4afa73465c394fcd350697a895caf1fe2"
 }

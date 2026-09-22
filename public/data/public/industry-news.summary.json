@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-21T22:01:25.895Z",
+  "fetchedAt": "2026-09-22T05:06:04.724Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-21T15:00:57.000Z",
+    "to": "2026-09-22T04:52:49.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -30,12 +30,12 @@
   "staleAfterHours": 168,
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 27,
-      "policy": 10,
+      "policy": 11,
       "capital": 5,
       "technology": 3
     },
@@ -62,7 +62,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -70,8 +70,8 @@
   "daily": [],
   "sourceSnapshot": {
     "file": "industry-news.json",
-    "contentChecksum": "sha256:54be98da01d25274f0d596311a3738057b28422771d04fed8d2fc7c8933d2c97",
-    "points": 45
+    "contentChecksum": "sha256:28e6e0ecd39262a96cbe07dc8930d384838c025e8a3dddbc34b7c77c8c244bd5",
+    "points": 46
   },
-  "summaryChecksum": "sha256:7a04fe1afa9cd4cf0fde64d886e51f5d67ee662afced0b4c1e0476aa4efe6c17"
+  "summaryChecksum": "sha256:8a215fe5df5109ece423a8f1e60d952ed04c5f5014f958cd49f97f50631163aa"
 }
