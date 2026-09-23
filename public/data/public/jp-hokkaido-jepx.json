@@ -13,53 +13,17 @@
     "licence": "JEPX published market data — attribution required",
     "attribution": "Source: JEPX spot market data"
   },
-  "fetchedAt": "2026-09-23T17:10:57.037Z",
+  "fetchedAt": "2026-09-23T21:34:22.297Z",
   "coverage": {
-    "from": "2025-09-23T17:30:00.000Z",
+    "from": "2025-09-23T22:00:00.000Z",
     "to": "2026-09-24T14:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17563
+    "points": 17554
   },
   "units": {
     "price": "JPY/MWh"
   },
   "series": [
-    {
-      "t": "2025-09-23T17:30:00.000Z",
-      "v": 16239.999999999998
-    },
-    {
-      "t": "2025-09-23T18:00:00.000Z",
-      "v": 14240
-    },
-    {
-      "t": "2025-09-23T18:30:00.000Z",
-      "v": 15310
-    },
-    {
-      "t": "2025-09-23T19:00:00.000Z",
-      "v": 15310
-    },
-    {
-      "t": "2025-09-23T19:30:00.000Z",
-      "v": 15310
-    },
-    {
-      "t": "2025-09-23T20:00:00.000Z",
-      "v": 15310
-    },
-    {
-      "t": "2025-09-23T20:30:00.000Z",
-      "v": 13570
-    },
-    {
-      "t": "2025-09-23T21:00:00.000Z",
-      "v": 8810
-    },
-    {
-      "t": "2025-09-23T21:30:00.000Z",
-      "v": 9440
-    },
     {
       "t": "2025-09-23T22:00:00.000Z",
       "v": 7810
@@ -70285,6 +70249,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 96,
-  "contentChecksum": "sha256:dc08c3aecca9574e2f90824263c2025e4002be9b4648e43a821fe7888190b0d0",
-  "envelopeChecksum": "sha256:1da531c0b8dae405c6d4ebd4471f524f8f51fb8e86918c2bf2166bb6a19864fb"
+  "contentChecksum": "sha256:bd1d660175444fcf9f718a158cddc004615ebb8ec7e23e7d5c929bd93464bfa6",
+  "envelopeChecksum": "sha256:447ad33d627f88a18e83a22e96c4199ac384534838cba6f89483ee645e09ce74"
 }
