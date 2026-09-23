@@ -13,12 +13,12 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-09-22T21:24:26.159Z",
+  "fetchedAt": "2026-09-23T04:51:18.373Z",
   "coverage": {
-    "from": "2025-09-22T21:30:00.000Z",
-    "to": "2026-09-21T23:30:00.000Z",
+    "from": "2025-09-23T05:00:00.000Z",
+    "to": "2026-09-22T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17188
+    "points": 17221
   },
   "units": {
     "price": "AUD/MWh"
@@ -32,37 +32,37 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17188,
-    "coverageDays": 363,
+    "points": 17221,
+    "coverageDays": 364,
     "pointsPerHour": 2,
-    "mean": 98.89,
-    "median": 97.12,
-    "stdev": 48.98,
-    "p5": 25.65,
-    "p95": 163.62,
-    "negativeHoursPct": 0.025948336048405865,
-    "spreadMean": 57.44,
-    "spreadMedian": 52,
-    "spreadP25": 33.15,
-    "spreadP75": 74.08,
-    "spreadDays": 353,
-    "chargeMean": 72.79,
-    "dischargeMean": 130.24,
+    "mean": 99.08,
+    "median": 97.26,
+    "stdev": 48.97,
+    "p5": 26.2,
+    "p95": 163.79,
+    "negativeHoursPct": 0.025550200336798095,
+    "spreadMean": 57.4,
+    "spreadMedian": 51.85,
+    "spreadP25": 33.18,
+    "spreadP75": 74.04,
+    "spreadDays": 354,
+    "chargeMean": 72.89,
+    "dischargeMean": 130.29,
     "durationHours": 7
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 77367,
-    "marginPerCycle": 312.17,
+    "revenuePerMW": 77256,
+    "marginPerCycle": 311.72,
     "inputs": {
-      "chargeMean": 72.79420882233916,
-      "dischargeMean": 130.23636989073233,
+      "chargeMean": 72.89258676351898,
+      "dischargeMean": 130.2877259887004,
       "durationHours": 7,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
       "availability": 0.97,
       "spreadRealisation": 0.7,
-      "spreadDays": 353
+      "spreadDays": 354
     },
     "claim": [
       "Wholesale arbitrage only — excludes capacity, ancillary and balancing revenue",
@@ -72,13 +72,13 @@
   "daily": [
     {
       "d": "2025-09-23",
-      "n": 37,
-      "mean": 68.4,
-      "min": -16.64,
+      "n": 22,
+      "mean": 90.33,
+      "min": 13.58,
       "max": 147.87,
-      "spread": 97.23,
-      "charge": 11.36,
-      "discharge": 108.59
+      "spread": null,
+      "charge": null,
+      "discharge": null
     },
     {
       "d": "2025-09-24",
@@ -3692,10 +3692,20 @@
     },
     {
       "d": "2026-09-22",
-      "n": 16,
-      "mean": 133.35,
+      "n": 48,
+      "mean": 129.46,
       "min": 98.01,
       "max": 189.58,
+      "spread": 40.8,
+      "charge": 107.62,
+      "discharge": 148.42
+    },
+    {
+      "d": "2026-09-23",
+      "n": 16,
+      "mean": 181.29,
+      "min": 138.57,
+      "max": 279.14,
       "spread": null,
       "charge": null,
       "discharge": null
@@ -3703,8 +3713,8 @@
   ],
   "sourceSnapshot": {
     "file": "wa-wem-prices.json",
-    "contentChecksum": "sha256:9e6b0db136330ca0e04bf514950fc8c3cb7123240e2fb9c257def5035aceb352",
-    "points": 17188
+    "contentChecksum": "sha256:8a54a48e210b9c89ea11396db2bf71b08e4fe05ca8b21e6902d4730eec2013b5",
+    "points": 17221
   },
-  "summaryChecksum": "sha256:50d1a5c59dcbf6c6617a1e32511cec41c2b52509290dc6bd394d9a29a36668be"
+  "summaryChecksum": "sha256:2bbde331bd916d699bcea4274cbc35879c868d8458d50b0839674f28cd97f328"
 }
