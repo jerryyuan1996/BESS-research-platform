@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-23T11:46:28.949Z",
+  "fetchedAt": "2026-09-23T17:10:23.193Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-23T11:39:26.000Z",
+    "to": "2026-09-23T14:45:00.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 47
   },
   "units": {
     "record": "published article metadata"
@@ -195,16 +195,6 @@
       "summary": "A US battery storage pilot sponsored by tech giant Google has demonstrated how batteries can capture surplus renewable energy and deliver it during hours with greater fossil generation."
     },
     {
-      "t": "2026-09-21T12:55:13.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/new-york-psc-propel-transmission-line/830866/",
-      "source": "Utility Dive",
-      "title": "New York regulators approve 90-mile transmission line",
-      "url": "https://www.utilitydive.com/news/new-york-psc-propel-transmission-line/830866/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The $3.3-billion project aims to improve downstate power delivery by 2030. It is being developed by New York Transco and the New York Power Authority."
-    },
-    {
       "t": "2026-09-21T14:16:21.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/federal-judge-restores-7b-solar-for-all-program-says-epa-illegally-axed-i/830879/",
       "source": "Utility Dive",
@@ -335,16 +325,6 @@
       "summary": "The report arrives as the energy storage industry faces headwinds from tariffs, Treasury regulations and new White House restrictions on foreign-made bulk electrical components."
     },
     {
-      "t": "2026-09-23T08:12:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/albania-moves-closer-to-renewable-energy-communities/",
-      "source": "pv magazine",
-      "title": "Albania moves closer to renewable energy communities",
-      "url": "https://www.pv-magazine.com/2026/09/23/albania-moves-closer-to-renewable-energy-communities/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Albania's energy regulator has published a draft law setting out the framework for establishing and registering renewable energy communities. The post Albania moves closer to renewable energy communities appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-23T08:21:48.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/australias-victoria-requires-new-data-centres-to-bring-their-own-renewable-energy-and-storage/",
       "source": "Energy-Storage.news",
@@ -353,16 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Australia's Victoria mandates new data centres match demand with own renewable energy and battery storage under new rules."
-    },
-    {
-      "t": "2026-09-23T08:31:43.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/australias-first-grid-connected-sodium-sulfur-battery-goes-online/",
-      "source": "pv magazine",
-      "title": "Australia’s first grid-connected sodium-sulfur battery goes online",
-      "url": "https://www.pv-magazine.com/2026/09/23/australias-first-grid-connected-sodium-sulfur-battery-goes-online/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Australia’s first grid-connected sodium-sulfur battery system has commenced operations in Queensland, helping power a critical minerals processing facility and providing a real-world demonstration of the long-duration energy storage technology. The post Australia’s first grid-connected sodium-sulfur battery goes onl…"
     },
     {
       "t": "2026-09-23T09:00:00.000Z",
@@ -473,18 +443,68 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Energy-Storage.news speaks with Nathan Picarsic, co-founder of Horizon Advisory, at the 2026 US Battery Asset Management and Solar and Storage Finance Summits in Garden Grove, California."
+    },
+    {
+      "t": "2026-09-23T12:35:08.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/blue-wafers-are-fundamentally-undermining-u-s-solar-manufacturing/",
+      "source": "pv magazine",
+      "title": "Blue wafers are fundamentally undermining U.S. solar manufacturing",
+      "url": "https://www.pv-magazine.com/2026/09/23/blue-wafers-are-fundamentally-undermining-u-s-solar-manufacturing/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The core debate shaping U.S. solar manufacturing isn't just factory capacity, but whether facilities perform the critical P/N junction process on raw \"gray\" wafers or merely finish partially completed \"blue\" wafers imported from abroad. The post Blue wafers are fundamentally undermining U.S. solar manufacturing appe…"
+    },
+    {
+      "t": "2026-09-23T12:45:52.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/amazon-nadara-switch-on-277-mw-agricoltaic-facility-in-italy/",
+      "source": "pv magazine",
+      "title": "Amazon, Nadara switch on 277 MW agrivoltaic facility in Italy",
+      "url": "https://www.pv-magazine.com/2026/09/23/amazon-nadara-switch-on-277-mw-agricoltaic-facility-in-italy/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Nadara has completed the 227 MW Big Fish agrivoltaic project in Sicily, backed by a 156 MW PPA with Amazon and described by the developer as Italy’s largest agrivoltaic facility. The 400-hectare project was approved with a 20 MW/40 MWh battery energy storage system. The post Amazon, Nadara switch on 277 MW agrivolta…"
+    },
+    {
+      "t": "2026-09-23T13:45:55.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-exelon-comed-powerhouse-hillwood-data-center/831127/",
+      "source": "Utility Dive",
+      "title": "FERC rejects ComEd’s cancellation of PowerHouse Hillwood data center contract",
+      "url": "https://www.utilitydive.com/news/ferc-exelon-comed-powerhouse-hillwood-data-center/831127/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A 1.8-GW, $20-billion data center planned by PowerHouse Hillwood was underpinned by a $1 letter of credit &mdash; &ldquo;less than the price of a cup of coffee&rdquo; &mdash; that drew skepticism from FERC Commissioner David LaCerte."
+    },
+    {
+      "t": "2026-09-23T14:28:49.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-options-modernizing-pjm-governance-peskoe/830905/",
+      "source": "Utility Dive",
+      "title": "FERC has options for modernizing PJM’s governance",
+      "url": "https://www.utilitydive.com/news/ferc-options-modernizing-pjm-governance-peskoe/830905/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The commission&rsquo;s jurisdiction over transmission governance allows it to modify filing-rights allocations and adjust PJM Interconnection&rsquo;s nominating committee, writes Harvard Law&rsquo;s Ari Peskoe."
+    },
+    {
+      "t": "2026-09-23T14:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/poland-offers-76-twh-in-november-renewables-auctions/",
+      "source": "pv magazine",
+      "title": "Poland offers 76 TWh in November renewables auctions",
+      "url": "https://www.pv-magazine.com/2026/09/23/poland-offers-76-twh-in-november-renewables-auctions/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Poland's Energy Regulatory Office (URE) has put almost PLN 25 billion ($6.5 billion) of renewables support up for bid in November, with PV and onshore wind taking most of it. The post Poland offers 76 TWh in November renewables auctions appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 47,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 30,
+      "grid": 33,
       "policy": 6,
       "capital": 6,
-      "technology": 3
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -503,13 +523,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 7
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -518,6 +538,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:9acd15fe5b3799cf3909dce9e4515897ad943db5a8f681812d14219226b78dfb",
-  "envelopeChecksum": "sha256:37eadf88e3ce311a9ed4cbaae13fb874e0bb218ae85e3e880bedb72dd24b82ec"
+  "contentChecksum": "sha256:9e624f491632618b892bdcd5da67eb0caff70fc9f07bae60bc2b1e58d72cf2f7",
+  "envelopeChecksum": "sha256:4aeb65a9c90aa5a35544272146e4016e3d0ff26ce04f4b5eafaa14bd94238dc9"
 }
