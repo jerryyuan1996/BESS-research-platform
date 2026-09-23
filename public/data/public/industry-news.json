@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-22T21:24:22.302Z",
+  "fetchedAt": "2026-09-23T11:46:28.949Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-22T16:39:18.000Z",
+    "to": "2026-09-23T11:39:26.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -135,66 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-17T13:25:53.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/hithium-unveils-20000-cycle-sodium-ion-cell-and-4mwh-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Hithium unveils 20,000-cycle sodium-ion cell and 4MWh BESS",
-      "url": "https://www.energy-storage.news/hithium-unveils-20000-cycle-sodium-ion-cell-and-4mwh-bess/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Hithium hosted a launch yesterday for its new sodium-ion (Na-ion) battery cell and energy storage system product line, promising a 30-year expected operational lifetime."
-    },
-    {
-      "t": "2026-09-18T00:25:42.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-nsw-firming-tender-delivers-3gwh-of-battery-storage-as-all-round-2-projects-go-operational/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s NSW firming tender delivers 3GWh of battery storage as all Round 2 projects go operational",
-      "url": "https://www.energy-storage.news/australias-nsw-firming-tender-delivers-3gwh-of-battery-storage-as-all-round-2-projects-go-operational/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "All BESS and demand response projects selected under ASL's 2023 firming tender for New South Wales, Australia, are now operational."
-    },
-    {
-      "t": "2026-09-18T09:59:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-international-development-finance-corporation-supports-ukraine-bess-portfolio/",
-      "source": "Energy-Storage.news",
-      "title": "US International Development Finance Corporation supports Ukraine BESS portfolio",
-      "url": "https://www.energy-storage.news/us-international-development-finance-corporation-supports-ukraine-bess-portfolio/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The US has pledged financial support towards an existing 400MWh battery energy storage system (BESS) portfolio in Ukraine."
-    },
-    {
-      "t": "2026-09-18T10:53:05.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-energy-storage-summit-germany-takeaways/",
-      "source": "Energy-Storage.news",
-      "title": "BESS Industry Buzz: Energy Storage Summit Germany takeaways",
-      "url": "https://www.energy-storage.news/bess-industry-buzz-energy-storage-summit-germany-takeaways/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A roundup of some of our key takeaways from the Energy Storage Summit Germany this week, including around FCAs, inertia, the capacity market (CM), EU restrictions on China, and the future of one very notable system integrator."
-    },
-    {
-      "t": "2026-09-18T12:36:40.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/jupiter-power-closes-us1-4-billion-financing-for-10-us-bess-projects-totalling-3-8gwh/",
-      "source": "Energy-Storage.news",
-      "title": "Jupiter Power closes US$1.4 billion financing for 10 US BESS projects totalling 3.8GWh",
-      "url": "https://www.energy-storage.news/jupiter-power-closes-us1-4-billion-financing-for-10-us-bess-projects-totalling-3-8gwh/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US battery energy storage system (BESS) developer-operator Jupiter Power has closed a US$1.4 billion financing, supporting 10 US BESS projects totalling 3,600MWh of capacity."
-    },
-    {
-      "t": "2026-09-18T12:36:43.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-roundup-eos-draws-us87-million-doe-loan-flexgen-lightshift-expand-to-16-projects-georgia-power-energises-128mw-facility/",
-      "source": "Energy-Storage.news",
-      "title": "US ROUNDUP: Eos draws US$87 million DOE loan, FlexGen-Lightshift expand to 16 projects, Georgia Power energises 128MW facility",
-      "url": "https://www.energy-storage.news/us-roundup-eos-draws-us87-million-doe-loan-flexgen-lightshift-expand-to-16-projects-georgia-power-energises-128mw-facility/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In this US news roundup, Eos has received an advance on its DOE loan, FlexGen and Lighshift have partnered on 16 BESS projects, and Georgia Power has energised a 128MW BESS."
-    },
-    {
       "t": "2026-09-21T08:34:13.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/flow-power-breaks-ground-on-223mwh-bennetts-creek-bess-in-victoria-australia/",
       "source": "Energy-Storage.news",
@@ -305,16 +245,6 @@
       "summary": "Covenergo and Delta Capacity have begun construction on AKKU One, a standalone 125MW/300MWh battery energy storage system (BESS) in Lapinlahti, Finland, with commissioning targeted for the fourth quarter of 2027."
     },
     {
-      "t": "2026-09-22T10:05:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/segen-zopa-bank-launch-uk-residential-solar-financing/",
-      "source": "pv magazine",
-      "title": "Segen, Zopa Bank launch UK residential solar financing",
-      "url": "https://www.pv-magazine.com/2026/09/22/segen-zopa-bank-launch-uk-residential-solar-financing/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "UK solar distributor Segen has launched residential solar and battery financing with Zopa Bank, offering loans of two to 10 years at a representative annual percentage rate of 9.9%. Integrated into Segen’s digital proposal platform, the product allows homeowners to apply for financing during the sales process while…"
-    },
-    {
       "t": "2026-09-22T10:30:51.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/uk-neso-looks-to-tackle-bess-repetitive-re-trading/",
       "source": "Energy-Storage.news",
@@ -333,16 +263,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Nova Scotia Power has inaugurated three 50MW/200MWh battery energy storage systems (BESS) in Bridgewater, Waverley and White Rock, now Atlantic Canada's largest battery storage facilities."
-    },
-    {
-      "t": "2026-09-22T10:35:29.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/chile-tests-grid-forming-tech-at-48-mw-275-mwh-bess/",
-      "source": "pv magazine",
-      "title": "Chile tests grid-forming tech at 48 MW/275 MWh BESS",
-      "url": "https://www.pv-magazine.com/2026/09/22/chile-tests-grid-forming-tech-at-48-mw-275-mwh-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chile’s national grid operator has conducted its first field tests of grid-forming technology at Engie’s Los Loros battery energy storage system (BESS) in the Atacama region. The post Chile tests grid-forming tech at 48 MW/275 MWh BESS appeared first on pv magazine Global ."
     },
     {
       "t": "2026-09-22T10:52:25.000Z",
@@ -365,16 +285,6 @@
       "summary": "Utility PG&E has selected six new California microgrid projects for a US$30 million investment, while Massachusetts’ Department of Energy Resources is awarding US$40 million across 36 BESS projects."
     },
     {
-      "t": "2026-09-22T10:55:08.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/cameroon-plans-two-large-scale-pv-plants/",
-      "source": "pv magazine",
-      "title": "Cameroon plans two large-scale PV plants",
-      "url": "https://www.pv-magazine.com/2026/09/22/cameroon-plans-two-large-scale-pv-plants/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Cameroon’s Electricity Sector Regulatory Authority has met with developers to discuss implementing a 200 MW and 44 MW solar project. The post Cameroon plans two large-scale PV plants appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-22T10:57:58.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/sunrun-and-tesla-deliver-record-580mw-to-california-grid-amid-heatwave/",
       "source": "Energy-Storage.news",
@@ -395,16 +305,6 @@
       "summary": "Nearly 21GWh of grid-scale BESS came online globally last month, of which around a fifth was in Saudi Arabia while the majority was in China."
     },
     {
-      "t": "2026-09-22T12:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/poweroad-flex-261-series-passes-large-scale-fire-test-conducted-to-c800-and-ul-9540a/",
-      "source": "pv magazine",
-      "title": "POWEROAD FLEX 261 Series passes large-scale fire test conducted to C800 and UL 9540A",
-      "url": "https://www.pv-magazine.com/2026/09/22/poweroad-flex-261-series-passes-large-scale-fire-test-conducted-to-c800-and-ul-9540a/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The FLEX 261 Series – including FLEX 261, FLEX 261 AIO, and FLEX 261 AIO-3S – completed a Large-Scale Fire Test (LSFT) under CSA C800 and UL 9540A standards, with results showing no flame propagation to target BESS units. The post POWEROAD FLEX 261 Series passes large-scale fire test conducted to C800 and UL 9540A a…"
-    },
-    {
       "t": "2026-09-22T14:04:27.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/new-england-maine-rto-adder-complaint-ferc/830999/",
       "source": "Utility Dive",
@@ -413,26 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The complaint at the Federal Energy Regulatory Commission is part of a trend of states seeking to end an extra 0.5% return utilities can earn for voluntarily joining a transmission organization."
-    },
-    {
-      "t": "2026-09-22T14:35:34.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/ira-stimulated-u-s-solar-manufacturing-capex-to-reach-12-2-billion-by-end-2026/",
-      "source": "pv magazine",
-      "title": "IRA-stimulated U.S. solar manufacturing capex to reach $12.2 billion by end 2026",
-      "url": "https://www.pv-magazine.com/2026/09/22/ira-stimulated-u-s-solar-manufacturing-capex-to-reach-12-2-billion-by-end-2026/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "A new report by Terawatt PV Research provides the first detailed bottom-up analysis of U.S. PV manufacturing sites, including capital expenditure, productivity and technology. The findings reveal that PV manufacturing capex since the introduction of the Inflation Reduction Act accounts for more than half of all inve…"
-    },
-    {
-      "t": "2026-09-22T14:46:43.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/eu-prepares-minimum-energy-efficiency-standards-for-data-centers/",
-      "source": "pv magazine",
-      "title": "EU prepares minimum energy-efficiency standards for data centers",
-      "url": "https://www.pv-magazine.com/2026/09/22/eu-prepares-minimum-energy-efficiency-standards-for-data-centers/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The European Commission has proposed a classification and labeling system for data centers and launched a consultation on minimum energy-efficiency standards. EU data center electricity consumption could rise from 68 TWh in 2024 to 114 TWh by 2030, driven largely by growing AI workloads. The post EU prepares minimum…"
     },
     {
       "t": "2026-09-22T14:53:40.000Z",
@@ -445,16 +325,6 @@
       "summary": "Bills signed by Gov. Gavin Newsom include regulations aimed at ensuring data centers pay for infrastructure needed to serve them and bear a larger share of wildfire mitigation and liability costs."
     },
     {
-      "t": "2026-09-22T15:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/22/kenya-backdates-solar-export-charges-by-over-a-year/",
-      "source": "pv magazine",
-      "title": "Kenya backdates solar export charges by over a year",
-      "url": "https://www.pv-magazine.com/2026/09/22/kenya-backdates-solar-export-charges-by-over-a-year/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Kenya's energy regulator has codified charges for unauthorized solar exports and confirmed its net-metering credit rate – retroactive by more than a year, with no explanation given. The post Kenya backdates solar export charges by over a year appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-22T16:39:18.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/lower-energy-costs-community-benefits-drive-30-battery-growth-rate-rmi/831039/",
       "source": "Utility Dive",
@@ -463,18 +333,158 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The report arrives as the energy storage industry faces headwinds from tariffs, Treasury regulations and new White House restrictions on foreign-made bulk electrical components."
+    },
+    {
+      "t": "2026-09-23T08:12:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/albania-moves-closer-to-renewable-energy-communities/",
+      "source": "pv magazine",
+      "title": "Albania moves closer to renewable energy communities",
+      "url": "https://www.pv-magazine.com/2026/09/23/albania-moves-closer-to-renewable-energy-communities/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Albania's energy regulator has published a draft law setting out the framework for establishing and registering renewable energy communities. The post Albania moves closer to renewable energy communities appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-23T08:21:48.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-victoria-requires-new-data-centres-to-bring-their-own-renewable-energy-and-storage/",
+      "source": "Energy-Storage.news",
+      "title": "Australia’s Victoria requires new data centres to bring their own renewable energy and storage",
+      "url": "https://www.energy-storage.news/australias-victoria-requires-new-data-centres-to-bring-their-own-renewable-energy-and-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australia's Victoria mandates new data centres match demand with own renewable energy and battery storage under new rules."
+    },
+    {
+      "t": "2026-09-23T08:31:43.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/australias-first-grid-connected-sodium-sulfur-battery-goes-online/",
+      "source": "pv magazine",
+      "title": "Australia’s first grid-connected sodium-sulfur battery goes online",
+      "url": "https://www.pv-magazine.com/2026/09/23/australias-first-grid-connected-sodium-sulfur-battery-goes-online/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Australia’s first grid-connected sodium-sulfur battery system has commenced operations in Queensland, helping power a critical minerals processing facility and providing a real-world demonstration of the long-duration energy storage technology. The post Australia’s first grid-connected sodium-sulfur battery goes onl…"
+    },
+    {
+      "t": "2026-09-23T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/sungrow-brings-powerharbor-to-benelux-homes-for-more-value-less-complexity/",
+      "source": "pv magazine",
+      "title": "Sungrow brings PowerHarbor to Benelux homes for more value, less complexity",
+      "url": "https://www.pv-magazine.com/2026/09/23/sungrow-brings-powerharbor-to-benelux-homes-for-more-value-less-complexity/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "With net metering ending in the Netherlands on January 1, 2027, households with rooftop solar are rethinking how to use the electricity they generate. PowerHarbor is designed for homeowners considering storage. The post Sungrow brings PowerHarbor to Benelux homes for more value, less complexity appeared first on pv…"
+    },
+    {
+      "t": "2026-09-23T09:16:09.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/negative-electricity-prices-could-favor-thermal-storage-over-industrial-heat-pumps/",
+      "source": "pv magazine",
+      "title": "Negative electricity prices could favor thermal storage over industrial heat pumps",
+      "url": "https://www.pv-magazine.com/2026/09/23/negative-electricity-prices-could-favor-thermal-storage-over-industrial-heat-pumps/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Researchers compared the two technologies under varying negative-price frequencies, price levels and equipment costs. Their model found that the preferred option depended strongly on the required heat temperature, with storage gaining an advantage for steam production. The post Negative electricity prices could favo…"
+    },
+    {
+      "t": "2026-09-23T09:27:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/canadian-province-announces-pv-panel-recycling-fee/",
+      "source": "pv magazine",
+      "title": "Canadian province announces PV panel recycling fee",
+      "url": "https://www.pv-magazine.com/2026/09/23/canadian-province-announces-pv-panel-recycling-fee/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The government of Alberta is introducing a fee of CAN 14 ($15.99) to each new solar panel supplied in the province beginning October 1. It says the money raised will go towards collecting, transporting and recycling panels once they reach end of life. The post Canadian province announces PV panel recycling fee appea…"
+    },
+    {
+      "t": "2026-09-23T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/acen-relinquishes-philippine-solar-projects-over-land-access-issues/",
+      "source": "pv magazine",
+      "title": "ACEN relinquishes Philippine solar projects over land, access issues",
+      "url": "https://www.pv-magazine.com/2026/09/23/acen-relinquishes-philippine-solar-projects-over-land-access-issues/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Land acquisition and site-access problems have led Philippine renewables developer ACEN to abandon two early-stage solar projects with a combined potential capacity of about 456 MW. The post ACEN relinquishes Philippine solar projects over land, access issues appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-23T10:21:46.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/catl-supply-918mwh-romania-bess-another-500mwh-projects-progress-elsewhere-in-cee/",
+      "source": "Energy-Storage.news",
+      "title": "CATL to supply 918MWh Romania BESS, another 500MWh of projects progress elsewhere in CEE",
+      "url": "https://www.energy-storage.news/catl-supply-918mwh-romania-bess-another-500mwh-projects-progress-elsewhere-in-cee/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A flurry of project completions, financings and supplier deals for large-scale BESS across the Central and Eastern Europe (CEE) region, from Greenvolt, Renovatio & CATL, Eurowind, Renalfa, MOL Group, Tavion, MetaWealth and Enexus & Longi."
+    },
+    {
+      "t": "2026-09-23T10:23:09.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/compressed-air-energy-storage-caes-yet-to-deliver-on-promises-can-a-caes-go-one-step-further/",
+      "source": "Energy-Storage.news",
+      "title": "Compressed air energy storage (CAES): yet to deliver on promises, can A-CAES go one step further?",
+      "url": "https://www.energy-storage.news/compressed-air-energy-storage-caes-yet-to-deliver-on-promises-can-a-caes-go-one-step-further/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Compressed air energy storage (CAES) holds much promise for large-scale, LDES, but has struggled to get off the ground outside of China."
+    },
+    {
+      "t": "2026-09-23T10:30:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/modified-consumer-camera-can-measure-solar-cell-open-circuit-voltage/",
+      "source": "pv magazine",
+      "title": "Modified consumer camera can measure solar cell open-circuit voltage",
+      "url": "https://www.pv-magazine.com/2026/09/23/modified-consumer-camera-can-measure-solar-cell-open-circuit-voltage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "German researchers have modified and calibrated a low-cost consumer camera to quantitatively measure electroluminescence from silicon solar cells and modules. The method determines external luminescent quantum efficiency and uses it to derive the corresponding open-circuit voltage The post Modified consumer camera c…"
+    },
+    {
+      "t": "2026-09-23T11:08:06.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/uk-regulator-looks-to-cut-down-bess-interconnection-backlog-with-extra-financial-commitment/",
+      "source": "Energy-Storage.news",
+      "title": "UK regulator looks to cut down BESS interconnection backlog with extra financial commitment",
+      "url": "https://www.energy-storage.news/uk-regulator-looks-to-cut-down-bess-interconnection-backlog-with-extra-financial-commitment/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "UK energy industry regulator Ofgem said it is minded to approve the introduction of a financial commitment for BESS in an attempt to reduce the oversupply of the projects awaiting a grid connection."
+    },
+    {
+      "t": "2026-09-23T11:38:18.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/gridstor-closes-us220-million-financing-for-400mwh-arizona-bess/",
+      "source": "Energy-Storage.news",
+      "title": "GridStor closes US$220 million financing for 400MWh Arizona BESS",
+      "url": "https://www.energy-storage.news/gridstor-closes-us220-million-financing-for-400mwh-arizona-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "GridStor, a US-based developer and operator of grid-scale battery energy storage systems (BESS) has closed a US$220 million financing agreement for the 100MW/400MWh White Tank project in Arizona, US."
+    },
+    {
+      "t": "2026-09-23T11:39:11.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/ukraine-adds-1-1-gw-of-solar-in-h1/",
+      "source": "pv magazine",
+      "title": "Ukraine adds 1.1 GW of solar in H1",
+      "url": "https://www.pv-magazine.com/2026/09/23/ukraine-adds-1-1-gw-of-solar-in-h1/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Analysis from the Solar Energy Association of Ukraine estimates the country's solar capacity reached up to 9.7 GW by mid-2026. The post Ukraine adds 1.1 GW of solar in H1 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-23T11:39:26.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/how-transferability-and-us-china-tensions-are-transforming-us-bess-and-renewables-financing/",
+      "source": "Energy-Storage.news",
+      "title": "How transferability and US-China tensions are transforming US BESS and renewables financing",
+      "url": "https://www.energy-storage.news/how-transferability-and-us-china-tensions-are-transforming-us-bess-and-renewables-financing/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Energy-Storage.news speaks with Nathan Picarsic, co-founder of Horizon Advisory, at the 2026 US Battery Asset Management and Solar and Storage Finance Summits in Garden Grove, California."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 7,
+      "grid": 30,
+      "policy": 6,
       "capital": 6,
-      "technology": 2
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -499,7 +509,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 8
       }
     ]
   },
@@ -508,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:8af012fa5a752ff93261a2c20011af27c44022606ab25c35c4a62dbd3f92abf8",
-  "envelopeChecksum": "sha256:27b9820cd3874ba39eaa2e96b74651e9e659b34dd85e859914b68430aba8dc9e"
+  "contentChecksum": "sha256:9acd15fe5b3799cf3909dce9e4515897ad943db5a8f681812d14219226b78dfb",
+  "envelopeChecksum": "sha256:37eadf88e3ce311a9ed4cbaae13fb874e0bb218ae85e3e880bedb72dd24b82ec"
 }
