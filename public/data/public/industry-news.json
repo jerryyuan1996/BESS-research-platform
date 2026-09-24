@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-23T17:10:23.193Z",
+  "fetchedAt": "2026-09-24T04:59:36.196Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-23T14:45:00.000Z",
+    "to": "2026-09-24T03:48:26.000Z",
     "resolution": "event",
     "points": 47
   },
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-21T08:34:13.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/flow-power-breaks-ground-on-223mwh-bennetts-creek-bess-in-victoria-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Flow Power breaks ground on 223MWh Bennetts Creek BESS in Victoria, Australia",
-      "url": "https://www.energy-storage.news/flow-power-breaks-ground-on-223mwh-bennetts-creek-bess-in-victoria-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Flow Power has broken ground on its 100MW/223MWh Bennetts Creek BESS in Victoria, its first large-scale standalone BESS project."
-    },
-    {
-      "t": "2026-09-21T08:36:39.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/554mw-of-battery-storage-enters-aemos-market-management-system-in-australia/",
-      "source": "Energy-Storage.news",
-      "title": "554MW of battery storage enters AEMO’s Market Management System in Australia",
-      "url": "https://www.energy-storage.news/554mw-of-battery-storage-enters-aemos-market-management-system-in-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Tailem Bend BESS 3 in South Australia and Wooreen BESS in Victoria have both entered the AEMO Market Management System (MMS)."
     },
     {
       "t": "2026-09-21T09:54:30.000Z",
@@ -493,6 +473,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Poland's Energy Regulatory Office (URE) has put almost PLN 25 billion ($6.5 billion) of renewables support up for bid in November, with PV and onshore wind taking most of it. The post Poland offers 76 TWh in November renewables auctions appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-24T03:20:07.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/developers-valent-akaysha-advance-550mw-of-nem-connected-bess-in-victoria-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Developers Valent, Akaysha advance 550MW of NEM-connected BESS in Victoria, Australia",
+      "url": "https://www.energy-storage.news/developers-valent-akaysha-advance-550mw-of-nem-connected-bess-in-victoria-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Two Victorian battery storage projects have reached new construction and commissioning milestones this week, both connecting to the National Electricity Market (NEM) in Australia."
+    },
+    {
+      "t": "2026-09-24T03:48:26.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/agl-submits-1-45gwh-bess-to-australias-epbc-act-investigates-4gwh-bathurst-battery-in-new-south-wales/",
+      "source": "Energy-Storage.news",
+      "title": "AGL submits 1.45GWh BESS to Australia’s EPBC Act, investigates 4GWh Bathurst Battery in New South Wales",
+      "url": "https://www.energy-storage.news/agl-submits-1-45gwh-bess-to-australias-epbc-act-investigates-4gwh-bathurst-battery-in-new-south-wales/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "AGL has advanced two grid-scale BESS in New South Wales, one now before Australia's EPBC Act and the other still in early planning."
     }
   ],
   "derived": {
@@ -538,6 +538,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:9e624f491632618b892bdcd5da67eb0caff70fc9f07bae60bc2b1e58d72cf2f7",
-  "envelopeChecksum": "sha256:4aeb65a9c90aa5a35544272146e4016e3d0ff26ce04f4b5eafaa14bd94238dc9"
+  "contentChecksum": "sha256:ebb2f5b6a8bf663088bc9a2b98f2ea30d655ba361712dd6543a79c5aa3565811",
+  "envelopeChecksum": "sha256:dc44118676b52f0e283ded86e11d0218e53882c5a4ae824d9aa522c204a617fc"
 }
