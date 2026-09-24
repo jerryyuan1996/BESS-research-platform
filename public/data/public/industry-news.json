@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-24T17:17:08.808Z",
+  "fetchedAt": "2026-09-24T21:34:51.829Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-24T15:06:57.000Z",
+    "to": "2026-09-24T18:00:00.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -325,16 +325,6 @@
       "summary": "Nvidia’s new qualification programme for products and solutions that meet its reference design requirements includes three battery storage solutions."
     },
     {
-      "t": "2026-09-24T09:19:40.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/longi-sets-28-29-world-record-for-single-junction-silicon-solar-cell-efficiency/",
-      "source": "pv magazine",
-      "title": "Longi sets 28.29% world record for single-junction silicon solar cell efficiency",
-      "url": "https://www.pv-magazine.com/2026/09/24/longi-sets-28-29-world-record-for-single-junction-silicon-solar-cell-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The result was confirmed by Germany’s Institute for Solar Energy Research Hamelin (ISFH). The post Longi sets 28.29% world record for single-junction silicon solar cell efficiency appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-24T09:42:09.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/pylontech-starts-mass-production-of-588-ah-601-ah-storage-cells/",
       "source": "pv magazine",
@@ -473,6 +463,16 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "The department expects the projects will add 23 GW in grid capacity and will come online in &ldquo;record time&rdquo; to improve the existing transmission system."
+    },
+    {
+      "t": "2026-09-24T18:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/adapt-to-deliver/",
+      "source": "pv magazine",
+      "title": "Adapt to deliver",
+      "url": "https://www.pv-magazine.com/2026/09/24/adapt-to-deliver/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The US solar industry has become remarkably good at building utility-scale projects. The challenge now is delivering on the exact day the interconnection agreement expects. Chinmay Pingulkar of engineering, procurement, and construction (EPC) supplier Mortenson Construction outlines key considerations for project sc…"
     }
   ],
   "derived": {
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:e7dd65fadf8f390b4d26cf6d8690d91f6f1fac36f0b6f5e7027e49fe955b46b0",
-  "envelopeChecksum": "sha256:2b20acb719fdad75797384198064c70f6e71e65e6fe7865b9044aa3ab7bfe3ee"
+  "contentChecksum": "sha256:6fd0b0f1afde189716085cbf5966076568b6b5699745bbb44caedde3875872f3",
+  "envelopeChecksum": "sha256:454600b5c56d0a7adce9ad88cba477091e52e96dfd54c00e9bb598af870fef5d"
 }
