@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-24T04:59:36.196Z",
+  "fetchedAt": "2026-09-24T11:54:44.496Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-24T03:48:26.000Z",
+    "to": "2026-09-24T11:09:59.000Z",
     "resolution": "event",
-    "points": 47
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -133,56 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-21T09:54:30.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/already-operating-battery-storage-projects-are-key-to-making-the-business-case-for-the-next-assets-bankable/",
-      "source": "Energy-Storage.news",
-      "title": "Already-operating battery storage projects are key to making the business case for the next assets bankable",
-      "url": "https://www.energy-storage.news/already-operating-battery-storage-projects-are-key-to-making-the-business-case-for-the-next-assets-bankable/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Existing assets can provide crucial benchmarks in sizing and other crucial battery storage design decisions, writes Ashutosh Vats, head of BESS business development at 3E."
-    },
-    {
-      "t": "2026-09-21T10:50:12.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/poland-market-shifting-to-selective-capital-disciplined-phase-where-execution-quality-matters/",
-      "source": "Energy-Storage.news",
-      "title": "Poland market shifting to ‘selective, capital-disciplined phase where execution quality matters’",
-      "url": "https://www.energy-storage.news/poland-market-shifting-to-selective-capital-disciplined-phase-where-execution-quality-matters/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Poland's grid-scale storage market has reached an impressive scale in the last few years, helped by the capacity market and various government schemes, but numerous challenges now need to be overcome."
-    },
-    {
-      "t": "2026-09-21T12:13:42.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-energy-storage-industry-targets-225gw-1twh-deployment-by-end-of-2032-according-to-energy-storage-coalition/",
-      "source": "Energy-Storage.news",
-      "title": "US energy storage industry targets 225GW/1TWh deployment by end of 2032, according to Energy Storage Coalition",
-      "url": "https://www.energy-storage.news/us-energy-storage-industry-targets-225gw-1twh-deployment-by-end-of-2032-according-to-energy-storage-coalition/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The US energy storage industry is targeting 225GW/1TWh of storage deployment by the end of 2032, according to an analysis published by the Energy Storage Coalition (ESC)."
-    },
-    {
-      "t": "2026-09-21T12:16:38.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/google-backed-pilot-demonstrates-hourly-carbon-accounting-for-us-bess-using-granular-certificates/",
-      "source": "Energy-Storage.news",
-      "title": "Google-backed pilot demonstrates hourly carbon accounting for US BESS using granular certificates",
-      "url": "https://www.energy-storage.news/google-backed-pilot-demonstrates-hourly-carbon-accounting-for-us-bess-using-granular-certificates/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A US battery storage pilot sponsored by tech giant Google has demonstrated how batteries can capture surplus renewable energy and deliver it during hours with greater fossil generation."
-    },
-    {
-      "t": "2026-09-21T14:16:21.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/federal-judge-restores-7b-solar-for-all-program-says-epa-illegally-axed-i/830879/",
-      "source": "Utility Dive",
-      "title": "Federal judge restores $7B Solar for All program, says EPA illegally axed it",
-      "url": "https://www.utilitydive.com/news/federal-judge-restores-7b-solar-for-all-program-says-epa-illegally-axed-i/830879/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "A Trump-appointed judge said&nbsp;the One Big Beautiful Bill Act did not convert the funding into &ldquo;a lump-sum amount subject to EPA&rsquo;s discretion.&rdquo; Defendants acted contrary to Congress&rsquo; intent and with &ldquo;no other statutory authority.&rdquo;"
     },
     {
       "t": "2026-09-21T15:00:57.000Z",
@@ -315,46 +265,6 @@
       "summary": "Australia's Victoria mandates new data centres match demand with own renewable energy and battery storage under new rules."
     },
     {
-      "t": "2026-09-23T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/sungrow-brings-powerharbor-to-benelux-homes-for-more-value-less-complexity/",
-      "source": "pv magazine",
-      "title": "Sungrow brings PowerHarbor to Benelux homes for more value, less complexity",
-      "url": "https://www.pv-magazine.com/2026/09/23/sungrow-brings-powerharbor-to-benelux-homes-for-more-value-less-complexity/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "With net metering ending in the Netherlands on January 1, 2027, households with rooftop solar are rethinking how to use the electricity they generate. PowerHarbor is designed for homeowners considering storage. The post Sungrow brings PowerHarbor to Benelux homes for more value, less complexity appeared first on pv…"
-    },
-    {
-      "t": "2026-09-23T09:16:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/negative-electricity-prices-could-favor-thermal-storage-over-industrial-heat-pumps/",
-      "source": "pv magazine",
-      "title": "Negative electricity prices could favor thermal storage over industrial heat pumps",
-      "url": "https://www.pv-magazine.com/2026/09/23/negative-electricity-prices-could-favor-thermal-storage-over-industrial-heat-pumps/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Researchers compared the two technologies under varying negative-price frequencies, price levels and equipment costs. Their model found that the preferred option depended strongly on the required heat temperature, with storage gaining an advantage for steam production. The post Negative electricity prices could favo…"
-    },
-    {
-      "t": "2026-09-23T09:27:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/canadian-province-announces-pv-panel-recycling-fee/",
-      "source": "pv magazine",
-      "title": "Canadian province announces PV panel recycling fee",
-      "url": "https://www.pv-magazine.com/2026/09/23/canadian-province-announces-pv-panel-recycling-fee/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The government of Alberta is introducing a fee of CAN 14 ($15.99) to each new solar panel supplied in the province beginning October 1. It says the money raised will go towards collecting, transporting and recycling panels once they reach end of life. The post Canadian province announces PV panel recycling fee appea…"
-    },
-    {
-      "t": "2026-09-23T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/acen-relinquishes-philippine-solar-projects-over-land-access-issues/",
-      "source": "pv magazine",
-      "title": "ACEN relinquishes Philippine solar projects over land, access issues",
-      "url": "https://www.pv-magazine.com/2026/09/23/acen-relinquishes-philippine-solar-projects-over-land-access-issues/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Land acquisition and site-access problems have led Philippine renewables developer ACEN to abandon two early-stage solar projects with a combined potential capacity of about 456 MW. The post ACEN relinquishes Philippine solar projects over land, access issues appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-23T10:21:46.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/catl-supply-918mwh-romania-bess-another-500mwh-projects-progress-elsewhere-in-cee/",
       "source": "Energy-Storage.news",
@@ -373,16 +283,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Compressed air energy storage (CAES) holds much promise for large-scale, LDES, but has struggled to get off the ground outside of China."
-    },
-    {
-      "t": "2026-09-23T10:30:17.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/modified-consumer-camera-can-measure-solar-cell-open-circuit-voltage/",
-      "source": "pv magazine",
-      "title": "Modified consumer camera can measure solar cell open-circuit voltage",
-      "url": "https://www.pv-magazine.com/2026/09/23/modified-consumer-camera-can-measure-solar-cell-open-circuit-voltage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "German researchers have modified and calibrated a low-cost consumer camera to quantitatively measure electroluminescence from silicon solar cells and modules. The method determines external luminescent quantum efficiency and uses it to derive the corresponding open-circuit voltage The post Modified consumer camera c…"
     },
     {
       "t": "2026-09-23T11:08:06.000Z",
@@ -405,16 +305,6 @@
       "summary": "GridStor, a US-based developer and operator of grid-scale battery energy storage systems (BESS) has closed a US$220 million financing agreement for the 100MW/400MWh White Tank project in Arizona, US."
     },
     {
-      "t": "2026-09-23T11:39:11.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/ukraine-adds-1-1-gw-of-solar-in-h1/",
-      "source": "pv magazine",
-      "title": "Ukraine adds 1.1 GW of solar in H1",
-      "url": "https://www.pv-magazine.com/2026/09/23/ukraine-adds-1-1-gw-of-solar-in-h1/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Analysis from the Solar Energy Association of Ukraine estimates the country's solar capacity reached up to 9.7 GW by mid-2026. The post Ukraine adds 1.1 GW of solar in H1 appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-23T11:39:26.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/how-transferability-and-us-china-tensions-are-transforming-us-bess-and-renewables-financing/",
       "source": "Energy-Storage.news",
@@ -425,24 +315,14 @@
       "summary": "Energy-Storage.news speaks with Nathan Picarsic, co-founder of Horizon Advisory, at the 2026 US Battery Asset Management and Solar and Storage Finance Summits in Garden Grove, California."
     },
     {
-      "t": "2026-09-23T12:35:08.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/blue-wafers-are-fundamentally-undermining-u-s-solar-manufacturing/",
-      "source": "pv magazine",
-      "title": "Blue wafers are fundamentally undermining U.S. solar manufacturing",
-      "url": "https://www.pv-magazine.com/2026/09/23/blue-wafers-are-fundamentally-undermining-u-s-solar-manufacturing/",
+      "t": "2026-09-23T11:50:24.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/efforts-to-curb-data-center-speculation-gain-ground-across-the-us/830495/",
+      "source": "Utility Dive",
+      "title": "Efforts to curb data center speculation gain ground across the US",
+      "url": "https://www.utilitydive.com/news/efforts-to-curb-data-center-speculation-gain-ground-across-the-us/830495/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The core debate shaping U.S. solar manufacturing isn't just factory capacity, but whether facilities perform the critical P/N junction process on raw \"gray\" wafers or merely finish partially completed \"blue\" wafers imported from abroad. The post Blue wafers are fundamentally undermining U.S. solar manufacturing appe…"
-    },
-    {
-      "t": "2026-09-23T12:45:52.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/amazon-nadara-switch-on-277-mw-agricoltaic-facility-in-italy/",
-      "source": "pv magazine",
-      "title": "Amazon, Nadara switch on 277 MW agrivoltaic facility in Italy",
-      "url": "https://www.pv-magazine.com/2026/09/23/amazon-nadara-switch-on-277-mw-agricoltaic-facility-in-italy/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Nadara has completed the 227 MW Big Fish agrivoltaic project in Sicily, backed by a 156 MW PPA with Amazon and described by the developer as Italy’s largest agrivoltaic facility. The 400-hectare project was approved with a 20 MW/40 MWh battery energy storage system. The post Amazon, Nadara switch on 277 MW agrivolta…"
+      "summary": "Large-load tariffs and other measures to weed out speculative projects are taking shape. Public backlash to data centers, shifting state-level policies and the utility profit model are complicating those efforts, stakeholders say."
     },
     {
       "t": "2026-09-23T13:45:55.000Z",
@@ -452,7 +332,7 @@
       "url": "https://www.utilitydive.com/news/ferc-exelon-comed-powerhouse-hillwood-data-center/831127/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "A 1.8-GW, $20-billion data center planned by PowerHouse Hillwood was underpinned by a $1 letter of credit &mdash; &ldquo;less than the price of a cup of coffee&rdquo; &mdash; that drew skepticism from FERC Commissioner David LaCerte."
+      "summary": "A 1.8-GW, $20 billion data center planned by PowerHouse Hillwood was underpinned by a $1 letter of credit &mdash; &ldquo;less than the price of a cup of coffee&rdquo; &mdash; that drew skepticism from FERC Commissioner David LaCerte."
     },
     {
       "t": "2026-09-23T14:28:49.000Z",
@@ -462,17 +342,7 @@
       "url": "https://www.utilitydive.com/news/ferc-options-modernizing-pjm-governance-peskoe/830905/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The commission&rsquo;s jurisdiction over transmission governance allows it to modify filing-rights allocations and adjust PJM Interconnection&rsquo;s nominating committee, writes Harvard Law&rsquo;s Ari Peskoe."
-    },
-    {
-      "t": "2026-09-23T14:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/23/poland-offers-76-twh-in-november-renewables-auctions/",
-      "source": "pv magazine",
-      "title": "Poland offers 76 TWh in November renewables auctions",
-      "url": "https://www.pv-magazine.com/2026/09/23/poland-offers-76-twh-in-november-renewables-auctions/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Poland's Energy Regulatory Office (URE) has put almost PLN 25 billion ($6.5 billion) of renewables support up for bid in November, with PV and onshore wind taking most of it. The post Poland offers 76 TWh in November renewables auctions appeared first on pv magazine Global ."
+      "summary": "The commission&rsquo;s jurisdiction over transmission governance allows it to modify filing-rights allocations and adjust the PJM Interconnection&rsquo;s nominating committee, writes Harvard Law&rsquo;s Ari Peskoe."
     },
     {
       "t": "2026-09-24T03:20:07.000Z",
@@ -493,18 +363,138 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "AGL has advanced two grid-scale BESS in New South Wales, one now before Australia's EPBC Act and the other still in early planning."
+    },
+    {
+      "t": "2026-09-24T08:49:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/nvidia-selects-three-bess-solutions-new-ai-facilities-qualification-programme/",
+      "source": "Energy-Storage.news",
+      "title": "Nvidia selects three BESS solutions for new AI facilities qualification programme",
+      "url": "https://www.energy-storage.news/nvidia-selects-three-bess-solutions-new-ai-facilities-qualification-programme/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Nvidia’s new qualification programme for products and solutions that meet its reference design requirements includes three battery storage solutions."
+    },
+    {
+      "t": "2026-09-24T09:12:08.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/turkish-utility-tenders-solar-project/",
+      "source": "pv magazine",
+      "title": "Turkish utility tenders solar project",
+      "url": "https://www.pv-magazine.com/2026/09/24/turkish-utility-tenders-solar-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A public utility in southeastern Türkiye is running a tender for the development of a 23.9 MW solar project. The deadline to submit bids is October 20. The post Turkish utility tenders solar project appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-24T09:19:40.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/longi-sets-28-29-world-record-for-single-junction-silicon-solar-cell-efficiency/",
+      "source": "pv magazine",
+      "title": "Longi sets 28.29% world record for single-junction silicon solar cell efficiency",
+      "url": "https://www.pv-magazine.com/2026/09/24/longi-sets-28-29-world-record-for-single-junction-silicon-solar-cell-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The result was confirmed by Germany’s Institute for Solar Energy Research Hamelin (ISFH). The post Longi sets 28.29% world record for single-junction silicon solar cell efficiency appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-24T09:42:09.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/pylontech-starts-mass-production-of-588-ah-601-ah-storage-cells/",
+      "source": "pv magazine",
+      "title": "Pylontech starts mass production of 588 Ah, 601 Ah storage cells",
+      "url": "https://www.pv-magazine.com/2026/09/24/pylontech-starts-mass-production-of-588-ah-601-ah-storage-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese battery maker Pylontech has begun volume production of its own large-format lithium iron phosphate (LFP) cells as it expands into utility-scale energy storage. The post Pylontech starts mass production of 588 Ah, 601 Ah storage cells appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-24T09:46:04.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/spain-plans-to-allocated-11-gw-of-grid-capacity-for-renewables-storage/",
+      "source": "pv magazine",
+      "title": "Spain plans to allocate 11 GW of grid capacity for renewables, storage",
+      "url": "https://www.pv-magazine.com/2026/09/24/spain-plans-to-allocated-11-gw-of-grid-capacity-for-renewables-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Spain plans to allocate up to 11 GW of grid capacity to renewable energy and storage projects, with a dedicated tender for Guardo and Velilla attracting interest from pumped-hydro developers. The post Spain plans to allocate 11 GW of grid capacity for renewables, storage appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-24T10:00:41.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/eu-battery-passport-will-be-an-evolving-tool-rather-than-a-one-off/",
+      "source": "Energy-Storage.news",
+      "title": "EU Battery Passport will be an evolving tool rather than a one-off",
+      "url": "https://www.energy-storage.news/eu-battery-passport-will-be-an-evolving-tool-rather-than-a-one-off/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "During the Battery & Energy Storage Tech Expo in Barcelona, Spain, Energy-storage.news spoke with Ken Davies, chief commercial officer at Digital Product Passport (DPP) provider DigiProd Pass and conference program director of the event, about the upcoming implementation of the EU Battery Passport."
+    },
+    {
+      "t": "2026-09-24T10:07:43.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/greenvolt-starts-building-2-4gwh-byd-supplied-poland-bess-900mwh-progressed-elsewhere-in-cee-baltics/",
+      "source": "Energy-Storage.news",
+      "title": "Greenvolt starts building 2.4GWh, BYD-supplied Poland BESS; 900MWh progressed elsewhere in CEE/Baltics",
+      "url": "https://www.energy-storage.news/greenvolt-starts-building-2-4gwh-byd-supplied-poland-bess-900mwh-progressed-elsewhere-in-cee-baltics/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "IPP Greenvolt Power has started building its Siedlce battery storage project in Poland, while Gore Street, Taaleri Energia and DS1 have moved to construction on projects in Poland, Estonia and Lithuania respectively."
+    },
+    {
+      "t": "2026-09-24T10:44:14.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/zambia-commissions-100-mw-solar-project/",
+      "source": "pv magazine",
+      "title": "Zambia commissions 100 MW solar project",
+      "url": "https://www.pv-magazine.com/2026/09/24/zambia-commissions-100-mw-solar-project/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Maamba solar energy project, developed by a subsidiary of Indian conglomerate Nava Limited, holds a 20-year power purchase agreement with Zambia's state utility at a tariff of $0.078/kWh. The post Zambia commissions 100 MW solar project appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-24T10:50:42.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/second-life-pv-modules-turned-into-solar-balconies-in-germany/",
+      "source": "pv magazine",
+      "title": "Second-life PV modules turned into solar balconies in Germany",
+      "url": "https://www.pv-magazine.com/2026/09/24/second-life-pv-modules-turned-into-solar-balconies-in-germany/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A reuse project in Kassel, Germany, has repurposed 300 used solar modules to create 150 balcony PV systems, with tiered pricing aimed at improving affordability. The 13-year-old panels were inspected and refurbished, with local organizations providing technical, logistical and financial support. The post Second-life…"
+    },
+    {
+      "t": "2026-09-24T10:56:33.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/nyserda-picks-eight-projects-for-new-york-utility-scale-energy-storage-programme/",
+      "source": "Energy-Storage.news",
+      "title": "NYSERDA picks eight projects for New York utility-scale energy storage programme",
+      "url": "https://www.energy-storage.news/nyserda-picks-eight-projects-for-new-york-utility-scale-energy-storage-programme/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Results are in for New York’s first solicitations for large-scale energy storage resources, with 950MW of bids selected by NYSERDA."
+    },
+    {
+      "t": "2026-09-24T11:01:40.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/websol-allotted-land-for-4-gw-solar-cell-and-module-facility-in-west-bengal/",
+      "source": "pv magazine",
+      "title": "Websol secures land for 4 GW solar cell and module factory in India",
+      "url": "https://www.pv-magazine.com/2026/09/24/websol-allotted-land-for-4-gw-solar-cell-and-module-facility-in-west-bengal/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Websol Energy System has secured 21.9 hectares of land in West Bengal for a new solar manufacturing facility. The plant will have 4 GW each of solar cell and module production capacity, developed in two 2 GW phases. The post Websol secures land for 4 GW solar cell and module factory in India appeared first on pv mag…"
+    },
+    {
+      "t": "2026-09-24T11:09:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/brazil-power-producers-call-for-bess-framework-and-curtailment-rules/",
+      "source": "pv magazine",
+      "title": "Brazil power producers call for BESS framework and curtailment rules",
+      "url": "https://www.pv-magazine.com/2026/09/24/brazil-power-producers-call-for-bess-framework-and-curtailment-rules/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Brazil’s independent power producers are calling for a regulatory framework for battery energy storage systems (BESS) and the country’s first storage auction, alongside clearer rules for renewable energy curtailment. The post Brazil power producers call for BESS framework and curtailment rules appeared first on pv m…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 47,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 33,
-      "policy": 6,
-      "capital": 6,
-      "technology": 2
+      "grid": 35,
+      "policy": 7,
+      "capital": 3,
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -529,7 +519,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 8
       }
     ]
   },
@@ -538,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:ebb2f5b6a8bf663088bc9a2b98f2ea30d655ba361712dd6543a79c5aa3565811",
-  "envelopeChecksum": "sha256:dc44118676b52f0e283ded86e11d0218e53882c5a4ae824d9aa522c204a617fc"
+  "contentChecksum": "sha256:9427b920c31586b95b175c8510f0820819484260309cd5b3527fa5076c9a1ced",
+  "envelopeChecksum": "sha256:02d3dbbccf82ac3b90b03102a36feefd3cde0f91856664efbfd048df3edd80e4"
 }
