@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-25T05:03:55.893Z",
+  "fetchedAt": "2026-09-25T11:56:58.134Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-25T03:22:16.000Z",
+    "to": "2026-09-25T11:43:46.000Z",
     "resolution": "event",
     "points": 44
   },
@@ -133,16 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-22T10:52:25.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/rwe-and-giga-storage-move-to-construction-on-gigawatt-hour-netherlands-and-belgium-batteries/",
-      "source": "Energy-Storage.news",
-      "title": "RWE and Giga Storage move to construction on gigawatt-hour Netherlands and Belgium batteries",
-      "url": "https://www.energy-storage.news/rwe-and-giga-storage-move-to-construction-on-gigawatt-hour-netherlands-and-belgium-batteries/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "RWE has taken a final investment decision (FID) on 400MW/1.1GWh BESS in the Netherlands with construction to start in due course, while Giga Storage has started building its 2.8GWh Green Turtle project in Belgium."
     },
     {
       "t": "2026-09-22T10:53:35.000Z",
@@ -305,16 +295,6 @@
       "summary": "Nvidia’s new qualification programme for products and solutions that meet its reference design requirements includes three battery storage solutions."
     },
     {
-      "t": "2026-09-24T09:46:04.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/spain-plans-to-allocated-11-gw-of-grid-capacity-for-renewables-storage/",
-      "source": "pv magazine",
-      "title": "Spain plans to allocate 11 GW of grid capacity for renewables, storage",
-      "url": "https://www.pv-magazine.com/2026/09/24/spain-plans-to-allocated-11-gw-of-grid-capacity-for-renewables-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Spain plans to allocate up to 11 GW of grid capacity to renewable energy and storage projects, with a dedicated tender for Guardo and Velilla attracting interest from pumped-hydro developers. The post Spain plans to allocate 11 GW of grid capacity for renewables, storage appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-24T10:00:41.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/eu-battery-passport-will-be-an-evolving-tool-rather-than-a-one-off/",
       "source": "Energy-Storage.news",
@@ -335,26 +315,6 @@
       "summary": "IPP Greenvolt Power has started building its Siedlce battery storage project in Poland, while Gore Street, Taaleri Energia and DS1 have moved to construction on projects in Poland, Estonia and Lithuania respectively."
     },
     {
-      "t": "2026-09-24T10:44:14.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/zambia-commissions-100-mw-solar-project/",
-      "source": "pv magazine",
-      "title": "Zambia commissions 100 MW solar project",
-      "url": "https://www.pv-magazine.com/2026/09/24/zambia-commissions-100-mw-solar-project/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Maamba solar energy project, developed by a subsidiary of Indian conglomerate Nava Limited, holds a 20-year power purchase agreement with Zambia's state utility at a tariff of $0.078/kWh. The post Zambia commissions 100 MW solar project appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-24T10:50:42.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/second-life-pv-modules-turned-into-solar-balconies-in-germany/",
-      "source": "pv magazine",
-      "title": "Second-life PV modules turned into solar balconies in Germany",
-      "url": "https://www.pv-magazine.com/2026/09/24/second-life-pv-modules-turned-into-solar-balconies-in-germany/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A reuse project in Kassel, Germany, has repurposed 300 used solar modules to create 150 balcony PV systems, with tiered pricing aimed at improving affordability. The 13-year-old panels were inspected and refurbished, with local organizations providing technical, logistical and financial support. The post Second-life…"
-    },
-    {
       "t": "2026-09-24T10:56:33.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/nyserda-picks-eight-projects-for-new-york-utility-scale-energy-storage-programme/",
       "source": "Energy-Storage.news",
@@ -365,26 +325,6 @@
       "summary": "Results are in for New York’s first solicitations for large-scale energy storage resources, with 950MW of bids selected by NYSERDA."
     },
     {
-      "t": "2026-09-24T11:01:40.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/websol-allotted-land-for-4-gw-solar-cell-and-module-facility-in-west-bengal/",
-      "source": "pv magazine",
-      "title": "Websol secures land for 4 GW solar cell and module factory in India",
-      "url": "https://www.pv-magazine.com/2026/09/24/websol-allotted-land-for-4-gw-solar-cell-and-module-facility-in-west-bengal/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Websol Energy System has secured 21.9 hectares of land in West Bengal for a new solar manufacturing facility. The plant will have 4 GW each of solar cell and module production capacity, developed in two 2 GW phases. The post Websol secures land for 4 GW solar cell and module factory in India appeared first on pv mag…"
-    },
-    {
-      "t": "2026-09-24T11:09:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/brazil-power-producers-call-for-bess-framework-and-curtailment-rules/",
-      "source": "pv magazine",
-      "title": "Brazil power producers call for BESS framework and curtailment rules",
-      "url": "https://www.pv-magazine.com/2026/09/24/brazil-power-producers-call-for-bess-framework-and-curtailment-rules/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Brazil’s independent power producers are calling for a regulatory framework for battery energy storage systems (BESS) and the country’s first storage auction, alongside clearer rules for renewable energy curtailment. The post Brazil power producers call for BESS framework and curtailment rules appeared first on pv m…"
-    },
-    {
       "t": "2026-09-24T12:08:46.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/data-centre-buildout-uplifting-us-bess-market-outlook-wood-mackenzie-says/",
       "source": "Energy-Storage.news",
@@ -393,16 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Market research firm Wood Mackenzie stated that data centre buildout is uplifting the US battery energy storage system (BESS) outlook across all segments."
-    },
-    {
-      "t": "2026-09-24T12:32:37.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/u-s-solar-system-pricing-rises-for-utility-and-commercial-projects-as-residential-costs-decline/",
-      "source": "pv magazine",
-      "title": "U.S. solar system pricing rises for utility, C&I projects as residential costs decline",
-      "url": "https://www.pv-magazine.com/2026/09/24/u-s-solar-system-pricing-rises-for-utility-and-commercial-projects-as-residential-costs-decline/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Declining module costs are offset by elevated structural materials tariffs and surging domestic freight rates, leaving residential solar as the sole segment to see price reductions in Q2 2026. The post U.S. solar system pricing rises for utility, C&I projects as residential costs decline appeared first on pv magazin…"
     },
     {
       "t": "2026-09-24T13:01:50.000Z",
@@ -435,16 +365,6 @@
       "summary": "The department expects the projects will add 23 GW in grid capacity and will come online in &ldquo;record time&rdquo; to improve the existing transmission system."
     },
     {
-      "t": "2026-09-24T18:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/24/adapt-to-deliver/",
-      "source": "pv magazine",
-      "title": "Adapt to deliver",
-      "url": "https://www.pv-magazine.com/2026/09/24/adapt-to-deliver/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The US solar industry has become remarkably good at building utility-scale projects. The challenge now is delivering on the exact day the interconnection agreement expects. Chinmay Pingulkar of engineering, procurement, and construction (EPC) supplier Mortenson Construction outlines key considerations for project sc…"
-    },
-    {
       "t": "2026-09-25T03:20:34.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/aemo-connects-record-9-1gw-of-renewables-and-storage-to-australias-nem-in-fy26-warns-reliability-depends-on-timely-investment/",
       "source": "Energy-Storage.news",
@@ -463,6 +383,86 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "ESR, a Singapore-headquartered real asset owner and manager focused on logistics real estate and data centres, has signed an agreement to acquire 100% of Aquila Clean Energy APAC."
+    },
+    {
+      "t": "2026-09-25T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/us-team-claims-stability-record-for-16-19-efficient-2d-3d-tin-perovskite-solar-cell/",
+      "source": "pv magazine",
+      "title": "US team claims stability record for 16.19%-efficient 2D/3D tin perovskite solar cell",
+      "url": "https://www.pv-magazine.com/2026/09/25/us-team-claims-stability-record-for-16-19-efficient-2d-3d-tin-perovskite-solar-cell/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US researchers developed a 2D/3D lead-free tin perovskite solar cell using a chlorinated spacer, achieving 16.19% efficiency while improving crystallinity and resistance to oxygen and moisture. The device retained 95% of its initial efficiency after more than 1,600 hours in dry air and 80% after 1,000 hours under co…"
+    },
+    {
+      "t": "2026-09-25T09:29:44.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/decommissioning-to-drive-23-of-solar-buildout-in-the-2040s-says-wood-mackenzie/",
+      "source": "pv magazine",
+      "title": "Decommissioning to drive 23% of solar buildout in the 2040s, says Wood Mackenzie",
+      "url": "https://www.pv-magazine.com/2026/09/25/decommissioning-to-drive-23-of-solar-buildout-in-the-2040s-says-wood-mackenzie/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Wood Mackenzie’s latest report says the need to replace ageing infrastructure will bring a more than 60% increase in equipment sales in 2050 when compared to today's levels. The post Decommissioning to drive 23% of solar buildout in the 2040s, says Wood Mackenzie appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-25T09:51:22.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/german-developer-tests-roe-deer-passages-at-solar-park/",
+      "source": "pv magazine",
+      "title": "German developer tests roe deer passages at solar park",
+      "url": "https://www.pv-magazine.com/2026/09/25/german-developer-tests-roe-deer-passages-at-solar-park/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "German solar developer Südwerk has integrated roe deer passages into the perimeter fencing of its 20 MW Memmelsdorf solar park in Bavaria to preserve existing wildlife corridors. The company plans to consider similar measures in future projects following the experience gained at the site. The post German developer t…"
+    },
+    {
+      "t": "2026-09-25T10:18:28.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/spain-awards-e265-million-for-49-9-gwh-of-pumped-hydro-storage/",
+      "source": "pv magazine",
+      "title": "Spain awards €265 million for 49.9 GWh of pumped hydro storage",
+      "url": "https://www.pv-magazine.com/2026/09/25/spain-awards-e265-million-for-49-9-gwh-of-pumped-hydro-storage/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Pumped hydroelectric energy storage is advancing in Spain, with 11 projects backed by €265 million in public subsidies from a government program. The post Spain awards €265 million for 49.9 GWh of pumped hydro storage appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-25T11:04:59.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-roundup-bess-portfolio-deals-investment-and-partnerships-for-energy-vault-smt-energy-neovolta-and-sk-on/",
+      "source": "Energy-Storage.news",
+      "title": "US ROUNDUP: BESS portfolio deals, investment and partnerships for Energy Vault, SMT Energy, NeoVolta and SK On",
+      "url": "https://www.energy-storage.news/us-roundup-bess-portfolio-deals-investment-and-partnerships-for-energy-vault-smt-energy-neovolta-and-sk-on/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Recently, US BESS companies Energy Vault and Goshe, SMT Energy and Climate Adaptive Infrastructure, and NeoVolta and SK On have made major deals and secured strategic partnerships."
+    },
+    {
+      "t": "2026-09-25T11:23:11.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/weaker-monsoon-lifts-irradiance-in-western-india-as-august-storms-dim-the-east/",
+      "source": "pv magazine",
+      "title": "Weaker monsoon lifts irradiance in western India as August storms dim the east",
+      "url": "https://www.pv-magazine.com/2026/09/25/weaker-monsoon-lifts-irradiance-in-western-india-as-august-storms-dim-the-east/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that northwestern and southern India and Pakistan recorded above-average solar irradiance during the 2026 summer monsoon, benefiting major PV-producing regions, while tropical depressions drove irradiance sharply below average across eastern an…"
+    },
+    {
+      "t": "2026-09-25T11:24:57.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/india-added-50-6-gw-of-solar-module-and-9-7-gw-of-cell-manufacturing-capacity-in-1h-2026-says-mercom/",
+      "source": "pv magazine",
+      "title": "India adds 50.6 GW of solar module and 9.7 GW of cell manufacturing capacity in 1H",
+      "url": "https://www.pv-magazine.com/2026/09/25/india-added-50-6-gw-of-solar-module-and-9-7-gw-of-cell-manufacturing-capacity-in-1h-2026-says-mercom/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "As of June 2026, India’s cumulative solar module manufacturing capacity stood at 261.7 GW, while cell manufacturing capacity reached 36.6 GW. The post India adds 50.6 GW of solar module and 9.7 GW of cell manufacturing capacity in 1H appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-25T11:43:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/inclusive-leadership-turning-diverse-perspectives-into-innovation-and-impact/",
+      "source": "pv magazine",
+      "title": "Inclusive leadership: turning diverse perspectives into innovation and impact",
+      "url": "https://www.pv-magazine.com/2026/09/25/inclusive-leadership-turning-diverse-perspectives-into-innovation-and-impact/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "At Solar & Storage Live UK 2026, Women in Solar+ Europe (WiSEu) explored the leadership behaviours that help diverse teams contribute, challenge ideas and drive innovation. A Solar+ Leaders panel extended the conversation to the trust and responsibility needed to deliver lasting impact. The post Inclusive leadership…"
     }
   ],
   "derived": {
@@ -471,8 +471,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 31,
-      "policy": 7,
+      "grid": 32,
+      "policy": 6,
       "capital": 5,
       "technology": 1
     },
@@ -508,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:272fa7c9c75b2fc47a8fdb43c38dd715ae1785b8d6e5e0615bb7b65d0e838e35",
-  "envelopeChecksum": "sha256:54b99c12490674293b8f43430286bb9213f82f30b132353533bfc6acf93bf871"
+  "contentChecksum": "sha256:aef92983391831bf190bae9dc0a610233d93de4fe6dfd0585074adc8d60ac64a",
+  "envelopeChecksum": "sha256:b2f439ebfe7f15cb35af9d3b81cdea20e5ec6a2167094c341bda2ce75f5f2e2e"
 }
