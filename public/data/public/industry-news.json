@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-25T11:56:58.134Z",
+  "fetchedAt": "2026-09-25T17:17:26.037Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-25T11:43:46.000Z",
+    "to": "2026-09-25T14:13:58.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -135,16 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-22T10:53:35.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/pge-selects-six-new-california-microgrids-for-us30-million-investment-massachusetts-awards-us40-million-across-36-bess-projects/",
-      "source": "Energy-Storage.news",
-      "title": "PG&E selects six new California microgrids for US$30 million investment, Massachusetts awards US$40 million across 36 BESS projects",
-      "url": "https://www.energy-storage.news/pge-selects-six-new-california-microgrids-for-us30-million-investment-massachusetts-awards-us40-million-across-36-bess-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Utility PG&E has selected six new California microgrid projects for a US$30 million investment, while Massachusetts’ Department of Energy Resources is awarding US$40 million across 36 BESS projects."
-    },
-    {
       "t": "2026-09-22T10:57:58.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/sunrun-and-tesla-deliver-record-580mw-to-california-grid-amid-heatwave/",
       "source": "Energy-Storage.news",
@@ -163,16 +153,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Nearly 21GWh of grid-scale BESS came online globally last month, of which around a fifth was in Saudi Arabia while the majority was in China."
-    },
-    {
-      "t": "2026-09-22T16:39:18.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/lower-energy-costs-community-benefits-drive-30-battery-growth-rate-rmi/831039/",
-      "source": "Utility Dive",
-      "title": "Lower energy costs, community benefits drive 30% battery growth rate: RMI",
-      "url": "https://www.utilitydive.com/news/lower-energy-costs-community-benefits-drive-30-battery-growth-rate-rmi/831039/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The report arrives as the energy storage industry faces headwinds from tariffs, Treasury regulations and new White House restrictions on foreign-made bulk electrical components."
     },
     {
       "t": "2026-09-23T08:21:48.000Z",
@@ -233,16 +213,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Energy-Storage.news speaks with Nathan Picarsic, co-founder of Horizon Advisory, at the 2026 US Battery Asset Management and Solar and Storage Finance Summits in Garden Grove, California."
-    },
-    {
-      "t": "2026-09-23T11:50:24.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/efforts-to-curb-data-center-speculation-gain-ground-across-the-us/830495/",
-      "source": "Utility Dive",
-      "title": "Efforts to curb data center speculation gain ground across the US",
-      "url": "https://www.utilitydive.com/news/efforts-to-curb-data-center-speculation-gain-ground-across-the-us/830495/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Large-load tariffs and other measures to weed out speculative projects are taking shape. Public backlash to data centers, shifting state-level policies and the utility profit model are complicating those efforts, stakeholders say."
     },
     {
       "t": "2026-09-23T13:45:55.000Z",
@@ -385,26 +355,6 @@
       "summary": "ESR, a Singapore-headquartered real asset owner and manager focused on logistics real estate and data centres, has signed an agreement to acquire 100% of Aquila Clean Energy APAC."
     },
     {
-      "t": "2026-09-25T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/us-team-claims-stability-record-for-16-19-efficient-2d-3d-tin-perovskite-solar-cell/",
-      "source": "pv magazine",
-      "title": "US team claims stability record for 16.19%-efficient 2D/3D tin perovskite solar cell",
-      "url": "https://www.pv-magazine.com/2026/09/25/us-team-claims-stability-record-for-16-19-efficient-2d-3d-tin-perovskite-solar-cell/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US researchers developed a 2D/3D lead-free tin perovskite solar cell using a chlorinated spacer, achieving 16.19% efficiency while improving crystallinity and resistance to oxygen and moisture. The device retained 95% of its initial efficiency after more than 1,600 hours in dry air and 80% after 1,000 hours under co…"
-    },
-    {
-      "t": "2026-09-25T09:29:44.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/decommissioning-to-drive-23-of-solar-buildout-in-the-2040s-says-wood-mackenzie/",
-      "source": "pv magazine",
-      "title": "Decommissioning to drive 23% of solar buildout in the 2040s, says Wood Mackenzie",
-      "url": "https://www.pv-magazine.com/2026/09/25/decommissioning-to-drive-23-of-solar-buildout-in-the-2040s-says-wood-mackenzie/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Wood Mackenzie’s latest report says the need to replace ageing infrastructure will bring a more than 60% increase in equipment sales in 2050 when compared to today's levels. The post Decommissioning to drive 23% of solar buildout in the 2040s, says Wood Mackenzie appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-25T09:51:22.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/german-developer-tests-roe-deer-passages-at-solar-park/",
       "source": "pv magazine",
@@ -463,17 +413,57 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "At Solar & Storage Live UK 2026, Women in Solar+ Europe (WiSEu) explored the leadership behaviours that help diverse teams contribute, challenge ideas and drive innovation. A Solar+ Leaders panel extended the conversation to the trust and responsibility needed to deliver lasting impact. The post Inclusive leadership…"
+    },
+    {
+      "t": "2026-09-25T12:02:54.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/solar-panel-waste-silver-turned-into-catalyst-for-carbon-monoxide-production/",
+      "source": "pv magazine",
+      "title": "Solar panel waste silver turned into catalyst for carbon monoxide production",
+      "url": "https://www.pv-magazine.com/2026/09/25/solar-panel-waste-silver-turned-into-catalyst-for-carbon-monoxide-production/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Korean researchers have recovered high-purity silver from end-of-life silicon solar panels and used it to produce electrocatalysts for converting carbon dioxide into carbon monoxide. The recycled-silver electrode sustained CO production for more than 600 hours, with its rough surface helping to prevent electro…"
+    },
+    {
+      "t": "2026-09-25T12:21:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-owner-vs-trader-returns-market-saturation-more-northvolt-ma-alt-technologies-differing-fortunes/",
+      "source": "Energy-Storage.news",
+      "title": "BESS Industry Buzz: Owner vs trader returns, market saturation, more Northvolt M&A, alt technologies’ differing fortunes",
+      "url": "https://www.energy-storage.news/bess-industry-buzz-owner-vs-trader-returns-market-saturation-more-northvolt-ma-alt-technologies-differing-fortunes/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Another roundup of user-posted hot takes and analysis from the energy storage industry recently."
+    },
+    {
+      "t": "2026-09-25T13:46:29.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
+      "source": "Utility Dive",
+      "title": "FERC rejects Oklo complaint seeking to reinstate project to PJM’s interconnection study cycle",
+      "url": "https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The decision affects a 750-MW, mixed technology project in Virginia, which Oklo said would be delayed by at least 14 months if it misses the current interconnection cycle."
+    },
+    {
+      "t": "2026-09-25T14:13:58.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
+      "source": "Utility Dive",
+      "title": "Second federal judge overturns $7B Solar for All cancellation by Trump administration",
+      "url": "https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The decision in a suit brought by Harris County, Texas, follows a similar ruling last week. A Harris County judge called it &ldquo;a really important victory for energy resilience.&rdquo;"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 32,
+      "grid": 30,
       "policy": 6,
-      "capital": 5,
+      "capital": 6,
       "technology": 1
     },
     "sourceStatus": [
@@ -499,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 6
       }
     ]
   },
@@ -508,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:aef92983391831bf190bae9dc0a610233d93de4fe6dfd0585074adc8d60ac64a",
-  "envelopeChecksum": "sha256:b2f439ebfe7f15cb35af9d3b81cdea20e5ec6a2167094c341bda2ce75f5f2e2e"
+  "contentChecksum": "sha256:051280b8814d0b48987fa7efd1db57299fb982dc5ca5418817039e4773c31b55",
+  "envelopeChecksum": "sha256:d0dcf42c8689fbfd2e12abebcd288a105bd5740cb4e03ec81e5c646e2e224025"
 }
