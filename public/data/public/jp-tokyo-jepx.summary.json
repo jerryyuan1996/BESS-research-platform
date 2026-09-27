@@ -13,12 +13,12 @@
     "licence": "JEPX published market data — attribution required",
     "attribution": "Source: JEPX spot market data"
   },
-  "fetchedAt": "2026-09-27T05:24:49.282Z",
+  "fetchedAt": "2026-09-27T12:10:36.022Z",
   "coverage": {
-    "from": "2025-09-27T05:30:00.000Z",
+    "from": "2025-09-27T12:30:00.000Z",
     "to": "2026-09-28T14:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17587
+    "points": 17573
   },
   "units": {
     "price": "JPY/MWh"
@@ -32,13 +32,13 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17587,
+    "points": 17573,
     "coverageDays": 367,
     "pointsPerHour": 2,
-    "mean": 16297.94,
-    "median": 15240,
-    "stdev": 7068.06,
-    "p5": 9023,
+    "mean": 16301.42,
+    "median": 15250,
+    "stdev": 7069.69,
+    "p5": 9020,
     "p95": 30000,
     "negativeHoursPct": 0,
     "spreadMean": 9496.01,
@@ -72,10 +72,10 @@
   "daily": [
     {
       "d": "2025-09-27",
-      "n": 19,
-      "mean": 12028.42,
-      "min": 9760,
-      "max": 14010,
+      "n": 5,
+      "mean": 12332,
+      "min": 11330,
+      "max": 13010,
       "spread": null,
       "charge": null,
       "discharge": null
@@ -3743,8 +3743,8 @@
   ],
   "sourceSnapshot": {
     "file": "jp-tokyo-jepx.json",
-    "contentChecksum": "sha256:92471e7efde36ec2a640b3ba3b08d18392de5e288244bbd1c5312f9c5bd523e3",
-    "points": 17587
+    "contentChecksum": "sha256:b3802f9b82cf2910ce424fe61819306f123fdcf33da1cb46a1073f66acb6e1b0",
+    "points": 17573
   },
-  "summaryChecksum": "sha256:055a7acda52a232b7a83762babbddfa01637193c406598ef694e392cf8e4d866"
+  "summaryChecksum": "sha256:a0a5acbf56509c815c1bebc669ce15b687f1f27cc343cacdac71ce09092b28fb"
 }

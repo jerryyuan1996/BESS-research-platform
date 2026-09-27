@@ -13,12 +13,12 @@
     "licence": "JEPX published market data — attribution required",
     "attribution": "Source: JEPX spot market data"
   },
-  "fetchedAt": "2026-09-27T05:25:11.729Z",
+  "fetchedAt": "2026-09-27T12:10:54.256Z",
   "coverage": {
-    "from": "2025-09-27T05:30:00.000Z",
+    "from": "2025-09-27T12:30:00.000Z",
     "to": "2026-09-28T14:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17587
+    "points": 17573
   },
   "units": {
     "price": "JPY/MWh"
@@ -32,12 +32,12 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17587,
+    "points": 17573,
     "coverageDays": 367,
     "pointsPerHour": 2,
-    "mean": 13188.9,
+    "mean": 13190.38,
     "median": 11770,
-    "stdev": 6421.79,
+    "stdev": 6423.8,
     "p5": 2500,
     "p95": 24800,
     "negativeHoursPct": 0,
@@ -72,10 +72,10 @@
   "daily": [
     {
       "d": "2025-09-27",
-      "n": 19,
-      "mean": 11593.68,
-      "min": 6690,
-      "max": 14010,
+      "n": 5,
+      "mean": 12332,
+      "min": 11330,
+      "max": 13010,
       "spread": null,
       "charge": null,
       "discharge": null
@@ -3743,8 +3743,8 @@
   ],
   "sourceSnapshot": {
     "file": "jp-hokkaido-jepx.json",
-    "contentChecksum": "sha256:be8d377ba018c4bc1280d8eaa668d12c461b29e2e6cfaa01a03f8b014b19ef40",
-    "points": 17587
+    "contentChecksum": "sha256:ad0731ec292064c3e5a298b9edc46a7247f511467c6fc7278ebfed506a6f7a89",
+    "points": 17573
   },
-  "summaryChecksum": "sha256:25e7b930717630e8cc3187afa019560a090f8def4c6e79f84aaea888bdc5cdf1"
+  "summaryChecksum": "sha256:ffa1b66a4b6fc8da3c8a370d5bd02778391caecf1c9f60d5c7c156b3a339b9ff"
 }
