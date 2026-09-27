@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-27T05:24:33.238Z",
+  "fetchedAt": "2026-09-27T17:02:15.468Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-09-26T08:00:00.000Z",
@@ -215,16 +215,6 @@
       "summary": "Energy-Storage.news speaks with Nathan Picarsic, co-founder of Horizon Advisory, at the 2026 US Battery Asset Management and Solar and Storage Finance Summits in Garden Grove, California."
     },
     {
-      "t": "2026-09-23T13:45:55.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-exelon-comed-powerhouse-hillwood-data-center/831127/",
-      "source": "Utility Dive",
-      "title": "FERC rejects ComEd’s cancellation of PowerHouse Hillwood data center contract",
-      "url": "https://www.utilitydive.com/news/ferc-exelon-comed-powerhouse-hillwood-data-center/831127/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A 1.8-GW, $20 billion data center planned by PowerHouse Hillwood was underpinned by a $1 letter of credit &mdash; &ldquo;less than the price of a cup of coffee&rdquo; &mdash; that drew skepticism from FERC Commissioner David LaCerte."
-    },
-    {
       "t": "2026-09-23T14:28:49.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/ferc-options-modernizing-pjm-governance-peskoe/830905/",
       "source": "Utility Dive",
@@ -335,6 +325,16 @@
       "summary": "The department expects the projects will add 23 GW in grid capacity and will come online in &ldquo;record time&rdquo; to improve the existing transmission system."
     },
     {
+      "t": "2026-09-24T15:45:02.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/states-sue-trump-administration-developers-over-offshore-wind-lease-buyout/831279/",
+      "source": "Utility Dive",
+      "title": "States sue Trump administration, developers over offshore wind lease buyouts",
+      "url": "https://www.utilitydive.com/news/states-sue-trump-administration-developers-over-offshore-wind-lease-buyout/831279/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Attorneys general from California and a coalition of Northeastern states accused the federal government of violating several laws and the developers of colluding with the administration."
+    },
+    {
       "t": "2026-09-25T03:20:34.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/aemo-connects-record-9-1gw-of-renewables-and-storage-to-australias-nem-in-fy26-warns-reliability-depends-on-timely-investment/",
       "source": "Energy-Storage.news",
@@ -402,13 +402,13 @@
       "url": "https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The decision affects a 750-MW, mixed technology project in Virginia, which Oklo said would be delayed by at least 14 months if it misses the current interconnection cycle."
+      "summary": "The decision affects a 750-MW, mixed technology project in Virginia, which Oklo said would be delayed by at least 18 months if it misses the current interconnection cycle."
     },
     {
       "t": "2026-09-25T14:13:58.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
       "source": "Utility Dive",
-      "title": "Second federal judge overturns $7B Solar for All cancellation by Trump administration",
+      "title": "Second federal judge overturns $7B Solar for All cancellation",
       "url": "https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
@@ -441,8 +441,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 5,
+      "grid": 28,
+      "policy": 6,
       "capital": 6,
       "technology": 1
     },
@@ -478,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:eafa921a72fb105d9f05772a894c19131c72b24be992b5b3f907d314fef7776f",
-  "envelopeChecksum": "sha256:b9ee33afe3f7aa65b200922b285d58a2afa3d1ac343c58787bb03a025f97d78c"
+  "contentChecksum": "sha256:e42aaa32fcd2618b05f0893504672c4615737d6490c5b22b69d93ef41e65b3da",
+  "envelopeChecksum": "sha256:0829fba9517fd784ce0e7e1b3f5ac036eee31aa7d69156006dcb5ee38badebb3"
 }
