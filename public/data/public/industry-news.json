@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-28T05:31:52.418Z",
+  "fetchedAt": "2026-09-28T14:06:19.227Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-28T05:16:48.000Z",
+    "to": "2026-09-28T13:45:00.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -135,46 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-23T08:21:48.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-victoria-requires-new-data-centres-to-bring-their-own-renewable-energy-and-storage/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s Victoria requires new data centres to bring their own renewable energy and storage",
-      "url": "https://www.energy-storage.news/australias-victoria-requires-new-data-centres-to-bring-their-own-renewable-energy-and-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia's Victoria mandates new data centres match demand with own renewable energy and battery storage under new rules."
-    },
-    {
-      "t": "2026-09-23T10:21:46.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/catl-supply-918mwh-romania-bess-another-500mwh-projects-progress-elsewhere-in-cee/",
-      "source": "Energy-Storage.news",
-      "title": "CATL to supply 918MWh Romania BESS, another 500MWh of projects progress elsewhere in CEE",
-      "url": "https://www.energy-storage.news/catl-supply-918mwh-romania-bess-another-500mwh-projects-progress-elsewhere-in-cee/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A flurry of project completions, financings and supplier deals for large-scale BESS across the Central and Eastern Europe (CEE) region, from Greenvolt, Renovatio & CATL, Eurowind, Renalfa, MOL Group, Tavion, MetaWealth and Enexus & Longi."
-    },
-    {
-      "t": "2026-09-23T10:23:09.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/compressed-air-energy-storage-caes-yet-to-deliver-on-promises-can-a-caes-go-one-step-further/",
-      "source": "Energy-Storage.news",
-      "title": "Compressed air energy storage (CAES): yet to deliver on promises, can A-CAES go one step further?",
-      "url": "https://www.energy-storage.news/compressed-air-energy-storage-caes-yet-to-deliver-on-promises-can-a-caes-go-one-step-further/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Compressed air energy storage (CAES) holds much promise for large-scale, LDES, but has struggled to get off the ground outside of China."
-    },
-    {
-      "t": "2026-09-23T11:08:06.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/uk-regulator-looks-to-cut-down-bess-interconnection-backlog-with-extra-financial-commitment/",
-      "source": "Energy-Storage.news",
-      "title": "UK regulator looks to cut down BESS interconnection backlog with extra financial commitment",
-      "url": "https://www.energy-storage.news/uk-regulator-looks-to-cut-down-bess-interconnection-backlog-with-extra-financial-commitment/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "UK energy industry regulator Ofgem said it is minded to approve the introduction of a financial commitment for BESS in an attempt to reduce the oversupply of the projects awaiting a grid connection."
-    },
-    {
       "t": "2026-09-23T11:38:18.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/gridstor-closes-us220-million-financing-for-400mwh-arizona-bess/",
       "source": "Energy-Storage.news",
@@ -193,26 +153,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Energy-Storage.news speaks with Nathan Picarsic, co-founder of Horizon Advisory, at the 2026 US Battery Asset Management and Solar and Storage Finance Summits in Garden Grove, California."
-    },
-    {
-      "t": "2026-09-23T13:45:55.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-exelon-comed-powerhouse-hillwood-data-center/831127/",
-      "source": "Utility Dive",
-      "title": "FERC rejects ComEd’s cancellation of PowerHouse Hillwood data center contract",
-      "url": "https://www.utilitydive.com/news/ferc-exelon-comed-powerhouse-hillwood-data-center/831127/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A 1.8-GW, $20 billion data center planned by PowerHouse Hillwood was underpinned by a $1 letter of credit &mdash; &ldquo;less than the price of a cup of coffee&rdquo; &mdash; that drew skepticism from FERC Commissioner David LaCerte."
-    },
-    {
-      "t": "2026-09-23T14:28:49.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-options-modernizing-pjm-governance-peskoe/830905/",
-      "source": "Utility Dive",
-      "title": "FERC has options for modernizing PJM’s governance",
-      "url": "https://www.utilitydive.com/news/ferc-options-modernizing-pjm-governance-peskoe/830905/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The commission&rsquo;s jurisdiction over transmission governance allows it to modify filing-rights allocations and adjust the PJM Interconnection&rsquo;s nominating committee, writes Harvard Law&rsquo;s Ari Peskoe."
     },
     {
       "t": "2026-09-24T03:20:07.000Z",
@@ -315,6 +255,16 @@
       "summary": "The department expects the projects will add 23 GW in grid capacity and will come online in &ldquo;record time&rdquo; to improve the existing transmission system."
     },
     {
+      "t": "2026-09-24T15:45:02.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/states-sue-trump-administration-developers-over-offshore-wind-lease-buyout/831279/",
+      "source": "Utility Dive",
+      "title": "States sue Trump administration, developers over offshore wind lease buyouts",
+      "url": "https://www.utilitydive.com/news/states-sue-trump-administration-developers-over-offshore-wind-lease-buyout/831279/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Attorneys general from California and a coalition of Northeastern states accused the federal government of violating several laws and the developers of colluding with the administration."
+    },
+    {
       "t": "2026-09-25T03:20:34.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/aemo-connects-record-9-1gw-of-renewables-and-storage-to-australias-nem-in-fy26-warns-reliability-depends-on-timely-investment/",
       "source": "Energy-Storage.news",
@@ -345,16 +295,6 @@
       "summary": "Recently, US BESS companies Energy Vault and Goshe, SMT Energy and Climate Adaptive Infrastructure, and NeoVolta and SK On have made major deals and secured strategic partnerships."
     },
     {
-      "t": "2026-09-25T12:02:54.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/25/solar-panel-waste-silver-turned-into-catalyst-for-carbon-monoxide-production/",
-      "source": "pv magazine",
-      "title": "Solar panel waste silver turned into catalyst for carbon monoxide production",
-      "url": "https://www.pv-magazine.com/2026/09/25/solar-panel-waste-silver-turned-into-catalyst-for-carbon-monoxide-production/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Korean researchers have recovered high-purity silver from end-of-life silicon solar panels and used it to produce electrocatalysts for converting carbon dioxide into carbon monoxide. The recycled-silver electrode sustained CO production for more than 600 hours, with its rough surface helping to prevent electro…"
-    },
-    {
       "t": "2026-09-25T12:21:32.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-owner-vs-trader-returns-market-saturation-more-northvolt-ma-alt-technologies-differing-fortunes/",
       "source": "Energy-Storage.news",
@@ -372,47 +312,17 @@
       "url": "https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The decision affects a 750-MW, mixed technology project in Virginia, which Oklo said would be delayed by at least 14 months if it misses the current interconnection cycle."
+      "summary": "The decision affects a 750-MW, mixed technology project in Virginia, which Oklo said would be delayed by at least 18 months if it misses the current interconnection cycle."
     },
     {
       "t": "2026-09-25T14:13:58.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
       "source": "Utility Dive",
-      "title": "Second federal judge overturns $7B Solar for All cancellation by Trump administration",
+      "title": "Second federal judge overturns $7B Solar for All cancellation",
       "url": "https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The decision in a suit brought by Harris County, Texas, follows a similar ruling last week. A Harris County judge called it &ldquo;a really important victory for energy resilience.&rdquo;"
-    },
-    {
-      "t": "2026-09-26T07:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/26/free-software-calculates-how-many-solar-modules-fit-on-a-rooftop-from-a-photo/",
-      "source": "pv magazine",
-      "title": "Free software calculates how many solar modules fit on a rooftop from a photo",
-      "url": "https://www.pv-magazine.com/2026/09/26/free-software-calculates-how-many-solar-modules-fit-on-a-rooftop-from-a-photo/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Tegrona has launched free software that uses photographs to calculate how many PV modules can fit on a rooftop. Tegrona Lite corrects image perspective, determines roof dimensions and automatically generates module layouts without requiring CAD tools or on-site measurements. The post Free software calculates how man…"
-    },
-    {
-      "t": "2026-09-26T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/26/anza-expects-at-least-a-40-spike-in-solar-module-prices-after-section-232/",
-      "source": "pv magazine",
-      "title": "Anza expects at least a 40% spike in U.S. solar module prices after Section 232",
-      "url": "https://www.pv-magazine.com/2026/09/26/anza-expects-at-least-a-40-spike-in-solar-module-prices-after-section-232/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The challenge for developers is to move quickly to secure lower costs before the minimum pricing takes effect, with the options being to secure modules already in the U.S., accelerate imports or shift procurement strategies to preserve project economics. The post Anza expects at least a 40% spike in U.S. solar modul…"
-    },
-    {
-      "t": "2026-09-28T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/shedding-light-on-ultraviolet-induced-degradation/",
-      "source": "pv magazine",
-      "title": "Shedding light on ultraviolet-induced degradation",
-      "url": "https://www.pv-magazine.com/2026/09/28/shedding-light-on-ultraviolet-induced-degradation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Recent testing to better understand power degradation during highly accelerated UV exposure indicates that ultraviolet-induced degradation observed in the laboratory is real, partially reversible, and – perhaps most importantly – entirely preventable. Cherif Kedir of the Renewable Energy Test Center (RETC) shares th…"
     },
     {
       "t": "2026-09-28T04:51:58.000Z",
@@ -435,25 +345,155 @@
       "summary": "Two publicly funded pilots have launched in NSW, testing ways to extend the benefits of distributed solar and battery storage to households."
     },
     {
-      "t": "2026-09-28T05:16:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/swelect-launches-hybrid-solar-inverter-range-for-ci-applications/",
-      "source": "pv magazine",
-      "title": "Swelect launches hybrid solar inverter range for C&I applications",
-      "url": "https://www.pv-magazine.com/2026/09/28/swelect-launches-hybrid-solar-inverter-range-for-ci-applications/",
+      "t": "2026-09-28T08:12:10.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/video-how-a-global-ipp-uses-analytics-to-find-and-act-on-hidden-bess-losses/",
+      "source": "Energy-Storage.news",
+      "title": "VIDEO: How a global IPP uses analytics to find and act on hidden BESS losses",
+      "url": "https://www.energy-storage.news/video-how-a-global-ipp-uses-analytics-to-find-and-act-on-hidden-bess-losses/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Swelect Energy Systems has launched its Swess EN+ hybrid solar inverter range for C&I applications, covering 5–50 kW and scalable beyond 50 kW. The system integrates solar, battery storage and grid power, expanding Swelect’s energy portfolio alongside its recently increased 2 GW+ PV module capacity and 10 MWh BESS.…"
+      "summary": "Energy-Storage.news proudly presents our sponsored webinar with PowerUP, into the practical application of battery analytics by global IPP, Neoen."
+    },
+    {
+      "t": "2026-09-28T08:54:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/austria-to-enable-peer-to-peer-electricity-sharing-from-october/",
+      "source": "pv magazine",
+      "title": "Austria to enable peer-to-peer electricity sharing from October",
+      "url": "https://www.pv-magazine.com/2026/09/28/austria-to-enable-peer-to-peer-electricity-sharing-from-october/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Austria will introduce peer-to-peer electricity sharing from Oct. 5, initially allowing participation between metering points served by the same grid operator. Reduced grid charges for peer-to-peer arrangements are expected to take effect from January 2027, with nationwide implementation planned from April 2027. The…"
+    },
+    {
+      "t": "2026-09-28T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/tongwei-launches-tnc-2-0-fullx-g12r-48-rooftop-solar-module-with-24-5-efficiency/",
+      "source": "pv magazine",
+      "title": "Tongwei launches TNC 2.0 FULLX G12R-48 rooftop solar module with 24.5% efficiency",
+      "url": "https://www.pv-magazine.com/2026/09/28/tongwei-launches-tnc-2-0-fullx-g12r-48-rooftop-solar-module-with-24-5-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Unveiled at Solar & Storage Live UK, the new module combines high power output, strong energy yield, and broad adaptability in a compact format, delivering up to 490 W with an efficiency of 24.5%. The post Tongwei launches TNC 2.0 FULLX G12R-48 rooftop solar module with 24.5% efficiency appeared first on pv magazine…"
+    },
+    {
+      "t": "2026-09-28T09:02:18.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/global-solar-additions-hit-690-gw-in-2025/",
+      "source": "pv magazine",
+      "title": "Global solar additions hit 690 GW in 2025",
+      "url": "https://www.pv-magazine.com/2026/09/28/global-solar-additions-hit-690-gw-in-2025/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Latest report from IEA-PVPS says the world's cumulative solar capacity reached 2.96 TWh by the end of last year, a total theoretically capable of generating around 12% of global electricity consumption. The post Global solar additions hit 690 GW in 2025 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-28T09:03:00.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/urgent-need-for-cybersecurity-overhaul-as-bess-deployment-accelerates-energy-storage-europe-says/",
+      "source": "Energy-Storage.news",
+      "title": "Urgent need for cybersecurity overhaul as BESS deployment accelerates, Energy Storage Europe says",
+      "url": "https://www.energy-storage.news/urgent-need-for-cybersecurity-overhaul-as-bess-deployment-accelerates-energy-storage-europe-says/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Trade body Energy Storage Europe has called for significant reforms to the European Union's (EU’s) cybersecurity framework for battery energy storage systems (BESS)."
+    },
+    {
+      "t": "2026-09-28T10:20:07.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/key-takeaways-from-solar-storage-live-uk-birmingham/",
+      "source": "pv magazine",
+      "title": "Key takeaways from Solar & Storage Live UK, Birmingham",
+      "url": "https://www.pv-magazine.com/2026/09/28/key-takeaways-from-solar-storage-live-uk-birmingham/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "At Solar & Storage Live UK, industry leaders highlighted financing, skills shortages and community engagement as key challenges for the country’s growing pipeline of large-scale solar projects. The event also showcased opportunities in plug-in solar and residential battery storage, supported by policy measures and r…"
+    },
+    {
+      "t": "2026-09-28T10:32:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/european-residential-heat-pump-sales-up-11-in-h1/",
+      "source": "pv magazine",
+      "title": "European residential heat pump sales up 11% in H1",
+      "url": "https://www.pv-magazine.com/2026/09/28/european-residential-heat-pump-sales-up-11-in-h1/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "European Heat Pump Association says Strait of Hormuz crisis and the European Commission’s plan to encourage EU governments to lower electricity tax have helped drive up residential heat pump sales this year. The post European residential heat pump sales up 11% in H1 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-28T10:41:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/italy-raises-macse-energy-storage-auction-premium-cap-from-e22000-to-e27000-mwh/",
+      "source": "pv magazine",
+      "title": "Italy raises Macse energy storage auction premium cap from €22,000 to €27,000/MWh",
+      "url": "https://www.pv-magazine.com/2026/09/28/italy-raises-macse-energy-storage-auction-premium-cap-from-e22000-to-e27000-mwh/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Italy’s energy regulator, Arera, has raised the MACSE auction premium cap to €27,000/MWh per year, up from €22,000/MWh proposed in July, mainly due to higher benchmark investment costs. The new cap affects project economics and guarantees, while developers must weigh the 15-year fixed premium against potential merch…"
+    },
+    {
+      "t": "2026-09-28T10:56:06.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/rising-air-injection-rates-boost-compressed-air-energy-storage-efficiency/",
+      "source": "pv magazine",
+      "title": "Rising air injection rates boost compressed air energy storage efficiency",
+      "url": "https://www.pv-magazine.com/2026/09/28/rising-air-injection-rates-boost-compressed-air-energy-storage-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese researchers have analyzed how different air injection strategies affect energy storage rates and heat losses in compressed air energy storage caverns. They found that a linearly increasing air flow rate can raise the energy storage rate from 85.5% to 87.5% compared with constant-rate injection. The post Risi…"
+    },
+    {
+      "t": "2026-09-28T11:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/eu-opens-infringement-cases-against-18-states-over-energy-sharing-rules/",
+      "source": "pv magazine",
+      "title": "EU opens infringement cases against 18 states over energy-sharing rules",
+      "url": "https://www.pv-magazine.com/2026/09/28/eu-opens-infringement-cases-against-18-states-over-energy-sharing-rules/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Two-thirds of EU member states face infringement action for failing to enact a new right to share renewable electricity over the grid. The post EU opens infringement cases against 18 states over energy-sharing rules appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-28T11:42:12.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/lg-energy-solution-partners-with-b2u-storage-for-second-life-us-bess-projects/",
+      "source": "Energy-Storage.news",
+      "title": "LG Energy Solution partners with B2U Storage for second life US BESS projects",
+      "url": "https://www.energy-storage.news/lg-energy-solution-partners-with-b2u-storage-for-second-life-us-bess-projects/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Second life energy storage firm B2U Storage Solutions has announced a strategic partnership with South Korean battery giant LG Energy Solution (LG ES)."
+    },
+    {
+      "t": "2026-09-28T12:30:23.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/commerce-restricts-pre-tariff-solar-stockpiling-ahead-of-december-4-deadline/",
+      "source": "pv magazine",
+      "title": "U.S. government restricts pre-tariff solar stockpiling ahead of December 4 deadline",
+      "url": "https://www.pv-magazine.com/2026/09/28/commerce-restricts-pre-tariff-solar-stockpiling-ahead-of-december-4-deadline/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Commerce capped import volumes and threatened to revoke broker licenses to prevent surge shipments aiming to evade Section 232 tariffs. The post U.S. government restricts pre-tariff solar stockpiling ahead of December 4 deadline appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-28T13:19:34.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/icymi-last-weeks-biggest-energy-storage-industry-stories-in-our-new-monday-recap/",
+      "source": "Energy-Storage.news",
+      "title": "ICYMI: Last week’s biggest energy storage industry stories in our new Monday recap",
+      "url": "https://www.energy-storage.news/icymi-last-weeks-biggest-energy-storage-industry-stories-in-our-new-monday-recap/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Welcome to the first edition of In Case You Missed It (ICYMI), a recap of last week’s biggest news stories in energy storage."
+    },
+    {
+      "t": "2026-09-28T13:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/dubai-refinances-950-mw-noor-energy-1-csp-pv-plant-at-2-7-billion/",
+      "source": "pv magazine",
+      "title": "Dubai refinances 950 MW Noor Energy 1 CSP-PV plant at $2.7 billion",
+      "url": "https://www.pv-magazine.com/2026/09/28/dubai-refinances-950-mw-noor-energy-1-csp-pv-plant-at-2-7-billion/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The Dubai Electricity and Water Authority (DEWA) has refinanced the 950 MW Noor Energy 1 concentrated solar power (CSP) and PV plant with $2.7 billion in new debt, without disclosing lenders or terms. The post Dubai refinances 950 MW Noor Energy 1 CSP-PV plant at $2.7 billion appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 6,
-      "capital": 6,
+      "grid": 26,
+      "policy": 12,
+      "capital": 7,
       "technology": 1
     },
     "sourceStatus": [
@@ -473,13 +513,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 5
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 5
+        "items": 10
       }
     ]
   },
@@ -488,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:6ee8933043d6859c4ff4f9dfb33bef4a0e43306947fc54243a2fa0da957466fb",
-  "envelopeChecksum": "sha256:97fa539a6f6e03bffc67ef2a4037a6eeccc42e3921ac5c00d2e2d38a19053e3d"
+  "contentChecksum": "sha256:883d4678245e12d13a2c0b586ffc7a3e75d6c7676377fcca984e5b7a2881762d",
+  "envelopeChecksum": "sha256:3645026b3193a885c85e0322aa2ebbc6a7cc7355d6fa38d3a67dbdea1c64bf27"
 }
