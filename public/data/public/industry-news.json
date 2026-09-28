@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-28T14:06:19.227Z",
+  "fetchedAt": "2026-09-28T23:20:32.041Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-28T13:45:00.000Z",
+    "to": "2026-09-28T15:47:54.000Z",
     "resolution": "event",
-    "points": 46
+    "points": 47
   },
   "units": {
     "record": "published article metadata"
@@ -352,7 +352,7 @@
       "url": "https://www.energy-storage.news/video-how-a-global-ipp-uses-analytics-to-find-and-act-on-hidden-bess-losses/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news proudly presents our sponsored webinar with PowerUP, into the practical application of battery analytics by global IPP, Neoen."
+      "summary": "Energy-Storage.news proudly presents our sponsored webinar with PowerUp, into the practical application of battery analytics by global IPP, Neoen."
     },
     {
       "t": "2026-09-28T08:54:48.000Z",
@@ -483,15 +483,25 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "The Dubai Electricity and Water Authority (DEWA) has refinanced the 950 MW Noor Energy 1 concentrated solar power (CSP) and PV plant with $2.7 billion in new debt, without disclosing lenders or terms. The post Dubai refinances 950 MW Noor Energy 1 CSP-PV plant at $2.7 billion appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-28T15:47:54.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/data-centers-backup-power-contributing-to-health-risks-report-says/831507/",
+      "source": "Utility Dive",
+      "title": "Data center backup power contributes to health risks: report",
+      "url": "https://www.utilitydive.com/news/data-centers-backup-power-contributing-to-health-risks-report-says/831507/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Federal regulatory actions are allowing on-site generators at data centers and other power plants to release dangerous emissions with fewer checks, according to the Environmental Protection Network."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 46,
+    "items": 47,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 26,
+      "grid": 27,
       "policy": 12,
       "capital": 7,
       "technology": 1
@@ -513,7 +523,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 5
+        "items": 6
       },
       {
         "source": "pv magazine",
@@ -528,6 +538,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:883d4678245e12d13a2c0b586ffc7a3e75d6c7676377fcca984e5b7a2881762d",
-  "envelopeChecksum": "sha256:3645026b3193a885c85e0322aa2ebbc6a7cc7355d6fa38d3a67dbdea1c64bf27"
+  "contentChecksum": "sha256:f34ea22a0acfc10ffa2d98ac111ba40ded48357e10609a812f7a060d68b1b862",
+  "envelopeChecksum": "sha256:28ab16dcd8506fd0dd460a8d6f8613f338dfc597fae354c94523a53c03f9c628"
 }
