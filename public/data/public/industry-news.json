@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-28T23:20:32.041Z",
+  "fetchedAt": "2026-09-29T05:49:57.512Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-28T15:47:54.000Z",
+    "to": "2026-09-29T05:31:43.000Z",
     "resolution": "event",
     "points": 47
   },
@@ -133,36 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-23T11:38:18.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/gridstor-closes-us220-million-financing-for-400mwh-arizona-bess/",
-      "source": "Energy-Storage.news",
-      "title": "GridStor closes US$220 million financing for 400MWh Arizona BESS",
-      "url": "https://www.energy-storage.news/gridstor-closes-us220-million-financing-for-400mwh-arizona-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "GridStor, a US-based developer and operator of grid-scale battery energy storage systems (BESS) has closed a US$220 million financing agreement for the 100MW/400MWh White Tank project in Arizona, US."
-    },
-    {
-      "t": "2026-09-23T11:39:26.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/how-transferability-and-us-china-tensions-are-transforming-us-bess-and-renewables-financing/",
-      "source": "Energy-Storage.news",
-      "title": "How transferability and US-China tensions are transforming US BESS and renewables financing",
-      "url": "https://www.energy-storage.news/how-transferability-and-us-china-tensions-are-transforming-us-bess-and-renewables-financing/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news speaks with Nathan Picarsic, co-founder of Horizon Advisory, at the 2026 US Battery Asset Management and Solar and Storage Finance Summits in Garden Grove, California."
-    },
-    {
-      "t": "2026-09-24T03:20:07.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/developers-valent-akaysha-advance-550mw-of-nem-connected-bess-in-victoria-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Developers Valent, Akaysha advance 550MW of NEM-connected BESS in Victoria, Australia",
-      "url": "https://www.energy-storage.news/developers-valent-akaysha-advance-550mw-of-nem-connected-bess-in-victoria-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Two Victorian battery storage projects have reached new construction and commissioning milestones this week, both connecting to the National Electricity Market (NEM) in Australia."
     },
     {
       "t": "2026-09-24T03:48:26.000Z",
@@ -355,36 +325,6 @@
       "summary": "Energy-Storage.news proudly presents our sponsored webinar with PowerUp, into the practical application of battery analytics by global IPP, Neoen."
     },
     {
-      "t": "2026-09-28T08:54:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/austria-to-enable-peer-to-peer-electricity-sharing-from-october/",
-      "source": "pv magazine",
-      "title": "Austria to enable peer-to-peer electricity sharing from October",
-      "url": "https://www.pv-magazine.com/2026/09/28/austria-to-enable-peer-to-peer-electricity-sharing-from-october/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Austria will introduce peer-to-peer electricity sharing from Oct. 5, initially allowing participation between metering points served by the same grid operator. Reduced grid charges for peer-to-peer arrangements are expected to take effect from January 2027, with nationwide implementation planned from April 2027. The…"
-    },
-    {
-      "t": "2026-09-28T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/tongwei-launches-tnc-2-0-fullx-g12r-48-rooftop-solar-module-with-24-5-efficiency/",
-      "source": "pv magazine",
-      "title": "Tongwei launches TNC 2.0 FULLX G12R-48 rooftop solar module with 24.5% efficiency",
-      "url": "https://www.pv-magazine.com/2026/09/28/tongwei-launches-tnc-2-0-fullx-g12r-48-rooftop-solar-module-with-24-5-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Unveiled at Solar & Storage Live UK, the new module combines high power output, strong energy yield, and broad adaptability in a compact format, delivering up to 490 W with an efficiency of 24.5%. The post Tongwei launches TNC 2.0 FULLX G12R-48 rooftop solar module with 24.5% efficiency appeared first on pv magazine…"
-    },
-    {
-      "t": "2026-09-28T09:02:18.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/global-solar-additions-hit-690-gw-in-2025/",
-      "source": "pv magazine",
-      "title": "Global solar additions hit 690 GW in 2025",
-      "url": "https://www.pv-magazine.com/2026/09/28/global-solar-additions-hit-690-gw-in-2025/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Latest report from IEA-PVPS says the world's cumulative solar capacity reached 2.96 TWh by the end of last year, a total theoretically capable of generating around 12% of global electricity consumption. The post Global solar additions hit 690 GW in 2025 appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-09-28T09:03:00.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/urgent-need-for-cybersecurity-overhaul-as-bess-deployment-accelerates-energy-storage-europe-says/",
       "source": "Energy-Storage.news",
@@ -393,36 +333,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Trade body Energy Storage Europe has called for significant reforms to the European Union's (EU’s) cybersecurity framework for battery energy storage systems (BESS)."
-    },
-    {
-      "t": "2026-09-28T10:20:07.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/key-takeaways-from-solar-storage-live-uk-birmingham/",
-      "source": "pv magazine",
-      "title": "Key takeaways from Solar & Storage Live UK, Birmingham",
-      "url": "https://www.pv-magazine.com/2026/09/28/key-takeaways-from-solar-storage-live-uk-birmingham/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "At Solar & Storage Live UK, industry leaders highlighted financing, skills shortages and community engagement as key challenges for the country’s growing pipeline of large-scale solar projects. The event also showcased opportunities in plug-in solar and residential battery storage, supported by policy measures and r…"
-    },
-    {
-      "t": "2026-09-28T10:32:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/european-residential-heat-pump-sales-up-11-in-h1/",
-      "source": "pv magazine",
-      "title": "European residential heat pump sales up 11% in H1",
-      "url": "https://www.pv-magazine.com/2026/09/28/european-residential-heat-pump-sales-up-11-in-h1/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "European Heat Pump Association says Strait of Hormuz crisis and the European Commission’s plan to encourage EU governments to lower electricity tax have helped drive up residential heat pump sales this year. The post European residential heat pump sales up 11% in H1 appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-28T10:41:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/28/italy-raises-macse-energy-storage-auction-premium-cap-from-e22000-to-e27000-mwh/",
-      "source": "pv magazine",
-      "title": "Italy raises Macse energy storage auction premium cap from €22,000 to €27,000/MWh",
-      "url": "https://www.pv-magazine.com/2026/09/28/italy-raises-macse-energy-storage-auction-premium-cap-from-e22000-to-e27000-mwh/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Italy’s energy regulator, Arera, has raised the MACSE auction premium cap to €27,000/MWh per year, up from €22,000/MWh proposed in July, mainly due to higher benchmark investment costs. The new cap affects project economics and guarantees, while developers must weigh the 15-year fixed premium against potential merch…"
     },
     {
       "t": "2026-09-28T10:56:06.000Z",
@@ -493,6 +403,96 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Federal regulatory actions are allowing on-site generators at data centers and other power plants to release dangerous emissions with fewer checks, according to the Environmental Protection Network."
+    },
+    {
+      "t": "2026-09-29T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/peeling-back-the-layers/",
+      "source": "pv magazine",
+      "title": "Peeling back the layers",
+      "url": "https://www.pv-magazine.com/2026/09/29/peeling-back-the-layers/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "As part of a PV module’s construction, front and rear encapsulants are used to bond solar cells to the front (typically glass) and rear (glass or polymer backsheet) surfaces. When these components degrade, delamination or bubbles can occur, opening new channels for moisture and oxygen ingress, drastically accelerati…"
+    },
+    {
+      "t": "2026-09-29T04:54:01.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/gamuda-and-yanara-sign-epc-contract-for-300mw-solar-plus-storage-project-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Gamuda and Yanara sign EPC contract for 300MW solar-plus-storage project in Australia",
+      "url": "https://www.energy-storage.news/gamuda-and-yanara-sign-epc-contract-for-300mw-solar-plus-storage-project-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Gamuda Australia and Yanara have signed the EPC contract for Stage 1 of the Mortlake Energy Hub (MEH-1) in western Victoria."
+    },
+    {
+      "t": "2026-09-29T05:00:00.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/indias-cerc-proposes-new-grid-code-rules-for-standalone-bess/",
+      "source": "Energy-Storage.news",
+      "title": "India’s CERC proposes new Grid Code rules for standalone BESS",
+      "url": "https://www.energy-storage.news/indias-cerc-proposes-new-grid-code-rules-for-standalone-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India’s Central Electricity Regulatory Commission (CERC) has proposed new grid-operating requirements for standalone energy storage systems (ESS), including a minimum 50MW aggregate trial run, staged commissioning provisions for larger projects and primary frequency-response requirements for qualifying storage conne…"
+    },
+    {
+      "t": "2026-09-29T05:05:24.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/twenty-two-u-s-solar-pv-manufacturers-included-in-first-domestic-ratings-pyramid/",
+      "source": "pv magazine",
+      "title": "Twenty-two U.S. solar PV manufacturers included in first domestic Ratings Pyramid",
+      "url": "https://www.pv-magazine.com/2026/09/29/twenty-two-u-s-solar-pv-manufacturers-included-in-first-domestic-ratings-pyramid/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "A new analysis of solar PV manufacturers in the United States by Terawatt PV Research provides the first detailed analysis of the current U.S. solar PV manufacturing landscape, with each company analysed across production, capital expenditure, technology, global activities/ownership and U.S.-specific strategy. The p…"
+    },
+    {
+      "t": "2026-09-29T05:09:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/rooftop-solar-home-battery-installs-hit-record-highs/",
+      "source": "pv magazine",
+      "title": "Rooftop solar, home battery installs hit record highs in Australia",
+      "url": "https://www.pv-magazine.com/2026/09/29/rooftop-solar-home-battery-installs-hit-record-highs/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australians are installing rooftop solar and batteries at record scale with the latest data revealing households added 1,894 MW of new PV generation and 8,691 MWh of energy storage capacity in the first half of 2026. The post Rooftop solar, home battery installs hit record highs in Australia appeared first on pv mag…"
+    },
+    {
+      "t": "2026-09-29T05:13:14.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/india-likely-to-commission-45-50-gwh-of-bess-capacity-in-fiscals-2027-and-2028-crisil/",
+      "source": "pv magazine",
+      "title": "India likely to commission 45-50 GWh of BESS across fiscals 2027 and 2028",
+      "url": "https://www.pv-magazine.com/2026/09/29/india-likely-to-commission-45-50-gwh-of-bess-capacity-in-fiscals-2027-and-2028-crisil/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India is likely to commission 45-50 GWh of BESS capacity across fiscals 2027 and 2028, up from around 1 GWh at the end of fiscal 2026. Crisil Ratings says 8-9 GWh of planned capacity faces a higher risk of delays due to weak project returns and limited developer experience. The post India likely to commission 45-50…"
+    },
+    {
+      "t": "2026-09-29T05:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/ukraines-solar-auction-undersubscribed-solar-plus-storage-auction-oversubscribed/",
+      "source": "pv magazine",
+      "title": "Ukraine’s solar auction undersubscribed, solar-plus-storage auction oversubscribed",
+      "url": "https://www.pv-magazine.com/2026/09/29/ukraines-solar-auction-undersubscribed-solar-plus-storage-auction-oversubscribed/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Preliminary results from Ukraine’s recent 50 MW solar auction reveal three bids totaling 38.99 MW, while its 100 MW solar-storage auction received 26 bids amounting to 385.9 MW. The post Ukraine’s solar auction undersubscribed, solar-plus-storage auction oversubscribed appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-29T05:30:38.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/perovskite-silicon-tandem-solar-cell-built-on-textured-silicon-reaches-30-77-efficiency/",
+      "source": "pv magazine",
+      "title": "Perovskite-silicon tandem solar cell built on textured silicon reaches 30.77% efficiency",
+      "url": "https://www.pv-magazine.com/2026/09/29/perovskite-silicon-tandem-solar-cell-built-on-textured-silicon-reaches-30-77-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese researchers have developed a healing treatment to improve perovskite film quality on industrial textured silicon for perovskite-silicon tandem solar cells. The approach enabled a certified tandem efficiency of 30.77% while improving device stability. The post Perovskite-silicon tandem solar cell built on tex…"
+    },
+    {
+      "t": "2026-09-29T05:31:43.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/pace-of-regulatory-change-predictable-market-rules-and-long-term-flexibility-roadmaps-key-to-cee-market-ipp-says/",
+      "source": "Energy-Storage.news",
+      "title": "Pace of regulatory change, predictable market rules and long-term flexibility roadmaps key to CEE market, IPP says",
+      "url": "https://www.energy-storage.news/pace-of-regulatory-change-predictable-market-rules-and-long-term-flexibility-roadmaps-key-to-cee-market-ipp-says/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Olga Sypula, VP and regional director for Central Europe at developer and IPP European Energy, shares her views on the key trends, opportunities and challenges across the Central and Eastern Europe (CEE) energy storage market."
     }
   ],
   "derived": {
@@ -502,8 +502,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 27,
-      "policy": 12,
-      "capital": 7,
+      "policy": 10,
+      "capital": 9,
       "technology": 1
     },
     "sourceStatus": [
@@ -538,6 +538,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f34ea22a0acfc10ffa2d98ac111ba40ded48357e10609a812f7a060d68b1b862",
-  "envelopeChecksum": "sha256:28ab16dcd8506fd0dd460a8d6f8613f338dfc597fae354c94523a53c03f9c628"
+  "contentChecksum": "sha256:5ad2b5830d3897398f6366ef8e1464d61be72058fbb03d3359549d3bbe2eed22",
+  "envelopeChecksum": "sha256:405391022483d3c4f108dc3be24267d05edc4cc4b4be436cead050d35059c843"
 }
