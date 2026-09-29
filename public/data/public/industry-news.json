@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-29T13:01:27.712Z",
+  "fetchedAt": "2026-09-29T22:21:17.224Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-29T12:21:45.000Z",
+    "to": "2026-09-29T16:00:00.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -165,36 +165,6 @@
       "summary": "We recently caught up with Georg Gallmetzer, managing director of German BESS platform Eco Stor, about the firm’s role in formulating flexible connection agreements (FCAs) and how this was intimately tied to the debate on grid fees."
     },
     {
-      "t": "2026-09-24T15:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/community-solar-energy-storage-der-tax-credits/830117/",
-      "source": "Utility Dive",
-      "title": "On clean energy, bigger is not always better",
-      "url": "https://www.utilitydive.com/news/community-solar-energy-storage-der-tax-credits/830117/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "When Congress revisits clean-energy tax policy, lawmakers should restore incentives for locally driven solar and storage projects,&nbsp;writes&nbsp;Edward Yim at Lawyers for Good Government."
-    },
-    {
-      "t": "2026-09-24T15:06:57.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/doe-advanced-transmission-projects-spark-funding/831259/",
-      "source": "Utility Dive",
-      "title": "Advanced transmission projects get $1.9B in DOE funding",
-      "url": "https://www.utilitydive.com/news/doe-advanced-transmission-projects-spark-funding/831259/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The department expects the projects will add 23 GW in grid capacity and will come online in &ldquo;record time&rdquo; to improve the existing transmission system."
-    },
-    {
-      "t": "2026-09-24T15:45:02.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/states-sue-trump-administration-developers-over-offshore-wind-lease-buyout/831279/",
-      "source": "Utility Dive",
-      "title": "States sue Trump administration, developers over offshore wind lease buyouts",
-      "url": "https://www.utilitydive.com/news/states-sue-trump-administration-developers-over-offshore-wind-lease-buyout/831279/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Attorneys general from California and a coalition of Northeastern states accused the federal government of violating several laws and the developers of colluding with the administration."
-    },
-    {
       "t": "2026-09-25T03:20:34.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/aemo-connects-record-9-1gw-of-renewables-and-storage-to-australias-nem-in-fy26-warns-reliability-depends-on-timely-investment/",
       "source": "Energy-Storage.news",
@@ -305,6 +275,16 @@
       "summary": "Second life energy storage firm B2U Storage Solutions has announced a strategic partnership with South Korean battery giant LG Energy Solution (LG ES)."
     },
     {
+      "t": "2026-09-28T12:29:39.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/nyserda-taps-950-mw-lithium-batteries-700-mw-renewables/831455/",
+      "source": "Utility Dive",
+      "title": "NYSERDA taps 950 MW lithium batteries, 700 MW renewables",
+      "url": "https://www.utilitydive.com/news/nyserda-taps-950-mw-lithium-batteries-700-mw-renewables/831455/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Lithium batteries and solar, wind and hydroelectric renewable generation were selected in the state&rsquo;s first bulk energy storage procurement and its 2025 Tier 1 Renewable Energy Standard solicitation."
+    },
+    {
       "t": "2026-09-28T13:19:34.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/icymi-last-weeks-biggest-energy-storage-industry-stories-in-our-new-monday-recap/",
       "source": "Energy-Storage.news",
@@ -353,26 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Olga Sypula, VP and regional director for Central Europe at developer and IPP European Energy, shares her views on the key trends, opportunities and challenges across the Central and Eastern Europe (CEE) energy storage market."
-    },
-    {
-      "t": "2026-09-29T07:31:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/greece-can-install-8-6-gw-of-batteries-by-2030/",
-      "source": "pv magazine",
-      "title": "Greece can install 8.6 GW of batteries by 2030",
-      "url": "https://www.pv-magazine.com/2026/09/29/greece-can-install-8-6-gw-of-batteries-by-2030/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Greece’s solar association, HELAPCO, says the country could install 8.6 GW of battery storage by 2030. Aurora Energy Research, a global consultancy with an office in Greece, offers a more conservative outlook, forecasting up to 5 GW by the end of the decade. pv magazine examines the key segments of the Greek battery…"
-    },
-    {
-      "t": "2026-09-29T08:35:41.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/scientists-propose-solar-cell-taxonomy-based-on-absorber-integration/",
-      "source": "pv magazine",
-      "title": "Scientists propose solar cell taxonomy based on absorber integration",
-      "url": "https://www.pv-magazine.com/2026/09/29/scientists-propose-solar-cell-taxonomy-based-on-absorber-integration/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in Spain have proposed a new photovoltaic taxonomy that replaces the conventional generation-based approach with a classification based on absorber integration and dominant physical mechanisms. The framework divides solar technologies into four groups—wafer-based, thin-film, epitaxial III–V, and sensitiz…"
     },
     {
       "t": "2026-09-29T08:36:19.000Z",
@@ -473,6 +433,46 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Latest analysis from Wood Mackenzie says growth in Sub-Saharan Africa’s off-grid market will be led by Nigeria, the Democratic Republic of the Congo and Kenya, while financing installations stands as the biggest barrier to deployment. The post Sub-Saharan Africa’s off-grid solar market to grow 450% by 2035 appeared…"
+    },
+    {
+      "t": "2026-09-29T13:37:36.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/ja-expands-ci-battery-range-with-hybrid-and-updated-ac-coupled-systems/",
+      "source": "pv magazine",
+      "title": "JA expands C&I battery range with hybrid and updated AC-coupled systems",
+      "url": "https://www.pv-magazine.com/2026/09/29/ja-expands-ci-battery-range-with-hybrid-and-updated-ac-coupled-systems/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "JA has expanded its European C&I battery storage portfolio with JAPlanet Fusion, a 125 kW/261 kWh DC-coupled solar-storage system with integrated rapid backup, and the upgraded AC-coupled JAPlanet 2.0. Both systems add enhanced safety, liquid cooling and backup capabilities, with European pre-orders opening in the s…"
+    },
+    {
+      "t": "2026-09-29T13:54:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/new-85-w-solar-shingle-adds-low-profile-power-to-roofs/",
+      "source": "pv magazine",
+      "title": "New 85 W solar shingle adds low-profile power to roofs",
+      "url": "https://www.pv-magazine.com/2026/09/29/new-85-w-solar-shingle-adds-low-profile-power-to-roofs/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "CertainTeed’s solar roof installs directly into asphalt roof decks, pairing high-output BIPV shingles with a specialized Class A fire barrier underlayment. The post New 85 W solar shingle adds low-profile power to roofs appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-29T15:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/publicly-owned-company-gb-grid-announced-in-uk-connections-policy-overhaul/",
+      "source": "pv magazine",
+      "title": "Publicly owned company GB Grid announced in UK connections policy overhaul",
+      "url": "https://www.pv-magazine.com/2026/09/29/publicly-owned-company-gb-grid-announced-in-uk-connections-policy-overhaul/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "New state-owned company will compete with private sector network operators. Self-build reforms allowing developers to build their own connections in some cases also planned, following success of similar policy in Ireland. Competitive tendering for transmission projects to be brought forward. The post Publicly owned…"
+    },
+    {
+      "t": "2026-09-29T16:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
+      "source": "Utility Dive",
+      "title": "The data center boom continues apace, but projects face mounting obstacles",
+      "url": "https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Shortages of skilled labor and equipment, as well as local opposition, are threatening even high profile projects backed by big tech companies. Developers are responding by embracing flexibility and alternative technologies&nbsp;once considered too unwieldy."
     }
   ],
   "derived": {
@@ -481,10 +481,10 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 28,
-      "policy": 9,
-      "capital": 7,
-      "technology": 1
+      "grid": 29,
+      "policy": 8,
+      "capital": 6,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -503,13 +503,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 5
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:2a05152758019a35414d56a197e48658f9c4ab864a24d569edbe4a2bc48a625f",
-  "envelopeChecksum": "sha256:19e84a6fb0b35222c76050a8a9ad1db4b819d0342214df0ba153b78bd1812b73"
+  "contentChecksum": "sha256:425bd9a54c4b5942cfd789dbf90f397643d010f486d93061cc747f414dacf06b",
+  "envelopeChecksum": "sha256:64ce760ad6e355ef026809d3bf787cd911c3cce1938fa31881d6da522a8bcc02"
 }
