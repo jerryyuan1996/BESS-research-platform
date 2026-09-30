@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-29T22:21:17.224Z",
+  "fetchedAt": "2026-09-30T05:39:57.908Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-29T16:00:00.000Z",
+    "to": "2026-09-30T05:35:32.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -135,56 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-24T10:56:33.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/nyserda-picks-eight-projects-for-new-york-utility-scale-energy-storage-programme/",
-      "source": "Energy-Storage.news",
-      "title": "NYSERDA picks eight projects for New York utility-scale energy storage programme",
-      "url": "https://www.energy-storage.news/nyserda-picks-eight-projects-for-new-york-utility-scale-energy-storage-programme/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Results are in for New York’s first solicitations for large-scale energy storage resources, with 950MW of bids selected by NYSERDA."
-    },
-    {
-      "t": "2026-09-24T12:08:46.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/data-centre-buildout-uplifting-us-bess-market-outlook-wood-mackenzie-says/",
-      "source": "Energy-Storage.news",
-      "title": "Data centre buildout uplifting US BESS market outlook, Wood Mackenzie says",
-      "url": "https://www.energy-storage.news/data-centre-buildout-uplifting-us-bess-market-outlook-wood-mackenzie-says/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Market research firm Wood Mackenzie stated that data centre buildout is uplifting the US battery energy storage system (BESS) outlook across all segments."
-    },
-    {
-      "t": "2026-09-24T13:01:50.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/fcas-convinced-regulators-to-compromise-on-grid-fees-in-germany-eco-stors-georg-gallmetzer-on-cementing-the-industrys-future/",
-      "source": "Energy-Storage.news",
-      "title": "‘FCAs convinced regulators to compromise on grid fees in Germany’: Eco Stor’s Georg Gallmetzer on cementing the industry’s future",
-      "url": "https://www.energy-storage.news/fcas-convinced-regulators-to-compromise-on-grid-fees-in-germany-eco-stors-georg-gallmetzer-on-cementing-the-industrys-future/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "We recently caught up with Georg Gallmetzer, managing director of German BESS platform Eco Stor, about the firm’s role in formulating flexible connection agreements (FCAs) and how this was intimately tied to the debate on grid fees."
-    },
-    {
-      "t": "2026-09-25T03:20:34.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/aemo-connects-record-9-1gw-of-renewables-and-storage-to-australias-nem-in-fy26-warns-reliability-depends-on-timely-investment/",
-      "source": "Energy-Storage.news",
-      "title": "AEMO connects record 9.1GW of renewables and storage to Australia’s NEM in FY26, warns reliability depends on timely investment",
-      "url": "https://www.energy-storage.news/aemo-connects-record-9-1gw-of-renewables-and-storage-to-australias-nem-in-fy26-warns-reliability-depends-on-timely-investment/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "AEMO has said that a record 9.1GW of new renewable energy and storage capacity connected to the National Electricity Market (NEM) in FY26."
-    },
-    {
-      "t": "2026-09-25T03:22:16.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/esr-to-acquire-aquila-clean-energy-apac-in-asia-pacific-renewables-and-energy-storage-consolidation/",
-      "source": "Energy-Storage.news",
-      "title": "ESR to acquire Aquila Clean Energy APAC in Asia-Pacific renewables and energy storage consolidation",
-      "url": "https://www.energy-storage.news/esr-to-acquire-aquila-clean-energy-apac-in-asia-pacific-renewables-and-energy-storage-consolidation/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "ESR, a Singapore-headquartered real asset owner and manager focused on logistics real estate and data centres, has signed an agreement to acquire 100% of Aquila Clean Energy APAC."
-    },
-    {
       "t": "2026-09-25T11:04:59.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/us-roundup-bess-portfolio-deals-investment-and-partnerships-for-energy-vault-smt-energy-neovolta-and-sk-on/",
       "source": "Energy-Storage.news",
@@ -203,26 +153,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Another roundup of user-posted hot takes and analysis from the energy storage industry recently."
-    },
-    {
-      "t": "2026-09-25T13:46:29.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
-      "source": "Utility Dive",
-      "title": "FERC rejects Oklo complaint seeking to reinstate project to PJM’s interconnection study cycle",
-      "url": "https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The decision affects a 750-MW, mixed technology project in Virginia, which Oklo said would be delayed by at least 18 months if it misses the current interconnection cycle."
-    },
-    {
-      "t": "2026-09-25T14:13:58.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
-      "source": "Utility Dive",
-      "title": "Second federal judge overturns $7B Solar for All cancellation",
-      "url": "https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The decision in a suit brought by Harris County, Texas, follows a similar ruling last week. A Harris County judge called it &ldquo;a really important victory for energy resilience.&rdquo;"
     },
     {
       "t": "2026-09-28T04:51:58.000Z",
@@ -355,36 +285,6 @@
       "summary": "There is no shortage of capital to invest, but energy storage developers in the Middle East face familiar questions as the market takes shape."
     },
     {
-      "t": "2026-09-29T08:55:06.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/charity-appeal-sends-solar-equipment-to-flood-affected-nepal/",
-      "source": "pv magazine",
-      "title": "Charity appeal sends solar equipment to flood-affected Nepal",
-      "url": "https://www.pv-magazine.com/2026/09/29/charity-appeal-sends-solar-equipment-to-flood-affected-nepal/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The first batch of solar equipment sent to Nepal under an ongoing fundraiser following last month's flash floods is expected to provide emergency solar power to around 500 households. The post Charity appeal sends solar equipment to flood-affected Nepal appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-29T09:15:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/the-case-for-vertical-bipv/",
-      "source": "pv magazine",
-      "title": "The case for vertical BIPV",
-      "url": "https://www.pv-magazine.com/2026/09/29/the-case-for-vertical-bipv/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A major IEA PVPS Task 15 study finds that vertical BIPV façades can complement rooftop solar with minimal yield penalties, smoothing generation across the day while offering greater design flexibility. Across 357 configurations in 44 cities, the research also shows BIPV economics improve substantially when avoided b…"
-    },
-    {
-      "t": "2026-09-29T09:28:57.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/abb-returns-to-utility-scale-market-with-gamesa-electric-integration/",
-      "source": "pv magazine",
-      "title": "ABB returns to utility-scale market with Gamesa Electric integration",
-      "url": "https://www.pv-magazine.com/2026/09/29/abb-returns-to-utility-scale-market-with-gamesa-electric-integration/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The integration of Gamesa Electric strengthens ABB’s position in power electronics for PV and utility-scale energy storage. The company now combines industrial capabilities, technology development and a global service network to expand into new markets. The post ABB returns to utility-scale market with Gamesa Electr…"
-    },
-    {
       "t": "2026-09-29T10:09:22.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/pjm-capacity-reforms-require-urgent-state-action-to-protect-ratepayers-says-nrdc/",
       "source": "Energy-Storage.news",
@@ -393,16 +293,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Energy-Storage.news Premium speaks with Claire Lang-Ree, clean energy advocate at the Natural Resources Defense Council (NRDC), about PJM's proposed capacity market reforms."
-    },
-    {
-      "t": "2026-09-29T11:30:52.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/heterojunction-solar-cell-based-on-molybdenum-oxide-achieves-24-9-efficiency/",
-      "source": "pv magazine",
-      "title": "Heterojunction solar cell based on molybdenum oxide achieves 24.9% efficiency",
-      "url": "https://www.pv-magazine.com/2026/09/29/heterojunction-solar-cell-based-on-molybdenum-oxide-achieves-24-9-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers at Beijing University of Technology developed a silicon heterojunction solar cell with a PMA/MoOₓ hole-selective contact that achieved 24.9% efficiency. The ultrathin PMA interlayer reduced interface recombination and contact resistance while improving carrier transport and passivation. The post Heteroju…"
     },
     {
       "t": "2026-09-29T11:37:42.000Z",
@@ -455,6 +345,16 @@
       "summary": "CertainTeed’s solar roof installs directly into asphalt roof decks, pairing high-output BIPV shingles with a specialized Class A fire barrier underlayment. The post New 85 W solar shingle adds low-profile power to roofs appeared first on pv magazine Global ."
     },
     {
+      "t": "2026-09-29T13:57:29.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/usda-rural-solar-reap-program-lawsuit-earthjustice/831614/",
+      "source": "Utility Dive",
+      "title": "Lawsuit alleges USDA illegally slashed rural solar development program",
+      "url": "https://www.utilitydive.com/news/usda-rural-solar-reap-program-lawsuit-earthjustice/831614/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Internal emails show a department administrator stating&nbsp;&ldquo;let&rsquo;s let the comms shop find . . . the rationale behind their statistics&rdquo; when asked to substantiate anti-solar claims underpinning the policy changes, the complaint says.&nbsp;"
+    },
+    {
       "t": "2026-09-29T15:15:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/publicly-owned-company-gb-grid-announced-in-uk-connections-policy-overhaul/",
       "source": "pv magazine",
@@ -465,6 +365,16 @@
       "summary": "New state-owned company will compete with private sector network operators. Self-build reforms allowing developers to build their own connections in some cases also planned, following success of similar policy in Ireland. Competitive tendering for transmission projects to be brought forward. The post Publicly owned…"
     },
     {
+      "t": "2026-09-29T15:34:42.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/amid-acquisition-energy-vault-keeps-close-watch-on-trumps-bulk-power-orde/831646/",
+      "source": "Utility Dive",
+      "title": "Amid acquisition, Energy Vault keeps close watch on Trump’s bulk-power order, executive says",
+      "url": "https://www.utilitydive.com/news/amid-acquisition-energy-vault-keeps-close-watch-on-trumps-bulk-power-orde/831646/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The energy project developer sees opportunities in Texas, PJM Interconnection and the Southwest Power Pool, but officials say they must carefully navigate an uncertain regulatory backdrop."
+    },
+    {
       "t": "2026-09-29T16:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
       "source": "Utility Dive",
@@ -472,19 +382,119 @@
       "url": "https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Shortages of skilled labor and equipment, as well as local opposition, are threatening even high profile projects backed by big tech companies. Developers are responding by embracing flexibility and alternative technologies&nbsp;once considered too unwieldy."
+      "summary": "Shortages of skilled labor and equipment, as well as local opposition, are threatening even high-profile projects backed by big tech companies. Developers are responding by embracing flexibility and alternative technologies&nbsp;once considered too unwieldy."
+    },
+    {
+      "t": "2026-09-29T16:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/facilities-fueling-energy-storage-installations/831510/",
+      "source": "Utility Dive",
+      "title": "Facilities fueling energy storage installations",
+      "url": "https://www.utilitydive.com/news/facilities-fueling-energy-storage-installations/831510/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The market for commercial systems will grow 27% over the next five years, say American Clean Power and Wood Mackenzie."
+    },
+    {
+      "t": "2026-09-30T03:30:58.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/frv-australia-completes-first-standalone-bess-with-100mw-200mwh-terang-project-in-victoria/",
+      "source": "Energy-Storage.news",
+      "title": "FRV Australia completes first standalone BESS with 100MW/200MWh Terang project in Victoria",
+      "url": "https://www.energy-storage.news/frv-australia-completes-first-standalone-bess-with-100mw-200mwh-terang-project-in-victoria/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "FRV Australia has commissioned the 100MW/200MWh Terang battery storage system in Victoria, the company's first standalone storage project."
+    },
+    {
+      "t": "2026-09-30T03:35:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-energy-vault-secures-nsw-approval-for-1gwh-bess-tagenergy-submits-4gwh-victoria-project/",
+      "source": "Energy-Storage.news",
+      "title": "Australia: Energy Vault secures NSW approval for 1GWh BESS, TagEnergy submits 4GWh Victoria project",
+      "url": "https://www.energy-storage.news/australia-energy-vault-secures-nsw-approval-for-1gwh-bess-tagenergy-submits-4gwh-victoria-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Two Australian battery storage developments advanced, both moving large-scale projects closer to construction through separate approval pathways."
+    },
+    {
+      "t": "2026-09-30T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/everythings-bigger-in-texas/",
+      "source": "pv magazine",
+      "title": "Everything’s bigger in Texas",
+      "url": "https://www.pv-magazine.com/2026/09/30/everythings-bigger-in-texas/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "By almost any measure, the story of solar power in Texas has been one of astounding success. The state is by far the country’s fastest-growing solar market. The Solar Energy Industries Association (SEIA) records nearly 54 GW of solar and more than 29 GWh of batteries have been installed, while Texas is also growing…"
+    },
+    {
+      "t": "2026-09-30T04:01:38.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/gotion-to-supply-6gwh-of-battery-storage-for-saudi-arabias-first-utility-scale-bess-tender/",
+      "source": "Energy-Storage.news",
+      "title": "Gotion to supply 6GWh of battery storage for Saudi Arabia’s first utility-scale BESS tender",
+      "url": "https://www.energy-storage.news/gotion-to-supply-6gwh-of-battery-storage-for-saudi-arabias-first-utility-scale-bess-tender/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Gotion High-Tech has been named as the BESS supplier for three projects totalling 6GWh awarded to an ACWA Power consortium in Saudi Arabia."
+    },
+    {
+      "t": "2026-09-30T04:51:05.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/spain-is-making-batteries-a-licensing-condition-for-data-centres-and-nobody-noticed/",
+      "source": "Energy-Storage.news",
+      "title": "Spain is making batteries a licensing condition for data centres, and nobody noticed",
+      "url": "https://www.energy-storage.news/spain-is-making-batteries-a-licensing-condition-for-data-centres-and-nobody-noticed/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Spain's recent proposal for data centres could be the catalyst the country's energy storage market has been waiting for, argues Ignacio López Martín from developer Capflex Energía."
+    },
+    {
+      "t": "2026-09-30T04:56:27.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/kerala-indian-state-proposes-five-year-electricity-tariff-framework-with-new-provisions-for-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Kerala: Indian state proposes five-year electricity tariff framework with new provisions for BESS",
+      "url": "https://www.energy-storage.news/kerala-indian-state-proposes-five-year-electricity-tariff-framework-with-new-provisions-for-bess/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Kerala has proposed a five-year tariff framework with rules for BESS, PSP, including efficiency, availability and grid-forming requirements."
+    },
+    {
+      "t": "2026-09-30T05:21:58.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/homeowners-are-now-slightly-less-mistrustful-of-solar-companies-report-claims/",
+      "source": "pv magazine",
+      "title": "U.S. homeowners are now slightly less mistrustful of solar companies",
+      "url": "https://www.pv-magazine.com/2026/09/30/homeowners-are-now-slightly-less-mistrustful-of-solar-companies-report-claims/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Sales and design platform provider Aurora Solar tracked a decrease in the incidence of homeowners who reported negative experiences with solar companies in the four most recent quarters. The post U.S. homeowners are now slightly less mistrustful of solar companies appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-30T05:23:04.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/trinatracker-launches-solar-panel-installation-and-cleaning-robots/",
+      "source": "pv magazine",
+      "title": "TrinaTracker launches solar panel installation and cleaning robots",
+      "url": "https://www.pv-magazine.com/2026/09/30/trinatracker-launches-solar-panel-installation-and-cleaning-robots/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar tracking systems provider TrinaTracker has unveiled two new AI-powered robots designed to automate PV module installation and cleaning, helping improve construction efficiency, safety and operations and maintenance. The post TrinaTracker launches solar panel installation and cleaning robots appeared first on p…"
+    },
+    {
+      "t": "2026-09-30T05:35:32.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/south-korea-marks-major-shift-to-sodium-ion-batteries-to-regain-market/",
+      "source": "pv magazine",
+      "title": "South Korea marks major shift to sodium-ion batteries to regain market",
+      "url": "https://www.pv-magazine.com/2026/09/30/south-korea-marks-major-shift-to-sodium-ion-batteries-to-regain-market/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "The Korean government has set a 2030 commercialization target for sodium-ion batteries, with energy storage among the intended markets. The post South Korea marks major shift to sodium-ion batteries to regain market appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 8,
+      "grid": 26,
+      "policy": 11,
       "capital": 6,
-      "technology": 2
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -503,7 +513,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 5
+        "items": 6
       },
       {
         "source": "pv magazine",
@@ -518,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:425bd9a54c4b5942cfd789dbf90f397643d010f486d93061cc747f414dacf06b",
-  "envelopeChecksum": "sha256:64ce760ad6e355ef026809d3bf787cd911c3cce1938fa31881d6da522a8bcc02"
+  "contentChecksum": "sha256:b5eb4cbfc71cb242974ac27c7b1a02cc7f1c308f411426bd9358bb4cf19005a8",
+  "envelopeChecksum": "sha256:58f8c6ff732d627454483ffd5a67677451847aa7710f9c2dd33ce5bee80dd611"
 }
