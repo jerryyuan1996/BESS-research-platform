@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-30T05:39:57.908Z",
+  "fetchedAt": "2026-09-30T12:43:33.436Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-30T05:35:32.000Z",
+    "to": "2026-09-30T12:30:00.000Z",
     "resolution": "event",
-    "points": 46
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -135,44 +135,24 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-25T11:04:59.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-roundup-bess-portfolio-deals-investment-and-partnerships-for-energy-vault-smt-energy-neovolta-and-sk-on/",
-      "source": "Energy-Storage.news",
-      "title": "US ROUNDUP: BESS portfolio deals, investment and partnerships for Energy Vault, SMT Energy, NeoVolta and SK On",
-      "url": "https://www.energy-storage.news/us-roundup-bess-portfolio-deals-investment-and-partnerships-for-energy-vault-smt-energy-neovolta-and-sk-on/",
+      "t": "2026-09-25T13:46:29.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
+      "source": "Utility Dive",
+      "title": "FERC rejects Oklo complaint seeking to reinstate project to PJM’s interconnection study cycle",
+      "url": "https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Recently, US BESS companies Energy Vault and Goshe, SMT Energy and Climate Adaptive Infrastructure, and NeoVolta and SK On have made major deals and secured strategic partnerships."
+      "summary": "The decision affects a 750-MW, mixed technology project in Virginia, which Oklo said would be delayed by at least 18 months if it misses the current interconnection cycle."
     },
     {
-      "t": "2026-09-25T12:21:32.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-owner-vs-trader-returns-market-saturation-more-northvolt-ma-alt-technologies-differing-fortunes/",
-      "source": "Energy-Storage.news",
-      "title": "BESS Industry Buzz: Owner vs trader returns, market saturation, more Northvolt M&A, alt technologies’ differing fortunes",
-      "url": "https://www.energy-storage.news/bess-industry-buzz-owner-vs-trader-returns-market-saturation-more-northvolt-ma-alt-technologies-differing-fortunes/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Another roundup of user-posted hot takes and analysis from the energy storage industry recently."
-    },
-    {
-      "t": "2026-09-28T04:51:58.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-nsw-grants-development-consent-for-200mwh-battery-storage-system/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s NSW grants development consent for 200MWh battery storage system",
-      "url": "https://www.energy-storage.news/australias-nsw-grants-development-consent-for-200mwh-battery-storage-system/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The New South Wales (NSW) government has granted development consent for the 200MWh Deniliquin East battery energy storage system."
-    },
-    {
-      "t": "2026-09-28T04:56:36.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-nsw-trials-property-level-and-community-battery-models-to-extend-solar-benefits/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s NSW trials property-level and community battery models to extend solar benefits",
-      "url": "https://www.energy-storage.news/australias-nsw-trials-property-level-and-community-battery-models-to-extend-solar-benefits/",
+      "t": "2026-09-25T14:13:58.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
+      "source": "Utility Dive",
+      "title": "Second federal judge overturns $7B Solar for All cancellation",
+      "url": "https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Two publicly funded pilots have launched in NSW, testing ways to extend the benefits of distributed solar and battery storage to households."
+      "summary": "The decision in a suit brought by Harris County, Texas, follows a similar ruling last week. A Harris County judge called it &ldquo;a really important victory for energy resilience.&rdquo;"
     },
     {
       "t": "2026-09-28T08:12:10.000Z",
@@ -305,76 +285,6 @@
       "summary": "Inverter manufacturer SMA Solar Technology has become the first to be certified as capable of providing inertia to the German grid."
     },
     {
-      "t": "2026-09-29T11:50:31.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/germany-wraps-up-solar-plus-storage-tender-with-average-price-of-e0-0514-kwh/",
-      "source": "pv magazine",
-      "title": "Germany wraps up solar-plus-storage tender with average price of €0.0514/kWh",
-      "url": "https://www.pv-magazine.com/2026/09/29/germany-wraps-up-solar-plus-storage-tender-with-average-price-of-e0-0514-kwh/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Germany’s latest innovation tender attracted 678 MW of bids, with 32 projects totaling 480 MW securing contracts. The post Germany wraps up solar-plus-storage tender with average price of €0.0514/kWh appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-29T12:21:45.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/sub-saharan-africas-off-grid-solar-market-to-grow-450-by-2035/",
-      "source": "pv magazine",
-      "title": "Sub-Saharan Africa’s off-grid solar market to grow 450% by 2035",
-      "url": "https://www.pv-magazine.com/2026/09/29/sub-saharan-africas-off-grid-solar-market-to-grow-450-by-2035/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Latest analysis from Wood Mackenzie says growth in Sub-Saharan Africa’s off-grid market will be led by Nigeria, the Democratic Republic of the Congo and Kenya, while financing installations stands as the biggest barrier to deployment. The post Sub-Saharan Africa’s off-grid solar market to grow 450% by 2035 appeared…"
-    },
-    {
-      "t": "2026-09-29T13:37:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/ja-expands-ci-battery-range-with-hybrid-and-updated-ac-coupled-systems/",
-      "source": "pv magazine",
-      "title": "JA expands C&I battery range with hybrid and updated AC-coupled systems",
-      "url": "https://www.pv-magazine.com/2026/09/29/ja-expands-ci-battery-range-with-hybrid-and-updated-ac-coupled-systems/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "JA has expanded its European C&I battery storage portfolio with JAPlanet Fusion, a 125 kW/261 kWh DC-coupled solar-storage system with integrated rapid backup, and the upgraded AC-coupled JAPlanet 2.0. Both systems add enhanced safety, liquid cooling and backup capabilities, with European pre-orders opening in the s…"
-    },
-    {
-      "t": "2026-09-29T13:54:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/new-85-w-solar-shingle-adds-low-profile-power-to-roofs/",
-      "source": "pv magazine",
-      "title": "New 85 W solar shingle adds low-profile power to roofs",
-      "url": "https://www.pv-magazine.com/2026/09/29/new-85-w-solar-shingle-adds-low-profile-power-to-roofs/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "CertainTeed’s solar roof installs directly into asphalt roof decks, pairing high-output BIPV shingles with a specialized Class A fire barrier underlayment. The post New 85 W solar shingle adds low-profile power to roofs appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-09-29T13:57:29.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/usda-rural-solar-reap-program-lawsuit-earthjustice/831614/",
-      "source": "Utility Dive",
-      "title": "Lawsuit alleges USDA illegally slashed rural solar development program",
-      "url": "https://www.utilitydive.com/news/usda-rural-solar-reap-program-lawsuit-earthjustice/831614/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Internal emails show a department administrator stating&nbsp;&ldquo;let&rsquo;s let the comms shop find . . . the rationale behind their statistics&rdquo; when asked to substantiate anti-solar claims underpinning the policy changes, the complaint says.&nbsp;"
-    },
-    {
-      "t": "2026-09-29T15:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/29/publicly-owned-company-gb-grid-announced-in-uk-connections-policy-overhaul/",
-      "source": "pv magazine",
-      "title": "Publicly owned company GB Grid announced in UK connections policy overhaul",
-      "url": "https://www.pv-magazine.com/2026/09/29/publicly-owned-company-gb-grid-announced-in-uk-connections-policy-overhaul/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "New state-owned company will compete with private sector network operators. Self-build reforms allowing developers to build their own connections in some cases also planned, following success of similar policy in Ireland. Competitive tendering for transmission projects to be brought forward. The post Publicly owned…"
-    },
-    {
-      "t": "2026-09-29T15:34:42.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/amid-acquisition-energy-vault-keeps-close-watch-on-trumps-bulk-power-orde/831646/",
-      "source": "Utility Dive",
-      "title": "Amid acquisition, Energy Vault keeps close watch on Trump’s bulk-power order, executive says",
-      "url": "https://www.utilitydive.com/news/amid-acquisition-energy-vault-keeps-close-watch-on-trumps-bulk-power-orde/831646/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The energy project developer sees opportunities in Texas, PJM Interconnection and the Southwest Power Pool, but officials say they must carefully navigate an uncertain regulatory backdrop."
-    },
-    {
       "t": "2026-09-29T16:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
       "source": "Utility Dive",
@@ -382,17 +292,7 @@
       "url": "https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Shortages of skilled labor and equipment, as well as local opposition, are threatening even high-profile projects backed by big tech companies. Developers are responding by embracing flexibility and alternative technologies&nbsp;once considered too unwieldy."
-    },
-    {
-      "t": "2026-09-29T16:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/facilities-fueling-energy-storage-installations/831510/",
-      "source": "Utility Dive",
-      "title": "Facilities fueling energy storage installations",
-      "url": "https://www.utilitydive.com/news/facilities-fueling-energy-storage-installations/831510/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The market for commercial systems will grow 27% over the next five years, say American Clean Power and Wood Mackenzie."
+      "summary": "Shortages of skilled labor and equipment, as well as local opposition, are threatening even high profile projects backed by big tech companies. Developers are responding by embracing flexibility and alternative technologies&nbsp;once considered too unwieldy."
     },
     {
       "t": "2026-09-30T03:30:58.000Z",
@@ -413,16 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Two Australian battery storage developments advanced, both moving large-scale projects closer to construction through separate approval pathways."
-    },
-    {
-      "t": "2026-09-30T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/everythings-bigger-in-texas/",
-      "source": "pv magazine",
-      "title": "Everything’s bigger in Texas",
-      "url": "https://www.pv-magazine.com/2026/09/30/everythings-bigger-in-texas/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "By almost any measure, the story of solar power in Texas has been one of astounding success. The state is by far the country’s fastest-growing solar market. The Solar Energy Industries Association (SEIA) records nearly 54 GW of solar and more than 29 GWh of batteries have been installed, while Texas is also growing…"
     },
     {
       "t": "2026-09-30T04:01:38.000Z",
@@ -455,46 +345,126 @@
       "summary": "Kerala has proposed a five-year tariff framework with rules for BESS, PSP, including efficiency, availability and grid-forming requirements."
     },
     {
-      "t": "2026-09-30T05:21:58.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/homeowners-are-now-slightly-less-mistrustful-of-solar-companies-report-claims/",
+      "t": "2026-09-30T06:05:33.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/cubas-pv-capacity-tops-1-4-gw/",
       "source": "pv magazine",
-      "title": "U.S. homeowners are now slightly less mistrustful of solar companies",
-      "url": "https://www.pv-magazine.com/2026/09/30/homeowners-are-now-slightly-less-mistrustful-of-solar-companies-report-claims/",
+      "title": "Cuba’s PV capacity tops 1.4 GW",
+      "url": "https://www.pv-magazine.com/2026/09/30/cubas-pv-capacity-tops-1-4-gw/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Sales and design platform provider Aurora Solar tracked a decrease in the incidence of homeowners who reported negative experiences with solar companies in the four most recent quarters. The post U.S. homeowners are now slightly less mistrustful of solar companies appeared first on pv magazine Global ."
+      "summary": "Cuba has installed 1.42 GW of solar capacity across 144 photovoltaic plants and expects to exceed 1.5 GW by the end of 2026. Renewables now account for 21.4% of electricity generation, while the country is also expanding energy storage and solar-powered water pumping. The post Cuba’s PV capacity tops 1.4 GW appeared…"
     },
     {
-      "t": "2026-09-30T05:23:04.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/trinatracker-launches-solar-panel-installation-and-cleaning-robots/",
+      "t": "2026-09-30T07:18:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/panasonic-deploys-fuel-cell-heat-pump-at-pv-powered-hydrogen-house/",
       "source": "pv magazine",
-      "title": "TrinaTracker launches solar panel installation and cleaning robots",
-      "url": "https://www.pv-magazine.com/2026/09/30/trinatracker-launches-solar-panel-installation-and-cleaning-robots/",
+      "title": "Panasonic deploys fuel cell, heat pump at PV-powered hydrogen house",
+      "url": "https://www.pv-magazine.com/2026/09/30/panasonic-deploys-fuel-cell-heat-pump-at-pv-powered-hydrogen-house/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Solar tracking systems provider TrinaTracker has unveiled two new AI-powered robots designed to automate PV module installation and cleaning, helping improve construction efficiency, safety and operations and maintenance. The post TrinaTracker launches solar panel installation and cleaning robots appeared first on p…"
+      "summary": "Panasonic has deployed a 10 kW pure hydrogen fuel cell and a 9 kW air-to-water heat pump at Finland’s Hydrogen House, which features rooftop PV and up to 90 kg of hydrogen storage. The integrated system uses solar-generated hydrogen to provide electricity, space heating and hot water, while also recovering waste hea…"
     },
     {
-      "t": "2026-09-30T05:35:32.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/south-korea-marks-major-shift-to-sodium-ion-batteries-to-regain-market/",
+      "t": "2026-09-30T07:56:44.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/availability-why-this-bess-performance-metric-matters-so-much-and-how-to-calculate-it/",
+      "source": "Energy-Storage.news",
+      "title": "Availability: Why this BESS performance metric matters so much, and how to calculate it",
+      "url": "https://www.energy-storage.news/availability-why-this-bess-performance-metric-matters-so-much-and-how-to-calculate-it/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Liam Critchley with an ESN Premium deep dive into availability, one of the most-discussed metrics in battery storage performance."
+    },
+    {
+      "t": "2026-09-30T09:00:04.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/ireland-introduces-e600-residential-battery-grant-expands-pv-support/",
       "source": "pv magazine",
-      "title": "South Korea marks major shift to sodium-ion batteries to regain market",
-      "url": "https://www.pv-magazine.com/2026/09/30/south-korea-marks-major-shift-to-sodium-ion-batteries-to-regain-market/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "The Korean government has set a 2030 commercialization target for sodium-ion batteries, with energy storage among the intended markets. The post South Korea marks major shift to sodium-ion batteries to regain market appeared first on pv magazine Global ."
+      "title": "Ireland introduces €600 residential battery grant, expands PV support",
+      "url": "https://www.pv-magazine.com/2026/09/30/ireland-introduces-e600-residential-battery-grant-expands-pv-support/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Irish householders will be able to avail of a €600 battery grant as part of a package of renewable energy supports effective from October 6. Grants of up to €9,000 for lower-income householders to install solar and batteries will also be included as well as support for businesses. The post Ireland introduces €600 re…"
+    },
+    {
+      "t": "2026-09-30T09:07:34.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/volkswagens-new-lfp-battery-jvs-with-gotion-will-adjust-ev-and-bess-cell-production-split-based-on-demand/",
+      "source": "Energy-Storage.news",
+      "title": "Volkswagen’s new LFP battery JVs with Gotion will adjust EV and BESS cell production split based on demand",
+      "url": "https://www.energy-storage.news/volkswagens-new-lfp-battery-jvs-with-gotion-will-adjust-ev-and-bess-cell-production-split-based-on-demand/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Gotion and Volkswagen AG will establish three joint ventures to manufacture lithium iron phosphate (LFP) batteries and battery materials in Valencia (Spain), Surany (Slovakia), and Kenitra (Morocco)."
+    },
+    {
+      "t": "2026-09-30T10:47:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/eus-largest-solar-project-reaches-financial-close/",
+      "source": "pv magazine",
+      "title": "EU’s largest solar project reaches financial close",
+      "url": "https://www.pv-magazine.com/2026/09/30/eus-largest-solar-project-reaches-financial-close/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The €561 million ($637.3 million) financing package allows Rezolv Energy’s 1.3 GW solar project, to be built in western Romania, to move into construction. The post EU’s largest solar project reaches financial close appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-09-30T11:08:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/northland-power-puts-canadian-province-of-albertas-largest-bess-into-operation/",
+      "source": "Energy-Storage.news",
+      "title": "Northland Power puts Canadian province of Alberta’s largest BESS into operation",
+      "url": "https://www.energy-storage.news/northland-power-puts-canadian-province-of-albertas-largest-bess-into-operation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "IPP Northland Power has announced that its 80MW/160MWh Jurassic energy storage project in Cypress County, Alberta, CA, has achieved commercial operations."
+    },
+    {
+      "t": "2026-09-30T11:13:13.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/us-utilities-ameren-missouri-dte-energy-in-michigan-and-black-hills-energy-in-colorado-submit-irps-with-highlighted-bess-additions/",
+      "source": "Energy-Storage.news",
+      "title": "US utilities Ameren Missouri, DTE Energy in Michigan, and Black Hills Energy in Colorado submit IRPs with highlighted BESS additions",
+      "url": "https://www.energy-storage.news/us-utilities-ameren-missouri-dte-energy-in-michigan-and-black-hills-energy-in-colorado-submit-irps-with-highlighted-bess-additions/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Three US utilities, Ameren Missouri, DTE Energy in Michigan, and Black Hills Energy in Colorado have recently submitted IRPs with highlighted BESS project additions."
+    },
+    {
+      "t": "2026-09-30T11:37:01.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/chinese-scientists-develop-hydrogen-powered-co%e2%82%82-heat-pump-with-pcm-storage/",
+      "source": "pv magazine",
+      "title": "Chinese scientists develop hydrogen-powered CO₂ heat pump with PCM storage",
+      "url": "https://www.pv-magazine.com/2026/09/30/chinese-scientists-develop-hydrogen-powered-co%e2%82%82-heat-pump-with-pcm-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese researchers have modeled a heating system combining PEM fuel cells, a CO₂ heat pump and phase-change thermal storage, assessing the impact of different thermal boundary conditions. The results show that cathode inlet temperature has the strongest effect on hydrogen-to-heat and hydrogen-to-electricity perform…"
+    },
+    {
+      "t": "2026-09-30T12:08:47.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/over-easy-solar-launches-256-w-vertical-rooftop-pv-unit/",
+      "source": "pv magazine",
+      "title": "Over Easy Solar launches 256 W vertical rooftop PV unit",
+      "url": "https://www.pv-magazine.com/2026/09/30/over-easy-solar-launches-256-w-vertical-rooftop-pv-unit/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Over Easy Solar’s xM-3 Quattro-256S is a 256 W vertical bifacial rooftop PV unit featuring HJT cells, 95% bifaciality and a 1,000 V maximum system voltage. Each unit covers 2.31 m², weighs 28.4 kg and has a 15-year product warranty. The post Over Easy Solar launches 256 W vertical rooftop PV unit appeared first on p…"
+    },
+    {
+      "t": "2026-09-30T12:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/09/30/the-rationale-behind-the-uks-largest-compressed-air-energy-storage-plan/",
+      "source": "pv magazine",
+      "title": "The rationale behind the UK’s largest compressed air energy storage plan",
+      "url": "https://www.pv-magazine.com/2026/09/30/the-rationale-behind-the-uks-largest-compressed-air-energy-storage-plan/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "EnergyPathways CEO Ben Clube tells pv magazine that the company's compressed air energy storage (CAES) project in the Irish Sea will enter the second round of the UK's long-duration energy storage (LDES) support scheme as a more mature bid. The post The rationale behind the UK’s largest compressed air energy storage…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 46,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 26,
-      "policy": 11,
-      "capital": 6,
-      "technology": 3
+      "grid": 30,
+      "policy": 7,
+      "capital": 4,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -513,13 +483,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 5
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 7
       }
     ]
   },
@@ -528,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:b5eb4cbfc71cb242974ac27c7b1a02cc7f1c308f411426bd9358bb4cf19005a8",
-  "envelopeChecksum": "sha256:58f8c6ff732d627454483ffd5a67677451847aa7710f9c2dd33ce5bee80dd611"
+  "contentChecksum": "sha256:87c7baf97e3820da5000e06f728e266b31c338cb8fd9e6f08d0518e1690f8e16",
+  "envelopeChecksum": "sha256:7e808a23b1ba4b541f5e9454856843b4605ad6639c6220b63eef4393235b8458"
 }
