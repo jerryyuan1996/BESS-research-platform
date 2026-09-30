@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-30T12:43:33.436Z",
+  "fetchedAt": "2026-09-30T22:21:19.287Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-30T12:30:00.000Z",
+    "to": "2026-09-30T16:00:00.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -135,26 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-25T13:46:29.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
-      "source": "Utility Dive",
-      "title": "FERC rejects Oklo complaint seeking to reinstate project to PJM’s interconnection study cycle",
-      "url": "https://www.utilitydive.com/news/ferc-rejects-oklo-complaint-pjm-interconnection/831357/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The decision affects a 750-MW, mixed technology project in Virginia, which Oklo said would be delayed by at least 18 months if it misses the current interconnection cycle."
-    },
-    {
-      "t": "2026-09-25T14:13:58.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
-      "source": "Utility Dive",
-      "title": "Second federal judge overturns $7B Solar for All cancellation",
-      "url": "https://www.utilitydive.com/news/second-federal-judge-overturns-7b-solar-for-all-cancellation-by-trump-admi/831371/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The decision in a suit brought by Harris County, Texas, follows a similar ruling last week. A Harris County judge called it &ldquo;a really important victory for energy resilience.&rdquo;"
-    },
-    {
       "t": "2026-09-28T08:12:10.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/video-how-a-global-ipp-uses-analytics-to-find-and-act-on-hidden-bess-losses/",
       "source": "Energy-Storage.news",
@@ -183,16 +163,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Second life energy storage firm B2U Storage Solutions has announced a strategic partnership with South Korean battery giant LG Energy Solution (LG ES)."
-    },
-    {
-      "t": "2026-09-28T12:29:39.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/nyserda-taps-950-mw-lithium-batteries-700-mw-renewables/831455/",
-      "source": "Utility Dive",
-      "title": "NYSERDA taps 950 MW lithium batteries, 700 MW renewables",
-      "url": "https://www.utilitydive.com/news/nyserda-taps-950-mw-lithium-batteries-700-mw-renewables/831455/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Lithium batteries and solar, wind and hydroelectric renewable generation were selected in the state&rsquo;s first bulk energy storage procurement and its 2025 Tier 1 Renewable Energy Standard solicitation."
     },
     {
       "t": "2026-09-28T13:19:34.000Z",
@@ -285,6 +255,26 @@
       "summary": "Inverter manufacturer SMA Solar Technology has become the first to be certified as capable of providing inertia to the German grid."
     },
     {
+      "t": "2026-09-29T13:57:29.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/usda-rural-solar-reap-program-lawsuit-earthjustice/831614/",
+      "source": "Utility Dive",
+      "title": "Lawsuit alleges USDA illegally slashed rural solar development program",
+      "url": "https://www.utilitydive.com/news/usda-rural-solar-reap-program-lawsuit-earthjustice/831614/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Internal emails show a department administrator stating&nbsp;&ldquo;let&rsquo;s let the comms shop find . . . the rationale behind their statistics&rdquo; when asked to substantiate anti-solar claims underpinning the policy changes, the complaint says.&nbsp;"
+    },
+    {
+      "t": "2026-09-29T15:34:42.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/amid-acquisition-energy-vault-keeps-close-watch-on-trumps-bulk-power-orde/831646/",
+      "source": "Utility Dive",
+      "title": "Amid acquisition, Energy Vault keeps close watch on Trump’s bulk-power order, executive says",
+      "url": "https://www.utilitydive.com/news/amid-acquisition-energy-vault-keeps-close-watch-on-trumps-bulk-power-orde/831646/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The energy project developer sees opportunities in Texas, PJM Interconnection and the Southwest Power Pool, but officials say they must carefully navigate an uncertain regulatory backdrop."
+    },
+    {
       "t": "2026-09-29T16:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
       "source": "Utility Dive",
@@ -292,7 +282,17 @@
       "url": "https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Shortages of skilled labor and equipment, as well as local opposition, are threatening even high profile projects backed by big tech companies. Developers are responding by embracing flexibility and alternative technologies&nbsp;once considered too unwieldy."
+      "summary": "Shortages of skilled labor and equipment, as well as local opposition, are threatening even high-profile projects backed by big tech companies. Developers are responding by embracing flexibility and alternative technologies&nbsp;once considered too unwieldy."
+    },
+    {
+      "t": "2026-09-29T16:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/facilities-fueling-energy-storage-installations/831510/",
+      "source": "Utility Dive",
+      "title": "Facilities fueling energy storage installations",
+      "url": "https://www.utilitydive.com/news/facilities-fueling-energy-storage-installations/831510/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The market for commercial systems will grow 27% over the next five years, say American Clean Power and Wood Mackenzie."
     },
     {
       "t": "2026-09-30T03:30:58.000Z",
@@ -453,18 +453,38 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "EnergyPathways CEO Ben Clube tells pv magazine that the company's compressed air energy storage (CAES) project in the Irish Sea will enter the second round of the UK's long-duration energy storage (LDES) support scheme as a more mature bid. The post The rationale behind the UK’s largest compressed air energy storage…"
+    },
+    {
+      "t": "2026-09-30T13:48:55.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-delays-backstop-procurement-ferc-data-center/831751/",
+      "source": "Utility Dive",
+      "title": "FERC chair slams PJM ‘mess’ as country’s largest grid operator delays power auction",
+      "url": "https://www.utilitydive.com/news/pjm-delays-backstop-procurement-ferc-data-center/831751/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "PJM had planned to accept offers for backstop power supplies from Sept. 30 through Oct. 21 after falling short of its reserve margin targets amid aggressive data center load growth. But FERC only partially approved its plan, zeroing in on cost allocation concerns."
+    },
+    {
+      "t": "2026-09-30T16:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/facilities-using-48e-credits-to-make-energy-projects-pencil-out/831733/",
+      "source": "Utility Dive",
+      "title": "Facilities are using 48E investment tax credits to make energy projects pencil out",
+      "url": "https://www.utilitydive.com/news/facilities-using-48e-credits-to-make-energy-projects-pencil-out/831733/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Most commonly, building operators are using the tax credit to install battery storage systems that can leverage lower-cost electricity rates, says an executive with tax-credit consulting firm Alliant."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 30,
-      "policy": 7,
-      "capital": 4,
-      "technology": 2
+      "grid": 29,
+      "policy": 10,
+      "capital": 5,
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -483,7 +503,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 5
+        "items": 7
       },
       {
         "source": "pv magazine",
@@ -498,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:87c7baf97e3820da5000e06f728e266b31c338cb8fd9e6f08d0518e1690f8e16",
-  "envelopeChecksum": "sha256:7e808a23b1ba4b541f5e9454856843b4605ad6639c6220b63eef4393235b8458"
+  "contentChecksum": "sha256:b39d2734a460bac0a898faa187591a4ab088fbe5059e420dfb99ff75f94e4014",
+  "envelopeChecksum": "sha256:abe5040dc3b18d1304e88d97d293190667c92ce2e3e721e0197b4a7ef34b3e6c"
 }
