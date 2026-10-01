@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-09-30T22:21:19.287Z",
+  "fetchedAt": "2026-10-01T06:05:26.903Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-09-30T16:00:00.000Z",
+    "to": "2026-10-01T02:58:48.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-28T08:12:10.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/video-how-a-global-ipp-uses-analytics-to-find-and-act-on-hidden-bess-losses/",
-      "source": "Energy-Storage.news",
-      "title": "VIDEO: How a global IPP uses analytics to find and act on hidden BESS losses",
-      "url": "https://www.energy-storage.news/video-how-a-global-ipp-uses-analytics-to-find-and-act-on-hidden-bess-losses/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news proudly presents our sponsored webinar with PowerUp, into the practical application of battery analytics by global IPP, Neoen."
-    },
-    {
-      "t": "2026-09-28T09:03:00.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/urgent-need-for-cybersecurity-overhaul-as-bess-deployment-accelerates-energy-storage-europe-says/",
-      "source": "Energy-Storage.news",
-      "title": "Urgent need for cybersecurity overhaul as BESS deployment accelerates, Energy Storage Europe says",
-      "url": "https://www.energy-storage.news/urgent-need-for-cybersecurity-overhaul-as-bess-deployment-accelerates-energy-storage-europe-says/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Trade body Energy Storage Europe has called for significant reforms to the European Union's (EU’s) cybersecurity framework for battery energy storage systems (BESS)."
     },
     {
       "t": "2026-09-28T11:42:12.000Z",
@@ -473,6 +453,26 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Most commonly, building operators are using the tax credit to install battery storage systems that can leverage lower-cost electricity rates, says an executive with tax-credit consulting firm Alliant."
+    },
+    {
+      "t": "2026-10-01T01:19:52.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/queenslands-cleanco-credits-battery-storage-boom-as-australian-state-records-40-wholesale-electricity-price-drop/",
+      "source": "Energy-Storage.news",
+      "title": "Queensland’s CleanCo credits battery storage boom as Australian state records 40% wholesale electricity price drop",
+      "url": "https://www.energy-storage.news/queenslands-cleanco-credits-battery-storage-boom-as-australian-state-records-40-wholesale-electricity-price-drop/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Queensland's average wholesale electricity price fell by 40% in the 2025-26 financial year, a drop CleanCo Queensland attributes to BESS."
+    },
+    {
+      "t": "2026-10-01T02:58:48.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/financial-services-group-orix-builds-589mwh-of-bess-in-japan-after-securing-first-external-investment/",
+      "source": "Energy-Storage.news",
+      "title": "Financial services group Orix builds 589MWh of BESS in Japan after securing first external investment",
+      "url": "https://www.energy-storage.news/financial-services-group-orix-builds-589mwh-of-bess-in-japan-after-securing-first-external-investment/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Orix Corporation has begun construction of its first battery storage projects to be supported by external investment."
     }
   ],
   "derived": {
@@ -481,8 +481,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 10,
+      "grid": 30,
+      "policy": 9,
       "capital": 5,
       "technology": 1
     },
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:b39d2734a460bac0a898faa187591a4ab088fbe5059e420dfb99ff75f94e4014",
-  "envelopeChecksum": "sha256:abe5040dc3b18d1304e88d97d293190667c92ce2e3e721e0197b4a7ef34b3e6c"
+  "contentChecksum": "sha256:e8ebf0b95e92f464200059b282a1a03bcc61579dd8476006f644fc5aceda8407",
+  "envelopeChecksum": "sha256:1b7926d0ce394f155cd3c1182b333a9f84856b7bebbd7084eced1af5abb19fe6"
 }
