@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-01T13:27:42.771Z",
+  "fetchedAt": "2026-10-01T22:45:10.856Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-01T13:15:43.000Z",
+    "to": "2026-10-01T16:00:00.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -173,16 +173,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Inverter manufacturer SMA Solar Technology has become the first to be certified as capable of providing inertia to the German grid."
-    },
-    {
-      "t": "2026-09-29T13:57:29.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/usda-rural-solar-reap-program-lawsuit-earthjustice/831614/",
-      "source": "Utility Dive",
-      "title": "Lawsuit alleges USDA illegally slashed rural solar development program",
-      "url": "https://www.utilitydive.com/news/usda-rural-solar-reap-program-lawsuit-earthjustice/831614/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Internal emails show a department administrator stating&nbsp;&ldquo;let&rsquo;s let the comms shop find . . . the rationale behind their statistics&rdquo; when asked to substantiate anti-solar claims underpinning the policy changes, the complaint says.&nbsp;"
     },
     {
       "t": "2026-09-29T15:34:42.000Z",
@@ -345,16 +335,6 @@
       "summary": "Orix Corporation has begun construction of its first battery storage projects to be supported by external investment."
     },
     {
-      "t": "2026-10-01T07:06:28.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/commercial-perovskite-and-tandem-modules-tested-in-outdoor-field-study-unsw/",
-      "source": "pv magazine",
-      "title": "Trina Solar, Microquanta testing perovskite, tandem modules at UNSW site",
-      "url": "https://www.pv-magazine.com/2026/10/01/commercial-perovskite-and-tandem-modules-tested-in-outdoor-field-study-unsw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers from UNSW are testing commercial perovskite and tandem solar modules to better understand their performance and durability in real-world settings. The post Trina Solar, Microquanta testing perovskite, tandem modules at UNSW site appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-01T08:31:04.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/sungrow-completes-108mw-grid-forming-battery-storage-system-with-black-start-capability-in-cambodia/",
       "source": "Energy-Storage.news",
@@ -443,16 +423,56 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery energy storage systems (BESS) are increasingly being positioned as essential infrastructure investments rather than purely financial assets, as seen in a series of strategic partnerships announced in late September that integrate storage with broader energy and digital infrastructure strategies."
+    },
+    {
+      "t": "2026-10-01T14:12:21.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/u-s-small-scale-solar-adds-1-6-gw-in-q2-2026-as-fossil-fuel-capacity-surges/",
+      "source": "pv magazine",
+      "title": "U.S. small-scale solar adds 1.6 GW in Q2",
+      "url": "https://www.pv-magazine.com/2026/10/01/u-s-small-scale-solar-adds-1-6-gw-in-q2-2026-as-fossil-fuel-capacity-surges/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Distributed solar maintained a steady deployment pace alongside 2.5 GWh of new behind the meter storage, even as a wave of thermal generation additions pulled solar's total share of new US power capacity down to 55%. The post U.S. small-scale solar adds 1.6 GW in Q2 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-01T15:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/shared-grid-connections-concentrate-battery-insurance-risk/",
+      "source": "pv magazine",
+      "title": "Shared grid connections concentrate battery insurance risk",
+      "url": "https://www.pv-magazine.com/2026/10/01/shared-grid-connections-concentrate-battery-insurance-risk/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Tokio Marine GX (TMGX) sees exposures of up to billions of dollars building up at co-located battery energy storage system (BESS) sites, and says lenders are only beginning to require cyber cover. The post Shared grid connections concentrate battery insurance risk appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-01T16:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/module-cooling-too-hot-to-handle/",
+      "source": "pv magazine",
+      "title": "Module cooling: too hot to handle",
+      "url": "https://www.pv-magazine.com/2026/10/01/module-cooling-too-hot-to-handle/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Even after the record-breaking heat waves of this summer and associated performance losses at PV plants across the northern hemisphere, active cooling for solar arrays remains a difficult market prospect. Developers might be a bit more interested in preventing temperature-related losses, but in most cases, the numbe…"
+    },
+    {
+      "t": "2026-10-01T16:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/levis-marks-and-spencer-launch-renewable-energy-initiative-for-fashion-suppliers/831754/",
+      "source": "Utility Dive",
+      "title": "Fashion brands partner with Schneider Electric to expand renewables",
+      "url": "https://www.utilitydive.com/news/levis-marks-and-spencer-launch-renewable-energy-initiative-for-fashion-suppliers/831754/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Aapparel giants launched the &ldquo;Fashion Renewable Collective&rdquo; in collaboration with Schneider Electric to help suppliers across fashion supply chains adopt renewable electricity at scale."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 26,
-      "policy": 9,
+      "grid": 29,
+      "policy": 8,
       "capital": 6,
       "technology": 1
     },
@@ -479,7 +499,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 5
+        "items": 7
       }
     ]
   },
@@ -488,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:ad9ef9931f452ea2c3033e0359c96b601ec5c4e0b734700098ed8ce510328475",
-  "envelopeChecksum": "sha256:62d568f0f26916d933ed667a4e1429b52b4a311ac3e3d5df99fbb171049e5c20"
+  "contentChecksum": "sha256:ea6fe57ce094e0f2f9fa98ad92ce07fbf3603bdf2e3e38047beb6d24a38c5f4d",
+  "envelopeChecksum": "sha256:a428637e4affc3eb88eda160c55f160e7a3572b28eba32ab78e72c068c61a801"
 }
