@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-02T05:48:00.832Z",
+  "fetchedAt": "2026-10-02T12:46:11.462Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-02T05:46:44.000Z",
+    "to": "2026-10-02T11:12:49.000Z",
     "resolution": "event",
-    "points": 46
+    "points": 42
   },
   "units": {
     "record": "published article metadata"
@@ -135,26 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-29T10:09:22.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/pjm-capacity-reforms-require-urgent-state-action-to-protect-ratepayers-says-nrdc/",
-      "source": "Energy-Storage.news",
-      "title": "PJM capacity reforms require urgent state action to protect ratepayers, says NRDC",
-      "url": "https://www.energy-storage.news/pjm-capacity-reforms-require-urgent-state-action-to-protect-ratepayers-says-nrdc/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news Premium speaks with Claire Lang-Ree, clean energy advocate at the Natural Resources Defense Council (NRDC), about PJM's proposed capacity market reforms."
-    },
-    {
-      "t": "2026-09-29T11:37:42.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/sma-battery-inverter-first-to-win-grid-forming-certification-for-german-inertia-market/",
-      "source": "Energy-Storage.news",
-      "title": "SMA battery inverter first to win grid-forming certification for German inertia market",
-      "url": "https://www.energy-storage.news/sma-battery-inverter-first-to-win-grid-forming-certification-for-german-inertia-market/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Inverter manufacturer SMA Solar Technology has become the first to be certified as capable of providing inertia to the German grid."
-    },
-    {
       "t": "2026-09-29T15:34:42.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/amid-acquisition-energy-vault-keeps-close-watch-on-trumps-bulk-power-orde/831646/",
       "source": "Utility Dive",
@@ -183,46 +163,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Shortages of skilled labor and equipment, as well as local opposition, are threatening even high-profile projects backed by big tech companies. Developers are responding by embracing flexibility and alternative technologies&nbsp;once considered too unwieldy."
-    },
-    {
-      "t": "2026-09-30T03:30:58.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/frv-australia-completes-first-standalone-bess-with-100mw-200mwh-terang-project-in-victoria/",
-      "source": "Energy-Storage.news",
-      "title": "FRV Australia completes first standalone BESS with 100MW/200MWh Terang project in Victoria",
-      "url": "https://www.energy-storage.news/frv-australia-completes-first-standalone-bess-with-100mw-200mwh-terang-project-in-victoria/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "FRV Australia has commissioned the 100MW/200MWh Terang battery storage system in Victoria, the company's first standalone storage project."
-    },
-    {
-      "t": "2026-09-30T03:35:14.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-energy-vault-secures-nsw-approval-for-1gwh-bess-tagenergy-submits-4gwh-victoria-project/",
-      "source": "Energy-Storage.news",
-      "title": "Australia: Energy Vault secures NSW approval for 1GWh BESS, TagEnergy submits 4GWh Victoria project",
-      "url": "https://www.energy-storage.news/australia-energy-vault-secures-nsw-approval-for-1gwh-bess-tagenergy-submits-4gwh-victoria-project/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Two Australian battery storage developments advanced, both moving large-scale projects closer to construction through separate approval pathways."
-    },
-    {
-      "t": "2026-09-30T04:01:38.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/gotion-to-supply-6gwh-of-battery-storage-for-saudi-arabias-first-utility-scale-bess-tender/",
-      "source": "Energy-Storage.news",
-      "title": "Gotion to supply 6GWh of battery storage for Saudi Arabia’s first utility-scale BESS tender",
-      "url": "https://www.energy-storage.news/gotion-to-supply-6gwh-of-battery-storage-for-saudi-arabias-first-utility-scale-bess-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Gotion High-Tech has been named as the BESS supplier for three projects totalling 6GWh awarded to an ACWA Power consortium in Saudi Arabia."
-    },
-    {
-      "t": "2026-09-30T04:51:05.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/spain-is-making-batteries-a-licensing-condition-for-data-centres-and-nobody-noticed/",
-      "source": "Energy-Storage.news",
-      "title": "Spain is making batteries a licensing condition for data centres, and nobody noticed",
-      "url": "https://www.energy-storage.news/spain-is-making-batteries-a-licensing-condition-for-data-centres-and-nobody-noticed/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Spain's recent proposal for data centres could be the catalyst the country's energy storage market has been waiting for, argues Ignacio López Martín from developer Capflex Energía."
     },
     {
       "t": "2026-09-30T04:56:27.000Z",
@@ -342,17 +282,7 @@
       "url": "https://www.energy-storage.news/wartsilas-energy-storage-division-rebrands-through-rct-solar-joint-venture/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Wärtsilä’s energy storage business will now operate under the new brand name Varo, following the close of the company’s joint venture (JV) with RCT Solar."
-    },
-    {
-      "t": "2026-10-01T12:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/south-korea-grid-overhaul-to-connect-more-than-100-gw-of-renewables/",
-      "source": "pv magazine",
-      "title": "South Korea grid overhaul to connect more than 100 GW of renewables",
-      "url": "https://www.pv-magazine.com/2026/10/01/south-korea-grid-overhaul-to-connect-more-than-100-gw-of-renewables/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Korea plans to replace hard limits on grid connections with curtailable access, battery storage, and competitive allocation of connection rights, as it aims to accommodate more than 100 GW of renewable energy capacity by 2030. The post South Korea grid overhaul to connect more than 100 GW of renewables appeare…"
+      "summary": "Update 2 October 2026: The financial impact of the write-down to Wärtsilä's full-year 2026 is expected to be significantly less than initially communicated."
     },
     {
       "t": "2026-10-01T13:04:05.000Z",
@@ -373,36 +303,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery energy storage systems (BESS) are increasingly being positioned as essential infrastructure investments rather than purely financial assets, as seen in a series of strategic partnerships announced in late September that integrate storage with broader energy and digital infrastructure strategies."
-    },
-    {
-      "t": "2026-10-01T14:12:21.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/u-s-small-scale-solar-adds-1-6-gw-in-q2-2026-as-fossil-fuel-capacity-surges/",
-      "source": "pv magazine",
-      "title": "U.S. small-scale solar adds 1.6 GW in Q2",
-      "url": "https://www.pv-magazine.com/2026/10/01/u-s-small-scale-solar-adds-1-6-gw-in-q2-2026-as-fossil-fuel-capacity-surges/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Distributed solar maintained a steady deployment pace alongside 2.5 GWh of new behind the meter storage, even as a wave of thermal generation additions pulled solar's total share of new US power capacity down to 55%. The post U.S. small-scale solar adds 1.6 GW in Q2 appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-01T15:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/shared-grid-connections-concentrate-battery-insurance-risk/",
-      "source": "pv magazine",
-      "title": "Shared grid connections concentrate battery insurance risk",
-      "url": "https://www.pv-magazine.com/2026/10/01/shared-grid-connections-concentrate-battery-insurance-risk/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Tokio Marine GX (TMGX) sees exposures of up to billions of dollars building up at co-located battery energy storage system (BESS) sites, and says lenders are only beginning to require cyber cover. The post Shared grid connections concentrate battery insurance risk appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-01T16:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/module-cooling-too-hot-to-handle/",
-      "source": "pv magazine",
-      "title": "Module cooling: too hot to handle",
-      "url": "https://www.pv-magazine.com/2026/10/01/module-cooling-too-hot-to-handle/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Even after the record-breaking heat waves of this summer and associated performance losses at PV plants across the northern hemisphere, active cooling for solar arrays remains a difficult market prospect. Developers might be a bit more interested in preventing temperature-related losses, but in most cases, the numbe…"
     },
     {
       "t": "2026-10-01T16:00:00.000Z",
@@ -435,66 +335,126 @@
       "summary": "Fu-Gen has sold a 100MW ready-to-build battery storage project in Finland to Nala Renewables, extending their Nordic BESS pipeline to 275MW."
     },
     {
-      "t": "2026-10-02T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/age-awareness-for-bess/",
-      "source": "pv magazine",
-      "title": "Age awareness for BESS",
-      "url": "https://www.pv-magazine.com/2026/10/02/age-awareness-for-bess/",
+      "t": "2026-10-02T06:56:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/canadas-northland-power-closes-financing-on-1-2gwh-of-cm-contracted-bess-projects-in-poland/",
+      "source": "Energy-Storage.news",
+      "title": "Canada’s Northland Power closes financing on 1.2GWh of CM-contracted BESS projects in Poland",
+      "url": "https://www.energy-storage.news/canadas-northland-power-closes-financing-on-1-2gwh-of-cm-contracted-bess-projects-in-poland/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "As the use cases for battery energy storage systems (BESS) evolve, so does the way the batteries are operated. How these changes affect BESS lifetime and reliability is a question the industry needs answered, and one the International Energy Agency’s Photovoltaic Power Systems Programme (IEA-PVPS) is working to addr…"
+      "summary": "Northland Power has closed financing on two large-scale battery energy storage system (BESS) projects in Poland."
     },
     {
-      "t": "2026-10-02T05:12:42.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/newsom-signs-california-plug-in-solar-bill-establishing-the-nations-largest-balcony-solar-market/",
-      "source": "pv magazine",
-      "title": "California enacts plug-in solar bill, creating largest US balcony solar market",
-      "url": "https://www.pv-magazine.com/2026/10/02/newsom-signs-california-plug-in-solar-bill-establishing-the-nations-largest-balcony-solar-market/",
+      "t": "2026-10-02T07:25:53.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/technical-availability-maximising-bess-returns-varco-energ-uk-asset-management/",
+      "source": "Energy-Storage.news",
+      "title": "Technical availability central to maximising BESS returns: Varco Energy talks UK asset management",
+      "url": "https://www.energy-storage.news/technical-availability-maximising-bess-returns-varco-energ-uk-asset-management/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Outgoing California Governor Gavin Newsom has signed SB 868, a law that allows the state's 39 million residents to use portable solar devices that connect to a home through a receptacle. The post California enacts plug-in solar bill, creating largest US balcony solar market appeared first on pv magazine Global ."
+      "summary": "Elliot Squire, senior asset manager for Varco Energy, discusses current and future trends in battery storage."
     },
     {
-      "t": "2026-10-02T05:23:41.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/argentina-develops-guidelines-for-off-grid-solar-water-pumping/",
+      "t": "2026-10-02T08:22:24.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/germany-approves-rules-for-storage-bidirectional-charging/",
       "source": "pv magazine",
-      "title": "Argentina develops guidelines for off-grid solar water pumping",
-      "url": "https://www.pv-magazine.com/2026/10/02/argentina-develops-guidelines-for-off-grid-solar-water-pumping/",
+      "title": "Germany approves rules for storage, bidirectional charging",
+      "url": "https://www.pv-magazine.com/2026/10/02/germany-approves-rules-for-storage-bidirectional-charging/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Argentina’s National Institute of Agricultural Technology (INTA) has developed sizing guidelines for off-grid, solar-powered subsurface drip irrigation systems. Trials show that matching water use to crop needs can expand irrigated areas without significantly reducing yields. The post Argentina develops guidelines f…"
+      "summary": "Germany’s Federal Network Agency (Bundesnetzagentur) has approved rules for the market integration of electricity storage systems and charging points (MiSpeL), allowing batteries to combine renewable and grid electricity while preserving support for eligible renewable power. The post Germany approves rules for stora…"
     },
     {
-      "t": "2026-10-02T05:32:54.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/sondeva-launches-platform-to-track-renewable-energy-projects-across-spains-official-journals/",
+      "t": "2026-10-02T08:40:10.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/fraunhofer-ise-releases-electricity-price-simulator/",
       "source": "pv magazine",
-      "title": "Sondeva launches platform to track renewable energy projects across Spain’s official journals",
-      "url": "https://www.pv-magazine.com/2026/10/02/sondeva-launches-platform-to-track-renewable-energy-projects-across-spains-official-journals/",
+      "title": "Fraunhofer ISE releases electricity price simulator",
+      "url": "https://www.pv-magazine.com/2026/10/02/fraunhofer-ise-releases-electricity-price-simulator/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Sondeva has launched a platform that aggregates renewable energy project announcements from Spain’s national and regional official journals. The database currently tracks 3,871 active projects, including PV, wind and energy storage developments. The post Sondeva launches platform to track renewable energy projects a…"
+      "summary": "The freely-accessible electricity price simulator allows users to analyse how additional battery storage would impact prices on Germany's day-ahead market. The post Fraunhofer ISE releases electricity price simulator appeared first on pv magazine Global ."
     },
     {
-      "t": "2026-10-02T05:46:44.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/france-hits-record-800-hours-of-negative-zero-electricity-prices/",
-      "source": "pv magazine",
-      "title": "France hits record 800 hours of negative, zero electricity prices",
-      "url": "https://www.pv-magazine.com/2026/10/02/france-hits-record-800-hours-of-negative-zero-electricity-prices/",
+      "t": "2026-10-02T08:57:45.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/renalfa-ipp-eurowind-inaugurate-solar-plus-storage-hybrid-renewable-energy-park-in-bulgaria/",
+      "source": "Energy-Storage.news",
+      "title": "Renalfa IPP, Eurowind inaugurate solar-plus-storage hybrid renewable energy park in Bulgaria",
+      "url": "https://www.energy-storage.news/renalfa-ipp-eurowind-inaugurate-solar-plus-storage-hybrid-renewable-energy-park-in-bulgaria/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "France has recorded around 800 hours of negative or zero electricity prices in 2026, as growing market volatility creates new opportunities for battery storage. Storio Energy says widening daily price spreads have boosted battery spot-market revenues, amid lower nuclear, wind and hydropower output. The post France h…"
+      "summary": "Renalfa IPP and Eurowind have brought a large-scale hybrid renewables project, featuring 242MWp of solar PV and 773MWh of battery storage, into commercial operation in Bulgaria."
+    },
+    {
+      "t": "2026-10-02T09:28:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/italian-startup-unveils-double-layer-pv-system-prototype-for-space-constrained-applications/",
+      "source": "pv magazine",
+      "title": "Italian startup unveils double-layer PV system prototype for space-constrained applications",
+      "url": "https://www.pv-magazine.com/2026/10/02/italian-startup-unveils-double-layer-pv-system-prototype-for-space-constrained-applications/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Italian startup AMPS has developed a double-layer PV system that dynamically manages two overlapping module surfaces to increase solar-energy capture without expanding the installation footprint. The company says initial field tests showed short-circuit current-based gains of up to 27% over a comparable single-layer…"
+    },
+    {
+      "t": "2026-10-02T09:54:33.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-ercot-economics-googles-hourly-matching-pilot-and-the-worlds-most-dense-bess-blocks/",
+      "source": "Energy-Storage.news",
+      "title": "BESS Industry Buzz: ERCOT economics, Google’s hourly matching pilot and the world’s most dense BESS blocks",
+      "url": "https://www.energy-storage.news/bess-industry-buzz-ercot-economics-googles-hourly-matching-pilot-and-the-worlds-most-dense-bess-blocks/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Welcome to another edition of hot takes, snap analysis, gossip and of course, valuable insights from the LinkedIn feeds of energy storage and electricity insiders."
+    },
+    {
+      "t": "2026-10-02T10:13:20.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/california-governor-newsom-signs-vpp-and-balcony-solar-bills-vetoes-community-solar-legislation/",
+      "source": "Energy-Storage.news",
+      "title": "California Governor Newsom signs VPP and balcony solar bills, vetoes community solar legislation",
+      "url": "https://www.energy-storage.news/california-governor-newsom-signs-vpp-and-balcony-solar-bills-vetoes-community-solar-legislation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Outgoing California Governor Gavin Newsom recenty addressed approximately 1,200 bills, including several energy storage and solar related bills that were either approved or vetoed."
+    },
+    {
+      "t": "2026-10-02T11:04:07.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/india-approves-us19-3-billion-green-energy-corridor-phase-iii-with-50gwh-bess/",
+      "source": "Energy-Storage.news",
+      "title": "India approves US$19.3 billion Green Energy Corridor Phase III with 50GWh BESS",
+      "url": "https://www.energy-storage.news/india-approves-us19-3-billion-green-energy-corridor-phase-iii-with-50gwh-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India's Union Cabinet has approved US$ 19.3 billion Green Energy Corridor, including US$ 5.2 billion for 50GWh BESS through FY2032-33."
+    },
+    {
+      "t": "2026-10-02T11:07:45.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/spains-first-pre-commercial-marine-solar-demonstrator-enters-testing/",
+      "source": "pv magazine",
+      "title": "Spain’s first pre-commercial marine solar demonstrator enters testing",
+      "url": "https://www.pv-magazine.com/2026/10/02/spains-first-pre-commercial-marine-solar-demonstrator-enters-testing/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BlueNewables has installed a 1 MW offshore floating solar demonstrator at the Port of Valencia, Spain, and has begun testing the system. The project comprises two 500 kW PV-bos platforms designed to assess the technology’s performance, operation and maintenance requirements, and integration into port infrastructure…"
+    },
+    {
+      "t": "2026-10-02T11:12:49.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/german-startup-wins-grant-for-grid-charging-sodium-ion-home-battery/",
+      "source": "pv magazine",
+      "title": "German startup wins grant for grid-charging sodium-ion home battery",
+      "url": "https://www.pv-magazine.com/2026/10/02/german-startup-wins-grant-for-grid-charging-sodium-ion-home-battery/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Revolta AG has secured European Regional Development Fund (ERDF) support to develop a plug-and-play sodium-ion battery that households without solar panels can charge from the grid when power prices are low. The post German startup wins grant for grid-charging sodium-ion home battery appeared first on pv magazine Gl…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 46,
+    "items": 42,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 32,
-      "policy": 8,
+      "grid": 28,
+      "policy": 7,
       "capital": 5,
-      "technology": 1
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -519,7 +479,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 10
+        "items": 5
       }
     ]
   },
@@ -528,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:6971f502b56a8336b37dda0ab6ff43a231860389ece77b74b2af37c3dfb02b8e",
-  "envelopeChecksum": "sha256:b4b60b1a752e16b3c47dee5009942e343fe2a5a65ba7ae6bdcdb70b9693e50d0"
+  "contentChecksum": "sha256:d7c5e1f3f9785b4b7f67f3c5e7fe02de4eceaa0d260d6a5a416e43e0921e9d8a",
+  "envelopeChecksum": "sha256:fda03fac604b8bf67c0bad86b96aeff2d567f326dcfa655e05a55e76e14a1c8f"
 }
