@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-02T12:46:11.462Z",
+  "fetchedAt": "2026-10-02T22:19:03.069Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-10-02T11:12:49.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -135,36 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-29T15:34:42.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/amid-acquisition-energy-vault-keeps-close-watch-on-trumps-bulk-power-orde/831646/",
-      "source": "Utility Dive",
-      "title": "Amid acquisition, Energy Vault keeps close watch on Trump’s bulk-power order, executive says",
-      "url": "https://www.utilitydive.com/news/amid-acquisition-energy-vault-keeps-close-watch-on-trumps-bulk-power-orde/831646/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The energy project developer sees opportunities in Texas, PJM Interconnection and the Southwest Power Pool, but officials say they must carefully navigate an uncertain regulatory backdrop."
-    },
-    {
-      "t": "2026-09-29T16:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/facilities-fueling-energy-storage-installations/831510/",
-      "source": "Utility Dive",
-      "title": "Facilities fueling energy storage installations",
-      "url": "https://www.utilitydive.com/news/facilities-fueling-energy-storage-installations/831510/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The market for commercial systems will grow 27% over the next five years, say American Clean Power and Wood Mackenzie."
-    },
-    {
-      "t": "2026-09-29T16:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
-      "source": "Utility Dive",
-      "title": "The data center boom continues apace, but projects face mounting obstacles",
-      "url": "https://www.utilitydive.com/news/the-data-center-boom-continues-apace-but-projects-face-mounting-obstacles/830496/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Shortages of skilled labor and equipment, as well as local opposition, are threatening even high-profile projects backed by big tech companies. Developers are responding by embracing flexibility and alternative technologies&nbsp;once considered too unwieldy."
-    },
-    {
       "t": "2026-09-30T04:56:27.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/kerala-indian-state-proposes-five-year-electricity-tariff-framework-with-new-provisions-for-bess/",
       "source": "Energy-Storage.news",
@@ -215,16 +185,6 @@
       "summary": "Three US utilities, Ameren Missouri, DTE Energy in Michigan, and Black Hills Energy in Colorado have recently submitted IRPs with highlighted BESS project additions."
     },
     {
-      "t": "2026-09-30T13:48:55.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-delays-backstop-procurement-ferc-data-center/831751/",
-      "source": "Utility Dive",
-      "title": "FERC chair slams PJM ‘mess’ as country’s largest grid operator delays power auction",
-      "url": "https://www.utilitydive.com/news/pjm-delays-backstop-procurement-ferc-data-center/831751/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "PJM had planned to accept offers for backstop power supplies from Sept. 30 through Oct. 21 after falling short of its reserve margin targets amid aggressive data center load growth. But FERC only partially approved its plan, zeroing in on cost allocation concerns."
-    },
-    {
       "t": "2026-09-30T16:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/facilities-using-48e-credits-to-make-energy-projects-pencil-out/831733/",
       "source": "Utility Dive",
@@ -253,6 +213,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Orix Corporation has begun construction of its first battery storage projects to be supported by external investment."
+    },
+    {
+      "t": "2026-10-01T06:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/solar-for-all-funding-ep-court-uncertainty/831144/",
+      "source": "Utility Dive",
+      "title": "Solar for All grantees seek damages from EPA over ‘devastating’ cuts",
+      "url": "https://www.utilitydive.com/news/solar-for-all-funding-ep-court-uncertainty/831144/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Two federal judges recently ruled that the EPA acted illegally when it suddenly terminated the $7 billion program. One grantee said the decision harmed not only her organization, but also developers and communities that expected to benefit from the projects."
     },
     {
       "t": "2026-10-01T08:31:04.000Z",
@@ -305,6 +275,26 @@
       "summary": "Battery energy storage systems (BESS) are increasingly being positioned as essential infrastructure investments rather than purely financial assets, as seen in a series of strategic partnerships announced in late September that integrate storage with broader energy and digital infrastructure strategies."
     },
     {
+      "t": "2026-10-01T13:55:34.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/senate-permitting-bill-would-expand-federal-role-in-electric-transmission-s/831886/",
+      "source": "Utility Dive",
+      "title": "Senate permitting bill would expand federal role in transmission siting",
+      "url": "https://www.utilitydive.com/news/senate-permitting-bill-would-expand-federal-role-in-electric-transmission-s/831886/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The legislation gives FERC authority to issue permits for&nbsp;transmission projects when it is in the public interest. It also eliminates NIETCs and the federal right of first refusal for incumbent utilities, and&nbsp;protects existing federal permits."
+    },
+    {
+      "t": "2026-10-01T13:57:20.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/nypa-240-mw-solar-project-edf-rich-road/831878/",
+      "source": "Utility Dive",
+      "title": "NYPA to own 51% of 240-MW solar project with EDF",
+      "url": "https://www.utilitydive.com/news/nypa-240-mw-solar-project-edf-rich-road/831878/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Rich Road Solar is the first project the New York Power Authority has developed utilizing a&nbsp;public-private partnership model to advance renewable energy."
+    },
+    {
       "t": "2026-10-01T16:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/levis-marks-and-spencer-launch-renewable-energy-initiative-for-fashion-suppliers/831754/",
       "source": "Utility Dive",
@@ -312,7 +302,7 @@
       "url": "https://www.utilitydive.com/news/levis-marks-and-spencer-launch-renewable-energy-initiative-for-fashion-suppliers/831754/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Aapparel giants launched the &ldquo;Fashion Renewable Collective&rdquo; in collaboration with Schneider Electric to help suppliers across fashion supply chains adopt renewable electricity at scale."
+      "summary": "Apparel giants launched the &ldquo;Fashion Renewable Collective&rdquo; in collaboration with Schneider Electric to help suppliers across fashion supply chains adopt renewable electricity at scale."
     },
     {
       "t": "2026-10-02T03:36:30.000Z",
@@ -447,13 +437,13 @@
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 28,
-      "policy": 7,
-      "capital": 5,
+      "grid": 29,
+      "policy": 6,
+      "capital": 4,
       "technology": 2
     },
     "sourceStatus": [
@@ -473,7 +463,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 5
       },
       {
         "source": "pv magazine",
@@ -488,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d7c5e1f3f9785b4b7f67f3c5e7fe02de4eceaa0d260d6a5a416e43e0921e9d8a",
-  "envelopeChecksum": "sha256:fda03fac604b8bf67c0bad86b96aeff2d567f326dcfa655e05a55e76e14a1c8f"
+  "contentChecksum": "sha256:d9d4d829191908176950ceba79e7f32c24c69615e6d53432f3b672e257b3d198",
+  "envelopeChecksum": "sha256:dc731e9be49157113423f28979285506ef24a8d319ba984794b935f1327b0039"
 }
