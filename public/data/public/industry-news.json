@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-01T22:45:10.856Z",
+  "fetchedAt": "2026-10-02T05:48:00.832Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-01T16:00:00.000Z",
+    "to": "2026-10-02T05:46:44.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-29T08:36:19.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/eu-roundup-hybrid-and-standalone-bess-news-in-italy-germany-and-the-nordics-with-metlen-pne-and-mirova/",
-      "source": "Energy-Storage.news",
-      "title": "EU ROUNDUP: Hybrid and standalone BESS news in Italy, Germany and the Nordics, with Metlen, PNE and Mirova",
-      "url": "https://www.energy-storage.news/eu-roundup-hybrid-and-standalone-bess-news-in-italy-germany-and-the-nordics-with-metlen-pne-and-mirova/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In this news roundup, Metlen inaugurates a 75MWh BESS in Italy, PNE and Enercon develop a wind and storage project in Germany, and Mirova invests €65 million in Nordic BESS from Ingrid Capacity."
-    },
-    {
-      "t": "2026-09-29T08:41:31.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/huge-pipeline-of-opportunities-as-middle-east-energy-storage-financing-seeks-bankability-revenue-certainty/",
-      "source": "Energy-Storage.news",
-      "title": "‘Huge pipeline of opportunities’ as Middle East energy storage financing seeks bankability, revenue certainty",
-      "url": "https://www.energy-storage.news/huge-pipeline-of-opportunities-as-middle-east-energy-storage-financing-seeks-bankability-revenue-certainty/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "There is no shortage of capital to invest, but energy storage developers in the Middle East face familiar questions as the market takes shape."
     },
     {
       "t": "2026-09-29T10:09:22.000Z",
@@ -355,16 +335,6 @@
       "summary": "Energy-Storage.news spoke with Noemí Gallardo, Commissioner at the California Energy Commission (CEC), at the US Solar & Storage Finance event in Garden Grove, California, about the growth of BESS within the state."
     },
     {
-      "t": "2026-10-01T10:30:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/adani-group-backed-vishakha-renewables-files-for-ipo/",
-      "source": "pv magazine",
-      "title": "Indian PV manufacturer Vishakha Renewables files for IPO",
-      "url": "https://www.pv-magazine.com/2026/10/01/adani-group-backed-vishakha-renewables-files-for-ipo/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Vishakha Renewables, jointly promoted by the Vishakha Group and the Adani Group, produces four of the six key components used in solar modules and is the largest solar component manufacturer (non-cell) in India in terms of combined installed production capacity as of March 31, 2026. The post Indian PV manufacturer V…"
-    },
-    {
       "t": "2026-10-01T11:12:19.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/wartsilas-energy-storage-division-rebrands-through-rct-solar-joint-venture/",
       "source": "Energy-Storage.news",
@@ -373,26 +343,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Wärtsilä’s energy storage business will now operate under the new brand name Varo, following the close of the company’s joint venture (JV) with RCT Solar."
-    },
-    {
-      "t": "2026-10-01T11:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/ireland-energizes-first-sress-solar-farm-opening-new-revenue-opportunities-for-farmers-and-landowners/",
-      "source": "pv magazine",
-      "title": "Ireland energizes first SRESS solar farm, opening new revenue opportunities for farmers and landowners",
-      "url": "https://www.pv-magazine.com/2026/10/01/ireland-energizes-first-sress-solar-farm-opening-new-revenue-opportunities-for-farmers-and-landowners/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "\"This is the beginning of a wave of small-scale energy projects being developed by farmers and communities,\" Ken O'Byrne, of Flogas Energy told pv magazine . Flogas has a 15-year PPA with the 650 kW Meadhill Solar farm's developer, Cork farmer Sean Keating. The post Ireland energizes first SRESS solar farm, opening…"
-    },
-    {
-      "t": "2026-10-01T12:18:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/01/two-stage-pyrolysis-process-turns-waste-solar-panels-into-silicon-carbide/",
-      "source": "pv magazine",
-      "title": "Two-stage pyrolysis process turns waste solar panels into silicon carbide",
-      "url": "https://www.pv-magazine.com/2026/10/01/two-stage-pyrolysis-process-turns-waste-solar-panels-into-silicon-carbide/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Russian scientists have developed a process that combines pyrolysis at 500 C with electric arc treatment above 1,800 C. The resulting solid product contained up to 61% silicon carbide, a material used in power electronics and refractory ceramics. The post Two-stage pyrolysis process turns waste solar panels into sil…"
     },
     {
       "t": "2026-10-01T12:30:00.000Z",
@@ -463,17 +413,87 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Aapparel giants launched the &ldquo;Fashion Renewable Collective&rdquo; in collaboration with Schneider Electric to help suppliers across fashion supply chains adopt renewable electricity at scale."
+    },
+    {
+      "t": "2026-10-02T03:36:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bullawah-wind-farm-approved-718mwh-battery-nsw/",
+      "source": "Energy-Storage.news",
+      "title": "New South Wales grants approval to BayWa r.e.’s Bullawah hybrid wind and battery project in Australia",
+      "url": "https://www.energy-storage.news/bullawah-wind-farm-approved-718mwh-battery-nsw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "NSW's IPC has approved BayWa r.e.'s Bullawah Wind Farm, pairing 804MW of wind with a 718MWh battery in the South West REZ."
+    },
+    {
+      "t": "2026-10-02T03:38:31.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/fu-gen-nala-renewables-close-100mw-bess-finland/",
+      "source": "Energy-Storage.news",
+      "title": "Fu-Gen, Nala Renewables close 100MW BESS deal in Finland",
+      "url": "https://www.energy-storage.news/fu-gen-nala-renewables-close-100mw-bess-finland/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Fu-Gen has sold a 100MW ready-to-build battery storage project in Finland to Nala Renewables, extending their Nordic BESS pipeline to 275MW."
+    },
+    {
+      "t": "2026-10-02T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/age-awareness-for-bess/",
+      "source": "pv magazine",
+      "title": "Age awareness for BESS",
+      "url": "https://www.pv-magazine.com/2026/10/02/age-awareness-for-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "As the use cases for battery energy storage systems (BESS) evolve, so does the way the batteries are operated. How these changes affect BESS lifetime and reliability is a question the industry needs answered, and one the International Energy Agency’s Photovoltaic Power Systems Programme (IEA-PVPS) is working to addr…"
+    },
+    {
+      "t": "2026-10-02T05:12:42.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/newsom-signs-california-plug-in-solar-bill-establishing-the-nations-largest-balcony-solar-market/",
+      "source": "pv magazine",
+      "title": "California enacts plug-in solar bill, creating largest US balcony solar market",
+      "url": "https://www.pv-magazine.com/2026/10/02/newsom-signs-california-plug-in-solar-bill-establishing-the-nations-largest-balcony-solar-market/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Outgoing California Governor Gavin Newsom has signed SB 868, a law that allows the state's 39 million residents to use portable solar devices that connect to a home through a receptacle. The post California enacts plug-in solar bill, creating largest US balcony solar market appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-02T05:23:41.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/argentina-develops-guidelines-for-off-grid-solar-water-pumping/",
+      "source": "pv magazine",
+      "title": "Argentina develops guidelines for off-grid solar water pumping",
+      "url": "https://www.pv-magazine.com/2026/10/02/argentina-develops-guidelines-for-off-grid-solar-water-pumping/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Argentina’s National Institute of Agricultural Technology (INTA) has developed sizing guidelines for off-grid, solar-powered subsurface drip irrigation systems. Trials show that matching water use to crop needs can expand irrigated areas without significantly reducing yields. The post Argentina develops guidelines f…"
+    },
+    {
+      "t": "2026-10-02T05:32:54.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/sondeva-launches-platform-to-track-renewable-energy-projects-across-spains-official-journals/",
+      "source": "pv magazine",
+      "title": "Sondeva launches platform to track renewable energy projects across Spain’s official journals",
+      "url": "https://www.pv-magazine.com/2026/10/02/sondeva-launches-platform-to-track-renewable-energy-projects-across-spains-official-journals/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Sondeva has launched a platform that aggregates renewable energy project announcements from Spain’s national and regional official journals. The database currently tracks 3,871 active projects, including PV, wind and energy storage developments. The post Sondeva launches platform to track renewable energy projects a…"
+    },
+    {
+      "t": "2026-10-02T05:46:44.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/france-hits-record-800-hours-of-negative-zero-electricity-prices/",
+      "source": "pv magazine",
+      "title": "France hits record 800 hours of negative, zero electricity prices",
+      "url": "https://www.pv-magazine.com/2026/10/02/france-hits-record-800-hours-of-negative-zero-electricity-prices/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "France has recorded around 800 hours of negative or zero electricity prices in 2026, as growing market volatility creates new opportunities for battery storage. Storio Energy says widening daily price spreads have boosted battery spot-market revenues, amid lower nuclear, wind and hydropower output. The post France h…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
+      "grid": 32,
       "policy": 8,
-      "capital": 6,
+      "capital": 5,
       "technology": 1
     },
     "sourceStatus": [
@@ -499,7 +519,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 10
       }
     ]
   },
@@ -508,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:ea6fe57ce094e0f2f9fa98ad92ce07fbf3603bdf2e3e38047beb6d24a38c5f4d",
-  "envelopeChecksum": "sha256:a428637e4affc3eb88eda160c55f160e7a3572b28eba32ab78e72c068c61a801"
+  "contentChecksum": "sha256:6971f502b56a8336b37dda0ab6ff43a231860389ece77b74b2af37c3dfb02b8e",
+  "envelopeChecksum": "sha256:b4b60b1a752e16b3c47dee5009942e343fe2a5a65ba7ae6bdcdb70b9693e50d0"
 }
