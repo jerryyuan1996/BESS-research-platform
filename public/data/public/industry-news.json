@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-03T05:24:53.680Z",
+  "fetchedAt": "2026-10-03T11:46:40.257Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-03T04:00:00.000Z",
+    "to": "2026-10-03T09:30:00.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -282,7 +282,7 @@
       "url": "https://www.utilitydive.com/news/senate-permitting-bill-would-expand-federal-role-in-electric-transmission-s/831886/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The legislation gives FERC authority to issue permits for&nbsp;transmission projects when it is in the public interest. It also eliminates NIETCs and the federal right of first refusal for incumbent utilities, and&nbsp;protects existing federal permits."
+      "summary": "The legislation gives FERC authority to issue permits for&nbsp;transmission projects when they are in the public interest. It also eliminates NIETCs and the federal right of first refusal for incumbent utilities and&nbsp;protects existing federal permits."
     },
     {
       "t": "2026-10-01T13:57:20.000Z",
@@ -343,26 +343,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Elliot Squire, senior asset manager for Varco Energy, discusses current and future trends in battery storage."
-    },
-    {
-      "t": "2026-10-02T08:22:24.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/germany-approves-rules-for-storage-bidirectional-charging/",
-      "source": "pv magazine",
-      "title": "Germany approves rules for storage, bidirectional charging",
-      "url": "https://www.pv-magazine.com/2026/10/02/germany-approves-rules-for-storage-bidirectional-charging/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Germany’s Federal Network Agency (Bundesnetzagentur) has approved rules for the market integration of electricity storage systems and charging points (MiSpeL), allowing batteries to combine renewable and grid electricity while preserving support for eligible renewable power. The post Germany approves rules for stora…"
-    },
-    {
-      "t": "2026-10-02T08:40:10.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/fraunhofer-ise-releases-electricity-price-simulator/",
-      "source": "pv magazine",
-      "title": "Fraunhofer ISE releases electricity price simulator",
-      "url": "https://www.pv-magazine.com/2026/10/02/fraunhofer-ise-releases-electricity-price-simulator/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The freely-accessible electricity price simulator allows users to analyse how additional battery storage would impact prices on Germany's day-ahead market. The post Fraunhofer ISE releases electricity price simulator appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-02T08:57:45.000Z",
@@ -443,15 +423,45 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "The rollback of policies favoring renewable energy deployment in the United States is contributing to an energy affordability crisis in many communities, according to Jon Powers, president of Clean Capital, a US independent power producer (IPP) active in the distributed generation segment. He spoke with pv magazine…"
+    },
+    {
+      "t": "2026-10-03T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/03/the-case-for-railway-integrated-solar-in-south-korea/",
+      "source": "pv magazine",
+      "title": "The case for railway-integrated solar in South Korea",
+      "url": "https://www.pv-magazine.com/2026/10/03/the-case-for-railway-integrated-solar-in-south-korea/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Korea’s extensive railway network could provide new space for solar generation in densely populated areas where land availability is limited. Researchers have investigated the potential of installing PV systems between railway tracks, finding that suitable sections of five surface railway corridors could host…"
+    },
+    {
+      "t": "2026-10-03T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/03/brazil-hits-56-gw-of-connection-headroom-for-battery-auctions/",
+      "source": "pv magazine",
+      "title": "Brazil hits 56 GW of connection headroom for battery auctions",
+      "url": "https://www.pv-magazine.com/2026/10/03/brazil-hits-56-gw-of-connection-headroom-for-battery-auctions/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Brazil’s available grid capacity for battery storage projects exceeds the association’s estimate of 2028-30 power needs by up to 12.5 times, according to an analysis of transmission data. The post Brazil hits 56 GW of connection headroom for battery auctions appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-03T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/03/battery-storage-paired-with-37-of-new-u-s-residential-solar-systems-in-2025/",
+      "source": "pv magazine",
+      "title": "Battery storage paired with 37% of new U.S. residential solar systems in 2025",
+      "url": "https://www.pv-magazine.com/2026/10/03/battery-storage-paired-with-37-of-new-u-s-residential-solar-systems-in-2025/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Battery storage was paired with 37% of new U.S. residential solar installations in 2025, up from 25% a year earlier, with adoption accelerating both in California and across other states. The post Battery storage paired with 37% of new U.S. residential solar systems in 2025 appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
+      "grid": 30,
       "policy": 6,
       "capital": 5,
       "technology": 2
@@ -479,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 7
       }
     ]
   },
@@ -488,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:55873b28ab363e987bf51772ce998f3ffb460584d311105d54bfe4c2cad92713",
-  "envelopeChecksum": "sha256:9305afbcdf5f7e07d46e64a646ab98c05fd942ce4c1697b89564ac7339d3ed27"
+  "contentChecksum": "sha256:8353c86b3f2c32a8cf677ef711ec79ed46f9e35b42fab8086083ca12a74b651d",
+  "envelopeChecksum": "sha256:ec3838eb5987bd6edb40e309952dca7f6ffdf0fcf855ddb21fb15970179db308"
 }
