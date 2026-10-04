@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-04T12:29:18.644Z",
+  "fetchedAt": "2026-10-04T21:35:20.072Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-10-03T09:30:00.000Z",
@@ -282,7 +282,7 @@
       "url": "https://www.utilitydive.com/news/senate-permitting-bill-would-expand-federal-role-in-electric-transmission-s/831886/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The legislation gives FERC authority to issue permits for&nbsp;transmission projects when it is in the public interest. It also eliminates NIETCs and the federal right of first refusal for incumbent utilities, and&nbsp;protects existing federal permits."
+      "summary": "The legislation gives FERC authority to issue permits for&nbsp;transmission projects when they are in the public interest. It also eliminates NIETCs and the federal right of first refusal for incumbent utilities and&nbsp;protects existing federal permits."
     },
     {
       "t": "2026-10-01T13:57:20.000Z",
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:9cfadddaf6af64bfe2360828326e1746f2ca2502fda8ec6cd50ddf1f2eb2e201",
-  "envelopeChecksum": "sha256:d9e1babce8f0ba542e27eb58e24c4b973fe55c747fc709d68506492dcb55c0ec"
+  "contentChecksum": "sha256:8353c86b3f2c32a8cf677ef711ec79ed46f9e35b42fab8086083ca12a74b651d",
+  "envelopeChecksum": "sha256:51cd711a46b6371b1e7fe7f71f699c4ea974c751a3d0e8b14dadcc04efbed0d6"
 }
