@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-05T05:50:09.128Z",
+  "fetchedAt": "2026-10-05T14:52:01.971Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-05T05:48:15.000Z",
+    "to": "2026-10-05T14:45:00.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 40
   },
   "units": {
     "record": "published article metadata"
@@ -135,46 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-09-30T04:56:27.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/kerala-indian-state-proposes-five-year-electricity-tariff-framework-with-new-provisions-for-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Kerala: Indian state proposes five-year electricity tariff framework with new provisions for BESS",
-      "url": "https://www.energy-storage.news/kerala-indian-state-proposes-five-year-electricity-tariff-framework-with-new-provisions-for-bess/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Kerala has proposed a five-year tariff framework with rules for BESS, PSP, including efficiency, availability and grid-forming requirements."
-    },
-    {
-      "t": "2026-09-30T07:56:44.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/availability-why-this-bess-performance-metric-matters-so-much-and-how-to-calculate-it/",
-      "source": "Energy-Storage.news",
-      "title": "Availability: Why this BESS performance metric matters so much, and how to calculate it",
-      "url": "https://www.energy-storage.news/availability-why-this-bess-performance-metric-matters-so-much-and-how-to-calculate-it/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Liam Critchley with an ESN Premium deep dive into availability, one of the most-discussed metrics in battery storage performance."
-    },
-    {
-      "t": "2026-09-30T09:07:34.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/volkswagens-new-lfp-battery-jvs-with-gotion-will-adjust-ev-and-bess-cell-production-split-based-on-demand/",
-      "source": "Energy-Storage.news",
-      "title": "Volkswagen’s new LFP battery JVs with Gotion will adjust EV and BESS cell production split based on demand",
-      "url": "https://www.energy-storage.news/volkswagens-new-lfp-battery-jvs-with-gotion-will-adjust-ev-and-bess-cell-production-split-based-on-demand/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Gotion and Volkswagen AG will establish three joint ventures to manufacture lithium iron phosphate (LFP) batteries and battery materials in Valencia (Spain), Surany (Slovakia), and Kenitra (Morocco)."
-    },
-    {
-      "t": "2026-09-30T11:08:35.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/northland-power-puts-canadian-province-of-albertas-largest-bess-into-operation/",
-      "source": "Energy-Storage.news",
-      "title": "Northland Power puts Canadian province of Alberta’s largest BESS into operation",
-      "url": "https://www.energy-storage.news/northland-power-puts-canadian-province-of-albertas-largest-bess-into-operation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "IPP Northland Power has announced that its 80MW/160MWh Jurassic energy storage project in Cypress County, Alberta, CA, has achieved commercial operations."
-    },
-    {
       "t": "2026-09-30T11:13:13.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/us-utilities-ameren-missouri-dte-energy-in-michigan-and-black-hills-energy-in-colorado-submit-irps-with-highlighted-bess-additions/",
       "source": "Energy-Storage.news",
@@ -183,16 +143,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Three US utilities, Ameren Missouri, DTE Energy in Michigan, and Black Hills Energy in Colorado have recently submitted IRPs with highlighted BESS project additions."
-    },
-    {
-      "t": "2026-09-30T16:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/facilities-using-48e-credits-to-make-energy-projects-pencil-out/831733/",
-      "source": "Utility Dive",
-      "title": "Facilities are using 48E investment tax credits to make energy projects pencil out",
-      "url": "https://www.utilitydive.com/news/facilities-using-48e-credits-to-make-energy-projects-pencil-out/831733/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Most commonly, building operators are using the tax credit to install battery storage systems that can leverage lower-cost electricity rates, says an executive with tax-credit consulting firm Alliant."
     },
     {
       "t": "2026-10-01T01:19:52.000Z",
@@ -282,7 +232,7 @@
       "url": "https://www.utilitydive.com/news/senate-permitting-bill-would-expand-federal-role-in-electric-transmission-s/831886/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The legislation gives FERC authority to issue permits for&nbsp;transmission projects when it is in the public interest. It also eliminates NIETCs and the federal right of first refusal for incumbent utilities, and&nbsp;protects existing federal permits."
+      "summary": "The legislation gives FERC authority to issue permits for&nbsp;transmission projects when they are in the public interest. It also eliminates NIETCs and the federal right of first refusal for incumbent utilities and&nbsp;protects existing federal permits."
     },
     {
       "t": "2026-10-01T13:57:20.000Z",
@@ -385,106 +335,106 @@
       "summary": "India's Union Cabinet has approved US$ 19.3 billion Green Energy Corridor, including US$ 5.2 billion for 50GWh BESS through FY2032-33."
     },
     {
-      "t": "2026-10-02T11:07:45.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/spains-first-pre-commercial-marine-solar-demonstrator-enters-testing/",
+      "t": "2026-10-05T07:19:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/enerparc-attracts-more-than-100-potential-investors-as-insolvency-sale-moves-forward/",
       "source": "pv magazine",
-      "title": "Spain’s first pre-commercial marine solar demonstrator enters testing",
-      "url": "https://www.pv-magazine.com/2026/10/02/spains-first-pre-commercial-marine-solar-demonstrator-enters-testing/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BlueNewables has installed a 1 MW offshore floating solar demonstrator at the Port of Valencia, Spain, and has begun testing the system. The project comprises two 500 kW PV-bos platforms designed to assess the technology’s performance, operation and maintenance requirements, and integration into port infrastructure…"
-    },
-    {
-      "t": "2026-10-02T11:12:49.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/02/german-startup-wins-grant-for-grid-charging-sodium-ion-home-battery/",
-      "source": "pv magazine",
-      "title": "German startup wins grant for grid-charging sodium-ion home battery",
-      "url": "https://www.pv-magazine.com/2026/10/02/german-startup-wins-grant-for-grid-charging-sodium-ion-home-battery/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Revolta AG has secured European Regional Development Fund (ERDF) support to develop a plug-and-play sodium-ion battery that households without solar panels can charge from the grid when power prices are low. The post German startup wins grant for grid-charging sodium-ion home battery appeared first on pv magazine Gl…"
-    },
-    {
-      "t": "2026-10-03T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/03/middle-market-momentum/",
-      "source": "pv magazine",
-      "title": "Middle market momentum",
-      "url": "https://www.pv-magazine.com/2026/10/03/middle-market-momentum/",
+      "title": "Enerparc attracts more than 100 potential investors as insolvency sale moves forward",
+      "url": "https://www.pv-magazine.com/2026/10/05/enerparc-attracts-more-than-100-potential-investors-as-insolvency-sale-moves-forward/",
       "category": "capital",
       "categoryLabel": "Capital & M&A",
-      "summary": "The rollback of policies favoring renewable energy deployment in the United States is contributing to an energy affordability crisis in many communities, according to Jon Powers, president of Clean Capital, a US independent power producer (IPP) active in the distributed generation segment. He spoke with pv magazine…"
+      "summary": "More than 100 potential investors have expressed interest in insolvent German solar developer Enerparc, with initial bids already submitted and a first transaction targeted for December. The sale could include solar portfolios, project pipelines and key subsidiaries, while financing challenges and potential creditor…"
     },
     {
-      "t": "2026-10-03T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/03/the-case-for-railway-integrated-solar-in-south-korea/",
-      "source": "pv magazine",
-      "title": "The case for railway-integrated solar in South Korea",
-      "url": "https://www.pv-magazine.com/2026/10/03/the-case-for-railway-integrated-solar-in-south-korea/",
+      "t": "2026-10-05T07:39:15.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/indias-bess-ambition-from-import-dependence-to-manufacturing-scale/",
+      "source": "Energy-Storage.news",
+      "title": "India’s BESS ambition: From import dependence to manufacturing scale",
+      "url": "https://www.energy-storage.news/indias-bess-ambition-from-import-dependence-to-manufacturing-scale/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "South Korea’s extensive railway network could provide new space for solar generation in densely populated areas where land availability is limited. Researchers have investigated the potential of installing PV systems between railway tracks, finding that suitable sections of five surface railway corridors could host…"
+      "summary": "Debmalya Sen, president of the India Energy Storage Alliance (IESA), on a dynamic market landscape of tenders, tariffs and the race to build a domestic battery storage ecosystem."
     },
     {
-      "t": "2026-10-03T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/03/brazil-hits-56-gw-of-connection-headroom-for-battery-auctions/",
+      "t": "2026-10-05T09:00:16.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/perovskite-solar-cell-based-on-prussian-blue-achieves-26-9-efficiency/",
       "source": "pv magazine",
-      "title": "Brazil hits 56 GW of connection headroom for battery auctions",
-      "url": "https://www.pv-magazine.com/2026/10/03/brazil-hits-56-gw-of-connection-headroom-for-battery-auctions/",
+      "title": "Perovskite solar cell based on Prussian blue achieves 26.9% efficiency",
+      "url": "https://www.pv-magazine.com/2026/10/05/perovskite-solar-cell-based-on-prussian-blue-achieves-26-9-efficiency/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Brazil’s available grid capacity for battery storage projects exceeds the association’s estimate of 2028-30 power needs by up to 12.5 times, according to an analysis of transmission data. The post Brazil hits 56 GW of connection headroom for battery auctions appeared first on pv magazine Global ."
+      "summary": "Chinese researchers have used Prussian Blue nanoparticles to improve the efficiency and stability of perovskite solar cells, achieving efficiencies of up to 26.9%. The approach also enabled the fabrication of large-area modules with certified efficiencies of 22.9% and promising results in accelerated aging and outdo…"
     },
     {
-      "t": "2026-10-03T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/03/battery-storage-paired-with-37-of-new-u-s-residential-solar-systems-in-2025/",
+      "t": "2026-10-05T09:49:55.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/eu-grants-cross-border-solar-wind-project-priority-status/",
       "source": "pv magazine",
-      "title": "Battery storage paired with 37% of new U.S. residential solar systems in 2025",
-      "url": "https://www.pv-magazine.com/2026/10/03/battery-storage-paired-with-37-of-new-u-s-residential-solar-systems-in-2025/",
+      "title": "EU grants cross-border solar, wind project priority status",
+      "url": "https://www.pv-magazine.com/2026/10/05/eu-grants-cross-border-solar-wind-project-priority-status/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Battery storage was paired with 37% of new U.S. residential solar installations in 2025, up from 25% a year earlier, with adoption accelerating both in California and across other states. The post Battery storage paired with 37% of new U.S. residential solar systems in 2025 appeared first on pv magazine Global ."
+      "summary": "The Deploy project plans to build 180 MW of solar and wind in Poland, with the electricity generated to be converted into heat for industrial offtakers in Germany. The post EU grants cross-border solar, wind project priority status appeared first on pv magazine Global ."
     },
     {
-      "t": "2026-10-05T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/socket-to-the-sun-2/",
-      "source": "pv magazine",
-      "title": "Socket to the sun",
-      "url": "https://www.pv-magazine.com/2026/10/05/socket-to-the-sun-2/",
+      "t": "2026-10-05T10:12:21.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/statkraft-and-greenvolt-sign-largest-eu-battery-energy-storage-tolling-agreement-for-projects-in-poland/",
+      "source": "Energy-Storage.news",
+      "title": "Statkraft and Greenvolt sign largest EU battery energy storage tolling agreement for projects in Poland",
+      "url": "https://www.energy-storage.news/statkraft-and-greenvolt-sign-largest-eu-battery-energy-storage-tolling-agreement-for-projects-in-poland/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Ten states in the United States have passed laws permitting plug-in solar, with more to follow imminently. Low-income households, renters and temporary workers under pressure from high electricity bills are welcoming plug-in solar as a low-cost, portable and convenient solution. Precise business models have yet to e…"
+      "summary": "Statkraft and Greenvolt Power have signed a 10-year tolling agreement covering 400MW of BESS across two operating projects in Poland."
     },
     {
-      "t": "2026-10-05T05:45:38.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/securing-power-controlling-costs-how-onsite-solar-and-storage-shield-commercial-users-from-grid-volatility/",
-      "source": "pv magazine",
-      "title": "Securing power, controlling costs: How onsite solar and storage shield commercial users from grid volatility",
-      "url": "https://www.pv-magazine.com/2026/10/05/securing-power-controlling-costs-how-onsite-solar-and-storage-shield-commercial-users-from-grid-volatility/",
+      "t": "2026-10-05T12:15:59.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/maryland-conditionally-approves-440mw-of-bess-for-state-capacity-credit-awards/",
+      "source": "Energy-Storage.news",
+      "title": "Maryland conditionally approves 440MW of BESS for state ‘Capacity Credit’ awards",
+      "url": "https://www.energy-storage.news/maryland-conditionally-approves-440mw-of-bess-for-state-capacity-credit-awards/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "In an era of rising utility rates, grid congestion, and shifting power markets, commercial and industrial companies are increasingly turning to distributed generation. Mary Beth Mandanas, chief executive officer of Onyx Renewables breaks down how onsite solar and battery storage provide a physical hedge against gas…"
+      "summary": "Maryland has conditionally selected two transmission-connected energy storage projects to receive Energy Storage Capacity Credit awards in the US state."
     },
     {
-      "t": "2026-10-05T05:48:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/wartsila-and-rct-solutions-launch-storage-integrator-valo/",
-      "source": "pv magazine",
-      "title": "Wärtsilä and RCT Solutions launch storage integrator Valo",
-      "url": "https://www.pv-magazine.com/2026/10/05/wartsila-and-rct-solutions-launch-storage-integrator-valo/",
+      "t": "2026-10-05T13:17:11.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/regulation-remains-latin-americas-main-challenge-for-bess-growth/",
+      "source": "Energy-Storage.news",
+      "title": "Regulation remains Latin America’s main challenge for BESS’ growth",
+      "url": "https://www.energy-storage.news/regulation-remains-latin-americas-main-challenge-for-bess-growth/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Wärtsilä has moved its battery energy storage system (BESS) business into a 50/50 joint venture with RCT Solutions, which it expects to remain loss-making until late 2027. The post Wärtsilä and RCT Solutions launch storage integrator Valo appeared first on pv magazine Global ."
+      "summary": "Energy-storage.news spoke with Valentina Meneses at Americas Market Intelligence about emerging markets in Latin America and BESS challenge."
+    },
+    {
+      "t": "2026-10-05T13:54:52.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/first-solar-sues-ja-solar-and-american-panel-solutions-over-topcon-patents/",
+      "source": "pv magazine",
+      "title": "First Solar sues JA Solar and American Panel Solutions over TOPCon patents",
+      "url": "https://www.pv-magazine.com/2026/10/05/first-solar-sues-ja-solar-and-american-panel-solutions-over-topcon-patents/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The largest U.S. solar manufacturer has escalated its legal push against imported TOPCon cell technology, filing a patent infringement suit in federal court against China’s JA Solar and Corning subsidiary American Panel Solutions. The post First Solar sues JA Solar and American Panel Solutions over TOPCon patents ap…"
+    },
+    {
+      "t": "2026-10-05T14:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/flooded-solar-plant-in-japan-catches-fire-after-typhoon/",
+      "source": "pv magazine",
+      "title": "Flooded solar plant in Japan catches fire after typhoon",
+      "url": "https://www.pv-magazine.com/2026/10/05/flooded-solar-plant-in-japan-catches-fire-after-typhoon/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "A solar plant east of Tokyo caught fire in late September after typhoon floodwater submerged its electrical equipment – a post-flood risk the Japanese government has warned about since 2018. The post Flooded solar plant in Japan catches fire after typhoon appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 40,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 32,
-      "policy": 6,
+      "grid": 29,
+      "policy": 5,
       "capital": 5,
-      "technology": 2
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -503,13 +453,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 5
+        "items": 4
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 5
       }
     ]
   },
@@ -518,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:2627011b214d5f6cdc44f2e1b40b92e46de5fa09b3ae83dd6dc2025c3b759ca6",
-  "envelopeChecksum": "sha256:27f2169ae2808027fb1687234348e0c820741bcae07faab0bd85c73e0b842b40"
+  "contentChecksum": "sha256:037b4ab9b4bc624d1811ccabf664d0199dfdc33b4f00528094f0bcbbc18b0891",
+  "envelopeChecksum": "sha256:cd4ce8977ace9fc45b4e3f113209390e3f6af1ee39b2b62be81241ba2e63c6aa"
 }
