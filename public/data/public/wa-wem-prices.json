@@ -13,93 +13,17 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-10-05T14:52:05.473Z",
+  "fetchedAt": "2026-10-06T00:07:34.677Z",
   "coverage": {
-    "from": "2025-10-05T15:00:00.000Z",
+    "from": "2025-10-06T00:30:00.000Z",
     "to": "2026-10-04T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17201
+    "points": 17182
   },
   "units": {
     "price": "AUD/MWh"
   },
   "series": [
-    {
-      "t": "2025-10-05T15:00:00.000Z",
-      "v": 107.43
-    },
-    {
-      "t": "2025-10-05T15:30:00.000Z",
-      "v": 108.08
-    },
-    {
-      "t": "2025-10-05T16:00:00.000Z",
-      "v": 115.4
-    },
-    {
-      "t": "2025-10-05T16:30:00.000Z",
-      "v": 134.05
-    },
-    {
-      "t": "2025-10-05T17:00:00.000Z",
-      "v": 137.9
-    },
-    {
-      "t": "2025-10-05T17:30:00.000Z",
-      "v": 134.52
-    },
-    {
-      "t": "2025-10-05T18:00:00.000Z",
-      "v": 133.66
-    },
-    {
-      "t": "2025-10-05T18:30:00.000Z",
-      "v": 119.73
-    },
-    {
-      "t": "2025-10-05T19:00:00.000Z",
-      "v": 122
-    },
-    {
-      "t": "2025-10-05T19:30:00.000Z",
-      "v": 136.6
-    },
-    {
-      "t": "2025-10-05T20:00:00.000Z",
-      "v": 143.78
-    },
-    {
-      "t": "2025-10-05T20:30:00.000Z",
-      "v": 130.28
-    },
-    {
-      "t": "2025-10-05T21:00:00.000Z",
-      "v": 141.26
-    },
-    {
-      "t": "2025-10-05T21:30:00.000Z",
-      "v": 144.24
-    },
-    {
-      "t": "2025-10-05T22:00:00.000Z",
-      "v": 162.66
-    },
-    {
-      "t": "2025-10-05T22:30:00.000Z",
-      "v": 131.03
-    },
-    {
-      "t": "2025-10-05T23:00:00.000Z",
-      "v": 107.67
-    },
-    {
-      "t": "2025-10-05T23:30:00.000Z",
-      "v": 93.62
-    },
-    {
-      "t": "2025-10-06T00:00:00.000Z",
-      "v": 87.61
-    },
     {
       "t": "2025-10-06T00:30:00.000Z",
       "v": 85.42
@@ -68833,10 +68757,10 @@
   "notes": [
     "WEM reference trading price, 30-minute trading intervals, AWST (+08:00).",
     "Provisional intervals (isPublished:false) are excluded.",
-    "Window is still 5 day(s) short; backfill continues on later runs."
+    "Window is still 6 day(s) short; backfill continues on later runs."
   ],
   "refreshHours": 24,
   "staleAfterHours": 96,
-  "contentChecksum": "sha256:983b251f38522d08a7a077618d0f03c4150308f22f4871e5eb49a087810a0bf5",
-  "envelopeChecksum": "sha256:d8f3fff33c2a7837e987c1b3e8dc666cd2193d65afd73010013a49656aff441d"
+  "contentChecksum": "sha256:6163f1b270239f6bf1054c560110f6c1db5333ff027f0e739c60a5c3ed4f7b1d",
+  "envelopeChecksum": "sha256:99e77e7d61da83c103e218b869f34fa4ed51eed63acf2c24bf01529af581d75f"
 }

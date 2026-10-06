@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-05T14:52:01.971Z",
+  "fetchedAt": "2026-10-06T00:07:29.796Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-10-05T14:45:00.000Z",
@@ -429,7 +429,7 @@
     "authority": "derived",
     "items": 40,
     "sources": 4,
-    "sourcesReporting": 4,
+    "sourcesReporting": 3,
     "byCategory": {
       "grid": 29,
       "policy": 5,
@@ -452,8 +452,9 @@
       {
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
-        "status": "ok",
-        "items": 4
+        "status": "retained-previous",
+        "items": 4,
+        "error": "feed returned no investment-relevant items"
       },
       {
         "source": "pv magazine",
@@ -468,6 +469,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:037b4ab9b4bc624d1811ccabf664d0199dfdc33b4f00528094f0bcbbc18b0891",
-  "envelopeChecksum": "sha256:cd4ce8977ace9fc45b4e3f113209390e3f6af1ee39b2b62be81241ba2e63c6aa"
+  "contentChecksum": "sha256:1c2180b55b2905b272459e10f91b614ad3f85a05b34792645f371a5457ce4ad2",
+  "envelopeChecksum": "sha256:6ddebb7bc2abae0fb3edc9b9c08b0f092c4d44dafda8f9eaa26ade399142db64"
 }
