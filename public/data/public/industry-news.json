@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-06T06:29:14.973Z",
+  "fetchedAt": "2026-10-06T18:26:54.997Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-06T06:04:30.000Z",
+    "to": "2026-10-06T16:01:15.000Z",
     "resolution": "event",
-    "points": 40
+    "points": 39
   },
   "units": {
     "record": "published article metadata"
@@ -135,106 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-01T06:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/solar-for-all-funding-ep-court-uncertainty/831144/",
-      "source": "Utility Dive",
-      "title": "Solar for All grantees seek damages from EPA over ‘devastating’ cuts",
-      "url": "https://www.utilitydive.com/news/solar-for-all-funding-ep-court-uncertainty/831144/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Two federal judges recently ruled that the EPA acted illegally when it suddenly terminated the $7 billion program. One grantee said the decision harmed not only her organization, but also developers and communities that expected to benefit from the projects."
-    },
-    {
-      "t": "2026-10-01T08:31:04.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/sungrow-completes-108mw-grid-forming-battery-storage-system-with-black-start-capability-in-cambodia/",
-      "source": "Energy-Storage.news",
-      "title": "Sungrow completes 108MW grid-forming battery storage system with black start capability in Cambodia",
-      "url": "https://www.energy-storage.news/sungrow-completes-108mw-grid-forming-battery-storage-system-with-black-start-capability-in-cambodia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sungrow has completed grid connection and full acceptance testing of a 108.4MW/215.6MWh grid-forming BESS in Cambodia."
-    },
-    {
-      "t": "2026-10-01T09:57:48.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/california-energy-commissions-noemi-gallardo-on-the-states-bess-expansion/",
-      "source": "Energy-Storage.news",
-      "title": "California Energy Commission’s Noemí Gallardo on the state’s BESS expansion",
-      "url": "https://www.energy-storage.news/california-energy-commissions-noemi-gallardo-on-the-states-bess-expansion/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news spoke with Noemí Gallardo, Commissioner at the California Energy Commission (CEC), at the US Solar & Storage Finance event in Garden Grove, California, about the growth of BESS within the state."
-    },
-    {
-      "t": "2026-10-01T11:12:19.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/wartsilas-energy-storage-division-rebrands-through-rct-solar-joint-venture/",
-      "source": "Energy-Storage.news",
-      "title": "Wärtsilä’s energy storage division rebrands through RCT Solutions joint venture",
-      "url": "https://www.energy-storage.news/wartsilas-energy-storage-division-rebrands-through-rct-solar-joint-venture/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Update 2 October 2026: The financial impact of the write-down to Wärtsilä's full-year 2026 is expected to be significantly less than initially communicated."
-    },
-    {
-      "t": "2026-10-01T13:04:05.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/maharashtras-regulator-proposes-mandatory-bess-for-renewable-projects-seeking-grid-connectivity-in-indian-state/",
-      "source": "Energy-Storage.news",
-      "title": "Maharashtra’s regulator proposes mandatory BESS for renewable projects seeking grid connectivity in Indian state",
-      "url": "https://www.energy-storage.news/maharashtras-regulator-proposes-mandatory-bess-for-renewable-projects-seeking-grid-connectivity-in-indian-state/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Maharashtra's electricity regulator has proposed mandatory BESS for renewable projects seeking grid connectivity."
-    },
-    {
-      "t": "2026-10-01T13:15:43.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/major-us-partnerships-may-signal-battery-storages-infrastructure-era/",
-      "source": "Energy-Storage.news",
-      "title": "Major US partnerships may signal battery storage’s infrastructure era",
-      "url": "https://www.energy-storage.news/major-us-partnerships-may-signal-battery-storages-infrastructure-era/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Battery energy storage systems (BESS) are increasingly being positioned as essential infrastructure investments rather than purely financial assets, as seen in a series of strategic partnerships announced in late September that integrate storage with broader energy and digital infrastructure strategies."
-    },
-    {
-      "t": "2026-10-01T13:55:34.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/senate-permitting-bill-would-expand-federal-role-in-electric-transmission-s/831886/",
-      "source": "Utility Dive",
-      "title": "Senate permitting bill would expand federal role in transmission siting",
-      "url": "https://www.utilitydive.com/news/senate-permitting-bill-would-expand-federal-role-in-electric-transmission-s/831886/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The legislation gives FERC authority to issue permits for&nbsp;transmission projects when they are in the public interest. It also eliminates NIETCs and the federal right of first refusal for incumbent utilities and&nbsp;protects existing federal permits."
-    },
-    {
-      "t": "2026-10-01T13:57:20.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/nypa-240-mw-solar-project-edf-rich-road/831878/",
-      "source": "Utility Dive",
-      "title": "NYPA to own 51% of 240-MW solar project with EDF",
-      "url": "https://www.utilitydive.com/news/nypa-240-mw-solar-project-edf-rich-road/831878/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Rich Road Solar is the first project the New York Power Authority has developed utilizing a&nbsp;public-private partnership model to advance renewable energy."
-    },
-    {
-      "t": "2026-10-01T16:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/levis-marks-and-spencer-launch-renewable-energy-initiative-for-fashion-suppliers/831754/",
-      "source": "Utility Dive",
-      "title": "Fashion brands partner with Schneider Electric to expand renewables",
-      "url": "https://www.utilitydive.com/news/levis-marks-and-spencer-launch-renewable-energy-initiative-for-fashion-suppliers/831754/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Apparel giants launched the &ldquo;Fashion Renewable Collective&rdquo; in collaboration with Schneider Electric to help suppliers across fashion supply chains adopt renewable electricity at scale."
-    },
-    {
-      "t": "2026-10-02T03:36:30.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bullawah-wind-farm-approved-718mwh-battery-nsw/",
-      "source": "Energy-Storage.news",
-      "title": "New South Wales grants approval to BayWa r.e.’s Bullawah hybrid wind and battery project in Australia",
-      "url": "https://www.energy-storage.news/bullawah-wind-farm-approved-718mwh-battery-nsw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "NSW's IPC has approved BayWa r.e.'s Bullawah Wind Farm, pairing 804MW of wind with a 718MWh battery in the South West REZ."
-    },
-    {
       "t": "2026-10-02T03:38:31.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/fu-gen-nala-renewables-close-100mw-bess-finland/",
       "source": "Energy-Storage.news",
@@ -315,16 +215,6 @@
       "summary": "Debmalya Sen, president of the India Energy Storage Alliance (IESA), on a dynamic market landscape of tenders, tariffs and the race to build a domestic battery storage ecosystem."
     },
     {
-      "t": "2026-10-05T09:49:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/eu-grants-cross-border-solar-wind-project-priority-status/",
-      "source": "pv magazine",
-      "title": "EU grants cross-border solar, wind project priority status",
-      "url": "https://www.pv-magazine.com/2026/10/05/eu-grants-cross-border-solar-wind-project-priority-status/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Deploy project plans to build 180 MW of solar and wind in Poland, with the electricity generated to be converted into heat for industrial offtakers in Germany. The post EU grants cross-border solar, wind project priority status appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-05T10:12:21.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/statkraft-and-greenvolt-sign-largest-eu-battery-energy-storage-tolling-agreement-for-projects-in-poland/",
       "source": "Energy-Storage.news",
@@ -355,26 +245,6 @@
       "summary": "Energy-storage.news spoke with Valentina Meneses at Americas Market Intelligence about emerging markets in Latin America and BESS challenge."
     },
     {
-      "t": "2026-10-05T13:54:52.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/first-solar-sues-ja-solar-and-american-panel-solutions-over-topcon-patents/",
-      "source": "pv magazine",
-      "title": "First Solar sues JA Solar and American Panel Solutions over TOPCon patents",
-      "url": "https://www.pv-magazine.com/2026/10/05/first-solar-sues-ja-solar-and-american-panel-solutions-over-topcon-patents/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The largest U.S. solar manufacturer has escalated its legal push against imported TOPCon cell technology, filing a patent infringement suit in federal court against China’s JA Solar and Corning subsidiary American Panel Solutions. The post First Solar sues JA Solar and American Panel Solutions over TOPCon patents ap…"
-    },
-    {
-      "t": "2026-10-05T14:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/flooded-solar-plant-in-japan-catches-fire-after-typhoon/",
-      "source": "pv magazine",
-      "title": "Flooded solar plant in Japan catches fire after typhoon",
-      "url": "https://www.pv-magazine.com/2026/10/05/flooded-solar-plant-in-japan-catches-fire-after-typhoon/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "A solar plant east of Tokyo caught fire in late September after typhoon floodwater submerged its electrical equipment – a post-flood risk the Japanese government has warned about since 2018. The post Flooded solar plant in Japan catches fire after typhoon appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-06T04:26:19.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/australias-origin-energy-targets-building-southern-hemispheres-largest-battery-storage-complex/",
       "source": "Energy-Storage.news",
@@ -402,39 +272,159 @@
       "url": "https://www.energy-storage.news/sumitomo-corporation-invests-in-hero-future-energies-solar-wind-storage-hybrid-in-karnataka-india/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Japanese trading company Sumitomo Corporation has invested in a utility-scale renewable energy park combining solar PV, wind and energy storage in India. Developed by Indian independent power producer (IPP) Hero Future Energies, the project will combine 500MW of solar PV and wind power, co-located with a 200MWh batt…"
+      "summary": "Japanese trading company Sumitomo Corporation has invested in a utility-scale renewable energy park combining solar PV, wind and energy storage in India."
     },
     {
-      "t": "2026-10-06T06:03:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/forecasting-domestic-u-s-module-production-to-the-end-of-2027/",
+      "t": "2026-10-06T07:58:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/spain-and-portugal-record-europes-highest-number-of-hours-with-negative-electricity-prices-in-q2/",
       "source": "pv magazine",
-      "title": "Forecasting domestic U.S. module production to the end of 2027",
-      "url": "https://www.pv-magazine.com/2026/10/06/forecasting-domestic-u-s-module-production-to-the-end-of-2027/",
+      "title": "Spain and Portugal record Europe’s highest number of hours with negative electricity prices in Q2",
+      "url": "https://www.pv-magazine.com/2026/10/06/spain-and-portugal-record-europes-highest-number-of-hours-with-negative-electricity-prices-in-q2/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Bottom-up company analysis from the inaugural Solar Manufacturing USA event reveals that real domestic module supply depends on firm cell access and project-level commitments rather than top-line capacity headlines. The post Forecasting domestic U.S. module production to the end of 2027 appeared first on pv magazine…"
+      "summary": "Spain and Portugal recorded the highest number of hours with negative electricity prices in Europe in the second quarter of 2026, according to Montel’s European Power Market Outlook Q3 2026 report. The period was marked by record solar power generation, a heatwave in late June and significant electricity price volat…"
     },
     {
-      "t": "2026-10-06T06:04:30.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/utility-solar-generation-reaches-record-highs-in-nem/",
+      "t": "2026-10-06T08:50:44.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/whats-driving-europes-battery-boom-insights-from-eupd-researchs-business-climate-survey-and-storage-report/",
       "source": "pv magazine",
-      "title": "Utility solar generation reaches record highs in Australia",
-      "url": "https://www.pv-magazine.com/2026/10/06/utility-solar-generation-reaches-record-highs-in-nem/",
+      "title": "What’s driving Europe’s battery boom? Insights from EUPD Research’s Business Climate Survey and Storage Report",
+      "url": "https://www.pv-magazine.com/2026/10/06/whats-driving-europes-battery-boom-insights-from-eupd-researchs-business-climate-survey-and-storage-report/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Output from Australia’s large-scale renewable energy assets continues to climb with the nation’s utility PV and wind power plants generating a total of 5.44 TWh of clean energy in September, delivering a 7% increase on the same time last year. The post Utility solar generation reaches record highs in Australia appea…"
+      "summary": "Europe’s battery storage market is projected to nearly double from 34 GWh in 2025 to 65 GWh in 2026, driven primarily by utility-scale projects and growing renewable energy integration. Meanwhile, intensifying competition in residential and commercial storage is pushing manufacturers toward integrated energy solutio…"
+    },
+    {
+      "t": "2026-10-06T09:02:26.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/thailand-tightens-solar-panel-safety-standards/",
+      "source": "pv magazine",
+      "title": "Thailand tightens solar panel safety standards",
+      "url": "https://www.pv-magazine.com/2026/10/06/thailand-tightens-solar-panel-safety-standards/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Thailand will now require crystalline silicon solar panels to meet national safety standards in its latest effort to improve the quality and safety of solar installations. The post Thailand tightens solar panel safety standards appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-06T09:19:57.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-and-edp-expand-solar-plus-storage-ppa-partnership-with-another-462mwh-of-batteries-in-spain/",
+      "source": "Energy-Storage.news",
+      "title": "Zelestra and EDP expand solar-plus-storage PPA partnership with another 462MWh of batteries in Spain",
+      "url": "https://www.energy-storage.news/zelestra-and-edp-expand-solar-plus-storage-ppa-partnership-with-another-462mwh-of-batteries-in-spain/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "IPP Zelestra and power firm and utility EDP have agreed two new hybrid PPAs in Spain, adding 181MWdc of solar and 462MWh BESS to their existing co-operation."
+    },
+    {
+      "t": "2026-10-06T10:33:22.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/mixed-stock-market-listing-fortunes-for-energy-storage-technology-firms-ess-inc-zincfive-and-inobat/",
+      "source": "Energy-Storage.news",
+      "title": "Mixed stock market listing fortunes for energy storage technology firms ESS Inc, ZincFive and InoBat",
+      "url": "https://www.energy-storage.news/mixed-stock-market-listing-fortunes-for-energy-storage-technology-firms-ess-inc-zincfive-and-inobat/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Share listing news from three energy storage startups with different areas of specialisation speaks to the ups and downs of going public."
+    },
+    {
+      "t": "2026-10-06T10:39:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/build-your-bess-against-future-energy-scenarios-not-todays-price-curves-ipp/",
+      "source": "Energy-Storage.news",
+      "title": "Build your BESS against future energy scenarios, not today’s price curves – IPP",
+      "url": "https://www.energy-storage.news/build-your-bess-against-future-energy-scenarios-not-todays-price-curves-ipp/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BESS operators should be planning their projects against different locational price and charging regimes of the future rather than solely against the current revenue opportunities."
+    },
+    {
+      "t": "2026-10-06T11:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/spacebound-silicon/",
+      "source": "pv magazine",
+      "title": "Spacebound silicon",
+      "url": "https://www.pv-magazine.com/2026/10/06/spacebound-silicon/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar has a long history in powering satellites and space exploration, and high-powered devices based on multijunction PV cells made from “III-V” materials such as gallium arsenide or indium gallium phosphide have supplied this niche market as far back as the 1960s. But those devices are made with rare materials and…"
+    },
+    {
+      "t": "2026-10-06T11:14:48.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/valos-steve-merrick-on-why-accurate-state-of-charge-estimation-remains-energy-storages-unsolved-problem/",
+      "source": "Energy-Storage.news",
+      "title": "Valo’s Steve Merrick on why accurate state of charge estimation remains energy storage’s ‘unsolved problem’",
+      "url": "https://www.energy-storage.news/valos-steve-merrick-on-why-accurate-state-of-charge-estimation-remains-energy-storages-unsolved-problem/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Inaccurate state of charge (SOC) measurements can cost battery energy storage system (BESS) operators up to 15% in lost revenue, a persistent issue despite advances in monitoring technology."
+    },
+    {
+      "t": "2026-10-06T11:22:39.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/antora-energy-announces-5-8gwh-multi-day-thermal-energy-storage-project-in-kansas-us/",
+      "source": "Energy-Storage.news",
+      "title": "Antora Energy announces 5.8GWh ‘multi-day’ thermal energy storage project in Kansas, US",
+      "url": "https://www.energy-storage.news/antora-energy-announces-5-8gwh-multi-day-thermal-energy-storage-project-in-kansas-us/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Thermal energy storage (TES) technology provider Antora Energy has announced a 5.8GWh “multi-day” TES project at Pratt Energy’s biorefinery in Pratt, Kansas, US."
+    },
+    {
+      "t": "2026-10-06T11:46:12.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/linea-energy-closes-financing-for-500mwh-texas-bess-project/",
+      "source": "Energy-Storage.news",
+      "title": "Linea Energy closes financing for 500MWh Texas BESS project",
+      "url": "https://www.energy-storage.news/linea-energy-closes-financing-for-500mwh-texas-bess-project/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "IPP Linea Energy has closed a debt financing and preferred equity commitment for its 250MW/500MWh Mesa View energy storage project in Upton County, Texas, US."
+    },
+    {
+      "t": "2026-10-06T11:47:11.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/heliene-launches-108hc-m10-sl-all-black-solar-module-for-residential-rooftops/",
+      "source": "pv magazine",
+      "title": "Heliene launches all-black solar module for residential rooftops",
+      "url": "https://www.pv-magazine.com/2026/10/06/heliene-launches-108hc-m10-sl-all-black-solar-module-for-residential-rooftops/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The North American module manufacturer has introduced its 108HC M10 SL All-Black residential solar panel, offering power outputs up to 410 W and 21.0% efficiency built on a 108 half-cut cell architecture. The post Heliene launches all-black solar module for residential rooftops appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-06T12:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/japan-proposes-four-categories-for-priority-commercial-solar-support/",
+      "source": "pv magazine",
+      "title": "Japan proposes four categories for priority commercial solar support",
+      "url": "https://www.pv-magazine.com/2026/10/06/japan-proposes-four-categories-for-priority-commercial-solar-support/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Japan wants to prioritize future subsidies for new commercial solar projects it considers compatible with local communities, as ground-mounted plants lose feed-in tariff (FIT) and feed-in premium (FIP) support from April 2027. The post Japan proposes four categories for priority commercial solar support appeared fir…"
+    },
+    {
+      "t": "2026-10-06T14:49:21.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/miso-accelerated-interconnection-queue-ferc/832246/",
+      "source": "Utility Dive",
+      "title": "States, renewable developers back MISO’s accelerated interconnection queue plan",
+      "url": "https://www.utilitydive.com/news/miso-accelerated-interconnection-queue-ferc/832246/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "&ldquo;This approach can materially accelerate the processing of legacy queue cycles while preserving MISO&rsquo;s responsibility to identify and address reliability concerns,&rdquo; the Organization of MISO States said."
+    },
+    {
+      "t": "2026-10-06T16:01:15.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/maryland-nets-440-mw1760-mwh-in-first-bulk-energy-storage-procurement/832261/",
+      "source": "Utility Dive",
+      "title": "Maryland nets 440 MW/1,760 MWh in first bulk energy storage procurement",
+      "url": "https://www.utilitydive.com/news/maryland-nets-440-mw1760-mwh-in-first-bulk-energy-storage-procurement/832261/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The first round of awards under the Maryland Next Generation Energy Act fell short of the state&rsquo;s 800-MW target as the PJM Interconnection&rsquo;s capacity crunch continues."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 40,
+    "items": 39,
     "sources": 4,
-    "sourcesReporting": 3,
+    "sourcesReporting": 4,
     "byCategory": {
-      "grid": 30,
+      "grid": 27,
       "policy": 5,
-      "capital": 4,
-      "technology": 1
+      "capital": 5,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -452,15 +442,14 @@
       {
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
-        "status": "retained-previous",
-        "items": 4,
-        "error": "feed returned no investment-relevant items"
+        "status": "ok",
+        "items": 2
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 5
+        "items": 6
       }
     ]
   },
@@ -469,6 +458,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:efb1615dc8becedbe1ed9fcbc5d8b2a5398af6c7ab1694b8d685c635b5e36cbd",
-  "envelopeChecksum": "sha256:a3750ba5ff3473a1144a216f5e2435e086d5d59e2c85a75655dad68534388da9"
+  "contentChecksum": "sha256:f128f053be9998cc4efa85f0376fc84a68d31f688fddd68574ab4d749151f18a",
+  "envelopeChecksum": "sha256:5392193916d1557c88d916321b72cb0497ef8c6c82e6aab3f5704a1078489a35"
 }
