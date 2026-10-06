@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-06T00:07:29.796Z",
+  "fetchedAt": "2026-10-06T06:29:14.973Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-05T14:45:00.000Z",
+    "to": "2026-10-06T06:04:30.000Z",
     "resolution": "event",
     "points": 40
   },
@@ -133,36 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-09-30T11:13:13.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-utilities-ameren-missouri-dte-energy-in-michigan-and-black-hills-energy-in-colorado-submit-irps-with-highlighted-bess-additions/",
-      "source": "Energy-Storage.news",
-      "title": "US utilities Ameren Missouri, DTE Energy in Michigan, and Black Hills Energy in Colorado submit IRPs with highlighted BESS additions",
-      "url": "https://www.energy-storage.news/us-utilities-ameren-missouri-dte-energy-in-michigan-and-black-hills-energy-in-colorado-submit-irps-with-highlighted-bess-additions/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Three US utilities, Ameren Missouri, DTE Energy in Michigan, and Black Hills Energy in Colorado have recently submitted IRPs with highlighted BESS project additions."
-    },
-    {
-      "t": "2026-10-01T01:19:52.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/queenslands-cleanco-credits-battery-storage-boom-as-australian-state-records-40-wholesale-electricity-price-drop/",
-      "source": "Energy-Storage.news",
-      "title": "Queensland’s CleanCo credits battery storage boom as Australian state records 40% wholesale electricity price drop",
-      "url": "https://www.energy-storage.news/queenslands-cleanco-credits-battery-storage-boom-as-australian-state-records-40-wholesale-electricity-price-drop/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Queensland's average wholesale electricity price fell by 40% in the 2025-26 financial year, a drop CleanCo Queensland attributes to BESS."
-    },
-    {
-      "t": "2026-10-01T02:58:48.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/financial-services-group-orix-builds-589mwh-of-bess-in-japan-after-securing-first-external-investment/",
-      "source": "Energy-Storage.news",
-      "title": "Financial services group Orix builds 589MWh of BESS in Japan after securing first external investment",
-      "url": "https://www.energy-storage.news/financial-services-group-orix-builds-589mwh-of-bess-in-japan-after-securing-first-external-investment/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Orix Corporation has begun construction of its first battery storage projects to be supported by external investment."
     },
     {
       "t": "2026-10-01T06:00:00.000Z",
@@ -335,16 +305,6 @@
       "summary": "India's Union Cabinet has approved US$ 19.3 billion Green Energy Corridor, including US$ 5.2 billion for 50GWh BESS through FY2032-33."
     },
     {
-      "t": "2026-10-05T07:19:19.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/enerparc-attracts-more-than-100-potential-investors-as-insolvency-sale-moves-forward/",
-      "source": "pv magazine",
-      "title": "Enerparc attracts more than 100 potential investors as insolvency sale moves forward",
-      "url": "https://www.pv-magazine.com/2026/10/05/enerparc-attracts-more-than-100-potential-investors-as-insolvency-sale-moves-forward/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "More than 100 potential investors have expressed interest in insolvent German solar developer Enerparc, with initial bids already submitted and a first transaction targeted for December. The sale could include solar portfolios, project pipelines and key subsidiaries, while financing challenges and potential creditor…"
-    },
-    {
       "t": "2026-10-05T07:39:15.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/indias-bess-ambition-from-import-dependence-to-manufacturing-scale/",
       "source": "Energy-Storage.news",
@@ -353,16 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Debmalya Sen, president of the India Energy Storage Alliance (IESA), on a dynamic market landscape of tenders, tariffs and the race to build a domestic battery storage ecosystem."
-    },
-    {
-      "t": "2026-10-05T09:00:16.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/05/perovskite-solar-cell-based-on-prussian-blue-achieves-26-9-efficiency/",
-      "source": "pv magazine",
-      "title": "Perovskite solar cell based on Prussian blue achieves 26.9% efficiency",
-      "url": "https://www.pv-magazine.com/2026/10/05/perovskite-solar-cell-based-on-prussian-blue-achieves-26-9-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese researchers have used Prussian Blue nanoparticles to improve the efficiency and stability of perovskite solar cells, achieving efficiencies of up to 26.9%. The approach also enabled the fabrication of large-area modules with certified efficiencies of 22.9% and promising results in accelerated aging and outdo…"
     },
     {
       "t": "2026-10-05T09:49:55.000Z",
@@ -423,6 +373,56 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "A solar plant east of Tokyo caught fire in late September after typhoon floodwater submerged its electrical equipment – a post-flood risk the Japanese government has warned about since 2018. The post Flooded solar plant in Japan catches fire after typhoon appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-06T04:26:19.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-origin-energy-targets-building-southern-hemispheres-largest-battery-storage-complex/",
+      "source": "Energy-Storage.news",
+      "title": "Australia’s Origin Energy targets building ‘Southern Hemisphere’s largest battery storage complex’",
+      "url": "https://www.energy-storage.news/australias-origin-energy-targets-building-southern-hemispheres-largest-battery-storage-complex/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Origin Energy has referred a new BESS project, Eraring BESS North, for assessment under Australia's EPBC Act."
+    },
+    {
+      "t": "2026-10-06T04:28:41.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-nem-battery-storage-fleet-earns-au88-91-million-in-q3-with-five-days-delivering-15-of-revenue/",
+      "source": "Energy-Storage.news",
+      "title": "Australia’s NEM battery storage fleet earns AU$88.91 million in Q3, with five days delivering 15% of revenue",
+      "url": "https://www.energy-storage.news/australias-nem-battery-storage-fleet-earns-au88-91-million-in-q3-with-five-days-delivering-15-of-revenue/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australia's 59 grid-scale BESS earned a combined AU$88.91 million in estimated gross energy and FCAS market revenue in the NEM."
+    },
+    {
+      "t": "2026-10-06T05:46:37.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/sumitomo-corporation-invests-in-hero-future-energies-solar-wind-storage-hybrid-in-karnataka-india/",
+      "source": "Energy-Storage.news",
+      "title": "Sumitomo Corporation invests in Hero Future Energies’ solar-wind-storage hybrid in Karnataka, India",
+      "url": "https://www.energy-storage.news/sumitomo-corporation-invests-in-hero-future-energies-solar-wind-storage-hybrid-in-karnataka-india/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Japanese trading company Sumitomo Corporation has invested in a utility-scale renewable energy park combining solar PV, wind and energy storage in India. Developed by Indian independent power producer (IPP) Hero Future Energies, the project will combine 500MW of solar PV and wind power, co-located with a 200MWh batt…"
+    },
+    {
+      "t": "2026-10-06T06:03:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/forecasting-domestic-u-s-module-production-to-the-end-of-2027/",
+      "source": "pv magazine",
+      "title": "Forecasting domestic U.S. module production to the end of 2027",
+      "url": "https://www.pv-magazine.com/2026/10/06/forecasting-domestic-u-s-module-production-to-the-end-of-2027/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Bottom-up company analysis from the inaugural Solar Manufacturing USA event reveals that real domestic module supply depends on firm cell access and project-level commitments rather than top-line capacity headlines. The post Forecasting domestic U.S. module production to the end of 2027 appeared first on pv magazine…"
+    },
+    {
+      "t": "2026-10-06T06:04:30.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/utility-solar-generation-reaches-record-highs-in-nem/",
+      "source": "pv magazine",
+      "title": "Utility solar generation reaches record highs in Australia",
+      "url": "https://www.pv-magazine.com/2026/10/06/utility-solar-generation-reaches-record-highs-in-nem/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Output from Australia’s large-scale renewable energy assets continues to climb with the nation’s utility PV and wind power plants generating a total of 5.44 TWh of clean energy in September, delivering a 7% increase on the same time last year. The post Utility solar generation reaches record highs in Australia appea…"
     }
   ],
   "derived": {
@@ -431,9 +431,9 @@
     "sources": 4,
     "sourcesReporting": 3,
     "byCategory": {
-      "grid": 29,
+      "grid": 30,
       "policy": 5,
-      "capital": 5,
+      "capital": 4,
       "technology": 1
     },
     "sourceStatus": [
@@ -469,6 +469,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:1c2180b55b2905b272459e10f91b614ad3f85a05b34792645f371a5457ce4ad2",
-  "envelopeChecksum": "sha256:6ddebb7bc2abae0fb3edc9b9c08b0f092c4d44dafda8f9eaa26ade399142db64"
+  "contentChecksum": "sha256:efb1615dc8becedbe1ed9fcbc5d8b2a5398af6c7ab1694b8d685c635b5e36cbd",
+  "envelopeChecksum": "sha256:a3750ba5ff3473a1144a216f5e2435e086d5d59e2c85a75655dad68534388da9"
 }
