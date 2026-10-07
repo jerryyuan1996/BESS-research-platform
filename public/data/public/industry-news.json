@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-06T18:26:54.997Z",
+  "fetchedAt": "2026-10-07T06:08:13.976Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-06T16:01:15.000Z",
+    "to": "2026-10-07T05:50:17.000Z",
     "resolution": "event",
-    "points": 39
+    "points": 40
   },
   "units": {
     "record": "published article metadata"
@@ -135,36 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-02T03:38:31.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/fu-gen-nala-renewables-close-100mw-bess-finland/",
-      "source": "Energy-Storage.news",
-      "title": "Fu-Gen, Nala Renewables close 100MW BESS deal in Finland",
-      "url": "https://www.energy-storage.news/fu-gen-nala-renewables-close-100mw-bess-finland/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Fu-Gen has sold a 100MW ready-to-build battery storage project in Finland to Nala Renewables, extending their Nordic BESS pipeline to 275MW."
-    },
-    {
-      "t": "2026-10-02T06:56:36.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/canadas-northland-power-closes-financing-on-1-2gwh-of-cm-contracted-bess-projects-in-poland/",
-      "source": "Energy-Storage.news",
-      "title": "Canada’s Northland Power closes financing on 1.2GWh of CM-contracted BESS projects in Poland",
-      "url": "https://www.energy-storage.news/canadas-northland-power-closes-financing-on-1-2gwh-of-cm-contracted-bess-projects-in-poland/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Northland Power has closed financing on two large-scale battery energy storage system (BESS) projects in Poland."
-    },
-    {
-      "t": "2026-10-02T07:25:53.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/technical-availability-maximising-bess-returns-varco-energ-uk-asset-management/",
-      "source": "Energy-Storage.news",
-      "title": "Technical availability central to maximising BESS returns: Varco Energy talks UK asset management",
-      "url": "https://www.energy-storage.news/technical-availability-maximising-bess-returns-varco-energ-uk-asset-management/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Elliot Squire, senior asset manager for Varco Energy, discusses current and future trends in battery storage."
-    },
-    {
       "t": "2026-10-02T08:57:45.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/renalfa-ipp-eurowind-inaugurate-solar-plus-storage-hybrid-renewable-energy-park-in-bulgaria/",
       "source": "Energy-Storage.news",
@@ -275,36 +245,6 @@
       "summary": "Japanese trading company Sumitomo Corporation has invested in a utility-scale renewable energy park combining solar PV, wind and energy storage in India."
     },
     {
-      "t": "2026-10-06T07:58:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/spain-and-portugal-record-europes-highest-number-of-hours-with-negative-electricity-prices-in-q2/",
-      "source": "pv magazine",
-      "title": "Spain and Portugal record Europe’s highest number of hours with negative electricity prices in Q2",
-      "url": "https://www.pv-magazine.com/2026/10/06/spain-and-portugal-record-europes-highest-number-of-hours-with-negative-electricity-prices-in-q2/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Spain and Portugal recorded the highest number of hours with negative electricity prices in Europe in the second quarter of 2026, according to Montel’s European Power Market Outlook Q3 2026 report. The period was marked by record solar power generation, a heatwave in late June and significant electricity price volat…"
-    },
-    {
-      "t": "2026-10-06T08:50:44.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/whats-driving-europes-battery-boom-insights-from-eupd-researchs-business-climate-survey-and-storage-report/",
-      "source": "pv magazine",
-      "title": "What’s driving Europe’s battery boom? Insights from EUPD Research’s Business Climate Survey and Storage Report",
-      "url": "https://www.pv-magazine.com/2026/10/06/whats-driving-europes-battery-boom-insights-from-eupd-researchs-business-climate-survey-and-storage-report/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Europe’s battery storage market is projected to nearly double from 34 GWh in 2025 to 65 GWh in 2026, driven primarily by utility-scale projects and growing renewable energy integration. Meanwhile, intensifying competition in residential and commercial storage is pushing manufacturers toward integrated energy solutio…"
-    },
-    {
-      "t": "2026-10-06T09:02:26.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/06/thailand-tightens-solar-panel-safety-standards/",
-      "source": "pv magazine",
-      "title": "Thailand tightens solar panel safety standards",
-      "url": "https://www.pv-magazine.com/2026/10/06/thailand-tightens-solar-panel-safety-standards/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Thailand will now require crystalline silicon solar panels to meet national safety standards in its latest effort to improve the quality and safety of solar installations. The post Thailand tightens solar panel safety standards appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-06T09:19:57.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-and-edp-expand-solar-plus-storage-ppa-partnership-with-another-462mwh-of-batteries-in-spain/",
       "source": "Energy-Storage.news",
@@ -413,18 +353,88 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The first round of awards under the Maryland Next Generation Energy Act fell short of the state&rsquo;s 800-MW target as the PJM Interconnection&rsquo;s capacity crunch continues."
+    },
+    {
+      "t": "2026-10-06T23:34:31.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/atmos-renewables-closes-financing-on-1-6gwh-capacity-investment-scheme-backed-battery-storage-system-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Atmos Renewables closes financing on 1.6GWh Capacity Investment Scheme-backed battery storage system in Australia",
+      "url": "https://www.energy-storage.news/atmos-renewables-closes-financing-on-1-6gwh-capacity-investment-scheme-backed-battery-storage-system-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Atmos Renewables has reached financial close on the 400MW/1,600MWh Teebar battery energy storage system (BESS) in Queensland, Australia."
+    },
+    {
+      "t": "2026-10-06T23:37:28.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/canadian-solars-e-storage-to-deliver-200mwh-bess-for-australian-solar-plus-storage-site/",
+      "source": "Energy-Storage.news",
+      "title": "Canadian Solar’s e-STORAGE to deliver 200MWh BESS for Australian solar-plus-storage site",
+      "url": "https://www.energy-storage.news/canadian-solars-e-storage-to-deliver-200mwh-bess-for-australian-solar-plus-storage-site/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "e-STORAGE has signed an agreement to supply and commission a 100MW/200MWh BESS for OX2's Muswellbrook solar-plus-storage site in Australia."
+    },
+    {
+      "t": "2026-10-07T05:13:38.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/edf-power-solutions-australia-refers-800mwh-wind-plus-storage-site-to-epbc-act/",
+      "source": "Energy-Storage.news",
+      "title": "EDF Power Solutions Australia refers 800MWh wind-plus-storage site to EPBC Act",
+      "url": "https://www.energy-storage.news/edf-power-solutions-australia-refers-800mwh-wind-plus-storage-site-to-epbc-act/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "EDF Power Solutions Australia has referred a wind-plus-storage project featuring an 800MWh BESS for assessment under Australia's EPBC Act."
+    },
+    {
+      "t": "2026-10-07T05:34:35.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/building-quality-domestic-u-s-cell-fabs-is-more-important-than-technology-choice-today/",
+      "source": "pv magazine",
+      "title": "Building quality domestic U.S. solar cell fabs is more important than technology-choice today",
+      "url": "https://www.pv-magazine.com/2026/10/07/building-quality-domestic-u-s-cell-fabs-is-more-important-than-technology-choice-today/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Analysis taken from the new Solar Manufacturing USA Quarterly report highlights steady progress with c-Si cell production during 2026, with strong upside to the forecast through 2027 if existing lines can be ramped effectively and some of the 2027 plans are brought forward by just a few months. The post Building qua…"
+    },
+    {
+      "t": "2026-10-07T05:46:13.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/unsw-researchers-achieve-23-5-efficiency-record-for-large-scale-perovskite-pv-submodule/",
+      "source": "pv magazine",
+      "title": "UNSW researchers achieve 23.5% efficiency record for 676 cm2 perovskite PV submodule",
+      "url": "https://www.pv-magazine.com/2026/10/07/unsw-researchers-achieve-23-5-efficiency-record-for-large-scale-perovskite-pv-submodule/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers from the University of New South Wales have set a new world efficiency record for large-scale perovskite solar submodules. achieving a power conversion efficiency of 23.5%. The post UNSW researchers achieve 23.5% efficiency record for 676 cm2 perovskite PV submodule appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-07T05:47:55.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/synchronous-condensers-essential-in-push-for-renewables/",
+      "source": "pv magazine",
+      "title": "Synchronous condensers essential in push for renewables",
+      "url": "https://www.pv-magazine.com/2026/10/07/synchronous-condensers-essential-in-push-for-renewables/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "As Australia’s power grids transition from centralised fossil-based generation to decentralised, renewable sources, system stability has become a critical challenge. Synchronous condensers have emerged as a key solution for ensuring grid reliability. The post Synchronous condensers essential in push for renewables a…"
+    },
+    {
+      "t": "2026-10-07T05:50:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/the-u-s-market-is-writing-its-own-sodium-ion-spec/",
+      "source": "pv magazine",
+      "title": "The U.S. market is writing its own sodium-ion spec",
+      "url": "https://www.pv-magazine.com/2026/10/07/the-u-s-market-is-writing-its-own-sodium-ion-spec/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Sodium-ion batteries are rapidly transitioning from promising alternative to commercial reality in the U.S. energy storage market, but navigating federal domestic content policies, complex FEOC sourcing rules, and stringent UL 9540A safety testing remains crucial for developers seeking to deploy scalable, bankable p…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 39,
+    "items": 40,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 27,
       "policy": 5,
-      "capital": 5,
-      "technology": 2
+      "capital": 4,
+      "technology": 4
     },
     "sourceStatus": [
       {
@@ -449,7 +459,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 7
       }
     ]
   },
@@ -458,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f128f053be9998cc4efa85f0376fc84a68d31f688fddd68574ab4d749151f18a",
-  "envelopeChecksum": "sha256:5392193916d1557c88d916321b72cb0497ef8c6c82e6aab3f5704a1078489a35"
+  "contentChecksum": "sha256:b917b0a245808a6089e2961a3860c1263cd269328662ca7c156ed7a761f2847d",
+  "envelopeChecksum": "sha256:651ac6e643f28470c2abceb759d27d2dc918b68612e125550b1a591a741ffe69"
 }
