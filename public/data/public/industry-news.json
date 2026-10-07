@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-07T13:33:17.722Z",
+  "fetchedAt": "2026-10-07T23:09:47.163Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-07T13:12:30.000Z",
+    "to": "2026-10-07T15:37:43.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -315,26 +315,6 @@
       "summary": "EDF Power Solutions Australia has referred a wind-plus-storage project featuring an 800MWh BESS for assessment under Australia's EPBC Act."
     },
     {
-      "t": "2026-10-07T05:46:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/unsw-researchers-achieve-23-5-efficiency-record-for-large-scale-perovskite-pv-submodule/",
-      "source": "pv magazine",
-      "title": "UNSW researchers achieve 23.5% efficiency record for 676 cm2 perovskite PV submodule",
-      "url": "https://www.pv-magazine.com/2026/10/07/unsw-researchers-achieve-23-5-efficiency-record-for-large-scale-perovskite-pv-submodule/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers from the University of New South Wales have set a new world efficiency record for large-scale perovskite solar submodules. achieving a power conversion efficiency of 23.5%. The post UNSW researchers achieve 23.5% efficiency record for 676 cm2 perovskite PV submodule appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-07T05:47:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/synchronous-condensers-essential-in-push-for-renewables/",
-      "source": "pv magazine",
-      "title": "Synchronous condensers essential in push for renewables",
-      "url": "https://www.pv-magazine.com/2026/10/07/synchronous-condensers-essential-in-push-for-renewables/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "As Australia’s power grids transition from centralised fossil-based generation to decentralised, renewable sources, system stability has become a critical challenge. Synchronous condensers have emerged as a key solution for ensuring grid reliability. The post Synchronous condensers essential in push for renewables a…"
-    },
-    {
       "t": "2026-10-07T05:50:17.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/the-u-s-market-is-writing-its-own-sodium-ion-spec/",
       "source": "pv magazine",
@@ -453,6 +433,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "US energy holding company and project developer-owner NextEra Energy has suspended operations at two energy storage facilities in Long Island, New York, US."
+    },
+    {
+      "t": "2026-10-07T13:35:01.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/solar-and-storage-accounted-for-nearly-1-million-eu-jobs-in-2025/",
+      "source": "pv magazine",
+      "title": "Solar and storage accounted for nearly 1 million EU jobs in 2025",
+      "url": "https://www.pv-magazine.com/2026/10/07/solar-and-storage-accounted-for-nearly-1-million-eu-jobs-in-2025/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar and battery storage supported 982,000 jobs in the EU in 2025, with PV accounting for 874,000 positions. Solar employment is expected to decline by 2030 as deployment slows, despite growth in operations, maintenance, manufacturing and recycling jobs. The post Solar and storage accounted for nearly 1 million EU…"
+    },
+    {
+      "t": "2026-10-07T15:37:43.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/toyo-cuts-the-ribbon-on-its-newly-expanded-solar-factory-in-texas/",
+      "source": "pv magazine",
+      "title": "Toyo cuts the ribbon on its newly-expanded solar factory in Texas",
+      "url": "https://www.pv-magazine.com/2026/10/07/toyo-cuts-the-ribbon-on-its-newly-expanded-solar-factory-in-texas/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Company officers and government officials celebrated the 2 GW expansion of Toyo’s Humble, Texas solar module facility and looked forward to planned heterojunction cell production at the site in 2028. The post Toyo cuts the ribbon on its newly-expanded solar factory in Texas appeared first on pv magazine Global ."
     }
   ],
   "derived": {
@@ -461,8 +461,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 4,
+      "grid": 28,
+      "policy": 5,
       "capital": 4,
       "technology": 6
     },
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:8eb66d4bc6a1f0f0ded5db3f75bcd67eee4d4fc297892a37aa6ab231b3b0c617",
-  "envelopeChecksum": "sha256:a94bb8a4dc399dee09e3b8123dbf4425ffcf8ffd4ae58ad2440d405d44a75de5"
+  "contentChecksum": "sha256:efc99c611e93d97fa19c274af2b257b9c2658dea2fe4271fcd5e870401e2c6d4",
+  "envelopeChecksum": "sha256:ccf8a56c5519696e27cb5438c40f9dcc19ddb2ed67956c8da9a6ed06aa9539e7"
 }
