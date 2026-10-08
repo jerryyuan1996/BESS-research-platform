@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-07T23:09:47.163Z",
+  "fetchedAt": "2026-10-08T06:14:13.801Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-07T15:37:43.000Z",
+    "to": "2026-10-08T06:00:00.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -133,16 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-05T07:39:15.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/indias-bess-ambition-from-import-dependence-to-manufacturing-scale/",
-      "source": "Energy-Storage.news",
-      "title": "India’s BESS ambition: From import dependence to manufacturing scale",
-      "url": "https://www.energy-storage.news/indias-bess-ambition-from-import-dependence-to-manufacturing-scale/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Debmalya Sen, president of the India Energy Storage Alliance (IESA), on a dynamic market landscape of tenders, tariffs and the race to build a domestic battery storage ecosystem."
     },
     {
       "t": "2026-10-05T10:12:21.000Z",
@@ -315,26 +305,6 @@
       "summary": "EDF Power Solutions Australia has referred a wind-plus-storage project featuring an 800MWh BESS for assessment under Australia's EPBC Act."
     },
     {
-      "t": "2026-10-07T05:50:17.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/the-u-s-market-is-writing-its-own-sodium-ion-spec/",
-      "source": "pv magazine",
-      "title": "The U.S. market is writing its own sodium-ion spec",
-      "url": "https://www.pv-magazine.com/2026/10/07/the-u-s-market-is-writing-its-own-sodium-ion-spec/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Sodium-ion batteries are rapidly transitioning from promising alternative to commercial reality in the U.S. energy storage market, but navigating federal domestic content policies, complex FEOC sourcing rules, and stringent UL 9540A safety testing remains crucial for developers seeking to deploy scalable, bankable p…"
-    },
-    {
-      "t": "2026-10-07T06:34:47.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/heterojunction-solar-cell-built-with-biomass-lignin-based-silver-paste-achieves-25-96-efficiency/",
-      "source": "pv magazine",
-      "title": "Heterojunction solar cell built with biomass lignin-based silver paste achieves 25.96% efficiency",
-      "url": "https://www.pv-magazine.com/2026/10/07/heterojunction-solar-cell-built-with-biomass-lignin-based-silver-paste-achieves-25-96-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese researchers have developed a biomass lignin-based silver paste for HJT solar cells that reduces reliance on petroleum-based resins and improves electrical performance. The optimized paste increased solar cell efficiency from 25.01% to 25.96% while improving printability, adhesion, and conductivity. The post…"
-    },
-    {
       "t": "2026-10-07T07:26:01.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/hithiums-sodium-ion-storage-push-where-it-could-win-where-it-wont-and-path-to-bankability/",
       "source": "pv magazine",
@@ -453,6 +423,36 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Company officers and government officials celebrated the 2 GW expansion of Toyo’s Humble, Texas solar module facility and looked forward to planned heterojunction cell production at the site in 2028. The post Toyo cuts the ribbon on its newly-expanded solar factory in Texas appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-08T03:22:09.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/rooftop-installs-rise-on-back-of-battery-rebate-scheme/",
+      "source": "pv magazine",
+      "title": "Australia’s rooftop installs rise on back of battery rebate scheme",
+      "url": "https://www.pv-magazine.com/2026/10/08/rooftop-installs-rise-on-back-of-battery-rebate-scheme/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australia’s rooftop solar deployments increased by more than 7% last month with the latest data revealing that almost 312 MW of small-scale PV capacity was installed across the country in September 2026. The post Australia’s rooftop installs rise on back of battery rebate scheme appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-08T03:23:27.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-eku-energy-locks-community-deals-for-2-76gwh-queensland-bess-duo-as-valo-wins-1-6gwh-contract/",
+      "source": "Energy-Storage.news",
+      "title": "Australia: Eku Energy locks community deals for 2.76GWh Queensland BESS duo as Valo wins 1.6GWh contract",
+      "url": "https://www.energy-storage.news/australia-eku-energy-locks-community-deals-for-2-76gwh-queensland-bess-duo-as-valo-wins-1-6gwh-contract/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Eku Energy has signed CBAs with Gladstone Regional Council and Western Downs Regional Council for two BESS projects in Queensland."
+    },
+    {
+      "t": "2026-10-08T06:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/high-defect-rates-drag-down-solar-performance-and-yield-finds-report/",
+      "source": "pv magazine",
+      "title": "High defect rates drag down solar performance and yield, finds report",
+      "url": "https://www.pv-magazine.com/2026/10/08/high-defect-rates-drag-down-solar-performance-and-yield-finds-report/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "HelioVolta’s 2026 SolarGrade PV Health Report, based on inspections of nearly 8 GW across over 1,500 solar projects in the U.S. and Puerto Rico, found widespread safety and quality concerns, with 87% of projects requiring urgent corrective action and 8% facing critical issues. The post High defect rates drag down so…"
     }
   ],
   "derived": {
@@ -461,10 +461,10 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 28,
+      "grid": 29,
       "policy": 5,
       "capital": 4,
-      "technology": 6
+      "technology": 5
     },
     "sourceStatus": [
       {
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:efc99c611e93d97fa19c274af2b257b9c2658dea2fe4271fcd5e870401e2c6d4",
-  "envelopeChecksum": "sha256:ccf8a56c5519696e27cb5438c40f9dcc19ddb2ed67956c8da9a6ed06aa9539e7"
+  "contentChecksum": "sha256:808393eb168e5434b3a84e3b293b8cbc423ea5a40e3e39ab303ce7c9a87faa76",
+  "envelopeChecksum": "sha256:f7a49d3fb12b78ad148e18351d1b79ab97a4cad7f761e985572061ad2d8b606b"
 }
