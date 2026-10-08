@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-08T06:14:13.801Z",
+  "fetchedAt": "2026-10-08T13:41:55.800Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-08T06:00:00.000Z",
+    "to": "2026-10-08T11:15:00.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -133,46 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-05T10:12:21.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/statkraft-and-greenvolt-sign-largest-eu-battery-energy-storage-tolling-agreement-for-projects-in-poland/",
-      "source": "Energy-Storage.news",
-      "title": "Statkraft and Greenvolt sign largest EU battery energy storage tolling agreement for projects in Poland",
-      "url": "https://www.energy-storage.news/statkraft-and-greenvolt-sign-largest-eu-battery-energy-storage-tolling-agreement-for-projects-in-poland/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Statkraft and Greenvolt Power have signed a 10-year tolling agreement covering 400MW of BESS across two operating projects in Poland."
-    },
-    {
-      "t": "2026-10-05T12:15:59.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/maryland-conditionally-approves-440mw-of-bess-for-state-capacity-credit-awards/",
-      "source": "Energy-Storage.news",
-      "title": "Maryland conditionally approves 440MW of BESS for state ‘Capacity Credit’ awards",
-      "url": "https://www.energy-storage.news/maryland-conditionally-approves-440mw-of-bess-for-state-capacity-credit-awards/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Maryland has conditionally selected two transmission-connected energy storage projects to receive Energy Storage Capacity Credit awards in the US state."
-    },
-    {
-      "t": "2026-10-05T13:17:11.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/regulation-remains-latin-americas-main-challenge-for-bess-growth/",
-      "source": "Energy-Storage.news",
-      "title": "Regulation remains Latin America’s main challenge for BESS’ growth",
-      "url": "https://www.energy-storage.news/regulation-remains-latin-americas-main-challenge-for-bess-growth/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy-storage.news spoke with Valentina Meneses at Americas Market Intelligence about emerging markets in Latin America and BESS challenge."
-    },
-    {
-      "t": "2026-10-06T04:26:19.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-origin-energy-targets-building-southern-hemispheres-largest-battery-storage-complex/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s Origin Energy targets building ‘Southern Hemisphere’s largest battery storage complex’",
-      "url": "https://www.energy-storage.news/australias-origin-energy-targets-building-southern-hemispheres-largest-battery-storage-complex/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Origin Energy has referred a new BESS project, Eraring BESS North, for assessment under Australia's EPBC Act."
     },
     {
       "t": "2026-10-06T04:28:41.000Z",
@@ -305,26 +265,6 @@
       "summary": "EDF Power Solutions Australia has referred a wind-plus-storage project featuring an 800MWh BESS for assessment under Australia's EPBC Act."
     },
     {
-      "t": "2026-10-07T07:26:01.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/hithiums-sodium-ion-storage-push-where-it-could-win-where-it-wont-and-path-to-bankability/",
-      "source": "pv magazine",
-      "title": "Hithium’s sodium-ion storage push, where it could win, where it won’t, and path to bankability",
-      "url": "https://www.pv-magazine.com/2026/10/07/hithiums-sodium-ion-storage-push-where-it-could-win-where-it-wont-and-path-to-bankability/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "After Chinese manufacturer Hithium launched its new 4 MWh sodium-ion BESS alongside its new 785Ah cell for energy storage, in response to questions, Leb Lan, senior product manager, Hithium, spoke with ESS News to discuss not only the technology developments but also where and when a sodium-ion BESS cabinet will bet…"
-    },
-    {
-      "t": "2026-10-07T07:31:57.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/frances-largest-battery-goes-online/",
-      "source": "pv magazine",
-      "title": "France’s largest battery goes online",
-      "url": "https://www.pv-magazine.com/2026/10/07/frances-largest-battery-goes-online/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "TagEnergy has inaugurated a 240 MW/480 MWh battery storage facility in northeastern France, the country’s largest operational BESS. The Tesla Megapack-based project provides grid-balancing services and is jointly owned by TagEnergy and Banque des Territoires. The post France’s largest battery goes online appeared fi…"
-    },
-    {
       "t": "2026-10-07T08:13:37.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/dutch-bess-developer-giga-storage-brings-gigawatt-hour-scale-project-strategy-to-germany/",
       "source": "Energy-Storage.news",
@@ -333,26 +273,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Having just begun construction on a 2.8GWh BESS in Belgium, Giga Storage has progressed its 1.4GWh project in Germany to the ready-to-build stage."
-    },
-    {
-      "t": "2026-10-07T08:24:57.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/eskom-extends-solar-registration-fee-waiver-indefinitely/",
-      "source": "pv magazine",
-      "title": "Eskom extends solar registration fee waiver indefinitely",
-      "url": "https://www.pv-magazine.com/2026/10/07/eskom-extends-solar-registration-fee-waiver-indefinitely/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The South African utility is removing registration-related costs for grid-connected solar installations up to 50 kVA in size until further notice. The post Eskom extends solar registration fee waiver indefinitely appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-07T09:59:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/plant-diversity-under-pv-modules-rivals-grassland-at-japanese-solar-park/",
-      "source": "pv magazine",
-      "title": "Plant diversity under PV modules rivals grassland at Japanese solar park",
-      "url": "https://www.pv-magazine.com/2026/10/07/plant-diversity-under-pv-modules-rivals-grassland-at-japanese-solar-park/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers surveying a 55 MW solar plant on a former golf course in central Japan found that plant diversity under the panels was statistically indistinguishable from open grassland, with communities resembling forest edges, after five years of only twice-yearly mowing. The post Plant diversity under PV modules riv…"
     },
     {
       "t": "2026-10-07T11:10:08.000Z",
@@ -375,26 +295,6 @@
       "summary": "Hithium's recent sodium-ion battery and BESS product launch is the latest in a long line of announcements showing an inflection point for the battery chemistry. But how do its new products compare to other sodium-ion systems out there, and to its own LFP offering?"
     },
     {
-      "t": "2026-10-07T12:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/thousands-of-european-solar-park-systems-exposed-online-say-researchers/",
-      "source": "pv magazine",
-      "title": "Thousands of European solar park systems exposed online, say researchers",
-      "url": "https://www.pv-magazine.com/2026/10/07/thousands-of-european-solar-park-systems-exposed-online-say-researchers/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Dutch firm Modat and the Netherlands' cybersecurity agency have identified 8,547 exposed systems at solar and wind sites in 35 European countries, with Spain accounting for more than one-third of the solar total. The post Thousands of European solar park systems exposed online, say researchers appeared first on pv m…"
-    },
-    {
-      "t": "2026-10-07T12:38:08.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/auroracell-launches-9-7-kwh-sodium-ion-chromium-oxide-residential-battery/",
-      "source": "pv magazine",
-      "title": "AuroraCell launches 9.7 kWh sodium-ion chromium oxide residential battery",
-      "url": "https://www.pv-magazine.com/2026/10/07/auroracell-launches-9-7-kwh-sodium-ion-chromium-oxide-residential-battery/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "The 48 V residential energy storage system uses sodium-ion NCO chemistry and offers 9.7 kWh of rated energy. AuroraCell claims a cycle life of 20,000 cycles at 100% depth of discharge and backs the battery with a 20-year warranty. The post AuroraCell launches 9.7 kWh sodium-ion chromium oxide residential battery app…"
-    },
-    {
       "t": "2026-10-07T13:12:30.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/nextera-halts-long-island-bess-operations-over-drinking-water-contamination-concerns/",
       "source": "Energy-Storage.news",
@@ -403,36 +303,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "US energy holding company and project developer-owner NextEra Energy has suspended operations at two energy storage facilities in Long Island, New York, US."
-    },
-    {
-      "t": "2026-10-07T13:35:01.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/solar-and-storage-accounted-for-nearly-1-million-eu-jobs-in-2025/",
-      "source": "pv magazine",
-      "title": "Solar and storage accounted for nearly 1 million EU jobs in 2025",
-      "url": "https://www.pv-magazine.com/2026/10/07/solar-and-storage-accounted-for-nearly-1-million-eu-jobs-in-2025/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar and battery storage supported 982,000 jobs in the EU in 2025, with PV accounting for 874,000 positions. Solar employment is expected to decline by 2030 as deployment slows, despite growth in operations, maintenance, manufacturing and recycling jobs. The post Solar and storage accounted for nearly 1 million EU…"
-    },
-    {
-      "t": "2026-10-07T15:37:43.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/07/toyo-cuts-the-ribbon-on-its-newly-expanded-solar-factory-in-texas/",
-      "source": "pv magazine",
-      "title": "Toyo cuts the ribbon on its newly-expanded solar factory in Texas",
-      "url": "https://www.pv-magazine.com/2026/10/07/toyo-cuts-the-ribbon-on-its-newly-expanded-solar-factory-in-texas/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Company officers and government officials celebrated the 2 GW expansion of Toyo’s Humble, Texas solar module facility and looked forward to planned heterojunction cell production at the site in 2028. The post Toyo cuts the ribbon on its newly-expanded solar factory in Texas appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-08T03:22:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/rooftop-installs-rise-on-back-of-battery-rebate-scheme/",
-      "source": "pv magazine",
-      "title": "Australia’s rooftop installs rise on back of battery rebate scheme",
-      "url": "https://www.pv-magazine.com/2026/10/08/rooftop-installs-rise-on-back-of-battery-rebate-scheme/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia’s rooftop solar deployments increased by more than 7% last month with the latest data revealing that almost 312 MW of small-scale PV capacity was installed across the country in September 2026. The post Australia’s rooftop installs rise on back of battery rebate scheme appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-08T03:23:27.000Z",
@@ -445,26 +315,136 @@
       "summary": "Eku Energy has signed CBAs with Gladstone Regional Council and Western Downs Regional Council for two BESS projects in Queensland."
     },
     {
-      "t": "2026-10-08T06:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/high-defect-rates-drag-down-solar-performance-and-yield-finds-report/",
+      "t": "2026-10-08T07:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/how-to-integrate-air-source-steam-generating-heat-pumps-with-pv-battery-storage/",
       "source": "pv magazine",
-      "title": "High defect rates drag down solar performance and yield, finds report",
-      "url": "https://www.pv-magazine.com/2026/10/08/high-defect-rates-drag-down-solar-performance-and-yield-finds-report/",
+      "title": "How to integrate air-source steam-generating heat pumps with PV, battery storage",
+      "url": "https://www.pv-magazine.com/2026/10/08/how-to-integrate-air-source-steam-generating-heat-pumps-with-pv-battery-storage/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "HelioVolta’s 2026 SolarGrade PV Health Report, based on inspections of nearly 8 GW across over 1,500 solar projects in the U.S. and Puerto Rico, found widespread safety and quality concerns, with 87% of projects requiring urgent corrective action and 8% facing critical issues. The post High defect rates drag down so…"
+      "summary": "Researchers in Italy developed an air-source steam-generating heat pump integrating PV, battery storage and the grid, with the electricity supply optimized to minimize heat-production costs. Results show that higher electricity prices favor greater PV-BESS integration, while strong solar resources significantly impr…"
+    },
+    {
+      "t": "2026-10-08T07:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/brilliant-matters-heiq-plan-to-commercialize-12-efficient-semi-transparent-organic-solar-cells/",
+      "source": "pv magazine",
+      "title": "Brilliant Matters, HeiQ plan to commercialize 12%-efficient semi-transparent organic solar cells",
+      "url": "https://www.pv-magazine.com/2026/10/08/brilliant-matters-heiq-plan-to-commercialize-12-efficient-semi-transparent-organic-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A Canadian-Swiss-German collaboration has developed semi-transparent organic solar cells with efficiencies of up to 12.04% and fully printed modules reaching 10.2%. The technology combines Brilliant Matters’ BM10 OPV platform with HeiQ’s silver nanowire electrodes and is targeted for commercial availability in 2028.…"
+    },
+    {
+      "t": "2026-10-08T08:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/an-energy-first-cybersecurity-platform-for-solar-storage-and-the-grid/",
+      "source": "pv magazine",
+      "title": "An energy-first cybersecurity platform for solar, storage and the grid",
+      "url": "https://www.pv-magazine.com/2026/10/08/an-energy-first-cybersecurity-platform-for-solar-storage-and-the-grid/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Romanian EPC contractor Enevo says the SentryOT platform stands apart from IT-led competitors by translating network threats into terms energy engineers understand. The post An energy-first cybersecurity platform for solar, storage and the grid appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-08T08:48:16.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/global-bess-failure-rates-declined-99-between-2018-and-2025/",
+      "source": "Energy-Storage.news",
+      "title": "Global BESS failure rates declined 99% between 2018 and 2025",
+      "url": "https://www.energy-storage.news/global-bess-failure-rates-declined-99-between-2018-and-2025/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Annual battery energy storage system (BESS) failures per-deployed-GWh declined 99% globally between 2018 and 2025, as installed BESS capacity grew exponentially."
+    },
+    {
+      "t": "2026-10-08T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/hungary-extends-deadline-for-troubled-eu-funded-residential-solar-scheme/",
+      "source": "pv magazine",
+      "title": "Hungary extends deadline for troubled EU-funded residential solar scheme",
+      "url": "https://www.pv-magazine.com/2026/10/08/hungary-extends-deadline-for-troubled-eu-funded-residential-solar-scheme/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Hungarian government has given households in its 2021 EU-funded rooftop solar program until Oct. 31 to finish their projects, and will let complex installations close once two of their components are complete. The post Hungary extends deadline for troubled EU-funded residential solar scheme appeared first on pv…"
+    },
+    {
+      "t": "2026-10-08T09:07:34.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/return-puts-netherlands-largest-bess-online/",
+      "source": "Energy-Storage.news",
+      "title": "Return puts Netherlands’ largest BESS online",
+      "url": "https://www.energy-storage.news/return-puts-netherlands-largest-bess-online/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BESS owner-operator Return has put its 100MW/200MWh Antares BESS in the Netherlands into commercial operation, the largest to have reached that stage in the country as far as we know."
+    },
+    {
+      "t": "2026-10-08T09:24:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/global-pv-oversupply-accelerates-consolidation-regional-price-divergence/",
+      "source": "pv magazine",
+      "title": "Global PV oversupply accelerates consolidation, regional price divergence",
+      "url": "https://www.pv-magazine.com/2026/10/08/global-pv-oversupply-accelerates-consolidation-regional-price-divergence/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "pv magazine spoke with Edurne Zoco, Head of Technologies and Supply Chains at S&P Global Energy, about global PV supply chain trends, persistent overcapacity and the impact of China's new efficiency standards on solar manufacturing. She discussed module pricing, shifting trade policies and emerging risks and opportu…"
+    },
+    {
+      "t": "2026-10-08T09:46:50.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/b2u-ceo-us-second-life-bess-can-compete-with-china-price/",
+      "source": "Energy-Storage.news",
+      "title": "B2U CEO: US second-life BESS can compete with ‘China price’",
+      "url": "https://www.energy-storage.news/b2u-ceo-us-second-life-bess-can-compete-with-china-price/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Energy-Storage.news Premium speaks with Freeman Hall, CEO of second-life BESS firm B2U Storage Solutions."
+    },
+    {
+      "t": "2026-10-08T09:49:16.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/tata-power-to-pilot-membrane-based-floating-solar-with-norways-ocean-sun/",
+      "source": "pv magazine",
+      "title": "Tata Power to pilot membrane-based floating solar with Norway’s Ocean Sun",
+      "url": "https://www.pv-magazine.com/2026/10/08/tata-power-to-pilot-membrane-based-floating-solar-with-norways-ocean-sun/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Tata Power has partnered with Norway-based renewable energy technology company Ocean Sun to undertake a 300 kWp floating solar pilot in India based on Ocean Sun’s membrane-based floating solar technology. The post Tata Power to pilot membrane-based floating solar with Norway’s Ocean Sun appeared first on pv magazine…"
+    },
+    {
+      "t": "2026-10-08T10:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/italian-startup-offers-535-w-pvt-solar-module-with-1-4-kw-thermal-output/",
+      "source": "pv magazine",
+      "title": "Italian startup offers 535 W PVT solar module with 1.4 kW thermal output",
+      "url": "https://www.pv-magazine.com/2026/10/08/italian-startup-offers-535-w-pvt-solar-module-with-1-4-kw-thermal-output/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Syntropia has developed a 535 W hybrid photovoltaic-thermal module that combines electricity generation with heat recovery, achieving a combined energy conversion efficiency of 66.8% in recent tests. The company is also developing an integrated energy system combining PVT modules, geothermal probes, heat pumps and i…"
+    },
+    {
+      "t": "2026-10-08T11:02:15.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/actis-buys-1-14gwh-of-bess-in-poland-from-dteks-dri/",
+      "source": "Energy-Storage.news",
+      "title": "Actis buys 1.14GWh of BESS in Poland from DTEK’s DRI",
+      "url": "https://www.energy-storage.news/actis-buys-1-14gwh-of-bess-in-poland-from-dteks-dri/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Infrastructure investor Actis has entered the Polish energy storage market with the acquisition of two large-scale projects from DTEK's DRI, while R.Power and Solax have announced project updates in the country."
+    },
+    {
+      "t": "2026-10-08T11:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/inside-bess-manufacturing-maxxens-utility-scale-storage-factory-in-europe/",
+      "source": "pv magazine",
+      "title": "Inside BESS manufacturing: Maxxen’s utility-scale storage factory in Europe",
+      "url": "https://www.pv-magazine.com/2026/10/08/inside-bess-manufacturing-maxxens-utility-scale-storage-factory-in-europe/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A detailed look at Maxxen’s advanced BESS factory from an on-the-ground tour. The post Inside BESS manufacturing: Maxxen’s utility-scale storage factory in Europe appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 5,
-      "capital": 4,
-      "technology": 5
+      "grid": 27,
+      "policy": 6,
+      "capital": 5,
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -489,7 +469,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 10
+        "items": 8
       }
     ]
   },
@@ -498,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:808393eb168e5434b3a84e3b293b8cbc423ea5a40e3e39ab303ce7c9a87faa76",
-  "envelopeChecksum": "sha256:f7a49d3fb12b78ad148e18351d1b79ab97a4cad7f761e985572061ad2d8b606b"
+  "contentChecksum": "sha256:9fd52cedb7b299efe11d0fa9f4908e86f4db8251b95e5260632ebf44d25db610",
+  "envelopeChecksum": "sha256:a3e552c910bcd1ee3fa5050aef90358c163d37831af1eb879842a5a7b8bde26c"
 }
