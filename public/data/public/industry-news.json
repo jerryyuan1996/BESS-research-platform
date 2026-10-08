@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-08T13:41:55.800Z",
+  "fetchedAt": "2026-10-08T23:25:14.450Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-08T11:15:00.000Z",
+    "to": "2026-10-08T16:42:42.000Z",
     "resolution": "event",
-    "points": 41
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -215,16 +215,6 @@
       "summary": "IPP Linea Energy has closed a debt financing and preferred equity commitment for its 250MW/500MWh Mesa View energy storage project in Upton County, Texas, US."
     },
     {
-      "t": "2026-10-06T14:49:21.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/miso-accelerated-interconnection-queue-ferc/832246/",
-      "source": "Utility Dive",
-      "title": "States, renewable developers back MISO’s accelerated interconnection queue plan",
-      "url": "https://www.utilitydive.com/news/miso-accelerated-interconnection-queue-ferc/832246/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "&ldquo;This approach can materially accelerate the processing of legacy queue cycles while preserving MISO&rsquo;s responsibility to identify and address reliability concerns,&rdquo; the Organization of MISO States said."
-    },
-    {
       "t": "2026-10-06T16:01:15.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/maryland-nets-440-mw1760-mwh-in-first-bulk-energy-storage-procurement/832261/",
       "source": "Utility Dive",
@@ -315,26 +305,6 @@
       "summary": "Eku Energy has signed CBAs with Gladstone Regional Council and Western Downs Regional Council for two BESS projects in Queensland."
     },
     {
-      "t": "2026-10-08T07:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/how-to-integrate-air-source-steam-generating-heat-pumps-with-pv-battery-storage/",
-      "source": "pv magazine",
-      "title": "How to integrate air-source steam-generating heat pumps with PV, battery storage",
-      "url": "https://www.pv-magazine.com/2026/10/08/how-to-integrate-air-source-steam-generating-heat-pumps-with-pv-battery-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in Italy developed an air-source steam-generating heat pump integrating PV, battery storage and the grid, with the electricity supply optimized to minimize heat-production costs. Results show that higher electricity prices favor greater PV-BESS integration, while strong solar resources significantly impr…"
-    },
-    {
-      "t": "2026-10-08T07:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/brilliant-matters-heiq-plan-to-commercialize-12-efficient-semi-transparent-organic-solar-cells/",
-      "source": "pv magazine",
-      "title": "Brilliant Matters, HeiQ plan to commercialize 12%-efficient semi-transparent organic solar cells",
-      "url": "https://www.pv-magazine.com/2026/10/08/brilliant-matters-heiq-plan-to-commercialize-12-efficient-semi-transparent-organic-solar-cells/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A Canadian-Swiss-German collaboration has developed semi-transparent organic solar cells with efficiencies of up to 12.04% and fully printed modules reaching 10.2%. The technology combines Brilliant Matters’ BM10 OPV platform with HeiQ’s silver nanowire electrodes and is targeted for commercial availability in 2028.…"
-    },
-    {
       "t": "2026-10-08T08:30:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/an-energy-first-cybersecurity-platform-for-solar-storage-and-the-grid/",
       "source": "pv magazine",
@@ -346,13 +316,13 @@
     },
     {
       "t": "2026-10-08T08:48:16.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/global-bess-failure-rates-declined-99-between-2018-and-2025/",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/global-bess-failure-rates-declined-98-between-2018-and-2025/",
       "source": "Energy-Storage.news",
-      "title": "Global BESS failure rates declined 99% between 2018 and 2025",
-      "url": "https://www.energy-storage.news/global-bess-failure-rates-declined-99-between-2018-and-2025/",
+      "title": "Global BESS failure rates declined 98% between 2018 and 2025",
+      "url": "https://www.energy-storage.news/global-bess-failure-rates-declined-98-between-2018-and-2025/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Annual battery energy storage system (BESS) failures per-deployed-GWh declined 99% globally between 2018 and 2025, as installed BESS capacity grew exponentially."
+      "summary": "Annual battery energy storage system (BESS) failures per-deployed-GWh declined 98% globally between 2018 and 2025, as installed BESS capacity grew exponentially."
     },
     {
       "t": "2026-10-08T09:00:00.000Z",
@@ -433,15 +403,85 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A detailed look at Maxxen’s advanced BESS factory from an on-the-ground tour. The post Inside BESS manufacturing: Maxxen’s utility-scale storage factory in Europe appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-08T13:07:47.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/dc-green-energy-mandate-renewable-solar-ratepayer/831738/",
+      "source": "Utility Dive",
+      "title": "DC’s green energy mandate burdens those who can afford it least",
+      "url": "https://www.utilitydive.com/news/dc-green-energy-mandate-renewable-solar-ratepayer/831738/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The District of Columbia should review its renewable portfolio standard requirements, with solar credits adding about $20 to monthly electric bills, writes Joy Ditto, former American Public Power Association CEO."
+    },
+    {
+      "t": "2026-10-08T14:04:37.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/4-hour-storage-cheaper-than-gas-peakers-across-global-markets-woodmac/832489/",
+      "source": "Utility Dive",
+      "title": "4-hour storage cheaper than gas peakers across global markets: WoodMac",
+      "url": "https://www.utilitydive.com/news/4-hour-storage-cheaper-than-gas-peakers-across-global-markets-woodmac/832489/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In North America, data centers are boosting the long-term investment case for energy storage and renewables as gas turbine backlogs and rising fuel volatility drive up peaking costs, according to a Thursday note from Wood Mackenzie."
+    },
+    {
+      "t": "2026-10-08T14:14:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/south-africa-to-procure-4-6-gw-of-battery-storage/",
+      "source": "pv magazine",
+      "title": "South Africa to procure 4.6 GW of battery storage",
+      "url": "https://www.pv-magazine.com/2026/10/08/south-africa-to-procure-4-6-gw-of-battery-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Africa is preparing large-scale procurement of battery storage facilities and gas-fired power plants in a bid to address curtailment and strengthen reliable electricity supply. The post South Africa to procure 4.6 GW of battery storage appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-08T14:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/eu-expert-group-urges-curbs-on-high-risk-solar-suppliers/",
+      "source": "pv magazine",
+      "title": "EU expert group urges curbs on high-risk solar suppliers",
+      "url": "https://www.pv-magazine.com/2026/10/08/eu-expert-group-urges-curbs-on-high-risk-solar-suppliers/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Cybersecurity experts advising the European Commission say PV components and software from high-risk third-country suppliers should be restricted in all market segments, including plug-in systems, and that inverters should face third-party certification under the Cyber Resilience Act. The post EU expert group urges…"
+    },
+    {
+      "t": "2026-10-08T14:52:13.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/power-system-plans-to-meet-large-load-demand-miss-near-term-solutions-some/832508/",
+      "source": "Utility Dive",
+      "title": "Power system plans to meet large-load demand miss near-term solutions: analysts",
+      "url": "https://www.utilitydive.com/news/power-system-plans-to-meet-large-load-demand-miss-near-term-solutions-some/832508/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Major work by regional planners is focused on flexible access to existing transmission. Some say greater emphasis on advanced transmission technologies can quickly and cost-effectively create room for new large loads."
+    },
+    {
+      "t": "2026-10-08T16:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/everythings-bigger-in-texas/",
+      "source": "pv magazine",
+      "title": "Everything’s bigger in Texas",
+      "url": "https://www.pv-magazine.com/2026/10/08/everythings-bigger-in-texas/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "By almost any measure, the story of solar power in Texas has been one of astounding success. The state is by far the country’s fastest-growing solar market. The Solar Energy Industries Association (SEIA) records nearly 54 GW of solar and more than 29 GWh of batteries have been installed, while Texas is also growing…"
+    },
+    {
+      "t": "2026-10-08T16:42:42.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/massachusetts-clean-energy-funds-winter-heating-oil/832521/",
+      "source": "Utility Dive",
+      "title": "Massachusetts shifts clean energy funds to help heat homes this winter",
+      "url": "https://www.utilitydive.com/news/massachusetts-clean-energy-funds-winter-heating-oil/832521/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Massachusetts&nbsp;Gov. Maura Healey, D, ordered home energy relief for low- and middle-income households, to be funded by alternative compliance payments &mdash; the fees electricity suppliers pay when they fall short of mandated clean energy targets."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 41,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
+      "grid": 31,
       "policy": 6,
       "capital": 5,
       "technology": 3
@@ -463,13 +503,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 2
+        "items": 5
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -478,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:9fd52cedb7b299efe11d0fa9f4908e86f4db8251b95e5260632ebf44d25db610",
-  "envelopeChecksum": "sha256:a3e552c910bcd1ee3fa5050aef90358c163d37831af1eb879842a5a7b8bde26c"
+  "contentChecksum": "sha256:8766406c6f7295204a0bec1f1f0063b3a77d07404c3deb8a7b76928cc11119e2",
+  "envelopeChecksum": "sha256:54aefc18fb5b4db38ac8156fdfaf58ca025838d813ab463bb0c968443966832b"
 }
