@@ -1,10 +1,16 @@
 name: Live data
 
-# Two jobs, and the split is the governance model expressed as CI:
+# Three jobs, and the split is the governance model expressed as CI:
 #
-#   refresh   unattended. Fetches, validates, publishes observed data and
+#   refresh   unattended. Fetches, validates, commits observed data and
 #             deterministic derived metrics straight to main. It can only touch
 #             public/data/ — enforced in code, not by convention.
+#
+#   publish   calls ci.yml on the commit refresh just pushed: the full test
+#             job, then the scanned-artefact deploy. Skipped when no data
+#             changed. It is here because the push above is made with
+#             GITHUB_TOKEN, and GitHub starts no workflow for such a push — a
+#             data commit on main does not reach the site unless this job runs.
 #
 #   propose   opens a pull request when drift is material. Never merges it.
 #             Runs on a branch, edits the analyst-controlled value there, and
@@ -40,6 +46,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       material: ${{ steps.drift.outputs.material }}
+      committed: ${{ steps.commit.outputs.committed }}
+      sha: ${{ steps.commit.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
 
@@ -77,9 +85,11 @@ jobs:
           echo "Confirmed: only public/data/ was modified."
 
       - name: Commit published data
+        id: commit
         run: |
           if git diff --quiet -- public/data; then
             echo "No data changed this run."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name  "bess-etl[bot]"
@@ -93,6 +103,10 @@ jobs:
                      -m "Observed data and derived metrics only. No analyst assumption was modified." \
                      -m "$(node -e "const s=require('./etl/out/summary.json');console.log('Failed: '+(s.failed.map(f=>f.id+' ('+f.status+')').join(', ')||'none'))")"
           git push
+          # Written only after the push succeeded, so the publish job can never
+          # be handed a commit that is not on the remote.
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Read drift outcome
         id: drift
@@ -113,6 +127,27 @@ jobs:
 
       - name: Drift report to the job summary
         run: cat etl/out/drift-report.md >> "$GITHUB_STEP_SUMMARY"
+
+  publish:
+    name: Test and publish the data commit
+    needs: refresh
+    # No data commit, no deploy — a run that changed nothing must not republish
+    # what is already live. The ref test repeats the one on ci.yml's deploy job
+    # so a run dispatched from another branch does not start the suite at all.
+    if: needs.refresh.outputs.committed == 'true' && github.ref == 'refs/heads/main'
+    # This workflow holds write permissions for the commit above and the
+    # proposal below. Publishing needs neither.
+    permissions:
+      contents: read
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ needs.refresh.outputs.sha }}
+    secrets:
+      GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+      GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
   propose:
     name: Open a proposal for material drift

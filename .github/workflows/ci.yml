@@ -1,9 +1,43 @@
 name: CI
 
+# Three ways in, and only two of them can publish:
+#
+#   push to main    a human push or a merged pull request. Tests, then deploys.
+#
+#   pull_request    tests only. Never reaches the deploy job.
+#
+#   workflow_call   the "Live data" workflow (etl.yml) calls this file after it
+#                   has pushed a data commit. Tests, then deploys.
+#
+# The third exists because the first does not cover the bot. etl.yml pushes with
+# the default GITHUB_TOKEN, and GitHub deliberately starts no workflow for a push
+# made with that token. For seven weeks in 2026 this file assumed otherwise:
+# main took a data commit every six hours and production served the snapshot
+# from the last human merge. So the ETL now asks for the publish explicitly,
+# and it is the same jobs, in the same order, behind the same gates.
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_call:
+    inputs:
+      ref:
+        description: 'Commit to test and publish — the data commit the caller just pushed'
+        required: true
+        type: string
+    # Declared one by one rather than taken with `secrets: inherit`, so the
+    # caller has to name what it hands over and this file states what it needs.
+    secrets:
+      GUARD_MARKER_SET:
+        required: true
+      GUARD_FINGERPRINT_KEY:
+        required: true
+      VERCEL_TOKEN:
+        required: true
+      VERCEL_ORG_ID:
+        required: true
+      VERCEL_PROJECT_ID:
+        required: true
 
 permissions:
   contents: read
@@ -13,7 +47,13 @@ jobs:
     name: Tests and governance gates
     runs-on: ubuntu-latest
     steps:
+      # When called from etl.yml, github.sha is the commit the ETL run STARTED
+      # on — the one before the data it just pushed. inputs.ref is the data
+      # commit itself. On push and pull_request there are no inputs and this
+      # falls back to the default.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
 
       - uses: actions/setup-node@v4
         with:
@@ -99,16 +139,26 @@ jobs:
   deploy:
     name: Publish the scanned artefact to Vercel
     needs: test
-    # Only a push to main deploys. Pull requests run every check above and stop
-    # there — a fork pull request must never reach the production project or the
-    # token that publishes to it.
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    # Only main deploys, and never from a pull request. Pull requests run every
+    # check above and stop there — a fork pull request must never reach the
+    # production project or the token that publishes to it.
+    #
+    # The event is an allowlist, not "anything but pull_request": a trigger
+    # added to this file later publishes nothing until it is named here. When
+    # etl.yml calls this workflow, github.event_name and github.ref are the
+    # CALLER's — schedule or workflow_dispatch, and the branch that run is on —
+    # so a "Live data" run dispatched from any other branch is tested and stops.
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      contains(fromJSON('["push", "schedule", "workflow_dispatch"]'), github.event_name)
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    # The ETL pushes to main every six hours. Without this, a slow deploy of an
-    # older commit could land on top of a newer one. Newer always wins; in-flight
-    # older runs are cancelled rather than queued.
+    # A human merge and a six-hourly data commit can arrive close together.
+    # Without this, a slow deploy of an older commit could land on top of a
+    # newer one. Newer always wins; in-flight older runs are cancelled rather
+    # than queued. The group is repository-wide, so it holds across both ways
+    # of reaching this job.
     concurrency:
       group: vercel-production
       cancel-in-progress: true
@@ -133,7 +183,10 @@ jobs:
             exit 1
           fi
 
+      # The same commit the test job checked — see the note there.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
 
       - uses: actions/setup-node@v4
         with:

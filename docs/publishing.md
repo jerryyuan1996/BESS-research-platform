@@ -28,8 +28,21 @@ Budget about 30 minutes. Nothing here costs money.
               fetches public market data
               commits it back to the repo
                     │
-                    └──► that push runs the gates again, so the site updates itself
+                    └──► then calls the same workflow on that commit — the gates
+                         run again and the site updates itself. Skipped when no
+                         data changed.
 ```
+
+> **The last arrow used to read "that push runs the gates again", and it never
+> did.** The ETL pushes with the workflow's built-in `GITHUB_TOKEN`, and GitHub
+> starts no workflow for a push made with that token — the rule that stops a
+> workflow from triggering itself forever. From 2026-08-20 to 2026-10-09 `main`
+> took a data commit every six hours while the site served the snapshot from the
+> last human merge, and every run involved was green.
+>
+> `etl.yml` now has a `publish` job that calls `ci.yml` directly, on the exact
+> commit it pushed. Same test job, same scan of `.vercel/output`, same
+> `--prebuilt` deploy; no extra token.
 
 Three things worth understanding before you start, because they explain most of
 the steps:
@@ -158,6 +171,10 @@ anyway. The ETL bot pushes to `main` every six hours, so that is not a rare edge
 case — it is the normal path. Branch protection would not help either: the bot
 pushes directly, not through a pull request.
 
+(Those bot pushes do not start GitHub Actions by themselves — see the note under
+the diagram above. A Git integration on Vercel's side would see them regardless,
+which is exactly why it must stay off.)
+
 Instead, `.github/workflows/ci.yml` runs the checks, then builds `.vercel/output`
 itself, scans **that directory**, and uploads it with
 `vercel deploy --prebuilt --prod`. The artefact that was scanned is the artefact
@@ -213,7 +230,8 @@ ones, so a half-finished setup cannot look like a successful publish.
 
 Push to `main`. Actions runs the suite, verifies the snapshots, builds
 `.vercel/output`, scans it, and deploys. The first deployment takes two or three
-minutes and gives you a URL like `https://bess-research-platform.vercel.app`.
+minutes and gives you a URL. This project's production alias is
+`https://globalbess.vercel.app`.
 
 ---
 
@@ -295,7 +313,10 @@ It takes a few minutes. What you should see:
 - A step called **Check the wall held** confirming only `public/data/` changed.
 - A new commit on `main` named something like `data: refresh fx-ecb, wa-wem-prices, …`.
 - The **drift report** printed at the bottom of the run summary page.
-- CI re-running every gate on that commit and, if they pass, redeploying.
+- In the **same run**, a **Test and publish the data commit** group: every gate
+  re-run on that commit and, if they pass, a redeploy. It does not appear as a
+  separate run under **CI** — the bot's push starts nothing by itself, so this
+  workflow calls CI directly. If no data changed, the group shows as skipped.
 
 Then reload `/data` on the live site. Feeds should show coverage, point counts and
 a green **Live** badge.
