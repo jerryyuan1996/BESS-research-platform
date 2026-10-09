@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-09T15:41:42.193Z",
+  "fetchedAt": "2026-10-09T22:43:28.127Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-09T12:50:49.000Z",
+    "to": "2026-10-09T16:00:00.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -153,16 +153,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "IPP Linea Energy has closed a debt financing and preferred equity commitment for its 250MW/500MWh Mesa View energy storage project in Upton County, Texas, US."
-    },
-    {
-      "t": "2026-10-06T16:01:15.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/maryland-nets-440-mw1760-mwh-in-first-bulk-energy-storage-procurement/832261/",
-      "source": "Utility Dive",
-      "title": "Maryland nets 440 MW/1,760 MWh in first bulk energy storage procurement",
-      "url": "https://www.utilitydive.com/news/maryland-nets-440-mw1760-mwh-in-first-bulk-energy-storage-procurement/832261/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The first round of awards under the Maryland Next Generation Energy Act fell short of the state&rsquo;s 800-MW target as the PJM Interconnection&rsquo;s capacity crunch continues."
     },
     {
       "t": "2026-10-06T23:34:31.000Z",
@@ -355,16 +345,6 @@
       "summary": "Finland is the Nordic region’s most-talked-about market for the moment, with project deals and other battery storage development activity from local and international players."
     },
     {
-      "t": "2026-10-09T09:32:27.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/powerchina-switches-on-1-gw-pv-csp-hybrid-plant-in-northwestern-china/",
-      "source": "pv magazine",
-      "title": "PowerChina switches on 1 GW PV-CSP hybrid plant in northwestern China",
-      "url": "https://www.pv-magazine.com/2026/10/09/powerchina-switches-on-1-gw-pv-csp-hybrid-plant-in-northwestern-china/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "PowerChina has completed grid connection of a 1 GW hybrid solar project in Qinghai province, China. The facility combines 900 MW of solar PV capacity with a 100 MW concentrated solar power (CSP) plant featuring eight hours of molten-salt thermal storage and a 20 MW electric heater to store surplus PV electricity. Th…"
-    },
-    {
       "t": "2026-10-09T09:39:15.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/plug-in-pv-is-growing-are-regulations-keeping-pace/",
       "source": "pv magazine",
@@ -453,6 +433,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Researchers at the University of Groningen have calculated green hydrogen production costs of €7.2/kg to €7.3/kg using renewable power purchase agreements and hybrid electricity supply configurations, compared with €7.7/kg for wholesale electricity sourcing. The study found that long-term revenue guarantees are esse…"
+    },
+    {
+      "t": "2026-10-09T14:27:49.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/engie-ls-power-pjm-expedited-interconnection-eit/832613/",
+      "source": "Utility Dive",
+      "title": "Engie, LS Power land 2.1 GW in fast-track interconnection approval from PJM",
+      "url": "https://www.utilitydive.com/news/engie-ls-power-pjm-expedited-interconnection-eit/832613/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The PJM Interconnection expects Engie&rsquo;s two storage projects totaling nearly 1.7 GW and LS Power&rsquo;s 455-MW &nbsp; gas-fired uprate will be online by mid-2029."
+    },
+    {
+      "t": "2026-10-09T16:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/poly-pricing-and-potential-expansion/",
+      "source": "pv magazine",
+      "title": "Poly pricing and potential expansion",
+      "url": "https://www.pv-magazine.com/2026/10/09/poly-pricing-and-potential-expansion/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The United States has made significant changes to trade and energy policy in 2026. The enforcement of these policies and potential further changes on the horizon could reshape the solar market yet again. Jesse Pichel and Lev Seleznov of Roth Capital examine the potential impacts. The post Poly pricing and potential…"
     }
   ],
   "derived": {
@@ -461,8 +461,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 28,
-      "policy": 5,
+      "grid": 27,
+      "policy": 6,
       "capital": 7,
       "technology": 3
     },
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:78641b6f1a46c558d7c8298239cabee844aa03e1a4ccf4dc9bd68ecd03b8c142",
-  "envelopeChecksum": "sha256:330134429a41b7db202dda4d949e554e2088a0021c3fb8062f06b50f658a19e5"
+  "contentChecksum": "sha256:72f5d4e946ec292206c7b9ec5b52350034fd1fa778c9f96e363ed211c93d4400",
+  "envelopeChecksum": "sha256:50c254dc1076439a748c83edd5f448676361bc9381f3ff27452f33fc74d1dab6"
 }
