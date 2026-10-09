@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-09T06:17:19.234Z",
+  "fetchedAt": "2026-10-09T13:30:06.333Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-09T03:21:32.000Z",
+    "to": "2026-10-09T12:50:49.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -135,56 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-06T05:46:37.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/sumitomo-corporation-invests-in-hero-future-energies-solar-wind-storage-hybrid-in-karnataka-india/",
-      "source": "Energy-Storage.news",
-      "title": "Sumitomo Corporation invests in Hero Future Energies’ solar-wind-storage hybrid in Karnataka, India",
-      "url": "https://www.energy-storage.news/sumitomo-corporation-invests-in-hero-future-energies-solar-wind-storage-hybrid-in-karnataka-india/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Japanese trading company Sumitomo Corporation has invested in a utility-scale renewable energy park combining solar PV, wind and energy storage in India."
-    },
-    {
-      "t": "2026-10-06T09:19:57.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-and-edp-expand-solar-plus-storage-ppa-partnership-with-another-462mwh-of-batteries-in-spain/",
-      "source": "Energy-Storage.news",
-      "title": "Zelestra and EDP expand solar-plus-storage PPA partnership with another 462MWh of batteries in Spain",
-      "url": "https://www.energy-storage.news/zelestra-and-edp-expand-solar-plus-storage-ppa-partnership-with-another-462mwh-of-batteries-in-spain/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "IPP Zelestra and power firm and utility EDP have agreed two new hybrid PPAs in Spain, adding 181MWdc of solar and 462MWh BESS to their existing co-operation."
-    },
-    {
-      "t": "2026-10-06T10:33:22.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/mixed-stock-market-listing-fortunes-for-energy-storage-technology-firms-ess-inc-zincfive-and-inobat/",
-      "source": "Energy-Storage.news",
-      "title": "Mixed stock market listing fortunes for energy storage technology firms ESS Inc, ZincFive and InoBat",
-      "url": "https://www.energy-storage.news/mixed-stock-market-listing-fortunes-for-energy-storage-technology-firms-ess-inc-zincfive-and-inobat/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Share listing news from three energy storage startups with different areas of specialisation speaks to the ups and downs of going public."
-    },
-    {
-      "t": "2026-10-06T10:39:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/build-your-bess-against-future-energy-scenarios-not-todays-price-curves-ipp/",
-      "source": "Energy-Storage.news",
-      "title": "Build your BESS against future energy scenarios, not today’s price curves – IPP",
-      "url": "https://www.energy-storage.news/build-your-bess-against-future-energy-scenarios-not-todays-price-curves-ipp/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS operators should be planning their projects against different locational price and charging regimes of the future rather than solely against the current revenue opportunities."
-    },
-    {
-      "t": "2026-10-06T11:14:48.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/valos-steve-merrick-on-why-accurate-state-of-charge-estimation-remains-energy-storages-unsolved-problem/",
-      "source": "Energy-Storage.news",
-      "title": "Valo’s Steve Merrick on why accurate state of charge estimation remains energy storage’s ‘unsolved problem’",
-      "url": "https://www.energy-storage.news/valos-steve-merrick-on-why-accurate-state-of-charge-estimation-remains-energy-storages-unsolved-problem/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Inaccurate state of charge (SOC) measurements can cost battery energy storage system (BESS) operators up to 15% in lost revenue, a persistent issue despite advances in monitoring technology."
-    },
-    {
       "t": "2026-10-06T11:22:39.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/antora-energy-announces-5-8gwh-multi-day-thermal-energy-storage-project-in-kansas-us/",
       "source": "Energy-Storage.news",
@@ -295,16 +245,6 @@
       "summary": "Eku Energy has signed CBAs with Gladstone Regional Council and Western Downs Regional Council for two BESS projects in Queensland."
     },
     {
-      "t": "2026-10-08T08:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/an-energy-first-cybersecurity-platform-for-solar-storage-and-the-grid/",
-      "source": "pv magazine",
-      "title": "An energy-first cybersecurity platform for solar, storage and the grid",
-      "url": "https://www.pv-magazine.com/2026/10/08/an-energy-first-cybersecurity-platform-for-solar-storage-and-the-grid/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Romanian EPC contractor Enevo says the SentryOT platform stands apart from IT-led competitors by translating network threats into terms energy engineers understand. The post An energy-first cybersecurity platform for solar, storage and the grid appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-08T08:48:16.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/global-bess-failure-rates-declined-98-between-2018-and-2025/",
       "source": "Energy-Storage.news",
@@ -313,16 +253,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Annual battery energy storage system (BESS) failures per-deployed-GWh declined 98% globally between 2018 and 2025, as installed BESS capacity grew exponentially."
-    },
-    {
-      "t": "2026-10-08T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/hungary-extends-deadline-for-troubled-eu-funded-residential-solar-scheme/",
-      "source": "pv magazine",
-      "title": "Hungary extends deadline for troubled EU-funded residential solar scheme",
-      "url": "https://www.pv-magazine.com/2026/10/08/hungary-extends-deadline-for-troubled-eu-funded-residential-solar-scheme/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Hungarian government has given households in its 2021 EU-funded rooftop solar program until Oct. 31 to finish their projects, and will let complex installations close once two of their components are complete. The post Hungary extends deadline for troubled EU-funded residential solar scheme appeared first on pv…"
     },
     {
       "t": "2026-10-08T09:07:34.000Z",
@@ -335,16 +265,6 @@
       "summary": "BESS owner-operator Return has put its 100MW/200MWh Antares BESS in the Netherlands into commercial operation, the largest to have reached that stage in the country as far as we know."
     },
     {
-      "t": "2026-10-08T09:24:17.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/global-pv-oversupply-accelerates-consolidation-regional-price-divergence/",
-      "source": "pv magazine",
-      "title": "Global PV oversupply accelerates consolidation, regional price divergence",
-      "url": "https://www.pv-magazine.com/2026/10/08/global-pv-oversupply-accelerates-consolidation-regional-price-divergence/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "pv magazine spoke with Edurne Zoco, Head of Technologies and Supply Chains at S&P Global Energy, about global PV supply chain trends, persistent overcapacity and the impact of China's new efficiency standards on solar manufacturing. She discussed module pricing, shifting trade policies and emerging risks and opportu…"
-    },
-    {
       "t": "2026-10-08T09:46:50.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/b2u-ceo-us-second-life-bess-can-compete-with-china-price/",
       "source": "Energy-Storage.news",
@@ -355,26 +275,6 @@
       "summary": "Energy-Storage.news Premium speaks with Freeman Hall, CEO of second-life BESS firm B2U Storage Solutions."
     },
     {
-      "t": "2026-10-08T09:49:16.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/tata-power-to-pilot-membrane-based-floating-solar-with-norways-ocean-sun/",
-      "source": "pv magazine",
-      "title": "Tata Power to pilot membrane-based floating solar with Norway’s Ocean Sun",
-      "url": "https://www.pv-magazine.com/2026/10/08/tata-power-to-pilot-membrane-based-floating-solar-with-norways-ocean-sun/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Tata Power has partnered with Norway-based renewable energy technology company Ocean Sun to undertake a 300 kWp floating solar pilot in India based on Ocean Sun’s membrane-based floating solar technology. The post Tata Power to pilot membrane-based floating solar with Norway’s Ocean Sun appeared first on pv magazine…"
-    },
-    {
-      "t": "2026-10-08T10:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/italian-startup-offers-535-w-pvt-solar-module-with-1-4-kw-thermal-output/",
-      "source": "pv magazine",
-      "title": "Italian startup offers 535 W PVT solar module with 1.4 kW thermal output",
-      "url": "https://www.pv-magazine.com/2026/10/08/italian-startup-offers-535-w-pvt-solar-module-with-1-4-kw-thermal-output/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Syntropia has developed a 535 W hybrid photovoltaic-thermal module that combines electricity generation with heat recovery, achieving a combined energy conversion efficiency of 66.8% in recent tests. The company is also developing an integrated energy system combining PVT modules, geothermal probes, heat pumps and i…"
-    },
-    {
       "t": "2026-10-08T11:02:15.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/actis-buys-1-14gwh-of-bess-in-poland-from-dteks-dri/",
       "source": "Energy-Storage.news",
@@ -383,16 +283,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Infrastructure investor Actis has entered the Polish energy storage market with the acquisition of two large-scale projects from DTEK's DRI, while R.Power and Solax have announced project updates in the country."
-    },
-    {
-      "t": "2026-10-08T11:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/inside-bess-manufacturing-maxxens-utility-scale-storage-factory-in-europe/",
-      "source": "pv magazine",
-      "title": "Inside BESS manufacturing: Maxxen’s utility-scale storage factory in Europe",
-      "url": "https://www.pv-magazine.com/2026/10/08/inside-bess-manufacturing-maxxens-utility-scale-storage-factory-in-europe/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A detailed look at Maxxen’s advanced BESS factory from an on-the-ground tour. The post Inside BESS manufacturing: Maxxen’s utility-scale storage factory in Europe appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-08T13:07:47.000Z",
@@ -415,26 +305,6 @@
       "summary": "In North America, data centers are boosting the long-term investment case for energy storage and renewables as gas turbine backlogs and rising fuel volatility drive up peaking costs, according to a Thursday note from Wood Mackenzie."
     },
     {
-      "t": "2026-10-08T14:14:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/south-africa-to-procure-4-6-gw-of-battery-storage/",
-      "source": "pv magazine",
-      "title": "South Africa to procure 4.6 GW of battery storage",
-      "url": "https://www.pv-magazine.com/2026/10/08/south-africa-to-procure-4-6-gw-of-battery-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Africa is preparing large-scale procurement of battery storage facilities and gas-fired power plants in a bid to address curtailment and strengthen reliable electricity supply. The post South Africa to procure 4.6 GW of battery storage appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-08T14:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/eu-expert-group-urges-curbs-on-high-risk-solar-suppliers/",
-      "source": "pv magazine",
-      "title": "EU expert group urges curbs on high-risk solar suppliers",
-      "url": "https://www.pv-magazine.com/2026/10/08/eu-expert-group-urges-curbs-on-high-risk-solar-suppliers/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Cybersecurity experts advising the European Commission say PV components and software from high-risk third-country suppliers should be restricted in all market segments, including plug-in systems, and that inverters should face third-party certification under the Cyber Resilience Act. The post EU expert group urges…"
-    },
-    {
       "t": "2026-10-08T14:52:13.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/power-system-plans-to-meet-large-load-demand-miss-near-term-solutions-some/832508/",
       "source": "Utility Dive",
@@ -443,16 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Major work by regional planners is focused on flexible access to existing transmission. Some say greater emphasis on advanced transmission technologies can quickly and cost-effectively create room for new large loads."
-    },
-    {
-      "t": "2026-10-08T16:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/08/everythings-bigger-in-texas/",
-      "source": "pv magazine",
-      "title": "Everything’s bigger in Texas",
-      "url": "https://www.pv-magazine.com/2026/10/08/everythings-bigger-in-texas/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "By almost any measure, the story of solar power in Texas has been one of astounding success. The state is by far the country’s fastest-growing solar market. The Solar Energy Industries Association (SEIA) records nearly 54 GW of solar and more than 29 GWh of batteries have been installed, while Texas is also growing…"
     },
     {
       "t": "2026-10-08T16:42:42.000Z",
@@ -473,17 +333,137 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Mint Renewables has received planning approval for an 800MWh battery energy storage system (BESS) near Kojonup in Western Australia."
+    },
+    {
+      "t": "2026-10-09T09:21:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/iea-thermal-energy-storage-key-to-industrial-heat-electrification-that-could-cut-eu-gas-demand-by-35-bcm-annually/",
+      "source": "Energy-Storage.news",
+      "title": "IEA: Thermal energy storage key to industrial heat electrification that could cut EU gas demand by 35 bcm annually",
+      "url": "https://www.energy-storage.news/iea-thermal-energy-storage-key-to-industrial-heat-electrification-that-could-cut-eu-gas-demand-by-35-bcm-annually/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Electrifying low-temperature industrial heat and steam processes with renewables could reduce European Union natural gas consumption by 35 billion cubic metres-per-year, according to a report from the International Energy Agency (IEA)."
+    },
+    {
+      "t": "2026-10-09T09:21:46.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/finland-bess-usva-energia-nala-renewables-centrica-olana-energy-acquisition-construction-optimisation-news/",
+      "source": "Energy-Storage.news",
+      "title": "Finland: BESS acquisition, construction and optimisation news from Usva Energia, Nala Renewables, Centrica and Olana Energy",
+      "url": "https://www.energy-storage.news/finland-bess-usva-energia-nala-renewables-centrica-olana-energy-acquisition-construction-optimisation-news/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Finland is the Nordic region’s most-talked-about market for the moment, with project deals and other battery storage development activity from local and international players."
+    },
+    {
+      "t": "2026-10-09T09:32:27.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/powerchina-switches-on-1-gw-pv-csp-hybrid-plant-in-northwestern-china/",
+      "source": "pv magazine",
+      "title": "PowerChina switches on 1 GW PV-CSP hybrid plant in northwestern China",
+      "url": "https://www.pv-magazine.com/2026/10/09/powerchina-switches-on-1-gw-pv-csp-hybrid-plant-in-northwestern-china/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "PowerChina has completed grid connection of a 1 GW hybrid solar project in Qinghai province, China. The facility combines 900 MW of solar PV capacity with a 100 MW concentrated solar power (CSP) plant featuring eight hours of molten-salt thermal storage and a 20 MW electric heater to store surplus PV electricity. Th…"
+    },
+    {
+      "t": "2026-10-09T09:39:15.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/plug-in-pv-is-growing-are-regulations-keeping-pace/",
+      "source": "pv magazine",
+      "title": "Plug-in PV is growing – are regulations keeping pace?",
+      "url": "https://www.pv-magazine.com/2026/10/09/plug-in-pv-is-growing-are-regulations-keeping-pace/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Plug-in solar PV and compact battery storage are expanding access to solar energy, but differing national regulations raise challenges around electrical safety, certification and consumer protection. IEA PVPS will host two free online seminars on 19 and 28 October 2026 to compare international approaches and promote…"
+    },
+    {
+      "t": "2026-10-09T09:57:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/europes-system-integrators-move-quickly-on-sodium-ion-with-catl-surprised-if-we-arent-deploying-it-next-year/",
+      "source": "Energy-Storage.news",
+      "title": "Europe’s system integrators move quickly on sodium-ion with CATL: ‘surprised if we aren’t deploying it next year’",
+      "url": "https://www.energy-storage.news/europes-system-integrators-move-quickly-on-sodium-ion-with-catl-surprised-if-we-arent-deploying-it-next-year/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Intilion has just tied up with CATL for sodium-ion BESS deployments in Europe, following Alfen’s similar move in July, while Merus Power tells us it is in the process of integrating with the OEM’s new product."
+    },
+    {
+      "t": "2026-10-09T10:24:18.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/south-africa-pursues-4-6gw-of-battery-storage-deployments-in-integrated-resource-plan/",
+      "source": "Energy-Storage.news",
+      "title": "South Africa pursues 4.6GW of battery storage deployments in Integrated Resource Plan",
+      "url": "https://www.energy-storage.news/south-africa-pursues-4-6gw-of-battery-storage-deployments-in-integrated-resource-plan/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "South Africa’s government has put battery storage and power-to-gas technologies at the heart of the national long-term electricity supply and demand strategy."
+    },
+    {
+      "t": "2026-10-09T10:30:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/jackery-steps-into-rvs-with-built-in-2-kw-solar-and-45-kwh-storage/",
+      "source": "pv magazine",
+      "title": "Jackery steps into RVs with built-in 2 kW solar and 45 kWh storage",
+      "url": "https://www.pv-magazine.com/2026/10/09/jackery-steps-into-rvs-with-built-in-2-kw-solar-and-45-kwh-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "All-electric trailers already embrace solar and storage, but the work is getting more custom. The post Jackery steps into RVs with built-in 2 kW solar and 45 kWh storage appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-09T11:05:36.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/spanish-researchers-reduce-losses-in-organic-solar-cells-by-restricting-the-emission-angle/",
+      "source": "pv magazine",
+      "title": "Spanish researchers reduce losses in organic solar cells by restricting emission angle",
+      "url": "https://www.pv-magazine.com/2026/10/09/spanish-researchers-reduce-losses-in-organic-solar-cells-by-restricting-the-emission-angle/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Spanish researchers have developed an optical cavity that reduces Boltzmann losses in organic solar cells by restricting photon emission angles. The approach could help push single-junction solar cell efficiencies beyond the Shockley-Queisser limit. The post Spanish researchers reduce losses in organic solar cells b…"
+    },
+    {
+      "t": "2026-10-09T11:30:07.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-optimisation-curtailment-gb-deal-making-revenues-europe/",
+      "source": "Energy-Storage.news",
+      "title": "BESS Industry Buzz: Optimisation and curtailment in GB, deal-making and revenues across Europe",
+      "url": "https://www.energy-storage.news/bess-industry-buzz-optimisation-curtailment-gb-deal-making-revenues-europe/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Another edition of our BESS Industry Buzz, taking a look at what’s got industry people talking in the corridors of social media."
+    },
+    {
+      "t": "2026-10-09T11:55:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/isaias-ends-historic-atlantic-hurricane-lull-after-sunny-southern-summer/",
+      "source": "pv magazine",
+      "title": "Isaias ends historic Atlantic hurricane lull after sunny southern summer",
+      "url": "https://www.pv-magazine.com/2026/10/09/isaias-ends-historic-atlantic-hurricane-lull-after-sunny-southern-summer/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that an unusually quiet Atlantic hurricane season brought 10–20% above-average solar irradiance to Mexico and the southern US in August–September, while prolonged dry weather increased solar panel soiling losses. Tropical Storm Isaias is set to…"
+    },
+    {
+      "t": "2026-10-09T12:50:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/prices-drive-pakistans-metered-solar-outages-drive-hidden-uptake/",
+      "source": "pv magazine",
+      "title": "Prices drive Pakistan’s metered solar, outages drive hidden uptake",
+      "url": "https://www.pv-magazine.com/2026/10/09/prices-drive-pakistans-metered-solar-outages-drive-hidden-uptake/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A new study finds that Pakistan's net-metering capacity is concentrated in the best-served, higher-income utility areas, while much of the country's solar sits unregistered, off-grid and behind the meter where outages are worst. The post Prices drive Pakistan’s metered solar, outages drive hidden uptake appeared fir…"
+    },
+    {
+      "t": "2026-10-09T12:50:49.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/the-hydrogen-stream-dutch-researchers-calculate-green-h2-costs-as-low-as-e7-2-kg/",
+      "source": "pv magazine",
+      "title": "The Hydrogen Stream: Dutch researchers calculate green H2 costs as low as €7.2/kg",
+      "url": "https://www.pv-magazine.com/2026/10/09/the-hydrogen-stream-dutch-researchers-calculate-green-h2-costs-as-low-as-e7-2-kg/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers at the University of Groningen have calculated green hydrogen production costs of €7.2/kg to €7.3/kg using renewable power purchase agreements and hybrid electricity supply configurations, compared with €7.7/kg for wholesale electricity sourcing. The study found that long-term revenue guarantees are esse…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 31,
-      "policy": 6,
-      "capital": 5,
+      "grid": 28,
+      "policy": 5,
+      "capital": 7,
       "technology": 3
     },
     "sourceStatus": [
@@ -509,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 7
       }
     ]
   },
@@ -518,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d923af7b65039246ec743c59231a0b73fd835050266b66e7813e7abef1eb64ea",
-  "envelopeChecksum": "sha256:94b80fa5d0ac11aa0c4596b937f9b2259bbd45dec2896b7123a4e6e7b279cb0f"
+  "contentChecksum": "sha256:93e4fa3792e5e65d1b42ee2af069ee6ab068264940eea25c91f34721ecadb4d0",
+  "envelopeChecksum": "sha256:532667a04ff276a793422dd914018ff41c5e95cf3ec89352be310ebb44f55f66"
 }
