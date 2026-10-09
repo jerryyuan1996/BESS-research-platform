@@ -13,33 +13,17 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-10-09T13:30:09.490Z",
+  "fetchedAt": "2026-10-09T15:41:46.949Z",
   "coverage": {
-    "from": "2025-10-09T14:00:00.000Z",
+    "from": "2025-10-09T16:00:00.000Z",
     "to": "2026-10-08T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17203
+    "points": 17199
   },
   "units": {
     "price": "AUD/MWh"
   },
   "series": [
-    {
-      "t": "2025-10-09T14:00:00.000Z",
-      "v": 116.76
-    },
-    {
-      "t": "2025-10-09T14:30:00.000Z",
-      "v": 108.35
-    },
-    {
-      "t": "2025-10-09T15:00:00.000Z",
-      "v": 107.67
-    },
-    {
-      "t": "2025-10-09T15:30:00.000Z",
-      "v": 100.12
-    },
     {
       "t": "2025-10-09T16:00:00.000Z",
       "v": 99.23
@@ -68845,6 +68829,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 96,
-  "contentChecksum": "sha256:f3de37d698315eae9a49c2af751e2611babd612254ab6f466fd6e33e8fea5217",
-  "envelopeChecksum": "sha256:d54313e3c40ae37b491d34e6f3b2b7d46600c3dfefef160d47f4d718f132d42c"
+  "contentChecksum": "sha256:2aedd99934efe545b5d27c416e3a5be35114b17725fa1a8ace904fdebec5eddc",
+  "envelopeChecksum": "sha256:516cce892a3c79bb4f3415edade4848f1e7c1f43f0e7d8d3c46a14e5522c801d"
 }
