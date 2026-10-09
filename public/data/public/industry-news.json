@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-08T23:25:14.450Z",
+  "fetchedAt": "2026-10-09T06:17:19.234Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-08T16:42:42.000Z",
+    "to": "2026-10-09T03:21:32.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -133,16 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-06T04:28:41.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australias-nem-battery-storage-fleet-earns-au88-91-million-in-q3-with-five-days-delivering-15-of-revenue/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s NEM battery storage fleet earns AU$88.91 million in Q3, with five days delivering 15% of revenue",
-      "url": "https://www.energy-storage.news/australias-nem-battery-storage-fleet-earns-au88-91-million-in-q3-with-five-days-delivering-15-of-revenue/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia's 59 grid-scale BESS earned a combined AU$88.91 million in estimated gross energy and FCAS market revenue in the NEM."
     },
     {
       "t": "2026-10-06T05:46:37.000Z",
@@ -473,6 +463,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Massachusetts&nbsp;Gov. Maura Healey, D, ordered home energy relief for low- and middle-income households, to be funded by alternative compliance payments &mdash; the fees electricity suppliers pay when they fall short of mandated clean energy targets."
+    },
+    {
+      "t": "2026-10-09T03:21:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/mint-renewables-wins-planning-approval-for-800mwh-battery-storage-system-in-western-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Mint Renewables wins planning approval for 800MWh battery storage system in Western Australia",
+      "url": "https://www.energy-storage.news/mint-renewables-wins-planning-approval-for-800mwh-battery-storage-system-in-western-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Mint Renewables has received planning approval for an 800MWh battery energy storage system (BESS) near Kojonup in Western Australia."
     }
   ],
   "derived": {
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:8766406c6f7295204a0bec1f1f0063b3a77d07404c3deb8a7b76928cc11119e2",
-  "envelopeChecksum": "sha256:54aefc18fb5b4db38ac8156fdfaf58ca025838d813ab463bb0c968443966832b"
+  "contentChecksum": "sha256:d923af7b65039246ec743c59231a0b73fd835050266b66e7813e7abef1eb64ea",
+  "envelopeChecksum": "sha256:94b80fa5d0ac11aa0c4596b937f9b2259bbd45dec2896b7123a4e6e7b279cb0f"
 }
