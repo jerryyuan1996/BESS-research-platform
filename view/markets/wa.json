@@ -1,0 +1,41 @@
+{
+  "marketId": "wa",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "wa-capacity-credits-assigned",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Capacity Credits assigned for the 2028-29 Capacity Year",
+        "2028-29容量年度的容量信用分配"
+      ],
+      "expected": null,
+      "watches": [
+        "revenueCertainty",
+        "capitalAtRisk"
+      ],
+      "direction": "either",
+      "source": "crc",
+      "effect": null
+    },
+    {
+      "id": "wa-clean-energy-link-east",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Clean Energy Link — East expected operational",
+        "清洁能源联络线东段预计投运"
+      ],
+      "expected": "2029-12",
+      "watches": [
+        "gridScarcity"
+      ],
+      "direction": "up",
+      "source": "celProgram",
+      "effect": null
+    }
+  ]
+}

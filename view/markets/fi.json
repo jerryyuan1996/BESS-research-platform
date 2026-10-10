@@ -1,0 +1,49 @@
+{
+  "marketId": "fi",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "fi-fdi-act-in-force",
+      "kind": "event",
+      "market": "fi",
+      "label": [
+        "New investment-screening act planned to take effect, covering greenfield storage from 100 MW",
+        "新的投资审查法计划生效，涵盖100MW及以上的新建储能项目"
+      ],
+      "expected": "2027-04",
+      "watches": [
+        "foreignEntry"
+      ],
+      "direction": "down",
+      "source": {
+        "publisher": "Krogerus — 4 June 2026",
+        "url": "https://www.krogerus.com/articles/news/towards-a-significant-reform-of-foreign-direct-investment-screening-in-finland-draft-government-proposal-on-new-fdi-act-published",
+        "access": "opened"
+      },
+      "effect": null
+    },
+    {
+      "id": "fi-grid-priority-bill",
+      "kind": "event",
+      "market": "fi",
+      "label": [
+        "Government bill on grid-connection priority rules, due autumn 2026",
+        "政府关于并网优先顺序规则的法案，预计2026年秋季提出"
+      ],
+      "expected": "2026-11",
+      "watches": [
+        "gridScarcity",
+        "demandGrowth"
+      ],
+      "direction": "either",
+      "source": {
+        "publisher": "Borenius — legal alert, 26 August 2026",
+        "url": "https://www.borenius.com/legal-alerts/2026/08/26/government-prepares-new-grid-connection-priority-rules-in-response-to-data-centre-boom/",
+        "access": "opened"
+      },
+      "effect": null
+    }
+  ]
+}

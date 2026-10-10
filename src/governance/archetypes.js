@@ -391,8 +391,13 @@ export function knockOuts(a, grades){
  * `unchecked` is returned separately and is NOT a breach, but it is not a
  * clearance either. A market with no sourced security figure has not passed the
  * developer's limit; nobody has looked. The page should say so.
+ *
+ * `incomplete` names metrics whose figure is only a LOWER BOUND — a ledger with
+ * an item nobody has put a number on. A lower bound over the limit is a breach,
+ * because the true figure can only be higher. A lower bound under it proves
+ * nothing and is unchecked.
  */
-export function limitCheck(a, metrics = {}, route){
+export function limitCheck(a, metrics = {}, route, incomplete = []){
   const arch = resolve(a);
   const on = route || arch.defaultRoute;
   const breached = [], unchecked = [];
@@ -401,6 +406,7 @@ export function limitCheck(a, metrics = {}, route){
     const value = metrics?.[limit.metric];
     if (typeof value !== 'number' || !Number.isFinite(value)) unchecked.push(limit.id);
     else if (value > limit.max) breached.push(limit.id);
+    else if (incomplete.includes(limit.metric)) unchecked.push(limit.id);
   }
   return { route: on, breached, unchecked };
 }
@@ -505,7 +511,8 @@ export function checkVerdict(call, score, ceilingValue = null, unchecked = []){
 /**
  * Everything one archetype says about one market, for a verdict to be checked
  * against. `grades` is keyed by dimension id and holds bare grades or grade
- * records; `metrics` is keyed by METRIC; `verdict` is optional.
+ * records; `metrics` is keyed by METRIC; `verdict` is optional; `incomplete`
+ * names the metrics that are lower bounds (see limitCheck).
  *
  * WHEN `ceiling` IS SET, `fit` IS NOT THE HEADLINE. The score is still returned,
  * because it says how the rest of the market reads, but a knock-out counted as
@@ -513,10 +520,10 @@ export function checkVerdict(call, score, ceilingValue = null, unchecked = []){
  * averaged away after all. `headline` says which of the two a page may lead
  * with.
  */
-export function assess(a, grades, metrics = {}, verdict = null){
+export function assess(a, grades, metrics = {}, verdict = null, incomplete = []){
   const arch = resolve(a);
   const route = verdict?.route || arch.defaultRoute;
-  const limits = limitCheck(arch, metrics, route);
+  const limits = limitCheck(arch, metrics, route, incomplete);
   const cap = ceiling(arch, grades, metrics, route);
   const score = fit(arch, grades);
   return {

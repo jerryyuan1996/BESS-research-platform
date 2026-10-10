@@ -1,0 +1,24 @@
+{
+  "marketId": "it",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "it-macse-second-auction",
+      "kind": "event",
+      "market": "it",
+      "label": [
+        "Second MACSE auction, with a lower price cap",
+        "第二轮MACSE拍卖，价格上限下调"
+      ],
+      "expected": "2026-11-24",
+      "watches": [
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ]
+}

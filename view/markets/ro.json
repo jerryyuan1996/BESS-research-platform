@@ -1,0 +1,24 @@
+{
+  "marketId": "ro",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "ro-grant-call-close",
+      "kind": "event",
+      "market": "ro",
+      "label": [
+        "The EUR 150m storage grant call closes",
+        "1.5亿欧元储能补贴申报截止"
+      ],
+      "expected": "2026-10-30",
+      "watches": [
+        "assetReturn"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ]
+}

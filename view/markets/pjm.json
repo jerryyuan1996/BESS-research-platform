@@ -1,0 +1,40 @@
+{
+  "marketId": "pjm",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "pjm-backstop-filing-suspension-ends",
+      "kind": "event",
+      "market": "pjm",
+      "label": [
+        "FERC suspension of the Reliability Backstop filing ends",
+        "FERC对可靠性兜底采购申请的中止期届满"
+      ],
+      "expected": "2027-02-28",
+      "watches": [
+        "policyStability"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "effect": null
+    },
+    {
+      "id": "pjm-capacity-auction-2029-30",
+      "kind": "event",
+      "market": "pjm",
+      "label": [
+        "Capacity auction for the 2029/30 delivery year",
+        "2029/30交付年度容量拍卖"
+      ],
+      "expected": "2026-12",
+      "watches": [
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ]
+}

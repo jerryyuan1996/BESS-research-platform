@@ -1,0 +1,28 @@
+{
+  "marketId": "gb",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "gb-gate-2-battery-progression-limit",
+      "kind": "event",
+      "market": "gb",
+      "label": [
+        "Possible limit on Gate 2 progression to batteries with revenue support",
+        "可能将Gate 2推进资格限于有收入支持的电池项目"
+      ],
+      "expected": null,
+      "watches": [
+        "gridScarcity"
+      ],
+      "direction": "down",
+      "source": {
+        "publisher": "S&P Global — April 2026",
+        "url": "https://www.spglobal.com/market-intelligence/en/news-insights/articles/2026/4/uk-battery-storage-glut-prompts-review-of-queue-protections-100760930",
+        "access": "search-summary"
+      },
+      "effect": null
+    }
+  ]
+}
