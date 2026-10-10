@@ -1,7 +1,197 @@
 {
   "marketId": "wa",
   "thesis": null,
-  "grades": {},
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Fourth of fourteen markets on hold IRR, 13.1%.",
+        "持有期IRR为13.1%，在十四个市场中排第四。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "77% of revenue is secured for ten years.",
+        "77%的收入已锁定十年。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "entry-ledger"
+      ],
+      "reason": [
+        "At least 3.7% of project cost before the investment decision, most of it security posted before capacity is certain.",
+        "最终投资决策前的风险资本至少为项目投资的3.7%，其中大部分是容量尚未确定时即须提交的保证金。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "build-pathway"
+      ],
+      "reason": [
+        "Process, gating rules and fees are published; timeframes are indicative.",
+        "流程、准入规则与费用均已公布；时限仅供参考。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "build-pathway"
+      ],
+      "reason": [
+        "About 55 months at the midpoint of the pathway stages, with an annual capacity cycle on the path. A rough reading, not yet a critical-path calculation.",
+        "按现有路径各阶段中点粗略估算约55个月，且路径上有年度容量周期。此为粗略判读，尚非关键路径计算。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "tsp",
+        "celProgram"
+      ],
+      "reason": [
+        "Network access quantities cap export until transmission relief expected at the end of 2029.",
+        "在预计2029年底投运的输电加强工程之前，网络接入量限制外送。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile"
+      ],
+      "reason": [
+        "The capacity mechanism has changed more than once in five years; existing Capacity Credits have been honoured.",
+        "容量机制五年内不止一次调整；已分配的容量信用均得到履行。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Large-load growth is held only as an illustrative watchlist, with no signed figure.",
+        "大负荷增长仅以示意性观察名单记录，没有已签约的数字。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
   "verdicts": {},
   "triggers": [
     {

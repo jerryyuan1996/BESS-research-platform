@@ -20,8 +20,13 @@ import path from 'node:path';
 
 import {
   VIEW_SECTIONS, PERMITTED_AUTHORS, emptyView, validateMarketView, parsePath, readPath, writePath,
-  buildIndex, validateChangelogEntry,
+  buildIndex, validateChangelogEntry, INTERNAL_EVIDENCE,
 } from '../view/schema/view.mjs';
+import { assessMarket, disagreements } from '../src/entry/assessment.js';
+import { ledgerFor } from '../src/entry/ledgerRegistry.js';
+import { FX } from '../src/comparison/assumptions.js';
+import { NOT_ACCESSIBLE } from '../src/governance/archetypes.js';
+import { BASIS } from '../src/governance/investability.js';
 import { createViewStore, ViewRejected, VIEW_ROOT } from '../scripts/view/writer.mjs';
 import { byId } from '../src/markets/registry.js';
 import { ARCHETYPE_IDS, DIMENSION_IDS } from '../src/governance/investability.js';
@@ -108,6 +113,64 @@ test('every committed trigger cites a source that exists', async () => {
       assert.ok(SRC?.[t.source], `${t.id}: cites "${t.source}", which is not in ${view.marketId}'s register`);
     }
   }
+});
+
+test('every committed grade cites evidence a reader can open, or says it is practitioner judgement', async () => {
+  for (const view of await committed.readAll()){
+    if (!Object.keys(view.grades).length) continue;
+    const { SRC } = await import(`../src/markets/${view.marketId.replace('_', '-')}/sources.js`);
+    for (const [id, record] of Object.entries(view.grades)){
+      if (record.basis === BASIS.PRACTITIONER) continue;
+      for (const key of record.evidence){
+        assert.ok(SRC[key] || INTERNAL_EVIDENCE[key], `${view.marketId}/${id}: cites "${key}", which is neither in the register nor a part of the platform`);
+      }
+    }
+  }
+});
+
+test('a graded market is graded on every dimension, so every archetype has a score', async () => {
+  /* Half-graded is the state the arithmetic refuses to paper over: one missing
+     dimension blanks its pillar and the fit. A market is entered whole. */
+  const graded = (await committed.readAll()).filter(v => Object.keys(v.grades).length);
+  assert.deepEqual(graded.map(v => v.marketId).sort(), ['fi', 'gb', 'ro', 'wa'], 'the four corners');
+  for (const view of graded){
+    assert.deepEqual(Object.keys(view.grades).sort(), [...DIMENSION_IDS].sort(), `${view.marketId}: not graded on every dimension`);
+    const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX);
+    for (const id of ARCHETYPE_IDS){
+      const a = result.byArchetype[id];
+      assert.ok(a.fit >= 0 && a.fit <= 100, `${view.marketId}/${id}: no score`);
+      assert.equal(a.headline, a.ceiling === NOT_ACCESSIBLE ? 'ceiling' : 'fit');
+    }
+  }
+});
+
+test('the plan\'s Western Australia case falls out of the data', async () => {
+  /* The reason the whole revision exists: the market with the most secured
+     revenue on the platform is closed, at origination, to three of the four
+     investors — by the size of the cheque and the security, not by its score.
+     Its scores are good. A weighted average would have waved all four in. */
+  const view = await committed.read('wa');
+  const result = assessMarket(view, byId('wa'), ledgerFor('wa'), FX);
+  const at = (id) => result.byArchetype[id];
+  assert.equal(at('strategic').ceiling, null);
+  assert.equal(at('developer').ceiling, NOT_ACCESSIBLE);
+  assert.ok(at('developer').limitsBreached.includes('pre-fid-capital'));
+  assert.equal(at('infraFund').ceiling, NOT_ACCESSIBLE);
+  assert.equal(at('foreignFirstTimer').ceiling, NOT_ACCESSIBLE);
+  for (const id of ARCHETYPE_IDS) assert.ok(at(id).fit >= 60, `${id}: the score alone would not have shut it out`);
+
+  /* And the same market is open to the fund as a co-investor. */
+  const coInvest = { ...view, verdicts: { infraFund: { call: 'opportunistic', route: 'co-invest' } } };
+  assert.equal(assessMarket(coInvest, byId('wa'), ledgerFor('wa'), FX).byArchetype.infraFund.ceiling, null);
+});
+
+test('a market with no ledger can still have its cheque checked', async () => {
+  const view = await committed.read('wa');
+  const result = assessMarket(view, byId('wa'), null, FX);
+  assert.equal(result.totals, null);
+  assert.ok(result.byArchetype.foreignFirstTimer.limitsBreached.includes('cheque'));
+  assert.ok(result.byArchetype.developer.limitsUnchecked.includes('pre-fid-capital'));
+  assert.deepEqual(disagreements(result), [], 'no verdicts set, nothing to disagree with');
 });
 
 test('nothing in the committed store was written by automation', async () => {

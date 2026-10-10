@@ -37,6 +37,21 @@ const isPair = (v) => Array.isArray(v) && v.length === 2
 /** The sections of a market view. Anything else is not view-store content. */
 export const VIEW_SECTIONS = ['grades', 'verdicts', 'triggers', 'thesis'];
 
+/**
+ * Evidence a grade may cite that is not a key in the market's source register:
+ * a part of the platform itself. A grade derived from the engine's ranking has
+ * no external page to point at, and saying so by name is better than leaving
+ * the evidence empty. Each of these is something a reader can open.
+ */
+export const INTERNAL_EVIDENCE = {
+  'comparison-engine': ['The comparison engine', '比较引擎'],
+  'entry-ledger':      ['The market\'s capital-at-risk ledger', '该市场的风险资本台账'],
+  'build-pathway':     ['The market\'s build pathway', '该市场的建设路径'],
+  'market-dashboard':  ['The market\'s own dashboard', '该市场看板'],
+  'decision-profile':  ['The market\'s decision profile', '该市场的决策画像'],
+  'revision-plan':     ['The four-corner table in the revision plan, section 5.1', '修订方案第5.1节的四市场对照表'],
+};
+
 /** A market view with nothing in it yet. */
 export function emptyView(marketId){
   return { marketId, thesis: null, grades: {}, verdicts: {}, triggers: [] };

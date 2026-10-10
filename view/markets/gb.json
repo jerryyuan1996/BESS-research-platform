@@ -1,7 +1,196 @@
 {
   "marketId": "gb",
   "thesis": null,
-  "grades": {},
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Ninth of fourteen markets on hold IRR, 4.7%.",
+        "持有期IRR为4.7%，在十四个市场中排第九。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "10% of revenue is secured, for fifteen years.",
+        "10%的收入已锁定，期限十五年。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Readiness criteria and the connection register are published; the reformed process is recent.",
+        "成熟度标准与并网登记册均已公布；改革后的流程实施时间尚短。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
+        "排队容量177GW，而已建成仅3.6GW；对排队电池项目的保护规则正在复议。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile"
+      ],
+      "reason": [
+        "Zonal pricing was rejected in 2025 and capacity agreements are grandfathered.",
+        "分区电价方案已于2025年被否决，容量协议实行新老划断。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "A governed data-centre demand series exists; no signed share of peak is established.",
+        "已有受治理的数据中心需求序列；尚未确定已签约负荷占峰值的比例。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Operating and committed storage sits near the 40% of peak edge.",
+        "已投运与已承诺的储能接近系统峰值40%的界线。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Led European storage debt deals by count in the third quarter of 2026.",
+        "2026年第三季度欧洲储能债务融资笔数居首。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
   "verdicts": {},
   "triggers": [
     {

@@ -1,7 +1,192 @@
 {
   "marketId": "fi",
   "thesis": null,
-  "grades": {},
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "entry-ledger"
+      ],
+      "reason": [
+        "The connection application is free and names no security. Holds only if the connection fee, whose amount is not yet found, is under 0.5% of project cost.",
+        "并网申请免费且未提及担保。此评级仅在并网费（金额尚未查到）低于项目投资0.5%时成立。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "connectionPhases",
+        "connectionRestriction"
+      ],
+      "reason": [
+        "The operator publishes the process, the prerequisites and where capacity is open and closed.",
+        "运营商公布流程、前置条件，以及容量开放与关闭的区域。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "connectionRestriction"
+      ],
+      "reason": [
+        "New storage connections are restricted in the south until 2029 and available in the north.",
+        "南部在2029年前限制新增储能并网，北部仍可接入。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Greenfield projects sit outside the screening act in force. A new act covering storage from 100 MW is planned for 2027 and is tracked as a trigger.",
+        "新建项目不在现行审查法适用范围内。计划于2027年生效的新法将涵盖100MW及以上储能，已作为触发事件跟踪。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "A grid-priority bill and operator tariff decisions are pending; no retroactive change is recorded.",
+        "并网优先顺序法案与运营商电价决定尚待出台；未见追溯性变更。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Data centres with signed connection agreements exceed 3 GW.",
+        "已签署并网协议的数据中心超过3GW。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan",
+        "reserveObligations"
+      ],
+      "reason": [
+        "About 4 GW of storage agreements are signed and about 1 GW connected, against fast-reserve obligations of roughly 0.8 GW.",
+        "已签署约4GW储能并网协议、已并网约1GW，而快速备用义务量约为0.8GW。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
   "verdicts": {},
   "triggers": [
     {
