@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-10T12:40:36.854Z",
+  "fetchedAt": "2026-10-10T21:50:03.979Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
     "to": "2026-10-10T09:30:00.000Z",
@@ -378,11 +378,11 @@
       "t": "2026-10-09T14:27:49.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/engie-ls-power-pjm-expedited-interconnection-eit/832613/",
       "source": "Utility Dive",
-      "title": "PJM approves fast-track interconnection for 2.1 GW from Engie, LS Power",
+      "title": "Engie, LS Power land 2.1 GW in fast-track interconnection approval from PJM",
       "url": "https://www.utilitydive.com/news/engie-ls-power-pjm-expedited-interconnection-eit/832613/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The grid operator expects Engie&rsquo;s two storage projects totaling nearly 1.7 GW and LS Power&rsquo;s 455-MW &nbsp; gas-fired uprate will be online by mid-2029."
+      "summary": "The PJM Interconnection expects Engie&rsquo;s two storage projects totaling nearly 1.7 GW and LS Power&rsquo;s 455-MW &nbsp; gas-fired uprate will be online by mid-2029."
     },
     {
       "t": "2026-10-09T16:00:00.000Z",
@@ -528,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:b7157f49d1af945a8b116f89858d338ef67df9674e5af8683968ee5bb0afb6a3",
-  "envelopeChecksum": "sha256:9af5e0abdbcf12a066e9c75910576a50485e2e7fdaab60f56178ee8cee3e8065"
+  "contentChecksum": "sha256:bd4fb82d8a366c98d0e71a6dd7f569df88e75bfecea4e5d140c031d9fda68ceb",
+  "envelopeChecksum": "sha256:e28c9cbf331e7987fa67bd835f63a9a8d99448bd07f1f72a46449c5b7bcb40ac"
 }
