@@ -1,6 +1,9 @@
 # Investment view revision plan — 2026-10-10
 
-**Status: proposal for sign-off. Nothing in this document is implemented.**
+**Status: signed off by Jerry on 2026-10-10. Phase 0 (§8) is implemented as a method layer that
+nothing in the application imports yet; Phases 1 to 5 are not started.** The anchors, weights,
+`reads` tables and limits in `src/governance/` remain working drafts until the four corners have
+been graded against them.
 
 The platform prices a battery well and says almost nothing about whether a given investor can get
 in, what it costs them before the first dollar of revenue, or whether the case will still stand in
