@@ -18,8 +18,8 @@ export const CASE_HEAD = [
 
 export const ENTRY_HEAD = [
   ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'],
-  ['What is spent or pledged before the investment decision, when, and how it is lost. No source behind these figures has been opened yet; each row says so.',
-   '最终投资决策之前要支出或提交什么、在何时、如何损失。这些数字背后的来源尚未实际打开核对，各行均已标明。'],
+  ['What is spent or pledged before the investment decision, when, and how it is lost. The security rule is verified against the market operator\'s page; the amount assumes the whole 200 MW is certified.',
+   '最终投资决策之前要支出或提交什么、在何时、如何损失。保证金规则已对照市场运营机构页面核实；金额按200MW全额获得认证推算。'],
 ];
 
 export function renderCase(main){
