@@ -724,6 +724,11 @@ export function validateVerdict(record){
   if (record.reviewBy !== null && record.reviewBy !== undefined && !isDay(record.reviewBy)){
     at('reviewBy must be null or a YYYY-MM-DD date');
   }
+  /* Optional. When the score disagrees with the call, this is the reason the
+     page shows beside the flag — the analyst's answer to the check. */
+  if (record.scoreNote !== undefined && record.scoreNote !== null && !isPair(record.scoreNote)){
+    at('scoreNote must be an [en, zh] pair');
+  }
   if (record.call === VERDICT.WAIT){
     if (!Array.isArray(record.changesIf) || !record.changesIf.length) at('a wait names the trigger it is waiting for');
     if (!isDay(record.reviewBy)) at('a wait carries a review date');

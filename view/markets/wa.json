@@ -192,7 +192,144 @@
       "lockedUntil": null
     }
   },
-  "verdicts": {},
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "77% of revenue is secured for ten years, the most of any market here.",
+            "77%的收入锁定十年，为各市场之最。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "The one investor that can carry security of about USD 16m and a project of about USD 430m.",
+            "唯一有能力承担约1600万美元保证金和约4.3亿美元项目的投资者。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Network access is capped until 2029, so a position secured now is protected.",
+            "网络接入在2029年前受限，现在锁定的位置因此受到保护。"
+          ]
+        }
+      ],
+      "despite": [
+        "A seven-hour project of this size puts a great deal into one asset and one capacity cycle, and a missed cycle costs a year.",
+        "如此规模的七小时项目把大量资本押在单一资产和单一容量周期上，错过一个周期就是一年。"
+      ],
+      "changesIf": [
+        "wa-capacity-credits-assigned",
+        "wa-clean-energy-link-east"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "opportunistic",
+      "route": "co-invest",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "Buy in once Capacity Credits are assigned and the secured revenue is certain.",
+            "待容量信用分配、锁定收入明确之后再入股。"
+          ]
+        },
+        {
+          "dimension": "scaleRepeatability",
+          "text": [
+            "The reference project is larger than its cheque, so the only route is a share behind a strategic.",
+            "参考项目规模超出其单笔出资上限，唯一途径是跟随战略投资者持有部分股权。"
+          ]
+        }
+      ],
+      "despite": [
+        "A minority holder behind a strategic controls neither the timing nor the exit, and few assets have traded here.",
+        "跟在战略投资者之后的小股东既不能决定时点，也不能主导退出，而这里成交的资产很少。"
+      ],
+      "changesIf": [
+        "wa-capacity-credits-assigned"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "not-accessible",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "scaleRepeatability",
+          "text": [
+            "The reference project costs about USD 430m, nearly three times its largest cheque.",
+            "参考项目投资约4.3亿美元，接近其最大单笔出资的三倍。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Security of about USD 16m is posted before any revenue.",
+            "在产生任何收入之前须提交约1600万美元的保证金。"
+          ]
+        }
+      ],
+      "despite": [
+        "The most secured revenue of any market here, and a co-investment behind a strategic remains open.",
+        "锁定收入为各市场之最，且跟随战略投资者跟投的途径依然开放。"
+      ],
+      "changesIf": [],
+      "reviewBy": null,
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "not-accessible",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Security of at least USD 16m before revenue is several times what it will risk on one project.",
+            "产生收入前至少1600万美元的保证金，是其单个项目愿担风险资本的数倍。"
+          ]
+        },
+        {
+          "dimension": "timeToRevenue",
+          "text": [
+            "More than four years to first revenue, behind an annual capacity cycle.",
+            "受年度容量周期所限，首笔收入需四年以上。"
+          ]
+        }
+      ],
+      "despite": [
+        "Scarce access makes a consented, connected megawatt valuable to exactly the buyers who can afford this market.",
+        "接入容量稀缺，使得已获许可、已并网的每一兆瓦对有实力进入该市场的买方格外有价值。"
+      ],
+      "changesIf": [],
+      "reviewBy": null,
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
     {
       "id": "wa-capacity-credits-assigned",

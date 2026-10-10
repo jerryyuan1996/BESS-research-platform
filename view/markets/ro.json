@@ -186,8 +186,167 @@
       "lockedUntil": null
     }
   },
-  "verdicts": {},
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "policyStability",
+          "text": [
+            "Tariff, guarantee and connection rules are all moving by regulatory order.",
+            "电价、保函与并网规则均在通过监管法令调整。"
+          ]
+        },
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "Nothing is secured in the reference case.",
+            "参考情景下没有任何锁定收入。"
+          ]
+        }
+      ],
+      "despite": [
+        "The highest return of any market here, with connection obtainable by auction.",
+        "回报为各市场之最，且可通过拍卖取得并网容量。"
+      ],
+      "changesIf": [
+        "ro-grant-call-close",
+        "ro-connection-guarantee-order"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "wait",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "Nothing is secured, so debt is sized on merchant and balancing revenue.",
+            "没有锁定收入，债务只能按市场化与平衡收入测算。"
+          ]
+        },
+        {
+          "dimension": "exitLiquidity",
+          "text": [
+            "Little evidence that assets can be sold.",
+            "鲜有证据表明资产能够售出。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "The rules behind the revenue are still changing.",
+            "支撑收入的规则仍在变动。"
+          ]
+        }
+      ],
+      "despite": [
+        "The highest return of any market here, and closed financings show lenders will lend.",
+        "回报为各市场之最，且已完成的融资表明贷款人愿意放贷。"
+      ],
+      "changesIf": [
+        "ro-grant-call-close",
+        "ro-connection-guarantee-order"
+      ],
+      "reviewBy": "2027-01-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "wait",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "approvalTransparency",
+          "text": [
+            "Connection has been allocated by auction only since 2026 and the rules are still changing.",
+            "自2026年起才改为拍卖分配并网容量，规则仍在变动。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "Tariff and guarantee treatment move by regulatory order.",
+            "电价与保函处理随监管法令而变。"
+          ]
+        }
+      ],
+      "despite": [
+        "A project of about USD 31m fits its cheque, at the highest return of any market here.",
+        "约3100万美元的项目正合其出资规模，且回报为各市场之最。"
+      ],
+      "changesIf": [
+        "ro-connection-guarantee-order"
+      ],
+      "reviewBy": "2027-01-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Guarantees are a large share of cost and about USD 2.7m in money, inside what it will risk.",
+            "保函占投资比例高，但金额约270万美元，在其愿担的风险范围之内。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Capacity is rationed by auction and obtainable.",
+            "容量通过拍卖分配，仍拿得到。"
+          ]
+        }
+      ],
+      "despite": [
+        "Release and forfeiture rules for the guarantees are unverified and changing, and one guarantee has no published amount.",
+        "保函的释放与没收规则尚未核实且仍在变动，其中一项保函没有公开金额。"
+      ],
+      "changesIf": [
+        "ro-connection-guarantee-order"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
+    {
+      "id": "ro-connection-guarantee-order",
+      "kind": "event",
+      "market": "ro",
+      "label": [
+        "A new regulatory order on connection allocation or guarantees",
+        "关于并网分配或保函的新监管法令"
+      ],
+      "expected": null,
+      "watches": [
+        "approvalTransparency",
+        "capitalAtRisk"
+      ],
+      "direction": "either",
+      "source": "anre",
+      "effect": null
+    },
     {
       "id": "ro-grant-call-close",
       "kind": "event",

@@ -187,7 +187,161 @@
       "lockedUntil": null
     }
   },
-  "verdicts": {},
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": [
+        "Ostrobothnia and the north",
+        "博滕地区及北部"
+      ],
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "The south is closed to new storage until 2029 and capacity remains in the north.",
+            "南部在2029年前不再接纳新增储能，北部仍有容量。"
+          ]
+        },
+        {
+          "dimension": "demandGrowth",
+          "text": [
+            "More than 3 GW of data-centre load has signed connection agreements.",
+            "已有超过3GW的数据中心负荷签署并网协议。"
+          ]
+        }
+      ],
+      "despite": [
+        "About 5 GW of storage is signed or connected against reserve obligations under 1 GW, so reserve revenue will not carry a platform.",
+        "已签约或已并网的储能约5GW，而备用义务量不足1GW，备用收入撑不起一个平台。"
+      ],
+      "changesIf": [
+        "fi-grid-priority-bill"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "No capacity contract or tender exists; secured revenue has to be negotiated as a floor, project by project.",
+            "没有容量合同或招标；锁定收入只能逐个项目谈保底。"
+          ]
+        },
+        {
+          "dimension": "saturation",
+          "text": [
+            "Far more storage is signed than the reserve markets need.",
+            "已签约的储能远超备用市场所需。"
+          ]
+        }
+      ],
+      "despite": [
+        "Small projects and a fast, published process make this one of the easiest markets to put capital into.",
+        "项目规模小、流程公开且快，是最容易投入资本的市场之一。"
+      ],
+      "changesIf": [
+        "fi-grid-priority-bill"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "enter-now",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "foreignEntry",
+          "text": [
+            "Greenfield storage sits outside the screening act in force today.",
+            "新建储能目前不在现行投资审查法的适用范围内。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "The connection application is free and no security was found.",
+            "并网申请免费，且未发现担保要求。"
+          ]
+        },
+        {
+          "dimension": "approvalTransparency",
+          "text": [
+            "The operator publishes the process, the prerequisites and where capacity is open.",
+            "运营商公布流程、前置条件以及容量开放的区域。"
+          ]
+        }
+      ],
+      "despite": [
+        "The easy entry leads into a crowded market: far more storage is signed than the reserve markets need.",
+        "进入容易，但进去的是一个拥挤的市场：已签约的储能远超备用市场所需。"
+      ],
+      "changesIf": [
+        "fi-fdi-act-in-force"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": [
+        "Ostrobothnia and the north",
+        "博滕地区及北部"
+      ],
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Connection capacity outside the south is the scarce asset, and it is still obtainable.",
+            "南部以外的并网容量才是稀缺资源，而且目前仍拿得到。"
+          ]
+        },
+        {
+          "dimension": "timeToRevenue",
+          "text": [
+            "A short path to ready-to-build by the standards of the other three markets.",
+            "与另外三个市场相比，达到开工条件的路径较短。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Nothing is posted as security before the connection agreement.",
+            "签署并网协议之前无需提交任何担保。"
+          ]
+        }
+      ],
+      "despite": [
+        "Buyers of a ready-to-build project face a crowded reserve market, which caps what they will pay for it.",
+        "具备开工条件的项目，其买方面对的是拥挤的备用市场，这限制了他们愿意支付的价格。"
+      ],
+      "changesIf": [
+        "fi-grid-priority-bill",
+        "fi-fdi-act-in-force"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
     {
       "id": "fi-fdi-act-in-force",

@@ -191,7 +191,158 @@
       "lockedUntil": null
     }
   },
-  "verdicts": {},
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "The deepest storage debt market in Europe.",
+            "欧洲最成熟的储能债务融资市场。"
+          ]
+        },
+        {
+          "dimension": "scaleRepeatability",
+          "text": [
+            "Room to repeat the project many times over.",
+            "项目有多次复制的空间。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "Zonal pricing was rejected and capacity agreements are grandfathered.",
+            "分区电价已被否决，容量协议实行新老划断。"
+          ]
+        }
+      ],
+      "despite": [
+        "Ninth of fourteen markets on return, the lowest of these four.",
+        "回报在十四个市场中排第九，为这四个市场中最低。"
+      ],
+      "changesIf": [
+        "gb-gate-2-battery-progression-limit"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "opportunistic",
+      "route": "operating",
+      "where": null,
+      "because": [
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "Lenders finance storage here more readily than anywhere else in Europe.",
+            "这里的贷款人比欧洲其他任何地方都更愿意为储能融资。"
+          ]
+        },
+        {
+          "dimension": "exitLiquidity",
+          "text": [
+            "Operating assets and platforms change hands.",
+            "在运资产和平台有实际交易。"
+          ]
+        },
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "Only a tenth of revenue is secured in the reference case, so only assets that carry a toll.",
+            "参考情景下仅一成收入锁定，因此只做带租赁合同的资产。"
+          ]
+        }
+      ],
+      "despite": [
+        "The lowest modelled return of the four, in a fleet close to saturation.",
+        "模型回报为四个市场中最低，且机组规模已接近饱和。"
+      ],
+      "changesIf": [
+        "gb-gate-2-battery-progression-limit"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "opportunistic",
+      "route": "operating",
+      "where": null,
+      "because": [
+        {
+          "dimension": "exitLiquidity",
+          "text": [
+            "A traded market with standard documents makes an acquisition the practical first step.",
+            "交易活跃、文件标准化，收购是切实可行的第一步。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "The connection queue rules out starting from a new application.",
+            "并网排队状况使得从新申请起步不可行。"
+          ]
+        }
+      ],
+      "despite": [
+        "The lowest modelled return of the four.",
+        "模型回报为四个市场中最低。"
+      ],
+      "changesIf": [
+        "gb-gate-2-battery-progression-limit"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "wait",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
+            "排队容量177GW而已建成仅3.6GW，对排队电池项目的保护规则正在复议。"
+          ]
+        },
+        {
+          "dimension": "saturation",
+          "text": [
+            "Operating and committed storage is close to saturation.",
+            "已投运与已承诺的储能已接近饱和。"
+          ]
+        }
+      ],
+      "despite": [
+        "The deepest market in which to sell a ready-to-build project, and the score reads it as a place to build a position.",
+        "这里是出售具备开工条件项目的最成熟市场，评分也将其视为值得提前布局。"
+      ],
+      "changesIf": [
+        "gb-gate-2-battery-progression-limit"
+      ],
+      "reviewBy": "2027-03-31",
+      "scoreNote": [
+        "The score reads a rationed queue as good for a developer. Here the rationing rule itself may turn against new batteries, and the grade cannot show that until the review concludes.",
+        "评分把需要争取的排队容量视为对开发商有利。但此处分配规则本身可能转向不利于新增电池项目，在复议结束之前评级无法反映这一点。"
+      ],
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
     {
       "id": "gb-gate-2-battery-progression-limit",
