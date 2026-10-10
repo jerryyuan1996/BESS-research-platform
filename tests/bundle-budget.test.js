@@ -85,8 +85,15 @@ const BUDGET = {
      by /projects/*, which in a published build is a typo. Counting it here made
      the failure message ("what a first market visit pays") untrue, and would
      have pushed someone into raising a budget to accommodate bytes no market
-     visitor downloads. */
-  sharedTotal: 55,
+     visitor downloads.
+
+     RAISED FROM 55 TO 65 when Great Britain and Romania gained build pathways.
+     The pathway registry is static, so its chunk carries all four markets'
+     pathways — 19.7 kB gzipped, up from about 10 — and the total measured
+     62.4 kB. The bytes are real and three quarters of them are another market's
+     text; see the note in src/markets/buildPathwayRegistry.js for the
+     alternative that was tried and why it was not taken. */
+  sharedTotal: 65,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {

@@ -102,17 +102,41 @@ test('Romania\'s ledger carries the same guarantee amounts as the dashboard\'s o
   /* The third has no amount because the tariff it is a share of is unpublished. */
   assert.equal(byItem['connection-tariff-guarantee'].amount, null);
   assert.ok(totalsFor('ro').preFid.lowerBound);
+  /* Nor do the two items that depend on an auction price, while none has cleared. */
+  assert.equal(byItem['allocation-price'].amount, null);
+  assert.equal(byItem['allocation-payment-guarantee'].amount, null);
 });
 
 test('an empty ledger supplies no figure, so every limit reads as unchecked', () => {
-  const gb = totalsFor('gb');
-  assert.equal(gb.empty, true);
-  assert.equal(gb.shareOfCost, null, 'zero would say the market asks for nothing');
-  assert.equal(gb.weakestStatus, 'unsourced');
-  const { metrics } = limitInputs(gb);
+  /* Great Britain was the empty ledger until its sources were opened. The
+     property still has to hold for the next market that starts empty, so it is
+     tested on Great Britain's ledger with its items removed. */
+  const market = byId('gb');
+  const cost = referenceProject(market.comparison, FX[market.manifest.currency]).costUSD;
+  const empty = ledgerTotals({ ...ledgerFor('gb'), items: [] }, FX, cost);
+  assert.equal(empty.empty, true);
+  assert.equal(empty.shareOfCost, null, 'zero would say the market asks for nothing');
+  assert.equal(empty.weakestStatus, 'unsourced');
+  const { metrics } = limitInputs(empty);
   assert.ok(!(METRIC.PRE_FID_CAPITAL_USD in metrics));
   assert.ok(METRIC.PROJECT_COST_USD in metrics, 'project cost comes from the engine and is known');
   assert.ok(limitCheck('developer', metrics, 'greenfield').unchecked.includes('pre-fid-capital'));
+});
+
+test('the one published British figure is a floor, and does not pass a limit', () => {
+  /* One item of five has an amount, and that amount is a cap on the smallest
+     component. A total built from it must stay a lower bound, and a lower bound
+     under a limit is unchecked — never a pass. */
+  const gb = totalsFor('gb');
+  assert.equal(gb.empty, false);
+  assert.ok(gb.preFid.usd > 0 && gb.preFid.lowerBound);
+  assert.deepEqual(gb.unquantified.sort(),
+    ['application-fee', 'cancellation-security-post-trigger', 'capacity-market-credit-cover', 'progression-commitment-fee']);
+  assert.equal(gb.weakestStatus, 'verify');
+  const { metrics, incomplete } = limitInputs(gb);
+  const check = limitCheck('developer', metrics, 'greenfield', incomplete);
+  assert.ok(!check.breached.includes('pre-fid-capital'));
+  assert.ok(check.unchecked.includes('pre-fid-capital'));
 });
 
 /* ---- the arithmetic --------------------------------------------------------- */
