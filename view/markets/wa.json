@@ -103,11 +103,17 @@
       "dimension": "foreignEntry",
       "grade": 3,
       "trend": "stable",
-      "basis": "practitioner",
-      "evidence": [],
-      "asOf": "2026-10-10",
+      "basis": "official",
+      "evidence": [
+        "firbSecurity"
+      ],
+      "asOf": "2026-10-11",
       "author": "analyst",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "reason": [
+        "A generation station of 30 MW or more connected to a wholesale electricity market is a critical electricity asset, so starting or buying a direct interest in one needs foreign investment approval whatever its value. The statutory decision period has not been confirmed.",
+        "接入电力批发市场、装机30MW及以上的发电设施属于关键电力资产，因此无论金额大小，新设或取得其直接权益均须获得外资审批。法定审批期限尚未核实。"
+      ]
     },
     "supplyChainOrigin": {
       "dimension": "supplyChainOrigin",
