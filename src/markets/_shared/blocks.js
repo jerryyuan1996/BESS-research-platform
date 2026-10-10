@@ -19,6 +19,7 @@ import { renderGeographicGridMap } from '../../components/geographicGridMap.js';
 import { renderProjectPipeline, renderZoneAwards } from '../../projects/pipelineTable.js';
 import { renderCongestionRegister } from '../../components/congestionPanel.js';
 import { buildPathwayPanel } from '../../components/buildPathwayPanel.js';
+import { mountInvestmentCase } from '../../components/investmentCaseLoader.js';
 import { lineChart, barChart, waterfall, bandChart } from '../../charts/index.js';
 import { GLOSS_CORE } from './glossary.js';
 
@@ -204,6 +205,12 @@ function B(parent, b){
     case 'pathway':
       if (b.pathway) parent.append(buildPathwayPanel(b.pathway, { sourceFor: b.sourceFor }));
       break;
+    /* The verdicts and the entry ledger read the view store and the ledger
+       registry by market id, so a section names its market and nothing else.
+       Fetched on demand: only four markets have these tabs, and the method
+       layer behind them must not ride in the chunk every market shares. */
+    case 'investment-case': mountInvestmentCase(parent, b.marketId, 'case'); break;
+    case 'entry-ledger': mountInvestmentCase(parent, b.marketId, 'entry'); break;
     /* The pipeline table and the map read one set of canonical project records,
        so a market cannot publish two different fleets. */
     case 'project-pipeline': renderProjectPipeline(parent, b); break;

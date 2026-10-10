@@ -16,6 +16,7 @@
 
 const TABS = [
   ['home',      ['Overview', '总览']],
+  ['case',      ['Investment Case', '投资判断']],
   ['story',     ['Finnish Market Story', '芬兰市场演进']],
   /* Named for the mechanism that exists rather than the revenue that does not.
      Finland's peak load capacity system is real, statutory and dormant — the
@@ -28,6 +29,7 @@ const TABS = [
   ['duration',  ['Duration', '储能时长']],
   ['pipeline',  ['Project Pipeline', '项目管线']],
   ['grid',      ['Grid Connection', '并网']],
+  ['entry',     ['Entry & Delivery', '进入与交付']],
   ['portfolio', ['Portfolio', '组合与基金视图']],
   ['data',      ['Data & Methodology', '数据与方法']],
 ];

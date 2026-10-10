@@ -1,0 +1,308 @@
+/* ---------------------------------------------------------------------------
+   The Investment Case and Entry sections.
+
+   What the rest of a dashboard does not say: whether a given investor should
+   enter, what it costs them before the first dollar of revenue, and what would
+   change the answer.
+
+   Lives in components/ for the same reason the build-pathway panel does: WA's
+   dashboard is hand-written and the others are drawn by the shared block
+   engine, and a renderer either can append is the only way these sections read
+   the same in both.
+
+   FOUR THINGS THE LAYOUT ARGUES:
+
+     1. THE VERDICT LEADS AND THE SCORE FOLLOWS. The analyst sets the call; the
+        score checks it. So the call is the large thing and the score is a line
+        beneath it.
+     2. WHEN A CEILING APPLIES, THE SCORE IS NOT THE HEADLINE. A market can
+        score well and be closed to an investor by the size of the cheque. The
+        barrier is shown first and the score beside it, labelled as such — the
+        whole point of a knock-out is that a good score cannot outvote it.
+     3. EVERY VERDICT SHOWS THE STRONGEST ARGUMENT AGAINST ITSELF. `despite` is
+        rendered with the same weight as `because`.
+     4. A DISAGREEMENT BETWEEN CALL AND SCORE IS PRINTED, with the analyst's
+        answer to it. Nothing is hidden by rounding the two together.
+
+   The pillars are never blended into one market-level number. The only single
+   score on the page belongs to one investor.
+   --------------------------------------------------------------------------- */
+import { h } from '../utils/dom.js';
+import { L } from '../app/i18n.js';
+import { card } from './card.js';
+import { chip } from './chip.js';
+import {
+  PILLARS, PILLAR_LABEL, PILLAR_QUESTION, DIMENSIONS, dimension, anchorText,
+  VERDICT, VERDICT_LABEL, VERDICT_MEANING, ROUTE_LABEL, ARCHETYPE_IDS, BASIS, BASIS_LABEL,
+} from '../governance/investability.js';
+import { ARCHETYPES, NOT_ACCESSIBLE, DISAGREEMENT_LABEL, METRIC, limitCheck } from '../governance/archetypes.js';
+import { STAGE_LABEL } from '../governance/buildPathway.js';
+import { byExpected } from '../governance/triggers.js';
+import { ITEM_KIND_LABEL, ITEM_STATUS_LABEL, limitInputs } from '../entry/ledger.js';
+import { assessMarket } from '../entry/assessment.js';
+import { ledgerFor } from '../entry/ledgerRegistry.js';
+import { viewFor } from '../markets/viewRegistry.js';
+import { byId } from '../markets/registry.js';
+import { FX } from '../comparison/assumptions.js';
+
+/* Tone carries no judgement the label does not already state; it only makes
+   a row of four scannable. "Not accessible" and "Avoid" are deliberately not
+   the same colour, because they are not the same statement. */
+const VERDICT_TONE = {
+  [VERDICT.ENTER_NOW]: 'good',
+  [VERDICT.BUILD_POSITION]: 'good',
+  [VERDICT.OPPORTUNISTIC]: 'info',
+  [VERDICT.WAIT]: 'warn',
+  [VERDICT.AVOID]: 'critical',
+  [VERDICT.NOT_ACCESSIBLE]: 'serious',
+};
+
+const STATUS_TONE = { verified: 'good', verify: 'warn', unsourced: 'serious' };
+
+const usd = (value) => {
+  if (value === null || value === undefined) return '—';
+  if (value >= 1e6) return 'USD ' + (value / 1e6).toFixed(value >= 1e8 ? 0 : 1) + 'm';
+  if (value >= 1e3) return 'USD ' + Math.round(value / 1e3) + 'k';
+  return 'USD ' + Math.round(value);
+};
+
+const atLeast = (total) => total.lowerBound ? [`at least ${usd(total.usd)}`, `至少 ${usd(total.usd)}`] : [usd(total.usd), usd(total.usd)];
+
+const local = (amount) => {
+  const n = (v) => v.toLocaleString('en-US');
+  if (amount.perMW !== undefined) return [`${amount.currency} ${n(amount.perMW)} per MW`, `每MW ${amount.currency} ${n(amount.perMW)}`];
+  if (amount.perKW !== undefined) return [`${amount.currency} ${n(amount.perKW)} per kW`, `每kW ${amount.currency} ${n(amount.perKW)}`];
+  return [`${amount.currency} ${n(amount.fixed)}`, `${amount.currency} ${n(amount.fixed)}`];
+};
+
+function load(marketId){
+  const view = viewFor(marketId);
+  const market = byId(marketId);
+  if (!view || !market) return null;
+  const ledger = ledgerFor(marketId);
+  return { view, market, ledger, result: assessMarket(view, market, ledger, FX) };
+}
+
+const line = (label, ...kids) => h('div', { style: 'margin-top:6px;' }, h('b', {}, L(label) + ' '), ...kids);
+
+/* ---- the verdict for one investor ------------------------------------------- */
+
+function verdictCard(a, view){
+  const arch = ARCHETYPES[a.archetype];
+  const v = a.verdict;
+  const c = card(arch.label, []);
+  c.append(h('div', { class: 'cap' }, L(arch.who)));
+
+  if (!v){
+    c.append(h('div', { class: 'note' }, L(['No verdict set for this investor yet.', '尚未为这类投资者设定结论。'])));
+    return c;
+  }
+
+  c.append(h('div', { style: 'margin:8px 0;' },
+    chip(VERDICT_TONE[v.call] || 'info', L(VERDICT_LABEL[v.call])),
+    h('span', { class: 'cap', style: 'margin-left:8px;' },
+      L(ROUTE_LABEL[v.route]) + (v.where ? ' · ' + L(v.where) : ''))));
+  c.append(h('div', { class: 'cap' }, L(VERDICT_MEANING[v.call])));
+
+  const because = h('div', { class: 'note' }, h('b', {}, L(['Because', '理由'])));
+  for (const reason of v.because){
+    because.append(h('div', { style: 'margin-top:5px;' },
+      h('b', {}, L(dimension(reason.dimension)?.label || ['', '']) + ' — '), L(reason.text)));
+  }
+  c.append(because);
+  c.append(h('div', { class: 'note' }, h('b', {}, L(['Despite', '反方理由']) + ' — '), L(v.despite)));
+
+  const triggers = view.triggers.filter(t => v.changesIf.includes(t.id));
+  if (triggers.length){
+    const list = h('div', { class: 'cap' }, h('b', {}, L(['Changes if', '以下情况将改变结论'])));
+    for (const t of byExpected(triggers)){
+      list.append(h('div', { style: 'margin-top:3px;' },
+        L(t.label), ' ',
+        h('span', {}, '(' + (t.expected || L(['undated', '日期未定'])) + ')')));
+    }
+    c.append(list);
+  }
+  if (v.reviewBy) c.append(h('div', { class: 'cap' }, L(['Review by ', '复核日期：']) + v.reviewBy));
+
+  /* The score, or — when a ceiling applies — the barrier with the score
+     beside it. See point 2 in the header. */
+  if (a.ceiling === NOT_ACCESSIBLE){
+    const barriers = [
+      ...a.knockOuts.map(id => L(dimension(id).label)),
+      ...arch.limits.filter(l => a.limitsBreached.includes(l.id)).map(l => L(l.label)),
+    ];
+    c.append(h('div', { class: 'warnbox' },
+      h('b', {}, L(['Closed on this route by: ', '此路径下被以下因素挡在门外：'])), barriers.join(' · '),
+      h('div', { class: 'cap', style: 'margin-top:4px;' },
+        L(['The score beside it is ', '与之并列的评分为 ']) + a.fit.toFixed(0)
+        + L([' of 100. It does not open the market.', '（满分100）。评分再高也打不开这个市场。']))));
+  } else if (a.fit !== null){
+    c.append(line(['Score', '评分'],
+      a.fit.toFixed(0) + ' / 100 · ',
+      L(['reads as ', '对应区间：']) + L(VERDICT_LABEL[a.band])));
+  }
+
+  if (a.check?.disagrees){
+    c.append(h('div', { class: 'warnbox' },
+      h('b', {}, L(DISAGREEMENT_LABEL[a.check.kind]) + '. '),
+      v.scoreNote ? L(v.scoreNote) : L(['No reason recorded.', '未记录原因。'])));
+  }
+
+  const unchecked = arch.limits.filter(l => a.limitsUnchecked.includes(l.id));
+  if (unchecked.length){
+    c.append(h('div', { class: 'cap' },
+      h('b', {}, L(['Not yet checked: ', '尚未核查：'])),
+      unchecked.map(l => L(l.label)).join(' · ')));
+  }
+  return c;
+}
+
+/* ---- the investment case ------------------------------------------------------ */
+
+/**
+ * The Investment Case section for one market, as an array of cards, or an
+ * empty array when the market has no view.
+ */
+export function investmentCasePanel(marketId){
+  const data = load(marketId);
+  if (!data) return [];
+  const { view, result } = data;
+  const out = [];
+
+  out.push(h('div', { class: 'note' }, L([
+    'A verdict for each of four kinds of investor. The analyst sets each call; the score beneath it only checks the call and is printed when the two disagree. A barrier is a threshold, never a weight, so a market can score well and still be closed to an investor.',
+    '针对四类投资者分别给出结论。每个结论由分析师设定；下方评分仅用于校验，二者不一致时会明确标出。门槛是硬性阈值而非权重，因此市场评分再高，也可能对某类投资者关闭。',
+  ])));
+
+  const grid = h('div', { class: 'grid g2' });
+  for (const id of ARCHETYPE_IDS) grid.append(verdictCard(result.byArchetype[id], view));
+  out.push(grid);
+
+  /* Pillar by pillar, per investor. Deliberately no market-level total. */
+  const pillars = card(['How each investor reads the four pillars', '各类投资者对四大支柱的读数'], []);
+  pillars.append(h('div', { class: 'cap' }, L([
+    'Out of 100, from the grades below read through each investor\'s own preferences. The same grade can be worth more to one than to another. There is no single score for the market.',
+    '满分100，由下方评级经各类投资者自身偏好换算而来。同一评级对不同投资者的价值可以不同。本页不提供市场层面的单一总分。',
+  ])));
+  pillars.append(h('div', { class: 'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {},
+      h('th', {}, L(['Investor', '投资者'])),
+      ...PILLARS.map(p => h('th', { class: 'num', title: L(PILLAR_QUESTION[p]) }, L(PILLAR_LABEL[p]))),
+      h('th', { class: 'num' }, L(['Fit', '匹配度'])))),
+    h('tbody', {}, ARCHETYPE_IDS.map(id => {
+      const a = result.byArchetype[id];
+      return h('tr', {},
+        h('td', {}, h('b', {}, L(ARCHETYPES[id].label))),
+        ...PILLARS.map(p => h('td', { class: 'num' }, a.pillars[p] === null ? '—' : a.pillars[p].toFixed(0))),
+        h('td', { class: 'num' }, a.fit === null ? '—' : h('b', {}, a.fit.toFixed(0))));
+    })))));
+  out.push(pillars);
+
+  /* The grades themselves, each beside the anchor it was measured against. */
+  const grades = card(['The grades, and what each one means', '各项评级及其含义'], []);
+  grades.append(h('div', { class: 'cap' }, L([
+    'Each dimension is graded 1 to 5 against a written anchor that means the same in every market. 5 is the condition most open to a new entrant; whether that is good depends on the investor. A grade marked practitioner judgement rests on the analyst\'s experience, not on a published source.',
+    '每个维度按1至5评级，所对照的书面锚点在所有市场含义相同。5代表对新进入者最开放的状态；这是否有利取决于投资者类型。标注为"从业者判断"的评级基于分析师经验，而非公开来源。',
+  ])));
+  grades.append(h('div', { class: 'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {},
+      h('th', {}, L(['Pillar', '支柱'])),
+      h('th', {}, L(['Dimension', '维度'])),
+      h('th', { class: 'num' }, L(['Grade', '评级'])),
+      h('th', {}, L(['What that grade means', '该评级的含义'])),
+      h('th', {}, L(['Basis', '依据'])))),
+    h('tbody', {}, DIMENSIONS.map(d => {
+      const g = view.grades[d.id];
+      return h('tr', {},
+        h('td', {}, L(PILLAR_LABEL[d.pillar])),
+        h('td', {}, h('b', {}, L(d.label))),
+        h('td', { class: 'num' }, g ? g.grade + ' / 5' : '—'),
+        h('td', {},
+          g ? L(anchorText(d.id, g.grade)) : L(['Not yet graded', '尚未评级']),
+          g?.reason ? h('div', { class: 'cap', style: 'margin-top:3px;' }, L(g.reason)) : null),
+        h('td', {}, g ? chip(g.basis === BASIS.PRACTITIONER ? 'info' : 'good', L(BASIS_LABEL[g.basis])) : null));
+    })))));
+  out.push(grades);
+
+  return out;
+}
+
+/* ---- entry ---------------------------------------------------------------------- */
+
+/**
+ * The Entry section for one market: what is spent or pledged before the
+ * investment decision, and which investors' limits that breaches.
+ */
+export function entryPanel(marketId){
+  const data = load(marketId);
+  if (!data || !data.ledger) return [];
+  const { ledger, result } = data;
+  const totals = result.totals;
+  const out = [];
+
+  const c = card(['Capital at risk before the investment decision', '最终投资决策前的风险资本'], []);
+  c.append(h('div', { class: 'note' }, L(ledger.summary)));
+  /* The limit before the table, as on the pathway: a reader who takes a lower
+     bound for a total has been misled by the time they reach a footnote. */
+  c.append(h('div', { class: 'warnbox' }, L(ledger.limit)));
+
+  const kpi = (label, value, detail) => h('div', { class: 'kpi' },
+    h('div', { class: 'k' }, L(label)), h('div', { class: 'v' }, value),
+    detail ? h('div', { class: 'd' }, L(detail)) : null);
+  c.append(h('div', { class: 'kpis' },
+    kpi(['Reference project', '参考项目'], usd(result.project?.costUSD),
+      [`${ledger.basis.powerMW} MW · ${ledger.basis.durationHours}h, the project the comparison engine prices`, `${ledger.basis.powerMW} MW · ${ledger.basis.durationHours}小时，即比较引擎所定价的项目`]),
+    kpi(['Spent or pledged before the decision', '决策前已支出或已提交'],
+      totals.empty ? '—' : L(atLeast(totals.preFid)),
+      totals.empty ? ['Nothing sourced', '尚无来源'] : ['In money: what an investor\'s own limit is compared with', '按金额计：用于对照投资者自身上限']),
+    kpi(['As a share of project cost', '占项目投资的比例'],
+      totals.shareOfCost === null ? '—' : (totals.preFid.lowerBound ? '≥ ' : '') + (totals.shareOfCost * 100).toFixed(1) + '%',
+      ['As a share: what the capital-at-risk grade is measured on', '按比例计：风险资本评级所依据的口径'])));
+
+  if (ledger.items.length){
+    c.append(h('div', { class: 'tbl-wrap' }, h('table', {},
+      h('thead', {}, h('tr', {},
+        h('th', {}, L(['Item', '项目'])),
+        h('th', {}, L(['Amount', '金额'])),
+        h('th', {}, L(['When', '时点'])),
+        h('th', {}, L(['How it is lost', '如何损失'])),
+        h('th', {}, L(['Status', '状态'])))),
+      h('tbody', {}, ledger.items.map(item => h('tr', {},
+        h('td', {}, h('b', {}, L(item.label)), h('div', { class: 'cap' }, L(ITEM_KIND_LABEL[item.kind]) + ' · ' + L(item.form))),
+        h('td', {}, item.amount ? L(local(item.amount)) : L(item.amountNote)),
+        h('td', {}, L(STAGE_LABEL[item.postedAt]),
+          item.beforeConsent === true ? h('div', { class: 'cap' }, L(['before consent', '早于取得许可'])) : null),
+        h('td', {}, item.lostIf ? L(item.lostIf) : (item.refundable ? '—' : L(['Spent; not refundable', '已支出，不予退还']))),
+        h('td', {}, chip(STATUS_TONE[item.status], L(ITEM_STATUS_LABEL[item.status])))))))));
+  }
+  out.push(c);
+
+  /* Who that shuts out. Compared at origination, where these limits bind. */
+  const limits = card(['Which investors that shuts out, at origination', '在项目发起阶段，这把哪些投资者挡在门外'], []);
+  limits.append(h('div', { class: 'cap' }, L([
+    'Each investor\'s own limit, compared with the figures above for a project it originates. A limit that could not be checked is shown as such; it has not been passed.',
+    '将各类投资者自身的上限，与其自行发起项目时的上述数字相比较。无法核查的上限如实标注，并不代表已通过。',
+  ])));
+  const { metrics, incomplete } = limitInputs(totals);
+  limits.append(h('div', { class: 'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {},
+      h('th', {}, L(['Investor', '投资者'])),
+      h('th', {}, L(['Limit', '上限'])),
+      h('th', { class: 'num' }, L(['Its limit', '其上限'])),
+      h('th', {}, L(['Result', '结果'])))),
+    h('tbody', {}, ARCHETYPE_IDS.flatMap(id => {
+      const arch = ARCHETYPES[id];
+      /* Read at origination for every investor, including those whose usual
+         route is to buy later: this table answers "could it start one here". */
+      const check = limitCheck(arch, metrics, 'greenfield', incomplete);
+      return arch.limits.filter(l => l.routes.includes('greenfield')).map(l => h('tr', {},
+        h('td', {}, h('b', {}, L(arch.label))),
+        h('td', {}, L(l.label)),
+        h('td', { class: 'num' }, l.metric === METRIC.MONTHS_TO_RTB ? l.max + L([' months', '个月']) : usd(l.max)),
+        h('td', {}, check.breached.includes(l.id) ? chip('serious', L(['Breached', '已超出']))
+          : check.unchecked.includes(l.id) ? chip('warn', L(['Not yet checked', '尚未核查']))
+          : chip('good', L(['Within', '在上限内'])))));
+    })))));
+  out.push(limits);
+  return out;
+}

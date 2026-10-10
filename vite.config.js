@@ -37,6 +37,9 @@ export default defineConfig({
           /* The dossier shell's entry module is page.js, which would otherwise
              emit as `page-<hash>.js` and say nothing about what it holds. */
           if (/[\\/]projects[\\/]dossier[\\/]page\.js$/.test(id)) return 'assets/dossier-shell-[hash].js';
+          /* The Investment Case and Entry sections: the method layer, the view
+             store and the ledgers, fetched only when one of those tabs opens. */
+          if (/[\\/]components[\\/]investmentCase\.js$/.test(id)) return 'assets/investment-case-[hash].js';
           return 'assets/[name]-[hash].js';
         },
       },

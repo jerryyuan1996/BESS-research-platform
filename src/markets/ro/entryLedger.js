@@ -2,15 +2,18 @@
 
    The one market where the repository already held this as a card: three
    guarantees, published by the regulator, shown on the grid tab with a
-   "verify" badge on each. The amounts below are READ FROM data.js, not copied,
-   so the ledger cannot drift from the card it normalises.
+   "verify" badge on each.
+
+   The three amounts are the dashboard's own: `official.auctionGuarEurMW`,
+   `estabGuarEurKW` and `connTariffGuarPct` in data.js. They are restated here
+   rather than imported, because importing data.js would pull the whole Romanian
+   dashboard payload into the chunk that renders every market's Investment Case.
+   tests/entry-ledger.test.js asserts the two agree, so they cannot drift.
 
    All three stay at status "verify", because the dashboard itself says so: the
    release and forfeiture mechanics are still evolving and have not been checked
    against the order in force. */
-import { M } from './data.js';
-
-const O = M.official;
+const O = { auctionGuarEurMW: 20000, estabGuarEurKW: 30, connTariffGuarPct: 20 };
 
 export const ENTRY_LEDGER = {
   marketId: 'ro',

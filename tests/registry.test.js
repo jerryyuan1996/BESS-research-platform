@@ -288,10 +288,19 @@ test('a lazy dashboard resolves to a renderer, and Japan shares one chunk', asyn
    tabs. The count is asserted rather than left free because the dashboards are
    meant to mirror one another — a market that quietly gains or loses a tab has
    stopped being comparable, which is the whole premise of the shared engine. */
-test('every dashboard has the same ten non-comparison tabs', () => {
+test('every dashboard has the same ten non-comparison tabs, plus two where the market has a view', async () => {
+  /* Ten everywhere until the investment-view revision. A market that has been
+     graded carries Investment Case and Entry as well, and a market that has not
+     must not carry either — an empty verdict tab is worse than none. The plan
+     merges the set down to seven in a later phase. */
+  const { hasView } = await import('../src/markets/viewRegistry.js');
   for (const m of markets){
     const ids = m.tabs.map(([id]) => id);
-    assert.equal(m.tabs.length, 10, `${m.manifest.id} tab count`);
+    const graded = hasView(m.manifest.id);
+    assert.equal(m.tabs.length, graded ? 12 : 10, `${m.manifest.id} tab count`);
+    assert.equal(ids.includes('case'), graded, `${m.manifest.id}: Investment Case tab and view must go together`);
+    assert.equal(ids.includes('entry'), graded, `${m.manifest.id}: Entry tab and view must go together`);
+    assert.equal(ids[0], 'home', `${m.manifest.id}: Overview stays the landing tab`);
     assert.ok(!ids.includes('benchmark'), `${m.manifest.id}: comparison tab must be absent`);
   }
 });

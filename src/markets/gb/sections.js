@@ -1173,5 +1173,17 @@ SEC_B.data = function (){
 };
 
 
+  /* ---- Investment Case and Entry — the investment-view revision ------------
+     Both read the view store and the capital-at-risk ledger by market id; the
+     section says which market and nothing else. */
+  SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+    { t: 'p', text: ['The lowest modelled return of the four and the strongest market for debt and exit. For an investor that needs both, that is a coherent place to be.', '四个市场中模型回报最低，却是债务融资与退出条件最好的一个。对两者都需要的投资者而言，这是说得通的选择。'] },
+    { t: 'investment-case', marketId: 'gb' },
+  ] });
+  SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+    { t: 'p', text: ['Nothing is sourced yet. The ledger is shown empty on purpose, so every investor limit below reads as not yet checked.', '尚无任何来源。台账有意留空展示，因此下方各类投资者的上限均显示为尚未核查。'] },
+    { t: 'entry-ledger', marketId: 'gb' },
+  ] });
+
   return SECTIONS;
 }

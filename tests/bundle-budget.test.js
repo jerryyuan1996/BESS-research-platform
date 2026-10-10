@@ -89,7 +89,14 @@ const BUDGET = {
   sharedTotal: 55,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
-  features: { 'dossier-shell': 8 },
+  features: {
+    'dossier-shell': 8,
+    /* The Investment Case and Entry sections: anchors, archetype tables, the
+       view store and the ledgers. Fetched only when one of those two tabs is
+       opened, on the four markets that have them. It grows with every market
+       graded, so expect to raise it — but only for that reason. */
+    'investment-case': 34,
+  },
 };
 
 /** Every registered market must have its own chunk. Thirteen dashboards for

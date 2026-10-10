@@ -94,7 +94,7 @@ test('the barrier is absolute, not relative: the smaller share is the larger sum
   assert.ok(!check(ro).breached.includes('pre-fid-capital'));
 });
 
-test('Romania\'s ledger reads the guarantee amounts from the dashboard\'s own data', async () => {
+test('Romania\'s ledger carries the same guarantee amounts as the dashboard\'s own data', async () => {
   const { M } = await import('../src/markets/ro/data.js');
   const byItem = Object.fromEntries(ledgerFor('ro').items.map(i => [i.id, i]));
   assert.equal(byItem['auction-guarantee'].amount.perMW, M.official.auctionGuarEurMW);

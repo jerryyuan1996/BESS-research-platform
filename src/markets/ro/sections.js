@@ -906,5 +906,17 @@ SEC_B.data = function (){
 
   SEC_B.grid = () => buildROGridSection({ SRC, M });
 
+  /* ---- Investment Case and Entry — the investment-view revision ------------
+     Both read the view store and the capital-at-risk ledger by market id; the
+     section says which market and nothing else. */
+  SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+    { t: 'p', text: ['The highest return of any market here, with nothing secured and the rules still moving. The guarantees are a large share of a small project and a modest sum of money.', '回报为各市场之最，但没有任何锁定收入，规则也仍在变动。保函占小项目投资的比例很高，金额却不大。'] },
+    { t: 'investment-case', marketId: 'ro' },
+  ] });
+  SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+    { t: 'p', text: ['Three guarantees fall due before financial close. One has no published amount, so every total is a lower bound.', '融资交割前须提交三项保函。其中一项没有公开金额，因此所有合计均为下限。'] },
+    { t: 'entry-ledger', marketId: 'ro' },
+  ] });
+
   return SECTIONS;
 }

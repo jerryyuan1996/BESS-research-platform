@@ -250,5 +250,17 @@ export function buildSections(api){
     ] },
   ] });
 
+  /* ---- Investment Case and Entry — the investment-view revision ------------
+     Both read the view store and the capital-at-risk ledger by market id; the
+     section says which market and nothing else. */
+  SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+    { t: 'p', text: ['The easiest of the four markets to get into and the most crowded once inside. Entry is open today and scheduled to narrow in 2027.', '四个市场中最容易进入、进入后也最拥挤的一个。目前入口敞开，但按计划将于2027年收窄。'] },
+    { t: 'investment-case', marketId: 'fi' },
+  ] });
+  SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+    { t: 'p', text: ['The connection application is free and names no security. The one payment found is a connection fee whose amount has not been established.', '并网申请免费，且未提及担保。目前仅查到一笔并网费，其金额尚未确定。'] },
+    { t: 'entry-ledger', marketId: 'fi' },
+  ] });
+
   return SECTIONS;
 }

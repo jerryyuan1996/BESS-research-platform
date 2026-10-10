@@ -110,12 +110,14 @@ test('no section spec is written in the card shape', async () => {
     assert.ok(n >= 10, `${dir} built only ${n} sections; every market in this lineage has ten or more`);
 });
 
-test('Finland builds ten sections and every one of them has a heading', async () => {
+test('Finland builds twelve sections and every one of them has a heading', async () => {
   /* Pinned, because this is the market the defect was found in and the one
      whose repair is a visible change to the page. */
   const S = await sectionsFor('fi');
   const ids = Object.keys(S);
-  assert.equal(ids.length, 10, 'Finland has the standard ten tabs');
+  /* Ten until the investment-view revision added Investment Case and Entry.
+     The plan merges the set down to seven in a later phase. */
+  assert.equal(ids.length, 12, 'Finland has the standard ten tabs plus Investment Case and Entry');
 
   const headless = ids.filter(id => !S[id]?.head);
   assert.deepEqual(headless, [], 'every Finland section must render a heading');
