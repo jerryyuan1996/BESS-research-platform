@@ -19,7 +19,9 @@
    discharge, 92% round-trip efficiency and 100% technical availability. A
    four-hour battery is not a marginal case here; it is ineligible. The realistic
    entry point for shorter duration is a later ~2 GW auction in May 2027, and the
-   scheme has not yet received European Commission state-aid approval.
+   European Commission's state-aid approval — pending when the auction opened —
+   was reported on 2 September 2026 (an estimated €15.6–35.2bn). Approval removes
+   the legal risk, not the duration test: the archetype is still ineligible.
 
    So `capacityMarket` is declared FALSE — not because Germany lacks a mechanism,
    but because the mechanism does not admit the archetype. It is the same
@@ -187,10 +189,10 @@ const ranges = {
 
   opexPerMW: band(economics.opexPerMW, 11200, 23400, {
     basis: [
-      'No published German fixed-opex series exists. Both ends apply the 1.2–2.5% of capex benchmark to the €935k 4h figure — 1.2–1.4% for top operators, 2.0–2.5% typical. Grid fees are excluded: storage commissioned before 4 August 2029 is exempt, and the BNetzA AgNes framework that follows charges €4–7k/MW/yr on capacity only, with 20-year grandfathering where FID precedes the final decision.',
-      '德国无公开的固定运维成本序列。两端均按造价的1.2–2.5%基准应用于4小时€935k的造价数据 — 头部运营商为1.2–1.4%，行业普遍为2.0–2.5%。不含电网费用：2029年8月4日前投运的储能可豁免，其后适用的BNetzA AgNes框架仅按容量收取每MW每年€4–7k，且在最终决定前作出投资决策的项目享有20年祖父条款保护。',
+      'No published German fixed-opex series exists. Both ends apply the 1.2–2.5% of capex benchmark to the €935k 4h figure — 1.2–1.4% for top operators, 2.0–2.5% typical. Grid fees are excluded: storage commissioned before 4 August 2029 is exempt, and the BNetzA AgNes framework that follows charges €4–7k/MW/yr on capacity only, with 20-year grandfathering where FID precedes the final decision. The final draft determination of 6 August 2026 (consultation closed 18 September, decision due by year-end, new regime from 1 January 2029) keeps that structure, drops the grid-connection-commitment condition, and asks for proof of FID that the storage association reads as binding orders for at least 50% of investment volume.',
+      '德国无公开的固定运维成本序列。两端均按造价的1.2–2.5%基准应用于4小时€935k的造价数据 — 头部运营商为1.2–1.4%，行业普遍为2.0–2.5%。不含电网费用：2029年8月4日前投运的储能可豁免，其后适用的BNetzA AgNes框架仅按容量收取每MW每年€4–7k，且在最终决定前作出投资决策的项目享有20年祖父条款保护。2026年8月6日的最终裁定草案（征询期至9月18日结束，年内作出决定，新规自2029年1月1日生效）保留该结构，取消了并网承诺条件，并要求提供投资决策证明 — 储能协会将其解读为至少占投资额50%的有约束力订单。',
     ],
-    source: 'Industry O&M benchmark applied to Modo capex; BNetzA AgNes interim ruling 27 May 2026',
+    source: 'Industry O&M benchmark applied to Modo capex; BNetzA AgNes interim position 27 May 2026 and final draft determination 6 Aug 2026 (fee level not re-read from the draft)',
     gate: 'G13',
   }),
 

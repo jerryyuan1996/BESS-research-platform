@@ -8,8 +8,13 @@
       auction is the one a market-entry benchmark should carry.
 
    2. SYSTEM SERVICES ARE NO LONGER FLAT. This is the important one. DS3 regulated
-      arrangements continue only until FASS go-live in May 2027 with a
-      long-stop of September 2027, and effective DS3 rates have already fallen
+      arrangements continue only until FASS go-live, with a long-stop of 30
+      September 2027. The May 2027 go-live target no longer stands: the TSOs
+      told industry in June 2026 that it "is not feasible", no replacement date
+      has been set, and they added that a further DS3 gate up to the long-stop
+      "may not be practical". The year-3 step below survives either outcome —
+      DASSA arrives late, or DS3 lapses at the long-stop — so the curve is
+      unchanged and only the stated date moves. Effective DS3 rates have already fallen
       more than 40% since 2022. A flat fifteen-year services line models a regime
       that will not exist for fourteen of those years.
 
@@ -121,8 +126,8 @@ const economics = {
 
   capNote: ['Reliability Option difference payments above the strike', '高于执行价时的可靠性期权差价支付'],
   servicesNote: [
-    'DS3 regulated arrangements continue until FASS competitive auctions start in May 2027 (September 2027 longstop). Curve calibrated on GB’s frequency-response collapse.',
-    'DS3受监管安排持续至FASS竞价拍卖于2027年5月启动（最迟2027年9月）。衰减曲线以英国调频收入崩塌为标定依据。',
+    'DS3 regulated arrangements continue until FASS competitive auctions start; the May 2027 target was withdrawn as not feasible in June 2026 and no new date is set, against a 30 September 2027 long-stop. Curve calibrated on GB’s frequency-response collapse.',
+    'DS3受监管安排持续至FASS竞价拍卖启动；2027年5月的目标已于2026年6月被认定不可行，新日期未定，最终截止日为2027年9月30日。衰减曲线以英国调频收入崩塌为标定依据。',
   ],
 };
 
@@ -275,8 +280,8 @@ export const comparison = {
   narrative: {
     archetype: ['50 MW · 4h · CRM-led', '50MW · 4小时 · 容量机制主导'],
     thesis: [
-      'Still the highest capacity pay per nameplate MW in the set, but the second revenue leg is changing: DS3 regulated arrangements continue only until FASS replaces the tariff structure with competitive auctions, targeted for May 2027 with a September longstop. Underwrite the capacity contract and the wholesale spread, not the system-services line.',
-      '每铭牌MW容量付费仍为样本最高，但第二收入支柱正在变化：DS3受监管安排仅持续至FASS以竞价拍卖替代现行电价结构，目标为2027年5月，最迟为9月。承销依据应为容量合同与批发价差，而非系统服务收入。',
+      'Still the highest capacity pay per nameplate MW in the set, but the second revenue leg is changing: DS3 regulated arrangements continue only until FASS replaces the tariff structure with competitive auctions. The May 2027 target has been withdrawn as not feasible and no new date is set, against a 30 September 2027 long-stop on the tariff, so the gap between the two is now an open risk. Underwrite the capacity contract and the wholesale spread, not the system-services line.',
+      '每铭牌MW容量付费仍为样本最高，但第二收入支柱正在变化：DS3受监管安排仅持续至FASS以竞价拍卖替代现行电价结构。2027年5月的目标已被认定不可行且新日期未定，而费率的最终截止日为2027年9月30日，两者之间的空档已成为未决风险。承销依据应为容量合同与批发价差，而非系统服务收入。',
     ],
     pipelineRatio: '~10×',
   },

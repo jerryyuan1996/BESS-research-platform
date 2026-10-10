@@ -29,7 +29,8 @@
         to be built.
 
    Transelectrica separately estimates that integrating the planned renewable
-   build needs 10-20 GWh of storage by 2030, against roughly 1 GWh installed —
+   build needs 10-20 GWh of storage by 2030, against roughly 2 GWh installed
+   (989 MW / 1,975 MWh at 1 August 2026, Transelectrica; ~1 GWh in April) —
    which is the demand-side argument for the same congestion.
    --------------------------------------------------------------------------- */
 import { CAPTURE, RELIEF_STATUS } from '../../governance/congestion.js';
@@ -105,7 +106,7 @@ export const RO_CONGESTION = {
         { label: ['Storage needed to integrate planned renewables', '整合规划新能源所需储能'],
           value: ['10–20 GWh by 2030', '2030年前10–20GWh'], period: ['Transelectrica estimate', 'Transelectrica估算'] },
         { label: ['Installed today', '当前已装机'],
-          value: ['just past 1 GWh', '刚超过1GWh'], period: ['2026', '2026年'] },
+          value: ['≈2 GWh (989 MW / 1,975 MWh)', '约2GWh（989MW／1,975MWh）'], period: ['1 August 2026', '2026年8月1日'] },
       ],
       capture: {
         mechanism: CAPTURE.ACCESS_AUCTION,

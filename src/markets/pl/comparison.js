@@ -242,7 +242,15 @@ const ranges = {
 
 export const comparison = {
   /* The capacity agreement is a legacy DY2030 vintage. The last main auction has
-     ended, so a new entrant defaults to merchant + balancing pending a successor. */
+     ended, so a new entrant defaults to merchant + balancing pending a successor.
+
+     One route did open, and it is deliberately NOT in this case. The supplementary
+     T-1 auction of 3 September 2026 (delivery 2027) cleared batteries for the first
+     time, at PLN 325.55k/MW/yr on the 95% availability factor set in 2022 rather
+     than the 13.39% of the last main auction. It is a one-year top-up open to a
+     battery already online before its delivery year, so it is vintage-specific
+     income for early-COD assets, not a contract a new entrant can plan on. Modo's
+     own versions disagree on the battery volume (80 vs 94 MW de-rated). */
   baseStrategy: 'mer',
   archetype: {
     powerMW: 100,
@@ -273,8 +281,8 @@ export const comparison = {
   narrative: {
     archetype: ['100 MW · 4h · new-entry merchant + balancing', '100MW · 4小时 · 新进入者市场化+平衡服务'],
     thesis: [
-      'The December 2025 auction was the last main-auction route. New entry is screened on merchant plus balancing economics pending a successor framework; the 17-year capacity contract remains visible only as a legacy-vintage alternative.',
-      '2025年12月拍卖是最后一次主拍卖路径。在后续机制落地前，新进入者按市场化加平衡服务经济性筛选；17年容量合同仅作为历史年份备选情景保留。',
+      'The December 2025 auction was the last main-auction route. No main auction is planned in 2026. New entry is screened on merchant plus balancing economics pending a successor framework; the 17-year capacity contract remains visible only as a legacy-vintage alternative, and the one-year supplementary auctions — which cleared batteries for the first time in September 2026 — are a top-up for assets already online, not a new-entry route.',
+      '2025年12月拍卖是最后一次主拍卖路径。2026年不安排主拍卖。在后续机制落地前，新进入者按市场化加平衡服务经济性筛选；17年容量合同仅作为历史年份备选情景保留，而一年期补充拍卖 — 2026年9月首次有储能中标 — 只是已投运资产的增量收入，并非新进入路径。',
     ],
     pipelineRatio: '~13×',
   },

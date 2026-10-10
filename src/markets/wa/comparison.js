@@ -24,13 +24,18 @@
       well above CSIRO's national A$301-377/kWh, so it embeds WA's regional
       premium and may embed more than that.
 
-   2. CAPACITY PRICE. The BRCP for 2028-29 rose 36% to A$491,700/MW, but AEMO
+   2. CAPACITY PRICE. The BRCP for 2028-29 rose 35% to A$488,500/MW (ERA final
+      determination, 13 March 2026 — the A$491,700 this file first carried
+      was the February draft), but AEMO
       forecasts a surplus for the first three years of the outlook — 347 MW
       against a Peak RCR of 6,323 MW in 2028-29 — and a surplus suppresses the
       Reserve Capacity Price actually paid. The realised RCP is expected nearer
       A$422,372/MW. That figure is corroborated from the other direction: the
       ten-year fixed-price election is quoted at ~A$844.7m for a 200 MW battery,
-      which is A$422,350/MW/yr.
+      which is A$422,350/MW/yr. The surplus-adjusted estimate was built on the
+      draft BRCP; scaling its ratio onto the final (422,372 / 491,700 × 488,500)
+      gives ~A$419,600, 0.65% lower. Held at the corroborated figure until AEMO
+      assigns Capacity Credits and the realised price is an observation.
 
    3. THE ELECTION IS NOT FREE CERTAINTY — see naqFactor below.
    --------------------------------------------------------------------------- */
@@ -51,7 +56,7 @@ const capacity = {
   derating: 1,
   auction: ['2026 Reserve Capacity Cycle', '2026年备用容量周期'],
   deliveryYear: 2028,
-  source: 'Surplus-adjusted RCP for 2028-29; BRCP A$491,700/MW (ERA), AEMO forecasts a 347 MW surplus',
+  source: 'Surplus-adjusted RCP for 2028-29; BRCP A$488,500/MW (ERA final determination, 13 Mar 2026), AEMO forecasts a 347 MW surplus',
   note: [
     'Benchmark facility is 200 MW / 1,200 MWh at A$520/kWh. Surplus suppresses the realised RCP below the BRCP.',
     '基准设施为200MW/1,200MWh，A$520/kWh。容量盈余使实际支付的RCP低于BRCP。',
@@ -183,10 +188,10 @@ const ranges = {
 
   /* The BRCP is the administered ceiling; what a facility is paid is the
      surplus-suppressed RCP, which is the seed. Both ends are published. */
-  contracted: band(economics.contracted, null, 491700, {
+  contracted: band(economics.contracted, null, 488500, {
     basis: [
-      'BRCP for 2028-29 is A$491,700/MW (+36%), but AEMO forecasts a 347 MW surplus against a 6,323 MW Peak RCR and a surplus suppresses the realised price. A$422,372 is the surplus-adjusted level, corroborated by the ten-year fixed-price election at ~A$844.7m for 200 MW.',
-      '2028–29年BRCP为A$491,700/MW（上涨36%），但AEMO预测在6,323MW峰值容量需求下存在347MW盈余，盈余将压低实际出清价格。A$422,372为经盈余调整后的水平，并由200MW设施十年固定价选择权约A$8.447亿的报价相互印证。',
+      'BRCP for 2028-29 is A$488,500/MW (+35%, ERA final determination 13 March 2026), but AEMO forecasts a 347 MW surplus against a 6,323 MW Peak RCR and a surplus suppresses the realised price. A$422,372 is the surplus-adjusted level, corroborated by the ten-year fixed-price election at ~A$844.7m for 200 MW.',
+      '2028–29年BRCP为A$488,500/MW（上涨35%，ERA于2026年3月13日最终裁定），但AEMO预测在6,323MW峰值容量需求下存在347MW盈余，盈余将压低实际出清价格。A$422,372为经盈余调整后的水平，并由200MW设施十年固定价选择权约A$8.447亿的报价相互印证。',
     ],
     source: 'ERA BRCP 2028-29; AEMO 2026 ESOO capacity balance',
   }),

@@ -25,6 +25,15 @@
    merchant one — which is why this market's duration answer is exactly four, and
    why moving off it is a loss in both directions.
 
+   TWO COUNTING CHANGES THIS MODEL DOES NOT YET PRICE. CPUC decision D.26-07-008
+   (2 July 2026, RA Track 1) modifies the storage qualifying-capacity method to
+   account for foldback from the 2027 compliance year, and adopts unit-specific
+   unforced capacity (UCAP, on forced-outage history) for gas and storage from
+   2028. Both reduce the megawatts a battery can sell as RA; neither haircut is
+   published as a number for a new four-hour unit, so the contracted line below
+   still pays on full nameplate. It is an overstatement of unknown size, and it
+   is recorded here so nobody mistakes the silence for a finding.
+
    THE RECONCILIATION THIS MODEL DOES NOT ATTEMPT.
 
    Modo reports a full CAISO stack of $14.83/kW-month for 2025 with an RA contract

@@ -33,9 +33,11 @@
        MACSE, weighted average          €12,959 /MWh/yr
        Merchant wholesale spread, North €24,500 /MWh/yr   (98,000 ÷ 4)
        Merchant wholesale spread, South €30,750 /MWh/yr   (123,000 ÷ 4)
-       MACSE reserve premium (the cap)  €37,000 /MWh/yr
+       MACSE reserve premium (the cap)  €37,000 /MWh/yr   (auction 1)
+       MACSE reserve premium, auction 2 €27,000 /MWh/yr   (ARERA 332/2026, 24 Sep 2026)
 
-   MACSE cleared at 35% of its own price cap and at roughly 42–53% of the
+   MACSE cleared at 35% of its own price cap — 48% of the cap now set for the
+   second auction, so the same clear would leave far less headroom — and at roughly 42–53% of the
    wholesale-arbitrage value of the same energy — before any MSD revenue at all.
    What the winner buys with that discount is a 15-year contract with the TSO as
    counterparty, which supports materially higher gearing at lower cost of debt.
@@ -288,8 +290,8 @@ const ranges = {
   'ltda.payment': band(economics.ltda.payment,
     Math.round(12146 * HOURS), Math.round(15846 * HOURS), {
       basis: [
-        'Terna\'s first MACSE auction cleared at a weighted average €12,959 per MWh of storage per year, with zonal results running €12,146 in Sud e Calabria to €15,846 in Sicilia. All three converted to a four-hour equivalent. The price cap was €37,000/MWh/yr, so the auction cleared at 35% of its own ceiling. The second auction is scheduled for 24 November 2026 at 16 GWh, up from 10 GWh, with no published reserve premium at the time of writing.',
-        'Terna首次MACSE拍卖以每MWh每年加权平均€12,959出清，各区域结果从南部及卡拉布里亚的€12,146至西西里的€15,846不等。三者均按四小时等值换算。价格上限为每MWh每年€37,000，故本次拍卖以其自身上限的35%出清。第二次拍卖定于2026年11月24日举行，规模由10GWh增至16GWh，截至撰写时尚未公布保留溢价。',
+        'Terna\'s first MACSE auction cleared at a weighted average €12,959 per MWh of storage per year, with zonal results running €12,146 in Sud e Calabria to €15,846 in Sicilia. All three converted to a four-hour equivalent. The price cap was €37,000/MWh/yr, so the auction cleared at 35% of its own ceiling. The second auction is scheduled for 24 November 2026 at 16 GWh, up from 10 GWh, with the reserve premium set at €27,000/MWh/yr by ARERA resolution 332/2026 of 24 September 2026 — 27% below the first auction\'s cap, and a level at which the first auction\'s clear would be 48% of the ceiling.',
+        'Terna首次MACSE拍卖以每MWh每年加权平均€12,959出清，各区域结果从南部及卡拉布里亚的€12,146至西西里的€15,846不等。三者均按四小时等值换算。价格上限为每MWh每年€37,000，故本次拍卖以其自身上限的35%出清。第二次拍卖定于2026年11月24日举行，规模由10GWh增至16GWh；ARERA已于2026年9月24日以第332/2026号决议将保留溢价定为每MWh每年€27,000 — 较首次拍卖上限低27%，按此水平首次拍卖出清价相当于上限的48%。',
       ],
       source: 'Terna MACSE auction results, 30 September 2025 (revised 10 October 2025)',
     }),

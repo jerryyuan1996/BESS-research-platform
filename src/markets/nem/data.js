@@ -32,8 +32,8 @@ const M = {
   title: ['National Electricity Market Battery Investment Dashboard', '澳大利亚国家电力市场储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Reference region NSW1.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。参考区域为NSW1。'],
-  nextMilestone: ['Next milestone: Capacity Investment Scheme Tender 10 bids close 18 August 2026 — reported to be the final dispatchable tender before the scheme winds up in 2027',
-                  '下一里程碑：容量投资计划第10轮招标于2026年8月18日截标 — 据报为该计划2027年结束前最后一轮可调度电源招标'],
+  nextMilestone: ['Next milestone: Capacity Investment Scheme Tender 10 results — bids closed 18 August 2026; reported to be the final NEM dispatchable tender before the scheme winds up in 2027. The first successor (ESEM) round is indicatively late 2027',
+                  '下一里程碑：容量投资计划第10轮招标结果 — 已于2026年8月18日截标；据报为该计划2027年结束前最后一轮NEM可调度电源招标。后继机制（ESEM）首轮采购暂定于2027年底'],
   footerNote: ['Public and official sources collected 1 August 2026; Western Australian data is held in a separate peer namespace and excluded from NEM scoring. No CIS floor, ceiling or payment cap has been published for any project, and no Australian BESS toll price has ever been disclosed — every contracted figure in this build is a derived bracket, not a quotation.',
                '公开及官方来源于2026年8月1日采集；西澳数据保存在独立同业命名空间，不计入NEM评分。任何项目的CIS保底价、上限与支付上限均未公布，澳大利亚亦从未披露过储能租赁价格 — 本版本中所有合同类数值均为推导区间，而非报价。'],
   seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. A CIS agreement is a collar, not a fixed payment; an awarded megawatt is never a financial-investment decision; a connection application is never a connection; and a marginal loss factor is a live annual variable, not a discount agreed at financial close.',
@@ -44,7 +44,13 @@ const M = {
      series live further down and are badged as such wherever they render. */
   official: {
     // market design
-    reviewDate: '16 Dec 2025', esemPilot: 'late 2026', esemStart: 'early 2027',
+    /* The Nelson panel urged a pilot in late 2026 and commencement in early 2027.
+       The draft regulatory package was only released on 14 September 2026
+       (consultation to 13 October; back to energy ministers in December;
+       South Australian Parliament in the first half of 2027), and the first
+       procurement round is indicatively late 2027. The gap after Tender 10 is
+       therefore about a year, not a few months. */
+    reviewDate: '16 Dec 2025', esemDraftDate: '14 September 2026', esemStart: 'late 2027',
 
     // Capacity Investment Scheme — the collar
     cisFloorSharePct: 90, cisCeilingSharePct: 50, cisTermMinYr: 10, cisTermMaxYr: 15,

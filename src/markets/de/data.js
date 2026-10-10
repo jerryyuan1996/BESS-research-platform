@@ -41,12 +41,12 @@ const M = {
   title: ['Germany Battery Investment Dashboard', '德国储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Single bidding zone; reference archetype 100 MW / 4h.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。单一报价区；参考原型为100MW/4小时。'],
-  nextMilestone: ['Next milestone: StromVKG 4.5 GW capacity auction — bid deadline 8 September 2026, winners 3 November 2026. A four-hour battery cannot bid.',
-                  '下一里程碑：StromVKG 4.5GW容量拍卖 — 2026年9月8日截标，11月3日公布中标。四小时电池不具备投标资格。'],
+  nextMilestone: ['Next milestone: StromVKG 4.5 GW capacity auction — bids closed 8 September 2026, winners due by 3 November 2026; second round 29 December 2026. A four-hour battery cannot bid before the 2 GW round of May 2027.',
+                  '下一里程碑：StromVKG 4.5GW容量拍卖 — 已于2026年9月8日截标，中标结果应于11月3日前公布；第二轮为2026年12月29日。四小时电池在2027年5月的2GW轮次之前不具备投标资格。'],
   footerNote: ['Public and official sources collected 1 August 2026. No German toll fee has ever been disclosed in any transaction; no German fixed opex, degradation rate, optimiser fee or mFRR clearing price is published; and it is not confirmed whether the published capex already includes the Baukostenzuschuss — a 12–24% swing. Every contracted figure in this build is a derived bracket, not a quotation.',
                '公开及官方来源于2026年8月1日采集。德国从未在任何交易中披露租赁费用；德国亦未公布固定运维成本、衰减率、优化商费率或三次调频出清价格；且尚未确认已公布造价是否已包含并网工程费分摊（BKZ） — 该项影响幅度达12–24%。本版本中所有合同类数值均为推导区间，而非报价。'],
-  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. The StromVKG auction has not received European Commission state-aid approval; a ten-hour eligibility test excludes the archetype modelled here; a tolling announcement is never a disclosed price; and the Baukostenzuschuss is a one-off, non-refundable charge the Bundesgerichtshof has confirmed applies to storage.',
-             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。StromVKG拍卖尚未获得欧盟委员会国家援助批准；十小时资格门槛将本页所建模的原型排除在外；租赁公告绝不等于已披露价格；并网工程费分摊（BKZ）为一次性、不可退还费用，德国联邦最高法院已确认其适用于储能。'],
+  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. The StromVKG scheme\'s European Commission state-aid approval was reported on 2 September 2026; a ten-hour eligibility test excludes the archetype modelled here; a tolling announcement is never a disclosed price; and the Baukostenzuschuss is a one-off, non-refundable charge the Bundesgerichtshof has confirmed applies to storage.',
+             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。StromVKG机制的欧盟委员会国家援助批准已于2026年9月2日见诸报道；十小时资格门槛将本页所建模的原型排除在外；租赁公告绝不等于已披露价格；并网工程费分摊（BKZ）为一次性、不可退还费用，德国联邦最高法院已确认其适用于储能。'],
 
   /* ---- official / sourced snapshot -------------------------------------
      Only values that come from a named publication sit here. Illustrative
@@ -61,8 +61,8 @@ const M = {
        auction that drops the ten-hour test. */
     gen2AuctionGW: 2, gen2Date: '18 May 2027',
     capNorthSharePct: 33, capSouthDeductPerMW: 16000,
-    capStateAid: ['Not yet granted — the auction opened with European Commission state-aid review pending',
-                  '尚未获批 — 拍卖启动时欧盟委员会国家援助审查仍在进行'],
+    capStateAid: ['Approval reported 2 September 2026 — the auction had opened with the review pending',
+                  '批准已于2026年9月2日见诸报道 — 拍卖启动时审查仍在进行'],
     /* ASSUMPTION, not an observation. Modo's estimate of what capacity revenue
        becomes worth once a shorter-duration segment opens. Labelled everywhere
        it renders and excluded from the lab seed. */

@@ -188,8 +188,8 @@ export const PJM_CONGESTION = {
       relief: {
         project: ['Expedited Interconnection Track and the Reliability Backstop Procurement', '快速并网通道与可靠性兜底采购'],
         operator: 'PJM, subject to FERC approval',
-        scope: ['A temporary track for up to 10 state-sponsored shovel-ready projects, plus a special procurement PJM planned to seek FERC approval for in September 2026',
-                '为最多10个由州政府支持、可立即开工的项目设立的临时通道，以及PJM计划于2026年9月申请FERC批准的特别采购'],
+        scope: ['A temporary track for up to 10 state-sponsored shovel-ready projects, plus a special procurement whose filing FERC suspended on 29 September 2026 to 28 February 2027',
+                '为最多10个由州政府支持、可立即开工的项目设立的临时通道，以及一项特别采购，其申请已于2026年9月29日被FERC中止至2027年2月28日'],
         expected: 2026,
         status: RELIEF_STATUS.PROPOSED,
       },

@@ -61,7 +61,7 @@ test('Ireland carries the 2029/30 auction, not the 2028/29 one', () => {
 test('WA prices the surplus-adjusted RCP, not the benchmark', () => {
   const c = byId('wa').comparison.economics.capacity;
   assert.equal(c.unit, 'MW', 'the RCM pays against capacity credits, not per kW');
-  assert.equal(c.price, 422372, 'A$/MW/yr — BRCP is A$491,700, but AEMO forecasts a surplus');
+  assert.equal(c.price, 422372, 'A$/MW/yr — BRCP is A$488,500 (ERA final), but AEMO forecasts a surplus');
   // Corroborated independently: the 10-yr fixed election is ~A$844.7m for 200 MW.
   near(844.7e6 / 200 / 10, c.price, 100, 'fixed-election implied RCP');
 });
@@ -239,10 +239,10 @@ test('the clawback is applied, and is what makes the award non-additive', () => 
 test('the award is priced off cost, not off the published bid ceiling', () => {
   const payment = byId('jp_tokyo').comparison.economics.ltda.payment;
   const perKW = payment / 1000;
-  // The FY2024 ceiling for the 6h+ bracket is ¥87,683-93,883/kW/yr. A bid at the
+  // The FY2026 (Round 4) battery ceiling is ¥70,675-74,417/kW/yr. A bid at the
   // cap would model a bidder with no competitors; Round 3 rejected over half the
   // bid capacity.
-  assert.ok(perKW < 87683 * 0.6,
+  assert.ok(perKW < 70675 * 0.6,
     `a competitive pay-as-bid clearing must sit well below the ceiling (got ¥${perKW}/kW)`);
   assert.ok(perKW > 20000, 'and must still cover annuitised Japanese capex');
 });

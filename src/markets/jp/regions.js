@@ -174,7 +174,9 @@ const secured = (area) => Math.round(cmPrice[area] * 1000 * JP_EXPECTED_CAPACITY
 
    PRICING A PAY-AS-BID AUCTION WITH NO PUBLISHED CLEARING PRICE.
 
-   The only published anchor is the FY2024 bid ceiling: ~¥87,683-93,883/kW/yr for
+   The published anchor is the bid ceiling. Round 4 (FY2026 outline, OCCTO, 2
+   September 2026) sets it at ¥70,675-74,417/kW/yr for batteries by area, down
+   from the FY2024 ¥87,683-93,883/kW/yr this file first carried for
    6h+ duration (against ~¥56,545-77,509 for the abolished 3-6h bracket). It is
    tempting to take a fraction of that ceiling, and it is wrong: in a pay-as-bid
    auction with real competition — 46% success means more than half the bid
@@ -189,7 +191,8 @@ const secured = (area) => Math.round(cmPrice[area] * 1000 * JP_EXPECTED_CAPACITY
      - the sliver of market revenue the bidder still keeps after the clawback
      = the bid
 
-   That lands at ~¥37,000/kW/yr, or about 41% of the ceiling midpoint — a
+   That lands at ~¥37,000/kW/yr, or about 51% of the FY2026 ceiling midpoint
+   (37,000 / 72,546; it was 41% of the FY2024 midpoint) — a
    plausible competitive clearing level, and one that moves correctly if the
    capex assumption moves. It remains an ANALYST assumption: gate G4 (OCCTO
    Round 3 guidelines) is what would replace it with an observation.
@@ -199,8 +202,9 @@ const secured = (area) => Math.round(cmPrice[area] * 1000 * JP_EXPECTED_CAPACITY
 const LTDA_REQUIRED_RETURN = 0.08;
 const LTDA_TERM_YEARS = 20;
 
-/** Published FY2024 bid ceiling for the 6h+ bracket, ¥/kW/yr. Context, not an input. */
-export const JP_LTDA_CAP_BAND = [87683, 93883];
+/** Published FY2026 (Round 4) battery bid ceiling by area, ¥/kW/yr. Context, not an
+    input. Supersedes the FY2024 6h+ band of [87683, 93883]. */
+export const JP_LTDA_CAP_BAND = [70675, 74417];
 
 function ltdaCostReflectiveBid(retainedMarketPerMW){
   const capexPerKW = JP_COMMON_COST.capexPerMW / 1000;
@@ -618,12 +622,12 @@ export function jpRanges(economics){
 
     /* Pay-as-bid with no published clearing price. The band is the honest width
        of that: a cost-reflective bid at the bottom, the published cap at the top. */
-    'ltda.payment': band(economics.ltda.payment, null, 87683 * 1000, {
+    'ltda.payment': band(economics.ltda.payment, null, JP_LTDA_CAP_BAND[0] * 1000, {
       basis: [
-        'LTDA Round 3 is pay-as-bid and clearing prices are NOT published. The ceiling is the FY2024 guideline maximum for the 6h+ bracket, ¥87,683–93,883/kW/yr. The seed is derived instead as cost-reflective fixed-cost recovery — capex annuitised over the 20-year term at 8%, plus opex, less the sliver of market revenue retained after the ~90% clawback — which lands at ~41% of the ceiling midpoint. With ~46% bid success, more than half the bid capacity lost, so a bidder bids its cost rather than the cap.',
-        '长期脱碳拍卖第3轮采用按报价成交，且出清价格不予公布。上限为2024财年6小时以上档位的指导价上限¥87,683–93,883/kW/年。种子值则按成本反映型固定成本回收推导 — 资本开支按8%在20年期限内年金化，加运维成本，减去在约90%收益上缴后所保留的少量市场收入 — 结果约为上限中值的41%。在约46%的中标率下，超过半数投标容量落标，因此投标人按成本而非按上限报价。',
+        'LTDA Round 3 is pay-as-bid and clearing prices are NOT published. The ceiling is the FY2026 (Round 4) battery maximum, ¥70,675–74,417/kW/yr by area, down from ¥87,683–93,883 in FY2024. The seed is derived instead as cost-reflective fixed-cost recovery — capex annuitised over the 20-year term at 8%, plus opex, less the sliver of market revenue retained after the ~90% clawback — which lands at ~51% of the ceiling midpoint. With ~46% bid success, more than half the bid capacity lost, so a bidder bids its cost rather than the cap.',
+        '长期脱碳拍卖第3轮采用按报价成交，且出清价格不予公布。上限为2026财年（第四轮）蓄电池上限，按区域为¥70,675–74,417/kW/年，低于2024财年的¥87,683–93,883。种子值则按成本反映型固定成本回收推导 — 资本开支按8%在20年期限内年金化，加运维成本，减去在约90%收益上缴后所保留的少量市场收入 — 结果约为上限中值的51%。在约46%的中标率下，超过半数投标容量落标，因此投标人按成本而非按上限报价。',
       ],
-      source: 'OCCTO LTDA Round 3 (results 13 May 2026); FY2024 Round 2 guideline maxima for 6h+',
+      source: 'OCCTO LTDA Round 3 (results 13 May 2026); OCCTO FY2026 Round 4 solicitation outline (2 Sep 2026) for the ceiling',
       gate: 'G4',
     }),
 

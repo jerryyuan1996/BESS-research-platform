@@ -80,6 +80,9 @@ const M = {
     energyShareJun25Pct: 76,
     monJan26: 46264, monFeb26: 15306, monApr26: 38145,
     monOct25: 2.00, monNov25: 2.38, monSep25: 3.16, monJul25: 3.63, monJun25: 3.01,
+    /* Modo Energy monthly benchmark, USD/kW-month, settled. June 2026 is the
+       lowest month Modo has recorded in ERCOT: 43% below June 2025. */
+    monMay26: 1.67, monJun26: 1.11, monJul26: 1.42,
 
     // ---- the capture stack applied in comparison.js ----
     captureDuration: 0.95, fleetHoursBasis: 1.6,
@@ -96,7 +99,12 @@ const M = {
     interconnectYears: 4.2, pjmInterconnectYears: 8,
     pjmUpgradePerKW: 240, pjmUpgradePriorPerKW: 29,
     ercotAdded2021_22GW: 14.2, pjmAdded2021_22GW: 5.6,
-    largeLoadQueueGW: 238.6, largeLoadDataCentrePct: 77.5,
+    /* ERCOT, August 2026: more than 1,800 projects and over 474 GW, about 90%
+       data centres — double the 238.6 GW / 77.5% of March 2026. Roughly 200 GW of
+       it sits in the Batch Zero verification the Governor's 3 August 2026 pause
+       triggered. A queue, not a commitment, and now an audited one. */
+    largeLoadQueueGW: 474, largeLoadDataCentrePct: 90,
+    largeLoadAsOf: 'August 2026', largeLoadPauseDate: '3 August 2026', largeLoadAuditDue: '10 December 2026',
     largeLoadQ1_2026GW: 198, largeLoadUnderReviewGW: 86,
 
     // ---- capex and tax ----
@@ -141,7 +149,7 @@ const M = {
     { id: 'Houston', n: ['Houston — coastal industrial load', '休斯顿 — 沿海工业负荷'],
       note: ['A dense import-constrained load pocket; the largest concentration of ERCOT battery capacity sits around it.', '密集的受入受限负荷孤岛；ERCOT储能装机最集中的区域即环绕于此。'] },
     { id: 'North',   n: ['North — Dallas–Fort Worth and the data-centre build', '北部 — 达拉斯-沃斯堡与数据中心建设'],
-      note: ['Where the large-load queue is growing fastest. ERCOT\'s large-load queue reached about 238.6 GW by March 2026, 77.5% of it data centres.', '大负荷排队增长最快的区域。截至2026年3月，ERCOT大负荷排队量约达238.6GW，其中77.5%为数据中心。'] },
+      note: ['Where the large-load queue is growing fastest. ERCOT\'s large-load queue reached about 474 GW by August 2026, about 90% of it data centres.', '大负荷排队增长最快的区域。截至2026年8月，ERCOT大负荷排队量约达474GW，其中约90%为数据中心。'] },
   ],
 
   overall: { statusL: ['Watch', '观察'], chipCls: 'serious', confidence: 58, codWindow: '2028–2030',
@@ -340,9 +348,9 @@ const M = {
     { n: ['2026 Ancillary Service Methodology', '2026年辅助服务方法'], operator: 'ERCOT, endorsed by TAC', region: ['Market-wide', '全市场'], gw: null,
       cls: 'design', scope: ['Probabilistic determination of ECRS and Non-Spin quantities; Regulation and RRS methodology unchanged. RRS primary frequency response minimum 1,377 MW.', '以概率方法确定ECRS与非旋转备用采购量；调频与RRS方法不变。RRS一次调频响应最低1,377MW。'],
       year: 2026, status: ['In force since 1 January 2026', '自2026年1月1日起生效'], c: 'good' },
-    { n: ['Large-load interconnection rules', '大负荷并网规则'], operator: 'ERCOT / Public Utility Commission of Texas', region: ['North and West', '北部与西部'], gw: 238.6,
-      cls: 'load', scope: ['A large-load queue of about 238.6 GW by March 2026, 77.5% of it data centres, with 198 GW applying in Q1 2026 alone and 86 GW under review. The rules governing how and how fast it connects are being written now.', '截至2026年3月，大负荷排队量约238.6GW，其中77.5%为数据中心；仅2026年第一季度就有198GW提交申请，另有86GW在审。规范其接入方式与速度的规则正在制定中。'],
-      year: 2026, status: ['Under development — the largest single uncertainty in the ERCOT price forecast', '制定中 — 这是ERCOT价格预测中最大的单项不确定性'], c: 'serious' },
+    { n: ['Large-load interconnection rules', '大负荷并网规则'], operator: 'ERCOT / Public Utility Commission of Texas', region: ['North and West', '北部与西部'], gw: 474,
+      cls: 'load', scope: ['A large-load queue of about 474 GW by August 2026, about 90% of it data centres, double the 238.6 GW of March 2026. The PUCT has adopted its large-load interconnection standards. On 3 August 2026 the Governor directed ERCOT and the PUCT to pause data-centre interconnections pending a project-by-project audit; ERCOT postponed its Batch Zero study and expects to file the audit by 10 December 2026.', '截至2026年8月，大负荷排队量约474GW，其中约90%为数据中心，为2026年3月238.6GW的两倍。PUCT已通过大负荷并网标准。2026年8月3日，州长指示ERCOT与PUCT在逐项目审计完成前暂停数据中心并网；ERCOT已推迟Batch Zero研究，预计于2026年12月10日前提交审计报告。'],
+      year: 2026, status: ['Paused pending audit — the largest single uncertainty in the ERCOT price forecast', '审计期间暂停 — 这是ERCOT价格预测中最大的单项不确定性'], c: 'serious' },
     { n: ['Connect-and-manage interconnection', '“接入并管理”式并网'], operator: 'ERCOT', region: ['Market-wide', '全市场'], gw: null,
       cls: 'design', scope: ['Generation connects on roughly 4.2-year timelines at minimal cost, against eight-plus years and $240/kW of network upgrades in PJM. ERCOT brought 14.2 GW online in 2021–22 against PJM\'s 5.6 GW.', '发电项目约4.2年即可接入且成本极低，而PJM需八年以上并承担每kW $240的电网升级费用。2021–22年ERCOT新增投运14.2GW，PJM为5.6GW。'],
       year: 2026, status: ['Long-standing and operating; other ISOs are studying it', '长期实行且运行中；其他独立系统运营机构正在研究该模式'], c: 'good' },
@@ -491,13 +499,15 @@ const M = {
     ['Executable two-hour arbitrage, modelled', 18155, 'USD/MW/yr', 'calculated', 'ERCOT_SEED_V1', 'dashboard — index energy leg × (2/1.6) × 0.95'],
     ['Ancillary available to a new entrant, modelled', 4939, 'USD/MW/yr', 'calculated', 'ERCOT_SEED_V1', 'dashboard — 14,112 × (14 GW ÷ 40 GW)'],
     ['Ancillary earned by the fleet, CY2025', 14112, 'USD/MW/yr', 'calculated', 'ERCOT_SEED_V1', 'dashboard — 48% of the index, the band ceiling'],
+    ['Fleet revenue, June 2026 — record low', 1.11, 'USD/kW-month', 'third party', 'ERCOT_SEED_V1', 'Modo Energy — −43% YoY, −34% on May 2026 (1.67)'],
+    ['Fleet revenue, July 2026', 1.42, 'USD/kW-month', 'third party', 'ERCOT_SEED_V1', 'Modo Energy — −30% YoY'],
     ['Published two-hour TB2 toll value, Aug 2025', 7.52, 'USD/kW-month', 'third party', 'ERCOT_SEED_V1', 'down 10% from 8.34 in May 2025'],
     ['Toll value annualised', 90240, 'USD/MW/yr', 'calculated', 'ERCOT_SEED_V1', 'dashboard — the merchant band ceiling'],
     ['Announced tolling agreements', 10, 'count', 'third party', 'ERCOT_SEED_V1', 'Modo Energy — covering ~1.6 GW'],
     ['Known tolled batteries', 12, 'count', 'third party', 'ERCOT_SEED_V1', 'Modo Energy — 5 operating, 7 due by end-2026'],
     ['Toll tenor precedent', 7, 'yr', 'third party', 'ERCOT_SEED_V1', 'Jupiter Power / Equilibrium Energy, Crossett 1'],
     ['Interconnection timeline', 4.2, 'yr', 'third party', 'ERCOT_SEED_V1', 'against 8+ years in PJM'],
-    ['Large-load interconnection queue, March 2026', 238.6, 'GW', 'official', 'ERCOT_SEED_V1', 'ERCOT — 77.5% data centres'],
+    ['Large-load interconnection queue, August 2026', 474, 'GW', 'official', 'ERCOT_SEED_V1', 'ERCOT — about 90% data centres; data-centre interconnections paused 3 Aug 2026 pending audit'],
     ['2h installed capital cost, modelled', 961920, 'USD/MW', 'calculated', 'ERCOT_SEED_V1', 'NREL 4h $334/kWh decomposed and re-assembled at 2h'],
     ['§48E ITC for standalone storage', 30, '%', 'official', 'ERCOT_SEED_V1', 'IRC §48E — seeded at 0 in the model, editable in the Lab'],
     ['ERCOT toll price, any deal', 'not disclosed', '-', 'coverage gap', 'ERCOT_SEED_V1', 'ten announced agreements, zero published prices'],
