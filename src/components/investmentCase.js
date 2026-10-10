@@ -31,6 +31,8 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { card } from './card.js';
 import { chip } from './chip.js';
+import { badge } from './badge.js';
+import { gradeNote, verdictNote } from '../local/notes.js';
 import {
   PILLARS, PILLAR_LABEL, PILLAR_QUESTION, DIMENSIONS, dimension, anchorText,
   VERDICT, VERDICT_LABEL, VERDICT_MEANING, ROUTE_LABEL, ARCHETYPE_IDS, BASIS, BASIS_LABEL,
@@ -83,6 +85,11 @@ function load(marketId){
   return { view, market, ledger, result: assessMarket(view, market, ledger, FX) };
 }
 
+/* The analyst's own reason, from the private overlay. Present on his screen in
+   development and never in a build — see src/local/notes.js. Marked so it is
+   obvious a confidential value is on screen. */
+const privateLine = (text) => h('div', { class: 'cap', style: 'margin-top:4px;' }, badge('conf'), ' ', L(text));
+
 const line = (label, ...kids) => h('div', { style: 'margin-top:6px;' }, h('b', {}, L(label) + ' '), ...kids);
 
 /* ---- the verdict for one investor ------------------------------------------- */
@@ -111,6 +118,8 @@ function verdictCard(a, view){
   }
   c.append(because);
   c.append(h('div', { class: 'note' }, h('b', {}, L(['Despite', '反方理由']) + ' — '), L(v.despite)));
+  const mine = verdictNote(view.marketId, a.archetype);
+  if (mine) c.append(privateLine(mine));
 
   const triggers = view.triggers.filter(t => v.changesIf.includes(t.id));
   if (triggers.length){
@@ -219,7 +228,8 @@ export function investmentCasePanel(marketId){
         h('td', { class: 'num' }, g ? g.grade + ' / 5' : '—'),
         h('td', {},
           g ? L(anchorText(d.id, g.grade)) : L(['Not yet graded', '尚未评级']),
-          g?.reason ? h('div', { class: 'cap', style: 'margin-top:3px;' }, L(g.reason)) : null),
+          g?.reason ? h('div', { class: 'cap', style: 'margin-top:3px;' }, L(g.reason)) : null,
+          gradeNote(view.marketId, d.id) ? privateLine(gradeNote(view.marketId, d.id)) : null),
         h('td', {}, g ? chip(g.basis === BASIS.PRACTITIONER ? 'info' : 'good', L(BASIS_LABEL[g.basis])) : null));
     })))));
   out.push(grades);
