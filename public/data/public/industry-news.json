@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-10T06:00:08.393Z",
+  "fetchedAt": "2026-10-10T12:40:36.854Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-10T06:00:00.000Z",
+    "to": "2026-10-10T09:30:00.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -365,16 +365,6 @@
       "summary": "South Africa’s government has put battery storage and power-to-gas technologies at the heart of the national long-term electricity supply and demand strategy."
     },
     {
-      "t": "2026-10-09T11:05:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/spanish-researchers-reduce-losses-in-organic-solar-cells-by-restricting-the-emission-angle/",
-      "source": "pv magazine",
-      "title": "Spanish researchers reduce losses in organic solar cells by restricting emission angle",
-      "url": "https://www.pv-magazine.com/2026/10/09/spanish-researchers-reduce-losses-in-organic-solar-cells-by-restricting-the-emission-angle/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Spanish researchers have developed an optical cavity that reduces Boltzmann losses in organic solar cells by restricting photon emission angles. The approach could help push single-junction solar cell efficiencies beyond the Shockley-Queisser limit. The post Spanish researchers reduce losses in organic solar cells b…"
-    },
-    {
       "t": "2026-10-09T11:30:07.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-optimisation-curtailment-gb-deal-making-revenues-europe/",
       "source": "Energy-Storage.news",
@@ -385,44 +375,14 @@
       "summary": "Another edition of our BESS Industry Buzz, taking a look at what’s got industry people talking in the corridors of social media."
     },
     {
-      "t": "2026-10-09T11:55:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/isaias-ends-historic-atlantic-hurricane-lull-after-sunny-southern-summer/",
-      "source": "pv magazine",
-      "title": "Isaias ends historic Atlantic hurricane lull after sunny southern summer",
-      "url": "https://www.pv-magazine.com/2026/10/09/isaias-ends-historic-atlantic-hurricane-lull-after-sunny-southern-summer/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that an unusually quiet Atlantic hurricane season brought 10–20% above-average solar irradiance to Mexico and the southern US in August–September, while prolonged dry weather increased solar panel soiling losses. Tropical Storm Isaias is set to…"
-    },
-    {
-      "t": "2026-10-09T12:50:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/prices-drive-pakistans-metered-solar-outages-drive-hidden-uptake/",
-      "source": "pv magazine",
-      "title": "Prices drive Pakistan’s metered solar, outages drive hidden uptake",
-      "url": "https://www.pv-magazine.com/2026/10/09/prices-drive-pakistans-metered-solar-outages-drive-hidden-uptake/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A new study finds that Pakistan's net-metering capacity is concentrated in the best-served, higher-income utility areas, while much of the country's solar sits unregistered, off-grid and behind the meter where outages are worst. The post Prices drive Pakistan’s metered solar, outages drive hidden uptake appeared fir…"
-    },
-    {
-      "t": "2026-10-09T12:50:49.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/the-hydrogen-stream-dutch-researchers-calculate-green-h2-costs-as-low-as-e7-2-kg/",
-      "source": "pv magazine",
-      "title": "The Hydrogen Stream: Dutch researchers calculate green H2 costs as low as €7.2/kg",
-      "url": "https://www.pv-magazine.com/2026/10/09/the-hydrogen-stream-dutch-researchers-calculate-green-h2-costs-as-low-as-e7-2-kg/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers at the University of Groningen have calculated green hydrogen production costs of €7.2/kg to €7.3/kg using renewable power purchase agreements and hybrid electricity supply configurations, compared with €7.7/kg for wholesale electricity sourcing. The study found that long-term revenue guarantees are esse…"
-    },
-    {
       "t": "2026-10-09T14:27:49.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/engie-ls-power-pjm-expedited-interconnection-eit/832613/",
       "source": "Utility Dive",
-      "title": "Engie, LS Power land 2.1 GW in fast-track interconnection approval from PJM",
+      "title": "PJM approves fast-track interconnection for 2.1 GW from Engie, LS Power",
       "url": "https://www.utilitydive.com/news/engie-ls-power-pjm-expedited-interconnection-eit/832613/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The PJM Interconnection expects Engie&rsquo;s two storage projects totaling nearly 1.7 GW and LS Power&rsquo;s 455-MW &nbsp; gas-fired uprate will be online by mid-2029."
+      "summary": "The grid operator expects Engie&rsquo;s two storage projects totaling nearly 1.7 GW and LS Power&rsquo;s 455-MW &nbsp; gas-fired uprate will be online by mid-2029."
     },
     {
       "t": "2026-10-09T16:00:00.000Z",
@@ -463,17 +423,77 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Australia’s renewable energy market is entering a new phase where the value of electricity is increasingly determined not by energy alone, but by the ability to deliver energy when and where it is needed. The post The shape of PPAs is changing – from volume to value appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-10T06:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/beyond-gigawatts-why-indias-clean-energy-future-depends-on-storage-intelligence/",
+      "source": "pv magazine",
+      "title": "Beyond gigawatts: Why India’s clean energy future depends on storage intelligence",
+      "url": "https://www.pv-magazine.com/2026/10/10/beyond-gigawatts-why-indias-clean-energy-future-depends-on-storage-intelligence/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The battery creates flexibility. The intelligence behind it determines how much of that flexibility the grid can harness. The next clean energy benchmark for India, therefore, might not just be a new number of gigawatts. It might be the ability to get the maximum out of every gigawatt. The post Beyond gigawatts: Why…"
+    },
+    {
+      "t": "2026-10-10T07:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/more-than-70-of-announced-u-s-solar-manufacturing-expansion-plans-yet-to-be-financed/",
+      "source": "pv magazine",
+      "title": "More than 70% of announced U.S. solar manufacturing expansion plans yet to be financed",
+      "url": "https://www.pv-magazine.com/2026/10/10/more-than-70-of-announced-u-s-solar-manufacturing-expansion-plans-yet-to-be-financed/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Forecasted capital expenditure for new U.S. solar manufacturing expansions for 2027 reflects a hesitant financing climate, with Tesla’s Texas plans having the potential to rocket boost the entire sector’s spending outlook. The post More than 70% of announced U.S. solar manufacturing expansion plans yet to be finance…"
+    },
+    {
+      "t": "2026-10-10T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/beyond-gigawatts-why-leadership-decides-italys-energy-security/",
+      "source": "pv magazine",
+      "title": "Why leadership decides Italy’s energy security",
+      "url": "https://www.pv-magazine.com/2026/10/10/beyond-gigawatts-why-leadership-decides-italys-energy-security/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "At Solar & Storage Live Italia, panels organised by Women in Solar+ Europe (WiSEu) and Solar+ Leaders argued that decisions made in a project's first months, and the inclusive teams built to make them, matter as much to energy security as megawatts and capital. The post Why leadership decides Italy’s energy security…"
+    },
+    {
+      "t": "2026-10-10T08:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/sunbooster-secures-european-patent-for-bifacial-photovoltaic-fences/",
+      "source": "pv magazine",
+      "title": "Sunbooster secures European patent for bifacial photovoltaic fences",
+      "url": "https://www.pv-magazine.com/2026/10/10/sunbooster-secures-european-patent-for-bifacial-photovoltaic-fences/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Austrian company Sunbooster has secured a European patent for its bifacial solar fence technology, now protected in 18 EU member states. The company is expanding into France, where it has completed its first 3.7 kW installation using vertically mounted PV strips with a reported efficiency of 22.8%. The post Sunboost…"
+    },
+    {
+      "t": "2026-10-10T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/austria-43300-applications-for-solar-subsidies-submitted-in-just-ten-minutes/",
+      "source": "pv magazine",
+      "title": "Austria: 43,300 applications for solar subsidies submitted in just ten minutes",
+      "url": "https://www.pv-magazine.com/2026/10/10/austria-43300-applications-for-solar-subsidies-submitted-in-just-ten-minutes/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Austria's final solar subsidy round of the year attracted 43,300 applications in its first 10 minutes, far exceeding demand in the previous round. The government is now preparing to overhaul the scheme in 2027, shifting its focus from PV installations to battery storage and smart energy management systems. The post…"
+    },
+    {
+      "t": "2026-10-10T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/brazils-retail-electricity-market-opening-raises-credit-and-liquidity-concerns-study-finds/",
+      "source": "pv magazine",
+      "title": "Brazil’s retail electricity market opening raises credit and liquidity concerns, study finds",
+      "url": "https://www.pv-magazine.com/2026/10/10/brazils-retail-electricity-market-opening-raises-credit-and-liquidity-concerns-study-finds/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A study based on 88,000 consumer units participating in subscription-based solar generation schemes in Brazil has identified a 17% average monthly payment delinquency rate and 4% monthly customer churn. The findings highlight potential credit, liquidity and consumer protection challenges as the country prepares to o…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
-      "policy": 7,
-      "capital": 7,
+      "grid": 26,
+      "policy": 8,
+      "capital": 9,
       "technology": 3
     },
     "sourceStatus": [
@@ -499,7 +519,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 10
       }
     ]
   },
@@ -508,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:560b454068ab8ec7063f30ad50f836a6c85915bef5d14471d7789d62c48e2e96",
-  "envelopeChecksum": "sha256:0408be8d77a0a76cdb7716625558c9b8cafaa30631431e411bf3f5cfe6ffc38a"
+  "contentChecksum": "sha256:b7157f49d1af945a8b116f89858d338ef67df9674e5af8683968ee5bb0afb6a3",
+  "envelopeChecksum": "sha256:9af5e0abdbcf12a066e9c75910576a50485e2e7fdaab60f56178ee8cee3e8065"
 }
