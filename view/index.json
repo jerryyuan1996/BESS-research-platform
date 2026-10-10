@@ -17,13 +17,13 @@
     "foreignFirstTimer": {
       "call": "enter-now",
       "route": "ready-to-build",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-11",
       "reviewBy": "2027-03-31"
     },
     "developer": {
       "call": "build-position",
       "route": "greenfield",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-11",
       "reviewBy": "2027-03-31"
     }
   },

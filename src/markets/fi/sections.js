@@ -258,7 +258,7 @@ export function buildSections(api){
     { t: 'investment-case', marketId: 'fi' },
   ] });
   SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
-    { t: 'p', text: ['The connection application is free and names no security. The one payment found is a connection fee whose amount has not been established.', '并网申请免费，且未提及担保。目前仅查到一笔并网费，其金额尚未确定。'] },
+    { t: 'p', text: ['The connection application is free and names no security. The cost is a fixed connection fee of EUR 1,000,000 at 110 kV, which is about 5% of a 50 MW project and a much smaller share of a larger one.', '并网申请免费，且未提及担保。成本在于110kV固定并网费100万欧元：对50MW项目约占投资的5%，项目越大占比越小。'] },
     { t: 'entry-ledger', marketId: 'fi' },
   ] });
 

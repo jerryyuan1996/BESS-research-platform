@@ -24,17 +24,17 @@
     },
     "capitalAtRisk": {
       "dimension": "capitalAtRisk",
-      "grade": 5,
+      "grade": 2,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "entry-ledger"
       ],
       "reason": [
-        "The connection application is free and names no security. Holds only if the connection fee, whose amount is not yet found, is under 0.5% of project cost.",
-        "并网申请免费且未提及担保。此评级仅在并网费（金额尚未查到）低于项目投资0.5%时成立。"
+        "A fixed connection fee of EUR 1,000,000 at 110 kV is paid for the connection agreement to take effect, about 5% of the reference project. Nothing is posted as security.",
+        "接入110kV须缴纳100万欧元固定并网费，缴费后并网协议方才生效，约占参考项目投资的5%。无需提交任何担保。"
       ],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-11",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -271,13 +271,6 @@
           ]
         },
         {
-          "dimension": "capitalAtRisk",
-          "text": [
-            "The connection application is free and no security was found.",
-            "并网申请免费，且未发现担保要求。"
-          ]
-        },
-        {
           "dimension": "approvalTransparency",
           "text": [
             "The operator publishes the process, the prerequisites and where capacity is open.",
@@ -294,7 +287,7 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-11",
       "lockedUntil": null
     },
     "developer": {
@@ -323,8 +316,8 @@
         {
           "dimension": "capitalAtRisk",
           "text": [
-            "Nothing is posted as security before the connection agreement.",
-            "签署并网协议之前无需提交任何担保。"
+            "No security is posted. The cost is a fixed connection fee of about USD 1.1m, inside what it will risk on one project.",
+            "无需提交担保。成本是一笔约110万美元的固定并网费，在其单个项目愿担的风险范围之内。"
           ]
         }
       ],
@@ -338,7 +331,7 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-11",
       "lockedUntil": null
     }
   },
