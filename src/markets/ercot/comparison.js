@@ -106,9 +106,10 @@ const CAPEX_FLOOR_PER_MW = capexAt(HOURS, 230);                 // $662,400
 
      cannibalisation  the fleet goes from 14 GW entering 2026 to about 40 GW by
                       end-2030 and is still growing into the vintage year
-     demand           a large-load queue of about 238.6 GW, 77.5% data centres,
-                      is the only thing that can push the other way — and it is a
-                      queue, not a commitment
+     demand           a large-load queue of about 474 GW (August 2026), about 90%
+                      data centres, is the only thing that can push the other way
+                      — and it is a queue, not a commitment: data-centre
+                      interconnections were paused on 3 August 2026 pending audit
      market design    RTC+B has been live since December 2025; dispatch improves,
                       and the shortened duration requirements widen the ancillary
                       competition
@@ -462,8 +463,8 @@ export const comparison = {
   /* Both merchant legs priced at year 8. This market is the reason the rule
      exists — see src/comparison/vintage.js. */
   merchantVintage: merchantVintage(economics.tollYears + 1, economics, ranges, [
-    'Year 8, the first year the seven-year toll stops paying and merchant revenue reaches the owner. Pricing either leg at calendar 2025 would price a cash flow that goes to the offtaker, not the owner. Both legs move together on one set of forward assumptions: a fleet going from 14 GW to about 40 GW by end-2030 and still growing, a large-load queue of about 238.6 GW that is applied for rather than committed, RTC+B live since December 2025, and an ORDC left where Uri put it.',
-    '第8年，即七年租赁停止支付、市场化收入开始归属业主的首个年度。若按2025日历年为任一收入项定价，所定价的现金流实际归承购方而非业主所有。两个收入项基于同一套前瞻假设同步变动：机组规模由14GW增至2030年底约40GW且仍在增长，约238.6GW的大负荷仅处于申请而非承诺状态，RTC+B自2025年12月起运行，以及Uri风暴后未再变动的ORDC。',
+    'Year 8, the first year the seven-year toll stops paying and merchant revenue reaches the owner. Pricing either leg at calendar 2025 would price a cash flow that goes to the offtaker, not the owner. Both legs move together on one set of forward assumptions: a fleet going from 14 GW to about 40 GW by end-2030 and still growing, a large-load queue of about 474 GW that is applied for rather than committed and has been paused for audit since 3 August 2026, RTC+B live since December 2025, and an ORDC left where Uri put it.',
+    '第8年，即七年租赁停止支付、市场化收入开始归属业主的首个年度。若按2025日历年为任一收入项定价，所定价的现金流实际归承购方而非业主所有。两个收入项基于同一套前瞻假设同步变动：机组规模由14GW增至2030年底约40GW且仍在增长，约474GW的大负荷仅处于申请而非承诺状态，且自2026年8月3日起因审计而暂停，RTC+B自2025年12月起运行，以及Uri风暴后未再变动的ORDC。',
   ]),
 
   narrative: {

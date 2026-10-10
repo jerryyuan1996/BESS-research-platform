@@ -141,11 +141,11 @@ SEC_B.story = function (){
     { t:'card', title:['What changes next, and when','下一步变化及其时点'], badges:['official','forecast'], blocks:[
       { t:'ladder', items:[
         { n:[O.nextBraDate + ' — the last collared auction', O.nextBraDate + ' — 上下限机制下的最后一次拍卖'],
-          d:['The ' + O.nextBraDeliveryYear + ' Base Residual Auction. After it the cap reverts to a Net CONE-based figure PJM estimates near ' + fmtC(O.netConeEstimate) + '/MW-day, against the ' + fmtC(O.braPrice) + ' cap today.',
-             O.nextBraDeliveryYear + '年度基准剩余容量拍卖。此后价格上限将回归至PJM估算约每MW每日' + fmtC(O.netConeEstimate) + '的净新增成本基准，而当前上限为' + fmtC(O.braPrice) + '。'] },
+          d:['The ' + O.nextBraDeliveryYear + ' Base Residual Auction. After it the cap reverts to a Net CONE-based figure PJM estimates near ' + fmtC(O.netConeEstimate) + '/MW-day, against the ' + fmtC(O.braPrice) + ' cap today and ' + fmtC(O.nextBraCap) + ' for this auction.',
+             O.nextBraDeliveryYear + '年度基准剩余容量拍卖。此后价格上限将回归至PJM估算约每MW每日' + fmtC(O.netConeEstimate) + '的净新增成本基准，而当前上限为' + fmtC(O.braPrice) + '，本次拍卖上限为' + fmtC(O.nextBraCap) + '。'] },
         { n:[O.backstopMonth + ' 2026 — Reliability Backstop Procurement', '2026年' + O.backstopMonth + ' — 可靠性兜底采购'],
-          d:['A special procurement PJM planned to seek FERC approval for, to address the near-term shortfall with costs allocated to state preferences. Proposed rather than filed at the seed date.',
-             'PJM计划就此向FERC申请批准的特别采购，用于应对近期缺口，成本按各州意愿分摊。截至种子日期仅为提议，尚未提交。'] },
+          d:['A special procurement to address the near-term shortfall with costs allocated to state preferences. FERC suspended the filing on 29 September 2026 to ' + O.backstopSuspendedTo + ' and opened a paper hearing; the bid window did not open.',
+             '用于应对近期缺口的特别采购，成本按各州意愿分摊。FERC于2026年9月29日将该申请中止至' + O.backstopSuspendedTo + '并启动书面听证；投标窗口未开启。'] },
         { n:[O.regPhase2Date + ' — Regulation Phase 2', O.regPhase2Date + ' — 调频市场第二阶段'],
           d:['The bidirectional signal splits into RegUp and RegDown. This lets a battery bid on state of charge and direction — but it splits the requirement rather than growing it.',
              '双向信号将拆分为RegUp与RegDown。这使储能可依据荷电状态与方向分别报价 — 但它拆分的是现有需求，而非扩大需求。'] },

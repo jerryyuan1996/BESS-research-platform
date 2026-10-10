@@ -97,7 +97,7 @@ const BRA_2728 = Math.round(333.44 * DAYS * 0.58);                   // 70,589
 
    PRICE rises. The price collar agreed with the thirteen PJM governors and
    approved by FERC covers four auctions and ends after 2029/2030; the last
-   collared auction runs in December 2026. After it, the cap reverts to a Net
+   collared auction runs in December 2026, at a cap of $337.83/MW-day. After it, the cap reverts to a Net
    CONE-based figure PJM estimates at about $550/MW-day. The uncapped 2027/2028
    simulation cleared at $529.80 RTO-wide, so the collar is currently suppressing
    the price by roughly 60%, and the shortfall that caused it has not closed —
@@ -119,10 +119,16 @@ const BRA_2728 = Math.round(333.44 * DAYS * 0.58);                   // 70,589
    of it. Gate G28 closes when the December 2026 auction prints. */
 const RENEWAL = [
   // deliveryYear, $/MW-day, 4-hr ELCC
-  ['2029/30', 325, 0.57],   // last collared auction — bids December 2026
+  /* 337.83, not 325: the collar's cap is re-derived each auction from the
+     Reference Resource UCAP factor, which moved from 79% to 76%. PJM planning
+     parameters for the 2029/2030 BRA, posted 31 August 2026 (FERC ER26-1556).
+     337.83 × 365 × 0.57 = $70,286. Still a scenario until the auction prints. */
+  ['2029/30', 337.83, 0.57],   // last collared auction — bids December 2026
   ['2030/31', 500, 0.54],   // collar gone; shortfall persists, clears near Net CONE
   ['2031/32', 520, 0.50],
-  ['2032/33', 470, 0.46],   // Reliability Backstop and the reformed cycle land supply
+  ['2032/33', 470, 0.46],   // Reliability Backstop and the reformed cycle land supply — the
+                            // Backstop filing was suspended by FERC on 29 Sep 2026 to 28 Feb 2027,
+                            // so this timing is less certain than when it was written
   ['2033/34', 430, 0.42],
   ['2034/35', 400, 0.39],
   ['2035/36', 380, 0.36],   // balanced market: price settles, accreditation keeps eroding

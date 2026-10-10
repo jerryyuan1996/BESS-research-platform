@@ -50,8 +50,8 @@ const M = {
   title: ['PJM Battery Investment Dashboard', 'PJM储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. RTO-wide capacity clearing; reference archetype 90 MW / 4h.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。容量按全RTO统一出清；参考原型为90MW/4小时。'],
-  nextMilestone: ['Next milestone: the 2029/2030 Base Residual Auction in December 2026 — the last auction under the price collar. After it the cap reverts to a Net CONE-based figure PJM estimates near $550/MW-day.',
-                  '下一里程碑：2029/2030年度基准剩余容量拍卖，2026年12月举行 — 这是价格上下限机制下的最后一次拍卖。此后价格上限将回归至PJM估算约每MW每日$550的净新增成本基准。'],
+  nextMilestone: ['Next milestone: the 2029/2030 Base Residual Auction in December 2026 — the last auction under the price collar, capped at $337.83/MW-day. After it the cap reverts to a Net CONE-based figure PJM estimates near $550/MW-day.',
+                  '下一里程碑：2029/2030年度基准剩余容量拍卖，2026年12月举行 — 这是价格上下限机制下的最后一次拍卖，上限为每MW每日$337.83。此后价格上限将回归至PJM估算约每MW每日$550的净新增成本基准。'],
   footerNote: ['Public and official sources collected 3 August 2026. The capacity line is taken from two PJM primary documents and is not an estimate. The merchant line is: no PJM battery revenue index is published, no PJM toll price has ever been disclosed, no US fixed opex series exists, and the Regulation/arbitrage split is estimated from FERC filings by nineteen units. Every merchant figure in this build is derived, not quoted.',
                '公开及官方来源于2026年8月3日采集。容量收入项取自两份PJM官方原始文件，非估算值。市场化收入项则为估算：PJM未发布储能收入指数，从未披露任何PJM租赁价格，不存在美国固定运维成本序列，且调频与套利的拆分系依据十九台机组的FERC申报推算。本版本所有市场化数值均为推导值而非报价。'],
   seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. Three specific warnings: a Base Residual Auction secures ONE delivery year and everything after it on this page is an analyst scenario; the observed Regulation revenue of the current ~400 MW fleet is not available to a new entrant and is carried as a band ceiling, not a base case; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page, so returns on this page exclude it.',
@@ -74,8 +74,12 @@ const M = {
     uncappedSimRto: 529.80, uncappedSimDom: 542.83,
     collarAuctions: 4, collarLastDeliveryYear: '2029/2030',
     nextBraDate: 'December 2026', nextBraDeliveryYear: '2029/2030',
+    /* PJM planning parameters for the 2029/2030 BRA, posted 31 August 2026. The
+       collar is re-derived per auction: the Reference Resource UCAP factor fell
+       from 79% to 76%, which lifts the UCAP-denominated cap and floor. */
+    nextBraCap: 337.83, nextBraFloor: 181.91,
     netConeEstimate: 550,
-    backstopMonth: 'September', bilateralServiceDate: '9 June 2026',
+    backstopMonth: 'September', backstopSuspendedTo: '28 February 2027', bilateralServiceDate: '9 June 2026',
     // Footprint.
     states: 13, peopleM: 67, txMiles: 88417,
     // Supply mix, UCAP, 2028/2029 cleared plus FRR.
@@ -195,7 +199,7 @@ const M = {
      comparison.js; that file is the source of truth for the payments. */
   renewalYears: ['2029/30', '2030/31', '2031/32', '2032/33', '2033/34', '2034/35', '2035/36',
                  '2036/37', '2037/38', '2038/39', '2039/40', '2040/41', '2041/42', '2042/43'],
-  renewalPrice: [325, 500, 520, 470, 430, 400, 380, 380, 380, 380, 380, 380, 380, 380],
+  renewalPrice: [337.83, 500, 520, 470, 430, 400, 380, 380, 380, 380, 380, 380, 380, 380],
   renewalElcc: [57, 54, 50, 46, 42, 39, 36, 34, 32, 30, 29, 28, 27, 26],
 
   // ---- merchant: two legs that behave differently ----
@@ -373,8 +377,8 @@ const M = {
      reforms alongside the physical projects — and says which is which. */
   reinforcements: [
     { n: ['Reliability Backstop Procurement', '可靠性兜底采购'], operator: 'PJM, subject to FERC approval', region: ['RTO-wide', '全RTO'], gw: null,
-      cls: 'process', scope: ['A special procurement to address the near-term shortfall, with costs allocated consistently with state preferences. PJM planned to seek FERC approval in September 2026.', '针对近期缺口的特别采购，成本按各州意愿分摊。PJM计划于2026年9月申请FERC批准。'],
-      year: 2026, status: ['Proposed; not yet filed at the seed date', '已提出；截至种子日期尚未提交'], c: 'serious' },
+      cls: 'process', scope: ['A special procurement to address the near-term shortfall, with costs allocated consistently with state preferences. PJM filed it; on 29 September 2026 FERC suspended the filing to 28 February 2027 and opened a paper hearing, and PJM did not open the bid window.', '针对近期缺口的特别采购，成本按各州意愿分摊。PJM已提交申请；2026年9月29日FERC将该申请中止至2027年2月28日并启动书面听证，PJM未开启投标窗口。'],
+      year: 2027, status: ['Filed; suspended by FERC to 28 February 2027', '已提交；被FERC中止至2027年2月28日'], c: 'serious' },
     { n: ['Reformed interconnection cycle', '改革后的并网周期流程'], operator: 'PJM', region: ['RTO-wide', '全RTO'], gw: 1.9,
       cls: 'process', scope: ['Transition Cycle 1 issued interconnection agreements to 21 battery projects totalling 1.9 GW; the reopened queue holds 67 GW of storage and 14 GW of solar.', '过渡周期一向21个储能项目签发并网协议，合计1.9GW；重开的排队队列中有67GW储能与14GW光伏。'],
       year: 2026, status: ['Operating; first cycle complete, queue reopened April 2026', '运行中；首个周期已完成，队列于2026年4月重开'], c: 'warn' },

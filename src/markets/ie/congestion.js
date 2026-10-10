@@ -68,8 +68,8 @@ export const IE_CONGESTION = {
       relief: {
         project: ['FASS system services auctions and grid-forming procurement', 'FASS系统服务拍卖及构网型能力采购'],
         operator: 'EirGrid / SONI, SEM Committee',
-        scope: ['Replaces the DS3 fixed tariff with competitive auctions from May 2027 (long-stop September 2027); the products are what would let fewer synchronous units run',
-                '自2027年5月起以竞争性拍卖取代DS3固定电价（最迟2027年9月）；相关产品正是可减少同步机组开机数量的关键'],
+        scope: ['Replaces the DS3 fixed tariff with competitive auctions; go-live date not set after the May 2027 target was withdrawn in June 2026 (DS3 long-stop 30 September 2027); the products are what would let fewer synchronous units run',
+                '以竞争性拍卖取代DS3固定电价；2027年5月目标已于2026年6月撤回，上线日期未定（DS3最终截止2027年9月30日）；相关产品正是可减少同步机组开机数量的关键'],
         expected: 2027,
         status: RELIEF_STATUS.RULE_CHANGE,
       },

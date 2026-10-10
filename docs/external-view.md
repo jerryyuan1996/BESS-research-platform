@@ -1,6 +1,6 @@
 # External view — what the market says, and where we differ
 
-**Collection round 1 · vintage 2026-07-30 · revised 2026-08-04 (rounds 2–4)**
+**Collection round 1 · vintage 2026-07-30 · revised 2026-08-04 (rounds 2–4) · policy refresh 2026-10-10 (§6c)**
 
 This document records what mainstream research houses, consultancies and trade press were saying
 about BESS investment strategy at the collection date, tested against what this platform publishes.
@@ -122,6 +122,7 @@ globally, with 4.3 GW reaching financial close in 2025 (+150% YoY).
 | Typical shape | ~12-month merchant phase, then ~80% tolled for **5–7 years** |
 | Merchant financeability | Lenders now actively finance merchant BESS in Germany — priced through mini-perms, tighter DSCRs and scrutiny of revenue assumptions |
 | Activity | Q1 2026: record **53 deals / 11 GW**, +50% QoQ. Germany 25 deals; Italy third-most-active with 12 |
+| Activity, latest | Q3 2026: **53 deals / 11.8 GW** across 14 countries (Q2: 38 across 10). GB led on count (10); Germany on capacity (8 deals, 3.5 GW). **Tolls underpinned 14 deals, more than any other revenue model**, and contracted revenue underpinned most Q3 debt — Modo, October 2026 |
 
 ---
 
@@ -230,14 +231,14 @@ Each item is a specific document or series that would close a specific open assu
 | G1 | NESO Auction Guidelines / De-Rating Factor workbook, T-4 2029/30 | GB de-rating by duration (we have 1h and 2h only, from 2024/25) | NESO EMR Delivery Body — "Auction Results and De-Rating Factors Summary Data Workbook" |
 | G2 | Modo ME BESS GB **4h** series | GB 4h merchant revenue; we only hold the 2h benchmark | Modo terminal (paid) |
 | G3 | PSE draft parameters for the next Polish main auction | Whether KWD 13.39% is a step change or an overshoot to be partly reversed | PSE / URE auction parameter publications |
-| G4 | OCCTO LTDA Round 3 guidelines and price caps | Japanese LTDA award level — pay-as-bid, clearing not disclosed; we hold only the FY2024 cap band | OCCTO auction guidelines |
+| G4 | OCCTO LTDA Round 3 guidelines and price caps | Japanese LTDA award level — pay-as-bid, clearing not disclosed. **Part-closed 2026-10:** the FY2026 (Round 4) outline publishes the battery ceiling at ¥70,675–74,417/kW/yr, replacing the FY2024 band; the award level itself is still not an observation | OCCTO auction guidelines |
 | G5 | Japanese 6h BESS capex, 2026 vintage | Our ¥45,000/kWh vs ~¥68,000/kWh observed FY2024 | MRI / METI cost estimates; IEEFA |
 | G6 | DS3 realised payments per MW per year for a 4h Irish battery | Whether our €8,000/MW/yr services level is right before any decay curve is applied | EirGrid DS3 settlement data; Modo Ireland |
 | G7 | SEM FASS auction design and indicative price caps | The floor the Irish services curve should decay to | SEMC / EirGrid FASS consultations |
 | G8 | AEMO WA network constraint / NAQ curtailment data | The size of the access-priority haircut on WA merchant revenue | AEMO WEM constraint and dispatch data |
 | G9 | Clean Horizon Romania forecast (S1 2026) | Duration basis and forward decay behind the ~€140/kW/yr figure | Clean Horizon (paid) |
 | G10 | Real BESS senior debt margins by market | Project-debt pricing — we hold base rates and structural conventions, not margins. Re-searched July 2026: Modo's Q1 2026 report gives deal counts and volumes (53 deals / 11 GW, >€3bn disclosed debt) but no margin quotation, and no public source quotes one. The 200–250bp band stands as an assumption | Modo European BESS Capital Markets report; lender term sheets |
-| G11 | Terna MACSE auction 2 rules and results (24 Nov 2026) | ~~Whether to add Italy~~ — closed 2026-08 on auction 1. What remains open is the auction-2 reserve premium, unpublished at the time of writing, and whether the ≈€12,959/MWh/yr weighted clear holds at 16 GWh against 10 | Terna publications |
+| G11 | Terna MACSE auction 2 rules and results (24 Nov 2026) | ~~Whether to add Italy~~ — closed 2026-08 on auction 1. The auction-2 reserve premium was set at **€27,000/MWh/yr** by ARERA resolution 332/2026 (24 Sep 2026), down from €37,000. What remains open is whether the ≈€12,959/MWh/yr weighted clear holds at 16 GWh against 10 | Terna publications |
 | G12 | A terminal-value and augmentation treatment | Why our absolute returns sit below published ones — see §5.5. A design decision, not a data fetch | Internal; needs an augmentation capex curve and a residual-value basis |
 | G13 | Per-market BESS fixed-opex and degradation series | The two Investment Lab bands with no published counterpart anywhere. Opex seeds run US$8.6k–16.5k/MW/yr across fourteen markets against a US utility-scale benchmark of US$15–25k; degradation is held at 2%/yr in every market because nothing market-specific exists to hold it at anything else | Operator LTSA/O&M disclosures; supplier warranty degradation curves |
 | G14 | Per-MW congestion revenue for a battery, by market | The one number the congestion register deliberately does not carry. Operators publish the constraint pool — NESO a £3.1bn balancing cost, EirGrid an 11.3% dispatch-down rate, PSE a 1,131 GWh curtailed volume, OCCTO an output-control percentage — but none publish what share of it a battery captures. Closing it would let the Investment Lab price congestion instead of only flagging its expiry date. Italy is the nearest thing to a partial close: its zonal MACSE spread (Sicily 30% above Sud e Calabria for the same product) is a published price for one constraint, but it is a procurement clear rather than a measurement, so the register uses it as a proxy and says so | Modo GB Balancing Mechanism revenue by asset; EirGrid/PSE settlement data; Terna curtailment volumes in GWh; an optimiser's realised constraint-revenue disclosure |
@@ -254,7 +255,7 @@ Each item is a specific document or series that would close a specific open assu
 | G25 | **The RTB acquisition premium, in any market** | The platform underwrites at ready-to-build, so the entry price is development cost plus a developer's margin — and an RTB trade is a private bilateral, so no market publishes either leg. `devCostPct` and `rtbPremiumPct` are seeded at zero and exposed as Investment Lab inputs; the Lab reports the implied £/MW so the assumption is at least visible | Transaction disclosure; a developer's segment reporting; an infrastructure fund's acquisition note |
 | G26 | **Connection charge by market, at project scale** | Germany is the only market with a published figure — the Baukostenzuschuss, up to €140,000/MW, applied inconsistently across DSOs and upheld by the courts. Everywhere else the charge is regulated on actual cost or negotiated, so it is project-specific and unpublished. Japan's TEPCO regime is the clearest case of a known *schedule* against an unknown *amount*: a 10% deposit and a first contribution of at least 50% from 1 April 2026 | DSO/TSO connection offers; a proponent's disclosed connection cost |
 | G27 | **VAT recovery lag by market** | Rates are statutory and known — GB 20%, Germany 19%, Italy 22%, Poland 23%, Ireland 23%, Romania 21% since 1 Aug 2025, Australia and Japan 10%. What is not published is how long a refund actually takes, which is the only thing that matters when VAT is recoverable: it converts a rate into a working-capital drag on IRR. Seeded at zero months, so VAT currently costs nothing in the model | Tax authority service standards; an operator's working-capital disclosure |
-| G28 | **PJM Base Residual Auction clearing beyond the cleared years** | PJM's secured line is one delivery year — $325.00/MW-day × 365 × 59% ELCC = $69,989/MW/yr — and everything after it is an auction-renewal assumption. The 2027/28 and 2028/29 results are published; the renewal curve past them is not, and PJM is the market where that matters most because the BRA is the whole contracted position | PJM auction results and ELCC class ratings as each BRA clears |
+| G28 | **PJM Base Residual Auction clearing beyond the cleared years** | PJM's secured line is one delivery year — $325.00/MW-day × 365 × 59% ELCC = $69,989/MW/yr — and everything after it is an auction-renewal assumption. The 2027/28 and 2028/29 results are published, and the 2029/30 cap is now known ($337.83/MW-day, planning parameters of 31 Aug 2026); the renewal curve past them is not, and PJM is the market where that matters most because the BRA is the whole contracted position | PJM auction results and ELCC class ratings as each BRA clears |
 | G30 | **US ancillary-service saturation, all three markets** | The one gate the US markets share. ERCOT's RTC+B went live 5 December 2025 and PJM's Regulation Redesign Phase 1 on 1 October 2025, both re-sizing the products a battery earns from, and CAISO's queue composition points the same way. Every US services seed is therefore a forward view rather than a run-rate | Modo indices post-redesign; ERCOT AS Methodology; PJM Regulation market size |
 | G31 | **IRC §48E qualification under the material-assistance rules** | The federal tax credit is worth up to 37% of capex and the three US markets model it identically, but the One Big Beautiful Bill Act's material-assistance provisions and IRS Notice 2026-15 condition it on supply-chain sourcing that no BESS developer publishes. A binary that moves US returns more than any revenue assumption | IRS guidance; a developer's qualification opinion |
 | G32 | **US merchant energy revenue at a 2030 vintage** | ERCOT and CAISO merchant seeds rest on Modo indices measured on today's fleet, restated to the vintage `merchantVintage` declares. The restatement is a judgement, not an observation, and ERCOT is where it bites — a 2h archetype in the market consensus flags for saturation | Modo forward curves; an optimiser's forward book |
@@ -326,6 +327,38 @@ June 2026 and is not — Stage 1 delivered 150 MW of an eventual 800 MW and Stag
 **No forced returns.** `irrOf` returned null both when a route does not exist and when the cash flows
 never return the capital. The engine now diagnoses which, and an unsolvable case prints
 "N/M — no positive IRR solution" with MOIC retained rather than an em dash that hides the difference.
+
+---
+
+## 6c · Policy refresh — 2026-10-10
+
+A re-read of every market's policy and consensus statements against what was published between
+early August and 10 October 2026. Analyst decisions throughout; the ETL proposed none of it.
+
+| Market | What moved | Model effect |
+|---|---|---|
+| PJM | 2029/30 collar cap is **$337.83/MW-day**, not $325 (Reference Resource UCAP factor 79% → 76%). FERC suspended the Reliability Backstop filing on 29 Sep 2026 to 28 Feb 2027 | Renewal year 1: 337.83 × 365 × 0.57 = $70,286 (was $67,616). Hold IRR 2.34% → **2.37%** |
+| WA | BRCP 2028-29 is **A$488,500** (ERA final, 13 Mar 2026); A$491,700 was the draft | Band ceiling only. Realised price held at A$422,372 — scaling onto the final BRCP would give ~A$419,600 (−0.65%) |
+| Japan ×3 | Round 4 outline (2 Sep 2026): Li-ion capped at 400 MW, certified-cell projects awarded first, ceiling ¥70,675–74,417/kW/yr, bids 27 Jan–3 Feb 2027 | Band ceiling only; the cost-derived bid is unchanged and is now ~51% of the ceiling midpoint, not 41% |
+| Ireland | TSOs: May 2027 DASSA go-live "is not feasible"; no new date; DS3 long-stop still 30 Sep 2027 | None — the year-3 step in `servicesCurve` survives either outcome |
+| ERCOT | Large-load queue ~474 GW (~90% data centres), paused for audit since 3 Aug 2026; June 2026 fleet revenue a record-low $1.11/kW-month | None — the queue was already an upside scenario, not base revenue |
+| Germany | EU state-aid approval reported 2 Sep 2026; BNetzA final grid-fee draft 6 Aug 2026 | None |
+| Italy | Auction-2 reserve premium €27,000/MWh/yr | None — the modelled line is the auction-1 clear |
+| NEM | ESEM draft legislation 14 Sep 2026; first round indicatively late 2027, not early 2027 | None |
+| CAISO | CPUC D.26-07-008: storage QC cut for foldback from 2027, unit-specific UCAP from 2028 | **Not priced.** The RA line still pays on nameplate; the haircut is unpublished |
+| Romania | Operating storage ~2 GWh at 1 Aug 2026; €150m grant call closes 30 Oct 2026 | None |
+| Poland | Supplementary T-1 auction (3 Sep 2026) cleared batteries at a 95% factor, PLN 325.55k/MW/yr; no main auction in 2026 | None — a top-up for assets already online, not a new-entry route |
+
+**Consensus since round 1.** Tolling is now the modal revenue model in European BESS debt (§2.4).
+BNEF (August 2026) and AEMO's Q2 2026 report agree NEM battery revenue roughly halved year on year
+as spreads fell from A$342 to A$51/MWh, which moves consensus toward the caution this platform
+already carried. ERCOT saturation is the standard reading. Aurora's European ordering is unchanged:
+Germany, Great Britain, Italy.
+
+**Left open on purpose.** Confidence scores, consensus statuses and run-rate factors in
+`decisionProfiles.js` were not re-scored. The German €4–7k/MW/yr grid fee was not re-read from the
+6 August draft. US tariff wording ("reciprocal tariffs") predates the February 2026 Supreme Court
+ruling and was not verified.
 
 ---
 

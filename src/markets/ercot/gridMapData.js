@@ -17,7 +17,7 @@
    the west and load was always in the Dallas and Houston triangles. What changed
    is the DENSITY of what sits on that geography — 5.3 GW of battery in 2023 and
    14 GW entering 2026 — and what is about to change is the load, with a
-   large-load queue of about 238.6 GW dominated by data centres.
+   large-load queue of about 474 GW dominated by data centres.
 
    So this map has no relief corridor and does not pretend to. ERCOT does not
    schedule relief for congestion; it prices it at the node and lets the market
@@ -45,8 +45,8 @@ const point = (id, name, coord, kind, subtype, periods, note, investor, source, 
 const points = [
   /* ---- demand centres --------------------------------------------------- */
   point('dfw', ['Dallas–Fort Worth — North zone', '达拉斯-沃斯堡 — 北部区'], [-97.00, 32.90], 'load', ['Urban and data-centre load', '城市与数据中心负荷'], ['past','current','future'],
-    ['The North load zone, and where the large-load queue is growing fastest. ERCOT\'s large-load queue reached about 238.6 GW by March 2026, 77.5% of it data centres.',
-     '北部负荷区，也是大负荷排队增长最快的区域。截至2026年3月，ERCOT大负荷排队量约达238.6GW，其中77.5%为数据中心。'],
+    ['The North load zone, and where the large-load queue is growing fastest. ERCOT\'s large-load queue reached about 474 GW by August 2026, about 90% of it data centres.',
+     '北部负荷区，也是大负荷排队增长最快的区域。截至2026年8月，ERCOT大负荷排队量约达474GW，其中约90%为数据中心。'],
     ['This is where the bull case has to land. Spread recovery in ERCOT depends on load arriving faster than generation, and the rules governing how fast very large loads may connect had not been written at the seed date.',
      '看多逻辑必须在此兑现。ERCOT的价差回升取决于负荷增速快于电源增速，而截至种子日期，规范超大型负荷接入速度的规则尚未出台。'],
     'ERCOT large-load interconnection queue', URL.queue,
@@ -88,15 +88,15 @@ const points = [
      '之所以绘制为一个点，是因为它没有地理位置且在全市场适用。对单个资产而言调度灵活性提升，但争夺同一未增长辅助服务采购量的合格资源池也随之扩大。'],
     'ERCOT RTC+B go-live', URL.rtcb),
 
-  point('largeload', ['Large-load queue — 238.6 GW', '大负荷排队 — 238.6GW'], [-98.50, 33.60], 'node', ['Demand-side queue', '需求侧排队'], ['future'],
-    ['About 238.6 GW of large load had applied by March 2026, 77.5% of it data centres, with 198 GW applying in Q1 2026 alone and 86 GW under review.',
-     '截至2026年3月，已申请大负荷约238.6GW，其中77.5%为数据中心；仅2026年第一季度就有198GW提交申请，另有86GW在审。'],
+  point('largeload', ['Large-load queue — 474 GW', '大负荷排队 — 474GW'], [-98.50, 33.60], 'node', ['Demand-side queue', '需求侧排队'], ['future'],
+    ['About 474 GW of large load had applied by August 2026, about 90% of it data centres, double the 238.6 GW of March 2026.',
+     '截至2026年8月，已申请大负荷约474GW，其中约90%为数据中心，为2026年3月238.6GW的两倍。'],
     ['Larger than ERCOT\'s entire generation fleet, and the only credible path back to 2023-style spreads. A queue is not a commitment, and the rules governing how fast it connects were still being written at the seed date.',
      '其规模大于ERCOT全部发电机组总量，也是回到2023年式价差水平的唯一可信路径。但排队并非承诺，且截至种子日期，规范其接入速度的规则仍在制定之中。'],
     'ERCOT large-load interconnection queue', URL.queue,
     { layer:'plan', planClass:'load', planClassLabel:['Demand-side rulemaking','需求侧规则制定'], planYear:null,
       planStatus:['Applied, not committed; connection rules under development','已申请，未承诺；接入规则制定中'],
-      plannedCapacity:['≈238.6 GW applied, 77.5% data centres','已申请约238.6GW，其中77.5%为数据中心'] }),
+      plannedCapacity:['≈474 GW applied, about 90% data centres','已申请约474GW，其中约90%为数据中心'] }),
 ];
 
 const routes = [
@@ -167,7 +167,7 @@ export const ERCOT_GRID_MAP = {
     future: {
       label: ['Planned · 2030', '规划 · 2030'],
       kicker: ['A load queue larger than the grid', '大于电网自身规模的负荷排队'],
-      thesis: ['The battery fleet is projected at about 40 GW by end-2030 against 14 GW today, and the large-load queue reached about 238.6 GW by March 2026 — 77.5% data centres, and larger than ERCOT\'s entire generation fleet.','储能机组预计到2030年底约达40GW，而当前为14GW；同时截至2026年3月，大负荷排队量约达238.6GW — 其中77.5%为数据中心，且规模大于ERCOT全部发电机组总量。'],
+      thesis: ['The battery fleet is projected at about 40 GW by end-2030 against 14 GW today, and the large-load queue reached about 474 GW by August 2026 — about 90% data centres, and larger than ERCOT\'s entire generation fleet.','储能机组预计到2030年底约达40GW，而当前为14GW；同时截至2026年8月，大负荷排队量约达474GW — 其中约90%为数据中心，且规模大于ERCOT全部发电机组总量。'],
       implication: ['Both queues are real and only one of them is committed. An ERCOT case rests on the load queue converting faster than the generation queue does, and no rule yet governs the speed of either.','两个排队都真实存在，但只有其中之一有实际承诺。ERCOT的投资逻辑取决于负荷排队的兑现速度快于电源排队，而目前尚无规则规范二者中任何一方的速度。'],
     },
   },
