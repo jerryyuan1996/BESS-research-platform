@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-09T22:43:28.127Z",
+  "fetchedAt": "2026-10-10T06:00:08.393Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-09T16:00:00.000Z",
+    "to": "2026-10-10T06:00:00.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -345,16 +345,6 @@
       "summary": "Finland is the Nordic region’s most-talked-about market for the moment, with project deals and other battery storage development activity from local and international players."
     },
     {
-      "t": "2026-10-09T09:39:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/plug-in-pv-is-growing-are-regulations-keeping-pace/",
-      "source": "pv magazine",
-      "title": "Plug-in PV is growing – are regulations keeping pace?",
-      "url": "https://www.pv-magazine.com/2026/10/09/plug-in-pv-is-growing-are-regulations-keeping-pace/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Plug-in solar PV and compact battery storage are expanding access to solar energy, but differing national regulations raise challenges around electrical safety, certification and consumer protection. IEA PVPS will host two free online seminars on 19 and 28 October 2026 to compare international approaches and promote…"
-    },
-    {
       "t": "2026-10-09T09:57:14.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/europes-system-integrators-move-quickly-on-sodium-ion-with-catl-surprised-if-we-arent-deploying-it-next-year/",
       "source": "Energy-Storage.news",
@@ -373,16 +363,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "South Africa’s government has put battery storage and power-to-gas technologies at the heart of the national long-term electricity supply and demand strategy."
-    },
-    {
-      "t": "2026-10-09T10:30:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/jackery-steps-into-rvs-with-built-in-2-kw-solar-and-45-kwh-storage/",
-      "source": "pv magazine",
-      "title": "Jackery steps into RVs with built-in 2 kW solar and 45 kWh storage",
-      "url": "https://www.pv-magazine.com/2026/10/09/jackery-steps-into-rvs-with-built-in-2-kw-solar-and-45-kwh-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "All-electric trailers already embrace solar and storage, but the work is getting more custom. The post Jackery steps into RVs with built-in 2 kW solar and 45 kWh storage appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-09T11:05:36.000Z",
@@ -453,16 +433,46 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "The United States has made significant changes to trade and energy policy in 2026. The enforcement of these policies and potential further changes on the horizon could reshape the solar market yet again. Jesse Pichel and Lev Seleznov of Roth Capital examine the potential impacts. The post Poly pricing and potential…"
+    },
+    {
+      "t": "2026-10-10T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/can-beijing-end-the-race-to-the-bottom/",
+      "source": "pv magazine",
+      "title": "Can Beijing end the race to the bottom?",
+      "url": "https://www.pv-magazine.com/2026/10/10/can-beijing-end-the-race-to-the-bottom/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "China is tightening the rules of solar competition through cost accounting, mandatory efficiency standards, tax changes and capacity controls. The real test is not whether prices rise, but whether excess capacity is removed and the industry can return to sustainable profitability without losing its global cost and t…"
+    },
+    {
+      "t": "2026-10-10T05:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/australia-backs-goal-of-150-million-new-rooftop-solar-systems-globally-by-2030/",
+      "source": "pv magazine",
+      "title": "Australia backs goal of 150 million new rooftop solar systems globally by 2030",
+      "url": "https://www.pv-magazine.com/2026/10/10/australia-backs-goal-of-150-million-new-rooftop-solar-systems-globally-by-2030/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australia has endorsed a global plan to double the number of homes in the world with rooftop solar, from 150 to 300 million by 2030 via the Global Rooftop Solar Declaration announced at the 2026 Pacific Pre-COP meeting in Fiji. The post Australia backs goal of 150 million new rooftop solar systems globally by 2030 a…"
+    },
+    {
+      "t": "2026-10-10T06:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/the-shape-of-ppas-is-changing-from-volume-to-value-are-you-positioned-to-capture-the-premium-in-emerging-nem-value-pools/",
+      "source": "pv magazine",
+      "title": "The shape of PPAs is changing – from volume to value",
+      "url": "https://www.pv-magazine.com/2026/10/10/the-shape-of-ppas-is-changing-from-volume-to-value-are-you-positioned-to-capture-the-premium-in-emerging-nem-value-pools/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australia’s renewable energy market is entering a new phase where the value of electricity is increasingly determined not by energy alone, but by the ability to deliver energy when and where it is needed. The post The shape of PPAs is changing – from volume to value appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 27,
-      "policy": 6,
+      "policy": 7,
       "capital": 7,
       "technology": 3
     },
@@ -489,7 +499,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 8
       }
     ]
   },
@@ -498,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:72f5d4e946ec292206c7b9ec5b52350034fd1fa778c9f96e363ed211c93d4400",
-  "envelopeChecksum": "sha256:50c254dc1076439a748c83edd5f448676361bc9381f3ff27452f33fc74d1dab6"
+  "contentChecksum": "sha256:560b454068ab8ec7063f30ad50f836a6c85915bef5d14471d7789d62c48e2e96",
+  "envelopeChecksum": "sha256:0408be8d77a0a76cdb7716625558c9b8cafaa30631431e411bf3f5cfe6ffc38a"
 }
