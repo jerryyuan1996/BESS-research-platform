@@ -149,7 +149,9 @@ test('the plan\'s Western Australia case falls out of the data', async () => {
      revenue on the platform is closed, at origination, to three of the four
      investors — by the size of the cheque and the security, not by its score.
      Its scores are good. A weighted average would have waved all four in. */
-  const view = await committed.read('wa');
+  /* Read at each investor's usual route, so without the verdicts: a verdict
+     names its own route, and the fund's is the co-investment tested below. */
+  const view = { ...(await committed.read('wa')), verdicts: {} };
   const result = assessMarket(view, byId('wa'), ledgerFor('wa'), FX);
   const at = (id) => result.byArchetype[id];
   assert.equal(at('strategic').ceiling, null);
@@ -165,12 +167,30 @@ test('the plan\'s Western Australia case falls out of the data', async () => {
 });
 
 test('a market with no ledger can still have its cheque checked', async () => {
-  const view = await committed.read('wa');
+  const view = { ...(await committed.read('wa')), verdicts: {} };
   const result = assessMarket(view, byId('wa'), null, FX);
   assert.equal(result.totals, null);
   assert.ok(result.byArchetype.foreignFirstTimer.limitsBreached.includes('cheque'));
   assert.ok(result.byArchetype.developer.limitsUnchecked.includes('pre-fid-capital'));
   assert.deepEqual(disagreements(result), [], 'no verdicts set, nothing to disagree with');
+});
+
+test('a committed verdict the score disagrees with says why', async () => {
+  /* The analyst sets the call and the score only checks it — but a call two
+     bands from its score, or one that ignores a knock-out, must carry its
+     reason. A flag with no answer beside it is an unexamined disagreement. */
+  let verdicts = 0;
+  for (const view of await committed.readAll()){
+    if (!Object.keys(view.verdicts).length) continue;
+    const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX);
+    verdicts += Object.keys(view.verdicts).length;
+    for (const flag of disagreements(result)){
+      const note = view.verdicts[flag.archetype].scoreNote;
+      assert.ok(Array.isArray(note) && note[0] && note[1],
+        `${view.marketId}/${flag.archetype}: "${flag.call}" disagrees with its score (${flag.kind}) and carries no scoreNote`);
+    }
+  }
+  assert.equal(verdicts, 16, 'four markets by four archetypes');
 });
 
 test('nothing in the committed store was written by automation', async () => {
