@@ -221,8 +221,11 @@ project.
 | 2 | Process changes between rounds, or material discretion with no published criteria |
 | 1 | No published process, or a moratorium with no stated end |
 
-The other ten sets of anchors are Phase 0 work and are yours to write (§8). They are
-methodology: no automation may change them.
+The other ten sets were drafted in Phase 0 and sit in `src/governance/investability.js`, with
+revenue certainty as an eleventh (§3.5). They are working values for Phase 1: grade the four
+corners against them and revise a set only where it misplaces a market you know. The foreign
+entry and exit liquidity sets were written with no evidence in the repository and are the
+likeliest to need it. All of them are methodology: no automation may change them.
 
 ### 3.3 What a grade is
 
@@ -519,7 +522,7 @@ Provenance is marked on every fact: **R** repository, **W** checked on the web o
 | | Western Australia | Finland | Great Britain | Romania |
 |---|---|---|---|---|
 | Hold / exit IRR | 13.1% / 16.4% **R** | Withheld **R** | 4.7% / 1.3% **R** | 20.8% / 25.2% **R** |
-| Secured share / tenor | 77% / 10 yr **R** | None | 10% / 15 yr **R** | None **R** |
+| Secured share / tenor | 77% / 10 yr **R** | None in the engine. Offtaker floors of seven years or longer are available and bankable, covering the whole project at no more than half of expected revenue **Y** | 10% / 15 yr **R** | None **R** |
 | Reference project | 200 MW · 7h, ≈ USD 432m **D** | 50 MW · 2h, ≈ USD 21m **D** | 100 MW · 4h, ≈ USD 103m **D** | 50 MW · 2h, ≈ USD 31m **D** |
 | Security before revenue | Reserve Capacity Security: 25% of the peak benchmark price for each MW certified **W**. About A$122k/MW, or A$24m on the reference project **D**. Network-works security on top **Y** | None found. The connection application is free and names no deposit or security **W**. A fixed connection fee falls due at signing and is not refunded; amount not found **W** | Not sourced | €20,000/MW and €30/kW, about €2.5m on the reference project, plus 20% of the connection tariff **R** |
 | Share of project cost | ≈ 3.7% **D** | ≈ 0% before the connection agreement **D** | – | ≈ 8.8% **D** |
@@ -537,7 +540,7 @@ Provenance is marked on every fact: **R** repository, **W** checked on the web o
 | | Strategic | Infrastructure fund | Foreign first-timer | Developer |
 |---|---|---|---|---|
 | **Western Australia** | Build position — the one archetype that can carry both the security and the cheque, for the most secured revenue on the platform | Opportunistic — buy in after Capacity Credits are assigned, behind a strategic | Not accessible at origination — co-investment only | Not accessible — security before revenue exceeds its limit |
-| **Finland** | Build position — a platform north of the restriction, alongside data-centre load | Opportunistic — no contracted line; needs an optimiser floor | Enter now — small cheque, no security, a published process; the door narrows in 2027 | Build position — connection capacity outside the south is the scarce asset |
+| **Finland** | Build position — a platform north of the restriction, alongside data-centre load | Opportunistic — no contracted line, but a bankable seven-year floor is on offer **Y** | Enter now — small cheque, no security, a published process; the door narrows in 2027 | Build position — connection capacity outside the south is the scarce asset |
 | **Great Britain** | Build position — the long-duration cap-and-floor route | Opportunistic — operating assets with a toll; the deepest debt and exit market | Opportunistic — acquisitions only; the most standardised documents | Wait — queue rules tightening against new batteries |
 | **Romania** | Opportunistic | Wait — nothing secured and little exit evidence | Wait — connection rules still moving | Opportunistic — auction entry, with guarantees near 9% of cost |
 
@@ -567,6 +570,14 @@ has proposed that data centres themselves flex 30% of consumption in a fault —
 them a competitor in flexibility, not only a customer. The demand dimension has to hold both
 readings.
 
+**Finland is not closed to the fund, and the floor is why.** The engine holds no secured
+revenue for Finland. Your experience is that offtakers there offer a floor of seven years or
+longer, that lenders accept it, and that it covers the whole project at no more than half of
+expected revenue. Under the two rulings in §3.5 that is a secured route, counted at the level
+of the floor: a secured share of at most one half for about seven years, which is grade 3 on
+revenue certainty and reads as 65 of 100 to the fund. Without the rulings Finland would have
+been grade 1 and a knock-out. The grade is a practitioner one until a public source carries it.
+
 **Great Britain explains the capital flow the IRR cannot.** The lowest modelled return of the
 four with the strongest Capital pillar. For a fund that needs debt and an exit, that is a
 coherent place to be, and the current home page cannot say so.
@@ -583,6 +594,8 @@ coherent place to be, and the current home page cannot say so.
   from a secondary summary.
 - Release mechanics for the Romanian guarantees, which the dashboard already flags.
 - Whether the Finnish draft act's 100 MW threshold survives Parliament.
+- A public source for the tenor and level of Finnish offtaker floors. Until one is found the
+  revenue-certainty grade rests on practitioner judgement.
 
 ---
 
@@ -914,18 +927,19 @@ in phase 4 it writes scout cards; only after a clean run there does it touch a c
 ## 9. Decisions still open
 
 **All twelve recommendations below were accepted by Jerry on 2026-10-10**, including guardrails
-A to I. Rows 1, 2 and 4 remain his to fill: Phase 0 produces drafts for him to overwrite.
+A to I. Rows 1, 2 and 4 were his to fill. Phase 0 drafted all three on the same day and he kept
+the drafts as working values for Phase 1, with the changes recorded in §3.4 to §3.6.
 
 | | Decision | Recommendation |
 |---|---|---|
-| 1 | Archetype parameters (§3.4) | Yours. The drafts are placeholders |
-| 2 | Weights and `reads` tables for each archetype | Yours |
+| 1 | Archetype parameters (§3.4) | Kept as drafted, including USD 3m for the developer's security before consent |
+| 2 | Weights and `reads` tables for each archetype | Drafted in `src/governance/archetypes.js`. Two rows changed on review (§3.4); the weights stand until a verdict shows one is wrong, the four pillar weights first |
 | 3 | The six verdict words (§3.6) | Adopt as drafted |
-| 4 | Ten remaining anchor sets (§3.2) | Yours; I can draft from the component tables each dashboard already holds |
+| 4 | Ten remaining anchor sets (§3.2) | Drafted in `src/governance/investability.js`, plus one for revenue certainty. Revise a set only where it misplaces a market you know; revisit saturation when Great Britain is graded |
 | 5 | Guardrails A to I (§7.6) | Keep all; D above all |
 | 6 | Where the agent runs | CI with an API key held as a repository secret, so it cannot see `local-data/` |
 | 7 | Whether section claims stay human-reviewed (§7.7) | Yes |
-| 8 | Return by rank until G12 closes, or G12 first | Rank now; start G12 in phase 1 alongside the ledgers |
+| 8 | Return by rank until G12 closes, or G12 first | Rank asset return now, with revenue certainty anchored (§3.5); start G12 in phase 1 alongside the ledgers |
 | 9 | Tabs: add two now and merge later, or merge at once | Add now, merge in phase 5 |
 | 10 | First scouting batch (§6.4) | As listed |
 | 11 | Whether Finland receives verdicts while its return is withheld | Yes |
