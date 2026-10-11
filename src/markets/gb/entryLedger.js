@@ -22,6 +22,11 @@
    is open to a project with land rights and no planning consent, and security
    falls due a month after it is signed. */
 
+/* EVERY ITEM IS "verify", including those whose source was opened. The pages
+   were read by a drafting agent on 2026-10-11, and "verified" is reserved for
+   a source the analyst has opened himself — the same rule the other ledgers
+   follow. An item moves up when he has looked at it. */
+
 /* Found by search and not opened: an explanatory memorandum to the 2026
    capacity regulations. A second summary gives different figures. */
 const CM_CREDIT_COVER = {
@@ -48,7 +53,7 @@ export const ENTRY_LEDGER = {
       postedAt: 'application', releasedAt: null,
       beforeFid: true, beforeConsent: true, refundable: false,
       form: ['Cash with the application; a variable fee is reconciled to the time spent, and may be returned in full on a very early withdrawal', '随申请以现金缴纳；选择浮动收费的，按实际耗用工时结算，极早撤回的可全额退还'],
-      evidence: ['queueFaq'], status: 'verified',
+      evidence: ['queueFaq'], status: 'verify',
     },
     {
       id: 'cancellation-security-pre-trigger', kind: 'security',
@@ -61,7 +66,7 @@ export const ENTRY_LEDGER = {
       beforeFid: true, beforeConsent: true, refundable: true,
       form: ['Cash, parent company guarantee, letter of credit or bond, within a month of signing the offer; the share to be secured is set in the annual cancellation charge statement', '现金、母公司担保、信用证或履约保函，须在签署要约后一个月内提供；须提供担保的比例由年度取消费用说明规定'],
       lostIf: ['The agreement is terminated or its capacity reduced before completion, when the cancellation charge becomes payable. The cap rises to £2,000 per MW in the second financial year and £3,000 from the third', '协议在完工前终止或容量被调减的，取消费用即应支付。该上限在第二个财政年度升至每MW 2,000英镑，自第三个财政年度起为每MW 3,000英镑'],
-      evidence: ['cusc15', 'queueFaq'], status: 'verified',
+      evidence: ['cusc15', 'queueFaq'], status: 'verify',
     },
     {
       id: 'cancellation-security-post-trigger', kind: 'security',
@@ -74,7 +79,7 @@ export const ENTRY_LEDGER = {
       beforeFid: true, beforeConsent: null, refundable: true,
       form: ['The same instruments, re-stated for each security period', '担保形式同上，按各担保期重新核定'],
       lostIf: ['The agreement is terminated or its capacity reduced before completion', '协议在完工前终止或容量被调减'],
-      evidence: ['cusc15'], status: 'verified',
+      evidence: ['cusc15'], status: 'verify',
     },
     {
       id: 'progression-commitment-fee', kind: 'security',
@@ -85,7 +90,7 @@ export const ENTRY_LEDGER = {
       beforeFid: true, beforeConsent: true, refundable: true,
       form: ['Security posted on activation by a project holding a Gate 2 offer that has not yet submitted for planning', '启用后，由已持有Gate 2要约但尚未提交规划申请的项目提供担保'],
       lostIf: ['The project terminates or reduces its capacity before submitting for planning (milestone M1). Returned once M1 is met', '项目在提交规划申请（里程碑M1）之前终止或调减容量。达到M1后退还'],
-      evidence: ['pcf'], status: 'verified',
+      evidence: ['pcf'], status: 'verify',
     },
     {
       id: 'capacity-market-credit-cover', kind: 'security',

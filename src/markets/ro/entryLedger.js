@@ -27,6 +27,11 @@
    from the ATR; whether that settles the flag is the analyst's call. */
 const O = { auctionGuarEurMW: 20000, estabGuarEurKW: 30, connTariffGuarPct: 20 };
 
+/* EVERY ITEM IS "verify", including those whose source was opened. The pages
+   were read by a drafting agent on 2026-10-11, and "verified" is reserved for
+   a source the analyst has opened himself — the same rule the other ledgers
+   follow. An item moves up when he has looked at it. */
+
 export const ENTRY_LEDGER = {
   marketId: 'ro',
   basis: { powerMW: 50, durationHours: 2 },
@@ -47,7 +52,7 @@ export const ENTRY_LEDGER = {
       beforeFid: true, beforeConsent: true, refundable: true,
       form: ['Bank guarantee letter, term deposit or direct payment to Transelectrica, filed with the allocation request; irrevocable and payable on first demand', '银行保函、定期存款或直接向Transelectrica付款，随容量分配申请一并提交；不可撤销，见索即付'],
       lostIf: ['A winning bidder does not return the signed allocation contract, with proof of the payment guarantee, within five working days. Otherwise returned within two working days of the auction to a losing bidder, or of the signed contract to a winner', '中标方未在五个工作日内交回已签署的分配合同及价款支付保函的凭证。其余情形下，未中标的在拍卖结束后两个工作日内退还，中标的在交回已签合同后两个工作日内退还'],
-      evidence: ['order15', 'allocationProcedure'], status: 'verified',
+      evidence: ['order15', 'allocationProcedure'], status: 'verify',
     },
     {
       id: 'allocation-payment-guarantee', kind: 'security',
@@ -58,7 +63,7 @@ export const ENTRY_LEDGER = {
       beforeFid: true, beforeConsent: true, refundable: true,
       form: ['Bank guarantee letter, term deposit or direct payment, filed with the signed allocation contract', '银行保函、定期存款或直接付款，随已签署的分配合同一并提交'],
       lostIf: ['The price is not paid on the contract\'s terms, or the sponsor asks to end the contract; the allocated capacity is lost with it. Released within two working days of payment in full', '未按合同约定付清价款，或投资方主动要求终止合同；已分配的容量同时丧失。价款付清后两个工作日内解除'],
-      evidence: ['order53', 'allocationProcedure'], status: 'verified',
+      evidence: ['order53', 'allocationProcedure'], status: 'verify',
     },
     {
       id: 'allocation-price', kind: 'fee',
@@ -68,7 +73,7 @@ export const ENTRY_LEDGER = {
       postedAt: 'application', releasedAt: null,
       beforeFid: true, beforeConsent: true, refundable: false,
       form: ['Cash by bank transfer: at least 20% within 30 days of the contract and the balance within four months', '银行转账支付现金：合同签订后30日内支付至少20%，余款在四个月内付清'],
-      evidence: ['order53', 'allocationProcedure'], status: 'verified',
+      evidence: ['order53', 'allocationProcedure'], status: 'verify',
     },
     {
       id: 'establishment-guarantee', kind: 'security',
@@ -90,7 +95,7 @@ export const ENTRY_LEDGER = {
       beforeFid: true, beforeConsent: null, refundable: true,
       form: ['Financial guarantee in favour of the network operator, posted before the technical connection permit is issued and kept for the life of the connection contract', '以电网运营商为受益人的财务保函，须在技术并网许可签发前提交，并在并网合同存续期间持续有效'],
       lostIf: ['The building permit or the establishment authorisation is not obtained in time; the connection contract is not requested or signed before the permit expires; the tariff is not paid on its terms; the installation or its development stages are not delivered; or the holder gives the permit up. Returned at final energisation', '未按期取得建设许可或设立许可；未在许可到期前申请或签署并网合同；未按约定支付并网费；未按约定建成用户设施或完成各开发阶段；或持有人主动放弃许可。最终送电时退还'],
-      evidence: ['order15', 'order53', 'anre'], status: 'verified',
+      evidence: ['order15', 'order53', 'anre'], status: 'verify',
     },
   ],
 };
