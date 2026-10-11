@@ -4,6 +4,8 @@
    Style import order matters — it is the cascade order of the prototype's single
    <style> block, preserved:
      tokens  →  global  →  layout  →  components  →  charts  →  market  →  cockpit
+   verdict.css follows cockpit: it styles the home page that replaced the
+   cockpit there, and adds selectors of its own without restating any.
    Responsive and print media queries live in the file that owns the majority of
    their selectors, always after those selectors' base rules.
 
@@ -19,6 +21,7 @@ import './styles/components.css';
 import './styles/charts.css';
 import './styles/market.css';
 import './styles/cockpit.css';
+import './styles/verdict.css';
 import './styles/live.css';
 /* Last, so its @media print block wins against anything above it without
    needing !important on every rule. */

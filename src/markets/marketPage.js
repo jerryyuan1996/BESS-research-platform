@@ -102,22 +102,21 @@ function renderPending(container, market){
 
 
   container.append(h('div', { class: 'warnbox' }, L([
-    'This market\'s detailed dashboard has not yet been migrated out of the legacy single-file prototype. Its comparison interface is complete, so it participates fully in every comparison on the global cockpit — the league table, the $1M engine, the certainty frontier and the waterfall all include it.',
-    '该市场的详细看板尚未从旧版单文件原型中迁出。其对比接口已完成，因此在全球总看板的所有对比中均完整参与 — 包括同口径对比表、百万美元引擎、确定性前沿与瀑布图。',
+    'This market\'s detailed dashboard has not yet been migrated out of the legacy single-file prototype. Its comparison interface is complete, so it participates fully in every comparison on the Returns page — the league table, the $1M engine, the certainty frontier and the waterfall all include it.',
+    '该市场的详细看板尚未从旧版单文件原型中迁出。其对比接口已完成，因此在回报对比页的所有对比中均完整参与 — 包括同口径对比表、百万美元引擎、确定性前沿与瀑布图。',
   ])));
 
   container.append(h('div', { class: 'note' },
     h('b', {}, L(['Available now: ', '当前可用：'])),
     L(['this market\'s economics on a like-for-like basis, on the ', '该市场的同口径经济性见']),
-    h('a', { href: '/', onclick: (e) => { e.preventDefault(); navigate('/'); } },
-      L(['global cockpit', '全球总看板'])),
+    h('a', { href: '/returns', onclick: (e) => { e.preventDefault(); navigate('/returns'); } },
+      L(['Returns page', '回报对比页'])),
     L(['. Migration steps are documented in docs/adding-a-market.md.',
        '。迁移步骤记录于 docs/adding-a-market.md。'])));
 
   const e = market.comparison.economics;
   const rows = [
     [['Reference archetype', '参考原型'], L(market.comparison.narrative.archetype)],
-    [['Composite score', '综合评分'], market.comparison.score.composite + '/100'],
     [['Connection risk', '并网风险'], market.comparison.score.connectionRisk + '/100'],
     [['Currency', '货币'], mf.currency],
     [['Capex per MW', '每MW造价'], mf.currencySymbol + e.capexPerMW.toLocaleString(mf.locale)],
@@ -125,7 +124,7 @@ function renderPending(container, market){
     [['Verified', '核验日期'], mf.asOf],
   ];
   container.append(h('div', { class: 'card', style: 'margin-top:14px;' },
-    h('h3', {}, L(['Comparison interface — what the cockpit reads from this market', '对比接口 — 总看板读取的内容'])),
+    h('h3', {}, L(['Comparison interface — what the Returns page reads from this market', '对比接口 — 回报对比页读取的内容'])),
     h('div', { class: 'tbl-wrap' }, h('table', {}, h('tbody', {}, rows.map(([k, v]) =>
       h('tr', {}, h('td', {}, h('b', {}, L(k))), h('td', {}, String(v)))))))));
 

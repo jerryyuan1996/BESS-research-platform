@@ -2,7 +2,8 @@
    Lightweight History-API router.
 
    Routes
-     /                          home / global cockpit
+     /                          home: verdicts by investor
+     /returns                   the cross-market returns view (the old home page)
      /investment-lab             dedicated cross-market underwriting workspace
      /projects/:slug            a project dossier, absent from every build
      /projects/:slug/:tab       a dossier, deep-linked tab
@@ -53,6 +54,9 @@ export function parseRoute(pathname, search = ''){
      how stale it is, and what the automation was allowed to touch. */
   if (parts[0] === 'data' && parts.length === 1) return { name: 'data', ...view };
   if (parts[0] === 'investment-lab' && parts.length === 1) return { name: 'investmentLab', ...view };
+  /* /returns — the league table, revenue stack, $1M engine, waterfall and
+     certainty frontier. This was the home page until verdicts took its place. */
+  if (parts[0] === 'returns' && parts.length === 1) return { name: 'returns', ...view };
 
   /* /projects/:slug — a project dossier. Confidential in its entirety, so in a
      production build every slug resolves to nothing and the page renders a 404.

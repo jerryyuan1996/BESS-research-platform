@@ -1,11 +1,14 @@
 /* ---------------------------------------------------------------------------
-   Market card — the home page's market-universe tile.
+   Market card — the Returns page's market-universe tile.
 
    Registry-driven: it renders whatever markets it is handed and reads only the
    manifest + comparison interface. It never reaches into a market's dashboard.
 
    The prototype's card linked to `href` and a delegated click handler opened a
    srcdoc iframe overlay. It is now a real route.
+
+   "Screening only" is not repeated on each card. It is said once, in the page
+   header: fifteen cards each disclaiming themselves read as a contradiction.
    --------------------------------------------------------------------------- */
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
@@ -55,7 +58,6 @@ export function marketCard(market, result, scenarios){
           region ? ' · ' : null,
           L(cmp.narrative.archetype)))),
     h('div', { style: 'display:flex;align-items:center;gap:8px;flex-wrap:wrap;' },
-      chip('serious', ['Screening only', '仅供筛选']),
       chip(CONSENSUS_CHIP[profile.consensus.status] || 'info',
         CONSENSUS[profile.consensus.status] || ['Review', '复核']),
       h('span', { style: 'font-size:var(--fs-2xs);color:var(--ink2);' },

@@ -4,7 +4,7 @@
    Owns the mount point, the route → page mapping, and the single render entry
    point that every component reaches through requestRender().
 
-   The shell knows about the home cockpit, the Lab, and market or status pages.
+   The shell knows about the home page, Returns, the Lab, and market or status pages.
    It resolves a market by slug from the registry — there is no switch on market
    id anywhere in the app.
    --------------------------------------------------------------------------- */
@@ -31,6 +31,33 @@ function renderNotFound(app, route){
     L(['That route does not exist. Use the navigation above, or ', '该路由不存在。请使用上方导航，或']),
     h('a', { href: '/', onclick: (e) => { e.preventDefault(); navigate('/'); } },
       L(['return to the global cockpit', '返回全球总看板'])), '.'));
+}
+
+/* The Returns page's module, once fetched, so a re-render draws at once. */
+let returnsPage = null;
+
+function renderReturns(app){
+  if (returnsPage) return void returnsPage.renderReturnsPage(app);
+  const holder = h('div', {},
+    h('div', { class: 'hdr' }, h('div', {},
+      h('h1', {}, L(['Returns across markets', '跨市场回报对比'])),
+      h('div', { class: 'sub' }, L(['Loading the returns view…', '正在加载回报对比…'])))),
+    marketNav(markets, 'returns'),
+    h('div', { class: 'dash-skeleton', 'aria-busy': 'true', 'aria-label': L(['Loading', '加载中']) },
+      h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' })));
+  app.append(holder);
+  import('../home/returnsPage.js').then(m => {
+    returnsPage = m;
+    /* Stale if the reader navigated on: the holder is then detached. */
+    if (!holder.isConnected) return;
+    app.innerHTML = '';
+    m.renderReturnsPage(app);
+  }).catch(err => {
+    console.error('[returns] page failed to load:', err);
+    if (!holder.isConnected) return;
+    app.innerHTML = '';
+    renderNotFound(app, { path: '/returns' });
+  });
 }
 
 /* Guards a stale dossier render, exactly as marketPage.js guards a stale market
@@ -72,6 +99,11 @@ export function render(){
     return;
   }
   if (route.name === 'home') return void renderHome(app);
+  /* The old home page. Fetched on demand now that the home page no longer
+     shows it: the league table, the globe and the engine's charts are a large
+     share of what the entry chunk used to carry, and a reader who came for a
+     verdict or a market never needs them. */
+  if (route.name === 'returns') return void renderReturns(app);
   if (route.name === 'investmentLab') return void renderInvestmentLabPage(app);
   if (route.name === 'data') return void renderDataStatus(app);
   if (route.name === 'news') return void renderNewsPage(app);

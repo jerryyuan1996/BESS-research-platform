@@ -142,7 +142,6 @@ export function renderRefinementOverview(main, marketList, exitYear){
      '投委会决策界面 — 区间、证据与审批门槛'],
     [badge('calc'), badge('illus')]);
   c.append(h('div', { style:'display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px;' },
-    chip('serious', ['Release Gate: screening only', '发布门槛：仅供筛选']),
     chip(allocationReady ? 'warn' : 'critical',
       [allocationReady + ' allocation-ready', allocationReady + '个可配置']),
     h('span', { class:'muted' },

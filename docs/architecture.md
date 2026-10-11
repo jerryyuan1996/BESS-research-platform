@@ -19,6 +19,10 @@ no database, no authentication, no server-side rendering.
                        │                 │
                        │                 └── market.dashboard(container, { tabId, basePath })
                        │
+                       ├── verdictHome.js   the verdict board, fetched on demand
+                       │                    (boardModel → view store, ledgers, archetypes)
+                       │
+              src/home/returnsPage.js       /returns, fetched on demand
                        └── every section receives a market list
                                 │
                     src/comparison/engine.js
@@ -221,8 +225,8 @@ The `rewrites` rule in `vercel.json` does this in production; Vite's dev server 
 
 | State | Lives in | Scope |
 |---|---|---|
-| `lang`, `theme` | `src/app/state.js` | application-wide, persisted (`hub_lang`, `hub_theme`) |
-| `exitYear`, `wfMarket` | `src/home/state.js` | home page only |
+| `lang`, `theme`, `lens` | `src/app/state.js` | application-wide, persisted (`hub_lang`, `hub_theme`, `hub_lens`) |
+| `exitYear`, `wfMarket` | `src/home/state.js` | home and Returns pages |
 | tab, scenario, lab inputs, … | `src/markets/<id>/state.js` | that market only |
 
 Components mutate state then call `requestRender()`. They never reach for the router or a page

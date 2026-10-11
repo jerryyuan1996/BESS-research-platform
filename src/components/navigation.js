@@ -2,7 +2,7 @@
    Navigation.
 
    Two kinds:
-   - marketNav(): the app-level bar linking Home and every registered market. It
+   - marketNav(): the app-level bar linking Home, Returns and every registered market. It
      is built from the registry, so a new market appears here with no edit.
    - tabNav(): a market's own sticky tab strip, built from that market's tabs.js.
 
@@ -227,6 +227,9 @@ export function marketNav(markets, activeId){
 
   return tabStrip(
     link('/', L(['◂ Global cockpit', '◂ 全球总看板']), activeId === 'home'),
+    /* The cross-market returns view, which was the home page until verdicts
+       took its place. Listed here so it is one click from anywhere. */
+    link('/returns', L(['Returns', '回报对比']), activeId === 'returns'),
     markets.map(m => link(
       '/markets/' + m.manifest.slug,
       L(m.manifest.shortName),

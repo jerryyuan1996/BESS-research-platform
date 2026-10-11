@@ -24,6 +24,16 @@ test('the Investment Lab has its own route', () => {
   assert.deepEqual(parseRoute('/investment-lab'), { name:'investmentLab', region:null });
 });
 
+test('the Returns view has its own route, and the home page is still the root', () => {
+  /* The old home page moved here when verdicts took the root (investment-view
+     plan, phase 2). Both must resolve, and neither may shadow a market. */
+  assert.deepEqual(parseRoute('/returns'), { name:'returns', region:null });
+  assert.deepEqual(parseRoute('/returns/'), { name:'returns', region:null });
+  assert.deepEqual(parseRoute('/'), { name:'home', region:null });
+  assert.equal(parseRoute('/returns/extra').name, 'notFound');
+  assert.equal(parseRoute('/markets/returns').name, 'market');
+});
+
 import { LIFE } from '../src/comparison/assumptions.js';
 
 /* ---- the engine ---------------------------------------------------------- */
