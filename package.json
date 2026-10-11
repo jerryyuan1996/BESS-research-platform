@@ -39,6 +39,7 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
     "exceljs": "^4.4.0",
     "vite": "^7.3.6"
   },
