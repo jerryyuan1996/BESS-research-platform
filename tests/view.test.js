@@ -34,6 +34,11 @@ import { SOURCE_DECISION_PROFILE } from '../src/governance/triggers.js';
 
 const committed = createViewStore();
 
+/* The date the committed store is read at. Fixed, so that a held view reaching
+   its review date changes what the page shows and not whether the suite
+   passes: these tests are about the store as committed, not about today. */
+const ON = '2026-10-11';
+
 const analyst = { kind: 'analyst' };
 const reason = ['Because the source says so.', '因为来源如此表述。'];
 
@@ -135,7 +140,7 @@ test('a graded market is graded on every dimension, so every archetype has a sco
   assert.deepEqual(graded.map(v => v.marketId).sort(), ['fi', 'gb', 'ro', 'wa'], 'the four corners');
   for (const view of graded){
     assert.deepEqual(Object.keys(view.grades).sort(), [...DIMENSION_IDS].sort(), `${view.marketId}: not graded on every dimension`);
-    const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX);
+    const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX, { on: ON });
     for (const id of ARCHETYPE_IDS){
       const a = result.byArchetype[id];
       assert.ok(a.fit >= 0 && a.fit <= 100, `${view.marketId}/${id}: no score`);
@@ -152,23 +157,25 @@ test('the plan\'s Western Australia case falls out of the data', async () => {
   /* Read at each investor's usual route, so without the verdicts: a verdict
      names its own route, and the fund's is the co-investment tested below. */
   const view = { ...(await committed.read('wa')), verdicts: {} };
-  const result = assessMarket(view, byId('wa'), ledgerFor('wa'), FX);
+  const result = assessMarket(view, byId('wa'), ledgerFor('wa'), FX, { on: ON });
   const at = (id) => result.byArchetype[id];
   assert.equal(at('strategic').ceiling, null);
   assert.equal(at('developer').ceiling, NOT_ACCESSIBLE);
   assert.ok(at('developer').limitsBreached.includes('pre-fid-capital'));
   assert.equal(at('infraFund').ceiling, NOT_ACCESSIBLE);
   assert.equal(at('foreignFirstTimer').ceiling, NOT_ACCESSIBLE);
-  for (const id of ARCHETYPE_IDS) assert.ok(at(id).fit >= 60, `${id}: the score alone would not have shut it out`);
+  /* No score is in the Wait or Avoid band. On the score alone every one of
+     these would have been told to go ahead in some form. */
+  for (const id of ARCHETYPE_IDS) assert.ok(at(id).fit >= 45, `${id}: the score alone would not have shut it out`);
 
   /* And the same market is open to the fund as a co-investor. */
   const coInvest = { ...view, verdicts: { infraFund: { call: 'opportunistic', route: 'co-invest' } } };
-  assert.equal(assessMarket(coInvest, byId('wa'), ledgerFor('wa'), FX).byArchetype.infraFund.ceiling, null);
+  assert.equal(assessMarket(coInvest, byId('wa'), ledgerFor('wa'), FX, { on: ON }).byArchetype.infraFund.ceiling, null);
 });
 
 test('a market with no ledger can still have its cheque checked', async () => {
   const view = { ...(await committed.read('wa')), verdicts: {} };
-  const result = assessMarket(view, byId('wa'), null, FX);
+  const result = assessMarket(view, byId('wa'), null, FX, { on: ON });
   assert.equal(result.totals, null);
   assert.ok(result.byArchetype.foreignFirstTimer.limitsBreached.includes('cheque'));
   assert.ok(result.byArchetype.developer.limitsUnchecked.includes('pre-fid-capital'));
@@ -182,7 +189,7 @@ test('a committed verdict the score disagrees with says why', async () => {
   let verdicts = 0;
   for (const view of await committed.readAll()){
     if (!Object.keys(view.verdicts).length) continue;
-    const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX);
+    const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX, { on: ON });
     verdicts += Object.keys(view.verdicts).length;
     for (const flag of disagreements(result)){
       const note = view.verdicts[flag.archetype].scoreNote;

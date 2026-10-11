@@ -20,17 +20,18 @@
     },
     "revenueCertainty": {
       "dimension": "revenueCertainty",
-      "grade": 5,
+      "grade": 4,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
-        "comparison-engine"
+        "comparison-engine",
+        "rules"
       ],
       "reason": [
-        "77% of revenue is secured for ten years.",
-        "77%的收入已锁定十年。"
+        "Capacity revenue is about 77% of revenue, but its price is set again each year. The market rules guarantee only a floor at half the benchmark price, which secures about 39% of expected revenue for the long term.",
+        "容量收入约占总收入的77%，但其价格每年重新确定。市场规则只保证基准价一半的保底，据此长期锁定的约为预期收入的39%。"
       ],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-11",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -48,7 +49,14 @@
       ],
       "asOf": "2026-10-10",
       "author": "analyst",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "held": {
+        "grade": 1,
+        "confidence": "medium",
+        "asOf": "2026-10-11",
+        "reviewBy": "2027-03-31",
+        "publicNote": null
+      }
     },
     "approvalTransparency": {
       "dimension": "approvalTransparency",
@@ -169,21 +177,21 @@
     },
     "debtAvailability": {
       "dimension": "debtAvailability",
-      "grade": 4,
+      "grade": 3,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-11",
       "author": "analyst",
       "lockedUntil": null
     },
     "exitLiquidity": {
       "dimension": "exitLiquidity",
-      "grade": 3,
+      "grade": 2,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-11",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -208,8 +216,8 @@
         {
           "dimension": "revenueCertainty",
           "text": [
-            "77% of revenue is secured for ten years, the most of any market here.",
-            "77%的收入锁定十年，为各市场之最。"
+            "About three-quarters of revenue comes from the capacity mechanism, with a floor at half the benchmark price: the most secured revenue of the four markets.",
+            "约四分之三的收入来自容量机制，并有基准价一半的保底：在四个市场中锁定收入最高。"
           ]
         },
         {
@@ -233,11 +241,13 @@
       ],
       "changesIf": [
         "wa-capacity-credits-assigned",
-        "wa-clean-energy-link-east"
+        "wa-clean-energy-link-east",
+        "wa-benchmark-price-2029-30",
+        "wa-2027-cycle-access-quantities"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-11",
       "lockedUntil": null
     },
     "infraFund": {
@@ -337,6 +347,79 @@
     }
   },
   "triggers": [
+    {
+      "id": "wa-2027-cycle-access-quantities",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Capacity Credits assigned and network access quantities notified for the 2027 cycle",
+        "2027年周期容量信用分配及网络接入量通知"
+      ],
+      "expected": "2027-09",
+      "watches": [
+        "gridScarcity",
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "crc",
+      "effect": null
+    },
+    {
+      "id": "wa-access-arrangement-2027",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "New network access arrangement takes effect, with its contributions policy",
+        "新的电网接入安排及其出资政策生效"
+      ],
+      "expected": "2027-07-01",
+      "watches": [
+        "policyStability",
+        "capitalAtRisk"
+      ],
+      "direction": "either",
+      "source": {
+        "publisher": "Economic Regulation Authority — access arrangement AA5 (2022 to 2027)",
+        "url": "https://www.erawa.com.au/AA5",
+        "access": "opened"
+      },
+      "effect": null
+    },
+    {
+      "id": "wa-benchmark-price-2029-30",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Benchmark capacity price determined for the 2029-30 Capacity Year",
+        "2029-30容量年度基准容量价格裁定"
+      ],
+      "expected": "2027-03",
+      "watches": [
+        "assetReturn",
+        "revenueCertainty",
+        "capitalAtRisk"
+      ],
+      "direction": "either",
+      "source": "brcp",
+      "effect": null
+    },
+    {
+      "id": "wa-benchmark-technology-review",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Regulator's review of the benchmark technology behind the capacity price",
+        "监管机构对容量价格所依据的基准技术进行复审"
+      ],
+      "expected": "2026-10",
+      "watches": [
+        "revenueCertainty",
+        "policyStability"
+      ],
+      "direction": "either",
+      "source": "brcp",
+      "effect": null
+    },
     {
       "id": "wa-capacity-credits-assigned",
       "kind": "event",
