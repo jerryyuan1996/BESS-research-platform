@@ -13,12 +13,12 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-10-10T21:50:06.913Z",
+  "fetchedAt": "2026-10-11T05:56:21.577Z",
   "coverage": {
-    "from": "2025-10-10T22:00:00.000Z",
-    "to": "2026-10-09T23:30:00.000Z",
+    "from": "2025-10-11T06:00:00.000Z",
+    "to": "2026-10-10T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17187
+    "points": 17219
   },
   "units": {
     "price": "AUD/MWh"
@@ -32,37 +32,37 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17187,
-    "coverageDays": 363,
+    "points": 17219,
+    "coverageDays": 364,
     "pointsPerHour": 2,
-    "mean": 99.54,
-    "median": 97.28,
-    "stdev": 48.77,
-    "p5": 29.71,
-    "p95": 164.62,
-    "negativeHoursPct": 0.023447954849595623,
-    "spreadMean": 56.31,
-    "spreadMedian": 51.55,
-    "spreadP25": 33.04,
-    "spreadP75": 71.97,
-    "spreadDays": 353,
+    "mean": 99.61,
+    "median": 97.36,
+    "stdev": 48.69,
+    "p5": 30.03,
+    "p95": 164.51,
+    "negativeHoursPct": 0.023114001974562984,
+    "spreadMean": 56.29,
+    "spreadMedian": 51.29,
+    "spreadP25": 33.07,
+    "spreadP75": 71.95,
+    "spreadDays": 354,
     "chargeMean": 74.43,
-    "dischargeMean": 130.74,
+    "dischargeMean": 130.72,
     "durationHours": 7
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 74900,
-    "marginPerCycle": 302.22,
+    "revenuePerMW": 74870,
+    "marginPerCycle": 302.1,
     "inputs": {
-      "chargeMean": 74.42806960744637,
-      "dischargeMean": 130.73629704573037,
+      "chargeMean": 74.42581517352704,
+      "dischargeMean": 130.7165133171912,
       "durationHours": 7,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
       "availability": 0.97,
       "spreadRealisation": 0.7,
-      "spreadDays": 353
+      "spreadDays": 354
     },
     "claim": [
       "Wholesale arbitrage only — excludes capacity, ancillary and balancing revenue",
@@ -72,13 +72,13 @@
   "daily": [
     {
       "d": "2025-10-11",
-      "n": 36,
-      "mean": 68.68,
-      "min": -37.93,
+      "n": 20,
+      "mean": 90.37,
+      "min": -24.01,
       "max": 131.28,
-      "spread": 95.81,
-      "charge": 15.03,
-      "discharge": 110.84
+      "spread": null,
+      "charge": null,
+      "discharge": null
     },
     {
       "d": "2025-10-12",
@@ -3692,10 +3692,20 @@
     },
     {
       "d": "2026-10-10",
+      "n": 48,
+      "mean": 104.73,
+      "min": 30.05,
+      "max": 136.02,
+      "spread": 50.1,
+      "charge": 73.63,
+      "discharge": 123.73
+    },
+    {
+      "d": "2026-10-11",
       "n": 16,
-      "mean": 117.8,
-      "min": 100.7,
-      "max": 128.92,
+      "mean": 112.65,
+      "min": 99.57,
+      "max": 152.66,
       "spread": null,
       "charge": null,
       "discharge": null
@@ -3703,8 +3713,8 @@
   ],
   "sourceSnapshot": {
     "file": "wa-wem-prices.json",
-    "contentChecksum": "sha256:2193d81b7042ef1dae9250ace87f973f6426e2e865a9a8e9e159639d6a4f39b3",
-    "points": 17187
+    "contentChecksum": "sha256:790a08df10ce26969ab93ee3be105d98f724940c534a6ce38d17b79341be4bd5",
+    "points": 17219
   },
-  "summaryChecksum": "sha256:2829d42b559899f1c6f87fb3b19ccf39f10d6190e5625162bd693e3881395cfa"
+  "summaryChecksum": "sha256:587454e5da8bed4f1ad5505b0196848b5c2d4896e3d6e109da4a65aa6de9e84a"
 }
