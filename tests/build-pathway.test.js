@@ -132,6 +132,47 @@ test('the WA/Finland difference is modelled as gates, not as an order', () => {
   assert.equal(prerequisitesBefore(wa, 'studies').length, 0);
 });
 
+test('Great Britain gates on land and Romania on an auction, and neither gates the permit on consent', () => {
+  /* The two later pathways, pinned the same way: by the gates they publish.
+
+     Great Britain's reform makes land rights the readiness test for a Gate 2
+     application and does NOT require planning consent to apply. Romania sells
+     the connection at an annual auction and then polices consent by deadline:
+     it is required before the connection works are contracted, not before the
+     permit. Both differ from Finland, where consent gates the connection
+     agreement itself, and an edit that made either look like Finland would be
+     a change of finding rather than of wording. */
+  const gb = buildPathwayFor('gb');
+  const ro = buildPathwayFor('ro');
+  assert.ok(gb && ro);
+
+  const gbGates = prerequisites(gb);
+  assert.equal(gbGates.length, 2, 'Great Britain publishes two gating rules in this model');
+  const land = gbGates.find(g => g.before === 'application');
+  assert.ok(land && land.requiresFrom === 'site', 'the Gate 2 application is gated on the site');
+  assert.match(land.requires[0], /land rights/i);
+  assert.ok(gbGates.some(g => g.before === 'entry' && g.requiresFrom === 'compliance'),
+    'first export is gated on the Interim Operational Notification');
+
+  const roGates = prerequisites(ro);
+  assert.equal(roGates.length, 3, 'Romania publishes three gating rules in this model');
+  const auction = roGates.find(g => g.requiresFrom === 'application');
+  assert.ok(auction && auction.before === 'studies', 'the permit is gated on the allocation contract');
+  assert.match(auction.requires[0], /allocation contract/i);
+  assert.ok(roGates.some(g => g.requiresFrom === 'consent' && g.before === 'construction'),
+    'consent gates the connection works');
+
+  for (const p of [gb, ro]){
+    assert.ok(!prerequisites(p).some(g => g.requiresFrom === 'consent' && ['application', 'studies'].includes(g.before)),
+      `${p.marketId} must NOT gate its application or its offer on consent — that is Finland`);
+  }
+
+  /* A stage with no duration is a statement, not an omission: the next British
+     application window has no published date. Only that stage may be null. */
+  assert.deepEqual(gb.stages.filter(s => s.months === null).map(s => s.id), ['application']);
+  assert.ok(ro.stages.every(s => s.months !== null));
+});
+
 test('every stage cites a source that exists in its market register', async () => {
   /* A citation naming a key the register does not have renders no link and no
      error, which is the failure mode this catches. */
