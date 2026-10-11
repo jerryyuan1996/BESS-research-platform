@@ -509,10 +509,16 @@ export const TREND_LABEL = {
 };
 
 /**
- * What a grade rests on. PRACTITIONER is a legitimate basis and is published as
- * one: the grade shows, the reason and any deal-derived number stay in the
- * private overlay. That is why a practitioner grade may carry no public reason
- * and no evidence, and no other basis may.
+ * What a grade rests on.
+ *
+ * PRACTITIONER is for a dimension with NO PUBLIC EVIDENCE AT ALL: nothing to
+ * cite, so the grade is the analyst's judgement and says so. It carries no
+ * evidence and no public reason, and the reason lives in the private overlay.
+ *
+ * It is NOT how the analyst records a view that departs from what sources
+ * support. That is the `held` layer below, which sits on top of a sourced
+ * grade and strips nothing from it. A record that has evidence or a public
+ * reason and calls itself practitioner is refused, and told to use `held`.
  */
 export const BASIS = {
   OFFICIAL: 'official',
@@ -601,12 +607,147 @@ export function validateGrade(record){
     at('no evidence — only a practitioner grade may stand without a source');
   }
 
-  if (practitioner ? (record.reason !== undefined && record.reason !== null && !isPair(record.reason)) : !isPair(record.reason)){
+  if (practitioner){
+    /* Evidence or a public reason means sources DO say something. Then the
+       sourced reading belongs in the record and the analyst's own view on top
+       of it — relabelling the whole grade would strip what anyone can check. */
+    const sourced = (Array.isArray(record.evidence) && record.evidence.length > 0)
+      || (record.reason !== undefined && record.reason !== null);
+    if (sourced){
+      at('a practitioner grade carries no evidence and no public reason — where sources support a grade, keep a sourced basis and record your own view in `held`');
+    }
+  } else if (!isPair(record.reason)){
     at('reason must be an [en, zh] pair');
+  }
+
+  if (record.held !== undefined){
+    if (practitioner) at('a practitioner grade is already the analyst\'s view — `held` sits on a sourced grade, and there is none here to depart from');
+    for (const p of validateHeld(record.held)) at(`held: ${p}`);
   }
 
   stamp(record, at);
   return problems;
+}
+
+/* ---------------------------------------------------------------------------
+   THE HELD LAYER — what the analyst actually believes, on top of what sources
+   support.
+
+   A sourced grade says what a public reader can verify. The analyst often
+   knows more, from deals, and that knowledge cannot be published as a reason.
+   Before this layer the only way to record it was to relabel the whole grade
+   "practitioner", which threw away the sourced reading and its evidence. So
+   the two are kept apart and BOTH are kept:
+
+       grade, basis, evidence, reason     what public sources support
+       held: { grade, confidence,         what the analyst believes
+               asOf, reviewBy, publicNote }
+
+   THE GAP BETWEEN THEM IS THE POINT. It marks exactly where the analyst's
+   judgement departs from what anyone can read, and a page can say so: "1 ·
+   practitioner view; public sources support 2".
+
+   Four rules, each enforced somewhere a test can reach:
+
+     · IT GOES STALE. `reviewBy` is required and at most twelve months after
+       `asOf`. Past that date the layer lapses: scores fall back to the sourced
+       grade and the lapse is reported, not silently dropped.
+     · IT STRIPS NOTHING. Adding or removing it never touches the sourced
+       grade, its reason or its evidence. It is written and removed at its own
+       path — see view/schema/view.mjs.
+     · ONLY THE ANALYST WRITES IT. No rule and no agent may create, change or
+       remove it, whatever else they are one day allowed to write.
+     · THE REAL REASON STAYS PRIVATE. `publicNote` is at most one line that is
+       safe to publish. The reason is in the private overlay.
+
+   Confidence is shown and does nothing else. It does not weight a score: a
+   discounted grade would be a second grade nobody had written down.
+   --------------------------------------------------------------------------- */
+
+export const CONFIDENCE = ['high', 'medium', 'low'];
+
+export const CONFIDENCE_LABEL = {
+  high:   ['High confidence', '把握较大'],
+  medium: ['Medium confidence', '把握中等'],
+  low:    ['Low confidence', '把握较小'],
+};
+
+/** Experience goes stale. A held view must be looked at again within this many months. */
+export const HELD_MAX_MONTHS = 12;
+
+const addMonths = (day, months) => {
+  const d = new Date(`${day}T00:00:00Z`);
+  d.setUTCMonth(d.getUTCMonth() + months);
+  return d.toISOString().slice(0, 10);
+};
+
+/** Problems with one held layer. Empty array means valid. */
+export function validateHeld(held){
+  if (!held || typeof held !== 'object' || Array.isArray(held)) return ['must be an object'];
+  const problems = [];
+  if (!Number.isInteger(held.grade) || held.grade < 1 || held.grade > 5) problems.push('grade must be a whole number from 1 to 5');
+  if (!CONFIDENCE.includes(held.confidence)) problems.push(`confidence must be one of ${CONFIDENCE.join(', ')}`);
+  if (!isDay(held.asOf)) problems.push('asOf must be a YYYY-MM-DD date');
+  if (!isDay(held.reviewBy)) problems.push('reviewBy is required, as a YYYY-MM-DD date — experience goes stale');
+  else if (isDay(held.asOf)){
+    if (held.reviewBy <= held.asOf) problems.push('reviewBy must be after asOf');
+    else if (held.reviewBy > addMonths(held.asOf, HELD_MAX_MONTHS)){
+      problems.push(`reviewBy is more than ${HELD_MAX_MONTHS} months after asOf`);
+    }
+  }
+  if (held.publicNote !== null && !isPair(held.publicNote)) problems.push('publicNote must be null or an [en, zh] pair');
+  for (const key of Object.keys(held)){
+    if (!['grade', 'confidence', 'asOf', 'reviewBy', 'publicNote'].includes(key)) problems.push(`"${key}" is not a field of a held view — a reason or a figure belongs in the private overlay`);
+  }
+  return problems;
+}
+
+const asGrade = (v) => Number.isInteger(v) && v >= 1 && v <= 5 ? v : null;
+
+/**
+ * The grade to score with, and everything a page needs to say where it came
+ * from. THE ONE PLACE this is decided: every score, knock-out and band check
+ * reads a grade through here.
+ *
+ * `entry` is a bare grade or a grade record. `on` is the evaluation date,
+ * YYYY-MM-DD, and it is an argument rather than the clock so that this stays
+ * pure and a test can stand on either side of a review date.
+ *
+ *   grade      the grade to use: held while it is live, sourced otherwise
+ *   sourced    what public sources support, always
+ *   held       the held grade, or null when there is no held layer
+ *   applied    true when the held grade is the one in use
+ *   lapsed     true when a held layer exists and its review date has passed
+ *
+ * The held grade applies up to and including `reviewBy`. A record with a held
+ * layer cannot be evaluated without a date: guessing which side of the review
+ * date "now" falls on is exactly the silent choice this function exists to
+ * prevent, so it throws.
+ */
+export function effectiveGrade(entry, on){
+  const record = entry && typeof entry === 'object' ? entry : null;
+  const sourced = asGrade(record ? record.grade : entry);
+  const layer = record?.held ?? null;
+  if (!layer) return { grade: sourced, sourced, held: null, applied: false, lapsed: false, confidence: null, reviewBy: null };
+
+  if (!isDay(on)) throw new Error('a grade with a held layer needs an evaluation date (YYYY-MM-DD) to decide whether the layer has lapsed');
+  const applied = on <= layer.reviewBy;
+  return {
+    grade: applied ? asGrade(layer.grade) : sourced,
+    sourced,
+    held: asGrade(layer.grade),
+    applied,
+    lapsed: !applied,
+    confidence: layer.confidence,
+    reviewBy: layer.reviewBy,
+  };
+}
+
+/** A grade record with its held layer removed. The sourced record, exactly as it was. */
+export function sourcedOnly(record){
+  if (!record || typeof record !== 'object' || !('held' in record)) return record;
+  const { held, ...rest } = record;
+  return rest;
 }
 
 /* ---------------------------------------------------------------------------

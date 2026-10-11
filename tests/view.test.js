@@ -207,10 +207,12 @@ test('nothing in the committed store was written by automation', async () => {
 /* ---- the schema ------------------------------------------------------------- */
 
 test('a path names one whole record, and no path spells methodology', () => {
-  assert.deepEqual(parsePath('grades.foreignEntry'), { section: 'grades', key: 'foreignEntry' });
-  assert.deepEqual(parsePath('verdicts.developer'), { section: 'verdicts', key: 'developer' });
-  assert.deepEqual(parsePath('triggers.fi-an-event'), { section: 'triggers', key: 'fi-an-event' });
-  assert.deepEqual(parsePath('thesis'), { section: 'thesis', key: null });
+  assert.deepEqual(parsePath('grades.foreignEntry'), { section: 'grades', key: 'foreignEntry', layer: null });
+  assert.deepEqual(parsePath('verdicts.developer'), { section: 'verdicts', key: 'developer', layer: null });
+  assert.deepEqual(parsePath('triggers.fi-an-event'), { section: 'triggers', key: 'fi-an-event', layer: null });
+  assert.deepEqual(parsePath('thesis'), { section: 'thesis', key: null, layer: null });
+  /* The one layer with a path of its own: the analyst's held view. */
+  assert.deepEqual(parsePath('grades.foreignEntry.held'), { section: 'grades', key: 'foreignEntry', layer: 'held' });
   assert.deepEqual(VIEW_SECTIONS, ['grades', 'verdicts', 'triggers', 'thesis']);
   for (const id of DIMENSION_IDS) assert.ok(parsePath(`grades.${id}`));
   for (const id of ARCHETYPE_IDS) assert.ok(parsePath(`verdicts.${id}`));
@@ -220,7 +222,8 @@ test('a path names one whole record, and no path spells methodology', () => {
     'pillarWeight.entry', 'discountRate', 'economics.merchGross', 'assumptions.economics.merchGross',
     'grades.vibes', 'verdicts.tourist',
     /* One field inside a record: the half-edit a whole-record store prevents. */
-    'verdicts.developer.call', 'grades.foreignEntry.grade',
+    'verdicts.developer.call', 'grades.foreignEntry.grade', 'grades.foreignEntry.held.grade',
+    'grades.vibes.held', 'verdicts.developer.held',
     '', 'grades', 'grades.', '../src/governance/archetypes.js', null, undefined, 7,
   ];
   for (const p of refused) assert.equal(parsePath(p), null, `"${p}" parsed as a view-store path`);

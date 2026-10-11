@@ -23,6 +23,15 @@
         rendered with the same weight as `because`.
      4. A DISAGREEMENT BETWEEN CALL AND SCORE IS PRINTED, with the analyst's
         answer to it. Nothing is hidden by rounding the two together.
+     5. WHERE THE ANALYST HOLDS A DIFFERENT VIEW FROM THE SOURCES, BOTH SHOW.
+        The held grade is the one scored, and it is printed beside what public
+        sources support: "1 · practitioner view; public sources support 2". A
+        held view past its review date is not scored and is shown as lapsed —
+        flagged, never silently dropped. The reason for it is never here.
+
+   THE EVALUATION DATE IS THE READER'S. A held view lapses on the page the day
+   after its review date with no rebuild, which is what "experience goes stale"
+   has to mean on a static site.
 
    The pillars are never blended into one market-level number. The only single
    score on the page belongs to one investor.
@@ -32,10 +41,11 @@ import { L } from '../app/i18n.js';
 import { card } from './card.js';
 import { chip } from './chip.js';
 import { badge } from './badge.js';
-import { gradeNote, verdictNote } from '../local/notes.js';
+import { gradeNote, verdictNote, heldNote, privateMetrics, hasNotes } from '../local/notes.js';
 import {
   PILLARS, PILLAR_LABEL, PILLAR_QUESTION, DIMENSIONS, dimension, anchorText,
   VERDICT, VERDICT_LABEL, VERDICT_MEANING, ROUTE_LABEL, ARCHETYPE_IDS, BASIS, BASIS_LABEL,
+  CONFIDENCE_LABEL, effectiveGrade,
 } from '../governance/investability.js';
 import { ARCHETYPES, NOT_ACCESSIBLE, DISAGREEMENT_LABEL, METRIC, limitCheck } from '../governance/archetypes.js';
 import { STAGE_LABEL } from '../governance/buildPathway.js';
@@ -77,12 +87,19 @@ const local = (amount) => {
   return [`${amount.currency} ${n(amount.fixed)}`, `${amount.currency} ${n(amount.fixed)}`];
 };
 
+/* The reader's own date, as YYYY-MM-DD. The one clock read in this feature;
+   everything below it takes the date as an argument. */
+const today = () => new Date().toISOString().slice(0, 10);
+
 function load(marketId){
   const view = viewFor(marketId);
   const market = byId(marketId);
   if (!view || !market) return null;
   const ledger = ledgerFor(marketId);
-  return { view, market, ledger, result: assessMarket(view, market, ledger, FX) };
+  const on = today();
+  /* Empty in a build, so the published page always gets the public answer. */
+  const mine = privateMetrics(marketId);
+  return { view, market, ledger, on, mine, result: assessMarket(view, market, ledger, FX, { on, privateMetrics: mine }) };
 }
 
 /* The analyst's own reason, from the private overlay. Present on his screen in
@@ -175,8 +192,9 @@ function verdictCard(a, view){
 export function investmentCasePanel(marketId){
   const data = load(marketId);
   if (!data) return [];
-  const { view, result } = data;
+  const { view, result, on } = data;
   const out = [];
+  const anyHeld = ARCHETYPE_IDS.some(id => result.byArchetype[id].heldApplied.length);
 
   out.push(h('div', { class: 'note' }, L([
     'A verdict for each of four kinds of investor. The analyst sets each call; the score beneath it only checks the call and is printed when the two disagree. A barrier is a threshold, never a weight, so a market can score well and still be closed to an investor.',
@@ -197,13 +215,17 @@ export function investmentCasePanel(marketId){
     h('thead', {}, h('tr', {},
       h('th', {}, L(['Investor', '投资者'])),
       ...PILLARS.map(p => h('th', { class: 'num', title: L(PILLAR_QUESTION[p]) }, L(PILLAR_LABEL[p]))),
-      h('th', { class: 'num' }, L(['Fit', '匹配度'])))),
+      h('th', { class: 'num' }, L(['Fit', '匹配度'])),
+      /* Only when a held view is live: how far the analyst's own judgement
+         moves the score from what public sources alone would give. */
+      anyHeld ? h('th', { class: 'num' }, L(['On public sources alone', '仅按公开来源'])) : null)),
     h('tbody', {}, ARCHETYPE_IDS.map(id => {
       const a = result.byArchetype[id];
       return h('tr', {},
         h('td', {}, h('b', {}, L(ARCHETYPES[id].label))),
         ...PILLARS.map(p => h('td', { class: 'num' }, a.pillars[p] === null ? '—' : a.pillars[p].toFixed(0))),
-        h('td', { class: 'num' }, a.fit === null ? '—' : h('b', {}, a.fit.toFixed(0))));
+        h('td', { class: 'num' }, a.fit === null ? '—' : h('b', {}, a.fit.toFixed(0))),
+        anyHeld ? h('td', { class: 'num' }, a.fitSourced === null ? '—' : a.fitSourced.toFixed(0)) : null);
     })))));
   out.push(pillars);
 
@@ -222,14 +244,31 @@ export function investmentCasePanel(marketId){
       h('th', {}, L(['Basis', '依据'])))),
     h('tbody', {}, DIMENSIONS.map(d => {
       const g = view.grades[d.id];
+      const e = effectiveGrade(g, on);
+      const mine = g?.held ? heldNote(view.marketId, d.id) : null;
       return h('tr', {},
         h('td', {}, L(PILLAR_LABEL[d.pillar])),
         h('td', {}, h('b', {}, L(d.label))),
-        h('td', { class: 'num' }, g ? g.grade + ' / 5' : '—'),
+        h('td', { class: 'num' }, g ? e.grade + ' / 5' : '—',
+          e.applied ? h('div', {}, chip('info', L(['Practitioner view', '从业者观点']))) : null,
+          e.lapsed ? h('div', {}, chip('warn', L(['Practitioner view lapsed', '从业者观点已过期']))) : null),
         h('td', {},
-          g ? L(anchorText(d.id, g.grade)) : L(['Not yet graded', '尚未评级']),
-          g?.reason ? h('div', { class: 'cap', style: 'margin-top:3px;' }, L(g.reason)) : null,
-          gradeNote(view.marketId, d.id) ? privateLine(gradeNote(view.marketId, d.id)) : null),
+          g ? L(anchorText(d.id, e.grade)) : L(['Not yet graded', '尚未评级']),
+          /* Both grades, always, when a held view exists. */
+          e.applied ? h('div', { class: 'note', style: 'margin-top:4px;' },
+            h('b', {}, e.held + ' · ' + L(['practitioner view', '从业者观点']) + '; '
+              + L(['public sources support ', '公开来源支持的评级为 ']) + e.sourced + '. '),
+            L(CONFIDENCE_LABEL[e.confidence]) + L(['; to be reviewed by ', '；复核日期 ']) + e.reviewBy + '.',
+            g.held.publicNote ? h('div', { style: 'margin-top:3px;' }, L(g.held.publicNote)) : null) : null,
+          e.lapsed ? h('div', { class: 'warnbox', style: 'margin-top:4px;' }, L([
+            `A practitioner view of ${e.held} was due for review by ${e.reviewBy} and has lapsed. The grade shown is what public sources support.`,
+            `从业者观点（评级${e.held}）应于${e.reviewBy}前复核，现已过期。此处所示为公开来源支持的评级。`])) : null,
+          g?.reason ? h('div', { class: 'cap', style: 'margin-top:3px;' },
+            e.applied ? h('b', {}, L(['Public sources: ', '公开来源：'])) : null, L(g.reason)) : null,
+          gradeNote(view.marketId, d.id) ? privateLine(gradeNote(view.marketId, d.id)) : null,
+          mine ? privateLine(mine) : null,
+          /* Only where the overlay exists, so only on the analyst's screen. */
+          g?.held && !mine && hasNotes() ? privateLine(['This held view has no private reason in the overlay. Add one.', '该从业者观点在私有备注中没有对应理由，请补充。']) : null),
         h('td', {}, g ? chip(g.basis === BASIS.PRACTITIONER ? 'info' : 'good', L(BASIS_LABEL[g.basis])) : null));
     })))));
   out.push(grades);
@@ -246,7 +285,7 @@ export function investmentCasePanel(marketId){
 export function entryPanel(marketId){
   const data = load(marketId);
   if (!data || !data.ledger) return [];
-  const { ledger, result } = data;
+  const { ledger, result, mine } = data;
   const totals = result.totals;
   const out = [];
 
@@ -293,7 +332,11 @@ export function entryPanel(marketId){
     'Each investor\'s own limit, compared with the figures above for a project it originates. A limit that could not be checked is shown as such; it has not been passed.',
     '将各类投资者自身的上限，与其自行发起项目时的上述数字相比较。无法核查的上限如实标注，并不代表已通过。',
   ])));
-  const { metrics, incomplete } = limitInputs(totals);
+  /* The analyst's own figures, where he has them, in place of the public ones.
+     `mine` is empty in a build, so this is the public check there. */
+  const inputs = limitInputs(totals);
+  const metrics = { ...inputs.metrics, ...mine };
+  const incomplete = inputs.incomplete.filter(key => !(key in mine));
   limits.append(h('div', { class: 'tbl-wrap' }, h('table', {},
     h('thead', {}, h('tr', {},
       h('th', {}, L(['Investor', '投资者'])),
@@ -311,7 +354,10 @@ export function entryPanel(marketId){
         h('td', { class: 'num' }, l.metric === METRIC.MONTHS_TO_RTB ? l.max + L([' months', '个月']) : usd(l.max)),
         h('td', {}, check.breached.includes(l.id) ? chip('serious', L(['Breached', '已超出']))
           : check.unchecked.includes(l.id) ? chip('warn', L(['Not yet checked', '尚未核查']))
-          : chip('good', L(['Within', '在上限内'])))));
+          : chip('good', L(['Within', '在上限内'])),
+          /* Checked against a deal-derived figure: say so, on the one screen
+             that can show it. */
+          l.metric in mine ? h('span', { style: 'margin-left:6px;' }, badge('conf')) : null)));
     })))));
   out.push(limits);
   return out;

@@ -19,6 +19,8 @@
 
      · the author is the analyst
      · the path is a view-store path — whole records, never methodology
+     · a held view is written by the analyst alone, at its own path, and has a
+       private reason in the local overlay explaining it
      · it carries a reason in both languages
      · it changes something
      · the whole market view is valid afterwards
@@ -34,8 +36,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
   emptyView, validateMarketView, parsePath, readPath, writePath, buildIndex,
-  validateChangelogEntry, PERMITTED_AUTHORS,
+  validateChangelogEntry, authorMayWrite, isHeldPath, gapFor,
 } from '../../view/schema/view.mjs';
+import { NOTES_KEY, heldNote } from '../../src/local/notes.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
@@ -59,7 +62,21 @@ const stringify = (value) => `${JSON.stringify(value, null, 2)}\n`;
 
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
-export function createViewStore(root = VIEW_ROOT){
+/* The private overlay, read from disk. This writer runs on the analyst's own
+   machine, where the folder exists; anywhere else there is no file and no
+   held view can be written — which is the intended result, not a gap. */
+const LOCAL_NOTES = path.resolve(HERE, '..', '..', 'local-data', `${NOTES_KEY}.json`);
+
+async function readLocalNotes(){
+  if (!existsSync(LOCAL_NOTES)) return null;
+  return JSON.parse(await readFile(LOCAL_NOTES, 'utf8'));
+}
+
+/**
+ * @param root   the store's directory; tests pass a temporary one
+ * @param notes  how to read the private overlay; tests pass their own
+ */
+export function createViewStore(root = VIEW_ROOT, { notes = readLocalNotes } = {}){
   const marketFile = (id) => path.join(root, 'markets', `${id}.json`);
   const indexFile = path.join(root, 'index.json');
   const changelogFile = path.join(root, 'changelog.jsonl');
@@ -88,22 +105,40 @@ export function createViewStore(root = VIEW_ROOT){
    */
   async function prepare(change, now = new Date()){
     if (!change || typeof change !== 'object') throw new ViewRejected('change is missing');
-    if (!PERMITTED_AUTHORS.includes(change.author?.kind)){
-      throw new ViewRejected(`author "${change.author?.kind}" may not write the view — only ${PERMITTED_AUTHORS.join(', ')} today`);
-    }
     if (!parsePath(change.path)){
       throw new ViewRejected(`"${change.path}" is not a view-store path — methodology is not written here`);
+    }
+    if (!authorMayWrite(change.path, change.author?.kind)){
+      throw new ViewRejected(isHeldPath(change.path)
+        ? `author "${change.author?.kind}" may not write a held view — it is the analyst's own judgement and only the analyst writes it`
+        : `author "${change.author?.kind}" may not write the view — only the analyst today`);
     }
     if (!isPair(change.reason)) throw new ViewRejected('a change carries a reason as an [en, zh] pair');
     if (change.to === undefined) throw new ViewRejected('a change states its new value; null removes the record');
     const evidence = change.evidence ?? [];
     if (!Array.isArray(evidence)) throw new ViewRejected('evidence must be an array');
 
+    const where = parsePath(change.path);
+    if (where.section === 'grades' && !where.layer && change.to && 'held' in change.to){
+      throw new ViewRejected(`${change.market} ${change.path}: a held view is written at ${change.path}.held, never inside the sourced grade`);
+    }
+    if (where.layer === 'held' && change.to !== null){
+      /* The reason for a held view is the one thing about it that cannot be
+         published, so it is required where it CAN be checked: here, on the
+         machine that has the overlay. */
+      const reason = heldNote(change.market, where.key, await notes());
+      if (!reason){
+        throw new ViewRejected(`${change.market} ${change.path}: no private reason in local-data/${NOTES_KEY}.json — add held.${where.key}.reason for this market first`);
+      }
+    }
+
     const before = await read(change.market);
     const from = readPath(before, change.path);
     if (same(from, change.to)) throw new ViewRejected(`${change.market} ${change.path}: nothing would change`);
 
-    const after = writePath(before, change.path, change.to);
+    let after;
+    try { after = writePath(before, change.path, change.to); }
+    catch (error){ throw new ViewRejected(error.message); }
     const problems = validateMarketView(after);
     if (problems.length) throw new ViewRejected(`${change.market} ${change.path}: the view would be invalid`, problems);
 
@@ -116,6 +151,7 @@ export function createViewStore(root = VIEW_ROOT){
       reason: change.reason,
       evidence,
       ...(change.trigger ? { trigger: change.trigger } : {}),
+      ...(gapFor(change.path, before, after) ? { gap: gapFor(change.path, before, after) } : {}),
     };
     const entryProblems = validateChangelogEntry(entry);
     if (entryProblems.length) throw new ViewRejected('the changelog entry would be invalid', entryProblems);

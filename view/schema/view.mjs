@@ -111,18 +111,32 @@ export function validateMarketView(view){
  * whose reasons did not is the half-edit this store exists to prevent: the
  * record is validated as a unit, so it is replaced as a unit.
  *
- * Returns { section, key } or null. Null is how every methodology path fails —
- * there is no spelling of "a weight" or "an anchor" that parses.
+ * ONE EXCEPTION, AND IT IS A LAYER RATHER THAN A FIELD:
+ *
+ *     grades.<dimension>.held
+ *
+ * The analyst's held view sits on top of a sourced grade and must be able to
+ * come and go without the sourced grade being touched. So it has its own path:
+ * writing it replaces the layer and nothing else, and writing the grade
+ * replaces the sourced record and carries the layer over unchanged.
+ *
+ * Returns { section, key, layer } or null. Null is how every methodology path
+ * fails — there is no spelling of "a weight" or "an anchor" that parses.
  */
 export function parsePath(path){
-  if (path === 'thesis') return { section: 'thesis', key: null };
+  if (path === 'thesis') return { section: 'thesis', key: null, layer: null };
+  const held = /^grades\.([A-Za-z0-9_-]+)\.held$/.exec(typeof path === 'string' ? path : '');
+  if (held) return DIMENSION_IDS.includes(held[1]) ? { section: 'grades', key: held[1], layer: 'held' } : null;
   const m = /^(grades|verdicts|triggers)\.([A-Za-z0-9_-]+)$/.exec(typeof path === 'string' ? path : '');
   if (!m) return null;
   const [, section, key] = m;
   if (section === 'grades' && !DIMENSION_IDS.includes(key)) return null;
   if (section === 'verdicts' && !ARCHETYPE_IDS.includes(key)) return null;
-  return { section, key };
+  return { section, key, layer: null };
 }
+
+/** True when a path addresses the analyst's held layer. */
+export const isHeldPath = (path) => parsePath(path)?.layer === 'held';
 
 /** The value at a path, or null when nothing is there. */
 export function readPath(view, path){
@@ -130,6 +144,7 @@ export function readPath(view, path){
   if (!where) return null;
   if (where.section === 'thesis') return view.thesis ?? null;
   if (where.section === 'triggers') return view.triggers.find(t => t.id === where.key) ?? null;
+  if (where.layer === 'held') return view.grades[where.key]?.held ?? null;
   return view[where.section][where.key] ?? null;
 }
 
@@ -138,6 +153,26 @@ export function writePath(view, path, to){
   const where = parsePath(path);
   if (!where) throw new Error(`"${path}" is not a view-store path`);
   const next = structuredClone(view);
+  if (where.layer === 'held'){
+    const record = next.grades[where.key];
+    if (!record) throw new Error(`${path}: there is no sourced grade for a held view to sit on`);
+    if (to === null) delete record.held; else record.held = to;
+    return next;
+  }
+  if (where.section === 'grades'){
+    /* The sourced record is replaced; a held layer on it is carried over
+       exactly as it was. Nobody changes the analyst's view by changing what
+       the sources say underneath it. */
+    const layer = next.grades[where.key]?.held;
+    if (to === null){
+      if (layer) throw new Error(`${path}: remove the held view first — a sourced grade cannot be deleted from under one`);
+      delete next.grades[where.key];
+    } else {
+      const { held: ignored, ...sourced } = to;
+      next.grades[where.key] = layer ? { ...sourced, held: layer } : sourced;
+    }
+    return next;
+  }
   if (where.section === 'thesis') next.thesis = to;
   else if (where.section === 'triggers'){
     next.triggers = next.triggers.filter(t => t.id !== where.key);
@@ -166,6 +201,53 @@ export function buildIndex(views){
 /** Who may write the view today. See the header: this is one name on purpose. */
 export const PERMITTED_AUTHORS = ['analyst'];
 
+/**
+ * Who may write a held view: the analyst, and this list does not grow.
+ *
+ * Kept apart from PERMITTED_AUTHORS deliberately. The plan goes on to let
+ * rules and an agent write sourced grades, and when that list is widened this
+ * one must not move with it: a held view is the analyst's own judgement, and
+ * a machine that could write it would be writing his opinion for him.
+ */
+export const HELD_AUTHORS = ['analyst'];
+
+/** May this kind of author write this path? The gate asks here and nowhere else. */
+export function authorMayWrite(path, kind){
+  if (!parsePath(path)) return false;
+  return isHeldPath(path) ? HELD_AUTHORS.includes(kind) : PERMITTED_AUTHORS.includes(kind);
+}
+
+/**
+ * How a change moved the gap between a held view and the sourced grade under
+ * it. Recorded on the changelog entry so the analyst's judgement leaves a
+ * track record that can be counted by dimension.
+ *
+ *   toward / met / away / none   the SOURCED grade changed under a held view:
+ *                                did the public record move to meet the
+ *                                analyst, away from him, or neither
+ *   opened / revised / withdrawn the HELD view itself was set, changed or
+ *                                removed
+ *
+ * Null when no held view is involved.
+ */
+export const GAP_MOVEMENT = ['toward', 'met', 'away', 'none', 'opened', 'revised', 'withdrawn'];
+
+export function gapFor(path, before, after){
+  const where = parsePath(path);
+  if (!where || where.section !== 'grades') return null;
+  const was = before.grades[where.key], now = after.grades[where.key];
+
+  if (where.layer === 'held'){
+    const movement = !was?.held ? 'opened' : !now?.held ? 'withdrawn' : 'revised';
+    return { dimension: where.key, held: now?.held?.grade ?? null, heldWas: was?.held?.grade ?? null, sourced: now.grade, movement };
+  }
+  if (!now?.held || !was) return null;
+  const held = now.held.grade;
+  const d0 = Math.abs(was.grade - held), d1 = Math.abs(now.grade - held);
+  const movement = d1 === d0 ? 'none' : d1 > d0 ? 'away' : d1 === 0 ? 'met' : 'toward';
+  return { dimension: where.key, held, sourcedWas: was.grade, sourced: now.grade, movement };
+}
+
 /** Problems with one changelog entry. Empty array means valid. */
 export function validateChangelogEntry(entry){
   const problems = [];
@@ -179,5 +261,7 @@ export function validateChangelogEntry(entry){
   if (!('from' in entry) || !('to' in entry)) at('from and to are both recorded, null included');
   if (!isPair(entry.reason)) at('reason must be an [en, zh] pair');
   if (!Array.isArray(entry.evidence)) at('evidence must be an array');
+  if (isHeldPath(entry.path) && !HELD_AUTHORS.includes(entry.author?.kind)) at('a held view is written by the analyst alone');
+  if (entry.gap !== undefined && !GAP_MOVEMENT.includes(entry.gap?.movement)) at('gap.movement is not a known movement');
   return problems;
 }

@@ -103,8 +103,12 @@ const BUDGET = {
        RAISED FROM 34 TO 36 when the Great Britain and Romania ledgers were
        filled: seven new items, each with its release and forfeiture terms in
        two languages. Measured 34.63 on CI, which builds the merge with the
-       base branch, and 33.68 locally. */
-    'investment-case': 36,
+       base branch, and 33.68 locally.
+
+       RAISED FROM 36 TO 39 for the held layer: the effective-grade function,
+       its validator and the page text that prints a practitioner view beside
+       the sourced grade. Measured 36.55 locally. No market data was added. */
+    'investment-case': 39,
   },
 };
 

@@ -31,7 +31,9 @@
     "refresh:market-zones": "node scripts/generate-market-zones.mjs",
     "refresh:grid-networks": "node scripts/refresh-grid-networks.mjs",
     "refresh:storage": "node scripts/refresh-storage.mjs",
-    "audit:links": "node scripts/link-audit.mjs"
+    "audit:links": "node scripts/link-audit.mjs",
+    "view:check-held": "node scripts/view/check-held.mjs",
+    "view:track-record": "node scripts/view/track-record.mjs"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

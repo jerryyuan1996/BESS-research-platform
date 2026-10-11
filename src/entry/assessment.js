@@ -12,9 +12,14 @@
    that verdict sits where the score would put it. The verdict is always the
    analyst's own record, handed back untouched.
 
-   The caller supplies the market view and the conversion rates. This module
-   does not read the store and does not look up a rate, so the same function
-   serves a page, a test and a script.
+   The caller supplies the market view, the conversion rates and the
+   evaluation date. This module does not read the store, look up a rate or
+   consult a clock, so the same function serves a page, a test and a script.
+
+   PRIVATE FIGURES ARE THE CALLER'S TO OFFER. The analyst's own screen may pass
+   deal-derived figures for a limit the public ledger cannot check. They are
+   used for the limit check and reported as used; nothing here stores them, and
+   a caller that passes none — every build — gets the public answer.
    --------------------------------------------------------------------------- */
 
 import { ARCHETYPE_IDS } from '../governance/investability.js';
@@ -26,23 +31,31 @@ import { ledgerTotals, referenceProject, limitInputs } from './ledger.js';
  * @param market   the registered market: { manifest, comparison }
  * @param ledger   its capital-at-risk ledger, or null when it has none
  * @param usdPer   USD per unit, keyed by currency code
+ * @param options.on              evaluation date, YYYY-MM-DD; required once any
+ *                                grade in the view carries a held layer
+ * @param options.privateMetrics  figures from the private overlay, keyed by
+ *                                METRIC; each replaces the public figure and is
+ *                                treated as complete
  */
-export function assessMarket(view, market, ledger, usdPer){
+export function assessMarket(view, market, ledger, usdPer, { on, privateMetrics = {} } = {}){
   const project = referenceProject(market.comparison, usdPer?.[market.manifest.currency]);
   const totals = ledger ? ledgerTotals(ledger, usdPer, project?.costUSD ?? null) : null;
 
   /* With no ledger the project cost is still known — it comes from the engine —
      so the cheque can be checked even where nothing else can. */
-  const { metrics, incomplete } = totals
+  const inputs = totals
     ? limitInputs(totals)
     : limitInputs({ empty: true, projectCostUSD: project?.costUSD ?? null });
+  const privateMetricsUsed = Object.keys(privateMetrics);
+  const metrics = { ...inputs.metrics, ...privateMetrics };
+  const incomplete = inputs.incomplete.filter(key => !privateMetricsUsed.includes(key));
 
   const byArchetype = {};
   for (const id of ARCHETYPE_IDS){
     const verdict = view.verdicts?.[id] ?? null;
-    byArchetype[id] = { ...assess(ARCHETYPES[id], view.grades, metrics, verdict, incomplete), verdict };
+    byArchetype[id] = { ...assess(ARCHETYPES[id], view.grades, metrics, verdict, incomplete, on), verdict };
   }
-  return { marketId: view.marketId, project, totals, byArchetype };
+  return { marketId: view.marketId, project, totals, byArchetype, privateMetricsUsed };
 }
 
 /** Archetypes whose verdict the score disagrees with. Empty when all sit within a band. */
