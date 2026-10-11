@@ -1,6 +1,7 @@
 import { buildROGridSection } from './gridSection.js';
 import { buildROPlanningBlocks } from './planningSection.js';
 import { buildROEconomicsBlocks } from './economicsSection.js';
+import { RO_BUILD_PATHWAY } from './buildPathway.js';
 
 /* ---------------------------------------------------------------------------
    Romania 鈥?declarative section specs, verbatim from the prototype
@@ -905,6 +906,19 @@ SEC_B.data = function (){
 
 
   SEC_B.grid = () => buildROGridSection({ SRC, M });
+
+  /* ---- Investment Case and Entry — the investment-view revision ------------
+     Both read the view store and the capital-at-risk ledger by market id; the
+     section says which market and nothing else. */
+  SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+    { t: 'p', text: ['The highest return of any market here, with nothing secured and the rules still moving. The guarantees are a large share of a small project and a modest sum of money.', '回报为各市场之最，但没有任何锁定收入，规则也仍在变动。保函占小项目投资的比例很高，金额却不大。'] },
+    { t: 'investment-case', marketId: 'ro' },
+  ] });
+  SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+    { t: 'p', text: ['Three guarantees and the price of the auctioned capacity fall due before financial close. Three of the five items have no published amount, so every total is a lower bound. The pathway beneath shows where the annual auction sits.', '融资交割前须提交三项保函，并支付拍得容量的价款。五项中有三项没有公开金额，因此所有合计均为下限。其下的建设路径显示了年度拍卖所处的位置。'] },
+    { t: 'entry-ledger', marketId: 'ro' },
+    { t: 'pathway', pathway: RO_BUILD_PATHWAY, sourceFor: (k) => SRC[k] },
+  ] });
 
   return SECTIONS;
 }

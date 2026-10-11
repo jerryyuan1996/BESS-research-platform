@@ -12,6 +12,7 @@
 
 import { buildGBGridSection } from './gridSection.js';
 import { gbEconomicsP0Blocks } from './economicsP0Section.js';
+import { GB_BUILD_PATHWAY } from './buildPathway.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
@@ -1172,6 +1173,19 @@ SEC_B.data = function (){
   ] };
 };
 
+
+  /* ---- Investment Case and Entry — the investment-view revision ------------
+     Both read the view store and the capital-at-risk ledger by market id; the
+     section says which market and nothing else. */
+  SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+    { t: 'p', text: ['The lowest modelled return of the four and the strongest market for debt and exit. For an investor that needs both, that is a coherent place to be.', '四个市场中模型回报最低，却是债务融资与退出条件最好的一个。对两者都需要的投资者而言，这是说得通的选择。'] },
+    { t: 'investment-case', marketId: 'gb' },
+  ] });
+  SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+    { t: 'p', text: ['One figure is published and the rest are not, so the total is a lower bound and every investor limit below reads as not yet checked. The pathway beneath it has one stage with no duration: the next application window has no date.', '只有一项金额是公开的，其余均未公布，因此合计只是下限，下方各类投资者的上限均显示为尚未核查。其下的建设路径中有一个阶段没有耗时：下一个申请窗口尚无日期。'] },
+    { t: 'entry-ledger', marketId: 'gb' },
+    { t: 'pathway', pathway: GB_BUILD_PATHWAY, sourceFor: (k) => SRC[k] },
+  ] });
 
   return SECTIONS;
 }

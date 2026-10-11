@@ -58,6 +58,7 @@
 
 import {
   PILLARS, DIMENSIONS, DIMENSION_IDS, GRADED_BY, VERDICT, ROUTE, ARCHETYPE_IDS, dimension, dimensionsIn,
+  effectiveGrade, sourcedOnly,
 } from './investability.js';
 
 /** What a `reads` table returns for a grade the investor cannot accept. */
@@ -315,12 +316,12 @@ const resolve = (a) => {
   return found;
 };
 
-/* A caller may hand over bare grades or whole grade records; both are read. */
-const gradeOf = (grades, dimensionId) => {
-  const entry = grades?.[dimensionId];
-  const grade = entry && typeof entry === 'object' ? entry.grade : entry;
-  return Number.isInteger(grade) && grade >= 1 && grade <= 5 ? grade : null;
-};
+/* A caller may hand over bare grades or whole grade records; both are read.
+   Every grade is read through effectiveGrade, so a live held view is what is
+   scored and a lapsed one is not. `on` is the evaluation date; it is needed
+   only when a record carries a held layer, and effectiveGrade insists on it
+   then. */
+const gradeOf = (grades, dimensionId, on) => effectiveGrade(grades?.[dimensionId], on).grade;
 
 /**
  * utility(a, d) = a.reads[d][ grade(d) ] — 0 to 100, or KNOCK_OUT.
@@ -329,10 +330,10 @@ const gradeOf = (grades, dimensionId) => {
  * treated as zero anywhere below: an ungraded dimension is unknown, and a score
  * that quietly skipped it would read as more certain than it is.
  */
-export function utility(a, dimensionId, grades){
+export function utility(a, dimensionId, grades, on){
   const table = resolve(a).reads[dimensionId];
   if (!table) throw new Error(`${resolve(a).id}: no reads table for "${dimensionId}"`);
-  const grade = gradeOf(grades, dimensionId);
+  const grade = gradeOf(grades, dimensionId, on);
   return grade === null ? null : table[grade];
 }
 
@@ -347,11 +348,11 @@ export function utility(a, dimensionId, grades){
  * pillar reads. It is `ceiling` that makes the knock-out decisive; this number
  * alone must never be read as the answer for a market that has one.
  */
-export function pillarScore(a, pillar, grades){
+export function pillarScore(a, pillar, grades, on){
   const arch = resolve(a);
   let sum = 0, weights = 0;
   for (const d of dimensionsIn(pillar)){
-    const u = utility(arch, d.id, grades);
+    const u = utility(arch, d.id, grades, on);
     if (u === null) return null;
     sum += arch.weight[d.id] * (u === KNOCK_OUT ? 0 : u);
     weights += arch.weight[d.id];
@@ -367,11 +368,11 @@ export function pillarScore(a, pillar, grades){
  * it is one investor's number. There is no market-level blend and there must
  * not be one.
  */
-export function fit(a, grades){
+export function fit(a, grades, on){
   const arch = resolve(a);
   let sum = 0;
   for (const pillar of PILLARS){
-    const score = pillarScore(arch, pillar, grades);
+    const score = pillarScore(arch, pillar, grades, on);
     if (score === null) return null;
     sum += arch.pillarWeight[pillar] * score;
   }
@@ -379,9 +380,9 @@ export function fit(a, grades){
 }
 
 /** Dimensions whose current grade this archetype reads as a knock-out. */
-export function knockOuts(a, grades){
+export function knockOuts(a, grades, on){
   const arch = resolve(a);
-  return DIMENSION_IDS.filter(id => utility(arch, id, grades) === KNOCK_OUT);
+  return DIMENSION_IDS.filter(id => utility(arch, id, grades, on) === KNOCK_OUT);
 }
 
 /**
@@ -391,8 +392,13 @@ export function knockOuts(a, grades){
  * `unchecked` is returned separately and is NOT a breach, but it is not a
  * clearance either. A market with no sourced security figure has not passed the
  * developer's limit; nobody has looked. The page should say so.
+ *
+ * `incomplete` names metrics whose figure is only a LOWER BOUND — a ledger with
+ * an item nobody has put a number on. A lower bound over the limit is a breach,
+ * because the true figure can only be higher. A lower bound under it proves
+ * nothing and is unchecked.
  */
-export function limitCheck(a, metrics = {}, route){
+export function limitCheck(a, metrics = {}, route, incomplete = []){
   const arch = resolve(a);
   const on = route || arch.defaultRoute;
   const breached = [], unchecked = [];
@@ -401,6 +407,7 @@ export function limitCheck(a, metrics = {}, route){
     const value = metrics?.[limit.metric];
     if (typeof value !== 'number' || !Number.isFinite(value)) unchecked.push(limit.id);
     else if (value > limit.max) breached.push(limit.id);
+    else if (incomplete.includes(limit.metric)) unchecked.push(limit.id);
   }
   return { route: on, breached, unchecked };
 }
@@ -412,9 +419,9 @@ export function limitCheck(a, metrics = {}, route){
  * Takes no score and looks at no weight, which is the whole design. A knock-out
  * cannot be outvoted because nothing here is a vote.
  */
-export function ceiling(a, grades, metrics = {}, route){
+export function ceiling(a, grades, metrics = {}, route, on){
   const arch = resolve(a);
-  if (knockOuts(arch, grades).length) return NOT_ACCESSIBLE;
+  if (knockOuts(arch, grades, on).length) return NOT_ACCESSIBLE;
   if (limitCheck(arch, metrics, route).breached.length) return NOT_ACCESSIBLE;
   return null;
 }
@@ -505,7 +512,15 @@ export function checkVerdict(call, score, ceilingValue = null, unchecked = []){
 /**
  * Everything one archetype says about one market, for a verdict to be checked
  * against. `grades` is keyed by dimension id and holds bare grades or grade
- * records; `metrics` is keyed by METRIC; `verdict` is optional.
+ * records; `metrics` is keyed by METRIC; `verdict` is optional; `incomplete`
+ * names the metrics that are lower bounds (see limitCheck).
+ *
+ * `on` is the evaluation date, needed once any grade carries a held layer.
+ * Grades are read at their EFFECTIVE value — the analyst's held view while it
+ * is live — and the result says so, dimension by dimension, in `grades`:
+ * the effective grade, the sourced grade, whether a held view applied and
+ * whether one has lapsed. `fitSourced` is the same score on sourced grades
+ * alone, so the page can show how far the analyst's own judgement moves it.
  *
  * WHEN `ceiling` IS SET, `fit` IS NOT THE HEADLINE. The score is still returned,
  * because it says how the rest of the market reads, but a knock-out counted as
@@ -513,21 +528,33 @@ export function checkVerdict(call, score, ceilingValue = null, unchecked = []){
  * averaged away after all. `headline` says which of the two a page may lead
  * with.
  */
-export function assess(a, grades, metrics = {}, verdict = null){
+export function assess(a, grades, metrics = {}, verdict = null, incomplete = [], on){
   const arch = resolve(a);
   const route = verdict?.route || arch.defaultRoute;
-  const limits = limitCheck(arch, metrics, route);
-  const cap = ceiling(arch, grades, metrics, route);
-  const score = fit(arch, grades);
+  const limits = limitCheck(arch, metrics, route, incomplete);
+  const cap = ceiling(arch, grades, metrics, route, on);
+  const score = fit(arch, grades, on);
+
+  const read = Object.fromEntries(DIMENSION_IDS.map(id => [id, effectiveGrade(grades?.[id], on)]));
+  const heldApplied = DIMENSION_IDS.filter(id => read[id].applied);
+  /* The same score with every held layer set aside. Equal to `fit` when no
+     held view is live, so a page can compare the two without special cases. */
+  const publicGrades = Object.fromEntries(DIMENSION_IDS.map(id => [id, sourcedOnly(grades?.[id])]));
+  const fitSourced = heldApplied.length ? fit(arch, publicGrades) : score;
+
   return {
     archetype: arch.id,
     route,
-    pillars: Object.fromEntries(PILLARS.map(p => [p, pillarScore(arch, p, grades)])),
+    pillars: Object.fromEntries(PILLARS.map(p => [p, pillarScore(arch, p, grades, on)])),
     fit: score,
+    fitSourced,
+    grades: read,
+    heldApplied,
+    heldLapsed: DIMENSION_IDS.filter(id => read[id].lapsed),
     band: bandOf(score),
     ceiling: cap,
     headline: cap === NOT_ACCESSIBLE ? 'ceiling' : 'fit',
-    knockOuts: knockOuts(arch, grades),
+    knockOuts: knockOuts(arch, grades, on),
     limitsBreached: limits.breached,
     limitsUnchecked: limits.unchecked,
     check: verdict ? checkVerdict(verdict.call, score, cap, limits.unchecked) : null,

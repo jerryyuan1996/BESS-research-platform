@@ -1,0 +1,25 @@
+{
+  "marketId": "nem",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "nem-successor-scheme-first-round",
+      "kind": "event",
+      "market": "nem",
+      "label": [
+        "First procurement round under the successor to the Capacity Investment Scheme, indicatively late 2027",
+        "容量投资计划后继机制的首轮采购，暂定2027年底"
+      ],
+      "expected": "2027-12",
+      "watches": [
+        "revenueCertainty",
+        "policyStability"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ]
+}

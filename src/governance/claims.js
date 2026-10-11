@@ -382,4 +382,11 @@ export function validateClaim(claim, market, sectionId, ownership){
  * Recorded as deliberate so a coverage percentage cannot read them as a to-do
  * list. A methodology page shows the working; a portfolio page is an index.
  */
-export const NO_CLAIM_SECTIONS = new Set(['data', 'portfolio']);
+export const NO_CLAIM_SECTIONS = new Set(['data', 'portfolio', 'case', 'entry']);
+
+/* 'case' and 'entry' are the Investment Case and Entry tabs. They make no
+   section claim because what they argue is governed somewhere else and more
+   strictly: every verdict is a view-store record with its reasons, its
+   counter-argument and its author, written through one writer and replayable
+   from a changelog. Wrapping a second, section-level claim around that would
+   put two standards on one sentence. */

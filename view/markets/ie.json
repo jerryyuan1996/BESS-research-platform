@@ -1,0 +1,25 @@
+{
+  "marketId": "ie",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "ie-ds3-long-stop",
+      "kind": "event",
+      "market": "ie",
+      "label": [
+        "DS3 system-services long-stop date, with no go-live date set for the successor",
+        "DS3系统服务最终截止日，而后继机制尚无上线日期"
+      ],
+      "expected": "2027-09-30",
+      "watches": [
+        "policyStability",
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ]
+}

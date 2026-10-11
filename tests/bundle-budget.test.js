@@ -64,9 +64,13 @@ const BUDGET = {
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
      hand-written dashboard, with its own optimiser, BRCP engine and export
-     layer that the shared block engine does not have. */
+     layer that the shared block engine does not have.
+
+     FINLAND ROSE FROM 18 TO 23 when its build pathway moved into this chunk
+     from the shared one. A Finland visitor downloads less overall as a result:
+     the shared chunk used to carry every market's pathway, and now none. */
   markets: {
-    fi: 18, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 95,
+    fi: 23, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 95,
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
 
@@ -89,7 +93,23 @@ const BUDGET = {
   sharedTotal: 55,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
-  features: { 'dossier-shell': 8 },
+  features: {
+    'dossier-shell': 8,
+    /* The Investment Case and Entry sections: anchors, archetype tables, the
+       view store and the ledgers. Fetched only when one of those two tabs is
+       opened, on the four markets that have them. It grows with every market
+       graded, so expect to raise it — but only for that reason.
+
+       RAISED FROM 34 TO 36 when the Great Britain and Romania ledgers were
+       filled: seven new items, each with its release and forfeiture terms in
+       two languages. Measured 34.63 on CI, which builds the merge with the
+       base branch, and 33.68 locally.
+
+       RAISED FROM 36 TO 39 for the held layer: the effective-grade function,
+       its validator and the page text that prints a practitioner view beside
+       the sourced grade. Measured 36.55 locally. No market data was added. */
+    'investment-case': 39,
+  },
 };
 
 /** Every registered market must have its own chunk. Thirteen dashboards for

@@ -1,0 +1,24 @@
+{
+  "marketId": "de",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "de-capacity-round-open-to-storage",
+      "kind": "event",
+      "market": "de",
+      "label": [
+        "First capacity round storage can enter without a long-duration test",
+        "储能无需满足长时要求即可参加的首轮容量招标"
+      ],
+      "expected": "2027-05",
+      "watches": [
+        "revenueCertainty"
+      ],
+      "direction": "up",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ]
+}

@@ -1,7 +1,17 @@
 # `src/local/`
 
-Interface for confidential data held in `local-data/`. **Not implemented** — this is a documented
-stub for a later phase.
+Interface for confidential data held in `local-data/`.
+
+**Status, 2026-10-11: built.** The text below the line was written when this was a stub and is
+kept for the reasoning. What exists now:
+
+- `loader.js` reads `local-data/<key>.json` on the development server and returns `null` in any
+  build. See `local-data/README.md`.
+- `notes.js` is the private overlay for the investment view: the analyst's reasons behind
+  practitioner grades and held views, notes on verdicts, and deal-derived figures for limit
+  checks, all from `local-data/view-notes.json`. A held view must have a reason there.
+
+---
 
 ## Why it is a stub
 

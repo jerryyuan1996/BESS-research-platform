@@ -16,7 +16,7 @@
    structure. What differs is what fills them.
    --------------------------------------------------------------------------- */
 
-import { buildPathwayFor } from '../buildPathwayRegistry.js';
+import { FI_BUILD_PATHWAY } from './buildPathway.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
@@ -207,7 +207,7 @@ export function buildSections(api){
     ], sig: [['Extended once already', '已延期一次'], ['Scarcity favours the incumbent', '稀缺性有利于在运方']] },
     { t: 'src', src: SRC.reserveObligations, use: ['Main grid scale and the reinforcement programme', '主网规模与加强工程'] },
     ] },
-    { t: 'pathway', pathway: buildPathwayFor('fi'), sourceFor: (k) => SRC[k] },
+    { t: 'pathway', pathway: FI_BUILD_PATHWAY, sourceFor: (k) => SRC[k] },
   ] });
 
 
@@ -248,6 +248,18 @@ export function buildSections(api){
       { t: 'src', src: SRC.peakLoadCapacity, use: ['Adequacy and the dormant mechanism', '充裕度与休眠机制'] },
       { t: 'src', src: SRC.storageFleet, use: ['Connected storage aggregate', '已并网储能汇总'] },
     ] },
+  ] });
+
+  /* ---- Investment Case and Entry — the investment-view revision ------------
+     Both read the view store and the capital-at-risk ledger by market id; the
+     section says which market and nothing else. */
+  SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+    { t: 'p', text: ['The easiest of the four markets to get into and the most crowded once inside. Entry is open today and scheduled to narrow in 2027.', '四个市场中最容易进入、进入后也最拥挤的一个。目前入口敞开，但按计划将于2027年收窄。'] },
+    { t: 'investment-case', marketId: 'fi' },
+  ] });
+  SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+    { t: 'p', text: ['The connection application is free and names no security. The cost is a fixed connection fee of EUR 1,000,000 at 110 kV, which is about 5% of a 50 MW project and a much smaller share of a larger one.', '并网申请免费，且未提及担保。成本在于110kV固定并网费100万欧元：对50MW项目约占投资的5%，项目越大占比越小。'] },
+    { t: 'entry-ledger', marketId: 'fi' },
   ] });
 
   return SECTIONS;

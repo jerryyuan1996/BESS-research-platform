@@ -1,0 +1,24 @@
+{
+  "marketId": "caiso",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "caiso-storage-capacity-foldback",
+      "kind": "event",
+      "market": "caiso",
+      "label": [
+        "Storage qualifying capacity is cut for foldback from 2027",
+        "自2027年起因出力回落下调储能合格容量"
+      ],
+      "expected": "2027-01",
+      "watches": [
+        "revenueCertainty"
+      ],
+      "direction": "down",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ]
+}

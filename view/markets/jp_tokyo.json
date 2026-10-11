@@ -1,0 +1,24 @@
+{
+  "marketId": "jp_tokyo",
+  "thesis": null,
+  "grades": {},
+  "verdicts": {},
+  "triggers": [
+    {
+      "id": "jp-tokyo-ltda-round-4-bids",
+      "kind": "event",
+      "market": "jp_tokyo",
+      "label": [
+        "Long-term decarbonisation auction Round 4 bidding closes",
+        "长期脱碳电源拍卖第四轮投标截止"
+      ],
+      "expected": "2027-02-03",
+      "watches": [
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ]
+}

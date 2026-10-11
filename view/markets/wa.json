@@ -1,0 +1,457 @@
+{
+  "marketId": "wa",
+  "thesis": null,
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Fourth of fourteen markets on hold IRR, 13.1%.",
+        "持有期IRR为13.1%，在十四个市场中排第四。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "rules"
+      ],
+      "reason": [
+        "Capacity revenue is about 77% of revenue, but its price is set again each year. The market rules guarantee only a floor at half the benchmark price, which secures about 39% of expected revenue for the long term.",
+        "容量收入约占总收入的77%，但其价格每年重新确定。市场规则只保证基准价一半的保底，据此长期锁定的约为预期收入的39%。"
+      ],
+      "asOf": "2026-10-11",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "entry-ledger"
+      ],
+      "reason": [
+        "At least 3.7% of project cost before the investment decision, most of it security posted before capacity is certain.",
+        "最终投资决策前的风险资本至少为项目投资的3.7%，其中大部分是容量尚未确定时即须提交的保证金。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null,
+      "held": {
+        "grade": 1,
+        "confidence": "medium",
+        "asOf": "2026-10-11",
+        "reviewBy": "2027-03-31",
+        "publicNote": null
+      }
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "build-pathway"
+      ],
+      "reason": [
+        "Process, gating rules and fees are published; timeframes are indicative.",
+        "流程、准入规则与费用均已公布；时限仅供参考。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "build-pathway"
+      ],
+      "reason": [
+        "About 55 months at the midpoint of the pathway stages, with an annual capacity cycle on the path. A rough reading, not yet a critical-path calculation.",
+        "按现有路径各阶段中点粗略估算约55个月，且路径上有年度容量周期。此为粗略判读，尚非关键路径计算。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "tsp",
+        "celProgram"
+      ],
+      "reason": [
+        "Network access quantities cap export until transmission relief expected at the end of 2029.",
+        "在预计2029年底投运的输电加强工程之前，网络接入量限制外送。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "firbSecurity"
+      ],
+      "asOf": "2026-10-11",
+      "author": "analyst",
+      "lockedUntil": null,
+      "reason": [
+        "A generation station of 30 MW or more connected to a wholesale electricity market is a critical electricity asset, so starting or buying a direct interest in one needs foreign investment approval whatever its value. The statutory decision period has not been confirmed.",
+        "接入电力批发市场、装机30MW及以上的发电设施属于关键电力资产，因此无论金额大小，新设或取得其直接权益均须获得外资审批。法定审批期限尚未核实。"
+      ]
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile"
+      ],
+      "reason": [
+        "The capacity mechanism has changed more than once in five years; existing Capacity Credits have been honoured.",
+        "容量机制五年内不止一次调整；已分配的容量信用均得到履行。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Large-load growth is held only as an illustrative watchlist, with no signed figure.",
+        "大负荷增长仅以示意性观察名单记录，没有已签约的数字。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-11",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-11",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "About three-quarters of revenue comes from the capacity mechanism, with a floor at half the benchmark price: the most secured revenue of the four markets.",
+            "约四分之三的收入来自容量机制，并有基准价一半的保底：在四个市场中锁定收入最高。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "The one investor that can carry security of about USD 16m and a project of about USD 430m.",
+            "唯一有能力承担约1600万美元保证金和约4.3亿美元项目的投资者。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Network access is capped until 2029, so a position secured now is protected.",
+            "网络接入在2029年前受限，现在锁定的位置因此受到保护。"
+          ]
+        }
+      ],
+      "despite": [
+        "A seven-hour project of this size puts a great deal into one asset and one capacity cycle, and a missed cycle costs a year.",
+        "如此规模的七小时项目把大量资本押在单一资产和单一容量周期上，错过一个周期就是一年。"
+      ],
+      "changesIf": [
+        "wa-capacity-credits-assigned",
+        "wa-clean-energy-link-east",
+        "wa-benchmark-price-2029-30",
+        "wa-2027-cycle-access-quantities"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-11",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "opportunistic",
+      "route": "co-invest",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "Buy in once Capacity Credits are assigned and the secured revenue is certain.",
+            "待容量信用分配、锁定收入明确之后再入股。"
+          ]
+        },
+        {
+          "dimension": "scaleRepeatability",
+          "text": [
+            "The reference project is larger than its cheque, so the only route is a share behind a strategic.",
+            "参考项目规模超出其单笔出资上限，唯一途径是跟随战略投资者持有部分股权。"
+          ]
+        }
+      ],
+      "despite": [
+        "A minority holder behind a strategic controls neither the timing nor the exit, and few assets have traded here.",
+        "跟在战略投资者之后的小股东既不能决定时点，也不能主导退出，而这里成交的资产很少。"
+      ],
+      "changesIf": [
+        "wa-capacity-credits-assigned"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "not-accessible",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "scaleRepeatability",
+          "text": [
+            "The reference project costs about USD 430m, nearly three times its largest cheque.",
+            "参考项目投资约4.3亿美元，接近其最大单笔出资的三倍。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Security of about USD 16m is posted before any revenue.",
+            "在产生任何收入之前须提交约1600万美元的保证金。"
+          ]
+        }
+      ],
+      "despite": [
+        "The most secured revenue of any market here, and a co-investment behind a strategic remains open.",
+        "锁定收入为各市场之最，且跟随战略投资者跟投的途径依然开放。"
+      ],
+      "changesIf": [],
+      "reviewBy": null,
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "not-accessible",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Security of at least USD 16m before revenue is several times what it will risk on one project.",
+            "产生收入前至少1600万美元的保证金，是其单个项目愿担风险资本的数倍。"
+          ]
+        },
+        {
+          "dimension": "timeToRevenue",
+          "text": [
+            "More than four years to first revenue, behind an annual capacity cycle.",
+            "受年度容量周期所限，首笔收入需四年以上。"
+          ]
+        }
+      ],
+      "despite": [
+        "Scarce access makes a consented, connected megawatt valuable to exactly the buyers who can afford this market.",
+        "接入容量稀缺，使得已获许可、已并网的每一兆瓦对有实力进入该市场的买方格外有价值。"
+      ],
+      "changesIf": [],
+      "reviewBy": null,
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    }
+  },
+  "triggers": [
+    {
+      "id": "wa-2027-cycle-access-quantities",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Capacity Credits assigned and network access quantities notified for the 2027 cycle",
+        "2027年周期容量信用分配及网络接入量通知"
+      ],
+      "expected": "2027-09",
+      "watches": [
+        "gridScarcity",
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "crc",
+      "effect": null
+    },
+    {
+      "id": "wa-access-arrangement-2027",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "New network access arrangement takes effect, with its contributions policy",
+        "新的电网接入安排及其出资政策生效"
+      ],
+      "expected": "2027-07-01",
+      "watches": [
+        "policyStability",
+        "capitalAtRisk"
+      ],
+      "direction": "either",
+      "source": {
+        "publisher": "Economic Regulation Authority — access arrangement AA5 (2022 to 2027)",
+        "url": "https://www.erawa.com.au/AA5",
+        "access": "opened"
+      },
+      "effect": null
+    },
+    {
+      "id": "wa-benchmark-price-2029-30",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Benchmark capacity price determined for the 2029-30 Capacity Year",
+        "2029-30容量年度基准容量价格裁定"
+      ],
+      "expected": "2027-03",
+      "watches": [
+        "assetReturn",
+        "revenueCertainty",
+        "capitalAtRisk"
+      ],
+      "direction": "either",
+      "source": "brcp",
+      "effect": null
+    },
+    {
+      "id": "wa-benchmark-technology-review",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Regulator's review of the benchmark technology behind the capacity price",
+        "监管机构对容量价格所依据的基准技术进行复审"
+      ],
+      "expected": "2026-10",
+      "watches": [
+        "revenueCertainty",
+        "policyStability"
+      ],
+      "direction": "either",
+      "source": "brcp",
+      "effect": null
+    },
+    {
+      "id": "wa-capacity-credits-assigned",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Capacity Credits assigned for the 2028-29 Capacity Year",
+        "2028-29容量年度的容量信用分配"
+      ],
+      "expected": null,
+      "watches": [
+        "revenueCertainty",
+        "capitalAtRisk"
+      ],
+      "direction": "either",
+      "source": "crc",
+      "effect": null
+    },
+    {
+      "id": "wa-clean-energy-link-east",
+      "kind": "event",
+      "market": "wa",
+      "label": [
+        "Clean Energy Link — East expected operational",
+        "清洁能源联络线东段预计投运"
+      ],
+      "expected": "2029-12",
+      "watches": [
+        "gridScarcity"
+      ],
+      "direction": "up",
+      "source": "celProgram",
+      "effect": null
+    }
+  ]
+}

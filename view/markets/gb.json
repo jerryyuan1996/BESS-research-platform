@@ -1,0 +1,368 @@
+{
+  "marketId": "gb",
+  "thesis": null,
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Ninth of fourteen markets on hold IRR, 4.7%.",
+        "持有期IRR为4.7%，在十四个市场中排第九。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "10% of revenue is secured, for fifteen years.",
+        "10%的收入已锁定，期限十五年。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Readiness criteria and the connection register are published; the reformed process is recent.",
+        "成熟度标准与并网登记册均已公布；改革后的流程实施时间尚短。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
+        "排队容量177GW，而已建成仅3.6GW；对排队电池项目的保护规则正在复议。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile"
+      ],
+      "reason": [
+        "Zonal pricing was rejected in 2025 and capacity agreements are grandfathered.",
+        "分区电价方案已于2025年被否决，容量协议实行新老划断。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "A governed data-centre demand series exists; no signed share of peak is established.",
+        "已有受治理的数据中心需求序列；尚未确定已签约负荷占峰值的比例。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Operating and committed storage sits near the 40% of peak edge.",
+        "已投运与已承诺的储能接近系统峰值40%的界线。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "revision-plan"
+      ],
+      "reason": [
+        "Led European storage debt deals by count in the third quarter of 2026.",
+        "2026年第三季度欧洲储能债务融资笔数居首。"
+      ],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-10",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "The deepest storage debt market in Europe.",
+            "欧洲最成熟的储能债务融资市场。"
+          ]
+        },
+        {
+          "dimension": "scaleRepeatability",
+          "text": [
+            "Room to repeat the project many times over.",
+            "项目有多次复制的空间。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "Zonal pricing was rejected and capacity agreements are grandfathered.",
+            "分区电价已被否决，容量协议实行新老划断。"
+          ]
+        }
+      ],
+      "despite": [
+        "Ninth of fourteen markets on return, the lowest of these four.",
+        "回报在十四个市场中排第九，为这四个市场中最低。"
+      ],
+      "changesIf": [
+        "gb-gate-2-battery-progression-limit"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "opportunistic",
+      "route": "operating",
+      "where": null,
+      "because": [
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "Lenders finance storage here more readily than anywhere else in Europe.",
+            "这里的贷款人比欧洲其他任何地方都更愿意为储能融资。"
+          ]
+        },
+        {
+          "dimension": "exitLiquidity",
+          "text": [
+            "Operating assets and platforms change hands.",
+            "在运资产和平台有实际交易。"
+          ]
+        },
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "Only a tenth of revenue is secured in the reference case, so only assets that carry a toll.",
+            "参考情景下仅一成收入锁定，因此只做带租赁合同的资产。"
+          ]
+        }
+      ],
+      "despite": [
+        "The lowest modelled return of the four, in a fleet close to saturation.",
+        "模型回报为四个市场中最低，且机组规模已接近饱和。"
+      ],
+      "changesIf": [
+        "gb-gate-2-battery-progression-limit"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "opportunistic",
+      "route": "operating",
+      "where": null,
+      "because": [
+        {
+          "dimension": "exitLiquidity",
+          "text": [
+            "A traded market with standard documents makes an acquisition the practical first step.",
+            "交易活跃、文件标准化，收购是切实可行的第一步。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "The connection queue rules out starting from a new application.",
+            "并网排队状况使得从新申请起步不可行。"
+          ]
+        }
+      ],
+      "despite": [
+        "The lowest modelled return of the four.",
+        "模型回报为四个市场中最低。"
+      ],
+      "changesIf": [
+        "gb-gate-2-battery-progression-limit"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "wait",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
+            "排队容量177GW而已建成仅3.6GW，对排队电池项目的保护规则正在复议。"
+          ]
+        },
+        {
+          "dimension": "saturation",
+          "text": [
+            "Operating and committed storage is close to saturation.",
+            "已投运与已承诺的储能已接近饱和。"
+          ]
+        }
+      ],
+      "despite": [
+        "The deepest market in which to sell a ready-to-build project, and the score reads it as a place to build a position.",
+        "这里是出售具备开工条件项目的最成熟市场，评分也将其视为值得提前布局。"
+      ],
+      "changesIf": [
+        "gb-gate-2-battery-progression-limit"
+      ],
+      "reviewBy": "2027-03-31",
+      "scoreNote": [
+        "The score reads a rationed queue as good for a developer. Here the rationing rule itself may turn against new batteries, and the grade cannot show that until the review concludes.",
+        "评分把需要争取的排队容量视为对开发商有利。但此处分配规则本身可能转向不利于新增电池项目，在复议结束之前评级无法反映这一点。"
+      ],
+      "author": "analyst",
+      "asOf": "2026-10-10",
+      "lockedUntil": null
+    }
+  },
+  "triggers": [
+    {
+      "id": "gb-gate-2-battery-progression-limit",
+      "kind": "event",
+      "market": "gb",
+      "label": [
+        "Possible limit on Gate 2 progression to batteries with revenue support",
+        "可能将Gate 2推进资格限于有收入支持的电池项目"
+      ],
+      "expected": null,
+      "watches": [
+        "gridScarcity"
+      ],
+      "direction": "down",
+      "source": {
+        "publisher": "S&P Global — April 2026",
+        "url": "https://www.spglobal.com/market-intelligence/en/news-insights/articles/2026/4/uk-battery-storage-glut-prompts-review-of-queue-protections-100760930",
+        "access": "search-summary"
+      },
+      "effect": null
+    }
+  ]
+}

@@ -245,6 +245,14 @@ likeliest to need it. All of them are methodology: no automation may change them
   asOf: '2026-10-10',
   author: 'analyst',                 // analyst · rule · agent — recorded, not displayed
   lockedUntil: null,
+
+  held: {                            // optional: what you actually believe
+    grade: 1,                        // 1–5
+    confidence: 'medium',            // high · medium · low — shown, never a weight
+    asOf: '2026-10-11',
+    reviewBy: '2027-03-31',          // required, at most twelve months after asOf
+    publicNote: null,                // null or one bilingual line; the real reason stays private
+  },
 }
 ```
 
@@ -255,10 +263,32 @@ is a smaller share of project cost than Romania's, and six times larger in dolla
 alone would rank WA as the easier market. Both numbers are kept and the archetype decides which
 one binds.
 
-**`practitioner` is a legitimate basis.** A grade that rests on your deal experience is
-published as a grade, with its basis shown as practitioner judgement. The reason and any
-deal-derived number live in the private overlay (§6.5). This is how "public verdicts, private
-notes" works at the level of one cell.
+**The held layer: your view sits on top of the sourced grade.** Amended 2026-10-11. The first
+version of this section made `practitioner` one of four exclusive bases, so recording your own
+view meant relabelling a sourced grade and stripping its public reason. That threw away the
+most valuable thing the platform holds: the gap between what anyone can read and what you
+believe. The two are now kept apart and both are kept.
+
+- **The sourced grade is unchanged.** `grade`, `basis`, `evidence` and `reason` say what public
+  sources support. Adding or removing `held` never touches them; it is written at its own path.
+- **The held grade is the one scored.** Scores, knock-outs and the band check read every grade
+  through one function, which returns the held grade while it is live and the sourced grade
+  otherwise. It takes the evaluation date as an argument; the page passes the reader's date.
+- **Both are always shown.** "1 · practitioner view; public sources support 2", with the score
+  on public sources alone beside the score that uses your view.
+- **It goes stale.** `reviewBy` is required and at most twelve months out. Past it the layer
+  lapses: scores fall back to the sourced grade and the page flags the lapse.
+- **Only you write it.** No rule and no agent may create, change or remove a held view (§7.4).
+  Automation may still update the sourced grade underneath; the held layer stays, and the
+  changelog records whether the public record moved toward your view or away from it.
+- **The reason is private and required.** A held view cannot be written without a matching
+  reason in the private overlay (§6.5).
+
+**`practitioner` is narrowed to dimensions with no public evidence at all.** Where nothing can be
+cited, the grade is your judgement and its basis says so; it carries no evidence and no public
+reason, and it cannot carry a held layer, because there is nothing for one to depart from. A
+record with evidence or a public reason that calls itself practitioner is rejected and pointed
+to `held`.
 
 **The evidence format is the one the claim pilot froze.** Publisher, date, locator, what the
 record establishes and what it does not. Nothing new is invented for sourcing.
@@ -714,13 +744,26 @@ A market with no dashboard gets a card and nothing more:
 
 ### 6.5 The private overlay
 
-`local-data/notes/<marketId>.json`, git-ignored, loaded through the substitution
+`local-data/view-notes.json`, git-ignored, loaded through the substitution
 `vite-plugin-local-data.js` already performs for dossiers. In a build the module is an empty
-stub, so the notes are structurally absent rather than hidden.
+stub, so the notes are structurally absent rather than hidden. As built, it is one file keyed
+by market id, not one file per market.
 
-- Per grade: a private reason and private metrics, such as a guarantee amount from a deal.
-- Rendered only on the dev server, as a collapsed note under the public grade.
-- File names use market ids, never project codenames. Some codenames are markers.
+What it holds, per market (amended 2026-10-11 for the held layer):
+
+- `grades`: a private reason behind a public grade, typically a practitioner-basis one.
+- `held`: the private reason behind a held view. Required: the view writer refuses a held view
+  with no reason here, and `npm run view:check-held` checks the whole store on your machine.
+  CI has no overlay, so this is never part of `npm test` or the build.
+- `verdicts`: a private note on a verdict.
+- `metrics`: deal-derived figures for an investor's limits. On the dev server a limit the public
+  page reports as "not yet checked" is checked against your figure and marked Confidential. The
+  figure never reaches `view/` or a build, and no public result depends on it, so your screen
+  and the published page can show different answers for the same limit.
+
+- Rendered only on the dev server, under the public grade, marked Confidential.
+- The file is keyed by market id, never by project codename. Some codenames are markers.
+- No deal-derived number, rounded or not, goes into a public ledger or grade.
 - The confidentiality scan is extended to cover the view store, so a deal-derived phrase cannot
   travel from a note into a public reason unnoticed.
 - **Automation never sees this folder** (§7.3).
@@ -825,6 +868,8 @@ with the reason and commits nothing.
 - every changed field has a changelog line, and the two agree;
 - every change carries evidence that was fetched in that run and resolved;
 - no methodology path and no pinned field is touched;
+- no held view is touched: a patch from a rule or an agent that creates, changes or removes
+  `grades.<dimension>.held` is rejected, whatever else that author is allowed to write;
 - an assumption stays inside its market's declared band;
 - the confidentiality scan passes on the result.
 
@@ -863,8 +908,11 @@ recommendation, not part of your decision.
 | G | Verdict changes need one official source or two independent ones | A single trade-press story setting a call | Slower on thinly covered markets |
 | H | A weekly digest of machine changes | Changes you never happened to scroll past | One message a week |
 | I | One command reverts a change by id | – | None |
+| J | **Held views are yours alone.** A separate author list for the held path that does not widen when the general one does | The agent writing your opinion for you, or "correcting" a view you hold against the sources | None. Added 2026-10-11; not a guardrail to strike but a rule of the store |
 
-**D is the one I would not strike.** `docs/external-view.md` §5 lists positions held deliberately
+**D is the one I would not strike.** A pin and a held view are different tools: a pin stops a
+machine changing a field, while a held view records that you disagree with what the sources
+support and lets the sourced grade go on being updated underneath. `docs/external-view.md` §5 lists positions held deliberately
 against consensus, with the note that they are recorded so a future reader does not fix them.
 An agent reading consensus sources is that reader.
 

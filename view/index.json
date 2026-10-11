@@ -1,0 +1,113 @@
+{
+  "caiso": {},
+  "de": {},
+  "fi": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "enter-now",
+      "route": "ready-to-build",
+      "asOf": "2026-10-11",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-11",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "gb": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "opportunistic",
+      "route": "operating",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "opportunistic",
+      "route": "operating",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "wait",
+      "route": "greenfield",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "ie": {},
+  "it": {},
+  "jp_tokyo": {},
+  "nem": {},
+  "pjm": {},
+  "ro": {
+    "strategic": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "wait",
+      "route": "ready-to-build",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-01-31"
+    },
+    "foreignFirstTimer": {
+      "call": "wait",
+      "route": "ready-to-build",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-01-31"
+    },
+    "developer": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "wa": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-11",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "opportunistic",
+      "route": "co-invest",
+      "asOf": "2026-10-10",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "not-accessible",
+      "route": "ready-to-build",
+      "asOf": "2026-10-10",
+      "reviewBy": null
+    },
+    "developer": {
+      "call": "not-accessible",
+      "route": "greenfield",
+      "asOf": "2026-10-10",
+      "reviewBy": null
+    }
+  }
+}

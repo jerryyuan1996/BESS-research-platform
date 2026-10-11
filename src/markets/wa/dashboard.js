@@ -44,6 +44,7 @@ import { renderPipeline } from './sections/pipeline.js';
 import { renderGrid } from './sections/grid.js';
 import { renderPortfolio } from './sections/portfolio.js';
 import { renderData } from './sections/data.js';
+import { renderCase, renderEntry } from './sections/case.js';
 import { CLAIMS } from './claims.js';
 import { registerClaims } from '../claimRegistry.js';
 
@@ -58,6 +59,8 @@ registerClaims('wa', CLAIMS);
    src/home/investmentLab.js. */
 const SECTIONS = {
   home: renderHome,
+  case: renderCase,
+  entry: renderEntry,
   story: renderStory,
   rcm: renderRcm,
   energy: renderEnergy,

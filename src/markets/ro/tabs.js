@@ -5,6 +5,7 @@
 
 const TABS = [
   ['home',      ['Overview', '总览']],
+  ['case',      ['Investment Case', '投资判断']],
   ['story',     ['Romania Market Story', '罗马尼亚市场演进']],
   ['capacity',  ['Support & Adequacy', '支持机制与充裕度']],
   ['energy',    ['Wholesale & Intraday', '批发与日内市场']],
@@ -12,6 +13,7 @@ const TABS = [
   ['duration',  ['Storage Duration', '储能时长']],
   ['pipeline',  ['Project Pipeline', '项目管线']],
   ['grid',      ['Grid & Permitting', '并网与许可']],
+  ['entry',     ['Entry & Delivery', '进入与交付']],
   ['portfolio', ['Portfolio', '组合与基金视图']],
   ['data',      ['Data & Methodology', '数据与方法']],
 ];
