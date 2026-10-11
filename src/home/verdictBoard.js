@@ -178,6 +178,73 @@ function ungradedRow(row){
     h('div', { class: 'vb-line' }, link(href, L(['Open dashboard →', '进入看板 →']))));
 }
 
+/* ---- the scouting tier ------------------------------------------------------
+   Markets with no dashboard, below a divider of their own. A row is the
+   market and its four calls, or one for the chosen investor, and a link to
+   its card. There is no return in it, on purpose: an ungraded core market
+   shows what the engine prices, and a scout market has no engine to ask. */
+
+const scoutPath = (market) => '/scout#' + market.id;
+
+function scoutMarketCell(row){
+  return h('div', { class: 'vb-mkt' },
+    h('span', { class: `flag fi fi-${row.market.flag}`, 'aria-hidden': 'true' }),
+    h('div', {},
+      link(scoutPath(row.market), L(row.market.name), 'vb-name'),
+      h('div', { class: 'vb-sub' }, L(row.region.label))));
+}
+
+const scoutCall = (cell) => h('div', { class: 'vb-call' }, verdictGlyph(cell?.call ?? null),
+  h('b', {}, cell ? L(VERDICT_LABEL[cell.call]) : L(['No verdict yet', '尚无结论'])));
+
+function scoutRow(row, lens){
+  const id = row.market.id;
+  const more = h('div', { class: 'vb-line' }, link(scoutPath(row.market), L(['Scouting card →', '查看观察卡片 →'])));
+  if (!row.calls){
+    return h('div', { class: 'vb-row vb-ungraded vb-scout', 'data-scout': id },
+      h('div', { class: 'vb-head' }, scoutMarketCell(row),
+        h('div', { class: 'vb-verdict' },
+          h('div', { class: 'vb-call' }, verdictGlyph(null), L(['No card written yet', '卡片尚未写成']))),
+        h('div', { class: 'vb-fit' })),
+      more);
+  }
+  if (lens){
+    return h('div', { class: 'vb-row vb-scout', 'data-scout': id },
+      h('div', { class: 'vb-head' }, scoutMarketCell(row),
+        h('div', { class: 'vb-verdict', title: row.call ? L(VERDICT_MEANING[row.call.call]) : '' },
+          scoutCall(row.call),
+          row.call ? h('div', { class: 'vb-sub' }, L(ROUTE_LABEL[row.call.route])) : null),
+        h('div', { class: 'vb-fit' })),
+      more);
+  }
+  return h('div', { class: 'vb-row vb-scout', 'data-scout': id },
+    h('div', { class: 'vb-head vb-head-four' }, scoutMarketCell(row),
+      h('div', { class: 'vb-four' }, ARCHETYPE_IDS.map(a => h('div', { class: 'vb-four-cell',
+        title: row.calls[a] ? L(VERDICT_MEANING[row.calls[a].call]) : '' },
+        h('div', { class: 'vb-sub' }, L(ARCHETYPES[a].label)),
+        scoutCall(row.calls[a]))))),
+    more);
+}
+
+/**
+ * The scouting rows, below the board.
+ *
+ * @param parent  where they go: the board's card
+ * @param rows    the result of scoutBoardRows
+ * @param lens    an archetype id, or null for all four
+ */
+export function renderScoutRows(parent, rows, lens){
+  if (!rows.length) return;
+  const written = rows.filter(r => r.calls).length;
+  const wrap = h('div', { class: 'vb vb-scouting' });
+  wrap.append(h('div', { class: 'vb-divider' }, L([
+    `Scouting — ${rows.length} markets with no dashboard, ${written} with a card. A card is a first screen from public pages. No return is modelled for these markets, so none is shown.`,
+    `观察名单 — ${rows.length}个尚无看板的市场，其中${written}个已有卡片。卡片是依据公开页面所作的初筛。这些市场未对回报建模，因此不显示回报。`,
+  ])));
+  for (const row of rows) wrap.append(scoutRow(row, lens));
+  parent.append(wrap);
+}
+
 /**
  * @param parent  where the board goes
  * @param board   the result of buildBoard

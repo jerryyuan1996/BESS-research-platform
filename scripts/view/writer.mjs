@@ -21,6 +21,9 @@
    Run as a tool:
      node scripts/view/writer.mjs apply <change.json>     one change, or an array
      node scripts/view/writer.mjs revert <changelog-id>   undo one change by id
+     node scripts/view/writer.mjs scout-check <id> ["note" "备注"]
+                                                          record that a scout card was spot-checked
+     node scripts/view/writer.mjs scout-remove <id>       remove a whole scout card
    --------------------------------------------------------------------------- */
 import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -72,9 +75,26 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href){
       if (entry.from?.author === 'rule'){
         console.log('  The rule that made this change stays fired. Rewrite its trigger record to arm it again.');
       }
+    } else if (command === 'scout-check' && argument){
+      /* The analyst's own line in the changelog: he opened the sampled
+         records' sources and this is what he found. Corrections are ordinary
+         changes, made with `apply`. */
+      const [en, zh] = process.argv.slice(4);
+      if (Boolean(en) !== Boolean(zh)) throw new Error('a note is given twice, in English and in Chinese, or not at all');
+      const entry = await store.apply({
+        market: argument, path: 'checked', author: { kind: 'analyst' }, evidence: [],
+        to: { asOf: new Date().toISOString().slice(0, 10), note: en ? [en, zh] : null },
+        reason: ['Spot-checked the card against its sources.', '已对照来源抽查该卡片。'],
+      });
+      console.log(`  checked  ${entry.market}`);
+    } else if (command === 'scout-remove' && argument){
+      const entries = await store.applyBatch(await store.removeCardChanges(argument));
+      console.log(`  removed  ${argument}  (${entries.length} records)`);
     } else {
       console.error('usage: node scripts/view/writer.mjs apply <change.json>     the file holds one change, or an array of them\n'
-        + '       node scripts/view/writer.mjs revert <changelog-id>   undo one change by its id');
+        + '       node scripts/view/writer.mjs revert <changelog-id>   undo one change by its id\n'
+        + '       node scripts/view/writer.mjs scout-check <id> ["note" "备注"]   record a spot-check of a scout card\n'
+        + '       node scripts/view/writer.mjs scout-remove <id>       remove a whole scout card');
       process.exit(2);
     }
   } catch (error){

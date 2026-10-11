@@ -25,6 +25,8 @@ import {
   VIEW_SECTIONS, PERMITTED_AUTHORS, LIVE_AUTHORS, HELD_AUTHORS, MACHINE_AUTHORS, emptyView, validateMarketView,
   parsePath, readPath, writePath, buildIndex, validateChangelogEntry, INTERNAL_EVIDENCE, authorMayWrite,
 } from '../view/schema/view.mjs';
+import { SCOUT_LIVE_AUTHORS, emptyCard, parseScoutPath, readScoutPath, writeScoutPath } from '../view/schema/scout.mjs';
+import { isScoutId } from '../src/governance/scout.js';
 import { isRule } from '../src/governance/triggers.js';
 import { assessMarket, disagreements } from '../src/entry/assessment.js';
 import { ledgerFor } from '../src/entry/ledgerRegistry.js';
@@ -94,14 +96,26 @@ test('the committed index is exactly what the market views produce', async () =>
 test('the changelog accounts for the committed store, line by line', async () => {
   /* Replaying every entry from nothing must arrive at the files on disk. A
      hand edit to a market file — the one way round the writer — breaks this. */
+  /* TWO TIERS, ONE CHANGELOG. A line with no `tier` is a market's and replays
+     into view/markets/; a line that says `tier: 'scout'` is a card's and
+     replays into view/scout/. Each tier must arrive at its own files, and a
+     line is read against its own tier's paths and no other's. */
   const entries = await committed.changelog();
   assert.ok(entries.length > 0);
-  const replayed = new Map();
+  const replayed = new Map(), replayedCards = new Map();
   const ids = new Set();
   for (const entry of entries){
-    assert.deepEqual(validateChangelogEntry(entry), [], `${entry.id}: changelog entry is invalid`);
     assert.ok(!ids.has(entry.id), `${entry.id}: changelog id repeats`);
     ids.add(entry.id);
+    assert.equal(entry.tier === 'scout', isScoutId(entry.market), `${entry.id}: the tier a line claims is not the one its market is in`);
+    if (entry.tier === 'scout'){
+      assert.deepEqual(validateChangelogEntry(entry, { parse: parseScoutPath }), [], `${entry.id}: changelog entry is invalid`);
+      const before = replayedCards.get(entry.market) || emptyCard(entry.market);
+      assert.deepEqual(readScoutPath(before, entry.path), entry.from, `${entry.id}: "from" does not match the state the earlier entries leave`);
+      replayedCards.set(entry.market, writeScoutPath(before, entry.path, entry.to));
+      continue;
+    }
+    assert.deepEqual(validateChangelogEntry(entry), [], `${entry.id}: changelog entry is invalid`);
     const before = replayed.get(entry.market) || emptyView(entry.market);
     assert.deepEqual(readPath(before, entry.path), entry.from, `${entry.id}: "from" does not match the state the earlier entries leave`);
     replayed.set(entry.market, writePath(before, entry.path, entry.to));
@@ -109,6 +123,9 @@ test('the changelog accounts for the committed store, line by line', async () =>
   const views = await committed.readAll();
   assert.deepEqual([...replayed.keys()].sort(), views.map(v => v.marketId).sort());
   for (const view of views) assert.deepEqual(replayed.get(view.marketId), view, `${view.marketId}: the file differs from its changelog`);
+  const cards = await committed.readAllCards();
+  assert.deepEqual([...replayedCards.keys()].sort(), cards.map(c => c.id).sort());
+  for (const card of cards) assert.deepEqual(replayedCards.get(card.id), card, `${card.id}: the card differs from its changelog`);
 
   const stamps = entries.map(e => e.at);
   assert.deepEqual(stamps, [...stamps].sort(), 'the changelog is append-only and in order');
@@ -211,8 +228,23 @@ test('every machine-written line in the committed store is accounted for', async
   assert.deepEqual(MACHINE_AUTHORS, ['rule', 'agent']);
   assert.deepEqual(LIVE_AUTHORS, ['analyst', 'rule'], 'the agent runs dry until the analyst makes it live');
   assert.deepEqual(HELD_AUTHORS, ['analyst'], 'this list does not grow');
+  /* Scout cards have a live list of their own. The agent joins THAT one when
+     the analyst says so, and LIVE_AUTHORS above does not move when it does. */
+  assert.deepEqual(SCOUT_LIVE_AUTHORS, ['analyst'], 'the agent runs dry on scout cards until the analyst makes it live there');
 
-  const entries = await committed.changelog();
+  const all = await committed.changelog();
+  /* A scout line is the scouting tier's: tests/scout.test.js accounts for
+     those. Here, the one thing that must hold of them from this side — */
+  for (const entry of all.filter(e => e.tier === 'scout')){
+    assert.ok(SCOUT_LIVE_AUTHORS.includes(entry.author.kind), `${entry.id}: written by "${entry.author.kind}", which is not live on scout cards`);
+  }
+  /* — and the one that must hold of every market, whatever the card list says:
+     NO LINE ON A CORE MARKET IS THE AGENT'S. */
+  const entries = all.filter(e => e.tier !== 'scout');
+  for (const entry of entries){
+    assert.notEqual(entry.author.kind, 'agent', `${entry.id}: the agent wrote a core market`);
+    assert.ok(!isScoutId(entry.market), `${entry.id}: a market line for a scout id`);
+  }
   const views = new Map((await committed.readAll()).map(v => [v.marketId, v]));
   const lastWrite = new Map();
 

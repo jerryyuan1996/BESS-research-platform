@@ -68,6 +68,9 @@ const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
  * MEASURED 207.18 after automation (plan phase 3): the authority table's new
  * class and its named list of methodology, the /changes route's shell and the
  * /data page's statement of the new rule. The changelog itself is not here.
+ *
+ * MEASURED 207.44 after the scouting tier (plan phase 4): the /scout route's
+ * shell, one navigation link and three more named methodology surfaces.
  */
 const BUDGET = {
   entry: 222,
@@ -80,7 +83,12 @@ const BUDGET = {
 
      MEASURED 256.67 after automation (plan phase 3), from 252.94: the trigger
      validator learned `when` and `effect`, and the first rule is a record in
-     Western Australia's view. The budget is unchanged. */
+     Western Australia's view. The budget is unchanged.
+
+     MEASURED 258.85 after the scouting tier (plan phase 4), from 256.67: the
+     roster of nine markets, the board's scouting rows and each card's four
+     calls. A card itself is not here: see `scout-page` below. The budget is
+     unchanged. */
   home: 268,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
@@ -171,6 +179,19 @@ const BUDGET = {
        grows by design: raise it as the changelog grows, and for no other
        reason. tests/changes.test.js asserts the changelog is in no other chunk. */
     'changes': 27,
+    /* The /scout page with every scout card whole: facts with their
+       quotations, a reason in two languages for each grade, four verdicts.
+       Fetched only on that route — the home page carries each card's four
+       calls and nothing else of it.
+
+       MEASURED 4.93 WITH NO CARD WRITTEN, which is the page alone. The budget
+       is set for nine full cards and not for today, on purpose: a card is
+       written by the agent in CI and published by the commit that writes it,
+       so a budget that had to be raised by hand as cards arrived would fail
+       the very build that publishes one. A full card is about 13 kB raw
+       (twelve grades, four verdicts and ten facts, each in two languages),
+       so nine are about 120 kB raw and 35 gzipped, plus the page. */
+    'scout-page': 45,
   },
 };
 
@@ -206,6 +227,10 @@ const SHARED_OUT_OF_ENTRY = {
   'verdict board': 'Not yet graded — ',
   'method layer': 'Utility, major IPP, state-backed sponsor',
   'returns page': 'Apples-to-apples league',
+  /* The scouting page and the cards it brings. The home board prints each
+     card's four calls from a digest; a card itself in the entry would mean
+     the shell has grown a static import of the page. */
+  'scouting page': 'What a scouting card is',
 };
 
 /**
@@ -331,6 +356,18 @@ test('the home page\'s first view is within its budget', async (t) => {
   const returns = features.get('returns');
   assert.ok(returns, 'no returns chunk');
   assert.ok(!first.has(returns), 'the Returns page is being loaded with the home page');
+
+  /* Nor may the scout cards. The board prints nine scouting rows from each
+     card's four calls; the cards, their quotations and the source list stay
+     in the /scout chunk. A marker from each, so this cannot pass by the page
+     having been renamed. */
+  const scout = features.get('scout-page');
+  assert.ok(scout, 'no scout-page chunk');
+  assert.ok(!first.has(scout), 'the scouting page is being loaded with the home page');
+  for (const marker of ['What a scouting card is', 'svk.se/en/', 'legal-notice-privacy-policy']){
+    assert.ok(scout.text.includes(marker), `the marker "${marker}" has gone stale`);
+    for (const chunk of first) assert.ok(!chunk.text.includes(marker), `${chunk.name}: carries "${marker}", which belongs to the scouting page`);
+  }
 });
 
 test('every market loads its dashboard on demand', async (t) => {

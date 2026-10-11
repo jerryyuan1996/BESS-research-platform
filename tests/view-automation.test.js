@@ -31,6 +31,7 @@ import { VERDICT_IDS } from '../src/governance/investability.js';
 import { SCORE_BANDS } from '../src/governance/archetypes.js';
 import { runAgent, dueTriggers, pagesToFetch, pageText, changeFromProposal, renderAgentReport, hashOf } from '../agent/core.mjs';
 import { PROMPT_VERSION, MODEL, ANSWER_SCHEMA, SYSTEM } from '../agent/prompt.mjs';
+import { SCOUT_ANSWER_SCHEMA } from '../agent/scoutPrompt.mjs';
 import { renderDigest, machineChanges } from '../scripts/view/digest.mjs';
 
 const analyst = { kind: 'analyst' };
@@ -488,7 +489,20 @@ test('the agent has no tools, no shell and no way to the view but the gate', asy
     const source = await readFile(new URL(file, dir), 'utf8');
     assert.ok(!/child_process|node:vm|\beval\(|new Function|node:fs/.test(source), `agent/${file} reaches for a shell, an evaluator or the filesystem`);
     assert.ok(!/\.apply\(|applyBatch|\.revert\(/.test(source), `agent/${file} calls a writing method of the store`);
+    /* ONE EXCEPTION SINCE THE SCOUTING TIER, and it is one method in one
+       file: the scout pass hands its run to applyScoutRun, which writes scout
+       cards and refuses every other id. Nothing else under agent/ names it,
+       and the daily pass over markets still only prepares. */
+    assert.equal(/applyScoutRun/.test(source), file === 'scout.mjs', `agent/${file}: only the scout pass calls applyScoutRun`);
+    if (file !== 'scout.mjs') assert.ok(!/prepareScoutChange|prepareScoutRun|scoutRunState/.test(source), `agent/${file} prepares a scout run`);
   }
+  const core = await readFile(new URL('core.mjs', dir), 'utf8');
+  assert.ok(!/scout/i.test(core), 'the daily pass over markets knows about scout cards');
+  const writer = await readFile(new URL('../etl/lib/viewWriter.mjs', import.meta.url), 'utf8');
+  assert.match(writer, /async function applyScoutRun[\s\S]{0,400}?if \(!isScoutId\(change\?\.market\)\) throw/, 'applyScoutRun does not refuse a non-roster id first');
+  /* The scout pass asks the same call, with its own closed schema and no tool. */
+  assert.equal(SCOUT_ANSWER_SCHEMA.additionalProperties, false);
+  for (const list of ['grades', 'verdicts', 'triggers', 'facts']) assert.equal(SCOUT_ANSWER_SCHEMA.properties[list].items.additionalProperties, false, list);
   const model = await readFile(new URL('model.mjs', dir), 'utf8');
   assert.ok(!/\btools\s*:/.test(model), 'the model call declares tools');
   assert.match(model, /output_config:.*json_schema/s);

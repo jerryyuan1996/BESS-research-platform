@@ -22,8 +22,12 @@
      rule      a trigger the analyst wrote in advance, firing: exactly the
                fields its effect names, on a grade or a verdict, and no more
      agent     grades, verdicts, the thesis and plain triggers, one step at a
-               time, each change with a source it fetched — and NOT LIVE yet:
-               its changes can be prepared and reported, never applied
+               time, each change with a source it fetched — and NOT LIVE on
+               a market: its changes there can be prepared and reported,
+               never applied
+
+   SCOUT CARDS ARE A SECOND TIER WITH THEIR OWN SCHEMA, view/schema/scout.mjs,
+   and their own rights and live list. Nothing below was widened for them.
 
    The rights are in AUTHOR_RIGHTS and the checks in machineProblems, both
    below. Nothing else decides what a machine may write here.
@@ -225,10 +229,13 @@ export const PERMITTED_AUTHORS = ['analyst', 'rule', 'agent'];
 export const MACHINE_AUTHORS = ['rule', 'agent'];
 
 /**
- * The authors whose changes are APPLIED today. The agent is permitted and not
- * live: it runs dry, reporting what it would have changed, until it has earned
- * the scout cards and then the core markets (plan §8). Adding it here is that
- * decision, and it is the analyst's.
+ * The authors whose changes to a MARKET are applied. The agent is permitted
+ * and not live: on a market it runs dry, reporting what it would have changed,
+ * until it has earned the core markets on scout cards (plan §8). Adding it
+ * here is that decision, and it is the analyst's.
+ *
+ * Scout cards have their own list, SCOUT_LIVE_AUTHORS in scout.mjs. This one
+ * does not answer for them and that one does not answer for a market.
  */
 export const LIVE_AUTHORS = ['analyst', 'rule'];
 
@@ -517,8 +524,14 @@ export function gapFor(path, before, after){
   return { dimension: where.key, held, sourcedWas: was.grade, sourced: now.grade, movement };
 }
 
-/** Problems with one changelog entry. Empty array means valid. */
-export function validateChangelogEntry(entry){
+/**
+ * Problems with one changelog entry. Empty array means valid.
+ *
+ * `parse` is what makes a path valid. It is parsePath, for a market, unless
+ * the caller is checking a scout card's line and passes that tier's parser:
+ * the two tiers share one changelog and not one set of paths.
+ */
+export function validateChangelogEntry(entry, { parse = parsePath } = {}){
   const problems = [];
   const at = (m) => problems.push(`${entry?.id || '?'}: ${m}`);
   if (!entry || typeof entry !== 'object') return ['changelog entry is missing'];
@@ -535,7 +548,8 @@ export function validateChangelogEntry(entry){
     if (kind === 'agent' && (!entry.author.model || !entry.author.prompt)) at('an agent entry records its model and prompt version');
   }
   if (entry.reverts !== undefined && (typeof entry.reverts !== 'string' || !entry.reverts)) at('reverts must name the changelog id it undoes');
-  if (!parsePath(entry.path)) at(`"${entry.path}" is not a view-store path`);
+  if (!parse(entry.path)) at(`"${entry.path}" is not a view-store path`);
+  if (entry.tier !== undefined && entry.tier !== 'scout') at('tier is "scout" or absent — a line with no tier belongs to a market');
   if (!('from' in entry) || !('to' in entry)) at('from and to are both recorded, null included');
   if (!isPair(entry.reason)) at('reason must be an [en, zh] pair');
   if (!Array.isArray(entry.evidence)) at('evidence must be an array');

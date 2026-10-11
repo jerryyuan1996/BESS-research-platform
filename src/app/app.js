@@ -90,6 +90,36 @@ function renderChanges(app, route){
   });
 }
 
+/* The scouting page's module, once fetched. It brings the scout cards with
+   it: the home page carries each card's four calls and no more. */
+let scoutPage = null;
+
+function renderScout(app){
+  if (scoutPage) return void scoutPage.renderScoutPage(app);
+  const holder = h('div', {},
+    h('div', { class: 'hdr' }, h('div', {},
+      h('h1', {}, L(['Scouting — markets with no dashboard', '观察名单 — 尚无看板的市场'])),
+      h('div', { class: 'sub' }, L(['Loading the scouting cards…', '正在加载观察卡片…'])))),
+    marketNav(markets, 'scout'),
+    h('div', { class: 'dash-skeleton', 'aria-busy': 'true', 'aria-label': L(['Loading', '加载中']) },
+      h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' })));
+  app.append(holder);
+  import('../scout/scoutPage.js').then(m => {
+    scoutPage = m;
+    if (!holder.isConnected) return;
+    app.innerHTML = '';
+    m.renderScoutPage(app);
+    /* /scout#se opens on that card, once there is a card to open on. */
+    const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
+    if (target) target.scrollIntoView();
+  }).catch(err => {
+    console.error('[scout] page failed to load:', err);
+    if (!holder.isConnected) return;
+    app.innerHTML = '';
+    renderNotFound(app, { path: '/scout' });
+  });
+}
+
 /* Guards a stale dossier render, exactly as marketPage.js guards a stale market
    one: the reader may navigate again before the chunk resolves. */
 let dossierToken = 0;
@@ -135,6 +165,7 @@ export function render(){
      verdict or a market never needs them. */
   if (route.name === 'returns') return void renderReturns(app);
   if (route.name === 'changes') return void renderChanges(app, route);
+  if (route.name === 'scout') return void renderScout(app);
   if (route.name === 'investmentLab') return void renderInvestmentLabPage(app);
   if (route.name === 'data') return void renderDataStatus(app);
   if (route.name === 'news') return void renderNewsPage(app);

@@ -23,6 +23,7 @@ import { renderHeader } from '../components/header.js';
 import { marketNav } from '../components/navigation.js';
 import { renderFooter } from '../components/footer.js';
 import { markets, byId } from '../markets/registry.js';
+import { scoutMarket } from '../governance/scout.js';
 import { VIEW_CHANGELOG } from '../markets/viewChangelog.js';
 import {
   AUTHOR_LABEL, filterChanges, filterOptions, describeChange, authorLine, recordLabel, changesHref, pathParts,
@@ -33,7 +34,8 @@ const PAGE = 40;
 let shown = PAGE;
 let lastFilter = '';
 
-const marketName = (id) => { const m = byId(id); return m ? L(m.manifest.shortName) : id; };
+/* A registered market by its short name, a scout market by its roster name. */
+const marketName = (id) => { const m = byId(id); return m ? L(m.manifest.shortName) : scoutMarket(id) ? L(scoutMarket(id).name) : id; };
 
 /* A trigger's label, from wherever the changelog last held the record: a rule
    is named by what it watches, even after the trigger itself is gone. */

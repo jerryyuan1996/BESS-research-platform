@@ -28,6 +28,10 @@ export const SECTION_LABEL = {
   verdicts: ['Verdict', '结论'],
   triggers: ['Trigger', '触发事件'],
   thesis: ['Thesis', '投资论点'],
+  /* The sections only a scout card has. */
+  facts: ['Facts', '事实'],
+  returnSignal: ['Return signal', '回报参考信号'],
+  checked: ['Spot-check', '抽查'],
 };
 
 const FIELD_LABEL = {

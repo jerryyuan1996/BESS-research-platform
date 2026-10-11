@@ -135,7 +135,23 @@ export const METHODOLOGY_SURFACES = [
   { id: 'automation-limits',  module: 'src/governance/automation.js',    what: ['How far one machine run may move the view', '单次自动运行可改动观点的幅度'] },
   { id: 'authority',          module: 'src/governance/authority.js',     what: ['Who may change what — this file', '谁可以改什么——即本文件'] },
   { id: 'view-schema',        module: 'view/schema/view.mjs',            what: ['Which author may write which field of the view', '哪类作者可以写观点库的哪个字段'] },
+  { id: 'scout-roster',       module: 'src/governance/scout.js',         what: ['Which markets have a scout card, and the limits a card and a scout run live under', '哪些市场设有观察卡片，以及卡片与单次观察运行所受的限制'] },
+  { id: 'scout-sources',      module: 'src/scout/sources.js',            what: ['The pages the agent may read for each scout market', '智能体可为各观察市场读取的页面清单'] },
+  { id: 'scout-schema',       module: 'view/schema/scout.mjs',           what: ['Which author may write which part of a scout card', '哪类作者可以写观察卡片的哪个部分'] },
 ];
+
+/**
+ * The sections of a SCOUT CARD a machine may write, through the same writer
+ * and a gate of their own (view/schema/scout.mjs). `checked`, the analyst's
+ * record of his spot-check, is not here and so fails closed.
+ */
+export const SCOUT_AUTHORITY = {
+  facts: AUTHORITY.VIEW,
+  grades: AUTHORITY.VIEW,
+  verdicts: AUTHORITY.VIEW,
+  triggers: AUTHORITY.VIEW,
+  returnSignal: AUTHORITY.VIEW,
+};
 
 /** Classes automation may raise a pull request against. */
 export const MACHINE_PROPOSABLE = new Set([AUTHORITY.ANALYST]);
@@ -549,6 +565,11 @@ export function assumptionAuthority(key){
 /** Authority for a section of a market view. Anything that is not a section fails closed. */
 export function viewAuthority(section){
   return VIEW_AUTHORITY[section] ?? AUTHORITY.METHODOLOGY;
+}
+
+/** Authority for a section of a scout card. Anything else fails closed. */
+export function scoutAuthority(section){
+  return SCOUT_AUTHORITY[section] ?? AUTHORITY.METHODOLOGY;
 }
 
 /** May automation write this value directly, with no human in the loop? */

@@ -33,7 +33,8 @@
     "refresh:storage": "node scripts/refresh-storage.mjs",
     "audit:links": "node scripts/link-audit.mjs",
     "view:check-held": "node scripts/view/check-held.mjs",
-    "view:track-record": "node scripts/view/track-record.mjs"
+    "view:track-record": "node scripts/view/track-record.mjs",
+    "view:scout-status": "node scripts/view/scout-status.mjs"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

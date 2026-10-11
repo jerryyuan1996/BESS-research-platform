@@ -1,6 +1,6 @@
 name: Live data
 
-# Five jobs, and the split is the governance model expressed as CI. The rule
+# Seven jobs, and the split is the governance model expressed as CI. The rule
 # is: judgement publishes automatically after validation; methodology never
 # does.
 #
@@ -28,6 +28,19 @@ name: Live data
 #             writes nothing to the repository, and does nothing at all until a
 #             model key exists as a repository secret.
 #
+#   scout     three times a month, one region each, so every scout card is
+#             reviewed monthly. Reads the pages the analyst listed for three
+#             markets with no dashboard and writes their cards — once the
+#             analyst has made the agent live on scout cards. Until then it is
+#             DRY like the agent job: read-only permissions, and the view
+#             writer refuses to apply. Live, it may change view/scout/ and the
+#             changelog and nothing else: never a core market's view, never
+#             the index, never src/. Checked below, then scanned, before the
+#             commit.
+#
+#   publish-scout  calls ci.yml on the commit a scout pass pushed, for the
+#             reason publish does.
+#
 #   digest    once a week. Posts the machine-written changes of the last seven
 #             days as an issue, so none goes unseen.
 #
@@ -44,12 +57,25 @@ on:
     - cron: '43 5 * * *'
     # The weekly digest of machine changes, Monday morning.
     - cron: '7 6 * * 1'
+    # The scout pass: the 1st, 11th and 21st, one region each. Which region is
+    # SCOUT_SCHEDULE in src/governance/scout.js, read from the date.
+    - cron: '23 4 1,11,21 * *'
   workflow_dispatch:
     inputs:
       only:
         description: 'Comma-separated dataset ids (blank = all)'
         required: false
         type: string
+      scout_region:
+        description: 'Run one scout pass over this region instead of a data refresh'
+        required: false
+        type: choice
+        default: ''
+        options:
+          - ''
+          - nordics-baltics
+          - southern-eastern-europe
+          - americas-middle-east
 
 concurrency:
   # A long backfill must not race the next scheduled run into the same files.
@@ -63,8 +89,9 @@ permissions:
 jobs:
   refresh:
     name: Fetch, validate, publish
-    # Not on the agent's or the digest's schedule: those run their own job.
-    if: github.event.schedule != '43 5 * * *' && github.event.schedule != '7 6 * * 1'
+    # Not on the agent's, the digest's or the scout pass's schedule: those run
+    # their own job. Nor when a scout pass was asked for by hand.
+    if: github.event.schedule != '43 5 * * *' && github.event.schedule != '7 6 * * 1' && github.event.schedule != '23 4 1,11,21 * *' && inputs.scout_region == ''
     runs-on: ubuntu-latest
     outputs:
       material: ${{ steps.drift.outputs.material }}
@@ -328,7 +355,7 @@ jobs:
     # Once a day, or by hand. It reports and writes nothing: read-only
     # permissions, no commit step, and the view writer refuses an agent's
     # change in any case until the analyst makes the agent a live author.
-    if: github.event.schedule == '43 5 * * *' || github.event_name == 'workflow_dispatch'
+    if: github.event.schedule == '43 5 * * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -390,6 +417,159 @@ jobs:
       - name: Report to the job summary
         if: env.ANTHROPIC_API_KEY != ''
         run: cat etl/out/agent-report.md >> "$GITHUB_STEP_SUMMARY"
+
+  scout:
+    name: Scout pass
+    # Three times a month, or by hand with a region. One region a run: three
+    # markets with no dashboard.
+    #
+    # DRY UNTIL THE ANALYST SAYS OTHERWISE, AND THE SWITCH IS NOT IN THIS FILE.
+    # Whether the agent's changes to a scout card are applied is
+    # SCOUT_LIVE_AUTHORS in view/schema/scout.mjs. While the agent is not in
+    # that list the pass prepares, reports and writes nothing, and the steps
+    # below that check, scan and commit find nothing to do. `contents: read`
+    # is the second lock: making the agent live means changing both, in one
+    # pull request the analyst merges.
+    if: github.event.schedule == '23 4 1,11,21 * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region != '')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      committed: ${{ steps.commit.outputs.committed }}
+      sha: ${{ steps.commit.outputs.sha }}
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      SCOUT_REGION: ${{ inputs.scout_region }}
+    steps:
+      - name: Nothing to do without a model key
+        if: env.ANTHROPIC_API_KEY == ''
+        run: echo "No model key is configured. The scout pass did not run."
+
+      - uses: actions/checkout@v4
+        if: env.ANTHROPIC_API_KEY != ''
+
+      - uses: actions/setup-node@v4
+        if: env.ANTHROPIC_API_KEY != ''
+        with:
+          node-version: '20'
+
+      - run: npm ci
+        if: env.ANTHROPIC_API_KEY != ''
+
+      - name: Confirm the private folder is not here
+        if: env.ANTHROPIC_API_KEY != ''
+        run: |
+          if [ -e local-data ]; then
+            echo "::error::A private folder is present in the checkout. The agent will not run."
+            exit 1
+          fi
+
+      - name: Run the scout pass
+        if: env.ANTHROPIC_API_KEY != ''
+        run: node agent/run.mjs --scout
+
+      - name: Confirm only scout cards and the changelog changed
+        if: env.ANTHROPIC_API_KEY != ''
+        # The wall, checked from outside the program that is held by it. A
+        # scout pass may change view/scout/ and append to the changelog. It may
+        # not change a core market's view, the index of their verdicts, the
+        # schema, or anything outside view/.
+        run: |
+          OUTSIDE=$(git status --porcelain --untracked-files=all -- . ':!view/scout' ':!view/changelog.jsonl' ':!etl/out')
+          if [ -n "$OUTSIDE" ]; then
+            echo "::error::The scout pass modified files outside view/scout/ and the changelog:"
+            echo "$OUTSIDE"
+            exit 1
+          fi
+          BAD=$(git status --porcelain --untracked-files=all -- view/scout | grep -vE ' view/scout/([a-z][a-z0-9_]*\.json|passes\.jsonl)$' || true)
+          if [ -n "$BAD" ]; then
+            echo "::error::The scout pass left a file in view/scout/ that is not a card or the pass log:"
+            echo "$BAD"
+            exit 1
+          fi
+          echo "Confirmed: only scout cards, the pass log and the changelog were modified."
+
+      - name: Scan the cards before they are committed
+        id: scan
+        if: env.ANTHROPIC_API_KEY != ''
+        # The last line of the gate: the confidentiality scan passes on the
+        # result. The agent cannot see anything private, so this should never
+        # find anything — which is the reason to check. If it fails, or cannot
+        # run, the pass is discarded whole.
+        env:
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+        run: |
+          if [ -z "$(git status --porcelain -- view)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add view/scout view/changelog.jsonl
+          if [ -n "$GUARD_MARKER_SET" ] && npm run guard:staged; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::The scout pass did not pass the confidentiality scan and was discarded."
+            git reset -q -- view
+            git checkout -- view
+            git clean -fdq -- view/scout
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "discarded=true" >> "$GITHUB_OUTPUT"
+          fi
+          git reset -q
+
+      - name: Commit the cards
+        id: commit
+        if: env.ANTHROPIC_API_KEY != ''
+        run: |
+          if [ "${{ steps.scan.outputs.changed }}" != "true" ]; then
+            echo "Nothing to commit: the pass was dry, or it changed nothing."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name  "bess-etl[bot]"
+          git config user.email "bess-etl[bot]@users.noreply.github.com"
+          git add view/scout view/changelog.jsonl
+          REGION=$(node -e "console.log(require('./etl/out/scout-report.json').region)")
+          WRITTEN=$(node -e "console.log(require('./etl/out/scout-report.json').pass.written)")
+          git commit -m "view: scout pass ${REGION}, ${WRITTEN} records" \
+                     -m "Written by the agent through the view writer's gate, to scout cards only. Every record carries a quotation found in a page fetched in this run; the changelog line holds it, and the weekly digest gives the command that undoes it."
+          git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Publish the pass report
+        if: env.ANTHROPIC_API_KEY != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: scout-report
+          path: |
+            etl/out/scout-report.md
+            etl/out/scout-report.json
+          if-no-files-found: warn
+
+      - name: Report to the job summary
+        if: env.ANTHROPIC_API_KEY != ''
+        run: cat etl/out/scout-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail if the pass was discarded
+        if: steps.scan.outputs.discarded == 'true'
+        run: exit 1
+
+  publish-scout:
+    name: Test and publish the scout commit
+    needs: scout
+    if: needs.scout.outputs.committed == 'true' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ needs.scout.outputs.sha }}
+    secrets:
+      GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+      GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
   digest:
     name: Weekly digest of machine changes
