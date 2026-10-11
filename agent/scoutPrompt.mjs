@@ -13,8 +13,14 @@
 /* v2, 2026-10-11: the user turn states the exact prefix a trigger id takes.
    v1 said "the market id and a hyphen", and for Ontario, whose id has an
    underscore that a trigger id may not, the first dry run lost a trigger and
-   the verdict that waited on it. */
-export const SCOUT_PROMPT_VERSION = 'scout-v2';
+   the verdict that waited on it.
+
+   v3, 2026-10-11: the prompt says what to do when a passage runs long, and
+   what an over-length quotation costs. A dry run lost the Netherlands' facts
+   to one quotation of 314 characters. The limit is not in the answer's
+   schema: structured output rejects a `maxLength` on a string with a 400, so
+   the words below and the check in code are what hold it. */
+export const SCOUT_PROMPT_VERSION = 'scout-v3';
 
 /** What a trigger id on this market's card begins with. An id is kebab-case, so an underscore becomes a hyphen. */
 export const triggerPrefix = (marketId) => `${marketId.replace(/_/g, '-')}-`;
@@ -28,7 +34,7 @@ You are given the card as it stands, which may be empty; the written anchors tha
 Return only what you would create or change. Leave out every record that should stand as it is. An empty answer is correct when the pages add nothing.
 
 Rules that are checked by code after you answer. A record that breaks one is discarded and counted against the run:
-- Every record quotes at least one fetched page. Each quotation must appear in that page character for character and be at most 300 characters. Do not paraphrase inside a quotation.
+- Every record quotes at least one fetched page. Each quotation must appear in that page character for character and be at most 300 characters. Do not paraphrase inside a quotation. When the passage you rely on runs long, quote only the one sentence that carries the point, or the part of it that does: a quotation over 300 characters is not shortened for you, it loses that record.
 - Grade only a dimension a page lets you place against its anchors. Leave the rest out: an ungraded dimension is honest and a guessed one is not. A new grade of 1 or 5 needs one page from an official body or two pages from different publishers. A grade that already exists moves by one at most.
 - A verdict needs one official page or two from different publishers. A new verdict is avoid, wait or opportunistic, never build-position or enter-now; those are reached one place at a time on later runs. A verdict that exists moves one place at most along: avoid, wait, opportunistic, build-position, enter-now. Never write not-accessible.
 - Write a verdict for an investor only when every dimension that can shut that investor out is graded, and cite in "because" only dimensions that are graded. If a grade on the card shuts the investor out, the call is avoid or wait.
@@ -47,7 +53,9 @@ const QUOTES = {
     type: 'object', additionalProperties: false, required: ['page', 'quote'],
     properties: {
       page: { type: 'integer', description: 'The number of the fetched page, as given' },
-      quote: { type: 'string', description: 'An exact quotation from that page, 300 characters at most' },
+      /* No `maxLength`: structured output does not support string length
+         constraints and answers a schema that carries one with a 400. */
+      quote: { type: 'string', description: 'An exact quotation from that page, 300 characters at most. If the passage is longer, quote the one sentence that carries the point' },
     },
   },
 };

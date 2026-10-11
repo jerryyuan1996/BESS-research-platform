@@ -706,8 +706,36 @@ test('a proposal that lies is dropped and counted, and the rest of the card is s
   assert.equal(lied.wouldWrite, 2);
   assert.equal(passIsClean({ ...lied.pass }), false);
   assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: cite('x', 3) }] }))[0].why, /page 3, which was not fetched/);
-  assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: [] }] }))[0].why, /at least one quotation|at least one evidence record/);
+  assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: [] }] }))[0].why, /at least one quotation/);
 
+  /* FACTS ARE CHECKED ONE AT A TIME. Until 2026-10-11 the first fact to fail
+     refused the whole list, and a dry run lost a market every fact it had to
+     one quotation of 314 characters. Now the fact that fails is dropped and
+     named, and the ones that pass are written. */
+  const good = (text, quote) => ({ text_en: text, text_zh: `${text}（中文）`, evidence: cite(quote) });
+  const permit = good('Storage needs an access and connection permit.', 'Storage facilities require an access and connection permit.');
+  const monthly = good('Node capacity is published every month.', 'Access capacity at each node is published every month.');
+  const tooLong = good('A fact with a quotation that runs long.', 'x'.repeat(314));
+  const factsOf = (result) => result.cards.find(c => c.card === 'es').written.find(w => w.record === 'facts')?.to ?? null;
+
+  const mixed = await one({ grades: [], verdicts: [], triggers: [], facts: [permit, tooLong, monthly] });
+  assert.deepEqual(mixed.pass.rejected.map(r => r.record), ['facts[1]'], 'the one bad fact is the one rejection, named by its place in the answer');
+  assert.match(mixed.pass.rejected[0].why, /a quotation of 314 characters — at most 300/);
+  assert.deepEqual(factsOf(mixed).map(f => f.text[0]), [permit.text_en, monthly.text_en], 'the facts that passed are written, in order');
+  assert.ok(factsOf(mixed).every(f => f.evidence[0].quote.length <= 300), 'nothing was shortened to fit');
+  assert.equal(mixed.wouldWrite, 1);
+  /* A dropped fact is a rejection, and the pass is not clean. */
+  assert.equal(passIsClean({ ...mixed.pass, unfetched: [], unanswered: [] }), false);
+
+  const allBad = await one({ grades: [], verdicts: [], triggers: [], facts: [tooLong, { ...monthly, evidence: cite('Capacity is abundant.') }] });
+  assert.deepEqual(allBad.pass.rejected.map(r => r.record), ['facts[0]', 'facts[1]']);
+  assert.equal(factsOf(allBad), null, 'with every fact dropped there is no change to facts at all');
+  assert.equal(allBad.wouldWrite, 0);
+
+  /* What the gate would refuse the whole list for is caught for the one fact that has it. */
+  const withReturn = await one({ grades: [], verdicts: [], triggers: [], facts: [permit, good('Developers report a return.', 'Developers report an IRR above 10%.')] });
+  assert.deepEqual(withReturn.pass.rejected.map(r => r.record), ['facts[1]']);
+  assert.deepEqual(factsOf(withReturn).map(f => f.text[0]), [permit.text_en]);
   /* No return: not in a fact, not in a quotation, not as a grade. */
   assert.match((await rejected({ facts: [{ text_en: 'Developers report an IRR above 10%.', text_zh: '开发商称内部收益率超过10%。', evidence: cite('Developers report an IRR above 10%.') }] }))[0].why, /names a modelled return/);
   assert.match((await rejected({ grades: [{ ...answer().grades[0], dimension: 'assetReturn' }], verdicts: [] }))[0].why, /not a path on a scout card/);
@@ -740,6 +768,52 @@ test('a proposal that lies is dropped and counted, and the rest of the card is s
   assert.deepEqual(repeat.pass.rejected, []);
   assert.equal(repeat.pass.proposed, 0);
 }));
+
+test('on a review, a fact the model quotes badly is not deleted from the card', () => scratch(async (store) => {
+  /* The model returns the facts as they should read afterwards. So a fact it
+     meant to keep and quoted badly would vanish from the card without anybody
+     having decided that. The card's own version stays in the list instead. */
+  const held = { text: ['Storage needs an access and connection permit.', '储能项目须取得接入与并网许可。'],
+    evidence: [{ publisher: STORAGE.publisher, url: STORAGE.url, quote: 'Storage facilities require an access and connection permit.' }] };
+  await store.apply({ market: 'es', path: 'facts', to: [held], author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
+  const review = (facts, patch) => scoutPass(store, { es: { ...EMPTY, facts } }, patch);
+  const factsOf = (result) => result.cards.find(c => c.card === 'es').written.find(w => w.record === 'facts')?.to ?? null;
+  const monthly = { text_en: 'Node capacity is published every month.', text_zh: '各节点容量每月公布。', evidence: cite('Access capacity at each node is published every month.') };
+  const badlyQuoted = { text_en: held.text[0], text_zh: held.text[1], evidence: cite('x'.repeat(314)) };
+
+  const kept = await review([badlyQuoted, monthly]);
+  assert.deepEqual(kept.pass.rejected.map(r => r.record), ['facts[0]'], 'the bad quotation is still a rejection');
+  assert.deepEqual(factsOf(kept).map(f => f.text), [held.text, [monthly.text_en, monthly.text_zh]], 'the card\'s own fact survives beside the new one');
+  assert.equal(factsOf(kept)[0].evidence[0].quote, held.evidence[0].quote, 'and it keeps the quotation it had, found again in this run\'s page');
+  /* Matched by either language. */
+  assert.equal(factsOf(await review([{ ...badlyQuoted, text_en: 'Reworded in English.' }, monthly])).length, 2);
+
+  /* If the held fact's quotation cannot be found again, nothing is written to
+     the list at all: the alternative is to delete it, and that is not a
+     decision a failed quotation gets to make. */
+  const moved = '<html><body><p>Access capacity at each node is published every month.</p></body></html>';
+  const stranded = await review([badlyQuoted, monthly], { fetchPage: async () => ({ body: moved }) });
+  assert.deepEqual(stranded.pass.rejected.map(r => r.record), ['facts[0]', 'facts']);
+  assert.match(stranded.pass.rejected[1].why, /already on the card and its quotation could not be found again.*nothing is deleted/);
+  assert.equal(factsOf(stranded), null);
+  assert.deepEqual((await store.readCard('es')).facts, [held], 'the card is as it was');
+
+  /* A fact the model leaves out on purpose is still the model's to leave out:
+     that is a change the gate sees, with its evidence, not a silent one. */
+  const replaced = await review([monthly]);
+  assert.deepEqual(replaced.pass.rejected, []);
+  assert.deepEqual(factsOf(replaced).map(f => f.text[0]), [monthly.text_en]);
+}));
+
+test('the model is told what an over-long quotation costs, and the limit is not in the schema', () => {
+  assert.match(SCOUT_PROMPT_VERSION, /^scout-v[3-9]/);
+  assert.match(SCOUT_SYSTEM, /quote only the one sentence that carries the point/);
+  assert.match(SCOUT_SYSTEM, /a quotation over 300 characters is not shortened for you, it loses that record/);
+  /* Structured output rejects a string length constraint with a 400, so none
+     may be in the schema that is sent. The limit is held by the prompt and by
+     the check in code. */
+  assert.ok(!/maxLength|minLength/.test(JSON.stringify(SCOUT_ANSWER_SCHEMA)), 'the answer schema carries a string length constraint the API does not accept');
+});
 
 test('the model is not asked what it remembers: no page read, no question, and a robots file is obeyed', () => scratch(async (store) => {
   const offline = await scoutPass(store, { es: answer() }, { fetchPage: async () => { throw new Error('HTTP 403'); } });
