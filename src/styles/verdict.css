@@ -102,6 +102,45 @@
 .cl-evidence{margin-top:var(--sp-2);}
 .cl-quote{color:var(--ink2);}
 
+/* ---- the scouting tier: its rows on the board, and the /scout page ----
+   A card has no fit and no return, so a scouting row has nothing in the column
+   a score would sit in, and a card's three pillar strips are never joined by a
+   fourth or summed. */
+.vb-scouting{margin-top:var(--sp-5);}
+.vb-scouting .vb-row:first-of-type{border-top:0;}
+.sc-region{display:grid; grid-template-columns:minmax(0,1fr); gap:var(--sp-8);}
+.sc-card{border:1px solid var(--border); border-radius:var(--r-md); padding:var(--sp-6) var(--sp-8); min-width:0; scroll-margin-top:var(--sp-8);}
+.sc-card.sc-empty{border-style:dashed; border-color:var(--baseline);}
+.sc-head{display:flex; align-items:center; gap:var(--sp-4); margin-bottom:var(--sp-2);}
+.sc-head .flag{width:22px; flex:none; line-height:1; border-radius:var(--r-xs); box-shadow:0 0 0 1px color-mix(in srgb,var(--ink) 22%,transparent);}
+.sc-name{margin:0; font-size:var(--fs-md); font-weight:var(--fw-medium);}
+.sc-four{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--sp-5); margin-top:var(--sp-5);}
+.sc-cell .vb-line{margin-top:var(--sp-3);}
+.sc-pillars{display:grid; grid-template-columns:minmax(0,1fr); gap:var(--sp-3); margin-top:var(--sp-4);}
+.sc-list{margin:var(--sp-3) 0 0; padding-left:var(--sp-8); font-size:var(--fs-xs); color:var(--ink2); line-height:var(--lh-body);}
+.sc-return{margin-top:var(--sp-6); padding:var(--sp-4) var(--sp-6); font-size:var(--fs-sm); color:var(--ink2); border:1px dashed var(--baseline); border-radius:var(--r-md);}
+.sc-return b{color:var(--ink);}
+.sc-block{margin-top:var(--sp-6);}
+.sc-block h4{margin:0 0 var(--sp-2); font-size:var(--fs-2xs); color:var(--muted); text-transform:uppercase; letter-spacing:.06em; font-weight:var(--fw-normal);}
+.sc-facts{margin:0; padding-left:var(--sp-9); font-size:var(--fs-sm); line-height:var(--lh-body);}
+.sc-facts li{margin-top:var(--sp-3);}
+.sc-quote{font-size:var(--fs-xs); color:var(--ink2); overflow-wrap:anywhere;}
+.sc-grades summary{cursor:pointer; font-size:var(--fs-sm); font-weight:var(--fw-medium);}
+.sc-scroll{overflow-x:auto;}
+.sc-table{border-collapse:collapse; width:100%; margin-top:var(--sp-3);}
+.sc-table th, .sc-table td{border-top:1px solid var(--grid); padding:var(--sp-3) var(--sp-4) var(--sp-3) 0; text-align:left; vertical-align:top; font-size:var(--fs-xs); line-height:var(--lh-body); font-weight:var(--fw-normal);}
+.sc-table th{width:24%; color:var(--ink); font-weight:var(--fw-medium);}
+.sc-table .sc-grade{width:64px; white-space:nowrap; font-variant-numeric:tabular-nums;}
+.sc-card > .vb-line{margin-top:var(--sp-4);}
+@media (max-width:900px){
+  .sc-four{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:560px){
+  .sc-four{grid-template-columns:minmax(0,1fr);}
+  .sc-card{padding:var(--sp-5) var(--sp-5);}
+  .sc-table th{width:34%;}
+}
+
 /* ---- trigger calendar ---- */
 .tc-grid{border-collapse:collapse; width:100%; min-width:430px;}
 .tc-grid th, .tc-grid td{border:1px solid var(--grid); padding:var(--sp-2) 0; text-align:center; font-size:var(--fs-micro);}

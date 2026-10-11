@@ -11,10 +11,19 @@
    appends the changelog in the same call, so a change that is on disk is never
    unrecorded.
 
-   WHAT IT MAY WRITE. Three kinds of file under the store's root and nothing
-   else: markets/<id>.json, index.json and changelog.jsonl. Not view/schema/,
-   which is code and says who may write what. Not src/, where methodology
-   lives. See assertViewWritable.
+   WHAT IT MAY WRITE. Five kinds of file under the store's root and nothing
+   else: markets/<id>.json, index.json and changelog.jsonl for the markets,
+   and scout/<id>.json and scout/passes.jsonl for the scouting tier, where
+   <id> must be in the analyst's roster. Not view/schema/, which is code and
+   says who may write what. Not src/, where methodology lives. See
+   assertViewWritable.
+
+   TWO TIERS, TOLD APART BY THE ID. A change names a market. If that id is in
+   the scout roster the change is a card's: read against the card schema, the
+   card rights and the card live list. Otherwise it is a market's, exactly as
+   before the tier existed. No argument a caller passes can choose the tier.
+   The agent is live on cards only, and it has one writing method here,
+   applyScoutRun, which refuses any id that is not in the roster.
 
    TWO DOORS. A rule and the agent come in from etl/rules.mjs and
    agent/run.mjs. The analyst comes in through the command line in scripts/,
@@ -48,7 +57,12 @@ import {
   validateChangelogEntry, authorMayWrite, isHeldPath, gapFor,
   PERMITTED_AUTHORS, MACHINE_AUTHORS, LIVE_AUTHORS, machineProblems,
 } from '../../view/schema/view.mjs';
+import {
+  emptyCard, validateCard, parseScoutPath, readScoutPath, writeScoutPath, scoutAuthorMayWrite,
+  scoutMachineProblems, scoutRunProblems, SCOUT_LIVE_AUTHORS, validatePass, passIsClean,
+} from '../../view/schema/scout.mjs';
 import { MAX_MACHINE_CHANGES_PER_RUN } from '../../src/governance/automation.js';
+import { isScoutId } from '../../src/governance/scout.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(HERE, '..', '..');
@@ -76,15 +90,20 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const MARKET_ID = /^[a-z][a-z0-9_]*$/;
 
 /**
- * The absolute path of a store file, or a throw. The store has three kinds of
+ * The absolute path of a store file, or a throw. The store has five kinds of
  * file and this names them; everything else under the root, and everything
  * outside it, is not this writer's to touch.
+ *
+ * A card's file exists only for an id in the roster. A well-formed id that is
+ * not there — a core market's included — has no card file to write.
  */
 export function assertViewWritable(root, relative){
   const rel = String(relative).replace(/\\/g, '/');
   const market = /^markets\/([^/]+)\.json$/.exec(rel);
-  const ok = rel === 'index.json' || rel === 'changelog.jsonl' || (market && MARKET_ID.test(market[1]));
-  if (!ok) throw new ViewRejected(`the view writer does not write "${rel}" — only markets/<id>.json, index.json and changelog.jsonl`);
+  const card = /^scout\/([^/]+)\.json$/.exec(rel);
+  const ok = rel === 'index.json' || rel === 'changelog.jsonl' || rel === 'scout/passes.jsonl'
+    || (market && MARKET_ID.test(market[1])) || (card && isScoutId(card[1]));
+  if (!ok) throw new ViewRejected(`the view writer does not write "${rel}" — only markets/<id>.json, index.json, changelog.jsonl, scout/<roster id>.json and scout/passes.jsonl`);
   return path.join(root, ...rel.split('/'));
 }
 
@@ -112,6 +131,8 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
   const marketFile = (id) => assertViewWritable(root, `markets/${id}.json`);
   const indexFile = assertViewWritable(root, 'index.json');
   const changelogFile = assertViewWritable(root, 'changelog.jsonl');
+  const cardFile = (id) => assertViewWritable(root, `scout/${id}.json`);
+  const passesFile = assertViewWritable(root, 'scout/passes.jsonl');
 
   async function read(marketId){
     if (!MARKET_ID.test(marketId)) throw new ViewRejected(`"${marketId}" is not a market id`);
@@ -124,6 +145,26 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
     if (!existsSync(dir)) return [];
     const files = (await readdir(dir)).filter(f => f.endsWith('.json')).sort();
     return Promise.all(files.map(f => read(f.slice(0, -5))));
+  }
+
+  /** One scout card. An id with no file yet is an empty card. */
+  async function readCard(id){
+    if (!isScoutId(id)) throw new ViewRejected(`"${id}" is not in the scout roster`);
+    if (!existsSync(cardFile(id))) return emptyCard(id);
+    return JSON.parse(await readFile(cardFile(id), 'utf8'));
+  }
+
+  async function readAllCards(){
+    const dir = path.join(root, 'scout');
+    if (!existsSync(dir)) return [];
+    const files = (await readdir(dir)).filter(f => f.endsWith('.json')).sort();
+    return Promise.all(files.map(f => readCard(f.slice(0, -5))));
+  }
+
+  /** Every line of the scout pass log. */
+  async function passes(){
+    if (!existsSync(passesFile)) return [];
+    return (await readFile(passesFile, 'utf8')).split('\n').filter(Boolean).map(line => JSON.parse(line));
   }
 
   async function changelog(){
@@ -140,6 +181,8 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
    */
   async function prepare(change, now = new Date(), state = null){
     if (!change || typeof change !== 'object') throw new ViewRejected('change is missing');
+    /* The id decides the tier. Everything below this line is a market's. */
+    if (isScoutId(change.market)) return prepareScout(change, now, state);
     if (!parsePath(change.path)){
       throw new ViewRejected(`"${change.path}" is not a view-store path — methodology is not written here`);
     }
@@ -206,18 +249,90 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
     return { after, entry };
   }
 
-  async function write(prepared){
-    await mkdir(path.join(root, 'markets'), { recursive: true });
-    for (const { after } of prepared) await writeFile(marketFile(after.marketId), stringify(after), 'utf8');
-    await writeFile(indexFile, stringify(buildIndex(await readAll())), 'utf8');
-    await appendFile(changelogFile, prepared.map(p => `${JSON.stringify(p.entry)}\n`).join(''), 'utf8');
+  /**
+   * The same check for a change to a scout card. A card has its own paths,
+   * its own rights and its own gate, and shares the changelog: the line it
+   * produces says `tier: 'scout'`.
+   */
+  async function prepareScout(change, now, state){
+    const where = parseScoutPath(change.path);
+    if (!where) throw new ViewRejected(`"${change.path}" is not a path on a scout card — a card holds no return, no held view and no methodology`);
+    const kind = change.author?.kind;
+    if (!PERMITTED_AUTHORS.includes(kind) || !scoutAuthorMayWrite(change.path, kind)){
+      throw new ViewRejected(`author "${kind}" may not write ${change.path} on a scout card`);
+    }
+    if (!isPair(change.reason)) throw new ViewRejected('a change carries a reason as an [en, zh] pair');
+    if (change.to === undefined) throw new ViewRejected('a change states its new value; null removes the record');
+    const evidence = change.evidence ?? [];
+    if (!Array.isArray(evidence)) throw new ViewRejected('evidence must be an array');
+
+    const before = state?.cards.get(change.market) ?? await readCard(change.market);
+    const log = state?.log ?? await changelog();
+    const from = readScoutPath(before, change.path);
+    /* An empty list of facts is no facts: the same nothing a removal leaves. */
+    const to = where.section === 'facts' && Array.isArray(change.to) && !change.to.length ? null : change.to;
+    if (same(from, to)) throw new ViewRejected(`${change.market} ${change.path}: nothing would change`);
+
+    if (MACHINE_AUTHORS.includes(kind)){
+      const problems = scoutMachineProblems({ ...change, to }, before, { today: now.toISOString().slice(0, 10) });
+      if (problems.length) throw new ViewRejected(`${change.market} ${change.path}: refused to ${kind}`, problems);
+    } else if ((where.section === 'grades' || where.section === 'verdicts') && to && to.author !== kind){
+      throw new ViewRejected(`${change.market} ${change.path}: the record says author "${to.author}" and the change is the ${kind}'s`);
+    }
+
+    let after;
+    try { after = writeScoutPath(before, change.path, to); }
+    catch (error){ throw new ViewRejected(error.message); }
+    const problems = validateCard(after);
+    if (problems.length) throw new ViewRejected(`${change.market} ${change.path}: the card would be invalid`, problems);
+
+    const at = now.toISOString();
+    const entry = {
+      id: `${at}-${change.market}-${change.path}`,
+      at, market: change.market, tier: 'scout',
+      author: change.author,
+      path: change.path, from, to,
+      reason: change.reason,
+      evidence,
+      ...(change.reverts ? { reverts: change.reverts } : {}),
+    };
+    const entryProblems = validateChangelogEntry(entry, { parse: parseScoutPath });
+    if (entryProblems.length) throw new ViewRejected('the changelog entry would be invalid', entryProblems);
+    if (log.some(e => e.id === entry.id)) throw new ViewRejected(`${entry.id}: a changelog id repeats — two changes to one path in the same instant`);
+    return { after, entry, tier: 'scout' };
   }
 
+  /* A card's file for a card's change, a market's for a market's. The index is
+     the markets' verdicts and is rewritten only when a market changed: a scout
+     write never touches it. `pass` is one line for the scout pass log. */
+  async function write(prepared, pass = null){
+    const markets = prepared.filter(p => p.tier !== 'scout');
+    const cards = prepared.filter(p => p.tier === 'scout');
+    if (markets.length){
+      await mkdir(path.join(root, 'markets'), { recursive: true });
+      for (const { after } of markets) await writeFile(marketFile(after.marketId), stringify(after), 'utf8');
+      await writeFile(indexFile, stringify(buildIndex(await readAll())), 'utf8');
+    }
+    if (cards.length || pass){
+      await mkdir(path.join(root, 'scout'), { recursive: true });
+      for (const { after } of cards) await writeFile(cardFile(after.id), stringify(after), 'utf8');
+    }
+    if (prepared.length) await appendFile(changelogFile, prepared.map(p => `${JSON.stringify(p.entry)}\n`).join(''), 'utf8');
+    if (pass) await appendFile(passesFile, `${JSON.stringify(pass)}\n`, 'utf8');
+  }
+
+  /* The live list that answers for a change: the card list for a roster id,
+     the market list for any other. */
+  const liveAuthors = (marketId) => (isScoutId(marketId) ? SCOUT_LIVE_AUTHORS : LIVE_AUTHORS);
+
   const assertLive = (change) => {
-    if (!LIVE_AUTHORS.includes(change?.author?.kind)){
+    if (!liveAuthors(change?.market).includes(change?.author?.kind)){
       throw new ViewRejected(`author "${change?.author?.kind}" is not live — its changes are reported, not applied`);
     }
   };
+
+  /** Is this kind of author applied on scout cards today? */
+  const scoutLive = (kind) => SCOUT_LIVE_AUTHORS.includes(kind);
 
   /** Apply one change: the market file, the index and the changelog line. */
   async function apply(change, now = new Date()){
@@ -237,11 +352,11 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
     if (machine > cap){
       throw new ViewRejected(`this run would make ${machine} machine changes and the cap is ${cap} — nothing is written`);
     }
-    const state = { views: new Map(), log: [...await changelog()] };
+    const state = { views: new Map(), cards: new Map(), log: [...await changelog()] };
     const prepared = [];
     for (const change of changes){
       const one = await prepare(change, now, state);
-      state.views.set(change.market, one.after);
+      (one.tier === 'scout' ? state.cards : state.views).set(change.market, one.after);
       state.log.push(one.entry);
       prepared.push(one);
     }
@@ -256,6 +371,93 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
     return prepared.map(p => p.entry);
   }
 
+  /* ---- the scout pass ------------------------------------------------------- */
+
+  /** Where a scout run's changes are prepared one at a time, each seeing the last. */
+  async function scoutRunState(){
+    return { views: new Map(), cards: new Map(), log: [...await changelog()] };
+  }
+
+  /**
+   * Prepare one change of a scout run against the run's state, and fold it in.
+   * Throws on a refusal and leaves the state as it was, so the run can drop
+   * that proposal, record why, and go on to the next. Writes nothing.
+   */
+  async function prepareScoutChange(change, now, state){
+    if (!isScoutId(change?.market)) throw new ViewRejected(`"${change?.market}" is not in the scout roster — a scout run writes cards and nothing else`);
+    const one = await prepare(change, now, state);
+    state.cards.set(change.market, one.after);
+    state.log.push(one.entry);
+    return one;
+  }
+
+  /**
+   * Prepare a whole scout run, in order, and hold it to the two caps
+   * (guardrail E as it reads for a card). Throws on any refusal. Writes
+   * nothing.
+   */
+  async function prepareScoutRun(changes, now = new Date()){
+    const state = await scoutRunState();
+    const prepared = [];
+    for (const change of changes) prepared.push(await prepareScoutChange(change, now, state));
+    const problems = scoutRunProblems(prepared);
+    if (problems.length) throw new ViewRejected(problems[0]);
+    return prepared;
+  }
+
+  /**
+   * THE AGENT'S ONE WRITING METHOD. Apply a scout run and record the pass, in
+   * one call: the cards, a changelog line for each record, and one line in
+   * the pass log. A change for an id that is not in the roster is refused
+   * before anything is prepared, so nothing a caller passes can reach a
+   * market through here.
+   *
+   * A run that breaks a cap writes no card and is still a pass: its line says
+   * nothing was written and why, and the pass is not clean.
+   *
+   * @param changes  the run's changes, already checked one by one
+   * @param pass     the pass so far: run, region, cards, model, prompt, pages,
+   *                 proposed, unfetched, unanswered, rejected
+   */
+  async function applyScoutRun(changes, pass, now = new Date()){
+    for (const change of changes){
+      if (!isScoutId(change?.market)) throw new ViewRejected(`"${change?.market}" is not in the scout roster — a scout run writes cards and nothing else`);
+      assertLive(change);
+    }
+    if (!scoutLive('agent')) throw new ViewRejected('author "agent" is not live — its changes are reported, not applied');
+    let prepared = [];
+    const rejected = [...(pass.rejected || [])];
+    try { prepared = await prepareScoutRun(changes, now); }
+    catch (error){
+      if (!(error instanceof ViewRejected)) throw error;
+      rejected.push({ card: null, record: null, why: error.message });
+    }
+    const line = { ...pass, rejected, written: prepared.length };
+    line.clean = passIsClean(line);
+    const problems = validatePass(line);
+    if (problems.length) throw new ViewRejected('the pass log line would be invalid', problems);
+    await write(prepared, line);
+    return { entries: prepared.map(p => p.entry), pass: line };
+  }
+
+  /**
+   * The changes that take a whole card away, as the analyst (guardrail I for
+   * a card). Verdicts go first, so no trigger is removed from under one.
+   */
+  async function removeCardChanges(id, { reason = null } = {}){
+    const card = await readCard(id);
+    const why = reason ?? [`Removes the scout card for ${id}.`, `移除${id}的观察卡片。`];
+    const paths = [
+      ...Object.keys(card.verdicts).map(k => `verdicts.${k}`),
+      ...card.triggers.map(t => `triggers.${t.id}`),
+      ...Object.keys(card.grades).map(k => `grades.${k}`),
+      ...(card.facts.length ? ['facts'] : []),
+      ...(card.returnSignal ? ['returnSignal'] : []),
+      ...(card.checked ? ['checked'] : []),
+    ];
+    return paths.map(p => ({ market: id, path: p, to: null, author: { kind: 'analyst' }, reason: why, evidence: [] }));
+  }
+
   /**
    * The change that undoes a changelog entry (guardrail I). The analyst's, and
    * only good while the path still holds what that entry left: a record that
@@ -265,10 +467,11 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
     const log = await changelog();
     const entry = log.find(e => e.id === id);
     if (!entry) throw new ViewRejected(`"${id}" is not a changelog id`);
-    const now = readPath(await read(entry.market), entry.path);
+    const scout = isScoutId(entry.market);
+    const now = scout ? readScoutPath(await readCard(entry.market), entry.path) : readPath(await read(entry.market), entry.path);
     if (!same(now, entry.to)) throw new ViewRejected(`${entry.market} ${entry.path} has changed since ${id} — revert the later change first, or write the record you want`);
     /* The restored record is the analyst's now: he chose to put it back. */
-    const where = parsePath(entry.path);
+    const where = scout ? parseScoutPath(entry.path) : parsePath(entry.path);
     const stamped = entry.from && !where.layer && (where.section === 'grades' || where.section === 'verdicts');
     return {
       market: entry.market, path: entry.path, to: stamped ? { ...entry.from, author: 'analyst' } : entry.from,
@@ -283,5 +486,8 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
     return apply(await revertChange(id, options), now);
   }
 
-  return { root, read, readAll, changelog, prepare, apply, prepareBatch, applyBatch, revertChange, revert };
+  return {
+    root, read, readAll, changelog, prepare, apply, prepareBatch, applyBatch, revertChange, revert,
+    readCard, readAllCards, passes, scoutLive, scoutRunState, prepareScoutChange, prepareScoutRun, applyScoutRun, removeCardChanges,
+  };
 }

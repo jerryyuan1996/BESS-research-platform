@@ -2,7 +2,8 @@
    The home page's body — verdicts first.
 
      lens              which investor is reading
-     verdict board     every market for that investor, by verdict then fit
+     verdict board     every market for that investor, by verdict then fit,
+                       and below it the scouting tier's cards, calls only
      return × entry    the one chart: why a ranking by return misleads
      what changed      the last ten changes to the view
      trigger calendar  what is due in the next twelve months
@@ -34,7 +35,9 @@ import { ARCHETYPE_IDS } from '../governance/investability.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
 import { homeState } from './state.js';
 import { buildBoard, resolveLens, triggerCalendar, changesThisWeek } from './boardModel.js';
-import { renderVerdictBoard } from './verdictBoard.js';
+import { renderVerdictBoard, renderScoutRows } from './verdictBoard.js';
+import { scoutBoardRows } from '../scout/boardRows.js';
+import { SCOUT_CALLS } from '../scout/scoutIndex.js';
 import { renderReturnEntryMap } from './returnEntryMap.js';
 import { renderTriggerCalendar } from './triggerCalendar.js';
 import { renderChangesPanel } from './changesPanel.js';
@@ -101,6 +104,8 @@ export function renderVerdictHome(main){
     '同一个市场，对不同投资者是不同的答案。每个结论由分析师设定，评分只用于校验。门槛是硬性阈值而非权重，因此一旦触及，该行先说明门槛，而不是评分。',
   ])));
   renderVerdictBoard(boardCard, board);
+  /* Below the board, the markets that have a card and no dashboard. */
+  renderScoutRows(boardCard, scoutBoardRows(SCOUT_CALLS, lens), lens);
   if (board.rows.some(r => r.graded && Object.values(r.cells).some(c => c.confidential))){
     boardCard.append(h('div', { class: 'cap' }, badge('conf'), ' ', L([
       'On this screen a limit is checked against a private figure. The published page does not have it and may read differently.',

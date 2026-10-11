@@ -108,6 +108,12 @@ the barrier that shuts it out of the others, and the dated event that would chan
 not yet graded say so and show their return. The cross-market returns view the home page used to be
 — market cards, league table, revenue stack, $1M engine — is at `/returns`, unchanged.
 
+Below the board is the **scouting tier**: nine markets with no dashboard, each with a card at
+`/scout`. A card is a first screen from public pages — a few sourced facts, a grade on each of
+twelve dimensions a page can be quoted for, a verdict for each investor — and no return. Scout
+markets are not registered: they never enter the comparison engine, the league table or the
+frontier. The list of them is `src/governance/scout.js`.
+
 Returns modelling lives once, on the Returns page. The **Investment Lab** lets a reader select any
 market, retype every normalized assumption inside a band that market declares — each band stating
 which of its endpoints is an observation and which is not — and choose whether to lever the case.
@@ -129,6 +135,8 @@ src/
 │                            returnsPage marketGrid marketComparison normalizationView allocationMatrix
 │                            congestionView findings refinementOverview marketGlobe (/returns, on demand)
 │                            investmentLab state
+├── scout/                   scoutPage scoutModel (/scout, on demand) · boardRows (the home rows)
+│                            sources (the pages the agent may read) · scoutIndex scoutCards (stubs)
 ├── comparison/              engine assumptions strategies metrics ranges scenario vintage
 ├── markets/
 │   ├── registry.js          ← the canonical list of markets
@@ -145,7 +153,10 @@ src/
 ### Routes
 
 ```
-/                        home / global cockpit
+/                        home: verdicts by investor, then the scouting tier
+/returns                 the cross-market returns view
+/changes                 every change to the view, by market and author
+/scout                   scouting cards for markets with no dashboard
 /data                    data status — every feed, its freshness, and automation's limits
 /markets/:slug           market dashboard, default tab
 /markets/:slug/:tab      market dashboard, deep-linked tab
@@ -381,17 +392,22 @@ observed public data          →  publishes automatically after validation
 deterministic derived metrics →  publishes automatically after validation
 model outputs                 →  recompute automatically, on APPROVED assumptions
 grades · verdicts · thesis    →  a rule the analyst wrote in advance may change one when it
-                                 fires, through a validation gate. An agent is built and runs
-                                 dry: it reports what it would change and writes nothing.
+                                 fires, through a validation gate. On a core market an agent
+                                 runs dry: it reports what it would change and writes nothing.
+scout cards                   →  written by the agent from pages the analyst listed, every
+                                 record with a quotation verified against the fetched page.
+                                 Dry until the analyst makes the agent live on cards — and on
+                                 cards only.
 analyst assumptions           →  automation may PROPOSE. It may never apply.
 weights · anchors · limits ·  →  automation may not change one and may not even propose it
 score bands · discount rates
 ```
 
-A grade or a verdict on this site was set by the analyst, or changed by one of his rules. Nothing on
-the page marks which: **`/changes`** shows every change with who made it, when, what it held before
-and after, the reason and the evidence. Until 2026-10-11 the rule here was "no judgement is
-automated"; `docs/governance.md` records what replaced it and why.
+A grade or a verdict on a market dashboard was set by the analyst, or changed by one of his rules.
+A scout card is written by the agent and spot-checked by the analyst, which `/scout` says once, at
+the top. Nothing on any page marks an individual change: **`/changes`** shows every change with who
+made it, when, what it held before and after, the reason and the evidence. Until 2026-10-11 the
+rule here was "no judgement is automated"; `docs/governance.md` records what replaced it and why.
 
 Material drift between a source and an approved assumption opens an evidence-backed pull request
 showing its downstream IRR and MOIC impact. **It never auto-merges.** Non-material drift goes to a
@@ -400,8 +416,14 @@ drift report and nothing else.
 This is enforced, not merely documented:
 
 - Automation can physically write to two places, each through its own writer and validator:
-  `public/data/public/`, and three kinds of file in the view store, `view/`. Anything else throws.
-  Neither writer can reach `src/`, where weights, anchors, limits and discount rates live.
+  `public/data/public/`, and five kinds of file in the view store, `view/`. Anything else throws.
+  Neither writer can reach `src/`, where weights, anchors, limits and discount rates live — and
+  where the list of scout markets and the pages the agent may read live too.
+- The agent has one writing method, and it writes scout cards. An id that is not in the scout
+  roster is refused there, the roster and the registry share no id, and no line on a core market in
+  the changelog may be the agent's — each asserted by a test.
+- A scout card holds no return: no field for one, neither Return dimension, and no text that names
+  an IRR, a multiple or a payback.
 - No module under `etl/` or `agent/` may even import a filesystem write API except the two writers —
   asserted by a test.
 - A machine change needs evidence, cannot touch a pinned record, a held view or a practitioner

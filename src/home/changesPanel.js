@@ -18,6 +18,7 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { byId } from '../markets/registry.js';
+import { scoutMarket } from '../governance/scout.js';
 import { allTriggers } from '../markets/viewRegistry.js';
 import { dimension } from '../governance/investability.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
@@ -33,6 +34,9 @@ const KIND = {
   verdicts: ['Verdict', '结论'],
   triggers: ['Trigger', '触发事件'],
   thesis: ['Thesis', '投资论点'],
+  facts: ['Facts', '事实'],
+  returnSignal: ['Return signal', '回报参考信号'],
+  checked: ['Spot-check', '抽查'],
 };
 
 /**
@@ -65,7 +69,7 @@ export function renderChangesPanel(parent, changes){
     return h('li', { class: 'cp-item' },
       h('div', { class: 'cp-meta' },
         h('span', { class: 'cp-date' }, String(entry.at).slice(0, 10)),
-        h('b', {}, market ? L(market.manifest.shortName) : entry.market),
+        h('b', {}, market ? L(market.manifest.shortName) : scoutMarket(entry.market) ? L(scoutMarket(entry.market).name) : entry.market),
         h('span', { class: 'cp-author' + (entry.author === 'rule' || entry.author === 'agent' ? ' cl-machine' : '') },
           L(AUTHOR[entry.author] || ['Unknown author', '作者不详']),
           entry.rule ? `: ${L(allTriggers().find(t => t.id === entry.rule)?.label || [entry.rule, entry.rule])}` : '')),

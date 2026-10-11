@@ -5,6 +5,7 @@
      /                          home: verdicts by investor
      /returns                   the cross-market returns view (the old home page)
      /changes                   every change to the view, by market and author
+     /scout                     scouting cards for markets with no dashboard
      /investment-lab             dedicated cross-market underwriting workspace
      /projects/:slug            a project dossier, absent from every build
      /projects/:slug/:tab       a dossier, deep-linked tab
@@ -64,6 +65,11 @@ export function parseRoute(pathname, search = ''){
   if (parts[0] === 'changes' && parts.length === 1){
     return { name: 'changes', market: params.get('market'), author: params.get('author'), ...view };
   }
+
+  /* /scout — the scouting tier: a card for each market with no dashboard. A
+     card is addressed by a fragment (/scout#se), so it needs no route of its
+     own and a scout id can never be mistaken for a market slug. */
+  if (parts[0] === 'scout' && parts.length === 1) return { name: 'scout', ...view };
 
   /* /projects/:slug — a project dossier. Confidential in its entirety, so in a
      production build every slug resolves to nothing and the page renders a 404.

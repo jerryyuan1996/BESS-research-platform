@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import localData from './vite-plugin-local-data.js';
 import viewChanges from './vite-plugin-view-changes.js';
+import scout from './vite-plugin-scout.js';
 
 // Static, public, no backend. History-API routing is handled in dev by Vite's
 // SPA fallback (appType 'spa', the default) and in production by the `rewrites`
@@ -10,8 +11,9 @@ export default defineConfig({
   // Confidential payloads are available to the dev server and are structurally
   // absent from any build. See vite-plugin-local-data.js and docs/data-policy.md.
   // The changelog reaches the page as its last ten lines, never whole. See
-  // vite-plugin-view-changes.js.
-  plugins: [localData(), viewChanges()],
+  // vite-plugin-view-changes.js. Scout cards reach the home page as their four
+  // calls and the /scout page whole. See vite-plugin-scout.js.
+  plugins: [localData(), viewChanges(), scout()],
   build: {
     outDir: 'dist',
     target: 'es2020',
@@ -50,6 +52,9 @@ export default defineConfig({
           /* The changelog page, with every changelog line. Fetched by /changes
              and by nothing else. */
           if (/[\\/]changes[\\/]changesPage\.js$/.test(id)) return 'assets/changes-[hash].js';
+          /* The scouting page, with every scout card whole. Fetched by /scout
+             and by nothing else. */
+          if (/[\\/]scout[\\/]scoutPage\.js$/.test(id)) return 'assets/scout-page-[hash].js';
           /* Two chunks Rollup factors out with no entry module to name them by.
              The method layer — anchors, investor tables, the view store and
              the ledgers — is shared by the home page's board and the

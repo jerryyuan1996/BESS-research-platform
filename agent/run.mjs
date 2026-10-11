@@ -18,15 +18,24 @@
    and if this program is started without one anyway it says so and exits
    cleanly, having fetched nothing and asked nothing.
 
-   IT WRITES NOTHING TO THE VIEW. See agent/core.mjs.
+   THE DAILY PASS WRITES NOTHING TO THE VIEW. See agent/core.mjs.
 
-   Usage (in the workflow):  node agent/run.mjs
+   THE SCOUT PASS WRITES SCOUT CARDS, once the analyst has made the agent live
+   on them, and nothing else ever. See agent/scout.mjs. Until then it is dry
+   too. Which of the two this program runs is the first argument.
+
+   Usage (in the workflow):
+     node agent/run.mjs                      the daily pass over markets, dry
+     node agent/run.mjs --scout [region]     one scout pass; with no region,
+                                             the one the day of the month names
    --------------------------------------------------------------------------- */
 import { pathToFileURL } from 'node:url';
 
 import { createViewStore, writeRunReport } from '../etl/lib/viewWriter.mjs';
 import { runAgent, renderAgentReport } from './core.mjs';
 import { PROMPT_VERSION, MODEL } from './prompt.mjs';
+import { runScoutPass, renderScoutReport, robotsAllows, AGENT_TOKEN } from './scout.mjs';
+import { SCOUT_SCHEDULE, SCOUT_REGION_IDS } from '../src/governance/scout.js';
 
 /** A market's source register, or null when it has none. */
 async function registers(marketId){
@@ -40,7 +49,7 @@ async function fetchPage(url){
   if (!/^https:\/\//.test(url)) throw new Error('not an https link');
   const response = await fetch(url, {
     redirect: 'follow', signal: AbortSignal.timeout(20_000),
-    headers: { 'user-agent': 'bess-research-platform agent (personal study; reads cited public pages)', accept: 'text/html,text/plain' },
+    headers: { 'user-agent': `${AGENT_TOKEN} agent (personal study; reads cited public pages)`, accept: 'text/html,text/plain' },
   });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   if (!/^https:\/\//.test(response.url)) throw new Error('redirected off https');
@@ -49,19 +58,56 @@ async function fetchPage(url){
   return { body: await response.text() };
 }
 
+/* Does the site's robots file allow this page? Read once per site. A site
+   with no robots file allows; one that cannot be reached is not assumed to. */
+const robotsFiles = new Map();
+async function robots(url){
+  const { origin, pathname, search } = new URL(url);
+  if (!robotsFiles.has(origin)){
+    robotsFiles.set(origin, (async () => {
+      const response = await fetch(`${origin}/robots.txt`, {
+        redirect: 'follow', signal: AbortSignal.timeout(20_000), headers: { 'user-agent': `${AGENT_TOKEN} agent (personal study)` },
+      });
+      if (response.status === 404 || response.status === 410) return '';
+      if (!response.ok) throw new Error(`robots file: HTTP ${response.status}`);
+      return response.text();
+    })());
+  }
+  return robotsAllows(await robotsFiles.get(origin), pathname + search);
+}
+
+/* The region a scout pass covers: the one named, or the one today's date names. */
+function scoutRegion(named){
+  const region = named || process.env.SCOUT_REGION || SCOUT_SCHEDULE[new Date().getUTCDate()];
+  if (!SCOUT_REGION_IDS.includes(region)){
+    console.error(`No scout region for today, and none was named. Name one of: ${SCOUT_REGION_IDS.join(', ')}.`);
+    process.exit(2);
+  }
+  return region;
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href){
   if (process.env.GITHUB_ACTIONS !== 'true'){
     console.error('The agent runs in CI only. It is not run on a developer\'s machine.');
     process.exit(2);
   }
+  const scout = process.argv[2] === '--scout';
   if (!process.env.ANTHROPIC_API_KEY){
     const idle = `## Agent — ${new Date().toISOString()}\n\nNo model key is configured. Nothing was fetched and nothing was evaluated.\n`;
     console.log(idle);
-    await writeRunReport('agent-report.md', idle);
+    await writeRunReport(scout ? 'scout-report.md' : 'agent-report.md', idle);
     process.exit(0);
   }
 
   const { askModel } = await import('./model.mjs');
+  if (scout){
+    const result = await runScoutPass({ store: createViewStore(), region: scoutRegion(process.argv[3]), fetchPage, robots, askModel });
+    const report = renderScoutReport(result);
+    console.log(report);
+    await writeRunReport('scout-report.md', `${report}\n`);
+    await writeRunReport('scout-report.json', `${JSON.stringify(result, null, 2)}\n`);
+    process.exit(0);
+  }
   const result = await runAgent({ store: createViewStore(), registers, fetchPage, askModel });
   const report = renderAgentReport(result);
   console.log(report);

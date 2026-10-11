@@ -233,6 +233,9 @@ export function marketNav(markets, activeId){
     /* Who changed which grade or verdict, and on what. The only place a
        reader can tell a rule's change from the analyst's. */
     link('/changes', L(['Changes', '变更记录']), activeId === 'changes'),
+    /* Cards for markets with no dashboard: nine of them, screened and not
+       priced. */
+    link('/scout', L(['Scouting', '观察名单']), activeId === 'scout'),
     markets.map(m => link(
       '/markets/' + m.manifest.slug,
       L(m.manifest.shortName),

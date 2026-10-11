@@ -24,7 +24,7 @@ import {
   AUTHORITY, COMPARISON_AUTHORITY, MANIFEST_AUTHORITY, ASSUMPTION_AUTHORITY,
   comparisonAuthority, manifestAuthority, assumptionAuthority,
   canMachineWrite, canMachinePropose, AUTHORITY_LABEL, isClassified,
-  MACHINE_WRITABLE, VIEW_AUTHORITY, viewAuthority, METHODOLOGY_SURFACES,
+  MACHINE_WRITABLE, VIEW_AUTHORITY, viewAuthority, METHODOLOGY_SURFACES, SCOUT_AUTHORITY, scoutAuthority,
 } from '../src/governance/authority.js';
 import { existsSync } from 'node:fs';
 import {
@@ -32,6 +32,8 @@ import {
 } from '../view/schema/view.mjs';
 import { parseEffectPath } from '../src/governance/triggers.js';
 import { assertViewWritable, VIEW_ROOT } from '../etl/lib/viewWriter.mjs';
+import { SCOUT_SECTIONS, emptyCard, validateCard, parseScoutPath, scoutAuthorMayWrite } from '../view/schema/scout.mjs';
+import { SCOUT_IDS } from '../src/governance/scout.js';
 import { DATASETS, DATASET_KINDS, datasetById, snapshotFile, summaryFile } from '../src/governance/datasets.js';
 import {
   classifyDrift, BAND, DRIFT_THRESHOLDS, IMPACT_THRESHOLDS, relativeDelta, impactOf,
@@ -74,14 +76,20 @@ test('the ETL write boundary accepts published-data paths', () => {
   assert.ok(assertWritable(summaryFile('gb-day-ahead')).startsWith(ALLOWED_WRITE_ROOT));
 });
 
-test('the view writer accepts the three kinds of store file and nothing else', () => {
+test('the view writer accepts the five kinds of store file and nothing else', () => {
   /* The second wall. The view writer writes judgement and only judgement: a
-     market's view, the index and the changelog. Not the schema that says who
+     market's view, the index and the changelog, and since the scouting tier a
+     roster market's card and the scout pass log. Not the schema that says who
      may write what, not methodology, not anything outside its root. */
-  for (const ok of ['markets/wa.json', 'markets/jp_tokyo.json', 'index.json', 'changelog.jsonl']){
+  for (const ok of ['markets/wa.json', 'markets/jp_tokyo.json', 'index.json', 'changelog.jsonl', 'scout/passes.jsonl', ...SCOUT_IDS.map(id => `scout/${id}.json`)]){
     assert.ok(assertViewWritable(VIEW_ROOT, ok).startsWith(VIEW_ROOT));
   }
   const forbidden = [
+    /* A card exists only for an id in the analyst's roster: not for a core
+       market, and not for a well-formed id nobody has listed. */
+    'scout/wa.json', 'scout/fi.json', 'scout/xx.json', 'scout/SE.json', 'scout/se.js', 'scout/se.json.bak', 'scout/a/se.json',
+    'scout/../markets/wa.json', 'scout/../schema/scout.mjs', 'scout/index.json', 'scout/passes.jsonl.bak', 'scout/passes.json',
+    'scout/schema.mjs', 'scout/roster.json', 'scout/sources.json', 'schema/scout.mjs', 'scout', 'scout/',
     'schema/view.mjs', 'markets/../schema/view.mjs', 'markets/../../src/governance/archetypes.js',
     '../src/governance/archetypes.js', '../src/governance/investability.js', '../src/comparison/assumptions.js',
     '../public/data/public/fx-ecb.json', '../package.json', 'markets/WA.json', 'markets/wa.js', 'markets/wa.json.bak',
@@ -348,17 +356,20 @@ test('methodology is unwritable by every author, machine or not, through the vie
   /* Every methodology surface is named, exists, and sits where no machine
      writer can reach: under src/, or the view schema itself. */
   const ids = new Set();
+  /* The two schema files: a market's and a scout card's. Code, in a directory
+     neither writer can write. */
+  const SCHEMAS = ['view/schema/view.mjs', 'view/schema/scout.mjs'];
   for (const surface of METHODOLOGY_SURFACES){
     assert.ok(!ids.has(surface.id), `${surface.id}: named twice`);
     ids.add(surface.id);
     assert.ok(existsSync(path.join(REPO, surface.module)), `${surface.id}: ${surface.module} does not exist`);
-    assert.ok(surface.module.startsWith('src/') || surface.module === 'view/schema/view.mjs', `${surface.id}: ${surface.module} is outside the wall`);
+    assert.ok(surface.module.startsWith('src/') || SCHEMAS.includes(surface.module), `${surface.id}: ${surface.module} is outside the wall`);
     assert.ok(surface.what[0] && surface.what[1], `${surface.id}: needs an [en, zh] description`);
     /* Neither wall admits it. */
     assert.throws(() => assertWritable(surface.module), BoundaryViolation);
     assert.throws(() => assertViewWritable(VIEW_ROOT, path.relative(VIEW_ROOT, path.join(REPO, surface.module))), /does not write/);
   }
-  for (const needed of ['archetype-weights', 'archetype-limits', 'score-bands', 'grade-anchors', 'discount-rates', 'automation-limits']){
+  for (const needed of ['archetype-weights', 'archetype-limits', 'score-bands', 'grade-anchors', 'discount-rates', 'automation-limits', 'scout-roster', 'scout-sources', 'scout-schema']){
     assert.ok(ids.has(needed), `METHODOLOGY_SURFACES must name ${needed}`);
   }
 
@@ -377,7 +388,17 @@ test('methodology is unwritable by every author, machine or not, through the vie
   for (const spelling of spellings){
     assert.equal(parsePath(spelling), null, `"${spelling}" parsed as a view-store path`);
     assert.equal(parseEffectPath(spelling), null, `"${spelling}" parsed as an effect path`);
-    for (const kind of PERMITTED_AUTHORS) assert.equal(authorMayWrite(spelling, kind), false, `"${kind}" may write "${spelling}"`);
+    /* Nor is it a path on a scout card, where the agent is to be a live author. */
+    assert.equal(parseScoutPath(spelling), null, `"${spelling}" parsed as a path on a scout card`);
+    for (const kind of PERMITTED_AUTHORS){
+      assert.equal(authorMayWrite(spelling, kind), false, `"${kind}" may write "${spelling}"`);
+      assert.equal(scoutAuthorMayWrite(spelling, kind), false, `"${kind}" may write "${spelling}" on a scout card`);
+    }
+  }
+  /* What is the analyst's about the scouting tier has no spelling either: which
+     markets are scouted, what the agent may read, how far a run may go. */
+  for (const spelling of ['roster', 'roster.se', 'sources', 'sources.se', 'name', 'region', 'tier', 'graduatesWhen', 'graduation', 'passes', 'streak', 'MAX_SCOUT_CARDS_PER_RUN', 'SCOUT_LIVE_AUTHORS']){
+    assert.equal(parseScoutPath(spelling), null, `"${spelling}" parsed as a path on a scout card`);
   }
 
   /* And a market view that holds one is not a valid view, so it could not be
@@ -385,11 +406,22 @@ test('methodology is unwritable by every author, machine or not, through the vie
   for (const key of ['weights', 'anchors', 'limits', 'bands', 'assumptions', 'reads', 'discountRates']){
     assert.ok(validateMarketView({ ...emptyView('fi'), [key]: {} }).some(p => /not a section of a market view/.test(p)),
       `a view holding "${key}" validated`);
+    assert.ok(validateCard({ ...emptyCard('se'), [key]: {} }).some(p => /not a section of a scout card/.test(p)),
+      `a scout card holding "${key}" validated`);
   }
+  for (const key of ['comparison', 'economics', 'irr']){
+    assert.ok(validateCard({ ...emptyCard('se'), [key]: {} }).some(p => /not a section of a scout card/.test(p)), `a scout card holding "${key}" validated`);
+  }
+
+  /* A scout card's sections are classified, and what is not a section fails
+     closed: the analyst's spot-check among them. */
+  for (const section of Object.keys(SCOUT_AUTHORITY)) assert.equal(canMachineWrite(scoutAuthority(section)), true);
+  assert.deepEqual([...Object.keys(SCOUT_AUTHORITY), 'checked'].sort(), [...SCOUT_SECTIONS].sort());
+  for (const notWritable of ['checked', 'roster', 'sources', 'weights', 'irr']) assert.equal(scoutAuthority(notWritable), AUTHORITY.METHODOLOGY);
 
   /* The methodology modules import nothing a machine writes: a weight cannot
      be made to depend on the view store or on published data. */
-  for (const module of ['src/governance/archetypes.js', 'src/governance/investability.js', 'src/governance/automation.js']){
+  for (const module of ['src/governance/archetypes.js', 'src/governance/investability.js', 'src/governance/automation.js', 'src/governance/scout.js', 'src/scout/sources.js']){
     const source = await readFile(path.join(REPO, module), 'utf8');
     assert.ok(!/from\s+['"][^'"]*(view\/|public\/data|viewRegistry|\.json)/.test(source), `${module} imports machine-writable content`);
   }

@@ -34,6 +34,14 @@ test('the Returns view has its own route, and the home page is still the root', 
   assert.equal(parseRoute('/markets/returns').name, 'market');
 });
 
+test('the scouting tier has its own route, and a scout id is never a market slug', () => {
+  assert.deepEqual(parseRoute('/scout'), { name:'scout', region:null });
+  assert.deepEqual(parseRoute('/scout/'), { name:'scout', region:null });
+  /* A card is addressed by a fragment, /scout#se, so there is no /scout/:id. */
+  assert.equal(parseRoute('/scout/se').name, 'notFound');
+  assert.equal(parseRoute('/markets/scout').name, 'market');
+});
+
 import { LIFE } from '../src/comparison/assumptions.js';
 
 /* ---- the engine ---------------------------------------------------------- */

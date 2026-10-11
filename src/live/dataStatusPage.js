@@ -63,8 +63,8 @@ function renderGovernance(main){
     [AUTHORITY.ANALYST, ['An assumption a public observation bears on', '有公开观测可参照的假设'],
       ['Automation may open a pull request. It may never apply one.', '自动化可提交拉取请求，但绝不可自行应用']],
     [AUTHORITY.VIEW, ['Judgement in the view store: a grade, a verdict, the thesis, a trigger', '观点库中的判断：评级、结论、投资论点、触发事件'],
-      ['A rule the analyst wrote in advance may change a grade or a verdict when it fires, with the snapshot as evidence. An agent is built and runs dry: it reports and does not write. A held view and a pinned record are the analyst\'s alone.',
-       '分析师事先写好的规则触发时，可凭数据快照为证改动评级或结论。智能体已建成但仅试运行：只报告，不写入。从业者观点与已锁定的记录只由分析师改动。']],
+      ['A rule the analyst wrote in advance may change a grade or a verdict when it fires, with the snapshot as evidence. On a market with a dashboard an agent runs dry: it reports and does not write. Scouting cards, for markets with no dashboard, are the agent\'s to write from pages the analyst listed, each record with a quotation checked against the fetched page; until the analyst makes it live there it is dry on those too. A held view and a pinned record are the analyst\'s alone.',
+       '分析师事先写好的规则触发时，可凭数据快照为证改动评级或结论。对已有看板的市场，智能体仅试运行：只报告，不写入。尚无看板的市场设有观察卡片，由智能体依据分析师列出的页面撰写，每条记录都附有与所抓取页面逐字核对过的引文；在分析师启用之前，智能体对卡片同样只试运行。从业者观点与已锁定的记录只由分析师改动。']],
     [AUTHORITY.METHODOLOGY, ['Scoring weights, grade anchors, limits, score bands, discount rates', '评分权重、评级锚定标准、限额、评分区间、折现率'],
       ['Human-set only. Automation may not change one and may not even propose it.', '仅由人工设定；自动化不得改动，也不得提出建议']],
   ];

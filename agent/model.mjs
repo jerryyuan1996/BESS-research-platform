@@ -20,20 +20,24 @@ import Anthropic from '@anthropic-ai/sdk';
 import { MODEL, SYSTEM, ANSWER_SCHEMA } from './prompt.mjs';
 
 /**
- * Ask the model about one market. Returns { proposals, notes, model } or
- * { refused, model } — never a partial answer.
+ * Ask the model about one market. Returns the parsed answer with the model
+ * that gave it, or { refused, model } — never a partial answer.
+ *
+ * The daily pass and the scout pass ask in different words and expect
+ * different shapes, so each supplies its own system prompt and schema. The
+ * call is otherwise the same one, and neither is given a tool.
  */
-export async function askModel(message){
+export async function askModel(message, { system = SYSTEM, schema = ANSWER_SCHEMA } = {}){
   const client = new Anthropic();
   const response = await client.beta.messages.create({
     model: MODEL,
     max_tokens: 16000,
-    output_config: { effort: 'medium', format: { type: 'json_schema', schema: ANSWER_SCHEMA } },
+    output_config: { effort: 'medium', format: { type: 'json_schema', schema } },
     /* If the model declines on policy grounds the API re-runs the request on
        a fallback model; `response.model` then names the one that answered. */
     betas: ['server-side-fallback-2026-07-01'],
     fallbacks: 'default',
-    system: SYSTEM,
+    system,
     messages: [{ role: 'user', content: message }],
   });
 
@@ -41,5 +45,5 @@ export async function askModel(message){
   if (response.stop_reason === 'max_tokens') return { refused: 'answer cut off at the token limit', model: response.model };
   const text = response.content.filter(block => block.type === 'text').map(block => block.text).join('');
   const answer = JSON.parse(text);
-  return { proposals: answer.proposals, notes: answer.notes, model: response.model };
+  return { ...answer, model: response.model, usage: response.usage ?? null };
 }
