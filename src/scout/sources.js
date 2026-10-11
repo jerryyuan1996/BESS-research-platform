@@ -30,6 +30,14 @@
    source as each card is written (revision plan §9 row 12), and the whole
    list holds only while the purpose is personal study.
 
+   WHAT THE FIRST DRY RUNS FOUND, 2026-10-11. Ten of the twelve pages below
+   were fetched from CI. TenneT's and the Coordinador's refused with HTTP 403,
+   as they had refused a fetch from a desk; each needs a different page or a
+   different publisher before its terms are worth reading. And the pages that
+   were read are mostly home pages and section indexes: across five markets
+   they supported one grade. A card is only as good as this list, and the
+   list wants pages that state a process, a figure or a date.
+
    Keys are what a grade's `evidence` and a trigger's `source` name.
    --------------------------------------------------------------------------- */
 

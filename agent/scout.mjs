@@ -40,7 +40,7 @@ import { scoutSources } from '../src/scout/sources.js';
 import { scoutKnockOutDimensions } from '../view/schema/scout.mjs';
 import { pageText, hashOf } from './core.mjs';
 import { MODEL } from './prompt.mjs';
-import { SCOUT_PROMPT_VERSION, SCOUT_SYSTEM, SCOUT_ANSWER_SCHEMA, scoutUserMessage } from './scoutPrompt.mjs';
+import { SCOUT_PROMPT_VERSION, SCOUT_SYSTEM, SCOUT_ANSWER_SCHEMA, scoutUserMessage, triggerPrefix } from './scoutPrompt.mjs';
 
 const squash = (s) => String(s ?? '').replace(/\s+/g, ' ').trim();
 
@@ -134,7 +134,7 @@ export function changesFromScoutAnswer(answer, { card, pages, runAt, model }){
     const record = `triggers.${t.id}`;
     const v = verify(t.evidence, pages);
     if (v.refused){ refuse(record, v.refused); continue; }
-    if (typeof t.id !== 'string' || !t.id.startsWith(`${card.id.replace(/_/g, '-')}-`)){ refuse(record, `a trigger id begins with the market id — "${t.id}" does not`); continue; }
+    if (typeof t.id !== 'string' || !t.id.startsWith(triggerPrefix(card.id))){ refuse(record, `a trigger id on this card begins with "${triggerPrefix(card.id)}" — "${t.id}" does not`); continue; }
     if (!v.keys.length){ refuse(record, 'a trigger cites the page that dates it'); continue; }
     make(record, {
       id: t.id, kind: 'event', market: card.id, label: [t.label_en, t.label_zh], expected: t.expected || null,
@@ -327,7 +327,9 @@ export function renderScoutReport(result){
     const sample = spotCheckSample(card.card, card.written, result.runAt);
     for (const w of card.written){
       const mark = sample.has(w.record) ? '**CHECK** ' : '';
-      lines.push(`- ${mark}**${w.record}** ${w.from ? `\`${call(w.from)}\` → ` : ''}\`${call(w.to)}\` — ${w.reason[0]}`);
+      /* A grade or a call has a value worth printing; a trigger or the facts do not. */
+      const value = call(w.to) === '' ? '' : `${w.from ? `\`${call(w.from)}\` → ` : ''}\`${call(w.to)}\` `;
+      lines.push(`- ${mark}**${w.record}** ${value}— ${w.reason[0]}`);
       if (w.record.startsWith('grades.')){
         const anchor = anchorText(w.to.dimension, w.to.grade)?.[0];
         if (anchor) lines.push(`  - Anchor for ${w.to.grade}: ${anchor}`);

@@ -46,7 +46,7 @@ import { MAX_MACHINE_CHANGES_PER_RUN } from '../src/governance/automation.js';
 import { DIMENSION_IDS, ARCHETYPE_IDS, dimension } from '../src/governance/investability.js';
 import { markets } from '../src/markets/registry.js';
 import { runScoutPass, renderScoutReport, changesFromScoutAnswer, robotsAllows, spotCheckSample, scoutDimensions, scoutArchetypes } from '../agent/scout.mjs';
-import { SCOUT_PROMPT_VERSION, SCOUT_SYSTEM, SCOUT_ANSWER_SCHEMA } from '../agent/scoutPrompt.mjs';
+import { SCOUT_PROMPT_VERSION, SCOUT_SYSTEM, SCOUT_ANSWER_SCHEMA, scoutUserMessage, triggerPrefix } from '../agent/scoutPrompt.mjs';
 import { MODEL } from '../agent/prompt.mjs';
 import { hashOf } from '../agent/core.mjs';
 import { scoutIndex, scoutData } from '../vite-plugin-scout.js';
@@ -716,7 +716,18 @@ test('a proposal that lies is dropped and counted, and the rest of the card is s
   /* C and the knock-out, through the whole pass. */
   assert.match((await rejected({ verdicts: [{ ...answer().verdicts[0], call: 'enter-now', waits_for: '', review_by: '' }] }))[0].why, /a first call is one of/);
   assert.match((await rejected({ grades: [], verdicts: [{ ...answer().verdicts[0], because: [] }] }))[0].why, /can shut this investor out and is not graded yet/);
-  assert.match((await rejected({ triggers: [{ ...answer().triggers[0], id: 'fi-capacity-auction' }], verdicts: [] }))[0].why, /begins with the market id/);
+  assert.match((await rejected({ triggers: [{ ...answer().triggers[0], id: 'fi-capacity-auction' }], verdicts: [] }))[0].why, /begins with "es-"/);
+  /* THE PREFIX IS STATED, NOT LEFT TO BE WORKED OUT. Ontario's id has an
+     underscore and a trigger id may not, so "the market id and a hyphen" was
+     wrong for it: the first dry run lost a trigger and the verdict waiting on
+     it. The model is now told the exact prefix for the market in front of it. */
+  assert.equal(triggerPrefix('ca_on'), 'ca-on-');
+  assert.equal(triggerPrefix('es'), 'es-');
+  for (const m of SCOUT_ROSTER){
+    assert.match(`${triggerPrefix(m.id)}an-event`, /^[a-z0-9]+(-[a-z0-9]+)+$/, `${m.id}: its trigger prefix does not make a valid trigger id`);
+    const message = scoutUserMessage({ market: m, card: emptyCard(m.id), dimensions: [], archetypes: [], pages: [] });
+    assert.ok(message.includes(`every trigger id on this card begins with "${triggerPrefix(m.id)}"`), `${m.id}: the model is not told its trigger prefix`);
+  }
 
   /* What a hostile page might ask for has no spelling in the answer, and none on a card. */
   for (const dimensionId of ['weights', 'anchors.gridScarcity', 'gridScarcity.held', 'gridScarcity.lockedUntil']){

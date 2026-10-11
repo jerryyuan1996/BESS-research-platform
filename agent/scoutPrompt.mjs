@@ -10,7 +10,14 @@
    line. Bump it whenever the text or the schema changes.
    --------------------------------------------------------------------------- */
 
-export const SCOUT_PROMPT_VERSION = 'scout-v1';
+/* v2, 2026-10-11: the user turn states the exact prefix a trigger id takes.
+   v1 said "the market id and a hyphen", and for Ontario, whose id has an
+   underscore that a trigger id may not, the first dry run lost a trigger and
+   the verdict that waited on it. */
+export const SCOUT_PROMPT_VERSION = 'scout-v2';
+
+/** What a trigger id on this market's card begins with. An id is kebab-case, so an underscore becomes a hyphen. */
+export const triggerPrefix = (marketId) => `${marketId.replace(/_/g, '-')}-`;
 
 export const SCOUT_SYSTEM = `You write a scouting card on one battery-storage market for an analyst's private research platform.
 
@@ -103,7 +110,7 @@ export const SCOUT_ANSWER_SCHEMA = {
         type: 'object', additionalProperties: false,
         required: ['id', 'label_en', 'label_zh', 'expected', 'watches', 'direction', 'evidence'],
         properties: {
-          id: text('A kebab-case id beginning with the market id and a hyphen'),
+          id: text('A kebab-case id of lowercase letters, digits and hyphens, beginning with the trigger prefix given for this market'),
           label_en: text('What the event is'),
           label_zh: text('The same, in Chinese'),
           expected: text('YYYY-MM or YYYY-MM-DD when the page dates it. Empty when it is announced and undated'),
@@ -147,6 +154,7 @@ export function scoutUserMessage({ market, card, dimensions, archetypes, pages }
   ];
   return [
     `Market: ${market.name[0]} (id ${market.id})`,
+    `Trigger prefix: every trigger id on this card begins with "${triggerPrefix(market.id)}", for example "${triggerPrefix(market.id)}capacity-auction".`,
     '',
     'The card as it stands:',
     standing.length ? JSON.stringify(standing, null, 1) : 'Empty. Nothing has been written yet.',
