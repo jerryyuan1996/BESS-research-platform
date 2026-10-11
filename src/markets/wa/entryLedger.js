@@ -6,8 +6,15 @@
    page on Reserve Capacity Security — the one large item — was opened by the
    analyst on 2026-10-11, after an automated reader was stopped by a bot check;
    that item is "verified". The network operator's fee schedule was opened the
-   same day by the drafting agent, so its fees stay at "verify". One item, the
-   security for connection works, is "unsourced".
+   same day by the drafting agent, so its fees stay at "verify".
+
+   The security for connection works was "unsourced" until the regulator's
+   approved access arrangement was opened: the standard access contract and the
+   Contributions Policy set out what is secured, when and how it is released.
+   They give a rule and no number — the amount depends on each project's works —
+   so the item is sourced and still has no amount. NO DEAL FIGURE BELONGS HERE.
+   An amount seen in one project's contract is deal-derived however it is
+   rounded, and stays in the private overlay until a public document gives one.
 
    The security amount is DERIVED, and the derivation is the fragile part. The
    rule is 25% of the Peak Benchmark Reserve Capacity Price multiplied by the
@@ -31,6 +38,19 @@ const WP_FEES = {
   access: 'opened',
 };
 
+/* The access arrangement approved by the regulator on 31 March 2023, for
+   1 July 2023 to 30 June 2027. A new one is due from 1 July 2027. */
+const CONTRIBUTIONS_POLICY = {
+  publisher: 'Economic Regulation Authority — approved access arrangement, Appendix C.1: Contributions Policy',
+  url: 'https://www.erawa.com.au/sites/default/files/23690/WP-AA5-Approved-Access-Arrangement-Appendix-C-1-Contributions-Policy-Clean-PDF-Version.PDF',
+  access: 'opened',
+};
+const STANDARD_ACCESS_CONTRACT = {
+  publisher: 'Economic Regulation Authority — approved access arrangement, Appendix A: Electricity Transfer Access Contract',
+  url: 'https://www.erawa.com.au/sites/default/files/23688/WP-AA5-Approved-Access-Arrangement-Appendix-A-Electricity-Transfer-Access-Contract-Clean-PDF-Version.PDF',
+  access: 'opened',
+};
+
 const fee = (id, label, amount, postedAt) => ({
   id, kind: 'fee', label,
   amount: { fixed: amount, currency: 'AUD' },
@@ -47,8 +67,8 @@ export const ENTRY_LEDGER = {
     'The dominant item is Reserve Capacity Security, posted to the market operator for each megawatt certified, ahead of the Capacity Year it covers. The network operator\'s published fees and studies before an access offer are small beside it.',
     '最大的一项是备用容量保证金：按每一兆瓦认证容量向市场运营机构提交，且早于其对应的容量年度。与之相比，取得接入要约前电网运营商公布的各项费用与研究费很小。'],
   limit: [
-    'The security is 25% of the benchmark price for each megawatt of Peak Certified Reserve Capacity assigned; it is taken here on the full 200 MW and is lower if less is assigned. The network operator\'s fee page names no security for connection works; whether one is required is not sourced and has no amount, so every total is a lower bound. The network operator states its fees are estimates, reconciled to actual cost. Project scoping is entered at the low end of its published range, and studies after the access offer are left out.',
-    '保证金为基准价的25%乘以所获分配的高峰认证备用容量；此处按200MW全额计，若获分配容量较少则相应减少。电网运营商的收费页面未提及并网工程担保；是否需要担保尚无来源、没有金额，因此所有合计均为下限。电网运营商说明其费用为估算，最终按实际成本结算。项目范围界定按公布区间的下限计入，接入要约之后的研究未计入。'],
+    'The security is 25% of the benchmark price for each megawatt of Peak Certified Reserve Capacity assigned; it is taken here on the full 200 MW and is lower if less is assigned. Security for connection works is discretionary and set per project, so it has no amount and every total is a lower bound; the capital contribution for those works is likewise project-specific and is not listed. The network operator states its fees are estimates, reconciled to actual cost. Project scoping is entered at the low end of its published range, and studies after the access offer are left out.',
+    '保证金为基准价的25%乘以所获分配的高峰认证备用容量；此处按200MW全额计，若获分配容量较少则相应减少。并网工程担保由运营商酌定并按项目确定，因此没有金额，所有合计均为下限；并网工程的出资额同样因项目而异，未予列示。电网运营商说明其费用为估算，最终按实际成本结算。项目范围界定按公布区间的下限计入，接入要约之后的研究未计入。'],
   items: [
     {
       id: 'reserve-capacity-security', kind: 'security',
@@ -76,12 +96,16 @@ export const ENTRY_LEDGER = {
       id: 'network-works-security', kind: 'security',
       label: ['Security for connection works', '并网工程担保'],
       amount: null,
-      amountNote: ['Not named on the network operator\'s fee page; whether it is required, and how much, is not sourced', '电网运营商收费页面未提及；是否需要、金额多少，均尚无来源'],
-      postedAt: 'studies', releasedAt: null,
+      amountNote: ['At the network operator\'s discretion: up to the lesser of the estimated new revenue and the forecast cost of the works allocated to the project. Project-specific; no amount is published',
+                   '由电网运营商酌定：以预计新增收入与分摊至本项目的工程预测成本两者中较低者为限。因项目而异，没有公开金额'],
+      /* Due before the works start. Whether that falls before the investment
+         decision depends on the project; taken as before, so that the total
+         stays a lower bound rather than omitting it. */
+      postedAt: 'procurement', releasedAt: 'entry',
       beforeFid: true, beforeConsent: null, refundable: true,
-      form: ['Not sourced', '尚无来源'],
-      lostIf: ['Not sourced', '尚无来源'],
-      evidence: [], status: 'unsourced',
+      form: ['Unconditional, irrevocable bank guarantee or equivalent, required only where the network operator sees a risk of not recovering the revenue', '无条件、不可撤销的银行保函或同等金融工具；仅在电网运营商认为存在收入无法收回的风险时才要求提供'],
+      lostIf: ['Called if the revenue it guarantees is not received. Reviewed 24 months after the service starts: returned if the risk has gone, reduced if it has abated. A separate guarantee may be required for a contribution paid in instalments', '所担保的收入未能收到时即可兑付。服务开始24个月后复核：风险消除则退还，风险减轻则调减。出资额分期支付的，可另行要求提供保函'],
+      evidence: [CONTRIBUTIONS_POLICY, STANDARD_ACCESS_CONTRACT], status: 'verify',
     },
   ],
 };
