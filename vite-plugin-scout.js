@@ -71,13 +71,18 @@ export default function scout(){
   let root = process.cwd();
   const read = async (rel) => (existsSync(path.resolve(root, rel)) ? readFile(path.resolve(root, rel), 'utf8') : '');
 
+  /* Only a file that exists is watched. The dev server resolves a watched path
+     as if the stub had imported it, so a directory, or a pass log nobody has
+     written yet, fails the page instead of being ignored. A card that appears
+     while the dev server is running is picked up on its next start. */
+  const watch = (ctx, file) => { if (existsSync(file)) ctx.addWatchFile(file); };
+
   async function cards(ctx){
     const dir = path.resolve(root, SCOUT_DIR);
-    ctx.addWatchFile(dir);
     if (!existsSync(dir)) return [];
     const files = (await readdir(dir)).filter(f => f.endsWith('.json') && SCOUT_IDS.includes(f.slice(0, -5))).sort();
     return Promise.all(files.map(async (f) => {
-      ctx.addWatchFile(path.join(dir, f));
+      watch(ctx, path.join(dir, f));
       return JSON.parse(await readFile(path.join(dir, f), 'utf8'));
     }));
   }
@@ -92,7 +97,7 @@ export default function scout(){
         return `export const SCOUT_CALLS = ${JSON.stringify(scoutIndex(await cards(this)))};\n`;
       }
       if (file.endsWith('/' + CARDS_STUB)){
-        this.addWatchFile(path.resolve(root, PASSES));
+        watch(this, path.resolve(root, PASSES));
         const data = scoutData(await cards(this), lines(await read(PASSES)), lines(await read(CHANGELOG)));
         return `export const SCOUT_DATA = ${JSON.stringify(data)};\n`;
       }

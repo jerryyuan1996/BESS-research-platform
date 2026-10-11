@@ -1,6 +1,30 @@
 # Investability Phase 4 — the scouting tier: the plan, for sign-off
 
-**Status: awaiting Jerry's sign-off. Nothing is built.** Written 2026-10-11 against
+**Status: approved by Jerry on 2026-10-11, all nine recommendations in §0 accepted, and built, with
+the agent dry on both tiers.** `view/scout/` is empty: no card exists until the agent writes one.
+The phase's exit condition is not met and cannot be until the steps in §6.2 and §5 have run.
+
+Five things differ from the text below, each found while building:
+
+1. **§3.3 point 3, the infrastructure fund.** It is shut out by a revenue-certainty grade of 1, and
+   a card cannot grade revenue certainty (§1.2). So "every dimension that archetype can be knocked
+   out on is graded" reads, as built, "every such dimension *a card can grade*". That barrier is
+   not checked on a card, and `docs/governance.md` says so.
+2. **§4.1, the engine layer.** The scout page imports the market registry for the navigation
+   strip and for nothing else. Every other module of the tier is forbidden it by test.
+3. **§4.2, the source list.** Twelve pages are listed. Six have terms I checked on 2026-10-11 and
+   are admitted, three as `permits` and three as `silent`: Svenska kraftnät, Red Eléctrica (two pages), ESO, the Chilean CNE and the IESO. The
+   other six are publishers' addresses nobody has checked, marked `unread`: the pass probes them
+   for reachability and never shows one to the model. Four markets (Estonia, Lithuania, the
+   Netherlands, Saudi Arabia) therefore have no admitted page, and no region can have a clean pass
+   until its list is completed. That is your work and mine after the first dry run, per Q8.
+4. **§1.2, a spot-check.** It is a record on the card, `checked`, written by you alone, so that it
+   has a changelog line and the status command can tell whether a machine has written since.
+5. **§7, the chunk** is named `scout-page`. Its budget is set for nine full cards (45 kB), not for
+   today's empty page (4.92 kB), because the commit that publishes a card is made by CI and must
+   not fail on a budget somebody has to raise by hand.
+
+Written 2026-10-11 against
 `docs/investment-view-revision-plan-2026-10-10.md` §6.4, §7.2, §7.3, §8 (phase 4 row) and §9 rows
 10 and 12, on a branch that contains the merge of Phase 3 (PR #14, `8ea13b2`).
 

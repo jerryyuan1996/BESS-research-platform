@@ -22,6 +22,12 @@ no database, no authentication, no server-side rendering.
                        ├── verdictHome.js   the verdict board, fetched on demand
                        │                    (boardModel → view store, ledgers, archetypes)
                        │
+                       │                    then the scouting rows, from each card's four calls
+                       │
+              src/scout/scoutPage.js        /scout, fetched on demand with the cards
+                       │                    (scoutModel → roster, source list, archetypes;
+                       │                     never the engine or the registry's markets)
+                       │
               src/home/returnsPage.js       /returns, fetched on demand
                        └── every section receives a market list
                                 │
@@ -298,7 +304,8 @@ Two layering rules extend the table above:
 | `derive/` | `governance/` | any DOM, any market module |
 | `live/` | everything shared, `governance/`, `derive/` | `etl/` |
 | `etl/` | `src/` freely | — (but may only *write* to `public/data/`, and to the view store through `etl/lib/viewWriter.mjs`) |
-| `agent/` | `src/governance/`, market source registers, `view/schema/`, `etl/lib/viewWriter.mjs` | — (writes nothing to the repository; runs in CI only) |
+| `agent/` | `src/governance/`, market source registers, `src/scout/sources.js`, `view/schema/`, `etl/lib/viewWriter.mjs` | — (runs in CI only; may write scout cards through the writer once live there, and nothing else ever) |
+| `scout/` | `governance/`, the shared UI, the registry for the navigation strip | `comparison/`, `entry/`, a market module, a market view |
 
 `governance/` and `derive/` touch no DOM, for the same reason `comparison/` does not: the ETL runs
 them in Node, and the tests pin them there.
@@ -322,7 +329,9 @@ completely with zero snapshots present.
 **And no automated methodology.** Judgement publishes automatically after validation; methodology
 never does. A grade or a verdict in the view store may be changed by a rule the analyst wrote in
 advance, through the view writer's gate, and every such change is a line on `/changes` naming the
-rule and its evidence. Every weight, anchor, limit, score band and discount rate was set by a person
+rule and its evidence. A scout card — a market with no dashboard — is written by the agent from
+pages the analyst listed, through the same writer and a gate of its own, once the analyst has made
+the agent live on cards. Every weight, anchor, limit, score band and discount rate was set by a person
 and can only be changed by a person, as can every model assumption in `src/`. That boundary is
 enforced in code and asserted by `tests/governance.test.js` and `tests/view-automation.test.js` — see
 [`governance.md`](governance.md).
@@ -337,10 +346,17 @@ enforced in code and asserted by `tests/governance.test.js` and `tests/view-auto
 | `view/schema/view.mjs` | Who may write which field; the machine gate |
 | `etl/lib/viewWriter.mjs` | The only code that writes `view/` |
 | `etl/rules.mjs` | Runs each data rule after a refresh |
-| `agent/` | The dry daily pass over due triggers |
-| `scripts/view/writer.mjs` | The analyst's command line: `apply`, `revert` |
+| `agent/core.mjs` | The dry daily pass over due triggers on core markets |
+| `agent/scout.mjs` | The scout pass: three cards a run, from listed pages only |
+| `src/governance/scout.js` | Which markets have a card, and the limits on a card and a scout run. Methodology |
+| `src/scout/sources.js` | The pages the agent may read for each scout market, with their terms. Methodology |
+| `view/schema/scout.mjs` | A card's schema, rights and gate; the pass log and the streak |
+| `vite-plugin-scout.js` | Hands the home board each card's calls and `/scout` the cards whole |
+| `scripts/view/writer.mjs` | The analyst's command line: `apply`, `revert`, `scout-check`, `scout-remove` |
+| `scripts/view/scout-status.mjs` | The streak of clean passes and the state of each card |
 | `scripts/view/digest.mjs` | The weekly digest of machine changes |
 | `src/changes/` | The `/changes` page, loaded on demand with the whole changelog |
+| `src/scout/` | The `/scout` page, loaded on demand with the cards |
 
 ## Related documents
 

@@ -69,8 +69,9 @@ const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
  * class and its named list of methodology, the /changes route's shell and the
  * /data page's statement of the new rule. The changelog itself is not here.
  *
- * MEASURED 207.44 after the scouting tier (plan phase 4): the /scout route's
- * shell, one navigation link and three more named methodology surfaces.
+ * MEASURED 207.64 after the scouting tier (plan phase 4), from 207.16: the
+ * /scout route's shell, one navigation link, and the /data page's statement of
+ * who writes a scout card.
  */
 const BUDGET = {
   entry: 222,
@@ -85,7 +86,7 @@ const BUDGET = {
      validator learned `when` and `effect`, and the first rule is a record in
      Western Australia's view. The budget is unchanged.
 
-     MEASURED 258.85 after the scouting tier (plan phase 4), from 256.67: the
+     MEASURED 259.05 after the scouting tier (plan phase 4), from 256.66: the
      roster of nine markets, the board's scouting rows and each card's four
      calls. A card itself is not here: see `scout-page` below. The budget is
      unchanged. */
@@ -184,7 +185,7 @@ const BUDGET = {
        Fetched only on that route — the home page carries each card's four
        calls and nothing else of it.
 
-       MEASURED 4.93 WITH NO CARD WRITTEN, which is the page alone. The budget
+       MEASURED 4.92 WITH NO CARD WRITTEN, which is the page alone. The budget
        is set for nine full cards and not for today, on purpose: a card is
        written by the agent in CI and published by the commit that writes it,
        so a budget that had to be raised by hand as cards arrived would fail
