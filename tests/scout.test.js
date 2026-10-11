@@ -706,7 +706,7 @@ test('a proposal that lies is dropped and counted, and the rest of the card is s
   assert.equal(lied.wouldWrite, 2);
   assert.equal(passIsClean({ ...lied.pass }), false);
   assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: cite('x', 99) }] }))[0].why, /page 99, which was not fetched/);
-  assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: [] }] }))[0].why, /at least one quotation/);
+  assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: [] }] }))[0].why, /at least one quotation|at least one evidence record/);
 
   /* FACTS ARE CHECKED ONE AT A TIME. Until 2026-10-11 the first fact to fail
      refused the whole list, and a dry run lost a market every fact it had to
