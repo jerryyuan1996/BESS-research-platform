@@ -63,13 +63,19 @@
     },
     "timeToRevenue": {
       "dimension": "timeToRevenue",
-      "grade": 3,
+      "grade": 2,
       "trend": "stable",
-      "basis": "practitioner",
-      "evidence": [],
-      "asOf": "2026-10-10",
+      "basis": "derived",
+      "evidence": [
+        "build-pathway"
+      ],
+      "asOf": "2026-10-11",
       "author": "analyst",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "reason": [
+        "Connection capacity is allocated by an annual auction for a year at least two years out, so capacity won in 2027 is for 2029 at the earliest. With site, studies and build the path runs to about 50 months. A rough reading of the pathway, not a critical-path calculation.",
+        "并网容量通过年度拍卖分配，且对应至少两年之后的年份，2027年拍得的容量最早用于2029年。加上选址、研究与建设，全程约50个月。此为对建设路径的粗略判读，并非关键路径计算。"
+      ]
     },
     "gridScarcity": {
       "dimension": "gridScarcity",
