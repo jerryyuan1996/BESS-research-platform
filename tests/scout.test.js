@@ -871,6 +871,8 @@ test('the status command reports the streak, each card and whether it was checke
 
 /* ---- the workflow ---------------------------------------------------------------------- */
 
+const agentJob = (wf) => wf.slice(wf.indexOf('\n  agent:\n'), wf.indexOf('\n  scout:\n')).split('\n').filter(line => !/^\s*#/.test(line)).join('\n');
+
 test('the scout job can write only while the agent is live on cards, and never a market', async () => {
   const wf = await readFile(path.join(REPO, '.github', 'workflows', 'etl.yml'), 'utf8');
   const start = wf.indexOf('\n  scout:\n'), end = wf.indexOf('\n  publish-scout:\n');
@@ -885,7 +887,15 @@ test('the scout job can write only while the agent is live on cards, and never a
   assert.equal(mayPush, SCOUT_LIVE_AUTHORS.includes('agent'), 'the scout job\'s write permission and SCOUT_LIVE_AUTHORS disagree');
 
   assert.match(executable, /node agent\/run\.mjs --scout/);
-  assert.match(executable, /if \[ -e local-data \]/, 'the job does not check that the private folder is absent');
+  /* The private folder is always in a checkout, because its README is
+     committed. So the check is that it holds nothing else, and the committed
+     tree is asserted to agree: a check that failed on the folder merely
+     existing could never pass, and did not, the first time the job ran. */
+  for (const part of [agentJob(wf), executable]){
+    assert.match(part, /find local-data -mindepth 1 ! -path local-data\/README\.md/, 'the job does not check what the private folder holds');
+    assert.ok(!/\[ -e local-data \]/.test(part), 'the job fails on the private folder existing, which it always does');
+  }
+  assert.ok(existsSync(path.join(REPO, 'local-data', 'README.md')), 'the private folder\'s README is not committed, so the check above tests the wrong thing');
   /* What it stages and what it lets through are view/scout/ and the changelog. */
   assert.match(executable, /':!view\/scout' ':!view\/changelog\.jsonl' ':!etl\/out'\)/);
   for (const add of executable.match(/git add [^\n]+/g) || []){

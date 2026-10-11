@@ -379,14 +379,24 @@ jobs:
       - run: npm ci
         if: env.ANTHROPIC_API_KEY != ''
 
-      - name: Confirm the private folder is not here
+      - name: Confirm the private folder holds nothing private
         if: env.ANTHROPIC_API_KEY != ''
         # The agent must never see the analyst's private notes. They are
         # git-ignored and cannot be in a fresh checkout; this makes that a
         # checked fact rather than an assumption.
+        #
+        # Until 2026-10-11 this step failed if the folder existed at all. It
+        # always exists — its README is committed — so the step could never
+        # pass, and nobody saw that until a model key was added and the job
+        # ran for the first time.
         run: |
-          if [ -e local-data ]; then
-            echo "::error::A private folder is present in the checkout. The agent will not run."
+          # The folder itself is always here: its README is the one file in it
+          # that is committed. What must not be here is anything else. The
+          # count is reported and never the names, which may themselves be
+          # confidential.
+          PRIVATE=$(find local-data -mindepth 1 ! -path local-data/README.md 2>/dev/null | wc -l)
+          if [ "$PRIVATE" -ne 0 ]; then
+            echo "::error::The private folder holds $PRIVATE item(s) besides its README. The agent will not run."
             exit 1
           fi
 
@@ -456,11 +466,16 @@ jobs:
       - run: npm ci
         if: env.ANTHROPIC_API_KEY != ''
 
-      - name: Confirm the private folder is not here
+      - name: Confirm the private folder holds nothing private
         if: env.ANTHROPIC_API_KEY != ''
         run: |
-          if [ -e local-data ]; then
-            echo "::error::A private folder is present in the checkout. The agent will not run."
+          # The folder itself is always here: its README is the one file in it
+          # that is committed. What must not be here is anything else. The
+          # count is reported and never the names, which may themselves be
+          # confidential.
+          PRIVATE=$(find local-data -mindepth 1 ! -path local-data/README.md 2>/dev/null | wc -l)
+          if [ "$PRIVATE" -ne 0 ]; then
+            echo "::error::The private folder holds $PRIVATE item(s) besides its README. The agent will not run."
             exit 1
           fi
 

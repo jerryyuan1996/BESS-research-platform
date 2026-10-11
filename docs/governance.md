@@ -169,8 +169,8 @@ it runs **in CI only, and dry**. Its other pass, over scout cards, is the next s
 - Each surviving change is put to the writer's `prepare`. The report says what would have changed
   and what the gate said. Nothing is written.
 - It needs a model key as a repository secret, `ANTHROPIC_API_KEY`. Without one the job does
-  nothing. It cannot see `local-data/`: the folder is not in a CI checkout, the job checks that
-  before it starts, and nothing under `agent/` or `etl/` names it.
+  nothing. It cannot see `local-data/`: in a CI checkout the folder holds only its committed
+  README, the job checks that nothing else is there before it starts, and nothing under `agent/` or `etl/` names it.
 
 ### The scouting tier
 
@@ -311,7 +311,8 @@ node scripts/view/writer.mjs scout-remove <id>   # take a whole card away, one l
 To pin a record against machine changes, set its `lockedUntil` to a date. To re-arm a rule that has
 fired, write its trigger record again. To start the agent's dry runs, add the repository secret
 `ANTHROPIC_API_KEY`. To run one scout pass by hand, dispatch the *Live data* workflow with a
-`scout_region`. To admit a page to the agent's reading list, read its publisher's terms and record
+`scout_region`, and wait for it to finish before dispatching the next: the workflow keeps one run
+waiting at a time, and a third dispatch cancels the second. To admit a page to the agent's reading list, read its publisher's terms and record
 what they say in `src/scout/sources.js`.
 
 ---
