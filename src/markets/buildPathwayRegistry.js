@@ -6,13 +6,10 @@
    pathway is small — a few kilobytes of text — and because the cross-market
    comparison the section makes its argument from needs more than one at a time.
 
-   THE COST OF BEING STATIC, now that there are four. All four pathways ship in
-   one chunk that every pathway market downloads: about 20 kB gzipped, of which
-   a visitor needs a quarter. That took the shared-chunk budget in
-   tests/bundle-budget.test.js from 55 to 65 kB. The alternative is for each
-   dashboard to import its own pathway, which moves the text into the market
-   chunk and breaks Finland's 18 kB budget instead. Left as it was built; worth
-   revisiting before a fifth is added.
+   NOT FOR A MARKET'S OWN SECTION. A dashboard imports its own pathway from its
+   own folder, so the text ships in the chunk of the one market that shows it.
+   This registry is for the tests, and for any consumer that needs more than
+   one market at once.
 
    ABSENCE IS THE NORMAL CASE and must stay comfortable. Four of fifteen markets
    have a pathway. A market without one renders no section rather than an empty

@@ -16,7 +16,7 @@
    structure. What differs is what fills them.
    --------------------------------------------------------------------------- */
 
-import { buildPathwayFor } from '../buildPathwayRegistry.js';
+import { FI_BUILD_PATHWAY } from './buildPathway.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
@@ -207,7 +207,7 @@ export function buildSections(api){
     ], sig: [['Extended once already', '已延期一次'], ['Scarcity favours the incumbent', '稀缺性有利于在运方']] },
     { t: 'src', src: SRC.reserveObligations, use: ['Main grid scale and the reinforcement programme', '主网规模与加强工程'] },
     ] },
-    { t: 'pathway', pathway: buildPathwayFor('fi'), sourceFor: (k) => SRC[k] },
+    { t: 'pathway', pathway: FI_BUILD_PATHWAY, sourceFor: (k) => SRC[k] },
   ] });
 
 

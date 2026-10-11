@@ -10,7 +10,7 @@ import { chip } from '../../../components/chip.js';
 import { why } from '../../../components/decisionLogic.js';
 import { renderGeographicGridMap } from '../../../components/geographicGridMap.js';
 import { buildPathwayPanel } from '../../../components/buildPathwayPanel.js';
-import { buildPathwayFor } from '../../buildPathwayRegistry.js';
+import { WA_BUILD_PATHWAY } from '../buildPathway.js';
 import { kpi } from '../../../components/metricCard.js';
 import { sectionHead } from '../../../components/sectionHeader.js';
 import { sourceDrawer, sourceStatusBadge } from '../../../components/sourceDrawer.js';
@@ -40,7 +40,7 @@ function renderGrid(main){
   /* How a project is actually built, placed under the section that already
      promises "a chain of approvals, not a binary status" — this is that chain,
      with the instrument governing each link and who holds it. */
-  const pathway = buildPathwayFor('wa');
+  const pathway = WA_BUILD_PATHWAY;
   if (pathway){
     const panel = buildPathwayPanel(pathway, { sourceFor: (k) => SRC[k] });
     panel.style.marginTop = '14px';

@@ -64,9 +64,13 @@ const BUDGET = {
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
      hand-written dashboard, with its own optimiser, BRCP engine and export
-     layer that the shared block engine does not have. */
+     layer that the shared block engine does not have.
+
+     FINLAND ROSE FROM 18 TO 23 when its build pathway moved into this chunk
+     from the shared one. A Finland visitor downloads less overall as a result:
+     the shared chunk used to carry every market's pathway, and now none. */
   markets: {
-    fi: 18, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 95,
+    fi: 23, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 95,
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
 
@@ -85,15 +89,8 @@ const BUDGET = {
      by /projects/*, which in a published build is a typo. Counting it here made
      the failure message ("what a first market visit pays") untrue, and would
      have pushed someone into raising a budget to accommodate bytes no market
-     visitor downloads.
-
-     RAISED FROM 55 TO 65 when Great Britain and Romania gained build pathways.
-     The pathway registry is static, so its chunk carries all four markets'
-     pathways — 19.7 kB gzipped, up from about 10 — and the total measured
-     62.4 kB. The bytes are real and three quarters of them are another market's
-     text; see the note in src/markets/buildPathwayRegistry.js for the
-     alternative that was tried and why it was not taken. */
-  sharedTotal: 65,
+     visitor downloads. */
+  sharedTotal: 55,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {
