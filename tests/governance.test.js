@@ -1,8 +1,12 @@
 /* ---------------------------------------------------------------------------
    GOVERNANCE TESTS.
 
-   These assert the property the whole live-data design rests on: automation can
-   observe, compute and propose, but cannot change a judgement.
+   These assert the property the whole design rests on. Until 2026-10-11 that
+   was "automation can observe, compute and propose, but cannot change a
+   judgement". It is now: JUDGEMENT PUBLISHES AUTOMATICALLY AFTER VALIDATION;
+   METHODOLOGY NEVER DOES. Automation writes observed data, derived metrics
+   and — through its own writer and gate — the view store. It cannot write or
+   propose a weight, an anchor, a limit, a score band or a discount rate.
 
    Documentation cannot enforce that. A test can. Each of these fails the build
    on the specific way the guarantee could be eroded by an ordinary,
@@ -20,7 +24,14 @@ import {
   AUTHORITY, COMPARISON_AUTHORITY, MANIFEST_AUTHORITY, ASSUMPTION_AUTHORITY,
   comparisonAuthority, manifestAuthority, assumptionAuthority,
   canMachineWrite, canMachinePropose, AUTHORITY_LABEL, isClassified,
+  MACHINE_WRITABLE, VIEW_AUTHORITY, viewAuthority, METHODOLOGY_SURFACES,
 } from '../src/governance/authority.js';
+import { existsSync } from 'node:fs';
+import {
+  VIEW_SECTIONS, PERMITTED_AUTHORS, parsePath, authorMayWrite, emptyView, validateMarketView,
+} from '../view/schema/view.mjs';
+import { parseEffectPath } from '../src/governance/triggers.js';
+import { assertViewWritable, VIEW_ROOT } from '../etl/lib/viewWriter.mjs';
 import { DATASETS, DATASET_KINDS, datasetById, snapshotFile, summaryFile } from '../src/governance/datasets.js';
 import {
   classifyDrift, BAND, DRIFT_THRESHOLDS, IMPACT_THRESHOLDS, relativeDelta, impactOf,
@@ -63,27 +74,58 @@ test('the ETL write boundary accepts published-data paths', () => {
   assert.ok(assertWritable(summaryFile('gb-day-ahead')).startsWith(ALLOWED_WRITE_ROOT));
 });
 
-test('no ETL module writes to the filesystem except through the boundary', async () => {
-  /* The boundary is only a boundary if it is the sole exit. A connector that
-     imports node:fs directly bypasses every check in this file, so the import
-     itself is what is forbidden.
+test('the view writer accepts the three kinds of store file and nothing else', () => {
+  /* The second wall. The view writer writes judgement and only judgement: a
+     market's view, the index and the changelog. Not the schema that says who
+     may write what, not methodology, not anything outside its root. */
+  for (const ok of ['markets/wa.json', 'markets/jp_tokyo.json', 'index.json', 'changelog.jsonl']){
+    assert.ok(assertViewWritable(VIEW_ROOT, ok).startsWith(VIEW_ROOT));
+  }
+  const forbidden = [
+    'schema/view.mjs', 'markets/../schema/view.mjs', 'markets/../../src/governance/archetypes.js',
+    '../src/governance/archetypes.js', '../src/governance/investability.js', '../src/comparison/assumptions.js',
+    '../public/data/public/fx-ecb.json', '../package.json', 'markets/WA.json', 'markets/wa.js', 'markets/wa.json.bak',
+    'markets/a/b.json', 'index.json.tmp', 'changelog.jsonl/../x', 'notes.json', '',
+  ];
+  for (const p of forbidden){
+    assert.throws(() => assertViewWritable(VIEW_ROOT, p), /does not write/, `expected the view writer to refuse "${p}"`);
+  }
+});
+
+test('no ETL or agent module writes to the filesystem except through one of the two boundaries', async () => {
+  /* A boundary is only a boundary if it is the sole exit. There are two now,
+     one per kind of content, each with its own validator: boundary.mjs for
+     published data and viewWriter.mjs for the view. A module that imports a
+     write API directly bypasses both, so the import itself is what is
+     forbidden.
 
      etl/propose.mjs is the documented exception: it edits analyst files, runs
-     only on a branch, and refuses to run on main. See its header. */
-  const EXEMPT = new Set(['lib/boundary.mjs', 'propose.mjs', 'run.mjs', 'verify.mjs']);
+     only on a branch, and refuses to run on main. See its header. Neither
+     etl/rules.mjs nor agent/run.mjs is exempt. */
+  const EXEMPT = new Set(['etl/lib/boundary.mjs', 'etl/lib/viewWriter.mjs', 'etl/propose.mjs', 'etl/run.mjs', 'etl/verify.mjs']);
   const WRITE_APIS = /\b(writeFileSync|writeFile|appendFile|appendFileSync|rmSync|unlinkSync|createWriteStream)\b/;
 
   const offenders = [];
-  for (const rel of await walk(path.join(REPO, 'etl'))){
-    const key = path.relative(path.join(REPO, 'etl'), rel).replace(/\\/g, '/');
-    if (EXEMPT.has(key)) continue;
+  for (const dir of ['etl', 'agent']){
+    if (!existsSync(path.join(REPO, dir))) continue;
+    for (const rel of await walk(path.join(REPO, dir))){
+      const key = path.relative(REPO, rel).replace(/\\/g, '/');
+      if (EXEMPT.has(key)) continue;
 
-    const src = await readFile(rel, 'utf8');
-    if (WRITE_APIS.test(src)) offenders.push(key);
+      const src = await readFile(rel, 'utf8');
+      if (WRITE_APIS.test(src)) offenders.push(key);
+    }
   }
 
   assert.deepEqual(offenders, [],
-    'these ETL modules call a filesystem write API directly instead of using etl/lib/boundary.mjs');
+    'these modules call a filesystem write API directly instead of using etl/lib/boundary.mjs or etl/lib/viewWriter.mjs');
+
+  /* And the two boundaries do not reach into each other's directory. */
+  const data = await readFile(path.join(REPO, 'etl', 'lib', 'boundary.mjs'), 'utf8');
+  assert.ok(!/(join|resolve)\([^)]*['"]view['"]/.test(data), 'the data boundary constructs a path into the view store');
+  const view = await readFile(path.join(REPO, 'etl', 'lib', 'viewWriter.mjs'), 'utf8');
+  assert.ok(!/(join|resolve)\([^)]*['"]public['"]/.test(view), 'the view writer constructs a path into published data');
+  assert.ok(!/REPO_ROOT,\s*['"]src['"]/.test(view), 'the view writer constructs a path into src/');
 });
 
 test('run.mjs and verify.mjs write only to etl/out, never to src/', async () => {
@@ -227,9 +269,25 @@ test('an unclassified path fails closed, at the most restrictive class', () => {
   assert.equal(canMachinePropose(AUTHORITY.METHODOLOGY), false);
 });
 
-test('the judgement fields the analyst reserved are methodology, not analyst', () => {
-  /* These are the specific things automation must never touch, not even as a
-     proposal: scoring, thesis, market status, house view. */
+test('judgement is view-store content; methodology cannot be written or proposed', () => {
+  /* Until 2026-10-11 thesis and status were asserted here as things automation
+     could not even propose. Judgement has since moved: the view store's
+     grades, verdicts, thesis and triggers are class VIEW and publish after
+     validation. */
+  assert.deepEqual(Object.keys(VIEW_AUTHORITY).sort(), [...VIEW_SECTIONS].sort(), 'every section of a market view is classified');
+  for (const section of VIEW_SECTIONS){
+    assert.equal(viewAuthority(section), AUTHORITY.VIEW);
+    assert.equal(canMachineWrite(viewAuthority(section)), true);
+  }
+  /* Anything that is not a section fails closed, as every other table does. */
+  for (const notASection of ['weights', 'anchors', 'limits', 'bands', 'assumptions', 'held', 'schema']){
+    assert.equal(viewAuthority(notASection), AUTHORITY.METHODOLOGY);
+  }
+
+  /* What did NOT move. The scoring fields are methodology. So are the old
+     thesis and status fields that still live in src/: the machine-writable
+     thesis is the view store's, and these stay human-set until they are
+     retired. */
   assert.equal(comparisonAuthority('score.composite'), AUTHORITY.METHODOLOGY);
   assert.equal(comparisonAuthority('score.connectionRisk'), AUTHORITY.METHODOLOGY);
   assert.equal(comparisonAuthority('narrative.thesis'), AUTHORITY.METHODOLOGY);
@@ -262,7 +320,18 @@ test('the sponsor underwriting position is declared, not defaulted', () => {
   }
 });
 
-test('nothing anywhere is machine-writable except observed and derived', () => {
+test('three things are machine-writable: observed, derived, view', () => {
+  /* Two classes of content until 2026-10-11, three now. Exactly these. */
+  assert.deepEqual([...MACHINE_WRITABLE].sort(), [
+    AUTHORITY.DERIVED, AUTHORITY.DERIVED_OBSERVED, AUTHORITY.OBSERVED, AUTHORITY.OFFICIAL_FORECAST, AUTHORITY.VIEW,
+  ].sort());
+  for (const a of [AUTHORITY.ANALYST, AUTHORITY.ANALYST_SCENARIO, AUTHORITY.METHODOLOGY, AUTHORITY.CONFIG, AUTHORITY.ILLUSTRATIVE_SEED]){
+    assert.equal(canMachineWrite(a), false, `${a} must not be machine-writable`);
+  }
+
+  /* Unchanged, and the half that matters most: no field of the comparison
+     interface, a manifest or the global assumptions is machine-writable. The
+     new class did not open a single one of them. */
   const all = [
     ...Object.values(COMPARISON_AUTHORITY),
     ...Object.values(MANIFEST_AUTHORITY),
@@ -271,6 +340,58 @@ test('nothing anywhere is machine-writable except observed and derived', () => {
   for (const a of all){
     assert.equal(canMachineWrite(a), false,
       `no configured field may be machine-writable — found ${a}`);
+    assert.notEqual(a, AUTHORITY.VIEW, 'a src/ field is not view-store content');
+  }
+});
+
+test('methodology is unwritable by every author, machine or not, through the view', async () => {
+  /* Every methodology surface is named, exists, and sits where no machine
+     writer can reach: under src/, or the view schema itself. */
+  const ids = new Set();
+  for (const surface of METHODOLOGY_SURFACES){
+    assert.ok(!ids.has(surface.id), `${surface.id}: named twice`);
+    ids.add(surface.id);
+    assert.ok(existsSync(path.join(REPO, surface.module)), `${surface.id}: ${surface.module} does not exist`);
+    assert.ok(surface.module.startsWith('src/') || surface.module === 'view/schema/view.mjs', `${surface.id}: ${surface.module} is outside the wall`);
+    assert.ok(surface.what[0] && surface.what[1], `${surface.id}: needs an [en, zh] description`);
+    /* Neither wall admits it. */
+    assert.throws(() => assertWritable(surface.module), BoundaryViolation);
+    assert.throws(() => assertViewWritable(VIEW_ROOT, path.relative(VIEW_ROOT, path.join(REPO, surface.module))), /does not write/);
+  }
+  for (const needed of ['archetype-weights', 'archetype-limits', 'score-bands', 'grade-anchors', 'discount-rates', 'automation-limits']){
+    assert.ok(ids.has(needed), `METHODOLOGY_SURFACES must name ${needed}`);
+  }
+
+  /* No spelling of a weight, an anchor, a limit, a band or a rate is a view
+     path or an effect path — so no change and no rule can express one, for
+     any of the three kinds of author. */
+  const spellings = [
+    'weights', 'weights.developer', 'weights.developer.assetReturn', 'pillarWeight.entry', 'pillarWeights',
+    'archetypes.developer', 'archetypes.developer.limits', 'archetypes.developer.weights', 'limits', 'limits.cheque',
+    'reads.gridScarcity', 'knockouts', 'anchors', 'anchors.capitalAtRisk', 'anchors.capitalAtRisk.3',
+    'bands', 'bands.wait', 'scoreBands', 'SCORE_BANDS', 'discountRate', 'discountRates.contracted',
+    'EXIT_Y_MERCHANT', 'assumptions.EXIT_Y_MERCHANT', 'LIFE', 'UNLEVERED', 'economics.merchGross',
+    'assumptions.economics.merchGross', 'automation.MAX_MACHINE_CHANGES_PER_RUN', 'schema', 'schema.view',
+    'grades.capitalAtRisk.anchors', 'grades.capitalAtRisk.weight', 'verdicts.developer.weights', 'verdicts.developer.limits',
+  ];
+  for (const spelling of spellings){
+    assert.equal(parsePath(spelling), null, `"${spelling}" parsed as a view-store path`);
+    assert.equal(parseEffectPath(spelling), null, `"${spelling}" parsed as an effect path`);
+    for (const kind of PERMITTED_AUTHORS) assert.equal(authorMayWrite(spelling, kind), false, `"${kind}" may write "${spelling}"`);
+  }
+
+  /* And a market view that holds one is not a valid view, so it could not be
+     committed even by hand without the suite failing. */
+  for (const key of ['weights', 'anchors', 'limits', 'bands', 'assumptions', 'reads', 'discountRates']){
+    assert.ok(validateMarketView({ ...emptyView('fi'), [key]: {} }).some(p => /not a section of a market view/.test(p)),
+      `a view holding "${key}" validated`);
+  }
+
+  /* The methodology modules import nothing a machine writes: a weight cannot
+     be made to depend on the view store or on published data. */
+  for (const module of ['src/governance/archetypes.js', 'src/governance/investability.js', 'src/governance/automation.js']){
+    const source = await readFile(path.join(REPO, module), 'utf8');
+    assert.ok(!/from\s+['"][^'"]*(view\/|public\/data|viewRegistry|\.json)/.test(source), `${module} imports machine-writable content`);
   }
 });
 

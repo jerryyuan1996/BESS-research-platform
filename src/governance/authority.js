@@ -7,20 +7,31 @@
 
    The rule, stated once:
 
-     Observed public data and deterministic derived metrics publish
-     automatically after validation. Model outputs recompute automatically using
-     the currently APPROVED methodology and assumptions. Automation never
-     directly modifies analyst-controlled assumptions, scoring methodology,
-     qualitative conclusions, investment thesis, market status or house view.
-     Material drift opens an evidence-backed pull request. A human merges it, or
-     does not.
+     JUDGEMENT PUBLISHES AUTOMATICALLY AFTER VALIDATION; METHODOLOGY NEVER DOES.
 
-   Five classes, not two. The distinction that matters most is ANALYST vs
-   METHODOLOGY: automation may *propose* a change to an analyst assumption,
-   because an observation exists that bears on it. It may not propose a change to
-   methodology at all, because no observation implies a discount rate or a
-   scoring weight — those are positions, and a machine has no standing to argue
-   one.
+     Observed public data and deterministic derived metrics publish
+     automatically after validation. So, since 2026-10-11, does judgement held
+     in the view store — a grade, a verdict, the thesis — when a rule the
+     analyst wrote in advance fires, or when an agent brings a fetched source,
+     and the change passes the validation gate. Model outputs recompute
+     automatically using the currently APPROVED methodology and assumptions.
+     Automation never modifies methodology: scoring weights, grade anchors,
+     knock-outs and limits, score bands, discount rates and exit yields, the
+     comparison window. It may not even propose a change to one. Model
+     assumptions in src/ are still changed by an evidence-backed pull request
+     that a human merges, or does not.
+
+   The distinction that matters most is VIEW vs METHODOLOGY. A grade is a
+   reading against an anchor, and readings change when the world does; an
+   observation or a source can bear on one. An anchor, a weight or a discount
+   rate is a position — no observation implies it, and a machine has no
+   standing to argue one. The two used to share a class and a wall. They no
+   longer share either: judgement lives in view/, behind its own writer and
+   gate, and methodology stays in src/, which nothing unattended can write.
+
+   ANALYST is the class between them, unchanged: automation may *propose* a
+   change to an analyst assumption, because an observation exists that bears on
+   it, and may not apply one.
 
    Layering: this module imports only schema and assumption constants. No DOM, no
    market module, no ETL code. Both the browser app and the Node ETL import it,
@@ -62,17 +73,69 @@ export const AUTHORITY = {
    */
   METHODOLOGY: 'methodology',
 
+  /**
+   * Judgement held in the view store: a grade, a verdict, the thesis, a
+   * trigger. A machine author may write it — through the view writer, inside
+   * the rights its kind has, and only past the validation gate. This class
+   * says the content is the kind a machine may change; view/schema/view.mjs
+   * says which machine, which field, and on what evidence.
+   */
+  VIEW: 'view',
+
   /** Identity and presentation: ids, slugs, flags, colours, locales. Human-set, not a judgement. */
   CONFIG: 'config',
 };
 
-/** Classes automation is permitted to write directly. */
+/**
+ * Classes automation is permitted to write directly: what it observed, what
+ * it computed from that, and — through the view writer's gate — the view.
+ */
 export const MACHINE_WRITABLE = new Set([
   AUTHORITY.OBSERVED,
   AUTHORITY.DERIVED,
   AUTHORITY.DERIVED_OBSERVED,
   AUTHORITY.OFFICIAL_FORECAST,
+  AUTHORITY.VIEW,
 ]);
+
+/**
+ * The sections of a market view, classified. All four are VIEW.
+ *
+ * The analyst's held layer (`grades.<dimension>.held`) is not a section and is
+ * not VIEW: it is his own judgement, written by him alone, and the view schema
+ * answers for it from a list that does not grow.
+ */
+export const VIEW_AUTHORITY = {
+  grades: AUTHORITY.VIEW,
+  verdicts: AUTHORITY.VIEW,
+  thesis: AUTHORITY.VIEW,
+  triggers: AUTHORITY.VIEW,
+};
+
+/**
+ * METHODOLOGY, BY NAME. What no machine author may write or propose, ever, and
+ * the module that holds each. Every one of these is under src/ or is the view
+ * schema itself, none of which the ETL or the view writer can write, and none
+ * of them has a spelling as a view-store path — tests/governance.test.js
+ * asserts both, for every entry.
+ *
+ * The list exists so that "methodology" is something a reader can check
+ * rather than a word. Adding a methodology constant means adding it here.
+ */
+export const METHODOLOGY_SURFACES = [
+  { id: 'archetype-weights',  module: 'src/governance/archetypes.js',    what: ['Each investor\'s dimension weights and pillar weights', '各类投资者的维度权重与支柱权重'] },
+  { id: 'archetype-reads',    module: 'src/governance/archetypes.js',    what: ['How each investor reads a grade, including its knock-outs', '各类投资者对评分的解读，含否决项'] },
+  { id: 'archetype-limits',   module: 'src/governance/archetypes.js',    what: ['Each investor\'s limits on cheque, capital at risk and time', '各类投资者在单笔出资、风险资本与时间上的限额'] },
+  { id: 'score-bands',        module: 'src/governance/archetypes.js',    what: ['The score bands a verdict is checked against', '用于核对结论的评分区间'] },
+  { id: 'grade-anchors',      module: 'src/governance/investability.js', what: ['The five anchors that define each grade', '定义每一档评分的五条锚定标准'] },
+  { id: 'verdict-vocabulary', module: 'src/governance/investability.js', what: ['The dimensions, pillars and six verdict words', '评估维度、支柱与六个结论用词'] },
+  { id: 'discount-rates',     module: 'src/comparison/assumptions.js',   what: ['Discount rates, exit yields, asset life and the comparison window', '折现率、退出收益率、资产寿命与比较期'] },
+  { id: 'sponsor-position',   module: 'src/comparison/sponsorAssumptions.js', what: ['The sponsor\'s buying and cost-of-capital position', '投资方的采购与资金成本立场'] },
+  { id: 'drift-thresholds',   module: 'src/governance/materiality.js',   what: ['When drift counts as material', '偏离何时算作重大'] },
+  { id: 'automation-limits',  module: 'src/governance/automation.js',    what: ['How far one machine run may move the view', '单次自动运行可改动观点的幅度'] },
+  { id: 'authority',          module: 'src/governance/authority.js',     what: ['Who may change what — this file', '谁可以改什么——即本文件'] },
+  { id: 'view-schema',        module: 'view/schema/view.mjs',            what: ['Which author may write which field of the view', '哪类作者可以写观点库的哪个字段'] },
+];
 
 /** Classes automation may raise a pull request against. */
 export const MACHINE_PROPOSABLE = new Set([AUTHORITY.ANALYST]);
@@ -483,6 +546,11 @@ export function assumptionAuthority(key){
   return ASSUMPTION_AUTHORITY[key] ?? AUTHORITY.METHODOLOGY;
 }
 
+/** Authority for a section of a market view. Anything that is not a section fails closed. */
+export function viewAuthority(section){
+  return VIEW_AUTHORITY[section] ?? AUTHORITY.METHODOLOGY;
+}
+
 /** May automation write this value directly, with no human in the loop? */
 export function canMachineWrite(authority){
   return MACHINE_WRITABLE.has(authority);
@@ -507,5 +575,6 @@ export const AUTHORITY_LABEL = {
   [AUTHORITY.ILLUSTRATIVE_SEED]: ['Illustrative — excluded from investment metrics', '示例数据 — 不计入投资指标'],
   [AUTHORITY.ANALYST]: ['Analyst assumption — automation may propose, not change', '分析师假设 — 自动化仅可建议，不可更改'],
   [AUTHORITY.METHODOLOGY]: ['Analyst methodology — human-set only', '分析师方法论 — 仅由人工设定'],
+  [AUTHORITY.VIEW]: ['View — judgement that publishes after validation', '观点 — 经校验后自动发布的判断'],
   [AUTHORITY.CONFIG]: ['Configuration', '配置'],
 };

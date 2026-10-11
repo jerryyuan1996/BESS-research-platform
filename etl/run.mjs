@@ -36,6 +36,7 @@ import { validateSnapshot } from './lib/validate.mjs';
 import { buildSummary } from './lib/summarize.mjs';
 import { derivePriceMetrics } from '../src/derive/priceMetrics.js';
 import { arbitrageRevenuePerMW } from '../src/derive/merchantBridge.js';
+import { MIN_WINDOW_DAYS } from '../src/governance/automation.js';
 import { detectDrift } from './drift/detect.mjs';
 import { renderDriftReport, renderPullRequestBody } from './drift/report.mjs';
 
@@ -185,7 +186,7 @@ async function main(){
       log(`  ${f.marketId}: arbitrage index = ${Math.round(f.currentIndex).toLocaleString('en-US')} per MW/yr` +
           `  windowDays: ${f.metrics.spreadDays}`);
       log(`      record both in src/governance/anchors.js to begin drift tracking` +
-          (f.metrics.spreadDays < 300
+          (f.metrics.spreadDays < MIN_WINDOW_DAYS
             ? ` — but wait for the window to fill; ${f.metrics.spreadDays} days is seasonally biased`
             : ''));
     }
@@ -235,6 +236,11 @@ async function main(){
   const summary = {
     runAt: now,
     updated: written.map(r => r.dataset.id),
+    /* Every dataset this run fetched AND validated, whether or not the file
+       changed. The rules engine tests a snapshot only if its id is here: a
+       source that was skipped or failed leaves an older snapshot on disk, and
+       nothing in the view moves on one this run did not check. */
+    fetched: results.filter(r => ['written', 'unchanged', 'dry-run'].includes(r.status)).map(r => r.dataset.id),
     failed: failed.map(r => ({ id: r.dataset.id, status: r.status, error: r.error ?? r.errors?.[0] })),
     material: drift.material.length,
     reportable: drift.reportable.length,

@@ -14,22 +14,34 @@
    rates are in src/governance/ and nothing in this directory can express a
    change to one.
 
-   WHO MAY WRITE IT, TODAY: THE ANALYST, AND NOBODY ELSE. The plan this store
-   comes from goes on to let rules and an agent write here. That is a later
-   phase and it needs the authority model rewritten first. Until then the
-   writer refuses any author that is not the analyst, and the ETL's own write
-   boundary still stops at public/data/public/ — tests/governance.test.js
-   asserts that and this store does not ask it to stop.
+   WHO MAY WRITE IT: THREE AUTHORS, WITH DIFFERENT RIGHTS. The rule the store
+   lives under is "judgement publishes automatically after validation;
+   methodology never does". So:
 
-   This module is the schema: it says what a valid market view is and which
-   paths a change may touch. The writer and the tests both use it, so the thing
-   that is checked on the way in is the thing that is asserted afterwards.
+     analyst   everything in the store, including the held layer and rules
+     rule      a trigger the analyst wrote in advance, firing: exactly the
+               fields its effect names, on a grade or a verdict, and no more
+     agent     grades, verdicts, the thesis and plain triggers, one step at a
+               time, each change with a source it fetched — and NOT LIVE yet:
+               its changes can be prepared and reported, never applied
+
+   The rights are in AUTHOR_RIGHTS and the checks in machineProblems, both
+   below. Nothing else decides what a machine may write here.
+
+   This module is the schema: it says what a valid market view is, which paths
+   a change may touch and who may touch them. The writer and the tests both use
+   it, so the thing that is checked on the way in is the thing that is asserted
+   afterwards.
    --------------------------------------------------------------------------- */
 
 import {
-  DIMENSION_IDS, ARCHETYPE_IDS, validateGrade, validateVerdict,
+  DIMENSION_IDS, ARCHETYPE_IDS, BASIS, VERDICT, validateGrade, validateVerdict,
 } from '../../src/governance/investability.js';
-import { validateTrigger } from '../../src/governance/triggers.js';
+import { validateTrigger, isRule, parseEffectPath, TRIGGER_KIND } from '../../src/governance/triggers.js';
+import { datasetById } from '../../src/governance/datasets.js';
+import {
+  AGENT_MAX_GRADE_STEP, VERDICT_SCALE, MAX_QUOTE_CHARS, EVIDENCE_CLASS,
+} from '../../src/governance/automation.js';
 
 const isPair = (v) => Array.isArray(v) && v.length === 2
   && v.every(s => typeof s === 'string' && s.trim().length > 0);
@@ -86,6 +98,10 @@ export function validateMarketView(view){
   else for (const trigger of view.triggers){
     for (const p of validateTrigger(trigger)) at(`triggers.${p}`);
     if (trigger?.market !== view.marketId) at(`trigger ${trigger?.id} belongs to "${trigger?.market}"`);
+    /* A rule that tests a dataset nobody publishes would never fire and never say so. */
+    if (trigger?.when && typeof trigger.when.dataset === 'string' && !datasetById(trigger.when.dataset)){
+      at(`trigger ${trigger.id}: when.dataset "${trigger.when.dataset}" is not in the dataset catalogue`);
+    }
     if (triggerIds.has(trigger?.id)) at(`trigger ${trigger?.id} appears twice`);
     triggerIds.add(trigger?.id);
   }
@@ -198,23 +214,276 @@ export function buildIndex(views){
   return index;
 }
 
-/** Who may write the view today. See the header: this is one name on purpose. */
-export const PERMITTED_AUTHORS = ['analyst'];
+/* ---------------------------------------------------------------------------
+   WHO MAY WRITE WHAT
+   --------------------------------------------------------------------------- */
+
+/** Every kind of author the store knows. Anything else is refused everywhere. */
+export const PERMITTED_AUTHORS = ['analyst', 'rule', 'agent'];
+
+/** The authors that are not a person. */
+export const MACHINE_AUTHORS = ['rule', 'agent'];
+
+/**
+ * The authors whose changes are APPLIED today. The agent is permitted and not
+ * live: it runs dry, reporting what it would have changed, until it has earned
+ * the scout cards and then the core markets (plan §8). Adding it here is that
+ * decision, and it is the analyst's.
+ */
+export const LIVE_AUTHORS = ['analyst', 'rule'];
 
 /**
  * Who may write a held view: the analyst, and this list does not grow.
  *
- * Kept apart from PERMITTED_AUTHORS deliberately. The plan goes on to let
- * rules and an agent write sourced grades, and when that list is widened this
- * one must not move with it: a held view is the analyst's own judgement, and
- * a machine that could write it would be writing his opinion for him.
+ * Kept apart from PERMITTED_AUTHORS deliberately. Rules and an agent write
+ * sourced grades, and this list did not move when that one was widened: a held
+ * view is the analyst's own judgement, and a machine that could write it would
+ * be writing his opinion for him.
  */
 export const HELD_AUTHORS = ['analyst'];
 
-/** May this kind of author write this path? The gate asks here and nowhere else. */
+/**
+ * What each author may do, by section.
+ *
+ *   create / replace / remove   whether the record may come into being, change
+ *                               or go
+ *   fields                      for a replace: the only fields that may differ
+ *                               afterwards, besides the stamps (author, asOf).
+ *                               null means the whole record is the author's.
+ *
+ * A section an author has no entry for is closed to it. The held layer is not
+ * in this table at all: HELD_AUTHORS answers for it.
+ */
+export const AUTHOR_RIGHTS = {
+  analyst: {
+    grades:   { create: true, replace: true, remove: true, fields: null },
+    verdicts: { create: true, replace: true, remove: true, fields: null },
+    triggers: { create: true, replace: true, remove: true, fields: null },
+    thesis:   { create: true, replace: true, remove: true, fields: null },
+  },
+  /* A rule's fields are narrower still than this row says: exactly the ones
+     its own effect names. machineProblems holds it to that. */
+  rule: {
+    grades:   { create: false, replace: true, remove: false, fields: ['grade', 'trend', 'trendCause'] },
+    verdicts: { create: false, replace: true, remove: false, fields: ['call', 'reviewBy', 'changesIf'] },
+  },
+  agent: {
+    grades:   { create: false, replace: true, remove: false, fields: ['grade', 'trend', 'trendCause', 'reason', 'evidence', 'basis'] },
+    verdicts: { create: false, replace: true, remove: false, fields: ['call', 'because', 'despite', 'reviewBy', 'changesIf'] },
+    /* A trigger, never a rule: see machineProblems. */
+    triggers: { create: true, replace: true, remove: false, fields: null },
+    thesis:   { create: true, replace: true, remove: false, fields: null },
+  },
+};
+
+/** Fields every author sets on a record it writes; never counted as a change of substance. */
+const STAMPS = ['author', 'asOf'];
+
+/** May this kind of author write this path at all? The first question the gate asks. */
 export function authorMayWrite(path, kind){
-  if (!parsePath(path)) return false;
-  return isHeldPath(path) ? HELD_AUTHORS.includes(kind) : PERMITTED_AUTHORS.includes(kind);
+  const where = parsePath(path);
+  if (!where) return false;
+  if (where.layer === 'held') return HELD_AUTHORS.includes(kind);
+  return Boolean(AUTHOR_RIGHTS[kind]?.[where.section]);
+}
+
+const sameValue = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+/** The top-level fields that differ between two records, the held layer aside. */
+function changedFields(from, to){
+  const keys = new Set([...Object.keys(from || {}), ...Object.keys(to || {})]);
+  keys.delete('held');
+  return [...keys].filter(key => !sameValue(from?.[key], to?.[key]));
+}
+
+const SHA = /^sha256:[0-9a-f]{64}$/;
+
+/**
+ * Problems with the evidence a machine change carries (guardrail A).
+ *
+ * A rule's evidence is the published snapshot it tested: the dataset, the
+ * field, what it read and the line it crossed, with the snapshot's own
+ * checksum. An agent's is a page it fetched, with a quotation short enough to
+ * be a quotation.
+ */
+export function evidenceProblems(evidence, kind){
+  if (!Array.isArray(evidence) || !evidence.length) return ['a machine change carries at least one evidence record — nothing moves on what was recalled'];
+  const problems = [];
+  evidence.forEach((e, i) => {
+    const at = (m) => problems.push(`evidence[${i}]: ${m}`);
+    if (!e || typeof e !== 'object'){ at('must be an object'); return; }
+    if (typeof e.publisher !== 'string' || !e.publisher.trim()) at('publisher is missing');
+    if (typeof e.url !== 'string' || !/^https:\/\//.test(e.url)) at('url must be an https link');
+    if (typeof e.retrievedAt !== 'string' || !Number.isFinite(Date.parse(e.retrievedAt))) at('retrievedAt must be an ISO timestamp');
+    if (typeof e.sha256 !== 'string' || !SHA.test(e.sha256)) at('sha256 must be the content hash of what was read');
+    if (!Object.values(EVIDENCE_CLASS).includes(e.class)) at(`class must be one of ${Object.values(EVIDENCE_CLASS).join(', ')}`);
+    if (kind === 'rule'){
+      if (typeof e.dataset !== 'string' || !datasetById(e.dataset)) at('a rule cites a dataset in the catalogue');
+      if (typeof e.field !== 'string' || !e.field) at('a rule cites the field it tested');
+      if (typeof e.observed !== 'number' || !Number.isFinite(e.observed)) at('a rule records the value it read');
+      if (typeof e.threshold !== 'number' || !Number.isFinite(e.threshold)) at('a rule records the line that value crossed');
+    }
+    if (kind === 'agent'){
+      if (typeof e.quote !== 'string' || !e.quote.trim()) at('an agent quotes the passage it relies on');
+      else if (e.quote.length > MAX_QUOTE_CHARS) at(`quote is ${e.quote.length} characters — at most ${MAX_QUOTE_CHARS}`);
+    }
+  });
+  return problems;
+}
+
+const host = (url) => { try { return new URL(url).host.replace(/^www\./, ''); } catch { return null; } };
+
+/** Guardrail G: one official source, or two that are independent of each other. */
+export function verdictEvidenceSuffices(evidence){
+  if (!Array.isArray(evidence)) return false;
+  if (evidence.some(e => e?.class === EVIDENCE_CLASS.OFFICIAL)) return true;
+  const independent = new Set(evidence.map(e => `${String(e?.publisher).trim().toLowerCase()}|${host(e?.url)}`));
+  const publishers = new Set(evidence.map(e => String(e?.publisher).trim().toLowerCase()));
+  const hosts = new Set(evidence.map(e => host(e?.url)));
+  return independent.size >= 2 && publishers.size >= 2 && hosts.size >= 2;
+}
+
+/**
+ * The records a rule's effect would produce, as whole-record changes.
+ *
+ * An effect names fields; the store replaces records. So each record the
+ * effect touches is read, has those fields set, is stamped, and is returned
+ * whole. A `trendCause` of null removes the field. Throws when the effect
+ * names a record the view does not hold: a rule changes what is there.
+ */
+export function effectChanges(view, trigger, { kind = 'rule', asOf }){
+  const records = new Map();
+  for (const step of trigger.effect){
+    const where = parseEffectPath(step.path);
+    if (!where) throw new Error(`${trigger.id}: "${step.path}" is not a field a rule may change`);
+    const path = `${where.section}.${where.key}`;
+    if (!records.has(path)){
+      const current = view[where.section][where.key];
+      if (!current) throw new Error(`${trigger.id}: ${path} does not exist in ${view.marketId} — a rule changes a record, it does not create one`);
+      const { held: ignored, ...sourced } = structuredClone(current);
+      records.set(path, sourced);
+    }
+    const record = records.get(path);
+    if (step.to === null) delete record[where.field]; else record[where.field] = step.to;
+  }
+  return [...records].map(([path, record]) => ({ path, to: { ...record, author: kind, asOf } }));
+}
+
+/** The changelog id of the analyst's last write of a trigger record, and when. Null when he never wrote it. */
+function armedAt(changelog, market, triggerId){
+  const writes = changelog.filter(e => e.market === market && e.path === `triggers.${triggerId}`);
+  const last = writes[writes.length - 1];
+  return last && last.author?.kind === 'analyst' && last.to !== null ? last.at : null;
+}
+
+/**
+ * Has this rule fired since it was last armed?
+ *
+ * A rule fires ONCE per arming. It is armed when the analyst writes its
+ * trigger record and it stays fired until he writes that record again. So a
+ * second run on the same snapshot does nothing, a series hovering at a
+ * threshold cannot flap, and a change the analyst reverted stays reverted.
+ */
+export function ruleHasFired(changelog, market, triggerId){
+  const armed = armedAt(changelog, market, triggerId);
+  return changelog.some(e => e.market === market && e.author?.kind === 'rule' && e.trigger === triggerId
+    && (armed === null || e.at > armed));
+}
+
+/**
+ * Everything that stops a machine author's change. Empty array means it may go
+ * ahead. This is the validation gate of plan §7.4, less the two parts that
+ * need a disk: that the whole view is valid afterwards, and the
+ * confidentiality scan of the result.
+ *
+ *   change     { market, path, to, author, evidence, trigger }
+ *   before     the market view as it stands
+ *   changelog  every entry so far
+ *   today      YYYY-MM-DD, for pins
+ */
+export function machineProblems(change, before, { changelog = [], today }){
+  const kind = change.author?.kind;
+  const where = parsePath(change.path);
+  if (!where || !MACHINE_AUTHORS.includes(kind)) return ['not a machine change to a view path'];
+  if (where.layer === 'held') return [`author "${kind}" may not write a held view — it is the analyst's own judgement and only the analyst writes it`];
+
+  const rights = AUTHOR_RIGHTS[kind][where.section];
+  if (!rights) return [`author "${kind}" may not write ${where.section}`];
+
+  const problems = [];
+  const from = readPath(before, change.path);
+  const to = change.to;
+  const record = where.section === 'grades' || where.section === 'verdicts';
+
+  if (from === null && !rights.create) problems.push(`author "${kind}" may not create ${change.path} — a machine changes a record that exists`);
+  if (to === null && !rights.remove) problems.push(`author "${kind}" may not remove ${change.path}`);
+  if (problems.length) return problems;
+
+  /* D — pins. A pin is how the analyst keeps a position he holds deliberately. */
+  if (from?.lockedUntil && from.lockedUntil >= today){
+    return [`${change.path} is pinned until ${from.lockedUntil} — a pinned record is the analyst's to change`];
+  }
+
+  if (record && from && to){
+    const changed = changedFields(from, to);
+    const outside = changed.filter(f => !STAMPS.includes(f) && !rights.fields.includes(f));
+    if (outside.length) problems.push(`author "${kind}" may not change ${outside.map(f => `${change.path}.${f}`).join(', ')}`);
+    if (!changed.some(f => !STAMPS.includes(f))) problems.push(`${change.path}: nothing of substance would change`);
+    if (to.author !== kind) problems.push(`${change.path}: the record must say who wrote it — author "${kind}"`);
+
+    if (where.section === 'grades'){
+      /* A practitioner grade has no public evidence and its reason is private.
+         A machine that cannot see the reason does not replace the grade. */
+      if (from.basis === BASIS.PRACTITIONER || to.basis === BASIS.PRACTITIONER){
+        problems.push(`${change.path} is a practitioner grade — it is the analyst's judgement and a machine does not write one`);
+      }
+      /* C — one step a run, for the agent. */
+      if (kind === 'agent' && Math.abs(to.grade - from.grade) > AGENT_MAX_GRADE_STEP){
+        problems.push(`${change.path}: ${from.grade} to ${to.grade} is more than ${AGENT_MAX_GRADE_STEP} step in one run`);
+      }
+    }
+    if (where.section === 'verdicts' && to.call !== from.call){
+      if (from.call === VERDICT.NOT_ACCESSIBLE || to.call === VERDICT.NOT_ACCESSIBLE){
+        problems.push(`${change.path}: "not accessible" is a knock-out's reading — a machine neither sets it nor moves a call away from it`);
+      } else if (kind === 'agent' && Math.abs(VERDICT_SCALE.indexOf(to.call) - VERDICT_SCALE.indexOf(from.call)) > 1){
+        problems.push(`${change.path}: "${from.call}" to "${to.call}" is more than one step in one run`);
+      }
+    }
+  }
+
+  if (where.section === 'triggers'){
+    /* Only the analyst writes a rule. An agent that could would be writing
+       itself a standing instruction, and the rule class would inherit
+       whatever the agent had been persuaded of. */
+    if (isRule(to)) problems.push(`author "${kind}" may not write a trigger that carries an effect — a rule is the analyst's judgement, written by the analyst`);
+    if (isRule(from)) problems.push(`${change.path} is a rule — only the analyst changes one`);
+  }
+
+  /* A — evidence, and G — enough of it to move a verdict. */
+  problems.push(...evidenceProblems(change.evidence, kind));
+  if (where.section === 'verdicts' && !verdictEvidenceSuffices(change.evidence)){
+    problems.push(`${change.path}: a verdict moves on one official source or two independent ones`);
+  }
+  if (typeof change.author.run !== 'string' || !Number.isFinite(Date.parse(change.author.run))) problems.push('a machine author records the run it wrote in');
+
+  if (kind === 'rule'){
+    const trigger = before.triggers.find(t => t.id === change.trigger);
+    if (!change.trigger || change.author.rule !== change.trigger) problems.push('a rule change names the trigger it fired on, as its trigger and as its author');
+    else if (!trigger) problems.push(`"${change.trigger}" is not a trigger of ${before.marketId}`);
+    else if (trigger.kind !== TRIGGER_KIND.DATA || !isRule(trigger)) problems.push(`"${change.trigger}" is not a data trigger with an effect — there is no rule to apply`);
+    else if (armedAt(changelog, before.marketId, trigger.id) === null) problems.push(`"${change.trigger}" was not written by the analyst — a rule is armed only by him`);
+    else if (ruleHasFired(changelog, before.marketId, trigger.id)) problems.push(`"${change.trigger}" has already fired — the analyst re-arms a rule by rewriting its trigger`);
+    else {
+      /* The change must be the effect, the whole effect and nothing but. */
+      let expected = null;
+      try { expected = effectChanges(before, trigger, { kind, asOf: to?.asOf }).find(c => c.path === change.path); }
+      catch (error){ problems.push(error.message); }
+      if (expected === undefined) problems.push(`${change.path} is not a record the effect of "${trigger.id}" touches`);
+      else if (expected && !sameValue(expected.to, to)) problems.push(`${change.path}: the new record is not what the effect of "${trigger.id}" produces`);
+    }
+  }
+  if (kind === 'agent' && (!change.author.model || !change.author.prompt)) problems.push('an agent records its model and prompt version');
+  return problems;
 }
 
 /**
@@ -256,7 +525,16 @@ export function validateChangelogEntry(entry){
   if (typeof entry.id !== 'string' || !entry.id) at('id is missing');
   if (typeof entry.at !== 'string' || !Number.isFinite(Date.parse(entry.at))) at('at must be an ISO timestamp');
   if (typeof entry.market !== 'string' || !entry.market) at('market is missing');
-  if (!PERMITTED_AUTHORS.includes(entry.author?.kind)) at(`author.kind must be one of ${PERMITTED_AUTHORS.join(', ')}`);
+  const kind = entry.author?.kind;
+  if (!PERMITTED_AUTHORS.includes(kind)) at(`author.kind must be one of ${PERMITTED_AUTHORS.join(', ')}`);
+  if (MACHINE_AUTHORS.includes(kind)){
+    /* A machine line is only as good as what it can be traced to. */
+    for (const p of evidenceProblems(entry.evidence, kind)) at(p);
+    if (typeof entry.author.run !== 'string' || !Number.isFinite(Date.parse(entry.author.run))) at('a machine author records the run it wrote in, as an ISO timestamp');
+    if (kind === 'rule' && (typeof entry.author.rule !== 'string' || entry.author.rule !== entry.trigger)) at('a rule entry names its rule, and the rule is the trigger it fired on');
+    if (kind === 'agent' && (!entry.author.model || !entry.author.prompt)) at('an agent entry records its model and prompt version');
+  }
+  if (entry.reverts !== undefined && (typeof entry.reverts !== 'string' || !entry.reverts)) at('reverts must name the changelog id it undoes');
   if (!parsePath(entry.path)) at(`"${entry.path}" is not a view-store path`);
   if (!('from' in entry) || !('to' in entry)) at('from and to are both recorded, null included');
   if (!isPair(entry.reason)) at('reason must be an [en, zh] pair');
