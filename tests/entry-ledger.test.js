@@ -18,6 +18,7 @@ import { allLedgers, ledgerFor, hasLedger, ledgerMarketIds } from '../src/entry/
 import {
   TRIGGER_KIND, TRIGGER_DIRECTION, TRIGGER_DIRECTION_LABEL, SOURCE_DECISION_PROFILE,
   validateTrigger, sourceProblems, byExpected, triggersWatching, overdue,
+  parseEffectPath, testWhen, isRule,
 } from '../src/governance/triggers.js';
 import { ARCHETYPES, METRIC, limitCheck } from '../src/governance/archetypes.js';
 import { byId } from '../src/markets/registry.js';
@@ -262,12 +263,79 @@ test('a trigger is a dated record that names what it would move', () => {
   assert.deepEqual(sourceProblems({ publisher: 'P', url: 'https://example.org', access: 'opened' }), []);
 });
 
-test('a trigger may not carry an effect yet', () => {
-  /* A pre-written change that applies itself is automation writing judgement.
-     The plan allows it in a later phase; until the authority model is rewritten
-     it is refused here rather than stored and ignored. */
-  const withEffect = trigger({ effect: [{ path: 'verdicts.developer.call', to: 'wait' }] });
-  assert.ok(validateTrigger(withEffect).some(p => /effect must be null/.test(p)));
+test('a trigger may carry an effect, and an effect reaches only the fields a rule may change', () => {
+  /* A trigger with an effect is a rule: the analyst's judgement, written in
+     advance and applied when the trigger's `when` is met. Until 2026-10-11 an
+     effect was refused outright. It is allowed now, and what is asserted
+     instead is how little one can say. */
+  const note = ['The spread has fallen a fifth.', '价差已下降五分之一。'];
+  const when = {
+    dataset: 'wa-wem-prices', field: 'derived.spreadMean', op: '<', value: 45.05,
+    guard: [{ field: 'derived.spreadDays', op: '>=', value: 300 }],
+    basis: ['A fifth below the level on the day the grade was set.', '比评分当日的水平低五分之一。'],
+  };
+  const rule = (patch = {}) => trigger({
+    kind: 'data', expected: null, when, note,
+    effect: [{ path: 'grades.assetReturn.trend', to: 'deteriorating' },
+             { path: 'grades.assetReturn.trendCause', to: ['Spreads are narrowing.', '价差正在收窄。'] }],
+    ...patch,
+  });
+  assert.deepEqual(validateTrigger(rule()), []);
+  assert.ok(isRule(rule()));
+  assert.ok(!isRule(trigger()));
+  assert.deepEqual(validateTrigger(rule({ effect: [{ path: 'verdicts.developer.call', to: 'wait' }] })), []);
+
+  const bad = (patch, pattern) => {
+    const problems = validateTrigger(rule(patch));
+    assert.ok(problems.some(p => pattern.test(p)), `expected ${pattern}, got ${JSON.stringify(problems)}`);
+  };
+  /* A rule says why, in both languages, before it fires. */
+  bad({ note: undefined }, /carries a note/);
+  bad({ note: ['English only'] }, /carries a note/);
+  bad({ effect: [] }, /non-empty array/);
+  bad({ effect: undefined }, /effect must be null or a list/);
+  /* No spelling of an effect reaches a held view, a pin, a basis, evidence,
+     the thesis, another trigger, a whole record or methodology. */
+  for (const path of ['grades.assetReturn.held', 'grades.assetReturn.held.grade', 'grades.assetReturn.lockedUntil',
+    'grades.assetReturn.basis', 'grades.assetReturn.evidence', 'grades.assetReturn.author', 'grades.assetReturn',
+    'verdicts.developer', 'verdicts.developer.lockedUntil', 'verdicts.developer.route', 'verdicts.developer.because',
+    'thesis', 'triggers.xx-an-event', 'triggers.xx-an-event.effect', 'grades.vibes.grade', 'verdicts.tourist.call',
+    'weights.developer', 'archetypes.developer.limits', 'anchors.capitalAtRisk', 'bands.wait', 'discountRate',
+    'economics.merchGross', null, 7]){
+    assert.equal(parseEffectPath(path), null, `"${path}" parsed as an effect path`);
+    bad({ effect: [{ path, to: 1 }] }, /not a field a rule may change/);
+  }
+  bad({ effect: [{ path: 'grades.assetReturn.grade', to: 6 }] }, /whole number from 1 to 5/);
+  bad({ effect: [{ path: 'grades.assetReturn.trend', to: 'sideways' }] }, /a trend is one of/);
+  bad({ effect: [{ path: 'verdicts.developer.call', to: 'not-accessible' }] }, /a rule's call is one of/);
+  bad({ effect: [{ path: 'verdicts.developer.call' }] }, /states no new value/);
+  bad({ effect: [{ path: 'grades.assetReturn.grade', to: 3 }, { path: 'grades.assetReturn.grade', to: 2 }] }, /appears twice/);
+
+  /* A data trigger states what it tests; an event has no feed to test. */
+  bad({ when: undefined }, /a data trigger states its `when`/);
+  bad({ when: { ...when, op: '==' } }, /when\.op must be/);
+  bad({ when: { ...when, value: '45' } }, /when\.value must be a finite number/);
+  bad({ when: { ...when, field: '../etc' } }, /dotted path/);
+  bad({ when: { ...when, basis: undefined } }, /when\.basis/);
+  bad({ when: { ...when, guard: [{ field: 'derived.spreadDays', op: '>=' }] } }, /guard\[0\]\.value/);
+  assert.ok(validateTrigger(trigger({ when })).some(p => /only a data trigger carries a `when`/.test(p)));
+});
+
+test('a `when` reads a published summary, and a missing number is never a pass', () => {
+  const when = { dataset: 'd', field: 'derived.spreadMean', op: '<', value: 45.05,
+    guard: [{ field: 'derived.spreadDays', op: '>=', value: 300 }], basis: ['a', '甲'] };
+  const summary = (spreadMean, spreadDays) => ({ derived: { spreadMean, spreadDays } });
+  assert.equal(testWhen(when, summary(56.31, 353)).met, false);
+  assert.equal(testWhen(when, summary(56.31, 353)).observed, 56.31);
+  assert.equal(testWhen(when, summary(45.05, 353)).met, false, 'the line itself is not below the line');
+  assert.equal(testWhen(when, summary(44.9, 353)).met, true);
+  /* Below the line on too short a window: the guard holds it back. */
+  const short = testWhen(when, summary(30, 120));
+  assert.equal(short.met, false);
+  assert.match(short.why, /guard derived\.spreadDays/);
+  for (const broken of [summary(null, 353), summary('44', 353), summary(undefined, 353), {}, summary(44, undefined)]){
+    assert.equal(testWhen(when, broken).met, false);
+  }
 });
 
 test('triggers sort by when they are expected, a bare month at its end, undated last', () => {

@@ -63,6 +63,9 @@ const DAYS = 24 * HOURS;
  * @property {string[]} bearsOn        approved assumption paths this informs
  * @property {boolean}  republishable  may the raw series be published?
  * @property {boolean}  requiresKey    needs a CI secret to fetch
+ * @property {boolean}  official       hand-set: the publisher is the official body for what it
+ *                                     reports (a central bank, a market or system operator).
+ *                                     A rule that moves a verdict needs one such source.
  */
 
 /** Every value `Dataset.kind` may take. */
@@ -88,6 +91,7 @@ export const DATASETS = [
     bearsOn: ['FX.AUD', 'FX.GBP', 'FX.EUR', 'FX.JPY'],
     republishable: true,
     requiresKey: false,
+    official: true,
   },
 
   // ---- Great Britain -------------------------------------------------------
@@ -119,6 +123,7 @@ export const DATASETS = [
     bearsOn: ['economics.merchGross'],
     republishable: true,
     requiresKey: true,
+    official: true,
   },
 
   // ---- Ireland · Romania · Poland — one connector, one token ---------------
@@ -139,6 +144,7 @@ export const DATASETS = [
     bearsOn: ['economics.merchGross'],
     republishable: true,
     requiresKey: true,
+    official: true,
   },
   {
     id: 'ro-day-ahead',
@@ -157,6 +163,7 @@ export const DATASETS = [
     bearsOn: ['economics.merchGross'],
     republishable: true,
     requiresKey: true,
+    official: true,
   },
   {
     id: 'pl-day-ahead',
@@ -175,6 +182,7 @@ export const DATASETS = [
     bearsOn: ['economics.merchGross'],
     republishable: true,
     requiresKey: true,
+    official: true,
   },
 
   // ---- Western Australia ---------------------------------------------------
@@ -195,6 +203,7 @@ export const DATASETS = [
     bearsOn: ['economics.merchGross'],
     republishable: true,
     requiresKey: false,
+    official: true,
   },
 
   // ---- Japan — three areas, one connector ---------------------------------
@@ -215,6 +224,7 @@ export const DATASETS = [
     bearsOn: ['economics.merchGross'],
     republishable: true,
     requiresKey: false,
+    official: true,
   },
   {
     id: 'jp-kyushu-jepx',
@@ -233,6 +243,7 @@ export const DATASETS = [
     bearsOn: ['economics.merchGross'],
     republishable: true,
     requiresKey: false,
+    official: true,
   },
   {
     id: 'jp-hokkaido-jepx',
@@ -251,6 +262,7 @@ export const DATASETS = [
     bearsOn: ['economics.merchGross'],
     republishable: true,
     requiresKey: false,
+    official: true,
   },
 
   // ---- global, non-numeric -------------------------------------------------
@@ -292,6 +304,7 @@ export const DATASETS = [
     bearsOn: [],
     republishable: true,
     requiresKey: false,
+    official: false,
   },
 ];
 

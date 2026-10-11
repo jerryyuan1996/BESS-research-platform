@@ -248,8 +248,10 @@ test('the changelog reaches the page as its last ten lines, reduced to five fiel
   const newest = [...lines].sort((a, b) => b.at.localeCompare(a.at))[0];
   assert.equal(digest.recent[0].at, newest.at);
   for (const entry of digest.recent){
-    assert.deepEqual(Object.keys(entry).sort(), ['at', 'author', 'market', 'path', 'reason'],
+    /* Five fields, and a sixth only on a line a rule wrote: which rule. */
+    assert.deepEqual(Object.keys(entry).filter(k => k !== 'rule').sort(), ['at', 'author', 'market', 'path', 'reason'],
       'the before and after records stay in the changelog and out of the bundle');
+    assert.equal('rule' in entry, entry.author === 'rule');
     assert.ok(Array.isArray(entry.reason) && entry.reason.length === 2, 'the reason is an [en, zh] pair');
     assert.ok(['analyst', 'rule', 'agent'].includes(entry.author));
   }

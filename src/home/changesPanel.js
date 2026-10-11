@@ -10,12 +10,13 @@
    analyst's own reason is private, the public line says so and nothing more;
    the private text lives in local-data/ and is never read here.
 
-   The author is always shown. Today every line reads "Analyst"; the column is
-   there because the plan lets a rule and an agent write later, and a reader
-   must be able to tell which did.
+   The author is always shown, and a rule is named. A rule or an agent may
+   write the view, and nothing else on the page marks which did: this column
+   and the /changes page it links to are where a reader finds out.
    --------------------------------------------------------------------------- */
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
+import { navigate } from '../app/router.js';
 import { byId } from '../markets/registry.js';
 import { allTriggers } from '../markets/viewRegistry.js';
 import { dimension } from '../governance/investability.js';
@@ -65,12 +66,15 @@ export function renderChangesPanel(parent, changes){
       h('div', { class: 'cp-meta' },
         h('span', { class: 'cp-date' }, String(entry.at).slice(0, 10)),
         h('b', {}, market ? L(market.manifest.shortName) : entry.market),
-        h('span', { class: 'cp-author' }, L(AUTHOR[entry.author] || ['Unknown author', '作者不详']))),
+        h('span', { class: 'cp-author' + (entry.author === 'rule' || entry.author === 'agent' ? ' cl-machine' : '') },
+          L(AUTHOR[entry.author] || ['Unknown author', '作者不详']),
+          entry.rule ? `: ${L(allTriggers().find(t => t.id === entry.rule)?.label || [entry.rule, entry.rule])}` : '')),
       h('div', { class: 'cp-path' }, pathLabel(entry.path), ' ', h('code', {}, entry.path)),
       h('div', { class: 'cp-reason' }, L(entry.reason)));
   })));
   parent.append(h('div', { class: 'cap' }, L([
-    `The newest ${changes.recent.length} of ${changes.total} changes recorded in the view store.`,
+    `The newest ${changes.recent.length} of ${changes.total} changes recorded in the view store. `,
     `投资判断库共记录${changes.total}项变更，此处为最近${changes.recent.length}项。`,
-  ])));
+  ]), h('a', { href: '/changes', onclick: (e) => { e.preventDefault(); navigate('/changes'); } },
+    L(['See every change, by market and author →', '查看全部变更，可按市场和作者筛选 →']))));
 }

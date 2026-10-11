@@ -17,19 +17,26 @@
        source     where the date came from
 
    Triggers feed three things: the "changes if" line under a verdict, a
-   cross-market calendar, and — not yet — a rules engine.
+   cross-market calendar, and the rules engine.
 
-   `effect` IS RESERVED AND MUST BE NULL. The plan (§7.3) lets a trigger carry a
-   pre-written change that a rule applies when the event lands. That is
-   automation writing judgement, it belongs to a later phase, and until the
-   governance rewrite that permits it has happened a trigger with an effect is
-   refused here rather than stored and ignored.
+   A TRIGGER WITH AN `effect` IS A RULE — the analyst's judgement, exercised in
+   advance (plan §7.3). The effect is a change he wrote before the event; the
+   rules engine applies it when the trigger's `when` is met by a published
+   snapshot, and it applies exactly that and nothing else. `effect: null` is
+   still the norm: most triggers are a date to look again, not a rule.
 
-   Layering: imports the dimension vocabulary and nothing else. No DOM, no
-   market module, no ETL code.
+   An effect names FIELDS, and only a few of them: a grade's number, its trend
+   and the trend's cause; a verdict's call, its review date and its triggers.
+   There is no spelling of an effect that reaches a held view, a pin, a grade's
+   basis or evidence, the thesis, another trigger, or anything in methodology.
+   Who may WRITE a trigger that carries an effect is the view schema's
+   business: the analyst, and nobody else.
+
+   Layering: imports the grade and verdict vocabulary and nothing else. No DOM,
+   no market module, no ETL code.
    --------------------------------------------------------------------------- */
 
-import { DIMENSION_IDS } from './investability.js';
+import { DIMENSION_IDS, ARCHETYPE_IDS, TREND, VERDICT, VERDICT_IDS } from './investability.js';
 
 /**
  * EVENT: something happens on a date — an act passes, an auction runs. No feed
@@ -88,6 +95,149 @@ export function sourceProblems(source){
   return problems;
 }
 
+/* A real calendar day, written YYYY-MM-DD. */
+const isDay = (v) => isWhen(v) && v.length === 10;
+
+/* ---------------------------------------------------------------------------
+   WHEN — the test a `data` trigger puts to a published snapshot.
+
+       { dataset, field, op, value, guard: [{ field, op, value }], basis }
+
+   `field` is a dotted path into the dataset's published SUMMARY, the same
+   file the site loads. `guard` is every condition that must hold before the
+   test means anything — enough days in the window, typically. `basis` says in
+   words where the number came from, because a threshold nobody can derive is a
+   threshold nobody can challenge.
+   --------------------------------------------------------------------------- */
+
+export const WHEN_OPS = ['<', '<=', '>', '>='];
+
+const FIELD_PATH = /^[A-Za-z][A-Za-z0-9]*(\.[A-Za-z][A-Za-z0-9]*)*$/;
+
+function conditionProblems(c, what){
+  const problems = [];
+  if (!c || typeof c !== 'object' || Array.isArray(c)) return [`${what} must be an object`];
+  if (typeof c.field !== 'string' || !FIELD_PATH.test(c.field)) problems.push(`${what}.field must be a dotted path into the published summary`);
+  if (!WHEN_OPS.includes(c.op)) problems.push(`${what}.op must be one of ${WHEN_OPS.join(' ')}`);
+  if (typeof c.value !== 'number' || !Number.isFinite(c.value)) problems.push(`${what}.value must be a finite number`);
+  return problems;
+}
+
+/** Problems with a `when`. Empty array means valid. */
+export function whenProblems(when){
+  if (!when || typeof when !== 'object' || Array.isArray(when)) return ['when must be an object'];
+  const problems = conditionProblems(when, 'when');
+  if (typeof when.dataset !== 'string' || !/^[a-z0-9-]+$/.test(when.dataset)) problems.push('when.dataset must be a dataset id');
+  if (when.guard !== undefined){
+    if (!Array.isArray(when.guard)) problems.push('when.guard must be an array of conditions');
+    else when.guard.forEach((g, i) => problems.push(...conditionProblems(g, `when.guard[${i}]`)));
+  }
+  if (!isPair(when.basis)) problems.push('when.basis must be an [en, zh] pair saying where the threshold comes from');
+  for (const key of Object.keys(when)){
+    if (!['dataset', 'field', 'op', 'value', 'guard', 'basis'].includes(key)) problems.push(`when.${key} is not a field of a when`);
+  }
+  return problems;
+}
+
+/** The value at a dotted path, or undefined. */
+export function readField(object, field){
+  let at = object;
+  for (const key of String(field).split('.')){
+    if (at === null || typeof at !== 'object') return undefined;
+    at = at[key];
+  }
+  return at;
+}
+
+const holds = (op, a, b) => op === '<' ? a < b : op === '<=' ? a <= b : op === '>' ? a > b : a >= b;
+
+/**
+ * Put a `when` to a published summary.
+ *
+ * Returns what was read as well as the answer, so a report can show the
+ * number and not only the verdict on it. A field that is missing or not a
+ * number is `met: false` with the reason — never a pass, and never a zero.
+ */
+export function testWhen(when, summary){
+  const check = (c) => {
+    const observed = readField(summary, c.field);
+    const usable = typeof observed === 'number' && Number.isFinite(observed);
+    return { field: c.field, op: c.op, value: c.value, observed: usable ? observed : null, ok: usable && holds(c.op, observed, c.value) };
+  };
+  const guards = (when.guard || []).map(check);
+  const main = check(when);
+  const blocked = guards.find(g => !g.ok);
+  return {
+    met: !blocked && main.ok,
+    observed: main.observed,
+    guards,
+    why: main.observed === null ? `${when.field} is not a number in the published summary`
+      : blocked ? `guard ${blocked.field} ${blocked.op} ${blocked.value} not met (${blocked.observed ?? 'missing'})`
+      : main.ok ? null : `${when.field} is ${main.observed}, not ${when.op} ${when.value}`,
+  };
+}
+
+/* ---------------------------------------------------------------------------
+   EFFECT — the change a rule applies, written in advance by the analyst.
+
+       [ { path: 'grades.<dimension>.<field>',  to: … },
+         { path: 'verdicts.<archetype>.<field>', to: … } ]
+
+   The fields are listed, and the list is short on purpose.
+   --------------------------------------------------------------------------- */
+
+export const EFFECT_FIELDS = {
+  grades: ['grade', 'trend', 'trendCause'],
+  verdicts: ['call', 'reviewBy', 'changesIf'],
+};
+
+/** { section, key, field } for an effect path, or null. Null is how everything else fails. */
+export function parseEffectPath(path){
+  const m = /^(grades|verdicts)\.([A-Za-z0-9_-]+)\.([A-Za-z]+)$/.exec(typeof path === 'string' ? path : '');
+  if (!m) return null;
+  const [, section, key, field] = m;
+  if (!EFFECT_FIELDS[section].includes(field)) return null;
+  if (!(section === 'grades' ? DIMENSION_IDS : ARCHETYPE_IDS).includes(key)) return null;
+  return { section, key, field };
+}
+
+const EFFECT_VALUE = {
+  grade: (v) => Number.isInteger(v) && v >= 1 && v <= 5 ? null : 'a grade is a whole number from 1 to 5',
+  trend: (v) => TREND.includes(v) ? null : `a trend is one of ${TREND.join(', ')}`,
+  trendCause: (v) => v === null || isPair(v) ? null : 'a trend cause is null or an [en, zh] pair',
+  /* NOT_ACCESSIBLE is a knock-out's reading, not a call a rule can make. */
+  call: (v) => VERDICT_IDS.includes(v) && v !== VERDICT.NOT_ACCESSIBLE ? null
+    : `a rule's call is one of ${VERDICT_IDS.filter(id => id !== VERDICT.NOT_ACCESSIBLE).join(', ')}`,
+  reviewBy: (v) => v === null || isDay(v) ? null : 'a review date is null or YYYY-MM-DD',
+  changesIf: (v) => Array.isArray(v) && v.every(id => typeof id === 'string' && id.trim()) ? null : 'changesIf is an array of trigger ids',
+};
+
+/** Problems with an effect. Empty array means valid. */
+export function effectProblems(effect){
+  if (!Array.isArray(effect) || !effect.length) return ['effect must be null or a non-empty array of field changes'];
+  const problems = [];
+  const seen = new Set();
+  effect.forEach((step, i) => {
+    const where = parseEffectPath(step?.path);
+    if (!where){
+      problems.push(`effect[${i}]: "${step?.path}" is not a field a rule may change — only ${Object.entries(EFFECT_FIELDS).map(([s, f]) => `${s}.<id>.{${f.join(', ')}}`).join(' and ')}`);
+      return;
+    }
+    if (seen.has(step.path)) problems.push(`effect[${i}]: ${step.path} appears twice`);
+    seen.add(step.path);
+    if (!('to' in step)) problems.push(`effect[${i}]: ${step.path} states no new value`);
+    else {
+      const wrong = EFFECT_VALUE[where.field](step.to);
+      if (wrong) problems.push(`effect[${i}]: ${step.path} — ${wrong}`);
+    }
+    for (const key of Object.keys(step)) if (key !== 'path' && key !== 'to') problems.push(`effect[${i}]: "${key}" is not a field of an effect step`);
+  });
+  return problems;
+}
+
+/** True when a trigger is a rule: it carries a change that applies itself. */
+export const isRule = (trigger) => Array.isArray(trigger?.effect) && trigger.effect.length > 0;
+
 /** Problems with one trigger. Empty array means valid. */
 export function validateTrigger(trigger){
   if (!trigger || typeof trigger !== 'object') return ['trigger is missing'];
@@ -107,7 +257,24 @@ export function validateTrigger(trigger){
 
   if (!Object.values(TRIGGER_DIRECTION).includes(trigger.direction)) at(`direction must be one of ${Object.values(TRIGGER_DIRECTION).join(', ')}`);
   for (const p of sourceProblems(trigger.source)) at(p);
-  if (trigger.effect !== null) at('effect must be null — a trigger that changes a verdict by itself is not permitted yet');
+
+  /* A data trigger says what it tests. An event has no feed, so it has no
+     `when`: somebody establishes that it happened. */
+  if (trigger.kind === TRIGGER_KIND.DATA){
+    if (trigger.when === undefined || trigger.when === null) at('a data trigger states its `when` — the dataset, the field and the line it crosses');
+    else for (const p of whenProblems(trigger.when)) at(p);
+  } else if (trigger.when !== undefined && trigger.when !== null){
+    at('only a data trigger carries a `when`');
+  }
+
+  if (trigger.effect === undefined) at('effect must be null or a list of field changes');
+  else if (trigger.effect !== null){
+    for (const p of effectProblems(trigger.effect)) at(p);
+    /* The note is the reason the changelog will give when the rule fires. It
+       is written now, with the effect, by the person whose judgement it is. */
+    if (!isPair(trigger.note)) at('a trigger with an effect carries a note as an [en, zh] pair — the reason recorded when it fires');
+  }
+  if (trigger.note !== undefined && trigger.note !== null && !isPair(trigger.note)) at('note must be an [en, zh] pair');
   return problems;
 }
 

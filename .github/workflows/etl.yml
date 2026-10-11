@@ -1,10 +1,17 @@
 name: Live data
 
-# Three jobs, and the split is the governance model expressed as CI:
+# Five jobs, and the split is the governance model expressed as CI. The rule
+# is: judgement publishes automatically after validation; methodology never
+# does.
 #
 #   refresh   unattended. Fetches, validates, commits observed data and
-#             deterministic derived metrics straight to main. It can only touch
-#             public/data/ — enforced in code, not by convention.
+#             deterministic derived metrics straight to main. Then runs the
+#             rules: a trigger the analyst wrote in advance, with a threshold
+#             and a change, is tested against what was just fetched, and if it
+#             fires the change is written to the view store through the view
+#             writer's gate and committed. It can only touch public/data/ and
+#             three kinds of file under view/ — enforced in code, and checked
+#             again below. Never src/, where methodology lives.
 #
 #   publish   calls ci.yml on the commit refresh just pushed: the full test
 #             job, then the scanned-artefact deploy. Skipped when no data
@@ -14,16 +21,29 @@ name: Live data
 #
 #   propose   opens a pull request when drift is material. Never merges it.
 #             Runs on a branch, edits the analyst-controlled value there, and
-#             stops. A human decides.
+#             stops. A human decides. Model assumptions still move this way.
+#
+#   agent     once a day, DRY. Reads the pages that due triggers cite and
+#             reports what it would have changed. It has read-only permissions,
+#             writes nothing to the repository, and does nothing at all until a
+#             model key exists as a repository secret.
+#
+#   digest    once a week. Posts the machine-written changes of the last seven
+#             days as an issue, so none goes unseen.
 #
 # Nothing in this file may be given auto-merge. That is deliberate and it is the
-# single most important line in the workflow.
+# single most important line in the workflow. A rule's change does not need
+# one: it is not a pull request. It is a validated write, like the data.
 
 on:
   schedule:
     # Every six hours. The sources publish daily or better; six hours keeps the
     # site current without hammering a public regulator's server.
     - cron: '17 */6 * * *'
+    # The agent's daily dry pass.
+    - cron: '43 5 * * *'
+    # The weekly digest of machine changes, Monday morning.
+    - cron: '7 6 * * 1'
   workflow_dispatch:
     inputs:
       only:
@@ -43,6 +63,8 @@ permissions:
 jobs:
   refresh:
     name: Fetch, validate, publish
+    # Not on the agent's or the digest's schedule: those run their own job.
+    if: github.event.schedule != '43 5 * * *' && github.event.schedule != '7 6 * * 1'
     runs-on: ubuntu-latest
     outputs:
       material: ${{ steps.drift.outputs.material }}
@@ -72,28 +94,81 @@ jobs:
             node etl/run.mjs
           fi
 
-      - name: Check the wall held
-        # Belt and braces. The boundary module makes writing outside public/data/
-        # throw, but a workflow that verifies the invariant after the fact costs
-        # nothing and catches a bad merge that weakened it.
+      - name: Apply rules
+        # After the refresh, in the same job, so a rule tests only what this run
+        # fetched and validated (etl/out/summary.json says which). A rule that
+        # fires writes view/ through etl/lib/viewWriter.mjs and nothing else. A
+        # rejected change leaves a report and writes nothing; the data is still
+        # published, and the job fails at its end so somebody looks.
+        id: rules
+        run: node etl/rules.mjs || echo "rejected=true" >> "$GITHUB_OUTPUT"
+
+      - name: Check the walls held
+        # Belt and braces. The two writers make writing anywhere else throw, but
+        # a workflow that verifies the invariant after the fact costs nothing and
+        # catches a bad merge that weakened it. Two directories, and inside
+        # view/ only the three kinds of file the view writer owns: never
+        # view/schema/, which says who may write what, and never src/.
         run: |
-          if ! git diff --quiet -- ':!public/data'; then
-            echo "::error::The ETL modified files outside public/data/:"
-            git diff --name-only -- ':!public/data'
+          OUTSIDE=$(git status --porcelain --untracked-files=all -- . ':!public/data' ':!view/markets' ':!view/index.json' ':!view/changelog.jsonl' ':!etl/out')
+          if [ -n "$OUTSIDE" ]; then
+            echo "::error::Automation modified files outside public/data/ and the view store:"
+            echo "$OUTSIDE"
             exit 1
           fi
-          echo "Confirmed: only public/data/ was modified."
+          echo "Confirmed: only public/data/ and the view store were modified."
+
+      - name: Scan the view change before it is committed
+        id: viewscan
+        # The last line of the validation gate: the confidentiality scan passes
+        # on the result. A rule writes only what the analyst wrote in advance,
+        # so this should never find anything — which is the reason to check. If
+        # it fails, or cannot run, the view change is discarded and the job
+        # fails after the data is safely published.
+        env:
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+        run: |
+          if [ -z "$(git status --porcelain -- view)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add view/markets view/index.json view/changelog.jsonl
+          if [ -n "$GUARD_MARKER_SET" ] && npm run guard:staged; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::The view change did not pass the confidentiality scan and was discarded."
+            git reset -q -- view
+            git checkout -- view
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "discarded=true" >> "$GITHUB_OUTPUT"
+          fi
+          git reset -q
 
       - name: Commit published data
         id: commit
         run: |
-          if git diff --quiet -- public/data; then
-            echo "No data changed this run."
+          if git diff --quiet -- public/data && [ "${{ steps.viewscan.outputs.changed }}" != "true" ]; then
+            echo "Nothing changed this run."
             echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name  "bess-etl[bot]"
           git config user.email "bess-etl[bot]@users.noreply.github.com"
+          if [ "${{ steps.viewscan.outputs.changed }}" = "true" ]; then
+            # Its own commit, so `git log view/` reads as the view's history and
+            # a rule's change is one revertible unit.
+            git add view/markets view/index.json view/changelog.jsonl
+            FIRED=$(node -e "const r=require('./etl/out/rules-report.json');console.log(r.reports.filter(x=>x.status==='fired').map(x=>x.rule).join(', '))")
+            git commit -m "view: rule ${FIRED} fired" \
+                       -m "Written by the rules engine through the view writer's gate. The rule, its threshold and its change were written in advance by the analyst; the changelog line carries the evidence, and the weekly digest gives the command that undoes it."
+          fi
+          if git diff --quiet -- public/data; then
+            git push
+            echo "committed=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           git add public/data
           # The commit message carries the run summary, so `git log public/data`
           # reads as the data's provenance history rather than a wall of
@@ -123,10 +198,20 @@ jobs:
             etl/out/drift-report.md
             etl/out/summary.json
             etl/out/proposals.json
+            etl/out/rules-report.md
+            etl/out/rules-report.json
+            etl/out/view-rejected.json
           if-no-files-found: warn
 
-      - name: Drift report to the job summary
-        run: cat etl/out/drift-report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Reports to the job summary
+        run: |
+          cat etl/out/drift-report.md >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f etl/out/rules-report.md ]; then cat etl/out/rules-report.md >> "$GITHUB_STEP_SUMMARY"; fi
+
+      - name: Fail if a view change was rejected or discarded
+        if: steps.rules.outputs.rejected == 'true' || steps.viewscan.outputs.discarded == 'true'
+        run: exit 1
 
   publish:
     name: Test and publish the data commit
@@ -237,3 +322,102 @@ jobs:
             --label "needs-analyst-review" \
             --base main \
             --head "$BRANCH"
+
+  agent:
+    name: Agent, dry run
+    # Once a day, or by hand. It reports and writes nothing: read-only
+    # permissions, no commit step, and the view writer refuses an agent's
+    # change in any case until the analyst makes the agent a live author.
+    if: github.event.schedule == '43 5 * * *' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      # A repository secret, set by the analyst when he wants the agent to run.
+      # Until it exists every step below is skipped and the job is inert.
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - name: Nothing to do without a model key
+        if: env.ANTHROPIC_API_KEY == ''
+        run: echo "No model key is configured. The agent did not run."
+
+      - uses: actions/checkout@v4
+        if: env.ANTHROPIC_API_KEY != ''
+
+      - uses: actions/setup-node@v4
+        if: env.ANTHROPIC_API_KEY != ''
+        with:
+          node-version: '20'
+
+      - run: npm ci
+        if: env.ANTHROPIC_API_KEY != ''
+
+      - name: Confirm the private folder is not here
+        if: env.ANTHROPIC_API_KEY != ''
+        # The agent must never see the analyst's private notes. They are
+        # git-ignored and cannot be in a fresh checkout; this makes that a
+        # checked fact rather than an assumption.
+        run: |
+          if [ -e local-data ]; then
+            echo "::error::A private folder is present in the checkout. The agent will not run."
+            exit 1
+          fi
+
+      - name: Run the agent, dry
+        if: env.ANTHROPIC_API_KEY != ''
+        run: node agent/run.mjs
+
+      - name: Confirm the agent wrote nothing
+        if: env.ANTHROPIC_API_KEY != ''
+        run: |
+          CHANGED=$(git status --porcelain --untracked-files=all -- . ':!etl/out')
+          if [ -n "$CHANGED" ]; then
+            echo "::error::The agent modified the repository:"
+            echo "$CHANGED"
+            exit 1
+          fi
+
+      - name: Publish the agent's report
+        if: env.ANTHROPIC_API_KEY != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-report
+          path: |
+            etl/out/agent-report.md
+            etl/out/agent-report.json
+          if-no-files-found: warn
+
+      - name: Report to the job summary
+        if: env.ANTHROPIC_API_KEY != ''
+        run: cat etl/out/agent-report.md >> "$GITHUB_STEP_SUMMARY"
+
+  digest:
+    name: Weekly digest of machine changes
+    if: github.event.schedule == '7 6 * * 1'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Render the last seven days
+        run: node scripts/view/digest.mjs > digest.md
+
+      - name: Post it, unless the week was empty
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -s digest.md ]; then
+            echo "No rule and no agent changed the view this week. Nothing to post."
+            exit 0
+          fi
+          gh label create view-digest --description "Weekly digest of machine changes to the view" --color 5319e7 --force
+          gh issue create \
+            --title "Machine changes to the view, week to $(date -u +%Y-%m-%d)" \
+            --body-file digest.md \
+            --label view-digest

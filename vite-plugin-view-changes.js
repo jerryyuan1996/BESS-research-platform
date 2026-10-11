@@ -14,8 +14,13 @@
    local-data stubs, this one is replaced in BOTH modes — the changelog is
    public and belongs in a build.
 
+   THE REST GOES TO ONE PLACE ONLY. The /changes page shows every line in
+   full, so a second stub, src/markets/viewChangelog.js, is replaced with the
+   whole changelog. Only that page imports it and the page is loaded on demand,
+   so the full record is a chunk of its own that the home page never fetches.
+
    READ-ONLY. Nothing here writes to view/. The only writer is
-   scripts/view/writer.mjs.
+   etl/lib/viewWriter.mjs.
 
    NOTHING PRIVATE CAN ARRIVE THIS WAY. A changelog line holds public text
    only; the analyst's private reasons live in local-data/, which this never
@@ -27,6 +32,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const STUB = 'src/markets/viewChanges.js';
+const FULL_STUB = 'src/markets/viewChangelog.js';
 const CHANGELOG = 'view/changelog.jsonl';
 
 /** How many changes the page shows. */
@@ -55,6 +61,9 @@ export function digestChangelog(text, limit = RECENT_CHANGES){
     at: entry.at,
     market: entry.market,
     author: entry.author?.kind || null,
+    /* Which rule, when a rule made the change: "a rule" is not an answer to
+       "who". The id only; the page names it from the trigger it already holds. */
+    ...(entry.author?.kind === 'rule' ? { rule: entry.author.rule } : {}),
     path: entry.path,
     reason: entry.reason,
   }));
@@ -71,6 +80,11 @@ export function digestChangelog(text, limit = RECENT_CHANGES){
   return { total: entries.length, recent, perDay };
 }
 
+/** Every changelog line, as written. What the /changes page reads. */
+export function fullChangelog(text){
+  return String(text || '').split(/\r?\n/).filter(line => line.trim()).map(line => JSON.parse(line));
+}
+
 const norm = (p) => p.split(path.sep).join('/');
 
 export default function viewChanges(){
@@ -81,9 +95,14 @@ export default function viewChanges(){
 
     async load(id){
       const file = norm(id.split('?')[0]);
-      if (!file.endsWith('/' + STUB)) return null;
+      const full = file.endsWith('/' + FULL_STUB);
+      if (!full && !file.endsWith('/' + STUB)) return null;
       const source = path.resolve(root, CHANGELOG);
       this.addWatchFile(source);
+      if (full){
+        const entries = existsSync(source) ? fullChangelog(await readFile(source, 'utf8')) : [];
+        return `export const VIEW_CHANGELOG = ${JSON.stringify(entries)};\n`;
+      }
       const digest = existsSync(source)
         ? digestChangelog(await readFile(source, 'utf8'))
         : digestChangelog('');

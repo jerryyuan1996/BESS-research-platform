@@ -7,9 +7,12 @@
    WRITER must refuse what it should refuse, which is tested against a
    temporary directory so that no test ever writes the real store.
 
-   The wall this store sits beside is asserted here too: only the analyst may
-   write it, the ETL cannot reach the writer, and no path spells a change to
-   methodology.
+   The wall this store sits behind is asserted here too: each author writes
+   only what its class allows, the store has one writer and two doors, and no
+   path spells a change to methodology. Until 2026-10-11 the rule was "only the
+   analyst writes the view"; the four tests that pinned it are rewritten below
+   to pin what replaced it. What a machine author may and may not do in detail
+   is in tests/view-automation.test.js.
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -19,9 +22,10 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 import {
-  VIEW_SECTIONS, PERMITTED_AUTHORS, emptyView, validateMarketView, parsePath, readPath, writePath,
-  buildIndex, validateChangelogEntry, INTERNAL_EVIDENCE,
+  VIEW_SECTIONS, PERMITTED_AUTHORS, LIVE_AUTHORS, HELD_AUTHORS, MACHINE_AUTHORS, emptyView, validateMarketView,
+  parsePath, readPath, writePath, buildIndex, validateChangelogEntry, INTERNAL_EVIDENCE, authorMayWrite,
 } from '../view/schema/view.mjs';
+import { isRule } from '../src/governance/triggers.js';
 import { assessMarket, disagreements } from '../src/entry/assessment.js';
 import { ledgerFor } from '../src/entry/ledgerRegistry.js';
 import { FX } from '../src/comparison/assumptions.js';
@@ -200,14 +204,47 @@ test('a committed verdict the score disagrees with says why', async () => {
   assert.equal(verdicts, 16, 'four markets by four archetypes');
 });
 
-test('nothing in the committed store was written by automation', async () => {
-  assert.deepEqual(PERMITTED_AUTHORS, ['analyst'], 'widening this list is the governance rewrite, not an edit');
-  for (const entry of await committed.changelog()) assert.equal(entry.author.kind, 'analyst', entry.id);
-  for (const view of await committed.readAll()){
-    for (const record of [...Object.values(view.grades), ...Object.values(view.verdicts)]){
-      assert.equal(record.author, 'analyst', `${view.marketId}: a record authored by ${record.author}`);
+test('every machine-written line in the committed store is accounted for', async () => {
+  /* Three kinds of author, two of them live, one that writes a held view. A
+     change to any of these lists is a governance decision, not an edit. */
+  assert.deepEqual(PERMITTED_AUTHORS, ['analyst', 'rule', 'agent']);
+  assert.deepEqual(MACHINE_AUTHORS, ['rule', 'agent']);
+  assert.deepEqual(LIVE_AUTHORS, ['analyst', 'rule'], 'the agent runs dry until the analyst makes it live');
+  assert.deepEqual(HELD_AUTHORS, ['analyst'], 'this list does not grow');
+
+  const entries = await committed.changelog();
+  const views = new Map((await committed.readAll()).map(v => [v.marketId, v]));
+  const lastWrite = new Map();
+
+  entries.forEach((entry, i) => {
+    const kind = entry.author.kind;
+    assert.ok(LIVE_AUTHORS.includes(kind), `${entry.id}: written by "${kind}", which is not live`);
+    if (kind === 'rule'){
+      /* A rule line traces to a rule the analyst wrote before it fired, and to
+         the snapshot it fired on. */
+      const armed = entries.slice(0, i).filter(e => e.market === entry.market && e.path === `triggers.${entry.trigger}`).pop();
+      assert.ok(armed, `${entry.id}: fired on "${entry.trigger}", which was never written`);
+      assert.equal(armed.author.kind, 'analyst', `${entry.id}: its rule was not written by the analyst`);
+      assert.ok(isRule(armed.to), `${entry.id}: its trigger carried no effect when it fired`);
+      assert.equal(entry.author.rule, entry.trigger);
+      for (const e of entry.evidence) assert.match(e.sha256, /^sha256:[0-9a-f]{64}$/, `${entry.id}: evidence with no checksum`);
+      assert.ok(entry.evidence.length > 0, `${entry.id}: a rule line with no evidence`);
     }
-    for (const t of view.triggers) assert.equal(t.effect, null, `${t.id}: carries an effect`);
+    /* A trigger that carries an effect is a rule, and only the analyst writes one. */
+    if (parsePath(entry.path).section === 'triggers' && isRule(entry.to)){
+      assert.equal(kind, 'analyst', `${entry.id}: a rule written by "${kind}"`);
+    }
+    lastWrite.set(`${entry.market}/${entry.path}`, kind);
+  });
+
+  /* The stamp on each record is the author of the last change to it. */
+  for (const view of views.values()){
+    for (const [section, records] of [['grades', view.grades], ['verdicts', view.verdicts]]){
+      for (const [key, record] of Object.entries(records)){
+        assert.equal(record.author, lastWrite.get(`${view.marketId}/${section}.${key}`),
+          `${view.marketId} ${section}.${key}: stamped "${record.author}", last written by someone else`);
+      }
+    }
   }
 });
 
@@ -287,12 +324,45 @@ test('a change writes the market file, the index and one changelog line', () => 
   assert.equal((await store.changelog()).length, 3);
 }));
 
-test('only the analyst may write the view', () => scratch(async (store, root) => {
-  for (const kind of ['agent', 'rule', 'etl', undefined]){
+test('each author writes only what its class allows', () => scratch(async (store, root) => {
+  /* Something that is not one of the three kinds is refused everywhere. */
+  for (const kind of ['etl', 'bot', 'admin', undefined]){
     await rejects(store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: trigger(), reason, author: { kind } }), /may not write the view/);
+    for (const path of ['grades.foreignEntry', 'verdicts.developer', 'triggers.fi-an-event', 'thesis', 'grades.foreignEntry.held']){
+      assert.equal(authorMayWrite(path, kind), false, `"${kind}" may write ${path}`);
+    }
   }
   await rejects(store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: trigger(), reason }), /may not write the view/);
   assert.ok(!existsSync(path.join(root, 'markets')), 'a refused change left something on disk');
+
+  /* The analyst writes every section. A rule writes grades and verdicts and
+     nothing else. An agent has no path to a held view. */
+  for (const path of ['grades.foreignEntry', 'verdicts.developer', 'triggers.fi-an-event', 'thesis', 'grades.foreignEntry.held']){
+    assert.equal(authorMayWrite(path, 'analyst'), true);
+  }
+  assert.equal(authorMayWrite('grades.foreignEntry', 'rule'), true);
+  assert.equal(authorMayWrite('verdicts.developer', 'rule'), true);
+  for (const path of ['thesis', 'triggers.fi-an-event', 'grades.foreignEntry.held']) assert.equal(authorMayWrite(path, 'rule'), false, `a rule may write ${path}`);
+  assert.equal(authorMayWrite('grades.foreignEntry.held', 'agent'), false);
+  /* And no author at all has a path into methodology. */
+  for (const kind of PERMITTED_AUTHORS){
+    for (const path of ['weights.developer', 'anchors.capitalAtRisk', 'bands.wait', 'discountRate', 'economics.merchGross']){
+      assert.equal(authorMayWrite(path, kind), false, `"${kind}" may write ${path}`);
+    }
+  }
+
+  /* A machine author with no rule behind it and no evidence gets nowhere,
+     even on a path its class may write. The detail is in view-automation. */
+  await store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: trigger(), reason, author: analyst });
+  await store.apply({ market: 'fi', path: 'verdicts.developer', to: verdict(), reason, author: analyst });
+  const before = await readFile(path.join(root, 'changelog.jsonl'), 'utf8');
+  for (const kind of MACHINE_AUTHORS){
+    const author = { kind, run: '2026-10-11T00:00:00.000Z' };
+    await rejects(store.apply({ market: 'fi', path: 'verdicts.developer', to: verdict({ call: 'wait', author: kind }), reason, author }), /refused to/);
+    await rejects(store.apply({ market: 'fi', path: 'verdicts.developer', to: null, reason, author }), /may not remove/);
+    await rejects(store.apply({ market: 'fi', path: 'verdicts.strategic', to: verdict({ archetype: 'strategic', author: kind }), reason, author }), /may not create/);
+  }
+  assert.equal(await readFile(path.join(root, 'changelog.jsonl'), 'utf8'), before, 'a refused machine change reached the changelog');
 }));
 
 test('a refused change writes nothing at all', () => scratch(async (store, root) => {
@@ -315,7 +385,15 @@ test('a refused change writes nothing at all', () => scratch(async (store, root)
   await rejects(store.apply(change({ to: verdict({ archetype: 'strategic' }) })), /holds a record for "strategic"/);
   await rejects(store.apply(change({ path: 'grades.foreignEntry', to: grade({ grade: 6 }) })), /grade must be/);
   await rejects(store.apply(change({ path: 'triggers.fi-an-event', to: trigger() })), /nothing would change/);
-  await rejects(store.apply(change({ path: 'triggers.fi-rule', to: trigger({ id: 'fi-rule', effect: [{ path: 'verdicts.developer', to: 'wait' }] }) })), /effect must be null/);
+  /* An effect names a field, never a whole record, a held view or methodology. */
+  const withEffect = (effect) => change({ path: 'triggers.fi-rule', to: trigger({ id: 'fi-rule', effect, note: reason }) });
+  await rejects(store.apply(withEffect([{ path: 'verdicts.developer', to: 'wait' }])), /not a field a rule may change/);
+  await rejects(store.apply(withEffect([{ path: 'grades.foreignEntry.held', to: 1 }])), /not a field a rule may change/);
+  await rejects(store.apply(withEffect([{ path: 'weights.developer', to: 0.9 }])), /not a field a rule may change/);
+  await rejects(store.apply(change({ path: 'triggers.fi-rule', to: trigger({ id: 'fi-rule', effect: [{ path: 'verdicts.developer.call', to: 'wait' }] }) })), /carries a note/);
+  await rejects(store.apply(change({ path: 'triggers.fi-data', to: trigger({ id: 'fi-data', kind: 'data' }) })), /states its `when`/);
+  /* A record is stamped with the author of the change that writes it. */
+  await rejects(store.apply(change({ to: verdict({ author: 'rule' }) })), /the change is the analyst's/);
   await rejects(store.apply(change({ market: '../escape' })), /not a market id/);
 
   assert.deepEqual(await snapshot(), before);
@@ -340,12 +418,12 @@ test('a dry run and a real run cannot differ, and a dry run writes nothing', () 
 }));
 
 /* ---- the wall ---------------------------------------------------------------- */
-
-test('the ETL cannot reach the view writer, and nothing in the app writes the view', async () => {
-  /* The ETL's write boundary still stops at public/data/public/. This store is
-     written by a person through a tool the ETL does not import; when rules and
-     an agent are allowed to write here, this test and the authority model are
-     rewritten together, on purpose. */
+test('the view has one writer and two doors', async () => {
+  /* Until 2026-10-11 nothing under etl/ could reach the writer. Rules and the
+     agent write the view now, so what is pinned is narrower and more exact:
+     ONE module writes view/; a machine reaches it from exactly two files; a
+     person reaches it through scripts/, which is the only door that reads the
+     private overlay; and nothing the browser loads writes the view at all. */
   const walk = async (dir) => {
     const out = [];
     for (const entry of await readdir(dir, { withFileTypes: true })){
@@ -357,16 +435,43 @@ test('the ETL cannot reach the view writer, and nothing in the app writes the vi
     return out;
   };
   const repo = path.resolve(VIEW_ROOT, '..');
-  for (const dir of ['etl', 'src', '.github']){
+  const rel = (file) => path.relative(repo, file).replace(/\\/g, '/');
+  const CORE = /from\s+['"][^'"]*lib\/viewWriter\.mjs['"]/;
+  const ANALYST_DOOR = /scripts\/view\/writer|['"][^'"]*\/view\/writer\.mjs['"]/;
+
+  const importers = [];
+  for (const dir of ['etl', 'agent', 'scripts', 'src']){
     if (!existsSync(path.join(repo, dir))) continue;
     for (const file of await walk(path.join(repo, dir))){
       const source = await readFile(file, 'utf8');
-      assert.ok(!/scripts\/view\/writer|view\/writer\.mjs/.test(source), `${path.relative(repo, file)} imports the view writer`);
+      if (CORE.test(source)) importers.push(rel(file));
+      if (dir === 'src'){
+        assert.ok(!/viewWriter|view\/writer/.test(source), `${rel(file)}: the app reaches for the view writer`);
+      }
+      if (dir === 'etl' || dir === 'agent'){
+        /* Automation never sees the private overlay: not the folder, not the
+           module that reads it, not the door that does. */
+        assert.ok(!ANALYST_DOOR.test(source), `${rel(file)}: automation imports the analyst's door`);
+        assert.ok(!/local-data/.test(source), `${rel(file)}: automation names the private folder`);
+        assert.ok(!/src\/local\//.test(source), `${rel(file)}: automation imports the private overlay`);
+      }
     }
   }
+  assert.deepEqual(importers.sort(), ['agent/run.mjs', 'etl/rules.mjs', 'scripts/view/writer.mjs'],
+    'the view writer is imported from exactly these three files');
+
+  /* Only the writer itself spells a write to the store. */
+  for (const dir of ['etl', 'agent']){
+    for (const file of await walk(path.join(repo, dir))){
+      if (rel(file) === 'etl/lib/viewWriter.mjs') continue;
+      const source = await readFile(file, 'utf8');
+      assert.ok(!/['"`]view['"`]|view\/markets|changelog\.jsonl/.test(source), `${rel(file)}: names a view-store file directly`);
+    }
+  }
+  /* No workflow runs the analyst's door: a machine has its own. */
   const workflows = path.join(repo, '.github', 'workflows');
   for (const file of existsSync(workflows) ? await readdir(workflows) : []){
     const source = await readFile(path.join(workflows, file), 'utf8');
-    assert.ok(!/view\/writer/.test(source), `${file}: a workflow runs the view writer`);
+    assert.ok(!/scripts\/view\/writer/.test(source), `${file}: a workflow runs the analyst's writer`);
   }
 });

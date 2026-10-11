@@ -60,6 +60,36 @@ function renderReturns(app){
   });
 }
 
+/* The changelog page's module, once fetched. It brings the whole changelog
+   with it, which is why it is not in the entry chunk. */
+let changesPage = null;
+
+function renderChanges(app, route){
+  const filter = { market: route.market, author: route.author };
+  if (changesPage) return void changesPage.renderChangesPage(app, filter);
+  const holder = h('div', {},
+    h('div', { class: 'hdr' }, h('div', {},
+      h('h1', {}, L(['What changed, and who changed it', '改了什么，由谁改的'])),
+      h('div', { class: 'sub' }, L(['Loading the changelog…', '正在加载变更记录…'])))),
+    marketNav(markets, 'changes'),
+    h('div', { class: 'dash-skeleton', 'aria-busy': 'true', 'aria-label': L(['Loading', '加载中']) },
+      h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' })));
+  app.append(holder);
+  import('../changes/changesPage.js').then(m => {
+    changesPage = m;
+    if (!holder.isConnected) return;
+    app.innerHTML = '';
+    /* The route may have changed its filters while the chunk was in flight. */
+    const now = currentRoute();
+    m.renderChangesPage(app, now.name === 'changes' ? { market: now.market, author: now.author } : filter);
+  }).catch(err => {
+    console.error('[changes] page failed to load:', err);
+    if (!holder.isConnected) return;
+    app.innerHTML = '';
+    renderNotFound(app, { path: '/changes' });
+  });
+}
+
 /* Guards a stale dossier render, exactly as marketPage.js guards a stale market
    one: the reader may navigate again before the chunk resolves. */
 let dossierToken = 0;
@@ -104,6 +134,7 @@ export function render(){
      share of what the entry chunk used to carry, and a reader who came for a
      verdict or a market never needs them. */
   if (route.name === 'returns') return void renderReturns(app);
+  if (route.name === 'changes') return void renderChanges(app, route);
   if (route.name === 'investmentLab') return void renderInvestmentLabPage(app);
   if (route.name === 'data') return void renderDataStatus(app);
   if (route.name === 'news') return void renderNewsPage(app);
