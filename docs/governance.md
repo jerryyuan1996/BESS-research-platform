@@ -273,8 +273,10 @@ on the page and does it say what the reason claims; is this the anchor line you 
 is the source what the list says. `scout-check` records the check as the analyst's own changelog
 line, and a correction is an ordinary `apply`.
 
-**The source list is not finished.** As merged, six of twelve listed pages have terms somebody
-read, and five of nine markets have at least one such page. A market with none cannot have a card,
+**The source list is not finished.** Since 2026-10-11, 22 of 24 listed pages have terms somebody
+read, and eight of nine markets have at least one such page; Saudi Arabia has none. Every page is
+an official body's, so the list speaks mostly to entry and says little about debt, exits or how
+much storage is already built. A market with none cannot have a card,
 and a region with such a market cannot have a clean pass. Each page's terms are re-checked as its
 card is written; the whole list holds only while the purpose is personal study.
 
