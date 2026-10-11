@@ -12,7 +12,7 @@ import {
 } from '../src/markets/registry.js';
 import { validateMarket, validateRegistry } from '../src/utils/validation.js';
 import { runCase } from '../src/comparison/engine.js';
-import { REQUIRED_MANIFEST_FIELDS, METADATA_FIELDS } from '../src/markets/schema.js';
+import { REQUIRED_MANIFEST_FIELDS, OPTIONAL_MANIFEST_FIELDS, METADATA_FIELDS } from '../src/markets/schema.js';
 import { FX } from '../src/comparison/assumptions.js';
 import { supportedStrategies, baseStrategy, STRATEGIES } from '../src/comparison/strategies.js';
 import { merchantVintage, firstUncoveredMerchantYear } from '../src/comparison/vintage.js';
@@ -52,6 +52,24 @@ test('every market has all required manifest fields', () => {
         `${m.manifest.id}: manifest.${f} missing`);
     }
   }
+});
+
+test('the retired status chip is optional: a manifest validates without it, and with a malformed one it does not', () => {
+  /* `status` was the one-chip-a-market stance. A verdict per investor replaced
+     it (investment-view plan, section 6.3) and nothing displays it, so a market
+     no longer has to carry one. It is optional rather than removed, so the
+     manifests that still do stay valid. */
+  assert.ok(!REQUIRED_MANIFEST_FIELDS.includes('status'));
+  assert.ok(OPTIONAL_MANIFEST_FIELDS.includes('status'));
+
+  const base = markets[0];
+  const { status, ...withoutStatus } = base.manifest;
+  assert.ok(status, 'the probe market is expected to still carry a status');
+  assert.deepEqual(validateMarket({ ...base, manifest: withoutStatus }), [],
+    'a manifest with no status must validate');
+  const malformed = validateMarket({ ...base, manifest: { ...base.manifest, status: 'Selective' } });
+  assert.ok(malformed.some(p => p.includes('manifest.status')),
+    'where a status is present it must still be an [en, zh] pair');
 });
 
 test('freshness metadata keys are present, even when the value is null', () => {

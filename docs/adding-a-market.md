@@ -36,7 +36,8 @@ Japan is now live. With no other edits it appears in:
 
 | Surface | Comes from |
 |---|---|
-| Market universe cards | `home/marketGrid.js` iterating the registry |
+| Home verdict board, as "not yet graded" | `home/boardModel.js` iterating the registry |
+| Market universe cards on `/returns` | `home/marketGrid.js` iterating the registry |
 | Application navigation | `components/navigation.js` iterating the registry |
 | Route `/markets/japan` | `app/router.js` + `manifest.slug` |
 | League table column | `home/marketComparison.js` iterating the passed market list |
@@ -99,7 +100,11 @@ on an unready market's economics.
 ## Step 1 — `manifest.js`
 
 Required (validation fails without them): `id`, `slug`, `flag`, `shortName`, `name`, `currency`,
-`locale`, `status`, `color`.
+`locale`, `color`.
+
+`status`, the old one-chip investment stance, is optional and no longer displayed: a market's stance
+is now a verdict per investor in `view/markets/<id>.json`. Until a market is graded it appears on the
+home page's verdict board as "not yet graded", with its return.
 
 Two constraints worth knowing before you start:
 

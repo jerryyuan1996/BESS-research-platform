@@ -57,9 +57,23 @@ const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
  * 8 kB on the home page instead of the ~100 kB it would have before the split,
  * which is the clearest single measure of what the split bought. The headroom is
  * for that kind of growth, not for a market leaking back in.
+ *
+ * RATCHETED FROM 320 TO 222 when the home page was inverted (investment-view
+ * plan, phase 2). The home page now opens on verdicts and the old home content
+ * — league table, globe, revenue stack, $1M engine — moved to /returns, which
+ * is fetched on demand. Measured 312.00 before and 206.16 after. `entry` is
+ * now the shell, the registry and what the Investment Lab imports, and is no
+ * longer "the home cockpit": what the home page costs is `home`, below.
  */
 const BUDGET = {
-  entry: 320,
+  entry: 222,
+
+  /* THE HOME PAGE'S FIRST VIEW: the entry chunk plus everything the verdict
+     board loads — the board itself and the method layer (anchors, investor
+     tables, the view store, the ledgers). This is the number a reader arriving
+     at / actually waits for, and it is the one that replaced the old `entry`
+     figure of 312. Measured 252.89. It grows with every market graded. */
+  home: 268,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -89,8 +103,23 @@ const BUDGET = {
      by /projects/*, which in a published build is a typo. Counting it here made
      the failure message ("what a first market visit pays") untrue, and would
      have pushed someone into raising a budget to accommodate bytes no market
-     visitor downloads. */
-  sharedTotal: 55,
+     visitor downloads.
+
+     COUNTED FROM THE IMPORT GRAPH SINCE THE HOME INVERSION, not as "every chunk
+     nobody named". Once /returns and the verdict board became lazy, Rollup began
+     factoring out chunks that no market fetches (the method layer, shared by
+     the board and the Investment Case tab), and the leftover bucket stopped
+     meaning "what a market visit pays". It is now exactly that: every chunk a
+     market chunk statically imports, beyond the entry.
+
+     RAISED FROM 55 TO 98 in the same change, and the reason is bytes that
+     MOVED, not bytes that were added. The chart library and three boundary
+     files (Japan's zones, 34 kB, and two US state outlines) used to ride in the
+     entry chunk because the home page's globe and charts needed them. The home
+     page no longer does, so markets now fetch them as shared chunks. Measured
+     42.85 before and 89.96 after; over the same change the entry fell by 106,
+     so the worst market visit (Japan) went from 464 to 401 kB in total. */
+  sharedTotal: 98,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {
@@ -107,8 +136,26 @@ const BUDGET = {
 
        RAISED FROM 36 TO 39 for the held layer: the effective-grade function,
        its validator and the page text that prints a practitioner view beside
-       the sourced grade. Measured 36.55 locally. No market data was added. */
-    'investment-case': 39,
+       the sourced grade. Measured 36.55 locally. No market data was added.
+
+       LOWERED FROM 39 TO 8 at the home inversion, because the chunk split in
+       two. The home page's verdict board needs the same method layer, so Rollup
+       moved it into a chunk both share, named `investment-method` below. What
+       is left here is the two panels' own rendering. Measured 5.20. */
+    'investment-case': 8,
+    /* The method layer itself: anchors, the four investors' tables, the view
+       store and the ledgers. Fetched by the home page's board and by the
+       Investment Case and Entry tabs, whichever comes first. This is where the
+       old `investment-case` budget went, and it is the one that grows with
+       every market graded. Measured 33.93 — the remainder of the 37.35 that
+       chunk measured before the split, less the panels and the chart helpers. */
+    'investment-method': 37,
+    /* The home page's board, map, calendar and changes panel. Measured 11.35. */
+    'verdict-board': 14,
+    /* The old home page, now at /returns: market cards, globe, league table,
+       revenue stack, $1M engine, congestion, plus the two sections that were
+       written and never mounted. Measured 67.95. Fetched only on that route. */
+    'returns': 74,
   },
 };
 
@@ -136,6 +183,14 @@ const SHARED_OUT_OF_ENTRY = {
      Shipping it to every visitor so an unreachable route can say "not found"
      would be the worst version of eager loading there is. */
   'dossier shell': 'No project page exists at that address',
+  /* The home inversion's three lazy pieces. The first two are what the home
+     page fetches after the shell; the third is the old home page, which a
+     reader who came for a verdict or a market never needs. Any of them in the
+     entry means homePage.js or app.js has grown a static import it must not
+     have. */
+  'verdict board': 'Not yet graded — ',
+  'method layer': 'Utility, major IPP, state-backed sponsor',
+  'returns page': 'Apples-to-apples league',
 };
 
 /**
@@ -176,10 +231,25 @@ async function chunks(){
   const dir = path.join(DIST, 'assets');
   const files = (await readdir(dir)).filter(f => f.endsWith('.js'));
 
-  const out = { entry: null, markets: new Map(), other: [], features: new Map() };
+  /* THE ENTRY IS WHATEVER index.html LOADS, not whatever is named index-*.
+     Rollup names a factored-out chunk after one of its modules, and a module
+     called index.js would produce a second `index-[hash].js` beside the real
+     entry. The page's own script tag is the only statement of which one a
+     reader downloads first. */
+  const html = await readFile(path.join(DIST, 'index.html'), 'utf8');
+  const entryName = /<script[^>]+src="\/assets\/([^"]+\.js)"/.exec(html)?.[1] ?? null;
+
+  const out = { entry: null, markets: new Map(), other: [], features: new Map(), byName: new Map() };
   for (const name of files){
     const buf = await readFile(path.join(dir, name));
-    const entry = { name, raw: buf.length, gzip: gzipSync(buf).length, text: buf.toString('utf8') };
+    const text = buf.toString('utf8');
+    /* What this chunk imports STATICALLY, and so cannot run without. A dynamic
+       `import("./x.js")` is deliberately not matched: that is a chunk fetched
+       later, on demand, which is the whole point of the split. */
+    const imports = new Set(
+      [...text.matchAll(/(?:^|[;}\n])import(?:\s*\{[^}]*\}\s*from|\s*[\w$]+\s*from|)\s*"\.\/([^"]+\.js)"/g)].map(m => m[1]));
+    const entry = { name, raw: buf.length, gzip: gzipSync(buf).length, text, imports };
+    out.byName.set(name, entry);
 
     /* NON-GREEDY, and the hash is matched by length rather than by charset.
        Vite's hash alphabet includes `-`, so a chunk can be emitted as
@@ -190,25 +260,62 @@ async function chunks(){
     const market = /^market-(.+?)-[A-Za-z0-9_-]{8}\.js$/.exec(name);
     const feature = Object.keys(BUDGET.features).find(f => name.startsWith(f + '-'));
     if (market) out.markets.set(market[1], entry);
-    else if (/^index-[^.]+\.js$/.test(name)) out.entry = entry;
+    else if (name === entryName) out.entry = entry;
     else if (feature) out.features.set(feature, entry);
     else out.other.push(entry);
   }
   return out;
 }
 
+/** A chunk and everything it statically imports, transitively: what a reader
+ *  must have downloaded before that chunk can run. */
+function closure(chunk, byName, seen = new Set()){
+  if (!chunk || seen.has(chunk)) return seen;
+  seen.add(chunk);
+  for (const name of chunk.imports) closure(byName.get(name), byName, seen);
+  return seen;
+}
+
+const gzipOf = (set) => [...set].reduce((a, c) => a + c.gzip, 0);
+
 test('the entry chunk is within its budget', async (t) => {
   if (skipWithoutDist(t)) return;
-  const { entry } = await chunks();
+  const { entry, byName } = await chunks();
 
-  assert.ok(entry, `no index-*.js in ${SCAN_REL}/assets — the entry chunk was not found`);
-  assert.ok(kB(entry.gzip) <= BUDGET.entry,
-    `the entry chunk is ${kB(entry.gzip)} kB gzipped (${kB(entry.raw)} kB raw), over its ` +
+  assert.ok(entry, `index.html in ${SCAN_REL}/ names no script in assets — the entry chunk was not found`);
+  /* The entry and anything it statically imports. Today that is the entry
+     alone; measuring the closure means a chunk Rollup later hoists out of it
+     is still counted as part of the first load. */
+  const first = closure(entry, byName);
+  assert.ok(kB(gzipOf(first)) <= BUDGET.entry,
+    `the entry chunk is ${kB(gzipOf(first))} kB gzipped (${kB(entry.raw)} kB raw), over its ` +
     `${BUDGET.entry} kB budget.\n` +
     'This is what every visitor downloads before anything renders. The usual cause\n' +
     'is a new static import from a market module into something the shell already\n' +
     'loads, which pulls that market\'s whole graph back in. Check what changed in\n' +
     'src/markets/registry.js, gridMapRegistry.js or congestionRegistry.js first.');
+});
+
+test('the home page\'s first view is within its budget', async (t) => {
+  if (skipWithoutDist(t)) return;
+  const { entry, features, byName } = await chunks();
+  const board = features.get('verdict-board');
+  assert.ok(entry && board, 'no entry chunk or no verdict-board chunk');
+
+  const first = closure(board, byName, closure(entry, byName));
+  assert.ok(kB(gzipOf(first)) <= BUDGET.home,
+    `the home page's first view is ${kB(gzipOf(first))} kB gzipped across ${first.size} chunks ` +
+    `(${[...first].map(c => c.name).join(', ')}), over its ${BUDGET.home} kB budget.\n` +
+    'This is what a reader arriving at / waits for: the shell, the verdict board and\n' +
+    'the method layer behind it. It grows when a market is graded; anything else\n' +
+    'that grows it is a module the board should not be importing.');
+
+  /* The old home page must not ride along. If the board ever imports a module
+     the Returns page owns, Rollup makes the Returns chunk a static dependency
+     and the inversion has quietly been undone. */
+  const returns = features.get('returns');
+  assert.ok(returns, 'no returns chunk');
+  assert.ok(!first.has(returns), 'the Returns page is being loaded with the home page');
 });
 
 test('every market loads its dashboard on demand', async (t) => {
@@ -228,7 +335,7 @@ test('every market loads its dashboard on demand', async (t) => {
 
 test('the shared chunks stay out of the first load', async (t) => {
   if (skipWithoutDist(t)) return;
-  const { entry, other, features, markets } = await chunks();
+  const { entry, other, features, markets, byName } = await chunks();
   assert.ok(entry, 'no entry chunk');
 
   /* Search EVERY non-entry chunk, not just the market-shared ones. The first
@@ -253,9 +360,23 @@ test('the shared chunks stay out of the first load', async (t) => {
   }
 
   assert.ok(other.length > 0, 'no shared chunks at all — the split has collapsed');
-  const sharedGzip = other.reduce((a, c) => a + c.gzip, 0);
+  /* What market chunks statically import, beyond the entry and beyond the
+     market chunks themselves. Read from the import graph, so a chunk that only
+     the home page or the Returns page fetches is not charged to a market
+     visit. */
+  const first = closure(entry, byName);
+  const marketChunks = new Set(markets.values());
+  const shared = new Set();
+  for (const chunk of marketChunks){
+    for (const dep of closure(chunk, byName)){
+      if (!first.has(dep) && !marketChunks.has(dep)) shared.add(dep);
+    }
+  }
+  assert.ok(shared.size > 0, 'no market imports a shared chunk — the split has collapsed');
+  const sharedGzip = gzipOf(shared);
   assert.ok(kB(sharedGzip) <= BUDGET.sharedTotal,
-    `market-shared chunks total ${kB(sharedGzip)} kB gzipped across ${other.length} files, ` +
+    `market-shared chunks total ${kB(sharedGzip)} kB gzipped across ${shared.size} files ` +
+    `(${[...shared].map(c => c.name).join(', ')}), ` +
     `over the ${BUDGET.sharedTotal} kB budget. This is what a first market visit ` +
     'pays on top of its own market chunk. Feature chunks are counted separately.');
 });

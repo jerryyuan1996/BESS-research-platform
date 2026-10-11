@@ -12,13 +12,32 @@
 
    ABSENCE IS THE NORMAL CASE. Four of fifteen markets have a view. A market
    without one renders no Investment Case tab rather than an empty one.
+
+   TRIGGERS ARE WIDER THAN GRADES. Seven more markets have a view file that
+   holds only triggers, migrated out of prose before anybody graded the market.
+   The home page's calendar lists those too, so every market file is imported
+   here and `allTriggers` reads all of them. `allViews`, `viewFor` and `hasView`
+   still mean GRADED, which is what every other caller asks.
    --------------------------------------------------------------------------- */
 import wa from '../../view/markets/wa.json' with { type: 'json' };
 import fi from '../../view/markets/fi.json' with { type: 'json' };
 import gb from '../../view/markets/gb.json' with { type: 'json' };
 import ro from '../../view/markets/ro.json' with { type: 'json' };
 
+import caiso from '../../view/markets/caiso.json' with { type: 'json' };
+import de from '../../view/markets/de.json' with { type: 'json' };
+import ie from '../../view/markets/ie.json' with { type: 'json' };
+import it from '../../view/markets/it.json' with { type: 'json' };
+import jpTokyo from '../../view/markets/jp_tokyo.json' with { type: 'json' };
+import nem from '../../view/markets/nem.json' with { type: 'json' };
+import pjm from '../../view/markets/pjm.json' with { type: 'json' };
+
 const VIEWS = [wa, fi, gb, ro];
+
+/* Every market file in view/markets, graded or not. tests/view.test.js checks
+   this list against the directory, so a new file cannot be left out of the
+   calendar by forgetting to import it. */
+const FILES = [...VIEWS, caiso, de, ie, it, jpTokyo, nem, pjm];
 
 const byMarket = new Map(VIEWS.map(v => [v.marketId, v]));
 
@@ -31,3 +50,9 @@ export function viewFor(marketId){
 export const hasView = (marketId) => byMarket.has(marketId);
 
 export const viewMarketIds = () => VIEWS.map(v => v.marketId);
+
+/** Market ids with a file in the view store, graded or not. */
+export const viewFileMarketIds = () => FILES.map(v => v.marketId);
+
+/** Every trigger in the view store, from every market file. */
+export const allTriggers = () => FILES.flatMap(v => v.triggers || []);

@@ -1,0 +1,123 @@
+/* ---------------------------------------------------------------------------
+   The home page: lens, verdict board, return-by-entry map, what changed and
+   the trigger calendar.
+
+   Dense on purpose, like the rest of the site: the reader is comparing fifteen
+   markets. A row is one market; the four pillar strips sit in the same order
+   in every row so an eye can run down a column.
+
+   Colour is never the only channel. A verdict is a shape and a word; a barrier
+   row is marked by a rule down its edge and by the word "barrier"; a pressed
+   lens button is heavier and bordered as well as tinted.
+   --------------------------------------------------------------------------- */
+
+/* ---- lens ---- */
+.lens{margin:var(--sp-7) 0 var(--sp-3);}
+.lens-bar{display:flex; flex-wrap:wrap; align-items:center; gap:var(--sp-3);}
+.lens-label{font-size:var(--fs-2xs); color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-right:var(--sp-2);}
+.lens-btn[aria-pressed="true"]{background:var(--accent-bg); border-color:var(--s1); font-weight:var(--fw-medium);}
+.lens-about{font-size:var(--fs-xs); color:var(--ink2); margin-top:var(--sp-4); max-width:900px; line-height:var(--lh-body);}
+.vh-asat{font-size:var(--fs-2xs); color:var(--muted); margin-top:var(--sp-3);}
+
+/* ---- board ---- */
+.vb-row{
+  display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); column-gap:var(--sp-9); row-gap:var(--sp-3);
+  align-items:center; padding:var(--sp-6) 0 var(--sp-6) var(--sp-6);
+  border-top:1px solid var(--grid); border-left:3px solid transparent;
+}
+.vb-row:first-child{border-top:0;}
+.vb-row.vb-closed{border-left-color:var(--serious);}
+.vb-row.vb-ungraded{border-left-color:var(--grid);}
+.vb-head{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) 64px; gap:var(--sp-6); align-items:center;}
+.vb-head-four{grid-template-columns:minmax(0,1fr); }
+.vb-row:has(.vb-head-four){grid-template-columns:minmax(0,1fr);}
+.vb-mkt{display:flex; align-items:center; gap:var(--sp-4); min-width:0;}
+.vb-mkt .flag{width:22px; flex:none; line-height:1; border-radius:var(--r-xs); box-shadow:0 0 0 1px color-mix(in srgb,var(--ink) 22%,transparent);}
+.vb-name{font-size:var(--fs-md); font-weight:var(--fw-medium); color:var(--ink); text-decoration:none;}
+.vb-name:hover, .vb-link:hover{text-decoration:underline;}
+.vb-sub{font-size:var(--fs-2xs); color:var(--muted); line-height:var(--lh-tight);}
+.vb-call{display:flex; align-items:center; gap:var(--sp-3); font-size:var(--fs-md);}
+.verdict-glyph{flex:none;}
+.vb-fit{text-align:right;}
+.vb-fit-n{display:block; font-size:var(--fs-xl); font-weight:var(--fw-medium); font-variant-numeric:tabular-nums; line-height:var(--lh-tight);}
+
+.vb-pillars{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--sp-6);}
+.vb-pillar{display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:var(--sp-3); row-gap:var(--sp-1); align-items:center;}
+.vb-pl{grid-column:1 / -1; font-size:var(--fs-2xs); color:var(--muted);}
+.vb-bar{height:8px; background:var(--grid); border-radius:var(--r-sm); overflow:hidden; display:block;}
+.vb-bar > i{display:block; height:100%; background:var(--s1); border-radius:var(--r-sm);}
+.vb-pn{font-size:var(--fs-xs); font-variant-numeric:tabular-nums; color:var(--ink2); min-width:2ch; text-align:right;}
+.vb-withheld{grid-column:1 / -1; font-size:var(--fs-2xs); color:var(--ink2); font-style:italic; border:1px dashed var(--baseline); border-radius:var(--r-sm); padding:0 var(--sp-3); justify-self:start;}
+
+.vb-line{grid-column:1 / -1; font-size:var(--fs-xs); color:var(--ink2); line-height:var(--lh-body);}
+.vb-barrier{background:var(--serious-bg); border:1px solid var(--serious); border-radius:var(--r-md); padding:var(--sp-3) var(--sp-5); color:var(--ink);}
+.vb-flag{background:var(--warn-bg); border:1px solid var(--warn); border-radius:var(--r-md); padding:var(--sp-3) var(--sp-5); color:var(--ink);}
+.vb-aside{color:var(--muted);}
+.vb-dir{font-weight:var(--fw-bold); color:var(--ink);}
+.vb-link{font-size:var(--fs-xs); color:var(--s1); text-decoration:none;}
+.vb-return{font-size:var(--fs-sm); color:var(--ink2); font-variant-numeric:tabular-nums;}
+.vb-return b{color:var(--ink);}
+.vb-divider{
+  margin-top:var(--sp-5); padding:var(--sp-5) var(--sp-6); font-size:var(--fs-xs); color:var(--ink2);
+  background:var(--bg); border:1px dashed var(--baseline); border-radius:var(--r-md);
+}
+
+.vb-four{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--sp-5); margin-top:var(--sp-4);}
+.vb-four-cell{border:1px solid var(--border); border-radius:var(--r-md); padding:var(--sp-4) var(--sp-5); min-width:0;}
+.vb-four-cell.vb-closed{border-color:var(--serious);}
+.vb-four-cell .vb-call{font-size:var(--fs-sm); margin:var(--sp-2) 0;}
+.vb-flagmark{color:var(--ink); font-weight:var(--fw-medium);}
+
+/* ---- map ---- */
+.rem-chart svg{width:100%; height:auto; display:block;}
+.rem-chart .verdict-shape{cursor:default;}
+.rem-legend .li{gap:var(--sp-2);}
+
+/* ---- what changed ---- */
+.cp-list{list-style:none; margin:0; padding:0;}
+.cp-item{padding:var(--sp-4) 0; border-top:1px solid var(--grid);}
+.cp-item:first-child{border-top:0;}
+.cp-meta{display:flex; flex-wrap:wrap; gap:var(--sp-4); align-items:baseline; font-size:var(--fs-xs);}
+.cp-date{color:var(--muted); font-variant-numeric:tabular-nums;}
+.cp-author{color:var(--ink2); border:1px solid var(--border); border-radius:var(--r-pill); padding:0 var(--sp-4); font-size:var(--fs-2xs);}
+.cp-path{font-size:var(--fs-xs); margin-top:var(--sp-1);}
+.cp-path code{font-size:var(--fs-micro); color:var(--muted); overflow-wrap:anywhere;}
+.cp-reason{font-size:var(--fs-xs); color:var(--ink2); margin-top:var(--sp-1); line-height:var(--lh-body);}
+
+/* ---- trigger calendar ---- */
+.tc-grid{border-collapse:collapse; width:100%; min-width:430px;}
+.tc-grid th, .tc-grid td{border:1px solid var(--grid); padding:var(--sp-2) 0; text-align:center; font-size:var(--fs-micro);}
+.tc-grid thead th{color:var(--muted); font-weight:var(--fw-normal);}
+.tc-grid .tc-lane{text-align:left; white-space:nowrap; padding-left:var(--sp-3); padding-right:var(--sp-4); font-weight:var(--fw-medium); color:var(--ink);}
+.tc-y{font-size:var(--fs-micro);}
+.tc-on{background:var(--accent-bg);}
+.tc-mark{font-weight:var(--fw-bold); color:var(--ink); cursor:default; padding:0 var(--sp-1);}
+.tc-group{margin-top:var(--sp-6);}
+.tc-group-h{font-size:var(--fs-2xs); color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
+.tc-overdue .tc-group-h{color:var(--serious); font-weight:var(--fw-medium);}
+.tc-list{list-style:none; margin:0; padding:0;}
+.tc-item{display:grid; grid-template-columns:86px minmax(0,1fr); gap:var(--sp-4); padding:var(--sp-3) 0; border-top:1px solid var(--grid); font-size:var(--fs-xs); line-height:var(--lh-body);}
+.tc-item:first-child{border-top:0;}
+.tc-when{color:var(--ink2); font-variant-numeric:tabular-nums;}
+
+.vh-pair{margin-top:0; align-items:start;}
+
+/* Side-by-side panels stack at --bp-lg, and a board row gives its pillars a
+   line of their own. */
+@media (max-width:900px){
+  .vb-row{grid-template-columns:minmax(0,1fr);}
+}
+/* Fixed multi-column grids collapse at --bp-md. */
+@media (max-width:720px){
+  .vb-four{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+/* Dense label-and-value rows stack at --bp-sm. */
+@media (max-width:560px){
+  .vb-row{padding-left:var(--sp-4);}
+  .vb-head{grid-template-columns:minmax(0,1fr) 56px;}
+  .vb-head .vb-mkt{grid-column:1 / -1;}
+  .vb-head-four{grid-template-columns:minmax(0,1fr);}
+  .vb-pillars{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .tc-item{grid-template-columns:minmax(0,1fr); gap:0;}
+  .lens-btn{flex:1 1 auto;}
+}

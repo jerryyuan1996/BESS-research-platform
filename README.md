@@ -100,10 +100,15 @@ Each market also declares a **congestion register** (`src/markets/*/congestion.j
 that binds it, what a battery is actually paid for relieving it, and the named reinforcement that
 ends it with a commissioning year. That register drives three things at once — a constraint layer on
 the market's map, a table on its Grid Connection tab, and one cross-market comparison card on the
-home page — because congestion is the only revenue on this platform with a published expiry date.
+Returns page — because congestion is the only revenue on this platform with a published expiry date.
 No per-MW congestion revenue is modelled anywhere; nothing public supports one (gate G14).
 
-Returns modelling lives once, on the home page. The **Investment Lab** lets a reader select any
+The home page opens on verdicts: for each of four kinds of investor, which graded markets to enter,
+the barrier that shuts it out of the others, and the dated event that would change the call. Markets
+not yet graded say so and show their return. The cross-market returns view the home page used to be
+— market cards, league table, revenue stack, $1M engine — is at `/returns`, unchanged.
+
+Returns modelling lives once, on the Returns page. The **Investment Lab** lets a reader select any
 market, retype every normalized assumption inside a band that market declares — each band stating
 which of its endpoints is an observation and which is not — and choose whether to lever the case.
 It has no model of its own: it re-runs the comparison engine with the overrides applied, so resetting
@@ -119,8 +124,11 @@ src/
 │                            sectionHeader sourceDrawer header navigation footer marketCard
 ├── charts/                  lineChart barChart waterfallChart bandChart scatterChart axes chartUtils
 ├── utils/                   dom formatting finance storage validation
-├── home/                    homePage marketGrid marketComparison normalizationView
-│                            allocationMatrix congestionView investmentLab marketGlobe findings state
+├── home/                    homePage (shell) · verdictHome boardModel verdictBoard returnEntryMap
+│                            triggerCalendar changesPanel verdictGlyph (the board, fetched on demand)
+│                            returnsPage marketGrid marketComparison normalizationView allocationMatrix
+│                            congestionView findings refinementOverview marketGlobe (/returns, on demand)
+│                            investmentLab state
 ├── comparison/              engine assumptions strategies metrics ranges scenario vintage
 ├── markets/
 │   ├── registry.js          ← the canonical list of markets

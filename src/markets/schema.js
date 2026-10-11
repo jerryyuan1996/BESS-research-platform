@@ -54,8 +54,21 @@ export const REQUIRED_MANIFEST_FIELDS = [
   'name',        // [en, zh] — card titles, page titles
   'currency',    // ISO 4217; must have an FX rate in comparison/assumptions.js
   'locale',      // BCP-47, for that market's own number formatting
-  'status',      // [en, zh] — investment stance chip
   'color',       // CSS colour for this market's series
+];
+
+/**
+ * Fields a manifest may define and need not.
+ *
+ * `status` was the one-chip-a-market investment stance and was required until
+ * the investment-view revision (plan section 6.3). A verdict per investor, in
+ * the view store, replaces it, and nothing in the UI reads it any more. It is
+ * optional rather than gone so the fifteen manifests that carry it stay valid;
+ * where present it must still be an [en, zh] pair. Removing the field is a
+ * later step.
+ */
+export const OPTIONAL_MANIFEST_FIELDS = [
+  'status',      // [en, zh] — retired investment stance; no longer displayed
 ];
 
 /** Freshness metadata (brief section 21). Optional, but the shape is fixed. */
