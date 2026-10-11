@@ -165,8 +165,18 @@ export const GRADUATION_RULE = [
   '当某一类投资者连续两次复核均为“建立仓位”或“现在进入”，且比较模型所需的输入齐备时，观察市场升级为完整看板。',
 ];
 
-/** What a terms page was found to say. `unread` is a candidate nobody has checked. */
-export const TERMS_STATUS = { PERMITS: 'permits', SILENT: 'silent', REFUSED: 'refused', UNREAD: 'unread' };
+/**
+ * What a terms page was found to say. `unread` is a candidate nobody has
+ * checked.
+ *
+ * `private-use` is a publisher whose terms allow private, non-commercial use
+ * and reserve everything else: a trade paper, a development bank. Such a page
+ * is admitted on the analyst's ruling of 2026-10-11, and on its ground — that
+ * this platform is for his private use and nobody else's. The status is kept
+ * apart from `permits` so that the ground stays visible: if the platform is
+ * ever shown to anyone else, every page with this status comes off the list.
+ */
+export const TERMS_STATUS = { PERMITS: 'permits', SILENT: 'silent', PRIVATE_USE: 'private-use', REFUSED: 'refused', UNREAD: 'unread' };
 
 /** The statuses that admit a page to the agent's reading list. */
-export const ADMITTED_TERMS = [TERMS_STATUS.PERMITS, TERMS_STATUS.SILENT];
+export const ADMITTED_TERMS = [TERMS_STATUS.PERMITS, TERMS_STATUS.SILENT, TERMS_STATUS.PRIVATE_USE];

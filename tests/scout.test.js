@@ -144,7 +144,7 @@ test('a card is graded on twelve dimensions: the two in the Return pillar are no
 
 test('every listed page is https, says who publishes it and what its terms were found to say', () => {
   assert.deepEqual(Object.keys(SCOUT_SOURCES).sort(), [...SCOUT_IDS].sort(), 'every roster market has a list, and no other id does');
-  const statuses = ['permits', 'silent', 'refused', 'unread'];
+  const statuses = ['permits', 'silent', 'private-use', 'refused', 'unread'];
   for (const [id, list] of Object.entries(SCOUT_SOURCES)){
     assert.ok(Object.keys(list).length > 0, `${id}: no page listed`);
     for (const [key, s] of Object.entries(list)){
@@ -161,7 +161,18 @@ test('every listed page is https, says who publishes it and what its terms were 
     }
     for (const s of Object.values(admittedSources(id))) assert.ok(ADMITTED_TERMS.includes(s.terms.status));
   }
-  assert.deepEqual(ADMITTED_TERMS, ['permits', 'silent']);
+  /* `private-use` is a publisher that reserves everything but private,
+     non-commercial use. It is admitted on the analyst's ruling that the
+     platform is for his private use, and is its own status so that the ground
+     stays visible: such a page is a third party's, never an official body's,
+     and its terms were read by somebody on a date. */
+  assert.deepEqual(ADMITTED_TERMS, ['permits', 'silent', 'private-use']);
+  const privateUse = Object.entries(SCOUT_SOURCES).flatMap(([id, list]) => Object.entries(list).filter(([, s]) => s.terms.status === 'private-use').map(([key, s]) => [`${id}/${key}`, s]));
+  assert.ok(privateUse.length > 0);
+  for (const [where, s] of privateUse){
+    assert.equal(s.authority, 'third-party', `${where}: a page admitted on private use is listed as official`);
+    assert.match(s.terms.url, /^https:\/\//, where);
+  }
   assert.deepEqual(Object.keys(admittedSources('sa')), [], 'an unread page is not admitted');
   assert.deepEqual(Object.keys(admittedSources('nl', UNREAD)), []);
 });
