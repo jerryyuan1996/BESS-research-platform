@@ -1,0 +1,190 @@
+{
+  "market": "de",
+  "preparedOn": "2026-10-12",
+  "note": "A DRAFT FOR THE ANALYST'S REVIEW. Nothing here is a grade until he has answered the sheet. Each record under `drafted` is exactly what would be written to grades.<dimension> if accepted unchanged.",
+  "drafted": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Third of fourteen markets on hold IRR, 14.6%.",
+        "持有期IRR为14.6%，在十四个市场中排名第三。"
+      ]
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "foerderstedtToll"
+      ],
+      "reason": [
+        "The reference project secures nothing; a five-year toll on 80% of a 300 MW battery was announced in June 2026, so a secured route has been signed in the market.",
+        "参考项目没有任何锁定收入；2026年6月公布了一份为期五年、覆盖一座300MW电池80%容量的租赁协议，说明该市场已有项目签下锁定收入的途径。"
+      ]
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "metric": {
+        "perMW": 2160,
+        "perProject": 216000,
+        "shareOfCost": 0.0024,
+        "currency": "USD"
+      },
+      "evidence": [
+        "entry-ledger",
+        "rgvDoc"
+      ],
+      "reason": [
+        "At transmission level, at least 0.24% of project cost before the decision: a EUR 50,000 application fee and a EUR 1,500 per MW deposit, credited against the later connection contribution. Development spend is not sourced.",
+        "在输电网层面，决策前的风险资本至少为项目投资的0.24%：5万欧元申请费，加每MW 1,500欧元的保证金，后者可抵扣其后的并网工程费分摊。前期开发支出尚无来源。"
+      ]
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "improving",
+      "basis": "official",
+      "trendCause": [
+        "From April 2026 the four transmission operators replaced first-come, first-served with a published procedure and published scoring criteria.",
+        "自2026年4月起，四家输电运营商以公开的程序和评分标准取代了先到先得。"
+      ],
+      "evidence": [
+        "rgvDoc"
+      ],
+      "reason": [
+        "The transmission operators publish the process, the minimum requirements, the scoring criteria, the cycle dates and the capacity available at each connection point. The procedure is in its first cycle, and distribution-level connections are outside it.",
+        "输电运营商公布了流程、最低要求、评分标准、周期日程以及各并网点的可用容量。该程序尚处于第一个周期，配电网层面的并网不在其范围内。"
+      ]
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "deteriorating",
+      "basis": "official",
+      "trendCause": [
+        "Transmission connection requests from large batteries reached 211 GW by the third quarter of 2025, against about 51 GW of commitments issued.",
+        "截至2025年第三季度，大型电池提出的输电网并网申请已达211GW，而已发出的并网承诺约为51GW。"
+      ],
+      "evidence": [
+        "rgvPress",
+        "rgvDoc"
+      ],
+      "reason": [
+        "Capacity is allocated by a maturity ranking in fixed cycles. The operators say demand will go on exceeding supply, and applications still queued under the old rule are transferred into the new procedure.",
+        "容量按成熟度排序、分固定周期分配。运营商表示需求仍将持续超过供给，按旧规则仍在排队的申请将转入新程序。"
+      ]
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "awv55a",
+        "awg14a",
+        "kritisAnnex"
+      ],
+      "reason": [
+        "Investment review reaches a non-EU acquirer of a company that operates a critical facility. The published threshold for a storage plant is 104 MW, above the 100 MW reference project; a review once opened has four months to decide.",
+        "投资审查适用于非欧盟投资者收购关键设施运营企业的情形。储能设施的公开门槛为104MW，高于100MW的参考项目；审查一旦启动，须在四个月内作出决定。"
+      ]
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "agnes"
+      ],
+      "reason": [
+        "Grid-fee relief for storage ends in August 2029, and the regulator's successor framework is still a draft; it keeps relief only for projects that take their investment decision before it is final.",
+        "储能的电网费用豁免将于2029年8月到期，监管机构的接续框架仍为草案；仅在其最终定稿之前作出投资决策的项目可继续享受减免。"
+      ]
+    }
+  },
+  "found": {
+    "revenueCertainty": [
+      "Opened: the counterparty's own announcement of 2 June 2026. It names a tolling agreement, five years, 80% of the capacity, and no price. One signed route is what separates grade 2 from grade 1, which is the infrastructure fund's knock-out."
+    ],
+    "capitalAtRisk": [
+      "The anchors pull two ways. The share, 0.24%, sits under grade 5's 0.5%, but grade 5 also needs nothing posted as security, and a deposit is posted. Grade 4 is drafted as the nearest line: a small share, refundable deposits only.",
+      "If you rule that the deposit falls before consent, the anchor's other clause applies (security posted before consent) and the grade reads 2. The procedure asks for a written permitting strategy and not a permit (section 4.2.1, criterion A2), so the deposit CAN fall due with no consent in hand. It does not say that it does, so beforeConsent is left null as you instructed.",
+      "On your statement that the contribution falls after the decision: the procedure says its first tranche, 30 to 50%, is due on signing the connection contract or the connection construction contract (section 3.4). I have recorded the flag as you stated it. If that signing precedes your decision in practice, the contribution's first tranche belongs before it, and at the dashboard's EUR 110,000 to 165,000 per MW that would be several million euros and a different grade.",
+      "Everything sourced is transmission level. A 100 MW project connecting at 110 kV meets a distribution operator's own terms, which I did not open."
+    ],
+    "approvalTransparency": [
+      "Grade 5 needs published timeframes, a public queue and appealable outcomes. The procedure gives each applicant its own score and the score of the last project served at that point, which is not a public queue, and names no appeal. Grade 2 (the process changes between rounds) is the reading against: the document says later cycles may be adapted."
+    ],
+    "gridScarcity": [
+      "Grade 3 needs a prepared project to be able to expect an offer within one cycle. The press release does not support that: 211 GW requested against 41 to 94 GW the scenario framework sees for 2037. The verdict can name a region; the sources opened do not rank regions."
+    ],
+    "foreignEntry": [
+      "Three things the pages opened do not settle. Whether the 104 MW annex still governs: the review rule now points to the KRITIS umbrella act, whose own ordinance is a draft, and the annex page does not state its status. Whether a greenfield project company is an 'acquisition' at all. And land and licence rules for a foreign-owned company, which I found no page for.",
+      "Read strictly, grade 4 wants a decision deadline of 90 days or less and the statute gives two months to open a review and four to decide. If the threshold does not protect the reference project, the anchor reads 3. If it does and nothing else applies, it reads 5."
+    ],
+    "policyStability": [
+      "From the decision profile, as re-read on 2026-10-10. I did not re-open the regulator's draft."
+    ],
+    "timeToRevenue": [
+      "Nothing computed: there is no pathway for Germany. What the procedure gives: the first cycle runs a little over ten months from 1 April 2026; three more months to agree a negotiation timetable; connection dates in an offer are indicative. The engine assumes a twelve-month build."
+    ],
+    "supplyChainOrigin": [
+      "I opened no page that establishes an origin rule for storage in Germany, and none that rules one out. Left to you."
+    ],
+    "demandGrowth": [
+      "The anchor wants signed new load against system peak and the operator's five-year forecast. I opened neither. The press release counts 717 transmission applications for about 270 GW, so about 59 GW is not batteries, and those are requests, not signed load. Left to you."
+    ],
+    "saturation": [
+      "A numerator is sourced and a denominator is not. Commitments issued to large batteries: about 51 GW at transmission level. The dashboard carries a 5.7 GW fleet figure for 2026. I opened no page for system peak or for the reserve requirement, so no ratio is drafted. Left to you."
+    ],
+    "debtAvailability": [
+      "The anchor counts disclosed non-recourse financings in 24 months. No register entry holds a count and I opened none. Left to you."
+    ],
+    "exitLiquidity": [
+      "Nothing held and nothing opened. Left to you."
+    ],
+    "scaleRepeatability": [
+      "The anchor asks how many more reference projects fit inside published headroom. Capacity is published per connection point for each cycle, which I did not total. Left to you."
+    ]
+  },
+  "seeds": {
+    "revenueCertainty": [
+      "Contracted revenue availability (tolling only) — weight 20, score 55 of 100"
+    ],
+    "capitalAtRisk": [
+      "Baukostenzuschuss quantum agreed with the network operator — connection risk, weight 14, 2 of 3"
+    ],
+    "approvalTransparency": [
+      "Grid connection agreement and queue position — connection risk, weight 12, 1 of 3",
+      "Land, planning and BImSchG approval — connection risk, weight 8, 1 of 3"
+    ],
+    "gridScarcity": [
+      "Grid connection agreement and queue position — connection risk, weight 12, 1 of 3",
+      "Flexible connection agreement terms, caps and ramp limits — connection risk, weight 10, 2 of 3"
+    ],
+    "policyStability": [
+      "Connection cost and grid fee regime — weight 12, score 70 of 100",
+      "Grid fee exemption secured, COD before 4 August 2029 — connection risk, weight 12, 1 of 3",
+      "AgNes grandfathering, FID before the final decision — connection risk, weight 10, 2 of 3"
+    ],
+    "saturation": [
+      "Ancillary services headroom — weight 10, score 28 of 100"
+    ],
+    "debtAvailability": [
+      "Financing and delivery execution — weight 7, score 95 of 100"
+    ]
+  }
+}
