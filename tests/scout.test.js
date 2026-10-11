@@ -726,7 +726,7 @@ test('a proposal that lies is dropped and counted, and the rest of the card is s
   assert.equal(lied.wouldWrite, 2);
   assert.equal(passIsClean({ ...lied.pass }), false);
   assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: cite('x', 99) }] }))[0].why, /page 99, which was not fetched/);
-  assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: [] }] }))[0].why, /at least one quotation|at least one evidence record/);
+  assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: [] }] }))[0].why, /at least one quotation/);
 
   /* No return: not in a fact, not in a quotation, not as a grade. */
   assert.match((await rejected({ facts: [{ text_en: 'Developers report an IRR above 10%.', text_zh: '开发商称内部收益率超过10%。', evidence: cite('Developers report an IRR above 10%.') }] }))[0].why, /names a modelled return/);
