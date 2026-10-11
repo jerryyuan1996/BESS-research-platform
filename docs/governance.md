@@ -273,8 +273,17 @@ on the page and does it say what the reason claims; is this the anchor line you 
 is the source what the list says. `scout-check` records the check as the analyst's own changelog
 line, and a correction is an ordinary `apply`.
 
-**The source list is not finished.** As merged, six of twelve listed pages have terms somebody
-read, and five of nine markets have at least one such page. A market with none cannot have a card,
+**The source list is not finished.** Since 2026-10-11, 33 of 35 listed pages have terms somebody
+read, and eight of nine markets have at least one such page; Saudi Arabia has none. Most pages are
+an official body's, so the list speaks mostly to entry. Ten are a third party's, for what official
+pages do not say: debt, sales, and how much storage is already built.
+
+**Seven of those are admitted on one ground, and it is the analyst's.** A trade paper's or a
+development bank's terms allow private, non-commercial use and reserve the rest. Such a page has
+the status `private-use`, apart from `permits`, and is on the list by the analyst's ruling of
+2026-10-11 that this platform is for his private use and nobody else's. If the platform is ever
+shown to anyone else, every `private-use` page comes off the list, and so does every record on a
+card that quotes one. A market with none cannot have a card,
 and a region with such a market cannot have a clean pass. Each page's terms are re-checked as its
 card is written; the whole list holds only while the purpose is personal study.
 

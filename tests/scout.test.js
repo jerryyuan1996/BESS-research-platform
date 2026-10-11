@@ -144,7 +144,7 @@ test('a card is graded on twelve dimensions: the two in the Return pillar are no
 
 test('every listed page is https, says who publishes it and what its terms were found to say', () => {
   assert.deepEqual(Object.keys(SCOUT_SOURCES).sort(), [...SCOUT_IDS].sort(), 'every roster market has a list, and no other id does');
-  const statuses = ['permits', 'silent', 'refused', 'unread'];
+  const statuses = ['permits', 'silent', 'private-use', 'refused', 'unread'];
   for (const [id, list] of Object.entries(SCOUT_SOURCES)){
     assert.ok(Object.keys(list).length > 0, `${id}: no page listed`);
     for (const [key, s] of Object.entries(list)){
@@ -161,8 +161,20 @@ test('every listed page is https, says who publishes it and what its terms were 
     }
     for (const s of Object.values(admittedSources(id))) assert.ok(ADMITTED_TERMS.includes(s.terms.status));
   }
-  assert.deepEqual(ADMITTED_TERMS, ['permits', 'silent']);
-  assert.deepEqual(Object.keys(admittedSources('nl')), [], 'an unread page is not admitted');
+  /* `private-use` is a publisher that reserves everything but private,
+     non-commercial use. It is admitted on the analyst's ruling that the
+     platform is for his private use, and is its own status so that the ground
+     stays visible: such a page is a third party's, never an official body's,
+     and its terms were read by somebody on a date. */
+  assert.deepEqual(ADMITTED_TERMS, ['permits', 'silent', 'private-use']);
+  const privateUse = Object.entries(SCOUT_SOURCES).flatMap(([id, list]) => Object.entries(list).filter(([, s]) => s.terms.status === 'private-use').map(([key, s]) => [`${id}/${key}`, s]));
+  assert.ok(privateUse.length > 0);
+  for (const [where, s] of privateUse){
+    assert.equal(s.authority, 'third-party', `${where}: a page admitted on private use is listed as official`);
+    assert.match(s.terms.url, /^https:\/\//, where);
+  }
+  assert.deepEqual(Object.keys(admittedSources('sa')), [], 'an unread page is not admitted');
+  assert.deepEqual(Object.keys(admittedSources('nl', UNREAD)), []);
 });
 
 /* ---- the wall -------------------------------------------------------------------- */
@@ -339,8 +351,8 @@ test('A — every record the agent creates quotes a page fetched in that run, fr
 
   /* A page whose terms nobody has read is on the list and still not a source. */
   await rejects(store.prepare({
-    market: 'nl', path: 'grades.gridScarcity', to: grade({ evidence: ['tennet-home'] }), author: agent, reason,
-    evidence: [quoted(SCOUT_SOURCES.nl['tennet-home'])],
+    market: 'sa', path: 'grades.gridScarcity', to: grade({ evidence: ['sppc-home'] }), author: agent, reason,
+    evidence: [quoted(SCOUT_SOURCES.sa['sppc-home'])],
   }, NOW), /its terms have not been read/);
 
   /* Facts and the signal show only quotations the change verified. */
@@ -621,10 +633,17 @@ const answer = (patch = {}) => ({
 });
 const EMPTY = { notes: 'Nothing to add.', grades: [], verdicts: [], triggers: [], facts: [], return_signal: { present: false, note_en: '', note_zh: '', evidence: [] } };
 
+/* The pass is tested against the analyst's real list for Spain and Bulgaria,
+   and against a list of one unread page for the Netherlands, so that what is
+   asserted about an unread page does not depend on which markets happen to
+   have one this month. */
+const UNREAD = { 'unread-page': { publisher: 'A publisher nobody has checked', url: 'https://unread.example/storage', authority: 'official', terms: { url: null, readOn: null, status: 'unread' } } };
+const testSources = (id) => (id === 'nl' ? UNREAD : scoutSources(id));
+
 const scoutPass = (store, answers, patch = {}) => {
   const asked = [], fetched = [];
   return runScoutPass({
-    store, region: 'southern-eastern-europe', now: NOW,
+    store, region: 'southern-eastern-europe', now: NOW, sources: testSources,
     fetchPage: async (url) => { fetched.push(url); return { body: PAGE }; },
     robots: async () => true,
     askModel: async (message, options) => { asked.push({ message, options }); const id = /\(id (\w+)\)/.exec(message)[1]; return { ...(answers[id] ?? EMPTY), model: MODEL }; },
@@ -638,10 +657,11 @@ test('the scout pass reads only listed pages, shows the model only those whose t
      is probed for reachability and the model never sees it. */
   assert.deepEqual(result.asked.map(a => /\(id (\w+)\)/.exec(a.message)[1]), ['es', 'bg']);
   assert.deepEqual(result.pass.unfetched, ['nl']);
-  assert.ok(result.fetched.includes(SCOUT_SOURCES.nl['tennet-home'].url), 'an unread page is still probed');
-  assert.ok(result.asked.every(a => !a.message.includes('tennet')), 'an unread page reached the model');
+  assert.ok(result.fetched.includes(UNREAD['unread-page'].url), 'an unread page is still probed');
+  assert.ok(result.asked.every(a => !a.message.includes('unread.example')), 'an unread page reached the model');
   assert.equal(result.pass.pages.find(p => p.card === 'nl').status, 'reachable, terms not read');
-  assert.ok(result.fetched.every(url => Object.values(SCOUT_SOURCES).some(list => Object.values(list).some(s => s.url === url))), 'a page off the list was fetched');
+  const listed = ['es', 'nl', 'bg'].flatMap(id => Object.values(testSources(id)).map(s => s.url));
+  assert.deepEqual([...result.fetched].sort(), [...listed].sort(), 'every listed page was fetched once, and nothing off the list');
   for (const a of result.asked){
     assert.equal(a.options.system, SCOUT_SYSTEM);
     assert.equal(a.options.schema, SCOUT_ANSWER_SCHEMA);
@@ -685,7 +705,7 @@ test('the scout pass runs dry: it reports the card it would write, with a spot-c
   assert.match(report, /\*\*CHECK\*\* \*\*grades\.gridScarcity\*\* `3`/);
   assert.match(report, /Anchor for 3: /);
   assert.match(report, /“A first capacity auction is planned for June 2027\.” — Red Eléctrica/);
-  assert.match(report, /nl `tennet-home` — reachable, terms not read/);
+  assert.match(report, /nl `unread-page` — reachable, terms not read/);
   /* The sample is every verdict, every extreme, every knock-out dimension, and three more by the run id. */
   const written = [...SCOUT_DIMENSION_IDS.map(d => ({ record: `grades.${d}`, to: { grade: d === 'policyStability' ? 5 : 3 } })), { record: 'verdicts.developer', to: {} }];
   const sample = spotCheckSample('es', written, RUN);
@@ -705,7 +725,7 @@ test('a proposal that lies is dropped and counted, and the rest of the card is s
   assert.deepEqual(lied.pass.rejected.map(r => r.record), ['grades.gridScarcity', 'verdicts.developer']);
   assert.equal(lied.wouldWrite, 2);
   assert.equal(passIsClean({ ...lied.pass }), false);
-  assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: cite('x', 3) }] }))[0].why, /page 3, which was not fetched/);
+  assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: cite('x', 99) }] }))[0].why, /page 99, which was not fetched/);
   assert.match((await rejected({ facts: [{ ...answer().facts[0], evidence: [] }] }))[0].why, /at least one quotation|at least one evidence record/);
 
   /* No return: not in a fact, not in a quotation, not as a grade. */

@@ -15,8 +15,13 @@
         address, the date it was read and what it was found to say:
           permits   reuse with attribution is allowed
           silent    no terms are stated; admitted on the personal-study
-                    posture, and marked
-          refused   reuse is prohibited; never admitted
+                    posture, and marked. A bare copyright line or "all rights
+                    reserved" with no terms page behind it counts as this:
+                    the analyst's ruling of 2026-10-11
+          private-use  the terms allow private, non-commercial use and
+                    reserve the rest; admitted on the analyst's ruling of
+                    2026-10-11 that this platform is for his private use
+          refused   reuse is prohibited; never admitted, and not listed
           unread    a candidate nobody has checked yet; not admitted
      4. what is kept from it is a quotation of at most 300 characters, the
         publisher, the link and a hash. Never the page.
@@ -38,51 +43,117 @@
    they supported one grade. A card is only as good as this list, and the
    list wants pages that state a process, a figure or a date.
 
+   THE LIST AS APPROVED ON 2026-10-11. The analyst approved sixteen more pages
+   that day, every one an official body's. Fifteen are below. The sixteenth,
+   the Saudi Ministry of Investment's questions page, is not: its terms, read
+   afterwards, prohibit copying or reproducing its content to the public
+   without written approval, which is `refused`, and a card is public. TenneT's
+   and the Coordinador's home pages were dropped, having refused every fetch.
+   Saudi Arabia therefore still has no admitted page.
+
+   A page with `opened: null` was found by search and has not been read by a
+   person. Its publisher's terms are known, so it is admitted, and the first
+   dry pass over it is where its content is first seen.
+
    Keys are what a grade's `evidence` and a trigger's `source` name.
    --------------------------------------------------------------------------- */
 
 const OPENED = '2026-10-11';
 
-const official = (publisher, url, opened, terms) => ({ publisher, url, authority: 'official', opened, terms });
+const page = (authority) => (publisher, url, opened, terms) => ({ publisher, url, authority, opened, terms });
+const official = page('official');
+/* Not a government body, a regulator or a system operator: a trade paper, an
+   industry association, a development bank reporting its own loan. A verdict
+   needs two of these from different publishers, or one official page. */
+const thirdParty = page('third-party');
 
 const unread = { url: null, readOn: null, status: 'unread' };
 
+/* What each publisher's terms were found to say, once per publisher. The
+   address is the page that was read; where a site states no terms at all it
+   is the page whose footer was checked. */
+const TERMS = {
+  svk:        { url: 'https://www.svk.se/en/about-the-website/', readOn: OPENED, status: 'silent' },
+  isp:        { url: 'https://www.isp.se/eng/foreign-direct-investment/description-of-the-act', readOn: OPENED, status: 'silent' },
+  elering:    { url: 'https://www.elering.ee/en/connecting-electricity-network', readOn: OPENED, status: 'silent' },
+  ttja:       { url: 'https://ttja.ee/en/business-client/entrepreneurship/foreign-direct-investment-screening', readOn: OPENED, status: 'silent' },
+  litgrid:    { url: 'https://www.litgrid.eu/en/power-system/eu-network-codes/connection-codes-and-requirements', readOn: OPENED, status: 'silent' },
+  ree:        { url: 'https://www.ree.es/en/legal-notice-privacy-policy', readOn: OPENED, status: 'permits' },
+  comercio:   { url: 'https://comercio.gob.es/es-es/Paginas/Aviso_Legal.aspx', readOn: OPENED, status: 'permits' },
+  acm:        { url: 'https://www.acm.nl/en/about-site', readOn: OPENED, status: 'permits' },
+  bti:        { url: 'https://www.bureautoetsinginvesteringen.nl/service/copyright', readOn: OPENED, status: 'permits' },
+  eso:        { url: 'https://www.eso.bg/?en', readOn: OPENED, status: 'silent' },
+  investbg:   { url: 'https://investbg.government.bg/fdi-screening/', readOn: OPENED, status: 'silent' },
+  cne:        { url: 'https://www.cne.cl/', readOn: OPENED, status: 'silent' },
+  investchile: { url: 'https://www.investchile.gob.cl/legal-notice/', readOn: OPENED, status: 'silent' },
+  /* Third parties, approved 2026-10-11. */
+  bgen:       { url: 'https://balkangreenenergynews.com/disclaimer/', readOn: OPENED, status: 'permits' },
+  canrea:     { url: 'https://renewablesassociation.ca/by-the-numbers/', readOn: OPENED, status: 'silent' },
+  nib:        { url: 'https://www.nib.int/loan/baltic-storage-platform-ou-77466', readOn: OPENED, status: 'silent' },
+  /* pv magazine publishes ESS News. Its legal notice allows copies for
+     private, non-commercial use only, and its articles say content may not be
+     reused without permission. */
+  pvMagazine: { url: 'https://www.pv-magazine.com/legal/legal-notice/', readOn: OPENED, status: 'private-use' },
+  /* "For your personal, non-commercial use, without any right to resell,
+     redistribute or create derivative works." */
+  ebrd:       { url: 'https://www.ebrd.com/home/terms-and-conditions.html', readOn: OPENED, status: 'private-use' },
+  ieso:       { url: 'https://www.ieso.ca/en/Terms-of-Use', readOn: OPENED, status: 'permits' },
+  canada:     { url: 'https://www.canada.ca/en/transparency/terms.html', readOn: OPENED, status: 'permits' },
+};
+
 export const SCOUT_SOURCES = {
   se: {
-    'svk-ancillary': official('Svenska kraftnät', 'https://www.svk.se/en/stakeholders-portal/electricity-market/provision-of-ancillary-services/', OPENED,
-      { url: 'https://www.svk.se/en/about-the-website/', readOn: OPENED, status: 'silent' }),
+    'svk-ancillary': official('Svenska kraftnät', 'https://www.svk.se/en/stakeholders-portal/electricity-market/provision-of-ancillary-services/', OPENED, TERMS.svk),
+    'svk-connecting': official('Svenska kraftnät', 'https://www.svk.se/en/stakeholders-portal/electricity-market/connecting-to-the-grid/', OPENED, TERMS.svk),
+    'isp-fdi-act': official('Inspectorate of Strategic Products', 'https://www.isp.se/eng/foreign-direct-investment/description-of-the-act', OPENED, TERMS.isp),
+    'isp-fdi-process': official('Inspectorate of Strategic Products', 'https://www.isp.se/eng/foreign-direct-investment/the-case-management-process', null, TERMS.isp),
+    'essnews-sweden': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/sweden/', OPENED, TERMS.pvMagazine),
   },
   ee: {
-    'elering-home': official('Elering', 'https://elering.ee/en', null, unread),
+    'elering-connecting': official('Elering', 'https://www.elering.ee/en/connecting-electricity-network', OPENED, TERMS.elering),
+    'ttja-fdi': official('Consumer Protection and Technical Regulatory Authority', 'https://ttja.ee/en/business-client/entrepreneurship/foreign-direct-investment-screening', OPENED, TERMS.ttja),
+    'nib-storage-loan': thirdParty('Nordic Investment Bank', 'https://www.nib.int/loan/baltic-storage-platform-ou-77466', OPENED, TERMS.nib),
   },
   lt: {
-    'litgrid-storage-connection': official('Litgrid', 'https://www.litgrid.eu/paslaugos/prijungimo-paslaugos/elektriniu-ir-energijos-kaupimo-irenginiu-vystytojams', null, unread),
-    'litgrid-balancing': official('Litgrid', 'https://www.litgrid.eu/paslaugos/sistemos-paslaugos/balansavimo-paslaugos', null, unread),
+    'litgrid-connection-codes': official('Litgrid', 'https://www.litgrid.eu/en/power-system/eu-network-codes/connection-codes-and-requirements', OPENED, TERMS.litgrid),
+    'litgrid-storage-connection': official('Litgrid', 'https://www.litgrid.eu/paslaugos/prijungimo-paslaugos/elektriniu-ir-energijos-kaupimo-irenginiu-vystytojams', null, TERMS.litgrid),
+    'litgrid-balancing': official('Litgrid', 'https://www.litgrid.eu/paslaugos/sistemos-paslaugos/balansavimo-paslaugos', null, TERMS.litgrid),
   },
   es: {
-    'ree-storage': official('Red Eléctrica', 'https://www.ree.es/en/ecological-transition/storage', OPENED,
-      { url: 'https://www.ree.es/en/legal-notice-privacy-policy', readOn: OPENED, status: 'permits' }),
-    'ree-access': official('Red Eléctrica', 'https://www.ree.es/en/operation/system-development/access-conection-grid', null,
-      { url: 'https://www.ree.es/en/legal-notice-privacy-policy', readOn: OPENED, status: 'permits' }),
+    'ree-storage': official('Red Eléctrica', 'https://www.ree.es/en/ecological-transition/storage', OPENED, TERMS.ree),
+    'ree-access': official('Red Eléctrica', 'https://www.ree.es/en/operation/system-development/access-conection-grid', null, TERMS.ree),
+    'ree-demand-capacity': official('Red Eléctrica', 'https://www.ree.es/en/press-office/news/press-release/2026/02/red-elctrica-publishes-demand-access-capacities-for-the-transmission-grid', null, TERMS.ree),
+    'comercio-fdi': official('Ministerio de Economía, Comercio y Empresa', 'https://comercio.gob.es/es-es/inversiones_exteriores/paginas/control-inversiones.aspx', OPENED, TERMS.comercio),
+    'essnews-spain': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/spain/', OPENED, TERMS.pvMagazine),
   },
   nl: {
-    'tennet-home': official('TenneT', 'https://www.tennet.eu/', null, unread),
+    'acm-flexible-contracts': official('Authority for Consumers and Markets', 'https://www.acm.nl/en/publications/acm-and-system-operators-make-binding-arrangements-offering-flexible-contracts-use-congestion-management-and-increased-insight-grid-utilization', OPENED, TERMS.acm),
+    'bti-energy': official('Bureau Toetsing Investeringen', 'https://www.bureautoetsinginvesteringen.nl/het-stelsel-van-toetsen/energie', OPENED, TERMS.bti),
+    'essnews-netherlands': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/netherlands/', OPENED, TERMS.pvMagazine),
   },
   bg: {
-    'eso-home': official('Electricity System Operator (ESO EAD)', 'https://www.eso.bg/?en', OPENED,
-      { url: 'https://www.eso.bg/?en', readOn: OPENED, status: 'silent' }),
+    'eso-home': official('Electricity System Operator (ESO EAD)', 'https://www.eso.bg/?en', OPENED, TERMS.eso),
+    'investbg-fdi': official('InvestBulgaria Agency', 'https://investbg.government.bg/fdi-screening/', OPENED, TERMS.investbg),
+    'bgen-restore': thirdParty('Balkan Green Energy News', 'https://balkangreenenergynews.com/bulgaria-approves-restore-funds-for-over-4-gwh-in-bess-projects/', OPENED, TERMS.bgen),
+    'ebrd-storage-loan': thirdParty('European Bank for Reconstruction and Development', 'https://www.ebrd.com/home/work-with-us/projects/psd/57347.html', OPENED, TERMS.ebrd),
+    'essnews-bulgaria': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/bulgaria/', OPENED, TERMS.pvMagazine),
   },
   cl: {
-    'cne-home': official('Comisión Nacional de Energía', 'https://www.cne.cl/', OPENED,
-      { url: 'https://www.cne.cl/', readOn: OPENED, status: 'silent' }),
-    'coordinador-home': official('Coordinador Eléctrico Nacional', 'https://www.coordinador.cl/', null, unread),
+    'cne-home': official('Comisión Nacional de Energía', 'https://www.cne.cl/', OPENED, TERMS.cne),
+    'investchile-storage': official('InvestChile', 'https://blog.investchile.gob.cl/en/chile-energy-storage-approved-projects', OPENED, TERMS.investchile),
+    'essnews-chile': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/chile/', OPENED, TERMS.pvMagazine),
   },
   ca_on: {
-    'ieso-lt2': official('Independent Electricity System Operator', 'https://www.ieso.ca/en/Sector-Participants/Resource-Acquisition-and-Contracts/Long-Term-2-RFP', OPENED,
-      { url: 'https://www.ieso.ca/en/Terms-of-Use', readOn: OPENED, status: 'permits' }),
+    'ieso-lt2': official('Independent Electricity System Operator', 'https://www.ieso.ca/en/Sector-Participants/Resource-Acquisition-and-Contracts/Long-Term-2-RFP', OPENED, TERMS.ieso),
+    'ieso-connection-faq': official('Independent Electricity System Operator', 'https://www.ieso.ca/Sector-Participants/Connection-Process/Frequently-Asked-Questions', null, TERMS.ieso),
+    'ised-investment-canada': official('Innovation, Science and Economic Development Canada', 'https://ised-isde.canada.ca/site/investment-canada-act/en/what-investment-canada-act', OPENED, TERMS.canada),
+    'cer-storage-snapshot': official('Canada Energy Regulator', 'https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/market-snapshots/2026/market-snapshot-battery-storage-technology-evolving-as-batteries-play-larger-role-in-electricity-systems.html', OPENED, TERMS.canada),
+    'canrea-numbers': thirdParty('Canadian Renewable Energy Association', 'https://renewablesassociation.ca/by-the-numbers/', OPENED, TERMS.canrea),
+    'essnews-canada': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/canada/', OPENED, TERMS.pvMagazine),
   },
   sa: {
     'sppc-home': official('Saudi Power Procurement Company', 'https://www.sppc.com.sa/', null, unread),
+    'spa-storage-group-2': official('Saudi Press Agency', 'https://www.spa.gov.sa/en/N2568317', null, unread),
   },
 };
 
