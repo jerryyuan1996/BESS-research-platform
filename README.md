@@ -374,15 +374,24 @@ making deliberately, and it matters more as markets are added — fourteen is fi
 ## Live data, and what automation may not touch
 
 Public market data is fetched on a schedule, validated, and published automatically. Derived metrics
-recompute from it. **No judgement is automated.**
+recompute from it. **Judgement publishes automatically after validation; methodology never does.**
 
 ```
 observed public data          →  publishes automatically after validation
 deterministic derived metrics →  publishes automatically after validation
 model outputs                 →  recompute automatically, on APPROVED assumptions
+grades · verdicts · thesis    →  a rule the analyst wrote in advance may change one when it
+                                 fires, through a validation gate. An agent is built and runs
+                                 dry: it reports what it would change and writes nothing.
 analyst assumptions           →  automation may PROPOSE. It may never apply.
-scoring · thesis · status     →  automation may not even propose
+weights · anchors · limits ·  →  automation may not change one and may not even propose it
+score bands · discount rates
 ```
+
+A grade or a verdict on this site was set by the analyst, or changed by one of his rules. Nothing on
+the page marks which: **`/changes`** shows every change with who made it, when, what it held before
+and after, the reason and the evidence. Until 2026-10-11 the rule here was "no judgement is
+automated"; `docs/governance.md` records what replaced it and why.
 
 Material drift between a source and an approved assumption opens an evidence-backed pull request
 showing its downstream IRR and MOIC impact. **It never auto-merges.** Non-material drift goes to a
@@ -390,9 +399,13 @@ drift report and nothing else.
 
 This is enforced, not merely documented:
 
-- The ETL can physically write to one directory, `public/data/public/`. Anything else throws.
-- No module under `etl/` may even import a filesystem write API except the boundary itself — asserted
-  by a test.
+- Automation can physically write to two places, each through its own writer and validator:
+  `public/data/public/`, and three kinds of file in the view store, `view/`. Anything else throws.
+  Neither writer can reach `src/`, where weights, anchors, limits and discount rates live.
+- No module under `etl/` or `agent/` may even import a filesystem write API except the two writers —
+  asserted by a test.
+- A machine change needs evidence, cannot touch a pinned record, a held view or a practitioner
+  grade, and a run that would make more than three writes none. One command reverts any change.
 - The one program that edits an analyst file, `etl/propose.mjs`, refuses to run on `main`.
 - An unclassified field fails **closed**, at the most restrictive authority class.
 - A test greps the workflow for every auto-merge mechanism and fails if one appears.

@@ -297,7 +297,8 @@ Two layering rules extend the table above:
 | `governance/` | `markets/schema`, `comparison/assumptions` | any DOM, any market module, `etl/` |
 | `derive/` | `governance/` | any DOM, any market module |
 | `live/` | everything shared, `governance/`, `derive/` | `etl/` |
-| `etl/` | `src/` freely | — (but may only *write* to `public/data/`) |
+| `etl/` | `src/` freely | — (but may only *write* to `public/data/`, and to the view store through `etl/lib/viewWriter.mjs`) |
+| `agent/` | `src/governance/`, market source registers, `view/schema/`, `etl/lib/viewWriter.mjs` | — (writes nothing to the repository; runs in CI only) |
 
 `governance/` and `derive/` touch no DOM, for the same reason `comparison/` does not: the ETL runs
 them in Node, and the tests pin them there.
@@ -318,10 +319,28 @@ Live data does not change that. The pipeline runs in CI, not in the browser; cre
 secrets and never reach the bundle; and the site remains a folder of static files that works
 completely with zero snapshots present.
 
-**And no automated judgement.** Automation observes, computes and proposes. Every assumption, score,
-thesis and market status on this site was set by a person and can only be changed by a person. That
-boundary is enforced in code and asserted by `tests/governance.test.js` — see
+**And no automated methodology.** Judgement publishes automatically after validation; methodology
+never does. A grade or a verdict in the view store may be changed by a rule the analyst wrote in
+advance, through the view writer's gate, and every such change is a line on `/changes` naming the
+rule and its evidence. Every weight, anchor, limit, score band and discount rate was set by a person
+and can only be changed by a person, as can every model assumption in `src/`. That boundary is
+enforced in code and asserted by `tests/governance.test.js` and `tests/view-automation.test.js` — see
 [`governance.md`](governance.md).
+
+**Where the automation lives.**
+
+| | |
+|---|---|
+| `src/governance/authority.js` | The classes, including `view`, and the named list of methodology |
+| `src/governance/automation.js` | The limits on one machine run. Methodology |
+| `src/governance/triggers.js` | A trigger's `when` and `effect`; the test a rule puts to a snapshot |
+| `view/schema/view.mjs` | Who may write which field; the machine gate |
+| `etl/lib/viewWriter.mjs` | The only code that writes `view/` |
+| `etl/rules.mjs` | Runs each data rule after a refresh |
+| `agent/` | The dry daily pass over due triggers |
+| `scripts/view/writer.mjs` | The analyst's command line: `apply`, `revert` |
+| `scripts/view/digest.mjs` | The weekly digest of machine changes |
+| `src/changes/` | The `/changes` page, loaded on demand with the whole changelog |
 
 ## Related documents
 

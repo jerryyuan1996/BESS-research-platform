@@ -1,6 +1,9 @@
 # Investability Phase 3 — automation: the plan, for sign-off
 
-**Status: awaiting Jerry's sign-off. No code has changed.** Written 2026-10-11 against
+**Status: approved by Jerry on 2026-10-11, all six recommendations in §0 accepted, and built.**
+One detail differs from the text below: a rule's effect on a verdict may set `call`, `reviewBy` and
+`changesIf` — there is no `waitingFor` field; a "wait" is made valid by a review date and a trigger.
+The live exit condition of the phase is not met, for the reason §5 gives. Written 2026-10-11 against
 `docs/investment-view-revision-plan-2026-10-10.md` §3.7, §7, §8 (phase 3 row) and §9 rows 5–7,
 on a branch that contains the merge of the home inversion (PR #13).
 
