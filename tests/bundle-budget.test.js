@@ -98,8 +98,13 @@ const BUDGET = {
     /* The Investment Case and Entry sections: anchors, archetype tables, the
        view store and the ledgers. Fetched only when one of those two tabs is
        opened, on the four markets that have them. It grows with every market
-       graded, so expect to raise it — but only for that reason. */
-    'investment-case': 34,
+       graded, so expect to raise it — but only for that reason.
+
+       RAISED FROM 34 TO 36 when the Great Britain and Romania ledgers were
+       filled: seven new items, each with its release and forfeiture terms in
+       two languages. Measured 34.63 on CI, which builds the merge with the
+       base branch, and 33.68 locally. */
+    'investment-case': 36,
   },
 };
 
