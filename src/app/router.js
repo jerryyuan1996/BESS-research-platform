@@ -4,6 +4,7 @@
    Routes
      /                          home: verdicts by investor
      /returns                   the cross-market returns view (the old home page)
+     /changes                   every change to the view, by market and author
      /investment-lab             dedicated cross-market underwriting workspace
      /projects/:slug            a project dossier, absent from every build
      /projects/:slug/:tab       a dossier, deep-linked tab
@@ -57,6 +58,12 @@ export function parseRoute(pathname, search = ''){
   /* /returns — the league table, revenue stack, $1M engine, waterfall and
      certainty frontier. This was the home page until verdicts took its place. */
   if (parts[0] === 'returns' && parts.length === 1) return { name: 'returns', ...view };
+  /* /changes — the whole changelog. The two filters are view state, so they
+     ride in the query: /changes?market=wa&author=rule is a link to "every
+     change a rule has made in Western Australia". */
+  if (parts[0] === 'changes' && parts.length === 1){
+    return { name: 'changes', market: params.get('market'), author: params.get('author'), ...view };
+  }
 
   /* /projects/:slug — a project dossier. Confidential in its entirety, so in a
      production build every slug resolves to nothing and the page renders a 404.

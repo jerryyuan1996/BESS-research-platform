@@ -452,6 +452,59 @@
       "direction": "up",
       "source": "celProgram",
       "effect": null
+    },
+    {
+      "id": "wa-wem-spread-compression",
+      "kind": "data",
+      "market": "wa",
+      "label": [
+        "Trailing-year WEM wholesale spread falls a fifth below its level when asset return was graded",
+        "西澳电力市场近一年批发价差较资产回报评分时下降五分之一"
+      ],
+      "expected": null,
+      "watches": [
+        "assetReturn"
+      ],
+      "direction": "down",
+      "source": {
+        "publisher": "AEMO",
+        "url": "https://data.wa.aemo.com.au/",
+        "access": "opened"
+      },
+      "when": {
+        "dataset": "wa-wem-prices",
+        "field": "derived.spreadMean",
+        "op": "<",
+        "value": 45.05,
+        "guard": [
+          {
+            "field": "derived.spreadDays",
+            "op": ">=",
+            "value": 300
+          }
+        ],
+        "basis": [
+          "56.31 AUD/MWh was the mean daily spread over the 353 complete days to 2026-10-09, in the snapshot fetched on 2026-10-10, the day the grade was set. 20% is the move at which the platform treats drift in merchant revenue as material whatever the model says. 56.31 × 0.80 = 45.05.",
+          "56.31澳元/MWh是截至2026-10-09的353个完整交易日的日均价差，取自2026-10-10（评分当日）抓取的快照。20%是本平台认定商业收入偏离无论模型结果如何都属重大的幅度。56.31 × 0.80 = 45.05。"
+        ]
+      },
+      "effect": [
+        {
+          "path": "grades.assetReturn.trend",
+          "to": "deteriorating"
+        },
+        {
+          "path": "grades.assetReturn.trendCause",
+          "to": [
+            "The trailing-year wholesale spread is more than a fifth below its level when the grade was set.",
+            "近一年批发价差已比评分时低五分之一以上。"
+          ]
+        }
+      ],
+      "note": [
+        "The trailing-year WEM wholesale spread has fallen more than a fifth below its level when asset return was graded. The grade stays where the engine's ranking puts it, because the merchant assumption behind that ranking has not been revised; the trend now says the observable half of it is weakening.",
+        "西澳电力市场近一年批发价差已比资产回报评分时低五分之一以上。评分仍维持比较引擎排名所对应的档位，因为排名背后的商业收入假设尚未修订；趋势一栏则表明，其中可观测的部分正在走弱。"
+      ]
     }
   ]
 }

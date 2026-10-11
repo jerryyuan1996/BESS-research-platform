@@ -230,6 +230,9 @@ export function marketNav(markets, activeId){
     /* The cross-market returns view, which was the home page until verdicts
        took its place. Listed here so it is one click from anywhere. */
     link('/returns', L(['Returns', '回报对比']), activeId === 'returns'),
+    /* Who changed which grade or verdict, and on what. The only place a
+       reader can tell a rule's change from the analyst's. */
+    link('/changes', L(['Changes', '变更记录']), activeId === 'changes'),
     markets.map(m => link(
       '/markets/' + m.manifest.slug,
       L(m.manifest.shortName),

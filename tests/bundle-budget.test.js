@@ -64,6 +64,10 @@ const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
  * is fetched on demand. Measured 312.00 before and 206.16 after. `entry` is
  * now the shell, the registry and what the Investment Lab imports, and is no
  * longer "the home cockpit": what the home page costs is `home`, below.
+ *
+ * MEASURED 207.18 after automation (plan phase 3): the authority table's new
+ * class and its named list of methodology, the /changes route's shell and the
+ * /data page's statement of the new rule. The changelog itself is not here.
  */
 const BUDGET = {
   entry: 222,
@@ -72,7 +76,11 @@ const BUDGET = {
      board loads — the board itself and the method layer (anchors, investor
      tables, the view store, the ledgers). This is the number a reader arriving
      at / actually waits for, and it is the one that replaced the old `entry`
-     figure of 312. Measured 252.89. It grows with every market graded. */
+     figure of 312. Measured 252.89. It grows with every market graded.
+
+     MEASURED 256.67 after automation (plan phase 3), from 252.94: the trigger
+     validator learned `when` and `effect`, and the first rule is a record in
+     Western Australia's view. The budget is unchanged. */
   home: 268,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
@@ -156,6 +164,13 @@ const BUDGET = {
        revenue stack, $1M engine, congestion, plus the two sections that were
        written and never mounted. Measured 67.95. Fetched only on that route. */
     'returns': 74,
+    /* The /changes page with the whole changelog: every line, with the record
+       before and after it. Fetched only on that route — the home page carries
+       ten lines of five fields each and nothing else of it. Measured 20.63 at
+       102 lines, about 0.2 kB a line, so this is the one budget here that
+       grows by design: raise it as the changelog grows, and for no other
+       reason. tests/changes.test.js asserts the changelog is in no other chunk. */
+    'changes': 27,
   },
 };
 

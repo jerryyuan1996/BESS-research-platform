@@ -47,6 +47,9 @@ export default defineConfig({
              the old home content. Each is fetched by its own route. */
           if (/[\\/]home[\\/]verdictHome\.js$/.test(id)) return 'assets/verdict-board-[hash].js';
           if (/[\\/]home[\\/]returnsPage\.js$/.test(id)) return 'assets/returns-[hash].js';
+          /* The changelog page, with every changelog line. Fetched by /changes
+             and by nothing else. */
+          if (/[\\/]changes[\\/]changesPage\.js$/.test(id)) return 'assets/changes-[hash].js';
           /* Two chunks Rollup factors out with no entry module to name them by.
              The method layer — anchors, investor tables, the view store and
              the ledgers — is shared by the home page's board and the

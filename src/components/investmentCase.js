@@ -235,6 +235,11 @@ export function investmentCasePanel(marketId){
     'Each dimension is graded 1 to 5 against a written anchor that means the same in every market. 5 is the condition most open to a new entrant; whether that is good depends on the investor. A grade marked practitioner judgement rests on the analyst\'s experience, not on a published source.',
     '每个维度按1至5评级，所对照的书面锚点在所有市场含义相同。5代表对新进入者最开放的状态；这是否有利取决于投资者类型。标注为"从业者判断"的评级基于分析师经验，而非公开来源。',
   ])));
+  /* Who set each grade and verdict, and when it last moved, is not marked
+     here. It is in the changelog, filtered to this market. */
+  grades.append(h('div', { class: 'cap' }, h('a', { href: `/changes?market=${marketId}` }, L([
+    'Who changed these, and on what evidence →', '这些评级与结论由谁改动、依据何在 →',
+  ]))));
   grades.append(h('div', { class: 'tbl-wrap' }, h('table', {},
     h('thead', {}, h('tr', {},
       h('th', {}, L(['Pillar', '支柱'])),

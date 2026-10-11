@@ -84,6 +84,24 @@
 .cp-path code{font-size:var(--fs-micro); color:var(--muted); overflow-wrap:anywhere;}
 .cp-reason{font-size:var(--fs-xs); color:var(--ink2); margin-top:var(--sp-1); line-height:var(--lh-body);}
 
+/* ---- /changes: the whole changelog ---------------------------------------
+   The same list as the home panel, with what each line changed and on what
+   evidence. A machine author's pill is outlined in the accent, here and on the
+   home panel: the one place a rule's change is told apart from the analyst's. */
+.cp-author.cl-machine{border-color:var(--s1); color:var(--ink);}
+.cl-filters{display:flex; flex-wrap:wrap; gap:var(--sp-4); align-items:flex-end; margin-bottom:var(--sp-4);}
+.cl-filter{display:flex; flex-direction:column; gap:var(--sp-1); min-width:0; flex:0 1 240px;}
+.cl-filter-label{font-size:var(--fs-2xs); color:var(--muted);}
+.cl-clear{font-size:var(--fs-xs); padding-bottom:6px;}
+.cl-headline{font-size:var(--fs-xs); margin-top:var(--sp-1);}
+.cl-fields, .cl-evidence ul{list-style:none; margin:var(--sp-1) 0 0; padding:0; font-size:var(--fs-xs);}
+.cl-fields li, .cl-evidence li{padding:1px 0; overflow-wrap:anywhere;}
+.cl-field{color:var(--muted); font-size:var(--fs-2xs);}
+.cl-was{color:var(--muted);}
+.cl-note{font-size:var(--fs-2xs); color:var(--muted); margin-top:var(--sp-1); overflow-wrap:anywhere;}
+.cl-evidence{margin-top:var(--sp-2);}
+.cl-quote{color:var(--ink2);}
+
 /* ---- trigger calendar ---- */
 .tc-grid{border-collapse:collapse; width:100%; min-width:430px;}
 .tc-grid th, .tc-grid td{border:1px solid var(--grid); padding:var(--sp-2) 0; text-align:center; font-size:var(--fs-micro);}

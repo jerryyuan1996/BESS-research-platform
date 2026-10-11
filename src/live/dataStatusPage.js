@@ -24,6 +24,7 @@ import { marketNav } from '../components/navigation.js';
 import { markets } from '../markets/registry.js';
 import { DATASETS, snapshotPath } from '../governance/datasets.js';
 import { AUTHORITY, AUTHORITY_LABEL } from '../governance/authority.js';
+import { navigate } from '../app/router.js';
 import { DERIVATION_PARAMETERS } from '../governance/derivation.js';
 import { loadSummary } from './client.js';
 import { freshnessOf, ageLabel } from './freshness.js';
@@ -45,9 +46,14 @@ function renderGovernance(main){
     []);
 
   c.append(h('div', { class: 'note' }, L([
-    'Every value on this site belongs to exactly one of the classes below. The class decides who may change it, and that decision is enforced in code rather than by convention — the pipeline can only write to the published-data directory, and a test fails the build if it reaches anywhere else.',
-    '本站每一项数值均归属下列某一类别。类别决定其修改权限，并由代码强制执行而非依赖约定 — 数据管线仅能写入已发布数据目录，若触及其他位置，测试将使构建失败。',
+    'The rule: judgement publishes automatically after validation; methodology never does. Every value on this site belongs to exactly one of the classes below. The class decides who may change it, and that decision is enforced in code rather than by convention — the pipeline can write published data and the view store, each through its own writer, and a test fails the build if it reaches anywhere else.',
+    '规则是：判断经校验后自动发布，方法论永不自动改动。本站每一项数值均归属下列某一类别。类别决定其修改权限，并由代码强制执行而非依赖约定 — 数据管线只能写入已发布数据与观点库，且各自经由专属写入器；若触及其他位置，测试将使构建失败。',
   ])));
+  c.append(h('div', { class: 'cap' }, L([
+    'What you are looking at: a grade or a verdict on this site may have been set by the analyst, or changed by a rule he wrote in advance when a published figure crossed the line he set. Nothing on the page marks which. ',
+    '你所看到的内容：本站的评级或结论可能由分析师设定，也可能在公开数据越过他预先设定的阈值时，由他事先写好的规则改动。页面上不作标注。',
+  ]), h('a', { href: '/changes', onclick: (e) => { e.preventDefault(); navigate('/changes'); } },
+    L(['The changelog says who made each change, and on what evidence →', '变更记录写明每项变更由谁作出、依据何在 →']))));
 
   const rows = [
     [AUTHORITY.OBSERVED, ['Fetched from a public source', '取自公开来源'],
@@ -56,8 +62,11 @@ function renderGovernance(main){
       ['Published automatically after validation', '经校验后自动发布']],
     [AUTHORITY.ANALYST, ['An assumption a public observation bears on', '有公开观测可参照的假设'],
       ['Automation may open a pull request. It may never apply one.', '自动化可提交拉取请求，但绝不可自行应用']],
-    [AUTHORITY.METHODOLOGY, ['Scoring, discount rates, thesis, market status, house view', '评分、折现率、论点、市场状态、机构观点'],
-      ['Human-set only. Automation may not even propose.', '仅由人工设定；自动化不得提出建议']],
+    [AUTHORITY.VIEW, ['Judgement in the view store: a grade, a verdict, the thesis, a trigger', '观点库中的判断：评级、结论、投资论点、触发事件'],
+      ['A rule the analyst wrote in advance may change a grade or a verdict when it fires, with the snapshot as evidence. An agent is built and runs dry: it reports and does not write. A held view and a pinned record are the analyst\'s alone.',
+       '分析师事先写好的规则触发时，可凭数据快照为证改动评级或结论。智能体已建成但仅试运行：只报告，不写入。从业者观点与已锁定的记录只由分析师改动。']],
+    [AUTHORITY.METHODOLOGY, ['Scoring weights, grade anchors, limits, score bands, discount rates', '评分权重、评级锚定标准、限额、评分区间、折现率'],
+      ['Human-set only. Automation may not change one and may not even propose it.', '仅由人工设定；自动化不得改动，也不得提出建议']],
   ];
 
   const t = h('table', { class: 'ds-table' },

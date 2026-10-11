@@ -284,3 +284,25 @@ test('the engine reads published data and the view, and nothing private', async 
   const result = await evaluateRules({ views: [], changelog: [], readSummary: async () => { throw new Error('read'); }, fetched: [], now: NOW });
   assert.deepEqual(result.changes, []);
 });
+
+test('the committed rule is the one that was approved, and its line is the derivation', async () => {
+  /* The first real rule, in the store. Its threshold must go on being the
+     baseline less the materiality ceiling: revise either and this fails, so
+     the rule is looked at again rather than left testing a stale line. */
+  const committed = createViewStore();
+  const view = await committed.read('wa');
+  const rule = view.triggers.find(t => t.id === RULE.id);
+  assert.ok(rule, 'the rule is not in the committed store');
+  assert.deepEqual(rule.when.dataset, 'wa-wem-prices');
+  assert.equal(rule.when.field, 'derived.spreadMean');
+  assert.equal(rule.when.op, '<');
+  assert.equal(rule.when.value, Math.round(BASELINE * (1 - FRACTION) * 100) / 100);
+  assert.deepEqual(rule.when.guard, [{ field: 'derived.spreadDays', op: '>=', value: MIN_WINDOW_DAYS }]);
+  /* It moves a trend and its cause. Not the grade's number, and no verdict. */
+  assert.deepEqual(rule.effect.map(step => step.path), ['grades.assetReturn.trend', 'grades.assetReturn.trendCause']);
+  assert.notEqual(view.grades.assetReturn.basis, 'practitioner', 'a rule cannot act on a practitioner grade');
+  /* Armed by the analyst, and nobody else. */
+  const writes = (await committed.changelog()).filter(e => e.market === 'wa' && e.path === `triggers.${RULE.id}`);
+  assert.ok(writes.length >= 1);
+  for (const write of writes) assert.equal(write.author.kind, 'analyst');
+});
