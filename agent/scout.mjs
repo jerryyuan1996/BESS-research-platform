@@ -35,6 +35,7 @@ import { ARCHETYPES, KNOCK_OUT } from '../src/governance/archetypes.js';
 import { MAX_QUOTE_CHARS, EVIDENCE_CLASS } from '../src/governance/automation.js';
 import {
   scoutMarket, scoutIdsIn, SCOUT_DIMENSION_IDS, SCOUT_MAX_PAGE_CHARS, SCOUT_EXTREME_GRADES, ADMITTED_TERMS,
+  RETURN_WORDS, REVENUE_RATE,
 } from '../src/governance/scout.js';
 import { scoutSources } from '../src/scout/sources.js';
 import { scoutKnockOutDimensions } from '../view/schema/scout.mjs';
@@ -157,17 +158,51 @@ export function changesFromScoutAnswer(answer, { card, pages, runAt, model }){
     make(record, to, [g.reason_en, g.reason_zh], v.evidence);
   }
 
+  /* FACTS, ONE AT A TIME. The store holds the facts as one list, but each fact
+     stands on its own quotation, so each is checked on its own: one that
+     fails is dropped and recorded as its own rejection, named by its place in
+     the answer, and the ones that pass are still written. Until 2026-10-11 the
+     first failure refused the whole list, and one over-long quotation cost a
+     market every fact it had.
+
+     A DROPPED FACT MUST NOT DELETE ONE THE CARD ALREADY HOLDS. The model
+     returns the list as it should read afterwards, so a fact it meant to keep
+     and quoted badly would otherwise vanish from the card without anybody
+     having decided that. Where a dropped fact's text is a fact on the card,
+     the card's own version stays in the list. Its quotation is found again in
+     this run's page, because the gate shows no quotation a run did not
+     verify. If it cannot be found again the list is left exactly as it is:
+     nothing is written to `facts` this run, and that is recorded too. */
   if ((answer.facts ?? []).length){
     const facts = [], evidence = [];
-    let refused = null;
-    for (const f of answer.facts){
+    const onCard = (f) => card.facts.find(held => squash(held.text[0]) === squash(f.text_en) || squash(held.text[1]) === squash(f.text_zh));
+    let stranded = null;
+    answer.facts.forEach((f, i) => {
       const v = verify(f.evidence, pages);
-      if (v.refused){ refused = v.refused; break; }
-      facts.push({ text: [f.text_en, f.text_zh], evidence: shown(v.evidence) });
-      evidence.push(...v.evidence);
+      /* The two things the gate would refuse the whole list for, caught here
+         for the one fact that has them. */
+      if (!v.refused && !v.evidence.length) v.refused = 'a fact carries at least one quotation with its source';
+      if (!v.refused && [f.text_en, f.text_zh, ...v.evidence.map(e => e.quote)].some(s => RETURN_WORDS.test(s) || REVENUE_RATE.test(s))){
+        v.refused = 'names a modelled return or quotes a revenue rate — a fact on a scout card does neither';
+      }
+      if (!v.refused){
+        facts.push({ text: [f.text_en, f.text_zh], evidence: shown(v.evidence) });
+        evidence.push(...v.evidence);
+        return;
+      }
+      refuse(`facts[${i}]`, v.refused);
+      const held = onCard(f);
+      if (!held) return;
+      const again = verify(held.evidence.map(e => ({ page: pages.findIndex(p => p.url === e.url) + 1, quote: e.quote })), pages);
+      if (again.refused){ stranded = stranded ?? i; return; }
+      facts.push({ text: held.text, evidence: shown(again.evidence) });
+      evidence.push(...again.evidence);
+    });
+    if (stranded !== null){
+      refuse('facts', `facts[${stranded}] is already on the card and its quotation could not be found again in this run's pages — the list is left as it is, so nothing is deleted`);
+    } else if (facts.length){
+      make('facts', facts, [`${facts.length} sourced facts from the listed pages.`, `来自所列页面的${facts.length}条有出处的事实。`], evidence);
     }
-    if (refused) refuse('facts', refused);
-    else make('facts', facts, [`${facts.length} sourced facts from the listed pages.`, `来自所列页面的${facts.length}条有出处的事实。`], evidence);
   }
 
   if (answer.return_signal?.present){
