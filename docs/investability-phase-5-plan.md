@@ -496,6 +496,18 @@ is raised once by that amount, with the reason written beside it, and the home a
 are **lowered** to about 12% above the new measurement. If a measurement comes out materially
 worse than this I will stop and say so before grading anything.
 
+**Measured, PR 1 (2026-10-12).** Home first view 259.06 → 243.04 kB with the four corners
+graded, a fall of 16.0 against the 18 estimated. The projection is 3.3 kB for four graded markets
+and seven trigger-only files, about 0.75 kB a market, so fifteen graded should measure about
+251. Market chunks rose by 3.4 (fi), 5.0 (gb), 4.9 (ro) and 6.3 (wa). Budgets: home 268 → 258;
+`investment-method` 37 → 17; `verdict-board` 14 → 27, because the projection lives there; fi
+23 → 28 and ro 95 → 100; gb and wa unchanged, the move fitting inside the room they had.
+
+**One correction to the paragraphs above.** The `investment-method` budget was never at risk. The
+views and ledgers had already been factored by the bundler into a separate chunk that no budget
+line named, so only the home budget was counting them. The home figure and its failure at the
+second market were as stated.
+
 `/changes` grows by design, about 0.2 kB a line. Eleven markets is roughly 200 lines and 40 kB,
 so its budget rises from 27 to about 70, as its own note anticipates. It is fetched only on that
 route.

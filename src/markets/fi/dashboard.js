@@ -14,6 +14,9 @@ import { SRC } from './sources.js';
 import { M } from './data.js';
 import { buildSections } from './sections.js';
 import './gridMapData.js';   // side effect: registers this market's grid map
+import VIEW from '../../../view/markets/fi.json' with { type: 'json' };
+import { ENTRY_LEDGER } from './entryLedger.js';
+import { registerCase } from '../caseRegistry.js';
 import { CLAIMS } from './claims.js';
 import { registerClaims } from '../claimRegistry.js';
 
@@ -25,6 +28,11 @@ import { registerClaims } from '../claimRegistry.js';
    not argue is worth keeping next to the one that does — the same shape WA
    uses for its five incomplete sections. */
 registerClaims('fi', CLAIMS);
+
+/* This market's whole view and ledger, for its Investment Case and Entry tabs.
+   Registered here so the reasons, arguments and forfeiture terms travel in
+   this market's own chunk; the home page carries a projection of them. */
+registerCase('fi', { view: VIEW, ledger: ENTRY_LEDGER });
 
 const engine = createMarketEngine({
   MKT, TABS, SRC, M, buildSections,

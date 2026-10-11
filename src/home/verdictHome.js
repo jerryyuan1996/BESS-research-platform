@@ -9,6 +9,7 @@
      trigger calendar  what is due in the next twelve months
 
    Fetched on demand by homePage.js, because it needs the whole method layer.
+   It does not need a market's words: see markets/boardProjection.js.
 
    THE LENS IS A PREFERENCE, STORED LIKE LANGUAGE AND THEME. With none chosen
    the board shows all four investors side by side. It is never a filter on
@@ -26,9 +27,8 @@ import { app, requestRender, setLens } from '../app/state.js';
 import { spacedCard } from '../components/card.js';
 import { badge } from '../components/badge.js';
 import { markets } from '../markets/registry.js';
-import { viewFor, allTriggers } from '../markets/viewRegistry.js';
+import { boardViewFor, boardLedgerFor, boardTriggers } from '../markets/viewBoard.js';
 import { VIEW_CHANGES } from '../markets/viewChanges.js';
-import { ledgerFor } from '../entry/ledgerRegistry.js';
 import { privateMetrics } from '../local/notes.js';
 import { FX } from '../comparison/assumptions.js';
 import { ARCHETYPE_IDS } from '../governance/investability.js';
@@ -80,7 +80,9 @@ export function renderVerdictHome(main){
   const lens = resolveLens(app.lens);
   const board = buildBoard(markets, {
     lens, on, usdPer: FX, exitYear: homeState.exitYear,
-    viewFor, ledgerFor,
+    /* The projection: grades as numbers, calls and amounts. The reasons and
+       arguments stay with each market's own dashboard. */
+    viewFor: boardViewFor, ledgerFor: boardLedgerFor,
     /* Empty in a build, so the published page always gets the public answer. */
     privateMetricsFor: privateMetrics,
   });
@@ -143,7 +145,7 @@ export function renderVerdictHome(main){
     'Each mark is a dated event that would move a grade, and with it a verdict. It says when to look again.',
     '每个标记都是一个有日期的事件，它会改变某项评级，进而改变结论。它告诉你何时该再看一次。',
   ])));
-  renderTriggerCalendar(calendar, triggerCalendar(allTriggers(), on));
+  renderTriggerCalendar(calendar, triggerCalendar(boardTriggers(), on));
   pair.append(changes, calendar);
   main.append(pair);
 }

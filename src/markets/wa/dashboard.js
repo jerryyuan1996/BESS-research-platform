@@ -47,10 +47,18 @@ import { renderData } from './sections/data.js';
 import { renderCase, renderEntry } from './sections/case.js';
 import { CLAIMS } from './claims.js';
 import { registerClaims } from '../claimRegistry.js';
+import VIEW from '../../../view/markets/wa.json' with { type: 'json' };
+import { ENTRY_LEDGER } from './entryLedger.js';
+import { registerCase } from '../caseRegistry.js';
 
 /* Registered from the dashboard so the claim prose travels in this market's
    own lazy chunk rather than in the bundle every reader downloads. */
 registerClaims('wa', CLAIMS);
+
+/* This market's whole view and ledger, for its Investment Case and Entry tabs.
+   Registered here so the reasons, arguments and forfeiture terms travel in
+   this market's own chunk; the home page carries a projection of them. */
+registerCase('wa', { view: VIEW, ledger: ENTRY_LEDGER });
 
 /* Tab id → section renderer. The BRCP forecast and the RCM × Energy × FCESS
    co-optimisation are not entries here: both render as the tail of the rcm tab.

@@ -10,6 +10,12 @@
    Static imports, one per market that has been graded. A market with a view
    file that holds only triggers is not listed until it has grades to show.
 
+   NOT FOR A PAGE. This module holds every graded market whole, so a page that
+   imported it would carry all of them. The home page reads the projection in
+   viewBoard.js; a market's own tabs read caseRegistry.js, which that market's
+   dashboard fills. What imports this file is the test suite, the scripts, and
+   viewBoardData.js, which the build replaces.
+
    ABSENCE IS THE NORMAL CASE. Four of fifteen markets have a view. A market
    without one renders no Investment Case tab rather than an empty one.
 
@@ -50,6 +56,9 @@ export function viewFor(marketId){
 export const hasView = (marketId) => byMarket.has(marketId);
 
 export const viewMarketIds = () => VIEWS.map(v => v.marketId);
+
+/** Every market file in the view store, graded or not. For the board projection. */
+export const viewFiles = () => [...FILES];
 
 /** Market ids with a file in the view store, graded or not. */
 export const viewFileMarketIds = () => FILES.map(v => v.marketId);

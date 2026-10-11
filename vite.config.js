@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import localData from './vite-plugin-local-data.js';
 import viewChanges from './vite-plugin-view-changes.js';
 import scout from './vite-plugin-scout.js';
+import viewBoard from './vite-plugin-view-board.js';
 
 // Static, public, no backend. History-API routing is handled in dev by Vite's
 // SPA fallback (appType 'spa', the default) and in production by the `rewrites`
@@ -12,8 +13,10 @@ export default defineConfig({
   // absent from any build. See vite-plugin-local-data.js and docs/data-policy.md.
   // The changelog reaches the page as its last ten lines, never whole. See
   // vite-plugin-view-changes.js. Scout cards reach the home page as their four
-  // calls and the /scout page whole. See vite-plugin-scout.js.
-  plugins: [localData(), viewChanges(), scout()],
+  // calls and the /scout page whole. See vite-plugin-scout.js. A market's view
+  // and ledger reach the home page as grades, calls and amounts, and its own
+  // dashboard whole. See vite-plugin-view-board.js.
+  plugins: [localData(), viewChanges(), scout(), viewBoard()],
   build: {
     outDir: 'dist',
     target: 'es2020',
