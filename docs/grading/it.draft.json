@@ -1,0 +1,46 @@
+{
+  "market": "it",
+  "preparedOn": "2026-10-12",
+  "note": "A DRAFT FOR THE ANALYST'S REVIEW. Nothing here is a grade until he has answered the sheet. Each record under `drafted` is exactly what would be written to grades.<dimension> if accepted unchanged.",
+  "drafted": {
+    "assetReturn": {
+      "dimension": "assetReturn", "grade": 5, "trend": "stable", "basis": "derived",
+      "evidence": ["comparison-engine"],
+      "reason": ["Second of fourteen markets on hold IRR, 15.4%.", "持有期IRR为15.4%，在十四个市场中排名第二。"]
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty", "grade": 4, "trend": "stable", "basis": "derived",
+      "evidence": ["comparison-engine", "macse"],
+      "reason": ["20% of first-year revenue is secured, for fifteen years; the first storage auction awarded contracts to fourteen projects.", "首年收入的20%已锁定，期限十五年；首轮储能拍卖已向十四个项目授予合同。"]
+    },
+    "policyStability": {
+      "dimension": "policyStability", "grade": 3, "trend": "stable", "basis": "derived",
+      "evidence": ["decision-profile", "arera283", "derating"],
+      "reason": [
+        "The second storage auction, on 24 November 2026, carries a lower premium cap than the first, and a lower capacity de-rating for four-hour storage is proposed for 2028 delivery; contracts already awarded keep their terms.",
+        "定于2026年11月24日举行的第二轮储能拍卖，溢价上限低于首轮；2028交付年度的四小时储能容量折减系数也拟下调；已授予的合同条款不变。"]
+    }
+  },
+  "found": {
+    "revenueCertainty": ["From the engine and the register's entry for the first auction. I did not re-open the operator's results page, which returns no text to an automated fetch."],
+    "policyStability": ["The auction date is from the regulator's consultation of 30 July 2026, opened. The premium cap for it and the de-rating proposal are from the decision profile and the register as re-read on 2026-10-10; I did not open the final resolution."],
+    "capitalAtRisk": ["No draft, because the ledger has no sourced amount. Two payments are known to exist and both were reached only through search summaries: about 30% of the connection charge on accepting the operator's quote within 120 days, and the storage auction's guarantees before and after award. The operator's pages return no text to an automated fetch and I did not find the auction rules as a document. If you can point me to either, I can draft from it. Left to you."],
+    "approvalTransparency": ["I opened no operator or regulator page on the connection process. The dashboard scores connection, permitting and delivery 40 of 100 and data transparency 55. Left to you."],
+    "gridScarcity": ["Nothing opened. Left to you."],
+    "foreignEntry": ["The government's own page was opened. It says that in energy a buyer from outside the EU acquiring a stake that gives it a stable presence in a company holding strategic assets must notify, and that the assets are identified by a 2020 decree. It states no deadline, and I did not open the decree, so I cannot say whether a 100 MW storage plant is a strategic asset. Without that the anchor cannot be applied. Left to you."],
+    "timeToRevenue": ["Nothing computed: no pathway. Left to you."],
+    "supplyChainOrigin": ["I opened no page on origin rules. Left to you."],
+    "demandGrowth": ["The register holds the operator's development plan; I did not open it for a load forecast. Left to you."],
+    "saturation": ["No ratio is held. The register records a national storage requirement to 2028. Left to you."],
+    "debtAvailability": ["No count of financings is held and I opened none. Left to you."],
+    "exitLiquidity": ["Nothing held and nothing opened. Left to you."],
+    "scaleRepeatability": ["Nothing held on headroom per reference project. Left to you."]
+  },
+  "seeds": {
+    "revenueCertainty": ["Contracted revenue availability, four routes — weight 22, score 92 of 100"],
+    "capitalAtRisk": ["STMG connection solution issued and accepted — connection risk, weight 15, 2 of 3"],
+    "approvalTransparency": ["Connection, permitting and delivery — weight 12, score 40 of 100", "Authorisation route, Autorizzazione Unica / PAUR and regional consent — connection risk, weight 14, 2 of 3", "Data transparency and source health — weight 8, score 55 of 100"],
+    "gridScarcity": ["STMG connection solution issued and accepted — connection risk, weight 15, 2 of 3", "Dependency on a named submarine commissioning date — connection risk, weight 9, 1 of 3"],
+    "policyStability": ["Capacity de-rating stability, the DY2028 proposal — connection risk, weight 12, 2 of 3", "Capacity market access and de-rating stability — weight 10, score 58 of 100"]
+  }
+}

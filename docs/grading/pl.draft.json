@@ -1,0 +1,65 @@
+{
+  "market": "pl",
+  "preparedOn": "2026-10-12",
+  "note": "A DRAFT FOR THE ANALYST'S REVIEW. Nothing here is a grade until he has answered the sheet. Each record under `drafted` is exactly what would be written to grades.<dimension> if accepted unchanged.",
+  "drafted": {
+    "assetReturn": {
+      "dimension": "assetReturn", "grade": 1, "trend": "stable", "basis": "derived",
+      "evidence": ["comparison-engine"],
+      "reason": ["Thirteenth of fourteen markets on hold IRR, 0.8%.", "持有期IRR为0.8%，在十四个市场中排名第十三。"]
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency", "grade": 4, "trend": "stable", "basis": "official",
+      "evidence": ["energyLawArt7"],
+      "reason": [
+        "The statute sets the fee, the advance, the security and a deadline of 120 to 150 days for an operator to issue connection conditions, and says when a refused applicant is repaid. No single public register follows a storage project from application to operation.",
+        "法律明确规定了申请费、预付款、履约担保，以及运营商出具并网条件的120至150日期限，并规定了申请被拒时的退款方式。但没有一个统一的公开登记册能够跟踪储能项目从申请到投运的全过程。"]
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry", "grade": 4, "trend": "stable", "basis": "official",
+      "evidence": ["investControlAct"],
+      "reason": [
+        "Review reaches an investor from outside the member states acquiring 20% or control of a company that generates electricity and had revenue in Poland above EUR 10 million; a preliminary proceeding takes 30 working days and a full one up to 120 days.",
+        "审查适用于成员国以外的投资者收购发电企业20%股权或取得其控制权、且该企业在波兰的营业收入超过1,000万欧元的情形；初步审查为30个工作日，正式审查最长120日。"]
+    },
+    "policyStability": {
+      "dimension": "policyStability", "grade": 2, "trend": "deteriorating", "basis": "derived",
+      "trendCause": [
+        "The availability factor applied to storage in the capacity auction was cut from 95% to about 60% and then to 13.39% in successive auctions, and no main auction is planned for 2026.",
+        "容量拍卖中适用于储能的可用性修正系数在连续几轮拍卖中由95%降至约60%，再降至13.39%，且2026年不计划举行主拍卖。"],
+      "evidence": ["decision-profile", "corr", "capacityMarketFinal"],
+      "reason": [
+        "The December 2025 auction was the last main-auction route and its successor framework has no settled design; the factor that sets what a battery is paid for capacity changed sharply between consecutive auctions.",
+        "2025年12月的拍卖是最后一轮主拍卖，接续框架的方案尚未确定；决定电池容量收入的修正系数在相邻两轮拍卖之间大幅变动。"]
+    }
+  },
+  "found": {
+    "revenueCertainty": ["Two grades turn on one fact and I could not establish it. The reference project secures nothing in the base case, so it is grade 2 if any storage project in Poland has signed a secured route and grade 1 if none has, which is the infrastructure fund's knock-out. The regulator's page on the December 2025 auction was opened: it gives the price and volume and does not mention storage in its text; the detail is in a notice I did not open. The dashboard's own model prices a capacity contract for a battery, which implies awards, but that is not a source. Left to you."],
+    "capitalAtRisk": [
+      "The amounts are sourced and I cannot turn them into a share. On the 100 MW reference project the statute gives PLN 100,000 to apply, an advance of up to PLN 6,000,000 within fourteen days, and PLN 3,000,000 of security within fourteen days of the connection agreement. The platform's rate table has no złoty rate, and adding one is a change to the comparison assumptions, which is methodology and yours.",
+      "The statute in force is the higher schedule (PLN 60 per kW, capped at PLN 6 million). Older operator forms and secondary sources still quote PLN 30 and PLN 3 million.",
+      "Flags for you to confirm: whether the security, which follows the connection agreement, falls before your investment decision; and whether any of this falls before consent. The application needs a declaration that the site is admissible under the local plan, not a building permit.",
+      "By the anchors: an advance posted with the application is security before capacity is certain, which is grade 2's clause, whatever the share turns out to be."
+    ],
+    "approvalTransparency": ["Grade 4 is drafted on published rules and statutory deadlines. The dashboard's own register records a coverage gap: no complete public queue for storage. I did not open the regulator's refusal statistics again."],
+    "foreignEntry": ["Three things the act does not settle for the reference project. A project company with no revenue is under the EUR 10 million test, so buying it ready-to-build looks outside; an operating asset may not be. I did not read which countries count as inside (the text refers to member states and I did not follow the definition). And these articles were introduced as temporary; I did not find the date they lapse. The 120-day proceeding is the argument for grade 3."],
+    "policyStability": ["Drafted on the capacity market because it is the market's largest regulated line, though the engine's base route for Poland is merchant. If you read the main revenue line as the wholesale market, this dimension needs a different argument and I have not drafted one."],
+    "gridScarcity": ["The register holds the regulator's 2024 refusal statistics; I did not re-open them, and the statute does not say how capacity is rationed. The statute's deadline to issue conditions is 150 days for the largest connections. Left to you."],
+    "timeToRevenue": ["Nothing computed: no pathway. Left to you."],
+    "supplyChainOrigin": ["I opened no page on origin rules. Left to you."],
+    "demandGrowth": ["The register holds the network plan and the national energy plan; I did not open either for a load forecast. Left to you."],
+    "saturation": ["A seed line only. Left to you."],
+    "debtAvailability": ["No count of financings is held and I opened none. Left to you."],
+    "exitLiquidity": ["Nothing held and nothing opened. Left to you."],
+    "scaleRepeatability": ["Nothing held on headroom per reference project. Left to you."]
+  },
+  "seeds": {
+    "revenueCertainty": ["Capacity market outlook — weight 25, score 72 of 100"],
+    "capitalAtRisk": ["Deposits, securities and release path — connection risk, weight 5, 1 of 3"],
+    "approvalTransparency": ["Connection conditions issued and capacity adequate — connection risk, weight 20, 2 of 3"],
+    "gridScarcity": ["Grid connection and queue risk — weight 20, score 45 of 100", "Executed connection agreement and works schedule — connection risk, weight 15, 2 of 3"],
+    "policyStability": ["Capacity market outlook — weight 25, score 72 of 100"],
+    "saturation": ["Pipeline saturation — weight 10, score 42 of 100"],
+    "debtAvailability": ["Financing and capital support — weight 10, score 70 of 100"]
+  }
+}

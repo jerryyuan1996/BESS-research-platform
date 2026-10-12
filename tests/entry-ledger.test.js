@@ -50,8 +50,8 @@ const ledger = (items) => ({
 
 test('every ledger validates and belongs to a registered market', () => {
   /* The four corners, and each market since as its ledger was written (plan
-     phase 5): Germany. */
-  assert.deepEqual(ledgerMarketIds().sort(), ['de', 'fi', 'gb', 'ro', 'wa']);
+     phase 5): Germany, then Italy, Poland and Ireland. */
+  assert.deepEqual(ledgerMarketIds().sort(), ['de', 'fi', 'gb', 'ie', 'it', 'pl', 'ro', 'wa']);
   for (const l of allLedgers()){
     assert.deepEqual(validateLedger(l), [], `${l.marketId}: ledger is invalid`);
     const market = byId(l.marketId);

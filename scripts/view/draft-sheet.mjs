@@ -198,7 +198,10 @@ line();
 line('## Money and limits');
 line();
 line(`- Project cost ${usd(project.costUSD)}. Cheques: ${ARCHETYPE_IDS.filter(a => ARCHETYPES[a].chequeUSD).map(a => `${ARCHETYPES[a].label[0].toLowerCase()} ${usd(ARCHETYPES[a].chequeUSD[0])} to ${usd(ARCHETYPES[a].chequeUSD[1])}`).join('; ')}.`);
-if (totals && !totals.empty){
+if (totals && !totals.empty && totals.preFid.usd === 0){
+  line('- Capital before the decision: no figure. Nothing in the ledger has an amount that converts to dollars, so every limit on it is unchecked.');
+  line(`- Not quantified in the ledger: ${totals.unquantified.map(i => ledger.items.find(x => x.id === i).label[0]).join('; ')}.`);
+} else if (totals && !totals.empty){
   line(`- Capital before the decision: ${totals.preFid.lowerBound ? 'at least ' : ''}${usd(totals.preFid.usd)}, ${(100 * totals.shareOfCost).toFixed(2)}% of project cost. Security before consent: ${totals.securityBeforeConsent.lowerBound ? 'not established; at least ' : ''}${usd(totals.securityBeforeConsent.usd)}.`);
   line(`- Not quantified in the ledger: ${totals.unquantified.map(i => ledger.items.find(x => x.id === i).label[0]).join('; ') || 'nothing'}.`);
 }

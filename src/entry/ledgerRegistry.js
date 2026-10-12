@@ -17,8 +17,11 @@ import { ENTRY_LEDGER as FI } from '../markets/fi/entryLedger.js';
 import { ENTRY_LEDGER as GB } from '../markets/gb/entryLedger.js';
 import { ENTRY_LEDGER as RO } from '../markets/ro/entryLedger.js';
 import { ENTRY_LEDGER as DE } from '../markets/de/entryLedger.js';
+import { ENTRY_LEDGER as IT } from '../markets/it/entryLedger.js';
+import { ENTRY_LEDGER as PL } from '../markets/pl/entryLedger.js';
+import { ENTRY_LEDGER as IE } from '../markets/ie/entryLedger.js';
 
-const LEDGERS = [WA, FI, GB, RO, DE];
+const LEDGERS = [WA, FI, GB, RO, DE, IT, PL, IE];
 
 const byMarket = new Map(LEDGERS.map(l => [l.marketId, l]));
 
