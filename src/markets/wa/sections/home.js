@@ -7,12 +7,12 @@ import { card } from '../../../components/card.js';
 import { badge, statusBadge } from '../../../components/badge.js';
 import { chip } from '../../../components/chip.js';
 import { why } from '../../../components/decisionLogic.js';
-import { kpi, scoreRows, bandFor } from '../../../components/metricCard.js';
+import { kpi, bandFor } from '../../../components/metricCard.js';
 import { state, render } from '../state.js';
 import { NF1, fmtN, fmtA, fmtAk, fmtAM, fmtPct } from '../ui.js';
 import { T } from '../text.js';
 import { SEED } from '../data/seed.js';
-import { dniScore, connScore, compositeScore, esrAtYear, shadowRcpFactor } from '../lib/scores.js';
+import { dniScore, connScore, esrAtYear, shadowRcpFactor } from '../lib/scores.js';
 
 // ---------------- HOME ----------------
 function renderHome(main){
@@ -40,25 +40,14 @@ function renderHome(main){
     ['Sequential veto, not a scorecard', '逐级否决，而非评分卡']));
   main.append(intro);
 
-  const comp = compositeScore();
   const grid = h('div', { class: 'grid g2' });
 
   // Card A — overall signal
   const cA = card(['Card A — Overall WA Storage Signal', 'Card A — 西澳储能综合信号'], [statusBadge(false), badge('illus')]);
-  cA.append(h('div', { style: 'display:flex;align-items:center;gap:12px;margin:10px 0;flex-wrap:wrap;' },
-    chip('warn', L(SEED.overall.statusL)),
-    h('span', { style: 'font-size:var(--fs-sm);color:var(--ink2);' },
-      L(['Composite score', '综合评分']) + ': ', h('b', { style: 'color:var(--ink)' }, comp + ' / 100'),
-      ' · ' + L(['Confidence', '置信度']) + ': ' + SEED.overall.confidence + '%',
-      ' · ' + L(['Target COD window', '目标投运窗口']) + ': ' + SEED.overall.codWindow)));
-  cA.append(h('div', { class: 'meter' }, h('div', { style: `width:${comp}%;background:var(--warn);` })));
+  cA.append(h('div', { style: 'font-size:var(--fs-sm);color:var(--ink2);margin:10px 0;' },
+    L(['Target COD window', '目标投运窗口']) + ': ' + SEED.overall.codWindow,
+    ' · ' + L(['Evidence confidence', '证据置信度']) + ': ' + SEED.overall.confidence + '%'));
   cA.append(h('div', { style: 'font-size:var(--fs-xs);color:var(--ink2);margin:8px 0;' }, L(SEED.overall.rationale)));
-  cA.append(h('div', { style: 'font-size:var(--fs-2xs);color:var(--muted);margin-top:6px;' },
-    L(['Component scores (spec §5.2 weights — never hidden behind the composite):', '分项评分（规范§5.2权重 — 不隐藏于综合分之后）：'])));
-  cA.append(scoreRows(SEED.components.map(c => ({ n: c.n, w: c.w, s: c.s })), 100));
-  cA.append(why(['The composite is deliberately not a go/no-go number. The two heaviest weights — RCM outlook (25%) and connection/NAQ risk (20%) — are the only components a sponsor can contract or de-risk before FID; the weak components (arbitrage 40, pipeline 38, FCESS 30) are market-wide and cannot be fixed by a better project. A score of ' + comp + ' with that split means "invest selectively where the contractable 45% is strong", not "invest because the market scores mid-70s".',
-    '综合分刻意不作为一票通过的指标。权重最高的两项 — RCM前景（25%）与并网/NAQ风险（20%） — 是发起人在FID前唯一可通过合同锁定或去风险的分项；而弱分项（套利40、管线38、FCESS30）属全市场性质，无法靠更好的项目改善。综合' + comp + '分在此结构下的含义是"在可合同化的45%权重表现强劲处选择性投资"，而非"因市场评分中高位而投资"。'],
-    ['Weight sits on what you can contract', '权重集中于可合同化部分']));
   grid.append(cA);
 
   // Card B — RCM signal

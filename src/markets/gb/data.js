@@ -37,19 +37,9 @@ const M = {
     fleetGW: 6.5, fleetAvgHours: 1.7, pipelineAvgHours: 2.2,
   },
 
-  overall: { statusL: ['Selective', '选择性投资'], chipCls: 'warn', confidence: 74, codWindow: '2028–2030',
+  overall: { confidence: 74, codWindow: '2028–2030',
     rationale: ['A diversified revenue stack remains, but returns are now set by connection certainty, realised BM dispatch and saturation — not by a generic storage-scarcity thesis.',
                 '收入来源仍然多元，但收益已由并网确定性、平衡机制实际调度与市场饱和决定，而非笼统的“储能稀缺”逻辑。'] },
-  components: [
-    { n: ['Wholesale & Balancing Mechanism outlook', '批发与平衡机制前景'], w: 20, s: 64 },
-    { n: ['Grid connection & planning risk', '并网与规划风险'], w: 20, s: 58 },
-    { n: ['Capacity Market outlook', '容量市场前景'], w: 15, s: 50 },
-    { n: ['Duration & LDES need', '时长与长时储能需求'], w: 15, s: 68 },
-    { n: ['Pipeline saturation', '管线饱和度'], w: 10, s: 48 },
-    { n: ['Financing & contracted structures', '融资与合同结构'], w: 10, s: 62 },
-    { n: ['System-services outlook', '系统服务前景'], w: 10, s: 34 },
-  ],
-
   // ---- Capacity Market ----
   cmYears: ['24/25', '25/26', '26/27', '27/28', '28/29', '29/30'],
   t4Series: [18.00, 30.59, 63.00, 65.00, 60.00, 27.10],

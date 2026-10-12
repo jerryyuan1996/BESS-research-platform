@@ -16,11 +16,6 @@ export function createCompute(ctx){
   const at = (path) => String(path).split('.').reduce((o, k) => (o == null ? o : o[k]), M);
 
 function weightedScore(items){ return Math.round(items.reduce((a, f) => a + f.w * f.s, 0) / 3); }
-function compositeScore(id){
-  // A multi-region market passes the path to that region's component weights.
-  const comps = id ? at(id) : M.components;
-  return Math.round(comps.reduce((a, c) => a + c.w * c.s, 0) / 100);
-}
 // live (editable) copies of the scorecards
 function liveFactors(id){
   const src = at(id);
@@ -44,5 +39,5 @@ function interp(curve, x){
 }
 function stageProb(id){ const s = M.stages.find(x => x.id === id); return s ? s.p / 100 : 0; }
 function dilutionAt(y){ return M.dilution && M.dilution[y] != null ? M.dilution[y] : 1; }
-  return { at, weightedScore, compositeScore, liveFactors, liveScore, durationAt, interp, stageProb, dilutionAt };
+  return { at, weightedScore, liveFactors, liveScore, durationAt, interp, stageProb, dilutionAt };
 }

@@ -57,7 +57,7 @@
     },
     "timeToRevenue": {
       "dimension": "timeToRevenue",
-      "grade": 4,
+      "grade": 3,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],
@@ -177,7 +177,7 @@
     },
     "scaleRepeatability": {
       "dimension": "scaleRepeatability",
-      "grade": 5,
+      "grade": 3,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],

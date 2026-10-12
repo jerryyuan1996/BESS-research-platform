@@ -23,6 +23,14 @@ export const FX = {
      no seed date applies to it. A US market is therefore the only one on the
      platform whose published economics are unaffected by the FX row. */
   USD: 1,
+  /* Added on the analyst's instruction of 2026-10-12, so that Poland's
+     capital-at-risk ledger, whose amounts the statute states in złoty, can be
+     totalled. NOT a market currency: no market is priced in it and the engine
+     never reads it. The ECB reference rate on the seed date below was 4.3265
+     złoty to the euro; taken through the euro seed above, 1.08 / 4.3265 =
+     0.2496, rounded as the other seeds are. The live ECB feed does not carry
+     the złoty, so this one never follows an observed rate. */
+  PLN: 0.25,
 };
 
 /** Date the FX seeds above were set. Shown next to the rates on the home page. */

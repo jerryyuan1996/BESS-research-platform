@@ -22,7 +22,7 @@ import { congestionFor } from '../congestionRegistry.js';
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
   const { h, L, MKT, M, SRC, state, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct,
-          compositeScore, liveScore, dilutionAt } = api;
+          liveScore, dilutionAt } = api;
 
 const SEC_B = {};
 function SECTIONS(){
@@ -45,10 +45,8 @@ SEC_B.home = function (){
     { t:'warn', text:M.seedWarn },
     { t:'card', mt:false, title:['Position at a glance','总体判断'], badges:['calc','illus'], live:false, blocks:[
       { t:'kpis', items:[
-        { l:['Investment stance','投资立场'], v:L(M.overall.statusL),
-          d:['COD window ' + M.overall.codWindow, '投运窗口 ' + M.overall.codWindow] },
-        { l:['Composite score','综合评分'], v:String(compositeScore()) + '<small>/100</small>',
-          d:['confidence ' + M.overall.confidence + '%', '置信度 ' + M.overall.confidence + '%'], b:['calc'] },
+        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow,
+          d:['evidence confidence ' + M.overall.confidence + '%', '证据置信度 ' + M.overall.confidence + '%'] },
         { l:['Resource Adequacy benchmark','容量充裕度基准'], v:perKW(O.raPerKWMonth),
           d:['H1 2025, up more than ' + O.raYoYPct + '% year on year', '2025年上半年，同比上涨逾' + O.raYoYPct + '%'], b:['tp'] },
         { l:['Merchant, same period','同期市场化收入'], v:perKW(O.merchPerKWMonth2025),
@@ -67,8 +65,8 @@ SEC_B.home = function (){
         series:[{ name:['$/kW-month','$/kW-月'], color:'var(--s12)', vals:M.stackSeries }] } },
       { t:'cap', text:['Resource Adequacy against merchant, on the same axis. This is the chart that separates CAISO from both its US neighbours: in PJM the capacity payment is large but lasts one delivery year, in ERCOT there is none at all, and here it is most of the income and runs for the length of a negotiated contract.',
                        '容量充裕度与市场化收入置于同一坐标轴对比。正是本图将CAISO与其两个美国邻近市场区分开来：在PJM，容量收入虽高但仅持续一个实需年度；在ERCOT完全没有容量收入；而在此处，它构成收入的主体，并按协商合约的期限持续。'] },
-      { t:'why', text:['Read this alongside the composite score and the ranking makes sense. CAISO does not score highest on this platform, and the reason is not the revenue — it is that ' + O.queueTotalGW + ' GW sits in the interconnection queue with batteries about ' + O.queueBatterySharePct + '% of it, and interconnection has overtaken technology cost as the binding constraint on getting anything built. A market can have the best contracted revenue in its country and still be hard to enter, and this one does.',
-        '将本图与综合评分对照，排名的合理性便清晰可见。CAISO在本平台并非评分最高，其原因不在收入 — 而在于并网排队量达' + O.queueTotalGW + 'GW、其中储能约占' + O.queueBatterySharePct + '%，且并网已取代技术成本成为项目能否建成的约束性瓶颈。一个市场可以拥有全国最优的合同化收入，同时仍然难以进入，而此处正是如此。'],
+      { t:'why', text:['Read this alongside the entry grades. CAISO is not the easiest market on this platform to act in, and the reason is not the revenue — it is that ' + O.queueTotalGW + ' GW sits in the interconnection queue with batteries about ' + O.queueBatterySharePct + '% of it, and interconnection has overtaken technology cost as the binding constraint on getting anything built. A market can have the best contracted revenue in its country and still be hard to enter, and this one does.',
+        '请将本图与进入维度的评级对照来看。CAISO并非本平台最容易进入的市场，其原因不在收入 — 而在于并网排队量达' + O.queueTotalGW + 'GW、其中储能约占' + O.queueBatterySharePct + '%，且并网已取代技术成本成为项目能否建成的约束性瓶颈。一个市场可以拥有全国最优的合同化收入，同时仍然难以进入，而此处正是如此。'],
         sig:['Best contracted revenue in the country, hardest queue to clear','全国最优的合同化收入，最难通过的排队'] },
       { t:'src', src:SRC.raBench, use:['The RA price benchmark','容量充裕度价格基准'] },
       { t:'src', src:SRC.merchBench, use:['The merchant benchmark it sits above','其上方对应的市场化收入基准'] },

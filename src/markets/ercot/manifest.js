@@ -28,7 +28,6 @@ export const manifest = {
   locale: 'en-US',
   timezone: 'America/Chicago',
 
-  status: ['Watch', '观察'],
   color: 'var(--s13)',
 
   asOf: '2026-08-04',

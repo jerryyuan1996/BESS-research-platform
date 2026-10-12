@@ -38,7 +38,7 @@
       does not invent one. Those gaps are in `notPublished` and render on the
       Data & Methodology tab.
    --------------------------------------------------------------------------- */
-import { COMPONENTS, CONN_FACTORS } from './scores.js';
+import { CONN_FACTORS } from './scores.js';
 
 const M = {
   asOf: '2026-08-04',
@@ -152,13 +152,12 @@ const M = {
       note: ['Where the large-load queue is growing fastest. ERCOT\'s large-load queue reached about 474 GW by August 2026, about 90% of it data centres.', '大负荷排队增长最快的区域。截至2026年8月，ERCOT大负荷排队量约达474GW，其中约90%为数据中心。'] },
   ],
 
-  overall: { statusL: ['Watch', '观察'], chipCls: 'serious', confidence: 58, codWindow: '2028–2030',
+  overall: { confidence: 58, codWindow: '2028–2030',
     rationale: ['The easiest market in the US to build in and the hardest to get paid in. ERCOT connects a project in about 4.2 years at minimal cost — against eight-plus years and $240/kW of network upgrades in PJM — and then offers no capacity payment whatsoever. The merchant index that has to carry the whole return fell from $193/kW/yr in 2023 to about $29/kW in 2025 as the fleet went from 5.3 GW to 14 GW, and ancillary services, which were 84% of battery revenue in 2023, are 48% and falling. The market\'s answer is the private toll, and no ERCOT toll price has ever been disclosed. Underwrite the toll, the node and the tail after the toll expires. Do not underwrite the index, in either direction — it is the number two credible sources disagree about by nearly two times.',
                 '这是美国最容易建设、却最难获得回报的市场。ERCOT约4.2年即可完成项目并网且成本极低 — 相较PJM的八年以上及每kW $240的电网升级费用 — 但完全不提供任何容量收入。须独力支撑全部回报的市场化指数，已随装机由5.3GW增至14GW，从2023年的每kW每年$193跌至2025年的约$29；而2023年占储能收入84%的辅助服务，如今为48%且仍在下降。市场给出的答案是私下租赁，而ERCOT从未披露过任何租赁价格。承销依据应为租赁合约、节点位置以及租赁到期后的敞口期。切勿以该指数为承销依据 — 无论方向如何 — 因为两个可信来源对这一数字的判断相差近两倍。'] },
 
   /* Weights and scores live in ./scores.js and are imported by both this
-     dashboard and comparison.js, so the composite cannot drift from its parts. */
-  components: COMPONENTS,
+     dashboard and comparison.js, so the index cannot drift from its parts. */
   connFactors: CONN_FACTORS,
 
   // ---- capacity channel: there is none ----

@@ -22,11 +22,10 @@ export const comparison = {
     durationHours: 4,
   },
 
-  /* Scores from this market's own dashboard. `composite` is shown for context
-     only and is explicitly NOT rank-compared across markets — each market scores
-     itself on its own basis. `connectionRisk` IS compared (lower is safer). */
+  /* The connection-risk index from this market's own scorecard. It is compared
+     across markets on /returns (lower is safer). A market-level composite was
+     retired on 2026-10-12: grades and verdicts live in the view store. */
   score: {
-    composite: 0,          // 0-100
     connectionRisk: 0,     // 0-100, lower = safer
   },
 

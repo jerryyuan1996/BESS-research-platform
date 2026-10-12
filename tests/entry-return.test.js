@@ -150,11 +150,12 @@ test('an incomplete ledger makes the figures "at most", and one with nothing cos
       assert.equal(r.attrition, null, `${m.manifest.id}: nothing is costed, so a break-even would be "at most 100%" and say nothing`);
     }
   }
-  /* Poland's amounts are in złoty and the rate table has no złoty rate: they
-     are stated and cannot be counted. */
+  /* Poland's amounts are in złoty. They could not be counted until the rate
+     table gained a złoty seed; they are counted now, and the ledger is still
+     incomplete because development spend has no source. */
   const pl = entryCosts(ledgerFor('pl'), FX);
   assert.equal(pl.incomplete, true);
-  assert.equal(pl.spendPerMW + pl.pledgedPerMW, 0);
+  assert.ok(pl.spendPerMW > 0 && pl.pledgedPerMW > 0, 'the statutory payments convert');
 });
 
 test('a ledger\'s timing is a stated range with a basis and a note, or it is refused', () => {

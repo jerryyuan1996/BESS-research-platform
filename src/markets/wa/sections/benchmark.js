@@ -21,8 +21,8 @@ import { NEM_SC } from '../data/nemScorecard.js';
 function renderBenchmark(main){
   const N = NEM_SC;
   sectionHead(main, ['WEM vs NEM — market design, connection reality and what transfers (context only)', 'WEM与NEM对比 — 市场设计、并网现实与可迁移结论（仅背景参考）'],
-    ['The only section in this dashboard that uses NEM data. WA and the NEM reward storage through structurally different mechanisms and run structurally different connection processes; comparing them isolates what is genuinely WA-specific. All NEM figures are held in a separate namespace and are excluded from the WA composite investment score.',
-     '本看板中唯一使用NEM数据的章节。西澳与NEM通过结构性不同的机制奖励储能，并采用结构性不同的并网流程；比较两者可分离出真正属于西澳特有的因素。所有NEM数值保存在独立命名空间，不计入西澳综合投资评分。']);
+    ['The only section in this dashboard that uses NEM data. WA and the NEM reward storage through structurally different mechanisms and run structurally different connection processes; comparing them isolates what is genuinely WA-specific. All NEM figures are held in a separate namespace and are excluded from WA\'s grades and verdicts.',
+     '本看板中唯一使用NEM数据的章节。西澳与NEM通过结构性不同的机制奖励储能，并采用结构性不同的并网流程；比较两者可分离出真正属于西澳特有的因素。所有NEM数值保存在独立命名空间，不计入西澳的评级与结论。']);
 
   main.append(h('div', { class: 'note' }, h('b', {}, L(['Scope discipline: ', '范围纪律：'])),
     L(['NEM Connection Scorecard data (AEMO, June 2026, FY2025-26) covers Queensland, NSW/ACT, Victoria, Tasmania and South Australia only. It never enters the WA capacity balance, the WA pipeline, the merchant curve or any scoring input. It is used here for one purpose: to calibrate whether a WA observation is a WA problem or an Australia-wide one.',

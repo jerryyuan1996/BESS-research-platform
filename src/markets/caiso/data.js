@@ -29,7 +29,7 @@
       energy-versus-ancillary split, the RA tenor distribution, the residual in
       the published full stack — this file does not invent one.
    --------------------------------------------------------------------------- */
-import { COMPONENTS, CONN_FACTORS } from './scores.js';
+import { CONN_FACTORS } from './scores.js';
 
 const M = {
   asOf: '2026-08-04',
@@ -101,11 +101,10 @@ const M = {
       note: ['Between the two, and where much of the solar that creates the midday trough is sited.', '介于两者之间，形成午间低谷的大量光伏即位于此。'] },
   ],
 
-  overall: { statusL: ['Selective', '选择性投资'], chipCls: 'warn', confidence: 64, codWindow: '2030–2032',
+  overall: { confidence: 64, codWindow: '2030–2032',
     rationale: ['The only US market where the contracted line is most of the revenue, and the only one on this platform where four hours is a ceiling rather than a floor. Resource Adequacy averaged $8.77/kW-month across H1 2025 against merchant earnings nearer $2.5–3, so a Californian battery is substantially a capacity contract with a trading option attached — and the CPUC tests net qualifying capacity on four-hour sustained output and pays nothing beyond it, so a longer asset earns only spread for its extra hours. The uncertainty is the inverse of everywhere else: the merchant band is narrow and the contracted band is the widest on the platform, because RA is negotiated deal by deal rather than cleared. Underwrite the counterparty, the tenor and the deliverability status. Then underwrite the queue, which has overtaken technology cost as the binding constraint on getting built at all.',
                 '这是美国唯一一个合同化收入构成收入主体的市场，也是本平台唯一一个四小时构成上限而非下限的市场。2025年上半年容量充裕度平均为每kW每月$8.77，而市场化收入约为$2.5–3，因此加州储能实质上是一份附带交易期权的容量合约 — 且CPUC按四小时持续出力测定净合格容量，超出部分不予支付，故更长时长的资产其额外小时数仅能获得价差收入。此处的不确定性与其他各处恰恰相反：市场化区间较窄，而合同化区间为本平台最宽，因为容量充裕度是逐笔协商而非集中出清。承销依据应为交易对手、合约期限与可交付性状态。其次应评估并网排队 — 它已取代技术成本，成为项目能否建成的约束性瓶颈。'] },
 
-  components: COMPONENTS,
   connFactors: CONN_FACTORS,
 
   // ---- capacity channel: a ceiling at four hours ----

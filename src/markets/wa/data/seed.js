@@ -27,18 +27,9 @@ const SEED = {
   get fleetAvgHours(){ return this.fleetMWh / this.fleetMW; },
 
   // --- homepage decision seed (spec §24, illustrative) ---
-  overall: { status: 'SELECTIVE', statusL: ['Selective', '选择性投资'], confidence: 74, codWindow: '2028–2029',
+  overall: { confidence: 74, codWindow: '2028–2029',
     rationale: ['RCM remains supportive, while energy arbitrage and FCESS are being diluted by rapid battery entry.',
                 'RCM仍具支撑，但电池集中投运正在压缩现货套利和FCESS收益。'] },
-  components: [   // weights per spec §5.2 Card A; scores illustrative
-    { n: ['RCM outlook', 'RCM前景'], w: 25, s: 72 },
-    { n: ['Grid connection, registration & NAQ risk', '并网、注册与NAQ风险'], w: 20, s: 57 },
-    { n: ['Energy-arbitrage outlook', '现货套利前景'], w: 15, s: 40 },
-    { n: ['Storage-duration need', '储能时长需求'], w: 15, s: 76 },
-    { n: ['Pipeline saturation', '项目管线饱和度'], w: 10, s: 38 },
-    { n: ['Financing conditions', '融资条件'], w: 10, s: 65 },
-    { n: ['FCESS outlook', 'FCESS前景'], w: 5, s: 30 },
-  ],
   connection: { status: ['Amber / Conditional', '黄色 / 满足条件后推进'], riskScore: 43,
     wpStage: ['Planning', '规划阶段'], gpsStage: 'R0', aoStatus: ['Draft', '草案'],
     naqToNameplate: 0.95, floatMonths: 7 },

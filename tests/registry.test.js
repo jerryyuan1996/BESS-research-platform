@@ -12,7 +12,7 @@ import {
 } from '../src/markets/registry.js';
 import { validateMarket, validateRegistry } from '../src/utils/validation.js';
 import { runCase } from '../src/comparison/engine.js';
-import { REQUIRED_MANIFEST_FIELDS, OPTIONAL_MANIFEST_FIELDS, METADATA_FIELDS } from '../src/markets/schema.js';
+import { REQUIRED_MANIFEST_FIELDS, RETIRED_MANIFEST_FIELDS, METADATA_FIELDS } from '../src/markets/schema.js';
 import { FX } from '../src/comparison/assumptions.js';
 import { supportedStrategies, baseStrategy, STRATEGIES } from '../src/comparison/strategies.js';
 import { merchantVintage, firstUncoveredMerchantYear } from '../src/comparison/vintage.js';
@@ -54,22 +54,19 @@ test('every market has all required manifest fields', () => {
   }
 });
 
-test('the retired status chip is optional: a manifest validates without it, and with a malformed one it does not', () => {
+test('the retired status chip is gone from every manifest and cannot come back', () => {
   /* `status` was the one-chip-a-market stance. A verdict per investor replaced
-     it (investment-view plan, section 6.3) and nothing displays it, so a market
-     no longer has to carry one. It is optional rather than removed, so the
-     manifests that still do stay valid. */
+     it (investment-view plan, section 6.3), and the field was deleted with the
+     composite score it sat beside. */
   assert.ok(!REQUIRED_MANIFEST_FIELDS.includes('status'));
-  assert.ok(OPTIONAL_MANIFEST_FIELDS.includes('status'));
+  assert.ok(RETIRED_MANIFEST_FIELDS.includes('status'));
 
-  const base = markets[0];
-  const { status, ...withoutStatus } = base.manifest;
-  assert.ok(status, 'the probe market is expected to still carry a status');
-  assert.deepEqual(validateMarket({ ...base, manifest: withoutStatus }), [],
-    'a manifest with no status must validate');
-  const malformed = validateMarket({ ...base, manifest: { ...base.manifest, status: 'Selective' } });
-  assert.ok(malformed.some(p => p.includes('manifest.status')),
-    'where a status is present it must still be an [en, zh] pair');
+  /* It is gone from every manifest, and a manifest that brings it back is
+     refused: the label cannot return beside the verdicts and disagree. */
+  for (const m of markets) assert.equal(m.manifest.status, undefined, `${m.manifest.id}: still carries the retired stance label`);
+  const revived = validateMarket({ ...markets[0], manifest: { ...markets[0].manifest, status: ['Selective', '选择性投资'] } });
+  assert.ok(revived.some(p => p.includes('manifest.status was retired')),
+    'a manifest that defines the retired status must be refused');
 });
 
 test('freshness metadata keys are present, even when the value is null', () => {
@@ -500,12 +497,12 @@ test('a brand-new market participates with only a manifest and a comparison inte
       id: 'jp', slug: 'japan', flag: '🇯🇵',
       shortName: ['JP', '日本'], name: ['Japan', '日本'],
       currency: 'EUR', currencySymbol: '€', locale: 'ja-JP', timezone: 'Asia/Tokyo',
-      status: ['Watch', '观察'], color: 'var(--s7)',
+      color: 'var(--s7)',
       asOf: null, dataDate: null, modelVersion: null, lastVerified: null, sourceHealth: null,
     },
     comparison: {
       archetype: { powerMW: 100, durationHours: 4 },
-      score: { composite: 55, connectionRisk: 40 },
+      score: { connectionRisk: 40 },
       capabilities: { capacityMarket: true, merchant: true, ancillaryServices: true, tolling: false },
       economics: {
         capexPerMW: 800000, opexPerMW: 9000,
@@ -536,11 +533,11 @@ test('validation rejects the mistakes a new market is most likely to make', () =
   const base = () => JSON.parse(JSON.stringify({
     manifest: {
       id: 'xx', slug: 'xx-market', flag: '🏳️', shortName: ['XX', '简称'], name: ['X', 'X'],
-      currency: 'EUR', locale: 'en-GB', status: ['Watch', '观察'], color: 'var(--s8)',
+      currency: 'EUR', locale: 'en-GB', color: 'var(--s8)',
     },
     comparison: {
       archetype: { powerMW: 10, durationHours: 2 },
-      score: { composite: 1, connectionRisk: 1 },
+      score: { connectionRisk: 1 },
       capabilities: { merchant: true },
       economics: { capexPerMW: 1, opexPerMW: 1, merchGross: 1, feePct: 1, services: 0, grantPct: 0, degr: 2 },
       narrative: { archetype: ['a', 'b'], thesis: ['a', 'b'], pipelineRatio: '~1×' },

@@ -338,7 +338,6 @@ export const comparison = {
   },
 
   score: {
-    composite: 58,
     connectionRisk: 46,
   },
 

@@ -16,7 +16,6 @@ import { METRICS, rank, metricLabel } from '../comparison/metrics.js';
 import { runAll } from '../comparison/engine.js';
 import { strategyById, baseStrategy } from '../comparison/strategies.js';
 const HIDDEN_METRIC_IDS = new Set([
-  'composite',
   'pipelineRatio',
   'executedShare',
   'proxyShare',

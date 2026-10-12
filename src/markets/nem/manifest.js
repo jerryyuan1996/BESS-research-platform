@@ -21,7 +21,6 @@ export const manifest = {
   locale: 'en-AU',
   timezone: 'Australia/Sydney',
 
-  status: ['Selective', '选择性投资'],
   color: 'var(--s11)',
 
   asOf: '2026-08-01',

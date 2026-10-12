@@ -14,7 +14,6 @@ export const manifest = {
   locale: 'en-AU',
   timezone: 'Australia/Perth',
 
-  status: ['Selective', '选择性投资'],
   color: 'var(--s1)',
 
   // ---- freshness metadata (brief section 21) — dates unchanged from the prototype

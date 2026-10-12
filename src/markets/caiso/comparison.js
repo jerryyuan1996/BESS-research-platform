@@ -45,7 +45,7 @@
 import { band, limits } from '../../comparison/ranges.js';
 import { stackFrom } from '../../comparison/capex.js';
 import { merchantVintage } from '../../comparison/vintage.js';
-import { COMPOSITE, CONNECTION_RISK } from './scores.js';
+import { CONNECTION_RISK } from './scores.js';
 
 /* Same NREL benchmark and the same four-hour basis as PJM — one capex source
    across the US markets, so the differences between them are mechanism rather
@@ -301,7 +301,6 @@ export const comparison = {
   },
 
   score: {
-    composite: COMPOSITE,
     connectionRisk: CONNECTION_RISK,
   },
 

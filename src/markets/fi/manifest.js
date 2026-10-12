@@ -33,7 +33,6 @@ export const manifest = {
   /* Not "Selective" and not "Invest". The structure is understood and the
      per-MW economics are not yet, which is a different state from either, and
      `engineReady: false` is the machine-readable half of the same statement. */
-  status: ['Research', '研究阶段'],
 
   color: 'var(--s2)',
   /* The second visual channel. See the header, and src/home/seriesStyle.js for

@@ -1,41 +1,15 @@
 /* ---------------------------------------------------------------------------
-   ERCOT — the two weighted score tables, and the scores derived from them.
+   ERCOT — the connection-risk table, and the index derived from it.
 
-   Same arrangement as PJM: computed once here and imported by both the
-   comparison interface and the dashboard, so the composite cannot disagree with
-   the components it is a summary of.
+   Computed once here and imported by both the comparison interface and the
+   dashboard, so the index cannot disagree with the lines it summarises, and
+   rounded exactly as src/markets/_shared/compute.js rounds it.
 
-     composite        Σ(w · s) / 100, with s on 0-100 and Σw = 100
      connectionRisk   Σ(w · s) / 3,   with s on 0-3   and Σw = 100
 
-   Both are ROUNDED here, exactly as src/markets/_shared/compute.js rounds them
-   when it draws the same tables. Without that the comparison interface would
-   carry 32.67 while the dashboard rendered 33, and a reader comparing the two
-   pages would be right to distrust both.
+   The weighted component table and the composite that sat beside it were
+   retired on 2026-10-12; the table is kept in docs/grading/seed-tables.md.
    --------------------------------------------------------------------------- */
-
-/* The two extremes on this table are the ERCOT investment case in one line.
-
-   Interconnection scores 92, the highest single component on the platform:
-   ERCOT connects generation in about 4.2 years at minimal cost against PJM's
-   eight-plus years and $240/kW of network upgrades. Ancillary services score 12,
-   the lowest: AS revenue has fallen about 90% since 2023 and its share of
-   battery income went from 84% to 48% over the same period, and RTC+B has just
-   cut the duration requirements so that MORE of the fleet can compete for it.
-
-   Capacity scores zero and it is a true zero rather than a low number. ERCOT is
-   energy-only with scarcity pricing through the ORDC, there is no mechanism, and
-   the Public Utility Commission has repeatedly declined to build one. */
-export const COMPONENTS = [
-  { n: ['Contracted revenue availability (tolling only)', '合同化收入可得性（仅租赁）'], w: 20, s: 58 },
-  { n: ['Merchant arbitrage depth and spread trajectory', '市场化套利深度与价差走势'], w: 16, s: 45 },
-  { n: ['Interconnection speed and cost', '并网速度与成本'], w: 16, s: 92 },
-  { n: ['Capacity market access for the archetype', '原型资产的容量市场准入'], w: 10, s: 0 },
-  { n: ['Ancillary services headroom', '辅助服务市场空间'], w: 10, s: 12 },
-  { n: ['Storage-duration fit and capex trajectory', '储能时长匹配度与造价轨迹'], w: 10, s: 40 },
-  { n: ['Financing and delivery execution', '融资与交付执行'], w: 10, s: 76 },
-  { n: ['Congestion and locational price signal', '拥塞与区位价格信号'], w: 8, s: 71 },
-];
 
 /* Higher score = higher risk, and this is the lowest-risk connection table on
    the platform — which is the point of carrying ERCOT next to PJM. Network
@@ -58,9 +32,6 @@ export const CONN_FACTORS = [
 ];
 
 const weighted = (rows) => rows.reduce((a, r) => a + r.w * r.s, 0);
-
-/** Σ(w · s) / 100, rounded as the dashboard rounds it. */
-export const COMPOSITE = Math.round(weighted(COMPONENTS) / 100);
 
 /** Σ(w · s) / 3, rounded as the dashboard rounds it. Higher is worse. */
 export const CONNECTION_RISK = Math.round(weighted(CONN_FACTORS) / 3);

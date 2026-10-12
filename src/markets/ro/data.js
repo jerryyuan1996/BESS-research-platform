@@ -29,19 +29,9 @@ const M = {
     fleetMW: 420, fleetMWh: 780,
   },
 
-  overall: { statusL: ['Selective', '选择性投资'], chipCls: 'warn', confidence: 68, codWindow: '2027–2029',
+  overall: { confidence: 68, codWindow: '2027–2029',
     rationale: ['Wholesale volatility, improving tariff treatment and capital-grant support are real; but connection rights, balancing qualification and award evidence — not scheme budgets — decide whether capital should be committed.',
                 '批发波动、电价待遇改善与资本补贴支持真实存在；但决定是否应投入资本的是并网权利、平衡资格与正式授予证据，而非计划预算。'] },
-  components: [
-    { n: ['Wholesale & intraday outlook', '批发与日内前景'], w: 20, s: 66 },
-    { n: ['Grid connection & permitting', '并网与许可'], w: 20, s: 52 },
-    { n: ['Balancing & reserves access', '平衡与备用准入'], w: 15, s: 58 },
-    { n: ['Grant / support availability', '补贴与支持可得性'], w: 15, s: 70 },
-    { n: ['Storage-duration fit', '储能时长匹配度'], w: 10, s: 65 },
-    { n: ['Probability-weighted pipeline', '概率加权管线'], w: 10, s: 55 },
-    { n: ['Financing & contracted revenue', '融资与合同收入'], w: 10, s: 60 },
-  ],
-
   // ---- wholesale ----
   pxLabels: ['Q1-25', 'Q2-25', 'Q3-25', 'Q4-25', 'Jan-26', 'Feb-26', 'Mar-26', 'Apr-26', 'May-26', 'Jun-26'],
   damSeries: [640, 470, 555, 635, 660, 610, 505, 465, 545, 694.48],

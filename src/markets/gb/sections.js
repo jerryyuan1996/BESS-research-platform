@@ -16,7 +16,7 @@ import { GB_BUILD_PATHWAY } from './buildPathway.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
-  const { h, L, MKT, M, SRC, T, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, compositeScore, liveScore, durationAt, interp, dilutionAt, labInputs, labModel, pipelineByYear } = api;
+  const { h, L, MKT, M, SRC, T, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, liveScore, durationAt, interp, dilutionAt, labInputs, labModel, pipelineByYear } = api;
 
 // ---------------- section registry (parts are concatenated by build.js) ----------------
 const SEC_B = {};
@@ -29,7 +29,7 @@ const O = M.official;
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const comp = compositeScore(), dni = liveScore('durFactors'), cs = liveScore('connFactors');
+  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
   const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
   const dur = durationAt(state.codYear);
   const derate2 = M.deratingCurve[2], derate4 = M.deratingCurve[4];
@@ -60,17 +60,9 @@ SEC_B.home = function (){
     { t:'g2', cards:[
       // ---- Card A ----
       { title:['Card A — Overall GB Storage Signal','Card A — 英国储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:M.overall.chipCls, text:M.overall.statusL },
-        { t:'p', text:[
-          'Composite score: ' + comp + ' / 100 · Confidence: ' + M.overall.confidence + '% · Target COD window: ' + M.overall.codWindow,
-          '综合评分：' + comp + ' / 100 · 置信度：' + M.overall.confidence + '% · 目标投运窗口：' + M.overall.codWindow] },
-        { t:'meter', pct: comp, color:'warn' },
+        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
+          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
         { t:'p', text:M.overall.rationale },
-        { t:'sub', text:['Component scores (weights never hidden behind the composite):','分项评分（权重不隐藏于综合分之后）：'] },
-        { t:'scores', items:M.components, max:100 },
-        { t:'why', text:['The composite is deliberately not a go/no-go number. The two heaviest weights — wholesale/BM outlook (20%) and connection & planning risk (20%) — are the only components a sponsor can contract or de-risk before FID; the weak components (system services 34, pipeline saturation 48, Capacity Market 50) are market-wide and cannot be fixed by a better project. A score of ' + comp + ' with that split means "invest selectively where the contractable 40% is strong", not "invest because the market scores mid-60s".',
-          '综合分刻意不作为一票通过的指标。权重最高的两项 — 批发/平衡前景（20%）与并网及规划风险（20%） — 是发起人在FID前唯一可通过合同锁定或去风险的分项；弱分项（系统服务34、管线饱和48、容量市场50）属全市场性质，无法靠更好的项目改善。综合' + comp + '分在此结构下的含义是“在可合同化的40%权重表现强劲处选择性投资”，而非“因市场评分中高位而投资”。'],
-          sig:['Weight sits on what you can contract','权重集中于可合同化部分'] },
       ] },
       // ---- Card B ----
       { title:['Card B — Capacity Market Signal','Card B — 容量市场信号'], live:false, blocks:[
@@ -913,8 +905,8 @@ SEC_B.benchmark = function (){
   return {
   head: ['GB vs Ireland (SEM) — market design, capacity economics and what transfers (context only)',
          '英国与爱尔兰（SEM）对比 — 市场设计、容量经济性与可迁移结论（仅背景参考）'],
-  cap: ['The only section in this dashboard that uses Irish data. GB and the all-island SEM are neighbouring, interconnected, similarly regulated markets that nevertheless reward storage through structurally different mechanisms. Comparing them isolates what is genuinely GB-specific. All SEM figures are held in a separate namespace and excluded from the GB composite investment score.',
-        '本看板中唯一使用爱尔兰数据的章节。英国与全岛单一电力市场相邻、互联且监管体系相近，但两者奖励储能的机制存在结构性差异。比较两者可分离出真正属于英国特有的因素。所有SEM数值保存在独立命名空间，不计入英国综合投资评分。'],
+  cap: ['The only section in this dashboard that uses Irish data. GB and the all-island SEM are neighbouring, interconnected, similarly regulated markets that nevertheless reward storage through structurally different mechanisms. Comparing them isolates what is genuinely GB-specific. All SEM figures are held in a separate namespace and excluded from GB\'s grades and verdicts.',
+        '本看板中唯一使用爱尔兰数据的章节。英国与全岛单一电力市场相邻、互联且监管体系相近，但两者奖励储能的机制存在结构性差异。比较两者可分离出真正属于英国特有的因素。所有SEM数值保存在独立命名空间，不计入英国的评级与结论。'],
   blocks: [
     { t:'note', b:['Scope discipline: ','范围纪律：'],
       text:['SEM data (Jul 2026) covers the Republic of Ireland and Northern Ireland as a single all-island market. It never enters the GB buildout paths, the GB pipeline, the de-rating tables or any scoring input. It is used here for one purpose: to calibrate whether a GB observation is a GB problem or a general storage-market problem. Northern Ireland is inside SEM and therefore outside this dashboard.',
@@ -1152,7 +1144,6 @@ SEC_B.data = function (){
         [{b:['Capacity revenue','容量收入']}, 'nameplate MW × de-rating factor(duration, auction vintage) × clearing price (£/kW/yr) × 1,000'],
         [{b:['Discharged energy, year 1','第1年放电电量']}, 'MW × hours × usable fraction × cycles/day × 365 × availability'],
         [{b:['Effective spread','有效价差']}, 'executable spread × duration factor × (RTE / 88) × saturation factor(COD year)'],
-        [{b:['Composite score','综合评分']}, 'Σ (component weight × component score) / 100'],
         [{b:['Duration-Need Index / Connection Risk Score','时长需求指数/并网风险评分']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
         [{b:['DSCR','偿债覆盖率']}, 'EBITDA(year) / annuity(debt, interest rate, tenor)'],
       ] },

@@ -76,15 +76,15 @@
     },
     "foreignEntry": {
       "dimension": "foreignEntry",
-      "grade": 4,
+      "grade": 3,
       "trend": "stable",
       "basis": "official",
       "evidence": [
         "investControlAct"
       ],
       "reason": [
-        "Review reaches an investor from outside the member states acquiring 20% or control of a company that generates electricity and had revenue in Poland above EUR 10 million; a preliminary proceeding takes 30 working days and a full one up to 120 days.",
-        "审查适用于成员国以外的投资者收购发电企业20%股权或取得其控制权、且该企业在波兰的营业收入超过1,000万欧元的情形；初步审查为30个工作日，正式审查最长120日。"
+        "Review reaches an investor from outside the member states acquiring 20% or control of a company that generates electricity and had revenue in Poland above EUR 10 million; a preliminary proceeding takes 30 working days and a full one up to 120 days, which is longer than ninety.",
+        "审查适用于成员国以外的投资者收购发电企业20%股权或取得其控制权、且该企业在波兰的营业收入超过1,000万欧元的情形；初步审查为30个工作日，正式审查最长120日，超过九十天。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
@@ -164,7 +164,7 @@
     },
     "supplyChainOrigin": {
       "dimension": "supplyChainOrigin",
-      "grade": 4,
+      "grade": 5,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],

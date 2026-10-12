@@ -1,9 +1,11 @@
 import { gridMapById } from '../gridMapRegistry.js';
 import { congestionFor } from '../congestionRegistry.js';
 
-const RO_GRID_MAP = gridMapById('ro-grid-map');
 
 export function buildROGridSection({ SRC, M }){
+  /* Looked up here, not at module load: this file is imported before the
+     market's map data registers itself. */
+  const RO_GRID_MAP = gridMapById('ro-grid-map');
   return {
     head:['Grid Connection — turn an ATR into deliverable capacity','并网 — 将ATR转化为可交付容量'],
     cap:['An investor guide to Romania’s network structure, connection evidence and 2026 anti-speculation reform. The map compares inherited topology, today’s queue pressure and the named reinforcements behind future connection offers.','面向投资者的罗马尼亚电网结构、并网证据及2026年反投机改革指南。地图对比既有拓扑、当前队列压力及未来并网要约背后的具名增容工程。'],

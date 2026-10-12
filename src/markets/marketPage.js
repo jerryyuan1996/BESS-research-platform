@@ -82,8 +82,8 @@ function renderLoadFailure(container, market, err){
 }
 
 const DISCLAIMER = [
-  'This dashboard supports, but does not replace, independent investment, legal, technical and financial analysis. Composite signals, recommended durations and suggested commercial terms are generated from the stated methodology and the data sources shown; they are not investment advice and should not be relied upon as the sole basis for a transaction decision.',
-  '本看板用于辅助而非替代独立的投资、法律、技术及财务分析。综合信号、建议时长及建议商业条款均基于所示方法及数据来源生成，不构成投资建议，不应作为交易决策的唯一依据。',
+  'This dashboard supports, but does not replace, independent investment, legal, technical and financial analysis. Grades, recommended durations and suggested commercial terms are generated from the stated methodology and the data sources shown; they are not investment advice and should not be relied upon as the sole basis for a transaction decision.',
+  '本看板用于辅助而非替代独立的投资、法律、技术及财务分析。评级、建议时长及建议商业条款均基于所示方法及数据来源生成，不构成投资建议，不应作为交易决策的唯一依据。',
 ];
 
 function renderPending(container, market){
