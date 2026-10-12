@@ -46,6 +46,7 @@ import { renderStack } from './normalizationView.js';
 import { renderEngine } from './allocationMatrix.js';
 import { renderCongestionView } from './congestionView.js';
 import { renderFindings } from './findings.js';
+import { renderLongLife } from './longLifeView.js';
 import { renderRefinementOverview } from './refinementOverview.js';
 
 const T = {
@@ -145,6 +146,8 @@ export function renderReturnsPage(app){
   renderEngine(main, list, homeState.exitYear);
   /* Commentary computed from the engine results above, then the evidence
      those results rest on. */
+  /* The same assets on a longer life, beside the engine (gate G12). */
+  renderLongLife(main, list);
   renderFindings(main, list, homeState.exitYear);
   renderRefinementOverview(main, list, homeState.exitYear);
   /* Congestion is the one revenue line the unlevered model does not carry. */

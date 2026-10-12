@@ -53,10 +53,11 @@ import { byExpected } from '../governance/triggers.js';
 import { ITEM_KIND_LABEL, ITEM_STATUS_LABEL, limitInputs } from '../entry/ledger.js';
 import { assessMarket } from '../entry/assessment.js';
 import { entryReturn } from '../entry/entryReturn.js';
+import { longLife } from '../longlife/longLife.js';
 import { DURATION_BASIS_LABEL } from '../governance/buildPathway.js';
 import { caseViewFor, caseLedgerFor } from '../markets/caseRegistry.js';
 import { byId } from '../markets/registry.js';
-import { FX } from '../comparison/assumptions.js';
+import { FX, MAINTAINED_FOM_SHARE } from '../comparison/assumptions.js';
 
 /* Tone carries no judgement the label does not already state; it only makes
    a row of four scannable. "Not accessible" and "Avoid" are deliberately not
@@ -347,6 +348,33 @@ function entryReturnCard({ market, ledger }){
   return c;
 }
 
+/* ---- the same asset, held longer (gate G12) -------------------------------- */
+
+function longLifeCard({ market }){
+  const v = longLife(market);
+  if (v.withheld) return null;
+  const c = card(['The same asset, held longer', '同一资产，持有更久'], [badge('calc'), badge('illus')]);
+  c.append(h('div', { class: 'cap' }, L([
+    'The engine prices fifteen years and assigns nothing after them. These figures extend its own cash flows and sit beside its asset IRR; they do not replace it, and no grade reads them.',
+    '比较引擎只测算十五年，其后不计任何价值。以下数字延伸的是引擎自身的现金流，与资产IRR并列展示；它们不取代资产IRR，任何评级均不读取它们。',
+  ])));
+  c.append(h('div', { class: 'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {},
+      h('th', {}, L(['Life', '寿命'])),
+      h('th', { class: 'num' }, L(['Capacity fades (default)', '容量逐年衰减（默认）'])),
+      h('th', { class: 'num' }, L(['Capacity maintained (NREL convention)', '容量维持在额定值（NREL口径）'])))),
+    h('tbody', {}, ...v.windows.map(w => h('tr', {},
+      h('td', {}, h('b', {}, L([w.years + ' years', w.years + '年']))),
+      h('td', { class: 'num' }, pct(w.fading)),
+      h('td', { class: 'num' }, pct(w.maintained))))))));
+  const share = (MAINTAINED_FOM_SHARE * 100).toFixed(0) + '%';
+  c.append(h('div', { class: 'cap', style: 'margin-top:6px;' }, L([
+    'Fading is the default: with warranty extension and a long-term service agreement paid yearly, nothing further is paid for augmentation. It carries the market line on at its own rate of degradation, keeps the secured line and costs at their year-15 level and adds nothing at the end. Maintained is a comparison: it holds the market line at its rating for a yearly operating cost of ' + share + ' of gross capex' + (v.upkeepPerMW > 0 ? ', which adds ' + usd(v.upkeepPerMW) + ' per MW a year here' : ', which the operating cost this market already carries covers') + '. The ' + share + ' is the figure the US national laboratory gives for a four-hour battery on a fifteen-year life.',
+    '衰减情形为默认情形：在按年支付延保与长期服务协议的前提下，不再发生额外的容量增补成本。市场化收入继续按自身衰减率下降，有保障收入与成本维持第15年水平，期末不计残值。维持情形仅作对照：市场化收入保持额定水平，代价是每年的运营成本取总投资的' + share + (v.upkeepPerMW > 0 ? '，在本市场相当于每年每MW增加' + usd(v.upkeepPerMW) : '，而本市场自身的运营成本已高于此数') + '。' + share + '是美国国家实验室针对四小时电池、十五年寿命给出的数字。',
+  ])));
+  return c;
+}
+
 export function entryPanel(marketId){
   const data = load(marketId);
   if (!data || !data.ledger) return [];
@@ -392,6 +420,8 @@ export function entryPanel(marketId){
   out.push(c);
 
   out.push(entryReturnCard(data));
+  const longer = longLifeCard(data);
+  if (longer) out.push(longer);
 
   /* Who that shuts out. Compared at origination, where these limits bind. */
   const limits = card(['Which investors that shuts out, at origination', '在项目发起阶段，这把哪些投资者挡在门外'], []);
