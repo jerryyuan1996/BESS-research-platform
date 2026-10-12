@@ -189,8 +189,12 @@ const BUDGET = {
        LOWERED FROM 39 TO 8 at the home inversion, because the chunk split in
        two. The home page's verdict board needs the same method layer, so Rollup
        moved it into a chunk both share, named `investment-method` below. What
-       is left here is the two panels' own rendering. Measured 5.20. */
-    'investment-case': 8,
+       is left here is the two panels' own rendering. Measured 5.20.
+
+       RAISED FROM 8 TO 10 (plan phase 5) for the entry-adjusted return: the
+       module that computes its four lines and the card that prints them, in
+       two languages. Measured 8.36 from 5.32. No market data is in it. */
+    'investment-case': 10,
     /* The method layer itself: anchors, the four investors' tables, the view
        store and the ledgers. Fetched by the home page's board and by the
        Investment Case and Entry tabs, whichever comes first. This is where the

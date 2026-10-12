@@ -52,6 +52,8 @@ import { STAGE_LABEL } from '../governance/buildPathway.js';
 import { byExpected } from '../governance/triggers.js';
 import { ITEM_KIND_LABEL, ITEM_STATUS_LABEL, limitInputs } from '../entry/ledger.js';
 import { assessMarket } from '../entry/assessment.js';
+import { entryReturn } from '../entry/entryReturn.js';
+import { DURATION_BASIS_LABEL } from '../governance/buildPathway.js';
 import { caseViewFor, caseLedgerFor } from '../markets/caseRegistry.js';
 import { byId } from '../markets/registry.js';
 import { FX } from '../comparison/assumptions.js';
@@ -110,7 +112,7 @@ const line = (label, ...kids) => h('div', { style: 'margin-top:6px;' }, h('b', {
 
 /* ---- the verdict for one investor ------------------------------------------- */
 
-function verdictCard(a, view){
+function verdictCard(a, view, entry = null){
   const arch = ARCHETYPES[a.archetype];
   const v = a.verdict;
   const c = card(arch.label, []);
@@ -134,6 +136,13 @@ function verdictCard(a, view){
   }
   c.append(because);
   c.append(h('div', { class: 'note' }, h('b', {}, L(['Despite', '反方理由']) + ' — '), L(v.despite)));
+  if (entry && !entry.withheld){
+    c.append(line(['The return it reads', '其所看的回报'],
+      L(['a buyer could pay ', '买方可支付 ']) + perMW(entry.rtbValuePerMW)
+      + L([' for a ready-to-build project', '收购具备开工条件的项目'])
+      + (entry.attrition === null ? '' : L(['; break-even attrition ', '；盈亏平衡的失败率 ']) + (entry.atMost ? L(['at most ', '至多 ']) : '') + (entry.attrition * 100).toFixed(0) + '%')
+      + L(['. An ordering between markets, not a price; it scores nothing. See Entry.', '。仅用于市场间排序，并非价格；不计入评分。详见“进入与交付”。'])));
+  }
   const mine = verdictNote(view.marketId, a.archetype);
   if (mine) c.append(privateLine(mine));
 
@@ -201,7 +210,11 @@ export function investmentCasePanel(marketId){
   ])));
 
   const grid = h('div', { class: 'grid g2' });
-  for (const id of ARCHETYPE_IDS) grid.append(verdictCard(result.byArchetype[id], view));
+  /* The developer's own return is what a buyer would pay for a ready-to-build
+     megawatt. Shown on its card; it scores nothing, because making it score
+     would change the investor tables, which are methodology. */
+  const entry = entryReturn(data.market, data.ledger, FX);
+  for (const id of ARCHETYPE_IDS) grid.append(verdictCard(result.byArchetype[id], view, id === 'developer' ? entry : null));
   out.push(grid);
 
   /* Pillar by pillar, per investor. Deliberately no market-level total. */
@@ -286,6 +299,54 @@ export function investmentCasePanel(marketId){
  * The Entry section for one market: what is spent or pledged before the
  * investment decision, and which investors' limits that breaches.
  */
+/* ---- the return once getting in is counted --------------------------------- */
+
+const pct = (v) => (v === null || v === undefined ? '—' : (v * 100).toFixed(1) + '%');
+const perMW = (v) => (v < 0 ? '−' : '') + usd(Math.abs(v)) + L([' per MW', ' /MW']);
+
+function entryReturnCard({ market, ledger }){
+  const c = card(['The return once getting in is counted', '计入进入成本之后的回报'], [badge('calc'), badge('illus')]);
+  c.append(h('div', { class: 'cap' }, L([
+    'The comparison engine prices a project that arrives ready to build and has cost nothing to get there. These lines sit beside that figure and never replace it.',
+    '比较引擎测算的是一个已具备开工条件、此前没有任何花费的项目。以下各行与该数字并列展示，并不取代它。',
+  ])));
+  const r = entryReturn(market, ledger, FX);
+  if (r.withheld){
+    c.append(h('div', { class: 'note' }, L(['The engine does not price this market, so there is no return to adjust.', '比较引擎未对该市场定价，因此没有可供调整的回报。'])));
+    return c;
+  }
+  const most = r.atMost ? L(['at most ', '至多 ']) : '';
+  const row = (label, value, detail) => h('tr', {},
+    h('td', {}, h('b', {}, L(label))), h('td', { class: 'num' }, value), h('td', {}, L(detail)));
+
+  const adjusted = r.entryAdjusted
+    ? most + pct(r.entryAdjusted.low) + L([' to ', ' 至 ']) + pct(r.entryAdjusted.high)
+    : L(['Not yet checked', '尚未核查']);
+  const adjustedDetail = r.entryAdjusted
+    ? [`Development of ${r.timing.monthsToRtb[0]} to ${r.timing.monthsToRtb[1]} months and a build of ${r.timing.buildMonths[0]} to ${r.timing.buildMonths[1]}, with the ledger's spend spread over development and its security held as cash. Basis of the range: ${DURATION_BASIS_LABEL[r.entryAdjusted.basis][0].toLowerCase()}. ${r.timing.note[0]}`,
+       `开发期${r.timing.monthsToRtb[0]}至${r.timing.monthsToRtb[1]}个月、建设期${r.timing.buildMonths[0]}至${r.timing.buildMonths[1]}个月；台账中的支出在开发期内平均分摊，保证金按现金占用计。区间依据：${DURATION_BASIS_LABEL[r.entryAdjusted.basis][1]}。${r.timing.note[1]}`]
+    : ['No development or build time is stated for this market, and the figure is never built on the engine\'s twelve-month seed.', '该市场尚未给出开发期与建设期，而该数字绝不以引擎默认的十二个月建设期推算。'];
+
+  c.append(h('div', { class: 'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {},
+      h('th', {}, L(['Line', '指标'])), h('th', { class: 'num' }, L(['Figure', '数值'])), h('th', {}, L(['What it is', '含义'])))),
+    h('tbody', {},
+      row(['Asset IRR', '资产IRR'], pct(r.assetIrr),
+        ['The engine\'s hold IRR: ready to build, twelve months to build, nothing spent beforehand.', '比较引擎的持有期IRR：已具备开工条件、建设期十二个月、此前没有任何花费。']),
+      row(['Entry-adjusted IRR', '计入进入成本的IRR'], adjusted, adjustedDetail),
+      row(['Break-even attrition', '盈亏平衡的失败率'], r.attrition === null ? L(['Not yet checked', '尚未核查']) : most + (r.attrition * 100).toFixed(0) + '%',
+        ['The share of development attempts that can fail before a programme of them stops paying, when each success is sold at the value below. True attrition is published nowhere; this is the line to judge it against.', '在每个成功项目按下述价值出售的前提下，一组开发项目中可以失败而整体仍不亏损的比例。真实失败率没有任何公开数据；这是用来衡量它的参照线。']),
+      row(['Implied ready-to-build value', '隐含的开工条件项目价值'], perMW(r.rtbValuePerMW),
+        ['What a buyer pricing on the engine\'s own exit yields could pay for a consented, connected megawatt: the asset\'s value less its build cost. An ordering between markets, not a price, until the engine carries a terminal value.', '按比较引擎自身的退出收益率定价的买方，愿意为一个已获许可、已并网的MW支付的金额：资产价值减去建设成本。在引擎纳入终值之前，它只用于市场间排序，并非价格。'])))));
+
+  const notes = [];
+  if (r.atMost) notes.push(['"At most" because the ledger has an item before the decision with no amount: the true cost can only be higher.', '标注“至多”，是因为台账中有决策前的项目没有金额：真实成本只会更高。']);
+  notes.push(['Security is treated as cash, which is an upper bound on what it costs: a bank guarantee costs a fee, not its face value. Where the ledger says how an item is lost, a failed attempt is taken to lose all of it.', '保证金按现金占用处理，这是其成本的上限：银行保函的成本是手续费，而非其面额。台账写明了损失情形的项目，按开发失败时全额损失计。']);
+  if (r.rtbValuePerMW < 0) notes.push(['The value is negative: at the engine\'s yields a buyer would not pay for this project at all, so no development programme pays.', '该价值为负：按引擎的收益率，买方根本不会为该项目付费，因此任何开发项目组合都无法盈利。']);
+  for (const n of notes) c.append(h('div', { class: 'cap', style: 'margin-top:6px;' }, L(n)));
+  return c;
+}
+
 export function entryPanel(marketId){
   const data = load(marketId);
   if (!data || !data.ledger) return [];
@@ -329,6 +390,8 @@ export function entryPanel(marketId){
         h('td', {}, chip(STATUS_TONE[item.status], L(ITEM_STATUS_LABEL[item.status])))))))));
   }
   out.push(c);
+
+  out.push(entryReturnCard(data));
 
   /* Who that shuts out. Compared at origination, where these limits bind. */
   const limits = card(['Which investors that shuts out, at origination', '在项目发起阶段，这把哪些投资者挡在门外'], []);
