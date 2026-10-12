@@ -38,9 +38,21 @@ Nothing in this close-out touched `agent/`, either live list or the workflow's p
    never built. It needs a dated stage for every ledger item, and only Western Australia and
    Romania have a stated development and build range. For the other thirteen it would be a curve
    with no time axis. **Recommended next**, for those two markets first.
-2. **Time to first revenue as its own module (§4.3).** The plan names
-   `src/entry/timeToRevenue.js`. What exists is the `timing` block on two ledgers and the
-   time-to-revenue grade on all fifteen. Gate G37 is where the other thirteen would come from.
+2. **Time to first revenue as a stated range (§4.3).** Two ledgers carry one, Western Australia and
+   Romania, and all fifteen markets carry the grade. A source for the other thirteen was looked for
+   on 2026-10-12 and not found, so on the analyst's instruction the grades stand as they are:
+   - The source registers already opened hold deadlines for single steps (three months to an offer
+     in Great Britain, twelve months to a building permit in Romania) and no end-to-end range.
+   - Berkeley Lab's *Queued Up* reports the time from interconnection request to operation by
+     region, which would serve the three US markets. The report is too large to open here and its
+     two summary pages refused the request. A search summary gives a national median of 55 months
+     for projects built in 2024; that is not a regional figure and was not opened, so it is not
+     used.
+   - For Europe a search found only single statements from one developer or one law firm, none of
+     them a range for a market.
+   - Great Britain and Finland have a build pathway with a duration on every stage. A range could
+     be read off each the way Western Australia's and Romania's were, as a convention and not a
+     source. That was not done, because a source is what was asked for. Gate G37 stays open.
 3. **Scout cards and a live automated change (§6.4, §7, phases 3 and 4).** As §2.
 4. **The connection scorecard (§6.3).** Closed later on 2026-10-12, on the analyst's instruction,
    and further than the plan asked: the scorecard, its index, the `/returns` metric and every
