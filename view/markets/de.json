@@ -1,7 +1,210 @@
 {
   "marketId": "de",
   "thesis": null,
-  "grades": {},
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Third of fourteen markets on hold IRR, 14.6%.",
+        "持有期IRR为14.6%，在十四个市场中排名第三。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "foerderstedtToll"
+      ],
+      "reason": [
+        "The reference project secures nothing; a five-year toll on 80% of a 300 MW battery was announced in June 2026, so a secured route has been signed in the market.",
+        "参考项目没有任何锁定收入；2026年6月公布了一份为期五年、覆盖一座300MW电池80%容量的租赁协议，说明该市场已有项目签下锁定收入的途径。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "metric": {
+        "perMW": 2160,
+        "perProject": 216000,
+        "shareOfCost": 0.0024,
+        "currency": "USD"
+      },
+      "evidence": [
+        "entry-ledger",
+        "rgvDoc"
+      ],
+      "reason": [
+        "At transmission level, at least 0.24% of project cost before the decision: a EUR 50,000 application fee and a EUR 1,500 per MW deposit, credited against the later connection contribution. Development spend is not sourced.",
+        "在输电网层面，决策前的风险资本至少为项目投资的0.24%：5万欧元申请费，加每MW 1,500欧元的保证金，后者可抵扣其后的并网工程费分摊。前期开发支出尚无来源。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "improving",
+      "basis": "official",
+      "trendCause": [
+        "From April 2026 the four transmission operators replaced first-come, first-served with a published procedure and published scoring criteria.",
+        "自2026年4月起，四家输电运营商以公开的程序和评分标准取代了先到先得。"
+      ],
+      "evidence": [
+        "rgvDoc"
+      ],
+      "reason": [
+        "The transmission operators publish the process, the minimum requirements, the scoring criteria, the cycle dates and the capacity available at each connection point. The procedure is in its first cycle, and distribution-level connections are outside it.",
+        "输电运营商公布了流程、最低要求、评分标准、周期日程以及各并网点的可用容量。该程序尚处于第一个周期，配电网层面的并网不在其范围内。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "deteriorating",
+      "basis": "official",
+      "trendCause": [
+        "Transmission connection requests from large batteries reached 211 GW by the third quarter of 2025, against about 51 GW of commitments issued.",
+        "截至2025年第三季度，大型电池提出的输电网并网申请已达211GW，而已发出的并网承诺约为51GW。"
+      ],
+      "evidence": [
+        "rgvPress",
+        "rgvDoc"
+      ],
+      "reason": [
+        "Capacity is allocated by a maturity ranking in fixed cycles. The operators say demand will go on exceeding supply, and applications still queued under the old rule are transferred into the new procedure.",
+        "容量按成熟度排序、分固定周期分配。运营商表示需求仍将持续超过供给，按旧规则仍在排队的申请将转入新程序。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "awv55a",
+        "awg14a",
+        "kritisAnnex"
+      ],
+      "reason": [
+        "Investment review reaches a non-EU acquirer of a company that operates a critical facility. The published threshold for a storage plant is 104 MW, above the 100 MW reference project; a review once opened has four months to decide.",
+        "投资审查适用于非欧盟投资者收购关键设施运营企业的情形。储能设施的公开门槛为104MW，高于100MW的参考项目；审查一旦启动，须在四个月内作出决定。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "agnes"
+      ],
+      "reason": [
+        "Grid-fee relief for storage ends in August 2029, and the regulator's successor framework is still a draft; it keeps relief only for projects that take their investment decision before it is final.",
+        "储能的电网费用豁免将于2029年8月到期，监管机构的接续框架仍为草案；仅在其最终定稿之前作出投资决策的项目可继续享受减免。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
   "verdicts": {},
   "triggers": [
     {

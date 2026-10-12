@@ -160,7 +160,9 @@ test('a graded market is graded on every dimension, so every archetype has a sco
   /* Half-graded is the state the arithmetic refuses to paper over: one missing
      dimension blanks its pillar and the fit. A market is entered whole. */
   const graded = (await committed.readAll()).filter(v => Object.keys(v.grades).length);
-  assert.deepEqual(graded.map(v => v.marketId).sort(), ['fi', 'gb', 'ro', 'wa'], 'the four corners');
+  /* The four corners, and each market since as the analyst graded it (plan
+     phase 5): Germany. */
+  assert.deepEqual(graded.map(v => v.marketId).sort(), ['de', 'fi', 'gb', 'ro', 'wa']);
   for (const view of graded){
     assert.deepEqual(Object.keys(view.grades).sort(), [...DIMENSION_IDS].sort(), `${view.marketId}: not graded on every dimension`);
     const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX, { on: ON });

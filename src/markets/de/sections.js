@@ -582,5 +582,17 @@ SEC_B.data = function (){
   ] };
 };
 
+/* Investment Case and Entry: the investment-view revision. The content is the
+   shared component, which reads this market's view and ledger as its dashboard
+   registered them. Germany has no build pathway yet, so Entry is the ledger. */
+SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+  { t: 'p', text: ['One of the higher modelled returns here with nothing secured in the reference project, and transmission connection requests from batteries several times what the grid plan sees a need for.', '模型回报在各市场中居前，但参考项目没有任何锁定收入；电池提出的输电网并网申请，是电网规划所需规模的数倍。'] },
+  { t: 'investment-case', marketId: 'de' },
+] });
+SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+  { t: 'p', text: ['At transmission level a flat application fee and a deposit of EUR 1,500 per MW fall due before the investment decision. The connection cost contribution is far larger and is listed without being counted, and development spend has no source, so the total is a lower bound.', '在输电网层面，最终投资决策之前须缴纳一笔定额申请费和每MW 1,500欧元的保证金。并网工程费分摊金额大得多，此处仅列示而不计入；前期开发支出没有来源，因此合计为下限。'] },
+  { t: 'entry-ledger', marketId: 'de' },
+] });
+
   return SECTIONS;
 }

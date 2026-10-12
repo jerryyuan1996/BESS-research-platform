@@ -29,21 +29,21 @@ import wa from '../../view/markets/wa.json' with { type: 'json' };
 import fi from '../../view/markets/fi.json' with { type: 'json' };
 import gb from '../../view/markets/gb.json' with { type: 'json' };
 import ro from '../../view/markets/ro.json' with { type: 'json' };
+import de from '../../view/markets/de.json' with { type: 'json' };
 
 import caiso from '../../view/markets/caiso.json' with { type: 'json' };
-import de from '../../view/markets/de.json' with { type: 'json' };
 import ie from '../../view/markets/ie.json' with { type: 'json' };
 import it from '../../view/markets/it.json' with { type: 'json' };
 import jpTokyo from '../../view/markets/jp_tokyo.json' with { type: 'json' };
 import nem from '../../view/markets/nem.json' with { type: 'json' };
 import pjm from '../../view/markets/pjm.json' with { type: 'json' };
 
-const VIEWS = [wa, fi, gb, ro];
+const VIEWS = [wa, fi, gb, ro, de];
 
 /* Every market file in view/markets, graded or not. tests/view.test.js checks
    this list against the directory, so a new file cannot be left out of the
    calendar by forgetting to import it. */
-const FILES = [...VIEWS, caiso, de, ie, it, jpTokyo, nem, pjm];
+const FILES = [...VIEWS, caiso, ie, it, jpTokyo, nem, pjm];
 
 const byMarket = new Map(VIEWS.map(v => [v.marketId, v]));
 
