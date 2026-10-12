@@ -292,10 +292,11 @@ test('judgement is view-store content; methodology cannot be written or proposed
     assert.equal(viewAuthority(notASection), AUTHORITY.METHODOLOGY);
   }
 
-  /* What did NOT move. The scoring fields are methodology. So are the old
-     thesis and status fields that still live in src/: the machine-writable
-     thesis is the view store's, and these stay human-set until they are
-     retired. */
+  /* What did NOT move. The scoring fields are methodology. So is the old
+     thesis field that still lives in src/: the machine-writable thesis is the
+     view store's. The composite score and the status chip were retired on
+     2026-10-12 and have no row; they still read as methodology because an
+     unknown field fails closed, and that is what is asserted here. */
   assert.equal(comparisonAuthority('score.composite'), AUTHORITY.METHODOLOGY);
   assert.equal(comparisonAuthority('score.connectionRisk'), AUTHORITY.METHODOLOGY);
   assert.equal(comparisonAuthority('narrative.thesis'), AUTHORITY.METHODOLOGY);

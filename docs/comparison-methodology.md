@@ -42,7 +42,7 @@ EXIT_Y_OPEX       = 0.08
 
 Debt capacity differs by market for *exactly the reasons this page measures*. Assuming a capital
 structure would smuggle the answer into the inputs. Instead the difference is expressed through the
-exit yields: contracted cash flow is priced at 7.5%, merchant at 11.5%.
+exit yields: contracted cash flow is priced at 6.5%, merchant at 10.5%.
 
 ## The calculation
 
@@ -125,7 +125,7 @@ contractedShare = eb₁ > 0 ? capY₁ / (capY₁ + mchY₁) : 0
 each priced at its own yield:
 
 ```
-exitVal = PV(capY[X…], 7.5%) + PV(mchY[X…], 11.5%) − PV(opex × (15−X) years, 8%)
+exitVal = PV(capY[X…], 6.5%) + PV(mchY[X…], 10.5%) − PV(opex × (15−X) years, 7%)
 irrExit = IRR([−net, eb₁ … eb_X + exitVal])
 moic    = (Σ eb₁…eb_X + exitVal) / net
 ```
@@ -169,10 +169,10 @@ mchY[y] = (merch + svc) × (1 − degr/100)^(y−1)
 Exit at year X prices each stream at its own risk:
 
 ```
-exitVal = PV(secY[X…], EXIT_Y_CONTRACTED 7.5%)
-        + PV(aucY[X…], EXIT_Y_AUCTION    11.5%)   ← market risk, not contracted
-        + PV(mchY[X…], EXIT_Y_MERCHANT   11.5%)
-        − PV(opex,     EXIT_Y_OPEX        8.0%)
+exitVal = PV(secY[X…], EXIT_Y_CONTRACTED 6.5%)
+        + PV(aucY[X…], EXIT_Y_AUCTION    10.5%)   ← market risk, not contracted
+        + PV(mchY[X…], EXIT_Y_MERCHANT   10.5%)
+        − PV(opex,     EXIT_Y_OPEX        7.0%)
 ```
 
 **This is the distinction that stops the model overstating Japan.** A one-year capacity award

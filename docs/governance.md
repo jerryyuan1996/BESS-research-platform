@@ -64,7 +64,8 @@ codebase decides that a value is machine-writable — everything asks there.
 it, the scout roster and the agent's reading list among them. A test walks the list and asserts that each module is behind both walls and that no spelling of
 one parses as a view-store path, for any author.
 
-The old `narrative.thesis` and manifest `status` fields still live in `src/` and stay `methodology`.
+The old `narrative.thesis` field still lives in `src/` and stays `methodology`. The manifest `status`
+field and the composite score were retired on 2026-10-12.
 The thesis a machine may write is the view store's own.
 
 ### Why `view` and `methodology` are separate

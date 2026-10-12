@@ -21,9 +21,9 @@ export const manifest = {
   locale: 'en-GB',                // BCP-47 — this market's own number formatting
   timezone: 'Europe/Brussels',    // IANA zone, for any timestamped series
 
-  /* `status` — the old one-chip investment stance — is optional and no longer
-     displayed. A new market does not need it: its stance is a verdict per
-     investor in view/markets/<id>.json. See schema.js. */
+  /* There is no `status`. The old one-chip investment stance was retired and
+     validation refuses it: a market's stance is a verdict per investor in
+     view/markets/<id>.json. See schema.js. */
   color: 'var(--s7)',             // CSS series colour. Pick an unused --s1..--s8.
 
   // ---- freshness metadata (brief section 21) -------------------------------

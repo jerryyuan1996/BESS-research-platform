@@ -102,7 +102,8 @@ on an unready market's economics.
 Required (validation fails without them): `id`, `slug`, `flag`, `shortName`, `name`, `currency`,
 `locale`, `color`.
 
-`status`, the old one-chip investment stance, is optional and no longer displayed: a market's stance
+`status`, the old one-chip investment stance, was retired on 2026-10-12 and a manifest that defines it
+is refused: a market's stance
 is now a verdict per investor in `view/markets/<id>.json`. Until a market is graded it appears on the
 home page's verdict board as "not yet graded", with its return.
 

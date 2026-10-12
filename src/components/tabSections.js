@@ -18,6 +18,7 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { card } from './card.js';
+import { mountTabGrades } from './investmentCaseLoader.js';
 
 /**
  * @param main      where the tab's content goes
@@ -29,6 +30,9 @@ import { card } from './card.js';
  */
 export function drawTab(main, where, { basePath, marketId, draw, after = () => {} }){
   let target = null;
+  /* Saturation and demand, or debt, exit and scale: the grades these sections
+     are the evidence for (plan section 6.2). */
+  if (marketId && (where.tab.id === 'competition' || where.tab.id === 'capital')) mountTabGrades(main, marketId, where.tab.id);
   for (const id of where.sections){
     const wrapper = h('div', { class: 'tab-section', 'data-section': id });
     main.append(wrapper);
