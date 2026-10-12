@@ -193,8 +193,15 @@ const BUDGET = {
 
        RAISED FROM 8 TO 10 (plan phase 5) for the entry-adjusted return: the
        module that computes its four lines and the card that prints them, in
-       two languages. Measured 8.36 from 5.32. No market data is in it. */
-    'investment-case': 10,
+       two languages. Measured 8.36 from 5.32. No market data is in it.
+
+       RAISED FROM 10 TO 15 for the exposure curve (plan section 6.2): the
+       module that lays a ledger along time, the chart that draws it, and the
+       card that states the convention behind its time axis and lists each
+       step, in two languages. Measured 13.31 from 9.62, which had already
+       taken the long-life card inside the room it had. No market data is in
+       it: another market's ledger is fetched as its own chunk. */
+    'investment-case': 15,
     /* The method layer itself: anchors, the four investors' tables, the view
        store and the ledgers. Fetched by the home page's board and by the
        Investment Case and Entry tabs, whichever comes first. This is where the
@@ -437,7 +444,13 @@ test('the home page\'s first view is within its budget', async (t) => {
     ro: 'does not return the signed allocation contract',
   };
   for (const [id, marker] of Object.entries(WORDS)){
-    assert.ok(markets.get(id)?.text.includes(marker), `the marker "${marker}" has gone stale, or ${id} no longer carries its own view and ledger`);
+    /* In the market's chunk or one it statically imports. Romania's ledger is
+       a chunk of its own beside its dashboard since the exposure curve: the
+       Entry tab of another market fetches it to draw the two on shared axes.
+       A Romania visit still loads it with the dashboard, and the home page
+       still must not, which is the assertion after this one. */
+    const own = [...closure(markets.get(id), byName)].filter(c => !first.has(c));
+    assert.ok(own.some(c => c.text.includes(marker)), `the marker "${marker}" has gone stale, or ${id} no longer carries its own view and ledger`);
     for (const chunk of first) assert.ok(!chunk.text.includes(marker), `${chunk.name}: carries "${marker}", which belongs to ${id}'s dashboard: a home-page module is importing whole views or ledgers again`);
   }
 });
