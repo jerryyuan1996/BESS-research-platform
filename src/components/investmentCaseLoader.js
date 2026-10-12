@@ -30,3 +30,17 @@ export function mountInvestmentCase(parent, marketId, which){
     holder.textContent = L(['This section could not be loaded.', '本节未能加载。']);
   });
 }
+
+/**
+ * The grades a tab's sections argue for, above them. Draws nothing for a tab
+ * that has none, and nothing if the code cannot be fetched: the sections below
+ * stand without it.
+ */
+export function mountTabGrades(parent, marketId, tabId){
+  const holder = h('div', {});
+  parent.append(holder);
+  import('./investmentCase.js').then(m => {
+    const c = m.tabGradesCard(marketId, tabId);
+    if (c){ c.style.marginBottom = '14px'; holder.replaceWith(c); } else holder.remove();
+  }).catch(() => holder.remove());
+}

@@ -344,7 +344,7 @@ SEC_B.pipeline = function (){
     { t:'card', title:['Named projects','具名项目'], badges:['illus'], blocks:[
       { t:'table', head:[['Project','项目'],['Owner','所有方'],['TSO zone','电网区域'],['MW','MW'],['Hours','时长'],['COD','投运'],['Stage','阶段']],
         num:[3,4],
-        rows: M.projects.map(p => [{b:[p.n, p.n]}, [p.owner, p.owner], [p.region, p.region],
+        rows: M.projects.map(p => [{b:[p.n, p.n]}, [p.owner ?? '—', p.owner ?? '—'], [p.region, p.region],
                                    String(p.mw), String(p.h), p.cod, {chip:'info', text:[p.st, p.st]}]) },
       { t:'cap', text:['Illustrative register assembled for this dashboard. Germany publishes installed capacity through the Marktstammdatenregister but not a project-level development pipeline with dates.',
                        '为本看板整理的示意登记表。德国通过市场主数据登记册公布已装机容量，但不公布含日期的项目级开发管线。'] },

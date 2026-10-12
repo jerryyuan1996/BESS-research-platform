@@ -174,7 +174,6 @@ export const COMPARISON_AUTHORITY = {
 
   // ---- score: the scoring methodology --------------------------------------
   // Explicitly out of automation's reach, including proposals.
-  'score.composite': AUTHORITY.METHODOLOGY,
   'score.connectionRisk': AUTHORITY.METHODOLOGY,
 
   // ---- capabilities: what mechanisms this market offers --------------------
@@ -401,8 +400,9 @@ export const COMPARISON_AUTHORITY = {
 /**
  * Manifest fields, classified.
  *
- * `status` is the house view — the investment stance chip. It is the single most
- * judgement-laden field in the manifest and automation must never touch it.
+ * `status`, the old investment stance chip, was retired on 2026-10-12 and is
+ * refused by validation, so it has no row. Like any unknown field it still
+ * reads as methodology, because the lookup fails closed.
  *
  * The freshness fields (`asOf`, `dataDate`, `lastVerified`, `sourceHealth`)
  * describe the SEED data and stay human-written. Live freshness is not recorded
@@ -428,7 +428,6 @@ export const MANIFEST_AUTHORITY = {
   dashboardId: AUTHORITY.CONFIG,
   region: AUTHORITY.CONFIG,
 
-  status: AUTHORITY.METHODOLOGY,        // house view
   modelVersion: AUTHORITY.METHODOLOGY,
 
   asOf: AUTHORITY.ANALYST,

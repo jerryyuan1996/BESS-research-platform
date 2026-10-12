@@ -194,6 +194,47 @@ function verdictCard(a, view, entry = null){
 
 /* ---- the investment case ------------------------------------------------------ */
 
+/* ---- the grade table, for any set of dimensions ------------------------------ */
+
+function gradeTable(view, on, marketId, dimensions){
+  return h('div', { class: 'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {},
+      h('th', {}, L(['Pillar', '支柱'])),
+      h('th', {}, L(['Dimension', '维度'])),
+      h('th', { class: 'num' }, L(['Grade', '评级'])),
+      h('th', {}, L(['What that grade means', '该评级的含义'])),
+      h('th', {}, L(['Basis', '依据'])))),
+    h('tbody', {}, dimensions.map(d => {
+      const g = view.grades[d.id];
+      const e = effectiveGrade(g, on);
+      const mine = g?.held ? heldNote(view.marketId, d.id) : null;
+      return h('tr', {},
+        h('td', {}, L(PILLAR_LABEL[d.pillar])),
+        h('td', {}, h('b', {}, L(d.label))),
+        h('td', { class: 'num' }, g ? e.grade + ' / 5' : '—',
+          e.applied ? h('div', {}, chip('info', L(['Practitioner view', '从业者观点']))) : null,
+          e.lapsed ? h('div', {}, chip('warn', L(['Practitioner view lapsed', '从业者观点已过期']))) : null),
+        h('td', {},
+          g ? L(anchorText(d.id, e.grade)) : L(['Not yet graded', '尚未评级']),
+          /* Both grades, always, when a held view exists. */
+          e.applied ? h('div', { class: 'note', style: 'margin-top:4px;' },
+            h('b', {}, e.held + ' · ' + L(['practitioner view', '从业者观点']) + '; '
+              + L(['public sources support ', '公开来源支持的评级为 ']) + e.sourced + '. '),
+            L(CONFIDENCE_LABEL[e.confidence]) + L(['; to be reviewed by ', '；复核日期 ']) + e.reviewBy + '.',
+            g.held.publicNote ? h('div', { style: 'margin-top:3px;' }, L(g.held.publicNote)) : null) : null,
+          e.lapsed ? h('div', { class: 'warnbox', style: 'margin-top:4px;' }, L([
+            `A practitioner view of ${e.held} was due for review by ${e.reviewBy} and has lapsed. The grade shown is what public sources support.`,
+            `从业者观点（评级${e.held}）应于${e.reviewBy}前复核，现已过期。此处所示为公开来源支持的评级。`])) : null,
+          g?.reason ? h('div', { class: 'cap', style: 'margin-top:3px;' },
+            e.applied ? h('b', {}, L(['Public sources: ', '公开来源：'])) : null, L(g.reason)) : null,
+          gradeNote(view.marketId, d.id) ? privateLine(gradeNote(view.marketId, d.id)) : null,
+          mine ? privateLine(mine) : null,
+          /* Only where the overlay exists, so only on the analyst's screen. */
+          g?.held && !mine && hasNotes() ? privateLine(['This held view has no private reason in the overlay. Add one.', '该从业者观点在私有备注中没有对应理由，请补充。']) : null),
+        h('td', {}, g ? chip(g.basis === BASIS.PRACTITIONER ? 'info' : 'good', L(BASIS_LABEL[g.basis])) : null));
+    }))));
+}
+
 /**
  * The Investment Case section for one market, as an array of cards, or an
  * empty array when the market has no view.
@@ -253,42 +294,7 @@ export function investmentCasePanel(marketId){
   grades.append(h('div', { class: 'cap' }, h('a', { href: `/changes?market=${marketId}` }, L([
     'Who changed these, and on what evidence →', '这些评级与结论由谁改动、依据何在 →',
   ]))));
-  grades.append(h('div', { class: 'tbl-wrap' }, h('table', {},
-    h('thead', {}, h('tr', {},
-      h('th', {}, L(['Pillar', '支柱'])),
-      h('th', {}, L(['Dimension', '维度'])),
-      h('th', { class: 'num' }, L(['Grade', '评级'])),
-      h('th', {}, L(['What that grade means', '该评级的含义'])),
-      h('th', {}, L(['Basis', '依据'])))),
-    h('tbody', {}, DIMENSIONS.map(d => {
-      const g = view.grades[d.id];
-      const e = effectiveGrade(g, on);
-      const mine = g?.held ? heldNote(view.marketId, d.id) : null;
-      return h('tr', {},
-        h('td', {}, L(PILLAR_LABEL[d.pillar])),
-        h('td', {}, h('b', {}, L(d.label))),
-        h('td', { class: 'num' }, g ? e.grade + ' / 5' : '—',
-          e.applied ? h('div', {}, chip('info', L(['Practitioner view', '从业者观点']))) : null,
-          e.lapsed ? h('div', {}, chip('warn', L(['Practitioner view lapsed', '从业者观点已过期']))) : null),
-        h('td', {},
-          g ? L(anchorText(d.id, e.grade)) : L(['Not yet graded', '尚未评级']),
-          /* Both grades, always, when a held view exists. */
-          e.applied ? h('div', { class: 'note', style: 'margin-top:4px;' },
-            h('b', {}, e.held + ' · ' + L(['practitioner view', '从业者观点']) + '; '
-              + L(['public sources support ', '公开来源支持的评级为 ']) + e.sourced + '. '),
-            L(CONFIDENCE_LABEL[e.confidence]) + L(['; to be reviewed by ', '；复核日期 ']) + e.reviewBy + '.',
-            g.held.publicNote ? h('div', { style: 'margin-top:3px;' }, L(g.held.publicNote)) : null) : null,
-          e.lapsed ? h('div', { class: 'warnbox', style: 'margin-top:4px;' }, L([
-            `A practitioner view of ${e.held} was due for review by ${e.reviewBy} and has lapsed. The grade shown is what public sources support.`,
-            `从业者观点（评级${e.held}）应于${e.reviewBy}前复核，现已过期。此处所示为公开来源支持的评级。`])) : null,
-          g?.reason ? h('div', { class: 'cap', style: 'margin-top:3px;' },
-            e.applied ? h('b', {}, L(['Public sources: ', '公开来源：'])) : null, L(g.reason)) : null,
-          gradeNote(view.marketId, d.id) ? privateLine(gradeNote(view.marketId, d.id)) : null,
-          mine ? privateLine(mine) : null,
-          /* Only where the overlay exists, so only on the analyst's screen. */
-          g?.held && !mine && hasNotes() ? privateLine(['This held view has no private reason in the overlay. Add one.', '该从业者观点在私有备注中没有对应理由，请补充。']) : null),
-        h('td', {}, g ? chip(g.basis === BASIS.PRACTITIONER ? 'info' : 'good', L(BASIS_LABEL[g.basis])) : null));
-    })))));
+  grades.append(gradeTable(view, on, marketId, DIMENSIONS));
   out.push(grades);
 
   return out;
@@ -458,4 +464,35 @@ export function entryPanel(marketId){
     })))));
   out.push(limits);
   return out;
+}
+
+/* ---- the grades behind one tab ---------------------------------------------- */
+
+/** Which dimensions each tab argues for, beyond the two tabs that have a panel. */
+const TAB_DIMENSIONS = {
+  competition: ['saturation', 'demandGrowth'],
+  capital: ['debtAvailability', 'exitLiquidity', 'scaleRepeatability'],
+};
+
+const TAB_GRADES_TITLE = {
+  competition: ['How this market is graded on competition and demand', '该市场在竞争与需求方面的评级'],
+  capital: ['How this market is graded on capital and exit', '该市场在资本与退出方面的评级'],
+};
+
+/**
+ * The grades a tab's sections are evidence for, as one card, or null when the
+ * tab has none or the market has no view. The same rows as the Investment Case
+ * tab draws, so a grade reads the same wherever it is met.
+ */
+export function tabGradesCard(marketId, tabId){
+  const ids = TAB_DIMENSIONS[tabId];
+  const data = ids ? load(marketId) : null;
+  if (!data) return null;
+  const c = card(TAB_GRADES_TITLE[tabId], []);
+  c.append(h('div', { class: 'cap' }, L([
+    'The sections below are the evidence; these are the grades they support. Each is read differently by each investor, on the Investment Case tab.',
+    '下方各节是证据，这里是它们所支撑的评级。各类投资者对每项评级的解读不同，详见“投资判断”页。',
+  ])));
+  c.append(gradeTable(data.view, data.on, marketId, DIMENSIONS.filter(d => ids.includes(d.id))));
+  return c;
 }

@@ -201,26 +201,30 @@ Step-by-step: [`docs/adding-a-market.md`](docs/adding-a-market.md).
 
 ## Markets
 
-**11 allocation markets · 9 detail dashboards.** Those are different counts on purpose — Tokyo,
+**15 allocation markets · 13 detail dashboards.** Those are different counts on purpose — Tokyo,
 Kyushu and Hokkaido are three exposures sharing one Japan research dashboard.
 
-| Market | Route | Dashboard | Lineage |
-|---|---|---|---|
-| Western Australia — WEM | `/markets/western-australia` | 11 tabs | hand-written sections |
-| Australia — NEM | `/markets/nem` | 11 tabs | shared block engine |
-| Great Britain | `/markets/great-britain` | 11 tabs | shared block engine |
-| Germany | `/markets/germany` | 11 tabs | shared block engine |
-| Italy | `/markets/italy` | 11 tabs | shared block engine |
-| Ireland — SEM | `/markets/ireland` | 11 tabs | shared block engine |
-| Romania | `/markets/romania` | 11 tabs | shared block engine |
-| Poland | `/markets/poland` | 11 tabs | shared block engine |
-| Japan — Tokyo Area | `/markets/japan-tokyo` | 11 tabs, Tokyo lens | shared block engine |
-| Japan — Kyushu Area | `/markets/japan-kyushu` | 11 tabs, Kyushu lens | shared block engine |
-| Japan — Hokkaido Area | `/markets/japan-hokkaido` | 11 tabs, Hokkaido lens | shared block engine |
+Every dashboard has the same seven tabs: Investment Case, Market Story, Revenue & Design, Entry &
+Delivery, Competition & Demand, Capital & Exit, Evidence. Every market carries grades and a verdict
+for each of four investors in `view/markets/<id>.json`.
 
-Add `?region=compare` to any Japan route to see all three regions side by side.
-
-All 103 tab renders complete with zero console errors.
+| Market | Route | Lineage |
+|---|---|---|
+| Western Australia — WEM | `/markets/western-australia` | hand-written sections |
+| Australia — NEM | `/markets/nem` | shared block engine |
+| Great Britain | `/markets/great-britain` | shared block engine |
+| Germany | `/markets/germany` | shared block engine |
+| Italy | `/markets/italy` | shared block engine |
+| Ireland — SEM | `/markets/ireland` | shared block engine |
+| Romania | `/markets/romania` | shared block engine |
+| Poland | `/markets/poland` | shared block engine |
+| Finland | `/markets/finland` | shared block engine; return withheld |
+| United States — PJM | `/markets/pjm` | shared block engine |
+| United States — ERCOT | `/markets/ercot` | shared block engine |
+| United States — CAISO | `/markets/caiso` | shared block engine |
+| Japan — Tokyo Area | `/markets/japan-tokyo` | shared block engine, Tokyo lens |
+| Japan — Kyushu Area | `/markets/japan-kyushu` | shared block engine, Kyushu lens |
+| Japan — Hokkaido Area | `/markets/japan-hokkaido` | shared block engine, Hokkaido lens |
 
 ### Japan — three exposures, one rulebook
 
