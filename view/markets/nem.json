@@ -1,8 +1,314 @@
 {
   "marketId": "nem",
   "thesis": null,
-  "grades": {},
-  "verdicts": {},
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Eleventh of fourteen markets on hold IRR, 3.1%.",
+        "持有期IRR为3.1%，在十四个市场中排名第十一。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "cis"
+      ],
+      "reason": [
+        "87% of first-year revenue is secured for fifteen years under a representative tender award; the terms of actual awards are not public.",
+        "在代表性的招标中标情景下，首年收入的87%锁定十五年；实际中标合同的条款并不公开。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "firbSecurity"
+      ],
+      "reason": [
+        "A foreign person must seek approval before starting, or taking a direct interest in, a national security business, and electricity is a critical infrastructure sector. The statutory decision period has not been confirmed.",
+        "外国投资者在开展或直接入股“国家安全业务”之前须取得批准，而电力属于关键基础设施行业。法定决定期限尚未确认。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "nelson",
+        "cis"
+      ],
+      "reason": [
+        "The tender scheme's successor is at draft legislation and the timing of the remaining rounds is not settled; contracts already awarded keep their terms.",
+        "招标机制的接续方案尚处于立法草案阶段，其余各轮的时间安排尚未确定；已授予的合同条款不变。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A tender award secures most of a project's revenue for fifteen years, for the projects that win one.",
+            "招标中标可为项目锁定十五年的大部分收入，但仅限于中标项目。"
+          ]
+        },
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "Lenders finance storage here without recourse, including on merchant exposure.",
+            "这里的贷款人愿意为储能项目提供无追索融资，包括存在市场化敞口的项目。"
+          ]
+        },
+        {
+          "dimension": "scaleRepeatability",
+          "text": [
+            "Five price regions and several network providers leave room for a portfolio.",
+            "五个价区、多家电网服务商，为组合布局留出了空间。"
+          ]
+        }
+      ],
+      "despite": [
+        "The modelled return on the reference project is 3.1%, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报仅为3.1%，因此成败取决于买入价格与实际持有的合同。"
+      ],
+      "changesIf": [
+        "nem-successor-scheme-first-round"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "build-position",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A tender award secures most of a project's revenue for fifteen years, for the projects that win one.",
+            "招标中标可为项目锁定十五年的大部分收入，但仅限于中标项目。"
+          ]
+        },
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "Lenders finance storage here without recourse, including on merchant exposure.",
+            "这里的贷款人愿意为储能项目提供无追索融资，包括存在市场化敞口的项目。"
+          ]
+        },
+        {
+          "dimension": "exitLiquidity",
+          "text": [
+            "Operating assets and platforms change hands regularly.",
+            "在运资产与平台交易频繁。"
+          ]
+        }
+      ],
+      "despite": [
+        "The modelled return on the reference project is 3.1%, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报仅为3.1%，因此成败取决于买入价格与实际持有的合同。"
+      ],
+      "changesIf": [
+        "nem-successor-scheme-first-round"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "not-accessible",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "scaleRepeatability",
+          "text": [
+            "The 280 MW reference project costs about USD 256m, above the largest single project this investor funds; a smaller project or a minority stake is a different route.",
+            "280MW参考项目的投资约为2.56亿美元，超出这类投资者单个项目的出资上限；较小的项目或少数股权属于另一条路径。"
+          ]
+        }
+      ],
+      "despite": [
+        "The modelled return on the reference project is 3.1%, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报仅为3.1%，因此成败取决于买入价格与实际持有的合同。"
+      ],
+      "changesIf": [],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Connection capacity is rationed and obtainable, at the cost of loss factors and curtailment.",
+            "并网容量需要争取但拿得到，代价是网损系数与弃电。"
+          ]
+        },
+        {
+          "dimension": "exitLiquidity",
+          "text": [
+            "Operating assets and platforms change hands regularly.",
+            "在运资产与平台交易频繁。"
+          ]
+        }
+      ],
+      "despite": [
+        "The modelled return on the reference project is 3.1%, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报仅为3.1%，因此成败取决于买入价格与实际持有的合同。"
+      ],
+      "changesIf": [
+        "nem-successor-scheme-first-round"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
     {
       "id": "nem-successor-scheme-first-round",

@@ -37,6 +37,8 @@ import { createViewStore, ViewRejected, VIEW_ROOT } from '../scripts/view/writer
 import { byId } from '../src/markets/registry.js';
 import { ARCHETYPE_IDS, DIMENSION_IDS } from '../src/governance/investability.js';
 import { SOURCE_DECISION_PROFILE } from '../src/governance/triggers.js';
+import { markets as registered } from '../src/markets/registry.js';
+import { runBaseCase } from '../src/comparison/engine.js';
 
 const committed = createViewStore();
 
@@ -144,7 +146,9 @@ test('every committed trigger cites a source that exists', async () => {
 test('every committed grade cites evidence a reader can open, or says it is practitioner judgement', async () => {
   for (const view of await committed.readAll()){
     if (!Object.keys(view.grades).length) continue;
-    const { SRC } = await import(`../src/markets/${view.marketId.replace('_', '-')}/sources.js`);
+    /* Japan's three allocation points share one dashboard and one register. */
+    const dir = view.marketId.startsWith('jp_') ? 'jp' : view.marketId.replace('_', '-');
+    const { SRC } = await import(`../src/markets/${dir}/sources.js`);
     for (const [id, record] of Object.entries(view.grades)){
       if (record.basis === BASIS.PRACTITIONER) continue;
       for (const key of record.evidence){
@@ -158,7 +162,9 @@ test('a graded market is graded on every dimension, so every archetype has a sco
   /* Half-graded is the state the arithmetic refuses to paper over: one missing
      dimension blanks its pillar and the fit. A market is entered whole. */
   const graded = (await committed.readAll()).filter(v => Object.keys(v.grades).length);
-  assert.deepEqual(graded.map(v => v.marketId).sort(), ['fi', 'gb', 'ro', 'wa'], 'the four corners');
+  /* The four corners first, then the other eleven as the analyst graded them
+     (plan phase 5). Every registered market is graded now. */
+  assert.deepEqual(graded.map(v => v.marketId).sort(), registered.map(m => m.manifest.id).sort());
   for (const view of graded){
     assert.deepEqual(Object.keys(view.grades).sort(), [...DIMENSION_IDS].sort(), `${view.marketId}: not graded on every dimension`);
     const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX, { on: ON });
@@ -218,7 +224,7 @@ test('a committed verdict the score disagrees with says why', async () => {
         `${view.marketId}/${flag.archetype}: "${flag.call}" disagrees with its score (${flag.kind}) and carries no scoreNote`);
     }
   }
-  assert.equal(verdicts, 16, 'four markets by four archetypes');
+  assert.equal(verdicts, registered.length * ARCHETYPE_IDS.length, 'every market by four archetypes');
 });
 
 test('every machine-written line in the committed store is accounted for', async () => {
@@ -506,4 +512,39 @@ test('the view has one writer and two doors', async () => {
     const source = await readFile(path.join(workflows, file), 'utf8');
     assert.ok(!/scripts\/view\/writer/.test(source), `${file}: a workflow runs the analyst's writer`);
   }
+});
+
+test('a derived asset-return grade is the market\'s fifth in the engine\'s ranking', async () => {
+  /* Asset return is graded by rank until the terminal-value gate closes
+     (plan section 3.5), and nothing computed the rank: the grades were worked
+     out by hand. This reports. It writes nothing and proposes no grade: a
+     failure says the engine's ordering has moved under a stored grade, which
+     is the moment the analyst would want to look.
+
+       fifth = ceil(rank x 5 / n)      rank 1 is the highest hold IRR
+       grade = 6 - fifth
+
+     The convention is read off the store, not chosen here: Great Britain is
+     ninth of fourteen and was graded 2. A market the engine does not price has
+     no rank and is not checked: Finland's grade is a practitioner one. Hold
+     and exit IRR order the markets identically today, and that is asserted,
+     because one grade serves both readings only while it is true. */
+  const priced = registered
+    .map(m => ({ id: m.manifest.id, result: runBaseCase(m, 5) }))
+    .filter(r => !r.result.na && Number.isFinite(r.result.irrHold));
+  const order = (key) => [...priced].sort((a, b) => b.result[key] - a.result[key]).map(r => r.id);
+  const byHold = order('irrHold');
+  assert.deepEqual(order('irrExit'), byHold, 'hold and exit IRR no longer rank the markets alike: one asset-return grade cannot serve a holder and a seller');
+
+  const expected = (id) => 6 - Math.ceil((byHold.indexOf(id) + 1) * 5 / byHold.length);
+  const drift = [];
+  for (const view of await committed.readAll()){
+    const record = view.grades.assetReturn;
+    if (!record || record.basis !== BASIS.DERIVED) continue;
+    assert.ok(byHold.includes(view.marketId), `${view.marketId}: a derived asset-return grade on a market the engine does not price`);
+    if (record.grade !== expected(view.marketId)){
+      drift.push(`${view.marketId}: stored ${record.grade}, and rank ${byHold.indexOf(view.marketId) + 1} of ${byHold.length} is ${expected(view.marketId)}`);
+    }
+  }
+  assert.deepEqual(drift, [], 'the engine\'s ranking has moved under a stored grade: the analyst regrades it, nothing here does');
 });

@@ -52,8 +52,7 @@ import { STAGE_LABEL } from '../governance/buildPathway.js';
 import { byExpected } from '../governance/triggers.js';
 import { ITEM_KIND_LABEL, ITEM_STATUS_LABEL, limitInputs } from '../entry/ledger.js';
 import { assessMarket } from '../entry/assessment.js';
-import { ledgerFor } from '../entry/ledgerRegistry.js';
-import { viewFor } from '../markets/viewRegistry.js';
+import { caseViewFor, caseLedgerFor } from '../markets/caseRegistry.js';
 import { byId } from '../markets/registry.js';
 import { FX } from '../comparison/assumptions.js';
 
@@ -92,10 +91,10 @@ const local = (amount) => {
 const today = () => new Date().toISOString().slice(0, 10);
 
 function load(marketId){
-  const view = viewFor(marketId);
+  const view = caseViewFor(marketId);
   const market = byId(marketId);
   if (!view || !market) return null;
-  const ledger = ledgerFor(marketId);
+  const ledger = caseLedgerFor(marketId);
   const on = today();
   /* Empty in a build, so the published page always gets the public answer. */
   const mine = privateMetrics(marketId);

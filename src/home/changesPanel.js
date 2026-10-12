@@ -19,7 +19,7 @@ import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { byId } from '../markets/registry.js';
 import { scoutMarket } from '../governance/scout.js';
-import { allTriggers } from '../markets/viewRegistry.js';
+import { boardTriggers } from '../markets/viewBoard.js';
 import { dimension } from '../governance/investability.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
 
@@ -49,7 +49,7 @@ export function pathLabel(path){
   const parts = [L(KIND[kind] || [kind, kind])];
   if (kind === 'grades' && id) parts.push(L(dimension(id)?.label || [id, id]));
   else if (kind === 'verdicts' && id) parts.push(L(ARCHETYPES[id]?.label || [id, id]));
-  else if (kind === 'triggers' && id) parts.push(L(allTriggers().find(t => t.id === id)?.label || [id, id]));
+  else if (kind === 'triggers' && id) parts.push(L(boardTriggers().find(t => t.id === id)?.label || [id, id]));
   else if (id) parts.push(id);
   if (layer === 'held') parts.push(L(['practitioner view', '从业者观点']));
   return parts.join(' · ');
@@ -72,7 +72,7 @@ export function renderChangesPanel(parent, changes){
         h('b', {}, market ? L(market.manifest.shortName) : scoutMarket(entry.market) ? L(scoutMarket(entry.market).name) : entry.market),
         h('span', { class: 'cp-author' + (entry.author === 'rule' || entry.author === 'agent' ? ' cl-machine' : '') },
           L(AUTHOR[entry.author] || ['Unknown author', '作者不详']),
-          entry.rule ? `: ${L(allTriggers().find(t => t.id === entry.rule)?.label || [entry.rule, entry.rule])}` : '')),
+          entry.rule ? `: ${L(boardTriggers().find(t => t.id === entry.rule)?.label || [entry.rule, entry.rule])}` : '')),
       h('div', { class: 'cp-path' }, pathLabel(entry.path), ' ', h('code', {}, entry.path)),
       h('div', { class: 'cp-reason' }, L(entry.reason)));
   })));

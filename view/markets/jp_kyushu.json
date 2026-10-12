@@ -1,0 +1,326 @@
+{
+  "marketId": "jp_kyushu",
+  "thesis": null,
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Sixth of fourteen markets on hold IRR, 7.5%.",
+        "持有期IRR为7.5%，在十四个市场中排名第六。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "occtoLtda2026"
+      ],
+      "reason": [
+        "96% of first-year revenue is secured across the fifteen-year window under a representative long-term auction award, which normally runs twenty years; the payment is derived from costs and is not an identified contract price, and a project without an award secures nothing.",
+        "在代表性的长期拍卖中标情景下，首年收入的96%在十五年测算期内均已锁定（该类合同通常为期二十年）；该付款金额由成本推算，并非已确认的合同价格，未中标的项目没有任何锁定收入。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "kyudenStudyCap",
+        "kyudenContribution"
+      ],
+      "reason": [
+        "The network company publishes its connection process, a limit of eight concurrent connection studies per applicant, and its payment terms for the construction-cost contribution.",
+        "电网公司公布了并网流程、每个申请人同时进行的并网研究不得超过八项的限制，以及工程费负担金的付款条款。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "kyudenStudyCap"
+      ],
+      "reason": [
+        "From August 2026 one applicant may have eight connection studies open at a time; that limits throughput and is not a measure of the capacity available.",
+        "自2026年8月起，每个申请人同时进行的并网研究不得超过八项；这限制的是受理进度，并不代表可用容量的多少。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "fefetaOutline"
+      ],
+      "reason": [
+        "A foreign investor must file a prior notification before taking any share of an unlisted company in the electricity sector; an exemption exists for investors who take no part in management, and not for state-owned ones.",
+        "外国投资者在取得电力行业非上市公司任何股份之前须事先申报；不参与经营管理的投资者可获豁免，但国有企业不适用该豁免。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "occtoLtda2026"
+      ],
+      "reason": [
+        "The long-term auction's terms are reset each round, including the price ceiling for batteries; awards already made keep their terms.",
+        "长期拍卖的条款每轮都会调整，包括电池的价格上限；已授予的合同条款不变。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A long-term auction award secures nearly all revenue for its term, and only for a project that wins one.",
+            "长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目。"
+          ]
+        },
+        {
+          "dimension": "saturation",
+          "text": [
+            "Solar surplus gives the deepest charging windows of the three areas.",
+            "光伏过剩使该区域拥有三个区域中最深的低价充电窗口。"
+          ]
+        },
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "Domestic banks lend against an award.",
+            "本土银行愿意以中标合同为基础提供贷款。"
+          ]
+        }
+      ],
+      "despite": [
+        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small.",
+        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。"
+      ],
+      "changesIf": [],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "build-position",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A long-term auction award secures nearly all revenue for its term, and only for a project that wins one.",
+            "长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目。"
+          ]
+        },
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "Domestic banks lend against an award.",
+            "本土银行愿意以中标合同为基础提供贷款。"
+          ]
+        }
+      ],
+      "despite": [
+        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small.",
+        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。"
+      ],
+      "changesIf": [],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "build-position",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A long-term auction award secures nearly all revenue for its term, and only for a project that wins one.",
+            "长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "The auction's terms are reset each round.",
+            "拍卖条款每轮都会调整。"
+          ]
+        }
+      ],
+      "despite": [
+        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small.",
+        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。"
+      ],
+      "changesIf": [],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "One applicant may run eight connection studies at a time, and export is limited by one interconnector.",
+            "每个申请人同时只能进行八项并网研究，外送能力受一条联络线限制。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Connection payments fall before the auction settles whether the project has revenue.",
+            "并网付款发生在拍卖结果确定项目是否有收入之前。"
+          ]
+        },
+        {
+          "dimension": "demandGrowth",
+          "text": [
+            "Forecast demand is nearly flat.",
+            "预测用电需求几乎持平。"
+          ]
+        }
+      ],
+      "despite": [
+        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small.",
+        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。"
+      ],
+      "changesIf": [],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    }
+  },
+  "triggers": []
+}

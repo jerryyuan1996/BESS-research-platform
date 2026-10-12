@@ -14,6 +14,14 @@ import { SRC } from './sources.js';
 import { M } from './data.js';
 import { buildSections } from './sections.js';
 import './gridMapData.js';   // side effect: registers this market's grid map
+import VIEW from '../../../view/markets/it.json' with { type: 'json' };
+import { ENTRY_LEDGER } from './entryLedger.js';
+import { registerCase } from '../caseRegistry.js';
+
+/* This market's whole view and ledger, for its Investment Case and Entry tabs.
+   Registered here so the reasons, arguments and forfeiture terms travel in
+   this market's own chunk; the home page carries a projection of them. */
+registerCase('it', { view: VIEW, ledger: ENTRY_LEDGER });
 
 const engine = createMarketEngine({
   MKT, TABS, SRC, M, buildSections,

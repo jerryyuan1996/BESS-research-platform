@@ -15,6 +15,7 @@
 
 const TABS = [
   ['home',       ['Overview', '总览']],
+  ['case',       ['Investment Case', '投资判断']],
   ['story',      ['ERCOT Market Story', 'ERCOT市场演进']],
   ['capacity',   ['Tolling & Offtake', '租赁与承购']],
   ['energy',     ['Nodal Energy & ORDC Scarcity', '节点电能量与ORDC稀缺定价']],
@@ -22,6 +23,7 @@ const TABS = [
   ['duration',   ['Storage Duration', '储能时长']],
   ['pipeline',   ['Project Pipeline', '项目管线']],
   ['grid',       ['Interconnection & Congestion', '并网与拥塞']],
+  ['entry',      ['Entry & Delivery', '进入与交付']],
   ['portfolio',  ['Portfolio', '组合与基金视图']],
   ['data',       ['Data & Methodology', '数据与方法']],
 ];

@@ -667,5 +667,18 @@ SEC_B.data = function (){
   ] };
 };
 
+/* Investment Case and Entry: the investment-view revision. The content is the
+   shared component, which reads this market's view and ledger as its dashboard
+   registered them. There is no build pathway for this market yet, so Entry is
+   the ledger. */
+SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+  { t: 'p', text: ['The second-highest modelled return here and a fifteen-year auction contract for the projects that win one; the first auction drew several times the volume on offer.', '模型回报在各市场中排名第二，中标项目可获得十五年期拍卖合同；首轮拍卖的投标量是招标量的数倍。'] },
+  { t: 'investment-case', marketId: 'it' },
+] });
+SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+  { t: 'p', text: ['Two payments are known to fall before revenue, a share of the connection charge and the auction\'s guarantees, and neither has a sourced amount, so nothing here is totalled.', '已知有两笔款项发生在产生收入之前，即部分并网费与拍卖保证金，但都没有可查证的金额，因此此处不作合计。'] },
+  { t: 'entry-ledger', marketId: 'it' },
+] });
+
   return SECTIONS;
 }

@@ -89,8 +89,25 @@ const BUDGET = {
      MEASURED 259.05 after the scouting tier (plan phase 4), from 256.66: the
      roster of nine markets, the board's scouting rows and each card's four
      calls. A card itself is not here: see `scout-page` below. The budget is
-     unchanged. */
-  home: 268,
+     unchanged.
+
+     LOWERED FROM 268 TO 258 (plan phase 5), measured 243.04 from 259.06. The
+     board was calling the assessment on every graded market's whole view and
+     whole ledger, so the home page carried a reason in two languages for each
+     grade and the forfeiture terms of each ledger item, and printed none of
+     them: about five kilobytes a market, with room for one more market and
+     eleven to come. It now reads a projection made at build time (grades as
+     numbers, calls, amounts; see src/markets/boardProjection.js), about 0.75
+     kB a market, and the whole records travel with each market's own
+     dashboard. With all fifteen graded this should measure about 251; the
+     budget leaves that and a little over. It still grows with every market
+     graded, by the projection and no longer by the prose.
+
+     MEASURED 249.67 WITH ALL FIFTEEN GRADED. Of the rise from 243.04, 6.2 is
+     the entry chunk, which carries every market's source register and gained
+     the sources opened for the ledgers and grades; the projection itself
+     added 0.4. */
+  home: 258,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -99,9 +116,23 @@ const BUDGET = {
 
      FINLAND ROSE FROM 18 TO 23 when its build pathway moved into this chunk
      from the shared one. A Finland visitor downloads less overall as a result:
-     the shared chunk used to carry every market's pathway, and now none. */
+     the shared chunk used to carry every market's pathway, and now none.
+
+     FINLAND 23 TO 28 AND ROMANIA 95 TO 100 (plan phase 5), for bytes that
+     MOVED: a graded market's whole view and ledger now ride in its own chunk,
+     registered from its dashboard, where they used to ride in a chunk the
+     home page fetched. Finland measured 25.39 from 22.02 and Romania 94.00
+     from 89.05. Great Britain (136.79 from 131.75) and Western Australia
+     (192.68 from 186.37) took the same move inside the room they had. A
+     market graded later brings about five kilobytes with it, and that is the
+     one reason to raise its line.
+
+     ALL FIFTEEN ARE GRADED NOW and no other line needed raising: each of the
+     ten markets graded in phase 5 took its view and ledger inside the room it
+     had. Three are close: caiso 41.81 of 44, de 61.25 of 64, pjm 61.29 of
+     65. */
   markets: {
-    fi: 23, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 95,
+    fi: 28, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
 
@@ -165,10 +196,27 @@ const BUDGET = {
        Investment Case and Entry tabs, whichever comes first. This is where the
        old `investment-case` budget went, and it is the one that grows with
        every market graded. Measured 33.93 — the remainder of the 37.35 that
-       chunk measured before the split, less the panels and the chart helpers. */
-    'investment-method': 37,
-    /* The home page's board, map, calendar and changes panel. Measured 11.35. */
-    'verdict-board': 14,
+       chunk measured before the split, less the panels and the chart helpers.
+
+       LOWERED FROM 37 TO 17 (plan phase 5). It measures 14.68 and holds no
+       market at all: the views and ledgers had already been factored into a
+       chunk of their own beside it, which no line here named, and have now
+       left the home page altogether. What remains is method, anchors and
+       investor tables, and it grows only when the method does. */
+    'investment-method': 17,
+    /* The home page's board, map, calendar and changes panel. Measured 11.35.
+
+       RAISED FROM 14 TO 27 (plan phase 5), and the home budget above fell by
+       more in the same change. The board projection lives here now: every
+       graded market's grades, calls and ledger amounts, and every trigger.
+       Measured 15.36 with four markets graded, from 12.05 with none of it;
+       about 0.75 kB a market, so about 24 at fifteen. Raise it for a market
+       graded and for nothing else.
+
+       LOWERED FROM 27 TO 19 once all fifteen were graded: it measures 15.80,
+       not the 24 estimated. A market's grades and calls compress far better
+       beside fourteen others of the same shape than the first four suggested. */
+    'verdict-board': 19,
     /* The old home page, now at /returns: market cards, globe, league table,
        revenue stack, $1M engine, congestion, plus the two sections that were
        written and never mounted. Measured 67.95. Fetched only on that route. */
@@ -178,8 +226,12 @@ const BUDGET = {
        ten lines of five fields each and nothing else of it. Measured 20.63 at
        102 lines, about 0.2 kB a line, so this is the one budget here that
        grows by design: raise it as the changelog grows, and for no other
-       reason. tests/changes.test.js asserts the changelog is in no other chunk. */
-    'changes': 27,
+       reason. tests/changes.test.js asserts the changelog is in no other chunk.
+
+       RAISED FROM 27 TO 48 (plan phase 5), for that reason: grading the other
+       eleven markets took the changelog from 102 lines to 304. Measured 40.67,
+       about 0.13 kB a line. */
+    'changes': 48,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four
@@ -368,6 +420,21 @@ test('the home page\'s first view is within its budget', async (t) => {
   for (const marker of ['What a scouting card is', 'svk.se/en/', 'legal-notice-privacy-policy']){
     assert.ok(scout.text.includes(marker), `the marker "${marker}" has gone stale`);
     for (const chunk of first) assert.ok(!chunk.text.includes(marker), `${chunk.name}: carries "${marker}", which belongs to the scouting page`);
+  }
+
+  /* Nor may a market's words. The board reads a projection (grades as
+     numbers, calls, amounts), and the reason behind a grade and the terms on
+     which a security is lost stay in that market's own chunk. One marker of
+     each kind, held to exist there so this cannot pass by a sentence having
+     been reworded. */
+  const { markets } = await chunks();
+  const WORDS = {
+    gb: 'Zonal pricing was rejected in 2025',
+    ro: 'does not return the signed allocation contract',
+  };
+  for (const [id, marker] of Object.entries(WORDS)){
+    assert.ok(markets.get(id)?.text.includes(marker), `the marker "${marker}" has gone stale, or ${id} no longer carries its own view and ledger`);
+    for (const chunk of first) assert.ok(!chunk.text.includes(marker), `${chunk.name}: carries "${marker}", which belongs to ${id}'s dashboard: a home-page module is importing whole views or ledgers again`);
   }
 });
 

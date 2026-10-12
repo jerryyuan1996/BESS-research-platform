@@ -1,8 +1,342 @@
 {
   "marketId": "ie",
   "thesis": null,
-  "grades": {},
-  "verdicts": {},
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Fifth of fourteen markets on hold IRR, 9.6%.",
+        "持有期IRR为9.6%，在十四个市场中排名第五。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "55% of first-year revenue is secured, for ten years, by a capacity contract.",
+        "首年收入的55%由容量合同锁定，期限十年。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "metric": {
+        "perMW": 3416,
+        "perProject": 170812,
+        "shareOfCost": 0.003,
+        "currency": "USD"
+      },
+      "evidence": [
+        "entry-ledger",
+        "cruEcpGss",
+        "esbnEcpFees"
+      ],
+      "reason": [
+        "Planning permission must be granted before a grid application, so the application fee, the first stage payment and the capacity bond all fall after consent. The fee is about 0.3% of project cost; the other two have no sourced amount.",
+        "须先取得规划许可才能提出并网申请，因此申请费、第一阶段付款和容量保证金都发生在取得许可之后。申请费约为项目投资的0.3%；另外两项没有可查证的金额。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "cruEcpGss",
+        "esbnEcpFees"
+      ],
+      "reason": [
+        "The regulator publishes the connection policy, the two batch dates a year, the fees and the time allowed to process a batch, and the operators publish each batch's results.",
+        "监管机构公布了并网政策、每年两个批次的截止日期、收费标准以及每个批次的处理时限，运营商也公布各批次的结果。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "cruEcpGss"
+      ],
+      "reason": [
+        "Connection offers are issued in two batches a year to projects that already hold planning permission, with no cap on the number of applications in a batch.",
+        "并网要约每年分两个批次发放，对象是已取得规划许可的项目，每批次的申请数量不设上限。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "screeningAct",
+        "screeningCommence"
+      ],
+      "reason": [
+        "Since January 2025 an investor from outside the EU must notify an acquisition of control, or of more than 25%, worth EUR 2 million or more in a listed sector; a decision is due within 90 days of the screening notice, extendable to 135.",
+        "自2025年1月起，欧盟以外的投资者在所列行业取得控制权或超过25%的股权、且交易金额达200万欧元及以上的，须进行申报；自发出审查通知之日起90日内作出决定，可延长至135日。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "fass"
+      ],
+      "reason": [
+        "The system-services arrangements are being replaced by competitive procurement targeted for 2027, so future service income for a new entrant is not settled; capacity contracts already awarded are unaffected.",
+        "系统服务安排正被竞争性采购取代，目标于2027年上线，因此新进入者未来的系统服务收入尚未确定；已授予的容量合同不受影响。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A capacity contract secures over half of revenue for ten years, for a project that holds one.",
+            "容量合同可在十年内锁定过半收入，但前提是项目已取得该合同。"
+          ]
+        },
+        {
+          "dimension": "demandGrowth",
+          "text": [
+            "Data-centre load already takes a large share of demand.",
+            "数据中心负荷已占用电需求的很大份额。"
+          ]
+        },
+        {
+          "dimension": "timeToRevenue",
+          "text": [
+            "Planning permission comes first, then a half-yearly connection batch.",
+            "须先取得规划许可，再等待每半年一次的并网批次。"
+          ]
+        }
+      ],
+      "despite": [
+        "A small system: service volumes are thin and a second project competes with the first.",
+        "系统规模小：系统服务体量有限，第二个项目会与第一个项目相互竞争。"
+      ],
+      "changesIf": [
+        "ie-ds3-long-stop"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "build-position",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A capacity contract secures over half of revenue for ten years, for a project that holds one.",
+            "容量合同可在十年内锁定过半收入，但前提是项目已取得该合同。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "System-services income is moving to competitive procurement and is not settled for a new entrant.",
+            "系统服务收入正转向竞争性采购，对新进入者而言尚未确定。"
+          ]
+        }
+      ],
+      "despite": [
+        "A small system: service volumes are thin and a second project competes with the first.",
+        "系统规模小：系统服务体量有限，第二个项目会与第一个项目相互竞争。"
+      ],
+      "changesIf": [
+        "ie-ds3-long-stop"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "build-position",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A capacity contract secures over half of revenue for ten years, for a project that holds one.",
+            "容量合同可在十年内锁定过半收入，但前提是项目已取得该合同。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "What is paid to the network falls after consent.",
+            "向电网支付的款项都发生在取得许可之后。"
+          ]
+        }
+      ],
+      "despite": [
+        "A small system: service volumes are thin and a second project competes with the first.",
+        "系统规模小：系统服务体量有限，第二个项目会与第一个项目相互竞争。"
+      ],
+      "changesIf": [
+        "ie-ds3-long-stop"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "What is paid to the network falls after consent.",
+            "向电网支付的款项都发生在取得许可之后。"
+          ]
+        },
+        {
+          "dimension": "timeToRevenue",
+          "text": [
+            "Planning permission comes first, then a half-yearly connection batch.",
+            "须先取得规划许可，再等待每半年一次的并网批次。"
+          ]
+        }
+      ],
+      "despite": [
+        "A small system: service volumes are thin and a second project competes with the first.",
+        "系统规模小：系统服务体量有限，第二个项目会与第一个项目相互竞争。"
+      ],
+      "changesIf": [
+        "ie-ds3-long-stop"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
     {
       "id": "ie-ds3-long-stop",

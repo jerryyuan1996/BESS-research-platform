@@ -31,6 +31,12 @@ import {
   buildBoard, resolveLens, marketReturn, returnKeyFor, monthsFrom, triggerCalendar, changesThisWeek,
 } from '../src/home/boardModel.js';
 import { digestChangelog, RECENT_CHANGES } from '../vite-plugin-view-changes.js';
+import { readBoardData } from '../vite-plugin-view-board.js';
+import { BOARD } from '../src/markets/viewBoardData.js';
+import { boardViewFor, boardLedgerFor, boardMarketIds, boardTriggers } from '../src/markets/viewBoard.js';
+import { projectTrigger } from '../src/markets/boardProjection.js';
+import { viewMarketIds } from '../src/markets/viewRegistry.js';
+import { ledgerMarketIds } from '../src/entry/ledgerRegistry.js';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ON = '2026-10-11';
@@ -42,18 +48,33 @@ const code = async (rel) => (await readFile(path.join(REPO, rel), 'utf8'))
 
 const board = (lens = null, on = ON) => buildBoard(markets, { lens, on, usdPer: FX, viewFor, ledgerFor });
 
-test('every registered market is on the board, and four of them are graded', () => {
+/* Every market is graded now, so the rules for an ungraded one are held on a
+   board with two views withheld. The rules are the board's; which two markets
+   stand in for "not yet graded" does not matter. */
+const WITHHELD = new Set(['pl', 'ercot']);
+const boardWithGaps = (lens = null, on = ON) => buildBoard(markets, {
+  lens, on, usdPer: FX, ledgerFor, viewFor: (id) => (WITHHELD.has(id) ? null : viewFor(id)),
+});
+
+test('every registered market is on the board, and every one of them is graded', () => {
   const b = board();
   assert.equal(b.rows.length, markets.length);
   assert.deepEqual(new Set(b.rows.map(r => r.market.manifest.id)), new Set(markets.map(m => m.manifest.id)));
-  assert.equal(b.gradedCount, 4);
-  assert.equal(b.ungradedCount, markets.length - 4);
+  /* Four until plan phase 5 graded the other eleven. */
+  assert.equal(b.gradedCount, markets.length);
+  assert.equal(b.ungradedCount, 0);
   for (const r of b.rows) assert.equal(r.graded, hasView(r.market.manifest.id));
+
+  const gaps = boardWithGaps();
+  assert.equal(gaps.ungradedCount, WITHHELD.size);
+  for (const r of gaps.rows) assert.equal(r.graded, !WITHHELD.has(r.market.manifest.id));
 });
 
 test('a market that has not been graded shows its return and no verdict', () => {
   for (const lens of [null, ...ARCHETYPE_IDS]){
-    for (const r of board(lens).rows.filter(r => !r.graded)){
+    const ungraded = boardWithGaps(lens).rows.filter(r => !r.graded);
+    assert.equal(ungraded.length, WITHHELD.size, 'the board with gaps has ungraded rows to check');
+    for (const r of ungraded){
       const id = r.market.manifest.id;
       assert.equal(r.cells, null, `${id}: an ungraded market must carry no verdict cells`);
       assert.equal(r.cell, null);
@@ -113,8 +134,9 @@ test('where a ceiling applies the row leads with the barrier and names it', () =
 
 test('rows are ordered by verdict, then by fit, with ungraded markets after', () => {
   for (const lens of ARCHETYPE_IDS){
-    const rows = board(lens).rows;
+    const rows = boardWithGaps(lens).rows;
     const firstUngraded = rows.findIndex(r => !r.graded);
+    assert.ok(firstUngraded > 0, `${lens}: the board with gaps has both kinds of row`);
     assert.ok(rows.slice(firstUngraded).every(r => !r.graded), `${lens}: ungraded markets come last, together`);
     const graded = rows.slice(0, firstUngraded);
     for (let i = 1; i < graded.length; i++){
@@ -209,7 +231,8 @@ test('the calendar reads every market file, graded or not', async () => {
     expected += view.triggers.length;
   }
   assert.equal(allTriggers().length, expected);
-  assert.ok(allTriggers().some(t => !hasView(t.market)), 'triggers of ungraded markets are included');
+  /* Until every market was graded this also checked that a market file holding
+     only triggers was read. The count above still holds every file to it. */
 });
 
 test('the calendar window is twelve months from the reader\'s date and loses nothing', () => {
@@ -271,7 +294,8 @@ test('"changes this week" counts the seven days ending on the reader\'s date', (
 test('the home page writes nothing and reads no private file', async () => {
   for (const rel of ['src/home/boardModel.js', 'src/home/verdictHome.js', 'src/home/verdictBoard.js',
                      'src/home/returnEntryMap.js', 'src/home/triggerCalendar.js', 'src/home/changesPanel.js',
-                     'src/markets/viewChanges.js', 'vite-plugin-view-changes.js']){
+                     'src/markets/viewChanges.js', 'vite-plugin-view-changes.js',
+                     'src/markets/viewBoard.js', 'src/markets/boardProjection.js', 'vite-plugin-view-board.js']){
     const src = await code(rel);
     assert.ok(!/writeFile|appendFile|scripts\/view\/writer/.test(src), `${rel}: must not write the view store`);
     assert.ok(!/from\s+['"][^'"]*local-data/.test(src), `${rel}: must not import from local-data`);
@@ -294,5 +318,114 @@ test('nothing closed on the board is closed for a reason the store does not hold
       assert.equal(r.cell.call, NOT_ACCESSIBLE,
         `${r.market.manifest.id}/${lens}: a ceiling the verdict does not acknowledge would be flagged, not shown as settled`);
     }
+  }
+});
+
+/* ---- the board projection --------------------------------------------------- */
+
+/* The home page reads a projection of each market: grades as numbers, calls,
+   amounts. These hold it to the whole record on everything the board works
+   out, so the bytes can be left behind without the answer changing. */
+
+const projectedBoard = (lens = null, on = ON) =>
+  buildBoard(markets, { lens, on, usdPer: FX, viewFor: boardViewFor, ledgerFor: boardLedgerFor });
+
+/* A row with the two things that legitimately differ made comparable: the
+   verdict record, which the projection carries without its arguments, and the
+   trigger a cell names, which it carries without its source. */
+const comparable = (b) => JSON.parse(JSON.stringify(b.rows.map(r => {
+  const cut = (cell) => cell && {
+    ...cell, verdict: undefined,
+    changesIf: cell.changesIf && { ...projectTrigger(cell.changesIf), overdue: cell.changesIf.overdue, others: cell.changesIf.others },
+  };
+  return {
+    id: r.market.manifest.id, graded: r.graded, ret: r.ret,
+    cell: cut(r.cell),
+    cells: r.cells && Object.fromEntries(Object.entries(r.cells).map(([k, c]) => [k, cut(c)])),
+  };
+})));
+
+test('the board built on the projection is the board built on the whole records', () => {
+  /* On the reader's date today, and on a date after every held view has
+     lapsed, because a lapse is worked out from the held layer's own dates. */
+  for (const on of [ON, '2028-06-30']){
+    for (const lens of [null, ...ARCHETYPE_IDS]){
+      assert.deepEqual(comparable(projectedBoard(lens, on)), comparable(board(lens, on)), `lens ${lens}, on ${on}`);
+    }
+  }
+  const whole = board('developer'), cut = projectedBoard('developer');
+  assert.deepEqual(cut.rows.map(r => r.market.manifest.id), whole.rows.map(r => r.market.manifest.id), 'the same order');
+  for (const [i, r] of whole.rows.entries()){
+    if (!r.graded) continue;
+    const v = r.cell.verdict, p = cut.rows[i].cell.verdict;
+    for (const key of ['archetype', 'call', 'route', 'changesIf', 'asOf']) assert.deepEqual(p[key], v[key], `${r.market.manifest.id}: verdict.${key}`);
+    assert.deepEqual(p.reviewBy, v.reviewBy ?? null);
+    assert.deepEqual(p.scoreNote ?? null, v.scoreNote ?? null);
+    assert.deepEqual(p.where ?? null, v.where ?? null);
+  }
+});
+
+test('the projection carries numbers, calls and amounts, and none of a market\'s words', () => {
+  for (const id of boardMarketIds()){
+    const view = boardViewFor(id), whole = viewFor(id);
+    for (const [dimension, record] of Object.entries(view.grades)){
+      assert.deepEqual(Object.keys(record).filter(k => k !== 'held'), ['grade'], `${id}/${dimension}: a projected grade is its number`);
+      if (record.held) assert.deepEqual(Object.keys(record.held).sort(), ['confidence', 'grade', 'reviewBy']);
+      assert.equal(Boolean(record.held), Boolean(whole.grades[dimension].held), `${id}/${dimension}: a held layer is kept, or the wrong grade is scored`);
+    }
+    for (const record of Object.values(view.verdicts)){
+      for (const key of ['because', 'despite', 'author', 'lockedUntil']) assert.ok(!(key in record), `${id}: a projected verdict carries no ${key}`);
+    }
+    assert.ok(!('thesis' in view));
+  }
+  for (const ledger of Object.values(BOARD.ledgers)){
+    for (const item of ledger.items){
+      for (const key of ['label', 'form', 'lostIf', 'evidence', 'amountNote', 'releasedAt', 'refundable']) assert.ok(!(key in item), `${ledger.marketId}/${item.id}: a projected item carries no ${key}`);
+    }
+    assert.ok(!('summary' in ledger) && !('limit' in ledger));
+  }
+  for (const t of boardTriggers()) for (const key of ['source', 'effect', 'when', 'note']) assert.ok(!(key in t), `${t.id}: a projected trigger carries no ${key}`);
+});
+
+test('the projection covers every graded market, every ledger and every trigger', () => {
+  assert.deepEqual(boardMarketIds().sort(), viewMarketIds().sort(),
+    'a market file with grades is graded: viewRegistry.js lists it, or the board and the tests disagree about which markets are');
+  assert.deepEqual(Object.keys(BOARD.ledgers).sort(), ledgerMarketIds().sort());
+  assert.deepEqual(boardTriggers().map(t => t.id).sort(), allTriggers().map(t => t.id).sort());
+});
+
+test('what a build puts on the home page is the projection plain Node works out', async () => {
+  /* The plugin reads the directories; the stub reads the two registries. A
+     view file or a ledger that one finds and the other does not shows here. */
+  assert.deepEqual(await readBoardData(REPO), JSON.parse(JSON.stringify(BOARD)));
+});
+
+test('no page imports the registries that hold every market whole', async () => {
+  const offenders = [];
+  const walk = async (dir) => {
+    for (const entry of await readdir(dir, { withFileTypes: true })){
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) await walk(full);
+      else if (entry.name.endsWith('.js')){
+        const rel = path.relative(REPO, full).split(path.sep).join('/');
+        if (/from\s+['"][^'"]*(viewRegistry|ledgerRegistry)\.js['"]/.test(await code(rel))) offenders.push(rel);
+      }
+    }
+  };
+  await walk(path.join(REPO, 'src'));
+  assert.deepEqual(offenders, ['src/markets/viewBoardData.js'],
+    'only the stub the build replaces may import them: any other import puts every market\'s view and ledger in that page\'s chunk');
+});
+
+test('a graded market registers its own view and ledger from its dashboard, and no other market does', async () => {
+  for (const market of markets){
+    const id = market.manifest.id;
+    /* The dashboard that draws this market: its own, or the one it shares.
+       Japan's three allocation points are drawn by one. */
+    const dashboard = path.join('src/markets', market.manifest.dashboardId || id, 'dashboard.js');
+    const src = await code(dashboard);
+    const registers = new RegExp(`registerCase\\(\\s*['"]${id}['"]`).test(src);
+    if (hasView(id)) assert.ok(registers, `${id}: graded, and its dashboard does not call registerCase — its Investment Case tab would be empty`);
+    else assert.ok(!registers, `${id}: registers a case and has no grades`);
   }
 });

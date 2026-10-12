@@ -1,6 +1,82 @@
 {
-  "caiso": {},
-  "de": {},
+  "caiso": {
+    "strategic": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "de": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "ercot": {
+    "strategic": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
   "fi": {
     "strategic": {
       "call": "build-position",
@@ -53,11 +129,214 @@
       "reviewBy": "2027-03-31"
     }
   },
-  "ie": {},
-  "it": {},
-  "jp_tokyo": {},
-  "nem": {},
-  "pjm": {},
+  "ie": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "it": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "enter-now",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "jp_hokkaido": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "jp_kyushu": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "jp_tokyo": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "enter-now",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "nem": {
+    "strategic": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "build-position",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "not-accessible",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "build-position",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "pjm": {
+    "strategic": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "wait",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "wait",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
+  "pl": {
+    "strategic": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "infraFund": {
+      "call": "wait",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "foreignFirstTimer": {
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    },
+    "developer": {
+      "call": "opportunistic",
+      "route": "greenfield",
+      "asOf": "2026-10-12",
+      "reviewBy": "2027-03-31"
+    }
+  },
   "ro": {
     "strategic": {
       "call": "opportunistic",

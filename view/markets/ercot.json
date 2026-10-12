@@ -1,0 +1,346 @@
+{
+  "marketId": "ercot",
+  "thesis": null,
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 1,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Last of fourteen markets on hold IRR, −5.9%.",
+        "持有期IRR为−5.9%，在十四个市场中排名末位。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "tolls"
+      ],
+      "reason": [
+        "The base case is a toll covering all revenue for seven years, valued from a published benchmark and not from a disclosed contract; twelve tolled batteries are known in the market.",
+        "基准情景为覆盖全部收入、期限七年的租赁，其价值取自公开基准而非已披露的合同；该市场已知有十二个采用租赁模式的电池项目。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "queue"
+      ],
+      "reason": [
+        "Interconnection is connect-and-manage with no auction or cap on storage requests, on timelines of roughly 4.2 years.",
+        "并网采用“先接入、后管理”模式，对储能申请不设拍卖或上限，周期约为4.2年。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "itc"
+      ],
+      "reason": [
+        "From 2026 a project that fails the material-assistance cost ratio for prohibited foreign entities loses the investment tax credit entirely, not in proportion.",
+        "自2026年起，未达到“受禁外国实体实质协助成本比率”要求的项目将全额丧失投资税收抵免，而非按比例扣减。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "rtcb"
+      ],
+      "reason": [
+        "Real-time co-optimisation changed how energy and ancillary services clear, and data-centre interconnections have been paused for audit since August 2026; nothing here is contracted with the market, so there is no contract for a rule change to honour or break.",
+        "实时联合优化改变了电能量与辅助服务的出清方式；数据中心并网自2026年8月起因审计而暂停。此处没有与市场签订的合同，因此也谈不上规则变更是否追溯存量合同。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "deteriorating",
+      "basis": "third-party",
+      "evidence": [
+        "modoIndex",
+        "buildout"
+      ],
+      "reason": [
+        "The fleet reached about 15 GW in early 2026, and the published fleet revenue index fell from USD 193 per kW in 2023 to USD 56 in 2024 and about USD 29 in 2025.",
+        "截至2026年初，机组规模约达15GW；公开的机组收入指数由2023年的每kW 193美元降至2024年的56美元，2025年约为29美元。"
+      ],
+      "trendCause": [
+        "Published fleet revenue per kW has fallen two years running as the fleet grew.",
+        "随着机组规模扩大，公开的每kW机组收入已连续两年下降。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": [
+        "A project with an executed toll",
+        "已签订租赁协议的项目"
+      ],
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The reference project loses money on the model, even with a toll.",
+            "即使采用租赁模式，参考项目在模型中仍然亏损。"
+          ]
+        },
+        {
+          "dimension": "saturation",
+          "text": [
+            "Published fleet revenue has fallen two years running as the fleet grew.",
+            "随着机组规模扩大，公开的机组收入已连续两年下降。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Interconnection is open, with no auction or cap on storage requests.",
+            "并网渠道开放，对储能申请不设拍卖或上限。"
+          ]
+        }
+      ],
+      "despite": [
+        "The easiest market on the platform to connect to, with a large load queue behind it.",
+        "这是本平台各市场中最容易并网的一个，背后还有庞大的大负荷排队。"
+      ],
+      "changesIf": [],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "where": [
+        "A project with an executed toll",
+        "已签订租赁协议的项目"
+      ],
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The reference project loses money on the model, even with a toll.",
+            "即使采用租赁模式，参考项目在模型中仍然亏损。"
+          ]
+        },
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "Tolls are being signed, and their prices are not disclosed.",
+            "市场上不断有租赁协议签订，但价格均未披露。"
+          ]
+        },
+        {
+          "dimension": "saturation",
+          "text": [
+            "Published fleet revenue has fallen two years running as the fleet grew.",
+            "随着机组规模扩大，公开的机组收入已连续两年下降。"
+          ]
+        }
+      ],
+      "despite": [
+        "The easiest market on the platform to connect to, with a large load queue behind it.",
+        "这是本平台各市场中最容易并网的一个，背后还有庞大的大负荷排队。"
+      ],
+      "changesIf": [],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "where": [
+        "A project with an executed toll",
+        "已签订租赁协议的项目"
+      ],
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The reference project loses money on the model, even with a toll.",
+            "即使采用租赁模式，参考项目在模型中仍然亏损。"
+          ]
+        },
+        {
+          "dimension": "foreignEntry",
+          "text": [
+            "State law restricts investors from named countries; for an investor it covers, the market is closed.",
+            "州法对特定国家的投资者设有限制；对受其约束的投资者而言，该市场不可进入。"
+          ]
+        }
+      ],
+      "despite": [
+        "The easiest market on the platform to connect to, with a large load queue behind it.",
+        "这是本平台各市场中最容易并网的一个，背后还有庞大的大负荷排队。"
+      ],
+      "changesIf": [],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Interconnection is open, with no auction or cap on storage requests.",
+            "并网渠道开放，对储能申请不设拍卖或上限。"
+          ]
+        },
+        {
+          "dimension": "saturation",
+          "text": [
+            "Published fleet revenue has fallen two years running as the fleet grew.",
+            "随着机组规模扩大，公开的机组收入已连续两年下降。"
+          ]
+        },
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The reference project loses money on the model, even with a toll.",
+            "即使采用租赁模式，参考项目在模型中仍然亏损。"
+          ]
+        }
+      ],
+      "despite": [
+        "The easiest market on the platform to connect to, with a large load queue behind it.",
+        "这是本平台各市场中最容易并网的一个，背后还有庞大的大负荷排队。"
+      ],
+      "changesIf": [],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    }
+  },
+  "triggers": []
+}

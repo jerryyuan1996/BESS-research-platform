@@ -830,5 +830,22 @@ export function buildSections(api){
     ] };
   };
 
+  /* Investment Case and Entry: the investment-view revision. Three allocation
+     points share this dashboard and each has its own view and ledger, so the
+     shared component is mounted once for each region in view: one in a
+     regional lens, all three side by side in compare mode. */
+  const casePerRegion = (block) => lensRegions().flatMap(id => [
+    { t: 'sub', text: R(id).area },
+    { t: block, marketId: 'jp_' + id },
+  ]);
+  SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+    { t: 'p', text: ['A long-term auction award secures nearly all revenue for its term, for the projects that win one, and returns most earnings from other markets. The three areas share that rulebook and differ in connection access and room to repeat.', '长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目，且须返还其他市场的大部分收益。三个区域适用同一套规则，差别在于并网条件与可复制的空间。'] },
+    ...casePerRegion('investment-case'),
+  ] });
+  SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+    { t: 'p', text: ['What each network company asks is a schedule against a connection charge that is set per project and not published, so no item here has an amount.', '各电网公司的要求都是针对并网费用的付款安排，而并网费用按项目核定且不公开，因此此处各项均没有金额。'] },
+    ...casePerRegion('entry-ledger'),
+  ] });
+
   return SECTIONS;
 }

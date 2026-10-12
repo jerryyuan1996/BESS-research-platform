@@ -1,8 +1,340 @@
 {
   "marketId": "caiso",
   "thesis": null,
-  "grades": {},
-  "verdicts": {},
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Tenth of fourteen markets on hold IRR, 3.2%.",
+        "持有期IRR为3.2%，在十四个市场中排名第十。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "ormat"
+      ],
+      "reason": [
+        "78% of first-year revenue is secured for ten years under a resource adequacy contract; such contracts are bilateral and their prices are not public.",
+        "首年收入的78%由资源充裕度合同锁定十年；此类合同为双边合同，价格并不公开。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "entry-ledger",
+        "tariffKK"
+      ],
+      "reason": [
+        "About 0.4% of project cost falls with the interconnection request, and two-thirds of it is a readiness deposit posted before the cluster study says what the project will be assigned; it is then topped up to 5% of the assigned network upgrade cost.",
+        "约占项目投资0.4%的款项须随并网申请缴纳，其中三分之二是商业成熟度保证金，须在集群研究给出分摊结果之前提交；此后还须补足至所分摊电网升级费用的5%。"
+      ],
+      "metric": {
+        "perMW": 4550,
+        "perProject": 455000,
+        "shareOfCost": 0.0038,
+        "currency": "USD"
+      },
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "tariffKK"
+      ],
+      "reason": [
+        "The tariff publishes the application window, the fees and deposits, the site-control test and the withdrawal penalty; what a project is finally assigned depends on the cluster study.",
+        "费率文件公布了申请窗口期、各项费用与押金、场址控制权要求以及撤回罚金；项目最终的分摊结果取决于集群研究。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "cfius"
+      ],
+      "reason": [
+        "Review of foreign investment is largely voluntary and mandatory only in some cases, such as a foreign government taking a substantial interest; a notice is reviewed in 45 days, with a 45-day investigation if needed.",
+        "外资审查以自愿申报为主，仅在部分情形下（如外国政府取得重大权益）为强制申报；正式申报的审查期为45日，必要时再进行45日的调查。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "itc"
+      ],
+      "reason": [
+        "From 2026 a project that fails the material-assistance cost ratio for prohibited foreign entities loses the investment tax credit entirely, not in proportion.",
+        "自2026年起，未达到“受禁外国实体实质协助成本比率”要求的项目将全额丧失投资税收抵免，而非按比例扣减。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "sod"
+      ],
+      "reason": [
+        "A state regulator's decision cuts the qualifying capacity of storage from 2027 and moves it to unit-specific accreditation from 2028; contracts already signed are bilateral and keep their terms.",
+        "州监管机构的一项决定自2027年起下调储能的合格容量，并自2028年起改按机组逐一核定；已签订的合同为双边合同，条款不变。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The reference project returns 3.2% on the model.",
+            "参考项目的模型回报为3.2%。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Deliverability is allocated in cluster windows, not available on request.",
+            "可交付容量按集群窗口分配，并非申请即得。"
+          ]
+        },
+        {
+          "dimension": "saturation",
+          "text": [
+            "Batteries already amount to about a third of peak demand.",
+            "电池规模已相当于峰值负荷的约三分之一。"
+          ]
+        }
+      ],
+      "despite": [
+        "Contracted, deliverable assets finance and sell well, so the price paid decides the return.",
+        "有合同、可交付的资产容易融资和出售，因此回报取决于买入价格。"
+      ],
+      "changesIf": [
+        "caiso-storage-capacity-foldback"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "build-position",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A resource adequacy contract secures most revenue for ten years, for a project that holds one.",
+            "资源充裕度合同可在十年内锁定大部分收入，但前提是项目已持有该合同。"
+          ]
+        },
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "The longest-established storage financing market on the platform.",
+            "本平台各市场中历史最久的储能融资市场。"
+          ]
+        }
+      ],
+      "despite": [
+        "At the modelled return the unchanged reference case does not clear a fund's hurdle.",
+        "按模型回报，未经调整的参考情景达不到基金的回报门槛。"
+      ],
+      "changesIf": [
+        "caiso-storage-capacity-foldback"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The reference project returns 3.2% on the model.",
+            "参考项目的模型回报为3.2%。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Deliverability is allocated in cluster windows, not available on request.",
+            "可交付容量按集群窗口分配，并非申请即得。"
+          ]
+        }
+      ],
+      "despite": [
+        "Contracted, deliverable assets finance and sell well, so the price paid decides the return.",
+        "有合同、可交付的资产容易融资和出售，因此回报取决于买入价格。"
+      ],
+      "changesIf": [
+        "caiso-storage-capacity-foldback"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Deliverability is allocated in cluster windows, not available on request.",
+            "可交付容量按集群窗口分配，并非申请即得。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "A readiness deposit is posted before the study assigns capacity or cost.",
+            "商业成熟度保证金须在研究给出容量与费用分摊之前提交。"
+          ]
+        }
+      ],
+      "despite": [
+        "Contracted, deliverable assets finance and sell well, so the price paid decides the return.",
+        "有合同、可交付的资产容易融资和出售，因此回报取决于买入价格。"
+      ],
+      "changesIf": [
+        "caiso-storage-capacity-foldback"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
     {
       "id": "caiso-storage-capacity-foldback",
