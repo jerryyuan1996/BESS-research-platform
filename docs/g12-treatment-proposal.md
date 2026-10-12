@@ -186,8 +186,8 @@ Two things this shows about the engine as it stands:
    line with a public source; the published investor returns use longer ones.
 2. The engine's US opex of $20,000 a MW a year is about 1.5% of capex, the low, maintenance-only
    end, and the engine degrades the market line. That pairing is consistent. But the US registers
-   say no laboratory publishes a fixed opex figure, and this report does. That note is wrong and
-   is left for a separate correction.
+   say no laboratory publishes a fixed opex figure, and this report does. That note is corrected;
+   see §8.5.
 
 ### 8.2 Reconciliation targets: what was opened
 
@@ -246,3 +246,38 @@ when one is opened the engine can be put on the same window.
 4% of capex a year the upkeep costs more than the faded capacity would have earned. That is a
 finding about the 4% applied to these revenue lines, and one more reason the figure needs the
 analyst's eye before anything is read from the right-hand columns.
+
+### 8.4 The analyst's ruling on augmentation (2026-10-12, after §8.1 to §8.3)
+
+A practitioner input, recorded as his and without its basis, as practitioner grades are:
+
+- **The default is the supplier's warranty extension and a long-term service agreement, taken
+  together and paid yearly.** The round-trip-efficiency and availability guarantees come with that
+  pair at no charge.
+- **With both in place there is no further cost for augmentation.** So there is no augmentation
+  year and no lump cost, and the question in §3.2 is closed: neither `a` nor `k` is set.
+
+What follows for the view:
+
+- **"Capacity fades" is the default case.** It is the engine's own treatment carried on, which is
+  what a project with a capacity warranty and no augmentation does.
+- **"Capacity maintained" stays as a comparison**, labelled as NREL's convention. It is not the
+  analyst's case and nothing should be read from it as a forecast.
+- **The yearly cost of the warranty and service package is taken to sit inside each market's opex
+  seed.** No seed was itemised to confirm that. It is the one assumption the default now rests
+  on, and gate G13 (no per-market opex series) is where it would be settled.
+- **Whether a capacity warranty can be bought for years 16 to 25, and at what price, is not
+  sourced.** The twenty and twenty-five year columns carry the year-15 cost forward unchanged.
+
+The NREL figure was cross-checked against a supplier quotation the analyst holds. The quotation and
+every figure from it stay outside the repository.
+
+### 8.5 The US opex note, corrected
+
+The US registers said no operator, ISO or laboratory publishes a fixed opex figure. NREL does: 4%
+of capital cost a year, including the capacity additions that hold a system at its rating. The
+note is corrected in the three US markets' comparison interface, coverage-gap table and source
+register. **The seed of $20,000 a MW a year is not changed.** NREL's figure is a different
+measure: it buys undegraded capacity, and the engine degrades the market line. Replacing the seed
+with 4% of capex while keeping the degradation would count the fade twice, and it would move the
+pinned base case for three markets, which needs its own derivation and sign-off.

@@ -22,13 +22,13 @@ export const LONG_LIFE_TEXT = {
     'The comparison engine prices fifteen years and assigns nothing after them. Published returns are quoted on longer lives. These columns extend the engine\'s own cash flows to twenty and twenty-five years and sit beside its figure; they do not replace it, and no grade or score reads them.',
     '比较引擎只测算十五年，其后不计任何价值；而公开发布的回报通常按更长的寿命给出。以下各列把引擎自身的现金流延伸至二十年和二十五年，与引擎数字并列展示；它们不取代引擎数字，任何评级或评分均不读取它们。',
   ],
-  fading: ['Capacity fades', '容量逐年衰减'],
-  maintained: ['Capacity maintained', '容量维持在额定值'],
+  fading: ['Capacity fades (default)', '容量逐年衰减（默认）'],
+  maintained: ['Capacity maintained (NREL convention)', '容量维持在额定值（NREL口径）'],
   years: (n) => [n + ' yr', n + '年'],
   market: ['Market', '市场'],
   rules: [
-    'Fading: the market line goes on degrading at the market\'s own rate, the secured line and costs stay at their year-15 level, and nothing is added at the end. Maintained: the market line is held at its rating in every year, for a yearly operating cost of ' + (MAINTAINED_FOM_SHARE * 100).toFixed(0) + '% of gross capex in place of the market\'s own where that is lower. The 4% is the US national laboratory\'s figure for a four-hour battery on a fifteen-year life; using it for longer, or outside the United States, goes beyond what that source says.',
-    '衰减情形：市场化收入继续按该市场自身的衰减率下降，有保障收入与成本维持第15年水平，期末不计任何残值。维持情形：市场化收入在每一年都保持额定水平，代价是每年的运营成本取总投资的' + (MAINTAINED_FOM_SHARE * 100).toFixed(0) + '%（若该市场自身的运营成本更低）。4%是美国国家实验室针对四小时电池、十五年寿命给出的数字；把它用于更长的寿命或美国以外的市场，已超出该来源本身的表述。',
+    'Fading is the default: a project carries a warranty extension from the supplier and a long-term service agreement, paid yearly, and with both in place pays nothing further for augmentation. The market line goes on degrading at the market\'s own rate, the secured line and costs stay at their year-15 level, and nothing is added at the end. Maintained is a comparison, not the default: the market line is held at its rating in every year, for a yearly operating cost of ' + (MAINTAINED_FOM_SHARE * 100).toFixed(0) + '% of gross capex in place of the market\'s own where that is lower. The 4% is the US national laboratory\'s figure for a four-hour battery on a fifteen-year life; using it for longer, or outside the United States, goes beyond what that source says.',
+    '衰减情形为默认情形：项目同时购买供应商的延保与长期服务协议并按年支付，在此前提下不再发生额外的容量增补成本。市场化收入继续按该市场自身的衰减率下降，有保障收入与成本维持第15年水平，期末不计任何残值。维持情形仅作对照，并非默认情形：市场化收入在每一年都保持额定水平，代价是每年的运营成本取总投资的' + (MAINTAINED_FOM_SHARE * 100).toFixed(0) + '%（若该市场自身的运营成本更低）。4%是美国国家实验室针对四小时电池、十五年寿命给出的数字；把它用于更长的寿命或美国以外的市场，已超出该来源本身的表述。',
   ],
   why: [
     'A longer window is worth two to three points where returns are low and under one where they are high, and it barely changes the order. Paying to hold capacity costs more than the capacity earns in most markets here. So the fifteen-year window explains only part of the distance between the engine and published returns; the rest is revenue level, capex or a residual value, and none of those is settled by this table.',

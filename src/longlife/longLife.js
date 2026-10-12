@@ -18,10 +18,18 @@
    SECURED LINE  nothing new. Years 16 to N carry whatever the secured and
                  auction lines are in year 15. No re-contracting is invented.
    RESIDUAL      none. The asset is worth nothing at the end of the window.
-   AUGMENTATION  no year and no lump cost were chosen. A source was opened
-                 instead, and it does not describe augmentation as an event: it
-                 describes a higher yearly operating cost that holds capacity
-                 at its rating. Both cases are shown.
+   AUGMENTATION  none, and that is the default. The analyst's ruling, as a
+                 practitioner: a project carries the supplier's warranty
+                 extension and a long-term service agreement together, paid
+                 yearly, and with both in place there is no further cost for
+                 augmentation. So there is no augmentation year and no lump
+                 cost, and capacity fades. The yearly cost of that package is
+                 taken to sit inside each market's opex seed; no seed was
+                 itemised to confirm it.
+                 The public source that was opened (NREL) describes the other
+                 convention: a higher yearly operating cost that holds capacity
+                 at its rating. It is shown beside the default as a comparison
+                 and is not the analyst's case.
 
    ---------------------------------------------------------------------------
    THE ARITHMETIC, per MW in USD on yearly periods

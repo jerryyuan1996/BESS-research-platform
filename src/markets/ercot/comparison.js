@@ -324,8 +324,8 @@ const ranges = {
 
   opexPerMW: band(economics.opexPerMW, null, null, {
     basis: [
-      'No US operator, ISO or laboratory publishes a fixed opex figure for grid-scale storage. $20,000/MW/yr is held equal to PJM and the NEM so that cross-market comparison is not driven by an unobserved input. The Texas-specific component inside it is property tax: Chapter 313 school-district value-limitation agreements lapsed at the end of 2022 and the successor programme does not cover standalone storage on the same terms, so a Texas project commissioning now carries a property-tax burden that pre-2023 comparables did not.',
-      '美国无任何运营商、独立系统运营机构或实验室公布电网级储能的固定运维成本。每MW每年$20,000与PJM及NEM保持一致，以避免跨市场比较被未观测输入所驱动。其中德州特有的成分是财产税：第313章学区估值限制协议已于2022年底失效，且后续项目未以同等条件覆盖独立储能，因此当前投运的德州项目所承担的财产税负担高于2023年前的可比项目。',
+      'No US operator or ISO publishes a fixed opex figure for grid-scale storage. One national-laboratory figure exists: NREL selects 4% of capital cost a year for a four-hour battery, from the high end of published values, because it includes the capacity additions that hold a system at its rating (Cost Projections for Utility-Scale Battery Storage: 2025 Update, page 11). The seed here is the maintenance-only end and is paired with a market line that degrades, so the two are not the same measure. $20,000/MW/yr is held equal to PJM and the NEM so that cross-market comparison is not driven by an unobserved input. The Texas-specific component inside it is property tax: Chapter 313 school-district value-limitation agreements lapsed at the end of 2022 and the successor programme does not cover standalone storage on the same terms, so a Texas project commissioning now carries a property-tax burden that pre-2023 comparables did not.',
+      '美国没有运营商或独立系统运营机构公布电网级储能的固定运维成本。国家实验室的数字只有一个：NREL针对四小时电池取每年为投资成本的4%，该值取自公开数值的高端，因为它包含了使系统维持额定容量的容量增补（《公用事业级电池储能成本预测：2025年更新》第11页）。此处的种子值属于仅含日常维护的低端，并与逐年衰减的市场化收入配套使用，两者并非同一口径。每MW每年$20,000与PJM及NEM保持一致，以避免跨市场比较被未观测输入所驱动。其中德州特有的成分是财产税：第313章学区估值限制协议已于2022年底失效，且后续项目未以同等条件覆盖独立储能，因此当前投运的德州项目所承担的财产税负担高于2023年前的可比项目。',
     ],
     source: 'No published series; Texas Chapter 313 expiry, 31 December 2022',
     gate: 'G13',

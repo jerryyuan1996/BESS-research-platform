@@ -47,7 +47,11 @@ export const LIFE = 15;
    lifetime" (Cost Projections for Utility-Scale Battery Storage: 2025 Update,
    NREL/TP-6A40-93281, page 11). NREL pairs it with a fifteen-year life and
    about one cycle a day, so using it beyond fifteen years, or outside the
-   United States, is an extension the source does not make. */
+   United States, is an extension the source does not make.
+
+   It is a COMPARISON and not the default. The analyst's ruling of 2026-10-12
+   is that a project carries warranty extension and a service agreement, paid
+   yearly, and pays nothing further for augmentation: capacity fades. */
 export const LONG_LIFE_YEARS = [20, 25];
 export const MAINTAINED_FOM_SHARE = 0.04;
 

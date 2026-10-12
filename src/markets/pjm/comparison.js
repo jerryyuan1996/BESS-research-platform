@@ -266,7 +266,8 @@ const economics = {
   devCostPct: 0, rtbPremiumPct: 0,
   constructionMonths: 12,
 
-  /* No published US fixed-opex series, the same gap DE and the NEM carry. 1.5%
+  /* No operator or ISO publishes a US fixed-opex series. NREL's 4% of capital
+     cost a year includes augmentation and is not this measure. 1.5%
      of installed cost, covering the long-term service agreement, insurance,
      land, property tax and PJM administrative charges. */
   opexPerMW: 20000,
@@ -362,8 +363,8 @@ const ranges = {
 
   opexPerMW: band(economics.opexPerMW, null, null, {
     basis: [
-      'No US operator, ISO or laboratory publishes a fixed opex figure for grid-scale storage — the same gap Germany and the NEM carry. $20,000/MW/yr is about 1.5% of the $1.336m installed cost and covers the long-term service agreement, insurance, land, property tax and PJM administrative charges. Property tax is the US-specific line inside it and varies by county across thirteen states, which is why no narrower claim is made.',
-      '美国无任何运营商、独立系统运营机构或国家实验室公布电网级储能的固定运维成本 — 德国与NEM同样存在此缺口。每MW每年$20,000约为$133.6万安装成本的1.5%，涵盖长期服务协议、保险、土地、财产税及PJM管理费。其中财产税为美国特有项目，在十三个州内按县差异显著，故不作更精确的表述。',
+      'No US operator or ISO publishes a fixed opex figure for grid-scale storage. One national-laboratory figure exists: NREL selects 4% of capital cost a year for a four-hour battery, from the high end of published values, because it includes the capacity additions that hold a system at its rating (Cost Projections for Utility-Scale Battery Storage: 2025 Update, page 11). The seed here is the maintenance-only end and is paired with a market line that degrades, so the two are not the same measure. $20,000/MW/yr is about 1.5% of the $1.336m installed cost and covers the long-term service agreement, insurance, land, property tax and PJM administrative charges. Property tax is the US-specific line inside it and varies by county across thirteen states, which is why no narrower claim is made.',
+      '美国没有运营商或独立系统运营机构公布电网级储能的固定运维成本。国家实验室的数字只有一个：NREL针对四小时电池取每年为投资成本的4%，该值取自公开数值的高端，因为它包含了使系统维持额定容量的容量增补（《公用事业级电池储能成本预测：2025年更新》第11页）。此处的种子值属于仅含日常维护的低端，并与逐年衰减的市场化收入配套使用，两者并非同一口径。每MW每年$20,000约为$133.6万安装成本的1.5%，涵盖长期服务协议、保险、土地、财产税及PJM管理费。其中财产税为美国特有项目，在十三个州内按县差异显著，故不作更精确的表述。',
     ],
     source: 'No published series; percentage-of-capex convention held constant with DE and the NEM',
     gate: 'G13',
