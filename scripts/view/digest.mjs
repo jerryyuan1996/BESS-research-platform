@@ -4,14 +4,14 @@
    A rule or an agent changes the view live, and nothing on the page marks the
    change: the changelog is the record. That is the analyst's decision, and its
    cost is that a change can go unseen until he happens to scroll past it. This
-   is the answer to that cost (plan §7.6, guardrail H): once a week, every
-   machine-written line of the last seven days, with what moved, why, on what
+   is the answer to that cost (plan §7.6, guardrail H): once a month, every
+   machine-written line of the last thirty-one days, with what moved, why, on what
    evidence, and the one command that undoes it.
 
    It reads the changelog and prints. It writes nothing and changes nothing.
-   An empty week prints nothing at all, so the workflow can stay silent.
+   An empty month prints nothing at all, so the workflow can stay silent.
 
-   Run:  node scripts/view/digest.mjs            the last seven days
+   Run:  node scripts/view/digest.mjs            the last thirty-one days
          node scripts/view/digest.mjs --days 30
    --------------------------------------------------------------------------- */
 import { readFile } from 'node:fs/promises';

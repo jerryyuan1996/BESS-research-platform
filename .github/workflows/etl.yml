@@ -23,12 +23,12 @@ name: Live data
 #             Runs on a branch, edits the analyst-controlled value there, and
 #             stops. A human decides. Model assumptions still move this way.
 #
-#   agent     once a day, DRY. Reads the pages that due triggers cite and
+#   agent     once a month, DRY. Reads the pages that due triggers cite and
 #             reports what it would have changed. It has read-only permissions,
 #             writes nothing to the repository, and does nothing at all until a
 #             model key exists as a repository secret.
 #
-#   scout     three times a month, one region each, so every scout card is
+#   scout     once a month, every region in one run, so every scout card is
 #             reviewed monthly. Reads the pages the analyst listed for three
 #             markets with no dashboard and writes their cards — once the
 #             analyst has made the agent live on scout cards. Until then it is
@@ -41,8 +41,8 @@ name: Live data
 #   publish-scout  calls ci.yml on the commit a scout pass pushed, for the
 #             reason publish does.
 #
-#   digest    once a week. Posts the machine-written changes of the last seven
-#             days as an issue, so none goes unseen.
+#   digest    once a month. Posts the machine-written changes of the last
+#             thirty-one days as an issue, so none goes unseen.
 #
 # Nothing in this file may be given auto-merge. That is deliberate and it is the
 # single most important line in the workflow. A rule's change does not need
@@ -53,13 +53,14 @@ on:
     # Every six hours. The sources publish daily or better; six hours keeps the
     # site current without hammering a public regulator's server.
     - cron: '17 */6 * * *'
-    # The agent's daily dry pass.
-    - cron: '43 5 * * *'
-    # The weekly digest of machine changes, Monday morning.
-    - cron: '7 6 * * 1'
-    # The scout pass: the 1st, 11th and 21st, one region each. Which region is
-    # SCOUT_SCHEDULE in src/governance/scout.js, read from the date.
-    - cron: '23 4 1,11,21 * *'
+    # The agent's dry pass, once a month. No job that asks a model runs more
+    # often than monthly: the analyst's ruling of 2026-10-12.
+    - cron: '43 5 2 * *'
+    # The monthly digest of machine changes.
+    - cron: '7 6 3 * *'
+    # The scout pass: the 1st of the month, every region in one run. The day is
+    # SCOUT_DAY_OF_MONTH in src/governance/scout.js.
+    - cron: '23 4 1 * *'
   workflow_dispatch:
     inputs:
       only:
@@ -91,7 +92,7 @@ jobs:
     name: Fetch, validate, publish
     # Not on the agent's, the digest's or the scout pass's schedule: those run
     # their own job. Nor when a scout pass was asked for by hand.
-    if: github.event.schedule != '43 5 * * *' && github.event.schedule != '7 6 * * 1' && github.event.schedule != '23 4 1,11,21 * *' && inputs.scout_region == ''
+    if: github.event.schedule != '43 5 2 * *' && github.event.schedule != '7 6 3 * *' && github.event.schedule != '23 4 1 * *' && inputs.scout_region == ''
     runs-on: ubuntu-latest
     outputs:
       material: ${{ steps.drift.outputs.material }}
@@ -355,7 +356,7 @@ jobs:
     # Once a day, or by hand. It reports and writes nothing: read-only
     # permissions, no commit step, and the view writer refuses an agent's
     # change in any case until the analyst makes the agent a live author.
-    if: github.event.schedule == '43 5 * * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '')
+    if: github.event.schedule == '43 5 2 * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -440,7 +441,7 @@ jobs:
     # below that check, scan and commit find nothing to do. `contents: read`
     # is the second lock: making the agent live means changing both, in one
     # pull request the analyst merges.
-    if: github.event.schedule == '23 4 1,11,21 * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region != '')
+    if: github.event.schedule == '23 4 1 * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region != '')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -587,8 +588,8 @@ jobs:
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
   digest:
-    name: Weekly digest of machine changes
-    if: github.event.schedule == '7 6 * * 1'
+    name: Monthly digest of machine changes
+    if: github.event.schedule == '7 6 3 * *'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -600,19 +601,19 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Render the last seven days
+      - name: Render the last thirty-one days
         run: node scripts/view/digest.mjs > digest.md
 
-      - name: Post it, unless the week was empty
+      - name: Post it, unless the month was empty
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           if [ ! -s digest.md ]; then
-            echo "No rule and no agent changed the view this week. Nothing to post."
+            echo "No rule and no agent changed the view this month. Nothing to post."
             exit 0
           fi
-          gh label create view-digest --description "Weekly digest of machine changes to the view" --color 5319e7 --force
+          gh label create view-digest --description "Monthly digest of machine changes to the view" --color 5319e7 --force
           gh issue create \
-            --title "Machine changes to the view, week to $(date -u +%Y-%m-%d)" \
+            --title "Machine changes to the view, month to $(date -u +%Y-%m-%d)" \
             --body-file digest.md \
             --label view-digest

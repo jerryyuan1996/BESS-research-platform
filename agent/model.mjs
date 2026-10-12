@@ -23,7 +23,7 @@ import { MODEL, SYSTEM, ANSWER_SCHEMA } from './prompt.mjs';
  * Ask the model about one market. Returns the parsed answer with the model
  * that gave it, or { refused, model } — never a partial answer.
  *
- * The daily pass and the scout pass ask in different words and expect
+ * The monthly pass and the scout pass ask in different words and expect
  * different shapes, so each supplies its own system prompt and schema. The
  * call is otherwise the same one, and neither is given a tool.
  */

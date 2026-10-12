@@ -25,7 +25,7 @@
    too. Which of the two this program runs is the first argument.
 
    Usage (in the workflow):
-     node agent/run.mjs                      the daily pass over markets, dry
+     node agent/run.mjs                      the monthly pass over markets, dry
      node agent/run.mjs --scout [region]     one scout pass; with no region,
                                              the one the day of the month names
    --------------------------------------------------------------------------- */
@@ -35,7 +35,7 @@ import { createViewStore, writeRunReport } from '../etl/lib/viewWriter.mjs';
 import { runAgent, renderAgentReport } from './core.mjs';
 import { PROMPT_VERSION, MODEL } from './prompt.mjs';
 import { runScoutPass, renderScoutReport, robotsAllows, AGENT_TOKEN } from './scout.mjs';
-import { SCOUT_SCHEDULE, SCOUT_REGION_IDS } from '../src/governance/scout.js';
+import { SCOUT_REGION_IDS } from '../src/governance/scout.js';
 
 /** A market's source register, or null when it has none. */
 async function registers(marketId){
@@ -76,14 +76,16 @@ async function robots(url){
   return robotsAllows(await robotsFiles.get(origin), pathname + search);
 }
 
-/* The region a scout pass covers: the one named, or the one today's date names. */
-function scoutRegion(named){
-  const region = named || process.env.SCOUT_REGION || SCOUT_SCHEDULE[new Date().getUTCDate()];
+/* The regions a scout run covers: the one named, or every region in roster
+   order. The scheduled run names none, so once a month it covers them all. */
+function scoutRegions(named){
+  const region = named || process.env.SCOUT_REGION;
+  if (!region) return [...SCOUT_REGION_IDS];
   if (!SCOUT_REGION_IDS.includes(region)){
-    console.error(`No scout region for today, and none was named. Name one of: ${SCOUT_REGION_IDS.join(', ')}.`);
+    console.error(`"${region}" is not a scout region. Name one of: ${SCOUT_REGION_IDS.join(', ')}.`);
     process.exit(2);
   }
-  return region;
+  return [region];
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href){
@@ -101,11 +103,22 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href){
 
   const { askModel } = await import('./model.mjs');
   if (scout){
-    const result = await runScoutPass({ store: createViewStore(), region: scoutRegion(process.argv[3]), fetchPage, robots, askModel });
-    const report = renderScoutReport(result);
+    /* One pass a region, each through a fresh store so it reads what the pass
+       before it wrote. The report keeps `region` and `pass.written` at the top
+       for the workflow's commit message, and every pass in full beneath. */
+    const passes = [];
+    for (const region of scoutRegions(process.argv[3])){
+      passes.push(await runScoutPass({ store: createViewStore(), region, fetchPage, robots, askModel }));
+    }
+    const report = passes.map(renderScoutReport).join('\n\n');
     console.log(report);
     await writeRunReport('scout-report.md', `${report}\n`);
-    await writeRunReport('scout-report.json', `${JSON.stringify(result, null, 2)}\n`);
+    const summary = {
+      region: passes.map(p => p.region).join(', '),
+      pass: { written: passes.reduce((n, p) => n + (p.pass?.written ?? 0), 0) },
+      passes,
+    };
+    await writeRunReport('scout-report.json', `${JSON.stringify(summary, null, 2)}\n`);
     process.exit(0);
   }
   const result = await runAgent({ store: createViewStore(), registers, fetchPage, askModel });
