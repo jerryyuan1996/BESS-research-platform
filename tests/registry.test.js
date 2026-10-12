@@ -306,19 +306,26 @@ test('a lazy dashboard resolves to a renderer, and Japan shares one chunk', asyn
    tabs. The count is asserted rather than left free because the dashboards are
    meant to mirror one another — a market that quietly gains or loses a tab has
    stopped being comparable, which is the whole premise of the shared engine. */
-test('every dashboard has the same ten non-comparison tabs, plus two where the market has a view', async () => {
-  /* Ten everywhere until the investment-view revision. A market that has been
-     graded carries Investment Case and Entry as well, and a market that has not
-     must not carry either — an empty verdict tab is worse than none. The plan
-     merges the set down to seven in a later phase. */
+test('every dashboard has the same seven tabs, holding ten analytical sections and two more where the market has a view', async () => {
+  /* Ten tabs everywhere until the investment-view revision, then twelve for a
+     graded market. Since plan phase 5 a dashboard has SEVEN tabs and a tab
+     holds one section or several: `m.tabs` is the market's list of SECTIONS,
+     and src/markets/tabGroups.js arranges them. tests/tab-groups.test.js holds
+     the arrangement; this holds the sections.
+
+     A market that has been graded carries the Investment Case and Entry
+     sections, and one that has not must not carry either — an empty verdict
+     section is worse than none. */
   const { hasView } = await import('../src/markets/viewRegistry.js');
+  const { tabsFor, TAB_IDS } = await import('../src/markets/tabGroups.js');
   for (const m of markets){
     const ids = m.tabs.map(([id]) => id);
     const graded = hasView(m.manifest.id);
-    assert.equal(m.tabs.length, graded ? 12 : 10, `${m.manifest.id} tab count`);
-    assert.equal(ids.includes('case'), graded, `${m.manifest.id}: Investment Case tab and view must go together`);
-    assert.equal(ids.includes('entry'), graded, `${m.manifest.id}: Entry tab and view must go together`);
-    assert.equal(ids[0], 'home', `${m.manifest.id}: Overview stays the landing tab`);
+    assert.equal(m.tabs.length, graded ? 12 : 10, `${m.manifest.id} section count`);
+    assert.equal(ids.includes('case'), graded, `${m.manifest.id}: Investment Case section and view must go together`);
+    assert.equal(ids.includes('entry'), graded, `${m.manifest.id}: Entry section and view must go together`);
+    assert.deepEqual(tabsFor(m.tabs).map(t => t.id), TAB_IDS, `${m.manifest.id}: the seven tabs`);
+    assert.equal(tabsFor(m.tabs)[0].sections[0], graded ? 'case' : 'home', `${m.manifest.id}: the investment case leads where there is one`);
     assert.ok(!ids.includes('benchmark'), `${m.manifest.id}: comparison tab must be absent`);
   }
 });

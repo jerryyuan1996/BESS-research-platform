@@ -1,5 +1,6 @@
 /* ---------------------------------------------------------------------------
-   TEMPLATE — this market's tab strip.
+   TEMPLATE — this market's SECTIONS. The seven tabs they are arranged into
+   are in ../tabGroups.js; a market declares sections and never tabs.
 
    Format: [tabId, [en, zh]]. The tabId becomes a URL segment, so it must be
    lowercase and URL-safe: /markets/<slug>/<tabId>.

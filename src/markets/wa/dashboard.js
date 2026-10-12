@@ -25,11 +25,14 @@ import { marketNav, tabNav, revenueSubNav, labLink } from '../../components/navi
 import { renderFooter } from '../../components/footer.js';
 import { chip } from '../../components/chip.js';
 import { enhanceMarketPage } from '../../components/pageEnhancements.js';
+import { drawTab } from '../../components/tabSections.js';
+import { sectionHead } from '../../components/sectionHeader.js';
+import { resolveSegment } from '../tabGroups.js';
 import { WA_GRID_MAP } from './gridMapData.js';
 import { markets } from '../registry.js';
 
 import { manifest } from './manifest.js';
-import { TABS, DEFAULT_TAB } from './tabs.js';
+import { TABS } from './tabs.js';
 import { state, LS } from './state.js';
 import { T } from './text.js';
 import { SEED } from './data/seed.js';
@@ -96,9 +99,13 @@ function codYearSelect(){
   }));
 }
 
-export function dashboard(container, { tabId, basePath }){
-  // An unrecognised tab in the URL falls back to the default rather than 404ing.
-  state.tab = TABS.some(([id]) => id === tabId) ? tabId : DEFAULT_TAB;
+export function dashboard(container, { tabId, subId, basePath }){
+  /* Where the address lands: one of seven tabs, holding one section or several.
+     An old address names a section and resolves to its tab; an unrecognised one
+     falls back to the landing tab rather than 404ing. */
+  const where = resolveSegment(TABS, tabId, subId);
+  // The section in view, which is what a section's own links set.
+  state.tab = where.section || where.sections[0];
 
   container.append(renderHeader({
     title: T.title,
@@ -122,12 +129,20 @@ export function dashboard(container, { tabId, basePath }){
 
   const main = h('div');
   container.append(main);
-  (SECTIONS[state.tab] || SECTIONS[DEFAULT_TAB])(main);
-
-  enhanceMarketPage(main, {
-    overviewMap: state.tab === DEFAULT_TAB ? WA_GRID_MAP : null,
-    marketId:manifest.id,
-    tabId:state.tab,
+  drawTab(main, where, {
+    basePath, marketId: manifest.id,
+    draw: (id, el) => {
+      /* The overview drew no heading of its own while it was the landing page.
+         Stacked under the investment case it takes one. */
+      if (id === 'home') sectionHead(el, ['Market at a glance', '市场概览']);
+      SECTIONS[id](el);
+    },
+    after: (id, el) => enhanceMarketPage(el, {
+      /* The map is paired with the overview, wherever the overview is drawn. */
+      overviewMap: id === 'home' ? WA_GRID_MAP : null,
+      marketId: manifest.id,
+      tabId: id,
+    }),
   });
   container.append(renderFooter([
     T.disclaimer,

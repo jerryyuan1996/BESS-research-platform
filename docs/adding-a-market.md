@@ -50,7 +50,7 @@ Japan is now live. With no other edits it appears in:
 
 **The dashboard is NOT optional.** This page said it was, and the delivery note for the Japan
 round repeated it. The tests disagree: `every market exposes the full module surface` requires a
-`dashboard` or a `loadDashboard`, and `every dashboard has the same ten non-comparison tabs`
+`dashboard` or a `loadDashboard`, and `every dashboard has the same seven tabs`
 requires the tab strip to match every other market's.
 
 What is true is the weaker statement: a market can be *built* before it is *registered*, and the
@@ -71,7 +71,7 @@ insist it can answer every question those surfaces ask. All of these are require
 | transmission voltage row | `governance/transmissionVoltage.js` | `no transmission voltage definition` |
 | bounding box | `etl/sources/osm-grid.mjs` | `no bounding box` |
 | pipeline source declaration | `governance/projectPipelineSources.js` — `NO_SOURCE` counts, silence does not | `no pipeline source declaration` |
-| dashboard | `<market>/dashboard.js` + the standard ten tabs | `no dashboard, eager or lazy` |
+| dashboard | `<market>/dashboard.js` + the standard ten analytical sections, arranged into seven tabs | `no dashboard, eager or lazy` |
 | non-null `modelVersion` | `manifest.js` | `manifest.modelVersion is still null` |
 | decision profile | `markets/decisionProfiles.js` | an unclassified `refinement` field |
 | authority classification | `governance/authority.js` for any new field | `add these to COMPARISON_AUTHORITY` |
@@ -233,7 +233,7 @@ This is how WA works, and it predates the engine. Choose it only when a market n
 block engine genuinely cannot express — WA's RCM forecast engine and dispatch co-optimiser are the
 real examples.
 
-1. **`tabs.js`** — `[[tabId, [en, zh]], …]`. Each `tabId` becomes a URL segment. First is the default.
+1. **`tabs.js`** — `[[sectionId, [en, zh]], …]`: the market's SECTIONS, with its own labels. Since October 2026 a dashboard has seven tabs and a tab holds one section or several; `src/markets/tabGroups.js` arranges the sections into the tabs, so a market declares sections and never tabs. The ten analytical ids are `home`, `story`, four revenue sections (`capacity`, `energy`, `services`, `duration`, or the market's own equivalents listed in `REVENUE_SECTIONS`), `pipeline`, `grid`, `portfolio` and `data`; a graded market adds `case` and `entry`. A section id is also the key of its section claim, and an old address `/markets/<slug>/<sectionId>` still resolves to the tab that holds it.
 2. **`state.js`** — market-local state only. **Never** language or theme; those are application
    state and a market must not own them. Expose `lang`/`theme` as getters if section code needs to
    read them.

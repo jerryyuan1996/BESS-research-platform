@@ -32,6 +32,8 @@ import { chip } from '../../components/chip.js';
 import { why } from '../../components/decisionLogic.js';
 import { kpi, scoreRows, bandFor, meter } from '../../components/metricCard.js';
 import { sectionHead } from '../../components/sectionHeader.js';
+import { drawTab } from '../../components/tabSections.js';
+import { resolveSegment } from '../tabGroups.js';
 import { sourceDrawer, sourceStatusBadge } from '../../components/sourceDrawer.js';
 // Charts, card and why are re-exported to market sections through `api`, not used here.
 import { renderHeader, renderDisclaimer } from '../../components/header.js';
@@ -59,6 +61,9 @@ import { createExports } from './exports.js';
  * @param {(api:object)=>Function} cfg.buildSections  returns SECTIONS()
  * @param {object} [cfg.textOverrides]  market-specific additions to the shared T
  */
+/** The heading the overview takes when it is stacked under the investment case. */
+const OVERVIEW_HEAD = ['Market at a glance', '市场概览'];
+
 export function createMarketEngine(cfg){
   const { MKT, TABS, SRC, buildSections, textOverrides, regions } = cfg;
 
@@ -207,16 +212,16 @@ export function createMarketEngine(cfg){
       if (rid === 'compare'){
         return h('button', {
           class: 'btn' + (active ? ' active' : ''),
-          onclick: () => { navigate(basePath + (tabValue === TABS[0][0] ? '' : '/' + tabValue) + '?region=compare'); },
+          onclick: () => { navigate(basePath + '/' + tabValue + '?region=compare'); },
         }, L(label));
       }
       const href = slugFor(rid);
       if (!href) return null;
       return h('a', {
         class: 'btn' + (active ? ' active' : ''),
-        href: href + (tabValue === TABS[0][0] ? '' : '/' + tabValue),
+        href: href + '/' + tabValue,
         style: 'text-decoration:none;',
-        onclick: (e) => { e.preventDefault(); navigate(href + (tabValue === TABS[0][0] ? '' : '/' + tabValue)); },
+        onclick: (e) => { e.preventDefault(); navigate(href + '/' + tabValue); },
       }, L(label));
     }));
   }
@@ -230,8 +235,12 @@ export function createMarketEngine(cfg){
   function dashboard(container, route, allMarkets){
     registry = allMarkets;
     basePath = route.basePath;
+    /* Where the address lands: one of seven tabs, holding one section or
+       several. An old address names a section and resolves to its tab. */
+    const where = resolveSegment(TABS, route.tabId, route.subId);
     // Set the backing field directly: reading the route is not a navigation.
-    tabValue = TABS.some(([id]) => id === route.tabId) ? route.tabId : TABS[0][0];
+    // It holds the SECTION in view, which is what a section's own links set.
+    tabValue = where.section || where.sections[0];
     pendingTab = null;
 
     if (REGIONS){
@@ -264,13 +273,23 @@ export function createMarketEngine(cfg){
     container.append(main);
 
     const S_ = SECTIONS();
-    const spec = S_[tabValue] || S_[TABS[0][0]];
-    renderSection(spec)(main);
-
-    const overviewMap = tabValue === TABS[0][0]
-      ? gridMapForMarket(MKT.id, route.market?.manifest.region || (regionValue === 'compare' ? null : regionValue))
-      : null;
-    enhanceMarketPage(main, { overviewMap, marketId:MKT.id, tabId:tabValue });
+    drawTab(main, where, {
+      basePath, marketId: route.market ? route.market.manifest.id : MKT.id,
+      draw: (id, el) => {
+        const spec = S_[id];
+        /* The overview has no heading of its own in some markets, because it
+           used to be the landing page. Stacked under the investment case it
+           needs one, or it has no wrapper for a claim to attach to. */
+        renderSection(id === 'home' && !spec.head ? { ...spec, head: OVERVIEW_HEAD } : spec)(el);
+      },
+      after: (id, el) => enhanceMarketPage(el, {
+        /* The map is paired with the overview, wherever the overview is drawn. */
+        overviewMap: id === 'home'
+          ? gridMapForMarket(MKT.id, route.market?.manifest.region || (regionValue === 'compare' ? null : regionValue))
+          : null,
+        marketId: MKT.id, tabId: id,
+      }),
+    });
     container.append(renderFooter([
       T.disclaimer,
       L(['Model version: ', '模型版本：']) + M.modelVersion + ' · ' + L(MKT.tzNote) + ' · ' + L(M.footerNote),

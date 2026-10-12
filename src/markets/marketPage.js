@@ -142,7 +142,7 @@ function renderPending(container, market){
  * @param {string|null} tabId
  * @param {string|null} regionOverride  from ?region=, e.g. 'compare'
  */
-export function renderMarketPage(container, market, tabId, regionOverride){
+export function renderMarketPage(container, market, tabId, regionOverride, subId = null){
   if (!hasDashboard(market)) return renderPending(container, market);
 
   /* A market may delegate its dashboard to another module. Tokyo, Kyushu and
@@ -176,6 +176,7 @@ export function renderMarketPage(container, market, tabId, regionOverride){
     container.innerHTML = '';
     dashboard(container, {
       tabId,
+      subId,
       basePath: marketPath(market),
       region: regionOverride || market.manifest.region || null,
       market,

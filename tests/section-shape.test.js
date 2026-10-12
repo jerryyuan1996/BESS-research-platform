@@ -116,7 +116,8 @@ test('Finland builds twelve sections and every one of them has a heading', async
   const S = await sectionsFor('fi');
   const ids = Object.keys(S);
   /* Ten until the investment-view revision added Investment Case and Entry.
-     The plan merges the set down to seven in a later phase. */
+     Since plan phase 5 these twelve SECTIONS sit in seven tabs; the sections
+     themselves, and their ids, are what they were. See tests/tab-groups.test.js. */
   assert.equal(ids.length, 12, 'Finland has the standard ten tabs plus Investment Case and Entry');
 
   const headless = ids.filter(id => !S[id]?.head);
