@@ -25,7 +25,7 @@ import { congestionFor } from '../congestionRegistry.js';
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
   const { h, L, MKT, M, SRC, state, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct,
-          compositeScore, liveScore, dilutionAt } = api;
+          liveScore, dilutionAt } = api;
 
 const SEC_B = {};
 function SECTIONS(){
@@ -50,10 +50,8 @@ SEC_B.home = function (){
     { t:'warn', text:M.seedWarn },
     { t:'card', mt:false, title:['Position at a glance','总体判断'], badges:['calc','illus'], live:false, blocks:[
       { t:'kpis', items:[
-        { l:['Investment stance','投资立场'], v:L(M.overall.statusL),
-          d:['COD window ' + M.overall.codWindow, '投运窗口 ' + M.overall.codWindow] },
-        { l:['Composite score','综合评分'], v:String(compositeScore()) + '<small>/100</small>',
-          d:['confidence ' + M.overall.confidence + '%', '置信度 ' + M.overall.confidence + '%'], b:['calc'] },
+        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow,
+          d:['evidence confidence ' + M.overall.confidence + '%', '证据置信度 ' + M.overall.confidence + '%'] },
         { l:['Capacity revenue available','可获容量收入'], v:'$0',
           d:['energy-only; scarcity is priced inside the energy price via the ORDC','纯电能量市场；稀缺性通过ORDC计入电能量价格'], b:['official'] },
         { l:['Interconnection timeline','并网周期'], v:O.interconnectYears + '<small> yr</small>',

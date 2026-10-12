@@ -16,7 +16,7 @@ import { buildPLEconomicsBlocks } from './economicsSection.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
-  const { h, L, MKT, M, SRC, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, compositeScore, liveScore, interp, dilutionAt, labInputs, labModel, pipelineByYear } = api;
+  const { h, L, MKT, M, SRC, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, liveScore, interp, dilutionAt, labInputs, labModel, pipelineByYear } = api;
 
 // ---------------- section registry ----------------
 const SEC_B = {};
@@ -33,7 +33,7 @@ const plMerchantPerMW = hh => hh * M.usableFraction * M.lab.cycles * 365 * (M.la
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const comp = compositeScore(), dni = liveScore('durFactors'), cs = liveScore('connFactors');
+  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
   const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
   const cod = state.codYear, cc = M.codCases[cod] || M.codCases[2029];
   return {
@@ -63,16 +63,9 @@ SEC_B.home = function (){
 
     { t:'g2', cards:[
       { title:['Card A — Overall Poland Storage Signal','Card A — 波兰储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:M.overall.chipCls, text:M.overall.statusL },
-        { t:'p', text:['Composite score: ' + comp + ' / 100 · Confidence: ' + M.overall.confidence + '% · Target COD window: ' + M.overall.codWindow,
-          '综合评分：' + comp + ' / 100 · 置信度：' + M.overall.confidence + '% · 目标投运窗口：' + M.overall.codWindow] },
-        { t:'meter', pct: comp, color:'warn' },
+        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
+          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
         { t:'p', text:M.overall.rationale },
-        { t:'sub', text:['Component scores (weights never hidden behind the composite):','分项评分（权重不隐藏于综合分之后）：'] },
-        { t:'scores', items:M.components, max:100 },
-        { t:'why', text:['The composite is deliberately not a go/no-go number. The heaviest weight — capacity market outlook at 25% — is also the strongest score, and the second heaviest — connection and queue risk at 20% — is the weakest. That is the Polish case in one line: the revenue mechanism is good and the access to it is scarce. A score of ' + comp + ' with that split means the diligence budget belongs on the connection chain and the certification pathway, not on the price forecast.',
-          '综合分刻意不作为一票通过的指标。权重最高的容量市场前景（25%）同时也是评分最高的分项，而权重次高的并网与队列风险（20%）则是评分最低的分项。这一句话概括了波兰的投资逻辑：收入机制良好，而进入该机制的通道稀缺。综合' + comp + '分在此结构下的含义是：尽调预算应投向并网链条与认证路径，而非价格预测。'],
-          sig:['Good mechanism, scarce access','机制良好，通道稀缺'] },
       ] },
       { title:['Card B — Capacity Market Signal','Card B — 容量市场信号'], badges:['verify'], live:false, blocks:[
         { t:'chip', cls:'good', text:['The strongest feature — a long contract that makes the asset financeable','最突出的特征 — 使资产具备可融资性的长期合同'] },
@@ -144,8 +137,8 @@ SEC_B.home = function (){
         ] },
         { t:'note', text:['Required protection: no material non-refundable payment before connection conditions with adequate capacity and an executed connection agreement. In Poland the connection stage also gates the capacity auction, so a connection failure removes both revenue lines at once rather than delaying one of them.',
           '必要保护：在取得容量充足的并网条件及已签并网协议前，不支付重大不可退还款项。在波兰，并网阶段同时决定能否参与容量拍卖，因此并网失败会一次性移除两条收入线，而非仅延迟其中一条。'] },
-        { t:'why', text:['Connection is scored ' + cs + '/100 (higher = riskier) and it is the weakest component in the composite for a structural reason: connection conditions are rationed, and they gate the capacity auction as well as the physical build. That compounding is the distinctively Polish risk — in an energy-only market a connection delay costs you a year of spread, but here it can cost you the auction, and with it the ' + O.cmAgreementYears + '-year contract that makes the project financeable at all.',
-          '并网评分' + cs + '/100（分值越高风险越大），且它是综合评分中最弱的分项，原因是结构性的：并网条件受到配给，且其不仅决定实体建设，也决定能否参与容量拍卖。这种叠加效应正是波兰特有的风险 — 在单一电能量市场中，并网延迟的代价是一年的价差；而在此地，其代价可能是错过拍卖，进而失去使项目得以融资的' + O.cmAgreementYears + '年合同。'],
+        { t:'why', text:['Connection is scored ' + cs + '/100 (higher = riskier) and it is weak for a structural reason: connection conditions are rationed, and they gate the capacity auction as well as the physical build. That compounding is the distinctively Polish risk — in an energy-only market a connection delay costs you a year of spread, but here it can cost you the auction, and with it the ' + O.cmAgreementYears + '-year contract that makes the project financeable at all.',
+          '并网评分' + cs + '/100（分值越高风险越大），其偏弱的原因是结构性的：并网条件受到配给，且其不仅决定实体建设，也决定能否参与容量拍卖。这种叠加效应正是波兰特有的风险 — 在单一电能量市场中，并网延迟的代价是一年的价差；而在此地，其代价可能是错过拍卖，进而失去使项目得以融资的' + O.cmAgreementYears + '年合同。'],
           sig:['A connection delay can cost the auction','并网延迟可能导致错过拍卖'] },
       ] },
     ] },
@@ -693,8 +686,8 @@ SEC_B.benchmark = function (){
   return {
   head: ['Poland vs Romania — market design, revenue certainty and what transfers (context only)',
          '波兰与罗马尼亚对比 — 市场设计、收入确定性与可迁移结论（仅背景参考）'],
-  cap: ['The only section in this dashboard that uses Romanian data. Poland and Romania are neighbouring CEE markets with similar fundamentals — coal exit, rapid solar growth, rising volatility — that have made opposite choices on revenue certainty. Comparing them isolates what is genuinely Polish. All Romanian figures are held in a separate namespace and excluded from the Poland composite investment score.',
-        '本看板中唯一使用罗马尼亚数据的章节。波兰与罗马尼亚是基本面相近的中东欧邻国 — 煤电退出、光伏快速增长、波动性上升 — 却在收入确定性上作出了相反选择。比较两者可分离出真正属于波兰特有的因素。所有罗马尼亚数值保存在独立命名空间，不计入波兰综合投资评分。'],
+  cap: ['The only section in this dashboard that uses Romanian data. Poland and Romania are neighbouring CEE markets with similar fundamentals — coal exit, rapid solar growth, rising volatility — that have made opposite choices on revenue certainty. Comparing them isolates what is genuinely Polish. All Romanian figures are held in a separate namespace and excluded from Poland\'s grades and verdicts.',
+        '本看板中唯一使用罗马尼亚数据的章节。波兰与罗马尼亚是基本面相近的中东欧邻国 — 煤电退出、光伏快速增长、波动性上升 — 却在收入确定性上作出了相反选择。比较两者可分离出真正属于波兰特有的因素。所有罗马尼亚数值保存在独立命名空间，不计入波兰的评级与结论。'],
   blocks: [
     { t:'note', b:['Scope discipline: ','范围纪律：'],
       text:['Romanian data (Jul 2026) never enters the Polish capacity analysis, price series, pipeline or any scoring input. It is used here for one purpose: to calibrate whether a Polish observation is a Polish phenomenon or a general CEE one — and, specifically, to show what the capacity mechanism is worth by looking at a comparable market that does not have one.',
@@ -900,7 +893,6 @@ SEC_B.data = function (){
         [{b:['Executable margin','可执行价差']}, 'published spread + intraday uplift − liquidity − RTE − availability − charges − optimiser fee'],
         [{b:['Effective spread by duration','按时长的有效价差']}, 'executable margin × duration factor × (RTE / 88) × saturation factor(COD year)'],
         [{b:['Post-contract capacity revenue','合同期后容量收入']}, 'capacity revenue × re-contracting factor after year ' + O.cmAgreementYears],
-        [{b:['Composite score','综合评分']}, 'Σ (component weight × component score) / 100'],
         [{b:['Duration / Connection scorecards','时长与并网评分卡']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
         [{b:['DSCR','偿债覆盖率']}, 'EBITDA(year) / annuity(debt, interest rate, tenor)'],
       ] },

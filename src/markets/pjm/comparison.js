@@ -46,7 +46,7 @@
 import { band, limits } from '../../comparison/ranges.js';
 import { stackFrom } from '../../comparison/capex.js';
 import { merchantVintage } from '../../comparison/vintage.js';
-import { COMPOSITE, CONNECTION_RISK } from './scores.js';
+import { CONNECTION_RISK } from './scores.js';
 
 /* NREL, "Cost Projections for Utility-Scale Battery Storage: 2025 Update" — the
    US counterpart to CSIRO's GenCost, and the same role it plays for the NEM.
@@ -467,7 +467,6 @@ export const comparison = {
   },
 
   score: {
-    composite: COMPOSITE,
     connectionRisk: CONNECTION_RISK,
   },
 

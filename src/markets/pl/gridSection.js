@@ -1,9 +1,11 @@
 import { gridMapById } from '../gridMapRegistry.js';
 import { congestionFor } from '../congestionRegistry.js';
 
-const PL_GRID_MAP = gridMapById('pl-grid-map');
 
 export function buildPLGridSection({ SRC, M }){
+  /* Looked up here, not at module load: this file is imported before the
+     market's map data registers itself. */
+  const PL_GRID_MAP = gridMapById('pl-grid-map');
   return {
     head:['Grid Connection — scarce capacity, changing flow and documentary proof','并网 — 稀缺容量、变化潮流与文件证据'],
     cap:['An investor map and evidence journey for Poland’s coal-to-coast transition. It shows how inherited thermal nodes, northern generation, new demand and PSE’s 2034 reinforcements interact—and which documents convert a location into an underwritable connection.','面向投资者的波兰“煤电向沿海转移”地图及证据路径。展示既有火电节点、北部发电、新增负荷及PSE 2034年前增容工程如何相互作用，并说明哪些文件可将区位转化为可承销并网。'],

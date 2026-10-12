@@ -29,19 +29,9 @@ const M = {
     dam2025Eur: 92, idm2025Eur: 88,
   },
 
-  overall: { statusL: ['Selective', '选择性投资'], chipCls: 'warn', confidence: 72, codWindow: '2028–2030',
+  overall: { confidence: 72, codWindow: '2028–2030',
     rationale: ['A long capacity contract makes Polish storage conventionally financeable, but the auction is competitive, the correction factor decides how much of the asset is paid, and connection refusals decide whether the project can bid at all.',
                 '长期容量合同使波兰储能具备常规可融资性，但拍卖竞争激烈、折减系数决定资产中获付费的比例，而并网拒批则决定项目能否参与投标。'] },
-  components: [
-    { n: ['Capacity market outlook', '容量市场前景'], w: 25, s: 72 },
-    { n: ['Grid connection & queue risk', '并网与队列风险'], w: 20, s: 45 },
-    { n: ['Wholesale & intraday outlook', '批发与日内前景'], w: 15, s: 68 },
-    { n: ['Balancing & reserves access', '平衡与备用准入'], w: 10, s: 55 },
-    { n: ['Storage-duration fit', '储能时长匹配度'], w: 10, s: 62 },
-    { n: ['Pipeline saturation', '管线饱和度'], w: 10, s: 42 },
-    { n: ['Financing & capital support', '融资与资本支持'], w: 10, s: 70 },
-  ],
-
   // ---- capacity market ----
   cmYears: ['2026', '2027', '2028', '2029', '2030'],
   cmPriceSeries: [400, 340, 300, 275, 260],           // PLN/kW/yr — SEED, verify

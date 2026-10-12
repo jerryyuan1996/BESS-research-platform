@@ -20,7 +20,7 @@ export function buildSections(api){
   const {
     h, L, M, SRC, T, state, GLOSS_CORE,
     fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX,
-    compositeScore, liveScore, bandFor, durationAt, interp,
+    liveScore, bandFor, durationAt, interp,
     lensRegions, isCompare, region,
   } = api;
 
@@ -163,17 +163,11 @@ export function buildSections(api){
         badges: [regionBadge(id), 'calc'], live: false, blocks: [
           { t: 'chip', cls: 'info', text: R(id).thesis },
           { t: 'kpis', items: [
-            { l: ['Composite score', '综合评分'], v: compositeScore(path(id, 'components')) + ' / 100' },
             { l: ['Connection risk (lower = safer)', '并网风险（越低越安全）'], v: liveScore(path(id, 'connFactors')) + ' / 100' },
           ] },
-          { t: 'meter', pct: compositeScore(path(id, 'components')), color: id === 'tokyo' ? 's7' : id === 'kyushu' ? 's8' : 's4' },
-          { t: 'scores', items: R(id).components, max: 100 },
           { t: 'p', text: R(id).thesisLong },
         ],
       })),
-      { t: 'why', text: ['The weights differ by region on purpose — Tokyo is scored most heavily on arbitrage and deliverability, Kyushu on solar-surplus charging and curtailment, Hokkaido on grid access and balancing saturation. Never hide the weights: a composite is only meaningful if the reader can see what it rewards.',
-                         '各区域权重刻意不同 — 东京侧重套利与可交付性，九州侧重光伏过剩充电与弃电，北海道侧重并网条件与调整力饱和。权重绝不隐藏：只有读者能看到评分奖励什么，综合分才有意义。'],
-        sig: ['Weights are part of the answer', '权重本身即结论的一部分'] },
 
       // ---- regional market snapshot ----
       { t: 'card', title: ['Card C — Regional market snapshot, identical KPI definitions', 'C卡 — 区域市场快照（KPI定义一致）'],
@@ -706,12 +700,11 @@ export function buildSections(api){
           xs: M.regionIds.map(id => L(R(id).short)),
           mode: 'group', h: 260, yfmt: v => fmtN(v),
           series: [
-            { name: ['Composite score', '综合评分'], color: 'var(--s1)', vals: M.regionIds.map(id => compositeScore(path(id, 'components'))) },
             { name: ['Connection risk (lower = safer)', '并网风险（越低越安全）'], color: 'var(--s6)', vals: M.regionIds.map(id => liveScore(path(id, 'connFactors'))) },
             { name: ['Duration need index', '时长需求指数'], color: 'var(--s3)', vals: M.regionIds.map(id => liveScore(path(id, 'durFactors'))) },
           ] } },
-        { t: 'why', text: ['Kyushu scores highest on composite and mid on connection risk; Hokkaido scores lowest on composite and highest on risk. Tokyo sits between on both. That ordering is stable across reasonable weight changes, which is more useful than the point scores themselves — the ranking is the finding, not the number.',
-                           '九州综合评分最高、并网风险居中；北海道综合评分最低、风险最高；东京两项均居中。该排序在合理的权重变动下保持稳定，这比具体分值更有价值 — 结论在于排序而非数字。'],
+        { t: 'why', text: ['Hokkaido carries the highest connection risk, Kyushu sits in the middle and Tokyo is lowest. That ordering is stable across reasonable weight changes, which is more useful than the point scores themselves — the ranking is the finding, not the number.',
+                           '北海道并网风险最高，九州居中，东京最低。该排序在合理的权重变动下保持稳定，这比具体分值更有价值 — 结论在于排序而非数字。'],
           sig: ['The ranking is the finding', '结论在于排序'] } ] },
     ] };
   };
@@ -773,7 +766,7 @@ export function buildSections(api){
             [{ b: ['Incremental balancing value', '调整力增量价值'] }, { chip: 'critical', text: ['Illustrative', '示例'] }, ['Gross less JEPX opportunity cost, SOC cost, degradation, fees', '毛值扣除JEPX机会成本、SOC成本、衰减与费用']],
             [{ b: ['Expected-capacity factor', '期待容量系数'] }, { chip: 'critical', text: ['Illustrative 0.70', '示例0.70'] }, ['Sourced from the current rule vintage', '取自现行规则版本']],
             [{ b: ['Auction-renewal curve', '拍卖续约曲线'] }, { chip: 'critical', text: ['Illustrative 90% → 60%', '示例90%→60%'] }, ['Documented scenario with stated drivers', '有明确驱动因素的书面情景']],
-            [{ b: ['Composite / connection / duration scores', '综合/并网/时长评分'] }, { chip: 'warn', text: ['Seed', '种子'] }, ['Re-scored against evidence', '依据证据重新评分']],
+            [{ b: ['Connection / duration scores', '并网/时长评分'] }, { chip: 'warn', text: ['Seed', '种子'] }, ['Re-scored against evidence', '依据证据重新评分']],
             [{ b: ['Capacity Market area prices', '容量市场区域价格'] }, { chip: 'good', text: ['Anchored — OCCTO 2029', '已锚定 — OCCTO 2029'] }, ['—']],
             [{ b: ['Curtailment days', '弃电天数'] }, { chip: 'good', text: ['Anchored — OCCTO verified', '已锚定 — OCCTO核验'] }, ['—']],
             [{ b: ['Study caps / interconnector / queue', '检讨上限/联络线/队列'] }, { chip: 'good', text: ['Anchored — TSO published', '已锚定 — 电网运营商公布'] }, ['—']],

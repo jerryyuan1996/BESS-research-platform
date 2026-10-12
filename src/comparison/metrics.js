@@ -27,11 +27,6 @@ import { fmtN, fmtPct, fmtUSD, fmtUSDk, fmtIRR, fmtX, fmtIRRor } from '../utils/
 
 /** @type {Metric[]} */
 export const METRICS = [
-  {
-    id: 'composite', ctx: true,
-    label: ['Composite score (own context — not comparable)', '综合评分（各自口径 — 不可比）'],
-    format: (m) => m.comparison.score.composite + '/100',
-  },
   /* "Secured", not "contracted".
 
      A Japanese Capacity Market main-auction payment covers one delivery year and

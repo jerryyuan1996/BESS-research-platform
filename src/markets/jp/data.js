@@ -6,7 +6,7 @@
    pipeline register, the lab defaults and the export rows.
 
    Late-bound region: the engine's scorecard, augmentation and export blocks
-   address `M.components` / `M.connFactors` / `M.durFactors` by name. Those are
+   address `M.connFactors` / `M.durFactors` by name. Those are
    getters onto whichever region is currently in view, so the engine-owned blocks
    keep working without knowing Japan has three lenses. Region-explicit blocks
    address a region directly by path, e.g. 'regions.kyushu.connFactors'.
@@ -156,7 +156,6 @@ export const M = {
   ],
 
   // ---- engine-owned default namespace, bound to the region in view ----
-  get components(){ return R().components; },
   get connFactors(){ return R().connFactors; },
   get durFactors(){ return R().durFactors; },
   connBands: CONN_BANDS,

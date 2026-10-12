@@ -23,7 +23,7 @@ import { congestionFor } from '../congestionRegistry.js';
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
   const { h, L, MKT, M, SRC, state, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct,
-          compositeScore, liveScore, dilutionAt } = api;
+          liveScore, dilutionAt } = api;
 
 const SEC_B = {};
 function SECTIONS(){
@@ -51,10 +51,8 @@ SEC_B.home = function (){
     { t:'warn', text:M.seedWarn },
     { t:'card', mt:false, title:['Position at a glance','总体判断'], badges:['calc','illus'], live:false, blocks:[
       { t:'kpis', items:[
-        { l:['Investment stance','投资立场'], v:L(M.overall.statusL),
-          d:['COD window ' + M.overall.codWindow, '投运窗口 ' + M.overall.codWindow] },
-        { l:['Composite score','综合评分'], v:String(compositeScore()) + '<small>/100</small>',
-          d:['confidence ' + M.overall.confidence + '%', '置信度 ' + M.overall.confidence + '%'], b:['calc'] },
+        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow,
+          d:['evidence confidence ' + M.overall.confidence + '%', '证据置信度 ' + M.overall.confidence + '%'] },
         { l:['Capacity revenue, secured year','容量收入，已锁定年度'], v:kMW(69989) + '<small>/MW/yr</small>',
           d:[fmtC(O.braPrice) + '/MW-day × 365 × ' + O.elcc4h + '% ELCC — both published',
              '每MW每日' + fmtC(O.braPrice) + ' × 365 × ' + O.elcc4h + '% ELCC — 两项均已公布'], b:['official'] },

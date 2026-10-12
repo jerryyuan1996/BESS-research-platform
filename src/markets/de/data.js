@@ -168,22 +168,9 @@ const M = {
     { id: 'TransnetBW', n: ['TransnetBW — south-west', 'TransnetBW — 西南部'],     note: ['South of the auction line; bids evaluated after a €16,000/MW deduction', '位于拍卖分界线以南；投标须先扣减每MW €16,000后再评估'] },
   ],
 
-  overall: { statusL: ['Selective', '选择性投资'], chipCls: 'warn', confidence: 61, codWindow: '2028–2030',
+  overall: { confidence: 61, codWindow: '2028–2030',
     rationale: ['Europe\'s most active BESS financing market and the one with the least contracted revenue available to the asset being modelled. The capacity mechanism exists and a four-hour battery is ineligible for it. The ancillary leg that pays for 55% of revenue today is forecast to fall to about 5%. What is left is a merchant position whose realised revenue moved 2.5× in one quarter, and a tolling market where no price has ever been disclosed. Commit capital against a toll, a quantified Baukostenzuschuss and a pre-2029 commissioning date — not against a spread forecast.',
                 '欧洲储能融资最活跃的市场，同时也是本页所建模资产可获得的合同化收入最少的市场。容量机制确实存在，而四小时电池不具备资格。当前贡献55%收入的辅助服务收入，预计将降至约5%。剩下的是一个实际收入在单季度内波动2.5倍的市场化头寸，以及一个从未披露过价格的租赁市场。资本应基于租赁合约、已量化的并网工程费分摊与2029年前的投运日期投入，而非基于价差预测。'] },
-
-  /* Weights sum to 100; the weighted composite is 62, which is the figure
-     src/markets/de/comparison.js carries as `score.composite`. */
-  components: [
-    { n: ['Merchant revenue depth and trading liquidity', '市场化收入深度与交易流动性'], w: 25, s: 88 },
-    { n: ['Contracted revenue availability (tolling only)', '合同化收入可得性（仅租赁）'], w: 20, s: 55 },
-    { n: ['Capacity market access for the archetype', '原型资产的容量市场准入'], w: 10, s: 15 },
-    { n: ['Ancillary services headroom', '辅助服务市场空间'], w: 10, s: 28 },
-    { n: ['Connection cost and grid fee regime', '接入成本与电网费用制度'], w: 12, s: 70 },
-    { n: ['Congestion and locational signal', '拥塞与区位价格信号'], w: 8, s: 38 },
-    { n: ['Storage-duration fit and capex trajectory', '储能时长匹配度与造价轨迹'], w: 8, s: 88 },
-    { n: ['Financing and delivery execution', '融资与交付执行'], w: 7, s: 95 },
-  ],
 
   // ---- merchant revenue ----
   /* One optimiser's REALISED 2h book, annualised, in €/MW/yr. Three consecutive

@@ -20,7 +20,6 @@ export const manifest = {
   locale: 'de-DE',
   timezone: 'Europe/Berlin',
 
-  status: ['Selective', '选择性投资'],
   color: 'var(--s9)',
 
   asOf: '2026-08-01',
