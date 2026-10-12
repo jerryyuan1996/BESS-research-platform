@@ -43,7 +43,7 @@
    the caller; this module looks nothing up.
    --------------------------------------------------------------------------- */
 
-import { STAGES } from '../governance/buildPathway.js';
+import { STAGES, DURATION_BASIS } from '../governance/buildPathway.js';
 import { METRIC } from '../governance/archetypes.js';
 import { sourceProblems, ACCESS } from '../governance/triggers.js';
 
@@ -94,6 +94,40 @@ function amountProblems(amount){
   return problems;
 }
 
+/* ---------------------------------------------------------------------------
+   TIMING — how long development and the build take, as a stated range.
+
+   Optional, and absent from most ledgers. The engine builds every market in
+   twelve months from a project that arrives ready; the entry-adjusted return
+   in entryReturn.js needs the months a market actually takes. There is no
+   critical path on this platform to compute them from, so they are STATED, as
+   a range, with how well they are known, exactly as a pathway duration is:
+
+       monthsToRtb   site control to ready-to-build, [min, max]
+       buildMonths   ready-to-build to first revenue, [min, max]
+       basis         published · observed · convention
+       note          where the range comes from, in two languages
+
+   A ledger without one gets no entry-adjusted return. It never gets one built
+   on the engine's seed.
+   --------------------------------------------------------------------------- */
+function timingProblems(timing){
+  if (timing === undefined || timing === null) return [];
+  if (typeof timing !== 'object') return ['must be an object'];
+  const problems = [];
+  for (const key of ['monthsToRtb', 'buildMonths']){
+    const r = timing[key];
+    const ok = Array.isArray(r) && r.length === 2 && r.every(v => typeof v === 'number' && Number.isFinite(v) && v >= 0) && r[0] <= r[1];
+    if (!ok) problems.push(`${key} must be a [min, max] range of months`);
+  }
+  if (!Object.values(DURATION_BASIS).includes(timing.basis)) problems.push(`basis must be one of ${Object.values(DURATION_BASIS).join(', ')}`);
+  if (!isPair(timing.note)) problems.push('note must be an [en, zh] pair saying where the range comes from');
+  for (const key of Object.keys(timing)){
+    if (!['monthsToRtb', 'buildMonths', 'basis', 'note'].includes(key)) problems.push(`"${key}" is not a field of timing`);
+  }
+  return problems;
+}
+
 /**
  * Problems with one market's ledger. Empty array means valid.
  *
@@ -111,6 +145,7 @@ export function validateLedger(ledger){
   }
   if (!isPair(ledger.summary)) at('summary must be an [en, zh] pair');
   if (!isPair(ledger.limit)) at('limit must be an [en, zh] pair — what the ledger does not know');
+  for (const p of timingProblems(ledger.timing)) at(`timing: ${p}`);
   if (!Array.isArray(ledger.items)) return [...problems, `${ledger.marketId}: items must be an array`];
 
   const seen = new Set();

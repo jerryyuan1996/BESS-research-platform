@@ -35,6 +35,14 @@ const O = { auctionGuarEurMW: 20000, estabGuarEurKW: 30, connTariffGuarPct: 20 }
 export const ENTRY_LEDGER = {
   marketId: 'ro',
   basis: { powerMW: 50, durationHours: 2 },
+  /* The range behind the time-to-first-revenue grade: about 50 months, of
+     which construction is 9 to 15. A rough reading of the pathway and not a
+     critical path, so its basis is the weakest one. */
+  timing: {
+    monthsToRtb: [35, 41], buildMonths: [9, 15], basis: 'convention',
+    note: ['About 50 months to first revenue on the pathway, with capacity won at an annual auction for a year at least two years out, less a construction stage of 9 to 15 months. A rough reading, not a critical-path calculation.',
+           '按建设路径估算，距首笔收入约50个月（容量须通过年度拍卖取得，且对应至少两年之后的年份），其中建设阶段为9至15个月。这是粗略估读，并非关键路径计算。'],
+  },
   summary: [
     'Three guarantees and one purchase fall due before financial close. A guarantee to take part in the capacity auction is returned within days of signing the allocation contract, and the auction price then falls due within four months. A guarantee against the connection tariff is posted before the permit is issued, and one against the establishment authorisation when it is applied for.',
     '融资交割前须提交三项保函并支付一笔价款。参与容量拍卖的保函在签署分配合同后数日内退还，拍卖价款随后须在四个月内付清。并网费保函须在技术并网许可签发前提交，设立许可保函则在申请该许可时提交。'],

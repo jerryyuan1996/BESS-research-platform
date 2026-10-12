@@ -63,6 +63,15 @@ const fee = (id, label, amount, postedAt) => ({
 export const ENTRY_LEDGER = {
   marketId: 'wa',
   basis: { powerMW: 200, durationHours: 7 },
+  /* The range behind the time-to-first-revenue grade: about 55 months at the
+     midpoint of the pathway's stages, of which construction is 12 to 18. A
+     rough reading of the pathway and not a critical path, so its basis is the
+     weakest one. */
+  timing: {
+    monthsToRtb: [37, 43], buildMonths: [12, 18], basis: 'convention',
+    note: ['About 55 months to first revenue at the midpoint of the pathway\'s stages, less a construction stage of 12 to 18 months. A rough reading, not a critical-path calculation.',
+           '按建设路径各阶段的中点估算，距首笔收入约55个月，其中建设阶段为12至18个月。这是粗略估读，并非关键路径计算。'],
+  },
   summary: [
     'The dominant item is Reserve Capacity Security, posted to the market operator for each megawatt certified, ahead of the Capacity Year it covers. The network operator\'s published fees and studies before an access offer are small beside it.',
     '最大的一项是备用容量保证金：按每一兆瓦认证容量向市场运营机构提交，且早于其对应的容量年度。与之相比，取得接入要约前电网运营商公布的各项费用与研究费很小。'],
