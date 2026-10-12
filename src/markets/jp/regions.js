@@ -321,17 +321,6 @@ export const JP_REGIONS = {
     },
 
     // ---- scorecards (SEED) ----
-    // composite: w sums to 100, s is 0-100
-    components: [
-      { n: ['JEPX arbitrage / scarcity', 'JEPX套利/稀缺性'], w: 20, s: 68 },
-      { n: ['Balancing-market outlook', '调整力市场前景'], w: 15, s: 62 },
-      { n: ['Grid + import/export deliverability', '并网与充放电可交付性'], w: 20, s: 55 },
-      { n: ['Capacity / LTDA optionality', '容量/长期脱碳拍卖选择权'], w: 15, s: 64 },
-      { n: ['Pipeline saturation', '管线饱和度'], w: 10, s: 48 },
-      { n: ['Financing / offtake bankability', '融资/购电可融资性'], w: 10, s: 60 },
-      { n: ['Duration fit', '时长匹配度'], w: 5, s: 62 },
-      { n: ['Curtailment / congestion value', '弃电/拥塞价值'], w: 5, s: 38 },
-    ],
     // connection risk: w sums to 100, s is 0-3, HIGHER IS WORSE
     connFactors: [
       { n: ['Export connection evidence', '放电侧并网证据'], w: 15, s: 1 },
@@ -423,16 +412,6 @@ export const JP_REGIONS = {
       pipelineRatio: '~6.2×',
     },
 
-    components: [
-      { n: ['JEPX arbitrage / solar-surplus charging', 'JEPX套利/光伏过剩充电'], w: 20, s: 74 },
-      { n: ['Curtailment + congestion value', '弃电与拥塞价值'], w: 15, s: 66 },
-      { n: ['Grid + import/export deliverability', '并网与充放电可交付性'], w: 20, s: 50 },
-      { n: ['Balancing-market outlook', '调整力市场前景'], w: 10, s: 55 },
-      { n: ['Capacity / LTDA optionality', '容量/长期脱碳拍卖选择权'], w: 15, s: 64 },
-      { n: ['Pipeline saturation', '管线饱和度'], w: 10, s: 40 },
-      { n: ['Financing / offtake bankability', '融资/购电可融资性'], w: 5, s: 56 },
-      { n: ['Duration fit', '时长匹配度'], w: 5, s: 68 },
-    ],
     connFactors: [
       { n: ['Export connection evidence', '放电侧并网证据'], w: 15, s: 2 },
       { n: ['Import / charging evidence', '充电侧接入证据'], w: 15, s: 2 },
@@ -534,16 +513,6 @@ export const JP_REGIONS = {
              '须与在运容量分开跟踪。这是日本样本中最明确的收益蚕食信号。'],
     },
 
-    components: [
-      { n: ['Grid + import/export deliverability', '并网与充放电可交付性'], w: 20, s: 40 },
-      { n: ['JEPX arbitrage / regional basis', 'JEPX套利/区域价差'], w: 15, s: 66 },
-      { n: ['Balancing-market outlook / saturation', '调整力市场前景/饱和'], w: 15, s: 38 },
-      { n: ['Curtailment + renewable-integration value', '弃电与新能源消纳价值'], w: 15, s: 62 },
-      { n: ['Interconnector / export evolution', '跨区互联/外送演进'], w: 10, s: 42 },
-      { n: ['Capacity / LTDA optionality', '容量/长期脱碳拍卖选择权'], w: 10, s: 62 },
-      { n: ['Pipeline saturation', '管线饱和度'], w: 10, s: 28 },
-      { n: ['Financing / offtake bankability', '融资/购电可融资性'], w: 5, s: 48 },
-    ],
     connFactors: [
       { n: ['Export connection evidence', '放电侧并网证据'], w: 15, s: 2 },
       { n: ['Import / charging evidence', '充电侧接入证据'], w: 15, s: 3 },

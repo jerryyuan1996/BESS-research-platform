@@ -32,19 +32,9 @@ const M = {
     ds3LongStop: '30 Sep 2027', dassaTarget: '2027', sdp02Live: '12 Nov 2025',
   },
 
-  overall: { statusL: ['Selective', '选择性投资'], chipCls: 'warn', confidence: 71, codWindow: '2028–2030',
+  overall: { confidence: 71, codWindow: '2028–2030',
     rationale: ['Wide spreads, a high capacity print and data-centre demand growth are real; but FASS/DASSA repricing, connection readiness and de-rated (not nameplate) capacity economics decide bankability for 2028–2030 CODs.',
                 '宽价差、高容量出清价与数据中心需求增长真实存在；但对2028–2030年投运项目而言，FASS/DASSA重新定价、并网准备度及按折减（而非铭牌）口径的容量经济性才是可融资性的决定因素。'] },
-  components: [
-    { n: ['Wholesale, scheduling & balancing outlook', '批发、调度与平衡前景'], w: 20, s: 72 },
-    { n: ['Grid connection, planning & congestion value', '并网、规划与拥塞价值'], w: 20, s: 48 },
-    { n: ['Capacity mechanism & reliability value', '容量机制与可靠性价值'], w: 15, s: 76 },
-    { n: ['DS3 / FASS system-service outlook', 'DS3/FASS系统服务前景'], w: 15, s: 40 },
-    { n: ['Storage-duration & LDES need', '储能时长与长时储能需求'], w: 15, s: 74 },
-    { n: ['Pipeline saturation & delivery competition', '管线饱和与交付竞争'], w: 10, s: 45 },
-    { n: ['Financing, route-to-market & contracted structure', '融资、售电路径与合同结构'], w: 5, s: 55 },
-  ],
-
   // ---- capacity mechanism ----
   crmYears: ['24/25', '25/26', '26/27', '27/28', '28/29'],
   crmPriceSeries: [46.2, 62, 84, 110, 149.96],

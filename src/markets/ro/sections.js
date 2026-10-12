@@ -17,7 +17,7 @@ import { RO_BUILD_PATHWAY } from './buildPathway.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
-  const { h, L, MKT, M, SRC, state, bandFor, NF2, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, compositeScore, liveScore, dilutionAt, labInputs, labModel, pipelineByYear } = api;
+  const { h, L, MKT, M, SRC, state, bandFor, NF2, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, liveScore, dilutionAt, labInputs, labModel, pipelineByYear } = api;
 
 // ---------------- section registry ----------------
 const SEC_B = {};
@@ -32,7 +32,7 @@ const fmtRON = x => NF2.format(x) + ' RON';
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const comp = compositeScore(), dni = liveScore('durFactors'), cs = liveScore('connFactors');
+  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
   const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
   const cod = state.codYear, cc = M.codCases[cod] || M.codCases[2028];
   return {
@@ -60,16 +60,9 @@ SEC_B.home = function (){
 
     { t:'g2', cards:[
       { title:['Card A — Overall Romania Storage Signal','Card A — 罗马尼亚储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:M.overall.chipCls, text:M.overall.statusL },
-        { t:'p', text:['Composite score: ' + comp + ' / 100 · Confidence: ' + M.overall.confidence + '% · Target COD window: ' + M.overall.codWindow,
-          '综合评分：' + comp + ' / 100 · 置信度：' + M.overall.confidence + '% · 目标投运窗口：' + M.overall.codWindow] },
-        { t:'meter', pct: comp, color:'warn' },
+        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
+          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
         { t:'p', text:M.overall.rationale },
-        { t:'sub', text:['Component scores (weights never hidden behind the composite):','分项评分（权重不隐藏于综合分之后）：'] },
-        { t:'scores', items:M.components, max:100 },
-        { t:'why', text:['The composite is deliberately not a go/no-go number. The heaviest weights — wholesale outlook (20%) and connection & permitting (20%) — pull in opposite directions: the first is the reason to invest, the second is the reason most Romanian projects never reach financial close. A score of ' + comp + ' with that split means "the opportunity is real and the execution risk is where the diligence budget should go", not "the market scores in the mid-60s so proceed".',
-          '综合分刻意不作为一票通过的指标。权重最高的两项 — 批发前景（20%）与并网及许可（20%） — 方向相反：前者是投资理由，后者则是多数罗马尼亚项目从未走到融资交割的原因。综合' + comp + '分在此结构下的含义是“机会真实存在，而尽调预算应投向执行风险”，而非“市场评分中等偏上故可推进”。'],
-          sig:['Opportunity is real; execution is the risk','机会真实，风险在执行'] },
       ] },
       { title:['Card B — Support & Adequacy Signal','Card B — 支持机制与充裕度信号'], live:false, blocks:[
         { t:'chip', cls:'warn', text:['Capital support, not revenue support — and budget is not award','资本支持而非收入支持 — 且预算不等于授予'] },
@@ -683,8 +676,8 @@ SEC_B.benchmark = function (){
   return {
   head: ['Romania vs Poland — market design, revenue certainty and what transfers (context only)',
          '罗马尼亚与波兰对比 — 市场设计、收入确定性与可迁移结论（仅背景参考）'],
-  cap: ['The only section in this dashboard that uses Polish data. Romania and Poland are neighbouring CEE markets with similar fundamentals — coal exit, rapid solar growth, rising volatility — that have made opposite choices on revenue certainty. Comparing them isolates what is genuinely Romanian. All Polish figures are held in a separate namespace and excluded from the Romania composite investment score.',
-        '本看板中唯一使用波兰数据的章节。罗马尼亚与波兰是基本面相近的中东欧邻国 — 煤电退出、光伏快速增长、波动性上升 — 却在收入确定性上作出了相反选择。比较两者可分离出真正属于罗马尼亚特有的因素。所有波兰数值保存在独立命名空间，不计入罗马尼亚综合投资评分。'],
+  cap: ['The only section in this dashboard that uses Polish data. Romania and Poland are neighbouring CEE markets with similar fundamentals — coal exit, rapid solar growth, rising volatility — that have made opposite choices on revenue certainty. Comparing them isolates what is genuinely Romanian. All Polish figures are held in a separate namespace and excluded from Romania\'s grades and verdicts.',
+        '本看板中唯一使用波兰数据的章节。罗马尼亚与波兰是基本面相近的中东欧邻国 — 煤电退出、光伏快速增长、波动性上升 — 却在收入确定性上作出了相反选择。比较两者可分离出真正属于罗马尼亚特有的因素。所有波兰数值保存在独立命名空间，不计入罗马尼亚的评级与结论。'],
   blocks: [
     { t:'note', b:['Scope discipline: ','范围纪律：'],
       text:['Polish data (Jul 2026) never enters the Romanian price series, pipeline, balancing analysis or any scoring input. It is used here for one purpose: to calibrate whether a Romanian observation is a Romanian problem or a general CEE storage-market problem — and, specifically, to price what the absence of a capacity mechanism is worth.',
@@ -883,7 +876,6 @@ SEC_B.data = function (){
         [{b:['Executable margin','可执行价差']}, 'published spread + intraday uplift − liquidity − RTE − availability − optimiser fee'],
         [{b:['Effective spread by duration','按时长的有效价差']}, 'executable margin × duration factor × (RTE / 88) × dilution factor(COD year)'],
         [{b:['Net capex','净资本开支']}, 'gross capex − grant (only with a formal award letter)'],
-        [{b:['Composite score','综合评分']}, 'Σ (component weight × component score) / 100'],
         [{b:['Duration / Connection scorecards','时长与并网评分卡']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
         [{b:['DSCR','偿债覆盖率']}, 'EBITDA(year) / annuity(debt, interest rate, tenor)'],
       ] },

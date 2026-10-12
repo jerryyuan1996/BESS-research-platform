@@ -58,17 +58,15 @@ export const REQUIRED_MANIFEST_FIELDS = [
 ];
 
 /**
- * Fields a manifest may define and need not.
+ * Fields a manifest once carried and may not carry again.
  *
- * `status` was the one-chip-a-market investment stance and was required until
- * the investment-view revision (plan section 6.3). A verdict per investor, in
- * the view store, replaces it, and nothing in the UI reads it any more. It is
- * optional rather than gone so the fifteen manifests that carry it stay valid;
- * where present it must still be an [en, zh] pair. Removing the field is a
- * later step.
+ * `status` was the one-chip-a-market investment stance. A verdict per investor,
+ * in the view store, replaced it, and it was deleted from every manifest on
+ * 2026-10-12. A manifest that defines it is refused, so the label cannot come
+ * back beside the verdicts and disagree with them.
  */
-export const OPTIONAL_MANIFEST_FIELDS = [
-  'status',      // [en, zh] — retired investment stance; no longer displayed
+export const RETIRED_MANIFEST_FIELDS = [
+  'status',
 ];
 
 /** Freshness metadata (brief section 21). Optional, but the shape is fixed. */
@@ -249,7 +247,7 @@ export const ECONOMICS_FIELDS = {
 /** Everything a comparison interface must expose. */
 export const COMPARISON_SHAPE = {
   archetype: ['powerMW', 'durationHours'],
-  score: ['composite', 'connectionRisk'],
+  score: ['connectionRisk'],
   narrative: ['archetype', 'thesis', 'pipelineRatio'],
   capabilities: CAPABILITY_FLAGS,
   economics: ECONOMICS_FIELDS,

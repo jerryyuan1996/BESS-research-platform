@@ -41,7 +41,7 @@
       state equipment tax — this file does not invent one. Those gaps are carried
       explicitly in `notPublished` and rendered on the Data & Methodology tab.
    --------------------------------------------------------------------------- */
-import { COMPONENTS, CONN_FACTORS } from './scores.js';
+import { CONN_FACTORS } from './scores.js';
 
 const M = {
   asOf: '2026-08-03',
@@ -172,16 +172,15 @@ const M = {
       note: ['Generation-heavy and export-constrained toward the eastern load pockets.', '发电富余，向东部负荷孤岛送出受限。'] },
   ],
 
-  overall: { statusL: ['Selective', '选择性投资'], chipCls: 'warn', confidence: 66, codWindow: '2029–2031',
+  overall: { confidence: 66, codWindow: '2029–2031',
     rationale: ['The best-published contracted revenue on this platform, attached to the worst-published merchant revenue, in a market whose queue is thirteen times its expected 2030 fleet. PJM prints both halves of the capacity payment — $325.00/MW-day and a 59% four-hour accreditation — so year one requires no estimate at all. Years two to fifteen require nothing but estimates, and two of them point in opposite directions: the price collar ends after 2029/2030 with the cap reverting toward $550/MW-day, while four-hour ELCC erodes as 67 GW of storage arrives. The merchant leg is where capital is lost, not made: the operating fleet earns Regulation revenue roughly thirteen times what this model publishes, because 400 MW is competing for a 750 MW requirement. Underwrite the capacity line, the node and the queue position. Do not underwrite the Regulation stack.',
                 '本平台披露最完整的合同化收入，与披露最不充分的市场化收入并存，且该市场的排队量达其2030年预期装机的十三倍。PJM同时公布了容量收入的两个组成部分 — 每MW每日$325.00与四小时59%的核证系数 — 因此第一年完全无需估算。第二至十五年则全靠估算，且其中两项方向相反：价格上下限机制在2029/2030年度后结束、上限将回升至约$550/MW-日，而四小时ELCC则随67GW储能到位而下降。资本的亏损点在市场化收入端而非盈利点：在运机组的调频收入约为本模型所发布数值的十三倍，因为当前仅400MW在争夺750MW的系统需求。应基于容量收入、节点位置与排队位次承销，切勿基于调频收入结构承销。'] },
 
   /* Weights and scores live in ./scores.js and are imported by both this
-     dashboard and comparison.js, so the composite cannot drift from its parts.
+     dashboard and comparison.js, so the index cannot drift from its parts.
      Every other market in this lineage writes the table here and restates the
      resulting score in its comparison interface with a comment asserting the two
      agree; that holds until somebody edits a weight. */
-  components: COMPONENTS,
   connFactors: CONN_FACTORS,
 
   // ---- capacity channel: fully published, and it expires ----

@@ -178,22 +178,9 @@ const M = {
       note: ['≈800 MW of the national 1.9 GW fleet; balancing is ≈20% of revenue', '约占全国1.9GW装机中的800MW；平衡服务约占收入20%'] },
   ],
 
-  overall: { statusL: ['Selective', '选择性投资'], chipCls: 'warn', confidence: 58, codWindow: '2028–2030',
+  overall: { confidence: 58, codWindow: '2028–2030',
     rationale: ['The only market on this platform offering all four routes to market, and the only one where the choice between them is a genuine spread rather than a formality. Terna publishes more that is directly investable than any other TSO here: MACSE zonal requirements, clearing prices by zone, and four named submarine projects with commissioning years. MACSE cleared at 35% of its own price cap and roughly half the wholesale value of the same stored energy — what it buys is a fifteen-year TSO counterparty and the gearing that follows. Against that, the capex evidence spans a factor of 2.4, no Italian toll price has ever been disclosed, and the only published MSD total is one month annualised at five times the forward view. Underwrite the contract and the zone. Do not underwrite the ancillary run-rate.',
                 '本平台唯一提供全部四条售电路径的市场，也是唯一一个路径选择构成真实价差而非形式差别的市场。Terna公布的可直接用于投资判断的信息多于本平台其他任何电网运营商：MACSE分区需求、各区域出清价格，以及四项具有明确投运年份的具名海底工程。MACSE以其自身价格上限的35%出清，约为同等储存电量批发价值的一半 — 其换来的是十五年期电网运营商对手方以及随之而来的杠杆能力。与之相对，造价证据跨度达2.4倍，意大利从未披露任何租赁价格，且唯一公布的辅助服务市场总额为单月年化数据，达远期预测的五倍。承销依据应为合同与区域，而非辅助服务的运行率。'] },
-
-  /* Weights sum to 100; the weighted composite is 63, which is the figure
-     src/markets/it/comparison.js carries as `score.composite`. */
-  components: [
-    { n: ['Contracted revenue availability — four routes', '合同化收入可得性 — 四条路径'], w: 22, s: 92 },
-    { n: ['Merchant revenue depth and forward visibility', '市场化收入深度与远期可见度'], w: 16, s: 62 },
-    { n: ['Ancillary (MSD) depth and durability', '辅助服务（MSD）深度与可持续性'], w: 12, s: 45 },
-    { n: ['Capacity market access and de-rating stability', '容量市场准入与折减系数稳定性'], w: 10, s: 58 },
-    { n: ['Locational signal quality', '区位信号质量'], w: 10, s: 90 },
-    { n: ['Capex and cost evidence quality', '造价与成本证据质量'], w: 10, s: 30 },
-    { n: ['Connection, permitting and delivery', '并网、许可与交付'], w: 12, s: 40 },
-    { n: ['Data transparency and source health', '数据透明度与来源健康度'], w: 8, s: 55 },
-  ],
 
   // ---- merchant revenue ----
   /* Four published four-hour views in €k/MW/yr, side by side. This is the route

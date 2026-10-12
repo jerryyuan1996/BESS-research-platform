@@ -30,7 +30,6 @@ export const manifest = {
      zone the dashboard timestamps in. */
   timezone: 'America/New_York',
 
-  status: ['Selective', '选择性投资'],
   color: 'var(--s14)',
 
   asOf: '2026-08-03',

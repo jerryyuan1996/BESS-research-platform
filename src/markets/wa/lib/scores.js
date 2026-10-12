@@ -8,7 +8,6 @@ import { KEMERTON } from '../data/kemerton.js';
 // ---------------- shared computations ----------------
 function dniScore(){ return Math.round(SEED.dniFactors.reduce((a, f) => a + f.w * f.s, 0) / 3); }
 function connScore(){ return Math.round(SEED.connFactors.reduce((a, f) => a + f.w * f.s, 0) / 3); }
-function compositeScore(){ return Math.round(SEED.components.reduce((a, c) => a + c.w * c.s, 0) / 100); }
 function esrAtYear(cy){ const i = SEED.esrYears.indexOf(cy); return i >= 0 ? SEED.esrPath[i] : SEED.esrPath[SEED.esrPath.length - 1]; }
 function shadowRcpFactor(r){
   if (r < 0.90) return 1.3;
@@ -35,4 +34,4 @@ function kemDurationCase(hours){
   return { hours, required, headroom, pct: headroom / p.energyMWh * 100 };
 }
 
-export { dniScore, connScore, compositeScore, esrAtYear, shadowRcpFactor, stageProb, kemDurationCase };
+export { dniScore, connScore, esrAtYear, shadowRcpFactor, stageProb, kemDurationCase };

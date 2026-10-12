@@ -18,7 +18,7 @@ import { congestionFor } from '../congestionRegistry.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
-  const { h, L, MKT, M, SRC, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, compositeScore, liveScore, dilutionAt, labInputs, labModel, pipelineByYear } = api;
+  const { h, L, MKT, M, SRC, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, liveScore, dilutionAt, labInputs, labModel, pipelineByYear } = api;
 
 // ---------------- section registry ----------------
 const SEC_B = {};
@@ -38,7 +38,7 @@ const regionalMWhTotal = M.regions.reduce((a, r) => a + r.mwh, 0);
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const comp = compositeScore(), dni = liveScore('durFactors'), cs = liveScore('connFactors');
+  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
   const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
   const cod = state.codYear, cc = M.codCases[cod] || M.codCases[2028];
   return {
@@ -66,16 +66,9 @@ SEC_B.home = function (){
 
     { t:'g2', cards:[
       { title:['Card A — Overall NEM Storage Signal','Card A — NEM储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:M.overall.chipCls, text:M.overall.statusL },
-        { t:'p', text:['Composite score: ' + comp + ' / 100 · Confidence: ' + M.overall.confidence + '% · Target COD window: ' + M.overall.codWindow,
-          '综合评分：' + comp + ' / 100 · 置信度：' + M.overall.confidence + '% · 目标投运窗口：' + M.overall.codWindow] },
-        { t:'meter', pct: comp, color:'warn' },
+        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
+          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
         { t:'p', text:M.overall.rationale },
-        { t:'sub', text:['Component scores (weights never hidden behind the composite):','分项评分（权重不隐藏于综合分之后）：'] },
-        { t:'scores', items:M.components, max:100 },
-        { t:'why', text:['The composite is deliberately not a go/no-go number, and here it hides an unusually wide split. Financing and delivery execution scores ' + M.components[6].s + ' — Australia is the world\'s third-largest utility-scale battery market and closed ' + fmt1(O.fc2025GW) + ' GW worth ' + fmtCM(O.fc2025Abn * 1e9) + ' in 2025 — while pipeline saturation scores ' + M.components[3].s + ', because the ' + fmtN(O.queueGW) + ' GW connection queue already exceeds the ' + fmtN(O.ispStorage2030GW) + ' GW the ISP needs by 2030. A composite of ' + comp + ' across that split means "the market can build anything, and the question is what it will be paid for".',
-          '综合分刻意不作为一票通过的指标，而此处它掩盖了异常宽的分化。融资与交付执行得' + M.components[6].s + '分 — 澳大利亚是全球第三大公用事业级储能市场，2025年完成' + fmt1(O.fc2025GW) + 'GW、' + fmtCM(O.fc2025Abn * 1e9) + '的融资交割 — 而管线饱和度仅得' + M.components[3].s + '分，因为' + fmtN(O.queueGW) + 'GW的并网排队量已超过ISP所需的2030年' + fmtN(O.ispStorage2030GW) + 'GW。在此分化下' + comp + '分的含义是“这个市场什么都建得出来，问题在于建成后靠什么获得报酬”。'],
-          sig:['Delivery is not the constraint; revenue is','约束不在交付，而在收入'] },
       ] },
       { title:['Card B — Contracted Revenue Signal','Card B — 合同化收入信号'], live:false, blocks:[
         { t:'chip', cls:'warn', text:['A collar, not a payment — and its level is never published','是双向保底—分成结构而非固定付费 — 且其水平从不公布'] },
@@ -921,8 +914,8 @@ SEC_B.benchmark = function (){
   return {
   head: ['NEM vs WEM — two Australian markets, opposite answers on capacity (context only)',
          'NEM与WEM对比 — 两个澳大利亚市场，对容量给出相反答案（仅背景参考）'],
-  cap: ['The only section in this dashboard that uses Western Australian data. Both markets sit in one country under one federal energy policy, use the same equipment and the same contractors, and have made opposite choices on whether to pay for capacity. Comparing them isolates what is genuinely a NEM problem. All WEM figures are held in a separate namespace and excluded from the NEM composite investment score.',
-        '本看板中唯一使用西澳数据的章节。两个市场同处一国、同受一套联邦能源政策管辖、使用相同设备与承包商，却在“是否为容量付费”上作出了相反选择。比较两者可分离出真正属于NEM特有的问题。所有WEM数值保存在独立命名空间，不计入NEM综合投资评分。'],
+  cap: ['The only section in this dashboard that uses Western Australian data. Both markets sit in one country under one federal energy policy, use the same equipment and the same contractors, and have made opposite choices on whether to pay for capacity. Comparing them isolates what is genuinely a NEM problem. All WEM figures are held in a separate namespace and excluded from the NEM\'s grades and verdicts.',
+        '本看板中唯一使用西澳数据的章节。两个市场同处一国、同受一套联邦能源政策管辖、使用相同设备与承包商，却在“是否为容量付费”上作出了相反选择。比较两者可分离出真正属于NEM特有的问题。所有WEM数值保存在独立命名空间，不计入NEM的评级与结论。'],
   blocks: [
     { t:'note', b:['Scope discipline: ','范围纪律：'],
       text:['WEM data never enters the NEM price series, pipeline, FCAS analysis or any scoring input. It is used here for one purpose: to price what a capacity mechanism is worth, using the cleanest natural experiment available anywhere on this platform — the same technology, the same country, the same supply chain, and one market design difference.',

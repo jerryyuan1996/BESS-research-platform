@@ -17,7 +17,7 @@ import { ieEconomicsP0Blocks } from './economicsP0Section.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
-  const { h, L, MKT, M, SRC, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, compositeScore, liveScore, interp, dilutionAt, labInputs, labModel, pipelineByYear } = api;
+  const { h, L, MKT, M, SRC, state, bandFor, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct, fmtIRR, fmtX, liveScore, interp, dilutionAt, labInputs, labModel, pipelineByYear } = api;
 
 // ---------------- section registry ----------------
 const SEC_B = {};
@@ -34,7 +34,7 @@ const ieMerchantPerMW = hh => hh * M.usableFraction * M.lab.cycles * 365 * (M.la
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const comp = compositeScore(), dni = liveScore('durFactors'), cs = liveScore('connFactors');
+  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
   const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
   const cod = state.codYear, cc = M.codCases[cod] || M.codCases[2029];
   return {
@@ -62,16 +62,9 @@ SEC_B.home = function (){
 
     { t:'g2', cards:[
       { title:['Card A — Overall Ireland Storage Signal','Card A — 爱尔兰储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:M.overall.chipCls, text:M.overall.statusL },
-        { t:'p', text:['Composite score: ' + comp + ' / 100 · Confidence: ' + M.overall.confidence + '% · Target COD window: ' + M.overall.codWindow,
-          '综合评分：' + comp + ' / 100 · 置信度：' + M.overall.confidence + '% · 目标投运窗口：' + M.overall.codWindow] },
-        { t:'meter', pct: comp, color:'warn' },
+        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
+          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
         { t:'p', text:M.overall.rationale },
-        { t:'sub', text:['Component scores (weights never hidden behind the composite):','分项评分（权重不隐藏于综合分之后）：'] },
-        { t:'scores', items:M.components, max:100 },
-        { t:'why', text:['The composite is deliberately not a go/no-go number. The strongest components — capacity value (76) and wholesale outlook (72) — are market-wide and available to every competitor; the weakest — connection value (48) and DS3/FASS (40) — are the ones that actually differentiate projects and destroy value. A score of ' + comp + ' with that split means "the market is attractive and the specific project is where the risk lives", which is the opposite of the usual reading.',
-          '综合分刻意不作为一票通过的指标。最强的分项 — 容量价值（76）与批发前景（72） — 属全市场性质，每个竞争者均可获得；最弱的分项 — 并网价值（48）与DS3/FASS（40） — 才是真正区分项目并可能摧毁价值的因素。综合' + comp + '分在此结构下的含义是“市场具吸引力，而风险存在于具体项目”，这与通常的解读恰好相反。'],
-          sig:['Market is strong; the project is the risk','市场强劲，风险在项目'] },
       ] },
       { title:['Card B — Capacity Mechanism Signal','Card B — 容量机制信号'], live:false, blocks:[
         { t:'chip', cls:'good', text:['Strong — the highest de-rated capacity price in the comparison set','强劲 — 对比样本中折减容量价格最高'] },
@@ -859,8 +852,8 @@ SEC_B.benchmark = function (){
   return {
   head: ['Ireland vs Great Britain — market design, capacity economics and what transfers (context only)',
          '爱尔兰与英国对比 — 市场设计、容量经济性与可迁移结论（仅背景参考）'],
-  cap: ['The only section in this dashboard that uses GB data. Ireland and GB are neighbouring, interconnected, similarly regulated markets that nevertheless reward storage through structurally different mechanisms. Comparing them isolates what is genuinely Irish. All GB figures are held in a separate namespace and excluded from the Ireland composite investment score.',
-        '本看板中唯一使用英国数据的章节。爱尔兰与英国相邻、互联且监管体系相近，但两者奖励储能的机制存在结构性差异。比较两者可分离出真正属于爱尔兰特有的因素。所有英国数值保存在独立命名空间，不计入爱尔兰综合投资评分。'],
+  cap: ['The only section in this dashboard that uses GB data. Ireland and GB are neighbouring, interconnected, similarly regulated markets that nevertheless reward storage through structurally different mechanisms. Comparing them isolates what is genuinely Irish. All GB figures are held in a separate namespace and excluded from Ireland\'s grades and verdicts.',
+        '本看板中唯一使用英国数据的章节。爱尔兰与英国相邻、互联且监管体系相近，但两者奖励储能的机制存在结构性差异。比较两者可分离出真正属于爱尔兰特有的因素。所有英国数值保存在独立命名空间，不计入爱尔兰的评级与结论。'],
   blocks: [
     { t:'note', b:['Scope discipline: ','范围纪律：'],
       text:['GB data (Jul 2026) covers England, Scotland and Wales only. It never enters the Irish capacity balance, the Irish pipeline, the de-rating tables or any scoring input. It is used here for one purpose: to calibrate whether an Irish observation is an Irish problem or a general storage-market problem. Northern Ireland is inside SEM and is therefore treated as Ireland throughout this dashboard, not as GB.',
@@ -1083,7 +1076,6 @@ SEC_B.data = function (){
         [{b:['Discharged energy, year 1','第1年放电电量']}, 'MW × hours × usable fraction × cycles/day × 365 × availability'],
         [{b:['Executable spread','可执行价差']}, 'published spread − liquidity − RTE − dispatch/SNSP/constraint − availability − optimiser fee'],
         [{b:['Effective spread by duration','按时长的有效价差']}, 'executable spread × duration factor × (RTE / 88) × saturation factor(COD year)'],
-        [{b:['Composite score','综合评分']}, 'Σ (component weight × component score) / 100'],
         [{b:['Duration-Need Index / Connection Risk Score','时长需求指数/并网风险评分']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
         [{b:['DSCR','偿债覆盖率']}, 'EBITDA(year) / annuity(debt, interest rate, tenor)'],
       ] },

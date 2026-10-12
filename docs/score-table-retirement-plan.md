@@ -133,3 +133,29 @@ Step C is not built unless you choose the alternative.
 3. **The connection-risk index on `/returns`:** keep for now (recommended), or remove with the rest.
 4. **`docs/grading/seed-tables.md`** as the record of what is retired, or rely on git history.
 5. **The duration scorecard:** out of scope, as proposed, or treated like the connection one.
+
+## 9. As built (2026-10-12)
+
+The analyst asked for the best recommendation on each decision in §8. What was built, and where it
+departs from the text above:
+
+1. **Step A, with one departure.** The stance and the composite are off every overview, and so is
+   the weighted component table. **The connection scorecard was not turned into a checklist.** In
+   five dashboards (Great Britain, Ireland, the NEM, Poland, Romania) its index is quoted inside the
+   analytical prose, in band chips and in tiles, and the index stays on `/returns` under decision 3.
+   Removing the scores from the card while the same number is still argued from in the paragraphs
+   around it, and still ranked on `/returns`, would leave a page that contradicts itself. It goes
+   when the index goes, as one change.
+2. **Step B, with one departure.** `components`, `score.composite`, `overall.statusL` and
+   `manifest.status` are deleted, with the composite metric, the export field and the schema
+   requirement. **`governance/authority.js` was not edited.** Its `score.composite` and `status`
+   rows are a rights table, and the standing instruction is that no rights table is touched without
+   the analyst deciding it in terms. A row protecting a field that no longer exists is inert.
+   Beyond the plan: a manifest that defines `status` is now refused by validation, so the label
+   cannot come back beside the verdicts.
+3. **The connection-risk index stays** on `/returns`, as recommended.
+4. **`docs/grading/seed-tables.md`** holds every retired table, label and composite.
+5. **The duration scorecard is untouched.**
+
+Steps A and B went in one pull request, not two: with the tiles gone, the data under them had no
+reader left.

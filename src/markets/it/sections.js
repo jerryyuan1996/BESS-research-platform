@@ -26,7 +26,7 @@ import { MACSE_AUCTION, MACSE_ZONES, MACSE_CAPTION } from './storageZones.js';
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
   const { h, L, MKT, M, SRC, state, fmtN, fmt1, fmtC, fmtCk, fmtCM, fmtPct,
-          compositeScore, liveScore, dilutionAt } = api;
+          liveScore, dilutionAt } = api;
 
 const SEC_B = {};
 function SECTIONS(){
@@ -51,10 +51,8 @@ SEC_B.home = function (){
     { t:'warn', text:M.seedWarn },
     { t:'card', mt:false, title:['Position at a glance','总体判断'], badges:['calc','illus'], live:false, blocks:[
       { t:'kpis', items:[
-        { l:['Investment stance','投资立场'], v:L(M.overall.statusL),
-          d:['COD window ' + M.overall.codWindow, '投运窗口 ' + M.overall.codWindow] },
-        { l:['Composite score','综合评分'], v:String(compositeScore()) + '<small>/100</small>',
-          d:['confidence ' + M.overall.confidence + '%', '置信度 ' + M.overall.confidence + '%'], b:['calc'] },
+        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow,
+          d:['evidence confidence ' + M.overall.confidence + '%', '证据置信度 ' + M.overall.confidence + '%'] },
         { l:['Routes to market','售电路径数量'], v:'4',
           d:['MACSE, capacity market, toll, merchant — the richest set here','MACSE、容量市场、租赁、市场化 — 本平台最完整的组合'], b:['official'] },
         { l:['MACSE clear, 4h equivalent','MACSE出清价，4小时等值'], v:kMW(51.8) + '<small>/MW/yr</small>',

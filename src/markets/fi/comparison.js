@@ -225,10 +225,6 @@ export const comparison = {
   archetype: { powerMW: 50, durationHours: 2 },
 
   score: {
-    /* Deliberately conservative, and not comparable to a market whose economics
-       are complete. A composite computed from a revenue line that is withheld
-       would rank Finland on a number this file declines to publish. */
-    composite: 48,
     connectionRisk: 38,
   },
 

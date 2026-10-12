@@ -139,21 +139,9 @@ const M = {
     { id: 'TAS1', n: ['Tasmania', '塔斯马尼亚'],         mwh: 91,   revChangePct: null },
   ],
 
-  overall: { statusL: ['Selective', '选择性投资'], chipCls: 'warn', confidence: 64, codWindow: '2028–2030',
+  overall: { confidence: 64, codWindow: '2028–2030',
     rationale: ['The deepest storage build in the comparison set and the thinnest contracted revenue to underwrite it. There is no capacity market and there will not be one, so certainty has to be bought — through a CIS floor whose level nobody publishes, or a virtual toll whose price nobody discloses. Capital should be committed against a contracted structure and a diligenced connection point, not against a spread forecast.',
                 '本对比样本中储能建设规模最深，而可用于承销的合同化收入最薄。这里没有容量市场，未来也不会有，因此确定性必须购买 — 或通过无人公布水平的CIS保底价，或通过无人披露价格的虚拟租赁。资本应基于合同结构与已尽调的并网点投入，而非基于价差预测。'] },
-
-  /* Weights sum to 100; the weighted composite is 58, which is the figure
-     src/markets/nem/comparison.js carries as `score.composite`. */
-  components: [
-    { n: ['Merchant spread outlook', '市场化价差前景'], w: 25, s: 46 },
-    { n: ['Contracted revenue availability (CIS / LTESA / tolls)', '合同化收入可得性（CIS/LTESA/租赁）'], w: 20, s: 72 },
-    { n: ['Grid access, loss factors & curtailment', '并网、损耗系数与限电'], w: 15, s: 50 },
-    { n: ['Pipeline saturation against the ISP requirement', '相对ISP需求的管线饱和度'], w: 15, s: 38 },
-    { n: ['Storage-duration fit & capex trajectory', '储能时长匹配度与造价轨迹'], w: 10, s: 88 },
-    { n: ['FCAS depth', 'FCAS市场深度'], w: 5, s: 30 },
-    { n: ['Financing & delivery execution', '融资与交付执行'], w: 10, s: 90 },
-  ],
 
   // ---- merchant revenue: the ME BESS AUS NEM index, A$k/MW/yr ----
   idxLabels: ['CY2023', 'CY2024', 'CY2025', 'Oct 25 – Mar 26'],

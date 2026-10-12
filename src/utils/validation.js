@@ -9,6 +9,7 @@
    --------------------------------------------------------------------------- */
 import {
   REQUIRED_MANIFEST_FIELDS, ECONOMICS_FIELDS, CAPABILITY_FLAGS, RISK_CLASSES,
+  RETIRED_MANIFEST_FIELDS,
 } from '../markets/schema.js';
 import { FX } from '../comparison/assumptions.js';
 import { validateMerchantVintage } from '../comparison/vintage.js';
@@ -77,7 +78,10 @@ export function validateMarket(market){
      precisely so an id can stay stable while a slug is chosen for readability. */
   if (mf.id && !/^[a-z0-9_-]+$/.test(mf.id)) at('manifest.id must be lowercase alphanumeric, hyphen or underscore');
   if (mf.slug && !/^[a-z0-9-]+$/.test(mf.slug)) at('manifest.slug must be URL-safe lowercase');
-  for (const f of ['shortName', 'name', 'status']){
+  for (const f of RETIRED_MANIFEST_FIELDS){
+    if (mf[f] !== undefined) at(`manifest.${f} was retired — a verdict per investor in the view store replaced it`);
+  }
+  for (const f of ['shortName', 'name']){
     if (mf[f] !== undefined && !isPair(mf[f])) at(`manifest.${f} must be an [en, zh] pair`);
   }
   if (mf.currency && FX[mf.currency] === undefined){
@@ -104,8 +108,8 @@ export function validateMarket(market){
   if (!cmp.archetype || !isNum(cmp.archetype.powerMW) || !isNum(cmp.archetype.durationHours)){
     at('comparison.archetype needs numeric powerMW and durationHours');
   }
-  if (!cmp.score || !isNum(cmp.score.composite) || !isNum(cmp.score.connectionRisk)){
-    at('comparison.score needs numeric composite and connectionRisk');
+  if (!cmp.score || !isNum(cmp.score.connectionRisk)){
+    at('comparison.score needs a numeric connectionRisk');
   }
   if (!cmp.capabilities){
     at('comparison.capabilities is missing — no strategy will be considered available');

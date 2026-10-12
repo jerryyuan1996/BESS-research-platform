@@ -43,7 +43,6 @@ export const manifest = {
   locale: 'ja-JP',
   timezone: 'Asia/Tokyo',
 
-  status: ['Selective', '选择性投资'],
   color: 'var(--s7)',
 
   asOf: '2026-07-28',
@@ -111,7 +110,6 @@ export const comparison = {
   archetype: { powerMW: JP_REFERENCE.powerMW, durationHours: JP_REFERENCE.durationHours },
 
   score: {
-    composite: R.components.reduce((a, c) => a + c.w * c.s, 0) / 100,
     connectionRisk: R.connFactors.reduce((a, f) => a + f.w * f.s, 0) / 3,
   },
 
