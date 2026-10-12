@@ -117,7 +117,6 @@ function renderPending(container, market){
   const e = market.comparison.economics;
   const rows = [
     [['Reference archetype', '参考原型'], L(market.comparison.narrative.archetype)],
-    [['Connection risk', '并网风险'], market.comparison.score.connectionRisk + '/100'],
     [['Currency', '货币'], mf.currency],
     [['Capex per MW', '每MW造价'], mf.currencySymbol + e.capexPerMW.toLocaleString(mf.locale)],
     [['Contract length', '合同年限'], e.contractYears ? e.contractYears + L([' years', '年']) : L(['None', '无'])],

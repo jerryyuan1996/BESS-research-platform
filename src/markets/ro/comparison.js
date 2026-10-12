@@ -239,10 +239,6 @@ export const comparison = {
     durationHours: 2,
   },
 
-  score: {
-    connectionRisk: 53,
-  },
-
   capabilities: {
     capacityMarket: false,     // no capacity mechanism
     merchant: true,

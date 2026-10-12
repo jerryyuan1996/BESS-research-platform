@@ -120,8 +120,8 @@ export const CAISO_CONGESTION = {
         status: RELIEF_STATUS.PROPOSED,
       },
       investor: [
-        'Diligence this before the RA price, not after it. A negotiated RA price inside the reported $4.29–14.67/kW-month range is a commercial outcome worth arguing over; deliverability is binary and decides whether there is anything to argue about. It is the reason `contracted` and not `merchGross` is the field this row bears on, and the reason the connection scorecard weights it second only to the queue.',
-        '应在评估容量充裕度价格之前而非之后对此进行尽调。在已报告的每kW每月$4.29–14.67区间内协商得出的容量充裕度价格，是值得争取的商业结果；而可交付性是非此即彼的，它决定了是否存在可争取的对象。这正是本条目所指向的字段是`contracted`而非`merchGross`的原因，也是并网记分卡将其权重列为仅次于排队的原因。',
+        'Diligence this before the RA price, not after it. A negotiated RA price inside the reported $4.29–14.67/kW-month range is a commercial outcome worth arguing over; deliverability is binary and decides whether there is anything to argue about. It is the reason `contracted` and not `merchGross` is the field this row bears on.',
+        '应在评估容量充裕度价格之前而非之后对此进行尽调。在已报告的每kW每月$4.29–14.67区间内协商得出的容量充裕度价格，是值得争取的商业结果；而可交付性是非此即彼的，它决定了是否存在可争取的对象。这正是本条目所指向的字段是`contracted`而非`merchGross`的原因。',
       ],
       source: 'CPUC Resource Adequacy framework; CAISO NQC values',
       sourceUrl: URL.sod,

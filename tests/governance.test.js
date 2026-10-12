@@ -298,7 +298,7 @@ test('judgement is view-store content; methodology cannot be written or proposed
      2026-10-12 and have no row; they still read as methodology because an
      unknown field fails closed, and that is what is asserted here. */
   assert.equal(comparisonAuthority('score.composite'), AUTHORITY.METHODOLOGY);
-  assert.equal(comparisonAuthority('score.connectionRisk'), AUTHORITY.METHODOLOGY);
+  assert.equal(comparisonAuthority('score.connectionRisk'), AUTHORITY.METHODOLOGY);   // retired with it; fails closed
   assert.equal(comparisonAuthority('narrative.thesis'), AUTHORITY.METHODOLOGY);
   assert.equal(comparisonAuthority('narrative.archetype'), AUTHORITY.METHODOLOGY);
   assert.equal(manifestAuthority('status'), AUTHORITY.METHODOLOGY);

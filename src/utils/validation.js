@@ -108,9 +108,6 @@ export function validateMarket(market){
   if (!cmp.archetype || !isNum(cmp.archetype.powerMW) || !isNum(cmp.archetype.durationHours)){
     at('comparison.archetype needs numeric powerMW and durationHours');
   }
-  if (!cmp.score || !isNum(cmp.score.connectionRisk)){
-    at('comparison.score needs a numeric connectionRisk');
-  }
   if (!cmp.capabilities){
     at('comparison.capabilities is missing — no strategy will be considered available');
   } else {

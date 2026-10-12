@@ -502,7 +502,6 @@ test('a brand-new market participates with only a manifest and a comparison inte
     },
     comparison: {
       archetype: { powerMW: 100, durationHours: 4 },
-      score: { connectionRisk: 40 },
       capabilities: { capacityMarket: true, merchant: true, ancillaryServices: true, tolling: false },
       economics: {
         capexPerMW: 800000, opexPerMW: 9000,
@@ -537,7 +536,6 @@ test('validation rejects the mistakes a new market is most likely to make', () =
     },
     comparison: {
       archetype: { powerMW: 10, durationHours: 2 },
-      score: { connectionRisk: 1 },
       capabilities: { merchant: true },
       economics: { capexPerMW: 1, opexPerMW: 1, merchGross: 1, feePct: 1, services: 0, grantPct: 0, degr: 2 },
       narrative: { archetype: ['a', 'b'], thesis: ['a', 'b'], pipelineRatio: '~1×' },

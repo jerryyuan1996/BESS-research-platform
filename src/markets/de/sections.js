@@ -411,9 +411,6 @@ SEC_B.grid = function (){
       { t:'src', src:SRC.bnetza, use:['Statutory network development planning and confirmed need','法定电网发展规划及已确认需求'] },
     ] },
 
-    { t:'card', title:['Connection risk scorecard','并网风险记分卡'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-    ] },
   ] };
 };
 

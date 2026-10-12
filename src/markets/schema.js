@@ -247,7 +247,6 @@ export const ECONOMICS_FIELDS = {
 /** Everything a comparison interface must expose. */
 export const COMPARISON_SHAPE = {
   archetype: ['powerMW', 'durationHours'],
-  score: ['connectionRisk'],
   narrative: ['archetype', 'thesis', 'pipelineRatio'],
   capabilities: CAPABILITY_FLAGS,
   economics: ECONOMICS_FIELDS,

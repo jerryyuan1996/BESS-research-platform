@@ -304,32 +304,6 @@ const M = {
     { n: 'NEM seed example L', region: 'QLD1', mw: 450, h: 2, cod: 2030, st: 'ann' },
   ],
 
-  // ---- connection ----
-  /* Higher score = higher risk, as in RO and PL. Weights sum to 100 and the
-     weighted score is 46, which is the figure comparison.js carries as
-     `score.connectionRisk`. */
-  connFactors: [
-    { n: ['Connection application lodged and AEMO registration pathway', '已提交并网申请及AEMO注册路径'], w: 10, s: 1 },
-    { n: ['Generator performance standards negotiated and accepted', '发电机组性能标准已商定并获接受'], w: 10, s: 2 },
-    { n: ['Marginal loss factor history at the connection point', '并网点边际损耗系数历史'], w: 14, s: 2 },
-    { n: ['Uncompensated network curtailment exposure', '无补偿网络限电敞口'], w: 15, s: 2 },
-    { n: ['REZ access scheme round and allocated MW', '可再生能源区接入机制轮次与分配MW'], w: 10, s: 1 },
-    { n: ['System strength and inverter compliance obligations', '系统强度与逆变器合规义务'], w: 10, s: 1 },
-    { n: ['Land, planning and environmental approvals', '土地、规划与环评许可'], w: 8, s: 1 },
-    { n: ['Commissioning hold points and full-output release', '调试节点与满出力释放'], w: 9, s: 1 },
-    { n: ['Market and FCAS registration per market and direction', '按市场与方向分别完成市场及FCAS注册'], w: 9, s: 1 },
-    { n: ['Evidence and governance quality', '证据与治理质量'], w: 5, s: 1 },
-  ],
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Evidence is sufficient to release development consideration.', '证据充分，可支付开发对价。'] },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn',
-      d: ['Structure the risk: conditions precedent, holdbacks, long-stop dates.', '以结构应对风险：先决条件、保留款、最终截止日。'] },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until performance standards are agreed and the loss-factor history is in hand.', '在性能标准商定且取得损耗系数历史之前，重新定价或延后。'] },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
-  ],
 
   /* ---- the 2026 ISP optimal development path, project by project ----------
      Transcribed from AEMO's 2026 ISP Appendix A5 "Network Investments" (June

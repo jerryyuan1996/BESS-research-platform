@@ -11,7 +11,7 @@ export function createCompute(ctx){
   const { M, state } = ctx;
 
   /* Resolve a dotted path into M, so a block can address a region-specific
-     scorecard as 'regions.tokyo.connFactors'. A plain key such as 'connFactors'
+     scorecard as 'regions.tokyo.durFactors'. A plain key such as 'durFactors'
      resolves exactly as before, so every existing market is unaffected. */
   const at = (path) => String(path).split('.').reduce((o, k) => (o == null ? o : o[k]), M);
 

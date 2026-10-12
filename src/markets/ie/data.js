@@ -179,27 +179,6 @@ const M = {
     { n: 'IE seed example N', county: 'ROI · Limerick',  mw: 200, h: 4, cod: 2030, st: 'ann' },
   ],
 
-  // ---- connection ----
-  connFactors: [
-    { n: ['Land & planning (route, consent, expiry, judicial-review risk)', '土地与规划（路径、许可、有效期、司法复核风险）'], w: 15, s: 1 },
-    { n: ['Connection stage & executed agreement', '并网阶段与已签协议'], w: 20, s: 2 },
-    { n: ['MEC / MIC sufficiency incl. documented import right', 'MEC/MIC充分性（含书面进口权）'], w: 15, s: 1 },
-    { n: ['Reinforcement scope, outages & schedule', '网络加强范围、停电窗口与进度'], w: 15, s: 2 },
-    { n: ['Cost & security certainty (estimate class, caps)', '费用与保证金确定性（估算等级、上限）'], w: 10, s: 2 },
-    { n: ['Grid-code & technical compliance', '电网规范与技术合规'], w: 10, s: 1 },
-    { n: ['SEMO registration, metering & qualification', 'SEMO注册、计量与资格认证'], w: 10, s: 1 },
-    { n: ['Counterparty / large-load dependency', '交易对手/大型负荷依赖'], w: 5, s: 1 },
-  ],
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Evidence is sufficient to release development consideration.', '证据充分，可支付开发对价。'] },
-    { lo: 25, hi: 49, n: ['Conditional — require CPs & protections', '有条件 — 需先决条件与保护'], c: 'warn',
-      d: ['Structure the risk: conditions precedent, holdbacks, long-stop dates.', '以结构应对风险：先决条件、保留款、最终截止日。'] },
-    { lo: 50, hi: 69, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until an executed connection agreement is in hand.', '在取得已签并网协议前，重新定价或延后。'] },
-    { lo: 70, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
-  ],
   /* ---- named transmission, from EirGrid's project publications and Price
      Review 6 --------------------------------------------------------------
      All-island: three of these rows are joint EirGrid/SONI or cross-border, so

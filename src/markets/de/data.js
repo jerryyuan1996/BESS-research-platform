@@ -341,32 +341,6 @@ const M = {
     { n: 'DE seed example K', region: 'TransnetBW', mw: 150, h: 2, cod: 2030, st: 'ann' },
   ],
 
-  // ---- connection ----
-  /* Higher score = higher risk, as in RO, PL and the NEM. Weights sum to 100 and
-     the weighted score is 44, which is the figure comparison.js carries as
-     `score.connectionRisk`. */
-  connFactors: [
-    { n: ['Grid connection agreement and queue position', '并网协议与排队位置'], w: 12, s: 1 },
-    { n: ['Baukostenzuschuss quantum agreed with the network operator', '与电网运营商商定的BKZ金额'], w: 14, s: 2 },
-    { n: ['Grid fee exemption secured — COD before 4 August 2029', '取得电网费用豁免 — 2029年8月4日前投运'], w: 12, s: 1 },
-    { n: ['AgNes grandfathering — FID before the final decision', 'AgNes祖父条款 — 在最终决定前作出投资决策'], w: 10, s: 2 },
-    { n: ['Redispatch 2.0 obligations and compensation basis', 'Redispatch 2.0义务与补偿口径'], w: 8, s: 2 },
-    { n: ['Flexible connection agreement terms — caps and ramp limits', '柔性并网协议条款 — 出力上限与爬坡限制'], w: 10, s: 2 },
-    { n: ['Prequalification for FCR and aFRR per product', '按产品分别取得FCR与aFRR预认证'], w: 8, s: 1 },
-    { n: ['Land, planning and BImSchG approval', '土地、规划与《联邦排放控制法》许可'], w: 8, s: 1 },
-    { n: ['Siting north or south of the auction line', '场址位于拍卖分界线以北或以南'], w: 10, s: 0 },
-    { n: ['Evidence and governance quality', '证据与治理质量'], w: 8, s: 1 },
-  ],
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Evidence is sufficient to release development consideration.', '证据充分，可支付开发对价。'] },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn',
-      d: ['Structure the risk: a BKZ cap, a commissioning long-stop before 4 August 2029, and holdbacks.', '以结构应对风险：设置BKZ上限、以2029年8月4日前投运为最终截止日，并保留部分价款。'] },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until the BKZ is quoted in writing and the exemption date is achievable.', '在取得书面BKZ报价且豁免日期确可实现之前，重新定价或延后。'] },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
-  ],
 
   /* ---- named transmission ------------------------------------------------
      The four HVDC corridors that carry northern wind to southern load. All four

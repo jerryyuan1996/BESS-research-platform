@@ -141,29 +141,6 @@ const M = {
     { n: 'RO seed example L', county: 'Mehedinți', mw: 250, h: 4, cod: 2029, st: 'ann' },
   ],
 
-  // ---- connection ----
-  connFactors: [
-    { n: ['Land, planning & environmental rights', '土地、规划与环评权利'], w: 15, s: 1 },
-    { n: ['Capacity-allocation route & auction outcome', '容量分配路径与拍卖结果'], w: 10, s: 2 },
-    { n: ['ATR status, capacity & validity', 'ATR状态、容量与有效期'], w: 15, s: 2 },
-    { n: ['Connection agreement & works scope', '并网合同与工程范围'], w: 15, s: 2 },
-    { n: ['Network reinforcement scope & delivery responsibility', '网络加强范围与交付责任'], w: 10, s: 2 },
-    { n: ['Guarantees posted & release path', '已缴保函与释放路径'], w: 5, s: 1 },
-    { n: ['Establishment authorisation & licensing progress', '设立许可与牌照进度'], w: 10, s: 1 },
-    { n: ['Market & balancing-responsible-party registration', '市场与平衡责任方注册'], w: 10, s: 2 },
-    { n: ['Energisation, testing & unrestricted operation', '送电、测试与无限制运行'], w: 5, s: 1 },
-    { n: ['Evidence & governance quality', '证据与治理质量'], w: 5, s: 1 },
-  ],
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Evidence is sufficient to release development consideration.', '证据充分，可支付开发对价。'] },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn',
-      d: ['Structure the risk: conditions precedent, holdbacks, long-stop dates.', '以结构应对风险：先决条件、保留款、最终截止日。'] },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until an ATR and executed connection agreement are in hand.', '在取得ATR及已签并网合同前，重新定价或延后。'] },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
-  ],
 
   /* ---- named transmission, from Transelectrica's RET Development Plan
      2026–2035 ---------------------------------------------------------------

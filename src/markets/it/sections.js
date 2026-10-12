@@ -488,9 +488,6 @@ SEC_B.grid = function (){
         sig:['One free check removes or restores a whole route','一项零成本核查即可移除或恢复整条路径'] },
     ] },
 
-    { t:'card', title:['Connection risk scorecard','并网风险记分卡'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-    ] },
   ] };
 };
 

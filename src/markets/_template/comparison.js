@@ -22,13 +22,6 @@ export const comparison = {
     durationHours: 4,
   },
 
-  /* The connection-risk index from this market's own scorecard. It is compared
-     across markets on /returns (lower is safer). A market-level composite was
-     retired on 2026-10-12: grades and verdicts live in the view store. */
-  score: {
-    connectionRisk: 0,     // 0-100, lower = safer
-  },
-
   /* Capability flags decide which routes to market apply (brief section 10).
      A false flag means the strategy is genuinely unavailable — the engine returns
      "N/A" and the $1M engine omits the row. It never substitutes zero.

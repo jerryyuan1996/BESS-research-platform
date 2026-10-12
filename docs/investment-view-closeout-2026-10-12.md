@@ -42,10 +42,11 @@ Nothing in this close-out touched `agent/`, either live list or the workflow's p
    `src/entry/timeToRevenue.js`. What exists is the `timing` block on two ledgers and the
    time-to-revenue grade on all fifteen. Gate G37 is where the other thirteen would come from.
 3. **Scout cards and a live automated change (§6.4, §7, phases 3 and 4).** As §2.
-4. **The connection-factor lists as a checklist (§6.3).** The plan moves them to Entry and Delivery
-   as project checklists and drops the index. They are on that tab, still scored, and the index
-   is still ranked on `/returns`. Left deliberately: five dashboards argue from the index in their
-   prose, so the scores and the index should go together, with that prose rewritten.
+4. **The connection scorecard (§6.3).** Closed later on 2026-10-12, on the analyst's instruction,
+   and further than the plan asked: the scorecard, its index, the `/returns` metric and every
+   sentence that argued from the score are deleted. The plan would have kept the factor lists as an
+   unscored checklist; they are kept only as a record, in `docs/grading/seed-tables.md`. What the
+   dashboards say about how connection fails in each market stays, without the score.
 5. **Gate G12.** Sourced and built as far as public previews allow
    (`docs/g12-treatment-proposal.md` §8). It stays open: no return target was found that states
    its life and augmentation.

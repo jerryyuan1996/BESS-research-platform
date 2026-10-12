@@ -144,28 +144,6 @@ const M = {
     { n: 'PL seed example K', region: 'Podkarpackie',    mw: 500, h: 4, cod: 2030, st: 'ann' },
   ],
 
-  // ---- connection ----
-  connFactors: [
-    { n: ['Connection conditions issued & capacity adequate', '已取得并网条件且容量充足'], w: 20, s: 2 },
-    { n: ['Executed connection agreement & works schedule', '已签并网协议与工程进度'], w: 15, s: 2 },
-    { n: ['Land, building permit & environmental decision', '土地、建设许可与环评决定'], w: 15, s: 1 },
-    { n: ['Capacity-auction certification pathway', '容量拍卖认证路径'], w: 12, s: 1 },
-    { n: ['Network reinforcement scope & cost allocation', '网络加强范围与费用分担'], w: 10, s: 2 },
-    { n: ['Grid-code & technical compliance', '电网规范与技术合规'], w: 10, s: 1 },
-    { n: ['Market registration & balancing certification', '市场注册与平衡市场认证'], w: 8, s: 2 },
-    { n: ['Deposits, securities & release path', '押金、保证金与释放路径'], w: 5, s: 1 },
-    { n: ['Evidence & governance quality', '证据与治理质量'], w: 5, s: 1 },
-  ],
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Evidence is sufficient to release development consideration.', '证据充分，可支付开发对价。'] },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn',
-      d: ['Structure the risk: conditions precedent, holdbacks, long-stop dates.', '以结构应对风险：先决条件、保留款、最终截止日。'] },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until connection conditions and certification are proven.', '在并网条件与认证获证实前，重新定价或延后。'] },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
-  ],
 
   /* ---- named transmission, from PSE's Transmission Network Development Plan
      (PRSP) 2025–2034, agreed with the regulator URE on 20 December 2024 ------

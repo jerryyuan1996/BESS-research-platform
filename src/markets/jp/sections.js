@@ -162,9 +162,6 @@ export function buildSections(api){
         title: [L(R(id).name) + ' — investment signal', L(R(id).name) + ' — 投资信号'],
         badges: [regionBadge(id), 'calc'], live: false, blocks: [
           { t: 'chip', cls: 'info', text: R(id).thesis },
-          { t: 'kpis', items: [
-            { l: ['Connection risk (lower = safer)', '并网风险（越低越安全）'], v: liveScore(path(id, 'connFactors')) + ' / 100' },
-          ] },
           { t: 'p', text: R(id).thesisLong },
         ],
       })),
@@ -205,7 +202,6 @@ export function buildSections(api){
           { l: ['TSO', '电网运营商'], f: id => L(R(id).tso) },
           { l: ['Concurrent study cap from 1 Aug 2026', '2026年8月1日起并发检讨上限'], f: id => String(R(id).grid.studyCap) },
           { l: ['Regional constraint focus', '区域约束重点'], f: id => L(R(id).grid.constraint) },
-          { l: ['Connection risk score', '并网风险评分'], f: id => liveScore(path(id, 'connFactors')) + ' / 100' },
         ]),
         { t: 'why', text: ['The study cap is a real allocation constraint, not an administrative detail. Hokkaido allows five concurrent studies per operator against Tokyo\'s eleven, in the region with the largest connection queue relative to operating stock. A developer\'s ability to hold optionality is materially narrower there.',
                            '并发检讨上限是真实的配置约束，而非行政细节。北海道每家业者仅允许5项并发检讨，而东京为11项 — 且北海道的并网队列相对在运容量的比例最高。开发商在该区域持有选择权的能力显著受限。'],
@@ -694,18 +690,6 @@ export function buildSections(api){
         { t: 'why', text: ['Read the last row first. The three regions fail in three unrelated ways, which is the actual argument for holding more than one of them. If they failed the same way, three Japanese allocations would be one position held three times.',
                            '请先读最后一行。三个区域以三种互不相关的方式失败 — 这才是同时持有多个区域的真正理由。若失败方式相同，三笔日本配置不过是同一头寸持有三次。'],
           sig: ['Three unrelated failure modes', '三种互不相关的失败模式'] } ] },
-
-      { t: 'card', title: ['Scores side by side', '评分并列'], badges: ['calc'], live: true, blocks: [
-        { t: 'bar', cfg: {
-          xs: M.regionIds.map(id => L(R(id).short)),
-          mode: 'group', h: 260, yfmt: v => fmtN(v),
-          series: [
-            { name: ['Connection risk (lower = safer)', '并网风险（越低越安全）'], color: 'var(--s6)', vals: M.regionIds.map(id => liveScore(path(id, 'connFactors'))) },
-            { name: ['Duration need index', '时长需求指数'], color: 'var(--s3)', vals: M.regionIds.map(id => liveScore(path(id, 'durFactors'))) },
-          ] } },
-        { t: 'why', text: ['Hokkaido carries the highest connection risk, Kyushu sits in the middle and Tokyo is lowest. That ordering is stable across reasonable weight changes, which is more useful than the point scores themselves — the ranking is the finding, not the number.',
-                           '北海道并网风险最高，九州居中，东京最低。该排序在合理的权重变动下保持稳定，这比具体分值更有价值 — 结论在于排序而非数字。'],
-          sig: ['The ranking is the finding', '结论在于排序'] } ] },
     ] };
   };
 

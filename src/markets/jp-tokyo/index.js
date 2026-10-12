@@ -109,10 +109,6 @@ export const comparison = {
 
   archetype: { powerMW: JP_REFERENCE.powerMW, durationHours: JP_REFERENCE.durationHours },
 
-  score: {
-    connectionRisk: R.connFactors.reduce((a, f) => a + f.w * f.s, 0) / 3,
-  },
-
   capabilities: {
     capacityMarket: true,      // OCCTO Capacity Market main auction
     merchant: true,            // JEPX day-ahead and intraday

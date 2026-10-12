@@ -32,8 +32,8 @@ const fmtRON = x => NF2.format(x) + ' RON';
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
-  const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
+  const dni = liveScore('durFactors');
+  const dband = bandFor(M.durBands, dni);
   const cod = state.codYear, cc = M.codCases[cod] || M.codCases[2028];
   return {
   warn: M.seedWarn,
@@ -123,9 +123,7 @@ SEC_B.home = function (){
           sig:['Build the option, not the energy','建设选择权，而非能量'] },
       ] },
       { title:['Card F — Grid & Permitting Signal','Card F — 并网与许可信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:cband.c, text:cband.n },
         { t:'kpis', items:[
-          { l:['Connection risk score','并网风险评分'], v:cs + '<small> / 100</small>', d:cband.n, b:['calc'] },
           { l:['Binding evidence','约束性证据'], v:L(['ATR + executed connection agreement','ATR + 已签并网合同']), d:['not an indicative capacity map','而非示意性容量地图'], b:['verify'] },
           { l:['Storage authorisations, one Feb 2026 meeting','2026年2月单次会议的储能许可'], v:fmtN(O.authFeb2026MW) + '<small> MW</small>', d:['authorisations are never operating MW','许可绝不等于投运MW'], b:['official'] },
           { l:['Allocation-auction participation guarantee','容量分配拍卖参与保函'], v:fmtC(O.auctionGuarEurMW) + '<small>/MW</small>', d:['verify current release mechanics','须核验现行释放机制'], b:['verify'] },
@@ -133,8 +131,8 @@ SEC_B.home = function (){
         ] },
         { t:'note', text:['Required protection: no material non-refundable payment before an ATR and an executed connection agreement. The indicative available-capacity map is a screening tool and is never a financeable right; an establishment authorisation is a permit and is never operating capacity.',
           '必要保护：在取得ATR及已签并网合同前，不支付重大不可退还款项。示意性可用容量地图是筛选工具，绝非可融资权利；设立许可是许可证，绝非投运容量。'] },
-        { t:'why', text:['Connection is scored ' + cs + '/100 (higher = riskier), and the Romanian failure mode is a category error rather than a technical one: treating a map, an authorisation or a scheme budget as evidence of a project. ' + fmtN(O.authFeb2026MW) + ' MW of authorisations approved in a single regulatory meeting illustrates both the opportunity and the trap — that volume is real interest, and almost none of it will connect on the announced schedule. Guarantee mechanics matter too: capital posted against auction and connection guarantees is capital at risk until the release conditions are documented.',
-          '并网评分' + cs + '/100（分值越高风险越大），而罗马尼亚的失效模式是类别错误而非技术错误：将地图、许可或计划预算视为项目的证据。单次监管会议核准' + fmtN(O.authFeb2026MW) + 'MW的许可，同时说明了机会与陷阱 — 该体量代表真实兴趣，但其中几乎没有项目会按公告进度并网。保函机制同样重要：为拍卖与并网保函缴付的资金，在释放条件形成书面约定之前均属风险资本。'],
+        { t:'why', text:['The Romanian connection failure mode is a category error rather than a technical one: treating a map, an authorisation or a scheme budget as evidence of a project. ' + fmtN(O.authFeb2026MW) + ' MW of authorisations approved in a single regulatory meeting illustrates both the opportunity and the trap — that volume is real interest, and almost none of it will connect on the announced schedule. Guarantee mechanics matter too: capital posted against auction and connection guarantees is capital at risk until the release conditions are documented.',
+          '罗马尼亚并网的失效模式是类别错误而非技术错误：将地图、许可或计划预算视为项目的证据。单次监管会议核准' + fmtN(O.authFeb2026MW) + 'MW的许可，同时说明了机会与陷阱 — 该体量代表真实兴趣，但其中几乎没有项目会按公告进度并网。保函机制同样重要：为拍卖与并网保函缴付的资金，在释放条件形成书面约定之前均属风险资本。'],
           sig:['A map is not a right','地图不是权利'] },
       ] },
     ] },
@@ -593,7 +591,6 @@ SEC_B.pipeline = function (){
 
 // ============================== GRID & PERMITTING ==============================
 SEC_B.grid = function (){
-  const cs = liveScore('connFactors'), band = bandFor(M.connBands, cs);
   return {
   head: ['Grid & Permitting — a chain of approvals, not a binary status','并网与许可 — 一连串审批与合同，而非二元状态'],
   cap: ['Connection and permitting are where Romanian development capital is lost, and the failure mode is a category error rather than a technical one — treating a capacity map, an authorisation or a scheme budget as evidence of a project.',
@@ -615,13 +612,6 @@ SEC_B.grid = function (){
       { t:'why', text:['Five tiers, and the first two are the ones most often presented as a project. ' + fmtN(O.authFeb2026MW) + ' MW of authorisations approved in a single meeting is the clearest illustration: that volume is genuine developer interest, and almost none of it holds an ATR with adequate capacity at a location with a real price spread. The diligence question is not "does the project have permits" but "which tier, and what is the document number".',
         '共五个层级，而最常被当作项目呈现的是前两个。单次会议核准' + fmtN(O.authFeb2026MW) + 'MW许可是最清晰的例证：该体量代表真实的开发商兴趣，但其中几乎没有项目在具备真实价差的位置持有容量充足的ATR。尽调问题不是“项目是否有许可”，而是“处于哪一层级？文件编号是什么”。'],
         sig:['Which tier, and what is the document number?','处于哪一层级？文件编号为何？'] },
-    ] },
-
-    { t:'card', title:['Connection Risk Score — weighted factors, editable','并网风险评分 — 加权因子，可编辑'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-      { t:'why', text:['The score is ' + cs + '/100 (higher = riskier), placing the reference project in the "' + L(band.n) + '" band. Three factors carry 45% of the weight — ATR status, connection agreement and works scope, and land and permitting — and all three are documentary. Most Romanian connection risk is therefore eliminated by reading the right documents rather than by building a better model, which is why the diligence budget should be weighted toward legal review rather than toward price forecasting.',
-        '评分为' + cs + '/100（分值越高风险越大），使参考项目落入“' + L(band.n) + '”区间。三个因子合计占45%权重 — ATR状态、并网合同与工程范围、以及土地与许可 — 且三者均属文件性。因此罗马尼亚的大部分并网风险靠阅读正确的文件即可消除，而非靠构建更好的模型；尽调预算应向法律审阅而非价格预测倾斜。'],
-        sig:['Weight diligence toward legal review','尽调应向法律审阅倾斜'] },
     ] },
 
     { t:'card', title:['Guarantees — capital at risk before financial close','保函 — 融资交割前的风险资本'], badges:['verify'], live:true, blocks:[
@@ -876,7 +866,7 @@ SEC_B.data = function (){
         [{b:['Executable margin','可执行价差']}, 'published spread + intraday uplift − liquidity − RTE − availability − optimiser fee'],
         [{b:['Effective spread by duration','按时长的有效价差']}, 'executable margin × duration factor × (RTE / 88) × dilution factor(COD year)'],
         [{b:['Net capex','净资本开支']}, 'gross capex − grant (only with a formal award letter)'],
-        [{b:['Duration / Connection scorecards','时长与并网评分卡']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
+        [{b:['Duration scorecard','时长评分卡']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
         [{b:['DSCR','偿债覆盖率']}, 'EBITDA(year) / annuity(debt, interest rate, tenor)'],
       ] },
     ] },

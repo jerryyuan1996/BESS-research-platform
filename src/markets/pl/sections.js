@@ -33,8 +33,8 @@ const plMerchantPerMW = hh => hh * M.usableFraction * M.lab.cycles * 365 * (M.la
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
-  const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
+  const dni = liveScore('durFactors');
+  const dband = bandFor(M.durBands, dni);
   const cod = state.codYear, cc = M.codCases[cod] || M.codCases[2029];
   return {
   warn: M.seedWarn,
@@ -127,9 +127,7 @@ SEC_B.home = function (){
           sig:['Correction factor and obligation agree','折减系数与容量义务方向一致'] },
       ] },
       { title:['Card F — Grid & Connection Signal','Card F — 并网信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:cband.c, text:cband.n },
         { t:'kpis', items:[
-          { l:['Connection risk score','并网风险评分'], v:cs + '<small> / 100</small>', d:cband.n, b:['calc'] },
           { l:['Binding evidence','约束性证据'], v:L(['Connection conditions + executed agreement','并网条件+已签协议']), d:['a connection application is not evidence','并网申请不构成证据'], b:['verify'] },
           { l:['Connection pipeline (seed)','并网管线（种子）'], v:fmt1(O.pipelineGW) + '<small> GW</small>', d:['against ' + fmtN(O.fleetMW) + ' MW operating','对比在运' + fmtN(O.fleetMW) + 'MW'], b:['illus'] },
           { l:['Primary rationing mechanism','主要配给机制'], v:L(['Connection refusals','并网拒批']), d:['not capital, not permitting, not policy','并非资本、许可或政策'], b:['verify'] },
@@ -137,8 +135,8 @@ SEC_B.home = function (){
         ] },
         { t:'note', text:['Required protection: no material non-refundable payment before connection conditions with adequate capacity and an executed connection agreement. In Poland the connection stage also gates the capacity auction, so a connection failure removes both revenue lines at once rather than delaying one of them.',
           '必要保护：在取得容量充足的并网条件及已签并网协议前，不支付重大不可退还款项。在波兰，并网阶段同时决定能否参与容量拍卖，因此并网失败会一次性移除两条收入线，而非仅延迟其中一条。'] },
-        { t:'why', text:['Connection is scored ' + cs + '/100 (higher = riskier) and it is weak for a structural reason: connection conditions are rationed, and they gate the capacity auction as well as the physical build. That compounding is the distinctively Polish risk — in an energy-only market a connection delay costs you a year of spread, but here it can cost you the auction, and with it the ' + O.cmAgreementYears + '-year contract that makes the project financeable at all.',
-          '并网评分' + cs + '/100（分值越高风险越大），其偏弱的原因是结构性的：并网条件受到配给，且其不仅决定实体建设，也决定能否参与容量拍卖。这种叠加效应正是波兰特有的风险 — 在单一电能量市场中，并网延迟的代价是一年的价差；而在此地，其代价可能是错过拍卖，进而失去使项目得以融资的' + O.cmAgreementYears + '年合同。'],
+        { t:'why', text:['Connection is weak here for a structural reason: connection conditions are rationed, and they gate the capacity auction as well as the physical build. That compounding is the distinctively Polish risk — in an energy-only market a connection delay costs you a year of spread, but here it can cost you the auction, and with it the ' + O.cmAgreementYears + '-year contract that makes the project financeable at all.',
+          '并网在此偏弱，原因是结构性的：并网条件受到配给，且其不仅决定实体建设，也决定能否参与容量拍卖。这种叠加效应正是波兰特有的风险 — 在单一电能量市场中，并网延迟的代价是一年的价差；而在此地，其代价可能是错过拍卖，进而失去使项目得以融资的' + O.cmAgreementYears + '年合同。'],
           sig:['A connection delay can cost the auction','并网延迟可能导致错过拍卖'] },
       ] },
     ] },
@@ -606,7 +604,6 @@ SEC_B.pipeline = function (){
 
 // ============================== GRID & CONNECTION ==============================
 SEC_B.grid = function (){
-  const cs = liveScore('connFactors'), band = bandFor(M.connBands, cs);
   return {
   head: ['Grid & Connection — the gate that decides both revenue lines','并网 — 决定两条收入线的门槛'],
   cap: ['Connection is the binding constraint on Polish storage, and it is unusual because it gates the capacity auction as well as the physical build. A connection failure removes the contracted and the merchant revenue lines simultaneously.',
@@ -628,13 +625,6 @@ SEC_B.grid = function (){
       { t:'why', text:['Five tiers with a compounding failure mode. In an energy-only market a connection delay costs a year of spread; in Poland it can cost the auction, and with it the ' + O.cmAgreementYears + '-year contract that makes the project financeable at all. That asymmetry is why Polish diligence should be front-loaded onto the connection and certification chain, and why a long-stop tied to energisation is worth more here than in any other market in this set.',
         '五个层级，且存在叠加失效模式。在单一电能量市场中，并网延迟的代价是一年的价差；在波兰，其代价可能是错过拍卖，进而失去使项目得以融资的' + O.cmAgreementYears + '年合同。这一不对称正是波兰的尽调应前置于并网与认证链条的原因，也是将最终截止日挂钩送电在本样本中于此地价值最高的原因。'],
         sig:['A connection delay can cost the contract','并网延迟可能导致失去合同'] },
-    ] },
-
-    { t:'card', title:['Connection Risk Score — weighted factors, editable','并网风险评分 — 加权因子，可编辑'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-      { t:'why', text:['The score is ' + cs + '/100 (higher = riskier), placing the reference project in the "' + L(band.n) + '" band. The heaviest factor is connection conditions and adequate capacity at 20%, followed by the executed agreement at 15% — together 35% of the score, and both are documentary rather than analytical. Add the certification pathway at 12% and nearly half the score is decided by documents that either exist or do not.',
-        '评分为' + cs + '/100（分值越高风险越大），使参考项目落入“' + L(band.n) + '”区间。权重最高的因子是并网条件与容量充足性（20%），其次是已签协议（15%） — 合计占评分的35%，且两者均属文件性而非分析性。再加上认证路径的12%，评分中近一半由“存在或不存在”的文件决定。'],
-        sig:['Half the score is documentary','评分的一半由文件决定'] },
     ] },
 
     { t:'card', title:['Why connection is rationed — and what that means for competition','并网为何受配给 — 及其对竞争的含义'], badges:['verify'], live:true, blocks:[
@@ -893,7 +883,7 @@ SEC_B.data = function (){
         [{b:['Executable margin','可执行价差']}, 'published spread + intraday uplift − liquidity − RTE − availability − charges − optimiser fee'],
         [{b:['Effective spread by duration','按时长的有效价差']}, 'executable margin × duration factor × (RTE / 88) × saturation factor(COD year)'],
         [{b:['Post-contract capacity revenue','合同期后容量收入']}, 'capacity revenue × re-contracting factor after year ' + O.cmAgreementYears],
-        [{b:['Duration / Connection scorecards','时长与并网评分卡']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
+        [{b:['Duration scorecard','时长评分卡']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
         [{b:['DSCR','偿债覆盖率']}, 'EBITDA(year) / annuity(debt, interest rate, tenor)'],
       ] },
     ] },

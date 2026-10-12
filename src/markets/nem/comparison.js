@@ -337,10 +337,6 @@ export const comparison = {
     durationHours: HOURS,
   },
 
-  score: {
-    connectionRisk: 46,
-  },
-
   capabilities: {
     /* The one flag that matters here. The NEM is energy-only and the Nelson
        Review kept it that way in December 2025. */

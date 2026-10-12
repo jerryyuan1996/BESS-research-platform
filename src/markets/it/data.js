@@ -352,32 +352,6 @@ const M = {
     { n: 'IT seed example K', region: 'Sud e Calabria', mw: 220, h: 8, cod: 2030, st: 'ann' },
   ],
 
-  // ---- connection ----
-  /* Higher score = higher risk, as in DE, RO, PL and the NEM. Weights sum to 100
-     and the weighted score is 47, which is the figure comparison.js carries as
-     `score.connectionRisk`. */
-  connFactors: [
-    { n: ['Bidding-zone eligibility checked against the MACSE requirement table', '对照MACSE需求表核查报价区资格'], w: 9,  s: 1 },
-    { n: ['STMG connection solution issued and accepted', '已出具并接受STMG并网方案'], w: 15, s: 2 },
-    { n: ['Authorisation route — Autorizzazione Unica / PAUR and regional consent', '许可路径 — 单一许可/PAUR与大区同意'], w: 14, s: 2 },
-    { n: ['Land control and site constraint (seismic, hydrogeological, archaeological)', '土地控制与场址约束（地震、水文地质、考古）'], w: 8,  s: 1 },
-    { n: ['MACSE technical compliance and availability obligations', 'MACSE技术合规与可用性义务'], w: 9,  s: 1 },
-    { n: ['Capacity de-rating stability — the DY2028 proposal', '容量折减系数稳定性 — 2028实需年度提案'], w: 12, s: 2 },
-    { n: ['MSD qualification per product and per direction', '按产品与方向分别取得辅助服务市场资格'], w: 8,  s: 1 },
-    { n: ['Dependency on a named submarine commissioning date', '对具名海底工程投运日期的依赖'], w: 9,  s: 1 },
-    { n: ['Curtailment exposure pending ARERA Resolution 128/2025 compensation', '待ARERA第128/2025号决议补偿落地前的限电敞口'], w: 9,  s: 1 },
-    { n: ['Evidence and governance quality', '证据与治理质量'], w: 7,  s: 1 },
-  ],
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Evidence is sufficient to release development consideration.', '证据充分，可支付开发对价。'] },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn',
-      d: ['Structure the risk: zone eligibility confirmed in writing, an STMG cap, and holdbacks against the de-rating review.', '以结构应对风险：书面确认区域资格、设置STMG成本上限，并针对折减系数复核保留部分价款。'] },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until the STMG is issued and the DY2028 de-rating is decided.', '在STMG出具且2028实需年度折减系数确定之前，重新定价或延后。'] },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
-  ],
 
   /* ---- named transmission ------------------------------------------------
      Four named submarine schemes with commissioning years between 2028 and 2030,

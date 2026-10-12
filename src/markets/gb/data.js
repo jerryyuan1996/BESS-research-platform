@@ -220,29 +220,6 @@ const M = {
     sourceProjectId: project.sourceProjectId,
   })),
 
-  // ---- connection ----
-  connFactors: [
-    { n: ['Land & planning', '土地与规划'], w: 12, s: 1 },
-    { n: ['Gate status / strategic alignment', 'Gate状态与战略匹配'], w: 15, s: 1 },
-    { n: ['Connection scope & date', '并网范围与日期'], w: 12, s: 1 },
-    { n: ['Connection cost & securities', '并网成本与保证金'], w: 10, s: 2 },
-    { n: ['Technical compliance (Grid Code / G99)', '技术合规（电网规范/G99）'], w: 12, s: 2 },
-    { n: ['Network delivery & outage windows', '电网工程交付与停电窗口'], w: 8, s: 1 },
-    { n: ['Market registration (BSC / BMU / metering)', '市场注册（BSC/BMU/计量）'], w: 8, s: 2 },
-    { n: ['CM / LDES qualification', '容量市场/长时储能资格'], w: 8, s: 1 },
-    { n: ['Charging & policy change', '网络收费与政策变化'], w: 8, s: 1 },
-    { n: ['Evidence & governance', '证据与治理'], w: 7, s: 1 },
-  ],
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Evidence is sufficient to release development consideration.', '证据充分，可支付开发对价。'] },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn',
-      d: ['Structure the risk: conditions precedent, holdbacks, long-stop dates.', '以结构应对风险：先决条件、保留款、最终截止日。'] },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until the Gate 2 tranche and consent position is proven.', '在Gate 2批次与规划许可获证实前，重新定价或延后。'] },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
-  ],
 
   // ---- contracted structures ----
   contracted: [

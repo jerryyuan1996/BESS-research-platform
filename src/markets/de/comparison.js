@@ -267,10 +267,6 @@ export const comparison = {
     durationHours: 4,
   },
 
-  score: {
-    connectionRisk: 44,
-  },
-
   capabilities: {
     /* Legislated but closed to this asset: the StromVKG auction requires ten
        hours of continuous discharge. See the header. */

@@ -19,7 +19,8 @@
    WHY ANCHORS, AND WHAT MAKES ONE USABLE
 
    The platform already scores every market, in tables each market wrote for
-   itself (COMPONENTS and CONN_FACTORS in pjm/scores.js, `connFactors` in
+   itself (the component and connection-factor tables, since retired and kept in
+   docs/grading/seed-tables.md; they sat in pjm/scores.js, in
    pl/data.js and jp/regions.js). Those tables are good judgement and they are
    not comparable: a 2 on Poland's "deposits, securities and release path" and a
    2 on Tokyo's "deposit / funding readiness" were never measured against the
@@ -293,7 +294,7 @@ export const DIMENSIONS = [
     },
   },
   {
-    /* Drafted from PJM's FEOC line in CONN_FACTORS, whose own comment makes the
+    /* Drafted from the FEOC line of PJM's retired connection-factor table, whose own comment makes the
        distinction grade 2 rests on: a rule that VOIDS support is a cliff, a rule
        that reduces it is a slope. */
     id: 'supplyChainOrigin', pillar: 'entry', n: 6, gradedBy: GRADED_BY.ANCHOR,

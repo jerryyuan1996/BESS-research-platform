@@ -21,7 +21,6 @@ const GLOSS_CORE = [
   ['Net load / residual load', '净负荷/剩余负荷'],
   ['Residual peak', '剩余峰值'],
   ['Duration-Need Index', '时长需求指数'],
-  ['Connection Risk Score', '并网风险评分'],
   ['Merchant revenue', '市场化收入'],
   ['Contracted revenue floor', '合同化收入下限'],
   ['Toll / tolling agreement', '容量租赁/代工协议'],

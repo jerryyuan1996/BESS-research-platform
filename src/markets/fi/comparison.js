@@ -224,10 +224,6 @@ export const comparison = {
      125 MW/250 MWh, Nivala 70 MW/140 MWh, Uusikaupunki 50 MW/100 MWh. */
   archetype: { powerMW: 50, durationHours: 2 },
 
-  score: {
-    connectionRisk: 38,
-  },
-
   capabilities: {
     capacityMarket: false,     // dormant strategic reserve, not adequacy revenue — see header
     merchant: true,            // day-ahead and intraday spread
