@@ -1,11 +1,12 @@
 import { gridMapById } from '../gridMapRegistry.js';
 import { congestionFor } from '../congestionRegistry.js';
 
-/* The joined map, not the raw one: gridMapRegistry attaches this market's
-   congestion register so the constraint layer and the table below agree. */
-const GB_GRID_MAP = gridMapById('gb-grid-map');
-
 export function buildGBGridSection({ SRC, M }){
+  /* The joined map, not the raw one: gridMapRegistry attaches this market's
+     congestion register so the constraint layer and the table below agree.
+     Looked up here, not at module load: this file is imported before the
+     market's map data registers itself. */
+  const GB_GRID_MAP = gridMapById('gb-grid-map');
   return {
     head: [
       'Grid Connection — where power, demand and deliverability meet',
@@ -187,7 +188,7 @@ export function buildGBGridSection({ SRC, M }){
           },
           {
             title:['Delay case — Harker 132 kV','延误案例 — Harker 132千伏变电站'],
-            badges:['official','serious'],
+            badges:['official'],
             blocks:[
               { t:'p', text:[
                 'Ofgem found failures in asset monitoring, maintenance and remediation at Harker between 2016 and 2021. Those failures delayed some embedded generation connections; NGET accepted licence failures and £20 million of redress payments.',
@@ -210,7 +211,7 @@ export function buildGBGridSection({ SRC, M }){
       {
         t:'card',
         title:['2026 warning — even protected projects can slip','2026年警示 — 即使受保护项目也可能延误'],
-        badges:['official','serious'],
+        badges:['official'],
         blocks:[
           { t:'p', text:[
             'Ofgem reported that some projects protected under TM04 could no longer meet their original connection dates. The wider offer programme was also re-baselined as network companies updated assumptions and construction planning. The lesson is specific: legal or reform status can protect a place in the process without making the physical works programme immutable.',

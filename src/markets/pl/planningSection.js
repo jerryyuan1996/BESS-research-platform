@@ -83,7 +83,6 @@ export function buildPLPlanningBlocks({ SRC }){
             },
             {
               title: ['Capacity-market evidence basis', '容量市场证据口径'],
-              badges: ['serious'],
               blocks: [
                 {
                   t: 'table',

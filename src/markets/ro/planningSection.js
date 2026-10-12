@@ -83,7 +83,6 @@ export function buildROPlanningBlocks({ SRC }){
             },
             {
               title: ['What it does not show', '该快照不能说明什么'],
-              badges: ['serious'],
               blocks: [
                 { t: 'chip', cls: 'serious', text: ['Complete public BESS queue: not verified', '完整公开储能队列：未核实'] },
                 { t: 'p', text: [queue.coverageStatement, '尚未核实存在一个官方公开登记册，可将每个罗马尼亚储能项目从并网、许可、融资、建设一直跟踪到运营。'] },
