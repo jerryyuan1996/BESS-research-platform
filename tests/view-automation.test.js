@@ -282,8 +282,8 @@ test('G — a verdict moves on one official source or two independent ones', () 
 
 /* ---- H: the digest ---------------------------------------------------------------------- */
 
-test('H — the weekly digest lists every machine change with its evidence and its undo, and is silent on an empty week', () => {
-  assert.equal(DIGEST_DAYS, 7);
+test('H — the monthly digest lists every machine change with its evidence and its undo, and is silent on an empty month', () => {
+  assert.equal(DIGEST_DAYS, 31);
   const line = (at, author, extra = {}) => ({
     id: `${at}-wa-grades.assetReturn`, at, market: 'wa', author, path: 'grades.assetReturn',
     from: { grade: 4, trend: 'stable' }, to: { grade: 4, trend: 'deteriorating' }, reason: ['The spread fell.', '价差下降。'],
@@ -291,7 +291,7 @@ test('H — the weekly digest lists every machine change with its evidence and i
   });
   const rule = { kind: 'rule', rule: 'wa-wem-spread-compression', run: '2026-10-09T06:00:00.000Z' };
   const entries = [
-    line('2026-09-20T06:00:00.000Z', rule),                    // outside the window
+    line('2026-08-20T06:00:00.000Z', rule),                    // outside the window
     line('2026-10-08T06:00:00.000Z', analyst),                 // a person's change is not in a machine digest
     line('2026-10-09T06:00:00.000Z', rule),
     line('2026-10-11T06:00:00.000Z', rule),
@@ -492,12 +492,12 @@ test('the agent has no tools, no shell and no way to the view but the gate', asy
     /* ONE EXCEPTION SINCE THE SCOUTING TIER, and it is one method in one
        file: the scout pass hands its run to applyScoutRun, which writes scout
        cards and refuses every other id. Nothing else under agent/ names it,
-       and the daily pass over markets still only prepares. */
+       and the monthly pass over markets still only prepares. */
     assert.equal(/applyScoutRun/.test(source), file === 'scout.mjs', `agent/${file}: only the scout pass calls applyScoutRun`);
     if (file !== 'scout.mjs') assert.ok(!/prepareScoutChange|prepareScoutRun|scoutRunState/.test(source), `agent/${file} prepares a scout run`);
   }
   const core = await readFile(new URL('core.mjs', dir), 'utf8');
-  assert.ok(!/scout/i.test(core), 'the daily pass over markets knows about scout cards');
+  assert.ok(!/scout/i.test(core), 'the monthly pass over markets knows about scout cards');
   const writer = await readFile(new URL('../etl/lib/viewWriter.mjs', import.meta.url), 'utf8');
   assert.match(writer, /async function applyScoutRun[\s\S]{0,400}?if \(!isScoutId\(change\?\.market\)\) throw/, 'applyScoutRun does not refuse a non-roster id first');
   /* The scout pass asks the same call, with its own closed schema and no tool. */

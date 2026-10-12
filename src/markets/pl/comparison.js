@@ -257,10 +257,6 @@ export const comparison = {
     durationHours: 4,
   },
 
-  score: {
-    connectionRisk: 51,
-  },
-
   capabilities: {
     capacityMarket: true,      // capacity contract via auction
     merchant: true,

@@ -172,10 +172,6 @@ export const COMPARISON_AUTHORITY = {
   'archetype.powerMW': AUTHORITY.METHODOLOGY,
   'archetype.durationHours': AUTHORITY.METHODOLOGY,
 
-  // ---- score: the scoring methodology --------------------------------------
-  // Explicitly out of automation's reach, including proposals.
-  'score.connectionRisk': AUTHORITY.METHODOLOGY,
-
   // ---- capabilities: what mechanisms this market offers --------------------
   // Reads like a fact but is not one. "Tolling precedent exists in GB" is a
   // judgement about whether observed deals establish a precedent worth modelling.

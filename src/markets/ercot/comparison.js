@@ -54,7 +54,6 @@
 import { band, limits } from '../../comparison/ranges.js';
 import { stackFrom } from '../../comparison/capex.js';
 import { merchantVintage } from '../../comparison/vintage.js';
-import { CONNECTION_RISK } from './scores.js';
 
 /* ---------------------------------------------------------------------------
    CAPEX AT TWO HOURS, FROM A FOUR-HOUR BENCHMARK.
@@ -439,10 +438,6 @@ export const comparison = {
        arriving in 2026 are larger: Ferdinand at 200 MW and Padua 2 at 150 MW. */
     powerMW: 100,
     durationHours: HOURS,
-  },
-
-  score: {
-    connectionRisk: CONNECTION_RISK,
   },
 
   capabilities: {

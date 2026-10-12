@@ -346,7 +346,7 @@ enforced in code and asserted by `tests/governance.test.js` and `tests/view-auto
 | `view/schema/view.mjs` | Who may write which field; the machine gate |
 | `etl/lib/viewWriter.mjs` | The only code that writes `view/` |
 | `etl/rules.mjs` | Runs each data rule after a refresh |
-| `agent/core.mjs` | The dry daily pass over due triggers on core markets |
+| `agent/core.mjs` | The dry monthly pass over due triggers on core markets |
 | `agent/scout.mjs` | The scout pass: three cards a run, from listed pages only |
 | `src/governance/scout.js` | Which markets have a card, and the limits on a card and a scout run. Methodology |
 | `src/scout/sources.js` | The pages the agent may read for each scout market, with their terms. Methodology |
@@ -354,7 +354,7 @@ enforced in code and asserted by `tests/governance.test.js` and `tests/view-auto
 | `vite-plugin-scout.js` | Hands the home board each card's calls and `/scout` the cards whole |
 | `scripts/view/writer.mjs` | The analyst's command line: `apply`, `revert`, `scout-check`, `scout-remove` |
 | `scripts/view/scout-status.mjs` | The streak of clean passes and the state of each card |
-| `scripts/view/digest.mjs` | The weekly digest of machine changes |
+| `scripts/view/digest.mjs` | The monthly digest of machine changes |
 | `src/changes/` | The `/changes` page, loaded on demand with the whole changelog |
 | `src/scout/` | The `/scout` page, loaded on demand with the cards |
 

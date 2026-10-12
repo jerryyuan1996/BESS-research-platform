@@ -29,7 +29,6 @@
       energy-versus-ancillary split, the RA tenor distribution, the residual in
       the published full stack — this file does not invent one.
    --------------------------------------------------------------------------- */
-import { CONN_FACTORS } from './scores.js';
 
 const M = {
   asOf: '2026-08-04',
@@ -105,7 +104,6 @@ const M = {
     rationale: ['The only US market where the contracted line is most of the revenue, and the only one on this platform where four hours is a ceiling rather than a floor. Resource Adequacy averaged $8.77/kW-month across H1 2025 against merchant earnings nearer $2.5–3, so a Californian battery is substantially a capacity contract with a trading option attached — and the CPUC tests net qualifying capacity on four-hour sustained output and pays nothing beyond it, so a longer asset earns only spread for its extra hours. The uncertainty is the inverse of everywhere else: the merchant band is narrow and the contracted band is the widest on the platform, because RA is negotiated deal by deal rather than cleared. Underwrite the counterparty, the tenor and the deliverability status. Then underwrite the queue, which has overtaken technology cost as the binding constraint on getting built at all.',
                 '这是美国唯一一个合同化收入构成收入主体的市场，也是本平台唯一一个四小时构成上限而非下限的市场。2025年上半年容量充裕度平均为每kW每月$8.77，而市场化收入约为$2.5–3，因此加州储能实质上是一份附带交易期权的容量合约 — 且CPUC按四小时持续出力测定净合格容量，超出部分不予支付，故更长时长的资产其额外小时数仅能获得价差收入。此处的不确定性与其他各处恰恰相反：市场化区间较窄，而合同化区间为本平台最宽，因为容量充裕度是逐笔协商而非集中出清。承销依据应为交易对手、合约期限与可交付性状态。其次应评估并网排队 — 它已取代技术成本，成为项目能否建成的约束性瓶颈。'] },
 
-  connFactors: CONN_FACTORS,
 
   // ---- capacity channel: a ceiling at four hours ----
   /* The most distinctive derating curve on the platform. The CPUC tests net
@@ -239,16 +237,6 @@ const M = {
     { n: 'CAISO seed example J', region: 'SP15', mw: 150, h: 4, cod: 2032, st: 'ann' },
   ],
 
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Interconnection agreement signed with full-capacity deliverability. Release development consideration.', '并网协议已签署并取得全容量可交付性。可支付开发对价。'] },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn',
-      d: ['Structure the risk: a deliverability condition precedent, an RA counterparty credit test and FEOC warranties.', '以结构应对风险：以可交付性为先决条件、对容量充裕度交易对手进行信用审查，并设置FEOC合规保证。'] },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until deliverability is awarded. This is where the archetype sits, and the queue is why.', '在取得可交付性资格前，重新定价或延后。本页原型即处于此区间，而排队正是其成因。'] },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; without deliverability there is no Resource Adequacy revenue at all.', '不得投入资本；没有可交付性资格即完全没有容量充裕度收入。'] },
-  ],
 
   reinforcements: [
     { n: ['Slice of Day Resource Adequacy framework', '分时段容量充裕度框架'], operator: 'CPUC', region: ['State-wide', '全州'], gw: null,

@@ -114,12 +114,6 @@ export const METRICS = [
     format: (m, r) => fmtX(r.moic),
   },
   {
-    id: 'connectionRisk', hi: false,
-    label: ['Connection risk score (lower = safer)', '并网风险评分（越低越安全）'],
-    value: (m) => m.comparison.score.connectionRisk,
-    format: (m) => Math.round(m.comparison.score.connectionRisk) + '/100',
-  },
-  {
     id: 'pipelineRatio', ctx: true,
     label: ['Pipeline / operating ratio (own basis)', '管线对在运倍数（各自口径）'],
     format: (m) => m.comparison.narrative.pipelineRatio,

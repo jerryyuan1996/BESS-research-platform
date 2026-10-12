@@ -402,8 +402,8 @@ SEC_B.grid = function (){
   return {
   head: ['Interconnection & Congestion — 67 GW queued against 400 MW operating',
          '并网与拥塞 — 67GW排队对应400MW在运'],
-  cap: ['The queue is the binding constraint on this market and the worst single line on the connection-risk table. The map and register below say where and against what.',
-        '排队是本市场的约束性瓶颈，也是并网风险表中表现最差的单项。下方地图与登记表说明其位置及所面对的对象。'],
+  cap: ['The queue is the binding constraint on this market. The map and register below say where and against what.',
+        '排队是本市场的约束性瓶颈。下方地图与登记表说明其位置及所面对的对象。'],
   blocks: [
     { t:'card', mt:false, title:['Interactive PJM grid — past, current and planned','PJM电网交互地图 — 过去、当前与规划'], badges:['official','public'], blocks:[
       { t:'geo-grid-map', data:gridMapById('pjm-grid-map') },
@@ -431,11 +431,6 @@ SEC_B.grid = function (){
       { t:'src', src:SRC.bra2829, use:['The shortfall the initiatives respond to','这些举措所应对的缺口'] },
     ] },
 
-    { t:'card', title:['Connection risk scorecard','并网风险记分卡'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-      { t:'cap', text:['Higher is worse. The archetype scores in the "material risk — re-price or defer" band, and the queue is the single heaviest line on it. That is not a pessimistic reading: ' + O.queueStorageGW + ' GW of storage is queued against roughly ' + fmtN(O.fleetMW) + ' MW operating.',
-                       '分值越高风险越大。原型资产落在“重大风险 — 重新定价或延后”区间，而排队是其中权重最高的单项。这并非悲观解读：' + O.queueStorageGW + 'GW储能在排队，而在运规模约为' + fmtN(O.fleetMW) + 'MW。'] },
-    ] },
   ] };
 };
 

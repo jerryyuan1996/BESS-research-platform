@@ -12,7 +12,7 @@ import { state, render } from '../state.js';
 import { NF1, fmtN, fmtA, fmtAk, fmtAM, fmtPct } from '../ui.js';
 import { T } from '../text.js';
 import { SEED } from '../data/seed.js';
-import { dniScore, connScore, esrAtYear, shadowRcpFactor } from '../lib/scores.js';
+import { dniScore, esrAtYear, shadowRcpFactor } from '../lib/scores.js';
 
 // ---------------- HOME ----------------
 function renderHome(main){
@@ -136,11 +136,8 @@ function renderHome(main){
   grid.append(cE);
 
   // Card F — grid connection signal
-  const cs = connScore(), cband = bandFor(SEED.connBands, cs);
   const cF = card(['Card F — Grid Connection Signal', 'Card F — 并网风险信号'], [statusBadge(false), badge('illus')]);
-  cF.append(h('div', { style: 'margin:8px 0;' }, chip(cband.c, L(SEED.connection.status))));
   cF.append(h('div', { class: 'kpis' },
-    kpi(L(['Connection risk score', '并网风险评分']), cs + '<small> / 100</small>', { text: L(cband.n) }, [badge('calc')]),
     kpi(L(['Western Power stage', 'Western Power阶段']), L(SEED.connection.wpStage), null),
     kpi(L(['GPS stage', 'GPS阶段']), SEED.connection.gpsStage,
       { text: L(['Access Offer: ', '接入报价：']) + L(SEED.connection.aoStatus) }),
@@ -151,8 +148,8 @@ function renderHome(main){
   cF.append(h('div', { class: 'note' },
     L(['Required protection: no material non-refundable payment before executed access contracts and verifiable NAQ evidence. An Access Offer alone does not prove full Capacity Credit value — see the nameplate → revenue bridge in the Grid Connection tab.',
        '必要保护：在接入合同签署及NAQ证据可验证前，不支付重大不可退还款项。仅有接入报价并不代表足额容量信用价值 — 详见“并网”页的铭牌容量至收入桥。'])));
-  cF.append(why(['Connection is scored ' + cs + '/100 (higher = riskier) because study maturity, GPS status and network-capex certainty are all unproven, not because the site is bad. That distinction drives deal structure rather than pricing: an amber connection score converts into conditions precedent, holdbacks and long-stop dates. NAQ at ' + fmtPct(SEED.connection.naqToNameplate * 100, 0) + ' of nameplate and ' + SEED.connection.floatMonths + ' months of float are the two numbers to re-test monthly — both can move without any change in the market.',
-    '并网评分' + cs + '/100（分值越高风险越大），原因是研究成熟度、GPS状态与电网造价确定性均未证实，而非场址本身不佳。这一区分影响交易结构而非定价：黄色并网评分应转化为先决条件、保留款与最终截止日。NAQ为铭牌的' + fmtPct(SEED.connection.naqToNameplate * 100, 0) + '、关键路径裕度' + SEED.connection.floatMonths + '个月，是需每月复核的两个数字 — 两者均可在市场不变的情况下变动。'],
+  cF.append(why(['Connection is the open risk because study maturity, GPS status and network-capex certainty are all unproven, not because the site is bad. That distinction drives deal structure rather than pricing: an unsettled connection converts into conditions precedent, holdbacks and long-stop dates. NAQ at ' + fmtPct(SEED.connection.naqToNameplate * 100, 0) + ' of nameplate and ' + SEED.connection.floatMonths + ' months of float are the two numbers to re-test monthly — both can move without any change in the market.',
+    '并网之所以仍是未决风险，原因是研究成熟度、GPS状态与电网造价确定性均未证实，而非场址本身不佳。这一区分影响交易结构而非定价：尚未落定的并网应转化为先决条件、保留款与最终截止日。NAQ为铭牌的' + fmtPct(SEED.connection.naqToNameplate * 100, 0) + '、关键路径裕度' + SEED.connection.floatMonths + '个月，是需每月复核的两个数字 — 两者均可在市场不变的情况下变动。'],
     ['Structure risk, don’t re-price it', '以结构而非定价应对']));
   grid.append(cF);
   main.append(grid);

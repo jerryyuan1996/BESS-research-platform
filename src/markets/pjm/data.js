@@ -41,7 +41,6 @@
       state equipment tax — this file does not invent one. Those gaps are carried
       explicitly in `notPublished` and rendered on the Data & Methodology tab.
    --------------------------------------------------------------------------- */
-import { CONN_FACTORS } from './scores.js';
 
 const M = {
   asOf: '2026-08-03',
@@ -176,12 +175,6 @@ const M = {
     rationale: ['The best-published contracted revenue on this platform, attached to the worst-published merchant revenue, in a market whose queue is thirteen times its expected 2030 fleet. PJM prints both halves of the capacity payment — $325.00/MW-day and a 59% four-hour accreditation — so year one requires no estimate at all. Years two to fifteen require nothing but estimates, and two of them point in opposite directions: the price collar ends after 2029/2030 with the cap reverting toward $550/MW-day, while four-hour ELCC erodes as 67 GW of storage arrives. The merchant leg is where capital is lost, not made: the operating fleet earns Regulation revenue roughly thirteen times what this model publishes, because 400 MW is competing for a 750 MW requirement. Underwrite the capacity line, the node and the queue position. Do not underwrite the Regulation stack.',
                 '本平台披露最完整的合同化收入，与披露最不充分的市场化收入并存，且该市场的排队量达其2030年预期装机的十三倍。PJM同时公布了容量收入的两个组成部分 — 每MW每日$325.00与四小时59%的核证系数 — 因此第一年完全无需估算。第二至十五年则全靠估算，且其中两项方向相反：价格上下限机制在2029/2030年度后结束、上限将回升至约$550/MW-日，而四小时ELCC则随67GW储能到位而下降。资本的亏损点在市场化收入端而非盈利点：在运机组的调频收入约为本模型所发布数值的十三倍，因为当前仅400MW在争夺750MW的系统需求。应基于容量收入、节点位置与排队位次承销，切勿基于调频收入结构承销。'] },
 
-  /* Weights and scores live in ./scores.js and are imported by both this
-     dashboard and comparison.js, so the index cannot drift from its parts.
-     Every other market in this lineage writes the table here and restates the
-     resulting score in its comparison interface with a comment asserting the two
-     agree; that holds until somebody edits a weight. */
-  connFactors: CONN_FACTORS,
 
   // ---- capacity channel: fully published, and it expires ----
   /* PJM's ELCC class ratings for the 2028/2029 Base Residual Auction, verbatim.
@@ -359,16 +352,6 @@ const M = {
     { n: 'PJM seed example L', region: 'EMAAC',    mw: 60,  h: 4, cod: 2031, st: 'ann' },
   ],
 
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Interconnection agreement executed with CIRs and upgrade cost fixed. Release development consideration.', '并网协议已签署、已取得容量并网权且升级成本已锁定。可支付开发对价。'] },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn',
-      d: ['Structure the risk: an upgrade-cost cap, a CIR condition precedent, and FEOC documentation warranties.', '以结构应对风险：设置升级成本上限、以取得容量并网权为先决条件，并就FEOC合规文件设置保证条款。'] },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until the system impact study prints and the cycle position is confirmed. This is where the archetype sits.', '在系统影响研究出具且周期位置确认前，重新定价或延后。本页原型资产即处于此区间。'] },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; a queue position without a study is not a project.', '不得投入资本；没有研究支撑的排队位置不构成项目。'] },
-  ],
 
   /* ---- named transmission and market reform ------------------------------
      PJM's relief is not primarily a wire. The shortfall is a supply-and-demand

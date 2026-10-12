@@ -46,7 +46,6 @@
 import { band, limits } from '../../comparison/ranges.js';
 import { stackFrom } from '../../comparison/capex.js';
 import { merchantVintage } from '../../comparison/vintage.js';
-import { CONNECTION_RISK } from './scores.js';
 
 /* NREL, "Cost Projections for Utility-Scale Battery Storage: 2025 Update" — the
    US counterpart to CSIRO's GenCost, and the same role it plays for the NEM.
@@ -434,8 +433,8 @@ const ranges = {
 
   constructionMonths: limits(economics.constructionMonths, 9, 60, {
     basis: [
-      'Notice to proceed through to commercial operation. Twelve months is one spend period and reproduces the single up-front outflow the model has always used. The ceiling is set by transformer supply rather than by construction: tier-1 HV power transformer lead times ran 2.5-5 years through 2026. Note that this field starts at NTP and therefore excludes the PJM interconnection queue entirely, which is the longer wait and is scored in the connection-risk table instead.',
-      '自开工令至商业运行。12个月为单一支出期，可复现模型一贯采用的单笔前置支出。上限由变压器供应而非施工决定：2026年一线高压电力变压器交付周期为2.5–5年。请注意本字段自开工令起算，因此完全不含PJM并网排队时间 — 后者才是更漫长的等待，已在并网风险表中单独评分。',
+      'Notice to proceed through to commercial operation. Twelve months is one spend period and reproduces the single up-front outflow the model has always used. The ceiling is set by transformer supply rather than by construction: tier-1 HV power transformer lead times ran 2.5-5 years through 2026. Note that this field starts at NTP and therefore excludes the PJM interconnection queue entirely, which is the longer wait and is graded under time to first revenue instead.',
+      '自开工令至商业运行。12个月为单一支出期，可复现模型一贯采用的单笔前置支出。上限由变压器供应而非施工决定：2026年一线高压电力变压器交付周期为2.5–5年。请注意本字段自开工令起算，因此完全不含PJM并网排队时间 — 后者才是更漫长的等待，已在“首次取得收入所需时间”一项中另行评级。',
     ],
     source: 'Transformer lead-time reporting, 2026; PJM interconnection timelines scored separately',
     gate: 'G26',
@@ -465,10 +464,6 @@ export const comparison = {
        A derived average of what actually cleared the queue, not a convention. */
     powerMW: 90,
     durationHours: HOURS,
-  },
-
-  score: {
-    connectionRisk: CONNECTION_RISK,
   },
 
   capabilities: {

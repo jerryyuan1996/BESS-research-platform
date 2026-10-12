@@ -29,8 +29,8 @@ const O = M.official;
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
-  const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
+  const dni = liveScore('durFactors');
+  const dband = bandFor(M.durBands, dni);
   const dur = durationAt(state.codYear);
   const derate2 = M.deratingCurve[2], derate4 = M.deratingCurve[4];
   const cmPerNameplate2h = O.t4Price * derate2 * 1000;   // £/MW/yr at 2h
@@ -133,9 +133,7 @@ SEC_B.home = function (){
       ] },
       // ---- Card F ----
       { title:['Card F — Grid Connection Signal','Card F — 并网风险信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:cband.c, text:cband.n },
         { t:'kpis', items:[
-          { l:['Connection risk score','并网风险评分'], v:cs + '<small> / 100</small>', d:cband.n, b:['calc'] },
           { l:['Gate status','Gate状态'], v:'Gate 2', d:['offers phased through March 2027','要约分阶段发出至2027年3月'], b:['official'] },
           { l:['Binding evidence','约束性证据'], v:L(['Tranche + TO/DNO programme','批次+输配电运营商工程计划']), d:['not the historic connection date','而非历史并网日期'] },
           { l:['Consent status required','所需规划许可状态'], v:L(['Implementable','可实施']), d:['no outstanding pre-commencement conditions','无未决的开工前条件'] },
@@ -143,8 +141,8 @@ SEC_B.home = function (){
         ] },
         { t:'note', text:['Required protection: no material non-refundable payment before a countersigned Gate 2 offer, an implementable consent and a TO/DNO works programme consistent with the modelled COD. A Gate 2 position alone does not prove an energisation date — see the nameplate → revenue bridge in the Grid Connection tab.',
           '必要保护：在取得已会签的Gate 2要约、可实施的规划许可，以及与模型投运日一致的输配电运营商工程计划之前，不支付重大不可退还款项。仅有Gate 2地位并不证明送电日期 — 详见“并网”页的铭牌容量至收入桥。'] },
-        { t:'why', text:['Connection is scored ' + cs + '/100 (higher = riskier) because Gate status, connection date and consent are evidenced but not yet immovable, not because the site is bad. That distinction drives deal structure rather than pricing: an amber connection score converts into conditions precedent, holdbacks and long-stop dates. In GB the specific failure mode is a Gate 2 offer whose delivery date slips behind the TO/DNO works programme — which changes the COD year, which changes the de-rating vintage and the buildout case, which changes revenue twice over.',
-          '并网评分' + cs + '/100（分值越高风险越大），原因是Gate状态、并网日期与规划许可虽有证据但尚未不可变更，而非场址本身不佳。这一区分影响交易结构而非定价：黄色并网评分应转化为先决条件、保留款与最终截止日。在英国，具体的失效模式是Gate 2要约的交付日期落后于输配电运营商工程计划 — 这会改变投运年度，进而改变折减系数版本与投产情景，从两个方向同时改变收入。'],
+        { t:'why', text:['Connection is the open risk because Gate status, connection date and consent are evidenced but not yet immovable, not because the site is bad. That distinction drives deal structure rather than pricing: an unsettled connection converts into conditions precedent, holdbacks and long-stop dates. In GB the specific failure mode is a Gate 2 offer whose delivery date slips behind the TO/DNO works programme — which changes the COD year, which changes the de-rating vintage and the buildout case, which changes revenue twice over.',
+          '并网之所以仍是未决风险，原因是Gate状态、并网日期与规划许可虽有证据但尚未不可变更，而非场址本身不佳。这一区分影响交易结构而非定价：尚未落定的并网应转化为先决条件、保留款与最终截止日。在英国，具体的失效模式是Gate 2要约的交付日期落后于输配电运营商工程计划 — 这会改变投运年度，进而改变折减系数版本与投产情景，从两个方向同时改变收入。'],
           sig:['Structure risk, don’t re-price it','以结构而非定价应对'] },
       ] },
     ] },
@@ -834,7 +832,6 @@ SEC_B.pipeline = function (){
 
 // ============================== GRID CONNECTION ==============================
 SEC_B.grid = function (){
-  const cs = liveScore('connFactors'), band = bandFor(M.connBands, cs);
   return {
   head: ['Grid Connection — a chain of approvals, not a binary status','并网 — 一连串审批与合同，而非二元状态'],
   cap: ['Since connections reform, queue position is the primary determinant of GB project value. A Gate 2 offer is necessary but not sufficient: the deliverable date depends on the tranche, the transmission or distribution operator works programme, and a consent that is implementable rather than merely granted.',
@@ -855,13 +852,6 @@ SEC_B.grid = function (){
       { t:'why', text:['Two independent chains break for unrelated reasons, and a project can fail one while passing the other. The capacity chain fails administratively — a prequalification rejection or a missed milestone removes the whole agreement. The merchant chain fails economically — a northern TNUoS zone or poor BM parameterisation quietly removes ' + fmtPct(15) + '–' + fmtPct(25) + ' of revenue with no single identifiable event. Diligence must walk both, and the connection agreement is the only document that constrains both.',
         '两条链条因互不相关的原因失效，项目可能通过其中一条而在另一条上失败。容量链是行政性失效 — 预资格被否或错过里程碑即导致整份协议丧失。市场化链是经济性失效 — 位于北部输电收费分区或平衡机制参数设置不当，会在没有任何单一可识别事件的情况下悄然抹去' + fmtPct(15) + '–' + fmtPct(25) + '的收入。尽调须同时走完两条链，而并网协议是唯一同时约束两者的文件。'],
         sig:['Two chains, two failure modes','两条链条，两种失效模式'] },
-    ] },
-
-    { t:'card', title:['Connection Risk Score — weighted factors, editable','并网风险评分 — 加权因子，可编辑'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-      { t:'why', text:['The score is ' + cs + '/100 (higher = riskier), placing the reference project in the "' + L(band.n) + '" band. Note that the heaviest factor — Gate status and strategic alignment at 15% — is also the one a sponsor can least influence after the fact. That asymmetry is the argument for buying at Gate 2 rather than developing to it, unless the sponsor has a genuine informational edge on tranche sequencing.',
-        '评分为' + cs + '/100（分值越高风险越大），使参考项目落入“' + L(band.n) + '”区间。须注意权重最高的因子 — Gate状态与战略匹配，占15% — 也是发起人事后最难影响的因子。这一不对称正是“在Gate 2买入而非自行开发至Gate 2”的理由，除非发起人在批次排序上确有信息优势。'],
-        sig:['Buy at Gate 2 unless you have an edge','除非有信息优势，否则在Gate 2买入'] },
     ] },
 
     { t:'card', title:['Connection risk → suggested commercial protections','并网风险 → 建议商业保护条款'], badges:['calc'], live:false, blocks:[
@@ -1144,7 +1134,7 @@ SEC_B.data = function (){
         [{b:['Capacity revenue','容量收入']}, 'nameplate MW × de-rating factor(duration, auction vintage) × clearing price (£/kW/yr) × 1,000'],
         [{b:['Discharged energy, year 1','第1年放电电量']}, 'MW × hours × usable fraction × cycles/day × 365 × availability'],
         [{b:['Effective spread','有效价差']}, 'executable spread × duration factor × (RTE / 88) × saturation factor(COD year)'],
-        [{b:['Duration-Need Index / Connection Risk Score','时长需求指数/并网风险评分']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
+        [{b:['Duration-Need Index','时长需求指数']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
         [{b:['DSCR','偿债覆盖率']}, 'EBITDA(year) / annuity(debt, interest rate, tenor)'],
       ] },
     ] },

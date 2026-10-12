@@ -6,15 +6,15 @@
    pipeline register, the lab defaults and the export rows.
 
    Late-bound region: the engine's scorecard, augmentation and export blocks
-   address `M.connFactors` / `M.durFactors` by name. Those are
+   address `M.durFactors` by name. Those are
    getters onto whichever region is currently in view, so the engine-owned blocks
    keep working without knowing Japan has three lenses. Region-explicit blocks
-   address a region directly by path, e.g. 'regions.kyushu.connFactors'.
+   address a region directly by path, e.g. 'regions.kyushu.durFactors'.
    --------------------------------------------------------------------------- */
 import { JP_NATIONAL } from './national.js';
 import {
   JP_REGIONS, REGION_IDS, JP_REFERENCE, JP_COMMON_COST,
-  JP_EXPECTED_CAPACITY_FACTOR, CONN_BANDS, DUR_BANDS,
+  JP_EXPECTED_CAPACITY_FACTOR, DUR_BANDS,
 } from './regions.js';
 import { SRC } from './sources.js';
 import { metricValues } from '../../governance/metrics.js';
@@ -156,9 +156,7 @@ export const M = {
   ],
 
   // ---- engine-owned default namespace, bound to the region in view ----
-  get connFactors(){ return R().connFactors; },
   get durFactors(){ return R().durFactors; },
-  connBands: CONN_BANDS,
   durBands: DUR_BANDS,
 
   // ---- shared physical / market curves (national formula, area application) ----

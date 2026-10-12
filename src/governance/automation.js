@@ -60,8 +60,9 @@ export const MAX_QUOTE_CHARS = 300;
  */
 export const EVIDENCE_CLASS = { OFFICIAL: 'official', THIRD_PARTY: 'third-party' };
 
-/** H — the digest covers machine changes over this many days. */
-export const DIGEST_DAYS = 7;
+/** H — the digest covers machine changes over this many days: the longest month,
+    so a monthly digest leaves no day uncovered. */
+export const DIGEST_DAYS = 31;
 
-/** The agent's daily pass looks at markets with a trigger due inside this many days, or overdue. */
+/** The agent's monthly pass looks at markets with a trigger due inside this many days, or overdue. */
 export const AGENT_TRIGGER_HORIZON_DAYS = 30;

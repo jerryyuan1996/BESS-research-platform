@@ -2,7 +2,7 @@
 
 Recorded 2026-10-12, immediately before the composite score, its weighted component table and the one-word stance label were deleted from every market (see `docs/score-table-retirement-plan.md`). Each market wrote its own table, so a score here was never measured against the same ruler as another market's: that is why they were retired in favour of anchored grades. They are kept because the lines are real judgement and were the seed for the first grades.
 
-Composite = Σ(weight × score) ÷ 100, with scores on 0–100. The connection-factor lists are not here: they are still in each dashboard.
+Composite = Σ(weight × score) ÷ 100, with scores on 0–100. The connection-factor tables, retired later the same day, are at the end.
 
 ## Western Australia — WEM (wa)
 
@@ -213,3 +213,244 @@ Stance label: **Selective** · composite as published: **53**
 Stance label: **Research** · composite as published: **48**
 
 No component table was held for this market.
+
+## Connection-factor tables
+
+Added 2026-10-12, when the connection scorecard and its index were deleted from every dashboard, from the
+comparison interface and from `/returns`. Each factor was scored 0 to 3, higher being riskier, and the index was
+Σ(weight × score) ÷ 3. Like the component tables above, each market wrote its own, so the indices were never
+measured against one ruler. The Entry pillar's grades replace them. Finland held an index (38) and no table.
+
+### Western Australia (wa)
+
+Index as published: **43**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Connection option & network capacity | 15 | 1 |
+| Study & model maturity | 15 | 1 |
+| GPS status | 15 | 2 |
+| Access contracts (IWC / ETAC) | 15 | 2 |
+| Network-works capex certainty | 10 | 1 |
+| Schedule & queue | 10 | 1 |
+| AEMO registration & commissioning | 8 | 1 |
+| NAQ & Capacity Credits | 7 | 1 |
+| Evidence & governance | 5 | 1 |
+
+### Great Britain (gb)
+
+Index as published: **43**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Land & planning | 12 | 1 |
+| Gate status / strategic alignment | 15 | 1 |
+| Connection scope & date | 12 | 1 |
+| Connection cost & securities | 10 | 2 |
+| Technical compliance (Grid Code / G99) | 12 | 2 |
+| Network delivery & outage windows | 8 | 1 |
+| Market registration (BSC / BMU / metering) | 8 | 2 |
+| CM / LDES qualification | 8 | 1 |
+| Charging & policy change | 8 | 1 |
+| Evidence & governance | 7 | 1 |
+
+### Ireland (ie)
+
+Index as published: **48**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Land & planning (route, consent, expiry, judicial-review risk) | 15 | 1 |
+| Connection stage & executed agreement | 20 | 2 |
+| MEC / MIC sufficiency incl. documented import right | 15 | 1 |
+| Reinforcement scope, outages & schedule | 15 | 2 |
+| Cost & security certainty (estimate class, caps) | 10 | 2 |
+| Grid-code & technical compliance | 10 | 1 |
+| SEMO registration, metering & qualification | 10 | 1 |
+| Counterparty / large-load dependency | 5 | 1 |
+
+### NEM (nem)
+
+Index as published: **46**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Connection application lodged and AEMO registration pathway | 10 | 1 |
+| Generator performance standards negotiated and accepted | 10 | 2 |
+| Marginal loss factor history at the connection point | 14 | 2 |
+| Uncompensated network curtailment exposure | 15 | 2 |
+| REZ access scheme round and allocated MW | 10 | 1 |
+| System strength and inverter compliance obligations | 10 | 1 |
+| Land, planning and environmental approvals | 8 | 1 |
+| Commissioning hold points and full-output release | 9 | 1 |
+| Market and FCAS registration per market and direction | 9 | 1 |
+| Evidence and governance quality | 5 | 1 |
+
+### Germany (de)
+
+Index as published: **44**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Grid connection agreement and queue position | 12 | 1 |
+| Baukostenzuschuss quantum agreed with the network operator | 14 | 2 |
+| Grid fee exemption secured — COD before 4 August 2029 | 12 | 1 |
+| AgNes grandfathering — FID before the final decision | 10 | 2 |
+| Redispatch 2.0 obligations and compensation basis | 8 | 2 |
+| Flexible connection agreement terms — caps and ramp limits | 10 | 2 |
+| Prequalification for FCR and aFRR per product | 8 | 1 |
+| Land, planning and BImSchG approval | 8 | 1 |
+| Siting north or south of the auction line | 10 | 0 |
+| Evidence and governance quality | 8 | 1 |
+
+### Italy (it)
+
+Index as published: **47**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Bidding-zone eligibility checked against the MACSE requirement table | 9 | 1 |
+| STMG connection solution issued and accepted | 15 | 2 |
+| Authorisation route — Autorizzazione Unica / PAUR and regional consent | 14 | 2 |
+| Land control and site constraint (seismic, hydrogeological, archaeological) | 8 | 1 |
+| MACSE technical compliance and availability obligations | 9 | 1 |
+| Capacity de-rating stability — the DY2028 proposal | 12 | 2 |
+| MSD qualification per product and per direction | 8 | 1 |
+| Dependency on a named submarine commissioning date | 9 | 1 |
+| Curtailment exposure pending ARERA Resolution 128/2025 compensation | 9 | 1 |
+| Evidence and governance quality | 7 | 1 |
+
+### Poland (pl)
+
+Index as published: **51**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Connection conditions issued & capacity adequate | 20 | 2 |
+| Executed connection agreement & works schedule | 15 | 2 |
+| Land, building permit & environmental decision | 15 | 1 |
+| Capacity-auction certification pathway | 12 | 1 |
+| Network reinforcement scope & cost allocation | 10 | 2 |
+| Grid-code & technical compliance | 10 | 1 |
+| Market registration & balancing certification | 8 | 2 |
+| Deposits, securities & release path | 5 | 1 |
+| Evidence & governance quality | 5 | 1 |
+
+### Romania (ro)
+
+Index as published: **53**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Land, planning & environmental rights | 15 | 1 |
+| Capacity-allocation route & auction outcome | 10 | 2 |
+| ATR status, capacity & validity | 15 | 2 |
+| Connection agreement & works scope | 15 | 2 |
+| Network reinforcement scope & delivery responsibility | 10 | 2 |
+| Guarantees posted & release path | 5 | 1 |
+| Establishment authorisation & licensing progress | 10 | 1 |
+| Market & balancing-responsible-party registration | 10 | 2 |
+| Energisation, testing & unrestricted operation | 5 | 1 |
+| Evidence & governance quality | 5 | 1 |
+
+### PJM (pjm)
+
+Index as published: **64**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Interconnection queue position and cycle status | 18 | 3 |
+| Network upgrade cost allocation exposure | 14 | 2 |
+| Capacity Interconnection Rights secured for the RPM offer | 12 | 2 |
+| FEOC material-assistance compliance for the tax credit | 12 | 2 |
+| Deliverability within the Locational Deliverability Area | 10 | 2 |
+| Transformer and long-lead equipment programme | 8 | 2 |
+| Site nodal basis and TB4 spread history | 10 | 1 |
+| Land, permitting and county-level siting consent | 8 | 1 |
+| Regulation prequalification and telemetry after the redesign | 4 | 1 |
+| Evidence and governance quality | 4 | 1 |
+
+### ERCOT (ercot)
+
+Index as published: **33**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Interconnection study and energisation timeline | 16 | 1 |
+| FEOC material-assistance compliance for the tax credit | 14 | 2 |
+| Nodal basis and congestion revenue right position | 14 | 1 |
+| West Texas congestion and curtailment exposure | 12 | 1 |
+| Transformer and long-lead equipment programme | 10 | 1 |
+| Large-load interconnection rule changes | 10 | 1 |
+| Network upgrade cost allocation | 8 | 0 |
+| Property tax exposure after the Chapter 313 expiry | 6 | 1 |
+| Land, permitting and county consent | 6 | 0 |
+| Evidence and governance quality | 4 | 1 |
+
+### CAISO (caiso)
+
+Index as published: **62**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Interconnection queue position and study timeline | 20 | 3 |
+| Deliverability status — full capacity versus energy-only | 14 | 2 |
+| FEOC material-assistance compliance for the tax credit | 14 | 2 |
+| RA counterparty credit and contract tenor | 12 | 1 |
+| Land, permitting and CEQA review | 10 | 2 |
+| Node basis and curtailment exposure | 10 | 1 |
+| Transformer and long-lead equipment programme | 8 | 2 |
+| Local capacity area qualification | 6 | 1 |
+| Property tax and local fees | 3 | 1 |
+| Evidence and governance quality | 3 | 1 |
+
+### Japan — Tokyo (jp_tokyo)
+
+Index as published: **46**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Export connection evidence | 15 | 1 |
+| Import / charging evidence | 15 | 2 |
+| Study maturity | 15 | 1 |
+| Network works capex certainty | 10 | 2 |
+| Schedule / queue | 10 | 1 |
+| Curtailment / non-firm exposure | 10 | 1 |
+| Telemetry / market qualification | 8 | 1 |
+| Land / permitting | 7 | 2 |
+| Deposit / funding readiness | 5 | 2 |
+| Evidence governance | 5 | 1 |
+
+### Japan — Kyushu (jp_kyushu)
+
+Index as published: **55**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Export connection evidence | 15 | 2 |
+| Import / charging evidence | 15 | 2 |
+| Study maturity | 15 | 1 |
+| Network works capex certainty | 10 | 2 |
+| Schedule / queue | 10 | 2 |
+| Curtailment / non-firm exposure | 10 | 2 |
+| Telemetry / market qualification | 8 | 1 |
+| Land / permitting | 7 | 1 |
+| Deposit / funding readiness | 5 | 2 |
+| Evidence governance | 5 | 1 |
+
+### Japan — Hokkaido (jp_hokkaido)
+
+Index as published: **70**
+
+| Factor | Weight | Score |
+|---|---|---|
+| Export connection evidence | 15 | 2 |
+| Import / charging evidence | 15 | 3 |
+| Study maturity | 15 | 2 |
+| Network works capex certainty | 10 | 2 |
+| Schedule / queue | 10 | 3 |
+| Curtailment / non-firm exposure | 10 | 2 |
+| Telemetry / market qualification | 8 | 1 |
+| Land / permitting | 7 | 1 |
+| Deposit / funding readiness | 5 | 2 |
+| Evidence governance | 5 | 2 |

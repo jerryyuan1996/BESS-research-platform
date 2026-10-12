@@ -38,8 +38,8 @@ const regionalMWhTotal = M.regions.reduce((a, r) => a + r.mwh, 0);
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
-  const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
+  const dni = liveScore('durFactors');
+  const dband = bandFor(M.durBands, dni);
   const cod = state.codYear, cc = M.codCases[cod] || M.codCases[2028];
   return {
   warn: M.seedWarn,
@@ -129,17 +129,15 @@ SEC_B.home = function (){
           sig:['Duration is settled; revenue is not','时长问题已定，收入问题未定'] },
       ] },
       { title:['Card F — Grid & Congestion Signal','Card F — 并网与拥塞信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:cband.c, text:cband.n },
         { t:'kpis', items:[
-          { l:['Connection risk score','并网风险评分'], v:cs + '<small> / 100</small>', d:cband.n, b:['calc'] },
           { l:['Compensation for being constrained off','受约束停机的补偿'], v:L(['None','无']), d:['no firm transmission rights exist; the Congestion Relief Market was recommended not to proceed','不存在固定输电权；拥塞缓解市场已被建议不予推行'], b:['official'] },
           { l:['Average MLF cost to NEM batteries','NEM储能平均MLF成本'], v:fmtCk(O.mlfCostPerMW) + '<small>/MW/yr</small>', d:['some assets ' + O.mlfMultipleLo + '–' + O.mlfMultipleHi + '× higher; republished every ' + O.mlfResetDate,'部分资产高出' + O.mlfMultipleLo + '–' + O.mlfMultipleHi + '倍；每年' + O.mlfResetDate + '重新公布'], b:['tp'] },
           { l:['Network curtailment within the battery fleet','储能行业内网络限电量'], v:fmtN(O.fleetCurtailMWh) + '<small> MWh</small>', d:['2025; NEM-wide renewable curtailment passed ' + O.nemCurtailTWh + ' TWh, +' + O.nemCurtailGrowthPct + '% year on year','2025年；全NEM可再生能源限电量突破' + O.nemCurtailTWh + 'TWh，同比+' + O.nemCurtailGrowthPct + '%'], b:['tp'] },
         ] },
         { t:'note', text:['Required protection: read the connection point\'s own marginal loss factor history and curtailment record, never the regional average. Batteries site near load and fare better than solar or wind, but AEMO republishes the factors every ' + O.mlfResetDate + ' — this is a live annual variable, not a discount agreed at financial close.',
           '必要保护：应查阅并网点自身的边际损耗系数历史与限电记录，绝不使用区域平均值。储能靠近负荷选址，表现优于光伏与风电，但AEMO每年' + O.mlfResetDate + '重新公布系数 — 这是逐年变动的活变量，而非融资交割时锁定的折扣。'] },
-        { t:'why', text:['Connection is scored ' + cs + '/100 (higher = riskier), and the NEM failure mode is distinctive: it is not that you cannot connect, it is that connecting does not give you a right to export. No NEM generator or storage holds firm transmission rights, a constrained unit receives nothing, and the mechanism that would have changed that was recommended not to proceed. What does reach the asset is a permanent settlement multiplier — an MLF of 0.90 means ninety cents on the dollar for the life of the project.',
-          '并网评分' + cs + '/100（分值越高风险越大），而NEM的失效模式颇为特殊：问题不在于能否并网，而在于并网并不赋予送出权利。NEM中任何发电或储能均不持有固定输电权，受约束机组得不到任何补偿，而本可改变这一状况的机制已被建议不予推行。真正传导至资产的是永久性结算乘数 — 0.90的MLF意味着资产整个寿命期内每一元只能收到九角。'],
+        { t:'why', text:['The NEM connection failure mode is distinctive: it is not that you cannot connect, it is that connecting does not give you a right to export. No NEM generator or storage holds firm transmission rights, a constrained unit receives nothing, and the mechanism that would have changed that was recommended not to proceed. What does reach the asset is a permanent settlement multiplier — an MLF of 0.90 means ninety cents on the dollar for the life of the project.',
+          'NEM并网的失效模式颇为特殊：问题不在于能否并网，而在于并网并不赋予送出权利。NEM中任何发电或储能均不持有固定输电权，受约束机组得不到任何补偿，而本可改变这一状况的机制已被建议不予推行。真正传导至资产的是永久性结算乘数 — 0.90的MLF意味着资产整个寿命期内每一元只能收到九角。'],
           sig:['You can connect; you cannot count on exporting','你可以并网，但不能指望送出'] },
       ] },
     ] },
@@ -778,7 +776,6 @@ SEC_B.pipeline = function (){
    are declared inline here rather than in a separate gridSection.js file — the
    arrangement ie/sections.js uses. */
 SEC_B.grid = function (){
-  const cs = liveScore('connFactors'), band = bandFor(M.connBands, cs);
   return {
   head: ['Grid, MLF & Congestion — connecting is not the same as being allowed to export','并网、边际损耗与拥塞 — 并网不等于获准送出'],
   cap: ['NEM generators and storage hold no firm transmission rights. A constrained unit receives nothing, and the Congestion Relief Market that would have changed that was recommended not to proceed. What does reach the battery is a marginal loss factor — a permanent settlement multiplier, republished every ' + O.mlfResetDate + '.',
@@ -821,13 +818,6 @@ SEC_B.grid = function (){
         sig:['The remedy was designed and declined','补救方案已设计，但被否决'] },
       { t:'src', src: SRC.aemc, use:['Congestion Relief Market recommendation and the ministerial response','拥塞缓解市场建议及部长级回应'] },
       { t:'src', src: SRC.mlf, use:['Connection-point loss factors, republished annually effective 1 July','并网点损耗系数，每年重新公布并于7月1日生效'] },
-    ] },
-
-    { t:'card', title:['Connection Risk Score — weighted factors, editable','并网风险评分 — 加权因子，可编辑'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-      { t:'why', text:['The score is ' + cs + '/100 (higher = riskier), placing the reference project in the "' + L(band.n) + '" band. Two factors carry ' + (M.connFactors[2].w + M.connFactors[3].w) + '% of the weight between them — the loss-factor history at the connection point and uncompensated curtailment exposure — and neither is a permitting question. That is the NEM signature: the connection process itself is well run and well documented, and the residual risk is what the connection point is worth once you have it.',
-        '评分为' + cs + '/100（分值越高风险越大），使参考项目落入“' + L(band.n) + '”区间。有两个因子合计占' + (M.connFactors[2].w + M.connFactors[3].w) + '%权重 — 并网点的损耗系数历史与无补偿限电敞口 — 且两者均不属于许可问题。这正是NEM的特征：并网流程本身运作良好、文件完备，而残余风险在于并网点到手之后究竟值多少。'],
-        sig:['The process is fine; the point is the question','流程没有问题，问题在于并网点本身'] },
     ] },
 
     { t:'card', title:['The 2026 ISP optimal development path — planning scale','2026年ISP最优发展路径 — 规划规模'], badges:['official','forecast'], live:false, blocks:[

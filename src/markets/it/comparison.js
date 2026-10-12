@@ -323,10 +323,6 @@ export const comparison = {
     durationHours: HOURS,
   },
 
-  score: {
-    connectionRisk: 47,
-  },
-
   /* No baseStrategy override. Japan and the NEM declare one because their
      centralised award is the route those markets are financed on; Italy's is
      not. In the DY2027 capacity auction 95% of new de-rated capacity went to

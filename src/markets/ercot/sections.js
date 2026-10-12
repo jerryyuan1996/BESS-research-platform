@@ -413,7 +413,6 @@ SEC_B.grid = function (){
         [{b:['Interconnection timeline','并网周期']}, O.interconnectYears + ' yr', O.pjmInterconnectYears + '+ yr'],
         [{b:['Network upgrade cost to the generator','发电方承担的电网升级成本']}, ['Minimal — transmission is socialised','极低 — 输电投资由全体分摊'], fmtC(O.pjmUpgradePerKW) + '/kW'],
         [{b:['Capacity brought online, 2021–22','2021–22年新增投运容量']}, O.ercotAdded2021_22GW + ' GW', O.pjmAdded2021_22GW + ' GW'],
-        [{b:['Connection risk score on this platform','本平台并网风险评分']}, String(liveScore('connFactors')) + ' / 100', '64 / 100'],
       ] },
       { t:'why', text:['This table is the reason both US markets are carried rather than one. They are the two ends of the same regulatory trade-off, and the platform can price it: ERCOT socialises network cost and connects fast, so entry is easy and margin is competed away; PJM allocates upgrade cost to the generator and connects slowly, so entry is hard and the shortage that results is what pays the capacity price of $325.00/MW-day. Neither design is better in the abstract. What matters for an allocation decision is that they fail in opposite ways, so a portfolio holding both is not holding the same risk twice.',
         '本表正是同时纳入两个美国市场而非仅取其一的原因。它们是同一监管权衡的两个极端，而本平台可以对其定价：ERCOT将电网成本社会化分摊且并网迅速，因此准入容易、margin被竞争消解；PJM将升级成本分摊给发电方且并网缓慢，因此准入困难，而由此产生的短缺正是支撑每MW每日$325.00容量价格的原因。抽象而言两种设计并无优劣之分。对配置决策真正重要的是：二者的失效方式相反，因此同时持有两者的组合并非重复持有同一风险。'],
@@ -421,11 +420,6 @@ SEC_B.grid = function (){
       { t:'src', src:SRC.queue, use:['ERCOT interconnection timelines and the large-load queue','ERCOT并网周期与大负荷排队'] },
     ] },
 
-    { t:'card', title:['Connection risk scorecard','并网风险记分卡'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-      { t:'cap', text:['Higher is worse, and this is the lowest connection-risk score on the platform. Network upgrade cost scores zero because ERCOT socialises transmission investment; land scores zero because Texas has no equivalent of the county-level siting veto several PJM states carry. The heaviest line is FEOC, which is federal and identical in every US market.',
-                       '分值越高风险越大，而这是本平台最低的并网风险评分。电网升级成本得零分，因为ERCOT将输电投资社会化分摊；土地得零分，因为德州不存在多个PJM州所具有的县级选址否决权。权重最高的是FEOC，该项属联邦层面，在所有美国市场中完全一致。'] },
-    ] },
   ] };
 };
 

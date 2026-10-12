@@ -38,14 +38,27 @@ Nothing in this close-out touched `agent/`, either live list or the workflow's p
    never built. It needs a dated stage for every ledger item, and only Western Australia and
    Romania have a stated development and build range. For the other thirteen it would be a curve
    with no time axis. **Recommended next**, for those two markets first.
-2. **Time to first revenue as its own module (§4.3).** The plan names
-   `src/entry/timeToRevenue.js`. What exists is the `timing` block on two ledgers and the
-   time-to-revenue grade on all fifteen. Gate G37 is where the other thirteen would come from.
+2. **Time to first revenue as a stated range (§4.3).** Two ledgers carry one, Western Australia and
+   Romania, and all fifteen markets carry the grade. A source for the other thirteen was looked for
+   on 2026-10-12 and not found, so on the analyst's instruction the grades stand as they are:
+   - The source registers already opened hold deadlines for single steps (three months to an offer
+     in Great Britain, twelve months to a building permit in Romania) and no end-to-end range.
+   - Berkeley Lab's *Queued Up* reports the time from interconnection request to operation by
+     region, which would serve the three US markets. The report is too large to open here and its
+     two summary pages refused the request. A search summary gives a national median of 55 months
+     for projects built in 2024; that is not a regional figure and was not opened, so it is not
+     used.
+   - For Europe a search found only single statements from one developer or one law firm, none of
+     them a range for a market.
+   - Great Britain and Finland have a build pathway with a duration on every stage. A range could
+     be read off each the way Western Australia's and Romania's were, as a convention and not a
+     source. That was not done, because a source is what was asked for. Gate G37 stays open.
 3. **Scout cards and a live automated change (§6.4, §7, phases 3 and 4).** As §2.
-4. **The connection-factor lists as a checklist (§6.3).** The plan moves them to Entry and Delivery
-   as project checklists and drops the index. They are on that tab, still scored, and the index
-   is still ranked on `/returns`. Left deliberately: five dashboards argue from the index in their
-   prose, so the scores and the index should go together, with that prose rewritten.
+4. **The connection scorecard (§6.3).** Closed later on 2026-10-12, on the analyst's instruction,
+   and further than the plan asked: the scorecard, its index, the `/returns` metric and every
+   sentence that argued from the score are deleted. The plan would have kept the factor lists as an
+   unscored checklist; they are kept only as a record, in `docs/grading/seed-tables.md`. What the
+   dashboards say about how connection fails in each market stays, without the score.
 5. **Gate G12.** Sourced and built as far as public previews allow
    (`docs/g12-treatment-proposal.md` §8). It stays open: no return target was found that states
    its life and augmentation.
@@ -89,3 +102,49 @@ Nothing in this close-out touched `agent/`, either live list or the workflow's p
   engine.
 - **Scroll to a section** on arriving at an old link was changed to work in an unpainted tab and
   has not been seen working in a visible browser.
+
+## 7. Phases 3 and 4: how they close, and the cadence they close at
+
+Decided by the analyst on 2026-10-12: **no automation that asks a model runs more often than once
+a month, and the model is Haiku 5.5.** Built to that:
+
+| Job | Was | Is |
+|---|---|---|
+| Agent pass over due triggers, dry | daily | the 2nd of each month |
+| Scout pass | the 1st, 11th and 21st, one region each | the 1st of each month, all three regions in one run |
+| Digest of machine changes | weekly, last 7 days | the 3rd of each month, last 31 days |
+| Model | `claude-opus-5-5` | `claude-haiku-5-5` |
+| Data refresh and its rules | every six hours | **unchanged** |
+
+The data refresh asks no model. It fetches public data and tests the rules the analyst wrote in
+advance, so it is left at six hours to keep the site current. If "automation" was meant to include
+it, that is one cron line.
+
+Neither phase can be closed from a session, because both exit conditions are things that happen in
+CI with a key only the analyst holds. Nothing here makes the agent live: `LIVE_AUTHORS` is
+`analyst` and `rule`, `SCOUT_LIVE_AUTHORS` is `analyst`, and the agent and scout jobs hold
+`contents: read`. In order:
+
+1. **Add the `ANTHROPIC_API_KEY` repository secret.** Until it exists both model jobs print one
+   line and stop. With it they run dry: they read pages and report what they would have written.
+2. **Run the scout pass once by hand** (workflow dispatch, with a region), and read the report it
+   uploads. This is also the first time the request in `agent/model.mjs` meets the API; it has only
+   ever been tested against a stub, and it sets an effort level and a fallback that a different
+   model may not accept. Expect to fix that call before anything else.
+3. **Make the agent live on scout cards**, in one pull request the analyst merges: add `agent` to
+   `SCOUT_LIVE_AUTHORS` in `view/schema/scout.mjs` and give the scout job `contents: write`. Both
+   locks are opened together or not at all.
+4. **Phase 4 closes** after six clean live passes (`SCOUT_EXIT_STREAK`). At three passes a month
+   that is two months: every card written once and reviewed once.
+5. **Phase 3 closes** when a rule changes the view on a real refresh. One rule exists, on Western
+   Australia's wholesale spread, and it fires only if the trailing-year spread falls a fifth. It
+   may not fire for a long time, and nothing should be done to make it. The phase-3 plan accepted
+   this in advance.
+6. **Only after step 4** is the agent considered for core markets, which is its own decision and
+   its own change to `LIVE_AUTHORS`.
+
+One caution on the model. Haiku is the smallest of the family, and the scout pass asks it to grade
+a market against written anchors from quoted evidence. The gate refuses any record whose quotation
+is not in the fetched page, so a weaker model costs rejected records, not wrong ones on the page.
+The dry reports in step 2 will show the rejection rate. If it is high, that is the evidence for
+revisiting the model.

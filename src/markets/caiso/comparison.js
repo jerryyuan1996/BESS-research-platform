@@ -45,7 +45,6 @@
 import { band, limits } from '../../comparison/ranges.js';
 import { stackFrom } from '../../comparison/capex.js';
 import { merchantVintage } from '../../comparison/vintage.js';
-import { CONNECTION_RISK } from './scores.js';
 
 /* Same NREL benchmark and the same four-hour basis as PJM — one capex source
    across the US markets, so the differences between them are mechanism rather
@@ -269,10 +268,10 @@ const ranges = {
 
   constructionMonths: limits(economics.constructionMonths, 9, 60, {
     basis: [
-      'Notice to proceed through to commercial operation. Twelve months is one spend period. The ceiling is set by transformer supply rather than construction: tier-1 HV power transformer lead times ran 2.5-5 years through 2026. This field starts at NTP and therefore excludes the CAISO interconnection process, which is scored separately and is the binding constraint on this market.',
-      '自开工令至商业运行。12个月为单一支出期。上限由变压器供应而非施工决定：2026年一线高压电力变压器交付周期为2.5–5年。本字段自开工令起算，因此不含CAISO并网流程 — 该流程单独评分，且是本市场的约束性瓶颈。',
+      'Notice to proceed through to commercial operation. Twelve months is one spend period. The ceiling is set by transformer supply rather than construction: tier-1 HV power transformer lead times ran 2.5-5 years through 2026. This field starts at NTP and therefore excludes the CAISO interconnection process, which is graded separately under time to first revenue and is the binding constraint on this market.',
+      '自开工令至商业运行。12个月为单一支出期。上限由变压器供应而非施工决定：2026年一线高压电力变压器交付周期为2.5–5年。本字段自开工令起算，因此不含CAISO并网流程 — 该流程在“首次取得收入所需时间”一项中另行评级，且是本市场的约束性瓶颈。',
     ],
-    source: 'Transformer lead-time reporting, 2026; CAISO interconnection scored separately',
+    source: 'Transformer lead-time reporting, 2026; CAISO interconnection graded separately',
     gate: 'G26',
   }),
 
@@ -298,10 +297,6 @@ export const comparison = {
        credit is given beyond it. */
     powerMW: 100,
     durationHours: HOURS,
-  },
-
-  score: {
-    connectionRisk: CONNECTION_RISK,
   },
 
   capabilities: {

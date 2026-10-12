@@ -361,11 +361,6 @@ SEC_B.grid = function (){
 
     { t:'congestion', data:congestionFor('caiso') },
 
-    { t:'card', title:['Connection risk scorecard','并网风险记分卡'], badges:['calc','illus'], live:true, blocks:[
-      { t:'scorecard', id:'connFactors', bands:'connBands' },
-      { t:'cap', text:['Higher is worse. The queue is the heaviest line and deliverability the second, and together they are why this market scores close to PJM on connection risk despite having the best contracted revenue in the country. Land and permitting score above ERCOT\'s because CEQA review is a real and contestable step that Texas has no equivalent of.',
-                       '分值越高风险越大。排队权重最高，可交付性次之；二者共同解释了为何本市场尽管拥有全国最优的合同化收入，其并网风险评分仍接近PJM。土地与许可评分高于ERCOT，因为CEQA审查是德州所没有的、真实且可被挑战的环节。'] },
-    ] },
   ] };
 };
 

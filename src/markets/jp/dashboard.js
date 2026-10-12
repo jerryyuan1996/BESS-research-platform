@@ -39,7 +39,7 @@ export const state = engine.state;
 
 export function dashboard(container, route){
   /* Bind the default namespace before rendering. The engine-owned scorecard and
-     export blocks address M.connFactors / M.durFactors by name;
+     export blocks address M.durFactors by name;
      those are getters onto whichever region this resolves to. In compare mode
      every comparison block addresses regions explicitly, so Tokyo is only a
      fallback for the JSON export. */

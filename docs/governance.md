@@ -302,7 +302,7 @@ Each bounds what one bad run can do without adding an approval step. The constan
 | E | A cap of 3 changes a run; over it, nothing is written | `etl/lib/viewWriter.mjs` `prepareBatch` | `view-automation`, `rules` |
 | F | Seasonality and staleness guards | `etl/rules.mjs` | `rules` |
 | G | A verdict needs one official source or two independent ones | `view.mjs` `verdictEvidenceSuffices` | `view-automation` |
-| H | A weekly digest of machine changes | `scripts/view/digest.mjs`, posted as an issue by the workflow | `view-automation` |
+| H | A monthly digest of machine changes | `scripts/view/digest.mjs`, posted as an issue by the workflow | `view-automation` |
 | I | One command reverts a change by id | `node scripts/view/writer.mjs revert <id>` | `view-automation`, `rules` |
 | J | Held views are the analyst's alone | `HELD_AUTHORS`, a list that did not widen | `held-grade` |
 

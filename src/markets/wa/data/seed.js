@@ -30,8 +30,7 @@ const SEED = {
   overall: { confidence: 74, codWindow: '2028–2029',
     rationale: ['RCM remains supportive, while energy arbitrage and FCESS are being diluted by rapid battery entry.',
                 'RCM仍具支撑，但电池集中投运正在压缩现货套利和FCESS收益。'] },
-  connection: { status: ['Amber / Conditional', '黄色 / 满足条件后推进'], riskScore: 43,
-    wpStage: ['Planning', '规划阶段'], gpsStage: 'R0', aoStatus: ['Draft', '草案'],
+  connection: { wpStage: ['Planning', '规划阶段'], gpsStage: 'R0', aoStatus: ['Draft', '草案'],
     naqToNameplate: 0.95, floatMonths: 7 },
   durationSig: { stage: ['Long-duration / capacity-driven', '长时容量驱动'],
     recoInitial: 8, recoExpand: 10,
@@ -164,24 +163,6 @@ const SEED = {
   ],
   augDefaults: [2, 2, 1, 2, 1, 1, 1, 1, 1],
 
-  // --- connection risk factors (spec §11.5; preset scores illustrative, editable) ---
-  connFactors: [
-    { n: ['Connection option & network capacity', '并网方案与网络容量'], w: 15, s: 1 },
-    { n: ['Study & model maturity', '研究与模型成熟度'], w: 15, s: 1 },
-    { n: ['GPS status', 'GPS状态'], w: 15, s: 2 },
-    { n: ['Access contracts (IWC / ETAC)', '接入合同（IWC/ETAC）'], w: 15, s: 2 },
-    { n: ['Network-works capex certainty', '电网工程造价确定性'], w: 10, s: 1 },
-    { n: ['Schedule & queue', '进度与排队'], w: 10, s: 1 },
-    { n: ['AEMO registration & commissioning', 'AEMO注册与调试'], w: 8, s: 1 },
-    { n: ['NAQ & Capacity Credits', 'NAQ与容量信用'], w: 7, s: 1 },
-    { n: ['Evidence & governance', '证据与治理'], w: 5, s: 1 },
-  ],
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good' },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn' },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious' },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical' },
-  ],
 
   // --- Investment Lab defaults (illustrative) ---
   lab: {

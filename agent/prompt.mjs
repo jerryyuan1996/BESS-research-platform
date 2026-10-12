@@ -8,8 +8,9 @@
 
 export const PROMPT_VERSION = 'v1';
 
-/** The model the daily pass asks. Recorded on the report with the prompt version. */
-export const MODEL = 'claude-opus-5-5';
+/** The model both passes ask: Haiku 5.5, the analyst's choice of 2026-10-12.
+    Recorded on the report with the prompt version. */
+export const MODEL = 'claude-haiku-5-5';
 
 export const SYSTEM = `You review one battery-storage market for an analyst's private research platform.
 

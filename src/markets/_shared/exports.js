@@ -23,7 +23,6 @@ function exportJson(){
     seedTag: MKT.seedTag, currency: MKT.curCode, timezone: MKT.tz,
     official: M.official, calculated: {
       durationNeedIndex: liveScore('durFactors'),
-      connectionRiskScore: liveScore('connFactors'),
     },
     pipeline: { stages: M.stages, projects: M.projects },
     peerNamespace: M.peer ? { note: 'context only — never scored', data: M.peer.raw || null } : null,

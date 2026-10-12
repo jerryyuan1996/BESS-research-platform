@@ -256,10 +256,6 @@ export const comparison = {
     durationHours: 4,
   },
 
-  score: {
-    connectionRisk: 48,
-  },
-
   capabilities: {
     capacityMarket: true,      // CRM, against a Reliability Option
     merchant: true,

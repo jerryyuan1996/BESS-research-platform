@@ -34,8 +34,8 @@ const ieMerchantPerMW = hh => hh * M.usableFraction * M.lab.cycles * 365 * (M.la
 
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
-  const dni = liveScore('durFactors'), cs = liveScore('connFactors');
-  const dband = bandFor(M.durBands, dni), cband = bandFor(M.connBands, cs);
+  const dni = liveScore('durFactors');
+  const dband = bandFor(M.durBands, dni);
   const cod = state.codYear, cc = M.codCases[cod] || M.codCases[2029];
   return {
   warn: M.seedWarn,
@@ -128,9 +128,7 @@ SEC_B.home = function (){
           sig:['In Ireland, duration is the product','在爱尔兰，时长即产品'] },
       ] },
       { title:['Card F — Grid & Connection Signal','Card F — 并网信号'], badges:['illus'], live:false, blocks:[
-        { t:'chip', cls:cband.c, text:cband.n },
         { t:'kpis', items:[
-          { l:['Connection risk score','并网风险评分'], v:cs + '<small> / 100</small>', d:cband.n, b:['calc'] },
           { l:['Binding evidence','约束性证据'], v:L(['Executed connection agreement','已签并网协议']), d:['not an ECP batch position alone','而非仅有ECP批次位置'] },
           { l:['MEC / MIC documentation','MEC/MIC文件'], v:L(['Both required','两者均须具备']), d:['MEC is export; MIC is the right to charge','MEC为送出；MIC为充电权利'], b:['verify'] },
           { l:['Constraint & curtailment cost','约束与弃电成本'], v:fmtCM(O.constraintCostM * 1e6), d:['2024/25 · forecast ' + fmtCM(O.constraintForecastM * 1e6),'2024/25 · 预测' + fmtCM(O.constraintForecastM * 1e6)], b:['official','verify'] },
@@ -138,8 +136,8 @@ SEC_B.home = function (){
         ] },
         { t:'note', text:['Required protection: no material non-refundable payment before an executed connection agreement with documented MEC and MIC. An ECP batch position, a high-level technical assessment or a connection offer that has not been accepted are all insufficient — and MEC without MIC leaves the asset unable to charge at contracted power.',
           '必要保护：在取得已签署且载明MEC与MIC的并网协议前，不支付重大不可退还款项。ECP批次位置、高层技术评估或尚未接受的并网报价均不充分 — 且仅有MEC而无MIC，将使资产无法以合同功率充电。'] },
-        { t:'why', text:['Connection is scored ' + cs + '/100 (higher = riskier), and the heaviest weight sits on connection stage and executed agreement at 20%. The distinctively Irish failure mode is the MEC/MIC asymmetry: a project can hold full export capacity and a lower import capacity, which silently caps cycling and therefore caps both arbitrage revenue and the ability to be full at the start of a capacity event. Check both numbers in the executed agreement, not in the offer.',
-          '并网评分' + cs + '/100（分值越高风险越大），权重最高的是并网阶段与已签协议，占20%。爱尔兰特有的失效模式是MEC/MIC不对称：项目可能拥有完整的送出容量而受入容量较低，这会在无形中限制循环次数，从而同时限制套利收入以及在容量事件开始时保持满荷电的能力。应在已签协议而非报价文件中核对这两个数字。'],
+        { t:'why', text:['The distinctively Irish failure mode is the MEC/MIC asymmetry: a project can hold full export capacity and a lower import capacity, which silently caps cycling and therefore caps both arbitrage revenue and the ability to be full at the start of a capacity event. Check both numbers in the executed agreement, not in the offer.',
+          '爱尔兰特有的失效模式是MEC/MIC不对称：项目可能拥有完整的送出容量而受入容量较低，这会在无形中限制循环次数，从而同时限制套利收入以及在容量事件开始时保持满荷电的能力。应在已签协议而非报价文件中核对这两个数字。'],
           sig:['MEC without MIC caps cycling','有MEC无MIC将限制循环'] },
       ] },
     ] },
@@ -1076,7 +1074,7 @@ SEC_B.data = function (){
         [{b:['Discharged energy, year 1','第1年放电电量']}, 'MW × hours × usable fraction × cycles/day × 365 × availability'],
         [{b:['Executable spread','可执行价差']}, 'published spread − liquidity − RTE − dispatch/SNSP/constraint − availability − optimiser fee'],
         [{b:['Effective spread by duration','按时长的有效价差']}, 'executable spread × duration factor × (RTE / 88) × saturation factor(COD year)'],
-        [{b:['Duration-Need Index / Connection Risk Score','时长需求指数/并网风险评分']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
+        [{b:['Duration-Need Index','时长需求指数']}, 'Σ (factor weight × factor score) / 3, each factor scored 0–3'],
         [{b:['DSCR','偿债覆盖率']}, 'EBITDA(year) / annuity(debt, interest rate, tenor)'],
       ] },
     ] },

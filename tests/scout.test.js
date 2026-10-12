@@ -36,7 +36,7 @@ import {
   passIsClean, validatePass, cleanStreak, graduationProgress, returnTextProblems,
 } from '../view/schema/scout.mjs';
 import {
-  SCOUT_ROSTER, SCOUT_IDS, SCOUT_REGION_IDS, SCOUT_REGIONS, SCOUT_DIMENSION_IDS, SCOUT_PILLARS, SCOUT_SCHEDULE,
+  SCOUT_ROSTER, SCOUT_IDS, SCOUT_REGION_IDS, SCOUT_REGIONS, SCOUT_DIMENSION_IDS, SCOUT_PILLARS, SCOUT_DAY_OF_MONTH,
   MAX_SCOUT_FACTS, MAX_SCOUT_CARDS_PER_RUN, SCOUT_EXIT_STREAK, SCOUT_REVIEW_MIN_DAYS, SCOUT_FIRST_CALLS,
   SCOUT_KNOCKED_OUT_CALLS, SCOUT_EXTREME_GRADES, GRADUATION, GRADUATION_RULE, RETURN_WORDS, REVENUE_RATE,
   RETURN_SIGNAL_KINDS, RETURN_SIGNAL_LABEL, isScoutId, scoutIdsIn, scoutMarket, ADMITTED_TERMS,
@@ -116,7 +116,7 @@ test('the roster is the nine markets of the first batch, three a region, and non
     assert.ok(SCOUT_REGIONS[region].label[0] && SCOUT_REGIONS[region].label[1]);
   }
   assert.equal(MAX_SCOUT_CARDS_PER_RUN, 3, 'a run covers one region');
-  assert.deepEqual(Object.values(SCOUT_SCHEDULE).sort(), [...SCOUT_REGION_IDS].sort(), 'every region has its day of the month');
+  assert.equal(SCOUT_DAY_OF_MONTH, 1, 'one run a month, covering every region');
 
   /* THE TWO TIERS DO NOT OVERLAP. The id is what decides which rights a
      change is read against, so an id in both would be a core market the agent
@@ -1009,13 +1009,13 @@ test('the scout job can write only while the agent is live on cards, and never a
   assert.ok((executable.match(/git add /g) || []).length >= 2);
   assert.ok(!/view\/markets|view\/index\.json|public\/data|\bsrc\b/.test(executable), 'the scout job names a core market\'s view, the index, published data or src/');
   assert.match(executable, /npm run guard:staged/, 'the cards are not scanned before the commit');
-  /* The daily pass over markets is untouched: read-only, and it still confirms it wrote nothing. */
+  /* The monthly pass over markets is untouched: read-only, and it still confirms it wrote nothing. */
   const agent = wf.slice(wf.indexOf('\n  agent:\n'), start);
   assert.match(agent, /permissions:\s*\n\s*contents: read/);
   assert.match(agent, /Confirm the agent wrote nothing/);
   assert.ok(!/--scout/.test(agent));
-  /* The cron's days are the schedule's days. */
-  assert.match(wf, new RegExp(`cron: '23 4 ${Object.keys(SCOUT_SCHEDULE).join(',')} \\* \\*'`));
+  /* The cron's day is the schedule's day, and it is one day a month. */
+  assert.match(wf, new RegExp(`cron: '23 4 ${SCOUT_DAY_OF_MONTH} \\* \\*'`));
 });
 
 /* ---- the committed store ------------------------------------------------------------- */

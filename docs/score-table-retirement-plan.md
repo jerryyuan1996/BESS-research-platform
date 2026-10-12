@@ -159,3 +159,19 @@ departs from the text above:
 
 Steps A and B went in one pull request, not two: with the tiles gone, the data under them had no
 reader left.
+
+## 10. The connection scorecard and its index, deleted (2026-10-12, later)
+
+The analyst's instruction: delete all connection scorecards and the arguments that rest on them.
+This overtakes Step C and decision 3 above.
+
+- The scorecard card is gone from eleven dashboards, with the "Connection risk score" tile, the band
+  chip beside it, and the paragraph under each scorecard that argued from its weights.
+- `score.connectionRisk` is gone from every comparison interface, and `score` with it, since it
+  held nothing else. The `/returns` metric, the export field, the glossary entry, the schema and
+  validation requirements, and the row in `governance/authority.js` are gone too.
+- Japan's "Scores side by side" chart is gone: with one series left it compared nothing.
+- **Kept:** what each dashboard says about how connection fails in that market, reworded so it no
+  longer opens on a score; the protections tables; and the duration scorecard, which is untouched.
+- The factor tables and the fourteen indices are recorded in `docs/grading/seed-tables.md`.
+

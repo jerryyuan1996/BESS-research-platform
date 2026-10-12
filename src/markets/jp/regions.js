@@ -320,20 +320,6 @@ export const JP_REGIONS = {
       pipelineRatio: '~4.5×',
     },
 
-    // ---- scorecards (SEED) ----
-    // connection risk: w sums to 100, s is 0-3, HIGHER IS WORSE
-    connFactors: [
-      { n: ['Export connection evidence', '放电侧并网证据'], w: 15, s: 1 },
-      { n: ['Import / charging evidence', '充电侧接入证据'], w: 15, s: 2 },
-      { n: ['Study maturity', '接续检讨成熟度'], w: 15, s: 1 },
-      { n: ['Network works capex certainty', '电网工程造价确定性'], w: 10, s: 2 },
-      { n: ['Schedule / queue', '进度/队列'], w: 10, s: 1 },
-      { n: ['Curtailment / non-firm exposure', '弃电/非固定容量敞口'], w: 10, s: 1 },
-      { n: ['Telemetry / market qualification', '遥测/市场准入资格'], w: 8, s: 1 },
-      { n: ['Land / permitting', '土地/许可'], w: 7, s: 2 },
-      { n: ['Deposit / funding readiness', '保证金/资金准备'], w: 5, s: 2 },
-      { n: ['Evidence governance', '证据治理'], w: 5, s: 1 },
-    ],
     // duration-need index: w sums to 100, s is 0-3, higher = longer duration needed
     durFactors: [
       { n: ['High-price event duration', '高价事件时长'], w: 12, s: 2 },
@@ -412,18 +398,6 @@ export const JP_REGIONS = {
       pipelineRatio: '~6.2×',
     },
 
-    connFactors: [
-      { n: ['Export connection evidence', '放电侧并网证据'], w: 15, s: 2 },
-      { n: ['Import / charging evidence', '充电侧接入证据'], w: 15, s: 2 },
-      { n: ['Study maturity', '接续检讨成熟度'], w: 15, s: 1 },
-      { n: ['Network works capex certainty', '电网工程造价确定性'], w: 10, s: 2 },
-      { n: ['Schedule / queue', '进度/队列'], w: 10, s: 2 },
-      { n: ['Curtailment / non-firm exposure', '弃电/非固定容量敞口'], w: 10, s: 2 },
-      { n: ['Telemetry / market qualification', '遥测/市场准入资格'], w: 8, s: 1 },
-      { n: ['Land / permitting', '土地/许可'], w: 7, s: 1 },
-      { n: ['Deposit / funding readiness', '保证金/资金准备'], w: 5, s: 2 },
-      { n: ['Evidence governance', '证据治理'], w: 5, s: 1 },
-    ],
     durFactors: [
       { n: ['High-price event duration', '高价事件时长'], w: 12, s: 2 },
       { n: ['Low-price charging-window duration', '低价充电窗口时长'], w: 12, s: 3 },
@@ -513,18 +487,6 @@ export const JP_REGIONS = {
              '须与在运容量分开跟踪。这是日本样本中最明确的收益蚕食信号。'],
     },
 
-    connFactors: [
-      { n: ['Export connection evidence', '放电侧并网证据'], w: 15, s: 2 },
-      { n: ['Import / charging evidence', '充电侧接入证据'], w: 15, s: 3 },
-      { n: ['Study maturity', '接续检讨成熟度'], w: 15, s: 2 },
-      { n: ['Network works capex certainty', '电网工程造价确定性'], w: 10, s: 2 },
-      { n: ['Schedule / queue', '进度/队列'], w: 10, s: 3 },
-      { n: ['Curtailment / non-firm exposure', '弃电/非固定容量敞口'], w: 10, s: 2 },
-      { n: ['Telemetry / market qualification', '遥测/市场准入资格'], w: 8, s: 1 },
-      { n: ['Land / permitting', '土地/许可'], w: 7, s: 1 },
-      { n: ['Deposit / funding readiness', '保证金/资金准备'], w: 5, s: 2 },
-      { n: ['Evidence governance', '证据治理'], w: 5, s: 2 },
-    ],
     durFactors: [
       { n: ['High-price event duration', '高价事件时长'], w: 12, s: 2 },
       { n: ['Low-price charging-window duration', '低价充电窗口时长'], w: 12, s: 3 },
@@ -636,18 +598,6 @@ export function jpRanges(economics){
     }),
   };
 }
-
-/** Shared risk bands. Identical in all three regions so comparison means something. */
-export const CONN_BANDS = [
-  { lo: 0,  hi: 24,  c: 'good',     n: ['Connection-investable', '可投资并网状态'],
-    d: ['Import and export evidence complete; proceed on normal terms.', '充放电证据完整；可按常规条款推进。'] },
-  { lo: 25, hi: 44,  c: 'warn',     n: ['Conditional — CPs & holdbacks', '有条件 — 需先决条件与保留款'],
-    d: ['Investable against conditions precedent and price holdbacks.', '须以先决条件与价格保留款为前提方可投资。'] },
-  { lo: 45, hi: 64,  c: 'serious',  n: ['Material risk — re-price / defer', '重大风险 — 重定价或延后'],
-    d: ['Connection outcome could move MW, cost or COD materially.', '并网结果可能显著改变MW、造价或投运时点。'] },
-  { lo: 65, hi: 100, c: 'critical', n: ['Not investment-ready', '不具备投资条件'],
-    d: ['Do not release consideration.', '不应支付对价。'] },
-];
 
 export const DUR_BANDS = [
   { lo: 0,  hi: 39,  c: 'info',     n: ['Short duration adequate', '短时长即可'],

@@ -38,7 +38,6 @@
       does not invent one. Those gaps are in `notPublished` and render on the
       Data & Methodology tab.
    --------------------------------------------------------------------------- */
-import { CONN_FACTORS } from './scores.js';
 
 const M = {
   asOf: '2026-08-04',
@@ -156,9 +155,6 @@ const M = {
     rationale: ['The easiest market in the US to build in and the hardest to get paid in. ERCOT connects a project in about 4.2 years at minimal cost — against eight-plus years and $240/kW of network upgrades in PJM — and then offers no capacity payment whatsoever. The merchant index that has to carry the whole return fell from $193/kW/yr in 2023 to about $29/kW in 2025 as the fleet went from 5.3 GW to 14 GW, and ancillary services, which were 84% of battery revenue in 2023, are 48% and falling. The market\'s answer is the private toll, and no ERCOT toll price has ever been disclosed. Underwrite the toll, the node and the tail after the toll expires. Do not underwrite the index, in either direction — it is the number two credible sources disagree about by nearly two times.',
                 '这是美国最容易建设、却最难获得回报的市场。ERCOT约4.2年即可完成项目并网且成本极低 — 相较PJM的八年以上及每kW $240的电网升级费用 — 但完全不提供任何容量收入。须独力支撑全部回报的市场化指数，已随装机由5.3GW增至14GW，从2023年的每kW每年$193跌至2025年的约$29；而2023年占储能收入84%的辅助服务，如今为48%且仍在下降。市场给出的答案是私下租赁，而ERCOT从未披露过任何租赁价格。承销依据应为租赁合约、节点位置以及租赁到期后的敞口期。切勿以该指数为承销依据 — 无论方向如何 — 因为两个可信来源对这一数字的判断相差近两倍。'] },
 
-  /* Weights and scores live in ./scores.js and are imported by both this
-     dashboard and comparison.js, so the index cannot drift from its parts. */
-  connFactors: CONN_FACTORS,
 
   // ---- capacity channel: there is none ----
   /* Flat at 1 and paired with `capPrice: 0` in the lab. This is the Romania and
@@ -324,16 +320,6 @@ const M = {
     { n: 'ERCOT seed example F', region: 'Houston', mw: 100, h: 2, cod: 2030, st: 'ann' },
   ],
 
-  connBands: [
-    { lo: 0, hi: 24, n: ['Connection-investable', '可投资并网状态'], c: 'good',
-      d: ['Interconnection agreement signed and node basis diligenced. Release development consideration.', '并网协议已签署且节点基差已完成尽调。可支付开发对价。'] },
-    { lo: 25, hi: 44, n: ['Conditional — require CPs & holdbacks', '有条件 — 需先决条件与保留款'], c: 'warn',
-      d: ['Structure the risk: FEOC documentation warranties, a node-basis review and a property-tax assessment. This is where the ERCOT archetype sits, and it is the best band any market on this platform reaches.', '以结构应对风险：FEOC合规文件保证、节点基差复核及财产税评估。ERCOT原型即处于此区间，且这是本平台所有市场所能达到的最佳区间。'] },
-    { lo: 45, hi: 64, n: ['Material risk — re-price / defer', '重大风险 — 重新定价或延后'], c: 'serious',
-      d: ['Re-price or defer until the interconnection agreement is signed and the node has a spread history to read.', '在并网协议签署且节点具备可查的价差历史之前，重新定价或延后。'] },
-    { lo: 65, hi: 100, n: ['Not investment-ready', '不具备投资条件'], c: 'critical',
-      d: ['Do not commit capital; the connection chain is unproven.', '不得投入资本；并网链条尚未证实。'] },
-  ],
 
   /* ---- what changes the market, and when -------------------------------
      ERCOT's register is market design rather than transmission, and unlike
@@ -417,7 +403,7 @@ const M = {
   lab: {
     /* ERCOT socialises transmission investment rather than allocating network
        upgrade cost to the interconnecting generator, which is the structural
-       reason its connection-risk score is the lowest on the platform. Zero here
+       reason it is the easiest US market here to connect in. Zero here
        is a real zero rather than an unmodelled one. */
     connectionPerMW: 0,
     /* No US VAT; Texas sales-tax treatment of storage unverified. */

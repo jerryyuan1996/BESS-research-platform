@@ -254,7 +254,7 @@ function B(parent, b){
 
 // ---------------- interactive blocks ----------------
 function blkScorecard(parent, b){
-  // b.id and b.bands may be dotted paths ('regions.tokyo.connFactors') so a
+  // b.id and b.bands may be dotted paths ('regions.tokyo.durFactors') so a
   // multi-region market can score each region without duplicating the block.
   const id = b.id, factors = liveFactors(id), score = liveScore(id), band = bandFor(at(b.bands), score);
   const wrap = h('div', {});
