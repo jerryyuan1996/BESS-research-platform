@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-11T13:00:56.074Z",
+  "fetchedAt": "2026-10-12T06:06:55.319Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-10T09:30:00.000Z",
+    "to": "2026-10-12T05:58:24.000Z",
     "resolution": "event",
-    "points": 46
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-06T11:22:39.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/antora-energy-announces-5-8gwh-multi-day-thermal-energy-storage-project-in-kansas-us/",
-      "source": "Energy-Storage.news",
-      "title": "Antora Energy announces 5.8GWh ‘multi-day’ thermal energy storage project in Kansas, US",
-      "url": "https://www.energy-storage.news/antora-energy-announces-5-8gwh-multi-day-thermal-energy-storage-project-in-kansas-us/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Thermal energy storage (TES) technology provider Antora Energy has announced a 5.8GWh “multi-day” TES project at Pratt Energy’s biorefinery in Pratt, Kansas, US."
-    },
-    {
-      "t": "2026-10-06T11:46:12.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/linea-energy-closes-financing-for-500mwh-texas-bess-project/",
-      "source": "Energy-Storage.news",
-      "title": "Linea Energy closes financing for 500MWh Texas BESS project",
-      "url": "https://www.energy-storage.news/linea-energy-closes-financing-for-500mwh-texas-bess-project/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "IPP Linea Energy has closed a debt financing and preferred equity commitment for its 250MW/500MWh Mesa View energy storage project in Upton County, Texas, US."
     },
     {
       "t": "2026-10-06T23:34:31.000Z",
@@ -385,36 +365,6 @@
       "summary": "The grid operator expects Engie&rsquo;s two storage projects totaling nearly 1.7 GW and LS Power&rsquo;s 455-MW &nbsp; gas-fired uprate will be online by mid-2029."
     },
     {
-      "t": "2026-10-09T16:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/09/poly-pricing-and-potential-expansion/",
-      "source": "pv magazine",
-      "title": "Poly pricing and potential expansion",
-      "url": "https://www.pv-magazine.com/2026/10/09/poly-pricing-and-potential-expansion/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The United States has made significant changes to trade and energy policy in 2026. The enforcement of these policies and potential further changes on the horizon could reshape the solar market yet again. Jesse Pichel and Lev Seleznov of Roth Capital examine the potential impacts. The post Poly pricing and potential…"
-    },
-    {
-      "t": "2026-10-10T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/can-beijing-end-the-race-to-the-bottom/",
-      "source": "pv magazine",
-      "title": "Can Beijing end the race to the bottom?",
-      "url": "https://www.pv-magazine.com/2026/10/10/can-beijing-end-the-race-to-the-bottom/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "China is tightening the rules of solar competition through cost accounting, mandatory efficiency standards, tax changes and capacity controls. The real test is not whether prices rise, but whether excess capacity is removed and the industry can return to sustainable profitability without losing its global cost and t…"
-    },
-    {
-      "t": "2026-10-10T05:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/australia-backs-goal-of-150-million-new-rooftop-solar-systems-globally-by-2030/",
-      "source": "pv magazine",
-      "title": "Australia backs goal of 150 million new rooftop solar systems globally by 2030",
-      "url": "https://www.pv-magazine.com/2026/10/10/australia-backs-goal-of-150-million-new-rooftop-solar-systems-globally-by-2030/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia has endorsed a global plan to double the number of homes in the world with rooftop solar, from 150 to 300 million by 2030 via the Global Rooftop Solar Declaration announced at the 2026 Pacific Pre-COP meeting in Fiji. The post Australia backs goal of 150 million new rooftop solar systems globally by 2030 a…"
-    },
-    {
       "t": "2026-10-10T06:00:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/the-shape-of-ppas-is-changing-from-volume-to-value-are-you-positioned-to-capture-the-premium-in-emerging-nem-value-pools/",
       "source": "pv magazine",
@@ -483,16 +433,56 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A study based on 88,000 consumer units participating in subscription-based solar generation schemes in Brazil has identified a 17% average monthly payment delinquency rate and 4% monthly customer churn. The findings highlight potential credit, liquidity and consumer protection challenges as the country prepares to o…"
+    },
+    {
+      "t": "2026-10-12T02:05:09.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-home-battery-installations-surge-52-to-276011-in-h1-2026-outpacing-rooftop-solar-growth/",
+      "source": "Energy-Storage.news",
+      "title": "Australia home battery installations surge 52% to 276,011 in H1 2026, outpacing rooftop solar growth",
+      "url": "https://www.energy-storage.news/australia-home-battery-installations-surge-52-to-276011-in-h1-2026-outpacing-rooftop-solar-growth/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australians installed 276,011 home battery storage systems in the first half of 2026, 52% more than in the previous six months."
+    },
+    {
+      "t": "2026-10-12T02:33:28.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/asean-centre-for-energy-iea-say-southeast-asias-battery-storage-adoption-barriers-are-mostly-regulatory-not-technical/",
+      "source": "Energy-Storage.news",
+      "title": "ASEAN Centre for Energy, IEA say Southeast Asia’s battery storage adoption barriers are mostly regulatory, not technical",
+      "url": "https://www.energy-storage.news/asean-centre-for-energy-iea-say-southeast-asias-battery-storage-adoption-barriers-are-mostly-regulatory-not-technical/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "ACE and the IEA say the main obstacles to battery energy storage system (BESS) deployment in Southeast Asia are policy and market rules."
+    },
+    {
+      "t": "2026-10-12T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/follow-the-money/",
+      "source": "pv magazine",
+      "title": "Follow the money",
+      "url": "https://www.pv-magazine.com/2026/10/12/follow-the-money/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Since 2024, solar tracker companies in North America have invested more than $1.6 billion in corporate acquisitions, expanding beyond solar mounting to enter adjacent segments of the clean energy value chain. The majority of this capital has circulated within the United States, led by North America’s largest tracker…"
+    },
+    {
+      "t": "2026-10-12T05:58:24.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/rooftop-solar-reaches-new-highs-across-nem/",
+      "source": "pv magazine",
+      "title": "Rooftop solar reaches new highs across Australia",
+      "url": "https://www.pv-magazine.com/2026/10/12/rooftop-solar-reaches-new-highs-across-nem/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Rooftop solar generation continues to reach new heights in Australia’s main grid with clear skies helping drive record output from household and business solar systems across the National Electricity Market. The post Rooftop solar reaches new highs across Australia appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 46,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 26,
-      "policy": 8,
+      "policy": 7,
       "capital": 9,
       "technology": 3
     },
@@ -519,7 +509,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 10
+        "items": 9
       }
     ]
   },
@@ -528,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:b7157f49d1af945a8b116f89858d338ef67df9674e5af8683968ee5bb0afb6a3",
-  "envelopeChecksum": "sha256:4a7772d0d23b21b3b5f372a23d5b0970105a80b37bafe08f626bafba2113809f"
+  "contentChecksum": "sha256:6a7263f09ff3149c7d5901bfe94d32f548c95856a225a3603d3436f9dbf1cd6f",
+  "envelopeChecksum": "sha256:68f23f326379b1d701834843b02a88b622dd85fae77c5131e77913b325ee1efe"
 }
