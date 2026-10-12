@@ -53,6 +53,8 @@ import { byExpected } from '../governance/triggers.js';
 import { ITEM_KIND_LABEL, ITEM_STATUS_LABEL, limitInputs } from '../entry/ledger.js';
 import { assessMarket } from '../entry/assessment.js';
 import { entryReturn } from '../entry/entryReturn.js';
+import { exposureCurve, markers, TIMED_LEDGERS } from '../entry/exposureCurve.js';
+import { exposureChart } from '../charts/exposureChart.js';
 import { longLife } from '../longlife/longLife.js';
 import { DURATION_BASIS_LABEL } from '../governance/buildPathway.js';
 import { caseViewFor, caseLedgerFor } from '../markets/caseRegistry.js';
@@ -348,6 +350,100 @@ function entryReturnCard({ market, ledger }){
   return c;
 }
 
+/* ---- the ledger laid along time (plan section 6.2) --------------------------- */
+
+const monthSpan = (m) => {
+  const a = Math.round(m.fast), b = Math.round(m.slow);
+  return a === b ? String(a) : a + '–' + b;
+};
+const levelPerMW = (v, lowerBound) => (lowerBound ? L(['at least ', '至少 ']) : '') + usd(v) + L([' per MW', ' /MW']);
+
+function exposureCard({ ledger }){
+  const c = card(['When the capital is at risk', '风险资本在何时投入'], [badge('calc'), badge('illus')]);
+  const curve = exposureCurve(ledger, FX);
+  if (!curve){
+    c.append(h('div', { class: 'note' }, L(ledger.timing
+      ? ['The ledger lists nothing before the decision, so there is no curve to draw.', '台账中没有决策前的项目，因此无曲线可画。']
+      : ['No development or build time is stated for this market, so the ledger has no time axis to be drawn against; a duration is never invented to supply one.', '该市场尚未给出开发期与建设期，台账没有可依托的时间轴；本页绝不为此编造时长。'])));
+    return c;
+  }
+  const t = curve.timing;
+  c.append(h('div', { class: 'cap' }, L([
+    'The ledger above, laid along time for one megawatt of the reference project: a step up where something is paid or posted, a step down where a security is returned. Build cost is not drawn.',
+    '将上方台账按时间展开，按参考项目每MW计：支付或提交时上升一级，保证金退还时下降一级。建设投资不在图中。',
+  ])));
+  /* The convention before the picture, as the limit comes before the table. */
+  c.append(h('div', { class: 'warnbox' }, L([
+    `Where each step falls in time is a drawing convention, not a sourced schedule. No duration is published for any single stage, so the seven stages before the decision are each given one seventh of the stated ${t.monthsToRtb[0]} to ${t.monthsToRtb[1]} months to ready-to-build, in the order the pathway lists them; an item is posted at the start of its stage and returned at the end; anything returned during the build or at market entry is drawn at first revenue, ${t.buildMonths[0]} to ${t.buildMonths[1]} months after the decision. The shaded band at each step runs from the short end of those ranges to the long end.`,
+    `各级台阶落在哪个月份只是作图约定，并非有来源的进度表。没有任何单一阶段的耗时是公开的，因此决策前的七个阶段按建设路径的列示顺序，各占所述开发期（${t.monthsToRtb[0]}至${t.monthsToRtb[1]}个月）的七分之一；各项在所属阶段开始时提交、结束时退还；在建设期内或市场准入时退还的，一律画在首笔收入处，即决策后${t.buildMonths[0]}至${t.buildMonths[1]}个月。每级台阶处的阴影带从上述区间的短端延伸到长端。`,
+  ])));
+
+  const marks = markers(curve);
+  const peakAt = curve.peak.month ? marks.find(m => m.month.central === curve.peak.month.central) : null;
+  const kpi = (label, value, detail) => h('div', { class: 'kpi' },
+    h('div', { class: 'k' }, L(label)), h('div', { class: 'v' }, value), h('div', { class: 'd' }, L(detail)));
+  c.append(h('div', { class: 'kpis' },
+    kpi(['Peak outstanding', '峰值占用'], levelPerMW(curve.peak.usdPerMW, curve.peak.lowerBound),
+      peakAt ? [`Reached at marker ${peakAt.n}, month ${monthSpan(peakAt.month)}`, `在标记${peakAt.n}处达到，第${monthSpan(peakAt.month)}个月`] : ['Nothing quantified', '没有可量化的项目']),
+    kpi(['Investment decision', '投资决策'], L(['month ', '第']) + monthSpan(curve.decision) + L(['', '个月']),
+      ['The stated months to ready-to-build', '所述的开发期']),
+    kpi(['Not returned by first revenue', '首笔收入时仍未收回'], levelPerMW(curve.end, curve.endLowerBound),
+      ['Fees and studies: spent, whatever happens', '各项费用与研究费：无论结果如何均已支出'])));
+
+  const name = (id) => byId(id)?.manifest.name || [id, id];
+  const holder = h('div', {});
+  const draw = (others) => {
+    holder.replaceChildren();
+    exposureChart(holder, {
+      narrow: window.innerWidth < 600,
+      curves: [{ curve, name: name(curve.marketId), color: 'var(--s1)' },
+        ...others.map(o => ({ curve: o, name: name(o.marketId), color: 'var(--muted)' }))],
+    });
+  };
+  draw([]);
+  c.append(holder);
+  /* The other markets that state a timing, on the same axes. Their ledgers
+     live in their own dashboards' chunks, so they are fetched; the market's
+     own curve does not wait for them and stands alone if they fail. */
+  const otherIds = Object.keys(TIMED_LEDGERS).filter(id => id !== curve.marketId);
+  if (otherIds.length){
+    Promise.all(otherIds.map(id => TIMED_LEDGERS[id]())).then(ledgers => {
+      const others = ledgers.map(l => exposureCurve(l, FX)).filter(Boolean);
+      if (others.length) draw(others);
+    }).catch(() => {});
+    c.append(h('div', { class: 'cap' }, L([
+      'The thinner line is another market drawn by the same convention, per megawatt of its own reference project, so the two can be read against each other.',
+      '较细的线是按同一约定绘制的另一市场，按其自身参考项目每MW计，便于两相对照。',
+    ])));
+  }
+  if (curve.lowerBound) c.append(h('div', { class: 'cap', style: 'margin-top:6px;' }, L([
+    'A dashed stretch is a lower bound: an item with no published amount is outstanding there, so the true line can only be higher, and the true peak may come later than the one marked.',
+    '虚线段为下限：该区间内有金额未公开的项目尚未解除，真实曲线只会更高，真实峰值也可能晚于图中所标。',
+  ])));
+
+  const what = (e) => e.type === 'release' ? L(['Returned', '退还'])
+    : e.lostIf ? L(e.lostIf) : L(['Spent; not refundable', '已支出，不予退还']);
+  c.append(h('div', { class: 'tbl-wrap' }, h('table', {},
+    h('thead', {}, h('tr', {},
+      h('th', { class: 'num' }, L(['Marker', '标记'])),
+      h('th', { class: 'num' }, L(['Month', '月份'])),
+      h('th', {}, L(['Item', '项目'])),
+      h('th', { class: 'num' }, L(['Step, per MW', '变动（每MW）'])),
+      h('th', {}, L(['How it is lost', '如何损失'])),
+      h('th', { class: 'num' }, L(['Line after, per MW', '变动后水平（每MW）'])))),
+    h('tbody', {}, marks.flatMap(m => m.events.map((e, i) => h('tr', {},
+      h('td', { class: 'num' }, i ? '' : h('b', {}, String(m.n))),
+      h('td', { class: 'num' }, i ? '' : monthSpan(m.month)),
+      /* Widths, so a phone scrolls the table sideways and does not wrap a
+         sentence one character to the line. */
+      h('td', { style: 'min-width:150px;' }, h('b', {}, L(e.label)),
+        h('div', { class: 'cap' }, L(STAGE_LABEL[e.stage]) + L(e.type === 'post' ? [', at its start', '，阶段开始时'] : [', at its end', '，阶段结束时']))),
+      h('td', { class: 'num' }, e.usdPerMW === null ? L(['No amount published', '金额未公开']) : (e.type === 'post' ? '+' : '−') + usd(e.usdPerMW)),
+      h('td', { style: 'min-width:240px;' }, what(e)),
+      h('td', { class: 'num' }, i === m.events.length - 1 ? levelPerMW(m.after, m.lowerBound) : ''))))))));
+  return c;
+}
+
 /* ---- the same asset, held longer (gate G12) -------------------------------- */
 
 function longLifeCard({ market }){
@@ -419,6 +515,7 @@ export function entryPanel(marketId){
   }
   out.push(c);
 
+  out.push(exposureCard(data));
   out.push(entryReturnCard(data));
   const longer = longLifeCard(data);
   if (longer) out.push(longer);

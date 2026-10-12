@@ -48,6 +48,11 @@ export default defineConfig({
           /* The Investment Case and Entry sections: the method layer, the view
              store and the ledgers, fetched only when one of those tabs opens. */
           if (/[\\/]components[\\/]investmentCase\.js$/.test(id)) return 'assets/investment-case-[hash].js';
+          /* A ledger that states a timing is fetched by another market's
+             Entry tab, to draw the two exposure curves on shared axes, so it
+             is a chunk of its own. Every one is called entryLedger.js. */
+          const ledger = /[\\/]markets[\\/]([^\\/]+)[\\/]entryLedger\.js$/.exec(id);
+          if (ledger) return `assets/ledger-${ledger[1]}-[hash].js`;
           /* The home page's verdict board, and the Returns page that took over
              the old home content. Each is fetched by its own route. */
           if (/[\\/]home[\\/]verdictHome\.js$/.test(id)) return 'assets/verdict-board-[hash].js';
