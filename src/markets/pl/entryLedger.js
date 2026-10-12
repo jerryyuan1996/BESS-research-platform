@@ -7,11 +7,10 @@
    capped at PLN 6 million) and not the PLN 30 and PLN 3 million that older
    operator forms still quote.
 
-   AMOUNTS ARE IN ZŁOTY, AND THE PLATFORM HOLDS NO ZŁOTY RATE. The rate table
-   in comparison/assumptions.js is methodology and has no PLN entry, so no
-   total here converts to dollars and every limit reads as unchecked. The
-   amounts are stated in the currency the statute states them in; a rate is
-   the analyst's to add.
+   AMOUNTS ARE IN ZŁOTY, the currency the statute states them in. The rate
+   table in comparison/assumptions.js gained a złoty seed on the analyst's
+   instruction of 2026-10-12, so the three payments now total in dollars. The
+   total is still a lower bound: development spend has no source.
 
    THE TIMING FLAGS ARE A DRAFT FOR THE ANALYST TO CONFIRM. The application
    fee and the advance fall with the application, which is taken here to be
@@ -33,8 +32,8 @@ export const ENTRY_LEDGER = {
     'Three statutory payments for a connection above 1 kV: a small fee to apply, an advance on the connection fee of PLN 60 per kW within fourteen days of applying, and security of PLN 30 per kW within fourteen days of the connection agreement. On the 100 MW reference project that is PLN 100,000, PLN 6 million and PLN 3 million.',
     '接入1千伏以上电网须依法缴纳三笔款项：金额不大的申请费；提交申请后14日内按每千瓦60兹罗提预缴的并网费预付款；以及签订并网协议后14日内按每千瓦30兹罗提提交的履约担保。以100MW参考项目计，分别为10万、600万和300万兹罗提。'],
   limit: [
-    'The amounts are in złoty and the platform holds no złoty rate, so no total converts to dollars and no limit can be checked. The advance cannot exceed the expected connection fee, which is set per project, so PLN 6 million is its ceiling and not a finding. Land, studies and permitting before the decision are not sourced. Whether the security falls before the investment decision, and whether any of this falls before consent, is not established.',
-    '金额以兹罗提计，而本平台没有兹罗提汇率，因此合计无法折算为美元，各项上限也无从核查。预付款不得超过预计并网费，而并网费按项目核定，因此600万兹罗提只是其上限，并非实际数额。决策前的土地、研究与许可费用没有来源。履约担保是否在投资决策之前提交，以及上述款项是否发生在取得许可之前，均未确立。'],
+    'The advance cannot exceed the expected connection fee, which is set per project, so PLN 6 million is its ceiling and not a finding. Land, studies and permitting before the decision are not sourced, so the total is a lower bound. Whether the security falls before the investment decision, and whether any of this falls before consent, is not established. The złoty amounts are converted at a seed rate, not a live one.',
+    '预付款不得超过预计并网费，而并网费按项目核定，因此600万兹罗提只是其上限，并非实际数额。决策前的土地、研究与许可费用没有来源，因此合计为下限。履约担保是否在投资决策之前提交，以及上述款项是否发生在取得许可之前，均未确立。兹罗提金额按设定汇率而非实时汇率折算。'],
   items: [
     {
       id: 'application-fee', kind: 'fee',

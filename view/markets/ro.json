@@ -22,9 +22,16 @@
       "dimension": "revenueCertainty",
       "grade": 2,
       "trend": "stable",
-      "basis": "practitioner",
-      "evidence": [],
-      "asOf": "2026-10-10",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "scornicestiFloor"
+      ],
+      "reason": [
+        "The reference project secures nothing; an optimiser has announced a minimum revenue guarantee for a 127 MW battery, running five years from full operation, so a secured route has been signed in the market.",
+        "参考项目没有任何锁定收入；已有优化商公布为一座127MW电池提供最低收入保障，期限为全面投运后五年，说明该市场已有项目签下锁定收入的途径。"
+      ],
+      "asOf": "2026-10-12",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -105,11 +112,11 @@
     },
     "supplyChainOrigin": {
       "dimension": "supplyChainOrigin",
-      "grade": 4,
+      "grade": 5,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-12",
       "author": "analyst",
       "lockedUntil": null
     },

@@ -87,7 +87,7 @@
     },
     "supplyChainOrigin": {
       "dimension": "supplyChainOrigin",
-      "grade": 4,
+      "grade": 5,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],
