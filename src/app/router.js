@@ -92,6 +92,9 @@ export function parseRoute(pathname, search = ''){
       name: 'market',
       slug: decodeURIComponent(parts[1]),
       tab: parts[2] ? decodeURIComponent(parts[2]) : null,
+      /* A section under a tab: /markets/<slug>/revenue/energy. A tab is a
+         container of sections since the merge to seven (markets/tabGroups.js). */
+      sub: parts[3] ? decodeURIComponent(parts[3]) : null,
       ...view,
     };
   }

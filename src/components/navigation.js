@@ -10,12 +10,12 @@
    middle-clickable, copyable and crawlable — which the prototype's overlay was
    not.
    --------------------------------------------------------------------------- */
+import { tabsFor, tabOfSection, LANDING_TAB } from '../markets/tabGroups.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { homeState } from '../home/state.js';
 
-const REVENUE_IDS = new Set(['rcm', 'capacity', 'energy', 'fcess', 'services', 'duration']);
 /* A market id is not a country code — `wa` is Australia and the three Japanese
    areas share one flag — so the mapping is explicit. Anything missing falls back
    to the UN flag, which is why a market absent from this table renders a
@@ -44,26 +44,6 @@ export const marketFlagCode = market => COUNTRY_FLAGS[market.manifest.id]
   || COUNTRY_FLAGS[market.manifest.dashboardId]
   || 'un';
 
-
-function groupedTabs(tabs){
-  const revenue = tabs.filter(([id]) => REVENUE_IDS.has(id));
-  const other = tabs.filter(([id]) => !REVENUE_IDS.has(id));
-  const byId = new Map(other);
-  const ordered = [];
-  for (const id of ['home', 'story', 'grid']){
-    if (byId.has(id)){
-      ordered.push([id, byId.get(id)]);
-      byId.delete(id);
-    }
-  }
-  if (revenue.length) ordered.push([revenue[0][0], ['Revenue Mechanisms', '收入机制']]);
-  for (const entry of other){
-    if (!byId.has(entry[0])) continue;
-    ordered.push(entry);
-    byId.delete(entry[0]);
-  }
-  return { ordered, revenue };
-}
 
 /* ---------------------------------------------------------------------------
    THE TAB STRIP, ONCE, FOR ALL THREE PLACES THAT BUILD ONE.
@@ -244,19 +224,25 @@ export function marketNav(markets, activeId){
 }
 
 /**
- * A market's own tab strip.
- * @param {Array<[string, [string,string]]>} tabs
- * @param {string} activeTab
+ * A market's own tab strip: the seven tabs of markets/tabGroups.js, with the
+ * one that holds the section in view marked active.
+ *
+ * @param {Array<[string, [string,string]]>} sectionTabs  the market's sections
+ * @param {string} activeSection  the section being shown
  * @param {string} basePath  e.g. '/markets/western-australia'
  */
-export function tabNav(tabs, activeTab, basePath){
-  const { ordered, revenue } = groupedTabs(tabs);
-  const revenueIds = new Set(revenue.map(([id]) => id));
-  return tabStrip(ordered.map(([id, name]) => h('a', {
-    class: 'tab-btn' + ((activeTab === id || (id === revenue[0]?.[0] && revenueIds.has(activeTab))) ? ' active' : ''),
-    href: basePath + '/' + id,
-    onclick: (e) => { e.preventDefault(); navigate(basePath + '/' + id); window.scrollTo(0, 0); },
-  }, L(name))));
+export function tabNav(sectionTabs, activeSection, basePath){
+  const active = tabOfSection(sectionTabs, activeSection);
+  return tabStrip(tabsFor(sectionTabs).map(tab => {
+    /* The landing tab's address is the market's own, so a link to it and a
+       link to the market are one link. */
+    const href = basePath + (tab.id === LANDING_TAB ? '' : '/' + tab.id);
+    return h('a', {
+      class: 'tab-btn' + (active && active.id === tab.id ? ' active' : ''),
+      href,
+      onclick: (e) => { e.preventDefault(); navigate(href); window.scrollTo(0, 0); },
+    }, L(tab.label));
+  }));
 }
 
 /**
@@ -287,19 +273,27 @@ export function labLink(marketId){
     }, L(['Investment Lab & project debt ▸', '投资测算与项目债务 ▸'])));
 }
 
-export function revenueSubNav(tabs, activeTab, basePath){
-  const revenue = tabs.filter(([id]) => REVENUE_IDS.has(id));
-  if (!revenue.some(([id]) => id === activeTab)) return null;
+/**
+ * The sub-strip of a tab that shows one section at a time. Today that is
+ * Revenue: its sections carry the market's own labels.
+ */
+export function revenueSubNav(sectionTabs, activeSection, basePath){
+  const tab = tabOfSection(sectionTabs, activeSection);
+  if (!tab || !tab.pick || tab.sections.length < 2) return null;
+  const label = new Map(sectionTabs);
   return h('div', {
     class:'tabs revenue-subtabs',
     'aria-label':L(['Revenue mechanism sections', '收入机制子页']),
-  }, revenue.map(([id, name]) => h('a', {
-    class:'tab-btn' + (activeTab === id ? ' active' : ''),
-    href:basePath + '/' + id,
-    onclick:(event) => {
-      event.preventDefault();
-      navigate(basePath + '/' + id);
-      window.scrollTo(0, 0);
-    },
-  }, L(name))));
+  }, tab.sections.map(id => {
+    const href = basePath + '/' + tab.id + (id === tab.sections[0] ? '' : '/' + id);
+    return h('a', {
+      class:'tab-btn' + (activeSection === id ? ' active' : ''),
+      href,
+      onclick:(event) => {
+        event.preventDefault();
+        navigate(href);
+        window.scrollTo(0, 0);
+      },
+    }, L(label.get(id)));
+  }));
 }

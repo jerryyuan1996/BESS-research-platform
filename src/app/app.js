@@ -134,7 +134,7 @@ export function render(){
 
   if (route.name === 'market'){
     const market = bySlug(route.slug);
-    if (market) return void renderMarketPage(app, market, route.tab, route.region);
+    if (market) return void renderMarketPage(app, market, route.tab, route.region, route.sub);
     return void renderNotFound(app, { path: '/markets/' + route.slug });
   }
   /* LOADED ON DEMAND, and for this route that matters more than for a market.

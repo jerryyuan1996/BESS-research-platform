@@ -167,3 +167,15 @@ then rendering verified in a browser at desktop and mobile widths.
 
 Expect roughly one to three supported claims per market. A market returning eight
 has not been reviewed carefully.
+
+---
+
+## Amended 2026-10: a section is no longer a tab
+
+The pilot counted 150 sections as fifteen markets by ten tabs. Dashboards now
+carry seven tabs, and a tab may hold several sections. The ten analytical section
+ids are unchanged, claims and dispositions remain keyed by section id, and the
+count remains 150. A claim is placed on its own section's heading inside
+whichever tab holds it. Investment Case and Entry are not analytical sections and
+carry no claim: their content is governed by the view store. Nothing in §1 to §5
+changes.
