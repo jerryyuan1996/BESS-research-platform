@@ -7,18 +7,18 @@ Generated 2026-10-12. **Plain** numbers are in the view store, written on your a
 | wa | 4 | 4 | 2 (held 1) | 4 | 2 | 2 | 3 | 5 | 3 | 3 | 2 | 3 | 2 | 2 |
 | nem | 2 | 5 | 3 | 4 | 3 | 3 | 3 | 5 | 3 | 3 | 2 | 5 | 4 | 4 |
 | gb | 2 | 3 | 3 | 4 | 3 | 2 | 4 | 5 | 4 | 3 | 2 | 5 | 4 | 4 |
-| de | 4 | 2 | 2 | 4 | 3 | 2 | 4 | 3 | 3 | 4 | 3 | 5 | 4 | 4 |
-| it | 5 | 4 | 2 | 3 | 2 | 2 | 4 | 4 | 3 | 3 | 4 | 4 | 3 | 4 |
+| de | 4 | 2 | 2 | 4 | 3 | 2 | 3 | 5 | 3 | 4 | 3 | 5 | 4 | 4 |
+| it | 5 | 4 | 2 | 3 | 2 | 2 | 4 | 5 | 3 | 3 | 4 | 4 | 3 | 4 |
 | ie | 4 | 5 | 3 | 4 | 2 | 3 | 4 | 5 | 3 | 4 | 2 | 3 | 3 | 2 |
-| ro | 5 | 2 | 1 | 2 | 2 | 3 | 3 | 4 | 2 | 2 | 2 | 3 | 2 | 3 |
-| pl | 1 | 2 | 2 | 4 | 3 | 2 | 4 | 4 | 2 | 3 | 2 | 3 | 2 | 3 |
+| ro | 5 | 2 | 1 | 2 | 2 | 3 | 3 | 5 | 2 | 2 | 2 | 3 | 2 | 3 |
+| pl | 1 | 2 | 2 | 4 | 3 | 2 | 3 | 5 | 2 | 3 | 2 | 3 | 2 | 3 |
 | jp_tokyo | 3 | 5 | 2 | 4 | 3 | 3 | 4 | 3 | 3 | 3 | 4 | 4 | 3 | 4 |
 | jp_kyushu | 3 | 5 | 2 | 4 | 3 | 3 | 4 | 3 | 3 | 2 | 3 | 4 | 3 | 3 |
 | jp_hokkaido | 3 | 5 | 3 | 4 | 2 | 2 | 4 | 3 | 3 | 3 | 2 | 4 | 3 | 2 |
 | pjm | 1 | 2 | 2 | 4 | 2 | 2 | 4 | 2 | 2 | 5 | 4 | 3 | 3 | 4 |
-| ercot | 1 | 4 | 3 | 4 | 4 | 4 | 2 | 2 | 3 | 5 | 2 | 4 | 4 | 5 |
+| ercot | 1 | 4 | 3 | 4 | 3 | 4 | 2 | 2 | 3 | 5 | 2 | 4 | 4 | 3 |
 | caiso | 2 | 5 | 2 | 4 | 2 | 2 | 4 | 2 | 3 | 4 | 2 | 5 | 4 | 3 |
-| fi | 5 | 3 | 2 | 4 | 4 | 4 | 5 | 5 | 3 | 5 | 2 | 3 | 3 | 3 |
+| fi | 4 | 3 | 2 | 4 | 4 | 4 | 4 | 5 | 3 | 5 | 2 | 3 | 3 | 3 |
 
 ## Calls
 
@@ -29,17 +29,17 @@ Generated 2026-10-12. **Plain** numbers are in the view store, written on your a
 | wa | **Build position** · fit 68 | **Opportunistic** · fit 64 | **Not accessible** · fit 60 | **Not accessible** · fit 53 |
 | nem | **Build position** · fit 72 | **Build position** · fit 74 | **Not accessible** · fit 69 | **Build position** · fit 74 |
 | gb | **Build position** · fit 69 | **Opportunistic** · fit 71 | **Opportunistic** · fit 68 | **Wait** · fit 69 |
-| de | **Build position** · fit 76 | **Opportunistic** · fit 75 | **Build position** · fit 69 | **Build position** · fit 70 |
+| de | **Build position** · fit 77 | **Opportunistic** · fit 75 | **Build position** · fit 68 | **Build position** · fit 70 |
 | it | **Build position** · fit 83 | **Enter now** · fit 81 | **Build position** · fit 72 | **Build position** · fit 66 |
 | ie | **Build position** · fit 74 | **Build position** · fit 71 | **Build position** · fit 73 | **Build position** · fit 71 |
-| ro | **Opportunistic** · fit 64 | **Wait** · fit 53 | **Wait** · fit 49 | **Opportunistic** · fit 52 |
-| pl | **Opportunistic** · fit 51 | **Wait** · fit 42 | **Opportunistic** · fit 46 | **Opportunistic** · fit 45 |
+| ro | **Opportunistic** · fit 64 | **Wait** · fit 53 | **Wait** · fit 49 | **Opportunistic** · fit 53 |
+| pl | **Opportunistic** · fit 51 | **Wait** · fit 42 | **Opportunistic** · fit 44 | **Opportunistic** · fit 45 |
 | jp_tokyo | **Build position** · fit 79 | **Enter now** · fit 78 | **Build position** · fit 73 | **Build position** · fit 70 |
 | jp_kyushu | **Build position** · fit 71 | **Build position** · fit 74 | **Build position** · fit 70 | **Build position** · fit 67 |
 | jp_hokkaido | **Build position** · fit 65 | **Build position** · fit 70 | **Opportunistic** · fit 68 | **Opportunistic** · fit 62 |
 | pjm | **Opportunistic** · fit 60 | **Wait** · fit 53 | **Wait** · fit 52 | **Opportunistic** · fit 51 |
-| ercot | **Opportunistic** · fit 68 | **Opportunistic** · fit 67 | **Opportunistic** · fit 62 | **Opportunistic** · fit 69 |
+| ercot | **Opportunistic** · fit 61 | **Opportunistic** · fit 65 | **Opportunistic** · fit 60 | **Opportunistic** · fit 64 |
 | caiso | **Opportunistic** · fit 66 | **Build position** · fit 73 | **Opportunistic** · fit 66 | **Opportunistic** · fit 61 |
-| fi | **Build position** · fit 79 | **Opportunistic** · fit 69 | **Enter now** · fit 74 | **Build position** · fit 71 |
+| fi | **Build position** · fit 76 | **Opportunistic** · fit 67 | **Build position** · fit 71 | **Build position** · fit 69 |
 
 Routes are each investor's default: greenfield for the strategic and the developer, ready-to-build for the fund and the first-timer. A limit is checked on that route.

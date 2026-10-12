@@ -111,7 +111,7 @@
     },
     "foreignEntry": {
       "dimension": "foreignEntry",
-      "grade": 4,
+      "grade": 3,
       "trend": "stable",
       "basis": "official",
       "evidence": [
@@ -120,8 +120,8 @@
         "kritisAnnex"
       ],
       "reason": [
-        "Investment review reaches a non-EU acquirer of a company that operates a critical facility. The published threshold for a storage plant is 104 MW, above the 100 MW reference project; a review once opened has four months to decide.",
-        "投资审查适用于非欧盟投资者收购关键设施运营企业的情形。储能设施的公开门槛为104MW，高于100MW的参考项目；审查一旦启动，须在四个月内作出决定。"
+        "Investment review reaches a non-EU acquirer of a company that operates a critical facility. The published threshold for a storage plant is 104 MW, above the 100 MW reference project; a review once opened has four months to decide, which is longer than ninety days.",
+        "投资审查适用于非欧盟投资者收购关键设施运营企业的情形。储能设施的公开门槛为104MW，高于100MW的参考项目；审查一旦启动，须在四个月内作出决定，超过九十天。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
@@ -129,7 +129,7 @@
     },
     "supplyChainOrigin": {
       "dimension": "supplyChainOrigin",
-      "grade": 3,
+      "grade": 5,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],

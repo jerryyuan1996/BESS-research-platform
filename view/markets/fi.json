@@ -4,11 +4,11 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 5,
+      "grade": 4,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-12",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -83,17 +83,17 @@
     },
     "foreignEntry": {
       "dimension": "foreignEntry",
-      "grade": 5,
+      "grade": 4,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "revision-plan"
       ],
       "reason": [
-        "Greenfield projects sit outside the screening act in force. A new act covering storage from 100 MW is planned for 2027 and is tracked as a trigger.",
-        "新建项目不在现行审查法适用范围内。计划于2027年生效的新法将涵盖100MW及以上储能，已作为触发事件跟踪。"
+        "Greenfield projects sit outside the screening act in force, but buying a ready-to-build project is an acquisition, so the grade is set a step below. A new act covering storage from 100 MW is planned for 2027 and is tracked as a trigger.",
+        "新建项目不在现行审查法适用范围内，但收购具备开工条件的项目属于并购，因此评级下调一级。计划于2027年生效的新法将涵盖100MW及以上储能，已作为触发事件跟踪。"
       ],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-12",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -259,15 +259,15 @@
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
-      "call": "enter-now",
+      "call": "build-position",
       "route": "ready-to-build",
       "where": null,
       "because": [
         {
           "dimension": "foreignEntry",
           "text": [
-            "Greenfield storage sits outside the screening act in force today.",
-            "新建储能目前不在现行投资审查法的适用范围内。"
+            "Greenfield storage sits outside the screening act in force today; a ready-to-build purchase is an acquisition, and its ownership route has to be confirmed first.",
+            "新建储能目前不在现行投资审查法的适用范围内；但收购具备开工条件的项目属于并购，须先确认其股权路径。"
           ]
         },
         {
@@ -287,7 +287,7 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-11",
+      "asOf": "2026-10-12",
       "lockedUntil": null
     },
     "developer": {

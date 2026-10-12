@@ -933,7 +933,7 @@ SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which
   { t: 'investment-case', marketId: 'pl' },
 ] });
 SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
-  { t: 'p', text: ['Three statutory payments: a fee to apply, an advance of up to PLN 6 million within fourteen days, and security after the connection agreement. The platform holds no złoty rate, so they are stated in złoty and not totalled in dollars.', '三笔法定款项：申请费、申请后14日内最高600万兹罗提的预付款，以及签订并网协议后的履约担保。本平台没有兹罗提汇率，因此以兹罗提列示，不折算为美元合计。'] },
+  { t: 'p', text: ['Three statutory payments: a fee to apply, an advance of up to PLN 6 million within fourteen days, and security after the connection agreement. They are stated in złoty, as the statute states them, and totalled at a seed rate; development spend is not sourced, so the total is a lower bound.', '三笔法定款项：申请费、申请后14日内最高600万兹罗提的预付款，以及签订并网协议后的履约担保。金额按法律原文以兹罗提列示，并按设定汇率合计；前期开发支出没有来源，因此合计为下限。'] },
   { t: 'entry-ledger', marketId: 'pl' },
 ] });
 
