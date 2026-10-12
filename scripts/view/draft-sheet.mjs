@@ -10,15 +10,23 @@
    store. A draft becomes a record only when the analyst has answered the sheet
    and the change is applied through scripts/view/writer.mjs.
 
-   THREE THINGS IT WILL NOT DO, each on purpose:
+   TWO KINDS OF SUGGESTION, KEPT APART (the analyst asked for both on
+   2026-10-12):
 
-     - fill in a call. The verdict rows show the score, the band it falls in
-       and the ceiling, and the call column is empty;
-     - draft a grade where no source was opened. Those rows say "yours" and
-       show the anchors, and whatever was found;
-     - score around a gap. A pillar with an open dimension has no score, so
-       the sheet shows the range the fit can take and says which open grades
-       would close the market to which investor.
+     - a DRAFT is a reading an opened source supports. If accepted it is
+       written with that source and a public reason;
+     - a RECOMMENDATION is the drafting agent's own estimate, from general
+       knowledge and from how the markets already graded compare, with no
+       source opened. If accepted it is written as a practitioner grade: the
+       analyst's judgement, with no evidence and no public reason.
+
+   The four calls are recommended the same way: each is the band the fit falls
+   in if every suggestion above it were accepted, or "not accessible" where a
+   knock-out or a limit applies. That is arithmetic and not an argument, and
+   the call column stays the analyst's to fill.
+
+   It does not score around a gap: a pillar with an open dimension has no
+   score, and the sheet shows the range the fit can take.
 
    The sheet and the draft cannot differ: every drafted record is validated
    with the store's own validator before a line is printed, and the same record
@@ -69,8 +77,18 @@ for (const [key, body] of Object.entries(draft.drafted)){
 }
 if (problems.length){ console.error(problems.join('\n')); process.exit(1); }
 
-const open = DIMENSIONS.filter(d => !records[d.id]).map(d => d.id);
-const bare = Object.fromEntries(Object.entries(records).map(([k, r]) => [k, r.grade]));
+const recommended = draft.recommended ?? {};
+for (const [key, rec] of Object.entries(recommended)){
+  if (records[key]) problems.push(`${key}: both drafted and recommended`);
+  if (!Number.isInteger(rec.grade) || rec.grade < 1 || rec.grade > 5) problems.push(`${key}: a recommendation is a whole number from 1 to 5`);
+}
+if (problems.length){ console.error(problems.join('\n')); process.exit(1); }
+
+const open = DIMENSIONS.filter(d => !records[d.id] && !recommended[d.id]).map(d => d.id);
+const bare = {
+  ...Object.fromEntries(Object.entries(recommended).map(([k, r]) => [k, r.grade])),
+  ...Object.fromEntries(Object.entries(records).map(([k, r]) => [k, r.grade])),
+};
 
 /* ---- money ------------------------------------------------------------------ */
 
@@ -91,7 +109,9 @@ line(`# Grading sheet — ${market.manifest.name?.[0] ?? id}`);
 line();
 line(`Prepared ${draft.preparedOn}. **A draft for your decision. Nothing here is a grade until you answer it, and nothing has been written to the view store.**`);
 line();
-line(`Reference project: ${project.powerMW} MW · ${project.durationHours}h, ${usd(project.costUSD)}. ${Object.keys(records).length} of ${DIMENSIONS.length} dimensions carry a draft; ${open.length} are yours.`);
+line(`Reference project: ${project.powerMW} MW · ${project.durationHours}h, ${usd(project.costUSD)}. Of ${DIMENSIONS.length} dimensions, ${Object.keys(records).length} carry a draft from an opened source, ${Object.keys(recommended).length} carry my recommendation with no source, and ${open.length} have neither.`);
+line();
+line('**A draft** rests on a source I opened and would be written with it. **A recommendation** is my own estimate from general knowledge and from how the graded markets compare; if you accept one it is written as your practitioner grade, with no evidence and no public reason.');
 line();
 line('How to answer, in the session: `accept` the rows you agree with, give a number for any you change or that are yours, or say a dimension `waits`. Then the four calls, each with its route. A practitioner grade needs only its number here; its reason stays in your private notes and I do not read or write it.');
 line();
@@ -101,14 +121,16 @@ for (const pillar of PILLARS){
   line();
   for (const d of dimensionsIn(pillar)){
     const r = records[d.id];
-    line(`### ${d.label[0]}${r ? ` — draft ${r.grade}` : ' — yours'}`);
+    const rec = recommended[d.id];
+    line(`### ${d.label[0]}${r ? ` — draft ${r.grade}` : rec ? ` — recommended ${rec.grade}` : ' — yours'}`);
     line();
     line(`*${d.measure[0]}*`);
     line();
-    const shown = r ? [r.grade + 1, r.grade, r.grade - 1].filter(g => g >= 1 && g <= 5) : [5, 4, 3, 2, 1];
+    const at = r ? r.grade : rec ? rec.grade : null;
+    const shown = at ? [at + 1, at, at - 1].filter(g => g >= 1 && g <= 5) : [5, 4, 3, 2, 1];
     line('| Grade | Anchor |');
     line('|---|---|');
-    for (const g of shown) line(`| ${r && g === r.grade ? `**${g}**` : g} | ${cell(d.anchors[g][0])} |`);
+    for (const g of shown) line(`| ${g === at ? `**${g}**` : g} | ${cell(d.anchors[g][0])} |`);
     line();
     if (r){
       line(`- **Draft:** ${r.grade}, ${BASIS_LABEL[r.basis][0].toLowerCase()}, trend ${r.trend}${r.trendCause ? ` (${r.trendCause[0]})` : ''}.`);
@@ -116,6 +138,9 @@ for (const pillar of PILLARS){
       line(`- **中文：** ${r.reason[1]}`);
       line(`- **Evidence:** ${r.evidence.map(evidenceName).join('; ')}.`);
       if (r.metric) line(`- **Metric beside the grade:** ${usd(r.metric.perProject)} on the project, ${(100 * r.metric.shareOfCost).toFixed(2)}% of its cost.`);
+    } else if (rec){
+      line(`- **Recommendation, no source opened:** ${rec.grade}. ${rec.why}`);
+      line('- If accepted, written as your practitioner grade.');
     } else {
       line('- **No draft.** If you grade it with no public source, it is a practitioner grade.');
     }
@@ -130,7 +155,7 @@ for (const pillar of PILLARS){
 
 line('## The four investors');
 line();
-line('The call column is yours. The rest is arithmetic on the grades above as they stand, and it moves when you change one.');
+line('The call column is yours. The recommended call is arithmetic and nothing more: the band the fit falls in if every draft and recommendation above were accepted, or not accessible where a knock-out or a breached limit applies. It moves when you change a grade.');
 line();
 
 /* What an open dimension can add to a pillar, at its worst and best reading. */
@@ -151,7 +176,7 @@ function pillarRange(arch, pillar){
   return [lo / weights, hi / weights];
 }
 
-line('| Investor | Call | Route | Fit | Band the fit falls in | Closed by | Limits not checked |');
+line('| Investor | Your call | Recommended call | Route | Fit | Closed by | Limits not checked |');
 line('|---|---|---|---|---|---|---|');
 const detail = [];
 for (const a of ARCHETYPE_IDS){
@@ -172,7 +197,8 @@ for (const a of ARCHETYPE_IDS){
     ...limits.breached.map(l => arch.limits.find(x => x.id === l).label[0]),
   ];
   const label = (l) => arch.limits.find(x => x.id === l).label[0];
-  line(`| ${arch.label[0]} |  | default: ${ROUTE_LABEL[arch.defaultRoute][0].toLowerCase()} | ${fit} | ${band} | ${closed.length ? cell(closed.join('; ')) : 'nothing so far'} | ${limits.unchecked.length ? cell(limits.unchecked.map(label).join('; ')) : 'none'} |`);
+  const call = closed.length ? '**Not accessible**' : complete ? `**${band}**` : `${band} (open grades)`;
+  line(`| ${arch.label[0]} |  | ${call} | default: ${ROUTE_LABEL[arch.defaultRoute][0].toLowerCase()} | ${fit} | ${closed.length ? cell(closed.join('; ')) : 'nothing'} | ${limits.unchecked.length ? cell(limits.unchecked.map(label).join('; ')) : 'none'} |`);
 
   const risks = open.filter(k => [1, 2, 3, 4, 5].some(g => arch.reads[k][g] === KNOCK_OUT))
     .map(k => `${dimension(k).label[0]} at ${[1, 2, 3, 4, 5].filter(g => arch.reads[k][g] === KNOCK_OUT).join(' or ')}`);
@@ -220,4 +246,4 @@ line();
 
 const target = path.join(ROOT, 'docs', 'grading', `${id}.md`);
 await writeFile(target, out.join('\n'), 'utf8');
-console.log(`  ${path.relative(ROOT, target)}  (${Object.keys(records).length} drafted, ${open.length} open)`);
+console.log(`  ${path.relative(ROOT, target)}  (${Object.keys(records).length} drafted, ${Object.keys(recommended).length} recommended, ${open.length} open)`);

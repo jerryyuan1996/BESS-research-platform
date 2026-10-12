@@ -237,6 +237,10 @@ export const SRC = {
   },
 
   // ---- model -------------------------------------------------------------
+  /* Opened on 2026-10-12 for the capital-at-risk ledger and the first grades.
+     Each `cy` says what the document establishes and stops there. */
+  fefetaOutline: { file:'Ministry of Finance — Outline of the inward direct investment system under the Foreign Exchange and Foreign Trade Act (for investee companies)', status:['Official — Public','官方 — 公开'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'May 2023', cy:'A foreign investor must submit a prior notification before acquiring any share of an unlisted Japanese company, or 1% or more of a listed one, operating in a designated business sector; infrastructure including electricity is one, and so are storage batteries and their materials. An exemption exists for investors who take no part in management, and not for state-owned enterprises. The page states no review period', url:'https://www.mof.go.jp/english/policy/international_policy/fdi/Overview/outline1.pdf' },
+
   modelSeed: {
     file: 'Normalized economics — illustrative seed pending ETL (see Data & Methodology)',
     status: ['Financial-model assumption', '财务模型假设'], provenance:{authority:'internal',publication:'final',availability:'restricted',verification:'verified'},

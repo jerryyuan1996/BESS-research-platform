@@ -14,7 +14,9 @@
 
    THREE RULES, so that nothing reaches the store he did not decide:
 
-     - "accept" writes the drafted record exactly as the sheet showed it;
+     - "accept" on a draft writes the drafted record exactly as the sheet
+       showed it. "accept" on a recommendation writes the recommended number
+       as a practitioner grade, because a recommendation had no source;
      - a number on a dimension with no draft is a practitioner grade: no
        evidence and no public reason, because none was offered;
      - a number that differs from a draft is refused here. The drafted reason
@@ -48,8 +50,13 @@ for (const dimension of DIMENSION_IDS){
   const drafted = draft.drafted[dimension];
   let record, reason;
   if (answer === undefined){ problems.push(`${dimension}: not answered — the market waits`); continue; }
-  if (answer === 'accept'){
-    if (!drafted){ problems.push(`${dimension}: accepted, and no draft was offered`); continue; }
+  const recommended = draft.recommended?.[dimension];
+  if (answer === 'accept' && !drafted && recommended){
+    record = { dimension, grade: recommended.grade, trend: 'stable', basis: 'practitioner', evidence: [] };
+    reason = [`Graded by the analyst on ${day} as practitioner judgement, accepting a recommendation made with no public source.`,
+              `${day}由分析师以从业者判断给出评级，采纳了一项没有公开来源的建议。`];
+  } else if (answer === 'accept'){
+    if (!drafted){ problems.push(`${dimension}: accepted, and neither a draft nor a recommendation was offered`); continue; }
     record = { ...drafted };
     reason = [`Drafted from sources opened for the grading sheet and accepted by the analyst on ${day}.`,
               `依据为评级表查阅的来源起草，并于${day}经分析师确认。`];

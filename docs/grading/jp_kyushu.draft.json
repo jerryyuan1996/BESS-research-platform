@@ -1,0 +1,138 @@
+{
+  "market": "jp_kyushu",
+  "preparedOn": "2026-10-12",
+  "note": "A DRAFT FOR THE ANALYST'S REVIEW. Nothing here is a grade until he has answered the sheet. `drafted` records rest on an opened source and are exactly what would be written if accepted. `recommended` entries are the drafting agent's own estimates with no source opened; an accepted one is written as a practitioner grade.",
+  "drafted": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Sixth of fourteen markets on hold IRR, 7.5%.",
+        "持有期IRR为7.5%，在十四个市场中排名第六。"
+      ]
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "occtoLtda2026"
+      ],
+      "reason": [
+        "96% of first-year revenue is secured for fifteen years under a representative long-term auction award; the payment is derived from costs and is not an identified contract price.",
+        "在代表性的长期拍卖中标情景下，首年收入的96%锁定十五年；该付款金额由成本推算，并非已确认的合同价格。"
+      ]
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "kyudenStudyCap",
+        "kyudenContribution"
+      ],
+      "reason": [
+        "The network company publishes its connection process, a cap of eight concurrent connection studies per operator, and its payment terms for the construction-cost contribution.",
+        "电网公司公布了并网流程、每家运营商同时进行的并网研究不得超过八项的上限，以及工程费负担金的付款条款。"
+      ]
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "kyudenStudyCap",
+        "occtoKyushuCurtail"
+      ],
+      "reason": [
+        "Connection studies are rationed at eight per operator from August 2026, in the area with the most output control: fifty days in the first quarter of 2026.",
+        "自2026年8月起，并网研究按每家运营商八项的上限受理；该区域出力抑制最为频繁：2026年第一季度达五十天。"
+      ]
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "fefetaOutline"
+      ],
+      "reason": [
+        "A foreign investor must file a prior notification before taking any share of an unlisted company in the electricity sector; an exemption exists for investors who take no part in management, and not for state-owned ones.",
+        "外国投资者在取得电力行业非上市公司任何股份之前须事先申报；不参与经营管理的投资者可获豁免，但国有企业不适用该豁免。"
+      ]
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "occtoLtda2026"
+      ],
+      "reason": [
+        "The long-term auction's terms are reset each round, including the price ceiling for batteries; awards already made keep their terms.",
+        "长期拍卖的条款每轮都会调整，包括电池的价格上限；已授予的合同条款不变。"
+      ]
+    }
+  },
+  "recommended": {
+    "capitalAtRisk": {
+      "grade": 3,
+      "why": "A first payment of half the connection charge at the connection contract, and no deposit rule recorded. No amount is published."
+    },
+    "timeToRevenue": {
+      "grade": 3,
+      "why": "As Tokyo: study, contract and a six-hour build. Level with Great Britain and Germany (3)."
+    },
+    "saturation": {
+      "grade": 3,
+      "why": "The area with the deepest solar surplus has drawn the most battery interest relative to its size. Between Tokyo and Hokkaido."
+    },
+    "scaleRepeatability": {
+      "grade": 3,
+      "why": "A mid-sized area with export limited by one interconnector; two to four more reference projects is my estimate."
+    },
+    "supplyChainOrigin": {
+      "grade": 3,
+      "why": "The finance ministry's outline lists storage batteries as a designated sector and the decision profile names sourcing compliance as a gate for the long-term auction. I read that as an origin or security rule conditioning an auction, which is 3; if it bars a supplier from the main revenue route outright it is 2. Not established by a source I opened."
+    },
+    "demandGrowth": {
+      "grade": 3,
+      "why": "National supply plans show roughly flat demand with data-centre and semiconductor load as the upside. Level with Great Britain and Western Australia (3) in all three areas."
+    },
+    "debtAvailability": {
+      "grade": 4,
+      "why": "Domestic banks lend against the twenty-year auction award, and merchant financings are few. A step under Great Britain and Germany (5). National, so the same in all three areas."
+    },
+    "exitLiquidity": {
+      "grade": 3,
+      "why": "Development-stage projects change hands; few operating storage assets have traded. Level with Finland (3). National."
+    }
+  },
+  "found": {
+    "revenueCertainty": [
+      "The decision profile says the modelled award payment is cost-derived and not an identified price. The grade follows the engine's figures, as the anchor asks; a project without an award secures nothing."
+    ],
+    "foreignEntry": [
+      "The finance ministry's outline for investee companies, dated May 2023, was opened. It states no review period, which the anchor's grade 4 wants at 90 days or less; I recall a thirty-day waiting period and did not source it. National, so the same in all three areas."
+    ],
+    "approvalTransparency": [
+      "From the register's entries for the network company, which it holds as verified. The Tokyo notice refused the fetch on 2026-10-12, so none was re-opened."
+    ],
+    "capitalAtRisk": [
+      "No item in the ledger has an amount: the payments are percentages of a connection charge that is not published."
+    ]
+  },
+  "seeds": {}
+}

@@ -21,7 +21,7 @@ import {
   parseEffectPath, testWhen, isRule,
 } from '../src/governance/triggers.js';
 import { ARCHETYPES, METRIC, limitCheck } from '../src/governance/archetypes.js';
-import { byId } from '../src/markets/registry.js';
+import { byId, markets } from '../src/markets/registry.js';
 import { FX } from '../src/comparison/assumptions.js';
 
 const bilingual = (v) => Array.isArray(v) && v.length === 2 && /[一-鿿]/.test(v[1]) && !/[一-鿿]/.test(v[0]);
@@ -50,8 +50,9 @@ const ledger = (items) => ({
 
 test('every ledger validates and belongs to a registered market', () => {
   /* The four corners, and each market since as its ledger was written (plan
-     phase 5): Germany, then Italy, Poland and Ireland. */
-  assert.deepEqual(ledgerMarketIds().sort(), ['de', 'fi', 'gb', 'ie', 'it', 'pl', 'ro', 'wa']);
+     phase 5). All fifteen now have one, and several say plainly that nothing
+     in them is sourced. */
+  assert.deepEqual(ledgerMarketIds().sort(), markets.map(m => m.manifest.id).sort());
   for (const l of allLedgers()){
     assert.deepEqual(validateLedger(l), [], `${l.marketId}: ledger is invalid`);
     const market = byId(l.marketId);
@@ -64,12 +65,14 @@ test('every ledger validates and belongs to a registered market', () => {
     }
   }
   assert.ok(hasLedger('wa'));
-  assert.equal(ledgerFor('ercot'), null, 'absence stays comfortable');
+  assert.equal(ledgerFor('not-a-market'), null, 'absence stays comfortable');
 });
 
 test('every register key a ledger cites exists in that market\'s sources', async () => {
   for (const l of allLedgers()){
-    const { SRC } = await import(`../src/markets/${l.marketId}/sources.js`);
+    /* Japan's three allocation points share one dashboard and one register. */
+    const dir = l.marketId.startsWith('jp_') ? 'jp' : l.marketId;
+    const { SRC } = await import(`../src/markets/${dir}/sources.js`);
     for (const i of l.items) for (const source of i.evidence){
       if (typeof source === 'string') assert.ok(SRC[source], `${l.marketId}/${i.id}: cites "${source}", which is not in the register`);
     }

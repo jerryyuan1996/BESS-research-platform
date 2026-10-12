@@ -20,8 +20,14 @@ import { ENTRY_LEDGER as DE } from '../markets/de/entryLedger.js';
 import { ENTRY_LEDGER as IT } from '../markets/it/entryLedger.js';
 import { ENTRY_LEDGER as PL } from '../markets/pl/entryLedger.js';
 import { ENTRY_LEDGER as IE } from '../markets/ie/entryLedger.js';
+import { ENTRY_LEDGER as NEM } from '../markets/nem/entryLedger.js';
+import { ENTRY_LEDGER as PJM } from '../markets/pjm/entryLedger.js';
+import { ENTRY_LEDGER as ERCOT } from '../markets/ercot/entryLedger.js';
+import { ENTRY_LEDGER as CAISO } from '../markets/caiso/entryLedger.js';
+/* Japan's three allocation points share one dashboard and one module. */
+import { TOKYO_ENTRY_LEDGER, KYUSHU_ENTRY_LEDGER, HOKKAIDO_ENTRY_LEDGER } from '../markets/jp/entryLedger.js';
 
-const LEDGERS = [WA, FI, GB, RO, DE, IT, PL, IE];
+const LEDGERS = [WA, FI, GB, RO, DE, IT, PL, IE, NEM, PJM, ERCOT, CAISO, TOKYO_ENTRY_LEDGER, KYUSHU_ENTRY_LEDGER, HOKKAIDO_ENTRY_LEDGER];
 
 const byMarket = new Map(LEDGERS.map(l => [l.marketId, l]));
 

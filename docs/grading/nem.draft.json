@@ -1,0 +1,130 @@
+{
+  "market": "nem",
+  "preparedOn": "2026-10-12",
+  "note": "A DRAFT FOR THE ANALYST'S REVIEW. Nothing here is a grade until he has answered the sheet. `drafted` records rest on an opened source and are exactly what would be written if accepted. `recommended` entries are the drafting agent's own estimates with no source opened; an accepted one is written as a practitioner grade.",
+  "drafted": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Eleventh of fourteen markets on hold IRR, 3.1%.",
+        "持有期IRR为3.1%，在十四个市场中排名第十一。"
+      ]
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "cis"
+      ],
+      "reason": [
+        "87% of first-year revenue is secured for fifteen years under a representative tender award; the terms of actual awards are not public.",
+        "在代表性的招标中标情景下，首年收入的87%锁定十五年；实际中标合同的条款并不公开。"
+      ]
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "firbSecurity"
+      ],
+      "reason": [
+        "A foreign person must seek approval before starting, or taking a direct interest in, a national security business, and electricity is a critical infrastructure sector. The statutory decision period has not been confirmed.",
+        "外国投资者在开展或直接入股“国家安全业务”之前须取得批准，而电力属于关键基础设施行业。法定决定期限尚未确认。"
+      ]
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "nelson",
+        "cis"
+      ],
+      "reason": [
+        "The last tender round for dispatchable capacity in this market has been reported, and its successor scheme is at draft legislation with a first round indicated for late 2027; contracts already awarded keep their terms.",
+        "据报道，该市场可调度容量的最后一轮招标已经完成，接续机制尚处于立法草案阶段，首轮预计在2027年底；已授予的合同条款不变。"
+      ]
+    }
+  },
+  "recommended": {
+    "capitalAtRisk": {
+      "grade": 3,
+      "why": "No amount is sourced. Connection studies and negotiated connection assets are a real pre-decision cost here, but security is usually tied to an awarded tender and not to the queue. Between Western Australia (2, where a large security is posted) and Germany (4)."
+    },
+    "approvalTransparency": {
+      "grade": 4,
+      "why": "The same national rules framework as Western Australia, which you graded 4: process and gating rules published, timeframes indicative."
+    },
+    "timeToRevenue": {
+      "grade": 3,
+      "why": "Connection studies and performance-standard negotiation commonly take two to three years before a one to two year build. A step faster than Western Australia (2), which waits on a network project."
+    },
+    "gridScarcity": {
+      "grade": 3,
+      "why": "Capacity is rationed through renewable-zone access schemes and the connection process, and is obtainable; loss factors and curtailment are the cost. Better than Western Australia (2), where export is capped until 2029."
+    },
+    "supplyChainOrigin": {
+      "grade": 5,
+      "why": "I know of no origin rule or origin-specific duty on storage in Australia. You graded Western Australia 5."
+    },
+    "demandGrowth": {
+      "grade": 3,
+      "why": "The operator forecasts steady growth with data-centre load largely at enquiry stage. Same as Western Australia (3)."
+    },
+    "saturation": {
+      "grade": 2,
+      "why": "The dashboard scores pipeline saturation 38 of 100 and frequency-service depth 30, and the committed fleet is several times what the frequency markets need. Same as Western Australia and Great Britain (2)."
+    },
+    "debtAvailability": {
+      "grade": 5,
+      "why": "The deepest storage project-finance market in the set by count, including merchant-exposed deals; the dashboard scores financing 90 of 100. Level with Great Britain and Germany (5)."
+    },
+    "exitLiquidity": {
+      "grade": 4,
+      "why": "Operating assets and platforms change hands regularly. Level with Great Britain (4)."
+    },
+    "scaleRepeatability": {
+      "grade": 4,
+      "why": "A large system across five price regions and several network providers: ten more fit only across operators, which is the anchor's wording for 4."
+    }
+  },
+  "found": {
+    "revenueCertainty": [
+      "The engine's base route for this market is a tender award, and the decision profile says the modelled floor is a proxy because award terms are private. The grade follows the engine's figures, as the anchor asks."
+    ],
+    "foreignEntry": [
+      "Drafted on the same guidance note you accepted for Western Australia at grade 3. I extracted its text on 2026-10-12: it confirms the approval requirement and that electricity is a listed sector. I did not find the decision period in it."
+    ],
+    "capitalAtRisk": [
+      "The ledger has no sourced item: the operator's connections page refused the fetch."
+    ]
+  },
+  "seeds": {
+    "revenueCertainty": [
+      "Contracted revenue availability (CIS / LTESA / tolls) — weight 20, score 72 of 100"
+    ],
+    "gridScarcity": [
+      "Grid access, loss factors and curtailment — weight 15, score 50 of 100"
+    ],
+    "saturation": [
+      "Pipeline saturation against the ISP requirement — weight 15, score 38 of 100",
+      "FCAS depth — weight 5, score 30 of 100"
+    ],
+    "debtAvailability": [
+      "Financing and delivery execution — weight 10, score 90 of 100"
+    ]
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "market": "pjm",
+  "preparedOn": "2026-10-12",
+  "note": "A DRAFT FOR THE ANALYST'S REVIEW. Nothing here is a grade until he has answered the sheet. `drafted` records rest on an opened source and are exactly what would be written if accepted. `recommended` entries are the drafting agent's own estimates with no source opened; an accepted one is written as a practitioner grade.",
+  "drafted": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 1,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Twelfth of fourteen markets on hold IRR, 2.4%.",
+        "持有期IRR为2.4%，在十四个市场中排名第十二。"
+      ]
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "bra2829"
+      ],
+      "reason": [
+        "47% of first-year revenue is secured, by a capacity auction that covers a single delivery year.",
+        "首年收入的47%已锁定，来自仅覆盖一个交付年度的容量拍卖。"
+      ]
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "queue"
+      ],
+      "reason": [
+        "67 GW of storage sits in the reopened interconnection queue, against 1.9 GW of batteries awarded interconnection agreements in the first transition cycle.",
+        "重新开放的并网排队中有67GW储能，而首个过渡周期中获得并网协议的电池项目仅1.9GW。"
+      ]
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "cfius"
+      ],
+      "reason": [
+        "Review of foreign investment is largely voluntary and mandatory only in some cases, such as a foreign government taking a substantial interest; a notice is reviewed in 45 days, with a 45-day investigation if needed.",
+        "外资审查以自愿申报为主，仅在部分情形下（如外国政府取得重大权益）为强制申报；正式申报的审查期为45日，必要时再进行45日的调查。"
+      ]
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "itc",
+        "notice202615"
+      ],
+      "reason": [
+        "From 2026 a project that fails the material-assistance cost ratio for prohibited foreign entities loses the investment tax credit entirely, not in proportion.",
+        "自2026年起，未达到“受禁外国实体实质协助成本比率”要求的项目将全额丧失投资税收抵免，而非按比例扣减。"
+      ]
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "collar"
+      ],
+      "reason": [
+        "The price collar on the capacity auction ends after the 2029/2030 auction and a reliability backstop filing is suspended at the federal regulator until February 2027, so the design of the main revenue line beyond that is not settled.",
+        "容量拍卖的价格区间机制将在2029/2030年度拍卖后终止，可靠性兜底机制的申请被联邦监管机构搁置至2027年2月，因此此后主要收入机制的设计尚未确定。"
+      ]
+    }
+  },
+  "recommended": {
+    "capitalAtRisk": {
+      "grade": 2,
+      "why": "No amount is sourced. The reformed cycle is known for readiness deposits that are posted before study results and are at risk on withdrawal, which is the anchor's clause for 2: security before capacity is certain. Same reading as I drafted for CAISO from its tariff."
+    },
+    "approvalTransparency": {
+      "grade": 4,
+      "why": "A federally regulated tariff with a published cycle, public queue and a regulator to appeal to would read 5; the process was rebuilt between cycles, which is the argument for 4. Level with Great Britain and Germany."
+    },
+    "timeToRevenue": {
+      "grade": 2,
+      "why": "The dashboard scores queue and delivery 35 of 100 and queue position 3 of 3 on risk; a new request waits for a later cycle and then for network upgrades. Level with Western Australia and Romania (2)."
+    },
+    "demandGrowth": {
+      "grade": 5,
+      "why": "The operator's own load forecast has been revised up sharply on data-centre load and the last auction cleared 6.8 GW short of the reliability requirement. Level with Finland (5)."
+    },
+    "saturation": {
+      "grade": 4,
+      "why": "About 400 MW of batteries operate against a regulation requirement near 750 MW and a system peak two orders larger; the queue is the risk, not the fleet. No graded market reads this open."
+    },
+    "debtAvailability": {
+      "grade": 3,
+      "why": "Few standalone storage financings here, with capacity revenue secured one year at a time; the dashboard's 71 of 100 covers tax equity and delivery too. Level with Western Australia and Romania (3)."
+    },
+    "exitLiquidity": {
+      "grade": 3,
+      "why": "Development-stage projects trade; operating standalone storage here is too small a fleet to have a market. Level with Finland (3)."
+    },
+    "scaleRepeatability": {
+      "grade": 4,
+      "why": "A very large system, but ten more reference projects means several transmission zones and deliverability areas: the anchor's wording for 4."
+    }
+  },
+  "found": {
+    "foreignEntry": [
+      "The committee's overview page was opened. It does not define a covered transaction, so whether buying a 90 MW storage project is one is not established by it; the grade rests on filing being largely voluntary. State law is not covered by it."
+    ],
+    "supplyChainOrigin": [
+      "From the register's two tax-guidance entries, which the dashboard already scores as a cliff and not a slope."
+    ],
+    "capitalAtRisk": [
+      "The ledger has no sourced item: the operator's service-request page carries no terms and its manual was too large to fetch."
+    ],
+    "revenueCertainty": [
+      "Grade 2 by the anchor's first clause: anything secured for under three years."
+    ]
+  },
+  "seeds": {
+    "revenueCertainty": [
+      "Contracted revenue beyond the secured delivery year — weight 15, score 30 of 100"
+    ],
+    "gridScarcity": [
+      "Interconnection queue and delivery timetable — weight 15, score 35 of 100",
+      "Interconnection queue position and cycle status — connection risk, weight 18, 3 of 3"
+    ],
+    "supplyChainOrigin": [
+      "FEOC material-assistance compliance for the tax credit — connection risk, weight 12, 2 of 3"
+    ],
+    "capitalAtRisk": [
+      "Network upgrade cost allocation exposure — connection risk, weight 14, 2 of 3"
+    ],
+    "debtAvailability": [
+      "Financing, tax equity and delivery execution — weight 9, score 71 of 100"
+    ],
+    "saturation": [
+      "Regulation headroom against the system requirement — weight 10, score 18 of 100"
+    ]
+  }
+}

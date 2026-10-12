@@ -1,0 +1,161 @@
+{
+  "market": "ercot",
+  "preparedOn": "2026-10-12",
+  "note": "A DRAFT FOR THE ANALYST'S REVIEW. Nothing here is a grade until he has answered the sheet. `drafted` records rest on an opened source and are exactly what would be written if accepted. `recommended` entries are the drafting agent's own estimates with no source opened; an accepted one is written as a practitioner grade.",
+  "drafted": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 1,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Last of fourteen markets on hold IRR, −5.9%.",
+        "持有期IRR为−5.9%，在十四个市场中排名末位。"
+      ]
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "tolls"
+      ],
+      "reason": [
+        "The base case is a toll covering all revenue for seven years, valued from a published benchmark and not from a disclosed contract; twelve tolled batteries are known in the market.",
+        "基准情景为覆盖全部收入、期限七年的租赁，其价值取自公开基准而非已披露的合同；该市场已知有十二个采用租赁模式的电池项目。"
+      ]
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "queue"
+      ],
+      "reason": [
+        "Interconnection is connect-and-manage with no auction or cap on storage requests, on timelines of roughly 4.2 years.",
+        "并网采用“先接入、后管理”模式，对储能申请不设拍卖或上限，周期约为4.2年。"
+      ]
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "itc"
+      ],
+      "reason": [
+        "From 2026 a project that fails the material-assistance cost ratio for prohibited foreign entities loses the investment tax credit entirely, not in proportion.",
+        "自2026年起，未达到“受禁外国实体实质协助成本比率”要求的项目将全额丧失投资税收抵免，而非按比例扣减。"
+      ]
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "rtcb"
+      ],
+      "reason": [
+        "Real-time co-optimisation changed how energy and ancillary services clear, and data-centre interconnections have been paused for audit since August 2026; nothing here is contracted with the market, so there is no contract for a rule change to honour or break.",
+        "实时联合优化改变了电能量与辅助服务的出清方式；数据中心并网自2026年8月起因审计而暂停。此处没有与市场签订的合同，因此也谈不上规则变更是否追溯存量合同。"
+      ]
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "deteriorating",
+      "basis": "third-party",
+      "evidence": [
+        "modoIndex",
+        "buildout"
+      ],
+      "reason": [
+        "The fleet reached about 15 GW in early 2026, and the published fleet revenue index fell from USD 193 per kW in 2023 to USD 56 in 2024 and about USD 29 in 2025.",
+        "截至2026年初，机组规模约达15GW；公开的机组收入指数由2023年的每kW 193美元降至2024年的56美元，2025年约为29美元。"
+      ],
+      "trendCause": [
+        "Published fleet revenue per kW has fallen two years running as the fleet grew.",
+        "随着机组规模扩大，公开的每kW机组收入已连续两年下降。"
+      ]
+    }
+  },
+  "recommended": {
+    "capitalAtRisk": {
+      "grade": 3,
+      "why": "No amount is sourced. Fees to the operator are modest by reputation and security for the interconnection facilities is given with the notice to proceed, which I have taken as after the decision. Between CAISO (drafted 2) and Germany (4)."
+    },
+    "approvalTransparency": {
+      "grade": 4,
+      "why": "The Planning Guide publishes the process, the 180-day and 60-day windows and what is made public about a request. Level with Great Britain and Germany (4)."
+    },
+    "timeToRevenue": {
+      "grade": 4,
+      "why": "The dashboard scores interconnection speed and cost 92 of 100 and the register records about 4.2 years across all technologies; batteries have connected faster. Level with Finland (4)."
+    },
+    "foreignEntry": {
+      "grade": 2,
+      "why": "Federal review reads 4, as drafted for PJM and CAISO from the committee's page. I am recommending 2 for Texas on state law, from memory and not from an opened page: a 2021 act bars critical-infrastructure agreements with companies from four named countries, and a 2025 act restricts land purchases by the same. The anchor's 2 is 'investors of named origins face a stricter test'. If your investor is not from a named country, 4."
+    },
+    "demandGrowth": {
+      "grade": 5,
+      "why": "The register records a large-load queue of about 474 GW, mostly data centres; signed load is a fraction of that but still large against peak. Level with Finland (5)."
+    },
+    "debtAvailability": {
+      "grade": 4,
+      "why": "Many disclosed financings, most sized on tolls or hedges, with merchant debt thinner since revenues fell; the dashboard scores financing 76 of 100. A step under Great Britain and Germany (5)."
+    },
+    "exitLiquidity": {
+      "grade": 4,
+      "why": "Operating batteries and portfolios have traded regularly. Level with Great Britain (4)."
+    },
+    "scaleRepeatability": {
+      "grade": 5,
+      "why": "One operator, one market, and room for ten more reference projects by the connection headroom the register describes. Level with Germany (5)."
+    }
+  },
+  "found": {
+    "gridScarcity": [
+      "The anchors fit awkwardly. Grade 5 wants connection dates inside three years, and the register says about 4.2. Grade 4's wording is about named regions. I drafted 4 because nothing is auctioned, capped or closed."
+    ],
+    "saturation": [
+      "If committed storage still exceeds the operating fleet, the anchor reads 1: revenue is already under half its peak year. The register projects about 40 GW by 2030 against about 15 GW operating, which is a projection and not a committed count."
+    ],
+    "revenueCertainty": [
+      "The decision profile says the toll is a market-value proxy. The grade follows the engine's figures, as the anchor asks. Two register entries dispute the 2025 revenue level."
+    ],
+    "capitalAtRisk": [
+      "The ledger has shapes and no amounts: the Planning Guide was read and the fee schedule was not."
+    ]
+  },
+  "seeds": {
+    "revenueCertainty": [
+      "Contracted revenue availability (tolling only) — weight 20, score 58 of 100"
+    ],
+    "gridScarcity": [
+      "Interconnection speed and cost — weight 16, score 92 of 100"
+    ],
+    "supplyChainOrigin": [
+      "FEOC material-assistance compliance for the tax credit — connection risk, weight 14, 2 of 3"
+    ],
+    "saturation": [
+      "Ancillary services headroom — weight 10, score 12 of 100",
+      "Merchant arbitrage depth and spread trajectory — weight 16, score 45 of 100"
+    ],
+    "debtAvailability": [
+      "Financing and delivery execution — weight 10, score 76 of 100"
+    ],
+    "demandGrowth": [
+      "Large-load interconnection rule changes — connection risk, weight 10, 1 of 3"
+    ]
+  }
+}
