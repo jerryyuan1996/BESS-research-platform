@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-12T06:06:55.319Z",
+  "fetchedAt": "2026-10-12T15:38:44.795Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-12T05:58:24.000Z",
+    "to": "2026-10-12T11:53:30.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 42
   },
   "units": {
     "record": "published article metadata"
@@ -135,16 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-06T23:34:31.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/atmos-renewables-closes-financing-on-1-6gwh-capacity-investment-scheme-backed-battery-storage-system-in-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Atmos Renewables closes financing on 1.6GWh Capacity Investment Scheme-backed battery storage system in Australia",
-      "url": "https://www.energy-storage.news/atmos-renewables-closes-financing-on-1-6gwh-capacity-investment-scheme-backed-battery-storage-system-in-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Atmos Renewables has reached financial close on the 400MW/1,600MWh Teebar battery energy storage system (BESS) in Queensland, Australia."
-    },
-    {
       "t": "2026-10-06T23:37:28.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/canadian-solars-e-storage-to-deliver-200mwh-bess-for-australian-solar-plus-storage-site/",
       "source": "Energy-Storage.news",
@@ -255,16 +245,6 @@
       "summary": "Infrastructure investor Actis has entered the Polish energy storage market with the acquisition of two large-scale projects from DTEK's DRI, while R.Power and Solax have announced project updates in the country."
     },
     {
-      "t": "2026-10-08T13:07:47.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/dc-green-energy-mandate-renewable-solar-ratepayer/831738/",
-      "source": "Utility Dive",
-      "title": "DC’s green energy mandate burdens those who can afford it least",
-      "url": "https://www.utilitydive.com/news/dc-green-energy-mandate-renewable-solar-ratepayer/831738/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The District of Columbia should review its renewable portfolio standard requirements, with solar credits adding about $20 to monthly electric bills, writes Joy Ditto, former American Public Power Association CEO."
-    },
-    {
       "t": "2026-10-08T14:04:37.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/4-hour-storage-cheaper-than-gas-peakers-across-global-markets-woodmac/832489/",
       "source": "Utility Dive",
@@ -365,76 +345,6 @@
       "summary": "The grid operator expects Engie&rsquo;s two storage projects totaling nearly 1.7 GW and LS Power&rsquo;s 455-MW &nbsp; gas-fired uprate will be online by mid-2029."
     },
     {
-      "t": "2026-10-10T06:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/the-shape-of-ppas-is-changing-from-volume-to-value-are-you-positioned-to-capture-the-premium-in-emerging-nem-value-pools/",
-      "source": "pv magazine",
-      "title": "The shape of PPAs is changing – from volume to value",
-      "url": "https://www.pv-magazine.com/2026/10/10/the-shape-of-ppas-is-changing-from-volume-to-value-are-you-positioned-to-capture-the-premium-in-emerging-nem-value-pools/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia’s renewable energy market is entering a new phase where the value of electricity is increasingly determined not by energy alone, but by the ability to deliver energy when and where it is needed. The post The shape of PPAs is changing – from volume to value appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-10T06:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/beyond-gigawatts-why-indias-clean-energy-future-depends-on-storage-intelligence/",
-      "source": "pv magazine",
-      "title": "Beyond gigawatts: Why India’s clean energy future depends on storage intelligence",
-      "url": "https://www.pv-magazine.com/2026/10/10/beyond-gigawatts-why-indias-clean-energy-future-depends-on-storage-intelligence/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The battery creates flexibility. The intelligence behind it determines how much of that flexibility the grid can harness. The next clean energy benchmark for India, therefore, might not just be a new number of gigawatts. It might be the ability to get the maximum out of every gigawatt. The post Beyond gigawatts: Why…"
-    },
-    {
-      "t": "2026-10-10T07:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/more-than-70-of-announced-u-s-solar-manufacturing-expansion-plans-yet-to-be-financed/",
-      "source": "pv magazine",
-      "title": "More than 70% of announced U.S. solar manufacturing expansion plans yet to be financed",
-      "url": "https://www.pv-magazine.com/2026/10/10/more-than-70-of-announced-u-s-solar-manufacturing-expansion-plans-yet-to-be-financed/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Forecasted capital expenditure for new U.S. solar manufacturing expansions for 2027 reflects a hesitant financing climate, with Tesla’s Texas plans having the potential to rocket boost the entire sector’s spending outlook. The post More than 70% of announced U.S. solar manufacturing expansion plans yet to be finance…"
-    },
-    {
-      "t": "2026-10-10T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/beyond-gigawatts-why-leadership-decides-italys-energy-security/",
-      "source": "pv magazine",
-      "title": "Why leadership decides Italy’s energy security",
-      "url": "https://www.pv-magazine.com/2026/10/10/beyond-gigawatts-why-leadership-decides-italys-energy-security/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "At Solar & Storage Live Italia, panels organised by Women in Solar+ Europe (WiSEu) and Solar+ Leaders argued that decisions made in a project's first months, and the inclusive teams built to make them, matter as much to energy security as megawatts and capital. The post Why leadership decides Italy’s energy security…"
-    },
-    {
-      "t": "2026-10-10T08:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/sunbooster-secures-european-patent-for-bifacial-photovoltaic-fences/",
-      "source": "pv magazine",
-      "title": "Sunbooster secures European patent for bifacial photovoltaic fences",
-      "url": "https://www.pv-magazine.com/2026/10/10/sunbooster-secures-european-patent-for-bifacial-photovoltaic-fences/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Austrian company Sunbooster has secured a European patent for its bifacial solar fence technology, now protected in 18 EU member states. The company is expanding into France, where it has completed its first 3.7 kW installation using vertically mounted PV strips with a reported efficiency of 22.8%. The post Sunboost…"
-    },
-    {
-      "t": "2026-10-10T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/austria-43300-applications-for-solar-subsidies-submitted-in-just-ten-minutes/",
-      "source": "pv magazine",
-      "title": "Austria: 43,300 applications for solar subsidies submitted in just ten minutes",
-      "url": "https://www.pv-magazine.com/2026/10/10/austria-43300-applications-for-solar-subsidies-submitted-in-just-ten-minutes/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Austria's final solar subsidy round of the year attracted 43,300 applications in its first 10 minutes, far exceeding demand in the previous round. The government is now preparing to overhaul the scheme in 2027, shifting its focus from PV installations to battery storage and smart energy management systems. The post…"
-    },
-    {
-      "t": "2026-10-10T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/10/brazils-retail-electricity-market-opening-raises-credit-and-liquidity-concerns-study-finds/",
-      "source": "pv magazine",
-      "title": "Brazil’s retail electricity market opening raises credit and liquidity concerns, study finds",
-      "url": "https://www.pv-magazine.com/2026/10/10/brazils-retail-electricity-market-opening-raises-credit-and-liquidity-concerns-study-finds/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A study based on 88,000 consumer units participating in subscription-based solar generation schemes in Brazil has identified a 17% average monthly payment delinquency rate and 4% monthly customer churn. The findings highlight potential credit, liquidity and consumer protection challenges as the country prepares to o…"
-    },
-    {
       "t": "2026-10-12T02:05:09.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/australia-home-battery-installations-surge-52-to-276011-in-h1-2026-outpacing-rooftop-solar-growth/",
       "source": "Energy-Storage.news",
@@ -455,35 +365,95 @@
       "summary": "ACE and the IEA say the main obstacles to battery energy storage system (BESS) deployment in Southeast Asia are policy and market rules."
     },
     {
-      "t": "2026-10-12T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/follow-the-money/",
+      "t": "2026-10-12T06:26:29.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/ci-storage-the-sleeping-giant-waking-up-says-woodmac/",
       "source": "pv magazine",
-      "title": "Follow the money",
-      "url": "https://www.pv-magazine.com/2026/10/12/follow-the-money/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Since 2024, solar tracker companies in North America have invested more than $1.6 billion in corporate acquisitions, expanding beyond solar mounting to enter adjacent segments of the clean energy value chain. The majority of this capital has circulated within the United States, led by North America’s largest tracker…"
+      "title": "C&I storage the ‘sleeping giant waking up’, says WoodMac",
+      "url": "https://www.pv-magazine.com/2026/10/12/ci-storage-the-sleeping-giant-waking-up-says-woodmac/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Global energy storage outlook will see a seven-fold growth by 2035 passing 7 TWh, with falling costs and policy support accelerating battery storage momentum in emerging and advancing markets The post C&I storage the ‘sleeping giant waking up’, says WoodMac appeared first on pv magazine Global ."
     },
     {
-      "t": "2026-10-12T05:58:24.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/rooftop-solar-reaches-new-highs-across-nem/",
+      "t": "2026-10-12T07:04:22.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/risen-releases-23-5-efficient-anti-glare-heterojunction-solar-module/",
       "source": "pv magazine",
-      "title": "Rooftop solar reaches new highs across Australia",
-      "url": "https://www.pv-magazine.com/2026/10/12/rooftop-solar-reaches-new-highs-across-nem/",
+      "title": "Risen releases 23.5%-efficient anti-glare heterojunction solar module",
+      "url": "https://www.pv-magazine.com/2026/10/12/risen-releases-23-5-efficient-anti-glare-heterojunction-solar-module/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Rooftop solar generation continues to reach new heights in Australia’s main grid with clear skies helping drive record output from household and business solar systems across the National Electricity Market. The post Rooftop solar reaches new highs across Australia appeared first on pv magazine Global ."
+      "summary": "Risen Energy has unveiled a new anti-glare heterojunction solar module featuring a dual-layer optical design and a power output of up to 730 W. The bifacial panel achieves a maximum efficiency of 23.5% and has received Class AAA anti-glare certification from TÜV Rheinland. The post Risen releases 23.5%-efficient ant…"
+    },
+    {
+      "t": "2026-10-12T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/south-korea-details-auction-market-to-replace-renewable-quota-system/",
+      "source": "pv magazine",
+      "title": "South Korea details auction market to replace renewable quota system",
+      "url": "https://www.pv-magazine.com/2026/10/12/south-korea-details-auction-market-to-replace-renewable-quota-system/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Draft rules for South Korea’s new renewables auction market provide for monthly difference payments from Korea Electric Power Corp. (Kepco), a separate track for projects up to 500 kW, and an exit route for renewable energy certificate (REC) spot-market sellers. The post South Korea details auction market to replace…"
+    },
+    {
+      "t": "2026-10-12T10:08:29.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/energy-dome-opens-co2-battery-manufacturing-plant-in-italy/",
+      "source": "pv magazine",
+      "title": "Energy Dome opens CO2 battery manufacturing plant in Italy",
+      "url": "https://www.pv-magazine.com/2026/10/12/energy-dome-opens-co2-battery-manufacturing-plant-in-italy/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Energy Dome’s new manufacturing plant will supply components for long-duration energy storage (LDES) projects in India, the United States and Ireland. The post Energy Dome opens CO2 battery manufacturing plant in Italy appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-12T11:10:12.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/multiple-grounding-points-cut-lightning-induced-overvoltage-in-solar-panels-by-up-to-55/",
+      "source": "pv magazine",
+      "title": "Multiple grounding points cut lightning-induced overvoltage in solar panels by up to 55%",
+      "url": "https://www.pv-magazine.com/2026/10/12/multiple-grounding-points-cut-lightning-induced-overvoltage-in-solar-panels-by-up-to-55/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in Indonesia found that higher soil resistivity significantly increases lightning-induced overvoltage in PV systems. Their simulations also showed that multiple grounding points and connections closer to the lightning strike location can substantially reduce transient voltages. The post Multiple groundin…"
+    },
+    {
+      "t": "2026-10-12T11:38:47.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/eskom-kicks-off-tender-for-6-gw-of-renewables-plus-storage/",
+      "source": "pv magazine",
+      "title": "Eskom kicks off tender for 6 GW of renewables-plus-storage",
+      "url": "https://www.pv-magazine.com/2026/10/12/eskom-kicks-off-tender-for-6-gw-of-renewables-plus-storage/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "South African utility Eskom has launched a qualification process to select strategic partners for up to 6 GW of renewable energy and storage projects. The portfolio will include at least 2 GW of solar and 1 GW/4 GWh of battery storage, with selected developers joining a five-year co-development and investment framew…"
+    },
+    {
+      "t": "2026-10-12T11:47:22.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/france-defines-terms-for-long-term-capacity-auction/",
+      "source": "pv magazine",
+      "title": "France defines terms for long-term capacity auction",
+      "url": "https://www.pv-magazine.com/2026/10/12/france-defines-terms-for-long-term-capacity-auction/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "France's energy regulator has proposed the parameters for the country's first long-term capacity auction, covering the winter of 2030-31. The auction will target 82 GW of capacity, including 3 GW eligible for multi-year contracts, as France seeks to safeguard electricity supplies while limiting costs for consumers.…"
+    },
+    {
+      "t": "2026-10-12T11:53:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/chile-engie-commissions-802mwh-battery-storage-grenergy-finances-1769mwh-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Chile: Engie commissions 802MWh BESS, Grenergy finances 1,769MWh",
+      "url": "https://www.energy-storage.news/chile-engie-commissions-802mwh-battery-storage-grenergy-finances-1769mwh-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Power group Engie has put an 142MW/802MWh BESS project in Chile into operation, while IPP Grenergy has secured financing for the fifth and final stage of its Oasis de Atacama solar-plus-storage project."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 42,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 26,
-      "policy": 7,
-      "capital": 9,
+      "grid": 23,
+      "policy": 10,
+      "capital": 6,
       "technology": 3
     },
     "sourceStatus": [
@@ -503,13 +473,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 5
+        "items": 4
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 7
       }
     ]
   },
@@ -518,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:6a7263f09ff3149c7d5901bfe94d32f548c95856a225a3603d3436f9dbf1cd6f",
-  "envelopeChecksum": "sha256:68f23f326379b1d701834843b02a88b622dd85fae77c5131e77913b325ee1efe"
+  "contentChecksum": "sha256:014bebeb3cc6a77cc01ef788296463288c3e31d099bc89ab630261b79bb9e941",
+  "envelopeChecksum": "sha256:c4c5d112a1c40bf505a764a457972207a448a0d46e96b1c05a86710169c8f272"
 }
