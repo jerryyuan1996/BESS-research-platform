@@ -37,7 +37,7 @@
     },
     "capitalAtRisk": {
       "dimension": "capitalAtRisk",
-      "grade": 4,
+      "grade": 2,
       "trend": "stable",
       "basis": "derived",
       "metric": {
@@ -51,8 +51,8 @@
         "rgvDoc"
       ],
       "reason": [
-        "At transmission level, at least 0.24% of project cost before the decision: a EUR 50,000 application fee and a EUR 1,500 per MW deposit, credited against the later connection contribution. Development spend is not sourced.",
-        "在输电网层面，决策前的风险资本至少为项目投资的0.24%：5万欧元申请费，加每MW 1,500欧元的保证金，后者可抵扣其后的并网工程费分摊。前期开发支出尚无来源。"
+        "At transmission level a EUR 1,500 per MW deposit is posted on accepting a connection offer, before consent is required and before the project is built; with the EUR 50,000 fee that is at least 0.24% of project cost, and development spend and any early tranche of the connection contribution are not counted.",
+        "在输电网层面，接受并网要约时即须按每MW 1,500欧元缴纳保证金，此时既不要求已取得许可，项目也尚未建设；连同5万欧元申请费，至少占项目投资的0.24%，前期开发支出以及并网工程费分摊可能提前支付的部分均未计入。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
@@ -147,8 +147,8 @@
         "agnes"
       ],
       "reason": [
-        "Grid-fee relief for storage ends in August 2029, and the regulator's successor framework is still a draft; it keeps relief only for projects that take their investment decision before it is final.",
-        "储能的电网费用豁免将于2029年8月到期，监管机构的接续框架仍为草案；仅在其最终定稿之前作出投资决策的项目可继续享受减免。"
+        "The regulator's framework for storage grid fees is a consulted draft with a decision intended in 2026; which projects keep relief, and for how long, depends on it.",
+        "监管机构的储能电网费用框架仍是已征询意见的草案，拟于2026年作出决定；哪些项目可继续享受减免、期限多长，均取决于该决定。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
@@ -196,7 +196,7 @@
     },
     "scaleRepeatability": {
       "dimension": "scaleRepeatability",
-      "grade": 5,
+      "grade": 4,
       "trend": "stable",
       "basis": "practitioner",
       "evidence": [],
@@ -205,7 +205,150 @@
       "lockedUntil": null
     }
   },
-  "verdicts": {},
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The modelled merchant return is among the highest on the platform.",
+            "模型测算的市场化回报在本平台各市场中居前。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Connection requests far exceed capacity and are now ranked by maturity, which protects a project that already holds a connection.",
+            "并网申请远超容量，现按成熟度排序分配，这对已持有并网权的项目形成保护。"
+          ]
+        },
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "Lenders are financing storage portfolios here.",
+            "贷款人正在为这里的储能资产组合提供融资。"
+          ]
+        }
+      ],
+      "despite": [
+        "The storage grid-fee framework is still a draft, and merchant revenue has to carry the case alone.",
+        "储能电网费用框架仍为草案，而整个投资逻辑只能靠市场化收入支撑。"
+      ],
+      "changesIf": [
+        "de-capacity-round-open-to-storage"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "where": [
+        "A project with a signed toll or floor",
+        "已签订租赁或保底协议的项目"
+      ],
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "The reference project secures nothing; tolls are being signed, and a project that holds one is a different case.",
+            "参考项目没有任何锁定收入；市场上已有租赁协议签订，持有此类协议的项目则另当别论。"
+          ]
+        },
+        {
+          "dimension": "debtAvailability",
+          "text": [
+            "Lenders are financing storage portfolios here.",
+            "贷款人正在为这里的储能资产组合提供融资。"
+          ]
+        }
+      ],
+      "despite": [
+        "The storage grid-fee framework is still a draft, and merchant revenue has to carry the case alone.",
+        "储能电网费用框架仍为草案，而整个投资逻辑只能靠市场化收入支撑。"
+      ],
+      "changesIf": [
+        "de-capacity-round-open-to-storage"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "build-position",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The modelled merchant return is among the highest on the platform.",
+            "模型测算的市场化回报在本平台各市场中居前。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Connection requests far exceed capacity and are now ranked by maturity, which protects a project that already holds a connection.",
+            "并网申请远超容量，现按成熟度排序分配，这对已持有并网权的项目形成保护。"
+          ]
+        }
+      ],
+      "despite": [
+        "The storage grid-fee framework is still a draft, and merchant revenue has to carry the case alone.",
+        "储能电网费用框架仍为草案，而整个投资逻辑只能靠市场化收入支撑。"
+      ],
+      "changesIf": [
+        "de-capacity-round-open-to-storage"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Connection requests far exceed capacity and are now ranked by maturity, which protects a project that already holds a connection.",
+            "并网申请远超容量，现按成熟度排序分配，这对已持有并网权的项目形成保护。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "A deposit is posted before allocation is certain, and the larger connection contribution follows.",
+            "在容量分配确定之前即须缴纳保证金，其后还有金额更大的并网工程费分摊。"
+          ]
+        }
+      ],
+      "despite": [
+        "A fresh application joins an oversubscribed ranking with no assurance of an offer.",
+        "新提出的申请须加入一个严重超额的排序，能否获得要约并无保证。"
+      ],
+      "changesIf": [
+        "de-capacity-round-open-to-storage"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
     {
       "id": "de-capacity-round-open-to-storage",

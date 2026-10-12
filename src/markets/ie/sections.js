@@ -1105,5 +1105,18 @@ SEC_B.data = function (){
 };
 
 
+/* Investment Case and Entry: the investment-view revision. The content is the
+   shared component, which reads this market's view and ledger as its dashboard
+   registered them. There is no build pathway for this market yet, so Entry is
+   the ledger. */
+SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+  { t: 'p', text: ['A capacity contract secures over half of revenue for ten years for a project that holds one, on a small system where service income is being re-procured.', '持有容量合同的项目可在十年内锁定过半收入；但系统规模小，系统服务收入正在重新采购。'] },
+  { t: 'investment-case', marketId: 'ie' },
+] });
+SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+  { t: 'p', text: ['A project applies for a connection only once planning permission is granted, so what it pays the network falls after consent. Two of the three network items have no sourced amount, so the total is a lower bound.', '项目须先取得规划许可才能申请并网，因此向电网支付的款项都发生在取得许可之后。三项电网款项中有两项没有可查证的金额，因此合计为下限。'] },
+  { t: 'entry-ledger', marketId: 'ie' },
+] });
+
   return SECTIONS;
 }

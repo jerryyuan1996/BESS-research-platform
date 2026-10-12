@@ -19,6 +19,17 @@ import { SRC } from './sources.js';
 import { M, activeRegion } from './data.js';
 import { buildSections } from './sections.js';
 import './gridMapData.js';   // side effect: registers this market's grid map
+import TOKYO_VIEW from '../../../view/markets/jp_tokyo.json' with { type: 'json' };
+import KYUSHU_VIEW from '../../../view/markets/jp_kyushu.json' with { type: 'json' };
+import HOKKAIDO_VIEW from '../../../view/markets/jp_hokkaido.json' with { type: 'json' };
+import { TOKYO_ENTRY_LEDGER, KYUSHU_ENTRY_LEDGER, HOKKAIDO_ENTRY_LEDGER } from './entryLedger.js';
+import { registerCase } from '../caseRegistry.js';
+
+/* Three allocation points share this dashboard; each registers its own whole
+   view and ledger, which travel in this one chunk. */
+registerCase('jp_tokyo', { view: TOKYO_VIEW, ledger: TOKYO_ENTRY_LEDGER });
+registerCase('jp_kyushu', { view: KYUSHU_VIEW, ledger: KYUSHU_ENTRY_LEDGER });
+registerCase('jp_hokkaido', { view: HOKKAIDO_VIEW, ledger: HOKKAIDO_ENTRY_LEDGER });
 
 const engine = createMarketEngine({
   MKT, TABS, SRC, M, buildSections, regions: REGIONS,

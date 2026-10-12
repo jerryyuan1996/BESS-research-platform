@@ -10,6 +10,7 @@
 
 const TABS = [
   ['home',       ['Overview', '总览']],
+  ['case',       ['Investment Case', '投资判断']],
   ['story',      ['NEM Market Story', 'NEM市场演进']],
   ['capacity',   ['Capacity Investment Scheme', '容量投资计划']],
   ['energy',     ['Spot & Cap Contracts', '现货与价格上限合约']],
@@ -17,6 +18,7 @@ const TABS = [
   ['duration',   ['Storage Duration', '储能时长']],
   ['pipeline',   ['Project Pipeline', '项目管线']],
   ['grid',       ['Grid, MLF & Congestion', '并网、边际损耗与拥塞']],
+  ['entry',      ['Entry & Delivery', '进入与交付']],
   ['portfolio',  ['Portfolio', '组合与基金视图']],
   ['data',       ['Data & Methodology', '数据与方法']],
 ];

@@ -5,6 +5,7 @@
 
 const TABS = [
   ['home',      ['Overview', '总览']],
+  ['case',      ['Investment Case', '投资判断']],
   ['story',     ['Ireland Market Story', '爱尔兰市场演进']],
   ['capacity',  ['Capacity Mechanism', '容量机制']],
   ['energy',    ['Wholesale & Balancing', '批发与平衡市场']],
@@ -12,6 +13,7 @@ const TABS = [
   ['duration',  ['Duration & LDES', '储能时长与长时储能']],
   ['pipeline',  ['Project Pipeline', '项目管线']],
   ['grid',      ['Grid & Connection', '并网与接入']],
+  ['entry',     ['Entry & Delivery', '进入与交付']],
   ['portfolio', ['Portfolio', '组合与基金视图']],
   ['data',      ['Data & Methodology', '数据与方法']],
 ];

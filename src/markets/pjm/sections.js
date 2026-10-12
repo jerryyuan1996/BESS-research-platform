@@ -609,5 +609,18 @@ SEC_B.data = function (){
   ] };
 };
 
+/* Investment Case and Entry: the investment-view revision. The content is the
+   shared component, which reads this market's view and ledger as its dashboard
+   registered them. There is no build pathway for this market yet, so Entry is
+   the ledger. */
+SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+  { t: 'p', text: ['Strong load growth and scarce deliverable rights, around a reference project that returns 2.4% on the model with capacity revenue secured one year at a time.', '负荷增长强劲、可交付并网权稀缺；但参考项目的模型回报仅为2.4%，容量收入每次只能锁定一年。'] },
+  { t: 'investment-case', marketId: 'pjm' },
+] });
+SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+  { t: 'p', text: ['Study and readiness deposits are known to exist and none is sourced, so nothing here is totalled.', '已知存在研究押金与成熟度保证金，但均无来源，因此此处不作合计。'] },
+  { t: 'entry-ledger', marketId: 'pjm' },
+] });
+
   return SECTIONS;
 }

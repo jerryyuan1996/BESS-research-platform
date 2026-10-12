@@ -1,0 +1,346 @@
+{
+  "marketId": "pl",
+  "thesis": null,
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 1,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Thirteenth of fourteen markets on hold IRR, 0.8%.",
+        "持有期IRR为0.8%，在十四个市场中排名第十三。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "energyLawArt7"
+      ],
+      "reason": [
+        "The statute sets the fee, the advance, the security and a deadline of 120 to 150 days for an operator to issue connection conditions, and says when a refused applicant is repaid. No single public register follows a storage project from application to operation.",
+        "法律明确规定了申请费、预付款、履约担保，以及运营商出具并网条件的120至150日期限，并规定了申请被拒时的退款方式。但没有一个统一的公开登记册能够跟踪储能项目从申请到投运的全过程。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "investControlAct"
+      ],
+      "reason": [
+        "Review reaches an investor from outside the member states acquiring 20% or control of a company that generates electricity and had revenue in Poland above EUR 10 million; a preliminary proceeding takes 30 working days and a full one up to 120 days.",
+        "审查适用于成员国以外的投资者收购发电企业20%股权或取得其控制权、且该企业在波兰的营业收入超过1,000万欧元的情形；初步审查为30个工作日，正式审查最长120日。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 2,
+      "trend": "deteriorating",
+      "basis": "derived",
+      "trendCause": [
+        "The availability factor applied to storage in the capacity auction was cut from 95% to about 60% and then to 13.39% in successive auctions, and no main auction is planned for 2026.",
+        "容量拍卖中适用于储能的可用性修正系数在连续几轮拍卖中由95%降至约60%，再降至13.39%，且2026年不计划举行主拍卖。"
+      ],
+      "evidence": [
+        "decision-profile",
+        "corr",
+        "capacityMarketFinal"
+      ],
+      "reason": [
+        "The December 2025 auction was the last main-auction route and its successor framework has no settled design; the factor that sets what a battery is paid for capacity changed sharply between consecutive auctions.",
+        "2025年12月的拍卖是最后一轮主拍卖，接续框架的方案尚未确定；决定电池容量收入的修正系数在相邻两轮拍卖之间大幅变动。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The uncontracted reference project returns under 1% on the model.",
+            "未签约的参考项目，模型回报不足1%。"
+          ]
+        },
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "The reference project secures nothing; batteries that won long capacity contracts in earlier auctions are a different cohort.",
+            "参考项目没有任何锁定收入；在早先拍卖中取得长期容量合同的电池项目属于另一批次。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Connection rights are the binding constraint, and refusals have been frequent.",
+            "并网权是硬约束，申请被拒的情况十分常见。"
+          ]
+        }
+      ],
+      "despite": [
+        "A project holding one of the earlier seventeen-year capacity contracts can be worth buying at the right price.",
+        "持有早先十七年期容量合同的项目，在价格合适时仍值得收购。"
+      ],
+      "changesIf": [
+        "pl-capacity-successor-framework"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "wait",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The uncontracted reference project returns under 1% on the model.",
+            "未签约的参考项目，模型回报不足1%。"
+          ]
+        },
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "The reference project secures nothing; batteries that won long capacity contracts in earlier auctions are a different cohort.",
+            "参考项目没有任何锁定收入；在早先拍卖中取得长期容量合同的电池项目属于另一批次。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "The capacity credited to storage was cut sharply between auctions, and no successor to the main auction is settled.",
+            "储能的容量核定系数在相邻拍卖之间被大幅下调，主拍卖的接续机制也尚未确定。"
+          ]
+        }
+      ],
+      "despite": [
+        "A project holding one of the earlier seventeen-year capacity contracts can be worth buying at the right price.",
+        "持有早先十七年期容量合同的项目，在价格合适时仍值得收购。"
+      ],
+      "changesIf": [
+        "pl-capacity-successor-framework"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "opportunistic",
+      "route": "ready-to-build",
+      "where": [
+        "An asset holding an earlier long capacity contract",
+        "持有早先长期容量合同的资产"
+      ],
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "The reference project secures nothing; batteries that won long capacity contracts in earlier auctions are a different cohort.",
+            "参考项目没有任何锁定收入；在早先拍卖中取得长期容量合同的电池项目属于另一批次。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "The capacity credited to storage was cut sharply between auctions, and no successor to the main auction is settled.",
+            "储能的容量核定系数在相邻拍卖之间被大幅下调，主拍卖的接续机制也尚未确定。"
+          ]
+        }
+      ],
+      "despite": [
+        "A project holding one of the earlier seventeen-year capacity contracts can be worth buying at the right price.",
+        "持有早先十七年期容量合同的项目，在价格合适时仍值得收购。"
+      ],
+      "changesIf": [
+        "pl-capacity-successor-framework"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Connection rights are the binding constraint, and refusals have been frequent.",
+            "并网权是硬约束，申请被拒的情况十分常见。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "An advance of up to PLN 6 million is paid with the application, before conditions are issued.",
+            "提交申请时即须预缴最高600万兹罗提，此时并网条件尚未出具。"
+          ]
+        }
+      ],
+      "despite": [
+        "A project holding one of the earlier seventeen-year capacity contracts can be worth buying at the right price.",
+        "持有早先十七年期容量合同的项目，在价格合适时仍值得收购。"
+      ],
+      "changesIf": [
+        "pl-capacity-successor-framework"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    }
+  },
+  "triggers": [
+    {
+      "id": "pl-capacity-successor-framework",
+      "kind": "event",
+      "market": "pl",
+      "label": [
+        "A successor to the capacity market's main auctions is legislated",
+        "容量市场主拍卖的接续机制完成立法"
+      ],
+      "expected": null,
+      "watches": [
+        "revenueCertainty",
+        "policyStability"
+      ],
+      "direction": "up",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ]
+}

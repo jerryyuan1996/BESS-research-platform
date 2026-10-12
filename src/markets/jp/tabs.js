@@ -7,6 +7,7 @@
 
 export const TABS = [
   ['home',      ['Overview', '总览']],
+  ['case',      ['Investment Case', '投资判断']],
   ['story',     ['Japan Market Story', '日本市场演进']],
   ['capacity',  ['Capacity & LTDA', '容量市场与长期脱碳拍卖']],
   ['energy',    ['JEPX Energy & Regional Basis', 'JEPX现货与区域价差']],
@@ -14,6 +15,7 @@ export const TABS = [
   ['duration',  ['Storage Duration', '储能时长']],
   ['pipeline',  ['Project Pipeline', '项目管线']],
   ['grid',      ['Grid & Connection', '并网与电网约束']],
+  ['entry',     ['Entry & Delivery', '进入与交付']],
   ['portfolio', ['Portfolio', '组合与基金视图']],
   ['data',      ['Data & Methodology', '数据与方法']],
 ];

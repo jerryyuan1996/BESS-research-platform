@@ -101,7 +101,12 @@ const BUDGET = {
      kB a market, and the whole records travel with each market's own
      dashboard. With all fifteen graded this should measure about 251; the
      budget leaves that and a little over. It still grows with every market
-     graded, by the projection and no longer by the prose. */
+     graded, by the projection and no longer by the prose.
+
+     MEASURED 249.67 WITH ALL FIFTEEN GRADED. Of the rise from 243.04, 6.2 is
+     the entry chunk, which carries every market's source register and gained
+     the sources opened for the ledgers and grades; the projection itself
+     added 0.4. */
   home: 258,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
@@ -120,7 +125,12 @@ const BUDGET = {
      from 89.05. Great Britain (136.79 from 131.75) and Western Australia
      (192.68 from 186.37) took the same move inside the room they had. A
      market graded later brings about five kilobytes with it, and that is the
-     one reason to raise its line. */
+     one reason to raise its line.
+
+     ALL FIFTEEN ARE GRADED NOW and no other line needed raising: each of the
+     ten markets graded in phase 5 took its view and ledger inside the room it
+     had. Three are close: caiso 41.81 of 44, de 61.25 of 64, pjm 61.29 of
+     65. */
   markets: {
     fi: 28, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
@@ -201,8 +211,12 @@ const BUDGET = {
        graded market's grades, calls and ledger amounts, and every trigger.
        Measured 15.36 with four markets graded, from 12.05 with none of it;
        about 0.75 kB a market, so about 24 at fifteen. Raise it for a market
-       graded and for nothing else. */
-    'verdict-board': 27,
+       graded and for nothing else.
+
+       LOWERED FROM 27 TO 19 once all fifteen were graded: it measures 15.80,
+       not the 24 estimated. A market's grades and calls compress far better
+       beside fourteen others of the same shape than the first four suggested. */
+    'verdict-board': 19,
     /* The old home page, now at /returns: market cards, globe, league table,
        revenue stack, $1M engine, congestion, plus the two sections that were
        written and never mounted. Measured 67.95. Fetched only on that route. */
@@ -212,8 +226,12 @@ const BUDGET = {
        ten lines of five fields each and nothing else of it. Measured 20.63 at
        102 lines, about 0.2 kB a line, so this is the one budget here that
        grows by design: raise it as the changelog grows, and for no other
-       reason. tests/changes.test.js asserts the changelog is in no other chunk. */
-    'changes': 27,
+       reason. tests/changes.test.js asserts the changelog is in no other chunk.
+
+       RAISED FROM 27 TO 48 (plan phase 5), for that reason: grading the other
+       eleven markets took the changelog from 102 lines to 304. Measured 40.67,
+       about 0.13 kB a line. */
+    'changes': 48,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four

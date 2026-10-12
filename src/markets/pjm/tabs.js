@@ -15,6 +15,7 @@
 
 const TABS = [
   ['home',       ['Overview', '总览']],
+  ['case',       ['Investment Case', '投资判断']],
   ['story',      ['PJM Market Story', 'PJM市场演进']],
   ['capacity',   ['RPM Capacity & ELCC', 'RPM容量市场与ELCC核证']],
   ['energy',     ['Nodal Energy & TB4 Spreads', '节点电能量与TB4价差']],
@@ -22,6 +23,7 @@ const TABS = [
   ['duration',   ['Storage Duration', '储能时长']],
   ['pipeline',   ['Project Pipeline', '项目管线']],
   ['grid',       ['Interconnection & Congestion', '并网与拥塞']],
+  ['entry',      ['Entry & Delivery', '进入与交付']],
   ['portfolio',  ['Portfolio', '组合与基金视图']],
   ['data',       ['Data & Methodology', '数据与方法']],
 ];

@@ -1,8 +1,344 @@
 {
   "marketId": "pjm",
   "thesis": null,
-  "grades": {},
-  "verdicts": {},
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 1,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Twelfth of fourteen markets on hold IRR, 2.4%.",
+        "持有期IRR为2.4%，在十四个市场中排名第十二。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "bra2829"
+      ],
+      "reason": [
+        "47% of first-year revenue is secured, by a capacity auction that covers a single delivery year.",
+        "首年收入的47%已锁定，来自仅覆盖一个交付年度的容量拍卖。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "queue"
+      ],
+      "reason": [
+        "67 GW of storage sits in the reopened interconnection queue, against 1.9 GW of batteries awarded interconnection agreements in the first transition cycle.",
+        "重新开放的并网排队中有67GW储能，而首个过渡周期中获得并网协议的电池项目仅1.9GW。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "cfius"
+      ],
+      "reason": [
+        "Review of foreign investment is largely voluntary and mandatory only in some cases, such as a foreign government taking a substantial interest; a notice is reviewed in 45 days, with a 45-day investigation if needed.",
+        "外资审查以自愿申报为主，仅在部分情形下（如外国政府取得重大权益）为强制申报；正式申报的审查期为45日，必要时再进行45日的调查。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "official",
+      "evidence": [
+        "itc",
+        "notice202615"
+      ],
+      "reason": [
+        "From 2026 a project that fails the material-assistance cost ratio for prohibited foreign entities loses the investment tax credit entirely, not in proportion.",
+        "自2026年起，未达到“受禁外国实体实质协助成本比率”要求的项目将全额丧失投资税收抵免，而非按比例扣减。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "collar"
+      ],
+      "reason": [
+        "The price collar on the capacity auction ends after the 2029/2030 auction and a reliability backstop is pending at the federal regulator, so the design of the main revenue line beyond that is not settled.",
+        "容量拍卖的价格区间机制将在2029/2030年度拍卖后终止，可靠性兜底机制仍待联邦监管机构裁定，因此此后主要收入机制的设计尚未确定。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "demandGrowth",
+          "text": [
+            "Load growth is strong and the last capacity auction cleared short of the reliability requirement.",
+            "负荷增长强劲，最近一轮容量拍卖的出清量低于可靠性要求。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "The interconnection queue is far larger than what has been awarded agreements.",
+            "并网排队规模远大于已获并网协议的规模。"
+          ]
+        },
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The reference project returns 2.4% on the model.",
+            "参考项目的模型回报为2.4%。"
+          ]
+        }
+      ],
+      "despite": [
+        "Scarce deliverable rights in a system short of capacity can be worth more than the reference case shows.",
+        "在容量短缺的系统中，稀缺的可交付并网权的价值可能高于参考情景所示。"
+      ],
+      "changesIf": [
+        "pjm-capacity-auction-2029-30"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "wait",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The reference project returns 2.4% on the model.",
+            "参考项目的模型回报为2.4%。"
+          ]
+        },
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "Capacity revenue is secured one delivery year at a time.",
+            "容量收入每次只能锁定一个交付年度。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "The capacity market's design beyond the current price collar is not settled.",
+            "现行价格区间机制之后的容量市场设计尚未确定。"
+          ]
+        }
+      ],
+      "despite": [
+        "Scarce deliverable rights in a system short of capacity can be worth more than the reference case shows.",
+        "在容量短缺的系统中，稀缺的可交付并网权的价值可能高于参考情景所示。"
+      ],
+      "changesIf": [
+        "pjm-capacity-auction-2029-30",
+        "pjm-backstop-filing-suspension-ends"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "wait",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The reference project returns 2.4% on the model.",
+            "参考项目的模型回报为2.4%。"
+          ]
+        },
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "Capacity revenue is secured one delivery year at a time.",
+            "容量收入每次只能锁定一个交付年度。"
+          ]
+        }
+      ],
+      "despite": [
+        "Scarce deliverable rights in a system short of capacity can be worth more than the reference case shows.",
+        "在容量短缺的系统中，稀缺的可交付并网权的价值可能高于参考情景所示。"
+      ],
+      "changesIf": [
+        "pjm-capacity-auction-2029-30",
+        "pjm-backstop-filing-suspension-ends"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "opportunistic",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "The interconnection queue is far larger than what has been awarded agreements.",
+            "并网排队规模远大于已获并网协议的规模。"
+          ]
+        },
+        {
+          "dimension": "timeToRevenue",
+          "text": [
+            "A new request waits for a later cycle and then for network upgrades.",
+            "新申请须等待后续周期，其后还要等待电网升级工程。"
+          ]
+        },
+        {
+          "dimension": "demandGrowth",
+          "text": [
+            "Load growth is strong and the last capacity auction cleared short of the reliability requirement.",
+            "负荷增长强劲，最近一轮容量拍卖的出清量低于可靠性要求。"
+          ]
+        }
+      ],
+      "despite": [
+        "Scarce deliverable rights in a system short of capacity can be worth more than the reference case shows.",
+        "在容量短缺的系统中，稀缺的可交付并网权的价值可能高于参考情景所示。"
+      ],
+      "changesIf": [
+        "pjm-capacity-auction-2029-30"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
     {
       "id": "pjm-backstop-filing-suspension-ends",

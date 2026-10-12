@@ -146,7 +146,9 @@ test('every committed trigger cites a source that exists', async () => {
 test('every committed grade cites evidence a reader can open, or says it is practitioner judgement', async () => {
   for (const view of await committed.readAll()){
     if (!Object.keys(view.grades).length) continue;
-    const { SRC } = await import(`../src/markets/${view.marketId.replace('_', '-')}/sources.js`);
+    /* Japan's three allocation points share one dashboard and one register. */
+    const dir = view.marketId.startsWith('jp_') ? 'jp' : view.marketId.replace('_', '-');
+    const { SRC } = await import(`../src/markets/${dir}/sources.js`);
     for (const [id, record] of Object.entries(view.grades)){
       if (record.basis === BASIS.PRACTITIONER) continue;
       for (const key of record.evidence){
@@ -160,9 +162,9 @@ test('a graded market is graded on every dimension, so every archetype has a sco
   /* Half-graded is the state the arithmetic refuses to paper over: one missing
      dimension blanks its pillar and the fit. A market is entered whole. */
   const graded = (await committed.readAll()).filter(v => Object.keys(v.grades).length);
-  /* The four corners, and each market since as the analyst graded it (plan
-     phase 5): Germany. */
-  assert.deepEqual(graded.map(v => v.marketId).sort(), ['de', 'fi', 'gb', 'ro', 'wa']);
+  /* The four corners first, then the other eleven as the analyst graded them
+     (plan phase 5). Every registered market is graded now. */
+  assert.deepEqual(graded.map(v => v.marketId).sort(), registered.map(m => m.manifest.id).sort());
   for (const view of graded){
     assert.deepEqual(Object.keys(view.grades).sort(), [...DIMENSION_IDS].sort(), `${view.marketId}: not graded on every dimension`);
     const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX, { on: ON });
@@ -222,7 +224,7 @@ test('a committed verdict the score disagrees with says why', async () => {
         `${view.marketId}/${flag.archetype}: "${flag.call}" disagrees with its score (${flag.kind}) and carries no scoreNote`);
     }
   }
-  assert.equal(verdicts, 16, 'four markets by four archetypes');
+  assert.equal(verdicts, registered.length * ARCHETYPE_IDS.length, 'every market by four archetypes');
 });
 
 test('every machine-written line in the committed store is accounted for', async () => {

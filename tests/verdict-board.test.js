@@ -48,18 +48,33 @@ const code = async (rel) => (await readFile(path.join(REPO, rel), 'utf8'))
 
 const board = (lens = null, on = ON) => buildBoard(markets, { lens, on, usdPer: FX, viewFor, ledgerFor });
 
-test('every registered market is on the board, and four of them are graded', () => {
+/* Every market is graded now, so the rules for an ungraded one are held on a
+   board with two views withheld. The rules are the board's; which two markets
+   stand in for "not yet graded" does not matter. */
+const WITHHELD = new Set(['pl', 'ercot']);
+const boardWithGaps = (lens = null, on = ON) => buildBoard(markets, {
+  lens, on, usdPer: FX, ledgerFor, viewFor: (id) => (WITHHELD.has(id) ? null : viewFor(id)),
+});
+
+test('every registered market is on the board, and every one of them is graded', () => {
   const b = board();
   assert.equal(b.rows.length, markets.length);
   assert.deepEqual(new Set(b.rows.map(r => r.market.manifest.id)), new Set(markets.map(m => m.manifest.id)));
-  assert.equal(b.gradedCount, 4);
-  assert.equal(b.ungradedCount, markets.length - 4);
+  /* Four until plan phase 5 graded the other eleven. */
+  assert.equal(b.gradedCount, markets.length);
+  assert.equal(b.ungradedCount, 0);
   for (const r of b.rows) assert.equal(r.graded, hasView(r.market.manifest.id));
+
+  const gaps = boardWithGaps();
+  assert.equal(gaps.ungradedCount, WITHHELD.size);
+  for (const r of gaps.rows) assert.equal(r.graded, !WITHHELD.has(r.market.manifest.id));
 });
 
 test('a market that has not been graded shows its return and no verdict', () => {
   for (const lens of [null, ...ARCHETYPE_IDS]){
-    for (const r of board(lens).rows.filter(r => !r.graded)){
+    const ungraded = boardWithGaps(lens).rows.filter(r => !r.graded);
+    assert.equal(ungraded.length, WITHHELD.size, 'the board with gaps has ungraded rows to check');
+    for (const r of ungraded){
       const id = r.market.manifest.id;
       assert.equal(r.cells, null, `${id}: an ungraded market must carry no verdict cells`);
       assert.equal(r.cell, null);
@@ -119,8 +134,9 @@ test('where a ceiling applies the row leads with the barrier and names it', () =
 
 test('rows are ordered by verdict, then by fit, with ungraded markets after', () => {
   for (const lens of ARCHETYPE_IDS){
-    const rows = board(lens).rows;
+    const rows = boardWithGaps(lens).rows;
     const firstUngraded = rows.findIndex(r => !r.graded);
+    assert.ok(firstUngraded > 0, `${lens}: the board with gaps has both kinds of row`);
     assert.ok(rows.slice(firstUngraded).every(r => !r.graded), `${lens}: ungraded markets come last, together`);
     const graded = rows.slice(0, firstUngraded);
     for (let i = 1; i < graded.length; i++){
@@ -215,7 +231,8 @@ test('the calendar reads every market file, graded or not', async () => {
     expected += view.triggers.length;
   }
   assert.equal(allTriggers().length, expected);
-  assert.ok(allTriggers().some(t => !hasView(t.market)), 'triggers of ungraded markets are included');
+  /* Until every market was graded this also checked that a market file holding
+     only triggers was read. The count above still holds every file to it. */
 });
 
 test('the calendar window is twelve months from the reader\'s date and loses nothing', () => {
@@ -403,12 +420,10 @@ test('no page imports the registries that hold every market whole', async () => 
 test('a graded market registers its own view and ledger from its dashboard, and no other market does', async () => {
   for (const market of markets){
     const id = market.manifest.id;
-    const dir = (await readdir(path.join(REPO, 'src/markets'), { withFileTypes: true }))
-      .filter(d => d.isDirectory()).map(d => d.name)
-      .find(name => name === id || name === id.replace(/_/g, '-'));
-    const dashboard = dir ? path.join('src/markets', dir, 'dashboard.js') : null;
-    let src = '';
-    try { src = dashboard ? await code(dashboard) : ''; } catch { /* a market that shares another's dashboard */ }
+    /* The dashboard that draws this market: its own, or the one it shares.
+       Japan's three allocation points are drawn by one. */
+    const dashboard = path.join('src/markets', market.manifest.dashboardId || id, 'dashboard.js');
+    const src = await code(dashboard);
     const registers = new RegExp(`registerCase\\(\\s*['"]${id}['"]`).test(src);
     if (hasView(id)) assert.ok(registers, `${id}: graded, and its dashboard does not call registerCase — its Investment Case tab would be empty`);
     else assert.ok(!registers, `${id}: registers a case and has no grades`);

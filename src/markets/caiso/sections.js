@@ -521,5 +521,18 @@ SEC_B.data = function (){
   ] };
 };
 
+/* Investment Case and Entry: the investment-view revision. The content is the
+   shared component, which reads this market's view and ledger as its dashboard
+   registered them. There is no build pathway for this market yet, so Entry is
+   the ledger. */
+SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+  { t: 'p', text: ['Long resource adequacy contracts and the longest-established financing market here, around a reference project that returns 3.2% on the model.', '资源充裕度合同期限长，融资市场历史最久；但参考项目的模型回报仅为3.2%。'] },
+  { t: 'investment-case', marketId: 'caiso' },
+] });
+SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+  { t: 'p', text: ['An interconnection request carries a fee, a study deposit and a readiness deposit, about USD 455,000 on the reference project, and the readiness deposit is then topped up against the assigned upgrade cost.', '提交并网申请须缴纳申请费、研究押金与商业成熟度保证金，以参考项目计约45.5万美元；其后还须按所分摊的升级费用补足商业成熟度保证金。'] },
+  { t: 'entry-ledger', marketId: 'caiso' },
+] });
+
   return SECTIONS;
 }

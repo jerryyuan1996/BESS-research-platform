@@ -47,7 +47,7 @@ const SHORT = {
 
 const out = [];
 out.push('# Grading overview — every market on one page', '');
-out.push(`Generated ${ON}. **Plain** numbers are in the view store, written on your answers. **d** marks a draft that rests on a source I opened. **r** marks my recommendation with no source: an estimate from general knowledge and from how the graded markets compare. Nothing marked d or r has been written.`, '');
+out.push(`Generated ${ON}. **Plain** numbers are in the view store, written on your answers. Where you hold a view that differs from what sources support, both are shown, as "2 (held 1)": the sourced grade is the first and the held one is the one scored. **d** marks a draft that rests on a source I opened. **r** marks my recommendation with no source: an estimate from general knowledge and from how the graded markets compare. Nothing marked d or r has been written.`, '');
 out.push(`| Market | ${DIMENSIONS.map(d => SHORT[d.id]).join(' | ')} |`);
 out.push(`|---|${DIMENSIONS.map(() => '---').join('|')}|`);
 
@@ -59,7 +59,7 @@ for (const market of markets){
   const written = Object.keys(view.grades).length > 0;
   const grades = {}, marks = {};
   for (const d of DIMENSIONS){
-    if (written && view.grades[d.id]){ grades[d.id] = view.grades[d.id]; marks[d.id] = String(view.grades[d.id].held?.grade ?? view.grades[d.id].grade); }
+    if (written && view.grades[d.id]){ grades[d.id] = view.grades[d.id]; marks[d.id] = view.grades[d.id].held ? `${view.grades[d.id].grade} (held ${view.grades[d.id].held.grade})` : String(view.grades[d.id].grade); }
     else if (draft?.drafted?.[d.id]){ grades[d.id] = draft.drafted[d.id].grade; marks[d.id] = `${grades[d.id]}d`; }
     else if (draft?.recommended?.[d.id]){ grades[d.id] = draft.recommended[d.id].grade; marks[d.id] = `${grades[d.id]}r`; }
     else marks[d.id] = '–';

@@ -598,3 +598,28 @@ every rights table, the gates, `agent/`, and the workflow's permissions.
    gate open and ship without it. Either way rank grading stays.
 9. **The bundle remedy and the PR split** (§5, §6), including lowering the two budgets.
 10. **The quintile test** (§8 item 6).
+
+---
+
+## 10. Outcome of the grading (2026-10-12)
+
+All fifteen markets are graded on fourteen dimensions with four verdicts each, and all fifteen
+have a ledger. The eleven markets of this phase were written through the analyst's writer on his
+answers: Germany on his own numbers, the other ten on the drafts and recommendations he accepted,
+with the revisions from his review (Germany's capital at risk to 2 and scale to 4, Kyushu's
+demand and capital at risk to 2, CAISO's demand to 4). The forty-four calls are the stances his
+review set out for each investor.
+
+Three things to know when reading the store:
+
+- **92 of the 154 grades are practitioner grades.** They carry no evidence and no public
+  reason, by the schema's rule. Most began as a recommendation with no source opened.
+- **Most ledgers are lower bounds, and five have no sourced amount.** "All with ledgers" is met
+  in form. Poland's amounts are in złoty and the platform holds no złoty rate, so its limits read
+  as unchecked.
+- **The four markets graded in phase 1 were not changed.** The review also questioned some of
+  their grades and one of their calls; those are listed in the pull request for the analyst.
+
+Still to build, as approved: the entry-adjusted return (pull request 6 of section 6) and the merge
+to seven tabs (pull request 7). Left open by his decision: the long-life view of gate G12, for
+which `docs/g12-treatment-proposal.md` awaits sign-off.

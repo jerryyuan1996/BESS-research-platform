@@ -608,5 +608,18 @@ SEC_B.data = function (){
   ] };
 };
 
+/* Investment Case and Entry: the investment-view revision. The content is the
+   shared component, which reads this market's view and ledger as its dashboard
+   registered them. There is no build pathway for this market yet, so Entry is
+   the ledger. */
+SEC_B.case = () => ({ head: ['Investment Case — who should enter, and by which route', '投资判断 — 谁应该进入，走哪条路径'], blocks: [
+  { t: 'p', text: ['The easiest market here to connect to, and the reference project loses money on the model as fleet revenue has fallen two years running.', '这是各市场中最容易并网的一个；但随着机组收入连续两年下降，参考项目在模型中处于亏损。'] },
+  { t: 'investment-case', marketId: 'ercot' },
+] });
+SEC_B.entry = () => ({ head: ['Entry — what it costs before the first dollar of revenue', '进入成本 — 第一笔收入之前要付出什么'], blocks: [
+  { t: 'p', text: ['Two fees to the system operator and then security to the transmission provider with the notice to proceed. None has a sourced amount, so nothing here is totalled.', '须向系统运营机构缴纳两笔费用，发出开工通知时再向输电服务商提交担保。三者均没有可查证的金额，因此此处不作合计。'] },
+  { t: 'entry-ledger', marketId: 'ercot' },
+] });
+
   return SECTIONS;
 }

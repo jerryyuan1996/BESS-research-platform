@@ -1,8 +1,313 @@
 {
   "marketId": "it",
   "thesis": null,
-  "grades": {},
-  "verdicts": {},
+  "grades": {
+    "assetReturn": {
+      "dimension": "assetReturn",
+      "grade": 5,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine"
+      ],
+      "reason": [
+        "Second of fourteen markets on hold IRR, 15.4%.",
+        "持有期IRR为15.4%，在十四个市场中排名第二。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "revenueCertainty": {
+      "dimension": "revenueCertainty",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "comparison-engine",
+        "macse"
+      ],
+      "reason": [
+        "20% of first-year revenue is secured, for fifteen years; the first storage auction awarded contracts to fourteen projects.",
+        "首年收入的20%已锁定，期限十五年；首轮储能拍卖已向十四个项目授予合同。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "capitalAtRisk": {
+      "dimension": "capitalAtRisk",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "approvalTransparency": {
+      "dimension": "approvalTransparency",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "timeToRevenue": {
+      "dimension": "timeToRevenue",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "gridScarcity": {
+      "dimension": "gridScarcity",
+      "grade": 2,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "foreignEntry": {
+      "dimension": "foreignEntry",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "supplyChainOrigin": {
+      "dimension": "supplyChainOrigin",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "policyStability": {
+      "dimension": "policyStability",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "derived",
+      "evidence": [
+        "decision-profile",
+        "arera283",
+        "derating"
+      ],
+      "reason": [
+        "The second storage auction, on 24 November 2026, carries a lower premium cap than the first, and a lower capacity de-rating for four-hour storage is proposed for 2028 delivery; contracts already awarded keep their terms.",
+        "定于2026年11月24日举行的第二轮储能拍卖，溢价上限低于首轮；2028交付年度的四小时储能容量折减系数也拟下调；已授予的合同条款不变。"
+      ],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "demandGrowth": {
+      "dimension": "demandGrowth",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "saturation": {
+      "dimension": "saturation",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "debtAvailability": {
+      "dimension": "debtAvailability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "exitLiquidity": {
+      "dimension": "exitLiquidity",
+      "grade": 3,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    },
+    "scaleRepeatability": {
+      "dimension": "scaleRepeatability",
+      "grade": 4,
+      "trend": "stable",
+      "basis": "practitioner",
+      "evidence": [],
+      "asOf": "2026-10-12",
+      "author": "analyst",
+      "lockedUntil": null
+    }
+  },
+  "verdicts": {
+    "strategic": {
+      "archetype": "strategic",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "The storage auction awards fifteen-year contracts, and fourteen projects won one in the first round.",
+            "储能拍卖授予十五年期合同，首轮已有十四个项目中标。"
+          ]
+        },
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The modelled return is second on the platform.",
+            "模型回报在本平台各市场中排名第二。"
+          ]
+        },
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Connection requests are concentrated in the south and the islands, where some zones wait on named cables.",
+            "并网申请集中在南部与岛屿，其中部分分区须等待指定的海缆工程投运。"
+          ]
+        }
+      ],
+      "despite": [
+        "The first auction drew bids for several times the volume on offer, so a high modelled return does not mean a winning bid at that return.",
+        "首轮拍卖的投标量是招标量的数倍，模型回报高并不意味着能以同样的回报中标。"
+      ],
+      "changesIf": [
+        "it-macse-second-auction"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "infraFund": {
+      "archetype": "infraFund",
+      "call": "enter-now",
+      "route": "ready-to-build",
+      "where": [
+        "An awarded, ready-to-build asset",
+        "已中标且具备开工条件的资产"
+      ],
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "The storage auction awards fifteen-year contracts, and fourteen projects won one in the first round.",
+            "储能拍卖授予十五年期合同，首轮已有十四个项目中标。"
+          ]
+        },
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "The modelled return is second on the platform.",
+            "模型回报在本平台各市场中排名第二。"
+          ]
+        }
+      ],
+      "despite": [
+        "The first auction drew bids for several times the volume on offer, so a high modelled return does not mean a winning bid at that return.",
+        "首轮拍卖的投标量是招标量的数倍，模型回报高并不意味着能以同样的回报中标。"
+      ],
+      "changesIf": [
+        "it-macse-second-auction"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "foreignFirstTimer": {
+      "archetype": "foreignFirstTimer",
+      "call": "build-position",
+      "route": "ready-to-build",
+      "where": null,
+      "because": [
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "The storage auction awards fifteen-year contracts, and fourteen projects won one in the first round.",
+            "储能拍卖授予十五年期合同，首轮已有十四个项目中标。"
+          ]
+        },
+        {
+          "dimension": "timeToRevenue",
+          "text": [
+            "Regional authorisation sets the pace, and the auction's delivery years are 2028 and 2029.",
+            "大区层面的许可决定进度，拍卖的交付年度为2028年和2029年。"
+          ]
+        }
+      ],
+      "despite": [
+        "The first auction drew bids for several times the volume on offer, so a high modelled return does not mean a winning bid at that return.",
+        "首轮拍卖的投标量是招标量的数倍，模型回报高并不意味着能以同样的回报中标。"
+      ],
+      "changesIf": [
+        "it-macse-second-auction"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    },
+    "developer": {
+      "archetype": "developer",
+      "call": "build-position",
+      "route": "greenfield",
+      "where": null,
+      "because": [
+        {
+          "dimension": "gridScarcity",
+          "text": [
+            "Connection requests are concentrated in the south and the islands, where some zones wait on named cables.",
+            "并网申请集中在南部与岛屿，其中部分分区须等待指定的海缆工程投运。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Connection payments and auction guarantees fall before authorisation is in hand.",
+            "并网付款与拍卖保证金都发生在取得许可之前。"
+          ]
+        }
+      ],
+      "despite": [
+        "The first auction drew bids for several times the volume on offer, so a high modelled return does not mean a winning bid at that return.",
+        "首轮拍卖的投标量是招标量的数倍，模型回报高并不意味着能以同样的回报中标。"
+      ],
+      "changesIf": [
+        "it-macse-second-auction"
+      ],
+      "reviewBy": "2027-03-31",
+      "author": "analyst",
+      "asOf": "2026-10-12",
+      "lockedUntil": null
+    }
+  },
   "triggers": [
     {
       "id": "it-macse-second-auction",

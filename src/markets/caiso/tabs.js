@@ -13,6 +13,7 @@
 
 const TABS = [
   ['home',       ['Overview', '总览']],
+  ['case',       ['Investment Case', '投资判断']],
   ['story',      ['CAISO Market Story', 'CAISO市场演进']],
   ['capacity',   ['Resource Adequacy & Slice of Day', '容量充裕度与分时段机制']],
   ['energy',     ['Nodal Energy & the Midday Trough', '节点电能量与午间低谷']],
@@ -20,6 +21,7 @@ const TABS = [
   ['duration',   ['Storage Duration', '储能时长']],
   ['pipeline',   ['Project Pipeline', '项目管线']],
   ['grid',       ['Interconnection & Curtailment', '并网与限电']],
+  ['entry',      ['Entry & Delivery', '进入与交付']],
   ['portfolio',  ['Portfolio', '组合与基金视图']],
   ['data',       ['Data & Methodology', '数据与方法']],
 ];
