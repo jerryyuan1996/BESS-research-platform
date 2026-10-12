@@ -31,6 +31,26 @@ export const FX_SEED_DATE = '2026-07-28';
 /** Uniform comparison window, years. Every market is modelled over the same life. */
 export const LIFE = 15;
 
+/* The long-life view (src/longlife/longLife.js) sits BESIDE the engine and
+   never inside it: LIFE above stays the comparison window and nothing in the
+   engine reads the two constants below.
+
+   LONG_LIFE_YEARS is the analyst's decision of 2026-10-12: twenty-five years,
+   with twenty shown beside it, so the reader sees how much of the answer is
+   the choice of window.
+
+   MAINTAINED_FOM_SHARE is the yearly fixed operating cost, as a share of gross
+   capex, at which a battery is taken to hold its rated capacity for life. It
+   is NREL's figure, read on 2026-10-12: "The FOM value selected is 4% of the
+   $/kW capacity cost for a 4-hour battery", chosen from the high end "such
+   that the system will be able to perform at rated capacity throughout its
+   lifetime" (Cost Projections for Utility-Scale Battery Storage: 2025 Update,
+   NREL/TP-6A40-93281, page 11). NREL pairs it with a fifteen-year life and
+   about one cycle a day, so using it beyond fifteen years, or outside the
+   United States, is an extension the source does not make. */
+export const LONG_LIFE_YEARS = [20, 25];
+export const MAINTAINED_FOM_SHARE = 0.04;
+
 /* Exit pricing: remaining cash flows are discounted at stream-specific yields.
 
    Three risk classes, not two. A capacity payment secured by an executed contract

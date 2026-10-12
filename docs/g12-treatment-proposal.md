@@ -151,3 +151,98 @@ corners. It is a separate decision with its own plan, and nothing here presumes 
 4. The secured line after its term: nothing new, as recommended.
 5. Residual: none to begin with, as recommended.
 6. Whether I source more reconciliation targets before anything is built, as §5 proposes.
+
+## 8. What was sourced and built (2026-10-12)
+
+The analyst's answers to §7: source more reconciliation targets first; then build the long-life
+view; life 25 with 20 beside it; for augmentation do not pick numbers, open a source, starting
+with the NREL cost report already in the US registers; nothing new on the secured line after its
+term; no residual to begin with.
+
+### 8.1 Augmentation: what the source says
+
+NREL, *Cost Projections for Utility-Scale Battery Storage: 2025 Update* (NREL/TP-6A40-93281, June
+2025), opened and read on 2026-10-12, pages 11 and 12:
+
+- It gives **no augmentation year and no lump cost.** It treats augmentation as a yearly operating
+  cost. Low published figures for fixed O&M cover simple maintenance; high ones include capacity
+  additions or replacements that address degradation.
+- It selects a figure from the high end, **4% of the $/kW capital cost a year for a four-hour
+  battery**, and assumes that this holds the system at rated capacity for life. It attributes the
+  figure to a more detailed analysis by Newell et al. (2022), which was not opened.
+- It assumes about one cycle a day and says the figure may not be enough at much higher cycling.
+- It selects a **lifetime of fifteen years**, calling that the lower end of published values and a
+  conservative choice, because no four-hour system has yet reached fifteen years.
+
+So the two candidates in §4 (year 12 at 20% and at 35%) have no source and are dropped. What is
+built is the form the source gives: a "capacity maintained" case, beside the "capacity fades" case
+that is the engine's own treatment carried on. The 4% is held in `comparison/assumptions.js` as
+`MAINTAINED_FOM_SHARE`, with the passage. **Using it past fifteen years, or outside the United
+States, goes beyond what the source says, and that is the analyst's to confirm or replace.**
+
+Two things this shows about the engine as it stands:
+
+1. The engine's fifteen-year life is the same as the laboratory's. On life alone it is not out of
+   line with a public source; the published investor returns use longer ones.
+2. The engine's US opex of $20,000 a MW a year is about 1.5% of capex, the low, maintenance-only
+   end, and the engine degrades the market line. That pairing is consistent. But the US registers
+   say no laboratory publishes a fixed opex figure, and this report does. That note is wrong and
+   is left for a separate correction.
+
+### 8.2 Reconciliation targets: what was opened
+
+Each page below was opened on 2026-10-12. All are previews of paywalled reports. **None states
+its asset life, augmentation, degradation or residual value in the text that can be read**, so no
+target can yet be matched assumption for assumption.
+
+| Market | Published figure | Document | What the engine prices | Engine, 15 / 20 / 25 yr fading |
+|---|---|---|---|---|
+| Germany | 13.7% unlevered, four-hour, 2026 COD, capex €935k/MW; two-hour 12.2% at €700k/MW; "12–14%" central and 5.5% in the most adverse scenario. Says a merchant battery is exposed to the market "for 20 years" | Modo Energy, *German BESS investment outlook: Executive summary*, 16 March 2026 | Four-hour at €841.5k/MW | 14.6% / 15.7% / 16.1% |
+| Great Britain | 11.2% unlevered, two-hour, capex about £600k/MW; a hurdle rate of 10 to 12% "is typically required" | Modo Energy, *GB BESS Outlook Q3 2024*, 5 August 2024 | Four-hour at £810k/MW | 4.7% / 6.7% / 7.6% |
+| Great Britain | 10.7% average, two-hour, capex about £550k/MW; basis not stated on the page | Modo Energy, *GB BESS Outlook Q4 2024*, 20 November 2024 | as above | as above |
+| ERCOT | 18.3% pre-tax unlevered, four-hour, 2027 COD; two-hour 11.3%; one-hour 4.9% | Modo Energy, *ERCOT BESS Investment Outlook Report — Q1 2026*, 21 May 2026 | Two-hour on a toll, at $866k/MW | −5.9% / −3.8% / −2.7% |
+| NEM | "Similar forecast IRRs" for six and eight hours, commissioning 2029; no figure and no basis on the page | Modo Energy, *NEM BESS Outlook July 2026*, 13 July 2026 | — | not a target |
+
+What this settles and does not:
+
+- **The Great Britain "10–12%" now has a named document, and it is a hurdle rate, not a return.**
+  The return beside it is 11.2% for a two-hour battery in 2024. The engine prices a four-hour
+  battery at a third more capex per MW, two years later. They are not the same asset, so the
+  distance between 4.7% and 11.2% is not a measure of the engine's error.
+- **Germany is just above the published range on fifteen years and further above on
+  twenty-five.** The engine's capex is 10% below the published one, which works the same way.
+- **ERCOT is not comparable as priced.** The engine's base route is a toll on a two-hour battery;
+  the published two-hour figure is a merchant central case. The gap is a route and revenue
+  question, not a life question.
+- **No target was found for Italy, Poland, Romania, Ireland, Japan, CAISO, PJM, WA or Finland.**
+
+**The gate stays open.** Closing it needs at least one target whose life and augmentation are
+stated, which means the full reports and not their previews. The long-life view is built so that
+when one is opened the engine can be put on the same window.
+
+### 8.3 What was built
+
+`src/longlife/longLife.js`, beside the engine, with `tests/long-life.test.js`. It is shown on
+`/returns` and on each market's Entry & Delivery tab. `LIFE` is 15 and no pinned number moves.
+
+| Market | Fades: 15 yr | 20 yr | 25 yr | Maintained: 15 yr | 20 yr | 25 yr |
+|---|---|---|---|---|---|---|
+| ro | 20.8% | 21.5% | 21.7% | 19.1% | 20.0% | 20.3% |
+| it | 15.4% | 16.5% | 17.0% | 13.4% | 14.8% | 15.4% |
+| de | 14.6% | 15.7% | 16.1% | 14.4% | 15.7% | 16.2% |
+| wa | 13.1% | 14.3% | 14.9% | 8.9% | 10.6% | 11.3% |
+| ie | 9.6% | 10.9% | 11.5% | 5.9% | 7.7% | 8.6% |
+| jp_kyushu | 7.5% | 9.5% | 10.4% | 2.3% | 4.9% | 6.2% |
+| jp_tokyo | 7.4% | 9.4% | 10.3% | 2.2% | 4.8% | 6.1% |
+| jp_hokkaido | 7.4% | 9.4% | 10.3% | 2.2% | 4.8% | 6.1% |
+| gb | 4.7% | 6.7% | 7.6% | 2.9% | 5.4% | 6.7% |
+| caiso | 3.2% | 5.3% | 6.4% | −0.7% | 1.9% | 3.3% |
+| nem | 3.1% | 5.6% | 6.8% | −1.2% | 1.9% | 3.5% |
+| pjm | 2.4% | 4.4% | 5.4% | −1.2% | 1.4% | 2.8% |
+| pl | 0.8% | 3.2% | 4.4% | −2.8% | 0.5% | 2.3% |
+| ercot | −5.9% | −3.8% | −2.7% | −10.5% | −7.4% | −5.3% |
+
+**Paying to hold capacity lowers the return in every market but Germany**, where it is a wash. At
+4% of capex a year the upkeep costs more than the faded capacity would have earned. That is a
+finding about the 4% applied to these revenue lines, and one more reason the figure needs the
+analyst's eye before anything is read from the right-hand columns.
