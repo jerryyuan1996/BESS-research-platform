@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-13T00:47:49.266Z",
+  "fetchedAt": "2026-10-13T14:20:05.851Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-12T13:56:41.000Z",
+    "to": "2026-10-13T12:50:00.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -133,66 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-06T23:37:28.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/canadian-solars-e-storage-to-deliver-200mwh-bess-for-australian-solar-plus-storage-site/",
-      "source": "Energy-Storage.news",
-      "title": "Canadian Solar’s e-STORAGE to deliver 200MWh BESS for Australian solar-plus-storage site",
-      "url": "https://www.energy-storage.news/canadian-solars-e-storage-to-deliver-200mwh-bess-for-australian-solar-plus-storage-site/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "e-STORAGE has signed an agreement to supply and commission a 100MW/200MWh BESS for OX2's Muswellbrook solar-plus-storage site in Australia."
-    },
-    {
-      "t": "2026-10-07T05:13:38.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/edf-power-solutions-australia-refers-800mwh-wind-plus-storage-site-to-epbc-act/",
-      "source": "Energy-Storage.news",
-      "title": "EDF Power Solutions Australia refers 800MWh wind-plus-storage site to EPBC Act",
-      "url": "https://www.energy-storage.news/edf-power-solutions-australia-refers-800mwh-wind-plus-storage-site-to-epbc-act/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "EDF Power Solutions Australia has referred a wind-plus-storage project featuring an 800MWh BESS for assessment under Australia's EPBC Act."
-    },
-    {
-      "t": "2026-10-07T08:13:37.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/dutch-bess-developer-giga-storage-brings-gigawatt-hour-scale-project-strategy-to-germany/",
-      "source": "Energy-Storage.news",
-      "title": "Dutch BESS developer Giga Storage brings gigawatt-hour-scale project strategy to Germany",
-      "url": "https://www.energy-storage.news/dutch-bess-developer-giga-storage-brings-gigawatt-hour-scale-project-strategy-to-germany/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Having just begun construction on a 2.8GWh BESS in Belgium, Giga Storage has progressed its 1.4GWh project in Germany to the ready-to-build stage."
-    },
-    {
-      "t": "2026-10-07T11:10:08.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bw-ess-starts-building-828mwh-bess-italy-market-moves-execution/",
-      "source": "Energy-Storage.news",
-      "title": "BW ESS starts building 828MWh BESS in Italy as ‘market moves to execution’",
-      "url": "https://www.energy-storage.news/bw-ess-starts-building-828mwh-bess-italy-market-moves-execution/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS owner-operator BW ESS has launched construction on its second large-scale project in Italy in the space of a month, while developers Galileo and Aura Power have progressed portfolios in the country."
-    },
-    {
-      "t": "2026-10-07T11:45:36.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/hithiums-%e2%88%9ecell-n785ah-vs-catl-hina-and-its-own-lfp-range-a-sodium-ion-comparison-for-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Hithium’s ∞Cell N785Ah vs CATL, HiNa, and its own LFP range: a sodium-ion comparison for BESS",
-      "url": "https://www.energy-storage.news/hithiums-%e2%88%9ecell-n785ah-vs-catl-hina-and-its-own-lfp-range-a-sodium-ion-comparison-for-bess/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Hithium's recent sodium-ion battery and BESS product launch is the latest in a long line of announcements showing an inflection point for the battery chemistry. But how do its new products compare to other sodium-ion systems out there, and to its own LFP offering?"
-    },
-    {
-      "t": "2026-10-07T13:12:30.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/nextera-halts-long-island-bess-operations-over-drinking-water-contamination-concerns/",
-      "source": "Energy-Storage.news",
-      "title": "NextEra halts Long Island BESS operations over drinking water contamination concerns",
-      "url": "https://www.energy-storage.news/nextera-halts-long-island-bess-operations-over-drinking-water-contamination-concerns/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US energy holding company and project developer-owner NextEra Energy has suspended operations at two energy storage facilities in Long Island, New York, US."
     },
     {
       "t": "2026-10-08T03:23:27.000Z",
@@ -355,76 +295,6 @@
       "summary": "ACE and the IEA say the main obstacles to battery energy storage system (BESS) deployment in Southeast Asia are policy and market rules."
     },
     {
-      "t": "2026-10-12T06:26:29.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/ci-storage-the-sleeping-giant-waking-up-says-woodmac/",
-      "source": "pv magazine",
-      "title": "C&I storage the ‘sleeping giant waking up’, says WoodMac",
-      "url": "https://www.pv-magazine.com/2026/10/12/ci-storage-the-sleeping-giant-waking-up-says-woodmac/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Global energy storage outlook will see a seven-fold growth by 2035 passing 7 TWh, with falling costs and policy support accelerating battery storage momentum in emerging and advancing markets The post C&I storage the ‘sleeping giant waking up’, says WoodMac appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-12T07:04:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/risen-releases-23-5-efficient-anti-glare-heterojunction-solar-module/",
-      "source": "pv magazine",
-      "title": "Risen releases 23.5%-efficient anti-glare heterojunction solar module",
-      "url": "https://www.pv-magazine.com/2026/10/12/risen-releases-23-5-efficient-anti-glare-heterojunction-solar-module/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Risen Energy has unveiled a new anti-glare heterojunction solar module featuring a dual-layer optical design and a power output of up to 730 W. The bifacial panel achieves a maximum efficiency of 23.5% and has received Class AAA anti-glare certification from TÜV Rheinland. The post Risen releases 23.5%-efficient ant…"
-    },
-    {
-      "t": "2026-10-12T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/south-korea-details-auction-market-to-replace-renewable-quota-system/",
-      "source": "pv magazine",
-      "title": "South Korea details auction market to replace renewable quota system",
-      "url": "https://www.pv-magazine.com/2026/10/12/south-korea-details-auction-market-to-replace-renewable-quota-system/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Draft rules for South Korea’s new renewables auction market provide for monthly difference payments from Korea Electric Power Corp. (Kepco), a separate track for projects up to 500 kW, and an exit route for renewable energy certificate (REC) spot-market sellers. The post South Korea details auction market to replace…"
-    },
-    {
-      "t": "2026-10-12T10:08:29.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/energy-dome-opens-co2-battery-manufacturing-plant-in-italy/",
-      "source": "pv magazine",
-      "title": "Energy Dome opens CO2 battery manufacturing plant in Italy",
-      "url": "https://www.pv-magazine.com/2026/10/12/energy-dome-opens-co2-battery-manufacturing-plant-in-italy/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy Dome’s new manufacturing plant will supply components for long-duration energy storage (LDES) projects in India, the United States and Ireland. The post Energy Dome opens CO2 battery manufacturing plant in Italy appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-12T11:10:12.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/multiple-grounding-points-cut-lightning-induced-overvoltage-in-solar-panels-by-up-to-55/",
-      "source": "pv magazine",
-      "title": "Multiple grounding points cut lightning-induced overvoltage in solar panels by up to 55%",
-      "url": "https://www.pv-magazine.com/2026/10/12/multiple-grounding-points-cut-lightning-induced-overvoltage-in-solar-panels-by-up-to-55/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in Indonesia found that higher soil resistivity significantly increases lightning-induced overvoltage in PV systems. Their simulations also showed that multiple grounding points and connections closer to the lightning strike location can substantially reduce transient voltages. The post Multiple groundin…"
-    },
-    {
-      "t": "2026-10-12T11:38:47.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/eskom-kicks-off-tender-for-6-gw-of-renewables-plus-storage/",
-      "source": "pv magazine",
-      "title": "Eskom kicks off tender for 6 GW of renewables-plus-storage",
-      "url": "https://www.pv-magazine.com/2026/10/12/eskom-kicks-off-tender-for-6-gw-of-renewables-plus-storage/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "South African utility Eskom has launched a qualification process to select strategic partners for up to 6 GW of renewable energy and storage projects. The portfolio will include at least 2 GW of solar and 1 GW/4 GWh of battery storage, with selected developers joining a five-year co-development and investment framew…"
-    },
-    {
-      "t": "2026-10-12T11:47:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/12/france-defines-terms-for-long-term-capacity-auction/",
-      "source": "pv magazine",
-      "title": "France defines terms for long-term capacity auction",
-      "url": "https://www.pv-magazine.com/2026/10/12/france-defines-terms-for-long-term-capacity-auction/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "France's energy regulator has proposed the parameters for the country's first long-term capacity auction, covering the winter of 2030-31. The auction will target 82 GW of capacity, including 3 GW eligible for multi-year contracts, as France seeks to safeguard electricity supplies while limiting costs for consumers.…"
-    },
-    {
       "t": "2026-10-12T11:53:30.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/chile-engie-commissions-802mwh-battery-storage-grenergy-finances-1769mwh-bess/",
       "source": "Energy-Storage.news",
@@ -443,18 +313,158 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The PJM Interconnection&rsquo;s plan for curtailing large loads that don&rsquo;t have matching new generation intrudes on state jurisdiction and appears to be discriminatory, the Federal Energy Regulatory Commission said."
+    },
+    {
+      "t": "2026-10-13T02:38:03.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/new-south-wales-bess-earn-nearly-au6-million-as-two-hour-extreme-price-event-sweeps-australias-energy-market/",
+      "source": "Energy-Storage.news",
+      "title": "New South Wales BESS earn nearly AU$6 million as two-hour ‘extreme’ price event sweeps Australia’s energy market",
+      "url": "https://www.energy-storage.news/new-south-wales-bess-earn-nearly-au6-million-as-two-hour-extreme-price-event-sweeps-australias-energy-market/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Battery energy storage systems (BESS) in Australia’s New South Wales (NSW) earned an estimated AU$5.63 million (US$3.88 million) in two hours on 12 October, as wholesale electricity prices peaked at AU$23,107/MWh."
+    },
+    {
+      "t": "2026-10-13T02:56:28.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/samsung-ct-refers-800mwh-darnum-bess-in-victorias-gippsland-region-to-australias-epbc-act/",
+      "source": "Energy-Storage.news",
+      "title": "Samsung C&T refers 800MWh Darnum BESS in Victoria’s Gippsland region to Australia’s EPBC Act",
+      "url": "https://www.energy-storage.news/samsung-ct-refers-800mwh-darnum-bess-in-victorias-gippsland-region-to-australias-epbc-act/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Samsung C&T’s Australian renewables arm has referred an 800MWh battery energy storage system (BESS) in Victoria’s Gippsland region to the federal government under Australia’s Environment Protection and Biodiversity Conservation (EPBC) Act."
+    },
+    {
+      "t": "2026-10-13T08:28:22.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/wartsila-energy-storage-jv-valo-us-domestic-content-manufacturing-discussions-strong-players/",
+      "source": "Energy-Storage.news",
+      "title": "Wärtsilä energy storage JV Valo in US domestic content manufacturing discussions with ‘strong players’",
+      "url": "https://www.energy-storage.news/wartsila-energy-storage-jv-valo-us-domestic-content-manufacturing-discussions-strong-players/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Valo, the new joint venture formed as a continuation of Wärtsilä’s energy storage business, is weighing up investing in the US supply chain, including factories."
+    },
+    {
+      "t": "2026-10-13T09:23:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/inside-bess-manufacturing-maxxens-utility-scale-storage-factory-in-europe-2/",
+      "source": "pv magazine",
+      "title": "Inside BESS manufacturing: Maxxen’s utility-scale storage factory in Europe",
+      "url": "https://www.pv-magazine.com/2026/10/13/inside-bess-manufacturing-maxxens-utility-scale-storage-factory-in-europe-2/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A detailed look at Maxxen’s advanced BESS factory from an on-the-ground tour. The post Inside BESS manufacturing: Maxxen’s utility-scale storage factory in Europe appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-13T09:29:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/neoen-bw-ess-and-mn8-back-efforts-to-standardise-bess-procurement-through-new-energy-storage-contract-alliance/",
+      "source": "Energy-Storage.news",
+      "title": "Neoen, BW ESS and MN8 back efforts to standardise BESS procurement through new Energy Storage Contract Alliance",
+      "url": "https://www.energy-storage.news/neoen-bw-ess-and-mn8-back-efforts-to-standardise-bess-procurement-through-new-energy-storage-contract-alliance/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Big names in the downstream battery storage market have signed up to join an initiative aimed at simplifying BESS procurement."
+    },
+    {
+      "t": "2026-10-13T09:38:05.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/visionpark-unveils-new-foundation-free-solar-carport-for-residential-use/",
+      "source": "pv magazine",
+      "title": "Visionpark unveils new foundation-free solar carport for residential use",
+      "url": "https://www.pv-magazine.com/2026/10/13/visionpark-unveils-new-foundation-free-solar-carport-for-residential-use/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Atlas range is scheduled to become available in January 2027, with three models offering PV capacities from 3 kW to 15 kW and heights of up to 4 meters. The post Visionpark unveils new foundation-free solar carport for residential use appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-13T10:14:01.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/clearway-energy-increases-utah-energy-centre-capacity-to-2120mwh/",
+      "source": "Energy-Storage.news",
+      "title": "Clearway Energy increases Utah ‘Energy Centre’ capacity to 2,120MWh",
+      "url": "https://www.energy-storage.news/clearway-energy-increases-utah-energy-centre-capacity-to-2120mwh/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Independent power producer (IPP) Clearway Energy has added 210MW of energy storage capacity to its Honeycomb Energy Centre fleet in Southern Utah, US."
+    },
+    {
+      "t": "2026-10-13T10:18:18.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/foss-company-closes-us58-million-tax-equity-deal-for-gridstors-texas-bess-project/",
+      "source": "Energy-Storage.news",
+      "title": "Foss & Company closes US$58 million tax equity deal for GridStor’s Texas BESS project",
+      "url": "https://www.energy-storage.news/foss-company-closes-us58-million-tax-equity-deal-for-gridstors-texas-bess-project/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "US tax equity syndicator Foss & Company has closed a US$58 million partnership flip transaction to finance an energy storage project in Hidalgo County, Texas, developed by GridStor."
+    },
+    {
+      "t": "2026-10-13T10:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/qatars-renewable-capacity-share-to-more-than-double-by-2035/",
+      "source": "pv magazine",
+      "title": "Qatar’s renewable capacity share could more than double by 2035",
+      "url": "https://www.pv-magazine.com/2026/10/13/qatars-renewable-capacity-share-to-more-than-double-by-2035/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Renewables could rise from 12% of Qatar's power capacity in 2025 to 25.9% by 2035, says GlobalData, with solar leading while gas remains the backbone of its power and water system. The post Qatar’s renewable capacity share could more than double by 2035 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-13T10:42:55.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/european-ppa-prices-rise-5-in-september/",
+      "source": "pv magazine",
+      "title": "European PPA prices rise 5% in September",
+      "url": "https://www.pv-magazine.com/2026/10/13/european-ppa-prices-rise-5-in-september/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "European PPA prices rose 5% in September, driven by higher forward electricity and gas prices, while Spain and Portugal recorded declines. Contracting activity rebounded, with 25 deals totaling 1.2 GW, alongside growing interest in hybrid PPAs and battery storage agreements. The post European PPA prices rise 5% in S…"
+    },
+    {
+      "t": "2026-10-13T11:05:45.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/stationary-moving-flexible-batteries-are-the-low-cost-backbone-of-the-future-energy-system/",
+      "source": "pv magazine",
+      "title": "Stationary, moving, flexible: Batteries are the low-cost backbone of the future energy system",
+      "url": "https://www.pv-magazine.com/2026/10/13/stationary-moving-flexible-batteries-are-the-low-cost-backbone-of-the-future-energy-system/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "While it is known that batteries are indispensable for the future energy system dominated by solar PV, they are still seen as a bottleneck technology mostly related to raw material supply. Sodium-ion batteries can resolve this issue. Batteries are more than a stationary storage technology, also with bright prospects…"
+    },
+    {
+      "t": "2026-10-13T11:52:54.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/three-molecule-blend-boosts-inverted-perovskite-solar-cell-efficiency-to-27-5/",
+      "source": "pv magazine",
+      "title": "Three-molecule blend boosts inverted perovskite solar cell efficiency to 27.5%",
+      "url": "https://www.pv-magazine.com/2026/10/13/three-molecule-blend-boosts-inverted-perovskite-solar-cell-efficiency-to-27-5/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese researchers have developed high-entropy molecular contacts that enabled inverted perovskite solar cells to achieve a certified steady-state efficiency of 27.31%. The approach also improves thermal stability by preventing molecular contact degradation. The post Three-molecule blend boosts inverted perovskite…"
+    },
+    {
+      "t": "2026-10-13T12:35:27.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/leapting-launches-autonomous-forklift-for-solar-module-transport/",
+      "source": "pv magazine",
+      "title": "Leapting launches autonomous forklift for solar module transport",
+      "url": "https://www.pv-magazine.com/2026/10/13/leapting-launches-autonomous-forklift-for-solar-module-transport/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Chinese robotics manufacturer has introduced an autonomous tracked forklift capable of transporting solar module pallets weighing up to 3,000 kg. The battery-powered machine features a maximum lifting height of 3 m, a 30-degree climbing capability and a navigation system combining GNSS-RTK, laser SLAM and comput…"
+    },
+    {
+      "t": "2026-10-13T12:50:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/us-power-prices-fall-with-utility-scale-solar-rise-with-rooftop/",
+      "source": "pv magazine",
+      "title": "US power prices fall with utility-scale solar, rise with rooftop",
+      "url": "https://www.pv-magazine.com/2026/10/13/us-power-prices-fall-with-utility-scale-solar-rise-with-rooftop/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "MIT researchers say there is no link between renewable portfolio standards or utility-scale wind and solar and higher US residential power prices, but rooftop solar correlates with higher rates and distribution costs. The post US power prices fall with utility-scale solar, rise with rooftop appeared first on pv maga…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 23,
-      "policy": 10,
-      "capital": 6,
-      "technology": 3
+      "grid": 27,
+      "policy": 7,
+      "capital": 7,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -479,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 8
       }
     ]
   },
@@ -488,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:6fadc8d235291fba1f914fde34580dc102f44aec998ae320deb5766a0e8b6ad8",
-  "envelopeChecksum": "sha256:076801f3f20ff1ca4e70839a32bff01c6d4f72a041b153007d927f6e00304072"
+  "contentChecksum": "sha256:30fe4aca0278b772bf37a7f8640ff8f5c108a2a13b5c15d86e2812f7d5f7dc5f",
+  "envelopeChecksum": "sha256:51cad1bd437ac399b86c82286ed97addda7661f493bd516a14641832f629a091"
 }
