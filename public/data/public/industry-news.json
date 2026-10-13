@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-12T15:38:44.795Z",
+  "fetchedAt": "2026-10-13T00:47:49.266Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-12T11:53:30.000Z",
+    "to": "2026-10-12T13:56:41.000Z",
     "resolution": "event",
     "points": 42
   },
@@ -245,16 +245,6 @@
       "summary": "Infrastructure investor Actis has entered the Polish energy storage market with the acquisition of two large-scale projects from DTEK's DRI, while R.Power and Solax have announced project updates in the country."
     },
     {
-      "t": "2026-10-08T14:04:37.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/4-hour-storage-cheaper-than-gas-peakers-across-global-markets-woodmac/832489/",
-      "source": "Utility Dive",
-      "title": "4-hour storage cheaper than gas peakers across global markets: WoodMac",
-      "url": "https://www.utilitydive.com/news/4-hour-storage-cheaper-than-gas-peakers-across-global-markets-woodmac/832489/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In North America, data centers are boosting the long-term investment case for energy storage and renewables as gas turbine backlogs and rising fuel volatility drive up peaking costs, according to a Thursday note from Wood Mackenzie."
-    },
-    {
       "t": "2026-10-08T14:52:13.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/power-system-plans-to-meet-large-load-demand-miss-near-term-solutions-some/832508/",
       "source": "Utility Dive",
@@ -443,6 +433,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Power group Engie has put an 142MW/802MWh BESS project in Chile into operation, while IPP Grenergy has secured financing for the fifth and final stage of its Oasis de Atacama solar-plus-storage project."
+    },
+    {
+      "t": "2026-10-12T13:56:41.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/",
+      "source": "Utility Dive",
+      "title": "FERC rejects most of PJM’s large load interconnection plan",
+      "url": "https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The PJM Interconnection&rsquo;s plan for curtailing large loads that don&rsquo;t have matching new generation intrudes on state jurisdiction and appears to be discriminatory, the Federal Energy Regulatory Commission said."
     }
   ],
   "derived": {
@@ -488,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:014bebeb3cc6a77cc01ef788296463288c3e31d099bc89ab630261b79bb9e941",
-  "envelopeChecksum": "sha256:c4c5d112a1c40bf505a764a457972207a448a0d46e96b1c05a86710169c8f272"
+  "contentChecksum": "sha256:6fadc8d235291fba1f914fde34580dc102f44aec998ae320deb5766a0e8b6ad8",
+  "envelopeChecksum": "sha256:076801f3f20ff1ca4e70839a32bff01c6d4f72a041b153007d927f6e00304072"
 }
