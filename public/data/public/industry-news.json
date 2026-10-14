@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-14T05:00:59.542Z",
+  "fetchedAt": "2026-10-14T12:01:46.715Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-14T02:15:05.000Z",
+    "to": "2026-10-14T11:56:22.000Z",
     "resolution": "event",
     "points": 42
   },
@@ -133,36 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-08T09:07:34.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/return-puts-netherlands-largest-bess-online/",
-      "source": "Energy-Storage.news",
-      "title": "Return puts Netherlands’ largest BESS online",
-      "url": "https://www.energy-storage.news/return-puts-netherlands-largest-bess-online/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS owner-operator Return has put its 100MW/200MWh Antares BESS in the Netherlands into commercial operation, the largest to have reached that stage in the country as far as we know."
-    },
-    {
-      "t": "2026-10-08T09:46:50.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/b2u-ceo-us-second-life-bess-can-compete-with-china-price/",
-      "source": "Energy-Storage.news",
-      "title": "B2U CEO: US second-life BESS can compete with ‘China price’",
-      "url": "https://www.energy-storage.news/b2u-ceo-us-second-life-bess-can-compete-with-china-price/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news Premium speaks with Freeman Hall, CEO of second-life BESS firm B2U Storage Solutions."
-    },
-    {
-      "t": "2026-10-08T11:02:15.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/actis-buys-1-14gwh-of-bess-in-poland-from-dteks-dri/",
-      "source": "Energy-Storage.news",
-      "title": "Actis buys 1.14GWh of BESS in Poland from DTEK’s DRI",
-      "url": "https://www.energy-storage.news/actis-buys-1-14gwh-of-bess-in-poland-from-dteks-dri/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Infrastructure investor Actis has entered the Polish energy storage market with the acquisition of two large-scale projects from DTEK's DRI, while R.Power and Solax have announced project updates in the country."
     },
     {
       "t": "2026-10-09T03:21:32.000Z",
@@ -305,16 +275,6 @@
       "summary": "Big names in the downstream battery storage market have signed up to join an initiative aimed at simplifying BESS procurement."
     },
     {
-      "t": "2026-10-13T09:38:05.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/visionpark-unveils-new-foundation-free-solar-carport-for-residential-use/",
-      "source": "pv magazine",
-      "title": "Visionpark unveils new foundation-free solar carport for residential use",
-      "url": "https://www.pv-magazine.com/2026/10/13/visionpark-unveils-new-foundation-free-solar-carport-for-residential-use/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Atlas range is scheduled to become available in January 2027, with three models offering PV capacities from 3 kW to 15 kW and heights of up to 4 meters. The post Visionpark unveils new foundation-free solar carport for residential use appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-13T10:14:01.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/clearway-energy-increases-utah-energy-centre-capacity-to-2120mwh/",
       "source": "Energy-Storage.news",
@@ -333,66 +293,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "US tax equity syndicator Foss & Company has closed a US$58 million partnership flip transaction to finance an energy storage project in Hidalgo County, Texas, developed by GridStor."
-    },
-    {
-      "t": "2026-10-13T10:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/qatars-renewable-capacity-share-to-more-than-double-by-2035/",
-      "source": "pv magazine",
-      "title": "Qatar’s renewable capacity share could more than double by 2035",
-      "url": "https://www.pv-magazine.com/2026/10/13/qatars-renewable-capacity-share-to-more-than-double-by-2035/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Renewables could rise from 12% of Qatar's power capacity in 2025 to 25.9% by 2035, says GlobalData, with solar leading while gas remains the backbone of its power and water system. The post Qatar’s renewable capacity share could more than double by 2035 appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-13T10:42:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/european-ppa-prices-rise-5-in-september/",
-      "source": "pv magazine",
-      "title": "European PPA prices rise 5% in September",
-      "url": "https://www.pv-magazine.com/2026/10/13/european-ppa-prices-rise-5-in-september/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "European PPA prices rose 5% in September, driven by higher forward electricity and gas prices, while Spain and Portugal recorded declines. Contracting activity rebounded, with 25 deals totaling 1.2 GW, alongside growing interest in hybrid PPAs and battery storage agreements. The post European PPA prices rise 5% in S…"
-    },
-    {
-      "t": "2026-10-13T11:05:45.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/stationary-moving-flexible-batteries-are-the-low-cost-backbone-of-the-future-energy-system/",
-      "source": "pv magazine",
-      "title": "Stationary, moving, flexible: Batteries are the low-cost backbone of the future energy system",
-      "url": "https://www.pv-magazine.com/2026/10/13/stationary-moving-flexible-batteries-are-the-low-cost-backbone-of-the-future-energy-system/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "While it is known that batteries are indispensable for the future energy system dominated by solar PV, they are still seen as a bottleneck technology mostly related to raw material supply. Sodium-ion batteries can resolve this issue. Batteries are more than a stationary storage technology, also with bright prospects…"
-    },
-    {
-      "t": "2026-10-13T11:52:54.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/three-molecule-blend-boosts-inverted-perovskite-solar-cell-efficiency-to-27-5/",
-      "source": "pv magazine",
-      "title": "Three-molecule blend boosts inverted perovskite solar cell efficiency to 27.5%",
-      "url": "https://www.pv-magazine.com/2026/10/13/three-molecule-blend-boosts-inverted-perovskite-solar-cell-efficiency-to-27-5/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese researchers have developed high-entropy molecular contacts that enabled inverted perovskite solar cells to achieve a certified steady-state efficiency of 27.31%. The approach also improves thermal stability by preventing molecular contact degradation. The post Three-molecule blend boosts inverted perovskite…"
-    },
-    {
-      "t": "2026-10-13T12:35:27.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/leapting-launches-autonomous-forklift-for-solar-module-transport/",
-      "source": "pv magazine",
-      "title": "Leapting launches autonomous forklift for solar module transport",
-      "url": "https://www.pv-magazine.com/2026/10/13/leapting-launches-autonomous-forklift-for-solar-module-transport/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Chinese robotics manufacturer has introduced an autonomous tracked forklift capable of transporting solar module pallets weighing up to 3,000 kg. The battery-powered machine features a maximum lifting height of 3 m, a 30-degree climbing capability and a navigation system combining GNSS-RTK, laser SLAM and comput…"
-    },
-    {
-      "t": "2026-10-13T12:50:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/us-power-prices-fall-with-utility-scale-solar-rise-with-rooftop/",
-      "source": "pv magazine",
-      "title": "US power prices fall with utility-scale solar, rise with rooftop",
-      "url": "https://www.pv-magazine.com/2026/10/13/us-power-prices-fall-with-utility-scale-solar-rise-with-rooftop/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "MIT researchers say there is no link between renewable portfolio standards or utility-scale wind and solar and higher US residential power prices, but rooftop solar correlates with higher rates and distribution costs. The post US power prices fall with utility-scale solar, rise with rooftop appeared first on pv maga…"
     },
     {
       "t": "2026-10-13T14:20:49.000Z",
@@ -443,6 +343,106 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Alberto Valenzuela discusses ahead of Energy Storage Summit Latin America about Mexico's growing interest in renewables and energy storage, and the factors driving this growth."
+    },
+    {
+      "t": "2026-10-14T05:37:28.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/europes-battery-market-isnt-ready-for-second-life-bess-business-models-yet/",
+      "source": "Energy-Storage.news",
+      "title": "Europe’s battery market isn’t ready for second-life BESS business models yet",
+      "url": "https://www.energy-storage.news/europes-battery-market-isnt-ready-for-second-life-bess-business-models-yet/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Europe is no longer betting on second-life repurposing of EV batteries for stationary BESS applications, and that is not a bad thing, argues David Oudsandji, CEO of Voltfang."
+    },
+    {
+      "t": "2026-10-14T05:51:36.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/is-toyo-correct-the-u-s-is-done-building-modules/",
+      "source": "pv magazine",
+      "title": "Is TOYO correct – the U.S. is done building modules?",
+      "url": "https://www.pv-magazine.com/2026/10/14/is-toyo-correct-the-u-s-is-done-building-modules/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Recent comments by TOYO during its 2026 Solar Analyst Day suggested the United States does not need any more solar module capacity, yet capital expenditure is still flowing into the module segment. The post Is TOYO correct – the U.S. is done building modules? appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-14T07:11:21.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/ecoflow-launches-5-30-kwh-residential-storage-system/",
+      "source": "pv magazine",
+      "title": "EcoFlow launches 5-30 kWh residential storage system",
+      "url": "https://www.pv-magazine.com/2026/10/14/ecoflow-launches-5-30-kwh-residential-storage-system/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The three-model range combines battery backup, solar charging and a new home panel, Three models offer 5–30 kWh of storage, and with immediate availability. It’s a smaller starting option versus EcoFlow’s Delta Pro Ultra systems. The post EcoFlow launches 5-30 kWh residential storage system appeared first on pv maga…"
+    },
+    {
+      "t": "2026-10-14T08:26:26.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/trina-solar-researchers-propose-new-classification-of-ultraviolet-induced-degradation-in-topcon-solar-cells/",
+      "source": "pv magazine",
+      "title": "Trina Solar researchers propose new classification of ultraviolet-induced degradation in TOPCon solar cells",
+      "url": "https://www.pv-magazine.com/2026/10/14/trina-solar-researchers-propose-new-classification-of-ultraviolet-induced-degradation-in-topcon-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Trina Solar researchers have proposed a new classification distinguishing reversible and irreversible ultraviolet-induced degradation in TOPCon solar cells. The framework aims to improve reliability testing, identify persistent performance losses, and provide more accurate assessments of long-term module performance…"
+    },
+    {
+      "t": "2026-10-14T08:48:46.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/south-africas-state-utility-eskom-opens-selection-process-for-1-5gw-21gwh-pumped-hydro-plant/",
+      "source": "Energy-Storage.news",
+      "title": "South Africa’s state utility Eskom opens selection process for 1.5GW/21GWh pumped hydro plant",
+      "url": "https://www.energy-storage.news/south-africas-state-utility-eskom-opens-selection-process-for-1-5gw-21gwh-pumped-hydro-plant/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Africa continues its push for energy storage capacity, with utility and grid operator Eskom issuing a call to work on a 21GWh pumped hydro energy storage (PHES) project."
+    },
+    {
+      "t": "2026-10-14T09:05:41.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/heliup-offers-lightweight-rooftop-pv-modules-with-waterproofing-membrane/",
+      "source": "pv magazine",
+      "title": "Heliup offers lightweight rooftop PV modules with waterproofing membrane",
+      "url": "https://www.pv-magazine.com/2026/10/14/heliup-offers-lightweight-rooftop-pv-modules-with-waterproofing-membrane/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "French lightweight solar panel manufacturer Heliup has partnered with Holcim's Elevate brand to launch Solar Light TPO, a rooftop PV system that combines lightweight solar modules with a waterproofing membrane. The solution is designed for roofs with limited load-bearing capacity. The post Heliup offers lightweight…"
+    },
+    {
+      "t": "2026-10-14T09:12:04.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/oswal-pumps-to-set-up-1-2-gw-topcon-solar-cell-manufacturing-facility/",
+      "source": "pv magazine",
+      "title": "Oswal Pumps to set up 1.2 GW TOPCon solar cell factory in India",
+      "url": "https://www.pv-magazine.com/2026/10/14/oswal-pumps-to-set-up-1-2-gw-topcon-solar-cell-manufacturing-facility/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Oswal Pumps plans to invest $48 million in a TOPCon solar cell manufacturing facility in Karnal, in the Indian state of Haryana. Commercial production is expected to begin by April 2028, with the entire output earmarked for captive solar module manufacturing. The post Oswal Pumps to set up 1.2 GW TOPCon solar cell f…"
+    },
+    {
+      "t": "2026-10-14T11:27:37.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ltsas-under-scrutiny-what-bess-owners-really-need-from-their-contracts/",
+      "source": "Energy-Storage.news",
+      "title": "LTSAs under scrutiny: what BESS owners really need from their contracts",
+      "url": "https://www.energy-storage.news/ltsas-under-scrutiny-what-bess-owners-really-need-from-their-contracts/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A panel of BESS industry experts discussed the ins and outs of long-term service agreements (LTSAs) at the Battery Asset Management Summit UK & Ireland 2026 yesterday."
+    },
+    {
+      "t": "2026-10-14T11:46:12.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/study-reveals-up-to-15-gap-between-expected-and-actual-bifacial-gains-in-utility-scale-pv/",
+      "source": "pv magazine",
+      "title": "Study reveals up to 15% gap between expected and actual bifacial gains in utility-scale PV",
+      "url": "https://www.pv-magazine.com/2026/10/14/study-reveals-up-to-15-gap-between-expected-and-actual-bifacial-gains-in-utility-scale-pv/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in Spain have found that the effective bifaciality of solar modules in utility-scale PV plants can be up to 15% lower than their nominal rating. Based on two years of operational data from a 50 MWp solar plant in Spain, with findings validated across four additional installations in Spain and the United…"
+    },
+    {
+      "t": "2026-10-14T11:56:22.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/unico-launches-330-kw-bidirectional-inverter/",
+      "source": "pv magazine",
+      "title": "Unico launches 330 kW bidirectional inverter",
+      "url": "https://www.pv-magazine.com/2026/10/14/unico-launches-330-kw-bidirectional-inverter/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Unico GTI supports solar generation, energy storage or emerging high-power loads in a compact, rack-mounted unit, made in the USA. The post Unico launches 330 kW bidirectional inverter appeared first on pv magazine Global ."
     }
   ],
   "derived": {
@@ -451,9 +451,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 26,
+      "grid": 25,
       "policy": 7,
-      "capital": 7,
+      "capital": 8,
       "technology": 2
     },
     "sourceStatus": [
@@ -488,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:06762881dbd6ca631011e026dc66aae7ce3e5d5c10429f65eef71e59aec79d98",
-  "envelopeChecksum": "sha256:83a0922be27f410f590fd48e02ff61f05ecdc71389a43a06667d7bf5fab83faf"
+  "contentChecksum": "sha256:86d464185e2b86287b1e47f5863ce0c6878d39854a7a553d629a8d7efcf3affc",
+  "envelopeChecksum": "sha256:646db4b01403684f2b6d8c0d0ffd2deb978d26d742d7e5f9a66f6623bdb5349d"
 }
