@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-13T22:52:12.051Z",
+  "fetchedAt": "2026-10-14T05:00:59.542Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-13T17:35:15.000Z",
+    "to": "2026-10-14T02:15:05.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 42
   },
   "units": {
     "record": "published article metadata"
@@ -133,26 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-08T03:23:27.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-eku-energy-locks-community-deals-for-2-76gwh-queensland-bess-duo-as-valo-wins-1-6gwh-contract/",
-      "source": "Energy-Storage.news",
-      "title": "Australia: Eku Energy locks community deals for 2.76GWh Queensland BESS duo as Valo wins 1.6GWh contract",
-      "url": "https://www.energy-storage.news/australia-eku-energy-locks-community-deals-for-2-76gwh-queensland-bess-duo-as-valo-wins-1-6gwh-contract/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Eku Energy has signed CBAs with Gladstone Regional Council and Western Downs Regional Council for two BESS projects in Queensland."
-    },
-    {
-      "t": "2026-10-08T08:48:16.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/global-bess-failure-rates-declined-98-between-2018-and-2025/",
-      "source": "Energy-Storage.news",
-      "title": "Global BESS failure rates declined 98% between 2018 and 2025",
-      "url": "https://www.energy-storage.news/global-bess-failure-rates-declined-98-between-2018-and-2025/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Annual battery energy storage system (BESS) failures per-deployed-GWh declined 98% globally between 2018 and 2025, as installed BESS capacity grew exponentially."
     },
     {
       "t": "2026-10-08T09:07:34.000Z",
@@ -315,16 +295,6 @@
       "summary": "Valo, the new joint venture formed as a continuation of Wärtsilä’s energy storage business, is weighing up investing in the US supply chain, including factories."
     },
     {
-      "t": "2026-10-13T09:23:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/13/inside-bess-manufacturing-maxxens-utility-scale-storage-factory-in-europe-2/",
-      "source": "pv magazine",
-      "title": "Inside BESS manufacturing: Maxxen’s utility-scale storage factory in Europe",
-      "url": "https://www.pv-magazine.com/2026/10/13/inside-bess-manufacturing-maxxens-utility-scale-storage-factory-in-europe-2/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A detailed look at Maxxen’s advanced BESS factory from an on-the-ground tour. The post Inside BESS manufacturing: Maxxen’s utility-scale storage factory in Europe appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-13T09:29:47.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/neoen-bw-ess-and-mn8-back-efforts-to-standardise-bess-procurement-through-new-energy-storage-contract-alliance/",
       "source": "Energy-Storage.news",
@@ -453,15 +423,35 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The Electric Power Research Institute analysis found a dramatic drop in energy storage system failures from 2018 to 2025 amid a host of technology and project improvements. &ldquo;Early-vintage&rdquo; systems may require retrofits, however."
+    },
+    {
+      "t": "2026-10-14T01:44:03.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/merchant-exposure-divides-bess-investors-in-japan-singapore-and-australia-dla-piper-finds/",
+      "source": "Energy-Storage.news",
+      "title": "Merchant exposure divides BESS investors in Japan, Singapore and Australia, DLA Piper finds",
+      "url": "https://www.energy-storage.news/merchant-exposure-divides-bess-investors-in-japan-singapore-and-australia-dla-piper-finds/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "DLA Piper finds merchant BESS appeal splits Japan, Singapore and Australia, with regulatory certainty, grid access and returns shaping investor views."
+    },
+    {
+      "t": "2026-10-14T02:15:05.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/mexicos-mixed-investment-scheme-provides-clean-energy-investors-with-certainty/",
+      "source": "Energy-Storage.news",
+      "title": "‘Mexico’s mixed investment scheme provides clean energy investors with certainty’",
+      "url": "https://www.energy-storage.news/mexicos-mixed-investment-scheme-provides-clean-energy-investors-with-certainty/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Alberto Valenzuela discusses ahead of Energy Storage Summit Latin America about Mexico's growing interest in renewables and energy storage, and the factors driving this growth."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 42,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 27,
+      "grid": 26,
       "policy": 7,
       "capital": 7,
       "technology": 2
@@ -489,7 +479,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 7
       }
     ]
   },
@@ -498,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:0d8adcdb64c9432f75f735d6184104b17f78e68c8de39ca85f0bb0ead0b43aa5",
-  "envelopeChecksum": "sha256:2939f0347b0e1ec617be373c34bb92f3d7e5beb10c62951a8d00cd50c06cdf52"
+  "contentChecksum": "sha256:06762881dbd6ca631011e026dc66aae7ce3e5d5c10429f65eef71e59aec79d98",
+  "envelopeChecksum": "sha256:83a0922be27f410f590fd48e02ff61f05ecdc71389a43a06667d7bf5fab83faf"
 }
