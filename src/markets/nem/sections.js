@@ -685,13 +685,13 @@ SEC_B.duration = function (){
        duration question is a market question — where the incremental MWh stops
        paying for itself — so it belongs beside the rest of this tab rather than
        inside a returns model. */
-    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labDur' },
-      { t:'cap', text:['Run on the seed assumptions this market publishes. The de-rating column reads 100% at every duration because the NEM has no capacity mechanism to de-rate against — that column is structurally flat here and is not an error. To retype the assumptions and price a capital structure, use the dedicated Investment Lab page.',
-        '基于本市场种子假设运行。折减系数一列在所有时长下均为100%，因为NEM不存在可供折减的容量机制 — 该列在此处结构性地保持不变，并非错误。如需重新输入假设并测算资本结构，请使用独立投资测算页面。'] },
-      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can carry a lower IRR and a higher NPV, and the capital committed differs by a factor of eight across this table. Where the incremental column turns negative is the point at which added MWh stops paying for itself, and in the NEM that crossover sits further out than in any other market on this platform because nothing de-rates and the four-hour capture penalty is only ' + fmtPct((1 - M.durSpreadFactor[4]) * 100, 0) + '%.',
-        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达八倍。增量列转负之处，即是新增MWh不再自负其成本的临界点；在NEM，该临界点比本平台任何其他市场都更靠后，因为此处没有任何折减机制，且四小时的捕获折减仅为' + fmtPct((1 - M.durSpreadFactor[4]) * 100, 0) + '%。'],
-        sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
+    { t:'card', title:['Duration and route — what each design is worth','时长与路径 — 各设计的价值'], badges:['calc'], live:false, blocks:[
+      { t:'designFit' },
+      { t:'cap', text:['Every route this market supports, at every duration it declares, priced by the comparison engine the league table uses; at the modelled duration it is the league table case itself. Value is the exit value at commercial operation, at the platform exit yields, less net capital, per MW. A design within 2% of the capital of the modelled design of the best one is in the band. A route priced at one duration is shown there only, and a duration floor must hold to the end of its term.',
+        '本市场支持的每一条路径、在其声明的每一个时长下，均由排行榜所用的同一比较引擎定价；在当前模型时长下即为排行榜本身的情景。价值为投运时按平台退出收益率计算的退出价值减去净资本，按每MW计。与最佳设计相差不超过当前模型设计资本2%的设计视为位于区间之内。仅在单一时长下定价的路径只在该时长下显示，且时长下限须维持至期限结束。'] },
+      { t:'why', text:['Judge a duration on what it adds to value, not on headline IRR: a longer asset can carry a lower IRR and a higher value, and the capital committed differs several-fold down this table. Read the band before the best point, because inside it the inputs cannot separate the designs.',
+        '判断时长应看其对价值的贡献，而非项目整体IRR：更长的资产可能IRR更低而价值更高，且本表各行所投入的资本相差数倍。应先看区间，再看最佳点，因为在区间之内，输入数据无法区分各设计。'],
+        sig:['Read the band, then the best point','先看区间，再看最佳点'] },
     ] },
   ] };
 };

@@ -166,8 +166,14 @@ const BUDGET = {
      entry chunk because the home page's globe and charts needed them. The home
      page no longer does, so markets now fetch them as shared chunks. Measured
      42.85 before and 89.96 after; over the same change the entry fell by 106,
-     so the worst market visit (Japan) went from 464 to 401 kB in total. */
-  sharedTotal: 98,
+     so the worst market visit (Japan) went from 464 to 401 kB in total.
+
+     RAISED FROM 98 TO 102 for bytes that were ADDED: the design-fit sweep
+     (src/comparison/designFit.js) and the duration card that reads it
+     (src/markets/_shared/designFitBlock.js), decision 2 of
+     docs/duration-and-route-fit-plan.md. About 3.3 kB gzipped, used by the six
+     dashboards that draw a duration card. Measured 101.28 after. */
+  sharedTotal: 102,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {

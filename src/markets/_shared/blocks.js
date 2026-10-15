@@ -29,6 +29,7 @@ export function createBlocks(ctx){
   const { fmtN, fmt1 } = ctx.fmt;
   const { at, liveFactors, liveScore, stageProb } = ctx.compute;
   const { blkLabInputs, blkLabOutputs, blkLabDuration, blkLabSnaps } = ctx.lab;
+  const { blkDesignFit } = ctx.designFit;
   const { exportCsv, exportJson } = ctx.exports;
 
   // Each market stamps its own seed tag (GB_SEED_V1, IE_SEED_V1, ...).
@@ -236,6 +237,7 @@ function B(parent, b){
     case 'labInputs': blkLabInputs(parent); break;
     case 'labOut':    blkLabOutputs(parent); break;
     case 'labDur':    blkLabDuration(parent); break;
+    case 'designFit': blkDesignFit(parent); break;
     case 'labSnaps':  blkLabSnaps(parent); break;
     case 'exports':
       parent.append(h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;' },

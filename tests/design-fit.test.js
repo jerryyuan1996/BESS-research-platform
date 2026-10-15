@@ -173,12 +173,25 @@ test('capex follows the component stack and stays the authority at the archetype
   assert.equal(marketAt(gb, 'mer', 4).comparison.economics.capexPerMW, e.capexPerMW);
 });
 
-test('Poland\'s capacity line does not scale with duration (the correction of 2026-10-15)', () => {
+test('Poland\'s capacity line scales to four hours and no further (gate DG-1, 2026-10-15)', () => {
+  /* One 13.39% factor for every duration, applied to certified capacity, which
+     must be deliverable for four uninterrupted hours: a shorter battery
+     certifies MWh ÷ 4. */
   const pl = byId('pl');
+  const e = pl.comparison.economics;
   for (const h of pl.comparison.durationResponse.hours){
-    assert.equal(marketAt(pl, 'cap', h).comparison.economics.contracted, pl.comparison.economics.contracted,
-      `${h}h: the 13.39% correction factor applies to every duration`);
+    near(marketAt(pl, 'cap', h).comparison.economics.contracted, e.contracted * Math.min(1, h / 4), 1e-6,
+      `${h}h: 13.39% of certified capacity, min(MW, MWh ÷ 4)`);
   }
+});
+
+test('GB\'s capacity line carries NESO\'s published 4h factor, and its shape is the same table', () => {
+  const gb = byId('gb');
+  const c = gb.comparison.economics.capacity;
+  assert.equal(c.derating, 0.4396, 'T-4 2029/30, Capacity Auction Guidelines Table 3 (gate G1)');
+  near(gb.comparison.economics.contracted, 27.10 * 1000 * 0.4396, 1e-6, 'capacity line per MW');
+  const dr = gb.comparison.durationResponse;
+  assert.equal(dr.capacityDerating[dr.hours.indexOf(4)], c.derating, 'shape and level agree at the archetype');
 });
 
 test('services do not scale with duration; merchant revenue follows the capture curve', () => {

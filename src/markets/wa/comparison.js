@@ -19,6 +19,16 @@
       availability — a battery that cannot defend the window loses the credit,
       so the buffer is the product, not padding.
 
+      CORRECTED 2026-10-15, gate DG-6: the buffer is ZERO. AEMO's 2026 ESOO set
+      the ESR Duration Requirement at seven hours for storage certified in the
+      2026 Reserve Capacity Cycle, which is Capacity Year 2028-29, and credits
+      are re-certified every cycle at min(MW, MWh ÷ 7h) with degradation
+      counted (ESM Rules 4.11.3). Holding full credits for the ten-year
+      election without augmentation needs about 8.4h; the ten-year fixed price
+      tests a 7.5h floor every cycle, which needs about 9.0h
+      (docs/duration-and-route-fit-research-gates.md). The archetype is
+      unchanged here: it is methodology, and the design-fit sweep reports it.
+
       Capex per kWh is UNCHANGED at A$520 — the ERA's own benchmark figure, and
       the one number in this file that was already exactly right. A$520/kWh sits
       well above CSIRO's national A$301-377/kWh, so it embeds WA's regional
@@ -286,8 +296,11 @@ export const comparison = {
      linearly with duration below the ESR Duration Requirement — seven hours
      from AEMO's 2026 ESOO — and, under decision 6 of the plan, that is tested
      year by year as the battery fades, over the ten-year election. Whether the
-     seven-hour requirement is the one this archetype's cycle bids into is gate
-     DG-6; how the RCM treats fade is gate DG-5. */
+     seven-hour requirement is the one this archetype's cycle bids into, and
+     how the RCM treats fade, were gates DG-6 and DG-5: both closed on
+     2026-10-15 — it is, and credits are re-certified every cycle with
+     degradation counted. The ten-year fixed price's 7.5h floor is not modelled,
+     because the engine prices the surplus-adjusted Reserve Capacity Price. */
   durationResponse: {
     hours: [4, 6, 7, 8, 10],
     merchantCapture: [1.528, 1.158, 1.000, 0.828, 0.448],

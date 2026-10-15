@@ -49,6 +49,7 @@ import { GLOSS_CORE } from './glossary.js';
 import { createFormat } from './format.js';
 import { createCompute } from './compute.js';
 import { createLab } from './lab.js';
+import { createDesignFitBlock } from './designFitBlock.js';
 import { createBlocks } from './blocks.js';
 import { createExports } from './exports.js';
 
@@ -135,6 +136,7 @@ export function createMarketEngine(cfg){
 
   const ctx = { MKT, TABS, SRC, M, T, state, render, LS, fmt, compute };
   ctx.lab = createLab(ctx);
+  ctx.designFit = createDesignFitBlock(ctx);
   ctx.exports = createExports(ctx);
   ctx.blocks = createBlocks(ctx);
 

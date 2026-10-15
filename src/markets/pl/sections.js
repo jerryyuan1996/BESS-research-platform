@@ -75,10 +75,10 @@ SEC_B.home = function (){
           { l:['4h correction factor','4小时折减系数'], v:fmtPct(M.deratingCurve[4] * 100, 0), d:['2h: ' + fmtPct(M.deratingCurve[2] * 100, 0) + ' · 8h: ' + fmtPct(M.deratingCurve[8] * 100, 0),'2小时：' + fmtPct(M.deratingCurve[2] * 100, 0) + ' · 8小时：' + fmtPct(M.deratingCurve[8] * 100, 0)], b:['verify'] },
           { l:['Capacity revenue per nameplate MW (4h)','每铭牌MW容量收入（4小时）'], v:fmtCk(perNameplate(4)) + '<small>/MW/yr</small>', d:['2h: ' + fmtCk(perNameplate(2)),'2小时：' + fmtCk(perNameplate(2))], b:['calc'] },
           { l:['BESS capacity contracted to date (seed)','迄今签约储能容量（种子）'], v:fmt1(O.cmAwardedBessGW) + '<small> GW</small>', d:['storage has become the dominant new-entry technology','储能已成为主导性的新进入技术'], b:['verify'] },
-          { l:['Contracted share of a 4h revenue stack','4小时资产收入结构中的合同化占比'], v:fmtPct(perNameplate(4) / (perNameplate(4) + plMerchantPerMW(4)) * 100, 0), d:['the reason conventional project debt works here','这是常规项目融资在此可行的原因'], b:['calc'] },
+          { l:['Contracted share of a 4h revenue stack','4小时资产收入结构中的合同化占比'], v:fmtPct(perNameplate(4) / (perNameplate(4) + plMerchantPerMW(4)) * 100, 0), d:['a contracted floor, not the whole case','合同化保底，而非全部投资逻辑'], b:['calc'] },
         ] },
-        { t:'why', text:['A ' + O.cmAgreementYears + '-year contract paying roughly ' + fmtCk(perNameplate(4)) + '/MW/yr on a 4-hour design is what separates Poland from every energy-only market in the region — it converts a merchant battery into conventional infrastructure with a contracted base a lender can size against. The two things to test are therefore not "is the price high enough" but "will this project clear the auction" and "which correction factor applies to its duration". Both are decided before construction and neither can be fixed afterwards.',
-          '在4小时设计下，一份支付约' + fmtCk(perNameplate(4)) + '/MW/年、期限' + O.cmAgreementYears + '年的合同，正是波兰区别于本区域所有单一电能量市场之处 — 它把市场化电池转化为具备合同化基础、可供贷款人安排规模的常规基础设施。因此需要检验的不是“价格是否足够高”，而是“该项目能否在拍卖中出清”以及“其时长适用何种折减系数”。两者均在开工前决定，且事后均无法补救。'],
+        { t:'why', text:['A ' + O.cmAgreementYears + '-year contract paying roughly ' + fmtCk(perNameplate(4)) + '/MW/yr on a 4-hour design still separates Poland from the energy-only markets in the region. But since the December 2025 auction cut the correction factor for storage to 13.39%, it is a contracted floor under a merchant asset rather than the asset itself. The two things to test are whether this project will clear the auction and how much of its energy certifies, because certified capacity must be deliverable for four uninterrupted hours. Both are decided before construction and neither can be fixed afterwards.',
+          '在4小时设计下，一份支付约' + fmtCk(perNameplate(4)) + '/MW/年、期限' + O.cmAgreementYears + '年的合同，仍使波兰有别于本区域的单一电能量市场。但自2025年12月拍卖将储能折减系数降至13.39%以来，它是市场化资产之下的合同化保底，而非资产本身。需要检验的两件事是：该项目能否在拍卖中出清，以及其能量中有多少可获认证 — 因为认证容量必须能够连续四小时交付。两者均在建设前决定，且事后均无法修正。'],
           sig:['Will it clear, and at what factor?','能否出清？适用何种系数？'] },
       ] },
       { title:['Card C — Wholesale & Intraday Signal','Card C — 批发与日内市场信号'], live:false, blocks:[
@@ -107,12 +107,12 @@ SEC_B.home = function (){
           sig:['Split every backtest at the 2024 reform','所有回测须以2024年改革分段'] },
       ] },
       { title:['Card E — Duration Signal','Card E — 时长信号'], live:false, blocks:[
-        { t:'chip', cls:'good', text:['Strengthening — the correction factor pays for hours','走强 — 折减系数为小时数付费'] },
+        { t:'chip', cls:'warn', text:['Capped — the correction factor pays for hours only up to four','受限 — 折减系数仅为四小时以内的小时数付费'] },
         { t:'kpis', items:[
           { l:['Duration-Need Index','时长需求指数'], v:dni + '<small> / 100</small>', d:dband.n, b:['calc','illus'] },
           { l:['Correction-factor uplift, 2h → 4h','折减系数增益，2小时→4小时'], v:'+' + fmtPct((M.deratingCurve[4] - M.deratingCurve[2]) * 100, 0) + '<small> pts</small>',
             d:['worth ' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/yr','价值' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/年'], b:['calc'] },
-          { l:['Net marginal value, hours 3–4','第3–4小时净边际价值'], v:fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k<small>/MW/yr</small>', d:['positive, driven by the correction factor','为正，由折减系数驱动'], b:['illus'] },
+          { l:['Net marginal value, hours 3–4','第3–4小时净边际价值'], v:fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k<small>/MW/yr</small>', d:['the correction factor now adds little','折减系数的贡献已很小'], b:['illus'] },
           { l:['Spread capture at 4h vs 2h','4小时对2小时的价差捕获率'], v:fmtPct(M.durSpreadFactor[4] * 100, 0), d:['deeper cycles capture thinner spreads','更深循环捕获更薄价差'], b:['illus'] },
         ] },
         { t:'flow', items:[
@@ -246,11 +246,11 @@ SEC_B.story = function (){
             '随着更多储能与需求响应取得资格，种子路径呈下降态势 — 这是机制成功吸引新进入者的通常后果。由此得出两条承销原则：应按下降的价格路径而非最近一次出清价建模；并须记住' + O.cmAgreementYears + '年合同锁定的是你中标时的价格，因此你参与的那次拍卖决定了终身合同化收入的大部分。'],
             sig:['One auction, seventeen years','一次拍卖，十七年'] },
         ] },
-        { title:['Correction factors by duration (seed)','按时长的折减系数（种子）'], badges:['verify'], blocks:[
+        { title:['Correction factors by duration','按时长的折减系数'], badges:['official'], blocks:[
           { t:'line', cfg:{ xs: M.derateHours.map(x => x + 'h'), yfmt: v => fmtPct(v * 100, 0), ymin: 0, h: 200,
             series:[{ name:['Correction factor','折减系数'], color:'var(--s1)', vals: M.derateHours.map(hh => M.deratingCurve[hh]) }] } },
-          { t:'why', text:['The curve rises steeply to 4 hours (' + fmtPct(M.deratingCurve[2] * 100, 0) + ' → ' + fmtPct(M.deratingCurve[4] * 100, 0) + ') and flattens after (' + fmtPct(M.deratingCurve[6] * 100, 0) + ' at 6h, ' + fmtPct(M.deratingCurve[8] * 100, 0) + ' at 8h). The mechanism is telling you what it wants: four hours of firm energy. Building longer earns diminishing capacity value and must be justified on merchant or resilience grounds instead.',
-            '曲线在4小时之前陡峭上升（' + fmtPct(M.deratingCurve[2] * 100, 0) + '→' + fmtPct(M.deratingCurve[4] * 100, 0) + '），其后趋于平缓（6小时' + fmtPct(M.deratingCurve[6] * 100, 0) + '，8小时' + fmtPct(M.deratingCurve[8] * 100, 0) + '）。该机制在明确表达其需求：四小时的可靠能量。建设更长时长所获容量价值递减，须改以市场化或韧性理由论证。'],
+          { t:'why', text:['The curve rises to 4 hours (' + fmtPct(M.deratingCurve[2] * 100, 1) + ' → ' + fmtPct(M.deratingCurve[4] * 100, 1) + ') and is flat after it (' + fmtPct(M.deratingCurve[6] * 100, 1) + ' at 6h, ' + fmtPct(M.deratingCurve[8] * 100, 1) + ' at 8h). The factor is the same for every duration; what rises is how much of the battery certifies, because certified capacity must be deliverable for four uninterrupted hours. The mechanism is telling you what it wants, four hours of firm energy, and it pays nothing for a fifth.',
+            '曲线升至4小时（' + fmtPct(M.deratingCurve[2] * 100, 1) + '→' + fmtPct(M.deratingCurve[4] * 100, 1) + '），其后持平（6小时' + fmtPct(M.deratingCurve[6] * 100, 1) + '，8小时' + fmtPct(M.deratingCurve[8] * 100, 1) + '）。各时长适用同一折减系数；上升的是电池中可获认证的部分，因为认证容量必须能够连续四小时交付。该机制在明确表达其需求：四小时的可靠能量，且对第五小时不付任何费用。'],
             sig:['The mechanism asks for four hours','该机制要求四小时'] },
         ] },
       ] },
@@ -379,8 +379,8 @@ SEC_B.capacity = function (){
         }) },
       { t:'bar', cfg:{ xs: M.derateHours.map(x => x + 'h'), bw: 40, yfmt: v => fmtCk(v), h: 250,
         series:[{ name:['Capacity revenue per nameplate MW','每铭牌MW容量收入'], color:'var(--s1)', vals: M.derateHours.map(hh => perNameplate(hh)) }] } },
-      { t:'why', text:['The uplift column is the duration decision. Moving 2h → 4h adds ' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/yr; 4h → 6h adds only ' + fmtCk(perNameplate(6) - perNameplate(4)) + ' and 6h → 8h just ' + fmtCk(perNameplate(8) - perNameplate(6)) + '. The mechanism pays generously up to four hours and flattens after, which is why 4h is the sensible Polish new-build default. Note the asymmetry of risk: the factor can be revised downward between vintages, while the ' + O.cmAgreementYears + '-year obligation attached to an existing contract cannot be revised at all.',
-        '增益列即是时长决策。由2小时增至4小时可增加' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/年；由4小时增至6小时仅增加' + fmtCk(perNameplate(6) - perNameplate(4)) + '，由6小时增至8小时仅' + fmtCk(perNameplate(8) - perNameplate(6)) + '。该机制在四小时以内给付慷慨，其后趋于平缓 — 这正是4小时成为波兰新建合理默认配置的原因。须注意风险的不对称性：系数可在不同年份之间被下调，而既有合同所附带的' + O.cmAgreementYears + '年义务则完全无法修订。'],
+      { t:'why', text:['The uplift column is the duration decision. Moving 2h → 4h adds ' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/yr; 4h → 6h adds ' + fmtCk(perNameplate(6) - perNameplate(4)) + ' and 6h → 8h ' + fmtCk(perNameplate(8) - perNameplate(6)) + ', because the factor is flat above four hours. The mechanism pays for hours up to four and none after, so the capacity line argues firmly against building past four but, at 13.39%, only weakly for reaching it. Note the asymmetry of risk: the factor can be revised downward between vintages, while the ' + O.cmAgreementYears + '-year obligation attached to an existing contract cannot be revised at all.',
+        '增益列即是时长决策。由2小时增至4小时可增加' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/年；由4小时增至6小时增加' + fmtCk(perNameplate(6) - perNameplate(4)) + '，由6小时增至8小时增加' + fmtCk(perNameplate(8) - perNameplate(6)) + '，因为折减系数在四小时以上持平。该机制为四小时以内的小时数付费，其后不再付费；因此容量收入线明确反对建设超过四小时，但在13.39%的系数下，对达到四小时的支持力度很弱。须注意风险的不对称性：系数可在不同年份之间被下调，而既有合同所附带的' + O.cmAgreementYears + '年义务则完全无法修订。'],
         sig:['Factors fall; obligations do not','系数会下降，义务不会'] },
       { t:'src', src: SRC.corr, use:['Correction factors by technology and duration for the applicable auction','适用拍卖中按技术与时长的折减系数'] },
     ] },
@@ -390,11 +390,11 @@ SEC_B.capacity = function (){
         { l:['Nameplate MW','铭牌MW'], v: 100, t:'start' },
         { l:['− connection capacity limit','− 并网容量限制'], v: -2, t:'d' },
         { l:['− usable AC fraction & auxiliaries','− 可用交流侧比例与站用电'], v: -6, t:'d' },
-        { l:['× correction factor at 4h','×4小时折减系数'], v: -32, t:'d' },
-        { l:['Contracted capacity obligation','合同容量义务'], v: 60, t:'total' },
+        { l:['× correction factor at 4h','×4小时折减系数'], v: -(92 - Math.round(92 * M.deratingCurve[4])), t:'d' },
+        { l:['Contracted capacity obligation','合同容量义务'], v: Math.round(92 * M.deratingCurve[4]), t:'total' },
       ] } },
-      { t:'why', text:['On a 4-hour design, 100 MW of nameplate carries a contracted obligation on roughly 60 MW. That number is both the revenue and the liability: it is what the project is paid for and what it must deliver during a system stress event. A 2-hour design would carry an obligation on only ' + fmtN(100 * M.deratingCurve[2]) + ' MW but would also be far more likely to be energy-limited when tested — which is the trade-off the correction factor is designed to express.',
-        '在4小时设计下，100MW铭牌容量承载约60MW的合同义务。该数字既是收入也是负债：既是项目获付费的对象，也是其在系统紧张事件中必须交付的量。2小时设计所承载的义务仅为' + fmtN(100 * M.deratingCurve[2]) + 'MW，但在受检验时更可能出现能量受限 — 这正是折减系数所要表达的权衡。'],
+      { t:'why', text:['On a 4-hour design, 100 MW of nameplate carries a contracted obligation on roughly ' + fmtN(Math.round(92 * M.deratingCurve[4])) + ' MW. That number is both the revenue and the liability: it is what the project is paid for and what it must deliver during a system stress event. A 2-hour design certifies only MWh ÷ 4, so it carries an obligation on about ' + fmtN(100 * M.deratingCurve[2]) + ' MW: the four-hour rule pays a shorter battery less rather than letting it run out of energy when tested.',
+        '在4小时设计下，100MW铭牌容量承载约' + fmtN(Math.round(92 * M.deratingCurve[4])) + 'MW的合同义务。该数字既是收入也是负债：既是项目获付费的对象，也是其在系统紧张事件中必须交付的量。2小时设计仅能按MWh÷4获得认证，因此其义务约为' + fmtN(100 * M.deratingCurve[2]) + 'MW：四小时规则使较短的电池少获付费，而不是让它在受检验时耗尽能量。'],
         sig:['The paid MW is also the owed MW','获付费的MW同时也是须交付的MW'] },
     ] },
 
@@ -526,13 +526,13 @@ SEC_B.duration = function (){
          ['Positive but sub-linear — 4h captures ' + fmtPct(M.durSpreadFactor[4] * 100, 0) + ' of the 2h spread capture rate',
           '为正但呈次线性 — 4小时的价差捕获率为2小时的' + fmtPct(M.durSpreadFactor[4] * 100, 0)]],
         [{b:['Can I meet the obligation?','能否履行义务？']}, ['Capacity obligation during multi-hour system stress events','多小时系统紧张事件期间的容量义务'],
-         ['This is the binding question. A 2h asset can be fully available and still run out of energy exactly when the contract is tested.',
-          '这是关键问题。2小时资产可能可用率完全达标，却恰在合同受检验时耗尽能量。']],
+         ['Settled by certification. Capacity counts only as MWh ÷ 4, so a certified obligation can be delivered for four hours by construction; a 2h asset is paid less, not exposed more.',
+          '由认证规则解决。容量仅按MWh÷4计入，因此经认证的义务按设计即可连续交付四小时；2小时资产是少获付费，而非承担更大敞口。']],
       ] },
       { t:'wf', cfg:{ yfmt: v => fmtC(v) + 'k', h: 280, steps: M.marginalHour } },
-      { t:'why', text:['The fourth hour nets about ' + fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k/MW/yr on the arithmetic, driven mainly by the correction-factor step. But the arithmetic understates the case, because it prices the revenue and not the avoided liability: a 2-hour asset holding a ' + O.cmAgreementYears + '-year capacity obligation is short of energy in exactly the hours the obligation is tested, and the penalty cap is a multiple of annual capacity revenue. Build 4h.',
-        '按算术计算，第4小时净值约' + fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k/MW/年，主要由折减系数的阶跃驱动。但算术低估了实际情况，因为它只为收入定价，未为所规避的负债定价：持有' + O.cmAgreementYears + '年容量义务的2小时资产，恰在义务受检验的那些小时内能量不足，而罚金上限为年度容量收入的数倍。应建设4小时。'],
-        sig:['Price the avoided liability, not just revenue','应为所规避的负债定价，而非仅为收入'] },
+      { t:'why', text:['The fourth hour nets about ' + fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k/MW/yr on the arithmetic. The correction factor now adds only a few thousand for hours three and four, because the factor is 13.39% at every duration and a battery below four hours simply certifies less. The certification rule also removes the old argument for four hours: an obligation sized at MWh ÷ 4 cannot run out of energy when tested. In Poland the case for the fourth hour now rests on the merchant line and on balancing, not on the capacity contract.',
+        '按算术计算，第4小时净值约' + fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k/MW/年。折减系数对第三、第四小时的贡献已仅为数千欧元，因为各时长的系数均为13.39%，不足四小时的电池只是获认证的容量更少。认证规则也消除了支持四小时的旧论据：按MWh÷4确定的义务在受检验时不会耗尽能量。在波兰，第四小时的理由如今取决于市场化收入与平衡市场，而非容量合同。'],
+        sig:['The capacity contract no longer pays for the fourth hour','容量合同已不再为第四小时付费'] },
     ] },
 
     { t:'card', title:['Duration-Need Index — every component visible and editable','时长需求指数 — 分项全部可见、可编辑'], badges:['calc','illus'], live:true, blocks:[
@@ -553,13 +553,13 @@ SEC_B.duration = function (){
        duration question is a market question — where the de-rating uplift stops
        covering the MWh capex — so it belongs beside the rest of this tab rather
        than inside a returns model. */
-    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labDur' },
-      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the dedicated Investment Lab page.',
-        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用独立投资测算页面。'] },
-      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
-        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
-        sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
+    { t:'card', title:['Duration and route — what each design is worth','时长与路径 — 各设计的价值'], badges:['calc'], live:false, blocks:[
+      { t:'designFit' },
+      { t:'cap', text:['Every route this market supports, at every duration it declares, priced by the comparison engine the league table uses; at the modelled duration it is the league table case itself. Value is the exit value at commercial operation, at the platform exit yields, less net capital, per MW. A design within 2% of the capital of the modelled design of the best one is in the band. A route priced at one duration is shown there only, and a duration floor must hold to the end of its term.',
+        '本市场支持的每一条路径、在其声明的每一个时长下，均由排行榜所用的同一比较引擎定价；在当前模型时长下即为排行榜本身的情景。价值为投运时按平台退出收益率计算的退出价值减去净资本，按每MW计。与最佳设计相差不超过当前模型设计资本2%的设计视为位于区间之内。仅在单一时长下定价的路径只在该时长下显示，且时长下限须维持至期限结束。'] },
+      { t:'why', text:['Judge a duration on what it adds to value, not on headline IRR: a longer asset can carry a lower IRR and a higher value, and the capital committed differs several-fold down this table. Read the band before the best point, because inside it the inputs cannot separate the designs.',
+        '判断时长应看其对价值的贡献，而非项目整体IRR：更长的资产可能IRR更低而价值更高，且本表各行所投入的资本相差数倍。应先看区间，再看最佳点，因为在区间之内，输入数据无法区分各设计。'],
+        sig:['Read the band, then the best point','先看区间，再看最佳点'] },
     ] },
   ] };
 };

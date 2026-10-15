@@ -82,7 +82,7 @@ test('capacity and competition arithmetic is reproducible', () => {
   );
 
   const gb4h = GB_ECONOMICS_P0.capacityLogic.examples.find(example => example.hours === 4);
-  assert.equal(gb4h.valuePerMw, 27.10 * 1000 * 0.45);
+  assert.equal(gb4h.valuePerMw, Math.round(27.10 * 1000 * 0.4396));   // published T-4 2029/30 factor, gate G1
   assert.equal(gb4h.value100Mw, gb4h.valuePerMw * 100);
   assert.equal(
     GB_ECONOMICS_P0.metrics.find(metric => metric.id === 'gb-thermal-constraint-share').value,

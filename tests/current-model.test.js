@@ -322,7 +322,9 @@ test('published base-case outcomes', () => {
   const expected = {
     //            route    yr-1 yield   15-yr IRR
     wa:          ['cap',   16.2,        13.1],
-    gb:          ['cap',   10.7,         4.7],
+    // GB moved 2026-10-15: 4h de-rating 0.38 → 0.4396, NESO's published T-4
+    // 2029/30 factor (gate G1); capacity line £10,298 → £11,913/MW-yr.
+    gb:          ['cap',   10.9,         5.1],
     ie:          ['cap',   14.6,         9.6],
     ro:          ['mer',   26.7,        20.8],
     pl:          ['mer',    8.2,         0.8],
