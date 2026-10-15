@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-15T04:49:09.801Z",
+  "fetchedAt": "2026-10-15T11:39:09.362Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-15T04:00:00.000Z",
+    "to": "2026-10-15T11:34:30.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -135,56 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-09T09:57:14.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/europes-system-integrators-move-quickly-on-sodium-ion-with-catl-surprised-if-we-arent-deploying-it-next-year/",
-      "source": "Energy-Storage.news",
-      "title": "Europe’s system integrators move quickly on sodium-ion with CATL: ‘surprised if we aren’t deploying it next year’",
-      "url": "https://www.energy-storage.news/europes-system-integrators-move-quickly-on-sodium-ion-with-catl-surprised-if-we-arent-deploying-it-next-year/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Intilion has just tied up with CATL for sodium-ion BESS deployments in Europe, following Alfen’s similar move in July, while Merus Power tells us it is in the process of integrating with the OEM’s new product."
-    },
-    {
-      "t": "2026-10-09T10:24:18.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/south-africa-pursues-4-6gw-of-battery-storage-deployments-in-integrated-resource-plan/",
-      "source": "Energy-Storage.news",
-      "title": "South Africa pursues 4.6GW of battery storage deployments in Integrated Resource Plan",
-      "url": "https://www.energy-storage.news/south-africa-pursues-4-6gw-of-battery-storage-deployments-in-integrated-resource-plan/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "South Africa’s government has put battery storage and power-to-gas technologies at the heart of the national long-term electricity supply and demand strategy."
-    },
-    {
-      "t": "2026-10-09T11:30:07.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-optimisation-curtailment-gb-deal-making-revenues-europe/",
-      "source": "Energy-Storage.news",
-      "title": "BESS Industry Buzz: Optimisation and curtailment in GB, deal-making and revenues across Europe",
-      "url": "https://www.energy-storage.news/bess-industry-buzz-optimisation-curtailment-gb-deal-making-revenues-europe/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Another edition of our BESS Industry Buzz, taking a look at what’s got industry people talking in the corridors of social media."
-    },
-    {
-      "t": "2026-10-12T02:05:09.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-home-battery-installations-surge-52-to-276011-in-h1-2026-outpacing-rooftop-solar-growth/",
-      "source": "Energy-Storage.news",
-      "title": "Australia home battery installations surge 52% to 276,011 in H1 2026, outpacing rooftop solar growth",
-      "url": "https://www.energy-storage.news/australia-home-battery-installations-surge-52-to-276011-in-h1-2026-outpacing-rooftop-solar-growth/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australians installed 276,011 home battery storage systems in the first half of 2026, 52% more than in the previous six months."
-    },
-    {
-      "t": "2026-10-12T02:33:28.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/asean-centre-for-energy-iea-say-southeast-asias-battery-storage-adoption-barriers-are-mostly-regulatory-not-technical/",
-      "source": "Energy-Storage.news",
-      "title": "ASEAN Centre for Energy, IEA say Southeast Asia’s battery storage adoption barriers are mostly regulatory, not technical",
-      "url": "https://www.energy-storage.news/asean-centre-for-energy-iea-say-southeast-asias-battery-storage-adoption-barriers-are-mostly-regulatory-not-technical/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "ACE and the IEA say the main obstacles to battery energy storage system (BESS) deployment in Southeast Asia are policy and market rules."
-    },
-    {
       "t": "2026-10-12T11:53:30.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/chile-engie-commissions-802mwh-battery-storage-grenergy-finances-1769mwh-bess/",
       "source": "Energy-Storage.news",
@@ -193,16 +143,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Power group Engie has put an 142MW/802MWh BESS project in Chile into operation, while IPP Grenergy has secured financing for the fifth and final stage of its Oasis de Atacama solar-plus-storage project."
-    },
-    {
-      "t": "2026-10-12T13:56:41.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/",
-      "source": "Utility Dive",
-      "title": "FERC rejects most of PJM’s large load interconnection plan",
-      "url": "https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The PJM Interconnection&rsquo;s plan for curtailing large loads that don&rsquo;t have matching new generation intrudes on state jurisdiction and appears to be discriminatory, the Federal Energy Regulatory Commission said."
     },
     {
       "t": "2026-10-13T02:38:03.000Z",
@@ -335,16 +275,6 @@
       "summary": "South Africa continues its push for energy storage capacity, with utility and grid operator Eskom issuing a call to work on a 21GWh pumped hydro energy storage (PHES) project."
     },
     {
-      "t": "2026-10-14T09:12:04.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/oswal-pumps-to-set-up-1-2-gw-topcon-solar-cell-manufacturing-facility/",
-      "source": "pv magazine",
-      "title": "Oswal Pumps to set up 1.2 GW TOPCon solar cell factory in India",
-      "url": "https://www.pv-magazine.com/2026/10/14/oswal-pumps-to-set-up-1-2-gw-topcon-solar-cell-manufacturing-facility/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Oswal Pumps plans to invest $48 million in a TOPCon solar cell manufacturing facility in Karnal, in the Indian state of Haryana. Commercial production is expected to begin by April 2028, with the entire output earmarked for captive solar module manufacturing. The post Oswal Pumps to set up 1.2 GW TOPCon solar cell f…"
-    },
-    {
       "t": "2026-10-14T11:27:37.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/ltsas-under-scrutiny-what-bess-owners-really-need-from-their-contracts/",
       "source": "Energy-Storage.news",
@@ -353,26 +283,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A panel of BESS industry experts discussed the ins and outs of long-term service agreements (LTSAs) at the Battery Asset Management Summit UK & Ireland 2026 yesterday."
-    },
-    {
-      "t": "2026-10-14T11:46:12.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/study-reveals-up-to-15-gap-between-expected-and-actual-bifacial-gains-in-utility-scale-pv/",
-      "source": "pv magazine",
-      "title": "Study reveals up to 15% gap between expected and actual bifacial gains in utility-scale PV",
-      "url": "https://www.pv-magazine.com/2026/10/14/study-reveals-up-to-15-gap-between-expected-and-actual-bifacial-gains-in-utility-scale-pv/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in Spain have found that the effective bifaciality of solar modules in utility-scale PV plants can be up to 15% lower than their nominal rating. Based on two years of operational data from a 50 MWp solar plant in Spain, with findings validated across four additional installations in Spain and the United…"
-    },
-    {
-      "t": "2026-10-14T11:56:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/unico-launches-330-kw-bidirectional-inverter/",
-      "source": "pv magazine",
-      "title": "Unico launches 330 kW bidirectional inverter",
-      "url": "https://www.pv-magazine.com/2026/10/14/unico-launches-330-kw-bidirectional-inverter/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Unico GTI supports solar generation, energy storage or emerging high-power loads in a compact, rack-mounted unit, made in the USA. The post Unico launches 330 kW bidirectional inverter appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-14T12:32:34.000Z",
@@ -385,44 +295,14 @@
       "summary": "The Illinois Power Agency (IPA) is seeking stakeholder feedback on its summer procurement of 600MW of energy storage projects in the US state, after falling short by 438MW."
     },
     {
-      "t": "2026-10-14T12:39:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/magenta-cdte-solar-panels-support-broccoli-cultivation-in-agrivoltaic-trial/",
-      "source": "pv magazine",
-      "title": "Magenta CdTe solar panels support broccoli cultivation in agrivoltaic trial",
-      "url": "https://www.pv-magazine.com/2026/10/14/magenta-cdte-solar-panels-support-broccoli-cultivation-in-agrivoltaic-trial/",
+      "t": "2026-10-14T14:13:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-softbank-ohio-ai-flagship-state-agreement-approach/832962/",
+      "source": "Utility Dive",
+      "title": "PJM plans to study SoftBank’s Ohio AI project under state agreement approach",
+      "url": "https://www.utilitydive.com/news/pjm-softbank-ohio-ai-flagship-state-agreement-approach/832962/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Researchers in Sweden and Italy have investigated the performance of semitransparent, magenta-colored cadmium telluride (CdTe) thin-film solar panels designed to transmit wavelengths favorable for broccoli growth. The study found that the panels affected microclimatic conditions, photosynthetic performance, nutrient…"
-    },
-    {
-      "t": "2026-10-14T12:48:06.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/modi-energy-launches-zero-upfront-solar-plus-storage-offer-in-denmark/",
-      "source": "pv magazine",
-      "title": "Modi Energy launches zero-upfront solar-plus-storage offer in Denmark",
-      "url": "https://www.pv-magazine.com/2026/10/14/modi-energy-launches-zero-upfront-solar-plus-storage-offer-in-denmark/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Emaldo-backed Modi Energy says it will install, own, and operate rooftop solar and home batteries at no upfront cost to Danish households, funding a guaranteed 20% bill reduction through energy optimization and participation in power and flexibility markets. The post Modi Energy launches zero-upfront solar-plus-stor…"
-    },
-    {
-      "t": "2026-10-14T13:13:31.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/europes-second-energy-crisis-largely-skipped-the-solar-hours/",
-      "source": "pv magazine",
-      "title": "Europe’s second energy crisis largely skipped the solar hours",
-      "url": "https://www.pv-magazine.com/2026/10/14/europes-second-energy-crisis-largely-skipped-the-solar-hours/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In the 2026 crisis window, night-time day-ahead prices in Spain, Germany and Greece rose by €36 ($40.0) to €51/MWh against the same dates in 2025, while midday prices moved by between −€4 and +€14/MWh. Solar earned 43% to 50% of the baseload price over the first 227 days, against 85% to 91% after the 2022 shock, and…"
-    },
-    {
-      "t": "2026-10-14T13:42:24.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/tunisia-launches-tender-for-50-mw-solar-pv-plant-with-10-mw-20-mwh-bess/",
-      "source": "pv magazine",
-      "title": "Tunisia launches tender for 50 MW solar PV plant with 10 MW/20 MWh BESS",
-      "url": "https://www.pv-magazine.com/2026/10/14/tunisia-launches-tender-for-50-mw-solar-pv-plant-with-10-mw-20-mwh-bess/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The deadline to submit project proposals is December 10. The post Tunisia launches tender for 50 MW solar PV plant with 10 MW/20 MWh BESS appeared first on pv magazine Global ."
+      "summary": "The project, dubbed &ldquo;Flagship,&rdquo;&nbsp;includes 765-kV transmission lines to be built by AEP Ohio, roughly 10 GW in data center load and about 10.2 GW in gas-fired generation."
     },
     {
       "t": "2026-10-14T14:43:27.000Z",
@@ -445,26 +325,156 @@
       "summary": "960MWh Summerfield BESS in South Australia enters commissioning, while Gotion starts building the 843MWh Lower Wonga project in Queensland."
     },
     {
-      "t": "2026-10-15T04:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/pricing-indias-storage-demand-gap/",
+      "t": "2026-10-15T05:17:54.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/solar-repowering-guide-shows-installers-how-to-tap-into-the-aging-rooftop-market/",
       "source": "pv magazine",
-      "title": "Pricing India’s storage demand gap",
-      "url": "https://www.pv-magazine.com/2026/10/15/pricing-indias-storage-demand-gap/",
+      "title": "Solar repowering guide shows installers how to tap into the aging rooftop market",
+      "url": "https://www.pv-magazine.com/2026/10/15/solar-repowering-guide-shows-installers-how-to-tap-into-the-aging-rooftop-market/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A new report and field data from Tigo Energy detail how residential contractors can build profitable repowering businesses by upgrading aging solar assets. The post Solar repowering guide shows installers how to tap into the aging rooftop market appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-15T05:26:20.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/el-salvador-announces-400-mw-solar-1-gwh-battery-storage-push/",
+      "source": "pv magazine",
+      "title": "El Salvador announces 400 MW solar, 1 GWh battery storage push",
+      "url": "https://www.pv-magazine.com/2026/10/15/el-salvador-announces-400-mw-solar-1-gwh-battery-storage-push/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "India tendered more battery storage in 2025 than in the previous three years combined. Winning bids for these projects have fallen roughly 86% since the country’s first standalone energy storage auction in 2022. On the surface, this reads like a market maturing exactly on schedule. But the reality is less clean-cut,…"
+      "summary": "Cox plans to develop up to 400 MW of solar capacity and 1 GWh of battery storage in El Salvador under an investment agreement that also covers natural gas infrastructure and water management. The government will participate as a partner in the energy projects. The post El Salvador announces 400 MW solar, 1 GWh batte…"
+    },
+    {
+      "t": "2026-10-15T05:39:44.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/mexico-reports-6-86-gw-of-solar-pv-projects-in-development-pipeline/",
+      "source": "pv magazine",
+      "title": "Mexico reports 6.86 GW of solar PV projects in development pipeline",
+      "url": "https://www.pv-magazine.com/2026/10/15/mexico-reports-6-86-gw-of-solar-pv-projects-in-development-pipeline/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Mexico’s Energy Ministry has identified 42 solar projects totaling 6.86 GW and 13 wind projects totaling 4.03 GW in its renewable energy development pipeline. Another 4.45 GW of solar capacity is awaiting allocation, with the government aiming to complete the process by the end of 2026. The post Mexico reports 6.86…"
+    },
+    {
+      "t": "2026-10-15T05:47:49.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/brazils-presidential-election-lula-and-bolsonaros-proposals-for-solar-energy/",
+      "source": "pv magazine",
+      "title": "Brazil’s presidential election: Lula and Bolsonaro’s proposals for solar energy",
+      "url": "https://www.pv-magazine.com/2026/10/15/brazils-presidential-election-lula-and-bolsonaros-proposals-for-solar-energy/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Brazil's presidential election will be decided in Sunday's runoff, with Luiz Inácio Lula da Silva and Flávio Bolsonaro outlining competing energy policies. Both candidates propose expanding renewable energy and storage capacity while reducing electricity costs. The post Brazil’s presidential election: Lula and Bolso…"
+    },
+    {
+      "t": "2026-10-15T06:13:28.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/mova-launches-residential-battery-with-integrated-ev-charging-management/",
+      "source": "pv magazine",
+      "title": "Mova launches residential battery with integrated EV charging management",
+      "url": "https://www.pv-magazine.com/2026/10/15/mova-launches-residential-battery-with-integrated-ev-charging-management/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Mova LumeGret S5000 residential energy storage system combines solar power management, expandable battery storage, and electric vehicle charging. The system supports up to 4.8 kW of solar input and can be paired with a 7 kW EV charger. The post Mova launches residential battery with integrated EV charging manage…"
+    },
+    {
+      "t": "2026-10-15T07:47:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/finland-demands-grid-forming-support-for-new-wind-solar-in-weak-grids/",
+      "source": "pv magazine",
+      "title": "Finland demands grid-forming support for new wind, solar in weak grids",
+      "url": "https://www.pv-magazine.com/2026/10/15/finland-demands-grid-forming-support-for-new-wind-solar-in-weak-grids/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Fingrid will require new wind and solar plants in Finland’s weakest grid areas to provide grid-forming capability, which developers can meet with co-located batteries sized at up to 30% of plant output. The post Finland demands grid-forming support for new wind, solar in weak grids appeared first on pv magazine Glob…"
+    },
+    {
+      "t": "2026-10-15T08:17:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/world-falls-well-short-on-commitment-to-energy-storage-despite-increased-ambitions-think-tank-ember-says/",
+      "source": "Energy-Storage.news",
+      "title": "World falls well short on commitment to energy storage despite increased ambitions, think tank Ember says",
+      "url": "https://www.energy-storage.news/world-falls-well-short-on-commitment-to-energy-storage-despite-increased-ambitions-think-tank-ember-says/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Insufficient progress has been made towards the Energy Storage and Grids Pledge, endorsed by dozens of countries at COP29 two years ago."
+    },
+    {
+      "t": "2026-10-15T08:34:33.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/we-are-taking-appropriate-action-to-defend-ip-rights-energy-dome-exa-energys-co2-storage-tech-compared-as-1gwh-china-project-goes-online/",
+      "source": "Energy-Storage.news",
+      "title": "‘We are taking appropriate action to defend IP rights’: Energy Dome & Exa Energy’s CO2 storage tech compared as 1GWh China project goes online",
+      "url": "https://www.energy-storage.news/we-are-taking-appropriate-action-to-defend-ip-rights-energy-dome-exa-energys-co2-storage-tech-compared-as-1gwh-china-project-goes-online/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "How similar is the technology of Exa Energy, which just connected a 100MW/1GWh carbon dioxide-based energy storage system to the grid in China, to that of Energy Dome?"
+    },
+    {
+      "t": "2026-10-15T11:04:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/indias-solar-industry-faces-workforce-readiness-gap-mercom/",
+      "source": "pv magazine",
+      "title": "India’s solar industry faces workforce readiness gap",
+      "url": "https://www.pv-magazine.com/2026/10/15/indias-solar-industry-faces-workforce-readiness-gap-mercom/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A Mercom India study has found that solar industry employers across project development, manufacturing, rooftop solar, and engineering, procurement, and construction (EPC) often need to spend months training fresh graduates before they are ready to contribute effectively. The post India’s solar industry faces workfo…"
+    },
+    {
+      "t": "2026-10-15T11:10:50.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/greek-pm-says-storage-should-accompany-renewables-as-metlen-karatzis-inaugurate-790mwh-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Greek PM says ‘storage should accompany renewables’ as Metlen, Karatzis inaugurate 790MWh BESS",
+      "url": "https://www.energy-storage.news/greek-pm-says-storage-should-accompany-renewables-as-metlen-karatzis-inaugurate-790mwh-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Metals and energy group Metlen and conglomerate Karatzis Group have inaugurated the largest BESS in Greece, in a ceremony attended by the country’s Prime Minister."
+    },
+    {
+      "t": "2026-10-15T11:17:10.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/germany-deploys-12-76-gw-of-solar-in-first-nine-months-of-2026/",
+      "source": "pv magazine",
+      "title": "Germany deploys 12.76 GW of solar in first nine months of 2026",
+      "url": "https://www.pv-magazine.com/2026/10/15/germany-deploys-12-76-gw-of-solar-in-first-nine-months-of-2026/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Germany installed 1.23 GW of solar capacity in September, down from 1.64 GW in August, as utility-scale additions hit their lowest level of 2026 and rooftop demand remained weak. Despite the slowdown, installations in the first nine months of 2026 reached 12.76 GW, slightly above the same period last year. The post…"
+    },
+    {
+      "t": "2026-10-15T11:22:34.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/saudi-arabia-uses-250-mw-solar-park-to-breed-threatened-gazelles/",
+      "source": "pv magazine",
+      "title": "Saudi Arabia uses 250 MW solar park to breed threatened gazelles",
+      "url": "https://www.pv-magazine.com/2026/10/15/saudi-arabia-uses-250-mw-solar-park-to-breed-threatened-gazelles/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Saudi Arabia’s Prince Mohammed bin Salman Royal Reserve has introduced 38 Sand gazelles into an operational solar facility following a seven-month trial. The project aims to use existing PV infrastructure as a breeding habitat for threatened wildlife, with the first births expected this winter. The post Saudi Arabia…"
+    },
+    {
+      "t": "2026-10-15T11:33:23.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/new-zoning-rules-and-moratoriums-for-us-bess-and-data-centres/",
+      "source": "Energy-Storage.news",
+      "title": "New zoning rules and moratoriums for US BESS and data centres",
+      "url": "https://www.energy-storage.news/new-zoning-rules-and-moratoriums-for-us-bess-and-data-centres/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "From the Midwest to New York, local and state governments are introducing new zoning rules and restrictions on BESS and data centre projects."
+    },
+    {
+      "t": "2026-10-15T11:34:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/nightpeak-energy-doubles-texas-bess-site-to-300mw/",
+      "source": "Energy-Storage.news",
+      "title": "Nightpeak Energy doubles Texas BESS site to 300MW",
+      "url": "https://www.energy-storage.news/nightpeak-energy-doubles-texas-bess-site-to-300mw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Energy storage owner-operator Nightpeak Energy has reached financial close and commercial operation on its 150MW/300MWh Bocanova 2 battery storage project in Brazoria County, Southeast Texas."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 25,
-      "policy": 9,
-      "capital": 7,
-      "technology": 2
+      "grid": 32,
+      "policy": 7,
+      "capital": 4,
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -489,7 +499,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -498,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:c050bdaf9189a268f0ae205e1c9680f49e36cc3f18719d2b0764261ec787aad3",
-  "envelopeChecksum": "sha256:66e493765317dff673efd3c0893d73e9cb8100ef5bbbdfb82bb6e86eb8c0d05c"
+  "contentChecksum": "sha256:7ffb69113627c4d812b2c02608decd1239abc5e5830314ce9bb33eb489baba88",
+  "envelopeChecksum": "sha256:f15bd25f4a52dff516dd67fb871f275155de60bc35e566f539a123c23b067a13"
 }
