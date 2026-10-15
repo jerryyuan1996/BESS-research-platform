@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-14T17:18:33.922Z",
+  "fetchedAt": "2026-10-15T04:49:09.801Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-14T14:43:27.000Z",
+    "to": "2026-10-15T04:00:00.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -133,16 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-09T09:21:46.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/finland-bess-usva-energia-nala-renewables-centrica-olana-energy-acquisition-construction-optimisation-news/",
-      "source": "Energy-Storage.news",
-      "title": "Finland: BESS acquisition, construction and optimisation news from Usva Energia, Nala Renewables, Centrica and Olana Energy",
-      "url": "https://www.energy-storage.news/finland-bess-usva-energia-nala-renewables-centrica-olana-energy-acquisition-construction-optimisation-news/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Finland is the Nordic region’s most-talked-about market for the moment, with project deals and other battery storage development activity from local and international players."
     },
     {
       "t": "2026-10-09T09:57:14.000Z",
@@ -345,16 +335,6 @@
       "summary": "South Africa continues its push for energy storage capacity, with utility and grid operator Eskom issuing a call to work on a 21GWh pumped hydro energy storage (PHES) project."
     },
     {
-      "t": "2026-10-14T09:05:41.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/heliup-offers-lightweight-rooftop-pv-modules-with-waterproofing-membrane/",
-      "source": "pv magazine",
-      "title": "Heliup offers lightweight rooftop PV modules with waterproofing membrane",
-      "url": "https://www.pv-magazine.com/2026/10/14/heliup-offers-lightweight-rooftop-pv-modules-with-waterproofing-membrane/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "French lightweight solar panel manufacturer Heliup has partnered with Holcim's Elevate brand to launch Solar Light TPO, a rooftop PV system that combines lightweight solar modules with a waterproofing membrane. The solution is designed for roofs with limited load-bearing capacity. The post Heliup offers lightweight…"
-    },
-    {
       "t": "2026-10-14T09:12:04.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/14/oswal-pumps-to-set-up-1-2-gw-topcon-solar-cell-manufacturing-facility/",
       "source": "pv magazine",
@@ -453,6 +433,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The expert judges’ difficult decisions to select winners from hundreds of worthy entries for the Energy Storage Awards 2026 are almost finalised."
+    },
+    {
+      "t": "2026-10-15T02:46:57.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-e-storage-commissions-960mwh-bess-in-south-australia-for-cip-gotion-delivers-for-lightsource-hybrid-in-queensland/",
+      "source": "Energy-Storage.news",
+      "title": "Australia: e-STORAGE commissions 960MWh BESS in South Australia for CIP; Gotion delivers for Lightsource hybrid in Queensland",
+      "url": "https://www.energy-storage.news/australia-e-storage-commissions-960mwh-bess-in-south-australia-for-cip-gotion-delivers-for-lightsource-hybrid-in-queensland/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "960MWh Summerfield BESS in South Australia enters commissioning, while Gotion starts building the 843MWh Lower Wonga project in Queensland."
+    },
+    {
+      "t": "2026-10-15T04:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/pricing-indias-storage-demand-gap/",
+      "source": "pv magazine",
+      "title": "Pricing India’s storage demand gap",
+      "url": "https://www.pv-magazine.com/2026/10/15/pricing-indias-storage-demand-gap/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "India tendered more battery storage in 2025 than in the previous three years combined. Winning bids for these projects have fallen roughly 86% since the country’s first standalone energy storage auction in 2022. On the surface, this reads like a market maturing exactly on schedule. But the reality is less clean-cut,…"
     }
   ],
   "derived": {
@@ -462,8 +462,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "grid": 25,
-      "policy": 8,
-      "capital": 8,
+      "policy": 9,
+      "capital": 7,
       "technology": 2
     },
     "sourceStatus": [
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:23965ac3c1e70b8a1148095287b99710250f8fd58a472a50d382c43a1d881bdd",
-  "envelopeChecksum": "sha256:2e8f5ce6fe6a6762825a5d2a567f83be3f7faf3faa31c218dc1ba8dd8e34d1ee"
+  "contentChecksum": "sha256:c050bdaf9189a268f0ae205e1c9680f49e36cc3f18719d2b0764261ec787aad3",
+  "envelopeChecksum": "sha256:66e493765317dff673efd3c0893d73e9cb8100ef5bbbdfb82bb6e86eb8c0d05c"
 }
