@@ -280,6 +280,24 @@ export const comparison = {
     durationHours: 4,
   },
 
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Read as SHAPES relative to four hours: the
+     levels above stay the engine's. Both curves are the dashboard's (data.js),
+     moved over unchanged. The de-rating row is the dashboard's "T-4 2029/30"
+     vintage, whose provenance is not established, so every point is a seed
+     until gate G1 closes — and its 4h point (0.45) is not the 0.38 the
+     capacity line carries: only the shape is used. The toll is a single
+     precedent and is priced at its own duration only. */
+  durationResponse: {
+    hours: [1, 2, 4, 6, 8],
+    capacityDerating: [0.09, 0.22, 0.45, 0.63, 0.77],
+    capacityDeratingBasis: 'seed',
+    merchantCapture: [1.14, 1.00, 0.84, 0.72, 0.63],
+    merchantCaptureBasis: 'seed',
+    opexEnergyShare: 0.5,
+    routeRules: { toll: { quotedHours: 4 } },
+  },
+
   capabilities: {
     capacityMarket: true,      // Capacity Market
     merchant: true,

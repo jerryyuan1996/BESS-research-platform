@@ -84,6 +84,17 @@ export const EXIT_Y_AUCTION = EXIT_Y_MERCHANT;
 /** Exit years offered by the home page's selector. */
 export const EXIT_YEARS = [5, 7, 10];
 
+/* The design-fit band (src/comparison/designFit.js). A design whose value is
+   within this share of the archetype's net capital of the best design is "in
+   the band": the sweep cannot tell them apart honestly, so it does not pretend
+   to. Stated against capital rather than against the best value, because a
+   share of value has no meaning where every design destroys value — which is
+   most of the sweeps the dashboards ran on 2026-10-15.
+
+   Methodology, set by the analyst: docs/duration-and-route-fit-plan.md §2.3,
+   approved 2026-10-15. */
+export const DESIGN_FIT_TOLERANCE = 0.02;
+
 /* The comparison is deliberately unlevered. Debt capacity differs by market for
    exactly the reasons this page measures, so it is expressed through the exit
    yields above rather than assumed as a capital structure. */

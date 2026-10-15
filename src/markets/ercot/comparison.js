@@ -440,6 +440,20 @@ export const comparison = {
     durationHours: HOURS,
   },
 
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Shapes relative to two hours; the capture
+     curve is the dashboard's illustrative shape, moved over unchanged. The
+     only published toll value is quoted at two hours, so the toll is priced
+     there only — which is why the sweep cannot yet say what the four-hour
+     tolled assets earn (gate DG-9). */
+  durationResponse: {
+    hours: [1, 2, 4, 8],
+    merchantCapture: [1.22, 1.00, 0.76, 0.55],
+    merchantCaptureBasis: 'seed',
+    opexEnergyShare: 0.5,
+    routeRules: { toll: { quotedHours: 2 } },
+  },
+
   capabilities: {
     /* The flag that defines this market. ERCOT is energy-only, prices scarcity
        through the ORDC rather than through a capacity product, and the Public

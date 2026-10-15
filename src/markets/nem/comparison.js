@@ -337,6 +337,24 @@ export const comparison = {
     durationHours: HOURS,
   },
 
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Shapes relative to four hours; the capture
+     curve is the dashboard's, moved over unchanged. Its 4h point is measured —
+     a four-hour unit earned 96% of the A$/MWh of adjacent two-hour units — and
+     the rest is the dashboard's extrapolation. The CIS floor and the virtual
+     toll are both estimated for this archetype and nothing publishes either at
+     another size, so both are priced at four hours only. */
+  durationResponse: {
+    hours: [1, 2, 4, 6, 8],
+    merchantCapture: [1.06, 1.00, 0.96, 0.86, 0.78],
+    merchantCaptureBasis: ['seed', 'observed', 'observed', 'seed', 'seed'],
+    opexEnergyShare: 0.5,
+    routeRules: {
+      toll: { quotedHours: 4 },
+      ltda: { paymentBasis: 'quoted', quotedHours: 4 },
+    },
+  },
+
   capabilities: {
     /* The one flag that matters here. The NEM is energy-only and the Nelson
        Review kept it that way in December 2025. */

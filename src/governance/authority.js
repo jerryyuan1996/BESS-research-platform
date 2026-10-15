@@ -131,6 +131,7 @@ export const METHODOLOGY_SURFACES = [
   { id: 'verdict-vocabulary', module: 'src/governance/investability.js', what: ['The dimensions, pillars and six verdict words', '评估维度、支柱与六个结论用词'] },
   { id: 'discount-rates',     module: 'src/comparison/assumptions.js',   what: ['Discount rates, exit yields, asset life and the comparison window', '折现率、退出收益率、资产寿命与比较期'] },
   { id: 'sponsor-position',   module: 'src/comparison/sponsorAssumptions.js', what: ['The sponsor\'s buying and cost-of-capital position', '投资方的采购与资金成本立场'] },
+  { id: 'design-fit',         module: 'src/comparison/designFit.js',      what: ['How the best route and duration are chosen: the objective, the band and the test a duration floor must pass', '如何选出最佳路径与时长：目标、区间，以及时长下限须通过的检验'] },
   { id: 'drift-thresholds',   module: 'src/governance/materiality.js',   what: ['When drift counts as material', '偏离何时算作重大'] },
   { id: 'automation-limits',  module: 'src/governance/automation.js',    what: ['How far one machine run may move the view', '单次自动运行可改动观点的幅度'] },
   { id: 'authority',          module: 'src/governance/authority.js',     what: ['Who may change what — this file', '谁可以改什么——即本文件'] },
@@ -171,6 +172,29 @@ export const COMPARISON_AUTHORITY = {
   // A choice of what to model, not an observation of the market.
   'archetype.powerMW': AUTHORITY.METHODOLOGY,
   'archetype.durationHours': AUTHORITY.METHODOLOGY,
+
+  // ---- durationResponse: how the market pays for the next hour -------------
+  /* The design-fit sweep's inputs (src/comparison/designFit.js), approved with
+     docs/duration-and-route-fit-plan.md on 2026-10-15 (§5 there).
+
+     The CURVES are ANALYST. A de-rating table is published by the auction body
+     and a capture curve is what a price feed measures (Part B of the plan), so
+     both are observations the ETL may one day propose against, and never apply.
+     The opex share has no published counterpart and is ANALYST by necessity.
+
+     The GRID is METHODOLOGY: which durations are worth asking about is a choice
+     of what to model, exactly like the archetype it must contain. So are the
+     basis labels, because they are statements about evidence — a machine must
+     not be able to upgrade a seed to "published" by writing a word.
+
+     Route rules have their own leaf rule below. */
+  'durationResponse.hours': AUTHORITY.METHODOLOGY,
+  'durationResponse.capacityDerating': AUTHORITY.ANALYST,
+  'durationResponse.capacityDeratingBasis': AUTHORITY.METHODOLOGY,
+  'durationResponse.merchantCapture': AUTHORITY.ANALYST,
+  'durationResponse.merchantCaptureBasis': AUTHORITY.METHODOLOGY,
+  'durationResponse.opexEnergyShare': AUTHORITY.ANALYST,
+  'durationResponse.note': AUTHORITY.METHODOLOGY,
 
   // ---- capabilities: what mechanisms this market offers --------------------
   // Reads like a fact but is not one. "Tolling precedent exists in GB" is a
@@ -470,6 +494,11 @@ export const ASSUMPTION_AUTHORITY = {
      against these could restate the entire house position overnight. */
   OEM_CAPEX_MULTIPLIER: AUTHORITY.METHODOLOGY,
   SPONSOR_DISCOUNT_DELTA_PP: AUTHORITY.METHODOLOGY,
+
+  /* How wide the design-fit band is (src/comparison/designFit.js). How close two
+     designs must be before the sweep stops telling them apart is a position on
+     precision, not an observation. */
+  DESIGN_FIT_TOLERANCE: AUTHORITY.METHODOLOGY,
 };
 
 /* ---------------------------------------------------------------------------
@@ -517,6 +546,37 @@ function rangeAuthority(path){
   return RANGE_LEAF_AUTHORITY[leaf] ?? null;
 }
 
+/* ---------------------------------------------------------------------------
+   Route rules in a duration response — `durationResponse.routeRules.<route>.<leaf>`.
+
+   Classified by LEAF whatever the route, for the reason the ranges above are:
+   every rule has the same leaves and the same governance answer.
+
+     quotedHours   ANALYST. The duration a deal or a bid was priced at, a
+     floorHours    scheme's duration floor and its term are facts about the deal
+     termYears     or the scheme, and a newer one is evidence a machine may bring.
+
+     floorKind     METHODOLOGY. Whether a floor closes a route or de-rates it,
+     holdForTerm   whether it must hold for the whole term, and what an award is
+     paymentBasis  paid on are readings of a scheme's rules: the positions
+     note          decision 6 of the plan took and research gate DG-5 tests.
+   --------------------------------------------------------------------------- */
+const ROUTE_RULE_LEAF_AUTHORITY = {
+  quotedHours: AUTHORITY.ANALYST,
+  floorHours: AUTHORITY.ANALYST,
+  termYears: AUTHORITY.ANALYST,
+  floorKind: AUTHORITY.METHODOLOGY,
+  holdForTerm: AUTHORITY.METHODOLOGY,
+  paymentBasis: AUTHORITY.METHODOLOGY,
+  note: AUTHORITY.METHODOLOGY,
+};
+
+/** Resolves a `durationResponse.routeRules.<route>.<leaf>` path, or null. */
+function routeRuleAuthority(path){
+  const m = /^durationResponse\.routeRules\.[^.]+\.([^.]+)$/.exec(path);
+  return m ? (ROUTE_RULE_LEAF_AUTHORITY[m[1]] ?? null) : null;
+}
+
 /* IC review metadata is a human-owned decision overlay. It is deliberately
    classified as one restrictive subtree: automation may read and recompute from
    it, but may neither publish nor propose changes to review conclusions,
@@ -535,7 +595,8 @@ function refinementAuthority(path){
  * that forgetting to classify a new field fails closed rather than open.
  */
 export function comparisonAuthority(path){
-  return COMPARISON_AUTHORITY[path] ?? rangeAuthority(path) ?? refinementAuthority(path) ?? AUTHORITY.METHODOLOGY;
+  return COMPARISON_AUTHORITY[path] ?? rangeAuthority(path) ?? routeRuleAuthority(path)
+    ?? refinementAuthority(path) ?? AUTHORITY.METHODOLOGY;
 }
 
 /**
@@ -544,7 +605,8 @@ export function comparisonAuthority(path){
  * so a new comparison field cannot be added without someone deciding who owns it.
  */
 export function isClassified(path){
-  return (path in COMPARISON_AUTHORITY) || rangeAuthority(path) != null || refinementAuthority(path) != null;
+  return (path in COMPARISON_AUTHORITY) || rangeAuthority(path) != null
+    || routeRuleAuthority(path) != null || refinementAuthority(path) != null;
 }
 
 /** Authority for a manifest field. Unknown fields fail closed. */

@@ -239,6 +239,18 @@ export const comparison = {
     durationHours: 2,
   },
 
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Shapes relative to two hours; the capture
+     curve is the dashboard's, moved over unchanged. No capacity line to scale.
+     The grant's per-MWh ceiling scales by itself: the engine reads it against
+     the duration it is given. */
+  durationResponse: {
+    hours: [1, 2, 4, 6, 8],
+    merchantCapture: [1.10, 1.00, 0.82, 0.70, 0.62],
+    merchantCaptureBasis: 'seed',
+    opexEnergyShare: 0.5,
+  },
+
   capabilities: {
     capacityMarket: false,     // no capacity mechanism
     merchant: true,

@@ -265,6 +265,39 @@ export const comparison = {
     durationHours: 7,
   },
 
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Shapes relative to seven hours.
+
+     CAPTURE IS OBSERVED, and is the one curve in this block that is new rather
+     than moved: WA's hand-written dashboard carries none. It is the mean daily
+     margin of the best contiguous charge window followed by a later contiguous
+     discharge window, at 88% round-trip efficiency, perfect foresight and one
+     cycle a day, on the published WEM energy reference prices for the twelve
+     months to 14 October 2026 (public/data/public/wa-wem-prices.json, through
+     meanDailyExecutableSpread). Margin rather than spread, because merchGross
+     is net of what charging costs:
+
+         4h 50.46 · 6h 38.25 · 7h 33.02 · 8h 27.35 · 10h 14.79   A$/MWh
+
+     Per megawatt that is flat from six hours to seven: the seventh hour is
+     bought for the ESR requirement, not for prices (plan §3.3).
+
+     THE CAPACITY LINE FOLLOWS THE RULE, not a table. Capacity Credits de-rate
+     linearly with duration below the ESR Duration Requirement — seven hours
+     from AEMO's 2026 ESOO — and, under decision 6 of the plan, that is tested
+     year by year as the battery fades, over the ten-year election. Whether the
+     seven-hour requirement is the one this archetype's cycle bids into is gate
+     DG-6; how the RCM treats fade is gate DG-5. */
+  durationResponse: {
+    hours: [4, 6, 7, 8, 10],
+    merchantCapture: [1.528, 1.158, 1.000, 0.828, 0.448],
+    merchantCaptureBasis: 'observed',
+    opexEnergyShare: 0.5,
+    routeRules: {
+      cap: { floorHours: 7, floorKind: 'linear', termYears: 10 },
+    },
+  },
+
   capabilities: {
     capacityMarket: true,      // Reserve Capacity Mechanism
     merchant: true,

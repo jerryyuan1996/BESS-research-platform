@@ -138,7 +138,11 @@ const yearFactor = (options, name, year, fallback = 1) => {
   return Number.isFinite(flat) ? flat : fallback;
 };
 
-const degradationFactor = (e, year) => {
+/* Exported for the design-fit sweep (src/comparison/designFit.js), which tests a
+   scheme's duration floor against the same fade the revenue line already takes.
+   One definition, so the floor test and the cash flows can never disagree about
+   how fast a battery loses energy. */
+export const degradationFactor = (e, year) => {
   const curve = e.warrantyDegradationCurve;
   if (Array.isArray(curve) && Number.isFinite(curve[year - 1])){
     const value = curve[year - 1];
@@ -327,7 +331,10 @@ function runLegacyCase(market, strategyId, exitYear, options){
   const net = capital.net;
   const capY = [], mchY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
-    const c = (y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0);
+    /* `capacityFactors` is how the design-fit sweep carries a duration floor that
+       de-rates linearly as the battery fades (WA's ESR requirement). Absent, the
+       factor is exactly 1 and the line is the one the baseline pins. */
+    const c = ((y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0)) * yearFactor(options, 'capacity', y);
     const d = degradationFactor(e, y);
     const mm = y >= marketFrom
       ? (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y)
@@ -437,10 +444,11 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
 
   const secY = [], aucY = [], mchY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
-    const s = y <= securedYears ? secured : 0;
+    const capF = yearFactor(options, 'capacity', y);    // 1 unless the design-fit sweep sets it
+    const s = (y <= securedYears ? secured : 0) * capF;
     const a = y > securedYears
       ? ((curve[y - securedYears - 1] ?? 0) * fx * yearFactor(options, 'auction', y,
-        yearFactor(options, 'merchant', y))) : 0;
+        yearFactor(options, 'merchant', y))) * capF : 0;
     const d = degradationFactor(e, y);
     const m = (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y);
     secY.push(s); aucY.push(a); mchY.push(m);

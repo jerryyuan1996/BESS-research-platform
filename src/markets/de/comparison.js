@@ -267,6 +267,21 @@ export const comparison = {
     durationHours: 4,
   },
 
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Shapes relative to four hours; the capture
+     curve is the dashboard's, moved over unchanged. Its 2h and 4h points are
+     derived from Modo's published 2h and 4h figures (DURATION_SCALAR above);
+     the rest is the dashboard's extrapolation. The StromVKG ten-hour route is
+     not one of the engine's routes, so it is not swept here (plan §2.1). The
+     toll is derived for four hours and is priced there only. */
+  durationResponse: {
+    hours: [2, 4, 6, 8, 10],
+    merchantCapture: [1.00, 0.75, 0.62, 0.55, 0.48],
+    merchantCaptureBasis: ['reported', 'reported', 'seed', 'seed', 'seed'],
+    opexEnergyShare: 0.5,
+    routeRules: { toll: { quotedHours: 4 } },
+  },
+
   capabilities: {
     /* Legislated but closed to this asset: the StromVKG auction requires ten
        hours of continuous discharge. See the header. */

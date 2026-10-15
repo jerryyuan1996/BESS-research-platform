@@ -96,6 +96,35 @@ export const JP_CAPITAL = {
   constructionMonths: 12,
 };
 
+/* How each line scales with duration, for the design-fit sweep
+   (src/comparison/designFit.js) — shared by the three areas, like the curves it
+   comes from. Shapes relative to the six-hour archetype; the capture curve is
+   the dashboard's national shape, moved over unchanged. On JEPX's own prices
+   for the twelve months to 13 October 2026 it is close to what the three areas
+   paid (6h 0.87-0.89 and 8h 0.72-0.73 of the 4h rate, against 0.85 and 0.72
+   here — docs/duration-and-route-fit-plan.md §3.3).
+
+   The long-term award is paid per kW, so it does not grow with energy. Its
+   six-hour floor and twenty-year term are the scheme's own fields
+   (`economics.ltda.minDurationHours`, `.years`), and under decision 6 of the
+   plan the floor is tested at the end of the term: gate DG-5 asks whether
+   OCCTO measures it that way.
+
+   NO CAPACITY RESPONSE IS DECLARED, deliberately. The Capacity Market route
+   carries JP_EXPECTED_CAPACITY_FACTOR, which is the FOUR-hour factor, at the
+   six-hour archetype. Scaling a 4h level by a curve read from 6h would compound
+   that rather than expose it, so the route is priced at the archetype only
+   until the factor is put right. */
+export const JP_DURATION_RESPONSE = {
+  hours: [1, 2, 4, 6, 8],
+  merchantCapture: [1.25, 1.15, 1.00, 0.85, 0.72],
+  merchantCaptureBasis: 'seed',
+  opexEnergyShare: 0.5,
+  routeRules: {
+    ltda: { paymentBasis: 'kW', floorKind: 'binary' },
+  },
+};
+
 /* Expected Capacity factor applied to the Capacity Market area price for a 4h
    battery. The formula is national, so the same factor is used in all three
    areas and capacity revenue differs only by area price — which is the point.

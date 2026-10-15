@@ -299,6 +299,21 @@ export const comparison = {
     durationHours: HOURS,
   },
 
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Shapes relative to four hours; both curves
+     are the dashboard's, moved over unchanged. RA credit is flat from four
+     hours up because net qualifying capacity is tested on four-hour sustained
+     output — a published rule. The 2h point is an approximation of how a
+     shorter asset fares across the slices, not a schedule. */
+  durationResponse: {
+    hours: [2, 4, 6, 8],
+    capacityDerating: [0.50, 1.00, 1.00, 1.00],
+    capacityDeratingBasis: ['seed', 'rule', 'rule', 'rule'],
+    merchantCapture: [1.30, 1.00, 0.80, 0.65],
+    merchantCaptureBasis: 'seed',
+    opexEnergyShare: 0.5,
+  },
+
   capabilities: {
     capacityMarket: true,       // bilateral Resource Adequacy
     merchant: true,             // nodal energy arbitrage
