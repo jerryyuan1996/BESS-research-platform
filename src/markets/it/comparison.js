@@ -332,6 +332,28 @@ export const comparison = {
      is carried where it belongs: as the other three dots on the frontier, and
      on every tab. Making the weakest route the headline would bury the finding
      rather than show it. */
+
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Shapes relative to four hours; both curves
+     are the dashboard's, moved over unchanged. Terna publishes two de-rating
+     points, 0.67 at 4h and 0.90 at 8h; the others are the dashboard's monotone
+     fill and are labelled as such. MACSE is paid per MWh of storage, so the
+     award scales with energy — the reason its winners averaged 6.68 hours. Its
+     oversizing obligation is not modelled here; how it treats fade is gate
+     DG-5. The tolls are priced at four hours only. */
+  durationResponse: {
+    hours: [2, 4, 6, 8, 10],
+    capacityDerating: [0.42, 0.67, 0.81, 0.90, 0.95],
+    capacityDeratingBasis: ['fill', 'published', 'fill', 'published', 'fill'],
+    merchantCapture: [1.333, 1.000, 0.827, 0.733, 0.640],
+    merchantCaptureBasis: 'seed',
+    opexEnergyShare: 0.5,
+    routeRules: {
+      toll: { quotedHours: 4 },
+      ltda: { paymentBasis: 'kWh' },
+    },
+  },
+
   capabilities: {
     capacityMarket: true,
     merchant: true,

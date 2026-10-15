@@ -466,6 +466,22 @@ export const comparison = {
     durationHours: HOURS,
   },
 
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Shapes relative to four hours. The de-rating
+     row is PJM's published ELCC class table for the 2028/29 BRA — every point a
+     primary figure — and scales the secured year and the renewal path alike.
+     The capture curve is the dashboard's, moved over unchanged. The sweep starts
+     at four hours for the reason the dashboard's does: there is no ELCC class
+     below it to read. */
+  durationResponse: {
+    hours: [4, 6, 8, 10],
+    capacityDerating: [0.59, 0.68, 0.71, 0.78],
+    capacityDeratingBasis: 'published',
+    merchantCapture: [1.00, 0.82, 0.70, 0.61],
+    merchantCaptureBasis: 'seed',
+    opexEnergyShare: 0.5,
+  },
+
   capabilities: {
     capacityMarket: true,       // RPM Base Residual Auction, one delivery year at a time
     merchant: true,             // nodal energy arbitrage

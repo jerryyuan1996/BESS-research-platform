@@ -21,6 +21,7 @@ import { tabs } from '../jp/tabs.js';
 import { sources } from '../jp/sources.js';
 import {
   JP_REGIONS, JP_COMMON_COST, JP_CAPITAL, JP_REFERENCE, JP_LTDA_MERCHANT_RETENTION, jpRanges,
+  JP_DURATION_RESPONSE,
 } from '../jp/regions.js';
 import { merchantVintage } from '../../comparison/vintage.js';
 
@@ -108,6 +109,9 @@ export const comparison = {
   baseStrategy: 'ltda',
 
   archetype: { powerMW: JP_REFERENCE.powerMW, durationHours: JP_REFERENCE.durationHours },
+
+  /* Shared by the three areas — see JP_DURATION_RESPONSE in ../jp/regions.js. */
+  durationResponse: JP_DURATION_RESPONSE,
 
   capabilities: {
     capacityMarket: true,      // OCCTO Capacity Market main auction

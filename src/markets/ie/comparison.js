@@ -256,6 +256,19 @@ export const comparison = {
     durationHours: 4,
   },
 
+  /* How each line scales with duration, for the design-fit sweep
+     (src/comparison/designFit.js). Shapes relative to four hours; the levels
+     stay the engine's. Both curves are the dashboard's (data.js), moved over
+     unchanged; its 4h de-rating point matches the capacity line's 0.66. */
+  durationResponse: {
+    hours: [1, 2, 4, 6, 8],
+    capacityDerating: [0.22, 0.41, 0.66, 0.81, 0.89],
+    capacityDeratingBasis: 'seed',
+    merchantCapture: [1.12, 1.00, 0.86, 0.75, 0.66],
+    merchantCaptureBasis: 'seed',
+    opexEnergyShare: 0.5,
+  },
+
   capabilities: {
     capacityMarket: true,      // CRM, against a Reliability Option
     merchant: true,
