@@ -683,6 +683,11 @@ These are flagged for your review, not proposed:
 | DG-10 | CAISO's D.26-07-008 haircuts, and LDES accreditation under slice-of-day | The size of CAISO's RA line at 4h and above |
 | DG-11 | StromVKG's first clearing price | Sets Germany's 10h tipping point |
 | DG-12 | Per-project durations in CIS Tender 8, and any duration minimum it set | The headline totals give 3.8h, and the state figures do not sum |
+| DG-13 | A published expected-capacity factor for a six-hour battery in Japan's Capacity Market (opened 2026-10-15, §15) | The engine carries the 4h factor, 0.70, at the 6h archetype; until this closes the route is swept at 6h only |
+
+**Closed on 2026-10-15 from opened primary sources:** G1, DG-1, DG-2, DG-5 and DG-6. The answers
+and quotations are in `docs/duration-and-route-fit-research-gates.md`; what they changed is in
+§15.
 
 ---
 
@@ -873,3 +878,100 @@ other five each have a reason:
 
 For comparison, the dashboards' prototype sweeps disagreed with the archetype in six of eleven
 markets (§1.2).
+
+---
+
+## 15. The research gates, the second sign-off, and PR 2 (2026-10-15)
+
+### 15.1 What the gates reversed
+
+The five gates were closed on opened primary sources (`docs/duration-and-route-fit-research-gates.md`).
+Two of the §6 corrections you had approved rested on the search summaries and were wrong:
+
+- **GB.** NESO's published 4h factor for T-4 2029/30 is 43.96%. The dashboard's 0.45 was close;
+  the engine's 0.38, interpolated, was the outlier.
+- **Poland.** The 13.39% factor is the same at every duration, but it applies to certified capacity,
+  which must be deliverable for four uninterrupted hours. A battery shorter than four hours
+  certifies MWh ÷ 4, so the factor is not flat across durations.
+
+The gates also confirmed decision 6's premise: WA, Japan, Germany and Italy all measure fade
+against their floors.
+
+### 15.2 Your decisions (2026-10-15)
+
+Asked after the gates reported:
+
+1. **GB:** the engine's 4h de-rating moves to 0.4396, the T-4 2029/30 factor (recommended over
+   2030/31's 0.4461, because that is the vintage the £27.10 price belongs to).
+2. **Poland:** 0.1339 × min(1, h/4).
+3. **Japan:** keep the 4h expected-capacity factor (0.70) and open gate DG-13, rather than move a
+   published number on a seed.
+
+You also confirmed the three items from §14: WA's observed capture curve, WA's grid, and Japan's
+factor finding.
+
+### 15.3 What PR 2 changes
+
+- **GB, engine.** `capacity.derating` 0.38 → 0.4396. The capacity line moves from £10,298 to
+  £11,913 per MW-yr (+15.7%). The league-table base case moves from 10.7% to 10.9% year-1 yield
+  and from 4.7% to 5.1% hold IRR. `tests/current-model.test.js` is re-pinned with that derivation.
+  GB stays ninth of fourteen on hold IRR.
+- **GB, dashboard and P0 layer.** Both vintage rows are now NESO's published tables. The 4h P0
+  value is £27.10 × 43.96% = £11,913. Two passages of GB prose said the factors fell between
+  vintages and that hours beyond four pay poorly; NESO's tables show the opposite, so both were
+  rewritten.
+- **Poland, dashboard and sweep.** The curve is 0.1339 × min(1, h/4). The marginal-hour uplift is
+  +€4k, so the net is −€5k. The 100 MW bridge now shows an obligation of about 12 MW, not 60.
+  Several passages argued from the old seed (the obligation, the "binding question", the fourth
+  hour) and were rewritten. They now say the capacity contract no longer pays for the fourth hour
+  and the case rests on merchant and balancing revenue.
+- **Japan.** The duration path is six hours throughout (§6). Gate DG-13 is named where the factor
+  is declared.
+- **WA.** Comments only: the buffer over the seven-hour requirement is zero (DG-6), and the ten-year
+  fixed price tests a 7.5h floor.
+- **The duration card (decision 2).** The six dashboards that drew the prototype's NPV-by-duration
+  card (GB, IE, PL, RO, NEM, Japan) now draw the engine's sweep. Every route is shown at every
+  declared duration, with the band, the modelled design, the reasons a design is unpriced or
+  fails its floor, and a computed reading. `labModel` keeps the dossier and portfolio screening.
+- **Bundle.** The shared market chunks' budget rises from 98 to 102 kB, for the 3.3 kB the sweep
+  and the card add.
+
+### 15.4 What was withdrawn, and what waits
+
+- **§6's "GB lab seed `hours` 2 → 4" is withdrawn.** The GB lab's 2h is a deliberate, tested
+  screening case (`tests/sponsor-alignment.test.js`: "the merchant-weighted 2h asset"). The row
+  existed only so the duration card would sweep from the archetype, and the card no longer reads
+  the lab.
+- **Computed marginal-hour waterfalls, and the `durFactors` scorecards becoming the driver table,
+  move to PR 5.** The scorecards' replacement needs the driver vocabulary that PR 5 introduces.
+  The waterfalls are quoted inside several markets' prose, so they are rewritten together with
+  it. Poland's scorecard still scores the correction-factor uplift 3; it is retired with the rest.
+- **Not edited, for you:**
+  - GB's two derived grade reasons quote the old engine: "4.7%" (now 5.1%) and "10% secured" (now
+    12%). Neither grade moves.
+  - Poland's dashboard capacity price seed (260 PLN/kW) still differs from the engine's 465.02.
+  - Italy's 1.1%/yr degradation seed is flagged as misderived (DG-5).
+
+### 15.5 The sweep after PR 2
+
+Floors are tested at the end of the term. Values are USD per MW.
+
+| Market | Archetype | Best design | Archetype in the overall band | Best on the archetype's route |
+|---|---|---|---|---|
+| WA | RCM 7h | RCM 7h | yes | 7h, band 7–8h |
+| NEM | CIS 4h | Toll 4h | no, gives up $37k | 4h |
+| GB | CM 4h | Toll 4h | no, gives up $49k | 2h, band 2–4h |
+| DE | Merchant 4h | Merchant 4h | yes | 4h |
+| IT | CM 4h | CM 4h | yes | 4h |
+| IE | CM 4h | CM 4h | yes | 4h |
+| RO | Merchant 2h | Merchant 4h | no, gives up $106k | 4h, on a seed capture curve |
+| PL | Merchant 4h | CM 2h | no, gives up $188k | 1h, on a seed capture curve |
+| JP ×3 | LTDA 6h | Merchant 1h | fails its floor at year 20 | none: 8.8h would hold, outside the 8h grid |
+| PJM | BRA 4h | BRA 4h | yes | 4h |
+| ERCOT | Toll 2h | Toll 2h | yes | 2h |
+| CAISO | RA 4h | RA 4h | yes | 4h |
+
+Poland's best capacity-route design moves from 1h to 2h once sub-4h storage certifies at MWh ÷ 4.
+Japan's result is now on OCCTO's own rules, so it is the right reading rather than a gate. Whether
+to extend Japan's grid past 8h, and price the build that holds the floor, is a methodology choice
+for you (the grid is methodology).

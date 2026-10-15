@@ -114,7 +114,7 @@ export const JP_CAPITAL = {
    carries JP_EXPECTED_CAPACITY_FACTOR, which is the FOUR-hour factor, at the
    six-hour archetype. Scaling a 4h level by a curve read from 6h would compound
    that rather than expose it, so the route is priced at the archetype only
-   until the factor is put right. */
+   until gate DG-13 supplies a published six-hour factor. */
 export const JP_DURATION_RESPONSE = {
   hours: [1, 2, 4, 6, 8],
   merchantCapture: [1.25, 1.15, 1.00, 0.85, 0.72],
@@ -128,7 +128,12 @@ export const JP_DURATION_RESPONSE = {
 /* Expected Capacity factor applied to the Capacity Market area price for a 4h
    battery. The formula is national, so the same factor is used in all three
    areas and capacity revenue differs only by area price — which is the point.
-   SEED, and the single highest-leverage open input in the whole Japan build. */
+   SEED, and the single highest-leverage open input in the whole Japan build.
+
+   It is the FOUR-hour factor, carried at the six-hour archetype. Kept, on the
+   analyst's decision of 2026-10-15, until a published six-hour factor is in
+   hand: gate DG-13 (docs/duration-and-route-fit-plan.md §7). The design-fit
+   sweep prices this route at the archetype only until then. */
 export const JP_EXPECTED_CAPACITY_FACTOR = 0.70;
 
 /* Auction-renewal path. The Capacity Market main auction secures one delivery

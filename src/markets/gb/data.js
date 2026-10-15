@@ -46,11 +46,17 @@ const M = {
   t1Years: ['22/23', '23/24', '24/25', '25/26', '26/27'],
   t1Series: [75.00, 60.00, 35.79, 20.00, 5.00],
   derateHours: [1, 2, 4, 6, 8, 10, 12],
+  /* NESO's published duration-limited storage factors (Scaled EFC, Rule 2.3.5),
+     opened on 2026-10-15 for gate G1. T-4 2028/29 from the 2024 Electricity
+     Capacity Report; T-4 2029/30 from Table 3 of its Capacity Auction
+     Guidelines. 10h and 12h take the longest duration-limited class (9h+ at
+     92.99%; 9.5h+ at 92.16%). Replaces a seed row whose 4h point was 0.45 and
+     which showed every factor falling between the vintages — they rose. */
   derateVintages: {
-    'T-4 2028/29': [0.11, 0.25, 0.48, 0.66, 0.79, 0.88, 0.95],
-    'T-4 2029/30': [0.09, 0.22, 0.45, 0.63, 0.77, 0.86, 0.94],
+    'T-4 2028/29': [0.1047, 0.2094, 0.4174, 0.6267, 0.8347, 0.9299, 0.9299],
+    'T-4 2029/30': [0.1099, 0.2198, 0.4396, 0.6608, 0.8777, 0.9216, 0.9216],
   },
-  deratingCurve: { 1: 0.09, 2: 0.22, 4: 0.45, 6: 0.63, 8: 0.77, 10: 0.86, 12: 0.94 },
+  deratingCurve: { 1: 0.1099, 2: 0.2198, 4: 0.4396, 6: 0.6608, 8: 0.8777, 10: 0.9216, 12: 0.9216 },
 
   // ---- wholesale & BM ----
   bmRevenueByDur: { 1: 55000, 2: 73145, 4: 86200, 6: 91800, 8: 95600 },
@@ -303,8 +309,8 @@ const M = {
     ['T-4 clearing price DY 2029/30', 27.10, 'GBP/kW/yr', 'official', 'GB_SEED_V1', 'NESO CM register'],
     ['T-4 awarded de-rated capacity DY 2029/30', 40108.6, 'MW', 'official', 'GB_SEED_V1', 'NESO CM register'],
     ['T-1 clearing price DY 2026/27', 5.00, 'GBP/kW/yr', 'official', 'GB_SEED_V1', 'NESO CM register'],
-    ['CM de-rating factor 2h (T-4 2029/30)', 0.22, 'factor', 'official', 'GB_SEED_V1', 'NESO de-rating factors'],
-    ['CM de-rating factor 4h (T-4 2029/30)', 0.45, 'factor', 'official', 'GB_SEED_V1', 'NESO de-rating factors'],
+    ['CM de-rating factor 2h (T-4 2029/30)', 0.2198, 'factor', 'official', 'Capacity Auction Guidelines T-4 2029/30', 'NESO de-rating factors'],
+    ['CM de-rating factor 4h (T-4 2029/30)', 0.4396, 'factor', 'official', 'Capacity Auction Guidelines T-4 2029/30', 'NESO de-rating factors'],
     ['CP2030 battery range', '23-27', 'GW', 'official', 'GB_SEED_V1', 'DESNZ CP2030 Action Plan'],
     ['CP2030 LDES range', '4-6', 'GW', 'official', 'GB_SEED_V1', 'DESNZ CP2030 Action Plan'],
     ['Operating GB battery fleet', 6.5, 'GW', 'calculated', 'GB_SEED_V1', 'TEC/ECR + REPD'],

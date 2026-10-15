@@ -36,7 +36,13 @@ const M = {
   cmYears: ['2026', '2027', '2028', '2029', '2030'],
   cmPriceSeries: [400, 340, 300, 275, 260],           // PLN/kW/yr — SEED, verify
   derateHours: [1, 2, 4, 6, 8],
-  deratingCurve: { 1: 0.22, 2: 0.40, 4: 0.65, 6: 0.80, 8: 0.89 },
+  /* One correction factor, 13.39%, for storage of every duration (December 2025
+     main auction, 2030 delivery) — applied to CERTIFIED capacity, which must be
+     deliverable for four uninterrupted hours, so a battery shorter than four
+     hours certifies MWh ÷ 4. Hence 0.1339 × min(1, h/4). Gate DG-1, opened
+     2026-10-15 (docs/duration-and-route-fit-research-gates.md); the analyst's
+     correction of the same day, replacing a seed that rose 0.22 → 0.89. */
+  deratingCurve: { 1: 0.1339 / 4, 2: 0.1339 / 2, 4: 0.1339, 6: 0.1339, 8: 0.1339 },
   futureCapFactor: 0.5,
 
   // ---- wholesale ----
@@ -79,13 +85,14 @@ const M = {
   durSpreadFactor: { 1: 1.12, 2: 1.00, 4: 0.84, 6: 0.72, 8: 0.63 },
   usableFraction: 0.92,
   marginalHour: [
-    { l: ['Capacity correction-factor uplift (0.40 → 0.65)', '容量折减系数提升(0.40→0.65)'], v: 15, t: 'd' },
+    /* +€15k paid for 0.25 of factor; the corrected step is 0.067, so ≈ +€4k. */
+    { l: ['Capacity correction-factor uplift (0.067 → 0.134)', '容量折减系数提升(0.067→0.134)'], v: 4, t: 'd' },
     { l: ['Incremental arbitrage (deeper cycle)', '增量套利（更深循环）'], v: 12, t: 'd' },
     { l: ['Balancing access widened', '平衡市场准入扩大'], v: 4, t: 'd' },
     { l: ['Capital support eligibility', '资本支持资格'], v: 4, t: 'd' },
     { l: ['Annualised incremental capex', '年化增量资本开支'], v: -26, t: 'd' },
     { l: ['Degradation & opex', '衰减与运维'], v: -3, t: 'd' },
-    { l: ['Net marginal value, hours 3–4', '第3–4小时净边际价值'], v: 6, t: 'total' },
+    { l: ['Net marginal value, hours 3–4', '第3–4小时净边际价值'], v: -5, t: 'total' },
   ],
   durFactors: [
     { n: ['Capacity correction-factor uplift by duration', '按时长的容量折减系数增益'], w: 20, s: 3 },
@@ -234,8 +241,8 @@ const M = {
     ['Capacity auction clearing price (seed)', 260, 'PLN/kW/yr', 'verify', 'PL_SEED_V1', 'PSE — replace with published result'],
     ['Capacity agreement length, new build (seed)', 17, 'yr', 'verify', 'PL_SEED_V1', 'PSE — replace with published result'],
     ['BESS capacity contracted (seed)', 5.0, 'GW', 'verify', 'PL_SEED_V1', 'PSE — replace with published result'],
-    ['Correction factor 2h (seed)', 0.40, 'factor', 'verify', 'PL_SEED_V1', 'PSE correction-factor table'],
-    ['Correction factor 4h (seed)', 0.65, 'factor', 'verify', 'PL_SEED_V1', 'PSE correction-factor table'],
+    ['Correction factor 2h (four-hour certification)', 0.1339 / 2, 'factor', 'official', 'Main auction Dec 2025', 'PSE correction-factor table'],
+    ['Correction factor 4h', 0.1339, 'factor', 'official', 'Main auction Dec 2025', 'PSE correction-factor table'],
     ['Operating storage fleet (seed)', 1500, 'MW', 'illustrative', 'PL_SEED_V1', 'public compilation'],
     ['Connection pipeline (seed)', 20, 'GW', 'illustrative', 'PL_SEED_V1', 'public compilation'],
     ['Average daily day-ahead spread (seed)', 88, 'EUR/MWh', 'illustrative', 'PL_SEED_V1', 'TGE-derived seed'],

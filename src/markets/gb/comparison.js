@@ -34,24 +34,30 @@ const capacity = {
   priceCurrency: 'GBP',
   fxToMarket: 1,
 
-  /* ASSUMPTION, and the weakest input in this file. NESO publishes de-rating
-     factors by duration in the Auction Guidelines workbook; the values we hold
-     are 1h 10.47% and 2h 20.94% (CM year 2024/25). GB's methodology does not
-     scale linearly past 2h — a 4h factor is well below 2 × the 2h factor — so
-     0.38 is an interpolation, not an observation. Gate G1 closes it.
+  /* PUBLISHED. 43.96% is the 4h duration-limited storage factor in Table 3 of
+     NESO's Capacity Auction Guidelines for T-4 2029/30 — the auction whose
+     £27.10 clear this line prices — calculated by the Scaled EFC method (Rule
+     2.3.5). Gate G1, closed on 2026-10-15 from the opened document
+     (docs/duration-and-route-fit-research-gates.md); the analyst chose this
+     vintage over 2030/31's 44.61% because it is the one the price belongs to.
 
-     The direction of travel is downward: factors fell sharply for 2026/27 and
-     2027/28 on a NESO stress-event methodology change, partially recovered for
-     2028/29 and 2029/30, and NESO's stated long-run expectation is further
-     decline as stress events lengthen. */
-  derating: 0.38,
+     It replaces 0.38, which was interpolated from the T-4 2028/29 1h and 2h
+     factors (10.47% and 20.94%, mislabelled here as CM year 2024/25) on the
+     premise that the curve flattens past 2h. It does not: the published factors
+     rise about eleven points an hour up to the duration-limited threshold.
+
+     The direction of travel for T-4 is UP, not down: 41.74% at 4h for 2028/29,
+     43.96% for 2029/30 and 44.61% for 2030/31. Only the T-1 factors fell. NESO's
+     expert panel has recommended moving battery factors onto empirical
+     performance data, which could move them either way. */
+  derating: 0.4396,
 
   auction: ['T-4, March 2026', '2026年3月T-4拍卖'],
   deliveryYear: 2029,
-  source: 'NESO T-4 2029/30 clearing price £27.10/kW/yr; 4h de-rating factor interpolated — see gate G1',
+  source: 'NESO T-4 2029/30 clearing price £27.10/kW/yr; 4h storage de-rating factor 43.96%, NESO Capacity Auction Guidelines T-4 2029/30, Table 3',
   note: [
-    '£27.10/kW follows three consecutive T-4s at £60-65/kW. De-rating for 4h is interpolated, not published.',
-    '£27.10/kW之前连续三次T-4拍卖为£60–65/kW。4小时可信容量系数为插值，非公布值。',
+    '£27.10/kW follows three consecutive T-4s at £60-65/kW. The 4h de-rating factor, 43.96%, is the published T-4 2029/30 figure.',
+    '£27.10/kW之前连续三次T-4拍卖为£60–65/kW。4小时折减系数43.96%为T-4 2029/30官方公布值。',
   ],
 };
 
@@ -91,7 +97,7 @@ const economics = {
   opexPerMW: 13000,          // scaled from £9,000 at 2h for the larger energy block
 
   capacity,
-  contracted: capacityRevenuePerMW(capacity),   // ≈ £10,298
+  contracted: capacityRevenuePerMW(capacity),   // ≈ £11,913
   contractYears: 15,         // 15-year agreements are on offer to new build
   postFactor: 0.5,
 
@@ -191,17 +197,16 @@ const ranges = {
     gate: 'G13',
   }),
 
-  /* Price moves, de-rating held. The 0.38 factor is itself an interpolation
-     (gate G1) and moving both at once would make the band uninterpretable. */
+  /* Price moves, de-rating held at the published 43.96%. Moving both at once
+     would make the band uninterpretable. */
   contracted: band(economics.contracted,
     Math.round(6.44 * capacity.derating * 1000),
     Math.round(65 * capacity.derating * 1000), {
       basis: [
-        'Completed T-4 auctions have cleared between £6.44 and £65/kW/yr; £27.10 (T-4 2029/30) follows three consecutive clears at £60–65. Both ends are applied at the seeded 4h de-rating factor of 38%, which is itself interpolated.',
-        '已完成的T-4拍卖出清价介于£6.44至£65/kW/年之间；£27.10（T-4 2029/30）之前为连续三次£60–65的出清。两端均按种子设定的4小时可信容量系数38%换算，而该系数本身为插值。',
+        'Completed T-4 auctions have cleared between £6.44 and £65/kW/yr; £27.10 (T-4 2029/30) follows three consecutive clears at £60–65. Both ends are applied at the published T-4 2029/30 4h de-rating factor of 43.96%.',
+        '已完成的T-4拍卖出清价介于£6.44至£65/kW/年之间；£27.10（T-4 2029/30）之前为连续三次£60–65的出清。两端均按T-4 2029/30官方公布的4小时折减系数43.96%换算。',
       ],
-      source: 'NESO EMR Delivery Body, completed T-4 auction results; de-rating interpolated — gate G1',
-      gate: 'G1',
+      source: 'NESO EMR Delivery Body, completed T-4 auction results; NESO Capacity Auction Guidelines T-4 2029/30, Table 3',
     }),
 
   contractYears: limits(economics.contractYears, 1, 15, {
@@ -282,16 +287,15 @@ export const comparison = {
 
   /* How each line scales with duration, for the design-fit sweep
      (src/comparison/designFit.js). Read as SHAPES relative to four hours: the
-     levels above stay the engine's. Both curves are the dashboard's (data.js),
-     moved over unchanged. The de-rating row is the dashboard's "T-4 2029/30"
-     vintage, whose provenance is not established, so every point is a seed
-     until gate G1 closes — and its 4h point (0.45) is not the 0.38 the
-     capacity line carries: only the shape is used. The toll is a single
-     precedent and is priced at its own duration only. */
+     levels above stay the engine's. The de-rating row is NESO's published T-4
+     2029/30 table (Capacity Auction Guidelines, Table 3; gate G1), the same
+     vintage as the capacity line, so here shape and level agree. The capture
+     curve is the dashboard's. The toll is a single precedent and is priced at
+     its own duration only. */
   durationResponse: {
     hours: [1, 2, 4, 6, 8],
-    capacityDerating: [0.09, 0.22, 0.45, 0.63, 0.77],
-    capacityDeratingBasis: 'seed',
+    capacityDerating: [0.1099, 0.2198, 0.4396, 0.6608, 0.8777],
+    capacityDeratingBasis: 'published',
     merchantCapture: [1.14, 1.00, 0.84, 0.72, 0.63],
     merchantCaptureBasis: 'seed',
     opexEnergyShare: 0.5,

@@ -165,9 +165,13 @@ export const M = {
   durConfigs: [1, 2, 4, 6, 8],      // durations swept by the Investment Lab
   usableFraction: 0.95,
   futureCapFactor: 0.75,
+  /* Six hours throughout: LTDA rounds from FY2025 admit no battery below six
+     (OCCTO 募集要綱, opened 2026-10-15 for gate DG-5), and the archetype has
+     been six since 2026-07-30. The analyst's correction of 2026-10-15
+     (duration plan §6), replacing a 4 → 4.5h path. */
   durationPath: {
     years: ['2027', '2028', '2029', '2030', '2031'],
-    hours: [4, 4, 4, 4.5, 4.5],
+    hours: [6, 6, 6, 6, 6],
   },
   systemEvolution: JP_SYSTEM_EVOLUTION,
   forecastGovernance: {

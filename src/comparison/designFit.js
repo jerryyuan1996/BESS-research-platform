@@ -279,7 +279,8 @@ export function marketAt(market, route, hours){
   if (route === 'cap' || (route === 'toll' && e.tollAdditiveWithCapacity)){
     const ratio = capacityRatio(market, hours);
     if (ratio == null){
-      return { na: ['No capacity response declared at ' + fmtH(hours) + 'h', '未声明' + fmtH(hours) + '小时下的容量响应'] };
+      return { na: ['No capacity response is declared away from the modelled duration',
+                    '未声明当前模型时长以外的容量响应'] };
     }
     if (Number.isFinite(e.contracted)) econ.contracted = e.contracted * ratio;
     if (Number.isFinite(e.securedContracted)) econ.securedContracted = e.securedContracted * ratio;
@@ -377,6 +378,9 @@ function pricePoint(market, route, hours, { termTest, runOptions }){
     valuePerCapital: r.net > 0 ? r.exitVal / r.net - 1 : null,
     exitValAtCod: r.exitVal,
     net: r.net,
+    /* USD per unit of the market's currency, so a dashboard can show the value
+       in its own currency without a second conversion table. */
+    fxRate: r.fxRate,
     irrHold: r.irrHold,
     securedShare: r.securedShare,
     inputs: inputsAt(market, route, hours),

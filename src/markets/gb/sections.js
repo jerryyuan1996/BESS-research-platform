@@ -310,9 +310,9 @@ SEC_B.story = function (){
               { name:['T-4 2028/29 vintage','T-4 2028/29版本'], color:'var(--s3)', vals: M.derateVintages['T-4 2028/29'], dash: true },
               { name:['T-4 2029/30 vintage','T-4 2029/30版本'], color:'var(--s1)', vals: M.derateVintages['T-4 2029/30'] },
             ] } },
-          { t:'why', text:['Every point on the curve fell between the two vintages, and it fell hardest at the short end: 2h lost 3 points (0.25 → 0.22, −12% of its capacity revenue) while 12h lost 1 point. The regulator is not neutral on duration — it re-prices short assets downward every year as more of them qualify. A 2h project underwritten on the 2028/29 table is already 12% overstated on capacity revenue.',
-            '两个版本之间曲线上每一点都下降，且短时端跌幅最大：2小时下降3个百分点（0.25→0.22，容量收入减少12%），而12小时仅下降1个百分点。监管方在时长上并非中性 — 随着更多短时资产取得资格，它每年都将其重新下调定价。以2028/29年度表格测算的2小时项目，其容量收入已被高估12%。'],
-            sig:['Short assets are re-priced annually','短时资产每年被重新定价'] },
+          { t:'why', text:['Up to eight hours every point rose between the two vintages: 2h from ' + fmtPct(M.derateVintages['T-4 2028/29'][1] * 100) + ' to ' + fmtPct(M.derateVintages['T-4 2029/30'][1] * 100) + ', 4h from ' + fmtPct(M.derateVintages['T-4 2028/29'][2] * 100) + ' to ' + fmtPct(M.derateVintages['T-4 2029/30'][2] * 100) + ', 8h from ' + fmtPct(M.derateVintages['T-4 2028/29'][4] * 100) + ' to ' + fmtPct(M.derateVintages['T-4 2029/30'][4] * 100) + '. Only the longest class slipped. NESO\'s factors climb about eleven points an hour up to the duration-limited threshold, so the curve pays for every hour to about eight, not just the first two. What the regulator does do is re-price by vintage, so record the vintage in every model: a factor from the wrong auction moves short-duration capacity revenue by around 5%.',
+            '在八小时以内，两个版本之间曲线上每一点都上升：2小时由' + fmtPct(M.derateVintages['T-4 2028/29'][1] * 100) + '升至' + fmtPct(M.derateVintages['T-4 2029/30'][1] * 100) + '，4小时由' + fmtPct(M.derateVintages['T-4 2028/29'][2] * 100) + '升至' + fmtPct(M.derateVintages['T-4 2029/30'][2] * 100) + '，8小时由' + fmtPct(M.derateVintages['T-4 2028/29'][4] * 100) + '升至' + fmtPct(M.derateVintages['T-4 2029/30'][4] * 100) + '。仅最长时长档位略有下降。NESO的系数在时长受限门槛以内每小时约提高十一个百分点，因此该曲线为直至约八小时的每一小时付费，而不只是前两小时。监管方确实会按版本重新定价，因此每个模型都应记录所用版本：使用错误拍卖的系数会使短时容量收入偏差约5%。'],
+            sig:['Every hour to eight is paid','八小时以内每小时均获付费'] },
         ] },
       ] },
       { t:'src', src: SRC.derate, use:['Duration-differentiated de-rating factors by auction vintage','按拍卖年份的时长差异化折减系数'] },
@@ -475,11 +475,11 @@ SEC_B.capacity = function (){
           { name:['T-4 ' + O.t4DY + ' vintage','T-4 ' + O.t4DY + '版本'], color:'var(--s1)', vals: M.derateVintages['T-4 ' + O.t4DY] },
         ] } },
       { t:'note', b:['Vintage discipline: ','版本纪律：'],
-        text:['These are indicative seed values pending replacement with the published auction-specific table for the exact auction the project will enter. A factor from the wrong vintage overstates or understates capacity revenue by 5–15% at the short end.',
-              '此为示意性种子数值，须以项目实际参与拍卖所对应的官方公布表格替换。使用错误版本的系数会在短时端高估或低估容量收入5–15%。'] },
-      { t:'why', text:['The curve is the regulator telling you the price of an hour. Going 2h → 4h raises de-rated capacity from ' + fmtPct(d2 * 100, 0) + ' to ' + fmtPct(d4 * 100, 0) + ' — capacity revenue per nameplate MW rises from ' + fmtC(perNameplate(2)) + ' to ' + fmtC(perNameplate(4)) + ', an uplift of ' + fmtC(perNameplate(4) - perNameplate(2)) + '/MW/yr for one extra MWh per MW. Going 4h → 8h adds only ' + fmtC(perNameplate(8) - perNameplate(4)) + ' for double the energy. The capacity mechanism therefore pays generously for the third and fourth hour and poorly beyond it — which is exactly why 8h+ needed a separate cap-and-floor regime to exist at all.',
-        '这条曲线是监管方对“一小时”的定价。由2小时增至4小时，折减后容量由' + fmtPct(d2 * 100, 0) + '升至' + fmtPct(d4 * 100, 0) + ' — 每铭牌MW容量收入由' + fmtC(perNameplate(2)) + '升至' + fmtC(perNameplate(4)) + '，即每MW增加1MWh可换取' + fmtC(perNameplate(4) - perNameplate(2)) + '/MW/年。由4小时增至8小时，能量翻倍却仅增加' + fmtC(perNameplate(8) - perNameplate(4)) + '。因此容量机制对第三、第四小时给付慷慨，对其后则给付微薄 — 这正是8小时以上必须依靠独立的上下限机制才能成立的原因。'],
-        sig:['Hours 3–4 are the paid ones','获付费的是第3–4小时'] },
+        text:['These are NESO\'s published factors for the two vintages shown, from its Electricity Capacity Report and the Capacity Auction Guidelines. Use the table for the exact auction the project will enter: a factor from the wrong vintage moves capacity revenue by about 5% at the short end.',
+              '此为NESO就所示两个版本公布的系数，出自其《电力容量报告》与《容量拍卖指南》。应采用项目实际参与之拍卖所对应的表格：使用错误版本的系数会使短时端容量收入偏差约5%。'] },
+      { t:'why', text:['The curve is the regulator telling you the price of an hour. Going 2h → 4h raises de-rated capacity from ' + fmtPct(d2 * 100, 0) + ' to ' + fmtPct(d4 * 100, 0) + ' — capacity revenue per nameplate MW rises from ' + fmtC(perNameplate(2)) + ' to ' + fmtC(perNameplate(4)) + ', an uplift of ' + fmtC(perNameplate(4) - perNameplate(2)) + '/MW/yr for two more hours. Going 4h → 8h adds ' + fmtC(perNameplate(8) - perNameplate(4)) + ' for four more, which is about the same per hour. Up to the duration-limited threshold the mechanism pays nearly the same for every hour, so the case for stopping at four has to come from capex and the merchant line rather than from the de-rating curve. Beyond the threshold, 8h and longer is the territory of the separate cap-and-floor regime.',
+        '这条曲线是监管方对“一小时”的定价。由2小时增至4小时，折减后容量由' + fmtPct(d2 * 100, 0) + '升至' + fmtPct(d4 * 100, 0) + ' — 每铭牌MW容量收入由' + fmtC(perNameplate(2)) + '升至' + fmtC(perNameplate(4)) + '，即增加两小时可换取' + fmtC(perNameplate(4) - perNameplate(2)) + '/MW/年。由4小时增至8小时，增加四小时可换取' + fmtC(perNameplate(8) - perNameplate(4)) + '，每小时大致相同。在时长受限门槛以内，该机制对每一小时的给付几乎相同，因此止步于四小时的理由必须来自造价与市场化收入，而非折减曲线。超过该门槛后，8小时及以上属于独立的上下限机制的范畴。'],
+        sig:['Every hour to the threshold is paid about the same','门槛以内每小时获付大致相同'] },
       { t:'src', src: SRC.derate, use:['Duration-differentiated de-rating factors by auction vintage','按拍卖年份的时长差异化折减系数'] },
     ] },
 
@@ -744,13 +744,13 @@ SEC_B.duration = function (){
        duration question is a market question — where the de-rating uplift stops
        covering the MWh capex — so it belongs beside the rest of this tab rather
        than inside a returns model. */
-    { t:'card', title:['Duration comparison — incremental NPV of the final added hour','时长比较 — 最后新增小时的增量NPV'], badges:['calc','illus'], live:false, blocks:[
-      { t:'labDur' },
-      { t:'cap', text:['Run on the seed assumptions this market publishes. To retype them and price a capital structure, use the dedicated Investment Lab page.',
-        '基于本市场种子假设运行。如需重新输入假设并测算资本结构，请使用独立投资测算页面。'] },
-      { t:'why', text:['Judge duration on the NPV of the last hour added, never on headline project IRR — a longer asset can have a lower IRR and a higher NPV, and the capital committed differs by a factor of four across this table. Where the incremental column turns negative is the point at which the de-rating uplift stops covering the MWh capex, and that crossover moves every time either cell prices or the de-rating table changes.',
-        '判断时长应依据最后新增小时的NPV，绝不可仅看项目整体IRR — 更长的资产可能IRR更低而NPV更高，且本表各行所投入的资本相差达四倍。增量列转负之处，即是折减系数增益不再覆盖MWh造价的临界点；每当电芯价格或折减系数表变化，该临界点即随之移动。'],
-        sig:['Judge the last hour, not the project','判断最后一小时，而非整个项目'] },
+    { t:'card', title:['Duration and route — what each design is worth','时长与路径 — 各设计的价值'], badges:['calc'], live:false, blocks:[
+      { t:'designFit' },
+      { t:'cap', text:['Every route this market supports, at every duration it declares, priced by the comparison engine the league table uses; at the modelled duration it is the league table case itself. Value is the exit value at commercial operation, at the platform exit yields, less net capital, per MW. A design within 2% of the capital of the modelled design of the best one is in the band. A route priced at one duration is shown there only, and a duration floor must hold to the end of its term.',
+        '本市场支持的每一条路径、在其声明的每一个时长下，均由排行榜所用的同一比较引擎定价；在当前模型时长下即为排行榜本身的情景。价值为投运时按平台退出收益率计算的退出价值减去净资本，按每MW计。与最佳设计相差不超过当前模型设计资本2%的设计视为位于区间之内。仅在单一时长下定价的路径只在该时长下显示，且时长下限须维持至期限结束。'] },
+      { t:'why', text:['Judge a duration on what it adds to value, not on headline IRR: a longer asset can carry a lower IRR and a higher value, and the capital committed differs several-fold down this table. Read the band before the best point, because inside it the inputs cannot separate the designs.',
+        '判断时长应看其对价值的贡献，而非项目整体IRR：更长的资产可能IRR更低而价值更高，且本表各行所投入的资本相差数倍。应先看区间，再看最佳点，因为在区间之内，输入数据无法区分各设计。'],
+        sig:['Read the band, then the best point','先看区间，再看最佳点'] },
     ] },
   ] };
 };

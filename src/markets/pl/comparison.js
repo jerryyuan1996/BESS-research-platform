@@ -260,17 +260,17 @@ export const comparison = {
   /* How each line scales with duration, for the design-fit sweep
      (src/comparison/designFit.js). Shapes relative to four hours.
 
-     The capacity line does NOT scale. The December 2025 auction applied the
-     13.39% correction factor to storage of every duration, so a longer battery
-     earns no more capacity revenue per nameplate MW — the analyst's correction
-     of 2026-10-15 (docs/duration-and-route-fit-plan.md §6), replacing the
-     dashboard's duration-scaled seed. Reported by the trade press rather than
-     read in the PSE parameters: research gate DG-1. The capture curve is the
-     dashboard's, moved over unchanged. */
+     The capacity line scales to four hours and no further. The December 2025
+     auction applied one correction factor, 13.39%, to storage of every
+     duration, but to CERTIFIED capacity, which must be deliverable for four
+     uninterrupted hours, so a shorter battery certifies MWh ÷ 4: the factor is
+     0.1339 × min(1, h/4). Gate DG-1, opened 2026-10-15, and the analyst's
+     correction of the same day, replacing first the dashboard's duration-scaled
+     seed and then PR 1's flat curve. The capture curve is the dashboard's. */
   durationResponse: {
     hours: [1, 2, 4, 6, 8],
-    capacityDerating: [0.1339, 0.1339, 0.1339, 0.1339, 0.1339],
-    capacityDeratingBasis: 'reported',
+    capacityDerating: [0.1339 / 4, 0.1339 / 2, 0.1339, 0.1339, 0.1339],
+    capacityDeratingBasis: ['rule', 'rule', 'published', 'published', 'published'],
     merchantCapture: [1.12, 1.00, 0.84, 0.72, 0.63],
     merchantCaptureBasis: 'seed',
     opexEnergyShare: 0.5,
