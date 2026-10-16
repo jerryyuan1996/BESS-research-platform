@@ -27,7 +27,7 @@ import { assessMarket } from '../entry/assessment.js';
 import { runBaseCase } from '../comparison/engine.js';
 import { FX } from '../comparison/assumptions.js';
 import {
-  marketDesign, designEconomics, lensRows, orderRows, returnFieldFor, BRIEFING_EXIT_YEAR,
+  marketDesign, designEconomics, designGrid, lensRows, orderRows, returnFieldFor, BRIEFING_EXIT_YEAR,
 } from './plays.js';
 import { callSentence, buildLine, routeNames, flagText, marketName } from './sentences.js';
 import { collectChanges } from './changes.js';
@@ -121,6 +121,8 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
   const horizon = new Date(now.getTime() + (CATALYST_WINDOW_DAYS + 31) * DAY).toISOString().slice(0, 10);
   const catalysts = byExpected(Object.values(triggers).filter(t => t.expected !== null && !t.outcome && dueOf(t.expected) >= on && dueOf(t.expected) <= horizon)).map(t => t.id);
 
+  const grids = Object.fromEntries(entries.map(({ market, design }) => [market.manifest.id, designGrid(design)]));
+
   const build = entries.map(({ market, view, design }) => {
     const id = market.manifest.id;
     const names = routeNames(playsOf(view));
@@ -149,6 +151,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
     lenses,
     catalysts,
     build,
+    grids,
     changes,
     queue,
   };

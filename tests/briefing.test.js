@@ -272,3 +272,22 @@ test('the home page carries the briefing less the queue\'s words, and /desk is a
   assert.deepEqual(home.lenses, b.lenses);
   assert.deepEqual(parseRoute('/desk'), { name: 'desk', region: null });
 });
+
+/* ---- the market brief (PR 5) -------------------------------------------------------- */
+
+test('a play carries its bear and bull, and a market its grid with one modelled cell', async () => {
+  const b = await briefing();
+  const priced = Object.values(b.plays).filter(p => p.econ.priced);
+  assert.ok(priced.length > 0);
+  for (const p of priced){
+    assert.ok('moic' in p.econ && 'payback' in p.econ, `${p.market}/${p.id}: no MOIC or payback`);
+    if (p.econ.range) for (const end of ['bear', 'bull']) assert.ok(p.econ.range[end] === null || 'hold' in p.econ.range[end]);
+  }
+  for (const [market, grid] of Object.entries(b.grids)){
+    if (!grid) { assert.equal(market, 'fi', 'only Finland is withheld'); continue; }
+    const modelled = grid.cells.filter(c => c.archetype);
+    assert.equal(modelled.length, 1, `${market}: one modelled design, on the base route`);
+    assert.equal(modelled[0].route, grid.baseRoute);
+    assert.ok(grid.cells.filter(c => c.best).length <= 1, `${market}: one best design at most`);
+  }
+});

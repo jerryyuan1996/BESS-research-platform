@@ -22,6 +22,7 @@
    --------------------------------------------------------------------------- */
 
 import { runCase, runBaseCase } from '../comparison/engine.js';
+import { runScenarioSet } from '../comparison/refinement.js';
 import { supportedStrategies, baseStrategy } from '../comparison/strategies.js';
 import { sweepDesign, fitOf, marketAt } from '../comparison/designFit.js';
 import { ARCHETYPE_IDS, VERDICT_IDS } from '../governance/investability.js';
@@ -62,6 +63,10 @@ export function designEconomics(market, design, route, hours){
   const weakInputs = Object.entries(point?.inputs || {})
     .filter(([, input]) => input && WEAK_INPUT_BASIS.includes(input.basis))
     .map(([line, input]) => ({ line, basis: input.basis }));
+  /* The owner's bear and bull cases on the same design: every range the market
+     declares set to its worse or better end (comparison/refinement.js). */
+  const set = variant.na ? null : runScenarioSet(variant, route, BRIEFING_EXIT_YEAR);
+  const ends = (c) => (c?.result && !c.result.na ? { hold: round(finite(c.result.irrHold), 4), exit: round(finite(c.result.irrExit), 4) } : null);
   return {
     priced: Boolean(point?.priced),
     eligible: point ? point.eligible !== false : false,
@@ -70,9 +75,33 @@ export function designEconomics(market, design, route, hours){
     value: round(finite(point?.value), 0),
     hold: round(finite(run?.irrHold), 4),
     exit: round(finite(run?.irrExit), 4),
+    moic: round(finite(run?.moic), 2),
+    payback: finite(run?.payback),
     secured: round(finite(run?.securedShare), 3),
     securedYears: finite(run?.securedYears),
+    range: set ? { bear: ends(set.bear), bull: ends(set.bull) } : null,
     weakInputs,
+  };
+}
+
+/**
+ * A market's design grid, as the brief draws it: every route the market
+ * supports at every duration it declares, with value per MW and hold IRR, and
+ * which cells are the best design, inside the band, or the modelled one.
+ */
+export function designGrid(design){
+  if (design.withheld) return null;
+  const { sweep, fit } = design;
+  const best = fit?.best || null;
+  const band = new Set((fit?.band || []).map(p => `${p.route}/${p.hours}`));
+  return {
+    hours: sweep.hours, routes: sweep.routes, baseRoute: sweep.baseRoute, archetypeHours: sweep.archetypeHours,
+    cells: sweep.points.map(p => ({
+      route: p.route, hours: p.hours, priced: Boolean(p.priced), eligible: p.eligible !== false,
+      value: p.priced ? Math.round(p.value) : null, hold: p.priced ? round(finite(p.irrHold), 4) : null,
+      best: Boolean(best && best.route === p.route && best.hours === p.hours),
+      band: band.has(`${p.route}/${p.hours}`), archetype: Boolean(p.archetype) && p.route === sweep.baseRoute,
+    })),
   };
 }
 

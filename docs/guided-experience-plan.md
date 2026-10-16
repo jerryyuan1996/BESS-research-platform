@@ -333,3 +333,18 @@ seven days. The navigation is two rows — Briefing · Returns · Changes · Des
 exists), then the market codes. `/desk` moved forward from PR 6 so the briefing's link to it is never
 dead. The "Release Gate" chip and the home footer's disclaimer are gone. First view measured 247.6 kB
 gzipped against the unchanged 258 budget; the board, behind the fold, is no longer part of it.
+
+**PR 5 — the market brief (2026-10-16).** The landing tab is relabelled "Brief / 要点" (id `case`
+kept, so every address works) and renders `src/components/marketBrief.js`: the call on each play
+for the chosen investor with the thesis and what would change it; what to build, with the line and
+the route × hours grid; the economics (value per MW, both IRRs, secured share, payback, MOIC, bear
+and bull); the risks (barriers, the call's strongest counter-argument, the two grades this investor
+reads lowest, catalysts that would close the market); catalysts and what changed here; the next
+action; the other investors; links into each deep tab. The four investors' verdicts, the pillar
+table and the fourteen grades are folded beneath. The overview ("Market at a glance") now leads the
+Market Story tab; `/home` links land there. Figures come from the briefing (now also carrying each
+play's payback, MOIC and bear/bull, and each market's design grid), so the brief, the home page and
+the digest agree. The banner above the tabs is one dated line of the market's current update; the
+"Screening only" chip, the consensus chip, the approval gate, "Evidence confidence N/10" and the
+pipeline caveat are gone. Budgets: the shared `briefing-data` chunk 12.5 kB (budget 18); the
+`investment-case` chunk 17.6 kB (budget raised 15 → 20).

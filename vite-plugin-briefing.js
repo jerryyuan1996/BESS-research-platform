@@ -15,6 +15,10 @@
    Dates in it are absolute; a page cuts "since your last visit" and "coming"
    on the reader's own clock.
 
+   ON THE DEV SERVER the model's own modules are imported once and kept for the
+   life of the server, so an edit to src/briefing/ or the engine needs a
+   restart; an edit to the view store or the data does not.
+
    READ-ONLY. Nothing here writes. NOTHING PRIVATE CAN ARRIVE THIS WAY: the
    model reads view/, public/data/ and src/, and never local-data/.
    --------------------------------------------------------------------------- */
