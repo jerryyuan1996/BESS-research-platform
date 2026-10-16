@@ -1,12 +1,12 @@
 /* ---------------------------------------------------------------------------
    Finland — comparison interface. Economics are per MW per year, in EUR.
 
-   engineReady: FALSE, and that is the headline rather than a caveat. The
-   structure below is evidenced end to end; the revenue level is not, and the
-   $1M engine consumes the revenue level. Publishing a number the evidence does
-   not carry, and letting it into a cross-market allocation ranking, is the
-   failure mode this platform is built to avoid. So Finland gets a card, a source
-   register and a thesis, and stays out of the engine until the gates close.
+   REVISED 2026-10-17: engine-ready. Until then this market was held out of the
+   engine because its reserve level was not evidenced. The analyst ruled that
+   the level is what Fingrid's 2026 annual market paid, spread across the
+   fleet, and that the negotiated optimiser floor enters as a floor — both set
+   below, with their arithmetic. The saturation argument that follows is why
+   that level is low, and it still stands.
 
    ---------------------------------------------------------------------------
    WHY capacityMarket IS FALSE, WHICH IS MORE INTERESTING THAN IT SOUNDS

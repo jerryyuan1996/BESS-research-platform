@@ -130,9 +130,15 @@ const BUDGET = {
      ALL FIFTEEN ARE GRADED NOW and no other line needed raising: each of the
      ten markets graded in phase 5 took its view and ledger inside the room it
      had. Three are close: caiso 41.81 of 44, de 61.25 of 64, pjm 61.29 of
-     65. */
+     65.
+
+     FINLAND 28 TO 40 (2026-10-17), for content it did not have: brought to
+     parity with the other dashboards when it entered the engine — signal
+     cards, the timeline, the reserve derivation, the design answer, the grid
+     map and congestion register on its tab, the transactions, the Lab and the
+     committee gates. Measured 36.7, still the smallest market chunk. */
   markets: {
-    fi: 28, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
+    fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
 

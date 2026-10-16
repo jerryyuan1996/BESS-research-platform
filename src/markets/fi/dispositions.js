@@ -35,8 +35,8 @@ export const UNPUBLISHED = {
     readiness: READINESS.BLOCKED,
     gaps: ['reserveRevenueGap'],
     reason: [
-      'This section argues why no reserve revenue level is published, and that argument cannot be evidenced without the thing being withheld. The nearest published price — the yearly-market volumes and prices for delivery year 2026 — is a dead URL, and neither Fingrid reserve page carries a price, an awarded volume or a technology split. The obligation MW and the connected-fleet MW that the section does display are a requirement and a fleet, not a market size, and no arithmetic on them produces revenue.',
-      '本节论证的是"为何不发布备用收入水平"，而该论证本身无法在缺少所暂缓数据的情况下获得证据支持。最接近公开价格的来源 — 2026交付年度的年度市场容量与价格 — 其链接已失效；且Fingrid两个备用页面均未提供价格、中标容量或技术类型划分。本节所展示的需求MW与已并网机组MW分别为"需求"与"装机"，而非市场规模，对二者作任何运算都无法得出收入。',
+      'Since 2026-10-17 this section publishes a reserve level: the 2026 annual FCR-D clearing spread across the connected fleet, a floor-level observation. A supported claim about it still needs a published clearing-price series per product and an eligible-versus-procured basis, which the hourly markets would supply (gate FI-2).',
+      '自2026-10-17起，本节发布备用收入水平：2026年度FCR-D出清收入按并网储能分摊，属保底水平的观测值。要就此作出有据结论，仍需按品种公布的出清价格序列及合格容量与采购容量基准，这需要小时级市场数据（研究缺口FI-2）。',
     ],
     requires: [
       'A published clearing-price series per product, and an eligible-versus-procured megawatt basis per product so the connected fleet and the obligation can be compared as like for like rather than subtracted.',
