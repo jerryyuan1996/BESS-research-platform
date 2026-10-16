@@ -1,32 +1,21 @@
+/* ---------------------------------------------------------------------------
+   The line above a market's tabs: what is new in this market, and when it was
+   last reviewed.
+
+   It used to be a card of caveats — "Screening only", a consensus chip, the
+   next approval gate, "Evidence confidence N/10" and a note that the pipeline
+   is excluded from decision metrics. The guided-experience plan (2026-10-16,
+   decision 4) replaced those with one evidence marker per play, on the brief
+   the landing tab now opens with, so this says the one thing that changes
+   between visits and nothing else.
+   --------------------------------------------------------------------------- */
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
-import { chip } from './chip.js';
-
-const CONSENSUS = {
-  aligned: ['Aligned with review', '与复核一致'],
-  more_bullish: ['Dashboard more bullish', '看板偏乐观'],
-  stale: ['Fact set corrected', '事实集已更正'],
-};
-
-const CHIP = { aligned: 'good', more_bullish: 'serious', stale: 'warn' };
 
 export function refinementBanner(market){
   const profile = market?.comparison?.refinement;
-  if (!profile) return null;
-
-  const gate = profile.investmentGate?.[0] || 'Project-level evidence';
-  return h('section', { class: 'card refinement-banner', style: 'margin:10px 0 14px;' },
-    h('div', { style: 'display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:7px;' },
-      chip('serious', ['Screening only', '仅供筛选']),
-      chip(CHIP[profile.consensus?.status] || 'info', CONSENSUS[profile.consensus?.status] || ['Review required', '需要复核']),
-      h('span', { class: 'muted', style: 'font-size:var(--fs-2xs);' }, L(['Reviewed ', '复核日期 ']) + profile.reviewDate)),
-    h('div', { style: 'font-size:var(--fs-sm);line-height:1.55;' }, L(profile.currentUpdate)),
-    h('div', { class: 'note', style: 'margin:9px 0 0;' },
-      h('b', {}, L(['Next approval gate: ', '下一审批门槛：'])), gate,
-      ' · ',
-      h('b', {}, L(['Evidence confidence: ', '证据置信度：'])), profile.confidenceScore + '/10',
-      ' · ',
-      L(profile.pipeline?.eligible
-        ? ['Pipeline passes the global inclusion contract.', '项目管线通过全局纳入规则。']
-        : ['Pipeline is excluded from decision metrics until coverage and de-duplication are evidenced.', '在覆盖率及去重得到证明前，项目管线不计入决策指标。'])));
+  if (!profile?.currentUpdate) return null;
+  return h('div', { class: 'refinement-banner mb-update' },
+    profile.reviewDate ? h('span', { class: 'bf-date' }, L(['Reviewed ', '复核于 ']) + profile.reviewDate) : null,
+    h('span', {}, L(profile.currentUpdate)));
 }

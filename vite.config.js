@@ -77,6 +77,9 @@ export default defineConfig({
              page and every market. Left alone, the second is emitted as
              `index-[hash].js`, the same shape as the entry chunk's name. */
           const ids = chunk.moduleIds || [];
+          /* The home projection of the briefing, shared by the home page and
+             every market's brief since PR 5 of the guided-experience plan. */
+          if (ids.some(m => /[\\/]briefing[\\/]homeData\.js$/.test(m))) return 'assets/briefing-data-[hash].js';
           if (ids.some(m => /[\\/]governance[\\/]investability\.js$/.test(m))) return 'assets/investment-method-[hash].js';
           if (ids.some(m => /[\\/]charts[\\/]barChart\.js$/.test(m))) return 'assets/charts-[hash].js';
           return 'assets/[name]-[hash].js';

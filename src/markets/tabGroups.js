@@ -5,8 +5,8 @@
    one section. The investment-view revision (plan section 6.2) arranges them
    around the decision instead:
 
-       case          Investment case     who should enter, then the overview
-       story         Market story
+       case          Brief               the market brief (since 2026-10-16)
+       story         Market story        the overview, then the story
        revenue       Revenue and design  capacity, energy, services, duration
        entry         Entry and delivery  what it costs to get in, then the grid
        competition   Competition and demand
@@ -42,8 +42,13 @@ export const REVENUE_SECTIONS = ['rcm', 'capacity', 'energy', 'fcess', 'services
  * `pick` means one section at a time under a sub-strip.
  */
 export const TAB_GROUPS = [
-  { id: 'case',        label: ['Investment Case', '投资判断'],            sections: ['case', 'home'] },
-  { id: 'story',       label: ['Market Story', '市场演进'],               sections: ['story'] },
+  /* The landing tab is the market brief (guided-experience plan, PR 5): the
+     call for the investor chosen, what to build, the economics, the risks, the
+     catalysts and the next action, with the four investors' verdicts folded
+     beneath. Its id stays `case`, so every address it ever had still works.
+     The overview it used to carry leads the story instead. */
+  { id: 'case',        label: ['Brief', '要点'],                         sections: ['case'] },
+  { id: 'story',       label: ['Market Story', '市场演进'],               sections: ['home', 'story'] },
   { id: 'revenue',     label: ['Revenue & Design', '收入与设计'],         sections: REVENUE_SECTIONS, pick: true },
   { id: 'entry',       label: ['Entry & Delivery', '进入与交付'],         sections: ['entry', 'grid'] },
   { id: 'competition', label: ['Competition & Demand', '竞争与需求'],     sections: ['pipeline'] },

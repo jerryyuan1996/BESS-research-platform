@@ -206,8 +206,13 @@ const BUDGET = {
        card that states the convention behind its time axis and lists each
        step, in two languages. Measured 13.31 from 9.62, which had already
        taken the long-life card inside the room it had. No market data is in
-       it: another market's ledger is fetched as its own chunk. */
-    'investment-case': 15,
+       it: another market's ledger is fetched as its own chunk.
+
+       RAISED FROM 15 TO 20 for the market brief (guided-experience plan,
+       PR 5): the renderer of the landing tab's brief and its labels in two
+       languages. Measured 17.61 from 13.31. The briefing's figures are not in
+       it: they are the shared `briefing-data` chunk below. */
+    'investment-case': 20,
     /* The method layer itself: anchors, the four investors' tables, the view
        store and the ledgers. Fetched by the home page's board and by the
        Investment Case and Entry tabs, whichever comes first. This is where the
@@ -242,6 +247,11 @@ const BUDGET = {
        Measured 14.44 before the first plays were written; the plays, their
        lines and actions add roughly 4. */
     'briefing-home': 20,
+    /* The home projection of the briefing itself — every investor's rows, the
+       plays priced at build time, the design grids, the catalysts, the build
+       lines and the dated changes — shared by the home page and every market's
+       brief. Measured 12.54 before the first plays were written. */
+    'briefing-data': 18,
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,

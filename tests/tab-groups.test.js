@@ -27,7 +27,7 @@ const sectionIds = (m) => m.tabs.map(([id]) => id);
 
 test('there are seven tabs, in the order the plan gives them', () => {
   assert.deepEqual(TAB_IDS, ['case', 'story', 'revenue', 'entry', 'competition', 'capital', 'evidence']);
-  assert.equal(LANDING_TAB, 'case', 'a reader lands on the investment case');
+  assert.equal(LANDING_TAB, 'case', 'a reader lands on the market brief');
   for (const group of TAB_GROUPS){
     assert.ok(Array.isArray(group.label) && group.label[0] && /[一-鿿]/.test(group.label[1]), `${group.id}: label in both languages`);
   }
@@ -46,10 +46,11 @@ test('every market has the same seven tabs, and each of its sections is in exact
   }
 });
 
-test('the investment case leads, then the overview; entry leads, then the grid', () => {
+test('the brief stands alone; the overview leads the story; entry leads, then the grid', () => {
   for (const m of markets){
     const tabs = Object.fromEntries(tabsFor(m.tabs).map(t => [t.id, t.sections]));
-    assert.deepEqual(tabs.case, ['case', 'home'], m.manifest.id);
+    assert.deepEqual(tabs.case, ['case'], m.manifest.id);
+    assert.deepEqual(tabs.story, ['home', 'story'], m.manifest.id);
     assert.deepEqual(tabs.entry, ['entry', 'grid'], m.manifest.id);
     assert.deepEqual(tabs.competition, ['pipeline']);
     assert.deepEqual(tabs.capital, ['portfolio']);
@@ -62,7 +63,7 @@ test('the investment case leads, then the overview; entry leads, then the grid',
 
 test('every address a dashboard ever had lands on the tab that now holds its section', () => {
   const EXPECTED = {
-    home: ['case', '/case/home'], case: ['case', ''], story: ['story', '/story'],
+    home: ['story', '/story'], case: ['case', ''], story: ['story', '/story'],
     capacity: ['revenue', null], rcm: ['revenue', null], energy: ['revenue', null],
     services: ['revenue', null], fcess: ['revenue', null], duration: ['revenue', null],
     grid: ['entry', '/entry/grid'], entry: ['entry', '/entry'],
