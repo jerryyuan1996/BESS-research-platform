@@ -244,8 +244,12 @@ const BUDGET = {
 
        LOWERED FROM 27 TO 19 once all fifteen were graded: it measures 15.80,
        not the 24 estimated. A market's grades and calls compress far better
-       beside fourteen others of the same shape than the first four suggested. */
-    'verdict-board': 19,
+       beside fourteen others of the same shape than the first four suggested.
+
+       RAISED FROM 19 TO 23 when the briefing content was applied (guided-
+       experience plan, 2026-10-16): eighteen plays, fifteen theses and the ruled
+       calls now ride in every market's projection. Measured 21.63. */
+    'verdict-board': 23,
     /* The briefing that opens the home page since the guided-experience plan
        (PR 4): the six answers and the home projection of the briefing — every
        investor's shortlist, the plays priced by the engine at build time, the
