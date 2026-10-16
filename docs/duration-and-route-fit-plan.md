@@ -972,6 +972,10 @@ Floors are tested at the end of the term. Values are USD per MW.
 | CAISO | RA 4h | RA 4h | yes | 4h |
 
 Poland's best capacity-route design moves from 1h to 2h once sub-4h storage certifies at MWh ÷ 4.
+**2026-10-16, guided-experience plan PR 8** (`docs/japan-ltda-floor-plan.md`). Japan's grid reaches
+9h and 10h on JEPX capture, so the LTDA route prices its floor-holding build. That build is 9h:
+−$554k to −$563k/MW with the award held at the 6h bid, the market reading after gate G42.
+
 Japan's result is now on OCCTO's own rules, so it is the right reading rather than a gate. Whether
 to extend Japan's grid past 8h, and price the build that holds the floor, is a methodology choice
 for you (the grid is methodology).

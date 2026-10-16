@@ -129,7 +129,15 @@ test('a binary floor closes the route below it, and decision 6 tests it at the e
   const fit = fitOf(jp);
   assert.equal(fit.archetype.eligible, false);
   assert.equal(fit.archetype.valueGivenUp, null, 'an archetype that fails its floor gives nothing up to the fit');
-  near(fit.byRoute.ltda.requiredHours, 6 / Math.pow(0.98, 19), 1e-9, 'the route says what would hold');
+  /* Since PR 8 the grid reaches nine hours, the smallest declared build that holds
+     the floor to year 20, so the route prices a design instead of reporting only the
+     hours that would hold (docs/japan-ltda-floor-plan.md). */
+  assert.equal(at(8).eligible, false, 'eight hours still fades below six before year 20');
+  assert.equal(at(9).eligible, true, 'nine hours holds 6.13h in year 20');
+  near(at(9).term.usableAtTermEnd, 9 * Math.pow(0.98, 19), 1e-9);
+  assert.equal(fit.byRoute.ltda.best.hours, 9, 'the cheapest build that holds the floor is the route\'s best');
+  assert.equal(marketAt(jp, 'ltda', 9).comparison.economics.ltda.payment, jp.comparison.economics.ltda.payment,
+    'the award stays the six-hour bid at nine hours: the market reading of 2026-10-16');
 });
 
 test('a linear floor de-rates WA\'s credits with duration, and year by year as the battery fades', () => {

@@ -14,9 +14,9 @@ Generate again: `node scripts/view/draft-briefing-content.mjs --sheet > docs/bri
 | Market | Fund call before | After | Play |
 |---|---|---|---|
 | Italy | Enter now · Ready-to-build | **Enter now** · Ready-to-build | Capacity market · 4h · ready-to-build |
-| Japan — Tokyo Area | Enter now · Ready-to-build | **Build position** · Ready-to-build | Long-term auction award · 6h floor, about 8.8h installed · awarded |
-| Japan — Kyushu Area | Build position · Ready-to-build | **Build position** · Ready-to-build | Long-term auction award · 6h floor, about 8.8h installed · awarded |
-| Japan — Hokkaido Area | Build position · Ready-to-build | **Build position** · Ready-to-build | Long-term auction award · 6h floor, about 8.8h installed · awarded |
+| Japan — Tokyo Area | Enter now · Ready-to-build | **Build position** · Ready-to-build | Long-term auction award · 9h installed, holding the 6h floor · awarded |
+| Japan — Kyushu Area | Build position · Ready-to-build | **Build position** · Ready-to-build | Long-term auction award · 9h installed, holding the 6h floor · awarded |
+| Japan — Hokkaido Area | Build position · Ready-to-build | **Build position** · Ready-to-build | Long-term auction award · 9h installed, holding the 6h floor · awarded |
 | Australia — National Electricity Market | Build position · Ready-to-build | **Opportunistic** · Operating | Tender award · 4h · operating |
 | United States — CAISO (California) | Build position · Ready-to-build | **Opportunistic** · Operating | Resource adequacy · 4h · operating |
 | Romania | Wait · Ready-to-build | **Opportunistic** · Operating | Merchant · 4h · operating, with an optimiser floor |
@@ -148,58 +148,60 @@ Generate again: `node scripts/view/draft-briefing-content.mjs --sheet > docs/bri
 
 ## Japan — Tokyo Area
 
-**Thesis.** Financed on a 20-year long-term auction award that secures nearly all revenue, with most trading upside clawed back. The award's six-hour floor must hold to year 20, which takes about 8.8 hours installed without augmentation, a build the engine has not yet priced. Tokyo's edge is price capture and connection quality.
+**Thesis.** Financed on a 20-year long-term auction award that secures nearly all revenue, with most trading upside clawed back. The award's six-hour floor must hold to year 20, which takes a 9-hour build without augmentation, and at the engine's award that build does not pay. Tokyo's edge is price capture and connection quality.
 
-> 依托20年期长期脱碳电源拍卖中标合同融资，几乎锁定全部收入，但大部分交易收益须返还。中标合同的六小时下限须维持到第20年，在不扩容的前提下约需8.8小时装机，而引擎尚未对该设计定价。东京的优势在于价格捕获与并网质量。
+> 依托20年期长期脱碳电源拍卖中标合同融资，几乎锁定全部收入，但大部分交易收益须返还。中标合同的六小时下限须维持到第20年，在不扩容的前提下需9小时装机，而按引擎的中标价该设计无法回本。东京的优势在于价格捕获与并网质量。
 
 | Play | Value/MW | Hold | Exit | Secured | Why | Next action |
 |---|---|---|---|---|---|---|
-| Long-term auction award · 6h floor, about 8.8h installed · awarded<br>长期脱碳电源拍卖中标 · 6小时下限，约8.8小时装机 · 已中标 | not compliant: Holds 4.1h in year 20 against a 6h floor; 8.8h at COD would hold it | 7.4% | 8.0% | 96.0% / 15y | The long-term auction is how Japanese storage is financed, with 96% of revenue secured; its six-hour floor must still hold in year 20, which takes about 8.8 hours installed.<br>长期脱碳电源拍卖是日本储能的融资路径，可锁定96%的收入；其六小时下限须在第20年仍然满足，约需8.8小时装机。 | Before Round 4 bids close on 3 February 2027, list awarded projects whose installed hours hold six hours to year 20. (by 2027-02-03)<br>在2027年2月3日第四轮投标截止前，列出装机时长可在第20年维持六小时的已中标项目。 |
+| Long-term auction award · 9h installed, holding the 6h floor · awarded<br>长期脱碳电源拍卖中标 · 9小时装机，维持6小时下限 · 已中标 | −$562k | 3.2% | 0.7% | 95.8% / 15y | The long-term auction is how Japanese storage is financed, with 96% of revenue secured; its six-hour floor must still hold in year 20, which takes a 9-hour build.<br>长期脱碳电源拍卖是日本储能的融资路径，可锁定96%的收入；其六小时下限须在第20年仍然满足，需9小时装机。 | Before Round 4 bids close on 3 February 2027, list awarded projects whose installed hours hold six hours to year 20. (by 2027-02-03)<br>在2027年2月3日第四轮投标截止前，列出装机时长可在第20年维持六小时的已中标项目。 |
 
 **Fund call, ruled:** Enter now → **Build position**, ready-to-build: An awarded, ready-to-build asset.
 
 - Because (revenueCertainty): A long-term auction award secures nearly all revenue for its term, and only for a project that wins one. / 长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目。
 - Because (debtAvailability): Domestic banks lend against an award. / 本土银行愿意以中标合同为基础提供贷款。
-- Despite: A six-hour award must still deliver six hours in year 20; without augmentation that takes about 8.8 hours installed, a build the engine does not yet price. / 六小时中标合同须在第20年仍能提供六小时；在不扩容的前提下约需8.8小时装机，而引擎尚未对该设计定价。
+- Despite: A six-hour award must still deliver six hours in year 20, which takes a 9-hour build. At the engine's award of ¥37,000/kW-year that build loses value, and trade-press estimates put battery awards lower still, at ¥12,000–25,000. / 六小时中标合同须在第20年仍能提供六小时，这需要9小时装机。按引擎每千瓦每年37,000日元的中标价，该设计会损失价值；而行业媒体估计电池中标价更低，约为每千瓦12,000至25,000日元。
 - Changes if: jp-tokyo-ltda-round-4-bids · review by 2027-03-31
+
+**Updated trigger** `jp-tokyo-ltda-round-4-bids`: Long-term decarbonisation auction Round 4 bidding closes; a 9h build breaks even at about ¥46,500/kW-year / 长期脱碳电源拍卖第四轮投标截止；9小时设计约在每千瓦每年46,500日元的中标价下盈亏平衡 (2027-02-03, either, source `decision-profile`).
 
 ## Japan — Kyushu Area
 
-**Thesis.** The same national 20-year award as Tokyo, in Japan's renewable-surplus area: value turns on charging access, curtailment and interconnector capacity. The six-hour floor needs about 8.8 hours installed to hold to year 20.
+**Thesis.** The same national 20-year award as Tokyo, in Japan's renewable-surplus area: value turns on charging access, curtailment and interconnector capacity. The six-hour floor needs a 9-hour build to hold to year 20.
 
-> 与东京相同的全国性20年期中标合同，位于日本可再生能源过剩地区：价值取决于充电接入、弃电与联络线容量。六小时下限需约8.8小时装机才能维持到第20年。
+> 与东京相同的全国性20年期中标合同，位于日本可再生能源过剩地区：价值取决于充电接入、弃电与联络线容量。六小时下限需9小时装机才能维持到第20年。
 
 | Play | Value/MW | Hold | Exit | Secured | Why | Next action |
 |---|---|---|---|---|---|---|
-| Long-term auction award · 6h floor, about 8.8h installed · awarded<br>长期脱碳电源拍卖中标 · 6小时下限，约8.8小时装机 · 已中标 | not compliant: Holds 4.1h in year 20 against a 6h floor; 8.8h at COD would hold it | 7.5% | 8.1% | 95.6% / 15y | The same national award as Tokyo; in Kyushu value turns on charging access and curtailment, and the six-hour floor needs about 8.8 hours installed to hold to year 20.<br>与东京相同的全国性中标合同；在九州，价值取决于充电接入与弃电情况，六小时下限约需8.8小时装机才能维持到第20年。 | Before Round 4 bids close on 3 February 2027, list awarded Kyushu projects with firm charging access whose installed hours hold six hours to year 20. (by 2027-02-03)<br>在2027年2月3日第四轮投标截止前，列出充电接入有保障、装机时长可在第20年维持六小时的九州已中标项目。 |
+| Long-term auction award · 9h installed, holding the 6h floor · awarded<br>长期脱碳电源拍卖中标 · 9小时装机，维持6小时下限 · 已中标 | −$554k | 3.2% | 0.8% | 95.3% / 15y | The same national award as Tokyo; in Kyushu value turns on charging access and curtailment, and the six-hour floor needs a 9-hour build to hold to year 20.<br>与东京相同的全国性中标合同；在九州，价值取决于充电接入与弃电情况，六小时下限需9小时装机才能维持到第20年。 | Before Round 4 bids close on 3 February 2027, list awarded Kyushu projects with firm charging access whose installed hours hold six hours to year 20. (by 2027-02-03)<br>在2027年2月3日第四轮投标截止前，列出充电接入有保障、装机时长可在第20年维持六小时的九州已中标项目。 |
 
 **Fund call, ruled:** Build position → **Build position**, ready-to-build.
 
 - Because (revenueCertainty): A long-term auction award secures nearly all revenue for its term, and only for a project that wins one. / 长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目。
 - Because (debtAvailability): Domestic banks lend against an award. / 本土银行愿意以中标合同为基础提供贷款。
-- Despite: A six-hour award must still deliver six hours in year 20; without augmentation that takes about 8.8 hours installed, a build the engine does not yet price. / 六小时中标合同须在第20年仍能提供六小时；在不扩容的前提下约需8.8小时装机，而引擎尚未对该设计定价。
+- Despite: A six-hour award must still deliver six hours in year 20, which takes a 9-hour build. At the engine's award of ¥37,000/kW-year that build loses value, and trade-press estimates put battery awards lower still, at ¥12,000–25,000. / 六小时中标合同须在第20年仍能提供六小时，这需要9小时装机。按引擎每千瓦每年37,000日元的中标价，该设计会损失价值；而行业媒体估计电池中标价更低，约为每千瓦12,000至25,000日元。
 - Changes if: jp-kyushu-ltda-round-4-bids · review by 2027-03-31
 
-**New trigger** `jp-kyushu-ltda-round-4-bids`: Long-term decarbonisation auction Round 4 bidding closes / 长期脱碳电源拍卖第四轮投标截止 (2027-02-03, either, source `decision-profile`).
+**New trigger** `jp-kyushu-ltda-round-4-bids`: Long-term decarbonisation auction Round 4 bidding closes; a 9h build breaks even at about ¥46,500/kW-year / 长期脱碳电源拍卖第四轮投标截止；9小时设计约在每千瓦每年46,500日元的中标价下盈亏平衡 (2027-02-03, either, source `decision-profile`).
 
 ## Japan — Hokkaido Area
 
-**Thesis.** The same national award in Japan's export-constrained area: underwrite charging-side headroom and the Hokkaido–Honshu reinforcement. The six-hour floor needs about 8.8 hours installed to hold to year 20.
+**Thesis.** The same national award in Japan's export-constrained area: underwrite charging-side headroom and the Hokkaido–Honshu reinforcement. The six-hour floor needs a 9-hour build to hold to year 20.
 
-> 同样的全国性中标合同，位于日本外送受限地区：承保时应关注充电侧裕度与北海道—本州联络线加强。六小时下限需约8.8小时装机才能维持到第20年。
+> 同样的全国性中标合同，位于日本外送受限地区：承保时应关注充电侧裕度与北海道—本州联络线加强。六小时下限需9小时装机才能维持到第20年。
 
 | Play | Value/MW | Hold | Exit | Secured | Why | Next action |
 |---|---|---|---|---|---|---|
-| Long-term auction award · 6h floor, about 8.8h installed · awarded<br>长期脱碳电源拍卖中标 · 6小时下限，约8.8小时装机 · 已中标 | not compliant: Holds 4.1h in year 20 against a 6h floor; 8.8h at COD would hold it | 7.4% | 8.0% | 96.1% / 15y | The same national award; in Hokkaido value turns on charging-side headroom and the Hokkaido–Honshu reinforcement, and the six-hour floor needs about 8.8 hours installed.<br>同样的全国性中标合同；在北海道，价值取决于充电侧裕度与北海道—本州联络线加强，六小时下限约需8.8小时装机。 | Before Round 4 bids close on 3 February 2027, list awarded Hokkaido projects with settled charging terms whose installed hours hold six hours to year 20. (by 2027-02-03)<br>在2027年2月3日第四轮投标截止前，列出充电条款已落定、装机时长可在第20年维持六小时的北海道已中标项目。 |
+| Long-term auction award · 9h installed, holding the 6h floor · awarded<br>长期脱碳电源拍卖中标 · 9小时装机，维持6小时下限 · 已中标 | −$563k | 3.2% | 0.7% | 95.8% / 15y | The same national award; in Hokkaido value turns on charging-side headroom and the Hokkaido–Honshu reinforcement, and the six-hour floor needs a 9-hour build.<br>同样的全国性中标合同；在北海道，价值取决于充电侧裕度与北海道—本州联络线加强，六小时下限需9小时装机。 | Before Round 4 bids close on 3 February 2027, list awarded Hokkaido projects with settled charging terms whose installed hours hold six hours to year 20. (by 2027-02-03)<br>在2027年2月3日第四轮投标截止前，列出充电条款已落定、装机时长可在第20年维持六小时的北海道已中标项目。 |
 
 **Fund call, ruled:** Build position → **Build position**, ready-to-build.
 
 - Because (revenueCertainty): A long-term auction award secures nearly all revenue for its term, and only for a project that wins one. / 长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目。
 - Because (debtAvailability): Domestic banks lend against an award. / 本土银行愿意以中标合同为基础提供贷款。
-- Despite: A six-hour award must still deliver six hours in year 20; without augmentation that takes about 8.8 hours installed, a build the engine does not yet price. / 六小时中标合同须在第20年仍能提供六小时；在不扩容的前提下约需8.8小时装机，而引擎尚未对该设计定价。
+- Despite: A six-hour award must still deliver six hours in year 20, which takes a 9-hour build. At the engine's award of ¥37,000/kW-year that build loses value, and trade-press estimates put battery awards lower still, at ¥12,000–25,000. / 六小时中标合同须在第20年仍能提供六小时，这需要9小时装机。按引擎每千瓦每年37,000日元的中标价，该设计会损失价值；而行业媒体估计电池中标价更低，约为每千瓦12,000至25,000日元。
 - Changes if: jp-hokkaido-ltda-round-4-bids · review by 2027-03-31
 
-**New trigger** `jp-hokkaido-ltda-round-4-bids`: Long-term decarbonisation auction Round 4 bidding closes / 长期脱碳电源拍卖第四轮投标截止 (2027-02-03, either, source `decision-profile`).
+**New trigger** `jp-hokkaido-ltda-round-4-bids`: Long-term decarbonisation auction Round 4 bidding closes; a 9h build breaks even at about ¥46,500/kW-year / 长期脱碳电源拍卖第四轮投标截止；9小时设计约在每千瓦每年46,500日元的中标价下盈亏平衡 (2027-02-03, either, source `decision-profile`).
 
 ## United States — PJM Interconnection
 
@@ -256,7 +258,7 @@ Generate again: `node scripts/view/draft-briefing-content.mjs --sheet > docs/bri
 
 ## What applying writes
 
-51 changes through the writer, each with its own changelog line: 3 triggers, 18 plays,
+52 changes through the writer, each with its own changelog line: 4 triggers, 18 plays,
 15 fund verdicts (7 ruled, 8 naming their play) and 15 theses.
 No engine input, weight or anchor moves, so no published return changes.
 

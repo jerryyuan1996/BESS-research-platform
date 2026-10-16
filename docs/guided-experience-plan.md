@@ -384,9 +384,13 @@ secured 10% → 12%; rank and grades unchanged) wait as `scripts/view/content/gb
 for sign-off. Budget: market-shared chunks raised 102 → 104 kB for the 1.63 kB design projection
 (measured 102.2). `tests/deep-layer.test.js` holds the line.
 
-**PR 8 — Japan's floor-holding build, planned (2026-10-16).** `docs/japan-ltda-floor-plan.md` sets out
+**PR 8 — Japan's floor-holding build (2026-10-16).** `docs/japan-ltda-floor-plan.md` sets out
 the derivations, printed by `node scripts/derive/japan-ltda-floor.mjs`. JEPX prices the 9th and 10th
 hours at 0.61 and 0.48 of the 4h spread. A 9h build holds the six-hour floor to year 20 (6.13h). Re-bid
 at its own cost (¥49,000/kW/yr) it earns +$152–160k/MW at 7.4–7.5% hold; it breaks even at
-¥46,500/kW/yr. Seven decisions wait for sign-off before any code; the three calls stay at Build
-position, with gate G42 on the award level.
+¥46,500/kW/yr. Approved the same day, except that gate G42 replaced the re-bid with the market
+reading. Battery prices are confidential and trade-press estimates (¥12,000–25,000) sit below even
+the 6h bid, so the award stays the 6h bid at every duration. Built: Japan's grid reaches 9h and
+10h, and the award route prices 9h at −$554k to −$563k/MW. The drafted plays move to 9h, and the
+Round 4 trigger carries the break-even award. The calls stay at Build position, flagged until gate
+G43 re-sources Japan's capex and bid return.

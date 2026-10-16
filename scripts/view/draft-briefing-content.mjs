@@ -133,7 +133,9 @@ export async function renderSheet(store){
       }
     }
     for (const t of NEW_TRIGGERS[market] || []){
-      lines.push(`**New trigger** \`${t.id}\`: ${t.label[0]} / ${t.label[1]} (${t.expected ?? 'undated'}, ${t.direction}, source \`${typeof t.source === 'string' ? t.source : t.source.publisher}\`).`, '');
+      /* A trigger the market already carries is restated, not added. */
+      const kind = (view.triggers || []).some(x => x.id === t.id) ? 'Updated trigger' : 'New trigger';
+      lines.push(`**${kind}** \`${t.id}\`: ${t.label[0]} / ${t.label[1]} (${t.expected ?? 'undated'}, ${t.direction}, source \`${typeof t.source === 'string' ? t.source : t.source.publisher}\`).`, '');
     }
   }
 

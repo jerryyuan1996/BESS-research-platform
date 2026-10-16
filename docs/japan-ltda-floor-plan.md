@@ -1,8 +1,30 @@
 # Japan: pricing the build that holds the award floor — plan for sign-off
 
-Drafted 2026-10-16 as PR 8 of the guided-experience plan (`docs/guided-experience-plan.md`). The
-derivations come first and nothing is built. The engine, the view store and every published number
-stay as they are until you sign off.
+Drafted 2026-10-16 as PR 8 of the guided-experience plan (`docs/guided-experience-plan.md`), and
+built the same day on the ruling below.
+
+## Ruled (2026-10-16)
+
+You approved decisions 1 and 3–7, then gate G42 reported before any code was written. Battery award
+prices are confidential in every round, and trade-press estimates put the winning line at about
+¥25,000/kW-year in Round 1 and ¥12,000–13,000 for 3–6h batteries in Round 2. Both are below even
+the engine's ¥37,000 at 6h. Decision 2 was therefore replaced by the **market reading**:
+
+- **The award stays the engine's 6h bid at every duration.** That is reading (a) in D3. It needs no
+  new engine code, because a kW-paid award already holds flat across durations.
+- **Japan's grid reaches 9h and 10h** on JEPX capture (0.61 and 0.48), so the award route prices
+  the build that holds the floor. That build is 9h, at **−$554k to −$563k/MW** (3.2% hold).
+- **The three calls stay at Build position** (decision 5). They stay flagged on the desk, because a
+  compliant design is now priced and its value is negative. You will re-rule them once gate
+  **G43** has re-sourced Japan's ¥360m/MW capex and 8% bid return. Winning bidders evidently build
+  or finance well below both.
+- **The drafted plays move to 9h** (decision 6). The Round 4 trigger carries the 9h build's
+  break-even award, about ¥46,500/kW-year, which trade press reports even though OCCTO does not
+  (decision 5).
+- **Decisions 3, 4 and 7 stand as written.** Under the market reading, decision 3 holds with no
+  code: every build gets the same award.
+
+The plan as drafted follows, unchanged, for the derivations.
 
 ## The answer
 

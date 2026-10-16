@@ -60,16 +60,16 @@ export const THESES = {
     '目前没有新进入的路径：2025年12月的拍卖是最后一次主拍卖，后继机制尚未立法。无合同项目回报不足1%。只有持有早期十七年合同的资产值得定价，且仅以低于重置成本的价格。',
   ],
   jp_tokyo: [
-    'Financed on a 20-year long-term auction award that secures nearly all revenue, with most trading upside clawed back. The award\'s six-hour floor must hold to year 20, which takes about 8.8 hours installed without augmentation, a build the engine has not yet priced. Tokyo\'s edge is price capture and connection quality.',
-    '依托20年期长期脱碳电源拍卖中标合同融资，几乎锁定全部收入，但大部分交易收益须返还。中标合同的六小时下限须维持到第20年，在不扩容的前提下约需8.8小时装机，而引擎尚未对该设计定价。东京的优势在于价格捕获与并网质量。',
+    'Financed on a 20-year long-term auction award that secures nearly all revenue, with most trading upside clawed back. The award\'s six-hour floor must hold to year 20, which takes a 9-hour build without augmentation, and at the engine\'s award that build does not pay. Tokyo\'s edge is price capture and connection quality.',
+    '依托20年期长期脱碳电源拍卖中标合同融资，几乎锁定全部收入，但大部分交易收益须返还。中标合同的六小时下限须维持到第20年，在不扩容的前提下需9小时装机，而按引擎的中标价该设计无法回本。东京的优势在于价格捕获与并网质量。',
   ],
   jp_kyushu: [
-    'The same national 20-year award as Tokyo, in Japan\'s renewable-surplus area: value turns on charging access, curtailment and interconnector capacity. The six-hour floor needs about 8.8 hours installed to hold to year 20.',
-    '与东京相同的全国性20年期中标合同，位于日本可再生能源过剩地区：价值取决于充电接入、弃电与联络线容量。六小时下限需约8.8小时装机才能维持到第20年。',
+    'The same national 20-year award as Tokyo, in Japan\'s renewable-surplus area: value turns on charging access, curtailment and interconnector capacity. The six-hour floor needs a 9-hour build to hold to year 20.',
+    '与东京相同的全国性20年期中标合同，位于日本可再生能源过剩地区：价值取决于充电接入、弃电与联络线容量。六小时下限需9小时装机才能维持到第20年。',
   ],
   jp_hokkaido: [
-    'The same national award in Japan\'s export-constrained area: underwrite charging-side headroom and the Hokkaido–Honshu reinforcement. The six-hour floor needs about 8.8 hours installed to hold to year 20.',
-    '同样的全国性中标合同，位于日本外送受限地区：承保时应关注充电侧裕度与北海道—本州联络线加强。六小时下限需约8.8小时装机才能维持到第20年。',
+    'The same national award in Japan\'s export-constrained area: underwrite charging-side headroom and the Hokkaido–Honshu reinforcement. The six-hour floor needs a 9-hour build to hold to year 20.',
+    '同样的全国性中标合同，位于日本外送受限地区：承保时应关注充电侧裕度与北海道—本州联络线加强。六小时下限需9小时装机才能维持到第20年。',
   ],
   pjm: [
     'The best-published capacity price on the platform, secured one year at a time, on a reference return of 2.4%. Four hours is the best design as accreditation erodes. Wait for the 2029/30 auction in December 2026 before pricing anything.',
@@ -179,23 +179,23 @@ export const PLAYS = {
         '等待主拍卖的后继机制；在此之前，只对持有早期十七年合同的资产定价，且仅以低于重置成本的价格。')),
   ],
   jp_tokyo: [
-    play('jp-tokyo-ltda-6h', ['Long-term auction award · 6h floor, about 8.8h installed · awarded', '长期脱碳电源拍卖中标 · 6小时下限，约8.8小时装机 · 已中标'], 'ltda', 6, 'ready-to-build',
-      ['The long-term auction is how Japanese storage is financed, with 96% of revenue secured; its six-hour floor must still hold in year 20, which takes about 8.8 hours installed.',
-       '长期脱碳电源拍卖是日本储能的融资路径，可锁定96%的收入；其六小时下限须在第20年仍然满足，约需8.8小时装机。'],
+    play('jp-tokyo-ltda-6h', ['Long-term auction award · 9h installed, holding the 6h floor · awarded', '长期脱碳电源拍卖中标 · 9小时装机，维持6小时下限 · 已中标'], 'ltda', 9, 'ready-to-build',
+      ['The long-term auction is how Japanese storage is financed, with 96% of revenue secured; its six-hour floor must still hold in year 20, which takes a 9-hour build.',
+       '长期脱碳电源拍卖是日本储能的融资路径，可锁定96%的收入；其六小时下限须在第20年仍然满足，需9小时装机。'],
       action('Before Round 4 bids close on 3 February 2027, list awarded projects whose installed hours hold six hours to year 20.',
         '在2027年2月3日第四轮投标截止前，列出装机时长可在第20年维持六小时的已中标项目。', '2027-02-03')),
   ],
   jp_kyushu: [
-    play('jp-kyushu-ltda-6h', ['Long-term auction award · 6h floor, about 8.8h installed · awarded', '长期脱碳电源拍卖中标 · 6小时下限，约8.8小时装机 · 已中标'], 'ltda', 6, 'ready-to-build',
-      ['The same national award as Tokyo; in Kyushu value turns on charging access and curtailment, and the six-hour floor needs about 8.8 hours installed to hold to year 20.',
-       '与东京相同的全国性中标合同；在九州，价值取决于充电接入与弃电情况，六小时下限约需8.8小时装机才能维持到第20年。'],
+    play('jp-kyushu-ltda-6h', ['Long-term auction award · 9h installed, holding the 6h floor · awarded', '长期脱碳电源拍卖中标 · 9小时装机，维持6小时下限 · 已中标'], 'ltda', 9, 'ready-to-build',
+      ['The same national award as Tokyo; in Kyushu value turns on charging access and curtailment, and the six-hour floor needs a 9-hour build to hold to year 20.',
+       '与东京相同的全国性中标合同；在九州，价值取决于充电接入与弃电情况，六小时下限需9小时装机才能维持到第20年。'],
       action('Before Round 4 bids close on 3 February 2027, list awarded Kyushu projects with firm charging access whose installed hours hold six hours to year 20.',
         '在2027年2月3日第四轮投标截止前，列出充电接入有保障、装机时长可在第20年维持六小时的九州已中标项目。', '2027-02-03')),
   ],
   jp_hokkaido: [
-    play('jp-hokkaido-ltda-6h', ['Long-term auction award · 6h floor, about 8.8h installed · awarded', '长期脱碳电源拍卖中标 · 6小时下限，约8.8小时装机 · 已中标'], 'ltda', 6, 'ready-to-build',
-      ['The same national award; in Hokkaido value turns on charging-side headroom and the Hokkaido–Honshu reinforcement, and the six-hour floor needs about 8.8 hours installed.',
-       '同样的全国性中标合同；在北海道，价值取决于充电侧裕度与北海道—本州联络线加强，六小时下限约需8.8小时装机。'],
+    play('jp-hokkaido-ltda-6h', ['Long-term auction award · 9h installed, holding the 6h floor · awarded', '长期脱碳电源拍卖中标 · 9小时装机，维持6小时下限 · 已中标'], 'ltda', 9, 'ready-to-build',
+      ['The same national award; in Hokkaido value turns on charging-side headroom and the Hokkaido–Honshu reinforcement, and the six-hour floor needs a 9-hour build.',
+       '同样的全国性中标合同；在北海道，价值取决于充电侧裕度与北海道—本州联络线加强，六小时下限需9小时装机。'],
       action('Before Round 4 bids close on 3 February 2027, list awarded Hokkaido projects with settled charging terms whose installed hours hold six hours to year 20.',
         '在2027年2月3日第四轮投标截止前，列出充电条款已落定、装机时长可在第20年维持六小时的北海道已中标项目。', '2027-02-03')),
   ],
@@ -255,8 +255,8 @@ export const RULED_FUND_CALLS = {
         '长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目。'] },
       { dimension: 'debtAvailability', text: ['Domestic banks lend against an award.', '本土银行愿意以中标合同为基础提供贷款。'] },
     ],
-    despite: ['A six-hour award must still deliver six hours in year 20; without augmentation that takes about 8.8 hours installed, a build the engine does not yet price.',
-      '六小时中标合同须在第20年仍能提供六小时；在不扩容的前提下约需8.8小时装机，而引擎尚未对该设计定价。'],
+    despite: ['A six-hour award must still deliver six hours in year 20, which takes a 9-hour build. At the engine\'s award of ¥37,000/kW-year that build loses value, and trade-press estimates put battery awards lower still, at ¥12,000–25,000.',
+      '六小时中标合同须在第20年仍能提供六小时，这需要9小时装机。按引擎每千瓦每年37,000日元的中标价，该设计会损失价值；而行业媒体估计电池中标价更低，约为每千瓦12,000至25,000日元。'],
     changesIf: ['jp-tokyo-ltda-round-4-bids'],
   }),
   jp_kyushu: fund({
@@ -266,8 +266,8 @@ export const RULED_FUND_CALLS = {
         '长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目。'] },
       { dimension: 'debtAvailability', text: ['Domestic banks lend against an award.', '本土银行愿意以中标合同为基础提供贷款。'] },
     ],
-    despite: ['A six-hour award must still deliver six hours in year 20; without augmentation that takes about 8.8 hours installed, a build the engine does not yet price.',
-      '六小时中标合同须在第20年仍能提供六小时；在不扩容的前提下约需8.8小时装机，而引擎尚未对该设计定价。'],
+    despite: ['A six-hour award must still deliver six hours in year 20, which takes a 9-hour build. At the engine\'s award of ¥37,000/kW-year that build loses value, and trade-press estimates put battery awards lower still, at ¥12,000–25,000.',
+      '六小时中标合同须在第20年仍能提供六小时，这需要9小时装机。按引擎每千瓦每年37,000日元的中标价，该设计会损失价值；而行业媒体估计电池中标价更低，约为每千瓦12,000至25,000日元。'],
     changesIf: ['jp-kyushu-ltda-round-4-bids'],
   }),
   jp_hokkaido: fund({
@@ -277,8 +277,8 @@ export const RULED_FUND_CALLS = {
         '长期拍卖中标可在合同期内锁定几乎全部收入，但仅限于中标项目。'] },
       { dimension: 'debtAvailability', text: ['Domestic banks lend against an award.', '本土银行愿意以中标合同为基础提供贷款。'] },
     ],
-    despite: ['A six-hour award must still deliver six hours in year 20; without augmentation that takes about 8.8 hours installed, a build the engine does not yet price.',
-      '六小时中标合同须在第20年仍能提供六小时；在不扩容的前提下约需8.8小时装机，而引擎尚未对该设计定价。'],
+    despite: ['A six-hour award must still deliver six hours in year 20, which takes a 9-hour build. At the engine\'s award of ¥37,000/kW-year that build loses value, and trade-press estimates put battery awards lower still, at ¥12,000–25,000.',
+      '六小时中标合同须在第20年仍能提供六小时，这需要9小时装机。按引擎每千瓦每年37,000日元的中标价，该设计会损失价值；而行业媒体估计电池中标价更低，约为每千瓦12,000至25,000日元。'],
     changesIf: ['jp-hokkaido-ltda-round-4-bids'],
   }),
   nem: fund({
@@ -333,7 +333,8 @@ export const POINTED_FUND_CALLS = {
 
 const roundFour = (market) => ({
   id: `${market.replace('_', '-')}-ltda-round-4-bids`, kind: 'event', market,
-  label: ['Long-term decarbonisation auction Round 4 bidding closes', '长期脱碳电源拍卖第四轮投标截止'],
+  label: ['Long-term decarbonisation auction Round 4 bidding closes; a 9h build breaks even at about ¥46,500/kW-year',
+    '长期脱碳电源拍卖第四轮投标截止；9小时设计约在每千瓦每年46,500日元的中标价下盈亏平衡'],
   expected: '2027-02-03', watches: ['revenueCertainty'], direction: 'either', source: 'decision-profile', effect: null,
 });
 
@@ -344,6 +345,7 @@ export const NEW_TRIGGERS = {
       'Terna裁定2028年交付的四小时折减系数；其已提议从0.67下调至0.53'],
     expected: null, watches: ['revenueCertainty', 'assetReturn'], direction: 'down', source: 'derating', effect: null,
   }],
+  jp_tokyo: [roundFour('jp_tokyo')],
   jp_kyushu: [roundFour('jp_kyushu')],
   jp_hokkaido: [roundFour('jp_hokkaido')],
 };
@@ -358,6 +360,7 @@ export const REASONS = {
   pointer: ['Names the play this call is about.', '注明本结论所针对的投资方案。'],
   trigger: {
     'it-capacity-derating-dy2028': ['Added with the ruling of 2026-10-16: the capacity-market play\'s main risk is Terna\'s proposed de-rating cut.', '随2026-10-16的裁定新增：容量市场方案的主要风险是Terna拟下调折减系数。'],
+    'jp-tokyo-ltda-round-4-bids': ['Ruled on 2026-10-16 with the Japan floor plan: the trigger now says what a 9h build needs from the award.', '依2026-10-16日本下限方案裁定：触发事件现注明9小时设计所需的中标价。'],
     'jp-kyushu-ltda-round-4-bids': ['Added with the ruling of 2026-10-16: the auction is national, so each area carries its own copy of the trigger.', '随2026-10-16的裁定新增：该拍卖为全国性，每个区域各自保留一份触发事件。'],
     'jp-hokkaido-ltda-round-4-bids': ['Added with the ruling of 2026-10-16: the auction is national, so each area carries its own copy of the trigger.', '随2026-10-16的裁定新增：该拍卖为全国性，每个区域各自保留一份触发事件。'],
   },

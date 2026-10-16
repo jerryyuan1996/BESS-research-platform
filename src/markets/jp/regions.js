@@ -110,15 +110,24 @@ export const JP_CAPITAL = {
    plan the floor is tested at the end of the term: gate DG-5 asks whether
    OCCTO measures it that way.
 
+   NINE AND TEN HOURS were added on 2026-10-16 (docs/japan-ltda-floor-plan.md,
+   PR 8 of the guided-experience plan), so the build that holds the award's floor
+   to year 20 is priced rather than only reported: 8.8h at 2%/yr fade, 9h on this
+   grid. Their capture is JEPX's own, the three-area means for the twelve months
+   to 16 October 2026 (scripts/derive/japan-ltda-floor.mjs). The award stays the
+   six-hour cost-reflective bid at every duration, because it is paid per kW: the
+   analyst's market reading of 2026-10-16, after gate G42 found trade-press
+   estimates of battery awards well below a re-bid at the longer build's cost.
+
    NO CAPACITY RESPONSE IS DECLARED, deliberately. The Capacity Market route
    carries JP_EXPECTED_CAPACITY_FACTOR, which is the FOUR-hour factor, at the
    six-hour archetype. Scaling a 4h level by a curve read from 6h would compound
    that rather than expose it, so the route is priced at the archetype only
    until gate DG-13 supplies a published six-hour factor. */
 export const JP_DURATION_RESPONSE = {
-  hours: [1, 2, 4, 6, 8],
-  merchantCapture: [1.25, 1.15, 1.00, 0.85, 0.72],
-  merchantCaptureBasis: 'seed',
+  hours: [1, 2, 4, 6, 8, 9, 10],
+  merchantCapture: [1.25, 1.15, 1.00, 0.85, 0.72, 0.61, 0.48],
+  merchantCaptureBasis: ['seed', 'seed', 'seed', 'seed', 'seed', 'observed', 'observed'],
   opexEnergyShare: 0.5,
   routeRules: {
     ltda: { paymentBasis: 'kW', floorKind: 'binary' },
