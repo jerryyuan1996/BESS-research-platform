@@ -1,6 +1,9 @@
 {
   "marketId": "jp_tokyo",
-  "thesis": null,
+  "thesis": [
+    "Financed on a 20-year long-term auction award that secures nearly all revenue, with most trading upside clawed back. The award's six-hour floor must hold to year 20, which takes a 9-hour build without augmentation, and at the engine's award that build does not pay. Tokyo's edge is price capture and connection quality.",
+    "依托20年期长期脱碳电源拍卖中标合同融资，几乎锁定全部收入，但大部分交易收益须返还。中标合同的六小时下限须维持到第20年，在不扩容的前提下需9小时装机，而按引擎的中标价该设计无法回本。东京的优势在于价格捕获与并网质量。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -225,12 +228,14 @@
     },
     "infraFund": {
       "archetype": "infraFund",
-      "call": "enter-now",
-      "route": "ready-to-build",
       "where": [
         "An awarded, ready-to-build asset",
         "已中标且具备开工条件的资产"
       ],
+      "reviewBy": "2027-03-31",
+      "call": "build-position",
+      "route": "ready-to-build",
+      "play": "jp-tokyo-ltda-6h",
       "because": [
         {
           "dimension": "revenueCertainty",
@@ -248,15 +253,14 @@
         }
       ],
       "despite": [
-        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small.",
-        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。"
+        "A six-hour award must still deliver six hours in year 20, which takes a 9-hour build. At the engine's award of ¥37,000/kW-year that build loses value, and trade-press estimates put battery awards lower still, at ¥12,000–25,000.",
+        "六小时中标合同须在第20年仍能提供六小时，这需要9小时装机。按引擎每千瓦每年37,000日元的中标价，该设计会损失价值；而行业媒体估计电池中标价更低，约为每千瓦12,000至25,000日元。"
       ],
       "changesIf": [
         "jp-tokyo-ltda-round-4-bids"
       ],
-      "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-16",
       "lockedUntil": null
     },
     "foreignFirstTimer": {
@@ -332,8 +336,8 @@
       "kind": "event",
       "market": "jp_tokyo",
       "label": [
-        "Long-term decarbonisation auction Round 4 bidding closes",
-        "长期脱碳电源拍卖第四轮投标截止"
+        "Long-term decarbonisation auction Round 4 bidding closes; a 9h build breaks even at about ¥46,500/kW-year",
+        "长期脱碳电源拍卖第四轮投标截止；9小时设计约在每千瓦每年46,500日元的中标价下盈亏平衡"
       ],
       "expected": "2027-02-03",
       "watches": [
@@ -343,5 +347,31 @@
       "source": "decision-profile",
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "jp-tokyo-ltda-6h": {
+      "id": "jp-tokyo-ltda-6h",
+      "label": [
+        "Long-term auction award · 9h installed, holding the 6h floor · awarded",
+        "长期脱碳电源拍卖中标 · 9小时装机，维持6小时下限 · 已中标"
+      ],
+      "route": "ltda",
+      "hours": 9,
+      "stage": "ready-to-build",
+      "why": [
+        "The long-term auction is how Japanese storage is financed, with 96% of revenue secured; its six-hour floor must still hold in year 20, which takes a 9-hour build.",
+        "长期脱碳电源拍卖是日本储能的融资路径，可锁定96%的收入；其六小时下限须在第20年仍然满足，需9小时装机。"
+      ],
+      "action": {
+        "text": [
+          "Before Round 4 bids close on 3 February 2027, list awarded projects whose installed hours hold six hours to year 20.",
+          "在2027年2月3日第四轮投标截止前，列出装机时长可在第20年维持六小时的已中标项目。"
+        ],
+        "due": "2027-02-03"
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

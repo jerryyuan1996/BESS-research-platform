@@ -1,6 +1,9 @@
 {
   "marketId": "pl",
-  "thesis": null,
+  "thesis": [
+    "No new-entry route today: the December 2025 auction was the last main auction and no successor is legislated. An uncontracted project returns under 1%. Only an asset holding an earlier seventeen-year contract is worth pricing, and only below replacement cost.",
+    "目前没有新进入的路径：2025年12月的拍卖是最后一次主拍卖，后继机制尚未立法。无合同项目回报不足1%。只有持有早期十七年合同的资产值得定价，且仅以低于重置成本的价格。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -252,7 +255,8 @@
       "reviewBy": "2027-03-31",
       "author": "analyst",
       "asOf": "2026-10-12",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "play": "pl-cap-2h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -342,5 +346,31 @@
       "source": "decision-profile",
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "pl-cap-2h": {
+      "id": "pl-cap-2h",
+      "label": [
+        "Capacity market · 2h · ready-to-build",
+        "容量市场 · 2小时 · 具备开工条件"
+      ],
+      "route": "cap",
+      "hours": 2,
+      "stage": "ready-to-build",
+      "why": [
+        "No main auction is planned and the uncontracted reference returns under 1%; on the capacity route, two hours is the engine's best design.",
+        "目前没有主拍卖计划，无合同的参考项目回报不足1%；在容量路径上，两小时是引擎的最佳设计。"
+      ],
+      "action": {
+        "text": [
+          "Wait for a successor to the main auctions; until then, price only assets holding an earlier seventeen-year contract, and only below replacement cost.",
+          "等待主拍卖的后继机制；在此之前，只对持有早期十七年合同的资产定价，且仅以低于重置成本的价格。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }
