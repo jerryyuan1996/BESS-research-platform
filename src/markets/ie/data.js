@@ -120,8 +120,8 @@ const M = {
   durBands: [
     { lo: 0, hi: 29, n: ['Short-duration dominated', '短时长主导'], c: 'info',
       d: ['Fast-service economics dominate; add MWh only with contract value.', '快速服务经济性主导；仅在有合同价值时增配MWh。'] },
-    { lo: 30, hi: 49, n: ['2h–4h selective', '2–4小时选择性配置'], c: 'warn',
-      d: ['Underwrite 2h–4h selectively; longer builds are option value.', '选择性按2–4小时测算；更长配置仅作期权价值。'] },
+    { lo: 30, hi: 49, n: ['2h–4h band', '2–4小时区间'], c: 'warn',
+      d: ['Underwrite 2h–4h; longer builds are option value.', '按2–4小时测算；更长配置仅作期权价值。'] },
     { lo: 50, hi: 69, n: ['4h–6h preferred', '优先4–6小时'], c: 'serious',
       d: ['Four-hour-plus designs preferred for new merchant or capacity-led projects.', '新建市场化或容量主导项目优先采用4小时以上设计。'] },
     { lo: 70, hi: 84, n: ['6h–8h strong case', '6–8小时强论证'], c: 'good',

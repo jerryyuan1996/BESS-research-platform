@@ -332,7 +332,7 @@ export const queueText = {
   },
   heldReview: (market, dimension, reviewBy) => {
     const d = dateText(reviewBy);
-    return [`Review the held view on ${dimension} in ${marketName(market)[0]} by ${d[0]}.`, `请于${d[1]}前复核${marketName(market)[1]}关于${dimension}的持有观点。`];
+    return [`Review the held view on ${dimension[0]} in ${marketName(market)[0]} by ${d[0]}.`, `请于${d[1]}前复核${marketName(market)[1]}关于${dimension[1]}的持有观点。`];
   },
   disagreement: (market, archetype, flag, playLabel) => {
     const l = lensLabel(archetype);
@@ -350,8 +350,8 @@ export const queueText = {
     return [`Overdue since ${d[0]}: ${marketName(market)[0]} · ${playLabel[0]}: ${text[0]}`, `自${d[1]}起逾期：${marketName(market)[1]} · ${playLabel[1]}：${text[1]}`];
   },
   staleReason: (market, dimension, quoted, engine) => [
-    `${marketName(market)[0]}: the ${dimension} grade's reason quotes ${quoted}; the engine now gives ${engine}.`,
-    `${marketName(market)[1]}：${dimension}评级理由引用${quoted}；引擎目前为${engine}。`,
+    `${marketName(market)[0]}: the ${dimension[0]} grade's reason quotes ${quoted}; the engine now gives ${engine}.`,
+    `${marketName(market)[1]}：${dimension[1]}评级理由引用${quoted}；引擎目前为${engine}。`,
   ],
 };
 

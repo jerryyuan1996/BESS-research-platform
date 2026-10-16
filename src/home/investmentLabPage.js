@@ -2,7 +2,7 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { requestRender } from '../app/state.js';
 import { navigate } from '../app/router.js';
-import { renderHeader, renderDisclaimer } from '../components/header.js';
+import { renderHeader } from '../components/header.js';
 import { marketNav } from '../components/navigation.js';
 import { renderFooter } from '../components/footer.js';
 import { markets, comparableMarkets } from '../markets/registry.js';
@@ -15,10 +15,6 @@ const T = {
   sub:[
     'Reprice any allocation market, test the capital structure and compare the result with the platform base case.',
     '重估任一配置市场、测试资本结构，并将结果与平台基准情景进行比较。',
-  ],
-  disclaimer:[
-    'The Lab is an interactive screening model. Confirm project-specific revenue, eligibility, grid access, taxes and financing terms before underwriting.',
-    '本测算为交互式筛选模型。承销前须确认项目特定收入、资格、并网接入、税务及融资条款。',
   ],
   footer:[
     'All scenarios use the same comparison engine as the global cockpit, so a changed input is reflected consistently across returns, debt sizing and exit value.',
@@ -62,7 +58,6 @@ export function renderInvestmentLabPage(app){
     sub:T.sub,
     controls:[exitYearSelect(), backButton()],
   }));
-  app.append(renderDisclaimer(T.disclaimer));
   app.append(marketNav(markets, 'lab'));
 
   const main = h('main', { class:'investment-lab-page' });

@@ -5,7 +5,7 @@
    there instead (plan section 6.1). Everything that page showed is here, in
    the same order and from the same calls, so no number moved:
 
-     header · disclaimer
+     header
      market universe        (cards)
      cross-market league    (one currency, one model)
      revenue architecture   (per MWh, contracted vs merchant)
@@ -29,10 +29,9 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { requestRender } from '../app/state.js';
 import { navigate } from '../app/router.js';
-import { renderHeader, renderDisclaimer } from '../components/header.js';
+import { renderHeader } from '../components/header.js';
 import { marketNav } from '../components/navigation.js';
 import { renderFooter } from '../components/footer.js';
-import { chip } from '../components/chip.js';
 import { markets, comparableMarkets, DETAIL_DASHBOARDS } from '../markets/registry.js';
 import { EXIT_YEARS } from '../comparison/assumptions.js';
 import { homeState } from './state.js';
@@ -56,10 +55,6 @@ const T = {
   sub: (n, d) => ([
     'One page across ' + n + ' allocation markets and ' + d + ' detailed dashboards: comparable market indicators and an illustrative $1M allocation model.',
     '覆盖' + n + '个配置市场和' + d + '个详细看板：集中展示可比市场指标及仅作示例的100万美元配置模型。',
-  ]),
-  disclaimer: (n) => ([
-    'The market cards, league tables and $1M engine put ' + n + ' markets on a like-for-like footing in a simplified, unlevered USD model. These allocation outputs are illustrative; source and evidence status remain available in each detailed market dashboard.',
-    '市场卡片、排行榜及100万美元引擎将' + n + '个市场置于同一口径，纳入简化、无杠杆的美元模型。配置结果仅作示例；各项来源及证据状态仍保留在对应市场的详细看板中。',
   ]),
   footerNote: [
     'Detailed market dashboards retain the governed public-source registry. The allocation model inherits their badges and adds only the stated FX and exit-pricing assumptions.',
@@ -112,6 +107,11 @@ export function renderReturnsPage(app){
   refreshTranslationFx();
   const n = list.length;
   const d = DETAIL_DASHBOARDS().length;
+  /* When each market's inputs were last checked: the span across the markets
+     shown, from their manifests, never a date typed here. */
+  const checked = list.map(m => m.manifest.lastVerified).filter(Boolean).sort();
+  const first = checked[0], last = checked[checked.length - 1];
+  const span = !first ? ['—', '—'] : first === last ? [first, first] : [first + ' to ' + last, first + '至' + last];
 
   app.append(renderHeader({
     hero: true,
@@ -120,20 +120,15 @@ export function renderReturnsPage(app){
     title: T.title,
     sub: T.sub(n, d),
     meta: [
-      h('span', {}, h('b', {}, L(['Comparison inputs reviewed: ', '对比输入复核日期：'])), '2026-08-04'),
-      /* The one place this page says it. The cards below used to repeat it
-         fifteen times. */
-      chip('serious', ['Release Gate: screening only — not approved for underwriting',
-                       '发布门槛：仅供筛选 — 未获承销批准']),
+      h('span', {}, h('b', {}, L(['Comparison inputs reviewed: ', '对比输入复核日期：'])), L(span)),
     ],
     controls: [
       exitYearSelect(),
-      linkButton('/', ['◂ Verdicts', '◂ 投资结论']),
+      linkButton('/', ['◂ Briefing', '◂ 简报']),
       linkButton('/investment-lab', ['Investment Lab ↗', '投资测算 ↗'], ' lab-access-btn'),
     ],
   }));
 
-  app.append(renderDisclaimer(T.disclaimer(n)));
   app.append(marketNav(markets, 'returns'));
 
   const main = h('div');
@@ -154,5 +149,5 @@ export function renderReturnsPage(app){
   renderCongestionView(main, list);
   app.append(main);
 
-  app.append(renderFooter([T.disclaimer(n), 'hub-1.0 · ' + L(T.footerNote)]));
+  app.append(renderFooter(['hub-1.0 · ' + L(T.footerNote)]));
 }

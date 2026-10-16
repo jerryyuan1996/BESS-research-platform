@@ -13,6 +13,7 @@
 import { buildGBGridSection } from './gridSection.js';
 import { gbEconomicsP0Blocks } from './economicsP0Section.js';
 import { GB_BUILD_PATHWAY } from './buildPathway.js';
+import { designLine, designBest, routeFit } from '../_shared/designAnswer.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
@@ -27,11 +28,24 @@ function SECTIONS(){
 }
 const O = M.official;
 
+/* What to build, as the Brief states it (guided-experience plan, PR 7): the
+   engine's best design, then the capacity route's own answer. Every GB tab
+   that names a duration reads it from here. */
+function designNow(){
+  const best = designBest('gb'), cap = routeFit('gb', 'cap');
+  if (!best) return ['Not priced', '未定价'];
+  const lead = best.name[0].charAt(0).toUpperCase() + best.name[0].slice(1);
+  return [lead + ' at ' + best.hours + 'h' + (cap ? '; capacity route ' + cap.span[0] : ''),
+    best.name[1] + best.hours + '小时' + (cap ? '；容量路径' + cap.span[1] : '')];
+}
+
 // ============================== OVERVIEW ==============================
 SEC_B.home = function (){
   const dni = liveScore('durFactors');
   const dband = bandFor(M.durBands, dni);
-  const dur = durationAt(state.codYear);
+  /* The capacity route's best duration on the engine's sweep. */
+  const capFit = routeFit('gb', 'cap');
+  const dur = capFit ? capFit.hours : durationAt(state.codYear);
   const derate2 = M.deratingCurve[2], derate4 = M.deratingCurve[4];
   const cmPerNameplate2h = O.t4Price * derate2 * 1000;   // £/MW/yr at 2h
   return {
@@ -50,8 +64,6 @@ SEC_B.home = function (){
         ['05', ['Underwriting','项目承销'], ['Can the project connect, finance and withstand downside?','项目能否并网、融资并承受下行情景？'], 'grid'],
         ['06', ['Portfolio application','组合应用'], ['Which screened GB opportunity actually passes the gates?','所筛选的英国机会中哪一个能通过门槛？'], 'portfolio'],
       ] },
-      { t:'note', text:['Recommended presentation order: Overview → GB Market Story → Capacity Market → Wholesale & BM → System Services → Duration → Pipeline → Grid Connection → Portfolio → Data & Methodology.',
-        '建议讲解顺序：总览 → 英国市场演进 → 容量市场 → 批发与平衡 → 系统服务 → 时长 → 管线 → 并网 → 组合 → 数据与方法。'] },
       { t:'why', text:['The six questions are sequenced so each one can veto the next. A market that needs storage (02) is not the same as a revenue stack that survives to your COD (03), a design that stays economic under the next de-rating table (04), an asset that can actually connect and fund (05), or a specific opportunity worth committing capital to (06). Any single failure ends the case, so the decision is made in this order rather than on a blended score.',
         '六个问题按“逐级否决”排序：市场需要储能（02）不等于收入结构能延续至投运（03），不等于设计在下一版折减系数下仍然经济（04），不等于资产能真正并网并融资（05），也不等于某个具体机会值得投入资本（06）。任一环节不成立即终止，因此决策按此顺序作出，而非依赖综合评分。'],
         sig:['Sequential veto, not a scorecard','逐级否决，而非评分卡'] },
@@ -148,22 +160,22 @@ SEC_B.home = function (){
     ] },
 
     // ---- Card G ----
-    { t:'card', title:['Card G — Immediate Investor Actions','Card G — 可执行投资建议'], badges:['illus'], live:false, blocks:[
+    { t:'card', title:['Card G — Underwriting rules','Card G — 承保规则'], badges:['illus'], live:false, blocks:[
       { t:'list', ol:true, items:[
         [['Base Capacity Market revenue on the auction-specific de-rated MW, never on nameplate MW.','容量市场收入应基于对应拍卖的折减后MW，绝不使用铭牌MW。'],
-         ['Trigger: CM revenue included in the base case','触发条件：基准情景包含容量市场收入']],
+         ['Applies when: CM revenue included in the base case','适用条件：基准情景包含容量市场收入']],
         [['Release development consideration only against a countersigned Gate 2 offer, implementable consent and a consistent TO/DNO works programme.','仅在取得已会签Gate 2要约、可实施规划许可及一致的输配电工程计划后，方可支付开发对价。'],
-         ['Trigger: Gate 2 or consent evidence incomplete','触发条件：Gate 2或规划许可证据不完整']],
+         ['Applies when: Gate 2 or consent evidence incomplete','适用条件：Gate 2或规划许可证据不完整']],
         [['Stress merchant revenue under the HIGH buildout path for the project’s COD year, not the central case.','按项目投运年度的高投产情景（而非中性情景）对市场化收入进行压力测试。'],
-         ['Trigger: merchant / BM revenue is material to debt service','触发条件：市场化/平衡收入对偿债影响重大']],
+         ['Applies when: merchant / BM revenue is material to debt service','适用条件：市场化/平衡收入对偿债影响重大']],
         [['Benchmark optimiser performance on realised rather than theoretical revenue; require step-down or termination rights below a defined threshold.','以实际而非理论收入评估优化商表现；低于约定阈值时应有降费或终止权。'],
-         ['Trigger: realised-to-theoretical below the peer median of ' + fmtPct(M.realisedRatio.fleetMedian * 100, 0),'触发条件：实际与理论收入比低于同业中位' + fmtPct(M.realisedRatio.fleetMedian * 100, 0)]],
+         ['Applies when: realised-to-theoretical below the peer median of ' + fmtPct(M.realisedRatio.fleetMedian * 100, 0),'适用条件：实际与理论收入比低于同业中位' + fmtPct(M.realisedRatio.fleetMedian * 100, 0)]],
         [['Treat 8h+ LDES as a separate contracted asset class; do not capitalise a cap-and-floor before final award.','将8小时以上长时储能作为独立的合同化资产类别；最终授予前不得将上下限机制资本化。'],
-         ['Trigger: duration ≥ 8 hours or a cap-and-floor is assumed','触发条件：时长≥8小时或假设适用上下限机制']],
+         ['Applies when: duration ≥ 8 hours or a cap-and-floor is assumed','适用条件：时长≥8小时或假设适用上下限机制']],
       ] },
-      { t:'why', text:['Each action is paired with a numeric trigger so the decision is reviewable rather than a matter of judgement recalled later. Four of the five triggers are already met at today’s snapshot (CM in the base case, HIGH-case saturation material by 2030, services unit revenue down more than 20%, Gate 2 tranche timetable unresolved), which is exactly why the house view is Selective rather than Invest: the market is not closed, but the protections listed here are now mandatory rather than optional.',
-        '每项建议均配套量化触发条件，使决策可复核，而非事后凭记忆判断。按当前快照，五项触发条件中已有四项成立（基准情景含容量收入、2030年前高投产情景饱和显著、服务单位收入同比降幅超20%、Gate 2批次时间表未定），这正是总体判断为“选择性投资”而非“投资”的原因：市场并未关闭，但上列保护措施已由可选变为必须。'],
-        sig:['4 of 5 triggers already live','5项触发条件已有4项成立'] },
+      { t:'why', text:['Each rule pairs an underwriting step with the condition that brings it into force, so the decision is reviewable rather than recalled. Four of the five conditions hold at today’s snapshot (CM in the base case, HIGH-case saturation material by 2030, services unit revenue down more than 20%, Gate 2 tranche timetable unresolved), so the protections listed here are mandatory, not optional. The call itself is on the Brief.',
+        '每条规则都将一项承保步骤与使其生效的条件配对，使决策可复核而非凭记忆判断。按当前快照，五项条件中已有四项成立（基准情景含容量收入、2030年前高投产情景饱和显著、服务单位收入同比降幅超20%、Gate 2批次时间表未定），因此上列保护措施为必须而非可选。结论本身见要点页。'],
+        sig:['4 of 5 conditions hold','5项条件已有4项成立'] },
     ] },
 
     // ---- Revenue Driver Bridge ----
@@ -180,8 +192,8 @@ SEC_B.home = function (){
         ['− RTE, availability & cycling limits','− 效率、可用率与循环限制'], ['− TNUoS / DUoS / BSUoS','− 网络使用费'],
         ['− optimiser fee','− 优化商费用'], ['+ system services','+ 系统服务'], ['Net operating revenue','净运营收入'],
       ] },
-      { t:'note', text:['Two separate multipliers, and they fail for unrelated reasons. Capacity revenue is cut administratively (a lower de-rating factor removes revenue with no physical change to the asset); merchant revenue is cut economically (execution, charges and saturation routinely consume 40%+ of theoretical value). Binding driver for a GB 2h project reaching COD in ' + state.codYear + ': the ' + fmtPct(M.deratingCurve[dur] * 100) + ' de-rating factor at ' + dur + 'h and realised — not theoretical — dispatch.',
-        '两个相互独立的乘数，且失效原因互不相关。容量收入被行政性削减（折减系数下调可在资产完全不变的情况下抹去收入）；市场化收入被经济性削减（执行、网络费与饱和通常吞噬理论价值的40%以上）。对' + state.codYear + '投运的英国2小时项目，起约束作用的驱动为：' + dur + '小时下' + fmtPct(M.deratingCurve[dur] * 100) + '的折减系数，以及实际（而非理论）调度表现。'] },
+      { t:'note', text:['Two separate multipliers, and they fail for unrelated reasons. Capacity revenue is cut administratively (a lower de-rating factor removes revenue with no physical change to the asset); merchant revenue is cut economically (execution, charges and saturation routinely consume 40%+ of theoretical value). Binding driver for a GB capacity-route project at ' + dur + 'h, the engine’s best on that route, reaching COD in ' + state.codYear + ': the ' + fmtPct(M.deratingCurve[dur] * 100) + ' de-rating factor at ' + dur + 'h and realised — not theoretical — dispatch.',
+        '两个相互独立的乘数，且失效原因互不相关。容量收入被行政性削减（折减系数下调可在资产完全不变的情况下抹去收入）；市场化收入被经济性削减（执行、网络费与饱和通常吞噬理论价值的40%以上）。对' + state.codYear + '投运、按引擎在容量路径上的最佳时长' + dur + '小时建设的英国项目，起约束作用的驱动为：' + dur + '小时下' + fmtPct(M.deratingCurve[dur] * 100) + '的折减系数，以及实际（而非理论）调度表现。'] },
       { t:'why', text:['This bridge is the dashboard’s single organising idea: every later tab is one link in it. Diligence has to price the weakest link, not the headline MW, and the two chains must be stress-tested separately — a project can hold a strong Gate 2 position and still fail on realised dispatch, or trade brilliantly and still lose a third of its capacity revenue to a de-rating revision it cannot influence.',
         '本桥是整个看板的组织主线：后续每个页面都是其中一环。尽调应对最弱环节定价，而非铭牌MW；且两条链须分别压力测试 — 项目可能拥有稳固的Gate 2地位却在实际调度上失败，也可能交易表现优异却因无法影响的折减系数修订而损失三分之一容量收入。'],
         sig:['Price the weakest link','对最弱环节定价'] },
@@ -321,7 +333,7 @@ SEC_B.story = function (){
     { t:'card', title:['Before and after the battery build — what changed in the investable market','储能扩张前后 — 可投资市场发生的变化'], badges:['calc'], blocks:[
       { t:'table', head:[['Dimension','维度'],['Before (2016–2020)','此前（2016–2020）'],['Now (2026)','当前（2026）']], rows:[
         [{b:['Primary revenue line','主要收入来源']}, ['Frequency response (EFR / FFR)','调频响应（EFR/FFR）'], ['Balancing Mechanism 39% + day-ahead 38%','平衡机制39% + 日前38%']],
-        [{b:['Optimal design','最优设计']}, ['0.5–1h, power-dense','0.5–1小时，功率密集'], ['2h today, 4h for the next de-rating vintage','当前2小时，下一折减版本为4小时']],
+        [{b:['Optimal design','最优设计']}, ['0.5–1h, power-dense','0.5–1小时，功率密集'], designNow()],
         [{b:['Who wins','谁获胜']}, ['Whoever qualifies first','最先取得资格者'], ['Whoever trades best and connects earliest','交易最优且并网最早者']],
         [{b:['Barrier to entry','进入壁垒']}, ['Technical qualification','技术资格认证'], ['Connection queue position and consent','并网队列位置与规划许可']],
         [{b:['Revenue predictability','收入可预测性']}, ['High while scarce, then collapsed','稀缺期高，随后崩塌'], ['Moderate — contracted structures now available','中等 — 已有合同化结构可用']],
@@ -386,7 +398,7 @@ SEC_B.story = function (){
         { t:'phases', items:[
           { yr:['2026–2027','2026–2027'], h:['Connection re-ordering','并网重新排序'], p:['Gate 2 offers phased through March 2027 determine which projects have a 2029–2030 COD at all. Queue position becomes the primary valuation variable.','Gate 2要约分阶段发出至2027年3月，决定哪些项目能实现2029–2030年投运。队列位置成为首要估值变量。'] },
           { yr:['2027–2028','2027–2028'], h:['Services floor, wholesale carries','服务见底，批发承载'], p:['Frequency-response revenue approaches a floor set by opex-plus-margin bidding. Wholesale and BM carry the case, so optimiser selection dominates asset selection.','调频响应收入接近由“运维加边际”报价决定的底部。批发与平衡机制承载投资逻辑，因此优化商选择的重要性超过资产选择。'] },
-          { yr:['2028–2029','2028–2029'], h:['De-rating squeeze on short assets','折减系数挤压短时资产'], p:['Successive de-rating vintages cut 1–2h capacity value further while 4h holds. New build converges on 2h+ with an augmentation path.','连续的折减系数版本进一步削减1–2小时资产的容量价值，而4小时基本维持。新建项目向“2小时以上并保留增容路径”收敛。'] },
+          { yr:['2028–2029','2028–2029'], h:['De-rating squeeze on short assets','折减系数挤压短时资产'], p:['Successive de-rating vintages cut 1–2h capacity value further while 4h holds.','连续的折减系数版本进一步削减1–2小时资产的容量价值，而4小时基本维持。'] },
         ] },
         { t:'why', text:['In this window nothing about the market changes in your favour. Spread compression under the central buildout path reaches ' + fmtPct((1 - M.compression2h.CENTRAL[4]) * 100, 0) + ' by 2029 for a 2h asset, and services keep falling. The only levers a sponsor controls are connection date, duration and optimiser. Underwrite as if all three must be top-quartile, because the market will not compensate for any of them being average.',
           '在这一窗口内，市场不会有任何变化对你有利。在中性投产路径下，2小时资产的价差压缩至2029年达到' + fmtPct((1 - M.compression2h.CENTRAL[4]) * 100, 0) + '，且服务收入持续下滑。发起人可控的杠杆只有并网日期、时长与优化商三项。应按三项均须处于前四分之一来测算，因为市场不会为其中任何一项的平庸表现给予补偿。'],
@@ -655,6 +667,19 @@ SEC_B.duration = function (){
   const merchUplift = M.bmRevenueByDur[4] - M.bmRevenueByDur[2];
   const addCapexPerMW = 2 * M.lab.capexKWh * 1000;       // 2 extra MWh per MW
   const annualised = addCapexPerMW * 0.09;                // ~9% capital charge, indicative
+  /* The engine's answer to the question this tab asks, as the Brief states it. */
+  const capFit = routeFit('gb', 'cap'), best = designBest('gb');
+  const flat = Boolean(capFit && capFit.low < capFit.high);
+  const engineSays = !capFit || !best ? ['', ''] : [
+    ' The engine prices the trade directly: on the capacity route '
+      + (flat ? 'it cannot separate ' + capFit.low + 'h from ' + capFit.high + 'h on value, so the added hours pay for themselves and no more'
+              : 'its best duration is ' + capFit.hours + 'h')
+      + '; the best design overall is ' + best.name[0] + ' at ' + best.hours + 'h.',
+    '引擎直接为这一取舍定价：在容量路径上，'
+      + (flat ? '引擎无法在价值上区分' + capFit.low + '小时与' + capFit.high + '小时，即新增小时恰好收回自身成本'
+              : '其最佳时长为' + capFit.hours + '小时')
+      + '；整体最佳设计为' + best.name[1] + best.hours + '小时。',
+  ];
   return {
   head: ['Storage Duration & LDES — is the fourth hour worth its capex?','储能时长与长时储能 — 第4小时是否值其造价？'],
   cap: ['GB pays for duration through the de-rating table and through resilience during stress events, not through wider spreads. This tab separates the three questions duration answers — capacity value, merchant value and policy eligibility — because they have different answers.',
@@ -681,9 +706,9 @@ SEC_B.duration = function (){
         { l:['Degradation & opex','衰减与运维'], v: -2000, t:'d' },
         { l:['Net marginal value, hours 3–4','第3–4小时净边际价值'], v: capUplift + merchUplift + 2500 + 1500 - annualised - 2000, t:'total' },
       ] } },
-      { t:'why', text:['The fourth hour is paid for mostly by the capacity mechanism (' + fmtCk(capUplift) + ') and only secondarily by trading (' + fmtCk(merchUplift) + '), against roughly ' + fmtCk(annualised) + '/MW/yr of annualised incremental capex at ' + fmtC(M.lab.capexKWh) + '/kWh. That makes the decision acutely sensitive to two things a sponsor does not control: the de-rating vintage at the auction entered, and the cell price at procurement. Falling cell prices and a rising duration signal both push the same way, so the practical answer is to build 2h with a documented, consented path to 4h rather than to commit the MWh now.',
-        '第4小时主要由容量机制付费（' + fmtCk(capUplift) + '），交易仅为次要来源（' + fmtCk(merchUplift) + '），而按' + fmtC(M.lab.capexKWh) + '/kWh计的年化增量资本开支约为' + fmtCk(annualised) + '/MW/年。这使决策对两个发起人无法控制的因素高度敏感：参与拍卖时的折减系数版本，以及采购时的电芯价格。电芯价格下行与时长信号上行的作用方向一致，因此实务答案是按2小时建设并保留有据可查、已获许可的4小时路径，而非现在就投入MWh。'],
-        sig:['Build 2h, consent for 4h','按2小时建设，按4小时报批'] },
+      { t:'why', text:['The fourth hour is paid for ' + (capUplift >= merchUplift ? 'mostly by the capacity mechanism (' + fmtCk(capUplift) + ') and only secondarily by trading (' + fmtCk(merchUplift) + ')' : 'mostly by trading (' + fmtCk(merchUplift) + ') and only secondarily by the capacity mechanism (' + fmtCk(capUplift) + ')') + ', against roughly ' + fmtCk(annualised) + '/MW/yr of annualised incremental capex at ' + fmtC(M.lab.capexKWh) + '/kWh. That makes the decision acutely sensitive to two things a sponsor does not control: the de-rating vintage at the auction entered, and the cell price at procurement.' + engineSays[0],
+        '第4小时' + (capUplift >= merchUplift ? '主要由容量机制付费（' + fmtCk(capUplift) + '），交易仅为次要来源（' + fmtCk(merchUplift) + '）' : '主要由交易付费（' + fmtCk(merchUplift) + '），容量机制仅为次要来源（' + fmtCk(capUplift) + '）') + '，而按' + fmtC(M.lab.capexKWh) + '/kWh计的年化增量资本开支约为' + fmtCk(annualised) + '/MW/年。这使决策对两个发起人无法控制的因素高度敏感：参与拍卖时的折减系数版本，以及采购时的电芯价格。' + engineSays[1]],
+        sig: best ? ['Best design: ' + best.name[0] + ' at ' + best.hours + 'h', '最佳设计：' + best.name[1] + best.hours + '小时'] : ['Not priced', '未定价'] },
     ] },
 
     { t:'card', title:['Duration-Need Index — every component visible and editable','时长需求指数 — 分项全部可见、可编辑'], badges:['calc','illus'], live:true, blocks:[
@@ -735,9 +760,9 @@ SEC_B.duration = function (){
 
     { t:'card', title:['Augmentation readiness — the option to add hours later','增容准备度 — 日后增加小时数的选择权'], badges:['illus'], live:false, blocks:[
       { t:'aug' },
-      { t:'why', text:['Because the merchant case says build short and the capacity case says build long, the highest-value structure is usually neither: build 2h now and buy the right to build 4h later, when the de-rating vintage is known and cells are cheaper. That option is only real if it is documented in the planning consent, the connection agreement, the OEM warranty and the financing documents — the four places it is normally lost. A high score here is worth more than an extra hour of MWh today.',
-        '由于市场化逻辑主张建短、容量逻辑主张建长，价值最高的结构通常两者皆非：现在建2小时，并买入日后在折减系数版本已知、电芯更便宜时建至4小时的权利。该选择权只有在规划许可、并网协议、OEM质保与融资文件中均有明确记载时才真实存在 — 而这四处正是它通常被丢失的地方。本项高分的价值高于今天多配一小时的MWh。'],
-        sig:['The option is worth more than the hour','选择权的价值高于该小时本身'] },
+      { t:'why', text:['The right to add hours later lets the build follow the de-rating vintage and the cell price instead of fixing both today' + (capFit ? '; on the capacity route the engine puts the design at ' + capFit.span[0] + ', which is the range the option has to cover' : '') + '. It is only real if it is documented in the planning consent, the connection agreement, the OEM warranty and the financing documents — the four places it is normally lost.',
+        '日后增加小时数的权利，使建设规模可随折减系数版本与电芯价格调整，而不必今天就将二者锁定' + (capFit ? '；容量路径上引擎给出的设计为' + capFit.span[1] + '，即该选择权须覆盖的范围' : '') + '。只有在规划许可、并网协议、OEM质保与融资文件中均有明确记载时，该选择权才真实存在 — 而这四处正是它通常被丢失的地方。'],
+        sig:['The option must be in four documents','选择权须写入四份文件'] },
     ] },
     
     /* Relocated from the Investment Lab tab, which moved to a dedicated page. The
@@ -1041,14 +1066,18 @@ SEC_B.benchmark = function (){
 SEC_B.portfolio = function (){
   const inp = labInputs(), r = labModel(inp);
   const dn = labModel(inp, { spreadFactor: 0.75, svcFactor: 0.7, capFactor: 0.85, noGrant: true });
+  /* The Lab's own verdict on its own case, computed rather than asserted. */
+  const clears = r.unlevIRR != null && r.unlevIRR >= inp.disc / 100;
+  const covered = dn.minDSCR != null && dn.minDSCR >= 1.3;
+  const line = designLine('gb');
   return {
   head: ['Portfolio / Fund View — applying the GB thesis to a screened opportunity','组合与基金视图 — 将英国逻辑应用于所筛选机会'],
-  cap: ['A worked screening example using the Investment Lab assumptions. All project-specific content is confined to this tab and is illustrative — it demonstrates the gate sequence an investment committee should apply, not a real transaction.',
-        '使用投资测算假设的筛选示例。所有项目层面内容均限于本页且为示例性质 — 用于演示投委会应遵循的门槛顺序，而非真实交易。'],
+  cap: ['The Investment Lab’s screening case, taken through the gate sequence an investment committee applies. It runs the Lab’s own model on the Lab’s inputs; the engine’s case is on the Brief.',
+        '投资测算筛选情景，按投委会适用的门槛顺序逐项演示。该情景以投资测算自身的模型与输入运行；引擎情景见要点页。'],
   blocks: [
-    { t:'card', mt:false, title:['Screened opportunity — institutional screening snapshot','所筛选机会 — 机构筛选快照'], badges:['illus'], live:false, blocks:[
+    { t:'card', mt:false, title:['Lab screening case — ' + fmtN(inp.mw) + ' MW · ' + inp.hours + 'h','投资测算筛选情景 — ' + fmtN(inp.mw) + 'MW · ' + inp.hours + '小时'], badges:['illus'], live:false, blocks:[
       { t:'kpis', items:[
-        { l:['Configuration','配置'], v:fmtN(inp.mw) + ' MW / ' + fmtN(inp.mw * inp.hours) + '<small> MWh</small>', d:[inp.hours + '-hour design','' + inp.hours + '小时设计'] },
+        { l:['Configuration','配置'], v:fmtN(inp.mw) + ' MW / ' + fmtN(inp.mw * inp.hours) + '<small> MWh</small>', d:[inp.hours + '-hour Lab screening case', inp.hours + '小时投资测算筛选情景'] },
         { l:['Target COD','目标投运'], v:state.codYear, d:['de-rating vintage and buildout case both follow from this','折减系数版本与投产情景均由此决定'] },
         { l:['Total capex','总资本开支'], v:fmtCM(r.capex), d:[fmtC(inp.capexKWh) + '/kWh + ' + fmtC(inp.capexKW) + '/kW', fmtC(inp.capexKWh) + '/kWh + ' + fmtC(inp.capexKW) + '/kW'], b:['model'] },
         { l:['Paid de-rated capacity','获付费折减容量'], v:fmtN(r.capMW) + '<small> MW</small>', d:[fmtPct(r.derate * 100) + ' of nameplate', '相当于铭牌的' + fmtPct(r.derate * 100)], b:['calc'] },
@@ -1056,8 +1085,9 @@ SEC_B.portfolio = function (){
         { l:['Min DSCR — lender downside','最低偿债覆盖率 — 贷款人下行'], v:fmtX(dn.minDSCR), d:['base case ' + fmtX(r.minDSCR),'基准情景 ' + fmtX(r.minDSCR)], cls: dn.minDSCR != null && dn.minDSCR < 1.3 ? 'down' : '', b:['calc'] },
       ] },
       { t:'ic', b:['Screening conclusion: ','筛选结论：'],
-        text:['The project passes on returns in the base case and fails or is marginal on lender-downside coverage, which is the normal GB outcome for a merchant-weighted 2h asset. The response is structural rather than a re-forecast: reduce gearing, contract a floor or toll for part of the capacity, or move the COD earlier so the asset sits ahead of the saturation curve.',
-              '该项目在基准情景下收益达标，在贷款人下行情景下偿债覆盖不足或勉强 — 这是市场化占比较高的2小时英国资产的常见结果。应对方式是结构性的而非重新预测：降低杠杆、就部分容量签订保底或租赁协议、或提前投运使资产处于饱和曲线之前。'] },
+        text:['On the Lab’s inputs the case returns ' + fmtIRR(r.unlevIRR) + ' unlevered, ' + (clears ? 'above' : 'below') + ' its ' + inp.disc + '% discount rate, and ' + (covered ? 'holds' : 'fails') + ' lender-downside coverage at ' + fmtX(dn.minDSCR) + ' minimum DSCR. Weak coverage is answered structurally rather than by re-forecasting: reduce gearing, contract a floor or toll for part of the capacity, or move the COD earlier so the asset sits ahead of the saturation curve.',
+              '按投资测算输入，该情景无杠杆回报为' + fmtIRR(r.unlevIRR) + '，' + (clears ? '高于' : '低于') + '其' + inp.disc + '%折现率；贷款人下行情景下最低偿债覆盖率为' + fmtX(dn.minDSCR) + '，' + (covered ? '覆盖达标' : '覆盖不足') + '。覆盖不足应以结构性方式应对，而非重新预测：降低杠杆、就部分容量签订保底或租赁协议、或提前投运使资产处于饱和曲线之前。'] },
+      line ? { t:'note', text:['The Brief and the shortlist use the engine, not this Lab case. ' + line[0], '要点页与候选清单采用引擎而非本测算情景。' + line[1]] } : null,
     ] },
     { t:'card', title:['Revenue stack — evidence status of each line','收入结构 — 各收入项的证据状态'], badges:['calc'], live:false, blocks:[
       { t:'table', head:[['Revenue line','收入项'],['Year-1 amount','第1年金额'],['Evidence status','证据状态'],['Treatment in the model','模型处理方式']], num:[1], rows:[

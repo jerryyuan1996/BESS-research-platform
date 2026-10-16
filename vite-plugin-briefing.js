@@ -1,13 +1,14 @@
 /* ---------------------------------------------------------------------------
    BRIEFING PLUGIN — the page gets the briefing, not the engine that made it.
 
-   Two stubs are replaced here with the briefing the model builds from the view
+   Three stubs are replaced here with the briefing the model builds from the view
    store, the changelog and the published summaries (src/briefing/disk.js),
    written out as literals:
 
      src/briefing/homeData.js       what the home page carries: the briefing
                                     less the analyst queue's words
      src/briefing/briefingData.js   the whole briefing, for /desk
+     src/briefing/designData.js     what to build, for a dashboard's deep tabs
 
    The same function builds the weekly digest, so the page and the digest are
    one computation. It runs at build time, and a build follows every data
@@ -27,6 +28,7 @@ import { pathToFileURL } from 'node:url';
 
 const FULL = 'src/briefing/briefingData.js';
 const HOME = 'src/briefing/homeData.js';
+const DESIGN = 'src/briefing/designData.js';
 const norm = (p) => p.split(path.sep).join('/');
 
 /* Imported on use, not at the top: the model pulls in the registry and the
@@ -48,6 +50,14 @@ export async function homeModule(root, now = new Date(), watch = () => {}){
   return `export const HOME_BRIEFING = ${JSON.stringify(data)};\n`;
 }
 
+/** The module text a build serves in place of the design stub. */
+export async function designModule(root, now = new Date(), watch = () => {}){
+  const { briefingFromDisk } = await load(root, 'src/briefing/disk.js');
+  const { designProjection } = await load(root, 'src/briefing/model.js');
+  const data = designProjection(await briefingFromDisk({ root, now, watch }));
+  return `export const DESIGN = ${JSON.stringify(data)};\n`;
+}
+
 export default function briefing(){
   let root = process.cwd();
   return {
@@ -59,6 +69,7 @@ export default function briefing(){
       const watch = (f) => this.addWatchFile(f);
       if (file.endsWith('/' + FULL)) return briefingModule(root, new Date(), watch);
       if (file.endsWith('/' + HOME)) return homeModule(root, new Date(), watch);
+      if (file.endsWith('/' + DESIGN)) return designModule(root, new Date(), watch);
       return null;
     },
   };

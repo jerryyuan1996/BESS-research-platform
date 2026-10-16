@@ -116,7 +116,6 @@ export function buildROPlanningBlocks({ SRC }){
               title: ['Investment attractiveness', '投资吸引力'],
               badges: ['policy'],
               blocks: [
-                { t: 'chip', cls: 'warn', text: [opportunity.attractiveness.rating, '选择性机会'] },
                 { t: 'p', text: [opportunity.attractiveness.statement, '强劲的市场波动与资本支持可能具备吸引力，但前提是项目已经提供并网进展证据，并具备可融资的下行收入结构。'] },
                 { t: 'note', text: ['This is an analyst methodology judgement. Automation may not rewrite it.', '这是分析方法判断，自动化流程不得自行改写。'] },
               ],

@@ -4,11 +4,11 @@
    Replaces the prototype's renderHeader / renderNav / renderFooter / render
    (lines 1386-1424, 4333-4352). The composition is the same:
 
-       header · disclaimer · nav · active tab body · footer
+       header · nav · active tab body · footer
 
    Differences, all consequences of the new architecture rather than choices:
 
-   - The header, disclaimer, nav and footer are the shared components. The header
+   - The header, nav and footer are the shared components. The header
      receives WA's metadata and WA's third control (forecast COD year) as data.
    - There are two nav rows now: the application row (cockpit + every registered
      market) and WA's own tab strip. The prototype had no way back to the cockpit
@@ -20,10 +20,9 @@
 import { h } from '../../utils/dom.js';
 import { L } from '../../app/i18n.js';
 import { requestRender } from '../../app/state.js';
-import { renderHeader, renderDisclaimer } from '../../components/header.js';
+import { renderHeader } from '../../components/header.js';
 import { marketNav, tabNav, revenueSubNav, labLink } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
-import { chip } from '../../components/chip.js';
 import { enhanceMarketPage } from '../../components/pageEnhancements.js';
 import { drawTab } from '../../components/tabSections.js';
 import { sectionHead } from '../../components/sectionHeader.js';
@@ -113,13 +112,11 @@ export function dashboard(container, { tabId, subId, basePath }){
     meta: [
       h('span', {}, h('b', {}, L(T.asOf) + ': '), SEED.asOf + ' (AWST)'),
       h('span', {}, h('b', {}, L(T.dataDate) + ': '), manifest.dataDate),
-      chip('serious', L(T.srcHealth)),
       h('span', {}, L(T.nextMilestone)),
     ],
     controls: [codYearSelect()],
   }));
 
-  container.append(renderDisclaimer(T.disclaimer));
   container.append(marketNav(markets, manifest.id));
   container.append(tabNav(TABS, state.tab, basePath));
   const revenueNav = revenueSubNav(TABS, state.tab, basePath);
@@ -145,7 +142,6 @@ export function dashboard(container, { tabId, subId, basePath }){
     }),
   });
   container.append(renderFooter([
-    T.disclaimer,
     L(['Model version: ', '模型版本：']) + SEED.modelVersion + ' · ' + L(T.tz) + ' · ' +
       L(['Public and official sources re-verified 26 July 2026; NEM Connection Scorecard data (Jun 2026) is held in a separate namespace and excluded from WA scoring.',
          '公开及官方来源已于2026年7月26日重新核验；NEM并网记分卡数据（2026年6月）保存在独立命名空间，不计入西澳评分。']),

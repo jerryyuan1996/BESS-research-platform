@@ -126,7 +126,7 @@ const M = {
     { lo: 0, hi: 34, n: ['Short-duration market', '短时市场'], c: 'info',
       d: ['1–2h remains sufficient; do not add MWh without contract value.', '1–2小时仍然足够；无合同价值时不宜增配MWh。'] },
     { lo: 35, hi: 54, n: ['Transition zone', '过渡区间'], c: 'warn',
-      d: ['Build 2h with augmentation optionality and re-test each auction vintage.', '按2小时建设并保留增容选择权，每个拍卖年份重新检验。'] },
+      d: ['Price each route at each duration, hold augmentation optionality, and re-test each auction vintage.', '按路径与时长逐一定价，保留增容选择权，并在每个拍卖年份重新检验。'] },
     { lo: 55, hi: 69, n: ['Duration-value inflection', '时长价值拐点'], c: 'serious',
       d: ['Underwrite 4h; compare de-rating uplift against incremental MWh capex.', '按4小时测算；以折减系数增益对比增量MWh造价。'] },
     { lo: 70, hi: 100, n: ['Long-duration / policy-driven', '长时/政策驱动'], c: 'good',

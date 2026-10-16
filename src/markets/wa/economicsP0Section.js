@@ -103,28 +103,6 @@ export function renderWaEconomicsP0(main){
   competition.append(sourceDrawer(SRC.esoo, ['Existing-plus-committed BESS classification and explicit project-funnel boundary.','现有加已承诺BESS分类及显式项目漏斗边界。']));
   main.append(competition);
 
-  const conclusion = card(['Investment conclusion and Bear / Base / Bull driver tree','投资结论及熊市 / 基准 / 牛市驱动树'], [badge('forecast'), badge('verify')]);
-  conclusion.append(h('div', { class:'reco' }, h('b', {}, L(P.conclusion.headline)), L(P.conclusion.text)));
-  conclusion.append(table(
-    [
-      ['Case','情景'],
-      ['BESS-owner perspective','BESS业主视角'],
-      ['System / consumer perspective','系统 / 消费者视角'],
-      ['Binding drivers','关键驱动'],
-    ],
-    P.scenarios.map(scenario => [
-      { bold:[scenario.name, scenario.name] },
-      scenario.owner,
-      scenario.system,
-      scenario.drivers.join(' · '),
-    ]),
-  ));
-  conclusion.append(why([
-    'The owner bull case is explicitly a stressed-system case: delayed replacement capacity can lift RCP and scarcity value while worsening reliability and consumer cost.',
-    '业主牛市情景明确对应系统压力：替代容量延迟可抬升RCP及稀缺价值，同时恶化可靠性及消费者成本。',
-  ], ['Investor bull can be system bear','投资者牛市可能是系统熊市']));
-  main.append(conclusion);
-
   const gates = card(['Executable spread / capture-rate release gates','可执行价差 / 捕获率发布门槛'], [badge('verify')]);
   gates.append(table(
     [

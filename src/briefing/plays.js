@@ -102,6 +102,14 @@ export function designGrid(design){
       best: Boolean(best && best.route === p.route && best.hours === p.hours),
       band: band.has(`${p.route}/${p.hours}`), archetype: Boolean(p.archetype) && p.route === sweep.baseRoute,
     })),
+    /* The best duration on each route and the durations the engine cannot
+       separate from it there, for a deep tab that names one route's design
+       (src/markets/_shared/designAnswer.js). */
+    byRoute: Object.fromEntries(Object.entries(fit?.byRoute || {}).map(([route, r]) => [route, {
+      best: r.best ? r.best.hours : null,
+      band: r.band || [],
+      requiredHours: Number.isFinite(r.requiredHours) ? round(r.requiredHours, 1) : null,
+    }])),
   };
 }
 

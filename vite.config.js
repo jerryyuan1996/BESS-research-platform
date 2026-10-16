@@ -80,6 +80,9 @@ export default defineConfig({
           /* The home projection of the briefing, shared by the home page and
              every market's brief since PR 5 of the guided-experience plan. */
           if (ids.some(m => /[\\/]briefing[\\/]homeData\.js$/.test(m))) return 'assets/briefing-data-[hash].js';
+          /* What to build, for the deep tabs of GB, WA and Japan (PR 7): the
+             design projection of the briefing, without the rest of it. */
+          if (ids.some(m => /[\\/]briefing[\\/]designData\.js$/.test(m))) return 'assets/design-answer-[hash].js';
           if (ids.some(m => /[\\/]governance[\\/]investability\.js$/.test(m))) return 'assets/investment-method-[hash].js';
           if (ids.some(m => /[\\/]charts[\\/]barChart\.js$/.test(m))) return 'assets/charts-[hash].js';
           return 'assets/[name]-[hash].js';

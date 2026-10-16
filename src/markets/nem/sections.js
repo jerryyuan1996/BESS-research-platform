@@ -57,8 +57,6 @@ SEC_B.home = function (){
         ['05', ['Underwriting','项目承销'], ['Can the project connect, and what does the loss factor cost?','项目能否并网？损耗系数的代价是多少？'], 'grid'],
         ['06', ['Portfolio application','组合应用'], ['Which screened NEM opportunity passes the gates?','所筛选的NEM机会中哪一个能通过门槛？'], 'portfolio'],
       ] },
-      { t:'note', text:['Recommended presentation order: Overview → NEM Market Story → Capacity Investment Scheme → Spot & Cap Contracts → FCAS → Storage Duration → Project Pipeline → Grid, MLF & Congestion → Portfolio → Data & Methodology.',
-        '建议讲解顺序：总览 → NEM市场演进 → 容量投资计划 → 现货与价格上限合约 → FCAS → 储能时长 → 项目管线 → 并网、边际损耗与拥塞 → 组合 → 数据与方法。'] },
       { t:'why', text:['The six questions are sequenced so each one can veto the next. A market building storage faster than anywhere outside the US and China (02) is not the same as a revenue stack a lender will size against (03), a duration that pays for its own capex (04), a connection point whose loss factor and curtailment history you have actually read (05), or a specific opportunity worth committing capital to (06). In the NEM the veto usually falls at step 03 — the merchant case alone does not clear a lender\'s coverage test at current spreads, which is why the contracted layer decides the deal.',
         '六个问题按“逐级否决”排序：一个储能建设速度仅次于美国与中国的市场（02），不等于贷款人愿据以安排规模的收入结构（03），不等于能自行偿付造价的时长配置（04），不等于你确已查阅过损耗系数与限电历史的并网点（05），也不等于某个具体机会值得投入资本（06）。在NEM，否决通常发生在第03步 — 按当前价差，仅靠市场化收入无法通过贷款人的偿债覆盖检验，因此合同层决定交易成败。'],
         sig:['The veto usually falls at the contracted layer','否决通常发生在合同层'] },
@@ -142,21 +140,21 @@ SEC_B.home = function (){
       ] },
     ] },
 
-    { t:'card', title:['Card G — Immediate Investor Actions','Card G — 可执行投资建议'], badges:['illus'], live:false, blocks:[
+    { t:'card', title:['Card G — Underwriting rules','Card G — 承保规则'], badges:['illus'], live:false, blocks:[
       { t:'list', ol:true, items:[
         [['Decide the contracted route before the site: a CIS agreement, a virtual toll, or a deliberate merchant position with the gearing that implies. There is no fourth option and no capacity market to fall back on.','在选定场址之前先确定合同路径：CIS协议、虚拟租赁，或有意为之的市场化持仓并配以相应杠杆。不存在第四种选择，也没有容量市场可作退路。'],
-         ['Trigger: any base case relying on merchant revenue for debt service','触发条件：任何以市场化收入偿债的基准情景']],
+         ['Applies when: any base case relying on merchant revenue for debt service','适用条件：任何以市场化收入偿债的基准情景']],
         [['Bracket the CIS floor rather than assuming one. No floor, ceiling or payment cap has been published for any project, and a model that states one is stating a guess as a fact.','应对CIS保底价取区间估计而非直接假设。任何项目的保底价、上限与支付上限均未公布，凡在模型中给出确定数值者，即是把猜测当作事实陈述。'],
-         ['Trigger: a single CIS floor value in the model','触发条件：模型中出现单一CIS保底数值']],
+         ['Applies when: a single CIS floor value in the model','适用条件：模型中出现单一CIS保底数值']],
         [['Read the connection point\'s marginal loss factor history and curtailment record before pricing the site. Modo finds location alone moves IRRs by up to 1.8 percentage points.','在为场址定价之前，先查阅该并网点的边际损耗系数历史与限电记录。Modo发现仅选址一项即可使IRR相差最多1.8个百分点。'],
-         ['Trigger: any site priced off a regional average','触发条件：任何以区域平均值定价的场址']],
+         ['Applies when: any site priced off a regional average','适用条件：任何以区域平均值定价的场址']],
         [['Build four hours. The capex premium over two hours has fallen ' + O.capexPremiumFallLoPct + '–' + O.capexPremiumFallHiPct + '% in two years and the realised IRR gap is ' + O.irr4hPct + '% against ' + O.irr2hPct + '%.','按四小时建设。相对两小时的造价溢价两年内已下降' + O.capexPremiumFallLoPct + '–' + O.capexPremiumFallHiPct + '%，而实际IRR为' + O.irr4hPct + '%对' + O.irr2hPct + '%。'],
-         ['Trigger: a two-hour design proposed for a 2028+ COD','触发条件：为2028年及以后投运提出两小时设计']],
+         ['Applies when: a two-hour design proposed for a 2028+ COD','适用条件：为2028年及以后投运提出两小时设计']],
         [['Stress degradation at 4%/yr, not 2%. Australian warranties commonly guarantee ' + '60–70% capacity retention, and Modo finds Queensland projects lose value once degradation costs are included.','衰减率应按每年4%而非2%作压力测试。澳大利亚质保通常保证60–70%的容量保持率，且Modo发现一旦计入衰减成本，昆士兰项目将出现价值下降。'],
-         ['Trigger: degradation held flat at 2%/yr through asset life','触发条件：全寿命期衰减率固定为每年2%']],
+         ['Applies when: degradation held flat at 2%/yr through asset life','适用条件：全寿命期衰减率固定为每年2%']],
       ] },
-      { t:'why', text:['Four of the five actions are about buying or pricing certainty rather than improving the estimate, which is the correct emphasis for a market where the build is easy and the revenue is not. Three of the five triggers are met at today\'s snapshot for a typical screened project — merchant debt service, a stated CIS floor, and a regional-average site price — which is why the house view is Selective rather than Invest.',
-        '五项建议中有四项关乎购买或为确定性定价，而非改进估算 — 对一个“建设容易、收入不易”的市场而言，这是正确的侧重。对典型筛选项目而言，按当前快照五项触发条件中已有三项成立：以市场化收入偿债、给出确定的CIS保底数值、以区域平均值为场址定价 — 这正是总体判断为“选择性投资”而非“投资”的原因。'],
+      { t:'why', text:['Four of the five rules are about buying or pricing certainty rather than improving the estimate, the right emphasis for a market where the build is easy and the revenue is not. Three of the five conditions hold at today\'s snapshot for a typical screened project — merchant debt service, a stated CIS floor, and a regional-average site price — so these protections are mandatory. The call itself is on the Brief.',
+        '五条规则中有四条关乎购买或为确定性定价，而非改进估算 — 对一个“建设容易、收入不易”的市场而言，这是正确的侧重。对典型筛选项目而言，按当前快照五项条件中已有三项成立：以市场化收入偿债、给出确定的CIS保底数值、以区域平均值为场址定价 — 因此这些保护措施为必须。结论本身见要点页。'],
         sig:['Buy certainty; do not model it','购买确定性，而非为其建模'] },
     ] },
 

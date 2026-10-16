@@ -15,15 +15,11 @@ import { h } from '../../../utils/dom.js';
 import { L } from '../../../app/i18n.js';
 import { card } from '../../../components/card.js';
 import { badge, statusBadge } from '../../../components/badge.js';
-import { chip } from '../../../components/chip.js';
 import { why } from '../../../components/decisionLogic.js';
 import { sectionHead } from '../../../components/sectionHeader.js';
-import { sourceDrawer, sourceStatusBadge } from '../../../components/sourceDrawer.js';
 import { lineChart, barChart, waterfall } from '../../../charts/index.js';
 import { fmtN, fmtA, fmtAk, fmtPct } from '../ui.js';
-import { SRC } from '../sources.js';
 import { SEED } from '../data/seed.js';
-import { ESOO_BAL } from '../data/kemerton.js';
 import { shadowRcpFactor } from '../lib/scores.js';
 import { renderBrcp } from '../sections/brcp.js';
 import { renderOptimizer } from '../sections/optimizer.js';
@@ -96,48 +92,8 @@ function renderRcm(main){
     ['Watch speculative → committed', '关注投机转为已承诺']));
   g.append(c4);
 
-  const c5 = card(['SWIS large-load watchlist — hard inclusion test', 'SWIS大负荷观察清单 — 硬性纳入检验'], [badge('illus'), statusBadge(true)]);
-  const sysChip = (sys) => sys === 'SWIS_CONFIRMED' ? chip('good', 'SWIS_CONFIRMED') : sys === 'NWIS' ? chip('serious', 'NWIS') : sys === 'OFF_GRID' ? chip('critical', 'OFF_GRID') : chip('warn', 'UNKNOWN');
-  c5.append(h('div', { class: 'tbl-wrap' }, h('table', {},
-    h('thead', {}, h('tr', {}, h('th', {}, L(['Load', '负荷项目'])), h('th', { class: 'num' }, 'MW'), h('th', {}, L(['Stage', '阶段'])), h('th', {}, L(['System', '所属系统'])))),
-    h('tbody', {}, SEED.largeLoads.map(ld => h('tr', {},
-      h('td', {}, h('b', {}, ld.n)), h('td', { class: 'num' }, fmtN(ld.mw)), h('td', {}, L(ld.stage)), h('td', {}, sysChip(ld.sys))))))));
-  c5.append(h('div', { class: 'note' }, L(['Only loads with a confirmed SWIS point of connection AND stage probability above threshold enter the demand model. NWIS and off-grid loads do not increase WEM RCR (spec §6.5.4).',
-    '仅当负荷确认接入SWIS且阶段概率高于阈值时才纳入需求模型。NWIS及离网负荷不会增加WEM RCR（规范§6.5.4）。'])));
-  c5.append(h('div', { class: 'cap' }, L(['Gas context: WA 15% offshore LNG domestic reservation policy; Commonwealth 20% export-equivalent scheme intended from 1 July 2027 (final legislation pending — do not assume a WA exemption). Gas-peaker fuel cost is a competing firm-capacity input.',
-    '天然气背景：西澳15%海上LNG本地保留政策；联邦20%出口当量机制拟自2027年7月1日实施（立法未定 — 不得假设西澳豁免）。燃气调峰燃料成本是竞争性可靠容量输入。'])));
-  c5.append(why(['The inclusion test is strict for a reason: a load that is not connected to the SWIS cannot raise the WEM Reserve Capacity Requirement no matter how large it is. Pilbara mining electrification and off-grid hydrogen are real demand but they sit on NWIS or behind the meter, so counting them would overstate the capacity market a WA project actually sells into. Apply the same test to any demand-growth story presented to you — confirmed SWIS point of connection plus stage probability above threshold, or it does not enter the model.',
-    '纳入检验之所以严格，原因在于：未接入SWIS的负荷无论规模多大，都无法提高WEM备用容量需求。Pilbara矿业电气化与离网氢能属真实需求，但位于NWIS或表后，若予计入将高估西澳项目实际所面对的容量市场。应对任何向你呈现的需求增长论述适用同一检验 — 须同时具备已确认的SWIS并网点与高于阈值的阶段概率，否则不得进入模型。'],
-    ['No SWIS connection, no RCR impact', '未接入SWIS即不影响RCR']));
-  g.append(c5);
   main.append(g);
 
-  const cq = card(['2028–29 capacity quality — headline surplus vs underlying dependencies', '2028–29容量质量 — 表面盈余与底层依赖'], [sourceStatusBadge(SRC.esoo), badge('calc')]);
-  cq.append(h('div', { class:'waterfall-list' }, [
-    [['Peak Reserve Capacity Target','峰值容量目标'],fmtN(ESOO_BAL.peakRCTMW)+' MW',['Official system requirement','官方系统需求']],
-    [['Existing + committed capacity','现有+已承诺容量'],fmtN(ESOO_BAL.existingCommittedMW)+' MW',['Produces the +347 MW headline surplus','形成+347MW表面盈余']],
-    [['— of which battery','其中电池'],fmtN(ESOO_BAL.existingCommittedBessMW)+' MW',['Forecast operational on the SWIS by 2028-29','预计2028-29在SWIS投运']],
-    [['ESR Duration Requirement Uplift','ESR时长要求抬升'],fmtN(ESOO_BAL.durationUpliftMW)+' MW',['Shorter batteries cannot fully serve the longer peak','短时电池无法完整覆盖更长峰值']],
-    [['Committed delivery dependency','已承诺项目交付依赖'],fmtN(ESOO_BAL.committedDeliveryMW)+' MW',['Surplus depends on timely delivery','盈余依赖按期投运']],
-    [['Additional anticipated capacity','额外预期容量'],fmtN(ESOO_BAL.anticipatedMW)+' MW',['Further competition if delivered','若投运将进一步竞争']],
-    [['Additional EOI pressure','额外EOI压力'],'>'+fmtN(ESOO_BAL.eoiPressureMW)+' MW',['Immature, but material queue pressure','尚不成熟但规模重大']],
-    [['VPP peak-demand reduction','VPP峰值削减'],fmtN(ESOO_BAL.vppPeakReductionMW)+' MW',['Demand-side contribution assumed','假设需求侧贡献']]
-  ].map(r=>h('div',{class:'wf-row'},h('div',{},h('b',{},L(r[0]))),h('div',{class:'v'},r[1]),h('div',{},L(r[2]))))));
-  cq.append(h('div',{class:'reco'},h('b',{},L(['Investor conclusion: ','投资结论：'])),L(['The WEM has a headline near-term surplus, but it is conditional on project and network delivery. The 392 MW duration uplift confirms that long-duration capacity remains system-relevant even in a nominal surplus year.','WEM近期存在表面容量盈余，但其依赖项目及电网按期交付。392MW时长抬升表明，即使名义盈余，长时容量仍具系统价值。'])));
-  cq.append(why(['This list is the argument for a long-duration entry in a surplus year. The +347 MW surplus is smaller than the ' + fmtN(ESOO_BAL.durationUpliftMW) + ' MW the system needs purely because the peak got longer, and it depends on ' + fmtN(ESOO_BAL.committedDeliveryMW) + ' MW of committed projects actually arriving on time. So the headline number understates demand for compliant hours and overstates the certainty of supply. Practical use: run the capacity case twice — once on the ESOO position, once assuming a realistic share of committed capacity slips a cycle — and note that the ' + fmtN(ESOO_BAL.vppPeakReductionMW) + ' MW VPP assumption is a demand-side offset that competes with you but is not contractually committed to anyone.',
-    '本列表正是在盈余年度进入长时储能的论据。+347MW的盈余小于系统仅因峰值变长而需要的' + fmtN(ESOO_BAL.durationUpliftMW) + 'MW，且该盈余依赖' + fmtN(ESOO_BAL.committedDeliveryMW) + 'MW已承诺项目如期投运。因此表面数字低估了对合规小时数的需求，同时高估了供给的确定性。实务用法：容量情景须做两遍 — 一遍按ESOO口径，一遍假设一定比例的已承诺容量延后一个周期 — 并注意' + fmtN(ESOO_BAL.vppPeakReductionMW) + 'MW的VPP假设是与你竞争的需求侧抵减，但并未对任何主体形成合同承诺。'],
-    ['Surplus < duration uplift', '盈余小于时长抬升']));
-  cq.append(sourceDrawer(SRC.esoo, ['Capacity balance, duration uplift, anticipated supply and demand-side assumptions','容量平衡、时长抬升、预期供给及需求侧假设']));
-  cq.style.marginTop='14px'; main.append(cq);
-
-  const cone = card(['Gross CONE treatment — capacity and merchant value remain separate', 'Gross CONE处理 — 容量与市场化价值须分开'], [badge('final')]);
-  cone.append(h('div',{class:'note'},L(['The official BRCP is a gross fixed-cost recovery benchmark. It does not confirm that merchant or FCESS margins will remain attractive. Market analysis supporting the benchmark found storage competition had largely eliminated the marginal gross-versus-net CONE difference.','官方BRCP是毛固定成本回收基准，并不证明市场化或FCESS利润可持续。支撑该基准的市场分析认为，储能竞争已基本消除边际毛额CONE与净额CONE的差异。'])));
-  cone.append(h('div',{class:'reco'},h('b',{},L(['Underwriting rule: ','承销原则：'])),L(['Capacity value and merchant value must be underwritten separately. BRCP is not guaranteed project revenue; use assigned Capacity Credits and the applicable RCP.','容量价值与市场化价值必须分别承销。BRCP并非项目保证收入；应使用实际分配容量信用及适用RCP。'])));
-  cone.append(why(['A gross-CONE benchmark means the BRCP is set to recover the reference machine’s fixed costs assuming no help from energy or system-service margins. That is deliberately conservative for the price-setter and deliberately unhelpful for the investor: it does not certify that merchant margins exist, and it does not entitle any facility to that price. Use it as the answer to one question only — "if I were paid the administered capacity price on my assigned credits, would fixed costs be covered?" — and answer revenue questions with assigned credits × applicable RCP.',
-    '毛额CONE基准意味着BRCP的设定目标是回收参考机组的固定成本，且假设不依赖电能量或系统服务的利润贡献。这对定价方是刻意保守，对投资人则刻意不提供帮助：它既不证明市场化利润存在，也不赋予任何设施获得该价格的权利。仅应将其用于回答一个问题 — "若按行政容量价格支付我的获配信用，固定成本能否覆盖？" — 收入问题须以获配信用×适用RCP回答。'],
-    ['Recovery test, not a revenue right', '回收检验，非收入权利']));
-  cone.append(sourceDrawer(SRC.brcp, ['Official BRCP benchmark technology, gross fixed-cost treatment and price anchor','官方BRCP基准技术、毛固定成本处理及价格锚']));
-  cone.style.marginTop='14px'; main.append(cone);
 
   renderBrcp(main);
   renderOptimizer(main);

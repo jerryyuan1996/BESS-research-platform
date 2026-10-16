@@ -93,7 +93,7 @@ export const RO_OPPORTUNITY_LOGIC = {
   marketId: 'ro',
   authority: AUTHORITY.METHODOLOGY,
   attractiveness: {
-    rating: 'Selective',
+    rating: 'Conditional',
     statement:
       'Strong merchant volatility and capital support can be attractive, but only for projects with evidenced connection progress and a financeable downside revenue structure.',
   },

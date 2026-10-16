@@ -172,8 +172,15 @@ const BUDGET = {
      (src/comparison/designFit.js) and the duration card that reads it
      (src/markets/_shared/designFitBlock.js), decision 2 of
      docs/duration-and-route-fit-plan.md. About 3.3 kB gzipped, used by the six
-     dashboards that draw a duration card. Measured 101.28 after. */
-  sharedTotal: 102,
+     dashboards that draw a duration card. Measured 101.28 after.
+
+     RAISED FROM 102 TO 104 for bytes that were ADDED: the design projection of
+     the briefing (src/briefing/designData.js, read through
+     src/markets/_shared/designAnswer.js), so the GB, WA and Japan tabs that name
+     a duration say what the Brief says (guided-experience plan, PR 7). Its
+     chunk is 1.63 kB gzipped. Measured 102.2 after, with the cards the page
+     used to delete at runtime now gone from source. */
+  sharedTotal: 104,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {

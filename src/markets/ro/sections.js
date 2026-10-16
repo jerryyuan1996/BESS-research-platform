@@ -51,8 +51,6 @@ SEC_B.home = function (){
         ['05', ['Underwriting','项目承销'], ['Can the project connect, qualify and finance?','项目能否并网、取得资格并融资？'], 'grid'],
         ['06', ['Portfolio application','组合应用'], ['Which screened Romanian opportunity passes the gates?','所筛选的罗马尼亚机会中哪一个能通过门槛？'], 'portfolio'],
       ] },
-      { t:'note', text:['Recommended presentation order: Overview → Romania Market Story → Support & Adequacy → Wholesale & Intraday → Balancing & Reserves → Duration → Pipeline → Grid & Permitting → Portfolio → Data & Methodology.',
-        '建议讲解顺序：总览 → 罗马尼亚市场演进 → 支持机制与充裕度 → 批发与日内 → 平衡与备用 → 时长 → 管线 → 并网与许可 → 组合 → 数据与方法。'] },
       { t:'why', text:['The six questions are sequenced so each one can veto the next. A market with wide spreads (02) is not the same as a revenue stack that a lender will size against (03), a design that suits the price shape (04), an asset that can actually connect and prequalify (05), or a specific opportunity worth committing capital to (06). In Romania the veto usually falls at step 05, which is why it must be tested before the model is built rather than after.',
         '六个问题按“逐级否决”排序：价差宽的市场（02）不等于贷款人愿据以安排规模的收入结构（03），不等于契合价格形态的设计（04），不等于能真正并网并取得预认证的资产（05），也不等于某个具体机会值得投入资本（06）。在罗马尼亚，否决通常发生在第05步 — 因此它必须在建模之前而非之后检验。'],
         sig:['The veto usually falls at connection','否决通常发生在并网环节'] },
@@ -137,21 +135,21 @@ SEC_B.home = function (){
       ] },
     ] },
 
-    { t:'card', title:['Card G — Immediate Investor Actions','Card G — 可执行投资建议'], badges:['illus'], live:false, blocks:[
+    { t:'card', title:['Card G — Underwriting rules','Card G — 承保规则'], badges:['illus'], live:false, blocks:[
       { t:'list', ol:true, items:[
         [['Require an ATR and an executed connection agreement as conditions precedent — never an indicative capacity map or an establishment authorisation.','以ATR及已签并网合同为先决条件 — 绝不接受示意性容量地图或设立许可。'],
-         ['Trigger: connection evidence below executed-agreement standard','触发条件：并网证据未达已签合同标准']],
+         ['Applies when: connection evidence below executed-agreement standard','适用条件：并网证据未达已签合同标准']],
         [['Treat a formal grant award letter, not the scheme budget, as the condition precedent for any grant-dependent case.','任何依赖补贴的情景，以正式补贴授予函而非计划预算作为先决条件。'],
-         ['Trigger: grant assumed in the base case','触发条件：基准情景假设取得补贴']],
+         ['Applies when: grant assumed in the base case','适用条件：基准情景假设取得补贴']],
         [['Underwrite balancing revenue only to the evidence tier the specific project has reached, and require a reproducible optimiser backtest.','平衡收入的测算只应达到具体项目已取得的证据层级，并须提供可复现的优化器回测。'],
-         ['Trigger: balancing revenue material to debt service','触发条件：平衡收入对偿债影响重大']],
+         ['Applies when: balancing revenue material to debt service','适用条件：平衡收入对偿债影响重大']],
         [['Build 2h with a documented, consented and financed augmentation path to 4h rather than committing the MWh now.','按2小时建设并保留有据可查、已获许可且已安排融资的4小时增容路径，而非现在即投入MWh。'],
-         ['Trigger: marginal value of the fourth hour below ' + fmtC(5) + 'k/MW/yr','触发条件：第4小时边际价值低于' + fmtC(5) + 'k/MW/年']],
+         ['Applies when: marginal value of the fourth hour below ' + fmtC(5) + 'k/MW/yr','适用条件：第4小时边际价值低于' + fmtC(5) + 'k/MW/年']],
         [['Document guarantee release mechanics in the SPA before posting auction or connection guarantees.','在缴付拍卖或并网保函之前，先在股权买卖协议中明确保函释放机制。'],
-         ['Trigger: any guarantee posted before financial close','触发条件：融资交割前缴付任何保函']],
+         ['Applies when: any guarantee posted before financial close','适用条件：融资交割前缴付任何保函']],
       ] },
-      { t:'why', text:['Four of the five actions are documentary rather than analytical, which is the correct emphasis for Romania: the modelling question is comparatively easy and the evidence question is comparatively hard. Three of the five triggers are met at today’s snapshot for a typical screened project, which is why the house view is Selective rather than Invest — the market is attractive and the specific protections listed here are now mandatory rather than optional.',
-        '五项建议中有四项属文件性而非分析性 — 这对罗马尼亚而言是正确的侧重：建模问题相对容易，证据问题相对困难。对典型筛选项目而言，按当前快照五项触发条件中已有三项成立，这正是总体判断为“选择性投资”而非“投资”的原因 — 市场具吸引力，但上列具体保护措施已由可选变为必须。'],
+      { t:'why', text:['Four of the five rules are documentary rather than analytical, the right emphasis for Romania: the modelling question is comparatively easy and the evidence question comparatively hard. Three of the five conditions hold at today’s snapshot for a typical screened project, so the protections listed here are mandatory, not optional. The call itself is on the Brief.',
+        '五条规则中有四条属文件性而非分析性 — 这对罗马尼亚而言是正确的侧重：建模问题相对容易，证据问题相对困难。对典型筛选项目而言，按当前快照五项条件中已有三项成立，因此上列保护措施为必须而非可选。结论本身见要点页。'],
         sig:['Documentary risk dominates modelling risk','文件风险高于建模风险'] },
     ] },
 

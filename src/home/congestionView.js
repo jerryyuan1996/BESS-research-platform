@@ -141,8 +141,8 @@ export function renderCongestionView(main, marketList){
   ])));
 
   c.append(h('div', { class: 'warnbox' }, '⚠ ' + L([
-    'No market on this platform carries a modelled congestion revenue, and the Investment Lab does not price one. Nothing public gives per-MW congestion revenue for a battery in any of these six markets, so the register reports the pool and the mechanism and stops there — research gate G14.',
-    '本平台任何市场均未采用建模的拥塞收入，投资测算模块亦不对其定价。这六个市场均无公开来源提供储能每MW的拥塞收入，因此登记表仅呈现资金池与机制，不再深入 — 研究缺口G14。',
+    'No market on this platform carries a modelled congestion revenue, and the Investment Lab does not price one. Nothing public gives per-MW congestion revenue for a battery in any of these markets, so the register reports the pool and the mechanism and stops there — research gate G14.',
+    '本平台任何市场均未采用建模的拥塞收入，投资测算模块亦不对其定价。上述各市场均无公开来源提供储能每MW的拥塞收入，因此登记表仅呈现资金池与机制，不再深入 — 研究缺口G14。',
   ])));
 
   c.append(why([
