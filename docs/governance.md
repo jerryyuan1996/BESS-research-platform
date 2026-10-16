@@ -33,7 +33,7 @@ that to change. See *The scouting tier* below.
 | Observed public data | **Publishes automatically** after validation |
 | Deterministic derived metrics | **Publishes automatically** after validation |
 | Model outputs | **Recompute automatically** — using the currently *approved* methodology and assumptions |
-| Judgement in the view store: grades, verdicts, the thesis, triggers | **Publishes automatically** after validation, within the rights of the author that wrote it — see *The view store* below |
+| Judgement in the view store: grades, verdicts, the thesis, triggers, plays | **Publishes automatically** after validation, within the rights of the author that wrote it — see *The view store* below |
 | A scout card: facts, grades, verdicts, triggers, a return signal | **Publishes automatically** after validation, written by the agent once it is live on cards — see *The scouting tier* below |
 | Analyst assumptions in the model | Automation may **propose**. It may never apply. |
 | Methodology: scoring weights, grade anchors, knock-outs and limits, score bands, discount rates and exit yields, the comparison window, the limits on a machine run, **which markets are scouted and which pages the agent may read** | Automation may **not change one and may not even propose it** |
@@ -100,8 +100,11 @@ cannot reach production unclassified in the first place.
 
 ## The view store — three authors
 
-`view/markets/<id>.json` holds a market's grades, verdicts, triggers and thesis. `view/index.json`
-is the verdicts alone. `view/changelog.jsonl` is every change, one line each, append-only. The
+`view/markets/<id>.json` holds a market's grades, verdicts, triggers, thesis and plays. A play is a
+design worth an investor's attention — revenue route, hours, entry stage, why, the next action, and
+a call of its own where it differs from the market's ([`src/governance/plays.js`](../src/governance/plays.js);
+added 2026-10-16, [`docs/guided-experience-plan.md`](guided-experience-plan.md)). A trigger may
+carry an `outcome`, which closes it. `view/index.json` is the verdicts alone. `view/changelog.jsonl` is every change, one line each, append-only. The
 schema, [`view/schema/view.mjs`](../view/schema/view.mjs), holds a rights table per author.
 
 | | `analyst` | `rule` | `agent` |
@@ -109,6 +112,7 @@ schema, [`view/schema/view.mjs`](../view/schema/view.mjs), holds a rights table 
 | A grade | create, replace, remove | replace: only `grade`, `trend`, `trendCause`, and only as its trigger's effect says | replace: those, and `reason`, `evidence`, `basis` |
 | A verdict | create, replace, remove | replace: only `call`, `reviewBy`, `changesIf`, as its effect says | replace: `call`, `because`, `despite`, `reviewBy`, `changesIf` |
 | The thesis | yes | no | yes |
+| A play | create, replace, remove | no | no — the analyst's alone until he decides otherwise |
 | A trigger | yes, including one with an effect | no | only with no effect: an agent cannot write a rule, or change one |
 | A held view | yes | no | no |
 | A pinned record | yes | no | no |

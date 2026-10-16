@@ -104,9 +104,11 @@ test('the agent is a permitted author and not a live one: its change prepares an
 
 test('a machine author has rights narrower than the analyst\'s, section by section', () => {
   const sections = (kind) => Object.keys(AUTHOR_RIGHTS[kind]).sort();
-  assert.deepEqual(sections('analyst'), ['grades', 'thesis', 'triggers', 'verdicts']);
+  assert.deepEqual(sections('analyst'), ['grades', 'plays', 'thesis', 'triggers', 'verdicts']);
   assert.deepEqual(sections('rule'), ['grades', 'verdicts']);
   assert.deepEqual(sections('agent'), ['grades', 'thesis', 'triggers', 'verdicts']);
+  /* Plays are the analyst's alone until he decides otherwise (plan of 2026-10-16, decision 2). */
+  for (const kind of MACHINE_AUTHORS) assert.ok(!('plays' in AUTHOR_RIGHTS[kind]), `${kind} has a right to plays`);
   for (const kind of MACHINE_AUTHORS){
     for (const [section, rights] of Object.entries(AUTHOR_RIGHTS[kind])){
       assert.equal(rights.remove, false, `${kind} may remove ${section}`);

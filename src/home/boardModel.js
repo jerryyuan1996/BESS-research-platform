@@ -26,7 +26,7 @@ import {
   PILLARS, VERDICT_IDS, ARCHETYPE_IDS, dimension, effectiveGrade,
 } from '../governance/investability.js';
 import { ARCHETYPES, NOT_ACCESSIBLE, DISAGREEMENT_LABEL, METRIC } from '../governance/archetypes.js';
-import { byExpected, overdue } from '../governance/triggers.js';
+import { byExpected, overdue, isResolved } from '../governance/triggers.js';
 import { assessMarket } from '../entry/assessment.js';
 import { limitInputs } from '../entry/ledger.js';
 import { runScenarioSet } from '../comparison/refinement.js';
@@ -200,20 +200,23 @@ export function monthsFrom(on, count = 12){
 /**
  * Triggers laid out for the next `count` months from `on`.
  *
- * Four groups, and none of them is dropped: a trigger whose date has passed is
+ * Five groups, and none of them is dropped: a trigger whose date has passed is
  * `overdue` and needs somebody to check it; one beyond the window is `later`;
  * one with no date is `undated`. A calendar that showed only the tidy middle
- * would hide exactly the items that need attention.
+ * would hide exactly the items that need attention. A trigger whose outcome is
+ * recorded is `resolved`: it has happened, so it leaves the lanes.
  */
 export function triggerCalendar(triggers, on, count = 12){
   const months = monthsFrom(on, count);
   const late = overdue(triggers, on);
   const lateIds = new Set(late.map(t => t.id));
   const lanes = new Map();
-  const later = [], undated = [], upcoming = [];
+  const later = [], undated = [], upcoming = [], resolved = [];
 
   for (const t of byExpected(triggers)){
     if (lateIds.has(t.id)) continue;
+    /* What happened is recorded: it is a change now, not a date to watch. */
+    if (isResolved(t)){ resolved.push(t); continue; }
     if (t.expected === null){ undated.push(t); continue; }
     const column = months.indexOf(t.expected.slice(0, 7));
     if (column === -1){ later.push(t); continue; }
@@ -224,7 +227,7 @@ export function triggerCalendar(triggers, on, count = 12){
   return {
     months,
     lanes: [...lanes.entries()].map(([market, cells]) => ({ market, cells })),
-    upcoming, overdue: late, later, undated,
+    upcoming, overdue: late, later, undated, resolved,
   };
 }
 

@@ -41,24 +41,43 @@ function projectVerdict(record){
   };
   if (record.where) out.where = record.where;
   if (record.scoreNote) out.scoreNote = record.scoreNote;
+  if (record.play) out.play = record.play;
+  return out;
+}
+
+/**
+ * What the board reads of a play: the design, its one line and its next step,
+ * and any call of its own. A play's words are short by rule — a label, a
+ * line, an action — so they travel; the thesis stays with the dashboard.
+ */
+function projectPlay(record){
+  const out = {
+    id: record.id, label: record.label, route: record.route, hours: record.hours, stage: record.stage,
+    why: record.why, action: record.action,
+  };
+  if (record.calls) out.calls = Object.fromEntries(Object.entries(record.calls).map(([id, call]) => [id, projectVerdict(call)]));
   return out;
 }
 
 /** What the board, the calendar and the changes panel read of a trigger. */
 export function projectTrigger(trigger){
-  return {
+  const out = {
     id: trigger.id, market: trigger.market, kind: trigger.kind, label: trigger.label,
     expected: trigger.expected ?? null, watches: trigger.watches, direction: trigger.direction,
   };
+  if (trigger.outcome) out.outcome = trigger.outcome;
+  return out;
 }
 
 export function projectView(view){
-  return {
+  const out = {
     marketId: view.marketId,
     grades: Object.fromEntries(Object.entries(view.grades).map(([id, record]) => [id, projectGrade(record)])),
     verdicts: Object.fromEntries(Object.entries(view.verdicts).map(([id, record]) => [id, projectVerdict(record)])),
     triggers: view.triggers.map(projectTrigger),
   };
+  if (view.plays) out.plays = Object.fromEntries(Object.entries(view.plays).map(([id, record]) => [id, projectPlay(record)]));
+  return out;
 }
 
 /** A ledger's figures and flags: everything ledgerTotals reads, and no prose. */

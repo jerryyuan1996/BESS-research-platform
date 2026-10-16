@@ -39,6 +39,10 @@ import { ARCHETYPE_IDS, DIMENSION_IDS } from '../src/governance/investability.js
 import { SOURCE_DECISION_PROFILE } from '../src/governance/triggers.js';
 import { markets as registered } from '../src/markets/registry.js';
 import { runBaseCase } from '../src/comparison/engine.js';
+import { supportedStrategies, STRATEGIES } from '../src/comparison/strategies.js';
+import { REVENUE_ROUTES, playsOf, playCall } from '../src/governance/plays.js';
+import { validateTrigger, overdue } from '../src/governance/triggers.js';
+import { triggerCalendar } from '../src/home/boardModel.js';
 
 const committed = createViewStore();
 
@@ -63,6 +67,15 @@ const verdict = (patch = {}) => ({
   because: [{ dimension: 'gridScarcity', text: ['Capacity is the scarce asset.', '并网容量才是稀缺资源。'] }],
   despite: ['Nothing is contracted.', '没有任何合同化收入。'],
   changesIf: ['fi-an-event'], reviewBy: '2027-01-31', author: 'analyst', asOf: '2026-10-10', lockedUntil: null, ...patch,
+});
+
+/* A play: one design worth an investor's attention (governance/plays.js). */
+const play = (patch = {}) => ({
+  id: 'fi-mer-2h', label: ['Merchant · 2h · ready-to-build', '纯市场化 · 2小时 · 具备开工条件'],
+  route: 'mer', hours: 2, stage: 'ready-to-build',
+  why: ['A line on why this design.', '一句说明为何选此方案。'],
+  action: { text: ['The next concrete step.', '下一步的具体行动。'], due: '2026-12-31' },
+  author: 'analyst', asOf: '2026-10-16', lockedUntil: null, ...patch,
 });
 
 async function scratch(run){
@@ -295,7 +308,8 @@ test('a path names one whole record, and no path spells methodology', () => {
   assert.deepEqual(parsePath('thesis'), { section: 'thesis', key: null, layer: null });
   /* The one layer with a path of its own: the analyst's held view. */
   assert.deepEqual(parsePath('grades.foreignEntry.held'), { section: 'grades', key: 'foreignEntry', layer: 'held' });
-  assert.deepEqual(VIEW_SECTIONS, ['grades', 'verdicts', 'triggers', 'thesis']);
+  assert.deepEqual(parsePath('plays.it-cap-4h'), { section: 'plays', key: 'it-cap-4h', layer: null });
+  assert.deepEqual(VIEW_SECTIONS, ['grades', 'verdicts', 'triggers', 'thesis', 'plays']);
   for (const id of DIMENSION_IDS) assert.ok(parsePath(`grades.${id}`));
   for (const id of ARCHETYPE_IDS) assert.ok(parsePath(`verdicts.${id}`));
 
@@ -306,6 +320,8 @@ test('a path names one whole record, and no path spells methodology', () => {
     /* One field inside a record: the half-edit a whole-record store prevents. */
     'verdicts.developer.call', 'grades.foreignEntry.grade', 'grades.foreignEntry.held.grade',
     'grades.vibes.held', 'verdicts.developer.held',
+    /* A play is one whole record too, and its id is a slug. */
+    'plays.it', 'plays.IT-cap-4h', 'plays.it_cap_4h', 'plays.it-cap-4h.calls', 'plays.it-cap-4h.calls.infraFund', 'plays.',
     '', 'grades', 'grades.', '../src/governance/archetypes.js', null, undefined, 7,
   ];
   for (const p of refused) assert.equal(parsePath(p), null, `"${p}" parsed as a view-store path`);
@@ -331,6 +347,98 @@ test('a market view is validated as a whole', () => {
   bad(v => { v.assumptions = {}; }, /not a section of a market view/);
   assert.deepEqual(validateMarketView({}), ['view has no marketId']);
 });
+
+test('a play is a whole design: route, hours, stage, why, action, and calls of its own', () => {
+  const good = { ...emptyView('fi'), triggers: [trigger()], grades: { foreignEntry: grade() },
+    verdicts: { developer: verdict({ route: 'ready-to-build', play: 'fi-mer-2h' }) },
+    plays: { 'fi-mer-2h': play(), 'fi-toll-2h': play({ id: 'fi-toll-2h', route: 'toll',
+      calls: { infraFund: verdict({ archetype: 'infraFund', call: 'opportunistic', route: 'ready-to-build' }) } }) } };
+  assert.deepEqual(validateMarketView(good), []);
+  const bad = (edit, pattern) => {
+    const view = structuredClone(good); edit(view);
+    const problems = validateMarketView(view);
+    assert.ok(problems.some(p => pattern.test(p)), `expected ${pattern}, got ${JSON.stringify(problems)}`);
+  };
+  bad(v => { v.plays['fi-mer-2h'].route = 'ppa'; }, /route must be one of/);
+  bad(v => { v.plays['fi-mer-2h'].hours = 0; }, /hours must be a number/);
+  bad(v => { v.plays['fi-mer-2h'].hours = 400; }, /hours must be a number/);
+  bad(v => { v.plays['fi-mer-2h'].stage = 'brownfield'; }, /stage must be one of/);
+  bad(v => { v.plays['fi-mer-2h'].why = 'English only'; }, /why must be an \[en, zh\] pair/);
+  bad(v => { v.plays['fi-mer-2h'].action.due = '2026-13-01'; }, /action.due must be/);
+  bad(v => { delete v.plays['fi-mer-2h'].action; }, /action must be/);
+  bad(v => { v.plays['fi-mer-2h'].irr = 0.15; }, /"irr" is not a field of a play/);
+  bad(v => { v.plays['fi-mer-2h'].id = 'fi-other'; }, /its id is "fi-other"/);
+  bad(v => { delete v.plays['fi-mer-2h'].lockedUntil; }, /lockedUntil must be/);
+  /* A verdict names a play that exists, and enters it at the play's stage. */
+  bad(v => { v.verdicts.developer.play = 'fi-cap-4h'; }, /not a play of this market/);
+  bad(v => { v.verdicts.developer.route = 'greenfield'; }, /enters by "greenfield"/);
+  /* A play's own call is a full verdict, entered at the play's stage, on triggers of this market. */
+  bad(v => { delete v.plays['fi-toll-2h'].calls.infraFund.despite; }, /despite is required/);
+  bad(v => { v.plays['fi-toll-2h'].calls.infraFund.route = 'operating'; }, /the play's stage is "ready-to-build"/);
+  bad(v => { v.plays['fi-toll-2h'].calls.infraFund.changesIf = ['no-such-trigger']; }, /not a trigger of this market/);
+  bad(v => { v.plays['fi-toll-2h'].calls.strategic = v.plays['fi-toll-2h'].calls.infraFund; }, /holds a record for "infraFund"/);
+  /* One design, one call: no own call where the market's verdict already names the play. */
+  bad(v => { v.plays['fi-mer-2h'].calls = { developer: verdict({ route: 'ready-to-build' }) }; }, /already names this play/);
+  bad(v => { v.plays = []; }, /plays must be an object/);
+
+  /* The call a play carries: its own, or the market's. */
+  assert.equal(playCall(good, good.plays['fi-toll-2h'], 'infraFund').own, true);
+  assert.equal(playCall(good, good.plays['fi-mer-2h'], 'developer').verdict.call, 'build-position');
+  assert.equal(playCall(good, good.plays['fi-mer-2h'], 'strategic'), null);
+  assert.deepEqual(playsOf(good).map(p => p.id), ['fi-mer-2h', 'fi-toll-2h']);
+  assert.deepEqual(playsOf(emptyView('fi')), []);
+});
+
+test('a play\'s route is one of the engine\'s, and every committed play can be priced', async () => {
+  assert.deepEqual([...REVENUE_ROUTES].sort(), STRATEGIES.map(s => s.id).sort(), 'the play vocabulary and the engine\'s routes disagree');
+  for (const view of await committed.readAll()){
+    for (const p of playsOf(view)){
+      const market = byId(view.marketId);
+      assert.ok(supportedStrategies(market).some(s => s.id === p.route), `${view.marketId} ${p.id}: the market does not support route "${p.route}"`);
+      const grid = market.comparison.durationResponse?.hours || [market.comparison.archetype.durationHours];
+      assert.ok(grid.includes(p.hours), `${view.marketId} ${p.id}: ${p.hours}h is not on the market's duration grid ${JSON.stringify(grid)}`);
+    }
+  }
+});
+
+test('a trigger\'s outcome closes it: never overdue, and out of the calendar\'s lanes', () => {
+  const happened = trigger({ id: 'fi-happened', expected: '2026-09', outcome: { on: '2026-09-15', text: ['It happened.', '已发生。'] } });
+  const pending = trigger({ id: 'fi-pending', expected: '2026-09' });
+  assert.deepEqual(validateTrigger(happened), []);
+  for (const outcome of [{ on: '2026-09', text: ['x', 'y'] }, { on: '2026-09-15', text: 'x' }, { on: '2026-09-15', text: ['x', 'y'], by: 'me' }, 'yes']){
+    assert.ok(validateTrigger(trigger({ outcome })).length > 0, `outcome ${JSON.stringify(outcome)} was accepted`);
+  }
+  assert.deepEqual(overdue([happened, pending], '2026-10-16').map(t => t.id), ['fi-pending']);
+  const calendar = triggerCalendar([happened, pending], '2026-10-16');
+  assert.deepEqual(calendar.overdue.map(t => t.id), ['fi-pending']);
+  assert.deepEqual(calendar.resolved.map(t => t.id), ['fi-happened']);
+  assert.deepEqual(calendar.later.map(t => t.id), []);
+});
+
+test('only the analyst writes a play, and the last play out removes the section', () => scratch(async (store, root) => {
+  assert.equal(authorMayWrite('plays.fi-mer-2h', 'analyst'), true);
+  for (const kind of MACHINE_AUTHORS) assert.equal(authorMayWrite('plays.fi-mer-2h', kind), false, `a ${kind} may write a play`);
+  for (const kind of MACHINE_AUTHORS){
+    await rejects(store.apply({ market: 'fi', path: 'plays.fi-mer-2h', to: play({ author: kind }), reason,
+      author: { kind, run: '2026-10-16T00:00:00.000Z' } }), /may not write the view/);
+  }
+  assert.ok(!existsSync(path.join(root, 'markets')), 'a refused play left something on disk');
+
+  await store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: trigger(), reason, author: analyst });
+  await store.apply({ market: 'fi', path: 'plays.fi-mer-2h', to: play(), reason, author: analyst });
+  await rejects(store.apply({ market: 'fi', path: 'plays.fi-toll-2h', to: play({ id: 'fi-toll-2h', author: 'rule' }), reason, author: analyst }), /the change is the analyst's/);
+  await store.apply({ market: 'fi', path: 'verdicts.developer', to: verdict({ route: 'ready-to-build', play: 'fi-mer-2h' }), reason, author: analyst });
+  const index = JSON.parse(await readFile(path.join(root, 'index.json'), 'utf8'));
+  assert.equal(index.fi.developer.play, 'fi-mer-2h', 'the index does not carry the play a verdict names');
+  /* A play a verdict names cannot be removed from under it. */
+  await rejects(store.apply({ market: 'fi', path: 'plays.fi-mer-2h', to: null, reason, author: analyst }), /not a play of this market/);
+  await store.apply({ market: 'fi', path: 'verdicts.developer', to: null, reason, author: analyst });
+  await store.apply({ market: 'fi', path: 'plays.fi-mer-2h', to: null, reason, author: analyst });
+  await store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: null, reason, author: analyst });
+  assert.deepEqual(await store.read('fi'), emptyView('fi'));
+  const log = await store.changelog();
+  assert.ok(log.every(e => validateChangelogEntry(e).length === 0));
+}));
 
 /* ---- the writer -------------------------------------------------------------- */
 

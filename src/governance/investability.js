@@ -557,6 +557,17 @@ const stamp = (record, at) => {
   }
 };
 
+/* The same stamp and the same date test, for the other records of the view
+   store that are not grades or verdicts (governance/plays.js). */
+export { stamp as checkStamp, isDay };
+
+/**
+ * A play's id: a kebab-case slug of two parts or more, e.g. "it-cap-4h". Kept
+ * here, beside the verdict that may name one, so plays.js can import this file
+ * without this file importing it back.
+ */
+export const PLAY_ID_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)+$/;
+
 /**
  * Problems with one grade record. Empty array means valid.
  *
@@ -874,6 +885,12 @@ export function validateVerdict(record){
   if (record.call === VERDICT.WAIT){
     if (!Array.isArray(record.changesIf) || !record.changesIf.length) at('a wait names the trigger it is waiting for');
     if (!isDay(record.reviewBy)) at('a wait carries a review date');
+  }
+  /* Optional. The play this call is about, by id (governance/plays.js). The
+     view checks that the play exists; here only its spelling is checked. */
+  if (record.play !== undefined && record.play !== null
+    && (typeof record.play !== 'string' || !PLAY_ID_PATTERN.test(record.play))){
+    at('play must be null or a play id');
   }
 
   stamp(record, at);

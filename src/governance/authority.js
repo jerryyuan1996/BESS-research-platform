@@ -110,6 +110,11 @@ export const VIEW_AUTHORITY = {
   verdicts: AUTHORITY.VIEW,
   thesis: AUTHORITY.VIEW,
   triggers: AUTHORITY.VIEW,
+  /* The designs worth an investor's attention (governance/plays.js). Judgement,
+     so class VIEW; but no machine author has a right to it yet — AUTHOR_RIGHTS
+     in view/schema/view.mjs gives plays to the analyst alone (plan of
+     2026-10-16, decision 2). */
+  plays: AUTHORITY.VIEW,
 };
 
 /**
