@@ -370,7 +370,7 @@ test('methodology is unwritable by every author, machine or not, through the vie
     assert.throws(() => assertWritable(surface.module), BoundaryViolation);
     assert.throws(() => assertViewWritable(VIEW_ROOT, path.relative(VIEW_ROOT, path.join(REPO, surface.module))), /does not write/);
   }
-  for (const needed of ['archetype-weights', 'archetype-limits', 'score-bands', 'grade-anchors', 'discount-rates', 'automation-limits', 'scout-roster', 'scout-sources', 'scout-schema']){
+  for (const needed of ['archetype-weights', 'archetype-limits', 'score-bands', 'grade-anchors', 'discount-rates', 'automation-limits', 'scout-roster', 'scout-sources', 'scout-schema', 'briefing-rules', 'news-tags']){
     assert.ok(ids.has(needed), `METHODOLOGY_SURFACES must name ${needed}`);
   }
 

@@ -3,6 +3,7 @@ import localData from './vite-plugin-local-data.js';
 import viewChanges from './vite-plugin-view-changes.js';
 import scout from './vite-plugin-scout.js';
 import viewBoard from './vite-plugin-view-board.js';
+import briefing from './vite-plugin-briefing.js';
 
 // Static, public, no backend. History-API routing is handled in dev by Vite's
 // SPA fallback (appType 'spa', the default) and in production by the `rewrites`
@@ -16,7 +17,7 @@ export default defineConfig({
   // calls and the /scout page whole. See vite-plugin-scout.js. A market's view
   // and ledger reach the home page as grades, calls and amounts, and its own
   // dashboard whole. See vite-plugin-view-board.js.
-  plugins: [localData(), viewChanges(), scout(), viewBoard()],
+  plugins: [localData(), viewChanges(), scout(), viewBoard(), briefing()],
   build: {
     outDir: 'dist',
     target: 'es2020',
