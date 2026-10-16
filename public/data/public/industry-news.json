@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-16T11:32:45.550Z",
+  "fetchedAt": "2026-10-16T16:44:37.868Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-16T11:26:19.000Z",
+    "to": "2026-10-16T14:29:14.000Z",
     "resolution": "event",
     "points": 39
   },
@@ -135,26 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-13T09:29:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/neoen-bw-ess-and-mn8-back-efforts-to-standardise-bess-procurement-through-new-energy-storage-contract-alliance/",
-      "source": "Energy-Storage.news",
-      "title": "Neoen, BW ESS and MN8 back efforts to standardise BESS procurement through new Energy Storage Contract Alliance",
-      "url": "https://www.energy-storage.news/neoen-bw-ess-and-mn8-back-efforts-to-standardise-bess-procurement-through-new-energy-storage-contract-alliance/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Big names in the downstream battery storage market have signed up to join an initiative aimed at simplifying BESS procurement."
-    },
-    {
-      "t": "2026-10-13T10:14:01.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/clearway-energy-increases-utah-energy-centre-capacity-to-2120mwh/",
-      "source": "Energy-Storage.news",
-      "title": "Clearway Energy increases Utah ‘Energy Centre’ capacity to 2,120MWh",
-      "url": "https://www.energy-storage.news/clearway-energy-increases-utah-energy-centre-capacity-to-2120mwh/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Independent power producer (IPP) Clearway Energy has added 210MW of energy storage capacity to its Honeycomb Energy Centre fleet in Southern Utah, US."
-    },
-    {
       "t": "2026-10-13T10:18:18.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/foss-company-closes-us58-million-tax-equity-deal-for-gridstors-texas-bess-project/",
       "source": "Energy-Storage.news",
@@ -163,16 +143,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "US tax equity syndicator Foss & Company has closed a US$58 million partnership flip transaction to finance an energy storage project in Hidalgo County, Texas, developed by GridStor."
-    },
-    {
-      "t": "2026-10-13T17:35:15.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/battery-system-failures-fell-98-in-7-years-but-older-systems-need-special/832882/",
-      "source": "Utility Dive",
-      "title": "Battery system failures fell 98% in 7 years, but older systems need special care: report",
-      "url": "https://www.utilitydive.com/news/battery-system-failures-fell-98-in-7-years-but-older-systems-need-special/832882/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Electric Power Research Institute analysis found a dramatic drop in energy storage system failures from 2018 to 2025 amid a host of technology and project improvements. Early vintage systems may require retrofits, however."
     },
     {
       "t": "2026-10-14T01:44:03.000Z",
@@ -355,16 +325,6 @@
       "summary": "VSL PowerHive, a Vikram Solar subsidiary, announced a 7.5GWh BESS assembly plant in Oragadam, near Chennai, Tamil Nadu."
     },
     {
-      "t": "2026-10-16T07:06:43.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/china-topcon-solar-cell-prices-edge-lower-after-golden-week-as-industry-weighs-price-floors/",
-      "source": "pv magazine",
-      "title": "China TOPCon solar cell prices edge lower after Golden Week as industry weighs price floors",
-      "url": "https://www.pv-magazine.com/2026/10/16/china-topcon-solar-cell-prices-edge-lower-after-golden-week-as-industry-weighs-price-floors/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine , OPIS, a Dow Jones company, provides a quick look at the main price trends in the global PV industry. The post China TOPCon solar cell prices edge lower after Golden Week as industry weighs price floors appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-16T08:43:15.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/electrifying-everything/",
       "source": "pv magazine",
@@ -413,6 +373,46 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A trio of large-scale 4-hour BESS projects in Germany have progressed towards construction, from Enertrag and Enlight, Vattenfall and Fluence, and Giga Storage."
+    },
+    {
+      "t": "2026-10-16T12:17:23.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/china-proposes-ban-on-exports-of-perovskite-tandem-solar-manufacturing-technology/",
+      "source": "pv magazine",
+      "title": "China proposes ban on exports of perovskite, tandem solar manufacturing technology",
+      "url": "https://www.pv-magazine.com/2026/10/16/china-proposes-ban-on-exports-of-perovskite-tandem-solar-manufacturing-technology/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "China has proposed banning exports of selected high-efficiency perovskite and tandem solar manufacturing technologies, alongside new restrictions on advanced polysilicon, wafer and crystalline-silicon cell production processes. The proposed measures would cover 12 photovoltaic technologies, with public consultation…"
+    },
+    {
+      "t": "2026-10-16T13:36:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/flatiron-energy-closes-us850-million-financing-for-1-2gwh-massachusetts-bess-project/",
+      "source": "Energy-Storage.news",
+      "title": "Flatiron Energy closes US$850 million financing for 1.2GWh Massachusetts BESS project",
+      "url": "https://www.energy-storage.news/flatiron-energy-closes-us850-million-financing-for-1-2gwh-massachusetts-bess-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US energy storage developer Flatiron Energy has closed on approximately US$850 million for its 1,200MWh Energizar energy storage project in Chelsea, Massachusetts, US."
+    },
+    {
+      "t": "2026-10-16T13:36:51.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/usitc-finds-material-injury-from-solar-imports-from-india-indonesia-and-laos/",
+      "source": "pv magazine",
+      "title": "U.S. trade commission finds solar imports from India, Indonesia and Laos are harming domestic industry",
+      "url": "https://www.pv-magazine.com/2026/10/16/usitc-finds-material-injury-from-solar-imports-from-india-indonesia-and-laos/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Following affirmative dumping and subsidy findings by Commerce, the International Trade Commission's final vote secures the issuance of federal antidumping and countervailing duty orders. The post U.S. trade commission finds solar imports from India, Indonesia and Laos are harming domestic industry appeared first on…"
+    },
+    {
+      "t": "2026-10-16T14:29:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/standardisation-third-party-choices-outcomes-arenks-dan-taylor-building-bess-analytics-strategy/",
+      "source": "Energy-Storage.news",
+      "title": "Standardisation, third-party choices, and outcomes: Arenko’s Dan Taylor on building a BESS analytics strategy",
+      "url": "https://www.energy-storage.news/standardisation-third-party-choices-outcomes-arenks-dan-taylor-building-bess-analytics-strategy/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Dan Taylor, director of engineering at optimisation and asset management provider Arenko, speaks to Energy-Storage.news about all things data in battery energy storage systems (BESS)."
     }
   ],
   "derived": {
@@ -421,8 +421,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 28,
-      "policy": 5,
+      "grid": 26,
+      "policy": 7,
       "capital": 5,
       "technology": 1
     },
@@ -443,13 +443,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 2
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 5
+        "items": 6
       }
     ]
   },
@@ -458,6 +458,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d60db376fde402501513324040f6eda5383a094c5ae7147540ac8c16ff1bf084",
-  "envelopeChecksum": "sha256:4cc9cfbc2eceaa4c17ae2f3402a35197cd6293186dfeebb113e7149cad8120c1"
+  "contentChecksum": "sha256:cc3363295ffc051ad00d31ace2d3f2f1af4ac80da6a695ae726f7001b28981c5",
+  "envelopeChecksum": "sha256:9d1500ce81311998a0cc64c319a822e9513b0efc4d9c7c5856b14ed1f6eaab87"
 }
