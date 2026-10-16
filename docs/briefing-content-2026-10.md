@@ -19,7 +19,7 @@ Generate again: `node scripts/view/draft-briefing-content.mjs --sheet > docs/bri
 | Japan — Hokkaido Area | Build position · Ready-to-build | **Build position** · Ready-to-build | Long-term auction award · 6h floor, about 8.8h installed · awarded |
 | Australia — National Electricity Market | Build position · Ready-to-build | **Opportunistic** · Operating | Tender award · 4h · operating |
 | United States — CAISO (California) | Build position · Ready-to-build | **Opportunistic** · Operating | Resource adequacy · 4h · operating |
-| Romania | Wait · Ready-to-build | **Opportunistic** · Operating | Merchant with an optimiser floor · 4h · operating |
+| Romania | Wait · Ready-to-build | **Opportunistic** · Operating | Merchant · 4h · operating, with an optimiser floor |
 | Italy, second play | — | **Opportunistic** (its own call) | MACSE · 6–7h · awarded, ready-to-build |
 
 ## Western Australia — WEM
@@ -125,7 +125,7 @@ Generate again: `node scripts/view/draft-briefing-content.mjs --sheet > docs/bri
 
 | Play | Value/MW | Hold | Exit | Secured | Why | Next action |
 |---|---|---|---|---|---|---|
-| Merchant with an optimiser floor · 4h · operating<br>市场化（附优化商保底） · 4小时 · 在运资产 | +$378k | 19.3% | 23.2% | 0.0% | Four hours is the best design here (19.3% hold, 23.2% exit at the merchant yield); the modelled two hours gives up over a quarter of its value.<br>四小时是这里的最佳设计（按市场化收益率测算持有期回报19.3%、退出回报23.2%）；模型中的两小时设计损失逾四分之一的价值。 | Find operating four-hour assets with an optimiser floor, or a seller who will put one in; after the grant call closes on 30 October, check which projects won. (by 2026-11-30)<br>寻找附带优化商保底的四小时在运资产，或愿意补签保底的卖方；10月30日补贴申报截止后，核查哪些项目获得补贴。 |
+| Merchant · 4h · operating, with an optimiser floor<br>市场化 · 4小时 · 在运资产，附优化商保底 | +$378k | 19.3% | 23.2% | 0.0% | Four hours is the best design here (19.3% hold, 23.2% exit at the merchant yield); the modelled two hours gives up over a quarter of its value.<br>四小时是这里的最佳设计（按市场化收益率测算持有期回报19.3%、退出回报23.2%）；模型中的两小时设计损失逾四分之一的价值。 | Find operating four-hour assets with an optimiser floor, or a seller who will put one in; after the grant call closes on 30 October, check which projects won. (by 2026-11-30)<br>寻找附带优化商保底的四小时在运资产，或愿意补签保底的卖方；10月30日补贴申报截止后，核查哪些项目获得补贴。 |
 
 **Fund call, ruled:** Wait → **Opportunistic**, operating: An operating four-hour asset with an optimiser floor.
 
@@ -250,7 +250,7 @@ Generate again: `node scripts/view/draft-briefing-content.mjs --sheet > docs/bri
 
 | Play | Value/MW | Hold | Exit | Secured | Why | Next action |
 |---|---|---|---|---|---|---|
-| Reserves and trading, with a negotiated floor · 2h · ready-to-build<br>备用服务与交易（谈定保底） · 2小时 · 具备开工条件 | not priced: the engine withholds this market | — | — | — | Reserve markets pay for fast power, not hours, and connected storage already exceeds the fast-reserve need; a negotiated floor is the only secured revenue.<br>备用市场为快速功率而非时长付费，而已并网储能已超过快速备用需求；谈定的保底是唯一的锁定收入。 | Price ready-to-build projects only with a negotiated floor in place; read the grid-priority bill due this autumn. (by 2026-11-30)<br>只为已谈定保底的具备开工条件项目定价；关注今年秋季提出的并网优先法案。 |
+| Reserves and trading · 2h · ready-to-build, with a negotiated floor<br>备用服务与交易 · 2小时 · 具备开工条件，谈定保底 | not priced: the engine withholds this market | — | — | — | Reserve markets pay for fast power, not hours, and connected storage already exceeds the fast-reserve need; a negotiated floor is the only secured revenue.<br>备用市场为快速功率而非时长付费，而已并网储能已超过快速备用需求；谈定的保底是唯一的锁定收入。 | Price ready-to-build projects only with a negotiated floor in place; read the grid-priority bill due this autumn. (by 2026-11-30)<br>只为已谈定保底的具备开工条件项目定价；关注今年秋季提出的并网优先法案。 |
 
 **Fund call:** Opportunistic, unchanged; it now names `fi-mer-2h`.
 

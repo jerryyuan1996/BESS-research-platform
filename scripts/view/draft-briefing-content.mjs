@@ -154,7 +154,7 @@ export async function renderSheet(store){
 async function withObservedFx(){
   /* The same rule as the page: the committed ECB snapshot when it is current, else the seed. */
   try {
-    const summary = JSON.parse(await readFile(path.join(ROOT, 'public', 'data', 'public', 'fx-ecb.json'), 'utf8'));
+    const summary = JSON.parse(await readFile(path.join(ROOT, 'public', 'data', 'public', 'fx-ecb.summary.json'), 'utf8'));
     setObservedFxSummary(summary);
   } catch { /* the seed stands */ }
 }

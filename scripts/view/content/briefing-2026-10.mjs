@@ -165,7 +165,7 @@ export const PLAYS = {
         '筛选持有容量合同的项目；仅按容量与批发收入定价，DS3截止日之后不计系统服务收入。')),
   ],
   ro: [
-    play('ro-mer-4h', ['Merchant with an optimiser floor · 4h · operating', '市场化（附优化商保底） · 4小时 · 在运资产'], 'mer', 4, 'operating',
+    play('ro-mer-4h', ['Merchant · 4h · operating, with an optimiser floor', '市场化 · 4小时 · 在运资产，附优化商保底'], 'mer', 4, 'operating',
       ['Four hours is the best design here (19.3% hold, 23.2% exit at the merchant yield); the modelled two hours gives up over a quarter of its value.',
        '四小时是这里的最佳设计（按市场化收益率测算持有期回报19.3%、退出回报23.2%）；模型中的两小时设计损失逾四分之一的价值。'],
       action('Find operating four-hour assets with an optimiser floor, or a seller who will put one in; after the grant call closes on 30 October, check which projects won.',
@@ -221,7 +221,7 @@ export const PLAYS = {
         '2027年1月出力回落下调生效后，再为持有资源充裕度合同的在运资产定价；只在价格达到回报门槛时买入。', '2027-01-31')),
   ],
   fi: [
-    play('fi-mer-2h', ['Reserves and trading, with a negotiated floor · 2h · ready-to-build', '备用服务与交易（谈定保底） · 2小时 · 具备开工条件'], 'mer', 2, 'ready-to-build',
+    play('fi-mer-2h', ['Reserves and trading · 2h · ready-to-build, with a negotiated floor', '备用服务与交易 · 2小时 · 具备开工条件，谈定保底'], 'mer', 2, 'ready-to-build',
       ['Reserve markets pay for fast power, not hours, and connected storage already exceeds the fast-reserve need; a negotiated floor is the only secured revenue.',
        '备用市场为快速功率而非时长付费，而已并网储能已超过快速备用需求；谈定的保底是唯一的锁定收入。'],
       action('Price ready-to-build projects only with a negotiated floor in place; read the grid-priority bill due this autumn.',
