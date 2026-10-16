@@ -6,6 +6,8 @@
      tokens  →  global  →  layout  →  components  →  charts  →  market  →  cockpit
    verdict.css follows cockpit: it styles the home page that replaced the
    cockpit there, and adds selectors of its own without restating any.
+   briefing.css follows verdict on the same terms: the briefing that now opens
+   the home page, the analyst desk and the navigation's market row.
    Responsive and print media queries live in the file that owns the majority of
    their selectors, always after those selectors' base rules.
 
@@ -22,6 +24,7 @@ import './styles/charts.css';
 import './styles/market.css';
 import './styles/cockpit.css';
 import './styles/verdict.css';
+import './styles/briefing.css';
 import './styles/live.css';
 /* Last, so its @media print block wins against anything above it without
    needing !important on every rule. */

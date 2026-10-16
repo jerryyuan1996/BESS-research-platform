@@ -71,6 +71,9 @@ export function parseRoute(pathname, search = ''){
      own and a scout id can never be mistaken for a market slug. */
   if (parts[0] === 'scout' && parts.length === 1) return { name: 'scout', ...view };
 
+  /* /desk — the analyst's queue: the calls reality has moved past. */
+  if (parts[0] === 'desk' && parts.length === 1) return { name: 'desk', ...view };
+
   /* /projects/:slug — a project dossier. Confidential in its entirety, so in a
      production build every slug resolves to nothing and the page renders a 404.
      That is deliberate: a "withheld" page appearing only for real slugs would

@@ -145,8 +145,9 @@ export function buildQueue({ views, lenses, engine, summaries, catalogue, on, no
     if (fresh.state === FRESHNESS.STALE) push('feed', dataset.marketId || null, queueText.staleFeed(dataset.id, fresh.label), `public/data/public/${dataset.id}.json`, { dataset: dataset.id });
   }
 
-  /* The default investor's disagreements first: the rulings are made through that lens. */
-  const lensRank = (item) => (item.archetype === 'infraFund' ? 0 : item.archetype ? 1 : 0);
+  /* Disagreements grouped by investor, the default one first: the rulings are made through that lens. */
+  const LENS_ORDER = ['infraFund', 'strategic', 'foreignFirstTimer', 'developer'];
+  const lensRank = (item) => (item.archetype ? LENS_ORDER.indexOf(item.archetype) : 0);
   return items.sort((a, b) => QUEUE_ORDER.indexOf(a.kind) - QUEUE_ORDER.indexOf(b.kind)
     || lensRank(a) - lensRank(b)
     || String(a.date || '').localeCompare(String(b.date || '')) || String(a.market).localeCompare(String(b.market)));

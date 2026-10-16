@@ -450,7 +450,7 @@ test('no page imports the registries that hold every market whole', async () => 
     }
   };
   await walkDisk(path.join(REPO, 'src'));
-  assert.deepEqual(diskImporters, ['src/briefing/briefingData.js'], 'the briefing loader is reached only through the stub the build replaces');
+  assert.deepEqual(diskImporters.sort(), ['src/briefing/briefingData.js', 'src/briefing/homeData.js'], 'the briefing loader is reached only through the stubs the build replaces');
 });
 
 test('a graded market registers its own view and ledger from its dashboard, and no other market does', async () => {

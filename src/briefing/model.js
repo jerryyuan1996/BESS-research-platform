@@ -187,3 +187,16 @@ function actionsFor(rows){
     .sort((a, b) => (a.due === null) - (b.due === null) || String(a.due).localeCompare(String(b.due)))
     .slice(0, MAX_ACTIONS);
 }
+
+/**
+ * What the home page carries: everything but the queue's own words, which only
+ * /desk prints. The home page says how long the queue is and links there.
+ */
+export function homeProjection(briefing){
+  const { queue, ...rest } = briefing;
+  const byKind = {};
+  for (const item of queue) byKind[item.kind] = (byKind[item.kind] || 0) + 1;
+  const disagreements = {};
+  for (const item of queue.filter(q => q.kind === 'disagreement')) disagreements[item.archetype] = (disagreements[item.archetype] || 0) + 1;
+  return { ...rest, queueSummary: { total: queue.length, byKind, disagreements } };
+}

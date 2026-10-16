@@ -323,3 +323,13 @@ Research gates G40 (NEM seeds) and G41 (CAISO seeds) are in `docs/external-view.
   so for the fund it is Romania's grant call (30 October), not MACSE-2 (24 November); a market
   whose best design is negative reads "nothing clears the platform's yields" rather than naming
   the least-bad design as a recommendation.
+
+**PR 4 — the briefing home (2026-10-16).** `src/home/briefingHome.js` renders the six answers from
+`HOME_BRIEFING` (the briefing less the queue's words, `src/briefing/homeData.js`); the verdict board
+moved behind a fold. The lens defaults to the infrastructure fund, and "All four" is remembered as a
+choice (`hub_lens = 'all'`). "Since your last visit" keeps three marks in the browser
+(`src/briefing/since.js`): a reload inside thirty minutes keeps the same window, a first visit reads
+seven days. The navigation is two rows — Briefing · Returns · Changes · Desk (Scouting once a card
+exists), then the market codes. `/desk` moved forward from PR 6 so the briefing's link to it is never
+dead. The "Release Gate" chip and the home footer's disclaimer are gone. First view measured 247.6 kB
+gzipped against the unchanged 258 budget; the board, behind the fold, is no longer part of it.

@@ -9,7 +9,7 @@
 
      node scripts/view/draft-briefing-content.mjs --sheet      the sheet, for review
      node scripts/view/draft-briefing-content.mjs --changes <out.json>
-     node scripts/view/writer.mjs apply <out.json>              his door to the store
+     node scripts/view/writer.mjs apply <out.json>              the analyst's door to the store
 
    The figures quoted in the prose are the engine's on that date and are
    re-derived in the sheet; the pages never print these sentences' numbers as

@@ -234,6 +234,17 @@ const BUDGET = {
        not the 24 estimated. A market's grades and calls compress far better
        beside fourteen others of the same shape than the first four suggested. */
     'verdict-board': 19,
+    /* The briefing that opens the home page since the guided-experience plan
+       (PR 4): the six answers and the home projection of the briefing — every
+       investor's shortlist, the plays priced by the engine at build time, the
+       catalysts, the build lines and the dated changes, in two languages. No
+       engine and no market data: the build writes the briefing as a literal.
+       Measured 14.44 before the first plays were written; the plays, their
+       lines and actions add roughly 4. */
+    'briefing-home': 20,
+    /* The analyst desk with the briefing's queue. Rollup keeps only the fields
+       the desk reads. Measured 3.44. */
+    'desk': 6,
     /* The old home page, now at /returns: market cards, globe, league table,
        revenue stack, $1M engine, congestion, plus the two sections that were
        written and never mounted. Measured 67.95. Fetched only on that route. */
@@ -409,16 +420,21 @@ test('the entry chunk is within its budget', async (t) => {
 test('the home page\'s first view is within its budget', async (t) => {
   if (skipWithoutDist(t)) return;
   const { entry, features, byName } = await chunks();
+  /* Since the guided-experience plan (PR 4) the home page opens on the
+     briefing; the verdict board is folded underneath it and fetched only when
+     the reader opens the fold. */
+  const briefing = features.get('briefing-home');
   const board = features.get('verdict-board');
-  assert.ok(entry && board, 'no entry chunk or no verdict-board chunk');
+  assert.ok(entry && briefing && board, 'no entry chunk, no briefing-home chunk or no verdict-board chunk');
 
-  const first = closure(board, byName, closure(entry, byName));
+  const first = closure(briefing, byName, closure(entry, byName));
+  assert.ok(!first.has(board), 'the verdict board is being loaded with the briefing: it belongs behind the fold');
   assert.ok(kB(gzipOf(first)) <= BUDGET.home,
     `the home page's first view is ${kB(gzipOf(first))} kB gzipped across ${first.size} chunks ` +
     `(${[...first].map(c => c.name).join(', ')}), over its ${BUDGET.home} kB budget.\n` +
-    'This is what a reader arriving at / waits for: the shell, the verdict board and\n' +
-    'the method layer behind it. It grows when a market is graded; anything else\n' +
-    'that grows it is a module the board should not be importing.');
+    'This is what a reader arriving at / waits for: the shell, the briefing and the\n' +
+    'method vocabulary it labels with. It grows with plays and with markets graded;\n' +
+    'anything else that grows it is a module the briefing should not be importing.');
 
   /* The old home page must not ride along. If the board ever imports a module
      the Returns page owns, Rollup makes the Returns chunk a static dependency

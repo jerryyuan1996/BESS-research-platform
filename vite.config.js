@@ -57,6 +57,12 @@ export default defineConfig({
           /* The home page's verdict board, and the Returns page that took over
              the old home content. Each is fetched by its own route. */
           if (/[\\/]home[\\/]verdictHome\.js$/.test(id)) return 'assets/verdict-board-[hash].js';
+          /* The briefing that opens the home page (guided-experience plan, PR 4),
+             with the home projection of the briefing, and the analyst desk with
+             the whole of it. Each is fetched by its own route; the board above is
+             now fetched from the briefing's fold. */
+          if (/[\\/]home[\\/]briefingHome\.js$/.test(id)) return 'assets/briefing-home-[hash].js';
+          if (/[\\/]desk[\\/]deskPage\.js$/.test(id)) return 'assets/desk-[hash].js';
           if (/[\\/]home[\\/]returnsPage\.js$/.test(id)) return 'assets/returns-[hash].js';
           /* The changelog page, with every changelog line. Fetched by /changes
              and by nothing else. */

@@ -30,7 +30,7 @@ function renderNotFound(app, route){
   app.append(h('div', { class: 'note' },
     L(['That route does not exist. Use the navigation above, or ', '该路由不存在。请使用上方导航，或']),
     h('a', { href: '/', onclick: (e) => { e.preventDefault(); navigate('/'); } },
-      L(['return to the global cockpit', '返回全球总看板'])), '.'));
+      L(['return to the briefing', '返回简报'])), '.'));
 }
 
 /* The Returns page's module, once fetched, so a re-render draws at once. */
@@ -120,6 +120,33 @@ function renderScout(app){
   });
 }
 
+/* The analyst desk's module, once fetched. It brings the whole briefing with
+   it, queue and all; the home page carries the briefing less the queue. */
+let deskPage = null;
+
+function renderDesk(app){
+  if (deskPage) return void deskPage.renderDeskPage(app);
+  const holder = h('div', {},
+    h('div', { class: 'hdr' }, h('div', {},
+      h('h1', {}, L(['The analyst desk', '分析台'])),
+      h('div', { class: 'sub' }, L(['Loading the queue…', '正在加载待办…'])))),
+    marketNav(markets, 'desk'),
+    h('div', { class: 'dash-skeleton', 'aria-busy': 'true', 'aria-label': L(['Loading', '加载中']) },
+      h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' })));
+  app.append(holder);
+  import('../desk/deskPage.js').then(m => {
+    deskPage = m;
+    if (!holder.isConnected) return;
+    app.innerHTML = '';
+    m.renderDeskPage(app);
+  }).catch(err => {
+    console.error('[desk] page failed to load:', err);
+    if (!holder.isConnected) return;
+    app.innerHTML = '';
+    renderNotFound(app, { path: '/desk' });
+  });
+}
+
 /* Guards a stale dossier render, exactly as marketPage.js guards a stale market
    one: the reader may navigate again before the chunk resolves. */
 let dossierToken = 0;
@@ -166,6 +193,7 @@ export function render(){
   if (route.name === 'returns') return void renderReturns(app);
   if (route.name === 'changes') return void renderChanges(app, route);
   if (route.name === 'scout') return void renderScout(app);
+  if (route.name === 'desk') return void renderDesk(app);
   if (route.name === 'investmentLab') return void renderInvestmentLabPage(app);
   if (route.name === 'data') return void renderDataStatus(app);
   if (route.name === 'news') return void renderNewsPage(app);

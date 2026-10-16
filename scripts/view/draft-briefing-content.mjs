@@ -4,7 +4,7 @@
    scripts/view/content/briefing-2026-10.mjs holds the first theses, plays and
    ruled fund calls of the guided-experience plan. This lays them out for the
    analyst to read, checks them against the store without writing, and — only
-   when he says so — applies them through his own door to the writer, in one
+   on the analyst's word — applies them through the analyst's own door to the writer, in one
    batch that is written whole or not at all.
 
      node scripts/view/draft-briefing-content.mjs --sheet           print the sheet (Markdown)
