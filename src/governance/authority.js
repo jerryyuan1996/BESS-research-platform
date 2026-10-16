@@ -337,6 +337,9 @@ export const COMPARISON_AUTHORITY = {
   'economics.ltda.excludesGrant': AUTHORITY.METHODOLOGY,
   /* An eligibility rule the scheme publishes, where it has one. */
   'economics.ltda.minDurationHours': AUTHORITY.ANALYST,
+  /* The area's published adjustment factor: the award is paid on awarded kW
+     (installed × factor). A rule read from OCCTO, not a judgement. */
+  'economics.ltda.awardFactor': AUTHORITY.METHODOLOGY,
 
   // Policy-set, therefore observable in principle.
   'economics.grantPct': AUTHORITY.ANALYST,

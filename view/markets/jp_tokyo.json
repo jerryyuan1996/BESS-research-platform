@@ -14,10 +14,10 @@
         "comparison-engine"
       ],
       "reason": [
-        "Seventh of fourteen markets on hold IRR, 7.4%.",
-        "持有期IRR为7.4%，在十四个市场中排名第七。"
+        "Seventh of fourteen markets on hold IRR, 3.6%.",
+        "持有期IRR为3.6%，在十四个市场中排第七。"
       ],
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-16",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -229,12 +229,12 @@
     "infraFund": {
       "archetype": "infraFund",
       "where": [
-        "An awarded, ready-to-build asset",
-        "已中标且具备开工条件的资产"
+        "An operating, awarded asset bought at a price that clears the hurdle",
+        "以达到门槛收益的价格收购已投运的中标资产"
       ],
       "reviewBy": "2027-03-31",
-      "call": "build-position",
-      "route": "ready-to-build",
+      "call": "opportunistic",
+      "route": "operating",
       "play": "jp-tokyo-ltda-6h",
       "because": [
         {
@@ -253,15 +253,19 @@
         }
       ],
       "despite": [
-        "A six-hour award must still deliver six hours in year 20, which takes a 9-hour build. At the engine's award of ¥37,000/kW-year that build loses value, and trade-press estimates put battery awards lower still, at ¥12,000–25,000.",
-        "六小时中标合同须在第20年仍能提供六小时，这需要9小时装机。按引擎每千瓦每年37,000日元的中标价，该设计会损失价值；而行业媒体估计电池中标价更低，约为每千瓦12,000至25,000日元。"
+        "The award is bid at a regulated return: METI caps what a battery bid may price at 4.5% pre-tax, so a new nine-hour build loses value at a fund's yields, and trade-press estimates put battery awards at ¥12,000–25,000 per awarded kW.",
+        "中标合同按受监管回报报价：经产省规定蓄电池报价可计入的税前回报上限为4.5%，因此新建九小时设计按基金收益率会损失价值；行业媒体估计蓄电池中标价为每中标千瓦¥12,000–25,000。"
       ],
       "changesIf": [
         "jp-tokyo-ltda-round-4-bids"
       ],
       "author": "analyst",
       "asOf": "2026-10-16",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "scoreNote": [
+        "The score reads how secure the award is, and it is: 96% of revenue for twenty years. What it cannot read is the price: a battery bid may carry at most a 4.5% pre-tax return, so a new build loses value at a fund's yields. A fund buys an operating award at a price that clears, or not at all.",
+        "评分反映中标合同的安全性，而它确实安全：二十年内锁定96%的收入。评分无法反映的是价格：蓄电池报价可计入的税前回报上限为4.5%，因此新建项目按基金收益率会损失价值。基金只能以达标价格收购已投运的中标资产，否则不投。"
+      ]
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -336,8 +340,8 @@
       "kind": "event",
       "market": "jp_tokyo",
       "label": [
-        "Long-term decarbonisation auction Round 4 bidding closes; a 9h build breaks even at about ¥46,500/kW-year",
-        "长期脱碳电源拍卖第四轮投标截止；9小时设计约在每千瓦每年46,500日元的中标价下盈亏平衡"
+        "Long-term decarbonisation auction Round 4 bidding closes; battery awards have cleared at about ¥13,000–25,000 per awarded kW (trade press)",
+        "长期脱碳电源拍卖第四轮投标截止；据行业媒体，蓄电池中标价约为每中标千瓦¥13,000–25,000"
       ],
       "expected": "2027-02-03",
       "watches": [
@@ -352,20 +356,20 @@
     "jp-tokyo-ltda-6h": {
       "id": "jp-tokyo-ltda-6h",
       "label": [
-        "Long-term auction award · 9h installed, holding the 6h floor · awarded",
-        "长期脱碳电源拍卖中标 · 9小时装机，维持6小时下限 · 已中标"
+        "Long-term auction award · 9h · operating, awarded",
+        "长期脱碳电源拍卖中标 · 9小时 · 已投运、已中标"
       ],
       "route": "ltda",
       "hours": 9,
-      "stage": "ready-to-build",
+      "stage": "operating",
       "why": [
-        "The long-term auction is how Japanese storage is financed, with 96% of revenue secured; its six-hour floor must still hold in year 20, which takes a 9-hour build.",
-        "长期脱碳电源拍卖是日本储能的融资路径，可锁定96%的收入；其六小时下限须在第20年仍然满足，需9小时装机。"
+        "The award is a regulated return: a battery bid may price at most 4.5% pre-tax, which an unlevered fund cannot hold at its yields. It pays only bought at a discount.",
+        "中标合同属受监管回报：蓄电池报价可计入的税前回报上限为4.5%，无杠杆基金按其收益率无法持有，仅在折价收购时才有价值。"
       ],
       "action": {
         "text": [
-          "Before Round 4 bids close on 3 February 2027, list awarded projects whose installed hours hold six hours to year 20.",
-          "在2027年2月3日第四轮投标截止前，列出装机时长可在第20年维持六小时的已中标项目。"
+          "Before Round 4 bids close on 3 February 2027, list Tokyo award holders that might sell an operating asset, and the price at which each clears a 7.5% secured yield.",
+          "在2027年2月3日第四轮投标截止前，列出可能出售已投运资产的东京中标方，以及各资产达到7.5%锁定收益率的价格。"
         ],
         "due": "2027-02-03"
       },

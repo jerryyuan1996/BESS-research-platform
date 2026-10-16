@@ -23,7 +23,7 @@
 
    EVERY ITEM IS "verify" or "unsourced". */
 
-const BASIS = { powerMW: 50, durationHours: 6 };
+const BASIS = { powerMW: 50, durationHours: 9 };
 
 const development = {
   id: 'development-spend', kind: 'consent',

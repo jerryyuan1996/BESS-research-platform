@@ -7,17 +7,17 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 2,
+      "grade": 3,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Ninth of fourteen markets on hold IRR, 4.7%.",
-        "持有期IRR为4.7%，在十四个市场中排第九。"
+        "Sixth of fourteen markets on hold IRR, 5.1%.",
+        "持有期IRR为5.1%，在十四个市场中排第六。"
       ],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-16",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -30,10 +30,10 @@
         "comparison-engine"
       ],
       "reason": [
-        "10% of revenue is secured, for fifteen years.",
-        "10%的收入已锁定，期限十五年。"
+        "12% of revenue is secured, for fifteen years.",
+        "12%的收入已锁定，期限十五年。"
       ],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-16",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -272,9 +272,13 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-16",
       "lockedUntil": null,
-      "play": "gb-toll-4h"
+      "play": "gb-toll-4h",
+      "scoreNote": [
+        "The score rose with the asset-return rank, which moved only because Japan fell below Great Britain on 2026-10-16. Nothing in Great Britain changed: the toll 4h play is still about −$238k/MW at a fund's yields, so the call stays Opportunistic.",
+        "评分随资产回报排名上升，而排名变动仅因日本于2026-10-16降至英国之下。英国本身并无变化：按基金收益率，租赁4小时方案每MW仍约为−23.8万美元，因此结论维持“择机”。"
+      ]
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",

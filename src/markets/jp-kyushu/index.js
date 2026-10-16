@@ -19,6 +19,7 @@ import { tabs } from '../jp/tabs.js';
 import { sources } from '../jp/sources.js';
 import {
   JP_REGIONS, JP_COMMON_COST, JP_CAPITAL, JP_REFERENCE, JP_LTDA_MERCHANT_RETENTION, jpRanges,
+  JP_ARCHETYPE_CAPEX, JP_ARCHETYPE_OPEX,
   JP_DURATION_RESPONSE,
 } from '../jp/regions.js';
 import { merchantVintage } from '../../comparison/vintage.js';
@@ -56,8 +57,8 @@ export const manifest = {
 const economics = {
   riskClass: 'auction-renewal',
 
-  capexPerMW: JP_COMMON_COST.capexPerMW,
-  opexPerMW: JP_COMMON_COST.opexPerMW,
+  capexPerMW: JP_ARCHETYPE_CAPEX,
+  opexPerMW: JP_ARCHETYPE_OPEX,
   /* Component stack, consumption tax and build period — shared across the
      three areas, because none of them differ on capital cost. */
   ...JP_CAPITAL,
@@ -79,6 +80,7 @@ const economics = {
      rather than an addition to it, which is what merchantRetention encodes. */
   ltda: {
     payment: R.econ.ltdaPaymentJPYMWYr,
+    awardFactor: R.econ.ltdaAwardFactor,
     years: 20,
     /* Round 3 abolished the 3-6h bracket and set a hard six-hour floor, so a
        shorter asset cannot bid into this route at all. Declared by the market
@@ -127,7 +129,7 @@ export const comparison = {
   ]),
 
   narrative: {
-    archetype: ['50 MW · 6h reference · surplus / curtailment', '50MW · 6小时参考 · 过剩 / 弃电'],
+    archetype: ['50 MW · 9h reference · surplus / curtailment', '50MW · 9小时参考 · 过剩 / 弃电'],
     thesis: [
       'Renewable-surplus and curtailment benchmark. Value depends on charging access, regional price capture and interconnector evolution.',
       '新能源过剩与弃电基准市场。价值取决于充电接入、区域价格捕获及跨区互联演进。',

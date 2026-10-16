@@ -29,7 +29,7 @@
    --------------------------------------------------------------------------- */
 
 import { band, limits } from '../../comparison/ranges.js';
-import { stackFrom } from '../../comparison/capex.js';
+import { stackFrom, buildCapex } from '../../comparison/capex.js';
 
 /* Reference asset — identical in all three regions on purpose. The controlled
    experiment the Regional Benchmark tab asks: same 50 MW / 6h battery, same
@@ -41,9 +41,13 @@ import { stackFrom } from '../../comparison/capex.js';
    A four-hour Japanese battery cannot bid into the route that makes Japan
    bankable, so a four-hour reference asset was modelling a market that is closed.
    docs/external-view.md §3. */
+/* REVISED 2026-10-16: 6h → 9h (docs/japan-ltda-repricing-plan.md, decision 5).
+   Six hours at COD fades to 4.1h by year 20, and OCCTO requires the declared
+   capacity to hold six hours for the whole term with degradation priced in.
+   Nine hours is the smallest declared build that holds it (6.13h in year 20). */
 export const JP_REFERENCE = {
   powerMW: 50,
-  durationHours: 6,
+  durationHours: 9,
   usableFraction: 0.95,
   rtePct: 88,
   availPct: 92,
@@ -89,6 +93,27 @@ export const JP_COMMON_COST = {
    programme, so twelve months is carried as the platform default rather than an
    estimate dressed as evidence. */
 export const JP_CAPEX_STACK = stackFrom(JP_COMMON_COST.capexPerMW, 6);
+
+/* The archetype's capex: the six-hour basis above, carried to the archetype's
+   duration by the component stack (energy blocks scale, power blocks do not). */
+export const JP_ARCHETYPE_CAPEX = Math.round(buildCapex(JP_CAPEX_STACK, JP_REFERENCE.durationHours).total);
+const ARCHETYPE_CAPEX_RATIO = JP_ARCHETYPE_CAPEX / JP_COMMON_COST.capexPerMW;
+
+/* Opex, from METI's own battery cost inputs for the Round 4 ceiling (METI
+   006_s02_00, August 2026, table 31; gate G43): ¥7,000/kW-yr O&M for a
+   six-hour build, scaled with energy at the sweep's 50% share, ¥900/kW-yr
+   generation-side charge, and 1.4% fixed-asset tax, taken at half the build
+   (average book value over a straight-line twenty years). The analyst's
+   2026-10-12 ruling holds: warranty extension and LTSA paid annually, no
+   augmentation; their cost sits inside the O&M figure. Replaces ¥1.8m/MW. */
+export const JP_ARCHETYPE_OPEX = Math.round(
+  (7000 * (1 + 0.5 * (JP_REFERENCE.durationHours / 6 - 1)) + 900) * 1000
+  + 0.014 * 0.5 * JP_ARCHETYPE_CAPEX);
+
+/* Decommissioning at 5% of the build, METI's own allowance (table 31). It is
+   recovered in the bid; the cash flows do not carry it, because it falls in year
+   twenty, past the platform's fifteen-year window. */
+export const JP_DECOMMISSIONING = Math.round(0.05 * JP_ARCHETYPE_CAPEX);
 export const JP_CAPITAL = {
   capexStack: JP_CAPEX_STACK,
   vatPct: 10, vatRecoverable: true, vatLagMonths: 0,
@@ -241,22 +266,36 @@ const secured = (area) => Math.round(cmPrice[area] * 1000 * JP_EXPECTED_CAPACITY
    Round 3 guidelines) is what would replace it with an observation.
    --------------------------------------------------------------------------- */
 
-/** Required return used to annuitise capex into an LTDA bid. Nominal, pre-tax. */
-const LTDA_REQUIRED_RETURN = 0.08;
+/** The return a battery bid may include: METI's pre-tax WACC cap for Round 4
+    (006_s02_00 tables 17 and 29; 4% in Rounds 1–3). Bids carrying more are cut
+    back by the market-surveillance commission, so this is the rule, not a guess.
+    Was 8% until 2026-10-16 (gate G43). */
+export const LTDA_BID_RETURN = 0.045;
 const LTDA_TERM_YEARS = 20;
 
 /** Published FY2026 (Round 4) battery bid ceiling by area, ¥/kW/yr. Context, not an
-    input. Supersedes the FY2024 6h+ band of [87683, 93883]. */
-export const JP_LTDA_CAP_BAND = [70675, 74417];
+    input, per AWARDED kW. Table 30's area figures (table 29 prints 70,675–74,417).
+    Supersedes the FY2024 6h+ band of [87683, 93883]. */
+export const JP_LTDA_CAP_BAND = [71140, 74906];
 
-function ltdaCostReflectiveBid(retainedMarketPerMW){
-  const capexPerKW = JP_COMMON_COST.capexPerMW / 1000;
-  const r = LTDA_REQUIRED_RETURN;
+/** The award is paid on awarded kW: installed kW at the sending end times the
+    area's published six-hour adjustment factor, fixed for the twenty years
+    (OCCTO 制度詳細 pp. 49–50; METI 006_s02_00 table 30). */
+export const JP_LTDA_AWARD_FACTOR = { tokyo: 0.907, kyushu: 0.933, hokkaido: 0.946 };
+
+/* The bid is made per AWARDED kW and rounded there; it is paid on awarded kW, so
+   per installed MW the payment is the bid times the area's factor. For a cost
+   bid the factor cancels, which is the point: what it changes is the comparison
+   with prices quoted per awarded kW. */
+function ltdaCostReflectiveBid(retainedMarketPerMW, factor){
+  const r = LTDA_BID_RETURN;
   const annuityFactor = r / (1 - Math.pow(1 + r, -LTDA_TERM_YEARS));
-  const perKW = capexPerKW * annuityFactor
-    + JP_COMMON_COST.opexPerMW / 1000
+  const capital = JP_ARCHETYPE_CAPEX + JP_DECOMMISSIONING / Math.pow(1 + r, LTDA_TERM_YEARS);
+  const perInstalledKW = capital / 1000 * annuityFactor
+    + JP_ARCHETYPE_OPEX / 1000
     - retainedMarketPerMW / 1000;
-  return Math.round(perKW / 1000) * 1000 * 1000;   // to ¥/MW/yr, rounded to ¥1,000/kW
+  const perAwardedKW = Math.round(perInstalledKW / factor / 1000) * 1000;
+  return Math.round(perAwardedKW * factor * 1000);   // ¥/MW/yr, per installed MW
 }
 
 /* Fraction of other-market net profit the owner keeps. The LTDA returns ~90% to
@@ -266,10 +305,11 @@ function ltdaCostReflectiveBid(retainedMarketPerMW){
 export const JP_LTDA_MERCHANT_RETENTION = 0.10;
 
 /* Arbitrage uplift from the 4h reference the seed economics were built on to the
-   6h asset the LTDA now requires. Sub-linear: 50% more energy does not buy 50%
-   more spread, because the marginal hours are the less valuable ones. Balancing
-   value is power-based and is NOT scaled. SEED. */
-const JP_6H_MERCHANT_UPLIFT = 1.25;
+   archetype: energy × capture, read off the sweep's own curve so the archetype
+   and the sweep agree (9h: 2.25 × 0.61 = 1.37; it was a 1.25 seed at 6h).
+   Balancing value is power-based and is NOT scaled. */
+const captureAt = (h) => JP_DURATION_RESPONSE.merchantCapture[JP_DURATION_RESPONSE.hours.indexOf(h)];
+const JP_ARCHETYPE_MERCHANT_UPLIFT = JP_REFERENCE.durationHours / 4 * captureAt(JP_REFERENCE.durationHours) / captureAt(4);
 
 /* Normalized economics for one area.
 
@@ -281,7 +321,7 @@ const JP_6H_MERCHANT_UPLIFT = 1.25;
    be earned in the market legs, which is the premise the three-region split was
    built on. */
 function regionEcon(area, merchGross4hJPYMWYr, balancingJPYMWYr){
-  const merchGross = Math.round(merchGross4hJPYMWYr * JP_6H_MERCHANT_UPLIFT);
+  const merchGross = Math.round(merchGross4hJPYMWYr * JP_ARCHETYPE_MERCHANT_UPLIFT);
 
   /* Market revenue the owner actually keeps under the clawback, net of the
      optimiser fee on the traded leg. This is what a bidder can deduct from the
@@ -297,7 +337,8 @@ function regionEcon(area, merchGross4hJPYMWYr, balancingJPYMWYr){
     capacityAreaPriceJPYkWYr: cmPrice[area],
     renewal: renewalCurve(secured(area)),
     renewalScenario: renewalScenario(area),
-    ltdaPaymentJPYMWYr: ltdaCostReflectiveBid(retained),
+    ltdaPaymentJPYMWYr: ltdaCostReflectiveBid(retained, JP_LTDA_AWARD_FACTOR[area]),
+    ltdaAwardFactor: JP_LTDA_AWARD_FACTOR[area],
   };
 }
 
@@ -567,10 +608,10 @@ export const REGION_IDS = ['tokyo', 'kyushu', 'hokkaido'];
    --------------------------------------------------------------------------- */
 export function jpRanges(economics){
   return {
-    capexPerMW: band(economics.capexPerMW, 45000 * 6000, 68000 * 6000, {
+    capexPerMW: band(economics.capexPerMW, 45000 * 6000 * ARCHETYPE_CAPEX_RATIO, 68000 * 6000 * ARCHETYPE_CAPEX_RATIO, {
       basis: [
-        'Japanese grid-scale BESS averaged ~¥68,000/kWh in FY2024 (~US$433/kWh), with system costs reported at 2.5–3× global benchmarks. ¥45,000/kWh was this platform\'s previous seed and assumed convergence to world prices. ¥60,000 sits between the observation and that convergence, allowing for decline to a 2026-27 COD. Both ends × 6,000 kWh/MW.',
-        '日本电网级储能在2024财年平均约¥68,000/kWh（约US$433/kWh），系统成本据报为全球基准的2.5–3倍。¥45,000/kWh为本平台此前种子值，隐含向全球价格收敛的假设。¥60,000介于实测值与该收敛之间，并考虑至2026–27年投运期间的成本下降。两端均乘以6,000 kWh/MW。',
+        'Japanese grid-scale BESS averaged ~¥68,000/kWh in FY2024 (~US$433/kWh), with system costs reported at 2.5–3× global benchmarks. ¥45,000/kWh was this platform\'s previous seed and assumed convergence to world prices. ¥60,000 sits between the observation and that convergence, allowing for decline to a 2026-27 COD. Both ends × 6,000 kWh/MW, carried to the nine-hour archetype by the component stack.',
+        '日本电网级储能在2024财年平均约¥68,000/kWh（约US$433/kWh），系统成本据报为全球基准的2.5–3倍。¥45,000/kWh为本平台此前种子值，隐含向全球价格收敛的假设。¥60,000介于实测值与该收敛之间，并考虑至2026–27年投运期间的成本下降。两端均乘以6,000 kWh/MW，并按组件结构折算至九小时原型。',
       ],
       source: 'MRI / METI cost estimates and IEEFA, FY2024 observation ~¥68,000/kWh',
       gate: 'G5',
@@ -578,10 +619,10 @@ export function jpRanges(economics){
 
     opexPerMW: band(economics.opexPerMW, null, null, {
       basis: [
-        'No published Japanese fixed-opex series. ¥1.8m/MW/yr is ≈US$11,500, below the US utility-scale benchmark of US$15–25k/MW/yr, which is context rather than a bound.',
-        '无日本固定运维公开序列。¥180万/MW/年约合US$11,500，低于美国公用事业级基准US$15–25k/MW/年 — 后者仅为参照，非边界。',
+        'METI\'s battery cost inputs for the Round 4 ceiling: ¥7,000/kW-yr O&M at six hours, scaled with energy, ¥900/kW-yr generation-side charge and 1.4% fixed-asset tax on half the build. An average across subsidy projects, which may overstate what an awarded project pays (gate G44).',
+        '经产省第四轮上限所用蓄电池成本输入：六小时运维¥7,000/kW-年（随能量折算）、发电侧费用¥900/kW-年，以及按一半建设成本计的1.4%固定资产税。该值为补贴项目平均，可能高于中标项目实际成本（研究缺口G44）。',
       ],
-      source: 'Platform seed',
+      source: 'METI 006_s02_00 (August 2026), table 31',
       gate: 'G13',
     }),
 
@@ -596,10 +637,10 @@ export function jpRanges(economics){
 
     /* Pay-as-bid with no published clearing price. The band is the honest width
        of that: a cost-reflective bid at the bottom, the published cap at the top. */
-    'ltda.payment': band(economics.ltda.payment, null, JP_LTDA_CAP_BAND[0] * 1000, {
+    'ltda.payment': band(economics.ltda.payment, null, JP_LTDA_CAP_BAND[0] * 1000 * (economics.ltda.awardFactor ?? 1), {
       basis: [
-        'LTDA Round 3 is pay-as-bid and clearing prices are NOT published. The ceiling is the FY2026 (Round 4) battery maximum, ¥70,675–74,417/kW/yr by area, down from ¥87,683–93,883 in FY2024. The seed is derived instead as cost-reflective fixed-cost recovery — capex annuitised over the 20-year term at 8%, plus opex, less the sliver of market revenue retained after the ~90% clawback — which lands at ~51% of the ceiling midpoint. With ~46% bid success, more than half the bid capacity lost, so a bidder bids its cost rather than the cap.',
-        '长期脱碳拍卖第3轮采用按报价成交，且出清价格不予公布。上限为2026财年（第四轮）蓄电池上限，按区域为¥70,675–74,417/kW/年，低于2024财年的¥87,683–93,883。种子值则按成本反映型固定成本回收推导 — 资本开支按8%在20年期限内年金化，加运维成本，减去在约90%收益上缴后所保留的少量市场收入 — 结果约为上限中值的51%。在约46%的中标率下，超过半数投标容量落标，因此投标人按成本而非按上限报价。',
+        'LTDA Round 3 is pay-as-bid and clearing prices are NOT published. The ceiling is the FY2026 (Round 4) battery maximum, ¥70,675–74,417/kW/yr by area, down from ¥87,683–93,883 in FY2024. The award is derived instead as the cost bid the rules allow: capex annuitised over the 20-year term at METI\'s 4.5% cap on the return a battery bid may include, plus opex, less the sliver of market revenue retained after the ~90% clawback, bid per awarded kW (installed × the area\'s 6h factor). Trade-press estimates of the battery line, ¥12,000–25,000 per awarded kW, sit below it (gates G42, G43).',
+        '长期脱碳拍卖第3轮采用按报价成交，且出清价格不予公布。上限为2026财年（第四轮）蓄电池上限，按区域为¥70,675–74,417/kW/年，低于2024财年的¥87,683–93,883。种子值则按成本反映型固定成本回收推导 — 资本开支按经产省对蓄电池报价可计入回报的4.5%上限在20年期限内年金化，加运维成本，减去在约90%收益上缴后所保留的少量市场收入，并按中标容量（装机×区域6小时系数）报价。行业媒体估计的蓄电池中标线为每中标千瓦¥12,000–25,000，低于该值（研究缺口G42、G43）。',
       ],
       source: 'OCCTO LTDA Round 3 (results 13 May 2026); OCCTO FY2026 Round 4 solicitation outline (2 Sep 2026) for the ceiling',
       gate: 'G4',
@@ -607,7 +648,7 @@ export function jpRanges(economics){
 
     merchGross: band(economics.merchGross, null, null, {
       basis: [
-        'JEPX day-ahead and intraday capture for a six-hour asset, uplifted 1.25× from the four-hour seed the economics were originally built on. The uplift is sub-linear on purpose — 50% more energy does not buy 50% more spread, because the marginal hours are the less valuable ones.',
+        'JEPX day-ahead and intraday capture for the nine-hour archetype: the four-hour seed times 2.25× the energy at 0.61 of the four-hour spread, which is what JEPX paid the ninth hour in the twelve months to 16 October 2026.',
         '六小时资产在JEPX日前及日内市场的价格兑现，在原economics所依据的四小时种子基础上按1.25倍提升。该提升刻意设为次线性 — 能量增加50%并不能带来50%的价差增长，因为边际小时数属于价值较低的时段。',
       ],
       source: 'Platform seed — JEPX area prices, pending the 12-month backtest in docs/japan-etl-gates.md',

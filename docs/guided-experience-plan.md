@@ -394,3 +394,12 @@ the 6h bid, so the award stays the 6h bid at every duration. Built: Japan's grid
 10h, and the award route prices 9h at −$554k to −$563k/MW. The drafted plays move to 9h, and the
 Round 4 trigger carries the break-even award. The calls stay at Build position, flagged until gate
 G43 re-sources Japan's capex and bid return.
+
+**Japan re-priced on the auction's rules (2026-10-16).** `docs/japan-ltda-repricing-plan.md`, approved
+and built on gate G43:
+- METI caps a battery bid's return at 4.5%, and the award is paid on awarded kW.
+- METI's opex replaces the seed, and Japan's archetype moves to 9h.
+- A 9h build is worth −$466k to −$510k/MW to an unlevered fund, so the three fund calls are
+  Opportunistic.
+- The briefing's call now reads "Prepare in Ireland", with 12 situational plays.
+- Gate G44 stays open on what winners actually spend.

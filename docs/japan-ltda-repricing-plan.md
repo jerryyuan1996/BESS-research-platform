@@ -1,8 +1,19 @@
 # Japan: the award re-priced on the auction's own rules — plan for sign-off
 
-Drafted 2026-10-16 on gate G43. It follows `docs/japan-ltda-floor-plan.md` (PR #38). The derivations
-come first and nothing is built. The engine, the view store and every published number stay as they
-are until you sign off.
+Drafted 2026-10-16 on gate G43. It follows `docs/japan-ltda-floor-plan.md` (PR #38).
+
+**Approved and built the same day.** All eight decisions stand as written. As built:
+- Japan's archetype is 9h. The award is the cost bid at 4.5% per awarded kW: ¥54,000 Tokyo, ¥52,000
+  Kyushu, ¥51,000 Hokkaido.
+- The 9h build is worth −$466k, −$485k and −$510k/MW, with 3.4–3.6% hold (seed FX).
+- Decommissioning is recovered in the bid. The cash flows do not carry it, because it falls in year
+  twenty, past the fifteen-year window.
+- The three fund calls are Opportunistic on operating, awarded plays.
+- The engine's ranking moved, so Great Britain's asset-return grade rose to 3 (sixth of fourteen)
+  and Hokkaido's fell to 2 (ninth).
+- Great Britain's and Tokyo's calls now carry a note on why they sit below their scores.
+- Every change went through the writer: `scripts/view/content/japan-repricing-2026-10.mjs`, plus
+  two score notes.
 
 ## The answer
 
