@@ -75,7 +75,7 @@ export const WA_OFFICIAL_PLANNING = {
   },
   opportunity:{
     attractiveness:{
-      label:['Selective — timing-led capacity opportunity','选择性 — 时点主导的容量机会'],
+      label:['Timing-led capacity opportunity','时点主导的容量机会'],
       rationale:[
         'Official ESOO balances move from a modest 2030–31 shortfall to a much larger 2035–36 shortfall, supporting long-duration capacity value if the asset survives the near-term surplus and secures credits.',
         '官方ESOO容量余额由2030–31的小幅缺口转为2035–36的较大缺口；若资产能跨越近期盈余并取得容量信用，长时容量价值获得支持。',

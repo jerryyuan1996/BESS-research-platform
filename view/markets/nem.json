@@ -1,6 +1,9 @@
 {
   "marketId": "nem",
-  "thesis": null,
+  "thesis": [
+    "The deepest storage build in the set on the thinnest secured revenue: no capacity market, a tender floor whose level is unpublished, and a merchant spread at a record low as the fleet passed 9,000 MW. At build cost the reference project returns about 3%, so the case is the entry price, not the build. Four hours, on a tender award or a toll.",
+    "储能建设规模居各市场之首，锁定收入却最薄：没有容量市场，招标保底水平不公开，且随着储能规模突破9,000MW，市场化价差跌至历史低点。按建设成本测算参考项目回报约3%，因此关键在于进入价格而非新建。四小时，依托招标中标合同或租赁。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -213,22 +216,27 @@
     },
     "infraFund": {
       "archetype": "infraFund",
-      "call": "build-position",
-      "route": "ready-to-build",
-      "where": null,
+      "where": [
+        "An operating asset with an executed tender award, bought at a price that clears the hurdle",
+        "持有已签署招标中标合同的在运资产，且买入价格须达到回报门槛"
+      ],
+      "reviewBy": "2027-03-31",
+      "call": "opportunistic",
+      "route": "operating",
+      "play": "nem-ltda-4h",
       "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "At build cost the reference project returns 3.1% hold, so only an entry price below build cost clears a fund's hurdle.",
+            "按建设成本测算，参考项目持有期回报仅3.1%，只有低于建设成本的进入价格才能达到基金的回报门槛。"
+          ]
+        },
         {
           "dimension": "revenueCertainty",
           "text": [
             "A tender award secures most of a project's revenue for fifteen years, for the projects that win one.",
             "招标中标可为项目锁定十五年的大部分收入，但仅限于中标项目。"
-          ]
-        },
-        {
-          "dimension": "debtAvailability",
-          "text": [
-            "Lenders finance storage here without recourse, including on merchant exposure.",
-            "这里的贷款人愿意为储能项目提供无追索融资，包括存在市场化敞口的项目。"
           ]
         },
         {
@@ -240,15 +248,14 @@
         }
       ],
       "despite": [
-        "The modelled return on the reference project is 3.1%, so the price paid and the contract actually held decide the case.",
-        "参考项目的模型回报仅为3.1%，因此成败取决于买入价格与实际持有的合同。"
+        "Lenders finance storage here without recourse and assets trade often, so a fund waiting for a cheap entry competes with many buyers.",
+        "这里的贷款人提供无追索融资，资产交易频繁，等待低价进入的基金将面对众多竞争买家。"
       ],
       "changesIf": [
         "nem-successor-scheme-first-round"
       ],
-      "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-16",
       "lockedUntil": null
     },
     "foreignFirstTimer": {
@@ -327,5 +334,31 @@
       "source": "decision-profile",
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "nem-ltda-4h": {
+      "id": "nem-ltda-4h",
+      "label": [
+        "Tender award · 4h · operating",
+        "容量投资计划中标 · 4小时 · 在运资产"
+      ],
+      "route": "ltda",
+      "hours": 4,
+      "stage": "operating",
+      "why": [
+        "A tender award secures most revenue for fifteen years at four hours; at build cost it returns 3.1%, so only a cheaper entry price works.",
+        "中标合同可在四小时设计下锁定十五年的大部分收入；按建设成本测算回报仅3.1%，只有更低的进入价格才可行。"
+      ],
+      "action": {
+        "text": [
+          "Screen operating assets holding a tender award; bid only at a price that clears the hurdle, not at build cost.",
+          "筛选持有招标中标合同的在运资产；仅以达到回报门槛的价格出价，而非按建设成本。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

@@ -310,6 +310,11 @@ Each bounds what one bad run can do without adding an approval step. The constan
 | I | One command reverts a change by id | `node scripts/view/writer.mjs revert <id>` | `view-automation`, `rules` |
 | J | Held views are the analyst's alone | `HELD_AUTHORS`, a list that did not widen | `held-grade` |
 
+The weekly briefing (`weekly-briefing` in `etl.yml`, since 2026-10-16) is not a machine author: it
+asks no model, reads the store, the changelog and the published data through `src/briefing/`, and
+posts one GitHub issue a week. Its job has `contents: read` and `issues: write` and nothing else
+(`tests/briefing.test.js`).
+
 ### Operating it
 
 ```bash
@@ -317,6 +322,7 @@ node etl/rules.mjs --dry-run --any-snapshot      # what every rule reads today, 
 node scripts/view/writer.mjs apply change.json   # write to the view, as the analyst
 node scripts/view/writer.mjs revert <id>         # undo one change; the id is on /changes and in the digest
 node scripts/view/digest.mjs --days 30           # machine changes over a period
+node scripts/briefing/weekly.mjs                 # the weekly briefing, as the Monday issue will read
 npm run view:scout-status                        # the streak of clean passes, and each card
 node scripts/view/writer.mjs scout-check <id>    # record that you spot-checked a card
 node scripts/view/writer.mjs scout-remove <id>   # take a whole card away, one line per record

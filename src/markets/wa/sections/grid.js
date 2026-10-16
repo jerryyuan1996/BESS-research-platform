@@ -20,7 +20,6 @@ import { NF1, fmtN, fmtAk, fmtAM, fmtPct } from '../ui.js';
 import { SEED } from '../data/seed.js';
 import { WP_QUEUE } from '../data/wem.js';
 import { KEMERTON, hasProjectData } from '../data/kemerton.js';
-import { MJA2026, hasMjaData } from '../data/optimizer.js';
 import { withheldCard } from '../../../components/withheld.js';
 import { WA_TSP } from '../data/swisPlan.js';
 import { SRC } from '../sources.js';
@@ -340,35 +339,6 @@ function gridBody(main){
     ['Convert each case into a clause', '将每个案例转化为条款']));
   c5.style.marginTop = '14px';
   main.append(c5);
-
-  /* Supplementary locational case study — fills the gap official sources leave on
-     project-level NAQ outcomes (AEMO publishes assigned NAQ, not the sub-boundary
-     logic).
-
-     Every named site, DSOC figure and NAQ outcome comes from the confidential
-     study, so the card is data-driven and omitted entirely when that layer is
-     absent. It previously had the three project names written into this file,
-     which meant a gate on the data alone still published them — the table shipped
-     in the bundle whether or not it rendered. */
-  if (!hasMjaData) return;
-  const LC = MJA2026?.locationalCases;
-  if (!LC) return;
-
-  const cLoc = card(['Locational deliverability — why a headline transmission project is not proof of NAQ', '位置可交付性 — 标志性输电项目为何不能证明NAQ'], [badge('supp'), badge('conf'), badge('recon')]);
-  cLoc.append(h('div', { class: 'note' }, L(['A headline transmission project is not proof of project-level capacity deliverability. Capacity revenue follows DSOC → CRC → NAQ → Capacity Credits; merchant revenue follows MLF + curtailment + import/export limits. These are separate locational multipliers.',
-    '一个标志性输电项目并不证明项目层面的容量可交付性。容量收入沿 DSOC→CRC→NAQ→容量信用；市场化收入沿 MLF+限电+进出口限额。二者是相互独立的位置乘数。'])));
-  cLoc.append(h('div', { class: 'tbl-wrap' }, h('table', {},
-    h('thead', {}, h('tr', {}, h('th', {}, L(['Project', '项目'])), h('th', {}, L(['Region / boundary', '区域/边界'])), h('th', { class: 'num' }, L(['DSOC', 'DSOC'])), h('th', {}, L(['Network finding', '网络结论'])), h('th', {}, L(['NAQ outcome', 'NAQ结果'])))),
-    h('tbody', {}, LC.rows.map(r => h('tr', {},
-      h('td', {}, h('b', {}, r.project)),
-      h('td', {}, L(r.boundary)),
-      h('td', { class: 'num' }, r.dsoc),
-      h('td', {}, L(r.finding)),
-      h('td', {}, chip(r.outcomeTone, L(r.outcome)))))))));
-  cLoc.append(h('div', { class: 'cap' }, L(LC.caption)));
-  cLoc.append(why(LC.why, LC.whyTag));
-  cLoc.style.marginTop = '14px';
-  main.append(cLoc);
 }
 
 export { renderGrid, kemertonNetworkCard, kemertonGfmCard, gridBody };

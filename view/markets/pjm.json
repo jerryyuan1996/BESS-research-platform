@@ -1,6 +1,9 @@
 {
   "marketId": "pjm",
-  "thesis": null,
+  "thesis": [
+    "The best-published capacity price on the platform, secured one year at a time, on a reference return of 2.4%. Four hours is the best design as accreditation erodes. Wait for the 2029/30 auction in December 2026 before pricing anything.",
+    "本平台公开最充分的容量价格，但只能逐年锁定，参考回报仅2.4%。随着认证系数下降，四小时仍是最佳设计。在2026年12月2029/30交付年拍卖之前，不对任何资产定价。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -262,7 +265,8 @@
       "reviewBy": "2027-03-31",
       "author": "analyst",
       "asOf": "2026-10-12",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "play": "pjm-cap-4h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -372,5 +376,31 @@
       "source": "decision-profile",
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "pjm-cap-4h": {
+      "id": "pjm-cap-4h",
+      "label": [
+        "Capacity auction · 4h · ready-to-build",
+        "容量拍卖 · 4小时 · 具备开工条件"
+      ],
+      "route": "cap",
+      "hours": 4,
+      "stage": "ready-to-build",
+      "why": [
+        "Four hours is the best capacity design as accreditation erodes; the reference project returns 2.4% on capacity revenue secured one year at a time.",
+        "随着认证系数下降，四小时仍是最佳容量设计；参考项目依靠逐年锁定的容量收入，回报仅2.4%。"
+      ],
+      "action": {
+        "text": [
+          "Read the 2029/30 capacity auction in December 2026 for its price and four-hour accreditation; re-price nothing before it.",
+          "关注2026年12月2029/30交付年容量拍卖的价格与四小时认证系数；在此之前不重新定价。"
+        ],
+        "due": "2026-12-31"
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

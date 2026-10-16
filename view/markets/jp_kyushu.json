@@ -1,6 +1,9 @@
 {
   "marketId": "jp_kyushu",
-  "thesis": null,
+  "thesis": [
+    "The same national 20-year award as Tokyo, in Japan's renewable-surplus area: value turns on charging access, curtailment and interconnector capacity. The six-hour floor needs a 9-hour build to hold to year 20.",
+    "与东京相同的全国性20年期中标合同，位于日本可再生能源过剩地区：价值取决于充电接入、弃电与联络线容量。六小时下限需9小时装机才能维持到第20年。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -11,10 +14,10 @@
         "comparison-engine"
       ],
       "reason": [
-        "Sixth of fourteen markets on hold IRR, 7.5%.",
-        "持有期IRR为7.5%，在十四个市场中排名第六。"
+        "Eighth of fourteen markets on hold IRR, 3.5%.",
+        "持有期IRR为3.5%，在十四个市场中排第八。"
       ],
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-16",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -223,9 +226,14 @@
     },
     "infraFund": {
       "archetype": "infraFund",
-      "call": "build-position",
-      "route": "ready-to-build",
-      "where": null,
+      "where": [
+        "An operating, awarded asset bought at a price that clears the hurdle",
+        "以达到门槛收益的价格收购已投运的中标资产"
+      ],
+      "reviewBy": "2027-03-31",
+      "call": "opportunistic",
+      "route": "operating",
+      "play": "jp-kyushu-ltda-6h",
       "because": [
         {
           "dimension": "revenueCertainty",
@@ -243,13 +251,14 @@
         }
       ],
       "despite": [
-        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small.",
-        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。"
+        "The award is bid at a regulated return: METI caps what a battery bid may price at 4.5% pre-tax, so a new nine-hour build loses value at a fund's yields, and trade-press estimates put battery awards at ¥12,000–25,000 per awarded kW.",
+        "中标合同按受监管回报报价：经产省规定蓄电池报价可计入的税前回报上限为4.5%，因此新建九小时设计按基金收益率会损失价值；行业媒体估计蓄电池中标价为每中标千瓦¥12,000–25,000。"
       ],
-      "changesIf": [],
-      "reviewBy": "2027-03-31",
+      "changesIf": [
+        "jp-kyushu-ltda-round-4-bids"
+      ],
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-16",
       "lockedUntil": null
     },
     "foreignFirstTimer": {
@@ -322,5 +331,48 @@
       "lockedUntil": null
     }
   },
-  "triggers": []
+  "triggers": [
+    {
+      "id": "jp-kyushu-ltda-round-4-bids",
+      "kind": "event",
+      "market": "jp_kyushu",
+      "label": [
+        "Long-term decarbonisation auction Round 4 bidding closes; battery awards have cleared at about ¥13,000–25,000 per awarded kW (trade press)",
+        "长期脱碳电源拍卖第四轮投标截止；据行业媒体，蓄电池中标价约为每中标千瓦¥13,000–25,000"
+      ],
+      "expected": "2027-02-03",
+      "watches": [
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "effect": null
+    }
+  ],
+  "plays": {
+    "jp-kyushu-ltda-6h": {
+      "id": "jp-kyushu-ltda-6h",
+      "label": [
+        "Long-term auction award · 9h · operating, awarded",
+        "长期脱碳电源拍卖中标 · 9小时 · 已投运、已中标"
+      ],
+      "route": "ltda",
+      "hours": 9,
+      "stage": "operating",
+      "why": [
+        "The award is a regulated return: a battery bid may price at most 4.5% pre-tax, which an unlevered fund cannot hold at its yields. It pays only bought at a discount.",
+        "中标合同属受监管回报：蓄电池报价可计入的税前回报上限为4.5%，无杠杆基金按其收益率无法持有，仅在折价收购时才有价值。"
+      ],
+      "action": {
+        "text": [
+          "Before Round 4 bids close on 3 February 2027, list Kyushu award holders that might sell an operating asset, and the price at which each clears a 7.5% secured yield.",
+          "在2027年2月3日第四轮投标截止前，列出可能出售已投运资产的九州中标方，以及各资产达到7.5%锁定收益率的价格。"
+        ],
+        "due": "2027-02-03"
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

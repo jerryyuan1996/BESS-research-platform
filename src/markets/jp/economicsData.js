@@ -80,7 +80,7 @@ export const JP_ECONOMICS = {
         Base: {
           bessOwner: 'Moderate capture in the deepest load pool, conditional on import/export evidence.',
           system: 'Load growth is met with planned supply and flexibility.',
-          drivers: 'Central fuel case · normal basis · selective project delivery',
+          drivers: 'Central fuel case · normal basis · partial project delivery',
         },
         Bull: {
           bessOwner: 'A connected asset captures import tightness and scarcity before competing BESS arrives.',
@@ -148,7 +148,7 @@ export const JP_ECONOMICS = {
         Base: {
           bessOwner: 'Persistent export constraints support value, offset by connection and saturation risk.',
           system: 'Renewable integration improves but remains constrained.',
-          drivers: 'Planned interconnector · selective queue conversion · normal hydro/fuel case',
+          drivers: 'Planned interconnector · partial queue conversion · normal hydro/fuel case',
         },
         Bull: {
           bessOwner: 'A connected, qualified asset captures strong area separation before grid and competitor delivery.',

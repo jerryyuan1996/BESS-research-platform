@@ -115,37 +115,6 @@ export function ieEconomicsP0Blocks(SRC){
     },
     {
       t:'card',
-      title:['Investment conclusion and Bear / Base / Bull driver tree','投资结论及熊市 / 基准 / 牛市驱动树'],
-      badges:['forecast', 'verify'],
-      blocks:[
-        { t:'reco', b:P.conclusion.headline, text:P.conclusion.text },
-        {
-          t:'table',
-          head:[
-            ['Case', '情景'],
-            ['BESS-owner perspective', 'BESS业主视角'],
-            ['System / consumer perspective', '系统 / 消费者视角'],
-            ['Binding drivers', '关键驱动'],
-          ],
-          rows:P.scenarios.map(scenario => [
-            { b:[scenario.name, scenario.name] },
-            scenario.owner,
-            scenario.system,
-            scenario.drivers.join(' · '),
-          ]),
-        },
-        {
-          t:'why',
-          text:[
-            'The high-price owner case is explicitly a stressed system case. Keeping both perspectives visible prevents adequacy cost from being presented as an unqualified social benefit.',
-            '业主高价格情景明确对应系统压力情景。并列展示两个视角，可避免将充足性成本误表述为无条件社会效益。',
-          ],
-          sig:['Owner upside has a system cost','业主上行伴随系统成本'],
-        },
-      ],
-    },
-    {
-      t:'card',
       title:['Executable spread / capture-rate release gates','可执行价差 / 捕获率发布门槛'],
       badges:['verify'],
       live:true,

@@ -58,6 +58,7 @@ import { exposureChart } from '../charts/exposureChart.js';
 import { longLife } from '../longlife/longLife.js';
 import { DURATION_BASIS_LABEL } from '../governance/buildPathway.js';
 import { caseViewFor, caseLedgerFor } from '../markets/caseRegistry.js';
+import { marketBrief } from './marketBrief.js';
 import { byId } from '../markets/registry.js';
 import { FX, MAINTAINED_FOM_SHARE } from '../comparison/assumptions.js';
 
@@ -235,6 +236,17 @@ function gradeTable(view, on, marketId, dimensions){
           g?.held && !mine && hasNotes() ? privateLine(['This held view has no private reason in the overlay. Add one.', '该从业者观点在私有备注中没有对应理由，请补充。']) : null),
         h('td', {}, g ? chip(g.basis === BASIS.PRACTITIONER ? 'info' : 'good', L(BASIS_LABEL[g.basis])) : null));
     }))));
+}
+
+/**
+ * The landing tab since the guided-experience plan (PR 5): the market brief for
+ * the investor chosen, with the four investors' verdicts, the pillar table and
+ * the grades — this section as it was — folded beneath it.
+ */
+export function briefPanel(marketId){
+  const data = load(marketId);
+  if (!data) return [];
+  return marketBrief(marketId, data.view, data.result, investmentCasePanel(marketId));
 }
 
 /**

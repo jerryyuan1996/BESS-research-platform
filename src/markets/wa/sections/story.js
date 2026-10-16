@@ -18,8 +18,8 @@ import { SEED } from '../data/seed.js';
 import { RCM_HISTORY } from '../data/rcmHistory.js';
 import { WEM_MARKET } from '../data/wemMarket.js';
 import { ESOO_BAL } from '../data/kemerton.js';
-import { renderWaOfficialPlanning } from '../officialPlanningSection.js';
 import { renderWaEconomicsP0 } from '../economicsP0Section.js';
+import { waDesignText } from '../lib/design.js';
 
 // ---------------- WA MARKET STORY ----------------
 function renderStory(main){
@@ -29,7 +29,6 @@ function renderStory(main){
 
 
   renderWaEconomicsP0(main);
-  renderWaOfficialPlanning(main);
 
   const R = WEM_MARKET.records, CIS = WEM_MARKET.cis;
   const orient = card(['One-minute orientation for a new institutional investor', '机构投资人的一分钟市场定位'], [badge('official'), badge('public'), statusBadge(false)]);
@@ -42,8 +41,8 @@ function renderStory(main){
     kpi(L(['2028-29 capacity balance', '2028-29容量平衡']), '+' + fmtN(SEED.surplusAboveRcr) + '<small> MW</small>', { text: L(['existing + committed vs Peak RCT', '现有+已承诺对峰值RCT']) }, [badge('official')]),
     kpi(L(['2035-36 existing/committed gap', '2035-36现有/已承诺缺口']), fmtN(ESOO_BAL.ecGap3536MW) + '<small> MW</small>', { text: L(['before anticipated projects', '未计预期项目']) }, [badge('official')])));
   orient.append(h('div', { class: 'reco' }, h('b', {}, L(['Institutional conclusion: ', '机构投资结论：'])),
-    L(['WA is not a simple merchant-arbitrage market. It is a capacity-backed, isolated system with growing renewable integration needs. Near-term capacity is selective and competitive; long-term demand growth and thermal retirement are supportive. The winning project must bridge those two periods without relying on temporary FCESS or price-spread scarcity.',
-      '西澳并非单纯的现货套利市场，而是一个由容量机制支撑、孤立运行且可再生能源消纳需求持续增长的系统。近期容量环境偏选择性且竞争加剧，长期需求增长与火电退役则提供支撑。优质项目必须跨越这两个阶段，而不能依赖暂时性的FCESS或价差稀缺。'])));
+    L(['WA is not a simple merchant-arbitrage market. It is a capacity-backed, isolated system with growing renewable integration needs. Near-term capacity is in surplus and competitive; long-term demand growth and thermal retirement are supportive. The winning project must bridge those two periods without relying on temporary FCESS or price-spread scarcity.',
+      '西澳并非单纯的现货套利市场，而是一个由容量机制支撑、孤立运行且可再生能源消纳需求持续增长的系统。近期容量处于盈余且竞争加剧，长期需求增长与火电退役则提供支撑。优质项目必须跨越这两个阶段，而不能依赖暂时性的FCESS或价差稀缺。'])));
   orient.append(why(['Two facts here do the work. Storage already met ' + R.peakSharePct + '% of peak demand on an islanded grid with no interconnector to lean on — so system need is proven, not forecast. But the same grid shows a +' + fmtN(SEED.surplusAboveRcr) + ' MW capacity surplus in 2028-29 turning into a ' + fmtN(Math.abs(ESOO_BAL.ecGap3536MW)) + ' MW deficit by 2035-36. The investment problem in WA is therefore timing, not thesis: an asset must be cheap enough to survive the surplus window and long enough to still be compliant when the deficit arrives.',
     '此处两项事实最为关键。在没有联络线可依赖的孤立电网上，储能已满足峰值需求的' + R.peakSharePct + '% — 系统需求已被证实，而非预测。但同一电网在2028-29呈现+' + fmtN(SEED.surplusAboveRcr) + 'MW容量盈余，至2035-36转为' + fmtN(Math.abs(ESOO_BAL.ecGap3536MW)) + 'MW缺口。因此西澳的投资难题在于时点而非逻辑：资产成本须低到足以穿越盈余窗口，时长须长到缺口到来时仍然合规。'],
     ['Timing risk, not thesis risk', '时点风险而非逻辑风险']));
@@ -118,7 +117,7 @@ function renderStory(main){
       p:['The Capacity Investment Scheme awarded ~' + CIS.tender2MW + ' MW / ' + fmtN(CIS.tender2MWh) + ' MWh of WA storage in Tender 2 (' + CIS.tender2When + '). Tenders 5 and 6, announced ' + CIS.t56When + ', added ' + CIS.t56Projects + ' WA projects — ' + CIS.t56GenGW + ' GW of generation plus ' + CIS.t56StorageGWh + ' GWh of standalone storage (' + CIS.t6BessMW + ' MW / ' + fmtN(CIS.t6BessMWh) + ' MWh of batteries), around A$' + CIS.t56InvestAbn + 'bn of investment and ~' + fmtN(CIS.t56Jobs) + ' construction jobs.',
          '容量投资计划（CIS）在第2轮（' + CIS.tender2When + '）为西澳授予约' + CIS.tender2MW + 'MW/' + fmtN(CIS.tender2MWh) + 'MWh储能。' + CIS.t56When + '公布的第5、6轮新增' + CIS.t56Projects + '个西澳项目 — ' + CIS.t56GenGW + 'GW发电加' + CIS.t56StorageGWh + 'GWh独立储能（电池' + CIS.t6BessMW + 'MW/' + fmtN(CIS.t6BessMWh) + 'MWh），投资约A$' + CIS.t56InvestAbn + 'bn，建设岗位约' + fmtN(CIS.t56Jobs) + '个。'],
       i:['Investor implication: a CIS agreement is the revenue floor lenders and long-term holders now expect. Every WA project that reached bank debt carried a contracted anchor — CIS, an AEMO capacity contract or RCM credits. Uncontracted merchant projects are competing for the same credits without the floor.', '投资含义：CIS协议已成为贷款人与长期持有方所预期的收入底线。所有取得银行债务的西澳项目均带合同化收入锚 — CIS、AEMO容量合约或RCM信用。未签约的市场化项目在争夺同一批信用，却没有保底。'] },
-    { y:'2027–2029', t:['Near-term surplus makes the market selective', '近期容量盈余使市场进入选择性阶段'],
+    { y:'2027–2029', t:['Near-term surplus narrows the field', '近期容量盈余使可投项目收窄'],
       p:['AEMO forecasts the reliability target to be met for three years and a 347 MW existing-and-committed surplus in 2028-29. The ESR Duration Requirement rises from six hours in 2027-28 to seven hours in 2028-29, while outcomes remain sensitive to project delivery and transmission augmentation.',
          'AEMO预计未来三年可靠性目标可满足，2028-29容量年度现有及已承诺容量盈余347MW。ESR时长要求由2027-28的6小时提高至2028-29的7小时，结果仍高度取决于项目按期交付及输电扩建。'],
       i:['Investor implication: “being a battery” is insufficient. A project needs defensible NAQ, compliant duration, credible COD and contracted or floor-supported revenue.', '投资含义：“是一个电池项目”本身不再足够，项目需具备可辩护的NAQ、合规时长、可信COD及合约或保底收入。'] },
@@ -202,7 +201,8 @@ function renderStory(main){
   main.append(hd);
 
   const outlook = h('div', { class:'grid g2', style:'margin-top:14px;' });
-  const near = card(['Near-term outlook — 2026 to 2029: selective deployment', '近期展望 — 2026至2029：选择性部署'], [badge('official'), badge('forecast')]);
+  const dText = waDesignText();
+  const near = card(['Near-term outlook — 2026 to 2029: deliverability decides', '近期展望 — 2026至2029：可交付性决定成败'], [badge('official'), badge('forecast')]);
   near.append(h('div', { class:'kpis' },
     kpi(L(['2028-29 Peak RCT','2028-29峰值RCT']), '6,323<small> MW</small>'),
     kpi(L(['Existing + committed','现有+已承诺']), '6,670<small> MW</small>'),
@@ -210,8 +210,8 @@ function renderStory(main){
   near.append(h('div', { class:'story-band' }, h('b', {}, L(['What the market is pricing', '市场正在定价什么'])),
     h('p', {}, L(['Project-delivery timing, NAQ and duration compliance matter more than generic scarcity. New assets compete against operating batteries, committed projects and anticipated projects before the structural deficit arrives.',
       '在结构性缺口出现前，新项目需与在运、已承诺及预期项目竞争，因此项目交付时点、NAQ及时长合规比笼统的稀缺性更重要。']))));
-  near.append(h('div', { class:'reco' }, h('b', {}, L(['Underwriting stance: ', '承销立场：'])), L(['Proceed only where Capacity Credits are deliverable, COD is credible and the revenue stack survives lower merchant/FCESS outcomes. Prefer expandable 8h designs and explicit floors/tolls where pricing is acceptable.',
-    '仅在容量信用可交付、COD可信且收入结构能承受较低现货/FCESS结果时推进。优先考虑可扩展的8小时设计，并在价格合理时锁定保底或代工协议。'])));
+  near.append(h('div', { class:'reco' }, h('b', {}, L(['Underwriting stance: ', '承销立场：'])), L(['Proceed only where Capacity Credits are deliverable, COD is credible and the revenue stack survives lower merchant/FCESS outcomes. Build the engine’s design, ' + dText[0] + ', and take explicit floors or tolls where pricing is acceptable.',
+    '仅在容量信用可交付、COD可信且收入结构能承受较低现货/FCESS结果时推进。按引擎设计（' + dText[1] + '）建设，并在价格合理时锁定保底或代工协议。'])));
   near.append(why(['Existing plus committed capacity already exceeds the Peak RCT, and ' + fmtN(ESOO_BAL.existingCommittedBessMW) + ' MW of that is battery. So in the COD window a new asset is not filling a gap — it is displacing a competitor, and only wins credits if it is more compliant (duration) or more deliverable (NAQ) than the marginal alternative. The corollary is that COD date is a pricing input, not a schedule detail: arriving one cycle early or late changes which cohort you are ranked against.',
     '现有加已承诺容量已超过峰值RCT，其中' + fmtN(ESOO_BAL.existingCommittedBessMW) + 'MW为电池。因此在投运窗口内，新资产并非填补缺口，而是替代竞争者，只有在时长更合规或NAQ更可交付时才能取得信用。推论是：投运日期是定价输入而非进度细节 — 提前或延后一个周期，将改变你所被对比的项目批次。'],
     ['Displacement, not gap-filling', '替代而非填补缺口']));

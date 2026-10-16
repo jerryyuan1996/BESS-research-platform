@@ -172,8 +172,15 @@ const BUDGET = {
      (src/comparison/designFit.js) and the duration card that reads it
      (src/markets/_shared/designFitBlock.js), decision 2 of
      docs/duration-and-route-fit-plan.md. About 3.3 kB gzipped, used by the six
-     dashboards that draw a duration card. Measured 101.28 after. */
-  sharedTotal: 102,
+     dashboards that draw a duration card. Measured 101.28 after.
+
+     RAISED FROM 102 TO 104 for bytes that were ADDED: the design projection of
+     the briefing (src/briefing/designData.js, read through
+     src/markets/_shared/designAnswer.js), so the GB, WA and Japan tabs that name
+     a duration say what the Brief says (guided-experience plan, PR 7). Its
+     chunk is 1.63 kB gzipped. Measured 102.2 after, with the cards the page
+     used to delete at runtime now gone from source. */
+  sharedTotal: 104,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {
@@ -206,8 +213,13 @@ const BUDGET = {
        card that states the convention behind its time axis and lists each
        step, in two languages. Measured 13.31 from 9.62, which had already
        taken the long-life card inside the room it had. No market data is in
-       it: another market's ledger is fetched as its own chunk. */
-    'investment-case': 15,
+       it: another market's ledger is fetched as its own chunk.
+
+       RAISED FROM 15 TO 20 for the market brief (guided-experience plan,
+       PR 5): the renderer of the landing tab's brief and its labels in two
+       languages. Measured 17.61 from 13.31. The briefing's figures are not in
+       it: they are the shared `briefing-data` chunk below. */
+    'investment-case': 20,
     /* The method layer itself: anchors, the four investors' tables, the view
        store and the ledgers. Fetched by the home page's board and by the
        Investment Case and Entry tabs, whichever comes first. This is where the
@@ -232,8 +244,31 @@ const BUDGET = {
 
        LOWERED FROM 27 TO 19 once all fifteen were graded: it measures 15.80,
        not the 24 estimated. A market's grades and calls compress far better
-       beside fourteen others of the same shape than the first four suggested. */
-    'verdict-board': 19,
+       beside fourteen others of the same shape than the first four suggested.
+
+       RAISED FROM 19 TO 23 when the briefing content was applied (guided-
+       experience plan, 2026-10-16): eighteen plays, fifteen theses and the ruled
+       calls now ride in every market's projection. Measured 21.63. */
+    'verdict-board': 23,
+    /* The briefing that opens the home page since the guided-experience plan
+       (PR 4): the six answers and the home projection of the briefing — every
+       investor's shortlist, the plays priced by the engine at build time, the
+       catalysts, the build lines and the dated changes, in two languages. No
+       engine and no market data: the build writes the briefing as a literal.
+       Measured 14.44 before the first plays were written; the plays, their
+       lines and actions add roughly 4. */
+    'briefing-home': 20,
+    /* The home projection of the briefing itself — every investor's rows, the
+       plays priced at build time, the design grids, the catalysts, the build
+       lines and the dated changes — shared by the home page and every market's
+       brief. Measured 12.54 before the first plays were written.
+
+       RAISED FROM 18 TO 22 when the plays were applied: measured 18.74, and
+       the briefing grows with each play written, which is what it is for. */
+    'briefing-data': 22,
+    /* The analyst desk with the briefing's queue. Rollup keeps only the fields
+       the desk reads. Measured 3.44. */
+    'desk': 6,
     /* The old home page, now at /returns: market cards, globe, league table,
        revenue stack, $1M engine, congestion, plus the two sections that were
        written and never mounted. Measured 67.95. Fetched only on that route. */
@@ -247,8 +282,11 @@ const BUDGET = {
 
        RAISED FROM 27 TO 48 (plan phase 5), for that reason: grading the other
        eleven markets took the changelog from 102 lines to 304. Measured 40.67,
-       about 0.13 kB a line. */
-    'changes': 48,
+       about 0.13 kB a line.
+
+       RAISED FROM 48 TO 64 when the briefing content was applied: 52 analyst
+       lines, each carrying a whole play, call or thesis, took it to 57.87. */
+    'changes': 64,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four
@@ -409,16 +447,21 @@ test('the entry chunk is within its budget', async (t) => {
 test('the home page\'s first view is within its budget', async (t) => {
   if (skipWithoutDist(t)) return;
   const { entry, features, byName } = await chunks();
+  /* Since the guided-experience plan (PR 4) the home page opens on the
+     briefing; the verdict board is folded underneath it and fetched only when
+     the reader opens the fold. */
+  const briefing = features.get('briefing-home');
   const board = features.get('verdict-board');
-  assert.ok(entry && board, 'no entry chunk or no verdict-board chunk');
+  assert.ok(entry && briefing && board, 'no entry chunk, no briefing-home chunk or no verdict-board chunk');
 
-  const first = closure(board, byName, closure(entry, byName));
+  const first = closure(briefing, byName, closure(entry, byName));
+  assert.ok(!first.has(board), 'the verdict board is being loaded with the briefing: it belongs behind the fold');
   assert.ok(kB(gzipOf(first)) <= BUDGET.home,
     `the home page's first view is ${kB(gzipOf(first))} kB gzipped across ${first.size} chunks ` +
     `(${[...first].map(c => c.name).join(', ')}), over its ${BUDGET.home} kB budget.\n` +
-    'This is what a reader arriving at / waits for: the shell, the verdict board and\n' +
-    'the method layer behind it. It grows when a market is graded; anything else\n' +
-    'that grows it is a module the board should not be importing.');
+    'This is what a reader arriving at / waits for: the shell, the briefing and the\n' +
+    'method vocabulary it labels with. It grows with plays and with markets graded;\n' +
+    'anything else that grows it is a module the briefing should not be importing.');
 
   /* The old home page must not ride along. If the board ever imports a module
      the Returns page owns, Rollup makes the Returns chunk a static dependency

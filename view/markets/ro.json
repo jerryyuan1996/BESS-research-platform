@@ -1,6 +1,9 @@
 {
   "marketId": "ro",
-  "thesis": null,
+  "thesis": [
+    "The best raw spreads in the set and nothing contracted. Four hours is the best design and the second-highest value on the platform even at the merchant yield; a negotiated floor is how a fund holds it. Frequency reserves are saturating, so the premium on top fades.",
+    "价差为各市场之最，但没有任何合同化收入。四小时是最佳设计，即便按市场化收益率测算，价值也在本平台排名第二；基金应通过谈定的保底持有资产。频率备用正趋于饱和，额外溢价将逐步消失。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -236,43 +239,40 @@
     },
     "infraFund": {
       "archetype": "infraFund",
-      "call": "wait",
-      "route": "ready-to-build",
-      "where": null,
+      "where": [
+        "An operating four-hour asset with an optimiser floor",
+        "附带优化商保底的四小时在运资产"
+      ],
+      "reviewBy": "2027-01-31",
+      "call": "opportunistic",
+      "route": "operating",
+      "play": "ro-mer-4h",
       "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "Four hours is the best design here and the second-highest value on the platform at the merchant yield: 19.3% hold, 23.2% exit.",
+            "四小时是这里的最佳设计，按市场化收益率测算价值在本平台排名第二：持有期19.3%，退出23.2%。"
+          ]
+        },
         {
           "dimension": "revenueCertainty",
           "text": [
-            "Nothing is secured, so debt is sized on merchant and balancing revenue.",
-            "没有锁定收入，债务只能按市场化与平衡收入测算。"
-          ]
-        },
-        {
-          "dimension": "exitLiquidity",
-          "text": [
-            "Little evidence that assets can be sold.",
-            "鲜有证据表明资产能够售出。"
-          ]
-        },
-        {
-          "dimension": "policyStability",
-          "text": [
-            "The rules behind the revenue are still changing.",
-            "支撑收入的规则仍在变动。"
+            "An optimiser has announced a five-year minimum revenue guarantee for a 127 MW battery, so a floor is a route a fund can buy into.",
+            "已有优化商为一个127MW电池宣布五年期最低收入保障，基金可以通过保底路径进入。"
           ]
         }
       ],
       "despite": [
-        "The highest return of any market here, and closed financings show lenders will lend.",
-        "回报为各市场之最，且已完成的融资表明贷款人愿意放贷。"
+        "Beyond the floor nothing is secured, the four-hour figure rests on an estimated spread capture, and frequency-reserve revenue is saturating.",
+        "保底之外没有任何锁定收入，四小时数据依赖估算的价差捕获率，且频率备用收入正趋于饱和。"
       ],
       "changesIf": [
         "ro-grant-call-close",
         "ro-connection-guarantee-order"
       ],
-      "reviewBy": "2027-01-31",
       "author": "analyst",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-16",
       "lockedUntil": null
     },
     "foreignFirstTimer": {
@@ -376,5 +376,31 @@
       "source": "decision-profile",
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "ro-mer-4h": {
+      "id": "ro-mer-4h",
+      "label": [
+        "Merchant · 4h · operating, with an optimiser floor",
+        "市场化 · 4小时 · 在运资产，附优化商保底"
+      ],
+      "route": "mer",
+      "hours": 4,
+      "stage": "operating",
+      "why": [
+        "Four hours is the best design here (19.3% hold, 23.2% exit at the merchant yield); the modelled two hours gives up over a quarter of its value.",
+        "四小时是这里的最佳设计（按市场化收益率测算持有期回报19.3%、退出回报23.2%）；模型中的两小时设计损失逾四分之一的价值。"
+      ],
+      "action": {
+        "text": [
+          "Find operating four-hour assets with an optimiser floor, or a seller who will put one in; after the grant call closes on 30 October, check which projects won.",
+          "寻找附带优化商保底的四小时在运资产，或愿意补签保底的卖方；10月30日补贴申报截止后，核查哪些项目获得补贴。"
+        ],
+        "due": "2026-11-30"
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

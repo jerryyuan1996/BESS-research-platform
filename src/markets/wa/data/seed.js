@@ -33,7 +33,6 @@ const SEED = {
   connection: { wpStage: ['Planning', '规划阶段'], gpsStage: 'R0', aoStatus: ['Draft', '草案'],
     naqToNameplate: 0.95, floatMonths: 7 },
   durationSig: { stage: ['Long-duration / capacity-driven', '长时容量驱动'],
-    recoInitial: 8, recoExpand: 10,
     driver: ['ESR requirement and islanded-grid residual peak', 'ESR时长要求及孤立电网剩余峰值'] },
 
   // --- illustrative quarterly series (badge: illus; endpoints anchored to official §3 values) ---
@@ -146,7 +145,7 @@ const SEED = {
     { lo: 55, hi: 69, n: ['Duration-value inflection', '时长价值拐点'], c: 'serious',
       d: ['Underwrite 6–8h and compare contracted versus merchant tails.', '按6–8小时进行测算，并对比合同与市场化尾部收益。'] },
     { lo: 70, hi: 100, n: ['Long-duration / capacity-driven', '长时容量驱动'], c: 'good',
-      d: ['8h+ likely required; duration compliance is a core investment condition.', '可能需要8小时以上；时长合规是核心投资条件。'] },
+      d: ['Duration compliance is a core investment condition: build to the ESR requirement and price every added hour on its own.', '时长合规是核心投资条件：按ESR要求建设，并为每一新增小时单独定价。'] },
   ],
 
   // --- augmentation option checklist (spec §9.8; 0–2 each, editable) ---

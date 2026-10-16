@@ -1,6 +1,9 @@
 {
   "marketId": "fi",
-  "thesis": null,
+  "thesis": [
+    "Europe's clearest fast-reserve market, and already oversupplied: connected storage exceeds the fast-reserve need, so the revenue line is withheld rather than assumed. No capacity contract exists; secured revenue is a floor negotiated project by project. Two hours.",
+    "欧洲最清晰的快速备用市场，但已经供过于求：已并网储能超过快速备用需求，因此收入线暂不列示而非假设。没有容量合同；锁定收入只能逐个项目谈保底。两小时。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -255,7 +258,8 @@
       "reviewBy": "2027-03-31",
       "author": "analyst",
       "asOf": "2026-10-10",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "play": "fi-mer-2h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -377,5 +381,31 @@
       },
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "fi-mer-2h": {
+      "id": "fi-mer-2h",
+      "label": [
+        "Reserves and trading · 2h · ready-to-build, with a negotiated floor",
+        "备用服务与交易 · 2小时 · 具备开工条件，谈定保底"
+      ],
+      "route": "mer",
+      "hours": 2,
+      "stage": "ready-to-build",
+      "why": [
+        "Reserve markets pay for fast power, not hours, and connected storage already exceeds the fast-reserve need; a negotiated floor is the only secured revenue.",
+        "备用市场为快速功率而非时长付费，而已并网储能已超过快速备用需求；谈定的保底是唯一的锁定收入。"
+      ],
+      "action": {
+        "text": [
+          "Price ready-to-build projects only with a negotiated floor in place; read the grid-priority bill due this autumn.",
+          "只为已谈定保底的具备开工条件项目定价；关注今年秋季提出的并网优先法案。"
+        ],
+        "due": "2026-11-30"
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

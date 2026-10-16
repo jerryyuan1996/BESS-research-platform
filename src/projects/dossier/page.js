@@ -37,11 +37,6 @@ import { badge } from '../../components/badge.js';
 import { dossierBlocks } from './blocks.js';
 import { DOSSIER_TABS, dossierBySlug, dossierPath } from './registry.js';
 
-const DISCLAIMER = [
-  'Project-level material. This document supports, but does not replace, independent investment, legal, technical and financial analysis, and is not investment advice.',
-  '项目层面材料。本文件用于辅助而非替代独立的投资、法律、技术及财务分析，不构成投资建议。',
-];
-
 /**
  * A route that names no dossier this build knows about.
  *
@@ -57,9 +52,8 @@ export function renderDossierNotFound(container, slug){
     L(['No project page exists at that address. Project material is not published on this site — see ',
        '该地址不存在项目页面。本站不发布项目层面材料 — 参见']),
     h('a', { href: '/', onclick: (e) => { e.preventDefault(); navigate('/'); } },
-      L(['the global cockpit', '全球总看板'])),
+      L(['the briefing', '简报'])),
     L([' for the market research this platform does publish.', '，了解本平台确实发布的市场研究。'])));
-  container.append(renderFooter([DISCLAIMER]));
 }
 
 /**
@@ -106,8 +100,5 @@ export function renderDossierPage(container, slug, tabId){
     B(main, section.blocks);
   }
 
-  container.append(renderFooter([
-    DISCLAIMER,
-    ...(d.footer ? [d.footer] : []),
-  ]));
+  if (d.footer) container.append(renderFooter([d.footer]));
 }

@@ -16,7 +16,7 @@
    --------------------------------------------------------------------------- */
 import { h } from '../../utils/dom.js';
 import { L } from '../../app/i18n.js';
-import { renderHeader, renderDisclaimer } from '../../components/header.js';
+import { renderHeader } from '../../components/header.js';
 import { marketNav, tabNav } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
 import { markets } from '../registry.js';
@@ -32,11 +32,6 @@ const SECTIONS = {
     L(['Replace this with the market overview section.', '请以市场总览章节替换此处。']))),
 };
 
-const DISCLAIMER = [
-  'This dashboard supports, but does not replace, independent investment, legal, technical and financial analysis.',
-  '本看板用于辅助而非替代独立的投资、法律、技术及财务分析。',
-];
-
 export function dashboard(container, { tabId, basePath }){
   // Fall back to the default tab when the URL names one this market does not have.
   state.tab = tabs.some(([id]) => id === tabId) ? tabId : DEFAULT_TAB;
@@ -49,7 +44,6 @@ export function dashboard(container, { tabId, basePath }){
       h('span', {}, h('b', {}, L(['Verified: ', '核验日期：'])), manifest.asOf || '—'),
     ],
   }));
-  container.append(renderDisclaimer(DISCLAIMER));
   container.append(marketNav(markets, manifest.id));
   container.append(tabNav(tabs, state.tab, basePath));
 
@@ -58,7 +52,6 @@ export function dashboard(container, { tabId, basePath }){
   (SECTIONS[state.tab] || SECTIONS[DEFAULT_TAB])(main);
 
   container.append(renderFooter([
-    DISCLAIMER,
     L(['Model version: ', '模型版本：']) + (manifest.modelVersion || '—'),
   ]));
 }

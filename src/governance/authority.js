@@ -144,6 +144,8 @@ export const METHODOLOGY_SURFACES = [
   { id: 'scout-roster',       module: 'src/governance/scout.js',         what: ['Which markets have a scout card, and the limits a card and a scout run live under', '哪些市场设有观察卡片，以及卡片与单次观察运行所受的限制'] },
   { id: 'scout-sources',      module: 'src/scout/sources.js',            what: ['The pages the agent may read for each scout market', '智能体可为各观察市场读取的页面清单'] },
   { id: 'scout-schema',       module: 'view/schema/scout.mjs',           what: ['Which author may write which part of a scout card', '哪类作者可以写观察卡片的哪个部分'] },
+  { id: 'briefing-rules',     module: 'src/governance/briefing.js',      what: ['How the briefing tiers calls, flags a call against its economics, rates evidence and decides what counts as a change', '简报如何划分结论层级、对照经济性标记结论、评估证据强度，以及何为变化'] },
+  { id: 'news-tags',          module: 'src/governance/newsTags.js',      what: ['Which terms tag a headline to a market, and so which headlines reach the briefing', '哪些词语将新闻标题归入某个市场，从而决定哪些新闻进入简报'] },
 ];
 
 /**
@@ -335,6 +337,9 @@ export const COMPARISON_AUTHORITY = {
   'economics.ltda.excludesGrant': AUTHORITY.METHODOLOGY,
   /* An eligibility rule the scheme publishes, where it has one. */
   'economics.ltda.minDurationHours': AUTHORITY.ANALYST,
+  /* The area's published adjustment factor: the award is paid on awarded kW
+     (installed × factor). A rule read from OCCTO, not a judgement. */
+  'economics.ltda.awardFactor': AUTHORITY.METHODOLOGY,
 
   // Policy-set, therefore observable in principle.
   'economics.grantPct': AUTHORITY.ANALYST,

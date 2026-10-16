@@ -21,6 +21,7 @@ import { tabs } from '../jp/tabs.js';
 import { sources } from '../jp/sources.js';
 import {
   JP_REGIONS, JP_COMMON_COST, JP_CAPITAL, JP_REFERENCE, JP_LTDA_MERCHANT_RETENTION, jpRanges,
+  JP_ARCHETYPE_CAPEX, JP_ARCHETYPE_OPEX,
   JP_DURATION_RESPONSE,
 } from '../jp/regions.js';
 import { merchantVintage } from '../../comparison/vintage.js';
@@ -60,8 +61,8 @@ const economics = {
   // Capacity revenue is won one delivery year at a time and re-auctioned after.
   riskClass: 'auction-renewal',
 
-  capexPerMW: JP_COMMON_COST.capexPerMW,
-  opexPerMW: JP_COMMON_COST.opexPerMW,
+  capexPerMW: JP_ARCHETYPE_CAPEX,
+  opexPerMW: JP_ARCHETYPE_OPEX,
   /* Component stack, consumption tax and build period — shared across the
      three areas, because none of them differ on capital cost. */
   ...JP_CAPITAL,
@@ -83,6 +84,7 @@ const economics = {
      rather than an addition to it, which is what merchantRetention encodes. */
   ltda: {
     payment: R.econ.ltdaPaymentJPYMWYr,
+    awardFactor: R.econ.ltdaAwardFactor,
     years: 20,
     /* Round 3 abolished the 3-6h bracket and set a hard six-hour floor, so a
        shorter asset cannot bid into this route at all. Declared by the market
@@ -131,7 +133,7 @@ export const comparison = {
   ]),
 
   narrative: {
-    archetype: ['50 MW · 6h reference · LTDA-led', '50MW · 6小时参考 · 长期脱碳拍卖主导'],
+    archetype: ['50 MW · 9h reference · LTDA-led', '50MW · 9小时参考 · 长期脱碳拍卖主导'],
     thesis: [
       'Large-load, scarcity and flexibility benchmark, underwritten on a 20-year award rather than a one-year auction. The award is national and identical in all three areas, so Tokyo-area price capture and connection quality are what differentiate — and the clawback means the trading upside mostly is not yours.',
       '大负荷、稀缺性与灵活性基准市场，以20年中标而非一年期拍卖为承销基础。中标条件全国统一、三区域一致，故差异化来自东京区域价格兑现与并网质量 — 且收益上缴机制意味着交易端上行空间大部分不归投资人所有。',

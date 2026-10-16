@@ -1,6 +1,9 @@
 {
   "marketId": "caiso",
-  "thesis": null,
+  "thesis": [
+    "Substantially a capacity contract with a trading option: resource adequacy carries most revenue and credits exactly four hours. At build cost the reference project returns 3.2%, so buy operating RA-contracted assets only at a price that clears the hurdle, after the 2027 foldback cut.",
+    "本质上是附带交易选择权的容量合同：资源充裕度贡献大部分收入，且恰好按四小时计量。按建设成本测算参考项目回报为3.2%，因此只在2027年出力回落下调之后、以达到回报门槛的价格收购持有资源充裕度合同的在运资产。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -237,35 +240,39 @@
     },
     "infraFund": {
       "archetype": "infraFund",
-      "call": "build-position",
-      "route": "ready-to-build",
-      "where": null,
+      "where": [
+        "An operating asset holding a resource adequacy contract, bought at a price that clears the hurdle",
+        "持有资源充裕度合同的在运资产，且买入价格须达到回报门槛"
+      ],
+      "reviewBy": "2027-03-31",
+      "call": "opportunistic",
+      "route": "operating",
+      "play": "caiso-cap-4h",
       "because": [
+        {
+          "dimension": "assetReturn",
+          "text": [
+            "At build cost the reference project returns 3.2% hold, below a fund's hurdle.",
+            "按建设成本测算，参考项目持有期回报为3.2%，低于基金的回报门槛。"
+          ]
+        },
         {
           "dimension": "revenueCertainty",
           "text": [
             "A resource adequacy contract secures most revenue for ten years, for a project that holds one.",
             "资源充裕度合同可在十年内锁定大部分收入，但前提是项目已持有该合同。"
           ]
-        },
-        {
-          "dimension": "debtAvailability",
-          "text": [
-            "The longest-established storage financing market on the platform.",
-            "本平台各市场中历史最久的储能融资市场。"
-          ]
         }
       ],
       "despite": [
-        "At the modelled return the unchanged reference case does not clear a fund's hurdle.",
-        "按模型回报，未经调整的参考情景达不到基金的回报门槛。"
+        "The longest-established storage financing market on the platform: debt is available and assets trade.",
+        "本平台历史最久的储能融资市场：债务融资可得，资产也有成交。"
       ],
       "changesIf": [
         "caiso-storage-capacity-foldback"
       ],
-      "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-16",
       "lockedUntil": null
     },
     "foreignFirstTimer": {
@@ -352,5 +359,31 @@
       "source": "decision-profile",
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "caiso-cap-4h": {
+      "id": "caiso-cap-4h",
+      "label": [
+        "Resource adequacy · 4h · operating",
+        "资源充裕度 · 4小时 · 在运资产"
+      ],
+      "route": "cap",
+      "hours": 4,
+      "stage": "operating",
+      "why": [
+        "Resource adequacy credits exactly four hours and carries most revenue; at build cost the reference project returns 3.2%.",
+        "资源充裕度恰好按四小时计量，并贡献大部分收入；按建设成本测算，参考项目回报为3.2%。"
+      ],
+      "action": {
+        "text": [
+          "After the January 2027 foldback cut, price operating assets with RA contracts; buy only where the price clears the hurdle.",
+          "2027年1月出力回落下调生效后，再为持有资源充裕度合同的在运资产定价；只在价格达到回报门槛时买入。"
+        ],
+        "due": "2027-01-31"
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

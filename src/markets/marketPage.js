@@ -14,7 +14,6 @@ import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { markets, marketPath, hasDashboard, resolveDashboard } from './registry.js';
 import { marketNav } from '../components/navigation.js';
-import { renderFooter } from '../components/footer.js';
 import { refinementBanner } from '../components/refinementBanner.js';
 
 /* ---------------------------------------------------------------------------
@@ -77,14 +76,8 @@ function renderLoadFailure(container, market, err){
     L(['Every other market and the global cockpit are unaffected — ', '其他市场与全球总看板不受影响 — ']),
     h('a', { href: '/', onclick: (e) => { e.preventDefault(); navigate('/'); } },
       L(['return to the cockpit', '返回总看板'])), '.'));
-  container.append(renderFooter([DISCLAIMER]));
   console.error('[market] dashboard chunk failed to load for %s:', mf.id, err);
 }
-
-const DISCLAIMER = [
-  'This dashboard supports, but does not replace, independent investment, legal, technical and financial analysis. Grades, recommended durations and suggested commercial terms are generated from the stated methodology and the data sources shown; they are not investment advice and should not be relied upon as the sole basis for a transaction decision.',
-  '本看板用于辅助而非替代独立的投资、法律、技术及财务分析。评级、建议时长及建议商业条款均基于所示方法及数据来源生成，不构成投资建议，不应作为交易决策的唯一依据。',
-];
 
 function renderPending(container, market){
   const mf = market.manifest;
@@ -126,8 +119,6 @@ function renderPending(container, market){
     h('h3', {}, L(['Comparison interface — what the Returns page reads from this market', '对比接口 — 回报对比页读取的内容'])),
     h('div', { class: 'tbl-wrap' }, h('table', {}, h('tbody', {}, rows.map(([k, v]) =>
       h('tr', {}, h('td', {}, h('b', {}, L(k))), h('td', {}, String(v)))))))));
-
-  container.append(renderFooter([DISCLAIMER]));
 }
 
 /**

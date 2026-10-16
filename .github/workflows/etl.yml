@@ -1,6 +1,6 @@
 name: Live data
 
-# Seven jobs, and the split is the governance model expressed as CI. The rule
+# Eight jobs, and the split is the governance model expressed as CI. The rule
 # is: judgement publishes automatically after validation; methodology never
 # does.
 #
@@ -44,6 +44,13 @@ name: Live data
 #   digest    once a month. Posts the machine-written changes of the last
 #             thirty-one days as an issue, so none goes unseen.
 #
+#   weekly-briefing  every Monday morning in Perth. Posts the briefing — the
+#             call, what changed in the week, what is coming, the shortlist,
+#             what to build, the next actions and the analyst's queue — as one
+#             issue per week, built by the same model as the home page. No
+#             model is asked and no key is needed; it reads and posts, and has
+#             no write access to the repository.
+#
 # Nothing in this file may be given auto-merge. That is deliberate and it is the
 # single most important line in the workflow. A rule's change does not need
 # one: it is not a pull request. It is a validated write, like the data.
@@ -61,12 +68,19 @@ on:
     # The scout pass: the 1st of the month, every region in one run. The day is
     # SCOUT_DAY_OF_MONTH in src/governance/scout.js.
     - cron: '23 4 1 * *'
+    # The weekly briefing: Sunday 23:07 UTC, which is Monday 07:07 in Perth.
+    - cron: '7 23 * * 0'
   workflow_dispatch:
     inputs:
       only:
         description: 'Comma-separated dataset ids (blank = all)'
         required: false
         type: string
+      weekly_briefing:
+        description: 'Post the weekly briefing now instead of a data refresh'
+        required: false
+        type: boolean
+        default: false
       scout_region:
         description: 'Run one scout pass over this region instead of a data refresh'
         required: false
@@ -92,7 +106,7 @@ jobs:
     name: Fetch, validate, publish
     # Not on the agent's, the digest's or the scout pass's schedule: those run
     # their own job. Nor when a scout pass was asked for by hand.
-    if: github.event.schedule != '43 5 2 * *' && github.event.schedule != '7 6 3 * *' && github.event.schedule != '23 4 1 * *' && inputs.scout_region == ''
+    if: github.event.schedule != '43 5 2 * *' && github.event.schedule != '7 6 3 * *' && github.event.schedule != '23 4 1 * *' && github.event.schedule != '7 23 * * 0' && inputs.scout_region == '' && inputs.weekly_briefing != true
     runs-on: ubuntu-latest
     outputs:
       material: ${{ steps.drift.outputs.material }}
@@ -617,3 +631,42 @@ jobs:
             --title "Machine changes to the view, month to $(date -u +%Y-%m-%d)" \
             --body-file digest.md \
             --label view-digest
+
+  weekly-briefing:
+    name: Weekly briefing
+    # Monday 07:07 in Perth, or by hand. Deterministic: the same model the home
+    # page is built with (src/briefing/), no model asked, no key needed.
+    if: github.event.schedule == '7 23 * * 0' || inputs.weekly_briefing == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm ci
+
+      - name: Render this week's briefing
+        run: node scripts/briefing/weekly.mjs > briefing.md
+
+      - name: Post it, one issue a week
+        # A second run in the same week edits that week's issue instead of
+        # opening another; last week's is closed once this one is posted.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="$(head -n 1 briefing.md | sed 's/^# //')"
+          gh label create weekly-briefing --description "The weekly briefing" --color 0e8a16 --force
+          EXISTING=$(gh issue list --label weekly-briefing --state open --limit 50 --json number,title --jq ".[] | select(.title == \"$TITLE\") | .number" | head -n 1)
+          if [ -n "$EXISTING" ]; then
+            gh issue edit "$EXISTING" --body-file briefing.md
+          else
+            gh issue create --title "$TITLE" --body-file briefing.md --label weekly-briefing
+          fi
+          for n in $(gh issue list --label weekly-briefing --state open --limit 50 --json number,title --jq ".[] | select(.title != \"$TITLE\") | .number"); do
+            gh issue close "$n" --comment "Superseded by this week's briefing."
+          done

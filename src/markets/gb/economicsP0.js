@@ -131,7 +131,7 @@ export const GB_ECONOMICS_P0 = {
     sourceUrl:tecUrl,
   },
   conclusion:{
-    headline:['SELECTIVE — buy realised dispatch and connection certainty, not headline pipeline MW','选择性投资 — 购买实际调度及并网确定性，而非标题式管线MW'],
+    headline:['Buy realised dispatch and connection certainty, not headline pipeline MW','购买实际调度及并网确定性，而非标题式管线MW'],
     text:['The CM provides a modest, duration-sensitive floor; most equity value still depends on realised DA/ID/BM capture or a bankable toll. Connection certainty, dispatch evidence and contracted share therefore dominate generic storage scarcity.','容量市场提供较小且受时长影响的下限；大部分股权价值仍依赖实际日前/日内/平衡机制捕获或可融资toll。因此，并网确定性、调度证据及合同化占比优先于笼统储能稀缺。'],
   },
   scenarios:[
@@ -143,9 +143,9 @@ export const GB_ECONOMICS_P0 = {
     },
     {
       name:'Base',
-      owner:['FES/CP2030 build broadly progresses, delivery remains selective, and CM plus contracted structures anchor part of revenue.','FES/CP2030建设大致推进，交付保持选择性，容量市场及合同结构锚定部分收入。'],
+      owner:['FES/CP2030 build broadly progresses, delivery is partial, and CM plus contracted structures anchor part of revenue.','FES/CP2030建设大致推进，交付部分推进，容量市场及合同结构锚定部分收入。'],
       system:['Clean-power build raises balancing need while planned network works progressively relieve boundaries.','清洁电力建设提高平衡需求，规划网络工程逐步缓解边界。'],
-      drivers:['Official system path','Selective Gate 2 conversion','Moderate reinforcement delay','Partial tolling'],
+      drivers:['Official system path','Partial Gate 2 conversion','Moderate reinforcement delay','Partial tolling'],
     },
     {
       name:'Bull',

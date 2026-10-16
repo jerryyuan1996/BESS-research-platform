@@ -3,6 +3,7 @@ import localData from './vite-plugin-local-data.js';
 import viewChanges from './vite-plugin-view-changes.js';
 import scout from './vite-plugin-scout.js';
 import viewBoard from './vite-plugin-view-board.js';
+import briefing from './vite-plugin-briefing.js';
 
 // Static, public, no backend. History-API routing is handled in dev by Vite's
 // SPA fallback (appType 'spa', the default) and in production by the `rewrites`
@@ -16,7 +17,7 @@ export default defineConfig({
   // calls and the /scout page whole. See vite-plugin-scout.js. A market's view
   // and ledger reach the home page as grades, calls and amounts, and its own
   // dashboard whole. See vite-plugin-view-board.js.
-  plugins: [localData(), viewChanges(), scout(), viewBoard()],
+  plugins: [localData(), viewChanges(), scout(), viewBoard(), briefing()],
   build: {
     outDir: 'dist',
     target: 'es2020',
@@ -56,6 +57,12 @@ export default defineConfig({
           /* The home page's verdict board, and the Returns page that took over
              the old home content. Each is fetched by its own route. */
           if (/[\\/]home[\\/]verdictHome\.js$/.test(id)) return 'assets/verdict-board-[hash].js';
+          /* The briefing that opens the home page (guided-experience plan, PR 4),
+             with the home projection of the briefing, and the analyst desk with
+             the whole of it. Each is fetched by its own route; the board above is
+             now fetched from the briefing's fold. */
+          if (/[\\/]home[\\/]briefingHome\.js$/.test(id)) return 'assets/briefing-home-[hash].js';
+          if (/[\\/]desk[\\/]deskPage\.js$/.test(id)) return 'assets/desk-[hash].js';
           if (/[\\/]home[\\/]returnsPage\.js$/.test(id)) return 'assets/returns-[hash].js';
           /* The changelog page, with every changelog line. Fetched by /changes
              and by nothing else. */
@@ -70,6 +77,12 @@ export default defineConfig({
              page and every market. Left alone, the second is emitted as
              `index-[hash].js`, the same shape as the entry chunk's name. */
           const ids = chunk.moduleIds || [];
+          /* The home projection of the briefing, shared by the home page and
+             every market's brief since PR 5 of the guided-experience plan. */
+          if (ids.some(m => /[\\/]briefing[\\/]homeData\.js$/.test(m))) return 'assets/briefing-data-[hash].js';
+          /* What to build, for the deep tabs of GB, WA and Japan (PR 7): the
+             design projection of the briefing, without the rest of it. */
+          if (ids.some(m => /[\\/]briefing[\\/]designData\.js$/.test(m))) return 'assets/design-answer-[hash].js';
           if (ids.some(m => /[\\/]governance[\\/]investability\.js$/.test(m))) return 'assets/investment-method-[hash].js';
           if (ids.some(m => /[\\/]charts[\\/]barChart\.js$/.test(m))) return 'assets/charts-[hash].js';
           return 'assets/[name]-[hash].js';

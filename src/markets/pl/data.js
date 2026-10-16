@@ -112,7 +112,7 @@ const M = {
     { lo: 55, hi: 69, n: ['Duration-value inflection', '时长价值拐点'], c: 'serious',
       d: ['Underwrite 4h; the correction-factor step is the main driver.', '按4小时测算；折减系数的阶跃是主要驱动。'] },
     { lo: 70, hi: 100, n: ['Long-duration / capacity-driven', '长时/容量驱动'], c: 'good',
-      d: ['4h+ is the default new-build design; test 6h against incremental capex.', '4小时以上为新建默认设计；6小时须对照增量造价检验。'] },
+      d: ['Test each hour above 2h against its incremental capex; the correction-factor step decides whether it pays.', '以增量造价检验2小时以上的每一小时；折减系数的阶跃决定其是否回本。'] },
   ],
   augItems: [
     ['Land reserved for additional enclosures', '预留新增电池舱用地'],

@@ -434,8 +434,23 @@ test('no page imports the registries that hold every market whole', async () => 
     }
   };
   await walk(path.join(REPO, 'src'));
-  assert.deepEqual(offenders, ['src/markets/viewBoardData.js'],
-    'only the stub the build replaces may import them: any other import puts every market\'s view and ledger in that page\'s chunk');
+  /* Two loaders, each reached only through a stub the build replaces: the
+     board's (viewBoardData.js) and the briefing's (briefing/disk.js, through
+     briefing/briefingData.js). The second is asserted below to have no other
+     importer in src/, so neither can put a market's records in a page. */
+  assert.deepEqual(offenders.sort(), ['src/briefing/disk.js', 'src/markets/viewBoardData.js'],
+    'only the stubs the build replaces may import them: any other import puts every market\'s view and ledger in that page\'s chunk');
+  const diskImporters = [];
+  const walkDisk = async (dir) => {
+    for (const entry of await readdir(dir, { withFileTypes: true })){
+      const full = path.join(dir, entry.name);
+      const rel = path.relative(REPO, full).split(path.sep).join('/');
+      if (entry.isDirectory()) await walkDisk(full);
+      else if (entry.name.endsWith('.js') && /from\s+['"](?:[^'"]*\/briefing)?\/?\.?\/?disk\.js['"]/.test(await code(rel))) diskImporters.push(rel);
+    }
+  };
+  await walkDisk(path.join(REPO, 'src'));
+  assert.deepEqual(diskImporters.sort(), ['src/briefing/briefingData.js', 'src/briefing/designData.js', 'src/briefing/homeData.js'], 'the briefing loader is reached only through the stubs the build replaces');
 });
 
 test('a graded market registers its own view and ledger from its dashboard, and no other market does', async () => {

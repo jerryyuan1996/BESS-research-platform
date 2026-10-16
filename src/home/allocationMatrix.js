@@ -33,6 +33,13 @@ import { homeState, waterfallMarket } from './state.js';
 
 /* ---- A. assumptions + matrix -------------------------------------------- */
 
+/* Market names as a list in running text: "Poland, PJM and ERCOT" / "波兰、PJM和ERCOT". */
+function nameList(ms){
+  const en = ms.map(m => m.manifest.shortName[0]), zh = ms.map(m => m.manifest.shortName[1]);
+  const join = (n, sep, last) => (n.length < 2 ? n.join('') : n.slice(0, -1).join(sep) + last + n[n.length - 1]);
+  return [join(en, ', ', ' and '), join(zh, '、', '和')];
+}
+
 function grantClause(marketList){
   const granted = marketList.filter(m => m.comparison.economics.grantPct > 0);
   if (!granted.length) return { en: 'no grants are netted off capex', zh: '未从造价中扣除任何补贴' };
@@ -129,11 +136,21 @@ function renderMatrix(main, marketList, X){
      The prototype ran runCase twice — once to find the maximum and once to render
      — and compared the two doubles with ===. Computing once removes that
      fragility (docs/migration-notes.md, B2) while producing identical output. */
-  const perMarket = marketList.map(m => ({
-    market: m,
-    runs: STRATEGIES.map(s => ({ s, r: runCase(m, s.id, X), scenarios:runScenarioSet(m, s.id, X) }))
-      .filter(x => !x.r.na && hasNoNegativeIrr(x.r)),
-  })).filter(entry => entry.runs.length > 0);
+  const priced = marketList.map(m => {
+    const all = STRATEGIES.map(s => ({ s, r: runCase(m, s.id, X) }));
+    return {
+      market: m,
+      priced: all.some(x => !x.r.na),
+      runs: all.filter(x => !x.r.na && hasNoNegativeIrr(x.r))
+        .map(x => ({ ...x, scenarios: runScenarioSet(m, x.s.id, X) })),
+    };
+  });
+  const perMarket = priced.filter(entry => entry.runs.length > 0);
+  /* A market with no row is named, never dropped silently: either no route
+     clears the filter, or the engine withholds the market. */
+  const negative = priced.filter(e => e.priced && !e.runs.length).map(e => e.market);
+  const unpriced = priced.filter(e => !e.priced).map(e => e.market);
+  const tolled = marketList.filter(m => supportedStrategies(m).some(s => s.id === 'toll'));
   const allIrrs = perMarket.flatMap(pm => pm.runs.map(x => x.r.irrHold)).filter(v => v != null);
   const bestIrr = allIrrs.length ? Math.max(...allIrrs) : null;
 
@@ -174,9 +191,18 @@ function renderMatrix(main, marketList, X){
       h('th', { class: 'num' }, L(['MOIC (yr ' + X + ')', 'MOIC（第' + X + '年）'])))),
     h('tbody', {}, rows))));
 
+  const neg = nameList(negative), unp = nameList(unpriced), tol = nameList(tolled);
+  const left = [
+    negative.length ? 'No route clears that in ' + neg[0] + '.' : '',
+    unpriced.length ? unp[0] + (unpriced.length === 1 ? ' is' : ' are') + ' not priced.' : '',
+  ].filter(Boolean).join(' ');
+  const leftZh = [
+    negative.length ? neg[1] + '没有任何路径满足该条件。' : '',
+    unpriced.length ? unp[1] + '未定价。' : '',
+  ].join('');
   cA.append(h('div', { class: 'cap' }, L([
-    'Only applicable routes with non-negative hold and exit IRRs are shown. Romania has no capacity mechanism, and the tolled/floor structure has a market precedent only in GB. Green marks the highest hold IRR in the filtered matrix.',
-    '仅展示适用且持有IRR与退出IRR均不为负的路径。罗马尼亚无容量机制，租赁/保底结构仅在英国有市场先例。绿色标示筛选后矩阵中最高的持有IRR。',
+    'Only applicable routes with non-negative hold and exit IRRs are shown. ' + (left ? left + ' ' : '') + (tolled.length ? 'A toll or floor is priced where the market has a precedent: ' + tol[0] + '. ' : '') + 'Green marks the highest hold IRR in the filtered matrix.',
+    '仅展示适用且持有IRR与退出IRR均不为负的路径。' + leftZh + (tolled.length ? '租赁或保底仅在有市场先例的市场定价：' + tol[1] + '。' : '') + '绿色标示筛选后矩阵中最高的持有IRR。',
   ])));
   cA.append(why([
     'This table is an investable opportunity set, not a catalogue of every modelled route. Negative cases remain in the underlying engine and regression tests, but are excluded here so the committee can compare viable structures without value-destroying rows dominating the page.',

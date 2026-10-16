@@ -103,10 +103,13 @@ the market's map, a table on its Grid Connection tab, and one cross-market compa
 Returns page — because congestion is the only revenue on this platform with a published expiry date.
 No per-MW congestion revenue is modelled anywhere; nothing public supports one (gate G14).
 
-The home page opens on verdicts: for each of four kinds of investor, which graded markets to enter,
-the barrier that shuts it out of the others, and the dated event that would change the call. Markets
-not yet graded say so and show their return. The cross-market returns view the home page used to be
-— market cards, league table, revenue stack, $1M engine — is at `/returns`, unchanged.
+The home page opens on a **briefing** (guided-experience plan, [`docs/guided-experience-plan.md`](docs/guided-experience-plan.md)):
+for the investor chosen — the infrastructure fund unless another is — the call across the platform,
+what changed since the reader's last visit, the catalysts of the next ninety days, the shortlist of
+plays ordered by call and then by value per MW, what to build in each market, and the next actions.
+It is one computation (`src/briefing/`) shared with `/desk` and the weekly digest. The verdict board
+that opened the page before — every investor's verdicts, the return-against-entry map, the full
+calendar — is folded underneath it. The cross-market returns view is at `/returns`, unchanged.
 
 Below the board is the **scouting tier**: nine markets with no dashboard, each with a card at
 `/scout`. A card is a first screen from public pages — a few sourced facts, a grade on each of
@@ -153,7 +156,8 @@ src/
 ### Routes
 
 ```
-/                        home: verdicts by investor, then the scouting tier
+/                        home: the briefing, with the verdict board folded beneath it
+/desk                    the analyst's queue: calls that reality has moved past
 /returns                 the cross-market returns view
 /changes                 every change to the view, by market and author
 /scout                   scouting cards for markets with no dashboard

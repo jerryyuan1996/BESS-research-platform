@@ -254,8 +254,8 @@ const ranges = {
   feePct: limits(economics.feePct, 6, 12, {
     kind: 'dispersed',
     basis: [
-      'Optimiser fees across the platform\'s six markets run 8–10% of market revenue; the band widens that by the stated dispersion.',
-      '本平台六个市场的优化商费用为市场化收入的8–10%；该区间在此基础上按既定离散幅度扩展。',
+      'Optimiser fees in Great Britain, Ireland, Western Australia, Romania, Poland and Japan run 8–10% of market revenue; the band widens that by the stated dispersion.',
+      '英国、爱尔兰、西澳、罗马尼亚、波兰与日本的优化商费用为市场化收入的8–10%；该区间在此基础上按既定离散幅度扩展。',
     ],
     source: 'Platform cross-market seeds, widened by the stated dispersion',
   }),

@@ -19,6 +19,7 @@ import { tabs } from '../jp/tabs.js';
 import { sources } from '../jp/sources.js';
 import {
   JP_REGIONS, JP_COMMON_COST, JP_CAPITAL, JP_REFERENCE, JP_LTDA_MERCHANT_RETENTION, jpRanges,
+  JP_ARCHETYPE_CAPEX, JP_ARCHETYPE_OPEX,
   JP_DURATION_RESPONSE,
 } from '../jp/regions.js';
 import { merchantVintage } from '../../comparison/vintage.js';
@@ -56,8 +57,8 @@ export const manifest = {
 const economics = {
   riskClass: 'auction-renewal',
 
-  capexPerMW: JP_COMMON_COST.capexPerMW,
-  opexPerMW: JP_COMMON_COST.opexPerMW,
+  capexPerMW: JP_ARCHETYPE_CAPEX,
+  opexPerMW: JP_ARCHETYPE_OPEX,
   /* Component stack, consumption tax and build period — shared across the
      three areas, because none of them differ on capital cost. */
   ...JP_CAPITAL,
@@ -79,6 +80,7 @@ const economics = {
      rather than an addition to it, which is what merchantRetention encodes. */
   ltda: {
     payment: R.econ.ltdaPaymentJPYMWYr,
+    awardFactor: R.econ.ltdaAwardFactor,
     years: 20,
     /* Round 3 abolished the 3-6h bracket and set a hard six-hour floor, so a
        shorter asset cannot bid into this route at all. Declared by the market
@@ -127,7 +129,7 @@ export const comparison = {
   ]),
 
   narrative: {
-    archetype: ['50 MW · 6h reference · renewable export / balancing', '50MW · 6小时参考 · 新能源外送 / 调整力'],
+    archetype: ['50 MW · 9h reference · renewable export / balancing', '50MW · 9小时参考 · 新能源外送 / 调整力'],
     thesis: [
       'Renewable-export and interconnector-constrained benchmark. Underwrite charging-side headroom, Hokkaido Area Price capture, balancing saturation and Hokkaido–Honshu reinforcement.',
       '新能源外送与跨区互联受限的基准市场。重点评估充电侧容量、北海道区域电价兑现、调整力饱和及北海道—本州联络线扩容。',

@@ -35,7 +35,7 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 
 /** Highest priority: these change what a reader may do with the number. */
-export const WARNING_BADGES = new Set(['illus', 'verify', 'conf', 'superseded']);
+export const WARNING_BADGES = new Set(['verify', 'conf', 'superseded']);
 
 /** Normal priority: concise operating or publication state. */
 export const STATE_BADGES = new Set([
@@ -78,6 +78,10 @@ export const DEMOTED_BADGES = {
   model:    { kind: ['Method', '方法'],  value: ['Modelled', '模型推算'] },
   peer:     { kind: ['Context', '背景'], value: ['Peer market', '同业市场'] },
   nem:      { kind: ['Context', '背景'], value: ['NEM', 'NEM'] },
+  /* A seed figure is provenance, not a warning (guided-experience plan,
+     2026-10-16, decision 4): it reads as its basis, quietly, beside the
+     figure, and the brief's one evidence marker carries the weight. */
+  illus:    { kind: ['Basis', '依据'], value: ['Seed estimate', '种子估算'] },
   policy:   { kind: ['Scope', '适用范围'],
               value: ['Policy target — not financed pipeline', '政策目标 — 非已融资管线'] },
 };

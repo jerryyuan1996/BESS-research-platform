@@ -221,7 +221,7 @@ export const IE_ECONOMICS_P0 = {
     sourceUrl:auctionUrl,
   },
   conclusion:{
-    headline:['SELECTIVE — capacity is investable; merchant and FASS upside must earn its way in','选择性投资 — 容量可承销；市场化及FASS上行必须以证据证明'],
+    headline:['Capacity is investable; merchant and FASS upside must earn its way in','容量可承销；市场化及FASS上行必须以证据证明'],
     text:['The official auction confirms high de-rated capacity value and a large new battery cohort, but delivery, MEC/MIC and duration determine who receives it. Base debt on awarded capacity cash flow after obligation stress; treat energy and future system services as upside until interval evidence and FASS rules are governed.','官方拍卖确认较高的折减容量价值及大量新增电池群体，但交付、MEC/MIC及时长决定谁能获得价值。债务应基于压力测试后的已授容量现金流；在区间数据及FASS规则受治理前，能源与未来系统服务仅作上行。'],
   },
   scenarios:[
@@ -233,9 +233,9 @@ export const IE_ECONOMICS_P0 = {
     },
     {
       name:'Base',
-      owner:['Awarded capacity delivers selectively; CRM remains the anchor while energy/FASS are conservatively sized.','获授容量选择性交付；CRM保持锚定，能源/FASS按保守规模计入。'],
+      owner:['Awarded capacity delivers in part; CRM remains the anchor while energy/FASS are conservatively sized.','获授容量部分交付；CRM保持锚定，能源/FASS按保守规模计入。'],
       system:['Adequacy remains tight in locations even as all-island supply improves.','全岛供给改善的同时，部分区位充足性仍偏紧。'],
-      drivers:['Official auction outcomes','Selective network delivery','Moderate data-centre growth','Gradual FASS transition'],
+      drivers:['Official auction outcomes','Partial network delivery','Moderate data-centre growth','Gradual FASS transition'],
     },
     {
       name:'Bull',

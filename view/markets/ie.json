@@ -1,6 +1,9 @@
 {
   "marketId": "ie",
-  "thesis": null,
+  "thesis": [
+    "Capacity-led: a capacity contract secures over half of revenue for ten years, and four hours is the best design. Underwrite capacity and wholesale and drop the system-services line, because DS3 ends at a September 2027 long-stop with no date for its successor.",
+    "以容量收入为主：容量合同可在十年内锁定过半收入，四小时是最佳设计。按容量与批发收入承保，不计系统服务收入，因为DS3将于2027年9月的最终截止日结束，而后继机制尚无日期。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -268,7 +271,8 @@
       "reviewBy": "2027-03-31",
       "author": "analyst",
       "asOf": "2026-10-12",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "play": "ie-cap-4h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -355,5 +359,31 @@
       "source": "decision-profile",
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "ie-cap-4h": {
+      "id": "ie-cap-4h",
+      "label": [
+        "Capacity market · 4h · ready-to-build",
+        "容量市场 · 4小时 · 具备开工条件"
+      ],
+      "route": "cap",
+      "hours": 4,
+      "stage": "ready-to-build",
+      "why": [
+        "De-rating rewards four hours, and a capacity contract secures over half of revenue for ten years.",
+        "折减系数有利于四小时设计，容量合同可在十年内锁定过半收入。"
+      ],
+      "action": {
+        "text": [
+          "Shortlist projects holding a capacity contract; price them on capacity and wholesale only, with no system-services line after the DS3 long-stop.",
+          "筛选持有容量合同的项目；仅按容量与批发收入定价，DS3截止日之后不计系统服务收入。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

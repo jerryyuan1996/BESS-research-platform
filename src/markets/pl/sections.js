@@ -52,8 +52,6 @@ SEC_B.home = function (){
         ['05', ['Underwriting','项目承销'], ['Can the project connect, certify and finance?','项目能否并网、通过认证并融资？'], 'grid'],
         ['06', ['Portfolio application','组合应用'], ['Which screened Polish opportunity passes the gates?','所筛选的波兰机会中哪一个能通过门槛？'], 'portfolio'],
       ] },
-      { t:'note', text:['Recommended presentation order: Overview → Poland Market Story → Capacity Market → Wholesale & Intraday → Balancing & Reserves → Duration → Pipeline → Grid & Connection → Portfolio → Data & Methodology.',
-        '建议讲解顺序：总览 → 波兰市场演进 → 容量市场 → 批发与日内 → 平衡与备用 → 时长 → 管线 → 并网 → 组合 → 数据与方法。'] },
       { t:'proto', text:['Data status: the capacity-auction prices, correction factors and contracted volumes shown in this build are seed values badged "verify against current documents". They set the structure of the analysis correctly but must be replaced with the published results for the specific delivery year before any transaction use.',
         '数据状态：本版本所示容量拍卖价格、折减系数与签约容量均为标注“须以现行文件核验”的种子数值。其正确反映了分析结构，但任何交易用途前须以对应交付年度的官方公布结果替换。'] },
       { t:'why', text:['The six questions are sequenced so each one can veto the next. A market that needs storage (02) is not the same as a capacity contract that pays for enough of the asset (03), a duration the correction factor rewards (04), a project that can actually obtain connection conditions and certify (05), or a specific opportunity worth committing capital to (06). In Poland the veto usually falls at step 05, because connection refusals — not capital or policy — are what ration the market.',

@@ -20,6 +20,7 @@ import { SEED } from '../data/seed.js';
 import { KEMERTON, hasProjectData } from '../data/kemerton.js';
 import { WITHHELD_NOTICE } from '../../../local/loader.js';
 import { dniScore, esrAtYear, kemDurationCase } from '../lib/scores.js';
+import { waDesign, waDesignText } from '../lib/design.js';
 
 // ---------------- DURATION ----------------
 function renderDuration(main){
@@ -84,6 +85,7 @@ function durationBody(main, g){
 
   const c1 = card(['ESR Duration Requirement trajectory', 'ESR时长要求轨迹'], [badge('official'), statusBadge(true)]);
   const codIdx = SEED.esrYears.indexOf(state.codYear);
+  const fit = waDesign(), dText = waDesignText(), esr = esrAtYear('2028-29');
   lineChart(c1, {
     xs: SEED.esrYears, yfmt: v => v + 'h', ymin: 0,
     series: [{ name: ['ESR requirement', 'ESR时长要求'], color: 'var(--s1)', vals: SEED.esrPath, step: true }],
@@ -92,11 +94,11 @@ function durationBody(main, g){
   c1.append(h('div', { class: 'cap' }, L(['The 4h → 6h → 7h path is per the specification; exact transition vintages and grandfathering must be verified against WEM ESOO / rule publications before underwriting.',
     '4h→6h→7h路径依据规范；具体过渡年度及祖父条款须在测算前以WEM ESOO及规则文件核验。'])));
   c1.append(h('div', { class: 'reco' }, h('b', {}, L(['Recommendation: ', '建议：'])),
-    L(['Prefer an 8-hour minimum design with expansion capability toward 10 hours for projects reaching COD in 2028–29. Driven by the 7-hour ESR requirement, degradation headroom, islanded-grid reliability and longer residual peaks. FCESS is not the justification for incremental MWh.',
-       '对于2028–29年投运的项目，建议至少按8小时设计并保留向10小时增容的能力。依据为7小时ESR要求、衰减裕度、孤立电网可靠性及更长的剩余峰值。FCESS不构成新增MWh的理由。'])));
-  c1.append(why(['The step shape is the reason to build above the requirement rather than to it. Requirements have only ever ratcheted up, they apply to the cycle in which credits are allocated, and a shortfall de-rates credits linearly. Building exactly to ' + esrAtYear(state.codYear) + ' h leaves no margin for degradation over a 20-year life, let alone a further step. Build one hour above the requirement at COD and hold a documented augmentation right for the next step — the extra hour is cheap insurance against the only variable here that has never moved in your favour.',
-    '阶梯形态正是应高于要求建设、而非贴着要求建设的原因。该要求历来只上调，适用于信用获配所在周期，且时长不足会导致信用线性折减。恰好按' + esrAtYear(state.codYear) + '小时建设，将不为20年寿命期内的衰减留出余量，更无法应对下一次抬升。建议投运时高于要求一小时，并持有成文的增容权以应对下一阶段 — 这一小时是针对本页唯一从未朝有利方向变动的变量的低成本保险。'],
-    ['Build one hour above, hold the option', '高出一小时并持有期权']));
+    L(['Build ' + dText[0] + ' for projects reaching COD in 2028–29: the engine’s best capacity design, priced against the ' + esr + '-hour ESR requirement with credits de-rated linearly as the battery fades. FCESS is not the justification for incremental MWh.',
+       '对于2028–29年投运的项目，建议按' + dText[1] + '建设：即引擎的最佳容量设计，按' + esr + '小时ESR要求定价，且信用随电池衰减线性折减。FCESS不构成新增MWh的理由。'])));
+  c1.append(why(['The step shape is why the requirement, not dispatch, sizes the asset. Requirements have only ever ratcheted up, they apply to the cycle in which credits are allocated, and a shortfall de-rates credits linearly, so a build at exactly ' + esr + ' h loses credit as it fades. The engine prices that loss over the credit term and puts the design at ' + dText[0] + '. Hold a documented augmentation right for the next step rather than building it now.',
+    '阶梯形态正是由要求而非调度决定资产规模的原因。该要求历来只上调，适用于信用获配所在周期，且时长不足会导致信用线性折减，因此恰好按' + esr + '小时建设的资产会随衰减逐步损失信用。引擎在信用期内为这一损失定价，给出的设计为' + dText[1] + '。应持有成文的增容权以应对下一阶段，而非现在就建。'],
+    ['Build to the engine’s band, hold the option', '按引擎区间建设，持有增容权']));
   g.append(c1);
 
   // Duration-Need Index (editable)
@@ -184,8 +186,8 @@ function durationBody(main, g){
     })())))))));
   c6.append(h('div', { class: 'cap' }, L(['Augmentation flexibility is a financial real option: it reduces the cost of being wrong about future duration (spec §2.6.7).',
     '增容灵活性是一项金融实物期权：它降低了对未来时长判断出错的代价（规范§2.6.7）。'])));
-  c6.append(why(['Score this honestly, because it is the cheapest hedge available against the one variable that has only ever moved against short assets. A high score means the duration decision can be staged — build ' + SEED.durationSig.recoInitial + ' h now, add MWh when the requirement moves — which converts a forecasting problem into a timing problem. A low score means today’s duration choice is effectively irreversible, and the case should be underwritten at the highest plausible future requirement instead. The two items that most often fail are grid-approval treatment of MWh-only augmentation and OEM augmentation rights; both must be contractual, not assumed.',
-    '此项应如实评分，因为它是针对唯一始终对短时资产不利的变量所能获得的最低成本对冲。高分意味着时长决策可以分期 — 现在建' + SEED.durationSig.recoInitial + '小时，待要求上调时再加MWh — 从而将预测问题转化为时点问题。低分意味着当前时长选择实质不可逆，方案应改按可预见的最高未来要求承销。最常不达标的两项是"仅增MWh的并网审批处理"与"OEM增容权利"；两者均须以合同落实，不可假设。'],
+  c6.append(why(['Score this honestly, because it is the cheapest hedge available against the one variable that has only ever moved against short assets. A high score means the duration decision can be staged — build ' + (fit ? fit.hours : '—') + ' h now, add MWh when the requirement moves — which converts a forecasting problem into a timing problem. A low score means today’s duration choice is effectively irreversible, and the case should be underwritten at the highest plausible future requirement instead. The two items that most often fail are grid-approval treatment of MWh-only augmentation and OEM augmentation rights; both must be contractual, not assumed.',
+    '此项应如实评分，因为它是针对唯一始终对短时资产不利的变量所能获得的最低成本对冲。高分意味着时长决策可以分期 — 现在建' + (fit ? fit.hours : '—') + '小时，待要求上调时再加MWh — 从而将预测问题转化为时点问题。低分意味着当前时长选择实质不可逆，方案应改按可预见的最高未来要求承销。最常不达标的两项是"仅增MWh的并网审批处理"与"OEM增容权利"；两者均须以合同落实，不可假设。'],
     ['Staged build needs contractual rights', '分期建设需合同化权利']));
   g.append(c6);
   main.append(g);
@@ -197,17 +199,17 @@ function durationBody(main, g){
   const qrows = [
     [['1 · Market-use duration', '1 · 市场可用时长'], ['How many hours can be economically dispatched', '有多少小时可经济地调度'], ['~6 h — a supplementary third-party dispatch study puts economic utilisation near 25% of DSOC, so hours beyond ~6 are lightly used on merchant grounds alone', '约6小时 — 补充性第三方调度研究显示经济利用率约为DSOC的25%，因此仅从市场化角度看，约6小时以上的部分利用率偏低'], 'supp'],
     [['2 · Capacity-accreditation duration', '2 · 容量认证时长'], ['Hours required to preserve Capacity Credits', '维持容量信用所需的小时数'], [esrAtYear(state.codYear) + ' h ESR requirement for ' + state.codYear + ', set in Trading Intervals by the applicable Reserve Capacity Cycle', state.codYear + '为' + esrAtYear(state.codYear) + '小时ESR要求，按适用容量周期以交易时段设定'], 'official'],
-    [['3 · Installed / expandable duration', '3 · 装机/可扩展时长'], ['Physical design plus a contractual augmentation option', '物理设计加合同化增容选择权'], [SEED.durationSig.recoInitial + ' h at COD, expandable to ' + SEED.durationSig.recoExpand + ' h — sized above question 2, not question 1', '投运时' + SEED.durationSig.recoInitial + '小时，可扩展至' + SEED.durationSig.recoExpand + '小时 — 依据问题2而非问题1配置'], 'calc'],
+    [['3 · Installed / expandable duration', '3 · 装机/可扩展时长'], ['Physical design plus a contractual augmentation option', '物理设计加合同化增容选择权'], [dText[0] + ' at COD, the engine’s design — sized to question 2, not question 1', '投运时' + dText[1] + '，即引擎设计 — 依据问题2而非问题1配置'], 'calc'],
   ];
   cQ.append(h('div', { class: 'tbl-wrap' }, h('table', {},
     h('thead', {}, h('tr', {}, h('th', {}, L(['Question', '问题'])), h('th', {}, L(['Definition', '定义'])), h('th', {}, L(['Answer', '答案'])), h('th', {}, L(['Source', '来源'])))),
     h('tbody', {}, qrows.map(r => h('tr', {}, h('td', {}, h('b', {}, L(r[0]))), h('td', {}, L(r[1])), h('td', {}, L(r[2])), h('td', {}, badge(r[3]))))))));
   cQ.append(h('div', { class: 'flow' },
     h('span', { class: 'fbox' }, L(['Q1 · economically dispatched ~6 h', '问题1 · 经济调度约6小时'])), h('span', { class: 'farr' }, '<'),
-    h('span', { class: 'fbox' }, L(['Q2 · must hold ' + esrAtYear(state.codYear) + ' h to keep credits', '问题2 · 须具备' + esrAtYear(state.codYear) + '小时以保留信用'])), h('span', { class: 'farr' }, '<'),
-    h('span', { class: 'fbox', style: 'border-color:var(--s1);font-weight:var(--fw-medium);' }, L(['Q3 · build ' + SEED.durationSig.recoInitial + ' h, option to ' + SEED.durationSig.recoExpand + ' h', '问题3 · 建' + SEED.durationSig.recoInitial + '小时，保留至' + SEED.durationSig.recoExpand + '小时期权']))));
-  cQ.append(why(['The inequality is the design rule: build to the accreditation requirement plus margin, not to the economically-dispatched hours. Hours between question 1 and question 2 look idle in a dispatch model but are earning capacity revenue by keeping credits un-derated — which is why a pure dispatch optimisation will always recommend a shorter asset than the RCM rewards. When a model and the rules disagree on duration, the rules win, because they set the revenue the debt is sized against.',
-    '该不等式即设计准则：应按认证要求加余量建设，而非按经济调度小时数建设。介于问题1与问题2之间的小时在调度模型中看似闲置，实则通过避免信用折减而赚取容量收入 — 这正是纯调度优化总会建议比RCM所奖励更短的资产的原因。当模型与规则在时长上不一致时，以规则为准，因为规则决定债务规模所依据的收入。'],
+    h('span', { class: 'fbox' }, L(['Q2 · must hold ' + esrAtYear(state.codYear) + ' h to keep credits', '问题2 · 须具备' + esrAtYear(state.codYear) + '小时以保留信用'])), h('span', { class: 'farr' }, '≤'),
+    h('span', { class: 'fbox', style: 'border-color:var(--s1);font-weight:var(--fw-medium);' }, L(['Q3 · build ' + (fit ? fit.hours : '—') + ' h, the engine’s design', '问题3 · 建' + (fit ? fit.hours : '—') + '小时（引擎设计）']))));
+  cQ.append(why(['The inequality is the design rule: build to the accreditation requirement, not to the economically-dispatched hours. Hours between question 1 and question 2 look idle in a dispatch model but are earning capacity revenue by keeping credits un-derated — which is why a pure dispatch optimisation will always recommend a shorter asset than the RCM rewards. When a model and the rules disagree on duration, the rules win, because they set the revenue the debt is sized against.',
+    '该不等式即设计准则：应按认证要求建设，而非按经济调度小时数建设。介于问题1与问题2之间的小时在调度模型中看似闲置，实则通过避免信用折减而赚取容量收入 — 这正是纯调度优化总会建议比RCM所奖励更短的资产的原因。当模型与规则在时长上不一致时，以规则为准，因为规则决定债务规模所依据的收入。'],
     ['Rules win over dispatch models', '规则优先于调度模型']));
   cQ.style.marginTop = '14px';
   main.append(cQ);

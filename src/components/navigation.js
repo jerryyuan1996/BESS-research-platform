@@ -15,6 +15,7 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
 import { homeState } from '../home/state.js';
+import { SCOUT_CALLS } from '../scout/scoutIndex.js';
 
 /* A market id is not a country code — `wa` is Australia and the three Japanese
    areas share one flag — so the mapping is explicit. Anything missing falls back
@@ -195,8 +196,16 @@ function initTabStrip(el){
 }
 
 /**
+ * The site's navigation: two rows.
+ *
+ * The first is where to go — the briefing, the returns, the changes and the
+ * analyst's desk, and the scouting tier once it has a card to show. The second
+ * is the markets, compact: fifteen codes on a strip of their own, so the first
+ * row stays short enough to read (guided-experience plan, PR 4). Only the first
+ * row is sticky.
+ *
  * @param {Array} markets  registry entries
- * @param {string} activeId  market id, or 'home'
+ * @param {string} activeId  market id, or a page id: 'home', 'returns', 'changes', 'desk', 'scout'
  */
 export function marketNav(markets, activeId){
   const link = (href, label, active, flag = '') => h('a', {
@@ -205,22 +214,28 @@ export function marketNav(markets, activeId){
     onclick: (e) => { e.preventDefault(); navigate(href); },
   }, flag && h('span', { class:`market-flag fi fi-${flag}`, 'aria-hidden':'true' }), label);
 
-  return tabStrip(
-    link('/', L(['◂ Global cockpit', '◂ 全球总看板']), activeId === 'home'),
-    /* The cross-market returns view, which was the home page until verdicts
-       took its place. Listed here so it is one click from anywhere. */
+  const primary = tabStrip(
+    link('/', L(['Briefing', '简报']), activeId === 'home'),
+    /* The cross-market returns view, which was the home page before verdicts
+       and then the briefing took its place. */
     link('/returns', L(['Returns', '回报对比']), activeId === 'returns'),
     /* Who changed which grade or verdict, and on what. The only place a
        reader can tell a rule's change from the analyst's. */
     link('/changes', L(['Changes', '变更记录']), activeId === 'changes'),
-    /* Cards for markets with no dashboard: nine of them, screened and not
-       priced. */
-    link('/scout', L(['Scouting', '观察名单']), activeId === 'scout'),
+    /* The analyst's queue: calls that reality has moved past. */
+    link('/desk', L(['Desk', '分析台']), activeId === 'desk'),
+    /* Cards for markets with no dashboard, listed once there is a card. */
+    Object.keys(SCOUT_CALLS).length ? link('/scout', L(['Scouting', '观察名单']), activeId === 'scout') : null);
+
+  const strip = tabStrip(
+    h('span', { class: 'market-strip-label' }, L(['Markets', '市场'])),
     markets.map(m => link(
       '/markets/' + m.manifest.slug,
       L(m.manifest.shortName),
       m.manifest.id === activeId,
       marketFlagCode(m))));
+  strip.classList.add('market-strip');
+  return h('nav', { class: 'site-nav', 'aria-label': L(['Site', '站点']) }, primary, strip);
 }
 
 /**

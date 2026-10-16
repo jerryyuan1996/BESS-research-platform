@@ -91,9 +91,9 @@ test('every allocation market carries the 10% sponsor capex reduction', () => {
     ie:1044000,
     ro:567000,
     pl:873000,
-    jp_tokyo:324000000,
-    jp_kyushu:324000000,
-    jp_hokkaido:324000000,
+    jp_tokyo:427090909.5,   // 9h archetype since 2026-10-16: ¥360m/MW at 6h carried by the stack, × 0.9
+    jp_kyushu:427090909.5,   // 9h archetype since 2026-10-16: ¥360m/MW at 6h carried by the stack, × 0.9
+    jp_hokkaido:427090909.5,   // 9h archetype since 2026-10-16: ¥360m/MW at 6h carried by the stack, × 0.9
     pjm:1202400,
     ercot:865728,
     caiso:1202400,
@@ -237,23 +237,26 @@ test('the clawback is applied, and is what makes the award non-additive', () => 
 });
 
 test('the award is priced off cost, not off the published bid ceiling', () => {
-  const payment = byId('jp_tokyo').comparison.economics.ltda.payment;
-  const perKW = payment / 1000;
-  // The FY2026 (Round 4) battery ceiling is ¥70,675-74,417/kW/yr. A bid at the
-  // cap would model a bidder with no competitors; Round 3 rejected over half the
-  // bid capacity.
-  assert.ok(perKW < 70675 * 0.6,
-    `a competitive pay-as-bid clearing must sit well below the ceiling (got ¥${perKW}/kW)`);
-  assert.ok(perKW > 20000, 'and must still cover annuitised Japanese capex');
+  // Since 2026-10-16 (gate G43) the award is the cost bid the auction's rules
+  // allow: capex at METI's 4.5% cap on a battery bid's return, bid per awarded kW
+  // and paid per installed kW at the area's factor. Not a fraction of the ceiling.
+  const ltda = byId('jp_tokyo').comparison.economics.ltda;
+  const perAwardedKW = ltda.payment / 1000 / ltda.awardFactor;
+  assert.equal(ltda.awardFactor, 0.907, 'Tokyo’s published six-hour factor');
+  assert.ok(perAwardedKW < 71140, `below the Round 4 ceiling (got ¥${Math.round(perAwardedKW)}/kW)`);
+  assert.equal(perAwardedKW % 1000, 0, 'bid in whole ¥1,000 per awarded kW');
+  assert.ok(perAwardedKW > 25000, 'and above the trade-press battery line: our sponsor’s cost bid would not win');
 });
 
 test('the award does not differentiate the three Japanese regions', () => {
   // It is cost-reflective and costs are national — the same reason the Capacity
   // Market area prices sit within 0.9% of each other. Regional differentiation
-  // has to be earned in the market legs, which is the premise of the split.
+  // has to be earned in the market legs, which is the premise of the split. The
+  // award is bid per awarded kW, so per installed kW the areas differ only by
+  // rounding at the factor and by the sliver of market revenue kept.
   const p = ['jp_tokyo', 'jp_kyushu', 'jp_hokkaido']
     .map(id => byId(id).comparison.economics.ltda.payment);
-  assert.equal(new Set(p).size, 1);
+  assert.ok(Math.max(...p) / Math.min(...p) < 1.02, `within 2% per installed kW (got ${p.join(', ')})`);
 
   // …and the regions still separate on the full case.
   const irrs = ['jp_tokyo', 'jp_kyushu', 'jp_hokkaido']
@@ -328,9 +331,12 @@ test('published base-case outcomes', () => {
     ie:          ['cap',   14.6,         9.6],
     ro:          ['mer',   26.7,        20.8],
     pl:          ['mer',    8.2,         0.8],
-    jp_tokyo:    ['ltda',  11.3,         7.4],
-    jp_kyushu:   ['ltda',  11.4,         7.5],
-    jp_hokkaido: ['ltda',  11.3,         7.4],
+    /* Moved 2026-10-16 (docs/japan-ltda-repricing-plan.md): 9h archetype, the
+       award bid at METI's 4.5% cap per awarded kW, METI opex. Were 11.3–11.4
+       and 7.4–7.5 at 6h with an 8% bid. */
+    jp_tokyo:    ['ltda',   8.8,         3.6],
+    jp_kyushu:   ['ltda',   8.8,         3.5],
+    jp_hokkaido: ['ltda',   8.6,         3.4],
   };
 
   for (const [id, [route, yield1, irr]] of Object.entries(expected)){
@@ -406,23 +412,25 @@ test('a toll never funds debt past its own tenor', () => {
 });
 
 test('leverage is not automatically accretive, and the model says so', () => {
-  // The sponsor capex position makes the base Japan award accretive. A stressed
-  // cost case still dilutes equity, proving the debt model responds to the
-  // return-vs-cost spread instead of forcing a positive leverage effect.
+  // Since 2026-10-16 the Japan award is bid at METI's 4.5% cap on a battery
+  // bid's return (gate G43), so the base case earns below the platform's debt
+  // cost and leverage dilutes it. Bought at a deep enough discount, the same
+  // award earns above it and leverage becomes accretive: the debt model responds
+  // to the return-vs-cost spread instead of forcing a sign.
   const jp = byId('jp_tokyo');
   const d = sizeProjectDebt(runCase(jp, 'ltda', 5), { exitYear: 5, riskClass: 'ltda' });
-  assert.ok(d.irrLevered > d.irrUnlevered,
-    'Japan: the sponsor cost case now earns above the debt cost');
+  assert.ok(d.irrLevered < d.irrUnlevered,
+    'Japan: a 4.5% regulated bid earns below the debt cost, so leverage dilutes');
 
-  const stressed = {
+  const discounted = {
     ...jp,
     comparison:{
       ...jp.comparison,
-      economics:{ ...jp.comparison.economics, capexPerMW:jp.comparison.economics.capexPerMW * 1.25 },
+      economics:{ ...jp.comparison.economics, capexPerMW:jp.comparison.economics.capexPerMW * 0.5 },
     },
   };
-  const ds = sizeProjectDebt(runCase(stressed, 'ltda', 5), { exitYear: 5, riskClass: 'ltda' });
-  assert.ok(ds.irrLevered < ds.irrUnlevered, 'a stressed cost case must still show dilution');
+  const dd = sizeProjectDebt(runCase(discounted, 'ltda', 5), { exitYear: 5, riskClass: 'ltda' });
+  assert.ok(dd.irrLevered > dd.irrUnlevered, 'the same award bought at half the cost is accretive');
 
   const wa = byId('wa');
   const dw = sizeProjectDebt(runCase(wa, 'cap', 5), { exitYear: 5, riskClass: 'contracted' });

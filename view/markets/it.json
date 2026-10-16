@@ -1,6 +1,9 @@
 {
   "marketId": "it",
-  "thesis": null,
+  "thesis": [
+    "Four routes, and a real spread between them. The capacity market at four hours is the best design here, at 15.4% hold; MACSE's fifteen-year contract returns 3–4% unless the marginal MWh costs well under the turnkey price. Terna's proposed cut to the four-hour de-rating is the risk to watch.",
+    "四条路径并存，且彼此之间差距真实存在。四小时容量市场是这里的最佳设计，持有期回报15.4%；MACSE的十五年合同回报仅3–4%，除非边际MWh成本远低于交钥匙价格。需要关注的风险是Terna拟下调四小时折减系数。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -207,38 +210,36 @@
     },
     "infraFund": {
       "archetype": "infraFund",
+      "where": null,
+      "reviewBy": "2027-03-31",
       "call": "enter-now",
       "route": "ready-to-build",
-      "where": [
-        "An awarded, ready-to-build asset",
-        "已中标且具备开工条件的资产"
-      ],
+      "play": "it-cap-4h",
       "because": [
-        {
-          "dimension": "revenueCertainty",
-          "text": [
-            "The storage auction awards fifteen-year contracts, and fourteen projects won one in the first round.",
-            "储能拍卖授予十五年期合同，首轮已有十四个项目中标。"
-          ]
-        },
         {
           "dimension": "assetReturn",
           "text": [
-            "The modelled return is second on the platform.",
-            "模型回报在本平台各市场中排名第二。"
+            "Capacity market at four hours is the best design in Italy and the second-best return on the platform: 15.4% hold, 18.4% exit.",
+            "四小时容量市场是意大利的最佳设计，回报在本平台排名第二：持有期15.4%，退出18.4%。"
+          ]
+        },
+        {
+          "dimension": "revenueCertainty",
+          "text": [
+            "A capacity-market contract secures a fifth of revenue for fifteen years.",
+            "容量市场合同可锁定五分之一的收入，期限十五年。"
           ]
         }
       ],
       "despite": [
-        "The first auction drew bids for several times the volume on offer, so a high modelled return does not mean a winning bid at that return.",
-        "首轮拍卖的投标量是招标量的数倍，模型回报高并不意味着能以同样的回报中标。"
+        "Terna proposes cutting the four-hour de-rating from 0.67 to 0.53 for 2028 delivery, a fifth off the capacity line, and four-fifths of revenue stays merchant.",
+        "Terna拟将2028年交付的四小时折减系数从0.67下调至0.53，容量收入减少约五分之一，且五分之四的收入仍为市场化收入。"
       ],
       "changesIf": [
-        "it-macse-second-auction"
+        "it-capacity-derating-dy2028"
       ],
-      "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-16",
       "lockedUntil": null
     },
     "foreignFirstTimer": {
@@ -310,6 +311,23 @@
   },
   "triggers": [
     {
+      "id": "it-capacity-derating-dy2028",
+      "kind": "event",
+      "market": "it",
+      "label": [
+        "Terna decides the four-hour de-rating for 2028 delivery; it has proposed cutting it from 0.67 to 0.53",
+        "Terna裁定2028年交付的四小时折减系数；其已提议从0.67下调至0.53"
+      ],
+      "expected": null,
+      "watches": [
+        "revenueCertainty",
+        "assetReturn"
+      ],
+      "direction": "down",
+      "source": "derating",
+      "effect": null
+    },
+    {
       "id": "it-macse-second-auction",
       "kind": "event",
       "market": "it",
@@ -325,5 +343,90 @@
       "source": "decision-profile",
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "it-cap-4h": {
+      "id": "it-cap-4h",
+      "label": [
+        "Capacity market · 4h · ready-to-build",
+        "容量市场 · 4小时 · 具备开工条件"
+      ],
+      "route": "cap",
+      "hours": 4,
+      "stage": "ready-to-build",
+      "why": [
+        "The best design in Italy: 15.4% hold, with a fifteen-year contract on a fifth of revenue.",
+        "意大利的最佳设计：持有期回报15.4%，五分之一的收入有十五年合同。"
+      ],
+      "action": {
+        "text": [
+          "Screen ready-to-build capacity-market projects in the south and the islands; price them at a four-hour de-rating of 0.53 as well as 0.67.",
+          "筛选南部及海岛地区具备开工条件的容量市场项目；同时按0.53与0.67两种四小时折减系数定价。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    },
+    "it-ltda-6h": {
+      "id": "it-ltda-6h",
+      "label": [
+        "MACSE · 6–7h · awarded, ready-to-build",
+        "MACSE · 6–7小时 · 已中标、具备开工条件"
+      ],
+      "route": "ltda",
+      "hours": 6,
+      "stage": "ready-to-build",
+      "why": [
+        "MACSE pays per MWh-year, so winners build long (the first auction's fleet averaged 6.68 hours), but on the published capex the design returns 3–4% hold.",
+        "MACSE按每MWh每年付费，因此中标者倾向长时设计（首轮中标项目平均6.68小时），但按公开的资本开支测算，该设计持有期回报仅3–4%。"
+      ],
+      "action": {
+        "text": [
+          "Get an EPC price for a marginal MWh on a shared power block before the second auction; the MACSE design pays only well below the €220/kWh turnkey figure.",
+          "在第二轮拍卖前向EPC询价共享功率模块上的边际MWh；只有远低于每kWh 220欧元的交钥匙价格，MACSE设计才划算。"
+        ],
+        "due": "2026-11-24"
+      },
+      "calls": {
+        "infraFund": {
+          "archetype": "infraFund",
+          "call": "opportunistic",
+          "route": "ready-to-build",
+          "where": null,
+          "because": [
+            {
+              "dimension": "assetReturn",
+              "text": [
+                "On the published €220/kWh capex the MACSE design returns 3–4% hold at six to eight hours.",
+                "按公开的每kWh 220欧元资本开支测算，MACSE设计在六至八小时下的持有期回报为3–4%。"
+              ]
+            },
+            {
+              "dimension": "revenueCertainty",
+              "text": [
+                "An award is a fifteen-year contract with the grid operator and secures about 70% of revenue.",
+                "中标即获得与电网运营商的十五年合同，可锁定约70%的收入。"
+              ]
+            }
+          ],
+          "despite": [
+            "The first auction's winners built 6.68 hours on average, so they price the marginal MWh below the published turnkey figure; at that cost the case changes.",
+            "首轮中标项目平均为6.68小时，说明其边际MWh成本低于公开的交钥匙价格；按那样的成本，结论会改变。"
+          ],
+          "changesIf": [
+            "it-macse-second-auction"
+          ],
+          "reviewBy": "2027-03-31",
+          "author": "analyst",
+          "asOf": "2026-10-16",
+          "lockedUntil": null
+        }
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

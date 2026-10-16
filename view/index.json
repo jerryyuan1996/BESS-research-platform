@@ -7,10 +7,11 @@
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
-      "call": "build-position",
-      "route": "ready-to-build",
-      "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "call": "opportunistic",
+      "route": "operating",
+      "asOf": "2026-10-16",
+      "reviewBy": "2027-03-31",
+      "play": "caiso-cap-4h"
     },
     "foreignFirstTimer": {
       "call": "opportunistic",
@@ -36,7 +37,8 @@
       "call": "opportunistic",
       "route": "ready-to-build",
       "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "reviewBy": "2027-03-31",
+      "play": "de-toll-4h"
     },
     "foreignFirstTimer": {
       "call": "build-position",
@@ -62,7 +64,8 @@
       "call": "opportunistic",
       "route": "ready-to-build",
       "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "reviewBy": "2027-03-31",
+      "play": "ercot-toll-2h"
     },
     "foreignFirstTimer": {
       "call": "opportunistic",
@@ -88,7 +91,8 @@
       "call": "opportunistic",
       "route": "ready-to-build",
       "asOf": "2026-10-10",
-      "reviewBy": "2027-03-31"
+      "reviewBy": "2027-03-31",
+      "play": "fi-mer-2h"
     },
     "foreignFirstTimer": {
       "call": "build-position",
@@ -113,8 +117,9 @@
     "infraFund": {
       "call": "opportunistic",
       "route": "operating",
-      "asOf": "2026-10-10",
-      "reviewBy": "2027-03-31"
+      "asOf": "2026-10-16",
+      "reviewBy": "2027-03-31",
+      "play": "gb-toll-4h"
     },
     "foreignFirstTimer": {
       "call": "opportunistic",
@@ -140,7 +145,8 @@
       "call": "build-position",
       "route": "ready-to-build",
       "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "reviewBy": "2027-03-31",
+      "play": "ie-cap-4h"
     },
     "foreignFirstTimer": {
       "call": "build-position",
@@ -165,8 +171,9 @@
     "infraFund": {
       "call": "enter-now",
       "route": "ready-to-build",
-      "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "asOf": "2026-10-16",
+      "reviewBy": "2027-03-31",
+      "play": "it-cap-4h"
     },
     "foreignFirstTimer": {
       "call": "build-position",
@@ -189,10 +196,11 @@
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
-      "call": "build-position",
-      "route": "ready-to-build",
-      "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "call": "opportunistic",
+      "route": "operating",
+      "asOf": "2026-10-16",
+      "reviewBy": "2027-03-31",
+      "play": "jp-hokkaido-ltda-6h"
     },
     "foreignFirstTimer": {
       "call": "opportunistic",
@@ -215,10 +223,11 @@
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
-      "call": "build-position",
-      "route": "ready-to-build",
-      "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "call": "opportunistic",
+      "route": "operating",
+      "asOf": "2026-10-16",
+      "reviewBy": "2027-03-31",
+      "play": "jp-kyushu-ltda-6h"
     },
     "foreignFirstTimer": {
       "call": "build-position",
@@ -241,10 +250,11 @@
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
-      "call": "enter-now",
-      "route": "ready-to-build",
-      "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "call": "opportunistic",
+      "route": "operating",
+      "asOf": "2026-10-16",
+      "reviewBy": "2027-03-31",
+      "play": "jp-tokyo-ltda-6h"
     },
     "foreignFirstTimer": {
       "call": "build-position",
@@ -267,10 +277,11 @@
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
-      "call": "build-position",
-      "route": "ready-to-build",
-      "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "call": "opportunistic",
+      "route": "operating",
+      "asOf": "2026-10-16",
+      "reviewBy": "2027-03-31",
+      "play": "nem-ltda-4h"
     },
     "foreignFirstTimer": {
       "call": "not-accessible",
@@ -296,7 +307,8 @@
       "call": "wait",
       "route": "ready-to-build",
       "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "reviewBy": "2027-03-31",
+      "play": "pjm-cap-4h"
     },
     "foreignFirstTimer": {
       "call": "wait",
@@ -322,7 +334,8 @@
       "call": "wait",
       "route": "ready-to-build",
       "asOf": "2026-10-12",
-      "reviewBy": "2027-03-31"
+      "reviewBy": "2027-03-31",
+      "play": "pl-cap-2h"
     },
     "foreignFirstTimer": {
       "call": "opportunistic",
@@ -345,10 +358,11 @@
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
-      "call": "wait",
-      "route": "ready-to-build",
-      "asOf": "2026-10-10",
-      "reviewBy": "2027-01-31"
+      "call": "opportunistic",
+      "route": "operating",
+      "asOf": "2026-10-16",
+      "reviewBy": "2027-01-31",
+      "play": "ro-mer-4h"
     },
     "foreignFirstTimer": {
       "call": "wait",
@@ -374,7 +388,8 @@
       "call": "opportunistic",
       "route": "co-invest",
       "asOf": "2026-10-10",
-      "reviewBy": "2027-03-31"
+      "reviewBy": "2027-03-31",
+      "play": "wa-cap-7h"
     },
     "foreignFirstTimer": {
       "call": "not-accessible",

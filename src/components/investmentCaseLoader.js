@@ -23,7 +23,7 @@ export function mountInvestmentCase(parent, marketId, which){
   const holder = h('div', { class: 'cap' }, L(['Loading…', '加载中…']));
   parent.append(holder);
   import('./investmentCase.js').then(m => {
-    const cards = which === 'entry' ? m.entryPanel(marketId) : m.investmentCasePanel(marketId);
+    const cards = which === 'entry' ? m.entryPanel(marketId) : m.briefPanel(marketId);
     cards.forEach((el, i) => { if (i) el.style.marginTop = '14px'; });
     holder.replaceWith(...cards);
   }).catch(() => {

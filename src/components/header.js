@@ -42,7 +42,3 @@ export function renderHeader(cfg){
   return h('div', { class: 'hdr' + (cfg.hero ? ' hero' : '') }, left, ctrls);
 }
 
-/** Disclaimer band. */
-export function renderDisclaimer(text){
-  return h('div', { class: 'disc' }, h('b', {}, L(['Disclaimer: ', '免责声明：'])), L(text));
-}

@@ -125,7 +125,6 @@ export function buildPLPlanningBlocks({ SRC }){
               title: ['Investment attractiveness', '投资吸引力'],
               badges: ['policy'],
               blocks: [
-                { t: 'chip', cls: 'warn', text: [opportunity.attractiveness.rating, '选择性偏积极'] },
                 { t: 'p', text: [opportunity.attractiveness.statement, '煤电退役、储能增长及容量机制支撑投资逻辑，但项目价值取决于并网证据和对应拍卖版本的经济性。'] },
                 { t: 'note', text: ['This is an analyst methodology judgement. Automation may not rewrite it.', '这是分析方法判断，自动化流程不得自行改写。'] },
               ],

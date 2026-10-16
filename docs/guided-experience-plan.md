@@ -301,3 +301,105 @@ Each PR passes the full suite and is merged by you.
 - `src/governance/authority.js`: `VIEW_AUTHORITY.plays`. `docs/governance.md` updated.
 - Projection, writer stamps, change labels; tests in `view.test.js`, `view-automation.test.js`,
   `verdict-board.test.js`. No published number moves and no view file changes.
+
+**PR 2 — content for sign-off (2026-10-16).** `scripts/view/content/briefing-2026-10.mjs` holds 15 theses,
+18 plays, the six ruled fund calls, eight fund calls naming their play and three triggers;
+`scripts/view/draft-briefing-content.mjs` renders `docs/briefing-content-2026-10.md` for review,
+checks all 51 changes against the writer's gate, and applies them in one batch after sign-off.
+Research gates G40 (NEM seeds) and G41 (CAISO seeds) are in `docs/external-view.md`.
+
+**PR 3 — the briefing model (2026-10-16).**
+- `src/briefing/`: `model.js` assembles one object for the page, the desk and the digest;
+  `plays.js` prices each play through the design-fit sweep and `runCase` and orders the shortlist
+  (call, then value; an unpriced or non-compliant design last in its call, by fit);
+  `sentences.js` writes every computed sentence in both languages; `changes.js` classes the
+  changelog, passed trigger dates, week-on-90-day spread moves and tagged headlines;
+  `queue.js` builds the analyst's queue; `markdown.js` renders the weekly digest; `disk.js` reads
+  the inputs (Node only); `briefingData.js` is the stub `vite-plugin-briefing.js` replaces.
+- Methodology, human-only, in `METHODOLOGY_SURFACES`: `src/governance/briefing.js` (tiers,
+  disagreement and evidence rules, windows, `SETUP_UNTIL`) and `src/governance/newsTags.js`.
+- `node scripts/briefing/weekly.mjs [--with-draft]` prints the digest.
+- As found when first run: the next decisive date is the soonest trigger any acting call names,
+  so for the fund it is Romania's grant call (30 October), not MACSE-2 (24 November); a market
+  whose best design is negative reads "nothing clears the platform's yields" rather than naming
+  the least-bad design as a recommendation.
+
+**PR 4 — the briefing home (2026-10-16).** `src/home/briefingHome.js` renders the six answers from
+`HOME_BRIEFING` (the briefing less the queue's words, `src/briefing/homeData.js`); the verdict board
+moved behind a fold. The lens defaults to the infrastructure fund, and "All four" is remembered as a
+choice (`hub_lens = 'all'`). "Since your last visit" keeps three marks in the browser
+(`src/briefing/since.js`): a reload inside thirty minutes keeps the same window, a first visit reads
+seven days. The navigation is two rows — Briefing · Returns · Changes · Desk (Scouting once a card
+exists), then the market codes. `/desk` moved forward from PR 6 so the briefing's link to it is never
+dead. The "Release Gate" chip and the home footer's disclaimer are gone. First view measured 247.6 kB
+gzipped against the unchanged 258 budget; the board, behind the fold, is no longer part of it.
+
+**PR 5 — the market brief (2026-10-16).** The landing tab is relabelled "Brief / 要点" (id `case`
+kept, so every address works) and renders `src/components/marketBrief.js`: the call on each play
+for the chosen investor with the thesis and what would change it; what to build, with the line and
+the route × hours grid; the economics (value per MW, both IRRs, secured share, payback, MOIC, bear
+and bull); the risks (barriers, the call's strongest counter-argument, the two grades this investor
+reads lowest, catalysts that would close the market); catalysts and what changed here; the next
+action; the other investors; links into each deep tab. The four investors' verdicts, the pillar
+table and the fourteen grades are folded beneath. The overview ("Market at a glance") now leads the
+Market Story tab; `/home` links land there. Figures come from the briefing (now also carrying each
+play's payback, MOIC and bear/bull, and each market's design grid), so the brief, the home page and
+the digest agree. The banner above the tabs is one dated line of the market's current update; the
+"Screening only" chip, the consensus chip, the approval gate, "Evidence confidence N/10" and the
+pipeline caveat are gone. Budgets: the shared `briefing-data` chunk 12.5 kB (budget 18); the
+`investment-case` chunk 17.6 kB (budget raised 15 → 20).
+
+**PR 6 — the weekly digest (2026-10-16).** `weekly-briefing` in `.github/workflows/etl.yml`: Sunday
+23:07 UTC (Monday 07:07 in Perth), or by hand through the `weekly_briefing` dispatch input. It renders
+`node scripts/briefing/weekly.mjs` and posts it as one issue per week with the label
+`weekly-briefing`; a second run in the same week edits that issue, and last week's is closed. No
+model, no key, `contents: read` and `issues: write` only; the data refresh does not run on its
+schedule. `/desk` shipped in PR 4.
+
+**PR 7 — the deep layer, contradictions out (2026-10-16).** The disclaimer band and its footer
+repeat are gone from every page, with `renderDisclaimer` and the band's styles; the dossier footer's
+disclaimer goes too, and `/returns` loses its "Release Gate: screening only" chip. A seed figure
+reads "Basis: Seed estimate" beside the number instead of a warning chip. "Selective" has left the
+source: the Card G panels on GB, WA, NEM and Romania are "Underwriting rules" whose conditions say
+when they apply; the stance chips on Poland, Romania and Japan's economics tabs are gone, as are the
+"Selective" labels in Ireland's and WA's opportunity logic and GB's consensus line; unrendered data
+was reworded so a test can forbid the word. Durations now read the engine through
+`src/markets/_shared/designAnswer.js`, which takes them from a 5 kB design projection of the
+briefing (`src/briefing/designData.js`, a third stub the briefing plugin fills), so a deep tab says
+what the Brief says: GB's Story table, Overview bridge, Duration tab and augmentation card (toll or
+floor at 4h; capacity route 2–4h); WA's Card E, bridge, outlook and Duration tab (7h, band 7–8h,
+where it said 8h → 10h); Japan's "four hours is where they cross", now the award floor and the
+engine's line for each area. Duration-need bands that prescribed hours against the engine (WA
+"8h+", Romania "2h core", Poland "4h+", Japan "4h is the reference") state the method instead.
+GB's Capital & Exit is labelled the Lab's 100 MW · 2h screening case, its verdict is computed from
+the Lab's own figures, and the engine's line sits beside it. `/returns` names the markets its $1M
+matrix leaves out (no route clears: PL, PJM, ERCOT; not priced: FI), lists the toll markets from
+their capabilities, takes its review dates from the manifests, says "these markets" for the
+congestion register, and puts Finland on the globe. The cards `pageEnhancements.js` deleted at
+runtime (every "Investment conclusion" and Bear / Base / Bull card, WA's official-evolution,
+opportunity-logic, locational-case and three RCM cards, six "Recommended presentation order"
+notes) are deleted at source, with the three enhancers that hid them. No exact duplicate passage
+was found within a market, so none was cut. GB's two stale grade reasons (hold IRR 4.7% → 5.1%,
+secured 10% → 12%; rank and grades unchanged) wait as `scripts/view/content/gb-grade-reasons-2026-10.json`
+for sign-off. Budget: market-shared chunks raised 102 → 104 kB for the 1.63 kB design projection
+(measured 102.2). `tests/deep-layer.test.js` holds the line.
+
+**PR 8 — Japan's floor-holding build (2026-10-16).** `docs/japan-ltda-floor-plan.md` sets out
+the derivations, printed by `node scripts/derive/japan-ltda-floor.mjs`. JEPX prices the 9th and 10th
+hours at 0.61 and 0.48 of the 4h spread. A 9h build holds the six-hour floor to year 20 (6.13h). Re-bid
+at its own cost (¥49,000/kW/yr) it earns +$152–160k/MW at 7.4–7.5% hold; it breaks even at
+¥46,500/kW/yr. Approved the same day, except that gate G42 replaced the re-bid with the market
+reading. Battery prices are confidential and trade-press estimates (¥12,000–25,000) sit below even
+the 6h bid, so the award stays the 6h bid at every duration. Built: Japan's grid reaches 9h and
+10h, and the award route prices 9h at −$554k to −$563k/MW. The drafted plays move to 9h, and the
+Round 4 trigger carries the break-even award. The calls stay at Build position, flagged until gate
+G43 re-sources Japan's capex and bid return.
+
+**Japan re-priced on the auction's rules (2026-10-16).** `docs/japan-ltda-repricing-plan.md`, approved
+and built on gate G43:
+- METI caps a battery bid's return at 4.5%, and the award is paid on awarded kW.
+- METI's opex replaces the seed, and Japan's archetype moves to 9h.
+- A 9h build is worth −$466k to −$510k/MW to an unlevered fund, so the three fund calls are
+  Opportunistic.
+- The briefing's call now reads "Prepare in Ireland", with 12 situational plays.
+- Gate G44 stays open on what winners actually spend.
