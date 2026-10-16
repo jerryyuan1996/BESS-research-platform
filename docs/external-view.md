@@ -266,6 +266,8 @@ Each item is a specific document or series that would close a specific open assu
 | G37 | **Build programme by market and duration** | Replaces the uniform twelve months. Only Western Australia and Romania have a stated development and build range, so only they have an entry-adjusted return. Related to G26 | Operator connection timetables; project announcements with dated milestones |
 | G38 | **Traded-asset and platform transactions by market** | The evidence for the exit-liquidity grade | Transaction announcements; adviser league tables |
 | G39 | **Investment-screening thresholds applying to storage, by market** | The foreign-entry grade. Opened for most markets in October 2026; the EU tariff database was not opened for the origin grade | Statute and regulator guidance |
+| G40 | **NEM revenue and capex seeds, re-sourced** | Opened 2026-10-16, when the fund call moved from Build position to Opportunistic on a 3.1% hold IRR at build cost. Re-source the CIS floor level (G17), the merchant spread after May 2026's record low and the A$385/kWh capex (G15); re-rule the call if the reference return moves toward a fund's hurdle | DCCEEW; AEMO Quarterly Energy Dynamics; vendor EPC quotations |
+| G41 | **CAISO revenue and capex seeds, re-sourced** | Opened 2026-10-16 with the same ruling, on a 3.2% hold IRR. Re-source the RA price and tenor (G33), the merchant vintage (G32) and capex; re-rule the call if they move | CPUC RA reports; utility procurement filings; vendor EPC quotations |
 
 ---
 
