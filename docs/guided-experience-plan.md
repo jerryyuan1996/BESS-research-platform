@@ -348,3 +348,10 @@ the digest agree. The banner above the tabs is one dated line of the market's cu
 "Screening only" chip, the consensus chip, the approval gate, "Evidence confidence N/10" and the
 pipeline caveat are gone. Budgets: the shared `briefing-data` chunk 12.5 kB (budget 18); the
 `investment-case` chunk 17.6 kB (budget raised 15 → 20).
+
+**PR 6 — the weekly digest (2026-10-16).** `weekly-briefing` in `.github/workflows/etl.yml`: Sunday
+23:07 UTC (Monday 07:07 in Perth), or by hand through the `weekly_briefing` dispatch input. It renders
+`node scripts/briefing/weekly.mjs` and posts it as one issue per week with the label
+`weekly-briefing`; a second run in the same week edits that issue, and last week's is closed. No
+model, no key, `contents: read` and `issues: write` only; the data refresh does not run on its
+schedule. `/desk` shipped in PR 4.

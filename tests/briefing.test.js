@@ -291,3 +291,25 @@ test('a play carries its bear and bull, and a market its grid with one modelled 
     assert.ok(grid.cells.filter(c => c.best).length <= 1, `${market}: one best design at most`);
   }
 });
+
+/* ---- the weekly digest's job (PR 6) ----------------------------------------------- */
+
+test('the weekly briefing posts on Monday morning in Perth, reads only, and never refreshes data', async () => {
+  const wf = await readFile(path.join(REPO, '.github', 'workflows', 'etl.yml'), 'utf8');
+  const start = wf.indexOf('\n  weekly-briefing:\n');
+  assert.ok(start > 0, 'no weekly-briefing job');
+  const job = wf.slice(start).split('\n').filter(line => !/^\s*#/.test(line)).join('\n');
+  assert.match(wf, /cron: '7 23 \* \* 0'/, 'Sunday 23:07 UTC is Monday 07:07 in Perth');
+  assert.match(job, /if: github\.event\.schedule == '7 23 \* \* 0' \|\| inputs\.weekly_briefing == true/);
+  assert.match(job, /permissions:\s*\n\s*contents: read\s*\n\s*issues: write/);
+  assert.ok(!/contents: write|pull-requests: write/.test(job), 'the weekly job can write to the repository');
+  assert.match(job, /node scripts\/briefing\/weekly\.mjs > briefing\.md/);
+  assert.ok(!/ANTHROPIC_API_KEY|agent\/run\.mjs/.test(job), 'the weekly briefing asks no model');
+  assert.ok(!/git (add|commit|push)/.test(job), 'the weekly job commits nothing');
+  /* One issue a week: an existing one for the week is edited, not duplicated. */
+  assert.match(job, /gh issue edit "\$EXISTING" --body-file briefing\.md/);
+  /* The data refresh does not run on the briefing's schedule or when it is dispatched. */
+  const refresh = wf.slice(wf.indexOf('\n  refresh:\n'), wf.indexOf('\n  publish:\n'));
+  assert.match(refresh, /github\.event\.schedule != '7 23 \* \* 0'/);
+  assert.match(refresh, /inputs\.weekly_briefing != true/);
+});
