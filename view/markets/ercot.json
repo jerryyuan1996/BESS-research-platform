@@ -1,6 +1,9 @@
 {
   "marketId": "ercot",
-  "thesis": null,
+  "thesis": [
+    "Fastest to connect, hardest to get paid: no capacity payment and a merchant index down about 85% in two years. The model loses money even with a toll, so only an executed toll at a known price makes a case.",
+    "并网最快，回款最难：没有容量付费，市场化指数两年内下跌约85%。即便有租赁，模型仍然亏损，因此只有价格明确的已签署租赁才能成立。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -267,7 +270,8 @@
       "reviewBy": "2027-03-31",
       "author": "analyst",
       "asOf": "2026-10-12",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "play": "ercot-toll-2h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -342,5 +346,31 @@
       "lockedUntil": null
     }
   },
-  "triggers": []
+  "triggers": [],
+  "plays": {
+    "ercot-toll-2h": {
+      "id": "ercot-toll-2h",
+      "label": [
+        "Toll · 2h · ready-to-build",
+        "租赁 · 2小时 · 具备开工条件"
+      ],
+      "route": "toll",
+      "hours": 2,
+      "stage": "ready-to-build",
+      "why": [
+        "No capacity payment exists and the merchant index fell about 85% in two years; a toll is the only secured route, and no ERCOT toll price has been disclosed.",
+        "这里没有容量付费，市场化指数两年内下跌约85%；租赁是唯一的锁定收入途径，而ERCOT的租赁价格从未公开。"
+      ],
+      "action": {
+        "text": [
+          "Engage only with an executed toll: get its price and test it against the 2025 realised index before any bid.",
+          "只考虑已签署租赁的项目：出价前取得租赁价格，并与2025年实际指数对比检验。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

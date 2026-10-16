@@ -1,6 +1,9 @@
 {
   "marketId": "gb",
-  "thesis": null,
+  "thesis": [
+    "Liquid, financeable and close to saturation. The reference project returns about 5% with a tenth of revenue secured; four hours wins de-rated capacity while two-hour assets still win connections. A fund buys operating assets that carry a toll, not new build.",
+    "流动性好、易于融资，但已接近饱和。参考项目回报约5%，仅一成收入被锁定；四小时设计赢得折减后容量，两小时资产仍能拿到并网。基金应收购附带租赁合同的在运资产，而非新建。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -270,7 +273,8 @@
       "reviewBy": "2027-03-31",
       "author": "analyst",
       "asOf": "2026-10-10",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "play": "gb-toll-4h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -364,5 +368,55 @@
       },
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "gb-cap-4h": {
+      "id": "gb-cap-4h",
+      "label": [
+        "Capacity Market · 4h · greenfield",
+        "容量市场 · 4小时 · 绿地开发"
+      ],
+      "route": "cap",
+      "hours": 4,
+      "stage": "greenfield",
+      "why": [
+        "Four hours wins de-rated capacity at the T-4 auction; on the capacity route two to four hours sit within the engine's band.",
+        "四小时设计在T-4拍卖中赢得折减后容量；在容量路径上，两至四小时均处于引擎的最优区间内。"
+      ],
+      "action": {
+        "text": [
+          "Hold connections that can carry four hours, and enter T-4 with a four-hour design.",
+          "保有能承载四小时的并网容量，并以四小时设计参加T-4拍卖。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    },
+    "gb-toll-4h": {
+      "id": "gb-toll-4h",
+      "label": [
+        "Toll · 4h · operating",
+        "租赁 · 4小时 · 在运资产"
+      ],
+      "route": "toll",
+      "hours": 4,
+      "stage": "operating",
+      "why": [
+        "A toll is the only way to secure most revenue in a market where the reference case secures a tenth.",
+        "在参考情景只锁定一成收入的市场，租赁是锁定大部分收入的唯一途径。"
+      ],
+      "action": {
+        "text": [
+          "Buy only operating assets that carry a toll; read the Gate 2 policy before any greenfield exposure.",
+          "只收购附带租赁合同的在运资产；涉足绿地项目前先看清Gate 2政策。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

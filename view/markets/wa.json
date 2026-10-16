@@ -1,6 +1,9 @@
 {
   "marketId": "wa",
-  "thesis": null,
+  "thesis": [
+    "Capacity-led and closed to small cheques. The Reserve Capacity Mechanism pays for seven hours and capacity is about three-quarters of revenue, the best value per MW on the platform. A fund gets in only behind a strategic sponsor, once Capacity Credits are assigned; build seven hours, because the eighth is capex the market does not pay for.",
+    "以容量收入为主，小额出资者难以进入。备用容量机制为七小时付费，容量收入约占总收入的四分之三，每MW价值为本平台最高。基金只能在容量信用分配之后跟随战略投资者进入；建七小时，因为第八小时是市场不付费的资本开支。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -281,7 +284,8 @@
       "reviewBy": "2027-03-31",
       "author": "analyst",
       "asOf": "2026-10-10",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "play": "wa-cap-7h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -506,5 +510,31 @@
         "西澳电力市场近一年批发价差已比资产回报评分时低五分之一以上。评分仍维持比较引擎排名所对应的档位，因为排名背后的商业收入假设尚未修订；趋势一栏则表明，其中可观测的部分正在走弱。"
       ]
     }
-  ]
+  ],
+  "plays": {
+    "wa-cap-7h": {
+      "id": "wa-cap-7h",
+      "label": [
+        "Reserve Capacity Mechanism · 7h · co-investment",
+        "备用容量机制 · 7小时 · 跟投"
+      ],
+      "route": "cap",
+      "hours": 7,
+      "stage": "co-invest",
+      "why": [
+        "The mechanism prices a six-hour battery; the seventh hour defends the credit, and the eighth is capex the market does not pay for.",
+        "该机制按六小时电池定价；第七小时用于守住容量信用，第八小时则是市场不付费的资本开支。"
+      ],
+      "action": {
+        "text": [
+          "Line up a minority stake behind a strategic sponsor now; commit once Capacity Credits for 2028-29 are assigned.",
+          "现在就物色跟随战略投资者的少数股权机会；待2028-29容量年度的容量信用分配后再出资。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }

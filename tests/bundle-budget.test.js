@@ -244,8 +244,12 @@ const BUDGET = {
 
        LOWERED FROM 27 TO 19 once all fifteen were graded: it measures 15.80,
        not the 24 estimated. A market's grades and calls compress far better
-       beside fourteen others of the same shape than the first four suggested. */
-    'verdict-board': 19,
+       beside fourteen others of the same shape than the first four suggested.
+
+       RAISED FROM 19 TO 23 when the briefing content was applied (guided-
+       experience plan, 2026-10-16): eighteen plays, fifteen theses and the ruled
+       calls now ride in every market's projection. Measured 21.63. */
+    'verdict-board': 23,
     /* The briefing that opens the home page since the guided-experience plan
        (PR 4): the six answers and the home projection of the briefing — every
        investor's shortlist, the plays priced by the engine at build time, the
@@ -257,8 +261,11 @@ const BUDGET = {
     /* The home projection of the briefing itself — every investor's rows, the
        plays priced at build time, the design grids, the catalysts, the build
        lines and the dated changes — shared by the home page and every market's
-       brief. Measured 12.54 before the first plays were written. */
-    'briefing-data': 18,
+       brief. Measured 12.54 before the first plays were written.
+
+       RAISED FROM 18 TO 22 when the plays were applied: measured 18.74, and
+       the briefing grows with each play written, which is what it is for. */
+    'briefing-data': 22,
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,
@@ -275,8 +282,11 @@ const BUDGET = {
 
        RAISED FROM 27 TO 48 (plan phase 5), for that reason: grading the other
        eleven markets took the changelog from 102 lines to 304. Measured 40.67,
-       about 0.13 kB a line. */
-    'changes': 48,
+       about 0.13 kB a line.
+
+       RAISED FROM 48 TO 64 when the briefing content was applied: 52 analyst
+       lines, each carrying a whole play, call or thesis, took it to 57.87. */
+    'changes': 64,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four

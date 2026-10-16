@@ -1,6 +1,9 @@
 {
   "marketId": "de",
-  "thesis": null,
+  "thesis": [
+    "Europe's most liquid storage market, with no capacity revenue for a four-hour battery. Merchant four hours is the best design at 14.6% hold, and a toll is how a fund secures it at 12.3%. The open risk is the storage grid-fee framework, still a draft.",
+    "欧洲流动性最好的储能市场，但四小时电池没有容量收入。纯市场化四小时是最佳设计，持有期回报14.6%；基金可通过租赁锁定收入，回报12.3%。尚未落定的风险是仍为草案的储能电网费框架。"
+  ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
@@ -280,7 +283,8 @@
       "reviewBy": "2027-03-31",
       "author": "analyst",
       "asOf": "2026-10-12",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "play": "de-toll-4h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -366,5 +370,55 @@
       "source": "decision-profile",
       "effect": null
     }
-  ]
+  ],
+  "plays": {
+    "de-mer-4h": {
+      "id": "de-mer-4h",
+      "label": [
+        "Merchant · 4h · greenfield",
+        "市场化 · 4小时 · 绿地开发"
+      ],
+      "route": "mer",
+      "hours": 4,
+      "stage": "greenfield",
+      "why": [
+        "Merchant four hours is the best design in Germany: the fifth and sixth hours earn less than they cost.",
+        "纯市场化四小时是德国的最佳设计：第五、第六小时的收益低于其成本。"
+      ],
+      "action": {
+        "text": [
+          "Develop four-hour merchant projects and keep the option to toll at ready-to-build.",
+          "开发四小时纯市场化项目，并在具备开工条件时保留签订租赁的选择。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    },
+    "de-toll-4h": {
+      "id": "de-toll-4h",
+      "label": [
+        "Toll · 4h · ready-to-build",
+        "租赁 · 4小时 · 具备开工条件"
+      ],
+      "route": "toll",
+      "hours": 4,
+      "stage": "ready-to-build",
+      "why": [
+        "No capacity revenue exists for a four-hour battery; a five-year toll secures it at 12.3% hold, against 14.6% merchant.",
+        "四小时电池没有容量收入；五年期租赁可锁定收入，持有期回报12.3%，纯市场化为14.6%。"
+      ],
+      "action": {
+        "text": [
+          "Shortlist ready-to-build projects with a signed toll or floor; check the storage grid-fee draft before pricing.",
+          "筛选已签租赁或保底合同、具备开工条件的项目；定价前核查储能电网费草案。"
+        ],
+        "due": null
+      },
+      "author": "analyst",
+      "asOf": "2026-10-16",
+      "lockedUntil": null
+    }
+  }
 }
