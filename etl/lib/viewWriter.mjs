@@ -218,7 +218,7 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
     if (MACHINE_AUTHORS.includes(kind)){
       const problems = machineProblems(change, before, { changelog: log, today: now.toISOString().slice(0, 10) });
       if (problems.length) throw new ViewRejected(`${change.market} ${change.path}: refused to ${kind}`, problems);
-    } else if ((where.section === 'grades' || where.section === 'verdicts') && !where.layer && change.to && change.to.author !== kind){
+    } else if (['grades', 'verdicts', 'plays'].includes(where.section) && !where.layer && change.to && change.to.author !== kind){
       /* The stamp on a record is who wrote it last. A person replacing a
          record a rule wrote takes it back in name as well. */
       throw new ViewRejected(`${change.market} ${change.path}: the record says author "${change.to.author}" and the change is the ${kind}'s`);
@@ -472,7 +472,7 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
     if (!same(now, entry.to)) throw new ViewRejected(`${entry.market} ${entry.path} has changed since ${id} — revert the later change first, or write the record you want`);
     /* The restored record is the analyst's now: he chose to put it back. */
     const where = scout ? parseScoutPath(entry.path) : parsePath(entry.path);
-    const stamped = entry.from && !where.layer && (where.section === 'grades' || where.section === 'verdicts');
+    const stamped = entry.from && !where.layer && ['grades', 'verdicts', 'plays'].includes(where.section);
     return {
       market: entry.market, path: entry.path, to: stamped ? { ...entry.from, author: 'analyst' } : entry.from,
       author: { kind: 'analyst' },

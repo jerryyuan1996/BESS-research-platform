@@ -275,8 +275,24 @@ export function validateTrigger(trigger){
     if (!isPair(trigger.note)) at('a trigger with an effect carries a note as an [en, zh] pair — the reason recorded when it fires');
   }
   if (trigger.note !== undefined && trigger.note !== null && !isPair(trigger.note)) at('note must be an [en, zh] pair');
+
+  /* Optional. What happened, and on which day. A trigger whose date passes is
+     overdue until somebody records its outcome; the outcome closes it. The
+     day must be a real day, because "it happened" is a dated fact. */
+  if (trigger.outcome !== undefined && trigger.outcome !== null){
+    const o = trigger.outcome;
+    if (typeof o !== 'object' || Array.isArray(o)) at('outcome must be null or { on, text }');
+    else {
+      if (typeof o.on !== 'string' || o.on.length !== 10 || !isWhen(o.on)) at('outcome.on must be the YYYY-MM-DD day it happened');
+      if (!isPair(o.text)) at('outcome.text must be an [en, zh] pair saying what happened');
+      for (const key of Object.keys(o)) if (key !== 'on' && key !== 'text') at(`"outcome.${key}" is not a field of an outcome`);
+    }
+  }
   return problems;
 }
+
+/** True once the analyst has recorded what happened. A resolved trigger is never overdue. */
+export const isResolved = (trigger) => Boolean(trigger?.outcome && typeof trigger.outcome === 'object');
 
 /* Month-precision dates sort at the END of their month: "by end of 2026-12"
    should not appear ahead of something dated the 3rd. Undated sorts last. */
@@ -293,10 +309,10 @@ export function triggersWatching(triggers, dimensionId){
 }
 
 /**
- * Triggers whose expected date has passed as of `today` (YYYY-MM-DD). A
- * month-precision date is overdue only once its month has ended. These are the
- * ones somebody has to go and look at.
+ * Triggers whose expected date has passed as of `today` (YYYY-MM-DD) and whose
+ * outcome nobody has recorded. A month-precision date is overdue only once its
+ * month has ended. These are the ones somebody has to go and look at.
  */
 export function overdue(triggers, today){
-  return byExpected(triggers).filter(t => t.expected !== null && sortKey(t.expected) < today);
+  return byExpected(triggers).filter(t => t.expected !== null && !isResolved(t) && sortKey(t.expected) < today);
 }

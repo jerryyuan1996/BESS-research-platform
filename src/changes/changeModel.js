@@ -14,6 +14,7 @@
    --------------------------------------------------------------------------- */
 import { dimension, TREND_LABEL, VERDICT_LABEL, BASIS_LABEL, ROUTE_LABEL, CONFIDENCE_LABEL } from '../governance/investability.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
+import { REVENUE_ROUTE_LABEL } from '../governance/plays.js';
 
 export const AUTHOR_KINDS = ['analyst', 'rule', 'agent'];
 
@@ -28,6 +29,7 @@ export const SECTION_LABEL = {
   verdicts: ['Verdict', '结论'],
   triggers: ['Trigger', '触发事件'],
   thesis: ['Thesis', '投资论点'],
+  plays: ['Play', '投资方案'],
   /* The sections only a scout card has. */
   facts: ['Facts', '事实'],
   returnSignal: ['Return signal', '回报参考信号'],
@@ -62,7 +64,18 @@ const FIELD_LABEL = {
   effect: ['Change it applies', '触发后的变更'],
   note: ['Reason when it fires', '触发时记录的理由'],
   kind: ['Kind', '类型'],
+  /* A play's fields (governance/plays.js) and a trigger's outcome. */
+  hours: ['Duration, hours', '时长（小时）'],
+  stage: ['Entry stage', '进入阶段'],
+  why: ['Why this design', '为何选此方案'],
+  action: ['Next action', '下一步行动'],
+  calls: ['Calls of its own', '独立结论'],
+  play: ['Play', '投资方案'],
+  outcome: ['Outcome', '结果'],
 };
+
+/* On a play, `route` is the revenue route, not the way in: a different word. */
+const PLAY_FIELD_LABEL = { route: ['Revenue route', '收入路径'] };
 
 /** Stamps every write sets; never the substance of a change. */
 const STAMPS = new Set(['author', 'asOf', 'dimension', 'archetype', 'id', 'market', 'held']);
@@ -77,8 +90,10 @@ export function pathParts(path){
 }
 
 /** A field's value as a short [en, zh] pair, or null when it is too long to show inline. */
-function shortValue(field, value){
+function shortValue(field, value, section = null){
   if (value === null || value === undefined) return ['none', '无'];
+  if (section === 'plays' && field === 'route') return REVENUE_ROUTE_LABEL[value] || both(value);
+  if (field === 'stage') return ROUTE_LABEL[value] || both(value);
   if (field === 'trend') return TREND_LABEL[value] || both(value);
   if (field === 'call') return VERDICT_LABEL[value] || both(value);
   if (field === 'basis') return BASIS_LABEL[value] || both(value);
@@ -110,12 +125,13 @@ export function describeChange(entry){
   if (typeof from !== 'object' || Array.isArray(from) || typeof to !== 'object' || Array.isArray(to)){
     return { kind: 'changed', fields: [], headline: null };
   }
+  const { section } = pathParts(entry.path);
   const keys = [...new Set([...Object.keys(from), ...Object.keys(to)])].filter(k => !STAMPS.has(k));
   const fields = keys.filter(k => !same(from[k], to[k])).map(field => ({
     field,
-    label: FIELD_LABEL[field] || both(field),
-    from: shortValue(field, from[field]),
-    to: shortValue(field, to[field]),
+    label: (section === 'plays' && PLAY_FIELD_LABEL[field]) || FIELD_LABEL[field] || both(field),
+    from: shortValue(field, from[field], section),
+    to: shortValue(field, to[field], section),
   }));
   return { kind: 'changed', fields, headline: null };
 }
@@ -127,6 +143,8 @@ function headline(entry, record){
   if (layer === 'held') return [`Practitioner view: grade ${record.grade}`, `从业者观点：评级${record.grade}`];
   if (section === 'grades') return [`Grade ${record.grade}, ${(TREND_LABEL[record.trend] || both(record.trend))[0].toLowerCase()}`, `评级${record.grade}，${(TREND_LABEL[record.trend] || both(record.trend))[1]}`];
   if (section === 'verdicts') return VERDICT_LABEL[record.call] || both(record.call);
+  /* A play is named by its own label: route, hours and stage in one line. */
+  if (section === 'plays') return Array.isArray(record.label) ? record.label : null;
   /* A trigger is already named by its label in the record line. What is worth
      saying here is whether it is a rule. */
   if (section === 'triggers') return Array.isArray(record.effect) && record.effect.length
@@ -159,6 +177,7 @@ export function recordLabel(path, triggerLabel = null){
   if (section === 'grades' && key) parts.push(dimension(key)?.label || both(key));
   else if (section === 'verdicts' && key) parts.push(ARCHETYPES[key]?.label || both(key));
   else if (section === 'triggers' && key) parts.push(triggerLabel || both(key));
+  else if (section === 'plays' && key) parts.push(triggerLabel || both(key));
   if (layer === 'held') parts.push(['practitioner view', '从业者观点']);
   return [parts.map(p => p[0]).join(' · '), parts.map(p => p[1]).join(' · ')];
 }

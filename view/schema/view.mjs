@@ -26,6 +26,12 @@
                a market: its changes there can be prepared and reported,
                never applied
 
+   PLAYS (since 2026-10-16) are the designs worth an investor's attention —
+   route, hours, entry stage, why, the next action, and a call of their own
+   where it differs from the market's. src/governance/plays.js says what one
+   is. The analyst alone writes them for now: neither machine author has a row
+   for them in AUTHOR_RIGHTS.
+
    SCOUT CARDS ARE A SECOND TIER WITH THEIR OWN SCHEMA, view/schema/scout.mjs,
    and their own rights and live list. Nothing below was widened for them.
 
@@ -39,8 +45,9 @@
    --------------------------------------------------------------------------- */
 
 import {
-  DIMENSION_IDS, ARCHETYPE_IDS, BASIS, VERDICT, validateGrade, validateVerdict,
+  DIMENSION_IDS, ARCHETYPE_IDS, BASIS, VERDICT, PLAY_ID_PATTERN, validateGrade, validateVerdict,
 } from '../../src/governance/investability.js';
+import { validatePlay } from '../../src/governance/plays.js';
 import { validateTrigger, isRule, parseEffectPath, TRIGGER_KIND } from '../../src/governance/triggers.js';
 import { datasetById } from '../../src/governance/datasets.js';
 import {
@@ -51,7 +58,7 @@ const isPair = (v) => Array.isArray(v) && v.length === 2
   && v.every(s => typeof s === 'string' && s.trim().length > 0);
 
 /** The sections of a market view. Anything else is not view-store content. */
-export const VIEW_SECTIONS = ['grades', 'verdicts', 'triggers', 'thesis'];
+export const VIEW_SECTIONS = ['grades', 'verdicts', 'triggers', 'thesis', 'plays'];
 
 /**
  * Evidence a grade may cite that is not a key in the market's source register:
@@ -118,6 +125,29 @@ export function validateMarketView(view){
     for (const id of Array.isArray(record?.changesIf) ? record.changesIf : []){
       if (!triggerIds.has(id)) at(`verdicts.${key}: changesIf names "${id}", which is not a trigger of this market`);
     }
+    if (record?.play && !(view.plays && Object.hasOwn(view.plays, record.play))){
+      at(`verdicts.${key}: names play "${record.play}", which is not a play of this market`);
+    } else if (record?.play && view.plays[record.play]?.stage !== record.route){
+      at(`verdicts.${key}: enters by "${record.route}", but play "${record.play}" is entered at "${view.plays[record.play]?.stage}"`);
+    }
+  }
+
+  /* Optional: a market with no plays has no section, not an empty one. */
+  if (view.plays !== undefined){
+    if (!view.plays || typeof view.plays !== 'object' || Array.isArray(view.plays)) at('plays must be an object keyed by play id');
+    else for (const [key, record] of Object.entries(view.plays)){
+      for (const p of validatePlay(record, key)) at(`plays.${p}`);
+      const calls = record?.calls && typeof record.calls === 'object' && !Array.isArray(record.calls) ? record.calls : {};
+      for (const [archetype, call] of Object.entries(calls)){
+        for (const id of Array.isArray(call?.changesIf) ? call.changesIf : []){
+          if (!triggerIds.has(id)) at(`plays.${key}.calls.${archetype}: changesIf names "${id}", which is not a trigger of this market`);
+        }
+        /* One design, one call: the market's verdict already speaks for it. */
+        if (view.verdicts?.[archetype]?.play === key){
+          at(`plays.${key}.calls.${archetype}: the market's ${archetype} verdict already names this play`);
+        }
+      }
+    }
   }
   return problems;
 }
@@ -126,6 +156,7 @@ export function validateMarketView(view){
  * Where a change may land. A path is one whole record or the thesis:
  *
  *     grades.<dimension>      verdicts.<archetype>      triggers.<id>      thesis
+ *     plays.<play id>
  *
  * Whole records, never one field inside one. A verdict whose call changed and
  * whose reasons did not is the half-edit this store exists to prevent: the
@@ -147,11 +178,12 @@ export function parsePath(path){
   if (path === 'thesis') return { section: 'thesis', key: null, layer: null };
   const held = /^grades\.([A-Za-z0-9_-]+)\.held$/.exec(typeof path === 'string' ? path : '');
   if (held) return DIMENSION_IDS.includes(held[1]) ? { section: 'grades', key: held[1], layer: 'held' } : null;
-  const m = /^(grades|verdicts|triggers)\.([A-Za-z0-9_-]+)$/.exec(typeof path === 'string' ? path : '');
+  const m = /^(grades|verdicts|triggers|plays)\.([A-Za-z0-9_-]+)$/.exec(typeof path === 'string' ? path : '');
   if (!m) return null;
   const [, section, key] = m;
   if (section === 'grades' && !DIMENSION_IDS.includes(key)) return null;
   if (section === 'verdicts' && !ARCHETYPE_IDS.includes(key)) return null;
+  if (section === 'plays' && !PLAY_ID_PATTERN.test(key)) return null;
   return { section, key, layer: null };
 }
 
@@ -164,6 +196,7 @@ export function readPath(view, path){
   if (!where) return null;
   if (where.section === 'thesis') return view.thesis ?? null;
   if (where.section === 'triggers') return view.triggers.find(t => t.id === where.key) ?? null;
+  if (where.section === 'plays') return view.plays?.[where.key] ?? null;
   if (where.layer === 'held') return view.grades[where.key]?.held ?? null;
   return view[where.section][where.key] ?? null;
 }
@@ -199,6 +232,14 @@ export function writePath(view, path, to){
     if (to !== null) next.triggers.push(to);
     next.triggers.sort((a, b) => a.id.localeCompare(b.id));
   }
+  else if (where.section === 'plays'){
+    /* Kept in id order, and gone when the last play goes: a market with no
+       plays has no section, so removing every record leaves an empty view. */
+    const plays = { ...(next.plays || {}) };
+    if (to === null) delete plays[where.key]; else plays[where.key] = to;
+    if (Object.keys(plays).length) next.plays = Object.fromEntries(Object.entries(plays).sort(([a], [b]) => a.localeCompare(b)));
+    else delete next.plays;
+  }
   else if (to === null) delete next[where.section][where.key];
   else next[where.section][where.key] = to;
   return next;
@@ -211,7 +252,7 @@ export function buildIndex(views){
     const calls = {};
     for (const id of ARCHETYPE_IDS){
       const v = view.verdicts[id];
-      if (v) calls[id] = { call: v.call, route: v.route, asOf: v.asOf, reviewBy: v.reviewBy ?? null };
+      if (v) calls[id] = { call: v.call, route: v.route, asOf: v.asOf, reviewBy: v.reviewBy ?? null, ...(v.play ? { play: v.play } : {}) };
     }
     index[view.marketId] = calls;
   }
@@ -267,6 +308,7 @@ export const AUTHOR_RIGHTS = {
     verdicts: { create: true, replace: true, remove: true, fields: null },
     triggers: { create: true, replace: true, remove: true, fields: null },
     thesis:   { create: true, replace: true, remove: true, fields: null },
+    plays:    { create: true, replace: true, remove: true, fields: null },
   },
   /* A rule's fields are narrower still than this row says: exactly the ones
      its own effect names. machineProblems holds it to that. */

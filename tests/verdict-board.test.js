@@ -34,7 +34,7 @@ import { digestChangelog, RECENT_CHANGES } from '../vite-plugin-view-changes.js'
 import { readBoardData } from '../vite-plugin-view-board.js';
 import { BOARD } from '../src/markets/viewBoardData.js';
 import { boardViewFor, boardLedgerFor, boardMarketIds, boardTriggers } from '../src/markets/viewBoard.js';
-import { projectTrigger } from '../src/markets/boardProjection.js';
+import { projectTrigger, projectView } from '../src/markets/boardProjection.js';
 import { viewMarketIds } from '../src/markets/viewRegistry.js';
 import { ledgerMarketIds } from '../src/entry/ledgerRegistry.js';
 
@@ -385,6 +385,27 @@ test('the projection carries numbers, calls and amounts, and none of a market\'s
     assert.ok(!('summary' in ledger) && !('limit' in ledger));
   }
   for (const t of boardTriggers()) for (const key of ['source', 'effect', 'when', 'note']) assert.ok(!(key in t), `${t.id}: a projected trigger carries no ${key}`);
+});
+
+test('a play travels as its design, its line and its next step; a resolved trigger keeps its outcome', () => {
+  const call = (patch) => ({ archetype: 'infraFund', call: 'opportunistic', route: 'ready-to-build', where: null,
+    because: [{ dimension: 'revenueCertainty', text: ['x', 'y'] }], despite: ['x', 'y'], changesIf: [], reviewBy: null,
+    author: 'analyst', asOf: '2026-10-16', lockedUntil: null, ...patch });
+  const view = {
+    marketId: 'xx', thesis: ['A thesis.', '论点。'], grades: {}, triggers: [],
+    verdicts: { infraFund: call({ call: 'enter-now', play: 'xx-cap-4h' }) },
+    plays: { 'xx-cap-4h': { id: 'xx-cap-4h', label: ['L', 'L'], route: 'cap', hours: 4, stage: 'ready-to-build',
+      why: ['W', 'W'], action: { text: ['A', 'A'], due: null }, calls: { strategic: call({ archetype: 'strategic' }) },
+      author: 'analyst', asOf: '2026-10-16', lockedUntil: null } },
+  };
+  const out = projectView(view);
+  assert.equal(out.verdicts.infraFund.play, 'xx-cap-4h');
+  assert.deepEqual(Object.keys(out.plays['xx-cap-4h']).sort(), ['action', 'calls', 'hours', 'id', 'label', 'route', 'stage', 'why']);
+  for (const key of ['because', 'despite', 'author', 'lockedUntil']) assert.ok(!(key in out.plays['xx-cap-4h'].calls.strategic), `a play's projected call carries no ${key}`);
+  assert.ok(!('thesis' in out));
+  const outcome = { on: '2026-11-24', text: ['Cleared.', '已出清。'] };
+  assert.deepEqual(projectTrigger({ id: 'xx-a-b', market: 'xx', kind: 'event', label: ['L', 'L'], expected: '2026-11-24',
+    watches: ['revenueCertainty'], direction: 'either', source: 's', effect: null, outcome }).outcome, outcome);
 });
 
 test('the projection covers every graded market, every ledger and every trigger', () => {
