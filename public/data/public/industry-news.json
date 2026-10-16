@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-16T04:39:24.902Z",
+  "fetchedAt": "2026-10-16T11:32:45.550Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-15T14:54:32.000Z",
+    "to": "2026-10-16T11:26:19.000Z",
     "resolution": "event",
-    "points": 40
+    "points": 39
   },
   "units": {
     "record": "published article metadata"
@@ -135,36 +135,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-13T02:38:03.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/new-south-wales-bess-earn-nearly-au6-million-as-two-hour-extreme-price-event-sweeps-australias-energy-market/",
-      "source": "Energy-Storage.news",
-      "title": "New South Wales BESS earn nearly AU$6 million as two-hour ‘extreme’ price event sweeps Australia’s energy market",
-      "url": "https://www.energy-storage.news/new-south-wales-bess-earn-nearly-au6-million-as-two-hour-extreme-price-event-sweeps-australias-energy-market/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Battery energy storage systems (BESS) in Australia’s New South Wales (NSW) earned an estimated AU$5.63 million (US$3.88 million) in two hours on 12 October, as wholesale electricity prices peaked at AU$23,107/MWh."
-    },
-    {
-      "t": "2026-10-13T02:56:28.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/samsung-ct-refers-800mwh-darnum-bess-in-victorias-gippsland-region-to-australias-epbc-act/",
-      "source": "Energy-Storage.news",
-      "title": "Samsung C&T refers 800MWh Darnum BESS in Victoria’s Gippsland region to Australia’s EPBC Act",
-      "url": "https://www.energy-storage.news/samsung-ct-refers-800mwh-darnum-bess-in-victorias-gippsland-region-to-australias-epbc-act/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Samsung C&T’s Australian renewables arm has referred an 800MWh battery energy storage system (BESS) in Victoria’s Gippsland region to the federal government under Australia’s Environment Protection and Biodiversity Conservation (EPBC) Act."
-    },
-    {
-      "t": "2026-10-13T08:28:22.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/wartsila-energy-storage-jv-valo-us-domestic-content-manufacturing-discussions-strong-players/",
-      "source": "Energy-Storage.news",
-      "title": "Wärtsilä energy storage JV Valo in US domestic content manufacturing discussions with ‘strong players’",
-      "url": "https://www.energy-storage.news/wartsila-energy-storage-jv-valo-us-domestic-content-manufacturing-discussions-strong-players/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Valo, the new joint venture formed as a continuation of Wärtsilä’s energy storage business, is weighing up investing in the US supply chain, including factories."
-    },
-    {
       "t": "2026-10-13T09:29:47.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/neoen-bw-ess-and-mn8-back-efforts-to-standardise-bess-procurement-through-new-energy-storage-contract-alliance/",
       "source": "Energy-Storage.news",
@@ -202,7 +172,7 @@
       "url": "https://www.utilitydive.com/news/battery-system-failures-fell-98-in-7-years-but-older-systems-need-special/832882/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The Electric Power Research Institute analysis found a dramatic drop in energy storage system failures from 2018 to 2025 amid a host of technology and project improvements. &ldquo;Early-vintage&rdquo; systems may require retrofits, however."
+      "summary": "The Electric Power Research Institute analysis found a dramatic drop in energy storage system failures from 2018 to 2025 amid a host of technology and project improvements. Early vintage systems may require retrofits, however."
     },
     {
       "t": "2026-10-14T01:44:03.000Z",
@@ -315,16 +285,6 @@
       "summary": "How similar is the technology of Exa Energy, which just connected a 100MW/1GWh carbon dioxide-based energy storage system to the grid in China, to that of Energy Dome?"
     },
     {
-      "t": "2026-10-15T11:04:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/indias-solar-industry-faces-workforce-readiness-gap-mercom/",
-      "source": "pv magazine",
-      "title": "India’s solar industry faces workforce readiness gap",
-      "url": "https://www.pv-magazine.com/2026/10/15/indias-solar-industry-faces-workforce-readiness-gap-mercom/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A Mercom India study has found that solar industry employers across project development, manufacturing, rooftop solar, and engineering, procurement, and construction (EPC) often need to spend months training fresh graduates before they are ready to contribute effectively. The post India’s solar industry faces workfo…"
-    },
-    {
       "t": "2026-10-15T11:10:50.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/greek-pm-says-storage-should-accompany-renewables-as-metlen-karatzis-inaugurate-790mwh-bess/",
       "source": "Energy-Storage.news",
@@ -333,26 +293,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Metals and energy group Metlen and conglomerate Karatzis Group have inaugurated the largest BESS in Greece, in a ceremony attended by the country’s Prime Minister."
-    },
-    {
-      "t": "2026-10-15T11:17:10.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/germany-deploys-12-76-gw-of-solar-in-first-nine-months-of-2026/",
-      "source": "pv magazine",
-      "title": "Germany deploys 12.76 GW of solar in first nine months of 2026",
-      "url": "https://www.pv-magazine.com/2026/10/15/germany-deploys-12-76-gw-of-solar-in-first-nine-months-of-2026/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Germany installed 1.23 GW of solar capacity in September, down from 1.64 GW in August, as utility-scale additions hit their lowest level of 2026 and rooftop demand remained weak. Despite the slowdown, installations in the first nine months of 2026 reached 12.76 GW, slightly above the same period last year. The post…"
-    },
-    {
-      "t": "2026-10-15T11:22:34.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/saudi-arabia-uses-250-mw-solar-park-to-breed-threatened-gazelles/",
-      "source": "pv magazine",
-      "title": "Saudi Arabia uses 250 MW solar park to breed threatened gazelles",
-      "url": "https://www.pv-magazine.com/2026/10/15/saudi-arabia-uses-250-mw-solar-park-to-breed-threatened-gazelles/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Saudi Arabia’s Prince Mohammed bin Salman Royal Reserve has introduced 38 Sand gazelles into an operational solar facility following a seven-month trial. The project aims to use existing PV infrastructure as a breeding habitat for threatened wildlife, with the first births expected this winter. The post Saudi Arabia…"
     },
     {
       "t": "2026-10-15T11:33:23.000Z",
@@ -375,46 +315,6 @@
       "summary": "Energy storage owner-operator Nightpeak Energy has reached financial close and commercial operation on its 150MW/300MWh Bocanova 2 battery storage project in Brazoria County, Southeast Texas."
     },
     {
-      "t": "2026-10-15T12:06:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/solaria-plans-500-mw-data-center-project-powered-by-350-mw-of-solar-in-uruguay/",
-      "source": "pv magazine",
-      "title": "Solaria plans 500 MW data center project powered by 350 MW of solar in Uruguay",
-      "url": "https://www.pv-magazine.com/2026/10/15/solaria-plans-500-mw-data-center-project-powered-by-350-mw-of-solar-in-uruguay/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Solaria plans to invest $5.7 billion in a data center technology park in Uruguay, including 500 MW of data center capacity and 350 MW of solar PV. The government says it is the largest foreign investment ever announced in the country. The post Solaria plans 500 MW data center project powered by 350 MW of solar in Ur…"
-    },
-    {
-      "t": "2026-10-15T12:45:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/new-image-dataset-aims-to-improve-ai-based-navigation-of-pv-cleaning-robots/",
-      "source": "pv magazine",
-      "title": "New image dataset aims to improve AI-based navigation of PV cleaning robots",
-      "url": "https://www.pv-magazine.com/2026/10/15/new-image-dataset-aims-to-improve-ai-based-navigation-of-pv-cleaning-robots/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers have created a dataset of 6,200 solar panel images designed to support AI-based navigation of cleaning robots. The dataset features annotated panel reference lines under clean, synthetically soiled, and laboratory contamination conditions, with the aim of helping developers assess the robustness of visua…"
-    },
-    {
-      "t": "2026-10-15T13:20:47.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/china-solar-down-29-everywhere-else-up-15/",
-      "source": "pv magazine",
-      "title": "BloombergNEF forecasts 584 GW of solar installations in 2026",
-      "url": "https://www.pv-magazine.com/2026/10/15/china-solar-down-29-everywhere-else-up-15/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BloombergNEF has cut its 2026 global solar installation forecast to 584 GW, down 10.8% from 2025, driven by a sharper-than-expected slowdown in China. Solar installations outside China are projected to grow to 313 GW, supported by expanding residential and commercial markets. The post BloombergNEF forecasts 584 GW o…"
-    },
-    {
-      "t": "2026-10-15T14:52:10.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/15/chinas-first-100-mw-1000-mwh-compressed-co2-storage-plant-connects-to-grid/",
-      "source": "pv magazine",
-      "title": "China’s first 100 MW/1,000 MWh compressed CO2 storage plant connects to grid",
-      "url": "https://www.pv-magazine.com/2026/10/15/chinas-first-100-mw-1000-mwh-compressed-co2-storage-plant-connects-to-grid/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "China Huadian has achieved the first grid connection of its 100 MW/1,000 MWh compressed CO₂ energy storage plant in Xinjiang, marking a major milestone in long-duration energy storage. The facility offers 10 hours of storage and is expected to generate 200 GWh annually, supporting renewable energy integration and re…"
-    },
-    {
       "t": "2026-10-15T14:54:32.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/20-4gwh-grid-scale-bess-deployed-globally-in-september-up-61-ytd-installs-up-43/",
       "source": "Energy-Storage.news",
@@ -423,17 +323,107 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Around 20.4GWh of grid-scale battery energy storage systems (BESS) came online globally last month, bringing the year-to-date (YTD) total to 208GWh."
+    },
+    {
+      "t": "2026-10-15T15:52:32.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/itc-material-injury-solar-imports-india-indonesia-laos/833127/",
+      "source": "Utility Dive",
+      "title": "Solar imports from India, Indonesia, Laos injured US manufacturers: ITC",
+      "url": "https://www.utilitydive.com/news/itc-material-injury-solar-imports-india-indonesia-laos/833127/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The decision clears the way for the Department of Commerce to finalize anti-dumping and countervailing duty orders on&nbsp;crystalline silicon photovoltaic cells from the three countries."
+    },
+    {
+      "t": "2026-10-16T04:56:20.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/agl-refers-500mwh-abermain-bess-in-queensland-to-australias-epbc-act/",
+      "source": "Energy-Storage.news",
+      "title": "AGL refers 500MWh Abermain BESS in Queensland to Australia’s EPBC Act",
+      "url": "https://www.energy-storage.news/agl-refers-500mwh-abermain-bess-in-queensland-to-australias-epbc-act/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Australian energy company AGL has referred a 500MWh battery energy storage system (BESS) in Queensland to the federal government under Australia's Environment Protection and Biodiversity Conservation (EPBC) Act."
+    },
+    {
+      "t": "2026-10-16T05:16:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/vikram-solar-subsidiary-to-build-7-5gwh-bess-assembly-plant-in-tamil-nadu-india/",
+      "source": "Energy-Storage.news",
+      "title": "Vikram Solar subsidiary to build 7.5GWh BESS assembly plant in Tamil Nadu, India",
+      "url": "https://www.energy-storage.news/vikram-solar-subsidiary-to-build-7-5gwh-bess-assembly-plant-in-tamil-nadu-india/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "VSL PowerHive, a Vikram Solar subsidiary, announced a 7.5GWh BESS assembly plant in Oragadam, near Chennai, Tamil Nadu."
+    },
+    {
+      "t": "2026-10-16T07:06:43.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/china-topcon-solar-cell-prices-edge-lower-after-golden-week-as-industry-weighs-price-floors/",
+      "source": "pv magazine",
+      "title": "China TOPCon solar cell prices edge lower after Golden Week as industry weighs price floors",
+      "url": "https://www.pv-magazine.com/2026/10/16/china-topcon-solar-cell-prices-edge-lower-after-golden-week-as-industry-weighs-price-floors/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a new weekly update for pv magazine , OPIS, a Dow Jones company, provides a quick look at the main price trends in the global PV industry. The post China TOPCon solar cell prices edge lower after Golden Week as industry weighs price floors appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-16T08:43:15.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/electrifying-everything/",
+      "source": "pv magazine",
+      "title": "Electrifying everything",
+      "url": "https://www.pv-magazine.com/2026/10/16/electrifying-everything/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "COP31 aims to increase electricity’s share of global final energy demand from 20% to 35% by 2035, accelerating the transition to clean, affordable energy through electrification. Australia is leading with rapid growth in solar, wind, batteries and EVs, demonstrating how renewable energy can lower electricity costs,…"
+    },
+    {
+      "t": "2026-10-16T09:13:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/big-highs-and-lows-across-asia-in-september/",
+      "source": "pv magazine",
+      "title": "Big highs and lows across Asia in September",
+      "url": "https://www.pv-magazine.com/2026/10/16/big-highs-and-lows-across-asia-in-september/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that September 2026 saw extreme solar irradiance variations across Asia, with Japan and Borneo experiencing up to 30% below-normal levels, while China, Korea, the Philippines and eastern Indonesia recorded significant surpluses. Typhoons drove…"
+    },
+    {
+      "t": "2026-10-16T09:27:27.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/chinese-pv-industry-brief-trina-solar-expands-upstream-ties-with-stake-in-encapsulation-film-maker/",
+      "source": "pv magazine",
+      "title": "Chinese PV Industry Brief: Trina Solar expands upstream ties with stake in encapsulation film maker",
+      "url": "https://www.pv-magazine.com/2026/10/16/chinese-pv-industry-brief-trina-solar-expands-upstream-ties-with-stake-in-encapsulation-film-maker/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Trina Solar plans to acquire a 1.6% stake in Chinese PV encapsulation film manufacturer Betterial for CNY 40 million ($5.88 million). The investment aims to strengthen upstream supplier ties and improve supply chain stability. The post Chinese PV Industry Brief: Trina Solar expands upstream ties with stake in encaps…"
+    },
+    {
+      "t": "2026-10-16T10:09:57.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/the-hydrogen-stream-p2x-starts-selling-renewable-methane-to-european-markets/",
+      "source": "pv magazine",
+      "title": "The Hydrogen Stream: P2X starts selling renewable methane to European markets",
+      "url": "https://www.pv-magazine.com/2026/10/16/the-hydrogen-stream-p2x-starts-selling-renewable-methane-to-european-markets/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Europe’s renewable hydrogen and e-fuels sector continues to gain momentum, with new developments spanning e-methane certification and offtake, electrolyser technology, large-scale green hydrogen projects and strategic investments. Recent announcements from companies including P2X Solutions, Stargate Hydrogen, ITM Po…"
+    },
+    {
+      "t": "2026-10-16T11:26:19.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-roundup-enertrag-enlight-vattenfall-fluence-giga-storage-4-hour-batteries/",
+      "source": "Energy-Storage.news",
+      "title": "Germany Roundup: Enertrag, Enlight, Vattenfall, Fluence, Giga Storage progress 4-hour batteries totalling 3.2GWh to construction",
+      "url": "https://www.energy-storage.news/germany-roundup-enertrag-enlight-vattenfall-fluence-giga-storage-4-hour-batteries/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A trio of large-scale 4-hour BESS projects in Germany have progressed towards construction, from Enertrag and Enlight, Vattenfall and Fluence, and Giga Storage."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 40,
+    "items": 39,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 6,
-      "capital": 4,
+      "grid": 28,
+      "policy": 5,
+      "capital": 5,
       "technology": 1
     },
     "sourceStatus": [
@@ -453,13 +443,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 2
+        "items": 3
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 5
       }
     ]
   },
@@ -468,6 +458,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:92941fa66388db681bc758bdfe353eb579435f0a7d328b90e20f3f7e2abb45e7",
-  "envelopeChecksum": "sha256:33857130b269889259939cb9d6d80bf2b9b4a4f0aac8209ff310ae353ee19efa"
+  "contentChecksum": "sha256:d60db376fde402501513324040f6eda5383a094c5ae7147540ac8c16ff1bf084",
+  "envelopeChecksum": "sha256:4cc9cfbc2eceaa4c17ae2f3402a35197cd6293186dfeebb113e7149cad8120c1"
 }
