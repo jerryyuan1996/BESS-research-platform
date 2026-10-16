@@ -1,23 +1,23 @@
 {
   "marketId": "nem",
   "thesis": [
-    "The deepest storage build in the set on the thinnest secured revenue: no capacity market, a tender floor whose level is unpublished, and a merchant spread at a record low as the fleet passed 9,000 MW. At build cost the reference project returns about 3%, so the case is the entry price, not the build. Four hours, on a tender award or a toll.",
-    "储能建设规模居各市场之首，锁定收入却最薄：没有容量市场，招标保底水平不公开，且随着储能规模突破9,000MW，市场化价差跌至历史低点。按建设成本测算参考项目回报约3%，因此关键在于进入价格而非新建。四小时，依托招标中标合同或租赁。"
+    "The deepest storage build in the set on the thinnest secured revenue: no capacity market, a tender floor whose level is unpublished, and a merchant spread at a record low as the fleet passed 9,000 MW. At build cost the reference project returns about 4.5%, so the case is the entry price, not the build. Four hours, on a tender award or a toll.",
+    "储能建设规模居各市场之首，锁定收入却最薄：没有容量市场，招标保底水平不公开，且随着储能规模突破9,000MW，市场化价差跌至历史低点。按建设成本测算参考项目回报约4.5%，因此关键在于进入价格而非新建。四小时，依托招标中标合同或租赁。"
   ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 2,
+      "grade": 3,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Eleventh of fourteen markets on hold IRR, 3.1%.",
-        "持有期IRR为3.1%，在十四个市场中排名第十一。"
+        "Seventh of fourteen markets on hold IRR, 4.5%.",
+        "持有期IRR为4.5%，在十四个市场中排第七。"
       ],
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-17",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -203,8 +203,8 @@
         }
       ],
       "despite": [
-        "The modelled return on the reference project is 3.1%, so the price paid and the contract actually held decide the case.",
-        "参考项目的模型回报仅为3.1%，因此成败取决于买入价格与实际持有的合同。"
+        "The modelled return on the reference project is 4.5%, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报仅为4.5%，因此成败取决于买入价格与实际持有的合同。"
       ],
       "changesIf": [
         "nem-successor-scheme-first-round"
@@ -228,8 +228,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "At build cost the reference project returns 3.1% hold, so only an entry price below build cost clears a fund's hurdle.",
-            "按建设成本测算，参考项目持有期回报仅3.1%，只有低于建设成本的进入价格才能达到基金的回报门槛。"
+            "At build cost the reference project returns 4.5% hold, so only an entry price below build cost clears a fund's hurdle.",
+            "按建设成本测算，参考项目持有期回报仅4.5%，只有低于建设成本的进入价格才能达到基金的回报门槛。"
           ]
         },
         {
@@ -256,7 +256,11 @@
       ],
       "author": "analyst",
       "asOf": "2026-10-16",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "scoreNote": [
+        "The call stays at Opportunistic on the analyst's ruling of 16 October, which holds it there until the research gate on the NEM seeds closes. The score rose on 17 October because capex was rebuilt on the supplier quotation (A$1.54m → A$1.25m/MW before the sponsor position) and hold IRR went from 3.1% to 4.5%; the merchant and award seeds the gate questions are unchanged.",
+        "依据分析师10月16日的裁定，在NEM种子参数的研究关卡关闭前维持“择机”判断。评分于10月17日上升，原因是资本开支按供应商报价重建（未计发起人采购优势前由A$154万降至A$125万/MW），持有期IRR由3.1%升至4.5%；研究关卡所质疑的市场化与中标收入种子未变。"
+      ]
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -273,8 +277,8 @@
         }
       ],
       "despite": [
-        "The modelled return on the reference project is 3.1%, so the price paid and the contract actually held decide the case.",
-        "参考项目的模型回报仅为3.1%，因此成败取决于买入价格与实际持有的合同。"
+        "The modelled return on the reference project is 4.5%, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报仅为4.5%，因此成败取决于买入价格与实际持有的合同。"
       ],
       "changesIf": [],
       "reviewBy": "2027-03-31",
@@ -304,8 +308,8 @@
         }
       ],
       "despite": [
-        "The modelled return on the reference project is 3.1%, so the price paid and the contract actually held decide the case.",
-        "参考项目的模型回报仅为3.1%，因此成败取决于买入价格与实际持有的合同。"
+        "The modelled return on the reference project is 4.5%, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报仅为4.5%，因此成败取决于买入价格与实际持有的合同。"
       ],
       "changesIf": [
         "nem-successor-scheme-first-round"
@@ -346,8 +350,8 @@
       "hours": 4,
       "stage": "operating",
       "why": [
-        "A tender award secures most revenue for fifteen years at four hours; at build cost it returns 3.1%, so only a cheaper entry price works.",
-        "中标合同可在四小时设计下锁定十五年的大部分收入；按建设成本测算回报仅3.1%，只有更低的进入价格才可行。"
+        "A tender award secures most revenue for fifteen years at four hours; at build cost it returns 4.5%, so only a cheaper entry price works.",
+        "中标合同可在四小时设计下锁定十五年的大部分收入；按建设成本测算回报仅4.5%，只有更低的进入价格才可行。"
       ],
       "action": {
         "text": [

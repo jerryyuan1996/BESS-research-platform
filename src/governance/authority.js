@@ -216,6 +216,13 @@ export const COMPARISON_AUTHORITY = {
   'economics.capexPerMW': AUTHORITY.ANALYST,
   'economics.opexPerMW': AUTHORITY.ANALYST,
 
+  /* The supplier quotation (src/comparison/supplierQuote.js, 2026-10-17). The
+     quoted share of capex, which the sponsor multiplier leaves alone, and the
+     service package's yearly schedule. Practitioner evidence the analyst
+     supplied: an assumption, and only he may change it. */
+  'economics.capexQuotedPerMW': AUTHORITY.ANALYST,
+  'economics.serviceSchedulePerMW': AUTHORITY.ANALYST,
+
   /* ---- capital structure -------------------------------------------------
      The component stack is ANALYST rather than DERIVED even though it is
      currently generated from a share model. The shares are a placeholder for
@@ -231,6 +238,7 @@ export const COMPARISON_AUTHORITY = {
      is recoverable, and how long the refund takes, are positions on a project's
      tax structuring and would be analyst judgements in any case. */
   'economics.capexStack.dcBlockPerKWh': AUTHORITY.ANALYST,
+  'economics.capexStack.dcBlockQuoted': AUTHORITY.ANALYST,
   'economics.capexStack.pcsPerMW': AUTHORITY.ANALYST,
   'economics.capexStack.transformerHvPerMW': AUTHORITY.ANALYST,
   'economics.capexStack.bopPerMW': AUTHORITY.ANALYST,

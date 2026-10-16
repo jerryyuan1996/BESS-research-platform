@@ -29,7 +29,9 @@
    --------------------------------------------------------------------------- */
 
 import { band, limits } from '../../comparison/ranges.js';
-import { stackFrom, buildCapex } from '../../comparison/capex.js';
+import { buildCapex, rebuiltQuotedStack } from '../../comparison/capex.js';
+import { landedDcPerKWh, serviceSchedulePerMW, scheduleMean, rebuiltEnd } from '../../comparison/supplierQuote.js';
+import { LIFE } from '../../comparison/assumptions.js';
 
 /* Reference asset — identical in all three regions on purpose. The controlled
    experiment the Regional Benchmark tab asks: same 50 MW / 6h battery, same
@@ -92,12 +94,20 @@ export const JP_COMMON_COST = {
    Six-hour Japanese builds are not fast, but no public source gives a
    programme, so twelve months is carried as the platform default rather than an
    estimate dressed as evidence. */
-export const JP_CAPEX_STACK = stackFrom(JP_COMMON_COST.capexPerMW, 6);
+/* REVISED 2026-10-17 — method REBUILT. ¥60,000/kWh is a FY2024-anchored
+   benchmark priced on dearer DC blocks than the supplier quotation. Its 56% DC
+   slice is replaced by the quote landed duty-free (¥15,561/kWh at the meter at
+   the ECB rate of 15 October 2026); PCS, transformer, BOP and EPC are held at
+   their amounts in the six-hour benchmark, 44% of ¥360m = ¥158.4m/MW. Carried to
+   the nine-hour archetype: 9,000 × ¥15,561 + ¥158.4m = ¥298.5m (was ¥474.5m).
+   src/comparison/capex.js. Japan's premium over world prices now sits entirely
+   in the held lines, which is where gate G5 always said it was. */
+export const JP_DC_PER_KWH = landedDcPerKWh('JPY');
+export const JP_CAPEX_STACK = rebuiltQuotedStack(JP_COMMON_COST.capexPerMW, 6, JP_DC_PER_KWH);
 
 /* The archetype's capex: the six-hour basis above, carried to the archetype's
    duration by the component stack (energy blocks scale, power blocks do not). */
 export const JP_ARCHETYPE_CAPEX = Math.round(buildCapex(JP_CAPEX_STACK, JP_REFERENCE.durationHours).total);
-const ARCHETYPE_CAPEX_RATIO = JP_ARCHETYPE_CAPEX / JP_COMMON_COST.capexPerMW;
 
 /* Opex, from METI's own battery cost inputs for the Round 4 ceiling (METI
    006_s02_00, August 2026, table 31; gate G43): ¥7,000/kW-yr O&M for a
@@ -114,8 +124,16 @@ export const JP_ARCHETYPE_OPEX = Math.round(
    recovered in the bid; the cash flows do not carry it, because it falls in year
    twenty, past the platform's fifteen-year window. */
 export const JP_DECOMMISSIONING = Math.round(0.05 * JP_ARCHETYPE_CAPEX);
+/* The supplier's service package, per MW at nine hours. METI's O&M figure is
+   the seed it sits inside; the award bid keeps the flat seed, because that is
+   how METI costs the ceiling, while the cash flows carry the package year by
+   year and the rest of opex beside it. */
+export const JP_SERVICE_SCHEDULE = serviceSchedulePerMW(JP_REFERENCE.durationHours, 'JPY');
+export const JP_OTHER_OPEX = JP_ARCHETYPE_OPEX - scheduleMean(JP_SERVICE_SCHEDULE, LIFE);
 export const JP_CAPITAL = {
   capexStack: JP_CAPEX_STACK,
+  capexQuotedPerMW: JP_DC_PER_KWH * JP_REFERENCE.durationHours * 1000,
+  serviceSchedulePerMW: JP_SERVICE_SCHEDULE,
   vatPct: 10, vatRecoverable: true, vatLagMonths: 0,
   devCostPct: 0, rtbPremiumPct: 0,
   constructionMonths: 12,
@@ -608,7 +626,7 @@ export const REGION_IDS = ['tokyo', 'kyushu', 'hokkaido'];
    --------------------------------------------------------------------------- */
 export function jpRanges(economics){
   return {
-    capexPerMW: band(economics.capexPerMW, 45000 * 6000 * ARCHETYPE_CAPEX_RATIO, 68000 * 6000 * ARCHETYPE_CAPEX_RATIO, {
+    capexPerMW: band(economics.capexPerMW, rebuiltEnd(45000 * 6000, JP_REFERENCE.durationHours, 'JPY'), rebuiltEnd(68000 * 6000, JP_REFERENCE.durationHours, 'JPY'), {
       basis: [
         'Japanese grid-scale BESS averaged ~¥68,000/kWh in FY2024 (~US$433/kWh), with system costs reported at 2.5–3× global benchmarks. ¥45,000/kWh was this platform\'s previous seed and assumed convergence to world prices. ¥60,000 sits between the observation and that convergence, allowing for decline to a 2026-27 COD. Both ends × 6,000 kWh/MW, carried to the nine-hour archetype by the component stack.',
         '日本电网级储能在2024财年平均约¥68,000/kWh（约US$433/kWh），系统成本据报为全球基准的2.5–3倍。¥45,000/kWh为本平台此前种子值，隐含向全球价格收敛的假设。¥60,000介于实测值与该收敛之间，并考虑至2026–27年投运期间的成本下降。两端均乘以6,000 kWh/MW，并按组件结构折算至九小时原型。',

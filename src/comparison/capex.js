@@ -52,12 +52,18 @@ export function buildCapex(stack, hours){
   const bopPower = stack.bopPerMW || 0;
 
   const equipment = dcBlock + pcs + transformerHv;
-  const duty = equipment * (stack.dutyPct || 0) / 100;
   const bop = bopEnergy + bopPower;
+
+  /* A quoted DC block is owner-furnished: bought from the supplier under its
+     own supply agreement, landed duty-paid, and installed by the EPC contractor
+     without being inside its wrap. So it carries neither customs duty here (the
+     quoted rate already includes it) nor the EPC percentage. */
+  const wrapped = stack.dcBlockQuoted ? equipment - dcBlock : equipment;
+  const duty = wrapped * (stack.dutyPct || 0) / 100;
 
   /* EPC is a percentage of what is being installed rather than a rate, because
      that is how it is quoted and how it scales with a bigger battery. */
-  const epc = (equipment + duty + bop) * (stack.epcPct || 0) / 100;
+  const epc = (wrapped + duty + bop) * (stack.epcPct || 0) / 100;
 
   const connection = stack.connectionFeePerMW || 0;
   const other = stack.otherPerMW || 0;
@@ -109,6 +115,76 @@ export function stackFrom(total, hours, over = {}){
     /* Expressed as a percentage of what is installed, so the residual closes on
        the published total whatever the other shares are set to. */
     epcPct: 100 * s.epc / installed,
+    ...over,
+  };
+}
+
+/* ---------------------------------------------------------------------------
+   A quoted DC block inside a published installed cost.
+
+   The supplier quotation (src/comparison/supplierQuote.js) prices the DC block
+   and nothing else, so it can enter a market's capex in one of two ways, chosen
+   by how current the market's total is (the analyst's ruling of 2026-10-16):
+
+   HELD     the total is a 2026 European price survey, which already reflects
+            what DC blocks cost now. The total stands; the quote says how much of
+            it is the DC block. The rest of what scaled with energy under the
+            global split is energy-scaling balance of plant and installation, so
+            capex at every other duration is exactly what it was:
+
+              dcBlockPerKWh = d                         (quoted, owner-furnished)
+              bopPerKWh     = (0.56·T − 0.88·Q) / kWh0   Q = d · kWh0
+              power lines   = the global split of T
+              total at h0   = Q + (0.88·T − 0.88·Q) / 0.88 = T
+
+   REBUILT  the total is a cost model or regulator benchmark priced on older DC
+            blocks. The 56% DC slice is replaced by the quote; PCS, transformer
+            and BOP are held per MW, and EPC is held at its amount at the
+            benchmark's own duration (0.12·T, so 37.5% of the power lines):
+
+              total at h    = d · h · 1000 + 0.44 · T
+
+   In both, the sponsor's 0.90 applies to everything except the quoted block,
+   which is already a transaction price: sponsor = 0.9 · (raw − Q) + Q.
+   --------------------------------------------------------------------------- */
+
+/**
+ * @param {number} total   the held installed cost per MW at `hours`
+ * @param {number} hours   the duration that total is quoted at
+ * @param {number} d       quoted DC block, market currency per kWh at the meter
+ */
+export function heldQuotedStack(total, hours, d, over = {}){
+  const s = CAPEX_SHARES;
+  const kwh = hours * 1000;
+  const q = d * kwh;
+  return {
+    dcBlockPerKWh: d,
+    dcBlockQuoted: true,
+    bopPerKWh: (s.dcBlock * total - (s.dcBlock + s.pcs + s.transformerHv + s.bop) * q) / kwh,
+    pcsPerMW: total * s.pcs,
+    transformerHvPerMW: total * s.transformerHv,
+    bopPerMW: total * s.bop,
+    epcPct: 100 * s.epc / (s.dcBlock + s.pcs + s.transformerHv + s.bop),
+    ...over,
+  };
+}
+
+/**
+ * @param {number} benchmark       the benchmark installed cost per MW
+ * @param {number} benchmarkHours  the duration the benchmark is quoted at
+ * @param {number} d               quoted DC block, market currency per kWh at the meter
+ */
+export function rebuiltQuotedStack(benchmark, benchmarkHours, d, over = {}){
+  const s = CAPEX_SHARES;
+  const power = s.pcs + s.transformerHv + s.bop;      // 0.32
+  return {
+    dcBlockPerKWh: d,
+    dcBlockQuoted: true,
+    bopPerKWh: 0,
+    pcsPerMW: benchmark * s.pcs,
+    transformerHvPerMW: benchmark * s.transformerHv,
+    bopPerMW: benchmark * s.bop,
+    epcPct: 100 * s.epc / power,                       // 37.5
     ...over,
   };
 }

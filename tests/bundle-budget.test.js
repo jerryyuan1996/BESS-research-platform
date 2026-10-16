@@ -285,8 +285,12 @@ const BUDGET = {
        about 0.13 kB a line.
 
        RAISED FROM 48 TO 64 when the briefing content was applied: 52 analyst
-       lines, each carrying a whole play, call or thesis, took it to 57.87. */
-    'changes': 64,
+       lines, each carrying a whole play, call or thesis, took it to 57.87.
+
+       RAISED FROM 64 TO 72 with the supplier quotation (2026-10-17): 30 analyst
+       lines — fourteen re-derived asset-return grades, two score notes and
+       fourteen restated plays, calls and theses — took it to 68.8. */
+    'changes': 72,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four

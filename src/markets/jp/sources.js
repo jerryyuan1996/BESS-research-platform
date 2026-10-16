@@ -12,8 +12,11 @@
      Tier 4  developer assumption / illustrative model seed  → badge 'illus'
    Tier 3 and 4 are never promoted to 'official'.
    --------------------------------------------------------------------------- */
+import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 export const SRC = {
+  /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
+  ...QUOTE_SOURCES,
   // ---- national ----------------------------------------------------------
   jepx: {
     file: 'JEPX — Day-Ahead (spot) market data',

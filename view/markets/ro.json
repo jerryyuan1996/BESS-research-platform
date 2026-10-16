@@ -14,10 +14,10 @@
         "comparison-engine"
       ],
       "reason": [
-        "First of fourteen markets on hold IRR, 20.8%.",
-        "持有期IRR为20.8%，在十四个市场中排第一。"
+        "First of fourteen markets on hold IRR, 20.2%.",
+        "持有期IRR为20.2%，在十四个市场中排第一。"
       ],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-17",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -251,8 +251,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "Four hours is the best design here and the second-highest value on the platform at the merchant yield: 19.3% hold, 23.2% exit.",
-            "四小时是这里的最佳设计，按市场化收益率测算价值在本平台排名第二：持有期19.3%，退出23.2%。"
+            "Four hours is the best design here and the second-highest value on the platform at the merchant yield: 18.4% hold, 21.7% exit.",
+            "四小时是这里的最佳设计，按市场化收益率测算价值在本平台排名第二：持有期18.4%，退出21.7%。"
           ]
         },
         {
@@ -388,8 +388,8 @@
       "hours": 4,
       "stage": "operating",
       "why": [
-        "Four hours is the best design here (19.3% hold, 23.2% exit at the merchant yield); the modelled two hours gives up over a quarter of its value.",
-        "四小时是这里的最佳设计（按市场化收益率测算持有期回报19.3%、退出回报23.2%）；模型中的两小时设计损失逾四分之一的价值。"
+        "Four hours is the best design here (18.4% hold, 21.7% exit at the merchant yield); the modelled two hours gives up over a quarter of its value.",
+        "四小时是这里的最佳设计（按市场化收益率测算持有期回报18.4%、退出回报21.7%）；模型中的两小时设计损失逾四分之一的价值。"
       ],
       "action": {
         "text": [

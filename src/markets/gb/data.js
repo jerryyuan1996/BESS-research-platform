@@ -6,6 +6,7 @@
    per-tab narrative content. Not one value was changed by the migration.
    --------------------------------------------------------------------------- */
 
+import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 import {
   GB_SYSTEM_EVOLUTION, GB_TEC_PIPELINE, GB_TEC_PROJECTS, GB_METRIC_REGISTRY,
 } from './officialData.js';
@@ -246,8 +247,8 @@ const M = {
        the Lab leaves the refund lag to the engine. */
     vatPct: 20, vatRecoverable: 1,
     devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
-    mw: 100, hours: 2, capexKWh: 140, capexKW: 180, opexKW: 9,
-    rte: 88, avail: 96, degr: 2, cycles: 1.5, spread: 65, optFee: 10,
+    mw: 100, hours: 2, capexKWh: 140, dcQuoteKWh: landedDcPerKWh('GBP'), capexKW: 180, opexKW: 9,
+    rte: 88, avail: 97, degr: 2, cycles: 1.5, spread: 65, optFee: 10,
     capPrice: 27.10, capYrs: 15, servicesKW: 4,
     life: 20, disc: 7, debtPct: 50, rate: 6.5, tenor: 15,
   },

@@ -44,6 +44,7 @@
       band — this file does not invent one. Those gaps are carried in
       `notPublished` and rendered on the Data & Methodology tab.
    --------------------------------------------------------------------------- */
+import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
   asOf: '2026-08-01',
@@ -499,7 +500,7 @@ const M = {
 
        servicesKW 13.667, opexKW 13, optFee 9, grantPct 0 and degr 1.1 are
        comparison.js's values unchanged. */
-    mw: 100, hours: 4, capexKWh: 220, capexKW: 0, opexKW: 13,
+    mw: 100, hours: 4, capexKWh: 220, dcQuoteKWh: landedDcPerKWh('EUR'), capexKW: 0, opexKW: 13,
     rte: 88, avail: 97, degr: 1.1, cycles: 1.4, spread: 62, optFee: 9,
     capPrice: 47, capYrs: 15, servicesKW: 13.667, grantPct: 0,
     life: 20, disc: 8, debtPct: 60, rate: 5.5, tenor: 15,

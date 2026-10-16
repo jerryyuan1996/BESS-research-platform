@@ -24,6 +24,7 @@ import { runCase, runBaseCase } from '../src/comparison/engine.js';
 import { baseStrategy, securedTenor } from '../src/comparison/strategies.js';
 import { capacityRevenuePerMW, servicesFactor } from '../src/comparison/capacityLine.js';
 import { OEM_CAPEX_MULTIPLIER } from '../src/comparison/sponsorAssumptions.js';
+import { landedDcPerKWh } from '../src/comparison/supplierQuote.js';
 import { LIFE } from '../src/comparison/assumptions.js';
 import { sizeProjectDebt, riskClassFor, DEBT_CONVENTIONS } from '../src/economics/projectDebt.js';
 
@@ -81,20 +82,26 @@ test('archetype durations match the products each market actually pays for', () 
   }
 });
 
-test('every allocation market carries the 10% sponsor capex reduction', () => {
+/* Moved 2026-10-17 (docs/supplier-quote-2026-10-plan.md). The supplier
+   quotation's DC block, landed, is inside every non-US capex and is NOT
+   discounted: sponsor = 0.9 × (raw − Q) + Q, Q = quoted block per MW.
+     held     raw unchanged (2026 European survey totals): +0.1 × Q
+     rebuilt  raw = 0.44 × benchmark + Q (NEM GenCost, WA ERA, Japan ¥60,000/kWh at 6h) */
+test('every allocation market carries the 10% sponsor capex reduction, except on the quoted block', () => {
   const expected = {
-    wa:3276000,
-    nem:1386000,
-    gb:810000,
-    de:841500,
-    it:792000,
-    ie:1044000,
-    ro:567000,
-    pl:873000,
-    jp_tokyo:427090909.5,   // 9h archetype since 2026-10-16: ¥360m/MW at 6h carried by the stack, × 0.9
-    jp_kyushu:427090909.5,   // 9h archetype since 2026-10-16: ¥360m/MW at 6h carried by the stack, × 0.9
-    jp_hokkaido:427090909.5,   // 9h archetype since 2026-10-16: ¥360m/MW at 6h carried by the stack, × 0.9
-    pjm:1202400,
+    wa:2439186,          // 0.9 × 0.44 × 3,640,000 + 7,000 × 142.54
+    nem:1179980,         // 0.9 × 0.44 × 1,540,000 + 4,000 × 142.54
+    gb:840524,           // 0.9 × (900,000 − 305,235) + 305,235
+    de:877576,           // 0.9 × (935,000 − 360,755) + 360,755
+    it:828076,
+    ie:1080076,
+    ro:585038,           // 0.9 × (630,000 − 180,378) + 180,378
+    pl:909076,
+    fi:414038,
+    jp_tokyo:282611393,  // 0.9 × 158.4m + 9,000 × ¥15,561
+    jp_kyushu:282611393,
+    jp_hokkaido:282611393,
+    pjm:1202400,         // US: NREL, no quote applied (gate Q-3)
     ercot:865728,
     caiso:1202400,
   };
@@ -102,21 +109,22 @@ test('every allocation market carries the 10% sponsor capex reduction', () => {
   assert.equal(OEM_CAPEX_MULTIPLIER, 0.90);
   for (const [id, capex] of Object.entries(expected)){
     const cmp = byId(id).comparison;
-    assert.equal(cmp.economics.capexPerMW, capex, `${id}: sponsor capex`);
-    assert.equal(cmp.ranges.capexPerMW.seed, capex, `${id}: Lab seed`);
+    near(cmp.economics.capexPerMW, capex, 1, `${id}: sponsor capex`);
+    near(cmp.ranges.capexPerMW.seed, capex, 1, `${id}: Lab seed`);
   }
 });
 
-test('WA applies the sponsor OEM buying position to the ERA unit cost', () => {
+test('WA: the ERA unit cost rebuilt on the quoted DC block, sponsor position on the rest', () => {
   const cmp = byId('wa').comparison;
   const perKWh = cmp.economics.capexPerMW / (cmp.archetype.durationHours * 1000);
-  near(perKWh, 520 * OEM_CAPEX_MULTIPLIER, 0.5, 'A$/kWh after sponsor adjustment');
+  near(perKWh, 0.44 * 520 * OEM_CAPEX_MULTIPLIER + landedDcPerKWh('AUD'), 0.5, 'A$/kWh after sponsor adjustment');
 });
 
-test('GB applies the sponsor OEM buying position to its unit cost', () => {
+test('GB: the held unit cost, sponsor position on all but the quoted DC block', () => {
   const cmp = byId('gb').comparison;
   const perKWh = cmp.economics.capexPerMW / (cmp.archetype.durationHours * 1000);
-  near(perKWh, 225 * OEM_CAPEX_MULTIPLIER, 1, 'GBP/kWh after sponsor adjustment');
+  const d = landedDcPerKWh('GBP');
+  near(perKWh, (225 - d) * OEM_CAPEX_MULTIPLIER + d, 1, 'GBP/kWh after sponsor adjustment');
 });
 
 /* ---------------------------------------------------------------------------
@@ -297,10 +305,11 @@ test('Romania’s grant respects the scheme’s ceilings', () => {
   assert.equal(e.grantCapPerMWh, 69000);
   assert.equal(e.grantCapAbsolute, 15000000);
 
-  // At this archetype the percentage binds: 20% of €630k = €126k/MW against a
-  // €138k/MW ceiling (€69k/MWh × 2h).
+  // At this archetype the percentage binds: 20% of the €585k sponsor build
+  // = €117k/MW against a €138k/MW ceiling (€69k/MWh × 2h).
   const r = runCase(ro, 'mer', 5);
-  near(r.grant, 630000 * OEM_CAPEX_MULTIPLIER * 0.20 * 1.08, 1, 'grant in USD per MW');
+  const q = landedDcPerKWh('EUR') * 2000;
+  near(r.grant, ((630000 - q) * OEM_CAPEX_MULTIPLIER + q) * 0.20 * 1.08, 1, 'grant in USD per MW');
 
   // Lengthen the duration and the per-MWh cap stops binding; raise capex and it
   // starts to. The point is that it binds at all rather than being decorative.
@@ -324,19 +333,25 @@ test('published base-case outcomes', () => {
   const pct = (v) => Number((v * 100).toFixed(1));
   const expected = {
     //            route    yr-1 yield   15-yr IRR
-    wa:          ['cap',   16.2,        13.1],
+    /* Moved 2026-10-17 with the supplier quotation: capex as pinned above, and
+       the service package as its own back-loaded line inside each opex seed.
+       Were wa 16.2/13.1, gb 10.9/5.1, ie 14.6/9.6, ro 26.7/20.8, pl 8.2/0.8. */
+    wa:          ['cap',   22.0,        19.8],
     // GB moved 2026-10-15: 4h de-rating 0.38 → 0.4396, NESO's published T-4
     // 2029/30 factor (gate G1); capacity line £10,298 → £11,913/MW-yr.
-    gb:          ['cap',   10.9,         5.1],
-    ie:          ['cap',   14.6,         9.6],
-    ro:          ['mer',   26.7,        20.8],
-    pl:          ['mer',    8.2,         0.8],
+    gb:          ['cap',   10.8,         4.5],
+    ie:          ['cap',   14.3,         9.0],
+    ro:          ['mer',   26.1,        20.2],
+    pl:          ['mer',    8.2,         0.2],
     /* Moved 2026-10-16 (docs/japan-ltda-repricing-plan.md): 9h archetype, the
        award bid at METI's 4.5% cap per awarded kW, METI opex. Were 11.3–11.4
        and 7.4–7.5 at 6h with an 8% bid. */
-    jp_tokyo:    ['ltda',   8.8,         3.6],
-    jp_kyushu:   ['ltda',   8.8,         3.5],
-    jp_hokkaido: ['ltda',   8.6,         3.4],
+    /* And 2026-10-17: rebuilt capex ¥298.5m/MW, the cost bid falls with it
+       (¥54k → ¥37k per awarded kW in Tokyo), and the sponsor's 10% margin no
+       longer applies to the quoted DC block. Were 8.8/3.6, 8.8/3.5, 8.6/3.4. */
+    jp_tokyo:    ['ltda',   8.7,         2.8],
+    jp_kyushu:   ['ltda',   8.8,         2.9],
+    jp_hokkaido: ['ltda',   8.5,         2.5],
   };
 
   for (const [id, [route, yield1, irr]] of Object.entries(expected)){

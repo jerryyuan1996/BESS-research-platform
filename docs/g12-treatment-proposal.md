@@ -263,14 +263,18 @@ What follows for the view:
   what a project with a capacity warranty and no augmentation does.
 - **"Capacity maintained" stays as a comparison**, labelled as NREL's convention. It is not the
   analyst's case and nothing should be read from it as a forecast.
-- **The yearly cost of the warranty and service package is taken to sit inside each market's opex
-  seed.** No seed was itemised to confirm that. It is the one assumption the default now rests
-  on, and gate G13 (no per-market opex series) is where it would be settled.
-- **Whether a capacity warranty can be bought for years 16 to 25, and at what price, is not
-  sourced.** The twenty and twenty-five year columns carry the year-15 cost forward unchanged.
+- **The yearly cost of the warranty and service package sits inside each market's opex seed.**
+  Since 2026-10-17 it is priced, not assumed: the supplier quotation's annual plan runs as its own
+  back-loaded line and the seed's fifteen-year sum is held (docs/supplier-quote-2026-10-plan.md).
+  The package is 23–51% of the European seeds, 37% of NEM's, 14% of Japan's and 72% of WA's.
+  Gate G13 now asks only whether what is left covers insurance, land and fees.
+- **A capacity warranty can be bought for years 16 to 25.** The quotation prices the 16–20 and
+  21–25 blocks and preventive maintenance to year 25; the RTE and availability guarantees end at
+  year 20. The twenty and twenty-five year columns use those prices instead of carrying year 15
+  forward.
 
-The NREL figure was cross-checked against a supplier quotation the analyst holds. The quotation and
-every figure from it stay outside the repository.
+The NREL figure was cross-checked against that supplier quotation. On 2026-10-16 the analyst
+ruled that the quotation is published in full; the customer it was addressed to is not.
 
 ### 8.5 The US opex note, corrected
 

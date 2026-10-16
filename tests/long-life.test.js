@@ -15,13 +15,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { markets, byId } from '../src/markets/registry.js';
-import { runBaseCase } from '../src/comparison/engine.js';
+import { runBaseCase, serviceCostPerMW, opexSeedPerMW } from '../src/comparison/engine.js';
 import { LIFE, LONG_LIFE_YEARS, MAINTAINED_FOM_SHARE } from '../src/comparison/assumptions.js';
 import { irrOf } from '../src/utils/finance.js';
 import { longLife, longLifeIrr, extendedOperatingLine } from '../src/longlife/longLife.js';
 
 const near = (a, b, tol, label) => assert.ok(Math.abs(a - b) <= tol, `${label}: got ${a}, expected ${b} ± ${tol}`);
 const priced = markets.filter(m => !runBaseCase(m, 5).na);
+/* Where a market carries the supplier's quoted package, years 16–25 pay its own
+   price instead of year 15's: the warranty block for 16–20, then 21–25 with
+   preventive maintenance and no guarantees. Zero for a market without one. */
+const svcStep = (r, e, y) => y > 15 ? (serviceCostPerMW(e, y) - serviceCostPerMW(e, 15)) * r.fxRate : 0;
 
 const KEYS = ['irrHold', 'irrExit', 'net', 'moic', 'payback', 'securedShare', 'securedYears', 'exitVal'];
 const snapshot = () => Object.fromEntries(markets.map(m => {
@@ -62,7 +66,7 @@ test('the fading years are the engine\'s year 15 carried on, by hand', () => {
     assert.equal(line.length, 25);
     for (let y = 1; y <= 15; y++) near(line[y - 1], r.eb[y - 1], 1e-6, `${m.manifest.id} year ${y}`);
     for (let y = 16; y <= 25; y++){
-      const byHand = r.secY[14] + r.aucY[14] + r.mchY[14] * (1 - g) ** (y - 15) - cost15;
+      const byHand = r.secY[14] + r.aucY[14] + r.mchY[14] * (1 - g) ** (y - 15) - cost15 - svcStep(r, e, y);
       near(line[y - 1], byHand, 1e-6, `${m.manifest.id} year ${y}`);
     }
     const capital = r.holdFlows.slice(0, r.holdFlows.length - 15);
@@ -74,13 +78,13 @@ test('the maintained case holds the market line at its rating and charges for it
   for (const m of priced){
     const r = runBaseCase(m, 5), e = m.comparison.economics;
     const g = (e.degr || 2) / 100;
-    const upkeep = Math.max(0, MAINTAINED_FOM_SHARE * r.capexG - e.opexPerMW * r.fxRate);
+    const upkeep = Math.max(0, MAINTAINED_FOM_SHARE * r.capexG - opexSeedPerMW(e) * r.fxRate);
     near(longLife(m).upkeepPerMW, upkeep, 1e-9, `${m.manifest.id}: the yearly charge`);
     const line = extendedOperatingLine(r, e, 25, true);
     for (const y of [1, 8, 15, 16, 25]){
       const i = Math.min(y, 15) - 1;
       const cost = r.secY[i] + r.aucY[i] + r.mchY[i] - r.eb[i];
-      const byHand = r.secY[i] + r.aucY[i] + r.mchY[i] / (1 - g) ** i - cost - upkeep;
+      const byHand = r.secY[i] + r.aucY[i] + r.mchY[i] / (1 - g) ** i - cost - upkeep - svcStep(r, e, y);
       near(line[y - 1], byHand, 1e-6, `${m.manifest.id} year ${y}`);
     }
   }

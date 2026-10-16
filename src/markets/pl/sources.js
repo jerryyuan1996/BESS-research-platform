@@ -5,8 +5,11 @@
    components/sourceDrawer.js 鈥?no source detail is hardcoded in a presentation
    component. Entries preserve name, status, date, coverage period and URL.
    --------------------------------------------------------------------------- */
+import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 const SRC = {
+  /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
+  ...QUOTE_SOURCES,
   pse:    { file:'PSE — capacity market auction results and certification register', status:['Verify against current documents','须以现行文件核验'], provenance:{authority:'unclassified',publication:'final',availability:'public',verification:'requires-reverification'}, date:'2026', cy:'Delivery years to 2030', url:'https://www.pse.pl/' },
   corr:   { file:'Capacity market correction (de-rating) factors by technology and duration', status:['Verify against current documents','须以现行文件核验'], provenance:{authority:'unclassified',publication:'final',availability:'public',verification:'requires-reverification'}, date:'2026', cy:'Auction-specific', url:'https://www.pse.pl/' },
   tge:    { file:'TGE (Polish Power Exchange) — day-ahead and intraday market results', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2026', cy:'2025 annual, 2026 monthly', url:'https://tge.pl/' },

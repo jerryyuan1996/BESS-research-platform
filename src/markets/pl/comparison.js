@@ -28,6 +28,7 @@ import { capacityRevenuePerMW } from '../../comparison/capacityLine.js';
 import { band, limits } from '../../comparison/ranges.js';
 import { merchantVintage } from '../../comparison/vintage.js';
 import { stackFrom } from '../../comparison/capex.js';
+import { quotedEconomics } from '../../comparison/supplierQuote.js';
 
 /* PLN per EUR. Stated here rather than in the global FX table because Poland is
    modelled in EUR throughout and this rate converts one input, not the market. */
@@ -51,6 +52,12 @@ const capacity = {
 /* The installed cost the component stack must reconcile to. */
 const CAPEX_TOTAL_PER_MW = 970000;
 
+/* The supplier quotation's DC block inside that total — method HELD: the total is a
+   2026 European price survey that already prices today's DC blocks, so it stands and
+   the quote says how much of it is the block (src/comparison/capex.js). */
+const OPEX_SEED_PER_MW = 9000;
+const QUOTED = quotedEconomics({ currency: 'EUR', hours: 4, method: 'held', total: CAPEX_TOTAL_PER_MW, opexSeed: OPEX_SEED_PER_MW });
+
 const economics = {
   capexPerMW: 970000,
 
@@ -71,14 +78,19 @@ const economics = {
      cost rather than a reallocation, and that is an analyst's call — gate G25.
      Set it, then set `rtbPremiumPct`, and the Lab reports the implied RTB
      acquisition price per MW. */
-  capexStack: stackFrom(CAPEX_TOTAL_PER_MW, 4),
+  capexStack: QUOTED.capexStack,
+  capexQuotedPerMW: QUOTED.capexQuotedPerMW,
   vatPct: 23, vatRecoverable: true, vatLagMonths: 0,
   devCostPct: 0, rtbPremiumPct: 0,
   /* Twelve months is one spend period, which is the single up-front outflow the
      model has always used. Longer builds split the spend across an S-curve and
      push first revenue out; that is what an HV transformer lead time does. */
   constructionMonths: 12,
-  opexPerMW: 9000,
+  /* The flat seed was 9,000/MW/yr. The supplier's service package now runs as its own
+     back-loaded line below, and this is the rest of fixed opex: the seed less the
+     package's fifteen-year mean, so the fifteen-year total is unchanged. */
+  opexPerMW: QUOTED.otherOpexPerMW,
+  serviceSchedulePerMW: QUOTED.serviceSchedulePerMW,
 
   capacity,
   contracted: capacityRevenuePerMW(capacity),   // ≈ €14,481

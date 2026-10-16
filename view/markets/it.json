@@ -1,23 +1,23 @@
 {
   "marketId": "it",
   "thesis": [
-    "Four routes, and a real spread between them. The capacity market at four hours is the best design here, at 15.4% hold; MACSE's fifteen-year contract returns 3–4% unless the marginal MWh costs well under the turnkey price. Terna's proposed cut to the four-hour de-rating is the risk to watch.",
-    "四条路径并存，且彼此之间差距真实存在。四小时容量市场是这里的最佳设计，持有期回报15.4%；MACSE的十五年合同回报仅3–4%，除非边际MWh成本远低于交钥匙价格。需要关注的风险是Terna拟下调四小时折减系数。"
+    "Four routes, and a real spread between them. The capacity market at four hours is the best design here, at 14.6% hold; MACSE's fifteen-year contract returns 2.5–3% unless the marginal MWh costs well under the turnkey price. Terna's proposed cut to the four-hour de-rating is the risk to watch.",
+    "四条路径并存，且彼此之间差距真实存在。四小时容量市场是这里的最佳设计，持有期回报14.6%；MACSE的十五年合同回报仅2.5–3%，除非边际MWh成本远低于交钥匙价格。需要关注的风险是Terna拟下调四小时折减系数。"
   ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 5,
+      "grade": 4,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Second of fourteen markets on hold IRR, 15.4%.",
-        "持有期IRR为15.4%，在十四个市场中排名第二。"
+        "Third of fourteen markets on hold IRR, 14.6%.",
+        "持有期IRR为14.6%，在十四个市场中排第三。"
       ],
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-17",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -219,8 +219,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "Capacity market at four hours is the best design in Italy and the second-best return on the platform: 15.4% hold, 18.4% exit.",
-            "四小时容量市场是意大利的最佳设计，回报在本平台排名第二：持有期15.4%，退出18.4%。"
+            "Capacity market at four hours is the best design in Italy and the third-best return on the platform: 14.6% hold, 17.2% exit.",
+            "四小时容量市场是意大利的最佳设计，回报在本平台排名第三：持有期14.6%，退出17.2%。"
           ]
         },
         {
@@ -355,8 +355,8 @@
       "hours": 4,
       "stage": "ready-to-build",
       "why": [
-        "The best design in Italy: 15.4% hold, with a fifteen-year contract on a fifth of revenue.",
-        "意大利的最佳设计：持有期回报15.4%，五分之一的收入有十五年合同。"
+        "The best design in Italy: 14.6% hold, with a fifteen-year contract on a fifth of revenue.",
+        "意大利的最佳设计：持有期回报14.6%，五分之一的收入有十五年合同。"
       ],
       "action": {
         "text": [
@@ -379,8 +379,8 @@
       "hours": 6,
       "stage": "ready-to-build",
       "why": [
-        "MACSE pays per MWh-year, so winners build long (the first auction's fleet averaged 6.68 hours), but on the published capex the design returns 3–4% hold.",
-        "MACSE按每MWh每年付费，因此中标者倾向长时设计（首轮中标项目平均6.68小时），但按公开的资本开支测算，该设计持有期回报仅3–4%。"
+        "MACSE pays per MWh-year, so winners build long (the first auction's fleet averaged 6.68 hours), but on the published capex the design returns 2.5–3% hold.",
+        "MACSE按每MWh每年付费，因此中标者倾向长时设计（首轮中标项目平均6.68小时），但按公开的资本开支测算，该设计持有期回报仅2.5–3%。"
       ],
       "action": {
         "text": [
@@ -399,8 +399,8 @@
             {
               "dimension": "assetReturn",
               "text": [
-                "On the published €220/kWh capex the MACSE design returns 3–4% hold at six to eight hours.",
-                "按公开的每kWh 220欧元资本开支测算，MACSE设计在六至八小时下的持有期回报为3–4%。"
+                "On the published €220/kWh capex the MACSE design returns 2.5–3% hold at six to eight hours.",
+                "按公开的每kWh 220欧元资本开支测算，MACSE设计在六至八小时下的持有期回报为2.5–3%。"
               ]
             },
             {

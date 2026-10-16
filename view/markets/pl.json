@@ -14,10 +14,10 @@
         "comparison-engine"
       ],
       "reason": [
-        "Thirteenth of fourteen markets on hold IRR, 0.8%.",
-        "持有期IRR为0.8%，在十四个市场中排名第十三。"
+        "Thirteenth of fourteen markets on hold IRR, 0.2%.",
+        "持有期IRR为0.2%，在十四个市场中排第十三。"
       ],
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-17",
       "author": "analyst",
       "lockedUntil": null
     },

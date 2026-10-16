@@ -3,6 +3,7 @@
    Official snapshot values plus the illustrative series that must be replaced by
    live ETL before any investment use. Every value is unchanged.
    --------------------------------------------------------------------------- */
+import { landedDcPerKWh } from '../../../comparison/supplierQuote.js';
 
 
 // ---------------- SEED DATA (spec §3 official snapshot + §24 example JSON) ----------------
@@ -165,7 +166,9 @@ const SEED = {
 
   // --- Investment Lab defaults (illustrative) ---
   lab: {
-    mw: 200, hours: 8, capexKWh: 520, opexKW: 18, rte: 88, avail: 97, degr: 1.5,
+    /* REBUILT 2026-10-17: 44% of the ERA A$520/kWh is held; the DC slice is the
+       quoted block landed (src/comparison/supplierQuote.js). */
+    mw: 200, hours: 8, capexKWh: 0.44 * 520 + landedDcPerKWh('AUD'), dcQuoteKWh: landedDcPerKWh('AUD'), opexKW: 18, rte: 88, avail: 97, degr: 1.5,
     ccPct: 95, rcpPct: 100, fcessKW: 12, life: 20, disc: 8, debtPct: 60, rate: 6.5, tenor: 12,
   },
   merchantCurve: { 2: 62000, 4: 96000, 6: 121000, 7: 131000, 8: 139000, 10: 151000, 12: 158000 }, // A$/MW/yr, illustrative

@@ -57,6 +57,7 @@
 import { band, limits } from '../../comparison/ranges.js';
 import { merchantVintage } from '../../comparison/vintage.js';
 import { stackFrom } from '../../comparison/capex.js';
+import { quotedEconomics, rebuiltEnd } from '../../comparison/supplierQuote.js';
 
 /* GenCost 2025-26 (CSIRO, 15 July 2026) puts a four-hour BESS at A$385/kWh
    installed. 4 h × 1,000 kWh/MW × 385 = A$1.54m/MW. The figure decomposes
@@ -69,8 +70,16 @@ const HOURS = 4;
 /* The installed cost the component stack must reconcile to. */
 const CAPEX_TOTAL_PER_MW = CAPEX_PER_KWH * HOURS * 1000;
 
+/* REVISED 2026-10-17 — method REBUILT. The benchmark above is the CSIRO GenCost 2025-26 4h point, priced on
+   DC blocks older and dearer than the supplier quotation: its 56% DC slice is replaced
+   by the quote landed (A$142.54/kWh at the meter), while PCS, transformer, BOP and EPC
+   are held at their benchmark amounts (44% of it). src/comparison/capex.js. */
+const OPEX_SEED_PER_MW = 20000;
+const QUOTED = quotedEconomics({ currency: 'AUD', hours: HOURS, method: 'rebuilt', total: CAPEX_TOTAL_PER_MW, opexSeed: OPEX_SEED_PER_MW });
+
 const economics = {
-  capexPerMW: CAPEX_PER_KWH * HOURS * 1000,     // A$1,540,000
+  capexPerMW: QUOTED.capexPerMW,                // A$1,247,740 (was the GenCost A$1,540,000)
+  capexQuotedPerMW: QUOTED.capexQuotedPerMW,
 
   /* ---- capital structure -------------------------------------------------
      The stack reconciles exactly to the installed cost above — `stackFrom`
@@ -89,14 +98,17 @@ const economics = {
      cost rather than a reallocation, and that is an analyst's call — gate G25.
      Set it, then set `rtbPremiumPct`, and the Lab reports the implied RTB
      acquisition price per MW. */
-  capexStack: stackFrom(CAPEX_TOTAL_PER_MW, HOURS),
+  capexStack: QUOTED.capexStack,
   vatPct: 10, vatRecoverable: true, vatLagMonths: 0,
   devCostPct: 0, rtbPremiumPct: 0,
   /* Twelve months is one spend period, which is the single up-front outflow the
      model has always used. Longer builds split the spend across an S-curve and
      push first revenue out; that is what an HV transformer lead time does. */
   constructionMonths: 12,
-  opexPerMW: 20000,
+  /* Seed A$20,000/MW/yr less the service package's fifteen-year mean; the package
+     runs as its own back-loaded line. */
+  opexPerMW: QUOTED.otherOpexPerMW,
+  serviceSchedulePerMW: QUOTED.serviceSchedulePerMW,
 
   /* No capacity mechanism exists, so the contracted line is genuinely zero
      rather than small — the same declaration Romania makes, for the same
@@ -148,16 +160,17 @@ const economics = {
   tollRevertsToMerchant: true,
 
   ltda: {
-    /* 0.9 × an estimated A$135k/MW/yr floor.
+    /* 0.9 × an estimated A$126k/MW/yr floor. REVISED 2026-10-17 with the
+       rebuilt capex (was 0.9 × A$135k = A$121,500 at A$1.54m/MW).
 
        Floor build-up (a): legal commentary describes the floor as referable to
-       operating costs and debt service. At A$1.54m/MW, 60% gearing, 7% cost of
-       debt over 15 years: 0.924m × 0.10979 ≈ A$101k debt service, plus A$20k
-       opex ≈ A$121k.
+       operating costs and debt service. At A$1,247,740/MW, 60% gearing, 7% cost
+       of debt over 15 years: 0.749m × 0.10979 ≈ A$82.2k debt service, plus
+       A$20k opex ≈ A$102.2k.
        Floor build-up (b): the NSW LTESA Round 6 competitively-bid annuity cap
        for lithium-ion, same region and asset class, ≈A$150k.
-       Midpoint A$135k; the Commonwealth pays 90% of the shortfall to it. */
-    payment: 121500,
+       Midpoint A$126.1k; the Commonwealth pays 90% of the shortfall to it. */
+    payment: 113500,
     years: 15,
     merchantRetention: 0.10,
     /* A competitively bid underwrite and a capital grant would be support
@@ -217,7 +230,7 @@ const ranges = {
     source: 'Transformer lead-time reporting, 2026; no published BESS build programme by market',
     gate: 'G26',
   }),
-  capexPerMW: band(economics.capexPerMW, 355 * HOURS * 1000, null, {
+  capexPerMW: band(economics.capexPerMW, rebuiltEnd(355 * HOURS * 1000, HOURS, 'AUD'), null, {
     basis: [
       'CSIRO GenCost 2025-26 puts a 4h BESS at A$385/kWh installed. The floor applies GenCost\'s own 2h cost trajectory — A$525/kWh in 2025 falling to A$484/kWh by 2030, a 7.8% decline — to the 4h point, giving ≈A$355/kWh. Both × 4,000 kWh/MW.',
       'CSIRO GenCost 2025-26显示4小时储能安装成本为A$385/kWh。下限按GenCost自身的2小时成本轨迹推算 — 2025年A$525/kWh降至2030年A$484/kWh，降幅7.8% — 应用于4小时项目约合A$355/kWh。两者均乘以4,000 kWh/MW。',
@@ -226,7 +239,7 @@ const ranges = {
     gate: 'G15',
   }),
 
-  opexPerMW: band(economics.opexPerMW, null, 36650, {
+  opexPerMW: band(economics.opexPerMW, null, 36650 - QUOTED.serviceMeanPerMW, {
     basis: [
       'GenCost carries fixed O&M in an appendix workbook that is not extractable as published text, so no authoritative NEM figure is in hand. A$20,000/MW/yr is ≈1.3% of capex, covering the long-term service agreement, insurance, land, and market and AEMO fees. The ceiling is the only sourced Australian observation found — A$7.33m/yr for a 200 MW plant — which is a WEM project from a vendor publication and probably bundles network charges.',
       'GenCost将固定运维成本置于附录工作簿中，其内容无法作为已发布文本提取，因此暂无权威的NEM数据。A$20,000/MW/年约为造价的1.3%，涵盖长期服务协议、保险、土地及市场与AEMO费用。上限为唯一可查的澳大利亚观测值 — 200MW电站每年A$733万 — 但该数据来自供应商刊物、属WEM项目，且可能包含电网费用。',

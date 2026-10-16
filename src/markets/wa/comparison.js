@@ -53,6 +53,7 @@ import { capacityRevenuePerMW } from '../../comparison/capacityLine.js';
 import { band, limits } from '../../comparison/ranges.js';
 import { merchantVintage } from '../../comparison/vintage.js';
 import { stackFrom } from '../../comparison/capex.js';
+import { quotedEconomics, rebuiltEnd } from '../../comparison/supplierQuote.js';
 
 const capacity = {
   /* Quoted per MW, not per kW: the RCM pays a Reserve Capacity Price against
@@ -76,8 +77,16 @@ const capacity = {
 /* The installed cost the component stack must reconcile to. */
 const CAPEX_TOTAL_PER_MW = 3640000;
 
+/* REVISED 2026-10-17 — method REBUILT. The benchmark above is the ERA's 2028-29 benchmark unit cost, priced on
+   DC blocks older and dearer than the supplier quotation: its 56% DC slice is replaced
+   by the quote landed (A$142.54/kWh at the meter), while PCS, transformer, BOP and EPC
+   are held at their benchmark amounts (44% of it). src/comparison/capex.js. */
+const OPEX_SEED_PER_MW = 18000;
+const QUOTED = quotedEconomics({ currency: 'AUD', hours: 7, method: 'rebuilt', total: CAPEX_TOTAL_PER_MW, opexSeed: OPEX_SEED_PER_MW });
+
 const economics = {
-  capexPerMW: 3640000,       // 7,000 kWh/MW × A$520/kWh (ERA benchmark unit cost)
+  capexPerMW: QUOTED.capexPerMW,   // A$2,599,346; was 7,000 kWh/MW × A$520/kWh (ERA benchmark unit cost)
+  capexQuotedPerMW: QUOTED.capexQuotedPerMW,
 
   /* ---- capital structure -------------------------------------------------
      The stack reconciles exactly to the installed cost above — `stackFrom`
@@ -96,14 +105,17 @@ const economics = {
      cost rather than a reallocation, and that is an analyst's call — gate G25.
      Set it, then set `rtbPremiumPct`, and the Lab reports the implied RTB
      acquisition price per MW. */
-  capexStack: stackFrom(CAPEX_TOTAL_PER_MW, 7),
+  capexStack: QUOTED.capexStack,
   vatPct: 10, vatRecoverable: true, vatLagMonths: 0,
   devCostPct: 0, rtbPremiumPct: 0,
   /* Twelve months is one spend period, which is the single up-front outflow the
      model has always used. Longer builds split the spend across an S-curve and
      push first revenue out; that is what an HV transformer lead time does. */
   constructionMonths: 12,
-  opexPerMW: 18000,
+  /* Seed A$18,000/MW/yr less the service package's fifteen-year mean; the package
+     runs as its own back-loaded line. */
+  opexPerMW: QUOTED.otherOpexPerMW,
+  serviceSchedulePerMW: QUOTED.serviceSchedulePerMW,
 
   capacity,
   contracted: capacityRevenuePerMW(capacity),   // A$422,372
@@ -179,7 +191,7 @@ const ranges = {
      market is seeded at. The ERA figure sits well above CSIRO, which is WA's
      regional premium and possibly more than that, so the seed is at the top of
      what anyone has observed and the upper end is dispersion, not evidence. */
-  capexPerMW: band(economics.capexPerMW, 301 * 7000, null, {
+  capexPerMW: band(economics.capexPerMW, rebuiltEnd(301 * 7000, 7, 'AUD'), null, {
     basis: [
       'CSIRO GenCost national A$301/kWh at the low end against the ERA benchmark A$520/kWh this market is seeded at, both × 7,000 kWh/MW.',
       '低端为CSIRO GenCost全国口径A$301/kWh，高端为本市场种子所用ERA基准A$520/kWh，均乘以7,000 kWh/MW。',

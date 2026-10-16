@@ -11,8 +11,11 @@
    obligation or a published clearing price it is quoted exactly; where it is an
    inference it says so and carries a gate.
    --------------------------------------------------------------------------- */
+import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 export const SRC = {
+  /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
+  ...QUOTE_SOURCES,
   // ---- system operator: reserves -------------------------------------------
   reserveObligations: {
     file: 'Fingrid — Power system reserves: obligations and procurement forecast',

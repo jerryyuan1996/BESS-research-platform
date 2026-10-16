@@ -74,11 +74,18 @@ test('the sponsor position reaches every dashboard seed, not just the cockpit', 
   for (const [id, raw] of Object.entries(DASHBOARD_SEEDS)){
     const seeded = applySponsorLabSeed(raw);
 
-    for (const field of ['capexKWh', 'capexKW']){
-      if (raw[field] == null) continue;
-      assert.equal(seeded[field], raw[field] * OEM_CAPEX_MULTIPLIER,
-        `${id}: ${field} must carry the sponsor buying position`);
+    /* The quoted DC block inside the energy rate is a transaction price and is
+       not discounted (2026-10-17); everything else is. */
+    const quoted = raw.dcQuoteKWh || 0;
+    if (raw.capexKWh != null){
+      assert.equal(seeded.capexKWh, (raw.capexKWh - quoted) * OEM_CAPEX_MULTIPLIER + quoted,
+        `${id}: capexKWh must carry the sponsor buying position on all but the quoted block`);
     }
+    if (raw.capexKW != null){
+      assert.equal(seeded.capexKW, raw.capexKW * OEM_CAPEX_MULTIPLIER,
+        `${id}: capexKW must carry the sponsor buying position`);
+    }
+    assert.equal(seeded.dcQuoteKWh, raw.dcQuoteKWh, `${id}: the quoted block passes through unscaled`);
 
     assert.equal(seeded.disc, Number((raw.disc + SPONSOR_DISCOUNT_DELTA_PP).toFixed(2)),
       `${id}: the dashboard hurdle rate must move with the platform's cost of capital`);
@@ -111,10 +118,11 @@ test('where the dashboard models the comparison archetype, the two costings reco
       continue;
     }
 
-    /* Same asset, same duration, same sponsor — so the same number. Not "close
-       to": the dashboard's component rates are derived from the market's own
-       installed cost, so any difference is a costing that drifted. */
-    assert.equal(labCapexPerMW(lab), comparison.economics.capexPerMW,
+    /* Same asset, same duration, same sponsor — so the same number, to the
+       cent: the dashboard's component rates are derived from the market's own
+       installed cost, so any larger difference is a costing that drifted. (The
+       quoted block arrives at both by different float paths, hence the cent.) */
+    assert.ok(Math.abs(labCapexPerMW(lab) - comparison.economics.capexPerMW) < 0.01,
       `${id}: dashboard prices ${labCapexPerMW(lab)}/MW against the cockpit's ${comparison.economics.capexPerMW}/MW`);
     checked += 1;
   }

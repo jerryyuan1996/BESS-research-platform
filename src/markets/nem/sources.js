@@ -13,8 +13,11 @@
        BESS toll price has ever been disclosed. Those gaps are registered here as
        coverage gaps rather than left implicit.
    --------------------------------------------------------------------------- */
+import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 const SRC = {
+  /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
+  ...QUOTE_SOURCES,
   qed: { file:'AEMO — Quarterly Energy Dynamics', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'Jul 2026', cy:'Q2 2026 prices, dispatch, battery revenue and FCAS', url:'https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/nem-forecasting-and-planning/quarterly-energy-dynamics' },
   isp: { file:'AEMO — 2026 Integrated System Plan', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'Jun 2026', cy:'Optimal development path to 2050; actionable and committed projects', url:'https://www.aemo.com.au/energy-systems/major-publications/integrated-system-plan-isp', authority:'official-forecast', historical:'Committed and anticipated network projects', forecast:'Storage requirement to 2030 and 2050; named transmission with commissioning years', frequency:'Biennial', format:'PDF + appendices', machineReadable:'Limited', automation:'C — fetchable; extraction requires review', lastChecked:'2026-08-01', freshness:'Current 2026 ISP vintage' },
   /* The ISP body and the explainer map show project status by colour only.

@@ -6,6 +6,7 @@
    component. Project-document sources stay inside the project object and appear
    only on the Portfolio tab.
    --------------------------------------------------------------------------- */
+import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 
 // ============================================================================
@@ -13,6 +14,8 @@
 //  Project-document sources stay inside the project object (portfolio tab only).
 // ============================================================================
 const SRC = {
+  /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
+  ...QUOTE_SOURCES,
   esoo:  { file:'2026 WEM Electricity Statement of Opportunities', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'15 Jul 2026', cy:'2028-29 to 2035-36', url:'https://www.aemo.com.au/energy-systems/electricity/wholesale-electricity-market-wem/wem-forecasting-and-planning/wem-electricity-statement-of-opportunities-wem-esoo' },
   brcp:  { file:'2026 Benchmark Reserve Capacity Prices (2028-29) — Final Determination, ERA, 13 Mar 2026', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'13 Mar 2026', cy:'2028-29', url:'https://www.erawa.com.au/markets/wholesale-electricity-market/price-setting/benchmark-reserve-capacity-prices' },
   crc:   { file:'2026 CRC Process Information Session / Reserve Capacity Timetable', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2026', cy:'2028-29', url:'https://www.aemo.com.au/energy-systems/electricity/wholesale-electricity-market-wem/wa-reserve-capacity-mechanism/reserve-capacity-timetable' },

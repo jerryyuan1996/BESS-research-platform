@@ -11,6 +11,7 @@
    keep working without knowing Japan has three lenses. Region-explicit blocks
    address a region directly by path, e.g. 'regions.kyushu.durFactors'.
    --------------------------------------------------------------------------- */
+import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 import { JP_NATIONAL } from './national.js';
 import {
   JP_REGIONS, REGION_IDS, JP_REFERENCE, JP_COMMON_COST,
@@ -222,7 +223,9 @@ export const M = {
     vatPct: 10, vatRecoverable: 1,
     devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
     mw: 50, hours: 4,
-    capexKWh: JP_COMMON_COST.capexPerKWh, capexKW: 0,
+    /* REBUILT 2026-10-17: 44% of the ¥60,000/kWh benchmark is held, the DC slice
+       is the quoted block landed. */
+    capexKWh: 0.44 * JP_COMMON_COST.capexPerKWh + landedDcPerKWh('JPY'), dcQuoteKWh: landedDcPerKWh('JPY'), capexKW: 0,
     opexKW: 1800,
     rte: JP_REFERENCE.rtePct, avail: JP_REFERENCE.availPct,
     degr: JP_REFERENCE.degrPct, cycles: JP_REFERENCE.cyclesPerDay,

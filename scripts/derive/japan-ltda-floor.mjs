@@ -28,6 +28,7 @@ const { marketAt, floorOf, termCheck } = await imp('src/comparison/designFit.js'
 const { setObservedFxSummary } = await imp('src/comparison/fx.js');
 const { meanDailyExecutableSpread } = await imp('src/economics/valueMetrics.js');
 const { OEM_CAPEX_MULTIPLIER } = await imp('src/comparison/sponsorAssumptions.js');
+const { opexSeedPerMW } = await imp('src/comparison/engine.js');
 
 const json = async (f) => JSON.parse(await readFile(path.join(ROOT, f), 'utf8'));
 setObservedFxSummary(await json('public/data/public/fx-ecb.summary.json'));
@@ -82,7 +83,11 @@ const priced = (v) => {
 const bidFor = (m, v) => {
   const e = v.comparison.economics, kept = m.comparison.economics.ltda.merchantRetention;
   const retained = (e.merchGross * (1 - FEE) + (e.services || 0)) * kept;
-  return Math.round((e.capexPerMW / OEM_CAPEX_MULTIPLIER / 1000 * ANNUITY + e.opexPerMW / 1000 - retained / 1000) / 1000) * 1000;
+  /* Market cost: the multiplier never applied to the quoted DC block (2026-10-17),
+     and the bid recovers the flat opex seed, not the rest-of-opex line. */
+  const quoted = e.capexQuotedPerMW || 0;
+  const market = (e.capexPerMW - quoted) / OEM_CAPEX_MULTIPLIER + quoted;
+  return Math.round((market / 1000 * ANNUITY + opexSeedPerMW(e) / 1000 - retained / 1000) / 1000) * 1000;
 };
 
 console.log('### The award at the archetype and at the builds that hold the floor\n');

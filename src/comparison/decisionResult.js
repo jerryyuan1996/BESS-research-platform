@@ -45,7 +45,11 @@ function capexCompleteness(e){
     gridContribution: Number.isFinite(e.gridContributionPerMW),
     taxTariff: Number.isFinite(e.taxTariffPct),
     constructionTiming: Number.isFinite(e.constructionMonths) && e.constructionMonths >= 24,
-    augmentation: Array.isArray(e.augmentationSchedule) && e.augmentationSchedule.length > 0,
+    /* Lifecycle treatment declared. The analyst's default is a warranty
+       extension with an LTSA and no augmentation, so a priced service package
+       is the declaration; an augmentation schedule is the alternative. */
+    augmentation: (Array.isArray(e.augmentationSchedule) && e.augmentationSchedule.length > 0)
+      || (Array.isArray(e.serviceSchedulePerMW) && e.serviceSchedulePerMW.length > 0),
     decommissioning: Number.isFinite(e.decommissioningPerMW),
     warrantyDegradation: Array.isArray(e.warrantyDegradationCurve) && e.warrantyDegradationCurve.length > 0,
   };
