@@ -83,7 +83,7 @@ export const MARKET_DECISION_PROFILES = {
   }),
   gb: profile({
     confidenceScore: 8,
-    consensus: { status:'aligned', summary:['Selective; location, final de-rating, TNUoS and dispatch execution determine value.', '选择性投资；位置、最终折减、TNUoS及调度执行决定价值。'], sources:['NESO', 'Ofgem', 'IC consolidated review'] },
+    consensus: { status:'aligned', summary:['Location, final de-rating, TNUoS and dispatch execution determine value.', '位置、最终折减、TNUoS及调度执行决定价值。'], sources:['NESO', 'Ofgem', 'IC consolidated review'] },
     currentUpdate: ['TNUoS reform restores a cost-side locational signal by 2029; node/GSP BM capture remains the project gate.', 'TNUoS改革将在2029年前恢复成本侧位置信号；节点/GSP平衡机制捕获仍是项目门槛。'],
     currentRunRateFactor: 1,
     investmentGate: ['Node/GSP BM evidence', 'Final de-rating input', 'Dispatch-performance evidence', 'TNUoS sensitivity'],

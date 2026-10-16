@@ -53,8 +53,6 @@ SEC_B.home = function (){
         ['05', ['Underwriting','项目承销'], ['Can the project connect, finance and withstand downside?','项目能否并网、融资并承受下行情景？'], 'grid'],
         ['06', ['Portfolio application','组合应用'], ['Which screened Irish opportunity actually passes the gates?','所筛选的爱尔兰机会中哪一个能通过门槛？'], 'portfolio'],
       ] },
-      { t:'note', text:['Recommended presentation order: Overview → Ireland Market Story → Capacity Mechanism → Wholesale & Balancing → DS3/FASS → Duration → Pipeline → Grid & Connection → Portfolio → Data & Methodology.',
-        '建议讲解顺序：总览 → 爱尔兰市场演进 → 容量机制 → 批发与平衡 → DS3/FASS → 时长 → 管线 → 并网 → 组合 → 数据与方法。'] },
       { t:'why', text:['The six questions are sequenced so each one can veto the next. A market that needs storage (02) is not the same as a revenue stack that survives FASS repricing to your COD (03), a design that clears the de-rating band (04), an asset that can actually connect with documented MEC and MIC (05), or a specific opportunity worth committing capital to (06). Any single failure ends the case, so the decision is made in this order rather than on a blended score.',
         '六个问题按“逐级否决”排序：市场需要储能（02）不等于收入结构能在FASS重新定价后延续至投运（03），不等于设计能达到折减档位（04），不等于资产能以书面MEC与MIC真正并网（05），也不等于某个具体机会值得投入资本（06）。任一环节不成立即终止，因此决策按此顺序作出，而非依赖综合评分。'],
         sig:['Sequential veto, not a scorecard','逐级否决，而非评分卡'] },

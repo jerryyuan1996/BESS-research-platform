@@ -607,8 +607,8 @@ export function jpRanges(economics){
     feePct: limits(economics.feePct, 6, 12, {
       kind: 'dispersed',
       basis: [
-        'Optimiser fees across the platform\'s six markets run 8–10% of market revenue; the band widens that by the stated dispersion.',
-        '本平台六个市场的优化商费用为市场化收入的8–10%；该区间在此基础上按既定离散幅度扩展。',
+        'Optimiser fees in Great Britain, Ireland, Western Australia, Romania, Poland and Japan run 8–10% of market revenue; the band widens that by the stated dispersion.',
+        '英国、爱尔兰、西澳、罗马尼亚、波兰与日本的优化商费用为市场化收入的8–10%；该区间在此基础上按既定离散幅度扩展。',
       ],
       source: 'Platform cross-market seeds, widened by the stated dispersion',
     }),
@@ -636,8 +636,8 @@ export function jpRanges(economics){
 export const DUR_BANDS = [
   { lo: 0,  hi: 39,  c: 'info',     n: ['Short duration adequate', '短时长即可'],
     d: ['2h configurations capture most of the available value.', '2小时配置即可捕获大部分可得价值。'] },
-  { lo: 40, hi: 59,  c: 'good',     n: ['4h is the reference', '4小时为参考配置'],
-    d: ['Matches the reference archetype used across this platform.', '与本平台通用参考原型一致。'] },
+  { lo: 40, hi: 59,  c: 'good',     n: ['Mid-duration', '中等时长'],
+    d: ['4–6h designs fit the charging window; under a long-term auction award the floor sets the build instead.', '4–6小时设计与充电窗口匹配；若取得长期拍卖中标合同，则由其下限决定装机规模。'] },
   { lo: 60, hi: 79,  c: 'warn',     n: ['Longer duration favoured', '倾向更长时长'],
     d: ['6h+ may earn its capital if the charging window supports it.', '若充电窗口支持，6小时以上可能收回其资本投入。'] },
   { lo: 80, hi: 100, c: 'serious',  n: ['Long duration required', '需长时储能'],

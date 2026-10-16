@@ -34,7 +34,11 @@ const dueOf = (expected) => (expected.length === 7 ? `${expected}-31` : expected
 export const QUEUE_ORDER = ['overdue', 'disagreement', 'stale-reason', 'rule', 'review', 'action', 'soon', 'feed'];
 
 const fileOf = (marketId) => `view/markets/${marketId}.json`;
-const dimName = (id) => dimensionOf(id)?.label?.[0]?.toLowerCase() || id;
+/* A dimension's name as it reads mid-sentence, in both languages. */
+const dimName = (id) => {
+  const label = dimensionOf(id)?.label;
+  return label ? [label[0].toLowerCase(), label[1]] : [id, id];
+};
 
 /** Read a dotted field from a summary: "derived.spreadMean". */
 const fieldOf = (summary, field) => String(field).split('.').reduce((o, k) => (o == null ? o : o[k]), summary);

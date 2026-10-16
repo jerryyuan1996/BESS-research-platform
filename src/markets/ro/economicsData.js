@@ -125,7 +125,7 @@ export const RO_ECONOMICS = {
         'Solar deepens the midday trough, but normal hydrology and moderate storage conversion cap the owner margin.',
       system:
         'The system gains flexibility while connection and permitting remain the main delivery constraints.',
-      drivers: 'Normal hydrology · central fuel case · selective connection conversion',
+      drivers: 'Normal hydrology · central fuel case · partial connection conversion',
     },
     {
       case: 'Bull',
@@ -137,7 +137,7 @@ export const RO_ECONOMICS = {
     },
   ],
   conclusion: {
-    rating: 'Selective',
+    rating: 'Conditional',
     text:
       'Romania is an attractive merchant setup only for projects with evidenced ATR and connection delivery, reserve qualification and a downside structure that survives without an unawarded grant.',
   },

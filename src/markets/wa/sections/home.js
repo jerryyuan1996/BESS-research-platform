@@ -13,6 +13,7 @@ import { NF1, fmtN, fmtA, fmtAk, fmtAM, fmtPct } from '../ui.js';
 import { T } from '../text.js';
 import { SEED } from '../data/seed.js';
 import { dniScore, esrAtYear, shadowRcpFactor } from '../lib/scores.js';
+import { waDesign, waDesignText } from '../lib/design.js';
 
 // ---------------- HOME ----------------
 function renderHome(main){
@@ -33,8 +34,6 @@ function renderHome(main){
   ];
   intro.append(h('div', { class: 'walk' }, steps.map(x => h('button', { class: 'walk-step', onclick: () => { state.tab=x[3]; render(); window.scrollTo(0,0); } },
     h('span', { class: 'n' }, x[0] + ' · ' + L(x[1])), h('b', {}, L(x[2]))))));
-  intro.append(h('div', { class: 'note' }, L(['Recommended presentation order: Overview → WA Market Story → RCM → Energy → FCESS → Duration → Pipeline → Grid → Portfolio → Data & Methodology.',
-    '建议讲解顺序：总览 → 西澳市场演进 → RCM → 现货 → FCESS → 时长 → 管线 → 并网 → 组合 → 数据与方法。'])));
   intro.append(why(['The six questions are sequenced so each one can veto the next. A market that needs storage (02) is not the same as a revenue stack that survives to your COD (03), a design that stays compliant (04), an asset that can actually connect and fund (05), or a specific opportunity worth committing capital to (06). Any single failure ends the case, so the decision is made in this order rather than on a blended score.',
     '六个问题按“逐级否决”排序：市场需要储能（02）不等于收入结构能延续至投运（03），不等于设计能持续合规（04），不等于资产能真正并网并融资（05），也不等于某个具体机会值得投入资本（06）。任一环节不成立即终止，因此决策按此顺序作出，而非依赖综合评分。'],
     ['Sequential veto, not a scorecard', '逐级否决，而非评分卡']));
@@ -111,6 +110,7 @@ function renderHome(main){
 
   // Card E — duration signal
   const dni = dniScore(), dband = bandFor(SEED.dniBands, dni);
+  const fit = waDesign(), dText = waDesignText();
   const cE = card(['Card E — Duration Signal', 'Card E — 时长信号'], [statusBadge(false)]);
   cE.append(h('div', { style: 'margin:8px 0;' }, chip('good', L(['Strengthening — duration-driven market', '走强 — 时长驱动市场']))));
   cE.append(h('div', { class: 'kpis' },
@@ -122,16 +122,16 @@ function renderHome(main){
       { text: L(['vs 7 h requirement', '对比7小时要求']) }, [badge('calc')]),
     kpi(L(['P90 net-load gap duration', 'P90净负荷缺口时长']), '~6.5<small> h</small>', null, [badge('illus')]),
     kpi(L(['Recommended build', '建议配置']),
-      SEED.durationSig.recoInitial + 'h → ' + SEED.durationSig.recoExpand + 'h',
-      { text: L(['initial build → expansion path', '初始配置 → 增容路径']) }, [badge('illus')])));
+      fit ? fit.hours + '<small> h</small>' : '—',
+      { text: L(fit && fit.low < fit.high ? ['engine’s best; band ' + fit.low + '–' + fit.high + ' h', '引擎最佳；区间' + fit.low + '–' + fit.high + '小时'] : ['engine’s best design', '引擎最佳设计']) }, [badge('calc')])));
   cE.append(h('div', { class: 'flow' },
     h('span', { class: 'fbox' }, L(['Falling minimum net demand', '最小净负荷持续下降'])), h('span', { class: 'farr' }, '+'),
     h('span', { class: 'fbox' }, L(['Thermal retirement gap', '火电退出缺口'])), h('span', { class: 'farr' }, '+'),
     h('span', { class: 'fbox' }, L(['Short-duration MW saturation', '短时MW饱和'])), h('span', { class: 'farr' }, '+'),
     h('span', { class: 'fbox' }, L(['Duration-differentiated capacity rules', '按时长差异化的容量规则'])), h('span', { class: 'farr' }, '='),
     h('span', { class: 'fbox', style: 'border-color:var(--good);font-weight:var(--fw-medium);' }, L(['Longer-duration investment signal', '更长时长投资信号']))));
-  cE.append(why(['This is the only signal strengthening, and it is the one WA pays for through a recurring rule rather than a one-off tender. The fleet averages ' + NF1.format(SEED.fleetAvgHours) + ' h against a ' + esrAtYear(state.codYear) + ' h requirement, so most existing MW is de-rated and the incumbent fleet cannot simply extend. Build to ' + SEED.durationSig.recoInitial + ' h with a documented path to ' + SEED.durationSig.recoExpand + ' h, and judge the last hour on its own incremental NPV — hours are the asset’s scarcest and most policy-exposed attribute.',
-    '这是唯一走强的信号，且西澳通过周期性规则而非一次性招标为其付费。存量加权平均' + NF1.format(SEED.fleetAvgHours) + '小时，对应' + esrAtYear(state.codYear) + '小时要求，因此多数既有MW已被折减且难以简单延长。建议按' + SEED.durationSig.recoInitial + '小时建设并保留明确的' + SEED.durationSig.recoExpand + '小时增容路径，且以最后一小时自身的增量NPV作判断 — 时长是资产最稀缺、最受政策影响的属性。'],
+  cE.append(why(['This is the only signal strengthening, and it is the one WA pays for through a recurring rule rather than a one-off tender. The fleet averages ' + NF1.format(SEED.fleetAvgHours) + ' h against a ' + esrAtYear(state.codYear) + ' h requirement, so most existing MW is de-rated and the incumbent fleet cannot simply extend. Build ' + dText[0] + ', the engine’s best capacity design, and judge any hour beyond it on its own incremental value — hours are the asset’s scarcest and most policy-exposed attribute.',
+    '这是唯一走强的信号，且西澳通过周期性规则而非一次性招标为其付费。存量加权平均' + NF1.format(SEED.fleetAvgHours) + '小时，对应' + esrAtYear(state.codYear) + '小时要求，因此多数既有MW已被折减且难以简单延长。建议按' + dText[1] + '建设，即引擎的最佳容量设计；超出部分的每一小时须以其自身增量价值判断 — 时长是资产最稀缺、最受政策影响的属性。'],
     ['Incumbent fleet cannot follow', '存量机组难以跟随']));
   grid.append(cE);
 
@@ -157,22 +157,22 @@ function renderHome(main){
   // Card G — actions (full width)
   const actions = [
     [['Underwrite FCESS at no more than the trailing 12-month unit-revenue level unless contracted.', '除非已签合同，FCESS测算不得高于过去12个月单位收入水平。'],
-     ['Trigger: FCESS unit revenue down >20% year on year', '触发条件：FCESS单位收入同比下降超过20%']],
+     ['Applies when: FCESS unit revenue down >20% year on year', '适用条件：FCESS单位收入同比下降超过20%']],
     [['Use 90%–100% of BRCP as the base RCM range only while probability-weighted supply remains within the deadband.', '仅当概率加权供给仍处于价格区间内时，方可以BRCP的90%–100%作为RCM基准区间。'],
-     ['Trigger: supply ratio 105.5% — currently just above the +5% edge', '触发条件：供给比105.5% — 目前略高于+5%上沿']],
+     ['Applies when: supply ratio 105.5% — currently just above the +5% edge', '适用条件：供给比105.5% — 目前略高于+5%上沿']],
     [['Require full NAQ, Access Offer and GPS evidence before releasing material development consideration.', '在取得完整NAQ、接入报价及GPS证据前，不支付重大开发对价。'],
-     ['Trigger: Access Offer / GPS / NAQ evidence incomplete or not independently verifiable', '触发条件：接入报价/GPS/NAQ证据不完整或无法独立核验']],
+     ['Applies when: Access Offer / GPS / NAQ evidence incomplete or not independently verifiable', '适用条件：接入报价/GPS/NAQ证据不完整或无法独立核验']],
     [['Compare 7h, 8h and 10h designs using incremental NPV of the final added hour, not headline project IRR alone.', '以最后新增小时的增量NPV而非仅项目IRR比较7h、8h与10h方案。'],
-     ['Trigger: Duration-Need Index ≥ 55 and ESR requirement rising', '触发条件：时长需求指数≥55且ESR要求上升']],
+     ['Applies when: Duration-Need Index ≥ 55 and ESR requirement rising', '适用条件：时长需求指数≥55且ESR要求上升']],
     [['Re-run merchant economics after every major battery COD.', '每个大型电池项目投运后重新测算现货经济性。'],
-     ['Trigger: new operating battery capacity >100 MW in a quarter', '触发条件：单季度新增投运电池容量超过100 MW']],
+     ['Applies when: new operating battery capacity >100 MW in a quarter', '适用条件：单季度新增投运电池容量超过100 MW']],
   ];
-  const cG = card(['Card G — Immediate Investor Actions', 'Card G — 可执行投资建议'], [statusBadge(false), badge('illus')]);
+  const cG = card(['Card G — Underwriting rules', 'Card G — 承保规则'], [statusBadge(false), badge('illus')]);
   cG.append(h('ol', { class: 'actions' }, actions.map(([a, t]) =>
     h('li', {}, L(a), h('span', { class: 'trig' }, L(t))))));
-  cG.append(why(['Each action is paired with a numeric trigger so the decision is reviewable rather than a matter of judgement recalled later. Three of the five triggers are already met at today’s snapshot (supply ratio above the deadband, FCESS unit revenue down more than 20%, Duration-Need Index above 55), which is exactly why the house view is Selective rather than Invest: the market is not closed, but the specific protections listed here are now mandatory rather than optional.',
-    '每项建议均配套量化触发条件，使决策可复核，而非事后凭记忆判断。按当前快照，五项触发条件中已有三项成立（供给比越过价格区间上沿、FCESS单位收入同比下降超20%、时长需求指数高于55），这正是总体判断为"选择性投资"而非"投资"的原因：市场并未关闭，但上列具体保护措施已由可选变为必须。'],
-    ['3 of 5 triggers already live', '5项触发条件已有3项成立']));
+  cG.append(why(['Each rule pairs an underwriting step with the condition that brings it into force, so the decision is reviewable rather than recalled. Three of the five conditions hold at today’s snapshot (supply ratio above the deadband, FCESS unit revenue down more than 20%, Duration-Need Index above 55), so the protections listed here are mandatory, not optional. The call itself is on the Brief.',
+    '每条规则都将一项承保步骤与使其生效的条件配对，使决策可复核而非凭记忆判断。按当前快照，五项条件中已有三项成立（供给比越过价格区间上沿、FCESS单位收入同比下降超20%、时长需求指数高于55），因此上列保护措施为必须而非可选。结论本身见要点页。'],
+    ['3 of 5 conditions hold', '5项条件已有3项成立']));
   cG.style.marginTop = '14px';
   main.append(cG);
 
@@ -190,8 +190,8 @@ function renderHome(main){
     fbox(['Gross discharge sales', '毛放电销售额']), arr(), fbox(['− charging cost', '− 充电成本']), arr(),
     fbox(['− loss / MLF / curtailment', '− 损失/MLF/限电']), arr(), fbox(['− degradation & fees', '− 衰减与费用']), arr(),
     fbox(['+ FCESS / RoCoF net value', '+ FCESS/RoCoF净值']), arr(), fbox(['Net operating revenue', '净运营收入'], true)));
-  cRD.append(h('div', { class: 'note' }, L(['Two separate locational multipliers: capacity revenue follows DSOC→CRC→NAQ→Credits×RCP; merchant revenue follows MLF + curtailment + import/export limits. A project can have a supportive BRCP yet weak capacity revenue via NAQ, a duration shortfall or oversupply — BRCP alone is not a revenue forecast. Binding driver for a WA 8h project reaching COD in ' + state.codYear + ': capacity deliverability (NAQ) and the ' + esrAtYear(state.codYear) + 'h duration requirement; merchant margin is net after charging cost, never gross discharge sales.',
-    '两个相互独立的位置乘数：容量收入沿 DSOC→CRC→NAQ→信用×RCP；市场化收入沿 MLF+限电+进出口限额。项目可能有支撑性的BRCP，却因NAQ、时长不足或供给过剩而容量收入偏弱 — BRCP本身不是收入预测。对' + state.codYear + '投运的西澳8小时项目，起约束作用的驱动为：容量可交付性（NAQ）与' + esrAtYear(state.codYear) + '小时时长要求；市场化收益为扣除充电成本后的净值，绝非毛放电销售额。'])));
+  cRD.append(h('div', { class: 'note' }, L(['Two separate locational multipliers: capacity revenue follows DSOC→CRC→NAQ→Credits×RCP; merchant revenue follows MLF + curtailment + import/export limits. A project can have a supportive BRCP yet weak capacity revenue via NAQ, a duration shortfall or oversupply — BRCP alone is not a revenue forecast. Binding driver for a WA ' + (fit ? fit.hours : '—') + 'h project, the engine’s design, reaching COD in ' + state.codYear + ': capacity deliverability (NAQ) and the ' + esrAtYear(state.codYear) + 'h duration requirement; merchant margin is net after charging cost, never gross discharge sales.',
+    '两个相互独立的位置乘数：容量收入沿 DSOC→CRC→NAQ→信用×RCP；市场化收入沿 MLF+限电+进出口限额。项目可能有支撑性的BRCP，却因NAQ、时长不足或供给过剩而容量收入偏弱 — BRCP本身不是收入预测。对' + state.codYear + '投运、按引擎设计' + (fit ? fit.hours : '—') + '小时建设的西澳项目，起约束作用的驱动为：容量可交付性（NAQ）与' + esrAtYear(state.codYear) + '小时时长要求；市场化收益为扣除充电成本后的净值，绝非毛放电销售额。'])));
   cRD.append(why(['This bridge is the dashboard’s single organising idea: every later tab is one link in it. The capacity chain is where value is lost administratively (a de-rating or an NAQ cut removes revenue with no physical change to the asset); the merchant chain is where value is lost economically (charging cost and losses routinely consume two-thirds of gross discharge sales). Diligence therefore has to price the weakest link, not the headline MW — and the two chains must be stress-tested separately because they fail for unrelated reasons.',
     '本桥是整个看板的组织主线：后续每个页面都是其中一环。容量链是价值被行政性削减之处（折减或NAQ下调可在资产完全不变的情况下抹去收入）；市场化链是价值被经济性削减之处（充电成本与损耗通常吞噬毛放电销售额的三分之二）。因此尽调应对最弱环节定价，而非铭牌MW；且两条链须分别压力测试，因其失效原因互不相关。'],
     ['Price the weakest link', '对最弱环节定价']));

@@ -128,7 +128,7 @@ export const WA_ECONOMICS_P0 = {
     sourceUrl:esooUrl,
   },
   conclusion:{
-    headline:['SELECTIVE — underwrite the capacity anchor, not a merchant recovery','选择性投资 — 承销容量锚，而非市场化反弹'],
+    headline:['Underwrite the capacity anchor, not a merchant recovery','承销容量锚，而非市场化反弹'],
     text:['A deliverable seven-hour asset with evidenced CRC/NAQ and a contracted or RCM-supported floor can remain investable. Energy and FCESS should be equity upside because official Q1 evidence already shows rapid cannibalisation.','具备可交付七小时时长、CRC/NAQ证据及合同化或RCM支撑下限的资产仍可投资。官方一季度证据已显示快速蚕食，因此能源与FCESS应仅作为股权上行。'],
   },
   scenarios:[
@@ -142,7 +142,7 @@ export const WA_ECONOMICS_P0 = {
       name:'Base',
       owner:['Official ESOO balance and retirement timing broadly hold; RCM is the floor and merchant lines remain secondary.','官方ESOO容量平衡及退役时点大致兑现；RCM构成下限，市场化收入仍属次要。'],
       system:['Adequacy is met near term and tightens in the 2030s as planned thermal exits occur.','近期充足性达标，并随计划火电退出在2030年代趋紧。'],
-      drivers:['Official demand path','Expected thermal exits','Selective BESS delivery','Seven-hour accreditation'],
+      drivers:['Official demand path','Expected thermal exits','Partial BESS delivery','Seven-hour accreditation'],
     },
     {
       name:'Bull',

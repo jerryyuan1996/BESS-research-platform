@@ -36,7 +36,7 @@ import { drawTab } from '../../components/tabSections.js';
 import { resolveSegment } from '../tabGroups.js';
 import { sourceDrawer, sourceStatusBadge } from '../../components/sourceDrawer.js';
 // Charts, card and why are re-exported to market sections through `api`, not used here.
-import { renderHeader, renderDisclaimer } from '../../components/header.js';
+import { renderHeader } from '../../components/header.js';
 import { marketNav, tabNav, revenueSubNav, labLink } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
 import { enhanceMarketPage } from '../../components/pageEnhancements.js';
@@ -255,12 +255,10 @@ export function createMarketEngine(cfg){
       meta: [
         h('span', {}, h('b', {}, L(T.asOf) + ': '), M.asOf + ' (' + MKT.tzShort + ')'),
         h('span', {}, h('b', {}, L(T.dataDate) + ': '), M.dataDate),
-        chip('serious', L(T.srcHealth)),
         h('span', {}, L(M.nextMilestone)),
       ],
       controls: [codYearSelect()],
     }));
-    container.append(renderDisclaimer(T.disclaimer));
     container.append(marketNav(allMarkets, route.market ? route.market.manifest.id : MKT.id));
     container.append(tabNav(TABS, tabValue, basePath));
     const revenueNav = revenueSubNav(TABS, tabValue, basePath);
@@ -293,7 +291,6 @@ export function createMarketEngine(cfg){
       }),
     });
     container.append(renderFooter([
-      T.disclaimer,
       L(['Model version: ', '模型版本：']) + M.modelVersion + ' · ' + L(MKT.tzNote) + ' · ' + L(M.footerNote),
     ]));
   }

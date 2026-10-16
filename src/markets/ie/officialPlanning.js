@@ -91,7 +91,7 @@ export const IE_OFFICIAL_PLANNING = {
   },
   opportunity:{
     attractiveness:{
-      label:['Selective — capacity and flexibility value','选择性 — 容量及灵活性价值'],
+      label:['Capacity and flexibility value','容量及灵活性价值'],
       rationale:[
         'High de-rated capacity value, rising data-centre demand and physical wind constraints support storage, while added interconnection and system-service competition compress merchant and ancillary upside.',
         '高折减容量价值、上升的数据中心负荷及风电物理约束支持储能；新增互联及系统服务竞争则压缩市场化与辅助服务上行。',

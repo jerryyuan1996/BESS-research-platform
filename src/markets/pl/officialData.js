@@ -164,7 +164,7 @@ export const PL_OPPORTUNITY_LOGIC = {
   marketId: 'pl',
   authority: AUTHORITY.METHODOLOGY,
   attractiveness: {
-    rating: 'Selective-positive',
+    rating: 'Positive with conditions',
     statement:
       'Coal retirement, storage growth and a capacity mechanism support the thesis, but project value depends on connection evidence and auction-vintage economics.',
   },

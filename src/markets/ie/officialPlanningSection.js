@@ -105,8 +105,8 @@ export function ieOfficialPlanningBlocks(){
         {
           t:'why',
           text:[
-            'Capacity and flexibility value can make Ireland selectively attractive while incomplete all-island delivery data keeps the competitive forecast at low confidence. The two axes are never blended into one score.',
-            '容量与灵活性价值可使爱尔兰具备选择性吸引力，而不完整的全岛交付数据使竞争预测保持低置信度。这两个维度不会被混合为一个评分。',
+            'Capacity and flexibility value can make an Irish project attractive while incomplete all-island delivery data keeps the competitive forecast at low confidence. The two axes are never blended into one score.',
+            '容量与灵活性价值可使爱尔兰项目具备吸引力，而不完整的全岛交付数据使竞争预测保持低置信度。这两个维度不会被混合为一个评分。',
           ],
           sig:['Two axes, two decisions', '两个维度，两项决策'],
         },

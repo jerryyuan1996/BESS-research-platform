@@ -115,37 +115,6 @@ export function gbEconomicsP0Blocks(SRC){
     },
     {
       t:'card',
-      title:['Investment conclusion and Bear / Base / Bull driver tree','投资结论及熊市 / 基准 / 牛市驱动树'],
-      badges:['forecast', 'verify'],
-      blocks:[
-        { t:'reco', b:P.conclusion.headline, text:P.conclusion.text },
-        {
-          t:'table',
-          head:[
-            ['Case', '情景'],
-            ['BESS-owner perspective', 'BESS业主视角'],
-            ['System / consumer perspective', '系统 / 消费者视角'],
-            ['Binding drivers', '关键驱动'],
-          ],
-          rows:P.scenarios.map(scenario => [
-            { b:[scenario.name, scenario.name] },
-            scenario.owner,
-            scenario.system,
-            scenario.drivers.join(' · '),
-          ]),
-        },
-        {
-          t:'why',
-          text:[
-            'The BESS-owner and system cases deliberately run in opposite directions: conditions that create scarcity rent for an owner often mean higher balancing and constraint cost for the system.',
-            'BESS业主与系统情景刻意采用相反方向：为业主创造稀缺租金的条件，往往意味着系统承担更高的平衡及约束成本。',
-          ],
-          sig:['Investor bull can be system bear','投资者牛市可能是系统熊市'],
-        },
-      ],
-    },
-    {
-      t:'card',
       title:['Executable spread / capture-rate release gates','可执行价差 / 捕获率发布门槛'],
       badges:['verify'],
       live:true,

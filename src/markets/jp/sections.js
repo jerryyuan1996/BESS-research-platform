@@ -14,6 +14,7 @@
 import { gridMapForMarket } from '../gridMapRegistry.js';
 import { congestionForDashboard } from '../congestionRegistry.js';
 import { buildJPEconomicsBlocks } from './economicsSection.js';
+import { designLine } from '../_shared/designAnswer.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function buildSections(api){
@@ -458,6 +459,8 @@ export function buildSections(api){
   // ============================== DURATION ==============================
   SEC_B.duration = function (){
     const cy = state.codYear;
+    /* The Brief's design line for each area in view (guided-experience plan, PR 7). */
+    const lines = lensRegions().map(id => designLine('jp_' + id)).filter(Boolean);
     return {
     head: ['Storage Duration — one methodology, three regional scorecards', '储能时长 — 一套方法，三份区域评分'],
     cap: ['Frequent curtailment does not automatically justify longer duration. Each incremental MWh must have identifiable repeatable value or contract value.',
@@ -470,9 +473,9 @@ export function buildSections(api){
           { l: ['Expected-capacity factor at that duration', '该时长下的期待容量系数'], v: fmtPct(interp(M.deratingCurve, durationAt(cy)) * 100, 0), b: ['illus'] },
           { l: ['Merchant spread factor at that duration', '该时长下的价差系数'], v: fmt1(interp(M.durSpreadFactor, durationAt(cy))) + '×', b: ['illus'] },
         ] },
-        { t: 'why', text: ['The two curves pull in opposite directions and that is the whole duration question. Longer duration raises the capacity payment through expected capacity and lowers the merchant margin per MWh because the spread thins. Four hours is where they cross for the reference asset — which is why every market on this platform is compared at its own archetype rather than at a common duration.',
-                           '两条曲线方向相反，这正是时长问题的本质。延长时长通过期待容量提高容量付费，同时因价差变薄而降低每MWh的市场化收益。对参考资产而言，两者在4小时处交叉 — 这也是本平台各市场按各自原型而非统一时长对比的原因。'],
-          sig: ['Capacity up, spread down', '容量升，价差降'] } ] },
+        { t: 'why', text: ['The two curves pull in opposite directions: longer duration raises the capacity payment through expected capacity and lowers the merchant margin per MWh because the spread thins. A long-term auction award settles the question differently, because its floor has to hold for the whole term, so the build is sized to the floor rather than to where the curves cross. The engine’s answer: ' + lines.map(l => l[0]).join(' '),
+                           '两条曲线方向相反：延长时长通过期待容量提高容量付费，同时因价差变薄而降低每MWh的市场化收益。长期拍卖中标合同的解法不同：其下限须在整个合同期内维持，因此装机规模由下限而非两条曲线的交点决定。引擎的结论：' + lines.map(l => l[1]).join('')],
+          sig: ['The award floor sizes the build', '中标合同下限决定装机规模'] } ] },
 
       perRegion(id => ({
         title: [L(R(id).short) + ' — duration need index', L(R(id).short) + ' — 时长需求指数'],

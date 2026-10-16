@@ -29,7 +29,8 @@ import { FX } from '../comparison/assumptions.js';
 import {
   marketDesign, designEconomics, designGrid, lensRows, orderRows, returnFieldFor, BRIEFING_EXIT_YEAR,
 } from './plays.js';
-import { callSentence, buildLine, routeNames, flagText, marketName } from './sentences.js';
+import { callSentence, buildLine, routeNames, flagText, marketName, inSentence } from './sentences.js';
+import { REVENUE_ROUTE_LABEL } from '../governance/plays.js';
 import { collectChanges } from './changes.js';
 import { buildQueue } from './queue.js';
 
@@ -195,6 +196,26 @@ function actionsFor(rows){
  * What the home page carries: everything but the queue's own words, which only
  * /desk prints. The home page says how long the queue is and links there.
  */
+/**
+ * What a deep tab needs to name a duration the way the Brief does: each
+ * market's build line and best design, and each route's best duration and
+ * band. A few hundred bytes a market, so a dashboard carries it without the
+ * rest of the briefing (guided-experience plan, PR 7).
+ */
+export function designProjection(briefing){
+  const nameOf = (route) => {
+    const label = REVENUE_ROUTE_LABEL[route] || [route, route];
+    return [inSentence(label[0]), label[1]];
+  };
+  return {
+    build: briefing.build.map(b => ({
+      market: b.market, line: b.line,
+      best: b.best ? { route: b.best.route, hours: b.best.hours, name: nameOf(b.best.route) } : null,
+    })),
+    byRoute: Object.fromEntries(Object.entries(briefing.grids || {}).map(([id, grid]) => [id, grid ? grid.byRoute : null])),
+  };
+}
+
 export function homeProjection(briefing){
   const { queue, ...rest } = briefing;
   const byKind = {};

@@ -65,60 +65,14 @@ export function buildJPEconomicsBlocks(){
       ],
     },
     {
-      t: 'g2',
-      cards: [
-        {
-          title: ['Capacity and competition coverage', '容量与竞争覆盖'],
-          badges: ['verify'],
-          blocks: [
-            { t: 'sub', text: ['Capacity evidence', '容量证据'] },
-            { t: 'p', text: [E.coverage.capacity, 'OCCTO覆盖市场级区域价格、容量及池价值；本第一版尚未拆分储能专属中标期待容量。'] },
-            { t: 'sub', text: ['Competition evidence', '竞争证据'] },
-            { t: 'p', text: [E.coverage.competition, '弃电天数、研究上限、已披露项目及北海道队列/注册信号均为部分代理；尚无完整全国储能公开队列。'] },
-          ],
-        },
-        {
-          title: ['Investment conclusion', '投资结论'],
-          badges: ['policy'],
-          blocks: [
-            { t: 'chip', cls: 'warn', text: [E.conclusion.rating, '必须进行区域选择'] },
-            { t: 'p', text: [E.conclusion.text, '全国规则只创造可选性，并不形成统一的“日本溢价”。东京看捕获，九州看充电接入，北海道看执行。'] },
-            { t: 'note', text: ['The official capacity price varies by less than 1% across the three areas; regional owner economics must be earned elsewhere.', '三地官方容量价格相差不足1%；区域业主经济性必须来自其他价值来源。'] },
-          ],
-        },
-      ],
-    },
-    {
       t: 'card',
-      title: ['Regional Bear / Base / Bull — BESS-owner result versus system result', '区域悲观/基准/乐观——储能业主结果与系统结果分离'],
-      badges: ['forecast', 'calc'],
-      live: false,
+      title: ['Capacity and competition coverage', '容量与竞争覆盖'],
+      badges: ['verify'],
       blocks: [
-        {
-          t: 'g3',
-          cards: regions.map((r) => ({
-            title: [r.label, r.label],
-            badges: [`jp-${r.id}`],
-            blocks: [
-              {
-                t: 'table',
-                head: [['Case', '情景'], ['BESS owner', '储能业主'], ['System', '系统']],
-                rows: ['Bear', 'Base', 'Bull'].map((name) => [
-                  { b: [name, name] },
-                  r.scenario[name].bessOwner,
-                  r.scenario[name].system,
-                ]),
-              },
-              { t: 'cap', text: [`Drivers: Bear — ${r.scenario.Bear.drivers}; Base — ${r.scenario.Base.drivers}; Bull — ${r.scenario.Bull.drivers}`, `驱动因素：Bear — ${r.scenario.Bear.drivers}; Base — ${r.scenario.Base.drivers}; Bull — ${r.scenario.Bull.drivers}`] },
-            ],
-          })),
-        },
-        { t: 'why', text: ['Bull and Bear are always owner-return cases. Persistent congestion or curtailment may raise a connected battery’s value while remaining a poor system outcome.', '乐观与悲观始终按业主回报定义。持续拥塞或弃电可提高已并网电池价值，却仍是较差的系统结果。'], sig: ['Regional value is not system welfare', '区域价值不等于系统福利'] },
-        {
-          t: 'table',
-          head: [['Gate', '待建门槛'], ['Required governed input', '所需治理化输入'], ['Output', '输出'], ['Release rule', '放行规则']],
-          rows: E.toBuild.map((g) => [{ b: [g.status, g.status] }, g.required, g.output, g.gate]),
-        },
+        { t: 'sub', text: ['Capacity evidence', '容量证据'] },
+        { t: 'p', text: [E.coverage.capacity, 'OCCTO覆盖市场级区域价格、容量及池价值；本第一版尚未拆分储能专属中标期待容量。'] },
+        { t: 'sub', text: ['Competition evidence', '竞争证据'] },
+        { t: 'p', text: [E.coverage.competition, '弃电天数、研究上限、已披露项目及北海道队列/注册信号均为部分代理；尚无完整全国储能公开队列。'] },
       ],
     },
   ];

@@ -118,32 +118,6 @@ function simplifyEconomicMetrics(root){
   });
 }
 
-function removeUnquantifiedCards(root, marketId){
-  const common = /Investment conclusion|投资结论|Bear\s*\/\s*Base\s*\/\s*Bull|Regional Bear|悲观\s*\/\s*基准\s*\/\s*乐观|区域悲观/i;
-  [...root.querySelectorAll('.card')].forEach(cardNode => {
-    const title = cardNode.querySelector(':scope > h3')?.textContent || '';
-    if (common.test(title)) removeCard(cardNode);
-    else if (marketId === 'wa' && /Official system evolution|官方系统演进|Opportunity logic|机会逻辑/i.test(title)) removeCard(cardNode);
-    else if (marketId === 'wa' && /Locational deliverability|位置可交付性/i.test(title)) removeCard(cardNode);
-  });
-}
-
-function removeWaRcmCards(root, marketId){
-  if (marketId !== 'wa') return;
-  [...root.querySelectorAll('.card')].forEach(cardNode => {
-    const title = cardNode.querySelector(':scope > h3')?.textContent || '';
-    if (/SWIS large-load watchlist|2028[–-]29 capacity quality|Gross CONE treatment/i.test(title)){
-      removeCard(cardNode);
-    }
-  });
-}
-
-function removePresentationOrder(root){
-  [...root.querySelectorAll('.note')].forEach(note => {
-    if (/Recommended presentation order|建议讲解顺序/i.test(note.textContent)) note.remove();
-  });
-}
-
 function storySubTabs(root, tabId){
   if (tabId !== 'story') return;
   let orientation = [...root.querySelectorAll('.card')].find(cardNode =>
@@ -236,9 +210,6 @@ export function pairOverviewMap(root, data){
 
 export function enhanceMarketPage(root, { overviewMap = null, marketId = '', tabId = '' } = {}){
   simplifyEconomicMetrics(root);
-  removePresentationOrder(root);
-  removeUnquantifiedCards(root, marketId);
-  removeWaRcmCards(root, marketId);
   mergeTimelines(root);
   if (overviewMap) pairOverviewMap(root, overviewMap);
   consolidateSourceDrawers(root);

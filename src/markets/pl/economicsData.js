@@ -128,7 +128,7 @@ export const PL_ECONOMICS = {
     },
   ],
   conclusion: {
-    rating: 'Selective-positive',
+    rating: 'Positive with conditions',
     text:
       'Poland can support financeable BESS, but only after connection, certification, auction price, applicable correction factor and awarded obligation are evidenced for the same vintage.',
   },

@@ -355,3 +355,31 @@ pipeline caveat are gone. Budgets: the shared `briefing-data` chunk 12.5 kB (bud
 `weekly-briefing`; a second run in the same week edits that issue, and last week's is closed. No
 model, no key, `contents: read` and `issues: write` only; the data refresh does not run on its
 schedule. `/desk` shipped in PR 4.
+
+**PR 7 — the deep layer, contradictions out (2026-10-16).** The disclaimer band and its footer
+repeat are gone from every page, with `renderDisclaimer` and the band's styles; the dossier footer's
+disclaimer goes too, and `/returns` loses its "Release Gate: screening only" chip. A seed figure
+reads "Basis: Seed estimate" beside the number instead of a warning chip. "Selective" has left the
+source: the Card G panels on GB, WA, NEM and Romania are "Underwriting rules" whose conditions say
+when they apply; the stance chips on Poland, Romania and Japan's economics tabs are gone, as are the
+"Selective" labels in Ireland's and WA's opportunity logic and GB's consensus line; unrendered data
+was reworded so a test can forbid the word. Durations now read the engine through
+`src/markets/_shared/designAnswer.js`, which takes them from a 5 kB design projection of the
+briefing (`src/briefing/designData.js`, a third stub the briefing plugin fills), so a deep tab says
+what the Brief says: GB's Story table, Overview bridge, Duration tab and augmentation card (toll or
+floor at 4h; capacity route 2–4h); WA's Card E, bridge, outlook and Duration tab (7h, band 7–8h,
+where it said 8h → 10h); Japan's "four hours is where they cross", now the award floor and the
+engine's line for each area. Duration-need bands that prescribed hours against the engine (WA
+"8h+", Romania "2h core", Poland "4h+", Japan "4h is the reference") state the method instead.
+GB's Capital & Exit is labelled the Lab's 100 MW · 2h screening case, its verdict is computed from
+the Lab's own figures, and the engine's line sits beside it. `/returns` names the markets its $1M
+matrix leaves out (no route clears: PL, PJM, ERCOT; not priced: FI), lists the toll markets from
+their capabilities, takes its review dates from the manifests, says "these markets" for the
+congestion register, and puts Finland on the globe. The cards `pageEnhancements.js` deleted at
+runtime (every "Investment conclusion" and Bear / Base / Bull card, WA's official-evolution,
+opportunity-logic, locational-case and three RCM cards, six "Recommended presentation order"
+notes) are deleted at source, with the three enhancers that hid them. No exact duplicate passage
+was found within a market, so none was cut. GB's two stale grade reasons (hold IRR 4.7% → 5.1%,
+secured 10% → 12%; rank and grades unchanged) wait as `scripts/view/content/gb-grade-reasons-2026-10.json`
+for sign-off. Budget: market-shared chunks raised 102 → 104 kB for the 1.63 kB design projection
+(measured 102.2). `tests/deep-layer.test.js` holds the line.

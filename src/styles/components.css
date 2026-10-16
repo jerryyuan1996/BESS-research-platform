@@ -22,12 +22,6 @@ select.btn{padding:6px 8px;}
 .lab-access-btn{background:var(--accent-bg);border-color:var(--s1);font-weight:var(--fw-medium);text-decoration:none;}
 .lab-access-btn:hover{text-decoration:none;}
 
-/* ---------- disclaimer ---------- */
-.disc{
-  background:var(--warn-bg); border:1px solid var(--border); border-radius:var(--r-lg);
-  padding:10px 14px; font-size:var(--fs-xs); color:var(--ink2); margin:8px 0 14px;
-}
-.disc b{color:var(--ink);}
 /* ---------- kpis ---------- */
 .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; margin:10px 0;}
 .kpi{background:var(--bg); border:1px solid var(--border); border-radius:var(--r-lg); padding:10px 12px;}
