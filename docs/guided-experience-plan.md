@@ -301,3 +301,25 @@ Each PR passes the full suite and is merged by you.
 - `src/governance/authority.js`: `VIEW_AUTHORITY.plays`. `docs/governance.md` updated.
 - Projection, writer stamps, change labels; tests in `view.test.js`, `view-automation.test.js`,
   `verdict-board.test.js`. No published number moves and no view file changes.
+
+**PR 2 — content for sign-off (2026-10-16).** `scripts/view/content/briefing-2026-10.mjs` holds 15 theses,
+18 plays, the six ruled fund calls, eight fund calls naming their play and three triggers;
+`scripts/view/draft-briefing-content.mjs` renders `docs/briefing-content-2026-10.md` for review,
+checks all 51 changes against the writer's gate, and applies them in one batch after sign-off.
+Research gates G40 (NEM seeds) and G41 (CAISO seeds) are in `docs/external-view.md`.
+
+**PR 3 — the briefing model (2026-10-16).**
+- `src/briefing/`: `model.js` assembles one object for the page, the desk and the digest;
+  `plays.js` prices each play through the design-fit sweep and `runCase` and orders the shortlist
+  (call, then value; an unpriced or non-compliant design last in its call, by fit);
+  `sentences.js` writes every computed sentence in both languages; `changes.js` classes the
+  changelog, passed trigger dates, week-on-90-day spread moves and tagged headlines;
+  `queue.js` builds the analyst's queue; `markdown.js` renders the weekly digest; `disk.js` reads
+  the inputs (Node only); `briefingData.js` is the stub `vite-plugin-briefing.js` replaces.
+- Methodology, human-only, in `METHODOLOGY_SURFACES`: `src/governance/briefing.js` (tiers,
+  disagreement and evidence rules, windows, `SETUP_UNTIL`) and `src/governance/newsTags.js`.
+- `node scripts/briefing/weekly.mjs [--with-draft]` prints the digest.
+- As found when first run: the next decisive date is the soonest trigger any acting call names,
+  so for the fund it is Romania's grant call (30 October), not MACSE-2 (24 November); a market
+  whose best design is negative reads "nothing clears the platform's yields" rather than naming
+  the least-bad design as a recommendation.
