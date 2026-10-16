@@ -383,3 +383,10 @@ was found within a market, so none was cut. GB's two stale grade reasons (hold I
 secured 10% → 12%; rank and grades unchanged) wait as `scripts/view/content/gb-grade-reasons-2026-10.json`
 for sign-off. Budget: market-shared chunks raised 102 → 104 kB for the 1.63 kB design projection
 (measured 102.2). `tests/deep-layer.test.js` holds the line.
+
+**PR 8 — Japan's floor-holding build, planned (2026-10-16).** `docs/japan-ltda-floor-plan.md` sets out
+the derivations, printed by `node scripts/derive/japan-ltda-floor.mjs`. JEPX prices the 9th and 10th
+hours at 0.61 and 0.48 of the 4h spread. A 9h build holds the six-hour floor to year 20 (6.13h). Re-bid
+at its own cost (¥49,000/kW/yr) it earns +$152–160k/MW at 7.4–7.5% hold; it breaks even at
+¥46,500/kW/yr. Seven decisions wait for sign-off before any code; the three calls stay at Build
+position, with gate G42 on the award level.
