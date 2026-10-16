@@ -231,8 +231,12 @@ test('the band is measured in capital, and holds the best design', () => {
 });
 
 test('a market whose inputs are pending is not swept', () => {
+  /* Finland was the case until 2026-10-17; it is priced now, so the rule is
+     held on Finland as it was, unready. */
   const fi = byId('fi');
-  assert.ok(sweepDesign(fi).na, 'Finland is not engine-ready and must not acquire a fit by the back door');
+  const pending = { ...fi, comparison: { ...fi.comparison, engineReady: false } };
+  assert.ok(sweepDesign(pending).na, 'an unready market must not acquire a fit by the back door');
+  assert.ok(!sweepDesign(fi).na, 'Finland, engine-ready since 2026-10-17, is swept');
 });
 
 test('who may change the duration response: curves are proposable, the grid and the readings are not', () => {

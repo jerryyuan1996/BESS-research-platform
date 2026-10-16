@@ -156,14 +156,47 @@ const economics = {
      null says "not evidenced", `unavailable` says why in a form a machine can
      carry, and validation refuses the combination on an engine-ready market.
      See UNAVAILABLE_REQUIRES_UNREADY in markets/schema.js. */
-  services: null,
+  /* REVISED 2026-10-17 — GATE FI-1 CLOSED ON A FLOOR-LEVEL OBSERVATION, the
+     analyst's ruling of 2026-10-17. What Fingrid's 2026 annual reserve market
+     actually paid, spread across the fleet that competes for it:
 
-  unavailable: {
-    services: [
-      'Reserve revenue is not published for Finland. Connected storage passed 1,050 MW in February 2026 against fast-reserve obligations summing to about 795 MW — an acute saturation warning, not a measured oversupply, since that sum aggregates separately procured products and the fleet includes capacity not prequalified for all of them. Fingrid’s non-binding procurement forecast has the fast products rising about 16% to 2036 and the slower products about 93%, so demand grows on both sides and tilts toward where a battery competes on cost. A level published before eligible-versus-procured MW can be tracked per product would be a forecast that today persists. Gate FI-1.',
-      '芬兰的备用收入不予发布。2026年2月已并网储能超过1,050MW，而快速备用需求合计约795MW — 鉴于该合计数涵盖多个独立采购品种、且机组中包含未通过全部品种预审的容量，这构成强烈的饱和预警而非已测得的供给过剩。Fingrid不具约束力的采购预测显示，至2036年快速品种增长约16%、较慢品种增长约93%，即两类需求均在增长，且增量偏向储能需以成本竞争的品种。在能够按品种跟踪合格容量与采购容量之前发布任何水平值，等同于假设当前状况将长期持续。研究缺口FI-1。',
-    ],
-  },
+        FCR-D up    237 MW × €3.50/MW,h      FCR-N annual   0 MW, €0
+        FCR-D down  163 MW × €6.00/MW,h      (cleared at zero; all hourly)
+
+        (237 × 3.50 + 163 × 6.00) × 8,760 h ÷ 1,050 MW connected = €15,080/MW/yr
+
+     Fingrid, yearly-market results for delivery year 2026. The hourly markets
+     (FCR-N, the FCR-D remainder, aFRR, mFRR, FFR) are NOT counted: their prices
+     are not yet tracked here (gate FI-2), and in a saturated market the hourly
+     clearing is where cannibalisation shows first. So this is the reserve
+     revenue an average connected megawatt can show today from the one fixed-
+     price market, not a forecast of what a well-optimised one earns — which is
+     why it is the seed and the band runs well above it. */
+  services: Math.round((237 * 3.50 + 163 * 6.00) * 8760 / 1050),   // 15,080
+  servicesNote: [
+    'Fingrid’s 2026 annual FCR-D clearing spread across the 1,050 MW connected fleet; the hourly reserve markets are not counted.',
+    'Fingrid 2026年度FCR-D出清收入按1,050MW并网储能分摊；未计入小时级备用市场。',
+  ],
+
+  /* THE NEGOTIATED FLOOR (the analyst's rulings of 2026-10-10). Finnish
+     optimisers and offtakers sign floors of seven years or more that cover the
+     whole project at no more than half of expected revenue, and a floor is a
+     secured route at its own level. Modelled as a floor under the market line
+     (`tollIsFloor`, src/comparison/engine.js): the owner earns the larger of the
+     floor and the market for the floor's term, and the floor is the secured part.
+
+        expected year 1 = 78,000 × (1 − 10%) + 15,080 = 85,280
+        floor           = 50% × 85,280 = 42,640/MW/yr for 7 years
+
+     Practitioner basis, recorded without its source. */
+  toll: Math.round(0.5 * (78000 * 0.9 + Math.round((237 * 3.50 + 163 * 6.00) * 8760 / 1050))),   // 42,640
+  tollYears: 7,
+  tollIsFloor: true,
+  tollRevertsToMerchant: true,
+  tollNote: [
+    'Negotiated optimiser floor at half of expected revenue for seven years; the owner keeps the market revenue above it',
+    '与优化商协商的保底，为预期收入的一半、为期七年；高于保底的市场收入归业主所有',
+  ],
 
   grantPct: 0,
   degr: 2,
@@ -200,6 +233,22 @@ const ranges = {
     kind: 'dispersed',
     basis: ['Platform convention pending a Finnish operating benchmark.', '平台惯例，待取得芬兰运维基准。'],
     source: 'Platform convention; no Finnish operating benchmark read',
+    gate: 'FI-3',
+  }),
+  /* Low end: the hourly FCR-N market already clears at zero in hours of surplus,
+     so a battery that wins nothing annual can earn nothing from reserves. High
+     end: one MW holding both FCR-D products in the annual market all year at the
+     2026 prices, (3.50 + 6.00) × 8,760 = €83,220. */
+  services: limits(economics.services, 0, Math.round((3.50 + 6.00) * 8760), {
+    basis: ['From nothing — FCR-N annual cleared at zero for 2026 and the hourly markets are saturating — to one MW holding both FCR-D products in the annual market all year at the 2026 prices. The seed is the 2026 annual clearing spread across the 1,050 MW connected fleet.',
+            '下限为零 — 2026年度FCR-N以零出清，小时级市场趋于饱和；上限为1MW全年在年度市场同时持有FCR-D上下调两个品种、按2026年价格计算。种子值为2026年度出清收入按1,050MW并网储能分摊。'],
+    source: 'Fingrid, yearly reserve market results for delivery year 2026',
+    gate: 'FI-2',
+  }),
+  toll: limits(economics.toll, Math.round(economics.toll * 0.6), economics.toll, {
+    basis: ['A floor of at most half of expected revenue (the analyst’s practitioner input); the seed is that ceiling, and a lower floor down to 30% of expected is within what is signed.',
+            '保底不超过预期收入的一半（分析师的实务输入）；种子值即该上限，低至预期收入30%的保底亦在已签约范围内。'],
+    source: 'Analyst practitioner input, 2026-10-10',
     gate: 'FI-3',
   }),
   merchGross: band(economics.merchGross, null, null, {
@@ -240,13 +289,26 @@ export const comparison = {
     capacityMarket: false,     // dormant strategic reserve, not adequacy revenue — see header
     merchant: true,            // day-ahead and intraday spread
     ancillaryServices: true,   // FFR, FCR-N, FCR-D up/down, aFRR, mFRR
-    tolling: false,            // no repeatable PUBLIC precedent read — decision 4, round 1
+    tolling: true,             // the negotiated optimiser floor, as a floor (tollIsFloor) — 2026-10-17
   },
 
-  /* THE FLAG THAT KEEPS THIS HONEST. Finland appears on the cards, in the nav
-     and in its own source register, and is excluded from the league table, the
-     $1M engine and the certainty frontier until GATE FI-1 and FI-2 close. */
-  engineReady: false,
+  /* In the engine since 2026-10-17, when the reserve line was set at its 2026
+     floor-level observation (gate FI-1, above). Gate FI-2 — the hourly reserve
+     prices — still decides whether the seed is too low. */
+  engineReady: true,
+
+  /* The design sweep's response to duration. Capture is Romania's 2-hour-
+     referenced seed curve, the platform's other short-duration merchant market,
+     until a Finnish 15-minute backtest replaces it (gate FI-4). Reserves are
+     paid per MW and do not scale with hours. */
+  durationResponse: {
+    hours: [1, 2, 4, 6, 8],
+    merchantCapture: [1.1, 1.0, 0.82, 0.7, 0.62],
+    merchantCaptureBasis: 'seed',
+    opexEnergyShare: 0.5,
+    note: ['Seed capture curve shared with Romania until a Finnish 15-minute backtest replaces it (gate FI-4).',
+           '在芬兰15分钟回测替代之前，暂与罗马尼亚共用种子捕获曲线（研究缺口FI-4）。'],
+  },
 
   economics,
   ranges,

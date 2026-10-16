@@ -312,6 +312,9 @@ export const COMPARISON_AUTHORITY = {
   // owner; whether that generalises to "the GB toll" is a judgement.
   'economics.tollAdditiveWithCapacity': AUTHORITY.METHODOLOGY,
   'economics.tollRevertsToMerchant': AUTHORITY.METHODOLOGY,
+  /* A toll that is a floor: the owner keeps market revenue above it
+     (src/comparison/engine.js). How the route is modelled, like the two above. */
+  'economics.tollIsFloor': AUTHORITY.METHODOLOGY,
 
   // The services decay curve. Not an assumption about a value — an assumption
   // about a REGIME, calibrated on another market's history. No feed implies it,

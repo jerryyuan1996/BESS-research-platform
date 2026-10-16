@@ -242,8 +242,13 @@ test('an unready market publishes no number anything can compute on', async () =
      false and is the kind of false that survives being copied into a
      spreadsheet. And every engine entry point must decline the market rather
      than compute a number from the hole. */
-  const unready = markets.filter(m => m.comparison?.engineReady === false);
-  assert.ok(unready.length > 0, 'expected at least one market to be registered but unready');
+  /* Every registered market has been engine-ready since 2026-10-17, when
+     Finland's reserve line was set. The guarantee is kept on a market held back
+     the way Finland was: its reserve line null, declared unavailable, unready. */
+  const fi = byId('fi');
+  const heldBack = { ...fi, comparison: { ...fi.comparison, engineReady: false,
+    economics: { ...fi.comparison.economics, services: null, unavailable: { services: ['Withheld', '暂缓'] } } } };
+  const unready = markets.filter(m => m.comparison?.engineReady === false).concat([heldBack]);
 
   for (const m of unready){
     const e = m.comparison.economics;
@@ -274,7 +279,7 @@ test('an unready market publishes no number anything can compute on', async () =
 
   /* And the cockpit's own list must exclude them, so no chart is handed one. */
   const ready = engineReadyMarkets();
-  for (const m of unready){
+  for (const m of unready.filter(m => m !== heldBack)){
     assert.ok(!ready.includes(m), `${m.manifest.id}: unready but inside engineReadyMarkets()`);
   }
 });

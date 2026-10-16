@@ -1,8 +1,8 @@
 {
   "marketId": "fi",
   "thesis": [
-    "Europe's clearest fast-reserve market, and already oversupplied: connected storage exceeds the fast-reserve need, so the revenue line is withheld rather than assumed. No capacity contract exists; secured revenue is a floor negotiated project by project. Two hours.",
-    "欧洲最清晰的快速备用市场，但已经供过于求：已并网储能超过快速备用需求，因此收入线暂不列示而非假设。没有容量合同；锁定收入只能逐个项目谈保底。两小时。"
+    "Europe's clearest fast-reserve market, and already oversupplied: connected storage exceeds the fast-reserve need, so reserves are priced at what the 2026 annual market paid across the fleet, about €15k/MW a year. No capacity contract exists; secured revenue is a floor negotiated project by project, at half of expected revenue for seven years. Two hours, 14.6% hold at build cost.",
+    "欧洲最典型的快速备用市场，且已供过于求：并网储能已超过快速备用需求，因此备用收入按2026年度市场在全部储能间分摊后的水平计价，约每MW每年1.5万欧元。不存在容量合同；锁定收入来自逐个项目协商的保底，水平为预期收入的一半、为期七年。两小时，按建设成本持有期IRR为14.6%。"
   ],
   "grades": {
     "assetReturn": {
