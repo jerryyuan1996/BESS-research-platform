@@ -1,6 +1,12 @@
 import { test,expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
+test.beforeEach(async({page})=>{
+  // The acceptance case uses committed assets and data, without font or
+  // telemetry services holding screenshots open on a restricted network.
+  await page.route(/^https:\/\//,route=>route.abort());
+});
+
 test('market brief discloses actual rates in English and Chinese',async({page},testInfo)=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/markets/western-australia');
@@ -9,7 +15,7 @@ test('market brief discloses actual rates in English and Chinese',async({page},t
   await page.getByRole('button',{name:'中文',exact:true}).click();
   await expect(page.locator('.bf-asof')).toContainText('锁定收入6.5%');
   await expect(page.locator('.bf-asof')).toContainText('投运后第5年');
-  await page.screenshot({path:testInfo.outputPath('market-brief-zh.png')});
+  await page.screenshot({path:testInfo.outputPath('market-brief-zh.png'),timeout:15000});
   expect(errors).toEqual([]);
 });
 
@@ -21,6 +27,7 @@ test('Investment Lab saves the displayed scenario, pricing hurdle and project ev
   await expect(hurdle).toHaveValue('');
   await hurdle.fill('12');await hurdle.blur();
   await expect(page.getByText(/At a 12.0% unlevered hurdle/)).toBeVisible();
+  await page.getByRole('button',{name:'Project debt',exact:true}).click();
   await page.getByText('Project evidence · 10 unresolved',{exact:true}).click();
   const gate=page.getByRole('combobox',{name:'Connection rights, capacity and timing',exact:true});
   await expect(gate).toHaveValue('unresolved');
@@ -39,6 +46,7 @@ test('Investment Lab saves the displayed scenario, pricing hurdle and project ev
   expect(record.projectEvidence.find(g=>g.id==='connection').status).toBe('provided');
   expect(record.result.capitalFlows.length).toBeGreaterThan(0);
   expect(record.result.secY.length).toBe(15);
+  expect(record.debt.maturityPolicy).toBe('equity-repayment');
   await page.getByRole('button',{name:'中文',exact:true}).click();
   await expect(page.getByRole('button',{name:'保存投资情景',exact:true})).toBeVisible();
   await page.screenshot({path:testInfo.outputPath('investment-lab-zh.png')});
@@ -51,7 +59,7 @@ test('long-life expiry cases and home briefing load without browser errors',asyn
   await expect(page.getByRole('heading',{name:'Without assumed contract renewals',exact:true})).toBeVisible();
   await page.goto('/');
   await expect(page.getByRole('heading',{name:'BESS investment briefing',exact:true})).toBeVisible();
-  await expect(page.locator('.bf-asof')).toHaveCount(0);
+  await expect(page.locator('.bf-asof')).toBeVisible();
   await page.screenshot({path:testInfo.outputPath('home-en.png')});
   expect(errors).toEqual([]);
 });
