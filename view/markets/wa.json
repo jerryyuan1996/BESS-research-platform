@@ -7,17 +7,17 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 4,
+      "grade": 5,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Fourth of fourteen markets on hold IRR, 13.1%.",
-        "持有期IRR为13.1%，在十四个市场中排第四。"
+        "Second of fourteen markets on hold IRR, 19.8%.",
+        "持有期IRR为19.8%，在十四个市场中排第二。"
       ],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-17",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -285,7 +285,7 @@
       "author": "analyst",
       "asOf": "2026-10-10",
       "lockedUntil": null,
-      "play": "wa-cap-7h"
+      "play": "wa-cap-8h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -512,18 +512,18 @@
     }
   ],
   "plays": {
-    "wa-cap-7h": {
-      "id": "wa-cap-7h",
+    "wa-cap-8h": {
+      "id": "wa-cap-8h",
       "label": [
-        "Reserve Capacity Mechanism · 7h · co-investment",
-        "备用容量机制 · 7小时 · 跟投"
+        "Reserve Capacity Mechanism · 8h · co-investment",
+        "备用容量机制 · 8小时 · 跟投"
       ],
       "route": "cap",
-      "hours": 7,
+      "hours": 8,
       "stage": "co-invest",
       "why": [
-        "The mechanism prices a six-hour battery; the seventh hour defends the credit, and the eighth is capex the market does not pay for.",
-        "该机制按六小时电池定价；第七小时用于守住容量信用，第八小时则是市场不付费的资本开支。"
+        "The mechanism prices a six-hour battery and the seventh hour defends the credit. On the supplier-quoted DC block the eighth now pays for itself: eight hours is the engine’s best design, worth about 6% more per MW than seven, though its hold IRR is lower, 18.1% against 19.8%.",
+        "该机制按六小时电池定价，第七小时用于守住容量信用。按供应商报价的直流电池舱计算，第八小时已能自负成本：八小时是引擎的最佳设计，每MW价值比七小时高约6%，但持有期IRR较低，为18.1%对19.8%。"
       ],
       "action": {
         "text": [
@@ -533,7 +533,7 @@
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "lockedUntil": null
     }
   }

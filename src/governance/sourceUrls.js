@@ -43,6 +43,16 @@ export const URL_EXEMPT = {
                'record exists so the placeholder is visible rather than implied.',
 };
 
+/* The supplier quotation and its MSA template (src/comparison/supplierQuote.js)
+   were supplied by the analyst as documents and published by his ruling of
+   2026-10-16. Neither has a public address; the register says what each
+   establishes, and the figures are reproduced in docs/supplier-quote-2026-10-plan.md. */
+for (const market of ['gb', 'ie', 'ro', 'pl', 'de', 'it', 'fi', 'nem', 'wa', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido']){
+  for (const id of ['hithiumQuote', 'hithiumMsa']){
+    URL_EXEMPT[`${market}:${id}`] = 'A supplier document the analyst supplied; it has no public address.';
+  }
+}
+
 /** Placeholder shapes that must never reach the register. */
 const PLACEHOLDER = /^(?:#|todo|tbd|n\/a|xxx|https?:\/\/(?:example\.(?:com|org)|localhost|127\.0\.0\.1))/i;
 

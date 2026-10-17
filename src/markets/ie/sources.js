@@ -5,8 +5,11 @@
    components/sourceDrawer.js 鈥?no source detail is hardcoded in a presentation
    component. Entries preserve name, status, date, coverage period and URL.
    --------------------------------------------------------------------------- */
+import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 const SRC = {
+  /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
+  ...QUOTE_SOURCES,
   semo:   { file:'SEMO — market data, capacity auction results and market messages', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'Jul 2026', cy:'T-4 2028/29', url:'https://www.sem-o.com/' },
   semc:   { file:'SEM Committee — CRM, FASS and market-design decisions', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2026', cy:'Decision papers', url:'https://www.semcommittee.com/' },
   eirgrid:{ file:'EirGrid — system data, adequacy, dispatch-down and SNSP', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2026', cy:'2025 outturn', url:'https://www.eirgrid.ie/' },

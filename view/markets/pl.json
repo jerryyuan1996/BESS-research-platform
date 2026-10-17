@@ -14,10 +14,10 @@
         "comparison-engine"
       ],
       "reason": [
-        "Thirteenth of fourteen markets on hold IRR, 0.8%.",
-        "持有期IRR为0.8%，在十四个市场中排名第十三。"
+        "Thirteenth of fourteen markets on hold IRR, 0.2%.",
+        "持有期IRR为0.2%，在十四个市场中排第十三。"
       ],
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-17",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -256,7 +256,7 @@
       "author": "analyst",
       "asOf": "2026-10-12",
       "lockedUntil": null,
-      "play": "pl-cap-2h"
+      "play": "pl-cap-1h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -348,18 +348,18 @@
     }
   ],
   "plays": {
-    "pl-cap-2h": {
-      "id": "pl-cap-2h",
+    "pl-cap-1h": {
+      "id": "pl-cap-1h",
       "label": [
-        "Capacity market · 2h · ready-to-build",
-        "容量市场 · 2小时 · 具备开工条件"
+        "Capacity market · 1h · ready-to-build",
+        "容量市场 · 1小时 · 具备开工条件"
       ],
       "route": "cap",
-      "hours": 2,
+      "hours": 1,
       "stage": "ready-to-build",
       "why": [
-        "No main auction is planned and the uncontracted reference returns under 1%; on the capacity route, two hours is the engine's best design.",
-        "目前没有主拍卖计划，无合同的参考项目回报不足1%；在容量路径上，两小时是引擎的最佳设计。"
+        "No main auction is planned and the uncontracted reference returns under 1%. On the capacity route one hour is now the engine’s best design because it loses the least value, narrowly ahead of two hours. Every duration loses value here, and one hour’s hold IRR is negative.",
+        "目前没有主拍卖计划，无合同的参考项目回报不足1%。在容量路径上，一小时现为引擎的最佳设计，因其价值损失最小，略优于两小时。此处所有时长都在损失价值，且一小时的持有期IRR为负。"
       ],
       "action": {
         "text": [
@@ -369,7 +369,7 @@
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "lockedUntil": null
     }
   }

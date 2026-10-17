@@ -634,17 +634,21 @@ test('a derived asset-return grade is the market\'s fifth in the engine\'s ranki
 
      The convention is read off the store, not chosen here: Great Britain is
      ninth of fourteen and was graded 2. A market the engine does not price has
-     no rank and is not checked: Finland's grade is a practitioner one. Hold
-     and exit IRR order the markets identically today, and that is asserted,
-     because one grade serves both readings only while it is true. */
+     no rank and is not checked: Finland's grade is a practitioner one. One
+     grade serves a holder and a seller only while hold and exit IRR put every
+     market in the same fifth, and that is asserted. Since 2026-10-17 the two
+     orders differ inside a fifth (WA and Romania swap at the top, NEM and GB
+     in the middle) without moving any market's grade. */
   const priced = registered
     .map(m => ({ id: m.manifest.id, result: runBaseCase(m, 5) }))
     .filter(r => !r.result.na && Number.isFinite(r.result.irrHold));
   const order = (key) => [...priced].sort((a, b) => b.result[key] - a.result[key]).map(r => r.id);
-  const byHold = order('irrHold');
-  assert.deepEqual(order('irrExit'), byHold, 'hold and exit IRR no longer rank the markets alike: one asset-return grade cannot serve a holder and a seller');
+  const byHold = order('irrHold'), byExit = order('irrExit');
+  const fifthGrade = (ranking, id) => 6 - Math.ceil((ranking.indexOf(id) + 1) * 5 / ranking.length);
+  assert.deepEqual(byExit.map(id => [id, fifthGrade(byExit, id)]).sort(), byHold.map(id => [id, fifthGrade(byHold, id)]).sort(),
+    'hold and exit IRR no longer grade the markets alike: one asset-return grade cannot serve a holder and a seller');
 
-  const expected = (id) => 6 - Math.ceil((byHold.indexOf(id) + 1) * 5 / byHold.length);
+  const expected = (id) => fifthGrade(byHold, id);
   const drift = [];
   for (const view of await committed.readAll()){
     const record = view.grades.assetReturn;

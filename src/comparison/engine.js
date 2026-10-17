@@ -151,6 +151,31 @@ export const degradationFactor = (e, year) => {
   return Math.pow(1 - (e.degr || 2) / 100, year - 1);
 };
 
+/* ---------------------------------------------------------------------------
+   The service package — warranty extension, preventive maintenance and the RTE
+   and availability guarantees, paid yearly (the analyst's 2026-10-12 default).
+
+   A market that declares `serviceSchedulePerMW` carries it as its own line,
+   year by year, in native currency per MW in real terms; `opexPerMW` is then
+   the rest of fixed opex. The schedule is back-loaded — the warranty starts in
+   year 6 and steps up every five years — so a flat seed of the same fifteen-
+   year sum would have charged it too early. Absent, the line is zero and every
+   pinned case is unchanged.
+   --------------------------------------------------------------------------- */
+export function serviceCostPerMW(e, year){
+  const s = e.serviceSchedulePerMW;
+  if (!Array.isArray(s) || !s.length) return 0;
+  const v = s[Math.min(year, s.length) - 1];
+  return Number.isFinite(v) ? v : 0;
+}
+
+/** Fixed opex as a flat seed would state it: the rest of opex plus the package's LIFE-year mean. */
+export function opexSeedPerMW(e){
+  let sum = 0;
+  for (let y = 1; y <= LIFE; y++) sum += serviceCostPerMW(e, y);
+  return (e.opexPerMW || 0) + sum / LIFE;
+}
+
 function lifecycleCost(e, capexG, fx, year){
   let cost = 0;
   for (const item of e.augmentationSchedule || []){
@@ -329,7 +354,7 @@ function runLegacyCase(market, strategyId, exitYear, options){
 
   const capital = capitalWithGrant(cap0, grant, e);
   const net = capital.net;
-  const capY = [], mchY = [], eb = [];
+  const capY = [], mchY = [], svcY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
     /* `capacityFactors` is how the design-fit sweep carries a duration floor that
        de-rates linearly as the battery fades (WA's ESR requirement). Absent, the
@@ -339,7 +364,8 @@ function runLegacyCase(market, strategyId, exitYear, options){
     const mm = y >= marketFrom
       ? (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y)
       : 0;
-    capY.push(c); mchY.push(mm); eb.push(c + mm - opex - lifecycleCost(e, capexG, fx, y));
+    const sv = serviceCostPerMW(e, y) * fx;
+    capY.push(c); mchY.push(mm); svcY.push(sv); eb.push(c + mm - opex - sv - lifecycleCost(e, capexG, fx, y));
   }
 
   const holdFlows = withCapital(capital, eb);
@@ -352,7 +378,7 @@ function runLegacyCase(market, strategyId, exitYear, options){
   const yMerchant = options.exitYMerchant ?? EXIT_Y_MERCHANT;
   const yOpex = options.exitYOpex ?? EXIT_Y_OPEX;
   const exitVal = pvTail(capY, yContracted, X) + pvTail(mchY, yMerchant, X)
-    - pvTail(Array(LIFE - X).fill(opex), yOpex, 0);
+    - pvTail(Array(LIFE - X).fill(opex), yOpex, 0) - pvTail(svcY, yOpex, X);
   const exitFlows = withCapital(capital, eb.slice(0, X), { at: X, value: exitVal });
   const irrExit = irrOf(exitFlows);
   const cumOp = eb.slice(0, X).reduce((a, b) => a + b, 0);
@@ -361,7 +387,7 @@ function runLegacyCase(market, strategyId, exitYear, options){
 
   return {
     marketId: market.manifest.id, strategyId, exitYear: X,
-    net, grant: capital.grant, capexG, eb1: eb[0], yield1: eb[0] / net, capY, secY:capY, mchY, eb,
+    net, grant: capital.grant, capexG, eb1: eb[0], yield1: eb[0] / net, capY, secY:capY, mchY, svcY, eb,
     irrHold, payback, exitVal, irrExit, moic, cumOp, contractedShare,
     irrHoldAbsent: irrDiagnosis(irrHold, eb, net),
     irrExitAbsent: irrDiagnosis(irrExit, eb.slice(0, X).concat(exitVal), net),
@@ -442,7 +468,7 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
     if (Array.isArray(e.auctionRenewalCurve)) curve = e.auctionRenewalCurve;
   }
 
-  const secY = [], aucY = [], mchY = [], eb = [];
+  const secY = [], aucY = [], mchY = [], svcY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
     const capF = yearFactor(options, 'capacity', y);    // 1 unless the design-fit sweep sets it
     const s = (y <= securedYears ? secured : 0) * capF;
@@ -451,8 +477,9 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
         yearFactor(options, 'merchant', y))) * capF : 0;
     const d = degradationFactor(e, y);
     const m = (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y);
-    secY.push(s); aucY.push(a); mchY.push(m);
-    eb.push(s + a + m - opex - lifecycleCost(e, capexG, fx, y));
+    const sv = serviceCostPerMW(e, y) * fx;
+    secY.push(s); aucY.push(a); mchY.push(m); svcY.push(sv);
+    eb.push(s + a + m - opex - sv - lifecycleCost(e, capexG, fx, y));
   }
 
   const holdFlows = withCapital(capital, eb);
@@ -468,7 +495,8 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
   const exitVal = pvTail(secY, yContracted, X)
     + pvTail(aucY, yAuction, X)
     + pvTail(mchY, yMerchant, X)
-    - pvTail(Array(LIFE - X).fill(opex), yOpex, 0);
+    - pvTail(Array(LIFE - X).fill(opex), yOpex, 0)
+    - pvTail(svcY, yOpex, X);
   const exitFlows = withCapital(capital, eb.slice(0, X), { at: X, value: exitVal });
   const irrExit = irrOf(exitFlows);
   const cumOp = eb.slice(0, X).reduce((a, b) => a + b, 0);
@@ -482,7 +510,7 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
     net, grant, capexG, eb1: eb[0], yield1: eb[0] / net,
     // capY is the union of secured + auction-renewal so charts that stack
     // "capacity vs merchant" keep working; secY/aucY expose the split.
-    capY: secY.map((v, i) => v + aucY[i]), secY, aucY, mchY, eb,
+    capY: secY.map((v, i) => v + aucY[i]), secY, aucY, mchY, svcY, eb,
     irrHold, payback, exitVal, irrExit, moic, cumOp,
     irrHoldAbsent: irrDiagnosis(irrHold, eb, net),
     irrExitAbsent: irrDiagnosis(irrExit, eb.slice(0, X).concat(exitVal), net),

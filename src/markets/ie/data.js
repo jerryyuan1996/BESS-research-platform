@@ -5,6 +5,7 @@
    de-rating and duration curves, the project pipeline, lab defaults and the
    per-tab narrative content. Not one value was changed by the migration.
    --------------------------------------------------------------------------- */
+import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
   asOf: '2026-07-26',
@@ -239,8 +240,8 @@ const M = {
        the Lab leaves the refund lag to the engine. */
     vatPct: 23, vatRecoverable: 1,
     devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
-    mw: 50, hours: 4, capexKWh: 250, capexKW: 160, opexKW: 10,
-    rte: 87, avail: 95, degr: 2.0, cycles: 1.1, spread: 59, optFee: 9,
+    mw: 50, hours: 4, capexKWh: 250, dcQuoteKWh: landedDcPerKWh('EUR'), capexKW: 160, opexKW: 10,
+    rte: 87, avail: 97, degr: 2.0, cycles: 1.1, spread: 59, optFee: 9,
     capPrice: 149.96, capYrs: 10, servicesKW: 8,
     life: 15, disc: 8.5, debtPct: 60, rate: 5.6, tenor: 12,
   },

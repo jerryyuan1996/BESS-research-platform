@@ -21,7 +21,7 @@ import { tabs } from '../jp/tabs.js';
 import { sources } from '../jp/sources.js';
 import {
   JP_REGIONS, JP_COMMON_COST, JP_CAPITAL, JP_REFERENCE, JP_LTDA_MERCHANT_RETENTION, jpRanges,
-  JP_ARCHETYPE_CAPEX, JP_ARCHETYPE_OPEX,
+  JP_ARCHETYPE_CAPEX, JP_ARCHETYPE_OPEX, JP_OTHER_OPEX,
   JP_DURATION_RESPONSE,
 } from '../jp/regions.js';
 import { merchantVintage } from '../../comparison/vintage.js';
@@ -62,7 +62,7 @@ const economics = {
   riskClass: 'auction-renewal',
 
   capexPerMW: JP_ARCHETYPE_CAPEX,
-  opexPerMW: JP_ARCHETYPE_OPEX,
+  opexPerMW: JP_OTHER_OPEX,      // METI O&M less the quoted service package (JP_CAPITAL)
   /* Component stack, consumption tax and build period — shared across the
      three areas, because none of them differ on capital cost. */
   ...JP_CAPITAL,

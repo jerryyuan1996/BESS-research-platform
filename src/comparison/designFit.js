@@ -267,7 +267,11 @@ export function marketAt(market, route, hours){
   const cr = capexRatio(e, h0, hours);
   if (cr == null) return { na: ['No capital cost declared to scale', '未声明可缩放的资本成本'] };
   econ.capexPerMW = e.capexPerMW * cr;
+  if (Number.isFinite(e.capexQuotedPerMW)) econ.capexQuotedPerMW = e.capexQuotedPerMW * k;
   econ.opexPerMW = e.opexPerMW * (1 + (dr.opexEnergyShare ?? 0) * (k - 1));
+  /* The service package is priced per DC block, so it scales with stored
+     energy in full; the rest of opex keeps its declared energy share. */
+  if (Array.isArray(e.serviceSchedulePerMW)) econ.serviceSchedulePerMW = e.serviceSchedulePerMW.map(v => v * k);
 
   const c = curveAt(dr, 'merchantCapture', hours);
   const c0 = curveAt(dr, 'merchantCapture', h0);

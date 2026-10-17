@@ -8,8 +8,11 @@
    machine-readable capex study — and each gap is registered at the end rather
    than left implicit.
    --------------------------------------------------------------------------- */
+import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 const SRC = {
+  /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
+  ...QUOTE_SOURCES,
   macse: { file:'Terna — MACSE first auction results', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'30 Sep 2025 (rev. 10 Oct)', cy:'9,968 MWh awarded across 14 projects; zonal clearing prices', url:'https://www.terna.it/en/media/press-releases/detail/completed-first-macse-auction', authority:'observed', historical:'First auction results by zone', forecast:'Second auction 24 November 2026 at 16 GWh; reserve premium not yet published', frequency:'Per auction round', format:'HTML + PDF', machineReadable:'Limited', automation:'C — page monitor; the Rendiconto PDF did not parse', lastChecked:'2026-08-02', freshness:'First auction, results revised October 2025' },
   plan: { file:'Terna — National Electricity Transmission Grid Development Plan 2025–2034', status:['Official — Public','官方 — 公开'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2025', cy:'>€23bn over ten years; named reinforcements with commissioning years', url:'https://www.terna.it/en/electric-system/grid/national-electricity-transmission-grid-development-plan', authority:'official-forecast', historical:'Current network and approved works', forecast:'Named projects to 2034 with commissioning years', frequency:'Annual planning cycle', format:'PDF', machineReadable:'Limited', automation:'C — fetchable; extraction requires review', lastChecked:'2026-08-02', freshness:'2025–2034 plan vintage' },
   capacityMarket: { file:'Terna — Mercato della Capacità auction results', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2025', cy:'DY2027: €47,000/MW/yr premium; 15-yr contracts for new build', url:'https://www.terna.it/en/electric-system/capacity-market' },

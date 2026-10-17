@@ -5,8 +5,11 @@
    components/sourceDrawer.js 鈥?no source detail is hardcoded in a presentation
    component. Entries preserve name, status, date, coverage period and URL.
    --------------------------------------------------------------------------- */
+import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 const SRC = {
+  /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
+  ...QUOTE_SOURCES,
   opcom:  { file:'OPCOM — annual and monthly market results (DAM / IDM)', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'Jul 2026', cy:'2025 annual, Jun 2026 monthly', url:'https://www.opcom.ro/anunturi-stiri-pp/en/1' },
   tel:    { file:'Transelectrica — balancing market and reserve procurement', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2026', cy:'FCR / aFRR / mFRR', url:'https://www.transelectrica.ro/en/web/tel/piata-de-echilibrare' },
   telmap: { file:'Transelectrica — indicative available connection capacity map', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2026', cy:'Screening only', url:'https://web.transelectrica.ro/harti_crd_tel/index.html' },

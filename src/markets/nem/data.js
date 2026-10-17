@@ -24,6 +24,7 @@
       invent one. Those gaps are carried explicitly in `notPublished` and
       rendered on the Data & Methodology tab.
    --------------------------------------------------------------------------- */
+import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
   asOf: '2026-08-01',
@@ -87,7 +88,7 @@ const M = {
     irr4hPct: 9.4, irr2hPct: 5.5, irr4hEarlyLoPct: 10, irr4hEarlyHiPct: 11.5,
     irr2hEarlyLoPct: 6, irr2hEarlyHiPct: 9,
     capturedByFourHourPct: 96, capexPremiumFallLoPct: 20, capexPremiumFallHiPct: 30,
-    gencost4h: 385, gencost2h: 525, gencost24h: 266, gencost2h2030: 484, gencost2h2050: 358,
+    gencost4h: 385, gencostPowerKW: 560, gencostEnergyKWh: 245, gencost2h: 525, gencost24h: 266, gencost2h2030: 484, gencost2h2050: 358,
 
     // pipeline
     installedMW: 9000, addedMW: 4640, addedMWh: 12353, q2AddedMW: 951, q2AddedMWh: 2753,
@@ -526,8 +527,11 @@ const M = {
     /* 280 MW is the CIS Tender 8 average (4,205 MW across 15 projects), which is
        also comparison.js's archetype. capexKWh 245 + capexKW 560 reproduces
        GenCost's A$385/kWh four-hour point at A$1.54m/MW. */
-    mw: 280, hours: 4, capexKWh: 245, capexKW: 560, opexKW: 20,
-    rte: 88, avail: 96, degr: 2.0, cycles: 1.4, spread: 100, optFee: 5,
+    mw: 280, hours: 4, /* REBUILT 2026-10-17: GenCost's A$245/kWh energy rate less its 56% DC slice
+       (0.56 × 385 = A$215.6) leaves A$29.4/kWh of energy-scaling balance; the
+       quoted DC block replaces the slice. */
+    capexKWh: 245 - 0.56 * 385 + landedDcPerKWh('AUD'), dcQuoteKWh: landedDcPerKWh('AUD'), capexKW: 560, opexKW: 20,
+    rte: 88, avail: 97, degr: 2.0, cycles: 1.4, spread: 100, optFee: 5,
     /* Zero, and structurally so: the NEM has no capacity mechanism. */
     capPrice: 0, capYrs: 0, servicesKW: 9, grantPct: 0,
     life: 20, disc: 8, debtPct: 60, rate: 7.0, tenor: 15,

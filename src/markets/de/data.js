@@ -33,6 +33,7 @@
       not invent one. Those gaps are carried explicitly in `notPublished` and
       rendered on the Data & Methodology tab.
    --------------------------------------------------------------------------- */
+import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
   asOf: '2026-08-01',
@@ -467,7 +468,7 @@ const M = {
        gates, not a day-ahead spread. At 4h it reproduces comparison.js's
        €183,750/MW/yr merchant seed to within 0.3%. cycles 1.2 is the mean of the
        three realised monthly cycle counts (1.58, 1.12, 0.93). */
-    mw: 100, hours: 4, capexKWh: 117.5, capexKW: 465, opexKW: 17,
+    mw: 100, hours: 4, capexKWh: 117.5, dcQuoteKWh: landedDcPerKWh('EUR'), capexKW: 465, opexKW: 17,
     rte: 88, avail: 97, degr: 2.0, cycles: 1.2, spread: 148, optFee: 9,
     /* The published StromVKG price cap, per MW of DE-RATED capacity, on 15-year
        contracts. It buys nothing at four hours because `deratingCurve` is zero

@@ -107,19 +107,31 @@
 import { band, limits } from '../../comparison/ranges.js';
 import { merchantVintage } from '../../comparison/vintage.js';
 import { stackFrom } from '../../comparison/capex.js';
+import { quotedEconomics } from '../../comparison/supplierQuote.js';
 
 /* European turnkey mid-point, the platform's shared basis. Finland carries no
    market-specific capex evidence yet, so it takes the platform seed rather than
    inventing a local number — and the range below says so. */
 const CAPEX_TOTAL_PER_MW = 440000;
 
+/* The supplier quotation's DC block inside that total — method HELD: the total is a
+   2026 European price survey that already prices today's DC blocks, so it stands and
+   the quote says how much of it is the block (src/comparison/capex.js). */
+const OPEX_SEED_PER_MW = 9000;
+const QUOTED = quotedEconomics({ currency: 'EUR', hours: 2, method: 'held', total: CAPEX_TOTAL_PER_MW, opexSeed: OPEX_SEED_PER_MW });
+
 const economics = {
   capexPerMW: CAPEX_TOTAL_PER_MW,
-  capexStack: stackFrom(CAPEX_TOTAL_PER_MW, 2),
+  capexStack: QUOTED.capexStack,
+  capexQuotedPerMW: QUOTED.capexQuotedPerMW,
   vatPct: 25.5, vatRecoverable: true, vatLagMonths: 0,
   devCostPct: 0, rtbPremiumPct: 0,
   constructionMonths: 12,
-  opexPerMW: 9000,
+  /* The flat seed was 9,000/MW/yr. The supplier's service package now runs as its own
+     back-loaded line below, and this is the rest of fixed opex: the seed less the
+     package's fifteen-year mean, so the fifteen-year total is unchanged. */
+  opexPerMW: QUOTED.otherOpexPerMW,
+  serviceSchedulePerMW: QUOTED.serviceSchedulePerMW,
 
   /* No resource adequacy revenue. Zero rather than absent, and the capability
      flag is what makes the engine report the route unavailable rather than

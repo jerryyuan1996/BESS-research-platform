@@ -46,6 +46,7 @@
 import { band, limits } from '../../comparison/ranges.js';
 import { merchantVintage } from '../../comparison/vintage.js';
 import { stackFrom } from '../../comparison/capex.js';
+import { quotedEconomics } from '../../comparison/supplierQuote.js';
 
 /* Modo publishes 2h revenue but not 4h. The scaling factor is derived from the
    two figures it DOES publish for both durations — capex and unlevered IRR:
@@ -65,6 +66,12 @@ const LEVELISED_2H = (115000 + 130000) / 2;
 
 /* The installed cost the component stack must reconcile to. */
 const CAPEX_TOTAL_PER_MW = 935000;
+
+/* The supplier quotation's DC block inside that total — method HELD: the total is a
+   2026 European price survey that already prices today's DC blocks, so it stands and
+   the quote says how much of it is the block (src/comparison/capex.js). */
+const OPEX_SEED_PER_MW = 17000;
+const QUOTED = quotedEconomics({ currency: 'EUR', hours: 4, method: 'held', total: CAPEX_TOTAL_PER_MW, opexSeed: OPEX_SEED_PER_MW });
 
 const economics = {
   /* Modo's published 4h figure, €935k/MW = €234/kWh. Carried as published: it is
@@ -90,14 +97,19 @@ const economics = {
      cost rather than a reallocation, and that is an analyst's call — gate G25.
      Set it, then set `rtbPremiumPct`, and the Lab reports the implied RTB
      acquisition price per MW. */
-  capexStack: stackFrom(CAPEX_TOTAL_PER_MW, 4),
+  capexStack: QUOTED.capexStack,
+  capexQuotedPerMW: QUOTED.capexQuotedPerMW,
   vatPct: 19, vatRecoverable: true, vatLagMonths: 0,
   devCostPct: 0, rtbPremiumPct: 0,
   /* Twelve months is one spend period, which is the single up-front outflow the
      model has always used. Longer builds split the spend across an S-curve and
      push first revenue out; that is what an HV transformer lead time does. */
   constructionMonths: 12,
-  opexPerMW: 17000,
+  /* The flat seed was 17,000/MW/yr. The supplier's service package now runs as its own
+     back-loaded line below, and this is the rest of fixed opex: the seed less the
+     package's fifteen-year mean, so the fifteen-year total is unchanged. */
+  opexPerMW: QUOTED.otherOpexPerMW,
+  serviceSchedulePerMW: QUOTED.serviceSchedulePerMW,
 
   /* Ineligible, not zero-valued. The capacity market exists; a four-hour battery
      cannot bid into it. See the header. */
@@ -187,7 +199,7 @@ const ranges = {
     gate: 'G19',
   }),
 
-  opexPerMW: band(economics.opexPerMW, 11200, 23400, {
+  opexPerMW: band(economics.opexPerMW, 11200 - QUOTED.serviceMeanPerMW, 23400 - QUOTED.serviceMeanPerMW, {
     basis: [
       'No published German fixed-opex series exists. Both ends apply the 1.2–2.5% of capex benchmark to the €935k 4h figure — 1.2–1.4% for top operators, 2.0–2.5% typical. Grid fees are excluded: storage commissioned before 4 August 2029 is exempt, and the BNetzA AgNes framework that follows charges €4–7k/MW/yr on capacity only, with 20-year grandfathering where FID precedes the final decision. The final draft determination of 6 August 2026 (consultation closed 18 September, decision due by year-end, new regime from 1 January 2029) keeps that structure, drops the grid-connection-commitment condition, and asks for proof of FID that the storage association reads as binding orders for at least 50% of investment volume.',
       '德国无公开的固定运维成本序列。两端均按造价的1.2–2.5%基准应用于4小时€935k的造价数据 — 头部运营商为1.2–1.4%，行业普遍为2.0–2.5%。不含电网费用：2029年8月4日前投运的储能可豁免，其后适用的BNetzA AgNes框架仅按容量收取每MW每年€4–7k，且在最终决定前作出投资决策的项目享有20年祖父条款保护。2026年8月6日的最终裁定草案（征询期至9月18日结束，年内作出决定，新规自2029年1月1日生效）保留该结构，取消了并网承诺条件，并要求提供投资决策证明 — 储能协会将其解读为至少占投资额50%的有约束力订单。',

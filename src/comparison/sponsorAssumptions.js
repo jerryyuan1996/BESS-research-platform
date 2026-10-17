@@ -54,7 +54,23 @@ const LAB_MONEY_FIELDS = new Set([
   'capexKW',         // power block, market currency per kW
 ]);
 
+/* A QUOTED price is not scaled. The multiplier is the sponsor's position
+   against published market cost; a supplier quotation is already a transaction
+   price, and taking 10% off it would assume the sponsor beats a negotiated
+   quote by the same margin it beats a survey. The analyst's ruling of
+   2026-10-16. What is quoted:
+
+     economics.capexQuotedPerMW   the quoted DC block inside capexPerMW
+     capexStack.dcBlockPerKWh     when capexStack.dcBlockQuoted is set
+     lab.dcQuoteKWh               the quoted DC block inside a dashboard
+                                  seed's all-in energy rate, capexKWh       */
+
 const scale = value => Number.isFinite(value) ? value * OEM_CAPEX_MULTIPLIER : value;
+
+/** Scale everything but the quoted part: 0.9 · (total − quoted) + quoted. */
+const scaleAround = (value, quoted) => Number.isFinite(value)
+  ? (Number.isFinite(quoted) ? scale(value - quoted) + quoted : scale(value))
+  : value;
 
 const SPONSOR_BASIS = [
   'Sponsor OEM-backed procurement position: the published band above, at '
@@ -67,7 +83,7 @@ function scaleCapexStack(stack){
   if (!stack) return stack;
   return Object.fromEntries(Object.entries(stack).map(([key, value]) => [
     key,
-    CAPEX_STACK_MONEY_FIELDS.has(key) ? scale(value) : value,
+    CAPEX_STACK_MONEY_FIELDS.has(key) && !(key === 'dcBlockPerKWh' && stack.dcBlockQuoted) ? scale(value) : value,
   ]));
 }
 
@@ -77,12 +93,16 @@ function scaleCapexStack(stack){
    Lab showing a generic "OEM-backed procurement range." above a `source` line
    citing ERA and CSIRO, so the reader could not tell which claim the citation
    supported. */
-function scaleRange(range){
+function scaleRange(range, quoted){
   if (!range) return range;
   const basis = range.basis
     ? [range.basis[0] + ' ' + SPONSOR_BASIS[0], range.basis[1] + ' ' + SPONSOR_BASIS[1]]
     : SPONSOR_BASIS;
-  return { ...range, seed:scale(range.seed), min:scale(range.min), max:scale(range.max), basis };
+  return {
+    ...range,
+    seed:scaleAround(range.seed, quoted), min:scaleAround(range.min, quoted), max:scaleAround(range.max, quoted),
+    basis,
+  };
 }
 
 /** Returns a registry entry carrying the sponsor's executable cost basis. */
@@ -96,12 +116,12 @@ export function applySponsorAssumptions(market){
       ...comparison,
       economics:{
         ...economics,
-        capexPerMW:scale(economics.capexPerMW),
+        capexPerMW:scaleAround(economics.capexPerMW, economics.capexQuotedPerMW),
         capexStack:scaleCapexStack(economics.capexStack),
       },
       ranges:comparison.ranges ? {
         ...comparison.ranges,
-        capexPerMW:scaleRange(comparison.ranges.capexPerMW),
+        capexPerMW:scaleRange(comparison.ranges.capexPerMW, economics.capexQuotedPerMW),
       } : comparison.ranges,
     },
   };
@@ -121,7 +141,8 @@ export function applySponsorLabSeed(lab){
   if (!lab || typeof lab !== 'object') return lab;
   const out = Object.fromEntries(Object.entries(lab).map(([key, value]) => [
     key,
-    LAB_MONEY_FIELDS.has(key) ? scale(value) : value,
+    key === 'capexKWh' ? scaleAround(value, lab.dcQuoteKWh)
+      : LAB_MONEY_FIELDS.has(key) ? scale(value) : value,
   ]));
   if (Number.isFinite(out.disc)) out.disc = Number((out.disc + SPONSOR_DISCOUNT_DELTA_PP).toFixed(2));
   return out;

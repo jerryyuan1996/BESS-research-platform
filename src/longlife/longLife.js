@@ -23,9 +23,12 @@
                  extension and a long-term service agreement together, paid
                  yearly, and with both in place there is no further cost for
                  augmentation. So there is no augmentation year and no lump
-                 cost, and capacity fades. The yearly cost of that package is
-                 taken to sit inside each market's opex seed; no seed was
-                 itemised to confirm it.
+                 cost, and capacity fades. Where a market carries the
+                 supplier's quoted package (src/comparison/supplierQuote.js)
+                 its own price runs to year 25 — warranty blocks for years
+                 16–20 and 21–25, preventive maintenance, and no guarantees
+                 after year 20. Elsewhere the package is taken to sit inside
+                 the opex seed.
                  The public source that was opened (NREL) describes the other
                  convention: a higher yearly operating cost that holds capacity
                  at its rating. It is shown beside the default as a comparison
@@ -43,7 +46,7 @@
      sec[y]  = sec[15]                                  y = 16 … N
      auc[y]  = auc[15]
      mch[y]  = mch[15] · (1 − g)^(y − 15)
-     cost[y] = cost[15]
+     cost[y] = cost[15] − svc[15] + svc[y]               svc = the quoted package, if any
 
    MAINTAINED — capacity held at its rating for a yearly charge:
 
@@ -66,7 +69,7 @@
    Layering: imports the engine and the assumptions. No DOM, no clock.
    --------------------------------------------------------------------------- */
 
-import { runBaseCase } from '../comparison/engine.js';
+import { runBaseCase, serviceCostPerMW, opexSeedPerMW } from '../comparison/engine.js';
 import { LIFE, LONG_LIFE_YEARS, MAINTAINED_FOM_SHARE } from '../comparison/assumptions.js';
 import { irrOf } from '../utils/finance.js';
 
@@ -85,8 +88,9 @@ export function extendedOperatingLine(result, economics, years, maintained){
   const fade = (y) => Math.pow(1 - g, y - 1);
   const decommissioning = finite(economics.decommissioningPerMW) ? economics.decommissioningPerMW * result.fxRate : 0;
   const upkeep = maintained
-    ? Math.max(0, MAINTAINED_FOM_SHARE * result.capexG - economics.opexPerMW * result.fxRate)
+    ? Math.max(0, MAINTAINED_FOM_SHARE * result.capexG - opexSeedPerMW(economics) * result.fxRate)
     : 0;
+  const svc = (y) => serviceCostPerMW(economics, y) * result.fxRate;
 
   const line = [];
   for (let y = 1; y <= years; y++){
@@ -94,6 +98,7 @@ export function extendedOperatingLine(result, economics, years, maintained){
     const sec = result.secY[i], auc = result.aucY[i];
     let cost = sec + auc + result.mchY[i] - result.eb[i];
     if (i === LIFE - 1) cost -= decommissioning;
+    if (y > LIFE) cost += svc(y) - svc(LIFE);
     if (y === years) cost += decommissioning;
 
     let mch;
@@ -140,6 +145,6 @@ export function longLife(market){
     withheld: false,
     assetIrr: result.irrHold,
     windows,
-    upkeepPerMW: Math.max(0, MAINTAINED_FOM_SHARE * result.capexG - economics.opexPerMW * result.fxRate),
+    upkeepPerMW: Math.max(0, MAINTAINED_FOM_SHARE * result.capexG - opexSeedPerMW(economics) * result.fxRate),
   };
 }

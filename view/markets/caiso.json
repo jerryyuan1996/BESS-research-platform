@@ -7,17 +7,17 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 2,
+      "grade": 3,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Tenth of fourteen markets on hold IRR, 3.2%.",
-        "持有期IRR为3.2%，在十四个市场中排名第十。"
+        "Eighth of fourteen markets on hold IRR, 3.2%.",
+        "持有期IRR为3.2%，在十四个市场中排第八。"
       ],
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-17",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -273,7 +273,11 @@
       ],
       "author": "analyst",
       "asOf": "2026-10-16",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "scoreNote": [
+        "The call stays at Opportunistic on the analyst's ruling of 16 October, which holds it there until the research gate on CAISO's seeds closes. The score rose on 17 October only because Japan's three markets fell below CAISO on hold IRR; CAISO's own numbers did not move.",
+        "依据分析师10月16日的裁定，在CAISO种子参数的研究关卡关闭前维持“择机”判断。评分于10月17日上升，仅因日本三个市场的持有期IRR降至CAISO之下；CAISO自身数据并未变化。"
+      ]
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",

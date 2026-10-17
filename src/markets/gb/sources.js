@@ -5,8 +5,11 @@
    components/sourceDrawer.js 鈥?no source detail is hardcoded in a presentation
    component. Entries preserve name, status, date, coverage period and URL.
    --------------------------------------------------------------------------- */
+import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 const SRC = {
+  /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
+  ...QUOTE_SOURCES,
   cmreg:  { file:'NESO Capacity Market Register & auction results', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'29 Jul 2026', cy:'Weekly register; auction delivery years', url:'https://www.neso.energy/data-portal/capacity-market-register' },
   derate: { file:'NESO Capacity Market De-Rating Factors', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'20 Feb 2026', cy:'T-4 2029/30 vintage', url:'https://www.neso.energy/data-portal/capacity-market-register/capacity_market_de-rating_factors' },
   bmrs:   { file:'Elexon BMRS Insights (wholesale, imbalance, BM)', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'17 Jul 2026', cy:'TTM to Apr 2026', url:'https://bmrs.elexon.co.uk/' },
