@@ -251,11 +251,21 @@ const ranges = {
     source: 'Analyst practitioner input, 2026-10-10',
     gate: 'FI-3',
   }),
-  merchGross: band(economics.merchGross, null, null, {
-    kind: 'part-sourced',
-    basis: ['Day-ahead spread capture on a 2-hour asset in a market whose price record includes −500 €/MWh in 2024 and which moved to a 15-minute market time unit on 1 October 2025. The observable half is the price series; the capture assumption is not observed.',
-            '基于2小时资产在日前市场的价差兑现。该市场2024年曾出现−500欧元/MWh，并已于2025年10月1日转为15分钟结算周期。价格序列为可观测部分，兑现率假设则非观测值。'],
-    source: 'ENTSO-E Transparency Platform, bidding zone 10YFI-1--------U',
+  /* REVISED 2026-10-17, the analyst's ruling: the band runs between an
+     observation and his practitioner judgement, and the seed is held. Both
+     ends are stated as all-market revenue for a 2-hour battery and converted
+     to the merchant line by taking out the €15,080 reserve line:
+
+       low   Clean Horizon's observed August 2026 index, €78,000  → 62,920
+       high  the analyst's practitioner range, a forecast's high case
+             levelised over fifteen years from a 2028 COD, ≈ €150,000 → 134,920
+
+     The practitioner end is recorded without its source, as practitioner
+     inputs are on this platform. */
+  merchGross: band(economics.merchGross, 78000 - economics.services, 150000 - economics.services, {
+    basis: ['From Clean Horizon’s observed August 2026 all-market index for a two-hour Finnish battery, €78k/MW a year, to the analyst’s practitioner forecast range, about €150k levelised over fifteen years; both less the €15k reserve line. The seed, €78k of trading before fees, is held between them.',
+            '下限为Clean Horizon观测的2026年8月芬兰两小时储能全市场指数，每MW每年7.8万欧元；上限为分析师的实务预测区间，按十五年平准化约15万欧元；两端均扣除1.5万欧元备用收入。种子值（扣费前交易收入7.8万欧元）维持不变，位于两者之间。'],
+    source: 'Clean Horizon Storage Index, August 2026; analyst practitioner judgement, 2026-10-17',
     gate: 'FI-4',
   }),
   feePct: limits(economics.feePct, 6, 12, {
