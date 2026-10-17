@@ -50,8 +50,7 @@ SEC_B.home = function (){
     { t:'warn', text:M.seedWarn },
     { t:'card', mt:false, title:['Position at a glance','总体判断'], badges:['calc','illus'], live:false, blocks:[
       { t:'kpis', items:[
-        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow,
-          d:['evidence confidence ' + M.overall.confidence + '%', '证据置信度 ' + M.overall.confidence + '%'] },
+        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow },
         { l:['Capacity revenue available','可获容量收入'], v:'$0',
           d:['energy-only; scarcity is priced inside the energy price via the ORDC','纯电能量市场；稀缺性通过ORDC计入电能量价格'], b:['official'] },
         { l:['Interconnection timeline','并网周期'], v:O.interconnectYears + '<small> yr</small>',

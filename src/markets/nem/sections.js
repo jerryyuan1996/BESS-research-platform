@@ -49,6 +49,7 @@ SEC_B.home = function (){
       { t:'band-story', b:['Core storyline','核心叙事'],
         text:['The NEM is energy-only and is staying that way: the Nelson Review\'s final report of ' + O.reviewDate + ' explicitly kept the model, and every jurisdiction except Queensland had agreed the remaining recommendations by March 2026. So a battery here earns from arbitrage — more than ' + O.arbitrageShareOfLifePct + '% of forecast merchant revenue over asset life — plus a thin and saturating FCAS line, and nothing de-risks either. Certainty exists but must be bought: a Capacity Investment Scheme collar whose floor nobody publishes, or a virtual toll whose price nobody discloses. Meanwhile the merchant leg fell to ' + kMW(O.monMayK) + '/MW/yr in May 2026, the lowest month since the index launched in July 2022.',
               'NEM是单一电能量市场，且将维持这一设计：' + O.reviewDate + '发布的Nelson评估最终报告明确保留了该模式，除昆士兰外所有辖区已于2026年3月前同意其余建议。因此储能收入来自套利 — 占资产全寿命预测市场化收入的' + O.arbitrageShareOfLifePct + '%以上 — 加上一条薄且趋于饱和的FCAS收入，两者均无任何去风险机制。确定性存在，但必须购买：或是保底价从不公布的容量投资计划双向保底—分成协议，或是价格从不披露的虚拟租赁。与此同时，市场化收入于2026年5月跌至' + kMW(O.monMayK) + '/MW/年，为该指数2022年7月推出以来的最低月份。'] },
+      { t:'p', text:['Target COD window: ' + M.overall.codWindow, '目标投运窗口：' + M.overall.codWindow] },
       { t:'walk', items:[
         ['01', ['Overview','总览'], ['What is the house view today?','当前总体判断是什么？'], 'home'],
         ['02', ['Market evolution','市场演进'], ['How did the NEM get to 9 GW of storage and a record-low revenue year at the same time?','NEM如何同时达到9GW储能装机与收入创新低？'], 'story'],
@@ -63,12 +64,7 @@ SEC_B.home = function (){
     ] },
 
     { t:'g2', cards:[
-      { title:['Card A — Overall NEM Storage Signal','Card A — NEM储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
-          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
-        { t:'p', text:M.overall.rationale },
-      ] },
-      { title:['Card B — Contracted Revenue Signal','Card B — 合同化收入信号'], live:false, blocks:[
+      { title:['Card A — Contracted Revenue Signal','Card A — 合同化收入信号'], live:false, blocks:[
         { t:'chip', cls:'warn', text:['A collar, not a payment — and its level is never published','是双向保底—分成结构而非固定付费 — 且其水平从不公布'] },
         { t:'kpis', items:[
           { l:['Capacity mechanism','容量机制'], v:L(['None','无']), d:['the Nelson Review kept the energy-only model, ' + O.reviewDate,'Nelson评估于' + O.reviewDate + '保留单一电能量模式'], b:['official'] },
@@ -81,7 +77,7 @@ SEC_B.home = function (){
           '这是使NEM区别于其近邻的结构性事实。西澳按' + P.rcmElectionYears + '年固定价选择权为容量支付' + fmtCk(P.rcmPricePerMW) + '/MW/年；NEM则完全不为容量付费，且不会改变。它提供的替代方案是竞争性投标的双向保底—分成结构，其水平保密，而该计划将于' + O.cisWindUp + '年结束。实务后果是：错过第10轮招标的NEM项目，在ESEM于' + O.esemStart + '启动之前将没有任何州级或联邦合同路径；而LTESA上限在最近两轮之间已压缩' + fmtPct((1 - O.ltesaR6CapMW / O.ltesaR5CapMW) * 100, 0) + '。'],
           sig:['Certainty exists, but its price is confidential','确定性存在，但其价格保密'] },
       ] },
-      { title:['Card C — Merchant Signal','Card C — 市场化收入信号'], live:false, blocks:[
+      { title:['Card B — Merchant Signal','Card B — 市场化收入信号'], live:false, blocks:[
         { t:'chip', cls:'critical', text:['Compressing fast — the weakest half-year since the index launched','快速压缩 — 指数推出以来最弱的半年'] },
         { t:'kpis', items:[
           { l:['BESS revenue index, CY2024','储能收入指数，2024日历年'], v:kMW(O.idx2024K) + '<small>/MW/yr</small>', d:['+' + fmtPct((O.idx2024K / O.idx2023K - 1) * 100, 0) + ' on CY2023','较2023日历年+' + fmtPct((O.idx2024K / O.idx2023K - 1) * 100, 0)], b:['tp'] },
@@ -95,7 +91,7 @@ SEC_B.home = function (){
           '将指数与装机放在一起看，机制一目了然：截至2026年第二季度的十二个月内，' + fmtN(O.addedMW) + 'MW与' + fmtN(O.addedMWh) + 'MWh开始调试，使装机规模增加一倍以上，而同期全NEM价差下跌' + O.q2SpreadFallPct + '%。这不是天气年或燃气价格年的问题，而是竞争已经到场；仍在排队中的' + fmtN(O.queueGW) + 'GW说明压缩尚未结束。'],
           sig:['This is competition, not weather','这是竞争，不是天气'] },
       ] },
-      { title:['Card D — FCAS Signal','Card D — FCAS信号'], live:false, blocks:[
+      { title:['Card C — FCAS Signal','Card C — FCAS信号'], live:false, blocks:[
         { t:'chip', cls:'serious', text:['Structurally saturated — and it does not scale with duration','结构性饱和 — 且不随时长增长'] },
         { t:'kpis', items:[
           { l:['FCAS share of battery revenue, Oct 25 – Mar 26','FCAS占储能收入比重，2025年10月–2026年3月'], v:O.fcasShareOctMarPct + '<small>%</small>', d:['described as structurally saturated','被描述为结构性饱和'], b:['tp'] },
@@ -107,7 +103,7 @@ SEC_B.home = function (){
           'FCAS目前已不足收入结构的十分之一且仍在收缩，而唯一的剧烈变动 — 2025年7月至8月下调事故备用涨逾一倍至' + kMW(O.lowerContAugK) + '/MW/年 — 源于南澳孤岛运行，属事件而非趋势。对模型有两点含义：FCAS是功率型服务，四小时资产在此项上的收入并不高于两小时资产；任何依赖孤岛型价格尖峰的投资逻辑，实际上是在依赖一场无法预测的系统紧急事件。'],
           sig:['Power-based, saturating, event-driven','功率型、趋于饱和、事件驱动'] },
       ] },
-      { title:['Card E — Duration Signal','Card E — 时长信号'], live:false, blocks:[
+      { title:['Card D — Duration Signal','Card D — 时长信号'], live:false, blocks:[
         { t:'chip', cls:'good', text:['4h is the archetype, and the fourth hour clears on its own economics','4小时为原型，且第四小时凭自身经济性即可成立'] },
         { t:'kpis', items:[
           { l:['Duration-Need Index','时长需求指数'], v:dni + '<small> / 100</small>', d:dband.n, b:['calc','illus'] },
@@ -126,7 +122,7 @@ SEC_B.home = function (){
           '这是NEM能够干净利落作答的唯一问题，且答案与罗马尼亚相反。GenCost显示四小时' + fmtC(O.gencost4h) + '/kWh、两小时' + fmtC(O.gencost2h) + '/kWh，因此第四小时的取得成本约为两小时配置的' + fmt1(O.gencost4h * 4 / (O.gencost2h * 2)) + '倍而非两倍；而墨尔本可再生能源枢纽的四小时机组捕获了相邻两小时机组A$/MWh的' + O.capturedByFourHourPct + '%。此处风险不在时长，而在收入确定性。'],
           sig:['Duration is settled; revenue is not','时长问题已定，收入问题未定'] },
       ] },
-      { title:['Card F — Grid & Congestion Signal','Card F — 并网与拥塞信号'], badges:['illus'], live:false, blocks:[
+      { title:['Card E — Grid & Congestion Signal','Card E — 并网与拥塞信号'], badges:['illus'], live:false, blocks:[
         { t:'kpis', items:[
           { l:['Compensation for being constrained off','受约束停机的补偿'], v:L(['None','无']), d:['no firm transmission rights exist; the Congestion Relief Market was recommended not to proceed','不存在固定输电权；拥塞缓解市场已被建议不予推行'], b:['official'] },
           { l:['Average MLF cost to NEM batteries','NEM储能平均MLF成本'], v:fmtCk(O.mlfCostPerMW) + '<small>/MW/yr</small>', d:['some assets ' + O.mlfMultipleLo + '–' + O.mlfMultipleHi + '× higher; republished every ' + O.mlfResetDate,'部分资产高出' + O.mlfMultipleLo + '–' + O.mlfMultipleHi + '倍；每年' + O.mlfResetDate + '重新公布'], b:['tp'] },
@@ -140,7 +136,7 @@ SEC_B.home = function (){
       ] },
     ] },
 
-    { t:'card', title:['Card G — Underwriting rules','Card G — 承保规则'], badges:['illus'], live:false, blocks:[
+    { t:'card', title:['Card F — Underwriting rules','Card F — 承保规则'], badges:['illus'], live:false, blocks:[
       { t:'list', ol:true, items:[
         [['Decide the contracted route before the site: a CIS agreement, a virtual toll, or a deliberate merchant position with the gearing that implies. There is no fourth option and no capacity market to fall back on.','在选定场址之前先确定合同路径：CIS协议、虚拟租赁，或有意为之的市场化持仓并配以相应杠杆。不存在第四种选择，也没有容量市场可作退路。'],
          ['Applies when: any base case relying on merchant revenue for debt service','适用条件：任何以市场化收入偿债的基准情景']],

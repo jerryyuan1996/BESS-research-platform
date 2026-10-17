@@ -45,8 +45,7 @@ SEC_B.home = function (){
     { t:'warn', text:M.seedWarn },
     { t:'card', mt:false, title:['Position at a glance','总体判断'], badges:['calc','illus'], live:false, blocks:[
       { t:'kpis', items:[
-        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow,
-          d:['evidence confidence ' + M.overall.confidence + '%', '证据置信度 ' + M.overall.confidence + '%'] },
+        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow },
         { l:['Resource Adequacy benchmark','容量充裕度基准'], v:perKW(O.raPerKWMonth),
           d:['H1 2025, up more than ' + O.raYoYPct + '% year on year', '2025年上半年，同比上涨逾' + O.raYoYPct + '%'], b:['tp'] },
         { l:['Merchant, same period','同期市场化收入'], v:perKW(O.merchPerKWMonth2025),

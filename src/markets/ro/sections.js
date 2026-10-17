@@ -43,6 +43,7 @@ SEC_B.home = function (){
       { t:'band-story', b:['Core storyline','核心叙事'],
         text:['Romania is an energy-only market with no capacity mechanism, so storage earns from wholesale spreads and balancing services and is capitalised — not remunerated — by state aid. Solar build-out has created a deep midday trough and a steep evening ramp, which is a genuine arbitrage opportunity. But the binding constraints are administrative: an ATR and executed connection agreement, balancing prequalification, and a formal grant award rather than a scheme budget. Value is created by clearing those gates, not by forecasting prices.',
               '罗马尼亚是没有容量机制的单一电能量市场，因此储能收入来自批发价差与平衡服务，而国家援助提供的是资本化支持而非收入报酬。光伏扩张形成了深度午间低谷与陡峭晚间爬坡，构成真实的套利机会。但关键约束是行政性的：ATR与已签并网合同、平衡市场预认证、以及正式补贴授予（而非计划预算）。价值来自跨越这些门槛，而非来自预测价格。'] },
+      { t:'p', text:['Target COD window: ' + M.overall.codWindow, '目标投运窗口：' + M.overall.codWindow] },
       { t:'walk', items:[
         ['01', ['Overview','总览'], ['What is the house view today?','当前总体判断是什么？'], 'home'],
         ['02', ['Market evolution','市场演进'], ['Why did BESS become necessary — and what changed after entry?','为何储能成为必需？进入后发生了什么？'], 'story'],
@@ -57,12 +58,7 @@ SEC_B.home = function (){
     ] },
 
     { t:'g2', cards:[
-      { title:['Card A — Overall Romania Storage Signal','Card A — 罗马尼亚储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
-          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
-        { t:'p', text:M.overall.rationale },
-      ] },
-      { title:['Card B — Support & Adequacy Signal','Card B — 支持机制与充裕度信号'], live:false, blocks:[
+      { title:['Card A — Support & Adequacy Signal','Card A — 支持机制与充裕度信号'], live:false, blocks:[
         { t:'chip', cls:'warn', text:['Capital support, not revenue support — and budget is not award','资本支持而非收入支持 — 且预算不等于授予'] },
         { t:'kpis', items:[
           { l:['Standalone-storage scheme budget','独立储能计划预算'], v:fmtCM(O.schemeBudgetEurM * 1e6), d:['a budget, not a committed award','是预算，而非已承诺的授予'], b:['official'] },
@@ -75,7 +71,7 @@ SEC_B.home = function (){
           '这是使罗马尼亚区别于本对比样本中所有其他市场的结构性事实：没有容量付费，因此没有任何机制为收入线去风险。国家援助降低的是风险资本，从而改善股权回报，但并不改善偿债覆盖 — 贷款人仍以市场化与平衡收入安排规模。由此得出两条原则：绝不将计划预算视为项目授予；在贷款人情景中，绝不以补贴替代合同化收入下限。'],
           sig:['Grants cut capital, not revenue risk','补贴削减的是资本，而非收入风险'] },
       ] },
-      { title:['Card C — Wholesale & Intraday Signal','Card C — 批发与日内市场信号'], live:false, blocks:[
+      { title:['Card B — Wholesale & Intraday Signal','Card B — 批发与日内市场信号'], live:false, blocks:[
         { t:'chip', cls:'good', text:['Strong volatility — the primary reason to invest','波动性强 — 主要投资理由'] },
         { t:'kpis', items:[
           { l:['DAM weighted-average price 2025','2025年日前市场加权均价'], v:fmtRON(O.dam2025Wap) + '<small>/MWh</small>', d:['≈ ' + fmtC(eur(O.dam2025Wap)) + '/MWh','≈ ' + fmtC(eur(O.dam2025Wap)) + '/MWh'], b:['official'] },
@@ -89,7 +85,7 @@ SEC_B.home = function (){
           '罗马尼亚具备储能经济性的原材料：平均电价高、光伏驱动的午间低谷深、负电价时段数量上升。' + fmtC(62) + '/MWh的可执行价差相对健康，这正是该市场在没有容量机制的情况下仍能吸引资本的原因。但须注意负电价序列的方向 — 其上升迅速，当下扩大价差，同时也预示着终将使他人所追逐的晚间爬坡趋于平缓的光伏饱和。'],
           sig:['Same solar that widens the spread will flatten it','扩大价差的光伏终将使其趋平'] },
       ] },
-      { title:['Card D — Balancing & Reserves Signal','Card D — 平衡与备用信号'], live:false, blocks:[
+      { title:['Card C — Balancing & Reserves Signal','Card C — 平衡与备用信号'], live:false, blocks:[
         { t:'chip', cls:'serious', text:['Real but unevidenced — qualification and track record are missing','真实但缺乏证据 — 资格认证与业绩记录尚不具备'] },
         { t:'kpis', items:[
           { l:['aFRR capacity requirement','aFRR容量需求'], v:fmtN(M.balProducts[1].reqMW) + '<small> MW</small>', d:['capacity price ' + fmtC(M.balProducts[1].capEurMWh) + '/MW/h','容量价格' + fmtC(M.balProducts[1].capEurMWh) + '/MW/h'], b:['illus'] },
@@ -101,7 +97,7 @@ SEC_B.home = function (){
           '平衡市场是罗马尼亚储能模型寻找上行空间之处，也是其证据最薄弱之处。公开的容量与激活结果可观察，但可复现的优化器回测、项目的FCR/aFRR/mFRR预认证、以及电池的中标与激活业绩记录，大多并不具备。平衡收入的测算只应达到具体项目实际取得的证据层级 — 并须注意随着更多有能力的容量取得资格，aFRR容量价格已呈' + fmtPct(Math.abs(M.afrrCapSeries[5] / M.afrrCapSeries[0] - 1) * 100, 0) + '%的下行趋势。'],
           sig:['Underwrite to the evidence tier reached','按已达到的证据层级承销'] },
       ] },
-      { title:['Card E — Duration Signal','Card E — 时长信号'], live:false, blocks:[
+      { title:['Card D — Duration Signal','Card D — 时长信号'], live:false, blocks:[
         { t:'chip', cls:'warn', text:['2h core with a documented path to 4h','2小时为核心，并保留明确的4小时路径'] },
         { t:'kpis', items:[
           { l:['Duration-Need Index','时长需求指数'], v:dni + '<small> / 100</small>', d:dband.n, b:['calc','illus'] },
@@ -120,7 +116,7 @@ SEC_B.home = function (){
           '罗马尼亚是本样本中第4小时真正处于边际的唯一市场：净价值约' + fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k/MW/年，因为没有容量机制为时长付费，而补贴是增配MWh的唯一结构性理由。答案是2小时核心设计加上有据可查、已获许可并已安排融资的4小时增容路径 — 建设选择权而非能量，待价格形态或计划规则足以支撑时再行使。'],
           sig:['Build the option, not the energy','建设选择权，而非能量'] },
       ] },
-      { title:['Card F — Grid & Permitting Signal','Card F — 并网与许可信号'], badges:['illus'], live:false, blocks:[
+      { title:['Card E — Grid & Permitting Signal','Card E — 并网与许可信号'], badges:['illus'], live:false, blocks:[
         { t:'kpis', items:[
           { l:['Binding evidence','约束性证据'], v:L(['ATR + executed connection agreement','ATR + 已签并网合同']), d:['not an indicative capacity map','而非示意性容量地图'], b:['verify'] },
           { l:['Storage authorisations, one Feb 2026 meeting','2026年2月单次会议的储能许可'], v:fmtN(O.authFeb2026MW) + '<small> MW</small>', d:['authorisations are never operating MW','许可绝不等于投运MW'], b:['official'] },
@@ -135,7 +131,7 @@ SEC_B.home = function (){
       ] },
     ] },
 
-    { t:'card', title:['Card G — Underwriting rules','Card G — 承保规则'], badges:['illus'], live:false, blocks:[
+    { t:'card', title:['Card F — Underwriting rules','Card F — 承保规则'], badges:['illus'], live:false, blocks:[
       { t:'list', ol:true, items:[
         [['Require an ATR and an executed connection agreement as conditions precedent — never an indicative capacity map or an establishment authorisation.','以ATR及已签并网合同为先决条件 — 绝不接受示意性容量地图或设立许可。'],
          ['Applies when: connection evidence below executed-agreement standard','适用条件：并网证据未达已签合同标准']],

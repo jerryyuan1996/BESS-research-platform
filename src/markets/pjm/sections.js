@@ -51,8 +51,7 @@ SEC_B.home = function (){
     { t:'warn', text:M.seedWarn },
     { t:'card', mt:false, title:['Position at a glance','总体判断'], badges:['calc','illus'], live:false, blocks:[
       { t:'kpis', items:[
-        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow,
-          d:['evidence confidence ' + M.overall.confidence + '%', '证据置信度 ' + M.overall.confidence + '%'] },
+        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow },
         { l:['Capacity revenue, secured year','容量收入，已锁定年度'], v:kMW(69989) + '<small>/MW/yr</small>',
           d:[fmtC(O.braPrice) + '/MW-day × 365 × ' + O.elcc4h + '% ELCC — both published',
              '每MW每日' + fmtC(O.braPrice) + ' × 365 × ' + O.elcc4h + '% ELCC — 两项均已公布'], b:['official'] },
