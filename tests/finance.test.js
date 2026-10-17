@@ -3,10 +3,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { npvOf, irrOf, pvTail, annuity } from '../src/utils/finance.js';
+import { npvOf, irrOf, pvTail, annuity, irrSolutions } from '../src/utils/finance.js';
 
 const close = (a, b, tol = 1e-9) =>
   assert.ok(Math.abs(a - b) <= tol, `expected ${a} to be within ${tol} of ${b}`);
+
+test('supplemental expiry sensitivities expose multiple IRRs rather than choosing one',()=>{
+  const roots=irrSolutions([-100,230,-132]);
+  assert.equal(roots.length,2);close(roots[0],0.1);close(roots[1],0.2);
+});
 
 test('npvOf leaves the t=0 flow undiscounted', () => {
   close(npvOf(0.1, [100]), 100);

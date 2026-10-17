@@ -79,4 +79,7 @@ Thumbs.db
 .idea/
 
 .vercel
+release-records/
+test-results/
+playwright-report/
 .env*

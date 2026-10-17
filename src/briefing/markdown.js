@@ -78,6 +78,10 @@ function renderLang(b, lens, days, siteUrl, lang){
   lines.push('');
 
   lines.push(L('## What to build', '## 应建什么'), '');
+  const rates=Object.values(b.plays).map(p=>p.econ?.valuationRates).find(Boolean);
+  if(rates) lines.push(L(
+    `Valuation rates: secured ${percent(rates.secured)}, unawarded renewals ${percent(rates.renewal)}, merchant ${percent(rates.merchant)}. Exit is measured from operations.`,
+    `估值折现率：锁定收入${percent(rates.secured)}、未中标续约收入${percent(rates.renewal)}、市场化收入${percent(rates.merchant)}。退出年度从投运起算。`),'');
   for (const x of b.build) lines.push(`- ${t(x.line)}`);
   lines.push('');
 

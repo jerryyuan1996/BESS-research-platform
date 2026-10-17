@@ -28,6 +28,28 @@ export function irrOf(cfs){
   return (lo + hi) / 2;
 }
 
+/** Sign-change search for supplemental non-conventional cash-flow cases.
+ * Multiple roots are returned explicitly; never choose an arbitrary IRR.
+ */
+export function irrSolutions(cfs){
+  const roots=[];
+  let a=-0.9,fa=npvOf(a,cfs);
+  for(let i=1;i<=4096;i++){
+    const b=-0.9+2.9*i/4096,fb=npvOf(b,cfs);
+    if(fa*fb<0){
+      let lo=a,hi=b;
+      for(let k=0;k<80;k++){
+        const m=(lo+hi)/2;
+        if(npvOf(lo,cfs)*npvOf(m,cfs)<=0)hi=m;else lo=m;
+      }
+      const r=(lo+hi)/2;
+      if(!roots.some(x=>Math.abs(x-r)<1e-8))roots.push(r);
+    }
+    a=b;fa=fb;
+  }
+  return roots;
+}
+
 /** PV of arr[from..] discounted back to period `from` (first retained flow is one period out). */
 export const pvTail = (arr, r, from) =>
   arr.slice(from).reduce((a, v, i) => a + v / Math.pow(1 + r, i + 1), 0);

@@ -71,7 +71,7 @@
 
 import { runBaseCase, serviceCostPerMW, opexSeedPerMW } from '../comparison/engine.js';
 import { LIFE, LONG_LIFE_YEARS, MAINTAINED_FOM_SHARE } from '../comparison/assumptions.js';
-import { irrOf } from '../utils/finance.js';
+import { irrOf, irrSolutions } from '../utils/finance.js';
 
 const finite = (v) => typeof v === 'number' && Number.isFinite(v);
 
@@ -119,6 +119,39 @@ export function longLifeIrr(result, economics, years, maintained){
   return irrOf(capital.concat(extendedOperatingLine(result, economics, years, maintained)));
 }
 
+/** Separate expiry sensitivity; the analyst's continuation case stays intact.
+ * Beyond year 15, existing capacity is paid only to its actual declared expiry.
+ * No future award is assumed; merchant revenue and service costs continue.
+ */
+export function contractAwareLife(result, economics, years, merchantOnly = false){
+  const continuation=extendedOperatingLine(result,economics,years,false);
+  const primaryTerm=result.strategyId==='ltda' ? economics.ltda?.years || 0
+    : result.strategyId==='toll' ? economics.tollYears || 0
+    : result.strategyId==='cap' ? economics.securedContractYears ?? economics.contractYears ?? 0 : 0;
+  const additionalTerm=result.strategyId==='toll' && economics.tollAdditiveWithCapacity ? economics.contractYears || 0 : 0;
+  const secY=[],aucY=[];
+  const fx=result.fxRate;
+  for(let y=1;y<=years;y++) {
+    if(y<=LIFE){secY.push(result.secY[y-1]);aucY.push(result.aucY[y-1]);continue;}
+    const fixedAt15=result.secY[LIFE-1]+result.aucY[LIFE-1];
+    let secured=0;
+    if(!merchantOnly){
+      const primary=result.strategyId==='ltda' ? economics.ltda?.payment || 0
+        : result.strategyId==='toll' ? economics.toll || 0
+        : economics.securedContracted ?? economics.contracted ?? 0;
+      if(y<=primaryTerm)secured+=primary*fx;
+      if(y<=additionalTerm)secured+=(economics.contracted || 0)*fx;
+    }
+    continuation[y-1]+=secured-fixedAt15;
+    secY.push(secured);aucY.push(0);
+  }
+  const capital=result.holdFlows.slice(0,result.holdFlows.length-LIFE);
+  const flows=capital.concat(continuation);
+  const roots=irrSolutions(flows);
+  return {irr:roots.length===1?roots[0]:null,irrRoots:roots,flows,secY,aucY,
+    tailPolicy:merchantOnly?'merchant-only-after-year-15':'contract-expiry-no-renewal'};
+}
+
 /**
  * The long-life view for one market.
  *
@@ -140,6 +173,8 @@ export function longLife(market){
     years,
     fading: years === LIFE ? result.irrHold : longLifeIrr(result, economics, years, false),
     maintained: longLifeIrr(result, economics, years, true),
+    contractExpiry: contractAwareLife(result,economics,years).irr,
+    merchantOnly: contractAwareLife(result,economics,years,true).irr,
   }));
   return {
     withheld: false,

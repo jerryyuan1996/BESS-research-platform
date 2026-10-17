@@ -62,6 +62,11 @@ function when(expected){
 
 function theCall(marketId, view, lens, rows){
   const triggers = HOME_BRIEFING.triggers;
+  const rates = rows.map(r => playOf(marketId, r.play)?.econ?.valuationRates).find(Boolean);
+  const rateText = rates ? L([
+    `value per MW at ${percent(rates.secured)} on secured, ${percent(rates.renewal)} on unawarded renewals and ${percent(rates.merchant)} on merchant revenue.`,
+    `每MW价值按锁定收入${percent(rates.secured)}、未中标续约收入${percent(rates.renewal)}、市场化收入${percent(rates.merchant)}折现。`,
+  ]) : L(['Valuation rates unavailable for unpriced cases.', '未定价情景无可用折现率。']);
   const callLines = rows.map(r => {
     const p = playOf(marketId, r.play);
     const next = r.next ? triggers[r.next] : null;
@@ -81,8 +86,8 @@ function theCall(marketId, view, lens, rows){
     thesis ? h('p', { class: 'bf-call-text mb-thesis' }, L(thesis)) : null,
     ...callLines,
     h('div', { class: 'bf-asof' }, L(['Figures built ', '数据生成于']), L(dateText(HOME_BRIEFING.builtAt.slice(0, 10))),
-      L([`: unlevered, exit year ${HOME_BRIEFING.exitYear}, value per MW at 7.5% on secured and 11.5% on merchant revenue.`,
-         `：无杠杆，第${HOME_BRIEFING.exitYear}年退出，每MW价值按锁定收入7.5%、市场化收入11.5%折现。`])));
+      L([`: unlevered, exit in operating year ${HOME_BRIEFING.exitYear}; `,
+         `：无杠杆，投运后第${HOME_BRIEFING.exitYear}年退出；`]), rateText));
 }
 
 /* ---- what to build --------------------------------------------------------------- */

@@ -74,7 +74,10 @@ const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
  * who writes a scout card.
  */
 const BUDGET = {
-  entry: 222,
+  // 2026-10-17: Investment Lab now loads on its route. Move 67 kB of
+  // allowance from the entry to shared dependencies, keeping the combined
+  // entry + shared cap at 326 kB. Measured entry 145.8, shared 162.45.
+  entry: 155,
 
   /* THE HOME PAGE'S FIRST VIEW: the entry chunk plus everything the verdict
      board loads — the board itself and the method layer (anchors, investor
@@ -107,7 +110,7 @@ const BUDGET = {
      the entry chunk, which carries every market's source register and gained
      the sources opened for the ledgers and grades; the projection itself
      added 0.4. */
-  home: 258,
+  home: 195,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -186,7 +189,7 @@ const BUDGET = {
      a duration say what the Brief says (guided-experience plan, PR 7). Its
      chunk is 1.63 kB gzipped. Measured 102.2 after, with the cards the page
      used to delete at runtime now gone from source. */
-  sharedTotal: 104,
+  sharedTotal: 171,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {

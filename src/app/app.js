@@ -15,7 +15,6 @@ import { applyTheme } from './theme.js';
 import { currentRoute, onRouteChange, startRouter, navigate } from './router.js';
 import { markets, bySlug } from '../markets/registry.js';
 import { renderHome } from '../home/homePage.js';
-import { renderInvestmentLabPage } from '../home/investmentLabPage.js';
 import { renderMarketPage } from '../markets/marketPage.js';
 import { renderDataStatus } from '../live/dataStatusPage.js';
 import { marketNav } from '../components/navigation.js';
@@ -35,6 +34,24 @@ function renderNotFound(app, route){
 
 /* The Returns page's module, once fetched, so a re-render draws at once. */
 let returnsPage = null;
+
+let labPage = null;
+function renderLab(app){
+  if(labPage)return void labPage.renderInvestmentLabPage(app);
+  const holder=h('div',{},h('p',{class:'note'},L(['Loading the Investment Lab…','正在加载投资测算…'])));
+  app.append(holder);
+  import('../home/investmentLabPage.js').then(module=>{
+    labPage=module;
+    if(!holder.isConnected)return;
+    app.innerHTML='';
+    module.renderInvestmentLabPage(app);
+  }).catch(error=>{
+    console.error('[investment-lab] page failed to load:',error);
+    if(!holder.isConnected)return;
+    app.innerHTML='';
+    renderNotFound(app,{path:'/investment-lab'});
+  });
+}
 
 function renderReturns(app){
   if (returnsPage) return void returnsPage.renderReturnsPage(app);
@@ -194,7 +211,7 @@ export function render(){
   if (route.name === 'changes') return void renderChanges(app, route);
   if (route.name === 'scout') return void renderScout(app);
   if (route.name === 'desk') return void renderDesk(app);
-  if (route.name === 'investmentLab') return void renderInvestmentLabPage(app);
+  if (route.name === 'investmentLab') return void renderLab(app);
   if (route.name === 'data') return void renderDataStatus(app);
   if (route.name === 'news') return void renderNewsPage(app);
   renderNotFound(app, route);

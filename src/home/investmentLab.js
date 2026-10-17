@@ -41,6 +41,8 @@ import { renderProjectDebt } from '../components/debtPanel.js';
 import { waterfall } from '../charts/index.js';
 import { fmtN, fmt1, fmtPct, fmtIRR, fmtIRRor, fmtX, fmtUSDk } from '../utils/formatting.js';
 import { runCase } from '../comparison/engine.js';
+import { createCaseRecord, entryPriceAtHurdle } from '../comparison/caseRecord.js';
+import { PROJECT_EVIDENCE_GATES, projectEvidenceStatus } from '../comparison/projectEvidence.js';
 import { supportedStrategies, baseStrategy, strategyById } from '../comparison/strategies.js';
 import { sizeProjectDebt, riskClassFor } from '../economics/projectDebt.js';
 import { withOverrides, conventionsWith, movedFields } from '../comparison/scenario.js';
@@ -450,6 +452,58 @@ function renderOutputs(parent, market, seedMarket, strategyId, exitYear, convent
       return { label: [label, label], value: k.querySelector('.val')?.textContent?.trim() ?? '' };
     }).filter(o => o.label[0] && o.value))));
   c.append(kpis);
+
+  const hurdle = h('input', {type:'number',min:'0',max:'100',step:'0.5',
+    value:homeState.labHurdle === null ? '' : String(homeState.labHurdle),
+    'aria-label':L(['Your unlevered return hurdle (%)','你的无杠杆回报门槛（%）']),
+    onchange:event => {
+      const value=event.target.value.trim(),number=Number(value);
+      homeState.labHurdle=value!==''&&Number.isFinite(number)&&number>=0&&number<=100?number:null;
+      requestRender();
+    }});
+  c.append(h('p', {class:'note'}, h('label',{},L(['Your unlevered return hurdle (%) ','你的无杠杆回报门槛（%） ']),hurdle)));
+  const price=entryPriceAtHurdle(now,homeState.labHurdle===null?null:homeState.labHurdle/100);
+  if(price) c.append(h('div',{class:'note'},L([
+    `At a ${fmtPct(price.hurdle*100,1)} unlevered hurdle, the maximum additional upfront premium is ${fmtUSDk(price.entryPremiumPerMW)}/MW. A negative figure means the modelled cost needs a discount. Construction spending is unchanged; the premium is paid at investment.`,
+    `按${fmtPct(price.hurdle*100,1)}无杠杆门槛，投资时可额外支付的最高溢价为每MW ${fmtUSDk(price.entryPremiumPerMW)}。负数表示需在模型成本上折价。建设支出时间不变，溢价在投资时支付。`,
+  ])));
+  const proceeds=now.cumOp+now.exitVal;
+  c.append(h('p',{class:'cap'},L(['Exit value as a share of total proceeds: ','退出价值占总收入：']),
+    proceeds>0?fmtPct(now.exitVal/proceeds*100,1):'—'));
+  const saveStatus=h('span',{role:'status'});
+  c.append(h('button',{class:'btn',onclick:async()=>{
+    try {
+      let release=null;
+      try { const response=await fetch('/release.json');if(response.ok)release=await response.json(); } catch {}
+      const record=createCaseRecord({market:seedMarket,strategyId,exitYear,overrides,
+        conventions:debt?conventions:null,modelCommit:typeof __MODEL_COMMIT__==='string'?__MODEL_COMMIT__:'local-unavailable',
+        dataVintages:release?.data || null,projectEvidence:homeState.labProjectEvidence[market.manifest.id] || {}});
+      record.entryPrice=price;
+      const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json'}));
+      const link=document.createElement('a');link.href=url;link.download=`${market.manifest.id}-investment-case.json`;link.click();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+      saveStatus.textContent=L(['Case saved with inputs, cash flows, financing and unresolved gates.','已保存假设、现金流、融资口径与未解决事项。']);
+    } catch {saveStatus.textContent=L(['The case could not be saved. Please try again.','未能保存，请重试。']);}
+  }},L(['Save investment case','保存投资情景'])),saveStatus);
+  const evidence=homeState.labProjectEvidence[market.manifest.id] ||= {};
+  const unresolved=projectEvidenceStatus(evidence).filter(g=>g.status==='unresolved').length;
+  const gates=h('details',{},h('summary',{},L([`Project evidence · ${unresolved} unresolved`,`项目证据 · ${unresolved}项未解决`])),
+    h('p',{class:'cap'},L(['Document references are saved only in your downloaded case. A reference records your review; it is not independent verification. Missing evidence stays unresolved and changes no market score.',
+      '资料索引只保存在你下载的情景中。提供索引记录的是你的复核，不代表独立验证。缺少证据的事项保持未解决，不改变市场评分。'])));
+  for(const gate of PROJECT_EVIDENCE_GATES){
+    const item=evidence[gate.id] ||= {status:'unresolved',sourceRef:''};
+    const update=()=>{
+      item.status=status.value;item.sourceRef=reference.value;
+      const missing=projectEvidenceStatus(evidence).filter(g=>g.status==='unresolved').length;
+      gates.querySelector('summary').textContent=L([`Project evidence · ${missing} unresolved`,`项目证据 · ${missing}项未解决`]);
+    };
+    const status=h('select',{'aria-label':L(gate.label),onchange:update},
+      ...[['unresolved',['Unresolved','未解决']],['provided',['Evidence provided','已提供证据']],['not-applicable',['Not applicable, with reason','不适用，需说明']]].map(([value,label])=>
+        h('option',{value,...(item.status===value?{selected:''}:{})},L(label))));
+    const reference=h('input',{type:'text',value:item.sourceRef,'aria-label':L([`${gate.label[0]} reference or reason`,`${gate.label[1]}资料或理由`]),onchange:update});
+    gates.append(h('p',{},h('label',{},L(gate.label),' ',status,' ',reference)));
+  }
+  c.append(gates);
 
   /* The $1M recovery path, on the same basis as the cockpit's waterfall so the
      two can be read side by side. */
