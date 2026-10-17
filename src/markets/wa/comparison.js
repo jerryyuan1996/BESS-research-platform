@@ -342,8 +342,8 @@ export const comparison = {
   narrative: {
     archetype: ['200 MW · 7h · RCM-led', '200MW · 7小时 · RCM主导'],
     thesis: [
-      'Capacity-led islanded market, built one hour past the obligation rather than two. The mechanism now prices a six-hour battery; the seventh hour is the buffer that defends the credit, and the eighth was capex the market does not pay for.',
-      '容量主导的孤立市场，按义务时长加一小时而非加两小时建设。机制现按6小时电池定价；第7小时是保住容量信用的缓冲，第8小时则是市场不予付费的资本开支。',
+      'Capacity-led islanded market. The mechanism prices a six-hour battery; the seventh hour is the buffer that defends the credit, and on the supplier-quoted DC block the eighth now pays for itself — eight hours is the engine’s best design, at a lower hold IRR but more value per MW.',
+      '容量主导的孤立市场。机制按6小时电池定价；第7小时是保住容量信用的缓冲，而按供应商报价的直流电池舱计算，第8小时已能自负成本 — 八小时是引擎的最佳设计，持有期IRR较低但每MW价值更高。',
     ],
     pipelineRatio: '~2.4×',
   },

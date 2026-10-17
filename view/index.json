@@ -335,7 +335,7 @@
       "route": "ready-to-build",
       "asOf": "2026-10-12",
       "reviewBy": "2027-03-31",
-      "play": "pl-cap-2h"
+      "play": "pl-cap-1h"
     },
     "foreignFirstTimer": {
       "call": "opportunistic",
@@ -389,7 +389,7 @@
       "route": "co-invest",
       "asOf": "2026-10-10",
       "reviewBy": "2027-03-31",
-      "play": "wa-cap-7h"
+      "play": "wa-cap-8h"
     },
     "foreignFirstTimer": {
       "call": "not-accessible",
