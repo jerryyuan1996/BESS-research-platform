@@ -299,12 +299,13 @@ export function buildSections(api){
         num: [1, 2],
         rows: M.fleet.announced.map(p => [{ b: p.name }, fmtN(p.mw), fmtN(p.mwh), p.status]) },
       { t: 'note', b: ['Announcements, not a register. ', '公告而非登记册。'], text: [
-        'Fingrid publishes storage capacity as an aggregate, not a project-level register, so this table is announcements. The Statkraft/OX2 sites rest on a named counterparty agreement; the Nivala and Uusikaupunki rows rest on trade press, and the Nivala project Foresight bought in October 2026 is a 100 MW / 400 MWh four-hour design, larger than the trade-press figure here.',
-        'Fingrid公布的是储能容量汇总值而非项目级登记册，故本表为公告汇总。Statkraft/OX2场址有具名交易对手协议支撑；Nivala与Uusikaupunki仅依据行业媒体报道，且Foresight于2026年10月收购的Nivala项目为100MW/400MWh四小时设计，规模大于此处的媒体数据。',
+        'Fingrid publishes storage capacity as an aggregate, not a project-level register, so this table is announcements. The Statkraft/OX2 sites rest on a named counterparty agreement and Nivala on its October 2026 sale to Foresight; the Uusikaupunki row rests on trade press and is the weakest citation on this page.',
+        'Fingrid公布的是储能容量汇总值而非项目级登记册，故本表为公告汇总。Statkraft/OX2场址有具名交易对手协议支撑，Nivala依据其2026年10月出售给Foresight的交易；Uusikaupunki仅依据行业媒体报道，属本页最弱来源。',
       ] },
       { t: 'src', src: SRC.storageFleet, use: ['Connected storage aggregate', '已并网储能汇总'] },
       { t: 'src', src: SRC.statkraftOx2, use: ['Statkraft/OX2 agreement', 'Statkraft/OX2协议'] },
-      { t: 'src', src: SRC.tradePress, use: ['Nivala and Uusikaupunki — the weakest citations on this page', 'Nivala与Uusikaupunki — 本页最弱来源'] },
+      { t: 'src', src: SRC.dealForesight, use: ['Nivala, as sold in October 2026', 'Nivala，2026年10月出售时的规模'] },
+      { t: 'src', src: SRC.tradePress, use: ['Uusikaupunki — the weakest citation on this page', 'Uusikaupunki — 本页最弱来源'] },
     ] },
   ] });
 

@@ -254,8 +254,13 @@ const BUDGET = {
 
        RAISED FROM 19 TO 23 when the briefing content was applied (guided-
        experience plan, 2026-10-16): eighteen plays, fifteen theses and the ruled
-       calls now ride in every market's projection. Measured 21.63. */
-    'verdict-board': 23,
+       calls now ride in every market's projection. Measured 21.63.
+
+       RAISED FROM 23 TO 24 (2026-10-17) with the supplier quotation and
+       Finland: two score notes, restated theses and plays, Finland's priced
+       play and the WA and Poland plays moved to the engine's best design.
+       Measured 23.23. */
+    'verdict-board': 24,
     /* The briefing that opens the home page since the guided-experience plan
        (PR 4): the six answers and the home projection of the briefing — every
        investor's shortlist, the plays priced by the engine at build time, the
@@ -295,8 +300,12 @@ const BUDGET = {
 
        RAISED FROM 64 TO 72 with the supplier quotation (2026-10-17): 30 analyst
        lines — fourteen re-derived asset-return grades, two score notes and
-       fourteen restated plays, calls and theses — took it to 68.8. */
-    'changes': 72,
+       fourteen restated plays, calls and theses — took it to 68.8.
+
+       RAISED FROM 72 TO 76 with Finland's entry to the engine: the grades
+       re-ranked over fifteen, Finland's thesis and floor play, and the WA and
+       Poland play moves, 441 lines in all. Measured 73.43. */
+    'changes': 76,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four

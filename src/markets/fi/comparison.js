@@ -282,7 +282,8 @@ export const comparison = {
   /* Two hours, not the four or six other markets reference. A Finnish battery is
      built for fast reserves and short-cycle spread, and the announced fleet is
      overwhelmingly 2-hour: Statkraft/OX2's two units are 110 MW/220 MWh and
-     125 MW/250 MWh, Nivala 70 MW/140 MWh, Uusikaupunki 50 MW/100 MWh. */
+     125 MW/250 MWh, Uusikaupunki 50 MW/100 MWh. Nivala, as sold in October 2026,
+     is a 100 MW/400 MWh four-hour build — the first sign of longer duration. */
   archetype: { powerMW: 50, durationHours: 2 },
 
   capabilities: {
@@ -323,10 +324,10 @@ export const comparison = {
   ]),
 
   narrative: {
-    archetype: ['50 MW · 2h · reserve-led', '50MW · 2小时 · 备用主导'],
+    archetype: ['50 MW · 2h · trading under a floor', '50MW · 2小时 · 保底下的交易'],
     thesis: [
-      'Europe\'s clearest fast-reserve market, and the clearest test of whether a reserve-led thesis survives its own buildout. Wind is the swing producer, the day-ahead market moved to 15-minute settlement in October 2025, and the strategic reserve has been dormant since 2022 because Olkiluoto 3 removed the adequacy problem. What is not yet answerable is the price path: fast-reserve obligations total about 795 MW while connected storage passed 1,050 MW in February 2026, so the revenue line is withheld rather than assumed.',
-      '欧洲最典型的快速备用市场，也是"备用主导"投资逻辑能否经受住自身装机扩张考验的最清晰样本。风电为边际调节电源，日前市场已于2025年10月转为15分钟结算，而战略备用自2022年起处于休眠状态 — 原因是Olkiluoto 3核电机组投运后充裕度问题已消失。尚无法回答的是价格路径：已并网储能于2026年2月已超过1,050MW，而快速备用需求合计约795MW — 这构成强烈的饱和预警，而非已测得的供给过剩，故收入项暂缓发布而非直接假设。',
+      'Europe\'s clearest fast-reserve market, and the clearest test of whether a reserve-led thesis survives its own buildout. Wind is the swing producer, the day-ahead market moved to 15-minute settlement in October 2025, and the strategic reserve has been dormant since 2022 because Olkiluoto 3 removed the adequacy problem. Connected storage passed 1,050 MW in February 2026 against about 795 MW of fast-reserve obligation and FCR-N’s annual auction cleared at zero, so reserves are priced at what the 2026 annual market paid across the fleet, trading carries the case, and a negotiated floor secures half of it for seven years.',
+      '欧洲最典型的快速备用市场，也是"备用主导"投资逻辑能否经受住自身装机扩张考验的最清晰样本。风电为边际调节电源，日前市场已于2025年10月转为15分钟结算，而战略备用自2022年起处于休眠状态 — 原因是Olkiluoto 3核电机组投运后充裕度问题已消失。2026年2月已并网储能超过1,050MW，而快速备用需求合计约795MW，FCR-N年度拍卖以零出清，因此备用收入按2026年度市场在全部储能间分摊的水平计价，交易支撑投资逻辑，协商保底锁定其一半、为期七年。',
     ],
     /* PIPELINE TO OPERATING, which is what this field means everywhere else on
        the platform — not the saturation ratio, which an earlier draft put here.

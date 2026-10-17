@@ -185,10 +185,10 @@ export const SRC = {
   },
 
   tradePress: {
-    file: 'Trade press — Nivala and Uusikaupunki project reports',
+    file: 'Trade press — Uusikaupunki project report',
     status: ['Verify against current documents', '须以现行文件核验'], provenance:{authority:'unclassified',publication:'final',availability:'public',verification:'requires-reverification'},
     date: '2026',
-    cy: 'Nivala 70 MW/140 MWh and Uusikaupunki 50 MW/100 MWh, both reported for 2026. NOT confirmed against a developer or operator statement — these two carry the weakest evidence on this page and are shown because omitting known projects would understate the fleet, not because the citation is strong.',
+    cy: 'Uusikaupunki 50 MW/100 MWh, reported for 2026 (Nivala, which this record carried at 70 MW/140 MWh, is now sourced to its October 2026 sale). NOT confirmed against a developer or operator statement — this carries the weakest evidence on this page and are shown because omitting known projects would understate the fleet, not because the citation is strong.',
     url: 'https://www.energy-storage.news/tag/finland/',
     authority: 'third-party',
     historical: 'n/a',
@@ -385,7 +385,7 @@ export const SRC = {
     file: 'Renewables Now — Foresight acquires 100-MW/400-MWh BESS project in Finland from FRV',
     status: ['Third party', '第三方'], provenance:{authority:'third-party',publication:'final',availability:'public',verification:'verified'},
     date: '15 Oct 2026',
-    cy: 'A 100 MW / 400 MWh four-hour project at Nivala, bought by Foresight from FRV, for wholesale, intraday and ancillary markets.',
+    cy: 'Nivala BESS, 100 MW / 400 MWh, four hours, fully permitted, bought by Foresight through its FEIP II fund from FRV; commercial operation expected in H2 2028; for wholesale, intraday and ancillary markets.',
     url: 'https://renewablesnow.com/news/foresight-acquires-100-mw400-mwh-bess-project-in-finland-from-frv-1303040/',
     authority: 'observed', historical: 'n/a — a single transaction', forecast: 'None', frequency: 'One-off',
     format: 'HTML', machineReadable: 'No', automation: 'C — a transaction is read, not ingested',
