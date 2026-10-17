@@ -145,7 +145,9 @@ test('base strategies: capacity-backed by default, overridden where a market say
        price, so merchant is what remains. It reaches that answer differently —
        Finland HAS a mechanism, dormant since 2022 — but the route available to
        a sponsor is the same one. */
-    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap', 'mer']);
+    /* Finland's last entry became 'toll' on 2026-10-17: its fund play is the
+       negotiated optimiser floor, modelled as a floor (tollIsFloor). */
+    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap', 'toll']);
 
   // An override is only honoured when the market actually supports the route.
   for (const m of markets){

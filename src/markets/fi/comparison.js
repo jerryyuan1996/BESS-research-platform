@@ -297,6 +297,10 @@ export const comparison = {
      prices — still decides whether the seed is too low. */
   engineReady: true,
 
+  /* The negotiated floor is the route the fund play takes (the analyst's
+     instruction of 2026-10-17), so it is the case the cockpit models. */
+  baseStrategy: 'toll',
+
   /* The design sweep's response to duration. Capture is Romania's 2-hour-
      referenced seed curve, the platform's other short-duration merchant market,
      until a Finnish 15-minute backtest replaces it (gate FI-4). Reserves are
