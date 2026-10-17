@@ -56,6 +56,7 @@ SEC_B.home = function (){
       { t:'band-story', b:['Core storyline','核心叙事'],
         text:['GB moved from a thermal-backed, energy-only system with a bolt-on Capacity Market to a renewables-led system where batteries are structurally required — but the fleet was built short, the services markets it was built for are saturated, and the capacity price has fallen by more than half. The investment case now depends on connection certainty, realised dispatch, duration and contracted revenue rather than on a generic "battery scarcity" thesis.',
               '英国已从以火电支撑、单一电能量并附加容量市场的系统，转向以新能源为主导、储能成为结构性必需的系统；但存量机组以短时为主，其所服务的辅助服务市场已经饱和，容量价格亦下跌逾半。当前投资逻辑取决于并网确定性、实际调度表现、时长与合同化收入，而非笼统的“电池稀缺”。'] },
+      { t:'p', text:['Target COD window: ' + M.overall.codWindow, '目标投运窗口：' + M.overall.codWindow] },
       { t:'walk', items:[
         ['01', ['Overview','总览'], ['What is the house view today?','当前总体判断是什么？'], 'home'],
         ['02', ['Market evolution','市场演进'], ['Why did BESS become necessary — and what changed after entry?','为何储能成为必需？进入后发生了什么？'], 'story'],
@@ -71,13 +72,7 @@ SEC_B.home = function (){
 
     { t:'g2', cards:[
       // ---- Card A ----
-      { title:['Card A — Overall GB Storage Signal','Card A — 英国储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
-          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
-        { t:'p', text:M.overall.rationale },
-      ] },
-      // ---- Card B ----
-      { title:['Card B — Capacity Market Signal','Card B — 容量市场信号'], live:false, blocks:[
+      { title:['Card A — Capacity Market Signal','Card A — 容量市场信号'], live:false, blocks:[
         { t:'chip', cls:'serious', text:['Weakening — clearing price down 58% from the 27/28 peak','走弱 — 出清价较27/28峰值下跌58%'] },
         { t:'kpis', items:[
           { l:['T-4 clearing price (DY ' + O.t4DY + ')','T-4出清价（交付年' + O.t4DY + '）'], v:'£' + fmt1(O.t4Price) + '<small>/kW/yr</small>',
@@ -93,8 +88,8 @@ SEC_B.home = function (){
           '在2小时折减系数' + fmtPct(derate2 * 100) + '下，100MW铭牌电池仅就' + fmtN(100 * derate2) + 'MW获得容量收入。乘以£' + fmt1(O.t4Price) + '/kW/年，容量市场约贡献' + fmtCk(cmPerNameplate2h) + '/MW/年 — 对债务规模有意义，但远不足以独立支撑。由此得出两条承销原则：（a）绝不以铭牌MW测算容量收入；（b）须采用实际将参与拍卖年份的折减表，因为2小时系数在一个年份内即由0.25降至0.22，且每年对短时资产更不利。'],
           sig:['De-rated MW, never nameplate','折减MW，绝非铭牌'] },
       ] },
-      // ---- Card C ----
-      { title:['Card C — Wholesale & Balancing Signal','Card C — 批发与平衡机制信号'], live:false, blocks:[
+      // ---- Card B ----
+      { title:['Card B — Wholesale & Balancing Signal','Card B — 批发与平衡机制信号'], live:false, blocks:[
         { t:'chip', cls:'warn', text:['Largest revenue line, but execution-dependent and saturating','最大收入项，但取决于执行且正在饱和'] },
         { t:'kpis', items:[
           { l:['Realised revenue, 2h (TTM Apr 2026)','实际收入，2小时（截至2026年4月12个月）'], v:fmtCk(M.bmRevenueByDur[2]) + '<small>/MW/yr</small>', d:['1h: ' + fmtCk(M.bmRevenueByDur[1]),'1小时：' + fmtCk(M.bmRevenueByDur[1])], b:['tp'] },
@@ -109,8 +104,8 @@ SEC_B.home = function (){
           '有两个数字决定这条收入线是否可融资。优秀优化商（' + fmtPct(M.realisedRatio.strong * 100, 0) + '）与落后者（' + fmtPct(M.realisedRatio.weak * 100, 0) + '）之间27个百分点的差距，在2小时资产上约值' + fmtCk(M.bmRevenueByDur[2] * (M.realisedRatio.strong - M.realisedRatio.weak)) + '/MW/年 — 高于整个容量市场的贡献。而' + fmtPct(M.skipRate * 100, 0) + '的跳过率意味着三分之一在经济序列内的平衡指令从未下达，因此理论调度模型系统性高估收入。应以第三方实际业绩基准测算，并设置降费或终止权，而非依赖模型最优值。'],
           sig:['Optimiser choice > capacity revenue','优化商选择重于容量收入'] },
       ] },
-      // ---- Card D ----
-      { title:['Card D — System Services Signal','Card D — 系统服务信号'], live:false, blocks:[
+      // ---- Card C ----
+      { title:['Card C — System Services Signal','Card C — 系统服务信号'], live:false, blocks:[
         { t:'chip', cls:'critical', text:['Supplementary revenue only — do not underwrite as core','仅作补充收益 — 不得作为核心测算基础'] },
         { t:'kpis', items:[
           { l:['Dynamic Containment clearing price','动态遏制出清价'], v:'£' + fmt1(2.90) + '<small>/MW/h</small>', d:['−25% ' + L(T.yoy),'同比−25%'], cls:'down', b:['official'] },
@@ -122,8 +117,8 @@ SEC_B.home = function (){
           '电池已占动态响应类产品成交量的97–99%，而单位价格每年下跌25–30%。“赢得市场”与“从市场获利”已经分离：仅动态遏制一项，合格供给即为需求的4.5倍，价格由边际认证MW决定，而后者严重过剩。唯一仍有定价能力的是备用类产品（BR/QR/SR，同比−8%至−12%），因其要求持续能量而非瞬时功率。系统服务测算不得高于过去12个月单位收入，且绝不作为增配MW的理由。'],
           sig:['Volume share ≠ revenue','成交份额≠收入'] },
       ] },
-      // ---- Card E ----
-      { title:['Card E — Duration Signal','Card E — 时长信号'], live:false, blocks:[
+      // ---- Card D ----
+      { title:['Card D — Duration Signal','Card D — 时长信号'], live:false, blocks:[
         { t:'chip', cls:'good', text:['Strengthening — but the reward is de-rating, not spread','走强 — 但回报来自折减系数而非价差'] },
         { t:'kpis', items:[
           { l:['Duration-Need Index','时长需求指数'], v:dni + '<small> / 100</small>', d:dband.n, b:['calc','illus'] },
@@ -143,8 +138,8 @@ SEC_B.home = function (){
           '这是唯一走强的信号，且在英国是通过折减系数表而非更宽价差来支付的。由2小时增至4小时，折减后容量约翻倍（' + fmtPct(derate2 * 100) + '→' + fmtPct(derate4 * 100) + '），而实际市场化收入仅上升' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + '。因此第4小时是容量市场与韧性决策，而非套利决策。存量平均' + fmt1(O.fleetAvgHours) + '小时，对应P90事件时长' + fmt1(M.events.highPrice.p90) + '小时，短时存量机组无法跟随 — 这正是新建项目的优势所在。'],
           sig:['Hours are paid by de-rating, not spread','小时数由折减系数付费，而非价差'] },
       ] },
-      // ---- Card F ----
-      { title:['Card F — Grid Connection Signal','Card F — 并网风险信号'], badges:['illus'], live:false, blocks:[
+      // ---- Card E ----
+      { title:['Card E — Grid Connection Signal','Card E — 并网风险信号'], badges:['illus'], live:false, blocks:[
         { t:'kpis', items:[
           { l:['Gate status','Gate状态'], v:'Gate 2', d:['offers phased through March 2027','要约分阶段发出至2027年3月'], b:['official'] },
           { l:['Binding evidence','约束性证据'], v:L(['Tranche + TO/DNO programme','批次+输配电运营商工程计划']), d:['not the historic connection date','而非历史并网日期'] },
@@ -159,8 +154,8 @@ SEC_B.home = function (){
       ] },
     ] },
 
-    // ---- Card G ----
-    { t:'card', title:['Card G — Underwriting rules','Card G — 承保规则'], badges:['illus'], live:false, blocks:[
+    // ---- Card F ----
+    { t:'card', title:['Card F — Underwriting rules','Card F — 承保规则'], badges:['illus'], live:false, blocks:[
       { t:'list', ol:true, items:[
         [['Base Capacity Market revenue on the auction-specific de-rated MW, never on nameplate MW.','容量市场收入应基于对应拍卖的折减后MW，绝不使用铭牌MW。'],
          ['Applies when: CM revenue included in the base case','适用条件：基准情景包含容量市场收入']],
