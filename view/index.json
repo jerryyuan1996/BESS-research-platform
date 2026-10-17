@@ -90,9 +90,9 @@
     "infraFund": {
       "call": "opportunistic",
       "route": "ready-to-build",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-17",
       "reviewBy": "2027-03-31",
-      "play": "fi-mer-2h"
+      "play": "fi-toll-2h"
     },
     "foreignFirstTimer": {
       "call": "build-position",

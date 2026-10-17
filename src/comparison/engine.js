@@ -322,6 +322,15 @@ function runLegacyCase(market, strategyId, exitYear, options){
        they are empty is as wrong as pretending they are contracted. */
     marketFrom = e.tollRevertsToMerchant ? cy + 1 : LIFE + 1;
     if (!e.tollRevertsToMerchant){ merch = 0; svc = 0; }
+    /* A FLOOR, not a toll (`tollIsFloor`). An optimiser or offtaker floor pays
+       the owner at least `toll` a year for its tenor and leaves the market
+       revenue above it with the owner, so the year's revenue is the larger of
+       the two. The floor is the secured line and only the excess is market
+       revenue — which is how the secured share counts a floor at its own level
+       (the analyst's ruling of 2026-10-10, src/governance/investability.js).
+       A grant is not zeroed: a floor is a hedge bought from an optimiser, not
+       support from the state. */
+    if (e.tollIsFloor){ marketFrom = 1; grant = cap0.grant; }
     note = e.tollNote || null;
   } else if (strategyId === 'ltda'){
     /* A long-term award on a market whose capacity is NOT re-auctioned annually.
@@ -361,9 +370,10 @@ function runLegacyCase(market, strategyId, exitYear, options){
        factor is exactly 1 and the line is the one the baseline pins. */
     const c = ((y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0)) * yearFactor(options, 'capacity', y);
     const d = degradationFactor(e, y);
-    const mm = y >= marketFrom
+    let mm = y >= marketFrom
       ? (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y)
       : 0;
+    if (strategyId === 'toll' && e.tollIsFloor && y <= cy) mm = Math.max(0, mm - c);
     const sv = serviceCostPerMW(e, y) * fx;
     capY.push(c); mchY.push(mm); svcY.push(sv); eb.push(c + mm - opex - sv - lifecycleCost(e, capexG, fx, y));
   }

@@ -30,9 +30,8 @@ export const manifest = {
   locale: 'fi-FI',
   timezone: 'Europe/Helsinki',
 
-  /* Not "Selective" and not "Invest". The structure is understood and the
-     per-MW economics are not yet, which is a different state from either, and
-     `engineReady: false` is the machine-readable half of the same statement. */
+  /* Priced in the engine since 2026-10-17: reserves at the 2026 annual
+     clearing spread across the fleet, and the negotiated floor as a floor. */
 
   color: 'var(--s2)',
   /* The second visual channel. See the header, and src/home/seriesStyle.js for
@@ -41,15 +40,13 @@ export const manifest = {
 
   asOf: '2026-08-18',
   dataDate: '2026 obligation period; FCR yearly market for delivery year 2026',
-  /* Names what the model IS, including the part it declines to model. A version
-     string is an identifier for a set of choices, and "services withheld" is one
-     of the choices — a later version that publishes a reserve level must not be
-     mistakable for this one. */
-  modelVersion: 'fi-1.0-reserve-led-services-withheld',
+  /* Names what the model IS. 1.0 withheld the reserve line; 2.0 prices it at
+     the 2026 annual clearing and models the negotiated floor. */
+  modelVersion: 'fi-2.0-reserve-floor-priced',
   lastVerified: '2026-08-18',
   sourceHealth: [
-    'Structure verified against Fingrid and the Energy Authority on 2026-08-18. Per-MW economics are not yet complete — the market is deliberately excluded from the allocation engine.',
-    '市场结构已于2026年8月18日依据Fingrid及能源局资料核验。每MW经济性尚未完成 — 该市场已有意排除在配置引擎之外。',
+    'Structure verified against Fingrid and the Energy Authority on 2026-08-18; priced in the engine since 2026-10-17, with reserves at the 2026 annual clearing and the hourly markets outstanding (gate FI-2).',
+    '市场结构已于2026年8月18日依据Fingrid及能源局资料核验；自2026年10月17日起纳入引擎计价，备用收入取2026年度出清，小时级市场数据待补（研究缺口FI-2）。',
   ],
 };
 

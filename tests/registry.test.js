@@ -145,7 +145,9 @@ test('base strategies: capacity-backed by default, overridden where a market say
        price, so merchant is what remains. It reaches that answer differently —
        Finland HAS a mechanism, dormant since 2022 — but the route available to
        a sponsor is the same one. */
-    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap', 'mer']);
+    /* Finland's last entry became 'toll' on 2026-10-17: its fund play is the
+       negotiated optimiser floor, modelled as a floor (tollIsFloor). */
+    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap', 'toll']);
 
   // An override is only honoured when the market actually supports the route.
   for (const m of markets){
@@ -242,8 +244,13 @@ test('an unready market publishes no number anything can compute on', async () =
      false and is the kind of false that survives being copied into a
      spreadsheet. And every engine entry point must decline the market rather
      than compute a number from the hole. */
-  const unready = markets.filter(m => m.comparison?.engineReady === false);
-  assert.ok(unready.length > 0, 'expected at least one market to be registered but unready');
+  /* Every registered market has been engine-ready since 2026-10-17, when
+     Finland's reserve line was set. The guarantee is kept on a market held back
+     the way Finland was: its reserve line null, declared unavailable, unready. */
+  const fi = byId('fi');
+  const heldBack = { ...fi, comparison: { ...fi.comparison, engineReady: false,
+    economics: { ...fi.comparison.economics, services: null, unavailable: { services: ['Withheld', '暂缓'] } } } };
+  const unready = markets.filter(m => m.comparison?.engineReady === false).concat([heldBack]);
 
   for (const m of unready){
     const e = m.comparison.economics;
@@ -274,7 +281,7 @@ test('an unready market publishes no number anything can compute on', async () =
 
   /* And the cockpit's own list must exclude them, so no chart is handed one. */
   const ready = engineReadyMarkets();
-  for (const m of unready){
+  for (const m of unready.filter(m => m !== heldBack)){
     assert.ok(!ready.includes(m), `${m.manifest.id}: unready but inside engineReadyMarkets()`);
   }
 });

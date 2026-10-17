@@ -93,16 +93,15 @@ test('the return on the board is the engine\'s own figure, not a second calculat
   }
 });
 
-test('Finland has verdicts and its Return pillar is withheld', () => {
+test('Finland has verdicts and, priced since 2026-10-17, a Return pillar', () => {
   const fi = board('foreignFirstTimer').rows.find(r => r.market.manifest.id === 'fi');
   assert.equal(fi.graded, true);
-  assert.equal(fi.ret.withheld, true, 'the engine does not price Finland');
+  assert.equal(fi.ret.withheld, false, 'the engine prices Finland');
   for (const id of ARCHETYPE_IDS){
     const cell = fi.cells[id];
-    assert.ok(VERDICT_IDS.includes(cell.call), `${id}: Finland still has a verdict`);
-    assert.equal(cell.returnWithheld, true);
-    assert.equal(cell.pillars.return, null, `${id}: no Return score may be shown for a withheld return`);
-    for (const p of PILLARS.filter(p => p !== 'return')) assert.ok(Number.isFinite(cell.pillars[p]), `${id}: ${p}`);
+    assert.ok(VERDICT_IDS.includes(cell.call), `${id}: Finland has a verdict`);
+    assert.equal(cell.returnWithheld, false);
+    for (const p of PILLARS) assert.ok(Number.isFinite(cell.pillars[p]), `${id}: ${p}`);
   }
 });
 

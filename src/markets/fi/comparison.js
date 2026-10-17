@@ -1,12 +1,12 @@
 /* ---------------------------------------------------------------------------
    Finland — comparison interface. Economics are per MW per year, in EUR.
 
-   engineReady: FALSE, and that is the headline rather than a caveat. The
-   structure below is evidenced end to end; the revenue level is not, and the
-   $1M engine consumes the revenue level. Publishing a number the evidence does
-   not carry, and letting it into a cross-market allocation ranking, is the
-   failure mode this platform is built to avoid. So Finland gets a card, a source
-   register and a thesis, and stays out of the engine until the gates close.
+   REVISED 2026-10-17: engine-ready. Until then this market was held out of the
+   engine because its reserve level was not evidenced. The analyst ruled that
+   the level is what Fingrid's 2026 annual market paid, spread across the
+   fleet, and that the negotiated optimiser floor enters as a floor — both set
+   below, with their arithmetic. The saturation argument that follows is why
+   that level is low, and it still stands.
 
    ---------------------------------------------------------------------------
    WHY capacityMarket IS FALSE, WHICH IS MORE INTERESTING THAN IT SOUNDS
@@ -156,14 +156,47 @@ const economics = {
      null says "not evidenced", `unavailable` says why in a form a machine can
      carry, and validation refuses the combination on an engine-ready market.
      See UNAVAILABLE_REQUIRES_UNREADY in markets/schema.js. */
-  services: null,
+  /* REVISED 2026-10-17 — GATE FI-1 CLOSED ON A FLOOR-LEVEL OBSERVATION, the
+     analyst's ruling of 2026-10-17. What Fingrid's 2026 annual reserve market
+     actually paid, spread across the fleet that competes for it:
 
-  unavailable: {
-    services: [
-      'Reserve revenue is not published for Finland. Connected storage passed 1,050 MW in February 2026 against fast-reserve obligations summing to about 795 MW — an acute saturation warning, not a measured oversupply, since that sum aggregates separately procured products and the fleet includes capacity not prequalified for all of them. Fingrid’s non-binding procurement forecast has the fast products rising about 16% to 2036 and the slower products about 93%, so demand grows on both sides and tilts toward where a battery competes on cost. A level published before eligible-versus-procured MW can be tracked per product would be a forecast that today persists. Gate FI-1.',
-      '芬兰的备用收入不予发布。2026年2月已并网储能超过1,050MW，而快速备用需求合计约795MW — 鉴于该合计数涵盖多个独立采购品种、且机组中包含未通过全部品种预审的容量，这构成强烈的饱和预警而非已测得的供给过剩。Fingrid不具约束力的采购预测显示，至2036年快速品种增长约16%、较慢品种增长约93%，即两类需求均在增长，且增量偏向储能需以成本竞争的品种。在能够按品种跟踪合格容量与采购容量之前发布任何水平值，等同于假设当前状况将长期持续。研究缺口FI-1。',
-    ],
-  },
+        FCR-D up    237 MW × €3.50/MW,h      FCR-N annual   0 MW, €0
+        FCR-D down  163 MW × €6.00/MW,h      (cleared at zero; all hourly)
+
+        (237 × 3.50 + 163 × 6.00) × 8,760 h ÷ 1,050 MW connected = €15,080/MW/yr
+
+     Fingrid, yearly-market results for delivery year 2026. The hourly markets
+     (FCR-N, the FCR-D remainder, aFRR, mFRR, FFR) are NOT counted: their prices
+     are not yet tracked here (gate FI-2), and in a saturated market the hourly
+     clearing is where cannibalisation shows first. So this is the reserve
+     revenue an average connected megawatt can show today from the one fixed-
+     price market, not a forecast of what a well-optimised one earns — which is
+     why it is the seed and the band runs well above it. */
+  services: Math.round((237 * 3.50 + 163 * 6.00) * 8760 / 1050),   // 15,080
+  servicesNote: [
+    'Fingrid’s 2026 annual FCR-D clearing spread across the 1,050 MW connected fleet; the hourly reserve markets are not counted.',
+    'Fingrid 2026年度FCR-D出清收入按1,050MW并网储能分摊；未计入小时级备用市场。',
+  ],
+
+  /* THE NEGOTIATED FLOOR (the analyst's rulings of 2026-10-10). Finnish
+     optimisers and offtakers sign floors of seven years or more that cover the
+     whole project at no more than half of expected revenue, and a floor is a
+     secured route at its own level. Modelled as a floor under the market line
+     (`tollIsFloor`, src/comparison/engine.js): the owner earns the larger of the
+     floor and the market for the floor's term, and the floor is the secured part.
+
+        expected year 1 = 78,000 × (1 − 10%) + 15,080 = 85,280
+        floor           = 50% × 85,280 = 42,640/MW/yr for 7 years
+
+     Practitioner basis, recorded without its source. */
+  toll: Math.round(0.5 * (78000 * 0.9 + Math.round((237 * 3.50 + 163 * 6.00) * 8760 / 1050))),   // 42,640
+  tollYears: 7,
+  tollIsFloor: true,
+  tollRevertsToMerchant: true,
+  tollNote: [
+    'Negotiated optimiser floor at half of expected revenue for seven years; the owner keeps the market revenue above it',
+    '与优化商协商的保底，为预期收入的一半、为期七年；高于保底的市场收入归业主所有',
+  ],
 
   grantPct: 0,
   degr: 2,
@@ -202,11 +235,37 @@ const ranges = {
     source: 'Platform convention; no Finnish operating benchmark read',
     gate: 'FI-3',
   }),
-  merchGross: band(economics.merchGross, null, null, {
-    kind: 'part-sourced',
-    basis: ['Day-ahead spread capture on a 2-hour asset in a market whose price record includes −500 €/MWh in 2024 and which moved to a 15-minute market time unit on 1 October 2025. The observable half is the price series; the capture assumption is not observed.',
-            '基于2小时资产在日前市场的价差兑现。该市场2024年曾出现−500欧元/MWh，并已于2025年10月1日转为15分钟结算周期。价格序列为可观测部分，兑现率假设则非观测值。'],
-    source: 'ENTSO-E Transparency Platform, bidding zone 10YFI-1--------U',
+  /* Low end: the hourly FCR-N market already clears at zero in hours of surplus,
+     so a battery that wins nothing annual can earn nothing from reserves. High
+     end: one MW holding both FCR-D products in the annual market all year at the
+     2026 prices, (3.50 + 6.00) × 8,760 = €83,220. */
+  services: limits(economics.services, 0, Math.round((3.50 + 6.00) * 8760), {
+    basis: ['From nothing — FCR-N annual cleared at zero for 2026 and the hourly markets are saturating — to one MW holding both FCR-D products in the annual market all year at the 2026 prices. The seed is the 2026 annual clearing spread across the 1,050 MW connected fleet.',
+            '下限为零 — 2026年度FCR-N以零出清，小时级市场趋于饱和；上限为1MW全年在年度市场同时持有FCR-D上下调两个品种、按2026年价格计算。种子值为2026年度出清收入按1,050MW并网储能分摊。'],
+    source: 'Fingrid, yearly reserve market results for delivery year 2026',
+    gate: 'FI-2',
+  }),
+  toll: limits(economics.toll, Math.round(economics.toll * 0.6), economics.toll, {
+    basis: ['A floor of at most half of expected revenue (the analyst’s practitioner input); the seed is that ceiling, and a lower floor down to 30% of expected is within what is signed.',
+            '保底不超过预期收入的一半（分析师的实务输入）；种子值即该上限，低至预期收入30%的保底亦在已签约范围内。'],
+    source: 'Analyst practitioner input, 2026-10-10',
+    gate: 'FI-3',
+  }),
+  /* REVISED 2026-10-17, the analyst's ruling: the band runs between an
+     observation and his practitioner judgement, and the seed is held. Both
+     ends are stated as all-market revenue for a 2-hour battery and converted
+     to the merchant line by taking out the €15,080 reserve line:
+
+       low   Clean Horizon's observed August 2026 index, €78,000  → 62,920
+       high  the analyst's practitioner range, a forecast's high case
+             levelised over fifteen years from a 2028 COD, ≈ €150,000 → 134,920
+
+     The practitioner end is recorded without its source, as practitioner
+     inputs are on this platform. */
+  merchGross: band(economics.merchGross, 78000 - economics.services, 150000 - economics.services, {
+    basis: ['From Clean Horizon’s observed August 2026 all-market index for a two-hour Finnish battery, €78k/MW a year, to the analyst’s practitioner forecast range, about €150k levelised over fifteen years; both less the €15k reserve line. The seed, €78k of trading before fees, is held between them.',
+            '下限为Clean Horizon观测的2026年8月芬兰两小时储能全市场指数，每MW每年7.8万欧元；上限为分析师的实务预测区间，按十五年平准化约15万欧元；两端均扣除1.5万欧元备用收入。种子值（扣费前交易收入7.8万欧元）维持不变，位于两者之间。'],
+    source: 'Clean Horizon Storage Index, August 2026; analyst practitioner judgement, 2026-10-17',
     gate: 'FI-4',
   }),
   feePct: limits(economics.feePct, 6, 12, {
@@ -233,20 +292,38 @@ export const comparison = {
   /* Two hours, not the four or six other markets reference. A Finnish battery is
      built for fast reserves and short-cycle spread, and the announced fleet is
      overwhelmingly 2-hour: Statkraft/OX2's two units are 110 MW/220 MWh and
-     125 MW/250 MWh, Nivala 70 MW/140 MWh, Uusikaupunki 50 MW/100 MWh. */
+     125 MW/250 MWh, Uusikaupunki 50 MW/100 MWh. Nivala, as sold in October 2026,
+     is a 100 MW/400 MWh four-hour build — the first sign of longer duration. */
   archetype: { powerMW: 50, durationHours: 2 },
 
   capabilities: {
     capacityMarket: false,     // dormant strategic reserve, not adequacy revenue — see header
     merchant: true,            // day-ahead and intraday spread
     ancillaryServices: true,   // FFR, FCR-N, FCR-D up/down, aFRR, mFRR
-    tolling: false,            // no repeatable PUBLIC precedent read — decision 4, round 1
+    tolling: true,             // the negotiated optimiser floor, as a floor (tollIsFloor) — 2026-10-17
   },
 
-  /* THE FLAG THAT KEEPS THIS HONEST. Finland appears on the cards, in the nav
-     and in its own source register, and is excluded from the league table, the
-     $1M engine and the certainty frontier until GATE FI-1 and FI-2 close. */
-  engineReady: false,
+  /* In the engine since 2026-10-17, when the reserve line was set at its 2026
+     floor-level observation (gate FI-1, above). Gate FI-2 — the hourly reserve
+     prices — still decides whether the seed is too low. */
+  engineReady: true,
+
+  /* The negotiated floor is the route the fund play takes (the analyst's
+     instruction of 2026-10-17), so it is the case the cockpit models. */
+  baseStrategy: 'toll',
+
+  /* The design sweep's response to duration. Capture is Romania's 2-hour-
+     referenced seed curve, the platform's other short-duration merchant market,
+     until a Finnish 15-minute backtest replaces it (gate FI-4). Reserves are
+     paid per MW and do not scale with hours. */
+  durationResponse: {
+    hours: [1, 2, 4, 6, 8],
+    merchantCapture: [1.1, 1.0, 0.82, 0.7, 0.62],
+    merchantCaptureBasis: 'seed',
+    opexEnergyShare: 0.5,
+    note: ['Seed capture curve shared with Romania until a Finnish 15-minute backtest replaces it (gate FI-4).',
+           '在芬兰15分钟回测替代之前，暂与罗马尼亚共用种子捕获曲线（研究缺口FI-4）。'],
+  },
 
   economics,
   ranges,
@@ -257,10 +334,10 @@ export const comparison = {
   ]),
 
   narrative: {
-    archetype: ['50 MW · 2h · reserve-led', '50MW · 2小时 · 备用主导'],
+    archetype: ['50 MW · 2h · trading under a floor', '50MW · 2小时 · 保底下的交易'],
     thesis: [
-      'Europe\'s clearest fast-reserve market, and the clearest test of whether a reserve-led thesis survives its own buildout. Wind is the swing producer, the day-ahead market moved to 15-minute settlement in October 2025, and the strategic reserve has been dormant since 2022 because Olkiluoto 3 removed the adequacy problem. What is not yet answerable is the price path: fast-reserve obligations total about 795 MW while connected storage passed 1,050 MW in February 2026, so the revenue line is withheld rather than assumed.',
-      '欧洲最典型的快速备用市场，也是"备用主导"投资逻辑能否经受住自身装机扩张考验的最清晰样本。风电为边际调节电源，日前市场已于2025年10月转为15分钟结算，而战略备用自2022年起处于休眠状态 — 原因是Olkiluoto 3核电机组投运后充裕度问题已消失。尚无法回答的是价格路径：已并网储能于2026年2月已超过1,050MW，而快速备用需求合计约795MW — 这构成强烈的饱和预警，而非已测得的供给过剩，故收入项暂缓发布而非直接假设。',
+      'Europe\'s clearest fast-reserve market, and the clearest test of whether a reserve-led thesis survives its own buildout. Wind is the swing producer, the day-ahead market moved to 15-minute settlement in October 2025, and the strategic reserve has been dormant since 2022 because Olkiluoto 3 removed the adequacy problem. Connected storage passed 1,050 MW in February 2026 against about 795 MW of fast-reserve obligation and FCR-N’s annual auction cleared at zero, so reserves are priced at what the 2026 annual market paid across the fleet, trading carries the case, and a negotiated floor secures half of it for seven years.',
+      '欧洲最典型的快速备用市场，也是"备用主导"投资逻辑能否经受住自身装机扩张考验的最清晰样本。风电为边际调节电源，日前市场已于2025年10月转为15分钟结算，而战略备用自2022年起处于休眠状态 — 原因是Olkiluoto 3核电机组投运后充裕度问题已消失。2026年2月已并网储能超过1,050MW，而快速备用需求合计约795MW，FCR-N年度拍卖以零出清，因此备用收入按2026年度市场在全部储能间分摊的水平计价，交易支撑投资逻辑，协商保底锁定其一半、为期七年。',
     ],
     /* PIPELINE TO OPERATING, which is what this field means everywhere else on
        the platform — not the saturation ratio, which an earlier draft put here.

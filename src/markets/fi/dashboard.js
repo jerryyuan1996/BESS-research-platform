@@ -3,7 +3,7 @@
 
    Wiring only. Every rendering decision lives in the shared block engine, which
    is why this file is the same length here as it is for the other markets in the
-   lineage — including the one whose largest revenue line is deliberately blank.
+   lineage.
    --------------------------------------------------------------------------- */
 import { createMarketEngine } from '../_shared/engine.js';
 import { markets } from '../registry.js';

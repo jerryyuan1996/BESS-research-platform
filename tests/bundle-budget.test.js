@@ -130,9 +130,15 @@ const BUDGET = {
      ALL FIFTEEN ARE GRADED NOW and no other line needed raising: each of the
      ten markets graded in phase 5 took its view and ledger inside the room it
      had. Three are close: caiso 41.81 of 44, de 61.25 of 64, pjm 61.29 of
-     65. */
+     65.
+
+     FINLAND 28 TO 40 (2026-10-17), for content it did not have: brought to
+     parity with the other dashboards when it entered the engine — signal
+     cards, the timeline, the reserve derivation, the design answer, the grid
+     map and congestion register on its tab, the transactions, the Lab and the
+     committee gates. Measured 36.7, still the smallest market chunk. */
   markets: {
-    fi: 28, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
+    fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
 
@@ -248,8 +254,13 @@ const BUDGET = {
 
        RAISED FROM 19 TO 23 when the briefing content was applied (guided-
        experience plan, 2026-10-16): eighteen plays, fifteen theses and the ruled
-       calls now ride in every market's projection. Measured 21.63. */
-    'verdict-board': 23,
+       calls now ride in every market's projection. Measured 21.63.
+
+       RAISED FROM 23 TO 24 (2026-10-17) with the supplier quotation and
+       Finland: two score notes, restated theses and plays, Finland's priced
+       play and the WA and Poland plays moved to the engine's best design.
+       Measured 23.23. */
+    'verdict-board': 24,
     /* The briefing that opens the home page since the guided-experience plan
        (PR 4): the six answers and the home projection of the briefing — every
        investor's shortlist, the plays priced by the engine at build time, the
@@ -289,8 +300,12 @@ const BUDGET = {
 
        RAISED FROM 64 TO 72 with the supplier quotation (2026-10-17): 30 analyst
        lines — fourteen re-derived asset-return grades, two score notes and
-       fourteen restated plays, calls and theses — took it to 68.8. */
-    'changes': 72,
+       fourteen restated plays, calls and theses — took it to 68.8.
+
+       RAISED FROM 72 TO 76 with Finland's entry to the engine: the grades
+       re-ranked over fifteen, Finland's thesis and floor play, and the WA and
+       Poland play moves, 441 lines in all. Measured 73.43. */
+    'changes': 76,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four

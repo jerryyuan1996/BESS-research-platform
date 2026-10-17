@@ -64,7 +64,9 @@ export function firstUncoveredMerchantYear(market, strategyId){
      where it reverts to merchant is there an uncovered year at all; a toll
      running the full window never exposes one, and the vintage is then the year
      after the toll would have ended, which is what the band still has to price. */
-  if (strategyId === 'toll') return (e.tollYears || 0) + 1;
+  /* A floor is not a toll: the owner keeps the market revenue above it from
+     year 1 (`tollIsFloor`, engine.js), so merchant exposure starts at COD. */
+  if (strategyId === 'toll') return e.tollIsFloor ? 1 : (e.tollYears || 0) + 1;
   return 1;
 }
 

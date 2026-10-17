@@ -135,8 +135,10 @@ test('portfolio stress exposes correlated merchant and evidence-only downside', 
      shows and the portfolio must not price. Asserting against the full registry
      would make that exclusion look like a bug the first time it was used. */
   assert.equal(portfolio.base.markets, engineReadyMarkets().length);
-  assert.ok(engineReadyMarkets().length < markets.length,
-    'expected at least one registered market to be held out of the engine');
+  /* Every registered market has been engine-ready since Finland's reserve line
+     was set on 2026-10-17; the exclusion itself is asserted on a held-back
+     market in tests/registry.test.js. */
+  assert.ok(engineReadyMarkets().length <= markets.length);
 });
 
 test('FX uses fresh observations and rejects stale snapshots', () => {
