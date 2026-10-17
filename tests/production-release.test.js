@@ -42,3 +42,9 @@ test('the release lock never cancels a newer run; all pending jobs remain queued
   assert.match(workflow,/group: vercel-production\s+cancel-in-progress: false\s+queue: max/);
   assert.match(workflow,/RELEASE_SHA: \$\{\{ inputs.ref \|\| github.sha \}\}/);
 });
+test('a manual release verification refreshes data without running the analyst agent',()=>{
+  const workflow=readFileSync(new URL('../.github/workflows/etl.yml',import.meta.url),'utf8');
+  assert.match(workflow,/verify_release:[\s\S]*?type: boolean/);
+  const agent=workflow.slice(workflow.indexOf('\n  agent:'));
+  assert.match(agent,/inputs\.verify_release != true/);
+});

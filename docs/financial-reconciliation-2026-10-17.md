@@ -57,3 +57,5 @@ The page checks exercise desktop/mobile, English/Chinese, actual valuation discl
 Compatible source-map-js and brace-expansion patches remove the two high audit findings. The remaining two moderate package flags are ExcelJS and its uuid dependency. The installed ExcelJS code uses uuid v4 without a caller-supplied buffer; the advisory concerns v3/v5/v6 with a supplied buffer. No claim of a remotely exploitable browser path is made. ExcelJS stays a build-only dependency. A forced downgrade to ExcelJS 3.4.0 was not applied.
 
 Production publication and first-refresh identity must be verified against the release record; local success alone is not live deployment confirmation.
+
+The data workflow has a manual `verify_release` option for this acceptance check. It refreshes the selected public dataset through the normal data-commit/reusable-CI path and skips the analyst agent. It creates no new schedule. Bundle allowance is reallocated after loading the Investment Lab on demand: entry/shared limits change from 222/104 kB to 155/171 kB, leaving their combined 326 kB ceiling unchanged; the home-view ceiling is tightened from 258 to 195 kB.
