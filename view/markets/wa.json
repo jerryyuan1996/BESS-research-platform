@@ -522,8 +522,8 @@
       "hours": 8,
       "stage": "co-invest",
       "why": [
-        "The mechanism prices a six-hour battery and the seventh hour defends the credit. On the supplier-quoted DC block the eighth now pays for itself: eight hours is the engine’s best design, +$1.17m per MW against +$1.11m at seven, though its hold IRR is lower, 18.1% against 19.8%.",
-        "该机制按六小时电池定价，第七小时用于守住容量信用。按供应商报价的直流电池舱计算，第八小时已能自负成本：八小时是引擎的最佳设计，每MW价值+117万美元，七小时为+111万美元，但持有期IRR较低，为18.1%对19.8%。"
+        "The mechanism prices a six-hour battery and the seventh hour defends the credit. On the supplier-quoted DC block the eighth now pays for itself: eight hours is the engine’s best design, worth about 6% more per MW than seven, though its hold IRR is lower, 18.1% against 19.8%.",
+        "该机制按六小时电池定价，第七小时用于守住容量信用。按供应商报价的直流电池舱计算，第八小时已能自负成本：八小时是引擎的最佳设计，每MW价值比七小时高约6%，但持有期IRR较低，为18.1%对19.8%。"
       ],
       "action": {
         "text": [
