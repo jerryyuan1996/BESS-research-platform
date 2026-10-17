@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-16T16:44:37.868Z",
+  "fetchedAt": "2026-10-17T10:52:42.903Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-16T14:29:14.000Z",
+    "to": "2026-10-17T09:50:00.000Z",
     "resolution": "event",
-    "points": 39
+    "points": 42
   },
   "units": {
     "record": "published article metadata"
@@ -325,46 +325,6 @@
       "summary": "VSL PowerHive, a Vikram Solar subsidiary, announced a 7.5GWh BESS assembly plant in Oragadam, near Chennai, Tamil Nadu."
     },
     {
-      "t": "2026-10-16T08:43:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/electrifying-everything/",
-      "source": "pv magazine",
-      "title": "Electrifying everything",
-      "url": "https://www.pv-magazine.com/2026/10/16/electrifying-everything/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "COP31 aims to increase electricity’s share of global final energy demand from 20% to 35% by 2035, accelerating the transition to clean, affordable energy through electrification. Australia is leading with rapid growth in solar, wind, batteries and EVs, demonstrating how renewable energy can lower electricity costs,…"
-    },
-    {
-      "t": "2026-10-16T09:13:19.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/big-highs-and-lows-across-asia-in-september/",
-      "source": "pv magazine",
-      "title": "Big highs and lows across Asia in September",
-      "url": "https://www.pv-magazine.com/2026/10/16/big-highs-and-lows-across-asia-in-september/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that September 2026 saw extreme solar irradiance variations across Asia, with Japan and Borneo experiencing up to 30% below-normal levels, while China, Korea, the Philippines and eastern Indonesia recorded significant surpluses. Typhoons drove…"
-    },
-    {
-      "t": "2026-10-16T09:27:27.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/chinese-pv-industry-brief-trina-solar-expands-upstream-ties-with-stake-in-encapsulation-film-maker/",
-      "source": "pv magazine",
-      "title": "Chinese PV Industry Brief: Trina Solar expands upstream ties with stake in encapsulation film maker",
-      "url": "https://www.pv-magazine.com/2026/10/16/chinese-pv-industry-brief-trina-solar-expands-upstream-ties-with-stake-in-encapsulation-film-maker/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Trina Solar plans to acquire a 1.6% stake in Chinese PV encapsulation film manufacturer Betterial for CNY 40 million ($5.88 million). The investment aims to strengthen upstream supplier ties and improve supply chain stability. The post Chinese PV Industry Brief: Trina Solar expands upstream ties with stake in encaps…"
-    },
-    {
-      "t": "2026-10-16T10:09:57.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/16/the-hydrogen-stream-p2x-starts-selling-renewable-methane-to-european-markets/",
-      "source": "pv magazine",
-      "title": "The Hydrogen Stream: P2X starts selling renewable methane to European markets",
-      "url": "https://www.pv-magazine.com/2026/10/16/the-hydrogen-stream-p2x-starts-selling-renewable-methane-to-european-markets/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Europe’s renewable hydrogen and e-fuels sector continues to gain momentum, with new developments spanning e-methane certification and offtake, electrolyser technology, large-scale green hydrogen projects and strategic investments. Recent announcements from companies including P2X Solutions, Stargate Hydrogen, ITM Po…"
-    },
-    {
       "t": "2026-10-16T11:26:19.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/germany-roundup-enertrag-enlight-vattenfall-fluence-giga-storage-4-hour-batteries/",
       "source": "Energy-Storage.news",
@@ -413,17 +373,87 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Dan Taylor, director of engineering at optimisation and asset management provider Arenko, speaks to Energy-Storage.news about all things data in battery energy storage systems (BESS)."
+    },
+    {
+      "t": "2026-10-17T06:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/17/large-scale-solar-sets-annual-financial-investment-decision-record-at-3-5-gw/",
+      "source": "pv magazine",
+      "title": "Large-scale solar projects in Australia reach record 3.5 GW of annual investment decisions",
+      "url": "https://www.pv-magazine.com/2026/10/17/large-scale-solar-sets-annual-financial-investment-decision-record-at-3-5-gw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The latest Clean Energy Regulator data shows investment in solar is setting a new annual record with solar final investment decisions for the September 2026 quarter at 1 GW, adding to 3.5 GW already achieved in 2026. The post Large-scale solar projects in Australia reach record 3.5 GW of annual investment decisions…"
+    },
+    {
+      "t": "2026-10-17T07:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/17/spanish-researchers-test-low-height-agrivoltaics-in-vineyards/",
+      "source": "pv magazine",
+      "title": "Spanish researchers test low-height agrivoltaics in vineyards",
+      "url": "https://www.pv-magazine.com/2026/10/17/spanish-researchers-test-low-height-agrivoltaics-in-vineyards/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Spanish researchers have tested low-height agrivoltaic systems at three vineyards, demonstrating electricity generation with negligible impacts on grape production. The systems achieved land equivalent ratios of 1.16 to 1.53, highlighting their potential to improve land-use efficiency. The post Spanish researchers t…"
+    },
+    {
+      "t": "2026-10-17T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/17/six-year-testing-highlights-impact-of-reduced-maintenance-on-pv-plants-during-covid-19-pandemic/",
+      "source": "pv magazine",
+      "title": "Six-year testing highlights impact of reduced maintenance on PV plant operation during COVID-19 pandemic",
+      "url": "https://www.pv-magazine.com/2026/10/17/six-year-testing-highlights-impact-of-reduced-maintenance-on-pv-plants-during-covid-19-pandemic/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A six-year study of a 12 MW solar plant in Algeria found an average performance ratio of 82.6%, with annual electricity generation ranging from 19.83 to 21.41 GWh. Performance declined significantly in 2020 due to COVID-19-related maintenance restrictions, highlighting the importance of regular cleaning and upkeep.…"
+    },
+    {
+      "t": "2026-10-17T08:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/17/france-to-ease-grid-connection-rules-for-solar-plus-storage-projects-up-to-25-mw/",
+      "source": "pv magazine",
+      "title": "France to ease grid connection rules for solar-plus-storage projects up to 25 MW",
+      "url": "https://www.pv-magazine.com/2026/10/17/france-to-ease-grid-connection-rules-for-solar-plus-storage-projects-up-to-25-mw/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "France plans to ease grid connection rules for solar-plus-storage projects with installed capacity of up to 25 MW, provided grid injection does not exceed 17 MW. The measure is part of a broader government initiative to accelerate electrification and improve electricity demand flexibility. The post France to ease gr…"
+    },
+    {
+      "t": "2026-10-17T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/17/beyond-recruitment-what-really-keeps-women-in-solar/",
+      "source": "pv magazine",
+      "title": "Beyond recruitment: What really keeps women in solar",
+      "url": "https://www.pv-magazine.com/2026/10/17/beyond-recruitment-what-really-keeps-women-in-solar/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This week, Women in Solar+ Europe (WiSEu) shares insights from its contribution to SolarPower Europe’s EU Solar Jobs Report 2026, exploring what attracts women to Solar+ and what makes them stay, progress or leave. Drawing on a survey across its network in 22 European countries, WiSEu highlights a clear message: pur…"
+    },
+    {
+      "t": "2026-10-17T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/17/brazils-new-curtailment-rules-unlikely-to-revive-utility-scale-solar-investment/",
+      "source": "pv magazine",
+      "title": "Brazil’s new curtailment rules unlikely to revive utility-scale solar investment",
+      "url": "https://www.pv-magazine.com/2026/10/17/brazils-new-curtailment-rules-unlikely-to-revive-utility-scale-solar-investment/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Brazil’s new curtailment rules offer greater regulatory certainty for solar developers, but uncertainty over future generation cuts and financial risks continues to weigh on investment. Industry experts expect new utility-scale solar projects to remain limited despite progress on compensation and curtailment allocat…"
+    },
+    {
+      "t": "2026-10-17T09:50:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/17/qcells-to-introduce-u-s-domestic-frames-for-residential-solar-panel-lineup/",
+      "source": "pv magazine",
+      "title": "Qcells to introduce U.S. domestic frames for residential solar panel lineup",
+      "url": "https://www.pv-magazine.com/2026/10/17/qcells-to-introduce-u-s-domestic-frames-for-residential-solar-panel-lineup/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The manufacturer partnered with Aluko Group to supply U.S.-made aluminum frames from Tennessee, aimed at streamlining domestic content bonus qualification under increasing IRA thresholds. The post Qcells to introduce U.S. domestic frames for residential solar panel lineup appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 39,
+    "items": 42,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 26,
-      "policy": 7,
-      "capital": 5,
+      "grid": 29,
+      "policy": 8,
+      "capital": 4,
       "technology": 1
     },
     "sourceStatus": [
@@ -449,7 +479,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 9
       }
     ]
   },
@@ -458,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:cc3363295ffc051ad00d31ace2d3f2f1af4ac80da6a695ae726f7001b28981c5",
-  "envelopeChecksum": "sha256:9d1500ce81311998a0cc64c319a822e9513b0efc4d9c7c5856b14ed1f6eaab87"
+  "contentChecksum": "sha256:561594233d52a7f1051d4fc4f554c88081ca50b6ed7355b28bf6bb9d1cb10de2",
+  "envelopeChecksum": "sha256:e56aacd6ca3101a421906e217221edb637e449c593c344476c28f3f484345d36"
 }
