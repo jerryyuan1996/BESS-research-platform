@@ -358,8 +358,8 @@
       "hours": 1,
       "stage": "ready-to-build",
       "why": [
-        "No main auction is planned and the uncontracted reference returns under 1%. On the capacity route one hour is now the engine’s best design, because it loses the least value: −$260k per MW against −$265k at two hours. Every duration loses value here, and one hour’s hold IRR is negative.",
-        "目前没有主拍卖计划，无合同的参考项目回报不足1%。在容量路径上，一小时现为引擎的最佳设计，因其价值损失最小：每MW −26万美元，两小时为−26.5万美元。此处所有时长都在损失价值，且一小时的持有期IRR为负。"
+        "No main auction is planned and the uncontracted reference returns under 1%. On the capacity route one hour is now the engine’s best design because it loses the least value, narrowly ahead of two hours. Every duration loses value here, and one hour’s hold IRR is negative.",
+        "目前没有主拍卖计划，无合同的参考项目回报不足1%。在容量路径上，一小时现为引擎的最佳设计，因其价值损失最小，略优于两小时。此处所有时长都在损失价值，且一小时的持有期IRR为负。"
       ],
       "action": {
         "text": [
