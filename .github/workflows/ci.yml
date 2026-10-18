@@ -208,12 +208,12 @@ jobs:
       - run: npm ci
 
       - name: Install the Vercel CLI
-        run: npm install --no-save vercel@48.12.1
+        run: npm install --global vercel@48.12.1
 
       # Writes .vercel/project.json and the production environment into the
       # workspace. Nothing here is committed — .vercel is git-ignored.
       - name: Pull the production environment
-        run: npx vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -223,7 +223,7 @@ jobs:
       # build runs the Vite build and then copies and adds to its result, so
       # dist/ and .vercel/output are not the same bytes.
       - name: Build the deployment artefact
-        run: npx vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}

@@ -59,3 +59,5 @@ Compatible source-map-js and brace-expansion patches remove the two high audit f
 Production publication and first-refresh identity must be verified against the release record; local success alone is not live deployment confirmation.
 
 The data workflow has a manual `verify_release` option for this acceptance check. It refreshes the selected public dataset through the normal data-commit/reusable-CI path and skips the analyst agent. It creates no new schedule. Bundle allowance is reallocated after loading the Investment Lab on demand: entry/shared limits change from 222/104 kB to 155/171 kB, leaving their combined 326 kB ceiling unchanged; the home-view ceiling is tightened from 258 to 195 kB.
+
+The first production attempt stopped before upload: Vercel build pruned the unsaved project-local CLI. The pinned CLI is now installed globally in the disposable CI runner and invoked consistently for pull, build, upload and promotion, so the build cannot remove its own publisher.
