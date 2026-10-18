@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 test.beforeEach(async({page})=>{
   // The acceptance case uses committed assets and data, without font or
   // telemetry services holding screenshots open on a restricted network.
-  await page.route(/^https:\/\//,route=>route.abort());
+  await page.route(/^https:\/\//,route=>new URL(route.request().url()).origin===process.env.PLATFORM_TEST_BASE_URL?route.continue():route.abort());
 });
 
 test('market brief discloses actual rates in English and Chinese',async({page},testInfo)=>{
@@ -40,6 +40,11 @@ test('Investment Lab saves the displayed scenario, pricing hurdle and project ev
   await page.getByRole('button',{name:'Save investment case',exact:true}).click();
   const download=await downloadPromise;
   const record=JSON.parse(await readFile(await download.path(),'utf8'));
+  if(process.env.PLATFORM_TEST_BASE_URL){
+    const response=await page.request.get('/release.json');const stamp=await response.json();
+    expect(stamp.commit).toBe(process.env.RELEASE_SHA);expect(record.modelCommit).toBe(stamp.commit);
+    expect(Object.keys(record.dataVintages)).not.toHaveLength(0);
+  }
   expect(record.exitClock).toBe('operating-years');
   expect(record.result.valuationRates.secured).toBe(0.065);
   expect(record.entryPrice.hurdle).toBe(0.12);
