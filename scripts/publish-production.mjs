@@ -12,7 +12,7 @@ const token = required('VERCEL_TOKEN');
 const team = required('VERCEL_ORG_ID');
 const projectId = required('VERCEL_PROJECT_ID');
 const cli = (...args) => {
-  try { return execFileSync(process.execPath, [resolve('node_modules/vercel/dist/index.js'), ...args, `--token=${token}`],
+  try { return execFileSync('vercel', [...args, `--token=${token}`],
     { encoding:'utf8', stdio:['ignore', 'pipe', 'inherit'] }).trim(); }
   catch { throw new Error(`Vercel ${args[0]} failed. Check the CLI log above.`); }
 };
