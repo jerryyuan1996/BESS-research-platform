@@ -276,3 +276,23 @@ jobs:
           name: production-release-${{ inputs.ref || github.sha }}
           path: release-records/
           if-no-files-found: ignore
+
+      - name: Check the live production pages
+        run: |
+          if [ -f release-records/production.json ] && node --input-type=module -e "import fs from 'node:fs'; process.exit(JSON.parse(fs.readFileSync('release-records/production.json')).published ? 0 : 1)"; then
+            npx playwright install --with-deps --no-shell chromium
+            npm run test:e2e
+          else
+            echo 'Superseded candidate did not publish; live checks belong to its successor.'
+          fi
+        env:
+          PLATFORM_TEST_BASE_URL: https://globalbess.vercel.app
+          RELEASE_SHA: ${{ inputs.ref || github.sha }}
+
+      - name: Retain live-page evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-page-check-evidence-${{ inputs.ref || github.sha }}
+          path: test-results/
+          if-no-files-found: ignore
