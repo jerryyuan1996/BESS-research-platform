@@ -25,6 +25,7 @@ import './styles/market.css';
 import './styles/cockpit.css';
 import './styles/verdict.css';
 import './styles/briefing.css';
+import './styles/acquisition.css';
 import './styles/live.css';
 /* Last, so its @media print block wins against anything above it without
    needing !important on every rule. */

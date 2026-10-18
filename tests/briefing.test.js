@@ -224,11 +224,19 @@ test('the page and the digest read one computation', async () => {
   const fromPlugin = JSON.parse(text.replace(/^export const BRIEFING = /, '').replace(/;\n$/, ''));
   assert.deepEqual(fromPlugin, JSON.parse(JSON.stringify(await briefingFromDisk({ now: NOW }))));
   const digest = renderDigest(await briefing());
-  for (const heading of ['## The call', '## What changed in the last 7 days', '## What\'s coming in 90 days', '## Where to focus', '## What to build', '## Your next actions', '## Analyst queue',
-    '## 结论', '## 重点方向', '## 应建什么', '## 下一步行动']){
+  for (const heading of ['## What changed in the last 7 days', '## What\'s coming in 90 days', '## What to build', '## Your next actions', '## Analyst queue',
+    '## 应建什么', '## 下一步行动']){
     assert.ok(digest.includes(heading), `the digest has no "${heading}"`);
   }
   assert.ok(!/undefined|NaN/.test(digest));
+  const b=await briefing();
+  const sample={market:'gb',hours:4,stage:'operating',priceUSDPerMW:123456,targetReturn:.12,returnBasis:'equity',route:'hold',currency:'GBP'};
+  const priced=renderDigest({...b,acquisitions:{...b.acquisitions,[b.defaultLens]:[sample]}});
+  assert.ok(priced.includes('$123,456') && priced.includes('12.0%') && priced.includes('GBP'));
+  const unpriced=renderDigest({...b,acquisitions:{[b.defaultLens]:[]}});
+  assert.ok(!unpriced.includes('## Projects to look for') && !unpriced.includes('## 值得筛选的收购方向'));
+  const purchaseSection=priced.split('## Projects to look for')[1].split('## What to build')[0];
+  assert.ok(!purchaseSection.includes('runs ahead of the economics'));
   assert.equal(weekOf(new Date('2026-10-18T23:07:00Z')), '2026-10-19', 'Sunday 23:07 UTC is Monday morning in Perth');
 });
 

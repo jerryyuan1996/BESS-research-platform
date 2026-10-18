@@ -37,6 +37,7 @@
    score on the page belongs to one investor.
    --------------------------------------------------------------------------- */
 import { h } from '../utils/dom.js';
+import { explanation } from './explanation.js';
 import { L } from '../app/i18n.js';
 import { card } from './card.js';
 import { chip } from './chip.js';
@@ -215,7 +216,11 @@ function gradeTable(view, on, marketId, dimensions){
       return h('tr', {},
         h('td', {}, L(PILLAR_LABEL[d.pillar])),
         h('td', {}, h('b', {}, L(d.label))),
-        h('td', { class: 'num' }, g ? e.grade + ' / 5' : '—',
+        h('td', { class: 'num' }, g ? explanation(e.grade+' / 5',d.question,h('div',{},
+          h('p',{},L(anchorText(d.id,e.grade))),
+          e.grade<5?h('p',{},L(['Next band: ','下一档标准：']),L(anchorText(d.id,e.grade+1))):null,
+          h('p',{},L(['What is measured: ','衡量口径：']),L(d.measure)),
+          h('p',{},L(['This describes market conditions; it does not mean the investment has this probability of success.','这是市场条件的评级，不代表投资成功概率。'])))) : '—',
           e.applied ? h('div', {}, chip('info', L(['Practitioner view', '从业者观点']))) : null,
           e.lapsed ? h('div', {}, chip('warn', L(['Practitioner view lapsed', '从业者观点已过期']))) : null),
         h('td', {},

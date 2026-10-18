@@ -24,7 +24,7 @@ import { sweepDesign, fitOf } from '../../comparison/designFit.js';
 
 const T = {
   duration: ['Duration', '时长'],
-  value: ['value per MW · hold IRR', '每MW价值 · 持有期IRR'],
+  value: ['Reference design net value / MW · hold return', '参考方案净增值／MW · 持有回报'],
   best: ['best', '最佳'],
   band: ['band', '区间内'],
   modelled: ['modelled', '当前模型'],

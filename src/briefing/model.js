@@ -27,6 +27,7 @@ import { assessMarket } from '../entry/assessment.js';
 import { returnGradesFor } from '../comparison/returnGrades.js';
 import { runBaseCase } from '../comparison/engine.js';
 import { FX } from '../comparison/assumptions.js';
+import { acquisitionRecommendations } from '../acquisition/reference.js';
 import {
   marketDesign, designEconomics, designGrid, lensRows, orderRows, returnFieldFor, BRIEFING_EXIT_YEAR,
 } from './plays.js';
@@ -147,6 +148,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
     builtAt: now.toISOString(),
     on,
     defaultLens: DEFAULT_LENS,
+    acquisitions: acquisitionRecommendations(markets),
     exitYear: BRIEFING_EXIT_YEAR,
     markets: Object.fromEntries(markets.map(m => [m.manifest.id, { name: marketName(m.manifest.id, m.manifest.name), slug: m.manifest.slug }])),
     plays,

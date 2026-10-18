@@ -57,13 +57,14 @@ import { RUNWAY_FROM } from '../components/congestionPanel.js';
 import { homeState, labMarket, labOverrides } from './state.js';
 import { createPrintContext, PRINT_STATUS } from '../print/printContext.js';
 import { renderPrintSnapshot } from '../print/printSnapshot.js';
+import { renderAcquisitionLab } from '../acquisition/lab.js';
+import { EXIT_YEARS } from '../comparison/assumptions.js';
 
 const T = {
-  title: ['Investment Lab — your assumptions, every market, one model',
-          '投资测算 — 你的假设、全部市场、同一模型'],
+  title: ['Acquisition price and return target','收购价格与目标回报'],
   intro: [
-    'Select a market, retype any assumption inside its evidenced range, and choose whether to lever it. The engine is the one used by the global cockpit league table and $1M matrix, so resetting every field reproduces the cockpit exactly. Outputs remain illustrative.',
-    '选择市场，在有据可依的区间内重设任一假设，并选择是否加杠杆。该引擎与全球总看板的排名表和百万美元矩阵完全一致，因此重置所有字段即可精确复现总看板结果。输出仍仅作示例。',
+    'Choose a market and revenue route. Complete the project inputs to estimate the most you can pay while meeting the required return.',
+    '选择市场和收入路径，补齐项目资料，计算达到目标回报时最多值得付多少钱。',
   ],
 };
 
@@ -153,6 +154,9 @@ function renderControls(parent, marketList, market, strategyId){
       h('b', {}, L(RESOURCE_ADEQUACY_LABEL)), ' — ', L(RESOURCE_ADEQUACY_DEFINITION)));
   }
 
+}
+
+function renderLegacyCapitalControls(parent){
   parent.append(h('div', { class: 'lab-ctl' },
     h('div', { class: 'lab-ctl-lbl' }, L(['Capital structure', '资本结构'])),
     h('div', { class: 'seg' },
@@ -564,23 +568,32 @@ export function renderInvestmentLab(main, marketList, exitYear){
   renderControls(c, engineReady, seedMarket, strategyId);
   main.append(c);
 
+  renderAcquisitionLab(main, seedMarket, strategyId, overrides);
+  const legacy=h('details',{class:'lab-legacy',ontoggle:event=>{homeState.labLegacyOpen=event.target.open;}},
+    h('summary',{},L(['Reference construction-cost comparison','参考建设成本比较'])),
+    h('p',{class:'cap'},L(['This compares returns at the modelled build cost. Acquisition ceilings are calculated above.','这里按模型建设成本比较回报；收购价格上限在上方单独计算。'])));
+  legacy.open=!!homeState.labLegacyOpen;
+  const legacyExit=h('select',{'aria-label':L(['Reference sale year','参考方案出售年度']),onchange:event=>{homeState.exitYear=Number(event.target.value);rerender();}},
+    EXIT_YEARS.map(year=>h('option',{value:year},String(year))));legacyExit.value=exitYear;
+  legacy.append(h('label',{},L(['Reference sale year ','参考方案出售年度 ']),legacyExit));
+  renderLegacyCapitalControls(legacy);
   const body = h('div', { class: 'lab-body' });
   renderAssumptions(body, seedMarket, fields, overrides);
   renderOutputs(body, market, seedMarket, strategyId, exitYear, conventions, fields, overrides);
-  main.append(body);
+  legacy.append(body);
 
   if (homeState.labLevered){
     const debtWrap = h('div', { class: 'lab-debt' });
     /* The same panel the six market dashboards used to carry, now reading the
        scenario rather than the seeds. */
     renderProjectDebt(debtWrap, market, exitYear, { conventions });
-    main.append(debtWrap);
+    legacy.append(debtWrap);
   }
 
   const tail = h('div');
   tail.append(why([
-    'Use the Lab to bracket a decision, not to produce a number. The honest sequence is: set the inputs you disagree with to the unfavourable end of their evidenced range, turn debt on, and check whether minimum DSCR still clears 1.30x — and only then look at the headline IRR. A case that survives the low end of every band is investable; a case that needs the top of three bands at once is a forecast wearing a model. The bands marked "no published band" are where to start, because those are the only ones this platform could not source.',
-    '应以投资测算界定决策区间，而非产出单一数字。诚实的顺序是：将你不认同的输入设为其证据区间中的不利一端，开启杠杆，检验最低偿债覆盖倍数是否仍高于1.30倍 — 之后再看名义IRR。能在各区间低端存活的方案具备可投资性；而需要同时取三个区间高端才成立的方案，不过是披着模型外衣的预测。应从标注"无公开区间"的输入着手，因为它们是本平台唯一无法溯源的部分。',
-  ], ['Bracket the decision, then read the IRR', '先界定区间，再看IRR']));
-  main.append(tail);
+    'Test lower revenues and higher costs before setting a purchase price. Verify the contracts and project inputs, and use the acquisition calculation above for the price decision.',
+    '确定收购价格前，先测试收入下降、成本上升的情况，再核实合同和项目资料。收购决策使用上方的价格上限及对应回报。',
+  ], ['Check the downside before setting a price','确定价格前先看不利情景']));
+  legacy.append(tail);main.append(legacy);
 }

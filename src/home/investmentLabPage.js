@@ -11,14 +11,14 @@ import { homeState } from './state.js';
 import { renderInvestmentLab } from './investmentLab.js';
 
 const T = {
-  title:['Investment Lab & project debt', '投资测算与项目债务'],
+  title:['Acquisition price and return target', '收购价格与目标回报'],
   sub:[
-    'Reprice any allocation market, test the capital structure and compare the result with the platform base case.',
-    '重估任一配置市场、测试资本结构，并将结果与平台基准情景进行比较。',
+    'Estimate what you can pay for a project at the return required by your investor type.',
+    '按投资者类型和项目阶段，测算达到目标回报时的收购价格上限。',
   ],
   footer:[
-    'All scenarios use the same comparison engine as the global cockpit, so a changed input is reflected consistently across returns, debt sizing and exit value.',
-    '所有情景均使用与全球总看板相同的比较引擎，因此输入变更会一致反映在回报、债务规模及退出价值中。',
+    'The acquisition ceiling and its return target use the same project inputs. Operating acquisitions are valued for long-term ownership.',
+    '收购上限及对应目标回报使用同一组项目资料；运营资产按长期持有测算。',
   ],
 };
 
@@ -56,7 +56,7 @@ export function renderInvestmentLabPage(app){
     kicker:L(['Scenario workspace', '情景工作区']),
     title:T.title,
     sub:T.sub,
-    controls:[exitYearSelect(), backButton()],
+    controls:[backButton()],
   }));
   app.append(marketNav(markets, 'lab'));
 

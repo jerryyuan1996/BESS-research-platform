@@ -22,6 +22,7 @@ test('market brief discloses actual rates in English and Chinese',async({page},t
 test('Investment Lab saves the displayed scenario, pricing hurdle and project evidence',async({page},testInfo)=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/investment-lab');
+  await page.locator('.lab-legacy > summary').click();
   await expect(page.getByRole('button',{name:'Save investment case',exact:true})).toBeVisible();
   const hurdle=page.getByRole('spinbutton',{name:'Your unlevered return hurdle (%)',exact:true});
   await expect(hurdle).toHaveValue('');
@@ -64,7 +65,8 @@ test('long-life expiry cases and home briefing load without browser errors',asyn
   await expect(page.getByRole('heading',{name:'Without assumed contract renewals',exact:true})).toBeVisible();
   await page.goto('/');
   await expect(page.getByRole('heading',{name:'BESS investment briefing',exact:true})).toBeVisible();
-  await expect(page.locator('.bf-asof')).toBeVisible();
+  await expect(page.locator('.bf-lens')).toBeVisible();
+  await expect(page.locator('.bf-call-flag')).toHaveCount(0);
   await page.screenshot({path:testInfo.outputPath('home-en.png')});
   expect(errors).toEqual([]);
 });
