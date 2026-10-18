@@ -368,7 +368,7 @@ test('the projection carries numbers, calls and amounts, and none of a market\'s
   for (const id of boardMarketIds()){
     const view = boardViewFor(id), whole = viewFor(id);
     for (const [dimension, record] of Object.entries(view.grades)){
-      assert.deepEqual(Object.keys(record).filter(k => k !== 'held'), ['grade'], `${id}/${dimension}: a projected grade is its number`);
+      assert.deepEqual(Object.keys(record).filter(k => k !== 'held'), dimension==='assetReturn'?['grade','basis']:['grade'], `${id}/${dimension}: projection keeps the return basis needed for scoring`);
       if (record.held) assert.deepEqual(Object.keys(record.held).sort(), ['confidence', 'grade', 'reviewBy']);
       assert.equal(Boolean(record.held), Boolean(whole.grades[dimension].held), `${id}/${dimension}: a held layer is kept, or the wrong grade is scored`);
     }

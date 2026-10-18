@@ -31,6 +31,8 @@ export const homeState = {
   labStrategy: null,                 // null → that market's base strategy
   labLevered: false,                 // capital structure: unlevered | project debt
   labInputs: {},                     // { [marketId]: { [path]: number } }
+  labHurdle: null,                   // user-set unlevered hurdle; no fund hurdle assumed
+  labProjectEvidence: {},            // project document references, per market, local session only
   labDebt: {},                       // { [priced convention]: number }
   labOpenBasis: null,                // which field's evidence drawer is expanded
   fxAsOf: null,                      // active governed translation snapshot

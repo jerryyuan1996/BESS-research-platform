@@ -4,12 +4,14 @@ import viewChanges from './vite-plugin-view-changes.js';
 import scout from './vite-plugin-scout.js';
 import viewBoard from './vite-plugin-view-board.js';
 import briefing from './vite-plugin-briefing.js';
+import { execFileSync } from 'node:child_process';
 
 // Static, public, no backend. History-API routing is handled in dev by Vite's
 // SPA fallback (appType 'spa', the default) and in production by the `rewrites`
 // rule in vercel.json.
 export default defineConfig({
   base: '/',
+  define: { __MODEL_COMMIT__: JSON.stringify(process.env.RELEASE_SHA || execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()) },
   // Confidential payloads are available to the dev server and are structurally
   // absent from any build. See vite-plugin-local-data.js and docs/data-policy.md.
   // The changelog reaches the page as its last ten lines, never whole. See

@@ -44,6 +44,8 @@
    --------------------------------------------------------------------------- */
 import { annuity, irrOf } from '../utils/finance.js';
 import { LIFE } from '../comparison/assumptions.js';
+import { investmentFlows } from './cashFlowCalendar.js';
+import { spendCurve } from '../comparison/capex.js';
 
 /* ---------------------------------------------------------------------------
    Market conventions, 2026 vintage.
@@ -152,14 +154,15 @@ export function sizeProjectDebt(result, opts = {}){
      roughly a tenth of the stack, is exactly that case. */
   const secY = result.secY || result.capY || [];
   const mchY = result.mchY || [];
+  const aucY = result.aucY || [];
   const opexY = (result.eb || []).map((_, i) =>
-    (secY[i] || 0) + (mchY[i] || 0) - (result.eb[i] || 0));
+    (secY[i] || 0) + (aucY[i] || 0) + (mchY[i] || 0) - (result.eb[i] || 0));
 
   const securedCfads = [], marketCfads = [];
   for (let i = 0; i < life; i++){
     const isSecured = i < securedYears;
     const sec = isSecured ? (secY[i] || 0) : 0;
-    const gross = (secY[i] || 0) + (mchY[i] || 0);
+    const gross = (secY[i] || 0) + (aucY[i] || 0) + (mchY[i] || 0);
     const share = gross > 0 ? sec / gross : 0;
     const opex = opexY[i] || 0;
     securedCfads.push(Math.max(0, sec - opex * share));
@@ -177,7 +180,7 @@ export function sizeProjectDebt(result, opts = {}){
     const window = securedCfads.slice(0, tenorA).filter(v => v > 0);
     const binding = window.length === tenorA ? Math.min(...window) : 0;
     const capacity = binding / c.dscrSecured;
-    amountA = capacity > 0 ? capacity * (1 - Math.pow(1 + r, -tenorA)) / r : 0;
+    amountA = capacity > 0 ? capacity / annuity(1, r, tenorA) : 0;
   }
 
   /* ---- Tranche B: mini-perm against market cash flow --------------------- */
@@ -186,7 +189,7 @@ export function sizeProjectDebt(result, opts = {}){
   const bindingB = windowB.length ? Math.min(...windowB) : 0;
   const capacityB = Math.max(0, bindingB) / c.dscrMarket;
   const amountB = capacityB > 0
-    ? capacityB * (1 - Math.pow(1 + r, -c.notionalProfile)) / r
+    ? capacityB / annuity(1, r, c.notionalProfile)
     : 0;
 
   /* ---- Gearing ceiling --------------------------------------------------- */
@@ -204,27 +207,41 @@ export function sizeProjectDebt(result, opts = {}){
   const schedB = amortise(debtB, r, tenorB, c.notionalProfile);
 
   /* ---- Combined service, coverage and equity ----------------------------- */
-  const service = [], dscr = [], outstanding = [];
+  const service = [], dscr = [], outstanding = [], maturityRepayment = [], debtLedger = [];
   for (let y = 1; y <= life; y++){
     const a = schedA.rows[y - 1]?.service || 0;
     const b = schedB.rows[y - 1]?.service || 0;
     const s = a + b;
     service.push(s);
     dscr.push(s > 0 ? (result.eb[y - 1] || 0) / s : null);
-    outstanding.push((schedA.rows[y - 1]?.closing ?? 0) + (schedB.rows[y - 1]?.closing ?? 0));
+    // Default, approved policy: equity settles the balloon at legal maturity.
+    // Regular DSCR excludes this one-off payment; the funding gap is separate.
+    const balloon = y === tenorB ? schedB.balloon : 0;
+    maturityRepayment.push(balloon);
+    const closing = (schedA.rows[y - 1]?.closing ?? 0) + (y < tenorB ? (schedB.rows[y - 1]?.closing ?? 0) : 0);
+    outstanding.push(closing);
+    debtLedger.push({ year:y,
+      opening:(schedA.rows[y - 1]?.opening || 0) + (schedB.rows[y - 1]?.opening || 0),
+      interest:(schedA.rows[y - 1]?.interest || 0) + (schedB.rows[y - 1]?.interest || 0),
+      scheduledPrincipal:(schedA.rows[y - 1]?.principal || 0) + (schedB.rows[y - 1]?.principal || 0),
+      maturityRepayment:balloon, closing });
   }
 
   const totalDebt = debtA + debtB;
   const equity = net - totalDebt;
-  const X = Math.min(opts.exitYear ?? life, life);
-
-  const equityFlows = [-equity];
-  for (let y = 1; y <= X; y++) equityFlows.push((result.eb[y - 1] || 0) - service[y - 1]);
-  equityFlows[X] += (result.exitVal || 0) - (outstanding[X - 1] || 0);
+  const X = Math.max(0, Math.min(opts.exitYear ?? result.exitYear ?? life, life));
+  const codOffset = result.codOffset || 0;
+  const capital = (result.capitalFlows || [-net]).slice();
+  // Illustrative financing: staged draws follow construction spend, with no
+  // construction interest or fees assumed. Refunds remain on the asset calendar.
+  const debtDraws = spendCurve(codOffset + 1).map(weight => totalDebt * weight);
+  debtDraws.forEach((draw, i) => { capital[i] = (capital[i] || 0) + draw; });
+  const distributions = result.eb.map((cash, i) => cash - service[i] - maturityRepayment[i]);
+  const equityFlows = investmentFlows(capital, codOffset, distributions.slice(0, X),
+    { at:X, value:(result.exitVal || 0) - (X === 0 ? totalDebt : outstanding[X - 1]) });
   const irrLevered = equity > 0 ? irrOf(equityFlows) : null;
 
-  const holdFlows = [-equity];
-  for (let y = 1; y <= life; y++) holdFlows.push((result.eb[y - 1] || 0) - service[y - 1]);
+  const holdFlows = investmentFlows(capital, codOffset, distributions);
   const irrLeveredHold = equity > 0 ? irrOf(holdFlows) : null;
 
   const covered = dscr.filter(v => v != null);
@@ -248,7 +265,11 @@ export function sizeProjectDebt(result, opts = {}){
     ceilingBinds,
     coverageBinds: !ceilingBinds && totalDebt > 0,
 
-    service, dscr, outstanding,
+    service, dscr, outstanding, maturityRepayment, debtLedger,
+    equityFlows, holdFlows, debtDraws, codOffset, exitClock:'operating-years',
+    maturityPolicy:'equity-repayment', constructionInterest:0, financingFees:0,
+    maturityFundingGap: maturityRepayment.map((repayment, i) => repayment > 0
+      ? Math.max(0, repayment + service[i] - (result.eb[i] || 0)) : 0),
     minDSCR: covered.length ? Math.min(...covered) : null,
 
     /* Where the structure has to be refinanced, and how much is outstanding

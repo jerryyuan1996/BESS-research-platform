@@ -37,7 +37,7 @@ import { ledgerTotals, referenceProject, limitInputs } from './ledger.js';
  *                                METRIC; each replaces the public figure and is
  *                                treated as complete
  */
-export function assessMarket(view, market, ledger, usdPer, { on, privateMetrics = {} } = {}){
+export function assessMarket(view, market, ledger, usdPer, { on, privateMetrics = {}, returnGrades = {} } = {}){
   const project = referenceProject(market.comparison, usdPer?.[market.manifest.currency]);
   const totals = ledger ? ledgerTotals(ledger, usdPer, project?.costUSD ?? null) : null;
 
@@ -53,7 +53,11 @@ export function assessMarket(view, market, ledger, usdPer, { on, privateMetrics 
   const byArchetype = {};
   for (const id of ARCHETYPE_IDS){
     const verdict = view.verdicts?.[id] ?? null;
-    byArchetype[id] = { ...assess(ARCHETYPES[id], view.grades, metrics, verdict, incomplete, on), verdict };
+    const returnGrade = returnGrades[market.manifest.id]?.[ARCHETYPES[id].returnBasis] || null;
+    const stored = view.grades?.assetReturn;
+    const grades = returnGrade && stored?.basis === 'derived'
+      ? { ...view.grades, assetReturn:{...stored,grade:returnGrade.grade} } : view.grades;
+    byArchetype[id] = { ...assess(ARCHETYPES[id], grades, metrics, verdict, incomplete, on), verdict, returnGrade };
   }
   return { marketId: view.marketId, project, totals, byArchetype, privateMetricsUsed };
 }

@@ -25,8 +25,9 @@
    --------------------------------------------------------------------------- */
 
 /** What the board reads of a grade: the number, and the held layer's number and dates. */
-function projectGrade(record){
+function projectGrade(record, dimension){
   const out = { grade: record.grade };
+  if(dimension==='assetReturn')out.basis=record.basis;
   if (record.held){
     out.held = { grade: record.held.grade, confidence: record.held.confidence, reviewBy: record.held.reviewBy };
   }
@@ -72,7 +73,7 @@ export function projectTrigger(trigger){
 export function projectView(view){
   const out = {
     marketId: view.marketId,
-    grades: Object.fromEntries(Object.entries(view.grades).map(([id, record]) => [id, projectGrade(record)])),
+    grades: Object.fromEntries(Object.entries(view.grades).map(([id, record]) => [id, projectGrade(record,id)])),
     verdicts: Object.fromEntries(Object.entries(view.verdicts).map(([id, record]) => [id, projectVerdict(record)])),
     triggers: view.triggers.map(projectTrigger),
   };

@@ -59,13 +59,14 @@ export function designEconomics(market, design, route, hours){
   if (design.withheld) return { priced: false, withheld: true };
   const point = design.sweep.points.find(p => p.route === route && p.hours === hours) || null;
   const variant = marketAt(market, route, hours);
-  const run = variant.na ? null : runCase(variant, route, BRIEFING_EXIT_YEAR);
+  const runOptions = point?.runOptions || {};
+  const run = variant.na || !point?.priced ? null : runCase(variant, route, BRIEFING_EXIT_YEAR, runOptions);
   const weakInputs = Object.entries(point?.inputs || {})
     .filter(([, input]) => input && WEAK_INPUT_BASIS.includes(input.basis))
     .map(([line, input]) => ({ line, basis: input.basis }));
   /* The owner's bear and bull cases on the same design: every range the market
      declares set to its worse or better end (comparison/refinement.js). */
-  const set = variant.na ? null : runScenarioSet(variant, route, BRIEFING_EXIT_YEAR);
+  const set = !run ? null : runScenarioSet(variant, route, BRIEFING_EXIT_YEAR, runOptions);
   const ends = (c) => (c?.result && !c.result.na ? { hold: round(finite(c.result.irrHold), 4), exit: round(finite(c.result.irrExit), 4) } : null);
   return {
     priced: Boolean(point?.priced),
@@ -79,6 +80,8 @@ export function designEconomics(market, design, route, hours){
     payback: finite(run?.payback),
     secured: round(finite(run?.securedShare), 3),
     securedYears: finite(run?.securedYears),
+    valuationRates: run?.valuationRates || null,
+    runOptions,
     range: set ? { bear: ends(set.bear), bull: ends(set.bull) } : null,
     weakInputs,
   };

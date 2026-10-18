@@ -28,6 +28,7 @@ import {
 import { ARCHETYPES, NOT_ACCESSIBLE, DISAGREEMENT_LABEL, METRIC } from '../governance/archetypes.js';
 import { byExpected, overdue, isResolved } from '../governance/triggers.js';
 import { assessMarket } from '../entry/assessment.js';
+import { returnGradesFor } from '../comparison/returnGrades.js';
 import { limitInputs } from '../entry/ledger.js';
 import { runScenarioSet } from '../comparison/refinement.js';
 
@@ -162,13 +163,14 @@ const verdictRank = (call) => {
  *                                   empty in every build
  */
 export function buildBoard(markets, { lens = null, on, usdPer, exitYear = 5, viewFor, ledgerFor, privateMetricsFor = () => ({}) }){
+  const returnGrades = returnGradesFor(markets, exitYear);
   const rows = markets.map((market, index) => {
     const id = market.manifest.id;
     const view = viewFor(id);
     const ret = marketReturn(market, exitYear);
     if (!view) return { market, index, graded: false, ret, cells: null, cell: null };
 
-    const assessment = assessMarket(view, market, ledgerFor(id), usdPer, { on, privateMetrics: privateMetricsFor(id) });
+    const assessment = assessMarket(view, market, ledgerFor(id), usdPer, { on, privateMetrics: privateMetricsFor(id), returnGrades });
     const cells = Object.fromEntries(ARCHETYPE_IDS.map(a => [a, cellFor(assessment, a, view, on, ret.withheld)]));
     return { market, index, graded: true, ret, cells, cell: lens ? cells[lens] : null };
   });

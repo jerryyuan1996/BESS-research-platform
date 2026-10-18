@@ -25,6 +25,7 @@ import { strategyById, supports, baseStrategy } from './strategies.js';
 import { buildCapex, rtbEntry, capitalFlows } from './capex.js';
 import { activeFxRate } from './fx.js';
 import { decorateDecisionResult } from './decisionResult.js';
+import { investmentFlows } from '../economics/cashFlowCalendar.js';
 
 /* ---------------------------------------------------------------------------
    WHY AN IRR IS ABSENT.
@@ -208,19 +209,7 @@ function capitalWithGrant(cap, grant, e){
 }
 
 function withCapital(cap, op, tail){
-  const out = cap.flows.slice();
-  const start = cap.codOffset + 1;
-  for (let i = 0; i < op.length; i++){
-    const t = start + i;
-    while (out.length <= t) out.push(0);
-    out[t] += op[i];
-  }
-  if (tail){
-    const t = cap.codOffset + tail.at;
-    while (out.length <= t) out.push(0);
-    out[t] += tail.value;
-  }
-  return out;
+  return investmentFlows(cap.flows, cap.codOffset, op, tail);
 }
 
 /**
@@ -264,6 +253,16 @@ export function runCase(market, strategyId, exitYear, options = {}){
   // inputs pass their quality gates.
   if (cmp.engineReady === false){
     return { na: ['Normalized inputs pending', '归一化输入待补'] };
+  }
+
+  // Recompute the duration credit when a downside case changes degradation.
+  // The saved design context retains the rule as well as its annual factors.
+  if(options.capacityFloor){
+    const {hours,requiredHours}=options.capacityFloor;
+    const atCod=Math.min(1,hours/requiredHours);
+    if(!(hours>0 && requiredHours>0 && atCod>0))return {na:['Invalid capacity duration floor','容量时长下限无效']};
+    options={...options,capacityFactors:Array.from({length:LIFE},(_,i)=>
+      Math.min(1,hours*degradationFactor(cmp.economics,i+1)/requiredHours)/atCod)};
   }
 
   const strat = strategyById(strategyId);
@@ -363,12 +362,15 @@ function runLegacyCase(market, strategyId, exitYear, options){
 
   const capital = capitalWithGrant(cap0, grant, e);
   const net = capital.net;
-  const capY = [], mchY = [], svcY = [], eb = [];
+  const capY = [], secY = [], aucY = [], mchY = [], svcY = [], eb = [];
   for (let y = 1; y <= LIFE; y++){
     /* `capacityFactors` is how the design-fit sweep carries a duration floor that
        de-rates linearly as the battery fades (WA's ESR requirement). Absent, the
        factor is exactly 1 and the line is the one the baseline pins. */
     const c = ((y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0)) * yearFactor(options, 'capacity', y);
+    const secured = ((y <= cy ? cap : 0) + (y <= cyB ? capB : 0)) * yearFactor(options, 'capacity', y);
+    secY.push(secured);
+    aucY.push(c - secured);
     const d = degradationFactor(e, y);
     let mm = y >= marketFrom
       ? (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y)
@@ -385,9 +387,10 @@ function runLegacyCase(market, strategyId, exitYear, options){
 
   const X = exitYear;
   const yContracted = options.exitYContracted ?? EXIT_Y_CONTRACTED;
+  const yAuction = options.exitYAuction ?? options.exitYMerchant ?? EXIT_Y_AUCTION;
   const yMerchant = options.exitYMerchant ?? EXIT_Y_MERCHANT;
   const yOpex = options.exitYOpex ?? EXIT_Y_OPEX;
-  const exitVal = pvTail(capY, yContracted, X) + pvTail(mchY, yMerchant, X)
+  const exitVal = pvTail(secY, yContracted, X) + pvTail(aucY, yAuction, X) + pvTail(mchY, yMerchant, X)
     - pvTail(Array(LIFE - X).fill(opex), yOpex, 0) - pvTail(svcY, yOpex, X);
   const exitFlows = withCapital(capital, eb.slice(0, X), { at: X, value: exitVal });
   const irrExit = irrOf(exitFlows);
@@ -397,7 +400,7 @@ function runLegacyCase(market, strategyId, exitYear, options){
 
   return {
     marketId: market.manifest.id, strategyId, exitYear: X,
-    net, grant: capital.grant, capexG, eb1: eb[0], yield1: eb[0] / net, capY, secY:capY, mchY, svcY, eb,
+    net, grant: capital.grant, capexG, eb1: eb[0], yield1: eb[0] / net, capY, secY, aucY, mchY, svcY, eb,
     irrHold, payback, exitVal, irrExit, moic, cumOp, contractedShare,
     irrHoldAbsent: irrDiagnosis(irrHold, eb, net),
     irrExitAbsent: irrDiagnosis(irrExit, eb.slice(0, X).concat(exitVal), net),
@@ -406,15 +409,17 @@ function runLegacyCase(market, strategyId, exitYear, options){
     capexParts: capital.stack ? capital.stack.parts : null,
     buildCapexG: capital.buildCapexG, devCost: capital.devCost, rtbPrice: capital.rtbPrice,
     constructionMonths: e.constructionMonths || 0, codOffset: capital.codOffset,
-    holdFlows, exitFlows, fxRate:fx, currency:market.manifest.currency,
+    holdFlows, exitFlows, capitalFlows:capital.flows.slice(), fxRate:fx, currency:market.manifest.currency,
+    valuationRates: { secured:yContracted, renewal:yAuction, merchant:yMerchant, opex:yOpex },
+    exitClock:'operating-years', renewalEvidence:'unawarded-assumption',
     // In the legacy model every contracted unit is secured for its full tenor, so
     // secured share and secured tenor are just the contracted figures renamed.
     securedShare: contractedShare,
     securedYears: strategyId === 'cap' ? Math.min(e.contractYears || 0, LIFE)
-      : strategyId === 'toll' ? Math.min(e.tollYears || LIFE, LIFE)
+      : strategyId === 'toll' ? cy
       : strategyId === 'ltda' ? Math.min(e.ltda?.years || 0, LIFE) : 0,
-    aucY: Array(LIFE).fill(0),
     kwPerM: 1e6 / (net / 1000), note,
+    streamTenors: { primary:cy, additionalCapacity:cyB },
   };
 }
 
@@ -531,7 +536,9 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
     capexParts: capital.stack ? capital.stack.parts : null,
     buildCapexG: capital.buildCapexG, devCost: capital.devCost, rtbPrice: capital.rtbPrice,
     constructionMonths: e.constructionMonths || 0, codOffset: capital.codOffset,
-    holdFlows, exitFlows, fxRate:fx, currency:market.manifest.currency,
+    holdFlows, exitFlows, capitalFlows:capital.flows.slice(), fxRate:fx, currency:market.manifest.currency,
+    valuationRates: { secured:yContracted, renewal:yAuction, merchant:yMerchant, opex:yOpex },
+    exitClock:'operating-years', renewalEvidence:'unawarded-assumption',
     kwPerM: 1e6 / (net / 1000),
     note: (isLtda ? award.note : null) || e.capNote || e.grantNote || null,
   };

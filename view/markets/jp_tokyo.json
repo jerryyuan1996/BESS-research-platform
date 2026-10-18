@@ -368,13 +368,13 @@
       ],
       "action": {
         "text": [
-          "Before Round 4 bids close on 3 February 2027, list Tokyo award holders that might sell an operating asset, and the price at which each clears a 7.5% secured yield.",
-          "在2027年2月3日第四轮投标截止前，列出可能出售已投运资产的东京中标方，以及各资产达到7.5%锁定收益率的价格。"
+          "Before Round 4 bids close on 3 February 2027, list Tokyo award holders that might sell an operating asset, and the price at which each clears the platform’s current secured yield.",
+          "在2027年2月3日第四轮投标截止前，列出可能出售已投运资产的东京中标方，以及各资产达到平台当前锁定收益率的价格。"
         ],
         "due": "2027-02-03"
       },
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-18",
       "lockedUntil": null
     }
   }

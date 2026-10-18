@@ -24,6 +24,7 @@ import { playsOf } from '../governance/plays.js';
 import { byExpected, isResolved } from '../governance/triggers.js';
 import { TIER, MAX_ACTIONS, CATALYST_WINDOW_DAYS } from '../governance/briefing.js';
 import { assessMarket } from '../entry/assessment.js';
+import { returnGradesFor } from '../comparison/returnGrades.js';
 import { runBaseCase } from '../comparison/engine.js';
 import { FX } from '../comparison/assumptions.js';
 import {
@@ -53,6 +54,7 @@ const dueOf = (expected) => (expected.length === 7 ? `${expected}-31` : expected
 export function buildBriefing({ markets, views, changelog, ledgerFor, summaries, news = null, catalogue, now }){
   const on = now.toISOString().slice(0, 10);
   const viewById = new Map(views.map(v => [v.marketId, v]));
+  const returnGrades = returnGradesFor(markets, BRIEFING_EXIT_YEAR);
 
   /* ---- each graded market, priced once ---- */
   const entries = [];
@@ -70,7 +72,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
       if (!cache.has(play.id)) cache.set(play.id, designEconomics(market, design, play.route, play.hours));
       return cache.get(play.id);
     };
-    const assessment = assessMarket(view, market, ledgerFor(id), FX, { on });
+    const assessment = assessMarket(view, market, ledgerFor(id), FX, { on, returnGrades });
     entries.push({ market, view, design, assessment, playEcon });
     for (const play of playsOf(view)){
       plays[playKey(id, play.id)] = {
