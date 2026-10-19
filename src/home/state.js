@@ -19,6 +19,7 @@ const PREFERRED_WATERFALL_MARKET = 'pl';
    before the app starts. Both accessors below resolve lazily instead, which they
    had to do anyway to self-heal when a market is deregistered. */
 export const homeState = {
+  acquisitionStage: 'ready-to-build',
   exitYear: 5,                       // 5 | 7 | 10
   wfMarket: PREFERRED_WATERFALL_MARKET,
 

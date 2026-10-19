@@ -39,7 +39,8 @@ function renderLang(b, lens, days, siteUrl, lang){
   const marketLink = (id) => `[${t(marketName(id))}](${siteUrl}/markets/${b.markets[id]?.slug ?? id})`;
   const lines = [];
 
-  lines.push(L('## The call', '## 结论'), '', t(view.call), '');
+  // The public purchase list uses exactly the home page's qualified results.
+  // Written market calls and legacy design NPV do not substitute for a price.
 
   const changes = b.changes.filter(c => c.at >= since && (!c.archetype || c.archetype === lens))
     .sort((a, c) => CHANGE_CLASS_ORDER.indexOf(a.cls) - CHANGE_CLASS_ORDER.indexOf(c.cls) || c.at.localeCompare(a.at));
@@ -62,18 +63,29 @@ function renderLang(b, lens, days, siteUrl, lang){
   }
   lines.push('');
 
-  const ret = view.returnField === 'exit' ? L('Exit IRR', '退出IRR') : L('Hold IRR', '持有期IRR');
-  lines.push(L('## Where to focus', '## 重点方向'), '',
-    `| ${L('Tier', '层级')} | ${L('Play', '方案')} | ${L('Value/MW', '每MW价值')} | ${ret} | ${L('Secured', '锁定收入')} | ${L('Evidence', '证据')} | ${L('Next', '下一事件')} |`,
-    '|---|---|---|---|---|---|---|');
-  for (const r of view.rows){
-    const p = b.plays[`${r.market}/${r.play}`];
-    const e = p.econ;
-    const value = e.withheld ? L('not priced', '未定价') : !e.eligible ? L('not compliant', '不合规') : t(perMW(e.value));
-    const secured = e.secured === null || e.secured === undefined ? '—' : `${percent(e.secured)}${e.securedYears ? ` / ${e.securedYears}${L('y', '年')}` : ''}`;
-    const next = r.next ? `${t(b.triggers[r.next].label)} (${t(dateText(b.triggers[r.next].expected))})` : '—';
-    const flag = r.flag ? ` ⚑ ${t(r.flagText)}` : '';
-    lines.push(`| ${t(TIER_LABEL[r.tier])} | ${marketLink(r.market)} · ${cell(t(p.label))}${r.own ? L(' (own call)', '（独立结论）') : ''}${cell(flag)} | ${value} | ${percent(e[view.returnField])} | ${secured} | ${t(EVIDENCE_LABEL[r.evidence])} | ${cell(next)} |`);
+  const acquisitions=b.acquisitions?.[lens]||[];
+  if(acquisitions.length){
+      lines.push(L('## Acquisition reference by market','## 各市场收购参照'),'',
+      `| ${L('Market / stage','市场／阶段')} | ${L('Price ceiling, USD/MW','收购上限，美元／MW')} | ${L('Target annual return','目标年化收益率')} |`,
+      '|---|---|---|');
+    for(const r of acquisitions){
+      if(r.status==='reference'){
+        const money=x=>'$'+(Math.floor(x*r.fxToUSD/1000)*1000).toLocaleString('en-US');
+        for(const c of r.referenceCases){
+          const name=c.key==='cautious'?L('cautious','偏保守'):L('favourable','较有利');
+          const price=c.status==='priced'?money(c.pricePerMW):L('No acquisition budget yet','暂不宜另付收购款');
+          const timing=r.stage==='operating'?L('operating','已投运'):`${c.assumptions.codYears}–${c.assumptions.latestCodYears} ${L('years to operation','年投运')}`;
+          const returnText=c.status==='priced'?percent(c.targetReturn):L('Target not reached: ','尚未达到目标：')+percent(c.targetReturn);
+          lines.push(`| ${marketLink(r.market)} · ${r.hours}h · ${r.stage} · ${name} | ${price} · ${timing} | ${returnText} · ${c.returnBasis} · ${r.currency} |`);
+        }
+        continue;
+      }
+      const basis=r.returnBasis==='equity'?L('equity','股东回报'):L('all-cash','全现金回报');
+      const route=r.route==='hold'?L('hold','长持'):L(`sale in operating year ${r.exitYear}`,`投运后第${r.exitYear}年出售`);
+      lines.push(`| ${marketLink(r.market)} · ${r.hours}h · ${r.stage} | $${Math.floor(r.priceUSDPerMW).toLocaleString('en-US')} | ${percent(r.targetReturn)} · ${basis} · ${route} · ${r.currency} |`);
+    }
+      lines.push('',L('Reference ranges use public information and stated assumptions. Each endpoint has its own price, income and timetable. Hover over the live page for assumptions and sources.',
+        '参考区间使用公开资料和明确假设；两端分别对应自己的价格、收入和投运时间。网页悬浮窗提供完整假设及来源。'),'');
   }
   lines.push('');
 

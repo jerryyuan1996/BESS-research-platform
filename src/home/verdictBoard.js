@@ -32,6 +32,7 @@ import {
 import { ARCHETYPES } from '../governance/archetypes.js';
 import { TRIGGER_DIRECTION_LABEL } from '../governance/triggers.js';
 import { verdictGlyph } from './verdictGlyph.js';
+import { explanation } from '../components/explanation.js';
 
 const link = (href, label, cls = 'vb-link') => h('a', {
   class: cls,
@@ -69,7 +70,9 @@ function pillarStrips(cell){
     const score = cell.pillars[p];
     const withheld = p === 'return' && cell.returnWithheld;
     return h('div', { class: 'vb-pillar', title: L(PILLAR_QUESTION[p]) },
-      h('span', { class: 'vb-pl' }, L(PILLAR_LABEL[p])),
+      explanation(L(PILLAR_LABEL[p]),PILLAR_QUESTION[p],h('p',{},L([
+        'This score summarises the underlying market criteria for the selected investor. A higher fit score does not remove entry barriers or establish an acceptable purchase price.',
+        '该分数汇总当前投资者对市场各项条件的判断。匹配分高，仍需满足进入条件，并在合理价格范围内收购。'])),{className:'acq-explain vb-pl'}),
       withheld
         ? h('span', { class: 'vb-withheld' }, L(['withheld', '暂不披露']))
         : h('span', { class: 'vb-bar', role: 'img',
@@ -124,7 +127,9 @@ function lensRow(row){
   const fit = closed
     ? h('div', { class: 'vb-fit' }, h('span', { class: 'vb-fit-n' }, '—'),
         h('span', { class: 'vb-sub' }, L(['barrier', '门槛'])))
-    : h('div', { class: 'vb-fit' }, h('span', { class: 'vb-fit-n' }, cell.fit === null ? '—' : cell.fit.toFixed(0)),
+    : h('div', { class: 'vb-fit' }, cell.fit === null ? '—' : explanation(cell.fit.toFixed(0),['Investor fit / 100','投资者匹配度／100'],h('p',{},L([
+      'A weighted assessment of return, entry conditions, durability and financing for this investor. It is not a percentage return or a probability of success. Different investors give the same market conditions different importance.',
+      '按这类投资者的偏好，综合回报、进入条件、收入持久性和融资条件。它不代表收益率或成功概率；同一市场对不同投资者的匹配程度可以不同。'])),{className:'acq-explain vb-fit-n'}),
         h('span', { class: 'vb-sub' }, L(['fit / 100', '匹配度'])));
 
   return h('div', { class: 'vb-row' + (closed ? ' vb-closed' : ''), 'data-market': row.market.manifest.id },

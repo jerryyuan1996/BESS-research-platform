@@ -263,12 +263,12 @@ export const ARCHETYPES = {
   developer: {
     id: 'developer',
     label: ['Developer', '开发商'],
-    who: ['Early-stage capital that sells at ready-to-build', '在具备开工条件时出售项目的早期资本'],
-    entersAt: ['greenfield'],
+    who: ['Buys greenfield or ready-to-build projects, builds and sells at operation start', '收购绿地或可开工项目，建设至投运时出售'],
+    entersAt: ['greenfield', 'ready-to-build'],
     defaultRoute: 'greenfield',
     returnBasis: 'development-multiple',
-    returnReads: ['Development multiple and time to ready-to-build', '开发倍数与达到开工条件所需时间'],
-    chequeUSD: null,   // sells before the build
+    returnReads: ['Build-to-operation return and time to operation', '建设至投运出售的回报与所需时间'],
+    chequeUSD: null,   // no new cheque limit inferred from the expanded acquisition route
     shutOutBy: ['Security before consent above its limit; no obtainable connection; more than four years to ready-to-build',
                 '取得许可前须提交的保证金超出其上限；拿不到并网容量；达到开工条件需四年以上'],
     pillarWeight: { return: 0.20, entry: 0.45, durability: 0.10, capital: 0.25 },

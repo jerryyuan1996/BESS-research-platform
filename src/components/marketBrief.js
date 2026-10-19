@@ -35,6 +35,7 @@ import { ARCHETYPES } from '../governance/archetypes.js';
 import { REVENUE_ROUTE_LABEL } from '../governance/plays.js';
 import { byExpected, isResolved, TRIGGER_DIRECTION_LABEL } from '../governance/triggers.js';
 import { verdictGlyph } from '../home/verdictGlyph.js';
+import { acquisitionList } from '../acquisition/view.js';
 
 const DAY = 86_400_000;
 const ARROW = { up: '↗', down: '↘', either: '↔' };
@@ -70,14 +71,13 @@ function theCall(marketId, view, lens, rows){
   const callLines = rows.map(r => {
     const p = playOf(marketId, r.play);
     const next = r.next ? triggers[r.next] : null;
-    return h('div', { class: 'mb-play' + (r.flag ? ' bf-flagged-block' : '') },
+    return h('div', { class: 'mb-play' },
       h('div', { class: 'mb-callline' },
         verdictGlyph(r.call, 16), ' ',
         h('b', {}, L(VERDICT_LABEL[r.call] || [r.call, r.call])), ' · ', L(p.label),
         r.own ? h('span', { class: 'bf-own' }, L(['own call', '独立结论'])) : null,
         h('span', { class: `bf-ev bf-ev-${r.evidence} mb-ev` }, L(EVIDENCE_LABEL[r.evidence]))),
       p.why ? h('div', { class: 'bf-why' }, L(p.why)) : null,
-      r.flag ? h('div', { class: 'bf-flag' }, '⚑ ', L(r.flagText)) : null,
       next ? h('div', { class: 'mb-changes' }, L(['Changes if: ', '改变条件：']), L(next.label), ' — ', when(next.expected)) : null);
   });
   const thesis = view.thesis || null;
@@ -148,7 +148,7 @@ function economics(marketId, lens, rows){
   return card(['Economics', '经济性'],
     h('div', { class: 'cap' }, L(p.label)),
     h('div', { class: 'kpis mb-kpis' },
-      kpi(['Value per MW', '每MW价值'], e.priced && e.eligible ? L(perMW(e.value)) : L(['not compliant', '不合规'])),
+      kpi(['Reference design net value / MW', '参考方案净增值／MW'], e.priced && e.eligible ? L(perMW(e.value)) : L(['not compliant', '不合规'])),
       kpi(field === 'exit' ? ['Exit IRR', '退出IRR'] : ['Hold IRR', '持有期IRR'], percent(e[field]), L(['bear – bull: ', '悲观 – 乐观：']) + range),
       kpi(field === 'exit' ? ['Hold IRR', '持有期IRR'] : ['Exit IRR', '退出IRR'], percent(e[field === 'exit' ? 'hold' : 'exit'])),
       kpi(['Secured', '锁定收入'], Number.isFinite(e.secured) ? percent(e.secured) : '—', e.securedYears ? L([`for ${e.securedYears} years`, `${e.securedYears}年`]) : null),
@@ -265,11 +265,17 @@ function goDeeper(marketId){
 export function marketBrief(marketId, view, assessment, folded = []){
   const lens = lensOf();
   const rows = HOME_BRIEFING.lenses[lens]?.rows.filter(r => r.market === marketId) || [];
-  if (!rows.length) return folded;
+  const acquisition=acquisitionList((HOME_BRIEFING.acquisitions?.[lens]||[]).filter(r=>r.market===marketId),{
+    referenceData:HOME_BRIEFING.acquisitionReferenceData,
+    marketName:()=>L(HOME_BRIEFING.markets[marketId]?.name||[marketId,marketId]),selectedStage:homeState.acquisitionStage,
+    onStage:stage=>{homeState.acquisitionStage=stage;requestRender();},
+  });
+  if (!rows.length) return [acquisition,...folded].filter(Boolean);
   const fold = h('details', { class: 'bf-fold' },
     h('summary', {}, L(['All four investors\' verdicts, the pillar scores and the fourteen grades', '四类投资者的结论、支柱得分与十四项评级'])),
     h('div', { class: 'bf-fold-body' }, folded));
   return [
+    acquisition,
     theCall(marketId, view, lens, rows),
     h('div', { class: 'grid g2 bf-pair' }, whatToBuild(marketId, view), economics(marketId, lens, rows)),
     h('div', { class: 'grid g2 bf-pair' }, risks(marketId, view, lens, rows, assessment), catalysts(marketId, view)),
