@@ -1,7 +1,9 @@
 import {test,expect} from '@playwright/test';
 
 test.beforeEach(async({page})=>{
-  await page.route(/^https:\/\//,route=>route.abort());
+  // Live checks must load the production origin, while external telemetry and
+  // fonts stay excluded just as they are during local preview checks.
+  await page.route(/^https:\/\//,route=>new URL(route.request().url()).origin===process.env.PLATFORM_TEST_BASE_URL?route.continue():route.abort());
 });
 
 test('home keeps all market references and explains assumptions without confusing flags',async({page},testInfo)=>{
