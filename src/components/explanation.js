@@ -24,9 +24,15 @@ export function explanation(label,title,content,{className='acq-explain'}={}){
       });observer.observe(document.body,{childList:true,subtree:true});}
     }
     popup.showPopover?.();current=popup;button.setAttribute('aria-expanded','true');
-    const r=button.getBoundingClientRect(),width=popup.offsetWidth,height=popup.offsetHeight;
+    const r=button.getBoundingClientRect(),width=popup.offsetWidth;
+    // Long source/assumption panels must scroll beside their trigger, never
+    // cover it between pointerenter and click (including on small screens).
+    const below=Math.max(0,innerHeight-r.bottom-16),above=Math.max(0,r.top-16);
+    const useBelow=below>=Math.min(popup.scrollHeight,280)||below>=above;
+    popup.style.maxHeight=Math.max(40,useBelow?below:above)+'px';
+    const height=popup.offsetHeight;
     popup.style.left=Math.max(8,Math.min(r.left,innerWidth-width-8))+'px';
-    popup.style.top=(r.bottom+8+height<innerHeight?r.bottom+8:Math.max(8,r.top-height-8))+'px';
+    popup.style.top=(useBelow?r.bottom+8:Math.max(8,r.top-height-8))+'px';
   };
   popup.append(typeof content==='function'?content():content,
     h('button',{type:'button',class:'acq-explain',onclick:()=>{dismissHover=true;suppress=true;close();button.focus();queueMicrotask(()=>{suppress=false;});}},L(['Close','关闭'])));

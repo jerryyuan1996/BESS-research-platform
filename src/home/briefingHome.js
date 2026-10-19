@@ -185,6 +185,7 @@ export function renderBriefingHome(main){
 
   main.append(lensBar(lens));
   const recommendations = acquisitionList(b.acquisitions?.[lens] || [], {
+    referenceData:b.acquisitionReferenceData,
     selectedStage:homeState.acquisitionStage,
     onStage:stage=>{homeState.acquisitionStage=stage;requestRender();},
     marketLink:result=>marketLink(result.market),

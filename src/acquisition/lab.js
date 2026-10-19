@@ -4,7 +4,10 @@ import { app, requestRender, setLens } from '../app/state.js';
 import { homeState } from '../home/state.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
 import { STAGES, STAGE_LABEL } from './parameters.js';
-import { marketAcquisition } from './reference.js';
+import { marketAcquisition, marketAcquisitionReference, referenceInputs } from './reference.js';
+import { returnAtAcquisitionPrice } from './valuation.js';
+import { MARKET_REFERENCE } from './referencePolicy.js';
+import { explanation } from '../components/explanation.js';
 import { acquisitionPrice } from './view.js';
 
 const inputs=new Map();
@@ -26,7 +29,7 @@ const reasons={
  * public market snapshot. The same valuation serves the home and this form. */
 export function renderAcquisitionLab(parent,market,strategyId,economicOverrides={}){
   const id=market.manifest.id;
-  if(!inputs.has(id))inputs.set(id,{stage:homeState.acquisitionStage,...(market.comparison.acquisition||{})});
+  if(!inputs.has(id))inputs.set(id,{stage:homeState.acquisitionStage,useDebt:true,...(market.comparison.acquisition||{})});
   const state=inputs.get(id),investor=app.lens&&ARCHETYPES[app.lens]?app.lens:'infraFund';
   if(investor==='developer'&&state.stage==='operating')state.stage='ready-to-build';
   const card=h('section',{class:'card acq-lab'},h('h2',{},L(['What is the most I should pay?','这项资产最多值得付多少钱？'])));
@@ -37,6 +40,9 @@ export function renderAcquisitionLab(parent,market,strategyId,economicOverrides=
   const buyer=h('select',{'aria-label':L(['Buyer type','买方类型']),onchange:event=>{setLens(event.target.value);requestRender();}},
     Object.keys(ARCHETYPES).map(key=>h('option',{value:key},L(ARCHETYPES[key].label))));buyer.value=investor;
   card.append(h('label',{},L(['Buyer type ','买方类型 ']),buyer),' ',h('label',{},L(['Acquisition stage ','收购阶段 ']),stage),fields);
+  card.append(h('p',{class:'acq-basis'},L(['Blank fields use the public reference assumptions. Change any known project input to update the price and return.','留空项采用公开资料与参考假设；拿到真实项目后，修改已知项即可更新价格和回报。'])));
+  const inputCurrency=MARKET_REFERENCE[id]?.currency||market.manifest.currency;
+  fields.append(h('div',{class:'acq-form-note'},L([`Money inputs below are ${inputCurrency} per MW.`,`以下金额单位均为${inputCurrency}／MW。`])));
   const number=(key,label,{max=1e12,min=0,step='any'}={})=>{
     const input=h('input',{type:'number',min,max,step,'aria-label':L(label),onchange:event=>{
       if(!event.target.checkValidity()){event.target.reportValidity();return;}
@@ -44,6 +50,7 @@ export function renderAcquisitionLab(parent,market,strategyId,economicOverrides=
     }});if(state[key]!=null)input.value=state[key];
     fields.append(h('label',{},L(label),input));
   };
+  number('purchasePricePerMW',['Seller asking price / MW (optional)','卖方报价／MW（选填）']);
   number('taxPercent',['Cash tax on positive operating income (%)','正运营现金收入适用的现金税率（%）'],{max:100});
   number('decommissioningPerMW',['Decommissioning / MW, native currency','退役费用／MW，原币']);
   number('fixedFeesPerMW',['Fixed transaction fees / MW, native currency','固定交易费用／MW，原币']);
@@ -73,9 +80,10 @@ export function renderAcquisitionLab(parent,market,strategyId,economicOverrides=
     number('failureSpendPerMW',['Cash spent if development fails / MW','开发失败前累计花出的现金／MW']);
     number('failureRefundPerMW',['Refund after failure / MW','失败后可退回的金额／MW']);
     number('refundMonths',['Months to receive a failure refund','失败后等待退款的月数'],{max:240});
-    card.append(h('p',{class:'cap'},L(['The remaining probability is development failure. Supply a source for these assumptions; none is pre-filled.','剩余概率按开发失败处理。请为这些假设提供依据，平台不预填统一成功率。'])));
+    card.append(h('p',{class:'cap'},L(['The remaining probability is development failure. Leave unknown items blank to use the reference range.','剩余概率按开发失败处理；未知项可留空，采用参考情景区间。'])));
   }
   const underwrite={...state,strategyId,economicOverrides,
+    conditionsMet:state.conditionsMet?true:undefined,
     cashTaxRate:state.taxPercent==null?state.cashTaxRate:state.taxPercent/100,
     sources:state.source?[state.source]:state.sources||[],
     debt:state.stage==='operating'&&state.useDebt?{mode:'new'}:null,
@@ -93,13 +101,25 @@ export function renderAcquisitionLab(parent,market,strategyId,economicOverrides=
       {probability:1-(state.onTimePercent+state.delayedPercent)/100,codYears:0,operates:false,costs:[{at:0,amount:state.failureSpendPerMW}],recoveries:[{at:state.refundMonths/12,amount:state.failureRefundPerMW}]},
     ];underwrite.developmentRiskConfirmed=true;
   }
-  const {input,result}=marketAcquisition(market,state.stage,investor,underwrite);
+  const project=marketAcquisition(market,state.stage,investor,underwrite),input=project.input;
+  const result=project.result.status==='priced'?project.result:marketAcquisitionReference(market,state.stage,investor,underwrite);
   const output=h('div',{class:'acq-lab-output','aria-live':'polite'});
-  if(result.status==='priced'){
+  if(['priced','reference'].includes(result.status)){
     output.append(acquisitionPrice(result));
+    if(Number.isFinite(state.purchasePricePerMW)){
+      const outcomes=result.status==='reference'?result.referenceCases.map(c=>c.atPrice):[returnAtAcquisitionPrice(input,investor,state.purchasePricePerMW)];
+      const returns=outcomes.map(o=>o?.annualReturn).filter(Number.isFinite).sort((a,b)=>a-b);
+      const distinct=[...new Set(returns.map(r=>(r*100).toFixed(1)+'%'))];
+      output.append(h('div',{class:'acq-at-price'},h('strong',{},L(['Expected annual return at your price','按你的报价测算的年化回报'])),
+        h('p',{},returns.length===outcomes.length?distinct.join(' – '):L(['These cash flows do not produce one reliable annual return.','这组现金流无法给出唯一可靠的年化回报。'])),
+        explanation(L(['How this was calculated','这项回报如何计算']),['Return at your purchase price','按报价计算回报'],h('p',{},L([
+          'Uses your asking price, the inputs above and reference assumptions for anything left blank. For greenfield and RTB, shows the lower return from holding or selling; operating assets are held. Development returns use probability-weighted cash flows. Project taxes and future spending are included.',
+          '使用你输入的收购价和项目资料，留空项采用参考假设。绿地和RTB比较长持、出售两条路线，显示较低回报；运营资产按长持计算。开发情景采用按概率加权的现金流，已计项目税费和后续投入。'])))));
+    }
     if(!ARCHETYPES[investor].entersAt.includes(state.stage))output.append(h('p',{class:'cap'},L(['Scenario reference: this buyer’s usual entry conditions are not cleared by calculating a price.','情景参考：算得出价格，不表示这类买方已满足该阶段的进入条件。'])));
     const download=h('button',{class:'btn',type:'button',onclick:()=>{
-      const snapshot={version:1,kind:'acquisition-case',savedAt:new Date().toISOString(),market:id,investor,input,result};
+      const snapshot={version:2,kind:'acquisition-case',savedAt:new Date().toISOString(),market:id,investor,input,
+        ...(result.status==='reference'?{referenceInputs:referenceInputs(market,state.stage,underwrite)}:{}),result};
       const url=URL.createObjectURL(new Blob([JSON.stringify(snapshot,null,2)],{type:'application/json'}));
       const link=h('a',{href:url,download:`${id}-${state.stage}-acquisition.json`});link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
     }},L(['Save this calculation','保存本次测算']));output.append(download);

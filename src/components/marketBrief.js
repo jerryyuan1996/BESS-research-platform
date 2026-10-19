@@ -266,6 +266,7 @@ export function marketBrief(marketId, view, assessment, folded = []){
   const lens = lensOf();
   const rows = HOME_BRIEFING.lenses[lens]?.rows.filter(r => r.market === marketId) || [];
   const acquisition=acquisitionList((HOME_BRIEFING.acquisitions?.[lens]||[]).filter(r=>r.market===marketId),{
+    referenceData:HOME_BRIEFING.acquisitionReferenceData,
     marketName:()=>L(HOME_BRIEFING.markets[marketId]?.name||[marketId,marketId]),selectedStage:homeState.acquisitionStage,
     onStage:stage=>{homeState.acquisitionStage=stage;requestRender();},
   });

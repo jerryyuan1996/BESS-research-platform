@@ -36,8 +36,8 @@ export function validateAcquisition(input){
   if(input.stage!=='operating' && (!input.saleTax || !nonnegative(input.saleTax.rate) || input.saleTax.rate>1 || !nonnegative(input.saleTax.basisPerMW))) missing.push('sale tax and tax basis');
   if(input.stage!=='operating' && input.debt) missing.push('pre-operation acquisitions must be all-cash');
   if(input.stage!=='operating' && input.existingNetDebtPerMW!==0) missing.push('debt-free pre-operation closing');
-  if(input.stage==='greenfield' && input.developmentRiskConfirmed!==true) missing.push('development success/delay/failure evidence');
-  if(input.conditionsMet!==true) missing.push('entry, technical and contractual conditions');
+  if(input.stage==='greenfield' && input.developmentRiskConfirmed!==true && input.developmentRiskAssumed!==true) missing.push('development success/delay/failure evidence');
+  if(input.conditionsMet!==true && input.conditionsAssumed!==true) missing.push('entry, technical and contractual conditions');
   if(!Array.isArray(input.sources) || !input.sources.length || !input.sources.every(source=>
     typeof source==='string'?source.trim().length>0:source&&typeof source==='object'&&
       [source.label,source.url].some(value=>typeof value==='string'&&value.trim().length>0))) missing.push('source or stated assumption provenance');
@@ -82,6 +82,58 @@ function finance(input,price,base){
     flows:Array.from({length:input.annual.length},(_,i)=>i<years?-payment+(i===years-1?reserve:0):0)};
 }
 
+// One cash-flow evaluator serves both "what can I pay?" and "what would I earn?".
+function routeValue(input,investor,route,price,discountRate,base){
+  const annual=input.annual,life=annual.length,exitYear=investor==='developer'?0:5;
+  const buyerRate=base+.03+.04*merchantShare(annual.slice(exitYear),base)+(input.additionalPremium??0);
+  const terminal=sum(annual.slice(exitYear).map((y,i)=>pv(cashOf(y),i+1,buyerRate)))-pv(input.decommissioningPerMW,life-exitYear,buyerRate);
+  const debt=input.stage==='operating'?finance(input,price,base):{loan:0,flows:[],reserve:0,fee:0};
+  if(debt.invalid)return {npv:-Infinity,debt};
+  let npv=-price*(1+FEES.acquisition)-(input.fixedFeesPerMW??0)+debt.loan-debt.reserve-debt.fee;
+  for(const s of input.scenarios){
+    let value=-sum(s.costs.map(c=>pv(c.amount,c.at,discountRate)))+sum(s.recoveries.map(c=>pv(c.amount,c.at,discountRate)));
+    if(s.operates){
+      const end=route==='hold'?life:exitYear;
+      value+=sum(annual.slice(0,end).map((y,i)=>pv(cashOf(y)+(debt.flows[i]??0),s.codYears+i+1,discountRate)));
+      if(route==='hold')value-=pv(input.decommissioningPerMW,s.codYears+life,discountRate);
+      else {
+        const taxBasis=input.saleTax.basisPerMW+(input.saleTax.includePurchase?price:0);
+        const saleTax=Math.max(0,terminal-taxBasis)*input.saleTax.rate;
+        value+=pv(terminal*(1-FEES.sale)-saleTax,s.codYears+exitYear,discountRate);
+      }
+    }
+    npv+=s.probability*value;
+  }
+  return {npv,debt};
+}
+
+/** Expected cash-flow IRR at a supplied EV. Development outcomes are weighted;
+ * sale buyer yields and debt sizing stay fixed while solving the buyer's IRR.
+ * Ambiguous multiple roots are not presented as a precise expected return. */
+export function returnAtAcquisitionPrice(input,investor,price){
+  if(INVESTOR_PREMIUM[investor]?.[input?.stage]==null || validateAcquisition(input).length || !nonnegative(price))return null;
+  const base=RATE_SNAPSHOT[input.currency].rate;
+  const routes=input.stage==='operating'?['hold']:['hold','sale'];
+  const results=routes.map(route=>{
+    const f=rate=>routeValue(input,investor,route,price,rate,base).npv;
+    const brackets=[];
+    let a=-.90,fa=f(a);
+    for(let step=1;step<=180;step++){
+      const b=-.90+step*.025,fb=f(b);
+      if(finite(fa)&&finite(fb)&&fa>=0&&fb<0)brackets.push([a,b]);
+      else if(finite(fa)&&finite(fb)&&fa<0&&fb>=0)brackets.push([a,b]);
+      a=b;fa=fb;
+    }
+    if(brackets.length!==1)return null;
+    let [lo,hi]=brackets[0],fl=f(lo);
+    for(let i=0;i<65;i++){const mid=(lo+hi)/2,fm=f(mid);if((fl>=0)===(fm>=0)){lo=mid;fl=fm;}else hi=mid;}
+    return {route,annualReturn:(lo+hi)/2};
+  });
+  if(results.some(r=>!r))return null;
+  const result=results.sort((a,b)=>a.annualReturn-b.annualReturn)[0];
+  return {...result,pricePerMW:price,returnBasis:input.debt?'equity':'all-cash',exitYear:result.route==='sale'?(investor==='developer'?0:5):null};
+}
+
 /** Both routes are priced separately. Only the lower ceiling and ITS target
  * leave this module's public result. Audit alternatives stay in `audit`. */
 export function valueAcquisition(input,investor,{snapshot=RATE_SNAPSHOT}={}){
@@ -99,29 +151,7 @@ export function valueAcquisition(input,investor,{snapshot=RATE_SNAPSHOT}={}){
   for(const route of routes){
     const years=route==='sale' && exitYear>0?annual.slice(0,exitYear):annual;
     const target=base+premium+.03*merchantShare(years,base)+extra;
-    const buyerRate=base+.03+.04*merchantShare(annual.slice(exitYear),base)+extra;
-    const terminal=sum(annual.slice(exitYear).map((y,i)=>pv(cashOf(y),i+1,buyerRate)))
-      -pv(input.decommissioningPerMW,life-exitYear,buyerRate);
-    const evaluate=price=>{
-      const debt=input.stage==='operating'?finance(input,price,base):{loan:0,flows:[],reserve:0,fee:0};
-      if(debt.invalid) return {npv:-Infinity,debt};
-      let npv=-price*(1+FEES.acquisition)-(input.fixedFeesPerMW??0)+debt.loan-debt.reserve-debt.fee;
-      for(const s of input.scenarios){
-        let value=-sum(s.costs.map(c=>pv(c.amount,c.at,target)))+sum(s.recoveries.map(c=>pv(c.amount,c.at,target)));
-        if(s.operates){
-          const end=route==='hold'?life:exitYear;
-          value+=sum(annual.slice(0,end).map((y,i)=>pv(cashOf(y)+(debt.flows[i]??0),s.codYears+i+1,target)));
-          if(route==='hold') value-=pv(input.decommissioningPerMW,s.codYears+life,target);
-          else {
-            const taxBasis=input.saleTax.basisPerMW+(input.saleTax.includePurchase?price:0);
-            const saleTax=Math.max(0,terminal-taxBasis)*input.saleTax.rate;
-            value+=pv(terminal*(1-FEES.sale)-saleTax,s.codYears+exitYear,target);
-          }
-        }
-        npv+=s.probability*value;
-      }
-      return {npv,debt};
-    };
+    const evaluate=price=>routeValue(input,investor,route,price,target,base);
     // An assumed loan's outstanding balance sets a feasible lower EV bound.
     let low=input.debt?.mode==='assume'?input.debt.balancePerMW/(input.debt.ltv??DEBT[input.debt.riskClass].ltv):0;
     const start=evaluate(low);

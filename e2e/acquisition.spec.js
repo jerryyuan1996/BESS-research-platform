@@ -4,18 +4,54 @@ test.beforeEach(async({page})=>{
   await page.route(/^https:\/\//,route=>route.abort());
 });
 
-test('home omits unpriced purchase rows and confusing economics flags',async({page})=>{
+test('home keeps all market references and explains assumptions without confusing flags',async({page},testInfo)=>{
   await page.goto('/');
   await expect(page.locator('.bf-lens')).toBeVisible();
   await expect(page.locator('.bf-call-flag')).toHaveCount(0);
   const rows=page.locator('.acq-row');
-  if(await rows.count()){
-    for(const row of await rows.all()){
-      await expect(row.locator('.acq-price')).toBeVisible();
-      await expect(row.getByRole('button',{name:/Target annual return/})).toBeVisible();
-    }
-  }else await expect(page.locator('.acq-home')).toHaveCount(0);
+  await expect(rows).toHaveCount(15);
+  await expect(rows.first().getByRole('button',{name:/Target annual return/})).toBeVisible();
+  await page.locator('.acq-stages').getByRole('button',{name:'Operating',exact:true}).click();
+  await expect(rows).toHaveCount(15);
+  await expect(rows.first().locator('.acq-price')).toContainText('–');
+  await rows.first().locator('.acq-price').click();
+  const popover=page.locator('.acq-popover:popover-open');
+  const triggerBox=await rows.first().locator('.acq-price').boundingBox(),popoverBox=await popover.boundingBox();
+  expect(popoverBox.y+popoverBox.height<=triggerBox.y || popoverBox.y>=triggerBox.y+triggerBox.height).toBe(true);
+  await expect(popover).toContainText('Cautious case');
+  await expect(popover).toContainText('Favourable case');
+  await popover.getByText('Public sources',{exact:true}).click();
+  await expect(popover.getByRole('link',{name:'Australian Taxation Office: company tax',exact:true})).toBeVisible();
+  await page.keyboard.press('Escape');
+  await page.getByRole('button',{name:'中文',exact:true}).click();
+  await expect(page.locator('.acq-home h2')).toContainText('各市场收购参照');
+  await expect(rows.first().locator('.acq-context')).toContainText('已并网投运');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
+  await page.locator('.acq-home').screenshot({path:testInfo.outputPath('acquisition-reference-home-zh.png')});
   await expect(page.locator('main')).not.toContainText('calls run against the economics');
+});
+
+test('a real asking price works with partial inputs and updates expected returns',async({page},testInfo)=>{
+  await page.goto('/investment-lab');
+  await page.locator('.lab-ctl').first().getByRole('button').first().click();
+  const panel=page.locator('.acq-lab');
+  await panel.getByRole('combobox',{name:'Acquisition stage',exact:true}).selectOption('operating');
+  await expect(panel.locator('.acq-lab-output .acq-price')).toBeVisible();
+  const price=panel.getByRole('spinbutton',{name:'Seller asking price / MW (optional)',exact:true});
+  await price.fill('1000000');await price.blur();
+  await expect(panel.locator('.acq-at-price')).toContainText('Expected annual return at your price');
+  const before=await panel.locator('.acq-at-price>p').innerText();
+  await price.fill('1500000');await price.blur();
+  await expect(panel.locator('.acq-at-price>p')).not.toHaveText(before);
+  const tax=panel.getByRole('spinbutton',{name:'Cash tax on positive operating income (%)',exact:true});
+  await tax.fill('25');await tax.blur();
+  await panel.locator('.acq-price').click();
+  await expect(page.locator('.acq-popover:popover-open')).toContainText('25.0%');
+  await page.keyboard.press('Escape');
+  await page.getByRole('button',{name:'中文',exact:true}).click();
+  await expect(panel.locator('.acq-at-price')).toContainText('按你的报价测算的年化回报');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
+  await panel.locator('.acq-lab-output').screenshot({path:testInfo.outputPath('acquisition-asking-price-zh.png')});
 });
 
 test('a completed operating case pairs price and equity target, explains debt and survives translation',async({page},testInfo)=>{
@@ -40,8 +76,8 @@ test('a completed operating case pairs price and equity target, explains debt an
   await panel.getByRole('textbox',{name:'Source document / assumption reference',exact:true}).blur();
   await expect(panel.locator('.acq-lab-output .acq-price')).toBeVisible();
   await panel.getByRole('checkbox',{name:'Test a new loan using the platform screening terms',exact:true}).check();
-  await expect(panel.locator('.acq-basis')).toContainText('Equity return');
-  await expect(panel.locator('.acq-basis')).toContainText('Long-term hold');
+  await expect(panel.locator('.acq-lab-output .acq-basis').first()).toContainText('Equity return');
+  await expect(panel.locator('.acq-lab-output .acq-basis').first()).toContainText('Long-term hold');
   await panel.getByRole('button',{name:/Target annual return/}).click();
   await expect(page.locator('.acq-popover:popover-open')).toContainText('Loan interest and principal repayments');
   await page.locator('.acq-popover:popover-open').getByRole('button',{name:'Close',exact:true}).click();
@@ -52,7 +88,7 @@ test('a completed operating case pairs price and equity target, explains debt an
   const downloadEvent=page.waitForEvent('download');await panel.getByRole('button',{name:'Save this calculation',exact:true}).click();
   const download=await downloadEvent;expect(download.suggestedFilename()).toContain('-operating-acquisition.json');
   await page.getByRole('button',{name:'中文',exact:true}).click();
-  await expect(panel.locator('.acq-basis')).toContainText('股东回报');
+  await expect(panel.locator('.acq-lab-output .acq-basis').first()).toContainText('股东回报');
   await expect(panel.getByRole('button',{name:/目标年化收益率/})).toBeVisible();
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
   expect(overflow).toBe(false);

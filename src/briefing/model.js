@@ -28,6 +28,7 @@ import { returnGradesFor } from '../comparison/returnGrades.js';
 import { runBaseCase } from '../comparison/engine.js';
 import { FX } from '../comparison/assumptions.js';
 import { acquisitionRecommendations } from '../acquisition/reference.js';
+import { compactReferences } from '../acquisition/projection.js';
 import {
   marketDesign, designEconomics, designGrid, lensRows, orderRows, returnFieldFor, BRIEFING_EXIT_YEAR,
 } from './plays.js';
@@ -226,5 +227,5 @@ export function homeProjection(briefing){
   for (const item of queue) byKind[item.kind] = (byKind[item.kind] || 0) + 1;
   const disagreements = {};
   for (const item of queue.filter(q => q.kind === 'disagreement')) disagreements[item.archetype] = (disagreements[item.archetype] || 0) + 1;
-  return { ...rest, queueSummary: { total: queue.length, byKind, disagreements } };
+  return { ...rest, ...compactReferences(rest.acquisitions), queueSummary: { total: queue.length, byKind, disagreements } };
 }

@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { valueAcquisition, publicAcquisition, debtRiskClass } from '../src/acquisition/valuation.js';
-import { acquisitionInput, acquisitionRecommendations } from '../src/acquisition/reference.js';
+import { valueAcquisition, publicAcquisition, debtRiskClass, returnAtAcquisitionPrice, validateAcquisition } from '../src/acquisition/valuation.js';
+import { acquisitionInput, acquisitionRecommendations, referenceInputs, marketAcquisitionReference } from '../src/acquisition/reference.js';
 import { markets } from '../src/markets/registry.js';
+import { compactReferences, expandReferences } from '../src/acquisition/projection.js';
 
 const annual=n=>Array.from({length:n},()=>({secured:120,merchant:0,renewal:0,opex:10,capex:5,tax:5}));
 const input=(overrides={})=>({stage:'operating',currency:'EUR',fxToUSD:1.1,powerMW:100,durationHours:2,
@@ -80,10 +81,108 @@ test('an operating asset loses elapsed years, without being charged original con
   assert.equal(c.annual.length,11);assert.deepEqual(c.scenarios[0].costs,[{at:0,amount:0}]);
   assert.ok(c.annual.every(y=>y.tax>=0));
 });
-test('missing market reference inputs never become home advice or cross-stage substitutes',()=>{
+test('missing project inputs become labelled references; explicit investor restrictions survive',()=>{
   const synthetic={...markets.find(m=>m.manifest.id==='gb')};
   synthetic.comparison={...synthetic.comparison,acquisition:{eligibleInvestors:{operating:['strategic']}}};
-  assert.deepEqual(acquisitionRecommendations([synthetic]),{strategic:[],infraFund:[],foreignFirstTimer:[],developer:[]});
+  const r=acquisitionRecommendations([synthetic]);
+  assert.equal(r.strategic.filter(r=>r.stage==='operating').length,1);
+  assert.equal(r.infraFund.filter(r=>r.stage==='operating').length,0);
+  assert.ok(r.strategic.every(r=>r.estimated&&r.status==='reference'));
+  assert.equal(acquisitionInput(synthetic,'operating').conditionsMet,false,'the original missing evidence remains missing');
+});
+
+test('all existing markets remain visible for every applicable investor and stage',()=>{
+  const r=acquisitionRecommendations(markets);
+  for(const id of ['strategic','infraFund','foreignFirstTimer'])assert.equal(r[id].length,markets.length*3);
+  assert.equal(r.developer.length,markets.length*2);
+  const construction=r.infraFund.filter(r=>r.stage==='ready-to-build');
+  assert.ok(construction.some(r=>r.referenceCases.some(c=>c.status==='no-positive-price')));
+  for(const row of r.infraFund)for(const c of row.referenceCases){
+    assert.ok(Number.isFinite(c.targetReturn));
+    if(c.status==='no-positive-price'){
+      assert.equal(c.pricePerMW,0);assert.ok(c.costGapPVPerMW>0);
+    }
+  }
+});
+
+test('reference endpoints still price both routes and keep their matching targets',()=>{
+  const market=markets.find(m=>m.manifest.id==='fi');
+  const overrides={remainingBuildPerMW:1000,unfixedConstructionPerMW:0,monthsToOperation:6};
+  const r=marketAcquisitionReference(market,'ready-to-build','infraFund',overrides);
+  const inputs=referenceInputs(market,'ready-to-build',overrides);
+  assert.equal(r.status,'reference');
+  inputs.forEach((c,i)=>{
+    const solved=valueAcquisition(c.input,'infraFund');assert.equal(solved.status,'priced');
+    close(r.referenceCases[i].pricePerMW,Math.min(...solved.audit.map(a=>a.pricePerMW)));
+    close(r.referenceCases[i].targetReturn,solved.targetReturn);
+    assert.equal(c.input.debt,null);
+  });
+});
+
+test('known project inputs replace missing assumptions, including explicit zero, without changing market evidence',()=>{
+  const market=markets.find(m=>m.manifest.id==='gb'),before=JSON.stringify(market.comparison);
+  const cases=referenceInputs(market,'operating',{cashTaxRate:0,decommissioningPerMW:0,fixedFeesPerMW:0,
+    initialWorksPerMW:0,operatingAgeYears:5,existingNetDebtPerMW:120,contractConfirmed:true,additionalPremium:0,
+    unsecuredRevenueFactor:1,operatingCostFactor:1,debt:null});
+  for(const c of cases){
+    assert.deepEqual(validateAcquisition(c.input),[]);assert.equal(c.input.annual.length,10);
+    assert.equal(c.input.existingNetDebtPerMW,120);assert.equal(c.input.decommissioningPerMW,0);
+    assert.ok(c.input.annual.every(y=>y.tax===0));assert.equal(c.input.scenarios[0].costs[0].amount,0);
+    assert.equal(c.input.debt,null);assert.equal(c.input.additionalPremium,0);
+  }
+  assert.equal(JSON.stringify(market.comparison),before);
+});
+
+test('PL and RO references convert model amounts to local currency and use that currency hurdle',()=>{
+  for(const [id,currency,ratio,base] of [['pl','PLN',4.37,.0625],['ro','RON',5.331,.0675]]){
+    const m=markets.find(m=>m.manifest.id===id),r=marketAcquisitionReference(m,'operating','strategic');
+    assert.equal(r.currency,currency);close(r.localUnitsPerModelUnit,ratio);close(r.baseRate,base);
+    const local=referenceInputs(m,'operating',{operatingAgeYears:0,cashTaxRate:.2})[1];
+    const euro=acquisitionInput(m,'operating',{cashFlowCurrency:'EUR',operatingAgeYears:0,cashTaxRate:.2});
+    close(local.input.annual[0].merchant,euro.annual[0].merchant*ratio);
+  }
+});
+
+test('public operating scenarios hold only, and do not charge sunk construction a second time',()=>{
+  const m=markets.find(m=>m.manifest.id==='wa'),r=marketAcquisitionReference(m,'operating','infraFund');
+  for(const c of r.referenceCases){assert.equal(c.route,'hold');assert.equal(c.exitYear,null);assert.equal(c.assumptions.buildBudget,0);}
+  assert.equal(marketAcquisitionReference(m,'operating','developer').status,'not-applicable');
+  assert.equal(marketAcquisitionReference(m,'operating','infraFund',{conditionsMet:false}).status,'incomplete');
+});
+
+test('the expected return at a quoted price reproduces the ceiling and responds to price',()=>{
+  const c=input(),solved=valueAcquisition(c,'strategic');
+  const atCeiling=returnAtAcquisitionPrice(c,'strategic',solved.pricePerMW);
+  close(atCeiling.annualReturn,solved.targetReturn);
+  assert.ok(returnAtAcquisitionPrice(c,'strategic',solved.pricePerMW*.8).annualReturn>atCeiling.annualReturn);
+  assert.ok(returnAtAcquisitionPrice(c,'strategic',solved.pricePerMW*1.2).annualReturn<atCeiling.annualReturn);
+  const financed=input({debt:{mode:'new',riskClass:'mixed'}}),f=valueAcquisition(financed,'infraFund');
+  close(returnAtAcquisitionPrice(financed,'infraFund',f.pricePerMW).annualReturn,f.targetReturn);
+  assert.equal(returnAtAcquisitionPrice(c,'strategic',-1),null);
+});
+
+test('a partial project quote yields reference returns without requiring every field',()=>{
+  const m=markets.find(m=>m.manifest.id==='wa');
+  const a=marketAcquisitionReference(m,'operating','infraFund',{purchasePricePerMW:1000000,cashTaxRate:.25});
+  const b=marketAcquisitionReference(m,'operating','infraFund',{purchasePricePerMW:1500000,cashTaxRate:.25});
+  a.referenceCases.forEach((c,i)=>{
+    assert.ok(c.atPrice.annualReturn>b.referenceCases[i].atPrice.annualReturn);
+    assert.equal(c.assumptions.taxRate,.25);assert.equal(c.assumptions.taxOverridden,true);
+  });
+});
+
+test('home display projection retains paired cases and provenance while pooling repeated assumptions',()=>{
+  const m=markets.find(m=>m.manifest.id==='wa'),original=acquisitionRecommendations([m]);
+  const before=JSON.stringify(original),packed=compactReferences(original);
+  const restored=expandReferences(packed.acquisitions.infraFund,packed.acquisitionReferenceData);
+  assert.equal(restored.length,3);
+  const operation=restored.find(r=>r.stage==='operating');
+  assert.equal(operation.referenceCases[0].assumptions.age,3);
+  assert.equal(operation.referenceCases[1].assumptions.age,0);
+  assert.equal(operation.currency,'AUD');assert.ok(operation.rateSource.startsWith('https://'));
+  assert.equal(operation.referenceCases[0].key,'cautious');
+  assert.ok(packed.acquisitionReferenceData.assumptions.length<22);
+  assert.equal(JSON.stringify(original),before);
 });
 test('explicit full-life evidence is accepted without hard-coding a fresh 15 years',()=>{
   const r=valueAcquisition(input({annual:annual(21)}),'strategic');

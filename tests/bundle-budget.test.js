@@ -110,7 +110,10 @@ const BUDGET = {
      the entry chunk, which carries every market's source register and gained
      the sources opened for the ledgers and grades; the projection itself
      added 0.4. */
-  home: 195,
+  // 2026-10-19: buyer reference prices, timing and paired return targets for
+  // 15 markets × investor/stage. Pooling assumptions halves the new payload
+  // (25.1 -> 12.5 kB gzip); allow 15 kB for this additional first-view content.
+  home: 210,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -279,7 +282,9 @@ const BUDGET = {
 
        RAISED FROM 18 TO 22 when the plays were applied: measured 18.74, and
        the briefing grows with each play written, which is what it is for. */
-    'briefing-data': 22,
+    // The same 165 market/investor/stage references are shared by the home,
+    // market brief and digest. Numeric outputs are rounded only for display.
+    'briefing-data': 34,
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,

@@ -234,8 +234,8 @@ test('the page and the digest read one computation', async () => {
   const priced=renderDigest({...b,acquisitions:{...b.acquisitions,[b.defaultLens]:[sample]}});
   assert.ok(priced.includes('$123,456') && priced.includes('12.0%') && priced.includes('GBP'));
   const unpriced=renderDigest({...b,acquisitions:{[b.defaultLens]:[]}});
-  assert.ok(!unpriced.includes('## Projects to look for') && !unpriced.includes('## 值得筛选的收购方向'));
-  const purchaseSection=priced.split('## Projects to look for')[1].split('## What to build')[0];
+  assert.ok(!unpriced.includes('## Acquisition reference by market') && !unpriced.includes('## 各市场收购参照'));
+  const purchaseSection=priced.split('## Acquisition reference by market')[1].split('## What to build')[0];
   assert.ok(!purchaseSection.includes('runs ahead of the economics'));
   assert.equal(weekOf(new Date('2026-10-18T23:07:00Z')), '2026-10-19', 'Sunday 23:07 UTC is Monday morning in Perth');
 });
