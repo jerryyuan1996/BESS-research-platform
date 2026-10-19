@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-19T13:30:31.494Z",
+  "fetchedAt": "2026-10-19T22:26:03.908Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-19T12:37:19.000Z",
+    "to": "2026-10-19T16:16:28.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -196,12 +196,12 @@
     },
     {
       "t": "2026-10-15T08:34:33.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/we-are-taking-appropriate-action-to-defend-ip-rights-energy-dome-exa-energys-co2-storage-tech-compared-as-1gwh-china-project-goes-online/",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-dome-exa-energys-co2-storage-tech-compared-as-1gwh-china-project-goes-online/",
       "source": "Energy-Storage.news",
-      "title": "‘We are taking appropriate action to defend IP rights’: Energy Dome & Exa Energy’s CO2 storage tech compared as 1GWh China project goes online",
-      "url": "https://www.energy-storage.news/we-are-taking-appropriate-action-to-defend-ip-rights-energy-dome-exa-energys-co2-storage-tech-compared-as-1gwh-china-project-goes-online/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
+      "title": "Energy Dome & Exa Energy’s CO2 storage technology compared as 1GWh China project goes online",
+      "url": "https://www.energy-storage.news/energy-dome-exa-energys-co2-storage-tech-compared-as-1gwh-china-project-goes-online/",
+      "category": "technology",
+      "categoryLabel": "Technology",
       "summary": "How similar is the technology of Exa Energy, which just connected a 100MW/1GWh carbon dioxide-based energy storage system to the grid in China, to that of Energy Dome?"
     },
     {
@@ -243,16 +243,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Around 20.4GWh of grid-scale battery energy storage systems (BESS) came online globally last month, bringing the year-to-date (YTD) total to 208GWh."
-    },
-    {
-      "t": "2026-10-15T15:52:32.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/itc-material-injury-solar-imports-india-indonesia-laos/833127/",
-      "source": "Utility Dive",
-      "title": "Solar imports from India, Indonesia, Laos injured US manufacturers: ITC",
-      "url": "https://www.utilitydive.com/news/itc-material-injury-solar-imports-india-indonesia-laos/833127/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The decision clears the way for the Department of Commerce to finalize anti-dumping and countervailing duty orders on&nbsp;crystalline silicon photovoltaic cells from the three countries."
     },
     {
       "t": "2026-10-16T04:56:20.000Z",
@@ -443,18 +433,48 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Under the terms of the agreement, ACME Solar will deliver 300 MW/1,200 MWh of assured peak power supply through a firm and dispatchable renewable energy (FDRE) project combining solar and storage technologies. The post India’s ACME Solar signs 300 MW/1,200 MWh PPA at $0.063/kWh appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-19T13:20:51.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-iso-ne-asset-condition-transmission-review/833328/",
+      "source": "Utility Dive",
+      "title": "FERC approves ISO-NE ‘asset condition’ transmission review process",
+      "url": "https://www.utilitydive.com/news/ferc-iso-ne-asset-condition-transmission-review/833328/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Commissioners David Rosner and Judy Chang said other regions should adopt similar review processes for local transmission projects, which states and consumer advocates say need more oversight."
+    },
+    {
+      "t": "2026-10-19T15:10:29.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/schneider-electric-data-center-earnings/833358/",
+      "source": "Utility Dive",
+      "title": "Schneider Electric sees record-high Q3 revenue on global data center boom",
+      "url": "https://www.utilitydive.com/news/schneider-electric-data-center-earnings/833358/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "North America continues to be the largest source of revenue for the company&rsquo;s Energy Management segment, but China and East Asia saw a higher organic growth rate this quarter and year-to-date."
+    },
+    {
+      "t": "2026-10-19T16:16:28.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/what-googles-virtual-power-plant-in-pjm-says-about-the-race-for-electricit/833290/",
+      "source": "Utility Dive",
+      "title": "What Google’s virtual power plant in PJM says about the race for electricity",
+      "url": "https://www.utilitydive.com/news/what-googles-virtual-power-plant-in-pjm-says-about-the-race-for-electricit/833290/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Voltus CEO Dana Guernsey compared new &ldquo;bring your own new capacity&rdquo; contracts to the power purchase agreements that &ldquo;revolutionized&rdquo; utility-scale solar and wind development."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 30,
+      "grid": 31,
       "policy": 7,
       "capital": 3,
-      "technology": 2
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -473,7 +493,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 1
+        "items": 3
       },
       {
         "source": "pv magazine",
@@ -488,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:56cddb7d42fccc26642a50a883c0d49b55a8045ab0d1cc0ee7cb8ea9cf7dd779",
-  "envelopeChecksum": "sha256:3423e30995ad515e1d919ce2efe6a335b1e9b827ede6adffc1bb8b7848f89f64"
+  "contentChecksum": "sha256:8d7fcde714dff7c751b59ec6449e0db282fe55e5026a4045104dd23d9ce7f021",
+  "envelopeChecksum": "sha256:8024f31ce0d6b1104681fdb15c92387696195a15e2040880fc51d0c8b507e659"
 }
