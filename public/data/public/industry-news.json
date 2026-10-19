@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-17T10:52:42.903Z",
+  "fetchedAt": "2026-10-19T04:50:32.412Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-17T09:50:00.000Z",
+    "to": "2026-10-19T01:11:24.000Z",
     "resolution": "event",
     "points": 42
   },
@@ -133,16 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-13T10:18:18.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/foss-company-closes-us58-million-tax-equity-deal-for-gridstors-texas-bess-project/",
-      "source": "Energy-Storage.news",
-      "title": "Foss & Company closes US$58 million tax equity deal for GridStor’s Texas BESS project",
-      "url": "https://www.energy-storage.news/foss-company-closes-us58-million-tax-equity-deal-for-gridstors-texas-bess-project/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "US tax equity syndicator Foss & Company has closed a US$58 million partnership flip transaction to finance an energy storage project in Hidalgo County, Texas, developed by GridStor."
     },
     {
       "t": "2026-10-14T01:44:03.000Z",
@@ -443,6 +433,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The manufacturer partnered with Aluko Group to supply U.S.-made aluminum frames from Tennessee, aimed at streamlining domestic content bonus qualification under increasing IRA thresholds. The post Qcells to introduce U.S. domestic frames for residential solar panel lineup appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-19T01:11:24.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/arcactive-switches-on-lead-acid-battery-storage-system-pilot-at-deakin-university-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "ArcActive switches on lead-acid battery storage system pilot at Deakin University in Australia",
+      "url": "https://www.energy-storage.news/arcactive-switches-on-lead-acid-battery-storage-system-pilot-at-deakin-university-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "New Zealand energy storage company ArcActive has switched on a pilot lead-acid BESS in Victoria, Australia, with support from Origin Energy."
     }
   ],
   "derived": {
@@ -451,9 +451,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
+      "grid": 30,
       "policy": 8,
-      "capital": 4,
+      "capital": 3,
       "technology": 1
     },
     "sourceStatus": [
@@ -488,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:561594233d52a7f1051d4fc4f554c88081ca50b6ed7355b28bf6bb9d1cb10de2",
-  "envelopeChecksum": "sha256:e56aacd6ca3101a421906e217221edb637e449c593c344476c28f3f484345d36"
+  "contentChecksum": "sha256:08b504171878bc98a933cc52fb92b24fba3f6d53160e0d246689593ee4ac73e0",
+  "envelopeChecksum": "sha256:0bc2c37e88fb40b559af264cd0df306d5af343cb118ae25f6af8ba62d6e1a9f3"
 }
