@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-19T22:26:03.908Z",
+  "fetchedAt": "2026-10-20T04:58:43.510Z",
   "coverage": {
     "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-19T16:16:28.000Z",
+    "to": "2026-10-20T03:47:47.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -133,46 +133,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-14T08:48:46.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/south-africas-state-utility-eskom-opens-selection-process-for-1-5gw-21gwh-pumped-hydro-plant/",
-      "source": "Energy-Storage.news",
-      "title": "South Africa’s state utility Eskom opens selection process for 1.5GW/21GWh pumped hydro plant",
-      "url": "https://www.energy-storage.news/south-africas-state-utility-eskom-opens-selection-process-for-1-5gw-21gwh-pumped-hydro-plant/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Africa continues its push for energy storage capacity, with utility and grid operator Eskom issuing a call to work on a 21GWh pumped hydro energy storage (PHES) project."
-    },
-    {
-      "t": "2026-10-14T11:27:37.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ltsas-under-scrutiny-what-bess-owners-really-need-from-their-contracts/",
-      "source": "Energy-Storage.news",
-      "title": "LTSAs under scrutiny: what BESS owners really need from their contracts",
-      "url": "https://www.energy-storage.news/ltsas-under-scrutiny-what-bess-owners-really-need-from-their-contracts/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A panel of BESS industry experts discussed the ins and outs of long-term service agreements (LTSAs) at the Battery Asset Management Summit UK & Ireland 2026 yesterday."
-    },
-    {
-      "t": "2026-10-14T12:32:34.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/illinois-seeks-feedback-after-coming-up-short-in-large-scale-battery-storage-procurement/",
-      "source": "Energy-Storage.news",
-      "title": "Illinois seeks feedback after coming up short in large-scale battery storage procurement",
-      "url": "https://www.energy-storage.news/illinois-seeks-feedback-after-coming-up-short-in-large-scale-battery-storage-procurement/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Illinois Power Agency (IPA) is seeking stakeholder feedback on its summer procurement of 600MW of energy storage projects in the US state, after falling short by 438MW."
-    },
-    {
-      "t": "2026-10-14T14:43:27.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-storage-awards-2026-shortlist-reveal-kicks-off-countdown-to-the-industrys-big-night-out/",
-      "source": "Energy-Storage.news",
-      "title": "Energy Storage Awards 2026: Shortlist reveal kicks off countdown to the industry’s big night out",
-      "url": "https://www.energy-storage.news/energy-storage-awards-2026-shortlist-reveal-kicks-off-countdown-to-the-industrys-big-night-out/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The expert judges’ difficult decisions to select winners from hundreds of worthy entries for the Energy Storage Awards 2026 are almost finalised."
     },
     {
       "t": "2026-10-15T02:46:57.000Z",
@@ -445,16 +405,6 @@
       "summary": "Commissioners David Rosner and Judy Chang said other regions should adopt similar review processes for local transmission projects, which states and consumer advocates say need more oversight."
     },
     {
-      "t": "2026-10-19T15:10:29.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/schneider-electric-data-center-earnings/833358/",
-      "source": "Utility Dive",
-      "title": "Schneider Electric sees record-high Q3 revenue on global data center boom",
-      "url": "https://www.utilitydive.com/news/schneider-electric-data-center-earnings/833358/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "North America continues to be the largest source of revenue for the company&rsquo;s Energy Management segment, but China and East Asia saw a higher organic growth rate this quarter and year-to-date."
-    },
-    {
       "t": "2026-10-19T16:16:28.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/what-googles-virtual-power-plant-in-pjm-says-about-the-race-for-electricit/833290/",
       "source": "Utility Dive",
@@ -463,17 +413,57 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Voltus CEO Dana Guernsey compared new &ldquo;bring your own new capacity&rdquo; contracts to the power purchase agreements that &ldquo;revolutionized&rdquo; utility-scale solar and wind development."
+    },
+    {
+      "t": "2026-10-20T01:57:53.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/akaysha-energy-secures-au1-75-billion-portfolio-financing-for-australian-bess-expansion/",
+      "source": "Energy-Storage.news",
+      "title": "Akaysha Energy secures AU$1.75 billion portfolio financing for Australian BESS expansion",
+      "url": "https://www.energy-storage.news/akaysha-energy-secures-au1-75-billion-portfolio-financing-for-australian-bess-expansion/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Australian battery energy storage system (BESS) developer Akaysha Energy has refinanced its project debt into an AU$1.75 billion (US$1.22 billion) portfolio-level facility."
+    },
+    {
+      "t": "2026-10-20T02:03:00.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/hazelwood-bess-expansion-in-australia-set-to-double-storage-capacity-at-former-coal-site/",
+      "source": "Energy-Storage.news",
+      "title": "Hazelwood BESS expansion in Australia set to double storage capacity at former coal site",
+      "url": "https://www.energy-storage.news/hazelwood-bess-expansion-in-australia-set-to-double-storage-capacity-at-former-coal-site/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "ENGIE's Hazelwood battery energy storage system (BESS) expansion in Australia has moved closer to financial close after a state transmission declaration."
+    },
+    {
+      "t": "2026-10-20T03:13:31.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/india-must-align-battery-storage-and-transmission-to-cut-renewable-curtailment/",
+      "source": "Energy-Storage.news",
+      "title": "India must align battery storage and transmission to cut renewable curtailment",
+      "url": "https://www.energy-storage.news/india-must-align-battery-storage-and-transmission-to-cut-renewable-curtailment/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Hartek Power CEO discusses India’s BESS expansion, transmission infrastructure and strategies to reduce renewable energy curtailment."
+    },
+    {
+      "t": "2026-10-20T03:47:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/india-must-move-beyond-vgf-subsidy-support-to-build-commercially-viable-bess-market-says-oyster-renewables/",
+      "source": "Energy-Storage.news",
+      "title": "India must move beyond VGF subsidy support to build commercially viable BESS market, says Oyster Renewables",
+      "url": "https://www.energy-storage.news/india-must-move-beyond-vgf-subsidy-support-to-build-commercially-viable-bess-market-says-oyster-renewables/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Oyster Renewable COO talks about India’s BESS growth, domestic manufacturing ambitions, supply chain resilience and challenges."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 31,
+      "grid": 29,
       "policy": 7,
-      "capital": 3,
+      "capital": 4,
       "technology": 3
     },
     "sourceStatus": [
@@ -493,7 +483,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 2
       },
       {
         "source": "pv magazine",
@@ -508,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:8d7fcde714dff7c751b59ec6449e0db282fe55e5026a4045104dd23d9ce7f021",
-  "envelopeChecksum": "sha256:8024f31ce0d6b1104681fdb15c92387696195a15e2040880fc51d0c8b507e659"
+  "contentChecksum": "sha256:0f54808ffadb3a128da1ea0bf4c8e58eed56c61eb50f7954a84cfc34b7f60770",
+  "envelopeChecksum": "sha256:e6368524e53056293300409bf319f7c5973ce5b9d05110e9ddcb9342db3b5bd4"
 }
