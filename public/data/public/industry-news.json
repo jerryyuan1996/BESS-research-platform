@@ -13,33 +13,23 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-20T04:58:43.510Z",
+  "fetchedAt": "2026-10-20T11:47:10.574Z",
   "coverage": {
-    "from": "2026-04-28T06:00:18.000Z",
-    "to": "2026-10-20T03:47:47.000Z",
+    "from": "2026-05-12T06:00:22.000Z",
+    "to": "2026-10-20T10:59:14.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 40
   },
   "units": {
     "record": "published article metadata"
   },
   "series": [
     {
-      "t": "2026-04-28T06:00:18.000Z",
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3fopvtezyh",
-      "source": "Modo Energy",
-      "title": "Solar Saturation & Grid Collapse: Spain's BESS Opportunity - Modo Energy",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3fopvtezyh",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Spain has approximately 42GW of utility-scale solar and 50GW when rooftop is included, yet less than 100MW of grid-connected battery storage. In February, solar capture rates hit €1.30 per megawatt hour, a fraction of the €30–35/MWh needed for a solar project to break even. So why hasn't battery storage followed the…"
-    },
-    {
-      "t": "2026-05-12T06:00:21.000Z",
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=kv08rl7xf8",
+      "t": "2026-05-12T06:00:22.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=2dqapfzrlc",
       "source": "Modo Energy",
       "title": "Why Germany's Battery Storage Market Is Harder Than It Looks - Terralayr",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=kv08rl7xf8",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=2dqapfzrlc",
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Germany sits at the centre of Europe's energy transition: over 800 distribution networks, deep intraday markets, and a flexibility gap roughly 40 times its battery fleet. But the real question isn't whether the market is big - it's whether it saturates as battery capacity grows, or scales for years yet. Philipp Man…"
@@ -133,36 +123,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-15T02:46:57.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-e-storage-commissions-960mwh-bess-in-south-australia-for-cip-gotion-delivers-for-lightsource-hybrid-in-queensland/",
-      "source": "Energy-Storage.news",
-      "title": "Australia: e-STORAGE commissions 960MWh BESS in South Australia for CIP; Gotion delivers for Lightsource hybrid in Queensland",
-      "url": "https://www.energy-storage.news/australia-e-storage-commissions-960mwh-bess-in-south-australia-for-cip-gotion-delivers-for-lightsource-hybrid-in-queensland/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "960MWh Summerfield BESS in South Australia enters commissioning, while Gotion starts building the 843MWh Lower Wonga project in Queensland."
-    },
-    {
-      "t": "2026-10-15T08:17:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/world-falls-well-short-on-commitment-to-energy-storage-despite-increased-ambitions-think-tank-ember-says/",
-      "source": "Energy-Storage.news",
-      "title": "World falls well short on commitment to energy storage despite increased ambitions, think tank Ember says",
-      "url": "https://www.energy-storage.news/world-falls-well-short-on-commitment-to-energy-storage-despite-increased-ambitions-think-tank-ember-says/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Insufficient progress has been made towards the Energy Storage and Grids Pledge, endorsed by dozens of countries at COP29 two years ago."
-    },
-    {
-      "t": "2026-10-15T08:34:33.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-dome-exa-energys-co2-storage-tech-compared-as-1gwh-china-project-goes-online/",
-      "source": "Energy-Storage.news",
-      "title": "Energy Dome & Exa Energy’s CO2 storage technology compared as 1GWh China project goes online",
-      "url": "https://www.energy-storage.news/energy-dome-exa-energys-co2-storage-tech-compared-as-1gwh-china-project-goes-online/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "How similar is the technology of Exa Energy, which just connected a 100MW/1GWh carbon dioxide-based energy storage system to the grid in China, to that of Energy Dome?"
     },
     {
       "t": "2026-10-15T11:10:50.000Z",
@@ -265,46 +225,6 @@
       "summary": "New Zealand energy storage company ArcActive has switched on a pilot lead-acid BESS in Victoria, Australia, with support from Origin Energy."
     },
     {
-      "t": "2026-10-19T05:26:26.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/swift-current-alleges-widespread-module-defects-in-lawsuit-against-first-solar/",
-      "source": "pv magazine",
-      "title": "Swift Current alleges widespread module defects in lawsuit against First Solar",
-      "url": "https://www.pv-magazine.com/2026/10/19/swift-current-alleges-widespread-module-defects-in-lawsuit-against-first-solar/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Massachusetts-based developer filed a complaint in the New York supreme court that alleges the module manufacturer knew about defects that have caused underperformance in more than 2.4 million modules it delivered to Swift Current sites in 2023 and 2024. The post Swift Current alleges widespread module defects i…"
-    },
-    {
-      "t": "2026-10-19T07:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/100-renewables-is-doable-even-in-oil-countries/",
-      "source": "pv magazine",
-      "title": "100% renewables is doable, even in oil countries",
-      "url": "https://www.pv-magazine.com/2026/10/19/100-renewables-is-doable-even-in-oil-countries/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Oil- and gas-producing countries could strengthen their economies by accelerating domestic renewable energy deployment while maintaining fossil fuel exports, according to LUT University professor Christian Breyer. In an interview with pv magazine , he pointed to Norway as an example of how electrification can maximi…"
-    },
-    {
-      "t": "2026-10-19T07:44:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/sri-lanka-asks-pv-system-owners-to-disconnect-after-nationwide-blackout/",
-      "source": "pv magazine",
-      "title": "Sri Lanka asks PV system owners to disconnect after nationwide blackout",
-      "url": "https://www.pv-magazine.com/2026/10/19/sri-lanka-asks-pv-system-owners-to-disconnect-after-nationwide-blackout/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sri Lanka has ordered PV system owners to disconnect from the grid following a nationwide blackout on Oct. 17. The outage follows a similar incident in February 2025, when high solar penetration was identified as a major contributing factor. The post Sri Lanka asks PV system owners to disconnect after nationwide bla…"
-    },
-    {
-      "t": "2026-10-19T07:54:59.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/jinkosolar-unveils-28-efficient-back-contact-topcon-solar-cell-with-amorphous-silicon-heterojunction-passivation/",
-      "source": "pv magazine",
-      "title": "JinkoSolar unveils 28%-efficient back-contact TOPCon solar cell with amorphous silicon heterojunction passivation",
-      "url": "https://www.pv-magazine.com/2026/10/19/jinkosolar-unveils-28-efficient-back-contact-topcon-solar-cell-with-amorphous-silicon-heterojunction-passivation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "JinkoSolar has unveiled its first back-contact solar cell technology, combining TOPCon and heterojunction passivation in a new architecture called TAC. The Chinese manufacturer reported a peak cell conversion efficiency of 28%. The post JinkoSolar unveils 28%-efficient back-contact TOPCon solar cell with amorphous s…"
-    },
-    {
       "t": "2026-10-19T07:56:50.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/evolving-role-of-energy-storage-as-infrastructure-demands-that-technology-stands-the-test-of-time-catl-ceo-says/",
       "source": "Energy-Storage.news",
@@ -313,56 +233,6 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "Energy storage is becoming an indispensable new-type power system infrastructure, CATL CEO and chairman Robin Zeng said in an industry speech last week."
-    },
-    {
-      "t": "2026-10-19T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/longi-researchers-reveals-how-edge-masking-reduces-recombination-losses-in-solar-cells/",
-      "source": "pv magazine",
-      "title": "Longi researchers reveal how edge masking reduces recombination losses in solar cells",
-      "url": "https://www.pv-magazine.com/2026/10/19/longi-researchers-reveals-how-edge-masking-reduces-recombination-losses-in-solar-cells/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Longi researchers found that edge masking improves the measured efficiency of heterojunction back-contact solar cells by suppressing edge recombination, with an optimal masking width of 5 mm. Their simulations suggest that selective metallization could further increase efficiency from 26.85% to a theoretical maximum…"
-    },
-    {
-      "t": "2026-10-19T09:07:38.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/indonesian-president-instructs-transformation-of-power-utility/",
-      "source": "pv magazine",
-      "title": "Indonesian president instructs transformation of power utility",
-      "url": "https://www.pv-magazine.com/2026/10/19/indonesian-president-instructs-transformation-of-power-utility/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A reform of Indonesia's power utility PT PLN is set to focus on improving efficiency and productivity, as well as accelerating the delivery of the country's 100 GW solar program. The post Indonesian president instructs transformation of power utility appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-19T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/bangladesh-plans-70-mw-solar-plant-at-coal-power-station/",
-      "source": "pv magazine",
-      "title": "Bangladesh plans 70 MW solar plant at coal power station",
-      "url": "https://www.pv-magazine.com/2026/10/19/bangladesh-plans-70-mw-solar-plant-at-coal-power-station/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The European Investment Bank (EIB) is expected to help finance a planned 70 MW solar power plant at Bangladesh’s Matarbari coal-fired power station, with commissioning targeted for December 2028. The post Bangladesh plans 70 MW solar plant at coal power station appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-19T11:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/politicians-propose-plug-in-solar-batteries-in-norway/",
-      "source": "pv magazine",
-      "title": "Politicians propose plug-in solar, batteries in Norway",
-      "url": "https://www.pv-magazine.com/2026/10/19/politicians-propose-plug-in-solar-batteries-in-norway/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "A group of Green Party politicians in Norway are calling on the Norwegian government to make it possible to connect plug-in solar and batteries that meet established safety requirements by the end of 2027. The post Politicians propose plug-in solar, batteries in Norway appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-19T11:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/taiwanese-firm-to-make-floating-pv-components-in-philippines/",
-      "source": "pv magazine",
-      "title": "Taiwanese firm to make floating PV components in Philippines",
-      "url": "https://www.pv-magazine.com/2026/10/19/taiwanese-firm-to-make-floating-pv-components-in-philippines/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Taiwanese floating solar supplier Suntoward will begin producing floats, walkways and mooring components in the Philippines in early 2027. The post Taiwanese firm to make floating PV components in Philippines appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-19T11:49:17.000Z",
@@ -383,16 +253,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "In the wide-ranging conversation, Shaw starts off by describing the year-end rush as a perennial challenge for the battery energy storage system (BESS) sector in the US."
-    },
-    {
-      "t": "2026-10-19T12:37:19.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/19/acme-solar-signs-ppa-with-seci-for-300-mw-1200-mwh-fdre-project-at-inr-6-kwh/",
-      "source": "pv magazine",
-      "title": "India’s ACME Solar signs 300 MW/1,200 MWh PPA at $0.063/kWh",
-      "url": "https://www.pv-magazine.com/2026/10/19/acme-solar-signs-ppa-with-seci-for-300-mw-1200-mwh-fdre-project-at-inr-6-kwh/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Under the terms of the agreement, ACME Solar will deliver 300 MW/1,200 MWh of assured peak power supply through a firm and dispatchable renewable energy (FDRE) project combining solar and storage technologies. The post India’s ACME Solar signs 300 MW/1,200 MWh PPA at $0.063/kWh appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-19T13:20:51.000Z",
@@ -453,17 +313,127 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Oyster Renewable COO talks about India’s BESS growth, domestic manufacturing ambitions, supply chain resilience and challenges."
+    },
+    {
+      "t": "2026-10-20T06:00:38.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=2dk8hlnaev",
+      "source": "Modo Energy",
+      "title": "Battery Storage in Germany: A Grid Operator’s View - 50Hertz",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=2dk8hlnaev",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
+    },
+    {
+      "t": "2026-10-20T06:36:42.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/dominican-republic-to-introduce-grid-usage-fee-for-distributed-pv/",
+      "source": "pv magazine",
+      "title": "Dominican Republic to introduce grid usage fee for distributed PV",
+      "url": "https://www.pv-magazine.com/2026/10/20/dominican-republic-to-introduce-grid-usage-fee-for-distributed-pv/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Dominican Republic utility Edesur will introduce a new grid usage charge for certain solar net metering customers from Nov. 1, 2026. The charge will apply to electricity exported to the grid, although questions remain over which existing contracts will be affected. The post Dominican Republic to introduce grid usage…"
+    },
+    {
+      "t": "2026-10-20T07:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/italy-allocates-e770-million-for-505-mw-of-agricultural-rooftop-solar/",
+      "source": "pv magazine",
+      "title": "Italy allocates €770 million for 505 MW of agricultural rooftop solar",
+      "url": "https://www.pv-magazine.com/2026/10/20/italy-allocates-e770-million-for-505-mw-of-agricultural-rooftop-solar/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Italy has awarded €770 million ($864.8 million) to 7,409 agricultural businesses for 505 MW of rooftop solar, while 7,610 applications were deemed ineligible. The post Italy allocates €770 million for 505 MW of agricultural rooftop solar appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-20T07:16:51.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/solar-module-manufacturing-in-europe-ideal-factory-capacity-ranges-from-1-gw-to-3-gw/",
+      "source": "pv magazine",
+      "title": "Solar module manufacturing in Europe: Ideal factory capacity ranges from 1 GW to 3 GW",
+      "url": "https://www.pv-magazine.com/2026/10/20/solar-module-manufacturing-in-europe-ideal-factory-capacity-ranges-from-1-gw-to-3-gw/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Laura Sartore, CEO of Ecoprogetti, spoke with pv magazine about the evolution of solar supply chains, addressing protectionism, industrial policy and economies of scale. While the United States and India are focusing on strengthening domestic supply chains, Europe may need a different approach: a network of medium-s…"
+    },
+    {
+      "t": "2026-10-20T07:44:19.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/genesis-opens-200mwh-battery-storage-system-at-new-zealands-largest-power-station/",
+      "source": "Energy-Storage.news",
+      "title": "Genesis opens 200MWh battery storage system at New Zealand’s largest power station",
+      "url": "https://www.energy-storage.news/genesis-opens-200mwh-battery-storage-system-at-new-zealands-largest-power-station/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Genesis Energy has officially opened its first grid-scale battery energy storage system (BESS) at Huntly Power Station on New Zealand's North Island."
+    },
+    {
+      "t": "2026-10-20T07:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/uruguay-plans-99-mw-solar-tender-with-20-year-ppas/",
+      "source": "pv magazine",
+      "title": "Uruguay plans 99 MW solar tender with 20-year PPAs",
+      "url": "https://www.pv-magazine.com/2026/10/20/uruguay-plans-99-mw-solar-tender-with-20-year-ppas/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Uruguay’s state-owned power utility will procure electricity from three privately developed solar plants, each with 33 MW of grid injection capacity, under long-term power purchase agreements (PPAs). The post Uruguay plans 99 MW solar tender with 20-year PPAs appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-20T07:59:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/dutch-bank-finances-50-mw-of-solar-in-ivory-coast/",
+      "source": "pv magazine",
+      "title": "Dutch development bank finances 50 MW of solar in Ivory Coast",
+      "url": "https://www.pv-magazine.com/2026/10/20/dutch-bank-finances-50-mw-of-solar-in-ivory-coast/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The €55.5 million ($62.3 million) package represents the entire long-term financing required for the 50 MW Kong solar project, which is already under construction. The post Dutch development bank finances 50 MW of solar in Ivory Coast appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-20T09:50:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/german-dso-cuts-residential-solar-grid-connection-approval-time-to-5-minutes/",
+      "source": "pv magazine",
+      "title": "German DSO cuts residential solar grid connection approval time to 5 minutes",
+      "url": "https://www.pv-magazine.com/2026/10/20/german-dso-cuts-residential-solar-grid-connection-approval-time-to-5-minutes/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "German distribution system operator Netze BW has introduced an automated grid assessment process for rooftop PV systems up to 15 kW. The new system can issue binding grid connection approvals in five minutes, down from an average of 12 days, provided sufficient grid capacity is available. The post German DSO cuts re…"
+    },
+    {
+      "t": "2026-10-20T10:26:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/developer-ikigai-partners-with-high-density-hydro-ldes-tech-firm-rheenergise-for-italy-projects/",
+      "source": "Energy-Storage.news",
+      "title": "Developer Ikigai partners with ‘high-density hydro’ LDES tech firm RheEnergise for Italy projects",
+      "url": "https://www.energy-storage.news/developer-ikigai-partners-with-high-density-hydro-ldes-tech-firm-rheenergise-for-italy-projects/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Developer Ikigai Energy and LDES firm RheEnergise have signed an MOU to develop a pipeline of projects in Italy using the latter’s ‘high-density hydro’ (HD Hydro) technology."
+    },
+    {
+      "t": "2026-10-20T10:30:29.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/dominion-energy-files-irp-with-plans-to-build-3-5gw-of-bess-in-pjm-over-next-20-years/",
+      "source": "Energy-Storage.news",
+      "title": "Dominion Energy files IRP with plans to build 3.5GW of BESS in PJM over next 20 years",
+      "url": "https://www.energy-storage.news/dominion-energy-files-irp-with-plans-to-build-3-5gw-of-bess-in-pjm-over-next-20-years/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US utility Dominion Energy plans to build 3.5GW of battery energy storage systems (BESS) over the next 20 years according to its recently filed integrated resource plan (IRP)."
+    },
+    {
+      "t": "2026-10-20T10:59:14.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/norwegian-danish-funds-invest-in-500-mw-philippine-solar-project/",
+      "source": "pv magazine",
+      "title": "Norwegian, Danish funds invest in 500 MW Philippine solar project",
+      "url": "https://www.pv-magazine.com/2026/10/20/norwegian-danish-funds-invest-in-500-mw-philippine-solar-project/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Development finance institutions from Norway and Denmark have acquired a 49% stake in a 500 MW solar project in the Philippines. The post Norwegian, Danish funds invest in 500 MW Philippine solar project appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 40,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "grid": 29,
-      "policy": 7,
-      "capital": 4,
+      "policy": 8,
+      "capital": 5,
+      "grid": 24,
       "technology": 3
     },
     "sourceStatus": [
@@ -489,7 +459,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 10
+        "items": 7
       }
     ]
   },
@@ -498,6 +468,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:0f54808ffadb3a128da1ea0bf4c8e58eed56c61eb50f7954a84cfc34b7f60770",
-  "envelopeChecksum": "sha256:e6368524e53056293300409bf319f7c5973ce5b9d05110e9ddcb9342db3b5bd4"
+  "contentChecksum": "sha256:d044a739e7ba18aa54715a8b29b9c965e75c30959f712d47951281e2eb284a32",
+  "envelopeChecksum": "sha256:05ec4f5fdca41049c0c56435386b8117d4af00267147d24a001d9e30ddb4d89f"
 }
