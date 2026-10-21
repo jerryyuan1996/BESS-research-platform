@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-21T11:59:04.402Z",
+  "fetchedAt": "2026-10-21T17:18:57.708Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-21T11:00:00.000Z",
+    "to": "2026-10-21T15:29:28.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -125,26 +125,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-19T01:11:24.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/arcactive-switches-on-lead-acid-battery-storage-system-pilot-at-deakin-university-in-australia/",
-      "source": "Energy-Storage.news",
-      "title": "ArcActive switches on lead-acid battery storage system pilot at Deakin University in Australia",
-      "url": "https://www.energy-storage.news/arcactive-switches-on-lead-acid-battery-storage-system-pilot-at-deakin-university-in-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "New Zealand energy storage company ArcActive has switched on a pilot lead-acid BESS in Victoria, Australia, with support from Origin Energy."
-    },
-    {
-      "t": "2026-10-19T07:56:50.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/evolving-role-of-energy-storage-as-infrastructure-demands-that-technology-stands-the-test-of-time-catl-ceo-says/",
-      "source": "Energy-Storage.news",
-      "title": "Evolving role of energy storage as infrastructure demands that technology stands the test of time, CATL CEO says",
-      "url": "https://www.energy-storage.news/evolving-role-of-energy-storage-as-infrastructure-demands-that-technology-stands-the-test-of-time-catl-ceo-says/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Energy storage is becoming an indispensable new-type power system infrastructure, CATL CEO and chairman Robin Zeng said in an industry speech last week."
-    },
-    {
       "t": "2026-10-19T11:49:17.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-beats-gas-peaker-plants-on-lcoe-globally-wood-mackenzie-finds/",
       "source": "Energy-Storage.news",
@@ -163,26 +143,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "In the wide-ranging conversation, Shaw starts off by describing the year-end rush as a perennial challenge for the battery energy storage system (BESS) sector in the US."
-    },
-    {
-      "t": "2026-10-19T13:20:51.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-iso-ne-asset-condition-transmission-review/833328/",
-      "source": "Utility Dive",
-      "title": "FERC approves ISO-NE ‘asset condition’ transmission review process",
-      "url": "https://www.utilitydive.com/news/ferc-iso-ne-asset-condition-transmission-review/833328/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Commissioners David Rosner and Judy Chang said other regions should adopt similar review processes for local transmission projects, which states and consumer advocates say need more oversight."
-    },
-    {
-      "t": "2026-10-19T15:10:29.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/schneider-electric-data-center-earnings/833358/",
-      "source": "Utility Dive",
-      "title": "Schneider Electric sees record-high Q3 revenue on global data center boom",
-      "url": "https://www.utilitydive.com/news/schneider-electric-data-center-earnings/833358/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "North America continues to be the largest source of revenue for the company&rsquo;s energy management segment, but China and East Asia saw a higher organic growth rate this quarter and year to date."
     },
     {
       "t": "2026-10-19T16:16:28.000Z",
@@ -295,6 +255,16 @@
       "summary": "&ldquo;The demand growth we're experiencing today is real,&rdquo; LS Power&rsquo;s Darpan Kapadia said. &ldquo;The supply side is going to take time to catch up, and the markets are screaming that.&rdquo;"
     },
     {
+      "t": "2026-10-20T17:31:16.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/heat-pumps-electric-rates-grid-utilization-rmi/833570/",
+      "source": "Utility Dive",
+      "title": "Summer-peaking states could save big with heat pumps, report says",
+      "url": "https://www.utilitydive.com/news/heat-pumps-electric-rates-grid-utilization-rmi/833570/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "From 1980 to 2000, electricity demand rose while prices dropped. Heat pumps could help do that again, according to a report from RMI that estimates full deployment&nbsp;could reduce U.S. residential electric rates by 13% in summer-peaking states."
+    },
+    {
       "t": "2026-10-21T01:55:23.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/rondo-energy-and-rio-tinto-begin-design-work-on-australias-largest-thermal-energy-storage-project/",
       "source": "Energy-Storage.news",
@@ -323,26 +293,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Two major schemes will drive Southeast Asian country's deployments but require close examination, writes Flora Zhang, market analyst at Malaysia Energy Storage Association (MESA)."
-    },
-    {
-      "t": "2026-10-21T04:15:27.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/safety-by-design-pcs-considerations-in-mixed-pv-and-battery-energy-storage-systems/",
-      "source": "pv magazine",
-      "title": "Safety by design: PCS Considerations in mixed PV and battery energy storage systems",
-      "url": "https://www.pv-magazine.com/2026/10/21/safety-by-design-pcs-considerations-in-mixed-pv-and-battery-energy-storage-systems/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Integrating PV and BESS equipment from different manufacturers provides deployment flexibility, but safe system operation requires designers to properly evaluate power control system (PCS) capabilities and account for independently operating energy sources. The post Safety by design: PCS Considerations in mixed PV a…"
-    },
-    {
-      "t": "2026-10-21T04:39:38.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/the-bess-availability-case-depends-on-maintenance-string-vs-central-pcs-explored/",
-      "source": "pv magazine",
-      "title": "The BESS availability case depends on maintenance: String vs central PCS explored",
-      "url": "https://www.pv-magazine.com/2026/10/21/the-bess-availability-case-depends-on-maintenance-string-vs-central-pcs-explored/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Smaller converters limit the capacity affected by an individual fault, but a battery plant’s average availability will depend on more than just PCS The post The BESS availability case depends on maintenance: String vs central PCS explored appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-21T04:55:54.000Z",
@@ -453,18 +403,88 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Research from Lightsource bp finds combining automated foundation piling, steel-frame solar panels, bolt-free solar module installations and on-site pre-assembly could also reduce installation time of gigawatt-sized solar farms by up to 30%. The post Construction innovations could cut gigawatt-scale solar costs by 2…"
+    },
+    {
+      "t": "2026-10-21T12:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/new-financing-models-needed-for-agrivoltaics/",
+      "source": "pv magazine",
+      "title": "New financing models needed for agrivoltaics",
+      "url": "https://www.pv-magazine.com/2026/10/21/new-financing-models-needed-for-agrivoltaics/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Speakers at the AgriVoltaics Industry Forum Europe 2026 say rising interest rates, uncertainty over electricity revenues and the need to ensure the long-term viability of farming are making agrivoltaic projects harder to finance. The post New financing models needed for agrivoltaics appeared first on pv magazine Glo…"
+    },
+    {
+      "t": "2026-10-21T12:27:00.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/viridi-deploys-fail-safe-anti-propagation-architecture-indoor-bess-at-new-york-affordable-housing-development/",
+      "source": "Energy-Storage.news",
+      "title": "Viridi deploys ‘Fail-Safe Anti-Propagation architecture’ indoor BESS at New York affordable housing development",
+      "url": "https://www.energy-storage.news/viridi-deploys-fail-safe-anti-propagation-architecture-indoor-bess-at-new-york-affordable-housing-development/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Distributed energy storage company Viridi and developer and financier Good Carbon Co. have announced the deployment of a 3.75MWh energy storage project in Buffalo, New York."
+    },
+    {
+      "t": "2026-10-21T12:58:05.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/enhanced-safety-and-performance-easier-assembly-more-bess-engineers-would-use-psa-tape-if-they-knew-about-it/",
+      "source": "Energy-Storage.news",
+      "title": "Enhanced safety and performance, easier assembly: More BESS engineers would use PSA tape if they knew about it",
+      "url": "https://www.energy-storage.news/enhanced-safety-and-performance-easier-assembly-more-bess-engineers-would-use-psa-tape-if-they-knew-about-it/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Although relatively new to the energy storage space, pressure-sensitive adhesive (PSA) tape is used for protection, security and flexible configuration of equipment in many industries."
+    },
+    {
+      "t": "2026-10-21T13:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/ebrd-led-lenders-back-1-2-gw-solar-600-mwh-storage-plant-in-egypt/",
+      "source": "pv magazine",
+      "title": "EBRD-led lenders back 1.2 GW solar, 600 MWh storage plant in Egypt",
+      "url": "https://www.pv-magazine.com/2026/10/21/ebrd-led-lenders-back-1-2-gw-solar-600-mwh-storage-plant-in-egypt/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "A European development bank is arranging up to $265 million for a 1.2 GW solar plant with 600 MWh of storage in Egypt, as part of a debt package of up to $566 million. The post EBRD-led lenders back 1.2 GW solar, 600 MWh storage plant in Egypt appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-21T14:04:06.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/capacity-market-crisis-design-problem-verdict-competition-pjm/833303/",
+      "source": "Utility Dive",
+      "title": "The capacity market crisis is a design problem, not a verdict on competition",
+      "url": "https://www.utilitydive.com/news/capacity-market-crisis-design-problem-verdict-competition-pjm/833303/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "PJM's capacity price spikes are a symptom of a market that drifted too far toward spot-price dependence, not an indication that competition itself does not work, write Atlantic Council experts."
+    },
+    {
+      "t": "2026-10-21T15:17:31.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/tariffs-solar-wind-ppa-prices-levelten/833598/",
+      "source": "Utility Dive",
+      "title": "Solar PPA prices jump 5% in Q3, mainly on new trade tariffs: LevelTen",
+      "url": "https://www.utilitydive.com/news/tariffs-solar-wind-ppa-prices-levelten/833598/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Wind power purchase agreements held relatively steady in Q3, but could begin to rise anew with solar as the latest round of tariffs take effect later this year."
+    },
+    {
+      "t": "2026-10-21T15:29:28.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/geothermal-lease-sale-blm-nevada-nextera/833603/",
+      "source": "Utility Dive",
+      "title": "Geothermal lease sale on federal land in Nevada nets $4.8M",
+      "url": "https://www.utilitydive.com/news/geothermal-lease-sale-blm-nevada-nextera/833603/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "An Interior Department auction for roughly 187,000 acres generated less per acre than a similar sale in the same state in 2025. Leases for two parcels that sold overlap with the site of a proposed NextEra solar farm."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 7,
-      "capital": 4,
+      "policy": 8,
+      "capital": 6,
       "grid": 28,
-      "technology": 4
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -483,7 +503,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 6
       },
       {
         "source": "pv magazine",
@@ -498,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:6865d5fbea1dab3c16bf1b62398525e1f5b2c2c45ffc8bce94c9e96f13f81d79",
-  "envelopeChecksum": "sha256:1d490b9eb8908a751ce4cc6409d79f1f61e8ed51c09d392d668ad61a31fb0c5a"
+  "contentChecksum": "sha256:eeea4fa26ad85ed1118a366ddc3d2c66d0ae7aa6ce5890e147390ba4c5e6ae4b",
+  "envelopeChecksum": "sha256:2f27d30f3287c9b07cbfc49045025a8b706828431f7c36545d603cec8a75ddee"
 }
