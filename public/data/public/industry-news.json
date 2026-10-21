@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-21T04:57:50.119Z",
+  "fetchedAt": "2026-10-21T11:59:04.402Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-21T04:55:54.000Z",
+    "to": "2026-10-21T11:00:00.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -123,56 +123,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-16T04:56:20.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/agl-refers-500mwh-abermain-bess-in-queensland-to-australias-epbc-act/",
-      "source": "Energy-Storage.news",
-      "title": "AGL refers 500MWh Abermain BESS in Queensland to Australia’s EPBC Act",
-      "url": "https://www.energy-storage.news/agl-refers-500mwh-abermain-bess-in-queensland-to-australias-epbc-act/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Australian energy company AGL has referred a 500MWh battery energy storage system (BESS) in Queensland to the federal government under Australia's Environment Protection and Biodiversity Conservation (EPBC) Act."
-    },
-    {
-      "t": "2026-10-16T05:16:30.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/vikram-solar-subsidiary-to-build-7-5gwh-bess-assembly-plant-in-tamil-nadu-india/",
-      "source": "Energy-Storage.news",
-      "title": "Vikram Solar subsidiary to build 7.5GWh BESS assembly plant in Tamil Nadu, India",
-      "url": "https://www.energy-storage.news/vikram-solar-subsidiary-to-build-7-5gwh-bess-assembly-plant-in-tamil-nadu-india/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "VSL PowerHive, a Vikram Solar subsidiary, announced a 7.5GWh BESS assembly plant in Oragadam, near Chennai, Tamil Nadu."
-    },
-    {
-      "t": "2026-10-16T11:26:19.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/germany-roundup-enertrag-enlight-vattenfall-fluence-giga-storage-4-hour-batteries/",
-      "source": "Energy-Storage.news",
-      "title": "Germany Roundup: Enertrag, Enlight, Vattenfall, Fluence, Giga Storage progress 4-hour batteries totalling 3.2GWh to construction",
-      "url": "https://www.energy-storage.news/germany-roundup-enertrag-enlight-vattenfall-fluence-giga-storage-4-hour-batteries/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A trio of large-scale 4-hour BESS projects in Germany have progressed towards construction, from Enertrag and Enlight, Vattenfall and Fluence, and Giga Storage."
-    },
-    {
-      "t": "2026-10-16T13:36:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/flatiron-energy-closes-us850-million-financing-for-1-2gwh-massachusetts-bess-project/",
-      "source": "Energy-Storage.news",
-      "title": "Flatiron Energy closes US$850 million financing for 1.2GWh Massachusetts BESS project",
-      "url": "https://www.energy-storage.news/flatiron-energy-closes-us850-million-financing-for-1-2gwh-massachusetts-bess-project/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US energy storage developer Flatiron Energy has closed on approximately US$850 million for its 1,200MWh Energizar energy storage project in Chelsea, Massachusetts, US."
-    },
-    {
-      "t": "2026-10-16T14:29:14.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/standardisation-third-party-choices-outcomes-arenks-dan-taylor-building-bess-analytics-strategy/",
-      "source": "Energy-Storage.news",
-      "title": "Standardisation, third-party choices, and outcomes: Arenko’s Dan Taylor on building a BESS analytics strategy",
-      "url": "https://www.energy-storage.news/standardisation-third-party-choices-outcomes-arenks-dan-taylor-building-bess-analytics-strategy/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Dan Taylor, director of engineering at optimisation and asset management provider Arenko, speaks to Energy-Storage.news about all things data in battery energy storage systems (BESS)."
     },
     {
       "t": "2026-10-19T01:11:24.000Z",
@@ -325,26 +275,6 @@
       "summary": "US utility Dominion Energy plans to build 3.5GW of battery energy storage systems (BESS) over the next 20 years according to its recently filed integrated resource plan (IRP)."
     },
     {
-      "t": "2026-10-20T12:24:05.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/qnetic-testing-flywheel-to-compete-with-lithium-ion-for-grid-connected-energy-storage/",
-      "source": "pv magazine",
-      "title": "U.S. startup launches 200 kWh flywheel energy storage pilot",
-      "url": "https://www.pv-magazine.com/2026/10/20/qnetic-testing-flywheel-to-compete-with-lithium-ion-for-grid-connected-energy-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Individual Pulsar units expected to achieve 500 kWh capacity with 125 kW discharge rate. The post U.S. startup launches 200 kWh flywheel energy storage pilot appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-20T12:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/taiwanese-pv-manufacturers-create-back-contact-topcon-alliance/",
-      "source": "pv magazine",
-      "title": "Taiwanese PV manufacturers create back-contact TOPCon alliance",
-      "url": "https://www.pv-magazine.com/2026/10/20/taiwanese-pv-manufacturers-create-back-contact-topcon-alliance/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Taiwan’s Industrial Technology Research Institute (ITRI) has established a photovoltaic technology alliance with seven domestic companies to develop a local supply chain for tunnel oxide passivated contact back-contact (TBC) solar cells. The institute is also promoting a laser-assisted silver-coated copper electrode…"
-    },
-    {
       "t": "2026-10-20T13:04:00.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/what-are-the-blindspots-right-now-the-shifting-anatomy-of-bess-capex/",
       "source": "Energy-Storage.news",
@@ -353,16 +283,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A panel at the Battery Asset Management Summit UK & Ireland 2026 last week discussed BESS capex trends and strategies to manage it."
-    },
-    {
-      "t": "2026-10-20T13:53:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/20/key-takeaways-from-intersolar-summit-romania/",
-      "source": "pv magazine",
-      "title": "Key takeaways from Intersolar Summit Romania",
-      "url": "https://www.pv-magazine.com/2026/10/20/key-takeaways-from-intersolar-summit-romania/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "With Romania home to one of Europe’s most dynamic solar markets, the country’s first Intersolar summit brought together industry experts to discuss the challenges and opportunities shaping the market’s next phase, from grid access to storage and energy resilience. The post Key takeaways from Intersolar Summit Romani…"
     },
     {
       "t": "2026-10-20T14:40:35.000Z",
@@ -405,16 +325,6 @@
       "summary": "Two major schemes will drive Southeast Asian country's deployments but require close examination, writes Flora Zhang, market analyst at Malaysia Energy Storage Association (MESA)."
     },
     {
-      "t": "2026-10-21T04:11:21.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/call-for-greater-focus-on-maintenance-as-rooftop-solar-fleet-grows/",
-      "source": "pv magazine",
-      "title": "Call for greater focus on maintenance as rooftop solar fleet grows in Australia",
-      "url": "https://www.pv-magazine.com/2026/10/21/call-for-greater-focus-on-maintenance-as-rooftop-solar-fleet-grows/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "As Australia’s rooftop solar fleet continues to grow and age, concerns about how existing solar installations are being maintained are on the rise. The post Call for greater focus on maintenance as rooftop solar fleet grows in Australia appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-21T04:15:27.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/safety-by-design-pcs-considerations-in-mixed-pv-and-battery-energy-storage-systems/",
       "source": "pv magazine",
@@ -435,7 +345,17 @@
       "summary": "Smaller converters limit the capacity affected by an individual fault, but a battery plant’s average availability will depend on more than just PCS The post The BESS availability case depends on maintenance: String vs central PCS explored appeared first on pv magazine Global ."
     },
     {
-      "t": "2026-10-21T04:44:58.000Z",
+      "t": "2026-10-21T04:55:54.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/peru-proposes-reviving-power-interconnection-with-chile-to-tap-its-solar-generation/",
+      "source": "pv magazine",
+      "title": "Peru proposes reviving power interconnection with Chile to tap its solar generation",
+      "url": "https://www.pv-magazine.com/2026/10/21/peru-proposes-reviving-power-interconnection-with-chile-to-tap-its-solar-generation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Peru is seeking to revive electricity interconnection talks with Chile to facilitate cross-border power exchanges and make better use of Chile's surplus solar and wind generation. A proposed 1,000 MW transmission link would require an estimated investment of $550 million. The post Peru proposes reviving power interc…"
+    },
+    {
+      "t": "2026-10-21T05:00:58.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/novel-pv-recycling-method-removes-eva-at-9-grams-per-second/",
       "source": "pv magazine",
       "title": "Novel PV recycling method removes EVA at 9 grams per second",
@@ -445,14 +365,94 @@
       "summary": "Researchers in China have developed a preheating-assisted mechanical polishing process to remove ethylene-vinyl acetate (EVA) encapsulants from end-of-life solar modules. The technique reportedly achieves an EVA recovery rate of 99% and a removal rate of 9 g/s, while preserving the integrity of silicon wafers. The p…"
     },
     {
-      "t": "2026-10-21T04:55:54.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/peru-proposes-reviving-power-interconnection-with-chile-to-tap-its-solar-generation/",
-      "source": "pv magazine",
-      "title": "Peru proposes reviving power interconnection with Chile to tap its solar generation",
-      "url": "https://www.pv-magazine.com/2026/10/21/peru-proposes-reviving-power-interconnection-with-chile-to-tap-its-solar-generation/",
+      "t": "2026-10-21T07:07:38.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/deye-eve-and-ganfeng-lithium-strong-q3-results-for-trio-of-players-across-chinese-energy-storage-industry-value-chain/",
+      "source": "Energy-Storage.news",
+      "title": "Deye, EVE and Ganfeng Lithium: Strong Q3 results for trio of players across Chinese energy storage industry value chain",
+      "url": "https://www.energy-storage.news/deye-eve-and-ganfeng-lithium-strong-q3-results-for-trio-of-players-across-chinese-energy-storage-industry-value-chain/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Deye, EVE Energy and Ganfeng Lithium are among Chinese energy storage players to recently release Q3 2026 financial results, with all three reporting robust growth."
+    },
+    {
+      "t": "2026-10-21T07:20:51.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/indias-energy-storage-market-bridging-the-gap-between-tenders-and-execution/",
+      "source": "Energy-Storage.news",
+      "title": "India’s energy storage market: Bridging the gap between tenders and execution",
+      "url": "https://www.energy-storage.news/indias-energy-storage-market-bridging-the-gap-between-tenders-and-execution/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "India’s BESS pipeline exceeds 100GW, but financing, execution and tariff pressures threaten delivery of 411.4GWh of storage by FY2032."
+    },
+    {
+      "t": "2026-10-21T07:25:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/finland-foresight-group-acquires-nordic-countrys-largest-bess-from-frv/",
+      "source": "Energy-Storage.news",
+      "title": "Finland: Foresight Group acquires Nordic country’s largest BESS from FRV",
+      "url": "https://www.energy-storage.news/finland-foresight-group-acquires-nordic-countrys-largest-bess-from-frv/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Peru is seeking to revive electricity interconnection talks with Chile to facilitate cross-border power exchanges and make better use of Chile's surplus solar and wind generation. A proposed 1,000 MW transmission link would require an estimated investment of $550 million. The post Peru proposes reviving power interc…"
+      "summary": "Foresight Group has acquired the 100MW/400MWh Nivala BESS via its Foresight Energy Infrastructure Partners II (FEIP II) fund."
+    },
+    {
+      "t": "2026-10-21T07:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/hoymiles-releases-a-2000-kwh-ci-energy-storage-solution/",
+      "source": "pv magazine",
+      "title": "Hoymiles releases a 2,000 kWh C&I energy storage solution",
+      "url": "https://www.pv-magazine.com/2026/10/21/hoymiles-releases-a-2000-kwh-ci-energy-storage-solution/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese manufacturer Hoymiles has launched a C&I battery storage system with capacities ranging from 2 MWh to 2.61 MWh and power outputs of up to 1.25 MW. The containerized system features liquid cooling, integrated fire protection, and backup power switching in less than 20 ms. The post Hoymiles releases a 2,000 kW…"
+    },
+    {
+      "t": "2026-10-21T08:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/indias-solar-industry-faces-a-test-of-durability-and-cost/",
+      "source": "pv magazine",
+      "title": "India’s solar industry faces a test of durability and cost",
+      "url": "https://www.pv-magazine.com/2026/10/21/indias-solar-industry-faces-a-test-of-durability-and-cost/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "As India’s solar industry matures, manufacturing competitiveness will depend on consistent quality, sustained energy generation and competitive lifecycle costs, not just capacity additions and module prices. The post India’s solar industry faces a test of durability and cost appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-21T09:11:03.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/engineering-discipline-bankability-and-operational-performance-become-differentiators-as-indias-bess-market-faces-biggest-test/",
+      "source": "Energy-Storage.news",
+      "title": "Engineering discipline, bankability and operational performance become differentiators as India’s BESS market ‘faces biggest test’",
+      "url": "https://www.energy-storage.news/engineering-discipline-bankability-and-operational-performance-become-differentiators-as-indias-bess-market-faces-biggest-test/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "IndiGrid COO discusses India’s BESS growth, challenges, tariff pressures, safety standards and localisation as the market scales up."
+    },
+    {
+      "t": "2026-10-21T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/zambia-surpasses-1-gw-solar-milestone/",
+      "source": "pv magazine",
+      "title": "Zambia surpasses 1 GW solar milestone",
+      "url": "https://www.pv-magazine.com/2026/10/21/zambia-surpasses-1-gw-solar-milestone/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Official figures from Zambia’s Ministry of Energy confirm the country’s solar capacity now stands in excess of 1 GW, up from 178 MW in 2024. The post Zambia surpasses 1 GW solar milestone appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-21T09:35:04.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/enertrag-and-axpo-reach-fid-order-equipment-on-french-bess-projects-totalling-239mwh/",
+      "source": "Energy-Storage.news",
+      "title": "Enertrag and Axpo reach FID, order equipment on French BESS projects totalling 239MWh",
+      "url": "https://www.energy-storage.news/enertrag-and-axpo-reach-fid-order-equipment-on-french-bess-projects-totalling-239mwh/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "German IPP Enertrag and Swiss utility Axpo have launched BESS projects in France, including what could be the country’s first 3-hour project."
+    },
+    {
+      "t": "2026-10-21T11:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/construction-innovations-could-cut-gigawatt-scale-solar-costs-by-22/",
+      "source": "pv magazine",
+      "title": "Construction innovations could cut gigawatt-scale solar costs by 22%",
+      "url": "https://www.pv-magazine.com/2026/10/21/construction-innovations-could-cut-gigawatt-scale-solar-costs-by-22/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Research from Lightsource bp finds combining automated foundation piling, steel-frame solar panels, bolt-free solar module installations and on-site pre-assembly could also reduce installation time of gigawatt-sized solar farms by up to 30%. The post Construction innovations could cut gigawatt-scale solar costs by 2…"
     }
   ],
   "derived": {
@@ -461,10 +461,10 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 6,
+      "policy": 7,
       "capital": 4,
-      "grid": 30,
-      "technology": 3
+      "grid": 28,
+      "technology": 4
     },
     "sourceStatus": [
       {
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:43b342f68a4da224e8abab9a6ba44b7f1b7898e62e2cbcb77e8c75189060840a",
-  "envelopeChecksum": "sha256:b1129b8d2454d9ebdbfb1509b15874086e4f0b8ec6fa94a33787d6672e5069e3"
+  "contentChecksum": "sha256:6865d5fbea1dab3c16bf1b62398525e1f5b2c2c45ffc8bce94c9e96f13f81d79",
+  "envelopeChecksum": "sha256:1d490b9eb8908a751ce4cc6409d79f1f61e8ed51c09d392d668ad61a31fb0c5a"
 }
