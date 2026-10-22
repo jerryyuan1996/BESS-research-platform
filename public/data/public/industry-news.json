@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-22T04:58:36.028Z",
+  "fetchedAt": "2026-10-22T12:01:24.684Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-21T15:29:28.000Z",
+    "to": "2026-10-22T11:30:00.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -125,26 +125,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-19T11:49:17.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-beats-gas-peaker-plants-on-lcoe-globally-wood-mackenzie-finds/",
-      "source": "Energy-Storage.news",
-      "title": "BESS beats gas peaker plants on LCOE globally, Wood Mackenzie finds",
-      "url": "https://www.energy-storage.news/bess-beats-gas-peaker-plants-on-lcoe-globally-wood-mackenzie-finds/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Four-hour battery storage is less expensive than open-cycle gas turbines in the 43 markets in which both technologies were modelled, according to a new report from market research firm Wood Mackenzie."
-    },
-    {
-      "t": "2026-10-19T11:50:16.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/year-end-scramble-exposes-us-bess-sectors-commissioning-and-policy-strains/",
-      "source": "Energy-Storage.news",
-      "title": "Year-end scramble exposes US BESS sector’s commissioning and policy strains",
-      "url": "https://www.energy-storage.news/year-end-scramble-exposes-us-bess-sectors-commissioning-and-policy-strains/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "In the wide-ranging conversation, Shaw starts off by describing the year-end rush as a perennial challenge for the battery energy storage system (BESS) sector in the US."
-    },
-    {
       "t": "2026-10-19T16:16:28.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/what-googles-virtual-power-plant-in-pjm-says-about-the-race-for-electricit/833290/",
       "source": "Utility Dive",
@@ -153,16 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Voltus CEO Dana Guernsey compared new &ldquo;bring your own new capacity&rdquo; contracts to the power purchase agreements that &ldquo;revolutionized&rdquo; utility-scale solar and wind development."
-    },
-    {
-      "t": "2026-10-20T01:57:53.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/akaysha-energy-secures-au1-75-billion-portfolio-financing-for-australian-bess-expansion/",
-      "source": "Energy-Storage.news",
-      "title": "Akaysha Energy secures AU$1.75 billion portfolio financing for Australian BESS expansion",
-      "url": "https://www.energy-storage.news/akaysha-energy-secures-au1-75-billion-portfolio-financing-for-australian-bess-expansion/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Australian battery energy storage system (BESS) developer Akaysha Energy has refinanced its project debt into an AU$1.75 billion (US$1.22 billion) portfolio-level facility."
     },
     {
       "t": "2026-10-20T02:03:00.000Z",
@@ -295,26 +265,6 @@
       "summary": "Two major schemes will drive Southeast Asian country's deployments but require close examination, writes Flora Zhang, market analyst at Malaysia Energy Storage Association (MESA)."
     },
     {
-      "t": "2026-10-21T04:55:54.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/peru-proposes-reviving-power-interconnection-with-chile-to-tap-its-solar-generation/",
-      "source": "pv magazine",
-      "title": "Peru proposes reviving power interconnection with Chile to tap its solar generation",
-      "url": "https://www.pv-magazine.com/2026/10/21/peru-proposes-reviving-power-interconnection-with-chile-to-tap-its-solar-generation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Peru is seeking to revive electricity interconnection talks with Chile to facilitate cross-border power exchanges and make better use of Chile's surplus solar and wind generation. A proposed 1,000 MW transmission link would require an estimated investment of $550 million. The post Peru proposes reviving power interc…"
-    },
-    {
-      "t": "2026-10-21T05:00:58.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/novel-pv-recycling-method-removes-eva-at-9-grams-per-second/",
-      "source": "pv magazine",
-      "title": "Novel PV recycling method removes EVA at 9 grams per second",
-      "url": "https://www.pv-magazine.com/2026/10/21/novel-pv-recycling-method-removes-eva-at-9-grams-per-second/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in China have developed a preheating-assisted mechanical polishing process to remove ethylene-vinyl acetate (EVA) encapsulants from end-of-life solar modules. The technique reportedly achieves an EVA recovery rate of 99% and a removal rate of 9 g/s, while preserving the integrity of silicon wafers. The p…"
-    },
-    {
       "t": "2026-10-21T07:07:38.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/deye-eve-and-ganfeng-lithium-strong-q3-results-for-trio-of-players-across-chinese-energy-storage-industry-value-chain/",
       "source": "Energy-Storage.news",
@@ -345,26 +295,6 @@
       "summary": "Foresight Group has acquired the 100MW/400MWh Nivala BESS via its Foresight Energy Infrastructure Partners II (FEIP II) fund."
     },
     {
-      "t": "2026-10-21T07:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/hoymiles-releases-a-2000-kwh-ci-energy-storage-solution/",
-      "source": "pv magazine",
-      "title": "Hoymiles releases a 2,000 kWh C&I energy storage solution",
-      "url": "https://www.pv-magazine.com/2026/10/21/hoymiles-releases-a-2000-kwh-ci-energy-storage-solution/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese manufacturer Hoymiles has launched a C&I battery storage system with capacities ranging from 2 MWh to 2.61 MWh and power outputs of up to 1.25 MW. The containerized system features liquid cooling, integrated fire protection, and backup power switching in less than 20 ms. The post Hoymiles releases a 2,000 kW…"
-    },
-    {
-      "t": "2026-10-21T08:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/indias-solar-industry-faces-a-test-of-durability-and-cost/",
-      "source": "pv magazine",
-      "title": "India’s solar industry faces a test of durability and cost",
-      "url": "https://www.pv-magazine.com/2026/10/21/indias-solar-industry-faces-a-test-of-durability-and-cost/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "As India’s solar industry matures, manufacturing competitiveness will depend on consistent quality, sustained energy generation and competitive lifecycle costs, not just capacity additions and module prices. The post India’s solar industry faces a test of durability and cost appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-21T09:11:03.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/engineering-discipline-bankability-and-operational-performance-become-differentiators-as-indias-bess-market-faces-biggest-test/",
       "source": "Energy-Storage.news",
@@ -375,16 +305,6 @@
       "summary": "IndiGrid COO discusses India’s BESS growth, challenges, tariff pressures, safety standards and localisation as the market scales up."
     },
     {
-      "t": "2026-10-21T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/zambia-surpasses-1-gw-solar-milestone/",
-      "source": "pv magazine",
-      "title": "Zambia surpasses 1 GW solar milestone",
-      "url": "https://www.pv-magazine.com/2026/10/21/zambia-surpasses-1-gw-solar-milestone/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Official figures from Zambia’s Ministry of Energy confirm the country’s solar capacity now stands in excess of 1 GW, up from 178 MW in 2024. The post Zambia surpasses 1 GW solar milestone appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-21T09:35:04.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/enertrag-and-axpo-reach-fid-order-equipment-on-french-bess-projects-totalling-239mwh/",
       "source": "Energy-Storage.news",
@@ -393,26 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "German IPP Enertrag and Swiss utility Axpo have launched BESS projects in France, including what could be the country’s first 3-hour project."
-    },
-    {
-      "t": "2026-10-21T11:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/construction-innovations-could-cut-gigawatt-scale-solar-costs-by-22/",
-      "source": "pv magazine",
-      "title": "Construction innovations could cut gigawatt-scale solar costs by 22%",
-      "url": "https://www.pv-magazine.com/2026/10/21/construction-innovations-could-cut-gigawatt-scale-solar-costs-by-22/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Research from Lightsource bp finds combining automated foundation piling, steel-frame solar panels, bolt-free solar module installations and on-site pre-assembly could also reduce installation time of gigawatt-sized solar farms by up to 30%. The post Construction innovations could cut gigawatt-scale solar costs by 2…"
-    },
-    {
-      "t": "2026-10-21T12:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/new-financing-models-needed-for-agrivoltaics/",
-      "source": "pv magazine",
-      "title": "New financing models needed for agrivoltaics",
-      "url": "https://www.pv-magazine.com/2026/10/21/new-financing-models-needed-for-agrivoltaics/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Speakers at the AgriVoltaics Industry Forum Europe 2026 say rising interest rates, uncertainty over electricity revenues and the need to ensure the long-term viability of farming are making agrivoltaic projects harder to finance. The post New financing models needed for agrivoltaics appeared first on pv magazine Glo…"
     },
     {
       "t": "2026-10-21T12:27:00.000Z",
@@ -435,16 +335,6 @@
       "summary": "Although relatively new to the energy storage space, pressure-sensitive adhesive (PSA) tape is used for protection, security and flexible configuration of equipment in many industries."
     },
     {
-      "t": "2026-10-21T13:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/21/ebrd-led-lenders-back-1-2-gw-solar-600-mwh-storage-plant-in-egypt/",
-      "source": "pv magazine",
-      "title": "EBRD-led lenders back 1.2 GW solar, 600 MWh storage plant in Egypt",
-      "url": "https://www.pv-magazine.com/2026/10/21/ebrd-led-lenders-back-1-2-gw-solar-600-mwh-storage-plant-in-egypt/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "A European development bank is arranging up to $265 million for a 1.2 GW solar plant with 600 MWh of storage in Egypt, as part of a debt package of up to $566 million. The post EBRD-led lenders back 1.2 GW solar, 600 MWh storage plant in Egypt appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-21T14:04:06.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/capacity-market-crisis-design-problem-verdict-competition-pjm/833303/",
       "source": "Utility Dive",
@@ -462,7 +352,7 @@
       "url": "https://www.utilitydive.com/news/tariffs-solar-wind-ppa-prices-levelten/833598/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "Wind power purchase agreements held relatively steady in Q3 but could begin to rise again as the latest round of tariffs takes effect later this year."
+      "summary": "Wind power purchase agreements held relatively steady in Q3, but could begin to rise anew with solar as the latest round of tariffs take effect later this year."
     },
     {
       "t": "2026-10-21T15:29:28.000Z",
@@ -473,6 +363,116 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "An Interior Department auction for roughly 187,000 acres generated less per acre than a similar sale in the same state in 2025. Leases for two parcels that sold overlap with the site of a proposed NextEra solar farm."
+    },
+    {
+      "t": "2026-10-22T08:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/italys-solar-output-rises-27-to-5-32-twh-in-september/",
+      "source": "pv magazine",
+      "title": "Italy’s solar output rises 27% to 5.32 TWh in September",
+      "url": "https://www.pv-magazine.com/2026/10/22/italys-solar-output-rises-27-to-5-32-twh-in-september/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar generation accounted for 48.6% of Italy’s renewable electricity output in September 2026, while renewable capacity additions for standalone battery storage slowed compared with the previous year. The post Italy’s solar output rises 27% to 5.32 TWh in September appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-22T08:36:24.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/solar-parks-could-more-than-double-soil-carbon-in-desert-environments-study-finds/",
+      "source": "pv magazine",
+      "title": "Solar parks could more than double soil carbon in desert environments, study finds",
+      "url": "https://www.pv-magazine.com/2026/10/22/solar-parks-could-more-than-double-soil-carbon-in-desert-environments-study-finds/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in China found that a large-scale desert solar park increased soil carbon content by 125.89% compared with undisturbed land. The study also identified how PV mounting systems, soil depth, and environmental factors influence carbon accumulation and its threshold effects. The post Solar parks could more th…"
+    },
+    {
+      "t": "2026-10-22T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/longi-unveils-intelligent-manufacturing-base-in-suzhou-to-advance-solar-storage-integration/",
+      "source": "pv magazine",
+      "title": "LONGi unveils intelligent manufacturing base in Suzhou to advance solar-storage integration",
+      "url": "https://www.pv-magazine.com/2026/10/22/longi-unveils-intelligent-manufacturing-base-in-suzhou-to-advance-solar-storage-integration/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The new base features upgraded manufacturing capabilities that reduce fault-related downtime losses by 75% and shorten the time needed to close quality issues by more than 50%. The post LONGi unveils intelligent manufacturing base in Suzhou to advance solar-storage integration appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-22T09:25:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ul-solutions-launches-certification-pathway-for-modular-dc-bess/",
+      "source": "Energy-Storage.news",
+      "title": "UL Solutions launches certification pathway for modular DC BESS",
+      "url": "https://www.energy-storage.news/ul-solutions-launches-certification-pathway-for-modular-dc-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Science safety leader UL Solutions has announced a new certification pathway intended to help manufacturers of modular direct current (DC) battery energy storage systems (BESS)."
+    },
+    {
+      "t": "2026-10-22T09:42:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/spanish-region-announce-tax-on-ground-mounted-pv/",
+      "source": "pv magazine",
+      "title": "Spanish region announce tax on ground mounted PV",
+      "url": "https://www.pv-magazine.com/2026/10/22/spanish-region-announce-tax-on-ground-mounted-pv/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Spanish region of Castilla y León plans to extend its environmental impact tax to ground-mounted solar installations from 2027. Spanish solar association UNEF has criticised the proposal, arguing that PV projects already face multiple taxes and that the new levy lacks environmental justification. The post Spanis…"
+    },
+    {
+      "t": "2026-10-22T10:01:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/solar-assisted-co%e2%82%82-heat-pump-achieves-18-7-cop-increase-as-irradiance-rises/",
+      "source": "pv magazine",
+      "title": "Solar-assisted CO₂ heat pump achieves 18.7% COP increase as irradiance rises",
+      "url": "https://www.pv-magazine.com/2026/10/22/solar-assisted-co%e2%82%82-heat-pump-achieves-18-7-cop-increase-as-irradiance-rises/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in Italy have tested a 10 kW dual-source heat pump using CO₂ as a refrigerant and air or photovoltaic-thermal collectors as heat sources. The results show that solar operation can improve heating performance under favorable irradiance conditions, while an optimized source-switching strategy delivers mode…"
+    },
+    {
+      "t": "2026-10-22T10:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/engie-starts-building-first-co-located-solar-and-battery-project-in-france/",
+      "source": "pv magazine",
+      "title": "Engie starts building first co-located solar and battery project in France",
+      "url": "https://www.pv-magazine.com/2026/10/22/engie-starts-building-first-co-located-solar-and-battery-project-in-france/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Engie has begun construction of its first co-located solar and battery project in France, combining 29.8 MW of solar capacity with a 20 MWh battery system to shift electricity delivery to periods of higher grid demand. The post Engie starts building first co-located solar and battery project in France appeared first…"
+    },
+    {
+      "t": "2026-10-22T10:38:58.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/faria-renewables-inaugurates-134mwh-huawei-supplied-greece-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Faria Renewables inaugurates 134MWh, Huawei-supplied Greece BESS",
+      "url": "https://www.energy-storage.news/faria-renewables-inaugurates-134mwh-huawei-supplied-greece-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "IPP and EPC Faria Renewables has inaugurated its 49.9MW/134.16MWh Galani BESS project in Elassona, Greece."
+    },
+    {
+      "t": "2026-10-22T10:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/rwanda-tenders-200-mw-floating-pv-800-mwh-bess-project/",
+      "source": "pv magazine",
+      "title": "Rwanda tenders 200 MW floating PV, 800 MWh BESS project",
+      "url": "https://www.pv-magazine.com/2026/10/22/rwanda-tenders-200-mw-floating-pv-800-mwh-bess-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A tender is open in Rwanda for a 200 MW floating solar plant to be tied to 800 MWh of battery storage. The deadline to submit pre-qualification bids is November 12. The post Rwanda tenders 200 MW floating PV, 800 MWh BESS project appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-22T10:51:49.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/frances-storage-market-moves-to-higher-durations-with-secondary-reserve-saturation-cliff-edge-approaching/",
+      "source": "Energy-Storage.news",
+      "title": "France’s storage market moves to higher durations with secondary reserve saturation ‘cliff-edge’ approaching",
+      "url": "https://www.energy-storage.news/frances-storage-market-moves-to-higher-durations-with-secondary-reserve-saturation-cliff-edge-approaching/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BESS investments in the French market are moving to longer durations with saturation expected to hit the secondary reserve market, currently the main way operational projects make their money."
+    },
+    {
+      "t": "2026-10-22T11:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/iraq-removes-import-tariffs-on-solar-systems/",
+      "source": "pv magazine",
+      "title": "Iraq removes import tariffs on solar systems",
+      "url": "https://www.pv-magazine.com/2026/10/22/iraq-removes-import-tariffs-on-solar-systems/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The measure coincides with the completion of a draft set of regulations set to govern the connection of solar energy systems to Iraq’s national grid. The post Iraq removes import tariffs on solar systems appeared first on pv magazine Global ."
     }
   ],
   "derived": {
@@ -482,8 +482,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 8,
-      "capital": 6,
-      "grid": 28,
+      "capital": 4,
+      "grid": 30,
       "technology": 3
     },
     "sourceStatus": [
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:0c2d45dfd2161083a5940485c4e7583e8653efb458d14adad75289e14be3a334",
-  "envelopeChecksum": "sha256:cc27f5c3d859ca76c37d0d4f8e40ed998697b2faadebc76b79eb5066385c76dc"
+  "contentChecksum": "sha256:1b91eba6a054dccfbee40c952faef1a0e5e1ff3ae380b0999bab0bf41bb708d7",
+  "envelopeChecksum": "sha256:dbb2cddd18db6389cc467bde40ee6605435be4b5274d4e8c6127311bdd0ceb15"
 }
