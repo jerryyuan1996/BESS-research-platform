@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-22T12:01:24.684Z",
+  "fetchedAt": "2026-10-22T17:16:41.609Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-22T11:30:00.000Z",
+    "to": "2026-10-22T15:00:00.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -123,36 +123,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
-    },
-    {
-      "t": "2026-10-19T16:16:28.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/what-googles-virtual-power-plant-in-pjm-says-about-the-race-for-electricit/833290/",
-      "source": "Utility Dive",
-      "title": "What Google’s virtual power plant in PJM says about the race for electricity",
-      "url": "https://www.utilitydive.com/news/what-googles-virtual-power-plant-in-pjm-says-about-the-race-for-electricit/833290/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Voltus CEO Dana Guernsey compared new &ldquo;bring your own new capacity&rdquo; contracts to the power purchase agreements that &ldquo;revolutionized&rdquo; utility-scale solar and wind development."
-    },
-    {
-      "t": "2026-10-20T02:03:00.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/hazelwood-bess-expansion-in-australia-set-to-double-storage-capacity-at-former-coal-site/",
-      "source": "Energy-Storage.news",
-      "title": "Hazelwood BESS expansion in Australia set to double storage capacity at former coal site",
-      "url": "https://www.energy-storage.news/hazelwood-bess-expansion-in-australia-set-to-double-storage-capacity-at-former-coal-site/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ENGIE's Hazelwood battery energy storage system (BESS) expansion in Australia has moved closer to financial close after a state transmission declaration."
-    },
-    {
-      "t": "2026-10-20T03:13:31.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/india-must-align-battery-storage-and-transmission-to-cut-renewable-curtailment/",
-      "source": "Energy-Storage.news",
-      "title": "India must align battery storage and transmission to cut renewable curtailment",
-      "url": "https://www.energy-storage.news/india-must-align-battery-storage-and-transmission-to-cut-renewable-curtailment/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Hartek Power CEO discusses India’s BESS expansion, transmission infrastructure and strategies to reduce renewable energy curtailment."
     },
     {
       "t": "2026-10-20T03:47:47.000Z",
@@ -352,7 +322,7 @@
       "url": "https://www.utilitydive.com/news/tariffs-solar-wind-ppa-prices-levelten/833598/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "Wind power purchase agreements held relatively steady in Q3, but could begin to rise anew with solar as the latest round of tariffs take effect later this year."
+      "summary": "Wind power purchase agreements held relatively steady in Q3 but could begin to rise again as the latest round of tariffs takes effect later this year."
     },
     {
       "t": "2026-10-21T15:29:28.000Z",
@@ -363,36 +333,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "An Interior Department auction for roughly 187,000 acres generated less per acre than a similar sale in the same state in 2025. Leases for two parcels that sold overlap with the site of a proposed NextEra solar farm."
-    },
-    {
-      "t": "2026-10-22T08:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/italys-solar-output-rises-27-to-5-32-twh-in-september/",
-      "source": "pv magazine",
-      "title": "Italy’s solar output rises 27% to 5.32 TWh in September",
-      "url": "https://www.pv-magazine.com/2026/10/22/italys-solar-output-rises-27-to-5-32-twh-in-september/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar generation accounted for 48.6% of Italy’s renewable electricity output in September 2026, while renewable capacity additions for standalone battery storage slowed compared with the previous year. The post Italy’s solar output rises 27% to 5.32 TWh in September appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-22T08:36:24.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/solar-parks-could-more-than-double-soil-carbon-in-desert-environments-study-finds/",
-      "source": "pv magazine",
-      "title": "Solar parks could more than double soil carbon in desert environments, study finds",
-      "url": "https://www.pv-magazine.com/2026/10/22/solar-parks-could-more-than-double-soil-carbon-in-desert-environments-study-finds/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in China found that a large-scale desert solar park increased soil carbon content by 125.89% compared with undisturbed land. The study also identified how PV mounting systems, soil depth, and environmental factors influence carbon accumulation and its threshold effects. The post Solar parks could more th…"
-    },
-    {
-      "t": "2026-10-22T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/longi-unveils-intelligent-manufacturing-base-in-suzhou-to-advance-solar-storage-integration/",
-      "source": "pv magazine",
-      "title": "LONGi unveils intelligent manufacturing base in Suzhou to advance solar-storage integration",
-      "url": "https://www.pv-magazine.com/2026/10/22/longi-unveils-intelligent-manufacturing-base-in-suzhou-to-advance-solar-storage-integration/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The new base features upgraded manufacturing capabilities that reduce fault-related downtime losses by 75% and shorten the time needed to close quality issues by more than 50%. The post LONGi unveils intelligent manufacturing base in Suzhou to advance solar-storage integration appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-22T09:25:14.000Z",
@@ -473,6 +413,66 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The measure coincides with the completion of a draft set of regulations set to govern the connection of solar energy systems to Iraq’s national grid. The post Iraq removes import tariffs on solar systems appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-22T12:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/aiko-to-convert-perc-factory-into-6-gw-of-abc-cell-capacity/",
+      "source": "pv magazine",
+      "title": "Aiko to convert PERC factory into 6 GW of ABC cell capacity",
+      "url": "https://www.pv-magazine.com/2026/10/22/aiko-to-convert-perc-factory-into-6-gw-of-abc-cell-capacity/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Chinese company says it will convert the manufacturing capacity at its base in Tianjin into its proprietary all-back-contact (ABC) technology as the efficiency of passivated emitter and rear contact (PERC) solar cells reaches “a bottleneck”. The post Aiko to convert PERC factory into 6 GW of ABC cell capacity ap…"
+    },
+    {
+      "t": "2026-10-22T13:28:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/tcl-sunpower-launches-hybrid-energy-storage-cabinet-for-ci-applications/",
+      "source": "pv magazine",
+      "title": "TCL Sunpower launches hybrid energy storage cabinet for C&I applications",
+      "url": "https://www.pv-magazine.com/2026/10/22/tcl-sunpower-launches-hybrid-energy-storage-cabinet-for-ci-applications/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Chinese manufacturer has unveiled a 100 kWh scalable energy storage cabinet for the European market. The company plans to bring a full portfolio of commercial and industrial (C&I) energy storage to the continent soon. The post TCL Sunpower launches hybrid energy storage cabinet for C&I applications appeared firs…"
+    },
+    {
+      "t": "2026-10-22T13:31:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/22/pvh-expands-houston-footprint-to-scale-pre-assembled-solar-trackers/",
+      "source": "pv magazine",
+      "title": "PVH expands Houston footprint to scale pre-assembled solar trackers",
+      "url": "https://www.pv-magazine.com/2026/10/22/pvh-expands-houston-footprint-to-scale-pre-assembled-solar-trackers/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "PV Hardware USA (PVH USA) is expanding its original manufacturing facility in Houston, Texas, adding 34,200 square feet of production space to scale its pre-assembly manufacturing strategy and address labor and supply chain constraints on utility-scale solar project sites. The post PVH expands Houston footprint to s…"
+    },
+    {
+      "t": "2026-10-22T13:46:44.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/sodium-ion-bess-hithium-enters-canadian-market-peak-energy-closes-series-b-with-gm-led-funding/",
+      "source": "Energy-Storage.news",
+      "title": "Sodium-ion BESS: Hithium enters Canadian market, Peak Energy closes Series B with GM-led funding",
+      "url": "https://www.energy-storage.news/sodium-ion-bess-hithium-enters-canadian-market-peak-energy-closes-series-b-with-gm-led-funding/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "In recent North American sodium-ion news, Hithium is entering the Canadian market with two BESS solutions, while Peak Energy has closed a Series B financing round led by GM."
+    },
+    {
+      "t": "2026-10-22T14:17:03.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/global-energy-storage-deployments-will-see-45-year-on-year-growth-surge-in-2026-bloombergnef/",
+      "source": "Energy-Storage.news",
+      "title": "Global energy storage deployments will see 45% year-on-year ‘growth surge’ in 2026: BloombergNEF",
+      "url": "https://www.energy-storage.news/global-energy-storage-deployments-will-see-45-year-on-year-growth-surge-in-2026-bloombergnef/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The global energy storage market will see a decade of sustained, rapid growth and reach 3.1TW cumulative capacity by 2036, according to BloombergNEF (BNEF)."
+    },
+    {
+      "t": "2026-10-22T15:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/jigar-shah-electricity-bills-utility-profit-caruso/833188/",
+      "source": "Utility Dive",
+      "title": "Jigar Shah blames the wrong target for rising electricity bills",
+      "url": "https://www.utilitydive.com/news/jigar-shah-electricity-bills-utility-profit-caruso/833188/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "With utility returns trending downward, the data does not support a national &ldquo;utility greed&rdquo; narrative, writes Guy Caruso, former administrator for the U.S. Energy Information Administration. &nbsp;"
     }
   ],
   "derived": {
@@ -482,8 +482,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 8,
-      "capital": 4,
-      "grid": 30,
+      "capital": 5,
+      "grid": 29,
       "technology": 3
     },
     "sourceStatus": [
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:1b91eba6a054dccfbee40c952faef1a0e5e1ff3ae380b0999bab0bf41bb708d7",
-  "envelopeChecksum": "sha256:dbb2cddd18db6389cc467bde40ee6605435be4b5274d4e8c6127311bdd0ceb15"
+  "contentChecksum": "sha256:abcb1996ab82a369cbbbcc5ca703bed65f54e462acaa755070d82678f1dc7080",
+  "envelopeChecksum": "sha256:89fdf00a1206c4dda51f180d3bbb8fd469251ebbd45edc2938edf7728b5b6384"
 }
