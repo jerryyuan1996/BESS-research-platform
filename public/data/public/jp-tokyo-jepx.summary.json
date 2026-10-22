@@ -13,12 +13,12 @@
     "licence": "JEPX published market data — attribution required",
     "attribution": "Source: JEPX spot market data"
   },
-  "fetchedAt": "2026-10-21T21:47:58.440Z",
+  "fetchedAt": "2026-10-22T04:58:50.353Z",
   "coverage": {
-    "from": "2025-10-21T22:00:00.000Z",
-    "to": "2026-10-22T14:30:00.000Z",
+    "from": "2025-10-22T05:00:00.000Z",
+    "to": "2026-10-23T14:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17554
+    "points": 17588
   },
   "units": {
     "price": "JPY/MWh"
@@ -32,37 +32,37 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17554,
-    "coverageDays": 366,
+    "points": 17588,
+    "coverageDays": 367,
     "pointsPerHour": 2,
-    "mean": 17128.16,
-    "median": 16140,
-    "stdev": 7565.81,
+    "mean": 17161.35,
+    "median": 16170,
+    "stdev": 7586.75,
     "p5": 9000,
-    "p95": 30513.5,
+    "p95": 30570,
     "negativeHoursPct": 0,
-    "spreadMean": 8150.95,
-    "spreadMedian": 6976.11,
-    "spreadP25": 4137.22,
-    "spreadP75": 11128.89,
-    "spreadDays": 365,
-    "chargeMean": 13250.67,
-    "dischargeMean": 21401.62,
+    "spreadMean": 8150.38,
+    "spreadMedian": 7024.72,
+    "spreadP25": 4138.19,
+    "spreadP75": 11115.97,
+    "spreadDays": 366,
+    "chargeMean": 13283.82,
+    "dischargeMean": 21434.2,
     "durationHours": 9
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 12965075,
-    "marginPerCycle": 52313.33,
+    "revenuePerMW": 12950774,
+    "marginPerCycle": 52255.63,
     "inputs": {
-      "chargeMean": 13250.674277016746,
-      "dischargeMean": 21401.62100456622,
+      "chargeMean": 13283.817547055254,
+      "dischargeMean": 21434.201578627817,
       "durationHours": 9,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
       "availability": 0.97,
       "spreadRealisation": 0.7,
-      "spreadDays": 365
+      "spreadDays": 366
     },
     "claim": [
       "Wholesale arbitrage only — excludes capacity, ancillary and balancing revenue",
@@ -72,8 +72,8 @@
   "daily": [
     {
       "d": "2025-10-22",
-      "n": 34,
-      "mean": 21122.65,
+      "n": 20,
+      "mean": 24587.5,
       "min": 14820,
       "max": 35830,
       "spread": null,
@@ -3729,12 +3729,22 @@
       "spread": 6332.78,
       "charge": 25970,
       "discharge": 32302.78
+    },
+    {
+      "d": "2026-10-23",
+      "n": 48,
+      "mean": 29010.63,
+      "min": 23560,
+      "max": 37670,
+      "spread": 7945,
+      "charge": 25381.11,
+      "discharge": 33326.11
     }
   ],
   "sourceSnapshot": {
     "file": "jp-tokyo-jepx.json",
-    "contentChecksum": "sha256:4d51766b097a9d1fe39d8abd9dbffb5cca668d8679ec7c4b79aa1e166797066c",
-    "points": 17554
+    "contentChecksum": "sha256:b84184025757f8a136ff07cdc3d45552cb89abe7a1eb19895449128fb4248cb4",
+    "points": 17588
   },
-  "summaryChecksum": "sha256:5001f10968af7b7d14555d4a01468b7edbd19a6c84adfd4105a699a790dd5877"
+  "summaryChecksum": "sha256:3161364f215cfa78644f3b0691a4b7751ac9fb715fd83de6d47848454af3d0d4"
 }

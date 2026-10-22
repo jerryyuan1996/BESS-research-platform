@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-21T17:18:57.708Z",
+  "fetchedAt": "2026-10-22T04:58:36.028Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
     "to": "2026-10-21T15:29:28.000Z",
@@ -462,7 +462,7 @@
       "url": "https://www.utilitydive.com/news/tariffs-solar-wind-ppa-prices-levelten/833598/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "Wind power purchase agreements held relatively steady in Q3, but could begin to rise anew with solar as the latest round of tariffs take effect later this year."
+      "summary": "Wind power purchase agreements held relatively steady in Q3 but could begin to rise again as the latest round of tariffs takes effect later this year."
     },
     {
       "t": "2026-10-21T15:29:28.000Z",
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:eeea4fa26ad85ed1118a366ddc3d2c66d0ae7aa6ce5890e147390ba4c5e6ae4b",
-  "envelopeChecksum": "sha256:2f27d30f3287c9b07cbfc49045025a8b706828431f7c36545d603cec8a75ddee"
+  "contentChecksum": "sha256:0c2d45dfd2161083a5940485c4e7583e8653efb458d14adad75289e14be3a334",
+  "envelopeChecksum": "sha256:cc27f5c3d859ca76c37d0d4f8e40ed998697b2faadebc76b79eb5066385c76dc"
 }
