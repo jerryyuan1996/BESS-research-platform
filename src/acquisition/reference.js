@@ -4,35 +4,42 @@ import { baseStrategy, securedTenor } from '../comparison/strategies.js';
 import { valueAcquisition, publicAcquisition, debtRiskClass, returnAtAcquisitionPrice } from './valuation.js';
 import { STAGES, RATE_SNAPSHOT } from './parameters.js';
 import { MARKET_REFERENCE, REFERENCE_CASES, REFERENCE_DATE, REFERENCE_SOURCES } from './referencePolicy.js';
+import { REFERENCE_PREMIUM } from './parameters.js';
+import { operatingReference } from './operating.js';
+import { incomeScenario } from './scenarios.js';
+import { constructionCeiling } from './construction.js';
 
 /** Strict project adapter. Reference assumptions are added explicitly by
  * marketAcquisitionReference, never silently written into market evidence. */
 export function acquisitionInput(market,stage,overrides={}){
   const declared=market.comparison?.acquisition || {};
   const u={...declared,...declared.stages?.[stage],...overrides};
-  const strategyId=u.strategyId || baseStrategy(market);
-  const variant=u.economicOverrides?withOverrides(market,u.economicOverrides):market;
-  const result=runCase(variant,strategyId,0);
+  const {variant,strategyId,chosen,invalid}=incomeScenario(market,u);
+  if(invalid)return {stage,conditionsMet:false,sources:[],reason:invalid};
+  const life=u.economicLifeYears??15;
+  const operating=operatingReference(variant,strategyId,life),result=operating.result;
   if(result.na) return {stage,conditionsMet:false,sources:[],reason:result.na};
   const e=variant.comparison.economics;
   const age=u.operatingAgeYears??0;
-  // Longer lives need new cash-flow evidence, not repeated year-15 revenue.
-  const life=u.economicLifeYears??15;
-  const validAge=Number.isInteger(age)&&age>=0&&age<life&&life<=result.eb.length;
+  const validAge=Number.isInteger(age)&&age>=0&&age<life&&Number.isInteger(life)&&life<=35;
   const taxKnown=Number.isFinite(u.cashTaxRate)&&u.cashTaxRate>=0&&u.cashTaxRate<=1;
-  const annual=validAge?result.eb.slice(age,life).map((cash,i)=>{
-    const year=age+i, secured=u.contractConfirmed?result.secY[year]:0;
-    const renewal=((result.aucY?.[year]||0)+(u.contractConfirmed?0:result.secY[year]))*(u.unsecuredRevenueFactor??1);
-    // eb already deducts declared lifecycle costs. Keep its total exactly once.
-    const originalRetirement=year===14?(e.decommissioningPerMW??0)*result.fxRate:0;
-    const revenue=result.secY[year]+(result.aucY?.[year]||0)+result.mchY[year];
-    const beforeTax=cash+originalRetirement;
-    const capex=(e.augmentationSchedule||[]).filter(item=>item.year===year+1).reduce((total,item)=>total+(item.amountPerMW??0)*result.fxRate+result.capexG*(item.pctOfCapex??0)/100,0);
-    const merchant=result.mchY[year]*(u.unsecuredRevenueFactor??1);
-    const opex=Math.max(0,revenue-beforeTax-capex)*(u.operatingCostFactor??1);
+  const annual=validAge?operating.annual.slice(age,life).map((cash,i)=>{
+    const year=age+i,hasContract=(u.contractConfirmed||u.contractAssumed)&&u.contractMode!=='none';
+    const inTerm=u.contractTenorYears==null||year<u.contractTenorYears;
+    const secured=hasContract&&inTerm?cash.secured:0;
+    // An expired fixed toll/award is not quietly re-awarded. Unsecured auction
+    // renewals remain at risk; a signed or assumed contract is a separate case.
+    const unconfirmed=inTerm?cash.secured:0;
+    const renewal=(cash.renewal+(hasContract?0:unconfirmed))*(u.unsecuredRevenueFactor??1);
+    const capex=cash.capex;
+    const canTrade=strategyId!=='toll'||e.tollIsFloor||year>=(e.tollYears??15)&&e.tollRevertsToMerchant;
+    const extraReserve=canTrade?(u.additionalReserveNetPerMW??0)*result.fxRate*(1-(e.degr||2)/100)**year:0;
+    const merchant=(cash.merchant+extraReserve)*(u.unsecuredRevenueFactor??1);
+    const opex=cash.opex*(u.operatingCostFactor??1);
     const adjustedRevenue=secured+renewal+merchant;
     return {secured,renewal,merchant,opex,capex,
-      tax:taxKnown?Math.max(0,adjustedRevenue-opex)*u.cashTaxRate+adjustedRevenue*(u.turnoverTaxRate??0):null};
+      ...(cash.supportEligibleRevenue==null?{}:{supportEligibleRevenue:(cash.supportEligibleRevenue+extraReserve)*(u.unsecuredRevenueFactor??1)}),
+      tax:u.taxPolicy?0:taxKnown?Math.max(0,adjustedRevenue-opex)*u.cashTaxRate+adjustedRevenue*(u.turnoverTaxRate??0):null};
   }):[];
   // Comparisons for PL/RO are displayed in EUR but contain local-currency
   // streams translated using separate assumptions. Require an explicit mapping.
@@ -44,6 +51,7 @@ export function acquisitionInput(market,stage,overrides={}){
   const scenarios=stage==='operating'?(u.scenarios||[{probability:1,codYears:0,operates:true,costs:[{at:0,amount:u.initialWorksPerMW}],recoveries:[]}]):u.scenarios;
   return {
     stage,strategyId,currency,fxToUSD:fx,powerMW:market.comparison.archetype.powerMW,durationHours:market.comparison.archetype.durationHours,
+    commercialScenario:chosen,contractYears:operating.primaryTerm,
     annual:cashYears,operatingAgeYears:age,economicLifeYears:life,
     decommissioningPerMW:u.decommissioningPerMW,fixedFeesPerMW:u.fixedFeesPerMW,
     existingNetDebtPerMW:stage==='operating'?u.existingNetDebtPerMW:0,
@@ -51,6 +59,14 @@ export function acquisitionInput(market,stage,overrides={}){
     conditionsMet:u.conditionsMet===true && result.feasibility?.status!=='fail',
     conditionsAssumed:u.conditionsAssumed===true && u.conditionsMet!==false && result.feasibility?.status!=='fail',
     saleTax:u.saleTax,additionalPremium:u.additionalPremium,
+    cashFlowBasis:u.cashFlowBasis??(Array.isArray(u.annual)?'nominal':'real'),inflationRate:u.inflationRate??0,
+    securedIndexation:u.securedIndexation??'fixed',taxPolicy:u.taxPolicy,
+    revenueSupport:Array.isArray(u.annual)?null:e.ltda?.cis&&strategyId==='ltda'?{type:'cis',years:u.contractTenorYears??e.ltda.years,
+      ...Object.fromEntries(Object.entries(e.ltda.cis).map(([k,v])=>[k,v*result.fxRate*factor])),assumed:!!(u.contractAssumed||u.contractConfirmed)}
+      :strategyId==='toll'&&e.tollIsFloor?{type:'floor',years:e.tollYears,floor:e.toll*result.fxRate*factor,assumed:!!(u.contractAssumed||u.contractConfirmed)}:null,
+    referencePremium:u.referencePremium,targetReturn:u.targetReturn,buyerDiscountRate:u.buyerDiscountRate,
+    taxCreditBasisReduction:u.taxCreditBasisReduction??0,
+    scalableTaxCreditBasisReduction:u.scalableTaxCreditBasisReduction??0,
     debt:stage==='operating'&&u.debt?{...u.debt,riskClass:u.debt.riskClass||debtRiskClass(cashYears,RATE_SNAPSHOT[currency]?.rate??0)}:null,
     sources:u.sources || [],
   };
@@ -71,21 +87,23 @@ export function referenceInputs(market,stage,overrides={}){
   if(!policy || !market.comparison || market.comparison.engineReady===false)return [];
   const declared=market.comparison.acquisition||{};
   const u={...supplied(declared),...supplied(declared.stages?.[stage]),...supplied(overrides)};
-  const variant=u.economicOverrides?withOverrides(market,u.economicOverrides):market;
-  const strategyId=u.strategyId||baseStrategy(market),r=runCase(variant,strategyId,0);
+  const {variant,strategyId,chosen,invalid}=incomeScenario(market,u);
+  if(invalid)return [];
+  const r=runCase(variant,strategyId,0);
   if(r.na || r.feasibility?.status==='fail')return [];
   const e=variant.comparison.economics;
   const currency=u.cashFlowCurrency||u.currency||policy.currency||market.manifest.currency;
   const fx=u.fxToUSD??(policy.currency===currency?r.fxRate/policy.unitsPerEUR:r.fxRate);
   if(!(fx>0))return [];
   const build=r.buildCapexG/fx;
-  const sourceIds=[...new Set([...policy.sourceIds,'life','queue','retirement'])];
+  const sourceIds=[...new Set([...policy.sourceIds,'life','queue','retirement','inflation','taxMethod','returnCalibration',...(e.ltda?.cis?['cis']:[]),...(market.manifest.id==='fi'?['reserve']:[]),...(u.supportCase?.startsWith('us-itc')?['itc']:[])])];
   return REFERENCE_CASES.map(c=>{
     const cautious=c.id==='cautious';
     const age=u.operatingAgeYears??(stage==='operating'?c.operatingAge:0);
     const tax=u.cashTaxRate??policy.taxRates[cautious?1:0];
-    const defaultYears=stage==='ready-to-build'?(policy.rtbYears?.[cautious?1:0]??c.rtbYears)
-      :(policy.greenfieldYears?.[cautious?1:0]??(policy.usQueue?c.usGreenfieldYears:c.greenfieldYears));
+    const pathway=stage==='ready-to-build'?policy.rtbYears:policy.greenfieldYears;
+    const localYears=pathway?(c.id==='base'?(pathway[0]+pathway[1])/2:pathway[cautious?1:0]):null;
+    const defaultYears=localYears??(stage==='ready-to-build'?c.rtbYears:policy.usQueue?c.usGreenfieldYears:c.greenfieldYears);
     const years=u.monthsToOperation!=null?u.monthsToOperation/12:stage==='operating'?0:defaultYears;
     const development=u.developmentPerMW??build*c.developmentShare;
     const remainingBuild=u.remainingBuildPerMW??build;
@@ -93,10 +111,18 @@ export function referenceInputs(market,stage,overrides={}){
     // Existing grid contributions are in buildCapexG. Never add them twice.
     const grid=u.remainingBuildPerMW!=null || e.gridContributionPerMW!=null?0:build*c.gridReserve;
     const budget=remainingBuild+contingency+grid;
+    const creditRate=stage==='operating'||!policy.usQueue?0:u.supportCase==='us-itc30'?.30:u.supportCase==='us-itc6'?.06:0;
+    const creditBasis=u.eligibleTaxCreditBasisPerMW??remainingBuild*.85;
+    const grossCredit=creditBasis*creditRate,netCredit=grossCredit*(u.creditRealisationFactor??.95);
+    const grant=stage==='operating'?0:u.capitalSupportPerMW??0;
     const vat=budget*(e.vatPct||0)/100;
     const vatLag=(e.vatLagMonths>0?e.vatLagMonths:cautious?12:6)/12;
-    const costs=cod=>[{at:cod/2,amount:budget+vat}];
-    const recoveries=cod=>e.vatRecoverable===false?[]:[{at:cod/2+vatLag,amount:vat}];
+    const costs=cod=>[{kind:'construction',at:cod/2,amount:budget+vat}];
+    const recoveries=cod=>[
+      ...(e.vatRecoverable===false?[]:[{kind:'construction-vat',at:cod/2+vatLag,priceAt:cod/2,amount:vat}]),
+      ...(netCredit>0?[{kind:u.eligibleTaxCreditBasisPerMW==null?'investment-credit':'fixed-investment-credit',at:cod+(u.supportLagMonths??12)/12,priceAt:cod/2,amount:netCredit}]:[]),
+      ...(grant>0?[{kind:'capital-grant',at:cod+(u.supportLagMonths??12)/12,priceAt:cod/2,amount:grant}]:[]),
+    ];
     const success=policy.usQueue?c.usSuccess:c.success;
     const onTime=u.onTimePercent!=null?u.onTimePercent/100:success*.75;
     const delayed=u.delayedPercent!=null?u.delayedPercent/100:success*.25;
@@ -106,16 +132,25 @@ export function referenceInputs(market,stage,overrides={}){
       :[
         {probability:onTime,codYears:years,operates:true,costs:[{at:0,amount:development},...costs(years)],recoveries:recoveries(years)},
         {probability:delayed,codYears:lateYears,operates:true,costs:[{at:0,amount:development},...costs(lateYears)],recoveries:recoveries(lateYears)},
-        {probability:1-onTime-delayed,codYears:0,operates:false,costs:[{at:0,amount:u.failureSpendPerMW??development}],recoveries:[{at:(u.refundMonths??12)/12,amount:u.failureRefundPerMW??0}]},
+        {probability:1-onTime-delayed,codYears:0,operates:false,costs:[{at:0,amount:u.failureSpendPerMW??development}],recoveries:[{at:(u.refundMonths??12)/12,priceAt:0,amount:u.failureRefundPerMW??0}]},
       ];
-    const defaults={cashFlowCurrency:currency,fxToUSD:fx,strategyId,
-      economicLifeYears:15,operatingAgeYears:age,cashTaxRate:tax,turnoverTaxRate:policy.turnoverTax??0,
+    const defaults={cashFlowCurrency:currency,fxToUSD:fx,strategyId:chosen,
+      economicLifeYears:c.lifeYears,operatingAgeYears:age,cashTaxRate:tax,turnoverTaxRate:policy.turnoverTax??0,
       unsecuredRevenueFactor:c.revenueFactor,operatingCostFactor:c.opexFactor,
       fixedFeesPerMW:build*(cautious?.005:.002),existingNetDebtPerMW:0,
       decommissioningPerMW:e.decommissioningPerMW!=null?e.decommissioningPerMW*r.fxRate/fx:build*c.retirementShare,
-      conditionsAssumed:true,developmentRiskAssumed:true,contractConfirmed:false,scenarios,
-      saleTax:{rate:policy.saleTaxRate??tax,basisPerMW:budget+(stage==='greenfield'?development:0),includePurchase:true},
+      conditionsAssumed:true,developmentRiskAssumed:true,contractConfirmed:false,contractAssumed:u.contractMode!=='none',scenarios,
+      saleTax:{rate:policy.saleTaxRate??tax,basisPerMW:Math.max(0,budget+(stage==='greenfield'?development:0)-grossCredit*.5-grant),includePurchase:true,transactionType:'asset'},
+      cashFlowBasis:'real',inflationRate:.02,securedIndexation:strategyId==='cap'&&market.manifest.id==='gb'?'indexed':'fixed',
+      referencePremium:REFERENCE_PREMIUM,
+      additionalReserveNetPerMW:market.manifest.id==='fi'?c.reserveNet:0,
+      taxPolicy:Array.isArray(u.annual)?null:{rate:tax,turnoverRate:policy.turnoverTax??0,depreciationYears:u.depreciationYears??c.taxYears,
+        basisPerMW:Math.max(0,(budget+(stage==='greenfield'?development:0))*.85-grossCredit*.5-grant),depreciableShare:.85,purchaseDepreciableShare:0,
+        transactionType:u.transactionType??'asset',inheritedBasisPerMW:u.inheritedTaxBasisPerMW??build*.85*Math.max(0,1-age/(u.depreciationYears??c.taxYears)),
+        lossOffsetShare:policy.lossOffsetShare??1,interestLimitShare:.3},
       additionalPremium:c.extraPremium,debt:stage==='operating'?{mode:'new'}:null};
+    defaults.taxCreditBasisReduction=grossCredit*.5;
+    defaults.scalableTaxCreditBasisReduction=u.eligibleTaxCreditBasisPerMW==null?grossCredit*.5:0;
     const complete={...defaults,...u,sources:[...sourceIds.map(id=>({label:REFERENCE_SOURCES[id].label[0],url:REFERENCE_SOURCES[id].url})),...(u.sources||[])]};
     const input=acquisitionInput(market,stage,complete);
     return {input,key:c.id,assumptions:{
@@ -127,6 +162,10 @@ export function referenceInputs(market,stage,overrides={}){
       development:stage==='greenfield'?development:0,buildBudget:stage==='operating'?0:budget,
       gridAllowance:stage==='operating'?0:grid,retirement:input.decommissioningPerMW,fixedFees:input.fixedFeesPerMW,
       contractConfirmed:complete.contractConfirmed,sourceIds,
+      contractAssumed:complete.contractAssumed,life:complete.economicLifeYears,inflation:complete.inflationRate,
+      depreciationYears:complete.taxPolicy?.depreciationYears,transactionType:complete.taxPolicy?.transactionType,
+      additionalReserveNetPerMW:complete.additionalReserveNetPerMW,
+      capitalSupportPerMW:netCredit+grant,supportCase:u.supportCase??'none',
       taxOverridden:u.cashTaxRate!=null,annualOverridden:Array.isArray(u.annual),scenariosOverridden:Array.isArray(u.scenarios),
     }};
   });
@@ -146,15 +185,21 @@ export function marketAcquisitionReference(market,stage,investor,overrides={}){
       returnBasis:r.returnBasis??(input.debt?'equity':'all-cash'),remainingYears:input.annual.length,
       equityPaymentPerMW:r.equityPaymentPerMW??null,closingEquityPerMW:r.closingEquityPerMW??null,
       futureInvestmentPerMW:r.futureInvestmentPerMW??Math.max(...input.scenarios.map(s=>s.costs.reduce((sum,c)=>sum+c.amount,0))),loanPerMW:r.loanPerMW??0,
-      atPrice:overrides.purchasePricePerMW!=null?returnAtAcquisitionPrice(input,investor,overrides.purchasePricePerMW)
+      atPrice:overrides.purchasePricePerMW!=null?returnAtAcquisitionPrice(input,investor,overrides.purchasePricePerMW,{route:overrides.returnRoute})
         :r.status==='no-positive-price'?returnAtAcquisitionPrice(input,investor,0):null,
       costGapPVPerMW:r.status==='priced'?0:Math.max(...r.audit.map(a=>Math.max(0,-(a.npvAtFloor??0)))),assumptions};
   });
+  const baseCase=valued.find(c=>c.key==='base');
+  const workableBuildPerMW=baseCase&&stage!=='operating'&&baseCase.result.status!=='priced'
+    ?constructionCeiling(baseCase.input,investor,baseCase.assumptions.buildBudget,overrides.purchasePricePerMW??0):null;
   const prices=endpoints.map(r=>r.pricePerMW),first=cases[0].input;
   return {status:'reference',estimated:true,stage,investor,currency:first.currency,fxToUSD:first.fxToUSD,
     durationHours:first.durationHours,strategyId:first.strategyId,asOf:REFERENCE_DATE,
-    contractYears:securedTenor(market,first.strategyId),
+    contractYears:first.contractYears,commercialScenario:first.commercialScenario,
     pricePerMW:Math.min(...prices),priceRangePerMW:[Math.min(...prices),Math.max(...prices)],
+    baseCaseKey:'base',
+    quotedPricePerMW:overrides.purchasePricePerMW??null,
+    workableBuildPerMW,
     targetReturn:endpoints[0].targetReturn,referenceCases:endpoints,
     baseRate:RATE_SNAPSHOT[first.currency].rate,rateDate:RATE_SNAPSHOT.date,rateSource:RATE_SNAPSHOT[first.currency].source,
     marketSourceDate:market.manifest.lastVerified||market.manifest.asOf,

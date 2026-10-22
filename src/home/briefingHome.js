@@ -188,6 +188,7 @@ export function renderBriefingHome(main){
     referenceData:b.acquisitionReferenceData,
     selectedStage:homeState.acquisitionStage,
     onStage:stage=>{homeState.acquisitionStage=stage;requestRender();},
+    onCompare:result=>{homeState.labMarket=result.market;homeState.labStrategy=result.strategyId;navigate('/investment-lab');window.scrollTo(0,0);},
     marketLink:result=>marketLink(result.market),
   });
   if(recommendations) main.append(recommendations);

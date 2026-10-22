@@ -72,8 +72,8 @@ function renderLang(b, lens, days, siteUrl, lang){
       if(r.status==='reference'){
         const money=x=>'$'+(Math.floor(x*r.fxToUSD/1000)*1000).toLocaleString('en-US');
         for(const c of r.referenceCases){
-          const name=c.key==='cautious'?L('cautious','偏保守'):L('favourable','较有利');
-          const price=c.status==='priced'?money(c.pricePerMW):L('No acquisition budget yet','暂不宜另付收购款');
+          const name=c.key==='cautious'?L('cautious','偏保守'):c.key==='base'?L('reference','基准'):L('favourable','较有利');
+          const price=c.status==='priced'?money(c.pricePerMW):L('Improve cost or income terms','需改善建设或收入条件');
           const timing=r.stage==='operating'?L('operating','已投运'):`${c.assumptions.codYears}–${c.assumptions.latestCodYears} ${L('years to operation','年投运')}`;
           const returnText=c.status==='priced'?percent(c.targetReturn):L('Target not reached: ','尚未达到目标：')+percent(c.targetReturn);
           lines.push(`| ${marketLink(r.market)} · ${r.hours}h · ${r.stage} · ${name} | ${price} · ${timing} | ${returnText} · ${c.returnBasis} · ${r.currency} |`);

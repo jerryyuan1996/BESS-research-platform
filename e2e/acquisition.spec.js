@@ -15,12 +15,13 @@ test('home keeps all market references and explains assumptions without confusin
   await expect(rows.first().getByRole('button',{name:/Target annual return/})).toBeVisible();
   await page.locator('.acq-stages').getByRole('button',{name:'Operating',exact:true}).click();
   await expect(rows).toHaveCount(15);
-  await expect(rows.first().locator('.acq-price')).toContainText('–');
+  await expect(rows.first().locator('.acq-price')).toContainText('$');
   await rows.first().locator('.acq-price').click();
   const popover=page.locator('.acq-popover:popover-open');
   const triggerBox=await rows.first().locator('.acq-price').boundingBox(),popoverBox=await popover.boundingBox();
   expect(popoverBox.y+popoverBox.height<=triggerBox.y || popoverBox.y>=triggerBox.y+triggerBox.height).toBe(true);
   await expect(popover).toContainText('Cautious case');
+  await expect(popover).toContainText('Reference case');
   await expect(popover).toContainText('Favourable case');
   await popover.getByText('Public sources',{exact:true}).click();
   await expect(popover.getByRole('link',{name:'Australian Taxation Office: company tax',exact:true})).toBeVisible();
@@ -31,6 +32,7 @@ test('home keeps all market references and explains assumptions without confusin
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
   await page.locator('.acq-home').screenshot({path:testInfo.outputPath('acquisition-reference-home-zh.png')});
   await expect(page.locator('main')).not.toContainText('calls run against the economics');
+  await expect(page.locator('main')).not.toContainText('No acquisition budget yet');
 });
 
 test('a real asking price works with partial inputs and updates expected returns',async({page},testInfo)=>{
@@ -45,7 +47,7 @@ test('a real asking price works with partial inputs and updates expected returns
   const before=await panel.locator('.acq-at-price>p').innerText();
   await price.fill('1500000');await price.blur();
   await expect(panel.locator('.acq-at-price>p')).not.toHaveText(before);
-  const tax=panel.getByRole('spinbutton',{name:'Cash tax on positive operating income (%)',exact:true});
+  const tax=panel.getByRole('spinbutton',{name:'Corporate income tax (%)',exact:true});
   await tax.fill('25');await tax.blur();
   await panel.locator('.acq-price').click();
   await expect(page.locator('.acq-popover:popover-open')).toContainText('25.0%');
@@ -65,7 +67,7 @@ test('a completed operating case pairs price and equity target, explains debt an
   await panel.getByRole('combobox',{name:'Buyer type',exact:true}).selectOption('infraFund');
   await panel.getByRole('combobox',{name:'Acquisition stage',exact:true}).selectOption('operating');
   for(const [label,value] of [
-    ['Cash tax on positive operating income (%)','25'],
+    ['Corporate income tax (%)','25'],
     ['Decommissioning / MW, native currency','1000'],
     ['Fixed transaction fees / MW, native currency','100'],
     ['Immediate refurbishment budget / MW, native currency','0'],
@@ -103,4 +105,32 @@ test('developers have no operating acquisition option',async({page})=>{
   const panel=page.locator('.acq-lab');await expect(panel).toBeVisible();
   await panel.getByRole('combobox',{name:'Buyer type',exact:true}).selectOption('developer');
   await expect(panel.locator('option[value="operating"]')).toHaveCount(0);
+});
+
+test('income, lifetime and return inputs expose workable contract and connection terms',async({page},testInfo)=>{
+  await page.goto('/');
+  const row=page.locator('.acq-row').filter({hasText:'Finland'});
+  await row.getByRole('link',{name:'Compare a real project',exact:true}).click();
+  const panel=page.locator('.acq-lab');await expect(panel).toBeVisible();
+  await panel.getByRole('combobox',{name:'Income arrangement',exact:true}).selectOption('conditional-toll');
+  for(const [label,value] of [
+    ['Seller asking price / MW (optional)','50000'],['Your target annual return (%)','10'],
+    ['Total operating life from commissioning (years)','20'],['Fixed annual contract income / MW','60000'],
+    ['Contract term from commissioning (years)','10'],['Remaining construction and grid budget / MW','200000'],
+    ['Of that: construction not under fixed-price contracts / MW','0'],['Months from closing to operation','12'],
+  ]){const field=panel.getByRole('spinbutton',{name:label,exact:true});await field.fill(value);await field.blur();}
+  await panel.locator('.acq-workable>summary').click();
+  const terms=panel.locator('.acq-workable-content');
+  await expect(terms).toContainText('10.0%');await expect(terms).toContainText('Minimum annual fixed income');
+  await expect(terms).toContainText('delayed 6 months');await expect(terms).toContainText('delayed 12 months');
+  await expect(terms.locator('tbody tr')).toHaveCount(4);
+  await panel.getByRole('combobox',{name:'Return ownership route',exact:true}).selectOption('hold');
+  const before=await panel.locator('.acq-at-price>p').innerText();
+  await panel.getByRole('combobox',{name:'Return ownership route',exact:true}).selectOption('sale');
+  await expect(panel.locator('.acq-at-price>p')).not.toHaveText(before);
+  await page.getByRole('button',{name:'中文',exact:true}).click();
+  await panel.locator('.acq-workable>summary').click();
+  await expect(panel.locator('.acq-workable-content')).toContainText('固定收入合同');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
+  await panel.locator('.acq-lab-output').screenshot({path:testInfo.outputPath('acquisition-workable-terms-zh.png')});
 });
