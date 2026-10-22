@@ -82,10 +82,10 @@
         "revision-plan"
       ],
       "reason": [
-        "177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
-        "排队容量177GW，而已建成仅3.6GW；对排队电池项目的保护规则正在复议。"
+        "In the transmission register 177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
+        "输电登记册中，排队储能容量177GW，而已建成仅3.6GW；对排队电池项目的保护规则正在复议。"
       ],
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-23",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -322,8 +322,8 @@
         {
           "dimension": "gridScarcity",
           "text": [
-            "177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
-            "排队容量177GW而已建成仅3.6GW，对排队电池项目的保护规则正在复议。"
+            "In the transmission register 177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
+            "输电登记册中排队容量177GW而已建成仅3.6GW，对排队电池项目的保护规则正在复议。"
           ]
         },
         {
@@ -347,7 +347,7 @@
         "评分把需要争取的排队容量视为对开发商有利。但此处分配规则本身可能转向不利于新增电池项目，在复议结束之前评级无法反映这一点。"
       ],
       "author": "analyst",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     }
   },

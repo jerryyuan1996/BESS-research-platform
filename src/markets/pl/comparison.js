@@ -106,12 +106,14 @@ const economics = {
   merchGross: 78000,
   feePct: 9,
   services: 10000,
-  /* No named scheme supports the former 10% seed. New-entry screening therefore
-     carries zero; a project-specific award can still be entered in the Lab. */
+  /* NFOŚiGW / Modernisation Fund grants (source `nfos`) are awarded per project
+     by competitive call, so a new entrant holds none until it wins one. New-entry
+     screening therefore carries zero; an awarded project's grant can be entered
+     in the Lab. */
   grantPct: 0,
   degr: 2,
 
-  grantNote: ['No unnamed capital support in the new-entry base case', '新进入者基准情景不计未具名资本支持'],
+  grantNote: ['NFOŚiGW / Modernisation Fund grants are awarded per project; a new entrant without an award carries none', '国家环保基金/现代化基金补贴按项目授予；未获授予的新进入者不计补贴'],
   capNote: [
     '17-yr contract on 13.39% of nameplate; outlives the 15-yr window',
     '17年合同，仅覆盖铭牌容量的13.39%；期限长于15年比较窗口',

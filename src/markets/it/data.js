@@ -55,8 +55,8 @@ const M = {
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。六个报价区；参考原型为100MW/4小时；四条售电路径。'],
   nextMilestone: ['Next milestone: second MACSE auction — 24 November 2026, 16 GWh, up from 10 GWh. Reserve premium €27,000/MWh/yr (ARERA 332/2026), down from €37,000.',
                   '下一里程碑：第二次MACSE拍卖 — 2026年11月24日，规模16GWh，高于此前的10GWh。保留溢价为每MWh每年€27,000（ARERA第332/2026号决议），低于此前的€37,000。'],
-  footerNote: ['Public and official sources collected 1 August 2026. No Italian toll price has been disclosed in any of the three signed deals; no Italian fixed opex, optimiser fee or degradation series is published; the ARERA reference-cost study that would settle Italian capex could not be machine-read; and the only published MSD total is a single month annualised. Every contracted figure other than the MACSE clear and the capacity premium is a derived bracket, not a quotation.',
-               '公开及官方来源于2026年8月1日采集。三笔已签署的意大利租赁交易均未披露价格；意大利未公布固定运维成本、优化商费率或衰减率序列；可解决意大利造价问题的ARERA参考成本研究无法机器读取；且唯一公布的辅助服务市场总额为单月年化数据。除MACSE出清价与容量溢价外，所有合同类数值均为推导区间，而非报价。'],
+  footerNote: ['Public and official sources collected 1 August 2026. No Italian toll price has been disclosed in any of the three announced deals; no Italian fixed opex, optimiser fee or degradation series is published; the ARERA reference-cost study that would settle Italian capex could not be machine-read; and the only published MSD total is a single month annualised. Every contracted figure other than the MACSE clear and the capacity premium is a derived bracket, not a quotation.',
+               '公开及官方来源于2026年8月1日采集。三笔已公告的意大利租赁交易均未披露价格；意大利未公布固定运维成本、优化商费率或衰减率序列；可解决意大利造价问题的ARERA参考成本研究无法机器读取；且唯一公布的辅助服务市场总额为单月年化数据。除MACSE出清价与容量溢价外，所有合同类数值均为推导区间，而非报价。'],
   seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. MACSE and the capacity market are mutually exclusive and must never be added together. The capex band on this page spans a factor of 2.4 because two credible sources disagree by half. Terna has proposed cutting the four-hour capacity de-rating from 67% to 53% for DY2028. And a 2026 MACSE result does not exist — the second auction has not been held.',
              '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。MACSE与容量市场互斥，绝不可相加。本页造价区间跨度达2.4倍，因两个可信来源相差一半。Terna已提议将2028实需年度的四小时容量折减系数由67%下调至53%。此外，2026年MACSE结果并不存在 — 第二次拍卖尚未举行。'],
 
@@ -400,7 +400,7 @@ const M = {
      cannot supply, with what it uses instead. */
   notPublished: [
     { item: ['Italian toll price, any deal', '意大利租赁价格，任何交易'],
-      status: ['Never disclosed, in any of the three signed transactions', '从未披露，三笔已签署交易均无'],
+      status: ['Never disclosed, in any of the three announced transactions', '从未披露，三笔已公告交易均无'],
       why: ['Zelestra / BKW, Zelestra / EnBW and Axpo / Zelestra were all announced without a price. Tenor and MW are published; the fee is not. The hypothesis that Italian tolls price above MACSE is therefore UNVERIFIED — no Italian toll price exists to verify it against.',
             'Zelestra与BKW、Zelestra与EnBW、Axpo与Zelestra三笔交易的公告均未披露价格。期限与MW已公布，费用则未公布。因此“意大利租赁定价高于MACSE”这一假设未经证实 — 不存在可供比对的意大利租赁价格。'],
       instead: ['A bracket between the two anchors a rational toll must sit inside: the MACSE four-hour equivalent of €51,836/MW/yr at the floor, below which a developer takes the TSO contract instead, and the €123,000/MW/yr four-hour wholesale spread at the ceiling, above which the offtaker loses money on the wholesale leg alone. The seed is the midpoint, €87,000.',
@@ -568,7 +568,7 @@ const M = {
     ['Turnkey capex band, 4h LFP', '180-260', 'EUR/kWh', 'third party', 'IT_SEED_V1', 'European turnkey EPC surveys 2026'],
     ['Italian expert-interview capex', 440000, 'EUR/MW', 'third party', 'IT_SEED_V1', 'October 2025 — conflicts with the European band'],
     ['Italy-specific capex, authoritative source', 'not machine-readable', '-', 'coverage gap', 'IT_SEED_V1', 'ARERA Del. 168/2025 Allegato B'],
-    ['Italian toll price, any deal', 'not disclosed', '-', 'coverage gap', 'IT_SEED_V1', 'three signed deals, no price published'],
+    ['Italian toll price, any deal', 'not disclosed', '-', 'coverage gap', 'IT_SEED_V1', 'three announced deals, no price published'],
     ['Named toll tenor, Axpo / Zelestra', 10, 'yr', 'public', 'IT_SEED_V1', '207 MW, northern Italy, July 2026'],
     ['Italian fixed opex', 'not published', '-', 'coverage gap', 'IT_SEED_V1', 'placeholder on the European convention'],
     ['Italian curtailment volume, 2025', 'not found', '-', 'coverage gap', 'IT_SEED_V1', 'ARERA Res. 128/2025/R/EFR is the instrument'],
