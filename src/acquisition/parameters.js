@@ -17,6 +17,15 @@ export const INVESTOR_PREMIUM = {
   foreignFirstTimer:{greenfield:.10,'ready-to-build':.08,operating:.08},
   developer:{greenfield:.12,'ready-to-build':.10},
 };
+/** Revised reference ranges: house underwriting conventions, not market quotes.
+ * Applied only to labelled references; an explicit investor target takes priority.
+ * Asset NAV discount rates are a calibration check, not levered equity IRRs. */
+export const REFERENCE_PREMIUM = {
+  strategic:{greenfield:.055,'ready-to-build':.03,operating:.025},
+  infraFund:{greenfield:.065,'ready-to-build':.04,operating:.035},
+  foreignFirstTimer:{greenfield:.075,'ready-to-build':.05,operating:.045},
+  developer:{greenfield:.085,'ready-to-build':.06},
+};
 export const FEES = Object.freeze({acquisition:.015,sale:.015,financing:.01,reserveMonths:6});
 export const DEBT = Object.freeze({
   contracted:{ltv:.65,dscr:1.35,years:10,margin:.0225},

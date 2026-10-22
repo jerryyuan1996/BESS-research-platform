@@ -338,6 +338,10 @@ export const COMPARISON_AUTHORITY = {
   // ceiling; the tenor and the clawback are rules, but reading the clawback as a
   // retention fraction is a modelling decision.
   'economics.ltda.payment': AUTHORITY.ANALYST,
+  'economics.ltda.cis.floor': AUTHORITY.ANALYST,
+  'economics.ltda.cis.ceiling': AUTHORITY.ANALYST,
+  'economics.ltda.cis.paymentCap': AUTHORITY.ANALYST,
+  'economics.ltda.cis.repaymentCap': AUTHORITY.ANALYST,
   'economics.ltda.years': AUTHORITY.ANALYST,
   'economics.ltda.merchantRetention': AUTHORITY.METHODOLOGY,
   'economics.ltda.note': AUTHORITY.METHODOLOGY,

@@ -26,6 +26,7 @@ import { buildCapex, rtbEntry, capitalFlows } from './capex.js';
 import { activeFxRate } from './fx.js';
 import { decorateDecisionResult } from './decisionResult.js';
 import { investmentFlows } from '../economics/cashFlowCalendar.js';
+import { cisRevenue } from '../economics/revenueSupport.js';
 
 /* ---------------------------------------------------------------------------
    WHY AN IRR IS ABSENT.
@@ -351,7 +352,7 @@ function runLegacyCase(market, strategyId, exitYear, options){
     cap = (award.payment || 0) * fx;
     cy = Math.min(award.years || LIFE, LIFE);
     post = award.postFactor ?? 0;
-    const retention = award.merchantRetention ?? 1;
+    const retention = award.cis ? 1 : (award.merchantRetention ?? 1);
     merch *= retention;
     svc *= retention;
     /* An award is competitively bid against the bidder's own costs. Stacking a
@@ -367,15 +368,23 @@ function runLegacyCase(market, strategyId, exitYear, options){
     /* `capacityFactors` is how the design-fit sweep carries a duration floor that
        de-rates linearly as the battery fades (WA's ESR requirement). Absent, the
        factor is exactly 1 and the line is the one the baseline pins. */
-    const c = ((y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0)) * yearFactor(options, 'capacity', y);
-    const secured = ((y <= cy ? cap : 0) + (y <= cyB ? capB : 0)) * yearFactor(options, 'capacity', y);
-    secY.push(secured);
-    aucY.push(c - secured);
+    let c = ((y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0)) * yearFactor(options, 'capacity', y);
+    let secured = ((y <= cy ? cap : 0) + (y <= cyB ? capB : 0)) * yearFactor(options, 'capacity', y);
     const d = degradationFactor(e, y);
     let mm = y >= marketFrom
       ? (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y)
       : 0;
     if (strategyId === 'toll' && e.tollIsFloor && y <= cy) mm = Math.max(0, mm - c);
+    if(strategyId==='ltda' && e.ltda?.cis){
+      // CIS is a contingent top-up and revenue share, not a fixed fee plus 10%.
+      const terms=e.ltda.cis;
+      if(y<=cy){
+        const settled=cisRevenue(mm/fx,terms);
+        c=secured=settled.secured*fx;
+        mm=settled.total*fx-c;
+      }else c=secured=0;
+    }
+    secY.push(secured);aucY.push(c-secured);
     const sv = serviceCostPerMW(e, y) * fx;
     capY.push(c); mchY.push(mm); svcY.push(sv); eb.push(c + mm - opex - sv - lifecycleCost(e, capexG, fx, y));
   }

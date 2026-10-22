@@ -125,7 +125,7 @@ test('known project inputs replace missing assumptions, including explicit zero,
     initialWorksPerMW:0,operatingAgeYears:5,existingNetDebtPerMW:120,contractConfirmed:true,additionalPremium:0,
     unsecuredRevenueFactor:1,operatingCostFactor:1,debt:null});
   for(const c of cases){
-    assert.deepEqual(validateAcquisition(c.input),[]);assert.equal(c.input.annual.length,10);
+    assert.deepEqual(validateAcquisition(c.input),[]);assert.equal(c.input.annual.length,c.input.economicLifeYears-5);
     assert.equal(c.input.existingNetDebtPerMW,120);assert.equal(c.input.decommissioningPerMW,0);
     assert.ok(c.input.annual.every(y=>y.tax===0));assert.equal(c.input.scenarios[0].costs[0].amount,0);
     assert.equal(c.input.debt,null);assert.equal(c.input.additionalPremium,0);
@@ -178,7 +178,8 @@ test('home display projection retains paired cases and provenance while pooling 
   assert.equal(restored.length,3);
   const operation=restored.find(r=>r.stage==='operating');
   assert.equal(operation.referenceCases[0].assumptions.age,3);
-  assert.equal(operation.referenceCases[1].assumptions.age,0);
+  assert.equal(operation.referenceCases.find(c=>c.key==='base').assumptions.age,1);
+  assert.equal(operation.referenceCases.find(c=>c.key==='favourable').assumptions.age,0);
   assert.equal(operation.currency,'AUD');assert.ok(operation.rateSource.startsWith('https://'));
   assert.equal(operation.referenceCases[0].key,'cautious');
   assert.ok(packed.acquisitionReferenceData.assumptions.length<22);
