@@ -46,6 +46,7 @@ test('investors compare consistent assumptions across markets in both languages 
   await rows.nth(0).getByRole('checkbox').check();
   await rows.nth(1).getByRole('checkbox').check();
   await expect(page.locator('.ip-compare-item')).toHaveCount(2);
+  await expect(page.locator('.ip-compare-item').first()).toContainText('IRR');
   await expect(page.locator('.ip-comparison')).toContainText('Build & grid budget');
   await page.getByRole('combobox',{name:'Display currency',exact:true}).selectOption('local');
   await expect(page.locator('.ip-compare-item')).toHaveCount(2);

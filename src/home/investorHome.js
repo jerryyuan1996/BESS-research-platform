@@ -123,7 +123,10 @@ export function investorHome(briefing,{marketLink,marketName,onProject}={}){
     comparison.append(h('h2',{},L(['Compare the investment conditions','比较投资成立的条件'])),
       h('div',{class:'ip-comparison-grid',style:`--compare-count:${chosen.length}`},chosen.map(r=>h('article',{class:'ip-compare-item'},
         h('h3',{},marketName(r.market),` · ${r.hours}h`),h('p',{class:'acq-basis'},L(ARCHETYPES[r.investor].label),' · ',L(STAGE_LABEL[r.stage])),
-        acquisitionPrice(r,{displayUSD:mode==='usd'}),termsView(r,mode,maxMonths)))),
+        acquisitionPrice(r,{displayUSD:mode==='usd'}),
+        h('p',{class:'acq-basis'},r.currency+' IRR · ',L(displayedCase(r).route==='hold'?['Long-term hold','长期持有']:
+          displayedCase(r).exitYear===0?['Sell at commissioning','投运出售']:[`Sell in operating year ${displayedCase(r).exitYear}`,`投运后第${displayedCase(r).exitYear}年出售`])),
+        termsView(r,mode,maxMonths)))),
       h('button',{type:'button',class:'btn',onclick:()=>{selected.clear();drawComparison();}},L(['Clear comparison','清除对比'])));
   };
   root.append(h('div',{class:'ip-compare-guide'},L(['Select up to three opportunities to compare their terms.','可勾选最多三项机会，直接对比条件。']),count),comparison);
