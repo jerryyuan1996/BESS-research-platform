@@ -37,10 +37,10 @@ export const JP_NATIONAL = {
     {
       n: ['EPRX Balancing Market', 'EPRX需给调整市场'],
       pay: ['Capability (ΔkW) and energy (ΔkWh) by product', '按品种的容量(ΔkW)与电量(ΔkWh)付费'],
-      tenor: ['Weekly / daily procurement', '周度/日度采购'],
+      tenor: ['Day-ahead, in 30-minute units, for all five products since 14 Mar 2026 delivery (primary to tertiary-1 were week-ahead in three-hour blocks)', '自2026年3月14日实需给起，五个品种均在前一日以30分钟为单位交易（一次至三次①此前为前一周、以3小时为单位）'],
       obligation: ['Availability, telemetry, response performance', '可用性、遥测与响应性能'],
       areaSpecific: true,
-      rule: ['EPRX trading rules effective 1 Jul 2026', 'EPRX交易规则，2026年7月1日生效'],
+      rule: ['EPRX trading rules effective 1 Jul 2026. ΔkW cap on primary, secondary-1 and the composite product: ¥19.51 → ¥15.00 per ΔkW per 30 min from 14 Mar 2026, → ¥10.00 from 1 Sep 2026; secondary-2 and tertiary-1 ¥7.21; tertiary-2 uncapped. Primary and secondary-1 procured at 1σ, was 3σ', 'EPRX交易规则，2026年7月1日生效。一次、二次①及复合品种的ΔkW上限价格：自2026年3月14日由每ΔkW·30分钟¥19.51降至¥15.00，自2026年9月1日降至¥10.00；二次②与三次①为¥7.21；三次②不设上限。一次与二次①的募集量由3σ削减至1σ'],
     },
     {
       n: ['OCCTO Capacity Market — Main Auction', 'OCCTO容量市场 — 主拍卖（メインオークション）'],

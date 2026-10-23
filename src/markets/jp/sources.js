@@ -70,12 +70,54 @@ export const SRC = {
     date: '2026', cy: 'Delivery year 2029',
     url: 'https://www.occto.or.jp/various/capacity-market/jitsujukyukanren/2029_jitsujukyu_kanren.html',
   },
+  /* REVISED 2026-10-23: the URL was the July 2026 consultation page for the
+     Round 4 guidelines; it now points at the Round 3 results annex it names. */
   occtoLtda2026: {
-    file: 'OCCTO — Long-Term Decarbonization Power Source Auction Round 3 results',
+    file: 'OCCTO — Long-Term Decarbonization Power Source Auction Round 3 (FY2025 bidding) results, award list annex',
     status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
     date: '13 May 2026', cy: 'Round 3 / FY2026 reviewed vintage',
-    url: 'https://www.occto.or.jp/iken/000606.html',
+    url: 'https://www.occto.or.jp/assets/various/capacity-market/jitsujukyukanren/2025_boshuyoukou_long/260513_longauction_youryouyakujokekka_kouhyou_besshi_ousatsu2025.pdf',
     quality: 'final',
+  },
+  /* The cell-origin rule (docs/japan-cell-origin-plan.md, signed off 2026-10-23). */
+  occtoLtdaRound4Guidelines: {
+    file: 'OCCTO — Long-Term Decarbonization Power Source Auction guidelines (FY2026 bidding, Round 4)',
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
+    date: '2 Sep 2026', cy: 'Lithium-ion capped at 400 MW with no award beyond it (p. 10, p. 36); certified-cell lithium-ion projects clear before all others (pp. 35–36); cells only from the certified maker\'s own plants, one maker per unit (p. 28, form 4)',
+    url: 'https://www.occto.or.jp/assets/260902_boshuyoukou_long_2026.pdf',
+    automation: 'C', format: 'PDF',
+  },
+  meti006s02: {
+    file: 'METI — 電力安定供給WG reference 2, "長期脱炭素電源オークションの第4回募集に向けて"',
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
+    date: 'Aug 2026', cy: 'Round 4 battery caps (p. 11); priority for cells from makers certified under the Economic Security Promotion Act, replacing the 30% per-country limit for lithium-ion (p. 36); bid return, ceiling and cost inputs (tables 17, 29–31)',
+    url: 'https://www.meti.go.jp/shingikai/enecho/denryoku_gas/jisedai_kiban/stable_power_supply_wg/pdf/006_s02_00.pdf',
+    automation: 'C', format: 'PDF',
+  },
+  /* Practitioner evidence, on the same footing as the supplier quotation. Not on
+     METI's public list on 2026-10-23: register the official entry once it appears. */
+  hithiumEspaCertification: {
+    file: 'HiTHIUM — battery supply-assurance plan certification under the Economic Security Promotion Act, covering the plant that makes the quoted cells',
+    status: ['Practitioner evidence', '从业者证据'],
+    provenance:{authority:'counterparty-reported',publication:'final',availability:'restricted',verification:'requires-reverification'},
+    date: 'Reported 23 Oct 2026', cy: 'Supplied by the analyst; METI\'s public list did not yet show it on 23 Oct 2026',
+    url: '',
+    automation: 'D — analyst-supplied evidence', lastChecked: '2026-10-23',
+  },
+  /* The balancing market since day-ahead trading began. */
+  eprxPriceCap: {
+    file: 'EPRX — 需給調整市場のΔkW上限価格について (ΔkW price caps)',
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
+    date: '30 Jul 2026', cy: 'Primary, secondary-1 and composite product: ¥19.51 to 13 Mar 2026, ¥15.00 from 14 Mar, ¥10.00 from 1 Sep 2026 per ΔkW per 30 min; secondary-2 and tertiary-1 ¥7.21; tertiary-2 uncapped',
+    url: 'https://www.eprx.or.jp/information/docs/14b85fbe8942da7d3bdddda80243e7e170f64d9e.pdf',
+    automation: 'C', format: 'PDF',
+  },
+  metiBalancing202605: {
+    file: 'METI — 電力安定供給WG material 8, "需給調整市場について"',
+    status: ['Official — Final', '官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
+    date: '13 May 2026', cy: 'Day-ahead trading and 30-minute units for primary to tertiary-1 from 14 Mar 2026; primary and secondary-1 procured at 1σ, was 3σ (pp. 3–4)',
+    url: 'https://www.meti.go.jp/shingikai/enecho/denryoku_gas/jisedai_kiban/stable_power_supply_wg/pdf/001_08_00.pdf',
+    automation: 'C', format: 'PDF',
   },
   occtoSupplyPlan2025: {
     file: 'OCCTO — Aggregation of Electricity Supply Plans FY2025',

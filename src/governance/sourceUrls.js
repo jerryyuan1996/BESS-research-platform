@@ -53,6 +53,13 @@ for (const market of ['gb', 'ie', 'ro', 'pl', 'de', 'it', 'fi', 'nem', 'wa', 'jp
   }
 }
 
+/* HiTHIUM's supply-assurance certification, reported by the analyst on
+   2026-10-23 (docs/japan-cell-origin-plan.md). METI's public list did not yet
+   show it; replace this exemption with METI's own entry once it is published. */
+for (const market of ['jp_tokyo', 'jp_kyushu', 'jp_hokkaido']){
+  URL_EXEMPT[`${market}:hithiumEspaCertification`] = 'Practitioner evidence the analyst supplied; not yet on METI\'s public certification list.';
+}
+
 /** Placeholder shapes that must never reach the register. */
 const PLACEHOLDER = /^(?:#|todo|tbd|n\/a|xxx|https?:\/\/(?:example\.(?:com|org)|localhost|127\.0\.0\.1))/i;
 
