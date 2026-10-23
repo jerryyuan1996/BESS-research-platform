@@ -312,9 +312,9 @@ export const changeText = {
 
 export const flagText = {
   ahead: (econ) => (!econ.priced || econ.eligible === false
-    ? ['No compliant design is priced, so the call runs ahead of the economics.', '尚无合规设计被定价，结论领先于经济性。']
-    : ['The design destroys value at the platform\'s yields, so the call runs ahead of the economics.', '按平台收益率该设计损毁价值，结论领先于经济性。']),
-  behind: () => ['The design is in the top third by value, so the call runs behind the economics.', '该设计价值位列前三分之一，结论落后于经济性。'],
+    ? ['A compliant reference design is not yet priced. Review the missing inputs.', '参考方案尚未完成定价或技术核验，请补齐相应资料。']
+    : ['The reference design is worth less than its modelled cost under these assumptions. Review costs, revenue and entry stage.', '按当前假设，参考方案估值低于模型投入。请复核成本、收入和进入阶段。']),
+  behind: () => ['The reference design ranks in the top third for net value. Review the cautious market conclusion.', '参考方案净增值排名位于前列，请复核原有的谨慎市场判断。'],
 };
 
 export const queueText = {

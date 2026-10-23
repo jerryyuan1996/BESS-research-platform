@@ -1,8 +1,8 @@
 {
   "marketId": "wa",
   "thesis": [
-    "Capacity-led and closed to small cheques. The Reserve Capacity Mechanism pays for seven hours and capacity is about three-quarters of revenue, the best value per MW on the platform. A fund gets in only behind a strategic sponsor, once Capacity Credits are assigned; build seven hours, because the eighth is capex the market does not pay for.",
-    "以容量收入为主，小额出资者难以进入。备用容量机制为七小时付费，容量收入约占总收入的四分之三，每MW价值为本平台最高。基金只能在容量信用分配之后跟随战略投资者进入；建七小时，因为第八小时是市场不付费的资本开支。"
+    "Capacity-led and difficult for small cheques. Capacity is roughly three-quarters of year-one revenue. A fund enters behind a strategic sponsor once Capacity Credits are assigned. The current priced design is eight hours; compare its value and hold return with seven hours in the grid below, including the duration haircut as the battery degrades.",
+    "以容量收入为主，小额出资者难以进入。容量收入约占首年收入的四分之三。基金在容量信用分配后跟随战略投资者进入。当前定价方案为八小时；请对照下方设计表比较其与七小时的价值和持有回报，计入电池衰减导致的容量折减。"
   ],
   "grades": {
     "assetReturn": {
@@ -522,8 +522,8 @@
       "hours": 8,
       "stage": "co-invest",
       "why": [
-        "The mechanism prices a six-hour battery and the seventh hour defends the credit. On the supplier-quoted DC block the eighth now pays for itself: eight hours is the engine’s best design, worth about 6% more per MW than seven, though its hold IRR is lower, 18.1% against 19.8%.",
-        "该机制按六小时电池定价，第七小时用于守住容量信用。按供应商报价的直流电池舱计算，第八小时已能自负成本：八小时是引擎的最佳设计，每MW价值比七小时高约6%，但持有期IRR较低，为18.1%对19.8%。"
+        "At the supplier-quoted DC block cost, eight hours has the highest value per MW among the eligible designs tested, while seven hours has a higher hold IRR. The design grid and economics below use the same annual capacity factors; unawarded post-contract revenue remains an assumption.",
+        "按供应商报价的直流电池舱成本，八小时在已测试且符合要求的设计中每MW价值最高，七小时的持有期IRR则更高。下方设计表与经济性使用相同的逐年容量系数；合同到期后未中标的收入仍属假设。"
       ],
       "action": {
         "text": [
@@ -533,7 +533,7 @@
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "lockedUntil": null
     }
   }

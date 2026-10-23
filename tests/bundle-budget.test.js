@@ -78,7 +78,12 @@ const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
  * 9549dd6 and 229.60 with Ontario, +10.24 — Finland's entry cost about 8.
  */
 const BUDGET = {
-  entry: 232,
+  // 2026-10-17: Investment Lab now loads on its route. Move 67 kB of
+  // allowance from the entry to shared dependencies, keeping the combined
+  // entry + shared cap at 326 kB. Measured entry 145.8, shared 162.45.
+  // 2026-10-23: Ontario registered as the sixteenth market. Measured 156.75 after
+  // merging main (its comparison, source, congestion and decision-profile modules).
+  entry: 159,
 
   /* THE HOME PAGE'S FIRST VIEW: the entry chunk plus everything the verdict
      board loads — the board itself and the method layer (anchors, investor
@@ -110,12 +115,15 @@ const BUDGET = {
      MEASURED 249.67 WITH ALL FIFTEEN GRADED. Of the rise from 243.04, 6.2 is
      the entry chunk, which carries every market's source register and gained
      the sources opened for the ledgers and grades; the projection itself
-     added 0.4.
-
-     RAISED 258 TO 273 (2026-10-23). Measured 260.70 at 9549dd6 — already 2.70
-     over, from the merchant-lines work — and 270.96 with Ontario, whose +10.26
-     is its entry-chunk cost above. */
-  home: 273,
+     added 0.4. */
+  // 2026-10-19: buyer reference prices, timing and paired return targets for
+  // 15 markets × investor/stage. Pooling assumptions halves the new payload
+  // (25.1 -> 12.5 kB gzip); allow 15 kB for this additional first-view content.
+  // 213.9 KiB measured with the third reference case, its provenance and
+  // actionable construction conditions; calculator/engine remain lazy.
+  // 2026-10-23: 227.23 measured after merging main, with Ontario and the merchant-
+  // lines plays in the briefing.
+  home: 230,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -196,7 +204,7 @@ const BUDGET = {
      a duration say what the Brief says (guided-experience plan, PR 7). Its
      chunk is 1.63 kB gzipped. Measured 102.2 after, with the cards the page
      used to delete at runtime now gone from source. */
-  sharedTotal: 104,
+  sharedTotal: 171,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {
@@ -272,7 +280,7 @@ const BUDGET = {
        Measured 23.23. */
     /* 25 from 24 (2026-10-23): 24.24 at 9549dd6, already over from the
        merchant-lines work, and 24.36 with Ontario's row (+0.13). */
-    'verdict-board': 25,
+    'verdict-board': 26,   // 2026-10-23: 25.01 after merging main and the two regrades
     /* The briefing that opens the home page since the guided-experience plan
        (PR 4): the six answers and the home projection of the briefing — every
        investor's shortlist, the plays priced by the engine at build time, the
@@ -288,7 +296,12 @@ const BUDGET = {
 
        RAISED FROM 18 TO 22 when the plays were applied: measured 18.74, and
        the briefing grows with each play written, which is what it is for. */
-    'briefing-data': 22,
+    // The same 165 market/investor/stage references are shared by the home,
+    // market brief and digest. Numeric outputs are rounded only for display.
+    // Three 15/20/25-year references replace two: includes tax/lifetime
+    // provenance and reverse construction limits. Packed tuples and rounded
+    // display money reduce 40.61 to 36.80 KiB; no engine is loaded on home.
+    'briefing-data': 42,   // 2026-10-23: 40.62 after merging main, with Ontario's rows and the new plays
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,

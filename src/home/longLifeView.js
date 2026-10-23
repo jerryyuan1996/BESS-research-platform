@@ -62,6 +62,19 @@ export function renderLongLife(main, marketList){
       ...v.windows.map(w => h('td', { class: 'num' }, pct(w.fading))),
       ...v.windows.map(w => h('td', { class: 'num' }, pct(w.maintained)))))))));
   c.append(h('div', { class: 'cap', style: 'margin-top:6px;' }, L(T.rules)));
+  c.append(h('h3',{},L(['Without assumed contract renewals','不假设合同续约'])));
+  c.append(h('p',{class:'cap'},L([
+    'The continuation case above keeps the analyst’s year-15 revenue convention. Below, contract-expiry keeps payments only to the declared contract end; merchant-only removes all fixed and renewal revenue after year 15. No new awards or terminal value are assumed. A dash means no unique IRR was found between -90% and 200%; loss-making tails can have multiple IRRs.',
+    '上方延续情形保留分析师以第15年收入延续的口径。下方“合同到期”仅保留至已声明合同到期的付款；“仅市场化”从第16年起去除所有固定及续约收入。不假设新中标合同或期末残值。横线表示在-90%至200%内未找到唯一IRR；亏损尾期可能产生多个IRR。',
+  ])));
+  c.append(h('div',{class:'tbl-wrap'},h('table',{},
+    h('thead',{},h('tr',{},h('th',{},L(T.market)),
+      ...windows.filter(n=>n>15).flatMap(n=>[
+        h('th',{class:'num'},L([`${n}y · contract expiry`,`${n}年 · 合同到期`])),
+        h('th',{class:'num'},L([`${n}y · merchant only`,`${n}年 · 仅市场化`])),
+      ]))),
+    h('tbody',{},...rows.map(({m,v})=>h('tr',{},h('td',{},L(m.manifest.shortName)),
+      ...v.windows.filter(w=>w.years>15).flatMap(w=>[h('td',{class:'num'},pct(w.contractExpiry)),h('td',{class:'num'},pct(w.merchantOnly))])))))));
   c.append(why(T.why, T.sig));
   main.append(c);
 }

@@ -126,7 +126,10 @@ const LEGACY_EXIT_OPTIONS = {
   exitYContracted:0.075,
   exitYMerchant:0.115,
   exitYOpex:0.08,
-  exitYAuction:0.115,
+  // Historical replay only: the prototype treated post-contract capacity as
+  // contracted. Preserve its original fixture without restoring that default
+  // in production. financial-reconciliation.test.js checks the corrected policy.
+  exitYAuction:0.075,
 };
 const runLegacyCase = (market, strategy, exitYear) =>
   runCase(market, strategy, exitYear, LEGACY_EXIT_OPTIONS);
@@ -153,7 +156,7 @@ test('legacy parity explicitly retains the prototype exit yields', () => {
   assert.equal(EXIT_Y_OPEX, 0.07);
 });
 
-test('the legacy markets are untouched by the auction-renewal branch', () => {
+test('historical inputs retain cash totals while exposing unawarded renewal years', () => {
   for (const id of LEGACY_MARKETS){
     const m = legacyMarket(byId(id));
     assert.equal(m.comparison.economics.riskClass, undefined,
@@ -161,8 +164,7 @@ test('the legacy markets are untouched by the auction-renewal branch', () => {
     // Legacy results still expose the new field names, as aliases.
     const r = runLegacyBaseCase(m, 5);
     assert.equal(r.securedShare, r.contractedShare, `${id}: secured share must alias contracted share`);
-    assert.ok(Array.isArray(r.aucY) && r.aucY.every(v => v === 0),
-      `${id}: legacy markets have no auction-renewal stream`);
+    for (let i = 0; i < LIFE; i++) closeRel(r.secY[i] + r.aucY[i], r.capY[i], `${id}: capacity classification ${i + 1}`);
   }
 });
 

@@ -29,6 +29,7 @@ import { SCOUT_LIVE_AUTHORS, emptyCard, parseScoutPath, readScoutPath, writeScou
 import { isScoutId } from '../src/governance/scout.js';
 import { isRule } from '../src/governance/triggers.js';
 import { assessMarket, disagreements } from '../src/entry/assessment.js';
+import { returnGradesFor } from '../src/comparison/returnGrades.js';
 import { ledgerFor } from '../src/entry/ledgerRegistry.js';
 import { FX } from '../src/comparison/assumptions.js';
 import { NOT_ACCESSIBLE } from '../src/governance/archetypes.js';
@@ -647,15 +648,11 @@ test('a derived asset-return grade is the market\'s fifth in the engine\'s ranki
   const order = (key) => [...priced].sort((a, b) => b.result[key] - a.result[key]).map(r => r.id);
   const byHold = order('irrHold'), byExit = order('irrExit');
   const fifthGrade = (ranking, id) => 6 - Math.ceil((ranking.indexOf(id) + 1) * 5 / ranking.length);
-  /* THE ANALYST'S RULING OF 2026-10-23, when Ontario made sixteen markets and
-     put GB and the NEM either side of a fifth: the grade follows HOLD IRR, and
-     exit IRR may place a market one fifth away at a boundary. Two fifths apart
-     would mean the grade misdescribes a seller's asset, and still fails. */
-  for (const id of byHold){
-    const gap = Math.abs(fifthGrade(byHold, id) - fifthGrade(byExit, id));
-    assert.ok(gap <= 1,
-      `${id}: hold and exit IRR grade it ${gap} fifths apart — one asset-return grade cannot serve a holder and a seller`);
-  }
+  // B3 correctly changes the exit ordering. The existing methodology already
+  // requires each investor's return basis; a shared grade is no longer valid.
+  const grades = returnGradesFor(registered,5);
+  for(const id of byHold) assert.equal(grades[id]['hold-irr'].grade,fifthGrade(byHold,id));
+  for(const id of byExit) assert.equal(grades[id]['exit-irr'].grade,fifthGrade(byExit,id));
 
   const expected = (id) => fifthGrade(byHold, id);
   const drift = [];

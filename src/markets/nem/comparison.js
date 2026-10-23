@@ -173,6 +173,9 @@ const economics = {
     payment: 113500,
     years: 15,
     merchantRetention: 0.10,
+    // Illustrative eligible-revenue terms: private bid values are not public.
+    // 113,500 is 90% of the house floor. The ceiling/caps are assumptions.
+    cis:{floor:113500/.9,ceiling:200000,paymentCap:113500,repaymentCap:100000},
     /* A competitively bid underwrite and a capital grant would be support
        counted twice; the CIS displaced grants rather than joining them. */
     excludesGrant: true,

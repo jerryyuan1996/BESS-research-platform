@@ -295,9 +295,27 @@ export function marketAt(market, route, hours){
     econ.ltda = { ...e.ltda, payment: e.ltda.payment * k };
   }
 
+  // Absolute bands travel through the same duration response as their seeds.
+  // Percentages, years and other dimensionless bounds retain their own units.
+  const valueAt = (obj, field) => field.split('.').reduce((o, key) => o?.[key], obj);
+  const scaledFields = new Set(['capexPerMW', 'opexPerMW', 'merchGross',
+    'contracted', 'securedContracted', 'ltda.payment']);
+  const ranges = Object.fromEntries(Object.entries(cmp.ranges || {}).map(([field, range]) => {
+    const before = valueAt(e, field), after = valueAt(econ, field);
+    if (!scaledFields.has(field) || !Number.isFinite(before) || before === 0 || !Number.isFinite(after)) return [field, range];
+    const ratio = after / before;
+    return [field, { ...range,
+      ...Object.fromEntries(['seed', 'min', 'max'].filter(key => Number.isFinite(range[key])).map(key => [key, range[key] * ratio])),
+      ...(hours!==h0 ? {basis:[
+        (range.basis?.[0] || '') + ` Scaled from ${h0}h to ${hours}h by the design response (${ratio.toFixed(4)}x).`,
+        (range.basis?.[1] || '') + ` 按设计响应由${h0}小时缩放至${hours}小时（${ratio.toFixed(4)}倍）。`,
+      ]} : {}),
+    }];
+  }));
+
   return {
     ...market,
-    comparison: { ...cmp, archetype: { ...cmp.archetype, durationHours: hours }, economics: econ },
+    comparison: { ...cmp, archetype: { ...cmp.archetype, durationHours: hours }, economics: econ, ranges },
   };
 }
 
@@ -358,6 +376,7 @@ function pricePoint(market, route, hours, { termTest, runOptions }){
   if (floor && floor.kind === FLOOR_KIND.LINEAR && floor.holdForTerm && termTest){
     const factors = linearFadeFactors(market, floor, hours);
     if (factors) opts.capacityFactors = factors;
+    opts.capacityFloor = { hours, requiredHours:floor.hours };
   }
 
   /* Exit year 0: the exit value at commercial operation, which is the
@@ -386,6 +405,9 @@ function pricePoint(market, route, hours, { termTest, runOptions }){
        in its own currency without a second conversion table. */
     fxRate: r.fxRate,
     irrHold: r.irrHold,
+    // One pricing context for briefing, downside cases, home and digest.
+    runOptions: opts,
+    valuationRates: r.valuationRates,
     securedShare: r.securedShare,
     inputs: inputsAt(market, route, hours),
   };

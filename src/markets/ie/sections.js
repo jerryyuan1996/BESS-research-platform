@@ -45,6 +45,7 @@ SEC_B.home = function (){
       { t:'band-story', b:['Core storyline','核心叙事'],
         text:['Ireland is a small, wind-dominated, weakly interconnected island system that pays more for firm capacity than almost any market in Europe — and it is now adding interconnection and data-centre demand at the same time. Storage is structurally required to absorb dispatch-down and firm the evening peak, but the two revenue lines that built the existing fleet (DS3 system services and wide uncontested spreads) are both being repriced. The investment case now rests on de-rated capacity value, connection readiness and duration, not on legacy ancillary economics.',
               '爱尔兰是一个规模小、风电主导、互联薄弱的岛屿系统，其对可靠容量的支付水平高于欧洲几乎所有市场；同时正在增加互联能力与数据中心需求。储能在结构上是吸纳限发电量、支撑晚高峰所必需的，但支撑既有机组建设的两条收入线（DS3系统服务与宽而无竞争的价差）正同时被重新定价。当前投资逻辑立足于折减后容量价值、并网准备度与时长，而非既往的辅助服务经济性。'] },
+      { t:'p', text:['Target COD window: ' + M.overall.codWindow, '目标投运窗口：' + M.overall.codWindow] },
       { t:'walk', items:[
         ['01', ['Overview','总览'], ['What is the house view today?','当前总体判断是什么？'], 'home'],
         ['02', ['Market evolution','市场演进'], ['Why did BESS become necessary — and what changed after entry?','为何储能成为必需？进入后发生了什么？'], 'story'],
@@ -59,12 +60,7 @@ SEC_B.home = function (){
     ] },
 
     { t:'g2', cards:[
-      { title:['Card A — Overall Ireland Storage Signal','Card A — 爱尔兰储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
-          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
-        { t:'p', text:M.overall.rationale },
-      ] },
-      { title:['Card B — Capacity Mechanism Signal','Card B — 容量机制信号'], live:false, blocks:[
+      { title:['Card A — Capacity Mechanism Signal','Card A — 容量机制信号'], live:false, blocks:[
         { t:'chip', cls:'good', text:['Strong — the highest de-rated capacity price in the comparison set','强劲 — 对比样本中折减容量价格最高'] },
         { t:'kpis', items:[
           { l:['T-4 clearing price (DY ' + O.crmDY + ')','T-4出清价（交付年' + O.crmDY + '）'], v:fmtC(O.crmPrice) + '<small>/kW de-rated/yr</small>',
@@ -79,7 +75,7 @@ SEC_B.home = function (){
           '按' + fmtC(O.crmPrice) + '/kW折减/年计，4小时电池在任何交易之前即可获得约' + fmtCk(perNameplate(4)) + '/MW/年的容量收入 — 足以成为主要收入来源，这在欧洲并不常见，也是爱尔兰投资逻辑最突出的特征。但该付费是可靠性期权而非年金：当电价高于执行价时，无论机组能否发电均须支付差价。这使容量收入项由固定收款转变为对冲后的空头头寸，也正因如此，时长与可用率在此地的重要性高于表面价格所显示的水平。'],
           sig:['A hedged short, not an annuity','是对冲后的空头，而非年金'] },
       ] },
-      { title:['Card C — Wholesale & Balancing Signal','Card C — 批发与平衡市场信号'], live:false, blocks:[
+      { title:['Card B — Wholesale & Balancing Signal','Card B — 批发与平衡市场信号'], live:false, blocks:[
         { t:'chip', cls:'warn', text:['Wide spreads, but only part is executable','价差宽，但仅部分可执行'] },
         { t:'kpis', items:[
           { l:['Average daily day-ahead spread','日均日前价差'], v:fmtC(O.daSpread) + '<small>/MWh</small>', d:['trailing twelve months','过去十二个月'], b:['tp'] },
@@ -92,7 +88,7 @@ SEC_B.home = function (){
           '公布的' + fmtC(O.daSpread) + '/MWh价差是吸引资本进入爱尔兰的数字，而其中' + fmtPct((1 - 59 / O.daSpread) * 100, 0) + '%从未进入损益表。最大的单项扣减是调度与网络约束准入，而非效率损失 — 在一个集中调度、且非同步渗透率存在硬性上限的市场中，电池并不总被允许执行价格信号所隐含的那笔交易。应以可执行价差测算；任何基于公布数字构建的模型，其高估幅度约为两倍。'],
           sig:['Published spread is not executable spread','公布价差不等于可执行价差'] },
       ] },
-      { title:['Card D — DS3 / FASS Signal','Card D — DS3/FASS信号'], live:false, blocks:[
+      { title:['Card C — DS3 / FASS Signal','Card C — DS3/FASS信号'], live:false, blocks:[
         { t:'chip', cls:'critical', text:['Repricing risk — the largest near-term reform exposure','重新定价风险 — 最大的近期改革敞口'] },
         { t:'kpis', items:[
           { l:['Effective DS3 revenue decline since 2022','DS3有效收入自2022年降幅'], v:'>' + O.ds3DeclinePct + '<small>%</small>', d:['company-disclosed','公司披露'], cls:'down', b:['dev'] },
@@ -104,7 +100,7 @@ SEC_B.home = function (){
           'DS3是支撑爱尔兰既有机组建设的收入来源，其已下降超过' + O.ds3DeclinePct + '%，且取代它的机制是竞争性拍卖而非行政定价。因此所有历史上的爱尔兰电池收益序列，均被一项在2028–2030年投运时不会以相同形式存在的收入所污染。应将既往DS3收入视为系统需求的证据，绝不作为下限 — 更不可据以对1小时资产进行承销。'],
           sig:['Legacy DS3 is evidence, not a floor','既往DS3是证据，而非下限'] },
       ] },
-      { title:['Card E — Duration Signal','Card E — 时长信号'], live:false, blocks:[
+      { title:['Card D — Duration Signal','Card D — 时长信号'], live:false, blocks:[
         { t:'chip', cls:'good', text:['Strengthening — de-rating uplift is the largest single driver','走强 — 折减系数增益是最大的单一驱动'] },
         { t:'kpis', items:[
           { l:['Duration-Need Index','时长需求指数'], v:dni + '<small> / 100</small>', d:dband.n, b:['calc','illus'] },
@@ -125,7 +121,7 @@ SEC_B.home = function (){
           '与英国不同 — 在英国第4小时是边际性的容量决策 — 在爱尔兰它是主导性决策：折减系数由' + fmtPct(M.deratingCurve[2] * 100, 0) + '升至' + fmtPct(M.deratingCurve[4] * 100, 0) + '，按当前出清价值' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/年，高于短时资产的整个系统服务收入。在一个为可靠容量支付如此之多的市场中，时长不是优化项 — 它就是产品本身。'],
           sig:['In Ireland, duration is the product','在爱尔兰，时长即产品'] },
       ] },
-      { title:['Card F — Grid & Connection Signal','Card F — 并网信号'], badges:['illus'], live:false, blocks:[
+      { title:['Card E — Grid & Connection Signal','Card E — 并网信号'], badges:['illus'], live:false, blocks:[
         { t:'kpis', items:[
           { l:['Binding evidence','约束性证据'], v:L(['Executed connection agreement','已签并网协议']), d:['not an ECP batch position alone','而非仅有ECP批次位置'] },
           { l:['MEC / MIC documentation','MEC/MIC文件'], v:L(['Both required','两者均须具备']), d:['MEC is export; MIC is the right to charge','MEC为送出；MIC为充电权利'], b:['verify'] },
@@ -140,7 +136,7 @@ SEC_B.home = function (){
       ] },
     ] },
 
-    { t:'card', title:['Card G — Immediate Investor Actions','Card G — 可执行投资建议'], badges:['illus'], live:false, blocks:[
+    { t:'card', title:['Card F — Immediate Investor Actions','Card F — 可执行投资建议'], badges:['illus'], live:false, blocks:[
       { t:'list', ol:true, items:[
         [['Base capacity revenue on the auction-vintage de-rating factor and de-rated MW, never on nameplate MW.','容量收入应基于对应拍卖年份的折减系数与折减后MW，绝不使用铭牌MW。'],
          ['Trigger: capacity revenue included in the base case','触发条件：基准情景包含容量收入']],

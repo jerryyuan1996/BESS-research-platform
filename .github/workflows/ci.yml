@@ -130,6 +130,20 @@ jobs:
           SCAN_DIR: dist
           REQUIRE_OUTPUT: '1'
 
+      - name: Install the isolated browser for page checks
+        run: npx playwright install --with-deps --no-shell chromium
+
+      - name: Check desktop, mobile, both languages and saved cases
+        run: npm run test:e2e
+
+      - name: Retain page-check evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: page-check-evidence
+          path: test-results/
+          if-no-files-found: ignore
+
       # Snapshots are machine-written and carry a checksum over their contents.
       # A hand-edited "observed" file is exactly the confusion the envelope
       # exists to prevent, so it fails the build rather than shipping.
@@ -154,14 +168,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    # A human merge and a six-hourly data commit can arrive close together.
-    # Without this, a slow deploy of an older commit could land on top of a
-    # newer one. Newer always wins; in-flight older runs are cancelled rather
-    # than queued. The group is repository-wide, so it holds across both ways
-    # of reaching this job.
+    # FIFO is entry order, not commit order. Keep all pending candidates and
+    # never let an old late test cancel a newer publisher. The release script
+    # checks current main inside this lock, again immediately before promotion.
     concurrency:
       group: vercel-production
-      cancel-in-progress: true
+      cancel-in-progress: false
+      queue: max
     steps:
       # Belt and braces for a repository whose highest-frequency committer is a
       # bot. If the credentials are absent the job stops here with an explanation
@@ -195,12 +208,12 @@ jobs:
       - run: npm ci
 
       - name: Install the Vercel CLI
-        run: npm install --no-save vercel@48
+        run: npm install --global vercel@48.12.1
 
       # Writes .vercel/project.json and the production environment into the
       # workspace. Nothing here is committed — .vercel is git-ignored.
       - name: Pull the production environment
-        run: npx vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -210,10 +223,15 @@ jobs:
       # build runs the Vite build and then copies and adds to its result, so
       # dist/ and .vercel/output are not the same bytes.
       - name: Build the deployment artefact
-        run: npx vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Stamp the exact source and data vintages
+        run: node scripts/stamp-release.mjs
+        env:
+          RELEASE_SHA: ${{ inputs.ref || github.sha }}
 
       # THE ARTEFACT THAT IS SCANNED IS THE ARTEFACT THAT SHIPS.
       #
@@ -239,7 +257,42 @@ jobs:
       # scan in this workflow has ever seen — which is the exact defect this job
       # is arranged to prevent. Do not remove the flag.
       - name: Deploy
-        run: npx vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        run: node scripts/publish-production.mjs
         env:
+          RELEASE_SHA: ${{ inputs.ref || github.sha }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+          PRODUCTION_URL: https://globalbess.vercel.app
+
+      - name: Retain the production and rollback record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-release-${{ inputs.ref || github.sha }}
+          path: release-records/
+          if-no-files-found: ignore
+
+      - name: Check the live production pages
+        run: |
+          if [ -f release-records/production.json ] && node --input-type=module -e "import fs from 'node:fs'; process.exit(JSON.parse(fs.readFileSync('release-records/production.json')).published ? 0 : 1)"; then
+            npx playwright install --with-deps --no-shell chromium
+            npm run test:e2e
+          else
+            echo 'Superseded candidate did not publish; live checks belong to its successor.'
+          fi
+        env:
+          PLATFORM_TEST_BASE_URL: https://globalbess.vercel.app
+          RELEASE_SHA: ${{ inputs.ref || github.sha }}
+
+      - name: Retain live-page evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-page-check-evidence-${{ inputs.ref || github.sha }}
+          path: test-results/
+          if-no-files-found: ignore

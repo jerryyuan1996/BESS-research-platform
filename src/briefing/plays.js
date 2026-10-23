@@ -80,8 +80,9 @@ export function designEconomics(market, design, route, hours, { grantPct } = {})
   const point = design.sweep.points.find(p => p.route === route && p.hours === hours) || null;
   const priced = withGrant(market, grantPct);
   const variant = marketAt(priced, route, hours);
-  const run = variant.na ? null : runCase(variant, route, BRIEFING_EXIT_YEAR);
-  const atCod = Number.isFinite(grantPct) && !variant.na ? runCase(variant, route, 0) : null;
+  const runOptions = point?.runOptions || {};
+  const run = variant.na || !point?.priced ? null : runCase(variant, route, BRIEFING_EXIT_YEAR, runOptions);
+  const atCod = Number.isFinite(grantPct) && run ? runCase(variant, route, 0, runOptions) : null;
   const value = atCod && !atCod.na ? atCod.exitVal - atCod.net : point?.value;
   const line = merchantCoverage(market.comparison);
   const share = merchantShareOf(run);
@@ -90,7 +91,7 @@ export function designEconomics(market, design, route, hours, { grantPct } = {})
     .map(([line, input]) => ({ line, basis: input.basis }));
   /* The owner's bear and bull cases on the same design: every range the market
      declares set to its worse or better end (comparison/refinement.js). */
-  const set = variant.na ? null : runScenarioSet(variant, route, BRIEFING_EXIT_YEAR);
+  const set = !run ? null : runScenarioSet(variant, route, BRIEFING_EXIT_YEAR, runOptions);
   const ends = (c) => (c?.result && !c.result.na ? { hold: round(finite(c.result.irrHold), 4), exit: round(finite(c.result.irrExit), 4) } : null);
   return {
     priced: Boolean(point?.priced),
@@ -104,6 +105,8 @@ export function designEconomics(market, design, route, hours, { grantPct } = {})
     payback: finite(run?.payback),
     secured: round(finite(run?.securedShare), 3),
     securedYears: finite(run?.securedYears),
+    valuationRates: run?.valuationRates || null,
+    runOptions,
     range: set ? { bear: ends(set.bear), bull: ends(set.bull) } : null,
     weakInputs,
     merchantLine: line ? { marker: line.marker, coverage: round(line.coverage, 3), share: round(finite(share), 3) } : null,

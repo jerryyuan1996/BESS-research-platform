@@ -41,6 +41,8 @@ import { renderProjectDebt } from '../components/debtPanel.js';
 import { waterfall } from '../charts/index.js';
 import { fmtN, fmt1, fmtPct, fmtIRR, fmtIRRor, fmtX, fmtUSDk } from '../utils/formatting.js';
 import { runCase } from '../comparison/engine.js';
+import { createCaseRecord, entryPriceAtHurdle } from '../comparison/caseRecord.js';
+import { PROJECT_EVIDENCE_GATES, projectEvidenceStatus } from '../comparison/projectEvidence.js';
 import { supportedStrategies, baseStrategy, strategyById } from '../comparison/strategies.js';
 import { sizeProjectDebt, riskClassFor } from '../economics/projectDebt.js';
 import { withOverrides, conventionsWith, movedFields } from '../comparison/scenario.js';
@@ -55,13 +57,14 @@ import { RUNWAY_FROM } from '../components/congestionPanel.js';
 import { homeState, labMarket, labOverrides } from './state.js';
 import { createPrintContext, PRINT_STATUS } from '../print/printContext.js';
 import { renderPrintSnapshot } from '../print/printSnapshot.js';
+import { renderAcquisitionLab } from '../acquisition/lab.js';
+import { EXIT_YEARS } from '../comparison/assumptions.js';
 
 const T = {
-  title: ['Investment Lab — your assumptions, every market, one model',
-          '投资测算 — 你的假设、全部市场、同一模型'],
+  title: ['Acquisition price and return target','收购价格与目标回报'],
   intro: [
-    'Select a market, retype any assumption inside its evidenced range, and choose whether to lever it. The engine is the one used by the global cockpit league table and $1M matrix, so resetting every field reproduces the cockpit exactly. Outputs remain illustrative.',
-    '选择市场，在有据可依的区间内重设任一假设，并选择是否加杠杆。该引擎与全球总看板的排名表和百万美元矩阵完全一致，因此重置所有字段即可精确复现总看板结果。输出仍仅作示例。',
+    'Choose a market and revenue route. Complete the project inputs to estimate the most you can pay while meeting the required return.',
+    '选择市场和收入路径，补齐项目资料，计算达到目标回报时最多值得付多少钱。',
   ],
 };
 
@@ -151,6 +154,9 @@ function renderControls(parent, marketList, market, strategyId){
       h('b', {}, L(RESOURCE_ADEQUACY_LABEL)), ' — ', L(RESOURCE_ADEQUACY_DEFINITION)));
   }
 
+}
+
+function renderLegacyCapitalControls(parent){
   parent.append(h('div', { class: 'lab-ctl' },
     h('div', { class: 'lab-ctl-lbl' }, L(['Capital structure', '资本结构'])),
     h('div', { class: 'seg' },
@@ -451,6 +457,58 @@ function renderOutputs(parent, market, seedMarket, strategyId, exitYear, convent
     }).filter(o => o.label[0] && o.value))));
   c.append(kpis);
 
+  const hurdle = h('input', {type:'number',min:'0',max:'100',step:'0.5',
+    value:homeState.labHurdle === null ? '' : String(homeState.labHurdle),
+    'aria-label':L(['Your unlevered return hurdle (%)','你的无杠杆回报门槛（%）']),
+    onchange:event => {
+      const value=event.target.value.trim(),number=Number(value);
+      homeState.labHurdle=value!==''&&Number.isFinite(number)&&number>=0&&number<=100?number:null;
+      requestRender();
+    }});
+  c.append(h('p', {class:'note'}, h('label',{},L(['Your unlevered return hurdle (%) ','你的无杠杆回报门槛（%） ']),hurdle)));
+  const price=entryPriceAtHurdle(now,homeState.labHurdle===null?null:homeState.labHurdle/100);
+  if(price) c.append(h('div',{class:'note'},L([
+    `At a ${fmtPct(price.hurdle*100,1)} unlevered hurdle, the maximum additional upfront premium is ${fmtUSDk(price.entryPremiumPerMW)}/MW. A negative figure means the modelled cost needs a discount. Construction spending is unchanged; the premium is paid at investment.`,
+    `按${fmtPct(price.hurdle*100,1)}无杠杆门槛，投资时可额外支付的最高溢价为每MW ${fmtUSDk(price.entryPremiumPerMW)}。负数表示需在模型成本上折价。建设支出时间不变，溢价在投资时支付。`,
+  ])));
+  const proceeds=now.cumOp+now.exitVal;
+  c.append(h('p',{class:'cap'},L(['Exit value as a share of total proceeds: ','退出价值占总收入：']),
+    proceeds>0?fmtPct(now.exitVal/proceeds*100,1):'—'));
+  const saveStatus=h('span',{role:'status'});
+  c.append(h('button',{class:'btn',onclick:async()=>{
+    try {
+      let release=null;
+      try { const response=await fetch('/release.json');if(response.ok)release=await response.json(); } catch {}
+      const record=createCaseRecord({market:seedMarket,strategyId,exitYear,overrides,
+        conventions:debt?conventions:null,modelCommit:typeof __MODEL_COMMIT__==='string'?__MODEL_COMMIT__:'local-unavailable',
+        dataVintages:release?.data || null,projectEvidence:homeState.labProjectEvidence[market.manifest.id] || {}});
+      record.entryPrice=price;
+      const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json'}));
+      const link=document.createElement('a');link.href=url;link.download=`${market.manifest.id}-investment-case.json`;link.click();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+      saveStatus.textContent=L(['Case saved with inputs, cash flows, financing and unresolved gates.','已保存假设、现金流、融资口径与未解决事项。']);
+    } catch {saveStatus.textContent=L(['The case could not be saved. Please try again.','未能保存，请重试。']);}
+  }},L(['Save investment case','保存投资情景'])),saveStatus);
+  const evidence=homeState.labProjectEvidence[market.manifest.id] ||= {};
+  const unresolved=projectEvidenceStatus(evidence).filter(g=>g.status==='unresolved').length;
+  const gates=h('details',{},h('summary',{},L([`Project evidence · ${unresolved} unresolved`,`项目证据 · ${unresolved}项未解决`])),
+    h('p',{class:'cap'},L(['Document references are saved only in your downloaded case. A reference records your review; it is not independent verification. Missing evidence stays unresolved and changes no market score.',
+      '资料索引只保存在你下载的情景中。提供索引记录的是你的复核，不代表独立验证。缺少证据的事项保持未解决，不改变市场评分。'])));
+  for(const gate of PROJECT_EVIDENCE_GATES){
+    const item=evidence[gate.id] ||= {status:'unresolved',sourceRef:''};
+    const update=()=>{
+      item.status=status.value;item.sourceRef=reference.value;
+      const missing=projectEvidenceStatus(evidence).filter(g=>g.status==='unresolved').length;
+      gates.querySelector('summary').textContent=L([`Project evidence · ${missing} unresolved`,`项目证据 · ${missing}项未解决`]);
+    };
+    const status=h('select',{'aria-label':L(gate.label),onchange:update},
+      ...[['unresolved',['Unresolved','未解决']],['provided',['Evidence provided','已提供证据']],['not-applicable',['Not applicable, with reason','不适用，需说明']]].map(([value,label])=>
+        h('option',{value,...(item.status===value?{selected:''}:{})},L(label))));
+    const reference=h('input',{type:'text',value:item.sourceRef,'aria-label':L([`${gate.label[0]} reference or reason`,`${gate.label[1]}资料或理由`]),onchange:update});
+    gates.append(h('p',{},h('label',{},L(gate.label),' ',status,' ',reference)));
+  }
+  c.append(gates);
+
   /* The $1M recovery path, on the same basis as the cockpit's waterfall so the
      two can be read side by side. */
   const sf = 1e6 / now.net;
@@ -510,23 +568,32 @@ export function renderInvestmentLab(main, marketList, exitYear){
   renderControls(c, engineReady, seedMarket, strategyId);
   main.append(c);
 
+  renderAcquisitionLab(main, seedMarket, strategyId, overrides);
+  const legacy=h('details',{class:'lab-legacy',ontoggle:event=>{homeState.labLegacyOpen=event.target.open;}},
+    h('summary',{},L(['Reference construction-cost comparison','参考建设成本比较'])),
+    h('p',{class:'cap'},L(['This compares returns at the modelled build cost. Acquisition ceilings are calculated above.','这里按模型建设成本比较回报；收购价格上限在上方单独计算。'])));
+  legacy.open=!!homeState.labLegacyOpen;
+  const legacyExit=h('select',{'aria-label':L(['Reference sale year','参考方案出售年度']),onchange:event=>{homeState.exitYear=Number(event.target.value);rerender();}},
+    EXIT_YEARS.map(year=>h('option',{value:year},String(year))));legacyExit.value=exitYear;
+  legacy.append(h('label',{},L(['Reference sale year ','参考方案出售年度 ']),legacyExit));
+  renderLegacyCapitalControls(legacy);
   const body = h('div', { class: 'lab-body' });
   renderAssumptions(body, seedMarket, fields, overrides);
   renderOutputs(body, market, seedMarket, strategyId, exitYear, conventions, fields, overrides);
-  main.append(body);
+  legacy.append(body);
 
   if (homeState.labLevered){
     const debtWrap = h('div', { class: 'lab-debt' });
     /* The same panel the six market dashboards used to carry, now reading the
        scenario rather than the seeds. */
     renderProjectDebt(debtWrap, market, exitYear, { conventions });
-    main.append(debtWrap);
+    legacy.append(debtWrap);
   }
 
   const tail = h('div');
   tail.append(why([
-    'Use the Lab to bracket a decision, not to produce a number. The honest sequence is: set the inputs you disagree with to the unfavourable end of their evidenced range, turn debt on, and check whether minimum DSCR still clears 1.30x — and only then look at the headline IRR. A case that survives the low end of every band is investable; a case that needs the top of three bands at once is a forecast wearing a model. The bands marked "no published band" are where to start, because those are the only ones this platform could not source.',
-    '应以投资测算界定决策区间，而非产出单一数字。诚实的顺序是：将你不认同的输入设为其证据区间中的不利一端，开启杠杆，检验最低偿债覆盖倍数是否仍高于1.30倍 — 之后再看名义IRR。能在各区间低端存活的方案具备可投资性；而需要同时取三个区间高端才成立的方案，不过是披着模型外衣的预测。应从标注"无公开区间"的输入着手，因为它们是本平台唯一无法溯源的部分。',
-  ], ['Bracket the decision, then read the IRR', '先界定区间，再看IRR']));
-  main.append(tail);
+    'Test lower revenues and higher costs before setting a purchase price. Verify the contracts and project inputs, and use the acquisition calculation above for the price decision.',
+    '确定收购价格前，先测试收入下降、成本上升的情况，再核实合同和项目资料。收购决策使用上方的价格上限及对应回报。',
+  ], ['Check the downside before setting a price','确定价格前先看不利情景']));
+  legacy.append(tail);main.append(legacy);
 }

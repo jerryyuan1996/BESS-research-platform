@@ -44,6 +44,7 @@ SEC_B.home = function (){
       { t:'band-story', b:['Core storyline','核心叙事'],
         text:['Poland is retiring the most coal-heavy generation stack in the European Union into the fastest solar build in the region, and it has chosen to procure the resulting flexibility through a capacity market with long new-build contracts. That makes Polish storage conventionally financeable — a rarity in Central and Eastern Europe. The binding constraints are upstream of revenue: whether the project can obtain connection conditions at all, and what correction factor the auction assigns to its duration.',
               '波兰正将欧盟中煤电占比最高的电源结构，退役进入本区域增长最快的光伏体系，并选择通过设有长期新建合同的容量市场采购由此产生的灵活性。这使波兰储能具备常规可融资性 — 在中东欧实属罕见。关键约束位于收入之上游：项目能否取得并网条件，以及拍卖为其时长指定何种折减系数。'] },
+      { t:'p', text:['Target COD window: ' + M.overall.codWindow, '目标投运窗口：' + M.overall.codWindow] },
       { t:'walk', items:[
         ['01', ['Overview','总览'], ['What is the house view today?','当前总体判断是什么？'], 'home'],
         ['02', ['Market evolution','市场演进'], ['Why did BESS become necessary — and what changed after entry?','为何储能成为必需？进入后发生了什么？'], 'story'],
@@ -60,12 +61,7 @@ SEC_B.home = function (){
     ] },
 
     { t:'g2', cards:[
-      { title:['Card A — Overall Poland Storage Signal','Card A — 波兰储能综合信号'], badges:['illus'], live:false, blocks:[
-        { t:'p', text:['Target COD window: ' + M.overall.codWindow + ' · Evidence confidence: ' + M.overall.confidence + '%',
-          '目标投运窗口：' + M.overall.codWindow + ' · 证据置信度：' + M.overall.confidence + '%'] },
-        { t:'p', text:M.overall.rationale },
-      ] },
-      { title:['Card B — Capacity Market Signal','Card B — 容量市场信号'], badges:['verify'], live:false, blocks:[
+      { title:['Card A — Capacity Market Signal','Card A — 容量市场信号'], badges:['verify'], live:false, blocks:[
         { t:'chip', cls:'good', text:['The strongest feature — a long contract that makes the asset financeable','最突出的特征 — 使资产具备可融资性的长期合同'] },
         { t:'kpis', items:[
           { l:['Capacity clearing price (seed)','容量出清价（种子）'], v:fmtN(O.cmPricePln) + '<small> PLN/kW/yr</small>', d:['≈ ' + fmtC(capEurKW) + '/kW de-rated/yr','≈ ' + fmtC(capEurKW) + '/kW折减/年'], b:['verify'] },
@@ -79,7 +75,7 @@ SEC_B.home = function (){
           '在4小时设计下，一份支付约' + fmtCk(perNameplate(4)) + '/MW/年、期限' + O.cmAgreementYears + '年的合同，仍使波兰有别于本区域的单一电能量市场。但自2025年12月拍卖将储能折减系数降至13.39%以来，它是市场化资产之下的合同化保底，而非资产本身。需要检验的两件事是：该项目能否在拍卖中出清，以及其能量中有多少可获认证 — 因为认证容量必须能够连续四小时交付。两者均在建设前决定，且事后均无法修正。'],
           sig:['Will it clear, and at what factor?','能否出清？适用何种系数？'] },
       ] },
-      { title:['Card C — Wholesale & Intraday Signal','Card C — 批发与日内市场信号'], live:false, blocks:[
+      { title:['Card B — Wholesale & Intraday Signal','Card B — 批发与日内市场信号'], live:false, blocks:[
         { t:'chip', cls:'good', text:['Volatility is high and rising — coal exit meets solar growth','波动性高且上升 — 煤电退出遭遇光伏增长'] },
         { t:'kpis', items:[
           { l:['Average daily four-hour spread','日均四小时价差'], v:fmtC(M.spreadSeries[5]) + '<small>/MWh</small>', d:['Q2 2026, PSE day-ahead prices','2026年第二季度，PSE日前价格'], b:['official'] },
@@ -92,7 +88,7 @@ SEC_B.home = function (){
           '波兰在本对比样本中拥有最剧烈的价格形态转变：高煤电占比的电源结构推高晚间电价，而光伏则将午间电价压至零及以下，每年约' + fmtN(O.negHours) + '小时。这形成了宽而稳定的日内价差 — 典型的储能机会。但如今加深低谷的同一批光伏，将与' + fmt1(O.cmAwardedBessGW) + 'GW已签约储能同时存在，这正是捕获价差在三个投运年度间由' + fmtC(M.codCases[2028].central) + '降至' + fmtC(M.codCases[2030].central) + '/MWh的原因。'],
           sig:['Wide today, contracted competition tomorrow','当下价差宽，未来竞争已签约'] },
       ] },
-      { title:['Card D — Balancing & Reserves Signal','Card D — 平衡与备用信号'], live:false, blocks:[
+      { title:['Card C — Balancing & Reserves Signal','Card C — 平衡与备用信号'], live:false, blocks:[
         { t:'chip', cls:'warn', text:['Supplementary — and use post-reform data only','补充性收入 — 且只采用改革后数据'] },
         { t:'kpis', items:[
           { l:['aFRR capacity requirement (seed)','aFRR容量需求（种子）'], v:fmtN(M.balProducts[1].reqMW) + '<small> MW</small>', d:['capacity price ' + fmtC(M.balProducts[1].capEurMWh) + '/MW/h','容量价格' + fmtC(M.balProducts[1].capEurMWh) + '/MW/h'], b:['illus'] },
@@ -104,7 +100,7 @@ SEC_B.home = function (){
           '在波兰，平衡收入属补充性而非核心性，因为容量合同已提供了本来需由平衡收入替代的保底。波兰特有的纪律是时间性的：' + O.balancingReformYear + '年改革改变了结算与调度机制，因此任何跨越该时点的回测实际上在衡量两个不同的市场。应仅采用改革后数据、以过去12个月封顶、并排除于债务规模测算之外 — 贷款人据以安排规模的是容量合同。'],
           sig:['Split every backtest at the 2024 reform','所有回测须以2024年改革分段'] },
       ] },
-      { title:['Card E — Duration Signal','Card E — 时长信号'], live:false, blocks:[
+      { title:['Card D — Duration Signal','Card D — 时长信号'], live:false, blocks:[
         { t:'chip', cls:'warn', text:['Capped — the correction factor pays for hours only up to four','受限 — 折减系数仅为四小时以内的小时数付费'] },
         { t:'kpis', items:[
           { l:['Duration-Need Index','时长需求指数'], v:dni + '<small> / 100</small>', d:dband.n, b:['calc','illus'] },
@@ -124,7 +120,7 @@ SEC_B.home = function (){
           '波兰是本对比样本中时长论证最清晰的市场，因为两股力量方向一致：折减系数为2小时增至4小时支付一次性的' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/年阶跃，而容量义务本身在多小时紧张事件中要求提供能量。2小时资产可能可用率完全达标，却恰恰在合同受检验的那些小时内耗尽能量。因此4小时是合理的新建默认配置，而非优化选项。'],
           sig:['Correction factor and obligation agree','折减系数与容量义务方向一致'] },
       ] },
-      { title:['Card F — Grid & Connection Signal','Card F — 并网信号'], badges:['illus'], live:false, blocks:[
+      { title:['Card E — Grid & Connection Signal','Card E — 并网信号'], badges:['illus'], live:false, blocks:[
         { t:'kpis', items:[
           { l:['Binding evidence','约束性证据'], v:L(['Connection conditions + executed agreement','并网条件+已签协议']), d:['a connection application is not evidence','并网申请不构成证据'], b:['verify'] },
           { l:['Connection pipeline (seed)','并网管线（种子）'], v:fmt1(O.pipelineGW) + '<small> GW</small>', d:['against ' + fmtN(O.fleetMW) + ' MW operating','对比在运' + fmtN(O.fleetMW) + 'MW'], b:['illus'] },
@@ -139,7 +135,7 @@ SEC_B.home = function (){
       ] },
     ] },
 
-    { t:'card', title:['Card G — Immediate Investor Actions','Card G — 可执行投资建议'], badges:['illus'], live:false, blocks:[
+    { t:'card', title:['Card F — Immediate Investor Actions','Card F — 可执行投资建议'], badges:['illus'], live:false, blocks:[
       { t:'list', ol:true, items:[
         [['Base capacity revenue on the correction factor for the specific auction and duration, never on nameplate MW.','容量收入应基于具体拍卖与时长对应的折减系数，绝不使用铭牌MW。'],
          ['Trigger: capacity revenue included in the base case','触发条件：基准情景包含容量收入']],

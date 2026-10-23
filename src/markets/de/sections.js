@@ -43,8 +43,7 @@ SEC_B.home = function (){
     { t:'warn', text:M.seedWarn },
     { t:'card', mt:false, title:['Position at a glance','总体判断'], badges:['calc','illus'], live:false, blocks:[
       { t:'kpis', items:[
-        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow,
-          d:['evidence confidence ' + M.overall.confidence + '%', '证据置信度 ' + M.overall.confidence + '%'] },
+        { l:['Target COD window','目标投运窗口'], v:M.overall.codWindow },
         { l:['Merchant revenue, levelised','市场化收入（平准化）'], v:kMW(M.revBasisSeriesK[2]) + '<small>/MW/yr</small>',
           d:['4h basis; near-term runs far higher','4小时口径；近期水平远高于此'], b:['model'] },
         { l:['Capacity revenue available','可获容量收入'], v:'€0',

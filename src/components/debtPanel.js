@@ -170,7 +170,7 @@ export function renderProjectDebt(parent, market, exitYear = 5, opts = {}){
   cB.append(table(
     [['Route', '路径'], ['Secured tenor', '锁定年限'], ['Rollover allowed', '续作宽限'],
      ['Debt tenor A', 'A档期限'], ['Merchant tail from', '市场化敞口起始'],
-     ['Refinance at', '再融资时点'], ['Balloon / MW', '尾款/MW']],
+     ['Maturity year', '到期年度'], ['Balloon / MW', '尾款/MW'], ['Equity funding gap / MW', '股东追加资金/MW']],
     routes.map(({ s, debt }) => [
       { b: s.n },
       yrs(debt.securedYears),
@@ -179,12 +179,13 @@ export function renderProjectDebt(parent, market, exitYear = 5, opts = {}){
       debt.merchantTailFrom ? L(['yr ', '第']) + debt.merchantTailFrom + L(['', '年']) : '—',
       debt.refinanceYear ? L(['yr ', '第']) + debt.refinanceYear + L(['', '年']) : ['None', '无'],
       debt.balloon > 0 ? usd(debt.balloon) : '—',
+      usd(Math.max(0, ...debt.maturityFundingGap)),
     ]), [1, 2, 3, 4, 5, 6]));
 
   cB.append(why([
-    'A refinancing date is not a risk that can be assumed away by extending the model’s life. Where a balloon falls inside the merchant tail, the asset has to be re-banked on a forecast at exactly the point its contracted support has ended — which is the same event, counted twice. The structures worth underwriting are the ones where tranche A amortises fully inside the secured period and only tranche B carries the refinancing.',
-    '再融资时点不能通过延长模型年限来假装消除。若尾款到期落在市场化敞口期内，资产将恰好在合同支撑结束时点被迫依据预测重新融资 — 这是同一风险事件的双重叠加。值得承销的结构，应是A档在锁定期内完全摊还、仅B档承担再融资风险。',
-  ], ['Amortise inside the contract, refinance only the merchant leg', 'A档在合同期内摊还，仅市场化部分承担再融资']));
+    'Equity repays the remaining loan at maturity; no refinancing is assumed. Returns include that repayment once, including an additional equity contribution when operating cash is insufficient. The funding gap is shown separately from ordinary DSCR. All years are operating years. Construction draws follow staged spending; construction interest and fees are assumed zero. Financing remains illustrative, not a lender commitment.',
+    '到期贷款余额由股东偿还，不假设获得新贷款。回报已计入一次尾款偿还；经营现金不足时计入股东追加资金。该缺口与日常偿债覆盖倍数分开显示。年度均从投运起算。建设期按支出进度提款，建设期利息及融资费用暂按零计。融资仅为示例，不代表银行承诺。',
+  ], ['Equity repays the balloon at maturity', '到期尾款由股东偿还']));
   parent.append(cB);
 
   /* ---- C. debt capacity by route ---------------------------------------- */

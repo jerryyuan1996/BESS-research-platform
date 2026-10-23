@@ -24,8 +24,11 @@ import { playsOf } from '../governance/plays.js';
 import { byExpected, isResolved } from '../governance/triggers.js';
 import { TIER, MAX_ACTIONS, CATALYST_WINDOW_DAYS } from '../governance/briefing.js';
 import { assessMarket } from '../entry/assessment.js';
+import { returnGradesFor } from '../comparison/returnGrades.js';
 import { runBaseCase } from '../comparison/engine.js';
 import { FX } from '../comparison/assumptions.js';
+import { acquisitionRecommendations } from '../acquisition/reference.js';
+import { compactReferences } from '../acquisition/projection.js';
 import {
   marketDesign, designEconomics, designGrid, lensRows, orderRows, returnFieldFor, BRIEFING_EXIT_YEAR,
 } from './plays.js';
@@ -53,6 +56,7 @@ const dueOf = (expected) => (expected.length === 7 ? `${expected}-31` : expected
 export function buildBriefing({ markets, views, changelog, ledgerFor, summaries, news = null, catalogue, now }){
   const on = now.toISOString().slice(0, 10);
   const viewById = new Map(views.map(v => [v.marketId, v]));
+  const returnGrades = returnGradesFor(markets, BRIEFING_EXIT_YEAR);
 
   /* ---- each graded market, priced once ---- */
   const entries = [];
@@ -70,7 +74,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
       if (!cache.has(play.id)) cache.set(play.id, designEconomics(market, design, play.route, play.hours, { grantPct: play.grantPct }));
       return cache.get(play.id);
     };
-    const assessment = assessMarket(view, market, ledgerFor(id), FX, { on });
+    const assessment = assessMarket(view, market, ledgerFor(id), FX, { on, returnGrades });
     entries.push({ market, view, design, assessment, playEcon });
     for (const play of playsOf(view)){
       plays[playKey(id, play.id)] = {
@@ -145,6 +149,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
     builtAt: now.toISOString(),
     on,
     defaultLens: DEFAULT_LENS,
+    acquisitions: acquisitionRecommendations(markets),
     exitYear: BRIEFING_EXIT_YEAR,
     markets: Object.fromEntries(markets.map(m => [m.manifest.id, { name: marketName(m.manifest.id, m.manifest.name), slug: m.manifest.slug }])),
     plays,
@@ -222,5 +227,5 @@ export function homeProjection(briefing){
   for (const item of queue) byKind[item.kind] = (byKind[item.kind] || 0) + 1;
   const disagreements = {};
   for (const item of queue.filter(q => q.kind === 'disagreement')) disagreements[item.archetype] = (disagreements[item.archetype] || 0) + 1;
-  return { ...rest, queueSummary: { total: queue.length, byKind, disagreements } };
+  return { ...rest, ...compactReferences(rest.acquisitions), queueSummary: { total: queue.length, byKind, disagreements } };
 }

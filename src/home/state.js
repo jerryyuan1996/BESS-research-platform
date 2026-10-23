@@ -19,6 +19,7 @@ const PREFERRED_WATERFALL_MARKET = 'pl';
    before the app starts. Both accessors below resolve lazily instead, which they
    had to do anyway to self-heal when a market is deregistered. */
 export const homeState = {
+  acquisitionStage: 'ready-to-build',
   exitYear: 5,                       // 5 | 7 | 10
   wfMarket: PREFERRED_WATERFALL_MARKET,
 
@@ -31,6 +32,8 @@ export const homeState = {
   labStrategy: null,                 // null → that market's base strategy
   labLevered: false,                 // capital structure: unlevered | project debt
   labInputs: {},                     // { [marketId]: { [path]: number } }
+  labHurdle: null,                   // user-set unlevered hurdle; no fund hurdle assumed
+  labProjectEvidence: {},            // project document references, per market, local session only
   labDebt: {},                       // { [priced convention]: number }
   labOpenBasis: null,                // which field's evidence drawer is expanded
   fxAsOf: null,                      // active governed translation snapshot

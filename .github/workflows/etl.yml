@@ -76,6 +76,11 @@ on:
         description: 'Comma-separated dataset ids (blank = all)'
         required: false
         type: string
+      verify_release:
+        description: 'Data-only release verification; skip the analyst agent'
+        required: false
+        type: boolean
+        default: false
       weekly_briefing:
         description: 'Post the weekly briefing now instead of a data refresh'
         required: false
@@ -370,7 +375,7 @@ jobs:
     # Once a day, or by hand. It reports and writes nothing: read-only
     # permissions, no commit step, and the view writer refuses an agent's
     # change in any case until the analyst makes the agent a live author.
-    if: github.event.schedule == '43 5 2 * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '')
+    if: github.event.schedule == '43 5 2 * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '' && inputs.verify_release != true)
     runs-on: ubuntu-latest
     permissions:
       contents: read
