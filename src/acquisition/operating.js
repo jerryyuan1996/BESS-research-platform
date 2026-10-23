@@ -4,11 +4,11 @@ import { cisRevenue } from '../economics/revenueSupport.js';
 /** Complete operating line in the comparison model's real USD. The first 15
  * years reconcile to the engine. Later years expire actual contracts, continue
  * physical fade and pay the quoted service schedule; they never renew a toll. */
-export function operatingReference(market,strategyId,years=15){
-  const r=runCase(market,strategyId,0);
+export function operatingReference(market,strategyId,years=15,options={}){
+  const r=runCase(market,strategyId,0,options);
   if(r.na)return {result:r,annual:[]};
   const e=market.comparison.economics,fx=r.fxRate;
-  const merchantCase=runCase(market,'mer',0);
+  const merchantCase=runCase(market,'mer',0,options);
   const primaryTerm=strategyId==='ltda'?e.ltda?.years??0:strategyId==='toll'?e.tollYears??15:
     strategyId==='cap'?e.securedContractYears??e.contractYears??0:0;
   const annual=[];
@@ -33,6 +33,11 @@ export function operatingReference(market,strategyId,years=15){
       if(strategyId==='toll'&&!e.tollIsFloor&&y>primaryTerm&&!e.tollRevertsToMerchant)merchant=0;
       if(strategyId==='toll'&&e.tollAdditiveWithCapacity&&y<=(e.contractYears??0))secured+=(e.contracted??0)*fx;
       if(strategyId==='ltda'&&e.ltda?.cis&&y<=primaryTerm){const c=cisRevenue(unrestricted/fx,e.ltda.cis);secured=c.secured*fx;merchant=c.total*fx-secured;}
+      if(options.capacityFloor && strategyId==='cap'){
+        const atCod=Math.min(1,options.capacityFloor.hours/options.capacityFloor.requiredHours);
+        const f=Math.min(1,options.capacityFloor.hours*degradationFactor(e,y)/options.capacityFloor.requiredHours)/atCod;
+        secured*=f;renewal*=f;
+      }
       opex=e.opexPerMW*fx+serviceCostPerMW(e,y)*fx;
     }
     const supportEligibleRevenue=(strategyId==='ltda'&&e.ltda?.cis||strategyId==='toll'&&e.tollIsFloor)

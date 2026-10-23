@@ -33,12 +33,20 @@ export function renderAcquisitionLab(parent,market,strategyId,economicOverrides=
   const id=market.manifest.id;
   if(!inputs.has(id))inputs.set(id,{stage:homeState.acquisitionStage,useDebt:true,...(market.comparison.acquisition||{})});
   const state=inputs.get(id),investor=app.lens&&ARCHETYPES[app.lens]?app.lens:'infraFund';
+  const selection=homeState.acquisitionSelection;
+  if(selection?.market===id&&selection.key!==state.selectionKey){
+    Object.assign(state,{selectionKey:selection.key,stage:selection.stage,play:selection.play,
+      runOptions:selection.runOptions,incomeScenario:selection.play.route});
+  }
   const selectedIncome=state.incomeScenario||strategyId;
-  if(investor==='developer'&&state.stage==='operating')state.stage='ready-to-build';
+  if(!ARCHETYPES[investor].entersAt.includes(state.stage))state.stage=ARCHETYPES[investor].defaultRoute;
   const card=h('section',{class:'card acq-lab'},h('h2',{},L(['What is the most I should pay?','这项资产最多值得付多少钱？'])));
+  if(state.play)card.append(h('p',{class:'acq-selected-play'},L([
+    `Based on the recommended ${state.play.hours}h design; its income route and any awarded grant are carried into this calculation.`,
+    `沿用推荐的${state.play.hours}小时方案，收入方式及适用的已获批补助一并带入测算。`])));
   const fields=h('div',{class:'acq-form'});
   const change=(key,value)=>{state[key]=value;if(key==='stage')homeState.acquisitionStage=value;requestRender();};
-  const stage=h('select',{'aria-label':L(['Acquisition stage','收购阶段']),onchange:event=>change('stage',event.target.value)},STAGES.filter(s=>!(investor==='developer'&&s==='operating')).map(s=>h('option',{value:s},L(STAGE_LABEL[s]))));
+  const stage=h('select',{'aria-label':L(['Acquisition stage','收购阶段']),onchange:event=>change('stage',event.target.value)},STAGES.filter(s=>ARCHETYPES[investor].entersAt.includes(s)).map(s=>h('option',{value:s},L(STAGE_LABEL[s]))));
   stage.value=state.stage;
   const buyer=h('select',{'aria-label':L(['Buyer type','买方类型']),onchange:event=>{setLens(event.target.value);requestRender();}},
     Object.keys(ARCHETYPES).map(key=>h('option',{value:key},L(ARCHETYPES[key].label))));buyer.value=investor;

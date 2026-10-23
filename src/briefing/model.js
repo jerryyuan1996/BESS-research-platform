@@ -27,7 +27,7 @@ import { assessMarket } from '../entry/assessment.js';
 import { returnGradesFor } from '../comparison/returnGrades.js';
 import { runBaseCase } from '../comparison/engine.js';
 import { FX } from '../comparison/assumptions.js';
-import { acquisitionRecommendations } from '../acquisition/reference.js';
+import { investorOpportunities } from '../acquisition/opportunities.js';
 import { compactReferences } from '../acquisition/projection.js';
 import {
   marketDesign, designEconomics, designGrid, lensRows, orderRows, returnFieldFor, BRIEFING_EXIT_YEAR,
@@ -80,6 +80,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
       plays[playKey(id, play.id)] = {
         market: id, id: play.id, label: play.label, route: play.route, hours: play.hours, stage: play.stage,
         why: play.why, action: play.action, econ: playEcon(play),
+        ...(Number.isFinite(play.grantPct)?{grantPct:play.grantPct}:{}),
       };
     }
   }
@@ -149,7 +150,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
     builtAt: now.toISOString(),
     on,
     defaultLens: DEFAULT_LENS,
-    acquisitions: acquisitionRecommendations(markets),
+    acquisitions: investorOpportunities(markets,lenses,plays),
     exitYear: BRIEFING_EXIT_YEAR,
     markets: Object.fromEntries(markets.map(m => [m.manifest.id, { name: marketName(m.manifest.id, m.manifest.name), slug: m.manifest.slug }])),
     plays,

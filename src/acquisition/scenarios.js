@@ -2,6 +2,7 @@ import { withOverrides } from '../comparison/scenario.js';
 import { baseStrategy, supportedStrategies } from '../comparison/strategies.js';
 import { runCase } from '../comparison/engine.js';
 import { cisRevenue } from '../economics/revenueSupport.js';
+import { marketForPlay } from './play.js';
 
 export function incomeOptions(market){
   return [...supportedStrategies(market).map(s=>({id:s.id,label:s.n})),
@@ -11,7 +12,9 @@ export function incomeOptions(market){
 /** Private quotes replace the reference's contract terms. Conditional contracts
  * are explicit counterfactuals, never a claim that an offtaker has offered them. */
 export function incomeScenario(market,u){
-  let variant=u.economicOverrides?withOverrides(market,u.economicOverrides):market;
+  let variant=marketForPlay(market,u.play);
+  if(variant.na)return {variant,strategyId:u.strategyId,chosen:u.strategyId,invalid:variant.na[0]};
+  variant=u.economicOverrides?withOverrides(variant,u.economicOverrides):variant;
   const chosen=u.contractMode==='none'?'mer':u.strategyId||baseStrategy(market),conditional=chosen.startsWith('conditional-');
   const strategyId=conditional?'toll':chosen;
   const units=['pl','ro'].includes(market.manifest.id)?(market.manifest.id==='pl'?4.37:5.331):1;
