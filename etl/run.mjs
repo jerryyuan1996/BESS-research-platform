@@ -44,6 +44,7 @@ import { renderDriftReport, renderPullRequestBody } from './drift/report.mjs';
    startup error rather than a runtime surprise three hours into a cron run. */
 import * as ecb from './sources/ecb.mjs';
 import * as entsoe from './sources/entsoe.mjs';
+import * as pse from './sources/pse.mjs';
 import * as jepx from './sources/jepx.mjs';
 import * as aemoWem from './sources/aemo-wem.mjs';
 import * as news from './sources/news.mjs';
@@ -51,6 +52,7 @@ import * as news from './sources/news.mjs';
 const CONNECTORS = {
   ecb,
   entsoe,
+  pse,
   jepx,
   'aemo-wem': aemoWem,
   /* News used to run from its own entrypoint, outside this orchestrator and

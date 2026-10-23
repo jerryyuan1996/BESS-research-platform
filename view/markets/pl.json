@@ -1,23 +1,23 @@
 {
   "marketId": "pl",
   "thesis": [
-    "No new-entry route today: the December 2025 auction was the last main auction and no successor is legislated. An uncontracted project returns under 1%. Only an asset holding an earlier seventeen-year contract is worth pricing, and only below replacement cost.",
-    "目前没有新进入的路径：2025年12月的拍卖是最后一次主拍卖，后继机制尚未立法。无合同项目回报不足1%。只有持有早期十七年合同的资产值得定价，且仅以低于重置成本的价格。"
+    "No new-entry capacity route, but the day-ahead market pays almost twice what the platform carried. An uncontracted four-hour project returns 7.4%, and every design still sits below the platform's yields. A project in the 2025 grant cohort returns 17.1%; an asset holding an earlier seventeen-year contract is worth pricing only below replacement cost.",
+    "没有新进入的容量路径，但日前市场的收益几乎是本平台此前所采用水平的两倍。无合同的四小时项目回报7.4%，所有设计仍低于本平台收益率。2025年补贴批次中的项目回报17.1%；持有早期十七年合同的资产，只值得以低于重置成本的价格定价。"
   ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 1,
+      "grade": 3,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Fourteenth of fifteen markets on hold IRR, 0.2%.",
-        "持有期IRR为0.2%，在十五个市场中排第十四。"
+        "Seventh of fifteen markets on hold IRR, 7.4%.",
+        "持有期IRR为7.4%，在十五个市场中排第七。"
       ],
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-23",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -186,8 +186,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "The uncontracted reference project returns under 1% on the model.",
-            "未签约的参考项目，模型回报不足1%。"
+            "An uncontracted four-hour project returns 7.4% on the model, below the platform's yields.",
+            "未签约的四小时项目模型回报为7.4%，低于本平台收益率。"
           ]
         },
         {
@@ -214,7 +214,7 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     },
     "infraFund": {
@@ -226,8 +226,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "The uncontracted reference project returns under 1% on the model.",
-            "未签约的参考项目，模型回报不足1%。"
+            "An uncontracted four-hour project returns 7.4% on the model, below the platform's yields.",
+            "未签约的四小时项目模型回报为7.4%，低于本平台收益率。"
           ]
         },
         {
@@ -254,9 +254,9 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "lockedUntil": null,
-      "play": "pl-cap-1h"
+      "play": "pl-cap-4h"
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -348,18 +348,18 @@
     }
   ],
   "plays": {
-    "pl-cap-1h": {
-      "id": "pl-cap-1h",
+    "pl-cap-4h": {
+      "id": "pl-cap-4h",
       "label": [
-        "Capacity market · 1h · ready-to-build",
-        "容量市场 · 1小时 · 具备开工条件"
+        "Capacity market · 4h · ready-to-build",
+        "容量市场 · 4小时 · 具备开工条件"
       ],
       "route": "cap",
-      "hours": 1,
+      "hours": 4,
       "stage": "ready-to-build",
       "why": [
-        "No main auction is planned and the uncontracted reference returns under 1%. On the capacity route one hour is now the engine’s best design because it loses the least value, narrowly ahead of two hours. Every duration loses value here, and one hour’s hold IRR is negative.",
-        "目前没有主拍卖计划，无合同的参考项目回报不足1%。在容量路径上，一小时现为引擎的最佳设计，因其价值损失最小，略优于两小时。此处所有时长都在损失价值，且一小时的持有期IRR为负。"
+        "Four hours on an earlier seventeen-year capacity contract is the engine's best design at 9.8% hold, and it still loses value at the platform's yields; an uncontracted four-hour project returns 7.4%.",
+        "持有早期十七年容量合同的四小时设计是引擎的最佳设计，持有期回报9.8%，但按本平台收益率仍损失价值；无合同的四小时项目回报7.4%。"
       ],
       "action": {
         "text": [
@@ -369,7 +369,70 @@
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-23",
+      "lockedUntil": null
+    },
+    "pl-grant-4h": {
+      "id": "pl-grant-4h",
+      "label": [
+        "Grant-funded merchant · 4h · ready-to-build",
+        "获补贴市场化 · 4小时 · 具备开工条件"
+      ],
+      "route": "mer",
+      "hours": 4,
+      "stage": "ready-to-build",
+      "grantPct": 37.9,
+      "why": [
+        "The 169 projects in NFOŚiGW's 2025 storage cohort carry a 37.9% average grant (PLN 3.735bn of grants on PLN 9.847bn of cost); merchant four hours with that grant returns 17.1% hold.",
+        "国家环保基金2025年储能批次的169个项目平均补贴比例为37.9%（总成本PLN 98.47亿、补贴PLN 37.35亿）；按此补贴，四小时市场化设计持有期回报17.1%。"
+      ],
+      "action": {
+        "text": [
+          "List cohort projects from the NFOŚiGW ranking list of 12 December 2025 whose owners might sell before the end-2028 completion deadline, and check which also hold a capacity contract, since a grant reduces that payment.",
+          "从国家环保基金2025年12月12日排名清单中，列出业主可能在2028年底完工期限前出售的批次项目，并核查哪些同时持有容量合同，因为补贴会减少该项付费。"
+        ],
+        "due": null
+      },
+      "calls": {
+        "infraFund": {
+          "archetype": "infraFund",
+          "call": "opportunistic",
+          "route": "ready-to-build",
+          "where": [
+            "A project in NFOŚiGW's 2025 grant cohort",
+            "国家环保基金2025年补贴批次中的项目"
+          ],
+          "because": [
+            {
+              "dimension": "assetReturn",
+              "text": [
+                "With the cohort's 37.9% grant, merchant four hours returns 17.1% hold and is worth about $200k per MW at the platform's yields.",
+                "按该批次37.9%的补贴，四小时市场化设计持有期回报17.1%，按本平台收益率每MW价值约20万美元。"
+              ]
+            },
+            {
+              "dimension": "policyStability",
+              "text": [
+                "The round is awarded and the grants are signed; completion is due by the end of 2028.",
+                "本轮补贴已授予并签约；须于2028年底前完工。"
+              ]
+            }
+          ],
+          "despite": [
+            "Merchant revenue carries the whole case, and the curve that compresses it is fitted on Bulgaria, not Poland.",
+            "整个投资逻辑由市场化收入支撑，而压缩该收入的曲线是依据保加利亚而非波兰拟合的。"
+          ],
+          "changesIf": [
+            "pl-capacity-successor-framework"
+          ],
+          "reviewBy": "2027-03-31",
+          "author": "analyst",
+          "asOf": "2026-10-23",
+          "lockedUntil": null
+        }
+      },
+      "author": "analyst",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     }
   }

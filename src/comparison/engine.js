@@ -131,6 +131,12 @@ function capitalOf(market, e, fx){
 }
 
 
+/* `merchantCurve` is the arbitrage line's dated path, as `servicesCurve` is the
+   services line's: multipliers by operating year, index 0 = year 1, holding
+   the last value. The seed is the year-1 level and the curve is what the
+   fleet does to it afterwards (src/comparison/vintage.js). Absent, it is 1,
+   so every market without one is unchanged and the baseline stays pinned.
+   Romania and Poland carry one (docs/merchant-lines-plan-2026-10.md). */
 const yearFactor = (options, name, year, fallback = 1) => {
   const curve = options?.[name + 'Factors'];
   if (Array.isArray(curve) && Number.isFinite(curve[year - 1])) return curve[year - 1];
@@ -371,7 +377,7 @@ function runLegacyCase(market, strategyId, exitYear, options){
     const c = ((y <= cy ? cap : cap * post) + (y <= cyB ? capB : 0)) * yearFactor(options, 'capacity', y);
     const d = degradationFactor(e, y);
     let mm = y >= marketFrom
-      ? (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y)
+      ? (merch * servicesFactor(e.merchantCurve, y) + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y)
       : 0;
     if (strategyId === 'toll' && e.tollIsFloor && y <= cy) mm = Math.max(0, mm - c);
     const sv = serviceCostPerMW(e, y) * fx;
@@ -486,7 +492,7 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
       ? ((curve[y - securedYears - 1] ?? 0) * fx * yearFactor(options, 'auction', y,
         yearFactor(options, 'merchant', y))) * capF : 0;
     const d = degradationFactor(e, y);
-    const m = (merch + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y);
+    const m = (merch * servicesFactor(e.merchantCurve, y) + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y);
     const sv = serviceCostPerMW(e, y) * fx;
     secY.push(s); aucY.push(a); mchY.push(m); svcY.push(sv);
     eb.push(s + a + m - opex - sv - lifecycleCost(e, capexG, fx, y));

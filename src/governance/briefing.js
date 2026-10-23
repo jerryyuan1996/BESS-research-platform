@@ -115,6 +115,48 @@ export const EVIDENCE_LABEL = {
 /** A design input on one of these bases is a placeholder, not an observation. */
 export const WEAK_INPUT_BASIS = ['seed', 'fill'];
 
+/* ---- merchant-line coverage (approved 2026-10-23) ----------------------------------
+
+   The marker used to read only a play's design inputs and the bases of its grades,
+   never how its revenue line is sourced: Italy's fund play showed Strong while 71% of
+   its first-year revenue rested on one forecast the market had paid 63% of
+   (docs/merchant-lines-plan-2026-10.md §5). A market that declares
+   `comparison.merchantEvidence` — an observed day-ahead value at a stated year — now
+   has its merchant line marked by coverage:
+
+       coverage = observed ÷ (merchGross ÷ restateFactor)
+
+   the restate factor carrying the line back from year 1 to the observed year along
+   its dated path. A market that declares no observed series is not marked by this
+   rule yet; the January refresh moves the observed value, the thresholds are here. */
+
+/** Coverage bands. Strong also needs the line inside the observed range and an own-market path. */
+export const COVERAGE_STRONG = [0.90, 1.10];
+export const COVERAGE_FAIR = [0.75, 1.25];
+/** A play whose merchant revenue is more than this share of year 1 takes the line's marker. */
+export const MERCHANT_CAP_SHARE = 0.5;
+
+const within = (x, [lo, hi]) => x >= lo && x <= hi;
+
+/**
+ * The merchant line's marker, or null when the market declares no observed series.
+ * @param cmp a market's comparison interface
+ */
+export function merchantCoverage(cmp){
+  const ev = cmp?.merchantEvidence, line = cmp?.economics?.merchGross;
+  if (!ev || !(ev.observedPerMW > 0) || !(line > 0)) return null;
+  const restated = line / (ev.restateFactor || 1);
+  const coverage = ev.observedPerMW / restated;
+  const inRange = Array.isArray(ev.range) && restated >= ev.range[0] && restated <= ev.range[1];
+  const marker = within(coverage, COVERAGE_STRONG) && inRange && ev.pathFit === 'own' ? EVIDENCE.STRONG
+    : within(coverage, COVERAGE_FAIR) ? EVIDENCE.FAIR
+    : EVIDENCE.THIN;
+  return { coverage, marker };
+}
+
+const ORDER = [EVIDENCE.THIN, EVIDENCE.FAIR, EVIDENCE.STRONG];
+const weaker = (a, b) => (ORDER.indexOf(a) <= ORDER.indexOf(b) ? a : b);
+
 /**
  * How strong the evidence behind a play is. One marker, replacing the
  * "Illustrative — not official" chips, "Evidence confidence N/10" and
@@ -127,15 +169,23 @@ export const WEAK_INPUT_BASIS = ['seed', 'fill'];
  *           placeholder, and every reason the call gives rests on a source
  *   fair    anything between
  *
- * @param econ         { priced, eligible, weakInputs: [] }
+ * Then capped by the merchant line: a play whose merchant revenue is more than
+ * half of its first year is marked no stronger than that line (econ.merchantLine,
+ * from merchantCoverage and the play's own first-year split).
+ *
+ * @param econ         { priced, eligible, weakInputs: [], merchantLine?: { marker, share } }
  * @param becauseBases the bases of the grades the call's reasons name
  */
 export function evidenceOf(econ, becauseBases){
   const bases = becauseBases.filter(Boolean);
-  if (!econ?.priced || (econ.weakInputs || []).length) return EVIDENCE.THIN;
-  if (bases.length && bases.every(b => b === BASIS.PRACTITIONER)) return EVIDENCE.THIN;
-  if (econ.eligible !== false && bases.length && bases.every(b => b !== BASIS.PRACTITIONER)) return EVIDENCE.STRONG;
-  return EVIDENCE.FAIR;
+  let marker;
+  if (!econ?.priced || (econ.weakInputs || []).length) marker = EVIDENCE.THIN;
+  else if (bases.length && bases.every(b => b === BASIS.PRACTITIONER)) marker = EVIDENCE.THIN;
+  else if (econ.eligible !== false && bases.length && bases.every(b => b !== BASIS.PRACTITIONER)) marker = EVIDENCE.STRONG;
+  else marker = EVIDENCE.FAIR;
+  const line = econ?.merchantLine;
+  if (line?.marker && line.share > MERCHANT_CAP_SHARE) marker = weaker(marker, line.marker);
+  return marker;
 }
 
 /* ---- windows and thresholds ------------------------------------------------------- */

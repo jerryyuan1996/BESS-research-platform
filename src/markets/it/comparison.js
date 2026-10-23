@@ -377,6 +377,24 @@ export const comparison = {
   economics,
   ranges,
 
+  /* The line the evidence rule checks (src/governance/briefing.js). GME's 2025
+     South prices paid 63% of Modo's €123k; the forecast is flat to 2040 while its
+     own fleet view grows eightfold (docs/merchant-lines-plan-2026-10.md §4). */
+  merchantEvidence: {
+    year: 2025,
+    hours: 4,
+    observedPerMW: Math.round(211.0 * 365),
+    restateFactor: 1,
+    /* 2023–2025 observed: €86,688 / €77,526 / €77,015. */
+    range: [Math.round(211.0 * 365), Math.round(237.5 * 365)],
+    pathFit: 'none',
+    source: 'GME, MGP zonal price SUD, 2025',
+    basis: [
+      '2025 day-ahead value of a 4h battery at GME South prices: hourly, one cycle a day, 88% round trip, perfect foresight.',
+      '4h电池按GME南部价格计算的2025年日前价值：小时价格、每日一次循环、往返效率88%、完全预见。',
+    ],
+  },
+
   /* Both merchant legs priced at the same year. See src/comparison/vintage.js. */
   merchantVintage: merchantVintage(1, economics, ranges, [
     'Year 1. Capacity Market revenue is additive to merchant, so both merchant legs are exposed from commercial operation and are stated on the same zonal basis.',

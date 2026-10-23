@@ -7,17 +7,17 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 2,
+      "grade": 1,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Twelfth of fifteen markets on hold IRR, 2.5%.",
-        "持有期IRR为2.5%，在十五个市场中排第十二。"
+        "Thirteenth of fifteen markets on hold IRR, 2.5%.",
+        "持有期IRR为2.5%，在十五个市场中排第十三。"
       ],
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-23",
       "author": "analyst",
       "lockedUntil": null
     },

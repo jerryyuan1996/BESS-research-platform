@@ -23,12 +23,39 @@
    The capacity line is declared as its components rather than as a product, so
    price and de-rating can drift, and be proposed against, independently. That
    separation exists because of this market.
+
+   MERCHANT RE-SEEDED 2026-10-23, UP (docs/merchant-lines-plan-2026-10.md §2,
+   approved by the analyst). The €78k seed was a prototype value with no
+   derivation: 49% of 2025's theoretical four-hour spread and 54% of what a 4h
+   battery could schedule at PSE's own day-ahead prices (€145.7k). The seed is
+   now that observed value restated at year 1 (COD 2028) along the fleet path
+   the capacity-market and grant cohorts produce, with `merchantCurve` after it.
    --------------------------------------------------------------------------- */
 import { capacityRevenuePerMW } from '../../comparison/capacityLine.js';
 import { band, limits } from '../../comparison/ranges.js';
 import { merchantVintage } from '../../comparison/vintage.js';
 import { stackFrom } from '../../comparison/capex.js';
 import { quotedEconomics } from '../../comparison/supplierQuote.js';
+
+/* The merchant leg's level and path (docs/merchant-lines-plan-2026-10.md §2).
+
+   DA_VALUE_4H_2025  2025 day-ahead value of a 1 MW / 4h battery at PSE's
+                     csdac-pln prices (ECB rate of the trading day): one cycle a
+                     day, 88% round trip, perfect foresight, €399.1/MW/day × 365.
+                     Realisation 100% (gate MR-1).
+   PATH              factor by calendar year from Poland's average fleet (GW:
+                     2025 0.3, 2026 0.9, 2027 1.95, 2028 3.5, 2029 4.75, 2030
+                     5.75, then flat) over the 18.08 GW average load (PSE
+                     kse-load, 2025), on Romania's Bulgaria-fitted curve. The
+                     fleet follows PSE's capacity-market ramp (~2 GW 2028, ~4 GW
+                     2029, up to 5 GW 2030) and NFOŚiGW's 3.9 GW / 14.5 GWh
+                     cohort, together about 5 GW by 2029 and over 6 GW in 2030.
+   FAST_2028/SLOW    2028 factor with the grant cohort fully additive, and with
+                     the capacity ramp alone. */
+const DA_VALUE_4H_2025 = 399.1 * 365;          // €145,671.5
+const PATH = { 2026: 0.976, 2027: 0.940, 2028: 0.898, 2029: 0.871, 2030: 0.853 };
+const FAST_2028 = 0.866, SLOW_2028 = 0.924;
+const YEAR_ONE = 2028;
 
 /* PLN per EUR. Stated here rather than in the global FX table because Poland is
    modelled in EUR throughout and this rate converts one input, not the market. */
@@ -97,13 +124,19 @@ const economics = {
   contractYears: 17,
   postFactor: 0.5,
 
-  /* Deliberately unchanged. Clean Horizon's Storage Index put a Polish 2h at
-     €800k+/MW/yr in May 2026 on the back of aFRR capacity above €120/MW/h — a
-     monthly run-rate, annualised at 1.5 cycles/day, gross of fees, in a market
-     with very little operational capacity. That is a signal, not an
-     underwriting number, and docs/external-view.md §5.4 records why we do not
-     carry it. */
-  merchGross: 78000,
+  /* The 2025 day-ahead value restated at year 1: €145,671.5 × 0.898 = €130,813.
+     Was €78,000. Clean Horizon's €800k+ May 2026 run-rate stays context only
+     (docs/external-view.md §5.4). */
+  merchGross: Math.round(DA_VALUE_4H_2025 * PATH[YEAR_ONE]),
+  /* Year 1 = 2028: 0.871 ÷ 0.898 and 0.853 ÷ 0.898, held after year 3. */
+  merchantCurve: [1.000, 0.970, 0.950],
+  merchantCurveBasis: {
+    yearOne: YEAR_ONE,
+    text: [
+      'Poland\'s fleet, 0.3 GW in 2025 to 5.75 GW in 2030 (PSE\'s capacity-market ramp and the NFOŚiGW grant cohort), on the compression Bulgaria\'s fleet produced in 2026: −24.3% × (1 − e^(−x/0.324)), x = added battery MW ÷ average load.',
+      '波兰储能由2025年的0.3GW增至2030年的5.75GW（PSE容量市场投运节奏及国家环保基金补贴批次），并采用保加利亚储能在2026年造成的价差压缩曲线：−24.3% × (1 − e^(−x/0.324))，x为新增电池功率除以平均负荷。',
+    ],
+  },
   feePct: 9,
   services: 10000,
   /* NFOŚiGW / Modernisation Fund grants (source `nfos`) are awarded per project
@@ -209,14 +242,17 @@ const ranges = {
     source: 'Methodology — no forward auction price forecast is carried',
   }),
 
-  /* Read the basis before moving this one. */
-  merchGross: band(economics.merchGross, null, 800000, {
-    basis: [
-      'The ceiling is Clean Horizon\'s May 2026 Storage Index run-rate for a Polish 2h — €800k+/MW/yr on the back of aFRR capacity above €120/MW/h. It is a SIGNAL, NOT AN UNDERWRITING NUMBER: a monthly spot run-rate, annualised at 1.5 cycles/day, gross of fees, in a market with very little operational capacity. Poland has ~5.1 GW of battery contracted for 2030 delivery; that level does not survive it. docs/external-view.md §5.4 records why the platform does not carry it.',
-      '上限为Clean Horizon 2026年5月储能指数中波兰2小时资产的收入运行率 — 在aFRR容量价格超过€120/MW/h的背景下达到€80万+/MW/年。这是一个信号，而非承销数值：其为月度现货运行率，按每日1.5次循环年化，未扣除费用，且所处市场几乎没有已投运容量。波兰已有约5.1GW电池签约2030年交付；该水平无法在此情形下维持。docs/external-view.md §5.4 记录了本平台不采用该数值的原因。',
-    ],
-    source: 'Clean Horizon Storage Index, May 2026 (spot run-rate, 2h, gross of fees)',
-  }),
+  /* Both ends are the same observed series at other realisations and build rates. */
+  merchGross: band(economics.merchGross,
+    Math.round(DA_VALUE_4H_2025 * 0.80 * FAST_2028),
+    Math.round(DA_VALUE_4H_2025 * 1.10 * SLOW_2028), {
+      basis: [
+        'The seed is the 2025 day-ahead value of a 4h battery at PSE\'s prices (€145.7k: hourly, one cycle a day, 88% round trip, perfect foresight) restated at year 1 (COD 2028) by the fleet path, × 0.898. The floor takes 80% realisation with the grant cohort fully additive to the capacity ramp (× 0.866); the ceiling 110% with the capacity ramp alone (× 0.924). Clean Horizon\'s May 2026 run-rate of €800k+ for a 2h is a spot signal and stays outside the band (docs/external-view.md §5.4).',
+        '种子值为4h电池按PSE价格计算的2025年日前价值（€145.7k：小时价格、每日一次循环、往返效率88%、完全预见），按储能增长路径折算至第1年（2028年投运），× 0.898。下限取80%实现率且补贴批次完全叠加于容量市场节奏（× 0.866）；上限取110%实现率且仅计容量市场节奏（× 0.924）。Clean Horizon 2026年5月2小时资产€80万+的运行率属现货信号，不纳入区间（docs/external-view.md §5.4）。',
+      ],
+      source: 'PSE csdac-pln (SDAC day-ahead price, Polish zone), 2025; PSE capacity-market ramp via Parkiet; NFOŚiGW ranking list, 12 Dec 2025; docs/merchant-lines-plan-2026-10.md',
+      gate: 'MR-1',
+    }),
 
   feePct: limits(economics.feePct, 6, 12, {
     kind: 'dispersed',
@@ -235,12 +271,12 @@ const ranges = {
     source: 'Platform seed; Polish aFRR capacity >€120/MW/h as context',
   }),
 
-  grantPct: limits(economics.grantPct, 0, 10, {
+  grantPct: limits(economics.grantPct, 0, 40, {
     basis: [
-      'Zero is a project with no capital support, which is the default. The seeded 10% is an assumption rather than a named scheme award, so the band does not extend above it.',
-      '取零对应无任何资本支持的项目，即默认情形。种子设定的10%属假设值而非具名计划的实际授予，故区间不向上延伸。',
+      'Zero is a new entrant, because the NFOŚiGW round is allocated. The ceiling covers an awarded project: the 12 December 2025 ranking list gives PLN 3.735bn of grants against PLN 9.847bn of cost across 169 projects, a 37.9% average grant (loans of PLN 0.415bn are financing, not a grant). The awardee play prices at 37.9%.',
+      '取零对应新进入者，因为国家环保基金的本轮补贴已分配完毕。上限覆盖已获授予的项目：2025年12月12日排名清单显示169个项目总成本PLN 98.47亿、补贴PLN 37.35亿，平均补贴比例37.9%（PLN 4.15亿贷款属融资而非补贴）。补贴获得者投资机会按37.9%定价。',
     ],
-    source: 'Platform assumption — not tied to a named Polish support scheme',
+    source: 'NFOŚiGW Modernisation Fund storage programme, ranking list of 12 Dec 2025',
   }),
 
   degr: limits(economics.degr, 1, 3, {
@@ -285,8 +321,10 @@ export const comparison = {
     hours: [1, 2, 4, 6, 8],
     capacityDerating: [0.1339 / 4, 0.1339 / 2, 0.1339, 0.1339, 0.1339],
     capacityDeratingBasis: ['rule', 'rule', 'published', 'published', 'published'],
-    merchantCapture: [1.12, 1.00, 0.84, 0.72, 0.63],
-    merchantCaptureBasis: 'seed',
+    /* Observed: 2023–2025 mean of day-ahead value per MWh by duration,
+       relative to 2h (PSE for 2025). Was the seed 1.12, 1.00, 0.84, 0.72, 0.63. */
+    merchantCapture: [1.086, 1.000, 0.845, 0.708, 0.571],
+    merchantCaptureBasis: 'observed',
     opexEnergyShare: 0.5,
   },
 
@@ -300,6 +338,22 @@ export const comparison = {
   economics,
   ranges,
 
+  /* The line the evidence rule checks (src/governance/briefing.js). */
+  merchantEvidence: {
+    year: 2025,
+    hours: 4,
+    observedPerMW: Math.round(DA_VALUE_4H_2025),
+    restateFactor: PATH[YEAR_ONE],
+    /* 2023–2025 observed: €68,985 / €124,830 / €145,672. */
+    range: [Math.round(189.0 * 365), Math.round(DA_VALUE_4H_2025)],
+    pathFit: 'other-market',
+    source: 'PSE csdac-pln, 2025',
+    basis: [
+      '2025 day-ahead value of a 4h battery at PSE\'s prices: hourly, one cycle a day, 88% round trip, perfect foresight.',
+      '4h电池按PSE价格计算的2025年日前价值：小时价格、每日一次循环、往返效率88%、完全预见。',
+    ],
+  },
+
   /* Both merchant legs priced at the same year. See src/comparison/vintage.js. */
   merchantVintage: merchantVintage(1, economics, ranges, [
     'Year 1. Capacity contract revenue is additive to merchant, so both merchant legs are exposed from commercial operation and are stated on the same observed basis.',
@@ -309,8 +363,8 @@ export const comparison = {
   narrative: {
     archetype: ['100 MW · 4h · new-entry merchant + balancing', '100MW · 4小时 · 新进入者市场化+平衡服务'],
     thesis: [
-      'The December 2025 auction was the last main-auction route. No main auction is planned in 2026. New entry is screened on merchant plus balancing economics pending a successor framework; the 17-year capacity contract remains visible only as a legacy-vintage alternative, and the one-year supplementary auctions — which cleared batteries for the first time in September 2026 — are a top-up for assets already online, not a new-entry route.',
-      '2025年12月拍卖是最后一次主拍卖路径。2026年不安排主拍卖。在后续机制落地前，新进入者按市场化加平衡服务经济性筛选；17年容量合同仅作为历史年份备选情景保留，而一年期补充拍卖 — 2026年9月首次有储能中标 — 只是已投运资产的增量收入，并非新进入路径。',
+      'No new-entry capacity route, but the day-ahead market pays almost twice what the platform carried. The December 2025 auction was the last main auction; the seventeen-year contract stays visible as a legacy vintage, and the one-year supplementary auctions are a top-up for assets already online. An uncontracted four-hour project returns about 7%, below the platform\'s yields; a project in the 2025 NFOŚiGW grant cohort returns about 17%.',
+      '没有新进入者的容量路径，但日前市场的收益几乎是本平台此前所采用水平的两倍。2025年12月拍卖是最后一次主拍卖；17年容量合同仅作为历史年份保留，一年期补充拍卖只是已投运资产的增量收入。无合同的四小时项目回报约7%，低于本平台收益率；2025年国家环保基金补贴批次中的项目回报约17%。',
     ],
     pipelineRatio: '~13×',
   },

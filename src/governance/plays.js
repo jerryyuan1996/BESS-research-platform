@@ -59,7 +59,12 @@ export const REVENUE_ROUTE_LABEL = {
 export const MAX_PLAY_HOURS = 24;
 
 /** The fields a play record may hold. Anything else is refused, so the shape cannot drift. */
-export const PLAY_FIELDS = ['id', 'label', 'route', 'hours', 'stage', 'why', 'action', 'calls', 'author', 'asOf', 'lockedUntil'];
+export const PLAY_FIELDS = ['id', 'label', 'route', 'hours', 'stage', 'grantPct', 'why', 'action', 'calls', 'author', 'asOf', 'lockedUntil'];
+
+/* A play's own capital grant, % of build capex: a cohort that holds an award
+   the market's new-entry case does not (Poland's NFOŚiGW awardees, approved
+   2026-10-23). Optional; analyst-written like every play field. */
+export const MAX_PLAY_GRANT_PCT = 60;
 
 const isPair = (v) => Array.isArray(v) && v.length === 2
   && v.every(s => typeof s === 'string' && s.trim().length > 0);
@@ -87,6 +92,9 @@ export function validatePlay(record, key){
     at(`hours must be a number above 0 and at most ${MAX_PLAY_HOURS}`);
   }
   if (!ROUTE.includes(record.stage)) at(`stage must be one of ${ROUTE.join(', ')}`);
+  if (record.grantPct !== undefined && !(typeof record.grantPct === 'number' && record.grantPct > 0 && record.grantPct <= MAX_PLAY_GRANT_PCT)){
+    at(`grantPct must be a number above 0 and at most ${MAX_PLAY_GRANT_PCT}`);
+  }
   if (!isPair(record.why)) at('why must be an [en, zh] pair — one line on why this design');
 
   const action = record.action;

@@ -323,6 +323,13 @@ export const COMPARISON_AUTHORITY = {
   // approved: ANALYST_SCENARIO is exactly that class.
   'economics.servicesCurve': AUTHORITY.ANALYST_SCENARIO,
   'economics.servicesNote': AUTHORITY.METHODOLOGY,
+  /* The arbitrage line's dated path: the same class as servicesCurve. It is
+     fitted on one market's observed compression and applied to another's
+     fleet path, which is a forward case a human approved
+     (docs/merchant-lines-plan-2026-10.md). */
+  'economics.merchantCurve': AUTHORITY.ANALYST_SCENARIO,
+  'economics.merchantCurveBasis.yearOne': AUTHORITY.METHODOLOGY,
+  'economics.merchantCurveBasis.text': AUTHORITY.METHODOLOGY,
   /* Why a required field carries no value. Methodology, not analyst assumption:
      it is a statement about what the evidence supports, and automation must
      never be able to close it by supplying a number. */
@@ -413,6 +420,19 @@ export const COMPARISON_AUTHORITY = {
      Note that the base case is the published seed and the outer cases are the
      band endpoints; classifying them here does not create a second writable copy
      of those numbers, because vintage.js derives them rather than restating them. */
+  /* The observed day-ahead value the merchant line is checked against
+     (src/governance/briefing.js, merchantCoverage). The value is an
+     observation from a published price series, so proposable; the factor
+     that restates the line at the observed year comes from the dated path, an
+     approved forward case; which series and year are used is methodology. */
+  'merchantEvidence.year': AUTHORITY.METHODOLOGY,
+  'merchantEvidence.hours': AUTHORITY.METHODOLOGY,
+  'merchantEvidence.observedPerMW': AUTHORITY.ANALYST,
+  'merchantEvidence.restateFactor': AUTHORITY.ANALYST_SCENARIO,
+  'merchantEvidence.range': AUTHORITY.ANALYST,
+  'merchantEvidence.pathFit': AUTHORITY.METHODOLOGY,
+  'merchantEvidence.source': AUTHORITY.METHODOLOGY,
+  'merchantEvidence.basis': AUTHORITY.METHODOLOGY,
   'merchantVintage.year': AUTHORITY.METHODOLOGY,
   'merchantVintage.basis': AUTHORITY.METHODOLOGY,
   'merchantVintage.cases.downside.merchGross': AUTHORITY.ANALYST_SCENARIO,

@@ -144,12 +144,16 @@ test('Ireland’s services line steps at FASS rather than drifting', () => {
   }
 });
 
-test('Romania’s ancillary leg decays while its merchant leg does not', () => {
+test('Romania’s ancillary leg decays, and its merchant leg follows its own fleet', () => {
   const e = byId('ro').comparison.economics;
   assert.ok(Array.isArray(e.servicesCurve));
   near(e.services * e.servicesCurve[4], 10000, 500, 'yr-5 services after saturation');
-  // €110k merchant + €30k services = the €140/kW/yr external assessment.
-  assert.equal(e.merchGross + e.services, 140000);
+  /* Re-seeded 2026-10-23 (docs/merchant-lines-plan-2026-10.md): the 2025
+     day-ahead value of a 2h battery, €288.5/MW/day × 365, restated at year 1
+     (COD 2027) by the fleet path, × 0.827. Was €110k flat. */
+  assert.equal(e.merchGross, Math.round(288.5 * 365 * 0.827));
+  assert.deepEqual(e.merchantCurve, [1.000, 0.955, 0.934]);
+  assert.equal(e.merchantCurveBasis.yearOne, 2027);
 });
 
 test('a services curve reaches the engine and moves the answer', () => {
@@ -341,8 +345,11 @@ test('published base-case outcomes', () => {
     // 2029/30 factor (gate G1); capacity line £10,298 → £11,913/MW-yr.
     gb:          ['cap',   10.8,         4.5],
     ie:          ['cap',   14.3,         9.0],
-    ro:          ['mer',   26.1,        20.2],
-    pl:          ['mer',    8.2,         0.2],
+    /* Moved 2026-10-23 (docs/merchant-lines-plan-2026-10.md): merchant lines
+       re-seeded from observed day-ahead value with a dated fleet path. Were
+       ro 26.1/20.2 and pl 8.2/0.2. */
+    ro:          ['mer',   21.7,        13.7],
+    pl:          ['mer',   13.5,         7.4],
     /* Moved 2026-10-16 (docs/japan-ltda-repricing-plan.md): 9h archetype, the
        award bid at METI's 4.5% cap per awarded kW, METI opex. Were 11.3–11.4
        and 7.4–7.5 at 6h with an 8% bid. */
@@ -366,9 +373,11 @@ test('published base-case outcomes', () => {
 test('the ordering the cockpit asks readers to use', () => {
   const irr = (id) => runBaseCase(byId(id), 5).irrHold;
 
-  // Romania leads on the merchant case and Poland no longer leads on certainty —
-  // the two headline consequences of this revision.
-  assert.ok(irr('ro') > irr('wa'), 'Romania’s revised revenue puts it top');
+  // Romania led on the merchant case until its own fleet arrived; since the
+  // 2026-10-23 re-seed it sits below WA and above Ireland, and Poland, re-seeded
+  // up, still sits below Ireland on the KWD cut.
+  assert.ok(irr('wa') > irr('ro'), 'Romania’s own build takes it off the top');
+  assert.ok(irr('ro') > irr('ie'), 'Romania still beats Ireland');
   assert.ok(irr('wa') > irr('ie'), 'WA’s 7h build beats Ireland');
   assert.ok(irr('pl') < irr('ie'), 'Poland falls below Ireland on the KWD cut');
 

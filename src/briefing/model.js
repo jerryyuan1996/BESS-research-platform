@@ -67,7 +67,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
     const design = marketDesign(market);
     const cache = new Map();
     const playEcon = (play) => {
-      if (!cache.has(play.id)) cache.set(play.id, designEconomics(market, design, play.route, play.hours));
+      if (!cache.has(play.id)) cache.set(play.id, designEconomics(market, design, play.route, play.hours, { grantPct: play.grantPct }));
       return cache.get(play.id);
     };
     const assessment = assessMarket(view, market, ledgerFor(id), FX, { on });

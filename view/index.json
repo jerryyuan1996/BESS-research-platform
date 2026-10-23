@@ -171,7 +171,7 @@
     "infraFund": {
       "call": "enter-now",
       "route": "ready-to-build",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-23",
       "reviewBy": "2027-03-31",
       "play": "it-cap-4h"
     },
@@ -327,15 +327,15 @@
     "strategic": {
       "call": "opportunistic",
       "route": "greenfield",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
       "call": "wait",
       "route": "ready-to-build",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "reviewBy": "2027-03-31",
-      "play": "pl-cap-1h"
+      "play": "pl-cap-4h"
     },
     "foreignFirstTimer": {
       "call": "opportunistic",
@@ -360,9 +360,9 @@
     "infraFund": {
       "call": "opportunistic",
       "route": "operating",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-23",
       "reviewBy": "2027-01-31",
-      "play": "ro-mer-4h"
+      "play": "ro-mer-2h"
     },
     "foreignFirstTimer": {
       "call": "wait",
