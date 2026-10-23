@@ -13,12 +13,12 @@
     "licence": "ECB — free reuse with attribution",
     "attribution": "Source: European Central Bank"
   },
-  "fetchedAt": "2026-10-22T17:16:42.438Z",
+  "fetchedAt": "2026-10-23T11:47:16.617Z",
   "coverage": {
     "from": "2026-10-22T00:00:00Z",
     "to": "2026-10-22T00:00:00Z",
     "resolution": "P1D",
-    "points": 4
+    "points": 5
   },
   "units": {
     "rate": "USD per 1 unit of currency"
@@ -28,6 +28,11 @@
       "t": "2026-10-22T00:00:00Z",
       "v": 0.701188986232791,
       "k": "AUD"
+    },
+    {
+      "t": "2026-10-22T00:00:00Z",
+      "v": 0.7125596184419715,
+      "k": "CAD"
     },
     {
       "t": "2026-10-22T00:00:00Z",
@@ -51,6 +56,7 @@
     "rates": {
       "EUR": 1.1205,
       "AUD": 0.701188986232791,
+      "CAD": 0.7125596184419715,
       "GBP": 1.3375910230392742,
       "JPY": 0.006367562652724897
     }
@@ -61,6 +67,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 96,
-  "contentChecksum": "sha256:1b72713fb9603879fd4f18b63763b0026ebb25e5a1e4badf9d2e611d47049141",
-  "envelopeChecksum": "sha256:0b1df5d116f4c1e9d715a243df2d4c83d916272acee21b58c8b0d51cc093f79a"
+  "contentChecksum": "sha256:049ebae74e2792ef7d5929b7b9b8045150490865341194ac50acf83514ccda65",
+  "envelopeChecksum": "sha256:ab63ea356be5cdabdb7dac578165b72360d4c1b4a39486e8c48221f222bf1bd2"
 }
