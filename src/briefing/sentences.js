@@ -26,6 +26,7 @@ export const MARKET_NAME = {
   de: ['Germany', '德国'], it: ['Italy', '意大利'], ie: ['Ireland', '爱尔兰'], ro: ['Romania', '罗马尼亚'],
   pl: ['Poland', '波兰'], jp_tokyo: ['Tokyo', '东京'], jp_kyushu: ['Kyushu', '九州'], jp_hokkaido: ['Hokkaido', '北海道'],
   pjm: ['PJM', 'PJM'], ercot: ['ERCOT', 'ERCOT'], caiso: ['CAISO', 'CAISO'], fi: ['Finland', '芬兰'],
+  ca_on: ['Ontario', '安大略'],
 };
 const JAPAN = ['jp_tokyo', 'jp_kyushu', 'jp_hokkaido'];
 

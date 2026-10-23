@@ -32,8 +32,9 @@ export const SCOUT_REGIONS = {
 export const SCOUT_REGION_IDS = Object.keys(SCOUT_REGIONS);
 
 /**
- * The roster: every market that may have a card. Three a region, the first
- * batch of plan §6.4. An id that is not here has no file name the view writer
+ * The roster: every market that may have a card. The first batch of plan
+ * §6.4 had three a region; the Americas has two since Ontario was
+ * registered on 2026-10-23. An id that is not here has no file name the view writer
  * will accept, so adding a market is an edit to this list and to nothing else.
  *
  * No id here is a registered market: tests/scout.test.js asserts it. The tier
@@ -47,7 +48,9 @@ export const SCOUT_ROSTER = [
   { id: 'nl',    name: ['Netherlands', '荷兰'],       region: 'southern-eastern-europe', flag: 'nl' },
   { id: 'bg',    name: ['Bulgaria', '保加利亚'],      region: 'southern-eastern-europe', flag: 'bg' },
   { id: 'cl',    name: ['Chile', '智利'],             region: 'americas-middle-east',    flag: 'cl' },
-  { id: 'ca_on', name: ['Ontario', '安大略省'],       region: 'americas-middle-east',    flag: 'ca' },
+  /* Ontario left the roster on 2026-10-23, when the analyst registered it as a
+     core market by ruling (docs/ontario-registration-plan.md). It had no card,
+     so nothing was graduated; the region scouts two until he names a third. */
   { id: 'sa',    name: ['Saudi Arabia', '沙特阿拉伯'], region: 'americas-middle-east',    flag: 'sa' },
 ];
 

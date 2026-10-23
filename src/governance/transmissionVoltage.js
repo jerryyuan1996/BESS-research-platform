@@ -160,6 +160,17 @@ export const TRANSMISSION_VOLTAGE = {
       'CAISO受控电网以500kV与230kV为主，115kV大多位于参与输电所有者的网络中。加州公用事业级储能并网多在230kV，故细节层止于该电压。',
     ],
   },
+  /* Added 2026-10-23 with Ontario's registration (docs/ontario-registration-plan.md). */
+  ca_on: {
+    bulkKV: 230, detailKV: 115,
+    operator: 'IESO (the IESO-controlled grid)',
+    levels: ['500 kV', '230 kV', '115 kV'],
+    url: 'https://www.ieso.ca/ontarioenergymap/',
+    basis: [
+      'IESO describes the high-voltage IESO-controlled grid as 115 kV, 230 kV and 500 kV lines, over 30,000 km in all. The detail layer stops at 115 kV, IESO\'s own floor; the bulk layer takes 230 kV on the Irish precedent of a bulk tier beneath a 400 kV one, and draws 500 kV inside it.',
+      'IESO将其控制的高压电网描述为115kV、230kV与500kV线路，总长逾30,000公里。细节层止于IESO自身的下限115kV；主干层参照爱尔兰（400kV之下设主干层）的先例取230kV，500kV包含其中。',
+    ],
+  },
 };
 
 /* The three Japanese allocation points share one grid definition because they

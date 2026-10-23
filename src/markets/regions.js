@@ -63,7 +63,7 @@ const BY_MARKET = {
   gb: 'europe', de: 'europe', it: 'europe', ie: 'europe',
   ro: 'europe', pl: 'europe', fi: 'europe',
   jp_tokyo: 'asia', jp_kyushu: 'asia', jp_hokkaido: 'asia',
-  pjm: 'americas', ercot: 'americas', caiso: 'americas',
+  pjm: 'americas', ercot: 'americas', caiso: 'americas', ca_on: 'americas',
 };
 
 /** Region id for a market id, or null. Null means "no accent", never a guess. */

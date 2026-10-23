@@ -111,16 +111,20 @@ export const LTSA_ANNUAL_EUR = [
 
    DUTY is on the goods only, not on commissioning. 2.7% is the quotation's own
    EU figure; the UK is taken at the same rate (gate Q-2). Australia (ChAFTA)
-   and Japan admit lithium-ion batteries duty-free.
+   and Japan admit lithium-ion batteries duty-free. Canada charges 7% MFN on
+   tariff item 8507.60.90 ("Lithium-ion — Other", Customs Tariff T2026), and its
+   China Surtax Order lists nothing under heading 8507 (SOR/2024-187 as amended
+   by SOR/2026-33).
    --------------------------------------------------------------------------- */
 export const FREIGHT_EUR_PER_KWH = 1.5;
-export const DUTY_PCT = { EUR: 2.7, GBP: 2.7, AUD: 0, JPY: 0 };
+export const DUTY_PCT = { EUR: 2.7, GBP: 2.7, AUD: 0, JPY: 0, CAD: 7 };
 
 /* ECB euro reference rates on the quotation's date, 15 October 2026, cross-
    computed through USD exactly as the fx-ecb feed publishes them. Fixed here so
    the published conversion does not drift with each day's rate. */
 export const QUOTE_FX_DATE = '2026-10-15';
-const USD_PER = { EUR: 1.1208, GBP: 1.3246661151164165, AUD: 0.6910839807621162, JPY: 0.006330057607590647 };
+/* CAD: ECB 15 Oct 2026, 1.5923 CAD and 1.1208 USD per euro → 1.1208 / 1.5923. */
+const USD_PER = { EUR: 1.1208, GBP: 1.3246661151164165, AUD: 0.6910839807621162, JPY: 0.006330057607590647, CAD: 1.1208 / 1.5923 };
 export const EUR_TO = Object.fromEntries(Object.entries(USD_PER).map(([cur, usd]) => [cur, USD_PER.EUR / usd]));
 
 /** Landed DC block, market currency per kWh at the meter. */

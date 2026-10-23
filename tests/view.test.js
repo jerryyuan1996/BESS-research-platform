@@ -176,8 +176,9 @@ test('a graded market is graded on every dimension, so every archetype has a sco
      dimension blanks its pillar and the fit. A market is entered whole. */
   const graded = (await committed.readAll()).filter(v => Object.keys(v.grades).length);
   /* The four corners first, then the other eleven as the analyst graded them
-     (plan phase 5). Every registered market is graded now. */
-  assert.deepEqual(graded.map(v => v.marketId).sort(), registered.map(m => m.manifest.id).sort());
+     (plan phase 5). Every registered market is graded except Ontario,
+     registered on 2026-10-23 and not yet graded. */
+  assert.deepEqual(graded.map(v => v.marketId).sort(), registered.map(m => m.manifest.id).filter(id => id !== 'ca_on').sort());
   for (const view of graded){
     assert.deepEqual(Object.keys(view.grades).sort(), [...DIMENSION_IDS].sort(), `${view.marketId}: not graded on every dimension`);
     const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX, { on: ON });
@@ -237,7 +238,8 @@ test('a committed verdict the score disagrees with says why', async () => {
         `${view.marketId}/${flag.archetype}: "${flag.call}" disagrees with its score (${flag.kind}) and carries no scoreNote`);
     }
   }
-  assert.equal(verdicts, registered.length * ARCHETYPE_IDS.length, 'every market by four archetypes');
+  /* Every graded market by four archetypes; Ontario is not yet graded. */
+  assert.equal(verdicts, (registered.length - 1) * ARCHETYPE_IDS.length, 'every graded market by four archetypes');
 });
 
 test('every machine-written line in the committed store is accounted for', async () => {
@@ -645,8 +647,15 @@ test('a derived asset-return grade is the market\'s fifth in the engine\'s ranki
   const order = (key) => [...priced].sort((a, b) => b.result[key] - a.result[key]).map(r => r.id);
   const byHold = order('irrHold'), byExit = order('irrExit');
   const fifthGrade = (ranking, id) => 6 - Math.ceil((ranking.indexOf(id) + 1) * 5 / ranking.length);
-  assert.deepEqual(byExit.map(id => [id, fifthGrade(byExit, id)]).sort(), byHold.map(id => [id, fifthGrade(byHold, id)]).sort(),
-    'hold and exit IRR no longer grade the markets alike: one asset-return grade cannot serve a holder and a seller');
+  /* THE ANALYST'S RULING OF 2026-10-23, when Ontario made sixteen markets and
+     put GB and the NEM either side of a fifth: the grade follows HOLD IRR, and
+     exit IRR may place a market one fifth away at a boundary. Two fifths apart
+     would mean the grade misdescribes a seller's asset, and still fails. */
+  for (const id of byHold){
+    const gap = Math.abs(fifthGrade(byHold, id) - fifthGrade(byExit, id));
+    assert.ok(gap <= 1,
+      `${id}: hold and exit IRR grade it ${gap} fifths apart — one asset-return grade cannot serve a holder and a seller`);
+  }
 
   const expected = (id) => fifthGrade(byHold, id);
   const drift = [];

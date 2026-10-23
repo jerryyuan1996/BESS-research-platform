@@ -18,13 +18,13 @@ import { supportedStrategies, baseStrategy, STRATEGIES } from '../src/comparison
 import { merchantVintage, firstUncoveredMerchantYear } from '../src/comparison/vintage.js';
 
 test('the registry contains every allocation market', () => {
-  assert.deepEqual(marketIds(), ['wa', 'nem', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido', 'pjm', 'ercot', 'caiso', 'fi']);
+  assert.deepEqual(marketIds(), ['wa', 'nem', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido', 'pjm', 'ercot', 'caiso', 'fi', 'ca_on']);
 });
 
 test('allocation markets and detail dashboards are counted separately', () => {
   // Three Japan allocation points share one research dashboard.
-  assert.equal(ALLOCATION_MARKETS().length, 15);
-  assert.equal(DETAIL_DASHBOARDS().length, 13);
+  assert.equal(ALLOCATION_MARKETS().length, 16);
+  assert.equal(DETAIL_DASHBOARDS().length, 14);
   const jp = ALLOCATION_MARKETS().filter(m => m.manifest.dashboardId === 'jp');
   assert.equal(jp.length, 3);
   assert.deepEqual(jp.map(m => m.manifest.region), ['tokyo', 'kyushu', 'hokkaido']);
@@ -147,7 +147,8 @@ test('base strategies: capacity-backed by default, overridden where a market say
        a sponsor is the same one. */
     /* Finland's last entry became 'toll' on 2026-10-17: its fund play is the
        negotiated optimiser floor, modelled as a floor (tollIsFloor). */
-    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap', 'toll']);
+    /* Ontario, 2026-10-23: the LT2 capacity contract, declared explicitly. */
+    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap', 'toll', 'cap']);
 
   // An override is only honoured when the market actually supports the route.
   for (const m of markets){

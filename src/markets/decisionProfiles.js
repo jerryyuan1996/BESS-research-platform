@@ -142,6 +142,25 @@ export const MARKET_DECISION_PROFILES = {
      the structure is verified end to end while the largest revenue line is
      withheld. A score that rewarded the quality of the structural evidence would
      read as confidence in a number this market declines to publish. */
+  /* Ontario, added 2026-10-23 with its registration. The score is Claude's
+     draft for the analyst: the contract is read from the final documents
+     (Strong), the trading line from 90 days and capex from one observed plant
+     (Fair). */
+  ca_on: profile({
+    reviewDate: '2026-10-23',
+    confidenceScore: 7,
+    consensus: { status:'aligned', summary:['A system-operator contract for twenty years with market revenue retained; the open questions are the trading level and holding eight hours of tested capacity for the term.', '系统运营商提供二十年合同且保留市场收入；待解问题为交易收入水平及全期维持八小时测试容量。'], sources:['IESO LT2(c-1) Contract and RFP', 'IESO LT2(c-1) results', 'IESO day-ahead price reports'] },
+    currentUpdate: ['Window 1 cleared three eight-hour batteries at C$527.20–614.47/MW-Business Day (weighted C$563.48). Window 2 drafts, posted 9 October 2026, keep the terms and move the milestone to 1 May 2032; target MW and dates are blank.', '窗口1以每MW工作日527.20–614.47加元（加权563.48加元）授予三个八小时储能项目。2026年10月9日发布的窗口2草案保留条款，并将里程碑推至2032年5月1日；目标容量与日程尚未确定。'],
+    investmentGate: ['Window-2 award at a supported price', 'Tested capacity held above 85% for the term', 'CT-ITC eligibility confirmed', 'Trading re-read on a full year'],
+    revenueEvidence: {
+      cap: clearing(['LT2 window-1 prices are published per project by IESO; the seed is the weighted average × 251 Business Days.', 'IESO按项目公布LT2窗口1价格；种子值为加权平均价×251个工作日。'], ['IESO LT2(c-1) results']),
+      toll: proxy(['No toll route is loaded.', '未载入租赁路径。'], ['Not applicable']),
+      ltda: proxy(['LT2 is modelled as the capacity route.', 'LT2按容量路径建模。'], ['Not applicable']),
+      merchant: derived(['Eight-hour spread on 90 days of IESO day-ahead prices, annualised with HOEP\'s seasonal ratio and the platform\'s PJM haircuts.', '基于90天IESO日前电价的八小时价差，以HOEP季节比率年化并按平台PJM折减。'], ['IESO day-ahead zonal price', 'IESO yearly HOEP']),
+      services: proxy(['Operating reserve is not counted.', '未计入运行备用。'], ['IESO yearly HOEP OR prices']),
+    },
+    contractRisk: { ...UNKNOWN_CONTRACT, counterparty:['IESO', 'IESO'], indexation:['20% to Ontario CPI after COD; whole price to CPI before', '投运后20%与安大略CPI挂钩；投运前全额挂钩'], reset:['None for twenty years; re-opened only by post-bid tariffs or a storage rule change', '二十年内无重设；仅因投标后关税或储能规则变更可重新议价'], upside:['All market revenue retained by the owner', '市场收入全部归业主'], dispatch:['Owner/optimiser, subject to the day-ahead must-offer', '业主/优化商，受日前强制申报约束'], penalties:['Availability charges up to twice the monthly payment; default below 85% tested capacity', '可用性扣款最高为月付款两倍；测试容量低于85%即违约'], termination:['Default for failed capacity tests or a missed longstop', '容量测试失败或错过最终期限即违约'], deliverability:['Eight hours of contract capacity, tested up to once a season', '合同容量八小时，每季最多测试一次'], refinancing:['Supportive: a twenty-year system-operator contract', '有利：二十年系统运营商合同'] },
+  }),
   fi: profile({
     confidenceScore: 3,
     consensus: { status:'stale', summary:['Structure verified against Fingrid and the Energy Authority; reserve revenue withheld pending a saturation measure. Not comparable to a market with complete economics.', '市场结构已依据Fingrid与能源局核验；备用收入在饱和度指标建立前暂缓发布。不可与经济性完整的市场直接比较。'], sources:['Fingrid power system reserves', 'Energy Authority national report'] },

@@ -97,7 +97,7 @@ const REVIEWED = {
   fi:  { runtime: FI_RUNTIME,  all: FI_ALL },
 };
 
-test('governed and reader-visible coverage agree at 7/150', () => {
+test('governed and reader-visible coverage agree at 7/160', () => {
   let governed = 0, readerVisible = 0;
 
   for (const { all } of Object.values(REVIEWED)){
@@ -112,7 +112,7 @@ test('governed and reader-visible coverage agree at 7/150', () => {
   }
 
   const analytical = allMarkets.length * 10;
-  assert.equal(analytical, 150, 'fifteen markets, ten sections each');
+  assert.equal(analytical, 160, 'sixteen markets, ten sections each');
   assert.equal(governed, 7, 'WA three, PJM three, Finland one');
   assert.equal(readerVisible, governed,
     'a claim that renders but is not governed, or vice versa, is the bug this catches');

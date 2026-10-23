@@ -52,9 +52,12 @@ import caiso from './caiso/index.js';
    appears on the cards, in the nav and on the map while staying out of every
    numeric comparison until its reserve revenue line is evidenced. */
 import fi from './fi/index.js';
+/* Ontario, registered 2026-10-23 on the analyst's sign-off of
+   docs/ontario-registration-plan.md. Appended for the same reason as Finland. */
+import caOn from './ca_on/index.js';
 import { applySponsorAssumptions } from '../comparison/sponsorAssumptions.js';
 
-const registeredMarkets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso, fi];
+const registeredMarkets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso, fi, caOn];
 
 /* Decision metadata is a comparison concern shared by every global component.
    Attach it once at registration without mutating the market module, so detail

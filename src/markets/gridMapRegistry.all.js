@@ -35,3 +35,4 @@ import './pjm/gridMapData.js';
 import './ercot/gridMapData.js';
 import './caiso/gridMapData.js';
 import './fi/gridMapData.js';
+import './ca_on/gridMapData.js';

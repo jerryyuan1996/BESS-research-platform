@@ -71,10 +71,19 @@ export const LANDING_TAB = TAB_GROUPS[0].id;
  */
 export function tabsFor(sectionTabs){
   const have = new Map(sectionTabs);
+  /* A market not yet graded carries no Investment Case section (an empty
+     verdict section is worse than none), so the landing tab shows its
+     overview instead and Story keeps the story alone. Ontario is the first
+     such market (2026-10-23). */
+  const ungraded = !have.has('case');
+  const wanted = (group) => !ungraded ? group.sections
+    : group.id === 'case' ? ['home']
+    : group.id === 'story' ? group.sections.filter(id => id !== 'home')
+    : group.sections;
   return TAB_GROUPS.map(group => {
     const sections = group.pick
       ? sectionTabs.map(([id]) => id).filter(id => group.sections.includes(id))
-      : group.sections.filter(id => have.has(id));
+      : wanted(group).filter(id => have.has(id));
     return { id: group.id, label: group.label, pick: Boolean(group.pick), sections };
   }).filter(group => group.sections.length > 0);
 }
