@@ -123,7 +123,10 @@ const BUDGET = {
   // actionable construction conditions; calculator/engine remain lazy.
   // 2026-10-23: 227.23 measured after merging main, with Ontario and the merchant-
   // lines plays in the briefing.
-  home: 230,
+  // 23 Oct: the play-specific investor action sheet, inline cost/contract
+  // explanations and local comparison add ~1.1 KiB over the previous 230 cap.
+  // Measured 231.02 KiB; keep a small, explicit allowance for the new UI.
+  home: 234,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -334,7 +337,9 @@ const BUDGET = {
        RAISED FROM 76 TO 88 (2026-10-23): 84.14 at 9549dd6 — the merchant-lines
        and Japan Round 4 changelog lines — and 84.29 with Ontario's two re-graded
        asset returns (Tokyo, the NEM). */
-    'changes': 88,
+    // PR54's seven NEM thesis/verdict rewrites take the existing full history
+    // to 89.04 KiB, independently of the new homepage. History stays intact.
+    'changes': 90,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four

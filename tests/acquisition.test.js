@@ -93,7 +93,8 @@ test('missing project inputs become labelled references; explicit investor restr
 
 test('all existing markets remain visible for every applicable investor and stage',()=>{
   const r=acquisitionRecommendations(markets);
-  for(const id of ['strategic','infraFund','foreignFirstTimer'])assert.equal(r[id].length,markets.length*3);
+  assert.equal(r.strategic.length,markets.length*3);
+  for(const id of ['infraFund','foreignFirstTimer'])assert.equal(r[id].length,markets.length*2);
   assert.equal(r.developer.length,markets.length*2);
   const construction=r.infraFund.filter(r=>r.stage==='ready-to-build');
   assert.ok(construction.some(r=>r.referenceCases.some(c=>c.status==='no-positive-price')));
@@ -175,7 +176,7 @@ test('home display projection retains paired cases and provenance while pooling 
   const m=markets.find(m=>m.manifest.id==='wa'),original=acquisitionRecommendations([m]);
   const before=JSON.stringify(original),packed=compactReferences(original);
   const restored=expandReferences(packed.acquisitions.infraFund,packed.acquisitionReferenceData);
-  assert.equal(restored.length,3);
+  assert.equal(restored.length,2);
   const operation=restored.find(r=>r.stage==='operating');
   assert.equal(operation.referenceCases[0].assumptions.age,3);
   assert.equal(operation.referenceCases.find(c=>c.key==='base').assumptions.age,1);

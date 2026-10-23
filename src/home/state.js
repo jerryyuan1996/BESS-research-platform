@@ -20,6 +20,10 @@ const PREFERRED_WATERFALL_MARKET = 'pl';
    had to do anyway to self-heal when a market is deregistered. */
 export const homeState = {
   acquisitionStage: 'ready-to-build',
+  investorFilter: 'all',
+  referenceCurrency: 'usd',
+  comparisonKeys: [],
+  acquisitionSelection: null,
   exitYear: 5,                       // 5 | 7 | 10
   wfMarket: PREFERRED_WATERFALL_MARKET,
 

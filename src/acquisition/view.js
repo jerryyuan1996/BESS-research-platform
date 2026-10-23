@@ -4,6 +4,7 @@ import { explanation } from '../components/explanation.js';
 import { STAGES, STAGE_LABEL } from './parameters.js';
 import { REFERENCE_CASES, REFERENCE_METHOD, REFERENCE_NOTES, REFERENCE_SOURCES } from './referencePolicy.js';
 import { expandReferences } from './projection.js';
+import { displayedCase } from './presentation.js';
 
 const pct = x => (100*x).toFixed(1)+'%';
 const money = (value,currency) => new Intl.NumberFormat('en',{style:'currency',currency,maximumFractionDigits:0}).format(value);
@@ -61,7 +62,7 @@ function referencePrice(result,{displayUSD=false}={}){
   // Round reference prices down to thousands, never imply single-dollar precision.
   const amount=x=>money(Math.floor(x*fx/1000)*1000,currency);
   const positive=cases.filter(c=>c.status==='priced'),base=cases.find(c=>c.key===result.baseCaseKey)||cases[0];
-  const displayed=base.status==='priced'?base:positive.at(-1)||base;
+  const displayed=displayedCase(result);
   const priceLabel=base.status==='priced'?amount(base.pricePerMW)
     :positive.length?L(['With improved terms, up to ','条件改善后最高 '])+amount(displayed.pricePerMW):L(['Improve cost or income terms','需改善建设或收入条件']);
   const assumptions=h('div',{},h('p',{},L(REFERENCE_METHOD)),

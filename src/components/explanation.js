@@ -36,7 +36,12 @@ export function explanation(label,title,content,{className='acq-explain'}={}){
   };
   popup.append(typeof content==='function'?content():content,
     h('button',{type:'button',class:'acq-explain',onclick:()=>{dismissHover=true;suppress=true;close();button.focus();queueMicrotask(()=>{suppress=false;});}},L(['Close','关闭'])));
-  button.addEventListener('pointerenter',show);
+  // Narrow/touch layouts open on tap or keyboard focus. A synthetic mouse
+  // enter after scrolling or translating must not put a panel over the next
+  // control the reader is trying to use.
+  button.addEventListener('pointerenter',event=>{
+    if(event.pointerType==='mouse'&&innerWidth>720&&matchMedia('(hover: hover) and (pointer: fine)').matches)show();
+  });
   button.addEventListener('pointerleave',()=>{if(!pinned)timer=setTimeout(close,250);});
   button.addEventListener('focus',()=>{if(!suppress){dismissHover=false;show();}});
   button.addEventListener('blur',event=>{if(!pinned&&!popup.contains(event.relatedTarget))timer=setTimeout(close,250);});

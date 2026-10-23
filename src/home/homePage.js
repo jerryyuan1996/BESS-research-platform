@@ -24,8 +24,8 @@ import { markets } from '../markets/registry.js';
 const T = {
   title: ['BESS investment briefing', '储能投资简报'],
   sub: (n) => ([
-    `What to do across ${n} markets, for the investor you choose: the call, what changed, what is coming, where to focus, what to build and the next step.`,
-    `针对您选择的投资者，覆盖${n}个市场：结论、变化、即将发生的事件、重点方向、应建什么以及下一步。`,
+    `Investment priorities across ${n} markets: what to buy, the price to pay and the conditions behind the return.`,
+    `覆盖${n}个市场：看重点机会、买入价格，以及回报成立的条件。`,
   ]),
   failed: [
     'The briefing could not be loaded. The most likely cause is that the site was updated while this page was open. Reloading fixes that.',

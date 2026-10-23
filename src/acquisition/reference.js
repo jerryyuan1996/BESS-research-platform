@@ -8,6 +8,8 @@ import { REFERENCE_PREMIUM } from './parameters.js';
 import { operatingReference } from './operating.js';
 import { incomeScenario } from './scenarios.js';
 import { constructionCeiling } from './construction.js';
+import { referenceTerms } from './terms.js';
+import { ARCHETYPES } from '../governance/archetypes.js';
 
 /** Strict project adapter. Reference assumptions are added explicitly by
  * marketAcquisitionReference, never silently written into market evidence. */
@@ -17,7 +19,7 @@ export function acquisitionInput(market,stage,overrides={}){
   const {variant,strategyId,chosen,invalid}=incomeScenario(market,u);
   if(invalid)return {stage,conditionsMet:false,sources:[],reason:invalid};
   const life=u.economicLifeYears??15;
-  const operating=operatingReference(variant,strategyId,life),result=operating.result;
+  const operating=operatingReference(variant,strategyId,life,u.runOptions||{}),result=operating.result;
   if(result.na) return {stage,conditionsMet:false,sources:[],reason:result.na};
   const e=variant.comparison.economics;
   const age=u.operatingAgeYears??0;
@@ -50,7 +52,7 @@ export function acquisitionInput(market,stage,overrides={}){
   const cashYears=Array.isArray(u.annual)?u.annual:normalized;
   const scenarios=stage==='operating'?(u.scenarios||[{probability:1,codYears:0,operates:true,costs:[{at:0,amount:u.initialWorksPerMW}],recoveries:[]}]):u.scenarios;
   return {
-    stage,strategyId,currency,fxToUSD:fx,powerMW:market.comparison.archetype.powerMW,durationHours:market.comparison.archetype.durationHours,
+    stage,strategyId,currency,fxToUSD:fx,powerMW:variant.comparison.archetype.powerMW,durationHours:variant.comparison.archetype.durationHours,
     commercialScenario:chosen,contractYears:operating.primaryTerm,
     annual:cashYears,operatingAgeYears:age,economicLifeYears:life,
     decommissioningPerMW:u.decommissioningPerMW,fixedFeesPerMW:u.fixedFeesPerMW,
@@ -89,7 +91,7 @@ export function referenceInputs(market,stage,overrides={}){
   const u={...supplied(declared),...supplied(declared.stages?.[stage]),...supplied(overrides)};
   const {variant,strategyId,chosen,invalid}=incomeScenario(market,u);
   if(invalid)return [];
-  const r=runCase(variant,strategyId,0);
+  const r=runCase(variant,strategyId,0,u.runOptions||{});
   if(r.na || r.feasibility?.status==='fail')return [];
   const e=variant.comparison.economics;
   const currency=u.cashFlowCurrency||u.currency||policy.currency||market.manifest.currency;
@@ -104,7 +106,7 @@ export function referenceInputs(market,stage,overrides={}){
     const pathway=stage==='ready-to-build'?policy.rtbYears:policy.greenfieldYears;
     const localYears=pathway?(c.id==='base'?(pathway[0]+pathway[1])/2:pathway[cautious?1:0]):null;
     const defaultYears=localYears??(stage==='ready-to-build'?c.rtbYears:policy.usQueue?c.usGreenfieldYears:c.greenfieldYears);
-    const years=u.monthsToOperation!=null?u.monthsToOperation/12:stage==='operating'?0:defaultYears;
+    const years=u.monthsToOperation!=null?u.monthsToOperation/12:stage==='operating'?0:Math.max(defaultYears,(e.constructionMonths??0)/12);
     const development=u.developmentPerMW??build*c.developmentShare;
     const remainingBuild=u.remainingBuildPerMW??build;
     const contingency=u.unfixedConstructionPerMW!=null?u.unfixedConstructionPerMW*(stage==='greenfield'?.10:.075):remainingBuild*(c.buildFactor-1);
@@ -114,7 +116,7 @@ export function referenceInputs(market,stage,overrides={}){
     const creditRate=stage==='operating'||!policy.usQueue?0:u.supportCase==='us-itc30'?.30:u.supportCase==='us-itc6'?.06:0;
     const creditBasis=u.eligibleTaxCreditBasisPerMW??remainingBuild*.85;
     const grossCredit=creditBasis*creditRate,netCredit=grossCredit*(u.creditRealisationFactor??.95);
-    const grant=stage==='operating'?0:u.capitalSupportPerMW??0;
+    const grant=stage==='operating'?0:u.capitalSupportPerMW??r.grant/fx;
     const vat=budget*(e.vatPct||0)/100;
     const vatLag=(e.vatLagMonths>0?e.vatLagMonths:cautious?12:6)/12;
     const costs=cod=>[{kind:'construction',at:cod/2,amount:budget+vat}];
@@ -167,6 +169,7 @@ export function referenceInputs(market,stage,overrides={}){
       additionalReserveNetPerMW:complete.additionalReserveNetPerMW,
       capitalSupportPerMW:netCredit+grant,supportCase:u.supportCase??'none',
       taxOverridden:u.cashTaxRate!=null,annualOverridden:Array.isArray(u.annual),scenariosOverridden:Array.isArray(u.scenarios),
+      terms:referenceTerms(variant,input,complete,{buildBudget:budget,development,grant,modelToCash:r.fxRate/fx}),
     }};
   });
 }
@@ -214,7 +217,7 @@ export function acquisitionRecommendations(markets){
   for(const market of markets){
     for(const investor of Object.keys(out))for(const stage of STAGES){
       const declared=market.comparison?.acquisition;
-      if(investor==='developer'&&stage==='operating')continue;
+      if(!ARCHETYPES[investor].entersAt.includes(stage))continue;
       const eligible=declared?.eligibleInvestors?.[stage];
       if(eligible&&!eligible.includes(investor))continue;
       const {input,result}=marketAcquisition(market,stage,investor);

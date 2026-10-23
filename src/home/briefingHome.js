@@ -38,7 +38,7 @@ import { ARCHETYPE_IDS } from '../governance/investability.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
 import { TRIGGER_DIRECTION_LABEL } from '../governance/triggers.js';
 
-import { acquisitionList } from '../acquisition/view.js';
+import { investorHome } from './investorHome.js';
 import { homeState } from './state.js';
 
 const DAY = 86_400_000;
@@ -183,16 +183,19 @@ export function renderBriefingHome(main){
   const seen = nextSeen(readSeen(), Date.now());
   writeSeen(seen);
 
-  main.append(lensBar(lens));
-  const recommendations = acquisitionList(b.acquisitions?.[lens] || [], {
-    referenceData:b.acquisitionReferenceData,
-    selectedStage:homeState.acquisitionStage,
-    onStage:stage=>{homeState.acquisitionStage=stage;requestRender();},
-    onCompare:result=>{homeState.labMarket=result.market;homeState.labStrategy=result.strategyId;navigate('/investment-lab');window.scrollTo(0,0);},
+  main.append(investorHome(b,{
+    marketName:id=>L(b.markets[id]?.name||[id,id]),
     marketLink:result=>marketLink(result.market),
-  });
-  if(recommendations) main.append(recommendations);
-  main.append(h('div', { class: 'grid g2 bf-pair' }, whatChanged(b, lens, seen), whatsComing(b, view, todayMs)));
+    onProject:result=>{
+      setLens(result.investor);homeState.labMarket=result.market;homeState.labStrategy=result.strategyId;
+      homeState.acquisitionStage=result.stage;
+      homeState.acquisitionSelection={key:[result.investor,result.market,result.playId,result.stage].join('/'),
+        market:result.market,stage:result.stage,play:result.play,runOptions:result.runOptions};
+      navigate('/investment-lab');window.scrollTo(0,0);
+    },
+  }));
+  main.append(h('details',{class:'bf-fold'},h('summary',{},L(['Market changes and upcoming events','市场变化与近期事件'])),
+    h('div', { class: 'grid g2 bf-pair' }, whatChanged(b, lens, seen), whatsComing(b, view, todayMs))));
   main.append(theFold());
 }
 
