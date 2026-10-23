@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-22T17:16:41.609Z",
+  "fetchedAt": "2026-10-23T04:59:52.114Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-22T15:00:00.000Z",
+    "to": "2026-10-23T04:09:42.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -125,16 +125,6 @@
       "summary": "Poland has cut coal's share of power generation from 95% to roughly 55% in a decade, with renewables generating over 30% of the country's power last year. That mismatch is already producing negative prices and turning battery storage into one of the country's biggest investment opportunities. Ed is joined by Tomasz…"
     },
     {
-      "t": "2026-10-20T03:47:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/india-must-move-beyond-vgf-subsidy-support-to-build-commercially-viable-bess-market-says-oyster-renewables/",
-      "source": "Energy-Storage.news",
-      "title": "India must move beyond VGF subsidy support to build commercially viable BESS market, says Oyster Renewables",
-      "url": "https://www.energy-storage.news/india-must-move-beyond-vgf-subsidy-support-to-build-commercially-viable-bess-market-says-oyster-renewables/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Oyster Renewable COO talks about India’s BESS growth, domestic manufacturing ambitions, supply chain resilience and challenges."
-    },
-    {
       "t": "2026-10-20T06:00:38.000Z",
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=2dk8hlnaev",
       "source": "Modo Energy",
@@ -143,16 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
-    },
-    {
-      "t": "2026-10-20T07:44:19.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/genesis-opens-200mwh-battery-storage-system-at-new-zealands-largest-power-station/",
-      "source": "Energy-Storage.news",
-      "title": "Genesis opens 200MWh battery storage system at New Zealand’s largest power station",
-      "url": "https://www.energy-storage.news/genesis-opens-200mwh-battery-storage-system-at-new-zealands-largest-power-station/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Genesis Energy has officially opened its first grid-scale battery energy storage system (BESS) at Huntly Power Station on New Zealand's North Island."
     },
     {
       "t": "2026-10-20T10:26:35.000Z",
@@ -473,6 +453,26 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "With utility returns trending downward, the data does not support a national &ldquo;utility greed&rdquo; narrative, writes Guy Caruso, former administrator for the U.S. Energy Information Administration. &nbsp;"
+    },
+    {
+      "t": "2026-10-23T02:55:53.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/alinta-energy-abandons-critical-pumped-hydro-energy-storage-project-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "Alinta Energy abandons ‘critical’ pumped hydro energy storage project in Australia",
+      "url": "https://www.energy-storage.news/alinta-energy-abandons-critical-pumped-hydro-energy-storage-project-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Alinta Energy has discontinued work on the 7.2GWh Oven Mountain pumped hydro energy storage (PHES) project in New South Wales (NSW), Australia."
+    },
+    {
+      "t": "2026-10-23T04:09:42.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/acme-solar-ppa-seci-clean-energy-solar-india-renewables-assets/",
+      "source": "Energy-Storage.news",
+      "title": "ACME Solar signs 1.2GWh PPA with SECI for clean energy supply during non-solar hours from Indian renewables assets",
+      "url": "https://www.energy-storage.news/acme-solar-ppa-seci-clean-energy-solar-india-renewables-assets/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "ACME Solar has signed a 300MW/1,200MWh PPA with the Solar Energy Corporation of India (SECI) for a solar-plus-storage portfolio."
     }
   ],
   "derived": {
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:abcb1996ab82a369cbbbcc5ca703bed65f54e462acaa755070d82678f1dc7080",
-  "envelopeChecksum": "sha256:89fdf00a1206c4dda51f180d3bbb8fd469251ebbd45edc2938edf7728b5b6384"
+  "contentChecksum": "sha256:d8ee0dd121d5bc0a7f8fafe1a097b67af8a9be3d2d94a41b80ce008a9adfe590",
+  "envelopeChecksum": "sha256:ae622a7fb0425f93f6718be974990f13cdbafca9eaf42919170dccc6d0d6c379"
 }
