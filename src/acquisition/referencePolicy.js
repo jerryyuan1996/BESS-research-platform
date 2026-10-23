@@ -18,6 +18,7 @@ export const REFERENCE_SOURCES = {
   us:{label:['IRS: corporate income tax','美国国税局：企业所得税'],url:'https://www.irs.gov/publications/p542'},
   ca:{label:['California: business tax rates','加利福尼亚州：企业税率'],url:'https://www.ftb.ca.gov/file/business/tax-rates.html'},
   tx:{label:['Texas: franchise tax','得克萨斯州：特许经营税'],url:'https://comptroller.texas.gov/taxes/franchise/'},
+  on:{label:['Canada Revenue Agency: federal and Ontario corporation tax rates','加拿大税务局：联邦及安大略省企业税率'],url:'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/corporations/corporation-tax-rates.html'},
   fi:{label:['Finnish Tax Administration: company income tax','芬兰税务局：企业所得税'],url:'https://www.vero.fi/en/businesses-and-corporations/taxes-and-charges/limited-companies-and-cooperatives/income-tax/'},
   inflation:{label:['ECB: inflation and nominal interest rates','欧洲央行：通胀与名义利率'],url:'https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me/html/nominal_and_real_interest_rates.en.html'},
   taxMethod:{label:['UK capital allowances: depreciation tax relief depends on eligibility','英国资本扣除：折旧抵税须满足适用条件'],url:'https://www.gov.uk/capital-allowances/full-expensing'},
@@ -41,6 +42,8 @@ export const MARKET_REFERENCE = {
   ercot:tax([.21,.21],['us','tx'],{usQueue:true,turnoverTax:.0075}),
   caiso:tax([.279836,.279836],['us','ca'],{usQueue:true}),
   fi:tax([.20,.20],['fi']),
+  // Federal 15% net of abatement and reduction, plus Ontario's 11.5% general rate (CRA).
+  ca_on:tax([.265,.265],['on']),
 };
 
 export const REFERENCE_CASES = [

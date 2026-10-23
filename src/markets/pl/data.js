@@ -25,9 +25,9 @@ const M = {
   official: {
     cmPricePln: 260, cmDY: '2030', cmAgreementYears: 17, cmAwardedBessGW: 5.0,
     fleetMW: 1500, fleetMWh: 3500, pipelineGW: 20,
-    daSpreadEur: 75, negHours: 1200, coalSharePct: 55,
+    daSpreadEur: 109, negHours: 1200, coalSharePct: 55,
     supportEurM: 1200, balancingReformYear: 2024,
-    dam2025Eur: 92, idm2025Eur: 88,
+    dam2025Eur: 104, idm2025Eur: 88,
   },
 
   overall: { confidence: 72, codWindow: '2028–2030',
@@ -48,8 +48,10 @@ const M = {
 
   // ---- wholesale ----
   pxLabels: ['Q1-25', 'Q2-25', 'Q3-25', 'Q4-25', 'Q1-26', 'Q2-26'],
-  damSeries: [104, 78, 88, 101, 98, 82],              // €/MWh — SEED
-  spreadSeries: [68, 82, 76, 64, 71, 88],             // €/MWh average daily top–bottom — SEED
+  /* Observed, PSE csdac-pln at the ECB rate of the trading day (2026-10-23):
+     quarterly mean price, and the mean daily four-hour top–bottom spread (TB4). */
+  damSeries: [115, 87, 100, 115, 121, 100],           // €/MWh — PSE
+  spreadSeries: [93, 141, 121, 80, 109, 154],         // €/MWh average daily TB4 — PSE
   negHoursYears: ['2023', '2024', '2025', '2026e'],
   negHoursSeriesY: [180, 550, 1200, 1600],
   spreadBridge: [
@@ -63,7 +65,9 @@ const M = {
     { l: ['Executable net margin', '可执行净价差'], v: 60, t: 'total' },
   ],
   codCases: { 2028: { low: 46, central: 62, high: 78 }, 2029: { low: 41, central: 57, high: 74 }, 2030: { low: 36, central: 52, high: 70 } },
-  dilution: { 2028: 1.05, 2029: 1.00, 2030: 0.91 },
+  /* The engine's merchant path, relative to a 2029 COD (comparison.js PATH:
+     0.898, 0.871, 0.853), so the Lab and the comparison engine agree. */
+  dilution: { 2028: 1.031, 2029: 1.000, 2030: 0.979 },
 
   // ---- balancing ----
   balProducts: [

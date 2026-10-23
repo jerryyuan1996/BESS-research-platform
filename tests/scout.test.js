@@ -108,11 +108,13 @@ async function withAgentLive(run){
 
 /* ---- the roster ---------------------------------------------------------------- */
 
-test('the roster is the nine markets of the first batch, three a region, and none is a registered market', async () => {
-  assert.deepEqual(SCOUT_IDS, ['se', 'ee', 'lt', 'es', 'nl', 'bg', 'cl', 'ca_on', 'sa']);
+test('the roster is the first batch less Ontario, which was registered, and none is a registered market', async () => {
+  /* Ontario left on 2026-10-23, registered by the analyst's ruling
+     (docs/ontario-registration-plan.md); the Americas scouts two until a third is named. */
+  assert.deepEqual(SCOUT_IDS, ['se', 'ee', 'lt', 'es', 'nl', 'bg', 'cl', 'sa']);
   assert.deepEqual(SCOUT_REGION_IDS, ['nordics-baltics', 'southern-eastern-europe', 'americas-middle-east']);
   for (const region of SCOUT_REGION_IDS){
-    assert.equal(scoutIdsIn(region).length, 3, region);
+    assert.equal(scoutIdsIn(region).length, region === 'americas-middle-east' ? 2 : 3, region);
     assert.ok(SCOUT_REGIONS[region].label[0] && SCOUT_REGIONS[region].label[1]);
   }
   assert.equal(MAX_SCOUT_CARDS_PER_RUN, 3, 'a run covers one region');
@@ -907,7 +909,7 @@ test('the home board gets calls and nothing else, and every roster market gets a
   assert.equal(es.region.label[0], 'Southern and Eastern Europe');
   assert.equal(scoutBoardRows(index, 'developer').find(r => r.market.id === 'es').call.call, 'opportunistic');
   assert.equal(scoutBoardRows(index, 'strategic').find(r => r.market.id === 'es').call, null);
-  /* Before any card exists, nine rows that say so. */
+  /* Before any card exists, eight rows that say so. */
   assert.ok(scoutBoardRows({}).every(r => r.calls === null));
   assert.ok(!('ret' in es) && !('fit' in es), 'a scouting row carries a return or a fit');
 });
@@ -922,10 +924,10 @@ test('the scout page shows three pillars, no fit and no return, and leads with a
   assert.equal(data.streak, 0);
 
   const page = buildScoutPage(data, { on: '2026-11-12' });
-  assert.equal(page.total, 9);
+  assert.equal(page.total, 8);
   assert.equal(page.writtenCount, 1);
   assert.equal(page.streakNeeded, SCOUT_EXIT_STREAK);
-  assert.deepEqual(page.regions.map(r => r.rows.length), [3, 3, 3]);
+  assert.deepEqual(page.regions.map(r => r.rows.length), [3, 3, 2]);
   const rows = page.regions.flatMap(r => r.rows);
   assert.ok(rows.filter(r => r.market.id !== 'es').every(r => r.written === false), 'a market with no card is shown as having none');
 
@@ -952,7 +954,7 @@ test('the status command reports the streak, each card and whether it was checke
   assert.equal(before.live, false);
   assert.equal(before.streak, 0);
   assert.equal(before.needed, 6);
-  assert.ok(before.rows.length === 9 && before.rows.every(r => !r.written));
+  assert.ok(before.rows.length === 8 && before.rows.every(r => !r.written));
   assert.match(renderScoutStatus(before), /Consecutive clean passes: 0 of 6/);
   assert.match(renderScoutStatus(before), /The exit condition is not met\./);
 

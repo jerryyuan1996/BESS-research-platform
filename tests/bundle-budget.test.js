@@ -72,12 +72,18 @@ const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
  * MEASURED 207.64 after the scouting tier (plan phase 4), from 207.16: the
  * /scout route's shell, one navigation link, and the /data page's statement of
  * who writes a scout card.
+ *
+ * RAISED 222 TO 232 for Ontario (2026-10-23): its comparison interface, source
+ * register, congestion register and decision profile. Measured 219.36 at
+ * 9549dd6 and 229.60 with Ontario, +10.24 — Finland's entry cost about 8.
  */
 const BUDGET = {
   // 2026-10-17: Investment Lab now loads on its route. Move 67 kB of
   // allowance from the entry to shared dependencies, keeping the combined
   // entry + shared cap at 326 kB. Measured entry 145.8, shared 162.45.
-  entry: 155,
+  // 2026-10-23: Ontario registered as the sixteenth market. Measured 156.75 after
+  // merging main (its comparison, source, congestion and decision-profile modules).
+  entry: 159,
 
   /* THE HOME PAGE'S FIRST VIEW: the entry chunk plus everything the verdict
      board loads — the board itself and the method layer (anchors, investor
@@ -115,7 +121,9 @@ const BUDGET = {
   // (25.1 -> 12.5 kB gzip); allow 15 kB for this additional first-view content.
   // 213.9 KiB measured with the third reference case, its provenance and
   // actionable construction conditions; calculator/engine remain lazy.
-  home: 220,
+  // 2026-10-23: 227.23 measured after merging main, with Ontario and the merchant-
+  // lines plays in the briefing.
+  home: 230,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -144,9 +152,11 @@ const BUDGET = {
      parity with the other dashboards when it entered the engine — signal
      cards, the timeline, the reserve derivation, the design answer, the grid
      map and congestion register on its tab, the transactions, the Lab and the
-     committee gates. Measured 36.7, still the smallest market chunk. */
+     committee gates. Measured 36.7, still the smallest market chunk.
+
+     ONTARIO 28 (2026-10-23), the sixteenth market, ungraded: measured 22.8. */
   markets: {
-    fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
+    ca_on: 28, fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
 
@@ -268,7 +278,9 @@ const BUDGET = {
        Finland: two score notes, restated theses and plays, Finland's priced
        play and the WA and Poland plays moved to the engine's best design.
        Measured 23.23. */
-    'verdict-board': 24,
+    /* 25 from 24 (2026-10-23): 24.24 at 9549dd6, already over from the
+       merchant-lines work, and 24.36 with Ontario's row (+0.13). */
+    'verdict-board': 26,   // 2026-10-23: 25.01 after merging main and the two regrades
     /* The briefing that opens the home page since the guided-experience plan
        (PR 4): the six answers and the home projection of the briefing — every
        investor's shortlist, the plays priced by the engine at build time, the
@@ -289,7 +301,7 @@ const BUDGET = {
     // Three 15/20/25-year references replace two: includes tax/lifetime
     // provenance and reverse construction limits. Packed tuples and rounded
     // display money reduce 40.61 to 36.80 KiB; no engine is loaded on home.
-    'briefing-data': 40,
+    'briefing-data': 42,   // 2026-10-23: 40.62 after merging main, with Ontario's rows and the new plays
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,
@@ -317,8 +329,12 @@ const BUDGET = {
 
        RAISED FROM 72 TO 76 with Finland's entry to the engine: the grades
        re-ranked over fifteen, Finland's thesis and floor play, and the WA and
-       Poland play moves, 441 lines in all. Measured 73.43. */
-    'changes': 76,
+       Poland play moves, 441 lines in all. Measured 73.43.
+
+       RAISED FROM 76 TO 88 (2026-10-23): 84.14 at 9549dd6 — the merchant-lines
+       and Japan Round 4 changelog lines — and 84.29 with Ontario's two re-graded
+       asset returns (Tokyo, the NEM). */
+    'changes': 88,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four
@@ -337,7 +353,7 @@ const BUDGET = {
 
 /** Every registered market must have its own chunk. Thirteen dashboards for
  *  fifteen allocation points — Japan shares one across its three. */
-const EXPECTED_MARKET_CHUNKS = 13;
+const EXPECTED_MARKET_CHUNKS = 14;   // 14 since Ontario, 2026-10-23
 
 /**
  * Shared modules that must live OUTSIDE the entry chunk, identified by a marker
@@ -396,6 +412,7 @@ const MUST_NOT_BE_IN_ENTRY = {
   ercot: 'ercot-grid-map',
   caiso: 'caiso-grid-map',
   fi: 'fi-grid-map',
+  ca_on: 'ca_on-grid-map',
 };
 
 function skipWithoutDist(t){

@@ -7,17 +7,17 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 2,
+      "grade": 1,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Eleventh of fifteen markets on hold IRR, 2.8%.",
-        "持有期IRR为2.8%，在十五个市场中排第十一。"
+        "Thirteenth of sixteen markets on hold IRR, 2.8%.",
+        "持有期IRR为2.8%，在十六个市场中排第十三。"
       ],
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-23",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -109,13 +109,21 @@
     },
     "supplyChainOrigin": {
       "dimension": "supplyChainOrigin",
-      "grade": 3,
+      "grade": 2,
       "trend": "stable",
-      "basis": "practitioner",
-      "evidence": [],
-      "asOf": "2026-10-12",
+      "basis": "official",
+      "evidence": [
+        "occtoLtdaRound4Guidelines",
+        "meti006s02",
+        "hithiumEspaCertification"
+      ],
+      "asOf": "2026-10-23",
       "author": "analyst",
-      "lockedUntil": null
+      "lockedUntil": null,
+      "reason": [
+        "From Round 4 a lithium-ion project clears first for the long-term auction award, which carries nearly all revenue, only on cells from a maker certified under the Economic Security Promotion Act, inside a hard 400 MW cap; other projects win only what certified ones leave. The reference build's supplier, HiTHIUM, is certified.",
+        "自第四轮起，锂离子项目须使用经《经济安全保障推进法》认定厂商的电芯，方可在40万kW的硬性上限内优先获得承载几乎全部收入的长期拍卖中标合同；其他项目只能争取认定项目剩余的容量。参考设计的供应商海辰储能（HiTHIUM）已获认定。"
+      ]
     },
     "policyStability": {
       "dimension": "policyStability",
@@ -190,7 +198,10 @@
       "archetype": "strategic",
       "call": "build-position",
       "route": "greenfield",
-      "where": null,
+      "where": [
+        "A new build on a certified maker's cells",
+        "使用认定厂商电芯的新建项目"
+      ],
       "because": [
         {
           "dimension": "revenueCertainty",
@@ -215,15 +226,15 @@
         }
       ],
       "despite": [
-        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small.",
-        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。"
+        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small. From Round 4 the lithium-ion pool is a hard 400 MW, against 1,700 MW awarded across Round 3's storage categories, so certified bidders compete on cost for less room.",
+        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。自第四轮起，锂离子容量为40万kW的硬性上限，而第三轮储能类别共授予170万kW，认定投标方须在更小的空间内以成本竞争。"
       ],
       "changesIf": [
         "jp-tokyo-ltda-round-4-bids"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     },
     "infraFund": {
@@ -289,15 +300,15 @@
         }
       ],
       "despite": [
-        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small.",
-        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。"
+        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small. From Round 4 the lithium-ion pool is a hard 400 MW, against 1,700 MW awarded across Round 3's storage categories, so certified bidders compete on cost for less room.",
+        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。自第四轮起，锂离子容量为40万kW的硬性上限，而第三轮储能类别共授予170万kW，认定投标方须在更小的空间内以成本竞争。"
       ],
       "changesIf": [
         "jp-tokyo-ltda-round-4-bids"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     },
     "developer": {
@@ -322,15 +333,15 @@
         }
       ],
       "despite": [
-        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small.",
-        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。"
+        "The secured case is an auction winner's: the award returns most earnings from other markets, and the battery category in each round is small. From Round 4 the lithium-ion pool is a hard 400 MW, against 1,700 MW awarded across Round 3's storage categories, so certified bidders compete on cost for less room.",
+        "锁定收入只属于拍卖中标者：中标后须返还其他市场的大部分收益，且每轮拍卖中电池类别的规模有限。自第四轮起，锂离子容量为40万kW的硬性上限，而第三轮储能类别共授予170万kW，认定投标方须在更小的空间内以成本竞争。"
       ],
       "changesIf": [
         "jp-tokyo-ltda-round-4-bids"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     }
   },
@@ -340,12 +351,13 @@
       "kind": "event",
       "market": "jp_tokyo",
       "label": [
-        "Long-term decarbonisation auction Round 4 bidding closes; battery awards have cleared at about ¥13,000–25,000 per awarded kW (trade press)",
-        "长期脱碳电源拍卖第四轮投标截止；据行业媒体，蓄电池中标价约为每中标千瓦¥13,000–25,000"
+        "Long-term decarbonisation auction Round 4 bidding closes; certified-cell lithium-ion projects clear first inside a hard 400 MW cap; battery awards have cleared at about ¥12,000–25,000 per awarded kW (trade press)",
+        "长期脱碳电源拍卖第四轮投标截止；使用认定电芯的锂离子项目在40万kW硬性上限内优先中标；据行业媒体，蓄电池中标价约为每中标千瓦¥12,000–25,000"
       ],
       "expected": "2027-02-03",
       "watches": [
-        "revenueCertainty"
+        "revenueCertainty",
+        "supplyChainOrigin"
       ],
       "direction": "either",
       "source": "decision-profile",

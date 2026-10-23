@@ -29,7 +29,7 @@ import { ARCHETYPE_IDS, VERDICT_IDS } from '../governance/investability.js';
 import { playsOf, REVENUE_ROUTE_LABEL } from '../governance/plays.js';
 import { byExpected, isResolved } from '../governance/triggers.js';
 import {
-  tierOf, TIER_ORDER, disagreementOf, evidenceOf, WEAK_INPUT_BASIS,
+  tierOf, TIER_ORDER, disagreementOf, evidenceOf, WEAK_INPUT_BASIS, merchantCoverage,
 } from '../governance/briefing.js';
 import { returnKeyFor } from '../home/boardModel.js';
 
@@ -51,16 +51,41 @@ export function marketDesign(market){
   return { withheld: false, sweep, fit: fitOf(market, { sweep }) };
 }
 
+/** First-year merchant share of revenue in an engine result: merchant ÷ all revenue. */
+function merchantShareOf(run){
+  if (!run || run.na) return null;
+  const m = run.mchY?.[0] ?? 0;
+  const total = (run.secY?.[0] ?? run.capY?.[0] ?? 0) + (run.aucY?.[0] ?? 0) + m;
+  return total > 0 ? m / total : null;
+}
+
+/** A market with a play's own capital grant in place of the market's (`play.grantPct`). */
+function withGrant(market, grantPct){
+  if (!Number.isFinite(grantPct)) return market;
+  const cmp = market.comparison;
+  return { ...market, comparison: { ...cmp, economics: { ...cmp.economics, grantPct } } };
+}
+
 /**
  * What the engine says of one design. Numbers are rounded to what a page
  * prints, so the projection is small and a build is stable to the cent.
+ *
+ * A play may carry its own `grantPct` — a cohort that has won an award the
+ * market's new-entry case does not hold (Poland's NFOŚiGW awardees). The design
+ * is then priced with that grant; its eligibility is the sweep's, since a grant
+ * does not change whether the design holds its floor.
  */
-export function designEconomics(market, design, route, hours){
+export function designEconomics(market, design, route, hours, { grantPct } = {}){
   if (design.withheld) return { priced: false, withheld: true };
   const point = design.sweep.points.find(p => p.route === route && p.hours === hours) || null;
-  const variant = marketAt(market, route, hours);
+  const priced = withGrant(market, grantPct);
+  const variant = marketAt(priced, route, hours);
   const runOptions = point?.runOptions || {};
   const run = variant.na || !point?.priced ? null : runCase(variant, route, BRIEFING_EXIT_YEAR, runOptions);
+  const atCod = Number.isFinite(grantPct) && run ? runCase(variant, route, 0, runOptions) : null;
+  const value = atCod && !atCod.na ? atCod.exitVal - atCod.net : point?.value;
+  const line = merchantCoverage(market.comparison);
+  const share = merchantShareOf(run);
   const weakInputs = Object.entries(point?.inputs || {})
     .filter(([, input]) => input && WEAK_INPUT_BASIS.includes(input.basis))
     .map(([line, input]) => ({ line, basis: input.basis }));
@@ -73,7 +98,7 @@ export function designEconomics(market, design, route, hours){
     eligible: point ? point.eligible !== false : false,
     reason: point && point.eligible === false ? point.reason : null,
     requiredHours: round(finite(point?.term?.requiredHours), 1),
-    value: round(finite(point?.value), 0),
+    value: round(finite(value), 0),
     hold: round(finite(run?.irrHold), 4),
     exit: round(finite(run?.irrExit), 4),
     moic: round(finite(run?.moic), 2),
@@ -84,6 +109,7 @@ export function designEconomics(market, design, route, hours){
     runOptions,
     range: set ? { bear: ends(set.bear), bull: ends(set.bull) } : null,
     weakInputs,
+    merchantLine: line ? { marker: line.marker, coverage: round(line.coverage, 3), share: round(finite(share), 3) } : null,
   };
 }
 

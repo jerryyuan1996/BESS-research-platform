@@ -41,6 +41,19 @@
    The split between the two legs is weighted toward merchant because the
    underlying driver is DAM volatility; the FCR strength shows up in the services
    leg and is therefore the part that decays.
+
+   REVISED 2026-10-23, DOWN, AND THE MERCHANT LEG IS NO LONGER FLAT. The analyst
+   approved docs/merchant-lines-plan-2026-10.md. The €110k seed was the whole of
+   2025's theoretical spread (TB2 €151.0/MWh × 2h × 365 = €110.2k), 104% of what
+   a 2h battery could schedule at perfect foresight (€105.3k), with nothing for
+   the fleet now arriving. That fleet is Romania's own: Transelectrica lists
+   599 MW on 1 April 2026 and 989 MW on 1 August, doubling by year-end.
+   Bulgaria's 5.4 GW mostly stays behind the border, which since April 2026 has
+   split the two prices in up to 63% of hours.
+
+   The seed is now the observed 2025 day-ahead value restated at year 1 (COD
+   2027) along a path fitted on what Bulgaria's fleet did to Bulgarian prices,
+   and `merchantCurve` carries the decline after year 1.
    --------------------------------------------------------------------------- */
 import { band, limits } from '../../comparison/ranges.js';
 import { merchantVintage } from '../../comparison/vintage.js';
@@ -52,6 +65,25 @@ import { quotedEconomics } from '../../comparison/supplierQuote.js';
    saturation arrived at roughly 1.1× the requirement and cut per-MW revenue
    75-80% within two years. Romania crosses that threshold sooner than GB did,
    because the pipeline is larger relative to the requirement. */
+/* The merchant leg's level and path (docs/merchant-lines-plan-2026-10.md §1).
+
+   DA_VALUE_2H_2025  2025 day-ahead value of a 1 MW / 2h battery: hourly prices,
+                     one cycle a day, 88% round trip, perfect foresight, so
+                     €288.5/MW/day × 365. Realisation is taken at 100%: the
+                     15-minute uplift (+8.7% in 2026) and intraday re-trading
+                     offset imperfect foresight (gate MR-1).
+   PATH              factor on that value by calendar year, from Romania's
+                     average fleet (GW: 2025 0.3, 2026 1.1, 2027 2.75, 2028 4.25,
+                     2029 5.75, then flat) over its 6.06 GW average load, on
+                     −24.3% × (1 − e^(−x/0.324)), fitted on Bulgaria against
+                     Poland in January–July and April–September 2026.
+   SLOW_2027         the 2027 factor at half the build rate, for the ceiling. */
+const DA_VALUE_2H_2025 = 288.5 * 365;          // €105,302.5
+const DA_VALUE_2H_2024 = 328.7 * 365;          // €119,975.5, the record year
+const PATH = { 2026: 0.919, 2027: 0.827, 2028: 0.789, 2029: 0.772 };
+const SLOW_2027 = 0.840;
+const YEAR_ONE = 2027;
+
 const FCR_SATURATION = [
   1.00,   // yr 1  — ~37 MW of storage operational against a deep FCR requirement
   0.85,   // yr 2  — first GW lands
@@ -108,10 +140,20 @@ const economics = {
   contractYears: 0,
   postFactor: 0,
 
-  /* €110,000 + €30,000 = €140,000/MW/yr gross = €140/kW/yr, the Clean Horizon
-     assessment. Weighted to merchant: Romania's edge is day-ahead volatility,
-     which is structural, rather than reserve scarcity, which is temporary. */
-  merchGross: 110000,
+  /* The 2025 day-ahead value restated at year 1: €105,302.5 × 0.827 = €87,085.
+     Was €110,000, Clean Horizon's ~€140/kW/yr split €110k merchant / €30k
+     services; the services leg and its saturation curve are unchanged. */
+  merchGross: Math.round(DA_VALUE_2H_2025 * PATH[YEAR_ONE]),
+  /* Year 1 = 2027. 0.789 ÷ 0.827 and 0.772 ÷ 0.827, held after year 3: the
+     fitted curve flattens, so most of the compression is in before COD. */
+  merchantCurve: [1.000, 0.955, 0.934],
+  merchantCurveBasis: {
+    yearOne: YEAR_ONE,
+    text: [
+      'Romania\'s own fleet, 0.3 GW in 2025 to 5.75 GW in 2029 at 2026\'s +1.5 GW a year, on the compression Bulgaria\'s fleet produced in 2026: −24.3% × (1 − e^(−x/0.324)), x = added battery MW ÷ average load.',
+      '罗马尼亚自身储能由2025年的0.3GW按2026年每年新增1.5GW的速度增至2029年的5.75GW，并采用保加利亚储能在2026年造成的价差压缩曲线：−24.3% × (1 − e^(−x/0.324))，x为新增电池功率除以平均负荷。',
+    ],
+  },
   feePct: 10,
   services: 30000,
   servicesCurve: FCR_SATURATION,
@@ -134,8 +176,8 @@ const economics = {
     '20%资本补贴 — 竞争性授予，上限为每MWh 6.9万欧元及每家企业1,500万欧元',
   ],
   servicesNote: [
-    'FCR ~€70/MW/h today; ancillary leg decays as a >9 GW pipeline lands. Merchant leg held flat.',
-    '当前FCR约€70/MW/h；随9GW以上管线投运，辅助服务收入衰减。市场化收入维持不变。',
+    'FCR ~€70/MW/h today; ancillary leg decays as a >9 GW pipeline lands. Merchant leg falls with Romania\'s own fleet: −4.5% in year 2, −6.6% from year 3.',
+    '当前FCR约€70/MW/h；随9GW以上管线投运，辅助服务收入衰减。市场化收入随罗马尼亚自身储能增长而下降：第2年−4.5%，第3年起−6.6%。',
   ],
 };
 
@@ -197,16 +239,17 @@ const ranges = {
     gate: 'G13',
   }),
 
-  /* Both ends are Clean Horizon positions — the one we carried before the 2026-07-30
-     revision, and the whole of the assessment that caused it. */
-  merchGross: band(economics.merchGross, 55400, 140000, {
-    basis: [
-      'The floor is the merchant line this platform carried before the 2026-07-30 revision. The ceiling is Clean Horizon\'s full ~€140/kW/yr Romanian assessment attributed entirely to the merchant leg, i.e. the level if system services are worth nothing. The seed splits it €110k merchant / €30k services because Romania\'s edge is day-ahead volatility, which is structural, rather than reserve scarcity, which is not.',
-      '下限为本平台在2026年7月30日修订前所采用的市场化收入。上限为Clean Horizon对罗马尼亚约€140/kW/年的完整评估值全部计入市场化收入的情形，即假设系统服务价值为零。种子值按€11万市场化/€3万系统服务拆分，因为罗马尼亚的优势在于结构性的日前市场波动，而非并不持久的备用容量稀缺。',
-    ],
-    source: 'Clean Horizon Romania assessment ~€140/kW/yr; 2025 DAM average €110/MWh, max daily spread €168/MWh',
-    gate: 'G9',
-  }),
+  /* Both ends are the same observed series at other realisations and build rates. */
+  merchGross: band(economics.merchGross,
+    Math.round(DA_VALUE_2H_2025 * 0.80 * PATH[YEAR_ONE]),
+    Math.round(DA_VALUE_2H_2024 * 1.10 * SLOW_2027), {
+      basis: [
+        'The seed is the 2025 day-ahead value of a 2h battery (€105.3k: hourly prices, one cycle a day, 88% round trip, perfect foresight) restated at year 1 (COD 2027) by the fleet path, × 0.827. The floor takes 80% realisation, the case where intraday re-trading does not recover imperfect foresight. The ceiling takes 2024\'s record €120.0k at 110% realisation and half the build rate (× 0.840); it is about the €110k the platform carried before 2026-10-23.',
+        '种子值为2h电池2025年日前价值（€105.3k：小时价格、每日一次循环、往返效率88%、完全预见）按储能增长路径折算至第1年（2027年投运），× 0.827。下限取80%实现率，即日内再交易无法弥补预测误差的情形。上限取2024年创纪录的€120.0k、110%实现率及一半的建设速度（× 0.840），约等于本平台2026年10月23日前采用的€110k。',
+      ],
+      source: 'SDAC day-ahead results for Romania, 2023–2025 (ENTSO-E 12.1.D / OPCOM); Transelectrica storage list, 1 Apr and 1 Aug 2026; ESO Bulgaria storage counts; docs/merchant-lines-plan-2026-10.md',
+      gate: 'MR-1',
+    }),
 
   feePct: limits(economics.feePct, 6, 12, {
     kind: 'dispersed',
@@ -258,8 +301,11 @@ export const comparison = {
      the duration it is given. */
   durationResponse: {
     hours: [1, 2, 4, 6, 8],
-    merchantCapture: [1.10, 1.00, 0.82, 0.70, 0.62],
-    merchantCaptureBasis: 'seed',
+    /* Observed: the 2023–2025 mean of day-ahead value per MWh by duration,
+       relative to 2h (docs/merchant-lines-plan-2026-10.md §1). Was the
+       dashboard's seed of 1.10, 1.00, 0.82, 0.70, 0.62. */
+    merchantCapture: [1.095, 1.000, 0.833, 0.688, 0.556],
+    merchantCaptureBasis: 'observed',
     opexEnergyShare: 0.5,
   },
 
@@ -273,6 +319,23 @@ export const comparison = {
   economics,
   ranges,
 
+  /* The line the evidence rule checks (src/governance/briefing.js): the 2025
+     day-ahead value against the seed restated at 2025 (÷ 0.827). */
+  merchantEvidence: {
+    year: 2025,
+    hours: 2,
+    observedPerMW: Math.round(DA_VALUE_2H_2025),
+    restateFactor: PATH[YEAR_ONE],
+    /* 2023–2025 observed: €79,351 / €119,976 / €105,303. */
+    range: [Math.round(217.4 * 365), Math.round(DA_VALUE_2H_2024)],
+    pathFit: 'other-market',
+    source: 'SDAC day-ahead results for Romania, 2025; recompute from ENTSO-E or OPCOM before publication (gate MR-4)',
+    basis: [
+      '2025 day-ahead value of a 2h battery: hourly prices, one cycle a day, 88% round trip, perfect foresight.',
+      '2h电池2025年日前价值：小时价格、每日一次循环、往返效率88%、完全预见。',
+    ],
+  },
+
   /* Both merchant legs priced at the same year. See src/comparison/vintage.js. */
   merchantVintage: merchantVintage(1, economics, ranges, [
     'Year 1. Romania has no capacity mechanism, so both merchant legs carry the entire return and are exposed from commercial operation. FCR saturation after year 1 is carried by servicesCurve rather than folded into the seed.',
@@ -282,8 +345,8 @@ export const comparison = {
   narrative: {
     archetype: ['50 MW · 2h · merchant + grant', '50MW · 2小时 · 市场化+补贴'],
     thesis: [
-      'The best raw spread economics in the set and still zero contracted revenue. A €110/MWh day-ahead average with a €168/MWh maximum daily spread pays for the asset; the FCR premium on top of it pays for the first five years and then does not. Structure — the grant, plus a negotiated floor — has to do the work the market never will.',
-      '样本中原始价差经济性最佳，且合同化收入仍为零。日前均价€110/MWh、单日最大价差€168/MWh足以支撑资产本身；叠加的FCR溢价可支撑前五年，其后不再。仍须由结构 — 补贴加谈判保底 — 承担市场永不承担的职能。',
+      'Wide day-ahead spreads, zero contracted revenue, and a home fleet that doubles this year. Bulgaria\'s batteries mostly stay behind the border; Romania\'s own build takes about 17% off the two-hour value by 2027, and the FCR premium fades after the first five years. Structure — the grant, plus a negotiated floor — has to do the work the market will not.',
+      '日前价差宽、合同化收入为零，且本国储能规模今年翻倍。保加利亚的电池大多被边境阻隔；罗马尼亚自身的建设到2027年将使两小时价值减少约17%，FCR溢价在前五年后消退。仍须由结构 — 补贴加谈判保底 — 承担市场不会承担的职能。',
     ],
     pipelineRatio: '~3.0×',
   },

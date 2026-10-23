@@ -31,6 +31,14 @@ export const FX = {
      0.2496, rounded as the other seeds are. The live ECB feed does not carry
      the złoty, so this one never follows an observed rate. */
   PLN: 0.25,
+  /* Added for Ontario on the analyst's sign-off of 2026-10-23
+     (docs/ontario-registration-plan.md, decision 4). Same method as the złoty:
+     the ECB reference rate on the seed date below was 1.6036 Canadian dollars
+     to the euro; taken through the euro seed, 1.08 / 1.6036 = 0.6735, rounded
+     as the other seeds are. Through the euro seed rather than the observed
+     USD cross (0.709) so that an EUR-priced DC block costs the same in USD in
+     Ontario as in Finland. The live ECB feed carries CAD. */
+  CAD: 0.67,
 };
 
 /** Date the FX seeds above were set. Shown next to the rates on the home page. */

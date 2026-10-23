@@ -103,6 +103,10 @@ const ADMIN1_TARGETS = [
      for the same reason Texas is for ERCOT, and the scope note says so. */
   { match: f => f.properties?.iso_3166_2 === 'US-CA',
     out: 'src/markets/caiso/ca-boundary.json', name: 'California' },
+  /* Ontario is one province and one system operator, so the provincial outline
+     is the market, as it is for Finland. */
+  { match: f => f.properties?.iso_3166_2 === 'CA-ON',
+    out: 'src/markets/ca_on/on-boundary.json', name: 'Ontario' },
 ];
 
 if (ADMIN1_TARGETS.length){

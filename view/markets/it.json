@@ -14,10 +14,10 @@
         "comparison-engine"
       ],
       "reason": [
-        "Third of fifteen markets on hold IRR, 14.6%.",
-        "持有期IRR为14.6%，在十五个市场中排第三。"
+        "Second of fifteen markets on hold IRR, 14.6%.",
+        "持有期IRR为14.6%，在十五个市场中排第二。"
       ],
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-23",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -219,8 +219,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "Capacity market at four hours is the best design in Italy and the third-best return on the platform: 14.6% hold, 17.2% exit.",
-            "四小时容量市场是意大利的最佳设计，回报在本平台排名第三：持有期14.6%，退出17.2%。"
+            "Capacity market at four hours is the best design in Italy and the second-best return on the platform: 14.6% hold, 17.2% exit.",
+            "四小时容量市场是意大利的最佳设计，回报在本平台排名第二：持有期14.6%，退出17.2%。"
           ]
         },
         {
@@ -236,10 +236,11 @@
         "Terna拟将2028年交付的四小时折减系数从0.67下调至0.53，容量收入减少约五分之一，且五分之四的收入仍为市场化收入。"
       ],
       "changesIf": [
-        "it-capacity-derating-dy2028"
+        "it-capacity-derating-dy2028",
+        "it-first-toll-price"
       ],
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     },
     "foreignFirstTimer": {
@@ -325,6 +326,23 @@
       ],
       "direction": "down",
       "source": "derating",
+      "effect": null
+    },
+    {
+      "id": "it-first-toll-price",
+      "kind": "event",
+      "market": "it",
+      "label": [
+        "An Italian toll's price, or a priced tenor, is disclosed; at the €87k seed a toll returns 5.1% and needs about €158k to match the capacity play",
+        "意大利租赁协议的价格或附价格的期限被公开；按€87k的种子值租赁回报为5.1%，需约€158k才能与容量市场方案持平"
+      ],
+      "expected": null,
+      "watches": [
+        "assetReturn",
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "tollPriceGap",
       "effect": null
     },
     {

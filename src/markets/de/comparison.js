@@ -307,6 +307,25 @@ export const comparison = {
   economics,
   ranges,
 
+  /* The line the evidence rule checks (src/governance/briefing.js). SMARD's
+     2025 day-ahead value of a 4h battery paid 73% of the levelised line; the line
+     carries intraday and ancillary revenue that day-ahead does not, which is the
+     disagreement the Thin marker records (docs/merchant-lines-plan-2026-10.md §3). */
+  merchantEvidence: {
+    year: 2025,
+    hours: 4,
+    observedPerMW: Math.round(368.8 * 365),
+    restateFactor: 1,
+    /* 2023–2025 observed: €101,215 / €116,946 / €134,612. */
+    range: [Math.round(277.3 * 365), Math.round(368.8 * 365)],
+    pathFit: 'none',
+    source: 'SMARD (Bundesnetzagentur), day-ahead price DE-LU, filter 4169, 2025',
+    basis: [
+      '2025 day-ahead value of a 4h battery at SMARD prices: hourly, one cycle a day, 88% round trip, perfect foresight.',
+      '4h电池按SMARD价格计算的2025年日前价值：小时价格、每日一次循环、往返效率88%、完全预见。',
+    ],
+  },
+
   /* Both merchant legs priced at the same year. See src/comparison/vintage.js. */
   merchantVintage: merchantVintage(1, economics, ranges, [
     'Year 1. The four-hour archetype is ineligible for the StromVKG capacity auction, so there is no contracted revenue to cover the merchant legs at all and both are exposed from commercial operation.',

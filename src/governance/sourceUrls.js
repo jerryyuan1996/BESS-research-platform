@@ -47,10 +47,17 @@ export const URL_EXEMPT = {
    were supplied by the analyst as documents and published by his ruling of
    2026-10-16. Neither has a public address; the register says what each
    establishes, and the figures are reproduced in docs/supplier-quote-2026-10-plan.md. */
-for (const market of ['gb', 'ie', 'ro', 'pl', 'de', 'it', 'fi', 'nem', 'wa', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido']){
+for (const market of ['gb', 'ie', 'ro', 'pl', 'de', 'it', 'fi', 'nem', 'wa', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido', 'ca_on']){
   for (const id of ['hithiumQuote', 'hithiumMsa']){
     URL_EXEMPT[`${market}:${id}`] = 'A supplier document the analyst supplied; it has no public address.';
   }
+}
+
+/* HiTHIUM's supply-assurance certification, reported by the analyst on
+   2026-10-23 (docs/japan-cell-origin-plan.md). METI's public list did not yet
+   show it; replace this exemption with METI's own entry once it is published. */
+for (const market of ['jp_tokyo', 'jp_kyushu', 'jp_hokkaido']){
+  URL_EXEMPT[`${market}:hithiumEspaCertification`] = 'Practitioner evidence the analyst supplied; not yet on METI\'s public certification list.';
 }
 
 /** Placeholder shapes that must never reach the register. */

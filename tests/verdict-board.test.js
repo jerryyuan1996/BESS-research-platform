@@ -55,25 +55,30 @@ const WITHHELD = new Set(['pl', 'ercot']);
 const boardWithGaps = (lens = null, on = ON) => buildBoard(markets, {
   lens, on, usdPer: FX, ledgerFor, viewFor: (id) => (WITHHELD.has(id) ? null : viewFor(id)),
 });
+/* Ontario is registered and not yet graded (2026-10-23), so the board carries
+   one ungraded row of its own, and the withheld two add to it. */
+const UNGRADED = markets.filter(m => !hasView(m.manifest.id)).map(m => m.manifest.id);
 
-test('every registered market is on the board, and every one of them is graded', () => {
+test('every registered market is on the board, and every one with a view is graded', () => {
   const b = board();
   assert.equal(b.rows.length, markets.length);
   assert.deepEqual(new Set(b.rows.map(r => r.market.manifest.id)), new Set(markets.map(m => m.manifest.id)));
-  /* Four until plan phase 5 graded the other eleven. */
-  assert.equal(b.gradedCount, markets.length);
-  assert.equal(b.ungradedCount, 0);
+  /* Four until plan phase 5 graded the other eleven; Ontario, registered on
+     2026-10-23, is the one market not yet graded. */
+  assert.deepEqual(UNGRADED, ['ca_on']);
+  assert.equal(b.gradedCount, markets.length - UNGRADED.length);
+  assert.equal(b.ungradedCount, UNGRADED.length);
   for (const r of b.rows) assert.equal(r.graded, hasView(r.market.manifest.id));
 
   const gaps = boardWithGaps();
-  assert.equal(gaps.ungradedCount, WITHHELD.size);
-  for (const r of gaps.rows) assert.equal(r.graded, !WITHHELD.has(r.market.manifest.id));
+  assert.equal(gaps.ungradedCount, WITHHELD.size + UNGRADED.length);
+  for (const r of gaps.rows) assert.equal(r.graded, !WITHHELD.has(r.market.manifest.id) && hasView(r.market.manifest.id));
 });
 
 test('a market that has not been graded shows its return and no verdict', () => {
   for (const lens of [null, ...ARCHETYPE_IDS]){
     const ungraded = boardWithGaps(lens).rows.filter(r => !r.graded);
-    assert.equal(ungraded.length, WITHHELD.size, 'the board with gaps has ungraded rows to check');
+    assert.equal(ungraded.length, WITHHELD.size + UNGRADED.length, 'the board with gaps has ungraded rows to check');
     for (const r of ungraded){
       const id = r.market.manifest.id;
       assert.equal(r.cells, null, `${id}: an ungraded market must carry no verdict cells`);

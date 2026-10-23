@@ -6,6 +6,7 @@ export const RATE_SNAPSHOT = Object.freeze({
   GBP:{rate:.055,observed:'2026-10-15',source:'https://www.bankofengland.co.uk/statistics/yield-curves'},
   AUD:{rate:.055,observed:'2026-09-30',source:'https://www.rba.gov.au/statistics/tables/'},
   USD:{rate:.0525,observed:'2026-10-16',source:'https://home.treasury.gov/resource-center/data-chart-center/interest-rates'},
+  CAD:{rate:.0384,observed:'2026-10-16',source:'https://www.bankofcanada.ca/rates/interest-rates/canadian-bonds/'},
   JPY:{rate:.03,observed:'2026-10-15',source:'https://www.mof.go.jp/english/policy/jgbs/reference/interest_rate/index.htm'},
   PLN:{rate:.0625,observed:'2026-09-30',sovereign:true,source:'https://data.ecb.europa.eu/data/datasets/IRS/IRS.M.PL.L.L40.CI.0000.PLN.N.Z'},
   RON:{rate:.0675,observed:'2026-09-30',sovereign:true,source:'https://data.ecb.europa.eu/data/datasets/IRS/IRS.M.RO.L.L40.CI.0000.RON.N.Z'},

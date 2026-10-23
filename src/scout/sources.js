@@ -143,14 +143,6 @@ export const SCOUT_SOURCES = {
     'investchile-storage': official('InvestChile', 'https://blog.investchile.gob.cl/en/chile-energy-storage-approved-projects', OPENED, TERMS.investchile),
     'essnews-chile': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/chile/', OPENED, TERMS.pvMagazine),
   },
-  ca_on: {
-    'ieso-lt2': official('Independent Electricity System Operator', 'https://www.ieso.ca/en/Sector-Participants/Resource-Acquisition-and-Contracts/Long-Term-2-RFP', OPENED, TERMS.ieso),
-    'ieso-connection-faq': official('Independent Electricity System Operator', 'https://www.ieso.ca/Sector-Participants/Connection-Process/Frequently-Asked-Questions', null, TERMS.ieso),
-    'ised-investment-canada': official('Innovation, Science and Economic Development Canada', 'https://ised-isde.canada.ca/site/investment-canada-act/en/what-investment-canada-act', OPENED, TERMS.canada),
-    'cer-storage-snapshot': official('Canada Energy Regulator', 'https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/market-snapshots/2026/market-snapshot-battery-storage-technology-evolving-as-batteries-play-larger-role-in-electricity-systems.html', OPENED, TERMS.canada),
-    'canrea-numbers': thirdParty('Canadian Renewable Energy Association', 'https://renewablesassociation.ca/by-the-numbers/', OPENED, TERMS.canrea),
-    'essnews-canada': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/canada/', OPENED, TERMS.pvMagazine),
-  },
   sa: {
     'sppc-home': official('Saudi Power Procurement Company', 'https://www.sppc.com.sa/', null, unread),
     'spa-storage-group-2': official('Saudi Press Agency', 'https://www.spa.gov.sa/en/N2568317', null, unread),

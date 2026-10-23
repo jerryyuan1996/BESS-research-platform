@@ -177,8 +177,9 @@ test('a graded market is graded on every dimension, so every archetype has a sco
      dimension blanks its pillar and the fit. A market is entered whole. */
   const graded = (await committed.readAll()).filter(v => Object.keys(v.grades).length);
   /* The four corners first, then the other eleven as the analyst graded them
-     (plan phase 5). Every registered market is graded now. */
-  assert.deepEqual(graded.map(v => v.marketId).sort(), registered.map(m => m.manifest.id).sort());
+     (plan phase 5). Every registered market is graded except Ontario,
+     registered on 2026-10-23 and not yet graded. */
+  assert.deepEqual(graded.map(v => v.marketId).sort(), registered.map(m => m.manifest.id).filter(id => id !== 'ca_on').sort());
   for (const view of graded){
     assert.deepEqual(Object.keys(view.grades).sort(), [...DIMENSION_IDS].sort(), `${view.marketId}: not graded on every dimension`);
     const result = assessMarket(view, byId(view.marketId), ledgerFor(view.marketId), FX, { on: ON });
@@ -238,7 +239,8 @@ test('a committed verdict the score disagrees with says why', async () => {
         `${view.marketId}/${flag.archetype}: "${flag.call}" disagrees with its score (${flag.kind}) and carries no scoreNote`);
     }
   }
-  assert.equal(verdicts, registered.length * ARCHETYPE_IDS.length, 'every market by four archetypes');
+  /* Every graded market by four archetypes; Ontario is not yet graded. */
+  assert.equal(verdicts, (registered.length - 1) * ARCHETYPE_IDS.length, 'every graded market by four archetypes');
 });
 
 test('every machine-written line in the committed store is accounted for', async () => {

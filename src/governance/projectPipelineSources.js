@@ -123,6 +123,10 @@ export const PIPELINE_SOURCES = {
     'Fingrid publishes storage capacity as an aggregate series, not a project-level register — so even with the licence resolved there is nothing project-level to plot. The series is Creative Commons Attribution and republishable; what gate FI-2 covers is provisioning the API key and implementing attribution, which would give the aggregate, not coordinates. Project-level knowledge of the Finnish fleet is developer announcements, a pipeline of intentions rather than a register. The map renders no storage layer rather than one built from press releases.',
     'Fingrid公布的是储能容量的汇总序列，而非项目级登记册 — 因此即便许可问题解决，也不存在可供绘制的项目级数据。该序列采用知识共享署名许可，可以转载；研究缺口FI-2所涵盖的是申请API密钥与落实署名要求，而这只能获得汇总值而非坐标。目前对芬兰储能机组的项目级了解来自开发商公告，属意向性管线而非登记册。因此该市场不渲染储能图层，而非依据新闻稿构建图层。',
   ]),
+  ca_on: NO_SOURCE([
+    'IESO publishes each procurement\'s winners with the closest town, municipality and zone, not coordinates, and no project-level storage register with locations was found. The Ontario map plots the five sourced plants at town and county centroids on its own thematic layer instead; a storage layer built from those would claim a precision the sources do not give.',
+    'IESO公布的各轮采购中标结果仅含最近城镇、市镇与区域，不含坐标；亦未找到含位置的项目级储能登记册。安大略地图以城镇及县中心坐标在其主题图层上标注五座有来源的电站；据此构建储能图层将宣称来源所不具备的精度。',
+  ]),
 };
 
 function JAPAN_REASON(){

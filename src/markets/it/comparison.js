@@ -9,7 +9,7 @@
             de-rated capacity on 15-year contracts went to BESS, clearing at
             €47,000/MW/yr.
      mer    merchant. MSD is the deepest ancillary pool in Europe for storage.
-     toll   three signed Italian tolls with European utility counterparties —
+     toll   three announced Italian tolls with European utility counterparties —
             Zelestra/BKW, Zelestra/EnBW, Axpo/Zelestra. No price disclosed in any.
      ltda   MACSE, Terna's centralised storage procurement.
 
@@ -139,7 +139,7 @@ const economics = {
      against, which makes it a better anchor than a warranty curve. */
   degr: 1.1,
 
-  /* No Italian toll price has been disclosed in any of the three signed deals.
+  /* No Italian toll price has been disclosed in any of the three announced deals.
      The seed sits between the two published anchors a toll must clear — see the
      ranges for the arithmetic. */
   toll: 87000,
@@ -284,10 +284,10 @@ const ranges = {
 
   toll: band(economics.toll, economics.ltda.payment, WHOLESALE_SOUTH, {
     basis: [
-      'No Italian toll price has been disclosed in any of the three signed deals — Zelestra/BKW, Zelestra/EnBW and Axpo/Zelestra. Both ends are therefore anchors a rational toll must sit between rather than quotations. The floor is the MACSE four-hour equivalent of €51,836/MW/yr: below it a developer would take the TSO contract instead. The ceiling is the four-hour wholesale spread of €123,000/MW/yr: above it the offtaker loses money on the wholesale leg alone, before any MSD upside. The seed is the midpoint.',
-      '三笔已签署的意大利租赁交易 — Zelestra与BKW、Zelestra与EnBW、Axpo与Zelestra — 均未披露价格。因此两端均为理性租赁定价所应落入的锚点区间，而非实际报价。下限为MACSE四小时等值的每MW每年€51,836：低于此水平开发商将转而选择电网运营商合同。上限为四小时批发价差每MW每年€123,000：高于此水平，承购方仅在批发环节即告亏损，尚未计入任何辅助服务市场的上行空间。种子值取中值。',
+      'No Italian toll price has been disclosed in any of the three announced deals — Zelestra/BKW, Zelestra/EnBW and Axpo/Zelestra. Both ends are therefore anchors a rational toll must sit between rather than quotations. The floor is the MACSE four-hour equivalent of €51,836/MW/yr: below it a developer would take the TSO contract instead. The ceiling is the four-hour wholesale spread of €123,000/MW/yr: above it the offtaker loses money on the wholesale leg alone, before any MSD upside. The seed is the midpoint.',
+      '三笔已公告的意大利租赁交易 — Zelestra与BKW、Zelestra与EnBW、Axpo与Zelestra — 均未披露价格。因此两端均为理性租赁定价所应落入的锚点区间，而非实际报价。下限为MACSE四小时等值的每MW每年€51,836：低于此水平开发商将转而选择电网运营商合同。上限为四小时批发价差每MW每年€123,000：高于此水平，承购方仅在批发环节即告亏损，尚未计入任何辅助服务市场的上行空间。种子值取中值。',
     ],
-    source: 'Three signed Italian tolling agreements (prices undisclosed); bounded by the MACSE clear and the Modo wholesale forecast',
+    source: 'Three announced Italian tolling agreements (prices undisclosed); bounded by the MACSE clear and the Modo wholesale forecast',
     gate: 'G16',
   }),
 
@@ -377,6 +377,24 @@ export const comparison = {
   economics,
   ranges,
 
+  /* The line the evidence rule checks (src/governance/briefing.js). GME's 2025
+     South prices paid 63% of Modo's €123k; the forecast is flat to 2040 while its
+     own fleet view grows eightfold (docs/merchant-lines-plan-2026-10.md §4). */
+  merchantEvidence: {
+    year: 2025,
+    hours: 4,
+    observedPerMW: Math.round(211.0 * 365),
+    restateFactor: 1,
+    /* 2023–2025 observed: €86,688 / €77,526 / €77,015. */
+    range: [Math.round(211.0 * 365), Math.round(237.5 * 365)],
+    pathFit: 'none',
+    source: 'GME, MGP zonal price SUD, 2025',
+    basis: [
+      '2025 day-ahead value of a 4h battery at GME South prices: hourly, one cycle a day, 88% round trip, perfect foresight.',
+      '4h电池按GME南部价格计算的2025年日前价值：小时价格、每日一次循环、往返效率88%、完全预见。',
+    ],
+  },
+
   /* Both merchant legs priced at the same year. See src/comparison/vintage.js. */
   merchantVintage: merchantVintage(1, economics, ranges, [
     'Year 1. Capacity Market revenue is additive to merchant, so both merchant legs are exposed from commercial operation and are stated on the same zonal basis.',
@@ -386,8 +404,8 @@ export const comparison = {
   narrative: {
     archetype: ['100 MW · 4h · four routes to market', '100MW · 4小时 · 四条售电路径'],
     thesis: [
-      'The only market on this platform offering all four routes, and the only one where the choice between them is a genuine spread rather than a formality. MACSE cleared at 35% of its own price cap and at roughly half the wholesale value of the same stored energy — what it buys is a fifteen-year TSO counterparty and the gearing that comes with it. Three signed tolls prove an offtake market exists at a price nobody has published.',
-      '本平台唯一提供全部四条路径的市场，也是唯一一个路径选择构成真实价差而非形式差别的市场。MACSE以其自身价格上限的35%出清，约为同等储存电量批发价值的一半 — 其换来的是十五年期电网运营商对手方以及随之而来的杠杆能力。三笔已签署的租赁交易证明存在承购市场，但无人公布其价格。',
+      'The only market on this platform offering all four routes, and the only one where the choice between them is a genuine spread rather than a formality. MACSE cleared at 35% of its own price cap and at roughly half the wholesale value of the same stored energy — what it buys is a fifteen-year TSO counterparty and the gearing that comes with it. Three announced tolls prove an offtake market exists at a price nobody has published.',
+      '本平台唯一提供全部四条路径的市场，也是唯一一个路径选择构成真实价差而非形式差别的市场。MACSE以其自身价格上限的35%出清，约为同等储存电量批发价值的一半 — 其换来的是十五年期电网运营商对手方以及随之而来的杠杆能力。三笔已公告的租赁交易证明存在承购市场，但无人公布其价格。',
     ],
     pipelineRatio: '~8×',
   },

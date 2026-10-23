@@ -27,7 +27,9 @@ const M = {
     schemeBudgetEurM: 150, schemeMinMWh: 2174, policyExtraMW: 2496,
     connTariffGuarPct: 20, auctionGuarEurMW: 20000, estabGuarEurKW: 30,
     authFeb2026MW: 596,
-    fleetMW: 420, fleetMWh: 780,
+    /* Transelectrica's storage list, excluding prosumers, 1 August 2026 (via
+       Romania Insider, 5 Aug 2026). Was 420 MW / 780 MWh. */
+    fleetMW: 989, fleetMWh: 1975,
   },
 
   overall: { confidence: 68, codWindow: '2027–2029',
@@ -50,7 +52,9 @@ const M = {
     { l: ['Executable net margin', '可执行净价差'], v: 62, t: 'total' },
   ],
   codCases: { 2027: { low: 45, central: 62, high: 78 }, 2028: { low: 40, central: 58, high: 75 }, 2029: { low: 36, central: 54, high: 72 } },
-  dilution: { 2027: 1.05, 2028: 1.00, 2029: 0.92 },
+  /* The engine's merchant path, relative to a 2028 COD, so the Lab and the
+     comparison engine agree (comparison.js PATH: 0.827, 0.789, 0.772). */
+  dilution: { 2027: 1.047, 2028: 1.000, 2029: 0.978 },
 
   // ---- balancing & reserves ----
   balProducts: [

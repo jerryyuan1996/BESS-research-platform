@@ -58,6 +58,8 @@ const COVERED = [
   { id:'caiso', countryId:null, flagCode:'us',
     name:['United States — CAISO', '美国 — CAISO'],
     route:'/markets/caiso', point:[-119.5, 36.5] },
+  { id:'ca_on', countryId:null, flagCode:'ca',
+    name:['Canada — Ontario', '加拿大 — 安大略'], route:'/markets/ontario', point:[-84.5, 46.5] },
 ];
 
 const COVERED_BY_COUNTRY = new Map(
@@ -79,6 +81,7 @@ const MARKET_LINKS = [
   ['us', ['PJM', 'PJM'], '/markets/pjm'],
   ['us', ['ERCOT', 'ERCOT'], '/markets/ercot'],
   ['us', ['CAISO', 'CAISO'], '/markets/caiso'],
+  ['ca', ['ON', '安大略'], '/markets/ontario'],
 ];
 
 function marketLink([flagCode, label, route]){

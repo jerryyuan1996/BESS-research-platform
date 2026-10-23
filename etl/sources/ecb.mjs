@@ -26,7 +26,7 @@ import { buildSnapshot } from '../lib/envelope.mjs';
 const URL = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml';
 
 /** Currencies the platform needs, from src/comparison/assumptions.js. */
-const NEEDED = ['AUD', 'GBP', 'JPY'];   // EUR is handled via the USD/EUR quote
+const NEEDED = ['AUD', 'CAD', 'GBP', 'JPY'];   // EUR is handled via the USD/EUR quote
 
 /** Parse the ECB daily cube. Regex rather than an XML parser: the document is a
     flat, stable, machine-generated list of self-closing tags, and adding a

@@ -49,9 +49,12 @@ test('every market has the same seven tabs, and each of its sections is in exact
 test('the brief stands alone; the overview leads the story; entry leads, then the grid', () => {
   for (const m of markets){
     const tabs = Object.fromEntries(tabsFor(m.tabs).map(t => [t.id, t.sections]));
-    assert.deepEqual(tabs.case, ['case'], m.manifest.id);
-    assert.deepEqual(tabs.story, ['home', 'story'], m.manifest.id);
-    assert.deepEqual(tabs.entry, ['entry', 'grid'], m.manifest.id);
+    /* A market not yet graded has no brief and no entry section: its landing
+       tab is the overview, and Entry holds the grid alone (Ontario, 2026-10-23). */
+    const graded = sectionIds(m).includes('case');
+    assert.deepEqual(tabs.case, graded ? ['case'] : ['home'], m.manifest.id);
+    assert.deepEqual(tabs.story, graded ? ['home', 'story'] : ['story'], m.manifest.id);
+    assert.deepEqual(tabs.entry, graded ? ['entry', 'grid'] : ['grid'], m.manifest.id);
     assert.deepEqual(tabs.competition, ['pipeline']);
     assert.deepEqual(tabs.capital, ['portfolio']);
     assert.deepEqual(tabs.evidence, ['data']);
@@ -70,9 +73,12 @@ test('every address a dashboard ever had lands on the tab that now holds its sec
     pipeline: ['competition', '/competition'], portfolio: ['capital', '/capital'], data: ['evidence', '/evidence'],
   };
   for (const m of markets){
+    /* An ungraded market's overview is its landing tab. */
+    const graded = sectionIds(m).includes('case');
     for (const old of sectionIds(m)){
       const where = resolveSegment(m.tabs, old);
-      const [tab, path] = EXPECTED[old] ?? [];
+      const [tab, path] = (!graded && old === 'home') ? ['case', '']
+        : (!graded && old === 'grid') ? ['entry', '/entry'] : EXPECTED[old] ?? [];
       assert.ok(tab, `${m.manifest.id}: "${old}" is a section no alias is written for`);
       assert.equal(where.tab.id, tab, `${m.manifest.id}/${old}`);
       assert.ok(where.sections.includes(old), `${m.manifest.id}/${old}: the section is not drawn where its old address lands`);

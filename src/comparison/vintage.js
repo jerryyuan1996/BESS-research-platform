@@ -28,7 +28,10 @@
 
    Forward evolution beyond the vintage year is NOT expressed by moving the seed.
    It is expressed by `servicesCurve`, which the engine already applies per year
-   and which Ireland and Romania have used since before the US markets existed.
+   and which Ireland and Romania have used since before the US markets existed,
+   and, for the arbitrage leg, by `merchantCurve` (Romania and Poland since
+   2026-10-23). A merchant curve starts at 1.00, because the seed IS the year-1
+   level, and carries `merchantCurveBasis` naming the calendar year of year 1.
    A seed is a level at a stated year; a curve is what happens after it. Fusing
    the two is the error this module exists to prevent.
 
@@ -155,6 +158,18 @@ export function validateMerchantVintage(market, strategyId){
     }
     if (e.services !== null && Math.abs(c.base.services - e.services) > 1){
       problems.push(`economics.services (${e.services}) is not the declared base case (${c.base.services})`);
+    }
+  }
+  if (e.merchantCurve !== undefined){
+    const mc = e.merchantCurve;
+    if (!Array.isArray(mc) || !mc.length || !mc.every(v => Number.isFinite(v) && v > 0)){
+      problems.push('economics.merchantCurve must be a non-empty array of positive multipliers');
+    } else if (Math.abs(mc[0] - 1) > 1e-9){
+      problems.push(`economics.merchantCurve must start at 1.00 — the seed is the year-1 level — not ${mc[0]}`);
+    }
+    const b = e.merchantCurveBasis;
+    if (!b || !/^\d{4}$/.test(String(b.yearOne)) || !Array.isArray(b.text) || b.text.length < 2){
+      problems.push('economics.merchantCurveBasis must name yearOne (a calendar year) and carry an [en, zh] text');
     }
   }
   return problems;

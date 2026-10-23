@@ -39,6 +39,7 @@ export const STRONG_TERMS = {
   ercot:       [w('\\bERCOT\\b'), w('\\bTexas\\b'), w('\\bTexan\\b'), w('\\bPUCT\\b')],
   caiso:       [w('\\bCAISO\\b'), w('\\bCalifornia\\b'), w('\\bCalifornian\\b'), w('\\bCPUC\\b')],
   fi:          [w('\\bFinland\\b'), w('\\bFinnish\\b'), w('\\bFingrid\\b'), w('\\bOlkiluoto\\b')],
+  ca_on:       [w('\\bOntario\\b'), w('\\bIESO\\b'), w('\\bLT2\\b'), w('\\bHydro One\\b')],
 };
 
 /** A country-level term, and the markets it stands for when no strong term placed the headline. */

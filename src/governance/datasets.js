@@ -170,18 +170,20 @@ export const DATASETS = [
     kind: 'timeseries',
     marketId: 'pl',
     title: ['Poland day-ahead prices', '波兰日前电价'],
-    connector: 'entsoe',
+    /* PSE's own reporting API, keyless, since 2026-10-23: Poland no longer waits
+       for ENTSOE_TOKEN (docs/merchant-lines-plan-2026-10.md §2). */
+    connector: 'pse',
     source: {
-      name: 'ENTSO-E Transparency Platform',
-      url: 'https://transparency.entsoe.eu/',
-      licence: 'ENTSO-E — reuse permitted with attribution',
-      attribution: 'Source: ENTSO-E Transparency Platform',
+      name: 'PSE — raporty.pse.pl, csdac-pln',
+      url: 'https://api.raporty.pse.pl/api/csdac-pln',
+      licence: 'PSE public reporting data — reuse with attribution to PSE S.A.',
+      attribution: 'Source: PSE S.A.; ECB reference rates',
     },
     refreshHours: 12 * HOURS,
     staleAfterHours: 3 * DAYS,
     bearsOn: ['economics.merchGross'],
     republishable: true,
-    requiresKey: true,
+    requiresKey: false,
     official: true,
   },
 

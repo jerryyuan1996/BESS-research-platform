@@ -78,7 +78,7 @@ SEC_B.home = function (){
       { title:['Card B — Wholesale & Intraday Signal','Card B — 批发与日内市场信号'], live:false, blocks:[
         { t:'chip', cls:'good', text:['Volatility is high and rising — coal exit meets solar growth','波动性高且上升 — 煤电退出遭遇光伏增长'] },
         { t:'kpis', items:[
-          { l:['Average daily day-ahead spread (seed)','日均日前价差（种子）'], v:fmtC(M.spreadSeries[5]) + '<small>/MWh</small>', d:['trailing quarter','最近一个季度'], b:['illus'] },
+          { l:['Average daily four-hour spread','日均四小时价差'], v:fmtC(M.spreadSeries[5]) + '<small>/MWh</small>', d:['Q2 2026, PSE day-ahead prices','2026年第二季度，PSE日前价格'], b:['official'] },
           { l:['Executable net margin','可执行净价差'], v:fmtC(60) + '<small>/MWh</small>', d:[fmtPct((1 - 60 / 88) * 100, 0) + ' of the published spread is not capturable','公布价差中' + fmtPct((1 - 60 / 88) * 100, 0) + '无法捕获'], cls:'down', b:['calc'] },
           { l:['Captured spread at COD ' + cod,'投运年' + cod + '的捕获价差'], v:fmtC(cc.central) + '<small>/MWh</small>', d:['low ' + fmtC(cc.low) + ' · high ' + fmtC(cc.high),'低' + fmtC(cc.low) + ' · 高' + fmtC(cc.high)], b:['illus'] },
           { l:['Negative-price hours (2025, seed)','负电价小时数（2025，种子）'], v:'~' + fmtN(O.negHours) + '<small> h</small>', d:['from ~' + fmtN(M.negHoursSeriesY[0]) + ' h in 2023','由2023年约' + fmtN(M.negHoursSeriesY[0]) + '小时上升'], b:['illus'] },
@@ -419,8 +419,8 @@ SEC_B.energy = function (){
   blocks: [
     { t:'card', mt:false, title:['Price level, spread and negative-price intervals','价格水平、价差与负电价时段'], badges:['illus'], live:true, blocks:[
       { t:'kpis', items:[
-        { l:['Day-ahead average (trailing quarter, seed)','日前均价（最近季度，种子）'], v:fmtC(M.damSeries[5]) + '<small>/MWh</small>', d:['annual seed average ' + fmtC(O.dam2025Eur),'年度种子均值' + fmtC(O.dam2025Eur)], b:['illus'] },
-        { l:['Average daily spread (seed)','日均价差（种子）'], v:fmtC(M.spreadSeries[5]) + '<small>/MWh</small>', d:['widening as solar deepens the trough','随光伏加深低谷而扩大'], b:['illus'] },
+        { l:['Day-ahead average (Q2 2026)','日前均价（2026年第二季度）'], v:fmtC(M.damSeries[5]) + '<small>/MWh</small>', d:['2025 average ' + fmtC(O.dam2025Eur) + ', PSE','2025年均值' + fmtC(O.dam2025Eur) + '，PSE'], b:['official'] },
+        { l:['Average daily four-hour spread','日均四小时价差'], v:fmtC(M.spreadSeries[5]) + '<small>/MWh</small>', d:['widening as solar deepens the trough; PSE','随光伏加深低谷而扩大；PSE'], b:['official'] },
         { l:['Executable net margin','可执行净价差'], v:fmtC(60) + '<small>/MWh</small>', d:[fmtPct((1 - 60 / 88) * 100, 0) + ' of the published spread is not capturable','公布价差中' + fmtPct((1 - 60 / 88) * 100, 0) + '无法捕获'], cls:'down', b:['calc'] },
         { l:['Negative-price hours (2025, seed)','负电价小时数（2025，种子）'], v:'~' + fmtN(O.negHours) + '<small> h</small>', d:['the charging opportunity','充电机会'], b:['illus'] },
       ] },

@@ -184,7 +184,7 @@ SEC_B.story = function (){
         { l:['DAM average price 2025','2025年日前市场均价'], v:fmtC(eur(O.dam2025Wap)) + '<small>/MWh</small>', d:[fmtRON(O.dam2025Wap) + ' · ' + fmt1(O.dam2025TWh) + ' TWh traded', fmtRON(O.dam2025Wap) + ' · 成交' + fmt1(O.dam2025TWh) + 'TWh'], b:['official'] },
         { l:['DAM share of consumption','日前市场占消费比重'], v:O.dam2025SharePct + '<small>%</small>', d:['the rest is bilateral or intraday','其余为双边或日内'], b:['official'] },
         { l:['State-aid scheme for standalone storage','独立储能国家援助计划'], v:fmtCM(O.schemeBudgetEurM * 1e6), d:['capital support, not revenue support','资本支持，非收入支持'], b:['official'] },
-        { l:['Operating storage fleet','在运储能规模'], v:fmtN(O.fleetMW) + '<small> MW</small>', d:[fmtN(O.fleetMWh) + ' MWh — early growth stage','' + fmtN(O.fleetMWh) + 'MWh — 早期成长阶段'], b:['illus'] },
+        { l:['Operating storage fleet','在运储能规模'], v:fmtN(O.fleetMW) + '<small> MW</small>', d:[fmtN(O.fleetMWh) + ' MWh, 1 Aug 2026 — doubling by year-end','' + fmtN(O.fleetMWh) + 'MWh，2026年8月1日 — 年底前翻倍'], b:['official'] },
         { l:['Authorisations in one Feb 2026 meeting','2026年2月单次会议许可'], v:fmtN(O.authFeb2026MW) + '<small> MW</small>', d:['interest is abundant; delivery is not','兴趣充足，交付不足'], b:['official'] },
       ] },
       { t:'reco', b:['Institutional conclusion: ','机构投资结论：'],
