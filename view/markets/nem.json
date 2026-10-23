@@ -1,8 +1,8 @@
 {
   "marketId": "nem",
   "thesis": [
-    "The deepest storage build in the set on the thinnest secured revenue: no capacity market, a tender floor whose level is unpublished, and a merchant spread at a record low as the fleet neared 8,000 MW. At build cost the reference project returns about 4.5%, so the case is the entry price, not the build. Four hours, on a tender award or a toll.",
-    "储能建设规模居各市场之首，锁定收入却最薄：没有容量市场，招标保底水平不公开，且随着储能规模接近8,000MW，市场化价差跌至历史低点。按建设成本测算参考项目回报约4.5%，因此关键在于进入价格而非新建。四小时，依托招标中标合同或租赁。"
+    "The deepest storage build in the set on the thinnest secured revenue: no capacity market, a tender floor whose level is unpublished, and a merchant spread at a record low as the fleet neared 8,000 MW. At build cost the reference project returns 8.2% hold, a thin margin over a fund's yields that rests on modelled CIS floor-and-ceiling terms no award publishes. Four hours, on a tender award or a toll.",
+    "储能建设规模居各市场之首，锁定收入却最薄：没有容量市场，招标保底水平不公开，且随着储能规模接近8,000MW，市场化价差跌至历史低点。按建设成本测算参考项目持有期回报8.2%，仅略高于基金收益率要求，且依赖于平台建模、而任何中标合同均未公开的CIS上下限条款。四小时，依托招标中标合同或租赁。"
   ],
   "grades": {
     "assetReturn": {
@@ -203,15 +203,15 @@
         }
       ],
       "despite": [
-        "The modelled return on the reference project is 4.5%, so the price paid and the contract actually held decide the case.",
-        "参考项目的模型回报仅为4.5%，因此成败取决于买入价格与实际持有的合同。"
+        "The modelled return on the reference project is 8.2%, on CIS terms no award publishes, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报为8.2%，但所依据的CIS条款未见于任何公开的中标合同，因此成败取决于买入价格与实际持有的合同。"
       ],
       "changesIf": [
         "nem-successor-scheme-first-round"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     },
     "infraFund": {
@@ -228,8 +228,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "At build cost the reference project returns 4.5% hold, so only an entry price below build cost clears a fund's hurdle.",
-            "按建设成本测算，参考项目持有期回报仅4.5%，只有低于建设成本的进入价格才能达到基金的回报门槛。"
+            "At build cost the reference project returns 8.2% hold, worth about +$34k per MW at a fund's yields: a thin margin that rests on assumed CIS terms.",
+            "按建设成本测算，参考项目持有期回报8.2%，按基金收益率计每MW价值约+3.4万美元：利润空间很薄，且依赖于假设的CIS条款。"
           ]
         },
         {
@@ -255,7 +255,7 @@
         "nem-successor-scheme-first-round"
       ],
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-23",
       "lockedUntil": null,
       "scoreNote": [
         "The call stays at Opportunistic on the analyst's ruling of 16 October, which holds it there until the research gate on the NEM seeds closes. The score rose on 17 October because capex was rebuilt on the supplier quotation (A$1.54m → A$1.25m/MW before the sponsor position) and hold IRR went from 3.1% to 4.5%; the merchant and award seeds the gate questions are unchanged.",
@@ -277,13 +277,13 @@
         }
       ],
       "despite": [
-        "The modelled return on the reference project is 4.5%, so the price paid and the contract actually held decide the case.",
-        "参考项目的模型回报仅为4.5%，因此成败取决于买入价格与实际持有的合同。"
+        "The modelled return on the reference project is 8.2%, on CIS terms no award publishes, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报为8.2%，但所依据的CIS条款未见于任何公开的中标合同，因此成败取决于买入价格与实际持有的合同。"
       ],
       "changesIf": [],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     },
     "developer": {
@@ -308,15 +308,15 @@
         }
       ],
       "despite": [
-        "The modelled return on the reference project is 4.5%, so the price paid and the contract actually held decide the case.",
-        "参考项目的模型回报仅为4.5%，因此成败取决于买入价格与实际持有的合同。"
+        "The modelled return on the reference project is 8.2%, on CIS terms no award publishes, so the price paid and the contract actually held decide the case.",
+        "参考项目的模型回报为8.2%，但所依据的CIS条款未见于任何公开的中标合同，因此成败取决于买入价格与实际持有的合同。"
       ],
       "changesIf": [
         "nem-successor-scheme-first-round"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     }
   },
@@ -350,18 +350,18 @@
       "hours": 4,
       "stage": "operating",
       "why": [
-        "A tender award secures most revenue for fifteen years at four hours; at build cost it returns 4.5%, so only a cheaper entry price works.",
-        "中标合同可在四小时设计下锁定十五年的大部分收入；按建设成本测算回报仅4.5%，只有更低的进入价格才可行。"
+        "A tender award secures most revenue for fifteen years at four hours; at build cost it returns 8.2% hold and only just clears a fund's yields, on CIS terms the platform assumes.",
+        "中标合同可在四小时设计下锁定十五年的大部分收入；按建设成本测算持有期回报8.2%，仅勉强达到基金收益率要求，且依赖于平台假设的CIS条款。"
       ],
       "action": {
         "text": [
-          "Screen operating assets holding a tender award; bid only at a price that clears the hurdle, not at build cost.",
-          "筛选持有招标中标合同的在运资产；仅以达到回报门槛的价格出价，而非按建设成本。"
+          "Screen operating assets holding a tender award; pay no more than build cost, because the margin over a fund's yields is thin and rests on assumed CIS terms.",
+          "筛选持有招标中标合同的在运资产；出价不超过建设成本，因为相对基金收益率的利润空间很薄，且依赖于假设的CIS条款。"
         ],
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-23",
       "lockedUntil": null
     }
   }
