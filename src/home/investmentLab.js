@@ -58,6 +58,7 @@ import { homeState, labMarket, labOverrides } from './state.js';
 import { createPrintContext, PRINT_STATUS } from '../print/printContext.js';
 import { renderPrintSnapshot } from '../print/printSnapshot.js';
 import { renderAcquisitionLab } from '../acquisition/lab.js';
+import { renderReadinessControls } from '../readiness/controls.js';
 import { EXIT_YEARS } from '../comparison/assumptions.js';
 
 const T = {
@@ -568,6 +569,7 @@ export function renderInvestmentLab(main, marketList, exitYear){
   renderControls(c, engineReady, seedMarket, strategyId);
   main.append(c);
 
+  renderReadinessControls(main,seedMarket,strategyId,overrides,config=>{overrides.revenueReadiness=config;rerender();});
   renderAcquisitionLab(main, seedMarket, strategyId, overrides);
   const legacy=h('details',{class:'lab-legacy',ontoggle:event=>{homeState.labLegacyOpen=event.target.open;}},
     h('summary',{},L(['Reference construction-cost comparison','参考建设成本比较'])),

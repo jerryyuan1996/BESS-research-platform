@@ -4,7 +4,7 @@ import { card } from './card.js';
 import { renderGeographicGridMap } from './geographicGridMap.js';
 import { sectionClaim } from './sectionClaim.js';
 import { claimFor } from '../markets/claimRegistry.js';
-import { byId } from '../markets/registry.js';
+import { byId, markets } from '../markets/registry.js';
 
 function drawersOwnedBy(cardNode){
   return [...cardNode.querySelectorAll('.source-drawer')]
@@ -208,7 +208,13 @@ export function pairOverviewMap(root, data){
   pair.append(firstCard, mapCard);
 }
 
-export function enhanceMarketPage(root, { overviewMap = null, marketId = '', tabId = '' } = {}){
+export function enhanceMarketPage(root, { overviewMap = null, marketId = '', allocationId = marketId, tabId = '' } = {}){
+  if(tabId==='grid'){
+    import('../readiness/panel.js').then(({renderReadinessPanel})=>{
+      const market=byId(allocationId)||markets.find(m=>m.manifest.dashboardId===marketId);
+      if(market && root.isConnected && !root.querySelector('#revenue-readiness'))renderReadinessPanel(root,market);
+    }).catch(error=>console.error('Revenue-readiness section failed to load',error));
+  }
   simplifyEconomicMetrics(root);
   mergeTimelines(root);
   if (overviewMap) pairOverviewMap(root, overviewMap);

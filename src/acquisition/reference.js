@@ -10,6 +10,7 @@ import { incomeScenario } from './scenarios.js';
 import { constructionCeiling } from './construction.js';
 import { referenceTerms } from './terms.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
+import { readinessYearFactor, readinessFactor } from '../comparison/revenueReadiness.js';
 
 /** Strict project adapter. Reference assumptions are added explicitly by
  * marketAcquisitionReference, never silently written into market evidence. */
@@ -35,11 +36,14 @@ export function acquisitionInput(market,stage,overrides={}){
     const renewal=(cash.renewal+(hasContract?0:unconfirmed))*(u.unsecuredRevenueFactor??1);
     const capex=cash.capex;
     const canTrade=strategyId!=='toll'||e.tollIsFloor||year>=(e.tollYears??15)&&e.tollRevertsToMerchant;
-    const extraReserve=canTrade?(u.additionalReserveNetPerMW??0)*result.fxRate*(1-(e.degr||2)/100)**year:0;
+    const extraReserveRate=canTrade?(u.additionalReserveNetPerMW??0)*result.fxRate*(1-(e.degr||2)/100)**year:0;
+    const extraReserve=extraReserveRate*readinessYearFactor(result.revenueReadiness,'services',year+1);
     const merchant=(cash.merchant+extraReserve)*(u.unsecuredRevenueFactor??1);
     const opex=cash.opex*(u.operatingCostFactor??1);
     const adjustedRevenue=secured+renewal+merchant;
     return {secured,renewal,merchant,opex,capex,
+      ...(cash.supportMonths?.length?{supportMonths:cash.supportMonths.map((m,j)=>({...m,
+        eligibleRevenue:(m.eligibleRevenue+extraReserveRate*readinessFactor(result.revenueReadiness,'services',year*12+j+1)/12)*(u.unsecuredRevenueFactor??1)}))}:{}),
       ...(cash.supportEligibleRevenue==null?{}:{supportEligibleRevenue:(cash.supportEligibleRevenue+extraReserve)*(u.unsecuredRevenueFactor??1)}),
       tax:u.taxPolicy?0:taxKnown?Math.max(0,adjustedRevenue-opex)*u.cashTaxRate+adjustedRevenue*(u.turnoverTaxRate??0):null};
   }):[];
@@ -48,12 +52,15 @@ export function acquisitionInput(market,stage,overrides={}){
   const currency=u.cashFlowCurrency || u.currency || (['pl','ro'].includes(market.manifest.id)?null:market.manifest.currency);
   const fx=u.fxToUSD??result.fxRate;
   const factor=currency===market.manifest.currency?1/result.fxRate:(Number.isFinite(u.fxToUSD)&&u.fxToUSD>0?1/u.fxToUSD:null);
-  const normalized=annual.map(y=>Object.fromEntries(Object.entries(y).map(([k,v])=>[k,v==null||factor==null?null:v*factor])));
+  const normalized=annual.map(y=>Object.fromEntries(Object.entries(y).map(([k,v])=>[k,
+    k==='supportMonths'?v.map(m=>({...m,eligibleRevenue:factor==null?null:m.eligibleRevenue*factor})):
+    v==null||factor==null?null:v*factor])));
   const cashYears=Array.isArray(u.annual)?u.annual:normalized;
   const scenarios=stage==='operating'?(u.scenarios||[{probability:1,codYears:0,operates:true,costs:[{at:0,amount:u.initialWorksPerMW}],recoveries:[]}]):u.scenarios;
   return {
     stage,strategyId,currency,fxToUSD:fx,powerMW:variant.comparison.archetype.powerMW,durationHours:variant.comparison.archetype.durationHours,
     commercialScenario:chosen,contractYears:operating.primaryTerm,
+    revenueReadiness:result.revenueReadiness,
     annual:cashYears,operatingAgeYears:age,economicLifeYears:life,
     decommissioningPerMW:u.decommissioningPerMW,fixedFeesPerMW:u.fixedFeesPerMW,
     existingNetDebtPerMW:stage==='operating'?u.existingNetDebtPerMW:0,

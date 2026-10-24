@@ -44,6 +44,10 @@ export function withOverrides(market, overrides){
   let economics = market.comparison.economics;
   for (const key of keys){
     const v = overrides[key];
+    if(key==='revenueReadiness' && v && typeof v==='object' && !Array.isArray(v)){
+      economics={...economics,revenueReadiness:JSON.parse(JSON.stringify(v))};
+      continue;
+    }
     if (Number.isFinite(v)) economics = setPath(economics, key, v);
   }
 
@@ -70,6 +74,7 @@ export function conventionsWith(overrides){
 export function movedFields(market, overrides){
   const econ = market?.comparison?.economics || {};
   return Object.keys(overrides || {}).filter(key => {
+    if(key==='revenueReadiness')return JSON.stringify(overrides[key])!==JSON.stringify(econ[key]||{});
     const seed = key.split('.').reduce((o, k) => (o == null ? o : o[k]), econ);
     return Number.isFinite(overrides[key]) && Number.isFinite(seed)
       && Math.abs(overrides[key] - seed) / (Math.abs(seed) || 1) > 1e-9;

@@ -1,4 +1,5 @@
 import { cisRevenue } from '../economics/revenueSupport.js';
+import { scaledSupport } from '../comparison/revenueReadiness.js';
 /** Acquisition cash flows are valued in nominal local currency. Real reference
  * lines are inflated at their payment date; fixed nominal contracts stay fixed. */
 export const nominalRate=(real,inflation)=>(1+real)*(1+inflation)-1;
@@ -17,7 +18,12 @@ export function nominalAnnual(input,scenario){
     const support=input.revenueSupport;
     if(support&&i+(input.operatingAgeYears??0)<support.years){
       const eligible=nominalAmount(input,year.supportEligibleRevenue,at);
-      const settled=support.type==='cis'?cisRevenue(eligible,support):{total:Math.max(eligible,support.floor),secured:support.floor};
+      const settled=year.supportMonths?.length?year.supportMonths.reduce((sum,m)=>{
+        const revenue=nominalAmount(input,m.eligibleRevenue,at);
+        const terms=scaledSupport(support,m.contractFraction);
+        const r=m.contractFraction===0?{total:revenue,secured:0}:support.type==='cis'?cisRevenue(revenue,terms):{total:Math.max(revenue,terms.floor),secured:terms.floor};
+        return {total:sum.total+r.total,secured:sum.secured+r.secured};
+      },{total:0,secured:0}):support.type==='cis'?cisRevenue(eligible,support):{total:Math.max(eligible,support.floor),secured:support.floor};
       nominal.secured=support.assumed?settled.secured:0;
       nominal.renewal=support.assumed?0:settled.secured;
       nominal.merchant=Math.max(0,settled.total-settled.secured);

@@ -20,7 +20,11 @@ export function incomeScenario(market,u){
   const units=['pl','ro'].includes(market.manifest.id)?(market.manifest.id==='pl'?4.37:5.331):1;
   const changes={};
   if(conditional){
-    const r=runCase(variant,'mer',0);
+    // Quote an illustrative floor against the full-ready revenue stack. A
+    // delayed start changes eligible cash, not the agreed annual floor rate.
+    const readiness=variant.comparison.economics.revenueReadiness;
+    const r=runCase(variant,'mer',0,{revenueReadiness:readiness?.reserveSharePct==null?{}:{reserveSharePct:readiness.reserveSharePct}});
+    if(r.na)return {variant,strategyId,chosen,invalid:r.na[0]};
     const expected=(r.secY[0]+r.aucY[0]+r.mchY[0])/r.fxRate;
     variant={...variant,comparison:{...variant.comparison,capabilities:{...variant.comparison.capabilities,tolling:true},economics:{...variant.comparison.economics,
       toll:expected*(chosen==='conditional-floor'?.5:.75),tollYears:chosen==='conditional-floor'?7:10,

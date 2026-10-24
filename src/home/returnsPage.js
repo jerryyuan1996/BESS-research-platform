@@ -47,6 +47,7 @@ import { renderCongestionView } from './congestionView.js';
 import { renderFindings } from './findings.js';
 import { renderLongLife } from './longLifeView.js';
 import { renderRefinementOverview } from './refinementOverview.js';
+import { renderReadinessComparison } from '../readiness/panel.js';
 
 const T = {
   title: ['Returns across markets', '跨市场回报对比'],
@@ -137,6 +138,7 @@ export function renderReturnsPage(app){
   main.append(universe);
   renderNewsPreview(main);
   renderLeague(main, list, homeState.exitYear);
+  renderReadinessComparison(main,list);
   renderStack(main, list, homeState.exitYear);
   renderEngine(main, list, homeState.exitYear);
   /* Commentary computed from the engine results above, then the evidence

@@ -26,6 +26,8 @@ import { buildCapex, rtbEntry, capitalFlows } from './capex.js';
 import { activeFxRate } from './fx.js';
 import { decorateDecisionResult } from './decisionResult.js';
 import { investmentFlows } from '../economics/cashFlowCalendar.js';
+import { readinessConfig, hasReadinessAdjustment, readinessExtraCost, readinessYearFactor,
+  splitTradingRevenue, settleReadyYear } from './revenueReadiness.js';
 import { cisRevenue } from '../economics/revenueSupport.js';
 
 /* ---------------------------------------------------------------------------
@@ -276,6 +278,9 @@ export function runCase(market, strategyId, exitYear, options = {}){
   if (!strat) return { na: ['Unknown strategy', '未知策略'] };
   if (!supports(market, strategyId)) return { na: strat.na };
 
+  try { options={...options,revenueReadiness:readinessConfig(cmp.economics,options)}; }
+  catch(error){ return {na:['Invalid revenue-start assumptions: '+error.message,'收入起算假设无效：'+error.message]}; }
+
   const raw = cmp.economics.riskClass === 'auction-renewal'
     ? runAuctionRenewalCase(market, strategyId, exitYear, options)
     : runLegacyCase(market, strategyId, exitYear, options);
@@ -370,6 +375,9 @@ function runLegacyCase(market, strategyId, exitYear, options){
   const capital = capitalWithGrant(cap0, grant, e);
   const net = capital.net;
   const capY = [], secY = [], aucY = [], mchY = [], svcY = [], eb = [];
+  const readiness=options.revenueReadiness, adjusted=hasReadinessAdjustment(readiness);
+  const readinessCostY=[], supportMonthsY=[];
+  ({energy:merch,services:svc}=splitTradingRevenue(merch,svc,readiness));
   for (let y = 1; y <= LIFE; y++){
     /* `capacityFactors` is how the design-fit sweep carries a duration floor that
        de-rates linearly as the battery fades (WA's ESR requirement). Absent, the
@@ -390,9 +398,23 @@ function runLegacyCase(market, strategyId, exitYear, options){
         mm=settled.total*fx-c;
       }else c=secured=0;
     }
+    if(adjusted){
+      const f=yearFactor(options,'capacity',y),mf=d*yearFactor(options,'merchant',y);
+      const settled=settleReadyYear(readiness,y,{
+        energy:y>=marketFrom?merch*servicesFactor(e.merchantCurve,y)*mf:0,
+        services:y>=marketFrom?svc*servicesFactor(e.servicesCurve,y)*mf:0,
+        primary:(y<=cy?cap:cap*post)*f,primarySecured:(y<=cy?cap:0)*f,
+        additional:(y<=cyB?capB:0)*f,primaryStream:strategyId==='cap'?'capacity':'contract',
+        floor:strategyId==='toll'&&e.tollIsFloor&&y<=cy,
+        cis:strategyId==='ltda'&&y<=cy?e.ltda?.cis:null,fx,
+      });
+      c=settled.secured+settled.renewal;secured=settled.secured;mm=settled.merchant;
+      supportMonthsY.push(settled.supportMonths);
+    }
     secY.push(secured);aucY.push(c-secured);
     const sv = serviceCostPerMW(e, y) * fx;
-    capY.push(c); mchY.push(mm); svcY.push(sv); eb.push(c + mm - opex - sv - lifecycleCost(e, capexG, fx, y));
+    const extra=readinessExtraCost(readiness,y)*fx;readinessCostY.push(extra);
+    capY.push(c); mchY.push(mm); svcY.push(sv); eb.push(c + mm - opex - sv - extra - lifecycleCost(e, capexG, fx, y));
   }
 
   const holdFlows = withCapital(capital, eb);
@@ -406,7 +428,7 @@ function runLegacyCase(market, strategyId, exitYear, options){
   const yMerchant = options.exitYMerchant ?? EXIT_Y_MERCHANT;
   const yOpex = options.exitYOpex ?? EXIT_Y_OPEX;
   const exitVal = pvTail(secY, yContracted, X) + pvTail(aucY, yAuction, X) + pvTail(mchY, yMerchant, X)
-    - pvTail(Array(LIFE - X).fill(opex), yOpex, 0) - pvTail(svcY, yOpex, X);
+    - pvTail(Array(LIFE - X).fill(opex), yOpex, 0) - pvTail(svcY, yOpex, X) - pvTail(readinessCostY,yOpex,X);
   const exitFlows = withCapital(capital, eb.slice(0, X), { at: X, value: exitVal });
   const irrExit = irrOf(exitFlows);
   const cumOp = eb.slice(0, X).reduce((a, b) => a + b, 0);
@@ -435,6 +457,7 @@ function runLegacyCase(market, strategyId, exitYear, options){
       : strategyId === 'ltda' ? Math.min(e.ltda?.years || 0, LIFE) : 0,
     kwPerM: 1e6 / (net / 1000), note,
     streamTenors: { primary:cy, additionalCapacity:cyB },
+    revenueReadiness:{...readiness,adjusted,basis:'assumption',cashTiming:'annual-end'},readinessCostY,supportMonthsY,
   };
 }
 
@@ -480,8 +503,10 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
   /* merchGross may already be net of the optimiser fee — the Japan dashboard
      reports it that way. merchantNetOfFee guards against deducting it twice. */
   const feeMult = e.merchantNetOfFee ? 1 : (1 - (e.feePct || 0) / 100);
-  const merch = e.merchGross * feeMult * fx * retention * access;
-  const svc = (e.services || 0) * fx * retention * access;   // incremental balancing value only
+  let merch = e.merchGross * feeMult * fx * retention * access;
+  let svc = (e.services || 0) * fx * retention * access;   // incremental balancing value only
+  const readiness=options.revenueReadiness, adjusted=hasReadinessAdjustment(readiness);
+  ({energy:merch,services:svc}=splitTradingRevenue(merch,svc,readiness));
 
   let securedYears = 0, secured = 0, curve = [];
   if (isLtda){
@@ -498,18 +523,25 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
     if (Array.isArray(e.auctionRenewalCurve)) curve = e.auctionRenewalCurve;
   }
 
-  const secY = [], aucY = [], mchY = [], svcY = [], eb = [];
+  const secY = [], aucY = [], mchY = [], svcY = [], eb = [], readinessCostY=[];
   for (let y = 1; y <= LIFE; y++){
     const capF = yearFactor(options, 'capacity', y);    // 1 unless the design-fit sweep sets it
-    const s = (y <= securedYears ? secured : 0) * capF;
-    const a = y > securedYears
+    let s = (y <= securedYears ? secured : 0) * capF;
+    let a = y > securedYears
       ? ((curve[y - securedYears - 1] ?? 0) * fx * yearFactor(options, 'auction', y,
         yearFactor(options, 'merchant', y))) * capF : 0;
     const d = degradationFactor(e, y);
-    const m = (merch * servicesFactor(e.merchantCurve, y) + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y);
+    let m = (merch * servicesFactor(e.merchantCurve, y) + svc * servicesFactor(e.servicesCurve, y)) * d * yearFactor(options, 'merchant', y);
+    if(adjusted){
+      s*=readinessYearFactor(readiness,isLtda?'contract':'capacity',y);
+      a*=readinessYearFactor(readiness,'capacity',y);
+      m=(merch*servicesFactor(e.merchantCurve,y)*readinessYearFactor(readiness,'energy',y)
+        +svc*servicesFactor(e.servicesCurve,y)*readinessYearFactor(readiness,'services',y))*d*yearFactor(options,'merchant',y);
+    }
     const sv = serviceCostPerMW(e, y) * fx;
+    const extra=readinessExtraCost(readiness,y)*fx;readinessCostY.push(extra);
     secY.push(s); aucY.push(a); mchY.push(m); svcY.push(sv);
-    eb.push(s + a + m - opex - sv - lifecycleCost(e, capexG, fx, y));
+    eb.push(s + a + m - opex - sv - extra - lifecycleCost(e, capexG, fx, y));
   }
 
   const holdFlows = withCapital(capital, eb);
@@ -526,7 +558,7 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
     + pvTail(aucY, yAuction, X)
     + pvTail(mchY, yMerchant, X)
     - pvTail(Array(LIFE - X).fill(opex), yOpex, 0)
-    - pvTail(svcY, yOpex, X);
+    - pvTail(svcY, yOpex, X) - pvTail(readinessCostY,yOpex,X);
   const exitFlows = withCapital(capital, eb.slice(0, X), { at: X, value: exitVal });
   const irrExit = irrOf(exitFlows);
   const cumOp = eb.slice(0, X).reduce((a, b) => a + b, 0);
@@ -556,6 +588,7 @@ function runAuctionRenewalCase(market, strategyId, exitYear, options){
     exitClock:'operating-years', renewalEvidence:'unawarded-assumption',
     kwPerM: 1e6 / (net / 1000),
     note: (isLtda ? award.note : null) || e.capNote || e.grantNote || null,
+    revenueReadiness:{...readiness,adjusted,basis:'assumption',cashTiming:'annual-end'},readinessCostY,
   };
 }
 

@@ -287,7 +287,7 @@ export function createMarketEngine(cfg){
         overviewMap: id === 'home'
           ? gridMapForMarket(MKT.id, route.market?.manifest.region || (regionValue === 'compare' ? null : regionValue))
           : null,
-        marketId: MKT.id, tabId: id,
+        marketId: MKT.id, allocationId: route.market?.manifest.id, tabId: id,
       }),
     });
     container.append(renderFooter([
