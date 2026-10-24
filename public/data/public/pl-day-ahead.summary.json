@@ -13,12 +13,12 @@
     "licence": "PSE public reporting data — reuse with attribution to PSE S.A.",
     "attribution": "Source: PSE S.A.; ECB reference rates"
   },
-  "fetchedAt": "2026-10-24T11:12:23.268Z",
+  "fetchedAt": "2026-10-24T16:02:17.158Z",
   "coverage": {
-    "from": "2026-03-21T23:00:00.000Z",
-    "to": "2026-10-24T21:00:00.000Z",
+    "from": "2026-02-06T23:00:00.000Z",
+    "to": "2026-10-25T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 5207
+    "points": 6264
   },
   "units": {
     "price": "EUR/MWh"
@@ -31,37 +31,37 @@
   "staleAfterHours": 72,
   "derived": {
     "authority": "derived",
-    "points": 5207,
-    "coverageDays": 217,
+    "points": 6264,
+    "coverageDays": 261,
     "pointsPerHour": 1,
-    "mean": 119.75,
-    "median": 122.91,
-    "stdev": 71.33,
-    "p5": -0.01,
-    "p95": 228.51,
-    "negativeHoursPct": 0.050893028615325527,
-    "spreadMean": 158.18,
-    "spreadMedian": 154.74,
-    "spreadP25": 116.59,
-    "spreadP75": 190.96,
-    "spreadDays": 217,
-    "chargeMean": 41.38,
-    "dischargeMean": 199.57,
+    "mean": 117.86,
+    "median": 119.58,
+    "stdev": 67.82,
+    "p5": 0,
+    "p95": 218.9,
+    "negativeHoursPct": 0.04725415070242656,
+    "spreadMean": 150.03,
+    "spreadMedian": 147.23,
+    "spreadP25": 104.94,
+    "spreadP75": 181.75,
+    "spreadDays": 261,
+    "chargeMean": 43.49,
+    "dischargeMean": 193.51,
     "durationHours": 4
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 149573,
-    "marginPerCycle": 603.52,
+    "revenuePerMW": 141121,
+    "marginPerCycle": 569.42,
     "inputs": {
-      "chargeMean": 41.384596774193554,
-      "dischargeMean": 199.5673847926268,
+      "chargeMean": 43.48511494252878,
+      "dischargeMean": 193.51308429118774,
       "durationHours": 4,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
       "availability": 0.97,
       "spreadRealisation": 0.7,
-      "spreadDays": 217
+      "spreadDays": 261
     },
     "claim": [
       "Wholesale arbitrage only — excludes capacity, ancillary and balancing revenue",
@@ -69,6 +69,436 @@
     ]
   },
   "daily": [
+    {
+      "d": "2026-02-07",
+      "n": 24,
+      "mean": 114.94,
+      "min": 105.84,
+      "max": 136.87,
+      "spread": 24.56,
+      "charge": 107.17,
+      "discharge": 131.73
+    },
+    {
+      "d": "2026-02-08",
+      "n": 24,
+      "mean": 108.67,
+      "min": 98.94,
+      "max": 131.66,
+      "spread": 25.21,
+      "charge": 101.32,
+      "discharge": 126.53
+    },
+    {
+      "d": "2026-02-09",
+      "n": 24,
+      "mean": 137.88,
+      "min": 98.06,
+      "max": 220.51,
+      "spread": 90.4,
+      "charge": 99.49,
+      "discharge": 189.88
+    },
+    {
+      "d": "2026-02-10",
+      "n": 24,
+      "mean": 142.44,
+      "min": 105.29,
+      "max": 190.11,
+      "spread": 79.25,
+      "charge": 106.57,
+      "discharge": 185.81
+    },
+    {
+      "d": "2026-02-11",
+      "n": 24,
+      "mean": 123.63,
+      "min": 100.44,
+      "max": 148.7,
+      "spread": 42.16,
+      "charge": 103.34,
+      "discharge": 145.5
+    },
+    {
+      "d": "2026-02-12",
+      "n": 24,
+      "mean": 125.4,
+      "min": 108.04,
+      "max": 165.85,
+      "spread": 42.61,
+      "charge": 109.97,
+      "discharge": 152.58
+    },
+    {
+      "d": "2026-02-13",
+      "n": 24,
+      "mean": 111.32,
+      "min": 86.7,
+      "max": 141.14,
+      "spread": 48.8,
+      "charge": 88.24,
+      "discharge": 137.04
+    },
+    {
+      "d": "2026-02-14",
+      "n": 24,
+      "mean": 115.78,
+      "min": 97.46,
+      "max": 149.73,
+      "spread": 40.51,
+      "charge": 99.34,
+      "discharge": 139.85
+    },
+    {
+      "d": "2026-02-15",
+      "n": 24,
+      "mean": 114.09,
+      "min": 101.08,
+      "max": 152.94,
+      "spread": 44.06,
+      "charge": 102.39,
+      "discharge": 146.45
+    },
+    {
+      "d": "2026-02-16",
+      "n": 24,
+      "mean": 113.05,
+      "min": 94.01,
+      "max": 156.35,
+      "spread": 52.13,
+      "charge": 94.6,
+      "discharge": 146.73
+    },
+    {
+      "d": "2026-02-17",
+      "n": 24,
+      "mean": 131.36,
+      "min": 93.65,
+      "max": 225.85,
+      "spread": 93.32,
+      "charge": 96.95,
+      "discharge": 190.27
+    },
+    {
+      "d": "2026-02-18",
+      "n": 24,
+      "mean": 130.86,
+      "min": 98.84,
+      "max": 193.81,
+      "spread": 86.15,
+      "charge": 100,
+      "discharge": 186.15
+    },
+    {
+      "d": "2026-02-19",
+      "n": 24,
+      "mean": 130.55,
+      "min": 93.78,
+      "max": 225.01,
+      "spread": 106.21,
+      "charge": 95.19,
+      "discharge": 201.4
+    },
+    {
+      "d": "2026-02-20",
+      "n": 24,
+      "mean": 117.56,
+      "min": 83.02,
+      "max": 197.65,
+      "spread": 80.32,
+      "charge": 89.13,
+      "discharge": 169.45
+    },
+    {
+      "d": "2026-02-21",
+      "n": 24,
+      "mean": 88.19,
+      "min": 70.01,
+      "max": 111.32,
+      "spread": 30.2,
+      "charge": 74.18,
+      "discharge": 104.38
+    },
+    {
+      "d": "2026-02-22",
+      "n": 24,
+      "mean": 85.3,
+      "min": 50.45,
+      "max": 110.55,
+      "spread": 55.44,
+      "charge": 53.89,
+      "discharge": 109.33
+    },
+    {
+      "d": "2026-02-23",
+      "n": 24,
+      "mean": 96.11,
+      "min": 45.45,
+      "max": 145.74,
+      "spread": 94.48,
+      "charge": 47.38,
+      "discharge": 141.86
+    },
+    {
+      "d": "2026-02-24",
+      "n": 24,
+      "mean": 115.76,
+      "min": 86.46,
+      "max": 183.76,
+      "spread": 76.37,
+      "charge": 87.79,
+      "discharge": 164.16
+    },
+    {
+      "d": "2026-02-25",
+      "n": 24,
+      "mean": 113.45,
+      "min": 87.05,
+      "max": 180.66,
+      "spread": 87.05,
+      "charge": 87.91,
+      "discharge": 174.96
+    },
+    {
+      "d": "2026-02-26",
+      "n": 24,
+      "mean": 87.03,
+      "min": 14.89,
+      "max": 116.41,
+      "spread": 79.62,
+      "charge": 35.45,
+      "discharge": 115.07
+    },
+    {
+      "d": "2026-02-27",
+      "n": 24,
+      "mean": 85.95,
+      "min": 18.96,
+      "max": 157.22,
+      "spread": 107.48,
+      "charge": 29.98,
+      "discharge": 137.45
+    },
+    {
+      "d": "2026-02-28",
+      "n": 24,
+      "mean": 69.44,
+      "min": -0.2,
+      "max": 106.48,
+      "spread": 103.09,
+      "charge": -0.1,
+      "discharge": 102.99
+    },
+    {
+      "d": "2026-03-01",
+      "n": 24,
+      "mean": 64.68,
+      "min": -0.79,
+      "max": 119.18,
+      "spread": 117.08,
+      "charge": -0.29,
+      "discharge": 116.78
+    },
+    {
+      "d": "2026-03-02",
+      "n": 24,
+      "mean": 117.13,
+      "min": 41.29,
+      "max": 230,
+      "spread": 153.83,
+      "charge": 60.69,
+      "discharge": 214.52
+    },
+    {
+      "d": "2026-03-03",
+      "n": 24,
+      "mean": 107.12,
+      "min": 32.57,
+      "max": 193.27,
+      "spread": 124.17,
+      "charge": 48.01,
+      "discharge": 172.18
+    },
+    {
+      "d": "2026-03-04",
+      "n": 24,
+      "mean": 131.75,
+      "min": 4.82,
+      "max": 288.94,
+      "spread": 223.46,
+      "charge": 28.4,
+      "discharge": 251.85
+    },
+    {
+      "d": "2026-03-05",
+      "n": 24,
+      "mean": 116.85,
+      "min": -16.34,
+      "max": 248.21,
+      "spread": 206.62,
+      "charge": 4.9,
+      "discharge": 211.52
+    },
+    {
+      "d": "2026-03-06",
+      "n": 24,
+      "mean": 106.55,
+      "min": -12.33,
+      "max": 192.06,
+      "spread": 179.56,
+      "charge": -4.75,
+      "discharge": 174.81
+    },
+    {
+      "d": "2026-03-07",
+      "n": 24,
+      "mean": 105.64,
+      "min": 0.42,
+      "max": 174.31,
+      "spread": 149.6,
+      "charge": 8.31,
+      "discharge": 157.9
+    },
+    {
+      "d": "2026-03-08",
+      "n": 24,
+      "mean": 88.36,
+      "min": -42.33,
+      "max": 158.22,
+      "spread": 168.31,
+      "charge": -19.09,
+      "discharge": 149.22
+    },
+    {
+      "d": "2026-03-09",
+      "n": 24,
+      "mean": 111.24,
+      "min": 0.29,
+      "max": 238.37,
+      "spread": 196.25,
+      "charge": 11,
+      "discharge": 207.25
+    },
+    {
+      "d": "2026-03-10",
+      "n": 24,
+      "mean": 103.81,
+      "min": -3.69,
+      "max": 210.58,
+      "spread": 169.39,
+      "charge": 13.34,
+      "discharge": 182.73
+    },
+    {
+      "d": "2026-03-11",
+      "n": 24,
+      "mean": 85.23,
+      "min": 11.62,
+      "max": 151.19,
+      "spread": 117.67,
+      "charge": 14.84,
+      "discharge": 132.51
+    },
+    {
+      "d": "2026-03-12",
+      "n": 24,
+      "mean": 112.32,
+      "min": 40.34,
+      "max": 276.11,
+      "spread": 176.79,
+      "charge": 51.88,
+      "discharge": 228.68
+    },
+    {
+      "d": "2026-03-13",
+      "n": 24,
+      "mean": 82.07,
+      "min": -3.39,
+      "max": 180.53,
+      "spread": 162.32,
+      "charge": -1.46,
+      "discharge": 160.86
+    },
+    {
+      "d": "2026-03-14",
+      "n": 24,
+      "mean": 84.06,
+      "min": -16.85,
+      "max": 169.91,
+      "spread": 169.24,
+      "charge": -13.77,
+      "discharge": 155.47
+    },
+    {
+      "d": "2026-03-15",
+      "n": 24,
+      "mean": 110.44,
+      "min": 30.97,
+      "max": 206.18,
+      "spread": 126.99,
+      "charge": 47.77,
+      "discharge": 174.76
+    },
+    {
+      "d": "2026-03-16",
+      "n": 24,
+      "mean": 121.85,
+      "min": 89.96,
+      "max": 207.09,
+      "spread": 93.18,
+      "charge": 91.7,
+      "discharge": 184.87
+    },
+    {
+      "d": "2026-03-17",
+      "n": 24,
+      "mean": 131.25,
+      "min": 103.71,
+      "max": 214.48,
+      "spread": 84.22,
+      "charge": 104.77,
+      "discharge": 188.99
+    },
+    {
+      "d": "2026-03-18",
+      "n": 24,
+      "mean": 91.34,
+      "min": -23.45,
+      "max": 182.69,
+      "spread": 180.75,
+      "charge": -14.79,
+      "discharge": 165.96
+    },
+    {
+      "d": "2026-03-19",
+      "n": 24,
+      "mean": 117.85,
+      "min": 1.96,
+      "max": 211.63,
+      "spread": 166.44,
+      "charge": 21.54,
+      "discharge": 187.98
+    },
+    {
+      "d": "2026-03-20",
+      "n": 24,
+      "mean": 147.56,
+      "min": 91,
+      "max": 217.71,
+      "spread": 102.03,
+      "charge": 96.1,
+      "discharge": 198.13
+    },
+    {
+      "d": "2026-03-21",
+      "n": 24,
+      "mean": 104.5,
+      "min": -8.7,
+      "max": 174.1,
+      "spread": 153.74,
+      "charge": 5.77,
+      "discharge": 159.52
+    },
     {
       "d": "2026-03-22",
       "n": 24,
@@ -2238,12 +2668,22 @@
       "spread": 239.52,
       "charge": 40.78,
       "discharge": 280.3
+    },
+    {
+      "d": "2026-10-25",
+      "n": 25,
+      "mean": 77.53,
+      "min": 0.01,
+      "max": 132.65,
+      "spread": 120.59,
+      "charge": 4.14,
+      "discharge": 124.73
     }
   ],
   "sourceSnapshot": {
     "file": "pl-day-ahead.json",
-    "contentChecksum": "sha256:6fc7b4e394f2f351b86f61d1412fff17d3c738d511fe19e23ecd640a4d85df56",
-    "points": 5207
+    "contentChecksum": "sha256:c7fcbf0a3aeaf79e45c2607fb4f5f4bd4f3fbc9ab8c5c41d313db2238cc72ba0",
+    "points": 6264
   },
-  "summaryChecksum": "sha256:3c67a87aa08cc3e42a277d9ff957c0e1c63df759f6a5178a0bbd864452b6a265"
+  "summaryChecksum": "sha256:e18009708190e2f49cd0c86e5151e1b61ea01fd41492cc6d5a6619b76a505ca6"
 }

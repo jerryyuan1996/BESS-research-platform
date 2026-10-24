@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-24T11:12:14.536Z",
+  "fetchedAt": "2026-10-24T16:02:08.850Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-24T09:30:00.000Z",
+    "to": "2026-10-24T12:43:58.000Z",
     "resolution": "event",
     "points": 46
   },
@@ -385,16 +385,6 @@
       "summary": "German home energy storage and virtual power plant (VPP) company sonnen GmbH, sold by gas major Shell in August, has filed for insolvency."
     },
     {
-      "t": "2026-10-23T10:25:38.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/23/austria-allocates-173-mw-at-average-price-of-e0-0642-kwh-in-ground-mounted-pv-tender/",
-      "source": "pv magazine",
-      "title": "Austria allocates 173 MW at average price of €0.0642/kWh in PV tender",
-      "url": "https://www.pv-magazine.com/2026/10/23/austria-allocates-173-mw-at-average-price-of-e0-0642-kwh-in-ground-mounted-pv-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Austria's third solar market premium auction of 2026 attracted 195 successful bids, with a volume-weighted average price of €0.0642/kWh, slightly higher than in the previous round. The post Austria allocates 173 MW at average price of €0.0642/kWh in PV tender appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-23T11:25:17.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/tesla-q3-2026-energy-storage-revenues-fall-despite-second-highest-quarterly-deployments/",
       "source": "Energy-Storage.news",
@@ -483,6 +473,16 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "California firm working with top EPCs to install six million solar panels in the next two years. The post Gritt Robotics brings AI-assisted robotics to bolster shrinking solar workforce appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-24T12:43:58.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/24/renewable-energy-india-expo-2026-three-key-takeaways/",
+      "source": "pv magazine",
+      "title": "Renewable Energy India Expo 2026: Three key takeaways",
+      "url": "https://www.pv-magazine.com/2026/10/24/renewable-energy-india-expo-2026-three-key-takeaways/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "India’s largest renewable energy trade show returned to Greater Noida, outside of Delhi, this week. At the three day event, pv magazine took in a national solar industry that has reached enormous proportions, and continues to grow with huge investments still going into building new solar installations, upgrading gri…"
     }
   ],
   "derived": {
@@ -528,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:0e9a992990ca229202fa0e76154710e4058d8ddbc1b9ac8101b39f9f23017df7",
-  "envelopeChecksum": "sha256:1636cb072755dd01c83aeeb7db9973745a51965de8409036a8ccffc7f19099f9"
+  "contentChecksum": "sha256:589efe45292e8e9e414e31f0f2c4edc3955b408c2d64b6e61e66039137e1fb3e",
+  "envelopeChecksum": "sha256:19083d1a8c51e5c02dcea8ef2131c8a93a2d878cf00d7dd7809fb9b7aa33b666"
 }
