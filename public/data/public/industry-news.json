@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-23T21:29:01.511Z",
+  "fetchedAt": "2026-10-24T11:12:14.536Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-23T11:25:17.000Z",
+    "to": "2026-10-24T09:30:00.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -385,66 +385,6 @@
       "summary": "German home energy storage and virtual power plant (VPP) company sonnen GmbH, sold by gas major Shell in August, has filed for insolvency."
     },
     {
-      "t": "2026-10-23T08:21:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/23/panasonic-begins-sales-of-glass-based-perovskite-solar-panels/",
-      "source": "pv magazine",
-      "title": "Panasonic begins sales of glass-based perovskite solar panels",
-      "url": "https://www.pv-magazine.com/2026/10/23/panasonic-begins-sales-of-glass-based-perovskite-solar-panels/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Panasonic began commercial sales of its glass-based perovskite solar panels in September 2026, ahead of the planned launch of full-scale mass production in April 2029. The initial products are manufactured at the company's development facility in Moriguchi, Osaka Prefecture. The post Panasonic begins sales of glass-…"
-    },
-    {
-      "t": "2026-10-23T08:29:20.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/23/hemispherical-perovskite-solar-cell-design-reduces-sensitivity-to-sunlight-angle/",
-      "source": "pv magazine",
-      "title": "Hemispherical perovskite solar cell design reduces sensitivity to sunlight angle",
-      "url": "https://www.pv-magazine.com/2026/10/23/hemispherical-perovskite-solar-cell-design-reduces-sensitivity-to-sunlight-angle/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese researchers have designed a hemispherical perovskite solar cell with a textured surface to improve light absorption and reduce sensitivity to sunlight incidence angles. Simulations showed absorption exceeding 95% and an average maximum power output of 28.25 mW/cm² across incidence angles of 0° to 50°. The po…"
-    },
-    {
-      "t": "2026-10-23T08:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/23/european-solar-bess-marketplace-expands-to-romania/",
-      "source": "pv magazine",
-      "title": "European solar, BESS marketplace expands to Romania",
-      "url": "https://www.pv-magazine.com/2026/10/23/european-solar-bess-marketplace-expands-to-romania/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solmeria, an online marketplace for selling solar and battery energy storage systems directly to buyers, is now listing projects in Romania alongside offers in France and Italy. The post European solar, BESS marketplace expands to Romania appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-23T08:54:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/23/sodium-ion-storage-maker-peak-energy-raises-108-million-in-gm-led-round/",
-      "source": "pv magazine",
-      "title": "Sodium-ion storage maker Peak Energy raises $108 million in GM-led round",
-      "url": "https://www.pv-magazine.com/2026/10/23/sodium-ion-storage-maker-peak-energy-raises-108-million-in-gm-led-round/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "A US sodium-ion battery storage company has closed a $108 million Series B round led by General Motors’ venture arm, as it prepares to start production at a 4 GWh factory in California and launch its systems in the data center market. The post Sodium-ion storage maker Peak Energy raises $108 million in GM-led round…"
-    },
-    {
-      "t": "2026-10-23T09:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/23/south-koreas-renewable-energy-capacity-overtakes-coal-for-first-time/",
-      "source": "pv magazine",
-      "title": "South Korea’s renewable energy capacity overtakes coal for first time",
-      "url": "https://www.pv-magazine.com/2026/10/23/south-koreas-renewable-energy-capacity-overtakes-coal-for-first-time/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Renewable energy capacity in South Korea reached 41 GW on Oct. 21, edging past coal-fired capacity for the first time, according to the country’s power market operator. The post South Korea’s renewable energy capacity overtakes coal for first time appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-23T10:15:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/23/italy-awards-full-30-mw-quota-in-second-floating-pv-tender/",
-      "source": "pv magazine",
-      "title": "Italy awards full 30 MW quota in second floating PV tender",
-      "url": "https://www.pv-magazine.com/2026/10/23/italy-awards-full-30-mw-quota-in-second-floating-pv-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Italy’s second FER2 auction for floating solar projects on inland waters has allocated its entire 30 MW quota, following weak participation in the first round. Eight projects secured capacity, while two were excluded despite offering a 2% discount on the reference tariff. The post Italy awards full 30 MW quota in se…"
-    },
-    {
       "t": "2026-10-23T10:25:38.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/23/austria-allocates-173-mw-at-average-price-of-e0-0642-kwh-in-ground-mounted-pv-tender/",
       "source": "pv magazine",
@@ -463,18 +403,98 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Tesla’s energy storage business deployed 13.7GWh in Q3 2026, its second-highest quarterly figure to date, but saw a 16% year-on-year decline in revenues for the division."
+    },
+    {
+      "t": "2026-10-24T06:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/24/residential-solar-prices-rise-3-2-as-third-party-ownership-gains-ground/",
+      "source": "pv magazine",
+      "title": "U.S. residential solar prices rise 3.2% as third-party ownership gains ground",
+      "url": "https://www.pv-magazine.com/2026/10/24/residential-solar-prices-rise-3-2-as-third-party-ownership-gains-ground/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Residential solar prices climbed 3.2% in the first half of 2026 as installers adjusted to the expiration of the federal residential solar tax credit. EnergySage's latest marketplace report highlights a surge in third-party ownership financing, rising installation costs, and shifting equipment market shares as the in…"
+    },
+    {
+      "t": "2026-10-24T07:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/24/couple-travels-through-10-african-countries-in-solar-powered-motorhome-with-battery-storage/",
+      "source": "pv magazine",
+      "title": "Couple travels through 10 African countries in solar-powered motorhome with battery storage",
+      "url": "https://www.pv-magazine.com/2026/10/24/couple-travels-through-10-african-countries-in-solar-powered-motorhome-with-battery-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A Brazilian couple traveled through 10 African countries in a motorhome equipped with rooftop solar panels, 15.36 kWh of lithium battery storage, and alternator charging. The system powers household appliances and satellite internet, enabling off-grid travel with minimal reliance on external electricity connections.…"
+    },
+    {
+      "t": "2026-10-24T07:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/24/vietnam-orders-provinces-to-introduce-rooftop-solar-incentives-by-december-2026/",
+      "source": "pv magazine",
+      "title": "Vietnam orders provinces to introduce rooftop solar incentives by December 2026",
+      "url": "https://www.pv-magazine.com/2026/10/24/vietnam-orders-provinces-to-introduce-rooftop-solar-incentives-by-december-2026/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Vietnam has instructed provincial and municipal authorities to introduce support policies for residential rooftop solar installations by the end of December 2026, as part of efforts to secure electricity supplies between 2027 and 2030. The government is also pushing for faster deployment of battery energy storage sy…"
+    },
+    {
+      "t": "2026-10-24T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/24/glass-free-european-photovoltaic-modules-for-vehicles-noise-barriers-and-boats/",
+      "source": "pv magazine",
+      "title": "Glass-free European photovoltaic modules for vehicles, noise barriers and boats",
+      "url": "https://www.pv-magazine.com/2026/10/24/glass-free-european-photovoltaic-modules-for-vehicles-noise-barriers-and-boats/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A European research consortium is developing glass-free photovoltaic modules using fiber-reinforced polymer composites. The technology could enable lighter solar modules for curved and complex surfaces, including vehicles, ships and infrastructure. The project aims to demonstrate industrial feasibility by May 2029.…"
+    },
+    {
+      "t": "2026-10-24T08:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/24/when-it-is-your-turn-open-the-door-for-the-woman-coming-next/",
+      "source": "pv magazine",
+      "title": "‘When it is your turn, open the door for the woman coming next’",
+      "url": "https://www.pv-magazine.com/2026/10/24/when-it-is-your-turn-open-the-door-for-the-woman-coming-next/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This week, Women in Solar+ Europe gives voice to Italian independent renewable energy consultant Giulia Muia. She says a resilient energy sector depends not only on diversified energy sources but also on diverse voices, perspectives, and inclusive leadership that drive innovation and better decisions. Empowering wom…"
+    },
+    {
+      "t": "2026-10-24T08:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/24/mozambique-entrusts-solar-panel-factory-to-uaes-jampur-group/",
+      "source": "pv magazine",
+      "title": "Mozambique entrusts small solar panel factory to UAE’s Jampur Group",
+      "url": "https://www.pv-magazine.com/2026/10/24/mozambique-entrusts-solar-panel-factory-to-uaes-jampur-group/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "UAE-based Jampur Group has been selected to manage and modernize Mozambique’s Beluluane Solar Panel Factory, which suspended production around 2022 due to technological limitations and market competition. The initiative aims to revive domestic solar panel manufacturing, improve competitiveness and create local emplo…"
+    },
+    {
+      "t": "2026-10-24T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/24/italy-deploys-4-83-gw-of-pv-in-january-september/",
+      "source": "pv magazine",
+      "title": "Italy deploys 4.83 GW of PV in January-September",
+      "url": "https://www.pv-magazine.com/2026/10/24/italy-deploys-4-83-gw-of-pv-in-january-september/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Italy connected 4.83 GW of new solar capacity in the first nine months of 2026, bringing cumulative installed capacity to 48.35 GW at the end of September. Utility-scale projects accounted for 46% of new additions, while the country's cumulative battery storage capacity approached 20 GWh, according to new statistics…"
+    },
+    {
+      "t": "2026-10-24T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/24/gritt-robotics-brings-ai-assisted-robotics-to-bolster-shrinking-solar-workforce/",
+      "source": "pv magazine",
+      "title": "Gritt Robotics brings AI-assisted robotics to bolster shrinking solar workforce",
+      "url": "https://www.pv-magazine.com/2026/10/24/gritt-robotics-brings-ai-assisted-robotics-to-bolster-shrinking-solar-workforce/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "California firm working with top EPCs to install six million solar panels in the next two years. The post Gritt Robotics brings AI-assisted robotics to bolster shrinking solar workforce appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 9,
+      "policy": 10,
       "capital": 7,
-      "grid": 25,
-      "technology": 3
+      "grid": 27,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -499,7 +519,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 9
       }
     ]
   },
@@ -508,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:581173d2127854a7d689aacd8f27475040d12ea22e53ac0c59ca3745d773639e",
-  "envelopeChecksum": "sha256:7bd8346c62cad64f226b96f5df6824a891bb8be509e88c525c778ae806f0462a"
+  "contentChecksum": "sha256:0e9a992990ca229202fa0e76154710e4058d8ddbc1b9ac8101b39f9f23017df7",
+  "envelopeChecksum": "sha256:1636cb072755dd01c83aeeb7db9973745a51965de8409036a8ccffc7f19099f9"
 }

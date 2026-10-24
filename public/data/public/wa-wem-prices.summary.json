@@ -13,7 +13,7 @@
     "licence": "AEMO — free reuse with attribution",
     "attribution": "Source: AEMO WEM data"
   },
-  "fetchedAt": "2026-10-24T04:45:02.283Z",
+  "fetchedAt": "2026-10-24T11:12:25.853Z",
   "coverage": {
     "from": "2025-10-25T00:00:00.000Z",
     "to": "2026-10-23T23:30:00.000Z",
@@ -3726,5 +3726,5 @@
     "contentChecksum": "sha256:8a77ed3f3561064acd838e9395703811ab3cb2b5aefe7243221e5f46ca41389b",
     "points": 17327
   },
-  "summaryChecksum": "sha256:956b7b811788129061ce2cceadd9ce7bbfd719b253d23e382960050d6d6c8fbe"
+  "summaryChecksum": "sha256:7081331233a1d1f6830377e221aa88f9a18366c501190bd378520814414e5055"
 }
