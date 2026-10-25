@@ -13,12 +13,12 @@
     "licence": "JEPX published market data — attribution required",
     "attribution": "Source: JEPX spot market data"
   },
-  "fetchedAt": "2026-10-24T20:56:43.445Z",
+  "fetchedAt": "2026-10-25T04:52:37.404Z",
   "coverage": {
-    "from": "2025-10-24T21:00:00.000Z",
-    "to": "2026-10-25T14:30:00.000Z",
+    "from": "2025-10-25T05:00:00.000Z",
+    "to": "2026-10-26T14:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17556
+    "points": 17588
   },
   "units": {
     "price": "JPY/MWh"
@@ -32,37 +32,37 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17556,
-    "coverageDays": 366,
+    "points": 17588,
+    "coverageDays": 367,
     "pointsPerHour": 2,
-    "mean": 11625.29,
-    "median": 10490,
-    "stdev": 6468.27,
+    "mean": 11653.76,
+    "median": 10500,
+    "stdev": 6487.79,
     "p5": 10,
-    "p95": 22125,
+    "p95": 22433,
     "negativeHoursPct": 0,
-    "spreadMean": 9387.97,
-    "spreadMedian": 8102.22,
-    "spreadP25": 5578.33,
-    "spreadP75": 13021.11,
-    "spreadDays": 365,
-    "chargeMean": 6992.98,
-    "dischargeMean": 16380.95,
+    "spreadMean": 9404.28,
+    "spreadMedian": 8123.89,
+    "spreadP25": 5591.11,
+    "spreadP75": 13111.53,
+    "spreadDays": 366,
+    "chargeMean": 7007.7,
+    "dischargeMean": 16411.98,
     "durationHours": 9
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 18187431,
-    "marginPerCycle": 73385.24,
+    "revenuePerMW": 18218016,
+    "marginPerCycle": 73508.65,
     "inputs": {
-      "chargeMean": 6992.980213089802,
-      "dischargeMean": 16380.95129375951,
+      "chargeMean": 7007.698846387371,
+      "dischargeMean": 16411.979356405584,
       "durationHours": 9,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
       "availability": 0.97,
       "spreadRealisation": 0.7,
-      "spreadDays": 365
+      "spreadDays": 366
     },
     "claim": [
       "Wholesale arbitrage only — excludes capacity, ancillary and balancing revenue",
@@ -72,13 +72,13 @@
   "daily": [
     {
       "d": "2025-10-25",
-      "n": 36,
-      "mean": 8870.28,
-      "min": 2010,
+      "n": 20,
+      "mean": 10515.5,
+      "min": 7010,
       "max": 12480,
-      "spread": 4855,
-      "charge": 6442.78,
-      "discharge": 11297.78
+      "spread": null,
+      "charge": null,
+      "discharge": null
     },
     {
       "d": "2025-10-26",
@@ -3729,12 +3729,22 @@
       "spread": 9233.33,
       "charge": 12942.78,
       "discharge": 22176.11
+    },
+    {
+      "d": "2026-10-26",
+      "n": 48,
+      "mean": 20452.08,
+      "min": 10010,
+      "max": 38000,
+      "spread": 15357.22,
+      "charge": 12380,
+      "discharge": 27737.22
     }
   ],
   "sourceSnapshot": {
     "file": "jp-kyushu-jepx.json",
-    "contentChecksum": "sha256:4323735d7f7a5c45156ab83215d93f3ae4e44303be6e1ad1f6ae115acda51662",
-    "points": 17556
+    "contentChecksum": "sha256:cfd6efe4ecfb12042de6a5dacaef972c2a80527448f45744374f2716b36b659a",
+    "points": 17588
   },
-  "summaryChecksum": "sha256:0f2ca3481c5ce95b6f8134ac234ca37ce13c108c4e20c380ccb9ae09067caa25"
+  "summaryChecksum": "sha256:eebc48b6df8b126d9daf20e24860e1d9b0c26d792660c8c8a9998ee3aefaa25a"
 }
