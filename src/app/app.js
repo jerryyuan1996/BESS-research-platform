@@ -15,7 +15,7 @@ import { applyTheme } from './theme.js';
 import { currentRoute, onRouteChange, startRouter, navigate } from './router.js';
 import { markets, bySlug } from '../markets/registry.js';
 import { renderHome } from '../home/homePage.js';
-import { renderMarketPage } from '../markets/marketPage.js';
+import { renderMarketPage, invalidateMarketRender } from '../markets/marketPage.js';
 import { renderDataStatus } from '../live/dataStatusPage.js';
 import { marketNav } from '../components/navigation.js';
 import { renderNewsPage } from '../news/newsFeed.js';
@@ -168,13 +168,45 @@ function renderDesk(app){
    one: the reader may navigate again before the chunk resolves. */
 let dossierToken = 0;
 
+let experiencePage = null;
+let experienceToken = 0;
+function renderExperiencePage(app, route, market) {
+  const token = ++experienceToken;
+  if (experiencePage) return void experiencePage.renderExperience(app, route, market);
+  const holder = h('div', { class: 'ix-container', 'aria-busy': 'true', style: 'padding-top:60px' },
+    h('p', {}, L(['Loading the investment brief…', '正在加载投资简报…'])));
+  app.append(holder);
+  import('../experience/pages.js').then(module => {
+    experiencePage = module;
+    if (token !== experienceToken || !holder.isConnected) return;
+    app.replaceChildren();
+    module.renderExperience(app, route, market);
+  }).catch(error => {
+    if (!holder.isConnected) return;
+    console.error('[experience]', error);
+    holder.replaceChildren(h('p', {}, L(['The page could not be loaded.', '页面未能加载。'])),
+      h('button', { class: 'ix-button', onclick: () => window.location.reload() }, L(['Reload', '刷新'])));
+  });
+}
+
 /** Renders the current route into #app. This is the app's only render entry point. */
 export function render(){
+  invalidateMarketRender();
   const route = currentRoute();
   document.documentElement.lang = htmlLang();
 
   const app = $id('app');
   app.innerHTML = '';
+  app.classList.remove('ix-app');
+  const experience = route.name === 'home' || route.name === 'returns' || (route.name === 'market' && !route.tab && bySlug(route.slug));
+  document.body.classList.toggle('ix-experience', Boolean(experience) || route.name === 'market');
+  document.body.classList.toggle('ix-research', route.name === 'market' && Boolean(route.tab));
+  ++experienceToken;
+  if (experience) {
+    const market = route.name === 'market' ? bySlug(route.slug) : null;
+    document.title = L(['Global BESS', '全球储能']) + ' | ' + (market ? L(market.manifest.name) : route.name === 'returns' ? L(['Global opportunities', '全球投资机会']) : L(['Investment brief', '投资简报']));
+    return void renderExperiencePage(app, route, market);
+  }
 
   if (route.name === 'market'){
     const market = bySlug(route.slug);

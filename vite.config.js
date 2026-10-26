@@ -43,6 +43,9 @@ export default defineConfig({
            label wanted. Anything not matching that shape keeps the default. */
         chunkFileNames(chunk){
           const id = chunk.facadeModuleId || '';
+          if (/[\\/]experience[\\/]pages\.js$/.test(id)) return 'assets/investor-experience-[hash].js';
+          const delivery = /[\\/]markets[\\/]([^\\/]+)[\\/]buildPathway\.js$/.exec(id);
+          if (delivery) return `assets/delivery-${delivery[1]}-[hash].js`;
           const m = /[\\/]markets[\\/]([^\\/]+)[\\/]dashboard\.js$/.exec(id);
           if (m) return `assets/market-${m[1]}-[hash].js`;
           /* The dossier shell's entry module is page.js, which would otherwise
