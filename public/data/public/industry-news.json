@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-24T20:56:10.383Z",
+  "fetchedAt": "2026-10-26T04:56:02.414Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-24T12:43:58.000Z",
+    "to": "2026-10-26T03:38:54.000Z",
     "resolution": "event",
     "points": 46
   },
@@ -133,16 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
-    },
-    {
-      "t": "2026-10-20T13:04:00.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/what-are-the-blindspots-right-now-the-shifting-anatomy-of-bess-capex/",
-      "source": "Energy-Storage.news",
-      "title": "‘What are the blindspots right now’: The shifting anatomy of BESS capex",
-      "url": "https://www.energy-storage.news/what-are-the-blindspots-right-now-the-shifting-anatomy-of-bess-capex/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A panel at the Battery Asset Management Summit UK & Ireland 2026 last week discussed BESS capex trends and strategies to manage it."
     },
     {
       "t": "2026-10-21T01:55:23.000Z",
@@ -483,6 +473,16 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "India’s largest renewable energy trade show returned to Greater Noida, outside of Delhi, this week. At the three day event, pv magazine took in a national solar industry that has reached enormous proportions, and continues to grow with huge investments still going into building new solar installations, upgrading gri…"
+    },
+    {
+      "t": "2026-10-26T03:38:54.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/1gw-data-centre-with-5000mwh-battery-storage-system-submitted-to-australias-epbc-act-for-approval/",
+      "source": "Energy-Storage.news",
+      "title": "1GW data centre with 5,000MWh battery storage system submitted to Australia’s EPBC Act for approval",
+      "url": "https://www.energy-storage.news/1gw-data-centre-with-5000mwh-battery-storage-system-submitted-to-australias-epbc-act-for-approval/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Gingerah Energy has referred a 1GW data centre complex with a 5GWh BESS in Western Australia to Australia's EPBC Act."
     }
   ],
   "derived": {
@@ -528,6 +528,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:e58882cd9cbd586b1a711aba5533e1c0ef5310d078b908d2e800d4563e1b52a5",
-  "envelopeChecksum": "sha256:a7e0bb177974c4033215b453964c580ada8df22e3080187fd2e0aa721dc86b47"
+  "contentChecksum": "sha256:9b52880be50892656dc84161fab1f09fbb58339ce02555303b9824217449d05e",
+  "envelopeChecksum": "sha256:d0ff09080ed52a4eb096f3175c771e908af9bde2ff77904026248fcaf8b09df3"
 }
