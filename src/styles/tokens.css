@@ -49,6 +49,17 @@
   --fs-xl:    19px;   /* section titles */
   --fs-2xl:   22px;   /* page title */
 
+  /* Editorial investment surfaces: body copy and display headings extend the
+     dense research scale. System serif fonts require no external font host. */
+  --fs-body: 15px;
+  --fs-display-xs: 28px;
+  --fs-display-sm: 32px;
+  --fs-display-md: 36px;
+  --fs-display-lg: 48px;
+  --fs-display-xl: 56px;
+  --fs-display-2xl: 64px;
+  --font-serif: Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif;
+
   --lh-tight: 1.25;
   --lh-body:  1.5;
 

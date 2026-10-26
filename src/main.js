@@ -30,6 +30,7 @@ import './styles/live.css';
 /* Last, so its @media print block wins against anything above it without
    needing !important on every rule. */
 import './styles/print.css';
+import './styles/experience.css';
 
 import { inject } from '@vercel/analytics';
 import { boot } from './app/app.js';

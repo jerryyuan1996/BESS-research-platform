@@ -15,6 +15,7 @@ import { navigate } from '../app/router.js';
 import { markets, marketPath, hasDashboard, resolveDashboard } from './registry.js';
 import { marketNav } from '../components/navigation.js';
 import { refinementBanner } from '../components/refinementBanner.js';
+import { siteHeader, siteFooter, link } from '../experience/chrome.js';
 
 /* ---------------------------------------------------------------------------
    THE ASYNC BOUNDARY.
@@ -38,6 +39,7 @@ import { refinementBanner } from '../components/refinementBanner.js';
    for the whole module is enough because #app hosts one page at a time.
    --------------------------------------------------------------------------- */
 let renderToken = 0;
+export function invalidateMarketRender() { ++renderToken; }
 
 /** A market header with a skeleton where the dashboard will be. */
 function renderLoading(container, market){
@@ -174,6 +176,13 @@ export function renderMarketPage(container, market, tabId, regionOverride, subId
     const banner = refinementBanner(market);
     const header = container.querySelector('.hdr');
     if (banner && header) header.insertAdjacentElement('afterend', banner);
+    if (tabId) {
+      const research = h('main', { id: 'ix-main', class: 'ix-research-inner', tabindex: -1 },
+        link(marketPath(market), ['← Back to market investment case', '← 返回市场投资方案'], 'ix-text-link'),
+        ...Array.from(container.childNodes));
+      container.classList.add('ix-app');
+      container.replaceChildren(siteHeader('market'), research, siteFooter());
+    }
   }).catch(err => {
     clearTimeout(skeletonTimer);
     if (token !== renderToken) return;

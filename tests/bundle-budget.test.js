@@ -211,6 +211,13 @@ const BUDGET = {
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {
+    // Shared three-page experience, loaded after the shell. Local delivery prose
+    // is charged separately after extraction from the existing market chunks.
+    'investor-experience': 18,
+    'delivery-wa': 8,
+    'delivery-gb': 8,
+    'delivery-fi': 6,
+    'delivery-ro': 7,
     'dossier-shell': 8,
     /* The Investment Case and Entry sections: anchors, archetype tables, the
        view store and the ledgers. Fetched only when one of those two tabs is
@@ -501,12 +508,11 @@ test('the entry chunk is within its budget', async (t) => {
 test('the home page\'s first view is within its budget', async (t) => {
   if (skipWithoutDist(t)) return;
   const { entry, features, byName } = await chunks();
-  /* Since the guided-experience plan (PR 4) the home page opens on the
-     briefing; the verdict board is folded underneath it and fetched only when
-     the reader opens the fold. */
-  const briefing = features.get('briefing-home');
+  /* The three-page investment experience is now the first view. Measure its
+     complete dependency closure; specialist dashboards remain on demand. */
+  const briefing = features.get('investor-experience');
   const board = features.get('verdict-board');
-  assert.ok(entry && briefing && board, 'no entry chunk, no briefing-home chunk or no verdict-board chunk');
+  assert.ok(entry && briefing && board, 'no entry chunk, no investor-experience chunk or no verdict-board chunk');
 
   const first = closure(briefing, byName, closure(entry, byName));
   assert.ok(!first.has(board), 'the verdict board is being loaded with the briefing: it belongs behind the fold');
@@ -607,9 +613,10 @@ test('the shared chunks stay out of the first load', async (t) => {
   const first = closure(entry, byName);
   const marketChunks = new Set(markets.values());
   const shared = new Set();
+  const deliveryChunks = new Set([...features].filter(([name]) => name.startsWith('delivery-')).map(([, chunk]) => chunk));
   for (const chunk of marketChunks){
     for (const dep of closure(chunk, byName)){
-      if (!first.has(dep) && !marketChunks.has(dep)) shared.add(dep);
+      if (!first.has(dep) && !marketChunks.has(dep) && !deliveryChunks.has(dep)) shared.add(dep);
     }
   }
   assert.ok(shared.size > 0, 'no market imports a shared chunk — the split has collapsed');
