@@ -10,11 +10,15 @@ test.beforeEach(async({page})=>{
 test('market brief discloses actual rates in English and Chinese',async({page},testInfo)=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/markets/western-australia');
-  await expect(page.locator('.bf-asof')).toContainText('6.5%');
-  await expect(page.locator('.bf-asof')).toContainText('10.5%');
-  await page.getByRole('button',{name:'中文',exact:true}).click();
-  await expect(page.locator('.bf-asof')).toContainText('锁定收入6.5%');
-  await expect(page.locator('.bf-asof')).toContainText('投运后第5年');
+  await page.locator('.ix-valuation-basis > summary').click();
+  await expect(page.locator('.ix-valuation-basis')).toContainText('6.5%');
+  await expect(page.locator('.ix-valuation-basis')).toContainText('10.5%');
+  await expect(page.locator('#bankable .ix-kpis')).toContainText('17.8%');
+  await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
+  await page.locator('.ix-valuation-basis > summary').click();
+  await expect(page.locator('.ix-valuation-basis')).toContainText('锁定收入6.5%');
+  await expect(page.locator('.ix-valuation-basis')).toContainText('交易收入10.5%');
+  await expect(page.locator('#downside')).toContainText('沿用基准债务');
   await page.screenshot({path:testInfo.outputPath('market-brief-zh.png'),timeout:15000});
   expect(errors).toEqual([]);
 });
@@ -59,13 +63,14 @@ test('Investment Lab saves the displayed scenario, pricing hurdle and project ev
   expect(errors).toEqual([]);
 });
 
-test('long-life expiry cases and home briefing load without browser errors',async({page},testInfo)=>{
+test('the global matrix and investment brief load without browser errors',async({page},testInfo)=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/returns');
-  await expect(page.getByRole('heading',{name:'Without assumed contract renewals',exact:true})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Income quality meets return.',exact:true})).toBeVisible();
+  await expect(page.locator('.ix-matrix-svg [role="button"]')).toHaveCount(16);
   await page.goto('/');
-  await expect(page.getByRole('heading',{name:'BESS investment briefing',exact:true})).toBeVisible();
-  await expect(page.locator('.bf-lens')).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Find conviction. Invest in storage.',exact:true})).toBeVisible();
+  await expect(page.getByRole('combobox',{name:'Investor profile',exact:true})).toBeVisible();
   await expect(page.locator('.bf-call-flag')).toHaveCount(0);
   await page.screenshot({path:testInfo.outputPath('home-en.png')});
   expect(errors).toEqual([]);

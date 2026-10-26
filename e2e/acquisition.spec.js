@@ -7,61 +7,51 @@ test.beforeEach(async({page})=>{
   await page.route(/^https:\/\//,route=>new URL(route.request().url()).origin===process.env.PLATFORM_TEST_BASE_URL?route.continue():route.abort());
 });
 
-test('home groups four investors and pairs recommended plays with visible return conditions',async({page},testInfo)=>{
+test('home leads with a concise investment view for four investor profiles',async({page},testInfo)=>{
   await page.goto('/');
-  await expect(page.locator('.bf-lens')).toBeVisible();
-  await expect(page.locator('.bf-call-flag')).toHaveCount(0);
-  await expect(page.locator('.ip-investor')).toHaveCount(4);
-  await expect(page.locator('.acq-stages')).toHaveCount(0);
-  const rows=page.locator('.ip-investor > .ip-opportunity');
-  await expect(rows).toHaveCount(8);
-  await expect(rows.first().getByRole('button',{name:/Target annual return/})).toBeVisible();
-  await expect(rows.first().locator('.ip-assumption-sentence')).toBeVisible();
-  await expect(rows.first().locator('.ip-inputs dd')).toHaveCount(3);
-  await expect(page.locator('[data-investor="developer"] [data-stage="operating"]')).toHaveCount(0);
-  await expect(page.locator('[data-investor="infraFund"] [data-stage="greenfield"]')).toHaveCount(0);
-  await rows.first().locator('.acq-price').click();
-  const popover=page.locator('.acq-popover:popover-open');
-  const triggerBox=await rows.first().locator('.acq-price').boundingBox(),popoverBox=await popover.boundingBox();
-  expect(popoverBox.y+popoverBox.height<=triggerBox.y || popoverBox.y>=triggerBox.y+triggerBox.height).toBe(true);
-  await expect(popover).toContainText('Cautious case');
-  await expect(popover).toContainText('Reference case');
-  await expect(popover).toContainText('Favourable case');
-  await popover.getByText('Public sources',{exact:true}).click();
-  await expect(popover.locator('a').first()).toBeVisible();
-  await page.keyboard.press('Escape');
-  await page.getByRole('button',{name:'中文',exact:true}).click();
-  await expect(page.locator('.ip-intro')).toContainText('什么条件下值得买');
-  await expect(rows.first().locator('.ip-assumption-sentence')).toContainText('假设');
+  const profile=page.getByRole('combobox',{name:'Investor profile',exact:true});
+  await expect(profile.locator('option')).toHaveCount(4);
+  await expect(page.locator('.ix-featured .ix-metric')).toHaveCount(2);
+  await expect(page.locator('.ix-picks article')).toHaveCount(3);
+  await expect(page.locator('.ix-lead').first()).toContainText('Prioritise Italy');
+  await expect(page.locator('.acq-popover')).toHaveCount(0);
+  await profile.selectOption('developer');
+  await expect(profile).toHaveValue('developer');
+  await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
+  await expect(page.getByRole('combobox',{name:'投资者类型',exact:true})).toHaveValue('developer');
+  await expect(page.locator('main')).toContainText('重点关注');
+  await expect(page.locator('main')).not.toContainText('what-if');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
-  await page.locator('.acq-home').screenshot({path:testInfo.outputPath('acquisition-reference-home-zh.png')});
-  await expect(page.locator('main')).not.toContainText('calls run against the economics');
-  await expect(page.locator('main')).not.toContainText('No acquisition budget yet');
+  await page.screenshot({path:testInfo.outputPath('investment-brief-zh.png')});
 });
 
-test('investors compare consistent assumptions across markets in both languages and currencies',async({page},testInfo)=>{
-  await page.goto('/');
-  const group=page.locator('[data-investor="infraFund"]');
-  const rows=group.locator(':scope > .ip-opportunity');
-  await rows.nth(0).getByRole('checkbox').check();
-  await rows.nth(1).getByRole('checkbox').check();
-  await expect(page.locator('.ip-compare-item')).toHaveCount(2);
-  await expect(page.locator('.ip-compare-item').first()).toContainText('IRR');
-  await expect(page.locator('.ip-comparison')).toContainText('Build & grid budget');
-  await page.getByRole('combobox',{name:'Display currency',exact:true}).selectOption('local');
-  await expect(page.locator('.ip-compare-item')).toHaveCount(2);
-  await page.getByRole('button',{name:'中文',exact:true}).click();
-  await expect(page.locator('.ip-comparison')).toContainText('比较投资成立的条件');
-  await expect(page.locator('.ip-comparison')).toContainText('假设');
-  await page.locator('.ip-compare-item').first().getByRole('button',{name:'假设与范围',exact:true}).click();
-  await expect(page.locator('.acq-popover:popover-open')).toContainText('该市场方案');
+test('investors filter, sort and compare consistent market cases in both languages',async({page},testInfo)=>{
+  await page.goto('/returns');
+  await page.getByRole('checkbox',{name:'Compare Italy',exact:true}).check();
+  await page.getByRole('checkbox',{name:'Compare Finland',exact:true}).check();
+  await page.getByRole('combobox',{name:'Sort markets',exact:true}).selectOption('return');
+  await page.reload();
+  await expect(page.getByRole('combobox',{name:'Sort markets',exact:true})).toHaveValue('return');
+  await expect(page.getByRole('checkbox',{name:'Compare Italy',exact:true})).toBeChecked();
+  await page.getByRole('button',{name:'Compare side by side ↗',exact:true}).click();
+  await expect(page.locator('.ix-comparison-card')).toHaveCount(2);
+  await expect(page.getByRole('dialog')).toContainText('Modelled fixed income');
   await page.keyboard.press('Escape');
+  await expect(page.getByRole('button',{name:'Compare side by side ↗',exact:true})).toBeFocused();
+  await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
+  await page.getByRole('button',{name:'并排比较 ↗',exact:true}).click();
+  await expect(page.getByRole('dialog')).toContainText('意大利');
+  await expect(page.getByRole('dialog')).toContainText('芬兰');
+  await expect(page.getByRole('dialog')).toContainText('14.6%');
+  await page.screenshot({path:testInfo.outputPath('market-comparison-zh.png')});
+  await page.keyboard.press('Escape');
+  await page.getByRole('searchbox',{name:'搜索市场',exact:true}).fill('Finland');
+  await expect(page.locator('.ix-results tbody tr')).toHaveCount(1);
+  await page.getByRole('searchbox',{name:'搜索市场',exact:true}).fill('no-such-market');
+  await expect(page.getByRole('button',{name:'重置筛选',exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'重置筛选',exact:true}).click();
+  await expect(page.locator('.ix-results tbody tr')).toHaveCount(16);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
-  await page.locator('.ip-comparison').screenshot({path:testInfo.outputPath('investor-conditions-comparison-zh.png')});
-  await page.locator('.bf-lens').getByRole('button',{name:'基础设施基金',exact:true}).click();
-  await expect(page.locator('.ip-investor')).toHaveCount(1);
-  await page.locator('.bf-lens').getByRole('button',{name:'全部投资者',exact:true}).click();
-  await expect(page.locator('.ip-investor')).toHaveCount(4);
 });
 
 test('a real asking price works with partial inputs and updates expected returns',async({page},testInfo)=>{
@@ -137,10 +127,8 @@ test('developers have no operating acquisition option',async({page})=>{
 });
 
 test('a recommended play keeps its duration and awarded support when opened as a real project',async({page})=>{
-  await page.goto('/');
-  const group=page.locator('[data-investor="infraFund"]');
-  await group.locator('.ip-more>summary').click();
-  await group.locator('[data-play="wa-cap-8h"]').getByRole('link',{name:'Compare a real project',exact:true}).click();
+  await page.goto('/markets/western-australia');
+  await page.getByRole('button',{name:'Model this market ↗',exact:true}).click();
   let panel=page.locator('.acq-lab');
   await expect(panel.locator('.acq-selected-play')).toContainText('8h');
   await expect(panel.getByRole('combobox',{name:'Acquisition stage',exact:true})).toHaveValue('ready-to-build');
@@ -149,10 +137,8 @@ test('a recommended play keeps its duration and awarded support when opened as a
   let downloaded=await event;
   let saved=JSON.parse(await readFile(await downloaded.path(),'utf8'));
   expect(saved.input.durationHours).toBe(8);expect(saved.input.stage).toBe('ready-to-build');
-  await page.goto('/');
-  const fund=page.locator('[data-investor="infraFund"]');
-  await fund.locator('.ip-more>summary').click();
-  await fund.locator('[data-play="pl-grant-4h"]').getByRole('link',{name:'Compare a real project',exact:true}).click();
+  await page.goto('/markets/poland');
+  await page.getByRole('button',{name:'Model this market ↗',exact:true}).click();
   panel=page.locator('.acq-lab');
   await expect(panel.locator('.acq-selected-play')).toContainText('4h');
   await expect(panel.getByRole('combobox',{name:'Income arrangement',exact:true})).toHaveValue('mer');
@@ -162,11 +148,8 @@ test('a recommended play keeps its duration and awarded support when opened as a
 });
 
 test('income, lifetime and return inputs expose workable contract and connection terms',async({page},testInfo)=>{
-  await page.goto('/');
-  const group=page.locator('[data-investor="infraFund"]');
-  await group.locator('.ip-more>summary').click();
-  const row=group.locator('.ip-opportunity').filter({hasText:'Finland'}).first();
-  await row.getByRole('link',{name:'Compare a real project',exact:true}).click();
+  await page.goto('/markets/finland');
+  await page.getByRole('button',{name:'Model this market ↗',exact:true}).click();
   const panel=page.locator('.acq-lab');await expect(panel).toBeVisible();
   await panel.getByRole('combobox',{name:'Income arrangement',exact:true}).selectOption('conditional-toll');
   for(const [label,value] of [

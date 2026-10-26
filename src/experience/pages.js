@@ -8,6 +8,8 @@ import { siteHeader, siteFooter, link, eyebrow, sectionTitle, metric } from './c
 import { opportunityMatrix, miniature, cashFlowChart, revenueWaterfall, revenueBar } from './charts.js';
 import { gateLabel } from './labels.js';
 import { labField } from '../comparison/ranges.js';
+import { homeState } from '../home/state.js';
+import { navigate } from '../app/router.js';
 
 const lens = () => LENSES[app.lens] ? app.lens : 'infraFund';
 const button = (label, onclick, cls = '') => h('button', { type: 'button', class: `ix-button ${cls}`, onclick }, L(label));
@@ -37,6 +39,20 @@ function metaBar(number, title) {
 }
 function nextSection(title, text, href, label) {
   return h('section', { class: 'ix-next' }, h('div', {}, eyebrow(['YOUR NEXT MOVE', '下一步']), h('h2', {}, L(title)), h('p', {}, L(text))), link(href, label, 'ix-button ix-light'));
+}
+function openUnderwriting(row) {
+  homeState.labMarket = row.id;
+  homeState.labStrategy = row.play?.route || null;
+  homeState.acquisitionSelection = null;
+  if (row.play) {
+    const stage = row.stage === 'co-invest' ? 'ready-to-build' : row.stage;
+    const play = { id: row.play.id, route: row.play.route, hours: row.play.hours,
+      ...(finite(row.play.grantPct) ? { grantPct: row.play.grantPct } : {}) };
+    homeState.acquisitionStage = stage;
+    homeState.acquisitionSelection = { key: [lens(), row.id, play.id, stage].join('/'),
+      market: row.id, stage, play, runOptions: row.econ.runOptions || {} };
+  }
+  navigate('/investment-lab'); window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 export function renderExperience(container, route, market) {
@@ -221,7 +237,9 @@ function bankableSection(data) {
     h('div', { class: 'ix-kpis' }, metric(['Unlevered hold IRR', '无杠杆持有期 IRR'], pct(base.irrHold)), metric(['Modelled fixed revenue', '模型固定收入占比'], share(base.securedShare)), metric(['Modelled minimum DSCR', '模型最低 DSCR'], multiple(debt?.minDSCR)), metric(['Net investment / MW', '净投资额 / MW'], money(base.net))),
     card(h('div', { class: 'ix-panel-heading' }, h('h3', {}, L(['Cash generation & debt payments', '经营现金流与债务支付'])), h('div', { class: 'ix-legend' }, h('span', { class: 'advance' }, L(['Base cash flow', '基准现金流'])), h('span', { class: 'pale' }, L(['Downside cash flow', '下行现金流'])), h('span', { class: 'debt' }, L(['Debt + maturity', '偿债 + 到期本金'])))),
       chartFrame(cashFlowChart(data)), h('p', { class: 'ix-caption' }, L(['USD per MW. Debt uses the platform’s financing conventions; the line includes scheduled service and bullet repayment. Minimum DSCR above measures scheduled service. Downside keeps the base debt schedule.', '金额为美元/MW。债务采用平台融资参数，折线包含定期偿债与到期本金；上方最低DSCR按定期偿债计算。下行情景保留基准债务安排。']))),
-    h('div', { class: 'ix-case-summary' }, h('span', {}, L(['Revenue route', '收入路径']), ' / ', L(routeName(row))), h('span', {}, L(['Modelled leverage', '模型杠杆']), ' / ', share(debt?.gearing)), h('span', {}, L(['Fixed-income tenor', '固定收入期']), ' / ', base.securedYears + L([' years', '年']))));
+    h('div', { class: 'ix-case-summary' }, h('span', {}, L(['Revenue route', '收入路径']), ' / ', L(routeName(row))), h('span', {}, L(['Modelled leverage', '模型杠杆']), ' / ', share(debt?.gearing)), h('span', {}, L(['Fixed-income tenor', '固定收入期']), ' / ', base.securedYears + L([' years', '年']))),
+    h('details', { class: 'ix-details ix-valuation-basis' }, h('summary', {}, L(['Valuation basis', '估值口径'])),
+      h('p', {}, L([`Discount rates: fixed income ${pct(base.valuationRates.secured)}; renewal ${pct(base.valuationRates.renewal)}; trading ${pct(base.valuationRates.merchant)}. These value cash flows and are separate from the reported hold IRR.`, `折现率：锁定收入${pct(base.valuationRates.secured)}；续约收入${pct(base.valuationRates.renewal)}；交易收入${pct(base.valuationRates.merchant)}。这些用于现金流估值，与上方持有期IRR分开呈现。`]))));
 }
 
 function revenueSection(data) {
@@ -306,5 +324,5 @@ function sourcesSection(row) {
     h('div', { class: 'ix-source-meta' }, metric(['Market data vintage', '市场数据口径'], meta.dataDate), metric(['Market model', '市场模型版本'], meta.modelVersion), metric(['Briefing built on', '简报生成日期'], snapshotDate)),
     h('details', { class: 'ix-details ix-source-list' }, h('summary', {}, L([`Open ${sources.length} source references`, `查看${sources.length}项来源`])),
       ...sources.map(([key, source]) => h('a', { href: source.url, target: '_blank', rel: 'noopener noreferrer' }, h('span', {}, L(source.file || source.title || key)), h('small', {}, source.date || ''), h('span', { 'aria-hidden': 'true' }, '↗')))),
-    h('div', { class: 'ix-actions' }, link(`${caseUrl(row)}/data`, ['Full market data & methodology ↗', '完整市场数据与方法 ↗'], 'ix-text-link'), link('/investment-lab', ['Open detailed underwriting workspace ↗', '进入详细投资测算工作区 ↗'], 'ix-text-link')));
+    h('div', { class: 'ix-actions' }, link(`${caseUrl(row)}/data`, ['Full market data & methodology ↗', '完整市场数据与方法 ↗'], 'ix-text-link'), button(['Model this market ↗', '进入本市场测算 ↗'], () => openUnderwriting(row), 'ix-outline')));
 }
