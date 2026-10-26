@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-26T13:14:06.761Z",
+  "fetchedAt": "2026-10-26T22:44:32.794Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-26T12:26:39.000Z",
+    "to": "2026-10-26T17:48:03.000Z",
     "resolution": "event",
     "points": 42
   },
@@ -135,16 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-10-21T07:07:38.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/deye-eve-and-ganfeng-lithium-strong-q3-results-for-trio-of-players-across-chinese-energy-storage-industry-value-chain/",
-      "source": "Energy-Storage.news",
-      "title": "Deye, EVE and Ganfeng Lithium: Strong Q3 results for trio of players across Chinese energy storage industry value chain",
-      "url": "https://www.energy-storage.news/deye-eve-and-ganfeng-lithium-strong-q3-results-for-trio-of-players-across-chinese-energy-storage-industry-value-chain/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Deye, EVE Energy and Ganfeng Lithium are among Chinese energy storage players to recently release Q3 2026 financial results, with all three reporting robust growth."
-    },
-    {
       "t": "2026-10-21T07:20:51.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/indias-energy-storage-market-bridging-the-gap-between-tenders-and-execution/",
       "source": "Energy-Storage.news",
@@ -255,26 +245,6 @@
       "summary": "The global energy storage market will see a decade of sustained, rapid growth and reach 3.1TW cumulative capacity by 2036, according to BloombergNEF (BNEF)."
     },
     {
-      "t": "2026-10-22T15:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/jigar-shah-electricity-bills-utility-profit-caruso/833188/",
-      "source": "Utility Dive",
-      "title": "Jigar Shah blames the wrong target for rising electricity bills",
-      "url": "https://www.utilitydive.com/news/jigar-shah-electricity-bills-utility-profit-caruso/833188/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "With utility returns trending downward, the data does not support a national &ldquo;utility greed&rdquo; narrative, writes Guy Caruso, former administrator for the U.S. Energy Information Administration."
-    },
-    {
-      "t": "2026-10-22T15:26:51.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/trump-administration-asks-courts-to-revoke-permits-for-offshore-wind-farms/833735/",
-      "source": "Utility Dive",
-      "title": "DOJ moves to revoke offshore wind permits, potentially threatening Senate permitting bill",
-      "url": "https://www.utilitydive.com/news/trump-administration-asks-courts-to-revoke-permits-for-offshore-wind-farms/833735/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Sen. Sheldon Whitehouse, D-R.I., one of the senators sponsoring the Bipartisan American Affordability and Jobs Act, said in a statement, &ldquo;This is how you blow up a permitting deal.&rdquo;"
-    },
-    {
       "t": "2026-10-23T02:55:53.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/alinta-energy-abandons-critical-pumped-hydro-energy-storage-project-in-australia/",
       "source": "Energy-Storage.news",
@@ -343,16 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Faced with unprecedented growth in demand, Singapore’s Energy Market Authority has launched plan that includes a gigawatt-hour energy storage target."
-    },
-    {
-      "t": "2026-10-26T08:00:56.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/servotech-launches-single-phase-hybrid-solar-inverters-for-residential-applications-2/",
-      "source": "pv magazine",
-      "title": "Servotech launches single-phase hybrid solar inverters for residential applications",
-      "url": "https://www.pv-magazine.com/2026/10/26/servotech-launches-single-phase-hybrid-solar-inverters-for-residential-applications-2/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Servotech Renewable Power System has unveiled its Sparkle Pro IP54 single-phase hybrid solar inverters for residential applications. The range comprises 3 kW, 4.2 kW and 6 kW models. The post Servotech launches single-phase hybrid solar inverters for residential applications appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-26T08:56:30.000Z",
@@ -443,6 +403,46 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Heron Power and NiSource have separately announced US data centre-focused deals involving battery energy storage systems (BESS) in recent days."
+    },
+    {
+      "t": "2026-10-26T13:30:01.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/xpanner-launches-automated-pile-driver-to-speed-up-utility-scale-solar-energy-storage-installation/",
+      "source": "pv magazine",
+      "title": "Xpanner launches automated pile driver to speed up utility-scale solar, energy storage installation",
+      "url": "https://www.pv-magazine.com/2026/10/26/xpanner-launches-automated-pile-driver-to-speed-up-utility-scale-solar-energy-storage-installation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The fully automated system combines GNSS positioning and remote control operation to reduce pile driving cycle times by 45% on utility-scale solar and battery storage job sites. The post Xpanner launches automated pile driver to speed up utility-scale solar, energy storage installation appeared first on pv magazine…"
+    },
+    {
+      "t": "2026-10-26T15:06:46.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/wind-turbine-orders-hit-28-gw-in-q2-ahead-of-tax-credit-deadline-woodmac/872757/",
+      "source": "Utility Dive",
+      "title": "Wind turbine orders hit 2.8 GW in Q2 ahead of tax credit deadline: WoodMac",
+      "url": "https://www.utilitydive.com/news/wind-turbine-orders-hit-28-gw-in-q2-ahead-of-tax-credit-deadline-woodmac/872757/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Overall, &ldquo;the U.S. wind industry remains on course to add 39 GW of onshore new-build capacity by 2030,&rdquo; the report said. &ldquo;More than half of the project pipeline from 2026 to 2028 is already operating or under construction, limiting near-term risk.&rdquo;"
+    },
+    {
+      "t": "2026-10-26T17:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/indias-grid-capacity-puzzle/",
+      "source": "pv magazine",
+      "title": "India’s grid capacity puzzle",
+      "url": "https://www.pv-magazine.com/2026/10/26/indias-grid-capacity-puzzle/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India is adding renewable energy capacity faster than transmission infrastructure can keep pace, and the consequences are now showing up in project economics, writes Vijay CS of Aurora Energy Research. The situation can change greatly from one substation to the next, meaning grid capacity is now a key consideration…"
+    },
+    {
+      "t": "2026-10-26T17:48:03.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-already-reducing-curtailment-in-chile-says-acera-in-construction-projects-to-triple-capacity/",
+      "source": "Energy-Storage.news",
+      "title": "BESS already reducing curtailment in Chile, says ACERA; in-construction projects to triple capacity",
+      "url": "https://www.energy-storage.news/bess-already-reducing-curtailment-in-chile-says-acera-in-construction-projects-to-triple-capacity/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Ana Lía Rojas, executive director at the Chilean renewable energy and energy storage association (ACERA) gave the opening keynote of Energy Storage Summit Latin America 2026 and spoke about Chile's current BESS market."
     }
   ],
   "derived": {
@@ -451,10 +451,10 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 9,
-      "capital": 6,
-      "grid": 25,
-      "technology": 2
+      "policy": 10,
+      "capital": 5,
+      "grid": 26,
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -473,13 +473,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 3
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 8
       }
     ]
   },
@@ -488,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:a4ebc66d4828eeb431ade619be4abc2a18e9e7c47f08ddadc36a46bc31b1c148",
-  "envelopeChecksum": "sha256:8f20b5d94b6c10625bf4088b46084ea1f469af1514b5be8a9b25e698a2f628ed"
+  "contentChecksum": "sha256:148d7b228efa56235fd61737dc5b865f11e61d9a1186c768dd22ae95765452b1",
+  "envelopeChecksum": "sha256:fe25ab06f1add3d289eeee1ef6814d76e528429baf6c8863d64bd9ea3c351464"
 }

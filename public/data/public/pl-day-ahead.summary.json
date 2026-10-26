@@ -13,12 +13,12 @@
     "licence": "PSE public reporting data — reuse with attribution to PSE S.A.",
     "attribution": "Source: PSE S.A.; ECB reference rates"
   },
-  "fetchedAt": "2026-10-26T13:14:16.329Z",
+  "fetchedAt": "2026-10-26T22:44:35.849Z",
   "coverage": {
-    "from": "2025-10-26T14:00:00.000Z",
+    "from": "2025-10-26T23:00:00.000Z",
     "to": "2026-10-27T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8793
+    "points": 8784
   },
   "units": {
     "price": "EUR/MWh"
@@ -31,15 +31,15 @@
   "staleAfterHours": 72,
   "derived": {
     "authority": "derived",
-    "points": 8793,
-    "coverageDays": 367,
+    "points": 8784,
+    "coverageDays": 366,
     "pointsPerHour": 1,
-    "mean": 120.7,
-    "median": 116.21,
-    "stdev": 65.27,
-    "p5": 1.51,
-    "p95": 223.16,
-    "negativeHoursPct": 0.034914136244740136,
+    "mean": 120.73,
+    "median": 116.24,
+    "stdev": 65.29,
+    "p5": 1.5,
+    "p95": 223.19,
+    "negativeHoursPct": 0.03494990892531876,
     "spreadMean": 133.12,
     "spreadMedian": 127.85,
     "spreadP25": 74.32,
@@ -51,11 +51,11 @@
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 122069,
-    "marginPerCycle": 492.54,
+    "revenuePerMW": 122067,
+    "marginPerCycle": 492.53,
     "inputs": {
-      "chargeMean": 56.58347677595632,
-      "dischargeMean": 189.70394125683077,
+      "chargeMean": 56.583333333333364,
+      "dischargeMean": 189.7021038251368,
       "durationHours": 4,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
@@ -69,16 +69,6 @@
     ]
   },
   "daily": [
-    {
-      "d": "2025-10-26",
-      "n": 9,
-      "mean": 94.2,
-      "min": 23.43,
-      "max": 123.39,
-      "spread": 40.77,
-      "charge": 72.55,
-      "discharge": 113.31
-    },
     {
       "d": "2025-10-27",
       "n": 24,
@@ -3732,18 +3722,18 @@
     {
       "d": "2026-10-27",
       "n": 24,
-      "mean": 162.93,
-      "min": -13.03,
-      "max": 365.06,
-      "spread": 291.88,
-      "charge": 26.13,
-      "discharge": 318.01
+      "mean": 162.58,
+      "min": -13,
+      "max": 364.29,
+      "spread": 291.26,
+      "charge": 26.07,
+      "discharge": 317.33
     }
   ],
   "sourceSnapshot": {
     "file": "pl-day-ahead.json",
-    "contentChecksum": "sha256:de87a5a4f131c94176820d8dca60e15c6b7e82a1d601796d274ce49bfd41d68c",
-    "points": 8793
+    "contentChecksum": "sha256:49302749914d2470300bbadb7c66ad18951d8df81df0f790d8709b0f092b2b20",
+    "points": 8784
   },
-  "summaryChecksum": "sha256:fd4ea00f3c8dee01bb071cc1b07fce5482a25edbb97412e260af230e66168f6b"
+  "summaryChecksum": "sha256:2d61d154c21d5aa6dcf6fdd71c769e9bd443300c627f72728b08de3dd02bf915"
 }
