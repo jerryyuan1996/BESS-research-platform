@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-27T12:22:03.444Z",
+  "fetchedAt": "2026-10-27T22:21:17.221Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-27T12:00:00.000Z",
+    "to": "2026-10-27T17:00:00.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -135,26 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-10-21T12:58:05.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/enhanced-safety-and-performance-easier-assembly-more-bess-engineers-would-use-psa-tape-if-they-knew-about-it/",
-      "source": "Energy-Storage.news",
-      "title": "Enhanced safety and performance, easier assembly: More BESS engineers would use PSA tape if they knew about it",
-      "url": "https://www.energy-storage.news/enhanced-safety-and-performance-easier-assembly-more-bess-engineers-would-use-psa-tape-if-they-knew-about-it/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Although relatively new to the energy storage space, pressure-sensitive adhesive (PSA) tape is used for protection, security and flexible configuration of equipment in many industries."
-    },
-    {
-      "t": "2026-10-22T09:25:14.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ul-solutions-launches-certification-pathway-for-modular-dc-bess/",
-      "source": "Energy-Storage.news",
-      "title": "UL Solutions launches certification pathway for modular DC BESS",
-      "url": "https://www.energy-storage.news/ul-solutions-launches-certification-pathway-for-modular-dc-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Science safety leader UL Solutions has announced a new certification pathway intended to help manufacturers of modular direct current (DC) battery energy storage systems (BESS)."
-    },
-    {
       "t": "2026-10-22T10:38:58.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/faria-renewables-inaugurates-134mwh-huawei-supplied-greece-bess/",
       "source": "Energy-Storage.news",
@@ -233,16 +213,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Tesla’s energy storage business deployed 13.7GWh in Q3 2026, its second-highest quarterly figure to date, but saw a 16% year-on-year decline in revenues for the division."
-    },
-    {
-      "t": "2026-10-23T12:11:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/trump-eschews-tariffs-for-trade-talks-on-wind-turbine-imports/833862/",
-      "source": "Utility Dive",
-      "title": "Trump eschews tariffs for trade talks on wind turbine imports",
-      "url": "https://www.utilitydive.com/news/trump-eschews-tariffs-for-trade-talks-on-wind-turbine-imports/833862/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Following a Section 232 probe, the president tasked cabinet officials to engage in negotiations and report on their progress within 180 days."
     },
     {
       "t": "2026-10-26T03:38:54.000Z",
@@ -335,56 +305,6 @@
       "summary": "Owner-operator Giga Storage has finalised financing for the construction of its 350MW/1,400MWh Albatross energy storage project near Neuenkirchen in Lower Saxony, Germany."
     },
     {
-      "t": "2026-10-27T09:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/creating-value-in-the-turmoil-electric-mobility-supporting-solar-and-storage/",
-      "source": "pv magazine",
-      "title": "Creating value in the turmoil: Electric mobility supporting solar and storage",
-      "url": "https://www.pv-magazine.com/2026/10/27/creating-value-in-the-turmoil-electric-mobility-supporting-solar-and-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Europe’s energy transition is accelerating as solar power, battery storage, and electric vehicles converge into an integrated system, with EV batteries increasingly providing grid flexibility through vehicle-to-grid technology. The profitability of solar and storage will increasingly depend on combining multiple rev…"
-    },
-    {
-      "t": "2026-10-27T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/korean-researchers-seek-to-improve-perovskite-solar-cell-stability-with-lithium-removal-process/",
-      "source": "pv magazine",
-      "title": "Researchers improve perovskite cell stability with lithium-removal process",
-      "url": "https://www.pv-magazine.com/2026/10/27/korean-researchers-seek-to-improve-perovskite-solar-cell-stability-with-lithium-removal-process/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "KIER researchers have developed a nickel oxide-based catalytic process that removes lithium ions from the hole transport layer of perovskite solar cells to improve stability. The cells achieved an efficiency of 25.24% and retained over 90% of their initial performance after 500 hours of continuous operation. The pos…"
-    },
-    {
-      "t": "2026-10-27T10:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/sigenergy-launches-the-sigencube-ci-bess/",
-      "source": "pv magazine",
-      "title": "Sigenergy launches the SigenCube C&I BESS",
-      "url": "https://www.pv-magazine.com/2026/10/27/sigenergy-launches-the-sigencube-ci-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "With a 30% reduction in overall footprint, support for heavy industrial machinery during critical surges, and noise levels below 60 dB at one meter, the system is designed to address the core challenges of commercial deployments. The post Sigenergy launches the SigenCube C&I BESS appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-27T10:23:31.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/chinas-solar-installations-fall-54-year-on-year-despite-september-rebound/",
-      "source": "pv magazine",
-      "title": "China’s solar installations fall 54% year on year despite September rebound",
-      "url": "https://www.pv-magazine.com/2026/10/27/chinas-solar-installations-fall-54-year-on-year-despite-september-rebound/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "China installed 110.83 GW of new solar capacity in the first nine months of 2026, down 53.9% year on year, according to the National Energy Administration (NEA). Despite the sharp decline, third-quarter installations exceeded year-earlier levels, suggesting a recovery in deployment following changes to the country’s…"
-    },
-    {
-      "t": "2026-10-27T10:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/germany-forecasts-e17-5-billion-in-eeg-funding-needs-for-2027/",
-      "source": "pv magazine",
-      "title": "Germany forecasts €17.5 billion in EEG funding needs for 2027",
-      "url": "https://www.pv-magazine.com/2026/10/27/germany-forecasts-e17-5-billion-in-eeg-funding-needs-for-2027/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Germany’s transmission system operators forecast €17.5 billion ($19.6 billion) in funding needs for the Renewable Energy Sources Act (EEG) in 2027, as lower wholesale electricity prices are expected to increase support payments, particularly for older solar installations. The post Germany forecasts €17.5 billion in…"
-    },
-    {
       "t": "2026-10-27T10:55:45.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/lets-keep-things-practical-contracting-in-battery-energy-storage-systems-bess/",
       "source": "Energy-Storage.news",
@@ -393,16 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "As BESS projects grow more complex, so does the question of what 'purpose' even means in a construction contract, writes contracts lawyer Suriya Ashok of Clyde & Co."
-    },
-    {
-      "t": "2026-10-27T11:01:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/australian-renewable-energy-investment-surges-to-new-heights/",
-      "source": "pv magazine",
-      "title": "Australian renewable energy investment surges to new heights",
-      "url": "https://www.pv-magazine.com/2026/10/27/australian-renewable-energy-investment-surges-to-new-heights/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Five renewable energy projects totaling 1.4 GW of new generation capacity and 2.3 GW/7.1 GWh of battery energy storage capacity came online across Australia in the first six months of 2026. The post Australian renewable energy investment surges to new heights appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-27T11:07:49.000Z",
@@ -443,18 +353,128 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Fifteen solar developers warn that planned changes to Germany’s renewable energy law, grid connection rules, and network charges could raise ground-mounted solar costs by up to 30%, prompting calls to increase the auction ceiling from €59 ($65.91)/MWh to at least €70/MWh. The post German solar developers seek €70/MW…"
+    },
+    {
+      "t": "2026-10-27T12:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/italian-industrial-group-to-install-43-mw-of-solar-by-year-end/",
+      "source": "pv magazine",
+      "title": "Italian industrial group to install 43 MW of solar by year-end",
+      "url": "https://www.pv-magazine.com/2026/10/27/italian-industrial-group-to-install-43-mw-of-solar-by-year-end/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Leonardo plans to complete 43 MW of solar installations across 20 sites by year-end, covering around 10% of its energy consumption in Italy through self-consumption. The post Italian industrial group to install 43 MW of solar by year-end appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-27T13:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/lula-targets-data-center-investment-using-brazils-renewable-energy-potential/",
+      "source": "pv magazine",
+      "title": "Lula targets data center investment using Brazil’s renewable energy potential",
+      "url": "https://www.pv-magazine.com/2026/10/27/lula-targets-data-center-investment-using-brazils-renewable-energy-potential/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Brazil’s newly re-elected president wants to attract data centers and develop domestic AI, linking digital infrastructure investment to renewable energy availability, grid capacity and workforce training. The post Lula targets data center investment using Brazil’s renewable energy potential appeared first on pv maga…"
+    },
+    {
+      "t": "2026-10-27T13:47:23.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-ferc-mon-power-winter-storm-fern-complaint/872855/",
+      "source": "Utility Dive",
+      "title": "PJM urges FERC to dismiss Mon Power ‘fishing expedition’ seeking to recoup $145M",
+      "url": "https://www.utilitydive.com/news/pjm-ferc-mon-power-winter-storm-fern-complaint/872855/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "FirstEnergy&rsquo;s Monongahela Power contends that the PJM Interconnection&rsquo;s advanced scheduling of gas-fired power plants during Winter Storm Fern may have violated the grid operator&rsquo;s rules."
+    },
+    {
+      "t": "2026-10-27T14:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/australian-state-targets-75-renewables-for-main-grid/",
+      "source": "pv magazine",
+      "title": "Australian state targets 75% renewables for main grid",
+      "url": "https://www.pv-magazine.com/2026/10/27/australian-state-targets-75-renewables-for-main-grid/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Western Australia has committed to a renewable energy target of 75% by 2030-2031 for its main electricity grid as it prepares for the retirement of state-owned coal-fired power stations by the end of this decade. The post Australian state targets 75% renewables for main grid appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-27T14:19:38.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/bnef-ups-us-energy-storage-deployment-forecast-by-30/872870/",
+      "source": "Utility Dive",
+      "title": "BNEF ups US energy storage deployment forecast by 30%",
+      "url": "https://www.utilitydive.com/news/bnef-ups-us-energy-storage-deployment-forecast-by-30/872870/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Hyperscalers&rsquo; interest in on-site and nearby energy storage has converted into firm orders this year, the global energy consultancy said last week in its latest industry outlook."
+    },
+    {
+      "t": "2026-10-27T14:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/bangladesh-moves-to-cut-tariffs-for-long-delayed-solar-projects/",
+      "source": "pv magazine",
+      "title": "Bangladesh moves to cut tariffs for long-delayed solar projects",
+      "url": "https://www.pv-magazine.com/2026/10/27/bangladesh-moves-to-cut-tariffs-for-long-delayed-solar-projects/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Bangladesh is seeking lower tariffs on solar power purchase agreements (PPAs) signed years ago for projects that are still not generating, a move investors warn could raise contract risk across the market. The post Bangladesh moves to cut tariffs for long-delayed solar projects appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-27T15:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/algeria-inaugurates-300-mw-solar-project/",
+      "source": "pv magazine",
+      "title": "Algeria inaugurates 300 MW solar project",
+      "url": "https://www.pv-magazine.com/2026/10/27/algeria-inaugurates-300-mw-solar-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The 300 MW solar plant, located in the eastern province of El Oued, is Algeria's largest operational PV project to date. The post Algeria inaugurates 300 MW solar project appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-27T16:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/singapore-sets-4-gwp-solar-target-for-2035/",
+      "source": "pv magazine",
+      "title": "Singapore sets 4 GW solar target for 2035",
+      "url": "https://www.pv-magazine.com/2026/10/27/singapore-sets-4-gwp-solar-target-for-2035/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Singapore is pooling government solar demand and testing installations on facades, heritage roofs and temporary worksites to reach a higher long-term solar target. The post Singapore sets 4 GW solar target for 2035 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-27T16:05:05.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/india-has-5-3gwh-of-operational-bess-with-185gwh-under-development-cea-official-says/",
+      "source": "Energy-Storage.news",
+      "title": "India has 5.3GWh of operational BESS, with 185GWh under development, CEA official says",
+      "url": "https://www.energy-storage.news/india-has-5-3gwh-of-operational-bess-with-185gwh-under-development-cea-official-says/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India has 5.3GWh of operational battery energy storage system (BESS) capacity, with a further 185GWh of projects under development, according to Prashant Bhamu, deputy director of integrated resources planning at the Central Electricity Authority (CEA), part of the Ministry of Power."
+    },
+    {
+      "t": "2026-10-27T16:19:55.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-security-not-just-climate-goals-drive-caribbean-and-latin-american-storage-growth/",
+      "source": "Energy-Storage.news",
+      "title": "Energy security, not just climate goals, drive Caribbean and Latin American storage growth",
+      "url": "https://www.energy-storage.news/energy-security-not-just-climate-goals-drive-caribbean-and-latin-american-storage-growth/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Regulation, energy independence and energy demand growth as key drivers for BESS development across several markets in Latin America."
+    },
+    {
+      "t": "2026-10-27T17:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/shining-light-on-australias-largest-rooftops/",
+      "source": "pv magazine",
+      "title": "Shining light on Australia’s largest rooftops",
+      "url": "https://www.pv-magazine.com/2026/10/27/shining-light-on-australias-largest-rooftops/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Australia’s commercial and industrial (C&I) segment could be seen as a forgotten part of an otherwise pioneering solar market. The opportunity is huge, but regulatory barriers remain. Rob Potter, head of policy and advocacy at the Smart Energy Council, examines the potential upsides of C&I solar and energy storage,…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 7,
-      "capital": 7,
-      "grid": 26,
-      "technology": 2
+      "policy": 8,
+      "capital": 6,
+      "grid": 29,
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -473,13 +493,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 4
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -488,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:30cd95417c949c732d048d8eeeafaee15c2a8b91e9eef550c4c4adf47047fe8d",
-  "envelopeChecksum": "sha256:a9b5a8f22bdc65a29c61a33035fe2d8269e768b598547ee5f813faf3f73fe55f"
+  "contentChecksum": "sha256:9bd83cffdc00f853b21113f1e315e5a22203f97c0e47422dff1111fce128737a",
+  "envelopeChecksum": "sha256:43409bd39e53b4c63d8e1cb576b6d297b93ed633565010e4b3c73171cc26154c"
 }

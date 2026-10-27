@@ -13,12 +13,12 @@
     "licence": "PSE public reporting data — reuse with attribution to PSE S.A.",
     "attribution": "Source: PSE S.A.; ECB reference rates"
   },
-  "fetchedAt": "2026-10-27T12:22:08.437Z",
+  "fetchedAt": "2026-10-27T22:21:19.977Z",
   "coverage": {
-    "from": "2025-10-27T13:00:00.000Z",
-    "to": "2026-10-27T22:00:00.000Z",
+    "from": "2025-10-27T23:00:00.000Z",
+    "to": "2026-10-28T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8770
+    "points": 8784
   },
   "units": {
     "price": "EUR/MWh"
@@ -31,37 +31,37 @@
   "staleAfterHours": 72,
   "derived": {
     "authority": "derived",
-    "points": 8770,
+    "points": 8784,
     "coverageDays": 366,
     "pointsPerHour": 1,
-    "mean": 120.81,
-    "median": 116.3,
-    "stdev": 65.29,
-    "p5": 1.48,
-    "p95": 223.23,
-    "negativeHoursPct": 0.03500570125427594,
-    "spreadMean": 133.07,
-    "spreadMedian": 127.78,
-    "spreadP25": 74.22,
-    "spreadP75": 173.94,
-    "spreadDays": 365,
-    "chargeMean": 56.69,
-    "dischargeMean": 189.75,
+    "mean": 121.18,
+    "median": 116.35,
+    "stdev": 65.73,
+    "p5": 1.5,
+    "p95": 225.35,
+    "negativeHoursPct": 0.03494990892531876,
+    "spreadMean": 133.23,
+    "spreadMedian": 127.85,
+    "spreadP25": 74.32,
+    "spreadP75": 174.41,
+    "spreadDays": 366,
+    "chargeMean": 57.01,
+    "dischargeMean": 190.25,
     "durationHours": 4
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 121996,
-    "marginPerCycle": 492.25,
+    "revenuePerMW": 122106,
+    "marginPerCycle": 492.69,
     "inputs": {
-      "chargeMean": 56.68679452054798,
-      "dischargeMean": 189.75230821917825,
+      "chargeMean": 57.01256147540987,
+      "dischargeMean": 190.24653688524606,
       "durationHours": 4,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
       "availability": 0.97,
       "spreadRealisation": 0.7,
-      "spreadDays": 365
+      "spreadDays": 366
     },
     "claim": [
       "Wholesale arbitrage only — excludes capacity, ancillary and balancing revenue",
@@ -69,16 +69,6 @@
     ]
   },
   "daily": [
-    {
-      "d": "2025-10-27",
-      "n": 10,
-      "mean": 136.65,
-      "min": 98.17,
-      "max": 203.73,
-      "spread": 67.18,
-      "charge": 104.2,
-      "discharge": 171.38
-    },
     {
       "d": "2025-10-28",
       "n": 24,
@@ -3728,12 +3718,22 @@
       "spread": 291.26,
       "charge": 26.07,
       "discharge": 317.33
+    },
+    {
+      "d": "2026-10-28",
+      "n": 24,
+      "mean": 259.6,
+      "min": 170.23,
+      "max": 407.94,
+      "spread": 194.72,
+      "charge": 175.92,
+      "discharge": 370.64
     }
   ],
   "sourceSnapshot": {
     "file": "pl-day-ahead.json",
-    "contentChecksum": "sha256:23de7c0b9a7412927141195d20d295cbde46c1c8b9a20be064ba7c2bf3c37cd0",
-    "points": 8770
+    "contentChecksum": "sha256:6e84bb9f352658274c09e6eb43ecf1367288998486cb47a4336b98ac02469341",
+    "points": 8784
   },
-  "summaryChecksum": "sha256:4bb6f690581794af3106fb0549f734eae6f75c627d33685ea658fee3f84c337a"
+  "summaryChecksum": "sha256:3b8d488b5ed43855326505545d3667ae6bdf12362a6782f9eb2ade508042764c"
 }
