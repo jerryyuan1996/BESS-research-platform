@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-27T05:13:30.599Z",
+  "fetchedAt": "2026-10-27T12:22:03.444Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-27T01:37:32.000Z",
+    "to": "2026-10-27T12:00:00.000Z",
     "resolution": "event",
-    "points": 41
+    "points": 42
   },
   "units": {
     "record": "published article metadata"
@@ -133,46 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
-    },
-    {
-      "t": "2026-10-21T07:25:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/finland-foresight-group-acquires-nordic-countrys-largest-bess-from-frv/",
-      "source": "Energy-Storage.news",
-      "title": "Finland: Foresight Group acquires Nordic country’s largest BESS from FRV",
-      "url": "https://www.energy-storage.news/finland-foresight-group-acquires-nordic-countrys-largest-bess-from-frv/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Foresight Group has acquired the 100MW/400MWh Nivala BESS via its Foresight Energy Infrastructure Partners II (FEIP II) fund."
-    },
-    {
-      "t": "2026-10-21T09:11:03.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/engineering-discipline-bankability-and-operational-performance-become-differentiators-as-indias-bess-market-faces-biggest-test/",
-      "source": "Energy-Storage.news",
-      "title": "Engineering discipline, bankability and operational performance become differentiators as India’s BESS market ‘faces biggest test’",
-      "url": "https://www.energy-storage.news/engineering-discipline-bankability-and-operational-performance-become-differentiators-as-indias-bess-market-faces-biggest-test/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "IndiGrid COO discusses India’s BESS growth, challenges, tariff pressures, safety standards and localisation as the market scales up."
-    },
-    {
-      "t": "2026-10-21T09:35:04.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/enertrag-and-axpo-reach-fid-order-equipment-on-french-bess-projects-totalling-239mwh/",
-      "source": "Energy-Storage.news",
-      "title": "Enertrag and Axpo reach FID, order equipment on French BESS projects totalling 239MWh",
-      "url": "https://www.energy-storage.news/enertrag-and-axpo-reach-fid-order-equipment-on-french-bess-projects-totalling-239mwh/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "German IPP Enertrag and Swiss utility Axpo have launched BESS projects in France, including what could be the country’s first 3-hour project."
-    },
-    {
-      "t": "2026-10-21T12:27:00.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/viridi-deploys-fail-safe-anti-propagation-architecture-indoor-bess-at-new-york-affordable-housing-development/",
-      "source": "Energy-Storage.news",
-      "title": "Viridi deploys ‘Fail-Safe Anti-Propagation architecture’ indoor BESS at New York affordable housing development",
-      "url": "https://www.energy-storage.news/viridi-deploys-fail-safe-anti-propagation-architecture-indoor-bess-at-new-york-affordable-housing-development/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Distributed energy storage company Viridi and developer and financier Good Carbon Co. have announced the deployment of a 3.75MWh energy storage project in Buffalo, New York."
     },
     {
       "t": "2026-10-21T12:58:05.000Z",
@@ -306,16 +266,6 @@
     },
     {
       "t": "2026-10-26T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/new-multi-modeling-approach-can-predict-rice-yield-in-agrivoltaics/",
-      "source": "pv magazine",
-      "title": "New multi-modeling approach can predict rice yield in agrivoltaics",
-      "url": "https://www.pv-magazine.com/2026/10/26/new-multi-modeling-approach-can-predict-rice-yield-in-agrivoltaics/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in Japan have developed a modeling approach to optimize rice yields and electricity generation in agrivoltaic systems. Their findings show that adjusting solar panel tilt angles can improve crop productivity and help meet regulatory yield requirements, with limited economic losses. The post New multi-mod…"
-    },
-    {
-      "t": "2026-10-26T09:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/spons/the-push-to-dc-why-data-centers-are-rethinking-power-architecture/833783/",
       "source": "Utility Dive",
       "title": "The push to DC: Why data centers are rethinking power architecture",
@@ -323,36 +273,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Explore how 800 VDC can reduce power losses, free up data center space and reshape power architecture."
-    },
-    {
-      "t": "2026-10-26T09:00:29.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/norwegian-alliance-calls-for-increased-solar-support/",
-      "source": "pv magazine",
-      "title": "Norwegian alliance calls for increased solar support",
-      "url": "https://www.pv-magazine.com/2026/10/26/norwegian-alliance-calls-for-increased-solar-support/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Trade union, environmental and business organisations in Norway have signed a joint letter demanding the Norwegian government backs five measures to support the country’s solar industry. The post Norwegian alliance calls for increased solar support appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-26T09:39:14.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/waaree-showcases-520-wp-flexible-mono-perc-solar-module-with-19-69-efficiency/",
-      "source": "pv magazine",
-      "title": "Waaree showcases 520 W flexible mono PERC solar module with 19.69% efficiency",
-      "url": "https://www.pv-magazine.com/2026/10/26/waaree-showcases-520-wp-flexible-mono-perc-solar-module-with-19-69-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Indian manufacturer has unveiled a flexible, lightweight monocrystalline PERC solar module that is reportedly about 70% lighter than conventional glass-based panels and is designed for curved rooftops and weight-constrained applications. The post Waaree showcases 520 W flexible mono PERC solar module with 19.69%…"
-    },
-    {
-      "t": "2026-10-26T11:40:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/citicore-secures-552-million-for-900-mw-solar-120-mwh-storage-portfolio-in-philippines/",
-      "source": "pv magazine",
-      "title": "Citicore secures $552 million for 900 MW solar, 120 MWh storage portfolio in Philippines",
-      "url": "https://www.pv-magazine.com/2026/10/26/citicore-secures-552-million-for-900-mw-solar-120-mwh-storage-portfolio-in-philippines/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Bank of the Philippine Islands, Land Bank of the Philippines and Development Bank of the Philippines have provided PHP 35.014 billion ($552 million) in financing for a portfolio of five solar projects totaling 900 MW and 120 MWh of battery storage in the Philippines. The post Citicore secures $552 million for 900 MW…"
     },
     {
       "t": "2026-10-26T11:46:19.000Z",
@@ -365,16 +285,6 @@
       "summary": "BESS industry experts note that rising complexity in BESS software is driving calls for industry-wide interoperability and data standards."
     },
     {
-      "t": "2026-10-26T11:57:40.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/shakti-pumps-unveils-620-wp-topcon-solar-module-at-rei-expo-2026/",
-      "source": "pv magazine",
-      "title": "Shakti Pumps releases 620 W TOPCon solar module",
-      "url": "https://www.pv-magazine.com/2026/10/26/shakti-pumps-unveils-620-wp-topcon-solar-module-at-rei-expo-2026/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Shakti Pumps presented its Shakti On Roof solar module range featuring 16-busbar TOPCon technology, alongside solar pumps, inverters and module mounting structures. The post Shakti Pumps releases 620 W TOPCon solar module appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-26T12:26:39.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/heron-power-and-nisource-announce-us-data-centre-and-bess-focused-deals-with-vantage-microsoft/",
       "source": "Energy-Storage.news",
@@ -385,16 +295,6 @@
       "summary": "Heron Power and NiSource have separately announced US data centre-focused deals involving battery energy storage systems (BESS) in recent days."
     },
     {
-      "t": "2026-10-26T13:30:01.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/xpanner-launches-automated-pile-driver-to-speed-up-utility-scale-solar-energy-storage-installation/",
-      "source": "pv magazine",
-      "title": "Xpanner launches automated pile driver to speed up utility-scale solar, energy storage installation",
-      "url": "https://www.pv-magazine.com/2026/10/26/xpanner-launches-automated-pile-driver-to-speed-up-utility-scale-solar-energy-storage-installation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The fully automated system combines GNSS positioning and remote control operation to reduce pile driving cycle times by 45% on utility-scale solar and battery storage job sites. The post Xpanner launches automated pile driver to speed up utility-scale solar, energy storage installation appeared first on pv magazine…"
-    },
-    {
       "t": "2026-10-26T15:06:46.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/wind-turbine-orders-hit-28-gw-in-q2-ahead-of-tax-credit-deadline-woodmac/872757/",
       "source": "Utility Dive",
@@ -402,17 +302,7 @@
       "url": "https://www.utilitydive.com/news/wind-turbine-orders-hit-28-gw-in-q2-ahead-of-tax-credit-deadline-woodmac/872757/",
       "category": "policy",
       "categoryLabel": "Policy & trade",
-      "summary": "Overall, &ldquo;the U.S. wind industry remains on course to add 39 GW of onshore new-build capacity by 2030,&rdquo; the report said. &ldquo;More than half of the project pipeline from 2026 to 2028 is already operating or under construction, limiting near-term risk.&rdquo;"
-    },
-    {
-      "t": "2026-10-26T17:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/indias-grid-capacity-puzzle/",
-      "source": "pv magazine",
-      "title": "India’s grid capacity puzzle",
-      "url": "https://www.pv-magazine.com/2026/10/26/indias-grid-capacity-puzzle/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "India is adding renewable energy capacity faster than transmission infrastructure can keep pace, and the consequences are now showing up in project economics, writes Vijay CS of Aurora Energy Research. The situation can change greatly from one substation to the next, meaning grid capacity is now a key consideration…"
+      "summary": "Overall, &ldquo;the U.S. wind industry remains on course to add 39 GW of onshore new-build capacity by 2030,&rdquo; the report said."
     },
     {
       "t": "2026-10-26T17:48:03.000Z",
@@ -433,18 +323,138 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Aurora Energy Research has launched a forecast service to help investors and developers assess the commercial case for battery storage in the Philippines."
+    },
+    {
+      "t": "2026-10-27T08:48:21.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/giga-storage-closes-e260-million-debt-financing-for-1400mwh-germany-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Giga Storage closes €260 million debt financing for 1,400MWh Germany BESS",
+      "url": "https://www.energy-storage.news/giga-storage-closes-e260-million-debt-financing-for-1400mwh-germany-bess/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Owner-operator Giga Storage has finalised financing for the construction of its 350MW/1,400MWh Albatross energy storage project near Neuenkirchen in Lower Saxony, Germany."
+    },
+    {
+      "t": "2026-10-27T09:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/creating-value-in-the-turmoil-electric-mobility-supporting-solar-and-storage/",
+      "source": "pv magazine",
+      "title": "Creating value in the turmoil: Electric mobility supporting solar and storage",
+      "url": "https://www.pv-magazine.com/2026/10/27/creating-value-in-the-turmoil-electric-mobility-supporting-solar-and-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Europe’s energy transition is accelerating as solar power, battery storage, and electric vehicles converge into an integrated system, with EV batteries increasingly providing grid flexibility through vehicle-to-grid technology. The profitability of solar and storage will increasingly depend on combining multiple rev…"
+    },
+    {
+      "t": "2026-10-27T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/korean-researchers-seek-to-improve-perovskite-solar-cell-stability-with-lithium-removal-process/",
+      "source": "pv magazine",
+      "title": "Researchers improve perovskite cell stability with lithium-removal process",
+      "url": "https://www.pv-magazine.com/2026/10/27/korean-researchers-seek-to-improve-perovskite-solar-cell-stability-with-lithium-removal-process/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "KIER researchers have developed a nickel oxide-based catalytic process that removes lithium ions from the hole transport layer of perovskite solar cells to improve stability. The cells achieved an efficiency of 25.24% and retained over 90% of their initial performance after 500 hours of continuous operation. The pos…"
+    },
+    {
+      "t": "2026-10-27T10:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/sigenergy-launches-the-sigencube-ci-bess/",
+      "source": "pv magazine",
+      "title": "Sigenergy launches the SigenCube C&I BESS",
+      "url": "https://www.pv-magazine.com/2026/10/27/sigenergy-launches-the-sigencube-ci-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "With a 30% reduction in overall footprint, support for heavy industrial machinery during critical surges, and noise levels below 60 dB at one meter, the system is designed to address the core challenges of commercial deployments. The post Sigenergy launches the SigenCube C&I BESS appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-27T10:23:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/chinas-solar-installations-fall-54-year-on-year-despite-september-rebound/",
+      "source": "pv magazine",
+      "title": "China’s solar installations fall 54% year on year despite September rebound",
+      "url": "https://www.pv-magazine.com/2026/10/27/chinas-solar-installations-fall-54-year-on-year-despite-september-rebound/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "China installed 110.83 GW of new solar capacity in the first nine months of 2026, down 53.9% year on year, according to the National Energy Administration (NEA). Despite the sharp decline, third-quarter installations exceeded year-earlier levels, suggesting a recovery in deployment following changes to the country’s…"
+    },
+    {
+      "t": "2026-10-27T10:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/germany-forecasts-e17-5-billion-in-eeg-funding-needs-for-2027/",
+      "source": "pv magazine",
+      "title": "Germany forecasts €17.5 billion in EEG funding needs for 2027",
+      "url": "https://www.pv-magazine.com/2026/10/27/germany-forecasts-e17-5-billion-in-eeg-funding-needs-for-2027/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Germany’s transmission system operators forecast €17.5 billion ($19.6 billion) in funding needs for the Renewable Energy Sources Act (EEG) in 2027, as lower wholesale electricity prices are expected to increase support payments, particularly for older solar installations. The post Germany forecasts €17.5 billion in…"
+    },
+    {
+      "t": "2026-10-27T10:55:45.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/lets-keep-things-practical-contracting-in-battery-energy-storage-systems-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Let’s keep things practical: contracting in battery energy storage systems (BESS)",
+      "url": "https://www.energy-storage.news/lets-keep-things-practical-contracting-in-battery-energy-storage-systems-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "As BESS projects grow more complex, so does the question of what 'purpose' even means in a construction contract, writes contracts lawyer Suriya Ashok of Clyde & Co."
+    },
+    {
+      "t": "2026-10-27T11:01:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/australian-renewable-energy-investment-surges-to-new-heights/",
+      "source": "pv magazine",
+      "title": "Australian renewable energy investment surges to new heights",
+      "url": "https://www.pv-magazine.com/2026/10/27/australian-renewable-energy-investment-surges-to-new-heights/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Five renewable energy projects totaling 1.4 GW of new generation capacity and 2.3 GW/7.1 GWh of battery energy storage capacity came online across Australia in the first six months of 2026. The post Australian renewable energy investment surges to new heights appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-27T11:07:49.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/poland-greenvolt-sells-1-6gwh-of-projects-to-ar-pge-building-800mwh-with-fluence-tech/",
+      "source": "Energy-Storage.news",
+      "title": "Poland: Greenvolt sells 1.6GWh of projects to A&R, PGE building 800MWh with Fluence tech",
+      "url": "https://www.energy-storage.news/poland-greenvolt-sells-1-6gwh-of-projects-to-ar-pge-building-800mwh-with-fluence-tech/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "IPP Greenvolt has agreed to sell two BESS in Poland to A&R, PGE Group has started building an 800MWh one, while SC Holding, Tauron and Tavion have launched projects into the country."
+    },
+    {
+      "t": "2026-10-27T11:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/stellantis-plans-21-56-mw-of-solar-for-mexican-auto-complex/",
+      "source": "pv magazine",
+      "title": "Stellantis plans 21.56 MW of solar for Mexican auto complex",
+      "url": "https://www.pv-magazine.com/2026/10/27/stellantis-plans-21-56-mw-of-solar-for-mexican-auto-complex/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Stellantis has submitted plans for two solar plants totaling 21.56 MWp at its Saltillo industrial complex in Mexico, with annual generation of 51.68 GWh for on-site consumption. The post Stellantis plans 21.56 MW of solar for Mexican auto complex appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-27T11:32:15.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/samsung-sdi-signs-1gwh-us-bess-supply-agreement-with-alpha-omega-power/",
+      "source": "Energy-Storage.news",
+      "title": "Samsung SDI signs 1GWh US BESS supply agreement with Alpha Omega Power",
+      "url": "https://www.energy-storage.news/samsung-sdi-signs-1gwh-us-bess-supply-agreement-with-alpha-omega-power/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Korean battery and electronics materials manufacturer Samsung SDI has signed a 1GWh supply agreement with US IPP Alpha Omega Power (AOP)."
+    },
+    {
+      "t": "2026-10-27T12:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/german-solar-developers-seek-e70-mwh-auction-ceiling-for-2027/",
+      "source": "pv magazine",
+      "title": "German solar developers seek €70/MWh auction ceiling for 2027",
+      "url": "https://www.pv-magazine.com/2026/10/27/german-solar-developers-seek-e70-mwh-auction-ceiling-for-2027/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Fifteen solar developers warn that planned changes to Germany’s renewable energy law, grid connection rules, and network charges could raise ground-mounted solar costs by up to 30%, prompting calls to increase the auction ceiling from €59 ($65.91)/MWh to at least €70/MWh. The post German solar developers seek €70/MW…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 41,
+    "items": 42,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 8,
-      "capital": 5,
-      "grid": 27,
-      "technology": 1
+      "policy": 7,
+      "capital": 7,
+      "grid": 26,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -469,7 +479,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 8
       }
     ]
   },
@@ -478,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:90458e2763e6a0e6e94d7e839b211e6f7988e1ef35dacf78d1f4eb3161ebeb72",
-  "envelopeChecksum": "sha256:c9773fddb22955c01f79bdf8c49fdc721402ba2de98e012bfd90dc3bd6dc5aa5"
+  "contentChecksum": "sha256:30cd95417c949c732d048d8eeeafaee15c2a8b91e9eef550c4c4adf47047fe8d",
+  "envelopeChecksum": "sha256:a9b5a8f22bdc65a29c61a33035fe2d8269e768b598547ee5f813faf3f73fe55f"
 }
