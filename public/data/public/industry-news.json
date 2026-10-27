@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-26T22:44:32.794Z",
+  "fetchedAt": "2026-10-27T05:13:30.599Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-26T17:48:03.000Z",
+    "to": "2026-10-27T01:37:32.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -133,16 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
-    },
-    {
-      "t": "2026-10-21T07:20:51.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/indias-energy-storage-market-bridging-the-gap-between-tenders-and-execution/",
-      "source": "Energy-Storage.news",
-      "title": "India’s energy storage market: Bridging the gap between tenders and execution",
-      "url": "https://www.energy-storage.news/indias-energy-storage-market-bridging-the-gap-between-tenders-and-execution/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "India’s BESS pipeline exceeds 100GW, but financing, execution and tariff pressures threaten delivery of 411.4GWh of storage by FY2032."
     },
     {
       "t": "2026-10-21T07:25:47.000Z",
@@ -315,16 +305,6 @@
       "summary": "Faced with unprecedented growth in demand, Singapore’s Energy Market Authority has launched plan that includes a gigawatt-hour energy storage target."
     },
     {
-      "t": "2026-10-26T08:56:30.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/hungary-proposes-energy-upgrades-for-single-family-homes-apartments/",
-      "source": "pv magazine",
-      "title": "Hungary proposes energy upgrades for single-family homes, apartments",
-      "url": "https://www.pv-magazine.com/2026/10/26/hungary-proposes-energy-upgrades-for-single-family-homes-apartments/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "A government program in Hungary is preparing to offer single-family homes and condominiums non-refundable subsidies and preferential loans for energy efficiency measures including solar PV and heat pump installations. The post Hungary proposes energy upgrades for single-family homes, apartments appeared first on pv…"
-    },
-    {
       "t": "2026-10-26T09:00:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/26/new-multi-modeling-approach-can-predict-rice-yield-in-agrivoltaics/",
       "source": "pv magazine",
@@ -443,17 +423,27 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Ana Lía Rojas, executive director at the Chilean renewable energy and energy storage association (ACERA) gave the opening keynote of Energy Storage Summit Latin America 2026 and spoke about Chile's current BESS market."
+    },
+    {
+      "t": "2026-10-27T01:37:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/philippines-bess-revenue-streams-will-shift-to-arbitrage-after-initial-reserve-market-reliance-aurora-energy-research/",
+      "source": "Energy-Storage.news",
+      "title": "Philippines BESS revenue streams will shift to arbitrage after initial reserve market reliance: Aurora Energy Research",
+      "url": "https://www.energy-storage.news/philippines-bess-revenue-streams-will-shift-to-arbitrage-after-initial-reserve-market-reliance-aurora-energy-research/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Aurora Energy Research has launched a forecast service to help investors and developers assess the commercial case for battery storage in the Philippines."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 10,
+      "policy": 8,
       "capital": 5,
-      "grid": 26,
+      "grid": 27,
       "technology": 1
     },
     "sourceStatus": [
@@ -479,7 +469,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 7
       }
     ]
   },
@@ -488,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:148d7b228efa56235fd61737dc5b865f11e61d9a1186c768dd22ae95765452b1",
-  "envelopeChecksum": "sha256:fe25ab06f1add3d289eeee1ef6814d76e528429baf6c8863d64bd9ea3c351464"
+  "contentChecksum": "sha256:90458e2763e6a0e6e94d7e839b211e6f7988e1ef35dacf78d1f4eb3161ebeb72",
+  "envelopeChecksum": "sha256:c9773fddb22955c01f79bdf8c49fdc721402ba2de98e012bfd90dc3bd6dc5aa5"
 }
