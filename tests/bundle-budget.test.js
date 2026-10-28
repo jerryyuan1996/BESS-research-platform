@@ -126,7 +126,9 @@ const BUDGET = {
   // 23 Oct: the play-specific investor action sheet, inline cost/contract
   // explanations and local comparison add ~1.1 KiB over the previous 230 cap.
   // Measured 231.02 KiB; keep a small, explicit allowance for the new UI.
-  home: 234,
+  // 2026-10-28: 238.94 kB measured with the shared 20-year after-tax
+  // projections, project Capex/RTB facts and country-watermark presentation.
+  home: 244,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one

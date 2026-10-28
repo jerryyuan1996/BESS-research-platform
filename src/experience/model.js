@@ -4,6 +4,7 @@ import { marketAt } from '../comparison/designFit.js';
 import { runCase, runBaseCase } from '../comparison/engine.js';
 import { runScenarioSet } from '../comparison/refinement.js';
 import { sizeProjectDebt, riskClassFor } from '../economics/projectDebt.js';
+import { OPPORTUNITY_SUMMARY } from '../opportunities/summaryData.js';
 
 export const CALLS = {
   'enter-now': ['Advance', '优先推进'],
@@ -44,7 +45,16 @@ export function opportunities(lens = 'infraFund') {
       econ: { priced: !result.na, hold: result.irrHold, exit: result.irrExit,
         secured: result.securedShare, securedYears: result.securedYears, moic: result.moic } });
   }
-  return rows.map((row, index) => ({ ...row, rank: index + 1, id: row.market.manifest.id }));
+  return rows.map((row, index) => {
+    const id=row.market.manifest.id,investment=OPPORTUNITY_SUMMARY[lens]?.markets[id];
+    return {...row,rank:index+1,id,investment,legacyEcon:row.econ,
+      econ:{...row.econ,hold:investment?.irr??null,secured:investment?.secured??row.econ.secured}};
+  });
+}
+
+export function featuredOpportunity(rows, lens){
+  return (lens==='foreignFirstTimer'?rows.find(r=>r.id==='fi'):null)||
+    rows.find(r=>r.econ.priced&&r.play)||rows[0];
 }
 
 export function caseFor(row) {
@@ -69,7 +79,7 @@ export function caseFor(row) {
     }).filter(Number.isFinite);
     return ratios.length ? Math.min(...ratios) : null;
   };
-  return { row, variant, base, bear: scenarios.bear.result, debt, bridge,
+  return { row, variant, base, bear: scenarios.bear.result, debt, bridge, investment:row.investment,
     coverBase: cover(base), coverBear: cover(scenarios.bear.result), overrides: scenarios.bear.overrides };
 }
 
@@ -89,6 +99,7 @@ export function caseUrl(row) { return `/markets/${row.market.manifest.slug}`; }
 export function compareUrl(ids = []) { return `/returns${ids.length ? `?compare=${ids.join(',')}` : ''}`; }
 export const finite = Number.isFinite;
 export const pct = value => finite(value) ? `${(value * 100).toFixed(1)}%` : '—';
+export const returnPct = value => finite(value) ? pct(value) : 'N/M';
 export const share = value => finite(value) ? `${Math.round(value * 100)}%` : '—';
 export const multiple = value => finite(value) ? `${value.toFixed(2)}×` : '—';
 export function money(value, currency = 'USD') {
@@ -96,3 +107,4 @@ export function money(value, currency = 'USD') {
   const abs = Math.abs(value);
   return `${currency} ${abs >= 1e6 ? (value / 1e6).toFixed(2) + 'm' : (value / 1e3).toFixed(1) + 'k'}`;
 }
+

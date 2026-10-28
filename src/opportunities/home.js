@@ -3,6 +3,7 @@ import { L } from '../app/i18n.js';
 import { link, sectionTitle, eyebrow, metric } from '../experience/chrome.js';
 import { money, pct } from '../experience/model.js';
 import { OPPORTUNITY_SUMMARY } from './summaryData.js';
+import { countryAttrs, projectFacts } from '../experience/projectFacts.js';
 export function specialRecommendations(rows, investor) {
   const projection=OPPORTUNITY_SUMMARY[investor];
   const section=h('section',{class:'ix-section',id:'special-opportunities'},
@@ -20,7 +21,7 @@ export function specialRecommendations(rows, investor) {
         ['Acquire a 2–3-site portfolio of permitted 4.5 MW projects with connection agreements. Use a local developer to deliver and operate the portfolio.','优先收购2–3个已落实许可与并网协议的4.5MW项目，由本地开发商完成交付和运营。']:
       develop?['Target 9 MW distribution projects with modest network works. Complete QSE and product access alongside construction; operate or sell the commissioned portfolio.','优先开发无需重大电网改造的9MW配网项目，并行落实QSE与收入产品资格，投运后运营或组合出售。']:
         ['Buy mature 9 MW distribution projects with two-way connection rights and a local delivery partner. Complete QSE and revenue qualification alongside construction.','优先收购已落实双向接入和本地交付伙伴的成熟9MW配网项目，并行完成QSE与收入资格。'];
-    cards.append(h('article',{class:'ix-special-pick'},
+    cards.append(h('article',{class:'ix-special-pick',...countryAttrs(o.market)},
       eyebrow(reuse?['BUY WITH PRICE DISCIPLINE','按价格纪律收购']:develop?['PRIORITISE LOCAL DEVELOPMENT','优先布局本地开发']:['ACQUIRE MATURE PROJECTS','优先收购成熟项目']),
       h('h3',{},L(title)),h('p',{},L(strategy)),
       reuse?metric(['Maximum extra connection-rights price','额外并网权收购上限'],
@@ -32,6 +33,7 @@ export function specialRecommendations(rows, investor) {
         ['Bring cash generation forward and limit capital tied up per site. Pay development consideration at connection, commissioning and revenue-access milestones.',
          '提前形成现金回流，控制单项目资金占用；开发对价按并网协议、投运及收入资格里程碑支付。'])),
       reuse?h('p',{},L(['Remaining build and grid budget: ','剩余建设及并网预算：']),h('strong',{},money(Math.floor(c.buildBudget/1000)*1000,c.currency)+'/MW')):null,
+      projectFacts(o.project),
       h('details',{class:'ix-details'},h('summary',{},L(['Basis for the recommendation','建议依据'])),
         h('p',{},L(reuse?
           ['Uses the '+c.playHours+'h play, '+pct(c.target)+' target and a '+Math.abs(c.buildChange)+'% lower total build budget including retrofit. This is the required investment budget; confirm it with priced works before bidding.',
@@ -43,8 +45,10 @@ export function specialRecommendations(rows, investor) {
     h('summary',{},L(['More market strategies','更多市场策略'])),
     h('div',{class:'ix-opportunity-links'},projection.other.map(o=>{
       const row=rows.find(r=>r.id===o.market);
-      return link('/markets/'+row.market.manifest.slug+'?opportunity='+o.id+'#opportunity-comparison',
-        [row.market.manifest.name[0]+' · '+o.label[0],row.market.manifest.name[1]+' · '+o.label[1]]);
+      return h('article',{class:'ix-directory-card',...countryAttrs(o.market)},
+        link('/markets/'+row.market.manifest.slug+'?opportunity='+o.id+'#opportunity-comparison',
+          [row.market.manifest.name[0]+' · '+o.label[0],row.market.manifest.name[1]+' · '+o.label[1]]),
+        projectFacts(o.project));
     })),h('div',{class:'ix-opportunity-links'},projection.scouts.map(([id,label])=>link('/scout#'+id,label)))));
   return section;
 }

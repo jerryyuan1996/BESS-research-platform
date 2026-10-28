@@ -350,6 +350,17 @@ function inputsAt(market, route, hours){
 
 /* ---- one design ---------------------------------------------------------- */
 
+export function designRunOptions(market, route, hours, runOptions = {}, termTest = true){
+  const opts = { ...runOptions };
+  const floor = floorOf(market, route);
+  if (floor && floor.kind === FLOOR_KIND.LINEAR && floor.holdForTerm && termTest){
+    const factors = linearFadeFactors(market, floor, hours);
+    if (factors) opts.capacityFactors = factors;
+    opts.capacityFloor = { hours, requiredHours:floor.hours };
+  }
+  return opts;
+}
+
 function pricePoint(market, route, hours, { termTest, runOptions }){
   const h0 = market.comparison.archetype.durationHours;
   const point = { route, hours, archetype: hours === h0 };
@@ -372,12 +383,7 @@ function pricePoint(market, route, hours, { termTest, runOptions }){
   const variant = marketAt(market, route, hours);
   if (variant.na) return { ...point, priced: false, eligible: false, term, reason: variant.na };
 
-  const opts = { ...runOptions };
-  if (floor && floor.kind === FLOOR_KIND.LINEAR && floor.holdForTerm && termTest){
-    const factors = linearFadeFactors(market, floor, hours);
-    if (factors) opts.capacityFactors = factors;
-    opts.capacityFloor = { hours, requiredHours:floor.hours };
-  }
+  const opts = designRunOptions(market, route, hours, runOptions, termTest);
 
   /* Exit year 0: the exit value at commercial operation, which is the
      objective's discounting with nothing added. */

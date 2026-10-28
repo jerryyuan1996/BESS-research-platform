@@ -1,6 +1,6 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
-import { marketName, pct, share, finite } from './model.js';
+import { marketName, pct, returnPct, share, finite } from './model.js';
 
 function s(tag, attrs = {}, ...children) {
   const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
@@ -15,8 +15,8 @@ export function miniature(values) {
   const max = Math.max(...values.map(Math.abs), 1);
   return s('svg', { viewBox: '0 0 400 100', class: 'ix-miniature', role: 'img', 'aria-label': L(['Modelled annual operating cash flow', '模型年度经营现金流']) },
     s('line', { x1: 0, y1: 88, x2: 400, y2: 88, stroke: 'currentColor', opacity: '.18' }),
-    values.map((value, i) => s('rect', { x: i * 26.5 + 2, y: 88 - Math.max(0, value) / max * 74,
-      width: 17, height: Math.abs(value) / max * 74, rx: 2, fill: 'currentColor', opacity: .95 - i * .035 })),
+    values.map((value, i) => s('rect', { x: i * (400/values.length) + 2, y: 88 - Math.max(0, value) / max * 74,
+      width: (400/values.length)*.64, height: Math.abs(value) / max * 74, rx: 2, fill: 'currentColor', opacity: .95 - i * (.5/values.length) })),
     text(0, 100, 'Y1'), text(375, 100, `Y${values.length}`));
 }
 
@@ -35,13 +35,13 @@ export function opportunityMatrix(rows, selected, onSelect) {
   for (let tick = low; tick <= high; tick += 5) {
     svg.append(s('line', { x1: 66, y1: y(tick / 100), x2: 746, y2: y(tick / 100), class: 'ix-grid-line' }), text(53, y(tick / 100) + 4, `${tick}%`, { 'text-anchor': 'end' }));
   }
-  svg.append(text(66, 23, L(['Unlevered hold IRR', '无杠杆持有期 IRR']), { class: 'ix-chart-axis' }),
+  svg.append(text(66, 23, L(['After-tax investment IRR', '税后投资 IRR']), { class: 'ix-chart-axis' }),
     text(406, 395, L(['Modelled fixed revenue share →', '模型固定收入占比 →']), { 'text-anchor': 'middle', class: 'ix-chart-axis' }));
   dots.forEach(row => {
     const point = s('g', { class: `ix-point ${row.call} ${row.id === selected ? 'selected' : ''}`, role: 'button', tabindex: 0,
-      'aria-label': `${L(marketName(row))}, ${pct(row.econ.hold)} IRR, ${share(row.econ.secured)}`, 'aria-pressed': String(row.id === selected) });
+      'aria-label': `${L(marketName(row))}, ${returnPct(row.econ.hold)} IRR, ${share(row.econ.secured)}`, 'aria-pressed': String(row.id === selected) });
     const cx = x(row.econ.secured), cy = y(row.econ.hold);
-    point.append(s('circle', { cx, cy, r: row.id === selected ? 11 : 8 }), s('title', {}, `${L(marketName(row))} · ${pct(row.econ.hold)} · ${share(row.econ.secured)}`));
+    point.append(s('circle', { cx, cy, r: row.id === selected ? 11 : 8 }), s('title', {}, `${L(marketName(row))} · ${returnPct(row.econ.hold)} · ${share(row.econ.secured)}`));
     if (row.rank <= 3 || row.id === selected) point.append(text(cx > 660 ? cx - 16 : cx + 15, cy - 12, L(row.market.manifest.shortName), { 'text-anchor': cx > 660 ? 'end' : 'start', class: 'ix-point-label' }));
     const choose = () => {
       for (const p of svg.querySelectorAll('.ix-point')) { p.classList.remove('selected'); p.setAttribute('aria-pressed', 'false'); }
@@ -84,8 +84,9 @@ export function revenueWaterfall(bridge) {
     { label: ['Fixed', '固定收入'], value: bridge.fixed },
     { label: ['Renewal', '续约收入'], value: bridge.renewal },
     { label: ['Trading + services', '交易及辅助服务'], value: bridge.trading },
-    { label: ['Service cost', '服务成本'], value: -bridge.service },
+    ...(bridge.service?[{ label: ['Service cost', '服务成本'], value: -bridge.service }]:[]),
     { label: ['Other costs', '其他成本'], value: -bridge.operating },
+    ...(bridge.tax?[{label:['Project tax','项目税费'],value:-bridge.tax}]:[]),
     { label: ['Operating cash', '经营现金流'], value: bridge.net, total: true },
   ];
   let cursor = 0;
@@ -98,12 +99,12 @@ export function revenueWaterfall(bridge) {
     svg.append(s('line', { x1: 50, y1: y(val), x2: 775, y2: y(val), class: 'ix-grid-line' }), text(42, y(val) + 4, fmt(val / 1000), { 'text-anchor': 'end' }));
   }
   bars.forEach((bar, i) => {
-    const bx = 70 + i * 119, top = Math.min(y(bar.from), y(bar.to));
+    const step=715/items.length,bx = 60 + i * step, top = Math.min(y(bar.from), y(bar.to));
     svg.append(s('rect', { x: bx, y: top, width: 65, height: Math.max(2, Math.abs(y(bar.from) - y(bar.to))), rx: 1,
       fill: bar.total ? '#132f29' : bar.value < 0 ? '#b87643' : i === 0 ? '#315f4c' : '#84aa93' }),
     text(bx + 32, top - 10, (bar.value / 1000).toFixed(1), { 'text-anchor': 'middle', class: 'ix-value-label' }),
     text(bx + 32, 248, L(bar.label), { 'text-anchor': 'middle', class: 'ix-bar-label' }));
-    if (i < 4) svg.append(s('line', { x1: bx + 65, y1: y(bar.to), x2: bx + 119, y2: y(bar.to), stroke: '#aab5ab', 'stroke-dasharray': '3 3' }));
+    if (i < items.length-2) svg.append(s('line', { x1: bx + 65, y1: y(bar.to), x2: bx + step, y2: y(bar.to), stroke: '#aab5ab', 'stroke-dasharray': '3 3' }));
   });
   return svg;
 }
