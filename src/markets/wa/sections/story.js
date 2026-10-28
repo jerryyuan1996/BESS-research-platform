@@ -28,7 +28,7 @@ function renderStory(main, { summaryOnly = false } = {}){
      '本节连接“总览”与后续承销分析，明确区分历史事实、已观察市场结果及前瞻投资结论。']);
 
 
-  renderWaEconomicsP0(main);
+  if (!summaryOnly) renderWaEconomicsP0(main);
 
   const R = WEM_MARKET.records, CIS = WEM_MARKET.cis;
   const orient = card(['One-minute orientation for a new institutional investor', '机构投资人的一分钟市场定位'], [badge('official'), badge('public'), statusBadge(false)]);

@@ -21,7 +21,7 @@ export function specialRecommendations(rows, investor) {
       develop?['Target 9 MW distribution projects with modest network works. Complete QSE and product access alongside construction; operate or sell the commissioned portfolio.','优先开发无需重大电网改造的9MW配网项目，并行落实QSE与收入产品资格，投运后运营或组合出售。']:
         ['Buy mature 9 MW distribution projects with two-way connection rights and a local delivery partner. Complete QSE and revenue qualification alongside construction.','优先收购已落实双向接入和本地交付伙伴的成熟9MW配网项目，并行完成QSE与收入资格。'];
     cards.append(h('article',{class:'ix-special-pick'},
-      eyebrow(reuse?['BUY WITH PRICE DISCIPLINE','按价格纪律收购']:['PRIORITISE LOCAL DEVELOPMENT','优先布局本地开发']),
+      eyebrow(reuse?['BUY WITH PRICE DISCIPLINE','按价格纪律收购']:develop?['PRIORITISE LOCAL DEVELOPMENT','优先布局本地开发']:['ACQUIRE MATURE PROJECTS','优先收购成熟项目']),
       h('h3',{},L(title)),h('p',{},L(strategy)),
       reuse?metric(['Maximum extra connection-rights price','额外并网权收购上限'],
         c.safePremium==null?L(['Acquire without a queue premium','不支付排队溢价']):money(Math.floor(c.safePremium/1000)*1000,c.currency)+'/MW'):
