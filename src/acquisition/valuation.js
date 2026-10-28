@@ -44,6 +44,7 @@ export function validateAcquisition(input){
       [source.label,source.url].some(value=>typeof value==='string'&&value.trim().length>0))) missing.push('source or stated assumption provenance');
   if(input.additionalPremium!=null && !nonnegative(input.additionalPremium)) missing.push('additional risk premium');
   if(input.targetReturn!=null&&(!nonnegative(input.targetReturn)||input.targetReturn>1))missing.push('target return');
+  if(input.revenueQualificationMonths!=null&&(!nonnegative(input.revenueQualificationMonths)||input.revenueQualificationMonths>120))missing.push('revenue qualification timing');
   if(input.buyerDiscountRate!=null&&(!nonnegative(input.buyerDiscountRate)||input.buyerDiscountRate>1))missing.push('sale buyer discount rate');
   if(input.cashFlowBasis!=null&&!['real','nominal'].includes(input.cashFlowBasis))missing.push('cash-flow price basis');
   if(input.inflationRate!=null&&(!nonnegative(input.inflationRate)||input.inflationRate>.2))missing.push('inflation assumption');

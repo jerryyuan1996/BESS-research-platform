@@ -22,13 +22,13 @@ import { renderWaEconomicsP0 } from '../economicsP0Section.js';
 import { waDesignText } from '../lib/design.js';
 
 // ---------------- WA MARKET STORY ----------------
-function renderStory(main){
+function renderStory(main, { summaryOnly = false } = {}){
   sectionHead(main, ['WA Market Evolution — from capacity-backed thermal system to duration-led storage market', '西澳市场演进 — 从容量支撑的火电系统到时长驱动的储能市场'],
     ['This section is the narrative bridge between the Overview and the detailed underwriting tabs. It separates historical facts, observed market outcomes and the forward investment conclusion.',
      '本节连接“总览”与后续承销分析，明确区分历史事实、已观察市场结果及前瞻投资结论。']);
 
 
-  renderWaEconomicsP0(main);
+  if (!summaryOnly) renderWaEconomicsP0(main);
 
   const R = WEM_MARKET.records, CIS = WEM_MARKET.cis;
   const orient = card(['One-minute orientation for a new institutional investor', '机构投资人的一分钟市场定位'], [badge('official'), badge('public'), statusBadge(false)]);
@@ -47,6 +47,7 @@ function renderStory(main){
     '此处两项事实最为关键。在没有联络线可依赖的孤立电网上，储能已满足峰值需求的' + R.peakSharePct + '% — 系统需求已被证实，而非预测。但同一电网在2028-29呈现+' + fmtN(SEED.surplusAboveRcr) + 'MW容量盈余，至2035-36转为' + fmtN(Math.abs(ESOO_BAL.ecGap3536MW)) + 'MW缺口。因此西澳的投资难题在于时点而非逻辑：资产成本须低到足以穿越盈余窗口，时长须长到缺口到来时仍然合规。'],
     ['Timing risk, not thesis risk', '时点风险而非逻辑风险']));
   main.append(orient);
+  if (summaryOnly) return;
 
   // ---- RCM evolution: how the mechanism changed with the market and the technology ----
   const rh = card(['How the Reserve Capacity Mechanism evolved — market conditions and marginal technology', '备用容量机制的演进 — 市场条件与边际技术'], [badge('official'), badge('public')]);

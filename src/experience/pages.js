@@ -5,7 +5,9 @@ import { markets } from '../markets/registry.js';
 import { CALLS, LENSES, REGIONS, opportunities, caseFor, marketName, caseUrl, compareUrl,
   pct, share, multiple, money, finite, snapshotDate } from './model.js';
 import { siteHeader, siteFooter, link, eyebrow, sectionTitle, metric } from './chrome.js';
-import { opportunityMatrix, miniature, cashFlowChart, revenueWaterfall, revenueBar } from './charts.js';
+import { opportunityMatrix, miniature, revenueWaterfall, revenueBar } from './charts.js';
+import { specialRecommendations } from '../opportunities/home.js';
+import { marketResearchSummary } from './researchSummary.js';
 import { gateLabel } from './labels.js';
 import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
@@ -95,6 +97,7 @@ function renderHome(container, rows) {
       h('div', { class: 'ix-pick-value' }, pct(row.econ.hold), h('span', {}, L(['Unlevered hold IRR', '无杠杆持有期 IRR']))),
       link(caseUrl(row), ['Read the market case ↗', '进入市场详情 ↗'], 'ix-text-link'))))));
 
+  content.append(specialRecommendations(rows, lens()));
   content.append(h('section', { class: 'ix-section ix-process-section' },
     sectionTitle(['FROM A VIEW TO A DECISION', '从观点到投资决策'], ['A clear path through the opportunity.', '让每一步都更接近投资决策。']),
     h('div', { class: 'ix-process' }, [
@@ -214,13 +217,28 @@ function renderMarket(container, row) {
   } }, markets.map(market => h('option', { value: market.manifest.slug }, L(market.manifest.name)))); select.value = mf.slug;
   content.append(h('section', { class: 'ix-market-intro' }, h('div', {}, eyebrow(['FROM MARKET SCREEN TO INVESTMENT CASE', '从市场筛选，走向投资方案']), h('h1', {}, name(row)), h('p', { class: 'ix-lead' }, L(routeName(row))), h('div', { class: 'ix-actions' }, tag(row), h('span', { class: 'ix-mono' }, `${mf.currency} · ${row.play?.hours || m.comparison.archetype.durationHours}H`))),
     h('div', { class: 'ix-market-controls' }, select, button(['Print investment brief ↗', '打印投资简报 ↗'], () => window.print(), 'ix-outline'))));
-  const anchors = [['overview', ['Overview', '市场概览']], ['bankable', ['Bankable case', '可融资方案']], ['revenue', ['Revenue', '收益拆解']], ['execution', ['Execution', '执行步骤']], ['downside', ['Downside', '下行风险']], ['sources', ['Sources', '来源']]];
+  const anchors = [['overview', ['Overview', '市场概览']], ['revenue-drivers', ['Revenue drivers', '收入动因']], ['opportunity-comparison', ['Special opportunities', '特殊机会']], ['bankable', ['Bankable case', '可融资方案']], ['revenue', ['Revenue', '收益拆解']], ['execution', ['Execution', '执行步骤']], ['downside', ['Downside', '下行风险']], ['sources', ['Sources', '来源']]];
   content.append(h('nav', { class: 'ix-section-nav', 'aria-label': L(['Market sections', '市场详情章节']) }, anchors.map(([id, label]) => link(`#${id}`, label))));
   content.append(h('section', { id: 'overview', class: 'ix-section ix-overview' },
     sectionTitle(['THE INVESTMENT VIEW', '市场投资判断'], ['Understand what drives the case.', '先理解这项投资，为什么成立。']),
     h('div', { class: 'ix-overview-body' }, h('div', {}, h('p', { class: 'ix-thesis' }, L(row.play?.why || m.comparison.narrative.thesis)),
       link(`${caseUrl(row)}/home`, ['Explore the full market research ↗', '阅读完整市场研究 ↗'], 'ix-text-link')),
       h('aside', { class: 'ix-next-action' }, eyebrow(['NEXT INVESTMENT ACTION', '下一项投资行动']), h('p', {}, L(row.play?.action?.text || m.comparison.refinement?.currentUpdate || m.comparison.narrative.thesis))))));
+  content.querySelector('#overview').append(marketResearchSummary(m));
+  const opportunityHost = h('div', { 'aria-busy':'true' }, h('p', { class:'ix-caption' }, L(['Loading revenue drivers and the paired investment model…','正在载入收入动因与配对投资模型…'])));
+  content.append(opportunityHost);
+  const investor = lens();
+  const loadOpportunity = () => import('../opportunities/ui.js').then(module => {
+    if (!opportunityHost.isConnected) return;
+    opportunityHost.replaceChildren(module.revenueMechanismSection(row), module.opportunityComparison(row, investor));
+    opportunityHost.setAttribute('aria-busy','false');
+    if (window.location.hash === '#opportunity-comparison') opportunityHost.querySelector('#opportunity-comparison')?.scrollIntoView();
+  }).catch(() => {
+    if (!opportunityHost.isConnected) return;
+    opportunityHost.replaceChildren(button(['Retry the investment comparison','重新载入投资比较'],loadOpportunity,'ix-outline'));
+    opportunityHost.setAttribute('aria-busy','false');
+  });
+  loadOpportunity();
   if (!data.unavailable) {
     content.append(bankableSection(data), revenueSection(data));
   } else content.append(h('section', { id: 'bankable', class: 'ix-panel ix-section' }, h('h2', {}, L(['Investment case in research', '投资方案研究中'])), h('p', {}, L(['This market does not yet have a complete return model. Continue with the market research and execution plan.', '本市场尚无完整回报模型，可继续查看市场研究与执行计划。']))));
@@ -229,14 +247,13 @@ function renderMarket(container, row) {
   content.append(sourcesSection(row));
   content.append(nextSection(['Keep the opportunity in context.', '让投资判断，始终保有全球视角。'], ['Return to the matrix and compare this case with your next market.', '返回全球矩阵，将当前方案与下一个市场放在一起比较。'], compareUrl([row.id]), ['Back to global comparison ↗', '返回全球比较 ↗']));
   container.append(content);
+  if (window.location.hash === '#opportunity-comparison') requestAnimationFrame(() => content.querySelector('#opportunity-comparison')?.scrollIntoView());
 }
 
 function bankableSection(data) {
   const { row, base, debt } = data;
   return h('section', { id: 'bankable', class: 'ix-section' }, sectionTitle(['THE BANKABLE CASE', '可融资方案'], ['Turn the investment view into cash flow.', '把投资逻辑，落到现金流。'], ['Reference underwriting case · Same route and duration as the market screen.', '参考承销模型 · 与市场比较页采用相同收入路径与储能时长。']),
     h('div', { class: 'ix-kpis' }, metric(['Unlevered hold IRR', '无杠杆持有期 IRR'], pct(base.irrHold)), metric(['Modelled fixed revenue', '模型固定收入占比'], share(base.securedShare)), metric(['Modelled minimum DSCR', '模型最低 DSCR'], multiple(debt?.minDSCR)), metric(['Net investment / MW', '净投资额 / MW'], money(base.net))),
-    card(h('div', { class: 'ix-panel-heading' }, h('h3', {}, L(['Cash generation & debt payments', '经营现金流与债务支付'])), h('div', { class: 'ix-legend' }, h('span', { class: 'advance' }, L(['Base cash flow', '基准现金流'])), h('span', { class: 'pale' }, L(['Downside cash flow', '下行现金流'])), h('span', { class: 'debt' }, L(['Debt + maturity', '偿债 + 到期本金'])))),
-      chartFrame(cashFlowChart(data)), h('p', { class: 'ix-caption' }, L(['USD per MW. Debt uses the platform’s financing conventions; the line includes scheduled service and bullet repayment. Minimum DSCR above measures scheduled service. Downside keeps the base debt schedule.', '金额为美元/MW。债务采用平台融资参数，折线包含定期偿债与到期本金；上方最低DSCR按定期偿债计算。下行情景保留基准债务安排。']))),
     h('div', { class: 'ix-case-summary' }, h('span', {}, L(['Revenue route', '收入路径']), ' / ', L(routeName(row))), h('span', {}, L(['Modelled leverage', '模型杠杆']), ' / ', share(debt?.gearing)), h('span', {}, L(['Fixed-income tenor', '固定收入期']), ' / ', base.securedYears + L([' years', '年']))),
     h('details', { class: 'ix-details ix-valuation-basis' }, h('summary', {}, L(['Valuation basis', '估值口径'])),
       h('p', {}, L([`Discount rates: fixed income ${pct(base.valuationRates.secured)}; renewal ${pct(base.valuationRates.renewal)}; trading ${pct(base.valuationRates.merchant)}. These value cash flows and are separate from the reported hold IRR.`, `折现率：锁定收入${pct(base.valuationRates.secured)}；续约收入${pct(base.valuationRates.renewal)}；交易收入${pct(base.valuationRates.merchant)}。这些用于现金流估值，与上方持有期IRR分开呈现。`]))));
@@ -326,3 +343,4 @@ function sourcesSection(row) {
       ...sources.map(([key, source]) => h('a', { href: source.url, target: '_blank', rel: 'noopener noreferrer' }, h('span', {}, L(source.file || source.title || key)), h('small', {}, source.date || ''), h('span', { 'aria-hidden': 'true' }, '↗')))),
     h('div', { class: 'ix-actions' }, link(`${caseUrl(row)}/data`, ['Full market data & methodology ↗', '完整市场数据与方法 ↗'], 'ix-text-link'), button(['Model this market ↗', '进入本市场测算 ↗'], () => openUnderwriting(row), 'ix-outline')));
 }
+

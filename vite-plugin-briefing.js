@@ -29,6 +29,7 @@ import { pathToFileURL } from 'node:url';
 const FULL = 'src/briefing/briefingData.js';
 const HOME = 'src/briefing/homeData.js';
 const DESIGN = 'src/briefing/designData.js';
+const OPPORTUNITIES = 'src/opportunities/summaryData.js';
 const norm = (p) => p.split(path.sep).join('/');
 
 /* Imported on use, not at the top: the model pulls in the registry and the
@@ -70,6 +71,13 @@ export default function briefing(){
       if (file.endsWith('/' + FULL)) return briefingModule(root, new Date(), watch);
       if (file.endsWith('/' + HOME)) return homeModule(root, new Date(), watch);
       if (file.endsWith('/' + DESIGN)) return designModule(root, new Date(), watch);
+      if (file.endsWith('/' + OPPORTUNITIES)) {
+        const { briefingFromDisk } = await load(root, 'src/briefing/disk.js');
+        const { homeProjection } = await load(root, 'src/briefing/model.js');
+        const { opportunitySummary } = await load(root, 'src/opportunities/summary.js');
+        const data = opportunitySummary(homeProjection(await briefingFromDisk({root,now:new Date(),watch})));
+        return 'export const OPPORTUNITY_SUMMARY = ' + JSON.stringify(data) + ';\n';
+      }
       return null;
     },
   };

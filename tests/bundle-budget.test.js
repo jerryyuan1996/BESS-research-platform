@@ -213,7 +213,9 @@ const BUDGET = {
   features: {
     // Shared three-page experience, loaded after the shell. Local delivery prose
     // is charged separately after extraction from the existing market chunks.
-    'investor-experience': 18,
+    // 2026-10-28: direct strategy cards and overview summary loader add ~3 kB;
+    // the paired model remains lazy and the total first-view budget is unchanged.
+    'investor-experience': 23,
     'delivery-wa': 8,
     'delivery-gb': 8,
     'delivery-fi': 6,
@@ -742,3 +744,4 @@ test('the dossier stylesheet exists as its own chunk', async (t) => {
   assert.ok(carrier.bytes < 8 * 1024,
     `the dossier stylesheet is ${(carrier.bytes / 1024).toFixed(1)} kB, over its 8 kB budget`);
 });
+

@@ -31,6 +31,7 @@ import './styles/live.css';
    needing !important on every rule. */
 import './styles/print.css';
 import './styles/experience.css';
+import './styles/opportunities.css';
 
 import { inject } from '@vercel/analytics';
 import { boot } from './app/app.js';
@@ -39,3 +40,4 @@ import { boot } from './app/app.js';
 inject();
 
 boot();
+

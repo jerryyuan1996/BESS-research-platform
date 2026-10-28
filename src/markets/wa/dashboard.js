@@ -62,6 +62,12 @@ registerClaims('wa', CLAIMS);
    this market's own chunk; the home page carries a projection of them. */
 registerCase('wa', { view: VIEW, ledger: ENTRY_LEDGER });
 
+export function researchSummary(container) {
+  container.append(h('article', { class:'card' }, h('h3', {}, L(['House view','本方观点'])),
+    h('p', {}, L(SEED.overall.rationale))));
+  renderStory(container, { summaryOnly:true });
+}
+
 /* Tab id → section renderer. The BRCP forecast and the RCM × Energy × FCESS
    co-optimisation are not entries here: both render as the tail of the rcm tab.
    The co-optimiser moved there when the Investment Lab and Project Debt tabs left
