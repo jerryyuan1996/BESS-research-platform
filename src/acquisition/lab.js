@@ -39,6 +39,20 @@ export function renderAcquisitionLab(parent,market,strategyId,economicOverrides=
       runOptions:selection.runOptions,incomeScenario:selection.play.route});
   }
   const selectedIncome=state.incomeScenario||strategyId;
+  const specialHost=h('div');
+  const special=h('details',{class:'acq-special-workbench',ontoggle:async()=>{
+    if(!special.open||specialHost.childElementCount)return;
+    const play=state.play||{route:selectedIncome,hours:market.comparison.archetype.durationHours};
+    specialHost.textContent=L(['Loading comparison…','正在载入比较…']);
+    try {
+      const { opportunityComparison } = await import('../opportunities/ui.js');
+      if(specialHost.isConnected)specialHost.replaceChildren(opportunityComparison({id,market,play},investor,{compact:true}));
+    } catch {
+      specialHost.textContent=L(['Comparison could not be loaded. Close and reopen to retry.','比较暂未载入，请关闭后重新展开重试。']);
+    }
+  }},h('summary',{},L(['Compare a special opportunity with the conventional play','将特殊机会与常规play同口径比较'])),
+    h('p',{class:'cap'},L(['This paired scenario uses the same valuation engine. Set its common price, target and timing inside the comparison; the project form below remains a separate case.','配对情景采用同一估值引擎；请在比较内设置共同价格、目标及时间，下方项目表单保留为独立情景。'])),specialHost);
+  parent.append(special);
   if(!ARCHETYPES[investor].entersAt.includes(state.stage))state.stage=ARCHETYPES[investor].defaultRoute;
   const card=h('section',{class:'card acq-lab'},h('h2',{},L(['What is the most I should pay?','这项资产最多值得付多少钱？'])));
   if(state.play)card.append(h('p',{class:'acq-selected-play'},L([

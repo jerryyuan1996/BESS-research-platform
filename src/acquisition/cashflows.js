@@ -22,6 +22,12 @@ export function nominalAnnual(input,scenario){
       nominal.renewal=support.assumed?0:settled.secured;
       nominal.merchant=Math.max(0,settled.total-settled.secured);
     }
+    // Optional opportunity scenario: qualification may follow physical COD.
+    // Costs continue in full; each annual revenue bucket earns only its
+    // eligible fraction. Contract expiry stays anchored to physical COD.
+    const lag = input.revenueQualificationMonths ?? 0;
+    const eligible = Math.max(0, Math.min(1, i + 1 - lag / 12));
+    if (lag > 0) for (const key of ['secured','renewal','merchant']) nominal[key] *= eligible;
     return nominal;
   });
 }

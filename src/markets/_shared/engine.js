@@ -295,5 +295,25 @@ export function createMarketEngine(cfg){
     ]));
   }
 
-  return { state, dashboard, SECTIONS, api };
+  // Reuse the full research's own blocks in the investor overview. No copied
+  // narrative or stale numeric snapshot is maintained in the overview layer.
+  function researchSummary(container, route, allMarkets) {
+    registry = allMarkets;
+    basePath = route.basePath;
+    if (REGIONS) regionValue = REGION_IDS.includes(route.region) ? route.region : REGIONS[0][0];
+    const sections = SECTIONS();
+    const flatten = blocks => (blocks || []).flatMap(b => [b, ...flatten(b.blocks), ...flatten(b.cards)]);
+    const home = flatten(sections.home?.blocks);
+    const house = home.find(b => b.t === 'ic')?.text || M.overall?.rationale ||
+      home.find(b => b.t === 'band-story')?.text;
+    if (house) ctx.blocks.B(container, { t:'card', title:['House view','本方观点'],
+      blocks:[{t:'p',text:house}], mt:false });
+    const story = sections.story?.blocks || [];
+    const orientation = flatten(story).find(b => b.t === 'card' &&
+      /one-minute orientation|一分钟市场定位/i.test((b.title || []).join(' ')));
+    const first = orientation || story.find(b => b.t === 'card');
+    if (first) ctx.blocks.B(container, { ...first, mt:false,
+      title:['One-minute market orientation','一分钟市场定位'] });
+  }
+  return { state, dashboard, SECTIONS, api, researchSummary };
 }

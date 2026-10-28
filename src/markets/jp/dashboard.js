@@ -35,6 +35,10 @@ const engine = createMarketEngine({
   MKT, TABS, SRC, M, buildSections, regions: REGIONS,
 });
 
+export function researchSummary(container, route) {
+  engine.researchSummary(container, route, markets);
+}
+
 export const state = engine.state;
 
 export function dashboard(container, route){
