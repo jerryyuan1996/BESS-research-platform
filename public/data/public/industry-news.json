@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-28T05:51:53.533Z",
+  "fetchedAt": "2026-10-28T13:06:57.193Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-28T05:00:00.000Z",
+    "to": "2026-10-28T12:45:00.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -133,66 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
-    },
-    {
-      "t": "2026-10-22T10:51:49.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/frances-storage-market-moves-to-higher-durations-with-secondary-reserve-saturation-cliff-edge-approaching/",
-      "source": "Energy-Storage.news",
-      "title": "France’s storage market moves to higher durations with secondary reserve saturation ‘cliff-edge’ approaching",
-      "url": "https://www.energy-storage.news/frances-storage-market-moves-to-higher-durations-with-secondary-reserve-saturation-cliff-edge-approaching/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS investments in the French market are moving to longer durations with saturation expected to hit the secondary reserve market, currently the main way operational projects make their money."
-    },
-    {
-      "t": "2026-10-22T13:46:44.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/sodium-ion-bess-hithium-enters-canadian-market-peak-energy-closes-series-b-with-gm-led-funding/",
-      "source": "Energy-Storage.news",
-      "title": "Sodium-ion BESS: Hithium enters Canadian market, Peak Energy closes Series B with GM-led funding",
-      "url": "https://www.energy-storage.news/sodium-ion-bess-hithium-enters-canadian-market-peak-energy-closes-series-b-with-gm-led-funding/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "In recent North American sodium-ion news, Hithium is entering the Canadian market with two BESS solutions, while Peak Energy has closed a Series B financing round led by GM."
-    },
-    {
-      "t": "2026-10-22T14:17:03.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/global-energy-storage-deployments-will-see-45-year-on-year-growth-surge-in-2026-bloombergnef/",
-      "source": "Energy-Storage.news",
-      "title": "Global energy storage deployments will see 45% year-on-year ‘growth surge’ in 2026: BloombergNEF",
-      "url": "https://www.energy-storage.news/global-energy-storage-deployments-will-see-45-year-on-year-growth-surge-in-2026-bloombergnef/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The global energy storage market will see a decade of sustained, rapid growth and reach 3.1TW cumulative capacity by 2036, according to BloombergNEF (BNEF)."
-    },
-    {
-      "t": "2026-10-23T02:55:53.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/alinta-energy-abandons-critical-pumped-hydro-energy-storage-project-in-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Alinta Energy abandons ‘critical’ pumped hydro energy storage project in Australia",
-      "url": "https://www.energy-storage.news/alinta-energy-abandons-critical-pumped-hydro-energy-storage-project-in-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Alinta Energy has discontinued work on the 7.2GWh Oven Mountain pumped hydro energy storage (PHES) project in New South Wales (NSW), Australia."
-    },
-    {
-      "t": "2026-10-23T04:09:42.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/acme-solar-ppa-seci-clean-energy-solar-india-renewables-assets/",
-      "source": "Energy-Storage.news",
-      "title": "ACME Solar signs 1.2GWh PPA with SECI for clean energy supply during non-solar hours from Indian renewables assets",
-      "url": "https://www.energy-storage.news/acme-solar-ppa-seci-clean-energy-solar-india-renewables-assets/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ACME Solar has signed a 300MW/1,200MWh PPA with the Solar Energy Corporation of India (SECI) for a solar-plus-storage portfolio."
-    },
-    {
-      "t": "2026-10-23T08:18:51.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/sonnen-files-for-insolvency-in-germany-two-months-after-shell-offloading/",
-      "source": "Energy-Storage.news",
-      "title": "Sonnen files for insolvency in Germany two months after Shell offloading",
-      "url": "https://www.energy-storage.news/sonnen-files-for-insolvency-in-germany-two-months-after-shell-offloading/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "German home energy storage and virtual power plant (VPP) company sonnen GmbH, sold by gas major Shell in August, has filed for insolvency."
     },
     {
       "t": "2026-10-23T11:25:17.000Z",
@@ -315,16 +255,6 @@
       "summary": "IPP Greenvolt has agreed to sell two BESS in Poland to A&R, PGE Group has started building an 800MWh one, while SC Holding, Tauron and Tavion have launched projects into the country."
     },
     {
-      "t": "2026-10-27T11:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/stellantis-plans-21-56-mw-of-solar-for-mexican-auto-complex/",
-      "source": "pv magazine",
-      "title": "Stellantis plans 21.56 MW of solar for Mexican auto complex",
-      "url": "https://www.pv-magazine.com/2026/10/27/stellantis-plans-21-56-mw-of-solar-for-mexican-auto-complex/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Stellantis has submitted plans for two solar plants totaling 21.56 MWp at its Saltillo industrial complex in Mexico, with annual generation of 51.68 GWh for on-site consumption. The post Stellantis plans 21.56 MW of solar for Mexican auto complex appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-27T11:32:15.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/samsung-sdi-signs-1gwh-us-bess-supply-agreement-with-alpha-omega-power/",
       "source": "Energy-Storage.news",
@@ -333,36 +263,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "South Korean battery and electronics materials manufacturer Samsung SDI has signed a 1GWh supply agreement with US IPP Alpha Omega Power (AOP)."
-    },
-    {
-      "t": "2026-10-27T12:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/german-solar-developers-seek-e70-mwh-auction-ceiling-for-2027/",
-      "source": "pv magazine",
-      "title": "German solar developers seek €70/MWh auction ceiling for 2027",
-      "url": "https://www.pv-magazine.com/2026/10/27/german-solar-developers-seek-e70-mwh-auction-ceiling-for-2027/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Fifteen solar developers warn that planned changes to Germany’s renewable energy law, grid connection rules, and network charges could raise ground-mounted solar costs by up to 30%, prompting calls to increase the auction ceiling from €59 ($65.91)/MWh to at least €70/MWh. The post German solar developers seek €70/MW…"
-    },
-    {
-      "t": "2026-10-27T12:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/italian-industrial-group-to-install-43-mw-of-solar-by-year-end/",
-      "source": "pv magazine",
-      "title": "Italian industrial group to install 43 MW of solar by year-end",
-      "url": "https://www.pv-magazine.com/2026/10/27/italian-industrial-group-to-install-43-mw-of-solar-by-year-end/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Leonardo plans to complete 43 MW of solar installations across 20 sites by year-end, covering around 10% of its energy consumption in Italy through self-consumption. The post Italian industrial group to install 43 MW of solar by year-end appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-27T13:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/lula-targets-data-center-investment-using-brazils-renewable-energy-potential/",
-      "source": "pv magazine",
-      "title": "Lula targets data center investment using Brazil’s renewable energy potential",
-      "url": "https://www.pv-magazine.com/2026/10/27/lula-targets-data-center-investment-using-brazils-renewable-energy-potential/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Brazil’s newly re-elected president wants to attract data centers and develop domestic AI, linking digital infrastructure investment to renewable energy availability, grid capacity and workforce training. The post Lula targets data center investment using Brazil’s renewable energy potential appeared first on pv maga…"
     },
     {
       "t": "2026-10-27T13:47:23.000Z",
@@ -375,16 +275,6 @@
       "summary": "FirstEnergy&rsquo;s Monongahela Power contends that the PJM Interconnection&rsquo;s advanced scheduling of gas-fired power plants during Winter Storm Fern may have violated the grid operator&rsquo;s rules."
     },
     {
-      "t": "2026-10-27T14:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/australian-state-targets-75-renewables-for-main-grid/",
-      "source": "pv magazine",
-      "title": "Australian state targets 75% renewables for main grid",
-      "url": "https://www.pv-magazine.com/2026/10/27/australian-state-targets-75-renewables-for-main-grid/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Western Australia has committed to a renewable energy target of 75% by 2030-2031 for its main electricity grid as it prepares for the retirement of state-owned coal-fired power stations by the end of this decade. The post Australian state targets 75% renewables for main grid appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-27T14:19:38.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/bnef-ups-us-energy-storage-deployment-forecast-by-30/872870/",
       "source": "Utility Dive",
@@ -393,36 +283,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Hyperscalers&rsquo; interest in on-site and nearby energy storage has converted into firm orders this year, the global energy consultancy said last week in its latest industry outlook."
-    },
-    {
-      "t": "2026-10-27T14:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/bangladesh-moves-to-cut-tariffs-for-long-delayed-solar-projects/",
-      "source": "pv magazine",
-      "title": "Bangladesh moves to cut tariffs for long-delayed solar projects",
-      "url": "https://www.pv-magazine.com/2026/10/27/bangladesh-moves-to-cut-tariffs-for-long-delayed-solar-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Bangladesh is seeking lower tariffs on solar power purchase agreements (PPAs) signed years ago for projects that are still not generating, a move investors warn could raise contract risk across the market. The post Bangladesh moves to cut tariffs for long-delayed solar projects appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-27T15:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/algeria-inaugurates-300-mw-solar-project/",
-      "source": "pv magazine",
-      "title": "Algeria inaugurates 300 MW solar project",
-      "url": "https://www.pv-magazine.com/2026/10/27/algeria-inaugurates-300-mw-solar-project/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The 300 MW solar plant, located in the eastern province of El Oued, is Algeria's largest operational PV project to date. The post Algeria inaugurates 300 MW solar project appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-27T16:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/singapore-sets-4-gwp-solar-target-for-2035/",
-      "source": "pv magazine",
-      "title": "Singapore sets 4 GW solar target for 2035",
-      "url": "https://www.pv-magazine.com/2026/10/27/singapore-sets-4-gwp-solar-target-for-2035/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Singapore is pooling government solar demand and testing installations on facades, heritage roofs and temporary worksites to reach a higher long-term solar target. The post Singapore sets 4 GW solar target for 2035 appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-27T16:05:05.000Z",
@@ -445,16 +305,6 @@
       "summary": "Regulation, energy independence and energy demand growth as key drivers for BESS development across several markets in Latin America."
     },
     {
-      "t": "2026-10-27T17:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/27/shining-light-on-australias-largest-rooftops/",
-      "source": "pv magazine",
-      "title": "Shining light on Australia’s largest rooftops",
-      "url": "https://www.pv-magazine.com/2026/10/27/shining-light-on-australias-largest-rooftops/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Australia’s commercial and industrial (C&I) segment could be seen as a forgotten part of an otherwise pioneering solar market. The opportunity is huge, but regulatory barriers remain. Rob Potter, head of policy and advocacy at the Smart Energy Council, examines the potential upsides of C&I solar and energy storage,…"
-    },
-    {
       "t": "2026-10-28T04:20:00.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/catl-holds-global-launch-for-9mwh-tener-bess-at-all-energy-australia-signs-pcs-agreement-with-hitachi-energy/",
       "source": "Energy-Storage.news",
@@ -465,26 +315,156 @@
       "summary": "CATL has launched its 9MWh TENER+ battery storage system at All-Energy Australia 2026 and signed three MoUs with Australian partners."
     },
     {
-      "t": "2026-10-28T05:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/distributed-outlook/",
+      "t": "2026-10-28T08:34:03.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/portugal-makes-grid-forming-mandatory-for-large-battery-storage-plants/",
       "source": "pv magazine",
-      "title": "Distributed outlook",
-      "url": "https://www.pv-magazine.com/2026/10/28/distributed-outlook/",
+      "title": "Portugal makes grid-forming mandatory for large battery storage plants",
+      "url": "https://www.pv-magazine.com/2026/10/28/portugal-makes-grid-forming-mandatory-for-large-battery-storage-plants/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "India’s installed solar capacity has grown from less than 5 GW in 2016 to more than 165 GW today. While ground-mounted mega projects have led with a contribution of over 120 GW, rooftop solar is rapidly catching up, contributing more than 30 GW as of August 2026. Instead of adding capacity, the next decade will focu…"
+      "summary": "Portugal has set new grid connection rules for energy storage, moving ahead of the EU’s own revision of generator connection requirements. The post Portugal makes grid-forming mandatory for large battery storage plants appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-28T08:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/itaipu-studies-up-to-1-gw-of-solar-to-support-paraguays-power-grid/",
+      "source": "pv magazine",
+      "title": "Itaipu studies up to 1 GW of solar to support Paraguay’s power grid",
+      "url": "https://www.pv-magazine.com/2026/10/28/itaipu-studies-up-to-1-gw-of-solar-to-support-paraguays-power-grid/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Simulations of PV plants connected at three points in Paraguay’s electricity network found that specialized controls could dampen inter-area power oscillations, while the study also recommends battery storage to improve system response. The post Itaipu studies up to 1 GW of solar to support Paraguay’s power grid app…"
+    },
+    {
+      "t": "2026-10-28T08:55:29.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/ricoh-announces-gw-scale-perovskite-solar-cell-production-in-japan/",
+      "source": "pv magazine",
+      "title": "Ricoh announces GW-scale perovskite solar cell production in Japan",
+      "url": "https://www.pv-magazine.com/2026/10/28/ricoh-announces-gw-scale-perovskite-solar-cell-production-in-japan/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Japan's Ricoh plans to begin producing perovskite solar cells by 2030, initially targeting annual capacity of several hundred megawatts. The company will use its proprietary inkjet printing technology to streamline manufacturing and reduce production costs. The post Ricoh announces GW-scale perovskite solar cell pro…"
+    },
+    {
+      "t": "2026-10-28T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/new-coating-technology-could-reduce-glass-usage-in-photovoltaic-modules-by-up-to-40/",
+      "source": "pv magazine",
+      "title": "New coating technology could reduce glass usage in photovoltaic modules by up to 40%",
+      "url": "https://www.pv-magazine.com/2026/10/28/new-coating-technology-could-reduce-glass-usage-in-photovoltaic-modules-by-up-to-40/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "German startup Exxosqel has developed a coating technology that strengthens solar glass by targeting microscopic surface cracks. Developed in collaboration with the Fraunhofer Institute for Silicate Research, the technology could reduce glass weight by up to 40% and overall PV module weight by approximately 30%. The…"
+    },
+    {
+      "t": "2026-10-28T09:15:15.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/indias-bess-pipeline-needs-bankable-tenders-diversified-revenue-streams/",
+      "source": "Energy-Storage.news",
+      "title": "India’s BESS pipeline needs bankable tenders and diversified revenue streams",
+      "url": "https://www.energy-storage.news/indias-bess-pipeline-needs-bankable-tenders-diversified-revenue-streams/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India’s storage market is expanding, but project delivery depends on predictable procurement, domestic manufacturing and revenue models that support investment."
+    },
+    {
+      "t": "2026-10-28T10:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/sunkean-advances-copper-to-aluminum-jumpers-for-pv-dc-systems/",
+      "source": "pv magazine",
+      "title": "Sunkean advances copper-to-aluminum jumpers for PV DC systems",
+      "url": "https://www.pv-magazine.com/2026/10/28/sunkean-advances-copper-to-aluminum-jumpers-for-pv-dc-systems/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The manufacturer has developed a copper-to-aluminum jumper solution for PV DC-side applications, addressing conductor material costs, field installation efficiency, and the long-term reliability of copper-to-aluminum connections in utility-scale solar projects. The post Sunkean advances copper-to-aluminum jumpers fo…"
+    },
+    {
+      "t": "2026-10-28T10:14:15.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/kyon-energy-282mwh-alfeld-battery-storage-project-germany-operation/",
+      "source": "Energy-Storage.news",
+      "title": "Kyon Energy puts 282MWh Alfeld battery storage project in Germany into operation",
+      "url": "https://www.energy-storage.news/kyon-energy-282mwh-alfeld-battery-storage-project-germany-operation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BESS developer Kyon Energy has commissioned and put into operation its 137.5MW/282MWh Alfeld BESS project in Germany, potentially the country’s largest to reach that milestone."
+    },
+    {
+      "t": "2026-10-28T10:45:20.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/lg-energy-solution-signs-mou-with-energix-for-4-5gwh-of-potential-bess-deployments-in-us-and-europe/",
+      "source": "Energy-Storage.news",
+      "title": "LG Energy Solution signs MOU with Energix for 4.5GWh of potential BESS deployments in US and Europe",
+      "url": "https://www.energy-storage.news/lg-energy-solution-signs-mou-with-energix-for-4-5gwh-of-potential-bess-deployments-in-us-and-europe/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Korean battery giant LG Energy Solution (LG ES) has signed a non-binding memorandum of understanding (MOU) with owner-operator Energix-Renewable Energies to expand collaboration on energy storage projects in Europe and the US."
+    },
+    {
+      "t": "2026-10-28T11:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/togo-opens-consultation-on-large-scale-solar-tender/",
+      "source": "pv magazine",
+      "title": "Togo opens consultation on large-scale solar tender",
+      "url": "https://www.pv-magazine.com/2026/10/28/togo-opens-consultation-on-large-scale-solar-tender/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Togo is inviting stakeholders to provide feedback on draft documents relating to development of a large-scale solar project, ahead of launching a competitive tender. Comments can be submitted until November 9. The post Togo opens consultation on large-scale solar tender appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-28T11:43:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/data-centres-could-drive-sodium-ion-ldes-adoption-in-europe-analyst/",
+      "source": "Energy-Storage.news",
+      "title": "Data centres could drive sodium-ion, LDES adoption in Europe – analyst",
+      "url": "https://www.energy-storage.news/data-centres-could-drive-sodium-ion-ldes-adoption-in-europe-analyst/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Sodium-ion’s position has strengthened substantially in the past 12 months but its adoption in Europe depends on several key factors including data centres and their use case, an analyst said."
+    },
+    {
+      "t": "2026-10-28T12:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/acid-free-molten-salt-method-recovers-94-of-silver-from-solar-cells/",
+      "source": "pv magazine",
+      "title": "Acid-free molten salt method recovers 94% of silver from solar cells",
+      "url": "https://www.pv-magazine.com/2026/10/28/acid-free-molten-salt-method-recovers-94-of-silver-from-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in China have recovered 94.34% of the silver from crystalline silicon solar cells using an acid-free molten salt process that detaches the silver as metal, and have identified how to control silicon loss during treatment. The post Acid-free molten salt method recovers 94% of silver from solar cells appea…"
+    },
+    {
+      "t": "2026-10-28T12:18:12.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/europe-has-the-capability-to-support-homegrown-bess-industry-valo-ceo-fath-says-in-exclusive-interview/",
+      "source": "Energy-Storage.news",
+      "title": "‘Europe has the capability’ to support homegrown BESS industry, Valo CEO Fath says in exclusive interview",
+      "url": "https://www.energy-storage.news/europe-has-the-capability-to-support-homegrown-bess-industry-valo-ceo-fath-says-in-exclusive-interview/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "ESN Premium meets Peter Fath, CEO of Valo, about the newly launched energy storage joint venture’s next steps and broader strategy."
+    },
+    {
+      "t": "2026-10-28T12:25:15.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-developer-bimergen-energy-files-for-retail-electric-provider-certificate-to-serve-texas-data-centres/",
+      "source": "Energy-Storage.news",
+      "title": "BESS developer Bimergen Energy files for Retail Electric Provider certificate to serve Texas data centres",
+      "url": "https://www.energy-storage.news/bess-developer-bimergen-energy-files-for-retail-electric-provider-certificate-to-serve-texas-data-centres/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Energy storage developer-operator Bimergen Energy has filed an application for an Option 2 Retail Electric Provider (REP) certificate in Texas, US."
+    },
+    {
+      "t": "2026-10-28T12:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/european-solar-startups-raise-e82-million-in-january-august/",
+      "source": "pv magazine",
+      "title": "European solar startups raise €82 million in January-August",
+      "url": "https://www.pv-magazine.com/2026/10/28/european-solar-startups-raise-e82-million-in-january-august/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Analysis by Avnet Silica says energy security remains the most significant driver of investment in European solar startups today as financing levels begin to increase after reaching an all-time low last year. The post European solar startups raise €82 million in January-August appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 8,
-      "capital": 6,
+      "policy": 6,
+      "capital": 4,
       "grid": 30,
-      "technology": 1
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -509,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 10
+        "items": 8
       }
     ]
   },
@@ -518,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:9b305a2d3299bb500ddfbc2a6e6beaedc81b7882a87ccd945518aaf6015e4452",
-  "envelopeChecksum": "sha256:0488658a943ff367a8769ff63ec8dc50b9e101e3d56224f3e1a54866a08f60f5"
+  "contentChecksum": "sha256:931240d9c7d6259c3d56fae7452a198d6a28946c55eb0bf37d42017741ba7265",
+  "envelopeChecksum": "sha256:fcf4e4bae32b2744b088206d65cfe66470d6162c55839130e7895e1309a062fc"
 }
