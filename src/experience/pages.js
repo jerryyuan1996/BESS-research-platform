@@ -80,7 +80,7 @@ function renderHome(container, rows) {
       h('div', { class: 'ix-actions' }, link(caseUrl(lead), ['Explore the investment case ↗', '查看投资方案 ↗'], 'ix-button'), link('/returns', ['Compare all markets →', '比较全球市场 →'], 'ix-text-link')),
       h('div', { class: 'ix-home-scope' }, h('span', { class: 'ix-status-dot' }), L([`${rows.length} markets. One investment perspective.`, `${rows.length}个市场，一个清晰的投资视角。`]))),
     h('article', { class: 'ix-featured', ...countryAttrs(lead.id) }, h('div', { class: 'ix-feature-top' }, eyebrow(['IN FOCUS / 01', '重点机会 / 01']), tag(lead)),
-      h('div', { class: 'ix-feature-market' }, h('span', { class: 'ix-mono' }, lead.market.manifest.currency + ' / ' + (lead.play?.hours || lead.market.comparison.archetype.durationHours) + 'H'),
+      h('div', { class: 'ix-feature-market' }, h('span', { class: 'ix-mono' }, (lead.investment?.currency||lead.market.manifest.currency) + ' / ' + (lead.play?.hours || lead.market.comparison.archetype.durationHours) + 'H'),
         h('h2', {}, name(lead)), h('p', {}, L(routeName(lead)))),
       h('div', { class: 'ix-feature-metrics' }, metric(['After-tax investment IRR', '税后投资 IRR'], returnPct(lead.econ.hold)), metric(['Modelled fixed income', '模型固定收入占比'], share(lead.econ.secured))),
       projectFacts(lead.investment),
@@ -226,7 +226,7 @@ function renderMarket(container, row) {
   const select = h('select', { 'aria-label': L(['Switch market', '切换市场']), onchange: e => {
     const anchor = link(`/markets/${e.target.value}`, ''); anchor.click();
   } }, markets.map(market => h('option', { value: market.manifest.slug }, L(market.manifest.name)))); select.value = mf.slug;
-  content.append(h('section', { class: 'ix-market-intro' }, h('div', {}, eyebrow(['FROM MARKET SCREEN TO INVESTMENT CASE', '从市场筛选，走向投资方案']), h('h1', {}, name(row)), h('p', { class: 'ix-lead' }, L(routeName(row))), h('div', { class: 'ix-actions' }, tag(row), h('span', { class: 'ix-mono' }, `${mf.currency} · ${row.play?.hours || m.comparison.archetype.durationHours}H`))),
+  content.append(h('section', { class: 'ix-market-intro' }, h('div', {}, eyebrow(['FROM MARKET SCREEN TO INVESTMENT CASE', '从市场筛选，走向投资方案']), h('h1', {}, name(row)), h('p', { class: 'ix-lead' }, L(routeName(row))), h('div', { class: 'ix-actions' }, tag(row), h('span', { class: 'ix-mono' }, `${row.investment?.currency||mf.currency} · ${row.play?.hours || m.comparison.archetype.durationHours}H`))),
     h('div', { class: 'ix-market-controls' }, select, button(['Print investment brief ↗', '打印投资简报 ↗'], () => window.print(), 'ix-outline'))));
   const anchors = [['overview', ['Overview', '市场概览']], ['revenue-drivers', ['Revenue drivers', '收入动因']], ['opportunity-comparison', ['Special opportunities', '特殊机会']], ['bankable', ['Bankable case', '可融资方案']], ['revenue', ['Revenue', '收益拆解']], ['execution', ['Execution', '执行步骤']], ['downside', ['Downside', '下行风险']], ['sources', ['Sources', '来源']]];
   content.append(h('nav', { class: 'ix-section-nav', 'aria-label': L(['Market sections', '市场详情章节']) }, anchors.map(([id, label]) => link(`#${id}`, label))));
