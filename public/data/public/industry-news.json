@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-27T22:21:17.221Z",
+  "fetchedAt": "2026-10-28T05:51:53.533Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-27T17:00:00.000Z",
+    "to": "2026-10-28T05:00:00.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -133,16 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
-    },
-    {
-      "t": "2026-10-22T10:38:58.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/faria-renewables-inaugurates-134mwh-huawei-supplied-greece-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Faria Renewables inaugurates 134MWh, Huawei-supplied Greece BESS",
-      "url": "https://www.energy-storage.news/faria-renewables-inaugurates-134mwh-huawei-supplied-greece-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "IPP and EPC Faria Renewables has inaugurated its 49.9MW/134.16MWh Galani BESS project in Elassona, Greece."
     },
     {
       "t": "2026-10-22T10:51:49.000Z",
@@ -463,17 +453,37 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Australia’s commercial and industrial (C&I) segment could be seen as a forgotten part of an otherwise pioneering solar market. The opportunity is huge, but regulatory barriers remain. Rob Potter, head of policy and advocacy at the Smart Energy Council, examines the potential upsides of C&I solar and energy storage,…"
+    },
+    {
+      "t": "2026-10-28T04:20:00.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/catl-holds-global-launch-for-9mwh-tener-bess-at-all-energy-australia-signs-pcs-agreement-with-hitachi-energy/",
+      "source": "Energy-Storage.news",
+      "title": "CATL holds global launch for 9MWh TENER+ BESS at All-Energy Australia, signs PCS agreement with Hitachi Energy",
+      "url": "https://www.energy-storage.news/catl-holds-global-launch-for-9mwh-tener-bess-at-all-energy-australia-signs-pcs-agreement-with-hitachi-energy/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "CATL has launched its 9MWh TENER+ battery storage system at All-Energy Australia 2026 and signed three MoUs with Australian partners."
+    },
+    {
+      "t": "2026-10-28T05:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/distributed-outlook/",
+      "source": "pv magazine",
+      "title": "Distributed outlook",
+      "url": "https://www.pv-magazine.com/2026/10/28/distributed-outlook/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India’s installed solar capacity has grown from less than 5 GW in 2016 to more than 165 GW today. While ground-mounted mega projects have led with a contribution of over 120 GW, rooftop solar is rapidly catching up, contributing more than 30 GW as of August 2026. Instead of adding capacity, the next decade will focu…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 8,
       "capital": 6,
-      "grid": 29,
+      "grid": 30,
       "technology": 1
     },
     "sourceStatus": [
@@ -499,7 +509,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 10
       }
     ]
   },
@@ -508,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:9bd83cffdc00f853b21113f1e315e5a22203f97c0e47422dff1111fce128737a",
-  "envelopeChecksum": "sha256:43409bd39e53b4c63d8e1cb576b6d297b93ed633565010e4b3c73171cc26154c"
+  "contentChecksum": "sha256:9b305a2d3299bb500ddfbc2a6e6beaedc81b7882a87ccd945518aaf6015e4452",
+  "envelopeChecksum": "sha256:0488658a943ff367a8769ff63ec8dc50b9e101e3d56224f3e1a54866a08f60f5"
 }
