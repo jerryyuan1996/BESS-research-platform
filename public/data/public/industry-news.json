@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-28T13:06:57.193Z",
+  "fetchedAt": "2026-10-28T22:40:18.211Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-28T12:45:00.000Z",
+    "to": "2026-10-28T17:00:00.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -165,16 +165,6 @@
       "summary": "Faced with unprecedented growth in demand, Singapore’s Energy Market Authority has launched plan that includes a gigawatt-hour energy storage target."
     },
     {
-      "t": "2026-10-26T09:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/spons/the-push-to-dc-why-data-centers-are-rethinking-power-architecture/833783/",
-      "source": "Utility Dive",
-      "title": "The push to DC: Why data centers are rethinking power architecture",
-      "url": "https://www.utilitydive.com/spons/the-push-to-dc-why-data-centers-are-rethinking-power-architecture/833783/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Explore how 800 VDC can reduce power losses, free up data center space and reshape power architecture."
-    },
-    {
       "t": "2026-10-26T11:46:19.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/software-stack-complexity-and-the-push-for-interoperability-standards-in-us-bess/",
       "source": "Energy-Storage.news",
@@ -315,26 +305,6 @@
       "summary": "CATL has launched its 9MWh TENER+ battery storage system at All-Energy Australia 2026 and signed three MoUs with Australian partners."
     },
     {
-      "t": "2026-10-28T08:34:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/portugal-makes-grid-forming-mandatory-for-large-battery-storage-plants/",
-      "source": "pv magazine",
-      "title": "Portugal makes grid-forming mandatory for large battery storage plants",
-      "url": "https://www.pv-magazine.com/2026/10/28/portugal-makes-grid-forming-mandatory-for-large-battery-storage-plants/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Portugal has set new grid connection rules for energy storage, moving ahead of the EU’s own revision of generator connection requirements. The post Portugal makes grid-forming mandatory for large battery storage plants appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-28T08:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/itaipu-studies-up-to-1-gw-of-solar-to-support-paraguays-power-grid/",
-      "source": "pv magazine",
-      "title": "Itaipu studies up to 1 GW of solar to support Paraguay’s power grid",
-      "url": "https://www.pv-magazine.com/2026/10/28/itaipu-studies-up-to-1-gw-of-solar-to-support-paraguays-power-grid/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Simulations of PV plants connected at three points in Paraguay’s electricity network found that specialized controls could dampen inter-area power oscillations, while the study also recommends battery storage to improve system response. The post Itaipu studies up to 1 GW of solar to support Paraguay’s power grid app…"
-    },
-    {
       "t": "2026-10-28T08:55:29.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/ricoh-announces-gw-scale-perovskite-solar-cell-production-in-japan/",
       "source": "pv magazine",
@@ -453,6 +423,36 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Analysis by Avnet Silica says energy security remains the most significant driver of investment in European solar startups today as financing levels begin to increase after reaching an all-time low last year. The post European solar startups raise €82 million in January-August appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-28T13:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/uk-government-approves-nearly-2-gw-of-co-located-solar-in-october/",
+      "source": "pv magazine",
+      "title": "UK government approves nearly 2 GW of co-located solar in October",
+      "url": "https://www.pv-magazine.com/2026/10/28/uk-government-approves-nearly-2-gw-of-co-located-solar-in-october/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Four projects in nationally significant infrastructure project planning pipeline granted planning permission by secretary of state. All four projects include battery energy storage systems. The post UK government approves nearly 2 GW of co-located solar in October appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-28T16:46:53.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/cms-energy-ceo-predicts-data-center-progress-after-midterms/873057/",
+      "source": "Utility Dive",
+      "title": "CMS Energy CEO predicts data center ‘progress’ after midterms",
+      "url": "https://www.utilitydive.com/news/cms-energy-ceo-predicts-data-center-progress-after-midterms/873057/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Garrick Rochow blamed political &ldquo;spin&rdquo; for permitting setbacks in an earnings call. He did not address the more than $300 million the utility says it has spent to keep an aging coal plant running under DOE &lsquo;emergency&rsquo; orders."
+    },
+    {
+      "t": "2026-10-28T17:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/retrofits-on-the-rise-down-under/",
+      "source": "pv magazine",
+      "title": "Retrofits on the rise Down Under",
+      "url": "https://www.pv-magazine.com/2026/10/28/retrofits-on-the-rise-down-under/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australia’s push to accelerate electrification while meeting an 82% renewable energy target and retiring coal-fired power plants, both by 2030, is driving the retrofitting of co-located battery energy storage systems (BESS) at existing grid-scale solar farms. Ev Foley of pv magazine Australia reports. The post Retro…"
     }
   ],
   "derived": {
@@ -461,9 +461,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 6,
+      "policy": 7,
       "capital": 4,
-      "grid": 30,
+      "grid": 29,
       "technology": 3
     },
     "sourceStatus": [
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:931240d9c7d6259c3d56fae7452a198d6a28946c55eb0bf37d42017741ba7265",
-  "envelopeChecksum": "sha256:fcf4e4bae32b2744b088206d65cfe66470d6162c55839130e7895e1309a062fc"
+  "contentChecksum": "sha256:aebe2b0c5e5a68aefdfe39fdb907f813638320c84092d35f51f42f7aca6d84fd",
+  "envelopeChecksum": "sha256:857b8f3b77446959a727b2d31ad2a3a8f5e07ccac807b23ecf07363decc15bf7"
 }

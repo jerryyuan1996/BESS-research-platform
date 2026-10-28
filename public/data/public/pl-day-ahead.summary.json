@@ -13,12 +13,12 @@
     "licence": "PSE public reporting data — reuse with attribution to PSE S.A.",
     "attribution": "Source: PSE S.A.; ECB reference rates"
   },
-  "fetchedAt": "2026-10-28T13:07:00.954Z",
+  "fetchedAt": "2026-10-28T22:40:21.430Z",
   "coverage": {
-    "from": "2025-10-28T14:00:00.000Z",
+    "from": "2025-10-28T23:00:00.000Z",
     "to": "2026-10-29T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8793
+    "points": 8784
   },
   "units": {
     "price": "EUR/MWh"
@@ -31,15 +31,15 @@
   "staleAfterHours": 72,
   "derived": {
     "authority": "derived",
-    "points": 8793,
-    "coverageDays": 367,
+    "points": 8784,
+    "coverageDays": 366,
     "pointsPerHour": 1,
-    "mean": 121.76,
-    "median": 116.47,
-    "stdev": 66.51,
-    "p5": 1.51,
-    "p95": 228.06,
-    "negativeHoursPct": 0.034914136244740136,
+    "mean": 121.77,
+    "median": 116.51,
+    "stdev": 66.54,
+    "p5": 1.5,
+    "p95": 228.11,
+    "negativeHoursPct": 0.03494990892531876,
     "spreadMean": 133.68,
     "spreadMedian": 128.17,
     "spreadP25": 74.32,
@@ -54,8 +54,8 @@
     "revenuePerMW": 122468,
     "marginPerCycle": 494.15,
     "inputs": {
-      "chargeMean": 57.485403005464505,
-      "dischargeMean": 191.16763661202205,
+      "chargeMean": 57.485075136612046,
+      "dischargeMean": 191.16691939890725,
       "durationHours": 4,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
@@ -69,16 +69,6 @@
     ]
   },
   "daily": [
-    {
-      "d": "2025-10-28",
-      "n": 9,
-      "mean": 109.16,
-      "min": 82.87,
-      "max": 139.88,
-      "spread": 32.07,
-      "charge": 93.21,
-      "discharge": 125.28
-    },
     {
       "d": "2025-10-29",
       "n": 24,
@@ -3732,18 +3722,18 @@
     {
       "d": "2026-10-29",
       "n": 24,
-      "mean": 306.08,
-      "min": 196.64,
-      "max": 543.18,
-      "spread": 255.38,
-      "charge": 207.02,
-      "discharge": 462.4
+      "mean": 305.9,
+      "min": 196.53,
+      "max": 542.87,
+      "spread": 255.23,
+      "charge": 206.9,
+      "discharge": 462.14
     }
   ],
   "sourceSnapshot": {
     "file": "pl-day-ahead.json",
-    "contentChecksum": "sha256:9629524533509d69eb6b6131c95f7f122df6f5a786cf455f12a93a1588c85dbd",
-    "points": 8793
+    "contentChecksum": "sha256:fe1cee087ade9f945cf33e64d7208ccdcbd785c6da7dd5290f81590c059359ea",
+    "points": 8784
   },
-  "summaryChecksum": "sha256:41fd2f61b0ecbcaa8d0e4e9b8e4b1d35d74990ef089d4c5c510affbb99b27989"
+  "summaryChecksum": "sha256:f95c36f8b9717d25cf144bc0c6dfdafd9e6ded049d406a47ad67529b802d49b9"
 }
