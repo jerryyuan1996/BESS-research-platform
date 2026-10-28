@@ -32,6 +32,7 @@ import './styles/live.css';
 import './styles/print.css';
 import './styles/experience.css';
 import './styles/opportunities.css';
+import './styles/investment-details.css';
 
 import { inject } from '@vercel/analytics';
 import { boot } from './app/app.js';

@@ -42,7 +42,7 @@ test('investors filter, sort and compare consistent market cases in both languag
   await page.getByRole('button',{name:'并排比较 ↗',exact:true}).click();
   await expect(page.getByRole('dialog')).toContainText('意大利');
   await expect(page.getByRole('dialog')).toContainText('芬兰');
-  await expect(page.getByRole('dialog')).toContainText('14.6%');
+  await expect(page.getByRole('dialog')).toContainText('14.4%');
   await page.screenshot({path:testInfo.outputPath('market-comparison-zh.png')});
   await page.keyboard.press('Escape');
   await page.getByRole('searchbox',{name:'搜索市场',exact:true}).fill('Finland');
@@ -173,3 +173,4 @@ test('income, lifetime and return inputs expose workable contract and connection
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
   await panel.locator('.acq-lab-output').screenshot({path:testInfo.outputPath('acquisition-workable-terms-zh.png')});
 });
+

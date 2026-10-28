@@ -3,12 +3,13 @@ import { valueAcquisition, returnAtAcquisitionPrice, acquisitionCashFlows } from
 import { FEES } from '../acquisition/parameters.js';
 import { baseStrategy, supports } from '../comparison/strategies.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
+import { referenceInvestment, evaluateInvestment, pricingOptions } from './investment.js';
 
 const pv = (flows, rate) => flows.reduce((sum, c) => sum + c.amount / (1 + rate) ** c.at, 0);
 const routes = input => input.stage === 'operating' ? ['hold'] : ['hold','sale'];
 const baseReference = (market, stage, options) => referenceInputs(market, stage, options).find(c => c.key === 'base');
 export function defaultOpportunityStage(investor) {
-  return ['developer','strategic'].includes(investor) ? 'greenfield' : 'ready-to-build';
+  return 'ready-to-build';
 }
 
 /** A common clock, local cash-flow currency, nominal after-tax convention,
@@ -33,23 +34,16 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
     if (b && (!Number.isFinite(value) || value < b[0] || value > b[1])) return { unavailable:'Invalid comparison input: ' + key };
   }
   if (values.lifeYears != null && !Number.isInteger(values.lifeYears)) return { unavailable:'Operating life must be whole years.' };
-  const conventionalPlay = play || { route:baseStrategy(market), hours:market.comparison.archetype.durationHours };
-  const shared = { play:conventionalPlay, strategyId:conventionalPlay.route,
-    economicLifeYears:values.lifeYears ?? 20, operatingAgeYears:0, debt:null,
-    ...(values.baselineMonths == null ? {} : { monthsToOperation:values.baselineMonths }) };
-  const baseline = baseReference(market, stage, shared);
-  if (!baseline) return { unavailable:'The conventional design has no eligible financial model.' };
-  const initial = valueAcquisition(baseline.input, investor);
-  const targetReturn = values.targetPercent != null ? values.targetPercent / 100
-    : initial.targetReturn ?? Math.max(...(initial.audit || []).map(a => a.target));
+  const standardCase=referenceInvestment(market,investor,play,{...values,stage});
+  if(!standardCase)return {unavailable:'The conventional design has no eligible financial model.'};
+  const conventionalPlay=standardCase.play,shared=standardCase.options,baseline=standardCase.result;
+  const targetReturn=standardCase.target;
   if (!Number.isFinite(targetReturn)) return { unavailable:'The common target could not be established.' };
   const specialRoute = opportunity.route || conventionalPlay.route;
   if (!supports(market, specialRoute)) return { unavailable:'This special route is not supported by the market model.' };
   const buildPremiumPct = values.buildPremiumPct ?? opportunity.buildPremiumPct ?? 0;
   const opexPremiumPct = values.opexPremiumPct ?? opportunity.opexPremiumPct ?? 0;
   const retrofit = values.retrofitPerMW ?? 0, avoided = values.avoidedGridPerMW ?? 0;
-  const budget = baseline.assumptions.buildBudget * (1 + buildPremiumPct / 100) + retrofit - avoided;
-  if (!(budget >= 0)) return { unavailable:'Avoided works exceed the remaining construction budget.' };
   const specialMonths = values.specialMonths ?? (opportunity.kind === 'award'
     ? baseline.assumptions.codYears * 12 : (opportunity.months[0] + opportunity.months[1]) / 2);
   const specialPlay = { ...conventionalPlay, route:specialRoute, hours:opportunity.hours ?? conventionalPlay.hours,
@@ -57,11 +51,17 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
   const power = opportunity.powerMW ?? market.comparison.archetype.powerMW;
   const specialMarket = { ...market, comparison:{ ...market.comparison,
     archetype:{ ...market.comparison.archetype, powerMW:power } } };
+  const specialOptions={...shared,play:specialPlay,strategyId:specialRoute,
+    runOptions:pricingOptions(specialMarket,specialPlay)};
+  const unmodifiedSpecial=baseReference(specialMarket,stage,specialOptions);
+  if(!unmodifiedSpecial)return {unavailable:'The special design cannot be priced.'};
+  const budget=unmodifiedSpecial.assumptions.buildBudget*(1+buildPremiumPct/100)+retrofit-avoided;
+  if(!(budget>=0))return {unavailable:'Avoided works exceed the remaining construction budget.'};
   const special = baseReference(specialMarket, stage, {
-    ...shared, play:specialPlay, strategyId:specialRoute, monthsToOperation:specialMonths,
+    ...specialOptions, monthsToOperation:specialMonths,
     remainingBuildPerMW:budget, unfixedConstructionPerMW:0,
-    developmentPerMW:baseline.assumptions.development, fixedFeesPerMW:baseline.input.fixedFeesPerMW,
-    decommissioningPerMW:baseline.input.decommissioningPerMW,
+    developmentPerMW:unmodifiedSpecial.assumptions.development, fixedFeesPerMW:unmodifiedSpecial.input.fixedFeesPerMW,
+    decommissioningPerMW:unmodifiedSpecial.input.decommissioningPerMW,
     operatingCostFactor:baseline.assumptions.opexFactor * (1 + opexPremiumPct / 100),
     unsecuredRevenueFactor:baseline.assumptions.revenueFactor * (1 - (values.revenueHaircutPct ?? 0) / 100),
     ...(opportunity.kind === 'small' ? { capitalSupportPerMW:0, supportCase:'none' } : {}),
@@ -74,14 +74,7 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
   baseline.input.revenueQualificationMonths = values.baselineQualificationMonths ?? 0;
   special.input.revenueQualificationMonths = values.specialQualificationMonths ?? 0;
   const commonPrice = values.purchasePricePerMW ?? 0, premium = values.nodePremiumPerMW ?? 0;
-  const evaluate = (reference, price) => ({
-    ...reference, ceiling:valueAcquisition(reference.input, investor),
-    atPrice:returnAtAcquisitionPrice(reference.input, investor, price),
-    npv:Math.min(...routes(reference.input).map(route =>
-      pv(acquisitionCashFlows(reference.input, investor, route, price).flows, targetReturn))),
-    price, codMonths:reference.assumptions.codYears * 12,
-    qualifiedMonths:reference.assumptions.codYears * 12 + reference.input.revenueQualificationMonths,
-  });
+  const evaluate = (reference, price) => evaluateInvestment(reference,investor,price,targetReturn);
   const standard = evaluate(baseline, commonPrice), alternative = evaluate(special, commonPrice + premium);
   const baselinePVs = routes(baseline.input).map(route =>
     pv(acquisitionCashFlows(baseline.input, investor, route, commonPrice).flows, targetReturn));

@@ -13,12 +13,12 @@ test('market brief discloses actual rates in English and Chinese',async({page},t
   await page.locator('.ix-valuation-basis > summary').click();
   await expect(page.locator('.ix-valuation-basis')).toContainText('6.5%');
   await expect(page.locator('.ix-valuation-basis')).toContainText('10.5%');
-  await expect(page.locator('#bankable .ix-kpis')).toContainText('17.8%');
+  await expect(page.locator('#bankable .ix-kpis')).toContainText('10.6%');
   await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
   await page.locator('.ix-valuation-basis > summary').click();
   await expect(page.locator('.ix-valuation-basis')).toContainText('锁定收入6.5%');
   await expect(page.locator('.ix-valuation-basis')).toContainText('交易收入10.5%');
-  await expect(page.locator('#downside')).toContainText('沿用基准债务');
+  await expect(page.locator('#downside')).toContainText('统一现金流口径');
   await page.screenshot({path:testInfo.outputPath('market-brief-zh.png'),timeout:15000});
   expect(errors).toEqual([]);
 });
@@ -67,7 +67,12 @@ test('the global matrix and investment brief load without browser errors',async(
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/returns');
   await expect(page.getByRole('heading',{name:'Income quality meets return.',exact:true})).toBeVisible();
-  await expect(page.locator('.ix-matrix-svg [role="button"]')).toHaveCount(16);
+  await expect(page.locator('.ix-results tbody tr')).toHaveCount(16);
+  const plotted=await page.locator('.ix-matrix-svg [role="button"]').count();
+  const unpriced=await page.locator('.ix-unpriced-market').count();
+  expect(plotted+unpriced).toBe(16);
+  expect(plotted).toBeGreaterThan(0);
+  if(unpriced)await expect(page.locator('.ix-unpriced-market').first()).toContainText('N/M');
   await page.goto('/');
   await expect(page.getByRole('heading',{name:'Find conviction. Invest in storage.',exact:true})).toBeVisible();
   await expect(page.getByRole('combobox',{name:'Investor profile',exact:true})).toBeVisible();
@@ -75,3 +80,4 @@ test('the global matrix and investment brief load without browser errors',async(
   await page.screenshot({path:testInfo.outputPath('home-en.png')});
   expect(errors).toEqual([]);
 });
+

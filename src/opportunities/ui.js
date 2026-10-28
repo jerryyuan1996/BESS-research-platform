@@ -128,14 +128,18 @@ export function opportunityComparison(row, investor, {compact=false}={}) {
       [['Remaining construction / grid / MW','剩余建设与并网／MW'],money(a.assumptions.buildBudget,currency),money(b.assumptions.buildBudget,currency)],
       [['First-year operating cost / MW','首年运营成本／MW'],money(a.input.annual[0].opex,currency),money(b.input.annual[0].opex,currency)],
       [['Return at the input price','按输入价格计算的回报'],returnLabel(a.atPrice),returnLabel(b.atPrice)],
+      [['Long-hold IRR','长期持有IRR'],returnLabel(a.holdReturn),returnLabel(b.holdReturn)],
+      [['Sale-route IRR','出售路线IRR'],returnLabel(a.saleReturn),returnLabel(b.saleReturn)],
       [['Binding return route','约束回报的持有方式'],ownedRoute(a.atPrice,investor),ownedRoute(b.atPrice,investor)],
       [['NPV at the common target / MW','统一目标下的NPV／MW'],money(a.npv,currency),money(b.npv,currency)],
       [['Total acquisition ceiling / MW','总收购上限／MW'],moneyMW(a.ceiling.pricePerMW,currency),moneyMW(b.ceiling.pricePerMW,currency)],
     ];
-    output.append(h('div',{class:'ix-table-scroll'},h('table',{class:'ix-table ix-opportunity-table'},
+    const comparisonTable=h('div',{class:'ix-table-scroll'},h('table',{class:'ix-table ix-opportunity-table'},
       h('caption',{class:'sr-only'},L(['Conventional and special investment comparison','常规与特殊投资比较'])),
       h('thead',{},h('tr',{},...[['Metric','指标'],['Conventional play','常规play'],['Special opportunity','特殊机会']].map(x=>h('th',{scope:'col'},L(x))))),
-      h('tbody',{},rows.map(([label,x,y])=>h('tr',{},h('th',{scope:'row'},L(label)),h('td',{},x),h('td',{},y)))))));
+      h('tbody',{},rows.map(([label,x,y])=>h('tr',{},h('th',{scope:'row'},L(label)),h('td',{},x),h('td',{},y))))));
+    const hasPremiumBudget=c.safePremium!=null&&c.safePremium>1e-6;
+    if(hasPremiumBudget)output.append(comparisonTable);
     output.append(h('div',{class:'ix-premium-result '+(c.comparable?'is-supported':'is-conditional')},
       eyebrow(['EXTRA CONNECTION / PROJECT RIGHTS','额外并网点／项目权利对价']),
       h('strong',{'data-premium-ceiling':''},c.safePremium==null?L(['No premium clears both tests','尚无溢价同时通过两项检验']):moneyMW(c.safePremium,currency)),
@@ -144,6 +148,9 @@ export function opportunityComparison(row, investor, {compact=false}={}) {
       h('p',{class:'ix-caption'},L(['Value-preserving extra price: ','维持相对价值的额外对价：']),moneyMW(c.relativeCeiling,currency),' · ',
         L(['Headroom at the target return: ','达到目标回报后的对价余量：']),moneyMW(c.targetHeadroom,currency)),
       h('p',{class:'ix-caption'},L(['Both limits include acquisition fees and future spending. This is an incremental rights budget above the common price, not an appraisal of a connection without transfer, import/export and permit evidence.','两项上限均计收购费用与未来投入。这是共同收购价以外的增量权利预算；没有转让、双向容量和许可证据，不能据此认定并网点的实际价值。']))));
+    if(!hasPremiumBudget)output.append(h('details',{class:'ix-details ix-unpriced-details'},
+      h('summary',{},L(['Inspect the calculation and assumptions','展开测算表与依据'])),comparisonTable));
+    queueMicrotask(()=>section.dispatchEvent(new CustomEvent('opportunitychange',{bubbles:true,detail:c})));
     output.append(h('details',{class:'ix-details'},h('summary',{},L(['Read the comparison conventions','查看比较口径'])),
       h('p',{},L(['Both designs retain the existing model’s tax, inflation, depreciation, degradation, lifecycle costs and exit valuation. The common price defaults to zero for an incremental development screen, not a free asset offer. The premium ceiling is the lower of the target-return headroom and the value-preserving incremental price.','两种设计保留现有模型的税费、通胀、折旧、衰减、生命周期成本及退出估值。共同收购价默认为零，用于增量开发筛选，不代表资产免费。溢价上限取目标回报余量与维持相对价值的增量价格两者较低值。'])),
       h('p',{},L(['The platform requires both long hold and the investor’s sale route to meet its target; the reported return is the lower of those routes. Developer sale is at COD; other pre-operation buyers sell after five operating years. Development probabilities are unchanged between alternatives.','平台要求长持和该投资者的出售路线均达到目标，显示两者较低回报。开发商出售时点为COD，其他投运前买方为投运后第5年；两种方案采用相同开发概率。'])),

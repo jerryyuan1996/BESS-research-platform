@@ -16,7 +16,7 @@ test('the market case replays the same route, duration and grant as the screen',
   for (const lens of Object.keys(LENSES)) for (const row of opportunities(lens)) {
     const data = caseFor(row);
     if (data.unavailable) { assert.equal(row.econ.priced, false); continue; }
-    assert.ok(Math.abs(data.base.irrHold - row.econ.hold) < .000051, `${lens}/${row.id}: return drift`);
+    assert.ok(Math.abs(data.base.irrHold - row.legacyEcon.hold) < .000051, `${lens}/${row.id}: legacy return drift`);
     if (row.play) {
       assert.equal(data.variant.comparison.archetype.durationHours, row.play.hours);
       assert.equal(data.base.strategyId, row.play.route);
@@ -34,3 +34,4 @@ test('the bridge treats OEM service as cost and does not double-count ancillary 
   const bridge = revenueBridge({ secY:[20], aucY:[5], mchY:[75], svcY:[10], eb:[60] });
   assert.deepEqual(bridge, { fixed:20, renewal:5, trading:75, service:10, operating:30, net:60, gross:100 });
 });
+
