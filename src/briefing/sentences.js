@@ -16,7 +16,7 @@
 
 import { LENS_NOUN, TIER } from '../governance/briefing.js';
 import { VERDICT_LABEL, ROUTE_LABEL, ARCHETYPE_IDS } from '../governance/investability.js';
-import { REVENUE_ROUTE_LABEL } from '../governance/plays.js';
+import { REVENUE_ROUTE_LABEL, playTitle } from '../governance/plays.js';
 
 /* ---- names --------------------------------------------------------------------- */
 
@@ -106,8 +106,8 @@ export function dateText(when){
 
 /** A play as a sentence names it: "Italy · Capacity market · 4h · ready-to-build". */
 export const playName = (marketId, play) => [
-  `${marketName(marketId)[0]} · ${play.label[0]}`,
-  `${marketName(marketId)[1]} · ${play.label[1]}`,
+  `${marketName(marketId)[0]} · ${playTitle(play)[0]}`,
+  `${marketName(marketId)[1]} · ${playTitle(play)[1]}`,
 ];
 
 /* ---- the call ------------------------------------------------------------------ */

@@ -351,8 +351,8 @@
     "ercot-toll-2h": {
       "id": "ercot-toll-2h",
       "label": [
-        "Toll · 2h · ready-to-build",
-        "租赁 · 2小时 · 具备开工条件"
+        "Toll · 2h",
+        "租赁 · 2小时"
       ],
       "route": "toll",
       "hours": 2,

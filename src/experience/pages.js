@@ -8,7 +8,8 @@ import { siteHeader, siteFooter, link, eyebrow, sectionTitle, metric } from './c
 import { opportunityMatrix, miniature, revenueWaterfall, revenueBar } from './charts.js';
 import { specialRecommendations } from '../opportunities/home.js';
 import { marketResearchSummary } from './researchSummary.js';
-import { countryAttrs, projectFacts } from './projectFacts.js';
+import { countryAttrs, projectFacts, operatingPrice } from './projectFacts.js';
+import { playTitle } from '../governance/plays.js';
 import { gateLabel } from './labels.js';
 import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
@@ -18,7 +19,8 @@ const lens = () => LENSES[app.lens] ? app.lens : 'infraFund';
 const button = (label, onclick, cls = '') => h('button', { type: 'button', class: `ix-button ${cls}`, onclick }, L(label));
 const name = row => L(marketName(row));
 const tag = row => h('span', { class: `ix-tag ${row.call}` }, L(CALLS[row.call] || CALLS.research));
-const routeName = row => row.play?.label || row.market.comparison.narrative.archetype;
+/* The design, at the stage this investor's call enters it. */
+const routeName = row => row.play ? playTitle(row.play, row.stage) : row.market.comparison.narrative.archetype;
 const card = (...children) => h('div', { class: 'ix-panel' }, ...children);
 const main = () => h('main', { id: 'ix-main', class: 'ix-container', tabindex: -1 });
 const chartFrame = chart => h('div', { class: 'ix-chart-frame' },
@@ -191,7 +193,7 @@ function renderComparison(container, rows) {
       h('tbody', {}, filtered.map(row => {
         const checkbox = h('input', { type: 'checkbox', 'aria-label': L([`Compare ${name(row)}`, `比较${name(row)}`]), onchange: () => toggleCompare(row, checkbox) }); checkbox.checked = state.compare.has(row.id);
         return h('tr', {}, h('td', {}, checkbox), h('th', { scope: 'row' }, link(caseUrl(row), name(row)), h('small', {}, L(routeName(row)))),
-          h('td', { class: 'ix-table-number' }, returnPct(row.econ.hold)), h('td', {}, h('span', { class: 'ix-table-number' }, share(row.econ.secured)), revenueBar(row)),
+          h('td', { class: 'ix-table-number' }, returnPct(row.econ.hold), operatingPrice(row.investment) ? h('small', { class: 'ix-operating-note' }, L(['New build. ', '新建情景。']), L(operatingPrice(row.investment))) : null), h('td', {}, h('span', { class: 'ix-table-number' }, share(row.econ.secured)), revenueBar(row)),
           h('td', {}, `${row.play?.hours || row.market.comparison.archetype.durationHours}h`), h('td', {}, tag(row)), h('td', {}, link(caseUrl(row), '↗', 'ix-row-open', { 'aria-label': L([`Open ${name(row)}`, `打开${name(row)}`]) })));
       })));
     results.append(h('div', { class: 'ix-table-scroll', tabindex: 0, 'aria-label': L(['Scrollable market comparison table', '可横向滚动的市场对比表']) }, table));

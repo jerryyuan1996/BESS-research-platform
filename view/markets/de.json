@@ -375,8 +375,8 @@
     "de-mer-4h": {
       "id": "de-mer-4h",
       "label": [
-        "Merchant · 4h · greenfield",
-        "市场化 · 4小时 · 绿地开发"
+        "Merchant · 4h",
+        "市场化 · 4小时"
       ],
       "route": "mer",
       "hours": 4,
@@ -399,8 +399,8 @@
     "de-toll-4h": {
       "id": "de-toll-4h",
       "label": [
-        "Toll · 4h · ready-to-build",
-        "租赁 · 4小时 · 具备开工条件"
+        "Toll · 4h",
+        "租赁 · 4小时"
       ],
       "route": "toll",
       "hours": 4,

@@ -366,8 +366,8 @@
     "it-cap-4h": {
       "id": "it-cap-4h",
       "label": [
-        "Capacity market · 4h · ready-to-build",
-        "容量市场 · 4小时 · 具备开工条件"
+        "Capacity market · 4h",
+        "容量市场 · 4小时"
       ],
       "route": "cap",
       "hours": 4,
@@ -390,8 +390,8 @@
     "it-ltda-6h": {
       "id": "it-ltda-6h",
       "label": [
-        "MACSE · 6–7h · awarded, ready-to-build",
-        "MACSE · 6–7小时 · 已中标、具备开工条件"
+        "MACSE · 6–7h · awarded",
+        "MACSE · 6–7小时 · 已中标"
       ],
       "route": "ltda",
       "hours": 6,

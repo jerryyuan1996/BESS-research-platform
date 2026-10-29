@@ -25,6 +25,16 @@ export function opportunitySummary(briefing) {
         const b=investmentMetrics(stressed?.result);
         metrics.bearIRR=b?.irr??null;metrics.bearNetUSD=b?.bridge.net??null;
       }
+      /* The headline stays the one new-build case every market shares. Where
+         this investor's call is to buy an operating asset, also give the most
+         it can pay for one and still meet its target. */
+      const entry=lens.rows.find(r=>r.market===id)?.stage;
+      if(metrics&&play&&entry==='operating'){
+        const operating=referenceInvestment(market,investor,play,{stage:'operating'});
+        const ceiling=operating?.result.ceiling;
+        metrics.operatingPurchase=ceiling?.status==='priced'
+          ?{maxPricePerMW:ceiling.pricePerMW,targetReturn:ceiling.targetReturn}:null;
+      }
       return [id,metrics];
     }));
     const projectFor=o=>{

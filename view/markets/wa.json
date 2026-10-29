@@ -515,8 +515,8 @@
     "wa-cap-8h": {
       "id": "wa-cap-8h",
       "label": [
-        "Reserve Capacity Mechanism · 8h · co-investment",
-        "备用容量机制 · 8小时 · 跟投"
+        "Reserve Capacity Mechanism · 8h",
+        "备用容量机制 · 8小时"
       ],
       "route": "cap",
       "hours": 8,

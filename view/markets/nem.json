@@ -343,8 +343,8 @@
     "nem-ltda-4h": {
       "id": "nem-ltda-4h",
       "label": [
-        "Tender award · 4h · operating",
-        "容量投资计划中标 · 4小时 · 在运资产"
+        "Tender award · 4h",
+        "容量投资计划中标 · 4小时"
       ],
       "route": "ltda",
       "hours": 4,

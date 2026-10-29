@@ -23,6 +23,7 @@ import {
 import { tagHeadline } from '../governance/newsTags.js';
 import { isResolved } from '../governance/triggers.js';
 import { changeText } from './sentences.js';
+import { playTitle } from '../governance/plays.js';
 
 const DAY = 86_400_000;
 const dayOf = (iso) => String(iso).slice(0, 10);
@@ -141,7 +142,7 @@ export function taggedNews(news, on, windowDays = CHANGE_WINDOW_DAYS){
 /** Every change inside the window, newest first. */
 export function collectChanges({ changelog, views, feeds, news, on }){
   const since = new Date(Date.parse(`${on}T00:00:00Z`) - CHANGE_WINDOW_DAYS * DAY).toISOString();
-  const labels = new Map(views.flatMap(v => Object.values(v.plays || {}).map(p => [`${v.marketId}/${p.id}`, p.label])));
+  const labels = new Map(views.flatMap(v => Object.values(v.plays || {}).map(p => [`${v.marketId}/${p.id}`, playTitle(p)])));
   const playLabel = (market, id) => labels.get(`${market}/${id}`) || null;
   const fromLog = changelog.map(e => classifyEntry(e, { playLabel })).filter(Boolean).filter(c => c.at >= since);
   const fromFeeds = Object.entries(feeds || {}).map(([marketId, summary]) => spreadMove(summary, marketId)).filter(Boolean).filter(c => c.at >= since);

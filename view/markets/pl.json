@@ -351,8 +351,8 @@
     "pl-cap-4h": {
       "id": "pl-cap-4h",
       "label": [
-        "Capacity market · 4h · ready-to-build",
-        "容量市场 · 4小时 · 具备开工条件"
+        "Capacity market · 4h",
+        "容量市场 · 4小时"
       ],
       "route": "cap",
       "hours": 4,
@@ -375,8 +375,8 @@
     "pl-grant-4h": {
       "id": "pl-grant-4h",
       "label": [
-        "Grant-funded merchant · 4h · ready-to-build",
-        "获补贴市场化 · 4小时 · 具备开工条件"
+        "Grant-funded merchant · 4h",
+        "获补贴市场化 · 4小时"
       ],
       "route": "mer",
       "hours": 4,

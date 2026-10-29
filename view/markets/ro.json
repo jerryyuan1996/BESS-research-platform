@@ -381,8 +381,8 @@
     "ro-mer-2h": {
       "id": "ro-mer-2h",
       "label": [
-        "Merchant · 2h · operating, with an optimiser floor",
-        "市场化 · 2小时 · 在运资产，附优化商保底"
+        "Merchant · 2h · with an optimiser floor",
+        "市场化 · 2小时 · 附优化商保底"
       ],
       "route": "mer",
       "hours": 2,

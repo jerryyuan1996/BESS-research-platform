@@ -15,6 +15,7 @@
 import { TIER_LABEL, EVIDENCE_LABEL, CHANGE_CLASS_ORDER, CATALYST_WINDOW_DAYS } from '../governance/briefing.js';
 import { TRIGGER_DIRECTION_LABEL } from '../governance/triggers.js';
 import { percent, perMW, dateText, marketName } from './sentences.js';
+import { playTitle } from '../governance/plays.js';
 
 export const SITE_URL = 'https://globalbess.vercel.app';
 const DAY = 86_400_000;
@@ -101,7 +102,7 @@ function renderLang(b, lens, days, siteUrl, lang){
   if (!view.actions.length) lines.push(L('None dated.', '暂无。'));
   for (const a of view.actions){
     const p = b.plays[`${a.market}/${a.play}`];
-    lines.push(`- ${a.due ? `**${t(dateText(a.due))}** · ` : ''}${marketLink(a.market)} · ${t(p.label)}: ${t(a.text)}`);
+    lines.push(`- ${a.due ? `**${t(dateText(a.due))}** · ` : ''}${marketLink(a.market)} · ${t(playTitle(p))}: ${t(a.text)}`);
   }
   lines.push('');
 

@@ -377,8 +377,8 @@
     "gb-cap-4h": {
       "id": "gb-cap-4h",
       "label": [
-        "Capacity Market · 4h · greenfield",
-        "容量市场 · 4小时 · 绿地开发"
+        "Capacity Market · 4h",
+        "容量市场 · 4小时"
       ],
       "route": "cap",
       "hours": 4,
@@ -401,8 +401,8 @@
     "gb-toll-4h": {
       "id": "gb-toll-4h",
       "label": [
-        "Toll · 4h · operating",
-        "租赁 · 4小时 · 在运资产"
+        "Toll · 4h",
+        "租赁 · 4小时"
       ],
       "route": "toll",
       "hours": 4,
