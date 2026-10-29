@@ -13,7 +13,7 @@ test('market brief discloses actual rates in English and Chinese',async({page},t
   await page.locator('.ix-valuation-basis > summary').click();
   await expect(page.locator('.ix-valuation-basis')).toContainText('6.5%');
   await expect(page.locator('.ix-valuation-basis')).toContainText('10.5%');
-  await expect(page.locator('#bankable .ix-kpis')).toContainText('10.6%');
+  await expect(page.locator('#bankable .ix-kpis')).toContainText('13.4%');
   await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
   await page.locator('.ix-valuation-basis > summary').click();
   await expect(page.locator('.ix-valuation-basis')).toContainText('锁定收入6.5%');

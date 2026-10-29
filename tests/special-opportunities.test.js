@@ -32,6 +32,20 @@ test('identical timing, cost and rights produce identical cash flows and no extr
   close(c.safePremium,0);
 });
 
+test('an identical US design earns the same investment credit as the conventional one',()=>{
+  // The special case is priced on an all-in budget; its credit must still use
+  // the conventional pre-contingency basis, or a twin gains rights value from nothing.
+  for(const id of ['pjm-surplus','caiso-deliverability']){
+    const o=opportunityById(id),c=compareOpportunity(byId(o.market),o,'infraFund',null,
+      {baselineMonths:18,specialMonths:18,targetPercent:5,buildPremiumPct:0});
+    assert.ok(!c.unavailable,id);
+    assert.ok(c.standard.assumptions.capitalSupportPerMW>0,id+' carries the credit');
+    close(c.standard.assumptions.capitalSupportPerMW,c.alternative.assumptions.capitalSupportPerMW,1e-6);
+    close(c.standard.atPrice.annualReturn,c.alternative.atPrice.annualReturn);
+    close(c.safePremium,0,1e-3);
+  }
+});
+
 test('rights budget preserves each conventional route and the target, after fees and costs',()=>{
   const market=byId('de'),o=opportunityById('de-existing-node');
   const values={baselineMonths:36,specialMonths:12,targetPercent:5,buildPremiumPct:0};
