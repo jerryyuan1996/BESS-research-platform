@@ -40,23 +40,8 @@ import {
   ARCHETYPE_IDS, ROUTE, ROUTE_LABEL, PLAY_ID_PATTERN, validateVerdict, checkStamp, isDay,
 } from './investability.js';
 
-/* A play's label names its design: route, hours and any qualifier ("awarded",
-   "with an optimiser floor"). It carries no stage, because the stage depends
-   on who is reading. The play's own call enters at `play.stage`; another
-   investor's row may enter the same design earlier. Each surface adds the
-   stage it means with playTitle. */
-const STAGE_WORD = {
-  'greenfield':     ['greenfield', '绿地开发'],
-  'ready-to-build': ['ready-to-build', '具备开工条件'],
-  'operating':      ['operating', '在运资产'],
-  'co-invest':      ['co-investment', '跟投'],
-};
-
-/** "Long-term auction award · 9h · operating": the label plus the stage meant. */
-export function playTitle(play, stage = play.stage){
-  const word = STAGE_WORD[stage];
-  return word ? [`${play.label[0]} · ${word[0]}`, `${play.label[1]} · ${word[1]}`] : play.label;
-}
+import { STAGE_WORD, playTitle } from './playTitle.js';
+export { playTitle };
 
 /** Stage words a label must not carry, in either language (the ones written before 2026-10-29 included). */
 const LABEL_STAGE_WORDS = [...Object.values(STAGE_WORD), ...Object.values(ROUTE_LABEL), ['', '已投运']]
