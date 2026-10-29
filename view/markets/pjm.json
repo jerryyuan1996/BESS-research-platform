@@ -381,8 +381,8 @@
     "pjm-cap-4h": {
       "id": "pjm-cap-4h",
       "label": [
-        "Capacity auction · 4h · ready-to-build",
-        "容量拍卖 · 4小时 · 具备开工条件"
+        "Capacity auction · 4h",
+        "容量拍卖 · 4小时"
       ],
       "route": "cap",
       "hours": 4,

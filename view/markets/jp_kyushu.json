@@ -365,8 +365,8 @@
     "jp-kyushu-ltda-6h": {
       "id": "jp-kyushu-ltda-6h",
       "label": [
-        "Long-term auction award · 9h · operating, awarded",
-        "长期脱碳电源拍卖中标 · 9小时 · 已投运、已中标"
+        "Long-term auction award · 9h",
+        "长期脱碳电源拍卖中标 · 9小时"
       ],
       "route": "ltda",
       "hours": 9,

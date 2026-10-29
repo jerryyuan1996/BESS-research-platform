@@ -90,3 +90,23 @@ test('every opportunity country watermark is a local SVG asset',()=>{
     assert.match(text,/<path fill=/);
   }
 });
+
+test('rows whose investor buys an operating asset add the most it can pay; the headline stays the new build',async()=>{
+  const { referenceInvestment } = await import('../src/opportunities/investment.js');
+  const { playTitle } = await import('../src/governance/plays.js');
+  let operating=0;
+  for(const investor of Object.keys(LENSES))for(const row of opportunities(investor)){
+    const o=row.investment?.operatingPurchase;
+    if(row.stage!=='operating'||!row.play){assert.equal(o,undefined,investor+'/'+row.id);continue;}
+    operating++;
+    assert.equal(row.investment.stage,'ready-to-build');
+    const ceiling=referenceInvestment(row.market,investor,row.play,{stage:'operating'}).result.ceiling;
+    assert.equal(o.maxPricePerMW,ceiling.pricePerMW);
+    assert.equal(o.targetReturn,ceiling.targetReturn);
+    // Every one of these is worth less operating than it costs to build.
+    assert.ok(o.maxPricePerMW<row.investment.capexPerMW,investor+'/'+row.id);
+    // The row names the stage this investor enters at, not a stage baked into the label.
+    assert.match(playTitle(row.play,row.stage)[0],/ · operating$/);
+  }
+  assert.equal(operating,8);
+});

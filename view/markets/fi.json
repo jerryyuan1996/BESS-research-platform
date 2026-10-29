@@ -386,8 +386,8 @@
     "fi-toll-2h": {
       "id": "fi-toll-2h",
       "label": [
-        "Trading and reserves under a negotiated floor · 2h · ready-to-build",
-        "谈定保底下的交易与备用 · 2小时 · 具备开工条件"
+        "Trading and reserves under a negotiated floor · 2h",
+        "谈定保底下的交易与备用 · 2小时"
       ],
       "route": "toll",
       "hours": 2,

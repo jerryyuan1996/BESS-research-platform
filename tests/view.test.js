@@ -41,7 +41,7 @@ import { SOURCE_DECISION_PROFILE } from '../src/governance/triggers.js';
 import { markets as registered } from '../src/markets/registry.js';
 import { runBaseCase } from '../src/comparison/engine.js';
 import { supportedStrategies, STRATEGIES } from '../src/comparison/strategies.js';
-import { REVENUE_ROUTES, playsOf, playCall } from '../src/governance/plays.js';
+import { REVENUE_ROUTES, playsOf, playCall, validatePlay, playTitle } from '../src/governance/plays.js';
 import { validateTrigger, overdue } from '../src/governance/triggers.js';
 import { triggerCalendar } from '../src/home/boardModel.js';
 
@@ -72,7 +72,7 @@ const verdict = (patch = {}) => ({
 
 /* A play: one design worth an investor's attention (governance/plays.js). */
 const play = (patch = {}) => ({
-  id: 'fi-mer-2h', label: ['Merchant · 2h · ready-to-build', '纯市场化 · 2小时 · 具备开工条件'],
+  id: 'fi-mer-2h', label: ['Merchant · 2h', '纯市场化 · 2小时'],
   route: 'mer', hours: 2, stage: 'ready-to-build',
   why: ['A line on why this design.', '一句说明为何选此方案。'],
   action: { text: ['The next concrete step.', '下一步的具体行动。'], due: '2026-12-31' },
@@ -665,4 +665,14 @@ test('a derived asset-return grade is the market\'s fifth in the engine\'s ranki
     }
   }
   assert.deepEqual(drift, [], 'the engine\'s ranking has moved under a stored grade: the analyst regrades it, nothing here does');
+});
+
+test('a play label names its design; the stage is added where it is shown', () => {
+  assert.deepEqual(validatePlay(play(), 'fi-mer-2h'), []);
+  for (const label of [['Merchant · 2h · ready-to-build', '纯市场化 · 2小时'], ['Merchant · 2h', '纯市场化 · 2小时 · 已投运'], ['Merchant · 2h · operating, awarded', '纯市场化 · 2小时']]){
+    assert.ok(validatePlay(play({ label }), 'fi-mer-2h').some(p => /names a stage/.test(p)), label.join(' | '));
+  }
+  assert.deepEqual(playTitle(play()), ['Merchant · 2h · ready-to-build', '纯市场化 · 2小时 · 具备开工条件']);
+  assert.deepEqual(playTitle(play(), 'operating'), ['Merchant · 2h · operating', '纯市场化 · 2小时 · 在运资产']);
+  assert.deepEqual(playTitle(play(), 'co-invest')[0], 'Merchant · 2h · co-investment');
 });

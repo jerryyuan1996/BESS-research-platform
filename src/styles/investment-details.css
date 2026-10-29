@@ -9,6 +9,8 @@
 .ix-featured .ix-project-facts{border-color:#ffffff35}
 .ix-featured .ix-project-facts dt,.ix-featured .ix-project-facts small{color:#c3d1c7}
 .ix-special-pick .ix-project-facts{margin-top:0}
+.ix-project-facts .ix-operating-price{grid-column:1/-1}
+.ix-operating-note{display:block;max-width:22ch;margin-top:4px;white-space:normal;font-size:var(--fs-micro);font-weight:var(--fw-regular,400);line-height:1.5;color:var(--ix-muted,#68766c)}
 .ix-directory-card{border:1px solid var(--ix-line,#dce1d6);padding:22px;background:var(--ix-panel,#fffefa)}
 .ix-directory-card>a{font-weight:var(--fw-medium)}
 .ix-matrix-detail .ix-project-facts{grid-column:1/-1;width:100%}

@@ -368,8 +368,8 @@
     "caiso-cap-4h": {
       "id": "caiso-cap-4h",
       "label": [
-        "Resource adequacy · 4h · operating",
-        "资源充裕度 · 4小时 · 在运资产"
+        "Resource adequacy · 4h",
+        "资源充裕度 · 4小时"
       ],
       "route": "cap",
       "hours": 4,

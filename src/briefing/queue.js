@@ -26,6 +26,7 @@ import { DUE_SOON_DAYS, REVIEW_SOON_DAYS, RULE_NEAR_SHARE } from '../governance/
 import { freshnessOf, FRESHNESS } from '../live/freshness.js';
 import { dimension as dimensionOf } from '../governance/investability.js';
 import { queueText } from './sentences.js';
+import { playTitle } from '../governance/plays.js';
 
 const DAY = 86_400_000;
 const addDays = (on, n) => new Date(Date.parse(`${on}T00:00:00Z`) + n * DAY).toISOString().slice(0, 10);
@@ -117,11 +118,11 @@ export function buildQueue({ views, lenses, engine, summaries, catalogue, on, no
     for (const play of Object.values(view.plays || {})){
       for (const [archetype, call] of Object.entries(play.calls || {})){
         if (call.reviewBy && call.reviewBy <= soon){
-          push('review', id, queueText.review(id, archetype, call.reviewBy, play.label), `${fileOf(id)} → plays.${play.id}`, { archetype, play: play.id, date: call.reviewBy });
+          push('review', id, queueText.review(id, archetype, call.reviewBy, playTitle(play)), `${fileOf(id)} → plays.${play.id}`, { archetype, play: play.id, date: call.reviewBy });
         }
       }
       if (play.action?.due && play.action.due < on){
-        push('action', id, queueText.actionOverdue(id, play.label, play.action.text, play.action.due), `${fileOf(id)} → plays.${play.id}`, { play: play.id, date: play.action.due });
+        push('action', id, queueText.actionOverdue(id, playTitle(play), play.action.text, play.action.due), `${fileOf(id)} → plays.${play.id}`, { play: play.id, date: play.action.due });
       }
     }
     for (const [dimension, grade] of Object.entries(view.grades || {})){
@@ -137,7 +138,7 @@ export function buildQueue({ views, lenses, engine, summaries, catalogue, on, no
   for (const [archetype, rows] of Object.entries(lenses)){
     for (const row of rows){
       if (!row.flag) continue;
-      push('disagreement', row.market, queueText.disagreement(row.market, archetype, row.flag, row.playRecord.label),
+      push('disagreement', row.market, queueText.disagreement(row.market, archetype, row.flag, playTitle(row.playRecord)),
         `${fileOf(row.market)} → ${row.own ? `plays.${row.play}.calls.${archetype}` : `verdicts.${archetype}`}`, { archetype, play: row.play, flag: row.flag });
     }
   }

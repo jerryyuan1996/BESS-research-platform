@@ -32,7 +32,7 @@ import { percent, perMW, dateText } from '../briefing/sentences.js';
 import { TIER_LABEL, EVIDENCE_LABEL, CHANGE_CLASS } from '../governance/briefing.js';
 import { ARCHETYPE_IDS, VERDICT_LABEL, ROUTE_LABEL, dimension } from '../governance/investability.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
-import { REVENUE_ROUTE_LABEL } from '../governance/plays.js';
+import { REVENUE_ROUTE_LABEL, playTitle } from '../governance/plays.js';
 import { byExpected, isResolved, TRIGGER_DIRECTION_LABEL } from '../governance/triggers.js';
 import { verdictGlyph } from '../home/verdictGlyph.js';
 import { acquisitionList } from '../acquisition/view.js';
@@ -74,7 +74,7 @@ function theCall(marketId, view, lens, rows){
     return h('div', { class: 'mb-play' },
       h('div', { class: 'mb-callline' },
         verdictGlyph(r.call, 16), ' ',
-        h('b', {}, L(VERDICT_LABEL[r.call] || [r.call, r.call])), ' · ', L(p.label),
+        h('b', {}, L(VERDICT_LABEL[r.call] || [r.call, r.call])), ' · ', L(playTitle(p, r.stage)),
         r.own ? h('span', { class: 'bf-own' }, L(['own call', '独立结论'])) : null,
         h('span', { class: `bf-ev bf-ev-${r.evidence} mb-ev` }, L(EVIDENCE_LABEL[r.evidence]))),
       p.why ? h('div', { class: 'bf-why' }, L(p.why)) : null,
@@ -146,7 +146,7 @@ function economics(marketId, lens, rows){
   const range = e.range && e.range.bear && e.range.bull
     ? `${percent(e.range.bear[field])} – ${percent(e.range.bull[field])}` : '—';
   return card(['Economics', '经济性'],
-    h('div', { class: 'cap' }, L(p.label)),
+    h('div', { class: 'cap' }, L(playTitle(p))),
     h('div', { class: 'kpis mb-kpis' },
       kpi(['Reference design net value / MW', '参考方案净增值／MW'], e.priced && e.eligible ? L(perMW(e.value)) : L(['not compliant', '不合规'])),
       kpi(field === 'exit' ? ['Exit IRR', '退出IRR'] : ['Hold IRR', '持有期IRR'], percent(e[field]), L(['bear – bull: ', '悲观 – 乐观：']) + range),
@@ -216,7 +216,7 @@ function nextAction(marketId, rows){
   if (!actions.length) return card(['Next action', '下一步'], h('div', { class: 'bf-empty' }, L(['No action is written for this play yet.', '该方案尚无已写明的行动。'])));
   return card(['Next action', '下一步'], h('ul', { class: 'bf-list' }, actions.map(p => h('li', { class: 'bf-li' },
     h('span', { class: 'bf-date bf-when' }, p.action.due ? when(p.action.due) : L(['no date', '未定日期'])),
-    h('b', {}, L(p.label)), h('div', { class: 'bf-why' }, L(p.action.text))))));
+    h('b', {}, L(playTitle(p))), h('div', { class: 'bf-why' }, L(p.action.text))))));
 }
 
 function otherViews(marketId, view, lens){
@@ -235,7 +235,7 @@ function otherViews(marketId, view, lens){
   const alternatives = Object.values(view.plays || {}).filter(p => !shown.has(p.id));
   return card(['The other investors', '其他投资者'], list,
     alternatives.length ? h('div', { class: 'mb-sub' }, L(['Plays no investor\'s call names', '未被任何结论引用的方案'])) : null,
-    alternatives.length ? h('ul', { class: 'bf-list' }, alternatives.map(p => h('li', { class: 'bf-li' }, h('b', {}, L(p.label)), h('div', { class: 'bf-why' }, L(p.why))))) : null);
+    alternatives.length ? h('ul', { class: 'bf-list' }, alternatives.map(p => h('li', { class: 'bf-li' }, h('b', {}, L(playTitle(p))), h('div', { class: 'bf-why' }, L(p.why))))) : null);
 }
 
 /* ---- go deeper ----------------------------------------------------------------------- */
