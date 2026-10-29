@@ -118,6 +118,11 @@ function simplifyEconomicMetrics(root){
   });
 }
 
+/* The story opens with a one-minute orientation, which since 2026-10-29 leads
+   the market's front page (experience/researchSummary.js). Here it is lifted
+   out, and what remains splits into the story and the economics before it. A
+   market with no named orientation lends its first card to the front page; the
+   rest of its story stays on one page. */
 function storySubTabs(root, tabId){
   if (tabId !== 'story') return;
   let orientation = [...root.querySelectorAll('.card')].find(cardNode =>
@@ -129,19 +134,22 @@ function storySubTabs(root, tabId){
   if (!orientation) orientation = root.querySelector('.card');
   const splitAt = content.findIndex(node => node === orientation || node.contains(orientation));
   if (splitAt < 0) return;
-  const panelSplit = hasNamedOrientation ? splitAt : splitAt + 1;
-  const orientationNodes = hasNamedOrientation ? content.slice(panelSplit) : content.slice(0, panelSplit);
-  const economicsNodes = hasNamedOrientation ? content.slice(0, panelSplit) : content.slice(panelSplit);
+  orientation.remove();
+  if (!hasNamedOrientation) return;
+  const keep = node => node.isConnected && node.parentNode === root;
+  const storyNodes = content.slice(splitAt).filter(keep);
+  const economicsNodes = content.slice(0, splitAt).filter(keep);
+  if (!storyNodes.length || !economicsNodes.length) return;
   const nav = h('div', {
     class:'story-subtabs',
     role:'tablist',
     'aria-label':L(['Market story sections', '市场演进子页']),
   });
-  const orientationPanel = h('section', {
+  const storyPanel = h('section', {
     class:'story-panel',
     role:'tabpanel',
-    'data-story-panel':'orientation',
-  }, orientationNodes);
+    'data-story-panel':'story',
+  }, storyNodes);
   const economicsPanel = h('section', {
     class:'story-panel',
     role:'tabpanel',
@@ -149,7 +157,7 @@ function storySubTabs(root, tabId){
     hidden:'hidden',
   }, economicsNodes);
   const tabs = [
-    ['orientation', ['One-minute orientation', '一分钟市场定位'], orientationPanel],
+    ['story', ['How the market got here', '市场如何演变至此'], storyPanel],
     ['economics', ['Economics', '经济性'], economicsPanel],
   ];
   const select = id => {
@@ -160,18 +168,18 @@ function storySubTabs(root, tabId){
     });
   };
   tabs.forEach(([id, label]) => nav.append(h('button', {
-    class:'btn' + (id === 'orientation' ? ' active' : ''),
+    class:'btn' + (id === 'story' ? ' active' : ''),
     type:'button',
     role:'tab',
     'data-story-tab':id,
-    'aria-selected':String(id === 'orientation'),
+    'aria-selected':String(id === 'story'),
     onclick:(event) => {
       nav.querySelectorAll('.btn').forEach(button => button.classList.remove('active'));
       event.currentTarget.classList.add('active');
       select(id);
     },
   }, L(label))));
-  root.append(nav, orientationPanel, economicsPanel);
+  root.append(nav, storyPanel, economicsPanel);
 }
 
 function mergeTimelines(root){
@@ -209,11 +217,13 @@ export function pairOverviewMap(root, data){
 }
 
 export function enhanceMarketPage(root, { overviewMap = null, marketId = '', tabId = '' } = {}){
+  /* First, so the card the front page shows is gone before any timeline is
+     merged into it. */
+  storySubTabs(root, tabId);
   simplifyEconomicMetrics(root);
   mergeTimelines(root);
   if (overviewMap) pairOverviewMap(root, overviewMap);
   consolidateSourceDrawers(root);
-  storySubTabs(root, tabId);
   placeMetricFootnotes(root);
   placeSectionClaim(root, marketId, tabId);
 }

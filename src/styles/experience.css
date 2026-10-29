@@ -127,7 +127,7 @@ body.ix-experience {
 .ix-legend { display:flex; flex-wrap:wrap; gap:14px; color:var(--ix-muted); font-size:var(--fs-micro); }
 .ix-legend>span::before { display:inline-block; content:''; width:7px; height:7px; border-radius:50%; margin-right:5px; background:#9aa79d; }
 .ix-legend .advance::before { background:#315f4c; }.ix-legend .situational::before { background:#b0924f; }.ix-legend .watch::before { background:#7a8a8b; }.ix-legend .pale::before { background:#b2c8bc; }.ix-legend .debt::before { background:#b87643; border-radius:0; height:2px; width:12px; }
-.ix-matrix-body { display:grid; grid-template-columns:minmax(0,1fr) 235px; align-items:stretch; gap:24px; }
+.ix-matrix-body { display:grid; grid-template-columns:minmax(0,1fr) 290px; align-items:stretch; gap:24px; }
 .ix-matrix-svg { width:100%; height:auto; }
 .ix-matrix-svg text,.ix-cash-chart text,.ix-waterfall text { fill:#6a786e; font:var(--fs-2xs) 'Segoe UI',sans-serif; }
 .ix-grid-line { stroke:#e6e9e0; stroke-width:1; }
@@ -143,8 +143,13 @@ body.ix-experience {
 .ix-matrix-detail .ix-eyebrow { font-size:var(--fs-micro); margin-bottom:16px; }
 .ix-matrix-detail h3 { font:var(--fw-normal) var(--fs-display-xs)/1.15 var(--ix-serif); margin:19px 0 12px; }
 .ix-matrix-detail p { color:var(--ix-muted); font-size:var(--fs-2xs); margin-bottom:22px; }
-.ix-selected-metrics { display:flex; gap:25px; padding-bottom:20px; }
-.ix-selected-metrics .ix-metric strong { font-size:var(--fs-display-xs); }
+.ix-selected-metrics { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 18px; padding-bottom:4px; width:100%; }
+.ix-matrix-detail .ix-project-facts { grid-template-columns:1fr; gap:9px; width:100%; margin:16px 0 20px; }
+.ix-matrix-detail .ix-project-facts>div { display:grid; grid-template-columns:auto minmax(0,1fr); column-gap:12px; align-items:baseline; }
+.ix-matrix-detail .ix-project-facts dt { margin:0; }
+.ix-matrix-detail .ix-project-facts dd,.ix-matrix-detail .ix-project-facts small { grid-column:2; text-align:right; overflow-wrap:normal; }
+.ix-matrix-detail .ix-project-facts dd { font-size:var(--fs-xs); line-height:1.5; }
+.ix-selected-metrics .ix-metric strong { font-size:var(--fs-2xl); line-height:1.25; white-space:nowrap; }
 .ix-selected-metrics .ix-metric span { font-size:var(--fs-micro); }
 .ix-matrix-detail .ix-button { padding:10px 13px; width:100%; margin-top:auto; font-size:var(--fs-2xs)!important; }
 .ix-caption { color:var(--ix-muted); font-size:var(--fs-micro); line-height:1.75; margin-top:19px!important; }
@@ -209,7 +214,7 @@ body.ix-experience {
 @media(max-width:1050px) {
   .ix-container { width:calc(100% - 64px); }.ix-header-inner { gap:22px; }.ix-nav { gap:18px; }.ix-header-actions { gap:8px; }.ix-header-actions>.ix-button { display:none; }
   .ix-home-hero { gap:38px; padding-block:50px; }.ix-hero-copy h1 { font-size:var(--fs-display-xl); }.ix-featured { padding:24px; }.ix-hero-copy .ix-button { padding:12px 17px; }
-  .ix-matrix-body { grid-template-columns:minmax(0,1fr) 205px; gap:12px; }.ix-matrix-detail { padding:18px; }.ix-matrix-detail h3 { font-size:var(--fs-display-xs); }.ix-table td,.ix-table th { padding:14px 13px; }
+  .ix-matrix-body { grid-template-columns:minmax(0,1fr) 260px; gap:12px; }.ix-matrix-detail { padding:18px; }.ix-matrix-detail h3 { font-size:var(--fs-display-xs); }.ix-table td,.ix-table th { padding:14px 13px; }
   .ix-kpis .ix-metric { padding:0 18px; }.ix-kpis .ix-metric strong { font-size:var(--fs-display-xs); }.ix-revenue-layout { grid-template-columns:220px minmax(0,1fr); }.ix-revenue-layout .ix-panel { padding:20px; }
 }
 @media(max-width:900px) {
@@ -249,3 +254,7 @@ body.ix-experience {
   body.ix-experience { background:white; color:#152b22; }.ix-container { width:100%; }.ix-header,.ix-footer,.ix-section-nav,.ix-market-controls,.ix-meta-bar,.ix-next,.ix-breadcrumb,.ix-compare-tray,.ix-actions { display:none!important; }
   .ix-section { padding:20px 0; }.ix-panel,.ix-kpis,.ix-execution-step,.ix-risk-grid article { break-inside:avoid; }.ix-market-intro { padding:0 0 20px; }.ix-section-heading h2 { font-size:var(--fs-display-xs); }.ix-assumptions,.ix-featured { print-color-adjust:exact; -webkit-print-color-adjust:exact; }.ix-table-scroll { overflow:visible; }.ix-app details>* { display:block!important; }.ix-execution-step>summary { display:flex!important; }.ix-local-pathway:not([open]) { display:none; }
 }
+@media(max-width:900px) { .ix-matrix-detail .ix-project-facts { grid-column:1 / -1; } }
+.ix-nav>a.ix-nav-news { display:none; }
+.ix-header-actions>.ix-button.is-current { background:var(--ix-lime); border-color:var(--ix-lime); color:var(--ix-ink)!important; }
+@media(max-width:1050px) { .ix-nav>a.ix-nav-news { display:flex; } }

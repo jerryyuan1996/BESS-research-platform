@@ -45,12 +45,15 @@ export function opportunityMatrix(rows, selected, onSelect) {
     if (row.rank <= 3 || row.id === selected) point.append(text(cx > 660 ? cx - 16 : cx + 15, cy - 12, L(row.market.manifest.shortName), { 'text-anchor': cx > 660 ? 'end' : 'start', class: 'ix-point-label' }));
     const choose = () => {
       for (const p of svg.querySelectorAll('.ix-point')) { p.classList.remove('selected'); p.setAttribute('aria-pressed', 'false'); }
-      point.classList.add('selected'); point.setAttribute('aria-pressed', 'true'); onSelect(row);
+      point.classList.add('selected'); point.setAttribute('aria-pressed', 'true'); svg.append(point); onSelect(row);
     };
     point.addEventListener('click', choose);
     point.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(); } });
     svg.append(point);
   });
+  /* The selected market draws last, so a neighbour never covers its ring. */
+  const chosen = svg.querySelector('.ix-point.selected');
+  if (chosen) svg.append(chosen);
   return svg;
 }
 

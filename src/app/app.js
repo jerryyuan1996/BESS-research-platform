@@ -18,7 +18,6 @@ import { renderHome } from '../home/homePage.js';
 import { renderMarketPage, invalidateMarketRender } from '../markets/marketPage.js';
 import { renderDataStatus } from '../live/dataStatusPage.js';
 import { marketNav } from '../components/navigation.js';
-import { renderNewsPage } from '../news/newsFeed.js';
 import { validateRegistry } from '../utils/validation.js';
 
 function renderNotFound(app, route){
@@ -168,6 +167,28 @@ function renderDesk(app){
    one: the reader may navigate again before the chunk resolves. */
 let dossierToken = 0;
 
+/* /news — the opportunity bell, the policy calendar and the headlines. Its own
+   chunk: the trigger records and the feed are read only by a reader who opens it. */
+let newsPage = null;
+function renderNews(app){
+  const token = ++experienceToken;
+  if (newsPage) return void newsPage.renderNewsPage(app);
+  const holder = h('div', { class: 'ix-container', 'aria-busy': 'true', style: 'padding-top:60px' },
+    h('p', {}, L(['Loading industry news…', '正在加载行业新闻…'])));
+  app.append(holder);
+  import('../news/newsPage.js').then(module => {
+    newsPage = module;
+    if (token !== experienceToken || !holder.isConnected) return;
+    app.replaceChildren();
+    module.renderNewsPage(app);
+  }).catch(error => {
+    if (!holder.isConnected) return;
+    console.error('[news]', error);
+    holder.replaceChildren(h('p', {}, L(['The page could not be loaded.', '页面未能加载。'])),
+      h('button', { class: 'ix-button', onclick: () => window.location.reload() }, L(['Reload', '刷新'])));
+  });
+}
+
 let experiencePage = null;
 let experienceToken = 0;
 function renderExperiencePage(app, route, market) {
@@ -199,13 +220,18 @@ export function render(){
   app.innerHTML = '';
   app.classList.remove('ix-app');
   const experience = route.name === 'home' || route.name === 'returns' || (route.name === 'market' && !route.tab && bySlug(route.slug));
-  document.body.classList.toggle('ix-experience', Boolean(experience) || route.name === 'market');
+  document.body.classList.toggle('ix-experience', Boolean(experience) || route.name === 'market' || route.name === 'news');
   document.body.classList.toggle('ix-research', route.name === 'market' && Boolean(route.tab));
   ++experienceToken;
   if (experience) {
     const market = route.name === 'market' ? bySlug(route.slug) : null;
     document.title = L(['Global BESS', '全球储能']) + ' | ' + (market ? L(market.manifest.name) : route.name === 'returns' ? L(['Global opportunities', '全球投资机会']) : L(['Investment brief', '投资简报']));
     return void renderExperiencePage(app, route, market);
+  }
+
+  if (route.name === 'news'){
+    document.title = L(['Global BESS', '全球储能']) + ' | ' + L(['Industry news', '行业新闻']);
+    return void renderNews(app);
   }
 
   if (route.name === 'market'){
@@ -245,7 +271,6 @@ export function render(){
   if (route.name === 'desk') return void renderDesk(app);
   if (route.name === 'investmentLab') return void renderLab(app);
   if (route.name === 'data') return void renderDataStatus(app);
-  if (route.name === 'news') return void renderNewsPage(app);
   renderNotFound(app, route);
 }
 

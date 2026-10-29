@@ -81,3 +81,25 @@ test('the global matrix and investment brief load without browser errors',async(
   expect(errors).toEqual([]);
 });
 
+
+test('the matrix panel fits every market and industry news rings its upcoming events',async({page})=>{
+  const errors=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.goto('/returns');
+  for(const point of await page.locator('.ix-matrix-svg [role="button"], .ix-unpriced-market').all()){
+    await point.dispatchEvent('click');
+    const overflow=await page.locator('.ix-matrix-detail').evaluate(panel=>{
+      const edge=panel.getBoundingClientRect().right;
+      return [...panel.querySelectorAll('*')].some(node=>node.getBoundingClientRect().right>edge+1);
+    });
+    expect(overflow).toBe(false);
+  }
+  await expect(page.locator('.ix-header a[href="/news"]').first()).toBeAttached();
+  await page.goto('/news');
+  await expect(page.getByRole('heading',{name:'Policy moves first. Capital follows.',exact:true})).toBeVisible();
+  await expect(page.locator('#bell .nw-bell, #bell .nw-quiet').first()).toBeVisible();
+  await expect(page.locator('#calendar .nw-cal-month').first()).toBeVisible();
+  await page.getByRole('button',{name:'All',exact:true}).click();
+  await expect(page.locator('#headlines .nw-item').first()).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  expect(errors).toEqual([]);
+});
