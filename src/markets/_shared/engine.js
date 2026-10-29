@@ -273,10 +273,15 @@ export function createMarketEngine(cfg){
     container.append(main);
 
     const S_ = SECTIONS();
+    const picks = summaryPicks(S_);
+    /* The orientation is lifted out where the story is split into panels
+       (components/pageEnhancements.js), which keys on that card. */
+    const shownUpFront = [picks.ic].filter(Boolean);
     drawTab(main, where, {
       basePath, marketId: route.market ? route.market.manifest.id : MKT.id,
       draw: (id, el) => {
-        const spec = S_[id];
+        const raw = S_[id];
+        const spec = raw?.blocks ? { ...raw, blocks: withoutBlocks(raw.blocks, shownUpFront) } : raw;
         /* The overview has no heading of its own in some markets, because it
            used to be the landing page. Stacked under the investment case it
            needs one, or it has no wrapper for a claim to attach to. */
@@ -297,22 +302,32 @@ export function createMarketEngine(cfg){
 
   // Reuse the full research's own blocks in the investor overview. No copied
   // narrative or stale numeric snapshot is maintained in the overview layer.
+  /* The two blocks the market's front page lifts out of this research: the
+     house view and the one-minute orientation. The full research leaves them
+     out, so a reader who goes deeper does not read them twice. */
+  const flatten = blocks => (blocks || []).flatMap(b => [b, ...flatten(b.blocks), ...flatten(b.cards)]);
+  function summaryPicks(sections) {
+    const home = flatten(sections.home?.blocks);
+    const ic = home.find(b => b.t === 'ic') || null;
+    const house = ic?.text || M.overall?.rationale || home.find(b => b.t === 'band-story')?.text;
+    const story = sections.story?.blocks || [];
+    const orientation = flatten(story).find(b => b.t === 'card' &&
+      /one-minute orientation|一分钟市场定位/i.test((b.title || []).join(' '))) || story.find(b => b.t === 'card') || null;
+    return { ic, house, orientation };
+  }
+  /* Sections are rebuilt on each read, so a block is matched by what it says, not by identity. */
+  const sameBlock = (a, b) => a.t === b.t && JSON.stringify(a.title ?? a.text) === JSON.stringify(b.title ?? b.text);
+  const withoutBlocks = (blocks, drop) => blocks && blocks.filter(b => !drop.some(d => sameBlock(b, d))).map(b =>
+    (b.blocks || b.cards) ? { ...b, ...(b.blocks ? { blocks: withoutBlocks(b.blocks, drop) } : {}), ...(b.cards ? { cards: withoutBlocks(b.cards, drop) } : {}) } : b);
+
   function researchSummary(container, route, allMarkets) {
     registry = allMarkets;
     basePath = route.basePath;
     if (REGIONS) regionValue = REGION_IDS.includes(route.region) ? route.region : REGIONS[0][0];
-    const sections = SECTIONS();
-    const flatten = blocks => (blocks || []).flatMap(b => [b, ...flatten(b.blocks), ...flatten(b.cards)]);
-    const home = flatten(sections.home?.blocks);
-    const house = home.find(b => b.t === 'ic')?.text || M.overall?.rationale ||
-      home.find(b => b.t === 'band-story')?.text;
+    const { house, orientation } = summaryPicks(SECTIONS());
     if (house) ctx.blocks.B(container, { t:'card', title:['House view','本方观点'],
       blocks:[{t:'p',text:house}], mt:false });
-    const story = sections.story?.blocks || [];
-    const orientation = flatten(story).find(b => b.t === 'card' &&
-      /one-minute orientation|一分钟市场定位/i.test((b.title || []).join(' ')));
-    const first = orientation || story.find(b => b.t === 'card');
-    if (first) ctx.blocks.B(container, { ...first, mt:false,
+    if (orientation) ctx.blocks.B(container, { ...orientation, mt:false,
       title:['One-minute market orientation','一分钟市场定位'] });
   }
   return { state, dashboard, SECTIONS, api, researchSummary };

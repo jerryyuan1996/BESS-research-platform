@@ -4,14 +4,15 @@
    PR 5 of the guided-experience plan. For the investor chosen (the fund unless
    another is), in this order:
 
-     the call       the call on each play, the thesis, what would change it
+     acquisition    the price ceiling by entry stage
      what to build  the build line and the route × hours grid, with the why
-     economics      value per MW, IRRs, secured share, payback, bear and bull
      risks          the strongest argument against, any barrier, the grades this
                     investor reads lowest, and catalysts that would close it
      catalysts      what is coming here, and what changed here
-     next action    the analyst's next step on the play
      other views    the other three investors, and plays not on this lens
+
+   The call, the thesis, the economics and the next action are not repeated
+   here: since 2026-10-29 they lead the market's front page.
      go deeper      the tab that holds the evidence for each section
 
    and, folded, the four investors' verdict cards, the pillar table and the
@@ -29,7 +30,7 @@ import { navigate } from '../app/router.js';
 import { homeState } from '../home/state.js';
 import { HOME_BRIEFING } from '../briefing/homeData.js';
 import { percent, perMW, dateText } from '../briefing/sentences.js';
-import { TIER_LABEL, EVIDENCE_LABEL, CHANGE_CLASS } from '../governance/briefing.js';
+import { CHANGE_CLASS } from '../governance/briefing.js';
 import { ARCHETYPE_IDS, VERDICT_LABEL, ROUTE_LABEL, dimension } from '../governance/investability.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
 import { REVENUE_ROUTE_LABEL } from '../governance/plays.js';
@@ -58,37 +59,6 @@ function when(expected){
   const days = Math.round((Date.parse(`${expected}T00:00:00Z`) - Date.parse(new Date().toISOString().slice(0, 10) + 'T00:00:00Z')) / DAY);
   const rel = days === 0 ? ['today', '今天'] : days > 0 ? [`in ${days} days`, `${days}天后`] : [`${-days} days ago`, `${-days}天前`];
   return `${L(dateText(expected))} · ${L(rel)}`;
-}
-
-/* ---- the call ------------------------------------------------------------------ */
-
-function theCall(marketId, view, lens, rows){
-  const triggers = HOME_BRIEFING.triggers;
-  const rates = rows.map(r => playOf(marketId, r.play)?.econ?.valuationRates).find(Boolean);
-  const rateText = rates ? L([
-    `value per MW at ${percent(rates.secured)} on secured, ${percent(rates.renewal)} on unawarded renewals and ${percent(rates.merchant)} on merchant revenue.`,
-    `每MW价值按锁定收入${percent(rates.secured)}、未中标续约收入${percent(rates.renewal)}、市场化收入${percent(rates.merchant)}折现。`,
-  ]) : L(['Valuation rates unavailable for unpriced cases.', '未定价情景无可用折现率。']);
-  const callLines = rows.map(r => {
-    const p = playOf(marketId, r.play);
-    const next = r.next ? triggers[r.next] : null;
-    return h('div', { class: 'mb-play' },
-      h('div', { class: 'mb-callline' },
-        verdictGlyph(r.call, 16), ' ',
-        h('b', {}, L(VERDICT_LABEL[r.call] || [r.call, r.call])), ' · ', L(playTitle(p, r.stage)),
-        r.own ? h('span', { class: 'bf-own' }, L(['own call', '独立结论'])) : null,
-        h('span', { class: `bf-ev bf-ev-${r.evidence} mb-ev` }, L(EVIDENCE_LABEL[r.evidence]))),
-      p.why ? h('div', { class: 'bf-why' }, L(p.why)) : null,
-      next ? h('div', { class: 'mb-changes' }, L(['Changes if: ', '改变条件：']), L(next.label), ' — ', when(next.expected)) : null);
-  });
-  const thesis = view.thesis || null;
-  return h('section', { class: 'card bf-call' },
-    h('div', { class: 'bf-kicker' }, L(['The brief', '要点']), ' · ', L(ARCHETYPES[lens].label)),
-    thesis ? h('p', { class: 'bf-call-text mb-thesis' }, L(thesis)) : null,
-    ...callLines,
-    h('div', { class: 'bf-asof' }, L(['Figures built ', '数据生成于']), L(dateText(HOME_BRIEFING.builtAt.slice(0, 10))),
-      L([`: unlevered, exit in operating year ${HOME_BRIEFING.exitYear}; `,
-         `：无杠杆，投运后第${HOME_BRIEFING.exitYear}年退出；`]), rateText));
 }
 
 /* ---- what to build --------------------------------------------------------------- */
@@ -130,33 +100,6 @@ function whatToBuild(marketId, view){
   return card(['What to build and why', '应建什么，为什么'], ...kids,
     h('div', { class: 'bf-more-links' }, h('a', { href: `${base(marketId)}/revenue/duration`, onclick: go(`${base(marketId)}/revenue/duration`) },
       L(['The duration evidence ▸', '时长依据 ▸']))));
-}
-
-/* ---- economics ------------------------------------------------------------------ */
-
-function economics(marketId, lens, rows){
-  const r = rows.find(x => !x.own) || rows[0];
-  if (!r) return null;
-  const p = playOf(marketId, r.play);
-  const e = p.econ;
-  const field = HOME_BRIEFING.lenses[lens].returnField;
-  if (e.withheld){
-    return card(['Economics', '经济性'], h('p', {}, L(['Not priced: the engine withholds this market until its inputs are ready.', '未定价：在输入数据就绪之前，引擎暂不对该市场估值。'])));
-  }
-  const kpi = (label, value, sub = null) => h('div', { class: 'kpi' }, h('div', { class: 'lbl' }, L(label)), h('div', { class: 'val' }, value), sub ? h('div', { class: 'delta' }, sub) : null);
-  const range = e.range && e.range.bear && e.range.bull
-    ? `${percent(e.range.bear[field])} – ${percent(e.range.bull[field])}` : '—';
-  return card(['Economics', '经济性'],
-    h('div', { class: 'cap' }, L(playTitle(p))),
-    h('div', { class: 'kpis mb-kpis' },
-      kpi(['Reference design net value / MW', '参考方案净增值／MW'], e.priced && e.eligible ? L(perMW(e.value)) : L(['not compliant', '不合规'])),
-      kpi(field === 'exit' ? ['Exit IRR', '退出IRR'] : ['Hold IRR', '持有期IRR'], percent(e[field]), L(['bear – bull: ', '悲观 – 乐观：']) + range),
-      kpi(field === 'exit' ? ['Hold IRR', '持有期IRR'] : ['Exit IRR', '退出IRR'], percent(e[field === 'exit' ? 'hold' : 'exit'])),
-      kpi(['Secured', '锁定收入'], Number.isFinite(e.secured) ? percent(e.secured) : '—', e.securedYears ? L([`for ${e.securedYears} years`, `${e.securedYears}年`]) : null),
-      kpi(['Payback', '回收期'], e.payback ? L([`${e.payback} years`, `${e.payback}年`]) : L(['beyond the window', '超出测算期'])),
-      kpi(['MOIC', '投资倍数'], Number.isFinite(e.moic) ? `${e.moic.toFixed(2)}×` : '—')),
-    h('div', { class: 'bf-more-links' }, h('a', { href: '/investment-lab', onclick: go('/investment-lab', () => { homeState.labMarket = marketId; }) },
-      L(['Retype the assumptions in the Investment Lab ▸', '在投资测算中修改假设 ▸']))));
 }
 
 /* ---- risks ------------------------------------------------------------------------ */
@@ -209,16 +152,7 @@ function catalysts(marketId, view){
     h('div', { class: 'bf-more-links' }, h('a', { href: `/changes?market=${marketId}`, onclick: go(`/changes?market=${marketId}`) }, L(['Every change to this market ▸', '本市场的全部变更 ▸']))));
 }
 
-/* ---- the next action, the other investors, the other plays ---------------------- */
-
-function nextAction(marketId, rows){
-  const r = rows.find(x => !x.own) || rows[0];
-  const actions = rows.map(x => playOf(marketId, x.play)).filter(p => p?.action);
-  if (!actions.length) return card(['Next action', '下一步'], h('div', { class: 'bf-empty' }, L(['No action is written for this play yet.', '该方案尚无已写明的行动。'])));
-  return card(['Next action', '下一步'], h('ul', { class: 'bf-list' }, actions.map(p => h('li', { class: 'bf-li' },
-    h('span', { class: 'bf-date bf-when' }, p.action.due ? when(p.action.due) : L(['no date', '未定日期'])),
-    h('b', {}, L(playTitle(p))), h('div', { class: 'bf-why' }, L(p.action.text))))));
-}
+/* ---- the other investors, the other plays ---------------------- */
 
 function otherViews(marketId, view, lens){
   const rowsFor = (a) => HOME_BRIEFING.lenses[a].rows.filter(r => r.market === marketId);
@@ -275,12 +209,14 @@ export function marketBrief(marketId, view, assessment, folded = []){
   const fold = h('details', { class: 'bf-fold' },
     h('summary', {}, L(['All four investors\' verdicts, the pillar scores and the fourteen grades', '四类投资者的结论、支柱得分与十四项评级'])),
     h('div', { class: 'bf-fold-body' }, folded));
+  /* The call, the thesis, the economics and the next action lead the market's
+     front page (experience/pages.js), so the brief here carries only what that
+     page does not: the acquisition reference, the design grid, the risks, the
+     catalysts and the other investors. */
   return [
     acquisition,
-    theCall(marketId, view, lens, rows),
-    h('div', { class: 'grid g2 bf-pair' }, whatToBuild(marketId, view), economics(marketId, lens, rows)),
-    h('div', { class: 'grid g2 bf-pair' }, risks(marketId, view, lens, rows, assessment), catalysts(marketId, view)),
-    h('div', { class: 'grid g2 bf-pair' }, nextAction(marketId, rows), otherViews(marketId, view, lens)),
+    h('div', { class: 'grid g2 bf-pair' }, whatToBuild(marketId, view), risks(marketId, view, lens, rows, assessment)),
+    h('div', { class: 'grid g2 bf-pair' }, catalysts(marketId, view), otherViews(marketId, view, lens)),
     goDeeper(marketId),
     fold,
   ];

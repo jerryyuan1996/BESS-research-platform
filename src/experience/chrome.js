@@ -22,7 +22,9 @@ export function siteHeader(active = 'home') {
   const nav = h('nav', { class: 'ix-nav', 'aria-label': L(['Main navigation', '主导航']) },
     link('/', ['Investment brief', '投资简报'], active === 'home' ? 'is-active' : '', active === 'home' ? { 'aria-current': 'page' } : {}),
     link('/returns', ['Global markets', '全球市场'], active === 'returns' ? 'is-active' : '', active === 'returns' ? { 'aria-current': 'page' } : {}),
-    link(marketPath, ['Market intelligence', '市场详情'], active === 'market' ? 'is-active' : '', active === 'market' ? { 'aria-current': 'page' } : {}));
+    link(marketPath, ['Market intelligence', '市场详情'], active === 'market' ? 'is-active' : '', active === 'market' ? { 'aria-current': 'page' } : {}),
+    /* Shown in the menu only where the header button below is hidden. */
+    link('/news', ['Industry news', '行业新闻'], 'ix-nav-news' + (active === 'news' ? ' is-active' : ''), active === 'news' ? { 'aria-current': 'page' } : {}));
   const toggle = h('button', { class: 'ix-menu-toggle', type: 'button', 'aria-label': L(['Toggle navigation', '展开导航']), 'aria-expanded': 'false', onclick: () => {
     const open = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', String(open)); nav.classList.toggle('is-open', open);
@@ -32,12 +34,12 @@ export function siteHeader(active = 'home') {
     h('div', { class: 'ix-header-inner' }, link('/', 'GLOBAL BESS', 'ix-brand'),
       nav, h('div', { class: 'ix-header-actions' },
         h('button', { class: 'ix-language', type: 'button', 'aria-label': L(['Switch to Chinese', '切换到英文']), onclick: () => { toggleLang(); requestRender(); } }, app.lang === 'zh' ? 'EN' : '中文'),
-        link('/returns', ['Explore markets ↗', '探索市场 ↗'], 'ix-button ix-small'), toggle)));
+        link('/news', ['Industry news ↗', '行业新闻 ↗'], 'ix-button ix-small' + (active === 'news' ? ' is-current' : ''), active === 'news' ? { 'aria-current': 'page' } : {}), toggle)));
 }
 export function siteFooter() {
   return h('footer', { class: 'ix-footer' }, h('div', { class: 'ix-container ix-footer-inner' },
     h('div', {}, link('/', 'GLOBAL BESS', 'ix-brand'), h('p', {}, L(['Intelligence for the energy transition.', '为能源转型，寻找值得投资的机会。']))),
     h('nav', { 'aria-label': L(['Research resources', '研究资源']) },
-      link('/returns', ['Global comparison', '全球比较']), link('/data', ['Data & methodology', '数据与方法']), link('/news', ['Market updates', '市场动态'])),
+      link('/returns', ['Global comparison', '全球比较']), link('/data', ['Data & methodology', '数据与方法']), link('/news', ['Industry news', '行业新闻'])),
     h('span', { class: 'ix-mono' }, 'RESEARCH / 2026')));
 }
