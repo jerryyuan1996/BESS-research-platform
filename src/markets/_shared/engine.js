@@ -319,7 +319,9 @@ export function createMarketEngine(cfg){
   }
   /* Sections are rebuilt on each read, so a block is matched by what it says, not by identity. */
   const sameBlock = (a, b) => a.t === b.t && JSON.stringify(a.title ?? a.text) === JSON.stringify(b.title ?? b.text);
-  const withoutBlocks = (blocks, drop) => blocks && blocks.filter(b => !drop.some(d => sameBlock(b, d))).map(b =>
+  /* A section may hold a null where a block is conditional — Ontario's design
+     answer, which an ungraded market does not have — so nulls are dropped. */
+  const withoutBlocks = (blocks, drop) => blocks && blocks.filter(b => b && !drop.some(d => sameBlock(b, d))).map(b =>
     (b.blocks || b.cards) ? { ...b, ...(b.blocks ? { blocks: withoutBlocks(b.blocks, drop) } : {}), ...(b.cards ? { cards: withoutBlocks(b.cards, drop) } : {}) } : b);
 
   function researchSummary(container, route, allMarkets) {

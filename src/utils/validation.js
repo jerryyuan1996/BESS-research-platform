@@ -138,8 +138,14 @@ export function validateMarket(market){
       }
       at(`economics.${f} must be a number, or null with an entry in economics.unavailable`);
     }
+    /* A capability-conditional field may be withheld the same way, but only
+       where the capability is claimed: Saudi Arabia (2026-10-29) has a capacity
+       contract whose price is unpublished. */
+    const conditional = cmp.capabilities?.capacityMarket && e.riskClass !== 'auction-renewal'
+      ? ECONOMICS_FIELDS.capacityMarket : [];
+    const withheld = (f) => e[f] === null && unavailable[f] && unready;
     for (const f of Object.keys(unavailable)){
-      if (!ECONOMICS_FIELDS.required.includes(f)){
+      if (!ECONOMICS_FIELDS.required.includes(f) && !conditional.includes(f)){
         at(`economics.unavailable.${f} names a field that is not required — remove it or the declaration is decoration`);
       } else if (e[f] !== null){
         at(`economics.unavailable.${f} is declared but economics.${f} is not null`);
@@ -196,7 +202,12 @@ export function validateMarket(market){
         }
       } else {
         for (const f of ECONOMICS_FIELDS.capacityMarket){
-          if (!isNum(e[f])) at(`economics.${f} is required because capabilities.capacityMarket is true`);
+          if (isNum(e[f])) continue;
+          if (withheld(f)){
+            if (!isPair(unavailable[f])) at(`economics.unavailable.${f} must be an [en, zh] reason`);
+            continue;
+          }
+          at(`economics.${f} is required because capabilities.capacityMarket is true`);
         }
         if (isNum(e.contracted) && e.contracted <= 0){
           at('capabilities.capacityMarket is true but economics.contracted is not positive');

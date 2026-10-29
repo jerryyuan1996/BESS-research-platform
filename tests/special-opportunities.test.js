@@ -13,7 +13,8 @@ const pv = (flows,r) => flows.reduce((s,c)=>s+c.amount/(1+r)**c.at,0);
 test('every modelled market has a sourced opportunity; scouts remain unpriced',()=>{
   assert.deepEqual(new Set(SPECIAL_OPPORTUNITIES.map(o=>o.market)),new Set(markets.map(m=>m.manifest.id)));
   assert.equal(new Set(SPECIAL_OPPORTUNITIES.map(o=>o.id)).size,SPECIAL_OPPORTUNITIES.length);
-  assert.equal(SCOUT_OPPORTUNITIES.length,8);
+  /* Eight until Spain and Saudi Arabia were registered (2026-10-29). */
+  assert.equal(SCOUT_OPPORTUNITIES.length,6);
   for(const o of SPECIAL_OPPORTUNITIES){
     assert.match(o.source,/^https:\/\//);
     for(const key of ['label','thesis','conditions','risk'])assert.equal(o[key].length,2);
@@ -106,6 +107,7 @@ test('all investor comparisons validate, retain currencies and preserve original
     for(const o of SPECIAL_OPPORTUNITIES){
       const row=rows.find(r=>r.id===o.market),playBefore=JSON.stringify(row.play);
       const c=compareOpportunity(row.market,o,investor,row.play);
+      if(row.market.comparison.engineReady===false){assert.ok(c.unavailable,investor+'/'+o.id+' must stay unpriced');continue;}
       assert.ok(!c.unavailable,investor+'/'+o.id+': '+c.unavailable);
       for(const side of [c.standard,c.alternative]){
         assert.deepEqual(validateAcquisition(side.input),[]);

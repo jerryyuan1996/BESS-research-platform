@@ -119,13 +119,6 @@ export const SCOUT_SOURCES = {
     'litgrid-storage-connection': official('Litgrid', 'https://www.litgrid.eu/paslaugos/prijungimo-paslaugos/elektriniu-ir-energijos-kaupimo-irenginiu-vystytojams', null, TERMS.litgrid),
     'litgrid-balancing': official('Litgrid', 'https://www.litgrid.eu/paslaugos/sistemos-paslaugos/balansavimo-paslaugos', null, TERMS.litgrid),
   },
-  es: {
-    'ree-storage': official('Red Eléctrica', 'https://www.ree.es/en/ecological-transition/storage', OPENED, TERMS.ree),
-    'ree-access': official('Red Eléctrica', 'https://www.ree.es/en/operation/system-development/access-conection-grid', null, TERMS.ree),
-    'ree-demand-capacity': official('Red Eléctrica', 'https://www.ree.es/en/press-office/news/press-release/2026/02/red-elctrica-publishes-demand-access-capacities-for-the-transmission-grid', null, TERMS.ree),
-    'comercio-fdi': official('Ministerio de Economía, Comercio y Empresa', 'https://comercio.gob.es/es-es/inversiones_exteriores/paginas/control-inversiones.aspx', OPENED, TERMS.comercio),
-    'essnews-spain': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/spain/', OPENED, TERMS.pvMagazine),
-  },
   nl: {
     'acm-flexible-contracts': official('Authority for Consumers and Markets', 'https://www.acm.nl/en/publications/acm-and-system-operators-make-binding-arrangements-offering-flexible-contracts-use-congestion-management-and-increased-insight-grid-utilization', OPENED, TERMS.acm),
     'bti-energy': official('Bureau Toetsing Investeringen', 'https://www.bureautoetsinginvesteringen.nl/het-stelsel-van-toetsen/energie', OPENED, TERMS.bti),
@@ -142,10 +135,6 @@ export const SCOUT_SOURCES = {
     'cne-home': official('Comisión Nacional de Energía', 'https://www.cne.cl/', OPENED, TERMS.cne),
     'investchile-storage': official('InvestChile', 'https://blog.investchile.gob.cl/en/chile-energy-storage-approved-projects', OPENED, TERMS.investchile),
     'essnews-chile': thirdParty('ESS News (pv magazine)', 'https://www.ess-news.com/tag/chile/', OPENED, TERMS.pvMagazine),
-  },
-  sa: {
-    'sppc-home': official('Saudi Power Procurement Company', 'https://www.sppc.com.sa/', null, unread),
-    'spa-storage-group-2': official('Saudi Press Agency', 'https://www.spa.gov.sa/en/N2568317', null, unread),
   },
 };
 

@@ -83,7 +83,9 @@ const BUDGET = {
   // entry + shared cap at 326 kB. Measured entry 145.8, shared 162.45.
   // 2026-10-23: Ontario registered as the sixteenth market. Measured 156.75 after
   // merging main (its comparison, source, congestion and decision-profile modules).
-  entry: 159,
+  // 2026-10-29: Saudi Arabia and Spain registered. Measured 156.63 at b56738e and
+  // 167.98 with both, +11.35 for two markets (Ontario alone was +10.24).
+  entry: 170,
 
   /* THE HOME PAGE'S FIRST VIEW: the entry chunk plus everything the verdict
      board loads — the board itself and the method layer (anchors, investor
@@ -131,7 +133,9 @@ const BUDGET = {
   // 2026-10-29: 245.00 kB measured with the levered equity return, its debt
   // sizing (src/acquisition/leverage.js), the two-layer target test, the second
   // US supply case and Japan's core-CPI path. Small explicit allowance.
-  home: 247,
+  // 2026-10-29: 245.68 kB at b56738e and 254.88 with Saudi Arabia and Spain,
+  // +9.20, most of it their entry-chunk cost above.
+  home: 257,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -162,9 +166,12 @@ const BUDGET = {
      map and congestion register on its tab, the transactions, the Lab and the
      committee gates. Measured 36.7, still the smallest market chunk.
 
-     ONTARIO 28 (2026-10-23), the sixteenth market, ungraded: measured 22.8. */
+     ONTARIO 28 (2026-10-23), the sixteenth market, ungraded: measured 22.8.
+
+     SAUDI ARABIA 16 AND SPAIN 20 (2026-10-29), ungraded: measured 13.79 and
+     17.57. Saudi Arabia carries no Lab and no merchant derivation. */
   markets: {
-    ca_on: 28, fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
+    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
     pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
   },
 
@@ -374,7 +381,7 @@ const BUDGET = {
 
 /** Every registered market must have its own chunk. Thirteen dashboards for
  *  fifteen allocation points — Japan shares one across its three. */
-const EXPECTED_MARKET_CHUNKS = 14;   // 14 since Ontario, 2026-10-23
+const EXPECTED_MARKET_CHUNKS = 16;   // 16 since Saudi Arabia and Spain, 2026-10-29
 
 /**
  * Shared modules that must live OUTSIDE the entry chunk, identified by a marker
@@ -434,6 +441,8 @@ const MUST_NOT_BE_IN_ENTRY = {
   caiso: 'caiso-grid-map',
   fi: 'fi-grid-map',
   ca_on: 'ca_on-grid-map',
+  sa: 'sa-grid-map',
+  es: 'es-grid-map',
 };
 
 function skipWithoutDist(t){
@@ -546,7 +555,8 @@ test('the home page\'s first view is within its budget', async (t) => {
   const scout = features.get('scout-page');
   assert.ok(scout, 'no scout-page chunk');
   assert.ok(!first.has(scout), 'the scouting page is being loaded with the home page');
-  for (const marker of ['What a scouting card is', 'svk.se/en/', 'legal-notice-privacy-policy']){
+  /* The third marker was REE's terms page until Spain left the roster (2026-10-29). */
+  for (const marker of ['What a scouting card is', 'svk.se/en/', 'acm.nl/en/about-site']){
     assert.ok(scout.text.includes(marker), `the marker "${marker}" has gone stale`);
     for (const chunk of first) assert.ok(!chunk.text.includes(marker), `${chunk.name}: carries "${marker}", which belongs to the scouting page`);
   }

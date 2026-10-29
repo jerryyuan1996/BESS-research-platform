@@ -18,13 +18,13 @@ import { supportedStrategies, baseStrategy, STRATEGIES } from '../src/comparison
 import { merchantVintage, firstUncoveredMerchantYear } from '../src/comparison/vintage.js';
 
 test('the registry contains every allocation market', () => {
-  assert.deepEqual(marketIds(), ['wa', 'nem', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido', 'pjm', 'ercot', 'caiso', 'fi', 'ca_on']);
+  assert.deepEqual(marketIds(), ['wa', 'nem', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'jp_tokyo', 'jp_kyushu', 'jp_hokkaido', 'pjm', 'ercot', 'caiso', 'fi', 'ca_on', 'sa', 'es']);
 });
 
 test('allocation markets and detail dashboards are counted separately', () => {
   // Three Japan allocation points share one research dashboard.
-  assert.equal(ALLOCATION_MARKETS().length, 16);
-  assert.equal(DETAIL_DASHBOARDS().length, 14);
+  assert.equal(ALLOCATION_MARKETS().length, 18);
+  assert.equal(DETAIL_DASHBOARDS().length, 16);
   const jp = ALLOCATION_MARKETS().filter(m => m.manifest.dashboardId === 'jp');
   assert.equal(jp.length, 3);
   assert.deepEqual(jp.map(m => m.manifest.region), ['tokyo', 'kyushu', 'hokkaido']);
@@ -99,7 +99,10 @@ test('capability flags match the economics that back them', () => {
   // An auction-renewal market backs the same flag with securedContracted instead.
   for (const m of markets){
     const e = m.comparison.economics, c = m.comparison.capabilities;
-    const capBacking = e.riskClass === 'auction-renewal' ? e.securedContracted : e.contracted;
+    /* A capacity line withheld on an unready market still backs the flag: the
+       contract exists, its price does not (Saudi Arabia, 2026-10-29). */
+    const withheld = m.comparison.engineReady === false && e.contracted === null && Boolean(e.unavailable?.contracted);
+    const capBacking = e.riskClass === 'auction-renewal' ? e.securedContracted : (withheld || e.contracted);
     assert.equal(Boolean(c.capacityMarket), Boolean(capBacking),
       `${m.manifest.id}: capacityMarket flag disagrees with its backing revenue field`);
     assert.equal(Boolean(c.tolling), Boolean(e.toll),
@@ -148,7 +151,9 @@ test('base strategies: capacity-backed by default, overridden where a market say
     /* Finland's last entry became 'toll' on 2026-10-17: its fund play is the
        negotiated optimiser floor, modelled as a floor (tollIsFloor). */
     /* Ontario, 2026-10-23: the LT2 capacity contract, declared explicitly. */
-    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap', 'toll', 'cap']);
+    /* Saudi Arabia and Spain, 2026-10-29: the SPPC Storage Services Agreement
+       (declared), and merchant with no capacity award yet. */
+    ['cap', 'ltda', 'cap', 'mer', 'cap', 'cap', 'mer', 'mer', 'ltda', 'ltda', 'ltda', 'cap', 'toll', 'cap', 'toll', 'cap', 'cap', 'mer']);
 
   // An override is only honoured when the market actually supports the route.
   for (const m of markets){

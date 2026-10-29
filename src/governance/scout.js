@@ -33,8 +33,9 @@ export const SCOUT_REGION_IDS = Object.keys(SCOUT_REGIONS);
 
 /**
  * The roster: every market that may have a card. The first batch of plan
- * §6.4 had three a region; the Americas has two since Ontario was
- * registered on 2026-10-23. An id that is not here has no file name the view writer
+ * §6.4 had three a region. Ontario was registered on 2026-10-23, and Spain
+ * and Saudi Arabia on 2026-10-29, so Southern and Eastern Europe scouts two
+ * and the Americas and Middle East one. An id that is not here has no file name the view writer
  * will accept, so adding a market is an edit to this list and to nothing else.
  *
  * No id here is a registered market: tests/scout.test.js asserts it. The tier
@@ -44,14 +45,16 @@ export const SCOUT_ROSTER = [
   { id: 'se',    name: ['Sweden', '瑞典'],            region: 'nordics-baltics',         flag: 'se' },
   { id: 'ee',    name: ['Estonia', '爱沙尼亚'],       region: 'nordics-baltics',         flag: 'ee' },
   { id: 'lt',    name: ['Lithuania', '立陶宛'],       region: 'nordics-baltics',         flag: 'lt' },
-  { id: 'es',    name: ['Spain', '西班牙'],           region: 'southern-eastern-europe', flag: 'es' },
+  /* Spain left the roster on 2026-10-29, registered as a core market by the
+     analyst's ruling (docs/spain-registration-plan.md). No card existed. */
   { id: 'nl',    name: ['Netherlands', '荷兰'],       region: 'southern-eastern-europe', flag: 'nl' },
   { id: 'bg',    name: ['Bulgaria', '保加利亚'],      region: 'southern-eastern-europe', flag: 'bg' },
   { id: 'cl',    name: ['Chile', '智利'],             region: 'americas-middle-east',    flag: 'cl' },
   /* Ontario left the roster on 2026-10-23, when the analyst registered it as a
      core market by ruling (docs/ontario-registration-plan.md). It had no card,
      so nothing was graduated; the region scouts two until he names a third. */
-  { id: 'sa',    name: ['Saudi Arabia', '沙特阿拉伯'], region: 'americas-middle-east',    flag: 'sa' },
+  /* Saudi Arabia left the same day (docs/saudi-registration-plan.md), so the
+     region scouts Chile alone until the analyst names replacements. */
 ];
 
 export const SCOUT_IDS = SCOUT_ROSTER.map(m => m.id);

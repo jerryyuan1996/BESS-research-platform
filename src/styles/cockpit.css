@@ -243,6 +243,7 @@
 .mcard[data-region="europe"]  { border-inline-start-color:var(--region-europe); }
 .mcard[data-region="asia"]    { border-inline-start-color:var(--region-asia); }
 .mcard[data-region="oceania"] { border-inline-start-color:var(--region-oceania); }
+.mcard[data-region="middle-east"] { border-inline-start-color:var(--region-middle-east); }
 .mregion{ color:var(--ink2); font-weight:var(--fw-medium); }
 
 @media print{

@@ -93,9 +93,11 @@ test('missing project inputs become labelled references; explicit investor restr
 
 test('all existing markets remain visible for every applicable investor and stage',()=>{
   const r=acquisitionRecommendations(markets);
-  assert.equal(r.strategic.length,markets.length*3);
-  for(const id of ['infraFund','foreignFirstTimer'])assert.equal(r[id].length,markets.length*2);
-  assert.equal(r.developer.length,markets.length*2);
+  /* An engine-withheld market (Saudi Arabia, 2026-10-29) has no reference to price. */
+  const priced=markets.filter(m=>m.comparison.engineReady!==false).length;
+  assert.equal(r.strategic.length,priced*3);
+  for(const id of ['infraFund','foreignFirstTimer'])assert.equal(r[id].length,priced*2);
+  assert.equal(r.developer.length,priced*2);
   const construction=r.infraFund.filter(r=>r.stage==='ready-to-build');
   assert.ok(construction.some(r=>r.referenceCases.some(c=>c.status==='no-positive-price')));
   for(const row of r.infraFund)for(const c of row.referenceCases){

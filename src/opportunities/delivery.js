@@ -16,6 +16,8 @@ const local={
   ercot:[['Utility / ERCOT: DG connection works and charging/export capacity','电网／ERCOT：DG接入工程与充放电容量'],['QSE, telemetry and resource / ancillary-product qualification','QSE、遥测及资源／辅助服务产品资格']],
   caiso:[['Utility / CAISO: connection, deliverability and local fire approvals','电网／CAISO：接入、可交付性及地方消防审批'],['Market registration and contracted RA acceptance','市场注册及已签RA验收']],
   fi:[['DSO / Fingrid: confirmed available node and connection tests','配网／Fingrid：可用节点确认及接入测试'],['Fingrid product prequalification, telemetry and optimiser onboarding','Fingrid产品预认证、遥测及优化商接入']],
+  es:[['REE / DSO: access and connection permit, guarantee and energisation works','REE／配网：接入与并网许可、担保及送电工程'],['OMIE market entry and REE balancing qualification','进入OMIE市场及REE平衡服务资格认证']],
+  sa:[['SPPC / National Grid SA: site handover and connection at the named site','SPPC／沙特国家电网公司：指定场址移交与并网'],['SPPC acceptance and availability payments under the SSA','SPPC验收及按储能服务协议收取可用性付费']],
   ca_on:[['Utility / IESO: connection, LT2 milestones and usable duration','电网／IESO：接入、LT2里程碑及可用时长'],['IESO acceptance and capacity payments under the contract calendar','IESO验收及按合同日历收取容量费']],
 };
 export function deliveryTimeline(reference, investor, marketId){

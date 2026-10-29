@@ -55,9 +55,15 @@ import fi from './fi/index.js';
 /* Ontario, registered 2026-10-23 on the analyst's sign-off of
    docs/ontario-registration-plan.md. Appended for the same reason as Finland. */
 import caOn from './ca_on/index.js';
+/* Saudi Arabia and Spain, registered 2026-10-29 on the analyst's sign-off of
+   docs/saudi-registration-plan.md and docs/spain-registration-plan.md.
+   Saudi Arabia is engine-withheld, as Finland once was: SPPC's price is
+   unpublished. */
+import sa from './sa/index.js';
+import es from './es/index.js';
 import { applySponsorAssumptions } from '../comparison/sponsorAssumptions.js';
 
-const registeredMarkets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso, fi, caOn];
+const registeredMarkets = [wa, nem, gb, de, it, ie, ro, pl, jpTokyo, jpKyushu, jpHokkaido, pjm, ercot, caiso, fi, caOn, sa, es];
 
 /* Decision metadata is a comparison concern shared by every global component.
    Attach it once at registration without mutating the market module, so detail

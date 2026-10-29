@@ -20,6 +20,8 @@ export const REFERENCE_SOURCES = {
   tx:{label:['Texas: franchise tax','得克萨斯州：特许经营税'],url:'https://comptroller.texas.gov/taxes/franchise/'},
   on:{label:['Canada Revenue Agency: federal and Ontario corporation tax rates','加拿大税务局：联邦及安大略省企业税率'],url:'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/corporations/corporation-tax-rates.html'},
   fi:{label:['Finnish Tax Administration: company income tax','芬兰税务局：企业所得税'],url:'https://www.vero.fi/en/businesses-and-corporations/taxes-and-charges/limited-companies-and-cooperatives/income-tax/'},
+  es:{label:['Agencia Tributaria: corporate income tax','西班牙税务局：企业所得税'],url:'https://sede.agenciatributaria.gob.es/Sede/en_gb/impuesto-sobre-sociedades.html'},
+  sa:{label:['ZATCA: income tax on the non-Saudi share, zakat on the Saudi share','沙特税务局：非沙特股东份额缴所得税，沙特股东份额缴天课'],url:'https://zatca.gov.sa/en/HelpCenter/FAQs/Pages/FAQ_148.aspx'},
   inflation:{label:['ECB: inflation and nominal interest rates','欧洲央行：通胀与名义利率'],url:'https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me/html/nominal_and_real_interest_rates.en.html'},
   taxMethod:{label:['UK capital allowances: depreciation tax relief depends on eligibility','英国资本扣除：折旧抵税须满足适用条件'],url:'https://www.gov.uk/capital-allowances/full-expensing'},
   returnCalibration:{label:['Gore Street FY2025: valuation rates and project differences','Gore Street 2025年报：估值利率与项目差异'],url:'https://www.gsenergystoragefund.com/content/news/archive/2025/170725.asp'},
@@ -63,6 +65,12 @@ export const MARKET_REFERENCE = {
   fi:tax([.20,.20],['fi']),
   // Federal 15% net of abatement and reduction, plus Ontario's 11.5% general rate (CRA).
   ca_on:tax([.265,.265],['on']),
+  // 25% general rate (analyst sign-off, 2026-10-29, docs/spain-registration-plan.md).
+  es:tax([.25,.25],['es']),
+  /* 20% income tax on the non-Saudi share of profit; a Saudi owner pays 2.5% zakat
+     instead. A foreign first-timer is on the 20%. The 5% dividend withholding
+     tax is not modelled (gate SA-5). Engine-withheld until gate SA-1 closes. */
+  sa:tax([.20,.20],['sa']),
 };
 
 export const REFERENCE_CASES = [

@@ -40,6 +40,8 @@ export const STRONG_TERMS = {
   caiso:       [w('\\bCAISO\\b'), w('\\bCalifornia\\b'), w('\\bCalifornian\\b'), w('\\bCPUC\\b')],
   fi:          [w('\\bFinland\\b'), w('\\bFinnish\\b'), w('\\bFingrid\\b'), w('\\bOlkiluoto\\b')],
   ca_on:       [w('\\bOntario\\b'), w('\\bIESO\\b'), w('\\bLT2\\b'), w('\\bHydro One\\b')],
+  sa:          [w('\\bSaudi\\b'), w('\\bSPPC\\b'), w('Saudi Power Procurement'), w('\\bNational Grid SA\\b')],
+  es:          [w('\\bSpain\\b'), w('\\bSpanish\\b'), w('\\bRed Eléctrica\\b'), w('\\bOMIE\\b'), w('\\bMITECO\\b')],
 };
 
 /** A country-level term, and the markets it stands for when no strong term placed the headline. */

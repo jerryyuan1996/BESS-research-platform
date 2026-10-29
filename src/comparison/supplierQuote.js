@@ -122,7 +122,10 @@ export const FREIGHT_EUR_PER_KWH = 1.5;
    Section 301 (from 24 July 2026), 40.9% in all. The IEEPA tariffs were struck
    down on 20 February 2026 and the Section 122 surcharge expired on 24 July 2026
    (AES and Energy Vault 10-Qs, 2026; trade-press tariff tables). */
-export const DUTY_PCT = { EUR: 2.7, GBP: 2.7, AUD: 0, JPY: 0, CAD: 7, USD: 40.9 };
+/* SAR: 5%, the GCC common external tariff's general rate, taken for 8507.60
+   until ZATCA's schedule is read (gate SA-3). Saudi capex is HELD at SPPC's
+   observed total, so this only splits that total; it prices nothing. */
+export const DUTY_PCT = { EUR: 2.7, GBP: 2.7, AUD: 0, JPY: 0, CAD: 7, USD: 40.9, SAR: 5 };
 
 /* A US DC block from a supplier that is not a prohibited foreign entity costs
    about $50/kWh nameplate more than a landed Chinese one: US-made blocks at
@@ -137,7 +140,8 @@ export const NON_FEOC_PREMIUM_USD_PER_KWH = 50;
    the published conversion does not drift with each day's rate. */
 export const QUOTE_FX_DATE = '2026-10-15';
 /* CAD: ECB 15 Oct 2026, 1.5923 CAD and 1.1208 USD per euro → 1.1208 / 1.5923. */
-const USD_PER = { EUR: 1.1208, GBP: 1.3246661151164165, AUD: 0.6910839807621162, JPY: 0.006330057607590647, CAD: 1.1208 / 1.5923, USD: 1 };
+/* SAR: the SAMA peg, 3.75 riyals to the dollar. */
+const USD_PER = { EUR: 1.1208, GBP: 1.3246661151164165, AUD: 0.6910839807621162, JPY: 0.006330057607590647, CAD: 1.1208 / 1.5923, USD: 1, SAR: 1 / 3.75 };
 export const EUR_TO = Object.fromEntries(Object.entries(USD_PER).map(([cur, usd]) => [cur, USD_PER.EUR / usd]));
 
 /** Landed DC block, market currency per kWh at the meter. */
