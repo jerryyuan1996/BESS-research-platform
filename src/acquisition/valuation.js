@@ -147,7 +147,10 @@ export function acquisitionHeadroom(input,investor,price){
 
 /** Expected cash-flow IRR at a supplied EV. Development outcomes are weighted;
  * sale buyer yields and debt sizing stay fixed while solving the buyer's IRR.
- * Ambiguous multiple roots are not presented as a precise expected return. */
+ * The return is the rate where value falls through zero as the rate rises.
+ * A terminal cost (decommissioning) adds a rising root at a deeply negative
+ * rate; that is a financing artefact and is ignored. Two or more falling
+ * roots are ambiguous and are not presented as a precise expected return. */
 export function returnAtAcquisitionPrice(input,investor,price,{route:selectedRoute}={}){
   if(INVESTOR_PREMIUM[investor]?.[input?.stage]==null || validateAcquisition(input).length || !nonnegative(price))return null;
   const base=RATE_SNAPSHOT[input.currency].rate;
@@ -161,7 +164,6 @@ export function returnAtAcquisitionPrice(input,investor,price,{route:selectedRou
     for(let step=1;step<=180;step++){
       const b=-.90+step*.025,fb=f(b);
       if(finite(fa)&&finite(fb)&&fa>=0&&fb<0)brackets.push([a,b]);
-      else if(finite(fa)&&finite(fb)&&fa<0&&fb>=0)brackets.push([a,b]);
       a=b;fa=fb;
     }
     if(brackets.length!==1)return null;

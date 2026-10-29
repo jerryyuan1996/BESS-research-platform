@@ -61,6 +61,28 @@ test('the common T+0 and milestone cash flows reconcile to the investment model 
   }
 });
 
+test('a terminal decommissioning cost does not blank the return',()=>{
+  // Ontario's last year nets below its decommissioning cost, which gives the
+  // NPV curve a second, rising root near -78%. Only the falling root counts.
+  for(const investor of Object.keys(LENSES))for(const row of opportunities(investor)){
+    assert.ok(Number.isFinite(row.investment.irr),investor+'/'+row.id+' published return');
+    assert.ok(Number.isFinite(row.investment.holdIRR),investor+'/'+row.id+' hold return');
+  }
+  const row=opportunities('infraFund').find(r=>r.id==='ca_on');
+  const c=compareOpportunity(row.market,opportunitiesFor('ca_on')[0],'infraFund',row.play);
+  const f=acquisitionCashFlows(c.standard.input,'infraFund','hold',c.standard.price).flows;
+  const last=Math.max(...f.map(x=>x.at));
+  assert.ok(f.filter(x=>x.at===last).reduce((s,x)=>s+x.amount,0)<0,'final year nets negative');
+  const r=c.standard.holdReturn.annualReturn;
+  assert.ok(r>0&&r<.1,'hold return '+r);
+  near(f.reduce((s,x)=>s+x.amount/(1+r)**x.at,0),0,1);
+});
+
+test('the German existing-node build cut is the same for every investor',()=>{
+  const screens=opportunityById('de-existing-node').screeningByInvestor;
+  for(const s of Object.values(screens))assert.equal(s.buildPremiumPct,-30);
+});
+
 test('every opportunity country watermark is a local SVG asset',()=>{
   for(const country of ['australia','germany','britain','ireland','romania','poland','japan','usa','finland','italy','canada']){
     const text=fs.readFileSync('public/country-maps/'+country+'.svg','utf8');

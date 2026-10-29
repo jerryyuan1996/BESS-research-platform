@@ -10,10 +10,11 @@ German connection acquisitions, an explicit rights-price and build budget.
 The supporting assumptions are expandable.
 
 The German recommendation is a required acquisition mandate, not an assertion
-that connection reuse automatically reduces all construction costs by 30–40%.
+that connection reuse automatically reduces all construction costs by 30%.
 The default screen requires a 36-month conventional route versus 18 months,
 and a total remaining construction budget 30% below the conventional reference
-(40% for the developer lens). This includes retrofit works. If priced works
+for every investor lens: the physical project is the same whoever buys it.
+This includes retrofit works. If priced works
 cannot deliver that budget, the buyer must rerun the model before bidding.
 The displayed home purchase ceilings round down.
 

@@ -23,7 +23,7 @@ export const SPECIAL_OPPORTUNITIES = [
       infraFund:{baselineMonths:36,specialMonths:18,buildPremiumPct:-30},
       strategic:{baselineMonths:36,specialMonths:18,buildPremiumPct:-30},
       foreignFirstTimer:{baselineMonths:36,specialMonths:18,buildPremiumPct:-30},
-      developer:{baselineMonths:36,specialMonths:18,buildPremiumPct:-40},
+      developer:{baselineMonths:36,specialMonths:18,buildPremiumPct:-30},
     } }),
   opportunity('gb-gate2', 'gb', 'reuse', ['A deliverable Gate 2 position', '可交付的Gate 2项目'], [18,36],
     ['Pay for a deliverable connection and mature permits, with an acquisition premium tied to milestones.', '为可交付的接入和成熟许可付费，并按里程碑支付收购溢价。'],
