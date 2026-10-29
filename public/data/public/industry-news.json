@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-28T22:40:18.211Z",
+  "fetchedAt": "2026-10-29T05:56:16.319Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-28T17:00:00.000Z",
+    "to": "2026-10-29T05:56:46.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -305,26 +305,6 @@
       "summary": "CATL has launched its 9MWh TENER+ battery storage system at All-Energy Australia 2026 and signed three MoUs with Australian partners."
     },
     {
-      "t": "2026-10-28T08:55:29.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/ricoh-announces-gw-scale-perovskite-solar-cell-production-in-japan/",
-      "source": "pv magazine",
-      "title": "Ricoh announces GW-scale perovskite solar cell production in Japan",
-      "url": "https://www.pv-magazine.com/2026/10/28/ricoh-announces-gw-scale-perovskite-solar-cell-production-in-japan/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Japan's Ricoh plans to begin producing perovskite solar cells by 2030, initially targeting annual capacity of several hundred megawatts. The company will use its proprietary inkjet printing technology to streamline manufacturing and reduce production costs. The post Ricoh announces GW-scale perovskite solar cell pro…"
-    },
-    {
-      "t": "2026-10-28T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/new-coating-technology-could-reduce-glass-usage-in-photovoltaic-modules-by-up-to-40/",
-      "source": "pv magazine",
-      "title": "New coating technology could reduce glass usage in photovoltaic modules by up to 40%",
-      "url": "https://www.pv-magazine.com/2026/10/28/new-coating-technology-could-reduce-glass-usage-in-photovoltaic-modules-by-up-to-40/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "German startup Exxosqel has developed a coating technology that strengthens solar glass by targeting microscopic surface cracks. Developed in collaboration with the Fraunhofer Institute for Silicate Research, the technology could reduce glass weight by up to 40% and overall PV module weight by approximately 30%. The…"
-    },
-    {
       "t": "2026-10-28T09:15:15.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/indias-bess-pipeline-needs-bankable-tenders-diversified-revenue-streams/",
       "source": "Energy-Storage.news",
@@ -333,16 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "India’s storage market is expanding, but project delivery depends on predictable procurement, domestic manufacturing and revenue models that support investment."
-    },
-    {
-      "t": "2026-10-28T10:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/sunkean-advances-copper-to-aluminum-jumpers-for-pv-dc-systems/",
-      "source": "pv magazine",
-      "title": "Sunkean advances copper-to-aluminum jumpers for PV DC systems",
-      "url": "https://www.pv-magazine.com/2026/10/28/sunkean-advances-copper-to-aluminum-jumpers-for-pv-dc-systems/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The manufacturer has developed a copper-to-aluminum jumper solution for PV DC-side applications, addressing conductor material costs, field installation efficiency, and the long-term reliability of copper-to-aluminum connections in utility-scale solar projects. The post Sunkean advances copper-to-aluminum jumpers fo…"
     },
     {
       "t": "2026-10-28T10:14:15.000Z",
@@ -453,6 +423,36 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Australia’s push to accelerate electrification while meeting an 82% renewable energy target and retiring coal-fired power plants, both by 2030, is driving the retrofitting of co-located battery energy storage systems (BESS) at existing grid-scale solar farms. Ev Foley of pv magazine Australia reports. The post Retro…"
+    },
+    {
+      "t": "2026-10-29T05:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/racking-it-up-to-experience/",
+      "source": "pv magazine",
+      "title": "Racking it up to experience",
+      "url": "https://www.pv-magazine.com/2026/10/29/racking-it-up-to-experience/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Demand for solar rooftop racking systems in Europe has either slowed or changed over the past year, depending on who you ask. Either way, the mood is cautious among European mounting and racking system providers, likely due to a downturn in the commercial and industrial (C&I) rooftop solar market, as businesses have…"
+    },
+    {
+      "t": "2026-10-29T05:42:36.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/dartsolar-unveils-expandable-vehicle-solar-array-with-up-to-2000-w-output/",
+      "source": "pv magazine",
+      "title": "DartSolar unveils expandable vehicle solar array with up to 2 kW output",
+      "url": "https://www.pv-magazine.com/2026/10/29/dartsolar-unveils-expandable-vehicle-solar-array-with-up-to-2000-w-output/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "DartSolar LLC, a Los Angeles-based solar equipment manufacturer, has announced that pre-order deliveries for its expanding vehicle-mounted solar system will begin in December 2026. The modular hardware is engineered to supply off-grid power for passenger cars, light trucks, and recreational vehicles. The post DartSo…"
+    },
+    {
+      "t": "2026-10-29T05:56:46.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/dji-power-launches-new-auro-2000-elite-as-its-most-compact-2-kwh-power-station/",
+      "source": "pv magazine",
+      "title": "DJI Power launches new Auro 2000 Elite as its most compact 2 kWh power station",
+      "url": "https://www.pv-magazine.com/2026/10/29/dji-power-launches-new-auro-2000-elite-as-its-most-compact-2-kwh-power-station/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "DJI has launched the Power Auro 2000 Elite, a compact 2 kWh LFP power station delivering up to 2.2 kW peak output, with solar integration and expandable storage up to 12 kWh. The post DJI Power launches new Auro 2000 Elite as its most compact 2 kWh power station appeared first on pv magazine Global ."
     }
   ],
   "derived": {
@@ -463,8 +463,8 @@
     "byCategory": {
       "policy": 7,
       "capital": 4,
-      "grid": 29,
-      "technology": 3
+      "grid": 30,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:aebe2b0c5e5a68aefdfe39fdb907f813638320c84092d35f51f42f7aca6d84fd",
-  "envelopeChecksum": "sha256:857b8f3b77446959a727b2d31ad2a3a8f5e07ccac807b23ecf07363decc15bf7"
+  "contentChecksum": "sha256:331661eed9ab30a89ad7453a9466dd7c0b85ff1b4f0f915115d479763c94ce39",
+  "envelopeChecksum": "sha256:827c7f085336fce97d964dadd1a97211410c63a31b2319758fc9bf920dace803"
 }
