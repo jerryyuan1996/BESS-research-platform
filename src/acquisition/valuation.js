@@ -48,6 +48,7 @@ export function validateAcquisition(input){
   if(input.buyerDiscountRate!=null&&(!nonnegative(input.buyerDiscountRate)||input.buyerDiscountRate>1))missing.push('sale buyer discount rate');
   if(input.cashFlowBasis!=null&&!['real','nominal'].includes(input.cashFlowBasis))missing.push('cash-flow price basis');
   if(input.inflationRate!=null&&(!nonnegative(input.inflationRate)||input.inflationRate>.2))missing.push('inflation assumption');
+  if(input.inflationPath!=null&&(!Array.isArray(input.inflationPath)||!input.inflationPath.every(r=>nonnegative(r)&&r<=.2)))missing.push('inflation path');
   if(input.taxPolicy){
     const p=input.taxPolicy;
     if(!nonnegative(p.rate)||p.rate>1||!(p.depreciationYears>=1&&p.depreciationYears<=40))missing.push('tax depreciation policy');

@@ -112,12 +112,13 @@ export function renderAcquisitionLab(parent,market,strategyId,economicOverrides=
     number('capitalSupportPerMW',['Other capital grant received after operation / MW','投运后收到的其他资本补助／MW']);
     number('supportLagMonths',['Months after operation to receive support','投运后等待补助或抵免款的月数'],{max:120});
     if(['pjm','ercot','caiso'].includes(id)){
-      const support=h('select',{'aria-label':L(['US investment credit scenario','美国投资抵免情景']),onchange:e=>change('supportCase',e.target.value)},[
-        h('option',{value:'none'},L(['No investment credit assumed','暂不假设投资抵免'])),
-        h('option',{value:'us-itc6'},L(['6% credit if eligible','假设符合6%抵免条件'])),h('option',{value:'us-itc30'},L(['30% credit if enhanced requirements are met','假设满足提高至30%的条件']))]);support.value=state.supportCase||'none';
-      fields.append(h('label',{},L(['US investment credit scenario','美国投资抵免情景']),support));
+      const support=h('select',{'aria-label':L(['US supply and credit scenario','美国供应链与抵免情景']),onchange:e=>change('usSupply',e.target.value)},[
+        h('option',{value:'non-feoc'},L(['Non-FEOC DC block, 30% credit','非受限实体电池舱，30%抵免'])),
+        h('option',{value:'chinese'},L(['Chinese DC block, no credit','中国电池舱，无抵免'])),
+        h('option',{value:'as-entered'},L(['Capex as entered, no credit','按输入资本开支，无抵免']))]);support.value=state.usSupply||'non-feoc';
+      fields.append(h('label',{},L(['US supply and credit scenario','美国供应链与抵免情景']),support));
       number('eligibleTaxCreditBasisPerMW',['Eligible investment-credit cost basis / MW','可申请投资抵免的合资格成本／MW']);
-      card.append(explanation(L(['Investment credit assumptions','投资抵免假设']),['Conditional tax support','有条件的税收支持'],h('p',{},L(['Only tests a qualifying new-storage project. Eligibility, wage and apprenticeship requirements, timing, ownership and supply-chain restrictions require project evidence. Default eligible basis is 85% of construction, with 95% cash realisation one year after operation and a tax-basis reduction of half the gross credit. No bonus credit is assumed.','仅测算假设合资格的新建储能项目。适用资格、工资与学徒条件、时间、所有权及供应链限制须用项目资料核实。缺资料时假设85%建设费合资格、95%抵免金额在投运后一年变现，税基减少抵免额的一半；不自动增加额外奖励抵免。']))));
+      card.append(explanation(L(['Investment credit assumptions','投资抵免假设']),['Conditional tax support','有条件的税收支持'],h('p',{},L(['The 30% credit needs a DC block from a supplier that is not a prohibited foreign entity (about $50/kWh more than a landed Chinese block); a Chinese block pays 40.9% US duty and earns no credit. Default eligible basis is 85% of construction, sold one year after operation at $0.913 per dollar, with a tax-basis reduction of half the gross credit. No bonus credit is assumed.','30%抵免须采用非受限外国实体的直流电池舱（较到岸中国产品贵约$50/kWh）；中国电池舱须缴40.9%美国关税且无抵免。缺资料时假设85%建设费合资格，投运后一年按每美元0.913转让，税基减少抵免额的一半；不自动增加额外奖励抵免。']))));
     }
   }
   const check=(key,label)=>{const input=h('input',{type:'checkbox',onchange:event=>change(key,event.target.checked)});input.checked=!!state[key];card.append(h('label',{class:'acq-check'},input,L(label)));};

@@ -310,8 +310,8 @@ function renderAssumptions(parent, market, fields, overrides){
     }, market, homeState.labDebt));
     c.append(grid);
     c.append(h('div', { class: 'cap' }, L([
-      'Coverage tests (1.15x contracted, 2.00x market), the two-tranche split, the tenor caps and the rollover allowance are methodology, not price, and stay human-set. They are not editable here.',
-      '覆盖倍数检验（合同档1.15倍、市场档2.00倍）、双档结构划分、期限上限及续作宽限属方法论而非价格，仅由人工设定，本处不可编辑。',
+      'Coverage tests (1.20–1.40x contracted by contract type, 2.00x market), the two-tranche split, the tenor caps and the rollover allowance are methodology, not price, and stay human-set. They are not editable here.',
+      '覆盖倍数检验（合同档按合同类型1.20–1.40倍、市场档2.00倍）、双档结构划分、期限上限及续作宽限属方法论而非价格，仅由人工设定，本处不可编辑。',
     ])));
   }
 

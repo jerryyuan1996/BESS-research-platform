@@ -107,12 +107,12 @@ export function renderProjectDebt(parent, market, exitYear = 5, opts = {}){
     h('b', {}, L(['Base case: ', '基准情景：'])),
     L([
       L(strategyById(baseId).n) + ' · unlevered project cash flow from the comparison engine, USD per MW · two tranches sized separately, the contracted one at a '
-        + C.dscrSecured.toFixed(2) + 'x coverage test and the market one at '
+        + base.debt.trancheA.dscr.toFixed(2) + 'x coverage test and the market one at '
         + C.dscrMarket.toFixed(2) + 'x · all-in cost of debt '
         + fmtPct(r * 100) + ' (base ' + fmtPct(C.baseRate * 100)
         + ' + margin ' + fmtPct(C.margin * 100) + ')',
       L(strategyById(baseId).n) + ' · 采用对比引擎的无杠杆项目现金流，单位为每MW美元 · 分两档独立测算：合同档覆盖倍数 '
-        + C.dscrSecured.toFixed(2) + '倍，市场档 '
+        + base.debt.trancheA.dscr.toFixed(2) + '倍，市场档 '
         + C.dscrMarket.toFixed(2) + '倍 · 综合债务成本 '
         + fmtPct(r * 100) + '（基准利率 ' + fmtPct(C.baseRate * 100)
         + ' + 利差 ' + fmtPct(C.margin * 100) + '）',
@@ -140,7 +140,7 @@ export function renderProjectDebt(parent, market, exitYear = 5, opts = {}){
      ['Amount / MW', '金额/MW'], ['Tenor', '期限'], ['Repayment', '还本方式']],
     [
       [{ b: ['A', 'A'] }, ['Secured cash flow', '合同化现金流'],
-        C.dscrSecured.toFixed(2) + 'x', usd(base.debt.trancheA.amount),
+        base.debt.trancheA.dscr.toFixed(2) + 'x', usd(base.debt.trancheA.amount),
         yrs(base.debt.trancheA.tenor), ['Fully amortising', '完全摊还']],
       [{ b: ['B', 'B'] }, ['Market cash flow', '市场化现金流'],
         C.dscrMarket.toFixed(2) + 'x', usd(base.debt.trancheB.amount),
@@ -234,8 +234,8 @@ export function renderProjectDebt(parent, market, exitYear = 5, opts = {}){
         ['Reported band 60–75%; rarely the 80–85% of solar and wind', '市场区间60–75%；罕有光伏风电的80–85%']],
       [['Gearing ceiling — merchant', '杠杆上限 — 市场化'], fmtPct(C.maxGearingMarket * 100, 0),
         ['Reported band 50–60%', '市场区间50–60%']],
-      [['DSCR — contracted tranche', '覆盖倍数 — 合同档'], C.dscrSecured.toFixed(2) + 'x',
-        ['Tolled portions sized around 1.15x', '租赁部分按约1.15倍测算']],
+      [['DSCR — contracted tranche', '覆盖倍数 — 合同档'], C.dscrByClass.contracted.toFixed(2) + '–' + C.dscrShort.toFixed(2) + 'x',
+        ['1.20x state or TSO contracts, 1.30x tolls, 1.40x floors, collars and contracts under 7 years; inside the 1.20–1.40x base-case band lenders quote', '国家或输电运营商合同1.20倍、租赁1.30倍、保底／区间及7年以下合同1.40倍；处于贷款人1.20–1.40倍基准区间内']],
       [['DSCR — market tranche', '覆盖倍数 — 市场档'], C.dscrMarket.toFixed(2) + 'x',
         ['Merchant portions need a much larger cushion, often 2.0x', '市场化部分需更厚缓冲，通常2.0倍']],
       [['P90 DSCR quoted by lenders', '贷款人报出的P90覆盖倍数'],

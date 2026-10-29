@@ -12,7 +12,9 @@ test('all 64 headline returns, capex and construction dates equal the default co
   for(const investor of Object.keys(LENSES))for(const row of opportunities(investor)){
     const c=compareOpportunity(row.market,opportunitiesFor(row.id)[0],investor,row.play);
     assert.ok(!c.unavailable,investor+'/'+row.id);
-    assert.equal(row.econ.hold,c.standard.atPrice?.annualReturn??null);
+    assert.equal(row.econ.hold,c.standard.holdReturn?.annualReturn??null);
+    assert.equal(row.econ.lowerOf,c.standard.atPrice?.annualReturn??null);
+    assert.equal(row.econ.levered,c.standard.levered?.annualReturn??null);
     assert.equal(row.investment.capexPerMW,c.standard.assumptions.buildBudget);
     assert.equal(row.investment.rtbMonths,c.standard.codMonths);
     assert.equal(c.standard.input.annual.length,20);
@@ -41,7 +43,7 @@ test('eight-hour MACSE has its own energy-scaled construction budget and keeps t
   assert.equal(c.alternative.input.durationHours,8);
   assert.ok(c.alternative.assumptions.buildBudget>c.standard.assumptions.buildBudget*1.5);
   assert.ok(Math.abs(row.legacyEcon.hold-.146)<.0001);
-  assert.ok(Math.abs(row.investment.irr-.096174)<.00001);
+  assert.ok(Math.abs(row.investment.irr-.108777)<.00001);
 });
 
 test('the common T+0 and milestone cash flows reconcile to the investment model in all markets',()=>{
@@ -62,14 +64,15 @@ test('the common T+0 and milestone cash flows reconcile to the investment model 
 });
 
 test('a terminal decommissioning cost does not blank the return',()=>{
-  // Ontario's last year nets below its decommissioning cost, which gives the
-  // NPV curve a second, rising root near -78%. Only the falling root counts.
+  // ERCOT's last year nets below its decommissioning cost, which gives the
+  // NPV curve a second, rising root at a deeply negative rate. Only the falling
+  // root counts. (Ontario was the case until contracts escalated at 2.5%.)
   for(const investor of Object.keys(LENSES))for(const row of opportunities(investor)){
     assert.ok(Number.isFinite(row.investment.irr),investor+'/'+row.id+' published return');
     assert.ok(Number.isFinite(row.investment.holdIRR),investor+'/'+row.id+' hold return');
   }
-  const row=opportunities('infraFund').find(r=>r.id==='ca_on');
-  const c=compareOpportunity(row.market,opportunitiesFor('ca_on')[0],'infraFund',row.play);
+  const row=opportunities('infraFund').find(r=>r.id==='ercot');
+  const c=compareOpportunity(row.market,opportunitiesFor('ercot')[0],'infraFund',row.play);
   const f=acquisitionCashFlows(c.standard.input,'infraFund','hold',c.standard.price).flows;
   const last=Math.max(...f.map(x=>x.at));
   assert.ok(f.filter(x=>x.at===last).reduce((s,x)=>s+x.amount,0)<0,'final year nets negative');

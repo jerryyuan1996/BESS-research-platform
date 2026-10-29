@@ -128,7 +128,10 @@ const BUDGET = {
   // Measured 231.02 KiB; keep a small, explicit allowance for the new UI.
   // 2026-10-28: 238.94 kB measured with the shared 20-year after-tax
   // projections, project Capex/RTB facts and country-watermark presentation.
-  home: 244,
+  // 2026-10-29: 245.00 kB measured with the levered equity return, its debt
+  // sizing (src/acquisition/leverage.js), the two-layer target test, the second
+  // US supply case and Japan's core-CPI path. Small explicit allowance.
+  home: 247,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one

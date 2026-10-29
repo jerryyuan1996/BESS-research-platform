@@ -64,7 +64,7 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
     decommissioningPerMW:unmodifiedSpecial.input.decommissioningPerMW,
     operatingCostFactor:baseline.assumptions.opexFactor * (1 + opexPremiumPct / 100),
     unsecuredRevenueFactor:baseline.assumptions.revenueFactor * (1 - (values.revenueHaircutPct ?? 0) / 100),
-    ...(opportunity.kind === 'small' ? { capitalSupportPerMW:0, supportCase:'none' } : {}),
+    ...(opportunity.kind === 'small' ? { capitalSupportPerMW:0, supportCase:'none', usSupply:'chinese' } : {}),
   });
   if (!special) return { unavailable:'The special design fails the route or duration eligibility checks.' };
   // Preserve development success/delay/failure weights. A smaller project is

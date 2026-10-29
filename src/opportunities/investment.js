@@ -2,6 +2,7 @@ import { referenceInputs } from '../acquisition/reference.js';
 import { valueAcquisition, returnAtAcquisitionPrice, acquisitionCashFlows } from '../acquisition/valuation.js';
 import { nominalAnnual, taxSchedule } from '../acquisition/cashflows.js';
 import { designRunOptions } from '../comparison/designFit.js';
+import { leveredReturn, targetTest } from '../acquisition/leverage.js';
 import { baseStrategy } from '../comparison/strategies.js';
 
 export const INVESTMENT_LIFE = 20;
@@ -24,6 +25,7 @@ export function evaluateInvestment(reference, investor, price, targetReturn){
     saleReturn:returnAtAcquisitionPrice(input,investor,price,{route:'sale'}),
     npv:Math.min(...investmentRoutes(input).map(route=>
       investmentPV(acquisitionCashFlows(input,investor,route,price).flows,targetReturn))),
+    levered:leveredReturn(input,investor,price,{buildBudget:reference.assumptions.buildBudget,terms:reference.assumptions.terms}),
     annual,operating,price,codMonths:reference.assumptions.codYears*12,
     qualifiedMonths:reference.assumptions.codYears*12+(input.revenueQualificationMonths??0)};
 }
@@ -33,6 +35,7 @@ export function referenceInvestment(market, investor, play, values={}){
   const options={play:chosen,strategyId:chosen.route,economicLifeYears:values.lifeYears??INVESTMENT_LIFE,
     operatingAgeYears:0,debt:null,runOptions:pricingOptions(market,chosen),
     economicOverrides:values.economicOverrides,
+    ...(values.usSupply==null?{}:{usSupply:values.usSupply}),
     ...(values.baselineMonths==null?{}:{monthsToOperation:values.baselineMonths})};
   const reference=referenceInputs(market,stage,options).find(c=>c.key==='base');
   if(!reference)return null;
@@ -48,8 +51,15 @@ export function investmentMetrics(reference){
   if(!reference)return null;
   const {input,annual}=reference,y=annual[0],gross=y.secured+y.renewal+y.merchant;
   const fx=input.fxToUSD;
-  return {irr:reference.atPrice?.annualReturn??null,holdIRR:reference.holdReturn?.annualReturn??null,
+  const holdIRR=reference.holdReturn?.annualReturn??null,lev=reference.levered;
+  const leveredIRR=lev?.annualReturn??null;
+  return {irr:reference.atPrice?.annualReturn??null,holdIRR,
     saleIRR:reference.saleReturn?.annualReturn??null,route:reference.atPrice?.route??null,
+    leveredIRR,leverage:lev?{gearing:lev.gearing,loanPerMW:lev.loanPerMW,contractedDSCR:lev.contractedDSCR,
+      merchantDSCR:lev.merchantDSCR,legalYears:lev.legalYears,notionalYears:lev.notionalYears,rate:lev.rate,
+      minCover:lev.minCover,balloonShare:lev.balloonShare,capBinds:lev.capBinds}:null,
+    test:targetTest(holdIRR,leveredIRR,input.targetReturn),
+    usSupply:reference.assumptions.usSupply??null,
     currency:input.currency,fxToUSD:fx,powerMW:input.powerMW,hours:input.durationHours,
     capexPerMW:reference.assumptions.buildBudget,capexPerMWh:reference.assumptions.buildBudget/input.durationHours,
     capexTotal:reference.assumptions.buildBudget*input.powerMW,
