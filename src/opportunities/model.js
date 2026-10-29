@@ -60,6 +60,9 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
   const special = baseReference(specialMarket, stage, {
     ...specialOptions, monthsToOperation:specialMonths,
     remainingBuildPerMW:budget, unfixedConstructionPerMW:0,
+    // Same credit basis as the conventional case, moved by the build premium
+    // and retrofit works; avoided grid works were never credit-eligible.
+    creditBuildPerMW:Math.max(0,unmodifiedSpecial.assumptions.creditBuildPerMW*(1+buildPremiumPct/100)+retrofit),
     developmentPerMW:unmodifiedSpecial.assumptions.development, fixedFeesPerMW:unmodifiedSpecial.input.fixedFeesPerMW,
     decommissioningPerMW:unmodifiedSpecial.input.decommissioningPerMW,
     operatingCostFactor:baseline.assumptions.opexFactor * (1 + opexPremiumPct / 100),

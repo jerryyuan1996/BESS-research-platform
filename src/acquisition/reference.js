@@ -122,7 +122,10 @@ export function referenceInputs(market,stage,overrides={}){
     const grid=u.remainingBuildPerMW!=null || e.gridContributionPerMW!=null?0:build*c.gridReserve;
     const budget=remainingBuild+contingency+grid;
     const creditRate=stage==='operating'||!policy.usQueue?0:supportCase==='us-itc30'?.30:supportCase==='us-itc6'?.06:0;
-    const creditBasis=u.eligibleTaxCreditBasisPerMW??remainingBuild*.85;
+    // The credit is earned on build cost before contingency and grid allowance.
+    // A caller that supplies an all-in budget passes that pre-contingency cost.
+    const creditBuild=u.creditBuildPerMW??remainingBuild;
+    const creditBasis=u.eligibleTaxCreditBasisPerMW??creditBuild*.85;
     const grossCredit=creditBasis*creditRate,netCredit=grossCredit*(u.creditRealisationFactor??ITC_TRANSFER_PRICE);
     const grant=stage==='operating'?0:u.capitalSupportPerMW??r.grant/fx;
     const vat=budget*(e.vatPct||0)/100;
@@ -177,7 +180,7 @@ export function referenceInputs(market,stage,overrides={}){
       contractAssumed:complete.contractAssumed,life:complete.economicLifeYears,inflation:complete.inflationRate,
       depreciationYears:complete.taxPolicy?.depreciationYears,transactionType:complete.taxPolicy?.transactionType,
       additionalReserveNetPerMW:complete.additionalReserveNetPerMW,
-      capitalSupportPerMW:netCredit+grant,supportCase,usSupply,
+      capitalSupportPerMW:netCredit+grant,supportCase,usSupply,creditBuildPerMW:creditBuild,
       taxOverridden:u.cashTaxRate!=null,annualOverridden:Array.isArray(u.annual),scenariosOverridden:Array.isArray(u.scenarios),
       terms:referenceTerms(variant,input,complete,{buildBudget:budget,development,grant,modelToCash:r.fxRate/fx}),
     }};

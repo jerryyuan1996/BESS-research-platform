@@ -11,7 +11,7 @@ test('home leads with a concise investment view for four investor profiles',asyn
   await page.goto('/');
   const profile=page.getByRole('combobox',{name:'Investor profile',exact:true});
   await expect(profile.locator('option')).toHaveCount(4);
-  await expect(page.locator('.ix-featured .ix-metric')).toHaveCount(2);
+  await expect(page.locator('.ix-featured .ix-metric')).toHaveCount(3);
   await expect(page.locator('.ix-picks article')).toHaveCount(3);
   await expect(page.locator('.ix-lead').first()).toContainText('Prioritise Italy');
   await expect(page.locator('.acq-popover')).toHaveCount(0);
@@ -42,7 +42,7 @@ test('investors filter, sort and compare consistent market cases in both languag
   await page.getByRole('button',{name:'并排比较 ↗',exact:true}).click();
   await expect(page.getByRole('dialog')).toContainText('意大利');
   await expect(page.getByRole('dialog')).toContainText('芬兰');
-  await expect(page.getByRole('dialog')).toContainText('14.4%');
+  await expect(page.getByRole('dialog')).toContainText('14.9%');
   await page.screenshot({path:testInfo.outputPath('market-comparison-zh.png')});
   await page.keyboard.press('Escape');
   await page.getByRole('searchbox',{name:'搜索市场',exact:true}).fill('Finland');
