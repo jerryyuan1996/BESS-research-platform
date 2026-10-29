@@ -171,6 +171,28 @@ export const TRANSMISSION_VOLTAGE = {
       'IESO将其控制的高压电网描述为115kV、230kV与500kV线路，总长逾30,000公里。细节层止于IESO自身的下限115kV；主干层参照爱尔兰（400kV之下设主干层）的先例取230kV，500kV包含其中。',
     ],
   },
+  /* Added 2026-10-29 with Spain's and Saudi Arabia's registrations
+     (docs/spain-registration-plan.md, docs/saudi-registration-plan.md). */
+  es: {
+    bulkKV: 400, detailKV: 220,
+    operator: 'Red Eléctrica (REE)',
+    levels: ['400 kV', '220 kV'],
+    url: 'https://www.ree.es/en/press-release-type/transmission',
+    basis: [
+      'Red Eléctrica owns and operates the transmission grid: about 22,000 km at 400 kV and 20,200 km at 220 kV at the end of 2023, with under 3,000 km at 132 kV, mostly in the islands. The bulk layer is 400 kV and the detail layer stops at 220 kV, the Irish precedent.',
+      '输电网由Red Eléctrica拥有并运营：截至2023年底，400kV线路约22,000公里、220kV约20,200公里，132kV不足3,000公里且多在岛屿。主干层取400kV，细节层止于220kV，参照爱尔兰先例。',
+    ],
+  },
+  sa: {
+    bulkKV: 380, detailKV: 132,
+    operator: 'National Grid SA (Saudi Electricity Company)',
+    levels: ['380 kV', '230 kV', '132 kV'],
+    url: 'https://reglobal.org/transmission-ties-saudi-arabias-regional-connections/',
+    basis: [
+      'The national transmission network ran to about 93,000 circuit-km from 132 kV to 380 kV in 2022, of which 49,600 at 230 and 380 kV. 380 kV is the backbone. The detail layer stops at 132 kV; the 110/115 kV split is not yet read from National Grid SA (gate SA-7).',
+      '2022年全国输电网132kV至380kV约93,000回路公里，其中230与380kV为49,600。380kV为主干网。细节层止于132kV；110/115kV的划分尚未取自国家电网公司（研究缺口SA-7）。',
+    ],
+  },
 };
 
 /* The three Japanese allocation points share one grid definition because they

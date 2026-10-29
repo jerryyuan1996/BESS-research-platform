@@ -63,9 +63,9 @@ test('every registered market is on the board, and every one with a view is grad
   const b = board();
   assert.equal(b.rows.length, markets.length);
   assert.deepEqual(new Set(b.rows.map(r => r.market.manifest.id)), new Set(markets.map(m => m.manifest.id)));
-  /* Four until plan phase 5 graded the other eleven; Ontario, registered on
-     2026-10-23, is the one market not yet graded. */
-  assert.deepEqual(UNGRADED, ['ca_on']);
+  /* Four until plan phase 5 graded the other eleven; Ontario (2026-10-23),
+     Saudi Arabia and Spain (2026-10-29) are registered and not yet graded. */
+  assert.deepEqual(UNGRADED, ['ca_on', 'sa', 'es']);
   assert.equal(b.gradedCount, markets.length - UNGRADED.length);
   assert.equal(b.ungradedCount, UNGRADED.length);
   for (const r of b.rows) assert.equal(r.graded, hasView(r.market.manifest.id));
@@ -83,6 +83,8 @@ test('a market that has not been graded shows its return and no verdict', () => 
       const id = r.market.manifest.id;
       assert.equal(r.cells, null, `${id}: an ungraded market must carry no verdict cells`);
       assert.equal(r.cell, null);
+      /* An engine-withheld market (Saudi Arabia) has no return to show either. */
+      if (r.market.comparison.engineReady === false){ assert.equal(r.ret.withheld, true, `${id}: unready, so withheld`); continue; }
       assert.equal(r.ret.withheld, false, `${id}: its return is what the row shows`);
       assert.ok(Number.isFinite(r.ret.hold.base), `${id}: a base hold IRR`);
     }

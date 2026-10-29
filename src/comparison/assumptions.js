@@ -39,6 +39,15 @@ export const FX = {
      USD cross (0.709) so that an EUR-priced DC block costs the same in USD in
      Ontario as in Finland. The live ECB feed carries CAD. */
   CAD: 0.67,
+  /* Added for Saudi Arabia on the analyst's sign-off of 2026-10-29
+     (docs/saudi-registration-plan.md, decision 2). NOT the euro-seed method:
+     the riyal is pegged at 3.75 to the dollar (SAMA, unchanged since 1986),
+     so 1 / 3.75 = 0.2667. Through the euro seed it would be 1.08 / (1.1367 ×
+     3.75) = 0.2534, which would restate SPPC's published US$1.16bn as
+     US$1.10bn — a 5% artefact on the one observed cost. No euro price enters
+     Saudi capex (it is held at SPPC's figure), so the reason Ontario went
+     through the seed does not apply. ECB publishes no riyal rate. */
+  SAR: 0.2667,
 };
 
 /** Date the FX seeds above were set. Shown next to the rates on the home page. */

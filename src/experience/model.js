@@ -16,7 +16,7 @@ export const CALLS = {
   research: ['Research', '继续研究'],
 };
 export const REGIONS = {
-  europe: ['Europe', '欧洲'], apac: ['Asia Pacific', '亚太'], americas: ['North America', '北美'],
+  europe: ['Europe', '欧洲'], mea: ['Middle East', '中东'], apac: ['Asia Pacific', '亚太'], americas: ['North America', '北美'],
 };
 export const LENSES = {
   infraFund: ['Infrastructure fund', '基础设施基金'],
@@ -27,7 +27,8 @@ export const LENSES = {
 export const snapshotDate = HOME_BRIEFING.on;
 export function regionFor(market) {
   const currency = market.manifest.currency;
-  return ['USD', 'CAD'].includes(currency) ? 'americas' : ['AUD', 'JPY'].includes(currency) ? 'apac' : 'europe';
+  return ['USD', 'CAD'].includes(currency) ? 'americas' : ['AUD', 'JPY'].includes(currency) ? 'apac'
+    : currency === 'SAR' ? 'mea' : 'europe';
 }
 
 export function opportunities(lens = 'infraFund') {

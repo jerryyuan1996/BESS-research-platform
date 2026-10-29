@@ -26,8 +26,9 @@
 /* Finland. The class prefix `fi-` is the flag-icons convention and Finland's
    country code is also `fi`, so this genuinely reads `.fi-fi` — not a typo. */
 .fi-fi{background-image:url("../../node_modules/flag-icons/flags/4x3/fi.svg");}
-/* The scouting tier's nine markets (src/governance/scout.js). Ontario flies
-   Canada's flag: the sprite set is by country. */
+/* The scouting tier's first nine markets (src/governance/scout.js). Ontario,
+   Spain and Saudi Arabia have since been registered and keep their entries:
+   Ontario flies Canada's flag, as the sprite set is by country. */
 .fi-se{background-image:url("../../node_modules/flag-icons/flags/4x3/se.svg");}
 .fi-ee{background-image:url("../../node_modules/flag-icons/flags/4x3/ee.svg");}
 .fi-lt{background-image:url("../../node_modules/flag-icons/flags/4x3/lt.svg");}

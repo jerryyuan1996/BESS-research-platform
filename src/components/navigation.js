@@ -41,6 +41,8 @@ const COUNTRY_FLAGS = {
   caiso: 'us',
   fi: 'fi',
   ca_on: 'ca',
+  sa: 'sa',
+  es: 'es',
 };
 export const marketFlagCode = market => COUNTRY_FLAGS[market.manifest.id]
   || COUNTRY_FLAGS[market.manifest.dashboardId]

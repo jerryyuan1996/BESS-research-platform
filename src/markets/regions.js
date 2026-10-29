@@ -46,6 +46,8 @@
 export const REGIONS = {
   americas: { id: 'americas', label: ['Americas', '美洲'] },
   europe:   { id: 'europe',   label: ['Europe', '欧洲'] },
+  /* Added 2026-10-29 with Saudi Arabia's registration. */
+  'middle-east': { id: 'middle-east', label: ['Middle East', '中东'] },
   asia:     { id: 'asia',     label: ['Asia-Pacific', '亚太'] },
   oceania:  { id: 'oceania',  label: ['Oceania', '大洋洲'] },
 };
@@ -61,7 +63,8 @@ export const REGIONS = {
 const BY_MARKET = {
   wa: 'oceania', nem: 'oceania',
   gb: 'europe', de: 'europe', it: 'europe', ie: 'europe',
-  ro: 'europe', pl: 'europe', fi: 'europe',
+  ro: 'europe', pl: 'europe', fi: 'europe', es: 'europe',
+  sa: 'middle-east',
   jp_tokyo: 'asia', jp_kyushu: 'asia', jp_hokkaido: 'asia',
   pjm: 'americas', ercot: 'americas', caiso: 'americas', ca_on: 'americas',
 };

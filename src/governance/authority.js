@@ -334,6 +334,8 @@ export const COMPARISON_AUTHORITY = {
      it is a statement about what the evidence supports, and automation must
      never be able to close it by supplying a number. */
   'economics.unavailable.services': AUTHORITY.METHODOLOGY,
+  /* Saudi Arabia's withheld SSA price (2026-10-29). */
+  'economics.unavailable.contracted': AUTHORITY.METHODOLOGY,
 
   // Network-access haircut. What is lost when a market's access regime
   // deprioritises you. Observable in principle from constraint data, which is

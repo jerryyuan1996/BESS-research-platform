@@ -127,6 +127,15 @@ export const PIPELINE_SOURCES = {
     'IESO publishes each procurement\'s winners with the closest town, municipality and zone, not coordinates, and no project-level storage register with locations was found. The Ontario map plots the five sourced plants at town and county centroids on its own thematic layer instead; a storage layer built from those would claim a precision the sources do not give.',
     'IESO公布的各轮采购中标结果仅含最近城镇、市镇与区域，不含坐标；亦未找到含位置的项目级储能登记册。安大略地图以城镇及县中心坐标在其主题图层上标注五座有来源的电站；据此构建储能图层将宣称来源所不具备的精度。',
   ]),
+  /* Spain and Saudi Arabia, registered 2026-10-29. */
+  es: NO_SOURCE([
+    'MITECO publishes storage approvals and IDAE the PINALM awards by project name and municipality, not coordinates, and REE counts installed batteries as a national total (96 MW at the end of 2025). No project-level register with locations was found. The Spanish map plots the sourced reference points on its own thematic layer instead.',
+    'MITECO公布储能审批、IDAE公布PINALM资助结果，均仅含项目名称与市镇，不含坐标；REE仅公布全国已装电池总量（2025年底96MW）。未找到含位置的项目级登记册。西班牙地图在其主题图层上标注有来源的参照点。',
+  ]),
+  sa: NO_SOURCE([
+    'SPPC announces each storage site by name and region (Group 1: Al Muwayh, Haden, Al Kahfah, Al Khushaybi; Group 2: six sites), not by coordinates, and no project-level register was found. The Saudi map plots the ten sites at the towns they are named after on its own thematic layer; a storage layer built from those would claim a precision the sources do not give.',
+    'SPPC按名称与地区公布各储能场址（第一组：Al Muwayh、Haden、Al Kahfah、Al Khushaybi；第二组六个场址），不含坐标，亦未找到项目级登记册。沙特地图在其主题图层上以场址同名城镇标注十个场址；据此构建储能图层将宣称来源所不具备的精度。',
+  ]),
 };
 
 function JAPAN_REASON(){

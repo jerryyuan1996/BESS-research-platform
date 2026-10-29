@@ -62,16 +62,17 @@ const RUN = NOW.toISOString();
 const agent = { kind: 'agent', run: RUN, model: MODEL, prompt: SCOUT_PROMPT_VERSION };
 const SHA = `sha256:${'c'.repeat(64)}`;
 
-/* Spain has two listed pages whose terms were read. Every fixture uses them. */
-const STORAGE = SCOUT_SOURCES.es['ree-storage'];
-const ACCESS = SCOUT_SOURCES.es['ree-access'];
+/* Bulgaria has two listed pages whose terms were read. Every fixture uses them.
+   (Spain was the fixture until it was registered on 2026-10-29.) */
+const STORAGE = SCOUT_SOURCES.bg['eso-home'];
+const ACCESS = SCOUT_SOURCES.bg['investbg-fdi'];
 const quoted = (source = STORAGE, patch = {}) => ({
   publisher: source.publisher, url: source.url, class: 'official', retrievedAt: RUN, sha256: SHA,
   quote: 'Storage facilities require an access and connection permit.', ...patch,
 });
 
 const grade = (patch = {}) => ({
-  dimension: 'gridScarcity', grade: 3, trend: 'stable', basis: 'official', evidence: ['ree-storage'],
+  dimension: 'gridScarcity', grade: 3, trend: 'stable', basis: 'official', evidence: ['eso-home'],
   reason: ['Capacity is published node by node.', '各节点的可用容量逐一公布。'], asOf: '2026-11-11', author: 'agent', lockedUntil: null, ...patch,
 });
 const verdict = (patch = {}) => ({
@@ -81,10 +82,10 @@ const verdict = (patch = {}) => ({
   changesIf: [], reviewBy: null, author: 'agent', asOf: '2026-11-11', lockedUntil: null, ...patch,
 });
 const trigger = (patch = {}) => ({
-  id: 'es-capacity-auction', kind: 'event', market: 'es', label: ['The first capacity auction', '首次容量拍卖'],
-  expected: '2027-06', watches: ['policyStability'], direction: 'up', source: 'ree-storage', effect: null, ...patch,
+  id: 'bg-capacity-auction', kind: 'event', market: 'bg', label: ['The first capacity auction', '首次容量拍卖'],
+  expected: '2027-06', watches: ['policyStability'], direction: 'up', source: 'eso-home', effect: null, ...patch,
 });
-const change = (p, to, patch = {}) => ({ market: 'es', path: p, to, author: agent, reason, evidence: [quoted()], ...patch });
+const change = (p, to, patch = {}) => ({ market: 'bg', path: p, to, author: agent, reason, evidence: [quoted()], ...patch });
 
 async function scratch(run){
   const root = await mkdtemp(path.join(tmpdir(), 'bess-scout-'));
@@ -111,10 +112,10 @@ async function withAgentLive(run){
 test('the roster is the first batch less Ontario, which was registered, and none is a registered market', async () => {
   /* Ontario left on 2026-10-23, registered by the analyst's ruling
      (docs/ontario-registration-plan.md); the Americas scouts two until a third is named. */
-  assert.deepEqual(SCOUT_IDS, ['se', 'ee', 'lt', 'es', 'nl', 'bg', 'cl', 'sa']);
+  assert.deepEqual(SCOUT_IDS, ['se', 'ee', 'lt', 'nl', 'bg', 'cl']);
   assert.deepEqual(SCOUT_REGION_IDS, ['nordics-baltics', 'southern-eastern-europe', 'americas-middle-east']);
   for (const region of SCOUT_REGION_IDS){
-    assert.equal(scoutIdsIn(region).length, region === 'americas-middle-east' ? 2 : 3, region);
+    assert.equal(scoutIdsIn(region).length, { 'nordics-baltics': 3, 'southern-eastern-europe': 2, 'americas-middle-east': 1 }[region], region);
     assert.ok(SCOUT_REGIONS[region].label[0] && SCOUT_REGIONS[region].label[1]);
   }
   assert.equal(MAX_SCOUT_CARDS_PER_RUN, 3, 'a run covers one region');
@@ -175,7 +176,6 @@ test('every listed page is https, says who publishes it and what its terms were 
     assert.equal(s.authority, 'third-party', `${where}: a page admitted on private use is listed as official`);
     assert.match(s.terms.url, /^https:\/\//, where);
   }
-  assert.deepEqual(Object.keys(admittedSources('sa')), [], 'an unread page is not admitted');
   assert.deepEqual(Object.keys(admittedSources('nl', UNREAD)), []);
 });
 
@@ -222,7 +222,7 @@ test('a path on a card names one whole record, and none spells a return, a held 
 /* ---- no return is modelled ----------------------------------------------------- */
 
 test('no return is modelled: a card has no field for one, no dimension for one and no words for one', () => {
-  const card = { ...emptyCard('es'), grades: { gridScarcity: grade({ author: 'analyst' }) } };
+  const card = { ...emptyCard('bg'), grades: { gridScarcity: grade({ author: 'analyst' }) } };
   assert.deepEqual(validateCard(card), []);
   const bad = (edit, pattern) => {
     const next = structuredClone(card); edit(next);
@@ -323,7 +323,7 @@ test('on a card the agent creates and changes, never removes, and a rule writes 
   /* The analyst's spot-check is the analyst's. */
   assert.equal(scoutAuthorMayWrite('checked', 'analyst'), true);
   for (const kind of ['agent', 'rule', 'etl', undefined]) assert.equal(scoutAuthorMayWrite('checked', kind), false);
-  for (const p of ['grades.gridScarcity', 'verdicts.developer', 'facts', 'returnSignal', 'triggers.es-x']){
+  for (const p of ['grades.gridScarcity', 'verdicts.developer', 'facts', 'returnSignal', 'triggers.bg-x']){
     assert.equal(scoutAuthorMayWrite(p, 'rule'), false, `a rule may write ${p}`);
     assert.equal(scoutAuthorMayWrite(p, 'agent'), true);
   }
@@ -340,22 +340,25 @@ test('A — every record the agent creates quotes a page fetched in that run, fr
   await bad({ evidence: [quoted(STORAGE, { sha256: 'abc' })] }, /content hash/);
   await bad({ evidence: [quoted(STORAGE, { quote: 'x'.repeat(301) })] }, /at most 300/);
   /* A real-looking page that is not on the list is not a source. */
-  await bad({ evidence: [quoted(STORAGE, { url: 'https://www.ree.es/en/some-other-page' })] }, /not on this market's source list/);
+  await bad({ evidence: [quoted(STORAGE, { url: 'https://www.eso.bg/some-other-page' })] }, /not on this market's source list/);
   await bad({ evidence: [quoted(STORAGE, { url: 'https://paper.example/story', publisher: 'A paper' })] }, /not on this market's source list/);
   /* What a source is, is the list's to say. */
   await bad({ evidence: [quoted(STORAGE, { class: 'third-party' })] }, /is listed as official and the change calls it third-party/);
   /* The grade names exactly the pages the change quotes. */
-  await rejects(store.prepare(change('grades.gridScarcity', grade({ evidence: ['ree-access'] })), NOW), /not the pages the change quotes/);
+  await rejects(store.prepare(change('grades.gridScarcity', grade({ evidence: ['investbg-fdi'] })), NOW), /not the pages the change quotes/);
   await rejects(store.prepare(change('grades.gridScarcity', grade({ evidence: ['not-listed'] })), NOW), /not the pages the change quotes/);
-  assert.ok(validateCard({ ...emptyCard('es'), grades: { gridScarcity: grade({ evidence: ['not-listed'] }) } }).some(p => /not in this market's source list/.test(p)));
+  assert.ok(validateCard({ ...emptyCard('bg'), grades: { gridScarcity: grade({ evidence: ['not-listed'] }) } }).some(p => /not in this market's source list/.test(p)));
   await bad({ author: { ...agent, run: undefined } }, /records the run/);
   await bad({ author: { kind: 'agent', run: RUN } }, /model and prompt version/);
 
-  /* A page whose terms nobody has read is on the list and still not a source. */
-  await rejects(store.prepare({
-    market: 'sa', path: 'grades.gridScarcity', to: grade({ evidence: ['sppc-home'] }), author: agent, reason,
-    evidence: [quoted(SCOUT_SOURCES.sa['sppc-home'])],
-  }, NOW), /its terms have not been read/);
+  /* A page whose terms nobody has read is on the list and still not a source.
+     No roster market has listed one since Saudi Arabia was registered
+     (2026-10-29), so the list is the test's own. */
+  const unreadPage = UNREAD['unread-page'];
+  assert.ok(scoutMachineProblems({
+    market: 'nl', path: 'grades.gridScarcity', to: grade({ evidence: ['unread-page'] }), author: agent, reason,
+    evidence: [quoted(unreadPage)],
+  }, emptyCard('nl'), { today: NOW.toISOString().slice(0, 10), sources: UNREAD }).some(p => /its terms have not been read/.test(p)));
 
   /* Facts and the signal show only quotations the change verified. */
   const fact = { text: reason, evidence: [{ publisher: STORAGE.publisher, url: STORAGE.url, quote: quoted().quote }] };
@@ -366,8 +369,8 @@ test('A — every record the agent creates quotes a page fetched in that run, fr
 
 test('C — a first grade is whatever the anchor says, a 1 or a 5 needs more, and after that one step a run', () => {
   assert.deepEqual(SCOUT_EXTREME_GRADES, [1, 5]);
-  const card = emptyCard('es');
-  const sources = { ...scoutSources('es'),
+  const card = emptyCard('bg');
+  const sources = { ...scoutSources('bg'),
     paper: { publisher: 'A trade paper', url: 'https://paper.example/story', authority: 'third-party', terms: { status: 'permits' } },
     other: { publisher: 'Another paper', url: 'https://other.example/story', authority: 'third-party', terms: { status: 'permits' } } };
   const press = (key) => quoted(sources[key], { class: 'third-party' });
@@ -401,7 +404,7 @@ test('C — a first call sits within one place of "wait", a knock-out caps it, a
   assert.deepEqual(scoutKnockOutDimensions('developer'), ['gridScarcity']);
   await rejects(store.prepare(change('verdicts.developer', verdict({ because: [] })), NOW), /gridScarcity can shut this investor out and is not graded yet/);
 
-  await store.apply({ market: 'es', path: 'grades.gridScarcity', to: grade({ author: 'analyst' }), author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
+  await store.apply({ market: 'bg', path: 'grades.gridScarcity', to: grade({ author: 'analyst' }), author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
   await store.prepare(change('verdicts.developer', verdict()), NOW);
   await store.prepare(change('verdicts.developer', verdict({ call: 'avoid' })), NOW);
   for (const call of ['build-position', 'enter-now']){
@@ -418,34 +421,34 @@ test('C — a first call sits within one place of "wait", a knock-out caps it, a
   await rejects(store.prepare(change('verdicts.strategic', verdict({ archetype: 'strategic' })), NOW), /foreignEntry, supplyChainOrigin can shut this investor out/);
 
   /* Once it exists, one place a run. */
-  await store.apply({ market: 'es', path: 'verdicts.developer', to: verdict({ author: 'analyst' }), author: analyst, reason }, new Date('2026-11-10T01:00:00Z'));
+  await store.apply({ market: 'bg', path: 'verdicts.developer', to: verdict({ author: 'analyst' }), author: analyst, reason }, new Date('2026-11-10T01:00:00Z'));
   await store.prepare(change('verdicts.developer', verdict({ call: 'build-position' })), NOW);
   await rejects(store.prepare(change('verdicts.developer', verdict({ call: 'enter-now' })), NOW), /"opportunistic" to "enter-now" is more than one step/);
   await rejects(store.prepare(change('verdicts.developer', verdict({ call: 'build-position', route: 'operating' })), NOW), /may not change verdicts\.developer\.route/);
 }));
 
 test('C — where a grade shuts the investor out, the most a machine calls is "wait"', () => scratch(async (store) => {
-  await store.apply({ market: 'es', path: 'grades.gridScarcity', to: grade({ grade: 1, author: 'analyst' }), author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
+  await store.apply({ market: 'bg', path: 'grades.gridScarcity', to: grade({ grade: 1, author: 'analyst' }), author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
   await rejects(store.prepare(change('verdicts.developer', verdict()), NOW), /the most a machine calls is "wait"/);
   await store.prepare(change('verdicts.developer', verdict({ call: 'avoid' })), NOW);
   /* The analyst is not capped: the verdict is his to set. */
-  await store.apply({ market: 'es', path: 'verdicts.developer', to: verdict({ author: 'analyst', call: 'opportunistic' }), author: analyst, reason }, new Date('2026-11-10T01:00:00Z'));
+  await store.apply({ market: 'bg', path: 'verdicts.developer', to: verdict({ author: 'analyst', call: 'opportunistic' }), author: analyst, reason }, new Date('2026-11-10T01:00:00Z'));
   await rejects(store.prepare(change('verdicts.developer', verdict({ call: 'build-position' })), NOW), /the most a machine calls is "wait"/);
 }));
 
 test('D — a pinned record on a card is the analyst\'s, and a card holds no rule and no held view', () => scratch(async (store) => {
-  await store.apply({ market: 'es', path: 'grades.gridScarcity', to: grade({ author: 'analyst', lockedUntil: '2027-01-01' }), author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
+  await store.apply({ market: 'bg', path: 'grades.gridScarcity', to: grade({ author: 'analyst', lockedUntil: '2027-01-01' }), author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
   await rejects(store.prepare(change('grades.gridScarcity', grade({ grade: 4, lockedUntil: '2027-01-01' })), NOW), /pinned until 2027-01-01/);
   await rejects(store.prepare(change('grades.gridScarcity', null), NOW), /may not remove/);
   await rejects(store.prepare(change('grades.gridScarcity.held', { grade: 1 }), NOW), /not a path on a scout card/);
   await rejects(store.prepare({ ...change('grades.gridScarcity.held', { grade: 1 }), author: analyst }, NOW), /not a path on a scout card/);
 
   const rule = trigger({ id: 'es-rule', effect: [{ path: 'grades.gridScarcity.trend', to: 'deteriorating' }], note: reason });
-  await rejects(store.prepare(change('triggers.es-rule', rule), NOW), /holds no rule/);
-  await rejects(store.prepare({ ...change('triggers.es-rule', rule), author: analyst }, NOW), /holds no rule/);
-  await store.prepare(change('triggers.es-capacity-auction', trigger()), NOW);
-  await rejects(store.prepare(change('triggers.es-capacity-auction', trigger({ source: { publisher: 'A paper', url: 'https://paper.example/x', access: 'opened' } })), NOW), /cites a page from the source list by its key/);
-  await rejects(store.prepare(change('triggers.es-capacity-auction', trigger({ watches: ['assetReturn'] })), NOW), /which a scout card is not graded on/);
+  await rejects(store.prepare(change('triggers.bg-rule', rule), NOW), /holds no rule/);
+  await rejects(store.prepare({ ...change('triggers.bg-rule', rule), author: analyst }, NOW), /holds no rule/);
+  await store.prepare(change('triggers.bg-capacity-auction', trigger()), NOW);
+  await rejects(store.prepare(change('triggers.bg-capacity-auction', trigger({ source: { publisher: 'A paper', url: 'https://paper.example/x', access: 'opened' } })), NOW), /cites a page from the source list by its key/);
+  await rejects(store.prepare(change('triggers.bg-capacity-auction', trigger({ watches: ['assetReturn'] })), NOW), /which a scout card is not graded on/);
   /* A rule has no rights here at all. */
   await rejects(store.prepare(change('grades.gridScarcity', grade({ author: 'rule' }), { author: { kind: 'rule', rule: 'es-rule', run: RUN } }), NOW), /may not write grades\.gridScarcity on a scout card/);
 }));
@@ -454,12 +457,12 @@ test('E — a scout run touches at most three cards and replaces at most three e
   const line = (market, record, from) => ({ entry: { market, path: record, from } });
   assert.deepEqual(scoutRunProblems([]), []);
   /* Creating a whole card is not a breach: it overwrites nothing. */
-  const creation = ['es', 'nl', 'bg'].flatMap(id => SCOUT_DIMENSION_IDS.map(d => line(id, `grades.${d}`, null)));
+  const creation = ['nl', 'bg', 'cl'].flatMap(id => SCOUT_DIMENSION_IDS.map(d => line(id, `grades.${d}`, null)));
   assert.equal(creation.length, 36);
   assert.deepEqual(scoutRunProblems(creation), []);
   assert.match(scoutRunProblems([...creation, line('se', 'facts', null)])[0], /touch 4 cards and the cap is 3/);
   assert.equal(MAX_MACHINE_CHANGES_PER_RUN, 3, 'the cap on replacing is the one a market has, unchanged');
-  const replaced = (n) => Array.from({ length: n }, (_, i) => line('es', `grades.${SCOUT_DIMENSION_IDS[i]}`, {}));
+  const replaced = (n) => Array.from({ length: n }, (_, i) => line('bg', `grades.${SCOUT_DIMENSION_IDS[i]}`, {}));
   assert.deepEqual(scoutRunProblems(replaced(3)), []);
   assert.match(scoutRunProblems(replaced(4))[0], /replace 4 existing records and the cap is 3/);
 });
@@ -483,7 +486,7 @@ test('live on cards, the agent still cannot reach a market: not through the scou
   await scratch(async (store, root) => {
     await withAgentLive(async () => {
       assert.equal(store.scoutLive('agent'), true);
-      const pass = { run: RUN, region: 'southern-eastern-europe', cards: ['es'], model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 1, unfetched: [], unanswered: [], rejected: [] };
+      const pass = { run: RUN, region: 'southern-eastern-europe', cards: ['bg'], model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 1, unfetched: [], unanswered: [], rejected: [] };
 
       /* A core market's record, dressed as a scout change in every way a caller could. */
       const core = { market: 'fi', path: 'grades.gridScarcity', to: grade(), author: agent, reason, evidence: [quoted()] };
@@ -504,19 +507,19 @@ test('live on cards, the agent still cannot reach a market: not through the scou
 test('live, a scout run writes the cards, one changelog line a record and one pass line, and never the index', () => scratch(async (store, root) => {
   await withAgentLive(async () => {
     const changes = [
-      change('triggers.es-capacity-auction', trigger()),
+      change('triggers.bg-capacity-auction', trigger()),
       change('grades.gridScarcity', grade()),
       change('facts', [{ text: reason, evidence: [{ publisher: STORAGE.publisher, url: STORAGE.url, quote: quoted().quote }] }]),
-      change('verdicts.developer', verdict({ call: 'wait', changesIf: ['es-capacity-auction'], reviewBy: '2027-07-31' })),
+      change('verdicts.developer', verdict({ call: 'wait', changesIf: ['bg-capacity-auction'], reviewBy: '2027-07-31' })),
     ];
-    const pass = { run: RUN, region: 'southern-eastern-europe', cards: ['es'], model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 4, unfetched: [], unanswered: [], rejected: [] };
+    const pass = { run: RUN, region: 'southern-eastern-europe', cards: ['bg'], model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 4, unfetched: [], unanswered: [], rejected: [] };
     const result = await store.applyScoutRun(changes, pass, NOW);
     assert.equal(result.entries.length, 4);
     assert.equal(result.pass.written, 4);
     assert.equal(result.pass.clean, true);
-    assert.deepEqual(await files(root), ['changelog.jsonl', 'scout', 'scout/es.json', 'scout/passes.jsonl'], 'no market file and no index');
+    assert.deepEqual(await files(root), ['changelog.jsonl', 'scout', 'scout/bg.json', 'scout/passes.jsonl'], 'no market file and no index');
 
-    const card = await store.readCard('es');
+    const card = await store.readCard('bg');
     assert.deepEqual(validateCard(card), []);
     assert.equal(card.verdicts.developer.call, 'wait');
     assert.equal(card.grades.gridScarcity.author, 'agent');
@@ -529,24 +532,24 @@ test('live, a scout run writes the cards, one changelog line a record and one pa
     /* I — one change undone by id, as the analyst, and the whole card removed. */
     const undone = await store.revert(log[1].id, new Date('2026-11-12T00:00:00Z')).catch(e => e);
     assert.match(undone.message, /which is not graded on this card/, 'a grade a verdict rests on is not pulled from under it');
-    const removal = await store.removeCardChanges('es');
-    assert.deepEqual(removal.map(c => c.path), ['verdicts.developer', 'triggers.es-capacity-auction', 'grades.gridScarcity', 'facts']);
+    const removal = await store.removeCardChanges('bg');
+    assert.deepEqual(removal.map(c => c.path), ['verdicts.developer', 'triggers.bg-capacity-auction', 'grades.gridScarcity', 'facts']);
     await store.applyBatch(removal, new Date('2026-11-12T01:00:00Z'));
-    assert.ok(cardIsEmpty(await store.readCard('es')));
+    assert.ok(cardIsEmpty(await store.readCard('bg')));
 
     /* A run over a cap writes no card and is recorded as a pass that was not clean. */
-    const again = await store.applyScoutRun([change('grades.gridScarcity', grade(), { market: 'es' })], { ...pass, run: '2026-12-11T04:30:00.000Z', proposed: 1 }, new Date('2026-12-11T04:30:00Z'));
+    const again = await store.applyScoutRun([change('grades.gridScarcity', grade(), { market: 'bg' })], { ...pass, run: '2026-12-11T04:30:00.000Z', proposed: 1 }, new Date('2026-12-11T04:30:00Z'));
     assert.equal(again.pass.clean, true);
     const over = ['gridScarcity', 'foreignEntry', 'policyStability', 'debtAvailability'];
     for (const [i, d] of over.entries()){
-      if (d !== 'gridScarcity') await store.apply({ market: 'es', path: `grades.${d}`, to: grade({ dimension: d, author: 'analyst' }), author: analyst, reason }, new Date(`2026-12-12T0${i}:00:00Z`));
+      if (d !== 'gridScarcity') await store.apply({ market: 'bg', path: `grades.${d}`, to: grade({ dimension: d, author: 'analyst' }), author: analyst, reason }, new Date(`2026-12-12T0${i}:00:00Z`));
     }
     const four = over.map(d => change(`grades.${d}`, grade({ dimension: d, grade: 4 })));
     const refused = await store.applyScoutRun(four, { ...pass, run: '2027-01-11T04:30:00.000Z', proposed: 4 }, new Date('2027-01-11T04:30:00Z'));
     assert.equal(refused.pass.written, 0);
     assert.equal(refused.pass.clean, false);
     assert.match(refused.pass.rejected[0].why, /replace 4 existing records and the cap is 3/);
-    assert.equal((await store.readCard('es')).grades.gridScarcity.grade, 3, 'a refused run changed a card');
+    assert.equal((await store.readCard('bg')).grades.gridScarcity.grade, 3, 'a refused run changed a card');
   });
 }));
 
@@ -569,7 +572,7 @@ test('a pass is clean only when every card was read and answered for and nothing
   assert.deepEqual(validatePass(pass()), []);
   const bad = (patch, pattern) => assert.ok(validatePass(pass(patch)).some(p => pattern.test(p)), `${pattern}`);
   bad({ clean: true, unfetched: ['ee'] }, /clean must be what the rest of the line says/);
-  bad({ cards: ['se', 'es'] }, /covers a card outside its region/);
+  bad({ cards: ['se', 'bg'] }, /covers a card outside its region/);
   bad({ cards: ['se', 'fi'] }, /cards must be roster ids/);
   bad({ region: 'everywhere' }, /region must be one of/);
   bad({ model: '' }, /records the model and the prompt version/);
@@ -605,9 +608,9 @@ test('the exit condition is six consecutive clean passes, and a repeat inside 25
 test('graduation is one investor at Build position or Enter now across two consecutive passes', () => {
   assert.deepEqual(GRADUATION, { calls: ['build-position', 'enter-now'], passes: 2 });
   assert.ok(GRADUATION_RULE[0] && GRADUATION_RULE[1]);
-  const card = (call) => ({ ...emptyCard('es'), verdicts: { developer: verdict({ call }) } });
-  const passes = ['2026-11-11', '2026-12-11', '2027-01-11'].map(d => ({ run: `${d}T04:30:00.000Z`, cards: ['es', 'nl', 'bg'] }));
-  const line = (at, from, to) => ({ market: 'es', path: 'verdicts.developer', at: `${at}T04:30:00.000Z`, from: from && { call: from }, to: { call: to } });
+  const card = (call) => ({ ...emptyCard('bg'), verdicts: { developer: verdict({ call }) } });
+  const passes = ['2026-11-11', '2026-12-11', '2027-01-11'].map(d => ({ run: `${d}T04:30:00.000Z`, cards: ['nl', 'bg'] }));
+  const line = (at, from, to) => ({ market: 'bg', path: 'verdicts.developer', at: `${at}T04:30:00.000Z`, from: from && { call: from }, to: { call: to } });
   const log = [line('2026-11-11', null, 'opportunistic'), line('2026-12-11', 'opportunistic', 'build-position')];
   assert.deepEqual(graduationProgress(card('opportunistic'), passes, log.slice(0, 1)), { passes: 0, needed: 2, archetype: null });
   assert.deepEqual(graduationProgress(card('build-position'), passes.slice(0, 2), log), { passes: 1, needed: 2, archetype: 'developer' });
@@ -626,16 +629,16 @@ const answer = (patch = {}) => ({
   notes: 'Read the two listed pages.',
   grades: [{ dimension: 'gridScarcity', grade: '3', trend: 'stable', cause_en: '', cause_zh: '', reason_en: 'Capacity is published node by node.', reason_zh: '各节点的可用容量逐一公布。', evidence: cite('Access capacity at each node is published every month.') }],
   verdicts: [{ archetype: 'developer', call: 'wait', route: 'greenfield', because: [{ dimension: 'gridScarcity', text_en: 'Capacity can still be secured.', text_zh: '仍可取得并网容量。' }],
-    despite_en: 'Nothing is contracted.', despite_zh: '没有任何合同化收入。', waits_for: 'es-capacity-auction', review_by: '2027-07-31',
+    despite_en: 'Nothing is contracted.', despite_zh: '没有任何合同化收入。', waits_for: 'bg-capacity-auction', review_by: '2027-07-31',
     reason_en: 'The auction decides whether there is a secured route.', reason_zh: '拍卖结果决定是否存在有保障的收入路径。', evidence: cite('A first capacity auction is planned for June 2027.') }],
-  triggers: [{ id: 'es-capacity-auction', label_en: 'The first capacity auction', label_zh: '首次容量拍卖', expected: '2027-06', watches: ['policyStability'], direction: 'up', evidence: cite('A first capacity auction is planned for June 2027.') }],
+  triggers: [{ id: 'bg-capacity-auction', label_en: 'The first capacity auction', label_zh: '首次容量拍卖', expected: '2027-06', watches: ['policyStability'], direction: 'up', evidence: cite('A first capacity auction is planned for June 2027.') }],
   facts: [{ text_en: 'Storage needs an access and connection permit.', text_zh: '储能项目须取得接入与并网许可。', evidence: cite('Storage facilities require an access and connection permit.') }],
   return_signal: { present: false, note_en: '', note_zh: '', evidence: [] },
   ...patch,
 });
 const EMPTY = { notes: 'Nothing to add.', grades: [], verdicts: [], triggers: [], facts: [], return_signal: { present: false, note_en: '', note_zh: '', evidence: [] } };
 
-/* The pass is tested against the analyst's real list for Spain and Bulgaria,
+/* The pass is tested against the analyst's real list for Bulgaria,
    and against a list of one unread page for the Netherlands, so that what is
    asserted about an unread page does not depend on which markets happen to
    have one this month. */
@@ -654,15 +657,15 @@ const scoutPass = (store, answers, patch = {}) => {
 };
 
 test('the scout pass reads only listed pages, shows the model only those whose terms were read, and has no tool', () => scratch(async (store) => {
-  const result = await scoutPass(store, { es: answer() });
-  /* Spain and Bulgaria have an admitted page. The Netherlands' is unread: it
+  const result = await scoutPass(store, { bg: answer() });
+  /* Bulgaria has an admitted page. The Netherlands' is unread: it
      is probed for reachability and the model never sees it. */
-  assert.deepEqual(result.asked.map(a => /\(id (\w+)\)/.exec(a.message)[1]), ['es', 'bg']);
+  assert.deepEqual(result.asked.map(a => /\(id (\w+)\)/.exec(a.message)[1]), ['bg']);
   assert.deepEqual(result.pass.unfetched, ['nl']);
   assert.ok(result.fetched.includes(UNREAD['unread-page'].url), 'an unread page is still probed');
   assert.ok(result.asked.every(a => !a.message.includes('unread.example')), 'an unread page reached the model');
   assert.equal(result.pass.pages.find(p => p.card === 'nl').status, 'reachable, terms not read');
-  const listed = ['es', 'nl', 'bg'].flatMap(id => Object.values(testSources(id)).map(s => s.url));
+  const listed = ['nl', 'bg'].flatMap(id => Object.values(testSources(id)).map(s => s.url));
   assert.deepEqual([...result.fetched].sort(), [...listed].sort(), 'every listed page was fetched once, and nothing off the list');
   for (const a of result.asked){
     assert.equal(a.options.system, SCOUT_SYSTEM);
@@ -685,7 +688,7 @@ test('the scout pass reads only listed pages, shows the model only those whose t
 }));
 
 test('the scout pass runs dry: it reports the card it would write, with a spot-check sample, and writes nothing', () => scratch(async (store, root) => {
-  const result = await scoutPass(store, { es: answer() });
+  const result = await scoutPass(store, { bg: answer() });
   assert.equal(result.live, false);
   assert.equal(result.wouldWrite, 4);
   assert.equal(result.pass.written, 0);
@@ -693,11 +696,11 @@ test('the scout pass runs dry: it reports the card it would write, with a spot-c
   assert.deepEqual(result.pass.rejected, []);
   assert.deepEqual(await files(root), [], 'a dry pass left something on disk');
 
-  const es = result.cards.find(c => c.card === 'es');
-  assert.deepEqual(es.written.map(w => w.record), ['triggers.es-capacity-auction', 'grades.gridScarcity', 'facts', 'verdicts.developer']);
+  const es = result.cards.find(c => c.card === 'bg');
+  assert.deepEqual(es.written.map(w => w.record), ['triggers.bg-capacity-auction', 'grades.gridScarcity', 'facts', 'verdicts.developer']);
   const g = es.written[1];
   assert.equal(g.to.basis, 'official');
-  assert.deepEqual(g.to.evidence, ['ree-storage']);
+  assert.deepEqual(g.to.evidence, ['eso-home']);
   assert.equal(g.evidence[0].sha256, hashOf(PAGE));
   assert.equal(g.evidence[0].quote, 'Access capacity at each node is published every month.', 'whitespace in the page does not defeat an honest quotation');
 
@@ -706,18 +709,18 @@ test('the scout pass runs dry: it reports the card it would write, with a spot-c
   assert.match(report, /\*\*CHECK\*\* \*\*verdicts\.developer\*\* `wait`/);
   assert.match(report, /\*\*CHECK\*\* \*\*grades\.gridScarcity\*\* `3`/);
   assert.match(report, /Anchor for 3: /);
-  assert.match(report, /“A first capacity auction is planned for June 2027\.” — Red Eléctrica/);
+  assert.match(report, /“A first capacity auction is planned for June 2027\.” — Electricity System Operator \(ESO EAD\)/);
   assert.match(report, /nl `unread-page` — reachable, terms not read/);
   /* The sample is every verdict, every extreme, every knock-out dimension, and three more by the run id. */
   const written = [...SCOUT_DIMENSION_IDS.map(d => ({ record: `grades.${d}`, to: { grade: d === 'policyStability' ? 5 : 3 } })), { record: 'verdicts.developer', to: {} }];
-  const sample = spotCheckSample('es', written, RUN);
+  const sample = spotCheckSample('bg', written, RUN);
   for (const must of ['verdicts.developer', 'grades.policyStability', 'grades.gridScarcity', 'grades.foreignEntry', 'grades.supplyChainOrigin', 'grades.approvalTransparency', 'grades.debtAvailability']) assert.ok(sample.has(must), must);
   assert.equal(sample.size, 10);
-  assert.deepEqual([...spotCheckSample('es', written, RUN)], [...sample], 'the sample is the run\'s, not chance');
+  assert.deepEqual([...spotCheckSample('bg', written, RUN)], [...sample], 'the sample is the run\'s, not chance');
 }));
 
 test('a proposal that lies is dropped and counted, and the rest of the card is still written', () => scratch(async (store) => {
-  const one = async (patch) => (await scoutPass(store, { es: answer(patch) }));
+  const one = async (patch) => (await scoutPass(store, { bg: answer(patch) }));
   const rejected = async (patch) => (await one(patch)).pass.rejected;
 
   /* A — a quotation the page does not contain, however plausible. */
@@ -738,7 +741,7 @@ test('a proposal that lies is dropped and counted, and the rest of the card is s
   const permit = good('Storage needs an access and connection permit.', 'Storage facilities require an access and connection permit.');
   const monthly = good('Node capacity is published every month.', 'Access capacity at each node is published every month.');
   const tooLong = good('A fact with a quotation that runs long.', 'x'.repeat(314));
-  const factsOf = (result) => result.cards.find(c => c.card === 'es').written.find(w => w.record === 'facts')?.to ?? null;
+  const factsOf = (result) => result.cards.find(c => c.card === 'bg').written.find(w => w.record === 'facts')?.to ?? null;
 
   const mixed = await one({ grades: [], verdicts: [], triggers: [], facts: [permit, tooLong, monthly] });
   assert.deepEqual(mixed.pass.rejected.map(r => r.record), ['facts[1]'], 'the one bad fact is the one rejection, named by its place in the answer');
@@ -766,7 +769,7 @@ test('a proposal that lies is dropped and counted, and the rest of the card is s
   /* C and the knock-out, through the whole pass. */
   assert.match((await rejected({ verdicts: [{ ...answer().verdicts[0], call: 'enter-now', waits_for: '', review_by: '' }] }))[0].why, /a first call is one of/);
   assert.match((await rejected({ grades: [], verdicts: [{ ...answer().verdicts[0], because: [] }] }))[0].why, /can shut this investor out and is not graded yet/);
-  assert.match((await rejected({ triggers: [{ ...answer().triggers[0], id: 'fi-capacity-auction' }], verdicts: [] }))[0].why, /begins with "es-"/);
+  assert.match((await rejected({ triggers: [{ ...answer().triggers[0], id: 'fi-capacity-auction' }], verdicts: [] }))[0].why, /begins with "bg-"/);
   /* THE PREFIX IS STATED, NOT LEFT TO BE WORKED OUT. Ontario's id has an
      underscore and a trigger id may not, so "the market id and a hyphen" was
      wrong for it: the first dry run lost a trigger and the verdict waiting on
@@ -785,7 +788,7 @@ test('a proposal that lies is dropped and counted, and the rest of the card is s
   }
 
   /* Repeating a record that already reads that way is not a rejection. */
-  await store.apply({ market: 'es', path: 'triggers.es-capacity-auction', to: trigger(), author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
+  await store.apply({ market: 'bg', path: 'triggers.bg-capacity-auction', to: trigger(), author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
   const repeat = await one({ grades: [], verdicts: [], facts: [] });
   assert.deepEqual(repeat.pass.rejected, []);
   assert.equal(repeat.pass.proposed, 0);
@@ -797,9 +800,9 @@ test('on a review, a fact the model quotes badly is not deleted from the card', 
      having decided that. The card's own version stays in the list instead. */
   const held = { text: ['Storage needs an access and connection permit.', '储能项目须取得接入与并网许可。'],
     evidence: [{ publisher: STORAGE.publisher, url: STORAGE.url, quote: 'Storage facilities require an access and connection permit.' }] };
-  await store.apply({ market: 'es', path: 'facts', to: [held], author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
-  const review = (facts, patch) => scoutPass(store, { es: { ...EMPTY, facts } }, patch);
-  const factsOf = (result) => result.cards.find(c => c.card === 'es').written.find(w => w.record === 'facts')?.to ?? null;
+  await store.apply({ market: 'bg', path: 'facts', to: [held], author: analyst, reason }, new Date('2026-11-10T00:00:00Z'));
+  const review = (facts, patch) => scoutPass(store, { bg: { ...EMPTY, facts } }, patch);
+  const factsOf = (result) => result.cards.find(c => c.card === 'bg').written.find(w => w.record === 'facts')?.to ?? null;
   const monthly = { text_en: 'Node capacity is published every month.', text_zh: '各节点容量每月公布。', evidence: cite('Access capacity at each node is published every month.') };
   const badlyQuoted = { text_en: held.text[0], text_zh: held.text[1], evidence: cite('x'.repeat(314)) };
 
@@ -818,7 +821,7 @@ test('on a review, a fact the model quotes badly is not deleted from the card', 
   assert.deepEqual(stranded.pass.rejected.map(r => r.record), ['facts[0]', 'facts']);
   assert.match(stranded.pass.rejected[1].why, /already on the card and its quotation could not be found again.*nothing is deleted/);
   assert.equal(factsOf(stranded), null);
-  assert.deepEqual((await store.readCard('es')).facts, [held], 'the card is as it was');
+  assert.deepEqual((await store.readCard('bg')).facts, [held], 'the card is as it was');
 
   /* A fact the model leaves out on purpose is still the model's to leave out:
      that is a change the gate sees, with its evidence, not a silent one. */
@@ -838,19 +841,19 @@ test('the model is told what an over-long quotation costs, and the limit is not 
 });
 
 test('the model is not asked what it remembers: no page read, no question, and a robots file is obeyed', () => scratch(async (store) => {
-  const offline = await scoutPass(store, { es: answer() }, { fetchPage: async () => { throw new Error('HTTP 403'); } });
+  const offline = await scoutPass(store, { bg: answer() }, { fetchPage: async () => { throw new Error('HTTP 403'); } });
   assert.deepEqual(offline.asked, []);
-  assert.deepEqual(offline.pass.unfetched, ['es', 'nl', 'bg']);
+  assert.deepEqual(offline.pass.unfetched, ['nl', 'bg']);
   assert.ok(offline.pass.pages.every(p => p.status === 'not fetched (HTTP 403)'));
   assert.equal(offline.wouldWrite, 0);
 
-  const barred = await scoutPass(store, { es: answer() }, { robots: async () => false });
+  const barred = await scoutPass(store, { bg: answer() }, { robots: async () => false });
   assert.deepEqual(barred.fetched, [], 'a disallowed page was fetched');
   assert.ok(barred.pass.pages.every(p => p.status === 'disallowed by robots'));
 
   const refused = await scoutPass(store, {}, { askModel: async () => ({ refused: 'refusal', model: MODEL }) });
-  assert.deepEqual(refused.pass.unanswered, ['es', 'bg']);
-  assert.match(refused.cards[0].notes, /declined: refusal/);
+  assert.deepEqual(refused.pass.unanswered, ['bg']);
+  assert.match(refused.cards.find(c => c.card === 'bg').notes, /declined: refusal/);
 
   /* The robots reader. */
   const file = 'User-agent: *\nDisallow: /private\nAllow: /private/open\n\nUser-agent: bess-research-platform\nDisallow: /en/legal\n';
@@ -868,23 +871,23 @@ test('the model is not asked what it remembers: no page read, no question, and a
 
 test('live, the pass writes what survived and records itself, clean or not', () => scratch(async (store, root) => {
   await withAgentLive(async () => {
-    const result = await scoutPass(store, { es: answer() });
+    const result = await scoutPass(store, { bg: answer() });
     assert.equal(result.live, true);
     assert.equal(result.pass.written, 4);
     /* Not clean: the Netherlands had no page whose terms were read. */
     assert.equal(result.pass.clean, false);
     assert.deepEqual(result.pass.unfetched, ['nl']);
-    assert.deepEqual(await files(root), ['changelog.jsonl', 'scout', 'scout/es.json', 'scout/passes.jsonl']);
-    assert.deepEqual(validateCard(await store.readCard('es')), []);
+    assert.deepEqual(await files(root), ['changelog.jsonl', 'scout', 'scout/bg.json', 'scout/passes.jsonl']);
+    assert.deepEqual(validateCard(await store.readCard('bg')), []);
     assert.deepEqual(validatePass((await store.passes())[0]), []);
     assert.match(renderScoutReport(result), /4 records written\. This pass is NOT clean\./);
 
     /* A month later the model moves the call one place, with a source. */
     const later = new Date('2026-12-11T04:30:00Z');
-    const moved = await scoutPass(store, { es: { ...EMPTY, verdicts: [{ ...answer().verdicts[0], call: 'opportunistic', waits_for: '', review_by: '' }] } }, { now: later });
+    const moved = await scoutPass(store, { bg: { ...EMPTY, verdicts: [{ ...answer().verdicts[0], call: 'opportunistic', waits_for: '', review_by: '' }] } }, { now: later });
     assert.equal(moved.pass.written, 1);
-    assert.equal((await store.readCard('es')).verdicts.developer.call, 'opportunistic');
-    assert.equal((await store.readCard('es')).verdicts.developer.route, 'greenfield');
+    assert.equal((await store.readCard('bg')).verdicts.developer.call, 'opportunistic');
+    assert.equal((await store.readCard('bg')).verdicts.developer.route, 'greenfield');
     const last = (await store.changelog()).pop();
     assert.equal(last.from.call, 'wait');
     assert.equal(last.to.call, 'opportunistic');
@@ -895,20 +898,20 @@ test('live, the pass writes what survived and records itself, clean or not', () 
 /* ---- the pages, as data ---------------------------------------------------------------- */
 
 test('the home board gets calls and nothing else, and every roster market gets a row', () => {
-  const card = { ...emptyCard('es'), grades: { gridScarcity: grade() }, verdicts: { developer: verdict() },
+  const card = { ...emptyCard('bg'), grades: { gridScarcity: grade() }, verdicts: { developer: verdict() },
     facts: [{ text: reason, evidence: [{ publisher: STORAGE.publisher, url: STORAGE.url, quote: quoted().quote }] }] };
   const index = scoutIndex([card, emptyCard('nl')]);
-  assert.deepEqual(index, { es: { developer: { call: 'opportunistic', route: 'greenfield' } } }, 'an empty card is no card, and a card reaches the board as its calls');
-  assert.ok(!JSON.stringify(index).includes('ree.es'), 'a quotation or a source reached the home board');
+  assert.deepEqual(index, { bg: { developer: { call: 'opportunistic', route: 'greenfield' } } }, 'an empty card is no card, and a card reaches the board as its calls');
+  assert.ok(!JSON.stringify(index).includes('eso.bg'), 'a quotation or a source reached the home board');
 
   const rows = scoutBoardRows(index);
   assert.deepEqual(rows.map(r => r.market.id), SCOUT_IDS);
   assert.equal(rows.filter(r => r.calls).length, 1);
-  const es = rows.find(r => r.market.id === 'es');
+  const es = rows.find(r => r.market.id === 'bg');
   assert.deepEqual(es.calls, { strategic: null, infraFund: null, foreignFirstTimer: null, developer: { call: 'opportunistic', route: 'greenfield' } });
   assert.equal(es.region.label[0], 'Southern and Eastern Europe');
-  assert.equal(scoutBoardRows(index, 'developer').find(r => r.market.id === 'es').call.call, 'opportunistic');
-  assert.equal(scoutBoardRows(index, 'strategic').find(r => r.market.id === 'es').call, null);
+  assert.equal(scoutBoardRows(index, 'developer').find(r => r.market.id === 'bg').call.call, 'opportunistic');
+  assert.equal(scoutBoardRows(index, 'strategic').find(r => r.market.id === 'bg').call, null);
   /* Before any card exists, eight rows that say so. */
   assert.ok(scoutBoardRows({}).every(r => r.calls === null));
   assert.ok(!('ret' in es) && !('fit' in es), 'a scouting row carries a return or a fit');
@@ -916,22 +919,22 @@ test('the home board gets calls and nothing else, and every roster market gets a
 
 test('the scout page shows three pillars, no fit and no return, and leads with a barrier', () => {
   const graded = Object.fromEntries(SCOUT_DIMENSION_IDS.filter(d => dimension(d).pillar === 'entry').map(d => [d, grade({ dimension: d, grade: d === 'gridScarcity' ? 1 : 3 })]));
-  const card = { ...emptyCard('es'), grades: graded, verdicts: { developer: verdict({ call: 'avoid' }) } };
-  const data = scoutData([card], [{ run: RUN, cards: ['es', 'nl', 'bg'], clean: false }], []);
-  assert.deepEqual(Object.keys(data.cards), ['es']);
-  assert.equal(data.lastPass.es, RUN);
-  assert.deepEqual(data.graduation.es, { passes: 0, needed: 2, archetype: null });
+  const card = { ...emptyCard('bg'), grades: graded, verdicts: { developer: verdict({ call: 'avoid' }) } };
+  const data = scoutData([card], [{ run: RUN, cards: ['nl', 'bg'], clean: false }], []);
+  assert.deepEqual(Object.keys(data.cards), ['bg']);
+  assert.equal(data.lastPass.bg, RUN);
+  assert.deepEqual(data.graduation.bg, { passes: 0, needed: 2, archetype: null });
   assert.equal(data.streak, 0);
 
   const page = buildScoutPage(data, { on: '2026-11-12' });
-  assert.equal(page.total, 8);
+  assert.equal(page.total, 6);
   assert.equal(page.writtenCount, 1);
   assert.equal(page.streakNeeded, SCOUT_EXIT_STREAK);
-  assert.deepEqual(page.regions.map(r => r.rows.length), [3, 3, 2]);
+  assert.deepEqual(page.regions.map(r => r.rows.length), [3, 2, 1]);
   const rows = page.regions.flatMap(r => r.rows);
-  assert.ok(rows.filter(r => r.market.id !== 'es').every(r => r.written === false), 'a market with no card is shown as having none');
+  assert.ok(rows.filter(r => r.market.id !== 'bg').every(r => r.written === false), 'a market with no card is shown as having none');
 
-  const es = rows.find(r => r.market.id === 'es');
+  const es = rows.find(r => r.market.id === 'bg');
   assert.deepEqual(es.returnLine, NO_RETURN);
   assert.equal(es.returnSignal, null);
   const dev = es.cells.developer;
@@ -945,7 +948,7 @@ test('the scout page shows three pillars, no fit and no return, and leads with a
   assert.ok(es.grades.every(g => g.anchor && g.sources[0].url === STORAGE.url));
   /* With a signal, the Return line is the publisher's words and nothing computed. */
   const signal = { kind: 'third-party-index', note: ['The index publishes €338k/MW/yr.', '该指数公布每兆瓦每年33.8万欧元。'], evidence: [quoted()] };
-  const withSignal = buildScoutPage(scoutData([{ ...card, returnSignal: signal }], [], []), { on: '2026-11-12' }).regions[1].rows[0];
+  const withSignal = buildScoutPage(scoutData([{ ...card, returnSignal: signal }], [], []), { on: '2026-11-12' }).regions[1].rows.find(r => r.market.id === 'bg');
   assert.deepEqual(withSignal.returnLine, signal.note);
 });
 
@@ -954,25 +957,25 @@ test('the status command reports the streak, each card and whether it was checke
   assert.equal(before.live, false);
   assert.equal(before.streak, 0);
   assert.equal(before.needed, 6);
-  assert.ok(before.rows.length === 8 && before.rows.every(r => !r.written));
+  assert.ok(before.rows.length === 6 && before.rows.every(r => !r.written));
   assert.match(renderScoutStatus(before), /Consecutive clean passes: 0 of 6/);
   assert.match(renderScoutStatus(before), /The exit condition is not met\./);
 
   await withAgentLive(async () => {
-    const pass = { run: RUN, region: 'southern-eastern-europe', cards: ['es'], model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 1, unfetched: [], unanswered: [], rejected: [] };
+    const pass = { run: RUN, region: 'southern-eastern-europe', cards: ['bg'], model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 1, unfetched: [], unanswered: [], rejected: [] };
     await store.applyScoutRun([change('grades.gridScarcity', grade())], pass, NOW);
-    const card = await store.readCard('es');
+    const card = await store.readCard('bg');
     assert.equal(checkState(card, await store.changelog()), 'never');
-    await store.apply({ market: 'es', path: 'checked', to: { asOf: '2026-11-12', note: null }, author: analyst, reason }, new Date('2026-11-12T00:00:00Z'));
-    assert.equal(checkState(await store.readCard('es'), await store.changelog()), '2026-11-12');
+    await store.apply({ market: 'bg', path: 'checked', to: { asOf: '2026-11-12', note: null }, author: analyst, reason }, new Date('2026-11-12T00:00:00Z'));
+    assert.equal(checkState(await store.readCard('bg'), await store.changelog()), '2026-11-12');
     /* The agent may not write the analyst's check, and a later machine write makes it stale. */
     await rejects(store.prepare(change('checked', { asOf: '2026-11-13', note: null }), NOW), /may not write checked on a scout card/);
     await store.applyScoutRun([change('grades.gridScarcity', grade({ grade: 4, asOf: '2026-12-11' }))], { ...pass, run: '2026-12-11T04:30:00.000Z' }, new Date('2026-12-11T04:30:00Z'));
-    assert.equal(checkState(await store.readCard('es'), await store.changelog()), 'stale');
+    assert.equal(checkState(await store.readCard('bg'), await store.changelog()), 'stale');
     const status = await scoutStatus(store);
     assert.equal(status.streak, 2);
-    assert.equal(status.rows.find(r => r.id === 'es').check, 'stale');
-    assert.match(renderScoutStatus(status), /es\s+Spain\s+1\/12 graded\s+0\/4 verdicts\s+last pass 2026-12-11\s+spot-check: written since the last check/);
+    assert.equal(status.rows.find(r => r.id === 'bg').check, 'stale');
+    assert.match(renderScoutStatus(status), /bg\s+Bulgaria\s+1\/12 graded\s+0\/4 verdicts\s+last pass 2026-12-11\s+spot-check: written since the last check/);
   });
 }));
 

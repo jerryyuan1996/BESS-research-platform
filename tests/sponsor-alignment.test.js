@@ -38,6 +38,7 @@ import { M as ercot } from '../src/markets/ercot/data.js';
 import { M as caiso } from '../src/markets/caiso/data.js';
 import { M as jp } from '../src/markets/jp/data.js';
 import { M as fi } from '../src/markets/fi/data.js';
+import { M as es } from '../src/markets/es/data.js';
 import { SEED as waSeed } from '../src/markets/wa/data/seed.js';
 
 /* Every allocation market that renders a dashboard, mapped to the raw lab seed
@@ -57,6 +58,7 @@ const DASHBOARD_SEEDS = {
   caiso: caiso.lab,
   jp_tokyo: jp.lab,
   fi: fi.lab,          // since 2026-10-17, when Finland entered the engine
+  es: es.lab,          // since 2026-10-29, registered engine-ready
 };
 
 /* Dashboards whose reference configuration is deliberately NOT the comparison

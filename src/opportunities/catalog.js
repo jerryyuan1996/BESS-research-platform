@@ -81,6 +81,17 @@ export const SPECIAL_OPPORTUNITIES = [
     ['Read the actual contract, MW-Business-Day billing, availability, retained trading rights and fixed end date.', '核实实际合同、MW工作日计费、可用率、保留交易权及固定截止日。'],
     ['Do not use 365 billing days or assume late COD extends the contract; later procurement guidance is not an award.', '不能按365天计费，也不能假设迟延COD会延长合同；后续采购指引并非中标。'],
     'https://www.ieso.ca/Sector-Participants/Resource-Acquisition-and-Contracts/Long-Term-RFP-and-Expedited-Process', { route:'cap' }),
+  /* Spain and Saudi Arabia, registered 2026-10-29. */
+  opportunity('es-pinalm-awarded', 'es', 'award', ['PINALM-awarded project with access', '已获PINALM资助且已取得接入的项目'], [18,36],
+    ['Buy a project that already holds grid access and a PINALM grant, so the queue and part of the capex are behind it.', '收购已取得电网接入和PINALM资助的项目，使排队与部分造价已成过去。'],
+    ['Verify the access and connection permit, the grant resolution and its conditions, the 36-month build deadline and the eligible-cost cap.', '核实接入与并网许可、资助决议及其条件、36个月建设期限和合格成本上限。'],
+    ['A grant is repaid if the build deadline is missed, and a capacity award must reflect the aid in full; the merchant line still carries the return.', '若错过建设期限须退还资助，且容量授标须全额体现资助；回报仍由市场化收入承担。'],
+    'https://www.miteco.gob.es/es/prensa/ultimas-noticias/2025/mayo/el-miteco-lanza-700-millones-en-ayudas-para-almacenamiento-energ.html', { route:'mer' }),
+  opportunity('sa-sppc-ssa', 'sa', 'award', ['A seat in an SPPC storage round', 'SPPC储能轮次中的联合体席位'], [36,48],
+    ['Join a consortium for a future SPPC round, or buy into an awarded SPV, for a fifteen-year state availability contract.', '加入未来SPPC轮次的联合体，或入股已中标项目公司，获取十五年国有可用性合同。'],
+    ['Obtain the SSA fee, payment formula, indexation and availability test before any price is set; prequalify beside a Saudi partner.', '在定价前取得储能服务协议的付费水平、付费公式、指数化与可用性考核；与沙特合作方共同通过资格预审。'],
+    ['No fee is published, so no return can be screened; a bid priced on a guessed fee is a guess.', '付费水平未公布，因此无法筛选回报；依据猜测付费定价的投标只是猜测。'],
+    'https://www.ess-news.com/2026/07/03/saudi-arabia-qualifies-27-companies-for-second-bess-tender/', { route:'cap' }),
 ];
 export const opportunitiesFor = market => SPECIAL_OPPORTUNITIES.filter(o => o.market === market);
 export const opportunityById = id => SPECIAL_OPPORTUNITIES.find(o => o.id === id);
@@ -89,8 +100,6 @@ export const SCOUT_OPPORTUNITIES = [
   ['ee',['Estonia: Baltic balancing market','爱沙尼亚：波罗的海平衡市场']],
   ['lt',['Lithuania: awarded support + connection','立陶宛：已获支持与接入']],
   ['nl',['Netherlands: time-limited transport rights','荷兰：时段受限输电权']],
-  ['es',['Spain: renewable-site hybridisation','西班牙：新能源场站混合配置']],
   ['bg',['Bulgaria: awarded, near-completion assets','保加利亚：已获补助、接近投运资产']],
   ['cl',['Chile: solar shifting + existing node','智利：光伏移峰与既有节点']],
-  ['sa',['Saudi Arabia: awarded storage service contracts','沙特：已授予储能服务合同']],
 ];

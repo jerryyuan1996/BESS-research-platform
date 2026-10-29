@@ -40,6 +40,11 @@ const TARGETS = [
      the NEM and PJM the outline IS the market and no view-bounds crop is
      needed. */
   { id: 246, out: 'src/markets/fi/fi-boundary.json', name: 'Finland' },
+  /* Spain and Saudi Arabia (2026-10-29): one system operator and one price
+     each, so the country is the market. Spain's 110m outline is the peninsula
+     alone, which is also the capacity market's scope. */
+  { id: 724, out: 'src/markets/es/es-boundary.json', name: 'Spain' },
+  { id: 682, out: 'src/markets/sa/sa-boundary.json', name: 'Saudi Arabia' },
 ];
 
 const round = (n, dp = 3) => Number(n.toFixed(dp));

@@ -11,6 +11,8 @@ const near=(a,b,tolerance=.01)=>assert.ok(Math.abs(a-b)<tolerance,a+' != '+b);
 test('all 64 headline returns, capex and construction dates equal the default conventional column',()=>{
   for(const investor of Object.keys(LENSES))for(const row of opportunities(investor)){
     const c=compareOpportunity(row.market,opportunitiesFor(row.id)[0],investor,row.play);
+    /* An engine-withheld market publishes no return anywhere (Saudi Arabia). */
+    if(row.market.comparison.engineReady===false){assert.ok(c.unavailable,investor+'/'+row.id);assert.equal(row.econ.hold,null);continue;}
     assert.ok(!c.unavailable,investor+'/'+row.id);
     assert.equal(row.econ.hold,c.standard.holdReturn?.annualReturn??null);
     assert.equal(row.econ.lowerOf,c.standard.atPrice?.annualReturn??null);
@@ -30,7 +32,7 @@ test('all 64 headline returns, capex and construction dates equal the default co
 test('foreign first-timers feature Finland without changing the research ranking',()=>{
   const rows=opportunities('foreignFirstTimer');
   assert.equal(featuredOpportunity(rows,'foreignFirstTimer').id,'fi');
-  assert.equal(new Set(rows.map(r=>r.rank)).size,16);
+  assert.equal(new Set(rows.map(r=>r.rank)).size,rows.length);
   assert.equal(featuredOpportunity(opportunities('infraFund'),'infraFund').id,'it');
 });
 
@@ -48,6 +50,7 @@ test('eight-hour MACSE has its own energy-scaled construction budget and keeps t
 
 test('the common T+0 and milestone cash flows reconcile to the investment model in all markets',()=>{
   for(const investor of Object.keys(LENSES))for(const row of opportunities(investor)){
+    if(row.market.comparison.engineReady===false)continue;
     const c=compareOpportunity(row.market,opportunitiesFor(row.id)[0],investor,row.play);
     for(const reference of [c.standard,c.alternative]){
       const t=deliveryTimeline(reference,investor,row.id);
@@ -68,6 +71,7 @@ test('a terminal decommissioning cost does not blank the return',()=>{
   // NPV curve a second, rising root at a deeply negative rate. Only the falling
   // root counts. (Ontario was the case until contracts escalated at 2.5%.)
   for(const investor of Object.keys(LENSES))for(const row of opportunities(investor)){
+    if(row.market.comparison.engineReady===false)continue;
     assert.ok(Number.isFinite(row.investment.irr),investor+'/'+row.id+' published return');
     assert.ok(Number.isFinite(row.investment.holdIRR),investor+'/'+row.id+' hold return');
   }

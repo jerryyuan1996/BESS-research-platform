@@ -24,6 +24,8 @@ import { ERCOT_CONGESTION } from './ercot/congestion.js';
 import { CAISO_CONGESTION } from './caiso/congestion.js';
 import { FI_CONGESTION } from './fi/congestion.js';
 import { CA_ON_CONGESTION } from './ca_on/congestion.js';
+import { SA_CONGESTION } from './sa/congestion.js';
+import { ES_CONGESTION } from './es/congestion.js';
 
 export const CONGESTION_REGISTERS = [
   WA_CONGESTION,
@@ -42,6 +44,8 @@ export const CONGESTION_REGISTERS = [
   ERCOT_CONGESTION,
   CAISO_CONGESTION,
   CA_ON_CONGESTION,
+  SA_CONGESTION,
+  ES_CONGESTION,
 ];
 
 const byMarket = new Map(CONGESTION_REGISTERS.map(r => [r.marketId, r]));

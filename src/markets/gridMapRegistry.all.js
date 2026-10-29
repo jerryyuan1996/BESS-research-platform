@@ -36,3 +36,5 @@ import './ercot/gridMapData.js';
 import './caiso/gridMapData.js';
 import './fi/gridMapData.js';
 import './ca_on/gridMapData.js';
+import './sa/gridMapData.js';
+import './es/gridMapData.js';

@@ -67,10 +67,10 @@ test('the global matrix and investment brief load without browser errors',async(
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/returns');
   await expect(page.getByRole('heading',{name:'Income quality meets return.',exact:true})).toBeVisible();
-  await expect(page.locator('.ix-results tbody tr')).toHaveCount(16);
+  await expect(page.locator('.ix-results tbody tr')).toHaveCount(18);
   const plotted=await page.locator('.ix-matrix-svg [role="button"]').count();
   const unpriced=await page.locator('.ix-unpriced-market').count();
-  expect(plotted+unpriced).toBe(16);
+  expect(plotted+unpriced).toBe(18);
   expect(plotted).toBeGreaterThan(0);
   if(unpriced)await expect(page.locator('.ix-unpriced-market').first()).toContainText('N/M');
   await page.goto('/');

@@ -161,6 +161,41 @@ export const MARKET_DECISION_PROFILES = {
     },
     contractRisk: { ...UNKNOWN_CONTRACT, counterparty:['IESO', 'IESO'], indexation:['20% to Ontario CPI after COD; whole price to CPI before', '投运后20%与安大略CPI挂钩；投运前全额挂钩'], reset:['None for twenty years; re-opened only by post-bid tariffs or a storage rule change', '二十年内无重设；仅因投标后关税或储能规则变更可重新议价'], upside:['All market revenue retained by the owner', '市场收入全部归业主'], dispatch:['Owner/optimiser, subject to the day-ahead must-offer', '业主/优化商，受日前强制申报约束'], penalties:['Availability charges up to twice the monthly payment; default below 85% tested capacity', '可用性扣款最高为月付款两倍；测试容量低于85%即违约'], termination:['Default for failed capacity tests or a missed longstop', '容量测试失败或错过最终期限即违约'], deliverability:['Eight hours of contract capacity, tested up to once a season', '合同容量八小时，每季最多测试一次'], refinancing:['Supportive: a twenty-year system-operator contract', '有利：二十年系统运营商合同'] },
   }),
+  /* Spain and Saudi Arabia, added 2026-10-29 with their registrations. The
+     scores are Claude's drafts for the analyst. Spain: merchant line computed
+     from OMIE prices on a path fitted on Bulgaria (Fair), capex on the European
+     survey (Fair), capacity pending. Saudi Arabia: Finland's level — structure verified, the largest
+     line (the SSA price) unpublished and withheld. */
+  es: profile({
+    reviewDate: '2026-10-29',
+    confidenceScore: 6,
+    consensus: { status:'aligned', summary:['A solar evening spread a four-hour battery is built for, a fleet that is still tiny, and a capacity market in law with no auction yet. The open questions are how fast the fleet arrives and what the first auction pays.', '四小时储能正对应的光伏晚间价差、规模仍极小的储能机组，以及已立法但尚未拍卖的容量市场。待解问题为机组增长速度与首次拍卖价格。'], sources:['OMIE day-ahead prices 2023–2026', 'BOE Order TED/966/2026', 'MITECO PINALM award'] },
+    currentUpdate: ['A 4-hour battery earned €111.3k/MW on 2025 day-ahead prices and 2026 is running 43% higher. The capacity market was created on 18 September 2026; the first auction is expected in Q1 2027 with firmness coefficients still unset.', '四小时储能按2025年日前电价收入为每MW 11.13万欧元，2026年至今高出43%。容量市场于2026年9月18日设立；首次拍卖预计于2027年一季度举行，可靠性系数尚未确定。'],
+    investmentGate: ['Fleet path re-read on REE counts', 'First capacity auction and battery firmness', 'Balancing prices from REE', 'Connection right at a node with capacity'],
+    revenueEvidence: {
+      cap: proxy(['The capacity market exists in law (Order TED/966/2026) and has not held an auction; no price, cap or firmness coefficient is published.', '容量市场已立法（TED/966/2026号令）但尚未拍卖；价格、上限与可靠性系数均未公布。'], ['BOE Order TED/966/2026']),
+      toll: proxy(['No disclosed Spanish toll is loaded.', '未载入已披露的西班牙租赁。'], ['Private bilateral market']),
+      ltda: proxy(['No long-term award route is loaded.', '未载入长期中标路径。'], ['Not applicable']),
+      merchant: derived(['The 2025 day-ahead value of a 1 MW / 4 h battery on OMIE prices (one cycle, 88% round trip, perfect foresight), restated at 2028 along Spain\'s dated fleet path.', '基于OMIE电价的1MW/4小时储能2025年日前价值（每日一次循环、往返效率88%、完全预见），按西班牙储能机组的年度路径折算至2028年。'], ['OMIE marginalpdbc 2025']),
+      services: proxy(['Balancing revenue is not counted until REE band prices are read.', '在读取REE调频容量价格前不计入平衡服务收入。'], ['REE esios (token required)']),
+    },
+  }),
+  sa: profile({
+    reviewDate: '2026-10-29',
+    confidenceScore: 3,
+    consensus: { status:'stale', summary:['A state buyer, a fifteen-year availability fee and no merchant leg: the structure an infrastructure fund wants. The price is not published, so no return can be shown.', '国有买方、十五年可用性付费且无市场化收入：正是基础设施基金所需的结构。价格未公布，因此无法展示回报。'], sources:['SPPC Group 1 award, Aug 2026', 'Saudi Energy / ACWA Power disclosure', 'MEED, Group 2'] },
+    currentUpdate: ['SPPC signed 2 GW / 8 GWh of 15-year Storage Services Agreements in August 2026 for SAR 4.35bn of investment. Group 2, 3 GW / 12 GWh, closes bids on 12 November 2026 with 27 prequalified bidders.', 'SPPC于2026年8月签署2GW/8GWh、为期15年的储能服务协议，投资额43.5亿里亚尔。第二组3GW/12GWh将于2026年11月12日截标，共27家资格预审通过。'],
+    currentRunRateFactor: 0.5,
+    investmentGate: ['SSA price disclosed', 'SSA indexation and payment formula', 'Consortium seat in an SPPC round', 'Dividend withholding and treaty relief'],
+    revenueEvidence: {
+      cap: proxy(['The SSA price is not published for any Group 1 project; the line is withheld (gate SA-1).', '第一组各项目的储能服务协议价格均未公布；该收入项暂缓发布（研究缺口SA-1）。'], ['SPPC Group 1 announcement']),
+      toll: proxy(['The SSA is the only route; it is carried as the capacity route.', '储能服务协议为唯一路径，按容量路径列示。'], ['Not applicable']),
+      ltda: proxy(['No separate long-term award route exists.', '不存在单独的长期中标路径。'], ['Not applicable']),
+      merchant: proxy(['No wholesale market: SPPC is the single buyer and dispatches.', '无批发市场：SPPC为单一买方并负责调度。'], ['Not applicable']),
+      services: proxy(['No ancillary market open to storage was found.', '未找到向储能开放的辅助服务市场。'], ['Not applicable']),
+    },
+    contractRisk: { ...UNKNOWN_CONTRACT, counterparty:['Saudi Power Procurement Company (state principal buyer)', '沙特电力采购公司（国有主买方）'], indexation:['Not disclosed (gate SA-2)', '未披露（研究缺口SA-2）'], reset:['Not disclosed', '未披露'], upside:['None: no market revenue exists', '无：不存在市场收入'], dispatch:['SPPC / the system operator', 'SPPC/系统运营商'], deliverability:['500 MW / 2,000 MWh sites chosen by SPPC; connection built by National Grid SA', 'SPPC选定的500MW/2,000MWh场址；并网由国家电网公司建设'], refinancing:['Supportive in structure: a fifteen-year state contract', '结构上有利：十五年国有合同'] },
+  }),
   fi: profile({
     confidenceScore: 3,
     consensus: { status:'stale', summary:['Structure verified against Fingrid and the Energy Authority; reserve revenue withheld pending a saturation measure. Not comparable to a market with complete economics.', '市场结构已依据Fingrid与能源局核验；备用收入在饱和度指标建立前暂缓发布。不可与经济性完整的市场直接比较。'], sources:['Fingrid power system reserves', 'Energy Authority national report'] },

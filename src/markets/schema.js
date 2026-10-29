@@ -206,6 +206,11 @@ export const MULTI_REGION_FIELDS = ['dashboardId', 'region'];
          },
        }
 
+   The same holds for a field the capacity capability requires (2026-10-29):
+   Saudi Arabia has a capacity contract, the SPPC Storage Services Agreement,
+   whose price is unpublished, so `contracted` is null and declared, the
+   capability stays true, and the market is unready.
+
    tests/registry.test.js asserts that nothing computes on an unready market's
    economics while it is unready.
    --------------------------------------------------------------------------- */

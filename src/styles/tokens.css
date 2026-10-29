@@ -140,6 +140,7 @@
      draws is visible at all. */
   --region-americas:#8e2f5f; --region-europe:#2f5fd0;
   --region-asia:#a35f00;     --region-oceania:#0f7c86;
+  --region-middle-east:#7a5a24;
   --bg:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
   --grid:#e1e0d9; --baseline:#c3c2b7; --border:rgba(11,11,11,.10);
   --map-water:#eef3f6; --map-land:#dfe8e6; --map-coast:#708394;
@@ -170,6 +171,7 @@
        separation applies, and the same text label carries the meaning. */
     --region-americas:#e07aa8; --region-europe:#7aa3ff;
     --region-asia:#e0a13a;     --region-oceania:#45c2ce;
+    --region-middle-east:#d2b07a;
     --good-bg:rgba(12,163,12,.18); --warn-bg:rgba(250,178,25,.14); --serious-bg:rgba(236,131,90,.15); --critical-bg:rgba(208,59,59,.20);
     --accent-bg:rgba(57,135,229,.14);
   }
@@ -190,6 +192,7 @@
      separation applies, and the same text label carries the meaning. */
   --region-americas:#e07aa8; --region-europe:#7aa3ff;
   --region-asia:#e0a13a;     --region-oceania:#45c2ce;
+  --region-middle-east:#d2b07a;
   --good-bg:rgba(12,163,12,.18); --warn-bg:rgba(250,178,25,.14); --serious-bg:rgba(236,131,90,.15); --critical-bg:rgba(208,59,59,.20);
   --accent-bg:rgba(57,135,229,.14);
 }
