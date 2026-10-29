@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-29T13:13:20.597Z",
+  "fetchedAt": "2026-10-29T22:49:23.731Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-29T13:08:06.000Z",
+    "to": "2026-10-29T17:40:22.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 48
   },
   "units": {
     "record": "published article metadata"
@@ -135,46 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-10-26T07:14:43.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/singapore-targets-1gwh-of-energy-storage-in-energy-infrastructure-plan-to-meet-rising-demand-for-electricity/",
-      "source": "Energy-Storage.news",
-      "title": "Singapore targets 1GWh of energy storage in Energy Infrastructure Plan to meet rising demand for electricity",
-      "url": "https://www.energy-storage.news/singapore-targets-1gwh-of-energy-storage-in-energy-infrastructure-plan-to-meet-rising-demand-for-electricity/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Faced with unprecedented growth in demand, Singapore’s Energy Market Authority has launched plan that includes a gigawatt-hour energy storage target."
-    },
-    {
-      "t": "2026-10-26T11:46:19.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/software-stack-complexity-and-the-push-for-interoperability-standards-in-us-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Software stack complexity and the push for interoperability standards in US BESS",
-      "url": "https://www.energy-storage.news/software-stack-complexity-and-the-push-for-interoperability-standards-in-us-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS industry experts note that rising complexity in BESS software is driving calls for industry-wide interoperability and data standards."
-    },
-    {
-      "t": "2026-10-26T12:26:39.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/heron-power-and-nisource-announce-us-data-centre-and-bess-focused-deals-with-vantage-microsoft/",
-      "source": "Energy-Storage.news",
-      "title": "Heron Power and NiSource announce US data centre and BESS-focused deals with Vantage, Microsoft",
-      "url": "https://www.energy-storage.news/heron-power-and-nisource-announce-us-data-centre-and-bess-focused-deals-with-vantage-microsoft/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Heron Power and NiSource have separately announced US data centre-focused deals involving battery energy storage systems (BESS) in recent days."
-    },
-    {
-      "t": "2026-10-26T15:06:46.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/wind-turbine-orders-hit-28-gw-in-q2-ahead-of-tax-credit-deadline-woodmac/872757/",
-      "source": "Utility Dive",
-      "title": "Wind turbine orders hit 2.8 GW in Q2 ahead of tax credit deadline: WoodMac",
-      "url": "https://www.utilitydive.com/news/wind-turbine-orders-hit-28-gw-in-q2-ahead-of-tax-credit-deadline-woodmac/872757/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Overall, &ldquo;the U.S. wind industry remains on course to add 39 GW of onshore new-build capacity by 2030,&rdquo; the report said."
-    },
-    {
       "t": "2026-10-26T17:48:03.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-already-reducing-curtailment-in-chile-says-acera-in-construction-projects-to-triple-capacity/",
       "source": "Energy-Storage.news",
@@ -233,26 +193,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "South Korean battery and electronics materials manufacturer Samsung SDI has signed a 1GWh supply agreement with US IPP Alpha Omega Power (AOP)."
-    },
-    {
-      "t": "2026-10-27T13:47:23.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/pjm-ferc-mon-power-winter-storm-fern-complaint/872855/",
-      "source": "Utility Dive",
-      "title": "PJM urges FERC to dismiss Mon Power ‘fishing expedition’ seeking to recoup $145M",
-      "url": "https://www.utilitydive.com/news/pjm-ferc-mon-power-winter-storm-fern-complaint/872855/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "FirstEnergy&rsquo;s Monongahela Power contends that the PJM Interconnection&rsquo;s advanced scheduling of gas-fired power plants during Winter Storm Fern may have violated the grid operator&rsquo;s rules."
-    },
-    {
-      "t": "2026-10-27T14:19:38.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/bnef-ups-us-energy-storage-deployment-forecast-by-30/872870/",
-      "source": "Utility Dive",
-      "title": "BNEF ups US energy storage deployment forecast by 30%",
-      "url": "https://www.utilitydive.com/news/bnef-ups-us-energy-storage-deployment-forecast-by-30/872870/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Hyperscalers&rsquo; interest in on-site and nearby energy storage has converted into firm orders this year, the global energy consultancy said last week in its latest industry outlook."
     },
     {
       "t": "2026-10-27T16:05:05.000Z",
@@ -355,26 +295,6 @@
       "summary": "Garrick Rochow blamed political &ldquo;spin&rdquo; for permitting setbacks in an earnings call. He did not address the more than $300 million the utility says it has spent to keep an aging coal plant running under DOE &lsquo;emergency&rsquo; orders."
     },
     {
-      "t": "2026-10-29T06:23:53.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/chilean-solar-plant-offline-for-two-months-following-cyberattack/",
-      "source": "pv magazine",
-      "title": "Chilean solar plant offline for two months following cyberattack",
-      "url": "https://www.pv-magazine.com/2026/10/29/chilean-solar-plant-offline-for-two-months-following-cyberattack/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A 103 MW solar plant and its 98 MW/312 MWh battery storage system in northern Chile have remained offline for two months following a reported cyberattack. The cause and extent of the incident remain unconfirmed, with no timeline announced for restoring operations. The post Chilean solar plant offline for two months…"
-    },
-    {
-      "t": "2026-10-29T08:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/heat-pump-grant-survives-new-loans-for-solar-and-battery-storage-in-uk-budget/",
-      "source": "pv magazine",
-      "title": "Heat pump grant survives, new loans for solar and battery storage in UK Budget",
-      "url": "https://www.pv-magazine.com/2026/10/29/heat-pump-grant-survives-new-loans-for-solar-and-battery-storage-in-uk-budget/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Heat pump grants subsidy retained, but future budget is reduced, while Warm Home Loans program promises to cut the cost of financing residential solar. End of zero VAT rating for energy saving materials. The post Heat pump grant survives, new loans for solar and battery storage in UK Budget appeared first on pv maga…"
-    },
-    {
       "t": "2026-10-29T09:30:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/scatec-secures-217-million-for-egypt-smelter-solar-plus-storage-plant/",
       "source": "pv magazine",
@@ -435,6 +355,16 @@
       "summary": "Ground-mounted photovoltaic (PV) installations accounted for 27% of Italy’s land consumption in 2025, according to the National System for Environmental Protection (SNPA). The post Ground-mounted solar used 2,798 hectares of land in Italy in 2025 appeared first on pv magazine Global ."
     },
     {
+      "t": "2026-10-29T12:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/data-center-purchases-of-electrical-equipment-up-80-since-2025-hubbell/873134/",
+      "source": "Utility Dive",
+      "title": "Data center purchases of electrical equipment up 80% since 2025: Hubbell",
+      "url": "https://www.utilitydive.com/news/data-center-purchases-of-electrical-equipment-up-80-since-2025-hubbell/873134/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A temporary shortage of meter components should be fully resolved by the end of the year, the electrical equipment supplier said in its third-quarter earnings call."
+    },
+    {
       "t": "2026-10-29T13:00:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/researchers-develop-molecular-locking-strategy-for-organic-solar-cells/",
       "source": "pv magazine",
@@ -445,6 +375,16 @@
       "summary": "Small-area organic solar cells featuring the molecular locking strategy achieved a power conversion efficiency of 20.4%, while larger-area modules reached a record active-area efficiency of 18.8%. The post Researchers develop molecular locking strategy for organic solar cells appeared first on pv magazine Global ."
     },
     {
+      "t": "2026-10-29T13:00:02.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/firstenergy-data-center-pipeline-maidsville/873149/",
+      "source": "Utility Dive",
+      "title": "FirstEnergy data center pipeline increases 5% to 26 GW in Q3",
+      "url": "https://www.utilitydive.com/news/firstenergy-data-center-pipeline-maidsville/873149/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Two FirstEnergy utilities reserved combined cycle turbines for a 1.2-GW data center-focused project in West Virginia and issued a solicitation for an additional 3 GW, company officials said."
+    },
+    {
       "t": "2026-10-29T13:08:06.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/franklinwh-expands-us-vpp-reach-with-alliant-energy-and-entergy-louisiana-partnerships/",
       "source": "Energy-Storage.news",
@@ -453,17 +393,127 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Distributed energy resource (DER)-focused company FranklinWH has recently announced advancements in residential energy storage programmes in Louisiana and Iowa."
+    },
+    {
+      "t": "2026-10-29T13:19:52.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/intense-bess-competition-and-density-race-increases-technical-and-contractual-risks-advisor-says/",
+      "source": "Energy-Storage.news",
+      "title": "Intense BESS competition and density race increases technical and contractual risks, advisor says",
+      "url": "https://www.energy-storage.news/intense-bess-competition-and-density-race-increases-technical-and-contractual-risks-advisor-says/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The intense competition between BESS suppliers in the European market and the ever-more dense products available increases technical risk and the possibility of contractual issues further down the line, a France-based advisor said."
+    },
+    {
+      "t": "2026-10-29T13:21:29.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/chinese-linked-solar-developer-loses-appeal-to-connect-to-texas-grid/873178/",
+      "source": "Utility Dive",
+      "title": "Chinese-linked solar developer loses appeal over Texas grid interconnection",
+      "url": "https://www.utilitydive.com/news/chinese-linked-solar-developer-loses-appeal-to-connect-to-texas-grid/873178/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The U.S. Court of Appeals for the 5th Circuit&nbsp;said Texas has a &ldquo;free lane&rdquo; to enforce restrictions on foreign-owned companies&rsquo;&nbsp;access to the state&rsquo;s electric grid in a ruling that could have implications for other states and market participants."
+    },
+    {
+      "t": "2026-10-29T13:27:47.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/california-energy-commission-releases-us46-million-for-ders-supporting-grid-reliability/",
+      "source": "Energy-Storage.news",
+      "title": "California Energy Commission releases US$46 million for DERS supporting grid reliability",
+      "url": "https://www.energy-storage.news/california-energy-commission-releases-us46-million-for-ders-supporting-grid-reliability/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The California Energy Commission (CEC) has released over US$46 million for the state’s Distributed Electricity Backup Assets (DEBA) Programme."
+    },
+    {
+      "t": "2026-10-29T14:26:03.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/us-customs-releases-toyos-ethiopian-cells-as-duty-probe-continues/",
+      "source": "pv magazine",
+      "title": "US customs frees detained Ethiopian solar cells as duty probe continues",
+      "url": "https://www.pv-magazine.com/2026/10/29/us-customs-releases-toyos-ethiopian-cells-as-duty-probe-continues/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US Customs and Border Protection (CBP) has released shipments of Toyo’s Ethiopian-made solar cells, while a separate US Department of Commerce inquiry into whether cells from Ethiopia circumvent duties on Chinese solar products continues. The post US customs frees detained Ethiopian solar cells as duty probe continu…"
+    },
+    {
+      "t": "2026-10-29T15:05:24.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/aep-transmission-data-center-earnings/873189/",
+      "source": "Utility Dive",
+      "title": "AEP increases investment plan 30% to $100B on gen, transmission spending",
+      "url": "https://www.utilitydive.com/news/aep-transmission-data-center-earnings/873189/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "American Electric Power&rsquo;s contracted large loads jumped 22% to 84 GW, mainly on a 10.4-GW data center in Ohio being developed by SB Energy, company officials said Wednesday."
+    },
+    {
+      "t": "2026-10-29T15:21:25.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/baaja-permitting-reform-interregional-transmission-harder/873041/",
+      "source": "Utility Dive",
+      "title": "BAAJA gives federal regulators ‘bigger hammer’ to break transmission blocks",
+      "url": "https://www.utilitydive.com/news/baaja-permitting-reform-interregional-transmission-harder/873041/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "&ldquo;I think the cost-sharing elements are by far probably the most important part of this bill,&rdquo; Rep. Josh Harder, D-Calif., told Utility Dive.&nbsp;&ldquo;My hope is that can unlock a lot more collaboration as opposed to ... folks pointing the finger at each other.&rdquo;"
+    },
+    {
+      "t": "2026-10-29T15:46:23.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/scatecs-us650-million-solar-plus-storage-project-for-egypt-aluminium-gets-ebrd-eib-and-afd-financing-commitment/",
+      "source": "Energy-Storage.news",
+      "title": "Scatec’s US$650 million solar-plus-storage project for Egypt Aluminium gets EBRD, EIB and AfD financing commitment",
+      "url": "https://www.energy-storage.news/scatecs-us650-million-solar-plus-storage-project-for-egypt-aluminium-gets-ebrd-eib-and-afd-financing-commitment/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Scatec, the European Investment Bank (EIB), the European Bank for Reconstruction and Development (EBRD) and the African Development Bank (AfDB) have signed an investment agreement for Dandara solar-plus-storage project in Egypt."
+    },
+    {
+      "t": "2026-10-29T16:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/first-solar-opens-1-7-gw-module-plant-in-south-carolina/",
+      "source": "pv magazine",
+      "title": "First Solar opens 1.7 GW module plant in South Carolina",
+      "url": "https://www.pv-magazine.com/2026/10/29/first-solar-opens-1-7-gw-module-plant-in-south-carolina/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "First Solar’s latest US plant will complete production of thin-film solar modules manufactured at overseas sites, with annual capacity set to increase from 1.7 GW to 3.4 GW by mid-2027. The post First Solar opens 1.7 GW module plant in South Carolina appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-29T16:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/gallium-doped-zinc-oxide-enables-24-92-efficient-hjt-solar-cell/",
+      "source": "pv magazine",
+      "title": "Gallium-doped zinc oxide enables 24.92%-efficient HJT solar cell",
+      "url": "https://www.pv-magazine.com/2026/10/29/gallium-doped-zinc-oxide-enables-24-92-efficient-hjt-solar-cell/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers have used room-temperature reactive plasma deposition to produce indium-free transparent electrodes for silicon heterojunction solar cells. Optimizing the oxygen content during deposition enabled a conversion efficiency of 24.92%, with silver-coated copper contacts. The post Gallium-doped zinc oxide enab…"
+    },
+    {
+      "t": "2026-10-29T17:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/government-backs-indian-floating-solar/",
+      "source": "pv magazine",
+      "title": "Government backs Indian floating solar",
+      "url": "https://www.pv-magazine.com/2026/10/29/government-backs-indian-floating-solar/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "New policy support sees India’s federal government attempt to accelerate floating solar deployment, but can it be done, and in a country with ample ground-mounted potential, is it worth the effort? The post Government backs Indian floating solar appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-29T17:40:22.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ge-vernova-in-9b-deal-to-buy-high-voltage-manufacturer-as-gas-turbine-orde/873223/",
+      "source": "Utility Dive",
+      "title": "GE Vernova in $9B deal to buy high-voltage manufacturer as gas turbine orders slow",
+      "url": "https://www.utilitydive.com/news/ge-vernova-in-9b-deal-to-buy-high-voltage-manufacturer-as-gas-turbine-orde/873223/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The acquisition of Trench Group will help GE Vernova capitalize on rising electricity demand, company executives said."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 48,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 9,
-      "capital": 4,
-      "grid": 28,
+      "capital": 5,
+      "grid": 32,
       "technology": 2
     },
     "sourceStatus": [
@@ -483,13 +533,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 7
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 10
       }
     ]
   },
@@ -498,6 +548,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:bcdc91363149d2e395e7cb1e4c4e09b69438d616e8f16c82fd5bddba1f2240d4",
-  "envelopeChecksum": "sha256:b023dba543af99cb0b77ebf4ef273f368ba620b616ea6a3553608b7f70f0bf41"
+  "contentChecksum": "sha256:d3bd4a3fc0175da80d9a0d6536ac089a9322874a537e58da390f87b1efa9daac",
+  "envelopeChecksum": "sha256:3227ef1a6a8497f1002aa5d8b0b20147a96fb5913dd32297513fd32f2afd2411"
 }
