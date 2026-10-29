@@ -47,7 +47,6 @@ function renderStory(main, { summaryOnly = false } = {}){
     '此处两项事实最为关键。在没有联络线可依赖的孤立电网上，储能已满足峰值需求的' + R.peakSharePct + '% — 系统需求已被证实，而非预测。但同一电网在2028-29呈现+' + fmtN(SEED.surplusAboveRcr) + 'MW容量盈余，至2035-36转为' + fmtN(Math.abs(ESOO_BAL.ecGap3536MW)) + 'MW缺口。因此西澳的投资难题在于时点而非逻辑：资产成本须低到足以穿越盈余窗口，时长须长到缺口到来时仍然合规。'],
     ['Timing risk, not thesis risk', '时点风险而非逻辑风险']));
   main.append(orient);
-  if (summaryOnly) return;
 
   // ---- RCM evolution: how the mechanism changed with the market and the technology ----
   const rh = card(['How the Reserve Capacity Mechanism evolved — market conditions and marginal technology', '备用容量机制的演进 — 市场条件与边际技术'], [badge('official'), badge('public')]);
@@ -61,6 +60,14 @@ function renderStory(main, { summaryOnly = false } = {}){
   rh.append(why(['Three of these seven milestones changed which projects earned full value without changing any asset: the 2016 price curve, the October 2023 Peak/Flexible split with NAQ, and the shift of the benchmark technology to a battery. That is the base rate to underwrite against — the RCM has been re-pointed roughly every four years, and each re-pointing has favoured the newer, longer, better-located asset over the incumbent. Two practical conclusions: record the rule vintage used in every model, and treat the next benchmark technology review as a scheduled event with a P&L consequence rather than as policy background.',
     '这七个里程碑中有三个在资产完全不变的情况下改变了"哪些项目能获得足额价值"：2016年的价格曲线、2023年10月的峰值/灵活拆分与NAQ、以及基准技术改为电池。这就是承销时应参照的基准频率 — RCM大致每四年被重新定向一次，且每次都更有利于更新、更长、区位更优的资产，而非存量资产。两项实务结论：在每个模型中记录所用规则版本；并将下一次基准技术审查视为具有损益后果的既定事件，而非政策背景。'],
     ['Re-pointed roughly every four years', '大致每四年重新定向一次']));
+  /* The front page carries the history inside the orientation: the story band,
+     the milestones and their reading, without the supporting charts. */
+  if (summaryOnly) {
+    rh.querySelector('h3, .ct, .card-title')?.replaceChildren(L(['How the market developed', '市场发展历程']));
+    rh.style.marginTop = '14px';
+    orient.append(rh);
+    return;
+  }
   const rhg = h('div', { class:'grid g2', style:'margin-top:12px;' });
   const rhT = card(['Benchmark Capacity Provider — the technology that sets the BRCP', '基准容量提供者 — 决定BRCP的技术'], [badge('final')]);
   rhT.append(h('div', { class:'tbl-wrap' }, h('table', {},

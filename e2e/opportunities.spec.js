@@ -3,19 +3,22 @@ import { test, expect } from '@playwright/test';
 test('special opportunities link to a working bilingual paired valuation',async({page})=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/');
-  await expect(page.locator('#special-opportunities')).toContainText('Sub-5');
-  await page.locator('#special-opportunities a[href*="nem-sub5"]').click();
+  /* Only special routes whose IRR beats the conventional play are listed. */
+  await expect(page.locator('#special-opportunities')).toContainText('Germany');
+  await expect(page.locator('#special-opportunities')).not.toContainText('Sub-5');
+  await expect(page.locator('#special-opportunities .ix-special-irr').first()).toContainText('Conventional play IRR');
+  await page.locator('#special-opportunities a[href*="de-existing-node"]').click();
   const comparison=page.locator('#opportunity-comparison');
-  await expect(comparison).toContainText('4.5 MW');
+  await expect(comparison).toContainText('100 MW');
   await comparison.locator('.ix-opportunity-inputs > summary').click();
   const base=await comparison.locator('tbody tr').filter({hasText:'Return at the input price'}).textContent();
   await page.getByLabel('Extra price for the special route / MW',{exact:true}).fill('50000');
   await page.getByLabel('Extra price for the special route / MW',{exact:true}).blur();
-  await expect(comparison).toContainText('AUD 50.0k');
+  await expect(comparison).toContainText('EUR 50.0k');
   expect(await comparison.locator('tbody tr').filter({hasText:'Return at the input price'}).textContent()).not.toBe(base);
   const downloaded=page.waitForEvent('download');
   await page.getByRole('button',{name:'Download assumptions & cash flows',exact:true}).click();
-  expect((await downloaded).suggestedFilename()).toBe('nem-sub5-comparison.json');
+  expect((await downloaded).suggestedFilename()).toBe('de-existing-node-comparison.json');
   await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
   await expect(comparison).toContainText('同口径投资测算');
   await expect(page.getByLabel('特殊路径额外收购对价／MW',{exact:true})).toHaveValue('50000');

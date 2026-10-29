@@ -20,14 +20,33 @@ export function miniature(values) {
     text(0, 100, 'Y1'), text(375, 100, `Y${values.length}`));
 }
 
-export function opportunityMatrix(rows, selected, onSelect) {
-  const dots = rows.filter(r => finite(r.econ.hold) && finite(r.econ.secured));
-  const low = Math.min(-5, Math.floor(Math.min(...dots.map(r => r.econ.hold * 100), 0) / 5) * 5);
-  const high = Math.max(20, Math.ceil(Math.max(...dots.map(r => r.econ.hold * 100), 0) / 5) * 5);
+/** Project total capex in USD, for sizing a market's dot. */
+export const capexUSD = row => {
+  const inv = row.investment;
+  return finite(inv?.capexTotal) && finite(inv?.fxToUSD) ? inv.capexTotal * inv.fxToUSD : null;
+};
+/* Return basis for the vertical axis. The shaded zone sits at 10% all-equity,
+   and two points higher levered, matching the two-layer target test. */
+export const MATRIX_BASIS = {
+  hold: { label: ['After-tax all-equity IRR (hold)', '税后全股权IRR（长持）'], zone: .10 },
+  levered: { label: ['After-tax levered equity IRR', '税后杠杆后股权IRR'], zone: .12 },
+};
+
+export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } = {}) {
+  const value = r => r.econ[basis];
+  const dots = rows.filter(r => finite(value(r)) && finite(r.econ.secured));
+  const low = Math.min(-5, Math.floor(Math.min(...dots.map(r => value(r) * 100), 0) / 5) * 5);
+  const high = Math.max(20, Math.ceil(Math.max(...dots.map(r => value(r) * 100), 0) / 5) * 5);
   const x = v => 66 + v * 680;
   const y = v => 340 - (v * 100 - low) / (high - low) * 290;
-  const svg = s('svg', { viewBox: '0 0 800 405', class: 'ix-matrix-svg', role: 'group', 'aria-label': L(['Global opportunity matrix. Select a market to inspect its case.', '全球机会矩阵。选择市场查看投资方案。']) });
-  svg.append(s('rect', { x: x(.5), y: 50, width: 340, height: y(.1) - 50, fill: '#e9efdf' }),
+  /* Dot AREA is proportional to project total capex in USD, so a market twice
+     the cheque reads twice the ink. */
+  const maxCapex = Math.max(...dots.map(capexUSD).filter(finite), 1);
+  const radius = r => { const c = capexUSD(r); return finite(c) ? Math.max(4.5, 19 * Math.sqrt(c / maxCapex)) : 6; };
+  const usdM = r => { const c = capexUSD(r); return finite(c) ? `USD ${Math.round(c / 1e6)}m capex` : 'capex n/a'; };
+  const zone = MATRIX_BASIS[basis].zone;
+  const svg = s('svg', { viewBox: '0 0 800 405', class: 'ix-matrix-svg', role: 'group', 'aria-label': L(['Global opportunity matrix. Dot area shows project total capex. Select a market to inspect its case.', '全球机会矩阵。圆点面积代表项目总资本开支。选择市场查看投资方案。']) });
+  svg.append(s('rect', { x: x(.5), y: 50, width: 340, height: Math.max(0, y(zone) - 50), fill: '#e9efdf' }),
     text(732, 69, L(['INCOME + RETURN', '收入保障 + 回报']), { 'text-anchor': 'end', class: 'ix-chart-zone' }));
   for (let i = 0; i <= 4; i++) {
     svg.append(s('line', { x1: x(i / 4), y1: 50, x2: x(i / 4), y2: 340, class: 'ix-grid-line' }), text(x(i / 4), 362, `${i * 25}%`, { 'text-anchor': 'middle' }));
@@ -35,14 +54,15 @@ export function opportunityMatrix(rows, selected, onSelect) {
   for (let tick = low; tick <= high; tick += 5) {
     svg.append(s('line', { x1: 66, y1: y(tick / 100), x2: 746, y2: y(tick / 100), class: 'ix-grid-line' }), text(53, y(tick / 100) + 4, `${tick}%`, { 'text-anchor': 'end' }));
   }
-  svg.append(text(66, 23, L(['After-tax investment IRR', '税后投资 IRR']), { class: 'ix-chart-axis' }),
+  svg.append(text(66, 23, L(MATRIX_BASIS[basis].label), { class: 'ix-chart-axis' }),
     text(406, 395, L(['Modelled fixed revenue share →', '模型固定收入占比 →']), { 'text-anchor': 'middle', class: 'ix-chart-axis' }));
-  dots.forEach(row => {
+  /* Largest first, so a small market is never hidden under a large one. */
+  [...dots].sort((a, b) => radius(b) - radius(a)).forEach(row => {
     const point = s('g', { class: `ix-point ${row.call} ${row.id === selected ? 'selected' : ''}`, role: 'button', tabindex: 0,
-      'aria-label': `${L(marketName(row))}, ${returnPct(row.econ.hold)} IRR, ${share(row.econ.secured)}`, 'aria-pressed': String(row.id === selected) });
-    const cx = x(row.econ.secured), cy = y(row.econ.hold);
-    point.append(s('circle', { cx, cy, r: row.id === selected ? 11 : 8 }), s('title', {}, `${L(marketName(row))} · ${returnPct(row.econ.hold)} · ${share(row.econ.secured)}`));
-    if (row.rank <= 3 || row.id === selected) point.append(text(cx > 660 ? cx - 16 : cx + 15, cy - 12, L(row.market.manifest.shortName), { 'text-anchor': cx > 660 ? 'end' : 'start', class: 'ix-point-label' }));
+      'aria-label': `${L(marketName(row))}, ${returnPct(value(row))} IRR, ${share(row.econ.secured)}, ${usdM(row)}`, 'aria-pressed': String(row.id === selected) });
+    const cx = x(row.econ.secured), cy = y(value(row)), r = radius(row);
+    point.append(s('circle', { cx, cy, r }), s('title', {}, `${L(marketName(row))} · ${returnPct(value(row))} · ${share(row.econ.secured)} · ${usdM(row)}`));
+    if (row.rank <= 3 || row.id === selected) point.append(text(cx > 660 ? cx - r - 6 : cx + r + 6, cy - r * .7 - 4, L(row.market.manifest.shortName), { 'text-anchor': cx > 660 ? 'end' : 'start', class: 'ix-point-label' }));
     const choose = () => {
       for (const p of svg.querySelectorAll('.ix-point')) { p.classList.remove('selected'); p.setAttribute('aria-pressed', 'false'); }
       point.classList.add('selected'); point.setAttribute('aria-pressed', 'true'); svg.append(point); onSelect(row);

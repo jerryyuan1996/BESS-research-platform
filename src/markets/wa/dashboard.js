@@ -23,7 +23,8 @@ import { requestRender } from '../../app/state.js';
 import { renderHeader } from '../../components/header.js';
 import { marketNav, tabNav, revenueSubNav, labLink } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
-import { enhanceMarketPage } from '../../components/pageEnhancements.js';
+import { enhanceMarketPage, pairOverviewMap } from '../../components/pageEnhancements.js';
+import { gridMapForMarket } from '../gridMapRegistry.js';
 import { drawTab } from '../../components/tabSections.js';
 import { sectionHead } from '../../components/sectionHeader.js';
 import { resolveSegment } from '../tabGroups.js';
@@ -65,6 +66,7 @@ registerCase('wa', { view: VIEW, ledger: ENTRY_LEDGER });
 export function researchSummary(container) {
   container.append(h('article', { class:'card' }, h('h3', {}, L(['House view','本方观点'])),
     h('p', {}, L(SEED.overall.rationale))));
+  pairOverviewMap(container, gridMapForMarket('wa') || WA_GRID_MAP);
   renderStory(container, { summaryOnly:true });
 }
 

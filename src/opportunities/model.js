@@ -109,3 +109,16 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
     acquisitionFee:FEES.acquisition,
   };
 }
+
+/** All-equity hold IRR of each side at the same price. A special opportunity
+ * is worth showing only when its IRR beats the conventional play in the same
+ * market; an equal IRR is no advantage (analyst, 29 Oct 2026). */
+export function opportunityIRRs(c) {
+  if (!c || c.unavailable) return null;
+  const conventional = c.standard?.holdReturn?.annualReturn, special = c.alternative?.holdReturn?.annualReturn;
+  return { conventional: Number.isFinite(conventional) ? conventional : null, special: Number.isFinite(special) ? special : null };
+}
+export function beatsConventional(c) {
+  const r = opportunityIRRs(c);
+  return !!r && r.special != null && r.conventional != null && r.special > r.conventional + 1e-4;
+}

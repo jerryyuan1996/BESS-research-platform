@@ -9,7 +9,7 @@ import { acquisitionCashFlows } from '../acquisition/valuation.js';
 import { link, sectionTitle, eyebrow, metric } from '../experience/chrome.js';
 import { money, pct } from '../experience/model.js';
 import { SPECIAL_OPPORTUNITIES, SCOUT_OPPORTUNITIES, opportunitiesFor, opportunityById, RESEARCH_DATE } from './catalog.js';
-import { compareOpportunity, defaultOpportunityStage } from './model.js';
+import { compareOpportunity, defaultOpportunityStage, beatsConventional } from './model.js';
 import { REVENUE_MECHANISMS, revenueMechanismsFor } from './revenue.js';
 
 const session = new Map();
@@ -43,10 +43,22 @@ export function revenueMechanismSection(row) {
     }));
 }
 
+/* A special opportunity is valid when, at the default inputs, its all-equity
+   IRR beats the conventional play's in the same market. */
+const isValid = beatsConventional;
+/** The valid special opportunities for this market and investor, and the
+ * conventional case on its own for the delivery timeline when none is valid. */
+export function specialOpportunityScreen(row, investor) {
+  const screened = opportunitiesFor(row.id).map(o => ({ o, c: compareOpportunity(row.market, o, investor, row.play, {}) }));
+  const priced = screened.find(x => !x.c.unavailable)?.c;
+  return { valid: screened.filter(x => isValid(x.c)).map(x => x.o),
+    conventional: priced ? { standard: priced.standard, stage: priced.stage } : null };
+}
+
 /** This same workbench is mounted in the overview and the Investment Lab.
  * Input state is session-local; deal prices are not sent to a service or URL. */
-export function opportunityComparison(row, investor, {compact=false}={}) {
-  const available = opportunitiesFor(row.id);
+export function opportunityComparison(row, investor, {compact=false,only=null}={}) {
+  const available = opportunitiesFor(row.id).filter(o => !only || only.some(v => v.id === o.id));
   if (!available.length) return null;
   const key=row.id+'/'+investor;
   const requested = new URLSearchParams(window.location.search).get('opportunity');
