@@ -117,14 +117,27 @@ export const LTSA_ANNUAL_EUR = [
    by SOR/2026-33).
    --------------------------------------------------------------------------- */
 export const FREIGHT_EUR_PER_KWH = 1.5;
-export const DUTY_PCT = { EUR: 2.7, GBP: 2.7, AUD: 0, JPY: 0, CAD: 7 };
+/* USD: a Chinese lithium-ion battery entered in October 2026 pays 3.4% MFN on
+   8507.60, 25% under Section 301 (from 1 January 2026) and a further 12.5% under
+   Section 301 (from 24 July 2026), 40.9% in all. The IEEPA tariffs were struck
+   down on 20 February 2026 and the Section 122 surcharge expired on 24 July 2026
+   (AES and Energy Vault 10-Qs, 2026; trade-press tariff tables). */
+export const DUTY_PCT = { EUR: 2.7, GBP: 2.7, AUD: 0, JPY: 0, CAD: 7, USD: 40.9 };
+
+/* A US DC block from a supplier that is not a prohibited foreign entity costs
+   about $50/kWh nameplate more than a landed Chinese one: US-made blocks at
+   $160–180/kWh against about $120 for Chinese blocks after tariffs, shipping and
+   service (Latitude Media, 28 August 2026). Only such a block lets a 2026
+   construction start meet the 55% material-assistance ratio the storage credit
+   requires; Chinese cells alone are about 52% of equipment cost. */
+export const NON_FEOC_PREMIUM_USD_PER_KWH = 50;
 
 /* ECB euro reference rates on the quotation's date, 15 October 2026, cross-
    computed through USD exactly as the fx-ecb feed publishes them. Fixed here so
    the published conversion does not drift with each day's rate. */
 export const QUOTE_FX_DATE = '2026-10-15';
 /* CAD: ECB 15 Oct 2026, 1.5923 CAD and 1.1208 USD per euro → 1.1208 / 1.5923. */
-const USD_PER = { EUR: 1.1208, GBP: 1.3246661151164165, AUD: 0.6910839807621162, JPY: 0.006330057607590647, CAD: 1.1208 / 1.5923 };
+const USD_PER = { EUR: 1.1208, GBP: 1.3246661151164165, AUD: 0.6910839807621162, JPY: 0.006330057607590647, CAD: 1.1208 / 1.5923, USD: 1 };
 export const EUR_TO = Object.fromEntries(Object.entries(USD_PER).map(([cur, usd]) => [cur, USD_PER.EUR / usd]));
 
 /** Landed DC block, market currency per kWh at the meter. */
@@ -207,6 +220,17 @@ export function quotedEconomics({ currency, hours, method, total, benchmarkHours
     serviceMeanPerMW: serviceMean,
     otherOpexPerMW: opexSeed - serviceMean,
   };
+}
+
+/**
+ * US installed cost under a named DC-block supply, USD per MW.
+ * The benchmark's non-DC share (44%) is kept and its DC share replaced by the
+ * landed block: 'chinese' is the quotation under the US duty stack; 'non-feoc'
+ * adds the compliant-supply premium. Same swap as a rebuilt market's band end.
+ */
+export function usSupplyCapex(total, hours, supply){
+  const premium = supply === 'non-feoc' ? NON_FEOC_PREMIUM_USD_PER_KWH * OVERSIZE : 0;
+  return (1 - CAPEX_SHARES.dcBlock) * total + (landedDcPerKWh('USD') + premium) * hours * 1000;
 }
 
 /** A rebuilt market's band end: the same swap applied to a benchmark at its own duration. */

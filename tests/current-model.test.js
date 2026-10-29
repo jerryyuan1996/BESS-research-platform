@@ -474,7 +474,8 @@ test('a merchant-only project funds no contracted tranche at all', () => {
 
 test('debt conventions stay inside the bands the market reported', () => {
   const c = DEBT_CONVENTIONS;
-  assert.equal(c.dscrSecured, 1.15);
+  assert.equal(c.dscrSecured, 1.20);
+  for (const v of Object.values(c.dscrByClass)) assert.ok(v >= 1.20 && v <= 1.40, 'contracted DSCR inside the 1.20-1.40x band');
   assert.equal(c.dscrMarket, 2.00);
   assert.ok(c.legalTenorCap >= 7 && c.legalTenorCap <= 10, '7-10 year hard mini-perm');
   assert.ok(c.maxGearingSecured <= 0.75 && c.maxGearingMarket <= 0.60);

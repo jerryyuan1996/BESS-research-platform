@@ -19,6 +19,18 @@ const lens = () => LENSES[app.lens] ? app.lens : 'infraFund';
 const button = (label, onclick, cls = '') => h('button', { type: 'button', class: `ix-button ${cls}`, onclick }, L(label));
 const name = row => L(marketName(row));
 const tag = row => h('span', { class: `ix-tag ${row.call}` }, L(CALLS[row.call] || CALLS.research));
+/* Returns, 29 Oct 2026: the all-equity hold is the headline. The levered equity
+   return, the debt ratio and the 5-year-sale test sit beside it, and the target
+   test is two-layered: all-equity against the target, levered against target + 2. */
+const HOLD_LABEL = ['All-equity IRR (hold)', '全股权IRR（长持）'];
+const LEVERED_LABEL = ['Levered equity IRR', '杠杆后股权IRR'];
+const testText = t => !t ? ['—', '—'] : t.basis === 'all-equity' ? ['Meets target all-equity', '全股权即达标']
+  : t.basis === 'levered' ? ['Meets target with debt', '加杠杆后达标'] : ['Below target both ways', '两种口径均未达标'];
+const debtText = inv => inv?.leverage ? [`Debt ${share(inv.leverage.gearing)} of capex · ${inv.leverage.contractedDSCR ? inv.leverage.contractedDSCR.toFixed(2) + 'x contracted, ' : ''}2.00x merchant`,
+  `债务占资本开支${share(inv.leverage.gearing)} · ${inv.leverage.contractedDSCR ? '合同' + inv.leverage.contractedDSCR.toFixed(2) + '倍、' : ''}市场2.00倍`] : ['No debt sized', '未测算债务'];
+const usText = inv => inv?.usAlternative ? [`Chinese DC block, no credit: ${returnPct(inv.usAlternative.holdIRR)} all-equity, ${returnPct(inv.usAlternative.leveredIRR)} levered`,
+  `中国电池舱、无抵免：全股权${returnPct(inv.usAlternative.holdIRR)}，杠杆后${returnPct(inv.usAlternative.leveredIRR)}`] : null;
+const saleText = row => [`With 5-yr sale test: ${returnPct(row.econ.lowerOf)}`, `含5年出售检验：${returnPct(row.econ.lowerOf)}`];
 /* The design, at the stage this investor's call enters it. */
 const routeName = row => row.play ? playTitle(row.play, row.stage) : row.market.comparison.narrative.archetype;
 const card = (...children) => h('div', { class: 'ix-panel' }, ...children);
@@ -84,7 +96,7 @@ function renderHome(container, rows) {
     h('article', { class: 'ix-featured', ...countryAttrs(lead.id) }, h('div', { class: 'ix-feature-top' }, eyebrow(['IN FOCUS / 01', '重点机会 / 01']), tag(lead)),
       h('div', { class: 'ix-feature-market' }, h('span', { class: 'ix-mono' }, (lead.investment?.currency||lead.market.manifest.currency) + ' / ' + (lead.play?.hours || lead.market.comparison.archetype.durationHours) + 'H'),
         h('h2', {}, name(lead)), h('p', {}, L(routeName(lead)))),
-      h('div', { class: 'ix-feature-metrics' }, metric(['After-tax investment IRR', '税后投资 IRR'], returnPct(lead.econ.hold)), metric(['Modelled fixed income', '模型固定收入占比'], share(lead.econ.secured))),
+      h('div', { class: 'ix-feature-metrics' }, metric(HOLD_LABEL, returnPct(lead.econ.hold)), metric(LEVERED_LABEL, returnPct(lead.econ.levered), debtText(lead.investment)), metric(['Modelled fixed income', '模型固定收入占比'], share(lead.econ.secured))),
       projectFacts(lead.investment),
       lead.investment ? miniature(lead.investment.operatingUSD) : null,
       h('div', { class: 'ix-feature-foot' }, h('span', {}, L(['After-tax cash flow · 20 years', '税后经营现金流 · 20年'])), link(caseUrl(lead), ['Open case ↗', '打开方案 ↗']))));
@@ -98,7 +110,7 @@ function renderHome(container, rows) {
     h('div', { class: 'ix-picks' }, picks.map((row, i) => h('article', { class: 'ix-pick', ...countryAttrs(row.id) },
       h('div', { class: 'ix-pick-top' }, h('span', { class: 'ix-number' }, `0${i + 1}`), tag(row)),
       h('h3', {}, name(row)), h('p', {}, L(routeName(row))),
-      h('div', { class: 'ix-pick-value' }, returnPct(row.econ.hold), h('span', {}, L(['After-tax investment IRR', '税后投资 IRR']))),
+      h('div', { class: 'ix-pick-value' }, returnPct(row.econ.hold), h('span', {}, L(HOLD_LABEL), ' · ', L(LEVERED_LABEL), ' ', returnPct(row.econ.levered))),
       projectFacts(row.investment),
       link(caseUrl(row), ['Read the market case ↗', '进入市场详情 ↗'], 'ix-text-link'))))));
 
@@ -170,7 +182,7 @@ function renderComparison(container, rows) {
     else {
       const selectedPanel = h('aside', { class: 'ix-matrix-detail', 'aria-live': 'polite' });
       const selectRow = row => { state.selected = row.id; selectedPanel.replaceChildren(eyebrow(['SELECTED MARKET', '当前市场']), tag(row), h('h3', {}, name(row)), h('p', {}, L(routeName(row))),
-        h('div', { class: 'ix-selected-metrics' }, metric(['Investment IRR', '投资 IRR'], returnPct(row.econ.hold)), metric(['Fixed share', '固定收入占比'], share(row.econ.secured))),
+        h('div', { class: 'ix-selected-metrics' }, metric(HOLD_LABEL, returnPct(row.econ.hold)), metric(LEVERED_LABEL, returnPct(row.econ.levered)), metric(['Fixed share', '固定收入占比'], share(row.econ.secured))),
         projectFacts(row.investment),link(caseUrl(row), ['Open market case ↗', '查看市场方案 ↗'], 'ix-button'));
         Object.entries(countryAttrs(row.id)).forEach(([k,v])=>selectedPanel.setAttribute(k,v)); };
       selectRow(filtered.find(r => r.id === state.selected));
@@ -182,18 +194,21 @@ function renderComparison(container, rows) {
           matrixPanel.querySelectorAll('.ix-point').forEach(p=>{p.classList.remove('selected');p.setAttribute('aria-pressed','false');});
           selectRow(row);
         }},name(row),' · N/M'))));
-      matrixPanel.append(h('p', { class: 'ix-caption' }, L(['Same RTB closing date · 20 operating years · nominal after project tax · all-cash investment · lower of hold and sale returns.', '统一RTB交割起点 · 20年运营寿命 · 税后名义回报 · 全现金投资 · 长持与出售回报取较低值。'])));
+      matrixPanel.append(h('p', { class: 'ix-caption' }, L(['Same RTB closing date · 20 operating years · nominal after project tax · 2.5% indexation · all-equity hold return; levered return and the 5-year sale test shown beside it.', '统一RTB交割起点 · 20年运营寿命 · 税后名义回报 · 2.5%通胀调整 · 全股权长持回报；杠杆后回报及5年出售检验并列显示。'])));
     }
     const sort = h('select', { 'aria-label': L(['Sort markets', '市场排序']), onchange: event => { state.sort = event.target.value; saveFilters(); draw(); } },
       ...[['priority', ['Investment priority', '投资优先级']], ['return', ['Highest investment IRR', '投资回报降序']], ['income', ['Highest fixed share', '固定收入占比降序']]].map(([id, label]) => h('option', { value: id }, L(label)))); sort.value = state.sort;
     results.replaceChildren(h('div', { class: 'ix-heading-row' }, sectionTitle(['THE OPPORTUNITY SET', '投资机会清单'], [`${filtered.length} ${filtered.length === 1 ? 'market' : 'markets'}. A consistent view.`, `${filtered.length}个市场，同一投资视图。`]), sort));
-    const headers = [['Compare', '对比'], ['Market / investment route', '市场 / 投资路径'], ['Investment IRR', '投资 IRR'], ['Fixed income', '固定收入'], ['Duration', '时长'], ['Action', '建议'], ['', '']];
+    const headers = [['Compare', '对比'], ['Market / investment route', '市场 / 投资路径'], HOLD_LABEL, LEVERED_LABEL, ['Target test', '目标检验'], ['Fixed income', '固定收入'], ['Duration', '时长'], ['Action', '建议'], ['', '']];
     const table = h('table', { class: 'ix-table' }, h('caption', { class: 'ix-sr' }, L(['Comparable market investment cases', '跨市场投资方案对比'])),
       h('thead', {}, h('tr', {}, headers.map(label => h('th', { scope: 'col' }, L(label))))),
       h('tbody', {}, filtered.map(row => {
         const checkbox = h('input', { type: 'checkbox', 'aria-label': L([`Compare ${name(row)}`, `比较${name(row)}`]), onchange: () => toggleCompare(row, checkbox) }); checkbox.checked = state.compare.has(row.id);
         return h('tr', {}, h('td', {}, checkbox), h('th', { scope: 'row' }, link(caseUrl(row), name(row)), h('small', {}, L(routeName(row)))),
-          h('td', { class: 'ix-table-number' }, returnPct(row.econ.hold), operatingPrice(row.investment) ? h('small', { class: 'ix-operating-note' }, L(['New build. ', '新建情景。']), L(operatingPrice(row.investment))) : null), h('td', {}, h('span', { class: 'ix-table-number' }, share(row.econ.secured)), revenueBar(row)),
+          h('td', { class: 'ix-table-number' }, returnPct(row.econ.hold), h('small', { class: 'ix-operating-note' }, L(saleText(row))), usText(row.investment) ? h('small', { class: 'ix-operating-note' }, L(usText(row.investment))) : null, operatingPrice(row.investment) ? h('small', { class: 'ix-operating-note' }, L(['New build. ', '新建情景。']), L(operatingPrice(row.investment))) : null),
+          h('td', { class: 'ix-table-number' }, returnPct(row.econ.levered), h('small', { class: 'ix-operating-note' }, L(debtText(row.investment)))),
+          h('td', {}, h('span', { class: `ix-target-test ${row.econ.test?.basis || 'neither'}` }, L(testText(row.econ.test))), row.econ.test ? h('small', { class: 'ix-operating-note' }, L([`${pct(row.econ.test.target)} all-equity · ${pct(row.econ.test.leveredTarget)} levered`, `全股权${pct(row.econ.test.target)} · 杠杆后${pct(row.econ.test.leveredTarget)}`])) : null),
+          h('td', {}, h('span', { class: 'ix-table-number' }, share(row.econ.secured)), revenueBar(row)),
           h('td', {}, `${row.play?.hours || row.market.comparison.archetype.durationHours}h`), h('td', {}, tag(row)), h('td', {}, link(caseUrl(row), '↗', 'ix-row-open', { 'aria-label': L([`Open ${name(row)}`, `打开${name(row)}`]) })));
       })));
     results.append(h('div', { class: 'ix-table-scroll', tabindex: 0, 'aria-label': L(['Scrollable market comparison table', '可横向滚动的市场对比表']) }, table));
@@ -208,7 +223,7 @@ function compareDialog(rows) {
   const close = button(['Close ×', '关闭 ×'], () => dialog.close(), 'ix-ghost');
   dialog.append(h('div', { class: 'ix-heading-row' }, h('h2', {}, L(['Your shortlist, side by side.', '重点市场，并排比较。'])), close),
     h('div', { class: 'ix-dialog-grid', style: `--compare-count:${rows.length}` }, rows.map(row => h('article', { class: 'ix-comparison-card', ...countryAttrs(row.id) }, tag(row), h('h3', {}, name(row)), h('p', {}, L(routeName(row))),
-      metric(['After-tax investment IRR', '税后投资 IRR'], returnPct(row.econ.hold)), metric(['Modelled fixed income', '模型固定收入占比'], share(row.econ.secured)),
+      metric(HOLD_LABEL, returnPct(row.econ.hold)), metric(LEVERED_LABEL, returnPct(row.econ.levered), debtText(row.investment)), metric(['Target test', '目标检验'], L(testText(row.econ.test))), metric(['Modelled fixed income', '模型固定收入占比'], share(row.econ.secured)),
       metric(['Fixed revenue tenor', '固定收入年限'], finite(row.econ.securedYears) ? row.econ.securedYears + L([' years', '年']) : '—'),
       projectFacts(row.investment), link(caseUrl(row), ['Open market ↗', '进入市场 ↗'], 'ix-button')))));
   const previous = document.activeElement;
@@ -271,13 +286,31 @@ function renderMarket(container, row) {
   if (window.location.hash === '#opportunity-comparison') requestAnimationFrame(() => content.querySelector('#opportunity-comparison')?.scrollIntoView());
 }
 
+function leverageTable(inv) {
+  const l = inv?.leverage;
+  if (!l) return null;
+  const rows = [
+    [['Debt / MW', '债务 / MW'], money(l.loanPerMW, inv.currency)],
+    [['Debt ratio (of build and grid capex)', '债务比例（占建设及并网资本开支）'], share(l.gearing) + (l.capBinds ? L([' · cap binds', ' · 受上限约束']) : '')],
+    [['Contracted coverage', '合同现金流覆盖'], l.contractedDSCR ? l.contractedDSCR.toFixed(2) + 'x' : '—'],
+    [['Merchant coverage', '市场现金流覆盖'], l.merchantDSCR.toFixed(2) + 'x'],
+    [['Legal maturity / notional profile', '法定期限 / 名义摊还期'], `${l.legalYears} / ${l.notionalYears} ${L(['yrs', '年'])}`],
+    [['All-in rate, year one', '首年综合利率'], pct(l.rate)],
+    [['Lowest annual cover', '最低年度覆盖'], l.minCover ? l.minCover.toFixed(2) + 'x' : '—'],
+    [['Balloon repaid by equity', '股权偿还尾款'], share(l.balloonShare)],
+  ];
+  return h('details', { class: 'ix-details' }, h('summary', {}, L(['Debt behind the levered return', '杠杆回报所用债务'])),
+    h('table', { class: 'ix-table' }, h('tbody', {}, rows.map(([label, v]) => h('tr', {}, h('th', { scope: 'row' }, L(label)), h('td', { class: 'ix-table-number' }, v))))));
+}
+
 function bankableSection(data) {
   const { row, base, debt } = data;
   return h('section', { id: 'bankable', class: 'ix-section' }, sectionTitle(['THE BANKABLE CASE', '可融资方案'], ['Turn the investment view into cash flow.', '把投资逻辑，落到现金流。'], ['Reference underwriting case · Same route and duration as the market screen.', '参考承销模型 · 与市场比较页采用相同收入路径与储能时长。']),
-    h('div', { class: 'ix-kpis' }, metric(['After-tax investment IRR', '税后投资 IRR'], returnPct(row.econ.hold)), metric(['Modelled fixed revenue', '模型固定收入占比'], share(row.econ.secured)), metric(['Investor target', '投资者目标回报'], pct(row.investment?.targetReturn)), metric(['Build and grid capex / MW', '建设及并网 Capex / MW'], money(row.investment?.capexPerMW,row.investment?.currency))),
+    h('div', { class: 'ix-kpis' }, metric(HOLD_LABEL, returnPct(row.econ.hold), saleText(row)), metric(LEVERED_LABEL, returnPct(row.econ.levered), debtText(row.investment)), metric(['Investor target', '投资者目标回报'], pct(row.investment?.targetReturn), [`${testText(row.econ.test)[0]} · levered ${pct(row.econ.test?.leveredTarget)}`, `${testText(row.econ.test)[1]} · 杠杆后${pct(row.econ.test?.leveredTarget)}`]), metric(['Build and grid capex / MW', '建设及并网 Capex / MW'], money(row.investment?.capexPerMW,row.investment?.currency), usText(row.investment))),
+    leverageTable(row.investment),
     h('div', { class: 'ix-case-summary' }, h('span', {}, L(['Revenue route', '收入路径']), ' / ', L(routeName(row))), h('span', {}, L(['RTB closing → COD', 'RTB交割→COD']), ' / ',row.investment?.rtbMonths,L([' months','个月'])), h('span', {}, L(['Operating life', '运营寿命']), ' / 20 ',L(['years','年']))),
     h('details', { class: 'ix-details ix-valuation-basis' }, h('summary', {}, L(['Valuation basis', '估值口径'])),
-      h('p', {}, L(['The home card, global screen and conventional comparison column share this 20-year nominal after-tax RTB case. Pre-operation funding is all cash. The displayed IRR is the lower of long hold and the investor sale route, including construction timing, fees and project tax.','首页卡片、全球比较及测算表常规列共用20年、税后名义RTB投资模型。投运前全现金，计入建设等待期、费用及项目税；显示长持与投资者出售路线两者较低回报。'])),
+      h('p', {}, L(['The home card, global screen and conventional comparison column share this 20-year nominal after-tax RTB case, with revenue and every secured contract escalating at 2.5%. The headline is the all-equity hold return. The levered return adds one project loan at COD: contracted cash covers 1.20–1.40x by contract type, merchant cash 2.00x, at least 60% is repaid by legal maturity and equity repays any balloon. The target test compares all-equity with the target, then levered with the target plus two points.','首页卡片、全球比较及测算表常规列共用20年、税后名义RTB投资模型，收入及所有锁定合同按2.5%逐年上调。主回报为全股权长持回报；杠杆后回报在COD提取一笔项目贷款：合同现金流按合同类型1.20–1.40倍覆盖、市场现金流2.00倍，法定到期前至少偿还60%，尾款由股权偿还。目标检验先以全股权对比目标，再以杠杆后回报对比目标加2个百分点。'])),
       h('p', {}, L([`The previous operating-model IRR was ${pct(base.irrHold)} over 15 years before project tax. Operating-asset valuation rates remain: fixed ${pct(base.valuationRates.secured)}, renewal ${pct(base.valuationRates.renewal)}, trading ${pct(base.valuationRates.merchant)}.`,`旧版15年税前运营模型IRR为${pct(base.irrHold)}。运营资产估值参考折现率：锁定收入${pct(base.valuationRates.secured)}；续约收入${pct(base.valuationRates.renewal)}；交易收入${pct(base.valuationRates.merchant)}。`]))));
 }
 
@@ -328,7 +361,7 @@ function executionSection(row) {
 function downsideSection(data) {
   const { row, base, bear, debt } = data;
   const riskRows = [
-    [['After-tax investment IRR', '税后投资 IRR'], returnPct(row.econ.hold), returnPct(row.investment?.bearIRR)],
+    [HOLD_LABEL, returnPct(row.econ.hold), returnPct(row.investment?.bearHoldIRR)],
     [['Year-one after-tax cash / MW', '首年税后经营现金流 / MW'], money(row.investment?.bridge.net), money(row.investment?.bearNetUSD)],
   ];
   const profile = row.market.comparison.refinement;

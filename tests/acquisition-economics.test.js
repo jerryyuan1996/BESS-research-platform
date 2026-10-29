@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { cisRevenue } from '../src/economics/revenueSupport.js';
-import { nominalAnnual, nominalRate, realRate, taxSchedule } from '../src/acquisition/cashflows.js';
+import { nominalAnnual, nominalRate, realRate, taxSchedule, priceIndex } from '../src/acquisition/cashflows.js';
 import { acquisitionCashFlows, acquisitionHeadroom, valueAcquisition, returnAtAcquisitionPrice } from '../src/acquisition/valuation.js';
 import { referenceInputs, marketAcquisitionReference } from '../src/acquisition/reference.js';
 import { constructionCeiling, atConstructionBudget } from '../src/acquisition/construction.js';
@@ -10,6 +10,8 @@ import { incomeOptions } from '../src/acquisition/scenarios.js';
 import { operatingReference } from '../src/acquisition/operating.js';
 import { markets } from '../src/markets/registry.js';
 import { runCase } from '../src/comparison/engine.js';
+import { ITC_TRANSFER_PRICE } from '../src/acquisition/parameters.js';
+import { NON_FEOC_PREMIUM_USD_PER_KWH, OVERSIZE, landedDcPerKWh, DC_BLOCK_EUR_PER_KWH, COMMISSIONING_EUR_PER_KWH, FREIGHT_EUR_PER_KWH } from '../src/comparison/supplierQuote.js';
 
 const m=id=>markets.find(m=>m.manifest.id===id),near=(a,b,t=1e-6)=>assert.ok(Math.abs(a-b)<=t,`${a} != ${b}`);
 const annual=()=>Array.from({length:15},()=>({secured:0,merchant:100,renewal:0,opex:10,capex:0,tax:5}));
@@ -91,7 +93,7 @@ test('assumed contract economics do not change merely because a document is veri
 test('CIS and floors are settled after nominalisation, so fixed floors do not erase merchant upside',()=>{
   const {input}=referenceInputs(m('nem'),'ready-to-build').find(c=>c.key==='base');
   const n=nominalAnnual(input,input.scenarios[0]);
-  const year=n[0],r=input.annual[0].supportEligibleRevenue*1.02**(input.scenarios[0].codYears+1);
+  const year=n[0],r=input.annual[0].supportEligibleRevenue*(1+input.inflationRate)**(input.scenarios[0].codYears+1);
   const expected=cisRevenue(r,input.revenueSupport);near(year.secured+year.renewal+year.merchant,expected.total);
   assert.equal(marketAcquisitionReference(m('nem'),'ready-to-build','infraFund',{cisFloorPerMW:1000000,cisCeilingPerMW:100}).status,'incomplete');
 });
@@ -110,13 +112,50 @@ test('workable fixed-income terms meet the same target without stacking the merc
   assert.equal(t.delays.length,2);assert.equal(t.priceSensitivity.length,4);
 });
 test('investment credits are conditional, paid after operation, and reduce tax basis',()=>{
-  const none=referenceInputs(m('caiso'),'ready-to-build').find(c=>c.key==='base');
-  const credit=referenceInputs(m('caiso'),'ready-to-build',{supportCase:'us-itc30'}).find(c=>c.key==='base');
+  // Same capex, credit on and off, so only the credit moves the tax basis.
+  const none=referenceInputs(m('caiso'),'ready-to-build',{usSupply:'as-entered'}).find(c=>c.key==='base');
+  const credit=referenceInputs(m('caiso'),'ready-to-build',{usSupply:'as-entered',supportCase:'us-itc30'}).find(c=>c.key==='base');
   const recovery=credit.input.scenarios[0].recoveries.find(r=>r.kind==='investment-credit');
   assert.ok(recovery.at>credit.input.scenarios[0].codYears);
-  assert.ok(recovery.amount>0);near(none.input.taxPolicy.basisPerMW-credit.input.taxPolicy.basisPerMW,recovery.amount/.95*.5);
+  assert.ok(recovery.amount>0);near(none.input.taxPolicy.basisPerMW-credit.input.taxPolicy.basisPerMW,recovery.amount/ITC_TRANSFER_PRICE*.5);
   const operating=referenceInputs(m('caiso'),'operating',{supportCase:'us-itc30'});assert.ok(operating.every(c=>c.assumptions.capitalSupportPerMW===0));
   const eu=referenceInputs(m('gb'),'ready-to-build',{supportCase:'us-itc30'});assert.ok(eu.every(c=>c.assumptions.capitalSupportPerMW===0));
+});
+
+test('US new builds price a non-FEOC block with the credit, or a Chinese block without it',()=>{
+  const base=c=>c.find(x=>x.key==='base');
+  const feoc=base(referenceInputs(m('pjm'),'ready-to-build')),cn=base(referenceInputs(m('pjm'),'ready-to-build',{usSupply:'chinese'}));
+  assert.equal(feoc.assumptions.usSupply,'non-feoc');assert.equal(feoc.assumptions.supportCase,'us-itc30');
+  assert.equal(cn.assumptions.supportCase,'none');assert.equal(cn.assumptions.capitalSupportPerMW,0);
+  assert.ok(feoc.assumptions.capitalSupportPerMW>0);
+  // The two differ only by the DC block: $50/kWh nameplate × oversize × 4,000 kWh, plus contingency and grid allowance.
+  near(feoc.assumptions.buildBudget-cn.assumptions.buildBudget,NON_FEOC_PREMIUM_USD_PER_KWH*OVERSIZE*4000*1.125,1);
+  near(landedDcPerKWh('USD'),(DC_BLOCK_EUR_PER_KWH*1.409+COMMISSIONING_EUR_PER_KWH+FREIGHT_EUR_PER_KWH)*OVERSIZE*1.1208,1e-6);
+});
+test('US and GB write the basis off in year one and the owner group uses the losses',()=>{
+  for(const id of ['pjm','ercot','caiso','gb']){
+    const {input}=referenceInputs(m(id),'ready-to-build').find(c=>c.key==='base');
+    assert.equal(input.taxPolicy.depreciationYears,1);assert.equal(input.taxPolicy.groupRelief,true);
+    const s=input.scenarios[0],t=taxSchedule(input,nominalAnnual(input,s),s,0).annual;
+    assert.ok(t[0].tax<0,id+': the year-one write-off is a group tax saving');
+  }
+  const {input}=referenceInputs(m('de'),'ready-to-build').find(c=>c.key==='base');
+  assert.ok(input.taxPolicy.depreciationYears>1&&!input.taxPolicy.groupRelief);
+});
+test('revenue and every secured contract escalate at 2.5%',()=>{
+  for(const id of ['it','gb','de']){
+    const {input}=referenceInputs(m(id),'ready-to-build').find(c=>c.key==='base');
+    assert.equal(input.inflationRate,.025);assert.equal(input.securedIndexation,'indexed');assert.equal(input.inflationPath,null);
+  }
+});
+test('Japan follows the Bank of Japan core-CPI path its LTDA payment is corrected by',()=>{
+  for(const id of ['jp_tokyo','jp_kyushu','jp_hokkaido']){
+    const {input}=referenceInputs(m(id),'ready-to-build').find(c=>c.key==='base');
+    assert.deepEqual(input.inflationPath,[.0245,.022,.02]);assert.equal(input.securedIndexation,'indexed');
+    near(priceIndex(input,1.5),1.0245*1.022**.5);near(priceIndex(input,10),1.0245*1.022*1.02**8);
+  }
+  const entered=referenceInputs(m('jp_tokyo'),'ready-to-build',{inflationRate:.03}).find(c=>c.key==='base');
+  assert.equal(entered.input.inflationPath,null);near(priceIndex(entered.input,2),1.03**2);
 });
 
 test('post-sale support transfers into proceeds and is not a second seller cash receipt',()=>{

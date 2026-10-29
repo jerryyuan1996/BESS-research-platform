@@ -28,6 +28,29 @@ export const REFERENCE_PREMIUM = {
   developer:{greenfield:.085,'ready-to-build':.06},
 };
 export const FEES = Object.freeze({acquisition:.015,sale:.015,financing:.01,reserveMonths:6});
+/** Analyst's convention of 29 Oct 2026: real cash flows, and every secured
+ * contract, escalate at 2.5% a year. */
+export const INFLATION = .025;
+/** Transfer price of a US investment credit, $ per $ of credit (Crux 2026 average, $0.913). */
+export const ITC_TRANSFER_PRICE = .913;
+/** Levered equity return, sized as lenders sized storage in 2026 and confirmed by
+ * the analyst on 29 Oct 2026. Contracted cash covers 1.20x (multi-year state or
+ * TSO payments), 1.30x (fixed tolls) or 1.40x (floors, collars, any contract
+ * under seven years); merchant cash covers 2.00x. Legal maturity is the contract
+ * tenor where it is 7+ years (max 18), else a 7-year mini-perm; at least 60% is
+ * repaid by then (Modo, German tolls, 2026) and equity repays any balloon.
+ * Debt is drawn at COD and capped at 75% of the build budget when secured revenue
+ * is at least half of year one, otherwise 60%. Not bank quotes. */
+export const LEVERAGE = Object.freeze({
+  dscr:{state:1.20,toll:1.30,floor:1.40,short:1.40,merchant:2.00},
+  shortContractYears:7,miniPermYears:7,maxLegalYears:18,notionalYears:15,minRepaid:.60,
+  gearingCap:{contracted:.75,merchant:.60},
+  margin:{contracted:.0225,merchant:.035},
+});
+/** A levered equity return is tested against the investor's unlevered target plus
+ * this premium: surveyed levered equity returns (11–12%, DLA Piper 2026) sit about
+ * two points above unlevered hurdles (8–12%, Phelas 2026). */
+export const LEVERED_PREMIUM = .02;
 export const DEBT = Object.freeze({
   contracted:{ltv:.65,dscr:1.35,years:10,margin:.0225},
   mixed:{ltv:.50,dscr:1.60,years:7,margin:.0275},

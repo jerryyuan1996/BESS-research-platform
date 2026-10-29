@@ -3,8 +3,17 @@ import { cisRevenue } from '../economics/revenueSupport.js';
  * lines are inflated at their payment date; fixed nominal contracts stay fixed. */
 export const nominalRate=(real,inflation)=>(1+real)*(1+inflation)-1;
 export const realRate=(nominal,inflation)=>(1+nominal)/(1+inflation)-1;
+/** Price level at `at` years after closing. A market may carry a dated path
+ * (annual rates from closing, the last rate continuing); otherwise one rate. */
+export function priceIndex(input,at){
+  const path=input.inflationPath;
+  if(!Array.isArray(path)||!path.length)return (1+(input.inflationRate??0))**at;
+  let factor=1;
+  for(let t=0;t<at;t++)factor*=(1+path[Math.min(t,path.length-1)])**Math.min(1,at-t);
+  return factor;
+}
 export function nominalAmount(input,amount,at){
-  return input.cashFlowBasis==='real'?amount*(1+(input.inflationRate??0))**at:amount;
+  return input.cashFlowBasis==='real'?amount*priceIndex(input,at):amount;
 }
 export function nominalAnnual(input,scenario){
   return input.annual.map((year,i)=>{
@@ -52,6 +61,9 @@ export function taxSchedule(input,annual,scenario,price,interest=[]){
     const revenue=y.secured+y.renewal+y.merchant,ebitda=revenue-y.opex;
     const allowedInterest=Math.min(interest[i]??0,Math.max(0,ebitda)*(p.interestLimitShare??1));
     const taxable=ebitda-deduction-allowedInterest;
+    // Group relief: the owner's group uses a loss in the year it arises, so the
+    // project's tax can be negative and nothing is carried forward.
+    if(p.groupRelief)return {...y,tax:taxable*p.rate+revenue*(p.turnoverRate??0)};
     const used=Math.min(losses,Math.max(0,taxable)*(p.lossOffsetShare??1));
     losses=Math.max(0,losses-used)+Math.max(0,-taxable);
     return {...y,tax:Math.max(0,taxable-used)*p.rate+revenue*(p.turnoverRate??0)};

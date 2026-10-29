@@ -23,7 +23,15 @@ export function opportunitySummary(briefing) {
         const stressed=referenceInvestment(market,investor,play,{
           ...(o.screeningByInvestor?.[investor]||{}),economicOverrides:bear.overrides});
         const b=investmentMetrics(stressed?.result);
-        metrics.bearIRR=b?.irr??null;metrics.bearNetUSD=b?.bridge.net??null;
+        metrics.bearIRR=b?.irr??null;metrics.bearHoldIRR=b?.holdIRR??null;metrics.bearNetUSD=b?.bridge.net??null;
+      }
+      /* US new builds carry two supply cases. The headline is a non-FEOC DC block
+         with the 30% credit; the alternative is a Chinese block with none. */
+      if(metrics&&play&&metrics.usSupply){
+        const alt=investmentMetrics(referenceInvestment(market,investor,play,{
+          ...(o.screeningByInvestor?.[investor]||{}),usSupply:'chinese'})?.result);
+        metrics.usAlternative=alt?{usSupply:'chinese',holdIRR:alt.holdIRR,irr:alt.irr,leveredIRR:alt.leveredIRR,
+          capexPerMW:alt.capexPerMW,gearing:alt.leverage?.gearing??null,test:alt.test}:null;
       }
       /* The headline stays the one new-build case every market shares. Where
          this investor's call is to buy an operating asset, also give the most

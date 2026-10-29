@@ -36,3 +36,7 @@
 .ix-unpriced-market{border:1px solid #d8d6c5;background:#f1eee4;color:#6f5a31;padding:6px 10px;font-size:var(--fs-xs)}
 @media(max-width:900px){.ix-delivery-columns{grid-template-columns:1fr}.ix-project-facts{gap:12px}}
 @media(max-width:560px){.ix-project-facts{grid-template-columns:1fr 1fr}.ix-project-facts>div:last-child{grid-column:1/-1}.ix-delivery-column{padding:18px}.ix-milestones>li{grid-template-columns:70px minmax(0,1fr);gap:12px}.ix-milestones>li:before{left:30px}}
+.ix-target-test{display:inline-block;padding:2px 8px;border-radius:var(--r-pill);font-size:var(--fs-micro);font-weight:var(--fw-medium,500);white-space:nowrap;border:1px solid currentColor}
+.ix-target-test.all-equity{color:var(--ix-green);background:var(--ix-lime)}
+.ix-target-test.levered{color:var(--ix-gold)}
+.ix-target-test.neither{color:var(--ix-muted)}

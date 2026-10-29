@@ -17,7 +17,7 @@
    idealised one: two tranches with different coverage tests, a legal maturity
    shorter than the asset life, and amortisation capped by the battery warranty.
 
-       Tranche A   sized on SECURED cash flow          DSCR 1.15x
+       Tranche A   sized on SECURED cash flow          DSCR 1.20-1.40x by contract
                    fully amortising
                    tenor = min(secured tenor + rollover, warranty, legal cap)
 
@@ -57,8 +57,19 @@ import { spendCurve } from '../comparison/capex.js';
 export const DEBT_CONVENTIONS = {
   /* Coverage. The two-tranche split with materially different tests is the
      structure the BBDF 2026 panel described: a tolled portion at ~1.15x and a
-     merchant portion needing "a much larger cushion, often 2.0x". */
-  dscrSecured: 1.15,
+     merchant portion needing "a much larger cushion, often 2.0x". The contracted
+     test now sits inside the 1.20-1.40x base-case band (dscrByClass below). */
+  dscrSecured: 1.20,
+
+  /* Tiered by contract quality, as the analyst confirmed on 29 Oct 2026 and as
+     the returns rows size it (src/acquisition/leverage.js): 1.20x for multi-year
+     state or TSO payments, 1.30x for a fixed toll, 1.40x for a floor, a collar,
+     a one-year auction award or any contract under seven years. `dscrSecured`
+     above is the lowest tier. The earlier 1.15x sat below the 1.20-1.40x
+     base-case band lenders quote. */
+  dscrByClass: { contracted: 1.20, ltda: 1.20, toll: 1.30, floor: 1.40, collar: 1.40, 'auction-renewal': 1.40 },
+  shortContractYears: 7,
+  dscrShort: 1.40,
   dscrMarket: 2.00,
 
   /* Reported alongside, not used to size: lenders quote a P90 DSCR of 1.20-1.35x
@@ -98,7 +109,9 @@ export const DEBT_CONVENTIONS = {
     contracted: 2,
     'auction-renewal': 0,
     toll: 0,
+    floor: 0,
     ltda: 2,
+    collar: 2,
     merchant: 0,
   },
 };
@@ -140,6 +153,8 @@ export function sizeProjectDebt(result, opts = {}){
   const securedYears = Math.max(0, Math.min(opts.securedYears ?? result.securedYears ?? 0, life));
   const riskClass = opts.riskClass || (securedYears > 0 ? 'contracted' : 'merchant');
   const rollover = c.rolloverAllowance[riskClass] ?? 0;
+  const dscrA = securedYears < (c.shortContractYears ?? 0) ? (c.dscrShort ?? c.dscrSecured)
+    : (c.dscrByClass?.[riskClass] ?? c.dscrSecured);
 
   /* Split each year's cash flow into the part a lender will treat as secured and
      the part it will not.
@@ -179,7 +194,7 @@ export function sizeProjectDebt(result, opts = {}){
   if (tenorA > 0){
     const window = securedCfads.slice(0, tenorA).filter(v => v > 0);
     const binding = window.length === tenorA ? Math.min(...window) : 0;
-    const capacity = binding / c.dscrSecured;
+    const capacity = binding / dscrA;
     amountA = capacity > 0 ? capacity / annuity(1, r, tenorA) : 0;
   }
 
@@ -252,7 +267,7 @@ export function sizeProjectDebt(result, opts = {}){
     securedYears, rolloverAllowance: rollover,
 
     trancheA: {
-      amount: debtA, tenor: tenorA, dscr: c.dscrSecured,
+      amount: debtA, tenor: tenorA, dscr: dscrA,
       payment: schedA.payment, balloon: 0, amortising: true,
     },
     trancheB: {
@@ -308,8 +323,8 @@ export function sizeProjectDebt(result, opts = {}){
  */
 export function riskClassFor(market, strategyId){
   const e = market?.comparison?.economics || {};
-  if (strategyId === 'toll') return 'toll';
-  if (strategyId === 'ltda') return 'ltda';
+  if (strategyId === 'toll') return e.tollIsFloor ? 'floor' : 'toll';
+  if (strategyId === 'ltda') return e.ltda?.cis ? 'collar' : 'ltda';
   if (strategyId === 'mer') return 'merchant';
   if (e.riskClass === 'auction-renewal') return 'auction-renewal';
   return e.contracted ? 'contracted' : 'merchant';
