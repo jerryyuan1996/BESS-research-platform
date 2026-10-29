@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-29T05:56:16.319Z",
+  "fetchedAt": "2026-10-29T13:13:20.597Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-29T05:56:46.000Z",
+    "to": "2026-10-29T13:08:06.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -133,26 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
-    },
-    {
-      "t": "2026-10-23T11:25:17.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/tesla-q3-2026-energy-storage-revenues-fall-despite-second-highest-quarterly-deployments/",
-      "source": "Energy-Storage.news",
-      "title": "Tesla Q3 2026 energy storage revenues fall despite second-highest quarterly deployments",
-      "url": "https://www.energy-storage.news/tesla-q3-2026-energy-storage-revenues-fall-despite-second-highest-quarterly-deployments/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Tesla’s energy storage business deployed 13.7GWh in Q3 2026, its second-highest quarterly figure to date, but saw a 16% year-on-year decline in revenues for the division."
-    },
-    {
-      "t": "2026-10-26T03:38:54.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/1gw-data-centre-with-5000mwh-battery-storage-system-submitted-to-australias-epbc-act-for-approval/",
-      "source": "Energy-Storage.news",
-      "title": "1GW data centre with 5,000MWh battery storage system submitted to Australia’s EPBC Act for approval",
-      "url": "https://www.energy-storage.news/1gw-data-centre-with-5000mwh-battery-storage-system-submitted-to-australias-epbc-act-for-approval/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Gingerah Energy has referred a 1GW data centre complex with a 5GWh BESS in Western Australia to Australia's EPBC Act."
     },
     {
       "t": "2026-10-26T07:14:43.000Z",
@@ -335,16 +315,6 @@
       "summary": "South Korean battery giant LG Energy Solution (LG ES) has signed a non-binding memorandum of understanding (MOU) with owner-operator Energix-Renewable Energies to expand collaboration on energy storage projects in Europe and the US."
     },
     {
-      "t": "2026-10-28T11:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/togo-opens-consultation-on-large-scale-solar-tender/",
-      "source": "pv magazine",
-      "title": "Togo opens consultation on large-scale solar tender",
-      "url": "https://www.pv-magazine.com/2026/10/28/togo-opens-consultation-on-large-scale-solar-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Togo is inviting stakeholders to provide feedback on draft documents relating to development of a large-scale solar project, ahead of launching a competitive tender. Comments can be submitted until November 9. The post Togo opens consultation on large-scale solar tender appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-28T11:43:36.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/data-centres-could-drive-sodium-ion-ldes-adoption-in-europe-analyst/",
       "source": "Energy-Storage.news",
@@ -353,16 +323,6 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "Sodium-ion’s position has strengthened substantially in the past 12 months but its adoption in Europe depends on several key factors including data centres and their use case, an analyst said."
-    },
-    {
-      "t": "2026-10-28T12:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/acid-free-molten-salt-method-recovers-94-of-silver-from-solar-cells/",
-      "source": "pv magazine",
-      "title": "Acid-free molten salt method recovers 94% of silver from solar cells",
-      "url": "https://www.pv-magazine.com/2026/10/28/acid-free-molten-salt-method-recovers-94-of-silver-from-solar-cells/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers in China have recovered 94.34% of the silver from crystalline silicon solar cells using an acid-free molten salt process that detaches the silver as metal, and have identified how to control silicon loss during treatment. The post Acid-free molten salt method recovers 94% of silver from solar cells appea…"
     },
     {
       "t": "2026-10-28T12:18:12.000Z",
@@ -385,26 +345,6 @@
       "summary": "Energy storage developer-operator Bimergen Energy has filed an application for an Option 2 Retail Electric Provider (REP) certificate in Texas, US."
     },
     {
-      "t": "2026-10-28T12:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/european-solar-startups-raise-e82-million-in-january-august/",
-      "source": "pv magazine",
-      "title": "European solar startups raise €82 million in January-August",
-      "url": "https://www.pv-magazine.com/2026/10/28/european-solar-startups-raise-e82-million-in-january-august/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Analysis by Avnet Silica says energy security remains the most significant driver of investment in European solar startups today as financing levels begin to increase after reaching an all-time low last year. The post European solar startups raise €82 million in January-August appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-28T13:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/uk-government-approves-nearly-2-gw-of-co-located-solar-in-october/",
-      "source": "pv magazine",
-      "title": "UK government approves nearly 2 GW of co-located solar in October",
-      "url": "https://www.pv-magazine.com/2026/10/28/uk-government-approves-nearly-2-gw-of-co-located-solar-in-october/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Four projects in nationally significant infrastructure project planning pipeline granted planning permission by secretary of state. All four projects include battery energy storage systems. The post UK government approves nearly 2 GW of co-located solar in October appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-28T16:46:53.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/cms-energy-ceo-predicts-data-center-progress-after-midterms/873057/",
       "source": "Utility Dive",
@@ -415,44 +355,104 @@
       "summary": "Garrick Rochow blamed political &ldquo;spin&rdquo; for permitting setbacks in an earnings call. He did not address the more than $300 million the utility says it has spent to keep an aging coal plant running under DOE &lsquo;emergency&rsquo; orders."
     },
     {
-      "t": "2026-10-28T17:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/28/retrofits-on-the-rise-down-under/",
+      "t": "2026-10-29T06:23:53.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/chilean-solar-plant-offline-for-two-months-following-cyberattack/",
       "source": "pv magazine",
-      "title": "Retrofits on the rise Down Under",
-      "url": "https://www.pv-magazine.com/2026/10/28/retrofits-on-the-rise-down-under/",
+      "title": "Chilean solar plant offline for two months following cyberattack",
+      "url": "https://www.pv-magazine.com/2026/10/29/chilean-solar-plant-offline-for-two-months-following-cyberattack/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Australia’s push to accelerate electrification while meeting an 82% renewable energy target and retiring coal-fired power plants, both by 2030, is driving the retrofitting of co-located battery energy storage systems (BESS) at existing grid-scale solar farms. Ev Foley of pv magazine Australia reports. The post Retro…"
+      "summary": "A 103 MW solar plant and its 98 MW/312 MWh battery storage system in northern Chile have remained offline for two months following a reported cyberattack. The cause and extent of the incident remain unconfirmed, with no timeline announced for restoring operations. The post Chilean solar plant offline for two months…"
     },
     {
-      "t": "2026-10-29T05:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/racking-it-up-to-experience/",
+      "t": "2026-10-29T08:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/heat-pump-grant-survives-new-loans-for-solar-and-battery-storage-in-uk-budget/",
       "source": "pv magazine",
-      "title": "Racking it up to experience",
-      "url": "https://www.pv-magazine.com/2026/10/29/racking-it-up-to-experience/",
+      "title": "Heat pump grant survives, new loans for solar and battery storage in UK Budget",
+      "url": "https://www.pv-magazine.com/2026/10/29/heat-pump-grant-survives-new-loans-for-solar-and-battery-storage-in-uk-budget/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Demand for solar rooftop racking systems in Europe has either slowed or changed over the past year, depending on who you ask. Either way, the mood is cautious among European mounting and racking system providers, likely due to a downturn in the commercial and industrial (C&I) rooftop solar market, as businesses have…"
+      "summary": "Heat pump grants subsidy retained, but future budget is reduced, while Warm Home Loans program promises to cut the cost of financing residential solar. End of zero VAT rating for energy saving materials. The post Heat pump grant survives, new loans for solar and battery storage in UK Budget appeared first on pv maga…"
     },
     {
-      "t": "2026-10-29T05:42:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/dartsolar-unveils-expandable-vehicle-solar-array-with-up-to-2000-w-output/",
+      "t": "2026-10-29T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/scatec-secures-217-million-for-egypt-smelter-solar-plus-storage-plant/",
       "source": "pv magazine",
-      "title": "DartSolar unveils expandable vehicle solar array with up to 2 kW output",
-      "url": "https://www.pv-magazine.com/2026/10/29/dartsolar-unveils-expandable-vehicle-solar-array-with-up-to-2000-w-output/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "DartSolar LLC, a Los Angeles-based solar equipment manufacturer, has announced that pre-order deliveries for its expanding vehicle-mounted solar system will begin in December 2026. The modular hardware is engineered to supply off-grid power for passenger cars, light trucks, and recreational vehicles. The post DartSo…"
+      "title": "Scatec secures $217 million for Egypt smelter solar-plus-storage plant",
+      "url": "https://www.pv-magazine.com/2026/10/29/scatec-secures-217-million-for-egypt-smelter-solar-plus-storage-plant/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "A solar and battery project in Egypt will supply state-owned Egypt Aluminium under a 25-year, sovereign-guaranteed power purchase agreement as the smelter seeks to meet trade-related environmental standards. The post Scatec secures $217 million for Egypt smelter solar-plus-storage plant appeared first on pv magazine…"
     },
     {
-      "t": "2026-10-29T05:56:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/dji-power-launches-new-auro-2000-elite-as-its-most-compact-2-kwh-power-station/",
+      "t": "2026-10-29T10:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/spain-solar-ppa-prices-fall-to-e30-93-mwh-as-bess-gains-ground/",
       "source": "pv magazine",
-      "title": "DJI Power launches new Auro 2000 Elite as its most compact 2 kWh power station",
-      "url": "https://www.pv-magazine.com/2026/10/29/dji-power-launches-new-auro-2000-elite-as-its-most-compact-2-kwh-power-station/",
+      "title": "Spain solar PPA prices fall to €30.93/MWh as BESS gains ground",
+      "url": "https://www.pv-magazine.com/2026/10/29/spain-solar-ppa-prices-fall-to-e30-93-mwh-as-bess-gains-ground/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "DJI has launched the Power Auro 2000 Elite, a compact 2 kWh LFP power station delivering up to 2.2 kW peak output, with solar integration and expandable storage up to 12 kWh. The post DJI Power launches new Auro 2000 Elite as its most compact 2 kWh power station appeared first on pv magazine Global ."
+      "summary": "Average prices for standalone solar power purchase agreements (PPAs) in Spain fell 7.7% year on year to €30.93 ($34.46)/MWh in the third quarter of 2026, while hybrid solar-and-storage contracts reached €48/MWh. Rising development costs and renewable energy curtailment are increasing interest in battery storage. The…"
+    },
+    {
+      "t": "2026-10-29T10:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/botswana-kicks-off-floating-solar-tender/",
+      "source": "pv magazine",
+      "title": "Botswana kicks off floating solar tender",
+      "url": "https://www.pv-magazine.com/2026/10/29/botswana-kicks-off-floating-solar-tender/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "A tender is open in Botswana for the development of floating PV systems on dams belonging to the country’s Water Utilities Corporation. The deadline for applications is November 19. The post Botswana kicks off floating solar tender appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-29T11:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/western-australia-moves-to-legalize-plug-in-solar-on-german-model/",
+      "source": "pv magazine",
+      "title": "Western Australia moves to legalize plug-in solar on German model",
+      "url": "https://www.pv-magazine.com/2026/10/29/western-australia-moves-to-legalize-plug-in-solar-on-german-model/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "A draft technical standard out for consultation in Western Australia is based on Germany’s plug-in solar specification and would class balcony systems as ordinary electrical appliances. The post Western Australia moves to legalize plug-in solar on German model appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-29T11:23:29.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/portugal-makes-grid-forming-mandatory-for-large-scale-bess-and-launches-1gw-tender/",
+      "source": "Energy-Storage.news",
+      "title": "Portugal makes grid-forming mandatory for large-scale BESS and launches 1GW tender",
+      "url": "https://www.energy-storage.news/portugal-makes-grid-forming-mandatory-for-large-scale-bess-and-launches-1gw-tender/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "IPP Sonnedix has put two solar-plus-storage projects into commercial operation in Portugal, coinciding with the government moving to use BESS to strengthen the reliability of its electricity grid."
+    },
+    {
+      "t": "2026-10-29T12:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/ground-mounted-solar-used-2798-hectares-of-land-in-italy-in-2025/",
+      "source": "pv magazine",
+      "title": "Ground-mounted solar used 2,798 hectares of land in Italy in 2025",
+      "url": "https://www.pv-magazine.com/2026/10/29/ground-mounted-solar-used-2798-hectares-of-land-in-italy-in-2025/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Ground-mounted photovoltaic (PV) installations accounted for 27% of Italy’s land consumption in 2025, according to the National System for Environmental Protection (SNPA). The post Ground-mounted solar used 2,798 hectares of land in Italy in 2025 appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-29T13:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/researchers-develop-molecular-locking-strategy-for-organic-solar-cells/",
+      "source": "pv magazine",
+      "title": "Researchers develop molecular locking strategy for organic solar cells",
+      "url": "https://www.pv-magazine.com/2026/10/29/researchers-develop-molecular-locking-strategy-for-organic-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Small-area organic solar cells featuring the molecular locking strategy achieved a power conversion efficiency of 20.4%, while larger-area modules reached a record active-area efficiency of 18.8%. The post Researchers develop molecular locking strategy for organic solar cells appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-29T13:08:06.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/franklinwh-expands-us-vpp-reach-with-alliant-energy-and-entergy-louisiana-partnerships/",
+      "source": "Energy-Storage.news",
+      "title": "FranklinWH expands US VPP reach with Alliant Energy and Entergy Louisiana partnerships",
+      "url": "https://www.energy-storage.news/franklinwh-expands-us-vpp-reach-with-alliant-energy-and-entergy-louisiana-partnerships/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Distributed energy resource (DER)-focused company FranklinWH has recently announced advancements in residential energy storage programmes in Louisiana and Iowa."
     }
   ],
   "derived": {
@@ -461,9 +461,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 7,
+      "policy": 9,
       "capital": 4,
-      "grid": 30,
+      "grid": 28,
       "technology": 2
     },
     "sourceStatus": [
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:331661eed9ab30a89ad7453a9466dd7c0b85ff1b4f0f915115d479763c94ce39",
-  "envelopeChecksum": "sha256:827c7f085336fce97d964dadd1a97211410c63a31b2319758fc9bf920dace803"
+  "contentChecksum": "sha256:bcdc91363149d2e395e7cb1e4c4e09b69438d616e8f16c82fd5bddba1f2240d4",
+  "envelopeChecksum": "sha256:b023dba543af99cb0b77ebf4ef273f368ba620b616ea6a3553608b7f70f0bf41"
 }
