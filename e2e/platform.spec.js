@@ -74,7 +74,7 @@ test('the global matrix and investment brief load without browser errors',async(
   expect(plotted).toBeGreaterThan(0);
   if(unpriced)await expect(page.locator('.ix-unpriced-market').first()).toContainText('N/M');
   await page.goto('/');
-  await expect(page.getByRole('heading',{name:'Find conviction. Invest in storage.',exact:true})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Capital priorities. Conditions first.',exact:true})).toBeVisible();
   await expect(page.getByRole('combobox',{name:'Investor profile',exact:true})).toBeVisible();
   await expect(page.locator('.bf-call-flag')).toHaveCount(0);
   await page.screenshot({path:testInfo.outputPath('home-en.png')});

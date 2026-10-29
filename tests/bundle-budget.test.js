@@ -135,7 +135,9 @@ const BUDGET = {
   // US supply case and Japan's core-CPI path. Small explicit allowance.
   // 2026-10-29: 245.68 kB at b56738e and 254.88 with Saudi Arabia and Spain,
   // +9.20, most of it their entry-chunk cost above.
-  home: 257,
+  // PR68 investor review: baseline measured 254.88; worst investor first view
+  // measured 262.41 after per-investor data splitting (including awaited data).
+  home: 265,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -227,7 +229,9 @@ const BUDGET = {
     // is charged separately after extraction from the existing market chunks.
     // 2026-10-28: direct strategy cards and overview summary loader add ~3 kB;
     // the paired model remains lazy and the total first-view budget is unchanged.
-    'investor-experience': 23,
+    'investor-experience': 26,
+    // Independently fetched pricing data: only the active investor is awaited.
+    infraFund:17, strategic:17, foreignFirstTimer:17, developer:17,
     'delivery-wa': 8,
     'delivery-gb': 8,
     'delivery-fi': 6,
@@ -532,7 +536,12 @@ test('the home page\'s first view is within its budget', async (t) => {
   const board = features.get('verdict-board');
   assert.ok(entry && briefing && board, 'no entry chunk, no investor-experience chunk or no verdict-board chunk');
 
-  const first = closure(briefing, byName, closure(entry, byName));
+  const common = closure(briefing, byName, closure(entry, byName));
+  const investorData=['infraFund','strategic','foreignFirstTimer','developer'].map(id=>features.get(id));
+  assert.ok(investorData.every(Boolean),'one pricing-data chunk per investor is required');
+  // Count the largest awaited investor chunk even though it is dynamically loaded.
+  const first=investorData.map(chunk=>closure(chunk,byName,new Set(common)))
+    .sort((a,b)=>gzipOf(b)-gzipOf(a))[0];
   assert.ok(!first.has(board), 'the verdict board is being loaded with the briefing: it belongs behind the fold');
   assert.ok(kB(gzipOf(first)) <= BUDGET.home,
     `the home page's first view is ${kB(gzipOf(first))} kB gzipped across ${first.size} chunks ` +
@@ -761,4 +770,3 @@ test('the dossier stylesheet exists as its own chunk', async (t) => {
   assert.ok(carrier.bytes < 8 * 1024,
     `the dossier stylesheet is ${(carrier.bytes / 1024).toFixed(1)} kB, over its 8 kB budget`);
 });
-

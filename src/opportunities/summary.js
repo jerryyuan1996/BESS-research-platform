@@ -5,22 +5,34 @@ import { investmentMetrics, referenceInvestment } from './investment.js';
 import { marketForPlay } from '../acquisition/play.js';
 import { runScenarioSet } from '../comparison/refinement.js';
 
-export function opportunitySummary(briefing) {
+export function opportunitySummary(briefing, views = []) {
   return Object.fromEntries(Object.entries(briefing.lenses).map(([investor,lens])=>{
     const playFor=id=>{const row=lens.rows.find(r=>r.market===id);return row?briefing.plays[id+'/'+row.play]:null;};
     const screens=Object.fromEntries(SPECIAL_OPPORTUNITIES.map(o=>{
       const market=byId(o.market),play=playFor(o.market);
       return [o.id,compareOpportunity(market,o,investor,play)];
     }));
+    const decisions = Object.fromEntries(markets.map(m => {
+      const id=m.manifest.id,view=views.find(v=>v.marketId===id),p=playFor(id);
+      const call=view?.plays?.[p?.id]?.calls?.[investor] || view?.verdicts?.[investor];
+      const current = x => Array.isArray(x) && !x.some(t => /IRR|hold return|持有期|回报.{0,8}\d|收益率.{0,8}\d/i.test(t));
+      const reason = call?.because?.find(x => !['assetReturn','revenueCertainty'].includes(x.dimension) && current(x.text))?.text;
+      const event=Object.values(briefing.triggers||{}).find(t=>t.id === lens.rows.find(r=>r.market===id)?.next);
+      return [id,{reason:reason || m.comparison.refinement?.consensus?.summary,
+        counterpoint:current(call?.despite)?call.despite:null,
+        asOf:call?.asOf || m.comparison.refinement?.reviewDate,reviewBy:call?.reviewBy,
+        event:event?{label:event.label,expected:event.expected}:null}];
+    }));
     const marketMetrics=Object.fromEntries(markets.map(market=>{
       const id=market.manifest.id,play=playFor(id),o=SPECIAL_OPPORTUNITIES.find(o=>o.market===id);
       const c=screens[o.id];
       const s=c.standard||referenceInvestment(market,investor,play)?.result;
       const metrics=investmentMetrics(s);
-      if(metrics&&play){
-        const variant=marketForPlay(market,play);
-        const bear=runScenarioSet(variant,play.route,5,play.econ?.runOptions||{}).bear;
-        const stressed=referenceInvestment(market,investor,play,{
+      if(metrics){
+        const chosen=play||{route:s.input.strategyId,hours:s.input.durationHours};
+        const variant=marketForPlay(market,chosen);
+        const bear=runScenarioSet(variant,chosen.route,5,chosen.econ?.runOptions||{}).bear;
+        const stressed=referenceInvestment(market,investor,chosen,{
           ...(o.screeningByInvestor?.[investor]||{}),economicOverrides:bear.overrides});
         const b=investmentMetrics(stressed?.result);
         metrics.bearIRR=b?.irr??null;metrics.bearHoldIRR=b?.holdIRR??null;metrics.bearNetUSD=b?.bridge.net??null;
@@ -60,7 +72,7 @@ export function opportunitySummary(briefing) {
           buildBudget:c.alternative?.assumptions.buildBudget,buildChange:c.inputs?.buildPremiumPct,
           playHours:c.alternative?.input.durationHours}};
     });
-    return [investor,{markets:marketMetrics,picks,
+    return [investor,{markets:marketMetrics,decisions,picks,
       scouts:SCOUT_OPPORTUNITIES}];
   }));
 }

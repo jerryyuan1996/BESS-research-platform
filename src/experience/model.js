@@ -48,7 +48,7 @@ export function opportunities(lens = 'infraFund') {
   }
   return rows.map((row, index) => {
     const id=row.market.manifest.id,investment=OPPORTUNITY_SUMMARY[lens]?.markets[id];
-    return {...row,rank:index+1,id,investment,legacyEcon:row.econ,
+    return {...row,rank:index+1,id,investment,decision:OPPORTUNITY_SUMMARY[lens]?.decisions?.[id],legacyEcon:row.econ,
       // Headline: the all-equity hold return. The lower-of-hold-and-sale and the
       // levered equity return sit beside it (analyst, 29 Oct 2026).
       econ:{...row.econ,hold:investment?.holdIRR??null,lowerOf:investment?.irr??null,
@@ -112,4 +112,3 @@ export function money(value, currency = 'USD') {
   const abs = Math.abs(value);
   return `${currency} ${abs >= 1e6 ? (value / 1e6).toFixed(2) + 'm' : (value / 1e3).toFixed(1) + 'k'}`;
 }
-
