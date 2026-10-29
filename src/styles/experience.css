@@ -169,6 +169,24 @@ body.ix-experience {
 .ix-table input[type=checkbox] { appearance:auto; accent-color:var(--ix-green); width:15px; height:15px; cursor:pointer; }
 .ix-revenue-bar { display:flex; width:78px; height:3px; gap:2px; margin-top:6px; }
 .ix-revenue-bar span:first-child { background:#527f60; }.ix-revenue-bar span:last-child { background:#d6d6c4; }
+/* Matrix: return-basis switch above the legend; the size key is a hollow ring. */
+.ix-matrix-controls { display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+.ix-basis-switch button { padding:6px 14px; }
+.ix-legend .size::before { width:11px; height:11px; background:transparent; border:1.5px solid #7a8a8b; box-sizing:border-box; vertical-align:-1px; }
+/* The opportunity set fits the page width: no sideways scroll. */
+.ix-results .ix-table-scroll { overflow-x:visible; }
+.ix-opportunity-set { table-layout:fixed; }
+.ix-opportunity-set td,.ix-opportunity-set th { padding:12px 12px; vertical-align:top; }
+.ix-opportunity-set thead th { white-space:normal; line-height:1.35; }
+.ix-opportunity-set thead th:nth-child(1) { width:56px; }
+.ix-opportunity-set thead th:nth-child(2) { width:24%; }
+.ix-opportunity-set thead th:nth-child(5) { width:15%; }
+.ix-opportunity-set thead th:nth-child(6) { width:10%; }
+.ix-opportunity-set thead th:nth-child(7) { width:11%; }
+.ix-opportunity-set tbody th small { letter-spacing:.2px; }
+.ix-opportunity-set .ix-operating-note { max-width:none; }
+.ix-opportunity-set .ix-target-test { white-space:normal; }
+.ix-opportunity-set .ix-tag { white-space:normal; }
 .ix-row-open { font-size:var(--fs-xl); padding:8px; }
 .ix-empty { text-align:center; padding:75px 20px; }.ix-empty h3 { font-weight:var(--fw-normal); margin-bottom:25px; }
 .ix-compare-tray { position:sticky; bottom:20px; z-index:65; background:#edf1e4; padding:16px 22px; box-shadow:0 5px 30px #193c3226; border:1px solid #9dae99; border-radius:var(--r-sm); display:flex; align-items:center; gap:20px; margin-bottom:30px; font-size:var(--fs-xs); }
@@ -242,7 +260,7 @@ body.ix-experience {
   .ix-process { grid-template-columns:1fr; gap:26px; }.ix-process>div { border-bottom:1px solid var(--ix-line); padding-bottom:24px; }.ix-process>div:last-child { border:0; padding:0; }.ix-process h3 { margin-top:10px; }.ix-process p { margin-bottom:10px; }.ix-next { flex-direction:column; align-items:flex-start; padding:30px 25px; margin-bottom:35px; gap:22px; }.ix-next h2 { font-size:var(--fs-display-xs); }.ix-next .ix-eyebrow { margin-bottom:12px; }.ix-footer { padding:30px 0; }.ix-footer-inner { flex-direction:column; align-items:flex-start; gap:23px; }.ix-footer nav { flex-wrap:wrap; font-size:var(--fs-micro); }
   .ix-page-intro { padding:34px 0 27px; }.ix-page-intro h1 { font-size:var(--fs-display-md); letter-spacing:-1px; }.ix-filter-bar { gap:16px; }.ix-segments { width:100%; justify-content:space-between; }.ix-segments button { padding:7px 10px; font-size:var(--fs-micro); }.ix-search { width:100%; }.ix-search input { width:100%; }.ix-panel { padding:20px 16px; }.ix-panel-heading h2 { font-size:var(--fs-display-xs); }.ix-panel-heading h3 { font-size:var(--fs-sm); }.ix-matrix-panel { padding-inline:12px; }.ix-matrix-panel .ix-panel-heading { padding-inline:5px; }
   .ix-matrix-svg { margin-left:-7px; width:calc(100% + 10px); min-height:225px; }.ix-matrix-detail { padding:18px; column-gap:14px; }.ix-matrix-detail h3 { font-size:var(--fs-2xl); }.ix-selected-metrics { gap:18px; }.ix-selected-metrics .ix-metric strong { font-size:var(--fs-2xl); }.ix-caption { font-size:var(--fs-micro); }
-  .ix-results .ix-table { min-width:730px; }.ix-table td,.ix-table th { padding:13px 12px; }.ix-compare-tray { bottom:10px; padding:13px; gap:10px; font-size:var(--fs-micro); }.ix-compare-tray .ix-button { padding:8px 11px; font-size:var(--fs-micro)!important; }.ix-compare-tray .ix-tray-names { font-size:var(--fs-micro); }
+  .ix-results .ix-table { min-width:640px; }.ix-results .ix-table-scroll { overflow-x:auto; }.ix-table td,.ix-table th { padding:13px 12px; }.ix-compare-tray { bottom:10px; padding:13px; gap:10px; font-size:var(--fs-micro); }.ix-compare-tray .ix-button { padding:8px 11px; font-size:var(--fs-micro)!important; }.ix-compare-tray .ix-tray-names { font-size:var(--fs-micro); }
   .ix-dialog { width:calc(100% - 24px); padding:20px 15px; }.ix-dialog .ix-heading-row { flex-direction:row; align-items:flex-start; gap:10px; }.ix-dialog h2 { font-size:var(--fs-2xl); }.ix-dialog-grid { display:flex; overflow-x:auto; gap:12px; scroll-snap-type:x mandatory; }.ix-comparison-card { flex:0 0 82%; scroll-snap-align:start; }.ix-dialog .ix-button { padding:8px 13px; }
   .ix-breadcrumb { padding-top:17px; font-size:var(--fs-micro); gap:7px; flex-wrap:wrap; }.ix-market-intro { flex-direction:column; align-items:stretch; padding:32px 0 25px; gap:25px; }.ix-market-intro h1 { font-size:var(--fs-display-lg); }.ix-market-controls { width:100%; flex-direction:row; gap:8px; }.ix-market-controls>select { max-width:53%; font-size:var(--fs-micro); }.ix-market-controls>.ix-button { padding:10px 12px; font-size:var(--fs-micro)!important; flex:1; }.ix-section-nav { gap:23px; padding:13px 0; }.ix-section-nav a { font-size:var(--fs-micro); }
   .ix-overview-body { grid-template-columns:1fr; gap:25px; }.ix-thesis { font-size:var(--fs-sm); }.ix-next-action p { font-size:var(--fs-xs); }.ix-kpis { padding:20px 0; gap:23px 0; }.ix-kpis .ix-metric { padding:0 15px; }.ix-kpis .ix-metric>span { font-size:var(--fs-micro); }.ix-kpis .ix-metric strong { font-size:var(--fs-2xl); }.ix-cash-chart { min-height:200px; }.ix-waterfall { min-height:200px; }.ix-legend { font-size:var(--fs-micro); gap:10px; }

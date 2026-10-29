@@ -39,7 +39,7 @@ import { sourceDrawer, sourceStatusBadge } from '../../components/sourceDrawer.j
 import { renderHeader } from '../../components/header.js';
 import { marketNav, tabNav, revenueSubNav, labLink } from '../../components/navigation.js';
 import { renderFooter } from '../../components/footer.js';
-import { enhanceMarketPage } from '../../components/pageEnhancements.js';
+import { enhanceMarketPage, pairOverviewMap } from '../../components/pageEnhancements.js';
 import { gridMapForMarket } from '../gridMapRegistry.js';
 import { lineChart, barChart, waterfall, bandChart } from '../../charts/index.js';
 
@@ -313,7 +313,9 @@ export function createMarketEngine(cfg){
     const story = sections.story?.blocks || [];
     const orientation = flatten(story).find(b => b.t === 'card' &&
       /one-minute orientation|一分钟市场定位/i.test((b.title || []).join(' '))) || story.find(b => b.t === 'card') || null;
-    return { ic, house, orientation };
+    /* The card holding the story's history timeline. */
+    const history = story.find(b => b.t === 'card' && flatten(b.blocks).some(x => x.t === 'timeline')) || null;
+    return { ic, house, orientation, history };
   }
   /* Sections are rebuilt on each read, so a block is matched by what it says, not by identity. */
   const sameBlock = (a, b) => a.t === b.t && JSON.stringify(a.title ?? a.text) === JSON.stringify(b.title ?? b.text);
@@ -324,11 +326,23 @@ export function createMarketEngine(cfg){
     registry = allMarkets;
     basePath = route.basePath;
     if (REGIONS) regionValue = REGION_IDS.includes(route.region) ? route.region : REGIONS[0][0];
-    const { house, orientation } = summaryPicks(SECTIONS());
-    if (house) ctx.blocks.B(container, { t:'card', title:['House view','本方观点'],
-      blocks:[{t:'p',text:house}], mt:false });
-    if (orientation) ctx.blocks.B(container, { ...orientation, mt:false,
-      title:['One-minute market orientation','一分钟市场定位'] });
+    const { house, orientation, history } = summaryPicks(SECTIONS());
+    if (house) {
+      ctx.blocks.B(container, { t:'card', title:['House view','本方观点'],
+        blocks:[{t:'p',text:house}], mt:false });
+      /* The grid map from the full research sits beside the house view. */
+      pairOverviewMap(container, gridMapForMarket(MKT.id, regionValue));
+    }
+    /* The orientation always carries how the market developed: the story's
+       history timeline, unless the orientation card already holds it. */
+    const hasTimeline = b => b.t === 'timeline' || flatten(b.blocks).some(x => x.t === 'timeline');
+    const historyBlocks = history && !(orientation && hasTimeline(orientation))
+      ? [{ t:'card', title:['How the market developed','市场发展历程'],
+           blocks:(history.blocks || []).filter(b => ['band-story','timeline','why'].includes(b.t)) }]
+      : [];
+    if (orientation || historyBlocks.length) ctx.blocks.B(container, { ...(orientation || { t:'card', blocks:[] }), mt:false,
+      title:['One-minute market orientation','一分钟市场定位'],
+      blocks:[...((orientation?.blocks) || []), ...historyBlocks] });
   }
   return { state, dashboard, SECTIONS, api, researchSummary };
 }

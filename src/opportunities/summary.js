@@ -1,6 +1,6 @@
 import { markets, byId } from '../markets/registry.js';
 import { SPECIAL_OPPORTUNITIES, SCOUT_OPPORTUNITIES } from './catalog.js';
-import { compareOpportunity } from './model.js';
+import { compareOpportunity, opportunityIRRs, beatsConventional } from './model.js';
 import { investmentMetrics, referenceInvestment } from './investment.js';
 import { marketForPlay } from '../acquisition/play.js';
 import { runScenarioSet } from '../comparison/refinement.js';
@@ -50,18 +50,17 @@ export function opportunitySummary(briefing) {
       return m?{currency:m.currency,powerMW:m.powerMW,hours:m.hours,capexPerMW:m.capexPerMW,
         capexTotal:m.capexTotal,rtbMonths:m.rtbMonths}:null;
     };
-    const picks=['nem-sub5','ercot-small-dg','de-existing-node'].map(id=>{
-      const o=SPECIAL_OPPORTUNITIES.find(o=>o.id===id),c=screens[id];
+    /* Only special opportunities whose IRR beats the conventional play. */
+    const picks=SPECIAL_OPPORTUNITIES.filter(o=>beatsConventional(screens[o.id])).map(o=>{
+      const id=o.id,c=screens[id];
       return {id,market:o.market,kind:o.kind,label:o.label,months:o.months,thesis:o.thesis,
-        project:projectFor(o),
+        project:projectFor(o),irr:opportunityIRRs(c),
         economics:{safePremium:c.safePremium??null,currency:c.currency,
           baselineMonths:c.standard?.codMonths,specialMonths:c.alternative?.codMonths,target:c.targetReturn,
           buildBudget:c.alternative?.assumptions.buildBudget,buildChange:c.inputs?.buildPremiumPct,
           playHours:c.alternative?.input.durationHours}};
     });
     return [investor,{markets:marketMetrics,picks,
-      other:SPECIAL_OPPORTUNITIES.filter(o=>!picks.some(p=>p.id===o.id))
-        .map(o=>({id:o.id,market:o.market,label:o.label,project:projectFor(o)})),
       scouts:SCOUT_OPPORTUNITIES}];
   }));
 }

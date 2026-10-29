@@ -31,6 +31,16 @@
 .ix-milestones .is-cash .ix-milestone-time{background:#f2eadd;color:#7a5b25}
 .ix-cash-in{color:#176a45;font-weight:var(--fw-medium)}
 .ix-cash-out{color:#8a4d32;font-weight:var(--fw-medium)}
+.ix-delivery-column.is-single{max-width:640px}
+/* Where conventional and special paths part: a banner, a marker in each column,
+   and a gold rail on every step after it. Shared steps stay as they were. */
+.ix-divergence{border-left:3px solid #b0924f;background:#f4efe3;padding:14px 20px;margin:0 0 20px}
+.ix-divergence strong{color:#6f5a31;font-size:var(--fs-md)}
+.ix-divergence p{margin:6px 0 0;font-size:var(--fs-sm);line-height:1.7;color:#3d3a2c}
+.ix-milestones>li.ix-divergence-mark{display:block;padding:0 0 18px;font-size:var(--fs-micro);letter-spacing:1px;text-transform:uppercase;color:#8a6d2e;font-weight:var(--fw-medium)}
+.ix-milestones>li.ix-divergence-mark:before{position:static;display:inline-block;content:"";width:28px;border-left:0;border-top:2px solid #b0924f;vertical-align:middle;margin-right:8px}
+.ix-milestones>li.is-diverged:before{border-left:2px solid #b0924f}
+.ix-milestones>li.is-diverged .ix-milestone-time{box-shadow:inset 3px 0 0 #b0924f}
 .ix-return-basis{font-size:var(--fs-micro);line-height:1.8;color:var(--ix-muted,#68766c);margin-top:8px!important}
 .ix-unpriced-markets{display:flex;align-items:center;flex-wrap:wrap;gap:10px;border-top:1px solid var(--ix-line,#dce1d6);padding:15px 0;margin-top:15px;font-size:var(--fs-xs)}
 .ix-unpriced-market{border:1px solid #d8d6c5;background:#f1eee4;color:#6f5a31;padding:6px 10px;font-size:var(--fs-xs)}
