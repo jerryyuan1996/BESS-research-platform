@@ -19,7 +19,7 @@ export function evaluateInvestment(reference, investor, price, targetReturn){
   const first=input.scenarios.find(s=>s.operates);
   const annual=taxSchedule(input,nominalAnnual(input,first),first,price).annual;
   const operating=annual.map(y=>y.secured+y.renewal+y.merchant-y.opex-y.capex-y.tax);
-  return {...reference,ceiling:valueAcquisition(input,investor),
+  return {...reference,investor,ceiling:valueAcquisition(input,investor),
     atPrice:returnAtAcquisitionPrice(input,investor,price),
     holdReturn:returnAtAcquisitionPrice(input,investor,price,{route:'hold'}),
     saleReturn:returnAtAcquisitionPrice(input,investor,price,{route:'sale'}),
@@ -47,17 +47,29 @@ export function referenceInvestment(market, investor, play, values={}){
   return {result:evaluateInvestment(reference,investor,values.purchasePricePerMW??0,target),
     options,target,play:chosen,stage};
 }
+export function fundingMetrics(reference) {
+  const { input, price } = reference;
+  const cod = reference.codMonths / 12;
+  const flows = acquisitionCashFlows(input, reference.investor || 'infraFund', 'hold', price).flows;
+  const dated = new Map();
+  for (const f of flows.filter(f => f.at <= cod)) dated.set(f.at, (dated.get(f.at) || 0) + f.amount);
+  let cumulative = 0, peak = 0;
+  for (const [, amount] of [...dated].sort((a,b) => a[0] - b[0])) { cumulative += amount; peak = Math.max(peak, -cumulative); }
+  return { peakEquityPerMW:peak, purchasePricePerMW:price,
+    maxPricePerMW:reference.ceiling?.status === 'priced' ? reference.ceiling.pricePerMW : null,
+    npv:reference.npv, inflationRate:input.inflationRate, securedIndexation:input.securedIndexation };
+}
 export function investmentMetrics(reference){
   if(!reference)return null;
   const {input,annual}=reference,y=annual[0],gross=y.secured+y.renewal+y.merchant;
   const fx=input.fxToUSD;
   const holdIRR=reference.holdReturn?.annualReturn??null,lev=reference.levered;
   const leveredIRR=lev?.annualReturn??null;
-  return {irr:reference.atPrice?.annualReturn??null,holdIRR,
+  return {...fundingMetrics(reference),irr:reference.atPrice?.annualReturn??null,holdIRR,
     saleIRR:reference.saleReturn?.annualReturn??null,route:reference.atPrice?.route??null,
     leveredIRR,leverage:lev?{gearing:lev.gearing,loanPerMW:lev.loanPerMW,contractedDSCR:lev.contractedDSCR,
       merchantDSCR:lev.merchantDSCR,legalYears:lev.legalYears,notionalYears:lev.notionalYears,rate:lev.rate,
-      minCover:lev.minCover,balloonShare:lev.balloonShare,capBinds:lev.capBinds}:null,
+      minCover:lev.minCover,balloonShare:lev.balloonShare,capBinds:lev.capBinds,fee:lev.fee,reserve:lev.reserve}:null,
     test:targetTest(holdIRR,leveredIRR,input.targetReturn),
     usSupply:reference.assumptions.usSupply??null,
     currency:input.currency,fxToUSD:fx,powerMW:input.powerMW,hours:input.durationHours,

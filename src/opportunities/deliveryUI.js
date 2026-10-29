@@ -18,7 +18,7 @@ export function executionTimelines(comparison,row,investor){
     h('p',{class:'ix-time-origin'},h('strong',{},'T+0 · '),L(T_ZERO),
       L(comparison.stage==='greenfield'?['. This custom case enters before RTB.','. 当前自定义方案从绿地阶段进入。']:
         ['. The common reference case enters at RTB.','. 统一参考项目按RTB交割进入。'])));
-  const paths=[[comparison.standard,['Conventional play','常规play']],[comparison.alternative,['Special opportunity','特殊机会']]]
+  const paths=[[comparison.standard,['Conventional play','常规方案']],[comparison.alternative,['Special opportunity','特殊机会']]]
     .filter(([reference])=>reference).map(([reference,label])=>({label,t:deliveryTimeline(reference,investor,row.id)}));
   /* With both paths shown, mark the step from which they part. */
   const split=paths.length===2?divergenceIndex(paths[0].t.milestones,paths[1].t.milestones):-1;
@@ -28,12 +28,16 @@ export function executionTimelines(comparison,row,investor){
     const gain=a.qualifiedMonths-b.qualifiedMonths;
     wrapper.append(h('div',{class:'ix-divergence'},
       h('strong',{},L(['Paths diverge at ','路径分岔于 ']),time(at)),
-      h('p',{},L([`Both cases share every step before “${step[0]}”. From that step the special opportunity reaches COD at ${time(b.codMonths)} against ${time(a.codMonths)}, and revenue eligibility at ${time(b.qualifiedMonths)} against ${time(a.qualifiedMonths)}`+
-        (Math.abs(gain)>=.05?` — ${Number(Math.abs(gain).toFixed(1))} months ${gain>0?'earlier':'later'}.`:'.'),
-        `两种方案在“${step[1]}”之前步骤完全相同。此后特殊机会于${time(b.codMonths)}投运（常规为${time(a.codMonths)}），于${time(b.qualifiedMonths)}取得收入资格（常规为${time(a.qualifiedMonths)}）`+
-        (Math.abs(gain)>=.05?`，${gain>0?'提前':'推迟'}${Number(Math.abs(gain).toFixed(1))}个月。`:'。')]))));
+      h('p',{},L([
+        'The first differing model item is “'+step[0]+'”. Conventional / special COD: '+time(a.codMonths)+' / '+time(b.codMonths)+
+          '; revenue eligibility: '+time(a.qualifiedMonths)+' / '+time(b.qualifiedMonths)+'. These are scenario dates, not verified project commitments.',
+        '首个不同的模型条目为“'+step[1]+'”。常规／特殊方案投运：'+time(a.codMonths)+'／'+time(b.codMonths)+
+          '；收入资格：'+time(a.qualifiedMonths)+'／'+time(b.qualifiedMonths)+'。这些是情景日期，尚不是已核实的项目承诺。',
+      ]))));
+
   }
   const columns=h('div',{class:'ix-delivery-columns'});
+  if(split>0)wrapper.append(h('details',{class:'ix-details ix-shared-milestones'},h('summary',{},L(['Shared milestones before divergence','分岔前的共同里程碑'])),h('ol',{},paths[0].t.milestones.slice(0,split).map(m=>h('li',{},time(m.month),' · ',L(m.title),m.kind==='cash'?' · '+money(m.amount,paths[0].t.currency)+'/MW':'')))));
   for(const {label,t} of paths){
     const item=(milestone,i)=>h('li',{class:[milestone.kind==='cash'?'is-cash':'',split>=0&&i>=split?'is-diverged':''].join(' ').trim()},
       h('span',{class:'ix-milestone-time'},time(milestone.month)),
@@ -44,6 +48,7 @@ export function executionTimelines(comparison,row,investor){
           h('p',{},L(milestone.output),h('small',{},L(milestone.owner)))));
     const list=h('ol',{class:'ix-milestones'});
     t.milestones.forEach((m,i)=>{
+      if(paths.length===2&&split>0&&i<split)return;
       if(split>=0&&i===split)list.append(h('li',{class:'ix-divergence-mark','aria-hidden':'true'},L(['Paths diverge here','自此路径分岔'])));
       list.append(item(m,i));
     });

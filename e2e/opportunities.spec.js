@@ -31,11 +31,14 @@ test('special opportunities link to a working bilingual paired valuation',async(
 test('overview reuses the full research and explains the mechanism without the deleted chart',async({page})=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/markets/italy');
+  await expect(page.locator('.ix-full-research')).not.toHaveAttribute('open','');
+  await page.locator('.ix-full-research > summary').click();
   await expect(page.locator('.ix-research-summary')).toHaveAttribute('aria-busy','false');
   await expect(page.locator('.ix-research-summary')).toContainText('House view');
   await expect(page.locator('.ix-research-summary')).toContainText('One-minute market orientation');
   await expect(page.locator('#revenue-drivers')).toContainText('MACSE');
   await expect(page.getByText('Cash generation & debt payments',{exact:true})).toHaveCount(0);
+  await page.locator('#revenue-drivers details > summary').first().click();
   await expect(page.locator('#revenue-drivers details').first()).toHaveAttribute('open','');
   expect(errors).toEqual([]);
   await page.screenshot({path:'test-results/overview-'+test.info().project.name+'-en.png',fullPage:true});

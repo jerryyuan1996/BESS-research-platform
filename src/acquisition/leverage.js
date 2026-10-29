@@ -95,10 +95,10 @@ function fallingRoot(flows){
 }
 
 /** Levered equity IRR on the hold route at a supplied price, with the debt facts beside it. */
-export function leveredReturn(input, investor, price, { buildBudget, terms }){
+export function leveredReturn(input, investor, price, { buildBudget, terms, fixedDebt = null }){
   // One operating outcome only (RTB). Weighted development outcomes are not levered.
   if (input?.stage === 'operating' || input?.scenarios?.filter(x => x.operates).length !== 1) return null;
-  const debt = sizeLeverage(input, buildBudget, terms, price);
+  const debt = fixedDebt || sizeLeverage(input, buildBudget, terms, price);
   if (!debt) return null;
   const s = input.scenarios.find(x => x.operates), cod = s.codYears;
   const flows = acquisitionCashFlows(input, investor, 'hold', price).flows.map(f => ({ ...f }));

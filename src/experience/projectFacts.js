@@ -3,7 +3,7 @@ import { L } from '../app/i18n.js';
 import { money, pct } from './model.js';
 const countries={wa:'australia',nem:'australia',gb:'britain',de:'germany',it:'italy',ie:'ireland',
   ro:'romania',pl:'poland',jp_tokyo:'japan',jp_kyushu:'japan',jp_hokkaido:'japan',
-  pjm:'usa',ercot:'usa',caiso:'usa',fi:'finland',ca_on:'canada'};
+  pjm:'usa',ercot:'usa',caiso:'usa',fi:'finland',ca_on:'canada',es:'spain',sa:'saudi'};
 export function countryAttrs(id){
   const country=countries[id];
   return country?{'data-country':country,style:"--ix-country-map:url('/country-maps/"+country+".svg')"}:{};

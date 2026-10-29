@@ -1,3 +1,4 @@
+import { eventDue, eventCountdown } from './eventDates.js';
 /* ---------------------------------------------------------------------------
    INDUSTRY NEWS — what is coming, and what just happened.
 
@@ -48,15 +49,7 @@ const todayISO = () => {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 };
-/** The last day an `expected` can mean: a month-only date is due by month end. */
-function dueOf(expected){
-  if (!expected) return null;
-  if (expected.length === 7){
-    const [y, m] = expected.split('-').map(Number);
-    return new Date(Date.UTC(y, m, 0)).toISOString().slice(0, 10);
-  }
-  return expected;
-}
+const dueOf = eventDue;
 const daysBetween = (from, to) => Math.round((Date.parse(`${to}T00:00:00Z`) - Date.parse(`${from}T00:00:00Z`)) / DAY);
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 function dateText(expected){
@@ -65,14 +58,7 @@ function dateText(expected){
   if (zh()) return d ? `${y}年${m}月${d}日` : `${y}年${m}月`;
   return d ? `${d} ${MONTHS[m - 1]} ${y}` : `${MONTHS[m - 1]} ${y}`;
 }
-function countdown(e){
-  if (e.days === null) return L(['Date to be announced', '日期待公布']);
-  const byEnd = e.expected.length === 7;
-  if (e.days < 0) return L([`Date passed ${-e.days} days ago — outcome to confirm`, `已过${-e.days}天，结果待确认`]);
-  if (e.days === 0) return L(byEnd ? ['Due by today', '今日截止'] : ['Today', '今天']);
-  if (e.days === 1) return L(byEnd ? ['Due by tomorrow', '明日截止'] : ['Tomorrow', '明天']);
-  return L(byEnd ? [`Due within ${e.days} days`, `${e.days}天内`] : [`In ${e.days} days`, `${e.days}天后`]);
-}
+const countdown = e => L(eventCountdown(e));
 const newsDate = value => {
   const date = new Date(value);
   if (!Number.isFinite(date.getTime())) return '';
@@ -113,7 +99,7 @@ export function upcomingEvents(today = todayISO()){
     }
     const opens = t.direction === 'up' || t.direction === 'either';
     const bell = !opens || days === null || days > WARN_DAYS ? null
-      : days <= RING_DAYS ? 'ring' : days <= PREPARE_DAYS ? 'prepare' : 'warn';
+      : days <= RING_DAYS && t.expected?.length === 10 ? 'ring' : days <= PREPARE_DAYS ? 'prepare' : 'warn';
     return { ...t, calls, actions, due, days, bell };
   });
 }
@@ -163,12 +149,12 @@ function bellCard(e, headlines){
     h('div', { class: 'nw-position' }, eyebrow(['POSITION BEFORE IT LANDS', '落地前的布局']),
       e.actions.length
         ? h('ul', {}, e.actions.map(a => h('li', {},
-          h('b', {}, L(playTitle(a.play))), a.due ? h('span', { class: 'nw-due' }, L(['by ', '截止 ']), dateText(a.due)) : null,
+          h('b', {}, L(playTitle(a.play))), a.due ? h('span', { class: 'nw-due' }, L(['Action target ', '行动目标 ']), dateText(a.due)) : null,
           h('p', {}, L(a.text)))))
         : h('p', {}, L(HOW_TO_POSITION[e.direction]))),
-    related.length ? h('div', { class: 'nw-related' }, h('span', { class: 'ix-mono' }, L(['IN THE NEWS', '相关新闻'])),
+    related.length ? h('div', { class: 'nw-related' }, h('span', { class: 'ix-mono' }, L(['OTHER NEWS FROM THIS MARKET', '该市场其他动态'])),
       related.map(n => h('a', { href: n.url, target: '_blank', rel: 'noopener noreferrer' }, n.title, ' ↗'))) : null,
-    h('div', { class: 'nw-bell-foot' }, link(marketHref(e.market), ['Open the market case ↗', '查看市场方案 ↗'], 'ix-text-link')));
+    h('div', { class: 'nw-bell-foot' }, link(marketHref(e.market)+(e.actions[0]?.play?.id?'?play='+encodeURIComponent(e.actions[0].play.id)+'#route-options':''), ['Open the affected investment route ↗', '查看受影响的投资路线 ↗'], 'ix-text-link')));
 }
 
 function riskRow(e){

@@ -2,6 +2,7 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { app } from '../app/state.js';
 import { HOME_BRIEFING } from '../briefing/homeData.js';
+import { baseStrategy } from '../comparison/strategies.js';
 import { strategyById } from '../comparison/strategies.js';
 import { STAGE_LABEL } from '../acquisition/parameters.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
@@ -23,15 +24,15 @@ const ownedRoute = (r,investor) => r?.route === 'sale'
 
 
 export function revenueMechanismSection(row) {
-  const route = row.play?.route || 'mer';
+  const route = row.play?.route || baseStrategy(row.market);
   return h('section',{class:'ix-section',id:'revenue-drivers'},
     sectionTitle(['WHY THE REVENUE EXISTS','收入背后的经济动因'],['Who pays, and why?','谁在付钱，为什么付钱？'],
       ['Mechanism facts are linked below. Pricing incentives and investment implications are the platform’s economic interpretation.','机制事实附有来源；定价动因和投资含义为平台的经济解读。']),
-    h('p',{class:'ix-caption'},L(['Current play: ','当前play：']),routeLabel(route),
+    h('p',{class:'ix-caption'},L(['Current revenue route: ','当前收入路径：']),routeLabel(route),
       L(['. Applicability is different from a signed project contract.','. 机制适用性与项目已签合同分别判断。'])),
     ...[...revenueMechanismsFor(row.market,route), ...(row.id==='it'&&route!=='ltda'?['macse']:[])].map((id,i)=>{
       const m=REVENUE_MECHANISMS[id];
-      return h('details',{class:'ix-mechanism',...(i===0?{open:''}:{})},
+      return h('details',{class:'ix-mechanism',...{}},
         h('summary',{},h('span',{class:'ix-step-number'},String(i+1).padStart(2,'0')),h('strong',{},L(m.title))),
         id==='macse'&&route!=='ltda'?h('p',{class:'ix-caption'},L(['Alternative award route, evaluated separately from the current capacity-market play.','另一条独立的中标路径，与当前容量市场play分别测算。'])):null,
         h('div',{class:'ix-mechanism-grid'},[
@@ -150,6 +151,31 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
       h('caption',{class:'sr-only'},L(['Conventional and special investment comparison','常规与特殊投资比较'])),
       h('thead',{},h('tr',{},...[['Metric','指标'],['Conventional play','常规play'],['Special opportunity','特殊机会']].map(x=>h('th',{scope:'col'},L(x))))),
       h('tbody',{},rows.map(([label,x,y])=>h('tr',{},h('th',{scope:'row'},L(label)),h('td',{},x),h('td',{},y))))));
+    output.append(h('div',{class:'ix-decision-metrics'},
+      metric(['Conventional hold IRR at input price','输入报价下常规长持IRR'],returnLabel(a.holdReturn)),
+      metric(['Special hold IRR at input price','输入报价下特殊长持IRR'],returnLabel(b.holdReturn))),
+      h('p',{class:'ix-basis-note'},L(['Default project-rights price is zero; construction is still funded. Extra rights prices reduce the return.',
+        '默认项目权利对价为零，建设投入仍需支付；增加权利报价将降低回报。'])));
+    const drivers=h('details',{class:'ix-details'},h('summary',{},L(['What creates the extra value?','额外价值来自哪里？'])));
+    let analysed=false;
+    drivers.addEventListener('toggle',()=>{if(!drivers.open||analysed)return;analysed=true;
+      const common={...c.inputs,nodePremiumPerMW:0};
+      const neutral={...common,specialMonths:c.standard.codMonths,
+        specialQualificationMonths:c.inputs.baselineQualificationMonths,buildPremiumPct:0,opexPremiumPct:0,
+        retrofitPerMW:0,avoidedGridPerMW:0,revenueHaircutPct:0};
+      const design=compareOpportunity(row.market,o,investor,selectedPlay(),neutral);
+      const time=compareOpportunity(row.market,o,investor,selectedPlay(),{...neutral,
+        specialMonths:c.inputs.specialMonths,specialQualificationMonths:c.inputs.specialQualificationMonths});
+      const beforePrice=compareOpportunity(row.market,o,investor,selectedPlay(),common);
+      const points=[a.npv,design.alternative?.npv,time.alternative?.npv,beforePrice.alternative?.npv,b.npv];
+      const names=[['Design / revenue route','设计／收入路径'],['COD / qualification timing','投运／资格时间'],
+        ['Build, operating and other adjustments','建设、运营及其他调整'],['Extra acquisition price','额外收购对价']];
+      drivers.append(h('p',{},L(['Sequential NPV bridge at the common target, per MW; interactions depend on this order. Cost savings and timing are separate assumptions to verify.',
+        '按统一目标折现的顺序NPV桥接，金额／MW；交互效应与顺序有关。成本节省和提前时间是分别需要核实的假设。'])),
+        h('table',{class:'ix-table'},h('tbody',{},names.map((n,i)=>h('tr',{},h('th',{},L(n)),
+          h('td',{},Number.isFinite(points[i])&&Number.isFinite(points[i+1])?money(points[i+1]-points[i],currency):'—'))))));
+    });
+    output.append(drivers);
     const hasPremiumBudget=c.safePremium!=null&&c.safePremium>1e-6;
     if(hasPremiumBudget)output.append(comparisonTable);
     output.append(h('div',{class:'ix-premium-result '+(c.comparable?'is-supported':'is-conditional')},

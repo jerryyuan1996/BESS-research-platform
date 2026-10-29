@@ -61,10 +61,15 @@ export async function designModule(root, now = new Date(), watch = () => {}){
 
 export default function briefing(){
   let root = process.cwd();
+  const investors=['infraFund','strategic','foreignFirstTimer','developer'];
+  const prefix='virtual:bess-investor-data/';
+  let prepared=null;
   return {
     name: 'bess-briefing',
     configResolved(config){ root = config.root || root; },
+    watchChange(){prepared=null;},
 
+    resolveId(id){ if(id.startsWith(prefix))return '\0'+id; },
     async load(id){
       const file = norm(id.split('?')[0]);
       const watch = (f) => this.addWatchFile(f);
@@ -72,11 +77,22 @@ export default function briefing(){
       if (file.endsWith('/' + HOME)) return homeModule(root, new Date(), watch);
       if (file.endsWith('/' + DESIGN)) return designModule(root, new Date(), watch);
       if (file.endsWith('/' + OPPORTUNITIES)) {
-        const { briefingFromDisk } = await load(root, 'src/briefing/disk.js');
-        const { homeProjection } = await load(root, 'src/briefing/model.js');
-        const { opportunitySummary } = await load(root, 'src/opportunities/summary.js');
-        const data = opportunitySummary(homeProjection(await briefingFromDisk({root,now:new Date(),watch})));
-        return 'export const OPPORTUNITY_SUMMARY = ' + JSON.stringify(data) + ';\n';
+        const loaders=investors.map(lens=>JSON.stringify(lens)+':()=>import('+JSON.stringify(prefix+lens)+')').join(',');
+        return 'export const OPPORTUNITY_SUMMARY={};const loaders={'+loaders+'};const pending={};'+
+          'export async function loadInvestmentSummary(lens){if(!loaders[lens])throw new Error("Unknown investor");'+
+          'if(!pending[lens])pending[lens]=loaders[lens]().then(m=>OPPORTUNITY_SUMMARY[lens]=m.default).catch(e=>{delete pending[lens];throw e});return pending[lens];}';
+      }
+      if(id.startsWith('\0'+prefix)){
+        const lens=id.slice(('\0'+prefix).length);
+        if(!investors.includes(lens))return null;
+        if(!prepared)prepared=(async()=>{
+          const { briefingFromDisk, readBriefingInputs } = await load(root,'src/briefing/disk.js');
+          const { homeProjection } = await load(root,'src/briefing/model.js');
+          const { opportunitySummary } = await load(root,'src/opportunities/summary.js');
+          return opportunitySummary(homeProjection(await briefingFromDisk({root,now:new Date(),watch})),(await readBriefingInputs(root,{watch})).views);
+        })();
+        const data=await prepared;
+        return 'export default '+JSON.stringify(data[lens])+';';
       }
       return null;
     },

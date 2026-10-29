@@ -179,6 +179,8 @@ export function renderMarketPage(container, market, tabId, regionOverride, subId
     if (tabId) {
       const research = h('main', { id: 'ix-main', class: 'ix-research-inner', tabindex: -1 },
         link(marketPath(market), ['← Back to market investment case', '← 返回市场投资方案'], 'ix-text-link'),
+        h('p',{class:'ix-basis-note'},L(['Research sections retain their stated historical and operating-model conventions. Use the market investment case for the current 20-year nominal after-tax RTB return.',
+          '研究章节保留其注明的历史与运营模型口径；当前20年、税后名义RTB回报请以市场投资方案页为准。'])),
         ...Array.from(container.childNodes));
       container.classList.add('ix-app');
       container.replaceChildren(siteHeader('market'), research, siteFooter());

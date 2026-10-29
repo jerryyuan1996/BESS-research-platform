@@ -59,5 +59,5 @@ export function deliveryTimeline(reference, investor, marketId){
     milestones:[...milestones,...cash.filter(c=>c.month<=firstWindow+.00001)].sort((a,b)=>a.month-b.month||(a.kind===b.kind?0:a.kind==='delivery'?-1:1)),
     laterCash:cash.filter(c=>c.month>firstWindow+.00001),
     allCash:cash,rawCash:raw,
-    targetBasis:['Delivery targets are scheduled back from the model COD. Cash entries use the exact model payment dates; annual operating cash is settled at operating year end.','交付目标按模型COD倒排；现金条目取自模型的实际支付时点，年度经营现金流按运营年末结算。']};
+    targetBasis:['Delivery targets are scheduled back from the model COD. Cash entries use the exact model payment dates; annual project cash settles at operating year end and can include grants or other recoveries.','交付目标按模型COD倒排；现金条目取自模型的实际支付时点，年度项目现金按运营年末结算，可能包含补助及其他回款。']};
 }

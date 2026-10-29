@@ -5,6 +5,7 @@
    a different third control (cockpit: exit year; WA: forecast COD year). This is
    one header that takes its content as data, plus the two shared controls.
    --------------------------------------------------------------------------- */
+import { siteHeader } from '../experience/chrome.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { app, requestRender, toggleLang } from '../app/state.js';
@@ -39,6 +40,9 @@ export function renderHeader(cfg){
   if (cfg.meta && cfg.meta.length) left.append(h('div', { class: 'hdr-meta' }, cfg.meta));
 
   const ctrls = h('div', { class: 'ctrls' }, langButton(), themeButton(), ...(cfg.controls || []));
-  return h('div', { class: 'hdr' + (cfg.hero ? ' hero' : '') }, left, ctrls);
+  const header=h('div', { class: 'hdr' + (cfg.hero ? ' hero' : '') }, left, ctrls);
+  if(['/investment-lab','/changes','/scout','/desk'].includes(window.location.pathname)){
+    const fragment=document.createDocumentFragment();fragment.append(siteHeader('resources'),header);return fragment;
+  }
+  return header;
 }
-
