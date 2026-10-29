@@ -26,7 +26,7 @@ import { DUE_SOON_DAYS, REVIEW_SOON_DAYS, RULE_NEAR_SHARE } from '../governance/
 import { freshnessOf, FRESHNESS } from '../live/freshness.js';
 import { dimension as dimensionOf } from '../governance/investability.js';
 import { queueText } from './sentences.js';
-import { playTitle } from '../governance/plays.js';
+import { playTitle } from '../governance/playTitle.js';
 
 const DAY = 86_400_000;
 const addDays = (on, n) => new Date(Date.parse(`${on}T00:00:00Z`) + n * DAY).toISOString().slice(0, 10);

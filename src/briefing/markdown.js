@@ -15,7 +15,7 @@
 import { TIER_LABEL, EVIDENCE_LABEL, CHANGE_CLASS_ORDER, CATALYST_WINDOW_DAYS } from '../governance/briefing.js';
 import { TRIGGER_DIRECTION_LABEL } from '../governance/triggers.js';
 import { percent, perMW, dateText, marketName } from './sentences.js';
-import { playTitle } from '../governance/plays.js';
+import { playTitle } from '../governance/playTitle.js';
 
 export const SITE_URL = 'https://globalbess.vercel.app';
 const DAY = 86_400_000;

@@ -23,7 +23,7 @@ import {
 import { tagHeadline } from '../governance/newsTags.js';
 import { isResolved } from '../governance/triggers.js';
 import { changeText } from './sentences.js';
-import { playTitle } from '../governance/plays.js';
+import { playTitle } from '../governance/playTitle.js';
 
 const DAY = 86_400_000;
 const dayOf = (iso) => String(iso).slice(0, 10);

@@ -16,7 +16,8 @@
 
 import { LENS_NOUN, TIER } from '../governance/briefing.js';
 import { VERDICT_LABEL, ROUTE_LABEL, ARCHETYPE_IDS } from '../governance/investability.js';
-import { REVENUE_ROUTE_LABEL, playTitle } from '../governance/plays.js';
+import { REVENUE_ROUTE_LABEL } from '../governance/plays.js';
+import { playTitle } from '../governance/playTitle.js';
 
 /* ---- names --------------------------------------------------------------------- */
 

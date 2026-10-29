@@ -9,7 +9,7 @@ import { opportunityMatrix, miniature, revenueWaterfall, revenueBar } from './ch
 import { specialRecommendations } from '../opportunities/home.js';
 import { marketResearchSummary } from './researchSummary.js';
 import { countryAttrs, projectFacts, operatingPrice } from './projectFacts.js';
-import { playTitle } from '../governance/plays.js';
+import { playTitle } from '../governance/playTitle.js';
 import { gateLabel } from './labels.js';
 import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';

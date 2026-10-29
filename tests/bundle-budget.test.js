@@ -350,7 +350,9 @@ const BUDGET = {
        asset returns (Tokyo, the NEM). */
     // PR54's seven NEM thesis/verdict rewrites take the existing full history
     // to 89.04 KiB, independently of the new homepage. History stays intact.
-    'changes': 90,
+    // RAISED FROM 90 TO 98 (2026-10-29): the 19 play-label lines, each carrying
+    // a whole play before and after, took it to 95.48.
+    'changes': 98,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four
