@@ -40,11 +40,13 @@ server-side logic. Data changes are **git commits**, which is what makes the his
 | `gb-day-ahead` | GB | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
 | `ie-day-ahead` | IE | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
 | `ro-day-ahead` | RO | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
-| `pl-day-ahead` | PL | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
+| `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | 12h | — |
 | `wa-wem-prices` | WA | AEMO WEM reference trading price | daily | — |
 | `jp-tokyo-jepx` | JP-Tokyo | JEPX spot | daily | — |
 | `jp-kyushu-jepx` | JP-Kyushu | JEPX spot | daily | — |
 | `jp-hokkaido-jepx` | JP-Hokkaido | JEPX spot | daily | — |
+| `fi-day-ahead` | FI | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
+| `fi-fcr-n`, `fi-fcr-d-up`, `fi-fcr-d-down`, `fi-afrr-up`, `fi-afrr-down`, `fi-mfrr-up`, `fi-mfrr-down` | FI | Fingrid open data, hourly reserve capacity prices (EUR/MW/h, CC BY 4.0) | 12h | `FINGRID_API_KEY` |
 
 The catalogue is [`src/governance/datasets.js`](../src/governance/datasets.js) — the only place the
 platform learns a dataset exists, in the same way `markets/registry.js` is for markets.
@@ -60,6 +62,22 @@ bundle.
 
 A missing token is not an error. The connector skips its dataset, the previous snapshot stays in
 place, and `/data` shows the feed as unconfigured.
+
+### The Fingrid key (Finland's reserve prices)
+
+Register at [data.fingrid.fi](https://data.fingrid.fi/) for an *Open Data starter* subscription and
+use its primary key. The repository secret is named **`FINGRID_API`**. The ETL workflow maps it to
+`FINGRID_API_KEY`, which is what `etl/sources/fingrid.mjs` reads. The starter key allows about one
+request every two seconds, so the connector spaces its requests and retries 429s.
+
+These seven series bear on `economics.services` for the record, but no detector reads them. Spread
+metrics and merchant drift run only for datasets that bear on `economics.merchGross`, so a reserve
+price in EUR/MW/h is never read as an energy spread. Fingrid publishes no day-ahead price, so
+Finland's comes from ENTSO-E (`fi-day-ahead`).
+
+Locally: put `FINGRID_API_KEY=…` in the git-ignored `.env.fingrid` (not `.env.local`, which the
+Vercel CLI rewrites). Then run `node --env-file=.env.fingrid etl/run.mjs --only fi-fcr-n`. Behind a
+proxy, add `NODE_USE_ENV_PROXY=1`, because Node's fetch ignores `HTTPS_PROXY` without it.
 
 ### Why GB uses ENTSO-E rather than Elexon
 

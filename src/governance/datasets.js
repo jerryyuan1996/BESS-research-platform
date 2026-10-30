@@ -72,6 +72,9 @@ const DAYS = 24 * HOURS;
 export const DATASET_KINDS = ['timeseries', 'feed'];
 
 /** @type {Dataset[]} */
+/* Fingrid open data: CC BY 4.0, per each dataset's own metadata (2026-10-30). */
+const FINGRID = { name: 'Fingrid open data', url: 'https://data.fingrid.fi/', licence: 'CC BY 4.0', attribution: 'Source: Fingrid open data (CC BY 4.0)' };
+
 export const DATASETS = [
   // ---- global --------------------------------------------------------------
   {
@@ -185,6 +188,29 @@ export const DATASETS = [
     republishable: true,
     requiresKey: false,
     official: true,
+  },
+
+  // ---- Finland — Fingrid's hourly reserve prices (gate FI-2), 2026-10-30 ----
+  /* Snapshots for the analyst: bearsOn names the reserve line, but no detector
+     reads these, so nothing proposes a change from them. The yearly FCR market
+     ends after 2026; from 2027 these are the only observation. Built by one
+     helper because this catalogue ships in the entry chunk. */
+  ...[
+    ['fi-fcr-n', 'FCR-N', 'FCR-N'], ['fi-fcr-d-up', 'FCR-D up', 'FCR-D上调'], ['fi-fcr-d-down', 'FCR-D down', 'FCR-D下调'],
+    ['fi-afrr-up', 'aFRR up', 'aFRR上调'], ['fi-afrr-down', 'aFRR down', 'aFRR下调'],
+    ['fi-mfrr-up', 'mFRR up', 'mFRR上调'], ['fi-mfrr-down', 'mFRR down', 'mFRR下调'],
+  ].map(([id, en, zh]) => ({
+    id, kind: 'timeseries', marketId: 'fi', connector: 'fingrid',
+    title: [`Finland ${en} reserve price, hourly`, `芬兰${zh}备用小时价格`],
+    source: FINGRID, refreshHours: 12 * HOURS, staleAfterHours: 3 * DAYS,
+    bearsOn: ['economics.services'], republishable: true, requiresKey: true, official: true,
+  })),
+  {
+    id: 'fi-day-ahead', kind: 'timeseries', marketId: 'fi', connector: 'entsoe',
+    title: ['Finland day-ahead prices', '芬兰日前电价'],
+    source: { name: 'ENTSO-E Transparency Platform', url: 'https://transparency.entsoe.eu/', licence: 'ENTSO-E — reuse permitted with attribution', attribution: 'Source: ENTSO-E Transparency Platform' },
+    refreshHours: 12 * HOURS, staleAfterHours: 3 * DAYS,
+    bearsOn: ['economics.merchGross'], republishable: true, requiresKey: true, official: true,
   },
 
   // ---- Western Australia ---------------------------------------------------

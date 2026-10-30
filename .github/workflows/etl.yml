@@ -131,6 +131,10 @@ jobs:
           # Absent secrets are not an error. The connector skips its dataset and
           # the previous snapshot stays in place — see etl/lib/fetch.mjs.
           ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
+          # The repository secret is named FINGRID_API; the connector reads
+          # FINGRID_API_KEY. Not passed to the drift job below: no detector reads
+          # the reserve series, and the key is rate-limited.
+          FINGRID_API_KEY: ${{ secrets.FINGRID_API }}
         # One command. Industry news used to need a second, separate invocation
         # because it was not a catalogue dataset; it is now, so `run.mjs` covers
         # it along with everything else and `--only` can select it by id.
