@@ -458,8 +458,11 @@ jobs:
 
   scout:
     name: Scout pass
-    # Three times a month, or by hand with a region. One region a run: three
-    # markets with no dashboard.
+    # Once a month on the 1st, every region in one run, with one pass per
+    # region in roster order. Or by hand, one region at a time, with the
+    # scout_region input. Dispatching several regions back to back cancels all
+    # but the latest queued one: the live-data concurrency group keeps only one
+    # pending run.
     #
     # DRY UNTIL THE ANALYST SAYS OTHERWISE, AND THE SWITCH IS NOT IN THIS FILE.
     # Whether the agent's changes to a scout card are applied is

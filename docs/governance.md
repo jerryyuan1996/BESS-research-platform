@@ -244,8 +244,11 @@ a verdict, and guardrail C compares with a previous value. On a card creation is
 | G | Every verdict, created or moved, needs one official source or two independent ones |
 | H, I | The same digest and the same `revert`, plus `scout-remove` for a whole card |
 
-**The scout pass** ([`agent/scout.mjs`](../agent/scout.mjs)) covers one region a run, on the 1st,
-11th and 21st, so each card is reviewed monthly. For each market it fetches the listed pages,
+**The scout pass** ([`agent/scout.mjs`](../agent/scout.mjs)) runs once a month, on the 1st.
+That run covers every region, with one pass per region in roster order, so each card is reviewed
+monthly. It can also be run by hand, one region at a time, through the `scout_region` input of the
+workflow's dispatch. Dispatching several regions back to back cancels all but the latest queued
+one, because the `live-data` concurrency group keeps only one pending run. For each market it fetches the listed pages,
 gives the model the card as it stands with the anchors and the page text, and turns the answer
 into whole-record changes. The model has no tools, no search and follows no links.
 
