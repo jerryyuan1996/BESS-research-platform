@@ -240,7 +240,10 @@ export function detectDrift({ results, markets }){
       findings.push(...detectFxDrift(r.observations, markets));
     }
 
-    if (r.dataset.marketId && Array.isArray(r.snapshot.series) && r.snapshot.series.length > 0){
+    /* Only an energy-price series can move the merchant line. A reserve price
+       (EUR/MW/h) bears on something else and must never be read as a spread. */
+    if (r.dataset.marketId && r.dataset.bearsOn?.includes('economics.merchGross')
+        && Array.isArray(r.snapshot.series) && r.snapshot.series.length > 0){
       const market = markets.find(m => m.manifest.id === r.dataset.marketId);
       if (market){
         const f = detectMerchantDrift(r.dataset, r.snapshot, market);

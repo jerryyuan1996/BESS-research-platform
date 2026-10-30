@@ -48,6 +48,7 @@ import * as pse from './sources/pse.mjs';
 import * as jepx from './sources/jepx.mjs';
 import * as aemoWem from './sources/aemo-wem.mjs';
 import * as news from './sources/news.mjs';
+import * as fingrid from './sources/fingrid.mjs';
 
 const CONNECTORS = {
   ecb,
@@ -55,6 +56,7 @@ const CONNECTORS = {
   pse,
   jepx,
   'aemo-wem': aemoWem,
+  fingrid,
   /* News used to run from its own entrypoint, outside this orchestrator and
      outside the envelope. That is how it ended up unverifiable. It is an
      ordinary connector now — `npm run etl` covers it, and there is no second
@@ -109,7 +111,13 @@ async function runDataset(dataset, now){
   const market = dataset.marketId ? markets.find(m => m.manifest.id === dataset.marketId) : null;
   let summary = null;
 
-  if (market && Array.isArray(snapshot.series) && snapshot.series.length > 0){
+  /* Spread metrics describe an energy price. A dataset that does not bear on the
+     merchant line (Finland's reserve capacity prices, EUR/MW/h) gets the plain
+     summary the site loads, never an arbitrage figure read off the wrong unit. */
+  const energyPrice = dataset.bearsOn?.includes('economics.merchGross');
+  if (market && !energyPrice){
+    summary = buildSummary(snapshot, null, {});
+  } else if (market && Array.isArray(snapshot.series) && snapshot.series.length > 0){
     const timezone = market.manifest.timezone;
     const durationHours = market.comparison?.archetype?.durationHours;
     if (timezone && durationHours){
