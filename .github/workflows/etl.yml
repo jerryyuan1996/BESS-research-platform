@@ -199,7 +199,11 @@ jobs:
       - name: Commit published data
         id: commit
         run: |
-          if git diff --quiet -- public/data && [ "${{ steps.viewscan.outputs.changed }}" != "true" ]; then
+          # `git status`, not `git diff`: a dataset's FIRST snapshot is an
+          # untracked file, which `git diff` never reports. Using it skipped the
+          # first Fingrid snapshots as "nothing changed" on 2026-10-30.
+          DATA_CHANGED=$(git status --porcelain --untracked-files=all -- public/data)
+          if [ -z "$DATA_CHANGED" ] && [ "${{ steps.viewscan.outputs.changed }}" != "true" ]; then
             echo "Nothing changed this run."
             echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -214,7 +218,7 @@ jobs:
             git commit -m "view: rule ${FIRED} fired" \
                        -m "Written by the rules engine through the view writer's gate. The rule, its threshold and its change were written in advance by the analyst; the changelog line carries the evidence, and the weekly digest gives the command that undoes it."
           fi
-          if git diff --quiet -- public/data; then
+          if [ -z "$DATA_CHANGED" ]; then
             git push
             echo "committed=true" >> "$GITHUB_OUTPUT"
             echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
