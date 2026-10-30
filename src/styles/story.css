@@ -1,0 +1,97 @@
+/* ---------------------------------------------------------------------------
+   The market-story kit: isometric scenes and the day chart (WP-06).
+   Loaded with the story chunk only. Uses the editorial tokens of experience.css.
+
+   Materials give each solid three tones (top, left, right). Time of day is a
+   tint over the whole drawing plus lit windows above it, switched by
+   data-time on the stage, so a scene changes colour without being redrawn.
+   --------------------------------------------------------------------------- */
+.k-stage, .k-chart { display:block; width:100%; height:auto; font-family:inherit; }
+.k-stage { overflow:hidden; }
+.k-chart { overflow:visible; }
+
+/* ---- sky, tint and lights --------------------------------------------------
+   The tint multiplies over sky and scene alike, so each sky colour is chosen
+   for how it reads after the tint: warm peach at dusk, deep navy at night. */
+.k-stage { --k-sky:#eef1e5; --k-tint:#2b2a55; --k-tint-op:0; --k-glow-op:0; --k-sun-op:1; --k-moon-op:0; }
+.k-stage[data-time="dusk"] { --k-sky:#ffd9b0; --k-tint:#7a4f6e; --k-tint-op:.24; --k-glow-op:.85; --k-sun-op:.6; }
+.k-stage[data-time="night"] { --k-sky:#3a4f6e; --k-tint:#16233d; --k-tint-op:.58; --k-glow-op:1; --k-sun-op:0; --k-moon-op:1; }
+.k-sky { fill:var(--k-sky); transition:fill .35s ease; }
+.k-tint { fill:var(--k-tint); opacity:var(--k-tint-op); mix-blend-mode:multiply; pointer-events:none; transition:opacity .35s ease; }
+.k-glow { fill:#ffd66e; opacity:var(--k-glow-op); transition:opacity .35s ease; }
+.k-sun circle { fill:#f2c14e; } .k-sun line { stroke:#f2c14e; stroke-width:2.5; stroke-linecap:round; }
+.k-sun { opacity:var(--k-sun-op); transition:opacity .35s ease; }
+.k-moon { fill:#e8e4d4; opacity:var(--k-moon-op); transition:opacity .35s ease; }
+
+/* ---- faces ----------------------------------------------------------------- */
+.k-box .k-t { fill:var(--t); } .k-box .k-l { fill:var(--l); } .k-box .k-r { fill:var(--r); }
+.k-box { --t:#e4e6dc; --l:#c9ccbf; --r:#aeb2a4; stroke:#193c32; stroke-opacity:.18; stroke-width:.6; stroke-linejoin:round; }
+.k-house    { --t:#f4efe3; --l:#e3dccb; --r:#cdc4af; }
+.k-roof     { --t:#c4704f; --l:#a95c41; --r:#8e4b35; }
+.k-tower    { --t:#d8dfe2; --l:#b9c5cb; --r:#9eadb5; }
+.k-tower-2  { --t:#cfd8dc; --l:#adbcc4; --r:#90a2ac; }
+.k-shed     { --t:#dcdcd2; --l:#c2c3b6; --r:#a8a99b; }
+.k-hall     { --t:#c5c8c1; --l:#a9ada5; --r:#8f948b; }
+.k-boiler   { --t:#b8bcb5; --l:#9da19a; --r:#848881; }
+.k-stack    { --t:#9fa49c; --l:#868a83; --r:#6f736c; }
+.k-container{ --t:#3f7f66; --l:#2f6b55; --r:#245644; }
+.k-cabinet  { --t:#e7e9e1; --l:#cfd3c7; --r:#b6bbad; }
+.k-xfmr     { --t:#a9b3ad; --l:#8d9892; --r:#737e78; }
+.k-bushing  { --t:#efe7d2; --l:#d8cfb6; --r:#c0b79d; }
+.k-post     { --t:#9aa29c; --l:#818982; --r:#6b726c; }
+.k-trunk    { --t:#8b6b4a; --l:#76593c; --r:#634a31; }
+.k-leaf     { --t:#8fb07a; --l:#78986a; --r:#62805a; stroke-opacity:.1; }
+.k-ground   { fill:#dfe4d2; stroke:#c6ceb5; stroke-width:.8; }
+.k-pad      { fill:#cfd2c6; }
+.k-panel, .k-shed-roof { fill:#2f4f7a; stroke:#9fb7d6; stroke-width:.5; }
+.k-shed-roof { fill:#c9ccc0; stroke:#9ea291; }
+.k-mast { fill:#eef0ea; stroke:#9aa197; stroke-width:.6; }
+.k-blade { stroke:#a9b0a7; stroke-width:2.2; stroke-linecap:round; }
+.k-hub { fill:#dfe3dc; stroke:#9aa197; stroke-width:.6; }
+.k-lattice { fill:none; stroke:#6b766f; stroke-width:1.1; }
+.k-wire { fill:none; stroke:#5d6b64; stroke-width:.9; }
+.k-link-missing { fill:none; stroke:var(--ix-risk,#9c5b40); stroke-width:1.6; stroke-dasharray:5 4; }
+.k-break { fill:none; stroke:var(--ix-risk,#9c5b40); stroke-width:2; stroke-linecap:round; }
+.k-chevron { fill:none; stroke:var(--ix-green,#224e40); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+
+/* A plan or scenario: dashed and pale, never shown as built. */
+.k-future .k-t, .k-future .k-l, .k-future .k-r { fill-opacity:.18; stroke:#193c32; stroke-opacity:.7; stroke-dasharray:3 2; }
+.k-hi .k-box { stroke:var(--ix-green,#224e40); stroke-opacity:1; stroke-width:1.4; }
+
+.k-label { font-size:var(--fs-xs); fill:var(--ix-ink,#193c32); paint-order:stroke; stroke:var(--ix-panel,#fffefa); stroke-width:3.5px; stroke-linejoin:round; }
+.k-label-dot { fill:var(--ix-ink,#193c32); }
+.k-stage[data-time="night"] .k-label { fill:#f5f3ed; stroke:#1f2b3a; }
+.k-stage[data-time="night"] .k-label-dot { fill:#f5f3ed; }
+
+/* ---- the day chart ---------------------------------------------------------- */
+.k-chart { font-size:var(--fs-2xs); color:var(--ix-ink,#193c32); }
+.k-chart text { fill:var(--ix-body,#47574f); }
+.k-chart .k-axis { stroke:#9aa79d; } .k-chart .k-grid { stroke:#e3e6dc; }
+.k-chart .k-tick line { stroke:#9aa79d; }
+.k-chart .k-axis-title, .k-chart .k-strip-title { fill:var(--ix-muted,#68766c); font-size:var(--fs-2xs); }
+.k-series .k-area { fill-opacity:.85; } .k-series .k-edge, .k-line { fill:none; stroke-width:1.8; }
+.k-s-grid .k-area, .k-s-grid .k-swatch { fill:#224e40; } .k-s-grid .k-edge { stroke:#193c32; }
+.k-s-roof .k-area, .k-s-roof .k-swatch { fill:#e2b84c; } .k-s-roof .k-edge { stroke:#a37732; }
+.k-s-line, .k-s-line.k-line { stroke:#224e40; } .k-legend.k-s-line .k-swatch { fill:#224e40; }
+.k-scenario .k-edge, .k-scenario.k-line { stroke-dasharray:5 4; }
+.k-window rect { fill:#dce6b7; fill-opacity:.55; stroke:#9dae99; stroke-dasharray:3 3; }
+.k-band-label { fill:var(--ix-green,#224e40) !important; font-weight:var(--fw-medium); }
+.k-highlight rect { fill:#e2b84c; fill-opacity:.16; }
+.k-strip-base { stroke:#c6ceb5; }
+/* What the battery can deliver is an outline; the power it is credited for is
+   solid; energy kept back for fade is pale and dashed. */
+rect.k-bar-output, .k-legend.k-bar-output .k-swatch { fill:none; stroke:#2f6b55; stroke-width:1.6; stroke-dasharray:4 2; }
+rect.k-bar-credited, .k-legend.k-bar-credited .k-swatch { fill:#a37732; fill-opacity:.85; }
+rect.k-bar-reserve, .k-legend.k-bar-reserve .k-swatch { fill:#a37732; fill-opacity:.25; stroke:#a37732; stroke-dasharray:3 2; }
+.k-strip-label { fill:var(--ix-ink,#193c32) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .k-stage *, .k-chart * { transition:none !important; }
+}
+
+/* On a phone a scene is drawn at about half size, so its labels are set at
+   1.75 times the scale step to land near it on screen. Charts use their compact
+   geometry instead (dayChart({ compact: true })). */
+@media (max-width: 560px) {
+  .k-stage .k-label { font-size:calc(var(--fs-xs) * 1.75); stroke-width:5px; }
+}
