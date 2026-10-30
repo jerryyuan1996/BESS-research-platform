@@ -17,16 +17,16 @@
 import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
-  asOf: '2026-08-18',
+  asOf: '2026-10-30',
   dataDate: '2026 obligation period; FCR yearly market for delivery year 2026',
-  modelVersion: 'fi-2.0-reserve-floor-priced',
+  modelVersion: 'fi-2.1-fingrid-fees',
   title: ['Finland Battery Investment Dashboard', '芬兰储能投资看板'],
   sub: ['A saturated reserve market turning into a trading one: what the system still pays for, what a negotiated floor secures, and where a battery can still connect.',
         '一个由饱和备用市场转向交易主导的市场：系统仍为何付费、协商保底能锁定什么，以及储能还能在何处并网。'],
   nextMilestone: ['Next milestone: the hourly reserve prices through the Fingrid API (gate FI-2), which say whether the €15k/MW reserve line is too low',
                   '下一里程碑：经Fingrid API接入小时级备用价格（研究缺口FI-2），以判断每MW 1.5万欧元的备用收入是否偏低'],
-  footerNote: ['Public sources verified 18 August and 17 October 2026. Priced in the engine since 17 October 2026: reserves at the 2026 annual clearing spread across the fleet, and the negotiated floor as a floor.',
-               '公开来源已于2026年8月18日及10月17日核验。自2026年10月17日起纳入引擎计价：备用收入取2026年度出清按全部储能分摊，协商保底按保底建模。'],
+  footerNote: ['Public sources verified 18 August, 17 October and 30 October 2026. Priced in the engine since 17 October 2026: reserves at the 2026 annual clearing spread across the fleet, and the negotiated floor as a floor. Fingrid’s 2026 connection charge and storage service fees since 30 October 2026.',
+               '公开来源已于2026年8月18日、10月17日及10月30日核验。自2026年10月17日起纳入引擎计价：备用收入取2026年度出清按全部储能分摊，协商保底按保底建模。自2026年10月30日起计入Fingrid 2026年并网费与储能服务费。'],
   seedWarn: ['The reserve line is what the 2026 annual market paid across the fleet, €15k/MW a year; a well-optimised battery in the hourly markets may earn more or less. A reserve obligation is never a captured price; an announced project is never a financed one; an available connection in the north is never a connection in the south.',
              '备用收入为2026年度市场在全部储能间分摊的水平，每MW每年1.5万欧元；在小时级市场中优化良好的储能可能高于或低于此数。备用需求不等于捕获价格；已公布项目不等于已融资项目；北部的可用并网容量不等于南部的并网容量。'],
 
@@ -113,6 +113,16 @@ const M = {
       { name: ['Nivala (Foresight, from FRV)', 'Nivala（Foresight，购自FRV）'], mw: 100, mwh: 400,
         status: ['Fully permitted; acquired by Foresight (FEIP II) in October 2026; operation expected H2 2028', '已取得全部许可；2026年10月由Foresight（FEIP II）收购；预计2028年下半年投运'],
         src: 'dealForesight' },
+      /* ADDED 2026-10-30, each from its own announcement. */
+      { name: ['Akkula Big Battery, Rauma (Neoen)', 'Akkula大型储能，劳马（Neoen）'], mw: 62.5, mwh: 231,
+        status: ['Under construction since December 2025; fully operational in 2027; 110 kV line connection', '2025年12月起在建；2027年全面投运；接入110kV线路'],
+        src: 'akkulaNeoen' },
+      { name: ['Tuisku, Keminmaa (Luxcara)', 'Tuisku，凯明马（Luxcara）'], mw: 125, mwh: null,
+        status: ['Bought construction-ready in February 2026; commercial operation targeted for summer 2027', '2026年2月以可开工状态收购；目标2027年夏季商业运行'],
+        src: 'tuiskuLuxcara' },
+      { name: ['Teuva (Prime Capital, from Usva Energia)', 'Teuva（Prime Capital，购自Usva Energia）'], mw: 100, mwh: 400,
+        status: ['Ready-to-build; sold to Prime Capital in 2026', '可开工；2026年出售给Prime Capital'],
+        src: 'dealTeuva' },
       { name: ['Uusikaupunki', 'Uusikaupunki'], mw: 50, mwh: 100,
         status: ['Reported for summer 2026', '据报道于2026年夏季投运'],
         src: 'tradePress' },
@@ -164,11 +174,14 @@ const M = {
      block inside the energy rate. Spread is set so the Lab's merchant line
      reproduces the €78k/MW merchant seed: 2 h × 0.91 × 1.5 cycles × 365 ×
      97% × €81 ≈ €78.3k. Reserves at the €15.08/kW-yr fleet-shared 2026 level.
-     Debt tenor seven years, the floor's term. */
+     Debt tenor seven years, the floor's term.
+     Since 2026-10-30 Fingrid's tariffs are in: the €40k/MW connection charge as
+     its own line (a tariff, so the sponsor discount never touches it) and the
+     €4.14/kW-yr storage service fees on top of the €9 operating seed. */
   lab: {
     vatPct: 25.5, vatRecoverable: 1,
     devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
-    mw: 50, hours: 2, capexKWh: 140, dcQuoteKWh: landedDcPerKWh('EUR'), capexKW: 160, opexKW: 9,
+    mw: 50, hours: 2, capexKWh: 140, dcQuoteKWh: landedDcPerKWh('EUR'), capexKW: 160, connectionPerMW: 40000, opexKW: 13.14,
     rte: 88, avail: 97, degr: 2.0, cycles: 1.5, spread: 81, optFee: 10,
     capPrice: 0, capYrs: 0, servicesKW: 15.08, grantPct: 0,
     life: 15, disc: 9, debtPct: 55, rate: 6.5, tenor: 7,
@@ -204,8 +217,12 @@ const M = {
       asset: ['Kauhava, 50 MW / 100 MWh; project finance from Société Générale', 'Kauhava，50MW/100MWh；法国兴业银行提供项目融资'], src: 'dealKauhava' },
     { when: '2026-02', buyer: ['Nala Renewables (Trafigura / IFM)', 'Nala Renewables（Trafigura/IFM）'], seller: 'Fu-Gen',
       asset: ['Vuolijoki, 125 MW, ready-to-build', 'Vuolijoki，125MW，可建设阶段'], src: 'dealVuolijoki' },
+    { when: '2026-02', buyer: ['Luxcara', 'Luxcara'], seller: 'Pohjan Voima',
+      asset: ['Tuisku, up to 125 MW, construction-ready', 'Tuisku，最高125MW，可开工阶段'], src: 'tuiskuLuxcara' },
     { when: '2026-03', buyer: ['Prime Capital', 'Prime Capital'], seller: '—',
       asset: ['170 MWh project, acquisition closed', '170MWh项目，收购完成'], src: 'dealPrime' },
+    { when: '2026', buyer: ['Prime Capital', 'Prime Capital'], seller: 'Usva Energia',
+      asset: ['Teuva, 100 MW / 400 MWh, ready-to-build', 'Teuva，100MW/400MWh，可建设阶段'], src: 'dealTeuva' },
     { when: '2026-10', buyer: ['Foresight', 'Foresight'], seller: 'FRV',
       asset: ['Nivala, 100 MW / 400 MWh, four hours', 'Nivala，100MW/400MWh，四小时'], src: 'dealForesight' },
   ],
@@ -219,11 +236,15 @@ const M = {
       p: ['FCR-N reserved at about €47/MW,h; a one-hour battery earned about €645k/MW a year at the September 2023 peak of Clean Horizon’s index.', 'FCR-N预留价约47欧元/MW,h；Clean Horizon指数显示2023年9月高峰时1小时储能年收入约64.5万欧元/MW。'],
       i: ['The returns that drew 30,000 MW of connection requests.', '正是这一回报吸引了30,000MW的并网申请。'] },
     { y: '2024–2025', t: ['Cannibalisation', '同质化竞争'],
-      p: ['FCR-N fell from €46/MW,h in 2024 to €19 by June 2025 as batteries filled it; wind passed 9,400 MW; the price record reached −500 €/MWh; mFRR moved to the Nordic energy activation market, and day-ahead to 15-minute settlement on 1 October 2025.', 'FCR-N由2024年的46欧元/MW,h降至2025年6月的19欧元；风电装机超过9,400MW；价格记录触及−500欧元/MWh；mFRR转入北欧能量激活市场，日前市场于2025年10月1日改为15分钟结算。'],
+      p: ['FCR-N fell from €46/MW,h in 2024 to €19 by June 2025 as batteries filled it; wind passed 9,400 MW; the price record reached −500 €/MWh. The market went to fifteen minutes in stages — the aFRR energy market in June 2024, the mFRR energy market on 4 March 2025, the imbalance price on 19 March, day-ahead on 1 October — and Finland joined PICASSO, the European aFRR energy platform, on 26 March 2025.', 'FCR-N由2024年的46欧元/MW,h降至2025年6月的19欧元；风电装机超过9,400MW；价格记录触及−500欧元/MWh。市场分阶段转为15分钟 — 2024年6月aFRR能量市场、2025年3月4日mFRR能量市场、3月19日不平衡电价、10月1日日前市场 — 芬兰于2025年3月26日加入欧洲aFRR能量平台PICASSO。'],
       i: ['Revenue moves from reserves to trading.', '收入来源由备用转向交易。'] },
     { y: '2026', t: ['Saturation, and the deals continue', '饱和，但交易仍在继续'],
       p: ['FCR-N’s annual auction cleared at zero; connected storage passed 1,050 MW in February against about 795 MW of fast-reserve need; Clean Horizon’s two-hour index stood at about €78k/MW a year in August. Foresight, Nala and Prime Capital bought projects anyway.', 'FCR-N年度拍卖以零出清；2月已并网储能超过1,050MW，而快速备用需求约795MW；8月Clean Horizon两小时指数约为每MW每年7.8万欧元。Foresight、Nala与Prime Capital依然收购了项目。'],
       i: ['Buyers are pricing trading and floors, not reserves.', '买方定价依据的是交易与保底，而非备用。'] },
+    /* ADDED 2026-10-30, from Fingrid's releases of 2 and 8 September 2026. */
+    { y: '2027', t: ['Reserves go hourly; MARI slips', '备用转为小时级；MARI推迟'],
+      p: ['Fingrid buys no FCR in a yearly market for 2027: the yearly annexes expire on 31 December 2026 and FCR is bought hour by hour, with hourly volumes expected to rise significantly. The Nordic move to MARI, the European mFRR energy platform, slipped from Q1 2027 to most likely September–October 2027.', 'Fingrid 2027年不再通过年度市场采购FCR：年度协议于2026年12月31日到期，FCR改为逐小时采购，预计小时级容量将大幅增加。北欧接入欧洲mFRR能量平台MARI的时间由2027年第一季度推迟至最可能的2027年9–10月。'],
+      i: ['The one fixed-price reserve market the reserve line is read from closes before a 2028 battery runs.', '备用收入所依据的唯一固定价格备用市场，将在2028年投运的储能运行前关闭。'] },
     { y: '2029', t: ['Southern connections reopen', '南部并网重新开放'],
       p: ['Fingrid’s restriction on new storage connections in southern Finland runs until the Hikiä–Toivila reinforcement completes.', 'Fingrid对芬兰南部新增储能并网的限制持续至Hikiä–Toivila加强工程完工。'],
       i: ['Until then, a southern connection is the scarce asset.', '在此之前，南部并网容量是稀缺资产。'] },
@@ -235,6 +256,8 @@ const M = {
     ['FFR — fast frequency reserve', 'FFR — 快速频率备用'],
     ['aFRR / mFRR — automatic and manual frequency restoration reserve', 'aFRR/mFRR — 自动与手动频率恢复备用'],
     ['mFRR EAM — the Nordic mFRR energy activation market', 'mFRR EAM — 北欧mFRR能量激活市场'],
+    ['PICASSO — the European platform for aFRR energy, joined by Finland on 26 March 2025', 'PICASSO — 欧洲aFRR能量平台，芬兰于2025年3月26日加入'],
+    ['MARI — the European platform for mFRR energy; Nordic accession expected September–October 2027', 'MARI — 欧洲mFRR能量平台；北欧预计于2027年9–10月接入'],
     ['Fingrid — the Finnish transmission system operator', 'Fingrid — 芬兰输电系统运营商'],
     ['Energy Authority — the regulator that decides peak-load capacity', '能源局 — 决定峰荷容量的监管机构'],
     ['Optimiser floor — a minimum annual payment from an optimiser or offtaker, with the upside kept by the owner', '优化商保底 — 优化商或购电方承诺的最低年付款，超额收益归业主'],

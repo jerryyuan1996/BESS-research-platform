@@ -120,6 +120,34 @@ const CAPEX_TOTAL_PER_MW = 440000;
 const OPEX_SEED_PER_MW = 9000;
 const QUOTED = quotedEconomics({ currency: 'EUR', hours: 2, method: 'held', total: CAPEX_TOTAL_PER_MW, opexSeed: OPEX_SEED_PER_MW });
 
+/* ADDED 2026-10-30 — WHAT THE MAIN GRID CHARGES A BATTERY, from Fingrid's own
+   2026 fee sheets (sources gridFees2026, connectionFees2026). Both are published
+   tariffs, so neither is a seed to be argued with; what is modelled is the
+   archetype's use of them.
+
+   Connection. A 50 MW battery on Fingrid's 110 kV line pays €1,000,000 for each
+   started 25 MVA of transformer rating, at most two:
+        2 × €1,000,000 ÷ 50 MW = €40,000/MW
+   An existing 110 kV substation is a flat €1,000,000 (€20,000/MW), the band's
+   low end. Set as `gridContributionPerMW`, which the engine adds to build cost
+   and which replaces the acquisition layer's generic grid reserve, so it is
+   never counted twice.
+
+   Service fees, storage tariff, at 2 h × 91% usable × 1.5 cycles × 365 × 97%:
+        discharged 966.6 MWh/MW/yr; charged ÷ 88% = 1,098.4
+        capacity, input and output   2 × €94.75 × 12          = 2,274
+        main grid output (charging)  1,098.4 × €1.07           = 1,175
+        main grid input (discharge)  966.6 × €0.71             =   686
+                                                                  ≈ €4,136/MW/yr
+   Charging energy pays no consumption fee under the 2026 pricing. Fingrid's
+   tariff reform, due for decision by the end of 2026, raises the burden on
+   storage; this is the 2026 schedule, not a forecast of the next. */
+/* No Lab band: the Lab does not render this field. Its evidenced span is
+   €20,000 (existing 110 kV substation) to €40,000 (110 kV line, two fees). */
+const GRID_CONNECTION_PER_MW = 2 * 1000000 / 50;   // 40,000
+const DISCHARGED_MWH = 2 * 0.91 * 1.5 * 365 * 0.97;
+const GRID_FEES_PER_MW = Math.round(2 * 94.75 * 12 + (DISCHARGED_MWH / 0.88) * 1.07 + DISCHARGED_MWH * 0.71);   // 4,136
+
 const economics = {
   capexPerMW: CAPEX_TOTAL_PER_MW,
   capexStack: QUOTED.capexStack,
@@ -130,8 +158,10 @@ const economics = {
   /* The flat seed was 9,000/MW/yr. The supplier's service package now runs as its own
      back-loaded line below, and this is the rest of fixed opex: the seed less the
      package's fifteen-year mean, so the fifteen-year total is unchanged. */
-  opexPerMW: QUOTED.otherOpexPerMW,
+  /* Plus Fingrid's 2026 storage service fees, €4,136/MW/yr (above), from 2026-10-30. */
+  opexPerMW: QUOTED.otherOpexPerMW + GRID_FEES_PER_MW,
   serviceSchedulePerMW: QUOTED.serviceSchedulePerMW,
+  gridContributionPerMW: GRID_CONNECTION_PER_MW,
 
   /* No resource adequacy revenue. Zero rather than absent, and the capability
      flag is what makes the engine report the route unavailable rather than
@@ -231,8 +261,8 @@ const ranges = {
   }),
   opexPerMW: band(economics.opexPerMW, null, null, {
     kind: 'dispersed',
-    basis: ['Platform convention pending a Finnish operating benchmark.', '平台惯例，待取得芬兰运维基准。'],
-    source: 'Platform convention; no Finnish operating benchmark read',
+    basis: ['Platform convention plus Fingrid’s 2026 storage fees, about €4.1k/MW a year.', '平台惯例加Fingrid 2026年储能费用，每MW每年约4,100欧元。'],
+    source: 'Fingrid fees 2026; platform convention',
     gate: 'FI-3',
   }),
   /* Low end: the hourly FCR-N market already clears at zero in hours of surplus,
