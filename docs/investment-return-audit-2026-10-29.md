@@ -70,3 +70,13 @@ Capex below includes remaining construction, grid and reference contingency, exc
 | developer | gb | gb-cap-4h | 4.54% | 5.81% | -30.71% | -30.71% | 5.02% | 42.11% | 1.20x | 14.16% | 16.16% | neither |  | GBP 945,589 | 18m |
 | developer | wa | wa-cap-8h | 17.82% | 13.36% | 29.55% | 13.36% | 19.05% | 75.00% | 1.20x | 12.85% | 14.85% | all-equity |  | AUD 2,904,436 | 15m |
 | developer | ca_on |  | 6.81% | 4.72% | -21.71% | -21.71% | 3.96% | 50.17% | 1.20x | 10.81% | 12.81% | neither |  | CAD 2,592,405 | 18m |
+
+## Addendum, 30 October 2026: Finland priced with Fingrid's 2026 tariffs
+
+Finland now carries Fingrid's 2026 connection charge, €40,000/MW: two €1m fees for 50 MW on a 110 kV line. This replaces the generic grid reserve. It also carries Fingrid's 2026 storage service fees, about €4,136/MW a year (`fi-2.1-fingrid-fees`). No other market's inputs changed; Germany's asset-return grade rose from 4 to 5 because Finland fell below it in the ranking. The audit script was not rerun: it stops on Saudi Arabia, which is held out of the engine.
+
+| Investor | Market | Play | All-equity hold | Sale | Lower of hold/sale | Levered | Capex / MW |
+|---|---|---|---:|---:|---:|---:|---:|
+| all four lenses | fi | fi-toll-2h | 14.88% → **13.41%** | 16.06% → 13.89% (developer 47.91% → 34.59%) | 14.88% → 13.41% | 18.21% → 16.19% | EUR 465,792 → 488,091 |
+
+Every lens still passes its target on the all-equity test (8.17–11.85%), and Finland stays first on the board.

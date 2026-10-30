@@ -11,6 +11,8 @@ import { markets } from '../registry.js';
 import { MKT } from './mkt.js';
 import { TABS } from './tabs.js';
 import { SRC } from './sources.js';
+/* Cited only in these tabs, so they load with this chunk, not the entry (2026-10-30). */
+import { DASHBOARD_SRC } from './sourcesDashboard.js';
 import { M } from './data.js';
 import { buildSections } from './sections.js';
 import './gridMapData.js';   // side effect: registers this market's grid map
@@ -35,7 +37,7 @@ registerClaims('fi', CLAIMS);
 registerCase('fi', { view: VIEW, ledger: ENTRY_LEDGER });
 
 const engine = createMarketEngine({
-  MKT, TABS, SRC, M, buildSections,
+  MKT, TABS, SRC: { ...SRC, ...DASHBOARD_SRC }, M, buildSections,
 });
 
 export function researchSummary(container, route) {

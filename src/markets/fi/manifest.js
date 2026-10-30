@@ -38,15 +38,16 @@ export const manifest = {
      what consumes it. */
   pattern: 'hatch',
 
-  asOf: '2026-08-18',
+  asOf: '2026-10-30',
   dataDate: '2026 obligation period; FCR yearly market for delivery year 2026',
   /* Names what the model IS. 1.0 withheld the reserve line; 2.0 prices it at
-     the 2026 annual clearing and models the negotiated floor. */
-  modelVersion: 'fi-2.0-reserve-floor-priced',
-  lastVerified: '2026-08-18',
+     the 2026 annual clearing and models the negotiated floor; 2.1 adds
+     Fingrid's 2026 connection charge and storage service fees. */
+  modelVersion: 'fi-2.1-fingrid-fees',
+  lastVerified: '2026-10-30',
   sourceHealth: [
-    'Structure verified against Fingrid and the Energy Authority on 2026-08-18; priced in the engine since 2026-10-17, with reserves at the 2026 annual clearing and the hourly markets outstanding (gate FI-2).',
-    '市场结构已于2026年8月18日依据Fingrid及能源局资料核验；自2026年10月17日起纳入引擎计价，备用收入取2026年度出清，小时级市场数据待补（研究缺口FI-2）。',
+    'Fingrid-verified 2026-10-30; hourly reserve prices pending (FI-2).',
+    '2026年10月30日依Fingrid核验；小时级备用价格待补（FI-2）。',
   ],
 };
 

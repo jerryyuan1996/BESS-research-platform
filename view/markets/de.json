@@ -7,17 +7,17 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 4,
+      "grade": 5,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Fourth of fifteen markets on hold IRR, 13.9%.",
-        "持有期IRR为13.9%，在十五个市场中排第四。"
+        "Third of seventeen markets on hold IRR, 13.9%.",
+        "持有期IRR为13.9%，在十七个市场中排第三。"
       ],
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-30",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -282,9 +282,13 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-30",
       "lockedUntil": null,
-      "play": "de-toll-4h"
+      "play": "de-toll-4h",
+      "scoreNote": [
+        "The score crosses into enter-now only because the return grade rose a fifth when Finland fell below Germany in the ranking; Germany's own return did not change. The reference toll play is below the fund's target both ways, and a reference project secures nothing until it holds a toll, so the call stays opportunistic.",
+        "评分进入“现在进入”区间，仅因芬兰在排名中降至德国之后、德国回报评级上升一档；德国自身回报并未变化。参考租赁方案在两种口径下均低于基金目标，且参考项目在签订租赁协议前没有任何锁定收入，因此结论维持“机会型”。"
+      ]
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",

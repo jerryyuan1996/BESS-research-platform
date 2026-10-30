@@ -223,6 +223,12 @@ export const COMPARISON_AUTHORITY = {
   'economics.capexQuotedPerMW': AUTHORITY.ANALYST,
   'economics.serviceSchedulePerMW': AUTHORITY.ANALYST,
 
+  /* A TSO's published connection charge applied to the archetype (Finland,
+     2026-10-30). The tariff is public, but which tariff an archetype takes —
+     substation or line, one fee or two — is a modelling choice, so the
+     analyst owns it. */
+  'economics.gridContributionPerMW': AUTHORITY.ANALYST,
+
   /* ---- capital structure -------------------------------------------------
      The component stack is ANALYST rather than DERIVED even though it is
      currently generated from a share model. The shares are a placeholder for
