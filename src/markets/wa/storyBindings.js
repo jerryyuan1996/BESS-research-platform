@@ -5,7 +5,8 @@
    nothing here computes a model result. A field that is missing resolves to
    null, which the contract renders as an em dash, never as a typed number.
 
-     playDuration, nextAction, entryRoute   row.play (the briefing's play)
+     playDuration, nextAction, entryRoute   row.play (the briefing's play); the
+                                            stage word is playTitle's STAGE_WORD
      securedShare, securedTenor             row.econ ("Modelled fixed revenue",
                                             "Fixed revenue tenor")
      durationRequirement, requirementTerm   the capacity route's duration floor,
@@ -15,16 +16,10 @@
                                             story tab's requirement table
    --------------------------------------------------------------------------- */
 import { RCM_HISTORY } from './data/rcmHistory.js';
+import { STAGE_WORD } from '../../governance/playTitle.js';
 
 const finite = (v) => typeof v === 'number' && Number.isFinite(v);
 const pct = (v) => (finite(v) ? `${(v * 100).toFixed(1)}%` : null);
-
-const STAGE = {
-  'co-invest': ['co-investment', '跟投'],
-  'ready-to-build': ['ready-to-build purchase', '可开工项目收购'],
-  operating: ['purchase of an operating asset', '运营资产收购'],
-  greenfield: ['greenfield development', '绿地开发'],
-};
 
 /** The capacity route's floor, with floorOf()'s precedence for 'cap'. */
 function capFloor(market){
@@ -42,7 +37,7 @@ export function storyValues(row){
   return {
     playDuration: finite(row?.play?.hours) ? String(row.play.hours) : null,
     nextAction: Array.isArray(row?.play?.action?.text) ? row.play.action.text : null,
-    entryRoute: STAGE[row?.play?.stage] || null,
+    entryRoute: STAGE_WORD[row?.play?.stage] || null,
     securedShare: pct(row?.econ?.secured),
     securedTenor: finite(row?.econ?.securedYears) ? String(row.econ.securedYears) : null,
     durationRequirement: finite(floor.hours) ? String(floor.hours) : null,
