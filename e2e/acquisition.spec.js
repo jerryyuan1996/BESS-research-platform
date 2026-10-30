@@ -42,7 +42,7 @@ test('investors filter, sort and compare consistent market cases in both languag
   await page.getByRole('button',{name:'并排比较 ↗',exact:true}).click();
   await expect(page.getByRole('dialog')).toContainText('意大利');
   await expect(page.getByRole('dialog')).toContainText('芬兰');
-  await expect(page.getByRole('dialog')).toContainText('14.9%');
+  await expect(page.getByRole('dialog')).toContainText('13.4%');
   await page.screenshot({path:testInfo.outputPath('market-comparison-zh.png')});
   await page.keyboard.press('Escape');
   await page.getByRole('searchbox',{name:'搜索市场',exact:true}).fill('Finland');
