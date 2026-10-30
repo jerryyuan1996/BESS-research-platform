@@ -1,5 +1,7 @@
 # BESS Research Platform：投资人视角评审与修改建议
 
+> 当前执行口径见 [修改建议与落实记录](修改建议.md)：矩阵纵轴恢复实际IRR；下行移至来源之前；加入方案切换与逐月现金流；完整研究改为弹窗。以下早期关于“减目标”和把下行提前的建议由本次用户确认覆盖。
+
 评审日期：2026年10月30日（澳大利亚珀斯时间）
 网站：[Global BESS](https://globalbess.vercel.app/)
 仓库：[jerryyuan1996/BESS-research-platform](https://github.com/jerryyuan1996/BESS-research-platform)

@@ -51,7 +51,8 @@ test('route links highlight the affected play without silently changing the main
 test('responsive decision cards, shared navigation and comparison margins remain usable',async({page},info)=>{
   await page.goto('/returns');
   await expect(page.locator('.ix-opportunity-set tbody tr')).toHaveCount(18);
-  await expect(page.locator('.ix-matrix-svg')).toContainText('minus target');
+  await expect(page.locator('.ix-matrix-svg')).toContainText('All-equity IRR (%)');
+  await expect(page.locator('.ix-matrix-svg')).not.toContainText('minus target');
   await expect(page.locator('.ix-unpriced-markets')).toContainText('evidence gap');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2)).toBe(false);
   await page.screenshot({path:info.outputPath('comparison-margin.png'),fullPage:true});

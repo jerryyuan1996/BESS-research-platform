@@ -10,7 +10,6 @@ import { CALLS, LENSES, REGIONS, opportunities, caseFor, marketName, caseUrl, co
 import { siteHeader, siteFooter, link, eyebrow, sectionTitle, metric } from './chrome.js';
 import { opportunityMatrix, miniature, revenueWaterfall, revenueBar, MATRIX_BASIS } from './charts.js';
 import { specialRecommendations } from '../opportunities/home.js';
-import { marketResearchSummary } from './researchSummary.js';
 import { countryAttrs, projectFacts, operatingPrice } from './projectFacts.js';
 import { playTitle } from '../governance/playTitle.js';
 import { gateLabel } from './labels.js';
@@ -207,9 +206,13 @@ function renderComparison(container, rows) {
     if (!filtered.length) matrixPanel.append(h('div', { class: 'ix-empty', role: 'status' }, h('h3', {}, L(['No markets match your search.', '没有匹配的市场。'])), button(['Reset filters', '重置筛选'], () => { state.query = ''; state.region = 'all'; search.value = ''; for (const b of regions.children) b.setAttribute('aria-pressed', String(b.dataset.region === 'all')); saveFilters(); draw(); })));
     else {
       const selectedPanel = h('aside', { class: 'ix-matrix-detail', 'aria-live': 'polite' });
-      const selectRow = row => { state.selected = row.id; selectedPanel.replaceChildren(eyebrow(['SELECTED MARKET', '当前市场']), tag(row), h('h3', {}, name(row)), h('p', {}, L(routeName(row))),
-        h('div', { class: 'ix-selected-metrics' }, metric(HOLD_LABEL, returnPct(row.econ.hold)), metric(LEVERED_LABEL, returnPct(row.econ.levered)), metric(['Fixed share', '固定收入占比'], share(row.econ.secured))),
-        basisNote(row),decisionReasons(row),contractEvidence(row),projectFacts(row.investment),link(caseUrl(row), ['Open market case ↗', '查看市场方案 ↗'], 'ix-button'));
+      const selectRow = row => { state.selected = row.id; selectedPanel.replaceChildren(
+        h('div',{class:'ix-selected-summary'},
+          h('div',{class:'ix-selected-identity'},eyebrow(['SELECTED MARKET','当前市场']),h('div',{class:'ix-selected-title'},h('h3',{},name(row)),tag(row)),h('p',{},L(routeName(row)))),
+          h('div',{class:'ix-selected-metrics'},metric(HOLD_LABEL,returnPct(row.econ.hold)),metric(LEVERED_LABEL,returnPct(row.econ.levered)),metric(['Fixed share','固定收入占比'],share(row.econ.secured))),
+          link(caseUrl(row),['Open market case ↗','查看市场方案 ↗'],'ix-button')),
+        h('details',{class:'ix-details ix-selected-evidence'},h('summary',{},L(['Investment rationale and project assumptions','投资依据与项目参数'])),
+          basisNote(row),decisionReasons(row),contractEvidence(row),projectFacts(row.investment)));
         Object.entries(countryAttrs(row.id)).forEach(([k,v])=>selectedPanel.setAttribute(k,v)); };
       selectRow(filtered.find(r => r.id === state.selected));
       matrixPanel.append(h('div', { class: 'ix-matrix-body' }, chartFrame(opportunityMatrix(filtered, state.selected, selectRow, { basis: state.basis })), selectedPanel));
@@ -221,8 +224,8 @@ function renderComparison(container, rows) {
           selectRow(row);
         }},name(row),' · N/M'))));
       matrixPanel.append(h('p', { class: 'ix-caption' }, L([
-        'Same RTB closing date · 20 operating years · nominal after project tax. Vertical axis: return minus the selected investor’s applicable target, in percentage points. Green reference area: at least 50% modelled first-year fixed revenue and non-negative target margin; it does not establish bankability. Dot area: typical project build/grid capex, not market size. Contract and inflation assumptions appear in each case.',
-        '统一RTB交割起点 · 20年运营 · 税后名义。纵轴为所选投资者的回报减相应目标，单位为百分点。绿色参考区：模型首年固定收入至少50%且目标余量非负，不代表项目已可融资。圆面积表示典型项目建设及并网资本开支，不代表市场规模；合同与通胀假设见各市场详情。',
+        'Same RTB closing date · 20 operating years · nominal after project tax. The vertical axis shows actual modelled IRR; apply your own return target. Fixed share is modelled first-year fixed revenue, not proof of bankability. Dot area shows typical project build/grid capex in USD, not market size. Contract and inflation assumptions appear in each case.',
+        '统一RTB交割起点 · 20年运营 · 税后名义。纵轴展示模型IRR，可自行对照回报目标。固定收入占比为模型首年口径，不代表项目已可融资。圆面积表示典型项目建设及并网资本开支（美元），不代表市场规模；合同与通胀假设见各市场详情。',
       ])));
 
     }
@@ -283,9 +286,12 @@ function renderMarket(container, row) {
     h('div', { class: 'ix-overview-body' }, h('div', {}, h('p', { class: 'ix-thesis' }, L(currentThesis(row))),
       link(`${caseUrl(row)}/home`, ['Explore the full market research ↗', '阅读完整市场研究 ↗'], 'ix-text-link')),
       h('aside', { class: 'ix-next-action' }, eyebrow(['NEXT INVESTMENT ACTION', '下一项投资行动']), h('p', {}, L(row.play?.action?.text || m.comparison.refinement?.currentUpdate || m.comparison.narrative.thesis))))));
-  const research=h('details',{class:'ix-details ix-full-research'},h('summary',{},L(['Grid, history and full research context','电网、历史与完整研究背景'])));
-  let researchLoaded=false;
-  research.addEventListener('toggle',()=>{if(research.open&&!researchLoaded){researchLoaded=true;research.append(marketResearchSummary(m));}});
+  const research=button(['Grid, history and full research context ↗','电网、历史与完整研究背景 ↗'],()=>{
+    research.disabled=true;
+    import('./researchDialog.js').then(module=>{if(research.isConnected)module.openResearchDialog(m,name(row),research);})
+      .catch(()=>{research.textContent=L(['Could not load; click to retry','暂未载入，点击重试']);})
+      .finally(()=>{research.disabled=false;});
+  },'ix-outline ix-full-research');
   content.querySelector('#overview').append(research);
   /* Revenue drivers sit under the overview. The special-opportunity comparison
      appears only where one is valid, and then at the foot of the case, just
@@ -341,7 +347,7 @@ function renderMarket(container, row) {
   });
   if (!data.unavailable) content.append(downsideSection(data));
   const overview=content.querySelector('#overview');
-  for(const id of ['bankable','revenue','downside']){const node=content.querySelector('#'+id);if(node)content.insertBefore(node,overview);}
+  for(const id of ['bankable','revenue']){const node=content.querySelector('#'+id);if(node)content.insertBefore(node,overview);}
   if(data.unavailable) for(const id of ['revenue','downside'])content.querySelector('.ix-section-nav a[href="#'+id+'"]')?.remove();
   content.append(sourcesSection(row));
   content.append(nextSection(['Keep the opportunity in context.', '让投资判断，始终保有全球视角。'], ['Return to the matrix and compare this case with your next market.', '返回全球矩阵，将当前方案与下一个市场放在一起比较。'], compareUrl([row.id]), ['Back to global comparison ↗', '返回全球比较 ↗']));
@@ -431,6 +437,10 @@ function downsideSection(data) {
     [['Year-one after-tax cash / MW', '首年税后经营现金流 / MW'], money(row.investment?.bridge.net), money(row.investment?.bearNetUSD)],
   ];
   const profile = row.market.comparison.refinement;
+  const explanation=h('div',{class:'ix-downside-explanation','aria-busy':'true'},h('p',{},L(['Loading the downside conditions and historical reference…','正在载入下行条件与历史参考…'])));
+  import('./downsideNarrative.js').then(module=>{if(explanation.isConnected)explanation.replaceChildren(module.downsideNarrative(row,lens(),data.overrides));})
+    .catch(()=>{explanation.replaceChildren(h('p',{},L(['Conditions could not be loaded; the exact stress inputs remain below.','下行解释暂未载入，仍可查看下方准确的压力输入。'])));})
+    .finally(()=>explanation.setAttribute('aria-busy','false'));
   const analysis=h('details',{class:'ix-details ix-risk-analysis-host'},h('summary',{},L(['Sensitivity, fixed-debt stress and contract expiry','敏感性、固定贷款压力与合同到期'])));
   let loading=false;
   analysis.addEventListener('toggle',async()=>{if(!analysis.open||loading)return;loading=true;try{const module=await import('./riskAnalysis.js');analysis.append(module.riskAnalysis(row,lens(),data.overrides));}catch{loading=false;analysis.append(h('p',{},L(['Analysis unavailable; close and reopen to retry.','分析暂未载入，可关闭后重新展开。'])));}});
@@ -439,6 +449,7 @@ function downsideSection(data) {
       h('div', { class: 'ix-table-scroll' }, h('table', { class: 'ix-table ix-downside-table' }, h('thead', {}, h('tr', {}, ...[['Metric', '指标'], ['Base', '基准'], ['Downside', '下行']].map(x => h('th', { scope: 'col' }, L(x))))),
         h('tbody', {}, riskRows.map(([label, a, b]) => h('tr', {}, h('th', { scope: 'row' }, L(label)), h('td', { class: 'ix-table-number', 'data-label':L(['Base','基准']) }, a), h('td', { class: 'ix-table-number ix-risk-value', 'data-label':L(['Downside','下行']) }, b)))))),
       h('p', { class: 'ix-caption' }, L(['The downside applies the declared adverse inputs to the same RTB closing date, operating life, tax and ownership convention as the base investment case.','下行将既定不利输入应用于与基准相同的RTB交割起点、运营寿命、税费及持有方式。'])),
+      explanation,
       h('details', { class: 'ix-details' }, h('summary', {}, L(['Inspect the downside inputs', '查看下行情景输入'])),
         h('div', { class: 'ix-input-grid' }, Object.entries(data.overrides).map(([key, value]) => inputLabel(key, value, row.market.manifest.currency))))),
     analysis,

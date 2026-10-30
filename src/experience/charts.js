@@ -1,4 +1,3 @@
-import { margin } from './decision.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { marketName, pct, returnPct, share, finite } from './model.js';
@@ -26,44 +25,39 @@ export const capexUSD = row => {
   const inv = row.investment;
   return finite(inv?.capexTotal) && finite(inv?.fxToUSD) ? inv.capexTotal * inv.fxToUSD : null;
 };
-/* Return basis for the vertical axis. The shaded zone sits at 10% all-equity,
-   and two points higher levered, matching the two-layer target test. */
+/* Actual returns, without a universal hurdle or a target-dependent position. */
 export const MATRIX_BASIS = {
-  hold: { label: ['All-equity IRR minus target (pp)', '全股权IRR减目标（百分点）'], zone: 0 },
-  levered: { label: ['Levered equity IRR minus target (pp)', '杠杆后股权IRR减目标（百分点）'], zone: 0 },
+  hold: { label: ['All-equity IRR (%)', '全股权IRR（%）'] },
+  levered: { label: ['Levered equity IRR (%)', '杠杆后股权IRR（%）'] },
 };
 
 export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } = {}) {
-  const value = r => margin(r,basis);
+  const value = r => r.econ[basis];
   const dots = rows.filter(r => finite(value(r)) && finite(r.econ.secured));
-  const low = Math.min(-5, Math.floor(Math.min(...dots.map(r => value(r) * 100), 0) / 5) * 5);
+  const low = Math.min(0, Math.floor(Math.min(...dots.map(r => value(r) * 100), 0) / 5) * 5);
   const high = Math.max(20, Math.ceil(Math.max(...dots.map(r => value(r) * 100), 0) / 5) * 5);
-  const x = v => 66 + v * 680;
-  const y = v => 340 - (v * 100 - low) / (high - low) * 290;
+  const x = v => 76 + v * 864;
+  const y = v => 380 - (v * 100 - low) / (high - low) * 326;
   /* Dot AREA is proportional to project total capex in USD, so a market twice
      the cheque reads twice the ink. */
-  const maxCapex = Math.max(...dots.map(capexUSD).filter(finite), 1);
   const radius = r => { const c = capexUSD(r); return finite(c) ? Math.max(4.5, 19 * Math.sqrt(c / 400e6)) : 6; };
   const usdM = r => { const c = capexUSD(r); return finite(c) ? `USD ${Math.round(c / 1e6)}m capex` : 'capex n/a'; };
-  const zone = MATRIX_BASIS[basis].zone;
-  const svg = s('svg', { viewBox: '0 0 800 405', class: 'ix-matrix-svg', role: 'group', 'aria-label': L(['Global opportunity matrix. Dot area shows project total capex. Select a market to inspect its case.', '全球机会矩阵。圆点面积代表项目总资本开支。选择市场查看投资方案。']) });
-  svg.append(s('rect', { x: x(.5), y: 50, width: 340, height: Math.max(0, y(zone) - 50), fill: '#e9efdf' }),
-    text(732, 69, L(['FIXED SHARE + TARGET MARGIN', '固定比例 + 目标余量']), { 'text-anchor': 'end', class: 'ix-chart-zone' }));
+  const svg = s('svg', { viewBox: '0 0 1000 480', class: 'ix-matrix-svg', role: 'group', 'aria-label': L(['Global opportunity matrix. Dot area shows project total capex. Select a market to inspect its case.', '全球机会矩阵。圆点面积代表项目总资本开支。选择市场查看投资方案。']) });
   for (let i = 0; i <= 4; i++) {
-    svg.append(s('line', { x1: x(i / 4), y1: 50, x2: x(i / 4), y2: 340, class: 'ix-grid-line' }), text(x(i / 4), 362, `${i * 25}%`, { 'text-anchor': 'middle' }));
+    svg.append(s('line', { x1: x(i / 4), y1: 54, x2: x(i / 4), y2: 380, class: 'ix-grid-line' }), text(x(i / 4), 403, `${i * 25}%`, { 'text-anchor': 'middle' }));
   }
   for (let tick = low; tick <= high; tick += 5) {
-    svg.append(s('line', { x1: 66, y1: y(tick / 100), x2: 746, y2: y(tick / 100), class: 'ix-grid-line' }), text(53, y(tick / 100) + 4, `${tick} pp`, { 'text-anchor': 'end' }));
+    svg.append(s('line', { x1: 76, y1: y(tick / 100), x2: 940, y2: y(tick / 100), class: 'ix-grid-line' }), text(62, y(tick / 100) + 4, `${tick}%`, { 'text-anchor': 'end' }));
   }
-  svg.append(text(66, 23, L(MATRIX_BASIS[basis].label), { class: 'ix-chart-axis' }),
-    text(406, 395, L(['Modelled fixed revenue share →', '模型固定收入占比 →']), { 'text-anchor': 'middle', class: 'ix-chart-axis' }));
+  svg.append(text(76, 23, L(MATRIX_BASIS[basis].label), { class: 'ix-chart-axis' }),
+    text(320, 454, L(['Modelled fixed revenue share →', '模型固定收入占比 →']), { 'text-anchor': 'middle', class: 'ix-chart-axis' }));
   /* Largest first, so a small market is never hidden under a large one. */
   [...dots].sort((a, b) => radius(b) - radius(a)).forEach(row => {
     const point = s('g', { class: `ix-point ${row.call} ${row.id === selected ? 'selected' : ''}`, role: 'button', tabindex: 0,
       'aria-label': `${L(marketName(row))}, ${returnPct(row.econ[basis])} IRR, ${share(row.econ.secured)}, ${usdM(row)}`, 'aria-pressed': String(row.id === selected) });
     const cx = x(row.econ.secured), cy = y(value(row)), r = radius(row);
     point.append(s('circle', { cx, cy, r }), s('title', {}, `${L(marketName(row))} · ${returnPct(row.econ[basis])} · ${share(row.econ.secured)} · ${usdM(row)}`));
-    point.append(text(cx > 660 ? cx - r - 6 : cx + r + 6, cy - r * .7 - 4 + (row.id==='jp_kyushu'?17:row.id==='jp_hokkaido'?-17:0), row.id.replace('jp_','JP-').toUpperCase(), { 'text-anchor': cx > 660 ? 'end' : 'start', class: 'ix-point-label' }));
+    point.append(text(cx > 820 ? cx - r - 6 : cx + r + 6, cy - r * .7 - 4 + (row.id==='jp_kyushu'?17:row.id==='jp_hokkaido'?-17:0), row.id.replace('jp_','JP-').toUpperCase(), { 'text-anchor': cx > 820 ? 'end' : 'start', class: 'ix-point-label' }));
     const choose = () => {
       for (const p of svg.querySelectorAll('.ix-point')) { p.classList.remove('selected'); p.setAttribute('aria-pressed', 'false'); }
       point.classList.add('selected'); point.setAttribute('aria-pressed', 'true'); svg.append(point); onSelect(row);
@@ -77,8 +71,8 @@ export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } =
   const chosen = svg.querySelector('.ix-point.selected');
   if (chosen) svg.append(chosen);
   [25,100,400].forEach((m,i)=>{
-    const cx=460+i*100,r=19*Math.sqrt(m/400);
-    svg.append(s('circle',{cx,cy:380,r,fill:'none',stroke:'#68766c'}),text(cx+23,384,'$'+m+'m',{class:'ix-chart-axis'}));
+    const cx=590+i*125,r=19*Math.sqrt(m/400);
+    svg.append(s('circle',{cx,cy:448,r,fill:'none',stroke:'#68766c'}),text(cx+23,452,'$'+m+'m',{class:'ix-chart-axis'}));
   });
   return svg;
 }

@@ -20,9 +20,9 @@ const local={
   sa:[['SPPC / National Grid SA: site handover and connection at the named site','SPPC／沙特国家电网公司：指定场址移交与并网'],['SPPC acceptance and availability payments under the SSA','SPPC验收及按储能服务协议收取可用性付费']],
   ca_on:[['Utility / IESO: connection, LT2 milestones and usable duration','电网／IESO：接入、LT2里程碑及可用时长'],['IESO acceptance and capacity payments under the contract calendar','IESO验收及按合同日历收取容量费']],
 };
-export function deliveryTimeline(reference, investor, marketId){
+export function deliveryTimeline(reference, investor, marketId, options={}){
   const {input}=reference,cod=reference.codMonths,qualified=reference.qualifiedMonths;
-  const route=reference.atPrice?.route||(investor==='developer'?'sale':'hold');
+  const route=options.route||reference.atPrice?.route||(investor==='developer'?'sale':'hold');
   const raw=acquisitionCashFlows(input,investor,route,reference.price).flows;
   const grouped=new Map();
   for(const f of raw){const key=Number((f.at*12).toFixed(6));grouped.set(key,(grouped.get(key)||0)+f.amount);}
