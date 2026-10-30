@@ -1,5 +1,7 @@
 # Investor review implementation — 30 October 2026
 
+Current follow-up: [user-confirmed layout and cash-flow changes](修改建议.md) supersedes the earlier margin-axis and early-downside placement described below. The matrix now plots actual IRR; monthly cash charts and plan switching use the original hold cash flows; research details open in a native modal. The historical-frequency display is explicitly a single price-proxy observation, not a joint downside probability. The validation counts below describe PR #69; follow-up checks are recorded in its own PR.
+
 Base: PR #68, main cfe29c5fe4bba956c8d6ccddfe5247bbc75143bc. The local reference snapshot was verified against tree 90035a9277b6819a3175cf5572df05d483a801fc.
 
 The current investment narrative now uses the same 20-year after-tax RTB case as the headline and comparison table. The decision summary exposes downside, target headroom, peak construction equity, the project-rights price assumption and the pricing ceiling. Modelled income and project contract evidence are distinct.

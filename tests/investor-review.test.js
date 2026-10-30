@@ -25,7 +25,7 @@ test('Finland reference ratio is 40 percent and remains distinct from the strict
   assert.match(currentThesis(row)[1],/40%/);
   assert.match(row.play.action.text[0],/half/);
 });
-test('matrix margin uses each markets actual hurdle and shows thin levered headroom',()=>{
+test('the comparison table margin uses each markets actual hurdle and shows thin levered headroom',()=>{
   const row=opportunities('infraFund').find(r=>r.id==='ie');
   near(margin(row),row.econ.hold-row.econ.test.target);
   near(margin(row,'levered'),row.econ.levered-row.econ.test.leveredTarget);
