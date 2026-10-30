@@ -69,6 +69,7 @@ export function whenLabel(when){
 
 /**
  * ctx: { story, values, row, name, trigger, openResearch, scenes, ui }
+ *   name          the market's name, an [en, zh] pair or a string
  *   values        token values (the market's storyBindings)
  *   row           the market page's row (call, play, econ, investment, evidence)
  *   trigger       the button that opened the story; focus returns to it
@@ -81,7 +82,12 @@ export function whenLabel(when){
  */
 export function openStory(ctx){
   const { story, values, row, trigger } = ctx;
-  if (!validateStory(story).ok) return null;
+  const check = validateStory(story);
+  if (!check.ok){
+    // The caller falls back to the research dialog; say why, for whoever looks.
+    console.warn(`Story ${story?.marketId} not shown: ${check.problems.slice(0, 3).join('; ')}`);
+    return null;
+  }
 
   const shots = [story.opening, ...story.chapters.flatMap(c => c.shots)];
   const chapterOf = (shot) => (shot.chapter === 'opening' ? 'opening' : shot.chapter);
@@ -187,19 +193,39 @@ export function openStory(ctx){
   function goTo(id, focus){
     const el = dialog.querySelector(`[data-shot="${id}"]`);
     if (!el) return;
+    heading = id;
     el.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     mark(id);
     if (focus) el.querySelector('h4')?.focus({ preventScroll: true });
   }
 
+  /* The current shot is the first one, in reading order, that has any part in
+     the top 45% of the scroll area. Each callback reports only the shots that
+     changed, so every shot's latest state is kept and the choice is made over
+     all of them. */
+  /* A jump by Previous, Next or a chapter holds the highlight on its target
+     until the scroll arrives there, so it does not flicker through the shots
+     it passes; any scrolling by the reader releases the hold. */
+  let heading = null;
+  const release = () => { heading = null; };
+
   function watch(){
     observer?.disconnect();
     if (typeof IntersectionObserver !== 'function') return;
+    const inView = new Set();
     observer = new IntersectionObserver(entries => {
-      const seen = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-      if (seen) mark(seen.target.dataset.shot);
-    }, { root: body, rootMargin: '0px 0px -55% 0px', threshold: 0 });
+      for (const e of entries){
+        // a shot whose edge only touches the area is not in it
+        if (e.isIntersecting && e.intersectionRect.height > 0) inView.add(e.target.dataset.shot);
+        else inView.delete(e.target.dataset.shot);
+      }
+      const first = shots.find(s => inView.has(s.id));
+      if (!first) return;
+      if (heading){ if (first.id === heading) heading = null; else return; }
+      mark(first.id);
+    }, { root: body, rootMargin: '0px 0px -55% 0px', threshold: [0, 0.01] });
     body.querySelectorAll('[data-shot]').forEach(el => observer.observe(el));
+    for (const type of ['wheel', 'touchstart', 'keydown']) body.addEventListener(type, release, { passive: true });
   }
 
   /* ---- building and rebuilding --------------------------------------- */
@@ -211,7 +237,7 @@ export function openStory(ctx){
     const head = h('header', { class: 'ix-story-head' },
       h('div', {},
         h('p', { class: 'ix-eyebrow' }, L(T.eyebrow)),
-        h('h2', { id: 'ix-story-title' }, `${ctx.name} · ${L(T.story)}`),
+        h('h2', { id: 'ix-story-title' }, `${L(ctx.name)} · ${L(T.story)}`),
         h('p', { class: 'ix-story-boundary' }, L(story.systemBoundary)),
         stale ? h('p', { class: 'ix-story-stale', role: 'status' }, L(T.stale), story.reviewedAgainst.on) : null),
       h('div', { class: 'ix-story-tools' }, langBtn, researchBtn, closeBtn));

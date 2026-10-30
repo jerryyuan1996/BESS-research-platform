@@ -295,7 +295,7 @@ function renderMarket(container, row) {
     research.disabled=true;
     const story=storyFor(mf.id);
     (story
-      ? story.load().then(pack=>{if(research.isConnected&&!pack.open({row,name:name(row),trigger:research,openResearch,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
+      ? story.load().then(pack=>{if(research.isConnected&&!pack.open({row,name:marketName(row),trigger:research,openResearch,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
       : openResearch(research))
       .catch(()=>{research.textContent=L(['Could not load; click to retry','暂未载入，点击重试']);})
       .finally(()=>{research.disabled=false;});
