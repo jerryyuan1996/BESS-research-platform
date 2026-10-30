@@ -28,6 +28,8 @@ test('the WA story reads end to end, in both languages, and gives focus back', a
   await expect(dialog.locator('[data-shot="wa-08"] .ix-shot-copy')).toContainText('builds 8 hours');
   await expect(dialog.locator('[data-shot="wa-06"] .ix-shot-copy')).toContainText('7 hours for batteries first credited');
   await expect(dialog.locator('[data-shot="wa-03"] .ix-node').first()).toContainText('2006');
+  await expect(dialog.locator('[data-shot="wa-03"] .ix-node').first().locator('dd').nth(1)).toHaveText('Pay for capacity as well as energy.');
+  await expect(dialog).not.toContainText('[object');
 
   // shot and chapter navigation move focus to the heading they reach
   await dialog.getByRole('button', { name: 'Next →' }).click();

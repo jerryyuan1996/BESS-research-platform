@@ -140,7 +140,7 @@ export function openStory(ctx){
     if (x.timeline) out.push(h('section', { class: 'ix-story-timeline', 'aria-label': L(T.timeline) },
       h('ol', {}, x.timeline.map(node => h('li', { class: `ix-node ix-node-${node.style}` },
         h('p', { class: 'ix-node-title' }, h('span', { class: 'ix-node-when' }, L(whenLabel(node.when))), ' ', pairOf(node.title, values)),
-        h('dl', {}, ['constraint', 'choice', 'remains', 'effect'].filter(k => node[k]).map(k => [h('dt', {}, L(T.fields[k])), h('dd', {}, pairOf(node[k], values))])))))));
+        h('dl', {}, ['constraint', 'choice', 'remains', 'effect'].filter(k => node[k]).flatMap(k => [h('dt', {}, L(T.fields[k])), h('dd', {}, pairOf(node[k], values))])))))));
     if (x.hotspots) out.push(h('section', { class: 'ix-story-parts', 'aria-label': L(T.parts) },
       h('ul', {}, x.hotspots.map(p => h('li', {}, h('strong', {}, L(p.name)), ' ', L(p.role))))));
     if (x.factors) out.push(h('section', { class: 'ix-story-factors', 'aria-label': L(T.factors) },
