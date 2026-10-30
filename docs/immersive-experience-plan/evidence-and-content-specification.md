@@ -1,6 +1,6 @@
 # Evidence and Content Specification
 
-Pack: BESS-IX-2026-10-30, version 1.1  
+Pack: BESS-IX-2026-10-30, version 1.2  
 Status: authoring and validation contract, revised in v1.1 (reader-facing marker, call anchor, bound fields); no executable schema added  
 Navigation: [Master plan](README.md) | [Source register](source-register.md) | [Market narratives](market-narratives.md) | [WA storyboard](western-australia-storyboard.md)
 
@@ -29,7 +29,7 @@ Each shot shows one marker and one line, as the 16 October ruling requires. The 
 | --- | --- | --- |
 | Strong | The central claim rests on a primary document or observed data that is current at check, and the user has reviewed it | `wa-04` once the certification clauses are extracted |
 | Fair | The mechanism is sourced, but a locator, dataset or review is still pending, or the claim rests on the platform's own model | `wa-08`, whose duration comes from the platform's design-fit result |
-| Thin | A research hypothesis, a scenario, or a hinge claim not yet sourced | `wa-03` until CL-WA-06 is sourced |
+| Thin | A research hypothesis, a scenario, or a hinge claim not yet sourced | A German shot resting on the draft storage grid-fee rules (CL-DE-02); `wa-03` was Thin until CL-WA-06 was sourced in v1.2 |
 
 The "What would change it" line names the evidence that would move the marker, for example "an AEMO locator for the obligation duration would make this Fair". It replaces boundary text. A claim blocked by rights, confidentiality or a contradiction is withheld, not marked Thin. The Authoring check row on each shot is for writers and reviewers and never becomes page copy.
 
@@ -93,9 +93,9 @@ Do not create a new dispatch or investment model inside a scene. If a desired ex
 
 | Shot | Claim IDs | Source IDs and locators | Data/chart/calculation IDs | Scene meaning | Financial binding | Misreading control | Review disposition |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| wa-05 | CL-WA-02 plus pending daily-trace claim | SRC-WA-02, p. 1; daily dataset pending | Chart-WA-DAY, pending | Illustrative rooftop contribution and operational demand | None | No actual-day scale until data reviewed | Proposed; quantitative chart blocked |
-| wa-00 | Play card fields | Briefing model (REPO-12) | None | The conclusion, first | Existing play card component | Call and figures never restated in prose | Uses an existing component |
-| wa-06 | CL-WA-07 plus the pending daily trace | SRC-WA-05/07 clauses; daily dataset pending | Chart-WA-EVENING (signature chart), pending | Why the play is seven hours | Play duration from the briefing | No guaranteed evening premium | Blocked until GAP-WA-RCM and GAP-WA-DAY close |
+| wa-05 | CL-WA-02 | SRC-WA-02, p. 1; SRC-WA-13 | Chart-WA-DAY from CALC-WA-DAY | Rooftop supply, unscheduled operational demand and their sum on a typical summer business day | None | A median day, labelled as such; operational demand is not total consumption | Proposed in v1.2; quantitative once CALC-WA-DAY is signed off at `G-1` |
+| wa-00 | Play card fields | View store via the briefing model (REPO-12, corrected in v1.2) | None | The conclusion, first | Existing play card component | Call and figures never restated in prose | Uses an existing component |
+| wa-06 | CL-WA-07, CL-WA-10 | SRC-WA-08, p. 78 and Table 28; SRC-WA-09 (4.11.3, Peak ESROD definition); SRC-WA-13 | Chart-WA-EVENING (signature chart) from CALC-WA-DAY and the printed window | Why credits need the whole evening window, and why the play adds an hour for fade | Duration requirement and play duration (bound) | No guaranteed evening premium; the window is AEMO's, the trace a median day | Unblocked in v1.2; GAP-WA-RCM closed for 2028-29, GAP-WA-DAY closed on sign-off, CF-WA-02 recorded |
 
 Traceability must also work in reverse: **source -> affected claims -> historical nodes -> shots -> 2D evidence -> published labels**. A superseded source should produce a finite review queue, not a manual search through prose.
 
@@ -104,7 +104,7 @@ Traceability must also work in reverse: **source -> affected claims -> historica
 | Asset ID | Purpose / shots | Creator / original URL | Licence / proof / attribution | Geography or engineering precision | Public scope | Size / decoded estimate | Fallback / owner / status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ASSET-SVG-KIT | Isometric symbol kit for every scene | Drawn in-house for this project | Own work; no third-party licence | Generic symbols, not site or engineering geometry | Public | Target under 60 KiB uncompressed | Plain diagrams; user review |
-| ASSET-SWIS-BOUNDARY | `wa-01` boundary | To be selected | Licence pending | Approximate boundary, labelled as such | Withheld until cleared | To measure | Schematic outline; user review |
+| ASSET-SWIS-BOUNDARY | `wa-01` boundary | Reuse the existing `src/markets/wa/wa-swis-context-boundary.json`: Landgate Regional Development Commission regions plus the ABS Greater Perth boundary, as catalogued in `src/markets/wa/gridMapData.js` (v1.2) | CC BY 4.0, attribution to Landgate and the ABS | Approximate: it leaves out the Eastern Goldfields spur, so it is labelled "SWIS area (approximate)" | Public; already shipped with the WA grid map | 147 KB raw, 25 KB gzip: too large for the story chunk, so `WP-07` derives a simplified outline from the same sources (target under 3 KB) and keeps the attribution | Schematic outline; user review at `G-1` |
 
 Include terrain, boundary data, map tiles, reference photos, fonts, textures, station models, icons, posters and audio. Record modified/derived status, attribution placement, distribution rights and any share-alike conditions. Public visibility does not imply permission to redistribute a model or image. AI-generated assets still need generation provenance and review for misleading equipment/geography; do not invent a third-party licence for them.
 
@@ -112,9 +112,10 @@ Include terrain, boundary data, map tiles, reference photos, fonts, textures, st
 
 | Issue ID | Missing evidence or conflict | Affected claim / shot | Severity | Temporary treatment | Owner / next action | Gate blocked |
 | --- | --- | --- | --- | --- | --- | --- |
-| GAP-WA-DAY | Auditable representative daily trace not yet selected | wa-05/06/08 | Blocks quantitative labels | Qualitative schematic with explicit teaching label | Research: select period, rights and method | Quantitative scene publication |
+| GAP-WA-DAY | Closed by proposal in v1.2: CALC-WA-DAY, the median business day of the 2025-26 Hot Season from AEMO's unscheduled operational demand and rooftop PV, AWST, reused under AEMO's copyright permissions | wa-05/06/08 | None once signed off | Until `G-1`, the chart stays tagged "Example" | User: accept the method at `G-1`; `WP-07` commits the 48-point profile with its record | None after `G-1` |
 | GAP-FI-PRODUCT | Product-specific technical and commercial clauses not yet extracted | Finnish payment/qualification script | Blocks route-specific obligations | Product purposes only | Research: inspect governing terms | Finnish complete story |
-| GAP-WA-RCM | Obligation duration and intervals for storage in the capacity years the play depends on | `wa-06`, `wa-08`, `wa-14` | Blocks the signature chart's window | Qualitative evening window tagged Example | Research: extract the effective WEM rule and procedure clauses | WA quantitative publication |
+| GAP-WA-RCM | Closed for 2028-29 in v1.2: 14 Trading Intervals (seven hours) for storage first credited in the 2026 cycle, held for ten years, over the window in Table 28 (CL-WA-07, CL-WA-10) | `wa-06`, `wa-08`, `wa-14` | None | Not needed | Reopen when an ESOO or rule change alters the requirement for the cycle the play enters | None |
+| GAP-WA-ESROD | Table 28 of the 2026 ESOO prints the new-storage window one interval earlier than the Peak ESROD rule gives (CF-WA-02) | `wa-06` | Low: the window's position by half an hour | Draw the window as printed, captioned as AEMO's, with "AEMO sets the exact intervals each day" | Research: compare with AEMO's published daily obligation intervals once 2028-29 data exist | None |
 | GAP-DE-PRICES | No German day-ahead series is registered; among Germany and Finland only `fi-day-ahead` uses the ENTSO-E connector | German signature chart | Blocks the spread band | Qualitative band tagged Example | Register the DE-LU day-ahead series through the existing ENTSO-E connector | German story |
 | GAP-FI-NEED | Fast-reserve need and connected-storage volumes over time not yet sourced | Finnish signature chart | Blocks the crossing chart | Qualitative chart tagged Example | Research: identify Fingrid series or publications | Finnish story |
 
@@ -147,7 +148,7 @@ The contract is a future structured interface, not a module introduced by this d
 | Group | Required fields and invariants |
 | --- | --- |
 | Identity | `storySchemaVersion`, `contentVersion`, `marketId`, `allocationId`, `systemBoundary`, `researchDashboardId`, `supportedLocales`, reviewer status |
-| Call anchor | `playRef` (for example `wa-cap-7h`) and the briefing fields the opening card reads; `reviewedAgainst`, the call and thesis version the story was signed off against, so a re-grade flags the story for review |
+| Call anchor | `playRef` (for example `wa-cap-8h`) and the briefing fields the opening card reads; `reviewedAgainst`, the call and thesis version the story was signed off against, so a re-grade flags the story for review |
 | Thesis | Reference to the briefing thesis it explains; market distinction; historical cause; dominant tension; service; payment pathway; value-weakening condition; next diligence question |
 | Chapters | Six stable IDs in agreed order; explicit unavailable sections if research is incomplete; chapters independently addressable |
 | Historical nodes | 4-6 IDs, dates or bounded periods, constraint, choice, inheritance, present implication, fact/inference classification, source/claim IDs |
@@ -166,7 +167,7 @@ The story holds no investment-case state; teaching state stays local, as defined
 
 ### WA history to present
 
-`CL-WA-02` is supported by an operator explanation of rooftop exports and low-demand operation. It can support an illustrative transition from centralized supply to distributed rooftops. It cannot establish a current noon MW value, exact site connection capacity, or the return of a 4-hour battery. Those need separate datasets, rights, calculations and current-case evidence. `wa-05` remains a qualitative teaching scene until that work is complete.
+`CL-WA-02` is supported by an operator explanation of rooftop exports and low-demand operation. It can support an illustrative transition from centralized supply to distributed rooftops. It cannot establish a current noon MW value, exact site connection capacity, or the return of a 4-hour battery. Those need separate datasets, rights, calculations and current-case evidence. In v1.2 the noon and evening values come from CALC-WA-DAY, a median day of observed data with its own record; the return still comes only from the market page.
 
 ### Finland after PR #72
 

@@ -1,6 +1,6 @@
 # Experience and Page Design
 
-Pack: BESS-IX-2026-10-30, version 1.1  
+Pack: BESS-IX-2026-10-30, version 1.2  
 Status: information architecture and layout brief; no website or UI implementation  
 Navigation: [Master plan](README.md) | [WA storyboard](western-australia-storyboard.md) | [Content contract](evidence-and-content-specification.md#5-proposed-story-content-contract) | [Engineering work](engineering-work-packages.md)
 

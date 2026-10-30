@@ -1,6 +1,6 @@
 # Preparation, Migration and Acceptance
 
-Pack: BESS-IX-2026-10-30, version 1.1  
+Pack: BESS-IX-2026-10-30, version 1.2  
 Status: sequence, gates, self-review and laptop handoff checklist; nothing executed except committing v1.0 (`db158b9`)  
 Navigation: [Master plan](README.md) | [Engineering work packages](engineering-work-packages.md) | [Market narratives](market-narratives.md) | [WA storyboard](western-australia-storyboard.md)
 
@@ -39,6 +39,7 @@ Relative working days, not dates. If a source takes longer, move the gate rather
 | --- | --- | --- |
 | 1 | Source the WA hinge claims: CL-WA-06, CL-WA-07 with GAP-WA-RCM, and CL-WA-05; decide how to close GAP-WA-DAY | |
 | 2 | Revise the WA script against those sources; assign markers; draft the Chinese | G-1 |
+| | *Status on 30 October (v1.2): days 1 and 2 done; the script awaits `G-1`* | |
 | 3 to 4 | `WP-02` contract and `WP-06` kit; `WP-03` shell with placeholder diagrams | |
 | 5 to 6 | `WP-07` scenes and the signature chart; `WP-04` URLs | |
 | 7 | Walkthrough, fixes and the `WP-10` PR | G-2 |
@@ -52,7 +53,7 @@ The reader is mainly the user (D8), so the user's own checks at `G-1` and `G-2` 
 
 For WA, using the story alone:
 
-- Can I say why the play is a seven-hour capacity battery bought behind a sponsor?
+- Can I say why the play is an eight-hour capacity battery, seven hours for the rule and one for the fade, bought behind a sponsor?
 - Can I say why the NEM's opposite choice matters?
 - Can I name what would weaken the play, and find the matching Downside input?
 - Does every "What would change it" line name real evidence?

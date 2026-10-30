@@ -1,6 +1,6 @@
 # Engineering Work Packages
 
-Pack: BESS-IX-2026-10-30, version 1.1  
+Pack: BESS-IX-2026-10-30, version 1.2  
 Status: implementation proposal; no application, dependency, model, CI or deployment changes made  
 Navigation: [Master plan](README.md) | [Content contract](evidence-and-content-specification.md#5-proposed-story-content-contract) | [Page design](experience-and-page-design.md) | [Preparation and acceptance](preparation-migration-and-acceptance.md)
 

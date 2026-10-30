@@ -1,6 +1,6 @@
 # Market Narrative Preparation
 
-Pack: BESS-IX-2026-10-30, version 1.1  
+Pack: BESS-IX-2026-10-30, version 1.2  
 Status: story cards anchored to published calls; WA, Germany and Finland theses revised in v1.1; all-market research not complete  
 Navigation: [Master plan](README.md) | [Evidence specification](evidence-and-content-specification.md) | [WA storyboard](western-australia-storyboard.md) | [Source register](source-register.md)
 
@@ -47,7 +47,7 @@ The historical paths in this table are research prompts. Retrieve primary eviden
 
 | Allocation ID | Priority / cohort | Proposed distinction and historical path to research | Dominant tension to test | Distinctive visual treatment |
 | --- | --- | --- | --- | --- |
-| `wa` | P0 | An island grid with no link to the NEM, which chose to pay for capacity when the WEM started in 2006; rooftop solar has since moved the need into a long evening window | Capacity is most of a battery's revenue and is paid for duration: why the play is seven hours, bought behind a sponsor | Same SWIS map across eras; rooftops at noon; signature chart of the evening window against four-hour and seven-hour batteries |
+| `wa` | P0 | An island grid with no link to the NEM, which chose to pay for capacity when the WEM started in 2006; rooftop solar has since moved the need into a long evening window | Capacity is most of a battery's revenue, credited only for power held across the whole evening window and measured again as the battery fades: why the play is eight hours (seven for the rule, one for the fade), bought behind a sponsor | Same SWIS map across eras; rooftops at noon; signature chart of a median summer day with AEMO's obligation window, where a four-hour battery is credited as a smaller one |
 | `nem` | P3 / A | Energy-only since 1998, the opposite choice to WA, with interconnected regions, a fast storage build and tender-backed floors | Thin secured revenue and compressed merchant spreads: why the entry price matters more than the build cost | Regional corridors and daily profiles; side by side with WA's capacity choice |
 | `gb` | P3 / A | Industrial generation geography, later renewables and market/network reform create different service opportunities | Network delivery and evolving competition for flexibility | Regional wind/load overlays, connection journey and changing service procurement |
 | `de` | P1 | Europe's most liquid power market, energy-only, with fast renewable growth and a grid that lags behind it | No capacity payment for a four-hour battery: merchant volatility, a toll that trades return for certainty, and grid fees as the open risk | Signature chart of the daily spread band against a flat toll fee; grid drawn as a cost layer |
@@ -72,7 +72,7 @@ The routes below are questions to confirm against current rules and actual proje
 
 | Allocation ID | Payment route and access questions | What could weaken value? | Primary collection target and next diligence question |
 | --- | --- | --- | --- |
-| `wa` | Capacity first: certification, Capacity Credits for the capacity year and availability obligations; energy and system services make up the rest. Verify the obligation duration behind the seven-hour design | The mechanism paying for fewer hours; the capacity price falling as storage fills the evening window; credits not assigned for the play's capacity year | AEMO and the Coordinator of Energy; SRC-WA-01 to 07. Which capacity years and obligation duration does the seventh hour depend on? |
+| `wa` | Capacity first: certification, Capacity Credits for the capacity year and availability across the evening window, at a price reset each year; energy and system services make up the rest. The obligation duration was verified in v1.2: seven hours for storage first credited in the 2026 cycle, fixed for ten years | The capacity price falling as storage fills the evening window; fade faster than planned; a late start that misses a capacity year; costs | AEMO, the Coordinator of Energy and the ERA; SRC-WA-01 to 15. How fast will the battery fade against its seven-hour line, and where will the capacity price settle as storage grows? |
 | `nem` | Verify energy/FCAS capture and any separately awarded support/tolling route; distinguish local schemes | Competing storage, interconnection, capture compression, changed support | AEMO/AER and relevant procurement authority. Which market and contract exposures remain with equity? |
 | `gb` | Compare trading, balancing/system services, capacity and contracts only where compatible | Service saturation, fees, connection delays and changed terms | NESO, Ofgem, relevant procurement/network bodies. What remains after costs and qualification? |
 | `de` | Merchant (trading plus reserves) or a toll counterparty paying a fixed fee; no capacity route for four hours; congestion relief is not a revenue line | Storage grid-fee rules finalised unfavourably; spreads compressing as storage grows; shorter toll tenors | German TSOs and BNetzA; SRC-DE-01/02. What will the final storage grid-fee rules cost a four-hour battery, and what toll tenor is on offer? |
