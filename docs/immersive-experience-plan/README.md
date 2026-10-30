@@ -52,7 +52,7 @@ Keep one owner per specification. When something changes, update its owner and e
 | --- | --- | --- | --- |
 | 1.0 | 2026-10-30 | Expanded and translated the original Chinese plan; verification through #73 | Committed as `db158b9`; superseded |
 | 1.1 | 2026-10-30 | Review against the platform's calls, the three-page market page and the 16 October rulings; decisions D1 to D10 | Merged in PR #74 |
-| 1.2 | 2026-10-30 | WA hinge claims sourced from AEMO, the ERA, Energy Policy WA, the ESM Rules and the AEMC; the WA script revised for the published eight-hour play, with markers and Chinese drafts; decisions D11 and D12 | Awaiting `G-1` |
+| 1.2 | 2026-10-30 | WA hinge claims sourced from AEMO, the ERA, Energy Policy WA, the ESM Rules and the AEMC; the WA script revised for the published eight-hour play, with markers and Chinese drafts; decisions D11 and D12 | Script signed off by the user at `G-1` on 30 Oct 2026 |
 
 | ID | v1.1 decision | Affects | Basis | Impact |
 | --- | --- | --- | --- | --- |
@@ -67,7 +67,7 @@ Keep one owner per specification. When something changes, update its owner and e
 | D9 | Three gates | Acceptance §3 | Review | Replaces `G-0` to `G-7` |
 | D10 | Concrete laptop handoff checklist | Acceptance §6 | Workstation check, 30 Oct | Lists the items that exist only on the current machine |
 | D11 | The WA story argues for the published play, `wa-cap-8h`, not v1.1's seven hours | WA storyboard; narratives §3; acceptance §5; source register CF-WA-01 | D1, and the analyst's play change of 17 Oct (commit `df36abb`) | wa-06, wa-08 and wa-14 explain eight hours as the seven-hour rule plus an hour that holds the credit as the battery fades |
-| D12 | The day trace is the median business day of the 2025-26 Hot Season, from AEMO's unscheduled operational demand and rooftop PV (CALC-WA-DAY) | wa-05, wa-06; source register; evidence specification gap queue | GAP-WA-DAY; AEMO's copyright permissions | Proposed for `G-1`; a fixed-vintage profile refreshed after each Hot Season, not a live feed |
+| D12 | The day trace is the median business day of the 2025-26 Hot Season, from AEMO's unscheduled operational demand and rooftop PV (CALC-WA-DAY) | wa-05, wa-06; source register; evidence specification gap queue | GAP-WA-DAY; AEMO's copyright permissions | Signed off at `G-1`, 30 Oct; a fixed-vintage profile refreshed after each Hot Season, not a live feed |
 
 ## 3. What was verified
 

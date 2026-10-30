@@ -39,7 +39,7 @@ Relative working days, not dates. If a source takes longer, move the gate rather
 | --- | --- | --- |
 | 1 | Source the WA hinge claims: CL-WA-06, CL-WA-07 with GAP-WA-RCM, and CL-WA-05; decide how to close GAP-WA-DAY | |
 | 2 | Revise the WA script against those sources; assign markers; draft the Chinese | G-1 |
-| | *Status on 30 October (v1.2): days 1 and 2 done; the script awaits `G-1`* | |
+| | *Status on 30 October (v1.2): days 1 and 2 done; `G-1` signed off the same day* | |
 | 3 to 4 | `WP-02` contract and `WP-06` kit; `WP-03` shell with placeholder diagrams | |
 | 5 to 6 | `WP-07` scenes and the signature chart; `WP-04` URLs | |
 | 7 | Walkthrough, fixes and the `WP-10` PR | G-2 |

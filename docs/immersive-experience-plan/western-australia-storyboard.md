@@ -1,7 +1,7 @@
 # Western Australia: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30, version 1.2  
-Status: script revised against the sourced hinge claims and the published play, for the user's sign-off at `G-1`; not implemented  
+Status: script signed off by the user at `G-1` on 30 October 2026; build in progress (`WP-02` onwards)  
 Navigation: [Master plan](README.md) | [Narrative method](market-narratives.md) | [Evidence specification](evidence-and-content-specification.md) | [Page design](experience-and-page-design.md) | [Source register](source-register.md)
 
 ## 1. Scope, argument and reading route
@@ -42,7 +42,7 @@ Every figure on the page comes through one of these tokens. The values are given
 | ‹bound: play duration› | `row.play.hours` (also the market intro's "· 8H") | 8 |
 | ‹bound: why› | `row.play.why` | Eight hours has the highest value per MW at the supplier-quoted DC block cost; seven hours the higher hold IRR |
 | ‹bound: next action› | `row.play.action.text` (the Overview's next action) | Line up a minority stake behind a strategic sponsor now; commit once Capacity Credits for 2028-29 are assigned |
-| ‹bound: secured share› | `row.econ.secured` ("Modelled fixed revenue") | 77.9% |
+| ‹bound: secured share› | `row.econ.secured` ("Modelled fixed revenue") | 79.3% after PR #78 (77.9% at sign-off) |
 | ‹bound: secured tenor› | `row.econ.securedYears` ("Fixed revenue tenor") | 10 years |
 | ‹bound: duration requirement› | `floorOf(market, 'cap').hours` in `src/comparison/designFit.js`, which the design grid uses | 7 |
 | ‹bound: requirement term› | `floorOf(market, 'cap').termYears` | 10 |
