@@ -46,8 +46,8 @@ export const manifest = {
   modelVersion: 'fi-2.1-fingrid-fees',
   lastVerified: '2026-10-30',
   sourceHealth: [
-    'Verified against Fingrid on 2026-10-30; reserves at the 2026 annual clearing, hourly markets outstanding (gate FI-2); Fingrid fees and connection charge priced.',
-    '已于2026年10月30日依据Fingrid核验；备用取2026年度出清，小时级市场待补（研究缺口FI-2）；已计入Fingrid费用与并网费。',
+    'Fingrid-verified 2026-10-30; hourly reserve prices pending (FI-2).',
+    '2026年10月30日依Fingrid核验；小时级备用价格待补（FI-2）。',
   ],
 };
 

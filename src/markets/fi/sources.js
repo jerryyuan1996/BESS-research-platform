@@ -13,14 +13,6 @@
    --------------------------------------------------------------------------- */
 import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
-/* Shared fields for the entries added on 2026-10-30. This register ships in the
-   entry chunk, so repeated boilerplate is written once. */
-const READ = { authority: 'observed', historical: 'n/a', forecast: 'None', frequency: 'As published', format: 'HTML/PDF', machineReadable: 'No', automation: 'C', lastChecked: '2026-10-30', freshness: 'Current' };
-const VERIFIED = { publication: 'final', availability: 'public', verification: 'verified' };
-const OFFICIAL = { status: ['Official — Final', '官方 — 最终'], provenance: { authority: 'official', ...VERIFIED } };
-const DEVELOPER = { status: ['Developer-reported', '开发商披露'], provenance: { authority: 'developer-reported', ...VERIFIED } };
-const THIRD_PARTY = { status: ['Third party', '第三方'], provenance: { authority: 'third-party', ...VERIFIED } };
-
 export const SRC = {
   /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
   ...QUOTE_SOURCES,
@@ -400,39 +392,6 @@ export const SRC = {
     lastChecked: '2026-10-17', freshness: 'Current',
   },
 
-  // ---- added 2026-10-30. Kept terse: this register ships in the entry chunk. ----
-  dealTeuva: { file: 'EY-Parthenon — Teuva BESS sale to Prime Capital',
-    ...THIRD_PARTY,
-    date: '2026', cy: '100 MW / 400 MWh, ready-to-build.',
-    url: 'https://www.ey.com/en_fi/insights/strategy-transactions/deals/ey-parthenon-advises-usva-energia-on-sale-of-a-100-mw-bess-project', ...READ },
-  akkulaNeoen: { file: 'Neoen — Akkula Big Battery, Rauma',
-    ...DEVELOPER,
-    date: '30 Dec 2025', cy: '62.5 MW / 231 MWh; operational 2027.',
-    url: 'https://neoen.com/app/uploads/2026/01/251230-Neoen-Akkula-Big-Battery-EN.pdf', ...READ },
-  tuiskuLuxcara: { file: 'Luxcara — Tuisku acquisition',
-    ...DEVELOPER,
-    date: '26 Feb 2026', cy: 'Up to 125 MW, Keminmaa; COD summer 2027.',
-    url: 'https://luxcara.com/press-releases/luxcara-acquires-construction-ready-battery-storage-project-in-finland', ...READ },
-  reserveRoadmap: { file: 'Fingrid — reserve market development',
-    ...OFFICIAL,
-    date: '2025', cy: 'Reserve-market changes 2024–2025; PICASSO 26 Mar 2025.',
-    url: 'https://www.fingrid.fi/en/electricity-market/reserves/reserve-market-development/', ...READ },
-  fcrHourly2027: { file: 'Fingrid — FCR procurement moves to the hourly market in 2027',
-    ...OFFICIAL,
-    date: '8 Sep 2026', cy: 'No yearly FCR market for 2027; annexes expire 31 Dec 2026. In Finnish.',
-    url: 'https://www.sttinfo.fi/tiedote/72301852/taajuusohjatun-kaytto-ja-hairioreservin-hankinta-keskitetaan-tuntimarkkinoille-2027?lang=fi', ...READ },
-  mariTimeline: { file: 'Fingrid — joining the MARI platform moves',
-    ...OFFICIAL,
-    date: '2 Sep 2026', cy: 'MARI accession likely Sep–Oct 2027. In Finnish.',
-    url: 'https://www.sttinfo.fi/tiedote/72285747/mari-kauppapaikan-kayttoonottoaikataulu-siirtyy?lang=fi', ...READ },
-  gridFees2026: { file: 'Fingrid — main grid service fees 2026',
-    ...OFFICIAL,
-    date: '2026', cy: 'Storage: €94.75/MW·month each on grid input and output; €0.71/MWh in, €1.07/MWh out.',
-    url: 'https://www.fingrid.fi/globalassets/dokumentit/fi/palvelut/kulutuksen-ja-tuotannon-liittaminen-kantaverkkoon/main-grid-service-fees-2026.pdf', ...READ },
-  connectionFees2026: { file: 'Fingrid — main grid connection fees 2026',
-    ...OFFICIAL,
-    date: '2026', cy: '110 kV: €1m at a substation; €1m per started 25 MVA on a line, max two.',
-    url: 'https://www.fingrid.fi/globalassets/dokumentit/fi/palvelut/kulutuksen-ja-tuotannon-liittaminen-kantaverkkoon/connection-fees-2026.pdf', ...READ },
 };
 
 export const sources = SRC;

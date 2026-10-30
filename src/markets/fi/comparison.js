@@ -261,7 +261,7 @@ const ranges = {
   }),
   opexPerMW: band(economics.opexPerMW, null, null, {
     kind: 'dispersed',
-    basis: ['Platform convention plus Fingrid’s 2026 storage fees, about €4.1k/MW a year.', '平台惯例加Fingrid 2026年储能费用，每MW每年约4,100欧元。'],
+    basis: ['Convention plus Fingrid 2026 fees, ~€4.1k/MW/yr.', '惯例加Fingrid 2026年费用，约4,100欧元/MW/年。'],
     source: 'Fingrid fees 2026; platform convention',
     gate: 'FI-3',
   }),

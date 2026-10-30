@@ -502,6 +502,22 @@ test('every market keeps its source register next to the market', () => {
   }
 });
 
+test('sources a dashboard registers lazily keep the register shape', async () => {
+  /* Finland keeps sources cited only in its own tabs out of the entry chunk
+     (src/markets/fi/sourcesDashboard.js). Same checks as the register above,
+     and no key may shadow one already in the register. */
+  const { DASHBOARD_SRC } = await import('../src/markets/fi/sourcesDashboard.js');
+  const fi = markets.find(m => m.manifest.id === 'fi');
+  for (const [key, s] of Object.entries(DASHBOARD_SRC)){
+    const at = `fi.dashboardSources.${key}`;
+    assert.ok(!(key in fi.sources), `${at}: shadows a register entry`);
+    assert.ok(s.file, `${at}: no file name`);
+    assert.ok(Array.isArray(s.status) && s.status.length === 2, `${at}: status is not an [en, zh] pair`);
+    assert.ok(s.date, `${at}: no source date`);
+    assert.ok(typeof s.url === 'string' && s.url.startsWith('https://'), `${at}: no public link`);
+  }
+});
+
 // ---- the scalability acceptance test ------------------------------------------
 
 test('a brand-new market participates with only a manifest and a comparison interface', () => {
