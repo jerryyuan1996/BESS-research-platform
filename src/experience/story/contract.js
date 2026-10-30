@@ -121,7 +121,9 @@ export function validateStory(story){
     if (!shot.marker || !(shot.marker.level in MARKERS || shot.marker.level === 'play')) at(where, 'needs one marker: strong, fair, thin or play');
     else if (shot.marker.level !== 'play') checkString(`${where} marker`, shot.marker.change, { copy: true });
     for (const field of LIST_FIELDS){
-      (shot[field] || []).forEach((pair, i) => checkString(`${where} ${field}[${i}]`, pair, { list: true }));
+      // controls are an ordered list; scene labels are keyed by what they name
+      const entries = Array.isArray(shot[field]) ? shot[field].map((p, i) => [i, p]) : Object.entries(shot[field] || {});
+      for (const [key, pair] of entries) checkString(`${where} ${field}.${key}`, pair, { list: true });
     }
     walkPairs(shot.extra, `${where} extra`, checkString);
     if (shot.caption) checkString(`${where} caption`, shot.caption);

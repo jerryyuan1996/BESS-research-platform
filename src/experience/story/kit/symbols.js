@@ -202,9 +202,10 @@ export const SYMBOLS = {
  *   origin    screen offset of world (0, 0)
  *   time      'day' | 'dusk' | 'night'; change it later with setTime()
  *   title     [en, zh] short name; desc: [en, zh] what the scene shows
- *   items     [{ symbol, at: [x, y], opts }], painted back to front
+ *   items     [{ symbol, at: [x, y], opts, lift? }], painted back to front;
+ *             `lift` raises one by world units, for an exploded drawing
  *   wires     [[ax, ay], [bx, by]] pairs, or { from, to, ...opts }
- *   labels    [{ at: [x, y, z], text: [en, zh], dx, dy, anchor }]
+ *   labels    [{ at: [x, y, z], text: [en, zh], dx, dy, anchor, cls? }]
  *   sky       false to leave out the sun and moon (a kit sheet, a cutaway)
  */
 export function isoStage({ viewBox = [640, 400], origin = [320, 120], time = 'day', title, desc, items = [], wires = [], labels = [], className = '', sky = true }){
@@ -214,12 +215,14 @@ export function isoStage({ viewBox = [640, 400], origin = [320, 120], time = 'da
   const world = [...items].sort((a, b) => depth(a) - depth(b)).map(item => {
     const make = SYMBOLS[item.symbol];
     if (!make) throw new Error(`Unknown symbol "${item.symbol}"`);
-    return make(item.at[0], item.at[1], item.opts || {}, ctx);
+    const node = make(item.at[0], item.at[1], item.opts || {}, ctx);
+    // `lift` raises an item by world units, for exploded drawings
+    return item.lift ? s('g', { transform: `translate(0,${n2(-item.lift * UNIT)})` }, node) : node;
   });
   const wireNodes = wires.map(wr => Array.isArray(wr) ? wire(wr[0], wr[1]) : wire(wr.from, wr.to, wr));
   const labelNodes = labels.map(lb => {
     const [lx, ly] = at(lb.at[0], lb.at[1], lb.at[2] || 0);
-    return s('g', { class: `k-label-g${lb.future ? ' k-future' : ''}` },
+    return s('g', { class: `k-label-g${lb.future ? ' k-future' : ''}${lb.cls ? ` ${lb.cls}` : ''}` },
       s('circle', { class: 'k-label-dot', cx: lx, cy: ly, r: 2 }),
       s('text', { class: 'k-label', x: n2(lx + (lb.dx ?? 6)), y: n2(ly + (lb.dy ?? -6)), 'text-anchor': lb.anchor || 'start' }, L(lb.text)));
   });

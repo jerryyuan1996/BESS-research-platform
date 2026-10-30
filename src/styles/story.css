@@ -167,3 +167,60 @@ rect.k-bar-reserve, .k-legend.k-bar-reserve .k-swatch { fill:#a37732; fill-opaci
 @media (prefers-reduced-motion: reduce) {
   .ix-story-body { scroll-behavior:auto; }
 }
+
+/* ---- teaching controls ------------------------------------------------------ */
+.k-controls { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px; }
+.k-toggle { min-height:44px; padding:6px 14px; border:1px solid #9dae99; border-radius:var(--r-pill); background:#fffefa; color:var(--ix-ink,#193c32); font:inherit; font-size:var(--fs-sm); cursor:pointer; }
+.k-toggle[aria-pressed="true"] { background:var(--ix-green,#224e40); border-color:var(--ix-green,#224e40); color:#fffefa; }
+.k-toggle:focus-visible { outline:2px solid var(--ix-green,#224e40); outline-offset:2px; }
+.k-readout { margin:6px 0 0; font-size:var(--fs-sm); color:var(--ix-body,#47574f); font-variant-numeric:tabular-nums; }
+.k-readout strong { color:var(--ix-ink,#193c32); }
+.k-tag { display:inline-block; margin-left:6px; padding:0 6px; border:1px solid #c6d0c0; border-radius:var(--r-pill); font-size:var(--fs-micro); color:var(--ix-muted,#68766c); vertical-align:1px; }
+
+/* ---- WA scenes (WP-07) -------------------------------------------------------- */
+.k-scene { min-width:0; }
+.k-control-row { display:flex; flex-wrap:wrap; gap:0 16px; }
+.k-diagram { background:#fffefa; border:1px solid #e3e6dc; border-radius:var(--r-sm); }
+.k-diagram .k-label { paint-order:normal; stroke:none; }
+.k-muted { fill:var(--ix-muted,#68766c); }
+/* the island map: the SWIS against the rest of the state, the NEM and the NT */
+.k-map .k-map-wa { fill:#e6e9dc; stroke:#9dae99; stroke-width:1; transition:fill .3s ease; }
+.k-map .k-map-nem { fill:#d6dbe7; stroke:#94a0b6; stroke-width:1; }
+.k-map .k-map-nt { fill:#efefe9; stroke:#cacabf; stroke-width:1; }
+.k-map .k-map-swis { fill:#224e40; fill-opacity:.88; stroke:#193c32; stroke-width:1.2; transition:fill-opacity .3s ease; }
+.k-map[data-view="state"] .k-map-wa { fill:#b8cda4; }
+.k-map[data-view="state"] .k-map-swis { fill-opacity:.3; stroke-dasharray:4 3; }
+.k-map[data-view="system"] .k-map-state-label { fill:var(--ix-muted,#68766c); }
+.k-map .k-map-swis-label { font-weight:var(--fw-bold); }
+/* rules over the physical system */
+.k-rules { display:none; }
+.k-stage[data-view="rules"] .k-rules { display:inline; }
+.k-step rect { fill:#fffefa; stroke:#224e40; stroke-width:1.4; }
+.k-step-no { fill:#224e40; font-weight:var(--fw-bold); font-size:var(--fs-lg); }
+.k-step-arrow { fill:none; stroke:#224e40; stroke-width:1.6; }
+/* the response ladder */
+.k-ladder-rail { stroke:#9dae99; stroke-width:2; }
+.k-rung-bar { fill:#fffefa; stroke:#c6d0c0; }
+.k-ladder[data-focus="hours"] .k-rung-hours .k-rung-bar,
+.k-ladder[data-focus="seconds"] .k-rung-seconds .k-rung-bar { fill:#dce6b7; stroke:#224e40; stroke-width:1.6; }
+/* stored energy against the hours AEMO counts */
+.k-energy .k-window rect { fill:#dce6b7; fill-opacity:.55; stroke:#9dae99; stroke-dasharray:3 3; }
+.k-energy-bar { fill:#2f6b55; transition:width .25s ease; }
+.k-energy-bar.k-short { fill:#a37732; }
+.k-energy .k-tick text { fill:var(--ix-body,#47574f); font-size:var(--fs-2xs); }
+.k-energy .k-axis, .k-board .k-axis { stroke:#9aa79d; }
+/* the payment lanes */
+.k-lanes { min-height:120px; }
+.k-lane { display:flex; flex-wrap:wrap; gap:8px 26px; list-style:none; margin:0 0 14px; padding:0; }
+.k-lane li { position:relative; padding:8px 12px; border:1px solid #9dae99; border-radius:var(--r-sm); background:#fffefa; font-size:var(--fs-sm); }
+.k-lane li + li::before { content:'→'; position:absolute; left:-20px; top:50%; transform:translateY(-50%); color:var(--ix-muted,#68766c); }
+.k-lane-terms { display:grid; grid-template-columns:max-content 1fr; gap:6px 14px; margin:0; font-size:var(--fs-sm); }
+.k-lane-terms dt { color:var(--ix-muted,#68766c); }
+.k-lane-terms dd { margin:0; }
+/* the allocation board */
+.k-board-limit { stroke:#193c32; stroke-dasharray:4 3; }
+.k-alloc-capacity { fill:#224e40; } .k-alloc-services { fill:#a37732; } .k-alloc-trading { fill:#e2b84c; }
+.k-conflict { fill:var(--ix-risk,#9c5b40) !important; font-weight:var(--fw-bold); }
+/* the cutaway's two label sets */
+.k-stage[data-view="equipment"] .k-v-rights, .k-stage[data-view="rights"] .k-v-equipment { display:none; }
+@media (prefers-reduced-motion: reduce) { .k-energy-bar, .k-map path { transition:none; } }
