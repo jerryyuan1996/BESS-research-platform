@@ -95,3 +95,75 @@ rect.k-bar-reserve, .k-legend.k-bar-reserve .k-swatch { fill:#a37732; fill-opaci
 @media (max-width: 560px) {
   .k-stage .k-label { font-size:calc(var(--fs-xs) * 1.75); stroke-width:5px; }
 }
+
+/* ---- the story shell (WP-03) -------------------------------------------------
+   A full-height dialog: header, chapter navigator, the shots in ordinary
+   scrolling order, and a footer with Previous, Next and the way back to the
+   investment case. About 40% text and 60% visual where the width allows. */
+.ix-story-dialog { width:min(1240px, calc(100% - 40px)); height:min(92dvh, 1000px); max-height:92dvh; padding:0; overflow:hidden; }
+.ix-story-dialog[open] { display:flex; flex-direction:column; }
+.ix-story-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; padding:18px 24px 14px; border-bottom:1px solid #dce1d6; background:#f5f3ed; }
+.ix-story-head h2 { margin:2px 0 0; font-family:var(--ix-serif); font-size:var(--fs-2xl); color:var(--ix-ink); }
+.ix-story-head .ix-eyebrow { margin:0; font-size:var(--fs-micro); letter-spacing:.08em; color:var(--ix-muted); }
+.ix-story-boundary { margin:2px 0 0; font-size:var(--fs-xs); color:var(--ix-muted); }
+.ix-story-stale { margin:6px 0 0; font-size:var(--fs-xs); color:var(--ix-risk); }
+.ix-story-tools { display:flex; gap:8px; align-items:center; flex-shrink:0; }
+.ix-story-nav { padding:8px 24px; border-bottom:1px solid #dce1d6; background:#fffefa; overflow-x:auto; }
+.ix-story-nav ol { display:flex; gap:6px; list-style:none; margin:0; padding:0; white-space:nowrap; }
+.ix-story-nav button { min-height:36px; padding:4px 12px; border:1px solid #c6d0c0; border-radius:var(--r-pill); background:#fffefa; color:var(--ix-ink); font:inherit; font-size:var(--fs-sm); cursor:pointer; }
+.ix-story-nav button[aria-current="true"] { background:var(--ix-green); border-color:var(--ix-green); color:#fffefa; }
+.ix-story-nav button:focus-visible, .ix-story-dialog :focus-visible { outline:2px solid var(--ix-green); outline-offset:2px; }
+.ix-story-no { font-variant-numeric:tabular-nums; opacity:.7; }
+.ix-story-body { flex:1; min-height:0; overflow:auto; padding:0 24px 40px; background:#f5f3ed; }
+.ix-story-chapter-title { margin:28px 0 0; padding-top:8px; border-top:2px solid var(--ix-green); font-family:var(--ix-serif); font-size:var(--fs-xl); color:var(--ix-green); }
+.ix-shot { display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 6fr); gap:28px; padding:26px 0; border-bottom:1px solid #e3e6dc; scroll-margin-top:4px; }
+.ix-shot-opening { grid-template-columns:minmax(0, 1fr); max-width:760px; }
+.ix-shot h4 { margin:0 0 10px; font-family:var(--ix-serif); font-size:var(--fs-xl); line-height:var(--lh-tight); color:var(--ix-ink); }
+.ix-shot h4:focus { outline:none; }
+.ix-shot h4:focus-visible { outline:2px solid var(--ix-green); }
+.ix-shot-copy { margin:0 0 12px; font-size:var(--fs-lg); line-height:1.55; color:var(--ix-ink); }
+.ix-shot-meaning { margin:0 0 10px; padding:8px 12px; border-left:3px solid var(--ix-green); background:#edf1e4; font-size:var(--fs-sm); color:var(--ix-body); }
+.ix-shot-meaning strong { color:var(--ix-green); margin-right:4px; }
+.ix-story-marker { margin:0 0 10px; font-size:var(--fs-xs); color:var(--ix-body); }
+.ix-marker { display:inline-block; padding:1px 8px; border-radius:var(--r-pill); font-size:var(--fs-micro); font-weight:var(--fw-bold); letter-spacing:.03em; vertical-align:1px; }
+.ix-marker-strong { background:#224e40; color:#fffefa; }
+.ix-marker-fair { background:#f1e6c8; color:#6f5120; }
+.ix-marker-thin { background:#f3ddd3; color:#7c3f28; }
+.ix-story-sources { margin:6px 0 0; font-size:var(--fs-xs); }
+.ix-story-sources summary { cursor:pointer; color:var(--ix-green); min-height:24px; }
+.ix-story-sources ul { margin:6px 0 0; padding-left:18px; }
+.ix-story-sources li { margin:3px 0; }
+.ix-shot-visual { margin:0; }
+.ix-shot-visual figcaption { margin-top:6px; font-size:var(--fs-xs); color:var(--ix-muted); }
+.ix-shot-placeholder { display:grid; place-items:center; min-height:240px; border:1px dashed #c6d0c0; border-radius:var(--r-sm); background:#fffefa; color:var(--ix-muted); font-size:var(--fs-sm); }
+.ix-story-play { margin:0 0 14px; padding:14px 16px; border:1px solid #c6d0c0; border-radius:var(--r-sm); background:#fffefa; }
+.ix-story-play-head { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:8px; }
+.ix-story-play-title { margin:0; font-weight:var(--fw-medium); color:var(--ix-ink); }
+.ix-story-next { margin:8px 0 0; font-size:var(--fs-sm); }
+.ix-story-timeline ol, .ix-story-parts ul, .ix-story-factors ul { margin:10px 0 0; padding-left:0; list-style:none; }
+.ix-node { margin:0 0 10px; padding:8px 12px; border-left:3px solid var(--ix-green); background:#fffefa; }
+.ix-node-scenario { border-left-style:dashed; border-left-color:var(--ix-muted); }
+.ix-node-title { margin:0 0 4px; font-weight:var(--fw-medium); }
+.ix-node-when { color:var(--ix-green); margin-right:6px; font-variant-numeric:tabular-nums; }
+.ix-node dl { display:grid; grid-template-columns:max-content 1fr; gap:2px 10px; margin:0; font-size:var(--fs-xs); }
+.ix-node dt { color:var(--ix-muted); }
+.ix-node dd { margin:0; }
+.ix-story-parts li, .ix-story-factors li { margin:0 0 6px; font-size:var(--fs-sm); }
+.ix-story-exits { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.ix-story-foot { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:10px 24px; border-top:1px solid #dce1d6; background:#f5f3ed; }
+.ix-story-step { display:flex; gap:8px; }
+.ix-story-foot button[disabled] { opacity:.45; cursor:default; }
+.ix-story-dialog .ix-button, .ix-story-dialog .ix-language { min-height:44px; }
+
+@media (max-width: 720px) {
+  .ix-story-dialog { width:100%; height:100dvh; max-height:100dvh; margin:0; border:0; border-radius:0; }
+  .ix-story-head, .ix-story-nav, .ix-story-foot { padding-left:16px; padding-right:16px; }
+  .ix-story-head { flex-wrap:wrap; }
+  .ix-story-head h2 { font-size:var(--fs-xl); }
+  .ix-story-body { padding:0 16px 32px; }
+  .ix-shot { grid-template-columns:minmax(0, 1fr); gap:14px; padding:20px 0; }
+  .ix-story-foot .ix-text-link { font-size:var(--fs-xs); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ix-story-body { scroll-behavior:auto; }
+}
