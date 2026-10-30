@@ -1,6 +1,6 @@
 # Verification and Source Register
 
-Pack: BESS-IX-2026-10-30, version 1.0  
+Pack: BESS-IX-2026-10-30, version 1.1  
 Check date: 30 October 2026, Australia/Perth  
 Navigation: [Master plan](README.md) | [Evidence rules and templates](evidence-and-content-specification.md)
 
@@ -23,8 +23,11 @@ After the user reported #72 merged, local `main` and the [GitHub main branch](ht
 | REPO-07 | [Research dialog](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/src/experience/researchDialog.js), [experience pages](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/src/experience/pages.js), [tokens](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/src/styles/tokens.css) | Existing research entry, editorial surfaces, bilingual patterns and design tokens to reuse |
 | REPO-08 | [CI workflow](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/.github/workflows/ci.yml), [Vercel configuration](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/vercel.json), [publishing guide](../publishing.md) | Node 20 in CI; PR tests without production publication; controlled main publication; Git-triggered Vercel deployment disabled in repository configuration |
 | REPO-09 | [Bundle-budget tests](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/tests/bundle-budget.test.js), [browser configuration](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/playwright.config.js) | Entry/home caps 170/265 using bytes divided by 1024; desktop/mobile Chromium projects and built-site preview configuration |
-| REPO-10 | [Data policy](../data-policy.md), [dataset catalogue](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/src/governance/datasets.js), [live-data guide](../live-data.md) | Public frontend boundary, licensing/provenance controls, Finland reserve-price registrations and separate day-ahead registration |
+| REPO-10 | [Data policy](../data-policy.md), [dataset catalogue](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/src/governance/datasets.js), [live-data guide](../live-data.md) | Public frontend boundary, licensing/provenance controls, Finland reserve-price registrations and separate day-ahead registration; no German price series is registered (checked for v1.1) |
 | REPO-11 | [ETL commit step](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/.github/workflows/etl.yml#L199), [FCR-N snapshot example](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/public/data/public/fi-fcr-n.json) | #73 includes untracked first snapshots in change detection. All seven stored reserve-series envelopes were inspected: 8,776 hourly points each, unit EUR/MW/h, fetched around 06:20 UTC on 30 October. This was metadata review, not a new API fetch or full revenue backtest |
+| REPO-12 | [Briefing content, October 2026](../briefing-content-2026-10.md); [plays and design economics](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/src/briefing/plays.js) | The theses, calls and plays the stories argue for: WA capacity-led at seven hours (`wa-cap-7h`), Germany a four-hour toll (`de-toll-4h`), Finland two hours with a negotiated floor (`fi-mer-2h`). The document's figures date from 16 October; stories bind live fields instead of copying them |
+| REPO-13 | [Three-page design](../three-page-design.md); [market page](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/src/experience/pages.js); [research dialog](https://github.com/jerryyuan1996/BESS-research-platform/blob/6ce1e035cace6e676167f904d511a3425a5be12d/src/experience/researchDialog.js) | Market page sections and anchors (`#decision`, `#overview`, `#revenue-drivers`, `#bankable`, `#revenue`, `#execution`, `#opportunity-comparison`, `#downside`, `#sources`); the Overview's "Grid, history and full research context" button lazy-loads the research dialog |
+| REPO-14 | [Investor review implementation](../investor-review-implementation-2026-10-30.md) | Home first view about 262.5 KiB against its 265 KiB budget at PR #69; experience chunk capped at 26 KiB; investor data split into four lazy chunks |
 
 The initial #72 run check was in progress. At the final approximately **14:45 AWST** check, GitHub reported [#72 CI run 41012379408](https://github.com/jerryyuan1996/BESS-research-platform/actions/runs/41012379408), [#73 CI run 41013405200](https://github.com/jerryyuan1996/BESS-research-platform/actions/runs/41013405200), and [Live data run 41013441832](https://github.com/jerryyuan1996/BESS-research-platform/actions/runs/41013441832) completed successfully. The latest live-data run was started from #73 and produced the snapshot commit; a run's starting SHA and its generated data SHA are distinct. Recheck exact release identity before implementation/publication. No fresh live-page inspection or locally executed application tests are asserted by this documentation task.
 
@@ -90,3 +93,17 @@ All other markets' source owners in [the narrative cards](market-narratives.md) 
 | CL-IT-01 | Capacity Market and MACSE are separate routes requiring separate obligation review. | SRC-IT-01/02 | Italian route fork; compatibility not presumed |
 
 These seeds are not a complete claim ledger. Add exact clauses/pages, extract-level records, calculations and reviewer disposition using [the templates](evidence-and-content-specification.md#3-reusable-register-templates) before publishing detailed historical or quantitative scenes.
+
+## Candidate claims added in v1.1
+
+These are research targets, not verified statements. Each needs an exact locator and the user's review before it can carry a Fair or Strong marker.
+
+| Claim ID | Proposed statement | Source to collect | Used by |
+| --- | --- | --- | --- |
+| CL-WA-05 | The SWIS has no electrical interconnection with the NEM | AEMO system description (locator to find) | `wa-01` |
+| CL-WA-06 | The WEM began in 2006 with a Reserve Capacity Mechanism, while the NEM uses an energy-only design | WEM Rules history (ERA or Coordinator of Energy); AEMC for the NEM | `wa-00`, `wa-03` |
+| CL-WA-07 | Storage capacity is certified against an obligation duration that sets the hours a battery must cover | WEM Rules and AEMO procedures for the relevant capacity years (SRC-WA-05/07) | `wa-06`, `wa-08` |
+| CL-WA-08 | The state government decided to retire its coal generation by around 2030 | WA Government announcement (to locate) | `wa-03` |
+| CL-DE-02 | No capacity payment is available to a four-hour battery in Germany today, and storage grid-fee rules are in draft | BNetzA and federal ministry documents (to locate); platform research | Germany story |
+| CL-FI-02 | Connected battery storage exceeds Finland's fast-reserve need | Fingrid publications or data (to locate); platform research | Finland story |
+| CL-FI-03 | Olkiluoto 3's regular operation from 2023 raised the largest single outage the reserves must cover | Fingrid or TVO publications (to locate) | Finland story |

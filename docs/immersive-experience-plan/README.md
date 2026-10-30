@@ -1,154 +1,171 @@
-# Immersive Visual and 3D Experience Upgrade Plan
+# Immersive Visual Experience Plan
 
 Pack ID: BESS-IX-2026-10-30  
-Version: 1.0, planning draft for implementation review  
+Version: 1.1, revised after review on 30 October 2026 (v1.0 is commit `db158b9`)  
 Prepared: 30 October 2026, Australia/Perth  
 Repository baseline: `6ce1e035cace6e676167f904d511a3425a5be12d`, including PRs #72/#73 and the first Finland reserve snapshots  
-Delivery scope: English Markdown planning documents and bounded, read-only verification
+Delivery scope: English Markdown planning documents; no application, data, model or CI changes
 
 ## 1. Product direction
 
-Turn the platform into an explorable account of how electricity systems developed and how a battery investment earns, retains, and can lose value. The intended reader understands investment but has little electricity-sector knowledge.
+Explain, market by market, why the platform's investment call is what it is. Each story opens with the market's published call and play. It then takes about five minutes to show the grid's history, today's tension, what a battery does there and who pays for it. The reader is mainly the user, reading markets they know less well, and the copy stays plain enough for any investment-literate newcomer.
 
-Use one causal chain across markets:
+One causal chain runs through every market:
 
-**Geography and historical choices -> today's system tensions and inherited constraints -> BESS services and physical limits -> payer, qualification and performance obligations -> construction to first revenue -> investment cash flow, financing, downside and exit.**
+**Geography and historical choices -> today's tension -> what a battery does, and its limits -> who pays, on what conditions -> the call and the play.**
 
-The six chapters remain **Origins, Historical choices, Today's tensions, Add a battery, Who pays, and The investment**. Construction and first settlement form an explicit bridge within the final chapter, rather than being hidden behind a single commercial-operation date. Every market needs its own historical path, dominant tension, payment mechanism, and conditions under which storage value weakens.
+The six chapters remain **Origins, Historical choices, Today's tensions, Add a battery, Who pays, and The investment**. The last chapter is now a short bridge: what could weaken the value, then links into the market page's Bankable case, Revenue, Execution and Downside sections. The story does not rebuild those sections.
 
-Preserve the off-white and deep-green research identity. Use isometric grid scenes, controlled day/night changes, and a station cutaway to explain geography, equipment, sequence, and physical services. Keep amounts, contractual coverage, cash flows, risks, sensitivities, and comparisons in auditable two-dimensional charts. The purpose of 3D is better understanding and recall.
+Keep the off-white and deep-green research identity. Scenes are fixed-view isometric SVG, drawn from one shared symbol kit on the existing D3/SVG stack. Day and night change through colour tokens, and the station cutaway is a set of exploded layers. Each market gets one signature chart: the single picture that explains its call. All other figures stay in the market page's existing 2D charts.
 
-| Reader time | Desired outcome |
+| Reader time | Outcome |
 | --- | --- |
-| 30 seconds | Identify this market's distinguishing feature and a reason to investigate it. |
-| 3 minutes | Explain a historical cause and today's main system tension. |
-| 5 minutes | Explain what a battery does, who might pay, and why revenue can fall. |
-| 10 minutes | Identify the investment object, capital exposure, waiting period, downside, and next diligence question. |
-| Extended research | Trace a claim or number to evidence, assumptions, calculations, and missing project information. |
+| 30 seconds | Know the call, the play and the main reason behind it |
+| 3 minutes | Explain the historical choice and today's tension that create the opportunity |
+| 5 minutes | Explain what the battery does here, who pays, and why the play has its duration and entry route |
+| Then | Continue into the market page's investment sections, or open a claim's source |
 
-These are proposed user-task targets. No new experience or understanding test has been completed in this documentation task.
+Comprehension check: after reading the story, the user can say why the play is what it is without opening the research tabs. For WA that means a seven-hour capacity battery bought behind a sponsor; for Germany, a four-hour toll; for Finland, two hours with a negotiated floor.
 
 ## 2. Reading order and document ownership
 
-The plan is split because research evidence, scene scripts, page design, code work packages, and device migration change at different speeds and have different review gates. A single file would obscure dependencies and encourage duplicate specifications. This index owns scope, priorities, and decisions; the companion files own execution details.
+The plan is split because evidence, scripts, page design, code work and migration change at different speeds. This index owns scope, priorities, decisions and the revision record. The companion files own execution detail.
 
-| Order | Document | Authoritative content | Primary reader |
-| --- | --- | --- | --- |
-| 1 | [This master plan](README.md) | Product objective, scope, sequencing, decisions, preservation of the original plan | User, ChatGPT, Codex |
-| 2 | [Market narrative preparation](market-narratives.md) | All 18 candidate story cards, research method, Germany/Finland script briefs | Research and editorial work |
-| 3 | [Western Australia storyboard](western-australia-storyboard.md) | Fourteen proposed shots across six chapters; interaction and interpretation boundaries | Research, design, implementation |
-| 4 | [Evidence and content specification](evidence-and-content-specification.md) | Status vocabulary, source/claim/calculation/asset templates, content contract, review workflow | Research and implementation |
-| 5 | [Experience and page design](experience-and-page-design.md) | Information architecture, layouts, components, explanation system, bilingual requirements | Product and design |
-| 6 | [Engineering work packages](engineering-work-packages.md) | Actual repository integration, work dependencies, numeric adapters, host lifecycle, budgets, rollback | Codex and technical review |
-| 7 | [Preparation, migration and acceptance](preparation-migration-and-acceptance.md) | Suggested 8-10 day preparation schedule, responsibilities, handoff, understanding and release gates | User and execution coordination |
-| Reference | [Verification and source register](source-register.md) | Exact repository/official links, check scope, dates, and verified claim limits | Every reviewer |
+| Order | Document | Owns |
+| --- | --- | --- |
+| 1 | [This master plan](README.md) | Objective, scope, sequencing, decisions, revisions |
+| 2 | [Market narratives](market-narratives.md) | 18 story cards anchored to calls; WA, Germany and Finland theses and briefs |
+| 3 | [Western Australia storyboard](western-australia-storyboard.md) | Shots `wa-00` to `wa-14` (`wa-12` and `wa-13` retired) |
+| 4 | [Evidence and content specification](evidence-and-content-specification.md) | Internal status vocabulary, the reader-facing marker, templates, content contract |
+| 5 | [Experience and page design](experience-and-page-design.md) | Entry from the market page, layouts, isometric visual system, components |
+| 6 | [Engineering work packages](engineering-work-packages.md) | Repository integration, symbol kit, story URLs, budgets, deferred WebGL option |
+| 7 | [Preparation, migration and acceptance](preparation-migration-and-acceptance.md) | Sequence, three gates, self-review, laptop handoff checklist |
+| Ref | [Source register](source-register.md) | Repository and official sources; verified and candidate claims |
 
-Use stable identifiers across the pack: `SRC-*` for external sources, `REPO-*` for repository evidence, `CL-*` for claims, `wa-01` through `wa-14` for shots, `WP-*` for engineering work, and `G-*` for acceptance gates. Chapter IDs are `origins`, `choices`, `tensions`, `battery`, `payment`, and `investment`.
+Stable identifiers: `SRC-*` external sources, `REPO-*` repository evidence, `CL-*` claims, `GAP-*` evidence gaps, `wa-00` to `wa-14` shots (`wa-12` and `wa-13` retired and not reused), `WP-*` work packages (`WP-05` retired, `WP-08` folded into `WP-06`) and `G-1` to `G-3` gates, which replace v1.0's `G-0` to `G-7`. Chapter IDs are `origins`, `choices`, `tensions`, `battery`, `payment` and `investment`.
 
-Do not maintain a second copy of a specification in another document. Summaries link to their owner. When a claim, scene, interface, or acceptance gate changes, update its owner and affected mappings in the same document revision. All files in this initial pack share version 1.0; future revisions record date, affected IDs, decision, owner, and impact in this index. A later executable content schema should validate references and versions rather than relying on filename dates.
+Keep one owner per specification. When something changes, update its owner and every reference in the same revision, and record the change below.
 
 ### Revision record
 
 | Version | Date | Change | Status |
 | --- | --- | --- | --- |
-| 1.0 | 2026-10-30 | Expand and translate the original plan; refresh verification through #73 and the first Finland reserve snapshots; add research, scene, design, engineering and migration specifications | Planning deliverable; implementation not started |
+| 1.0 | 2026-10-30 | Expanded and translated the original Chinese plan; verification through #73 | Committed as `db158b9`; superseded |
+| 1.1 | 2026-10-30 | Review against the platform's calls, the three-page market page and the 16 October rulings; decisions D1 to D10 | Planning revision; the user signs off by accepting this pack |
 
-## 3. What was verified and what was produced
+| ID | v1.1 decision | Affects | Basis | Impact |
+| --- | --- | --- | --- | --- |
+| D1 | Every story argues for the market's published call and opens with its play card | `wa-00` (new); narratives §1 to §3 | 16 Oct guided-experience ruling | Conclusion first; story text must agree with the briefing |
+| D2 | WA, Germany and Finland rebuilt on the briefing theses | `wa-01`, `wa-03`, `wa-04`, `wa-06`, `wa-08`, `wa-10`, `wa-14`; narratives §3, §5, §6 | Review: v1.0 never referred to a call or play | WA becomes capacity-led seven hours; Germany merchant versus toll; Finland an oversupplied reserve market |
+| D3 | The story stops where the market page's investment sections begin | `wa-12`, `wa-13` and `WP-05` retired | Review: those shots duplicated Bankable case, Revenue and Execution | No second financial view to reconcile |
+| D4 | Readers see one Strong, Fair or Thin marker plus "what would change it" | Evidence specification §1; every shot | 16 Oct no-disclaimers ruling | Status dimensions and boundaries stay in authoring records |
+| D5 | Isometric SVG; WebGL deferred to an optional experiment | `WP-06` to `WP-08`, `WP-11`; page design §4 and §5 | User, 30 Oct | No Three.js, GPU lifecycle or asset-licence work in the pilot |
+| D6 | One signature chart per market | Narratives §4 to §6; `wa-06`; `WP-06` | Review | Each call gets one data-backed picture |
+| D7 | The story opens from the market page's research button; home unchanged | Page design §1 and §2; `WP-03` | 26 Oct three-page design; home budget | No new bytes on the home page |
+| D8 | The reader is mainly the user | Acceptance §5 | User, 30 Oct | Recruited tests replaced by self-review |
+| D9 | Three gates | Acceptance §3 | Review | Replaces `G-0` to `G-7` |
+| D10 | Concrete laptop handoff checklist | Acceptance §6 | Workstation check, 30 Oct | Lists the items that exist only on the current machine |
 
-The local checkout was initially on a Finland feed branch. After the user's update that #72 had merged, local `main` and GitHub `main` matched `93c4a7e75cf050c5d9b01652bd84ace52f9a960d`. During writing, the repository was updated externally again. The final check at approximately 14:45 AWST found local and remote `main` aligned at `6ce1e035cace6e676167f904d511a3425a5be12d`, after #73 and the first Finland reserve snapshots. The intervening changes affect the ETL commit step and public data, not the inspected application/model modules. The working tree was clean before creating this pack. No `AGENTS.md` was found in the checked ancestor locations or repository inventory. No branch switch, pull, merge, commit, push, dependency installation, code edit, data edit, or deployment was performed by this task.
+## 3. What was verified
 
-The repository still uses native ES modules, Vite, DOM/SVG, and a D3 orthographic SVG globe. It does not currently declare React or Three.js dependencies. The canonical registry contains 18 allocation markets, including three Japanese regions sharing research infrastructure. The investment, monthly cash-flow, downside, research-dialog, and saved-case capabilities should be retained. Precise integration points and qualifications appear in [the engineering baseline](engineering-work-packages.md#1-verified-repository-baseline).
+**v1.0.** Local and remote `main` matched `6ce1e035cace6e676167f904d511a3425a5be12d` at about 14:45 AWST, after #72, #73 and the first Finland reserve snapshots. The stack is native ES modules, Vite and D3/SVG, with no React or Three.js. The registry holds 18 allocation markets. Seven Finland reserve-price snapshots exist; they are stored price observations, not a capture strategy. Official sources were checked for a small set of pilot foundations. Details are in [the engineering baseline](engineering-work-packages.md#1-verified-repository-baseline) and [the source register](source-register.md#repository-verification).
 
-PR #72 adds Finland reserve-price feed infrastructure; #73 fixes first-snapshot detection. Seven reserve-price snapshots now exist in the checked repository, and their metadata was inspected. That establishes stored price observations, not a realizable trading strategy, a verified project contract, or a fresh direct inspection of production. Reserve capacity prices must not be treated as energy-price spreads. The final GitHub run check reported successful #72/#73 CI runs and the latest live-data run; this task did not perform a new production-page acceptance test. See [the verification register](source-register.md#repository-verification).
-
-Official sources were checked to support a small set of pilot-story foundations and engineering requirements. This is not a refreshed factual audit of every market, a new visual audit of the running website, or a market-revenue forecast. The 18 story cards are **proposed research themes**, and the WA storyboard is a **detailed editorial and interaction draft**. Missing historical dates, datasets, contract clauses, translations, and review evidence remain explicit work.
+**v1.1.** The pack was read against the briefing theses (REPO-12), the market page and its research dialog (REPO-13), the home budget measured at PR #69 (REPO-14), the dataset catalogue (REPO-10) and this workstation's local-only state ([handoff checklist](preparation-migration-and-acceptance.md#6-laptop-handoff-checklist)). Across eight files, v1.0 never referred to a market's call or play, the three-page market page or the Bankable case. Its WA, Germany and Finland stories did not lead to their published plays. v1.0 was committed unchanged before this revision; no application code, data or model changed.
 
 ## 4. Priorities and release shape
 
-| Sequence | Scope | Why this order | Exit condition |
-| --- | --- | --- | --- |
-| Preparation | All 18 short cards; WA detailed script; DE/FI differentiation scripts; evidence, design and engineering contracts | Establish breadth without pretending that all markets are research-complete | Preparation gate `G-1` |
-| First complete pilot | Western Australia WEM/SWIS, all six chapters and the investment loop | Time shifting, reliability, qualification, delivery, and cash flow can be connected in one bounded example | WA evidence, numeric, understanding, accessibility and stability gates |
-| Reuse validation | Germany, then Finland | Test spatial congestion and reserve competition instead of repeating the WA solar story | Distinct stories fit the shared contract without compromising local mechanisms |
-| Mechanism validation | Italy | Separate Capacity Market and MACSE routes and their obligations | Route-specific source and compatibility review |
-| Expansion | Remaining markets, in batches of roughly 3-4 after measured reuse effort is known | Reuse components while retaining market-specific causal arguments | Independent market sign-off; no automatic approval by template inheritance |
-
-Narrative priority is not an investment ranking. A market can have a useful story while its return remains withheld or its project evidence remains incomplete.
-
-### Proposed delivery stages
-
-| Stage | Reviewable result | Dependency |
+| Sequence | Scope | Exit |
 | --- | --- | --- |
-| Script and design | Source-backed pilot script, annotated layouts, content/state contracts, baseline and device matrix | Repository and evidence verification |
-| Runnable 2D story | Full reading path with diagrams, navigation and current-case handoff | Future coding authorization; no new-computer dependency |
-| WA greybox | Historical scene, day/night scene and add-battery comparison, with equivalent diagrams | Host lifecycle and asynchronous cleanup tests |
-| Complete WA experience | Cutaway, payment path, delivery timeline, model-connected cash flow/downside, bilingual and mobile coverage | Evidence, numeric and user-task review |
-| Reuse and expansion | DE/FI story validation, then Italian route validation and wider rollout | Measured pilot results |
+| Preparation | WA script anchored to the call; its hinge claims sourced; DE and FI briefs; all 18 cards checked against their theses | `G-1` for WA |
+| WA pilot | Six chapters in isometric SVG with the signature chart, opened from the market page | `G-2` |
+| Reuse | Germany, then Finland: different arguments on the same kit | `G-1` and `G-2` per market |
+| Mechanism | Italy: the fork between its two published plays (capacity market and MACSE) | `G-1` and `G-2` |
+| Expansion | Remaining markets in batches of three or four, sized by the measured WA effort | Per market |
+| Optional | WebGL for one shot that SVG cannot explain | `G-3` |
 
-The original estimate of about 4-6 weeks for a complete WA pilot, or 6-8 weeks including Germany reuse, assumed product, design, front-end/3D and part-time research/model capacity. Retain it only as a conditional planning reference. The user's actual working model is primarily user + ChatGPT + Codex, with review availability and daily effort unconfirmed. AI assistance does not replace source verification or investment judgment. Re-estimate after the runnable 2D slice and initial host experiment. Do not promise a full pilot within the 8-10 day preparation window or estimate all-market cost by multiplying a fixed number of days.
+Narrative order is not an investment ranking. A market with a withheld return can still have a story; Saudi Arabia keeps its card.
 
-## 5. Decisions and unresolved items
+The v1.0 estimate of four to six weeks for a WA pilot assumed a team that included 3D production. It no longer applies. Re-estimate after the WA story ships, and record the actual time per market to size later batches.
 
-| Topic | Working decision | Classification |
+## 5. Decisions and open items
+
+| Topic | Working decision | Status |
 | --- | --- | --- |
-| Audience and causal chain | Investment-literate, electricity-novice reader; six shared chapters with local histories | Confirmed product direction |
-| Visual identity | Serious off-white/deep-green research environment; spatial scenes plus auditable 2D finance | Confirmed product direction |
-| Market sequence | WA first; Germany and Finland test different causal stories; Italy tests mechanism separation | Confirmed product direction |
-| Website language | English and Simplified Chinese in the implemented site; this planning pack entirely English | Confirmed requirement |
-| Framework | Keep native ESM/Vite; evaluate a lazy native Three.js module in an isolated work package | Proposed engineering choice |
-| Preview | Local built-public preview first; a separate controlled remote preview only if needed later | Proposed workflow; not configured |
-| Runtime | Validate a supported LTS baseline separately; Node 24 is a conservative candidate, Node 26 is also currently LTS | Proposed maintenance work, not performed |
-| New computer | User described an AMD AI 9 H365 system with 32 GB RAM; exact CPU/GPU and graphics configuration unverified | Open inventory item; does not block research or 2D work |
-| Asset production | Start with simple procedural/shared geometry; build polished licensed assets after greybox understanding tests | Proposed production approach |
-| Staffing and dates | Relative 8-10 day plan and gate-based sequencing; no confirmed staffing or fixed delivery date | Planning assumption |
-| Model improvements | Separate changes, separate evidence, separate numeric approval | Scope boundary |
+| Audience | Mainly the user, reading markets they know less well; plain enough for an investment-literate newcomer | Confirmed 30 Oct |
+| Story anchor | Each story argues for the published call and play | Follows the 16 Oct ruling |
+| Causal chain | Six shared chapters with local histories, ending at the call | Confirmed in v1.0; ending revised |
+| Visual identity | Off-white and deep green; isometric SVG scenes; one signature chart per market; finance in existing charts | Confirmed 30 Oct |
+| Market sequence | WA, then Germany and Finland, then Italy | Confirmed in v1.0; stories revised |
+| Language | English and Simplified Chinese on the site; this pack in English | Confirmed |
+| Framework | Native ES modules, Vite, D3/SVG; no new rendering dependency in the pilot | Confirmed 30 Oct |
+| Entry | The market page's "Grid, history and full research context" button | Follows the 26 Oct three-page design |
+| Uncertainty on the page | One Strong, Fair or Thin marker plus "what would change it" | Follows the 16 Oct ruling |
+| Preview | Local built-public preview; never share the dev server | Proposed |
+| Runtime | Pin one Node LTS for local, CI and ETL; CI still uses Node 20, which is past end of life | Proposed; independent small change |
+| New computer | Nothing in the pilot depends on it; see the handoff checklist | Open: record the hardware at handoff |
+| Model changes | Separate work, separate evidence, separate sign-off | Scope boundary |
 
-A different exact processor model does not change the objective. Record it during handoff/device inventory instead of making basic coding dependent on the new machine. Seek user input only when a new finding changes the intended audience, scope, public information boundary, spending, or visual preference.
+Ask the user again only when a finding changes the audience, scope, public boundary, spending or visual direction.
 
-## 6. Non-negotiable interpretation rules
+## 6. Rules
 
-1. Label conceptual animation, observed history, official forecasts, and analyst scenarios differently. A moving arrow is not a solved power flow.
-2. Distinguish a physical need, a participation mechanism, an assumed model route, an awarded contract, and verified project cash flow.
-3. Show one battery's power, energy, state-of-charge, availability and contractual constraints before describing revenue stacking. Missing project constraints remain unknown.
-4. Read displayed investment figures from existing defined result paths. Do not manually copy financial headlines into story prose.
-5. Separate teaching controls from underwriting inputs. A daylight or battery toggle must not silently revise the investment case.
-6. Separate energization, commercial operation, revenue qualification, dispatch/availability performance, and first settlement.
-7. Preserve the original dates of model payments. A monthly display is not proof of monthly revenue seasonality.
-8. Show contract expiry, renewal/merchant assumptions, financing limits and downside alongside the first-year revenue mix.
-9. Keep public assets, sources, metadata and examples within the existing public/confidential boundary. A hidden frontend object is public.
-10. Preserve existing model verification. Do not regenerate a frozen fixture to conceal an unintended numeric change.
+1. Draw observed history, official plans, scenarios and teaching examples differently: scenarios dashed, examples tagged "Example", observations solid. A moving arrow is not a solved power flow.
+2. Keep a physical need, a participation mechanism, the model's assumed route, an awarded contract and verified cash flow apart in authoring records. On the page, the evidence marker and plain wording carry the distinction.
+3. Show one battery's power, energy and limits before stacking revenue. The teaching battery uses the play's duration.
+4. Never type a figure into story copy. Calls, durations and shares come through `‹bound›` fields that the existing play card and market sections already read.
+5. Teaching controls never change the investment case. The story has no underwriting controls; the market page owns the handoff to the Investment Lab.
+6. Keep energisation, commercial operation, qualification and first settlement distinct in the copy. The market page's Execution section shows the timing.
+7. Wherever the story mentions secured revenue, name its tenor and what follows it.
+8. Everything shipped to the browser is public. Check every project name against `local-data/markers.json` before writing it anywhere, including commit messages, PR bodies and branch names, which no guard scans.
+9. Preserve model verification. Never regenerate a fixture to hide a numeric change.
+10. Uncertainty reaches the reader as one marker and one "what would change it" line, never as caveat paragraphs.
+11. When the briefing changes a market's call, play or thesis, that market's story is due for review.
 
-## 7. Scope of this delivery and subsequent work
+## 7. Scope of this pack
 
-This task produces the linked Markdown pack and checks its consistency, English coverage, links, and scope. It does not implement the website, create production 3D assets, alter financial assumptions, refresh data snapshots, modify CI/Vercel, install packages, or publish anything. Future work packages are instructions for a later authorized implementation task.
+This pack plans; it does not implement, publish, or change data, models, CI or dependencies. The pilot excludes WebGL (deferred under D5), free camera movement, VR, digital twins, power-flow calculation, live dispatch, photorealistic assets, narration, automatic recommendations, a second financial view inside the story and new home-page content.
 
-The first version excludes free roaming, VR, a digital twin, arbitrary-node power-flow calculation, live dispatch optimization, large bespoke photorealistic libraries, voice interaction, and automatic investment recommendations from scene placement. Optional narration must have transcripts and remains a later enhancement. A visually richer global map and side-by-side story comparison follow the WA learning loop; they do not delay its first useful 2D version.
+Main risks and their controls:
 
-The main delivery risks are weak explanation despite expensive visuals, unsupported geographic precision, stale narrative after data updates, loss of case state, competing numeric paths, 3D lifecycle leaks, mobile thermal/load problems, and asset-rights mistakes. Their controls are assigned to concrete [engineering packages](engineering-work-packages.md) and [acceptance gates](preparation-migration-and-acceptance.md#4-acceptance-gates).
+- Story text drifting from the briefing after a re-grade: rule 11 and the `reviewedAgainst` field in the content contract.
+- Drawings implying geographic or engineering precision: generic symbols, labelled boundaries, dashed scenarios.
+- Chinese and English drifting apart: both languages reviewed at each sign-off.
+- A polished scene hiding a weak argument: the script is signed off before anything is drawn.
+
+The controls sit in the [work packages](engineering-work-packages.md) and the [gates](preparation-migration-and-acceptance.md#3-gates).
 
 ## 8. Preservation of the original plan
 
-This pack expands the original Chinese-language plan dated 30 October 2026. The original remains unchanged in the external read-only project archive. Its SHA-256 when read was `A3325111528004DF6C915DFA58078D5B4646B008AF4E460B5E3390A1FCF88EF7`. The archive is outside this Git repository; its synchronized `sources` directory is not an editable project workspace. No original source material was copied into public website assets.
+This pack expands the original Chinese plan of 30 October 2026, which stays unchanged in the external archive outside this repository. Its SHA-256 when read was `A3325111528004DF6C915DFA58078D5B4646B008AF4E460B5E3390A1FCF88EF7`.
 
-| Original section | Preserved and expanded here |
+| Original section | Where it lives now |
 | --- | --- |
-| 1. Direction and user outcomes | Sections 1, 4 and 6 of this index |
-| 2. Existing foundation | Engineering baseline and dated source register; refreshed through #73 and the first Finland snapshots |
-| 3. Architecture and access paths | Experience/page design; route/state work package |
-| 4. Art direction, desktop and mobile | Experience/page design; engineering asset budgets |
-| 5. Six shared chapters | Narrative method and WA storyboard |
-| 6. Market differences | All-market candidate cards; DE/FI scripts; Italy route gate |
-| 7. Interaction priorities and 3D/2D division | Component inventory, WA shots, staged engineering work |
-| 8. Asset, service, payment and cash-flow explanation | Shared explanations, WA shots 08-14, model adapter requirements |
-| 9. Evidence, content and current case | Evidence specification and state/model work packages |
-| 10. Incremental implementation, lifecycle, performance | Engineering work packages and technical acceptance |
-| 11. Phases, resourcing and scope | Sections 4-7; preparation and migration plan |
-| 12. Understanding, visual and numeric acceptance | Acceptance tasks, gate matrix and technical evidence records |
-| 13. Risks | Package-level risks/rollback and release gates |
-| 14. Startup checklist and repository references | Work-package order, handoff template, exact source register |
+| 1. Direction and user outcomes | Sections 1, 4 and 6 |
+| 2. Existing foundation | Engineering baseline; source register |
+| 3. Architecture and access paths | Page design §1 and §2; `WP-03` and `WP-04` |
+| 4. Art direction, desktop and mobile | Page design §3 and §4 (isometric SVG in v1.1) |
+| 5. Six shared chapters | Narratives §1; WA storyboard |
+| 6. Market differences | Narratives §3 and §5 to §7 |
+| 7. Interaction priorities and 3D/2D division | Page design §5; WA shots; `WP-11` for WebGL |
+| 8. Asset, service, payment and cash-flow explanation | Shots `wa-08` to `wa-11`; investment detail stays on the market page |
+| 9. Evidence, content and current case | Evidence specification; `WP-02` |
+| 10. Incremental implementation, lifecycle, performance | Engineering §2 to §5 |
+| 11. Phases, resourcing and scope | Sections 4 to 7; acceptance §4 |
+| 12. Understanding, visual and numeric acceptance | Acceptance §3 and §5 |
+| 13. Risks | Section 7; package risks |
+| 14. Startup checklist and repository references | Acceptance §6; source register |
 
-Start a later execution session from this index, the current Git status, and the next unmet gate. Recheck the source commit and moving data vintages before implementing; do not assume the baseline recorded here is perpetually current.
+Start the next session from this index, `git status` and the next unmet gate. Recheck the source commit and data vintages first.
 
-## 9. Documentation delivery validation
+## 9. Documentation checks
 
-On 30 October 2026, the completed pack passed checks for eight English-named Markdown files, English-text coverage, consistent pack/version markers, 92 local file/anchor references, balanced code fences and table structure. The 18 market IDs match the canonical registry; all 14 WA shots contain the required interaction/evidence/meaning/fallback fields; all 11 work packages contain objective, modules, inputs/outputs, dependencies, acceptance, verification, risk and rollback. The original plan's checksum was unchanged. Git status showed only the eight new documentation files as this task's uncommitted additions. No application tests, build, 3D benchmark or deployment were run for this documentation delivery.
+v1.1 checks, 30 October 2026:
+
+- All eight files carry version 1.1.
+- All 92 local links and anchors resolve.
+- Each of the 13 active shots has all eleven fields.
+- The 18 card IDs match the market sources.
+- No retired gate, field name or anchor remains outside a retirement note.
+- A scan against `local-data/markers.json` found no confidential markers.
+
+The pack shrank from about 181 KiB to about 141 KiB. No application tests, build or deployment were run, because nothing outside this folder changed.

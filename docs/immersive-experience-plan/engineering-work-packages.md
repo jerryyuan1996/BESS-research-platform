@@ -1,282 +1,240 @@
 # Engineering Work Packages
 
-Pack: BESS-IX-2026-10-30, version 1.0  
+Pack: BESS-IX-2026-10-30, version 1.1  
 Status: implementation proposal; no application, dependency, model, CI or deployment changes made  
 Navigation: [Master plan](README.md) | [Content contract](evidence-and-content-specification.md#5-proposed-story-content-contract) | [Page design](experience-and-page-design.md) | [Preparation and acceptance](preparation-migration-and-acceptance.md)
 
 ## 1. Verified repository baseline
 
-The final local and remote `main` baseline was `6ce1e035cace6e676167f904d511a3425a5be12d` on 30 October 2026, including #72, #73 and the first Finland reserve snapshots. Application/model modules inspected after #72 were unchanged by the intervening ETL workflow/data updates; the #73 workflow delta and snapshot metadata were also checked. The working tree was clean before this pack was added. No applicable `AGENTS.md` was found in the inspected ancestors or repository inventory. Preserve unrelated work if the checkout changes during a later task; never reset or clean it to reproduce this snapshot.
+Local and remote `main` matched `6ce1e035cace6e676167f904d511a3425a5be12d` on 30 October 2026, including #72, #73 and the first Finland reserve snapshots. The v1.1 review rechecked the market page, the briefing, the dataset catalogue and the CI runtime at the same baseline. Preserve unrelated local work in any later task; never reset or clean the checkout to reproduce this snapshot.
 
-| Concern | Actual current location / behavior | Planning consequence |
+| Concern | Current location and behaviour | Consequence for the story |
 | --- | --- | --- |
-| App architecture | [package.json](../../package.json), [Vite configuration](../../vite.config.js), native ESM/DOM/SVG | Add a bounded lazy renderer; no framework migration, backend or global rewrite required |
-| Dependencies | Vite declared `^7.3.6`; Playwright `1.64.1`; lockfile present; no React/Three.js declared | Select and lock any future 3D dependency in its own reviewed change; do not install it for documentation |
-| Runtime | Local `node --version` returned `v26.2.0`; npm `11.13.0`; package engine range accepts `^20.19.0` or `>=22.12.0`; CI names Node `20` | Local, declared and CI environments are different. An engines range is not a reproducibility record or supported-runtime policy |
-| Registry and routes | [registry.js](../../src/markets/registry.js), [router.js](../../src/app/router.js) | Use canonical IDs/slugs; preserve Japan regional allocation identity, `region`, existing tab/subsection paths and comparison behavior |
-| Current experience | [pages.js](../../src/experience/pages.js), [model.js](../../src/experience/model.js), [researchDialog.js](../../src/experience/researchDialog.js) | Reuse entry, labels and research access; do not create a second independently priced story page |
-| Financial outputs | [investment.js](../../src/opportunities/investment.js), [model.js](../../src/opportunities/model.js), [monthlyCash.js](../../src/opportunities/monthlyCash.js), [monthlyCashUI.js](../../src/opportunities/monthlyCashUI.js) | Acquisition/hold/sale/debt and monthly displays already exist; discover exact caller conventions before binding new labels |
-| Other numeric paths | [comparison engine](../../src/comparison/engine.js), [saved-case records](../../src/comparison/caseRecord.js), [Lab](../../src/home/investmentLab.js) | Existing comparison-case replay is not automatically a complete saved acquisition/opportunity case. Adapter and persistence coverage must be tested |
-| Downside and project constraints | [downside narrative](../../src/experience/downsideNarrative.js), [downside history](../../src/experience/downsideHistory.js), [stack feasibility](../../src/economics/revenueStackFeasibility.js) | Reuse defined stresses and unknown states; no new probability model or invented stack feasibility |
-| Renderer replacement | [app.js](../../src/app/app.js) calls `invalidateMarketRender()` and clears `#app` with `innerHTML`; lazy paths already use tokens | Destroy a scene before its DOM host is removed; extend lifecycle narrowly instead of refactoring every route |
-| Global preferences | [state.js](../../src/app/state.js) owns language/theme/investor and rerender hook | Chapter/teaching/case state needs bounded ownership; do not expand global state with every market's scene internals |
-| Globe and style | [marketGlobe.js](../../src/home/marketGlobe.js) uses D3 orthographic SVG; [tokens.css](../../src/styles/tokens.css) contains research/editorial tokens | Retain useful SVG/list fallback and existing style; WebGL is a new optional capability |
-| Data feed #72 and snapshot fix #73 | [datasets.js](../../src/governance/datasets.js), [fingrid.mjs](../../etl/sources/fingrid.mjs), [ETL workflow](../../.github/workflows/etl.yml), [live-data guide](../live-data.md) | Seven stored reserve-capacity price snapshots, separate Finland day-ahead path, product-aware drift handling and first-snapshot commit detection. Verify production freshness and capture interpretation separately |
-| Publication | [ci.yml](../../.github/workflows/ci.yml), [vercel.json](../../vercel.json), [publishing guide](../publishing.md), [production release library](../../scripts/lib/production-release.mjs) | PR tests do not create an assumed automatic preview; preserve controlled, scanned main publication and its release/rollback records |
-| Existing checks | [bundle budgets](../../tests/bundle-budget.test.js), [Playwright config](../../playwright.config.js), [e2e suite](../../e2e/platform.spec.js) | Existing entry/home budgets and desktop/mobile bilingual checks remain gates; new story checks supplement them |
-
-Exact remote references and the bounded CI observation are in [the source register](source-register.md#repository-verification). This task inspected source and metadata; it did not run application tests, build the site or assert live performance/production success.
+| App architecture | [package.json](../../package.json), [Vite configuration](../../vite.config.js); native ES modules, DOM and SVG | Add one lazy story chunk; no framework migration |
+| Dependencies | Vite `^7.3.6`, Playwright `1.64.1`, lockfile present; no React or Three.js | The pilot adds no rendering dependency |
+| Runtime | Local Node `v26.2.0` and npm `11.13.0`; engines `^20.19.0 \|\| >=22.12.0`; CI and ETL pin Node 20 in eight places; no `.nvmrc` | `WP-01` pins one LTS |
+| Registry and routes | [registry.js](../../src/markets/registry.js), [router.js](../../src/app/router.js) | Canonical IDs and slugs (`western-australia`); preserve `region` and tab paths |
+| Market page | [pages.js](../../src/experience/pages.js) renders Decision, Overview, Revenue drivers, Bankable case (`#bankable`), Revenue (`#revenue`), Execution (`#execution`), Special opportunity, Downside (`#downside`) and Sources. The Overview's "Grid, history and full research context" button lazy-loads [researchDialog.js](../../src/experience/researchDialog.js) and checks the button is still connected before opening | The story opens from that button, and its chapters link to these anchors |
+| Briefing | [src/briefing/](../../src/briefing/plays.js) (model, plays, sentences); [briefing content](../briefing-content-2026-10.md) | The play card and every bound value read from here |
+| Financial outputs | [investment.js](../../src/opportunities/investment.js), [model.js](../../src/opportunities/model.js), [monthlyCash.js](../../src/opportunities/monthlyCash.js); [comparison engine](../../src/comparison/engine.js), [case records](../../src/comparison/caseRecord.js), [Lab](../../src/home/investmentLab.js) | Unchanged; the story binds no new result path |
+| Downside and stacking | [downsideNarrative.js](../../src/experience/downsideNarrative.js), [downsideHistory.js](../../src/experience/downsideHistory.js), [revenueStackFeasibility.js](../../src/economics/revenueStackFeasibility.js) | `wa-11` and `wa-14` reuse the defined states |
+| Rerendering | [app.js](../../src/app/app.js) calls `invalidateMarketRender()` and clears `#app` with `innerHTML` | SVG needs no GPU teardown, but observers and document listeners must be released first |
+| Global preferences | [state.js](../../src/app/state.js): language, theme, investor | Story state stays inside the story |
+| Globe and style | [marketGlobe.js](../../src/home/marketGlobe.js) (D3 orthographic SVG); [tokens.css](../../src/styles/tokens.css) | The kit reuses D3 and the tokens |
+| Datasets | [datasets.js](../../src/governance/datasets.js): Fingrid reserve series and `fi-day-ahead` through ENTSO-E; no German price series | `GAP-DE-PRICES` before the German chart |
+| Publication | [ci.yml](../../.github/workflows/ci.yml), [vercel.json](../../vercel.json), [publishing guide](../publishing.md), [release library](../../scripts/lib/production-release.mjs) | The controlled release stays as it is |
+| Existing checks | [bundle budgets](../../tests/bundle-budget.test.js) (entry 170 KiB, home 265 KiB; home about 262.5 KiB at PR #69; experience chunk 26 KiB), [Playwright configuration](../../playwright.config.js), [e2e suite](../../e2e/platform.spec.js) | Story checks add to these |
 
 ## 2. Execution principles and dependency order
 
-All packages below are **NOT STARTED** unless their output is explicitly identified as this Markdown pack. They become executable in a later authorized implementation task. Preparing a design is not permission to change a model, publish, or alter CI/Vercel today.
+All packages are **not started**. They become executable in a later, explicitly authorised task.
 
 ```text
 WP-00 Baseline
-  -> WP-01 Runtime and isolated preview
-  -> WP-02 Content contract and evidence references
-WP-02 -> WP-03 Runnable 2D story -> WP-04 Navigation/state
-WP-03 + WP-04 -> WP-05 Existing-model adapters
-WP-03 + WP-04 + preview -> WP-06 Scene host
-WP-06 + reviewed WA script -> WP-07 Greybox scenes
-WP-06 + WP-07 -> WP-08 Assets and measured budgets
-WA evidence + WP-03..08 gates -> WP-09 Germany/Finland reuse
-WP-00..08 + acceptance evidence -> WP-10 WA release candidate
-WP-09 -> later Italy route validation and expansion candidates
+WP-01 Runtime pin and local preview            (independent, small)
+WP-02 Content contract -> WP-03 WA story shell -> WP-04 Story URLs
+WP-06 Symbol kit and charts -> WP-07 WA scenes
+WP-03 + WP-04 + WP-07 + G-1 -> WP-10 WA release (G-2)
+WP-10 -> WP-09 Germany and Finland
+Deferred: WP-11 WebGL experiment (G-3)
+Retired: WP-05; WP-08 folded into WP-06
 ```
 
-Runtime evaluation and content preparation can proceed independently. A Node migration need not block text/diagram design. A 2D vertical slice and simple host experiment need not wait for the new computer if the current device can run them. Final visual quality and device-performance claims require the designated hardware matrix, not a processor-name assumption.
-
-Prefer small changes with a demonstrable output per package. Avoid a framework migration, global store rewrite, model consolidation project, new CMS, arbitrary-node simulation or broad dependency refresh. Keep model changes in a separately justified workstream. Never regenerate `tests/fixtures/legacy-baseline.json` merely to make a visual change pass.
+Keep each change small, with a visible result. No framework migration, global-store rewrite, model change, CMS or broad dependency refresh. Never regenerate `tests/fixtures/legacy-baseline.json` to make a change pass. Nothing here waits for the new laptop.
 
 ## 3. Work packages
 
 ### WP-00: Record a trustworthy baseline
 
-| Field | Execution specification |
+| Field | Specification |
 | --- | --- |
-| Objective | Know what source, numbers, data vintages, layouts and test results the story must preserve. |
-| Modules | Git status/history; package/lock/config files; existing investment/model tests; representative home/market/Lab/monthly/downside views; no application edits. |
-| Inputs -> outputs | Current checkout and public fixtures -> dated baseline manifest, lockfile hash, environment record, representative result export, screenshots, test outcomes and pre-existing issues. |
-| Dependencies | None; re-read applicable rules and user changes at execution time. |
-| Acceptance | Record branch/SHA, clean or dirty state without discarding work, Node/npm/browser/OS, data vintages, supported case definitions and selected devices. Include a WA case, DE/FI checks, a withheld case and a saved-case replay. |
-| Verification | Run applicable existing model/current-result, page-consistency and cash-flow checks; create a built-public preview and compare representative raw results and labels. Record skips/failures honestly. |
-| Risk | A pre-existing issue can be mistaken for a visual regression; moving ETL data can masquerade as a code difference. Freeze input vintages for the comparison. |
-| Rollback | No production change. Retain baseline evidence and stop numeric integration if the starting result cannot be explained. |
+| Objective | Know which source, data vintages and test results the story must preserve |
+| Modules | Git status and history; package, lock and configuration files; existing tests; no application edits |
+| Inputs -> outputs | Current checkout -> a baseline note: branch and SHA, lockfile hash, Node, npm and browser versions, data vintages, test results and known issues |
+| Dependencies | None |
+| Acceptance | The note records the state without discarding any local work |
+| Verification | `npm test`, `npm run test:current`, `npm run build`, `npm run test:budget` and `npm run test:e2e` on the recorded SHA, with skips reported as skips |
+| Risk | Moving ETL data can look like a code difference; record the data vintages |
+| Rollback | None needed; nothing reaches production |
 
-### WP-01: Validate runtime and isolate preview
+### WP-01: Pin the runtime and preview locally
 
-| Field | Execution specification |
+| Field | Specification |
 | --- | --- |
-| Objective | Provide a reproducible local review environment and a separately controlled optional remote preview. |
-| Modules | `package.json`, lockfile, Vite/Playwright configuration and existing CI/publishing documentation; runtime/CI edits only in a separately scoped future maintenance change. |
-| Inputs -> outputs | WP-00 environment and official runtime support -> exact tested Node/npm/browser versions, clean-install procedure, local preview recipe and remote-preview decision record. |
-| Dependencies | WP-00; credentials are not required to review a local built-public site. |
-| Acceptance | Test a supported LTS candidate against the unchanged lockfile. Node 24 is a conservative candidate; Node 26 is also LTS on the check date. Pin the selected exact version after tests; reconcile local/CI/hosting runtime through a separate reviewed change. |
-| Verification | On a clean future checkout, run locked installation, existing tests, build and browser checks. Report old-versus-candidate behavior. Do not combine a runtime change with scene or model changes. |
-| Risk | CI's current Node 20 is EOL according to the checked official release table; an untested runtime/dependency upgrade could change behavior. A shared dev server can expose local confidential content. |
-| Rollback | Revert only the isolated runtime/configuration change if it regresses behavior; retain content planning and 2D work. Use the tested local public build when remote preview is unavailable. |
-
-Preview policy: `npm run dev` is an individual development tool and may load the repository's local confidential layer. The review baseline is a **built, scanned public-output preview** on loopback using the existing build/preview commands. Do not expose the dev server publicly. If remote review is needed later, use a separate preview project/environment or an explicitly isolated preview deployment with public inputs, exact artifact scanning, correct rewrites, identifiable SHA and no production alias/promotion. Establish it as a concrete scoped task; do not assume a PR creates it. Do not reuse a production-publishing script as an improvised preview uploader or copy production credentials into frontend configuration.
+| Objective | One Node LTS for local work, CI and the ETL, and a local preview of the built public site |
+| Modules | `.nvmrc`; `package.json` engines; `node-version` in [ci.yml](../../.github/workflows/ci.yml) (two places) and [etl.yml](../../.github/workflows/etl.yml) (six places) |
+| Inputs -> outputs | WP-00 results -> pinned version, clean-install recipe and preview recipe |
+| Dependencies | WP-00. Independent of the story, and worth landing before the laptop move so the new machine installs one known version |
+| Acceptance | Existing tests, build and browser checks pass on the pinned version, and CI reads the same file through `node-version-file` |
+| Verification | `npm ci` and the full checks on the old and new versions; compare the results |
+| Risk | A runtime change can alter test behaviour. The dev server can load the local confidential layer, so preview only the built public output, on loopback |
+| Rollback | Revert the pin on its own |
 
 ### WP-02: Establish the story content and evidence contract
 
-| Field | Execution specification |
+| Field | Specification |
 | --- | --- |
-| Objective | Make reviewed content usable by text, diagrams and scenes without duplicating facts or calculations. |
-| Modules | Proposed `src/experience/story/` schema/validation; proposed `src/markets/wa/story.js`; existing registry/governance/source references; later equivalent DE/FI content modules. |
-| Inputs -> outputs | Narrative cards, WA shots and evidence registers -> validated six-chapter content, stable IDs, source/claim/asset references, locale readiness and explicit unavailable states. |
-| Dependencies | WP-00; central WA claims and scope selected. |
-| Acceptance | Required fields in the content specification resolve; future/observed types differ; every shot has an equivalent diagram/text path; no private material, financial literals or renderer imports in public editorial content. |
-| Verification | Meaningful validation cases cover missing claim/asset references, duplicate IDs, omitted fallback, unreviewed quantitative label, stale evidence and unsupported locale. Validate one complete WA configuration plus incomplete DE/FI drafts. |
-| Risk | A permissive schema can mark a polished but unsupported story ready; a rigid WA-only schema can flatten other markets. |
-| Rollback | Keep draft registers as Markdown and render the existing research/summary page if content validation fails. Do not publish an incomplete story as complete. |
+| Objective | Content that text, scenes and charts can all use, without duplicating facts or figures |
+| Modules | Proposed `src/experience/story/` schema and validation; proposed `src/markets/wa/story.js` |
+| Inputs -> outputs | Signed-off script and registers -> validated six-chapter content with `playRef`, `reviewedAgainst`, `‹bound›` tokens, claim and source references, markers and locale strings |
+| Dependencies | WP-00; the WA script at `G-1` for final content, though a draft is enough to start |
+| Acceptance | Every reference and token resolves; no typed figures; content imports no drawing code; incomplete DE and FI drafts validate as incomplete |
+| Verification | Unit tests for a missing reference, a duplicate ID, an unresolved token, a stale `reviewedAgainst` and a missing locale string |
+| Risk | A schema shaped by WA alone that cannot carry Germany or Finland |
+| Rollback | Keep the content as Markdown; the research dialog stays as it is |
 
-### WP-03: Build a runnable 2D WA story
+### WP-03: Build the WA story shell
 
-| Field | Execution specification |
+| Field | Specification |
 | --- | --- |
-| Objective | Let an investor complete all six chapters and reach the existing investment tools before adding WebGL. |
-| Modules | Proposed `src/experience/story/` shell and diagram components; `src/experience/pages.js`, research dialog/chrome, scoped story styles and shared explanation components. |
-| Inputs -> outputs | WP-02 content and annotated desktop/mobile layouts -> runnable public 2D story, evidence links and investment-summary access. |
-| Dependencies | WP-02; local preview from WP-01 or the existing compatible development environment. |
-| Acceptance | All 14 shots have usable text/diagram form, question/meaning/boundary and accessible controls; no invented numeric chart fills a data gap; existing direct investment entry remains. |
-| Verification | Complete the WA user tasks with graphics disabled and keyboard only; review both languages, mobile stacking and source-return behavior. Run relevant existing route/page tests. |
-| Risk | Overbuilding a generic scene framework before testing the explanation; a diagram can still imply false precision. |
-| Rollback | Disable only the story entry/mode and retain existing market summary/research routes. Keep approved content independent of the UI implementation. |
+| Objective | Read the WA story end to end from the market page, in both languages |
+| Modules | Proposed `src/experience/story/` shell, chapter navigator, marker component and play-card reuse. The research button in `pages.js` opens the story for markets that have one; `researchDialog.js` becomes its deepest layer |
+| Inputs -> outputs | WP-02 content -> a runnable story with text and placeholder diagrams |
+| Dependencies | WP-02 |
+| Acceptance | All 13 active shots readable; links into `#bankable`, `#revenue`, `#execution` and `#downside` work; no new bytes in the entry or home closure; the experience chunk stays within 26 KiB because the story is its own lazy chunk; markets without a story are unchanged |
+| Verification | Keyboard-only and mobile walkthroughs in both languages; an e2e test for opening, closing and returning focus to the button; the budget tests |
+| Risk | Story code creeping into the experience chunk |
+| Rollback | The button reverts to the research dialog |
 
 ### WP-04: Route, navigation and state restoration
 
-| Field | Execution specification |
+| Field | Specification |
 | --- | --- |
-| Objective | Make chapter links, sharing, Back/Forward, evidence return, language changes and Lab handoff reliable. |
-| Modules | `src/app/router.js`, `src/app/state.js` at narrow integration points; story state owner; existing market region/tab routing and Lab case persistence. |
-| Inputs -> outputs | Existing route behavior + content IDs -> versioned URL/state policy, explicit case envelope and navigation tests. |
-| Dependencies | WP-03; compare current persisted-case capabilities before choosing the serialization format. |
-| Acceptance | Refresh/direct entry/share/Back restore a valid chapter and public case context; stale or incompatible fields are visible; language/theme/investor rerenders do not reset semantic position or leave a scene attached. |
-| Verification | Open a shared link in a fresh browser; repeat Back/Forward, locale/investor/market switches, invalid IDs, obsolete schema, missing case and evidence open/close. Inspect both UI context and resulting financial case identity. |
-| Risk | A browser-local ID can look shareable while failing elsewhere; query parameters may collide or leak user/private overrides. |
-| Rollback | Fall back to a valid market summary and labelled current case; preserve legacy routes and saved records. Revert only new state handlers. |
+| Objective | Shareable chapter and shot links, working Back and Forward, and a language switch that keeps the reader's place |
+| Modules | [router.js](../../src/app/router.js) with whitelisted `view`, `chapter` and `shot` parameters, preserving `region` and the existing tab paths; a story-local state owner |
+| Inputs -> outputs | Router behaviour and content IDs -> a URL policy and navigation tests |
+| Dependencies | WP-03 |
+| Acceptance | Refresh, direct entry and Back restore the chapter and shot; an invalid shot falls back to its chapter; teaching presets never enter history; the story carries no investment-case state |
+| Verification | e2e tests for direct links, Back and Forward, language and investor switches, and invalid IDs |
+| Risk | Parameter collisions with existing routes |
+| Rollback | Drop the parameters; the story opens at `wa-00` |
 
-Proposed chapter URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-05`. This syntax is **not currently implemented**. Extend the parser with whitelisted story fields while preserving the existing `region` and route/tab/subsection behavior. Chapter/shot changes use History API entries where Back should retrace reading; high-frequency camera/SOC teaching changes stay local and do not flood history. Invalid shots fall back within the requested valid chapter with a clear state, not a broken page.
+Proposed URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. It is not implemented. Chapter and shot changes add history entries; teaching changes do not. The market page's existing handoff carries the case to the Investment Lab, so the story needs no case envelope.
 
-| State owner | Contents and transfer rules |
+### WP-05: Retired in v1.1
+
+The story shows no new financial figures. Its opening play card is an existing component, its `‹bound›` tokens read fields that the component and the market sections already read, and its investment detail is a set of links. Reopen this package only if a later story needs a figure the market page does not show. The v1.0 requirements (field-by-field reconciliation, dated payments, per-MW scaling) are in commit `db158b9`.
+
+### WP-06: Build the isometric symbol kit and signature charts
+
+| Field | Specification |
 | --- | --- |
-| Global existing preferences | Language, theme and investor perspective; retain current preference behavior |
-| Story reading state | Market/chapter/shot, origin anchor, evidence trigger and selected teaching preset; restore semantically across layout/language changes |
-| Teaching state | Era/daylight/battery/hotspot; local and resettable; no authoritative financial mutation |
-| Current investment case | Versioned market/allocation, investor, route, duration, stage, scale, currency/FX, supported overrides, entry price/target, financing conventions, model/data vintage and project-evidence status |
-| Public share context | Whitelisted public input IDs/values plus expected version/vintage; validate in a fresh browser. Do not put private project evidence or identifiers in a URL. |
-| Frozen case transport | Use/extend a versioned saved-case file only after replay coverage is verified for the selected result path. A local storage ID alone cannot reproduce a case on another device. |
+| Objective | One isometric SVG kit and one chart pattern that every market can reuse |
+| Modules | Proposed `src/experience/story/kit/`: about 20 symbols as SVG builders, an isometric layout helper on a 2:1 projection, day, dusk and night colour tokens, and a chart helper on the existing D3 setup |
+| Inputs -> outputs | Shot list and design sheets -> kit sheet, layout helper and signature-chart component |
+| Dependencies | Design deliverables ([page design §9](experience-and-page-design.md#9-design-deliverables)); can run alongside WP-02 and WP-03 |
+| Acceptance | Kit under about 60 KiB uncompressed and loaded only with a story; labels are text from locale strings; works in both themes and under reduced motion; titles and roles for screen readers |
+| Verification | Visual review at the four widths; the story-chunk budget test; an accessibility pass |
+| Risk | Symbols that imply engineering precision; keep them generic and labelled |
+| Rollback | Plain 2D diagrams with the same text |
 
-A shared chapter URL may open a **current-data** case. If its expected vintage differs, disclose the change and offer the recorded case where available. Do not claim a link freezes results unless the inputs and model needed for replay are actually preserved. Existing comparison-case records must remain readable; a new acquisition-result envelope requires explicit versioning and compatibility tests. Closing evidence or returning from research restores focus and the originating shot. Entering a new market must validate transferable fields rather than carrying incompatible contractual rights.
+### WP-07: Draw the WA scenes
 
-### WP-05: Bind existing investment results and reconcile numbers
-
-| Field | Execution specification |
+| Field | Specification |
 | --- | --- |
-| Objective | Present one defined case consistently across story, summary, comparison, Lab, cash flow and export without changing economics. |
-| Modules | `src/experience/model.js`; `src/opportunities/investment.js`, `model.js`, `monthlyCash.js`, `monthlyCashUI.js`; relevant acquisition/comparison adapters, Lab and case records; existing downside modules. |
-| Inputs -> outputs | Case envelope + actual existing result paths -> thin read-only story adapter, field-definition map, unavailable states and reconciliation report. |
-| Dependencies | WP-03/04; WP-00 frozen inputs and approved financial label definitions. |
-| Acceptance | Same supported input case yields the same raw fields and formatted financial meaning in all views. Unsupported fields stay absent/labelled. No new financial formula, stacking assumption or silent price/clock/FX change. |
-| Verification | Use WA baseline/downside, changed duration/entry stage where supported, DE/FI cases, an unpriced market and a saved-case round trip. Compare dated flows, total/peak equity, qualification timing, hold/sale/levered returns, coverage period, FX and debt maturity contributions. |
-| Risk | The existing legacy comparison path and newer acquisition/opportunity path have different conventions; a thin adapter cannot simply declare them identical. Scaling per-MW cash twice or smoothing months can misstate cash. |
-| Rollback | Remove the story financial binding and link to the existing authoritative financial view. Open a separate model-consistency issue rather than rewriting formulas or regenerating fixtures in the visual branch. |
+| Objective | Scenes for `wa-01` to `wa-11` and the `wa-06` signature chart, drawn from the kit |
+| Modules | Proposed `src/markets/wa/story/scenes.js` with layouts and teaching presets |
+| Inputs -> outputs | Signed-off script and the kit -> scenes wired into the shell |
+| Dependencies | WP-06; `G-1` for final copy |
+| Acceptance | Each scene answers its shot's question without interaction; teaching controls never touch case state; quantitative labels appear only once their gaps close (`GAP-WA-RCM`, `GAP-WA-DAY`) |
+| Verification | The user's walkthrough against the comprehension check; mobile and keyboard passes |
+| Risk | A handsome scene carrying a weak argument; the script is signed off first |
+| Rollback | Replace any scene with its plain diagram |
 
-| Display area | Binding and interpretation check |
-| --- | --- |
-| Headline return | Retain the current all-equity hold headline and separately labelled sale/lower-of and levered metrics as appropriate to the existing view. Do not substitute an operating-years comparison result. |
-| Revenue bridge | Respect the selected adapter's definitions. In `src/experience/model.js`, trading already includes ancillary services and `svcY` is a service cost; it is not another revenue line. |
-| Newer investment metrics | `referenceInvestment`, `evaluateInvestment` and `investmentMetrics` expose existing acquisition-stage results; reuse the actual supported fields, costs/tax and conventions. Do not infer extra detail from an aggregated bridge. |
-| Timing | Distinguish modeled COD months, qualification months and dated receipts; actual contractual first settlement may still require evidence. |
-| Monthly chart | Preserve original dated payments through `monthlyCashSeries`; check whether inputs are per MW before applying power scaling once. No new monthly seasonality. |
-| Downside and debt | Reuse defined downside and the chosen financing conventions; do not resize the original debt in a stress merely to hide a funding gap. Preserve modeled maturity equity requirements. |
-| Evidence and tenure | Model-fixed/renewal/merchant fields are financial categories, not proof of signed coverage. Display project evidence and expiry/tail separately. |
+### WP-08: Folded into WP-06 in v1.1
 
-Raw deterministic fields should match their originating adapter for identical frozen inputs. Where floating-point or formatting comparisons need tolerance, define and justify it by field; never use a broad percentage tolerance to hide a changed result. Existing model fixtures are verification inputs. The `test:baseline` script regenerates a fixture and is not a regression check.
-
-### WP-06: Add a bounded optional 3D host
-
-| Field | Execution specification |
-| --- | --- |
-| Objective | Make scene mount/update/pause/destroy safe under the application's full rerender model. |
-| Modules | Proposed `src/experience/scenes/` host, resource owner and loader; narrow teardown integration before `app.js` clears the container; story visual wrapper. |
-| Inputs -> outputs | WP-03/04 reading/teaching state + pinned future Three.js experiment -> lazy host API, failure/diagram path and lifecycle diagnostics/tests. |
-| Dependencies | Working 2D equivalent and state contract; no polished assets required. |
-| Acceptance | At most one active scene; idempotent teardown; obsolete async completion cannot attach; no continuing animation/listener/observer after exit; failure leaves story and investment paths usable. |
-| Verification | Simulate slow/failed loads, rapid market/locale/investor changes, route exit during decode, double destroy, hidden/offscreen page, resize and context loss. Observe canvas/loop/resource counts. |
-| Risk | A detached host receives late data; shared materials are freed while still in use; an animation loop survives DOM removal. |
-| Rollback | Disable lazy scene enhancement and use the existing text/diagram path. Do not make the whole market experience depend on renderer initialization. |
-
-### WP-07: Produce WA greybox scenes
-
-| Field | Execution specification |
-| --- | --- |
-| Objective | Test whether spatial explanation improves the first useful learning loop. |
-| Modules | Proposed shared grid-history, day/night, add-battery renderers; WA configuration; shared station cutaway begins as a simple diagram/geometry set. |
-| Inputs -> outputs | Reviewed shot intent and WP-06 host -> simple, low-cost scenes for history, today's tension and battery limits; matched 2D diagrams. |
-| Dependencies | WP-06; sufficient evidence for the selected qualitative/quantitative labels; no new-computer requirement for a small experiment. |
-| Acceptance | User can explain cause, service and limit without coaching; 3D does not add unsupported precision or change financial assumptions. |
-| Verification | First novice-investor task round; compare misunderstanding with the diagram version; run mobile/fallback and lifecycle checks before material polish. |
-| Risk | Attractive motion hides a weak causal argument or extra cognitive load. |
-| Rollback | Keep the better diagram/shortened script and remove an unhelpful scene; reuse only approved components. |
-
-### WP-08: Clear assets and enforce measured budgets
-
-| Field | Execution specification |
-| --- | --- |
-| Objective | Obtain a coherent visual kit with reviewable rights, transfer, decoding and runtime costs. |
-| Modules | Proposed `public/experience/` public asset directory and asset manifest; lazy scene/decoder chunks; existing bundle-budget checks plus separate scene measurement. |
-| Inputs -> outputs | Greybox needs, asset register and target devices -> licensed/shared asset kit, posters/SVG alternatives, compressed versions and measured budget report. |
-| Dependencies | WP-06/07; begin rights/style preparation earlier, polish and device measurements after migration. |
-| Acceptance | Every shipped asset has permitted public use and attribution; all engine/decoder/model/texture costs counted; scene assets do not become eager home imports. |
-| Verification | Clean network-cache transfer capture, import-graph/bundle check, decode/first-interaction timing, frame-time and resource inventory on designated devices. Review rights and geometry precision. |
-| Risk | Small downloads decode into large GPU memory; an attribution-only public link is mistaken for redistribution permission. |
-| Rollback | Replace with simpler procedural geometry/poster/SVG, smaller textures or diagram mode; withhold rights-uncertain assets. |
+In-house SVG removes the licensing and GPU-budget work this package covered. Asset records stay in the [asset register](evidence-and-content-specification.md#asset-register), and the remaining budget checks are in §5.
 
 ### WP-09: Validate reuse with Germany and Finland
 
-| Field | Execution specification |
+| Field | Specification |
 | --- | --- |
-| Objective | Prove the shared system supports distinct causal and commercial stories. |
-| Modules | Shared story/scene/diagram components; proposed DE/FI story modules; existing local research, reserve/price evidence and result adapters. |
-| Inputs -> outputs | Reviewed DE/FI scripts and successful WA gates -> two distinct story implementations and an actual reuse-effort report. |
-| Dependencies | WA learning loop, model/state integration and bounded host. Detailed research can run earlier. |
-| Acceptance | Germany explains spatial congestion without invented congestion income; Finland explains product eligibility/competition without treating reserve prices as energy spreads. Each has an independent value-weakening conclusion. |
-| Verification | Repeat core understanding, numeric, fallback, bilingual and stability tasks; inspect configuration versus special-purpose code and record unavoidable additions. |
-| Risk | WA-specific assumptions leak into all markets or a generic renderer dictates the explanation. |
-| Rollback | Keep unsupported markets on 2D/research; add only a clearly scoped local explanation instead of rewriting the whole platform. |
+| Objective | Show that the kit and shell carry two different arguments |
+| Modules | Proposed `src/markets/de/story.js` and `src/markets/fi/story.js`; a DE-LU day-ahead registration in `src/governance/datasets.js` and the ETL (`GAP-DE-PRICES`); Finnish need and storage series (`GAP-FI-NEED`) |
+| Inputs -> outputs | Signed-off German and Finnish scripts -> two stories and a reuse note separating configuration from new code |
+| Dependencies | WP-10 for WA; the research can start earlier |
+| Acceptance | From the stories alone, the user can explain the German toll play and the Finnish floor play; no congestion income; reserve prices never shown as energy spreads |
+| Verification | The WA checks, repeated; `npm run etl:verify` after any registration |
+| Risk | WA assumptions leaking into other markets |
+| Rollback | Keep a market on the research dialog |
 
-### WP-10: Assemble and validate the release candidate
+### WP-10: Assemble and validate the WA release
 
-| Field | Execution specification |
+| Field | Specification |
 | --- | --- |
-| Objective | Produce a concrete reviewable WA candidate with evidence of preserved finance and usable fallback. |
-| Modules | Story plus existing app; unit/model/governance/browser/budget/confidentiality checks; existing release verification and rollback process. |
-| Inputs -> outputs | Completed applicable work packages -> candidate SHA/artifact, acceptance report, screenshots, outstanding limitations and known-good rollback record. |
-| Dependencies | WA evidence and technical/understanding gates; Germany/Finland reuse may follow WA release, but global expansion cannot claim their validation early. |
-| Acceptance | The gate matrix passes or explicitly withholds the affected feature; no critical misreading or numeric regression; full direct investment path remains usable. |
-| Verification | Existing full tests, build, exact-output confidentiality scan, budgets, browser suite, ETL integrity plus story-specific tests and real-device evidence. Preview and candidate source/vintage must match. |
-| Risk | A green test run on a different commit, missing scan output, skipped secret-backed guard or wrong production alias gives false assurance. |
-| Rollback | Use the existing recorded known-good release/artifact and feature disable path. Never overwrite model baselines to force green. Production publication remains a later explicitly scoped action through the existing pipeline. |
+| Objective | Ship the WA story through the existing controlled pipeline |
+| Modules | The story, plus the existing checks and release process |
+| Inputs -> outputs | Completed packages -> a PR with its candidate SHA, test record and screenshots |
+| Dependencies | WP-02 to WP-07 and `G-1` |
+| Acceptance | `G-2`: the existing full suite, build, confidentiality scan, budgets and e2e pass on the exact SHA; no fixture regenerated |
+| Verification | CI on the PR; a built-public preview |
+| Risk | A green run on a different commit; check the SHA |
+| Rollback | Revert the button to the research dialog; the existing release rollback covers the rest |
 
-## 4. Scene lifecycle and asynchronous ownership
+### WP-11: Optional WebGL experiment (deferred)
 
-The proposed API has `mount`, `update`, `pause`, `resume` and idempotent `destroy` responsibilities. It may be implemented as an object rather than those exact public function names. Keep the contract stable and renderer details private.
+Open this package only when a named shot fails to explain in SVG (`G-3`). It then needs:
 
-| Transition | Required behavior |
-| --- | --- |
-| Idle -> loading | Show poster/diagram; create host generation ID and cancellation scope; request only the chosen renderer/assets |
-| Loading -> ready | Before attaching, check generation, route/scene identity, connected host and destroyed status. Dispose an obsolete result even when a loader could not be aborted |
-| Ready -> update | Apply current teaching state; schedule one frame for static changes; do not restart the entire host for a text-label change where unnecessary |
-| Ready -> paused | Cancel continuous animation when hidden/offscreen or paused; retain readable DOM and semantic state |
-| Paused -> ready | Revalidate host generation and render the current state, without advancing chapters or replaying missed time |
-| Any -> failed | Catch initialization/load/decode/context errors, report a simple diagram path and bounded retry; no unhandled promise or infinite recovery loop |
-| Any -> destroyed | Mark destroyed first; invalidate generation; cancel/ignore pending work; stop frame/timers; remove listeners/observers; dispose owned resources; remove canvas/references |
+- a pinned Three.js dependency in its own reviewed change, loaded lazily;
+- at most one active scene, with idempotent teardown before `app.js` clears `#app`;
+- generation checks, so a late load never attaches to a detached host;
+- rendering on demand and explicit disposal of geometries, materials, textures and the renderer, following the Three.js guidance on [cleanup](https://threejs.org/manual/pages/cleanup.html) and [rendering on demand](https://threejs.org/manual/pages/rendering-on-demand.html);
+- the budgets in §5.2, and a test of at least 100 mixed transitions that shows no growing canvas or resource count.
 
-Use cancellation where supported and generation checks everywhere. Dynamic imports or some decode operations may complete after cancellation; their results still require stale-generation disposal. Teardown must run **before** `#app` is cleared and on page/mode replacement, including language/investor rerenders. Existing lazy-render tokens provide a useful pattern but do not release new GPU resources by themselves.
+The SVG version remains the fallback.
 
-Track ownership for geometries, materials, textures, render targets, controls, renderer/context, workers/decoders, image bitmaps, observers and event handlers. A per-host resource cannot be disposed by another host. Shared resources use explicit reference ownership and a bounded cache with eviction; avoid both double disposal and indefinite market caching. Do not retain GPU allocations for every visited market. Resource counts must return to the defined warm baseline after disposal.
+## 4. SVG scene lifecycle
 
-Render on demand for static explanatory scenes, using a single scheduled frame for multiple changes. A continuous loop exists only during a visible requested animation. These responsibilities follow the official [cleanup](https://threejs.org/manual/pages/cleanup.html) and [on-demand rendering](https://threejs.org/manual/pages/rendering-on-demand.html) guidance; the host's tests must demonstrate them in this application.
+SVG scenes are ordinary DOM, so most of v1.0's GPU lifecycle disappears. These rules remain:
+
+- Build each scene from content and teaching state, and update it by changing attributes and classes. No animation loop.
+- Release observers, timers and document-level listeners when the story closes, and before `app.js` clears `#app` on a rerender.
+- Load the story chunk lazily, once per session. When it arrives, check that its host is still connected, as the research button already does.
+- Keep text in the DOM so that screen readers, translation and printing work.
 
 ## 5. Asset and performance budgets
 
-These are **proposed targets**, not measurements. Record the exact device, browser, viewport, power mode, thermal state, network/latency, cache state and selected story for every measurement. Test realistic baseline devices as well as the new computer.
+### 5.1 Pilot (SVG)
 
-| Measure | Proposed budget / target | How to verify |
+These are proposed targets, not measurements. Record the device, browser, viewport and cache state with each measurement.
+
+| Measure | Target | How to verify |
 | --- | --- | --- |
-| Existing entry/home JS | Preserve existing caps: 170 / 265 KiB gzip as implemented by bytes/1024; keep current other market/shared/feature budgets | Existing built-output budget tests; do not silently raise caps for 3D |
-| Lazy boundary | No engine, scene, decoder, market asset or scene-only CSS in normal home first-load closure | Import graph and network capture before scene request |
-| First-market scene transfer | Target <=2 MiB incremental transfer including engine/decoder/model/texture requests; any proposal above target needs a measured design tradeoff and remains <=4 MiB for the first pilot budget | Cold scene request, report all transferred bytes; distinguish compressed transfer from decoded size |
-| Requested-scene readiness | Target an operable simple scene within about 3 seconds at 10 Mbps and 100 ms latency, cold scene cache | Click-to-ready measurement; diagram/text stays usable throughout |
-| Geometry / draw calls | Initial caps: roughly 60k visible triangles / 80 draw calls mobile; 120k / 120 desktop | Renderer instrumentation; relax only with measured benefit and device evidence |
-| Textures / pixel ratio | Mobile textures normally <=1024 px, desktop <=2048 px; initial DPR caps 1.5 mobile / 2 desktop; no mobile real-time shadows or post-processing in the baseline | Asset manifest, decoded estimates and actual rendered resolution |
-| Estimated GPU asset allocation | Initial planning caps 64 MiB mobile / 128 MiB desktop, including textures and targets | Resource inventory and estimates; browser portability limits mean this is not a claimed direct VRAM reading |
-| Frame timing | During motion, target p95 frame time <=33.3 ms mobile and <=16.7 ms designated desktop in a defined run | Capture frame-time distribution, dropped frames and thermal behavior; static scenes should idle |
-| Active scenes | <=1 active 3D canvas/animation owner; background/offscreen paused | Host counters and lifecycle tests |
-| Cache | Small bounded CPU cache, initially no more than two market asset packs; inactive GPU resources released under ownership policy | Inventory before/after repeated market switches; track retained bytes |
-| Page experience | Target LCP <=2.5 s, INP <=200 ms, CLS <=0.1, with field p75 segmented mobile/desktop after release | Lab regression before release, then real-user evidence when sufficient traffic exists |
+| Entry and home JavaScript | Keep the 170 and 265 KiB gzip caps; home had about 2.5 KiB left at PR #69 | Existing budget tests; the story adds nothing to either |
+| Experience chunk | Keep the 26 KiB cap | Existing budget test |
+| Story chunk | At most about 40 KiB gzip for the shell, WA content and kit | Add to the budget test |
+| Scene size | At most about 1,500 SVG nodes per scene | Count in a unit test |
+| Interaction | INP at most 200 ms for any teaching control on a midrange phone | Lab measurement |
+| Layout shift | CLS at most 0.1 while a scene fills in | Lab measurement |
 
-The page-experience targets and lab/field distinction follow [Google Web Vitals](https://web.dev/articles/vitals). Do not substitute a Lighthouse proxy for measured field INP or claim field compliance with insufficient traffic. Scene transfer, decode, frame time, GPU-resource estimates and thermal behavior need their own measurements; gzip JS budgets do not cover them.
+The page-experience targets follow [Google Web Vitals](https://web.dev/articles/vitals). Lab results are not field data.
 
-Quality tiers should move from simple diagram/poster to low-detail scene to optional higher-detail scene. Use capability/preferences and sustained performance evidence, not an assumed high-end GPU based on the CPU brand. A slow or failed scene must preserve the same text, evidence, case and investment route. Keep retry optional and avoid repeatedly forcing a device back into an unsuitable mode.
+### 5.2 Deferred WebGL budgets (WP-11 only)
+
+| Measure | Target |
+| --- | --- |
+| First-scene transfer | 2 MiB target and a 4 MiB hard limit, engine and assets included |
+| Ready time | Operable within about 3 seconds at 10 Mbps and 100 ms latency |
+| Geometry | About 60k triangles and 80 draw calls on mobile; 120k and 120 on desktop |
+| Textures and pixel ratio | 1024 px on mobile and 2048 px on desktop; DPR caps of 1.5 and 2; no real-time shadows on mobile |
+| GPU allocation | Planning caps of 64 MiB on mobile and 128 MiB on desktop |
+| Frame time | p95 at most 33.3 ms on mobile and 16.7 ms on desktop while moving; idle when static |
+| Scenes | One active canvas; at most two market packs cached |
 
 ## 6. Verification commands and release isolation
 
-The following are **future execution checks**, not commands run for this documentation delivery:
+These are checks for later execution, not commands run for this pack.
 
-| Existing command/check | Purpose and qualification |
+| Command | Purpose |
 | --- | --- |
-| `npm ci` | Recreate dependencies from the committed lockfile on the selected runtime; never migrate `node_modules` as the reproducibility mechanism |
-| `npm run test:current` | Verify existing frozen/current financial outputs; do not substitute `test:baseline` |
-| `npm test` | Existing broad model, governance, unit and structural checks; report skips and required guard configuration |
-| `npm run build` | Generate the public candidate artifact on the exact recorded SHA |
-| `npm run test:bundle` | Scan the actual built output using required output/marker/fingerprint settings from the current workflow; a skip is not a successful public-artifact scan |
-| `npm run test:budget` | Enforce current split/bundle budgets on the built output |
-| `npm run test:e2e` | Existing desktop/mobile/bilingual/case browser coverage; extend with meaningful story-state/fallback cases |
-| `npm run etl:verify` | Verify existing observed-snapshot integrity; do not regenerate snapshots for a visual change |
-| Story-specific harness | Late-load races, teardown, context loss, no-graphics/reduced-motion, case reconciliation, sharing and long switching tests |
+| `npm ci` | Recreate dependencies from the lockfile on the pinned runtime; never copy `node_modules` between machines |
+| `npm run test:current` | Check current financial outputs; never substitute `test:baseline`, which regenerates a fixture |
+| `npm test` | Model, governance, unit and structural checks; report skips |
+| `npm run build` | Build the candidate on the exact SHA |
+| `npm run test:bundle` | Scan the built output for confidential markers; a skip is not a pass |
+| `npm run test:budget` | Enforce bundle budgets, including the new story chunk |
+| `npm run test:e2e` | Desktop, mobile and bilingual browser checks, extended for the story |
+| `npm run etl:verify` | Check snapshot integrity after any dataset registration |
+| `npm run guard:staged` | The pre-commit marker scan; run it once on a new machine to confirm the hook works |
 
-Follow the current workflow's exact requirements when executed; this table is not a replacement CI configuration. Review local confidentiality-test skips honestly and use the approved configured environment for a definitive artifact scan without printing secrets. For final publication, the exact scanned artifact, candidate SHA, data vintages, preview evidence and rollback target must correspond. Retain the existing controlled production mechanism; this document adds no deploy trigger or bypass.
+At release, the scanned artefact, candidate SHA and data vintages must match. This plan adds no deploy trigger and no bypass.

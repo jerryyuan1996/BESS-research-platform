@@ -1,256 +1,267 @@
 # Western Australia: Six-Chapter Storyboard
 
-Pack: BESS-IX-2026-10-30, version 1.0  
-Status: proposed script, interaction and evidence brief; not an implemented or fully verified story  
+Pack: BESS-IX-2026-10-30, version 1.1  
+Status: script, interaction and evidence brief anchored to the WA play; not an implemented or fully verified story  
 Navigation: [Master plan](README.md) | [Narrative method](market-narratives.md) | [Evidence specification](evidence-and-content-specification.md) | [Page design](experience-and-page-design.md)
 
-## 1. Scope and viewing modes
+## 1. Scope, argument and reading route
 
-The first complete pilot is **WEM/SWIS**, not all electricity systems in Western Australia. The scene is an explanatory grid model with a real system context and simplified topology. It is not a solved load-flow model, an engineering layout, or project advice.
+The pilot covers **WEM/SWIS**, not every electricity system in Western Australia. The story argues for one conclusion: the platform's WA call and play as the briefing publishes them (REPO-12). The briefing's thesis is capacity-led: the capacity mechanism pays for long duration, capacity is most of the revenue, and a fund enters as a minority stake behind a strategic sponsor once Capacity Credits are assigned, building seven hours because the eighth is capital the market does not pay for. Every chapter is a step in that argument. If the briefing changes the call, the play or the thesis, this storyboard is due for review ([evidence specification §7](evidence-and-content-specification.md#7-dynamic-update-and-review-policy)).
 
-Fourteen shots form a roughly five-minute guided route at the reader's pace; opening evidence and investment tools extends the visit. Chapter buttons and ordinary page scrolling work throughout. No essential information waits for an animation to finish. Readers can enter the investment summary directly or use an instant/static mode.
+Scenes are fixed-view isometric SVG drawn from the shared symbol kit. They show a real system context with simplified topology, not a load-flow model, an engineering layout or project advice.
 
-| Chapter | Shots | Learning outcome |
+Thirteen active shots (`wa-00` to `wa-14`, with `wa-12` and `wa-13` retired) make about five minutes of reading. Chapter links and ordinary scrolling work throughout, and nothing waits for an animation.
+
+| Chapter | Shots | What the reader can explain afterwards |
 | --- | --- | --- |
-| Origins | wa-01, wa-02 | Know the system boundary and the inherited supply pattern |
-| Historical choices | wa-03, wa-04 | Explain a historical cause and distinguish a reform date from current project eligibility |
-| Today's tensions | wa-05, wa-06, wa-07 | Separate midday operational demand, evening energy needs and rapid response |
-| Add a battery | wa-08, wa-09 | Understand time shifting, finite energy, equipment and performance limits |
-| Who pays | wa-10, wa-11 | Trace payer/qualification/performance and recognize incompatible commitments |
-| The investment | wa-12, wa-13, wa-14 | Follow capital to first receipts, finance/downside/exit and the erosion of value |
+| Opening | wa-00 | The call and the play, in one line |
+| Origins | wa-01, wa-02 | Why an island grid must build its own backup, and how rooftop solar changed the pattern |
+| Historical choices | wa-03, wa-04 | Why WA pays for capacity when the NEM does not, and why owning a battery is not the same as being paid |
+| Today's tensions | wa-05, wa-06, wa-07 | The midday surplus, the long evening window, and why fast response is a separate, smaller line in this play |
+| Add a battery | wa-08, wa-09 | Why seven hours rather than four or eight, and what the investor owns |
+| Who pays | wa-10, wa-11 | Capacity first, energy and services after, and why one battery cannot promise everything |
+| The investment | wa-14, then links | What could weaken the value, and where the numbers live (Bankable case, Revenue, Execution, Downside) |
 
-All visible draft copy below is English for this planning pack. The implemented website requires meaning-equivalent English and Chinese. Reference IDs resolve through [the source register](source-register.md); pending quantitative charts require the full [evidence workflow](evidence-and-content-specification.md).
+### Rules for every shot
 
-### State rules applying to every shot
+- **Figures.** Calls, durations and revenue shares in page copy come through `‹bound: …›` fields that the existing play card and market sections already read. No figure is typed into copy.
+- **Controls.** Teaching controls change only teaching state: era, time of day, battery preset, hotspot or service. The story has no underwriting controls. "Go to the investment case" links to the market page, which already hands the case to the Investment Lab.
+- **Navigation.** Chapter and shot changes are history entries. Back, refresh, a language switch and opening or closing evidence keep the reader's place (`WP-04`).
+- **Evidence.** Each shot shows one marker (Strong, Fair or Thin) and one "What would change it" line. The **Authoring check** row is for writers and reviewers and never appears on the page. Scenarios and future assets are dashed; teaching values are tagged "Example".
 
-Teaching controls change only temporary teaching state: selected era, time preset, battery visibility, equipment hotspot or service explanation. They never alter the investment case. Approved underwriting changes require an explicit labelled action, supported model input, recomputation, and a visible new case summary. The case bar retains market, investor, route, duration, entry stage, scale, currency, model/data vintage and evidence status where those fields are supported.
+## 2. Opening
 
-Pause, resume, previous/next, chapter jump, evidence open/close and browser Back must preserve the selected chapter and case. Leaving a shot cancels obsolete scene work. Changing language preserves semantic position, rather than resetting the story to the opening. The exact URL/state contract belongs to `WP-04`.
-
-## 2. Origins
-
-### wa-01 — Which system are we discussing?
-
-| Item | Shot specification |
-| --- | --- |
-| User question | Is this story about all Western Australia, the WEM, or a particular project? |
-| Proposed short copy | “Start with the WEM and the South West Interconnected System. A state boundary, an electricity system and an individual project are different scopes.” |
-| Objects and camera | WA context outline; labelled SWIS extent; simplified population/industry context. Begin at a fixed regional view, then highlight the story boundary. |
-| Operation | Select “State context” or “Story system”; open the scope note. |
-| Feedback | Boundary and legend change together; the scope caption remains outside the canvas. No numerical market area is inferred. |
-| 2D evidence | Static labelled scope map; CL-WA-01 / SRC-WA-01. Validate actual SWIS geometry, source date and map rights before production. |
-| Investment meaning | Check that a project's connection and market participation fall within the system being analyzed. |
-| Misreading boundary | Do not color the whole state as WEM; scene dots do not indicate verified investment sites. |
-| Mobile / no 3D | Same scope map and two large labelled buttons; no zoom required to read the boundary. |
-| Status and case effect | Foundation verified; geometry and annotations pending. No financial state change. |
-
-### wa-02 — An inherited pattern of supply
+### wa-00 — The call (new in v1.1)
 
 | Item | Shot specification |
 | --- | --- |
-| User question | What did the network originally need to connect? |
-| Proposed short copy | “Large generators, power lines and users formed a predominantly one-way supply pattern. New rooftop production changes how that inherited network is used.” |
-| Objects and camera | Generic generator, transmission corridor, substation and homes/industry in a stable isometric frame. Label each object; use a single schematic direction marker. |
-| Operation | Toggle “Earlier supply pattern” and “Distributed production”. |
-| Feedback | Rooftops appear in the same geography; a caption explains the changed relationship. Keep exact generation shares absent. |
-| 2D evidence | Before/after diagram; CL-WA-02 / SRC-WA-02 p. 1 supports the broad pattern. WA-specific asset history requires separate sources. |
-| Investment meaning | An inherited asset base can require new operating flexibility without becoming economically obsolete overnight. |
-| Misreading boundary | This is a system-level schematic; arrows do not establish actual flows, network capacity or current plant dispatch. |
-| Mobile / no 3D | Two aligned panels with identical object labels and a shared legend. |
-| Status and case effect | Broad explanatory foundation verified; local historical asset detail pending. Teaching state only. |
+| User question | What is the call here, and why should I read on? |
+| Page copy | The existing play card: ‹bound: call›, ‹bound: play name›, ‹bound: the figures the card already shows›, ‹bound: next action›. One line beneath it: "Five minutes on why: an island grid, a choice made in 2006, and a long evening." |
+| Scene | Small isometric SWIS thumbnail; no animation |
+| Control | "Start the story" and "Go to the investment case" (the market page's `#bankable` section) |
+| Feedback | None; this shot is the conclusion |
+| Evidence and chart | Briefing model and play card (REPO-12); no new values |
+| Investment meaning | The reader starts with the answer; the story explains it |
+| Marker now | Inherits the play's evidence strength from the briefing |
+| Authoring check | Never restate the call or a figure in prose; a re-graded call must update this shot by itself |
+| Mobile | Play card full width; two buttons |
+| Status | New; uses existing components. The "2006" line waits on CL-WA-06 |
 
-## 3. Historical choices
+## 3. Origins
 
-### wa-03 — Decisions leave assets and rules behind
-
-| Item | Shot specification |
-| --- | --- |
-| User question | Why did today's system not appear all at once? |
-| Proposed short copy | “Each era answered the constraints of its time. Its plants, connections and rules remained as the next era added new choices.” |
-| Objects and camera | Same grid frame; timeline with 4-6 nodes. Candidate nodes: early centralized development, market formation, rooftop adoption, the verified 2023 reform, and a clearly separated future outlook. |
-| Operation | Select one node; expand “Constraint / choice / inheritance / consequence”. |
-| Feedback | Only the selected layer changes; show the source and event status. Future layers switch to dashed outlines and a scenario background. |
-| 2D evidence | Four-part node cards and a chronology. CL-WA-03 supports the 2023 event; other dates and causal claims require new ledger records. |
-| Investment meaning | Revenue opportunity and transition risk depend on inherited assets, institutions and adjustment time. |
-| Misreading boundary | Do not invent historical dates, animate planned retirements as completed, or present one political/technical choice as the sole cause without evidence. |
-| Mobile / no 3D | Vertical node list; one selected diagram; no continuous timeline drag needed. |
-| Status and case effect | Narrative structure proposed; historical research incomplete. No result change. |
-
-### wa-04 — Physical change and market rules
+### wa-01 — An island grid
 
 | Item | Shot specification |
 | --- | --- |
-| User question | Why do market rules matter after understanding the equipment? |
-| Proposed short copy | “New WEM arrangements began on 1 October 2023. Physical capability and commercial participation still need separate explanations.” |
-| Objects and camera | Stable scene with an independent rule timeline and service/settlement icons. The rule layer is visibly different from physical lines. |
-| Operation | Switch between “Physical system” and “Participation rules”; follow a link to the effective-rule record. |
-| Feedback | Physical assets remain fixed while the commercial overlay changes. The date of reform and date of current rule verification appear separately. |
-| 2D evidence | CL-WA-03 / SRC-WA-03; SRC-WA-06/07 as current procedure collection entries. Applicable effective versions and clauses remain pending. |
-| Investment meaning | Owning capable equipment does not automatically establish qualification, payment rights or a contract. |
-| Misreading boundary | The 2023 launch does not certify a 2026 project or make every income route available. |
-| Mobile / no 3D | Two labelled layers plus a short eligibility checklist and source link. |
-| Status and case effect | Historical date verified; current rule detail pending. No route or revenue assumption is selected by this teaching toggle. |
+| User question | Which system is this, and what is unusual about it? |
+| Page copy | "Perth's grid is an island. The South West system has no link to the rest of Australia, so all its backup has to be built inside it." |
+| Scene | WA outline with the SWIS extent highlighted; a small inset of the NEM's linked regions for contrast; fixed view |
+| Control | "Story system" or "Whole state" |
+| Feedback | Boundary and legend change together; the caption sits outside the drawing |
+| Evidence and chart | CL-WA-01 / SRC-WA-01 (the WEM serves the SWIS); the no-link claim needs its locator (CL-WA-05); boundary geometry and licence pending (ASSET-SWIS-BOUNDARY) |
+| Investment meaning | An island holds its own reserve margin, which is why reliability is paid for separately (wa-03) |
+| Marker now | Fair. What would change it: an AEMO locator for the no-link claim and licensed boundary geometry (to Strong) |
+| Authoring check | Do not colour the whole state as WEM; dots are not investment sites |
+| Mobile | Same map; two large buttons |
+| Status | Scope verified; geometry and CL-WA-05 pending |
 
-## 4. Today's tensions
-
-### wa-05 — Noon: less demand on grid-scale supply
-
-| Item | Shot specification |
-| --- | --- |
-| User question | Why can a sunny low-demand period be difficult for system operation? |
-| Proposed short copy | “Rooftop output can reduce demand for grid-scale generation. Lower operational demand changes the mix of resources available to keep the system secure.” |
-| Objects and camera | Daylight rooftop layer, homes/industry and grid-scale generators. A separate diagram distinguishes total consumption, rooftop contribution and operational demand. |
-| Operation | Select a labelled noon teaching preset; reveal the operational-demand explanation. |
-| Feedback | Diagram and object emphasis update together. Until a dataset is approved, the vertical chart scale is explicitly qualitative. |
-| 2D evidence | CL-WA-02 / SRC-WA-02. Select and license a representative observed day or defined aggregate, with timezone, units and method, before showing MW labels. |
-| Investment meaning | Charging can provide a useful service at some times, subject to access, location, losses and commercial rights. |
-| Misreading boundary | Operational demand is not total consumption. Low demand is not automatically a negative price, free charging energy, or an investable battery opportunity. |
-| Mobile / no 3D | Three labelled bands with a noon button; evidence and meaning below the graphic. |
-| Status and case effect | Qualitative foundation verified; quantitative daily trace pending as GAP-WA-DAY. Does not revise merchant revenue. |
-
-### wa-06 — Evening: rate and duration are different
+### wa-02 — Built for one-way supply
 
 | Item | Shot specification |
 | --- | --- |
-| User question | What changes as solar output falls, and how long must other resources help? |
-| Proposed short copy | “When rooftop output falls, other resources must meet the remaining demand. The required power and the length of the need are separate questions.” |
-| Objects and camera | Same grid at evening light; generation contribution and remaining demand shown outside the scene. No theatrical blackout. |
-| Operation | Compare noon and evening; select “Power needed” or “Energy over time”. |
-| Feedback | Highlight a point versus an area on the 2D teaching chart; keep labels and explanation visible. |
-| 2D evidence | Same approved daily trace as wa-05, or a clearly labelled qualitative teaching profile. Validate any ramp/duration claim against the chosen data. |
-| Investment meaning | Duration, usable energy, charging opportunity and service obligations affect the battery design and capital required. |
-| Misreading boundary | Do not imply a guaranteed evening price premium, fixed scarcity event or sufficient energy for an entire night. |
-| Mobile / no 3D | Noon/evening cards plus an accessible power-versus-energy diagram; no time scrubber required. |
-| Status and case effect | Proposed teaching beat; quantitative/current-pattern claims pending. Does not alter the case duration. |
+| User question | What was the network built to do? |
+| Page copy | "The grid was built for big plants sending power one way. Rooftop solar now pushes power back from the edges of the network." |
+| Scene | Generator, transmission line, substation, homes and industry; the toggle adds rooftops in the same frame |
+| Control | "Earlier pattern" or "With rooftop solar" |
+| Feedback | Rooftops appear; one direction marker reverses on the distribution side |
+| Evidence and chart | CL-WA-02 / SRC-WA-02, p. 1; WA-specific asset history pending |
+| Investment meaning | The old fleet still runs, but the system now needs flexibility it did not need before |
+| Marker now | Fair. What would change it: dated WA asset history from a primary source |
+| Authoring check | Arrows are schematic, not measured flows; no generation shares without data |
+| Mobile | Two aligned panels with the same labels |
+| Status | Foundation verified; local detail pending |
 
-### wa-07 — A different problem: response and security
+## 4. Historical choices
 
-| Item | Shot specification |
-| --- | --- |
-| User question | Is moving energy between hours the same as responding quickly to a disturbance? |
-| Proposed short copy | “Moving energy between hours and responding to a system disturbance are different services. Each requires suitable capability, headroom and qualification.” |
-| Objects and camera | Pause day/night. Show a labelled response ladder and a generic disturbance marker; use the battery and other resource icons as alternatives. |
-| Operation | Select “Energy shifting” or “Response service”; open the plain-language service explanation. |
-| Feedback | The timescale and required capability change together. No physically precise frequency curve appears without an approved event source and method. |
-| 2D evidence | SRC-WA-06/07; extract applicable product purposes and accreditation terms. Any actual response-time label needs its specific clause. |
-| Investment meaning | A service can consume power/energy headroom and impose performance requirements even when little net energy is delivered. |
-| Misreading boundary | Do not imply every inverter provides all security services, that a battery replaces all reliability resources, or that faster response always earns more. |
-| Mobile / no 3D | Static timescale ladder and expandable service cards. |
-| Status and case effect | Proposed service comparison; current technical terms pending. No separate service revenue is invented. |
-
-## 5. Add a battery
-
-### wa-08 — Move energy, within a finite store
+### wa-03 — The choice that shapes the market
 
 | Item | Shot specification |
 | --- | --- |
-| User question | What changes when storage is added, and what still constrains it? |
-| Proposed short copy | “A battery can absorb energy and return some later. Its power, usable energy, losses, available connection and other commitments limit what it can deliver.” |
-| Objects and camera | Add one generic station to a predefined illustrative node. Keep an SOC meter, power label and simplified loss annotation in DOM beside the scene. |
-| Operation | Toggle “Without battery / With battery”; select charge, discharge and depleted presets. A reset returns to the teaching baseline. |
-| Feedback | SOC and schematic energy bands move together within explicit limits; depleted state prevents further illustrated discharge. No project return reacts. |
-| 2D evidence | Labelled teaching example: nominal 100 MW / 400 MWh means 4 hours before limits. Any quantitative SOC/loss sequence requires a documented teaching calculation and conventions. |
-| Investment meaning | Capability depends on design and rights; more duration costs capital and may not receive proportionate payment. |
-| Misreading boundary | The fixed illustrative node is not an optimum site. No drag-to-improve-IRR or exact congestion-relief percentage. |
-| Mobile / no 3D | Three state cards, numeric/labelled SOC, and a normal button toggle; same learning task. |
-| Status and case effect | Proposed unit example and interaction. Teaching size is distinct from the current investment case. |
+| User question | Why does WA pay batteries for capacity when the NEM does not? |
+| Page copy | "When the WEM started in 2006, Western Australia chose to pay for capacity as well as energy. An island cannot import in a shortage, so it buys reliability years ahead. The NEM chose energy-only." |
+| Scene | Same grid frame with a five-node timeline; selecting a node changes one layer |
+| Control | Select a node; expand "constraint / choice / what remains / effect today" |
+| Feedback | Only the selected layer changes; the 2026 outlook node is dashed |
+| Evidence and chart | Candidate nodes: the WEM's start with a Reserve Capacity Mechanism (CL-WA-06, source to collect); the decision to retire state coal generation (CL-WA-08, source to collect); the 1 October 2023 reform (CL-WA-03, verified); storage accreditation in the capacity mechanism (CL-WA-07, source to collect); the 2026 ESOO outlook (CL-WA-04, scenario) |
+| Investment meaning | The capacity mechanism is why capacity is most of a WA battery's revenue (‹bound: secured share›) |
+| Marker now | Thin until CL-WA-06 is sourced. What would change it: a WEM rule-history locator (to Fair), then the user's review of the causal reading (to Strong) |
+| Authoring check | Keep the event (the 2006 start with a capacity mechanism) and the interpretation (an island buys reliability ahead) as separate claims; no invented dates; planned retirements never drawn as complete |
+| Mobile | Vertical node list; one diagram |
+| Status | Rewritten in v1.1. The 2006 node is the story's hinge and the first claim to source |
+
+### wa-04 — Owning a battery is not being paid
+
+| Item | Shot specification |
+| --- | --- |
+| User question | If I own a capable battery, am I paid for capacity? |
+| Page copy | "Not yet. New market rules began on 1 October 2023, but capacity is paid only after AEMO certifies the battery and Capacity Credits are assigned for a capacity year." |
+| Scene | Physical layer fixed; a rule overlay shows certification, then credits, then obligations |
+| Control | "Physical system" or "Market rules" |
+| Feedback | Assets stay put while the overlay changes; the reform date and the date the rules were checked appear separately |
+| Evidence and chart | CL-WA-03 / SRC-WA-03; SRC-WA-05 (certification is a separate process); SRC-WA-07 (procedures); effective clauses pending |
+| Investment meaning | This is why the fund commits only once credits are assigned (‹bound: next action›) |
+| Marker now | Fair. What would change it: the effective certification clauses (to Strong) |
+| Authoring check | The 2023 start does not certify a 2026 project; capability, qualification and an award are different things |
+| Mobile | Two layers plus a three-step checklist |
+| Status | Copy revised in v1.1 |
+
+## 5. Today's tensions
+
+### wa-05 — Midday: plenty of solar, little left for the grid
+
+| Item | Shot specification |
+| --- | --- |
+| User question | What happens on a sunny midday? |
+| Page copy | "On sunny middays rooftop solar leaves little demand for the grid's own plants. That is when a battery charges, and when the operator works hardest to keep the system stable." |
+| Scene | Daylight; rooftops lit; grid plants dimmed; a diagram splits total use, rooftop supply and operational demand |
+| Control | Midday preset |
+| Feedback | Diagram and scene change together; the vertical scale stays qualitative until a trace is approved |
+| Evidence and chart | CL-WA-02 / SRC-WA-02; representative day trace pending (GAP-WA-DAY) |
+| Investment meaning | Midday is charging time; its cost and access depend on prices and the connection |
+| Marker now | Fair. What would change it: an approved observed day trace (to Strong) |
+| Authoring check | Operational demand is not total consumption; low demand is not automatically free energy |
+| Mobile | Three labelled bands and a midday button |
+| Status | Qualitative until GAP-WA-DAY closes |
+
+### wa-06 — The long evening (signature chart)
+
+| Item | Shot specification |
+| --- | --- |
+| User question | Why does WA pay for long batteries? |
+| Page copy | "After sunset, demand stays high for hours with no solar. The capacity mechanism pays storage for the hours it can cover that window, which is why this play is ‹bound: play duration› hours, not four." |
+| Scene | Same grid at dusk with the evening window shaded |
+| Control | "Midday" or "Evening"; "Show the window the mechanism counts" |
+| Feedback | Signature chart: the evening demand profile with the counted window, and four-hour and seven-hour batteries overlaid |
+| Evidence and chart | Chart-WA-EVENING needs the obligation duration and intervals for the play's capacity years (CL-WA-07, GAP-WA-RCM; SRC-WA-05/07), a representative evening trace (GAP-WA-DAY) and the duration result from the briefing (REPO-12) |
+| Investment meaning | The rules, not engineering preference, set the duration; the play's last hour defends the credit |
+| Marker now | Thin until GAP-WA-RCM closes. What would change it: the effective obligation-duration clause (to Fair), plus an observed evening trace (to Strong) |
+| Authoring check | No guaranteed evening premium; seven hours does not cover the whole night |
+| Mobile | Chart full width; midday and evening buttons |
+| Status | Rewritten in v1.1; WA's signature chart |
+
+### wa-07 — Fast response is a different job
+
+| Item | Shot specification |
+| --- | --- |
+| User question | Is moving energy the same as responding to a fault? |
+| Page copy | "No. Responding to a disturbance is a separate service, paid for readiness rather than hours. In this play it is a top-up, not the case." |
+| Scene | Day and night paused; a response ladder (seconds, minutes, hours) beside the battery and other resources |
+| Control | "Energy over hours" or "Response in seconds" |
+| Feedback | Timescale and required capability change together |
+| Evidence and chart | SRC-WA-06/07 (essential system services and accreditation); product terms pending |
+| Investment meaning | Services use headroom and add revenue only where they fit around capacity obligations (wa-11) |
+| Marker now | Fair. What would change it: the product terms for each service |
+| Authoring check | No precise frequency curve without an event source; not every inverter provides every service |
+| Mobile | Static ladder with expandable service cards |
+| Status | Copy revised in v1.1 |
+
+## 6. Add a battery
+
+### wa-08 — Seven hours, not four or eight
+
+| Item | Shot specification |
+| --- | --- |
+| User question | Why this duration? |
+| Page copy | "A battery moves midday energy into the evening. ‹bound: play duration› hours covers the window the capacity mechanism pays for; one more hour is capital the market does not pay for." |
+| Scene | One generic station at an illustrative node; the SOC meter and power label sit in HTML beside the drawing |
+| Control | Presets for four hours, ‹bound: play duration› hours and eight hours; charge, discharge and empty |
+| Feedback | Energy bands and the covered share of the evening window change; the eight-hour preset shows its extra hour outside the paid window |
+| Evidence and chart | Teaching unit: 100 MW × ‹bound: play duration› hours, before losses and limits, tagged Example; the duration result from the platform's design-fit sweep (REPO-12); the window from wa-06 |
+| Investment meaning | Duration is a capital decision, and the design-fit result shows where extra hours stop paying |
+| Marker now | Fair. What would change it: the obligation-duration clause behind the window (GAP-WA-RCM) |
+| Authoring check | The teaching node is not a site recommendation; no drag-to-improve-IRR control |
+| Mobile | Three preset cards with numeric SOC |
+| Status | Rewritten in v1.1: the teaching battery uses the play's duration instead of a generic four hours |
 
 ### wa-09 — What the investor owns
 
 | Item | Shot specification |
 | --- | --- |
-| User question | What equipment and rights sit behind the battery label? |
-| Proposed short copy | “Battery modules, power conversion, transformers, controls, safety systems and the grid connection form one asset. Performance guarantees and operating obligations shape its cash flow.” |
-| Objects and camera | Exploded but restrained station cutaway; fixed labelled hotspots for battery, PCS, transformer, connection, controls/safety and site works. |
-| Operation | Select a hotspot; switch from “Equipment” to “Performance and rights”. |
-| Feedback | Highlight the component and show function, cost category if available, operating limit, guarantee/evidence status and diligence question. |
-| 2D evidence | Equipment/function table; existing cost categories only where actually exposed. Missing cost splits read “Breakdown not available”; obtain public technical sources and asset rights. |
-| Investment meaning | Distinguish development rights, RTB, construction, operating assets, equity interests and assets with contracts. Explain degradation, augmentation, maintenance and insurance exposure. |
-| Misreading boundary | Generic geometry is not a site engineering drawing, fire design, safety setback specification or verified project equipment list. |
-| Mobile / no 3D | Labelled static cutaway with a vertical hotspot list; text and cost categories remain readable without orbit controls. |
-| Status and case effect | Component narrative and assets proposed; project-specific details withheld unless approved. No unsupported cost allocation. |
+| User question | What sits behind the word "battery"? |
+| Page copy | "Battery modules, power conversion, transformers, controls, safety systems and the grid connection make one asset. In WA the valuable rights are the connection and the certified capacity." |
+| Scene | Exploded isometric cutaway as SVG layers, with fixed hotspots: battery, PCS, transformer, connection, controls and safety, site works |
+| Control | Hotspot list; "Equipment" or "Rights and obligations" |
+| Feedback | The selected part is highlighted with its function, cost category where the model exposes one, operating limit and evidence status |
+| Evidence and chart | Equipment and function table; cost categories only where the model exposes them, otherwise "Breakdown not available" |
+| Investment meaning | Development rights, ready-to-build projects, operating assets and contracted assets are different things to buy; this play's entry route is ‹bound: entry route› |
+| Marker now | Fair for generic equipment; project specifics withheld |
+| Authoring check | Generic geometry is not a site drawing, fire design or equipment list; no confidential project detail in drawings or labels |
+| Mobile | Static cutaway with a vertical hotspot list |
+| Status | Kept; drawn as SVG layers |
 
-## 6. Who pays
+## 7. Who pays
 
-### wa-10 — Follow the payment path
+### wa-10 — Capacity first
 
 | Item | Shot specification |
 | --- | --- |
-| User question | Who pays for energy, availability/capacity and system services? |
-| Proposed short copy | “Follow each route from service to buyer, eligibility, performance and settlement. A market mechanism can exist before this project has a right to be paid.” |
-| Objects and camera | Reduce scene prominence. Use a 2D service -> procurement/trade -> qualification -> obligation -> settlement -> income path. Separate applicable routes. |
-| Operation | Select energy, capacity or system-service explanation; open rules or current-case evidence. |
-| Feedback | Highlight payer/settlement chain, unit, relevant period, obligation, deduction/expiry and evidence status. Mark unverified details pending. |
-| 2D evidence | SRC-WA-05/06/07, effective clauses and relevant project evidence to collect. Current-case income mix reads from WP-05, never copied into the storyboard. |
-| Investment meaning | Distinguish system need, technical eligibility, assumed route, awarded capacity/contract and verified performance/receipts. |
-| Misreading boundary | Capacity remuneration, contract-fixed income and a statutory/auction mechanism are not interchangeable guarantees. A grant is capital support, not recurring operating income. |
-| Mobile / no 3D | One payment route at a time as stacked steps; persistent route name and evidence badge. |
-| Status and case effect | Route framework proposed; exact applicable terms pending. Teaching selection does not switch the underwriting route. |
+| User question | Who pays this battery, and for what? |
+| Page copy | "Capacity first. Once certified and credited, the battery is paid for being available in the evening window, which is most of this play's revenue (‹bound: capacity share›). Energy trading and system services make up the rest." |
+| Scene | The scene recedes; 2D payment paths for capacity (certification, Capacity Credits, availability obligations, settlement), energy (market, dispatch, settlement) and services (accreditation, enablement, settlement) |
+| Control | Select a route |
+| Feedback | Payer, unit, period, obligation and evidence status for the selected route |
+| Evidence and chart | SRC-WA-05/06/07 with effective clauses pending; revenue shares from the market page's Revenue section (REPO-05, REPO-13) |
+| Investment meaning | The capacity line, priced by the mechanism and credited each capacity year, carries this play; merchant spreads do not |
+| Marker now | Fair. What would change it: the effective clauses for each route |
+| Authoring check | Capacity payments are not unlimited and do not guarantee debt service; modelled revenue is not a signed contract |
+| Mobile | One route at a time as stacked steps |
+| Status | Rewritten in v1.1 to follow the play's revenue mix |
 
 ### wa-11 — One battery cannot promise everything
 
 | Item | Shot specification |
 | --- | --- |
-| User question | Can the battery receive every displayed revenue stream at once? |
-| Proposed short copy | “The same power and stored energy cannot be promised twice. Qualification, schedules, connection limits, state of charge and contract terms determine compatible commitments.” |
-| Objects and camera | A 2D power/energy allocation board linked to the station; show time and direction as separate dimensions. |
-| Operation | Choose predefined illustrative commitments; inspect headroom or an explicitly incompatible combination. |
-| Feedback | Teaching board explains the conflict. Project feasibility is shown as unknown unless constraints exist; no automatic bankability pass. |
-| 2D evidence | REPO-06 stack feasibility; obtain project constraints and current market/contract compatibility. Teaching values require a separate calculation record. |
-| Investment meaning | Only compatible captured revenue, after charging/losses/fees and obligations, belongs in cash flow. |
-| Misreading boundary | Never add each product's standalone maximum or treat absent constraints as spare headroom. In the legacy experience bridge, `svcY` is a service cost, not ancillary revenue. |
-| Mobile / no 3D | Readable commitment cards and a conflict/unknown explanation; no drag-and-drop dependency. |
-| Status and case effect | Proposed teaching interaction. Does not modify the existing model or certify an actual stack. |
+| User question | Can the battery collect every line at once? |
+| Page copy | "No. The same megawatts and stored energy cannot be promised twice. In this example, evening capacity obligations come first and services and trading use what is left." |
+| Scene | A 2D allocation board linked to the station, with time across and power and energy up |
+| Control | Choose illustrative commitments; see the remaining headroom or a conflict |
+| Feedback | The teaching board shows the conflict; project feasibility shows "unknown" unless constraints exist |
+| Evidence and chart | REPO-06 stack feasibility; teaching values need a calculation record |
+| Investment meaning | Only compatible revenue belongs in the cash flow, which is how the model treats it |
+| Marker now | Fair for the principle; project constraints unknown |
+| Authoring check | Never add standalone maxima; in the experience model, `svcY` is a service cost, not ancillary revenue |
+| Mobile | Commitment cards and a short conflict explanation |
+| Status | Kept |
 
-## 7. The investment
+## 8. The investment
 
-### wa-12 — Construction is not the first receipt
+### wa-12 and wa-13 — retired in v1.1
 
-| Item | Shot specification |
-| --- | --- |
-| User question | When is capital committed, and what must happen before cash arrives? |
-| Proposed short copy | “Land, permissions, connection, construction, energization, qualification and settlement are different milestones. Delays can consume cash before the first receipt.” |
-| Objects and camera | Reuse station stages beside an auditable 2D timeline. Separate development/RTB/build/operation investment objects. |
-| Operation | Open a milestone; compare baseline and an already supported delivery/qualification scenario, if available. |
-| Feedback | Show required document, spend/exposure and revenue prerequisite. Model-supported delays update only after an explicit underwriting action; unsupported scenarios remain qualitative. |
-| 2D evidence | Existing delivery/investment result paths; current-case capital and dated payments. Actual permits, connection, tests, CRC/accreditation, contract and settlement terms require project evidence. |
-| Investment meaning | Peak equity exposure and first qualified revenue matter alongside capex and operating return. |
-| Misreading boundary | COD is not automatic qualification or first settlement for every income stream. An illustrative calendar is not a project schedule guarantee. |
-| Mobile / no 3D | Vertical milestone timeline with spend/eligibility/receipt tracks and expandable evidence. |
-| Status and case effect | Existing timing capabilities identified; complete mapping and project schedule verification pending WP-05. |
+v1.0's delivery-to-receipt timeline (`wa-12`) and revenue-to-equity view (`wa-13`) duplicated the market page's Execution, Bankable case and Revenue sections. The story now links to those sections from `wa-14` and from every chapter's "Go to the investment case" link. The IDs are not reused. The v1.0 requirements (commercial operation is not first settlement; dated payments preserved; all-equity and levered returns labelled) remain the job of the existing sections, and the v1.0 text is in commit `db158b9`.
 
-### wa-13 — From service revenue to equity
+### wa-14 — What could weaken it
 
 | Item | Shot specification |
 | --- | --- |
-| User question | After costs, reinvestment and debt, what can equity receive? |
-| Proposed short copy | “Revenue is only the start. Operating costs, reinvestment, tax, financing and the entry price determine equity cash flow and return.” |
-| Objects and camera | Bright research surface; 2D gross-to-net waterfall, contract-coverage timeline, dated cash flows, debt exposure and hold/exit comparison. Station becomes a small reference thumbnail. |
-| Operation | Select baseline/downside and existing supported assumptions; open calculation basis; continue to Investment Lab with the current case. |
-| Feedback | Every chart shows the same case identity, model/data vintage, units and return clock. Expose all-equity/levered distinction, expiry/renewal tail, negative contributions and missing project evidence. |
-| 2D evidence | REPO-05/06 and WP-05 bindings. Monthly cash uses original dated payments, not invented seasonality. Operating/financing limits follow the selected existing model path. |
-| Investment meaning | Separate asset economics, purchase price, funding exposure, debt service, distribution and exit dependence. Show downside without silently resizing the original debt to remove risk. |
-| Misreading boundary | Modeled fixed income is not a signed contract; modeled debt is not a lender offer. Historical stress frequency is not a future or joint event probability. Different return bases need explicit labels. |
-| Mobile / no 3D | Stacked summary, contract coverage, grouped cash-flow chart/table, and expandable financing details. No 3D dependency. |
-| Status and case effect | Proposed financial view using existing capabilities. Numeric adapter and cross-page reconciliation required before display. |
+| User question | What would make this play less attractive? |
+| Page copy | "The risk is the rule. If the capacity mechanism pays for fewer hours, or the capacity price falls as storage fills the evening, the play's last hour stops earning." Then ‹bound: next action›. |
+| Scene | Calm overview; competing storage drawn dashed in the evening window |
+| Control | Choose a factor: rule change, more storage, credits delayed, costs |
+| Feedback | Each factor names the line it affects and links to the matching Downside input where the model has one; otherwise it shows a research gap |
+| Evidence and chart | Existing downside definitions (REPO-05); rule and price-curve sources pending (GAP-WA-RCM) |
+| Investment meaning | Watch the rules and the credit assignment, not the weather |
+| Marker now | Fair. What would change it: the price-curve rules and the obligation-duration clause |
+| Authoring check | A need for storage does not guarantee this project; a downside case is not a probability |
+| Mobile | Four factor cards, then the links |
+| Status | Rewritten in v1.1. Exits: Bankable case, Revenue, Execution and Downside on the market page; compare with the NEM's energy-only choice, Germany or Finland |
 
-### wa-14 — What could weaken this value?
+## 9. Readiness
 
-| Item | Shot specification |
-| --- | --- |
-| User question | What would make today's investment argument less attractive? |
-| Proposed short copy | “Competing flexibility, changed requirements, network development, costs or contract expiry can weaken value. The next diligence step is to test which exposure this project actually retains.” |
-| Objects and camera | Return to a calm overview with competing-resource and rule/contract labels. A 2D investment question list remains primary. |
-| Operation | Choose a value-weakening factor; open a supported downside view or a qualitative research question; compare Germany or Finland. |
-| Feedback | Link the factor to affected service, payment route and case assumption if supported. Unsupported factors display a research gap rather than a synthetic return change. |
-| 2D evidence | Existing downside/stress definitions; approved evidence for future network/demand/competition claims. Official plans remain scenarios; no deterministic future buildout. |
-| Investment meaning | Screen durability and retained risk, then decide what contract, connection, cost or performance evidence to request. |
-| Misreading boundary | Need for storage does not guarantee this project is investable. A downside scenario is neither a forecast probability nor a guaranteed floor. |
-| Mobile / no 3D | Three or four factor cards, next-diligence checklist, current-case summary and comparison links. |
-| Status and case effect | Proposed conclusion. Comparison preserves the original case for return; a new market gets its own compatible case instead of inheriting invalid inputs. |
+Before any quantitative label goes live, close its claim or data gap. The hinge items for this story, in order:
 
-## 8. Editorial review and implementation readiness
+1. CL-WA-06, the 2006 start with a capacity mechanism, which wa-00 and wa-03 depend on.
+2. GAP-WA-RCM and CL-WA-07, the obligation duration behind the seven-hour design (wa-06, wa-08, wa-14).
+3. GAP-WA-DAY, a representative day trace (wa-05, wa-06).
+4. CL-WA-05, the locator for the no-link claim (wa-01).
 
-Before implementing quantitative labels, close the relevant claim, data, unit and rights gaps. Before polishing scenes, verify the story with static diagrams and novice-investor tasks. Before publishing the complete pilot, every central historical, technical and payment claim needs an exact reviewed source or an explicit teaching/scenario label, and every financial label needs an approved result binding.
-
-The production shot sheet may add camera coordinates, asset IDs and timings after greybox testing, without changing the learning question or evidence meaning. Use [the engineering work packages](engineering-work-packages.md) for lifecycle, state and result integration and [the acceptance plan](preparation-migration-and-acceptance.md) for understanding, fallback and numeric checks.
+Before publishing, every central claim has a reviewed source or an Example or scenario style, every figure is bound, and the user signs off the script (`G-1`). Production notes such as layout anchors and symbol IDs can be added later without changing a shot's question or meaning.

@@ -1,193 +1,154 @@
-# Experience and Page Design Preparation
+# Experience and Page Design
 
-Pack: BESS-IX-2026-10-30, version 1.0  
-Status: proposed information architecture and annotated layout brief; no website/UI implementation  
+Pack: BESS-IX-2026-10-30, version 1.1  
+Status: information architecture and layout brief; no website or UI implementation  
 Navigation: [Master plan](README.md) | [WA storyboard](western-australia-storyboard.md) | [Content contract](evidence-and-content-specification.md#5-proposed-story-content-contract) | [Engineering work](engineering-work-packages.md)
 
-## 1. Two entry paths, one investment context
+## 1. Where the story lives
 
-Offer **Start with the grid story** and **Compare investment opportunities** as equal first actions. A reader's electricity familiarity is a reading preference. The existing investor perspectives are a separate choice: infrastructure fund, strategic investor, new market entrant and developer. Do not infer one from the other.
+The platform already answers three questions on three pages, per the 26 October three-page design (REPO-13): where to invest (home), why this market (`/returns`) and how to execute (the market page). The story does not add a fourth path. It explains the call that the market page already states.
+
+**Entry.** The market page's Overview section has a "Grid, history and full research context" button that lazy-loads the research dialog (`src/experience/pages.js`, `researchDialog.js`). In v1.1 that button opens the story for markets that have one, and the full research stays one click deeper inside it. Markets without a story keep today's dialog.
 
 ```mermaid
 flowchart TD
-    H[Home: market differences and current investment brief] --> S[Start with a market story]
-    H --> C[Compare investment opportunities]
+    H[Home: investment brief, unchanged] --> M[Market page: Decision and Overview]
+    G[Global markets /returns] --> M
+    M --> S[Story opens at wa-00: the play card]
     S --> O[Origins and historical choices]
     O --> T[Today's tensions]
-    T --> B[Battery services and limits]
-    B --> P[Payment and qualification]
-    P --> I[Delivery, cash flow, financing, downside and exit]
-    I --> C
-    I --> L[Investment Lab with the current case]
-    O --> E[Chapter evidence and full research]
-    T --> E
-    P --> E
-    I --> E
-    E --> R[Return to the same chapter, case and reading position]
+    T --> B[Add a battery]
+    B --> P[Who pays]
+    P --> W[What could weaken it]
+    W --> X[Market page: Bankable case, Revenue, Execution, Downside]
+    S --> X
+    O --> E[Evidence: marker, source, full research]
+    E --> O
+    X --> L[Investment Lab, through the market page's existing handoff]
 ```
 
-This is a navigation proposal. The actual current paths include `/`, `/returns`, `/investment-lab`, `/markets/:slug`, research tab/section paths, `/data`, `/changes`, `/news`, `/scout` and `/desk`. Do not invent an already-existing `/compare` page. New story navigation should extend the current market resource rather than creating a second incompatible market registry.
+Proposed story URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. It is not implemented yet; `WP-04` owns it.
 
-## 2. Page inventory and reuse
+**Home stays unchanged in the pilot.** It is conclusion-first by design and had about 2.5 KiB of first-view budget left at PR #69 (262.5 of 265 KiB, REPO-14). Story invitations on the home page, grouped as Wrong time, Wrong place and Need for response, are a later option and must load lazily.
 
-| Surface | Current foundation | Planned change / output | Priority and next action |
-| --- | --- | --- | --- |
-| Home | Existing investment brief, opportunities and SVG globe | Two entry actions, one clear market distinction, three contrasting story invitations, retained current investment brief | Pilot entry P0; richer global scene P1 |
-| Global opportunities (`/returns`) | Existing comparison/result view | Keep direct comparison; add optional tension/payment lenses and links to story chapters | Preserve during pilot; narrative comparison P1 |
-| Market overview | Existing no-tab market experience | Six-chapter story mode plus immediate investment summary; retain current-case context and deep research links | P0 for WA |
-| Shared asset explanation | Existing explanations and investment facts | Embedded station cutaway, power/energy lesson, performance/rights and cost-category links | P0, diagram before 3D |
-| Investment Lab | Existing cross-market underwriting workspace and saved cases | Explicit, validated current-case handoff and a return path to the originating shot | P0 integration; do not replace the model |
-| Full market research | Existing tab/section routes and research dialog | Chapter-specific evidence entry, source dates/status, return to origin and preserved focus | P0 |
-| Public data/status | Existing `/data` and provenance envelope | Link relevant series and stale/unavailable state from evidence; retain existing governance meaning | P0 links; no new ETL authority |
-| Story comparison | Existing numerical comparison remains primary | Later side-by-side history, tension, payer and weakening-value cards for 2-3 markets | P1 after pilot reuse |
-| News/changes/scout/desk | Existing independent routes | Remain accessible; no unrelated redesign | Preserve |
+## 2. Page inventory
 
-Do not add a mandatory onboarding questionnaire, a new account system, a new CMS or an unrelated global navigation redesign. The new reading mode must remain useful when the reader never opens a 3D scene.
+| Surface | Today | Change in the pilot |
+| --- | --- | --- |
+| Home (`/`) | Investment brief | None |
+| Global markets (`/returns`) | Matrix and side-by-side comparison | None; a per-market story link can follow the pilot |
+| Market page (`/markets/:slug`) | Decision, Overview, Revenue drivers, Bankable case, Revenue, Execution, Special opportunity, Downside, Sources | The Overview's research button opens the story; every story chapter links back to these sections |
+| Research dialog | Lazy dialog with the full research | Becomes the story's container, with the full research as its deepest layer |
+| Investment Lab | Cross-market underwriting and saved cases | None; reached through the market page's existing handoff |
+| `/data`, `/changes`, `/news`, `/scout`, `/desk` | Independent routes | None |
 
-## 3. Layout and hierarchy
+No onboarding questionnaire, account system, CMS or navigation redesign.
 
-### Desktop story layout
+## 3. Layout
 
-Use a calm editorial page with approximately 40% narrative and 60% scene/evidence area where width permits. A narrow reading column carries the question and meaning; a stable visual stage carries one main change. The scene may be sticky within its chapter, but must not trap scroll or require a long scroll animation to unlock text.
+### Desktop
+
+About 40% text and 60% scene where the width allows. One question, one change and one meaning per shot. The scene may stay in view within its chapter but never takes over scrolling.
 
 ```text
-GLOBAL BESS     Markets     Investment comparison     Research     Language
+Western Australia / WEM-SWIS             [Play card: call · play · next action]
+Story  |  Go to the investment case
 
-Western Australia / WEM-SWIS       Current case       Investor perspective
-Story | Investment summary        Case basis and evidence status
+03 / Today's tensions                    [Isometric SVG scene or signature chart]
+Why does WA pay for long batteries?      [Labels and legend as real text]
+One short answer.                        [One control]
+Fair · What would change it: …
+Investment meaning, in one line
 
-03 / Today's tensions             [Scene or equivalent diagram]
-Why can a sunny noon be difficult? [Fixed labels, legend and scope]
-One short answer.                 [One primary control]
-
-What changes / What remains        [2D evidence with units and dates]
-Investment meaning                [Evidence detail opens on request]
-Interpretation boundary
-
-Previous   Next   Chapter list   Pause   Use diagrams   Investment summary
+Previous   Next   Chapters   Sources   Go to the investment case
 ```
 
-The current-case bar must not dominate the story with jargon. Show a readable summary; expand to disclose route, duration, scale, entry stage, currency and data/model basis. Case changes and teaching changes have different control labels.
+### Mobile
 
-### Mobile story layout
-
-Use “one visual, one explanation, one control” in a normal vertical flow. A visual occupies roughly half a screen rather than the entire viewport. The default camera and diagram must answer the question without rotating the scene. Controls remain visible without covering captions.
+One visual, one explanation, one control, in normal vertical flow. The visual takes about half the screen. Tables become grouped cards. No pinching and no nested scroll panels.
 
 ```text
-Market / Chapter              Case summary
+Market / Chapter
 Question
-[Poster / diagram / optional scene]
-Scope, legend and teaching/data label
-[One large primary control]
+[Scene or chart]
+One control
 Short answer
-Investment meaning
-Evidence / Full research
-Previous    Chapters    Next
-Investment summary / Continue in Investment Lab
+Fair · What would change it
+Previous   Chapters   Next
+Go to the investment case
 ```
-
-Tables use grouped rows, labelled cards or a readable chart/table alternative. If horizontal scrolling is necessary for a financial table, label it, preserve row identity and keep a text summary. Scene labels should not require pinching or two-finger gestures. Avoid nested scroll panels on a small screen.
-
-### Home concept
-
-The home opening should make market differences tangible before presenting unfamiliar acronyms. Proposed copy: **See how electricity systems change. Understand what gives a battery investment value.** The world view remains paired with a keyboard-accessible market list. Story invitations can group questions as **Wrong time**, **Wrong place**, and **Need for response**; these are explanatory lenses rather than exhaustive or mutually exclusive market classifications.
-
-Every invitation also shows a market name, one local distinction, and a direct investment route. Do not replace current investment conclusions with unsourced promotional claims or imply that a story priority is an investment recommendation.
 
 ## 4. Visual system
 
-Reuse and extend the existing [design tokens](../../src/styles/tokens.css) rather than applying a global density reset. Preserve the current research tables while making story prose easier for newcomers.
+Reuse the existing tokens (REPO-07) and the three-page design's palette rather than adding new colours.
 
-| Element | Preparation requirement |
+| Element | Rule |
 | --- | --- |
-| Surface and palette | Off-white research pages; deep-green scene stage; restrained natural asset colors. Any new hexadecimal palette is provisional until contrast and existing-theme checks pass. |
-| Typography | System fonts where practical; editorial headings; proposed story body 16-18 px desktop and at least 16 px mobile. Keep tabular figures in comparisons and currency charts. |
-| Scale and density | Default shot has one question, one principal change, one investment meaning and one boundary. Put detailed method and tables behind evidence controls. |
-| Geometry | Simplified low-polygon terrain and recognizable generator, rooftop, wind, load and battery objects; generic asset geometry clearly labelled. |
-| Semantic colors | Stable meanings for generation, load, storage and constraint. Keep these separate from existing market series and risk/status ramps. Add shape, pattern and text labels. |
-| Geography and precision | Preserve real region context; distinguish approximate topology from verified coordinates. Dashed future assets and scenario backgrounds differ from observed assets. |
-| SOC | Show label and numeric value as well as fill; use accessible DOM text outside the canvas. No deceptive volume metaphor for financial return. |
-| Financial graphics | Flat bars, lines, waterfalls and tables with units and baselines. Avoid 3D IRR columns, perspective ranking or station size as return encoding. |
-| Motion | Short user-controlled transitions, pause and instant mode; no continual rotation, particle spectacle, long intro or scroll hijacking. Reduced-motion settings select the static/instant path. |
-| Lighting and materials | Soft shadows and controlled day/night emphasis; mobile quality avoids expensive real-time effects. Do not hide essential labels in darkness or depth blur. |
-| Audio | Silent first release. Optional later narration needs captions/transcript, language review, controls and asset rights. |
-| Theme compatibility | Preserve existing theme preference. Test scenes, captions, diagrams, warnings and finance charts in supported themes. |
+| Palette | Off-white `#f5f3ed`, near-white panel `#fffefa`, deep green `#224e40`, ink `#193c32`, pale lime `#dce6b7`; gold for opportunistic, copper for downside |
+| Typography | Serif headings, sans-serif body, tabular figures; story body 16 to 18 px, at least 16 px on mobile |
+| Scenes | Isometric SVG on a 2:1 projection, from one shared kit of about 20 symbols: generator, transmission line, substation, homes, industry, rooftop solar, wind, battery, interconnector, transformer, power conversion, controls, meter, sun and moon. Flat fills with one shade per face. Drawn in-house, so no third-party licence is needed |
+| Semantic colour | Stable colours for generation, load, storage and constraint, separate from market series and risk ramps, always paired with a label or pattern |
+| Time of day | Day, dusk and night through colour tokens on the same drawing; labels never fade out |
+| Scenarios and examples | Future or scenario assets dashed; teaching values tagged "Example"; observed data solid |
+| Evidence marker | One Strong, Fair or Thin chip per shot plus a "What would change it" line. No disclaimer bands and no caveat paragraphs |
+| Signature chart | One per market, flat 2D, with units and dates on the axes |
+| Finance | The story shows only the play card; every other figure stays in the market page's existing charts |
+| Motion | Short CSS transitions on user action only; none under reduced motion; no autoplay |
+| Themes | Keep the existing theme preference; check scenes and charts in each theme |
 
-Proposed interaction targets include at least 44 by 44 CSS-pixel primary touch areas, visible focus, sufficient text contrast, and no meaning conveyed by color alone. Verify these in actual designs rather than claiming that the palette itself meets accessibility requirements. Performance budgets are owned by [the engineering plan](engineering-work-packages.md#5-asset-and-performance-budgets).
+Touch targets of at least 44 by 44 CSS pixels, visible focus, and no meaning carried by colour alone.
 
-## 5. Component preparation inventory
+## 5. Components
 
-| Component | Required behavior | Input / output | First use |
-| --- | --- | --- | --- |
-| Story entry card | One market distinction, reading time, evidence status and investment shortcut | Registry/content references -> market/chapter navigation | Home, market overview |
-| Story shell | Question, text, visual/fallback, investment meaning and chapter navigation | Story contract + state -> accessible page | All WA shots |
-| Chapter navigator | Direct jump, current position, previous/next, keyboard and browser history | Stable chapter/shot IDs -> restored position | All chapters |
-| Current-case bar | Expand basis; distinguish case inputs from teaching presets; visible changed/unavailable state | Existing case adapter -> read-only summary or explicit change action | Story and Lab |
-| Historical node card | Constraint/choice/inheritance/consequence, dates and fact/scenario type | Reviewed nodes -> selected layer and evidence | wa-03 |
-| Grid visual host | Own scene lifecycle with poster/diagram always available | Scene key + teaching state -> one bounded active scene | wa-01 to 08 |
-| Day/night diagram | Power versus energy, chosen period, units and teaching/observed status | Approved trace or qualitative preset -> synchronized view | wa-05/06/08 |
-| Asset cutaway and hotspot list | Equipment function, cost category, performance/rights and missing-data status | Shared asset + content references -> selected explanation | wa-09 |
-| Payment path | Payer, unit, eligibility, obligations, settlement, term and evidence | Route-specific approved content -> one readable path | wa-10 |
-| Commitment/compatibility explanation | Separate teaching conflict from project pass/unknown/fail | Teaching presets or existing constraint result -> labelled disposition | wa-11 |
-| Delivery-to-receipt timeline | Separate capital, physical delivery, qualification and receipts | Existing timing outputs + project evidence -> labelled milestones | wa-12 |
-| Cash-flow and downside panel | Same case identity and dated financial outputs across views | WP-05 result adapter -> auditable 2D charts/table | wa-13 |
-| Evidence drawer / research return | Source/date/method/limits; link deeper research; return focus and reading state | Claim/source/shot reference -> drawer and origin token | Every chapter |
-| Plain-language explanation | Short meaning, boundary, optional professional term and source | Shared reviewed glossary -> consistent teaching text | Throughout |
-| Mode/status control | Pause, use diagrams, retry, unavailable data; preserve current case | Capability/preference/error -> equivalent content | All visual states |
-
-Inputs above are responsibilities for later code design, not existing universal APIs. Keep the public editorial content independent of the renderer so both diagrams and 3D consume the same approved meaning.
-
-## 6. Shared explanations and investment language
-
-Prepare a small glossary once and apply it consistently across markets. Introduce the plain-language idea before the acronym, then allow professional detail on demand.
-
-| Term group | Plain-language explanation to prepare | Boundary that must accompany it |
+| Component | Behaviour | First use |
 | --- | --- | --- |
-| MW, MWh, duration, SOC | Delivery rate, stored energy, nominal hours and remaining usable energy | Nameplate energy differs from deliverable energy after limits and losses |
-| Operational demand, net load | What remains for the defined grid resources after specified embedded generation | Definitions vary by dataset; not all sources subtract the same components |
-| Energy shifting | Absorb energy at one time and return less later | Timing value depends on prices, charging rights, costs and restrictions |
-| Response/reserve/system service | Be ready to change output/consumption under specified requirements | Product purpose, direction, activation and sustained delivery differ |
-| Capacity/availability payment | Payment for a qualified ability or contractual commitment | Not unlimited revenue or a guarantee of debt service |
-| Qualification/accreditation | Demonstrating the right capability and meeting participation requirements | Capability, application, approval, award and ongoing compliance are distinct |
-| RTB, construction, energization, COD | Different development/delivery milestones | Commercial operation does not start every payment simultaneously |
-| Fixed/contracted, renewal, merchant | Different revenue exposures and durations | A model assumption is not verified signed coverage; expiry creates a tail |
-| Grant/support | Capital support and its conditions/timing | Award is not receipt; grant is not recurring operating income |
-| Gross, operating, equity cash flow | Successive steps from service income to investor receipts | Costs, reinvestment, tax and debt treatment follow the selected model |
-| All-equity and levered IRR | Returns before and after a defined financing structure | Cash-flow clock, entry price, maturity funding and exit assumptions matter |
-| Downside, DSCR, exit | Stress case, debt-service coverage and sale/terminal exposure | Neither a probability forecast nor a lender commitment or guaranteed sale |
+| Play card (existing) | Call, play, the figures the card already shows, and the next action, from the briefing model | wa-00 |
+| Story shell | Question, copy, scene, marker, meaning and chapter navigation | Every shot |
+| Chapter navigator | Direct jump, previous and next, history entries, keyboard support | Every chapter |
+| Isometric stage | Renders a scene from symbol IDs and layout anchors, applies teaching state, keeps labels as text | wa-01 to wa-09 |
+| Signature chart | One data-backed chart per market | wa-06 |
+| Timeline node card | Constraint, choice, what remains, effect today; event and interpretation kept apart | wa-03 |
+| Cutaway with hotspot list | Exploded SVG layers; function, limits and evidence status per part | wa-09 |
+| Payment path | Route, payer, qualification, obligation, settlement | wa-10 |
+| Allocation board | Teaching conflict versus project unknown | wa-11 |
+| Evidence marker and source link | Strong, Fair or Thin; what would change it; source and date; a link into the full research | Every shot |
+| Glossary term | Plain meaning first, acronym second | Throughout |
 
-Avoid generic labels such as “secured” without disclosing the evidence and period. When the model exposes only an aggregated trading/ancillary amount, show that aggregation and its limitation rather than inventing a detailed revenue split.
+Keep content independent of the drawing code, so text, scenes and charts all read the same approved meaning.
 
-## 7. Bilingual website requirements
+## 6. Plain-language glossary
 
-This pack's text, headings, tables, templates and filenames remain English. The implementation requires complete English and Simplified Chinese coverage for navigation, chapter copy, controls, accessibility labels, captions, evidence/method notes, units, error states, exports and contract-status descriptions.
+Write each idea plainly before its acronym. The third column keeps the copy accurate for authors; it is never printed as a caveat.
 
-Use stable IDs and reviewed locale entries rather than embedding translations in geometry or textures. Source titles may retain their original language with an explanatory translation. An untranslated legal ambiguity stays flagged. Do not shorten the Chinese meaning of an eligibility or contractual caveat merely to make a label fit.
-
-Language switching must preserve market, chapter, shot, investor, case, teaching preset, evidence origin and reading position as far as layout permits. Restore focus to the same semantic control. Localize dates and number formatting while retaining exact currency/unit semantics and stored financial values. Test long labels, multi-line buttons, mobile tables, diagram annotations and screen-reader order in both languages.
-
-Record translation status separately from English research approval: English approved / Chinese pending cannot pass bilingual release. Use two meaning reviews: technical/service meaning and investment/payment meaning. No machine-generated translation should silently become an approved contract summary.
-
-## 8. Loading, failure, evidence and return states
-
-| State | User-facing behavior | Preserved context |
+| Term group | Plain explanation | Author's boundary |
 | --- | --- | --- |
-| Scene not requested | Poster/diagram and complete text available; optional “Explore the scene” action | Chapter and case |
-| Scene loading | Visible progress/status and immediate diagram path; no blank stage | Existing reading and controls |
-| Unsupported graphics or asset failure | “Use diagrams” with the same question, explanation, evidence and investment route; optional retry | Chapter, case, teaching selection where meaningful |
-| Reduced motion | Instant transitions/static diagrams and explicit manual controls | Same learning path |
-| Background or offscreen | Pause rendering; resume the selected state when relevant | No chapter advance |
-| Data stale/missing | Date and usable last vintage or an unavailable message; retain qualitative explanation | No substituted financial demonstration number |
-| Evidence opened | Focus moves into a labelled panel; clear source scope, dates and method; ordinary research links work | Originating shot, scroll anchor and case |
-| Evidence closed / research returned | Focus returns to trigger; restore semantic position | No reset to chapter one |
-| Case incompatible with new market | Explain which field cannot transfer; use an explicit compatible selection or show unavailable state | Preserve old case for Back; do not silently remap rights |
+| MW, MWh, duration, SOC | Delivery rate, stored energy, nominal hours, remaining usable energy | Nameplate energy differs from deliverable energy after limits and losses |
+| Operational demand, net load | What remains for the grid's own resources after rooftop and other embedded supply | Definitions vary by dataset |
+| Energy shifting | Absorb energy at one time and return less of it later | Value depends on prices, charging rights, costs and restrictions |
+| Response, reserve, system service | Be ready to change output quickly under set requirements | Purpose, direction, activation and duration differ by product |
+| Capacity payment | Payment for a certified ability to deliver when needed | Not unlimited, and not a guarantee of debt service |
+| Qualification, certification | Proving the right capability and meeting participation rules | Capability, application, approval, award and ongoing compliance are separate steps |
+| RTB, construction, energisation, COD | Milestones from ready-to-build to commercial operation | Commercial operation does not start every payment at once |
+| Fixed, renewal, merchant | Revenue that is contracted, re-contracted or market-exposed | A model assumption is not a signed contract; expiry leaves a tail |
+| Grant | Capital support with conditions | An award is not a receipt, and a grant is not operating income |
+| All-equity and levered IRR | Returns before and after a defined financing structure | Entry price, cash-flow clock and exit assumptions matter |
+| Downside, DSCR, exit | A stress case, debt-service cover and sale exposure | Not a probability, a lender commitment or a guaranteed sale |
 
-Keep implementation terms, exception traces and device diagnostics out of these flows. Technical evidence belongs in test records; user-facing copy explains available actions and interpretation limits.
+## 7. Two languages
 
-## 9. Design preparation deliverables
+The site needs complete English and Simplified Chinese for copy, controls, labels, captions, markers, chart axes and error states. Use stable IDs and reviewed locale entries; SVG text comes from locale strings and is never baked into a drawing. Source titles keep their original language. Switching language keeps the market, chapter, shot and reading position. The user checks both languages at each sign-off, and a translation that changes an obligation goes back to mechanism review.
 
-Before polished asset production, prepare annotated home, market opening, historical timeline, day/night, cutaway, payer/qualification, and cash-flow/delivery views. Each needs desktop/mobile variants and a diagram-only equivalent. Include loading/failure, stale data, incompatible case and reduced-motion variants for the relevant components.
+## 8. States
 
-Every shot annotation must use the [WA shot-sheet fields](western-australia-storyboard.md), including investment meaning and misreading boundary. Mark whether it is a sketch, annotated wireframe, high-fidelity static design or implemented screenshot; do not label a text wireframe a completed high-fidelity design. Review hierarchy and understanding before spending time on materials and lighting.
+| State | Behaviour |
+| --- | --- |
+| Story loading | Text first; the scene fills in without shifting the layout |
+| Reduced motion | Instant changes |
+| Data stale or missing | Last vintage with its date, or "not available"; qualitative copy stays; the marker drops a level |
+| Evidence opened and closed | Focus moves into the panel and returns to its trigger; position kept |
+| Market without a story | The research dialog as today |
+| Call changed since the story was signed off | The play card shows the new call; one line says when the story was last reviewed, until the user re-signs it |
 
-Required layout widths, user tasks and screenshot evidence are defined once in [the acceptance plan](preparation-migration-and-acceptance.md#5-understanding-tests-with-non-sector-investors). Assets and performance measurements are governed by the engineering plan, so changing a scene budget does not require editing every shot sheet.
+## 9. Design deliverables
+
+Before building, prepare annotated desktop and mobile views of wa-00, wa-03, wa-06 (the signature chart), wa-09 (the cutaway) and wa-10 (the payment path); a sheet of the symbol kit; and one day-and-dusk sample. Mark each as a sketch, wireframe, static design or implemented screenshot. The screen widths to check are listed in [the acceptance plan](preparation-migration-and-acceptance.md#5-self-review).

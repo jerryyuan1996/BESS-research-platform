@@ -1,189 +1,112 @@
 # Preparation, Migration and Acceptance
 
-Pack: BESS-IX-2026-10-30, version 1.0  
-Status: suggested schedule, handoff and test specification; implementation/test tasks not executed  
+Pack: BESS-IX-2026-10-30, version 1.1  
+Status: sequence, gates, self-review and laptop handoff checklist; nothing executed except committing v1.0 (`db158b9`)  
 Navigation: [Master plan](README.md) | [Engineering work packages](engineering-work-packages.md) | [Market narratives](market-narratives.md) | [WA storyboard](western-australia-storyboard.md)
 
-## 1. Separate preparation from hardware-dependent refinement
+## 1. Nothing in the pilot needs the new laptop
 
-The user expects roughly another week or more before completing the new-computer migration. Use an **8-10 day suggested preparation window**, starting when work capacity is available. These are relative working days, not a promised finish date or an assumption of full-time staffing. If source review, user availability or device delivery takes longer, move the dependent gate rather than compressing verification.
+With isometric SVG and no new financial views, every pilot task runs on the current machine: research, script, kit, shell, scenes and tests. From this plan, the new laptop needs only a clean setup (§6). It is described as an AMD AI 9 H365 with 32 GB of RAM; record the actual CPU, GPU and driver at handoff. The hardware matters only if `WP-11` (WebGL) is ever opened.
 
-This delivery creates the planning pack only. The proposed code tasks below belong to a later authorized implementation session. They are included so preparation can lead directly to reviewable implementation; none is being executed by this documentation task.
+## 2. Roles
 
-| Before migration: independent work | After migration: concentrated work | Can begin on the current device if feasible |
+| Work | AI assistants (ChatGPT, Codex, Claude Code) | User |
 | --- | --- | --- |
-| Primary research, 18 candidate cards, WA chronology/claims and DE/FI scripts | Polished 3D kit, textures/materials, lighting and final visual quality | Small native-Three.js feasibility experiment after code authorization |
-| Source/claim/calculation/rights registers and shot mappings | Device/GPU/browser benchmark and sustained stability/thermal verification | Bounded scene-host lifecycle and slow-load race tests |
-| Annotated desktop/mobile layouts, 2D diagrams, glossary and bilingual copy | Compression/quality-tier tuning with actual hardware evidence | Runnable 2D story, navigation and case adapters |
-| Baseline/environment recipe, preview design, contracts and test plans | Final real-device comparison and complete six-chapter experience QA | Local built-public preview and existing test checks |
-| Test recruitment, task script and migration inventory | Extended 3D production and reuse after pilot learning | User understanding tests using diagrams or greybox |
+| Research | Find primary sources, extract claims with locators, flag conflicts | Approve interpretations |
+| Script | Draft copy anchored to the call; check references and tokens | Sign off (`G-1`) |
+| Build | Implement the packages and run the checks | Review the running story |
+| Release | Prepare the PR and its evidence | Merge and publish through the existing pipeline |
 
-The new computer is described as **AMD AI 9 H365 with 32 GB RAM**. The complete CPU model, integrated/discrete GPU, shared memory, display and driver configuration are unverified. An earlier Ryzen AI 9 365 interpretation remains a hypothesis. Record the actual system at handoff; do not promise scene quality, frame rate or model-production capacity from the current description.
+Every assistant follows the repository's `AGENTS.md`, which still has to be added (§6). Agreement between assistants is not review; the user's sign-off is.
 
-## 2. Responsibilities for a user + ChatGPT + Codex workflow
+## 3. Gates
 
-Roles below describe responsibilities, not an assumption that separate staff or autonomous agents have been hired. One user may hold product, research-review and investment-review responsibility. Use reviewable small outputs and at most two active workstreams to keep coordination practical.
+v1.1 replaces v1.0's `G-0` to `G-7` with three gates.
 
-| Responsibility | ChatGPT | Codex | User / human reviewer |
-| --- | --- | --- | --- |
-| Product narrative | Draft causal arguments, comparison questions and plain-language copy | Cross-check content against repository capabilities and structured contracts | Decide audience, emphasis and whether the explanation supports investment judgment |
-| Evidence | Find primary sources, extract scoped claims and flag conflicting definitions | Check references, units, mappings, dataset/configuration boundaries and reproducibility | Approve consequential interpretations, missing project evidence and permitted publication |
-| Design | Develop shot intent, annotated layouts, explanations and translation drafts | Prepare/implement scoped diagrams and components in a later code task | Review visual preference, hierarchy and usefulness |
-| Engineering | Explain alternatives and user-task consequences | Baseline, adapters, state/lifecycle, tests, performance and migration execution when authorized | Resolve product tradeoffs; review concrete outputs and any later publication decision |
-| Understanding tests | Prepare neutral tasks and synthesize observed misunderstandings | Provide stable test candidate and capture technical behavior | Recruit/observe participants, judge comprehension and approve revisions |
-| Asset rights | Draft the rights/attribution record and identify unresolved terms | Keep uncleared assets out of public output and validate manifests | Confirm rights or select an allowed replacement; obtain specialist review when needed |
-
-Do not treat AI agreement as independent legal, electrical-engineering, lender or investment approval. Where specialist review is unavailable, keep the relevant limitation visible and the affected claim unapproved.
-
-## 3. Suggested 8-10 day preparation sequence
-
-All rows describe planned work. Candidate narrative cards and shot specifications now exist in this pack, but full source-backed scripts, diagrams, runnable prototypes and test results do not.
-
-| Day / focus | Concrete reviewable output | Lead and review | Dependencies | Gate / fallback |
-| --- | --- | --- | --- | --- |
-| 1: establish the starting point | Baseline manifest: actual SHA/status, lockfile hash, runtime/browser/device inventory, numeric-case matrix and pre-existing issues; public preview recipe | Codex prepares; user reviews scope | Current checkout and WP-00/01 | No unexplained starting numeric difference. If code checks are not yet authorized, finish the manifest and command/check specification only |
-| 2: breadth and evidence structure | Eighteen short cards with distinct theses, source owners, gaps and production cohorts; pilot claim/source registers | ChatGPT drafts; Codex verifies IDs/references; user reviews priorities | This pack; existing market research | Cards labelled proposed/sourced accurately; no claim of all-market completion |
-| 3: WA historical research | 4-6 reviewed candidate nodes; system boundary; source-to-shot mapping; observed/planned distinction; daily-trace selection decision | ChatGPT research; Codex mapping/unit checks; user interpretation review | Day 2; primary sources | Unsupported dates/numbers remain blocked. Qualitative diagrams can proceed |
-| 4: script and comparison challenge | Revised WA 14-shot script; six-chapter DE/FI scripts with specific claims/gaps; initial Italy route comparison checklist | ChatGPT drafting; user electricity/investment passes; Codex contract check | Day 3 | Every chapter has question, evidence, meaning, boundary and value limit |
-| 5: page and explanation design | Annotated home/story/cutaway/payment/cash-flow desktop/mobile wireframes; glossary; evidence-return states; bilingual copy inventory | ChatGPT and Codex prepare; user reviews | WA script; page/component inventory | Explain the story with static diagrams; resolve hierarchy before materials |
-| 6: engineering readiness | Story content/state/result-binding specifications; runtime/preview decision; asset rights shortlist; test fixtures/cases and acceptance script | Codex leads; ChatGPT clarity check; user reviews tradeoffs | WP-00..02 and Day 5 | No blanket refactor; numeric paths and unsupported inputs explicitly mapped |
-| 7: first runnable slice, if in the later code scope | WA 2D story with chapter/evidence navigation and existing investment entry; otherwise a complete implementation-ready component/interaction pack | Codex; user hands-on review | WP-02/03; authorized code task | No new-computer dependency. Missing data shows a gap rather than a sample return |
-| 8: state and case validation | Navigation/share/Back/language test evidence; thin adapter prototype or complete binding/test specification; first three greybox scene briefs | Codex; user case/reading review | WP-04/05 after the 2D slice, or specification track | Keep teaching and underwriting states separate; no numerical regression |
-| 9: understanding and corrections | First small-sample task observations from diagrams/runnable candidate; misunderstanding register; revised script/controls | User observes; ChatGPT synthesizes; Codex fixes only within later code scope | Reviewable story; participants available | Critical misunderstandings keep the gate open; if recruitment slips, do not mark tests complete |
-| 10: buffer and handoff | Final preparation manifest, rights/assets inventory, unresolved issues, evidence/test record and a precise next task | Codex prepares; user checks completeness | Outputs from prior days | Migration gate; carry unresolved work explicitly rather than declaring completion |
-
-An eight-day version combines Days 2/3 and 5/6 only if evidence and review capacity permit. Do not remove the understanding or handoff gate to fit a date. If the new computer arrives early, migrate after a reproducible checkpoint; if it is delayed, continue research, 2D, adapters and bounded lifecycle experiments on the current device where practical.
-
-### Preparation-ready minimum
-
-To start a controlled greybox implementation, require a recorded baseline and preview path, a six-chapter WA script, enough reviewed claims for the chosen scenes, a functioning diagram/text equivalent or implementable design, explicit case/result contracts, and a test/rollback plan. This does not require every market to be fully researched or a complete polished asset library.
-
-To call the complete WA story publication-ready, the stronger evidence, numeric, bilingual, user-task, rights and stability gates below must pass. A diagram-only prototype is a useful preparation result, but it is not the finished immersive pilot.
-
-## 4. Acceptance gates
-
-| Gate | Evidence needed | Owner / disposition |
+| Gate | Evidence | Owner |
 | --- | --- | --- |
-| G-0: baseline known | SHA, dirty-work preservation, environment/lock hashes, input vintages, existing test outcomes and starting issues | Codex records; user accepts scope. No claim that docs-only checks are app tests |
-| G-1: preparation ready | Required WA script/evidence/design/state/result contracts, 18 correctly labelled candidate cards and DE/FI differentiation briefs | ChatGPT/Codex prepare; user reviews. Pending global research is allowed and visible |
-| G-2: runnable 2D path | Six chapters, evidence/return, current-case handoff, mobile and keyboard path without 3D | Codex verifies; user completes tasks |
-| G-3: content and rights | Central claims reviewed; historical/observed/planned/scenario types correct; payment obligations and asset publication rights resolved | User/human reviewers with separate electricity and investment passes |
-| G-4: numeric consistency | Case-keyed cross-page raw-result and dated-flow reconciliation; current fixtures unchanged; unsupported/unpriced cases honest | Codex report plus investment interpretation review |
-| G-5: understanding | Small-sample task results, misunderstanding fixes and repeat evidence; no unresolved critical misreading | User observes and decides; ChatGPT supports analysis |
-| G-6: visual, accessibility and stability | Both languages/themes, declared device matrix, no-graphics/reduced-motion equivalence, performance/long-switch records | Codex evidence plus real-device user review |
-| G-7: release candidate | Exact candidate/artifact/vintage, existing full gates and confidentiality scan, preview match, known-good rollback and explicit limitations | Concrete reviewable output for a later publication task; this plan publishes nothing |
+| G-1: script signed off | The story leads to the published call; hinge claims are sourced or styled as Example or scenario; one marker per shot; Chinese drafted | User |
+| G-2: story merged | `WP-02` to `WP-07` complete; existing CI green on the exact SHA (model baselines, confidentiality scan, budgets, e2e); keyboard, mobile and two-language walkthrough; no fixture regenerated | User merges |
+| G-3: optional WebGL | A named shot that SVG cannot explain; the `WP-11` requirements and the §5.2 budgets in the engineering plan are met | User decides |
 
-The story can remain in a local/controlled preview while gates are open. A missing feature can be withheld only if the released scope is clear and the full investment/diagram path still works; do not call an untested 3D enhancement complete by hiding it in one screenshot.
+There is no separate numeric gate. The story shows only fields that existing components already render, and the existing model tests guard those.
 
-## 5. Understanding tests with non-sector investors
+## 4. Suggested sequence
 
-Recruit about five participants with investment literacy and little electricity-sector experience. A small sample is for finding misunderstanding and testing a pilot direction, not statistical proof of improved conversion. Do not coach answers. Ask participants to think aloud, record observable actions and paraphrases, and separate “could not find” from “found but misunderstood”. Obtain consent for any recording and avoid confidential project material.
+Relative working days, not dates. If a source takes longer, move the gate rather than skip it.
 
-| Task | Neutral prompt / observation | Proposed pilot threshold |
+| Day | Output | Gate |
 | --- | --- | --- |
-| Market distinction | “Explain what is distinctive here and one historical reason it developed this way.” | At least 4/5 identify one supported historical cause and today's main tension |
-| Physical service | “What changes when the battery is added? What still limits it?” | At least 4/5 distinguish power/energy and name a physical or connection/availability limit |
-| Service and payer | “Choose an income route. Who pays and what must the project do first?” | At least 4/5 distinguish energy shifting, response and capacity/availability; do not assume every route is contracted |
-| Investability gate | “The system needs storage. What could still prevent investing in this project?” | All can find at least one unresolved qualification, connection, contract, cost or execution gate |
-| Find key information | “Locate capital exposure, return starting point, baseline/downside, coverage period and a major missing fact.” | At least 4/5 can locate the requested information within about 60 seconds from the investment view |
-| Value weakening | “What could make the opportunity less valuable?” | At least 4/5 explain competition, network/flexibility change, rule/cost change or contract expiry |
-| Evidence and return | “Find support for a claim, then return to where you were.” | At least 4/5 locate an appropriate source and return without losing market/chapter/case |
-| Transfer | “How does the German or Finnish story differ from WA?” | After those candidates exist, at least 4/5 identify the different system issue and payment question |
+| 1 | Source the WA hinge claims: CL-WA-06, CL-WA-07 with GAP-WA-RCM, and CL-WA-05; decide how to close GAP-WA-DAY | |
+| 2 | Revise the WA script against those sources; assign markers; draft the Chinese | G-1 |
+| 3 to 4 | `WP-02` contract and `WP-06` kit; `WP-03` shell with placeholder diagrams | |
+| 5 to 6 | `WP-07` scenes and the signature chart; `WP-04` URLs | |
+| 7 | Walkthrough, fixes and the `WP-10` PR | G-2 |
+| Later | German and Finnish research (GAP-DE-PRICES, GAP-FI-NEED), then `WP-09` | |
 
-Use the 2D version first to diagnose the narrative. Later observe the same tasks with greybox/3D and counterbalance order where practical; do not attribute learning from the first version entirely to the second. Record participant background, device, language, starting point, time, observed answer, error severity and suggested revision. Do not invent numeric scores where only reviewer impressions were collected.
+`WP-01` (the Node pin) and the laptop handoff (§6) can happen at any time; neither blocks the story.
 
-### Critical misreadings
+## 5. Self-review
 
-Any observed critical misreading requires a targeted rewrite/interaction change and repeat testing before its gate closes:
+The reader is mainly the user (D8), so the user's own checks at `G-1` and `G-2` replace recruited tests. Optionally, walk one colleague through the story and note where they stumble.
 
-- Conceptual arrows or a teaching frequency curve understood as a validated simulation or actual event.
-- “The system needs batteries” understood as a revenue guarantee or project recommendation.
-- Modeled fixed/secured income understood as a verified signed contract.
-- Capital support/grants understood as recurring guaranteed revenue.
-- All displayed services understood as simultaneously stackable at their independent maxima.
-- COD understood as all income routes immediately producing cash.
-- A teaching battery/daylight control understood as changing the live underwriting case.
-- A downside, historical stress count or model-sized debt understood as a probability forecast, guaranteed floor or lender offer.
+For WA, using the story alone:
 
-Retest the changed critical task; use fresh participants where possible to avoid relying only on learned answers. If recruitment or review is incomplete, record the gate as open. Keep the observation log and version of the tested candidate so later changes can be traced to evidence.
+- Can I say why the play is a seven-hour capacity battery bought behind a sponsor?
+- Can I say why the NEM's opposite choice matters?
+- Can I name what would weaken the play, and find the matching Downside input?
+- Does every "What would change it" line name real evidence?
+- Is any sentence a caveat paragraph? If so, cut it.
 
-## 6. Technical and visual acceptance
+For Germany: why a toll, and why congestion is not battery income. For Finland: why two hours with a negotiated floor, and why reserve prices are falling.
 
-### Numeric and model preservation
+Critical misreadings to look for:
 
-Use a case matrix covering WA baseline/downside and supported parameter changes; DE/FI; a Japanese regional transition; an unpriced/withheld market; and saved-case replay. Record market, investor, route, duration, stage, scale, currency/FX, entry/target, financing conventions, model commit and data vintages for each test.
+- Teaching arrows read as measured flows.
+- "The system needs batteries" read as a revenue guarantee.
+- Modelled secured revenue read as a signed contract.
+- A grant read as recurring revenue.
+- Services read as stackable at their individual maxima.
+- Commercial operation read as every income line starting at once.
+- A teaching control read as changing the case.
+- A downside case read as a probability.
 
-Compare the existing originating results with story, home/summary, comparison, Lab, monthly display and export where the same result basis is supported. Check cash-flow dates and signs, per-MW/whole-project scaling, contract coverage/expiry, tax/cost definitions, peak equity, hold/sale/levered return basis, qualification lag, debt service and maturity equity. Report unsupported paths instead of forcing false equality between different models. Follow WP-05 field-specific tolerances and preserve current fixtures.
+Screens to check: 1440, 1280, 768 and 390 CSS pixels wide, in English and Chinese, in each supported theme, with the keyboard only and with reduced motion, plus one real phone.
 
-### Layout, interaction and equivalent modes
+## 6. Laptop handoff checklist
 
-| Area | Required test and evidence |
+Found on this workstation on 30 October 2026. Do not copy `node_modules`, build caches or `.claude/worktrees/`: clone fresh and run `npm ci` on the pinned Node. Keep credentials and marker terms out of this document.
+
+| Item | State on 30 October | Action |
+| --- | --- | --- |
+| Plan pack | On local branch `claude/immersive-plan`: v1.0 is commit `db158b9`, v1.1 is uncommitted; not pushed | Commit v1.1 and push the branch before the move |
+| Unpushed branch | `claude/bess-economics-investment-logic-779d70` has two commits from 30 July and 4 August; `main` later removed that chain's test | Push it as a backup branch, or drop it |
+| Worktrees | 11 under `.claude/worktrees/`. `bess-economics-investment-logic-779d70` still has the prototype files purged on 10 August staged in its index, though its commits are clean. `youthful-dijkstra-f42b23` has small staged edits to `etl.yml` and `governance.md` | Do not copy them. Review the staged edits, then remove the worktrees |
+| Git-ignored material | `local-data/`, `deliverables/`, `.env.local`, `.env.fingrid`, `.vercel/` | Move by encrypted drive or password manager; never by cloud sync or Git |
+| Marker guard | Active here only because `core.hooksPath` is set in this clone's local Git configuration | On the new laptop, restore `local-data/markers.json` and `local-data/fingerprint-key.txt`, run `npm run guard:install` and then `npm run guard:staged`, all before the first commit. Without the markers file, the local bundle scan silently skips |
+| Pre-purge backup | `Downloads\BESS-repo-backup-2026-08-10` holds the full repository history from before the 10 August purge | Encrypted drive only, or keep it offline on the old machine |
+| Claude Code memory and plans | Project rulings live under `~/.claude/projects/<repository path>/memory/`; approved plans under `~/.claude/plans/` | Copy both. The memory folder is named after the repository path, so place the notes under the new path's folder. Do not copy the global `~/.claude/CLAUDE.md` unchanged; its tool paths describe this machine |
+| Rules for other assistants | No `AGENTS.md` in the repository; Codex and ChatGPT cannot see Claude Code memory | Add `AGENTS.md` with the durable rules: check names against the marker set before writing them anywhere, never regenerate fixtures, sign-off before multi-market number changes, conclusion-first copy. No marker terms in it |
+| Runtime | CI and ETL pin Node 20, which is past end of life; local is 26.2; no `.nvmrc` | `WP-01` |
+| Clone location | The repository sits under Downloads, in a path with spaces | Clone to a short path without spaces |
+| Not tied to this machine | GitHub secrets; scheduled Actions (ETL and the weekly digest); no local scheduled tasks | Re-authenticate `gh` and the Vercel CLI only if needed |
+| Recovery | Old machine still holds everything above | Keep it until the new clone passes `npm test`, `npm run build` and the guard check |
+
+### Record at handoff
+
+| Field | Value |
 | --- | --- |
-| Widths | Annotated screenshots at 1440, 1280, 768 and 390 CSS px; portrait/landscape where relevant; actual-phone review |
-| Surfaces | Home entry, market opening/history, noon/evening, cutaway, payment/qualification, delivery and cash-flow/downside |
-| Language/theme | English and Chinese, supported theme preferences, long text/labels, number/currency/date consistency, no clipping or overlapping controls |
-| Navigation | Direct chapter link, refresh, share in fresh browser, previous/next, Back/Forward, research/evidence return and Lab round trip |
-| Case/state | Route, market, region, investor and language changes; compatible/incompatible inputs; stale version, unavailable model and saved-frozen versus live-current case |
-| Accessibility | Keyboard sequence, visible focus and focus return, semantic headings/labels, screen-reader text, touch areas, no color-only meaning, no scroll trap |
-| No graphics | Disable scene capability/request or simulate unsupported graphics; complete all core learning and investment tasks through diagrams/text |
-| Reduced motion | Device setting and manual instant/diagram mode; no forced camera travel, autoplay, hidden text or auto-advancing chapters |
-| Error paths | Slow/offline/failed asset or data request, decode error, context loss, cancellation during initialization and bounded retry |
+| Date | |
+| HEAD SHA on the old and new machines | |
+| Node and npm versions | |
+| Tests passed on the new machine | |
+| New hardware: CPU, GPU, driver | |
+| Open items and next gate | |
 
-The initial device matrix should include the current computer, the new computer after inventory, and a physical midrange phone. Existing automated coverage is Chromium desktop/mobile viewport coverage, not proof of every mobile browser. Specify exact versions during execution. Include real Android Chrome and iOS Safari diagram/navigation smoke checks where available; qualify or withhold unvalidated 3D browser support instead of declaring universal compatibility.
+### Next-session brief
 
-### Long switching and performance
+> Read `docs/immersive-experience-plan/README.md` (v1.1) and `AGENTS.md`. Check `git status` and preserve existing changes. Take the next unmet gate: source the WA hinge claims, then revise the script for `G-1`. Keep teaching state out of the case, bind every figure, and never regenerate fixtures. Return the result, the test evidence and the next gate. Do not publish unless asked.
 
-After warm-up, run at least **100 mixed transitions over roughly 20-30 minutes**: market/chapter/locale/investor changes, story/research/Lab navigation, diagram/3D toggles, resize, background/resume, load failure and route exit during a pending load. Sample after each block and after idle/teardown.
+## 7. Documentation checks
 
-Pass conditions: no wrong-market scene or case, unhandled error, increasing canvas count, duplicate active animation owner, leaked observer/listener/timer scope, or continually growing retained resource inventory beyond the declared bounded cache. After leaving 3D, active scene counters return to zero and shared allocations return to their defined warm baseline. Compare heap trends over repeated blocks, allowing documented browser/GC variation; a persistent upward trend requires investigation, not a fabricated precise universal memory threshold.
-
-Measure cold transfer, first scene interaction, decoding, frame-time distributions and thermal behavior against [the single engineering budget table](engineering-work-packages.md#5-asset-and-performance-budgets). Store hardware/browser/network/power conditions and raw evidence. New-computer success alone does not satisfy mobile or fallback acceptance. Lab measurements support a release decision; field p75 remains a post-release measurement when enough real traffic exists.
-
-## 7. New-computer handoff checklist
-
-Do not migrate `node_modules`, Vite/build caches or browser caches as the way to reproduce the project. Recreate dependencies from the committed lockfile on the recorded runtime. Do not put credentials in this handoff or documentation. Restricted/local material needs a separate approved transfer location and handling process, not public assets or a convenience Git commit.
-
-| Category | Handoff record and verification |
-| --- | --- |
-| Git | Repository URL, branch, HEAD SHA, upstream, last reviewed base and related PRs; inventory uncommitted/untracked work; preserve it before any checkout/synchronization |
-| Commit checkpoint | In a later authorized implementation task, use a reviewable checkpoint branch/commit or an explicit patch/backup for unfinished work. This documentation task makes no commit/push |
-| Documentation | This index/version, research/shot/evidence/rights registers, decision log, latest review date and next unmet gate |
-| Assets | Manifest, original/derived file relationships, hashes where useful, permitted use/attribution, cleared versus unresolved rights and public versus restricted storage |
-| Environment | Exact OS, Node/npm, lockfile hash, browser/Playwright versions and required external tools; current versus chosen target-runtime test outcomes |
-| New hardware | Confirm full CPU/GPU, memory/shared graphics configuration, graphics driver, display scaling/resolution and power settings; record actual values rather than the earlier hypothesis |
-| Local-only material | Inventory and separately transfer authorized untracked research or confidential payloads; verify ignored-file status and references without listing confidential content in a public handoff |
-| Credentials | Re-establish access through approved sign-in/secret mechanisms; record access checked yes/no only. No token strings, environment-file contents or secret exports in the pack |
-| Preview/release separation | Verify local public preview, any isolated preview project/URL and production identity. Do not infer the new machine is safe to publish because a CLI can authenticate |
-| Tests | Last tested SHA/vintage, commands, pass/fail/skip details, scan scope, screenshots, understanding tests, performance and lifecycle evidence |
-| Known issues | Severity, reproducible steps, affected scope, temporary treatment and gate; include unresolved baseline/model differences |
-| Next action | One bounded work package with exact inputs, expected output, validation and stop/rollback conditions |
-| Recovery | Keep the old machine/workspace available until the new clean checkout reproduces the needed baseline and local-only references are verified |
-
-### Handoff record template
-
-| Field | Value to fill at handoff |
-| --- | --- |
-| Record date / owner | Pending |
-| Source and destination workspace | Pending, with restricted paths recorded privately if required |
-| Branch / HEAD / upstream | Pending |
-| Dirty/untracked-work preservation | Pending; no content discarded |
-| Pack and content versions | Pending |
-| Runtime / npm / lock hash | Pending |
-| Hardware / browser matrix | Pending |
-| Public asset manifest / rights | Pending |
-| Local-only material transferred | Pending; access/scope confirmed separately |
-| Credential access checked | Yes/no only; no values |
-| Latest tests and evidence | Pending; exact SHA and data vintage |
-| Open issues / next gate | Pending |
-| Next work package and expected result | Pending |
-| Recovery checkpoint | Pending |
-
-### Suggested next-session brief
-
-> Read the immersive-experience-plan index and applicable repository rules. Inspect the current Git status and preserve existing changes. Confirm the new baseline against the recorded commit and data vintages. Execute only the next authorized work package, beginning with WP-00/01 if no reproducible baseline exists. Keep teaching state separate from investment state. Preserve existing model checks and do not regenerate fixtures or data to hide a difference. Return a concrete reviewable result, test evidence, remaining gaps and the next unmet gate. Do not publish unless the later task explicitly includes publication.
-
-## 8. Documentation delivery checks
-
-This pack's delivery checks are distinct from future product acceptance: English text and filenames; eight linked documents with one specification owner per topic; actual repository paths; internal relative links/anchors; stable chapter/shot/package/gate IDs; explicit draft versus verified labels; preservation of the original plan; and no changes outside the new documentation folder by this task.
-
-Application tests, understanding studies, high-fidelity designs, 3D assets, device benchmarks and production verification remain future work. Record their results only after execution, on the exact candidate and evidence vintage tested.
+These checks cover the planning pack only; product acceptance is in §3 and §5. The results for v1.1 are recorded in [the master plan](README.md#9-documentation-checks).

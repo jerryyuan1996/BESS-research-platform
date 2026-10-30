@@ -1,12 +1,12 @@
 # Evidence and Content Specification
 
-Pack: BESS-IX-2026-10-30, version 1.0  
-Status: proposed authoring and validation contract; no executable schema added  
+Pack: BESS-IX-2026-10-30, version 1.1  
+Status: authoring and validation contract, revised in v1.1 (reader-facing marker, call anchor, bound fields); no executable schema added  
 Navigation: [Master plan](README.md) | [Source register](source-register.md) | [Market narratives](market-narratives.md) | [WA storyboard](western-australia-storyboard.md)
 
 ## 1. Keep evidence dimensions separate
 
-A plausible story, a current price series, an eligible technology and a signed contract answer different questions. Do not collapse them into a single green badge.
+A plausible story, a current price series, an eligible technology and a signed contract answer different questions. Keep these dimensions separate in authoring records. Readers never see them; they see one marker derived from them (below).
 
 | Dimension | Allowed working values | Meaning |
 | --- | --- | --- |
@@ -21,17 +21,29 @@ Revenue statuses are evidence descriptions, not an automatic ladder to bankabili
 
 Use explicit labels and line/pattern differences as well as color. An official forecast should retain its scenario name and forecast origin even when its horizon date later passes. A forecast becomes an observed outcome only when a separate observation is obtained.
 
+### Reader-facing marker
+
+Each shot shows one marker and one line, as the 16 October ruling requires. The dimensions above decide which marker applies; they never appear on the page.
+
+| Marker | When it applies | Example |
+| --- | --- | --- |
+| Strong | The central claim rests on a primary document or observed data that is current at check, and the user has reviewed it | `wa-04` once the certification clauses are extracted |
+| Fair | The mechanism is sourced, but a locator, dataset or review is still pending, or the claim rests on the platform's own model | `wa-08`, whose duration comes from the platform's design-fit result |
+| Thin | A research hypothesis, a scenario, or a hinge claim not yet sourced | `wa-03` until CL-WA-06 is sourced |
+
+The "What would change it" line names the evidence that would move the marker, for example "an AEMO locator for the obligation duration would make this Fair". It replaces boundary text. A claim blocked by rights, confidentiality or a contradiction is withheld, not marked Thin. The Authoring check row on each shot is for writers and reviewers and never becomes page copy.
+
 ## 2. Source collection and research workflow
 
 1. Read the market's current repository research, sources, governance records and model limitations. Reuse relevant work without treating its age or existing label as proof of current accuracy.
-2. Write one central question and a candidate causal chain. List what would falsify it, including an alternative explanation or competing resource.
+2. Start from the market's published thesis and call in the briefing. Write the causal chain that leads to them and list what would falsify it, including an alternative explanation or competing resource.
 3. Collect primary system-operator, regulator, government, network and procurement sources. Use a secondary source as a discovery aid or explicit interpretation, not an unmarked substitute for governing rules.
 4. Build 4-6 historical nodes: **constraint at the time -> choice -> inherited asset or institution -> present effect**. Record support for both the event and the causal interpretation; they may require different evidence.
 5. Separate historical sources, current observations, current rules, official plans and analyst scenarios into distinct records. Mark the timeline boundary before the first future item.
 6. Map every proposed shot to claims, sources, a diagram or chart, investment meaning, and a likely misreading. Exact financial labels bind to a result field rather than a prose constant.
-7. Review electricity mechanics and investment/payment interpretation separately. Where only one human reviewer is available, use two explicit passes and record that review capacity is limited.
+7. The user reviews electricity mechanics and investment meaning in two separate passes, then signs off the script.
 8. Clear asset rights and publication scope, then approve copy for implementation. Unresolved material is withheld or replaced with a qualitative explanation that its evidence supports.
-9. Translate the approved meaning into both site languages, test comprehension, and record changes. A translation that changes an obligation returns to mechanism review.
+9. Translate the approved meaning into both site languages; the user checks both at sign-off. A translation that changes an obligation returns to mechanism review.
 
 Use the official [source register](source-register.md) as the initial collection index. The remaining markets' named source owners are research targets, not a completed evidence pack.
 
@@ -82,7 +94,8 @@ Do not create a new dispatch or investment model inside a scene. If a desired ex
 | Shot | Claim IDs | Source IDs and locators | Data/chart/calculation IDs | Scene meaning | Financial binding | Misreading control | Review disposition |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | wa-05 | CL-WA-02 plus pending daily-trace claim | SRC-WA-02, p. 1; daily dataset pending | Chart-WA-DAY, pending | Illustrative rooftop contribution and operational demand | None | No actual-day scale until data reviewed | Proposed; quantitative chart blocked |
-| wa-13 | Existing model-definition claims to register | REPO-05/06; applicable model-method records | Existing cash-flow/result fields | Auditable finance rather than scene volume | Current-case adapter, WP-05 | Model-fixed revenue is not a signed contract | Binding design pending |
+| wa-00 | Play card fields | Briefing model (REPO-12) | None | The conclusion, first | Existing play card component | Call and figures never restated in prose | Uses an existing component |
+| wa-06 | CL-WA-07 plus the pending daily trace | SRC-WA-05/07 clauses; daily dataset pending | Chart-WA-EVENING (signature chart), pending | Why the play is seven hours | Play duration from the briefing | No guaranteed evening premium | Blocked until GAP-WA-RCM and GAP-WA-DAY close |
 
 Traceability must also work in reverse: **source -> affected claims -> historical nodes -> shots -> 2D evidence -> published labels**. A superseded source should produce a finite review queue, not a manual search through prose.
 
@@ -90,7 +103,8 @@ Traceability must also work in reverse: **source -> affected claims -> historica
 
 | Asset ID | Purpose / shots | Creator / original URL | Licence / proof / attribution | Geography or engineering precision | Public scope | Size / decoded estimate | Fallback / owner / status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ASSET-GRID-BASE | Grid explanation; selected shots | To be selected | Rights pending | Simplified topology, not load-flow geometry | Withheld until cleared | To measure | SVG diagram; Codex/user review |
+| ASSET-SVG-KIT | Isometric symbol kit for every scene | Drawn in-house for this project | Own work; no third-party licence | Generic symbols, not site or engineering geometry | Public | Target under 60 KiB uncompressed | Plain diagrams; user review |
+| ASSET-SWIS-BOUNDARY | `wa-01` boundary | To be selected | Licence pending | Approximate boundary, labelled as such | Withheld until cleared | To measure | Schematic outline; user review |
 
 Include terrain, boundary data, map tiles, reference photos, fonts, textures, station models, icons, posters and audio. Record modified/derived status, attribution placement, distribution rights and any share-alike conditions. Public visibility does not imply permission to redistribute a model or image. AI-generated assets still need generation provenance and review for misleading equipment/geography; do not invent a third-party licence for them.
 
@@ -100,6 +114,9 @@ Include terrain, boundary data, map tiles, reference photos, fonts, textures, st
 | --- | --- | --- | --- | --- | --- | --- |
 | GAP-WA-DAY | Auditable representative daily trace not yet selected | wa-05/06/08 | Blocks quantitative labels | Qualitative schematic with explicit teaching label | Research: select period, rights and method | Quantitative scene publication |
 | GAP-FI-PRODUCT | Product-specific technical and commercial clauses not yet extracted | Finnish payment/qualification script | Blocks route-specific obligations | Product purposes only | Research: inspect governing terms | Finnish complete story |
+| GAP-WA-RCM | Obligation duration and intervals for storage in the capacity years the play depends on | `wa-06`, `wa-08`, `wa-14` | Blocks the signature chart's window | Qualitative evening window tagged Example | Research: extract the effective WEM rule and procedure clauses | WA quantitative publication |
+| GAP-DE-PRICES | No German day-ahead series is registered; among Germany and Finland only `fi-day-ahead` uses the ENTSO-E connector | German signature chart | Blocks the spread band | Qualitative band tagged Example | Register the DE-LU day-ahead series through the existing ENTSO-E connector | German story |
+| GAP-FI-NEED | Fast-reserve need and connected-storage volumes over time not yet sourced | Finnish signature chart | Blocks the crossing chart | Qualitative chart tagged Example | Research: identify Fingrid series or publications | Finnish story |
 
 Resolve conflicting official sources by version, effective date and scope. Record the disagreement and disposition. Do not average incompatible definitions or silently choose the most attractive investment implication.
 
@@ -121,7 +138,7 @@ Resolve conflicting official sources by version, effective date and scope. Recor
 | Precision | Round only at presentation; use tabular numbers, visible units and bounded chart axes. Unknown values use a labelled gap. |
 | Numeric lineage | Each published financial label identifies result type/field, case fingerprint, model commit, data vintage and formatting convention. |
 
-The first teaching battery is a unit example rather than the current investment case. Do not let its nominal size or SOC sequence overwrite the market's modeled duration, route or economics.
+The teaching battery uses a 100 MW teaching unit and the play's duration, read from the briefing. It illustrates the case and never changes it.
 
 ## 5. Proposed story content contract
 
@@ -130,19 +147,20 @@ The contract is a future structured interface, not a module introduced by this d
 | Group | Required fields and invariants |
 | --- | --- |
 | Identity | `storySchemaVersion`, `contentVersion`, `marketId`, `allocationId`, `systemBoundary`, `researchDashboardId`, `supportedLocales`, reviewer status |
-| Thesis | One market distinction; historical cause; dominant tension; service; payment pathway; value-weakening condition; next diligence question |
+| Call anchor | `playRef` (for example `wa-cap-7h`) and the briefing fields the opening card reads; `reviewedAgainst`, the call and thesis version the story was signed off against, so a re-grade flags the story for review |
+| Thesis | Reference to the briefing thesis it explains; market distinction; historical cause; dominant tension; service; payment pathway; value-weakening condition; next diligence question |
 | Chapters | Six stable IDs in agreed order; explicit unavailable sections if research is incomplete; chapters independently addressable |
 | Historical nodes | 4-6 IDs, dates or bounded periods, constraint, choice, inheritance, present implication, fact/inference classification, source/claim IDs |
 | Shot | Stable ID, chapter, user question, short copy, objects/camera, control, feedback, evidence, investment meaning, warning boundary and mobile/2D equivalent |
 | Time and truth | Statement type, source effective date, observation window, scenario name and forecast origin; no future infrastructure styled as observed fact |
 | Evidence | Claim and source references, exact locators, calculation/data IDs, freshness, permission status and review disposition |
 | Payment | Service, buyer/settlement chain, eligibility, award/contract evidence, performance obligations, duration, deductions and termination/expiry conditions |
-| Result binding | Existing adapter/field references and prerequisites; unavailable-state copy; no pasted forecast returns or model execution in content files |
-| Scene | Shared renderer key, approved asset IDs, labelled precision, layout anchors, teaching presets, accessibility description and fallback |
+| Result binding | Only fields that the existing play card and market sections already read; `‹bound›` tokens in copy resolve to them; unavailable-state copy; no new adapter, typed figures or model execution in content files |
+| Scene | Symbol-kit IDs, isometric layout anchors, labelled precision, teaching presets, text labels from locale strings and an accessibility description |
 | Localization | Meaning-equivalent English/Chinese strings, translation status, localized labels/units, retained original source titles |
-| Validation | Every reference resolves; chapters/shots unique; required equivalents present; public assets cleared; no unreviewed quantitative claim marked approved |
+| Validation | Every reference and `‹bound›` token resolves; chapters and shots unique; one marker per shot; public assets cleared; no unreviewed quantitative claim marked approved; `reviewedAgainst` matches the current call, or the story is flagged |
 
-The current investment case and temporary teaching state are separate interfaces, defined in [the state work package](engineering-work-packages.md#wp-04-route-navigation-and-state-restoration). Market content must not import a heavy renderer or confidential document. Story loading must remain lazy and must not pull all market narratives into the home entry bundle.
+The story holds no investment-case state; teaching state stays local, as defined in [the state work package](engineering-work-packages.md#wp-04-route-navigation-and-state-restoration). Market content must not import a heavy renderer or confidential document. Story loading must remain lazy and must not pull all market narratives into the home entry bundle.
 
 ## 6. Worked interpretation boundaries
 
@@ -167,6 +185,7 @@ Create separate records for Capacity Market and MACSE terms, relevant auction vi
 | Official annual plan | New publication or corrected file | Preserve prior vintage; compare changed scenarios; update scenario scenes without rewriting history |
 | Historical research correction | Better primary evidence or changed interpretation | Retain revision history; update historical node and its source-to-shot links |
 | Model or FX revision | Approved model commit/data vintage | Reconcile displayed results; distinguish live-current and saved-frozen case; do not silently reprice a shared saved case |
+| Call, play or thesis change | A re-grade, new play or edited thesis in the briefing | The play card updates itself; the story is flagged through `reviewedAgainst`; the user re-signs the narrative |
 | Translation or asset change | Meaning, rights, attribution or geometry changes | Repeat the relevant content, legal-use, layout or precision review |
 
 Use the existing dataset registry and governance pipeline for automated observed data. This plan does not grant automation authority to edit analyst conclusions, story claims, contracts, model assumptions or rights records. If evidence becomes stale or inaccessible, keep the last valid vintage with its date or withhold the affected claim; do not refresh its date merely because the page was viewed again.
@@ -175,7 +194,7 @@ Use the existing dataset registry and governance pipeline for automated observed
 
 The existing [data policy](../data-policy.md) applies to source metadata, file names, screenshots, asset textures, comments, exports, source maps, URLs and embedded model values as well as visible copy. Everything shipped to a browser is public. An unlinked or feature-gated frontend asset is still downloadable.
 
-Keep restricted project evidence outside public source and asset trees. Public evidence drawers may describe the missing evidence category without naming a confidential project, counterparty, address or term. Do not embed an NDA design drawing into a station model or texture. Preview builds must use public/sanitized inputs; do not share a development server that can expose the existing local confidential layer.
+Keep restricted project evidence outside public source and asset trees. Check every project name against `local-data/markers.json` before writing it into a tracked file, commit message, PR body or branch name. Public evidence drawers may describe the missing evidence category without naming a confidential project, counterparty, address or term. Do not embed an NDA design drawing into a station model or texture. Preview builds must use public/sanitized inputs; do not share a development server that can expose the existing local confidential layer.
 
 Credentials belong in the approved credential/secret mechanism, not registers, handoff documents, screenshots, command examples with real values, Git or public assets. Migration records should state whether access has been re-established without containing credential values.
 
