@@ -1,0 +1,3701 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "fi-fcr-n",
+  "marketId": "fi",
+  "title": [
+    "Finland FCR-N reserve price, hourly",
+    "芬兰FCR-N备用小时价格"
+  ],
+  "authority": "observed",
+  "source": {
+    "name": "Fingrid open data",
+    "url": "https://data.fingrid.fi/",
+    "licence": "CC BY 4.0",
+    "attribution": "Source: Fingrid open data (CC BY 4.0)"
+  },
+  "fetchedAt": "2026-10-30T06:20:09.109Z",
+  "coverage": {
+    "from": "2025-10-30T07:00:00.000Z",
+    "to": "2026-10-30T22:00:00.000Z",
+    "resolution": "PT60M",
+    "points": 8776
+  },
+  "units": {
+    "price": "EUR/MW/h"
+  },
+  "notes": [
+    "Fingrid open data, dataset 317: FCR-N, hourly market price. CC BY 4.0."
+  ],
+  "refreshHours": 12,
+  "staleAfterHours": 72,
+  "derived": null,
+  "arbitrage": null,
+  "daily": [
+    {
+      "d": "2025-10-30",
+      "n": 17,
+      "mean": 15.58,
+      "min": 10.55,
+      "max": 26.5,
+      "spread": 15.58,
+      "charge": null,
+      "discharge": 15.58
+    },
+    {
+      "d": "2025-10-31",
+      "n": 24,
+      "mean": 14.71,
+      "min": 11.5,
+      "max": 17.3,
+      "spread": 14.71,
+      "charge": null,
+      "discharge": 14.71
+    },
+    {
+      "d": "2025-11-01",
+      "n": 24,
+      "mean": 18.47,
+      "min": 12.29,
+      "max": 38.9,
+      "spread": 18.47,
+      "charge": null,
+      "discharge": 18.47
+    },
+    {
+      "d": "2025-11-02",
+      "n": 24,
+      "mean": 9.99,
+      "min": 9.22,
+      "max": 10.55,
+      "spread": 9.99,
+      "charge": null,
+      "discharge": 9.99
+    },
+    {
+      "d": "2025-11-03",
+      "n": 24,
+      "mean": 11.05,
+      "min": 9.25,
+      "max": 13.87,
+      "spread": 11.05,
+      "charge": null,
+      "discharge": 11.05
+    },
+    {
+      "d": "2025-11-04",
+      "n": 24,
+      "mean": 9.94,
+      "min": 9.4,
+      "max": 11.01,
+      "spread": 9.94,
+      "charge": null,
+      "discharge": 9.94
+    },
+    {
+      "d": "2025-11-05",
+      "n": 24,
+      "mean": 13.64,
+      "min": 9.82,
+      "max": 17,
+      "spread": 13.64,
+      "charge": null,
+      "discharge": 13.64
+    },
+    {
+      "d": "2025-11-06",
+      "n": 24,
+      "mean": 10.48,
+      "min": 9.51,
+      "max": 11.89,
+      "spread": 10.48,
+      "charge": null,
+      "discharge": 10.48
+    },
+    {
+      "d": "2025-11-07",
+      "n": 24,
+      "mean": 13.1,
+      "min": 7.11,
+      "max": 19,
+      "spread": 13.1,
+      "charge": null,
+      "discharge": 13.1
+    },
+    {
+      "d": "2025-11-08",
+      "n": 24,
+      "mean": 7.59,
+      "min": 6.31,
+      "max": 9.65,
+      "spread": 7.59,
+      "charge": null,
+      "discharge": 7.59
+    },
+    {
+      "d": "2025-11-09",
+      "n": 24,
+      "mean": 7.79,
+      "min": 7.01,
+      "max": 8.34,
+      "spread": 7.79,
+      "charge": null,
+      "discharge": 7.79
+    },
+    {
+      "d": "2025-11-10",
+      "n": 24,
+      "mean": 8.5,
+      "min": 6.98,
+      "max": 8.99,
+      "spread": 8.5,
+      "charge": null,
+      "discharge": 8.5
+    },
+    {
+      "d": "2025-11-11",
+      "n": 24,
+      "mean": 8.17,
+      "min": 7.5,
+      "max": 8.59,
+      "spread": 8.17,
+      "charge": null,
+      "discharge": 8.17
+    },
+    {
+      "d": "2025-11-12",
+      "n": 24,
+      "mean": 8.24,
+      "min": 7.91,
+      "max": 9.01,
+      "spread": 8.24,
+      "charge": null,
+      "discharge": 8.24
+    },
+    {
+      "d": "2025-11-13",
+      "n": 24,
+      "mean": 7.77,
+      "min": 7.1,
+      "max": 8.82,
+      "spread": 7.77,
+      "charge": null,
+      "discharge": 7.77
+    },
+    {
+      "d": "2025-11-14",
+      "n": 24,
+      "mean": 7.06,
+      "min": 6.7,
+      "max": 7.49,
+      "spread": 7.06,
+      "charge": null,
+      "discharge": 7.06
+    },
+    {
+      "d": "2025-11-15",
+      "n": 24,
+      "mean": 7.12,
+      "min": 6.97,
+      "max": 7.93,
+      "spread": 7.12,
+      "charge": null,
+      "discharge": 7.12
+    },
+    {
+      "d": "2025-11-16",
+      "n": 24,
+      "mean": 7.38,
+      "min": 7.08,
+      "max": 8,
+      "spread": 7.38,
+      "charge": null,
+      "discharge": 7.38
+    },
+    {
+      "d": "2025-11-17",
+      "n": 24,
+      "mean": 7.96,
+      "min": 7.08,
+      "max": 8.9,
+      "spread": 7.96,
+      "charge": null,
+      "discharge": 7.96
+    },
+    {
+      "d": "2025-11-18",
+      "n": 24,
+      "mean": 9.04,
+      "min": 7.4,
+      "max": 17,
+      "spread": 9.04,
+      "charge": null,
+      "discharge": 9.04
+    },
+    {
+      "d": "2025-11-19",
+      "n": 24,
+      "mean": 8.86,
+      "min": 7.08,
+      "max": 17,
+      "spread": 8.86,
+      "charge": null,
+      "discharge": 8.86
+    },
+    {
+      "d": "2025-11-20",
+      "n": 24,
+      "mean": 8.94,
+      "min": 7.08,
+      "max": 19,
+      "spread": 8.94,
+      "charge": null,
+      "discharge": 8.94
+    },
+    {
+      "d": "2025-11-21",
+      "n": 24,
+      "mean": 16.27,
+      "min": 7.56,
+      "max": 62.7,
+      "spread": 16.27,
+      "charge": null,
+      "discharge": 16.27
+    },
+    {
+      "d": "2025-11-22",
+      "n": 24,
+      "mean": 7.39,
+      "min": 7.16,
+      "max": 8.37,
+      "spread": 7.39,
+      "charge": null,
+      "discharge": 7.39
+    },
+    {
+      "d": "2025-11-23",
+      "n": 24,
+      "mean": 7.52,
+      "min": 7.16,
+      "max": 9.59,
+      "spread": 7.52,
+      "charge": null,
+      "discharge": 7.52
+    },
+    {
+      "d": "2025-11-24",
+      "n": 24,
+      "mean": 9.1,
+      "min": 7.3,
+      "max": 17,
+      "spread": 9.1,
+      "charge": null,
+      "discharge": 9.1
+    },
+    {
+      "d": "2025-11-25",
+      "n": 24,
+      "mean": 8.63,
+      "min": 7.16,
+      "max": 19,
+      "spread": 8.63,
+      "charge": null,
+      "discharge": 8.63
+    },
+    {
+      "d": "2025-11-26",
+      "n": 24,
+      "mean": 7.64,
+      "min": 6.39,
+      "max": 8.98,
+      "spread": 7.64,
+      "charge": null,
+      "discharge": 7.64
+    },
+    {
+      "d": "2025-11-27",
+      "n": 24,
+      "mean": 6.76,
+      "min": 6.15,
+      "max": 7.08,
+      "spread": 6.76,
+      "charge": null,
+      "discharge": 6.76
+    },
+    {
+      "d": "2025-11-28",
+      "n": 24,
+      "mean": 6.13,
+      "min": 5.99,
+      "max": 6.56,
+      "spread": 6.13,
+      "charge": null,
+      "discharge": 6.13
+    },
+    {
+      "d": "2025-11-29",
+      "n": 24,
+      "mean": 5.89,
+      "min": 5.47,
+      "max": 6.05,
+      "spread": 5.89,
+      "charge": null,
+      "discharge": 5.89
+    },
+    {
+      "d": "2025-11-30",
+      "n": 24,
+      "mean": 5.81,
+      "min": 5.47,
+      "max": 6.14,
+      "spread": 5.81,
+      "charge": null,
+      "discharge": 5.81
+    },
+    {
+      "d": "2025-12-01",
+      "n": 24,
+      "mean": 6.2,
+      "min": 5.8,
+      "max": 6.52,
+      "spread": 6.2,
+      "charge": null,
+      "discharge": 6.2
+    },
+    {
+      "d": "2025-12-02",
+      "n": 24,
+      "mean": 6.23,
+      "min": 5.81,
+      "max": 6.98,
+      "spread": 6.23,
+      "charge": null,
+      "discharge": 6.23
+    },
+    {
+      "d": "2025-12-03",
+      "n": 24,
+      "mean": 6.16,
+      "min": 5.86,
+      "max": 6.52,
+      "spread": 6.16,
+      "charge": null,
+      "discharge": 6.16
+    },
+    {
+      "d": "2025-12-04",
+      "n": 24,
+      "mean": 6.63,
+      "min": 5.97,
+      "max": 7.18,
+      "spread": 6.63,
+      "charge": null,
+      "discharge": 6.63
+    },
+    {
+      "d": "2025-12-05",
+      "n": 24,
+      "mean": 8.06,
+      "min": 5.73,
+      "max": 15.5,
+      "spread": 8.06,
+      "charge": null,
+      "discharge": 8.06
+    },
+    {
+      "d": "2025-12-06",
+      "n": 24,
+      "mean": 5.58,
+      "min": 5.26,
+      "max": 6.2,
+      "spread": 5.59,
+      "charge": null,
+      "discharge": 5.59
+    },
+    {
+      "d": "2025-12-07",
+      "n": 24,
+      "mean": 6.22,
+      "min": 5.39,
+      "max": 6.7,
+      "spread": 6.22,
+      "charge": null,
+      "discharge": 6.22
+    },
+    {
+      "d": "2025-12-08",
+      "n": 24,
+      "mean": 5.81,
+      "min": 5.29,
+      "max": 8,
+      "spread": 5.81,
+      "charge": null,
+      "discharge": 5.81
+    },
+    {
+      "d": "2025-12-09",
+      "n": 24,
+      "mean": 5.77,
+      "min": 5.14,
+      "max": 6.29,
+      "spread": 5.77,
+      "charge": null,
+      "discharge": 5.77
+    },
+    {
+      "d": "2025-12-10",
+      "n": 24,
+      "mean": 5.66,
+      "min": 5.14,
+      "max": 6.5,
+      "spread": 5.66,
+      "charge": null,
+      "discharge": 5.66
+    },
+    {
+      "d": "2025-12-11",
+      "n": 24,
+      "mean": 5.47,
+      "min": 5,
+      "max": 5.99,
+      "spread": 5.47,
+      "charge": null,
+      "discharge": 5.47
+    },
+    {
+      "d": "2025-12-12",
+      "n": 24,
+      "mean": 5.04,
+      "min": 4.89,
+      "max": 5.47,
+      "spread": 5.04,
+      "charge": null,
+      "discharge": 5.04
+    },
+    {
+      "d": "2025-12-13",
+      "n": 24,
+      "mean": 5.04,
+      "min": 4.84,
+      "max": 5.27,
+      "spread": 5.04,
+      "charge": null,
+      "discharge": 5.04
+    },
+    {
+      "d": "2025-12-14",
+      "n": 24,
+      "mean": 4.99,
+      "min": 4.79,
+      "max": 5.27,
+      "spread": 4.99,
+      "charge": null,
+      "discharge": 4.99
+    },
+    {
+      "d": "2025-12-15",
+      "n": 24,
+      "mean": 5.07,
+      "min": 4.79,
+      "max": 5.27,
+      "spread": 5.07,
+      "charge": null,
+      "discharge": 5.07
+    },
+    {
+      "d": "2025-12-16",
+      "n": 24,
+      "mean": 5.24,
+      "min": 5,
+      "max": 5.51,
+      "spread": 5.24,
+      "charge": null,
+      "discharge": 5.24
+    },
+    {
+      "d": "2025-12-17",
+      "n": 24,
+      "mean": 5.11,
+      "min": 4.73,
+      "max": 5.51,
+      "spread": 5.11,
+      "charge": null,
+      "discharge": 5.11
+    },
+    {
+      "d": "2025-12-18",
+      "n": 24,
+      "mean": 4.93,
+      "min": 4.63,
+      "max": 5.2,
+      "spread": 4.93,
+      "charge": null,
+      "discharge": 4.93
+    },
+    {
+      "d": "2025-12-19",
+      "n": 24,
+      "mean": 5.03,
+      "min": 4.53,
+      "max": 5.56,
+      "spread": 5.03,
+      "charge": null,
+      "discharge": 5.03
+    },
+    {
+      "d": "2025-12-20",
+      "n": 24,
+      "mean": 4.96,
+      "min": 4.61,
+      "max": 5.54,
+      "spread": 4.96,
+      "charge": null,
+      "discharge": 4.96
+    },
+    {
+      "d": "2025-12-21",
+      "n": 24,
+      "mean": 4.95,
+      "min": 4.73,
+      "max": 5.11,
+      "spread": 4.95,
+      "charge": null,
+      "discharge": 4.95
+    },
+    {
+      "d": "2025-12-22",
+      "n": 24,
+      "mean": 5.16,
+      "min": 4.96,
+      "max": 5.25,
+      "spread": 5.16,
+      "charge": null,
+      "discharge": 5.16
+    },
+    {
+      "d": "2025-12-23",
+      "n": 24,
+      "mean": 4.97,
+      "min": 4.88,
+      "max": 5.07,
+      "spread": 4.97,
+      "charge": null,
+      "discharge": 4.97
+    },
+    {
+      "d": "2025-12-24",
+      "n": 24,
+      "mean": 4.85,
+      "min": 4.5,
+      "max": 5.29,
+      "spread": 4.85,
+      "charge": null,
+      "discharge": 4.85
+    },
+    {
+      "d": "2025-12-25",
+      "n": 24,
+      "mean": 4.77,
+      "min": 4.5,
+      "max": 5.2,
+      "spread": 4.77,
+      "charge": null,
+      "discharge": 4.77
+    },
+    {
+      "d": "2025-12-26",
+      "n": 24,
+      "mean": 4.81,
+      "min": 4.06,
+      "max": 5.12,
+      "spread": 4.81,
+      "charge": null,
+      "discharge": 4.81
+    },
+    {
+      "d": "2025-12-27",
+      "n": 24,
+      "mean": 5.26,
+      "min": 4.37,
+      "max": 10,
+      "spread": 5.26,
+      "charge": null,
+      "discharge": 5.26
+    },
+    {
+      "d": "2025-12-28",
+      "n": 24,
+      "mean": 4.08,
+      "min": 3.67,
+      "max": 4.46,
+      "spread": 4.08,
+      "charge": null,
+      "discharge": 4.08
+    },
+    {
+      "d": "2025-12-29",
+      "n": 24,
+      "mean": 4.09,
+      "min": 3.67,
+      "max": 5,
+      "spread": 4.09,
+      "charge": null,
+      "discharge": 4.09
+    },
+    {
+      "d": "2025-12-30",
+      "n": 24,
+      "mean": 4.02,
+      "min": 3.61,
+      "max": 4.91,
+      "spread": 4.02,
+      "charge": null,
+      "discharge": 4.02
+    },
+    {
+      "d": "2025-12-31",
+      "n": 24,
+      "mean": 8.19,
+      "min": 4.16,
+      "max": 26.4,
+      "spread": 8.19,
+      "charge": null,
+      "discharge": 8.19
+    },
+    {
+      "d": "2026-01-01",
+      "n": 24,
+      "mean": 6.12,
+      "min": 5,
+      "max": 8.23,
+      "spread": 6.12,
+      "charge": null,
+      "discharge": 6.12
+    },
+    {
+      "d": "2026-01-02",
+      "n": 24,
+      "mean": 5.43,
+      "min": 4.85,
+      "max": 8.13,
+      "spread": 5.43,
+      "charge": null,
+      "discharge": 5.43
+    },
+    {
+      "d": "2026-01-03",
+      "n": 24,
+      "mean": 5.57,
+      "min": 5.03,
+      "max": 7,
+      "spread": 5.57,
+      "charge": null,
+      "discharge": 5.57
+    },
+    {
+      "d": "2026-01-04",
+      "n": 24,
+      "mean": 6.48,
+      "min": 5.27,
+      "max": 7.07,
+      "spread": 6.48,
+      "charge": null,
+      "discharge": 6.48
+    },
+    {
+      "d": "2026-01-05",
+      "n": 24,
+      "mean": 20.67,
+      "min": 7.6,
+      "max": 34.32,
+      "spread": 20.67,
+      "charge": null,
+      "discharge": 20.67
+    },
+    {
+      "d": "2026-01-06",
+      "n": 24,
+      "mean": 6.73,
+      "min": 5.4,
+      "max": 10,
+      "spread": 6.73,
+      "charge": null,
+      "discharge": 6.73
+    },
+    {
+      "d": "2026-01-07",
+      "n": 24,
+      "mean": 6.39,
+      "min": 5.2,
+      "max": 8,
+      "spread": 6.39,
+      "charge": null,
+      "discharge": 6.39
+    },
+    {
+      "d": "2026-01-08",
+      "n": 24,
+      "mean": 5.98,
+      "min": 5.2,
+      "max": 7,
+      "spread": 5.98,
+      "charge": null,
+      "discharge": 5.98
+    },
+    {
+      "d": "2026-01-09",
+      "n": 24,
+      "mean": 5.55,
+      "min": 5.2,
+      "max": 6.8,
+      "spread": 5.55,
+      "charge": null,
+      "discharge": 5.55
+    },
+    {
+      "d": "2026-01-10",
+      "n": 24,
+      "mean": 5.48,
+      "min": 5.2,
+      "max": 7,
+      "spread": 5.48,
+      "charge": null,
+      "discharge": 5.48
+    },
+    {
+      "d": "2026-01-11",
+      "n": 24,
+      "mean": 5.22,
+      "min": 5,
+      "max": 5.8,
+      "spread": 5.22,
+      "charge": null,
+      "discharge": 5.22
+    },
+    {
+      "d": "2026-01-12",
+      "n": 24,
+      "mean": 5.85,
+      "min": 5.13,
+      "max": 9,
+      "spread": 5.85,
+      "charge": null,
+      "discharge": 5.85
+    },
+    {
+      "d": "2026-01-13",
+      "n": 24,
+      "mean": 5.95,
+      "min": 5.13,
+      "max": 15,
+      "spread": 5.95,
+      "charge": null,
+      "discharge": 5.95
+    },
+    {
+      "d": "2026-01-14",
+      "n": 24,
+      "mean": 5.57,
+      "min": 5.11,
+      "max": 5.8,
+      "spread": 5.57,
+      "charge": null,
+      "discharge": 5.57
+    },
+    {
+      "d": "2026-01-15",
+      "n": 24,
+      "mean": 5.41,
+      "min": 5.15,
+      "max": 5.84,
+      "spread": 5.41,
+      "charge": null,
+      "discharge": 5.41
+    },
+    {
+      "d": "2026-01-16",
+      "n": 24,
+      "mean": 5.38,
+      "min": 4.73,
+      "max": 6.3,
+      "spread": 5.38,
+      "charge": null,
+      "discharge": 5.38
+    },
+    {
+      "d": "2026-01-17",
+      "n": 24,
+      "mean": 5.14,
+      "min": 4.9,
+      "max": 5.69,
+      "spread": 5.14,
+      "charge": null,
+      "discharge": 5.14
+    },
+    {
+      "d": "2026-01-18",
+      "n": 24,
+      "mean": 5.11,
+      "min": 4.96,
+      "max": 5.52,
+      "spread": 5.11,
+      "charge": null,
+      "discharge": 5.11
+    },
+    {
+      "d": "2026-01-19",
+      "n": 24,
+      "mean": 6.33,
+      "min": 4.82,
+      "max": 12,
+      "spread": 6.33,
+      "charge": null,
+      "discharge": 6.33
+    },
+    {
+      "d": "2026-01-20",
+      "n": 24,
+      "mean": 7.55,
+      "min": 5.17,
+      "max": 25,
+      "spread": 7.55,
+      "charge": null,
+      "discharge": 7.55
+    },
+    {
+      "d": "2026-01-21",
+      "n": 24,
+      "mean": 7.2,
+      "min": 5,
+      "max": 15,
+      "spread": 7.2,
+      "charge": null,
+      "discharge": 7.2
+    },
+    {
+      "d": "2026-01-22",
+      "n": 24,
+      "mean": 6.57,
+      "min": 4.96,
+      "max": 17,
+      "spread": 6.57,
+      "charge": null,
+      "discharge": 6.57
+    },
+    {
+      "d": "2026-01-23",
+      "n": 24,
+      "mean": 5.73,
+      "min": 4.96,
+      "max": 11,
+      "spread": 5.73,
+      "charge": null,
+      "discharge": 5.73
+    },
+    {
+      "d": "2026-01-24",
+      "n": 24,
+      "mean": 5.52,
+      "min": 5.08,
+      "max": 7,
+      "spread": 5.52,
+      "charge": null,
+      "discharge": 5.52
+    },
+    {
+      "d": "2026-01-25",
+      "n": 24,
+      "mean": 6.04,
+      "min": 5,
+      "max": 12,
+      "spread": 6.04,
+      "charge": null,
+      "discharge": 6.04
+    },
+    {
+      "d": "2026-01-26",
+      "n": 24,
+      "mean": 7.7,
+      "min": 4.95,
+      "max": 17,
+      "spread": 7.7,
+      "charge": null,
+      "discharge": 7.7
+    },
+    {
+      "d": "2026-01-27",
+      "n": 24,
+      "mean": 7.75,
+      "min": 5,
+      "max": 17.79,
+      "spread": 7.75,
+      "charge": null,
+      "discharge": 7.75
+    },
+    {
+      "d": "2026-01-28",
+      "n": 24,
+      "mean": 7.48,
+      "min": 5.13,
+      "max": 17,
+      "spread": 7.48,
+      "charge": null,
+      "discharge": 7.48
+    },
+    {
+      "d": "2026-01-29",
+      "n": 24,
+      "mean": 6.61,
+      "min": 5,
+      "max": 17,
+      "spread": 6.61,
+      "charge": null,
+      "discharge": 6.61
+    },
+    {
+      "d": "2026-01-30",
+      "n": 24,
+      "mean": 9.86,
+      "min": 5.05,
+      "max": 19,
+      "spread": 9.86,
+      "charge": null,
+      "discharge": 9.86
+    },
+    {
+      "d": "2026-01-31",
+      "n": 24,
+      "mean": 5.19,
+      "min": 4.87,
+      "max": 6,
+      "spread": 5.19,
+      "charge": null,
+      "discharge": 5.19
+    },
+    {
+      "d": "2026-02-01",
+      "n": 24,
+      "mean": 5.1,
+      "min": 4.77,
+      "max": 6,
+      "spread": 5.1,
+      "charge": null,
+      "discharge": 5.1
+    },
+    {
+      "d": "2026-02-02",
+      "n": 24,
+      "mean": 6.37,
+      "min": 5,
+      "max": 18,
+      "spread": 6.37,
+      "charge": null,
+      "discharge": 6.37
+    },
+    {
+      "d": "2026-02-03",
+      "n": 24,
+      "mean": 7.13,
+      "min": 5.1,
+      "max": 21,
+      "spread": 7.13,
+      "charge": null,
+      "discharge": 7.13
+    },
+    {
+      "d": "2026-02-04",
+      "n": 24,
+      "mean": 56.14,
+      "min": 5.34,
+      "max": 124.74,
+      "spread": 56.14,
+      "charge": null,
+      "discharge": 56.14
+    },
+    {
+      "d": "2026-02-05",
+      "n": 24,
+      "mean": 15.36,
+      "min": 5.25,
+      "max": 32.27,
+      "spread": 15.36,
+      "charge": null,
+      "discharge": 15.36
+    },
+    {
+      "d": "2026-02-06",
+      "n": 24,
+      "mean": 10.41,
+      "min": 5.26,
+      "max": 17,
+      "spread": 10.41,
+      "charge": null,
+      "discharge": 10.41
+    },
+    {
+      "d": "2026-02-07",
+      "n": 24,
+      "mean": 9.31,
+      "min": 5.3,
+      "max": 28,
+      "spread": 9.31,
+      "charge": null,
+      "discharge": 9.31
+    },
+    {
+      "d": "2026-02-08",
+      "n": 24,
+      "mean": 7.08,
+      "min": 5.13,
+      "max": 14.59,
+      "spread": 7.08,
+      "charge": null,
+      "discharge": 7.08
+    },
+    {
+      "d": "2026-02-09",
+      "n": 24,
+      "mean": 11.24,
+      "min": 5.31,
+      "max": 20.2,
+      "spread": 11.24,
+      "charge": null,
+      "discharge": 11.24
+    },
+    {
+      "d": "2026-02-10",
+      "n": 24,
+      "mean": 13.23,
+      "min": 5.27,
+      "max": 38.18,
+      "spread": 13.23,
+      "charge": null,
+      "discharge": 13.23
+    },
+    {
+      "d": "2026-02-11",
+      "n": 24,
+      "mean": 8.1,
+      "min": 5,
+      "max": 17,
+      "spread": 8.1,
+      "charge": null,
+      "discharge": 8.1
+    },
+    {
+      "d": "2026-02-12",
+      "n": 24,
+      "mean": 14.99,
+      "min": 8,
+      "max": 21.02,
+      "spread": 14.99,
+      "charge": null,
+      "discharge": 14.99
+    },
+    {
+      "d": "2026-02-13",
+      "n": 24,
+      "mean": 13.4,
+      "min": 6.5,
+      "max": 23.16,
+      "spread": 13.4,
+      "charge": null,
+      "discharge": 13.4
+    },
+    {
+      "d": "2026-02-14",
+      "n": 24,
+      "mean": 5.99,
+      "min": 5.08,
+      "max": 8.27,
+      "spread": 5.99,
+      "charge": null,
+      "discharge": 5.99
+    },
+    {
+      "d": "2026-02-15",
+      "n": 24,
+      "mean": 5.08,
+      "min": 4.84,
+      "max": 5.52,
+      "spread": 5.08,
+      "charge": null,
+      "discharge": 5.08
+    },
+    {
+      "d": "2026-02-16",
+      "n": 24,
+      "mean": 5.35,
+      "min": 4.98,
+      "max": 7.39,
+      "spread": 5.35,
+      "charge": null,
+      "discharge": 5.35
+    },
+    {
+      "d": "2026-02-17",
+      "n": 24,
+      "mean": 8.8,
+      "min": 5.77,
+      "max": 21.44,
+      "spread": 8.8,
+      "charge": null,
+      "discharge": 8.8
+    },
+    {
+      "d": "2026-02-18",
+      "n": 24,
+      "mean": 8.24,
+      "min": 7.1,
+      "max": 12,
+      "spread": 8.24,
+      "charge": null,
+      "discharge": 8.24
+    },
+    {
+      "d": "2026-02-19",
+      "n": 24,
+      "mean": 21.14,
+      "min": 6.54,
+      "max": 73.58,
+      "spread": 21.14,
+      "charge": null,
+      "discharge": 21.14
+    },
+    {
+      "d": "2026-02-20",
+      "n": 24,
+      "mean": 8.32,
+      "min": 6.79,
+      "max": 11.27,
+      "spread": 8.32,
+      "charge": null,
+      "discharge": 8.32
+    },
+    {
+      "d": "2026-02-21",
+      "n": 24,
+      "mean": 7.74,
+      "min": 6.05,
+      "max": 9.04,
+      "spread": 7.74,
+      "charge": null,
+      "discharge": 7.74
+    },
+    {
+      "d": "2026-02-22",
+      "n": 24,
+      "mean": 7.08,
+      "min": 5.84,
+      "max": 8.29,
+      "spread": 7.08,
+      "charge": null,
+      "discharge": 7.08
+    },
+    {
+      "d": "2026-02-23",
+      "n": 24,
+      "mean": 8.69,
+      "min": 6.37,
+      "max": 15.43,
+      "spread": 8.69,
+      "charge": null,
+      "discharge": 8.69
+    },
+    {
+      "d": "2026-02-24",
+      "n": 24,
+      "mean": 15.62,
+      "min": 8,
+      "max": 31.63,
+      "spread": 15.62,
+      "charge": null,
+      "discharge": 15.62
+    },
+    {
+      "d": "2026-02-25",
+      "n": 24,
+      "mean": 10.31,
+      "min": 6.68,
+      "max": 60.6,
+      "spread": 10.31,
+      "charge": null,
+      "discharge": 10.31
+    },
+    {
+      "d": "2026-02-26",
+      "n": 24,
+      "mean": 10.93,
+      "min": 7.35,
+      "max": 24.04,
+      "spread": 10.93,
+      "charge": null,
+      "discharge": 10.93
+    },
+    {
+      "d": "2026-02-27",
+      "n": 24,
+      "mean": 8.63,
+      "min": 7.03,
+      "max": 18,
+      "spread": 8.63,
+      "charge": null,
+      "discharge": 8.63
+    },
+    {
+      "d": "2026-02-28",
+      "n": 24,
+      "mean": 8.29,
+      "min": 7.18,
+      "max": 9.27,
+      "spread": 8.29,
+      "charge": null,
+      "discharge": 8.29
+    },
+    {
+      "d": "2026-03-01",
+      "n": 24,
+      "mean": 8.01,
+      "min": 6.65,
+      "max": 8.93,
+      "spread": 8.01,
+      "charge": null,
+      "discharge": 8.01
+    },
+    {
+      "d": "2026-03-02",
+      "n": 24,
+      "mean": 11.02,
+      "min": 7.29,
+      "max": 18,
+      "spread": 11.02,
+      "charge": null,
+      "discharge": 11.02
+    },
+    {
+      "d": "2026-03-03",
+      "n": 24,
+      "mean": 11.99,
+      "min": 8,
+      "max": 33.5,
+      "spread": 12,
+      "charge": null,
+      "discharge": 12
+    },
+    {
+      "d": "2026-03-04",
+      "n": 24,
+      "mean": 12.4,
+      "min": 8,
+      "max": 22.53,
+      "spread": 12.4,
+      "charge": null,
+      "discharge": 12.4
+    },
+    {
+      "d": "2026-03-05",
+      "n": 24,
+      "mean": 8.85,
+      "min": 8,
+      "max": 11.1,
+      "spread": 8.85,
+      "charge": null,
+      "discharge": 8.85
+    },
+    {
+      "d": "2026-03-06",
+      "n": 24,
+      "mean": 7.96,
+      "min": 6.75,
+      "max": 10,
+      "spread": 7.96,
+      "charge": null,
+      "discharge": 7.96
+    },
+    {
+      "d": "2026-03-07",
+      "n": 24,
+      "mean": 7.37,
+      "min": 6.1,
+      "max": 9.15,
+      "spread": 7.37,
+      "charge": null,
+      "discharge": 7.37
+    },
+    {
+      "d": "2026-03-08",
+      "n": 24,
+      "mean": 8.47,
+      "min": 7.51,
+      "max": 11.5,
+      "spread": 8.47,
+      "charge": null,
+      "discharge": 8.47
+    },
+    {
+      "d": "2026-03-09",
+      "n": 24,
+      "mean": 8.23,
+      "min": 6.37,
+      "max": 11.51,
+      "spread": 8.23,
+      "charge": null,
+      "discharge": 8.23
+    },
+    {
+      "d": "2026-03-10",
+      "n": 24,
+      "mean": 9.42,
+      "min": 7.47,
+      "max": 20.59,
+      "spread": 9.42,
+      "charge": null,
+      "discharge": 9.42
+    },
+    {
+      "d": "2026-03-11",
+      "n": 24,
+      "mean": 11.82,
+      "min": 7.26,
+      "max": 20,
+      "spread": 11.82,
+      "charge": null,
+      "discharge": 11.82
+    },
+    {
+      "d": "2026-03-12",
+      "n": 24,
+      "mean": 9.25,
+      "min": 7.56,
+      "max": 12,
+      "spread": 9.25,
+      "charge": null,
+      "discharge": 9.25
+    },
+    {
+      "d": "2026-03-13",
+      "n": 24,
+      "mean": 9.39,
+      "min": 6.46,
+      "max": 16.5,
+      "spread": 9.39,
+      "charge": null,
+      "discharge": 9.39
+    },
+    {
+      "d": "2026-03-14",
+      "n": 24,
+      "mean": 8.59,
+      "min": 6,
+      "max": 25.3,
+      "spread": 8.59,
+      "charge": null,
+      "discharge": 8.59
+    },
+    {
+      "d": "2026-03-15",
+      "n": 24,
+      "mean": 6.85,
+      "min": 5.78,
+      "max": 8.47,
+      "spread": 6.85,
+      "charge": null,
+      "discharge": 6.85
+    },
+    {
+      "d": "2026-03-16",
+      "n": 24,
+      "mean": 8.53,
+      "min": 6,
+      "max": 19,
+      "spread": 8.53,
+      "charge": null,
+      "discharge": 8.53
+    },
+    {
+      "d": "2026-03-17",
+      "n": 24,
+      "mean": 14.62,
+      "min": 6.67,
+      "max": 95.75,
+      "spread": 14.62,
+      "charge": null,
+      "discharge": 14.62
+    },
+    {
+      "d": "2026-03-18",
+      "n": 24,
+      "mean": 9.1,
+      "min": 6.54,
+      "max": 19,
+      "spread": 9.1,
+      "charge": null,
+      "discharge": 9.1
+    },
+    {
+      "d": "2026-03-19",
+      "n": 24,
+      "mean": 14.27,
+      "min": 7.96,
+      "max": 43.25,
+      "spread": 14.27,
+      "charge": null,
+      "discharge": 14.27
+    },
+    {
+      "d": "2026-03-20",
+      "n": 24,
+      "mean": 8.43,
+      "min": 6.77,
+      "max": 12,
+      "spread": 8.43,
+      "charge": null,
+      "discharge": 8.43
+    },
+    {
+      "d": "2026-03-21",
+      "n": 24,
+      "mean": 7.54,
+      "min": 6.54,
+      "max": 9.62,
+      "spread": 7.54,
+      "charge": null,
+      "discharge": 7.54
+    },
+    {
+      "d": "2026-03-22",
+      "n": 24,
+      "mean": 9.15,
+      "min": 6.04,
+      "max": 17,
+      "spread": 9.15,
+      "charge": null,
+      "discharge": 9.15
+    },
+    {
+      "d": "2026-03-23",
+      "n": 24,
+      "mean": 8.43,
+      "min": 5.79,
+      "max": 10,
+      "spread": 8.43,
+      "charge": null,
+      "discharge": 8.43
+    },
+    {
+      "d": "2026-03-24",
+      "n": 24,
+      "mean": 7.02,
+      "min": 6.03,
+      "max": 9,
+      "spread": 7.02,
+      "charge": null,
+      "discharge": 7.02
+    },
+    {
+      "d": "2026-03-25",
+      "n": 24,
+      "mean": 14.79,
+      "min": 7,
+      "max": 23.72,
+      "spread": 14.79,
+      "charge": null,
+      "discharge": 14.79
+    },
+    {
+      "d": "2026-03-26",
+      "n": 24,
+      "mean": 7.41,
+      "min": 6.33,
+      "max": 18,
+      "spread": 7.41,
+      "charge": null,
+      "discharge": 7.41
+    },
+    {
+      "d": "2026-03-27",
+      "n": 24,
+      "mean": 7.77,
+      "min": 6.44,
+      "max": 9.68,
+      "spread": 7.77,
+      "charge": null,
+      "discharge": 7.77
+    },
+    {
+      "d": "2026-03-28",
+      "n": 24,
+      "mean": 7.05,
+      "min": 6.1,
+      "max": 7.67,
+      "spread": 7.05,
+      "charge": null,
+      "discharge": 7.05
+    },
+    {
+      "d": "2026-03-29",
+      "n": 24,
+      "mean": 6.3,
+      "min": 6,
+      "max": 7,
+      "spread": 6.3,
+      "charge": null,
+      "discharge": 6.3
+    },
+    {
+      "d": "2026-03-30",
+      "n": 24,
+      "mean": 7.33,
+      "min": 6.39,
+      "max": 8.66,
+      "spread": 7.33,
+      "charge": null,
+      "discharge": 7.33
+    },
+    {
+      "d": "2026-03-31",
+      "n": 24,
+      "mean": 14.16,
+      "min": 7.93,
+      "max": 25.05,
+      "spread": 14.16,
+      "charge": null,
+      "discharge": 14.16
+    },
+    {
+      "d": "2026-04-01",
+      "n": 24,
+      "mean": 7.64,
+      "min": 6.3,
+      "max": 10,
+      "spread": 7.64,
+      "charge": null,
+      "discharge": 7.64
+    },
+    {
+      "d": "2026-04-02",
+      "n": 24,
+      "mean": 6.92,
+      "min": 5.55,
+      "max": 8.63,
+      "spread": 6.92,
+      "charge": null,
+      "discharge": 6.92
+    },
+    {
+      "d": "2026-04-03",
+      "n": 24,
+      "mean": 6.49,
+      "min": 5.55,
+      "max": 7.59,
+      "spread": 6.49,
+      "charge": null,
+      "discharge": 6.49
+    },
+    {
+      "d": "2026-04-04",
+      "n": 24,
+      "mean": 6.09,
+      "min": 5.28,
+      "max": 7,
+      "spread": 6.09,
+      "charge": null,
+      "discharge": 6.09
+    },
+    {
+      "d": "2026-04-05",
+      "n": 24,
+      "mean": 5.86,
+      "min": 5.04,
+      "max": 7.4,
+      "spread": 5.86,
+      "charge": null,
+      "discharge": 5.86
+    },
+    {
+      "d": "2026-04-06",
+      "n": 24,
+      "mean": 7.21,
+      "min": 5.67,
+      "max": 9.03,
+      "spread": 7.21,
+      "charge": null,
+      "discharge": 7.21
+    },
+    {
+      "d": "2026-04-07",
+      "n": 24,
+      "mean": 6.34,
+      "min": 5.1,
+      "max": 7.77,
+      "spread": 6.34,
+      "charge": null,
+      "discharge": 6.34
+    },
+    {
+      "d": "2026-04-08",
+      "n": 24,
+      "mean": 6.34,
+      "min": 5,
+      "max": 7.99,
+      "spread": 6.34,
+      "charge": null,
+      "discharge": 6.34
+    },
+    {
+      "d": "2026-04-09",
+      "n": 24,
+      "mean": 6.91,
+      "min": 5.71,
+      "max": 8.9,
+      "spread": 6.91,
+      "charge": null,
+      "discharge": 6.91
+    },
+    {
+      "d": "2026-04-10",
+      "n": 24,
+      "mean": 10.41,
+      "min": 5.81,
+      "max": 57.6,
+      "spread": 10.41,
+      "charge": null,
+      "discharge": 10.41
+    },
+    {
+      "d": "2026-04-11",
+      "n": 24,
+      "mean": 7.05,
+      "min": 6,
+      "max": 16.96,
+      "spread": 7.05,
+      "charge": null,
+      "discharge": 7.05
+    },
+    {
+      "d": "2026-04-12",
+      "n": 24,
+      "mean": 7.3,
+      "min": 6,
+      "max": 9.84,
+      "spread": 7.3,
+      "charge": null,
+      "discharge": 7.3
+    },
+    {
+      "d": "2026-04-13",
+      "n": 24,
+      "mean": 7.53,
+      "min": 6.02,
+      "max": 18,
+      "spread": 7.53,
+      "charge": null,
+      "discharge": 7.53
+    },
+    {
+      "d": "2026-04-14",
+      "n": 24,
+      "mean": 7.48,
+      "min": 5.49,
+      "max": 17,
+      "spread": 7.48,
+      "charge": null,
+      "discharge": 7.48
+    },
+    {
+      "d": "2026-04-15",
+      "n": 24,
+      "mean": 6.52,
+      "min": 5.69,
+      "max": 7.5,
+      "spread": 6.52,
+      "charge": null,
+      "discharge": 6.52
+    },
+    {
+      "d": "2026-04-16",
+      "n": 24,
+      "mean": 6.49,
+      "min": 5.5,
+      "max": 8.17,
+      "spread": 6.49,
+      "charge": null,
+      "discharge": 6.49
+    },
+    {
+      "d": "2026-04-17",
+      "n": 24,
+      "mean": 6.04,
+      "min": 4.94,
+      "max": 8.16,
+      "spread": 6.04,
+      "charge": null,
+      "discharge": 6.04
+    },
+    {
+      "d": "2026-04-18",
+      "n": 24,
+      "mean": 4.61,
+      "min": 4.1,
+      "max": 5.52,
+      "spread": 4.61,
+      "charge": null,
+      "discharge": 4.61
+    },
+    {
+      "d": "2026-04-19",
+      "n": 24,
+      "mean": 5.23,
+      "min": 4.24,
+      "max": 6.46,
+      "spread": 5.23,
+      "charge": null,
+      "discharge": 5.23
+    },
+    {
+      "d": "2026-04-20",
+      "n": 24,
+      "mean": 11.85,
+      "min": 6,
+      "max": 28.5,
+      "spread": 11.85,
+      "charge": null,
+      "discharge": 11.85
+    },
+    {
+      "d": "2026-04-21",
+      "n": 24,
+      "mean": 7.49,
+      "min": 5.29,
+      "max": 26.06,
+      "spread": 7.49,
+      "charge": null,
+      "discharge": 7.49
+    },
+    {
+      "d": "2026-04-22",
+      "n": 24,
+      "mean": 6.53,
+      "min": 5.36,
+      "max": 11,
+      "spread": 6.53,
+      "charge": null,
+      "discharge": 6.53
+    },
+    {
+      "d": "2026-04-23",
+      "n": 24,
+      "mean": 8.34,
+      "min": 6,
+      "max": 18,
+      "spread": 8.34,
+      "charge": null,
+      "discharge": 8.34
+    },
+    {
+      "d": "2026-04-24",
+      "n": 24,
+      "mean": 7.29,
+      "min": 5.2,
+      "max": 24.55,
+      "spread": 7.29,
+      "charge": null,
+      "discharge": 7.29
+    },
+    {
+      "d": "2026-04-25",
+      "n": 24,
+      "mean": 8.67,
+      "min": 5.28,
+      "max": 20,
+      "spread": 8.67,
+      "charge": null,
+      "discharge": 8.67
+    },
+    {
+      "d": "2026-04-26",
+      "n": 24,
+      "mean": 6,
+      "min": 5.64,
+      "max": 6.96,
+      "spread": 6,
+      "charge": null,
+      "discharge": 6
+    },
+    {
+      "d": "2026-04-27",
+      "n": 24,
+      "mean": 7.09,
+      "min": 6,
+      "max": 11.53,
+      "spread": 7.09,
+      "charge": null,
+      "discharge": 7.09
+    },
+    {
+      "d": "2026-04-28",
+      "n": 24,
+      "mean": 6.85,
+      "min": 5.41,
+      "max": 17.69,
+      "spread": 6.85,
+      "charge": null,
+      "discharge": 6.85
+    },
+    {
+      "d": "2026-04-29",
+      "n": 24,
+      "mean": 16.56,
+      "min": 6.9,
+      "max": 30.57,
+      "spread": 16.56,
+      "charge": null,
+      "discharge": 16.56
+    },
+    {
+      "d": "2026-04-30",
+      "n": 24,
+      "mean": 11.74,
+      "min": 6.05,
+      "max": 49.5,
+      "spread": 11.74,
+      "charge": null,
+      "discharge": 11.74
+    },
+    {
+      "d": "2026-05-01",
+      "n": 24,
+      "mean": 5.93,
+      "min": 5,
+      "max": 10,
+      "spread": 5.93,
+      "charge": null,
+      "discharge": 5.93
+    },
+    {
+      "d": "2026-05-02",
+      "n": 24,
+      "mean": 6.98,
+      "min": 5,
+      "max": 12.12,
+      "spread": 6.98,
+      "charge": null,
+      "discharge": 6.98
+    },
+    {
+      "d": "2026-05-03",
+      "n": 24,
+      "mean": 8.73,
+      "min": 5.61,
+      "max": 18.2,
+      "spread": 8.73,
+      "charge": null,
+      "discharge": 8.73
+    },
+    {
+      "d": "2026-05-04",
+      "n": 24,
+      "mean": 9.73,
+      "min": 6.17,
+      "max": 27,
+      "spread": 9.73,
+      "charge": null,
+      "discharge": 9.73
+    },
+    {
+      "d": "2026-05-05",
+      "n": 24,
+      "mean": 5.98,
+      "min": 5.37,
+      "max": 7.12,
+      "spread": 5.98,
+      "charge": null,
+      "discharge": 5.98
+    },
+    {
+      "d": "2026-05-06",
+      "n": 24,
+      "mean": 7.64,
+      "min": 5.4,
+      "max": 23.17,
+      "spread": 7.64,
+      "charge": null,
+      "discharge": 7.64
+    },
+    {
+      "d": "2026-05-07",
+      "n": 24,
+      "mean": 7.7,
+      "min": 5,
+      "max": 17,
+      "spread": 7.7,
+      "charge": null,
+      "discharge": 7.7
+    },
+    {
+      "d": "2026-05-08",
+      "n": 24,
+      "mean": 12.93,
+      "min": 4.83,
+      "max": 41.1,
+      "spread": 12.93,
+      "charge": null,
+      "discharge": 12.93
+    },
+    {
+      "d": "2026-05-09",
+      "n": 24,
+      "mean": 6.75,
+      "min": 5.44,
+      "max": 11.04,
+      "spread": 6.75,
+      "charge": null,
+      "discharge": 6.75
+    },
+    {
+      "d": "2026-05-10",
+      "n": 24,
+      "mean": 6.22,
+      "min": 5.12,
+      "max": 7.2,
+      "spread": 6.22,
+      "charge": null,
+      "discharge": 6.22
+    },
+    {
+      "d": "2026-05-11",
+      "n": 24,
+      "mean": 9.82,
+      "min": 5.37,
+      "max": 27.01,
+      "spread": 9.82,
+      "charge": null,
+      "discharge": 9.82
+    },
+    {
+      "d": "2026-05-12",
+      "n": 24,
+      "mean": 9,
+      "min": 5.42,
+      "max": 33.1,
+      "spread": 9,
+      "charge": null,
+      "discharge": 9
+    },
+    {
+      "d": "2026-05-13",
+      "n": 24,
+      "mean": 6.31,
+      "min": 5,
+      "max": 10,
+      "spread": 6.31,
+      "charge": null,
+      "discharge": 6.31
+    },
+    {
+      "d": "2026-05-14",
+      "n": 24,
+      "mean": 7.39,
+      "min": 5.71,
+      "max": 10.4,
+      "spread": 7.39,
+      "charge": null,
+      "discharge": 7.39
+    },
+    {
+      "d": "2026-05-15",
+      "n": 24,
+      "mean": 7.99,
+      "min": 6.4,
+      "max": 9.78,
+      "spread": 7.99,
+      "charge": null,
+      "discharge": 7.99
+    },
+    {
+      "d": "2026-05-16",
+      "n": 24,
+      "mean": 8.24,
+      "min": 6.05,
+      "max": 19.85,
+      "spread": 8.24,
+      "charge": null,
+      "discharge": 8.24
+    },
+    {
+      "d": "2026-05-17",
+      "n": 24,
+      "mean": 7.79,
+      "min": 5.68,
+      "max": 17,
+      "spread": 7.79,
+      "charge": null,
+      "discharge": 7.79
+    },
+    {
+      "d": "2026-05-18",
+      "n": 24,
+      "mean": 6.8,
+      "min": 5.55,
+      "max": 9.2,
+      "spread": 6.8,
+      "charge": null,
+      "discharge": 6.8
+    },
+    {
+      "d": "2026-05-19",
+      "n": 24,
+      "mean": 7.98,
+      "min": 6.37,
+      "max": 16.7,
+      "spread": 7.98,
+      "charge": null,
+      "discharge": 7.98
+    },
+    {
+      "d": "2026-05-20",
+      "n": 24,
+      "mean": 14.73,
+      "min": 6.73,
+      "max": 25.76,
+      "spread": 14.73,
+      "charge": null,
+      "discharge": 14.73
+    },
+    {
+      "d": "2026-05-21",
+      "n": 24,
+      "mean": 8.34,
+      "min": 6.57,
+      "max": 15.81,
+      "spread": 8.34,
+      "charge": null,
+      "discharge": 8.34
+    },
+    {
+      "d": "2026-05-22",
+      "n": 24,
+      "mean": 10.4,
+      "min": 6.25,
+      "max": 17,
+      "spread": 10.4,
+      "charge": null,
+      "discharge": 10.4
+    },
+    {
+      "d": "2026-05-23",
+      "n": 24,
+      "mean": 6.03,
+      "min": 4.47,
+      "max": 10,
+      "spread": 6.03,
+      "charge": null,
+      "discharge": 6.03
+    },
+    {
+      "d": "2026-05-24",
+      "n": 24,
+      "mean": 6.39,
+      "min": 4.96,
+      "max": 17,
+      "spread": 6.39,
+      "charge": null,
+      "discharge": 6.39
+    },
+    {
+      "d": "2026-05-25",
+      "n": 24,
+      "mean": 5.82,
+      "min": 5,
+      "max": 6.69,
+      "spread": 5.82,
+      "charge": null,
+      "discharge": 5.82
+    },
+    {
+      "d": "2026-05-26",
+      "n": 24,
+      "mean": 7.28,
+      "min": 5.76,
+      "max": 8.64,
+      "spread": 7.28,
+      "charge": null,
+      "discharge": 7.28
+    },
+    {
+      "d": "2026-05-27",
+      "n": 24,
+      "mean": 6.86,
+      "min": 5.9,
+      "max": 9.06,
+      "spread": 6.86,
+      "charge": null,
+      "discharge": 6.86
+    },
+    {
+      "d": "2026-05-28",
+      "n": 24,
+      "mean": 7.21,
+      "min": 5.05,
+      "max": 18.58,
+      "spread": 7.21,
+      "charge": null,
+      "discharge": 7.21
+    },
+    {
+      "d": "2026-05-29",
+      "n": 24,
+      "mean": 13.34,
+      "min": 5,
+      "max": 22.2,
+      "spread": 13.34,
+      "charge": null,
+      "discharge": 13.34
+    },
+    {
+      "d": "2026-05-30",
+      "n": 24,
+      "mean": 6.5,
+      "min": 5,
+      "max": 16.92,
+      "spread": 6.5,
+      "charge": null,
+      "discharge": 6.5
+    },
+    {
+      "d": "2026-05-31",
+      "n": 24,
+      "mean": 13.01,
+      "min": 6.83,
+      "max": 19.69,
+      "spread": 13.01,
+      "charge": null,
+      "discharge": 13.01
+    },
+    {
+      "d": "2026-06-01",
+      "n": 24,
+      "mean": 17.18,
+      "min": 8,
+      "max": 45,
+      "spread": 17.18,
+      "charge": null,
+      "discharge": 17.18
+    },
+    {
+      "d": "2026-06-02",
+      "n": 24,
+      "mean": 14.92,
+      "min": 5.4,
+      "max": 37.9,
+      "spread": 14.92,
+      "charge": null,
+      "discharge": 14.92
+    },
+    {
+      "d": "2026-06-03",
+      "n": 24,
+      "mean": 7.79,
+      "min": 5.26,
+      "max": 41.12,
+      "spread": 7.79,
+      "charge": null,
+      "discharge": 7.79
+    },
+    {
+      "d": "2026-06-04",
+      "n": 24,
+      "mean": 9.15,
+      "min": 5,
+      "max": 19,
+      "spread": 9.15,
+      "charge": null,
+      "discharge": 9.15
+    },
+    {
+      "d": "2026-06-05",
+      "n": 24,
+      "mean": 6.12,
+      "min": 5.36,
+      "max": 6.71,
+      "spread": 6.12,
+      "charge": null,
+      "discharge": 6.12
+    },
+    {
+      "d": "2026-06-06",
+      "n": 24,
+      "mean": 6.36,
+      "min": 5,
+      "max": 11,
+      "spread": 6.36,
+      "charge": null,
+      "discharge": 6.36
+    },
+    {
+      "d": "2026-06-07",
+      "n": 24,
+      "mean": 6.2,
+      "min": 5,
+      "max": 17,
+      "spread": 6.2,
+      "charge": null,
+      "discharge": 6.2
+    },
+    {
+      "d": "2026-06-08",
+      "n": 24,
+      "mean": 19.83,
+      "min": 6.48,
+      "max": 39.2,
+      "spread": 19.83,
+      "charge": null,
+      "discharge": 19.83
+    },
+    {
+      "d": "2026-06-09",
+      "n": 24,
+      "mean": 30.54,
+      "min": 9.07,
+      "max": 140,
+      "spread": 30.54,
+      "charge": null,
+      "discharge": 30.54
+    },
+    {
+      "d": "2026-06-10",
+      "n": 24,
+      "mean": 8.85,
+      "min": 5.1,
+      "max": 19,
+      "spread": 8.85,
+      "charge": null,
+      "discharge": 8.85
+    },
+    {
+      "d": "2026-06-11",
+      "n": 24,
+      "mean": 17.4,
+      "min": 10.84,
+      "max": 44.11,
+      "spread": 17.4,
+      "charge": null,
+      "discharge": 17.4
+    },
+    {
+      "d": "2026-06-12",
+      "n": 24,
+      "mean": 11.64,
+      "min": 7.62,
+      "max": 17,
+      "spread": 11.64,
+      "charge": null,
+      "discharge": 11.64
+    },
+    {
+      "d": "2026-06-13",
+      "n": 24,
+      "mean": 8.93,
+      "min": 7.12,
+      "max": 12.53,
+      "spread": 8.93,
+      "charge": null,
+      "discharge": 8.93
+    },
+    {
+      "d": "2026-06-14",
+      "n": 24,
+      "mean": 9.28,
+      "min": 7.44,
+      "max": 12,
+      "spread": 9.28,
+      "charge": null,
+      "discharge": 9.28
+    },
+    {
+      "d": "2026-06-15",
+      "n": 24,
+      "mean": 12.68,
+      "min": 7.91,
+      "max": 19,
+      "spread": 12.68,
+      "charge": null,
+      "discharge": 12.68
+    },
+    {
+      "d": "2026-06-16",
+      "n": 24,
+      "mean": 10.33,
+      "min": 7.32,
+      "max": 15,
+      "spread": 10.33,
+      "charge": null,
+      "discharge": 10.33
+    },
+    {
+      "d": "2026-06-17",
+      "n": 24,
+      "mean": 9.23,
+      "min": 5,
+      "max": 11,
+      "spread": 9.23,
+      "charge": null,
+      "discharge": 9.23
+    },
+    {
+      "d": "2026-06-18",
+      "n": 24,
+      "mean": 9.07,
+      "min": 4.88,
+      "max": 13.7,
+      "spread": 9.07,
+      "charge": null,
+      "discharge": 9.07
+    },
+    {
+      "d": "2026-06-19",
+      "n": 24,
+      "mean": 11.94,
+      "min": 6.9,
+      "max": 19,
+      "spread": 11.94,
+      "charge": null,
+      "discharge": 11.94
+    },
+    {
+      "d": "2026-06-20",
+      "n": 24,
+      "mean": 7.29,
+      "min": 6.01,
+      "max": 8.82,
+      "spread": 7.29,
+      "charge": null,
+      "discharge": 7.29
+    },
+    {
+      "d": "2026-06-21",
+      "n": 24,
+      "mean": 8.47,
+      "min": 7.7,
+      "max": 11.47,
+      "spread": 8.47,
+      "charge": null,
+      "discharge": 8.47
+    },
+    {
+      "d": "2026-06-22",
+      "n": 24,
+      "mean": 8.01,
+      "min": 6.42,
+      "max": 14.63,
+      "spread": 8.01,
+      "charge": null,
+      "discharge": 8.01
+    },
+    {
+      "d": "2026-06-23",
+      "n": 24,
+      "mean": 13.89,
+      "min": 8.81,
+      "max": 23,
+      "spread": 13.89,
+      "charge": null,
+      "discharge": 13.89
+    },
+    {
+      "d": "2026-06-24",
+      "n": 24,
+      "mean": 11.98,
+      "min": 7.24,
+      "max": 15.67,
+      "spread": 11.98,
+      "charge": null,
+      "discharge": 11.98
+    },
+    {
+      "d": "2026-06-25",
+      "n": 24,
+      "mean": 8.95,
+      "min": 7.42,
+      "max": 11.45,
+      "spread": 8.95,
+      "charge": null,
+      "discharge": 8.95
+    },
+    {
+      "d": "2026-06-26",
+      "n": 24,
+      "mean": 8.46,
+      "min": 5.47,
+      "max": 12.73,
+      "spread": 8.46,
+      "charge": null,
+      "discharge": 8.46
+    },
+    {
+      "d": "2026-06-27",
+      "n": 24,
+      "mean": 7.26,
+      "min": 5.52,
+      "max": 10.13,
+      "spread": 7.26,
+      "charge": null,
+      "discharge": 7.26
+    },
+    {
+      "d": "2026-06-28",
+      "n": 24,
+      "mean": 6.93,
+      "min": 5,
+      "max": 9.07,
+      "spread": 6.93,
+      "charge": null,
+      "discharge": 6.93
+    },
+    {
+      "d": "2026-06-29",
+      "n": 24,
+      "mean": 9.88,
+      "min": 6.94,
+      "max": 15,
+      "spread": 9.88,
+      "charge": null,
+      "discharge": 9.88
+    },
+    {
+      "d": "2026-06-30",
+      "n": 24,
+      "mean": 13.42,
+      "min": 7.32,
+      "max": 31.4,
+      "spread": 13.42,
+      "charge": null,
+      "discharge": 13.42
+    },
+    {
+      "d": "2026-07-01",
+      "n": 24,
+      "mean": 12.57,
+      "min": 8.16,
+      "max": 24.85,
+      "spread": 12.57,
+      "charge": null,
+      "discharge": 12.57
+    },
+    {
+      "d": "2026-07-02",
+      "n": 24,
+      "mean": 9.2,
+      "min": 6.46,
+      "max": 12.59,
+      "spread": 9.2,
+      "charge": null,
+      "discharge": 9.2
+    },
+    {
+      "d": "2026-07-03",
+      "n": 24,
+      "mean": 6.94,
+      "min": 6.05,
+      "max": 9.07,
+      "spread": 6.94,
+      "charge": null,
+      "discharge": 6.94
+    },
+    {
+      "d": "2026-07-04",
+      "n": 24,
+      "mean": 12.45,
+      "min": 6.54,
+      "max": 19.02,
+      "spread": 12.45,
+      "charge": null,
+      "discharge": 12.45
+    },
+    {
+      "d": "2026-07-05",
+      "n": 24,
+      "mean": 7.42,
+      "min": 5.72,
+      "max": 9.44,
+      "spread": 7.42,
+      "charge": null,
+      "discharge": 7.42
+    },
+    {
+      "d": "2026-07-06",
+      "n": 24,
+      "mean": 7.97,
+      "min": 5,
+      "max": 12.25,
+      "spread": 7.97,
+      "charge": null,
+      "discharge": 7.97
+    },
+    {
+      "d": "2026-07-07",
+      "n": 24,
+      "mean": 5.69,
+      "min": 5,
+      "max": 7.79,
+      "spread": 5.69,
+      "charge": null,
+      "discharge": 5.69
+    },
+    {
+      "d": "2026-07-08",
+      "n": 24,
+      "mean": 8.13,
+      "min": 6.93,
+      "max": 10.5,
+      "spread": 8.13,
+      "charge": null,
+      "discharge": 8.13
+    },
+    {
+      "d": "2026-07-09",
+      "n": 24,
+      "mean": 7.89,
+      "min": 4.94,
+      "max": 9.68,
+      "spread": 7.89,
+      "charge": null,
+      "discharge": 7.89
+    },
+    {
+      "d": "2026-07-10",
+      "n": 24,
+      "mean": 6.06,
+      "min": 4.96,
+      "max": 8.07,
+      "spread": 6.06,
+      "charge": null,
+      "discharge": 6.06
+    },
+    {
+      "d": "2026-07-11",
+      "n": 24,
+      "mean": 5.94,
+      "min": 4.98,
+      "max": 7.05,
+      "spread": 5.94,
+      "charge": null,
+      "discharge": 5.94
+    },
+    {
+      "d": "2026-07-12",
+      "n": 24,
+      "mean": 6.93,
+      "min": 5.41,
+      "max": 23.06,
+      "spread": 6.93,
+      "charge": null,
+      "discharge": 6.93
+    },
+    {
+      "d": "2026-07-13",
+      "n": 24,
+      "mean": 11.65,
+      "min": 5.68,
+      "max": 35,
+      "spread": 11.65,
+      "charge": null,
+      "discharge": 11.65
+    },
+    {
+      "d": "2026-07-14",
+      "n": 24,
+      "mean": 7.2,
+      "min": 5.91,
+      "max": 17,
+      "spread": 7.2,
+      "charge": null,
+      "discharge": 7.2
+    },
+    {
+      "d": "2026-07-15",
+      "n": 24,
+      "mean": 7.26,
+      "min": 5.4,
+      "max": 12,
+      "spread": 7.26,
+      "charge": null,
+      "discharge": 7.26
+    },
+    {
+      "d": "2026-07-16",
+      "n": 24,
+      "mean": 6.32,
+      "min": 5,
+      "max": 12,
+      "spread": 6.32,
+      "charge": null,
+      "discharge": 6.32
+    },
+    {
+      "d": "2026-07-17",
+      "n": 24,
+      "mean": 6.18,
+      "min": 5.09,
+      "max": 7.56,
+      "spread": 6.18,
+      "charge": null,
+      "discharge": 6.18
+    },
+    {
+      "d": "2026-07-18",
+      "n": 24,
+      "mean": 8.94,
+      "min": 5.53,
+      "max": 15,
+      "spread": 8.94,
+      "charge": null,
+      "discharge": 8.94
+    },
+    {
+      "d": "2026-07-19",
+      "n": 24,
+      "mean": 7.75,
+      "min": 5.07,
+      "max": 26.71,
+      "spread": 7.75,
+      "charge": null,
+      "discharge": 7.75
+    },
+    {
+      "d": "2026-07-20",
+      "n": 24,
+      "mean": 6.29,
+      "min": 5.2,
+      "max": 8,
+      "spread": 6.29,
+      "charge": null,
+      "discharge": 6.29
+    },
+    {
+      "d": "2026-07-21",
+      "n": 24,
+      "mean": 7.4,
+      "min": 5.6,
+      "max": 10.49,
+      "spread": 7.4,
+      "charge": null,
+      "discharge": 7.4
+    },
+    {
+      "d": "2026-07-22",
+      "n": 24,
+      "mean": 7.07,
+      "min": 5.32,
+      "max": 10,
+      "spread": 7.07,
+      "charge": null,
+      "discharge": 7.07
+    },
+    {
+      "d": "2026-07-23",
+      "n": 24,
+      "mean": 6.15,
+      "min": 5,
+      "max": 12,
+      "spread": 6.15,
+      "charge": null,
+      "discharge": 6.15
+    },
+    {
+      "d": "2026-07-24",
+      "n": 24,
+      "mean": 6.12,
+      "min": 5,
+      "max": 7.18,
+      "spread": 6.12,
+      "charge": null,
+      "discharge": 6.12
+    },
+    {
+      "d": "2026-07-25",
+      "n": 24,
+      "mean": 6.62,
+      "min": 5.15,
+      "max": 13.22,
+      "spread": 6.62,
+      "charge": null,
+      "discharge": 6.62
+    },
+    {
+      "d": "2026-07-26",
+      "n": 24,
+      "mean": 11.87,
+      "min": 5.61,
+      "max": 21.7,
+      "spread": 11.87,
+      "charge": null,
+      "discharge": 11.87
+    },
+    {
+      "d": "2026-07-27",
+      "n": 24,
+      "mean": 6.41,
+      "min": 5.43,
+      "max": 8.02,
+      "spread": 6.41,
+      "charge": null,
+      "discharge": 6.41
+    },
+    {
+      "d": "2026-07-28",
+      "n": 24,
+      "mean": 7.52,
+      "min": 5.35,
+      "max": 26.5,
+      "spread": 7.52,
+      "charge": null,
+      "discharge": 7.52
+    },
+    {
+      "d": "2026-07-29",
+      "n": 24,
+      "mean": 9.03,
+      "min": 5.09,
+      "max": 18.1,
+      "spread": 9.03,
+      "charge": null,
+      "discharge": 9.03
+    },
+    {
+      "d": "2026-07-30",
+      "n": 24,
+      "mean": 7.4,
+      "min": 5.15,
+      "max": 18,
+      "spread": 7.4,
+      "charge": null,
+      "discharge": 7.4
+    },
+    {
+      "d": "2026-07-31",
+      "n": 24,
+      "mean": 6.68,
+      "min": 5.4,
+      "max": 8.71,
+      "spread": 6.68,
+      "charge": null,
+      "discharge": 6.68
+    },
+    {
+      "d": "2026-08-01",
+      "n": 24,
+      "mean": 5.62,
+      "min": 5,
+      "max": 8,
+      "spread": 5.62,
+      "charge": null,
+      "discharge": 5.62
+    },
+    {
+      "d": "2026-08-02",
+      "n": 24,
+      "mean": 8.16,
+      "min": 5.17,
+      "max": 21.15,
+      "spread": 8.16,
+      "charge": null,
+      "discharge": 8.16
+    },
+    {
+      "d": "2026-08-03",
+      "n": 24,
+      "mean": 7.7,
+      "min": 5.7,
+      "max": 15.17,
+      "spread": 7.7,
+      "charge": null,
+      "discharge": 7.7
+    },
+    {
+      "d": "2026-08-04",
+      "n": 24,
+      "mean": 5.96,
+      "min": 5.29,
+      "max": 9,
+      "spread": 5.96,
+      "charge": null,
+      "discharge": 5.96
+    },
+    {
+      "d": "2026-08-05",
+      "n": 24,
+      "mean": 5.84,
+      "min": 5.15,
+      "max": 7.87,
+      "spread": 5.84,
+      "charge": null,
+      "discharge": 5.84
+    },
+    {
+      "d": "2026-08-06",
+      "n": 24,
+      "mean": 6.53,
+      "min": 5.67,
+      "max": 14.88,
+      "spread": 6.53,
+      "charge": null,
+      "discharge": 6.53
+    },
+    {
+      "d": "2026-08-07",
+      "n": 24,
+      "mean": 8.1,
+      "min": 6.41,
+      "max": 13.47,
+      "spread": 8.1,
+      "charge": null,
+      "discharge": 8.1
+    },
+    {
+      "d": "2026-08-08",
+      "n": 24,
+      "mean": 10.63,
+      "min": 7.02,
+      "max": 17,
+      "spread": 10.63,
+      "charge": null,
+      "discharge": 10.63
+    },
+    {
+      "d": "2026-08-09",
+      "n": 24,
+      "mean": 9.71,
+      "min": 5.44,
+      "max": 19.64,
+      "spread": 9.71,
+      "charge": null,
+      "discharge": 9.71
+    },
+    {
+      "d": "2026-08-10",
+      "n": 24,
+      "mean": 9.96,
+      "min": 5.7,
+      "max": 18,
+      "spread": 9.96,
+      "charge": null,
+      "discharge": 9.96
+    },
+    {
+      "d": "2026-08-11",
+      "n": 24,
+      "mean": 7.98,
+      "min": 5.2,
+      "max": 13.39,
+      "spread": 7.98,
+      "charge": null,
+      "discharge": 7.98
+    },
+    {
+      "d": "2026-08-12",
+      "n": 24,
+      "mean": 12.51,
+      "min": 6.08,
+      "max": 18.48,
+      "spread": 12.51,
+      "charge": null,
+      "discharge": 12.51
+    },
+    {
+      "d": "2026-08-13",
+      "n": 24,
+      "mean": 12.62,
+      "min": 5.65,
+      "max": 22.64,
+      "spread": 12.62,
+      "charge": null,
+      "discharge": 12.62
+    },
+    {
+      "d": "2026-08-14",
+      "n": 24,
+      "mean": 5.99,
+      "min": 5.18,
+      "max": 11,
+      "spread": 5.99,
+      "charge": null,
+      "discharge": 5.99
+    },
+    {
+      "d": "2026-08-15",
+      "n": 24,
+      "mean": 5.68,
+      "min": 5.18,
+      "max": 6.72,
+      "spread": 5.68,
+      "charge": null,
+      "discharge": 5.68
+    },
+    {
+      "d": "2026-08-16",
+      "n": 24,
+      "mean": 6.03,
+      "min": 5.61,
+      "max": 8,
+      "spread": 6.03,
+      "charge": null,
+      "discharge": 6.03
+    },
+    {
+      "d": "2026-08-17",
+      "n": 24,
+      "mean": 7,
+      "min": 5.44,
+      "max": 15,
+      "spread": 7,
+      "charge": null,
+      "discharge": 7
+    },
+    {
+      "d": "2026-08-18",
+      "n": 24,
+      "mean": 9.39,
+      "min": 5.65,
+      "max": 18.1,
+      "spread": 9.39,
+      "charge": null,
+      "discharge": 9.39
+    },
+    {
+      "d": "2026-08-19",
+      "n": 24,
+      "mean": 12.75,
+      "min": 6.8,
+      "max": 22.71,
+      "spread": 12.75,
+      "charge": null,
+      "discharge": 12.75
+    },
+    {
+      "d": "2026-08-20",
+      "n": 24,
+      "mean": 10.96,
+      "min": 6.51,
+      "max": 15,
+      "spread": 10.96,
+      "charge": null,
+      "discharge": 10.96
+    },
+    {
+      "d": "2026-08-21",
+      "n": 24,
+      "mean": 15.48,
+      "min": 6.84,
+      "max": 28.77,
+      "spread": 15.48,
+      "charge": null,
+      "discharge": 15.48
+    },
+    {
+      "d": "2026-08-22",
+      "n": 24,
+      "mean": 7.11,
+      "min": 5.37,
+      "max": 11.77,
+      "spread": 7.11,
+      "charge": null,
+      "discharge": 7.11
+    },
+    {
+      "d": "2026-08-23",
+      "n": 24,
+      "mean": 7.02,
+      "min": 5.1,
+      "max": 13.34,
+      "spread": 7.02,
+      "charge": null,
+      "discharge": 7.02
+    },
+    {
+      "d": "2026-08-24",
+      "n": 24,
+      "mean": 8.58,
+      "min": 5.63,
+      "max": 15.17,
+      "spread": 8.58,
+      "charge": null,
+      "discharge": 8.58
+    },
+    {
+      "d": "2026-08-25",
+      "n": 24,
+      "mean": 16.2,
+      "min": 8,
+      "max": 23.2,
+      "spread": 16.2,
+      "charge": null,
+      "discharge": 16.2
+    },
+    {
+      "d": "2026-08-26",
+      "n": 24,
+      "mean": 10.71,
+      "min": 6.27,
+      "max": 17,
+      "spread": 10.71,
+      "charge": null,
+      "discharge": 10.71
+    },
+    {
+      "d": "2026-08-27",
+      "n": 24,
+      "mean": 10.41,
+      "min": 5.1,
+      "max": 18.12,
+      "spread": 10.41,
+      "charge": null,
+      "discharge": 10.41
+    },
+    {
+      "d": "2026-08-28",
+      "n": 24,
+      "mean": 8.24,
+      "min": 5.65,
+      "max": 15,
+      "spread": 8.24,
+      "charge": null,
+      "discharge": 8.24
+    },
+    {
+      "d": "2026-08-29",
+      "n": 24,
+      "mean": 5.8,
+      "min": 5,
+      "max": 10,
+      "spread": 5.8,
+      "charge": null,
+      "discharge": 5.8
+    },
+    {
+      "d": "2026-08-30",
+      "n": 24,
+      "mean": 6.35,
+      "min": 5,
+      "max": 15.02,
+      "spread": 6.35,
+      "charge": null,
+      "discharge": 6.35
+    },
+    {
+      "d": "2026-08-31",
+      "n": 24,
+      "mean": 12.69,
+      "min": 6.51,
+      "max": 20.8,
+      "spread": 12.69,
+      "charge": null,
+      "discharge": 12.69
+    },
+    {
+      "d": "2026-09-01",
+      "n": 24,
+      "mean": 18.67,
+      "min": 9.23,
+      "max": 28.77,
+      "spread": 18.67,
+      "charge": null,
+      "discharge": 18.67
+    },
+    {
+      "d": "2026-09-02",
+      "n": 24,
+      "mean": 11.08,
+      "min": 6.5,
+      "max": 19.65,
+      "spread": 11.08,
+      "charge": null,
+      "discharge": 11.08
+    },
+    {
+      "d": "2026-09-03",
+      "n": 24,
+      "mean": 8.89,
+      "min": 6.49,
+      "max": 13.07,
+      "spread": 8.9,
+      "charge": null,
+      "discharge": 8.9
+    },
+    {
+      "d": "2026-09-04",
+      "n": 24,
+      "mean": 8.46,
+      "min": 5.65,
+      "max": 13.22,
+      "spread": 8.46,
+      "charge": null,
+      "discharge": 8.46
+    },
+    {
+      "d": "2026-09-05",
+      "n": 24,
+      "mean": 5.83,
+      "min": 5.1,
+      "max": 6.75,
+      "spread": 5.83,
+      "charge": null,
+      "discharge": 5.83
+    },
+    {
+      "d": "2026-09-06",
+      "n": 24,
+      "mean": 5.96,
+      "min": 4.81,
+      "max": 13.13,
+      "spread": 5.96,
+      "charge": null,
+      "discharge": 5.96
+    },
+    {
+      "d": "2026-09-07",
+      "n": 24,
+      "mean": 7.91,
+      "min": 5.66,
+      "max": 15,
+      "spread": 7.91,
+      "charge": null,
+      "discharge": 7.91
+    },
+    {
+      "d": "2026-09-08",
+      "n": 24,
+      "mean": 11.32,
+      "min": 8,
+      "max": 15,
+      "spread": 11.32,
+      "charge": null,
+      "discharge": 11.32
+    },
+    {
+      "d": "2026-09-09",
+      "n": 24,
+      "mean": 13.39,
+      "min": 7.45,
+      "max": 21.15,
+      "spread": 13.39,
+      "charge": null,
+      "discharge": 13.39
+    },
+    {
+      "d": "2026-09-10",
+      "n": 24,
+      "mean": 11.61,
+      "min": 6.05,
+      "max": 19.2,
+      "spread": 11.61,
+      "charge": null,
+      "discharge": 11.61
+    },
+    {
+      "d": "2026-09-11",
+      "n": 24,
+      "mean": 12.48,
+      "min": 6.26,
+      "max": 15.35,
+      "spread": 12.48,
+      "charge": null,
+      "discharge": 12.48
+    },
+    {
+      "d": "2026-09-12",
+      "n": 24,
+      "mean": 13.61,
+      "min": 4.61,
+      "max": 26.17,
+      "spread": 13.61,
+      "charge": null,
+      "discharge": 13.61
+    },
+    {
+      "d": "2026-09-13",
+      "n": 24,
+      "mean": 5.82,
+      "min": 4.61,
+      "max": 16,
+      "spread": 5.82,
+      "charge": null,
+      "discharge": 5.82
+    },
+    {
+      "d": "2026-09-14",
+      "n": 24,
+      "mean": 18.23,
+      "min": 6.05,
+      "max": 62.96,
+      "spread": 18.23,
+      "charge": null,
+      "discharge": 18.23
+    },
+    {
+      "d": "2026-09-15",
+      "n": 24,
+      "mean": 10.2,
+      "min": 5.32,
+      "max": 23.64,
+      "spread": 10.2,
+      "charge": null,
+      "discharge": 10.2
+    },
+    {
+      "d": "2026-09-16",
+      "n": 24,
+      "mean": 5.5,
+      "min": 4.92,
+      "max": 8.62,
+      "spread": 5.5,
+      "charge": null,
+      "discharge": 5.5
+    },
+    {
+      "d": "2026-09-17",
+      "n": 24,
+      "mean": 6.18,
+      "min": 4.92,
+      "max": 10,
+      "spread": 6.18,
+      "charge": null,
+      "discharge": 6.18
+    },
+    {
+      "d": "2026-09-18",
+      "n": 24,
+      "mean": 8.76,
+      "min": 5.42,
+      "max": 20.34,
+      "spread": 8.76,
+      "charge": null,
+      "discharge": 8.76
+    },
+    {
+      "d": "2026-09-19",
+      "n": 24,
+      "mean": 6.44,
+      "min": 5,
+      "max": 12.5,
+      "spread": 6.44,
+      "charge": null,
+      "discharge": 6.44
+    },
+    {
+      "d": "2026-09-20",
+      "n": 24,
+      "mean": 7.41,
+      "min": 5.7,
+      "max": 15,
+      "spread": 7.41,
+      "charge": null,
+      "discharge": 7.41
+    },
+    {
+      "d": "2026-09-21",
+      "n": 24,
+      "mean": 13.09,
+      "min": 6,
+      "max": 21.91,
+      "spread": 13.09,
+      "charge": null,
+      "discharge": 13.09
+    },
+    {
+      "d": "2026-09-22",
+      "n": 24,
+      "mean": 24.58,
+      "min": 14.85,
+      "max": 35.5,
+      "spread": 24.58,
+      "charge": null,
+      "discharge": 24.58
+    },
+    {
+      "d": "2026-09-23",
+      "n": 24,
+      "mean": 18.15,
+      "min": 10,
+      "max": 26.75,
+      "spread": 18.15,
+      "charge": null,
+      "discharge": 18.15
+    },
+    {
+      "d": "2026-09-24",
+      "n": 24,
+      "mean": 16.97,
+      "min": 6.95,
+      "max": 28.27,
+      "spread": 16.97,
+      "charge": null,
+      "discharge": 16.97
+    },
+    {
+      "d": "2026-09-25",
+      "n": 24,
+      "mean": 14.62,
+      "min": 4.92,
+      "max": 28.01,
+      "spread": 14.62,
+      "charge": null,
+      "discharge": 14.62
+    },
+    {
+      "d": "2026-09-26",
+      "n": 24,
+      "mean": 5.4,
+      "min": 4.92,
+      "max": 10.78,
+      "spread": 5.4,
+      "charge": null,
+      "discharge": 5.4
+    },
+    {
+      "d": "2026-09-27",
+      "n": 24,
+      "mean": 9.2,
+      "min": 5,
+      "max": 18.32,
+      "spread": 9.2,
+      "charge": null,
+      "discharge": 9.2
+    },
+    {
+      "d": "2026-09-28",
+      "n": 24,
+      "mean": 9.75,
+      "min": 5.51,
+      "max": 18,
+      "spread": 9.75,
+      "charge": null,
+      "discharge": 9.75
+    },
+    {
+      "d": "2026-09-29",
+      "n": 24,
+      "mean": 16.99,
+      "min": 6.17,
+      "max": 24.89,
+      "spread": 16.99,
+      "charge": null,
+      "discharge": 16.99
+    },
+    {
+      "d": "2026-09-30",
+      "n": 24,
+      "mean": 22.14,
+      "min": 11.82,
+      "max": 28.01,
+      "spread": 22.14,
+      "charge": null,
+      "discharge": 22.14
+    },
+    {
+      "d": "2026-10-01",
+      "n": 24,
+      "mean": 14.28,
+      "min": 6.24,
+      "max": 24.89,
+      "spread": 14.28,
+      "charge": null,
+      "discharge": 14.28
+    },
+    {
+      "d": "2026-10-02",
+      "n": 24,
+      "mean": 16.69,
+      "min": 6.44,
+      "max": 23.84,
+      "spread": 16.69,
+      "charge": null,
+      "discharge": 16.69
+    },
+    {
+      "d": "2026-10-03",
+      "n": 24,
+      "mean": 6.56,
+      "min": 5.42,
+      "max": 8.72,
+      "spread": 6.56,
+      "charge": null,
+      "discharge": 6.56
+    },
+    {
+      "d": "2026-10-04",
+      "n": 24,
+      "mean": 10.01,
+      "min": 6.05,
+      "max": 15.6,
+      "spread": 10.01,
+      "charge": null,
+      "discharge": 10.01
+    },
+    {
+      "d": "2026-10-05",
+      "n": 24,
+      "mean": 8.85,
+      "min": 6.05,
+      "max": 13,
+      "spread": 8.85,
+      "charge": null,
+      "discharge": 8.85
+    },
+    {
+      "d": "2026-10-06",
+      "n": 24,
+      "mean": 8.15,
+      "min": 5.42,
+      "max": 23.1,
+      "spread": 8.15,
+      "charge": null,
+      "discharge": 8.15
+    },
+    {
+      "d": "2026-10-07",
+      "n": 24,
+      "mean": 14.25,
+      "min": 6.9,
+      "max": 27.6,
+      "spread": 14.25,
+      "charge": null,
+      "discharge": 14.25
+    },
+    {
+      "d": "2026-10-08",
+      "n": 24,
+      "mean": 22.64,
+      "min": 8.63,
+      "max": 29.36,
+      "spread": 22.64,
+      "charge": null,
+      "discharge": 22.64
+    },
+    {
+      "d": "2026-10-09",
+      "n": 24,
+      "mean": 7.85,
+      "min": 6.13,
+      "max": 14.09,
+      "spread": 7.85,
+      "charge": null,
+      "discharge": 7.85
+    },
+    {
+      "d": "2026-10-10",
+      "n": 24,
+      "mean": 7.34,
+      "min": 5.51,
+      "max": 12,
+      "spread": 7.34,
+      "charge": null,
+      "discharge": 7.34
+    },
+    {
+      "d": "2026-10-11",
+      "n": 24,
+      "mean": 14.25,
+      "min": 7,
+      "max": 31.4,
+      "spread": 14.25,
+      "charge": null,
+      "discharge": 14.25
+    },
+    {
+      "d": "2026-10-12",
+      "n": 24,
+      "mean": 48.18,
+      "min": 21.41,
+      "max": 135.7,
+      "spread": 48.18,
+      "charge": null,
+      "discharge": 48.18
+    },
+    {
+      "d": "2026-10-13",
+      "n": 24,
+      "mean": 18.76,
+      "min": 9.61,
+      "max": 27.73,
+      "spread": 18.76,
+      "charge": null,
+      "discharge": 18.76
+    },
+    {
+      "d": "2026-10-14",
+      "n": 24,
+      "mean": 7.35,
+      "min": 5.44,
+      "max": 16.36,
+      "spread": 7.35,
+      "charge": null,
+      "discharge": 7.35
+    },
+    {
+      "d": "2026-10-15",
+      "n": 24,
+      "mean": 10.3,
+      "min": 6.67,
+      "max": 26.58,
+      "spread": 10.3,
+      "charge": null,
+      "discharge": 10.3
+    },
+    {
+      "d": "2026-10-16",
+      "n": 24,
+      "mean": 8.36,
+      "min": 5.63,
+      "max": 13.2,
+      "spread": 8.36,
+      "charge": null,
+      "discharge": 8.36
+    },
+    {
+      "d": "2026-10-17",
+      "n": 24,
+      "mean": 6.74,
+      "min": 5.63,
+      "max": 13.6,
+      "spread": 6.74,
+      "charge": null,
+      "discharge": 6.74
+    },
+    {
+      "d": "2026-10-18",
+      "n": 24,
+      "mean": 10.59,
+      "min": 6.05,
+      "max": 20,
+      "spread": 10.59,
+      "charge": null,
+      "discharge": 10.59
+    },
+    {
+      "d": "2026-10-19",
+      "n": 24,
+      "mean": 8.37,
+      "min": 5.74,
+      "max": 14.85,
+      "spread": 8.37,
+      "charge": null,
+      "discharge": 8.37
+    },
+    {
+      "d": "2026-10-20",
+      "n": 24,
+      "mean": 14.84,
+      "min": 10,
+      "max": 19.86,
+      "spread": 14.84,
+      "charge": null,
+      "discharge": 14.84
+    },
+    {
+      "d": "2026-10-21",
+      "n": 24,
+      "mean": 11.45,
+      "min": 6.96,
+      "max": 19,
+      "spread": 11.45,
+      "charge": null,
+      "discharge": 11.45
+    },
+    {
+      "d": "2026-10-22",
+      "n": 24,
+      "mean": 10.07,
+      "min": 6.22,
+      "max": 17.5,
+      "spread": 10.07,
+      "charge": null,
+      "discharge": 10.07
+    },
+    {
+      "d": "2026-10-23",
+      "n": 24,
+      "mean": 8.89,
+      "min": 8,
+      "max": 11.53,
+      "spread": 8.89,
+      "charge": null,
+      "discharge": 8.89
+    },
+    {
+      "d": "2026-10-24",
+      "n": 24,
+      "mean": 8.15,
+      "min": 6.58,
+      "max": 12,
+      "spread": 8.15,
+      "charge": null,
+      "discharge": 8.15
+    },
+    {
+      "d": "2026-10-25",
+      "n": 24,
+      "mean": 7.66,
+      "min": 5.42,
+      "max": 18,
+      "spread": 7.66,
+      "charge": null,
+      "discharge": 7.66
+    },
+    {
+      "d": "2026-10-26",
+      "n": 24,
+      "mean": 8.9,
+      "min": 8,
+      "max": 13.39,
+      "spread": 8.9,
+      "charge": null,
+      "discharge": 8.9
+    },
+    {
+      "d": "2026-10-27",
+      "n": 24,
+      "mean": 10.27,
+      "min": 8,
+      "max": 27.64,
+      "spread": 10.27,
+      "charge": null,
+      "discharge": 10.27
+    },
+    {
+      "d": "2026-10-28",
+      "n": 24,
+      "mean": 11.26,
+      "min": 8,
+      "max": 15.8,
+      "spread": 11.26,
+      "charge": null,
+      "discharge": 11.26
+    },
+    {
+      "d": "2026-10-29",
+      "n": 24,
+      "mean": 8.18,
+      "min": 8,
+      "max": 10,
+      "spread": 8.18,
+      "charge": null,
+      "discharge": 8.18
+    },
+    {
+      "d": "2026-10-30",
+      "n": 23,
+      "mean": 10.17,
+      "min": 6.96,
+      "max": 21.5,
+      "spread": 10.17,
+      "charge": null,
+      "discharge": 10.17
+    }
+  ],
+  "sourceSnapshot": {
+    "file": "fi-fcr-n.json",
+    "contentChecksum": "sha256:c1b5daa02eeb99fcbb64847f9dec56e3afbb4219eae6565a870239f7dca6f5ac",
+    "points": 8776
+  },
+  "summaryChecksum": "sha256:988feeca847485627a56c916467293f74bf616ae229a2a255eba1308c78adfe7"
+}
