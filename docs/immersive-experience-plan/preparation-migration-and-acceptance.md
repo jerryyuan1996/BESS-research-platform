@@ -17,7 +17,7 @@ With isometric SVG and no new financial views, every pilot task runs on the curr
 | Build | Implement the packages and run the checks | Review the running story |
 | Release | Prepare the PR and its evidence | Merge and publish through the existing pipeline |
 
-Every assistant follows the repository's `AGENTS.md`, which still has to be added (§6). Agreement between assistants is not review; the user's sign-off is.
+Every assistant follows the repository's `AGENTS.md`, drafted on branch `claude/agents-md` (§6). Agreement between assistants is not review; the user's sign-off is.
 
 ## 3. Gates
 
@@ -79,14 +79,14 @@ Found on this workstation on 30 October 2026. Do not copy `node_modules`, build 
 
 | Item | State on 30 October | Action |
 | --- | --- | --- |
-| Plan pack | On local branch `claude/immersive-plan`: v1.0 is commit `db158b9`, v1.1 is uncommitted; not pushed | Commit v1.1 and push the branch before the move |
+| Plan pack | v1.0 is commit `db158b9` and v1.1 is `3f1101f` on branch `claude/immersive-plan`, pushed to GitHub on 30 October | Done; merge when ready |
 | Unpushed branch | `claude/bess-economics-investment-logic-779d70` has two commits from 30 July and 4 August; `main` later removed that chain's test | Push it as a backup branch, or drop it |
-| Worktrees | 11 under `.claude/worktrees/`. `bess-economics-investment-logic-779d70` still has the prototype files purged on 10 August staged in its index, though its commits are clean. `youthful-dijkstra-f42b23` has small staged edits to `etl.yml` and `governance.md` | Do not copy them. Review the staged edits, then remove the worktrees |
+| Worktrees | Nine clean worktrees removed on 30 October; a research note from one was copied to `local-data/g12-augmentation-crosscheck.md`. Two remain. `bess-economics-investment-logic-779d70` still stages the prototype files purged on 10 August, though its commits are clean. `youthful-dijkstra-f42b23` staged a scout-schedule doc fix, now saved on branch `claude/scout-schedule-docs` | Remove the two with `git worktree remove --force`; do not copy them |
 | Git-ignored material | `local-data/`, `deliverables/`, `.env.local`, `.env.fingrid`, `.vercel/` | Move by encrypted drive or password manager; never by cloud sync or Git |
 | Marker guard | Active here only because `core.hooksPath` is set in this clone's local Git configuration | On the new laptop, restore `local-data/markers.json` and `local-data/fingerprint-key.txt`, run `npm run guard:install` and then `npm run guard:staged`, all before the first commit. Without the markers file, the local bundle scan silently skips |
 | Pre-purge backup | `Downloads\BESS-repo-backup-2026-08-10` holds the full repository history from before the 10 August purge | Encrypted drive only, or keep it offline on the old machine |
 | Claude Code memory and plans | Project rulings live under `~/.claude/projects/<repository path>/memory/`; approved plans under `~/.claude/plans/` | Copy both. The memory folder is named after the repository path, so place the notes under the new path's folder. Do not copy the global `~/.claude/CLAUDE.md` unchanged; its tool paths describe this machine |
-| Rules for other assistants | No `AGENTS.md` in the repository; Codex and ChatGPT cannot see Claude Code memory | Add `AGENTS.md` with the durable rules: check names against the marker set before writing them anywhere, never regenerate fixtures, sign-off before multi-market number changes, conclusion-first copy. No marker terms in it |
+| Rules for other assistants | Codex and ChatGPT cannot see Claude Code memory. `AGENTS.md`, plus a `CLAUDE.md` that imports it, was drafted on branch `claude/agents-md` and pushed on 30 October | Review and merge it before the first session on the new laptop |
 | Runtime | CI and ETL pin Node 20, which is past end of life; local is 26.2; no `.nvmrc` | `WP-01` |
 | Clone location | The repository sits under Downloads, in a path with spaces | Clone to a short path without spaces |
 | Not tied to this machine | GitHub secrets; scheduled Actions (ETL and the weekly digest); no local scheduled tasks | Re-authenticate `gh` and the Vercel CLI only if needed |
