@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-29T22:49:23.731Z",
+  "fetchedAt": "2026-10-30T05:57:13.005Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-29T17:40:22.000Z",
+    "to": "2026-10-30T01:21:31.000Z",
     "resolution": "event",
-    "points": 48
+    "points": 47
   },
   "units": {
     "record": "published article metadata"
@@ -133,26 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
-    },
-    {
-      "t": "2026-10-26T17:48:03.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-already-reducing-curtailment-in-chile-says-acera-in-construction-projects-to-triple-capacity/",
-      "source": "Energy-Storage.news",
-      "title": "BESS already reducing curtailment in Chile, says ACERA; in-construction projects to triple capacity",
-      "url": "https://www.energy-storage.news/bess-already-reducing-curtailment-in-chile-says-acera-in-construction-projects-to-triple-capacity/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Ana Lía Rojas, executive director at the Chilean renewable energy and energy storage association (ACERA) gave the opening keynote of Energy Storage Summit Latin America 2026 and spoke about Chile's current BESS market."
-    },
-    {
-      "t": "2026-10-27T01:37:32.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/philippines-bess-revenue-streams-will-shift-to-arbitrage-after-initial-reserve-market-reliance-aurora-energy-research/",
-      "source": "Energy-Storage.news",
-      "title": "Philippines BESS revenue streams will shift to arbitrage after initial reserve market reliance: Aurora Energy Research",
-      "url": "https://www.energy-storage.news/philippines-bess-revenue-streams-will-shift-to-arbitrage-after-initial-reserve-market-reliance-aurora-energy-research/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Aurora Energy Research has launched a forecast service to help investors and developers assess the commercial case for battery storage in the Philippines."
     },
     {
       "t": "2026-10-27T08:48:21.000Z",
@@ -295,16 +275,6 @@
       "summary": "Garrick Rochow blamed political &ldquo;spin&rdquo; for permitting setbacks in an earnings call. He did not address the more than $300 million the utility says it has spent to keep an aging coal plant running under DOE &lsquo;emergency&rsquo; orders."
     },
     {
-      "t": "2026-10-29T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/scatec-secures-217-million-for-egypt-smelter-solar-plus-storage-plant/",
-      "source": "pv magazine",
-      "title": "Scatec secures $217 million for Egypt smelter solar-plus-storage plant",
-      "url": "https://www.pv-magazine.com/2026/10/29/scatec-secures-217-million-for-egypt-smelter-solar-plus-storage-plant/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "A solar and battery project in Egypt will supply state-owned Egypt Aluminium under a 25-year, sovereign-guaranteed power purchase agreement as the smelter seeks to meet trade-related environmental standards. The post Scatec secures $217 million for Egypt smelter solar-plus-storage plant appeared first on pv magazine…"
-    },
-    {
       "t": "2026-10-29T10:15:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/spain-solar-ppa-prices-fall-to-e30-93-mwh-as-bess-gains-ground/",
       "source": "pv magazine",
@@ -378,11 +348,11 @@
       "t": "2026-10-29T13:00:02.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/firstenergy-data-center-pipeline-maidsville/873149/",
       "source": "Utility Dive",
-      "title": "FirstEnergy data center pipeline increases 5% to 26 GW in Q3",
+      "title": "FirstEnergy data center pipeline increases to 26 GW in Q3",
       "url": "https://www.utilitydive.com/news/firstenergy-data-center-pipeline-maidsville/873149/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Two FirstEnergy utilities reserved combined cycle turbines for a 1.2-GW data center-focused project in West Virginia and issued a solicitation for an additional 3 GW, company officials said."
+      "summary": "Two FirstEnergy utilities reserved combined-cycle turbines for a 1.2-GW data center-focused project in West Virginia and issued a solicitation for an additional 3 GW, company officials said."
     },
     {
       "t": "2026-10-29T13:08:06.000Z",
@@ -438,11 +408,11 @@
       "t": "2026-10-29T15:05:24.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/aep-transmission-data-center-earnings/873189/",
       "source": "Utility Dive",
-      "title": "AEP increases investment plan 30% to $100B on gen, transmission spending",
+      "title": "AEP increases investment plan 30% on generation, transmission spending",
       "url": "https://www.utilitydive.com/news/aep-transmission-data-center-earnings/873189/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "American Electric Power&rsquo;s contracted large loads jumped 22% to 84 GW, mainly on a 10.4-GW data center in Ohio being developed by SB Energy, company officials said Wednesday."
+      "summary": "American Electric Power&rsquo;s contracted large loads jumped 22%, to 84 GW, mainly on a 10.4-GW data center in Ohio being developed by SB Energy, company officials said Wednesday."
     },
     {
       "t": "2026-10-29T15:21:25.000Z",
@@ -503,17 +473,37 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "The acquisition of Trench Group will help GE Vernova capitalize on rising electricity demand, company executives said."
+    },
+    {
+      "t": "2026-10-30T01:08:21.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/sma-launches-dc-coupled-grid-forming-solar-plus-storage-solution-for-germany-australia-and-the-uk/",
+      "source": "Energy-Storage.news",
+      "title": "SMA launches DC-coupled grid-forming solar-plus-storage solution for Germany, Australia and the UK",
+      "url": "https://www.energy-storage.news/sma-launches-dc-coupled-grid-forming-solar-plus-storage-solution-for-germany-australia-and-the-uk/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Germany-headquartered inverter manufacturer SMA has launched a grid-forming solar-plus-storage solution in Australia, unveiling it at the All-Energy Australia 2026 event in Melbourne this week."
+    },
+    {
+      "t": "2026-10-30T01:21:31.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/8-hour-bess-market-completely-artificial-but-asymmetric-registration-adds-value-says-tesla-at-all-energy-australia-2026/",
+      "source": "Energy-Storage.news",
+      "title": "8-hour BESS market ‘completely artificial’, but asymmetric registration adds value, says Tesla at All-Energy Australia 2026",
+      "url": "https://www.energy-storage.news/8-hour-bess-market-completely-artificial-but-asymmetric-registration-adds-value-says-tesla-at-all-energy-australia-2026/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Demand for 8-hour battery energy storage in Australia is \"completely artificial\" and relies on government underwriting, according to Tesla, which said asymmetric registration can help such projects earn more."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 48,
+    "items": 47,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 9,
       "capital": 5,
-      "grid": 32,
+      "grid": 31,
       "technology": 2
     },
     "sourceStatus": [
@@ -539,7 +529,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 10
+        "items": 9
       }
     ]
   },
@@ -548,6 +538,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d3bd4a3fc0175da80d9a0d6536ac089a9322874a537e58da390f87b1efa9daac",
-  "envelopeChecksum": "sha256:3227ef1a6a8497f1002aa5d8b0b20147a96fb5913dd32297513fd32f2afd2411"
+  "contentChecksum": "sha256:d3d5729637a7c2b91696fffbcd2422d387be97db6f5df9d5693e316bd2c7a4df",
+  "envelopeChecksum": "sha256:140c70a738ea1dcb419b5ff2a3d1c22ab516ad953116152ba6db6e386a81681b"
 }
