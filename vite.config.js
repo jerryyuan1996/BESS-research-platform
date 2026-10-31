@@ -44,6 +44,13 @@ export default defineConfig({
         chunkFileNames(chunk){
           const id = chunk.facadeModuleId || '';
           if (/[\\/]experience[\\/]pages\.js$/.test(id)) return 'assets/investor-experience-[hash].js';
+          /* A market's story: its content, the story shell and the isometric
+             kit, fetched when the reader opens the story (immersive-experience
+             plan, WP-03). The shell takes the market page's helpers as
+             arguments instead of importing them: an import from the page's
+             own chunk would make Rollup export from it and drop its name. */
+          const story = /[\\/]markets[\\/]([^\\/]+)[\\/]storyPack\.js$/.exec(id);
+          if (story) return `assets/story-${story[1]}-[hash].js`;
           const delivery = /[\\/]markets[\\/]([^\\/]+)[\\/]buildPathway\.js$/.exec(id);
           if (delivery) return `assets/delivery-${delivery[1]}-[hash].js`;
           const m = /[\\/]markets[\\/]([^\\/]+)[\\/]dashboard\.js$/.exec(id);

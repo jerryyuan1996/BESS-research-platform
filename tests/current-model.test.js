@@ -59,12 +59,17 @@ test('Ireland carries the 2029/30 auction, not the 2028/29 one', () => {
   near(byId('ie').comparison.economics.contracted, 89430, 1, 'IE contracted');
 });
 
-test('WA prices the surplus-adjusted RCP, not the benchmark', () => {
+test('WA prices AEMO’s published 2028-29 RCP, not the benchmark', () => {
   const c = byId('wa').comparison.economics.capacity;
   assert.equal(c.unit, 'MW', 'the RCM pays against capacity credits, not per kW');
-  assert.equal(c.price, 422372, 'A$/MW/yr — BRCP is A$488,500 (ERA final), but AEMO forecasts a surplus');
-  // Corroborated independently: the 10-yr fixed election is ~A$844.7m for 200 MW.
-  near(844.7e6 / 200 / 10, c.price, 100, 'fixed-election implied RCP');
+  /* Moved 2026-10-30 from the surplus-adjusted estimate of A$422,372: AEMO
+     assigned the 2028-29 credits and published this price on 20 October 2026. */
+  assert.equal(c.price, 459191.55, 'A$/MW/yr — AEMO Peak Reserve Capacity Price for 2028-29');
+  assert.equal(c.deliveryYear, 2028);
+  // The published price is the rule's own result: 6,715.022 MW of Peak Capacity
+  // Credits against the 6,323 MW requirement, on ESM Rules 4.29.1(b)(i).
+  const ratio = 6715.022 / 6323;
+  near(488500 * (1 + (1.05 - ratio) * 5), c.price, 0.01, 'price curve at the assigned surplus');
 });
 
 /* ---------------------------------------------------------------------------
@@ -340,7 +345,9 @@ test('published base-case outcomes', () => {
     /* Moved 2026-10-17 with the supplier quotation: capex as pinned above, and
        the service package as its own back-loaded line inside each opex seed.
        Were wa 16.2/13.1, gb 10.9/5.1, ie 14.6/9.6, ro 26.7/20.8, pl 8.2/0.8. */
-    wa:          ['cap',   22.0,        19.8],
+    /* WA moved 2026-10-30: AEMO's published 2028-29 RCP (A$459,191.55)
+       replaced the surplus-adjusted estimate (A$422,372). Was wa 22.0/19.8. */
+    wa:          ['cap',   23.5,        21.5],
     // GB moved 2026-10-15: 4h de-rating 0.38 → 0.4396, NESO's published T-4
     // 2029/30 factor (gate G1); capacity line £10,298 → £11,913/MW-yr.
     gb:          ['cap',   10.8,         4.5],

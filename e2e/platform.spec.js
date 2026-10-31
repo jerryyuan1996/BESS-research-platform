@@ -13,7 +13,9 @@ test('market brief discloses actual rates in English and Chinese',async({page},t
   await page.locator('.ix-valuation-basis > summary').click();
   await expect(page.locator('.ix-valuation-basis')).toContainText('6.5%');
   await expect(page.locator('.ix-valuation-basis')).toContainText('10.5%');
-  await expect(page.locator('#bankable .ix-kpis')).toContainText('13.4%');
+  // WA all-equity hold IRR. Moved 2026-10-30 from 13.4% when AEMO's published
+  // 2028-29 RCP replaced the surplus-adjusted estimate (src/markets/wa/comparison.js).
+  await expect(page.locator('#bankable .ix-kpis')).toContainText('14.3%');
   await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
   await page.locator('.ix-valuation-basis > summary').click();
   await expect(page.locator('.ix-valuation-basis')).toContainText('锁定收入6.5%');
