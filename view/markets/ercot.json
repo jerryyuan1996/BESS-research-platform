@@ -1,8 +1,8 @@
 {
   "marketId": "ercot",
   "thesis": [
-    "Fastest to connect, hardest to get paid: no capacity payment and a merchant index down about 85% in two years. The model loses money even with a toll, so only an executed toll at a known price makes a case.",
-    "并网最快，回款最难：没有容量付费，市场化指数两年内下跌约85%。即便有租赁，模型仍然亏损，因此只有价格明确的已签署租赁才能成立。"
+    "Fastest to connect, hardest to get paid: no capacity payment, and battery revenue has fallen steeply as the fleet grew, on the market monitor's figures. Even with a toll the model falls short of the fund's target, so only an executed toll at a known price makes a case.",
+    "并网最快，回款最难：没有容量付费，且据市场监测机构数据，随着储能规模扩大，电池收入大幅下滑。即便有租赁，模型测算仍达不到基金目标回报，因此只有价格明确的已签署租赁才能成立。"
   ],
   "grades": {
     "assetReturn": {
@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "Fifteenth of fifteen markets on hold IRR, −5.9%.",
-        "持有期IRR为−5.9%，在十五个市场中排第十五。"
+        "Fifteenth of fifteen markets on the design grid's hold IRR, −5.9% (17 October 2026).",
+        "按设计表测算的持有期IRR为−5.9%（2026年10月17日），在十五个市场中排第十五。"
       ],
       "asOf": "2026-10-17",
       "author": "analyst",
@@ -120,8 +120,8 @@
         "rtcb"
       ],
       "reason": [
-        "Real-time co-optimisation changed how energy and ancillary services clear, and data-centre interconnections have been paused for audit since August 2026; nothing here is contracted with the market, so there is no contract for a rule change to honour or break.",
-        "实时联合优化改变了电能量与辅助服务的出清方式；数据中心并网自2026年8月起因审计而暂停。此处没有与市场签订的合同，因此也谈不上规则变更是否追溯存量合同。"
+        "Real-time co-optimisation changed how energy and ancillary services clear; nothing here is contracted with the market, so there is no contract for a rule change to honour or break.",
+        "实时联合优化改变了电能量与辅助服务的出清方式。此处没有与市场签订的合同，因此也谈不上规则变更是否追溯存量合同。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
@@ -386,13 +386,13 @@
       "hours": 2,
       "stage": "ready-to-build",
       "why": [
-        "No capacity payment exists and the merchant index fell about 85% in two years; a toll is the only secured route, and no ERCOT toll price has been disclosed.",
-        "这里没有容量付费，市场化指数两年内下跌约85%；租赁是唯一的锁定收入途径，而ERCOT的租赁价格从未公开。"
+        "No capacity payment exists and battery revenue has fallen steeply as the fleet grew; a toll is the only secured route, and no ERCOT toll price has been disclosed.",
+        "这里没有容量付费，且随着储能规模扩大，电池收入大幅下滑；租赁是唯一的锁定收入途径，而ERCOT的租赁价格从未公开。"
       ],
       "action": {
         "text": [
-          "Read the January 2027 MORA on 6 November for winter evening adequacy and battery availability. Engage only with an executed toll: get its price and test it against the 2025 realised index before any bid.",
-          "于11月6日阅读2027年1月资源充裕度月报，复核冬季晚高峰供需与电池可用性。只考虑已签署租赁的项目：出价前取得租赁价格，并与2025年实际指数对比检验。"
+          "Read the January 2027 MORA on 6 November for winter evening adequacy and battery availability. Engage only with an executed toll: get its price and test it against the market monitor's 2025 battery revenue before any bid.",
+          "于11月6日阅读2027年1月资源充裕度月报，复核冬季晚高峰供需与电池可用性。只考虑已签署租赁的项目：出价前取得租赁价格，并与市场监测机构公布的2025年电池收入对比检验。"
         ],
         "due": "2026-11-06"
       },

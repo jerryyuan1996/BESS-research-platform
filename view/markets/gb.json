@@ -1,8 +1,8 @@
 {
   "marketId": "gb",
   "thesis": [
-    "Liquid, financeable and close to saturation. The reference project returns about 5% with a tenth of revenue secured; four hours wins de-rated capacity while two-hour assets still win connections. A fund buys operating assets that carry a toll, not new build.",
-    "流动性好、易于融资，但已接近饱和。参考项目回报约5%，仅一成收入被锁定；四小时设计赢得折减后容量，两小时资产仍能拿到并网。基金应收购附带租赁合同的在运资产，而非新建。"
+    "Liquid, financeable and close to saturation. The reference project falls short of the fund's target, with little of its revenue secured; four hours wins de-rated capacity while two-hour assets still win connections. A fund buys operating assets that carry a toll, not new build.",
+    "流动性好、易于融资，但已接近饱和。参考项目达不到基金目标回报，且锁定的收入很少；四小时设计赢得折减后容量，两小时资产仍能拿到并网。基金应收购附带租赁合同的在运资产，而非新建。"
   ],
   "grades": {
     "assetReturn": {
@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "Tenth of seventeen markets on hold IRR, 4.5%.",
-        "持有期IRR为4.5%，在十七个市场中排第十。"
+        "Tenth of seventeen markets on the design grid's hold IRR, 4.5% (29 October 2026).",
+        "按设计表测算的持有期IRR为4.5%（2026年10月29日），在十七个市场中排第十。"
       ],
       "asOf": "2026-10-29",
       "author": "analyst",
@@ -30,8 +30,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "12% of revenue is secured, for fifteen years.",
-        "12%的收入已锁定，期限十五年。"
+        "On the design grid (16 October 2026), 12% of revenue is secured, for fifteen years.",
+        "按设计表测算（2026年10月16日），12%的收入已锁定，期限十五年。"
       ],
       "asOf": "2026-10-16",
       "author": "analyst",
@@ -82,8 +82,8 @@
         "revision-plan"
       ],
       "reason": [
-        "In the transmission register 177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
-        "输电登记册中，排队储能容量177GW，而已建成仅3.6GW；对排队电池项目的保护规则正在复议。"
+        "In the transmission register, as cited when graded on 23 October 2026, 177 GW is queued against 3.6 GW built; Ofgem's September 2026 figures count prioritised projects instead. The rules protecting queued batteries are under review.",
+        "输电登记册中（按2026年10月23日评级时引用），排队储能容量177GW，而已建成仅3.6GW；Ofgem 2026年9月的数据统计的是获优先安排的项目，口径不同。对排队电池项目的保护规则正在复议。"
       ],
       "asOf": "2026-10-23",
       "author": "analyst",
@@ -258,8 +258,8 @@
         {
           "dimension": "revenueCertainty",
           "text": [
-            "Only a tenth of revenue is secured in the reference case, so only assets that carry a toll.",
-            "参考情景下仅一成收入锁定，因此只做带租赁合同的资产。"
+            "Little revenue is secured in the reference case, so only assets that carry a toll.",
+            "参考情景下锁定的收入很少，因此只做带租赁合同的资产。"
           ]
         }
       ],
@@ -272,12 +272,12 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-31",
       "lockedUntil": null,
       "play": "gb-toll-4h",
       "scoreNote": [
-        "The score rose with the asset-return rank, which moved only because Japan fell below Great Britain on 2026-10-16. Nothing in Great Britain changed: the toll 4h play is still about −$238k/MW at a fund's yields, so the call stays Opportunistic.",
-        "评分随资产回报排名上升，而排名变动仅因日本于2026-10-16降至英国之下。英国本身并无变化：按基金收益率，租赁4小时方案每MW仍约为−23.8万美元，因此结论维持“择机”。"
+        "The score rose with the asset-return rank, which moved only because Japan fell below Great Britain on 2026-10-16. Nothing in Great Britain changed: the toll 4h play still loses value at a fund's yields, so the call stays Opportunistic.",
+        "评分随资产回报排名上升，而排名变动仅因日本于2026-10-16降至英国之下。英国本身并无变化：按基金收益率，租赁4小时方案仍然损失价值，因此结论维持“择机”。"
       ]
     },
     "foreignFirstTimer": {
@@ -322,8 +322,8 @@
         {
           "dimension": "gridScarcity",
           "text": [
-            "In the transmission register 177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
-            "输电登记册中排队容量177GW而已建成仅3.6GW，对排队电池项目的保护规则正在复议。"
+            "In the transmission register, as cited when graded on 23 October 2026, 177 GW is queued against 3.6 GW built, and the rules protecting queued batteries are under review.",
+            "输电登记册中（按2026年10月23日评级时引用），排队容量177GW而已建成仅3.6GW，对排队电池项目的保护规则正在复议。"
           ]
         },
         {
@@ -347,7 +347,7 @@
         "评分把需要争取的排队容量视为对开发商有利。但此处分配规则本身可能转向不利于新增电池项目，在复议结束之前评级无法反映这一点。"
       ],
       "author": "analyst",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     }
   },
@@ -366,11 +366,15 @@
       ],
       "direction": "down",
       "source": {
-        "publisher": "S&P Global — April 2026",
-        "url": "https://www.spglobal.com/market-intelligence/en/news-insights/articles/2026/4/uk-battery-storage-glut-prompts-review-of-queue-protections-100760930",
-        "access": "search-summary"
+        "publisher": "DESNZ and Ofgem — open letter, 16 April 2026",
+        "url": "https://www.gov.uk/government/publications/connections-reform-delivery-update-and-battery-capacity/open-letter-from-desnz-and-ofgem-on-connections-reform-delivery",
+        "access": "opened"
       },
-      "effect": null
+      "effect": null,
+      "note": [
+        "Ofgem's CMP470 minded-to consultation of 17 September 2026 proposes a commitment fee for oversubscribed technologies; the decision is pending.",
+        "Ofgem于2026年9月17日发布CMP470倾向性咨询，拟对超额申请的技术类别收取承诺费；决定尚未作出。"
+      ]
     }
   ],
   "plays": {
@@ -408,8 +412,8 @@
       "hours": 4,
       "stage": "operating",
       "why": [
-        "A toll is the only way to secure most revenue in a market where the reference case secures a tenth.",
-        "在参考情景只锁定一成收入的市场，租赁是锁定大部分收入的唯一途径。"
+        "A toll is the only way to secure most revenue in a market where the reference case secures little.",
+        "在参考情景锁定收入很少的市场，租赁是锁定大部分收入的唯一途径。"
       ],
       "action": {
         "text": [
@@ -419,7 +423,7 @@
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     }
   }
