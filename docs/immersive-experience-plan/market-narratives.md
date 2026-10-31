@@ -111,20 +111,26 @@ The [WA shot sheets](western-australia-storyboard.md) meet the planning-detail f
 
 ## 5. Germany: a liquid merchant market, secured by a toll
 
-Proposed thesis: **Germany is Europe's most liquid storage market but pays no capacity for a four-hour battery, so revenue is merchant, and a toll is how a fund buys certainty at a lower return. The grid appears as a cost, through storage grid-fee rules still in draft, not as income.** This restates the briefing thesis (REPO-12). The fund play is the four-hour toll (`de-toll-4h`); merchant four hours is the higher-return design. `CL-DE-01` (congestion management) supports one beat but is no longer the spine.
+The detailed research and bilingual script are now in [Germany: Six-Chapter Storyboard](germany-storyboard.md), shots `de-00`–`de-12`, with an opening play card, all WA shot fields and a G-1 review record. Primary locators, claim results, historical nodes and the chart contract are in the [Germany source-register addendum](source-register.md#germany-research-addendum--31-october-2026). Status: sourced research and proposed script, **analyst sign-off pending; no build**.
 
-Candidate historical nodes to investigate: market liberalisation and an energy-only design; feed-in support driving fast solar and wind growth; the nuclear phase-out; transmission expansion lagging generation, especially from north to south; the debate on a capacity mechanism and its status when the script is written; the storage grid-fee draft. Dates, causation and current status are pending.
+Live anchor, checked 31 October 2026 from the briefing model and published view (REPO-DE-LIVE): the infrastructure-fund call remains `opportunistic` (**Situational / 择机投入**), with `de-toll-4h` at ready-to-build. The published analyst verdict retains that call despite a ranking-driven score crossing. The 16 October briefing-content document is not this script's anchor; all page figures remain bound tokens.
 
-| Chapter | Question and draft beat | Scene, control and feedback | Evidence still required | Investment meaning |
-| --- | --- | --- | --- | --- |
-| Origins | “Why is Germany's market so liquid?” Large, interconnected and traded continuously | One map of generation and load regions with neighbouring links; no flow animation | Dated market and interconnection facts | Liquidity creates trading revenue and also invites competition |
-| Historical choices | “Why is there no capacity payment for a four-hour battery?” An energy-only design, fast renewable growth and phase-outs | Timeline; the capacity-mechanism debate drawn dashed as a scenario | A primary source per node; current status of any capacity mechanism (CL-DE-02) | Without a capacity line, revenue rests on spreads and reserves |
-| Today's tensions | “Why do prices swing so much?” Solar middays and wind swings; a congested grid | Day and wind presets; the congested corridor drawn as a cost layer | SRC-DE-01/02 for congestion; German prices not yet registered (GAP-DE-PRICES) | Price swings are the merchant opportunity; congestion relief is the grid operators' job, not battery income |
-| Add a battery | “Why four hours, not six?” The fifth and sixth hours earn less than they cost | Teaching battery at four hours; a six-hour preset shows the unpaid hours | Duration result from the briefing (REPO-12) | Duration is set by what the spread pays; extra hours are capital without revenue |
-| Who pays | “Merchant or toll?” The market pays a volatile margin; a toll counterparty pays a fixed fee for its tenor | Signature chart: daily spread band against a flat toll fee | Observed spreads (GAP-DE-PRICES); toll terms from the model | A toll turns volatility into a fixed fee at a lower return; merchant keeps the upside and the risk |
-| The investment | “What could weaken it?” Grid fees, spread compression, shorter tolls | Factor cards, then links into the market page | Storage grid-fee draft (CL-DE-02) | Check the grid-fee draft before pricing, which is the play's next action |
+Proposed thesis: **A deeply traded German power market supports merchant flexibility; the current standalone four-hour design has no established adequacy-payment line. The model favours four hours over six by value, and the fund's toll reference accepts a lower return for contractual revenue during its term. The grid enters as a cost and connection constraint; price its exposure before buying.**
 
-Mobile: six stacked panels in one map frame, with the spread-against-toll chart at the centre. Reuse the WA kit and the station cutaway. Comprehension check: the user can say why the fund play is a four-hour toll rather than merchant, and why congestion is not battery income.
+Research corrects the v1.1 shorthand without changing the call or model. EEX supports the liquidity superlative for power futures, not the whole storage market (CL-DE-03). Current capacity procurement is legislated, while its long-duration test excludes the standalone reference design; later battery eligibility and awards remain a dashed scenario (CL-DE-02A/08). The current AgNes proposal is still a draft: a capacity-based charge, not a final tariff (CL-DE-02B). Ordinary redispatch restores economic position; TSO grid boosters recover regulated network costs, not merchant profits (CL-DE-01). Extra duration can earn revenue but adds less value under current assumptions (CL-DE-09).
+
+| Chapter | Script route | Investment meaning |
+| --- | --- | --- |
+| Origins | de-01: power-market liquidity | A route to trade, with competition and project-access requirements |
+| Historical choices | de-02–de-04: liberalisation/energy-price choice, renewable support, nuclear decision and completion | Dated events separated from causal readings; history is no income entitlement |
+| Today's tensions | de-05–de-07: delayed transmission, changing prices, current capacity-law boundary | Grid costs and market margins matter; later procurement is not base-case income |
+| Add a battery | de-08: preferred versus longer merchant duration | Existing value result, not an invented dispatch calculation or an unpriced longer toll |
+| Who pays | de-09–de-10: daily spread band against flat model fee, then expiry | One signature chart with separate EUR/MWh and USD/MW/year scales; fee/tenor are reference assumptions |
+| The investment | de-11–de-12: draft fees, spread compression, shorter toll | Links to Bankable case, Revenue, Execution and Downside; no second financial view |
+
+Six historical nodes are sourced with dates in the register. GAP-DE-PRICES identifies the DE-LU A44 series, zone, unit, interval and timezone, but **registration and publication rights remain open**: ENTSO-E's enumerated free-reuse list does not establish coverage of day-ahead prices. The observed chart is withheld; an unscaled qualitative Example is scripted until the build step clears rights and validates a registered series. No dataset, model number or application code changes in this research/script task.
+
+Mobile reuses the WA kit with stacked text, schematic scenes and aligned chart panels. Comprehension check: explain why the fund uses the selected toll reference, why the merchant duration preference is economic, why current capacity law supplies no receipt to this design, and why congestion is not an underwritable profit line. The analyst signs off mechanics, investment meaning and the Chinese draft at G-1 before implementation.
 
 ## 6. Finland: a fast-reserve market that storage has already filled
 
