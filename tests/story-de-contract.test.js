@@ -11,7 +11,7 @@ import { HOME_BRIEFING } from '../src/briefing/homeData.js';
 const shots = [story.opening, ...story.chapters.flatMap(c => c.shots)];
 const row = opportunities('infraFund').find(r => r.id === 'de');
 const result = caseFor(row);
-const bound = storyBindings(row, { CALLS, caseFor: () => result });
+const bound = storyBindings(row, { CALLS, result });
 
 test('Germany is a complete signed-off story under the shared contract', () => {
   assert.deepEqual(validateStory(story), { ok: true, complete: true, problems: [] });

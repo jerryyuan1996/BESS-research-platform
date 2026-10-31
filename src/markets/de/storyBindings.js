@@ -1,5 +1,5 @@
 /* Germany — reads the same briefing cells and case result as the market page.
- * The page supplies its existing caseFor helper; importing the page chunk
+ * The page supplies its already-computed case result; importing the page chunk
  * here would disturb lazy splitting. No underwriting input is changed. */
 import { HOME_BRIEFING } from '../../briefing/homeData.js';
 import { HISTORY, REVIEW_DATE, PRICE_REUSE_LICENCE } from './story/history.js';
@@ -10,7 +10,7 @@ const year = value => [value, value + '年'];
 const date = value => ['en-GB', 'zh-CN'].map(locale => new Intl.DateTimeFormat(locale, { timeZone: 'UTC', dateStyle: 'long' }).format(new Date(value + 'T12:00:00Z')));
 
 export function storyBindings(row, ui = {}) {
-  const result = ui.caseFor?.(row);
+  const result = ui.result;
   const base = result?.base;
   const grid = HOME_BRIEFING.grids?.[row?.id];
   const preferred = grid?.cells?.find(c => c.route === 'mer' && c.best && c.priced);
