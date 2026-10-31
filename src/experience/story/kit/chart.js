@@ -104,7 +104,8 @@ export function dayChart(spec){
   const tickAt = Array.from({ length: 48 / tickEvery + 1 }, (_, k) => k * tickEvery);
   const xTicks = tickAt.map(i => s('g', { class: 'k-tick' },
     s('line', { x1: n2(x(i)), x2: n2(x(i)), y1: top0 + MAIN_H, y2: top0 + MAIN_H + 4 }),
-    s('text', { x: n2(x(i)), y: top0 + MAIN_H + 17, 'text-anchor': 'middle' }, `${String((i / 2) % 24).padStart(2, '0')}:00`)));
+    // the end labels sit inside the frame rather than centred on its edge
+    s('text', { x: n2(x(i)), y: top0 + MAIN_H + 17, 'text-anchor': x(i) < 20 ? 'start' : x(i) > W - 20 ? 'end' : 'middle' }, `${String((i / 2) % 24).padStart(2, '0')}:00`)));
   const yTicks = ticks.map(v => s('g', { class: 'k-tick' },
     s('line', { class: 'k-grid', x1: LEFT, x2: W - RIGHT, y1: n2(y(v)), y2: n2(y(v)) }),
     s('text', { x: LEFT - 6, y: n2(y(v) + 4), 'text-anchor': 'end' }, fmtMW(v))));

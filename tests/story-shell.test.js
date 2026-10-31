@@ -9,11 +9,20 @@ import { STORIES, storyFor } from '../src/experience/story/registry.js';
 import { whenLabel } from '../src/experience/story/shell.js';
 import { markets } from '../src/markets/registry.js';
 
-test('an unreleased story opens only with ?story=preview', () => {
-  assert.equal(STORIES.wa.released, false, 'released by the WP-10 release PR, not before');
-  assert.equal(storyFor('wa', ''), null);
-  assert.equal(storyFor('wa', '?story=other'), null);
+test('the WA story is released, so it opens without the preview flag', () => {
+  assert.equal(STORIES.wa.released, true, 'released at G-2 by the WP-10 release PR');
+  assert.equal(storyFor('wa', ''), STORIES.wa);
   assert.equal(storyFor('wa', '?story=preview'), STORIES.wa);
+});
+
+test('an unreleased story opens only with ?story=preview', () => {
+  const was = STORIES.wa.released;
+  STORIES.wa.released = false;
+  try {
+    assert.equal(storyFor('wa', ''), null);
+    assert.equal(storyFor('wa', '?story=other'), null);
+    assert.equal(storyFor('wa', '?story=preview'), STORIES.wa);
+  } finally { STORIES.wa.released = was; }
 });
 
 test('markets without a story keep the research dialog', () => {

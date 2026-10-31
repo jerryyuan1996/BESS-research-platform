@@ -8,10 +8,13 @@
    A story is released by its G-2 release PR, which sets `released`. Until
    then it opens only when the market page's address carries ?story=preview,
    so the analyst can walk through the running story on a build while readers
-   keep the research dialog.
+   keep the research dialog. WA was released at G-2 (WP-10).
+
+   Rollback: set `released: false`, and the button opens the research dialog
+   again; story links then open nothing.
    --------------------------------------------------------------------------- */
 export const STORIES = {
-  wa: { released: false, load: () => import('../../markets/wa/storyPack.js') },
+  wa: { released: true, load: () => import('../../markets/wa/storyPack.js') },
 };
 
 /** The story entry for a market, or null when it has none or it is unreleased. */
