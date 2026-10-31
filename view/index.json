@@ -63,7 +63,7 @@
     "infraFund": {
       "call": "opportunistic",
       "route": "ready-to-build",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31",
       "play": "ercot-toll-2h"
     },
@@ -354,13 +354,13 @@
     "strategic": {
       "call": "opportunistic",
       "route": "greenfield",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
       "call": "opportunistic",
       "route": "operating",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-01-31",
       "play": "ro-mer-2h"
     },
