@@ -8,6 +8,8 @@
 //  and with the marginal technology. Verified against ERA / Energy Policy WA /
 //  AEMO publications (public sources, refreshed July 2026).
 // ============================================================================
+import { ESR_REQUIREMENT } from './esrRequirement.js';
+
 const RCM_HISTORY = {
   // Benchmark Capacity Provider (the technology whose fixed cost sets the BRCP)
   benchTech: [
@@ -17,11 +19,7 @@ const RCM_HISTORY = {
     { p:'2028-29',   t:['200 MW / 1,200 MWh (6 h) lithium-ion BESS, 330 kV, Clean Energy Link – North','200MW/1,200MWh（6小时）锂电池，330kV，清洁能源链路北'], v:'BESS 6h' },
   ],
   // ESR Duration Requirement, expressed in the Rules as Trading Intervals (30 min each)
-  esr: [
-    { cyc:['≤ 2024 Reserve Capacity Cycle','2024及之前容量周期'], ti:8,  h:4, note:['Grandfathered for credits already allocated','已获配信用适用祖父条款'] },
-    { cyc:['2025 cycle → 2027-28','2025周期 → 2027-28'],        ti:12, h:6, note:['First increase; 4 h fleet begins to be de-rated','首次上调；4小时机组开始折减'] },
-    { cyc:['2026 cycle → 2028-29','2026周期 → 2028-29'],        ti:14, h:7, note:['Current requirement — longer, flatter evening peak','现行要求 — 晚峰更长更平'] },
-  ],
+  esr: ESR_REQUIREMENT,
   milestones: [
     { y:'2006', t:['RCM starts with the WEM','RCM随WEM启动'],
       p:['The market opened in September 2006 for the SWIS with an administered Reserve Capacity Mechanism: AEMO certifies capacity, assigns Capacity Credits and the ERA sets an annual Benchmark Reserve Capacity Price from the fixed cost of a hypothetical least-cost new entrant. Capacity was the reliability product; energy trading was secondary.',

@@ -33,6 +33,26 @@
    --------------------------------------------------------------------------- */
 
 const listeners = new Set();
+const storyListeners = new Set();
+
+/* A market story's place rides in the query: ?view=story&chapter=…&shot=…
+   (immersive-experience plan, WP-04). Only these three names are read, and
+   the story checks the ids against its own content. They are a reading
+   position, not a page, so a change to them alone never re-renders the page. */
+export const STORY_PARAMS = ['view', 'chapter', 'shot'];
+const STORY_ID = /^[a-z0-9-]{1,40}$/;
+function storyPlace(params){
+  if (params.get('view') !== 'story') return null;
+  const id = (k) => (STORY_ID.test(params.get(k) || '') ? params.get(k) : null);
+  return { chapter: id('chapter'), shot: id('shot') };
+}
+/** The address without the story's place: what identifies the page. */
+function pageKey(pathname, search){
+  const params = new URLSearchParams(search);
+  for (const k of STORY_PARAMS) params.delete(k);
+  return `${pathname}?${params}`;
+}
+let lastPage = null;
 
 /**
  * Parses a pathname into a route descriptor. Never throws; unknown → notFound.
@@ -98,6 +118,7 @@ export function parseRoute(pathname, search = ''){
       /* A section under a tab: /markets/<slug>/revenue/energy. A tab is a
          container of sections since the merge to seven (markets/tabGroups.js). */
       sub: parts[3] ? decodeURIComponent(parts[3]) : null,
+      story: storyPlace(params),
       ...view,
     };
   }
@@ -126,13 +147,27 @@ export function onRouteChange(fn){
   return () => listeners.delete(fn);
 }
 
-function notify(){
+/**
+ * Story-place subscribers: fn(route, { samePage }), called on every route
+ * change after the page has rendered. `samePage` is true when Back or Forward
+ * moved only the story's place; the page was then left as it was.
+ */
+export function onStoryPlace(fn){
+  storyListeners.add(fn);
+  return () => storyListeners.delete(fn);
+}
+
+function notify({ pop = false } = {}){
   const r = currentRoute();
-  for (const fn of listeners) fn(r);
+  const key = pageKey(window.location.pathname, window.location.search);
+  const samePage = pop && key === lastPage;
+  lastPage = key;
+  if (!samePage) for (const fn of listeners) fn(r);
+  for (const fn of [...storyListeners]) fn(r, { samePage });
 }
 
 /** Wires popstate. Call once, from app.js. */
 export function startRouter(){
-  window.addEventListener('popstate', notify);
+  window.addEventListener('popstate', () => notify({ pop: true }));
   notify();
 }

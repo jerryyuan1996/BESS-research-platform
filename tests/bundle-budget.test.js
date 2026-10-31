@@ -233,6 +233,11 @@ const BUDGET = {
     // Independently fetched pricing data: only the active investor is awaited.
     infraFund:17, strategic:17, foreignFirstTimer:17, developer:17,
     'delivery-wa': 8,
+    /* The Western Australia market story (immersive-experience plan, WP-03):
+       the story shell, the isometric kit and the WA content in two languages,
+       fetched only when a reader opens the story from the market page. The
+       plan's ceiling for shell, content and kit together is about 40 KiB. */
+    'story-wa': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,

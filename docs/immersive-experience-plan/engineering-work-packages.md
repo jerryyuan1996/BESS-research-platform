@@ -1,6 +1,6 @@
 # Engineering Work Packages
 
-Pack: BESS-IX-2026-10-30, version 1.1  
+Pack: BESS-IX-2026-10-30, version 1.2  
 Status: implementation proposal; no application, dependency, model, CI or deployment changes made  
 Navigation: [Master plan](README.md) | [Content contract](evidence-and-content-specification.md#5-proposed-story-content-contract) | [Page design](experience-and-page-design.md) | [Preparation and acceptance](preparation-migration-and-acceptance.md)
 
@@ -109,7 +109,7 @@ Keep each change small, with a visible result. No framework migration, global-st
 | Risk | Parameter collisions with existing routes |
 | Rollback | Drop the parameters; the story opens at `wa-00` |
 
-Proposed URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. It is not implemented. Chapter and shot changes add history entries; teaching changes do not. The market page's existing handoff carries the case to the Investment Lab, so the story needs no case envelope.
+Story URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. Built in `WP-04` (`src/experience/story/place.js`). Chapter and shot changes add history entries; scrolling updates the current entry; teaching changes add none. Closing adds an entry without the story, so Back reopens it where the reader left it. An unknown shot falls back to its chapter's first shot, then to the opening. The market page's existing handoff carries the case to the Investment Lab, so the story needs no case envelope.
 
 ### WP-05: Retired in v1.1
 
@@ -123,7 +123,7 @@ The story shows no new financial figures. Its opening play card is an existing c
 | Modules | Proposed `src/experience/story/kit/`: about 20 symbols as SVG builders, an isometric layout helper on a 2:1 projection, day, dusk and night colour tokens, and a chart helper on the existing D3 setup |
 | Inputs -> outputs | Shot list and design sheets -> kit sheet, layout helper and signature-chart component |
 | Dependencies | Design deliverables ([page design §9](experience-and-page-design.md#9-design-deliverables)); can run alongside WP-02 and WP-03 |
-| Acceptance | Kit under about 60 KiB uncompressed and loaded only with a story; labels are text from locale strings; works in both themes and under reduced motion; titles and roles for screen readers |
+| Acceptance | Kit under about 60 KiB uncompressed and loaded only with a story; labels are text from the [en, zh] pairs the content passes in; works in both themes and under reduced motion; titles and roles for screen readers |
 | Verification | Visual review at the four widths; the story-chunk budget test; an accessibility pass |
 | Risk | Symbols that imply engineering precision; keep them generic and labelled |
 | Rollback | Plain 2D diagrams with the same text |
@@ -133,7 +133,7 @@ The story shows no new financial figures. Its opening play card is an existing c
 | Field | Specification |
 | --- | --- |
 | Objective | Scenes for `wa-01` to `wa-11` and the `wa-06` signature chart, drawn from the kit |
-| Modules | Proposed `src/markets/wa/story/scenes.js` with layouts and teaching presets |
+| Modules | `src/markets/wa/story/scenes.js` with layouts and teaching presets, and `src/markets/wa/story/geo.js` for the `wa-01` map; every word comes from the shot's `labels` and `controls` in `src/markets/wa/story.js` |
 | Inputs -> outputs | Signed-off script and the kit -> scenes wired into the shell |
 | Dependencies | WP-06; `G-1` for final copy |
 | Acceptance | Each scene answers its shot's question without interaction; teaching controls never touch case state; quantitative labels appear only once their gaps close (`GAP-WA-RCM`, `GAP-WA-DAY`) |

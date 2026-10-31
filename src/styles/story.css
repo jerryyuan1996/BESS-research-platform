@@ -1,0 +1,241 @@
+/* ---------------------------------------------------------------------------
+   The market-story kit: isometric scenes and the day chart (WP-06).
+   Loaded with the story chunk only. Uses the editorial tokens of experience.css.
+
+   Materials give each solid three tones (top, left, right). Time of day is a
+   tint over the whole drawing plus lit windows above it, switched by
+   data-time on the stage, so a scene changes colour without being redrawn.
+   --------------------------------------------------------------------------- */
+.k-stage, .k-chart { display:block; width:100%; height:auto; font-family:inherit; }
+.k-stage { overflow:hidden; }
+.k-chart { overflow:visible; }
+
+/* ---- sky, tint and lights --------------------------------------------------
+   The tint multiplies over sky and scene alike, so each sky colour is chosen
+   for how it reads after the tint: warm peach at dusk, deep navy at night. */
+.k-stage { --k-sky:#eef1e5; --k-tint:#2b2a55; --k-tint-op:0; --k-glow-op:0; --k-sun-op:1; --k-moon-op:0; }
+.k-stage[data-time="dusk"] { --k-sky:#ffd9b0; --k-tint:#7a4f6e; --k-tint-op:.24; --k-glow-op:.85; --k-sun-op:.6; }
+.k-stage[data-time="night"] { --k-sky:#3a4f6e; --k-tint:#16233d; --k-tint-op:.58; --k-glow-op:1; --k-sun-op:0; --k-moon-op:1; }
+.k-sky { fill:var(--k-sky); transition:fill .35s ease; }
+.k-tint { fill:var(--k-tint); opacity:var(--k-tint-op); mix-blend-mode:multiply; pointer-events:none; transition:opacity .35s ease; }
+.k-glow { fill:#ffd66e; opacity:var(--k-glow-op); transition:opacity .35s ease; }
+.k-sun circle { fill:#f2c14e; } .k-sun line { stroke:#f2c14e; stroke-width:2.5; stroke-linecap:round; }
+.k-sun { opacity:var(--k-sun-op); transition:opacity .35s ease; }
+.k-moon { fill:#e8e4d4; opacity:var(--k-moon-op); transition:opacity .35s ease; }
+
+/* ---- faces ----------------------------------------------------------------- */
+.k-box .k-t { fill:var(--t); } .k-box .k-l { fill:var(--l); } .k-box .k-r { fill:var(--r); }
+.k-box { --t:#e4e6dc; --l:#c9ccbf; --r:#aeb2a4; stroke:#193c32; stroke-opacity:.18; stroke-width:.6; stroke-linejoin:round; }
+.k-house    { --t:#f4efe3; --l:#e3dccb; --r:#cdc4af; }
+.k-roof     { --t:#c4704f; --l:#a95c41; --r:#8e4b35; }
+.k-tower    { --t:#d8dfe2; --l:#b9c5cb; --r:#9eadb5; }
+.k-tower-2  { --t:#cfd8dc; --l:#adbcc4; --r:#90a2ac; }
+.k-shed     { --t:#dcdcd2; --l:#c2c3b6; --r:#a8a99b; }
+.k-hall     { --t:#c5c8c1; --l:#a9ada5; --r:#8f948b; }
+.k-boiler   { --t:#b8bcb5; --l:#9da19a; --r:#848881; }
+.k-stack    { --t:#9fa49c; --l:#868a83; --r:#6f736c; }
+.k-container{ --t:#3f7f66; --l:#2f6b55; --r:#245644; }
+.k-cabinet  { --t:#e7e9e1; --l:#cfd3c7; --r:#b6bbad; }
+.k-xfmr     { --t:#a9b3ad; --l:#8d9892; --r:#737e78; }
+.k-bushing  { --t:#efe7d2; --l:#d8cfb6; --r:#c0b79d; }
+.k-post     { --t:#9aa29c; --l:#818982; --r:#6b726c; }
+.k-trunk    { --t:#8b6b4a; --l:#76593c; --r:#634a31; }
+.k-leaf     { --t:#8fb07a; --l:#78986a; --r:#62805a; stroke-opacity:.1; }
+.k-ground   { fill:#dfe4d2; stroke:#c6ceb5; stroke-width:.8; }
+.k-pad      { fill:#cfd2c6; }
+.k-panel, .k-shed-roof { fill:#2f4f7a; stroke:#9fb7d6; stroke-width:.5; }
+.k-shed-roof { fill:#c9ccc0; stroke:#9ea291; }
+.k-mast { fill:#eef0ea; stroke:#9aa197; stroke-width:.6; }
+.k-blade { stroke:#a9b0a7; stroke-width:2.2; stroke-linecap:round; }
+.k-hub { fill:#dfe3dc; stroke:#9aa197; stroke-width:.6; }
+.k-lattice { fill:none; stroke:#6b766f; stroke-width:1.1; }
+.k-wire { fill:none; stroke:#5d6b64; stroke-width:.9; }
+.k-link-missing { fill:none; stroke:var(--ix-risk,#9c5b40); stroke-width:1.6; stroke-dasharray:5 4; }
+.k-break { fill:none; stroke:var(--ix-risk,#9c5b40); stroke-width:2; stroke-linecap:round; }
+.k-chevron { fill:none; stroke:var(--ix-green,#224e40); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+
+/* A plan or scenario: dashed and pale, never shown as built. */
+.k-future .k-t, .k-future .k-l, .k-future .k-r { fill-opacity:.18; stroke:#193c32; stroke-opacity:.7; stroke-dasharray:3 2; }
+.k-hi .k-box { stroke:var(--ix-green,#224e40); stroke-opacity:1; stroke-width:1.4; }
+
+.k-label { font-size:var(--fs-xs); fill:var(--ix-ink,#193c32); paint-order:stroke; stroke:var(--ix-panel,#fffefa); stroke-width:3.5px; stroke-linejoin:round; }
+.k-label-dot { fill:var(--ix-ink,#193c32); }
+.k-stage[data-time="night"] .k-label { fill:#f5f3ed; stroke:#1f2b3a; }
+.k-stage[data-time="night"] .k-label-dot { fill:#f5f3ed; }
+
+/* ---- the day chart ---------------------------------------------------------- */
+.k-chart { font-size:var(--fs-2xs); color:var(--ix-ink,#193c32); }
+.k-chart text { fill:var(--ix-body,#47574f); }
+.k-chart .k-axis { stroke:#9aa79d; } .k-chart .k-grid { stroke:#e3e6dc; }
+.k-chart .k-tick line { stroke:#9aa79d; }
+.k-chart .k-axis-title, .k-chart .k-strip-title { fill:var(--ix-muted,#68766c); font-size:var(--fs-2xs); }
+.k-series .k-area { fill-opacity:.85; } .k-series .k-edge, .k-line { fill:none; stroke-width:1.8; }
+.k-s-grid .k-area, .k-s-grid .k-swatch { fill:#224e40; } .k-s-grid .k-edge { stroke:#193c32; }
+.k-s-roof .k-area, .k-s-roof .k-swatch { fill:#e2b84c; } .k-s-roof .k-edge { stroke:#a37732; }
+.k-s-line, .k-s-line.k-line { stroke:#224e40; } .k-legend.k-s-line .k-swatch { fill:#224e40; }
+.k-scenario .k-edge, .k-scenario.k-line { stroke-dasharray:5 4; }
+.k-window rect { fill:#dce6b7; fill-opacity:.55; stroke:#9dae99; stroke-dasharray:3 3; }
+.k-band-label { fill:var(--ix-green,#224e40) !important; font-weight:var(--fw-medium); }
+.k-highlight rect { fill:#e2b84c; fill-opacity:.16; }
+.k-strip-base { stroke:#c6ceb5; }
+/* What the battery can deliver is an outline; the power it is credited for is
+   solid; energy kept back for fade is pale and dashed. */
+rect.k-bar-output, .k-legend.k-bar-output .k-swatch { fill:none; stroke:#2f6b55; stroke-width:1.6; stroke-dasharray:4 2; }
+rect.k-bar-credited, .k-legend.k-bar-credited .k-swatch { fill:#a37732; fill-opacity:.85; }
+rect.k-bar-reserve, .k-legend.k-bar-reserve .k-swatch { fill:#a37732; fill-opacity:.25; stroke:#a37732; stroke-dasharray:3 2; }
+.k-strip-label { fill:var(--ix-ink,#193c32) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .k-stage *, .k-chart * { transition:none !important; }
+}
+
+/* On a phone a scene is drawn at about half size, so its labels are set at
+   1.75 times the scale step to land near it on screen. Charts use their compact
+   geometry instead (dayChart({ compact: true })). */
+@media (max-width: 560px) {
+  .k-stage .k-label { font-size:calc(var(--fs-xs) * 1.75); stroke-width:5px; }
+  /* the station switches to a narrow frame on a phone, drawn near full size */
+  .k-stage.k-energy .k-label { font-size:var(--fs-xs); stroke-width:3.5px; }
+  /* the compact chart is drawn at about 0.8 scale on a phone */
+  .k-chart, .k-chart .k-axis-title, .k-chart .k-strip-title { font-size:var(--fs-xs); }
+}
+
+/* ---- the story shell (WP-03) -------------------------------------------------
+   A full-height dialog: header, chapter navigator, the shots in ordinary
+   scrolling order, and a footer with Previous, Next and the way back to the
+   investment case. About 40% text and 60% visual where the width allows. */
+.ix-story-dialog { width:min(1240px, calc(100% - 40px)); height:min(92dvh, 1000px); max-height:92dvh; padding:0; overflow:hidden; }
+.ix-story-dialog[open] { display:flex; flex-direction:column; }
+.ix-story-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; padding:18px 24px 14px; border-bottom:1px solid #dce1d6; background:#f5f3ed; }
+.ix-story-head h2 { margin:2px 0 0; font-family:var(--ix-serif); font-size:var(--fs-2xl); color:var(--ix-ink); }
+.ix-story-head .ix-eyebrow { margin:0; font-size:var(--fs-micro); letter-spacing:.08em; color:var(--ix-muted); }
+.ix-story-boundary { margin:2px 0 0; font-size:var(--fs-xs); color:var(--ix-muted); }
+.ix-story-stale { margin:6px 0 0; font-size:var(--fs-xs); color:var(--ix-risk); }
+.ix-story-tools { display:flex; gap:8px; align-items:center; flex-shrink:0; }
+.ix-story-nav { padding:8px 24px; border-bottom:1px solid #dce1d6; background:#fffefa; overflow-x:auto; }
+.ix-story-nav ol { display:flex; gap:6px; list-style:none; margin:0; padding:0; white-space:nowrap; }
+.ix-story-nav button { min-height:36px; padding:4px 12px; border:1px solid #c6d0c0; border-radius:var(--r-pill); background:#fffefa; color:var(--ix-ink); font:inherit; font-size:var(--fs-sm); cursor:pointer; }
+.ix-story-nav button[aria-current="true"] { background:var(--ix-green); border-color:var(--ix-green); color:#fffefa; }
+.ix-story-nav button:focus-visible, .ix-story-dialog :focus-visible { outline:2px solid var(--ix-green); outline-offset:2px; }
+.ix-story-no { font-variant-numeric:tabular-nums; opacity:.7; }
+.ix-story-body { flex:1; min-height:0; overflow:auto; padding:0 24px 40px; background:#f5f3ed; }
+.ix-story-chapter-title { margin:28px 0 0; padding-top:8px; border-top:2px solid var(--ix-green); font-family:var(--ix-serif); font-size:var(--fs-xl); color:var(--ix-green); }
+.ix-shot { display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 6fr); gap:28px; padding:26px 0; border-bottom:1px solid #e3e6dc; scroll-margin-top:4px; }
+.ix-shot-opening { grid-template-columns:minmax(0, 1fr); max-width:760px; }
+.ix-shot h4 { margin:0 0 10px; font-family:var(--ix-serif); font-size:var(--fs-xl); line-height:var(--lh-tight); color:var(--ix-ink); }
+.ix-shot h4:focus { outline:none; }
+.ix-shot h4:focus-visible { outline:2px solid var(--ix-green); }
+.ix-shot-copy { margin:0 0 12px; font-size:var(--fs-lg); line-height:1.55; color:var(--ix-ink); }
+.ix-shot-meaning { margin:0 0 10px; padding:8px 12px; border-left:3px solid var(--ix-green); background:#edf1e4; font-size:var(--fs-sm); color:var(--ix-body); }
+.ix-shot-meaning strong { color:var(--ix-green); margin-right:4px; }
+.ix-story-marker { margin:0 0 10px; font-size:var(--fs-xs); color:var(--ix-body); }
+.ix-marker { display:inline-block; padding:1px 8px; border-radius:var(--r-pill); font-size:var(--fs-micro); font-weight:var(--fw-bold); letter-spacing:.03em; vertical-align:1px; }
+.ix-marker-strong { background:#224e40; color:#fffefa; }
+.ix-marker-fair { background:#f1e6c8; color:#6f5120; }
+.ix-marker-thin { background:#f3ddd3; color:#7c3f28; }
+.ix-story-sources { margin:6px 0 0; font-size:var(--fs-xs); }
+.ix-story-sources summary { cursor:pointer; color:var(--ix-green); min-height:24px; }
+.ix-story-sources ul { margin:6px 0 0; padding-left:18px; }
+.ix-story-sources li { margin:3px 0; }
+.ix-shot-visual { margin:0; }
+.ix-shot-visual figcaption { margin-top:6px; font-size:var(--fs-xs); color:var(--ix-muted); }
+.ix-shot-placeholder { display:grid; place-items:center; min-height:240px; border:1px dashed #c6d0c0; border-radius:var(--r-sm); background:#fffefa; color:var(--ix-muted); font-size:var(--fs-sm); }
+.ix-story-play { margin:0 0 14px; padding:14px 16px; border:1px solid #c6d0c0; border-radius:var(--r-sm); background:#fffefa; }
+.ix-story-play-head { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:8px; }
+.ix-story-play-title { margin:0; font-weight:var(--fw-medium); color:var(--ix-ink); }
+.ix-story-next { margin:8px 0 0; font-size:var(--fs-sm); }
+.ix-story-timeline ol, .ix-story-parts ul, .ix-story-factors ul { margin:10px 0 0; padding-left:0; list-style:none; }
+.ix-node { margin:0 0 10px; padding:8px 12px; border-left:3px solid var(--ix-green); background:#fffefa; }
+.ix-node-scenario { border-left-style:dashed; border-left-color:var(--ix-muted); }
+.ix-node-title { margin:0 0 4px; font-weight:var(--fw-medium); }
+.ix-node-when { color:var(--ix-green); margin-right:6px; font-variant-numeric:tabular-nums; }
+.ix-node dl { display:grid; grid-template-columns:max-content 1fr; gap:2px 10px; margin:0; font-size:var(--fs-xs); }
+.ix-node dt { color:var(--ix-muted); }
+.ix-node dd { margin:0; }
+.ix-story-parts li, .ix-story-factors li { margin:0 0 6px; font-size:var(--fs-sm); }
+.ix-story-exits { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.ix-story-foot { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:10px 24px; border-top:1px solid #dce1d6; background:#f5f3ed; }
+.ix-story-step { display:flex; gap:8px; }
+.ix-story-foot button[disabled] { opacity:.45; cursor:default; }
+.ix-story-dialog .ix-button, .ix-story-dialog .ix-language { min-height:44px; }
+
+@media (max-width: 720px) {
+  .ix-story-dialog { width:100%; height:100dvh; max-height:100dvh; margin:0; border:0; border-radius:0; }
+  .ix-story-head, .ix-story-nav, .ix-story-foot { padding-left:16px; padding-right:16px; }
+  .ix-story-head { flex-wrap:wrap; }
+  .ix-story-head h2 { font-size:var(--fs-xl); }
+  .ix-story-body { padding:0 16px 32px; }
+  .ix-shot { grid-template-columns:minmax(0, 1fr); gap:14px; padding:20px 0; }
+  .ix-story-foot .ix-text-link { font-size:var(--fs-xs); }
+}
+/* A tablet gets one column too: beside the text a drawing would get about
+   380px, and its words would fall to 6-8px on screen. */
+@media (max-width: 1050px) {
+  .ix-shot { grid-template-columns:minmax(0, 1fr); gap:14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ix-story-body { scroll-behavior:auto; }
+  .ix-story-dialog * { transition:none !important; animation:none !important; }
+}
+
+/* ---- teaching controls ------------------------------------------------------ */
+.k-controls { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px; }
+.k-toggle { min-height:44px; padding:6px 14px; border:1px solid #9dae99; border-radius:var(--r-pill); background:#fffefa; color:var(--ix-ink,#193c32); font:inherit; font-size:var(--fs-sm); cursor:pointer; }
+.k-toggle[aria-pressed="true"] { background:var(--ix-green,#224e40); border-color:var(--ix-green,#224e40); color:#fffefa; }
+.k-toggle:focus-visible { outline:2px solid var(--ix-green,#224e40); outline-offset:2px; }
+.k-readout { margin:6px 0 0; font-size:var(--fs-sm); color:var(--ix-body,#47574f); font-variant-numeric:tabular-nums; }
+.k-readout strong { color:var(--ix-ink,#193c32); }
+.k-tag { display:inline-block; margin-left:6px; padding:0 6px; border:1px solid #c6d0c0; border-radius:var(--r-pill); font-size:var(--fs-micro); color:var(--ix-muted,#68766c); vertical-align:1px; }
+
+/* ---- WA scenes (WP-07) -------------------------------------------------------- */
+.k-scene { min-width:0; }
+.k-control-row { display:flex; flex-wrap:wrap; gap:0 16px; }
+.k-diagram { background:#fffefa; border:1px solid #e3e6dc; border-radius:var(--r-sm); }
+.k-diagram .k-label { paint-order:normal; stroke:none; }
+.k-diagram .k-label.k-halo { paint-order:stroke; stroke:var(--ix-panel,#fffefa); stroke-width:3.5px; stroke-linejoin:round; }
+.k-muted { fill:var(--ix-muted,#68766c); }
+/* the island map: the SWIS against the rest of the state, the NEM and the NT */
+.k-map .k-map-wa { fill:#e6e9dc; stroke:#9dae99; stroke-width:1; transition:fill .3s ease; }
+.k-map .k-map-nem { fill:#d6dbe7; stroke:#94a0b6; stroke-width:1; }
+.k-map .k-map-nt { fill:#efefe9; stroke:#cacabf; stroke-width:1; }
+.k-map .k-map-swis { fill:#224e40; fill-opacity:.88; stroke:#193c32; stroke-width:1.2; transition:fill-opacity .3s ease; }
+.k-map[data-view="state"] .k-map-wa { fill:#b8cda4; }
+.k-map[data-view="state"] .k-map-swis { fill-opacity:.3; stroke-dasharray:4 3; }
+.k-map[data-view="system"] .k-map-state-label { fill:var(--ix-muted,#68766c); }
+.k-map .k-map-swis-label { font-weight:var(--fw-bold); }
+/* rules over the physical system */
+.k-rules { display:none; }
+.k-stage[data-view="rules"] .k-rules { display:inline; }
+.k-step rect { fill:#fffefa; stroke:#224e40; stroke-width:1.4; }
+.k-step-no { fill:#224e40; font-weight:var(--fw-bold); font-size:var(--fs-lg); }
+.k-step-arrow { fill:none; stroke:#224e40; stroke-width:1.6; }
+/* the response ladder */
+.k-ladder-rail { stroke:#9dae99; stroke-width:2; }
+.k-rung-bar { fill:#fffefa; stroke:#c6d0c0; }
+.k-ladder[data-focus="hours"] .k-rung-hours .k-rung-bar,
+.k-ladder[data-focus="seconds"] .k-rung-seconds .k-rung-bar { fill:#dce6b7; stroke:#224e40; stroke-width:1.6; }
+/* stored energy against the hours AEMO counts */
+.k-energy .k-window rect { fill:#dce6b7; fill-opacity:.55; stroke:#9dae99; stroke-dasharray:3 3; }
+.k-energy-bar { fill:#2f6b55; transition:width .25s ease; }
+.k-energy-bar.k-short { fill:#a37732; }
+.k-energy .k-tick text { fill:var(--ix-body,#47574f); font-size:var(--fs-2xs); }
+.k-energy .k-axis, .k-board .k-axis { stroke:#9aa79d; }
+/* the payment lanes */
+.k-lanes { min-height:120px; }
+.k-lane { display:flex; flex-wrap:wrap; gap:8px 26px; list-style:none; margin:0 0 14px; padding:0; }
+.k-lane li { position:relative; padding:8px 12px; border:1px solid #9dae99; border-radius:var(--r-sm); background:#fffefa; font-size:var(--fs-sm); }
+.k-lane li + li::before { content:'→'; position:absolute; left:-20px; top:50%; transform:translateY(-50%); color:var(--ix-muted,#68766c); }
+.k-lane-terms { display:grid; grid-template-columns:max-content 1fr; gap:6px 14px; margin:0; font-size:var(--fs-sm); }
+.k-lane-terms dt { color:var(--ix-muted,#68766c); }
+.k-lane-terms dd { margin:0; }
+/* the allocation board */
+.k-board-limit { stroke:#193c32; stroke-dasharray:4 3; }
+.k-alloc-capacity { fill:#224e40; } .k-alloc-services { fill:#a37732; } .k-alloc-trading { fill:#e2b84c; }
+.k-key { display:flex; flex-wrap:wrap; gap:4px 16px; list-style:none; margin:4px 0 6px; padding:0; font-size:var(--fs-sm); color:var(--ix-body,#47574f); }
+.k-key li { display:flex; align-items:center; gap:6px; }
+.k-key-swatch { display:inline-block; width:12px; height:10px; border-radius:var(--r-xs); }
+.k-key-swatch.k-alloc-capacity { background:#224e40; } .k-key-swatch.k-alloc-services { background:#a37732; } .k-key-swatch.k-alloc-trading { background:#e2b84c; }
+.k-conflict { fill:var(--ix-risk,#9c5b40) !important; font-weight:var(--fw-bold); }
+/* the cutaway's two label sets */
+.k-stage[data-view="equipment"] .k-v-rights, .k-stage[data-view="rights"] .k-v-equipment { display:none; }
+@media (prefers-reduced-motion: reduce) { .k-energy-bar, .k-map path { transition:none; } }

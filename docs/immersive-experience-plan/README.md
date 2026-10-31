@@ -1,7 +1,7 @@
 # Immersive Visual Experience Plan
 
 Pack ID: BESS-IX-2026-10-30  
-Version: 1.1, revised after review on 30 October 2026 (v1.0 is commit `db158b9`)  
+Version: 1.2.1, 31 October 2026: synced with the WA scenes as built in `WP-07` (v1.2 is the script signed off at `G-1`; v1.1 is commit `3f1101f`, v1.0 is `db158b9`)  
 Prepared: 30 October 2026, Australia/Perth  
 Repository baseline: `6ce1e035cace6e676167f904d511a3425a5be12d`, including PRs #72/#73 and the first Finland reserve snapshots  
 Delivery scope: English Markdown planning documents; no application, data, model or CI changes
@@ -25,7 +25,7 @@ Keep the off-white and deep-green research identity. Scenes are fixed-view isome
 | 5 minutes | Explain what the battery does here, who pays, and why the play has its duration and entry route |
 | Then | Continue into the market page's investment sections, or open a claim's source |
 
-Comprehension check: after reading the story, the user can say why the play is what it is without opening the research tabs. For WA that means a seven-hour capacity battery bought behind a sponsor; for Germany, a four-hour toll; for Finland, two hours with a negotiated floor.
+Comprehension check: after reading the story, the user can say why the play is what it is without opening the research tabs. For WA that means an eight-hour capacity battery, seven hours for the rule and one for the fade, bought behind a sponsor; for Germany, a four-hour toll; for Finland, two hours with a negotiated floor.
 
 ## 2. Reading order and document ownership
 
@@ -51,7 +51,9 @@ Keep one owner per specification. When something changes, update its owner and e
 | Version | Date | Change | Status |
 | --- | --- | --- | --- |
 | 1.0 | 2026-10-30 | Expanded and translated the original Chinese plan; verification through #73 | Committed as `db158b9`; superseded |
-| 1.1 | 2026-10-30 | Review against the platform's calls, the three-page market page and the 16 October rulings; decisions D1 to D10 | Planning revision; the user signs off by accepting this pack |
+| 1.1 | 2026-10-30 | Review against the platform's calls, the three-page market page and the 16 October rulings; decisions D1 to D10 | Merged in PR #74 |
+| 1.2 | 2026-10-30 | WA hinge claims sourced from AEMO, the ERA, Energy Policy WA, the ESM Rules and the AEMC; the WA script revised for the published eight-hour play, with markers and Chinese drafts; decisions D11 and D12 | Script signed off by the user at `G-1` on 30 Oct 2026 |
+| 1.2.1 | 2026-10-31 | Synced with the `WP-07` build: the SWIS extent (SRC-WA-16) and coastline (SRC-NE-01) sources; the `wa-01` map redrawn from them (ASSET-SWIS-BOUNDARY); scene words owned by each shot's `labels` in the content file; page text the build changed: a `wa-01` caption, `wa-08` without its charge controls, `wa-10` with three terms and its route steps | Page-text changes go to the user at `G-2` |
 
 | ID | v1.1 decision | Affects | Basis | Impact |
 | --- | --- | --- | --- | --- |
@@ -65,12 +67,16 @@ Keep one owner per specification. When something changes, update its owner and e
 | D8 | The reader is mainly the user | Acceptance §5 | User, 30 Oct | Recruited tests replaced by self-review |
 | D9 | Three gates | Acceptance §3 | Review | Replaces `G-0` to `G-7` |
 | D10 | Concrete laptop handoff checklist | Acceptance §6 | Workstation check, 30 Oct | Lists the items that exist only on the current machine |
+| D11 | The WA story argues for the published play, `wa-cap-8h`, not v1.1's seven hours | WA storyboard; narratives §3; acceptance §5; source register CF-WA-01 | D1, and the analyst's play change of 17 Oct (commit `df36abb`) | wa-06, wa-08 and wa-14 explain eight hours as the seven-hour rule plus an hour that holds the credit as the battery fades |
+| D12 | The day trace is the median business day of the 2025-26 Hot Season, from AEMO's unscheduled operational demand and rooftop PV (CALC-WA-DAY) | wa-05, wa-06; source register; evidence specification gap queue | GAP-WA-DAY; AEMO's copyright permissions | Signed off at `G-1`, 30 Oct; a fixed-vintage profile refreshed after each Hot Season, not a live feed |
 
 ## 3. What was verified
 
 **v1.0.** Local and remote `main` matched `6ce1e035cace6e676167f904d511a3425a5be12d` at about 14:45 AWST, after #72, #73 and the first Finland reserve snapshots. The stack is native ES modules, Vite and D3/SVG, with no React or Three.js. The registry holds 18 allocation markets. Seven Finland reserve-price snapshots exist; they are stored price observations, not a capture strategy. Official sources were checked for a small set of pilot foundations. Details are in [the engineering baseline](engineering-work-packages.md#1-verified-repository-baseline) and [the source register](source-register.md#repository-verification).
 
 **v1.1.** The pack was read against the briefing theses (REPO-12), the market page and its research dialog (REPO-13), the home budget measured at PR #69 (REPO-14), the dataset catalogue (REPO-10) and this workstation's local-only state ([handoff checklist](preparation-migration-and-acceptance.md#6-laptop-handoff-checklist)). Across eight files, v1.0 never referred to a market's call or play, the three-page market page or the Bankable case. Its WA, Germany and Finland stories did not lead to their published plays. v1.0 was committed unchanged before this revision; no application code, data or model changed.
+
+**v1.2.** The four WA hinge items were checked against primary sources on 30 October 2026, from `main` at `1fbdff5`: the 2026 WEM ESOO, the ESM Rules consolidated to 1 October 2026, the 2014 Electricity Market Review options paper, AEMO's, the ERA's and Energy Policy WA's WEM pages, AEMO's WEM data and copyright permissions, and the AEMC's NEM page and 2026 reliability review. Details and locators are in [the source register](source-register.md#western-australia). The check found that the published WA play has been eight hours since 17 October (CF-WA-01), that one window in AEMO's Table 28 is printed an interval early (CF-WA-02), and that AEMO assigned the 2028-29 Capacity Credits on 20 October, which the play's next action waits for (CF-WA-03). Only Markdown in this folder changed.
 
 ## 4. Priorities and release shape
 
@@ -169,3 +175,13 @@ v1.1 checks, 30 October 2026:
 - A scan against `local-data/markers.json` found no confidential markers.
 
 The pack shrank from about 181 KiB to about 141 KiB. No application tests, build or deployment were run, because nothing outside this folder changed.
+
+v1.2 checks, 30 October 2026:
+
+- All eight files carry version 1.2.
+- All 98 local links and anchors resolve.
+- Each of the 13 active shots has its specification rows (scene, feedback, evidence and chart, authoring check, mobile, status) and its page-text rows (question, copy, meaning, marker, controls) in English and Simplified Chinese. `wa-00` has no meaning line, because it is the conclusion.
+- Page text carries no figure outside a ‹bound› token except dates, source table numbers and values tagged Example.
+- A scan against `local-data/markers.json` found no confidential markers.
+
+The pack grew to about 179 KiB, mostly the Chinese drafts and the source records. Only Markdown in this folder changed, so no application tests, build or deployment were run.

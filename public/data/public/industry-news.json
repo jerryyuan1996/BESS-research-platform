@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-30T05:57:13.005Z",
+  "fetchedAt": "2026-10-30T22:26:44.039Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-30T01:21:31.000Z",
+    "to": "2026-10-30T17:00:00.000Z",
     "resolution": "event",
-    "points": 47
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -135,36 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-10-27T08:48:21.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/giga-storage-closes-e260-million-debt-financing-for-1400mwh-germany-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Giga Storage closes €260 million debt financing for 1,400MWh Germany BESS",
-      "url": "https://www.energy-storage.news/giga-storage-closes-e260-million-debt-financing-for-1400mwh-germany-bess/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Owner-operator Giga Storage has finalised financing for the construction of its 350MW/1,400MWh Albatross energy storage project near Neuenkirchen in Lower Saxony, Germany."
-    },
-    {
-      "t": "2026-10-27T10:55:45.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/lets-keep-things-practical-contracting-in-battery-energy-storage-systems-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Let’s keep things practical: contracting in battery energy storage systems (BESS)",
-      "url": "https://www.energy-storage.news/lets-keep-things-practical-contracting-in-battery-energy-storage-systems-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "As BESS projects grow more complex, so does the question of what 'purpose' even means in a construction contract, writes contracts lawyer Suriya Ashok of Clyde & Co."
-    },
-    {
-      "t": "2026-10-27T11:07:49.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/poland-greenvolt-sells-1-6gwh-of-projects-to-ar-pge-building-800mwh-with-fluence-tech/",
-      "source": "Energy-Storage.news",
-      "title": "Poland: Greenvolt sells 1.6GWh of projects to A&R, PGE building 800MWh with Fluence tech",
-      "url": "https://www.energy-storage.news/poland-greenvolt-sells-1-6gwh-of-projects-to-ar-pge-building-800mwh-with-fluence-tech/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "IPP Greenvolt has agreed to sell two BESS in Poland to A&R, PGE Group has started building an 800MWh one, while SC Holding, Tauron and Tavion have launched projects into the country."
-    },
-    {
       "t": "2026-10-27T11:32:15.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/samsung-sdi-signs-1gwh-us-bess-supply-agreement-with-alpha-omega-power/",
       "source": "Energy-Storage.news",
@@ -265,46 +235,6 @@
       "summary": "Energy storage developer-operator Bimergen Energy has filed an application for an Option 2 Retail Electric Provider (REP) certificate in Texas, US."
     },
     {
-      "t": "2026-10-28T16:46:53.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/cms-energy-ceo-predicts-data-center-progress-after-midterms/873057/",
-      "source": "Utility Dive",
-      "title": "CMS Energy CEO predicts data center ‘progress’ after midterms",
-      "url": "https://www.utilitydive.com/news/cms-energy-ceo-predicts-data-center-progress-after-midterms/873057/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Garrick Rochow blamed political &ldquo;spin&rdquo; for permitting setbacks in an earnings call. He did not address the more than $300 million the utility says it has spent to keep an aging coal plant running under DOE &lsquo;emergency&rsquo; orders."
-    },
-    {
-      "t": "2026-10-29T10:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/spain-solar-ppa-prices-fall-to-e30-93-mwh-as-bess-gains-ground/",
-      "source": "pv magazine",
-      "title": "Spain solar PPA prices fall to €30.93/MWh as BESS gains ground",
-      "url": "https://www.pv-magazine.com/2026/10/29/spain-solar-ppa-prices-fall-to-e30-93-mwh-as-bess-gains-ground/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Average prices for standalone solar power purchase agreements (PPAs) in Spain fell 7.7% year on year to €30.93 ($34.46)/MWh in the third quarter of 2026, while hybrid solar-and-storage contracts reached €48/MWh. Rising development costs and renewable energy curtailment are increasing interest in battery storage. The…"
-    },
-    {
-      "t": "2026-10-29T10:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/botswana-kicks-off-floating-solar-tender/",
-      "source": "pv magazine",
-      "title": "Botswana kicks off floating solar tender",
-      "url": "https://www.pv-magazine.com/2026/10/29/botswana-kicks-off-floating-solar-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "A tender is open in Botswana for the development of floating PV systems on dams belonging to the country’s Water Utilities Corporation. The deadline for applications is November 19. The post Botswana kicks off floating solar tender appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-29T11:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/western-australia-moves-to-legalize-plug-in-solar-on-german-model/",
-      "source": "pv magazine",
-      "title": "Western Australia moves to legalize plug-in solar on German model",
-      "url": "https://www.pv-magazine.com/2026/10/29/western-australia-moves-to-legalize-plug-in-solar-on-german-model/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "A draft technical standard out for consultation in Western Australia is based on Germany’s plug-in solar specification and would class balcony systems as ordinary electrical appliances. The post Western Australia moves to legalize plug-in solar on German model appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-29T11:23:29.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/portugal-makes-grid-forming-mandatory-for-large-scale-bess-and-launches-1gw-tender/",
       "source": "Energy-Storage.news",
@@ -316,16 +246,6 @@
     },
     {
       "t": "2026-10-29T12:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/ground-mounted-solar-used-2798-hectares-of-land-in-italy-in-2025/",
-      "source": "pv magazine",
-      "title": "Ground-mounted solar used 2,798 hectares of land in Italy in 2025",
-      "url": "https://www.pv-magazine.com/2026/10/29/ground-mounted-solar-used-2798-hectares-of-land-in-italy-in-2025/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Ground-mounted photovoltaic (PV) installations accounted for 27% of Italy’s land consumption in 2025, according to the National System for Environmental Protection (SNPA). The post Ground-mounted solar used 2,798 hectares of land in Italy in 2025 appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-29T12:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/data-center-purchases-of-electrical-equipment-up-80-since-2025-hubbell/873134/",
       "source": "Utility Dive",
       "title": "Data center purchases of electrical equipment up 80% since 2025: Hubbell",
@@ -333,16 +253,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "A temporary shortage of meter components should be fully resolved by the end of the year, the electrical equipment supplier said in its third-quarter earnings call."
-    },
-    {
-      "t": "2026-10-29T13:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/researchers-develop-molecular-locking-strategy-for-organic-solar-cells/",
-      "source": "pv magazine",
-      "title": "Researchers develop molecular locking strategy for organic solar cells",
-      "url": "https://www.pv-magazine.com/2026/10/29/researchers-develop-molecular-locking-strategy-for-organic-solar-cells/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Small-area organic solar cells featuring the molecular locking strategy achieved a power conversion efficiency of 20.4%, while larger-area modules reached a record active-area efficiency of 18.8%. The post Researchers develop molecular locking strategy for organic solar cells appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-29T13:00:02.000Z",
@@ -395,16 +305,6 @@
       "summary": "The California Energy Commission (CEC) has released over US$46 million for the state’s Distributed Electricity Backup Assets (DEBA) Programme."
     },
     {
-      "t": "2026-10-29T14:26:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/us-customs-releases-toyos-ethiopian-cells-as-duty-probe-continues/",
-      "source": "pv magazine",
-      "title": "US customs frees detained Ethiopian solar cells as duty probe continues",
-      "url": "https://www.pv-magazine.com/2026/10/29/us-customs-releases-toyos-ethiopian-cells-as-duty-probe-continues/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US Customs and Border Protection (CBP) has released shipments of Toyo’s Ethiopian-made solar cells, while a separate US Department of Commerce inquiry into whether cells from Ethiopia circumvent duties on Chinese solar products continues. The post US customs frees detained Ethiopian solar cells as duty probe continu…"
-    },
-    {
       "t": "2026-10-29T15:05:24.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/aep-transmission-data-center-earnings/873189/",
       "source": "Utility Dive",
@@ -435,36 +335,6 @@
       "summary": "Scatec, the European Investment Bank (EIB), the European Bank for Reconstruction and Development (EBRD) and the African Development Bank (AfDB) have signed an investment agreement for Dandara solar-plus-storage project in Egypt."
     },
     {
-      "t": "2026-10-29T16:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/first-solar-opens-1-7-gw-module-plant-in-south-carolina/",
-      "source": "pv magazine",
-      "title": "First Solar opens 1.7 GW module plant in South Carolina",
-      "url": "https://www.pv-magazine.com/2026/10/29/first-solar-opens-1-7-gw-module-plant-in-south-carolina/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "First Solar’s latest US plant will complete production of thin-film solar modules manufactured at overseas sites, with annual capacity set to increase from 1.7 GW to 3.4 GW by mid-2027. The post First Solar opens 1.7 GW module plant in South Carolina appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-29T16:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/gallium-doped-zinc-oxide-enables-24-92-efficient-hjt-solar-cell/",
-      "source": "pv magazine",
-      "title": "Gallium-doped zinc oxide enables 24.92%-efficient HJT solar cell",
-      "url": "https://www.pv-magazine.com/2026/10/29/gallium-doped-zinc-oxide-enables-24-92-efficient-hjt-solar-cell/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers have used room-temperature reactive plasma deposition to produce indium-free transparent electrodes for silicon heterojunction solar cells. Optimizing the oxygen content during deposition enabled a conversion efficiency of 24.92%, with silver-coated copper contacts. The post Gallium-doped zinc oxide enab…"
-    },
-    {
-      "t": "2026-10-29T17:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/29/government-backs-indian-floating-solar/",
-      "source": "pv magazine",
-      "title": "Government backs Indian floating solar",
-      "url": "https://www.pv-magazine.com/2026/10/29/government-backs-indian-floating-solar/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "New policy support sees India’s federal government attempt to accelerate floating solar deployment, but can it be done, and in a country with ample ground-mounted potential, is it worth the effort? The post Government backs Indian floating solar appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-29T17:40:22.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/ge-vernova-in-9b-deal-to-buy-high-voltage-manufacturer-as-gas-turbine-orde/873223/",
       "source": "Utility Dive",
@@ -493,16 +363,116 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Demand for 8-hour battery energy storage in Australia is \"completely artificial\" and relies on government underwriting, according to Tesla, which said asymmetric registration can help such projects earn more."
+    },
+    {
+      "t": "2026-10-30T09:52:19.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-sonnens-collapse-bess-contracts-new-market-entrants-and-over-reporting-availability/",
+      "source": "Energy-Storage.news",
+      "title": "BESS Industry Buzz: Sonnen’s collapse, BESS contracts, new market entrants and over-reporting availability",
+      "url": "https://www.energy-storage.news/bess-industry-buzz-sonnens-collapse-bess-contracts-new-market-entrants-and-over-reporting-availability/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "We're back with another BESS Industry Buzz after a short period off, tracking interesting hot takes and analysis from across the energy storage industry."
+    },
+    {
+      "t": "2026-10-30T10:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/seg-solar-plans-4-gw-hjt-cell-manufacturing-plant-in-texas/",
+      "source": "pv magazine",
+      "title": "SEG Solar plans 4 GW HJT cell manufacturing plant in Texas",
+      "url": "https://www.pv-magazine.com/2026/10/30/seg-solar-plans-4-gw-hjt-cell-manufacturing-plant-in-texas/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "SEG Solar has secured land for a planned $950 million heterojunction (HJT) solar cell manufacturing facility in the Houston area, Texas. The post SEG Solar plans 4 GW HJT cell manufacturing plant in Texas appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-30T11:37:05.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/fercs-rulings-on-pjm-home-of-data-centre-alley-put-the-spotlight-on-states/",
+      "source": "Energy-Storage.news",
+      "title": "FERC’s rulings on PJM, home of ‘Data Centre Alley,’ put the spotlight on states",
+      "url": "https://www.energy-storage.news/fercs-rulings-on-pjm-home-of-data-centre-alley-put-the-spotlight-on-states/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Few grids illustrate the strain of America's data centre boom more starkly than the PJM Interconnection."
+    },
+    {
+      "t": "2026-10-30T12:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/benin-secures-financing-for-62-mw-of-solar-across-four-sites/",
+      "source": "pv magazine",
+      "title": "Benin secures financing for first solar IPP projects",
+      "url": "https://www.pv-magazine.com/2026/10/30/benin-secures-financing-for-62-mw-of-solar-across-four-sites/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The €30 million ($33.5 million) financing package goes towards the construction and operation of four PV plants forming part of Benin’s first independent power producer solar project. The post Benin secures financing for first solar IPP projects appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-30T12:25:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-augmentation-what-owner-operators-need-to-know/",
+      "source": "Energy-Storage.news",
+      "title": "BESS augmentation: what owner-operators need to know",
+      "url": "https://www.energy-storage.news/bess-augmentation-what-owner-operators-need-to-know/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "How should BESS owner-operators be thinking about augmentation of their projects further down the line?"
+    },
+    {
+      "t": "2026-10-30T13:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/new-framework-identifies-key-costs-in-pv-panel-recycling/",
+      "source": "pv magazine",
+      "title": "New framework identifies key costs in PV panel recycling",
+      "url": "https://www.pv-magazine.com/2026/10/30/new-framework-identifies-key-costs-in-pv-panel-recycling/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers have proposed a decision-support framework for assessing the costs of recycling end-of-life solar panels. An expert panel assigned the highest relative importance to operations and production, followed closely by infrastructure and facilities. The post New framework identifies key costs in PV panel recyc…"
+    },
+    {
+      "t": "2026-10-30T13:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/chinese-pv-industry-brief-ja-solars-nine-month-loss-widens/",
+      "source": "pv magazine",
+      "title": "Chinese PV Industry Brief: JA Solar’s nine-month loss widens",
+      "url": "https://www.pv-magazine.com/2026/10/30/chinese-pv-industry-brief-ja-solars-nine-month-loss-widens/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "JA Solar reported a CNY 3.64 billion ($546.5 million) net loss for the first nine months of 2026, while Tongwei signed 1 GW in solar module cooperation agreements with Australian distributors. The post Chinese PV Industry Brief: JA Solar’s nine-month loss widens appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-30T13:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/the-hydrogen-stream-finnish-researchers-increase-voltage-in-alkaline-systems-to-cut-costs-by-10-15/",
+      "source": "pv magazine",
+      "title": "The Hydrogen Stream: Finnish researchers increase voltage in alkaline systems to cut costs by 10-15%",
+      "url": "https://www.pv-magazine.com/2026/10/30/the-hydrogen-stream-finnish-researchers-increase-voltage-in-alkaline-systems-to-cut-costs-by-10-15/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Recent developments across the global green hydrogen sector highlight growing efforts to improve production efficiency, reduce costs, strengthen international supply chains and accelerate investment in renewable hydrogen infrastructure, with new advances and agreements emerging across Europe, and Asia. The post The…"
+    },
+    {
+      "t": "2026-10-30T16:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/first-solar-cuts-sales-forecast-as-tariff-uncertainty-slows-orders/",
+      "source": "pv magazine",
+      "title": "First Solar cuts sales forecast as tariff uncertainty slows orders",
+      "url": "https://www.pv-magazine.com/2026/10/30/first-solar-cuts-sales-forecast-as-tariff-uncertainty-slows-orders/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "First Solar reported third-quarter net sales of $1.23 billion and net income of $571 million, as the US thin-film manufacturer navigated customer uncertainty over Section 232 tariffs. The post First Solar cuts sales forecast as tariff uncertainty slows orders appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-30T17:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/forecasting-growth/",
+      "source": "pv magazine",
+      "title": "Forecasting growth",
+      "url": "https://www.pv-magazine.com/2026/10/30/forecasting-growth/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India’s expanding utility-scale solar fleet is creating a growing need for accurate generation forecasts. Yet the country does not have one uniform specification for every project. The requirements depend on the connection point, the responsible scheduling entity, and the rules issued by central or state regulators.…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 47,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 9,
-      "capital": 5,
+      "policy": 7,
+      "capital": 4,
       "grid": 31,
       "technology": 2
     },
@@ -523,13 +493,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 7
+        "items": 6
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 7
       }
     ]
   },
@@ -538,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:d3d5729637a7c2b91696fffbcd2422d387be97db6f5df9d5693e316bd2c7a4df",
-  "envelopeChecksum": "sha256:140c70a738ea1dcb419b5ff2a3d1c22ab516ad953116152ba6db6e386a81681b"
+  "contentChecksum": "sha256:07e2d812330d38bee0aeab1d4e870a3d68eaea386583cdbe80387888dd693e40",
+  "envelopeChecksum": "sha256:0f02f3033241f147df6fd406485a9d943b06d57d958f1441d0bd3a86afac3dbe"
 }

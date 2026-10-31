@@ -1,6 +1,6 @@
 # Experience and Page Design
 
-Pack: BESS-IX-2026-10-30, version 1.1  
+Pack: BESS-IX-2026-10-30, version 1.2  
 Status: information architecture and layout brief; no website or UI implementation  
 Navigation: [Master plan](README.md) | [WA storyboard](western-australia-storyboard.md) | [Content contract](evidence-and-content-specification.md#5-proposed-story-content-contract) | [Engineering work](engineering-work-packages.md)
 
@@ -27,7 +27,7 @@ flowchart TD
     X --> L[Investment Lab, through the market page's existing handoff]
 ```
 
-Proposed story URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. It is not implemented yet; `WP-04` owns it.
+Story URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. `WP-04` built it in `src/experience/story/place.js`.
 
 **Home stays unchanged in the pilot.** It is conclusion-first by design and had about 2.5 KiB of first-view budget left at PR #69 (262.5 of 265 KiB, REPO-14). Story invitations on the home page, grouped as Wrong time, Wrong place and Need for response, are a later option and must load lazily.
 
@@ -136,7 +136,7 @@ Write each idea plainly before its acronym. The third column keeps the copy accu
 
 ## 7. Two languages
 
-The site needs complete English and Simplified Chinese for copy, controls, labels, captions, markers, chart axes and error states. Use stable IDs and reviewed locale entries; SVG text comes from locale strings and is never baked into a drawing. Source titles keep their original language. Switching language keeps the market, chapter, shot and reading position. The user checks both languages at each sign-off, and a translation that changes an obligation goes back to mechanism review.
+The site needs complete English and Simplified Chinese for copy, controls, labels, captions, markers, chart axes and error states. Use stable IDs and reviewed locale entries. Scene text comes from the story content: each shot's `labels`, keyed English and Chinese pairs in the market's content file (`src/markets/wa/story.js`), with ‹bound› tokens filled from the model. It is never baked into a drawing. Source titles keep their original language. Switching language keeps the market, chapter, shot and reading position. The user checks both languages at each sign-off, and a translation that changes an obligation goes back to mechanism review.
 
 ## 8. States
 
