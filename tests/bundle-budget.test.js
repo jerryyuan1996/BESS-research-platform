@@ -238,6 +238,7 @@ const BUDGET = {
        fetched only when a reader opens the story from the market page. The
        plan's ceiling for shell, content and kit together is about 40 KiB. */
     'story-wa': 40,
+    'story-de': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,

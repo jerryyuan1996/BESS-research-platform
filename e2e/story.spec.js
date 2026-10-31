@@ -253,3 +253,133 @@ test('the WA button opens the story for every reader, with the research one clic
   await dialog.getByRole('button', { name: 'Full research ↗' }).click();
   await expect(page.locator('.ix-research-dialog')).toBeVisible();
 });
+
+/* Germany WP-09: the same shell and URL contract, on the approved Example. */
+const DE = '/markets/germany';
+const openGermany = async page => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto(DE);
+  const trigger = page.locator('.ix-full-research');
+  await trigger.scrollIntoViewIfNeeded();
+  await trigger.click();
+  const dialog = page.locator('.ix-story-dialog');
+  await expect(dialog).toBeVisible();
+  return { trigger, dialog };
+};
+
+test('Germany explains the toll and congestion boundary in English and Chinese', async ({ page }, info) => {
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  const priceRequests = []; page.on('request', r => { if (/de-day-ahead/.test(r.url())) priceRequests.push(r.url()); });
+  const { trigger, dialog } = await openGermany(page);
+  await expect(dialog.locator('article.ix-shot')).toHaveCount(13);
+  await expect(dialog.locator('.ix-marker')).toHaveCount(13);
+  await expect(dialog.locator('.de-opening-thumb')).toHaveCount(1);
+  await expect(dialog.locator('[data-shot=de-00] .ix-story-play-title')).toContainText('Toll');
+  await expect(dialog.locator('[data-shot=de-05] .ix-shot-copy')).toContainText('connection and cost issue');
+  await expect(dialog.locator('[data-shot=de-09] .ix-shot-copy')).toContainText('contractual revenue during its term');
+  await expect(dialog.locator('[data-shot=de-09] .ix-shot-copy')).toContainText('earns less');
+  await expect(dialog.locator('[data-shot=de-09] .ix-marker-change')).toContainText('EPEX SPOT');
+  await expect(dialog.locator('[data-shot=de-09] .ix-marker-change')).toContainText('SMARD');
+  await expect(dialog.locator('[data-shot=de-09] .ix-marker-change')).toContainText('CC BY 4.0');
+  await expect(dialog.locator('[data-shot=de-09] .ix-marker-change')).toContainText('HEDWIG');
+  await expect(dialog.locator('[data-shot=de-09] [data-mode=example]')).toBeVisible();
+  await dialog.getByRole('button', { name: 'Next →' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(dialog.locator('#ix-shot-de-01')).toBeFocused();
+  await dialog.getByRole('button', { name: 'Switch to Chinese' }).click();
+  await expect(dialog.locator('[data-shot=de-05] .ix-shot-copy')).toContainText('并网限制和成本');
+  await expect(dialog.locator('[data-shot=de-09] .ix-shot-meaning')).toContainText('转移价格风险');
+  await expect(dialog.locator('[data-shot=de-09] .ix-marker-change')).toContainText('数据所有者许可');
+  await expect(dialog.locator('[data-shot=de-09] .k-tag')).toContainText('示例');
+  await expect(dialog.locator('.de-opening-thumb')).toHaveCount(1);
+  const chinese = await dialog.locator('article.ix-shot').evaluateAll(nodes => nodes.map(el => ({ copy: el.querySelector('.ix-shot-copy').innerText, marker: el.querySelector('.ix-marker').innerText })));
+  for (const article of chinese) {
+    expect(article.copy).toMatch(/[一-鿿]/);
+    expect(article.marker).toBe('证据尚可');
+  }
+  await dialog.screenshot({ path: info.outputPath('germany-story-zh.png') });
+  await page.keyboard.press('Escape');
+  await expect(trigger).toBeFocused();
+  expect(priceRequests).toEqual([]);
+  expect(errors).toEqual([]);
+});
+
+test('German teaching controls preserve the case and expose costs, term and method', async ({ page }) => {
+  const { dialog } = await openGermany(page);
+  const before = await page.locator('#bankable').innerText();
+  const entries = await page.evaluate(() => history.length);
+  const station = dialog.locator('[data-shot=de-08]');
+  const longer = station.getByRole('button', { name: /h merchant/ }).nth(1);
+  await longer.scrollIntoViewIfNeeded(); await longer.focus(); await page.keyboard.press('Enter');
+  await expect(longer).toHaveAttribute('aria-pressed', 'true');
+  const fee = dialog.locator('[data-shot=de-09] .de-spread-chart');
+  const amount = await fee.getAttribute('data-fee');
+  expect(Number(amount)).toBeGreaterThan(0);
+  await dialog.locator('[data-shot=de-09]').getByRole('button', { name: 'Toll', exact: true }).click();
+  await expect(dialog.locator('[data-shot=de-09] .de-spread-chart')).toHaveAttribute('data-fee', amount);
+  await dialog.locator('[data-shot=de-09]').locator('summary').filter({ hasText: 'How measured' }).click();
+  await expect(dialog.locator('[data-shot=de-09]')).toContainText('Hindsight price opportunity');
+  await dialog.locator('[data-shot=de-10]').getByRole('button', { name: 'After expiry', exact: true }).click();
+  await expect(dialog.locator('[data-shot=de-10] .de-clock')).toHaveAttribute('data-clock', 'model-entry');
+  await expect(dialog.locator('[data-shot=de-10] .de-clock')).toHaveAttribute('data-tail', 'true');
+  await dialog.locator('[data-shot=de-11]').getByRole('button', { name: 'Transition checks', exact: true }).click();
+  await expect(dialog.locator('[data-shot=de-11] [data-grid-layer=cost]')).toHaveCount(1);
+  expect(await page.evaluate(() => history.length)).toBe(entries);
+  await page.keyboard.press('Escape');
+  expect(await page.locator('#bankable').innerText()).toEqual(before);
+});
+
+test('German story URLs, refresh and language use the shared place handling', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto(DE + '?view=story&chapter=payment&shot=de-09');
+  const dialog = page.locator('.ix-story-dialog');
+  await expect(dialog.locator('#ix-shot-de-09')).toBeFocused();
+  await dialog.getByRole('button', { name: 'Next →' }).click();
+  await expect(page).toHaveURL(/shot=de-10$/);
+  await page.goBack(); await expect(dialog.locator('#ix-shot-de-09')).toBeFocused();
+  await page.goForward(); await expect(dialog.locator('#ix-shot-de-10')).toBeFocused();
+  await page.reload(); await expect(page.locator('#ix-shot-de-10')).toBeFocused();
+  await page.locator('.ix-story-dialog').getByRole('button', { name: 'Switch to Chinese' }).click();
+  await expect(page).toHaveURL(/shot=de-10$/);
+  await page.keyboard.press('Escape');
+  await page.goto(DE + '?view=story&chapter=payment&shot=de-99');
+  await expect(page.locator('#ix-shot-de-09')).toBeFocused();
+});
+
+test('German scenes fit four widths and the last chapter hands off to the case', async ({ page }, info) => {
+  const { dialog } = await openGermany(page);
+  for (const width of [390, 768, 1440, 1920]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await dialog.locator('.ix-story-body').evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
+  }
+  await dialog.getByRole('button', { name: /The investment/ }).click();
+  await dialog.locator('[data-shot=de-12]').getByRole('button', { name: 'Grid fees', exact: true }).click();
+  await expect(dialog.locator('[data-shot=de-12] .ix-story-exits a[href=\"#execution\"]')).toHaveClass(/de-exit-focus/);
+  await dialog.screenshot({ path: info.outputPath('germany-story-handoff.png') });
+  await dialog.locator('[data-shot=de-12]').getByRole('button', { name: 'Back to the play', exact: true }).click();
+  await expect(dialog.locator('#ix-shot-de-00')).toBeFocused();
+  await dialog.locator('[data-shot=de-00]').getByRole('link', { name: 'Go to the investment case' }).click();
+  await expect(page.locator('#bankable')).toBeFocused();
+  await expect(dialog).toHaveCount(0);
+});
+
+test('Germany loads its story lazily and keeps the research button as the entry', async ({ page }) => {
+  const chunks = []; page.on('request', r => { if (/story-de-.*\.js/.test(r.url())) chunks.push(r.url()); });
+  await page.goto('/');
+  expect(chunks).toEqual([]);
+  await page.goto(DE);
+  await expect(page.locator('.ix-full-research')).toBeVisible();
+  expect(chunks).toEqual([]);
+  await page.locator('.ix-full-research').click();
+  await expect(page.locator('.ix-story-dialog')).toBeVisible();
+  expect(chunks.length).toBe(1);
+});
+
+test('German full research remains one click deeper and returns focus', async ({ page }) => {
+  const { trigger, dialog } = await openGermany(page);
+  await dialog.getByRole('button', { name: 'Full research ↗' }).click();
+  await expect(page.locator('.ix-research-dialog')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await page.keyboard.press('Escape');
+  await expect(trigger).toBeFocused();
+});
