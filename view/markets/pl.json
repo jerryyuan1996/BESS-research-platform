@@ -1,8 +1,8 @@
 {
   "marketId": "pl",
   "thesis": [
-    "No new-entry capacity route, but the day-ahead market pays almost twice what the platform carried. An uncontracted four-hour project returns 7.4%, and every design still sits below the platform's yields. A project in the 2025 grant cohort returns 17.1%; an asset holding an earlier seventeen-year contract is worth pricing only below replacement cost.",
-    "没有新进入的容量路径，但日前市场的收益几乎是本平台此前所采用水平的两倍。无合同的四小时项目回报7.4%，所有设计仍低于本平台收益率。2025年补贴批次中的项目回报17.1%；持有早期十七年合同的资产，只值得以低于重置成本的价格定价。"
+    "No new-entry capacity route, so new entrants rely on day-ahead revenue while the capacity framework is unsettled, and every ungranted design loses value at the platform's yields. Two cohorts are separate investments: a project in the 2025 grant cohort is the exception and carries its own call, and an asset holding an earlier seventeen-year contract is worth pricing only below replacement cost.",
+    "没有新进入的容量路径，因此在容量机制尚未确定时，新进入者依靠日前市场收入，所有无补贴设计按本平台收益率均损失价值。两个批次属于不同投资：2025年补贴批次中的项目是例外，并有其独立结论；持有早期十七年合同的资产，只值得以低于重置成本的价格定价。"
   ],
   "grades": {
     "assetReturn": {
@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "Seventh of fifteen markets on hold IRR, 7.4%.",
-        "持有期IRR为7.4%，在十五个市场中排第七。"
+        "Seventh of fifteen markets on the design grid's hold IRR, 7.4% (23 October 2026).",
+        "按设计表测算的持有期IRR为7.4%（2026年10月23日），在十五个市场中排第七。"
       ],
       "asOf": "2026-10-23",
       "author": "analyst",
@@ -186,8 +186,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "An uncontracted four-hour project returns 7.4% on the model, below the platform's yields.",
-            "未签约的四小时项目模型回报为7.4%，低于本平台收益率。"
+            "An uncontracted four-hour project loses value on the model at the platform's yields.",
+            "未签约的四小时项目按模型测算、按本平台收益率会损失价值。"
           ]
         },
         {
@@ -214,7 +214,7 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     },
     "infraFund": {
@@ -226,8 +226,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "An uncontracted four-hour project returns 7.4% on the model, below the platform's yields.",
-            "未签约的四小时项目模型回报为7.4%，低于本平台收益率。"
+            "An uncontracted four-hour project loses value on the model at the platform's yields.",
+            "未签约的四小时项目按模型测算、按本平台收益率会损失价值。"
           ]
         },
         {
@@ -254,7 +254,7 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "lockedUntil": null,
       "play": "pl-cap-4h"
     },
@@ -358,8 +358,8 @@
       "hours": 4,
       "stage": "ready-to-build",
       "why": [
-        "Four hours on an earlier seventeen-year capacity contract is the engine's best design at 9.8% hold, and it still loses value at the platform's yields; an uncontracted four-hour project returns 7.4%.",
-        "持有早期十七年容量合同的四小时设计是引擎的最佳设计，持有期回报9.8%，但按本平台收益率仍损失价值；无合同的四小时项目回报7.4%。"
+        "Four hours on an earlier seventeen-year capacity contract is the engine's best design, and it still loses value at the platform's yields; an uncontracted four-hour project does worse.",
+        "持有早期十七年容量合同的四小时设计是引擎的最佳设计，但按本平台收益率仍损失价值；无合同的四小时项目更差。"
       ],
       "action": {
         "text": [
@@ -369,7 +369,7 @@
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     },
     "pl-grant-4h": {
@@ -383,8 +383,8 @@
       "stage": "ready-to-build",
       "grantPct": 37.9,
       "why": [
-        "The 169 projects in NFOŚiGW's 2025 storage cohort carry a 37.9% average grant (PLN 3.735bn of grants on PLN 9.847bn of cost); merchant four hours with that grant returns 17.1% hold.",
-        "国家环保基金2025年储能批次的169个项目平均补贴比例为37.9%（总成本PLN 98.47亿、补贴PLN 37.35亿）；按此补贴，四小时市场化设计持有期回报17.1%。"
+        "Projects in NFOŚiGW's 2025 storage cohort receive grants covering about 38% of cost on average; with that grant, merchant four hours is the engine's best Polish design, but at build cost it falls short of the fund's target.",
+        "国家环保基金2025年储能批次项目的补贴平均约占成本的38%；按此补贴，四小时市场化设计是引擎在波兰的最佳设计，但按建设成本测算达不到基金目标回报。"
       ],
       "action": {
         "text": [
@@ -406,8 +406,8 @@
             {
               "dimension": "assetReturn",
               "text": [
-                "With the cohort's 37.9% grant, merchant four hours returns 17.1% hold and is worth about $200k per MW at the platform's yields.",
-                "按该批次37.9%的补贴，四小时市场化设计持有期回报17.1%，按本平台收益率每MW价值约20万美元。"
+                "With the cohort's grant of about 38% of cost, merchant four hours clears the platform's yields on the model, but at build cost it falls short of the fund's target.",
+                "按该批次约占成本38%的补贴，四小时市场化设计按模型测算可达到本平台收益率要求，但按建设成本测算达不到基金目标回报。"
               ]
             },
             {
@@ -432,7 +432,7 @@
         }
       },
       "author": "analyst",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     }
   }

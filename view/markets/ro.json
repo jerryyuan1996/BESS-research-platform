@@ -1,8 +1,8 @@
 {
   "marketId": "ro",
   "thesis": [
-    "Wide day-ahead spreads and nothing contracted, with a home fleet that doubles this year. Bulgaria's batteries mostly stay behind the border; Romania's own build takes about 17% off the two-hour value by 2027. Two hours is the best design, at 13.7% hold, and a negotiated floor is how a fund holds it.",
-    "日前价差宽但没有任何合同化收入，且本国储能规模今年翻倍。保加利亚的电池大多被边境阻隔；罗马尼亚自身的建设到2027年将使两小时价值减少约17%。两小时是最佳设计，持有期回报13.7%；基金应通过谈定的保底持有资产。"
+    "Wide day-ahead spreads and nothing contracted, with a home fleet that doubles this year; Romania's own build is the main risk to the two-hour value. Two hours is the best design on merchant revenue alone; a fund enters only with a negotiated optimiser floor, whose terms are not yet priced here.",
+    "日前价差宽但没有任何合同化收入，且本国储能规模今年翻倍；罗马尼亚自身的建设是两小时价值的主要风险。仅按市场化收入测算，两小时是最佳设计；基金只有在谈定优化商保底后才进入，而该保底条款尚未在此定价。"
   ],
   "grades": {
     "assetReturn": {
@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "Fifth of fifteen markets on hold IRR, 13.7%.",
-        "持有期IRR为13.7%，在十五个市场中排第五。"
+        "Fifth of fifteen markets on the design grid's hold IRR, 13.7% (23 October 2026).",
+        "按设计表测算的持有期IRR为13.7%（2026年10月23日），在十五个市场中排第五。"
       ],
       "asOf": "2026-10-23",
       "author": "analyst",
@@ -230,11 +230,12 @@
       ],
       "changesIf": [
         "ro-grant-call-close",
-        "ro-connection-guarantee-order"
+        "ro-connection-guarantee-order",
+        "ro-grant-status-review"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-10",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     },
     "infraFund": {
@@ -251,8 +252,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "Two hours is the best design here at the merchant yield: 13.7% hold, 14.9% exit.",
-            "两小时是这里的最佳设计，按市场化收益率测算：持有期13.7%，退出14.9%。"
+            "Two hours is the best design here on merchant revenue alone; the return shown prices no floor.",
+            "仅按市场化收入测算，两小时是这里的最佳设计；所示回报未计入任何保底。"
           ]
         },
         {
@@ -264,15 +265,16 @@
         }
       ],
       "despite": [
-        "Beyond the floor nothing is secured, Romania's own fleet doubles this year and compresses the spread, and frequency-reserve revenue is saturating.",
-        "保底之外没有任何锁定收入，罗马尼亚自身储能规模今年翻倍并压缩价差，且频率备用收入正趋于饱和。"
+        "The floor is a condition of entry, not part of the price: until its terms are in hand nothing is secured, Romania's own fleet doubles this year and compresses the spread, and frequency-reserve revenue is saturating.",
+        "保底是进入条件，而非定价的一部分：在取得其条款之前没有任何锁定收入，罗马尼亚自身储能规模今年翻倍并压缩价差，且频率备用收入正趋于饱和。"
       ],
       "changesIf": [
         "ro-grant-call-close",
-        "ro-connection-guarantee-order"
+        "ro-connection-guarantee-order",
+        "ro-grant-status-review"
       ],
       "author": "analyst",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     },
     "foreignFirstTimer": {
@@ -375,31 +377,56 @@
       "direction": "either",
       "source": "decision-profile",
       "effect": null
+    },
+    {
+      "id": "ro-grant-status-review",
+      "kind": "event",
+      "market": "ro",
+      "label": [
+        "Verify the ministry's stand-alone storage-call timetable and any published outcome",
+        "核验能源部独立储能申报时间表及已公布结果"
+      ],
+      "expected": "2026-11-02",
+      "watches": [
+        "assetReturn",
+        "policyStability"
+      ],
+      "direction": "either",
+      "source": {
+        "publisher": "Ministry of Energy",
+        "url": "https://energie.gov.ro/lansare-apel-sprijinirea-investitiilor-in-dezvoltarea-instalatiilor-autonome-stand-alone-de-stocare-in-baterii-a-energiei-electrice-cu-finantare-din-fondul-pentru-modernizare-p/",
+        "access": "search-summary"
+      },
+      "note": [
+        "The call was expected to close on 30 October 2026. The ministry's call page could not be opened on 31 October; a reported extension to 15 November is not verified. This is the analyst's review date, not a published closing date.",
+        "该申报预计于2026年10月30日截止。10月31日无法打开能源部申报页面；有报道称截止日延至11月15日，但尚未核实。此为分析师复核日期，并非公布的截止日期。"
+      ],
+      "effect": null
     }
   ],
   "plays": {
     "ro-mer-2h": {
       "id": "ro-mer-2h",
       "label": [
-        "Merchant · 2h · with an optimiser floor",
-        "市场化 · 2小时 · 附优化商保底"
+        "Merchant · 2h",
+        "市场化 · 2小时"
       ],
       "route": "mer",
       "hours": 2,
       "stage": "operating",
       "why": [
-        "Two hours is the best design here (13.7% hold, 14.9% exit at the merchant yield); four hours gives up about 30% of its value as Romania's own fleet doubles.",
-        "两小时是这里的最佳设计（按市场化收益率测算持有期回报13.7%、退出回报14.9%）；随着罗马尼亚自身储能规模翻倍，四小时设计损失约30%的价值。"
+        "Two hours is the best design here on merchant revenue alone, and the figures shown price no floor; Romania's own fleet growth compresses every duration's value.",
+        "仅按市场化收入测算，两小时是这里的最佳设计，所示数据未计入任何保底；罗马尼亚自身储能规模的增长会压缩各时长设计的价值。"
       ],
       "action": {
         "text": [
-          "Find operating two-hour assets with an optimiser floor, or a seller who will put one in; after the grant call closes on 30 October, check which projects won.",
-          "寻找附带优化商保底的两小时在运资产，或愿意补签保底的卖方；10月30日补贴申报截止后，核查哪些项目获得补贴。"
+          "Find operating two-hour assets whose seller has, or will sign, an optimiser floor, and get its full terms before any bid: payment, tenor, indexation, share above the floor and credit support. Check the ministry's stand-alone storage-call timetable and any published outcome.",
+          "寻找卖方已签或愿意签订优化商保底的两小时在运资产，并在出价前取得其完整条款：付费、期限、指数化、保底以上收益分成及信用支持。核查能源部独立储能申报时间表及已公布结果。"
         ],
         "due": "2026-11-30"
       },
       "author": "analyst",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     }
   }
