@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-30T13:05:21.384Z",
+  "fetchedAt": "2026-10-30T22:26:44.039Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-30T13:00:00.000Z",
+    "to": "2026-10-30T17:00:00.000Z",
     "resolution": "event",
     "points": 44
   },
@@ -235,16 +235,6 @@
       "summary": "Energy storage developer-operator Bimergen Energy has filed an application for an Option 2 Retail Electric Provider (REP) certificate in Texas, US."
     },
     {
-      "t": "2026-10-28T16:46:53.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/cms-energy-ceo-predicts-data-center-progress-after-midterms/873057/",
-      "source": "Utility Dive",
-      "title": "CMS Energy CEO predicts data center ‘progress’ after midterms",
-      "url": "https://www.utilitydive.com/news/cms-energy-ceo-predicts-data-center-progress-after-midterms/873057/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Garrick Rochow blamed political &ldquo;spin&rdquo; for permitting setbacks in an earnings call. He did not address the more than $300 million the utility says it has spent to keep an aging coal plant running under DOE &lsquo;emergency&rsquo; orders."
-    },
-    {
       "t": "2026-10-29T11:23:29.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/portugal-makes-grid-forming-mandatory-for-large-scale-bess-and-launches-1gw-tender/",
       "source": "Energy-Storage.news",
@@ -268,11 +258,11 @@
       "t": "2026-10-29T13:00:02.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/firstenergy-data-center-pipeline-maidsville/873149/",
       "source": "Utility Dive",
-      "title": "FirstEnergy data center pipeline increases 5% to 26 GW in Q3",
+      "title": "FirstEnergy data center pipeline increases to 26 GW in Q3",
       "url": "https://www.utilitydive.com/news/firstenergy-data-center-pipeline-maidsville/873149/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Two FirstEnergy utilities reserved combined cycle turbines for a 1.2-GW data center-focused project in West Virginia and issued a solicitation for an additional 3 GW, company officials said."
+      "summary": "Two FirstEnergy utilities reserved combined-cycle turbines for a 1.2-GW data center-focused project in West Virginia and issued a solicitation for an additional 3 GW, company officials said."
     },
     {
       "t": "2026-10-29T13:08:06.000Z",
@@ -318,11 +308,11 @@
       "t": "2026-10-29T15:05:24.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/aep-transmission-data-center-earnings/873189/",
       "source": "Utility Dive",
-      "title": "AEP increases investment plan 30% to $100B on gen, transmission spending",
+      "title": "AEP increases investment plan 30% on generation, transmission spending",
       "url": "https://www.utilitydive.com/news/aep-transmission-data-center-earnings/873189/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "American Electric Power&rsquo;s contracted large loads jumped 22% to 84 GW, mainly on a 10.4-GW data center in Ohio being developed by SB Energy, company officials said Wednesday."
+      "summary": "American Electric Power&rsquo;s contracted large loads jumped 22%, to 84 GW, mainly on a 10.4-GW data center in Ohio being developed by SB Energy, company officials said Wednesday."
     },
     {
       "t": "2026-10-29T15:21:25.000Z",
@@ -373,36 +363,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Demand for 8-hour battery energy storage in Australia is \"completely artificial\" and relies on government underwriting, according to Tesla, which said asymmetric registration can help such projects earn more."
-    },
-    {
-      "t": "2026-10-30T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/italian-government-rejects-468-mw-of-solar-projects/",
-      "source": "pv magazine",
-      "title": "Italian government rejects 468 MW of solar projects",
-      "url": "https://www.pv-magazine.com/2026/10/30/italian-government-rejects-468-mw-of-solar-projects/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Italy has rejected 10 solar and agrivoltaic projects totaling around 468 MW while approving five projects with a combined capacity of 272 MW. The decisions cover developments in Puglia, Lazio, Basilicata and Molise. The post Italian government rejects 468 MW of solar projects appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-30T08:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/acme-solar-signs-400-mw-firm-renewable-power-deal-in-india/",
-      "source": "pv magazine",
-      "title": "ACME Solar signs 400 MW firm renewable power deal in India",
-      "url": "https://www.pv-magazine.com/2026/10/30/acme-solar-signs-400-mw-firm-renewable-power-deal-in-india/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "ACME Solar Holdings subsidiary ACME Marigold Urja has signed a 25-year power purchase agreement (PPA) with NTPC Ltd. to supply 400 MW of firm and dispatchable renewable energy (FDRE) at INR 4.37 ($0.046)/kWh. Deliveries are scheduled to begin on June 30, 2028. The post ACME Solar signs 400 MW firm renewable power de…"
-    },
-    {
-      "t": "2026-10-30T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/greenvolt-to-install-25-mw-of-solar-canopies-at-120-french-stores/",
-      "source": "pv magazine",
-      "title": "Greenvolt to install 25 MW of solar canopies at 120 French stores",
-      "url": "https://www.pv-magazine.com/2026/10/30/greenvolt-to-install-25-mw-of-solar-canopies-at-120-french-stores/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Greenvolt Next has agreed to finance, build and operate solar carport installations at Carrefour stores across France. The post Greenvolt to install 25 MW of solar canopies at 120 French stores appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-30T09:52:19.000Z",
@@ -463,6 +423,46 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Researchers have proposed a decision-support framework for assessing the costs of recycling end-of-life solar panels. An expert panel assigned the highest relative importance to operations and production, followed closely by infrastructure and facilities. The post New framework identifies key costs in PV panel recyc…"
+    },
+    {
+      "t": "2026-10-30T13:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/chinese-pv-industry-brief-ja-solars-nine-month-loss-widens/",
+      "source": "pv magazine",
+      "title": "Chinese PV Industry Brief: JA Solar’s nine-month loss widens",
+      "url": "https://www.pv-magazine.com/2026/10/30/chinese-pv-industry-brief-ja-solars-nine-month-loss-widens/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "JA Solar reported a CNY 3.64 billion ($546.5 million) net loss for the first nine months of 2026, while Tongwei signed 1 GW in solar module cooperation agreements with Australian distributors. The post Chinese PV Industry Brief: JA Solar’s nine-month loss widens appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-30T13:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/the-hydrogen-stream-finnish-researchers-increase-voltage-in-alkaline-systems-to-cut-costs-by-10-15/",
+      "source": "pv magazine",
+      "title": "The Hydrogen Stream: Finnish researchers increase voltage in alkaline systems to cut costs by 10-15%",
+      "url": "https://www.pv-magazine.com/2026/10/30/the-hydrogen-stream-finnish-researchers-increase-voltage-in-alkaline-systems-to-cut-costs-by-10-15/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Recent developments across the global green hydrogen sector highlight growing efforts to improve production efficiency, reduce costs, strengthen international supply chains and accelerate investment in renewable hydrogen infrastructure, with new advances and agreements emerging across Europe, and Asia. The post The…"
+    },
+    {
+      "t": "2026-10-30T16:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/first-solar-cuts-sales-forecast-as-tariff-uncertainty-slows-orders/",
+      "source": "pv magazine",
+      "title": "First Solar cuts sales forecast as tariff uncertainty slows orders",
+      "url": "https://www.pv-magazine.com/2026/10/30/first-solar-cuts-sales-forecast-as-tariff-uncertainty-slows-orders/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "First Solar reported third-quarter net sales of $1.23 billion and net income of $571 million, as the US thin-film manufacturer navigated customer uncertainty over Section 232 tariffs. The post First Solar cuts sales forecast as tariff uncertainty slows orders appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-10-30T17:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/forecasting-growth/",
+      "source": "pv magazine",
+      "title": "Forecasting growth",
+      "url": "https://www.pv-magazine.com/2026/10/30/forecasting-growth/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India’s expanding utility-scale solar fleet is creating a growing need for accurate generation forecasts. Yet the country does not have one uniform specification for every project. The requirements depend on the connection point, the responsible scheduling entity, and the rules issued by central or state regulators.…"
     }
   ],
   "derived": {
@@ -472,8 +472,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 7,
-      "capital": 5,
-      "grid": 30,
+      "capital": 4,
+      "grid": 31,
       "technology": 2
     },
     "sourceStatus": [
@@ -493,13 +493,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 7
+        "items": 6
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 7
       }
     ]
   },
@@ -508,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:be57c185e69566247b9c7d8bce876961816c2075cae8e9d219ba91470da14e31",
-  "envelopeChecksum": "sha256:9da0e48066dc165e3676486457e5d01ff766aea3a12cb4c32f2301bee1d9a577"
+  "contentChecksum": "sha256:07e2d812330d38bee0aeab1d4e870a3d68eaea386583cdbe80387888dd693e40",
+  "envelopeChecksum": "sha256:0f02f3033241f147df6fd406485a9d943b06d57d958f1441d0bd3a86afac3dbe"
 }
