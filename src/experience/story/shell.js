@@ -13,6 +13,11 @@
    IntersectionObserver and no timers, and releases both when it closes. The
    reader's place survives a language switch, which redraws in place.
 
+   The address carries the place (WP-04, place.js): opening the story and
+   moving to a chapter or shot add history entries, scrolling updates the
+   current one, and Back and Forward move the reader without re-rendering the
+   page behind. A link with ?view=story opens the story at its place.
+
    The market page hands over the helpers it formats its own figures with
    (ctx.ui) rather than this module importing them: an import from the page's
    chunk would make Rollup export from it, and the play card must read the
@@ -22,6 +27,7 @@ import { h } from '../../utils/dom.js';
 import { L } from '../../app/i18n.js';
 import { app, toggleLang, requestRender } from '../../app/state.js';
 import { MARKERS, fillPair, isStale, validateStory } from './contract.js';
+import { shotsOf, chapterOf, resolvePlace, placeOf, recordPlace, onPlaceChange } from './place.js';
 
 const T = {
   eyebrow: ['MARKET STORY', '市场故事'],
@@ -68,7 +74,7 @@ export function whenLabel(when){
 }
 
 /**
- * ctx: { story, values, row, name, trigger, openResearch, scenes, ui }
+ * ctx: { story, values, row, name, trigger, openResearch, scenes, ui, place }
  *   name          the market's name, an [en, zh] pair or a string
  *   values        token values (the market's storyBindings)
  *   row           the market page's row (call, play, econ, investment, evidence)
@@ -77,6 +83,8 @@ export function whenLabel(when){
  *   scenes        { [sceneId]: (shot, ctx) => Node } drawn by the market (WP-07)
  *   ui            the market page's own helpers: { CALLS, returnPct,
  *                 marginText, metric, playTitle }
+ *   place         { chapter, shot } from the address, when the story was
+ *                 opened by a link or by Back; absent when the reader opened it
  * Returns the dialog, or null when the story is invalid (the caller then
  * opens the research dialog instead).
  */
@@ -89,9 +97,8 @@ export function openStory(ctx){
     return null;
   }
 
-  const shots = [story.opening, ...story.chapters.flatMap(c => c.shots)];
-  const chapterOf = (shot) => (shot.chapter === 'opening' ? 'opening' : shot.chapter);
-  let current = shots[0].id;
+  const shots = shotsOf(story);
+  let current = resolvePlace(story, ctx.place);
   let observer = null;
 
   const dialog = h('dialog', { class: 'ix-dialog ix-story-dialog', 'aria-labelledby': 'ix-story-title' });
@@ -190,12 +197,16 @@ export function openStory(ctx){
     nextBtn.disabled = i >= shots.length - 1;
   }
 
-  function goTo(id, focus){
+  /* record: 'push' for the reader's own moves, 'replace' to correct the
+     address, 'none' when Back or Forward brought the reader here. */
+  function goTo(id, focus, { record = 'push', instant = false } = {}){
     const el = dialog.querySelector(`[data-shot="${id}"]`);
     if (!el) return;
     heading = id;
-    el.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    const smooth = !instant && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
     mark(id);
+    if (record !== 'none') recordPlace(placeOf(story, id), record);
     if (focus) el.querySelector('h4')?.focus({ preventScroll: true });
   }
 
@@ -223,6 +234,7 @@ export function openStory(ctx){
       if (!first) return;
       if (heading){ if (first.id === heading) heading = null; else return; }
       mark(first.id);
+      recordPlace(placeOf(story, first.id), 'replace');
     }, { root: body, rootMargin: '0px 0px -55% 0px', threshold: [0, 0.01] });
     body.querySelectorAll('[data-shot]').forEach(el => observer.observe(el));
     for (const type of ['wheel', 'touchstart', 'keydown']) body.addEventListener(type, release, { passive: true });
@@ -279,11 +291,17 @@ export function openStory(ctx){
 
   /* ---- open and close ------------------------------------------------- */
   let closed = false;
-  function close(){
+  let stopListening = null;
+  /* fromHistory: Back or Forward left the story, so the address already says
+     so; otherwise closing adds an entry without the story, and Back reopens it
+     where the reader was. */
+  function close({ fromHistory = false } = {}){
     if (closed) return;
     closed = true;
+    stopListening?.();
     observer?.disconnect();
     observer = null;
+    if (!fromHistory) recordPlace(null, 'push');
     if (dialog.open) dialog.close();
     dialog.remove();
     document.body.style.overflow = previousOverflow;
@@ -291,7 +309,7 @@ export function openStory(ctx){
     const back = trigger?.isConnected ? trigger : document.querySelector('.ix-full-research');
     back?.focus({ preventScroll: true });
   }
-  dialog.addEventListener('close', close);
+  dialog.addEventListener('close', () => close());
   dialog.addEventListener('click', (event) => {
     if (event.target !== dialog) return;
     const r = dialog.getBoundingClientRect();
@@ -302,6 +320,15 @@ export function openStory(ctx){
   document.body.append(dialog);
   document.body.style.overflow = 'hidden';
   dialog.showModal();
-  closeBtn.focus();
+  if (ctx.place && current !== shots[0].id) goTo(current, true, { record: 'replace', instant: true });
+  else {
+    recordPlace(placeOf(story, current), ctx.place ? 'replace' : 'push');
+    closeBtn.focus();
+  }
+  stopListening = onPlaceChange((route, { samePage }) => {
+    if (!samePage || !route.story) return close({ fromHistory: true });
+    const id = resolvePlace(story, route.story);
+    goTo(id, true, { record: 'replace', instant: true });
+  });
   return dialog;
 }

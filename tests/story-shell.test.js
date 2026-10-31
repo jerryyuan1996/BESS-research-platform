@@ -41,5 +41,5 @@ test('the shell imports nothing from the market page’s own chunk', () => {
      chunk's name (vite.config.js); the page passes its helpers in instead. */
   const src = readFileSync(new URL('../src/experience/story/shell.js', import.meta.url), 'utf8');
   const imports = [...src.matchAll(/^import .* from '([^']+)';/gm)].map(m => m[1]);
-  assert.deepEqual(imports.sort(), ['../../app/i18n.js', '../../app/state.js', '../../utils/dom.js', './contract.js'].sort());
+  assert.deepEqual(imports.sort(), ['../../app/i18n.js', '../../app/state.js', '../../utils/dom.js', './contract.js', './place.js'].sort());
 });
