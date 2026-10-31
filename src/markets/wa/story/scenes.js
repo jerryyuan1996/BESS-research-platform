@@ -49,6 +49,24 @@ function diagram(viewBox, title, cls, ...kids){
 }
 const label = (x, y, pair, attrs = {}) => s('text', { class: 'k-label', x: n2(x), y: n2(y), ...attrs }, L(pair));
 const scene = (...kids) => h('div', { class: 'k-scene' }, ...kids);
+/* Replace a node's children; nested lists are flattened, empty slots skipped. */
+const fill = (node, ...kids) => node.replaceChildren(...kids.flat(Infinity).filter(k => k !== null && k !== undefined && k !== false));
+
+/* One town for the grid scenes (wa-02, wa-03, wa-14), laid out left to right:
+   power station, transmission, substation, homes. World units; schematic. */
+const TOWN = {
+  view: { viewBox: [660, 340], origin: [340, 34] },
+  ground: { symbol: 'ground', at: [0, 0], opts: { w: 18, d: 14 } },
+  plant: [1, 11.5],
+  pylons: [[5, 9.6], [8, 7.6]],
+  wires: [[[3.2, 11.4], [5, 9.6]], [[5, 9.6], [8, 7.6]], [[8, 7.6], [10.6, 6.2]]],
+  substation: [10, 4.6],
+  homes: [[14.4, 5.6], [16.2, 4.4], [12.8, 7.6]],
+  city: [14, 1.2],
+  wind: [[3.4, 3], [5.8, 1.6]],
+  battery: [8.4, 10.4],
+  planned: [[12.6, 10.4], [15.4, 8.2]],
+};
 
 /* ---- wa-01: an island grid ------------------------------------------------- */
 function islandMap(shot, { values }){
@@ -79,30 +97,28 @@ function islandMap(shot, { values }){
 function oneWayGrid(shot, { values }){
   const w = words(shot, values);
   const draw = (solar) => isoStage({
-    viewBox: [640, 380], origin: [300, 70], title: w.title,
+    ...TOWN.view, title: w.title,
     items: [
-      { symbol: 'ground', at: [-2, -2], opts: { w: 20, d: 15 } },
-      { symbol: 'plant', at: [0, 1] },
-      { symbol: 'pylon', at: [6, 2] }, { symbol: 'pylon', at: [8.5, 5.5] },
-      { symbol: 'substation', at: [9.5, 7.5] },
-      { symbol: solar ? 'homeSolar' : 'home', at: [5, 11] },
-      { symbol: solar ? 'homeSolar' : 'home', at: [7.6, 11.6] },
-      { symbol: solar ? 'homeSolar' : 'home', at: [10.2, 12.2] },
-      { symbol: 'industry', at: [14, 6] },
-      { symbol: 'flow', at: [3.8, 2.3], opts: { to: [9.6, 7.4], z: 4.4, count: 3 } },
-      { symbol: 'flow', at: [10.5, 10.4], opts: { to: [7, 12.2], z: 0.4, count: 3, reverse: solar } },
+      TOWN.ground,
+      { symbol: 'plant', at: TOWN.plant },
+      ...TOWN.pylons.map(at => ({ symbol: 'pylon', at })),
+      { symbol: 'substation', at: TOWN.substation },
+      ...TOWN.homes.map(at => ({ symbol: solar ? 'homeSolar' : 'home', at })),
+      { symbol: 'industry', at: [11.8, 0.6] },
+      { symbol: 'flow', at: [3.6, 11], opts: { to: [9.8, 7], z: 4.2, count: 3 } },
+      { symbol: 'flow', at: [12.4, 6.6], opts: { to: [15, 6.2], z: 0.3, count: 2, reverse: solar } },
     ],
-    wires: [[[2.8, 2.5], [6, 2]], [[6, 2], [8.5, 5.5]], [[8.5, 5.5], [10.5, 8.6]]],
+    wires: TOWN.wires,
     labels: [
-      { at: [1, 0, 6.6], text: w.label('plant') },
-      { at: [7.3, 3.8, 5.4], text: w.label('wires') },
-      { at: [8.6, 13.6, 2.4], text: w.label('homes'), anchor: 'end', dx: -6 },
+      { at: [TOWN.plant[0], TOWN.plant[1] + 3, 2.6], text: w.label('plant'), anchor: 'end', dx: -8, dy: 0 },
+      { at: [8, 7.6, 5], text: w.label('wires') },
+      { at: [16.2, 6.4, 1.6], text: w.label('homes'), dx: 8, dy: 6 },
     ],
   });
   const holder = h('div', {}, draw(false));
   const controls = toggleGroup({ label: w.title, value: 'earlier',
     options: [{ value: 'earlier', label: w.control(0) }, { value: 'solar', label: w.control(1) }],
-    onChange: (v) => holder.replaceChildren(draw(v === 'solar')) });
+    onChange: (v) => fill(holder, draw(v === 'solar')) });
   return scene(controls, holder, h('p', { class: 'k-readout' }, '› ', L(w.label('flow'))));
 }
 
@@ -112,32 +128,32 @@ function timeline(shot, { values }){
   const nodes = shot.extra?.timeline || [];
   const draw = (k) => {
     const items = [
-      { symbol: 'ground', at: [-2, -2], opts: { w: 22, d: 15 } },
-      { symbol: 'plant', at: [0, 1], opts: { future: k >= 4 } },
-      { symbol: 'pylon', at: [6, 3] },
-      { symbol: 'substation', at: [8, 7] },
-      { symbol: 'city', at: [2.5, 8.5] },
-      ...[[5.5, 12], [8, 12.6]].map(at => ({ symbol: k >= 1 ? 'homeSolar' : 'home', at })),
+      TOWN.ground,
+      { symbol: 'plant', at: TOWN.plant, opts: { future: k >= 4 } },
+      ...TOWN.pylons.map(at => ({ symbol: 'pylon', at })),
+      { symbol: 'substation', at: TOWN.substation },
+      { symbol: 'city', at: TOWN.city },
+      ...TOWN.homes.map(at => ({ symbol: k >= 1 ? 'homeSolar' : 'home', at })),
     ];
-    const labels = [{ at: [1, 0, 6.6], text: w.label('coal'), future: k >= 4 }];
+    const labels = [{ at: [TOWN.plant[0], TOWN.plant[1] + 3, 2.6], text: w.label('coal'), anchor: 'end', dx: -8, dy: 0, future: k >= 4 }];
     if (k >= 1){
-      items.push({ symbol: 'wind', at: [15, 0] }, { symbol: 'wind', at: [17.2, 1.4] });
-      labels.push({ at: [15.8, 0.8, 7.2], text: w.label('wind') });
+      items.push(...TOWN.wind.map(at => ({ symbol: 'wind', at })));
+      labels.push({ at: [TOWN.wind[1][0], TOWN.wind[1][1], 7], text: w.label('wind') });
     }
     if (k >= 2){
-      items.push({ symbol: 'battery', at: [12.5, 8], opts: { count: k >= 3 ? 4 : 2, highlight: k === 3 } });
-      labels.push({ at: [14, 9, 1.4], text: w.label('storage') });
+      items.push({ symbol: 'battery', at: TOWN.battery, opts: { count: k >= 3 ? 4 : 2, highlight: k === 3 } });
+      labels.push({ at: [TOWN.battery[0], TOWN.battery[1] + 1, 1.1], text: w.label('storage'), anchor: 'end', dx: -8 });
     }
     if (k >= 4){
-      items.push({ symbol: 'battery', at: [16.5, 6], opts: { count: 3, future: true } });
-      labels.push({ at: [18, 7, 1.4], text: w.label('planned'), future: true });
+      items.push(...TOWN.planned.map(at => ({ symbol: 'battery', at, opts: { count: 2, future: true } })));
+      labels.push({ at: [TOWN.planned[1][0] + 2.6, TOWN.planned[1][1], 1.1], text: w.label('planned'), future: true });
     }
-    return isoStage({ viewBox: [660, 390], origin: [300, 72], title: w.title, items, wires: [[[3, 2.4], [6, 3]], [[6, 3], [9, 8]]], labels });
+    return isoStage({ ...TOWN.view, title: w.title, items, wires: TOWN.wires, labels });
   };
   const holder = h('div', {}, draw(0));
   const controls = toggleGroup({ label: w.label('pick'), value: 0,
     options: nodes.map((node, k) => ({ value: k, label: whenLabel(node.when) })),
-    onChange: (k) => holder.replaceChildren(draw(k)) });
+    onChange: (k) => fill(holder, draw(k)) });
   return scene(controls, holder);
 }
 
@@ -145,7 +161,7 @@ function timeline(shot, { values }){
 function ruleOverlay(shot, { values }){
   const w = words(shot, values);
   const stage = isoStage({
-    viewBox: [640, 340], origin: [250, 80], title: w.title, sky: false,
+    viewBox: [560, 270], origin: [140, 66], title: w.title, sky: false,
     items: [
       { symbol: 'pad', at: [0, 0], opts: { w: 9, d: 6 } },
       { symbol: 'battery', at: [1, 0.8], opts: { count: 3 } },
@@ -154,13 +170,13 @@ function ruleOverlay(shot, { values }){
       { symbol: 'pylon', at: [10.5, 6] },
     ],
     wires: [[[7.4, 4], [10.5, 6]]],
-    labels: [{ at: [2.3, 4.5, 1.2], text: w.label('battery') }],
+    labels: [{ at: [1, 4.6, 1.1], text: w.label('battery'), anchor: 'end', dx: -8 }],
   });
-  const steps = ['certified', 'credited', 'obligated'].map((k, i) => s('g', { class: 'k-step', transform: `translate(${430},${70 + i * 78})` },
-    s('rect', { x: 0, y: 0, width: 190, height: 50, rx: 6 }),
-    s('text', { class: 'k-step-no', x: 16, y: 32 }, String(i + 1)),
-    s('text', { class: 'k-label', x: 42, y: 31 }, L(w.label(k))),
-    i < 2 ? s('path', { class: 'k-step-arrow', d: 'M95,52 L95,74 M89,68 L95,74 L101,68' }) : null));
+  const steps = ['certified', 'credited', 'obligated'].map((k, i) => s('g', { class: 'k-step', transform: `translate(350,${22 + i * 82})` },
+    s('rect', { x: 0, y: 0, width: 196, height: 54, rx: 6 }),
+    s('text', { class: 'k-step-no', x: 16, y: 34 }, String(i + 1)),
+    s('text', { class: 'k-label', x: 42, y: 33 }, L(w.label(k))),
+    i < 2 ? s('path', { class: 'k-step-arrow', d: 'M98,56 L98,80 M92,74 L98,80 L104,74' }) : null));
   stage.append(s('g', { class: 'k-rules' }, steps));
   stage.setAttribute('data-view', 'physical');
   const controls = toggleGroup({ label: w.title, value: 'physical',
@@ -185,7 +201,7 @@ function middayChart(shot, { values }){
   const holder = h('div', {}, draw(true));
   const controls = toggleGroup({ label: w.title, multi: true,
     options: [{ value: 'midday', label: w.control(0), pressed: true }],
-    onChange: (_, pressed) => holder.replaceChildren(draw(pressed)) });
+    onChange: (_, pressed) => fill(holder, draw(pressed)) });
   return scene(controls, holder);
 }
 
@@ -217,10 +233,10 @@ function eveningChart(shot, { values }){
   const holder = h('div', {}, draw());
   const focus = toggleGroup({ label: w.title, value: 'evening',
     options: [{ value: 'midday', label: w.control(0) }, { value: 'evening', label: w.control(1) }],
-    onChange: (v) => { state.focus = v; holder.replaceChildren(draw()); } });
+    onChange: (v) => { state.focus = v; fill(holder, draw()); } });
   const windowSwitch = toggleGroup({ label: w.control(2), multi: true,
     options: [{ value: 'window', label: w.control(2), pressed: true }],
-    onChange: (_, pressed) => { state.window = pressed; holder.replaceChildren(draw()); } });
+    onChange: (_, pressed) => { state.window = pressed; fill(holder, draw()); } });
   return scene(h('div', { class: 'k-control-row' }, focus, windowSwitch), holder);
 }
 
@@ -255,7 +271,7 @@ function station(shot, { values }){
     const credited = req ? UNIT_MW * Math.min(1, hours / req) : null;
     const full = credited !== null && credited >= UNIT_MW - 1e-9;
     const ticks = Array.from({ length: 11 }, (_, i) => i);
-    svg.replaceChildren(svg.firstChild,
+    fill(svg, svg.firstChild,
       ticks.map(i => s('g', { class: 'k-tick' },
         s('line', { x1: X0 + i * PER_H, x2: X0 + i * PER_H, y1: 150, y2: 156 }),
         s('text', { x: X0 + i * PER_H, y: 172, 'text-anchor': 'middle' }, String(i)))),
@@ -285,26 +301,27 @@ function station(shot, { values }){
 function cutaway(shot, { values }){
   const w = words(shot, values);
   const parts = Object.fromEntries((shot.extra?.hotspots || []).map(p => [p.id, p.name]));
+  const L1 = 1.6, L2 = 3.8, L3 = 6;   // exploded heights, world units
   const stage = isoStage({
-    viewBox: [640, 400], origin: [250, 110], title: w.title, sky: false,
+    viewBox: [560, 330], origin: [230, 120], title: w.title, sky: false,
     items: [
       { symbol: 'pad', at: [0, 0], opts: { w: 10, d: 7 } },
-      { symbol: 'battery', at: [0.8, 1], opts: { count: 3 }, lift: 1.4 },
-      { symbol: 'pcs', at: [5, 1.4], lift: 3.4 }, { symbol: 'transformer', at: [6.6, 3.6], lift: 3.4 },
-      { symbol: 'controls', at: [4.6, 4.4], lift: 5.4 },
+      { symbol: 'battery', at: [0.8, 1], opts: { count: 3 }, lift: L1 },
+      { symbol: 'pcs', at: [5.2, 1.2], lift: L2 }, { symbol: 'transformer', at: [6.8, 3.4], lift: L2 },
+      { symbol: 'controls', at: [3.6, 0.6], lift: L3 },
       { symbol: 'pylon', at: [11.5, 6.5] },
     ],
-    wires: [[[7.2, 4], [11.5, 6.5]]],
+    wires: [[[7.4, 4], [11.5, 6.5]]],
     labels: [
-      { at: [0, 0, 0], text: parts.site, cls: 'k-v-equipment', dx: -10, dy: 26, anchor: 'end' },
-      { at: [1.4, 4.8, 2.6], text: parts.battery, cls: 'k-v-equipment', anchor: 'end', dx: -8 },
-      { at: [5.4, 1.6, 4.6], text: parts.pcs, cls: 'k-v-equipment' },
-      { at: [7.6, 4.6, 4.8], text: parts.transformer, cls: 'k-v-equipment' },
-      { at: [5, 5, 6.4], text: parts.controls, cls: 'k-v-equipment', anchor: 'end', dx: -8 },
-      { at: [11.5, 6.5, 5], text: parts.connection, cls: 'k-v-equipment' },
+      { at: [0, 7, 0], text: parts.site, cls: 'k-v-equipment', anchor: 'end', dx: -8, dy: 4 },
+      { at: [0.8, 4.4, L1 + 1.1], text: parts.battery, cls: 'k-v-equipment', anchor: 'end', dx: -8 },
+      { at: [6.1, 1.2, L2 + 1.1], text: parts.pcs, cls: 'k-v-equipment', dx: 10 },
+      { at: [8.1, 3.4, L2 + 1.2], text: parts.transformer, cls: 'k-v-equipment', dx: 10 },
+      { at: [3.6, 1.2, L3 + 0.9], text: parts.controls, cls: 'k-v-equipment', anchor: 'end', dx: -8 },
+      { at: [11.5, 6.5, 5], text: parts.connection, cls: 'k-v-equipment', dx: 10 },
       { at: [11.5, 6.5, 5], text: w.label('connectionRight'), cls: 'k-v-rights', anchor: 'end', dx: -8 },
-      { at: [1.4, 4.8, 2.6], text: w.label('capacityRight'), cls: 'k-v-rights', anchor: 'end', dx: -8 },
-      { at: [1.4, 4.8, 2.6], text: w.label('obligation'), cls: 'k-v-rights', anchor: 'end', dx: -8, dy: 12 },
+      { at: [0.8, 4.4, L1 + 1.1], text: w.label('capacityRight'), cls: 'k-v-rights', anchor: 'end', dx: -8 },
+      { at: [0.8, 4.4, L1 + 1.1], text: w.label('obligation'), cls: 'k-v-rights', anchor: 'end', dx: -8, dy: 10 },
     ].filter(l => l.text),
   });
   stage.setAttribute('data-view', 'equipment');
@@ -340,19 +357,16 @@ function paymentPath(shot, { values }){
 function allocationBoard(shot, { values }){
   const w = words(shot, values);
   const on = { capacity: true, services: true, trading: true };
-  const svg = diagram([600, 250], w.title, 'k-board');
+  const svg = diagram([600, 224], w.title, 'k-board');
   const readout = h('p', { class: 'k-readout', 'aria-live': 'polite' });
-  const MAX = 140, Y0 = 210, PX = 150 / UNIT_MW;   // 100 MW = 150 px
+  const MAX = 140, Y0 = 190, PX = 120 / UNIT_MW;   // 100 MW = 120 px
   const draw = () => {
     const periods = [
       { key: 'midday', x: 120, parts: [on.trading && ['trading', TRADING_MW], on.services && ['services', SERVICES_MW]].filter(Boolean) },
       { key: 'window', x: 360, parts: [on.capacity && ['capacity', UNIT_MW], on.services && ['services', SERVICES_MW]].filter(Boolean) },
     ];
     const notes = [];
-    svg.replaceChildren(svg.firstChild,
-      ['capacity', 'services', 'trading'].map((k, i) => s('g', { transform: `translate(${60 + i * 175},16)` },
-        s('rect', { class: `k-alloc k-alloc-${k}`, x: 0, y: -9, width: 12, height: 10 }),
-        label(17, 0, w.control(i)))),
+    fill(svg, svg.firstChild,
       s('line', { class: 'k-board-limit', x1: 60, x2: 580, y1: Y0 - UNIT_MW * PX, y2: Y0 - UNIT_MW * PX }),
       s('line', { class: 'k-axis', x1: 60, x2: 580, y1: Y0, y2: Y0 }),
       periods.map(p => {
@@ -374,27 +388,31 @@ function allocationBoard(shot, { values }){
   const controls = toggleGroup({ label: w.title, multi: true,
     options: keys.map((k, i) => ({ value: k, label: w.control(i), pressed: true })),
     onChange: (k, pressed) => { on[k] = pressed; draw(); } });
-  return scene(controls, svg, readout);
+  // an HTML key wraps at phone width, where SVG text would shrink and collide
+  const key = h('ul', { class: 'k-key', 'aria-hidden': 'true' }, keys.map((k, i) =>
+    h('li', {}, h('span', { class: `k-key-swatch k-alloc-${k}` }), L(w.control(i)))));
+  return scene(controls, key, svg, readout);
 }
 
 /* ---- wa-14: what could weaken it ------------------------------------------- */
 function overview(shot, { values }){
   const w = words(shot, values);
   return scene(isoStage({
-    viewBox: [640, 360], origin: [290, 70], time: 'dusk', title: w.title,
+    ...TOWN.view, time: 'dusk', title: w.title,
     items: [
-      { symbol: 'ground', at: [-2, -2], opts: { w: 20, d: 14 } },
-      { symbol: 'city', at: [1, 7] },
-      { symbol: 'homeSolar', at: [4.5, 11] }, { symbol: 'homeSolar', at: [7, 11.6] },
-      { symbol: 'substation', at: [8, 5] },
-      { symbol: 'battery', at: [11.5, 7.5], opts: { count: 3, highlight: true } },
-      { symbol: 'battery', at: [12.5, 1], opts: { count: 3, future: true } },
-      { symbol: 'battery', at: [15.5, 5], opts: { count: 2, future: true } },
-      { symbol: 'battery', at: [3, 1], opts: { count: 2, future: true } },
+      TOWN.ground,
+      { symbol: 'city', at: TOWN.city },
+      ...TOWN.homes.map(at => ({ symbol: 'homeSolar', at })),
+      ...TOWN.pylons.map(at => ({ symbol: 'pylon', at })),
+      { symbol: 'substation', at: TOWN.substation },
+      { symbol: 'battery', at: TOWN.battery, opts: { count: 3, highlight: true } },
+      ...TOWN.planned.map(at => ({ symbol: 'battery', at, opts: { count: 3, future: true } })),
+      { symbol: 'battery', at: [3, 4], opts: { count: 2, future: true } },
     ],
+    wires: TOWN.wires,
     labels: [
-      { at: [13, 10.5, 1.2], text: w.label('self') },
-      { at: [14, 2.4, 1.3], text: w.label('others'), future: true },
+      { at: [TOWN.battery[0], TOWN.battery[1] + 1, 1.1], text: w.label('self'), anchor: 'end', dx: -8 },
+      { at: [TOWN.planned[1][0] + 2.6, TOWN.planned[1][1] + 1, 1.1], text: w.label('others'), future: true, dx: 6, dy: 14 },
     ],
   }));
 }

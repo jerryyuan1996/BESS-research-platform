@@ -64,6 +64,58 @@ test('the WA story reads end to end, in both languages, and gives focus back', a
   expect(errors).toEqual([]);
 });
 
+test('every chapter shot draws its scene, and the toggles teach without touching the case', async ({ page }) => {
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  const { dialog } = await open(page);
+  await expect(dialog.locator('article.ix-shot .k-scene')).toHaveCount(12);
+  const caseText = await page.locator('#bankable').innerText();
+
+  // wa-08: a shorter build is credited as a smaller battery
+  const station = dialog.locator('[data-shot="wa-08"]');
+  const short = station.getByRole('button', { name: '4 hours (Example)' });
+  await short.scrollIntoViewIfNeeded();
+  await short.focus();
+  await page.keyboard.press('Enter');
+  await expect(short).toHaveAttribute('aria-pressed', 'true');
+  await expect(station.getByRole('button', { name: '8 hours' })).toHaveAttribute('aria-pressed', 'false');
+  await expect(station.locator('.k-energy-bar')).toHaveClass(/k-short/);
+  await expect(station.locator('.k-readout')).not.toContainText('100 MW / 100 MW');
+
+  // wa-11: dropping services clears the evening conflict
+  const board = dialog.locator('[data-shot="wa-11"]');
+  await expect(board.locator('.k-conflict')).toHaveCount(1);
+  await board.getByRole('button', { name: 'Frequency services' }).click();
+  await expect(board.getByRole('button', { name: 'Frequency services' })).toHaveAttribute('aria-pressed', 'false');
+  await expect(board.locator('.k-conflict')).toHaveCount(0);
+
+  // wa-06: the midday view moves the highlight off the window
+  const dusk = dialog.locator('[data-shot="wa-06"]');
+  const before = await dusk.locator('svg.k-chart').innerHTML();
+  await dusk.getByRole('button', { name: 'Midday' }).click();
+  expect(await dusk.locator('svg.k-chart').innerHTML()).not.toEqual(before);
+
+  // the scenes follow the language, and the case never moved
+  await dialog.getByRole('button', { name: 'Switch to Chinese' }).click();
+  await expect(dialog.locator('[data-shot="wa-11"] .k-key')).toContainText('傍晚容量');
+  await expect(dialog).not.toContainText('[object');
+  await dialog.getByRole('button', { name: '切换到英文' }).click();
+  await page.keyboard.press('Escape');
+  expect(await page.locator('#bankable').innerText()).toEqual(caseText);
+  expect(errors).toEqual([]);
+});
+
+test('on a phone the scenes fit the screen', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  const { dialog } = await open(page);
+  const body = dialog.locator('.ix-story-body');
+  const overflow = await body.evaluate(el => el.scrollWidth - el.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+  for (const svg of await dialog.locator('.k-scene svg').all()){
+    const box = await svg.boundingBox();
+    if (box) expect(box.x + box.width).toBeLessThanOrEqual(390 + 0.5);
+  }
+});
+
 test('the story hands the reader to the investment case', async ({ page }) => {
   const { dialog } = await open(page);
   await dialog.getByRole('link', { name: 'Go to the investment case' }).first().click();

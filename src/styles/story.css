@@ -220,6 +220,10 @@ rect.k-bar-reserve, .k-legend.k-bar-reserve .k-swatch { fill:#a37732; fill-opaci
 /* the allocation board */
 .k-board-limit { stroke:#193c32; stroke-dasharray:4 3; }
 .k-alloc-capacity { fill:#224e40; } .k-alloc-services { fill:#a37732; } .k-alloc-trading { fill:#e2b84c; }
+.k-key { display:flex; flex-wrap:wrap; gap:4px 16px; list-style:none; margin:4px 0 6px; padding:0; font-size:var(--fs-sm); color:var(--ix-body,#47574f); }
+.k-key li { display:flex; align-items:center; gap:6px; }
+.k-key-swatch { display:inline-block; width:12px; height:10px; border-radius:var(--r-xs); }
+.k-key-swatch.k-alloc-capacity { background:#224e40; } .k-key-swatch.k-alloc-services { background:#a37732; } .k-key-swatch.k-alloc-trading { background:#e2b84c; }
 .k-conflict { fill:var(--ix-risk,#9c5b40) !important; font-weight:var(--fw-bold); }
 /* the cutaway's two label sets */
 .k-stage[data-view="equipment"] .k-v-rights, .k-stage[data-view="rights"] .k-v-equipment { display:none; }

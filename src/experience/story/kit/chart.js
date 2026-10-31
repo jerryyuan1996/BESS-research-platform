@@ -127,7 +127,8 @@ export function dayChart(spec){
         const bars = [...row.bars].sort((a, b) => (BAR_ORDER[a.kind || 'output'] ?? 3) - (BAR_ORDER[b.kind || 'output'] ?? 3));
         return s('g', { class: 'k-strip-row' },
           s('line', { class: 'k-strip-base', x1: LEFT, x2: W - RIGHT, y1: floor, y2: floor }),
-          s('text', { class: 'k-strip-label', x: LEFT - 6, y: floor - 4, 'text-anchor': 'end' }, L(row.label)),
+          // inside the plot, left-aligned: long and Chinese labels never leave the frame
+          s('text', { class: 'k-strip-label', x: LEFT + 4, y: floor - 4 }, L(row.label)),
           bars.map(bar => {
             const [a, b] = span(bar.first, bar.last);
             return s('rect', { class: `k-bar k-bar-${bar.kind || 'output'}`, x: n2(a), y: n2(floor - hy(bar.mw)), width: n2(b - a), height: n2(hy(bar.mw)) });
