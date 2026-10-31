@@ -8,7 +8,7 @@ Checked 31 October 2026 for WP-09. G-1 covers the script and its definition brea
 - 5593 points; no duplicate starts in the stored series. 17 missing hours in 6 interior gaps; no zero fill or interpolation.
 - First source hour is noon UTC on the catalogue's start date. The catalogue date does not establish earlier hourly coverage.
 - Daily summaries use Europe/Helsinki; partial days retain their observation counts. MW summaries carry no price spreads, trading margin or arbitrage result.
-- Source values range from 120 to 2084.81 MW, including downward revisions. Values are retained as supplied; no monotone fleet curve is imposed.
+- Source values range from 120 to 2084.81 MW, including downward changes in reported capacity. Values are retained as supplied; no monotone fleet curve is imposed.
 - Content checksum: `sha256:f8c0415327eca8393952193a992f1abb8628aa4c4e735c23935e7c5bc8f538e5`.
 - The dated connected estimate and reserve obligation/average-procurement publications are in [storyNeed.js](storyNeed.js), with source, date and locator per record. They are not fabricated feeds.
 
