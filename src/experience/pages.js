@@ -15,7 +15,7 @@ import { playTitle } from '../governance/playTitle.js';
 import { gateLabel } from './labels.js';
 import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
-import { navigate } from '../app/router.js';
+import { navigate, onStoryPlace } from '../app/router.js';
 import { storyFor } from './story/registry.js';
 
 const lens = () => LENSES[app.lens] ? app.lens : 'infraFund';
@@ -94,7 +94,7 @@ export async function renderExperience(container, route, market) {
   container.append(siteHeader(route.name));
   if (route.name === 'home') renderHome(container, rows);
   else if (route.name === 'returns') renderComparison(container, rows);
-  else renderMarket(container, rows.find(r => r.id === market.manifest.id));
+  else renderMarket(container, rows.find(r => r.id === market.manifest.id), route);
   container.append(siteFooter());
 }
 
@@ -269,7 +269,8 @@ function compareDialog(rows) {
   dialog.querySelectorAll('a').forEach(a => a.addEventListener('click', e => { if (!e.metaKey && !e.ctrlKey) dialog.close(); }));
 }
 
-function renderMarket(container, row) {
+let stopStoryPlace = null;
+function renderMarket(container, row, route) {
   const data = caseFor(row), m = row.market, mf = m.manifest;
   const content = main();
   content.append(h('nav', { class: 'ix-breadcrumb', 'aria-label': L(['Breadcrumb', '面包屑导航']) }, link('/', ['Investment brief', '投资简报']), ' / ', link('/returns', ['Global markets', '全球市场']), ' / ', h('span', {}, name(row))));
@@ -291,16 +292,23 @@ function renderMarket(container, row) {
      deeper inside it (src/experience/story/registry.js); every other market
      opens the research dialog as before. */
   const openResearch=trigger=>import('./researchDialog.js').then(module=>{if(trigger.isConnected)module.openResearchDialog(m,name(row),trigger);});
-  const research=button(['Grid, history and full research context ↗','电网、历史与完整研究背景 ↗'],()=>{
+  /* A link or Back to ?view=story opens the story at its place (WP-04);
+     place is null when the reader pressed the button. */
+  const storyOpen=()=>Boolean(document.querySelector('.ix-story-dialog'));
+  const openFrom=(place)=>{
     research.disabled=true;
     const story=storyFor(mf.id);
     (story
-      ? story.load().then(pack=>{if(research.isConnected&&!pack.open({row,name:marketName(row),trigger:research,openResearch,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
+      ? story.load().then(pack=>{if(research.isConnected&&!storyOpen()&&!pack.open({row,name:marketName(row),trigger:research,openResearch,place,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
       : openResearch(research))
       .catch(()=>{research.textContent=L(['Could not load; click to retry','暂未载入，点击重试']);})
       .finally(()=>{research.disabled=false;});
-  },'ix-outline ix-full-research');
+  };
+  const research=button(['Grid, history and full research context ↗','电网、历史与完整研究背景 ↗'],()=>openFrom(null),'ix-outline ix-full-research');
   content.querySelector('#overview').append(research);
+  stopStoryPlace?.();
+  stopStoryPlace=onStoryPlace((r,{samePage})=>{if(samePage&&r.story&&research.isConnected&&!storyOpen()&&storyFor(mf.id))openFrom(r.story);});
+  if(route?.story&&storyFor(mf.id)&&!storyOpen())openFrom(route.story);
   /* Revenue drivers sit under the overview. The special-opportunity comparison
      appears only where one is valid, and then at the foot of the case, just
      above the downside. Otherwise the timeline shows the conventional play alone. */

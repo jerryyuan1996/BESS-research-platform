@@ -116,6 +116,118 @@ test('on a phone the scenes fit the screen', async ({ page }) => {
   }
 });
 
+/* ---- story URLs (WP-04) -------------------------------------------------- */
+const WA = '/markets/western-australia';
+
+test('the address follows the reader, and Back and Forward retrace the path', async ({ page }) => {
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  const { dialog } = await open(page);
+  await expect(page).toHaveURL(`${WA}?story=preview&view=story&chapter=opening&shot=wa-00`);
+
+  await dialog.getByRole('button', { name: 'Next →' }).click();
+  await expect(page).toHaveURL(/chapter=origins&shot=wa-01$/);
+  await dialog.getByRole('button', { name: /Who pays/ }).click();
+  await expect(page).toHaveURL(/chapter=payment&shot=wa-10$/);
+  await expect(dialog.locator('#ix-shot-wa-10')).toBeFocused();
+
+  // Back steps to the previous shot without re-rendering the page behind
+  await page.evaluate(() => { document.querySelector('.ix-full-research').dataset.kept = 'yes'; });
+  await page.goBack();
+  await expect(page).toHaveURL(/chapter=origins&shot=wa-01$/);
+  await expect(dialog.locator('#ix-shot-wa-01')).toBeFocused();
+  await expect(page.locator('.ix-full-research')).toHaveAttribute('data-kept', 'yes');
+
+  await page.goForward();
+  await expect(page).toHaveURL(/chapter=payment&shot=wa-10$/);
+  await expect(dialog.locator('#ix-shot-wa-10')).toBeFocused();
+
+  // closing adds an entry; Back reopens the story where the reader left it
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(page).toHaveURL(`${WA}?story=preview`);
+  await page.goBack();
+  await expect(page.locator('.ix-story-dialog')).toBeVisible();
+  await expect(page.locator('#ix-shot-wa-10')).toBeFocused();
+  await expect(page.locator('.ix-full-research')).toHaveAttribute('data-kept', 'yes');
+
+  // Back past the opening closes the story again
+  for (let i = 0; i < 3; i++) await page.goBack();
+  await expect(page).toHaveURL(`${WA}?story=preview`);
+  await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
+  expect(errors).toEqual([]);
+});
+
+test('a link, and a refresh, open the story at its shot', async ({ page }) => {
+  await page.goto(`${WA}?story=preview&view=story&chapter=tensions&shot=wa-06`);
+  const dialog = page.locator('.ix-story-dialog');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator('#ix-shot-wa-06')).toBeFocused();
+  await expect(dialog.getByRole('button', { name: /Today's tensions/ })).toHaveAttribute('aria-current', 'true');
+  await expect(dialog.locator('[data-shot="wa-06"]')).toBeInViewport();
+
+  await page.reload();
+  await expect(page.locator('.ix-story-dialog #ix-shot-wa-06')).toBeFocused();
+  await expect(page.locator('.ix-story-dialog')).toHaveCount(1);
+});
+
+test('an unknown shot falls back to its chapter, and the address is corrected', async ({ page }) => {
+  await page.goto(`${WA}?story=preview&view=story&chapter=payment&shot=wa-99`);
+  await expect(page.locator('.ix-story-dialog #ix-shot-wa-10')).toBeFocused();
+  await expect(page).toHaveURL(/chapter=payment&shot=wa-10$/);
+
+  await page.goto(`${WA}?story=preview&view=story&chapter=nowhere`);
+  await expect(page.locator('.ix-story-dialog')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Close the story' })).toBeFocused();
+  await expect(page).toHaveURL(/chapter=opening&shot=wa-00$/);
+});
+
+test('switching language keeps the place, and teaching controls never enter history', async ({ page }) => {
+  await page.goto(`${WA}?story=preview&view=story&chapter=battery&shot=wa-08`);
+  const dialog = page.locator('.ix-story-dialog');
+  await expect(dialog.locator('#ix-shot-wa-08')).toBeFocused();
+  const entries = await page.evaluate(() => history.length);
+
+  const station = dialog.locator('[data-shot="wa-08"]');
+  await station.getByRole('button', { name: '4 hours (Example)' }).click();
+  await station.getByRole('button', { name: 'After fade (Example)' }).click();
+  expect(await page.evaluate(() => history.length)).toBe(entries);
+  await expect(page).toHaveURL(/chapter=battery&shot=wa-08$/);
+
+  await dialog.getByRole('button', { name: 'Switch to Chinese' }).click();
+  await expect(page.locator('.ix-story-dialog')).toHaveCount(1);
+  await expect(dialog.locator('[data-shot="wa-08"]')).toBeInViewport();
+  await expect(page).toHaveURL(/chapter=battery&shot=wa-08$/);
+  expect(await page.evaluate(() => history.length)).toBe(entries);
+  await dialog.getByRole('button', { name: '切换到英文' }).click();
+});
+
+test('an investor switch behind a closed story leaves it closed, and Back reopens it on the new view', async ({ page }) => {
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  await page.goto(`${WA}?story=preview&view=story&chapter=payment&shot=wa-10`);
+  await expect(page.locator('.ix-story-dialog #ix-shot-wa-10')).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(page).toHaveURL(`${WA}?story=preview`);
+
+  const investor = page.getByRole('combobox', { name: 'Investor profile' });
+  const other = await investor.evaluate(s => [...s.options].map(o => o.value).find(v => v !== s.value));
+  await investor.selectOption(other);
+  await expect(page.locator('.ix-full-research')).toBeVisible();
+  await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
+  await expect(page).toHaveURL(`${WA}?story=preview`);
+
+  await page.goBack();
+  await expect(page.locator('.ix-story-dialog #ix-shot-wa-10')).toBeFocused();
+  await expect(page).toHaveURL(/chapter=payment&shot=wa-10$/);
+  expect(errors).toEqual([]);
+});
+
+test('without the preview flag a story link opens nothing', async ({ page }) => {
+  await page.goto(`${WA}?view=story&chapter=tensions&shot=wa-06`);
+  await expect(page.locator('.ix-full-research')).toBeVisible();
+  await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
+  await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
+});
+
 test('the story hands the reader to the investment case', async ({ page }) => {
   const { dialog } = await open(page);
   await dialog.getByRole('link', { name: 'Go to the investment case' }).first().click();
