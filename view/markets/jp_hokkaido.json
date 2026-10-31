@@ -1,8 +1,8 @@
 {
   "marketId": "jp_hokkaido",
   "thesis": [
-    "The same national award in Japan's export-constrained area: underwrite charging-side headroom and the Hokkaido–Honshu reinforcement. The six-hour floor needs a 9-hour build to hold to year 20.",
-    "同样的全国性中标合同，位于日本外送受限地区：承保时应关注充电侧裕度与北海道—本州联络线加强。六小时下限需9小时装机才能维持到第20年。"
+    "Buy an operating award holder at a price that clears the fund's target; do not build. The 20-year long-term auction award secures nearly all revenue, but a battery bid is capped at a regulated 4.5% pre-tax return and most trading upside is clawed back, so the purchase price is the decision. The award's six-hour obligation must hold to year 20, which takes a nine-hour build without augmentation. In Hokkaido, Japan's export-constrained area, underwrite charging-side headroom and the Hokkaido–Honshu reinforcement.",
+    "以达到基金目标收益的价格收购已投运的中标方，而非新建。20年期长期脱碳电源拍卖中标合同几乎锁定全部收入，但蓄电池报价的税前回报受监管上限4.5%约束，且大部分交易收益须返还，因此收购价格决定成败。中标合同的六小时义务须维持到第20年，在不扩容的前提下需九小时装机。北海道位于日本外送受限地区，承保时应关注充电侧裕度与北海道—本州联络线加强。"
   ],
   "grades": {
     "assetReturn": {
@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "Thirteenth of fifteen markets on hold IRR, 2.5%.",
-        "持有期IRR为2.5%，在十五个市场中排第十三。"
+        "Thirteenth of fifteen markets on the design grid's hold IRR, 2.5% (23 October 2026).",
+        "按设计表测算的持有期IRR为2.5%（2026年10月23日），在十五个市场中排第十三。"
       ],
       "asOf": "2026-10-23",
       "author": "analyst",
@@ -31,8 +31,8 @@
         "occtoLtda2026"
       ],
       "reason": [
-        "96% of first-year revenue is secured across the fifteen-year window under a representative long-term auction award, which normally runs twenty years; the payment is derived from costs and is not an identified contract price, and a project without an award secures nothing.",
-        "在代表性的长期拍卖中标情景下，首年收入的96%在十五年测算期内均已锁定（该类合同通常为期二十年）；该付款金额由成本推算，并非已确认的合同价格，未中标的项目没有任何锁定收入。"
+        "On the design grid (12 October 2026), 96% of first-year revenue is secured across the fifteen-year window under a representative long-term auction award, which normally runs twenty years; the payment is derived from costs and is not an identified contract price, and a project without an award secures nothing.",
+        "按设计表测算（2026年10月12日），在代表性的长期拍卖中标情景下，首年收入的96%在十五年测算期内均已锁定（该类合同通常为期二十年）；该付款金额由成本推算，并非已确认的合同价格，未中标的项目没有任何锁定收入。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
@@ -369,15 +369,15 @@
     "jp-hokkaido-ltda-6h": {
       "id": "jp-hokkaido-ltda-6h",
       "label": [
-        "Long-term auction award · 9h",
-        "长期脱碳电源拍卖中标 · 9小时"
+        "Long-term auction award · 9h build / 6h obligation",
+        "长期脱碳电源拍卖中标 · 9小时装机／6小时义务"
       ],
       "route": "ltda",
       "hours": 9,
       "stage": "operating",
       "why": [
-        "The award is a regulated return: a battery bid may price at most 4.5% pre-tax, which an unlevered fund cannot hold at its yields. It pays only bought at a discount.",
-        "中标合同属受监管回报：蓄电池报价可计入的税前回报上限为4.5%，无杠杆基金按其收益率无法持有，仅在折价收购时才有价值。"
+        "The award obliges six hours of delivery for twenty years; without augmentation that takes a nine-hour build. The award is a regulated return: a battery bid may price at most 4.5% pre-tax, which an unlevered fund cannot hold at its yields. It pays only bought at a discount.",
+        "中标合同要求二十年内提供六小时供电；在不扩容的前提下需九小时装机。中标合同属受监管回报：蓄电池报价可计入的税前回报上限为4.5%，无杠杆基金按其收益率无法持有，仅在折价收购时才有价值。"
       ],
       "action": {
         "text": [
@@ -387,7 +387,7 @@
         "due": "2027-02-03"
       },
       "author": "analyst",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     }
   }

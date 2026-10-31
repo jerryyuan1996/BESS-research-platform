@@ -1,7 +1,7 @@
 # Germany: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Germany script researched 31 October 2026
-Status: `proposed` script and bilingual page-text draft; G-1 analyst sign-off pending; steps 1 and 2 only
+Status: script signed off by the analyst at `G-1` on 31 October 2026, including the v1.2 conversion; `WP-09` build in progress; observed prices remain blocked
 Navigation: [Master plan](README.md) | [Narrative method §5](market-narratives.md#5-germany-a-liquid-merchant-market-secured-by-a-toll) | [Evidence specification](evidence-and-content-specification.md) | [Germany source and claim ledger](source-register.md#germany-research-addendum--31-october-2026)
 
 ## 1. Scope, argument and reading route
@@ -242,7 +242,7 @@ Thirteen shots use the WA format and shared fixed-view isometric SVG kit. No sce
 | Question | Why accept a lower reference return for a toll? | 为什么接受回报较低的租赁参考方案？ |
 | Copy | The toll buys contractual revenue during its term. Merchant keeps the changing trading margin. The published toll reference earns less; the fund asks for a signed contract before pricing. | 租赁在合同期内换取约定收入，市场化运营则保留波动的交易利润。已发布的租赁参考方案回报更低；基金在定价前要求合同落实。 |
 | Meaning | A toll transfers price exposure on agreed terms. | 租赁按约定条款转移价格风险。 |
-| Marker | Fair evidence. What would change it: licensed spread observations, verified toll terms and review of the comparison's units and entry stages. | 证据尚可。会改变判断的证据：获得许可的价差观察、核实后的租赁条款，以及对比较单位和进入阶段的审核。 |
+| Marker | Fair evidence. What would change it: owner permission from EPEX SPOT, or SMARD releasing wholesale prices under ‹bound: price reuse licence› once the HEDWIG review ends; verified toll terms and review of the comparison's units and entry stages. | 证据尚可。会改变判断的证据：取得EPEX SPOT的数据所有者许可，或在HEDWIG审查结束后由SMARD以‹bound: price reuse licence›发布批发电价；并核实租赁条款、审核比较的单位与进入阶段。 |
 | Controls | Merchant · Toll · How measured. Toggle changes emphasis only; both unit labels remain visible | 市场化 · 租赁 · 如何计算。切换仅改变强调内容；两个单位标签始终可见 |
 | Labels | Daily spread index · EUR/MWh · ‹bound: spread chart labels›; Reference annual toll fee · USD/MW/year · ‹bound: annual fee label› | 每日价差指数·欧元／MWh · ‹bound: spread chart labels›；参考年度租赁费·美元／MW／年 · ‹bound: annual fee label› |
 | Caption | Example: changing margin and fixed fee | 示例：波动利润与固定租赁费 |
@@ -349,6 +349,7 @@ The following are source/result paths for future implementation, **not applicati
 | play duration | Current German `row.play.hours` | Hours of energy at rated power, not contract tenor or capacity qualification |
 | preferred / longer merchant duration, selected merchant value | `HOME_BRIEFING.grids.de`, route `mer`, current preferred cell and comparison cell for six hours; existing cell duration/value result and its existing formatter | Selection is the model's value preference; no unpriced toll comparison. Reopen if best/available cells change. Value unit follows existing grid result |
 | secured years, annual fee label, contract expiry label | Existing `caseFor(row).base.securedYears`, `.secY[0]` / `bridge.fixed` and dated cash-flow clock; comparison-engine annual output USD/MW/year | Fee is gross contractual model revenue, not equity cash. Do not read `.currency` as proof the engine's USD cash arrays are EUR; no new FX transformation. Contract term starts on the existing operating/payment clock, not chart-history start |
+| price reuse licence | `PRICE_REUSE_LICENCE` in the German story metadata, fixed to the CC BY 4.0 label in the analyst's 31 October permission condition | A licence identifier, not evidence that price publication is cleared |
 | history labels H-DE-01–06, research check date | Exact event/target/check metadata in [source-register historical nodes](source-register.md#historical-nodes--events-separate-from-interpretation) | Every reader-facing year/date binds this record, including the past target and current future target. Planned is never formatted as completed |
 | observed range / interval / spread chart labels | GAP-DE-PRICES future permitted snapshot envelope, complete daily fields `d`, `spread`, `charge`, `discharge` and existing derived `spreadP25`/`spreadP75`; method/coverage reviewed first | Not available today. Bound tokens cannot be resolved by inventing series or copying another market. Withhold numeric layer until rights/registration/quality pass |
 
@@ -360,8 +361,8 @@ Reverse traceability: SRC-DE-05 → CL-DE-03 → de-01; SRC-DE-11/12 → CL-DE-0
 
 | Review | Status / required analyst judgement |
 | --- | --- |
-| Electricity mechanics | Pending: separate historic energy-only choice, current capacity law, four-hour exclusion, ordinary redispatch compensation, network-booster cost recovery and draft network tariffs |
-| Investment meaning | Pending: duration by value; model fee versus observed prices; stage differences between references; tenor/counterparty/cost allocation; no grid income or assumed future capacity receipt |
-| English and Chinese | Pending: same meaning and obligations; legal and commercial terminology reviewed; all figures remain bound tokens |
-| Script decision | **G-1 pending. Analyst: sign off de-00–de-12 and the evidence-led corrections, or identify changes.** Example fallback is available while the observed-price layer remains blocked |
-| Build boundary | Stop here. No application code, dataset registration, snapshot, model change, rendering, build, deployment or G-2 work in this task |
+| Electricity mechanics | Signed off at G-1, 31 October 2026: separate historic energy-only choice, current capacity law, four-hour exclusion, ordinary redispatch compensation, network-booster cost recovery and draft network tariffs |
+| Investment meaning | Signed off at G-1, 31 October 2026: duration by value; model fee versus observed prices; stage differences between references; tenor/counterparty/cost allocation; no grid income or assumed future capacity receipt |
+| English and Chinese | Signed off at G-1, 31 October 2026, including the v1.2 Chinese Meaning lines and marker wording: same meaning and obligations; legal and commercial terminology reviewed; all figures remain bound tokens |
+| Script decision | **G-1 met: the analyst signed off de-00–de-12 and the v1.2 conversion on 31 October 2026.** Build the approved Example fallback while the observed-price layer remains blocked; the analyst specified the de-09 permission unlocks on the same date |
+| Build boundary | WP-09 implementation authorised on 31 October 2026. No model-number changes or hand-committed snapshots; G-2 remains the build-review gate, and publication rights remain unresolved |
