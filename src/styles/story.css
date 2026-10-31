@@ -94,6 +94,10 @@ rect.k-bar-reserve, .k-legend.k-bar-reserve .k-swatch { fill:#a37732; fill-opaci
    geometry instead (dayChart({ compact: true })). */
 @media (max-width: 560px) {
   .k-stage .k-label { font-size:calc(var(--fs-xs) * 1.75); stroke-width:5px; }
+  /* the station switches to a narrow frame on a phone, drawn near full size */
+  .k-stage.k-energy .k-label { font-size:var(--fs-xs); stroke-width:3.5px; }
+  /* the compact chart is drawn at about 0.8 scale on a phone */
+  .k-chart, .k-chart .k-axis-title, .k-chart .k-strip-title { font-size:var(--fs-xs); }
 }
 
 /* ---- the story shell (WP-03) -------------------------------------------------
@@ -164,8 +168,14 @@ rect.k-bar-reserve, .k-legend.k-bar-reserve .k-swatch { fill:#a37732; fill-opaci
   .ix-shot { grid-template-columns:minmax(0, 1fr); gap:14px; padding:20px 0; }
   .ix-story-foot .ix-text-link { font-size:var(--fs-xs); }
 }
+/* A tablet gets one column too: beside the text a drawing would get about
+   380px, and its words would fall to 6-8px on screen. */
+@media (max-width: 1050px) {
+  .ix-shot { grid-template-columns:minmax(0, 1fr); gap:14px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .ix-story-body { scroll-behavior:auto; }
+  .ix-story-dialog * { transition:none !important; animation:none !important; }
 }
 
 /* ---- teaching controls ------------------------------------------------------ */
@@ -182,6 +192,7 @@ rect.k-bar-reserve, .k-legend.k-bar-reserve .k-swatch { fill:#a37732; fill-opaci
 .k-control-row { display:flex; flex-wrap:wrap; gap:0 16px; }
 .k-diagram { background:#fffefa; border:1px solid #e3e6dc; border-radius:var(--r-sm); }
 .k-diagram .k-label { paint-order:normal; stroke:none; }
+.k-diagram .k-label.k-halo { paint-order:stroke; stroke:var(--ix-panel,#fffefa); stroke-width:3.5px; stroke-linejoin:round; }
 .k-muted { fill:var(--ix-muted,#68766c); }
 /* the island map: the SWIS against the rest of the state, the NEM and the NT */
 .k-map .k-map-wa { fill:#e6e9dc; stroke:#9dae99; stroke-width:1; transition:fill .3s ease; }

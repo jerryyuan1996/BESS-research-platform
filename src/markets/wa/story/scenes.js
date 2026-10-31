@@ -81,7 +81,7 @@ function islandMap(shot, { values }){
     s('path', { class: 'k-break', d: `M${n2(mid[0] - 7)},${n2(mid[1] - 7)} L${n2(mid[0] + 7)},${n2(mid[1] + 7)} M${n2(mid[0] + 7)},${n2(mid[1] - 7)} L${n2(mid[0] - 7)},${n2(mid[1] + 7)}` }),
     s('circle', { class: 'k-label-dot', cx: T.perth[0], cy: T.perth[1], r: 3.5 }),
     label(mid[0], mid[1] - 14, w.label('noLink'), { 'text-anchor': 'middle' }),
-    label(T.perth[0] + 8, T.perth[1] + 4, w.label('perth')),
+    label(T.perth[0] + 8, T.perth[1] + 4, w.label('perth'), { class: 'k-label k-halo' }),   // outlined: it sits on the dark SWIS fill
     label(A.swisLabel[0], A.swisLabel[1] + 30, w.label('swis'), { class: 'k-label k-map-swis-label' }),
     label(A.wa[0], A.wa[1], w.label('state'), { 'text-anchor': 'middle', class: 'k-label k-map-state-label' }),
     label(A.nem[0], A.nem[1], w.label('nem'), { 'text-anchor': 'middle' }),
@@ -263,8 +263,9 @@ function station(shot, { values }){
   const req = num(values.durationRequirement), play = num(values.playDuration);
   const sizes = [4, req, play];
   const state = { size: 2, aged: false };
-  const X0 = 60, PER_H = 52;
-  const svg = diagram([620, 190], w.title, 'k-energy');
+  // a phone gets a narrower frame, so the hour ticks stay readable
+  const [X0, PER_H] = narrow() ? [16, 30] : [60, 52];
+  const svg = diagram([X0 + 10 * PER_H + 24, 190], w.title, 'k-energy');
   const readout = h('p', { class: 'k-readout', 'aria-live': 'polite' });
   const draw = () => {
     const hours = sizes[state.size] * (state.aged ? 1 - FADE : 1);

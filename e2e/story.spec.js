@@ -1,5 +1,5 @@
-/* The market story shell (immersive-experience plan, WP-03), on the built site.
-   Until its release PR the WA story opens only with ?story=preview. */
+/* The market story (immersive-experience plan, WP-03 to WP-07 and WP-10), on
+   the built site. Released at G-2, so it needs no preview flag. */
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 const open = async (page) => {
-  await page.goto('/markets/western-australia?story=preview');
+  await page.goto('/markets/western-australia');
   const trigger = page.locator('.ix-full-research');
   await trigger.scrollIntoViewIfNeeded();
   await trigger.click();
@@ -122,7 +122,7 @@ const WA = '/markets/western-australia';
 test('the address follows the reader, and Back and Forward retrace the path', async ({ page }) => {
   const errors = []; page.on('pageerror', e => errors.push(e.message));
   const { dialog } = await open(page);
-  await expect(page).toHaveURL(`${WA}?story=preview&view=story&chapter=opening&shot=wa-00`);
+  await expect(page).toHaveURL(`${WA}?view=story&chapter=opening&shot=wa-00`);
 
   await dialog.getByRole('button', { name: 'Next →' }).click();
   await expect(page).toHaveURL(/chapter=origins&shot=wa-01$/);
@@ -144,7 +144,7 @@ test('the address follows the reader, and Back and Forward retrace the path', as
   // closing adds an entry; Back reopens the story where the reader left it
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
-  await expect(page).toHaveURL(`${WA}?story=preview`);
+  await expect(page).toHaveURL(`${WA}`);
   await page.goBack();
   await expect(page.locator('.ix-story-dialog')).toBeVisible();
   await expect(page.locator('#ix-shot-wa-10')).toBeFocused();
@@ -152,13 +152,13 @@ test('the address follows the reader, and Back and Forward retrace the path', as
 
   // Back past the opening closes the story again
   for (let i = 0; i < 3; i++) await page.goBack();
-  await expect(page).toHaveURL(`${WA}?story=preview`);
+  await expect(page).toHaveURL(`${WA}`);
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
   expect(errors).toEqual([]);
 });
 
 test('a link, and a refresh, open the story at its shot', async ({ page }) => {
-  await page.goto(`${WA}?story=preview&view=story&chapter=tensions&shot=wa-06`);
+  await page.goto(`${WA}?view=story&chapter=tensions&shot=wa-06`);
   const dialog = page.locator('.ix-story-dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('#ix-shot-wa-06')).toBeFocused();
@@ -171,18 +171,18 @@ test('a link, and a refresh, open the story at its shot', async ({ page }) => {
 });
 
 test('an unknown shot falls back to its chapter, and the address is corrected', async ({ page }) => {
-  await page.goto(`${WA}?story=preview&view=story&chapter=payment&shot=wa-99`);
+  await page.goto(`${WA}?view=story&chapter=payment&shot=wa-99`);
   await expect(page.locator('.ix-story-dialog #ix-shot-wa-10')).toBeFocused();
   await expect(page).toHaveURL(/chapter=payment&shot=wa-10$/);
 
-  await page.goto(`${WA}?story=preview&view=story&chapter=nowhere`);
+  await page.goto(`${WA}?view=story&chapter=nowhere`);
   await expect(page.locator('.ix-story-dialog')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Close the story' })).toBeFocused();
   await expect(page).toHaveURL(/chapter=opening&shot=wa-00$/);
 });
 
 test('switching language keeps the place, and teaching controls never enter history', async ({ page }) => {
-  await page.goto(`${WA}?story=preview&view=story&chapter=battery&shot=wa-08`);
+  await page.goto(`${WA}?view=story&chapter=battery&shot=wa-08`);
   const dialog = page.locator('.ix-story-dialog');
   await expect(dialog.locator('#ix-shot-wa-08')).toBeFocused();
   const entries = await page.evaluate(() => history.length);
@@ -203,17 +203,17 @@ test('switching language keeps the place, and teaching controls never enter hist
 
 test('an investor switch behind a closed story leaves it closed, and Back reopens it on the new view', async ({ page }) => {
   const errors = []; page.on('pageerror', e => errors.push(e.message));
-  await page.goto(`${WA}?story=preview&view=story&chapter=payment&shot=wa-10`);
+  await page.goto(`${WA}?view=story&chapter=payment&shot=wa-10`);
   await expect(page.locator('.ix-story-dialog #ix-shot-wa-10')).toBeFocused();
   await page.keyboard.press('Escape');
-  await expect(page).toHaveURL(`${WA}?story=preview`);
+  await expect(page).toHaveURL(`${WA}`);
 
   const investor = page.getByRole('combobox', { name: 'Investor profile' });
   const other = await investor.evaluate(s => [...s.options].map(o => o.value).find(v => v !== s.value));
   await investor.selectOption(other);
   await expect(page.locator('.ix-full-research')).toBeVisible();
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
-  await expect(page).toHaveURL(`${WA}?story=preview`);
+  await expect(page).toHaveURL(`${WA}`);
 
   await page.goBack();
   await expect(page.locator('.ix-story-dialog #ix-shot-wa-10')).toBeFocused();
@@ -221,8 +221,8 @@ test('an investor switch behind a closed story leaves it closed, and Back reopen
   expect(errors).toEqual([]);
 });
 
-test('without the preview flag a story link opens nothing', async ({ page }) => {
-  await page.goto(`${WA}?view=story&chapter=tensions&shot=wa-06`);
+test('a market without a story ignores a story link', async ({ page }) => {
+  await page.goto('/markets/italy?view=story&chapter=tensions&shot=wa-06');
   await expect(page.locator('.ix-full-research')).toBeVisible();
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
   await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
@@ -244,9 +244,12 @@ test('every exit in the last chapter reaches its market-page section', async ({ 
   }
 });
 
-test('without the preview flag the market page keeps the research dialog', async ({ page }) => {
+test('the WA button opens the story for every reader, with the research one click deeper', async ({ page }) => {
   await page.goto('/markets/western-australia');
   await page.locator('.ix-full-research').click();
+  const dialog = page.locator('.ix-story-dialog');
+  await expect(dialog).toBeVisible();
+  await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
+  await dialog.getByRole('button', { name: 'Full research ↗' }).click();
   await expect(page.locator('.ix-research-dialog')).toBeVisible();
-  await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
 });
