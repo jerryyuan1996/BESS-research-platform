@@ -13,12 +13,12 @@
     "licence": "PSE public reporting data — reuse with attribution to PSE S.A.",
     "attribution": "Source: PSE S.A.; ECB reference rates"
   },
-  "fetchedAt": "2026-10-31T05:53:34.233Z",
+  "fetchedAt": "2026-10-31T12:43:09.694Z",
   "coverage": {
-    "from": "2025-10-31T06:00:00.000Z",
+    "from": "2025-10-31T13:00:00.000Z",
     "to": "2026-10-31T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8777
+    "points": 8770
   },
   "units": {
     "price": "EUR/MWh"
@@ -31,15 +31,15 @@
   "staleAfterHours": 72,
   "derived": {
     "authority": "derived",
-    "points": 8777,
+    "points": 8770,
     "coverageDays": 366,
     "pointsPerHour": 1,
-    "mean": 122.58,
-    "median": 116.93,
-    "stdev": 67.13,
-    "p5": 1.49,
-    "p95": 231.19,
-    "negativeHoursPct": 0.034977782841517605,
+    "mean": 122.6,
+    "median": 116.95,
+    "stdev": 67.15,
+    "p5": 1.48,
+    "p95": 231.22,
+    "negativeHoursPct": 0.03500570125427594,
     "spreadMean": 133.77,
     "spreadMedian": 127.92,
     "spreadP25": 74.63,
@@ -71,12 +71,12 @@
   "daily": [
     {
       "d": "2025-10-31",
-      "n": 17,
-      "mean": 133.2,
-      "min": 75.87,
+      "n": 10,
+      "mean": 162.86,
+      "min": 101.77,
       "max": 290.89,
-      "spread": 145.64,
-      "charge": 79.18,
+      "spread": 113.65,
+      "charge": 111.17,
       "discharge": 224.82
     },
     {
@@ -3732,8 +3732,8 @@
   ],
   "sourceSnapshot": {
     "file": "pl-day-ahead.json",
-    "contentChecksum": "sha256:d5e8bccd8e66b5c521d5982d08a5204ef1074ece9b443d87f8b12e552dd9cdab",
-    "points": 8777
+    "contentChecksum": "sha256:536b2b9b0e56165cdad48fa2d59ffa5c564134733e29954ae5aad602d9069344",
+    "points": 8770
   },
-  "summaryChecksum": "sha256:dfbe082fcd0c717d4c955e6914b5956c9529a7a80f41f9701af068fcfe3d8c95"
+  "summaryChecksum": "sha256:bf72e34c4f885ec6b2100c2bc14e022b4f2020498a23235b6550d9e88894185d"
 }
