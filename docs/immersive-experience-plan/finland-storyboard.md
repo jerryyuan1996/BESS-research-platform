@@ -1,7 +1,7 @@
 # Finland: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30, Finland research/script revision, 31 October 2026; shot layout v1.2
-Status: content signed off by the analyst at **G-1**; v1.2 layout and new Meaning/marker wording pending re-sign-off. Markdown only; no implementation or publication approval. Original shot-status notes are retained as the signed-off authoring record.
+Status: **G-1 met — analyst re-sign-off, 31 October 2026**, including the v1.2 layout, new Meaning sentences and fixed marker wording. Implementation authorised under WP-09; G-2 review remains pending. Original shot-status notes are retained as the signed-off authoring record.
 Navigation: [Master plan](README.md) | [Narrative method](market-narratives.md#6-finland-a-fast-reserve-market-that-storage-has-already-filled) | [Evidence contract](evidence-and-content-specification.md) | [Finland evidence and results](source-register.md#finland-research-update--31-october-2026) | [WA format](western-australia-storyboard.md)
 
 ## 1. Scope, argument and reading route
@@ -400,16 +400,16 @@ Binding control for the timeline: `history node` resolves to the **selected node
 
 Reverse mapping: each source ID in the primary register names its affected claim(s) here; historical sources also map through H-FI nodes. A replacement source therefore queues a finite set of shots, their translations and numeric labels for review.
 
-## 10. G-1 record and layout re-sign-off
+## 10. G-1 sign-off record
 
-The analyst signed off the research and script at G-1. This revision converts the shot layout; new Meaning sentences and fixed marker phrasing are listed in PR #85 for re-sign-off. Numerical publication and implementation remain outside this revision.
+The analyst re-signed off the complete v1.2 script on 31 October 2026, including the layout, new Meaning sentences and fixed marker wording. G-1 is met. WP-09 implementation is authorised by the subsequent build task; the original documentation-only handoff below remains a historical record. G-2 review is still required for the built story.
 
 | Analyst pass | Decision required |
 | --- | --- |
 | Electricity mechanics | Accept the connected-versus-gross-product comparison and left-censored crossing; OL3 protected-loss correction; product/payment separation; conservative qualification wording with open appendix/test issues |
 | Investment meaning | Accept the live fi-toll-2h / Situational anchor; trading-led duration explanation; optimiser floor with tenor and merchant tail; no reserve-price capture claim; decide whether separate view/model work is warranted |
 | English / Chinese | Confirm equal meaning of readiness, activation energy, floor, expiry and proposed legislation; all visible strings drafted, one marker at a time |
-| G-1 | Original content signed off by the analyst; the new Meaning sentences and fixed marker wording require re-sign-off before merge. |
+| G-1 | **Met: analyst re-sign-off on 31 October 2026**, covering the research, both languages, v1.2 layout, all Meaning sentences and fixed marker wording. |
 
 Original research/script checks (before the v1.2 conversion): all thirteen shots have the eleven WA fields; questions, copy, controls and markers include Chinese; page-copy figures are bound; named tokens have a register entry; local document links/anchors resolve. `market-narratives.md` changes only §6. Confidentiality checks cover content and PR/commit metadata; no marker values are printed. The existing test suite passed **987 tests**, and the current-model checks passed **84 tests**, with no fixture regeneration. No build or preview was run. Separate build, budget and browser release commands are deferred under the explicit “build nothing” scope; this is a G-1 documentation PR, not a G-2 release.
 

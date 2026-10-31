@@ -213,6 +213,16 @@ export const DATASETS = [
     bearsOn: ['economics.merchGross'], republishable: true, requiresKey: true, official: true,
   },
 
+  /* Network-model technical power, not all-size connected or prequalified MW.
+     Context for the story only: it bears on no financial assumption. */
+  {
+    id: 'fi-storage-capacity', kind: 'timeseries', marketId: 'fi', connector: 'fingrid',
+    title: ['Finland storage technical capacity, hourly', '芬兰储能技术容量，小时'],
+    source: { ...FINGRID, url: 'https://data.fingrid.fi/en/datasets/424' },
+    refreshHours: 24 * HOURS, staleAfterHours: 3 * DAYS,
+    bearsOn: [], republishable: true, requiresKey: true, official: true,
+  },
+
   // ---- Western Australia ---------------------------------------------------
   {
     id: 'wa-wem-prices',
