@@ -90,6 +90,8 @@ test('expiry uses the model entry clock, never a date from the price window', ()
   const n = build('de-10');
   const clock = all(n, x => css(x, 'de-clock'))[0];
   assert.equal(clock.getAttribute('data-clock'), 'model-entry');
+  const chart = all(n, x => css(x, 'de-spread-chart'))[0];
+  assert.ok(chart.children.indexOf(clock) < chart.children.findIndex(x => css(x, 'de-chart-panel')), 'expiry annotation precedes the chart on mobile');
   assert.equal(Number(clock.getAttribute('data-expiry')), result.base.codOffset + result.base.securedYears);
   toggles(n).find(b => words(b) === 'After expiry').click();
   assert.equal(all(n, x => css(x, 'de-clock'))[0].getAttribute('data-tail'), 'true');
