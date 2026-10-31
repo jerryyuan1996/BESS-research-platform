@@ -96,12 +96,12 @@ Shared story strings:
 
 | Item | Shot specification |
 | --- | --- |
-| Scene | WA outline with the SWIS area highlighted, as a simplified outline derived from the existing context boundary (Landgate regions and ABS Greater Perth, CC BY 4.0, labelled approximate; ASSET-SWIS-BOUNDARY); a small inset of the NEM's linked regions for contrast; fixed view |
+| Scene | Australia from Natural Earth's coastline (SRC-NE-01): WA, the Northern Territory in neither system, and the NEM's states with Tasmania. The SWIS area is highlighted as the coast from Kalbarri to Albany closed through Kalgoorlie (SRC-WA-16), labelled approximate (ASSET-SWIS-BOUNDARY); a broken line from Perth eastward marks "No link"; fixed view |
 | Feedback | Boundary and legend change together; the caption sits outside the drawing |
-| Evidence and chart | CL-WA-01 (SRC-WA-01); CL-WA-05 (SRC-NEM-01; SRC-WA-10, p. 15; SRC-WA-12) |
-| Authoring check | Do not colour the whole state as WEM; the context boundary leaves out the Eastern Goldfields spur, so label it approximate; dots are not investment sites |
+| Evidence and chart | CL-WA-01 (SRC-WA-01; SRC-WA-16; map SRC-NE-01); CL-WA-05 (SRC-NEM-01; SRC-WA-10, p. 15; SRC-WA-12) |
+| Authoring check | Do not colour the whole state as WEM; the outline joins three named places, so label it approximate; dots are not investment sites |
 | Mobile | Same map; two large buttons |
-| Status | Revised in v1.2: CL-WA-05 sourced; boundary asset identified |
+| Status | Revised in v1.2: CL-WA-05 sourced. Map built in `WP-07` from SRC-NE-01 and SRC-WA-16 (v1.2.1) |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -110,7 +110,8 @@ Shared story strings:
 | Meaning | An island must hold its own reserve; that is why reliability is paid for separately. | 孤岛电网必须自备备用容量，因此可靠性需要单独付费。 |
 | Marker | Strong evidence. What would change it: a committed link between the SWIS and another grid. | 证据充分。会改变判断的证据：西南互联系统与其他电网之间出现已承诺建设的联络线。 |
 | Controls | Story system · Whole state | 故事涉及的系统 · 西澳全州 |
-| Labels | SWIS area (approximate) · National Electricity Market (east coast) | 西南互联系统覆盖范围（近似） · 全国电力市场（东海岸） |
+| Labels | SWIS area (approximate) · Rest of Western Australia · National Electricity Market (east coast) · Northern Territory, in neither system · Perth · No link | 西南互联系统覆盖范围（近似） · 西澳其他地区 · 全国电力市场（东海岸） · 北领地，不属于任一系统 · 珀斯 · 无联络 |
+| Caption | Approximate. Coast: Natural Earth. SWIS extent: Kalbarri, Albany and Kalgoorlie, as Energy Policy WA describes it. | 近似范围。海岸线：Natural Earth。西南互联系统范围：按西澳能源政策局所述的卡尔巴里、奥尔巴尼和卡尔古利。 |
 
 ### wa-02 — Built for one-way supply
 
@@ -265,12 +266,12 @@ Timeline nodes (page text):
 
 | Item | Shot specification |
 | --- | --- |
-| Scene | One generic station at an illustrative node; the SOC meter and power label sit in HTML beside the drawing |
+| Scene | Stored energy, in hours at full power, drawn against the hours AEMO counts; the credited power reads out in HTML below the drawing |
 | Feedback | Energy bands and the credited power change with the preset; "After fade" shrinks each battery's energy by an Example amount, so the ‹bound: duration requirement›-hour preset drops below full credit while the play's preset keeps it |
 | Evidence and chart | CL-WA-07, CL-WA-10; the play's design result from the design-fit sweep (REPO-12; ‹bound: why›); the window from wa-06. Teaching unit: 100 MW, tagged Example |
 | Authoring check | The fade step is a teaching value, not the model's degradation curve; the teaching node is not a site recommendation; no drag-to-improve-IRR control. Never say the extra hour is unpaid: it is paid through the credit it protects |
-| Mobile | Three preset cards with numeric SOC and credited MW |
-| Status | Rewritten in v1.2 for `wa-cap-8h` |
+| Mobile | The same toggles, wrapped; credited MW in the readout |
+| Status | Rewritten in v1.2 for `wa-cap-8h`. In `WP-07` (v1.2.1) the charge, discharge and empty controls were dropped: state of charge does not answer why the play has its duration |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -278,8 +279,8 @@ Timeline nodes (page text):
 | Copy | A battery that can hold full power for ‹bound: duration requirement› hours earns full credits in its first year. Batteries fade and AEMO measures them again every year, so the play builds ‹bound: play duration› hours to hold the credit as the battery ages. On the platform's design test, at the quoted battery price, that gives the most value per MW; the shorter build earns a higher return on less capital. | 能以满功率持续‹bound: duration requirement›小时的电池，第一年即可拿到全额信用。但电池会衰减，AEMO每年都会重新核定，因此本方案建设‹bound: play duration›小时，让电池老化后仍能守住信用。按本平台的设计测试，以供应商报价的电池价格计，这一时长的每MW价值最高；较短的方案则以更少的资本换来更高的回报率。 |
 | Meaning | Duration is a capital decision: the extra storage insures the credit, and the design grid on the market page prices it. | 时长是资本决策：多建的储能是为信用买的保险，市场页面的设计表给出了它的价格。 |
 | Marker | Fair evidence. What would change it: a battery price or fade assumption that moves the design grid's best duration. | 证据尚可。会改变判断的证据：电池价格或衰减假设发生变化，使设计表中的最优时长改变。 |
-| Controls | 4 hours (Example) · ‹bound: duration requirement› hours · ‹bound: play duration› hours · New · After fade (Example) · Charge · Discharge · Empty | 4小时（示例） · ‹bound: duration requirement›小时 · ‹bound: play duration›小时 · 新电池 · 衰减后（示例） · 充电 · 放电 · 放空 |
-| Labels | State of charge · Credited power · Full credit · Below full credit | 荷电状态 · 计入信用的功率 · 全额信用 · 低于全额信用 |
+| Controls | 4 hours (Example) · ‹bound: duration requirement› hours · ‹bound: play duration› hours · New · After fade (Example) | 4小时（示例） · ‹bound: duration requirement›小时 · ‹bound: play duration›小时 · 新电池 · 衰减后（示例） |
+| Labels | Stored energy, in hours at full power · Hours AEMO counts · Credited power · Full credit · Below full credit · Example: 100 MW battery | 储存电能（满功率小时数） · AEMO计入的小时数 · 计入信用的功率 · 全额信用 · 低于全额信用 · 示例：100MW电池 |
 
 ### wa-09 — What the investor owns
 
@@ -308,11 +309,11 @@ Timeline nodes (page text):
 | Item | Shot specification |
 | --- | --- |
 | Scene | The scene recedes; 2D payment paths for capacity (certification, Capacity Credits, availability across the window, settlement), energy (market, dispatch, settlement) and services (accreditation, enablement, settlement) |
-| Feedback | Payer, unit, period, obligation and evidence status for the selected route |
+| Feedback | The selected route's steps, then how it is paid, its obligation and its evidence status |
 | Evidence and chart | Capacity route: CL-WA-10, CL-WA-11 (SRC-WA-09, clauses 4.11.3 and 4.29.1(b)(i); SRC-WA-14). Energy and services routes: SRC-WA-06/07, settlement clauses pending. Shares from the market page (REPO-05, REPO-13) |
 | Authoring check | A credit is not a contract: the price is administered and reset each year. Capacity payments are not unlimited and do not guarantee debt service; modelled revenue is not a signed contract. Name the secured tenor and what follows it |
 | Mobile | One route at a time as stacked steps |
-| Status | Rewritten in v1.2: tenor and yearly price added |
+| Status | Rewritten in v1.2: tenor and yearly price added. In `WP-07` (v1.2.1) payer and period gave way to how each route is paid, and the route steps were written out |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -321,7 +322,10 @@ Timeline nodes (page text):
 | Meaning | The capacity line carries this play; merchant spreads do not. A credit is not a contract, and its price moves every year. | 支撑本方案的是容量收入，而非现货价差。容量信用不是合同，其价格每年都会变化。 |
 | Marker | Fair evidence. What would change it: the settlement clauses for the energy and services routes; the capacity route is already sourced. | 证据尚可。会改变判断的证据：电能量和系统服务两条路径的结算条款；容量路径已有出处。 |
 | Controls | Capacity · Energy · System services | 容量 · 电能量 · 系统服务 |
-| Labels | Payer · Unit · Period · Obligation · Evidence | 付款方 · 计价单位 · 结算周期 · 义务 · 证据 |
+| Labels | Paid · Obligation · Evidence | 计价 · 义务 · 证据 |
+| Capacity route | Certified → Capacity Credits → Available across the window → Paid per credit. Paid: per MW of credit, per year, at a price set each year. Obligation: available across the evening window. Evidence: Strong: the rules are sourced | 获得认证 → 容量信用 → 在整个时段保持可用 → 按信用付费。计价：按每MW信用、每年计，价格每年确定。义务：在整个傍晚时段保持可用。证据：证据充分：规则已有出处 |
+| Energy route | Offered → Dispatched → Paid per MWh. Paid: per MWh at the energy price. Obligation: deliver what is dispatched. Evidence: Fair: settlement clauses pending | 报价 → 获得调度 → 按MWh付费。计价：按电能量价格、每MWh计。义务：按调度指令出力。证据：证据尚可：结算条款待核 |
+| Services route | Accredited → Enabled → Paid for readiness. Paid: per MW kept ready. Obligation: respond when called. Evidence: Fair: product terms pending | 获得资质 → 被启用 → 按待命付费。计价：按每MW待命计。义务：接到指令即响应。证据：证据尚可：产品条款待核 |
 
 ### wa-11 — One battery cannot promise everything
 

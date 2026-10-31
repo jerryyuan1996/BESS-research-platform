@@ -52,6 +52,13 @@ The initial #72 run check was in progress. At the final approximately **14:45 AW
 | SRC-WA-13 | AEMO WEM public data, [Operational Demand and Withdrawal](https://data.wa.aemo.com.au/public/public-data/datafiles/operational-demand-withdrawal-csv/) and [Estimated DPV](https://data.wa.aemo.com.au/public/public-data/datafiles/estimated-dpv-csv/) CSV files for 2025 and 2026 (files extracted 30 July, 26 June and 30 October 2026). Reuse under [AEMO's copyright permissions](https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions), opened 30 October 2026 | Five-minute Operational Demand, Unscheduled Operational Demand and estimated rooftop PV for the SWIS, in AWST (UTC+8, no daylight saving). AEMO gives "general permission for anyone to use AEMO Material for any purpose" with accurate attribution | Observed data, with AEMO's revisions possible. The repository already reuses AEMO WEM data on the same terms (`wa-wem-prices`, REPO-10). Basis of [CALC-WA-DAY](#calculation-records) |
 | SRC-WA-14 | AEMO WEM public data, [Reserve Capacity Prices](https://data.wa.aemo.com.au/public/public-data/datafiles/reserve-capacity-prices/) and [Capacity Credits by facility](https://data.wa.aemo.com.au/public/public-data/datafiles/peak-capacity-credit-facility/), files for Capacity Year 2028-29 (extracted 20 October 2026) | AEMO has assigned the 2028-29 Capacity Credits and set the 2028-29 Peak Reserve Capacity Price, about 6% below the 2028-29 benchmark, with credits about 6% above the requirement, as clause 4.29.1(b)(i) predicts | Observed; read for `wa-14` and to check the play's trigger. The play's next action waits for exactly this event; see [conflicts](#conflicts-and-dispositions) |
 | SRC-WA-15 | Government of Western Australia, [media statement, 14 June 2022, "State-owned coal power stations to be retired by 2030"](https://www.wa.gov.au/government/media-statements/McGowan-Labor-Government/State-owned-coal-power-stations-to-be-retired-by-2030-20220614) | The State's coal power stations will be retired by 2030 in a phased, managed transition, as rooftop solar and renewables change the system | A government decision and plan; retirements after the check date are plans, never drawn as complete |
+| SRC-WA-16 | Energy Policy WA, [Electricity Industry](https://www.wa.gov.au/organisation/energy-policy-wa/electricity-industry) (page updated 26 June 2025; checked 31 October 2026) | "The boundary of the SWIS extends to Kalbarri to the north, Albany to the south and Kalgoorlie to the east" | Names three places, not a boundary line. The `wa-01` outline joins them along the coast and inland, so it is labelled approximate (ASSET-SWIS-BOUNDARY) |
+
+### Map data
+
+| ID | Source | Use | Limits |
+| --- | --- | --- | --- |
+| SRC-NE-01 | [Natural Earth](https://www.naturalearthdata.com/), 1:50m land, through the `world-atlas` package already in this repository | The `wa-01` coastline. State borders are drawn as the straight lines they follow (129°E, 138°E, 26°S) | Public domain. Simplified to about one unit of a 600 × 480 frame: a schematic, not a survey |
 
 ### Australia — NEM, for the WA contrast
 
@@ -99,7 +106,7 @@ All other markets' source owners in [the narrative cards](market-narratives.md) 
 
 | Claim ID | Narrow supported statement | Evidence | Proposed use |
 | --- | --- | --- | --- |
-| CL-WA-01 | The WEM/SWIS scope differs from the whole state of Western Australia. | SRC-WA-01; REPO-01/04 | `wa-01`; confirm scene geometry separately |
+| CL-WA-01 | The WEM/SWIS scope differs from the whole state of Western Australia. | SRC-WA-01; SRC-WA-16; REPO-01/04 | `wa-01`; scene geometry from SRC-NE-01 and SRC-WA-16 (v1.2.1), labelled approximate |
 | CL-WA-02 | Rooftop exports change distribution operation; low operational demand can create security challenges. | SRC-WA-02 | `wa-02`, `wa-05`; current daily traces still pending |
 | CL-WA-03 | New WEM arrangements began on 1 October 2023. | SRC-WA-03 | `wa-04`; no inference of current project qualification |
 | CL-WA-04 | The 2026 WEM ESOO is a planning outlook, not a record of all future assets being built. | SRC-WA-04 | Historical/scenario boundary and delivery context |

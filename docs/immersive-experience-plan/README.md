@@ -1,7 +1,7 @@
 # Immersive Visual Experience Plan
 
 Pack ID: BESS-IX-2026-10-30  
-Version: 1.2, 30 October 2026: WA hinge claims sourced and the WA script revised for `G-1` (v1.1 is commit `3f1101f`, v1.0 is `db158b9`)  
+Version: 1.2.1, 31 October 2026: synced with the WA scenes as built in `WP-07` (v1.2 is the script signed off at `G-1`; v1.1 is commit `3f1101f`, v1.0 is `db158b9`)  
 Prepared: 30 October 2026, Australia/Perth  
 Repository baseline: `6ce1e035cace6e676167f904d511a3425a5be12d`, including PRs #72/#73 and the first Finland reserve snapshots  
 Delivery scope: English Markdown planning documents; no application, data, model or CI changes
@@ -53,6 +53,7 @@ Keep one owner per specification. When something changes, update its owner and e
 | 1.0 | 2026-10-30 | Expanded and translated the original Chinese plan; verification through #73 | Committed as `db158b9`; superseded |
 | 1.1 | 2026-10-30 | Review against the platform's calls, the three-page market page and the 16 October rulings; decisions D1 to D10 | Merged in PR #74 |
 | 1.2 | 2026-10-30 | WA hinge claims sourced from AEMO, the ERA, Energy Policy WA, the ESM Rules and the AEMC; the WA script revised for the published eight-hour play, with markers and Chinese drafts; decisions D11 and D12 | Script signed off by the user at `G-1` on 30 Oct 2026 |
+| 1.2.1 | 2026-10-31 | Synced with the `WP-07` build: the SWIS extent (SRC-WA-16) and coastline (SRC-NE-01) sources; the `wa-01` map redrawn from them (ASSET-SWIS-BOUNDARY); scene words owned by each shot's `labels` in the content file; page text the build changed: a `wa-01` caption, `wa-08` without its charge controls, `wa-10` with three terms and its route steps | Page-text changes go to the user at `G-2` |
 
 | ID | v1.1 decision | Affects | Basis | Impact |
 | --- | --- | --- | --- | --- |

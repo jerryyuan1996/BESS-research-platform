@@ -136,7 +136,7 @@ Write each idea plainly before its acronym. The third column keeps the copy accu
 
 ## 7. Two languages
 
-The site needs complete English and Simplified Chinese for copy, controls, labels, captions, markers, chart axes and error states. Use stable IDs and reviewed locale entries; SVG text comes from locale strings and is never baked into a drawing. Source titles keep their original language. Switching language keeps the market, chapter, shot and reading position. The user checks both languages at each sign-off, and a translation that changes an obligation goes back to mechanism review.
+The site needs complete English and Simplified Chinese for copy, controls, labels, captions, markers, chart axes and error states. Use stable IDs and reviewed locale entries. Scene text comes from the story content: each shot's `labels`, keyed English and Chinese pairs in the market's content file (`src/markets/wa/story.js`), with ‹bound› tokens filled from the model. It is never baked into a drawing. Source titles keep their original language. Switching language keeps the market, chapter, shot and reading position. The user checks both languages at each sign-off, and a translation that changes an obligation goes back to mechanism review.
 
 ## 8. States
 
