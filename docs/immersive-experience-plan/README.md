@@ -54,6 +54,7 @@ Keep one owner per specification. When something changes, update its owner and e
 | 1.1 | 2026-10-30 | Review against the platform's calls, the three-page market page and the 16 October rulings; decisions D1 to D10 | Merged in PR #74 |
 | 1.2 | 2026-10-30 | WA hinge claims sourced from AEMO, the ERA, Energy Policy WA, the ESM Rules and the AEMC; the WA script revised for the published eight-hour play, with markers and Chinese drafts; decisions D11 and D12 | Script signed off by the user at `G-1` on 30 Oct 2026 |
 | 1.2.1 | 2026-10-31 | Synced with the `WP-07` build: the SWIS extent (SRC-WA-16) and coastline (SRC-NE-01) sources; the `wa-01` map redrawn from them (ASSET-SWIS-BOUNDARY); scene words owned by each shot's `labels` in the content file; page text the build changed: a `wa-01` caption, `wa-08` without its charge controls, `wa-10` with three terms and its route steps | Page-text changes go to the user at `G-2` |
+| 1.3 | 2026-10-31 | Story-card check: the 14 cards v1.1 did not rebuild now lead to the infrastructure-fund call and play published in the view store at `bd62af1`; Italy and Poland fork between their two plays; Japan shares one national layer; Ontario, Saudi Arabia and Spain follow their comparison theses because no view is published; candidate claims CL-GB-01 to CL-ES-01 added, unverified | Markdown only; the user signs off by merging |
 
 | ID | v1.1 decision | Affects | Basis | Impact |
 | --- | --- | --- | --- | --- |
