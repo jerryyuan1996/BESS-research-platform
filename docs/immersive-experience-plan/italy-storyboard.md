@@ -1,22 +1,23 @@
 # Italy: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Italy script researched 31 October 2026; shot layout v1.2
-Status: `proposed` script and bilingual page-text draft; **G-1 analyst sign-off pending**; steps 1 and 2 only. Markdown only; nothing is built, registered or published.
+Status: `proposed` script and bilingual page-text draft; hinge sources opened 31 October 2026; **G-1 analyst sign-off pending**; steps 1 and 2 only. Markdown only; nothing is built, registered or published.
 Navigation: [Master plan](README.md) | [Narrative card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Source register](source-register.md) (SRC-IT-01 to 04, CL-IT-01 to 03) | [Finland format](finland-storyboard.md)
 
 ## 0. Read first: the research meets the call's own trigger
 
-The infrastructure-fund call watches `it-capacity-derating-dy2028`: "Terna decides the four-hour de-rating for 2028 delivery; it has proposed cutting it from 0.67 to 0.53". The research for this script found that the decision has been taken, and that it differs from the proposal the call and its next action price against (CF-IT-01):
+The infrastructure-fund call watches `it-capacity-derating-dy2028`: "Terna decides the four-hour de-rating for 2028 delivery; it has proposed cutting it from 0.67 to 0.53". The decision has been taken, and it differs from the proposal the call and its next action price against (CF-IT-01). Primary documents opened on 31 October 2026:
 
-- ARERA found Terna's revised technical rules compliant (resolution 370/2026/R/eel, 14 October 2026), and the ministry approved them by decree 327 of 16 October 2026, published on its site on 19 October (SRC-IT-08, SRC-IT-09).
-- As reported, the new factors differ by zone and apply only to new storage. A four-hour battery counts for about 40% of its power in the North and Centre-North, 51% in the Centre-South, and 21% in the South, Calabria, Sicily and Sardinia. Existing capacity, capacity contracted in earlier auctions and the lithium batteries awarded in the first MACSE auction keep the delivery-2027 factors.
-- Terna has set the delivery-2028 auction for 21 December 2026, with applications from 20 October to 3 November (SRC-IT-10).
+- **ARERA resolution 370/2026/R/eel, 14 October 2026** (SRC-IT-09) found Terna's second delivery-2028 DTF 2 proposal of 18 September compliant, limited to the delivery-2028 auction. It records that Terna raised the de-rating of electrochemical storage, kept the split by macro-zone, and that this cuts, ceteris paribus, what new batteries can earn in the capacity market.
+- **MASE decree 327 of 16 October 2026** (SRC-IT-08) approved DTF 2 and its Annex 4 for the delivery-2028 auction. Annex 4 §8.3, Table 11 gives the credited share of nameplate power (CDP) for new storage by duration and zone group. At four hours it is **40% in North and Centre-North, 51% in Centre-South, 21% in South and Calabria, and 21% in Sicily and Sardinia**. At eight hours it is 55%, 71%, 29% and 33%.
+- **Who it applies to** (same §8.3): storage not in the delivery-2027 supply curve, and new storage offered but not selected in that auction. Existing capacity in the delivery-2027 curve, new capacity already contracted in an earlier auction, and the lithium batteries contracted in the first MACSE auction keep the delivery-2027 factors from Annex 3 to DTF 2.
+- **The auction** for delivery 2028 is reported for 21 December 2026, with applications from 20 October to 3 November. Terna's own notice was not found on its capacity-market page at check (SRC-IT-10).
 
-The play's next action reads: "Screen ready-to-build capacity-market projects in the south and the islands; price them at a four-hour de-rating of 0.53 as well as 0.67." The south and islands now carry the lowest factor for new storage. A project that already holds a delivery-2027 contract keeps the old factor.
+The play's next action reads: "Screen ready-to-build capacity-market projects in the south and the islands; price them at a four-hour de-rating of 0.53 as well as 0.67." For new storage, the south and islands now carry the lowest factor of any zone, well below 0.53. A project already holding a delivery-2027 contract keeps the old factor.
 
 **This script does not change the call.** It argues for `it-cap-4h` as published, binds every figure to the card, and states the decided rule as a dated event in it-05. Whether the call, the play's zone, or its entry route (for example, ready-to-build projects already holding a delivery-2027 contract) should change is the analyst's decision. It is listed first in §11. Under rule 11 of the master plan, the story cannot go to build until the analyst has either re-confirmed the call against the decided factors or re-graded it.
 
-These figures come from trade-press reports of the decree. This session could not open any Terna, ARERA, MASE or GME page, because the session's network policy blocks those hosts. Every primary locator below was found by search, but none was opened (GAP-IT-OPEN). The marker ceiling is therefore Fair.
+**Research access.** A first pass on 31 October ran with the primary hosts blocked. After network access was opened the same day, the hinge documents were opened and read (§12 marks each record "Opened" or "Not opened"). The decided factors match the trade-press reports. Corrections from that pass are recorded in §12 (CF-IT-04, CF-IT-05, GAP-IT-ZONES closed, SRC-IT-20 split).
 
 ## 1. Scope, argument and reading route
 
@@ -56,7 +57,7 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 - **Figures.** Every page-facing amount, share, factor, duration, tenor and plotted label is a `‹bound: …›` token (§9). Financial tokens resolve to existing card or briefing result fields; rule and auction tokens resolve to the dated evidence records in §10. Delivery years and event dates may appear as dates. No figure is copied from the view's prose.
 - **Two forks, never stacked.** The capacity market and MACSE appear as a route switch. No chart, sum or sentence adds their payments together. The switch changes emphasis only; it never changes the published call or the market page's case.
 - **Controls.** Era, zone, route, teaching battery preset, evidence drawer and hotspot only. No underwriting controls; "Go to the investment case" links to the market page.
-- **Evidence.** One marker per shot, using the site's fixed strings: Strong evidence (证据充分), Fair evidence (证据尚可), Thin evidence (证据单薄). It is followed by "What would change it:" / "会改变判断的证据：". The opening inherits the card's marker. No shot is Strong: no primary document was opened in this session (GAP-IT-OPEN).
+- **Evidence.** One marker per shot, using the site's fixed strings: Strong evidence (证据充分), Fair evidence (证据尚可), Thin evidence (证据单薄). It is followed by "What would change it:" / "会改变判断的证据：". The opening inherits the card's marker. As in the WA script, a Strong marker assumes the analyst's review at G-1; it is used only where the shot's central claim was read in an opened primary document.
 - **Time.** Observations solid; decided rules solid with their decision date; announced auctions and planned cables dashed beyond the "Checked" line; teaching values tagged **Example / 示例**.
 - **Language.** All page text is drafted below in English and Simplified Chinese with the same meaning. Scene, Authoring check, Status and Mobile rows are authoring notes and never appear on the page.
 
@@ -89,16 +90,16 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Scene | Fixed isometric Italy: peninsula, Sicily and Sardinia; zone outlines labelled approximate; generic corridor symbols at zone boundaries; no measured flows |
 | Feedback | Selecting a zone highlights it and shows its name only. EN: “Day-ahead price zone”; “Transfer limit between zones”. ZH: “日前价格区”；“区间输电限额” |
 | Evidence and chart | CL-IT-04; SRC-IT-05 (zone configuration from 1 January 2021), SRC-IT-06 (GME clears the day-ahead market by zone). Zone names bind ‹bound: zone list› |
-| Authoring check | The repository says six zones (`src/markets/it/data.js`, `zoneCount`); the configuration ARERA set for 2021 is understood to have seven mainland and island zones, with Calabria separate. Not confirmed in this session (GAP-IT-ZONES). Bind the list; never type a count. Foreign virtual zones are not drawn. Do not imply the single national purchase price is what a battery earns |
+| Authoring check | ARERA 103/2019 gives seven physical zones from 2021 (North, Centre-North, Centre-South, South, Calabria, Sicily, Sardinia); the repository says six (`src/markets/it/data.js`, `zoneCount`). Bind the list; never type a count. The capacity market uses its own eight areas (Sardinia split); do not mix the two maps. Foreign virtual zones are not drawn. Do not imply the single national purchase price is what a battery earns |
 | Mobile | Same schematic, zone list as text beneath |
-| Status | `sourced` by locator, not opened; `market-rule` |
+| Status | `sourced`, opened 31 Oct 2026; `market-rule` |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Why is one country priced in several places? | 为什么一个国家要分区定价？ |
 | Copy | Italy is long and narrow, with two large islands. Power moves along a few corridors, so the day-ahead market clears a separate price for each zone (‹bound: zone list›) within the limits between them. Where a battery sits decides which price it trades. | 意大利国土狭长，另有两大岛屿。电力只能沿少数通道输送，因此日前市场在区间输电限额内按区域分别出清价格（‹bound: zone list›）。电池建在哪里，就交易哪个区域的价格。 |
 | Meaning | This play earns its trading margin at its own zone's price, so the zone is the first thing to check. | 本方案的交易收益按所在区域的价格实现，因此所属区域是首要核查项。 |
-| Marker | Fair evidence. What would change it: the zone list confirmed in ARERA resolution 103/2019/R/eel and Terna's current zone configuration. | 证据尚可。会改变判断的证据：在ARERA第103/2019/R/eel号决议及Terna现行分区配置中核实区域清单。 |
+| Marker | Strong evidence. What would change it: a new zone review by ARERA and Terna that changes the zones. | 证据充分。会改变判断的证据：ARERA与Terna开展新一轮分区评估并调整价格区。 |
 | Controls | Zones · Corridors | 价格区 · 输电通道 |
 | Labels | Day-ahead price zone · Transfer limit between zones · Approximate boundaries | 日前价格区 · 区间输电限额 · 边界为示意 |
 
@@ -110,10 +111,10 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | --- | --- |
 | Scene | A battery and a gas plant side by side; a contract card from Terna above each, showing "premium per credited MW" and "pay back above the strike price". Timeline nodes H-IT-01 and H-IT-04 |
 | Feedback | EN: “Annual premium per credited MW”; “Pay back when prices exceed the strike”; “Trading margin stays with the owner”. ZH: “按计入MW支付的年度溢价”；“价格高于执行价时返还差额”；“交易收益归业主” |
-| Evidence and chart | CL-IT-02 (existing, now located), CL-IT-05, CL-IT-06; SRC-IT-01, SRC-IT-07, SRC-IT-11, SRC-IT-12 |
-| Authoring check | A reliability option, not a payment for energy. New build holds a multi-year contract; existing plant one year. The delivery-2027 premium was reported as uniform for existing and new capacity; bind it, never type it. Storage won most of the new capacity in that auction (reported range; bind the figure only once Terna's notice is opened). The strike-price level and the stress-hour obligation are not yet extracted (GAP-IT-STRIKE) |
+| Evidence and chart | CL-IT-02 (existing, now sourced), CL-IT-05, CL-IT-06; SRC-IT-01, SRC-IT-07, SRC-IT-11, SRC-IT-12 |
+| Authoring check | A reliability option, not a payment for energy. New build holds a multi-year contract; existing plant one year. Terna's results report shows one premium for existing and new capacity in the delivery-2027 auction; bind it, never type it. Storage was about 95% of new capacity, measured as de-rated capacity, not nameplate MW. The strike-price level and the stress-hour obligation are not yet extracted (GAP-IT-STRIKE) |
 | Mobile | Two stacked contract cards, then the three labels as a list |
-| Status | Mechanism `sourced` by locator; clause-level terms `missing` |
+| Status | Auction results opened; mechanism `sourced`; clause-level terms `missing` |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -130,10 +131,10 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | --- | --- |
 | Scene | Timeline H-IT-03 and H-IT-05: the 2021 decree, ARERA's criteria, the ministry's approval of Terna's rules, the first auction. A second contract card from Terna marked "per MWh of storage"; the four awarded areas lit on the thumbnail map, the north grey |
 | Feedback | EN: “Law”; “Regulator's criteria”; “Approved rules”; “First auction”; “Areas with a requirement”. ZH: “法令”；“监管标准”；“规则获批”；“首轮拍卖”；“设有需求的区域” |
-| Evidence and chart | CL-IT-03 (existing, now located), CL-IT-07; SRC-IT-13, SRC-IT-14, SRC-IT-15, SRC-IT-16, SRC-IT-17 |
-| Authoring check | The event chain is sourced; the causal reading ("the capacity market pays for reliability, not for shifting solar") is the script's interpretation, shown under "Why it matters", not as the decree's stated purpose. The press reports the north outside the eligible perimeter; bind areas from the results record. Do not state that MACSE and the capacity market are legally exclusive until the rules are opened: the view treats them as alternatives, and the delivery-2028 decree mentions MACSE winners keeping their delivery-2027 de-rating, which needs reading (GAP-IT-STACK) |
+| Evidence and chart | CL-IT-03 (existing, now opened), CL-IT-07; SRC-IT-13, SRC-IT-14, SRC-IT-15, SRC-IT-16, SRC-IT-17 |
+| Authoring check | The event chain is sourced; the causal reading ("the capacity market pays for reliability, not for shifting solar") is the script's interpretation, shown under "Why it matters", not as the decree's stated purpose. Terna's release names the four areas (Central-South, South and Calabria, Sicily, Sardinia) and says the capacity was procured in Southern Italy and the islands; bind areas from it. The release does not give the contract term: bind ‹bound: MACSE term› from the MACSE rules or results report (GAP-IT-MACSE-MW). Do not state that MACSE and the capacity market are legally exclusive until the rules are opened: the view treats them as alternatives, and the delivery-2028 decree mentions MACSE winners keeping their delivery-2027 de-rating, which needs reading (GAP-IT-STACK) |
 | Mobile | Vertical dated nodes, text first; map below |
-| Status | Events `sourced` by locator; interpretation `proposed` |
+| Status | Events opened; interpretation `proposed`; term pending |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -155,7 +156,7 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Evidence and chart | CL-IT-09; SRC-IT-21 (regional connection requests), SRC-IT-22 (named links); SRC-IT-06 for zonal prices. No quantity drawn until GAP-IT-QUEUE closes |
 | Authoring check | Connection requests are applications, not projects or capacity. Do not draw a solved midday flow. The development plan's dates are plans; draw them dashed with their source date. The queue explains competition for the zone's spread; it does not show the play's own site |
 | Mobile | Midday and evening states as two stacked panels |
-| Status | Location of requests `sourced` qualitatively by locator; quantities `missing` |
+| Status | Location of renewable requests opened (SRC-IT-21); storage quantities by region `missing` |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -170,19 +171,19 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 
 | Item | Shot specification |
 | --- | --- |
-| Scene | Panel A of the signature chart (Chart-IT-FORK, §10) as a full-width 2D panel beside a small battery: credited share of one nameplate MW at the play's duration, delivery 2027 (one national bar) against delivery 2028 for new storage (one bar per zone group). A "Contracts already awarded keep their factor" tag on the 2027 bar |
+| Scene | Panel A of the signature chart (Chart-IT-FORK, §10) as a full-width 2D panel beside a small battery: credited share of one nameplate MW at the play's duration, delivery 2027 (one national bar) against delivery 2028 for new storage (one bar per zone group: North and Centre-North, Centre-South, South and Calabria, Sicily and Sardinia, as Annex 4 Table 11 groups them). A "Contracts already awarded keep their factor" tag on the 2027 bar |
 | Feedback | EN: “Credited share of nameplate power”; “Delivery 2027, all zones”; “Delivery 2028, new storage”; “Decided ‹bound: DY2028 decision date›”. ZH: “计入容量占铭牌功率比例”；“2027交付年度，全国统一”；“2028交付年度，新增储能”；“‹bound: DY2028 decision date›确定” |
 | Evidence and chart | CL-IT-10 (event) and CL-IT-10i (interpretation); SRC-IT-07, SRC-IT-08, SRC-IT-09; CF-IT-01. Values bind ‹bound: DY2027 de-rating› and ‹bound: DY2028 de-rating by zone› from the decree's annex record |
 | Authoring check | State the event, not a verdict: the play's re-pricing is the analyst's. Do not show the superseded single-figure proposal as current; if shown at all, it is a ghosted "Proposed earlier" mark with its own date. Apply the 2028 factors only to new storage; existing and contracted capacity, and MACSE winners, keep the 2027 factor. The 2028 premium is set at the 21 December auction and is unknown; never multiply the 2027 premium by a 2028 factor on this panel |
 | Mobile | Bars stacked vertically, zone names as row labels, values in text |
-| Status | Event `sourced` by locator (trade press consistent across four outlets; decree not opened); interpretation `proposed`; G-1 pending, analyst ruling on CF-IT-01 required |
+| Status | Event opened (decree 327/2026, Annex 4 Table 11; ARERA 370/2026); delivery-2027 factor from the repository record (GAP-IT-DY27); interpretation `proposed`; G-1 pending, analyst ruling on CF-IT-01 required |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | How much of a four-hour battery does the capacity market count? | 容量市场把四小时电池算作多少容量？ |
 | Copy | Terna credits a battery only for the share of its power it can hold through the hours of stress. In the delivery-2027 auction a four-hour battery counted for ‹bound: DY2027 de-rating› of its power in every zone. On ‹bound: DY2028 decision date› the ministry approved factors for delivery 2028 that differ by zone, ‹bound: DY2028 de-rating by zone›, for new storage only. Contracts already awarded keep their factor. | Terna只按电池能在系统紧张时段持续提供的功率比例计入容量。在2027交付年度拍卖中，四小时电池在各区域均按其功率的‹bound: DY2027 de-rating›计入。‹bound: DY2028 decision date›，主管部门批准了2028交付年度按区域区分的系数（‹bound: DY2028 de-rating by zone›），仅适用于新增储能；已授予的合同保留原有系数。 |
 | Meaning | The capacity line now depends on the project's zone and on whether it already holds a contract; the play must be priced at the factor that applies to it. | 容量收入现在取决于项目所在区域，以及项目是否已持有合同；本方案须按适用于自身的系数定价。 |
-| Marker | Fair evidence. What would change it: the decree's annex opened to confirm the zonal factors, and the analyst's re-pricing of the play at them. | 证据尚可。会改变判断的证据：打开部令附件核实分区系数，以及分析师按这些系数对本方案重新定价。 |
+| Marker | Strong evidence. What would change it: a further decree or Terna recalculation before the delivery-2028 auction. | 证据充分。会改变判断的证据：2028交付年度拍卖前，主管部门再次发布部令或Terna重新测算系数。 |
 | Controls | Delivery 2027 · Delivery 2028 · By zone · Contracts already awarded | 2027交付年度 · 2028交付年度 · 按区域 · 已授予合同 |
 | Labels | Credited share of nameplate power · Delivery 2027, all zones · Delivery 2028, new storage · Decided ‹bound: DY2028 decision date› | 计入容量占铭牌功率比例 · 2027交付年度，全国统一 · 2028交付年度，新增储能 · ‹bound: DY2028 decision date›确定 |
 
@@ -214,10 +215,10 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | --- | --- |
 | Scene | Same battery switched to the MACSE route: each added hour adds a contracted block of equal height; beside it a "marginal MWh" layer on a shared power block, its cost shown as an open question mark |
 | Feedback | EN: “Paid per MWh of storage”; “First-auction average: ‹bound: MACSE awarded hours› h”; “Cost of the next MWh?”. ZH: “按每MWh储能付费”；“首轮中标平均：‹bound: MACSE awarded hours›小时”；“下一MWh的成本是多少？” |
-| Evidence and chart | CL-IT-07, CL-IT-13; SRC-IT-16 (awarded MWh and MW, from which the average is computed in CALC-IT-FORK); REPO-IT-LIVE MACSE play `why` and `action` (bound, not copied) |
-| Authoring check | The average is awarded MWh divided by awarded MW from the results record, not a typed figure. Do not state what winners paid for capex: it is not public. The turnkey figure in the play's action is bound through ‹bound: MACSE next action›, never typed. An oversizing obligation exists in the rules as reported; its level is not yet confirmed from ARERA 332/2026 (GAP-IT-STACK) |
+| Evidence and chart | CL-IT-07, CL-IT-13; SRC-IT-16 and Terna's results report (awarded MWh and MW, from which the average is computed in CALC-IT-FORK; CF-IT-05); REPO-IT-LIVE MACSE play `why` and `action` (bound, not copied) |
+| Authoring check | The average is awarded MWh divided by awarded MW from the results record, not a typed figure. Do not state what winners paid for capex: it is not public. The turnkey figure in the play's action is bound through ‹bound: MACSE next action›, never typed. Until Terna's results report is opened, hide the average-hours label (CF-IT-05, GAP-IT-MACSE-MW). ARERA 332/2026 keeps a 12% oversizing coefficient in its premium calculation; do not present it as a project obligation without the rules |
 | Mobile | Stacked blocks with labels; question card beneath |
-| Status | Award facts `sourced` by locator (repository record opened 2 Aug 2026); capex `missing` |
+| Status | Prices and areas opened (SRC-IT-16); awarded MW pending; capex `missing` |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -237,7 +238,7 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Scene | Physical battery fixed; a route switch, Capacity market / MACSE, moves the contract layer. **Chart-IT-FORK**, full width, two panels with separate units and a shared zone selector. Panel A: credited share of nameplate power (as it-05). Panel B: contracted payment per nameplate MW per year from published auction results: the capacity bar is the delivery-2027 premium times its four-hour factor; the MACSE bar is the selected area's first-auction clearing price times the MACSE play's duration. Each bar carries its rights tag. The delivery-2028 capacity premium appears as a dashed empty outline, "Set at the auction on ‹bound: CM DY2028 auction date›", until the result exists |
 | Feedback | EN: “Contracted payment · EUR per nameplate MW per year”; “Owner keeps the trading margin”; “Time-shifting use passes to Terna”; “Never added together”. ZH: “合同付款·欧元／铭牌MW／年”；“交易收益归业主”；“时移使用权转交Terna”；“二者绝不相加” |
 | Evidence and chart | CL-IT-06, CL-IT-07, CL-IT-08; SRC-IT-11, SRC-IT-16, SRC-IT-02; CALC-IT-FORK; GAP-IT-AUCTIONS (no registered dataset). Current fallback: “Example: two contract shapes” with no numeric axis |
-| Authoring check | Contracted payment only; it is not revenue, value or return, and the chart says so. The two bars are alternatives, drawn side by side with a gap, never stacked or summed. The capacity bar uses delivery-2027 terms that a new 2028 project cannot get; label it "Delivery 2027 contract". The MACSE bar is gross of the share of market proceeds the owner may keep or return; that split is not drawn until the contract is opened (GAP-IT-STACK). No crossing lines, no IRR |
+| Authoring check | Contracted payment only; it is not revenue, value or return, and the chart says so. The two bars are alternatives, drawn side by side with a gap, never stacked or summed. The capacity bar uses delivery-2027 terms that a new 2028 project cannot get; label it "Delivery 2027 contract". The MACSE bar is gross: under ARERA 247/2023 art. 6.6 a percentage of positive MSD margin goes to reduce system charges and the rest to the storage's dispatch user; the percentage is in Terna's rules and is not drawn until opened. No crossing lines, no IRR |
 | Mobile | Panels stacked; zone selector above; units on every panel; accessible table once the dataset passes review |
 | Status | Chart method `proposed`; data `blocked` until GAP-IT-AUCTIONS closes; G-1 reviews the design only |
 
@@ -246,7 +247,7 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Question | Who pays, and what does the owner give up? | 谁来付钱？业主让出了什么？ |
 | Copy | In the capacity market, Terna pays a premium for each credited MW, and the owner keeps the trading margin with its risk. Under MACSE, Terna pays a fixed premium for each MWh of storage, and the time-shifting use of the contracted energy passes to Terna, which offers it to the market. The chart shows what each contract pays one nameplate MW, from published auction results. | 在容量市场中，Terna为每个计入的MW支付溢价，交易收益及其风险仍归业主。在MACSE下，Terna为每MWh储能支付固定溢价，已签约电量的时移使用权转交Terna，由其向市场提供。图表依据已公布的拍卖结果，显示每种合同为一个铭牌MW支付多少。 |
 | Meaning | The capacity route secures less and keeps the trading upside; MACSE secures more and hands that upside over. | 容量路径锁定的收入较少，但保留交易上行空间；MACSE锁定更多收入，却让出了这部分空间。 |
-| Marker | Fair evidence. What would change it: Terna's two results notices and the MACSE contract's energy-rights clauses opened and entered in the chart's record. | 证据尚可。会改变判断的证据：打开Terna的两份结果公告及MACSE合同的电量权利条款，并录入图表记录。 |
+| Marker | Fair evidence. What would change it: the chart's record completed from Terna's MACSE results report and the MACSE rules' margin-sharing percentage. | 证据尚可。会改变判断的证据：依据Terna的MACSE结果报告及MACSE规则中的收益分成比例，补全图表记录。 |
 | Controls | Capacity market · MACSE · Zone · How measured | 容量市场 · MACSE · 区域 · 计算方法 |
 | Labels | Credited share of nameplate power · Contracted payment · EUR per nameplate MW per year · Delivery 2027 contract · First MACSE auction, by area · Owner keeps the trading margin · Time-shifting use passes to Terna · Never added together · Set at the auction on ‹bound: CM DY2028 auction date› | 计入容量占铭牌功率比例 · 合同付款 · 欧元／铭牌MW／年 · 2027交付年度合同 · 首轮MACSE拍卖（按区域） · 交易收益归业主 · 时移使用权转交Terna · 二者绝不相加 · 于‹bound: CM DY2028 auction date›拍卖确定 |
 | Caption | Example: two contract shapes | 示例：两种合同形态 |
@@ -302,7 +303,7 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Evidence and chart | CL-IT-10, CL-IT-11, CL-IT-12, CL-IT-14; triggers in REPO-IT-LIVE; Downside definitions in `src/experience/downsideNarrative.js` |
 | Authoring check | A risk card shows direction only, no probability or new number. Do not tell the reader to avoid the south; the analyst rules on CF-IT-01. Keep "no toll play" as settled: the toll card is a watch, not a third route. Exits to the market page; no second financial view |
 | Mobile | Factor cards stacked, then four large section links |
-| Status | `sourced` by locator; future auctions `official-plan`; G-1 pending |
+| Status | Decree and MACSE auction opened; capacity auction date from press (SRC-IT-10); future auctions `official-plan`; G-1 pending |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -372,14 +373,14 @@ Explicit references to the records in §12, not runtime fields. A missing value 
 
 | Token | Record and field | Units / limit |
 | --- | --- | --- |
-| ‹bound: zone list› | SRC-IT-05 zone configuration, localised zone names | Names only; no count typed |
+| ‹bound: zone list› | SRC-IT-05, Delibera points 1–2: the seven physical zones, localised | Names only; no count typed |
 | ‹bound: CM new-build term› | SRC-IT-07 / SRC-IT-11 new-capacity contract term | Years |
-| ‹bound: DY2027 de-rating› | SRC-IT-11 / repository `durationResponse` published point at four hours | Share of nameplate power |
+| ‹bound: DY2027 de-rating› | Annex 3 to DTF 2, delivery 2027 (GAP-IT-DY27); until opened, repository `durationResponse` published point at four hours | Share of nameplate power |
 | ‹bound: DY2028 decision date› | SRC-IT-08 decree date | Date |
-| ‹bound: DY2028 de-rating by zone› | SRC-IT-08 annex, four-hour storage, by zone group | Share; new storage only |
+| ‹bound: DY2028 de-rating by zone› | SRC-IT-08 Annex 4 Table 11, four-hour row, by zone group | Share of nameplate power; new storage only |
 | ‹bound: CM DY2028 auction date› | SRC-IT-10 auction date | Date; announced |
-| ‹bound: MACSE auction 1 date› / ‹bound: MACSE areas› / ‹bound: MACSE term› | SRC-IT-16 | Date; area names; years |
-| ‹bound: MACSE awarded hours› | CALC-IT-FORK step 3 from SRC-IT-16 | Hours, one decimal |
+| ‹bound: MACSE auction 1 date› / ‹bound: MACSE areas› / ‹bound: MACSE term› | SRC-IT-16 (date, areas); MACSE rules or results report (term) | Date; area names; years |
+| ‹bound: MACSE awarded hours› | CALC-IT-FORK step 3 from Terna's MACSE results report (GAP-IT-MACSE-MW) | Hours, one decimal; hidden until opened |
 | ‹bound: MACSE auction 2 date› | SRC-IT-19 / trigger `it-macse-second-auction.expected` | Date; announced |
 | ‹bound: history node› | H-IT-01 to 06, event date | Event date, not publication date |
 | ‹bound: source checked date› | The selected record's check date | Date |
@@ -395,7 +396,7 @@ Explicit references to the records in §12, not runtime fields. A missing value 
 | Outputs | Bars with formatted labels; an accessible table; each value carries its record ID and check date |
 | Limits | Delivery-2027 terms are not available to a new 2028 project; the 2028 premium is unknown until the auction; the MACSE bar omits the owner's share of resold proceeds. Never stacked |
 | Dataset | **Not registered.** No Italian dataset exists in `src/governance/datasets.js`. Gap for the build: a static, fixed-vintage `it-auction-results` record (capacity results by delivery year, de-rating tables by delivery year, zone and duration, MACSE results by area), extracted by hand from the Terna, ARERA and MASE documents and refreshed after each auction. Do not register it in this task (GAP-IT-AUCTIONS) |
-| Approval | G-1 reviews the design; numbers wait for GAP-IT-OPEN and GAP-IT-AUCTIONS |
+| Approval | G-1 reviews the design; numbers wait for GAP-IT-AUCTIONS, GAP-IT-DY27 and GAP-IT-MACSE-MW |
 
 ### Source-to-shot mapping
 
@@ -424,10 +425,10 @@ Reverse traceability: each source in §12 names its claims; each claim names its
 | 2. A possible entry refinement | Ready-to-build projects that already hold a delivery-2027 capacity contract keep the old factor. Is that the intended entry, and should the play's action say so? Analyst's call; no change made |
 | 3. Comparison basis | CF-IT-02: the card shows the investment-summary hold return; it-10 compares the forks on the briefing's design basis. Accept two labelled bases, or ask for an investment-summary MACSE figure (separate model work) |
 | 4. Signature chart | Accept Chart-IT-FORK (panel A credited share; panel B contracted payment from auction results) and the `it-auction-results` dataset as a build gap |
-| 5. Stacking | The view treats MACSE and the capacity market as alternatives. Confirm this from the rules (GAP-IT-STACK) before build; the decree's note that MACSE winners keep the 2027 de-rating needs reading |
-| 6. Markers | Accept each shot's marker and "What would change it" line, with no Strong marker until the primary documents are opened |
+| 5. Stacking | The view treats MACSE and the capacity market as alternatives. ARERA 247/2023 does not say so; Annex 4 §8.3 counts MACSE batteries in adequacy at the delivery-2027 factor, consistent with the MACSE need. Confirm from the MACSE rules before build (GAP-IT-STACK) |
+| 6. Markers | Accept each shot's marker and "What would change it" line; it-01 and it-05 are Strong on opened primary documents, subject to this review |
 | 7. Interpretations | The it-03 reading (MACSE exists because the capacity market does not pay for shifting energy) and CL-IT-10i |
-| 8. Zone count | GAP-IT-ZONES: the repository's "six zones" against the 2021 configuration |
+| 8. Zone count | ARERA 103/2019 gives seven physical zones; `src/markets/it/data.js` says six. A separate repository fix, not made here |
 | 9. Stale prose | CF-IT-03: the view thesis, `despite` and the trigger label type 0.67 to 0.53; `docs/briefing-content-2026-10.md` is stale. Not edited here |
 | 10. Chinese | Equal meaning for credited capacity, strike-price repayment, time-shifting use and "never added together" |
 
@@ -435,7 +436,7 @@ Build boundary: stop here. No application code, dataset registration, snapshot, 
 
 ## 12. Sources and claims
 
-Check date for every record: **31 October 2026**. Access in this session: the Terna, ARERA, MASE, GME, Normattiva and trade-press hosts were blocked by the session's network policy, so no document was opened. "Located" means the locator and its content were found by web search on the check date. "Repository record" means the platform's own register (`src/markets/it/sources.js`), which records an earlier opening. Licence-restricted reports are not used. Trade press (pv magazine Italia, 16, 19, 20 and 26 Oct 2026; ESS News, 19 and 20 Oct 2026; QualEnergia; Rinnovabili; ecoblog, 20 and 27 Oct 2026) served only to find primary documents and is not cited as a source.
+Check date for every record: **31 October 2026**. "Opened" means the document was downloaded from the publisher and the cited passage read on that date. "Not opened" means the locator was found but the passage was not read; the record says why. "Repository record" means the platform's own register (`src/markets/it/sources.js`), which records an earlier opening. Licence-restricted reports are not used. Trade press (pv magazine Italia, ESS News, QualEnergia, Rinnovabili, Il Sole 24 Ore, October 2026) served only to find primary documents and is not cited as a source.
 
 ### Sources
 
@@ -443,53 +444,53 @@ Existing records SRC-IT-01 to 04 are in the [source register](source-register.md
 
 | ID | Publisher · title | Locator | Supports (event) | Access / status |
 | --- | --- | --- | --- | --- |
-| SRC-IT-05 | ARERA · Deliberazione 103/2019/R/eel, 19 Mar 2019: zone configuration from 1 Jan 2021 | https://www.arera.it/atti-e-provvedimenti/dettaglio/19/103-19 | The zone configuration that applies from 1 January 2021, completing the review begun with 22/2018/R/eel | Located; zone list not seen (GAP-IT-ZONES) |
-| SRC-IT-06 | GME · MGP results by zone | https://www.mercatoelettrico.org/en/ (repository record `gme`) | Day-ahead prices cleared by zone; the 2025 South series behind the merchant evidence | Repository record; not reopened |
-| SRC-IT-07 | MASE · Decree 259 of 6 Aug 2026, capacity-market rules for delivery 2028 | MASE "Mercato elettrico" page, https://www.mase.gov.it/portale/mercato-elettrico | Rules for the delivery-2028 auction; asked Terna to reassess storage de-rating | Located; exact PDF locator not found |
-| SRC-IT-08 | MASE · Decree 327 of 16 Oct 2026 approving amendments to the capacity market's technical provisions (DTF 2) and Annex 4 | Same MASE page; text on the site from 19 Oct 2026; notice in the Gazzetta Ufficiale no. 252 of 29 Oct 2026 | Zonal de-rating for new storage, delivery 2028: four-hour about 40% North and Centre-North, 51% Centre-South, 21% South, Calabria, Sicily and Sardinia; existing, contracted and MACSE-awarded storage keep delivery-2027 factors | Located; values from consistent reports; annex not opened |
-| SRC-IT-09 | ARERA · Deliberazione 370/2026/R/eel, 14 Oct 2026 | Expected at https://www.arera.it/atti-e-provvedimenti/dettaglio/26/370-26 (from ARERA's numbering; confirm) | Positive compliance check of Terna's revised DTF 2, limited to the delivery-2028 procedure; de-rating raised for storage as expected authorised capacity grew | Located by citation; URL to confirm |
-| SRC-IT-10 | Terna · Capacity market, delivery-2028 auction notice | Under SRC-IT-01, https://www.terna.it/it/sistema-elettrico/mercato-capacita | Auction on 21 Dec 2026; applications 20 Oct to 3 Nov 2026 | Located |
-| SRC-IT-11 | Terna · Results of the main auction for delivery 2027 (26–27 Feb 2025) | Under SRC-IT-01; repository record `capacityMarket` | A uniform clearing premium for existing and new capacity; new capacity mostly batteries on fifteen-year contracts | Located; reported new-capacity totals differ (about 500 to 600 MW); bind only after opening |
-| SRC-IT-12 | Terna · First capacity-market auctions, delivery 2022 and 2023 (Nov 2019); discipline approved by ministerial decree of 28 Jun 2019 | Under SRC-IT-01 | Reliability-option design: premium per MW, repayment above a strike price set by ARERA from peaking-plant variable cost, fifteen-year contracts for new capacity | Located through reports; decree date to confirm |
-| SRC-IT-13 | Legislative Decree 210/2021, Art. 18 | https://www.normattiva.it/ (search "decreto legislativo 8 novembre 2021, n. 210") | Introduces forward procurement of electricity storage capacity | Located by citation in ARERA 247/2023 |
-| SRC-IT-14 | ARERA · Deliberazione 247/2023/R/eel, 6 Jun 2023 | https://arera.it/atti-e-provvedimenti/dettaglio/23/247-23 | Criteria and conditions for the storage-capacity procurement system (MACSE) | Located |
+| SRC-IT-05 | ARERA · Deliberazione 103/2019/R/eel, 19 Mar 2019 | https://www.arera.it/allegati/docs/19/103-19.pdf, Delibera points 1–2 | Completes Terna's zone review: Umbria moves from Centre-North to Centre-South, a Calabria zone replaces the Rossano limited-production pole, effective 1 Jan 2021; the Brindisi, Foggia and Priolo poles are removed. The physical zones are therefore North, Centre-North, Centre-South, South, Calabria, Sicily and Sardinia | Opened |
+| SRC-IT-06 | GME · MGP results by zone | https://www.mercatoelettrico.org/en/ (repository record `gme`) | Day-ahead prices cleared by zone; the 2025 South series behind the merchant evidence | Repository record; site reachable, series not re-read |
+| SRC-IT-07 | MASE · Decree 259 of 6 Aug 2026, capacity-market rules for delivery 2028 | https://www.mase.gov.it/portale/mercato-elettrico (listed); summarised in SRC-IT-09, "Considerato, in aggiunta" | Approved the delivery-2028 rules and DTF 2, and required Terna to re-assess storage de-rating before the auction if authorised storage had grown | Content read through ARERA 370/2026; decree PDF not opened |
+| SRC-IT-08 | MASE · Decree 327 of 16 Oct 2026 approving DTF 2 and Annex 4 for delivery 2028 | https://www.mase.gov.it/portale/documents/d/guest/dm_327_16-10-2026-pdf (Art. 1); Annex 4: https://www.mase.gov.it/portale/documents/d/guest/all_4_dtf_2-pdf, §8.3 and Table 11, p. 33 | Credited share (CDP) of new electrochemical storage by duration and zone group; who keeps the delivery-2027 factors; capacity-market area structure (Annex 4 §1.1, Table 1: eight areas, Sardinia split) | Opened |
+| SRC-IT-09 | ARERA · Deliberazione 370/2026/R/eel, 14 Oct 2026 | https://www.arera.it/fileadmin/allegati/docs/26/370-2026-R-eel.pdf, pp. 9–11 and Delibera point 1 | Compliance of Terna's second delivery-2028 DTF 2 proposal (18 Sep 2026), limited to delivery 2028; storage de-rating raised by macro-zone, reducing new batteries' remuneration ceteris paribus. Also records the discipline's approval by decree of 28 Jun 2019, the first two auctions in November 2019, and the delivery-2027 auction in February 2025 | Opened |
+| SRC-IT-10 | Terna · Delivery-2028 auction notice | Expected under https://www.terna.it/it/sistema-elettrico/mercato-capacita | Auction on 21 Dec 2026; applications 20 Oct to 3 Nov 2026 | Not opened: not listed on Terna's capacity page at check; dates from press only |
+| SRC-IT-11 | Terna · Rendiconto degli esiti, Asta Madre 2027 | https://download.terna.it/terna/Rendiconto-Esiti-Asta-Madre_2027_8dd97982c75d724.pdf, Executive Summary p. 3 and "Capacità Nuova Assegnata" p. 8 | Auction held 26–27 Feb 2025. Existing capacity 38,047 MW and new authorised capacity 594 MW, both at a premium of €47,000/MW/year; all figures are de-rated capacity (CDP). Storage is about 95% of the new capacity | Opened |
+| SRC-IT-12 | Terna · Capacity-market discipline (decree of 28 Jun 2019) and first auctions, delivery 2022 and 2023 | Results report: https://download.terna.it/terna/2019_12_06_Rendiconto%20EsitiAsta%202022_PUBBLICATO_8d7c06cc9f8470b.pdf | Reliability-option design: premium per MW, repayment above a strike price, multi-year contracts for new capacity | Dates opened in SRC-IT-09; strike and contract clauses not extracted (GAP-IT-STRIKE) |
+| SRC-IT-13 | Legislative Decree 210/2021, Art. 18 | https://www.normattiva.it/ (decreto legislativo 8 novembre 2021, n. 210) | Introduces forward procurement of electricity storage capacity | Cited by SRC-IT-14 and SRC-IT-16; decree text not opened |
+| SRC-IT-14 | ARERA · Deliberazione 247/2023/R/eel, 6 Jun 2023, and Annex A (updated) | https://www.arera.it/fileadmin/allegati/docs/23/247-23-reel-allegato-a-aggiornato.pdf, Arts. 6.3, 6.6, 11–13 | Contracted storage is made available to Terna for time-shifting contracts exercised by third-party market operators and traded through a central GME platform; it must also be offered on MSD within price limits; a percentage of positive MSD margin goes to reduce system charges and the rest to the storage's dispatch user | Opened |
 | SRC-IT-15 | MASE · Decree 346 of 10 Oct 2024 approving the MACSE rules | https://mase.gov.it/sites/default/files/Archivio_Energia/Archivio_Normativa/dm_346_10.10.2024.pdf (repository record `dm346`) | Ministerial approval of Terna's MACSE rules | Repository record, opened 12 Oct 2026 |
-| SRC-IT-16 | Terna · Completed first MACSE auction, 30 Sep 2025 (rev. 10 Oct 2025) | https://www.terna.it/en/media/press-releases/detail/completed-first-macse-auction (repository record `macse`) | Awarded MWh and MW, fourteen projects, clearing prices by area, delivery 2028, fifteen-year term; areas Centro-Sud, Sud e Calabria, Sicilia, Sardegna; bids above four times demand | Repository record, checked 2 Aug 2026 |
-| SRC-IT-17 | ARERA · Deliberazione 362/2025/R/eel, 30 Jul 2025 | https://arera.it/atti-e-provvedimenti/dettaglio/25/362-25 | Maximum premium for the first MACSE auction | Located |
-| SRC-IT-18 | ARERA · Consultation 283/2026/R/eel, 30 Jul 2026 | https://www.arera.it/fileadmin/allegati/docs/26/283-2026-R-eel.pdf (repository record `arera283`) | Proposed maximum premium for the delivery-2029 auction | Repository record, opened 12 Oct 2026 |
-| SRC-IT-19 | ARERA · Deliberazione 332/2026/R/eel, 24 Sep 2026 | https://www.arera.it/fileadmin/allegati/docs/26/332-2026-R-eel.pdf | Maximum premium for the delivery-2029 auction, above the consultation proposal and below the first auction's cap; auction on 24 Nov 2026; oversizing coefficient confirmed | Located; the repository calls it a "reserve premium", the reports "maximum premium" (CF-IT-04) |
-| SRC-IT-20 | MASE · Decree of 27 Mar 2026 approving the MACSE rules for delivery 2029; approval of a 16 GWh requirement | MASE page as SRC-IT-07; Terna MACSE FAQ of 7 Jul 2026 | Requirement and area limits for the second auction; the North outside the eligible perimeter | Located through reports only |
-| SRC-IT-21 | Terna · Econnextion connection-request data; Terna 2025 Development Plan consultation presentation (hosted by ARERA) | https://www.arera.it/fileadmin/allegati/operatori/pds/25/Presentazione_della_consultazione_pubblica_sul_Piano_di_sviluppo_2025.pdf | Renewable connection requests mainly in the south and the islands; standalone storage the largest share of requests | Located; regional quantities not seen (GAP-IT-QUEUE) |
-| SRC-IT-22 | Terna · Tyrrhenian Link and Adriatic Link project pages | Repository records `tyrrhenian`, `adriatic` | Named links and their planned dates | Repository records, checked 2026 |
+| SRC-IT-16 | Terna · "Terna completes first MACSE auction: 10 GWh of energy storage capacity awarded" | https://www.terna.it/en/media/press-releases/detail/completed-first-macse-auction | 30 Sep 2025; 10 GWh procured in Southern Italy and the islands, 100% of demand; bids above four times demand; weighted average €12,959/MWh-year (Central-South 14,566; South and Calabria 12,146; Sicily 15,846; Sardinia 15,029), against a reserve premium of €37,000; four areas; lithium-ion systems entering operation in 2028; framework from D.Lgs. 210/2021 and ARERA 247/23, approved October 2024 | Opened. Gives no MW, project count or contract term (GAP-IT-MACSE-MW) |
+| SRC-IT-17 | ARERA · Deliberazione 362/2025/R/eel, 30 Jul 2025 | https://arera.it/atti-e-provvedimenti/dettaglio/25/362-25 | Maximum premium for the first MACSE auction (€37,000/MWh/year, as recited in SRC-IT-19) | Value read through SRC-IT-19 |
+| SRC-IT-18 | ARERA · Consultation 283/2026/R/eel, 30 Jul 2026 | https://www.arera.it/fileadmin/allegati/docs/26/283-2026-R-eel.pdf (repository record `arera283`) | Proposed maximum premium for the delivery-2029 auction | Opened |
+| SRC-IT-19 | ARERA · Deliberazione 332/2026/R/eel, 24 Sep 2026 | https://www.arera.it/fileadmin/allegati/docs/26/332-2026-R-eel.pdf, pp. 4–5 and Delibera point 1 | Maximum premium for the second battery auction, 24 Nov 2026: €27,000/MWh/year (first auction €37,000); 12% oversizing coefficient kept; Terna published the requirement documents on 28 May 2026 | Opened |
+| SRC-IT-20 | MASE · Decree of 27 Mar 2026 (MACSE rules for the second battery auction) and Decree 162 of 20 May 2026 (16 GWh requirement for 2029) | https://www.mase.gov.it/portale/mercato-elettrico (listing); both recited in SRC-IT-19, p. 4 | Second auction's rules and 16 GWh requirement, net of storage entering through other routes before the auction | Read through SRC-IT-19 and the MASE listing; area limits not opened |
+| SRC-IT-21 | Terna · Development Plan 2025, public-consultation presentation (hosted by ARERA) | https://www.arera.it/fileadmin/allegati/operatori/pds/25/Presentazione_della_consultazione_pubblica_sul_Piano_di_sviluppo_2025.pdf, slide "Richieste di Connessione: FER" | Renewable connection requests on the HV grid are mainly in the regions of the South and the islands; a separate slide sets out storage connection requests against MACSE requirements by area | Opened; storage quantities by region are in a map not machine-read (GAP-IT-QUEUE) |
+| SRC-IT-22 | Terna · Tyrrhenian Link and Adriatic Link project pages | Repository records `tyrrhenian`, `adriatic` | Named links and their planned dates | Repository records |
 | REPO-IT-LIVE | This repository at `edcb39c` | `view/markets/it.json`; the briefing built for 2026-10-31; `src/opportunities/summaryData.js`; `src/markets/it/comparison.js` | The live calls, plays, triggers, card and design results | Read in this session |
 
 ### Historical nodes (event separate from interpretation)
 
 | Node | Event and date | Source | Why it matters (interpretation) |
 | --- | --- | --- | --- |
-| H-IT-01 | First capacity-market auctions, November 2019, for delivery 2022 and 2023 | SRC-IT-12 | Italy chose to pay for available capacity years ahead; storage later competes in that market |
+| H-IT-01 | First capacity-market auctions, November 2019, for delivery 2022 and 2023 | SRC-IT-09, SRC-IT-12 | Italy chose to pay for available capacity years ahead; storage later competes in that market |
 | H-IT-02 | New zone configuration in force, 1 Jan 2021 | SRC-IT-05 | A battery's trading price is its zone's |
 | H-IT-03 | Legislative Decree 210/2021, Art. 18, 8 Nov 2021 | SRC-IT-13 | A storage-only contract is created beside the capacity market |
-| H-IT-04 | Capacity auction for delivery 2027, 26–27 Feb 2025 | SRC-IT-11 | Batteries win most new capacity on fifteen-year contracts |
-| H-IT-05 | First MACSE auction, 30 Sep 2025 | SRC-IT-16 | Long batteries in the south and islands on fifteen-year, per-MWh contracts |
-| H-IT-06 | Delivery-2028 de-rating decided by zone, 16 Oct 2026 | SRC-IT-08/09 | The capacity line of a new battery now depends on its zone |
+| H-IT-04 | Capacity auction for delivery 2027, 26–27 Feb 2025 | SRC-IT-11 | Batteries take about 95% of new capacity |
+| H-IT-05 | First MACSE auction, 30 Sep 2025 | SRC-IT-16 | Storage in the south and islands contracted per MWh, entering operation in 2028 |
+| H-IT-06 | Delivery-2028 de-rating decided by zone, 16 Oct 2026 | SRC-IT-08, SRC-IT-09 | The capacity line of a new battery now depends on its zone |
 
 ### Claims
 
-Existing claims CL-IT-01 to 03 stay in the source register; this script now gives them locators (SRC-IT-11/12 for CL-IT-02; SRC-IT-14/16 for CL-IT-03).
+Existing claims CL-IT-01 to 03 stay in the source register. This script supplies their sources: SRC-IT-11 and SRC-IT-12 for CL-IT-02, and SRC-IT-14 and SRC-IT-16 for CL-IT-03, the latter now opened.
 
 | ID | Claim | Type / scope | Source and locator | Limit | Shots | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| CL-IT-04 | Italy's day-ahead market clears a price per zone; the configuration in force since 1 Jan 2021 was set by ARERA 103/2019 | `historical-fact`, `market-rule` | SRC-IT-05; SRC-IT-06 | Zone list not seen | it-01 | Located |
-| CL-IT-05 | The capacity market is a reliability option: a premium per credited MW, repayment when prices exceed a strike price, multi-year contracts for new capacity | `market-rule` | SRC-IT-01, SRC-IT-07, SRC-IT-12 | Strike level and stress-hour obligations not extracted | it-02, it-09 | Located |
-| CL-IT-06 | The delivery-2027 auction cleared a uniform premium, and new capacity was mostly batteries | `historical-fact` | SRC-IT-11 | New-capacity total differs between reports | it-02, it-08 | Located |
-| CL-IT-07 | MACSE follows Art. 18 of D.Lgs. 210/2021, ARERA 247/2023 and DM 346/2024; its first auction on 30 Sep 2025 awarded fifteen-year contracts, delivery 2028, in four southern and island areas | `historical-fact`, `market-rule` | SRC-IT-13 to 16 | Rules not opened | it-03, it-07, it-08 | Located; results in repository record |
-| CL-IT-08 | Under MACSE the time-shifting use of contracted energy passes to Terna, which offers it to the market; the owner keeps operating and availability duties | `market-rule` | SRC-IT-02, SRC-IT-14, SRC-IT-15 | Share of proceeds the owner keeps not confirmed | it-08 | Located; clause pending |
-| CL-IT-09 | Most renewable and storage connection requests are in the south and the islands | `observed-data` | SRC-IT-21 | Requests are not projects | it-04 | Located; quantities pending |
-| CL-IT-10 | On 16 Oct 2026 MASE approved delivery-2028 storage de-rating that differs by zone and applies only to new storage; ARERA had found it compliant on 14 Oct | `historical-fact`, `market-rule` | SRC-IT-07, 08, 09 | Values from reports; annex not opened | it-05, it-11 | Located |
-| CL-IT-10i | The decided factor for new four-hour storage in the south and islands is below the 0.53 the play prices, so the call's watched trigger has been met against it | `research-hypothesis` | CL-IT-10; REPO-IT-LIVE | The analyst's reading decides; a contracted project keeps 0.67 | it-05; §0 | Proposed |
-| CL-IT-11 | The second MACSE auction is on 24 Nov 2026 for delivery 2029, with a maximum premium set by ARERA 332/2026 | `official-plan` | SRC-IT-19, SRC-IT-20 | Volume and areas reported, not opened | it-07, it-10, it-11 | Located |
-| CL-IT-12 | The delivery-2028 capacity auction is on 21 Dec 2026 | `official-plan` | SRC-IT-10 | Announced | it-08, it-11 | Located |
+| CL-IT-04 | Italy's day-ahead market clears a price per zone; the configuration in force since 1 Jan 2021 has seven physical zones, Calabria among them | `historical-fact`, `market-rule` | SRC-IT-05, Delibera 1–2; SRC-IT-06 | Foreign virtual zones excluded; the capacity market uses its own eight areas | it-01 | Opened |
+| CL-IT-05 | The capacity market is a reliability option: a premium per credited MW, repayment when prices exceed a strike price, multi-year contracts for new capacity | `market-rule` | SRC-IT-01, SRC-IT-07, SRC-IT-09, SRC-IT-12 | Strike level and stress-hour obligations not extracted | it-02, it-09 | Sourced; clauses pending |
+| CL-IT-06 | The delivery-2027 auction paid one premium to existing and new capacity, and storage was about 95% of new capacity | `historical-fact` | SRC-IT-11, pp. 3 and 8 | Volumes are de-rated capacity (CDP), not nameplate | it-02, it-08 | Opened |
+| CL-IT-07 | MACSE follows Art. 18 of D.Lgs. 210/2021, ARERA 247/2023 and DM 346/2024; its first auction on 30 Sep 2025 procured 10 GWh in four southern and island areas, entering operation in 2028 | `historical-fact`, `market-rule` | SRC-IT-13 to 16 | Contract term and awarded MW not in the release | it-03, it-07, it-08 | Opened |
+| CL-IT-08 | Under MACSE the contracted storage is made available to Terna for time-shifting contracts that third parties trade on a GME platform; the storage must also be offered on MSD, where a share of positive margin reduces system charges | `market-rule` | SRC-IT-14, Arts. 6.3, 6.6, 11–13 | The percentage is set in Terna's rules, not opened | it-08 | Opened |
+| CL-IT-09 | Renewable connection requests are mainly in the south and the islands | `observed-data` | SRC-IT-21 | Requests are not projects; storage split by region not read | it-04 | Opened |
+| CL-IT-10 | On 16 Oct 2026 MASE approved delivery-2028 storage de-rating by zone group and duration, for new storage only; ARERA found it compliant on 14 Oct | `historical-fact`, `market-rule` | SRC-IT-08, Annex 4 §8.3 and Table 11; SRC-IT-09 | Applies to the delivery-2028 auction only | it-05, it-11 | Opened |
+| CL-IT-10i | The decided factor for new four-hour storage in the south and islands is below the 0.53 the play prices, so the call's watched trigger has been met against it | `research-hypothesis` | CL-IT-10; REPO-IT-LIVE | The analyst's reading decides; a contracted project keeps its delivery-2027 factor | it-05; §0 | Proposed |
+| CL-IT-11 | The second MACSE battery auction is on 24 Nov 2026 against a 16 GWh requirement for 2029, with a maximum premium set by ARERA 332/2026 | `official-plan` | SRC-IT-19, SRC-IT-20 | Area limits not opened | it-07, it-10, it-11 | Opened |
+| CL-IT-12 | The delivery-2028 capacity auction is on 21 Dec 2026 | `official-plan` | SRC-IT-10 | Press only | it-08, it-11 | Not opened |
 | CL-IT-13 | On the platform's model the capacity route is best at four hours and the MACSE design returns less than the capacity play on the same basis | `model-assumption` | REPO-IT-LIVE | Priced on the delivery-2027 curve; MACSE capture seeded | it-00, it-06, it-07, it-10 | Read |
 | CL-IT-14 | The capacity play's merchant line carries most of its revenue and is graded Thin | `model-assumption` | REPO-IT-LIVE; `docs/merchant-lines-plan-2026-10.md` | Settled ruling | it-09, it-11 | Read |
 
@@ -497,13 +498,15 @@ Existing claims CL-IT-01 to 03 stay in the source register; this script now give
 
 | ID | Item | Affects | Treatment |
 | --- | --- | --- | --- |
-| CF-IT-01 | The call's trigger appears resolved, with factors differing from the 0.53 the play and its action price; the south and islands are lowest for new storage | it-00, it-05, it-06, it-11; the call | Flag at the top of the PR; analyst rules at G-1; no call change |
+| CF-IT-01 | The call's trigger is resolved: for new storage, four-hour factors are 40%, 51%, 21% and 21% by zone group, against the 0.53 the play and its action price; the south and islands are lowest | it-00, it-05, it-06, it-11; the call | Flagged at the top of the PR; the analyst rules at G-1; no call change |
 | CF-IT-02 | Two return bases: the card's investment-summary hold against the briefing's design-grid hold (typed in `play.why` and the thesis) | it-00, it-10 | Bind each to its own field with a basis label; never mix |
-| CF-IT-03 | Typed figures in the view thesis, `despite` and trigger label are now stale against the decision | Copy only | Not copied; flagged |
-| CF-IT-04 | `src/markets/it/data.js` calls the delivery-2029 figure a "reserve premium"; ARERA 332/2026 is reported as setting the maximum premium | it-10 | Use "maximum premium" until the resolution is opened |
-| GAP-IT-OPEN | No primary document could be opened in this session (network policy) | All shots | Ceiling Fair; open each locator before G-2 |
+| CF-IT-03 | Typed figures in the view thesis, `despite` and trigger label are stale against the decision | Copy only | Not copied; flagged |
+| CF-IT-04 | Wording only: Terna's release calls the first auction's €37,000 the "reserve premium", ARERA calls the cap the "maximum premium", and `src/markets/it/data.js` uses "reserve premium" for the second auction's €27,000 | it-10 | Use "maximum premium" (ARERA's term) on the page |
+| CF-IT-05 | The repository records the first MACSE auction as 9,968 MWh, 1,491 MW and 14 projects (6.68 hours). Terna's release gives only "10 GWh" | it-07 | Bind ‹bound: MACSE awarded hours› only once Terna's results report is opened (GAP-IT-MACSE-MW) |
 | GAP-IT-AUCTIONS | No Italian dataset is registered; Chart-IT-FORK needs `it-auction-results` | it-05, it-08 | Build gap; Example fallback |
-| GAP-IT-ZONES | Zone count: six in the repository, seven expected under the 2021 configuration | it-01 | Bind names; confirm |
-| GAP-IT-STACK | Exclusivity of MACSE and the capacity market, the owner's retained share of MACSE proceeds and the oversizing coefficient, from the rules | it-03, it-07, it-08 | Qualitative until opened |
+| GAP-IT-MACSE-MW | Terna's first-auction results report with awarded MW, MWh, projects and the contract term | it-03, it-07, it-08 | Locate on Terna's MACSE page before build |
+| GAP-IT-DY27 | Annex 3 to DTF 2 (delivery-2027 factors, the 0.67 at four hours) not located on Terna's site, which loads documents dynamically | it-05, it-08 | Use the repository record until opened |
+| GAP-IT-STACK | Whether one battery can hold both contracts. ARERA 247/2023 does not state it; Annex 4 §8.3 counts MACSE batteries in adequacy at the delivery-2027 factor "consistent with the values used to estimate the MACSE need". Read the MACSE rules | it-03, it-08 | Keep the view's "never stacked"; confirm before build |
 | GAP-IT-STRIKE | Strike-price level and stress-hour obligations | it-02, it-09 | Qualitative |
-| GAP-IT-QUEUE | Regional connection-request quantities | it-04 | Stacked symbols, not to scale |
+| GAP-IT-QUEUE | Storage connection requests by region | it-04 | Stacked symbols, not to scale |
+| GAP-IT-ZONES | **Closed.** SRC-IT-05 gives seven physical day-ahead zones from 2021; `src/markets/it/data.js` says six | it-01 | Bind names; the repository count is for the analyst to correct separately |
