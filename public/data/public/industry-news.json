@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-30T22:26:44.039Z",
+  "fetchedAt": "2026-10-31T05:53:30.887Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-30T17:00:00.000Z",
+    "to": "2026-10-31T05:00:00.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -463,17 +463,27 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "India’s expanding utility-scale solar fleet is creating a growing need for accurate generation forecasts. Yet the country does not have one uniform specification for every project. The requirements depend on the connection point, the responsible scheduling entity, and the rules issued by central or state regulators.…"
+    },
+    {
+      "t": "2026-10-31T05:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/10/31/indian-pv-at-a-turning-point/",
+      "source": "pv magazine",
+      "title": "Indian PV at a turning point",
+      "url": "https://www.pv-magazine.com/2026/10/31/indian-pv-at-a-turning-point/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "As module manufacturing capacity outpaces domestic demand, India’s solar industry is entering a new phase, where vertical integration, disciplined investment, higher utilization and access to new markets will be critical for sustaining growth. Uma Gupta reports. The post Indian PV at a turning point appeared first o…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 7,
       "capital": 4,
-      "grid": 31,
+      "grid": 32,
       "technology": 2
     },
     "sourceStatus": [
@@ -499,7 +509,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 8
       }
     ]
   },
@@ -508,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:07e2d812330d38bee0aeab1d4e870a3d68eaea386583cdbe80387888dd693e40",
-  "envelopeChecksum": "sha256:0f02f3033241f147df6fd406485a9d943b06d57d958f1441d0bd3a86afac3dbe"
+  "contentChecksum": "sha256:f2cf410230cf1ece1126ca17fbf1c10938c1a282036ac6c8cc867cc6b69a7a55",
+  "envelopeChecksum": "sha256:1e850e657df87dc646f602f1b8898d9ccaa9d427ea184fed1c21dfeba958b07a"
 }
