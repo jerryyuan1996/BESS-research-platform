@@ -47,6 +47,20 @@
       gives ~A$419,600, 0.65% lower. Held at the corroborated figure until AEMO
       assigns Capacity Credits and the realised price is an observation.
 
+      REFRESHED 2026-10-30 (proposed; the analyst's to merge): it now is one.
+      AEMO assigned the 2028-29 Capacity Credits and published the Reserve
+      Capacity Prices on 20 October 2026 (data.wa.aemo.com.au, files
+      reserve-capacity-prices-2028.csv and capacity-credit-facility-2028.csv).
+      The Peak Reserve Capacity Price is A$459,191.55/MW: 6,715.022 MW of Peak
+      Capacity Credits against the 6,323 MW requirement is a ratio of 1.0620,
+      and ESM Rules 4.29.1(b)(i) gives 488,500 × (1 + (1.05 − 1.0620) × 5),
+      which reproduces the published price to the cent. A facility first
+      credited in this cycle that elects a fixed price is fixed at the same
+      figure ("Fixed Peak – Initiated 2028" in the same file). The surplus was
+      smaller than the 347 MW forecast assumed, so the price is 8.7% above the
+      estimate it replaces. Later years stay unobserved: the line indexes this
+      year's price as before.
+
    3. THE ELECTION IS NOT FREE CERTAINTY — see naqFactor below.
    --------------------------------------------------------------------------- */
 import { capacityRevenuePerMW } from '../../comparison/capacityLine.js';
@@ -60,17 +74,17 @@ const capacity = {
      assigned Capacity Credits rather than a per-kW clearing price against a
      de-rating factor. The seven-hour build is what secures the full flexible
      credit, so the factor here is 1 and the buffer lives in the archetype. */
-  price: 422372,
+  price: 459191.55,
   unit: 'MW',
   priceCurrency: 'AUD',
   fxToMarket: 1,
   derating: 1,
   auction: ['2026 Reserve Capacity Cycle', '2026年备用容量周期'],
   deliveryYear: 2028,
-  source: 'Surplus-adjusted RCP for 2028-29; BRCP A$488,500/MW (ERA final determination, 13 Mar 2026), AEMO forecasts a 347 MW surplus',
+  source: 'AEMO Peak Reserve Capacity Price for 2028-29, published 20 Oct 2026 (reserve-capacity-prices-2028.csv); BRCP A$488,500/MW (ERA final determination, 13 Mar 2026)',
   note: [
-    'Benchmark facility is 200 MW / 1,200 MWh at A$520/kWh. Surplus suppresses the realised RCP below the BRCP.',
-    '基准设施为200MW/1,200MWh，A$520/kWh。容量盈余使实际支付的RCP低于BRCP。',
+    'Credits came in 6.2% above the 6,323 MW requirement, so under ESM Rules 4.29.1(b)(i) the price is 6% below the BRCP. Benchmark facility is 200 MW / 1,200 MWh at A$520/kWh.',
+    '容量信用比6,323MW的需求高出6.2%，按《电力系统与市场规则》第4.29.1(b)(i)条，价格比BRCP低6%。基准设施为200MW/1,200MWh，A$520/kWh。',
   ],
 };
 
@@ -118,7 +132,7 @@ const economics = {
   serviceSchedulePerMW: QUOTED.serviceSchedulePerMW,
 
   capacity,
-  contracted: capacityRevenuePerMW(capacity),   // A$422,372
+  contracted: capacityRevenuePerMW(capacity),   // A$459,191.55
   contractYears: 10,         // 10-yr fixed-price election
   postFactor: 0.85,
 
@@ -212,10 +226,10 @@ const ranges = {
      surplus-suppressed RCP, which is the seed. Both ends are published. */
   contracted: band(economics.contracted, null, 488500, {
     basis: [
-      'BRCP for 2028-29 is A$488,500/MW (+35%, ERA final determination 13 March 2026), but AEMO forecasts a 347 MW surplus against a 6,323 MW Peak RCR and a surplus suppresses the realised price. A$422,372 is the surplus-adjusted level, corroborated by the ten-year fixed-price election at ~A$844.7m for 200 MW.',
-      '2028–29年BRCP为A$488,500/MW（上涨35%，ERA于2026年3月13日最终裁定），但AEMO预测在6,323MW峰值容量需求下存在347MW盈余，盈余将压低实际出清价格。A$422,372为经盈余调整后的水平，并由200MW设施十年固定价选择权约A$8.447亿的报价相互印证。',
+      'BRCP for 2028-29 is A$488,500/MW (+35%, ERA final determination 13 March 2026). AEMO assigned 6,715 MW of Peak Capacity Credits against the 6,323 MW requirement and on 20 October 2026 published a Peak Reserve Capacity Price of A$459,191.55/MW, the price curve\'s result for that surplus (ESM Rules 4.29.1(b)(i)). It is also the fixed price for a facility first credited in this cycle.',
+      '2028–29年BRCP为A$488,500/MW（上涨35%，ERA于2026年3月13日最终裁定）。AEMO在6,323MW的峰值容量需求下分配了6,715MW峰值容量信用，并于2026年10月20日公布峰值备用容量价格A$459,191.55/MW，即价格曲线在该盈余水平下的结果（《电力系统与市场规则》第4.29.1(b)(i)条）。这也是本周期首次获得信用的设施可锁定的固定价格。',
     ],
-    source: 'ERA BRCP 2028-29; AEMO 2026 ESOO capacity balance',
+    source: 'AEMO Reserve Capacity Prices and Capacity Credits for 2028-29 (20 Oct 2026); ERA BRCP 2028-29',
   }),
 
   contractYears: limits(economics.contractYears, 1, 10, {
