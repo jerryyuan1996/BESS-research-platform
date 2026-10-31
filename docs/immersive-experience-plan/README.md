@@ -52,6 +52,7 @@ Keep one owner per specification. When something changes, update its owner and e
 | --- | --- | --- | --- |
 | 1.0 | 2026-10-30 | Expanded and translated the original Chinese plan; verification through #73 | Committed as `db158b9`; superseded |
 | 1.1 | 2026-10-30 | Review against the platform's calls, the three-page market page and the 16 October rulings; decisions D1 to D10 | Planning revision; the user signs off by accepting this pack |
+| 1.3 | 2026-10-31 | Story-card check: the 14 cards v1.1 did not rebuild now lead to the infrastructure-fund call and play published in the view store at `bd62af1`; Italy and Poland fork between their two plays; Japan shares one national layer; Ontario, Saudi Arabia and Spain follow their comparison theses because no view is published; candidate claims CL-GB-01 to CL-ES-01 added, unverified | Markdown only; the user signs off by merging |
 
 | ID | v1.1 decision | Affects | Basis | Impact |
 | --- | --- | --- | --- | --- |
