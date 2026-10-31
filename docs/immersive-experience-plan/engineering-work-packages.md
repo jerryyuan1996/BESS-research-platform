@@ -109,7 +109,7 @@ Keep each change small, with a visible result. No framework migration, global-st
 | Risk | Parameter collisions with existing routes |
 | Rollback | Drop the parameters; the story opens at `wa-00` |
 
-Proposed URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. It is not implemented. Chapter and shot changes add history entries; teaching changes do not. The market page's existing handoff carries the case to the Investment Lab, so the story needs no case envelope.
+Story URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. Built in `WP-04` (`src/experience/story/place.js`). Chapter and shot changes add history entries; scrolling updates the current entry; teaching changes add none. Closing adds an entry without the story, so Back reopens it where the reader left it. An unknown shot falls back to its chapter's first shot, then to the opening. The market page's existing handoff carries the case to the Investment Lab, so the story needs no case envelope.
 
 ### WP-05: Retired in v1.1
 

@@ -27,7 +27,7 @@ flowchart TD
     X --> L[Investment Lab, through the market page's existing handoff]
 ```
 
-Proposed story URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. It is not implemented yet; `WP-04` owns it.
+Story URL: `/markets/western-australia?view=story&chapter=tensions&shot=wa-06`. `WP-04` built it in `src/experience/story/place.js`.
 
 **Home stays unchanged in the pilot.** It is conclusion-first by design and had about 2.5 KiB of first-view budget left at PR #69 (262.5 of 265 KiB, REPO-14). Story invitations on the home page, grouped as Wrong time, Wrong place and Need for response, are a later option and must load lazily.
 
