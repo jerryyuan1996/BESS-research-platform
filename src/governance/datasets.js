@@ -75,6 +75,16 @@ export const DATASET_KINDS = ['timeseries', 'feed'];
 /* Fingrid open data: CC BY 4.0, per each dataset's own metadata (2026-10-30). */
 const FINGRID = { name: 'Fingrid open data', url: 'https://data.fingrid.fi/', licence: 'CC BY 4.0', attribution: 'Source: Fingrid open data (CC BY 4.0)' };
 
+/* Shared ENTSO-E catalogue fields keep a registration out of the entry budget.
+ * Existing metadata and licences are retained; Germany overrides publication. */
+const entsoe = (marketId, title, { sourceId, republishable = true, licence = 'ENTSO-E — reuse permitted with attribution' } = {}) => ({
+  id: marketId + '-day-ahead', kind: 'timeseries', marketId, connector: 'entsoe', title,
+  ...(sourceId ? { sourceId } : {}),
+  source: { name: 'ENTSO-E Transparency Platform', url: 'https://transparency.entsoe.eu/', licence, attribution: 'Source: ENTSO-E Transparency Platform' },
+  refreshHours: 12 * HOURS, staleAfterHours: 3 * DAYS,
+  bearsOn: ['economics.merchGross'], republishable, requiresKey: true, official: true,
+});
+
 export const DATASETS = [
   // ---- global --------------------------------------------------------------
   {
@@ -108,66 +118,11 @@ export const DATASETS = [
      ENTSO-E carries GB day-ahead, is already wired for three other markets, and
      is proven to respond. Adding Elexon later is additive: a second dataset for
      the same market, not a replacement. See docs/live-data.md. */
-  {
-    id: 'gb-day-ahead',
-    kind: 'timeseries',
-    marketId: 'gb',
-    sourceId: 'gb-entsoe-transparency',
-    title: ['GB day-ahead wholesale prices', '英国日前批发电价'],
-    connector: 'entsoe',
-    source: {
-      name: 'ENTSO-E Transparency Platform',
-      url: 'https://transparency.entsoe.eu/',
-      licence: 'ENTSO-E — reuse permitted with attribution',
-      attribution: 'Source: ENTSO-E Transparency Platform',
-    },
-    refreshHours: 12 * HOURS,
-    staleAfterHours: 3 * DAYS,
-    bearsOn: ['economics.merchGross'],
-    republishable: true,
-    requiresKey: true,
-    official: true,
-  },
+  entsoe("gb", ["GB day-ahead wholesale prices","英国日前批发电价"], {"sourceId":"gb-entsoe-transparency"}),
 
   // ---- Ireland · Romania · Poland — one connector, one token ---------------
-  {
-    id: 'ie-day-ahead',
-    kind: 'timeseries',
-    marketId: 'ie',
-    title: ['SEM day-ahead prices', '爱尔兰单一电力市场日前电价'],
-    connector: 'entsoe',
-    source: {
-      name: 'ENTSO-E Transparency Platform',
-      url: 'https://transparency.entsoe.eu/',
-      licence: 'ENTSO-E — reuse permitted with attribution',
-      attribution: 'Source: ENTSO-E Transparency Platform',
-    },
-    refreshHours: 12 * HOURS,
-    staleAfterHours: 3 * DAYS,
-    bearsOn: ['economics.merchGross'],
-    republishable: true,
-    requiresKey: true,
-    official: true,
-  },
-  {
-    id: 'ro-day-ahead',
-    kind: 'timeseries',
-    marketId: 'ro',
-    title: ['Romania day-ahead prices', '罗马尼亚日前电价'],
-    connector: 'entsoe',
-    source: {
-      name: 'ENTSO-E Transparency Platform',
-      url: 'https://transparency.entsoe.eu/',
-      licence: 'ENTSO-E — reuse permitted with attribution',
-      attribution: 'Source: ENTSO-E Transparency Platform',
-    },
-    refreshHours: 12 * HOURS,
-    staleAfterHours: 3 * DAYS,
-    bearsOn: ['economics.merchGross'],
-    republishable: true,
-    requiresKey: true,
-    official: true,
-  },
+  entsoe("ie", ["SEM day-ahead prices","爱尔兰单一电力市场日前电价"]),
+  entsoe("ro", ["Romania day-ahead prices","罗马尼亚日前电价"]),
   {
     id: 'pl-day-ahead',
     kind: 'timeseries',
@@ -205,13 +160,10 @@ export const DATASETS = [
     source: FINGRID, refreshHours: 12 * HOURS, staleAfterHours: 3 * DAYS,
     bearsOn: ['economics.services'], republishable: true, requiresKey: true, official: true,
   })),
-  {
-    id: 'fi-day-ahead', kind: 'timeseries', marketId: 'fi', connector: 'entsoe',
-    title: ['Finland day-ahead prices', '芬兰日前电价'],
-    source: { name: 'ENTSO-E Transparency Platform', url: 'https://transparency.entsoe.eu/', licence: 'ENTSO-E — reuse permitted with attribution', attribution: 'Source: ENTSO-E Transparency Platform' },
-    refreshHours: 12 * HOURS, staleAfterHours: 3 * DAYS,
-    bearsOn: ['economics.merchGross'], republishable: true, requiresKey: true, official: true,
-  },
+  entsoe("fi", ["Finland day-ahead prices","芬兰日前电价"]),
+
+  // Germany–Luxembourg: GAP-DE-PRICES stays blocked until owner rights clear.
+  entsoe("de", ["Germany–Luxembourg day-ahead prices","德卢日前电价"], {"republishable":false,"licence":"Publication rights unresolved — GAP-DE-PRICES / SRC-DE-19"}),
 
   // ---- Western Australia ---------------------------------------------------
   {
