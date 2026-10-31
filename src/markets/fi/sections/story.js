@@ -1,3 +1,4 @@
+import {isoStage} from '../../../experience/story/kit/symbols.js';
 /* Signature-scale and reserve-price evidence sections for the immersive story. */
 import {h,L,s,fill,words,shared,bound,parts,scene,note,readout,example,narrow,evidence,toggleGroup,stateFor,text} from '../story/ui.js';
 import {timeChart} from '../story/chart.js';
@@ -9,7 +10,7 @@ import {story} from '../story.js';
 
 const mw=v=>v.toLocaleString('en-US',{maximumFractionDigits:2})+' MW';
 function inspector(points,index,label,onChange){
-  const range=h('input',{type:'range',min:0,max:points.length-1,step:1,value:index,'aria-label':L(parts('Signature chart axis / definition')[0]),style:'width:100%;'});
+  const range=h('input',{type:'range',min:0,max:points.length-1,step:1,value:index,'aria-label':L(parts('Signature chart axis / definition')[0]),style:'width:100%;margin:0;display:block;'});
   range.oninput=e=>onChange(Number(e.target.value));
   const p=points[index];
   return h('div',{},h('label',{},L(label),range),
@@ -52,7 +53,9 @@ export function need(shot,{values,load=loadSnapshot}){
   fill(definitions,note(parts('Signature chart axis / definition')[2]),note(shared('Signature chart storage definition')),note(shared('Signature chart history mode')));
   const controls=toggleGroup({label:w.title,value:state.mode,options:[{value:'current',label:w.control(0)},{value:'history',label:w.control(1)}],onChange:mode=>{state.mode=mode;save();draw();}});
   const defs=toggleGroup({label:w.control(2),multi:true,options:[{value:'definitions',label:w.control(2),pressed:state.definitions}],onChange:(_,pressed)=>{state.definitions=pressed;save();draw();}});
-  fill(root,h('div',{class:'k-control-row'},controls,defs),legend,holder,status,inspect,definitions,
+  const thumbnail=isoStage({title:w.title,sky:false,viewBox:[500,240],origin:[215,50],items:[{symbol:'ground',at:[0,0],opts:{w:12,d:8}},{symbol:'battery',at:[1,2]},{symbol:'pcs',at:[5,2]},{symbol:'transformer',at:[7,4]},{symbol:'pylon',at:[10,6]}]});
+  thumbnail.setAttribute('style','width:180px;max-width:100%;');
+  fill(root,h('div',{class:'k-control-row'},controls,defs),thumbnail,legend,holder,status,inspect,definitions,
     note(shared('Fingrid attribution')),evidence(shot,values));
   draw();
   async function retrieve(reload=false){

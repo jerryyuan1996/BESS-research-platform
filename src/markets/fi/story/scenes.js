@@ -15,6 +15,7 @@ const station=(title,{count=3,future=false,plant=false}={})=>isoStage({
     {symbol:'battery',at:[1,3],opts:{count,future}},
     {symbol:'pcs',at:[5,3]},{symbol:'transformer',at:[7,5]},
     {symbol:'pylon',at:[12,8]},{symbol:plant?'plant':'industry',at:[9,1]},
+    ...(plant?[{symbol:'industry',at:[1,8]}]:[]),
   ],
   wires:[[[7.5,5.5],[12,8]]],
 });
@@ -49,7 +50,11 @@ function products(shot,{values}){
     if(state.view==='requirements'){
       for(const [label,key] of [['activation','productActivation'],['support','productSupport'],['direction','productDirection'],['approval','productApproval']])terms.append(h('dt',{},L(w.label(label))),h('dd',{},L(local[key])));
     }else terms.append(h('dt',{},L(product.label)),h('dd',{},text(shot.copy,local)));
-    fill(panel,station(w.title),terms,evidence(shot,local,{ids:product.sources}));
+    const resources=isoStage({title:w.title,sky:false,viewBox:[600,265],origin:[260,75],items:[{symbol:'ground',at:[0,0],opts:{w:15,d:10}},{symbol:'plant',at:[0,1]},{symbol:'industry',at:[6,1]},{symbol:'battery',at:[9,6],opts:{count:2}}]});
+    // A local, wordless reservoir outline distinguishes hydro from thermal plant.
+    resources.append(s('path',{'data-hydro':'true',d:'M35,105 h100 l15,70 h-130 z M20,185 q20,-10 40,0 t40,0 t40,0',fill:'#aebfc9',stroke:'#7b8c9e','stroke-width':2}));
+    const ladder=diagram(w.title,600,175,FI_RESERVE_PRODUCTS.map((p,i)=>s('g',{'data-response-rung':p.id},s('line',{x1:20+i*10,x2:570,y1:18+i*26,y2:18+i*26,stroke:p.id===state.product?'#224e40':'#c6ceb5','stroke-width':p.id===state.product?4:1}),s('text',{class:'k-label',x:25+i*10,y:14+i*26},L(p.label)))));
+    fill(panel,ladder,resources,note(parts('Diagram / history legend')[0]),terms,evidence(shot,local,{ids:product.sources}));
     panel.setAttribute('data-product',state.product);panel.setAttribute('data-view',state.view);
   };draw();
   return scene(toggleGroup({label:w.title,value:state.product,options:FI_RESERVE_PRODUCTS.map((p,i)=>({value:p.id,label:w.control(i)})),onChange:v=>{state.product=v;save();draw();}}),
@@ -109,6 +114,7 @@ function duration(shot,{values,row}){
     if(hours===null||!Number.isFinite(hours)){fill(panel,note(shared('Missing financial binding')));return;}
     fill(panel,station(w.title,{count:Math.min(6,Math.max(1,hours))}),
       readout(state.size==='longer'?L(w.control(1)):L(w.control(0)),' · ',L(pairNumber(hours)),state.size==='longer'?example():null),
+      diagram(w.title,600,125,s('rect',{'data-duration-layer':'power',x:20,y:18,width:260,height:30,fill:'#224e40'}),s('text',{class:'k-label',x:30,y:39},L(words(story.chapters[3].shots[0],values).label('headroom'))),s('rect',{'data-duration-layer':'energy',x:20,y:65,width:Math.min(560,260*hours/Number(values.playDuration)),height:30,fill:'#b8cda4'}),s('text',{class:'k-label',x:30,y:86},L(parts('Battery / station')[6]))),
       h('ul',{class:'k-key'},['energy','capital','use'].map(k=>h('li',{},L(w.label(k))))));
     panel.setAttribute('data-duration',String(hours));
   };draw();
@@ -158,7 +164,9 @@ function overview(shot,{values}){
   const w=words(shot,values),{state,save}=stateFor(shot.id,{factor:0}),panel=h('div',{});
   const draw=()=>{
     const factor=shot.extra.factors[state.factor]||shot.extra.factors[0];
-    fill(panel,station(w.title,{future:true}),note(factor.affects,values));
+    fill(panel,station(w.title,{future:true}),
+      state.factor===2?diagram(w.title,600,150,s('path',{'data-proposed-law':'true',d:'M220,10 h125 l35,35 v95 h-160 z M345,10 v35 h35 M240,70 h110 M240,90 h110 M240,110 h80',fill:'none',stroke:'#9dae99','stroke-width':2,'stroke-dasharray':'5 4'})):null,
+      note(factor.affects,values));
     panel.setAttribute('data-factor',factor.id);
   };draw();
   return scene(toggleGroup({label:w.title,value:state.factor,options:shot.extra.factors.map((_,i)=>({value:i,label:w.control(i)})),onChange:v=>{state.factor=v;save();draw();}}),panel,evidence(shot,values));
