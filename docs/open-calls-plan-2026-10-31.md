@@ -21,7 +21,7 @@ The analyst answered **“四项都选A”** — A on all four grouped questions
 | **3 — A / plan 3A** | Retain Romania's conditional opportunistic call: execution requires a floor, while the displayed economics remain merchant. Keep the historical grant deadline unresolved until a primary outcome is verified. | Primary-source grant-status review on **2 November 2026**. Floor terms remain the OC-RO-FLOOR research gate; no floor price or grant outcome is approved. |
 | **4 — A / plan 5A** | Use the expected January 2027 MORA release as ERCOT's next public research event; a private toll still needs separate underwriting. | **6 November 2026**, derived from the operator's publication cadence. No toll price, tenor or revenue assumption changes. |
 
-**Status: ruled, not implemented.** This update records the analyst's choices in this memo only. The selected dates are research checkpoints; no live trigger or scheduled job has been created. All model figures remain as documented at the research snapshot.
+**Status: ruled and applied (31 October 2026).** At the analyst's request the view changes for 2A, 3A, 4A and 5A were applied through the view writer by `scripts/view/content/open-calls-2026-10.mjs` (15 changelog lines), adding the triggers `ro-grant-status-review` (2 November) and `ercot-january-2027-mora` (6 November). 1A needs no change. No return, value, call, grade or ranking moved; the Romanian grant call `ro-grant-call-close` stays unresolved.
 
 ## Basis and current numbers
 
