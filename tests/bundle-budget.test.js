@@ -375,7 +375,10 @@ const BUDGET = {
     // RAISED FROM 98 TO 106 (2026-10-31): the open-calls plan's 15 lines
     // (Poland, Romania, Japan and ERCOT theses, plays, calls and two triggers)
     // took it to 102.57.
-    'changes': 106,
+    // RAISED FROM 106 TO 124 (2026-10-31): the view-text plan's 68 lines
+    // (typed returns out of prose in twelve markets, dated grade reasons, ten
+    // source fixes, each carrying a whole play, call or grade) took it to 120.79.
+    'changes': 124,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four
