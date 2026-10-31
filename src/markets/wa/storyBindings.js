@@ -12,10 +12,10 @@
      durationRequirement, requirementTerm   the capacity route's duration floor,
                                             read as src/comparison/designFit.js
                                             floorOf() reads it
-     requirementPath                        RCM_HISTORY.esr, the WA research
-                                            story tab's requirement table
+     requirementPath                        ESR_REQUIREMENT, the requirement table
+                                            the WA research story tab shows
    --------------------------------------------------------------------------- */
-import { RCM_HISTORY } from './data/rcmHistory.js';
+import { ESR_REQUIREMENT } from './data/esrRequirement.js';
 import { STAGE_WORD } from '../../governance/playTitle.js';
 
 const finite = (v) => typeof v === 'number' && Number.isFinite(v);
@@ -33,7 +33,7 @@ function capFloor(market){
 /** Token values for one market-page row. */
 export function storyValues(row){
   const floor = capFloor(row?.market);
-  const path = (RCM_HISTORY.esr || []).map(r => r.h).filter(finite);
+  const path = ESR_REQUIREMENT.map(r => r.h).filter(finite);
   return {
     playDuration: finite(row?.play?.hours) ? String(row.play.hours) : null,
     nextAction: Array.isArray(row?.play?.action?.text) ? row.play.action.text : null,

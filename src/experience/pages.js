@@ -16,6 +16,7 @@ import { gateLabel } from './labels.js';
 import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
 import { navigate } from '../app/router.js';
+import { storyFor } from './story/registry.js';
 
 const lens = () => LENSES[app.lens] ? app.lens : 'infraFund';
 const button = (label, onclick, cls = '') => h('button', { type: 'button', class: `ix-button ${cls}`, onclick }, L(label));
@@ -286,9 +287,16 @@ function renderMarket(container, row) {
     h('div', { class: 'ix-overview-body' }, h('div', {}, h('p', { class: 'ix-thesis' }, L(currentThesis(row))),
       link(`${caseUrl(row)}/home`, ['Explore the full market research ↗', '阅读完整市场研究 ↗'], 'ix-text-link')),
       h('aside', { class: 'ix-next-action' }, eyebrow(['NEXT INVESTMENT ACTION', '下一项投资行动']), h('p', {}, L(row.play?.action?.text || m.comparison.refinement?.currentUpdate || m.comparison.narrative.thesis))))));
+  /* A market with a story opens it here, with the full research one click
+     deeper inside it (src/experience/story/registry.js); every other market
+     opens the research dialog as before. */
+  const openResearch=trigger=>import('./researchDialog.js').then(module=>{if(trigger.isConnected)module.openResearchDialog(m,name(row),trigger);});
   const research=button(['Grid, history and full research context ↗','电网、历史与完整研究背景 ↗'],()=>{
     research.disabled=true;
-    import('./researchDialog.js').then(module=>{if(research.isConnected)module.openResearchDialog(m,name(row),research);})
+    const story=storyFor(mf.id);
+    (story
+      ? story.load().then(pack=>{if(research.isConnected&&!pack.open({row,name:marketName(row),trigger:research,openResearch,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
+      : openResearch(research))
       .catch(()=>{research.textContent=L(['Could not load; click to retry','暂未载入，点击重试']);})
       .finally(()=>{research.disabled=false;});
   },'ix-outline ix-full-research');
