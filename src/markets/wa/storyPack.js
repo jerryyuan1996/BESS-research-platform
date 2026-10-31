@@ -7,10 +7,7 @@ import '../../experience/story/kit/index.js';
 import { openStory } from '../../experience/story/shell.js';
 import { story } from './story.js';
 import { storyValues } from './storyBindings.js';
-
-/* Scene builders by the shots' `scene` ids; WP-07 draws them. A shot whose
-   scene is missing shows a labelled placeholder. */
-export const scenes = {};
+import { scenes } from './story/scenes.js';
 
 /** Open the WA story for a market-page row. See openStory() for ctx. */
 export function open(ctx){
