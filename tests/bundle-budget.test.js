@@ -371,7 +371,10 @@ const BUDGET = {
     // to 89.04 KiB, independently of the new homepage. History stays intact.
     // RAISED FROM 90 TO 98 (2026-10-29): the 19 play-label lines, each carrying
     // a whole play before and after, took it to 95.48.
-    'changes': 98,
+    // RAISED FROM 98 TO 106 (2026-10-31): the open-calls plan's 15 lines
+    // (Poland, Romania, Japan and ERCOT theses, plays, calls and two triggers)
+    // took it to 102.57.
+    'changes': 106,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four

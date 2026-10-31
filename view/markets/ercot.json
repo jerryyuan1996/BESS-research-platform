@@ -266,10 +266,12 @@
         "The easiest market on the platform to connect to, with a large load queue behind it.",
         "这是本平台各市场中最容易并网的一个，背后还有庞大的大负荷排队。"
       ],
-      "changesIf": [],
+      "changesIf": [
+        "ercot-january-2027-mora"
+      ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "lockedUntil": null,
       "play": "ercot-toll-2h"
     },
@@ -346,7 +348,33 @@
       "lockedUntil": null
     }
   },
-  "triggers": [],
+  "triggers": [
+    {
+      "id": "ercot-january-2027-mora",
+      "kind": "event",
+      "market": "ercot",
+      "label": [
+        "January 2027 MORA: review winter evening adequacy and battery availability",
+        "2027年1月资源充裕度月报：复核冬季晚高峰供需与电池可用性"
+      ],
+      "expected": "2026-11-06",
+      "watches": [
+        "demandGrowth",
+        "saturation"
+      ],
+      "direction": "either",
+      "source": {
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/gridinfo/resource",
+        "access": "opened"
+      },
+      "note": [
+        "ERCOT issues the MORA on the first Friday of each month, two months ahead of the reporting month (December 2026's was published on 2 October 2026). It informs demand and saturation; it is not evidence of a toll price.",
+        "ERCOT于每月第一个星期五发布资源充裕度月报，提前两个月覆盖报告月份（2026年12月月报于2026年10月2日发布）。该报告反映需求与饱和程度，但不能作为租赁价格的依据。"
+      ],
+      "effect": null
+    }
+  ],
   "plays": {
     "ercot-toll-2h": {
       "id": "ercot-toll-2h",
@@ -363,13 +391,13 @@
       ],
       "action": {
         "text": [
-          "Engage only with an executed toll: get its price and test it against the 2025 realised index before any bid.",
-          "只考虑已签署租赁的项目：出价前取得租赁价格，并与2025年实际指数对比检验。"
+          "Read the January 2027 MORA on 6 November for winter evening adequacy and battery availability. Engage only with an executed toll: get its price and test it against the 2025 realised index before any bid.",
+          "于11月6日阅读2027年1月资源充裕度月报，复核冬季晚高峰供需与电池可用性。只考虑已签署租赁的项目：出价前取得租赁价格，并与2025年实际指数对比检验。"
         ],
-        "due": null
+        "due": "2026-11-06"
       },
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     }
   }
