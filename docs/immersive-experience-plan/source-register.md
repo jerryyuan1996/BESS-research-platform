@@ -438,3 +438,858 @@ Six nodes. Dates are authoring metadata; page dates use bound history labels. An
 - Confirm narrower power-liquidity wording and current-law qualification. Retain the published fund call and `de-toll-4h`; do not replace them with the score band or add hypothetical capacity income.
 - Review the existing model discussion's indicative storage-network-cost range, which acknowledges that the current draft level was not re-read. SRC-DE-09 sets no final rate. No fee, discount rate, capture factor or published number is proposed/changed here.
 - Approve the qualitative Example fallback or keep the observed signature chart pending until GAP-DE-PRICES closes in the build step. Script sign-off approves neither a dataset licence nor a project contract or construction.
+
+## Approved G-1 research consolidation — 1 November 2026
+
+The eight approved scripts now link to these canonical records. Consolidation preserves the researched content and its original verification state; it does not register a dataset, clear reuse rights or turn an assumed contract into an executed one. The dated numerical plan and separate model PRs govern financial inputs.
+
+### Identifier migration
+
+Existing foundation IDs retain their original meanings. These incoming script IDs were renamed to avoid collisions; earlier PR discussions retain their original, script-local labels.
+
+| Original script | Incoming ID | Canonical ID |
+| --- | --- | --- |
+| Great Britain / 英国 | `CL-GB-01` | `CL-GB-19` |
+| Great Britain / 英国 | `CL-GB-02` | `CL-GB-20` |
+| PJM | `CL-PJM-01` | `CL-PJM-16` |
+| Poland / 波兰 | `CL-PL-01` | `CL-PL-19` |
+| Poland / 波兰 | `CL-PL-02` | `CL-PL-20` |
+
+
+<a id="g1-ie-evidence"></a>
+
+### Ireland / 爱尔兰 — G-1 evidence, 1 November 2026
+
+Source owner for [ireland shot references](ireland-storyboard.md). Original check dates, access limits and G-2 gates remain as recorded.
+
+New records for this market only. A later PR folds them into `source-register.md`. Check date for every record: **31 October 2026**. "Read in full" means the document was downloaded and read; "listing only" means it was found but not opened.
+
+### Repository evidence
+
+| ID | Record | Locator | Use |
+| --- | --- | --- | --- |
+| REPO-IE-LIVE | Current approved view and briefing | view/markets/ie.json: verdicts.infraFund = wait, plays.ie-cap-6h; bind current evidence and triggers. Original edcb39c is historical only | ie-00, ie-08, ie-09, ie-12 |
+| REPO-IE-CMP | Approved comparison and nominal investment layer | src/markets/ie/comparison.js: same-vintage factor and curve, retained services seed/decay; src/acquisition/cashflows.js: nominal conversion; docs/ireland-six-hour-learning-2026-11-01.md | CF-IE-01, CF-IE-05 |
+| REPO-IE-DATA | Dashboard seed | `src/markets/ie/data.js`: `CRM de-rating factor 4h`, 0.66, marked "illustrative", "verify auction vintage" | CF-IE-05 |
+| REPO-IE-DP | Decision profile | `src/markets/decisionProfiles.js`, `ie.consensus` and `ie.currentUpdate`: June 2026 TSO statement that May 2027 DASSA go-live is not feasible | CF-IE-02 |
+| REPO-IE-SUM | Investment summary | `src/opportunities/summaryData.js` → `OPPORTUNITY_SUMMARY.infraFund.markets.ie`: `secured`, `securedYears`, `bridge.service` (zero) | CF-IE-01, CF-IE-03 |
+
+### External sources
+
+| ID | Publisher and title | Locator / URL | How read | Supports |
+| --- | --- | --- | --- | --- |
+| SRC-IE-01 | SEM Committee, "SEM" | https://www.semcommittee.com/sem, opening paragraphs | Read in full | CL-IE-18 |
+| SRC-IE-02 | SEM Committee, "SEM arrangements (2007–2018)" | https://www.semcommittee.com/node/2844 | Listing only | CL-IE-18 |
+| SRC-IE-03 | EirGrid and SONI, DS3 Programme Overview 2011 | https://cms.eirgrid.ie/sites/default/files/publications/DS3-Programme-Overview-2011.pdf, §1 (programme established) and the frequency workstream (rate of change of frequency as the key limit above 50% SNSP) | Read in full | CL-IE-18, CL-IE-19 |
+| SRC-IE-04 | EirGrid Group, "DS3 Programme" | https://www.eirgridgroup.com/how-the-grid-works/ds3-programme/, "What DS3 achieved" | Read in full | CL-IE-19, CL-IE-03 |
+| SRC-IE-05 | SEM Committee, SEM-19-062 System Services Fixed Contracts Procurement Outcomes, Information Paper, 13 November 2019 | https://www.semcommittee.com/files/semcommittee/media-files/SEM-19-062%20-%20System%20Services%20Fixed%20Contracts%20Procurement%20Outcomes%20-%20Information%20note.pdf, outcome section | Read in full | CL-IE-03 |
+| SRC-IE-06 | EirGrid and SONI, DS3 System Services Recommendations Paper (volume capped) | https://cms.eirgrid.ie/sites/default/files/publications/DS3-System-Services-Recommendations-Paper-website.pdf | Search extract; five services confirmed by SRC-IE-05 | CL-IE-03, ie-07 |
+| SRC-IE-07 | SEM Committee, SEM-25-031 FASS: System Services Regulated Arrangements to Future Arrangements – The Gap, Decision Paper, 23 June 2025 | https://www.semcommittee.com/files/semcommittee/2025-06/SEM-25-031%20System%20Services%20Regulated%20Arrangements%20to%20FASS%20-%20The%20Gap%20-%20Decision%20Paper.pdf, executive summary p. 2; §3.1 and Decisions 1–2, p. 9 | Read in full | CL-IE-04, CL-IE-06 |
+| SRC-IE-08 | EirGrid and SONI, FASS Programme Phased Implementation Roadmap V3.0, June 2025 | https://cms.soni.ltd.uk/sites/default/files/publications/FASS-TSOs-PIR-June%202025-SONI.pdf, introduction | Read in full | CL-IE-05 |
+| SRC-IE-09 | Future Power Markets Design Authority Update, issues 26 and 27 (November and December 2025) | https://www.eirgrid.ie/sites/default/files/publications/Future_Power_Markets_Design_Authority_Newsletter-Issue_26-November_2025.pdf | Search extract; superseded by SRC-IE-24 | CL-IE-05 |
+| SRC-IE-10 | SEM Committee, SEM-24-066 FASS DASSA Design Decision Paper | https://www.semcommittee.com/files/semcommittee/2024-09/SEM-24-066%20-%20SEMC%20FASS%20DASSA%20Design%20Decision%20Paper.pdf | Listing only | CL-IE-05 |
+| SRC-IE-11 | SEMO, 2029/2030 T-4 Provisional Capacity Auction Results, PCAR2930T-4, 14 April 2026 | https://www.sem-o.com/sites/semo/files/2026-04/PCAR2930T-4%20report.pdf, Tables 1, 3–6 | Read in full; superseded by SRC-IE-21 | CL-IE-08 |
+| SRC-IE-12 | SEMO, 2028/2029 T-4 Final Capacity Auction Results, FCAR2829T-4 v1.0, 16 January 2025 | https://www.sem-o.com/sites/semo/files/documents/general-publications/20282029-T-4-Final-Capacity-Auction-Results-Report-FCAR2829T-4.pdf, Tables 7–8 | Read in full | CL-IE-07 |
+| SRC-IE-13 | SEM Committee, SEM-25-019 CRM 2028/29 T-4 Auction, Volumes Information Note, 3 June 2025 | https://www.semcommittee.com/files/semcommittee/2025-06/2028%2029%20T-4%20Volumes%20Information%20Paper%20SEM-25-019%20for%20publication.pdf, p. 21 | Read in full | CL-IE-07, CL-IE-15 |
+| SRC-IE-14 | SEMO, 2029/2030 T-4 Initial Auction Information Pack, IAIP2930T-4 v1.1, 13 August 2025 | https://www.sem-o.com/sites/semo/files/2025-08/IAIP2930T-4.pdf, Table 3 (Other Storage curves) and Table 30 (de-rating curves final at IAIP) | Read in full | CL-IE-10, CL-IE-15 |
+| SRC-IE-15 | SEM Committee, SEM-16-082 CRM Capacity Requirement and De-rating Methodology Decision | https://www.semcommittee.com/files/semcommittee/media-files/SEM-16-082%20CRM%20Capacity%20Requirement%20%20De-rating%20Methodology%20Decision%20Paper.pdf | Search extract | CL-IE-10 |
+| SRC-IE-16 | SEMO, Capacity Market Settlement training (I-SEM, 1 September 2017); SEM Committee, SEM-16-073 CRM Parameters Consultation | https://www.sem-o.com/sites/semo/files/documents/training/Capacity-Market-Settlement.pdf, overview slides on supplier charging, strike price and difference payments; https://www.semcommittee.com/files/semcommittee/media-files/SEM-16-073%20CRM%20Parameters%20Consultation%20.pdf | Training read in full; SEM-16-073 search extract | CL-IE-09 |
+| SRC-IE-17 | SEM Committee, SEM-26-037 High level design options for CRM 2.0, Consultation Paper, 3 July 2026 (responses closed 4 September 2026) | https://www.semcommittee.com/files/semcommittee/2026-07/sem-26-037-consultation-crm-design-options_v200.pdf, executive summary; §2.1 delivery timeframe; §2.3 de-rating factors | Read in full | CL-IE-09 (strike), CL-IE-13 |
+| SRC-IE-18 | CSO, Data Centres Metered Electricity Consumption 2025, key findings | https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2025/keyfindings/ | Read in full | CL-IE-11 |
+| SRC-IE-19 | Department of Climate, Energy and the Environment, press release on the Greenlink interconnector | https://www.gov.ie/en/department-of-climate-energy-and-the-environment/press-releases/minister-obrien-welcomes-new-electricity-interconnector-as-it-begins-powering-irelands-and-the-uks-energy-grids | Listing only; the host refused the download | CL-IE-12 |
+| SRC-IE-20 | EirGrid, Celtic Interconnector programme (`celtic` in `src/markets/ie/sources.js`) | https://www.eirgrid.ie/celticinterconnector | Repository record | CL-IE-12 |
+| SRC-IE-21 | SEMO, T-4 Final Capacity Auction Results reports for delivery years 2022/23 to 2029/30 (eight reports; 2029/30 is FCAR2930T-4 v1, 5 May 2026) | Listed at https://www.sem-o.com/markets/capacity-market-overview; 2029/30 at https://www.sem-o.com/sites/semo/files/2026-05/2029_2030%20T-4%20Final%20Capacity%20Auction%20Results%20Report%20FCAR2930T-4.pdf, Tables 1, 3–6. Locators per row in CALC-IE-CRM | Read in full | CL-IE-07, CL-IE-08, CL-IE-16 |
+| SRC-IE-22 | SEMO, T-4 Initial Auction Information Packs for delivery years 2022/23 to 2030/31 (2030/31 is IAIP3031T-4 v1.0, 4 August 2026) | Listed at https://www.sem-o.com/markets/capacity-market-overview; 2030/31 at https://www.sem-o.com/sites/semo/files/2026-08/IAIP3031T-4.pdf. Table 3, Other Storage, in each | Read in full | CL-IE-10, CL-IE-15 |
+| SRC-IE-23 | (reserved) | | | |
+| SRC-IE-24 | EirGrid, Future Markets industry workshop presentations, 24 June 2026 and 21 October 2026 | https://cms.eirgrid.ie/sites/default/files/publications/FM-Industry-Workshop-Presentation-June-2026.pdf, "FASS Summary Status"; https://cms.eirgrid.ie/sites/default/files/publications/FM-Industry-Workshop-Presentation-October-2026.pdf.pdf, "FASS Summary Status" | Read in full | CL-IE-05, CL-IE-17 |
+
+Licence-restricted reports are not sources here. The commercial analysis cited in `comparison.js` comments is not used.
+
+<a id="g1-ie-history"></a>
+
+### Historical nodes
+
+| ID | Event | Date or period | Source | Interpretation (separate) |
+| --- | --- | --- | --- | --- |
+| H-IE-01 | All-island Single Electricity Market goes live | 1 November 2007 | SRC-IE-01 | One market for two jurisdictions |
+| H-IE-02 | EirGrid and SONI establish the DS3 programme | 2011 | SRC-IE-03, SRC-IE-04 | High wind needs paid system capability |
+| H-IE-03 | New market arrangements go live, with the capacity mechanism | 1 October 2018 | SRC-IE-01 | Capacity bought years ahead becomes standing design |
+| H-IE-04 | Fixed six-year volume-capped DS3 contracts awarded; all three successful providers are batteries | 2019 (outcome paper dated 13 November 2019) | SRC-IE-05 | Fast services built the first fleet |
+| H-IE-05 | SNSP limit reaches 75% (65% by 2018, 70% in 2021) | March 2022 | SRC-IE-04 | The DS3 goal is met |
+| H-IE-06 | SEM-25-031: tariffs to the earlier of DASSA go-live or the long-stop; no further extension | 23 June 2025 | SRC-IE-07 | Services income gets an end date |
+
+Future (dashed): DS3 long-stop 30 September 2027 (SRC-IE-07); DASSA go-live, no date set at 21 October 2026 (SRC-IE-24); 2030/31 T-4 auction, Q1 2027 per the TSOs' June 2026 workshop (SRC-IE-24); Celtic interconnector, expected year per SRC-IE-20.
+
+### Claim ledger
+
+[Canonical claim ledger / 统一主张表](market-narratives.md#g1-ie-claims)
+
+### Signature chart: Chart-IE-CRM and CALC-IE-CRM
+
+Values are as published; nothing is calculated. Factor: Table 3 of the auction's Initial Auction Information Pack, Other Storage, row 40 < IC ≤ 50 MW (the archetype is 50 MW). Battery storage awarded: the final report's breakdown by technology class. The four earlier reports publish no battery total: it would have to be summed from their unit tables (GAP-IE-CRM), and the chart's toggle shows only the auctions that publish one.
+
+| Delivery year | Auction held | Final results report | Clearing price, EUR per MW per year | Factor, 2 h | Factor, 4 h | Battery awarded, new / existing (de-rated MW) |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2022/23 | 28 March 2019 | T-4 2022/23 FCAR v1.2 | 46,150 | 0.554 | 0.721 | not totalled |
+| 2023/24 | 27 April 2020 | T-4 2023/24 FCAR v1.3 | 46,149.00 | 0.597 | 0.745 | not totalled |
+| 2024/25 | 21 January 2021 | T-4 2024/25 FCAR v1.2 | 47,820.00 | 0.376 | 0.585 | not totalled |
+| 2025/26 | 24 March 2022 | T-4 2025/26 FCAR v1.0 | 46,000.00 | 0.376 | 0.585 | not totalled |
+| 2026/27 | 23 March 2023 | FCAR2627T-4 v1.0, 4 May 2023, Table 8 | 83,050 | 0.376 | 0.585 | 105.245 / 3.718 |
+| 2027/28 | 26 October 2023 | FCAR2728T-4 v1.0, 5 December 2023, Table 7 | 106,666.67 | 0.190 | 0.291 | 18.553 / 16.126 |
+| 2028/29 | 17 December 2024 | FCAR2829T-4 v1.0, 16 January 2025, Table 7 | 149,960.00 | 0.145 | 0.268 | 132.462 / 14.515 |
+| 2029/30 | 26 March 2026 | FCAR2930T-4 v1, 5 May 2026, Table 3 | 135,499.99 | 0.143 | 0.277 | 25.594 / 13.158 |
+| 2030/31 | Expected Q1 2027 | Not held; IAIP3031T-4 v1.0, 4 August 2026 | — | 0.081 | 0.151 | — |
+
+| Field | Entry |
+| --- | --- |
+| Question | What does the capacity auction pay per credited MW, and how much of a battery's power does it credit? |
+| Dataset | **Not registered.** `src/governance/datasets.js` lists only `ie-day-ahead` for Ireland and deliberately excludes capacity-market results ("analyst-entered until a connector exists"). Proposed for the build: this table as a fixed-vintage, analyst-entered record (like CALC-WA-DAY), refreshed after each auction and each information pack, not an ETL feed |
+| Rights | SEMO publications; link and cite, original drawing; no participant names |
+
+### Gaps and conflicts
+
+| ID | Issue | Shots | Temporary treatment | Next action |
+| --- | --- | --- | --- | --- |
+| GAP-IE-CRM | Battery totals for the four earlier T-4 auctions are not published as totals | ie-06 | Toggle shows the four recent auctions only | Optional: sum from the reports' unit tables with a calculation record |
+| GAP-IE-DS3-TERMS | DS3 service response times and terms not extracted | ie-04 | Purposes only | Read the DS3 protocol |
+| GAP-IE-LINKS | Interconnector list and capacities not reviewed | ie-01 | No MW on the map | Analyst review against operator pages |
+| CF-IE-01 | Closed by approved wording: services remain an uncontracted assumed contribution inside trading, without extending DS3 tariffs | ie-00, ie-05, ie-10 | The bridge’s lack of a separate services slice does not mean zero services income | Keep future procurement and co-optimisation as research gates |
+| CF-IE-02 | The June 2026 "May 2027 not feasible" record (REPO-IE-DP) does not appear in the TSOs' June or October 2026 workshop decks, which say only that the programme is red and PIR v4.0 is in drafting | ie-05 | Page says "start date not confirmed" | Find the 2 June 2026 stakeholder email or PIR v4.0 |
+| CF-IE-03 | Closed: use row.investment.secured and its own denominator and tenor | ie-09 | Bind the current result | No comparison with a different return basis |
+| CF-IE-05 | Closed by the approved source-matched capacity correction, six-hour candidate and Wait | ie-06, ie-08, ie-09, ie-11 | Earlier illustrative credit is historical only | Project award, cost and trading evidence remain underwriting gates |
+
+Closed in this revision: GAP-IE-DERATE (factors extracted, now CF-IE-05), GAP-IE-SETTLE (SEMO settlement guide), CF-IE-04 (six-year term, SRC-IE-05).
+
+<a id="g1-it-evidence"></a>
+
+### Italy / 意大利 — G-1 evidence, 1 November 2026
+
+Source owner for [italy shot references](italy-storyboard.md). Original check dates, access limits and G-2 gates remain as recorded.
+
+Check date for every record: **31 October 2026**. "Opened" means the document was downloaded from the publisher and the cited passage read on that date. "Not opened" means the locator was found but the passage was not read; the record says why. "Repository record" means the platform's own register (`src/markets/it/sources.js`), which records an earlier opening. Licence-restricted reports are not used. Trade press (pv magazine Italia, ESS News, QualEnergia, Rinnovabili, Il Sole 24 Ore, October 2026) served only to find primary documents and is not cited as a source.
+
+### Sources
+
+Existing records SRC-IT-01 to 04 are in the [source register](source-register.md); this dated research record adds:
+
+| ID | Publisher · title | Locator | Supports (event) | Access / status |
+| --- | --- | --- | --- | --- |
+| SRC-IT-05 | ARERA · Deliberazione 103/2019/R/eel, 19 Mar 2019 | https://www.arera.it/allegati/docs/19/103-19.pdf, Delibera points 1–2 | Completes Terna's zone review: Umbria moves from Centre-North to Centre-South, a Calabria zone replaces the Rossano limited-production pole, effective 1 Jan 2021; the Brindisi, Foggia and Priolo poles are removed. The physical zones are therefore North, Centre-North, Centre-South, South, Calabria, Sicily and Sardinia | Opened |
+| SRC-IT-06 | GME · MGP results by zone | https://www.mercatoelettrico.org/en/ (repository record `gme`) | Day-ahead prices cleared by zone; the 2025 South series behind the merchant evidence | Repository record; site reachable, series not re-read |
+| SRC-IT-07 | MASE · Decree 259 of 6 Aug 2026, capacity-market rules for delivery 2028 | https://www.mase.gov.it/portale/mercato-elettrico (listed); summarised in SRC-IT-09, "Considerato, in aggiunta" | Approved the delivery-2028 rules and DTF 2, and required Terna to re-assess storage de-rating before the auction if authorised storage had grown | Content read through ARERA 370/2026; decree PDF not opened |
+| SRC-IT-08 | MASE · Decree 327 of 16 Oct 2026 approving DTF 2 and Annex 4 for delivery 2028 | https://www.mase.gov.it/portale/documents/d/guest/dm_327_16-10-2026-pdf (Art. 1); Annex 4: https://www.mase.gov.it/portale/documents/d/guest/all_4_dtf_2-pdf, §8.3 and Table 11, p. 33 | Credited share (CDP) of new electrochemical storage by duration and zone group; who keeps the delivery-2027 factors; capacity-market area structure (Annex 4 §1.1, Table 1: eight areas, Sardinia split) | Opened |
+| SRC-IT-09 | ARERA · Deliberazione 370/2026/R/eel, 14 Oct 2026 | https://www.arera.it/fileadmin/allegati/docs/26/370-2026-R-eel.pdf, pp. 9–11 and Delibera point 1 | Compliance of Terna's second delivery-2028 DTF 2 proposal (18 Sep 2026), limited to delivery 2028; storage de-rating raised by macro-zone, reducing new batteries' remuneration ceteris paribus. Also records the discipline's approval by decree of 28 Jun 2019, the first two auctions in November 2019, and the delivery-2027 auction in February 2025 | Opened |
+| SRC-IT-10 | Terna · Delivery-2028 auction notice | Expected under https://www.terna.it/it/sistema-elettrico/mercato-capacita | Auction on 21 Dec 2026; applications 20 Oct to 3 Nov 2026 | Not opened: not listed on Terna's capacity page at check; dates from press only |
+| SRC-IT-11 | Terna · Rendiconto degli esiti, Asta Madre 2027 | https://download.terna.it/terna/Rendiconto-Esiti-Asta-Madre_2027_8dd97982c75d724.pdf, Executive Summary p. 3 and "Capacità Nuova Assegnata" p. 8 | Auction held 26–27 Feb 2025. Existing capacity 38,047 MW and new authorised capacity 594 MW, both at a premium of €47,000/MW/year; all figures are de-rated capacity (CDP). Storage is about 95% of the new capacity | Opened |
+| SRC-IT-12 | Terna · Capacity-market discipline (decree of 28 Jun 2019) and first auctions, delivery 2022 and 2023 | Results report: https://download.terna.it/terna/2019_12_06_Rendiconto%20EsitiAsta%202022_PUBBLICATO_8d7c06cc9f8470b.pdf | Reliability-option design: premium per MW, repayment above a strike price, multi-year contracts for new capacity | Dates opened in SRC-IT-09; strike and contract clauses not extracted (GAP-IT-STRIKE) |
+| SRC-IT-13 | Legislative Decree 210/2021, Art. 18 | https://www.normattiva.it/ (decreto legislativo 8 novembre 2021, n. 210) | Introduces forward procurement of electricity storage capacity | Cited by SRC-IT-14 and SRC-IT-16; decree text not opened |
+| SRC-IT-14 | ARERA · Deliberazione 247/2023/R/eel, 6 Jun 2023, and Annex A (updated) | https://www.arera.it/fileadmin/allegati/docs/23/247-23-reel-allegato-a-aggiornato.pdf, Arts. 6.3, 6.6, 11–13 | Contracted storage is made available to Terna for time-shifting contracts exercised by third-party market operators and traded through a central GME platform; it must also be offered on MSD within price limits; a percentage of positive MSD margin goes to reduce system charges and the rest to the storage's dispatch user | Opened |
+| SRC-IT-15 | MASE · Decree 346 of 10 Oct 2024 approving the MACSE rules | https://mase.gov.it/sites/default/files/Archivio_Energia/Archivio_Normativa/dm_346_10.10.2024.pdf (repository record `dm346`) | Ministerial approval of Terna's MACSE rules | Repository record, opened 12 Oct 2026 |
+| SRC-IT-16 | Terna · "Terna completes first MACSE auction: 10 GWh of energy storage capacity awarded" | https://www.terna.it/en/media/press-releases/detail/completed-first-macse-auction | 30 Sep 2025; 10 GWh procured in Southern Italy and the islands, 100% of demand; bids above four times demand; weighted average €12,959/MWh-year (Central-South 14,566; South and Calabria 12,146; Sicily 15,846; Sardinia 15,029), against a reserve premium of €37,000; four areas; lithium-ion systems entering operation in 2028; framework from D.Lgs. 210/2021 and ARERA 247/23, approved October 2024 | Opened. Gives no MW, project count or contract term (GAP-IT-MACSE-MW) |
+| SRC-IT-17 | ARERA · Deliberazione 362/2025/R/eel, 30 Jul 2025 | https://arera.it/atti-e-provvedimenti/dettaglio/25/362-25 | Maximum premium for the first MACSE auction (€37,000/MWh/year, as recited in SRC-IT-19) | Value read through SRC-IT-19 |
+| SRC-IT-18 | ARERA · Consultation 283/2026/R/eel, 30 Jul 2026 | https://www.arera.it/fileadmin/allegati/docs/26/283-2026-R-eel.pdf (repository record `arera283`) | Proposed maximum premium for the delivery-2029 auction | Opened |
+| SRC-IT-19 | ARERA · Deliberazione 332/2026/R/eel, 24 Sep 2026 | https://www.arera.it/fileadmin/allegati/docs/26/332-2026-R-eel.pdf, pp. 4–5 and Delibera point 1 | Maximum premium for the second battery auction, 24 Nov 2026: €27,000/MWh/year (first auction €37,000); 12% oversizing coefficient kept; Terna published the requirement documents on 28 May 2026 | Opened |
+| SRC-IT-20 | MASE · Decree of 27 Mar 2026 (MACSE rules for the second battery auction) and Decree 162 of 20 May 2026 (16 GWh requirement for 2029) | https://www.mase.gov.it/portale/mercato-elettrico (listing); both recited in SRC-IT-19, p. 4 | Second auction's rules and 16 GWh requirement, net of storage entering through other routes before the auction | Read through SRC-IT-19 and the MASE listing; area limits not opened |
+| SRC-IT-21 | Terna · Development Plan 2025, public-consultation presentation (hosted by ARERA) | https://www.arera.it/fileadmin/allegati/operatori/pds/25/Presentazione_della_consultazione_pubblica_sul_Piano_di_sviluppo_2025.pdf, slide "Richieste di Connessione: FER" | Renewable connection requests on the HV grid are mainly in the regions of the South and the islands; a separate slide sets out storage connection requests against MACSE requirements by area | Opened; storage quantities by region are in a map not machine-read (GAP-IT-QUEUE) |
+| SRC-IT-22 | Terna · Tyrrhenian Link and Adriatic Link project pages | Repository records `tyrrhenian`, `adriatic` | Named links and their planned dates | Repository records |
+| REPO-IT-LIVE | This repository at `edcb39c` | `view/markets/it.json`; the briefing built for 2026-10-31; `src/opportunities/summaryData.js`; `src/markets/it/comparison.js` | The live calls, plays, triggers, card and design results | Read in this session |
+
+<a id="g1-it-history"></a>
+
+### Historical nodes (event separate from interpretation)
+
+| Node | Event and date | Source | Why it matters (interpretation) |
+| --- | --- | --- | --- |
+| H-IT-01 | First capacity-market auctions, November 2019, for delivery 2022 and 2023 | SRC-IT-09, SRC-IT-12 | Italy chose to pay for available capacity years ahead; storage later competes in that market |
+| H-IT-02 | New zone configuration in force, 1 Jan 2021 | SRC-IT-05 | A battery's trading price is its zone's |
+| H-IT-03 | Legislative Decree 210/2021, Art. 18, 8 Nov 2021 | SRC-IT-13 | A storage-only contract is created beside the capacity market |
+| H-IT-04 | Capacity auction for delivery 2027, 26–27 Feb 2025 | SRC-IT-11 | Batteries take about 95% of new capacity |
+| H-IT-05 | First MACSE auction, 30 Sep 2025 | SRC-IT-16 | Storage in the south and islands contracted per MWh, entering operation in 2028 |
+| H-IT-06 | Delivery-2028 de-rating decided by zone, 16 Oct 2026 | SRC-IT-08, SRC-IT-09 | The capacity line of a new battery now depends on its zone |
+
+### Claims
+
+Existing claims CL-IT-01 to 03 stay in the source register. This script supplies their sources: SRC-IT-11 and SRC-IT-12 for CL-IT-02, and SRC-IT-14 and SRC-IT-16 for CL-IT-03, the latter now opened.
+
+[Canonical claim ledger / 统一主张表](market-narratives.md#g1-it-claims)
+
+### Conflicts, gaps and the dataset needed
+
+| ID | Item | Affects | Treatment |
+| --- | --- | --- | --- |
+| CF-IT-01 | The call's trigger is resolved: for new storage, four-hour factors are 40%, 51%, 21% and 21% by zone group, against the 0.53 the play and its action price; the south and islands are lowest | it-00, it-05, it-06, it-11; the call | Resolved: earlier-awarded RTB scope only; new storage needs a separate zonal case |
+| CF-IT-02 | Two return bases: the card's investment-summary hold against the briefing's design-grid hold (typed in `play.why` and the thesis) | it-00, it-10 | Bind each to its own field with a basis label; never mix |
+| CF-IT-03 | Typed figures in the view thesis, `despite` and trigger label are stale against the decision | Copy only | Not copied; flagged |
+| CF-IT-04 | Wording only: Terna's release calls the first auction's €37,000 the "reserve premium", ARERA calls the cap the "maximum premium", and `src/markets/it/data.js` uses "reserve premium" for the second auction's €27,000 | it-10 | Use "maximum premium" (ARERA's term) on the page |
+| CF-IT-05 | The repository records the first MACSE auction as 9,968 MWh, 1,491 MW and 14 projects (6.68 hours). Terna's release gives only "10 GWh" | it-07 | Bind ‹bound: MACSE awarded hours› only once Terna's results report is opened (GAP-IT-MACSE-MW) |
+| GAP-IT-AUCTIONS | No Italian dataset is registered; Chart-IT-FORK needs `it-auction-results` | it-05, it-08 | Build gap; Example fallback |
+| GAP-IT-MACSE-MW | Terna's first-auction results report with awarded MW, MWh, projects and the contract term | it-03, it-07, it-08 | Locate on Terna's MACSE page before build |
+| GAP-IT-DY27 | Annex 3 to DTF 2 (delivery-2027 factors, the 0.67 at four hours) not located on Terna's site, which loads documents dynamically | it-05, it-08 | Use the repository record until opened |
+| GAP-IT-STACK | Whether one battery can hold both contracts. ARERA 247/2023 does not state it; Annex 4 §8.3 counts MACSE batteries in adequacy at the delivery-2027 factor "consistent with the values used to estimate the MACSE need". Read the MACSE rules | it-03, it-08 | Keep the view's "never stacked"; confirm before build |
+| GAP-IT-STRIKE | Strike-price level and stress-hour obligations | it-02, it-09 | Qualitative |
+| GAP-IT-QUEUE | Storage connection requests by region | it-04 | Stacked symbols, not to scale |
+| GAP-IT-ZONES | **Closed.** SRC-IT-05 gives seven physical day-ahead zones from 2021; `src/markets/it/data.js` says six | it-01 | Bind names; Corrected in the separate Italy change: seven physical zones, distinct from procurement groups |
+
+<a id="g1-gb-evidence"></a>
+
+### Great Britain / 英国 — G-1 evidence, 1 November 2026
+
+Source owner for [great-britain shot references](great-britain-storyboard.md). Original check dates, access limits and G-2 gates remain as recorded.
+
+New records for this market. They were consolidated here after the approved script PRs merged. All checked **31 October 2026**. The first draft could only locate sources by web search. After network access was opened the same day, the documents and datasets were downloaded and read; the access table after the source list says which were opened and which were not.
+
+### Repository records
+
+| ID | Record | Locator |
+| --- | --- | --- |
+| REPO-GB-LIVE | Live fund call and play | `view/markets/gb.json` (`verdicts.infraFund`, `plays.gb-toll-4h`, `triggers`); `view/index.json`; `src/experience/model.js` `opportunities('infraFund')`; commit `edcb39c`, briefing date 2026-10-31 |
+| REPO-GB-01 | Model inputs the story binds or must not cite | `src/markets/gb/comparison.js`: published de-rating curve (gate G1, closed 2026-10-15); toll assumption (`toll`, `tollYears`, `tollAdditiveWithCapacity`, `tollRevertsToMerchant`); `merchGross` labelled ASSUMPTION from a subscription index, not citable |
+| REPO-GB-02 | Registered GB datasets | `src/governance/datasets.js`: only `gb-day-ahead` (ENTSO-E). No NESO service, EAC or Elexon dataset registered |
+
+### Primary-source records
+
+| ID | Publisher · title | URL | Locator found | Claims |
+| --- | --- | --- | --- | --- |
+| SRC-GB-01 | NESO · GB Synchronous Area operational methodology (SOGL) and supporting document | https://www.neso.energy/document/299176/download · https://www.neso.energy/document/127206/download | Scope: GB as its own synchronous area; standard frequency range | CL-GB-03 |
+| SRC-GB-02 | NESO · National Electricity Transmission System Performance Report | https://www.neso.energy/document/267701/download | Interconnector list (HVDC links) | CL-GB-03 |
+| SRC-GB-03 | Ofgem · NETA: a review of the first three months (Aug 2001); NETA factsheet (Feb 2002) | https://www.ofgem.gov.uk/sites/default/files/docs/2001/08/a-review-of-the-first-three-months-31-08_0.pdf · https://www.ofgem.gov.uk/sites/default/files/docs/2002/03/1098-factsheet0502_27feb_0.pdf | Factsheet: NETA "introduced in England and Wales on Tuesday 27 March 2001" | CL-GB-04 |
+| SRC-GB-04 | Ofgem · What is BETTA? (Apr 2002); Energy Act 2004 explanatory notes; HMRC VFUP3300 | https://www.ofgem.gov.uk/sites/default/files/docs/2002/04/1105-factsheet0702_15april_0.pdf · https://www.legislation.gov.uk/ukpga/2004/20/notes/division/6/2/1 · https://www.gov.uk/hmrc-internal-manuals/vat-fuel-and-power/vfup3300 | BETTA user guide (Feb 2005): go-live "anticipated to be 1 April 2005", https://www.ofgem.gov.uk/sites/default/files/docs/2005/02/9549-2605.pdf; Ofgem July 2005 consultation: NETA "extended GB wide under BETTA in April 2005", https://www.ofgem.gov.uk/sites/default/files/docs/2005/07/11190-17805.pdf | CL-GB-04 |
+| SRC-GB-05 | National Grid · Enhanced Frequency Response Market Information Report (26 Aug 2016) | https://www.nationalgrid.com/sites/default/files/documents/EFR%20Market%20Information%20Report%20v1%20(1)_1.pdf | Tender closed 15 Jul 2016; 37 providers, 64 sites; 8 tenders accepted, 201 MW, total £65.95m, average £9.44/MW/h | CL-GB-07 |
+| SRC-GB-06 | National Grid · Enhanced Frequency Response 2016 (presentation) | https://www.nationalgrid.com/sites/default/files/documents/8589937157-06_EFR.pdf | Tendered sites by technology: 61 of 64 battery | CL-GB-07 |
+| SRC-GB-07 | National Grid · EFR Invitation to Tender v2.2 | https://www.nationalgrid.com/sites/default/files/documents/Enhanced%20Frequency%20Response%20ITT%20v2_2%20compare.pdf | NESO copy: https://www.neso.energy/document/101541/download. §3.4: contracts of up to four years; 50 MW cap per applicant (§3.4, §7.17); results due 26 Aug 2016 | CL-GB-07 |
+| SRC-GB-08 | NESO · "National Grid ESO debuts Dynamic Containment frequency response service"; ESO Annual Report 2020 | https://www.neso.energy/news/national-grid-eso-debuts-dynamic-containment-frequency-response-service · https://www.neso.energy/document/217826/download | News dated 30 Sep 2020: goes live in the control room at 11pm; first round accepted two battery units for 90 MW; tenders seven days a week | CL-GB-08 |
+| SRC-GB-09 | Ofgem · DR and DM Article 18 decision letters (Mar 2022); decision on DR, DM and DC terms (Feb 2023); NESO Dynamic Services page; ESO news on DM | https://www.ofgem.gov.uk/sites/default/files/2022-03/DR%20Art18%20decision%20letter.pdf · https://www.ofgem.gov.uk/sites/default/files/2022-03/DM%20Art18%20decision%20letter.pdf · https://www.ofgem.gov.uk/sites/default/files/2023-02/Decision%20on%20Dynamic%20Regulation%2C%20Dynamic%20Moderation%20and%20Dynamic%20Containment%20in%20relation%20to%20an%20update%20to%20the%20Terms%20and%20Conditions%20related%20to%20Balancing.pdf · https://www.neso.energy/industry-information/balancing-services/frequency-response-services/dynamic-services-dcdmdr · https://nationalgrideso.com/news/new-service-added-esos-frequency-response-line | DC high launched October 2021 (Ofgem 2023); DM added 21 Apr 2022 (ESO news). First cleared deliveries in SRC-GB-12: DC high 4 Nov 2021, DR 9 Apr 2022, DM 7 May 2022 (CF-GB-05) | CL-GB-08 |
+| SRC-GB-10 | NESO · Enduring Auction Capability platform (news); May 2024 Balancing Costs technical report | https://www.neso.energy/news/enduring-auction-capability-platform-new-and-improved-platform-procuring-frequency-response-services · https://www.neso.energy/document/318666/download | News dated 24 Nov 2023: bids for several services at once; first EAC round, average clearing price 35% below the previous seven days, cleared volume stable. May 2024 report: "In November 2023 the procurement of DC, DM and DR was moved to the Enduring Auction Capability (EAC) platform" | CL-GB-08, CL-GB-09, CL-GB-15 |
+| SRC-GB-11 | NESO · Balancing Cost Winter Report (May 2024); Monthly Balancing Cost Reports, July and August 2026 | https://www.neso.energy/document/318696/download · https://www.neso.energy/document/386501/download · https://www.neso.energy/document/388201/download | Falls attributed to more participants, requirement certainty and auction design; 2026 moves to liquidity and offered volume against a firm requirement | CL-GB-09 |
+| SRC-GB-12 | NESO data portal · Dynamic Containment, Regulation and Moderation auction results | https://www.neso.energy/data-portal/dynamic-containment-data | Rights: NESO Open Data Licence; "This dataset will no longer be updated". CKAN package `dynamic-containment-data` (api.neso.energy): DC masterdata 2020–21 (fields incl. Volume Accepted, Availability Fee, Technology Type); results summary 2021–2023 (Service, EFA Date, Cleared Volume, Clearing Price); results by unit 2021–2023 (incl. Technology Type); linear and block orders | CL-GB-08, CL-GB-09 |
+| SRC-GB-13 | NESO data portal · EAC auction results | https://www.neso.energy/data-portal/eac-auction-results | Rights: NESO Open Data Licence; daily update. CKAN package `eac-auction-results`: Response-Reserve results summary (auctionProduct, deliveryStart, clearedVolume, clearingPrice), current year plus FY2023, FY2024 and FY2025 archives; results by unit (incl. technologyType); sell orders (quantity, executedQuantity) | CL-GB-09 |
+| SRC-GB-14 | NESO · NESO Open Licence | https://www.neso.energy/data-portal/neso-open-licence | Licence v1.0, "based on version 3.0 of the Open Government Licence"; free to "exploit the Information commercially and non-commercially"; attribution "Supported by National Energy SO Open Data"; applies dataset by dataset | Chart terms |
+| SRC-GB-15 | NESO · "First stages of Open Balancing Platform go live"; "The start of the balancing mechanism revolution"; RIIO-2 BP2 2023-24 incentives report | https://www.neso.energy/news/first-stages-open-balancing-platform-go-live · https://www.neso.energy/news/start-balancing-mechanism-revolution · https://www.neso.energy/document/318646/download | News dated 13 Dec 2023: first stage goes live "this week" for bulk dispatch of battery storage and small units. Incentives report: Release 1 in December 2023; average daily volume instructed for batteries up 220% after early fixes | CL-GB-10 |
+| SRC-GB-16 | NESO · Skip rates page and methodology guide | https://www.neso.energy/industry-information/balancing-services/skip-rates · https://www.neso.energy/document/350061/download | Two skip-rate datasets; by-technology reporting since June 2025 | CL-GB-10 |
+| SRC-GB-17 | Elexon · Licence to use BMRS open data; BMRS API terms | https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/ · https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-use-bmrs-api/ | Licence page: free to "exploit the BMRS Data, including commercially", with attribution; API terms separate; conflicting general copyright page (CF-GB-08) | CL-GB-18, GAP-GB-REVSPLIT |
+| SRC-GB-18 | DECC via GOV.UK · "First Capacity Market auction guarantees security of supply at low cost"; T-4 2014 provisional results | https://www.gov.uk/government/news/first-capacity-market-auction-guarantees-security-of-supply-at-low-cost · https://assets.publishing.service.gov.uk/media/5a7dd9bde5274a5eb14e7913/Provisional_Results_Report-Ammendment.pdf | "The T-4 Capacity Auction for delivery in 2018 concluded on 18th December 2014" | CL-GB-05 |
+| SRC-GB-19 | DESNZ · Capacity Market Rules, informal consolidation July 2026, Schedule 3B; Capacity Market (Amendment) Rules 2018 | https://assets.publishing.service.gov.uk/media/6a68894dcc35a9471da4c18f/capacity-market-rules-consolidation-2026.pdf · https://www.ofgem.gov.uk/sites/default/files/docs/2018/07/the_capacity_market_amendment_rules_2018_-_presented_to_parliament.pdf | 2026 consolidation opened: Schedule 3B, methodology for determining de-rating; rule 2.3.5B (EFC under Schedule 3B). 2018 amendment not reopened; the Dec 2017 National Grid assessment not located (CF-GB-09) | CL-GB-06 |
+| SRC-GB-20 | NESO and DESNZ · T-4 2029/30 results and auction monitor report; Capacity Market Register | https://www.neso.energy/news/delivering-reliability-gb-consumers-capacity-market-action · https://assets.publishing.service.gov.uk/media/69b44fd2cf4af9cad362b41c/t-4-2025-delivery-year-2029-2030-auction-monitor-report.pdf · https://www.neso.energy/data-portal/capacity-market-register | NESO news: concluded 11 Mar 2026 at £27.10/kW/year, against £60–65 in the previous three T-4s; 40.1 GW for 2029/30. Monitor report confirms the price. Register holds agreements and a de-rating CSV. Table 3 of the T-4 2029/30 guidelines per REPO-GB-01 (not reopened) | CL-GB-06, CL-GB-17 |
+| SRC-GB-21 | EMR Settlement and legislation.gov.uk · Capacity Market scheme page; G15 supplier payments; Electricity Capacity (Supplier Payment etc.) Regulations 2014 | https://www.emrsettlement.co.uk/schemes/capacity-market/ · https://www.emrsettlement.co.uk/document/guidance/g15-cm-supplier-payments/ · https://www.legislation.gov.uk/uksi/2014/3354 | Suppliers pay the Capacity Market Supplier Charge; the Electricity Settlements Company pays providers; stress-event penalties | CL-GB-15 |
+| SRC-GB-22 | DESNZ · REMA summer update 2025 | https://www.gov.uk/government/publications/review-of-electricity-market-arrangements-rema-summer-update-2025/review-of-electricity-market-arrangements-rema-summer-update-2025-accessible-webpage | 10 Jul 2025: "retain a single national GB-wide wholesale market"; "We have therefore decided not to implement zonal pricing" | CL-GB-11 |
+| SRC-GB-23 | Ofgem · TMO4+ summary decision; Gate 2 Criteria Methodology decision (OFG1164); extension decision | https://www.ofgem.gov.uk/sites/default/files/2025-04/Summary-Decision-Document-TMO4-package.pdf · https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf · https://www.ofgem.gov.uk/sites/default/files/2025-05/Decision%20on%20Extension%20to%20Transition%20to%20Connections%20Reform-20250520112644.pdf | Summary decision, publication date 15 Apr 2025; extension decision: implementation on 10 Jun 2025. Gate 2 wording (confirmed date, point, queue position) from the methodology decision, not reopened | CL-GB-12 |
+| SRC-GB-24 | DESNZ and Ofgem · Open letter, "Connections Reform: delivery update and battery capacity" (Apr 2026) | https://www.gov.uk/government/publications/connections-reform-delivery-update-and-battery-capacity/open-letter-from-desnz-and-ofgem-on-connections-reform-delivery · https://www.ofgem.gov.uk/transparency-document/connections-reform-and-battery-capacity-update | Letter dated 16 Apr 2026: "14.8 GW above the top of the Action Plan battery capacity range for 2030 and 61.7 GW above the projected battery system need in 2035"; NESO's consultation raises disapplying protections 3a/3b so only batteries with a revenue support scheme qualify in the next window | CL-GB-13 |
+| SRC-GB-25 | Ofgem and NESO · CMP470 Oversubscribed Technologies Commitment Fee: urgency decision, workgroup report, minded-to consultation (17 Sep 2026), press release | https://www.ofgem.gov.uk/sites/default/files/2026-09/CMP470-Minded-to-Consultation.pdf · https://www.ofgem.gov.uk/consultation/connection-and-use-system-code-cusc-cmp470-introducing-oversubscribed-technologies-commitment-fee-otcf · https://www.ofgem.gov.uk/press-release/ofgem-moves-free-grid-capacity-tackling-excess-battery-projects · https://www.neso.energy/document/383006/download | Minded-to consultation, response deadline 1 Oct 2026; press release 17 Sep 2026: about 90 GW of batteries operational or in the reformed queue (83 GW prioritised plus 7 GW operating) against about 29 GW needed by 2035. Decision awaited (CF-GB-10) | CL-GB-13 |
+| SRC-GB-26 | DESNZ · Clean Power 2030 Action Plan main report (Dec 2024); Clean Flexibility Roadmap (Jul 2025) | https://www.gov.uk/government/publications/clean-power-2030-action-plan/clean-power-2030-action-plan-a-new-era-of-clean-electricity-main-report · https://www.gov.uk/government/publications/clean-flexibility-roadmap/clean-flexibility-roadmap | "23-27 GW" of batteries by 2030 (opened); separate long-duration category | CL-GB-14 |
+| SRC-GB-27 | NESO · "NESO to launch new Quick Reserve service"; Slow Reserve page | https://www.neso.energy/news/neso-launch-new-quick-reserve-service · https://www.neso.energy/industry-information/balancing-services/reserve-services/slow-reserve | Quick Reserve launch on 3 Dec 2024 (opened); Slow Reserve go-live notice, intended 31 Mar 2026 (not opened) | CL-GB-09 (later services) |
+
+No licence-restricted report is cited. Subscription indices and trade press were used only to find primary documents; where a fact rests on trade press alone, it is marked as a conflict or gap.
+
+### Access at check
+
+| Opened and read, 31 Oct 2026 | Not opened |
+| --- | --- |
+| SRC-GB-01 (methodology, document 299176); SRC-GB-03 (factsheet); SRC-GB-04 (all three Ofgem documents); SRC-GB-07 (NESO copy of the ITT); SRC-GB-08 (news); SRC-GB-09 (Ofgem 2023 decision; ESO DM news); SRC-GB-10; SRC-GB-11 (winter 2024 and August 2026 reports); SRC-GB-12 and SRC-GB-13 (dataset pages and CSV files through the NESO API); SRC-GB-14; SRC-GB-15 (news; incentives report); SRC-GB-17 (licence page); SRC-GB-18 (provisional results); SRC-GB-19 (2026 consolidation); SRC-GB-20 (news; monitor report); SRC-GB-22; SRC-GB-23 (summary and extension decisions); SRC-GB-24; SRC-GB-25 (minded-to consultation; press release); SRC-GB-26 (main report); SRC-GB-27 (Quick Reserve news) | SRC-GB-05 and SRC-GB-06: the National Grid URLs now return 404 and no archive copy could be reached (CF-GB-12). SRC-GB-02; the DR and DM decision letters; the July 2026 monthly report; SRC-GB-16; the 2018 amendment rules; the T-4 2029/30 guidelines (Table 3, held in REPO-GB-01); SRC-GB-21 (EMRS page opened but holds no payment wording; the 2014 Regulations not opened); the Gate 2 methodology decision; the CMP470 urgency decision and workgroup report; the Clean Flexibility Roadmap; the Slow Reserve page |
+
+### CALC-GB-TECH: battery share of accepted MW, check only
+
+Computed on 31 Oct 2026 from the files in SRC-GB-12/13 to test GAP-GB-TECH. These values are for the analyst's review; they are never typed into page copy, and the build recomputes them.
+
+| File | MW basis | Battery share | Notes |
+| --- | --- | --- | --- |
+| DC masterdata 2020–21 | Volume Accepted | 100% | One label, "Battery" |
+| DC/DR/DM results by unit 2021–2023 | Cleared Volume | About 95% | Labels vary ("Batteries", "Battery", "BATTERIES", "BATTERY"); about 4% "NA" |
+| EAC Response-Reserve results by unit (current file), response services only | executedQuantity | About 97.5% | "Batteries"; the rest "Other", blank or thermal |
+
+Rule for the build: normalise battery labels case-insensitively; keep "NA" and blank as "other or unlabelled", never as battery.
+
+### CALC-GB-PRICE: clearing-price check, check only
+
+Volume-weighted mean clearing price by service and calendar year, £/MW/h, from the DC masterdata (accepted bids), the 2021–2023 results summary and the current EAC results summary (from 31 Mar 2026 only; the FY2023–FY2025 archives were not added in this check). For review, not for copy.
+
+| Service | Launch period | 2023 | 2026 (Apr–Oct) |
+| --- | --- | --- | --- |
+| DC low | About 17 (2020–21) | About 3.1 | About 3.6 |
+| DC high | About 6.0 (2021) | About 3.8 | About 2.4 |
+| DR low / high | About 21.7 / 12.1 (2022) | About 10.0 / 1.7 | About 17.0 / −9.5 |
+| DM low / high | About 4.4 / 7.2 (2022) | About 4.0 / 3.2 | About 8.1 / 0.0 |
+
+Reading: from launch to 2023 every product fell, most of them steeply. In 2026, with larger requirements, low-frequency Regulation and Moderation have risen again, while high-frequency Regulation clears below zero. The saturation argument holds for the services' early value, not as a one-way decline in every product (CF-GB-11).
+
+### Claim ledger
+
+CL-GB-19 and CL-GB-20 are the candidates added in v1.3 (PR #83); their results are below. New claims start at CL-GB-03.
+
+[Canonical claim ledger / 统一主张表](market-narratives.md#g1-gb-claims)
+
+<a id="g1-gb-history"></a>
+
+### Historical nodes, events separate from interpretation
+
+| Node | Event and date | Interpretation ("Why it matters") | Sources |
+| --- | --- | --- | --- |
+| H-GB-01 | NETA go-live 27 Mar 2001 (England and Wales); BETTA, GB-wide, April 2005 (planned for 1 April) | Value comes from trading and balancing, not a central price | SRC-GB-03/04 |
+| H-GB-02 | First T-4 capacity auction concluded 18 Dec 2014 (provisional), delivery 2018/19 | A supplier-funded capacity line exists beside energy-only trading | SRC-GB-18 |
+| H-GB-03 | EFR tender results published 26 Aug 2016 | A small fast service drew the first batteries | SRC-GB-05–07 |
+| H-GB-04 | Storage de-rated by duration: National Grid assessment Dec 2017 (secondary); Schedule 3B in the 2018 rules | Hours earn capacity credit | SRC-GB-19 |
+| H-GB-05 | DC live 30 Sep 2020 at 11pm, first delivery 1 Oct; DC high October 2021 (first cleared 4 Nov 2021); DR first delivery 9 Apr 2022; DM first delivery 7 May 2022; co-optimising auction November 2023 | Each service filled as battery supply grew | SRC-GB-08–10 |
+| H-GB-06 | Open Balancing Platform release 1 with battery bulk dispatch, December 2023 (week of 13 Dec) | Batteries moved into balancing and trading | SRC-GB-15 |
+| H-GB-07 | TMO4+ approved 15 Apr 2025, effective 10 Jun 2025; REMA kept national pricing 10 Jul 2025 | Connection order and a national price shape new build | SRC-GB-22/23 |
+| H-GB-08 | DESNZ/Ofgem letter Apr 2026; CMP470 minded-to 17 Sep 2026; decision pending (dashed) | New-build batteries face a fee still being set | SRC-GB-24/25 |
+
+### Conflicts and dispositions
+
+| ID | Conflict | Disposition |
+| --- | --- | --- |
+| CF-GB-01 | Move to the co-optimising auction: October in some accounts | **Resolved:** November 2023 (NESO news of 24 Nov 2023; May 2024 report) |
+| CF-GB-02 | T-4 2029/30 concluded 10 March (NESO page summary) or 11 March 2026 | **Resolved:** 11 March 2026 (NESO news, opened). Not in copy |
+| CF-GB-03 | NESO's August 2026 report prints response clearing prices in £/MWh (for example DR "at £1.73/MWh"); these are availability prices | Confirmed in the opened report. Use the dataset's units, £/MW/h; never copy the report's label |
+| CF-GB-04 | BETTA go-live date first found only in an HMRC manual | **Resolved:** Ofgem's February 2005 guide (planned 1 April 2005) and July 2005 consultation ("in April 2005") |
+| CF-GB-05 | DC high: Ofgem says it launched in October 2021; the first cleared delivery in the 2021–2023 results is 4 Nov 2021. DR and DM dates come from the dataset's first deliveries (9 Apr and 7 May 2022), a day after the trade-press auction dates | Bind each node to the named measure (launch or first delivery) |
+| CF-GB-06 | Fleet and queue figures differ by scope and date: the Action Plan's Q4 2024 baseline, the Roadmap's 2024 table, Ofgem's Sept 2026 figures, and the view's transmission-register grade | One dated record per figure, definition shown; the story does not reuse the view's grade reason |
+| CF-GB-07 | The view's Gate 2 trigger cites a subscription news article (`access: search-summary`) | Story cites SRC-GB-24/25; repointing the trigger is view-store work for the analyst |
+| CF-GB-08 | Elexon's BMRS licence allows commercial reuse; its general copyright page says commercial use is prohibited | Not needed for the signature chart; confirm before any Elexon dataset |
+| CF-GB-09 | The Dec 2017 storage de-rating assessment is known from secondary sources only | Date H-GB-04 by the 2018 rules unless the report is found |
+| CF-GB-10 | CMP470 decision date: 12 Nov 2026 in a NESO table, earlier 14 Oct 2026 | Show "decision pending"; no date in copy |
+| CF-GB-11 | "Each service filled" against the 2026 data: low-frequency DR and DM prices are higher in 2026 than in 2023, while DR high clears below zero (CALC-GB-PRICE) | Copy says prices fell far below launch levels and have since moved with requirements; the chart shows both directions and negative values. Does not contradict the call |
+| CF-GB-12 | The EFR results report and presentation have moved: the National Grid URLs return 404 | Figures stay from the search record; find the NESO copy before G-2, or show the tender as a qualitative node |
+
+### Gaps for the build
+
+| ID | Gap | Needed |
+| --- | --- | --- |
+| GAP-GB-OPEN | **Mostly closed.** Most sources opened after network access changed; the rest are listed in the access table | Open the remaining records before G-2 |
+| GAP-GB-SERVICES | Signature chart data not registered in `src/governance/datasets.js` | Register the NESO DC/DR/DM results (fixed vintage, 2020–2023) and EAC results (live, with the FY2023–FY2025 archives) as new GB datasets at build. Both carry the NESO Open Data Licence, which permits commercial and non-commercial reuse with attribution. Then `npm run etl:verify` |
+| GAP-GB-TECH | **Closed for the method.** The files carry a technology field (CALC-GB-TECH) | Normalise labels at build; unlabelled MW stays "other or unlabelled" |
+| GAP-GB-EFR | EFR result figures are in a document that has moved (CF-GB-12); the terms are confirmed in the ITT | Static evidence record from SRC-GB-05/06 once a copy is found |
+| GAP-GB-REFSECURED | The reference-case secured share is an engine result not on the card | A read-only binding to the existing engine result; no model change |
+| GAP-GB-REVSPLIT | No primary-source revenue split by route | Elexon settlement plus NESO results; would need exchange day-ahead prices for the wholesale leg, so it waits on the price-data rights review. gb-06 stays Thin until then |
+| GAP-GB-TOLL | Toll terms have no public primary source | Verify on the asset; the model stays an assumption |
+
+### Chart-GB-FILL: calculation contract, proposed not executed
+
+- **Question it answers:** as more MW competed for each fast service, what happened to its clearing price?
+- **Inputs:** SRC-GB-12 (DC masterdata 2020–21; DC/DR/DM results 2021–2023) and SRC-GB-13 (EAC results summary from November 2023: FY2023, FY2024 and FY2025 archives plus the current file). Exchange day-ahead prices are **not** needed.
+- **Upper panel:** clearing price, £/MW/h, by service and direction (DC low/high, DR low/high, DM low/high); monthly mean of EFA-block clearing prices, volume-weighted where cleared volume is given. The axis runs below zero. Method shown in "How measured". The 2020–21 masterdata holds per-bid availability fees, not block clearing prices: use accepted bids, volume-weighted, and label the method.
+- **Lower panel:** cleared MW by service, monthly mean per EFA block; offered MW (sum of sell-order quantities) only where order files exist. "Of which battery" from the technology field, cleaned as in CALC-GB-TECH.
+- **EFR 2016:** one point per panel (average accepted price; accepted MW), styled as a tender with multi-year contracts and not joined to any line.
+- **Events:** H-GB-05 and H-GB-06 as labelled vertical lines. Lines break at the auction-platform change; no smoothing across it.
+- **Never:** £/MWh, annualised revenue, a price-to-earnings bridge, a requirement line without a NESO series, or a fitted trend.
+- **Terms:** NESO Open Data Licence (SRC-GB-14), confirmed on both dataset pages; commercial and non-commercial reuse permitted with the attribution "Supported by National Energy SO Open Data". Publication boundary `public-and-reusable`. The by-unit files name companies; the chart shows service totals only and names no company.
+- **Accessible equivalent:** monthly table, same units and coverage.
+
+The v1.3 story card proposed a different signature chart: the reference project's revenue by route, the small secured slice against the share a toll fixes. This script uses that comparison as a two-line text card in gb-11 instead, and proposes Chart-GB-FILL as the one signature chart. The analyst chooses at G-1.
+
+<a id="g1-ro-evidence"></a>
+
+### Romania / 罗马尼亚 — G-1 evidence, 1 November 2026
+
+Source owner for [romania shot references](romania-storyboard.md). Original check dates, access limits and G-2 gates remain as recorded.
+
+Scope: steps 1 and 2 only. Researcher: Claude Code, 31 October 2026; check date 31 October 2026 throughout unless stated. A **confirmed** result means the narrow proposition has a primary locator that was opened; its editorial state is `sourced`, not `reviewed` or `approved-for-publication`. **Reported** means a press or search summary attributes the figure to a primary publisher whose own document was not opened. No source here establishes a project award, a signed floor, financing or realised trading. Dates and quantities in this section are authoring metadata, never page constants. Licence-restricted reports and subscription indices are not used.
+
+Not to be folded into shared files by this PR: `source-register.md` already holds CL-RO-01 and CL-RO-02; the claims below continue from CL-RO-03, and their results for CL-RO-01/02 are recorded here for the later fold-in.
+
+### 10.1 Live anchor and repository records
+
+| ID | Inspected reference | Result and limit |
+| --- | --- | --- |
+| REPO-RO-LIVE | `main` at `edcb39c` (31 October 2026): [`view/markets/ro.json`](../../view/markets/ro.json) (fund verdict and play `asOf` 2026-10-31), [briefing model](../../src/briefing/model.js) and [plays](../../src/briefing/plays.js), [experience model](../../src/experience/model.js), [decision panel](../../src/experience/decision.js), [project facts](../../src/experience/projectFacts.js) | Read-only evaluation in an external scratch script on 31 October 2026 (no repository write). Fund row: `opportunistic`, `ro-mer-2h`, `operating`, evidence `fair`, next `ro-grant-status-review`, review by 2027-01-31. Design grid (merchant): best two hours. The card's headline is the shared new-build case; the operating-purchase line is separate. The open-calls ruling's figures (hold 13.70%, value +$67,988/MW, secured 0%) match the grid's two-hour cell |
+| REPO-RO-MODEL | [`src/markets/ro/comparison.js`](../../src/markets/ro/comparison.js) (`merchGross`, `merchantCurve`, `merchantCurveBasis`, `merchantEvidence`, `durationResponse`, `services`, `servicesCurve`, `feePct`, `grantPct`, `grantCapPerMWh`, `grantCapAbsolute`, `capabilities`); [engine](../../src/comparison/engine.js) (grant taken against build capex; floor rule `tollIsFloor`); [`src/acquisition/reference.js`](../../src/acquisition/reference.js) (operating stage carries no grant) | `capabilities.capacityMarket: false`, `tolling: false`: no capacity or floor line is priced. The merchant curve is fitted on Bulgaria (MR-3), the fleet path assumed (MR-2), realisation 100% (MR-1). The duration capture curve and the 2025 basis were derived on the private-use mirror (MR-4) |
+| REPO-RO-DATA | [`src/governance/datasets.js`](../../src/governance/datasets.js); `public/data/public/` | `ro-day-ahead` is registered (ENTSO-E connector, key required, "reuse permitted with attribution") but has no published snapshot. No Romanian fleet dataset is registered. See CF-RO-06 and GAP-RO-FLEET |
+| REPO-RO-PLAN | [Open-calls plan](../open-calls-plan-2026-10-31.md) §3, §3G and gates; [merchant-lines plan](../merchant-lines-plan-2026-10.md) §1 and gates MR-1 to MR-4; [external view](../external-view.md) §6 (MR-4) and §8 | Settled rulings respected: 3A merchant label and floor gate; 23 October re-seed with a dated fleet curve; 16 October move to Opportunistic; all-equity hold headline; grant never income |
+
+### 10.2 Primary-source records
+
+| ID | Publisher / title / exact locator | Dates / language | Supported proposition and boundary | Access / review / next trigger |
+| --- | --- | --- | --- | --- |
+| SRC-RO-01 | Transelectrica, press release "Sistemul Electroenergetic Național depășește borna de 2.500 MW de noi capacități de producție și stocare conectate la rețea în 2026", [PDF](https://web.transelectrica.ro/noutati/noutati/734_2026.08.20_19-51-16.pdf), p. 1 (2026 connections by type; storage at 1 August), p. 2 (year-end estimate) | 20 August 2026; Romanian | 2,514 MW of generation and storage connected in 2026 by 20 August, 663 MW of it storage and 1,331 MW solar, at stages from commercial licence to compliance testing. 989 MW of storage available at 1 August 2026, stand-alone and inside hybrid plants. About 1,000 MW more storage expected by the end of 2026. No MWh for the 1 August total; one named installation is not reproduced here | Opened. `public-link-only`; reuse terms not located (GAP-RO-FLEET). Next: Transelectrica's next count |
+| SRC-RO-02 | Transelectrica storage counts as reported: 1 April 2026, 599 MW / 1,130 MWh (economica.net); 20 June, 878 MW / 1,630 MWh (Mediafax); 1 September, 1,094 MW / 2,310 MWh (cursdeguvernare.ro); 1 October, 1,162 MW / 2,312 MWh, 55 units (informat.ro); start of 2025, 137 MW (e-nergia.ro); 1 August MWh 1,975 (merchant-lines plan, from the same press) | April–October 2026 | Attributed to Transelectrica; the primary publications were not located | Reported (search summaries); discovery only. Open each primary before drawing (GAP-RO-FLEET, CF-RO-05) |
+| SRC-RO-03 | Ministry of Energy, applicant guide (Ghidul solicitantului), annex to Order of the Minister of Energy no. 915/14.08.2026, stand-alone battery storage, Modernisation Fund; read from a [third-party copy](https://startupcafe.ro/wp-content/uploads/2026/08/Ghidul_solicitantului_instalatii_stocare_autonama_FM.pdf) (file created 14 August 2026) because the ministry's host could not be reached. Locators: p. 1; p. 4; §1.1 p. 10; §1.2 p. 11; pp. 13–14; §3.1.2 p. 33; ch. 4 pp. 37–38 | Order 14 August 2026; reported in the Official Gazette no. 680, 17 August 2026 (open-calls plan); Romanian | p. 4: the plan figure of 1,200 MW or 2,400 MWh of storage by 2030 and 2,000 MW by 2035 (PNIESC, HG 1.076/2021). p. 10: at least 2,174 MWh; stand-alone means its own connection permit, connection and metering, charging from and delivering to the public grid; may sell in the electricity and system-services markets directly or through an aggregator; must make diligent efforts to obtain and keep balancing qualification; commissioning within 48 months of the award. p. 11: competitive bidding under CISAF §4.1; submission in MySMIS2021 in a period the ministry announces; the ministry may extend the submission deadline. pp. 13–14: at most €69,000 per installed MWh and €15m per undertaking. p. 33: at least five years' operation after commissioning. p. 37: score falls linearly from the lowest to the highest aid per MWh; a provisional ranking published on the ministry's site; a reserve list of up to 20% of the budget. p. 38: final lists after appeals | Opened (copy). Compare with the ministry's or Gazette's text before publication |
+| SRC-RO-04 | Ministry of Energy, [call page](https://energie.gov.ro/lansare-apel-sprijinirea-investitiilor-in-dezvoltarea-instalatiilor-autonome-stand-alone-de-stocare-in-baterii-a-energiei-electrice-cu-finantare-din-fondul-pentru-modernizare-p/); EU-funds portal notice titled "Fondul pentru Modernizare – A fost modificat apelul «Sprijinirea investițiilor în dezvoltarea instalațiilor autonome (standalone) de stocare în baterii a energiei electrice…»" (oportunitati-ue.gov.ro) | Window reported as 1 September 2026, 12:00 to 30 October 2026, 14:00. One search summary of the portal notice reports an extension to 15 November 2026, 23:59; two other searches found no extension | Neither page could be opened: both hosts reset the connection from this session on 31 October 2026, as the ministry's did in the open-calls memo (HTTP 503 or time-out). No ranking, list or outcome located. Programme confirmation and disbursement (SRC-RO-05, -06) are not an outcome | `search-summary`. The analyst's review on 2 November (`ro-grant-status-review`); OC-RO-GRANT |
+| SRC-RO-05 | EIB, [Modernisation Fund confirmation of priority investment, MF 2026-1 RO 0-006](https://www.modernisationfund.eu/wp-content/uploads/2026/07/MF-2026-1-RO-0-006-%E2%80%93-Supporting-investments-in-the-development-of-stand-alone-battery-storage-installations-of-electricity.pdf), pp. 1–3 | Proposal 12 February 2026; confirmed 11 March 2026; English | Large-scale scheme 2026–2030; €60m first disbursement requested; €150m total expected; at least 2,174 MWh; State-aid clearance obtained. "Without prejudice" to a disbursement decision. A programme confirmation, not an award | Opened |
+| SRC-RO-06 | European Commission and EIB, [joint press release](https://www.modernisationfund.eu/joint-press-release-e2-5-billion-of-eu-ets-revenues-invested-in-cleaner-energy-systems-in-11-eu-countries/), opening paragraphs and investment list | 2 July 2026; English | €2.5bn disbursed for 51 projects in 11 countries, Romania €636.9m, including stand-alone battery storage in Romania. Money to the state's programme, not to any project | Opened |
+| SRC-RO-07 | European Commission, IP/26/524, "Commission approves €150 million Romanian State aid scheme for electricity storage" ([press corner](https://ec.europa.eu/commission/presscorner/detail/en/ip_26_524)); case SA.121308 | 6 March 2026; English | Investment aid through direct grants for new stand-alone batteries; at least 2,174 MWh; Modernisation Fund; competitive tendering; aid granted before 31 December 2030; Article 107(3)(c) TFEU under CISAF | Opened (press-corner API text) |
+| SRC-RO-08 | OPCOM, [Annual report 2005](https://ns1.opcom.ro/uploads/doc/rapoarte/Companie/RA_2005_RO.pdf), pp. 4 and 19 | 2005; Romanian | The day-ahead market, run by OPCOM under new rules with two-sided bidding by buyers and sellers ("licitaţia bilaterală"), from 30 June 2005; the market existed before in another form |  Opened (OPCOM's document host; the main site answered 403) |
+| SRC-RO-09 | EPEX SPOT, ["4M Market Coupling launched with success"](https://epexspot.com/en/news/4m-market-coupling-launched-success); "4M Market Coupling to launch 19 November 2014" (same site) | November 2014; English | Czech, Hungarian, Romanian and Slovak day-ahead markets coupled on the PCR solution, replacing the trilateral coupling. Launch 19 November for delivery 20 November 2014: from the announcement's title (search summary); the success notice's text is undated | Success notice opened; launch-date notice from search |
+| SRC-RO-10 | OPCOM, [press release](https://www.opcom.ro/uploads/doc/Comunicate/Communication%20note%2015.06.2021.pdf) "Interim Coupling project: Go-live confirmed for 17 June 2021" | 15 June 2021; English | Go-live 17 June 2021, first delivery 18 June, connecting the 4M MC with the Multi-Regional Coupling toward SDAC | Opened |
+| SRC-RO-11 | Nord Pool for the SDAC parties, ["Closing the loop – inclusion of the Bulgarian-Romanian border into the Single Day-Ahead Coupling (SDAC)"](https://nordpoolgroup.com/en/message-center-container/newsroom/exchange-message-list/2021/q4/27-october-2021-closing-the-loop--inclusion-of-the-bulgarian-romanian-border--into-the-single-day-ahead-coupling-sdac) | 27 October 2021; English | Romania–Bulgaria day-ahead capacity allocated implicitly in SDAC from 27 October 2021, first delivery 28 October; prices and cross-border flows calculated together | Opened |
+| SRC-RO-12 | ANRE, [press release](https://anre.ro/comunicat-de-presa-anre-elimina-dublarea-tarifelor-pentru-energia-electrica-stocata-si-reintrodusa-in-retea/) "ANRE elimină dublarea tarifelor pentru energia electrică stocată și reintrodusă în rețea" | 8 July 2025; Romanian. The order is reported as No. 56/2025, in force 10 July 2025 (Official Gazette 649; search summary) | Stored-and-reinjected electricity exempt from transmission (extraction), distribution and system-services tariffs and from green certificates; the installation's own consumption and losses still pay; follows GEO 134/2024 | Release opened; order text not opened (a distributor's copy returned 403) |
+| SRC-RO-13 | ANRE connection-allocation orders and Transelectrica's procedure as registered in `src/markets/ro/sources.js`: `gridAuction`, `order53`, `order79`, `order15`, `allocationProcedure`, `anre`; auction sessions from 30 October 2026 for ten years from 2028 (news.ro; economica.net; investenergy.ro) | 30 July 2024 – 11 June 2026; sessions October 2026 | Annual auctions for sites of at least 5 MW, storage included, applied from 2026; capacity for a period starting two years after the auction year; €20,000/MW participation guarantee and a connection guarantee of 20% of the connection tariff (Order 15/2026); 2026 transition with auctions from 30 October | Repository records opened by the platform on 11 October 2026, not re-opened; session start reported |
+| SRC-RO-14 | ANRE Order 16/2026 amending the licensing and authorisation regulation, as reported (energynomics.ro; cursdeguvernare.ro, 25 August 2026; a law-firm update) | August 2026 | Reported change to a storage-related guarantee; accounts differ | Search summaries; text not opened. CF-RO-08 |
+| SRC-RO-15 | ESO (Bulgaria), [Statistical yearbook 2025](https://www.eso.bg/fileObj.php?oid=5908), p. 3, installed-capacity table | File created 30 March 2026; Bulgarian | Battery storage 1,382 MW at end-2025, +1,514.7% on 2024 (about 86 MW a year earlier), 7.4% of 18,668 MW. Reported 2026 counts: about 3,432 MW by May (ESO via press); 5,406 MW on 17 August (ENTSO-E data via Capital) | Yearbook opened; 2026 counts reported |
+| SRC-RO-16 | Transelectrica balancing and reserve procurement (repository `tel` source) | — | No FCR or aFRR results for 2025–2026 located | GAP-RO-RESERVES |
+| SRC-RO-17 | Counterparty announcement of an optimiser's minimum-revenue guarantee for a 127 MW / 254 MWh Romanian battery, as registered in `src/markets/ro/sources.js` and cited by the `revenueCertainty` grade | 4 February 2026 | Revenue-sharing optimisation with a minimum revenue guarantee from commercial operation to the fifth anniversary of full revenue activation; no level or share disclosed | Repository record, not re-opened; parties and project not named here |
+| SRC-RO-18 | OPCOM monthly market reports, for example R_2607_RO.pdf (July 2026) | 2026 | Public monthly weighted-average day-ahead prices | Reported; not used. A monthly mean is not a spread; hourly series gated by MR-4 and the rights review |
+| SRC-RO-19 | ENTSO-E list of data available for free re-use, as recorded in the Germany ledger (SRC-DE-19) | Modified 18 October 2023 | Day-ahead prices (12.1.D) are absent from the CC-BY list, so the generic licence line on `ro-day-ahead` is not established for prices | Reused record. CF-RO-06 |
+| SRC-RO-20 | ANRE prosumer statistics: 3,789 MW across 332,684 prosumers at 30 April 2026, as reported | 2026 | Rooftop solar growth behind the midday trough | Reported; ANRE's own page not located |
+| SRC-RO-21 | Transelectrica storage-need statements as reported: a July 2024 analysis (2–4 GW over five hours, 10–20 GWh) and an October 2025 investment update (4 GW by 2030) | 2024–2025 | Conflicting figures; `docs/external-view.md` §8 cites 10–20 GWh | Reported. CF-RO-04 |
+| SRC-RO-22 | ANRE's national electricity mix for 2025, as reproduced on a supplier's fuel-mix label (search summary): hydro, nuclear, gas, coal, wind, solar, biomass | 2025 | Generation types for ro-01; no shares used | Reported. GAP-RO-HISTORY |
+
+### 10.3 Claim ledger and research results
+
+Results for the two candidate claims already in `source-register.md`:
+
+- **CL-RO-01 — split.** "Romania's battery fleet is doubling" is confirmed as CL-RO-07: from Transelectrica's 1 August count to its year-end estimate is about a doubling, and far more from the start of the year. "Most of Bulgaria's battery output stays behind the border" stays a platform reading on mirror-derived prices, held as CL-RO-10 (Thin; MR-4).
+- **CL-RO-02 — corrected.** The auction rules are dated orders (CL-RO-06): Orders 53/2024, 79/2025 and 15/2026, with sessions from 30 October 2026. "Orders that keep changing" becomes "a further 2026 order is reported and unread" (CF-RO-08).
+
+[Canonical claim ledger / 统一主张表](market-narratives.md#g1-ro-claims)
+
+### 10.4 Historical nodes — events separate from interpretation
+
+Six nodes. Event dates are authoring metadata confirmed in the listed source; the causal readings are proposed for the analyst. A "Checked" boundary precedes the dashed grant outcome.
+
+| Node / shots | Dated event / source | Constraint → choice → inheritance → present effect (editorial reading) | Limit / disposition |
+| --- | --- | --- | --- |
+| H-RO-01 / ro-02 | Day-ahead market under new rules from 30 June 2005 (SRC-RO-08 pp. 4, 19) | A next-day price needed → exchange auction → an hourly price every day → a battery's revenue starts from it | Event `sourced`; reading `proposed` |
+| H-RO-02 / ro-02 | 4M Market Coupling, launch 19 November for delivery 20 November 2014 (SRC-RO-09) | Inefficient use of borders → one price calculation with three neighbours → converging prices when capacity allows → neighbours can narrow the spread up to the border | Date from the announcement's title; success notice opened |
+| H-RO-03 / ro-02 | Interim Coupling go-live 17 June 2021 (SRC-RO-10); Romania–Bulgaria border in SDAC 27 October 2021, first delivery 28 October (SRC-RO-11) | Border outside the common calculation → implicit allocation → joint prices and flows → Bulgaria's batteries reach Romania only up to the interconnector | Events `sourced`; decoupling statistics withheld (MR-4) |
+| H-RO-04 / ro-03 | ANRE ends double tariffs on stored-and-reinjected energy, announced 8 July 2025 (SRC-RO-12) | Stored energy taxed twice → exemption → lower running cost per cycle | Order number and in-force date reported |
+| H-RO-05 / ro-03, ro-12 | Connection by auction from 2026 (Orders 53/2024, 79/2025, 15/2026); sessions from 30 October 2026 (SRC-RO-13) | Requests exceeding the grid → auction with guarantees → slower, dearer access for new projects → an operating asset's connection has value | Order 16/2026 reported and unread (CF-RO-08) |
+| H-RO-06 / ro-03, ro-10, ro-12 | Scheme approved 6 March 2026 (SRC-RO-07); EIB confirmation 11 March (SRC-RO-05); guide by Order 915 of 14 August (SRC-RO-03); disbursement release 2 July (SRC-RO-06); outcome unpublished (SRC-RO-04) | Storage needed for renewables → tendered capital grants → a grant-funded cohort to come → more home fleet, and capital support that is never income | Outcome dashed; no award or closing inferred |
+
+### 10.5 Calculation records and the signature chart
+
+#### CALC-RO-FLEET — the fleet panel (proposed, not executed)
+
+| Field | Entry |
+| --- | --- |
+| Question | How fast is Romania's own battery fleet growing, against the national plan? |
+| Inputs | Transelectrica's dated storage counts, each opened in a Transelectrica primary publication before use. At check: 1 August 2026, 989 MW (SRC-RO-01 p. 1, opened); year-end estimate of about 1,000 MW more (SRC-RO-01 p. 2, opened). Reported and still to open: 1 January 2025, 137 MW; 1 April 2026, 599 MW / 1,130 MWh; 20 June 2026, 878 MW / 1,630 MWh; 1 August 2026, 1,975 MWh; 1 September 2026, 1,094 MW / 2,310 MWh; 1 October 2026, 1,162 MW / 2,312 MWh (SRC-RO-02). Plan reference: 1,200 MW / 2,400 MWh by 2030 (SRC-RO-03 p. 4) |
+| Method | Plot each count at its date, as published; no interpolation between counts and no smoothing. The year-end estimate as a dashed point at 31 December 2026, added to the count it was made against. The plan level as a dashed horizontal reference labelled as a plan |
+| Definitions | Transelectrica's totals include stand-alone storage and storage inside hybrid plants, and units still in testing; prosumer batteries are excluded as far as the reports say. MW is power; MWh is energy, shown where published |
+| Licence and attribution | Transelectrica's reuse terms were not located. Caption: "Source: Transelectrica". Confirm terms before the build (GAP-RO-FLEET) |
+| Limits | Counts are not dispatchable or qualified capacity; the estimate is not a count; the plan figure covers storage in general |
+| Decision | Analyst at G-1: accept the method; choose a fixed-vintage record committed with the story (like CALC-WA-DAY) or a registered dataset (see GAP-RO-FLEET) |
+
+#### CALC-RO-PATH — the model's two-hour value index (proposed, not executed)
+
+| Field | Entry |
+| --- | --- |
+| Inputs | `merchantEvidence.year` (basis year, 2025), `merchantEvidence.restateFactor` (0.827 at check), `economics.merchantCurve` ([1.000, 0.955, 0.934]), `merchantCurveBasis.yearOne` (2027) in `src/markets/ro/comparison.js` |
+| Method | Index = 100 at the basis year; 100 × `restateFactor` × `merchantCurve[k]` for operating year k from `yearOne`, held at the last value. At check: 82.7 (2027), 79.0 (2028), 77.2 (2029 on). Drawn dashed; no point between the basis year and `yearOne`, because the model's intermediate factor is not a published field |
+| Economic meaning | The model's relative path for the two-hour day-ahead line, before fee, services, degradation and financing. Not revenue, not cash, not observed |
+| Why an index | The basis level (the 2025 day-ahead value) was computed on the private-use mirror (MR-4), so no euro level is shown. Once MR-4 closes, the analyst may add the level |
+| Reconciliation | Recompute from the fields at build; if `merchantCurve` or `restateFactor` changes, the chart follows and the story is queued for review |
+
+#### Chart-RO-FLEET — specification
+
+One signature chart, two aligned panels on a shared calendar axis (2025 to 2030): upper, connected storage in MW from CALC-RO-FLEET; lower, the model's index from CALC-RO-PATH. Independent labelled scales, no shared ordinate, no crossing or break-even claim. Observations solid; the estimate, the plan and the model path dashed. No four-hour line (the model applies one curve to every duration; CF-RO-01). No floor line (unpriced; OC-RO-FLOOR). **It needs no exchange price series.** Fallback while CALC-RO-FLEET is unsigned: a qualitative version tagged Example, with no numeric axis.
+
+### 10.6 Gaps
+
+| Issue ID | Missing evidence or conflict | Affected shots | Severity | Temporary treatment | Next action | Gate blocked |
+| --- | --- | --- | --- | --- | --- | --- |
+| GAP-RO-FLEET | Transelectrica's primary publications for each reported count; reuse terms; record format. Not registered in `src/governance/datasets.js`; the catalogue's `timeseries` kind assumes price checks, so a dataset would need a new kind or a fixed-vintage content record | ro-06 | Blocks the numeric fleet panel | One opened point and the estimate; others reported | Build owner after G-1: open each count; confirm terms; analyst chooses the record format | Numeric Chart-RO-FLEET |
+| GAP-RO-PRICES | A publishable Romanian (and Bulgarian) day-ahead series and the recomputed statistics: TB2, day-ahead value, duration capture, shared-price share (MR-4); price-data rights (ENTSO-E list excludes prices; OPCOM terms not located; opcom.ro answered 403) | ro-04, ro-05, ro-08 | Blocks any observed price layer | Example shape; Thin or Fair markers; model wording | Analyst's separate rights review; MR-4 recomputation | Observed price layers |
+| GAP-RO-RESERVES | Transelectrica's FCR and aFRR procurement results, 2025–2026 | ro-07, ro-10 | Thin marker | Model assumption, labelled | Research: Transelectrica balancing-market reports | None |
+| GAP-RO-HISTORY | A primary dated record of Romania's generation base (ANRE or Transelectrica annual data) | ro-01 | Low | Types only, no shares | Research | None |
+| OC-RO-GRANT | Ministry timetable, amendment, provisional ranking and final lists | ro-03, ro-10, ro-12 | Outcome unknown | "No published result" | Analyst's review, 2 November 2026 | None for the script |
+| OC-RO-FLOOR | Floor terms: payment, tenor, indexation, share above, fees, availability, credit support, transferability | ro-11 | The floor stays unpriced | Checklist only | Seller diligence; a separate priced proposal | Any floor figure |
+
+### 10.7 Conflicts and dispositions
+
+| ID | Conflict | Disposition |
+| --- | --- | --- |
+| CF-RO-01 | The v1.3 Romania card proposes a chart with "the four-hour line falling faster" and "the optimiser floor as a flat line under the two-hour path". The model applies one fleet curve to every duration, Bulgaria's four-hour value compressed slightly less than two-hour, and the floor is unpriced (ruling 3A) | Chart-RO-FLEET replaces it: fleet counts against the model's two-hour index, with no four-hour line and no floor line. The four-hour difference is explained in ro-08 as value, not spread. The card is not edited here |
+| CF-RO-02 | The v1.3 card asks "which projects won the grant call that has just closed". Closing is unverified, an extension is reported, and no outcome is published | The story calls the call unresolved; the outcome is dashed beyond the "Checked" boundary; the analyst reviews on 2 November |
+| CF-RO-03 | The live thesis and `play.why` carry typed figures ("about 17%", "2027", "about 30%"), and the thesis's border statement rests on mirror-derived statistics (MR-4) | Not copied: the story binds model fields and marks the border shot Thin. No view text changes; flagged for the analyst |
+| CF-RO-04 | Storage-need figures disagree: Transelectrica's July 2024 analysis (10–20 GWh), its October 2025 update (4 GW by 2030) and the plan figure in the guide (1,200 MW or 2,400 MWh by 2030); `docs/external-view.md` §8 cites 10–20 GWh | The story uses the guide's plan figure (opened). The others stay in the register |
+| CF-RO-05 | Reported counts show MWh almost flat from 1 September (2,310) to 1 October (2,312) while MW rose by 68 | Open Transelectrica's own figures before drawing (GAP-RO-FLEET) |
+| CF-RO-06 | The `ro-day-ahead` registration says "ENTSO-E — reuse permitted with attribution", but ENTSO-E's free re-use list does not include day-ahead prices (SRC-RO-19) | No change here; for the analyst's separate price-data rights review |
+| CF-RO-07 | The fund verdict's `despite` states frequency-reserve revenue is saturating; no Romanian reserve series was located, and the model carries it as a curve calibrated on Great Britain | ro-07 marked Thin; the analyst decides whether to source it (GAP-RO-RESERVES) |
+| CF-RO-08 | ANRE Order 16/2026 (reported August 2026) may be "a new regulatory order on connection allocation or guarantees", the label of `ro-connection-guarantee-order` (undated, unresolved) | Flagged, not applied: the analyst decides whether the trigger has fired |
+
+### 10.8 Access log, 31 October 2026
+
+At first the session's network policy denied every primary host; after the analyst widened access, these were opened: Transelectrica's press-release host, the Modernisation Fund site, the Commission's press corner, OPCOM's document host, Nord Pool, EPEX SPOT, ANRE and ESO. Still unreachable: `energie.gov.ro` and `oportunitati-ue.gov.ro` (connection reset by the remote end) and `www.opcom.ro` pages (HTTP 403). A distributor's copy of ANRE Order 56/2025 returned 403. Search summaries are marked as such in every record that rests on them.
+
+<a id="g1-ercot-evidence"></a>
+
+### ERCOT — G-1 evidence, 1 November 2026
+
+Source owner for [ercot shot references](ercot-storyboard.md). Original check dates, access limits and G-2 gates remain as recorded.
+
+Research for this script ran on 31 October 2026, Australia/Perth, from `main` at `edcb39c`. Primary documents were opened where the network allowed. ERCOT's own website refused automated reading (bot protection); those items are recorded from search results, marked "search result, not opened", and are corroborated by the market monitor wherever possible. No licence-restricted report or subscription index is a source below.
+
+### Repository evidence
+
+| ID | Exact reference | Supports | Limits |
+| --- | --- | --- | --- |
+| REPO-ERCOT-LIVE | `main` at `edcb39c`: `view/markets/ercot.json` (thesis, grades, verdicts, trigger `ercot-january-2027-mora`, play `ercot-toll-2h`); card values computed read-only on 31 October 2026 through `opportunities('infraFund')` and `returnPct` (`src/experience/model.js`), `marginText` and `currentThesis` (`src/experience/decision.js`), and `HOME_BRIEFING.grids.ercot`; `src/markets/ercot/comparison.js` (capacity line a declared zero; toll seeded from a third-party two-hour toll value, seven years, then merchant); `src/governance/datasets.js` (no ERCOT dataset) | The call, play, card figures, next event and design grid the story binds to; the toll is the model's assumed route | Not a project document; the toll fee is a proxy, not a disclosed ERCOT toll |
+
+### Primary sources
+
+| ID | Source and locator | Access and dates | Supports | Limits and rights |
+| --- | --- | --- | --- | --- |
+| SRC-ERCOT-01 | Independent Market Monitor for ERCOT (Potomac Economics), [*2025 State of the Market Report for the ERCOT Electricity Markets*](https://www.potomaceconomics.com/wp-content/uploads/2026/06/2025-State-of-the-Market-Report-for-ERCOT.pdf), May 2026 (PDF created 31 May 2026). Executive summary pp. ii–iv, viii; p. 2 (ORDC "implemented in 2014 and discontinued in December 2025"); §II.D pp. 7–8 and Figure 5; §I.E pp. 21–23, Figures 16–17; §II.H p. 36; §III.B pp. 38–40, Figure 25 and inset table; pp. 42–43; p. 48; §V pp. 99–103; p. 107; Appendix p. A-3, Table A1 | Opened 31 Oct 2026 | Battery capacity above 17,000 MW and 31,500 MWh at end-2025, from below 300 MW before 2021; "As ESRs have flooded the AS markets, AS prices have fallen"; revenue per unit of capacity down almost 37% in 2025, reserve revenue down more than 37%, net energy revenue up 57%; reserve prices fell across all products, 2024 to 2025; ORDC active 57 hours in 2025, adding less than $0.02 per MWh, the least since 2014; surplus of reserves; DC ties; reserve costs allocated to load-serving entities; post-co-optimisation duration rules; DRRS's statutory four-hour duration; "years like 2024 and 2025 occur often"; MORA shortage probabilities likely overstated; load projections for 2030 | The monitor's analysis and recommendations, which ERCOT partly disputes (SRC-ERCOT-18). From Figure 21 on, the contents list numbers figures one higher than the text does; cite by title and page. No licence stated; cite and link; do not reproduce figures |
+| SRC-ERCOT-02 | Same author, [*2024 State of the Market Report*](https://www.potomaceconomics.com/wp-content/uploads/2025/06/2024-State-of-the-Market-Report.pdf), May 2025. p. ii, p. 3, p. 22 (9,505 MW of batteries at end-2024; average duration about 1.6 hours), p. 26 (revenue trends) | Opened 31 Oct 2026 | 2024 battery capacity; reserve cost per MWh of load fell from $3.74 to $0.98; ECRS average price $76.77 to $9.62; 2024 battery revenue fell as supply grew and extreme heat days fell | Its annual price table differs from the 2025 report's (CF-ERCOT-01) |
+| SRC-ERCOT-03 | Same author, [*2023 State of the Market Report*](https://www.potomaceconomics.com/wp-content/uploads/2024/05/2023-State-of-the-Market-Report_Final_060624.pdf), file dated June 2024. p. 1, p. v, p. viii, p. ix, p. xi, p. 24 | Opened 31 Oct 2026 | Batteries total 4.4 GW after 1,900 MW added in 2023; "a very conservative operational posture since July 2021"; after Uri, reserve procurement rose from roughly 4,000 to 7,000 MW; ECRS from 10 June 2023 almost doubled ten-minute reserves; reserve cost $4.21 per MWh of load in 2023 | Its 2023 reserve cost differs from the 2024 report's (CF-ERCOT-01) |
+| SRC-ERCOT-04 | Same author, [*2021 State of the Market Report*](https://www.potomaceconomics.com/wp-content/uploads/2022/05/2021-State-of-the-Market-Report.pdf), May 2022. p. iv; p. x | Opened 31 Oct 2026 | Winter Storm Uri: EEA3 from early 15 February to mid-morning 19 February 2021; more than 52 GW unavailable at the height; 820 MW of batteries added in 2021 | Its 2021 battery addition differs from later reports' description (CF-ERCOT-02) |
+| SRC-ERCOT-05 | Same author, [*2022 State of the Market Report*](https://www.potomaceconomics.com/wp-content/uploads/2023/05/2022-State-of-the-Market-Report_Final_060623.pdf), June 2023. p. ii; p. 28 | Opened 31 Oct 2026 | Batteries reached 2.7 GW at end-2022 after 1.7 GW added | Year-end values only |
+| SRC-ERCOT-06 | PUCT, Project No. 52631, Item 47, [order adopting amendments to 16 TAC §25.505](https://interchange.puc.texas.gov/Documents/52631_47_1171647.PDF), approved at the 2 December 2021 open meeting. p. 1; pp. 4–5 | Opened 31 Oct 2026 | The offer cap lowered from $9,000 to $5,000 per MWh; "After the extreme weather events of February 2021, the price cap of $9,000 per MWh has proven to be a liability" | Effective date (1 January 2022) from ERCOT notice M-A120721-01, a search result, not opened |
+| SRC-ERCOT-07 | PUCT news release, 19 January 2023, [*Public Utility Commission of Texas Unanimously Adopts Performance Credit Mechanism Reliability Service*](https://ftp.puc.texas.gov/public/puct-info/agency/resources/pubs/news/2023/PUCT_Adopts_Performance_Credit_Mechanism_Reliability_Service.pdf) | Opened 31 Oct 2026 | The credit adopted, with implementation deferred until the 88th Legislature could review it | A release, not the order |
+| SRC-ERCOT-08 | PUCT, Project No. 55000, *Performance Credit Mechanism*: [Item 47, Staff Recommendation, 13 December 2024](https://interchange.puc.texas.gov/Documents/55000_47_1449541.PDF), p. 2; [Item 48, Chairman's memorandum, 18 December 2024](https://interchange.puc.texas.gov/Documents/55000_48_1450615.PDF); [open meeting minutes, 19 December 2024](https://ftp.puc.texas.gov/public/puct-info/agency/calendar/minutes/12-19-24.pdf), item 17 | Opened 31 Oct 2026 | "Staff recommends not moving forward with the PCM as currently designed"; minutes: "Adopted Staff's final recommendation on PCM"; the memo points effort to real-time co-optimisation and DRRS and leaves later reconsideration open | No filing in the project after 18 December 2024 at check |
+| SRC-ERCOT-09 | PUCT news release, 18 June 2026, [*PUCT Approves New ERCOT Process to Manage Electricity Requests from Data Centers, Large Power Users*](https://ftp.puc.texas.gov/public/puct-info/agency/resources/pubs/news/2026/PUCT-Approves-New-ERCOT-Process-to-Manage-Electricity-Requests-from-Data-Centers-Large-Power-Users.pdf) | Opened 31 Oct 2026 | A record number of large users are lining up; a batch study process approved | Gives no queue size; ERCOT's queue figures are search results only |
+| SRC-ERCOT-10 | Lawrence Berkeley National Laboratory, [*Queued Up: 2026 Edition*](https://eta-publications.lbl.gov/sites/default/files/2026-06/queued_up_2026_edition.pdf), June 2026, data to end-2025. Slides 26–27, 44, 47 | Opened 31 Oct 2026 | "Generators do not pay for network upgrades under ERCOT's 'connect and manage' approach"; faster request-to-agreement times than FERC-jurisdictional ISOs; ERCOT requests average 24 months to agreement, against longer comparable requests elsewhere since 2010 | A national-laboratory analysis of queue data, partly non-public; not ERCOT's rule text (GAP-ERCOT-RULE). DOE-funded; cite and link |
+| SRC-ERCOT-11 | ERCOT, [resource adequacy page](https://www.ercot.com/gridinfo/resource) and MORA reports, including [MORA for December 2026](https://www.ercot.com/files/docs/2026/10/02/MORA_December2026.pdf), posted 2 October 2026 | Search result, not opened (bot protection); the page was opened by the analyst's session for ruling 5A on 31 October 2026 | MORA releases are "targeted for the first Friday of each month", for the month two months ahead, so the January 2027 report falls on 6 November 2026 | Confirm on the page before G-2 |
+| SRC-ERCOT-12 | FERC, [ERCOT page](https://www.ferc.gov/industries-data/electric/electric-power-markets/ercot) | Search result, not opened (the host refused automated reading) | The ERCOT grid "is located solely within the state of Texas and is not synchronously interconnected to the rest of the United States" | Corroborated by SRC-ERCOT-01 p. 36 (links only through DC ties) |
+| SRC-ERCOT-13 | Potomac Economics, [ERCOT page](https://www.potomaceconomics.com/markets-monitored/ercot/) | Opened 31 Oct 2026 | Potomac Economics is ERCOT's independent market monitor; "ERCOT is regulated by the Public Utility Commission of Texas" | A web page with no version date; site copyright Potomac Economics |
+| SRC-ERCOT-14 | ERCOT market notices and releases: ECRS ([M-D050523-01](https://www.ercot.com/services/comm/mkt_notices/M-D050523-01); release of 12 June 2023) and real-time co-optimisation ([M-F110525-04](https://www.ercot.com/services/comm/mkt_notices/M-F110525-04); release of 5 December 2025); [NPRR 1282](https://www.ercot.com/mktrules/issues/NPRR1282), PUCT report of 31 July 2025 | Search results, not opened | ECRS's first operating day, 10 June 2023; transition to the co-optimised systems at midnight, 4 to 5 December 2025; ECRS duration cut from two hours to one, Regulation and Responsive Reserve to thirty minutes | Corroborated by SRC-ERCOT-03 p. ix and SRC-ERCOT-01 pp. 7, 42 and A-3 |
+| SRC-ERCOT-15 | Texas Legislature, [S.B. No. 2116, 87th Legislature (2021), enrolled](https://capitol.texas.gov/tlodocs/87R/billtext/html/SB02116F.htm), the Lone Star Infrastructure Protection Act; Business & Commerce Code §113.002 | Opened 31 Oct 2026 | A business entity may not enter an agreement relating to critical infrastructure in Texas that grants direct or remote access to or control of it to a company owned or controlled by citizens or governments of China, Iran, North Korea, Russia or a designated country, or headquartered there | The enrolled 2021 text; later amendments not checked. Applies the test; finds nothing about any investor |
+| SRC-ERCOT-16 | ERCOT, [website user agreement](https://www.ercot.com/help/terms) and [data portal terms](https://www.ercot.com/help/terms/data-portal) | Search results, not opened | Terms may change without notice; the API needs registration and acceptance of its terms | Reuse and redistribution terms for ERCOT data not established (GAP-ERCOT-OPEN) |
+| SRC-ERCOT-17 | ERCOT, *ERCOT Monthly, June 2026* (board adoption of NPRR 1309 and NOGRR 283, the Dispatchable Reliability Reserve Service, on 2 June 2026; storage participation carried in separate revision requests) | Search result, not opened | DRRS adopted as a new standing reserve; storage's participation unsettled | Corroborated in part by SRC-ERCOT-01 p. 43 (NPRR 1309 approved by TAC; DRRS statutorily four hours) |
+| SRC-ERCOT-18 | ERCOT Board, 1 June 2026, Item 9.1, *Preliminary Response to the IMM 2025 State of the Market Report* | Search result, not opened | ERCOT disagrees with parts of the monitor's report, including on net revenue and resource adequacy | The competing view; open before G-2 |
+| SRC-ERCOT-19 | ERCOT, notice on the operating reserve demand curve, 30 May 2014 ("beginning June 1, 2014") | Search result, not opened | The ORDC's start month | Corroborated by SRC-ERCOT-01 p. 2 (implemented in 2014) |
+
+### Claims, and the result for CL-ERCOT-01
+
+`CL-ERCOT-01` is the v1.3 candidate in [the source register](source-register.md#candidate-claims-added-in-v11), which this PR does not edit. **Result, 31 October 2026:** confirmed in substance and split into the claims below. Two corrections: the "published fleet revenue index" is a subscription source and is replaced by the market monitor's measures (CF-ERCOT-04), and the ORDC adder ended in December 2025, so "scarcity pricing" now means reserve demand curves. New claims continue from `CL-ERCOT-02`.
+
+[Canonical claim ledger / 统一主张表](market-narratives.md#g1-ercot-claims)
+
+<a id="g1-ercot-history"></a>
+
+### Historical nodes — events separate from interpretation
+
+| Node | Date | Event and source | Reading (proposed) |
+| --- | --- | --- | --- |
+| H-ERCOT-01 | 2014 (from 1 June, per SRC-ERCOT-19) | The ORDC price adder begins (SRC-ERCOT-01 p. 2) | Scarcity is how a market without capacity payments pays for reliability |
+| H-ERCOT-02 | 15–19 February 2021 | Winter Storm Uri; EEA3 and load shed (SRC-ERCOT-04 p. iv) | The storm made ERCOT cautious and reserve-heavy |
+| H-ERCOT-03 | 2 December 2021, effective from 2022 | Offer cap lowered from $9,000 to $5,000 per MWh (SRC-ERCOT-06) | Scarcity hours pay less than before |
+| H-ERCOT-04 | 19 January 2023 to 19 December 2024 | Performance credit adopted and deferred, then not taken forward (SRC-ERCOT-07, SRC-ERCOT-08) | No capacity payment for the foreseeable future |
+| H-ERCOT-05 | 10 June 2023 | ECRS begins; ten-minute reserves almost double (SRC-ERCOT-03 pp. viii, ix) | The reserve pool batteries filled |
+| H-ERCOT-06 | 5 December 2025 | Real-time co-optimisation goes live; the ORDC adder ends (SRC-ERCOT-01 pp. 2, 7) | More competition for each reserve |
+
+### Conflicts and dispositions
+
+| ID | Conflict | Disposition |
+| --- | --- | --- |
+| CF-ERCOT-01 | The monitor's annual figures change between report vintages: ECRS 2023 is $76.77 in the 2024 report and $73.18 in the 2025 report; Responsive Reserve 2023 is $20.66 and $21.04; reserve cost per MWh of load in 2023 is $4.21 in the 2023 report and $3.74 in the 2024 report | The chart takes every year from the 2025 report's table and names it; never mix vintages |
+| CF-ERCOT-02 | 2021 battery capacity: the 2021 report counts 820 MW added in 2021; the 2024 and 2025 reports say capacity rose from 300 MW to 1,600 MW in the twelve months of 2021 | Take every year of the upper panel from one dataset, preferably ERCOT's monthly installed series; label the 2021 point's source |
+| CF-ERCOT-03 | The fund verdict's `because` says "the reference project loses money on the model, even with a toll", and the `assetReturn` grade reason (17 October) quotes a hold IRR of −5.9%, the design grid's basis. The card and the Overview use the investment basis (ready-to-build entry, nominal after project tax, with the platform's US tax treatment): an all-equity hold IRR of 0.5%, −9.61 pp against target. The investment NPV and every design value are negative | The story says "falls short of the fund's target", which is true on both bases. The view text is the analyst's to re-word; not edited here |
+| CF-ERCOT-04 | The thesis's "about 85% in two years" and the play's `why` rest on a subscription index (`modoIndex` in `src/markets/ercot/sources.js`); the live action tests against "the 2025 realised index". The monitor's Figure 17 shows a fall of similar size from 2023 to 2025, but only as a chart; its text states the 2025 change | The story never types the percentage or names the index; it uses the monitor's stated change. Re-sourcing the view text is the analyst's decision |
+| CF-ERCOT-05 | The `policyStability` grade reason says data-centre interconnections "have been paused for audit since August 2026". This research found it only in a blog post; ERCOT's site could not be read, and the PUCT's June release is silent | Not used in the story; flagged for the analyst |
+| CF-ERCOT-06 | The story card in `market-narratives.md` proposes the published fleet revenue index by year against fleet size, with the undisclosed toll as a dashed band. The index is a subscription source, and a toll band would imply a price the platform has not underwritten | Replaced by Chart-ERCOT-AS, with no toll drawn. The card is not edited here; a later PR folds it |
+
+### Gaps
+
+| ID | Missing evidence | Affected | Temporary treatment | Next action | Gate blocked |
+| --- | --- | --- | --- | --- | --- |
+| GAP-ERCOT-AS | No ERCOT dataset is registered; the chart needs a reserve-price series and an installed-battery series, with rights cleared | ercot-05, ercot-06 | Unscaled Example | Analyst picks the route at G-1 (transcribe the monitor's table, or register ERCOT's day-ahead reserve prices and monthly installed storage); price-data rights review | G-2 for the numeric chart |
+| GAP-ERCOT-TOLL | No executed or disclosed ERCOT toll price and terms (gate OC-ER-TOLL) | ercot-00, ercot-10–12 | The toll is shown as an assumption with no price | Underwrite an executed toll when one is offered | The investment case, not the story |
+| GAP-ERCOT-OPEN | ERCOT pages refused automated reading: resource adequacy and MORA cadence, ECRS and co-optimisation notices, terms of use, reserve methodology, capacity workbooks | ercot-01–08, ercot-12 | Search results, corroborated by the monitor where possible | Open them by hand before G-2 | None for G-1 |
+| GAP-ERCOT-RULE | ERCOT Planning Guide §5 and the PUCT's interconnection cost rules not opened | ercot-03 | Berkeley Lab's description | Read the rule text | None for G-1 |
+| GAP-ERCOT-MAP | No ERCOT footprint boundary is available | ercot-00, ercot-01 | The existing Texas outline, with the grid drawn as a schematic inside it and labelled | Accept, or source a public boundary with its licence | None |
+
+### Dataset and rights summary
+
+The signature chart needs two series. Neither is registered in `src/governance/datasets.js`, which holds no ERCOT dataset at all. The reserve-price panel is a market price series, so the analyst's separate price-data rights review applies before anything numeric is published. The monitor's report states no licence (© Potomac Economics; prepared for the PUCT), and ERCOT's data terms were not opened. Nothing is registered or ingested in this task.
+
+<a id="g1-pjm-evidence"></a>
+
+### PJM — G-1 evidence, 1 November 2026
+
+Source owner for [pjm shot references](pjm-storyboard.md). Original check dates, access limits and G-2 gates remain as recorded.
+
+Scope: steps 1 and 2, for this script. Researcher: Claude, 31 October 2026; the analyst's review of electricity mechanics, investment meaning and Chinese is pending G-1. A **confirmed** result means the narrow proposition has a primary locator that was opened and read on the check date; its editorial state is `sourced`, not `reviewed`. No source here establishes a project's capacity commitment, interconnection agreement, backstop award or realised revenue. New IDs start at SRC-PJM-01 and continue the claim series after CL-PJM-16, which the [source register](source-register.md#candidate-claims-added-in-v11) already holds. `source-register.md` is not edited; a later PR folds these records in.
+
+### Live anchor and repository provenance
+
+| ID | Inspected reference | Result and limit |
+| --- | --- | --- |
+| REPO-PJM-LIVE | `main` at [edcb39ca0d69397f3683dffc9af5ffb49473c98c](https://github.com/jerryyuan1996/BESS-research-platform/commit/edcb39ca0d69397f3683dffc9af5ffb49473c98c): [PJM view](../../view/markets/pjm.json), [briefing model](../../src/briefing/model.js), [plays](../../src/briefing/plays.js), [experience adapter](../../src/experience/model.js), [decision panel](../../src/experience/decision.js), [PJM comparison](../../src/markets/pjm/comparison.js), [PJM data](../../src/markets/pjm/data.js), [dataset catalogue](../../src/governance/datasets.js) | Briefing evaluated read-only for 31 October 2026 (`HOME_BRIEFING.on`). `infraFund`: call `wait` (Watch / 保持观察), tier `watch`, `pjm-cap-4h`, ready-to-build, evidence `strong`, next trigger `pjm-capacity-auction-2029-30`. Card values at check are in §1. The verdict's `because` lines are the reference return, a capacity line secured one delivery year at a time, and an unsettled design beyond the collar; its `despite` line is the counterpoint. Other lenses differ (`strategic` and `developer`: `opportunistic`, greenfield) |
+
+### Primary-source records
+
+Common fields: allocation market `pjm`; geography the PJM region unless a zone is named; retrieval and check **31 October 2026**; language English. Every document below was downloaded and read on that date; FERC's own site refused automated requests, so FERC orders were read from the copies PJM hosts. Only links, locators and paraphrases are stored; no report, table or graphic is vendored. Text records are `public-link-only`, an access boundary rather than a permission to redistribute. Dollar and MW values below are authoring metadata, never page constants.
+
+| ID | Publisher / title / exact locator | Dates / version | Supported proposition and boundary | Access / review / next trigger |
+| --- | --- | --- | --- | --- |
+| SRC-PJM-01 | PJM, [2028/2029 Base Residual Auction Report](https://www.pjm.com/-/media/DotCom/markets-ops/rpm/rpm-auction-info/2028-2029/2028-2029-bra-results-report.pdf): Executive Summary, printed pp. 3–4; Table 2, printed p. 5; Appendix "BRA Clearing Simulation Without Cap and Floor", printed p. 17 | Results 14 July 2026; PDF created 14 July 2026 | All prices cleared at the $325.00/MW-day UCAP cap; 6,831.3 MW UCAP below the reliability requirement; the second BRA in a row more than one percentage point below the IRM; note 1: the tariff requires a Reliability Backstop Auction after three such auctions. Requirement 156,013 MW, the increase "largely due to additional Large Loads". Auction ~23 months before delivery (compressed schedule). Simulation without cap and floor: $554.72 RTO, $776.69 COMED. Table 2 gives RTO prices 2018/19 to 2028/29. Does not establish why the cap bound or that it caused the shortfall | `public-link-only`; `current-at-check`; `sourced`. Refresh with the 2029-30 report |
+| SRC-PJM-02 | PJM, [2027/2028 Base Residual Auction Report](https://www.pjm.com/-/media/DotCom/markets-ops/rpm/rpm-auction-info/2027-2028/2027-2028-bra-report.pdf): Executive Summary, printed pp. 3–4 | Auction December 2025; PDF created 5 January 2026 | Cleared at the $333.44 cap; total procured capacity 6,516.6 MW UCAP below the RTO Reliability Requirement (p. 3), and the RPM 6,623.2 MW UCAP short of the IRM (p. 4); 14.4% against a 20% IRM. Quotes OATT Attachment DD §16: a shortfall above one percentage point triggers an investigation, and its continuation for two more BRAs triggers a Reliability Backstop Auction, filed at FERC before it runs | `public-link-only`; `sourced`; historical. See CF-PJM-04 on the shortfall figure |
+| SRC-PJM-03 | PJM, [2026/2027 Base Residual Auction Report](https://www.pjm.com/-/media/DotCom/markets-ops/rpm/rpm-auction-info/2026-2027/2026-2027-bra-report.pdf): Executive Summary, printed pp. 3–4 | Auction July 2025; PDF created 1 August 2025 | RTO and every zone cleared at the $329.17 cap; the zones that cleared higher the year before fell to the cap. First auction with the cap of $256.75/MW-ICAP and floor of $138.25/MW-ICAP | `public-link-only`; `sourced`; historical |
+| SRC-PJM-04 | PJM, [2025/2026 Base Residual Auction Report](https://www.pjm.com/-/media/markets-ops/rpm/rpm-auction-info/2025-2026/2025-2026-base-residual-auction-report.ashx): Executive Summary, printed pp. 3–4 | Results 30 July 2024; version 4, PDF created 1 April 2025 | RTO $269.92 (from $28.92 the year before); two zones higher. Year-on-year comparisons "are not straightforward" because marginal ELCC accreditation applied to all resources from this auction; the CIFP changes approved by FERC in ER24-99-000 introduced it | `public-link-only`; `sourced`; historical |
+| SRC-PJM-05 | PJM, [2024/2025 Base Residual Auction Report](https://www.pjm.com/-/media/markets-ops/rpm/rpm-auction-info/2024-2025/2024-2025-base-residual-auction-report.ashx): Table 1, PDF p. 5 | PDF created 18 June 2024 (auction re-executed under FERC's order of 6 May 2024) | RTO clearing prices from the 2007/2008 delivery year, the first ($40.80), to 2023/2024; 2024/25 $28.92 | `public-link-only`; `sourced`; historical |
+| SRC-PJM-06 | PJM, [ELCC Class Ratings for the 2029/2030 Base Residual Auction](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/29-30-bra-elcc-class-ratings.pdf), table, p. 1 | PDF created 7 August 2026 | Ratings "that will be applied to" the 2029/2030 BRA: storage 4-hr 57%, 6-hr 66%, 8-hr 69%, 10-hr 76%. Every storage class two points below 2028/29; gas combustion turbines eight points below | `public-link-only`; `current-at-check`; `sourced` |
+| SRC-PJM-07 | PJM, [ELCC Class Ratings for the 2028/2029 Base Residual Auction](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/28-29-bra-elcc-class-ratings.pdf), table, p. 1 | PDF created 25 February 2026 | Storage 4-hr 59%, 6-hr 68%, 8-hr 71%, 10-hr 78%; the ratings the model prices | `public-link-only`; `sourced` |
+| SRC-PJM-08 | PJM, [ELCC Class Ratings for the 2027/2028 Base Residual Auction](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2027-28-bra-elcc-class-ratings.pdf), table, p. 1 | PDF created 1 August 2025 | Storage 4-hr 58%, 6-hr 67%, 8-hr 70%, 10-hr 78% | `public-link-only`; `sourced` |
+| SRC-PJM-09 | PJM, [ELCC Class Ratings for the 2026/2027 Base Residual Auction](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2026-27-bra-elcc-class-ratings.pdf), table, p. 1; and [Final ELCC Class Ratings for the 2026/2027 Delivery Year and Third Incremental Auction](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2026-27-3ia-elcc-class-ratings.pdf), table, p. 1 | PDFs created 28 February 2025 and 31 December 2025 | Auction ratings: storage 4-hr 50%, 6-hr 58%, 8-hr 62%, 10-hr 72%. Final delivery-year ratings: 54%, 61%, 65%, 73%. A rating can be revised between the auction and delivery | `public-link-only`; `sourced` |
+| SRC-PJM-10 | PJM, [IRM, FPR and ELCC for 2025/26 BRA](https://www.pjm.com/-/media/committees-groups/committees/mc/2024/20240320/20240320-item-01---irm-fpr-and-elcc-for-25-26-bra---presentation.ashx), Members Committee, 20 March 2024, slide "2025/26 ELCC Class Ratings"; and [2025/2026 Third Incremental Auction ratings](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2025-26-3ia-elcc-class-ratings.pdf), p. 1 | 20 March 2024; PDF created 23 January 2025 | Auction ratings: storage 4-hr 59%, 6-hr 67%, 8-hr 68%, 10-hr 78%. Final 2025/26 ratings: 55%, 65%, 68%, 77%. PJM's ELCC page no longer lists the 2025/26 auction-ratings PDF; the presentation is the locator | `public-link-only`; `sourced` |
+| SRC-PJM-11 | PJM, [Preliminary ELCC Class Ratings for Period DY 2028/29 – DY 2042/43](https://www.pjm.com/-/media/DotCom/committees-groups/cifp-rbp/postings/preliminary-elcc-class-ratings-for-period-dy28-dy42.pdf), table, pp. 1–2; and [Discussion](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/discussion-of-preliminary-elcc-class-ratings-for-period-dy28-dy42-elcc.pdf), pp. 1–2 (inputs), 4–5 (charging effect), 7–8 ("Storage Class Ratings") | Both PDFs created 4 September 2026 | Extended to 2042/43 for the backstop's term. Values for years after 2029/30 "are non-binding and are provided only for indicative purposes" and "will likely differ" from official results. Storage 4-hr: 57% (2029/30), 42% (2030/31), 34%, 30%, 26%, 24%, 23%, 22%, 22%, 22%, 21%, 20%, 20%, 19% (2042/43); 10-hr from 76% to 47%. Storage ratings "drop consistently ... due to increasing winter risk": multi-hour winter events and storage that cannot recharge in energy-constrained winter events. The 2030/31 ratings are to be calculated in December 2026 or January 2027 | `public-link-only`; `official-plan`; `current-at-check`; `sourced`. Refresh with the 2030-31 ratings |
+| SRC-PJM-12 | PJM, [Preliminary ELCC Class Ratings](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/preliminary-elcc-class-ratings.pdf) (June 2025), opening note; older method: [ratings for the 2023/2024 BRA](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/elcc-class-ratings-for-2023-2024-bra.pdf) and [for 2024/2025](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/elcc-class-ratings-for-2024-2025.pdf) | PDFs created 19 June 2025, 16 December 2021 and 29 December 2023 | The current ratings are calculated "under the methodology approved by FERC on January 30th, 2024 in Docket No. ER24-99". Under the earlier method, 4-hr storage was 83% (2023/24 BRA) and 92% (2024/25): not comparable with later ratings | `public-link-only`; `sourced`; old-method values are context only |
+| SRC-PJM-13 | PJM, [2029/2030 RPM Base Residual Auction Planning Period Parameters](https://www.pjm.com/-/media/DotCom/markets-ops/rpm/rpm-auction-info/2029-2030/2029-2030-planning-period-parameters-for-base-residual-auction-report.pdf): Introduction and Summary, printed p. 1; Reliability Requirement, printed p. 2; VRR Curves, printed p. 4 | Report dated 3 September 2026; parameters posted 31 August 2026 | Auction "to be conducted in December of 2026"; forecast peak 171,916 MW; requirement 158,712 MW. Cap $337.83 and floor $181.91/MW-day UCAP "as approved by FERC in Docket ER26-1556" (from $325.00 and $175.00, after the Reference Resource UCAP factor moved from 79% to 76%). The normal VRR curve is the tariff default outside the four capped auctions. Curve points subject to adjustment pending a FERC decision on a further filing (docket number truncated in the PDF). Virginia (DOM) and northern Illinois (COMED) cannot import enough capacity in certain emergencies | `public-link-only`; `current-at-check`; `sourced`. Refresh 30 days before the auction if PJM reposts the curves |
+| SRC-PJM-14 | PJM, [RPM auction schedule workbook](https://www.pjm.com/-/media/DotCom/markets-ops/rpm/rpm-auction-info/rpm-auction-schedule.xlsx): sheets for the 2029/2030 BRA and the 2030/2031 BRA, rows "Auction window opens/closes", "Auction results posted", "Preliminary ELCC Class Rating" | Read 31 October 2026 | 2029/30: preliminary ratings 6 August 2026; parameters 31 August 2026; window 9–15 December 2026; results 22 December 2026, no earlier than 4 pm EPT. 2030/31: preliminary ratings 11 January 2027; parameters 1 February 2027; window 12–18 May 2027; results 25 May 2027 | `public-link-only`; `official-plan`; `current-at-check`. Recheck before each date |
+| SRC-PJM-15 | FERC, 191 FERC ¶ 61,066, [order accepting tariff revisions and dismissing complaint](https://www.pjm.com/pjmfiles/directory/etariff/FercOrders/8120/20250421-er25-1357-000.pdf), Dockets ER25-1357-000 and EL25-46-000, paragraphs 1–2 and P 13 (pp. 7–8) | Issued 21 April 2025 | Pennsylvania's governor and Commonwealth complained on 30 December 2024 that the price cap was unjust; Pennsylvania and PJM moved to dismiss it on PJM filing a cap and floor; FERC accepted. PJM's statement that without the change the 2026/27 cap would be about $500/MW-day and the floor zero | `public-link-only`; `sourced`; historical |
+| SRC-PJM-16 | PJM Inside Lines, ["FERC Approves Capacity Auction Price Collar to Next Two Capacity Auctions"](https://insidelines.pjm.com/ferc-approves-capacity-auction-price-collar-to-next-two-capacity-auctions/), paragraphs 1–4 | Published 30 April 2026; reports FERC's approval of 28 April 2026 in ER26-1556 | Cap of about $325 and floor of $175/MW-day for the auctions for 2028/2029 (closing 7 July) and 2029/2030 (closing 15 December); part of the Board's reforms for the imbalance "driven by rapid data center expansion" | `public-link-only`; `sourced`. FERC's own order not read; SRC-PJM-13 independently cites the docket |
+| SRC-PJM-17 | FERC, 196 FERC ¶ 61,245, [Order Accepting Reliability Backstop Procurement and Establishing Further Procedures](https://www.pjm.com/pjmfiles/directory/etariff/FercOrders/9154/20260929-er26-3380-000.pdf), Dockets ER26-3380-000 and EL26-108-000: pp. 1–4 (summary and background), 7–8 (filing), 13–14 and 19–20 (eligibility), ordering paragraph (A), p. 85 | Issued 29 September 2026 | A BRA procures a delivery year from June 1 to May 31 (p. 2). The 2027/28 BRA was the first to clear significantly below the requirement; nearly 5,100 MW of its 5,250 MW load growth was data centres (pp. 2–3). The backstop is a one-time procurement of new capacity for terms of up to 15 years, 2028/29 at the earliest to 2042/43 at the latest, settled as a contract-for-difference around RPM credits, only on committed and available MW (pp. 7–8). A four-hour battery is eligible; FERC found the eligibility rules just and reasonable (pp. 14, 19). Accepted, suspended five months, effective 28 February 2027, subject to refund, with a paper hearing (p. 85) | `public-link-only`; `current-at-check`; `sourced`. Next: FERC's action on the amended filing |
+| SRC-PJM-18 | PJM, [Section 9.2(b) stakeholder consultation on the upcoming 205 filing on the Reliability Backstop Procurement](https://www.pjm.com/-/media/DotCom/committees-groups/committees/mc/2026/20261022-special/item-01---1-tariff-section-92b-stakeholder-consultation-of-upcoming-205-filing-on-reliability-backstop-procurement---presentation.pdf), Special Members Committee, slides 2–5 and 16 | 22 October 2026 | FERC accepted most of the filing but suspended its execution; PJM asked for the paper hearing to be held in abeyance on 12 October and planned a new filing on 29 October covering cost allocation, LSE exit and LSE collateral | `public-link-only`; `sourced`; superseded on dates by SRC-PJM-19 |
+| SRC-PJM-19 | PJM Inside Lines, ["PJM Files Amended Reliability Backstop Proposal"](https://insidelines.pjm.com/pjm-files-amended-reliability-backstop-proposal/), paragraphs 1–3 and "New Procurement Dates" | 29 October 2026 | Amended proposal filed, aiming to start on 1 March 2027: bids close 28 March, target set 28 April, results 10 May 2027; still up to 15 years and a MW-weighted average maximum of $555/MW-day; costs allocated to large-load growth. PJM: the shortfall in the last two auctions "is driven by the rapid increase in electricity demand from Large Loads" | `public-link-only`; `current-at-check`; `sourced`. FERC's docket for the amendment not read |
+| SRC-PJM-20 | PJM's Independent Market Monitor, [Market Monitor Report to the Members Committee](https://www.pjm.com/-/media/DotCom/committees-groups/committees/mc/2026/20260727-web/item-02---marketing-monitoring-report---presentation.pdf), slides 4 and 6 | Meeting 27 July 2026; PDF created 21 July 2026 | $6.3B of the 2028/29 auction's $16.4B, or 38.2%, "was a result of data center load"; $29.4B, or 46.2%, over four auctions; data-centre load in each forecast. The Monitor's position: procure data-centre capacity in a dedicated auction | `public-link-only`; interpretation by the Monitor; method not in the slides |
+| SRC-PJM-21 | PJM, [Winter Storm Elliott Event Analysis and Recommendation Report](https://www.pjm.com/-/media/DotCom/library/reports-notices/special-reports/2023/20230717-winter-storm-elliott-event-analysis-and-recommendation-report.pdf), Executive Summary, "Market Outcomes" and "Recommendations Overview", PDF p. 9 | 17 July 2023 | Elliott "was the first wide-scale use of PJM's Capacity Performance rules, which were introduced in 2016 ... following the 2014 Polar Vortex"; about $1.8 billion of Non-Performance Charges estimated; 47,000 MW on forced outage at one point; recommendations on winter risk in market rules and accreditation | `public-link-only`; `sourced`; historical |
+| SRC-PJM-22 | PJM, ["PJM History"](https://www.pjm.com/about-pjm/who-we-are/pjm-history), paragraphs 1–5 | Web page; undated | 1927: three utilities formed "the world's first continuing power pool"; first bid-based energy market on 1 April 1997; first fully functioning RTO in 2002; integrations from 2002 to 2005 and later | `public-link-only`; `sourced`; historical |
+| SRC-PJM-23 | PJM, ["PJM – At a Glance"](https://www.pjm.com/-/media/DotCom/about-pjm/newsroom/fact-sheets/pjm-at-a-glance.pdf), p. 1 | PDF created 8 April 2025 | All or parts of 13 states and the District of Columbia; 67 million people; 88,333 miles of high-voltage lines | `public-link-only`; `sourced`; refresh on a new fact sheet |
+| SRC-PJM-24 | PJM, [2026 Long-Term Load Forecast Report](https://www.pjm.com/-/media/DotCom/library/reports-notices/load-forecast/2026-load-report.pdf), Executive Summary, pp. 4–5, and the zone table of growth drivers | January 2026 | Near-term forecasts lowered as large-load adjustments were vetted; data-centre load named as the growth driver in several zones, including the DOM zone in Virginia | `public-link-only`; `official-plan`; `sourced`. Refresh with the 2027 forecast |
+| SRC-PJM-25 | PJM, [news release, "Over 700 New Generation Projects Accepted Into First Cycle of Reformed Interconnection Process"](https://www.pjm.com/-/media/DotCom/about-pjm/newsroom/2026-releases/20260803-over-700-new-generation-projects-accepted-into-first-cycle-of-reformed-interconnection-process.pdf), pp. 1–2 | 3 August 2026 | 715 projects and 201.5 GW accepted, storage leading by count (314; 60.0 GW); a one-to-two-year study; only a share will sign agreements; demand up to 70 GW higher by 2038, "driven largely by data centers" | `public-link-only`; `sourced`; refresh on cycle results |
+| SRC-PJM-26 | PJM, [Overview of RPM Cost Allocation](https://www.pjm.com/-/media/DotCom/committees-groups/workshops/rbpw/2026/20260225/20260225-item-04---overview-of-rpm-cost-allocation---pjm-presentation.pdf), backstop workshop, slides 2–3 | 25 February 2026 | Load-serving entities pay a Locational Reliability Charge for their daily UCAP obligation, calculated daily and billed weekly | `public-link-only`; `market-rule`; `sourced` |
+| SRC-PJM-27 | PJM, [Legal and Privacy notice](https://www.pjm.com/about-pjm/legal); [Data License Agreement, eData Feed and Data Miner 2](https://www.pjm.com/-/media/etools/edatafeed/data-license-agreement-edata-feed-data-miner-2.ashx), §1 "Permitted Use" | Web page; agreement PDF created 22 September 2022 | Site access "does not confer any license or ownership interest"; PJM reserves its rights. Data Miner 2: members may republish data; "non-members are specifically prohibited from republishing data" | Rights evidence for GAP-PJM-BRA; the analyst's price-data review decides |
+
+### Claim ledger and research results
+
+[Canonical claim ledger / 统一主张表](market-narratives.md#g1-pjm-claims)
+
+<a id="g1-pjm-history"></a>
+
+### Historical nodes — events separate from interpretation
+
+Six nodes. Dates are authoring metadata; an explicit "checked today" boundary precedes the outlook.
+
+| Node / shots | Dated event / source | Constraint → choice → inheritance → present effect (editorial reading) | Limit / disposition |
+| --- | --- | --- | --- |
+| H-PJM-01 / pjm-01, pjm-02 | 1927 pool; ISO and first bid-based energy market 1997; RTO 2002 (SRC-PJM-22) | Utilities share plants → a pool → one multi-state operator → one capacity auction | Events `sourced`; reading `proposed` |
+| H-PJM-02 / pjm-02 | First RPM delivery year 2007/2008 (SRC-PJM-05) | Plants take years to build → a forward auction by delivery year → the BRA → secured capacity revenue lasts one year | The motive is an editorial reading with no primary locator in this check: `proposed` |
+| H-PJM-03 / pjm-03 | Capacity Performance from 2016, after the 2014 Polar Vortex (SRC-PJM-21) | Cold-weather failures → performance charges → Performance Assessment Intervals → a battery must deliver in emergencies | PJM's own causal reading; `sourced` |
+| H-PJM-04 / pjm-03, pjm-04 | Winter Storm Elliott, December 2022 (SRC-PJM-21); marginal ELCC approved 30 January 2024, first applied 2025/26 (SRC-PJM-12, SRC-PJM-04) | Winter failures → accreditation for winter risk → class ratings per auction → storage credited for long winter events | The link from Elliott to the reform is through PJM's recommendations; `sourced` as PJM's reading |
+| H-PJM-05 / pjm-05, pjm-06 | Price jump for 2025/26; complaint 30 Dec 2024; cap approved 21 April 2025, extended 28 April 2026; shortfalls in December 2025 and July 2026 (SRC-PJM-01 to -04, -15 to -17) | Load growth outruns supply → cap and floor, then a backstop → a capped price and two shortfalls → a high price secured a year at a time | Data-centre attribution is PJM's and the Monitor's (CL-PJM-05) |
+| H-PJM-06 / pjm-02, pjm-11, pjm-12 (dashed) | 2029-30 auction 9–15 Dec 2026; backstop effective no earlier than 28 Feb 2027, bids proposed from 1 March 2027; 2030-31 auction May 2027 with no cap approved (SRC-PJM-13/14/17/19) | Outlook: none decided | Future items dashed; nothing drawn as completed |
+
+### Conflicts and findings for the analyst
+
+| ID | Finding | Disposition |
+| --- | --- | --- |
+| CF-PJM-01 | The view's thesis and `play.why` type a 2.4% reference return: the design grid's operating-model hold IRR for `cap`/4h (`grids.pjm`, 0.0237). The card's headline is the all-equity hold IRR, `row.econ.hold` = 4.7%, after the 29 October financing revision. The Finland script found the same pattern | Story binds the card and copies neither figure. Analyst: revise or confirm the thesis and `why` wording; no view edit here |
+| CF-PJM-02 | The next action waits for the December auction "for its price and four-hour accreditation". PJM published the 2029-30 four-hour rating (57%) on 6–7 August 2026 (SRC-PJM-06, SRC-PJM-14); the auction will reveal the price only. The next new rating, for 2030-31, is due on 11 January 2027 | Story treats the January posting as context, not a trigger. Analyst: adjust the action's wording, or add the posting as a trigger |
+| CF-PJM-03 | Closed: each duration now has its own approved indicative renewal curve, with the existing price scenario retained | pjm-08 and design grid | Best-duration and financial labels bind current results; no fixed-ratio extrapolation of the secured year |
+| CF-PJM-04 | Two 2027-28 shortfall figures circulate: 6,516.6 MW UCAP and 6,623 MW (FERC's order, citing PJM's 17 December 2025 release, SRC-PJM-17 p. 2). Both are in PJM's own report on different bases: 6,516.6 MW below the RTO Reliability Requirement after FRR commitments (printed p. 3) and 6,623.2 MW "less than the IRM" for the RPM (printed p. 4) (SRC-PJM-02) | Resolved as a difference of basis, not an error. Story types neither; chart labels bind one basis per auction, named in the label |
+| CF-PJM-05 | The view's grid-scarcity reason cites "67 GW of storage ... in the reopened interconnection queue". PJM's 3 August 2026 release counts 60.0 GW of storage accepted into Cycle 1 and says no backlog remains from prior queues (SRC-PJM-25) | Not used by the story. Analyst: check the figure and the word "reopened" |
+| CF-PJM-06 | The narrative card in `market-narratives.md` §3 describes the signature chart as "credited MW falling while the price rises". The observed ratings since 2025-26 are not monotonic and the price has been capped since 2026-27 (CL-PJM-16) | This script specifies the corrected chart. Fold the wording into the card in the later register PR |
+
+<a id="g1-caiso-evidence"></a>
+
+### CAISO — G-1 evidence, 1 November 2026
+
+Source owner for [caiso shot references](caiso-storyboard.md). Original check dates, access limits and G-2 gates remain as recorded.
+
+Scope: steps 1 and 2 only, for this script. Every primary source below was opened and read on **31 October 2026** unless the row says otherwise, and each locator was checked in the document itself. Only links, locators and short paraphrases are stored; no report, figure or data file is copied into the repository. A **confirmed** result means the narrow proposition has a primary locator; its editorial state is `sourced`, not `reviewed`. No source here establishes a project's award, contract, qualifying capacity or revenue. These IDs continue after CL-CAISO-01 in [the source register](source-register.md#candidate-claims-added-in-v11); a later PR folds them in.
+
+### Repository evidence
+
+| ID | Exact reference | Verified scope |
+| --- | --- | --- |
+| REPO-CAISO-LIVE | `view/markets/caiso.json` on `main` at `edcb39c` (infraFund verdict and play `caiso-cap-4h`, both as of 16 Oct 2026; trigger `caiso-storage-capacity-foldback`); values computed read-only from `src/briefing/` and `src/opportunities/summary.js` on 31 Oct 2026 | The call, play, stage, trigger, review date and every value in the bound-fields table. Card return 6.4% against a 10.6% target; operating ceiling USD 888.1k per MW at 10.1%; design sweep: four hours best, below the platform's yields |
+| REPO-CAISO-MODEL | `src/markets/caiso/comparison.js` (header and `durationResponse`), `src/markets/caiso/data.js` (`kpiExport`, `evidenceLadder`), `src/markets/decisionProfiles.js` (CAISO `currentUpdate`) | The model credits RA flat from four hours up; D.26-07-008's foldback cut and UCAP are recorded as not priced; the RA price and tenor seeds come from a third-party subscription benchmark and a seed, not from a contract |
+| REPO-CAISO-GATE | `docs/guided-experience-plan.md` (16 Oct rulings); `docs/external-view.md` gates G32, G33 and G41 | The call held at Opportunistic pending G41; the seeds to re-source |
+| REPO-CAISO-DG2 | `docs/duration-and-route-fit-research-gates.md`, DG-2 table (EIA-860M, August 2026, opened in that research) | CAISO balancing-area batteries average close to four hours of energy per MW; not reopened here |
+
+### Primary sources
+
+| ID | Publisher, title and exact locator | Dates and version | Supported proposition and boundary | Access and next trigger |
+| --- | --- | --- | --- | --- |
+| SRC-CAISO-01 | CPUC, [D.04-10-035, Interim Opinion Regarding Resource Adequacy, R.04-04-003](https://docs.cpuc.ca.gov/published/Final_decision/41416.htm); [§2.1 "The RAR Framework"](https://docs.cpuc.ca.gov/published/Final_decision/41416-01.htm) | Decision 28 Oct 2004, mailed 4 Nov 2004 | "Since 2002, in the aftermath of the electricity crisis of 2000-2001, California has wrestled with the creation of resource adequacy requirements." It summarises D.04-01-050: each load-serving entity must hold reserves for its own load, a 15–17% planning reserve margin, and forward contracting of most summer peaking needs a year ahead. The CPUC's framing of the origin; not a full history of the crisis | `public-link-only`; historical; no refresh needed |
+| SRC-CAISO-02 | CPUC, [D.06-04-040, §1 "Compliance With Section 380"](https://docs.cpuc.ca.gov/published/Final_decision/55661-02.htm) | Decision 13 Apr 2006 | Public Utilities Code §380 was added by AB 380 (Stats. 2005, ch. 367), which confirms the CPUC's authority to set RA requirements; effective 1 January 2006. The statute's own text was not opened (the legislature's site refused automated reads) | `public-link-only`; historical |
+| SRC-CAISO-03 | CPUC, [Resource Adequacy Homepage](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/electric-power-procurement/resource-adequacy-homepage) | Undated page, read 31 Oct 2026 | The RA framework (PU Code §380) applies to all load-serving entities in CPUC jurisdiction, utilities, energy service providers and community choice aggregators; "System RA requirements (effective June 1, 2006)" | `public-link-only`; recheck on page change |
+| SRC-CAISO-04 | CAISO, [*What the duck curve tells us about managing a green grid*, Fast Facts, CommPR/2016](https://www.caiso.com/Documents/FlexibleResourcesHelpRenewables_FastFacts.pdf), p. 1 | PDF created 28 Apr 2016 | Net load is load minus variable wind and solar; its "belly" and "arch" give the duck chart; CAISO studied every day from 2012 to 2020. Scenarios, not observed data | © 2016 California ISO; link only, nothing copied |
+| SRC-CAISO-05 | CAISO, CPUC and CEC, [*Final Root Cause Analysis: Mid-August 2020 Extreme Heat Wave*](https://www.caiso.com/Documents/Final-Root-Cause-Analysis-Mid-August-2020-Extreme-Heat-Wave.pdf), Executive Summary, p. 4 | 13 Jan 2021 | Both rotating outages (14 and 15 August 2020) came after the gross peak, during the net demand peak; planning targets "have not kept pace to ensure sufficient resources that can be relied upon to meet demand in the early evening hours". Three causes in all; the story uses only this one | `public-link-only`; historical |
+| SRC-CAISO-06 | CPUC, [D.13-10-040, R.10-12-007](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M079/K533/79533378.PDF), Summary, p. 2 | Decision 17 Oct 2013, issued 21 Oct 2013 | A storage target for the three large investor-owned utilities, to be procured by 2020 and installed by the end of 2024 | `public-link-only`; historical |
+| SRC-CAISO-07 | CPUC, [D.14-06-050](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M097/K619/97619935.PDF), Appendix B, §13.1, p. B-9 | Decision 26 Jun 2014, issued 1 Jul 2014; for the 2015 RA year | "Because all RA resources must be able to operate for four or more consecutive hours", storage QC is PmaxRA, the output it can discharge for four or more uninterrupted hours; net qualifying capacity is limited to deliverable output | `public-link-only`; superseded in method from 2027 by SRC-CAISO-10, which keeps the four-hour basis |
+| SRC-CAISO-08 | CPUC, [D.21-06-035, Decision Requiring Procurement to Address Mid-Term Reliability (2023-2026), R.20-05-003](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M389/K603/389603637.PDF), Summary p. 2; p. 70 | Decision 24 Jun 2021, issued 30 Jun 2021 | At least 11,500 MW of additional net qualifying capacity in tranches for 2023 to 2026 (p. 2); procurement under the order must use long-term contracts, "defined as at least ten years" (p. 70). Its procurement by technology is not reported here (GAP-CAISO-MTR) | `public-link-only`; historical |
+| SRC-CAISO-09 | CPUC, [D.22-06-050, Appendix A, "24-Hour Slice Framework", R.21-10-002](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M488/K540/488540634.PDF), sections A and B.2 | June 2022 (appendix PDF created 24 Jun 2022); implementation in D.23-04-010 of 7 Apr 2023, cited through SRC-CAISO-10 and SRC-CAISO-11, not opened | Each LSE shows enough capacity for all 24 hours of CAISO's worst day of each month; storage is valued on Pmax within its daily capabilities; excess capacity must cover battery charging and losses; the minimum four-hour availability stays. Adopted for the 2025 RA year | `public-link-only`; refresh on a new slice-of-day decision |
+| SRC-CAISO-10 | CPUC, [D.26-07-008, Decision Adopting Local Capacity Obligations for 2027-2029, Flexible Capacity Obligations for 2027, and Program Refinements, R.25-10-003](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M610/K575/610575803.PDF): §4.4.1 pp. 19–21; §4.4.1.3 pp. 26–28; §4.4.3.3 pp. 48–51; §4.6.3 pp. 84–86; p. 177; Ordering Paragraph 6, p. 197. [Fact sheet](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/resource-adequacy-homepage/oga-fact-sheet-on-track-1-final-decision-v2.pdf), pp. 1–2 | Adopted 2 Jul 2026, issued 10 Jul 2026 | Foldback defined (pp. 19–20). From the 2027 RA year, storage QC is the maximum less the minimum continuous energy, divided by four and capped at the connection, and is the output held "for four or more continuous hours without being affected by nonlinearity (or foldback)" (OP 6); the default value is still to be discussed (p. 27); QC changes are not expected in 2026 and may first appear in 2027, then UCAP replaces QC for batteries from 2028 (p. 177); the four-hour eligibility requirement goes to the next track (p. 177); storage of at least eight hours may count across the 24-hour day with a charging multiplier (pp. 48–51). Fact sheet: unit-specific UCAP for gas and storage from 2028 | `public-link-only`; `current-at-check`; refresh on the Track 2 decision and the 2027 QC values |
+| SRC-CAISO-11 | CAISO Department of Market Monitoring, [*2024 Special Report on Battery Storage*](https://www.caiso.com/documents/2024-special-report-on-battery-storage-may-29-2025.pdf): key findings p. 4; §2.10.1 pp. 28–29 | 29 May 2025 | Battery capacity grew from about 500 MW in 2020 to 13,000 MW in December 2024 in the CAISO balancing area; batteries supplied about 8.6% of energy in hours 17 to 21 and 84% of regulation in 2024 (p. 4). Slice of day from 2025; the CPUC sets battery NQC from four-hour sustained output, and longer batteries receive no different credit (p. 28) | `public-link-only`; refresh on the next DMM battery report |
+| SRC-CAISO-12 | CAISO Department of Market Monitoring, [*2025 Annual Report on Market Issues and Performance*](https://www.caiso.com/documents/2025-annual-report-on-market-issues-and-performance.pdf): pp. 2–3, 13–14, 23, 82 and 316 (Table 16.7) | June 2026 | Average battery discharge peaked near 9,100 MW in the evening in 2025, against 5,700 MW in 2024, across the WEIM (pp. 2 and 82). CAISO-area batteries earned about USD 35/kW-yr in energy and 9 in regulation in 2025 (p. 3). RA capacity covered the 2025 peak with a wide margin, and RA was scarcest in spring 2025 (pp. 13–14). Over 17 GW of installed batteries in the CAISO area by the end of 2025 (p. 23). Storage was about a fifth of system RA capacity in the analysis hours (p. 316) | `public-link-only`; scopes differ by page (CF-CAISO-04) |
+| SRC-CAISO-13 | CAISO, [*2026 Summer Loads and Resources Assessment*](https://www.caiso.com/documents/2026-summer-loads-and-resources-assessment.pdf), Executive Summary p. 1; §1.1 | May 2026 | Sufficient resources for a wide range of conditions; a surplus above the one-day-in-ten-years loss-of-load standard for summer 2026; net peak hours 17 to 23 PDT, June to September | `public-link-only`; refresh with the 2027 assessment |
+| SRC-CAISO-14 | California Energy Commission, [news release, 4 May 2026](https://www.energy.ca.gov/news/2026-05/california-energy-leaders-report-progress-grid-reliability-ahead-summer-2026) | 4 May 2026 | Over 17,000 MW of battery storage installed cumulatively after 2025's additions; no Flex Alert in 2023, 2024 or 2025 | `public-link-only`; a statewide figure, not the CAISO area |
+| SRC-CAISO-15 | CPUC Energy Division, [*Market Price Benchmark Calculations 2026*](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/community-choice-aggregation-and-direct-access/2026-market-price-benchmarks.pdf), Tables 1 and 2, p. 1; RA Adder method, pp. 2–3 | 1 Oct 2026 | The single RA benchmark (D.25-06-049) is a volume-weighted average of utility, CCA and ESP RA trades for a delivery year: 2026 final below 2025 final, and the 2027 forecast below both. A system average for valuing utility portfolios, not a project price. The same document's energy index uses licensed exchange forward data, which is not used here | `public-link-only`; regulator-published price data, within the analyst's price-data review; refresh each October |
+| SRC-CAISO-16 | CPUC Energy Division, [*2023 Resource Adequacy Report*](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/resource-adequacy-homepage/2023-ra-reportv3.pdf), executive summary p. 4; §4.1, Table 7 (p. 26) and Figure 4 | Cover dated August 2025; this file (v3) created 21 Sep 2026 | RA contract prices rose sharply from 2018 to 2023, most in the summer months. The executive summary and §4.1 disagree on the 2022–2023 rise (CF-CAISO-03). The cover names a project; never reproduce it | `public-link-only`; price data; refresh on the next RA report |
+| SRC-CAISO-17 | CAISO Tariff, [Appendix KK, Resource Interconnection Standards](https://www.caiso.com/documents/appendix-kk-resource-interconnection-standards-as-of-jun-25-2025.pdf), §8.9 | As of 25 Jun 2025 | Transmission Plan Deliverability is allocated after the Interconnection Facilities Study reports, from what the latest transmission plan makes available, with retention criteria; an allocation gives no right to specific MW | `public-link-only`; whether a later version is in force was not checked |
+| SRC-CAISO-18 | CAISO, Today's Outlook history: daily `netdemand.csv` and `fuelsource.csv`, e.g. [`/outlook/history/20250715/netdemand.csv`](https://www.caiso.com/outlook/history/20250715/netdemand.csv) | 128 business days, July–September 2020 and 2025; fetched 31 Oct 2026 | Five-minute demand, net demand (demand minus wind and solar), solar and battery output on CAISO's clock. Basis of CALC-CAISO-DAY | Operational data CAISO may revise; terms in SRC-CAISO-19; not registered (GAP-CAISO-DAY) |
+| SRC-CAISO-19 | CAISO, [Privacy Notice and Terms of Use](https://www.caiso.com/privacy-terms-of-use), "Restrictions on Use of Materials" and "API Terms of Use" | Terms of Use updated 2 Oct 2018; API terms 22 Aug 2019 | Most website materials "may be used by you provided that you keep intact all copyright, trademark and other proprietary notices and that you credit the California ISO"; the API terms claim ownership of CAISO data | Rights decision for the analyst (GAP-CAISO-DAY) |
+| SRC-CAISO-20 | U.S. EIA, Form EIA-930 six-month balance files, CAISO rows: [`EIA930_BALANCE_2025_Jul_Dec.csv`](https://www.eia.gov/electricity/gridmonitor/sixMonthFiles/EIA930_BALANCE_2025_Jul_Dec.csv) and the 2020 file. Also EIA-860M, the monthly generator inventory, through REPO-CAISO-DG2 | Files last modified 30 Oct 2026, read 31 Oct 2026 | Hourly demand and generation by source for the CAISO balancing area; battery output for CAISO appears under "Other". Its clock disagrees with CAISO's by about an hour, in opposite directions in the two files (CF-CAISO-06) | Public domain (SRC-CAISO-21); fallback feed only |
+| SRC-CAISO-21 | U.S. EIA, [Copyrights and Reuse](https://www.eia.gov/about/copyrights_reuse.php) | Read 31 Oct 2026 | "U.S. government publications are in the public domain and are not subject to copyright protection." The repository already treats EIA-860M this way (`etl/sources/eia-860m.mjs`) | Attribute EIA |
+| SRC-CAISO-22 | A utility's 2027 ERRA Fall Update testimony, [A.26-05-007](https://docs.cpuc.ca.gov/PublishedDocs/SupDoc/A2605007/9872/623865860.pdf), p. 12 | 16 Oct 2026 | The update does not reflect the storage foldback revisions of D.26-07-008 "because the Master Resource Database modifications necessary to support those calculations have not yet been implemented". A party's filing, not a CPUC finding | `public-link-only`; refresh when the CPUC publishes the 2027 QC values |
+
+### Claim ledger
+
+[Canonical claim ledger / 统一主张表](market-narratives.md#g1-caiso-claims)
+
+CL-CAISO-01 stays in the shared register; CL-CAISO-02, CL-CAISO-05 and CL-CAISO-11 confirm and refine its three parts.
+
+<a id="g1-caiso-history"></a>
+
+### Historical nodes — event separate from interpretation
+
+| Node | Event and date | Source | Interpretation (proposed) |
+| --- | --- | --- | --- |
+| H-CAISO-01 | RA framework 2004 (D.04-01-050, D.04-10-035); AB 380 in 2005, effective 1 Jan 2006; system RA from 1 Jun 2006 | SRC-CAISO-01 to SRC-CAISO-03 | California chose contracts held by retailers over a central auction, so capacity has no clearing price |
+| H-CAISO-02 | Storage target, 17 Oct 2013; storage QC at four hours, 26 Jun 2014 | SRC-CAISO-06, SRC-CAISO-07 | The four-hour count shaped the fleet that procurement then built |
+| H-CAISO-03 | Rotating outages 14–15 Aug 2020; root-cause report 13 Jan 2021; mid-term reliability order 24 Jun 2021 | SRC-CAISO-05, SRC-CAISO-08 | The outages turned four-hour storage from a target into a fleet on long contracts |
+| H-CAISO-04 | Slice of day adopted June 2022, implemented by D.23-04-010 of 7 Apr 2023, binding for 2025 | SRC-CAISO-09, SRC-CAISO-11 | Credit follows the hours a battery can cover, which tightens as the evening fills |
+| H-CAISO-05 | D.26-07-008, 2 Jul 2026: foldback in QC from the 2027 RA year; unit-specific UCAP from 2028 | SRC-CAISO-10 | The MW an operating battery can sell may fall: the play's trigger |
+| H-CAISO-06 | D.26-07-008: storage of eight hours or more counted across the day from 2027 (adopted; effect dashed) | SRC-CAISO-10 | The next step in duration is eight hours, outside this play |
+
+The checked-today boundary sits between H-CAISO-05's adoption and its 2027 and 2028 effects.
+
+### Calculation record — CALC-CAISO-DAY, behind Chart-CAISO-EVENING
+
+| Field | Entry |
+| --- | --- |
+| Question | What does a typical summer weekday ask of the CAISO system, from the midday trough to the evening peak, and how much of that evening do batteries now carry? |
+| Inputs | SRC-CAISO-18: for each day, `netdemand.csv` (Current demand, Net demand) and `fuelsource.csv` (Batteries, Solar), five-minute values on CAISO's clock |
+| Window | Business days from 1 July to 30 September of 2020 and of 2025, leaving out Independence Day and Labor Day: 64 days each year, all complete |
+| Method | The mean of the twelve five-minute values in each hour (hour beginning); then, for each hour, the median across the 64 days. A median profile, not one observed day |
+| Result at check (authoring metadata, never page text) | 2025: net demand bottoms near 5,600 MW in the 11:00 hour and peaks near 31,000 MW in the 20:00 hour; the four highest hours run 19:00 to 22:59. Batteries charge at up to about 6,900 MW at 10:00 and discharge about 5,400 MW at 18:00, 8,300 MW at 19:00 and 20:00 and 6,900 MW at 21:00, averaging about 6,700 MW over the four highest hours. 2020: trough near 15,600 MW at 10:00, peak near 32,300 MW at 19:00, four highest hours 18:00 to 21:59, battery output under 30 MW in every hour |
+| Cross-check | EIA-930's CAISO solar for 15 July 2025 runs about an hour later than CAISO's own series, and for 15 July 2020 about an hour earlier (CF-CAISO-06). Use CAISO's data; use EIA-930 only after its clock is corrected |
+| Reproduction | Scratch scripts kept outside the repository; the build commits the two 24-point profiles with this record and a unit test of their shape |
+| Licence and attribution | CAISO Terms of Use (SRC-CAISO-19); caption credits the California ISO. The analyst confirms that a derived public chart is covered |
+| Limits | Not a forecast and not a stress day; July to September only; operational data CAISO may revise; battery output is the fleet's net output |
+| Decision | Proposed for G-1 |
+
+### Gaps
+
+| Issue ID | Missing evidence or conflict | Affected shots | Severity | Temporary treatment | Next action | Gate blocked |
+| --- | --- | --- | --- | --- | --- | --- |
+| GAP-CAISO-DAY | The chart's series is not registered, and CAISO's terms for a derived public chart are not yet confirmed | caiso-05 | Blocks the quantitative chart | Unscaled Example with no numeric axes | Analyst: rights decision at G-1. Build: register the fixed-vintage profile from CALC-CAISO-DAY | CAISO story build |
+| GAP-CAISO-FOLDBACK | The size of the 2027 cut is not published; the default value is open and the CPUC's resource database had not implemented it by 16 Oct 2026 | caiso-07, caiso-12, caiso-13 | Blocks any number for the cut, not the story | The trim is an Example; the copy says "not yet known" | Recheck when the CPUC publishes 2027 QC values | None |
+| GAP-CAISO-MTR | No CPUC count of the 2021 order's procurement by technology was located | caiso-04 | Keeps caiso-04 at Fair | The battery share stays an interpretation | Research: CPUC procurement-tracking reports | None |
+| GAP-CAISO-CONTRACT | No asset-level RA contract: MW, price, term, counterparty and what happens when QC falls | caiso-10, caiso-12, caiso-13 | Diligence, not story | Copy names what to verify | Diligence on a named asset | None |
+| GAP-CAISO-RAPRICE | The model's RA price and tenor seeds rest on a third-party subscription benchmark and a seed (research gate G41) | caiso-10, caiso-12 | Model work, outside this script | The story binds model fields labelled as the model's | Analyst: re-source G41 from public primary data (leads in §10) | None for the story |
+
+### Conflicts and dispositions
+
+| ID | Conflict | Disposition |
+| --- | --- | --- |
+| CF-CAISO-01 | The thesis and `play.why` type a build-cost return from the design sweep, with the tax credit seeded at zero. The card's headline is the investment summary's all-equity return with the US supply case and its credit. Both are below the target | The story binds the card's `row.econ.hold`; flagged for the analyst |
+| CF-CAISO-02 | The CAISO research tab (`src/markets/caiso/sections.js`) says nothing published proposes moving the four-hour test; D.26-07-008 has since changed storage QC and sent four-hour eligibility to its next track | Story follows D.26-07-008; the research tab is not edited here |
+| CF-CAISO-03 | The 2023 RA Report's executive summary and §4.1 give different rises for the September system RA price from 2022 to 2023 | Neither figure goes on the page |
+| CF-CAISO-04 | Fleet sizes differ by scope: CAISO balancing area (SRC-CAISO-11), CAISO area and WEIM (SRC-CAISO-12), statewide (SRC-CAISO-14), EIA-860M (REPO-CAISO-DG2) | Each binding names its scope; never mix them on one axis |
+| CF-CAISO-05 | The trigger and next action say January 2027, but the cut's size may not be visible then (SRC-CAISO-10 pp. 27 and 177; SRC-CAISO-22 p. 12) | Flagged for the analyst; the story binds the trigger as published |
+| CF-CAISO-06 | EIA-930's CAISO hours are about an hour late (2025 file) and an hour early (2020 file) against CAISO's own data | CALC-CAISO-DAY uses CAISO's data; EIA-930 only after correction |
+| CF-CAISO-07 | The view's policy-stability reason says signed contracts keep their terms; the 2027 QC change applies to all storage, so a contract's sellable MW may fall | Flagged for the analyst; the story treats it as diligence (GAP-CAISO-CONTRACT) |
+
+<a id="g1-pl-evidence"></a>
+
+### Poland / 波兰 — G-1 evidence, 1 November 2026
+
+Source owner for [poland shot references](poland-storyboard.md). Original check dates, access limits and G-2 gates remain as recorded.
+
+All sources below were opened and read as text on **31 October 2026** unless marked otherwise; downloaded documents were read from the publisher's own URL. EUR-Lex refused automated access, so two EU texts were read from the Official Journal reproduction named in the record and should be rechecked on EUR-Lex. Search summaries and press reports are discovery leads only and support no claim. No licence-restricted report or subscription index is used.
+
+### Repository evidence
+
+| ID | Evidence | Locator | Supports |
+| --- | --- | --- | --- |
+| REPO-PL-LIVE | Published view and briefing, `main` at `edcb39c`, briefing evaluated for 2026-10-31 | `view/markets/pl.json`; `src/briefing/plays.js` (`lensRows`, `orderRows`); `src/experience/model.js` (`opportunities`); `src/opportunities/summary.js`; computed in memory with no file written | Both calls, plays, triggers, positions, evidence, card fields and design values; CF-PL-01 to CF-PL-05 |
+| REPO-DG1 | Duration gate DG-1, opened 15 October 2026 | `docs/duration-and-route-fit-research-gates.md`, §DG-1 | The four-hour certification reading for shorter batteries (MWh ÷ test hours) |
+
+### Source records
+
+| ID | Publisher, title | Locator | Dates | Access, reuse | Supports |
+| --- | --- | --- | --- | --- | --- |
+| SRC-PL-01 | Sejm: *Ustawa z dnia 8 grudnia 2017 r. o rynku mocy* (Capacity Market Act), consolidated text | Dz.U. 2026 poz. 1400, https://api.sejm.gov.pl/eli/acts/DU/2026/1400/text.pdf ; arts. 2(1)(1), (1a), (2), (3a), (9), (10); 18(1)–(3); 19(1)(1); 25(1)–(5); 29(3)–(6); 39a(1)–(4); 44(4)–(5); 46(1); 52(1)–(2); 60–62 | Act 8 Dec 2017, in force 18 Jan 2018; consolidated text announced 2 Oct 2026 | Opened; normative act, outside copyright (SRC-PL-24 art. 4) | CL-PL-20, 03, 10, 11, 12 |
+| SRC-PL-02 | European Commission: Decision C(2018) 601 final, State aid SA.46100 (2017/N), *Planned Polish capacity mechanism* | https://ec.europa.eu/competition/state_aid/cases/272253/272253_1977790_162_2.pdf ; recitals (4)–(8), (43), (49)–(50), (109)–(110), (140); conclusion | 7 Feb 2018 | Opened; Commission document, reuse with attribution | CL-PL-03, 04, 05, 10 |
+| SRC-PL-03 | European Commission: Decision (EU) 2026/341 granting Poland a derogation from art. 22(4)(b) of Regulation (EU) 2019/943 | ELI http://data.europa.eu/eli/dec/2026/341/oj ; arts. 1–3; recitals (1)–(8), (27)–(28), (73). Read from the Polish-language OJ reproduction at https://www.inforlex.pl/download/akty_pdf,E0L,2026,55,341.pdf | Adopted 11 Aug 2025 (C(2025) 5575); OJ L 24 Feb 2026 | Opened (reproduction); recheck on EUR-Lex | CL-PL-11 |
+| SRC-PL-04 | Sejm ELI act record for the Capacity Market Act: amending acts, implementing acts, consolidated texts | https://api.sejm.gov.pl/eli/acts/DU/2018/9 | Record changed 28 Oct 2026 | Opened | CL-PL-10 (no successor act; no catch-up regulation for 2030 delivery) |
+| SRC-PL-05 | URE: final results of the main auctions for 2021–2025 delivery (Informacje nr 99/2018, 103/2018, 10/2019, 106/2019, 2/2021) | Index https://www.ure.gov.pl/pl/energia-elektryczna/rynek-mocy/informcjepure ; each notice, point (c) | Notices 27 Nov 2018 to 5 Jan 2021 | Opened; official documents | CL-PL-07 |
+| SRC-PL-06 | URE: Informacja nr 2/2022, final results of the main auction for 2026 delivery | https://ure.gov.pl/download/9/12529/Ostatecznewynikiaukcjiglownejnarokdostaw2026.pdf ; points (b)–(e), (l) | 7 Jan 2022; auction 16 Dec 2021 | Opened | CL-PL-07 |
+| SRC-PL-07 | URE: Informacja nr 2/2023 and nr 2/2024, final results of the main auctions for 2027 and 2028 delivery | https://www.ure.gov.pl/download/9/13461/20230109INFOPUREwynikiaukcjiglownejnarokdostaw2027.pdf ; https://www.ure.gov.pl/download/9/14266/Ostateczneogloszeniewynikowaukcjiglownejna2028.pdf ; point (c) and the unit list | 9 Jan 2023 and 5 Jan 2024; auctions 15 Dec 2022 and 14 Dec 2023 | Opened | CL-PL-07, 08 (term cross-check) |
+| SRC-PL-08 | URE: Informacja nr 02/2025, final results of the main auction for 2029 delivery | https://www.ure.gov.pl/download/9/15112/Ostateczneogloszeniewynikowaukcjiglownejna2029.pdf ; points (b)–(f), (m)–(n) and the unit list | 3 Jan 2025; auction 12 Dec 2024 | Opened | CL-PL-07, 08 |
+| SRC-PL-09 | URE: Informacja nr 44/2025, final results of the catch-up auction for 2029 delivery | https://www.ure.gov.pl/download/9/15656/Ogloszenieostatecznychwynikowaukcjidogrywkowejna2029.pdf ; points (c), (e)–(h) | 8 Aug 2025; auction 17 Jul 2025 | Opened | CL-PL-06, 07 |
+| SRC-PL-10 | Minister of Climate and Environment: parameters of the main auction for 2027 delivery, and earlier years | Dz.U. 2022 poz. 1690, chapter 1 factor list, item 9; for 2021–2026 delivery: Dz.U. 2018 poz. 1632, 2019 poz. 1457, 2020 poz. 1355, 2021 poz. 1480, same item | 2018–2022 | Opened; normative acts | CL-PL-06 |
+| SRC-PL-11 | Minister of Climate and Environment: parameters of the main auctions for 2028 and 2029 delivery, and of the 2029 catch-up auction | Dz.U. 2023 poz. 1561 and 2024 poz. 1154, chapter 1 factor list, item 9; Dz.U. 2025 poz. 571, § 9 item 9 | 4 Aug 2023; 26 Jul 2024; 29 Apr 2025 | Opened | CL-PL-06 |
+| SRC-PL-12 | Minister of Energy: parameters of the main auction for 2030 delivery and of additional auctions for 2027 | Dz.U. 2025 poz. 1066, §§ 1–2, 8, 10 item 9 (13.39 %, pumped storage grouped with batteries); additional-auction list, item 9 | 1 Aug 2025, published 5 Aug 2025 | Opened | CL-PL-06, 10 |
+| SRC-PL-13 | Minister of Energy: parameters of the supplementary auction for 2027 delivery | M.P. 2026 poz. 542, items 1–8 (battery factor item 8(i)) | 28 May 2026 | Opened | CL-PL-12 |
+| SRC-PL-14 | URE: Informacja nr 43/2026, final results of the supplementary auction for 2027 delivery | https://www.ure.gov.pl/download/9/16483/Informacjanr43-2026.pdf ; points 3–5 | 24 Sep 2026; auction 3 Sep 2026 | Opened | CL-PL-12 |
+| SRC-PL-15 | PSE: *Regulamin Rynku Mocy* (capacity market rules), text with update card RRM/Z/16/2026 | https://pse.pl/documents/20182/51490/RRM_Z_16_2026.pdf ; pkt 6.3.2.5, 7.4.2.1(8) | Text dated 4 Aug 2026 | Opened; PSE terms not checked, so link only | CL-PL-17 |
+| SRC-PL-16 | URE: *Magazynowanie energii elektrycznej – Raport 2024* | https://www.ure.gov.pl/download/9/14751/Raportmagazynyenergii.pdf ; pp. 5–6, Figure 1 | Published 8 Jul 2024 | Opened; official material | CL-PL-08 |
+| SRC-PL-17 | NFOŚiGW (Modernisation Fund portal): programme page, *Magazyny energii elektrycznej i związana z nimi infrastruktura…*, with the 8 Dec 2025 results notice and the 12 Dec 2025 update | https://www.gov.pl/web/funduszmodernizacyjny/magazyny-energii-elektrycznej-i-zwiazana-z-nimi-infrastruktura-dla-poprawy-stabilnosci-polskiej-sieci-elektroenergetycznej2 | Notices 8 and 12 Dec 2025 | Opened | CL-PL-14 (list place is no commitment; aid basis SA.112460) |
+| SRC-PL-18 | NFOŚiGW: ranking lists, original and updated | https://www.gov.pl/attachment/2f26965d-d748-4623-95f2-fc893ad349c4 (8 Dec 2025); https://www.gov.pl/attachment/20702c51-561a-418d-898e-e84139263bfb (file dated 11 Dec 2025, posted 12 Dec 2025) | Dec 2025 | Opened; totals computed from rows, no names copied | CL-PL-14 |
+| SRC-PL-19 | Minister of Climate and Environment: regulation on NFOŚiGW state aid for electricity storage | Dz.U. 2025 poz. 280, https://api.sejm.gov.pl/eli/acts/DU/2025/280/text.pdf ; §§ 4–7, 9–11, 13 | 5 Mar 2025, in force 8 Mar 2025 | Opened; normative act | CL-PL-20, 13 |
+| SRC-PL-20 | NFOŚiGW: programme text, *Program FM Magazyny energii z infrastrukturą* | https://www.gov.pl/attachment/e8a27407-5de8-4b60-897b-6f494d0000ea ; aims, budget, period, intensity, durability sections | March 2025 call documents | Opened | CL-PL-13 |
+| SRC-PL-21 | Modernisation Fund portal: signed agreements, storage-programme table | https://www.gov.pl/web/funduszmodernizacyjny/zawarte-umowy | Retrieved 31 Oct 2026 | Opened; counts and sums only | CL-PL-14 |
+| SRC-PL-22 | NFOŚiGW: general Modernisation Fund grant agreement template 2025 | https://www.gov.pl/attachment/a9b7fc19-0672-4cb7-b1d3-3eb0a2a1839b (archive), grant template §§ 3, 12–13 | 2025 | Opened; general template, programme-specific conditions not read | CL-PL-13 |
+| SRC-PL-23 | URE: *Summary of URE activities in 2024* | https://ure.gov.pl/en/communication/news/436%2CSummary-of-URE-activities-in-2024-deregulation-demands-and-new-competences-of-th.html ; connection section and its caveat | Published 9 Jun 2025 | Opened | CL-PL-16 |
+| SRC-PL-24 | Sejm: *Ustawa o prawie autorskim i prawach pokrewnych*, consolidated text | Dz.U. 2025 poz. 24, art. 4 | 2025 | Opened | Reuse terms for the chart's data |
+| SRC-PL-25 | European Commission: SA.112460, *TCTF/RRF – Poland: Support for electricity storage and related infrastructure* | OJ C/2024/6473 (29 Oct 2024); decision of 3 Oct 2024 as cited by SRC-PL-17 and SRC-PL-20 | 3 Oct 2024 | Not opened (EUR-Lex refused automated access); reference confirmed through SRC-PL-17 | CL-PL-13 |
+| SRC-PL-26 | URE: Informacja nr 1/2026, final results of the main auction for 2030 delivery | https://www.ure.gov.pl/download/9/15928/InformacjaPrezesaUrzeduRegulacjiEnergetykiNr12026.pdf ; points (b)–(g) and the unit list | 2 Jan 2026; auction 11 Dec 2025 | Opened; official document | CL-PL-07, 08, 10 |
+
+### Claim ledger
+
+Each claim is split into event and interpretation where they need different evidence. Status `sourced` means opened today and awaiting the analyst's review.
+
+[Canonical claim ledger / 统一主张表](market-narratives.md#g1-pl-claims)
+
+**Results for the existing candidate claims** (recorded here; `source-register.md` is unchanged):
+
+[Canonical claim ledger / 统一主张表](market-narratives.md#g1-pl-claims)
+
+<a id="g1-pl-history"></a>
+
+### Historical nodes
+
+| Node | Date or period | Event (source) | Constraint → choice → inheritance → present effect | Interpretation status |
+| --- | --- | --- | --- | --- |
+| H-PL-01 | Summer 2015 | Shortages limit supply to industrial customers (SRC-PL-02 recital (6)) | Ageing fleet → pay for capacity → the adequacy concern → capacity is paid for | Event via the Commission; causal link proposed (CL-PL-05) |
+| H-PL-02 | Act 8 Dec 2017; in force 18 Jan 2018; approval 7 Feb 2018; first auctions 15 Nov–21 Dec 2018 | Capacity market created and approved (SRC-PL-01, SRC-PL-02, SRC-PL-05) | Missing money → long agreements for new plant → contract cohorts → earlier agreements still running | Events sourced |
+| H-PL-03 | Auctions 15 Dec 2022 and 14 Dec 2023 | Batteries win seventeen-year agreements at a 95.00 % factor (SRC-PL-07, SRC-PL-11, SRC-PL-16) | Batteries certify → near-full credit → a battery cohort → the cohort the verdict prices | Events sourced; CL-PL-09 proposed |
+| H-PL-04 | 12 Dec 2024 to 11 Dec 2025 | Battery factor 61.30 %, then 12.33 % (catch-up, 17 Jul 2025), then 13.39 % in the last scheduled main auction (SRC-PL-08, SRC-PL-09, SRC-PL-11, SRC-PL-12) | Fixed approval and a falling factor → last auction held → no schedule after it → no new-entry route | Events sourced; factor-cut cause proposed (GAP-PL-KWD-WHY) |
+| H-PL-05 | Decision 11 Aug 2025; published 24 Feb 2026 | Coal limited to one-year supplementary auctions until 31 Dec 2028 (SRC-PL-03) | Emission limit → derogation → one-year auctions → a bridge, not a route | Event sourced |
+| H-PL-06 | 3 Oct 2024 to 31 Oct 2026 | Scheme approved; regulation and call; ranking list 8 Dec, updated 12 Dec 2025; aid granted by 31 Dec 2025; 170 grants signed by the check date (SRC-PL-17 to SRC-PL-22, SRC-PL-25) | Storage needed fast → capital grants with conditions → a grant cohort → its own call | Events sourced |
+
+The timeline boundary sits after H-PL-06; the successor is drawn dashed and labelled not legislated.
+
+### CALC-PL-01 — what one kW of battery could contract, by auction
+
+| Field | Entry |
+| --- | --- |
+| Question | How much capacity revenue could one kW of certified battery power win in each main auction, and how did that change? |
+| Inputs | Clearing price for units in Poland, PLN/kW/year, from each URE final notice (SRC-PL-05 to SRC-PL-09, SRC-PL-26); battery correction factor from that auction's parameter regulation (SRC-PL-10 to SRC-PL-12) |
+| Method | Contract value = price × factor ÷ 100, rounded half-up to PLN 0.01. One row per auction; the catch-up auction kept as its own row |
+| Economic meaning | Gross annual capacity revenue per kW of certified power for a battery of at least four hours, in nominal PLN of its auction, before the art. 62 aid deduction and before any indexation. Not cash received, not equity cash, not a return |
+| Outputs | See the chart table below; the auction for 2030 delivery gives 16.1 % of the 2027 value (62.27 ÷ 386.03), and 26.8 % of the 2028 value |
+| Limits | No forecast; no technology split; shorter batteries certify less (CL-PL-17); the value of a held agreement also depends on its indexation, which is not computed here |
+| Review | Proposed; the analyst accepts or changes the method at G-1 |
+
+### Chart-PL-AUCTIONS — data and contract (proposed, not built)
+
+Reviewer copy of the evidence the chart would plot. Every value binds through ‹bound: auction series›; none is typed into page copy.
+
+| Delivery year | Auction | URE notice | Round | Price, PLN/kW/yr | Battery factor | Contract per kW (CALC-PL-01) | Battery obligation awarded |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2021 | 15 Nov 2018 | 99/2018, 27 Nov 2018 | 5 | 240.32 | 96.11 % | 230.97 | None reported |
+| 2022 | 5 Dec 2018 | 103/2018, 14 Dec 2018 | 7 | 198.00 | 96.11 % | 190.30 | None reported |
+| 2023 | 21 Dec 2018 | 10/2019, 14 Jan 2019 | 8 | 202.99 | 96.11 % | 195.09 | None reported |
+| 2024 | 6 Dec 2019 | 106/2019, 30 Dec 2019 | 5 | 259.87 | 96.11 % | 249.76 | None reported |
+| 2025 | 14 Dec 2020 | 2/2021, 5 Jan 2021 | 7 | 172.85 | 96.11 % | 166.13 | None reported |
+| 2026 | 16 Dec 2021 | 2/2022, 7 Jan 2022 | 1 | 400.39 | 96.11 % | 384.81 | None reported |
+| 2027 | 15 Dec 2022 | 2/2023, 9 Jan 2023 | 1 | 406.35 | 95.00 % | 386.03 | 165 MW |
+| 2028 | 14 Dec 2023 | 2/2024, 5 Jan 2024 | 6 | 244.90 | 95.00 % | 232.66 | 1,734 MW, 33 units |
+| 2029 | 12 Dec 2024 | 02/2025, 3 Jan 2025 | 7 | 264.90 | 61.30 % | 162.38 | Split pending |
+| 2029, catch-up | 17 Jul 2025 | 44/2025, 8 Aug 2025 | 1 | 534.09 | 12.33 % | 65.85 | Split pending |
+| 2030 | 11 Dec 2025 | 1/2026, 2 Jan 2026 | 2 | 465.02 | 13.39 % | 62.27 | Split pending |
+| 2031 onwards | None scheduled | — | — | — | — | — | — |
+
+"None reported" means URE's storage report shows only pumped storage before the 2027 auction (SRC-PL-16, Figure 1). Price and contract value use the same left-hand unit; factors are labels, not a second axis.
+
+**Dataset.** The chart needs an analyst-entered, versioned record of these rows (proposed `src/markets/pl/data/capacityAuctions.js`, on the pattern of `src/markets/wa/data/rcmHistory.js`), each row carrying its URE notice and regulation locator. **It is not registered in `src/governance/datasets.js`, and that catalogue deliberately keeps capacity-market results out of automation** ("They stay analyst-entered until a connector exists that can assert the vintage it read"). This is a gap for the build (GAP-PL-AUCTIONS); nothing is registered now. **Terms:** the parameter regulations are normative acts and URE's notices are official documents, both outside copyright under SRC-PL-24 art. 4; URE's storage report is official material on the same basis, to confirm at the build's rights review. Attribution: "URE; Dziennik Ustaw". **No exchange day-ahead prices are needed**; the merchant line the story mentions in pl-07 is the model's existing field, built on PSE's day-ahead series, which is under the analyst's separate price-data rights review.
+
+### Gaps and review queue
+
+| Issue ID | Missing evidence or conflict | Affected | Temporary treatment | Next action |
+| --- | --- | --- | --- | --- |
+| GAP-PL-AUCTIONS | Auction-history dataset not registered | pl-05 | Chart reviewed as a design; nothing built | Build: create the analyst-entered module with locators; analyst approves |
+| GAP-PL-TECH | No technology split for battery obligations in the 2029 and 2030 auctions; contract length is not technology | pl-03, pl-05 | "Technology split pending" | Research: URE annual report or PSE certification statistics |
+| GAP-PL-2015 | PSE's own dated record of the 2015 supply limits; no primary generation-mix series opened | pl-01 | Fair marker; no coal share | Research: PSE announcement archive; a primary generation statistic |
+| GAP-PL-KWD-WHY | The regulation's stated reason for the battery factor cut not opened | pl-03 to pl-05 | Cause kept as interpretation under art. 18(2) | Research: the justification of Dz.U. 2024 poz. 1154 and 2025 poz. 1066 |
+| GAP-PL-TRANSFER | Whether grant conditions pass to a buyer of the project company, and whether a share sale needs NFOŚiGW's consent | pl-09, pl-12 | Stated as not verified | Diligence: the programme's specific grant conditions |
+| MR-5 (existing gate) | How URE computes the art. 62 deduction for a project holding both a grant and a capacity agreement | pl-11 | Mechanism only; the stack stays unpriced | Research: URE practice |
+| GAP-PL-SUCCESSOR | No public draft of a successor framework | pl-04, pl-06 | Dashed, "not legislated" | Watch the trigger; Sejm and government legislative records |
+
+### Conflicts and flags
+
+| ID | Finding | Disposition |
+| --- | --- | --- |
+| CF-PL-01 | Closed by the separate two-card feature: the grant and ordinary-capacity opportunities keep distinct calls and actions | Only the selected row owns its financial summary; ctx.rows supplies both story cards |
+| CF-PL-02 | The brief says the grant play "ranks first on the shortlist"; live it is fourth of seventeen and the first Polish row | Flagged; the script says neither |
+| CF-PL-03 | Closed: 172 positive recommended grant rows total PLN3,734,999,999.99 on PLN10,003,742,317.00 eligible cost: 37.3360%, rounded to the approved 37.3% model assumption. Loans and zero recommendations excluded | Current play matches this cohort basis; recommendation, signed agreement and cash receipt stay distinct |
+| CF-PL-04 | The grant call's text cites a 17.1 % hold return (design engine); the market page's card shows an all-equity hold of 11.51 %, 1.74 points below the 13.25 % target, with "No supported price" (investment summary) | Flagged; the story binds the card and labels any design value's basis |
+| CF-PL-05 | `pl-cap-4h` prices the capacity line on the last auction's terms (13.39 % × PLN 465.02); agreements from the auctions for 2027 and 2028 carry about 6.2 and 3.7 times that per kW (CALC-PL-01) | Observation for the analyst; the story says value depends on vintage and binds no vintage value |
+| CF-PL-06 | Contract length is not technology: the 2026 auction's seventeen-year agreements were not batteries, and the 2027 auction's seventeen-year total exceeds its 165 MW of batteries. A code comment's battery volume for the 2027 supplementary auction rests on a third party | Story uses URE's battery split only |
+
+### Discovery leads not used as sources
+
+Press reports were used only to find primary documents: Gramwzielone, WysokieNapiecie, wnp.pl, e-magazyny, Globenergia, Parkiet and ISBnews items on the 2028–2030 auctions, the catch-up auction, PSE's advice against a catch-up auction for 2030, and the Ministry of Energy's reported plan to present a new capacity market to the Commission in the second quarter of 2026. None supports a claim above. The ministry's plan is the lead to follow for GAP-PL-SUCCESSOR.
