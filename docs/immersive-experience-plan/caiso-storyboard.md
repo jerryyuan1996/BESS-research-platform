@@ -1,7 +1,7 @@
 # CAISO (California): Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; CAISO script researched 31 October 2026; shot layout v1.2  
-Status: `proposed` script and bilingual page text; G-1 analyst sign-off pending; steps 1 and 2 only, nothing built  
+Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
 Navigation: [Master plan](README.md) | [Narrative card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [WA format](western-australia-storyboard.md) | [Sources and claims](#11-sources-and-claims)
 
 ## 1. Scope, argument and reading route
@@ -17,7 +17,7 @@ The argument:
 1. After the 2000–01 electricity crisis, the CPUC made every electricity retailer it regulates contract its own capacity ahead of time. The legislature confirmed it in 2005, and the first system requirements took effect on 1 June 2006. Capacity is bought bilaterally, with no clearing price (CL-CAISO-02, CL-CAISO-03).
 2. Solar moved the hardest hours into the early evening, when demand minus wind and solar peaks. The August 2020 outages came in that net peak (CL-CAISO-04).
 3. RA counts a battery at the output it can hold for four hours, and gives a longer one no more. After 2020 the CPUC ordered new capacity on contracts of at least ten years. So California built a four-hour fleet (CL-CAISO-05, CL-CAISO-06).
-4. That fleet now supplies a significant share of the evening, and at the system level four-hour RA is largely met: summer surpluses, RA scarcest in spring, a lower RA benchmark price (CL-CAISO-07 to CL-CAISO-09, CL-CAISO-16).
+4. That fleet now supplies a significant share of the evening, and at the system level four-hour RA is largely met: summer surpluses, RA scarcest in spring, adequacy observations (CL-CAISO-07, CL-CAISO-08, CL-CAISO-16); RA-price direction is withheld pending the parked rights review.
 5. The rules now count by the hour (slice of day, from 2025) and, from 2027, without the foldback tail. From 2028 each unit's outage record counts too (CL-CAISO-10 to CL-CAISO-12).
 6. RA carries most of the play's modelled revenue, counted as secured for a term. At build cost the reference project returns less than the fund's target. An operating asset that already holds deliverability and an RA contract clears it only up to a price. So the fund buys operating RA-contracted assets at that price, once the foldback cut shows how many MW they can still sell (CL-CAISO-13, CL-CAISO-15).
 
@@ -109,7 +109,7 @@ Shared story strings:
 | Evidence and chart | REPO-CAISO-LIVE: play card fields from the view store through the briefing model; CL-CAISO-15 |
 | Authoring check | Never restate the call or a figure in prose. The thesis and `play.why` carry a typed return on a different basis from the card (CF-CAISO-01): show the card, never the thesis. The call is held at Opportunistic by the 16 October ruling while research gate G41 is open; the page does not mention the gate. A changed call or play updates the card and flags the story |
 | Mobile | Play card full width; two buttons |
-| Status | `model-assumption`; `sourced`; `model-assumes-route`, not `contract-verified`; G-1 pending |
+| Status | `model-assumption`; `sourced`; `model-assumes-route`, not `contract-verified`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -129,7 +129,7 @@ Shared story strings:
 | Evidence and chart | CL-CAISO-02 (SRC-CAISO-01, §2.1; SRC-CAISO-02, §1; SRC-CAISO-03); CL-CAISO-03 (SRC-CAISO-01, §2.1, policies (1) to (3); SRC-CAISO-12, pp. 13–14) |
 | Authoring check | The crisis link is the CPUC's own framing: RA requirements were developed "in the aftermath of the electricity crisis of 2000-2001". Keep any wider account of the crisis off the page. System RA is contracted by each retailer; local RA in two utility areas is now bought by a central procurement entity, still by contract. Do not write that every MW is bought by each retailer. No comparison with other markets on the page beyond "not by auction" |
 | Mobile | Same map; two large buttons |
-| Status | `historical-fact` and `market-rule`; `sourced`; G-1 pending |
+| Status | `historical-fact` and `market-rule`; `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -150,7 +150,7 @@ Shared story strings:
 | Evidence and chart | CL-CAISO-04 (SRC-CAISO-04, p. 1; SRC-CAISO-05, Executive Summary, p. 4) |
 | Authoring check | Net load is demand minus wind and solar, CAISO's own definition. The duck chart began as CAISO scenarios for 2012 to 2020; cite it for the idea, not as data. The 2020 outage report places both outages in the net demand peak and names three causes; do not say solar caused them |
 | Mobile | Two aligned panels with the same labels |
-| Status | `historical-fact` and `market-observation`; `sourced`; G-1 pending |
+| Status | `historical-fact` and `market-observation`; `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -172,7 +172,7 @@ Shared story strings:
 | Evidence and chart | Event: CL-CAISO-05 (SRC-CAISO-07, Appendix B §13.1, p. B-9; SRC-CAISO-11, §2.10.1, p. 28; SRC-CAISO-10, §4.4.1, p. 19). Procurement: SRC-CAISO-06, p. 2. Fleet shape: REPO-CAISO-DG2 (EIA-860M, an average close to four hours, never typed). Nodes: H-CAISO-01 to H-CAISO-06 |
 | Authoring check | The four-hour test predates storage: all RA resources had to run four or more consecutive hours, and D.14-06-050 applied it to storage as PmaxRA. Keep the rule (the event) apart from the reading that it shaped the fleet (an interpretation: cost and procurement also mattered). Under slice of day a battery is shown for its own duration, and from 2027 storage of eight hours or more has its own rules (SRC-CAISO-10, pp. 28 and 48–51): write that a longer battery gets no extra credit, not that it earns nothing. No invented dates; adopted effects after the check date stay dashed |
 | Mobile | Vertical node list; one diagram |
-| Status | Events `sourced`; interpretation `proposed`; G-1 pending |
+| Status | Events `sourced`; interpretation `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -220,7 +220,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-CAISO-04 (SRC-CAISO-05, p. 4); CL-CAISO-06 (SRC-CAISO-08, p. 2 and p. 70); CL-CAISO-07 (SRC-CAISO-11, p. 4) |
 | Authoring check | The outage report names three causes (weather, RA and planning, market practices); use only the planning finding and never call it the sole cause. That the 2021 order became mostly batteries is an interpretation: no CPUC count of its procurement by technology was located (GAP-CAISO-MTR). Fleet values carry their source's scope, the CAISO balancing area |
 | Mobile | Two panels, then the fleet blocks as a short list |
-| Status | Events `sourced`; the procurement-to-fleet link `proposed`; G-1 pending |
+| Status | Events `sourced`; the procurement-to-fleet link `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -259,19 +259,19 @@ Timeline nodes (page text):
 | Item | Shot specification |
 | --- | --- |
 | Scene | A summer evening with the supply stack well above demand plus reserve; a spring evening with a thinner margin |
-| Feedback | "Summer evening" and "Spring evening" move the margin label; "Price direction" opens a plain text drawer with the benchmark's direction and source, no chart |
+| Feedback | Summer and spring show the sourced adequacy observations. No RA benchmark-price direction or price drawer is displayed. |
 | Evidence and chart | CL-CAISO-08 (SRC-CAISO-12, pp. 13–14; SRC-CAISO-13, Executive Summary, p. 1; SRC-CAISO-14); CL-CAISO-09 (SRC-CAISO-15, Tables 1 and 2; SRC-CAISO-16, §4.1; CF-CAISO-03) |
 | Authoring check | "Largely met" is the analyst's reading of three observations (a summer 2026 surplus above the one-in-ten standard, RA capacity well above the 2025 peak, RA scarcest in spring), not a CPUC finding. The benchmark is a volume-weighted average of all RA trades for a delivery year, on a single method since D.25-06-049: never put earlier system, local or flexible values on the same axis. It is regulator-published price data, so the drawer gives direction only, pending the analyst's price-data review. Local areas can still be tight (local requirements rise for 2027 to 2029); the claim here is system-wide |
 | Mobile | Two season cards, then the drawer |
-| Status | Observations `sourced`; interpretation `proposed`; G-1 pending |
+| Status | Observations `sourced`; interpretation `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Is California still short of evening capacity? | 加州傍晚的容量还短缺吗？ |
-| Copy | Not across the system. RA capacity covered the 2025 peak with room to spare, and the scarcest months moved to spring. For summer 2026 CAISO found a surplus above the one-day-in-ten-years standard, and no statewide conservation alert was called in 2023, 2024 or 2025. The CPUC's benchmark price for RA trades is lower for 2026 than for 2025, and lower again for 2027. | 从全系统看，已不短缺。2025年的峰值负荷有充足的RA容量覆盖，最紧张的月份已转到春季。对于2026年夏季，CAISO评估的容量盈余高于“十年一天”的缺电标准；2023、2024和2025年都没有发布全州节电警报。CPUC的RA交易基准价格，2026年低于2025年，2027年的预测值更低。 |
-| Meaning | Capacity that is no longer short is not paid as if it were: a new four-hour battery bids into a market that has filled. | 不再短缺的容量，不会再按短缺时的价格获得报酬：新建的四小时电池面对的是一个已经填满的市场。 |
+| Copy | The platform reads four-hour RA as largely met at system level: the 2025 peak was covered, scarcity shifted towards spring, and the 2026 summer assessment showed a surplus above the reliability standard. This is an interpretation of those observations, not a CPUC finding that every location or month has enough capacity. | 平台判断，全系统层面的四小时RA需求已大体满足：2025年峰值获得覆盖，紧张时段向春季转移，2026年夏季评估也显示高于可靠性标准的容量盈余。这是对上述事实的解释，并非CPUC认定每个地点、每个月份都已容量充足。 |
+| Meaning | An operating asset’s deliverability, contract and purchase price decide the case even where the system has surplus capacity. | 即使全系统容量有盈余，在运资产的可交付能力、合同和买入价格仍决定投资是否成立。 |
 | Marker | Fair evidence. What would change it: RA contract prices for 2027 to 2029 deliveries rising again in the CPUC's data. | 证据尚可。会改变判断的证据：CPUC数据显示2027至2029年交付的RA合同价格重新上涨。 |
-| Controls | Summer evening · Spring evening · Price direction | 夏季傍晚 · 春季傍晚 · 价格走向 |
+| Controls | Summer evening · Spring evening · Local constraints | 夏季傍晚 · 春季傍晚 · 本地约束 |
 | Labels | RA capacity shown · Demand plus reserve · Margin · Benchmark for RA trades, by delivery year | 申报的RA容量 · 需求加备用 · 裕度 · RA交易基准价格（按交付年份） |
 
 ### caiso-07 — Counted by the hour, then without the tail · 按小时计量，再剔除出力回落
@@ -283,7 +283,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-CAISO-10 (SRC-CAISO-09, Appendix A, A and B.2; SRC-CAISO-11, p. 28); CL-CAISO-11 (SRC-CAISO-10, §4.4.1 pp. 19–21, §4.4.1.3 pp. 26–28, p. 177, Ordering Paragraph 6 p. 197, fact sheet pp. 1–2; SRC-CAISO-22, p. 12); CL-CAISO-12 (SRC-CAISO-10, §4.4.3.3 pp. 48–51) |
 | Authoring check | The foldback change is adopted for the 2027 RA year, but its size is unknown: the decision leaves the default value open, and by mid-October 2026 the CPUC's resource database had not yet been changed to calculate it (SRC-CAISO-22). Never draw a number for the cut; the trim is an Example. UCAP from 2028 replaces QC for batteries and carries foldback through outage rates: keep the two steps distinct. Slice of day changed how storage is shown (hour by hour, with charging), not its four-hour QC. The eight-hour rule stays in the evidence drawer |
 | Mobile | Three stacked panels with the same labels |
-| Status | Rules `sourced`, `current-at-check`; size of the cut `missing`; G-1 pending |
+| Status | Rules `sourced`, `current-at-check`; size of the cut `missing`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -305,7 +305,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-CAISO-05 and CL-CAISO-11 (rule); REPO-CAISO-LIVE design grid (‹bound: best duration›, ‹bound: build line›); REPO-CAISO-MODEL (`durationResponse.capacityDerating` flat from four hours) |
 | Authoring check | The arithmetic applies the CPUC rule to an Example battery; it is not a project QC, and the foldback trim is not a modelled value. Under slice of day a longer battery can be shown for more hours, and buyers may value that; the model pays nothing for it. Write "comes closest", never "clears": every design is below the platform's yields at build cost. No drag-to-improve-return control |
 | Mobile | The same toggles, wrapped; credited MW in the readout |
-| Status | Rule `sourced`; design result `model-assumption`; G-1 pending |
+| Status | Rule `sourced`; design result `model-assumption`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -325,7 +325,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-CAISO-13 (SRC-CAISO-07, Appendix B, p. B-9; SRC-CAISO-17, §8.9); REPO-CAISO-MODEL (`evidenceLadder` in `src/markets/caiso/data.js`) |
 | Authoring check | Generic geometry, not a site drawing, fire design or equipment list. A battery without deliverability has no net qualifying capacity to sell. Deliverability is allocated after the cluster studies, from what the transmission plan makes available; promise no timeline. The RA contract hotspot shows what to verify, never a tenor or price |
 | Mobile | Static cutaway with a vertical hotspot list |
-| Status | `market-rule`; `sourced`; asset evidence `missing`; G-1 pending |
+| Status | `market-rule`; `sourced`; asset evidence `missing`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -347,7 +347,7 @@ Timeline nodes (page text):
 | Evidence and chart | RA route: CL-CAISO-03, CL-CAISO-15 (REPO-CAISO-LIVE; SRC-CAISO-08, p. 70 for long contracts). Energy and regulation: CL-CAISO-14 (SRC-CAISO-11, p. 4; SRC-CAISO-12, p. 3). Shares from the market page (REPO-05, REPO-13) |
 | Authoring check | The secured share and tenor are the model's, from a contract it assumes and nobody has verified; the RA price and tenor seeds sit under the open research gate (G41), so never call them observed. Name the tenor and what follows it. RA contracts are bilateral and private; there is no published clearing price. Energy is most of a battery's market revenue in DMM's observations, and regulation is crowded: never stack services at their individual maxima |
 | Mobile | One route at a time, as stacked steps |
-| Status | `model-assumption`; `model-assumes-route`, not `contract-verified`; G-1 pending |
+| Status | `model-assumption`; `model-assumes-route`, not `contract-verified`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -370,7 +370,7 @@ Timeline nodes (page text):
 | Evidence and chart | SRC-CAISO-11, p. 28 (must-offer and charging rules) and p. 4 (regulation share); SRC-CAISO-09, Appendix A (spare capacity to charge storage); REPO-06 (stack feasibility) |
 | Authoring check | Never add standalone maxima. Must-offer terms differ by RA type; keep the copy at "offer its RA capacity". The charging duty sits with the buyer's showing, not the battery. Teaching values need a calculation record |
 | Mobile | Commitment cards and a short conflict explanation |
-| Status | Kept from the WA pattern; G-1 pending |
+| Status | Kept from the WA pattern; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -392,7 +392,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-CAISO-15 (REPO-CAISO-LIVE: `row.econ.hold`, `row.investment.targetReturn`, `row.investment.capexPerMW`, `row.investment.operatingPurchase`); CL-CAISO-11 (the foldback cut is not in the model: REPO-CAISO-MODEL); CL-CAISO-08 and CL-CAISO-09 |
 | Authoring check | The ceiling is the model's highest price for an operating asset at the operating target, before the foldback cut, which the model does not price: an upper bound to re-run once the cut is known. Never call it a market price or a seller's ask. The card's return and the thesis's typed return differ in basis (CF-CAISO-01). Reuse `projectFacts`' wording ("The return shown is for building it new"). No new figures |
 | Mobile | Two cards stacked |
-| Status | `model-assumption`; `sourced`; G-1 pending |
+| Status | `model-assumption`; `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -412,7 +412,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-CAISO-08, CL-CAISO-09, CL-CAISO-11, CL-CAISO-12, CL-CAISO-15; Downside definitions (REPO-05, `src/experience/downsideNarrative.js`) |
 | Authoring check | A need for capacity does not guarantee this asset; a downside case is not a probability. Do not quote the RA benchmark values on the page. The trigger binds by label and month; its timing may slip (CF-CAISO-05), which goes to the analyst, not the page |
 | Mobile | Four factor cards, then the links |
-| Status | `proposed`; G-1 pending |
+| Status | `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -470,7 +470,7 @@ Reverse traceability: SRC-CAISO-01 to SRC-CAISO-03 → CL-CAISO-02/03 → H-CAIS
 | Investment meaning | Pending: four hours by rule and by the design grid; the operating entry at the model's ceiling, before the cut is priced; the model's contract kept apart from a signed one; tenor and what follows it |
 | English and Chinese | Pending: same meaning for qualifying capacity, deliverability, foldback, slice of day, must-offer and the operating target; all figures stay bound tokens |
 | Signature chart | Pending: CALC-CAISO-DAY as the chart's method, CAISO's own data under its terms (or EIA-930 after a clock fix), and the Example fallback until registration |
-| Script decision | **G-1 pending. Analyst: sign off caiso-00 to caiso-13, or identify changes.** |
+| Script decision | **G-1 reviewed 1 November 2026; G-2 conditions retained. Analyst: sign off caiso-00 to caiso-13, or identify changes.** |
 | Build boundary | Stop here. No application code, dataset registration, snapshot, model change, rendering, build, deployment or G-2 work in this task |
 
 At G-1 the analyst is asked to confirm, in both languages:
@@ -603,3 +603,18 @@ The checked-today boundary sits between H-CAISO-05's adoption and its 2027 and 2
 | CF-CAISO-05 | The trigger and next action say January 2027, but the cut's size may not be visible then (SRC-CAISO-10 pp. 27 and 177; SRC-CAISO-22 p. 12) | Flagged for the analyst; the story binds the trigger as published |
 | CF-CAISO-06 | EIA-930's CAISO hours are about an hour late (2025 file) and an hour early (2020 file) against CAISO's own data | CALC-CAISO-DAY uses CAISO's data; EIA-930 only after correction |
 | CF-CAISO-07 | The view's policy-stability reason says signed contracts keep their terms; the 2027 QC change applies to all storage, so a contract's sellable MW may fall | Flagged for the analyst; the story treats it as diligence (GAP-CAISO-CONTRACT) |
+
+## Analyst decisions — 1 November 2026
+
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+
+| Item | Approved disposition / retained gate |
+| --- | --- |
+| Argument / markers | Accept largely-met four-hour RA only as platform interpretation at Fair; the 2021 order becoming mainly batteries remains Fair. |
+| Chart | Approve CALC-CAISO-DAY: same-season business-day medians, correct clocks and missing intervals. CAISO reuse must be cleared; EIA fallback needs the documented clock fix. Use an Example until those gates pass. |
+| caiso-06 / CF-CAISO-02 | Withhold RA benchmark-price direction while rights are parked. Fix the stale research-tab claim that nothing proposes changing the four-hour test in a separate content PR. |
+| Contract / Chinese | Signed contract wording does not freeze qualifying MW. Preserve #101’s corrected timing. Revised markers and bilingual copy approved. |
+
+**Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
+
+**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
