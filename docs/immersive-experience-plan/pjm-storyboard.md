@@ -1,7 +1,7 @@
 # PJM: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; PJM research and script, 31 October 2026; shot layout v1.2  
-Status: `proposed` script and bilingual page text; G-1 analyst sign-off pending; steps 1 and 2 only. Markdown only: no build, data, model, view or fixture change  
+Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
 Navigation: [Master plan](README.md) | [Narrative card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [WA format](western-australia-storyboard.md) | [Sources and claims](#11-sources-and-claims)
 
 ## 1. Scope, argument and reading route
@@ -94,7 +94,7 @@ Shared story strings:
 | Evidence and chart | Play card fields from the view store through the briefing model (REPO-PJM-LIVE); CL-PJM-02 for "a single delivery year"; CL-PJM-08 and CL-PJM-09 for "a credit that is falling" |
 | Authoring check | Never restate the call or a figure in prose. The view's thesis and `play.why` type a reference return that is not the card's headline (CF-PJM-01): copy neither. `wait` displays as Watch. A changed call or play updates the card and flags the story |
 | Mobile | Play card full width; two buttons |
-| Status | Proposed 31 Oct 2026; `sourced`; uses the existing play card; G-1 pending |
+| Status | Proposed 31 Oct 2026; `sourced`; uses the existing play card; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -137,7 +137,7 @@ Shared story strings:
 | Evidence and chart | Event: CL-PJM-02 (SRC-PJM-17, p. 2; SRC-PJM-05, Table 1; SRC-PJM-01, printed p. 5, note on the compressed schedule; SRC-PJM-14). Interpretation: H-PJM-02, proposed. Nodes: H-PJM-01 to H-PJM-06 |
 | Authoring check | Keep the event (first delivery year 2007-08; one delivery year per auction) apart from the interpretation (bought ahead because new plants take years). A cleared commitment is not a contract with a tenor; incremental auctions adjust the same year and never extend it. No invented dates; the outlook node is dashed |
 | Mobile | Vertical node list; one calendar strip |
-| Status | Event `sourced`; interpretation `proposed`; G-1 pending |
+| Status | Event `sourced`; interpretation `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -184,7 +184,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-PJM-07 (SRC-PJM-21, Executive Summary, "Market Outcomes", PDF p. 9); the scale of the Elliott charges stays in the evidence drawer |
 | Authoring check | Charges apply only in Performance Assessment Intervals, which PJM's emergency actions trigger; do not imply daily penalties or a bonus a battery would earn. The 2014 link is PJM's own reading (SRC-PJM-21). The state-of-charge bar is Example; no event trace is drawn as observed |
 | Mobile | Two panels (2014, 2022) and the obligation card |
-| Status | `historical-fact`, `market-rule`; `sourced`; G-1 pending |
+| Status | `historical-fact`, `market-rule`; `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -204,7 +204,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-PJM-08 (SRC-PJM-04, printed pp. 3–4; SRC-PJM-12, on FERC's approval of 30 January 2024 in ER24-99; SRC-PJM-06, table); SRC-PJM-09 for a final delivery-year rating that differed from the auction rating |
 | Authoring check | An ELCC class rating is PJM's model result, not a test of the battery. Ratings before 2025-26 used another method (SRC-PJM-12) and stay off this shot. A rating is set for each auction and can be revised for the delivery year. Credited MW equals nameplate times rating only as a teaching calculation on the Example battery |
 | Mobile | Two bars, then a duration list |
-| Status | `market-rule`; `sourced`; G-1 pending |
+| Status | `market-rule`; `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -226,7 +226,7 @@ Timeline nodes (page text):
 | Evidence and chart | Event: CL-PJM-04 (SRC-PJM-02, printed p. 3; SRC-PJM-01, printed pp. 3–4; SRC-PJM-17, p. 2). Interpretation: CL-PJM-05 (SRC-PJM-17, pp. 2–3; SRC-PJM-19; SRC-PJM-20, slides 4 and 6; SRC-PJM-24; SRC-PJM-25). Queue: CL-PJM-15 (SRC-PJM-25) |
 | Authoring check | The event (cleared short, at the cap) and the interpretation (data-centre load as the driver, in PJM's and the Market Monitor's reading) stay separate claims. PJM says a shortage "does not necessarily mean" it cannot serve load: no blackout imagery. PJM trimmed its near-term forecast in January 2026, so growth is a forecast, not an observation. Queue projects are applications, not supply |
 | Mobile | Bars stacked; attribution and queue as two cards |
-| Status | Event `sourced`; interpretation `sourced` as attributed; G-1 pending |
+| Status | Event `sourced`; interpretation `sourced` as attributed; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -247,7 +247,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-PJM-06 (SRC-PJM-15, paragraphs 1–2 and pp. 7–8; SRC-PJM-16; SRC-PJM-13, printed pp. 1 and 4); CL-PJM-03 (SRC-PJM-01, printed p. 3 and Appendix, printed p. 17) |
 | Authoring check | The curve is schematic: no axis values except bound labels. The cap and floor cover four auctions, 2026-27 to 2029-30; none is approved after that at check, so later years are dashed with no price. PJM's simulation estimates one auction without the cap; it is not a forecast for 2030-31. The 2029-30 curve may still be adjusted before the auction (SRC-PJM-13, printed p. 1) |
 | Mobile | Diagram full width; two buttons |
-| Status | `market-rule`; `sourced`; G-1 pending |
+| Status | `market-rule`; `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -267,7 +267,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-PJM-01 (corrected), CL-PJM-03, CL-PJM-08, CL-PJM-09; SRC-PJM-01 to SRC-PJM-11, SRC-PJM-13, SRC-PJM-14; GAP-PJM-BRA |
 | Authoring check | Two panels, two units, one shared axis: no dual axis, and no price-times-rating line past the cleared years. Indicative ratings are PJM's and non-binding: label them. No rating points before 2025-26 (the method changed). Do not draw the platform's renewal path here; it differs from PJM's (CF-PJM-03). The next price is unknown until its results date |
 | Mobile | Panels stacked on the shared axis; a table view with the same values |
-| Status | Chart method `proposed`; data `sourced`, not registered (GAP-PJM-BRA); price series `rights-unresolved`; G-1 pending |
+| Status | Chart method `proposed`; data `sourced`, not registered (GAP-PJM-BRA); price series `rights-unresolved`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -290,13 +290,13 @@ Timeline nodes (page text):
 | Evidence and chart | CL-PJM-10 (SRC-PJM-06, table; REPO-PJM-LIVE: `HOME_BRIEFING.grids.pjm`, the `build` line, `comparison.durationResponse`); CF-PJM-03 |
 | Authoring check | Best is by value per MW, not by return; every capacity design is below the platform's yields, which the bound design line says. The model prices the 2028-29 class ratings and scales one renewal path for every duration, while PJM's indicative path widens the gap between short and long classes (CF-PJM-03): the copy claims only what the grid says today. If ‹bound: best duration› ever differs from the play's duration, the "so" in the copy no longer holds and the shot is queued for review. Never say the extra hours are unpaid |
 | Mobile | Duration cards, then the design line |
-| Status | `model-assumption`; `sourced`; G-1 pending |
+| Status | `model-assumption`; `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Why this duration? | 为什么是这个时长？ |
-| Copy | Longer batteries are credited more, but they cost more to build. On the platform's design test, ‹bound: best duration› hours gives the most value per MW of the capacity designs, so the play builds ‹bound: play duration› hours. | 时长更长的电池计入比例更高，但建设成本也更高。按本平台的设计测试，在各容量方案中，‹bound: best duration›小时的每MW价值最高，因此本方案建设‹bound: play duration›小时。 |
-| Meaning | Duration is a capital decision: at the model's prices, the extra hours buy credit worth less than they cost. | 时长是资本决策：按模型价格，多建的小时所换来的认证，价值低于其成本。 |
+| Copy | Longer batteries receive more capacity credit but cost more to build. The design test compares each duration’s own indicative renewal credit at the model’s unchanged price scenario. Its best capacity duration is ‹bound: best duration› hours; the current play is ‹bound: play duration› hours. Every displayed design still needs to pass the fund’s target test. | 更长时长可以获得更多计入容量，但建设成本更高。设计测试在模型既定价格情景下，分别采用各时长自身的参考续期计入比例。容量路径的最优时长为‹bound: best duration›小时，当前方案为‹bound: play duration›小时。所有展示的设计仍须通过基金目标回报检验。 |
+| Meaning | A higher credited share is valuable only relative to its extra capital cost; indicative credit remains non-binding. | 更高计入比例的价值须与额外资本投入比较；参考计入比例仍不具约束力。 |
 | Marker | Fair evidence. What would change it: a design test run on PJM's indicative ratings, or a battery price, that moves the best duration. | 证据尚可。会改变判断的证据：以PJM指示性核定值重新运行的设计测试，或电池价格变化，使最优时长改变。 |
 | Controls | One option for each duration in ‹bound: design durations› · Show the design test | 按‹bound: design durations›逐一设置时长选项 · 显示设计测试 |
 | Labels | Credited share, next auction · More energy · More capital · Design test: ‹bound: design line› | 下一次拍卖的计入比例 · 更多电量 · 更多资本 · 设计测试：‹bound: design line› |
@@ -310,7 +310,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-PJM-09 (SRC-PJM-11, discussion pp. 1–2 and 7–8, and the table); CL-PJM-08 (SRC-PJM-09, final 2026-27 ratings above the auction ratings); SRC-PJM-17, p. 13 (accredited value may change from year to year) |
 | Authoring check | Ratings can rise as well as fall: they rose from the 2026-27 to the 2028-29 auction. The indicative path rests on a vendor's resource forecast, and PJM says it will likely differ from the official ratings. The two-day event is an Example of PJM's explanation, not a modelled dispatch. Do not state what happens to a committed battery whose rating falls; those deficiency rules are not sourced here |
 | Mobile | Two still frames, then the year list |
-| Status | `official-plan` (indicative); `sourced`; G-1 pending |
+| Status | `official-plan` (indicative); `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -332,7 +332,7 @@ Timeline nodes (page text):
 | Evidence and chart | Capacity: CL-PJM-13 (SRC-PJM-26, slide 2; SRC-PJM-17, pp. 2 and 8), CL-PJM-02, CL-PJM-07. Share and tenor: REPO-PJM-LIVE (`row.econ.secured`, `row.econ.securedYears`). Energy and Regulation: settlement clauses not extracted |
 | Authoring check | Name the secured tenor and what follows it. The secured share is the model's, on first-year revenue, and the project has no commitment until it clears. Do not show the current fleet's Regulation earnings; the platform treats them as unavailable to a new entrant (REPO-PJM-LIVE, `src/markets/pjm/comparison.js`). Capacity is paid on credited MW, not nameplate. A cleared commitment is not a contract with a tenor |
 | Mobile | One route at a time as stacked steps |
-| Status | Capacity route `sourced`; energy and Regulation `mechanism-exists`, clauses pending; `model-assumes-route`; G-1 pending |
+| Status | Capacity route `sourced`; energy and Regulation `mechanism-exists`, clauses pending; `model-assumes-route`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -355,7 +355,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-PJM-11 (SRC-PJM-17, pp. 1, 7–8, 14 and 19, and ordering paragraph (A), p. 85; SRC-PJM-18, slides 2 and 16; SRC-PJM-19) |
 | Authoring check | The backstop is accepted but suspended and the amended filing is pending: draw it dashed. Batteries are eligible as new storage resources, but no project holds a commitment. Payment would be a contract-for-difference around the auction credits, on accredited MW that are committed and available; the platform does not model it. Keep this one-time procurement apart from the backstop auction already in PJM's tariff (pjm-12) |
 | Mobile | Vertical timeline; the scenario bar beneath |
-| Status | `official-plan`; `sourced`; the battery branch is an `analyst-scenario`; G-1 pending |
+| Status | `official-plan`; `sourced`; the battery branch is an `analyst-scenario`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -377,7 +377,7 @@ Timeline nodes (page text):
 | Evidence and chart | REPO-PJM-LIVE (triggers, decision reason, counterpoint, return fields); CL-PJM-04 (SRC-PJM-02, printed p. 3; SRC-PJM-01, printed p. 3, note 1); CL-PJM-11; CL-PJM-12 (SRC-PJM-14); CL-PJM-15; downside definitions (`src/experience/downsideNarrative.js`) |
 | Authoring check | Name only the two triggers the call watches; the January 2027 ratings are context (CF-PJM-02). "Third large shortfall" means a third auction running more than one percentage point below the reserve target, and PJM must file at FERC before running that auction. Do not predict the December price. The counterpoint is the analyst's: bind it, never paraphrase it |
 | Mobile | Factor cards, then the four links |
-| Status | `sourced`; G-1 pending |
+| Status | `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -408,7 +408,7 @@ These read dated source records, not model results, and are **not existing runti
 | Field | Specification / limit |
 | --- | --- |
 | Question | Why is a high capacity price still a Watch? |
-| Inputs | GAP-PJM-BRA, one row per delivery year. Cleared years 2025-26 to 2028-29: RTO Resource Clearing Price, $/MW-day UCAP (SRC-PJM-01 to SRC-PJM-04); cap and floor where they applied (SRC-PJM-01 to SRC-PJM-03); auction rating of the storage class matching the play's duration (SRC-PJM-07 to SRC-PJM-10). 2029-30: cap and floor (SRC-PJM-13), rating (SRC-PJM-06), auction window and results date (SRC-PJM-14). 2030-31 to 2042-43: PJM's indicative ratings only (SRC-PJM-11). Optional context bar for 2024-25, price only (SRC-PJM-05) |
+| Inputs | GAP-PJM-BRA, one row per delivery year. Cleared years 2025-26 to 2028-29: RTO Resource Clearing Price, $/MW-day UCAP (SRC-PJM-01 to SRC-PJM-04); cap and floor where they applied (SRC-PJM-01 to SRC-PJM-03); auction rating of the storage class matching the play's duration (SRC-PJM-07 to SRC-PJM-10). 2029-30: cap and floor (SRC-PJM-13), rating (SRC-PJM-06), auction window and results date (SRC-PJM-14). 2030-31 to 2042-43: PJM's indicative ratings only (SRC-PJM-11). No 2024-25 context bar; old-method years stay outside this chart |
 | Upper panel | Bars for cleared prices; a cap–floor band for capped years; 2029-30 as a band only, labelled "Auction pending" with the bound results date; 2030-31 onward empty, labelled "No cap approved". A bracket under each bar: "One delivery year" |
 | Lower panel | The play-duration class rating: solid from 2025-26 to 2029-30 (auction ratings), dashed from 2030-31 (indicative, non-binding). A break before 2025-26, with no earlier points: the method changed (SRC-PJM-04, SRC-PJM-12). Longer classes appear only in `pjm-08`'s duration view |
 | Not drawn | No price after 2029-30; no dual axis; no product line beyond cleared years; no platform renewal scenario; no ratings from the old method (83% for 2023-24, 92% for 2024-25); no final delivery-year ratings mixed with auction ratings |
@@ -458,7 +458,7 @@ Research found nothing that changes the published call. It strengthens the Wait:
 | Electricity mechanics | Pending: one delivery year per auction; Capacity Performance; marginal accreditation and its winter-risk explanation; the cap and floor and their end; the tariff's existing backstop trigger against the new one-time backstop |
 | Investment meaning | Pending: Watch as a high price that is capped, short-dated and falling in credit; four hours as best on the design test; the backstop as the event that could lengthen secured revenue; the counterpoint left bound |
 | English and Chinese | Pending: same meaning for capacity, credit (认证系数), class rating (类别核定值), delivery year (交付年度), cap and floor (价格上下限) and backstop (兜底采购); all model figures bound |
-| Script decision | **G-1 pending. Analyst: sign off `pjm-00` to `pjm-12`, or identify changes.** |
+| Script decision | **G-1 reviewed 1 November 2026; G-2 conditions retained. Analyst: sign off `pjm-00` to `pjm-12`, or identify changes.** |
 | Build boundary | Stop here. No application code, dataset registration, data module, snapshot, model or view change, rendering, build or deployment in this task |
 
 At G-1 the analyst is asked to decide:
@@ -500,7 +500,7 @@ Common fields: allocation market `pjm`; geography the PJM region unless a zone i
 | SRC-PJM-08 | PJM, [ELCC Class Ratings for the 2027/2028 Base Residual Auction](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2027-28-bra-elcc-class-ratings.pdf), table, p. 1 | PDF created 1 August 2025 | Storage 4-hr 58%, 6-hr 67%, 8-hr 70%, 10-hr 78% | `public-link-only`; `sourced` |
 | SRC-PJM-09 | PJM, [ELCC Class Ratings for the 2026/2027 Base Residual Auction](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2026-27-bra-elcc-class-ratings.pdf), table, p. 1; and [Final ELCC Class Ratings for the 2026/2027 Delivery Year and Third Incremental Auction](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2026-27-3ia-elcc-class-ratings.pdf), table, p. 1 | PDFs created 28 February 2025 and 31 December 2025 | Auction ratings: storage 4-hr 50%, 6-hr 58%, 8-hr 62%, 10-hr 72%. Final delivery-year ratings: 54%, 61%, 65%, 73%. A rating can be revised between the auction and delivery | `public-link-only`; `sourced` |
 | SRC-PJM-10 | PJM, [IRM, FPR and ELCC for 2025/26 BRA](https://www.pjm.com/-/media/committees-groups/committees/mc/2024/20240320/20240320-item-01---irm-fpr-and-elcc-for-25-26-bra---presentation.ashx), Members Committee, 20 March 2024, slide "2025/26 ELCC Class Ratings"; and [2025/2026 Third Incremental Auction ratings](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2025-26-3ia-elcc-class-ratings.pdf), p. 1 | 20 March 2024; PDF created 23 January 2025 | Auction ratings: storage 4-hr 59%, 6-hr 67%, 8-hr 68%, 10-hr 78%. Final 2025/26 ratings: 55%, 65%, 68%, 77%. PJM's ELCC page no longer lists the 2025/26 auction-ratings PDF; the presentation is the locator | `public-link-only`; `sourced` |
-| SRC-PJM-11 | PJM, [Preliminary ELCC Class Ratings for Period DY 2028/29 – DY 2042/43](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/preliminary-elcc-class-ratings-for-period-dy28-dy42-elcc.pdf), table, pp. 1–2; and [Discussion](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/discussion-of-preliminary-elcc-class-ratings-for-period-dy28-dy42-elcc.pdf), pp. 1–2 (inputs), 4–5 (charging effect), 7–8 ("Storage Class Ratings") | Both PDFs created 4 September 2026 | Extended to 2042/43 for the backstop's term. Values for years after 2029/30 "are non-binding and are provided only for indicative purposes" and "will likely differ" from official results. Storage 4-hr: 57% (2029/30), 42% (2030/31), 34%, 30%, 26%, 24%, 23%, 22%, 22%, 22%, 21%, 20%, 20%, 19% (2042/43); 10-hr from 76% to 47%. Storage ratings "drop consistently ... due to increasing winter risk": multi-hour winter events and storage that cannot recharge in energy-constrained winter events. The 2030/31 ratings are to be calculated in December 2026 or January 2027 | `public-link-only`; `official-plan`; `current-at-check`; `sourced`. Refresh with the 2030-31 ratings |
+| SRC-PJM-11 | PJM, [Preliminary ELCC Class Ratings for Period DY 2028/29 – DY 2042/43](https://www.pjm.com/-/media/DotCom/committees-groups/cifp-rbp/postings/preliminary-elcc-class-ratings-for-period-dy28-dy42.pdf), table, pp. 1–2; and [Discussion](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/discussion-of-preliminary-elcc-class-ratings-for-period-dy28-dy42-elcc.pdf), pp. 1–2 (inputs), 4–5 (charging effect), 7–8 ("Storage Class Ratings") | Both PDFs created 4 September 2026 | Extended to 2042/43 for the backstop's term. Values for years after 2029/30 "are non-binding and are provided only for indicative purposes" and "will likely differ" from official results. Storage 4-hr: 57% (2029/30), 42% (2030/31), 34%, 30%, 26%, 24%, 23%, 22%, 22%, 22%, 21%, 20%, 20%, 19% (2042/43); 10-hr from 76% to 47%. Storage ratings "drop consistently ... due to increasing winter risk": multi-hour winter events and storage that cannot recharge in energy-constrained winter events. The 2030/31 ratings are to be calculated in December 2026 or January 2027 | `public-link-only`; `official-plan`; `current-at-check`; `sourced`. Refresh with the 2030-31 ratings |
 | SRC-PJM-12 | PJM, [Preliminary ELCC Class Ratings](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/preliminary-elcc-class-ratings.pdf) (June 2025), opening note; older method: [ratings for the 2023/2024 BRA](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/elcc-class-ratings-for-2023-2024-bra.pdf) and [for 2024/2025](https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/elcc-class-ratings-for-2024-2025.pdf) | PDFs created 19 June 2025, 16 December 2021 and 29 December 2023 | The current ratings are calculated "under the methodology approved by FERC on January 30th, 2024 in Docket No. ER24-99". Under the earlier method, 4-hr storage was 83% (2023/24 BRA) and 92% (2024/25): not comparable with later ratings | `public-link-only`; `sourced`; old-method values are context only |
 | SRC-PJM-13 | PJM, [2029/2030 RPM Base Residual Auction Planning Period Parameters](https://www.pjm.com/-/media/DotCom/markets-ops/rpm/rpm-auction-info/2029-2030/2029-2030-planning-period-parameters-for-base-residual-auction-report.pdf): Introduction and Summary, printed p. 1; Reliability Requirement, printed p. 2; VRR Curves, printed p. 4 | Report dated 3 September 2026; parameters posted 31 August 2026 | Auction "to be conducted in December of 2026"; forecast peak 171,916 MW; requirement 158,712 MW. Cap $337.83 and floor $181.91/MW-day UCAP "as approved by FERC in Docket ER26-1556" (from $325.00 and $175.00, after the Reference Resource UCAP factor moved from 79% to 76%). The normal VRR curve is the tariff default outside the four capped auctions. Curve points subject to adjustment pending a FERC decision on a further filing (docket number truncated in the PDF). Virginia (DOM) and northern Illinois (COMED) cannot import enough capacity in certain emergencies | `public-link-only`; `current-at-check`; `sourced`. Refresh 30 days before the auction if PJM reposts the curves |
 | SRC-PJM-14 | PJM, [RPM auction schedule workbook](https://www.pjm.com/-/media/DotCom/markets-ops/rpm/rpm-auction-info/rpm-auction-schedule.xlsx): sheets for the 2029/2030 BRA and the 2030/2031 BRA, rows "Auction window opens/closes", "Auction results posted", "Preliminary ELCC Class Rating" | Read 31 October 2026 | 2029/30: preliminary ratings 6 August 2026; parameters 31 August 2026; window 9–15 December 2026; results 22 December 2026, no earlier than 4 pm EPT. 2030/31: preliminary ratings 11 January 2027; parameters 1 February 2027; window 12–18 May 2027; results 25 May 2027 | `public-link-only`; `official-plan`; `current-at-check`. Recheck before each date |
@@ -561,3 +561,18 @@ Six nodes. Dates are authoring metadata; an explicit "checked today" boundary pr
 | CF-PJM-04 | Two 2027-28 shortfall figures circulate: 6,516.6 MW UCAP and 6,623 MW (FERC's order, citing PJM's 17 December 2025 release, SRC-PJM-17 p. 2). Both are in PJM's own report on different bases: 6,516.6 MW below the RTO Reliability Requirement after FRR commitments (printed p. 3) and 6,623.2 MW "less than the IRM" for the RPM (printed p. 4) (SRC-PJM-02) | Resolved as a difference of basis, not an error. Story types neither; chart labels bind one basis per auction, named in the label |
 | CF-PJM-05 | The view's grid-scarcity reason cites "67 GW of storage ... in the reopened interconnection queue". PJM's 3 August 2026 release counts 60.0 GW of storage accepted into Cycle 1 and says no backlog remains from prior queues (SRC-PJM-25) | Not used by the story. Analyst: check the figure and the word "reopened" |
 | CF-PJM-06 | The narrative card in `market-narratives.md` §3 describes the signature chart as "credited MW falling while the price rises". The observed ratings since 2025-26 are not monotonic and the price has been capped since 2026-27 (CL-PJM-01) | This script specifies the corrected chart. Fold the wording into the card in the later register PR |
+
+## Analyst decisions — 1 November 2026
+
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+
+| Item | Approved disposition / retained gate |
+| --- | --- |
+| Argument / chart | Approve Wait; observed ratings rose and fell. Subsequent indicative ratings are dashed and labelled non-binding; no 2024/25 context bar or old-method accreditation points. |
+| CF-PJM-03 | Approved numerical plan: duration-specific indicative renewal credit, unchanged existing price scenario. Synchronise final duration result and financial bindings after the separate model PR passes. |
+| Data / rights | Approve manual source-located records. Price-data rights stay parked; unresolved price panel uses Example, not a public observed price series. |
+| Markers / Chinese | Approve the proposed evidence markers and bilingual drafts subject to the above corrections. #101 action/return/queue dispositions remain settled. |
+
+**Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
+
+**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
