@@ -1,8 +1,8 @@
 {
   "marketId": "caiso",
   "thesis": [
-    "Substantially a capacity contract with a trading option: resource adequacy carries most revenue and credits exactly four hours. At build cost the reference project falls short of the fund's target, so buy operating RA-contracted assets only at a price that clears it, once the 2027 foldback cut is sized.",
-    "本质上是附带交易选择权的容量合同：资源充裕度贡献大部分收入，且恰好按四小时计量。按建设成本测算，参考项目达不到基金目标回报，因此须待2027年出力回落下调的幅度明确后，以达到目标回报的价格收购持有资源充裕度合同的在运资产。"
+    "Resource adequacy provides the reference contract, with trading exposure alongside it. Buy operating contracted assets only at a price that meets the fund’s target, after quantifying qualification changes, including the decided 2027 foldback. Four hours is the reference design, not a guarantee of unchanged future credited MW.",
+    "资源充足性合同构成参考收入基础，另有交易敞口。须量化资格变化，包括已确定的2027年折减，再以达到基金目标的价格购买已签约的在运资产。四小时是参考设计，不保证未来计入MW维持不变。"
   ],
   "grades": {
     "assetReturn": {
@@ -375,8 +375,8 @@
       "hours": 4,
       "stage": "operating",
       "why": [
-        "Resource adequacy credits exactly four hours and carries most revenue; at build cost the reference project falls short of the fund's target.",
-        "资源充裕度恰好按四小时计量，并贡献大部分收入；按建设成本测算，参考项目达不到基金目标回报。"
+        "The four-hour RA reference remains subject to changing qualifying-capacity rules. At build cost it falls short of the fund’s target; verify contracted MW and entry price before buying an operating asset.",
+        "四小时RA参考情景仍受合资格容量规则变化影响。按建设成本测算未达基金目标；购买在运资产前须核实合同MW和进入价格。"
       ],
       "action": {
         "text": [
@@ -386,7 +386,7 @@
         "due": "2027-01-31"
       },
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-01",
       "lockedUntil": null
     }
   }

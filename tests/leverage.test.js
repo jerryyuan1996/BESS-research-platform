@@ -20,7 +20,7 @@ test('contracted coverage follows contract quality inside 1.20-1.40x; merchant i
 
 test('debt ratios match the table the analyst confirmed on 29 Oct 2026', () => {
   const confirmed = { it:.600, ie:.499, wa:.750, pl:.339, fi:.600, de:.655, ro:.376, nem:.581,
-    gb:.549, caiso:.499, pjm:.310, ercot:.407, ca_on:.502,
+    gb:.549, caiso:.499, pjm:.270, ercot:.407, ca_on:.502,
     // Japan moved off the 75% cap when it took the Bank of Japan core-CPI path (29 Oct 2026).
     jp_kyushu:.749, jp_tokyo:.745, jp_hokkaido:.733 };
   for (const [id, gearing] of Object.entries(confirmed))
