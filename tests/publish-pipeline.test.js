@@ -15,6 +15,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, writeFileSync, rmSync, mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { randomUUID } from 'node:crypto';
 
 import { reconcile, summarise, SEVERITY, DRIFT } from '../etl/lib/reconcile.mjs';
 import { publishDataset, lastAccepted, runPipeline } from '../etl/lib/publish.mjs';
@@ -43,7 +44,7 @@ const fleet = (n, over) => Array.from({ length: n }, () => project(over));
    into an OS temp directory — exercising the real path instead of a sandbox the
    production code could never reach. Everything written here is removed after. */
 const REPO = resolve(fileURLToPath(new URL('.', import.meta.url)), '..');
-const SANDBOX = 'public/data/public/__test__';
+const SANDBOX = `public/data/public/__test__/publish-${randomUUID()}`;
 let run = 0;
 const paths = [];
 

@@ -421,25 +421,28 @@ test('a trigger\'s outcome closes it: never overdue, and out of the calendar\'s 
 });
 
 test('only the analyst writes a play, and the last play out removes the section', () => scratch(async (store, root) => {
+  // Distinct operations must have distinct audit instants, even on fast disks.
+  let tick = 0;
+  const apply = change => store.apply(change, new Date(Date.UTC(2026, 10, 1) + tick++));
   assert.equal(authorMayWrite('plays.fi-mer-2h', 'analyst'), true);
   for (const kind of MACHINE_AUTHORS) assert.equal(authorMayWrite('plays.fi-mer-2h', kind), false, `a ${kind} may write a play`);
   for (const kind of MACHINE_AUTHORS){
-    await rejects(store.apply({ market: 'fi', path: 'plays.fi-mer-2h', to: play({ author: kind }), reason,
+    await rejects(apply({ market: 'fi', path: 'plays.fi-mer-2h', to: play({ author: kind }), reason,
       author: { kind, run: '2026-10-16T00:00:00.000Z' } }), /may not write the view/);
   }
   assert.ok(!existsSync(path.join(root, 'markets')), 'a refused play left something on disk');
 
-  await store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: trigger(), reason, author: analyst });
-  await store.apply({ market: 'fi', path: 'plays.fi-mer-2h', to: play(), reason, author: analyst });
-  await rejects(store.apply({ market: 'fi', path: 'plays.fi-toll-2h', to: play({ id: 'fi-toll-2h', author: 'rule' }), reason, author: analyst }), /the change is the analyst's/);
-  await store.apply({ market: 'fi', path: 'verdicts.developer', to: verdict({ route: 'ready-to-build', play: 'fi-mer-2h' }), reason, author: analyst });
+  await apply({ market: 'fi', path: 'triggers.fi-an-event', to: trigger(), reason, author: analyst });
+  await apply({ market: 'fi', path: 'plays.fi-mer-2h', to: play(), reason, author: analyst });
+  await rejects(apply({ market: 'fi', path: 'plays.fi-toll-2h', to: play({ id: 'fi-toll-2h', author: 'rule' }), reason, author: analyst }), /the change is the analyst's/);
+  await apply({ market: 'fi', path: 'verdicts.developer', to: verdict({ route: 'ready-to-build', play: 'fi-mer-2h' }), reason, author: analyst });
   const index = JSON.parse(await readFile(path.join(root, 'index.json'), 'utf8'));
   assert.equal(index.fi.developer.play, 'fi-mer-2h', 'the index does not carry the play a verdict names');
   /* A play a verdict names cannot be removed from under it. */
-  await rejects(store.apply({ market: 'fi', path: 'plays.fi-mer-2h', to: null, reason, author: analyst }), /not a play of this market/);
-  await store.apply({ market: 'fi', path: 'verdicts.developer', to: null, reason, author: analyst });
-  await store.apply({ market: 'fi', path: 'plays.fi-mer-2h', to: null, reason, author: analyst });
-  await store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: null, reason, author: analyst });
+  await rejects(apply({ market: 'fi', path: 'plays.fi-mer-2h', to: null, reason, author: analyst }), /not a play of this market/);
+  await apply({ market: 'fi', path: 'verdicts.developer', to: null, reason, author: analyst });
+  await apply({ market: 'fi', path: 'plays.fi-mer-2h', to: null, reason, author: analyst });
+  await apply({ market: 'fi', path: 'triggers.fi-an-event', to: null, reason, author: analyst });
   assert.deepEqual(await store.read('fi'), emptyView('fi'));
   const log = await store.changelog();
   assert.ok(log.every(e => validateChangelogEntry(e).length === 0));
