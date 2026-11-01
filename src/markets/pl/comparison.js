@@ -273,8 +273,8 @@ const ranges = {
 
   grantPct: limits(economics.grantPct, 0, 40, {
     basis: [
-      'Zero is a new entrant, because the NFOŚiGW round is allocated. The ceiling covers an awarded project: the 12 December 2025 ranking list gives PLN 3.735bn of grants against PLN 9.847bn of cost across 169 projects, a 37.9% average grant (loans of PLN 0.415bn are financing, not a grant). The awardee play prices at 37.9%.',
-      '取零对应新进入者，因为国家环保基金的本轮补贴已分配完毕。上限覆盖已获授予的项目：2025年12月12日排名清单显示169个项目总成本PLN 98.47亿、补贴PLN 37.35亿，平均补贴比例37.9%（PLN 4.15亿贷款属融资而非补贴）。补贴获得者投资机会按37.9%定价。',
+      'Zero is a new entrant without an award. The updated 12 December 2025 ranking list recommends 172 grants: PLN 3,734,999,999.99 divided by PLN 10,003,742,317.00 corresponding cost gives 37.336%, rounded to the approved 37.3% cohort screening assumption. Loan rows and non-recommended rows are excluded; a recommendation is not a signed grant or cash received. Verify the project’s actual agreement.',
+      '未获授予的新进入者取零。2025年12月12日更新排名清单推荐172项补助：PLN 3,734,999,999.99除以对应成本PLN 10,003,742,317.00为37.336%，取已批准的37.3%作为批次筛选假设。剔除贷款及未获推荐的记录；推荐不等于已签补助或已收现金。须核实项目实际协议。',
     ],
     source: 'NFOŚiGW Modernisation Fund storage programme, ranking list of 12 Dec 2025',
   }),

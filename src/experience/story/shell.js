@@ -130,15 +130,15 @@ export function openStory(ctx){
     target.focus({ preventScroll: true });
   };
 
-  const playCard = () => {
+  const playCard = (playRow) => {
     const { CALLS, returnPct, marginText, metric, playTitle } = ctx.ui;
-    const i = row.investment;
+    const i = playRow.investment;
     return h('div', { class: 'ix-story-play' },
       h('div', { class: 'ix-story-play-head' },
-        h('span', { class: `ix-tag ${row.call}` }, L(CALLS[row.call] || CALLS.research)),
-        row.play ? h('p', { class: 'ix-story-play-title' }, L(playTitle(row.play, row.stage))) : null),
-      i ? metric(T.baseIrr, returnPct(i.holdIRR), marginText(row)) : null,
-      row.play?.action?.text ? h('p', { class: 'ix-story-next' }, h('strong', {}, L(T.nextAction)), ' ', L(row.play.action.text)) : null);
+        h('span', { class: `ix-tag ${playRow.call}` }, L(CALLS[playRow.call] || CALLS.research)),
+        playRow.play ? h('p', { class: 'ix-story-play-title' }, L(playTitle(playRow.play, playRow.stage))) : null),
+      i ? metric(T.baseIrr, returnPct(i.holdIRR), marginText(playRow)) : null,
+      playRow.play?.action?.text ? h('p', { class: 'ix-story-next' }, h('strong', {}, L(T.nextAction)), ' ', L(playRow.play.action.text)) : null);
   };
 
   const extras = (shot) => {
@@ -170,7 +170,7 @@ export function openStory(ctx){
     return h('article', { class: `ix-shot${opening ? ' ix-shot-opening' : ''}`, id: `story-${shot.id}`, 'data-shot': shot.id, 'aria-labelledby': headingId },
       h('div', { class: 'ix-shot-text' },
         h('h4', { id: headingId, tabindex: '-1' }, pairOf(shot.question, values)),
-        opening ? playCard() : null,
+        opening ? (ctx.rows || [row]).map(playCard) : null,
         h('p', { class: 'ix-shot-copy' }, pairOf(shot.copy, values)),
         shot.meaning ? h('p', { class: 'ix-shot-meaning' }, h('strong', {}, L(T.meaning)), ' ', pairOf(shot.meaning, values)) : null,
         marker(shot),

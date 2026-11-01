@@ -148,6 +148,16 @@ export function validateDurationResponse(market){
   curve('merchantCapture', { required: true, min: 0 });
   curve('capacityDerating', { required: false, min: 0 });
 
+  if (dr.auctionRenewalCurves !== undefined){
+    const base = market.comparison.economics?.auctionRenewalCurve;
+    for (const h of hours || []){
+      const values = dr.auctionRenewalCurves?.[h];
+      if (!Array.isArray(values) || !Array.isArray(base) || values.length !== base.length ||
+          !values.every(v => Number.isFinite(v) && v >= 0)) at(`auctionRenewalCurves.${h} must cover every renewal year with finite nonnegative payments`);
+      else if (h === h0 && values.some((v,i) => v !== base[i])) at('auctionRenewalCurves must preserve the archetype renewal payments');
+    }
+  }
+
   if (!(Number.isFinite(dr.opexEnergyShare) && dr.opexEnergyShare >= 0 && dr.opexEnergyShare <= 1)){
     at('opexEnergyShare must be a number between 0 and 1');
   }
@@ -288,7 +298,13 @@ export function marketAt(market, route, hours){
     }
     if (Number.isFinite(e.contracted)) econ.contracted = e.contracted * ratio;
     if (Number.isFinite(e.securedContracted)) econ.securedContracted = e.securedContracted * ratio;
-    if (Array.isArray(e.auctionRenewalCurve)) econ.auctionRenewalCurve = e.auctionRenewalCurve.map(v => v * ratio);
+    if (Array.isArray(e.auctionRenewalCurve)){
+      const ownCurve = dr.auctionRenewalCurves?.[hours];
+      if (dr.auctionRenewalCurves !== undefined && !Array.isArray(ownCurve)) return {
+        na: ['No renewal payments declared at this duration', '未声明该时长的续期付款'],
+      };
+      econ.auctionRenewalCurve = ownCurve ? [...ownCurve] : e.auctionRenewalCurve.map(v => v * ratio);
+    }
   }
 
   if (route === 'ltda' && e.ltda && dr.routeRules?.ltda?.paymentBasis === PAYMENT_BASIS.KWH){

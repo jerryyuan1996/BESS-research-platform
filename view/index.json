@@ -3,20 +3,20 @@
     "strategic": {
       "call": "opportunistic",
       "route": "greenfield",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
       "call": "opportunistic",
       "route": "operating",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31",
       "play": "caiso-cap-4h"
     },
     "foreignFirstTimer": {
       "call": "opportunistic",
       "route": "ready-to-build",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "developer": {
@@ -117,7 +117,7 @@
     "infraFund": {
       "call": "opportunistic",
       "route": "operating",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31",
       "play": "gb-toll-4h"
     },
@@ -130,7 +130,7 @@
     "developer": {
       "call": "wait",
       "route": "greenfield",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     }
   },
@@ -138,20 +138,20 @@
     "strategic": {
       "call": "build-position",
       "route": "greenfield",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
-      "call": "build-position",
+      "call": "wait",
       "route": "ready-to-build",
-      "asOf": "2026-10-12",
+      "asOf": "2026-11-01",
       "reviewBy": "2027-03-31",
-      "play": "ie-cap-4h"
+      "play": "ie-cap-6h"
     },
     "foreignFirstTimer": {
       "call": "build-position",
       "route": "ready-to-build",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "developer": {
@@ -171,7 +171,7 @@
     "infraFund": {
       "call": "enter-now",
       "route": "ready-to-build",
-      "asOf": "2026-10-23",
+      "asOf": "2026-11-01",
       "reviewBy": "2027-03-31",
       "play": "it-cap-4h"
     },
@@ -252,7 +252,7 @@
     "infraFund": {
       "call": "opportunistic",
       "route": "operating",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31",
       "play": "jp-tokyo-ltda-6h"
     },
@@ -273,26 +273,26 @@
     "strategic": {
       "call": "build-position",
       "route": "greenfield",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
       "call": "opportunistic",
       "route": "operating",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31",
       "play": "nem-ltda-4h"
     },
     "foreignFirstTimer": {
       "call": "not-accessible",
       "route": "ready-to-build",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "developer": {
       "call": "build-position",
       "route": "greenfield",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     }
   },
@@ -300,20 +300,20 @@
     "strategic": {
       "call": "opportunistic",
       "route": "greenfield",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
       "call": "wait",
       "route": "ready-to-build",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31",
       "play": "pjm-cap-4h"
     },
     "foreignFirstTimer": {
       "call": "wait",
       "route": "ready-to-build",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "developer": {
@@ -327,13 +327,13 @@
     "strategic": {
       "call": "opportunistic",
       "route": "greenfield",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
       "call": "wait",
       "route": "ready-to-build",
-      "asOf": "2026-10-23",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31",
       "play": "pl-cap-4h"
     },
@@ -381,7 +381,7 @@
     "strategic": {
       "call": "build-position",
       "route": "greenfield",
-      "asOf": "2026-10-11",
+      "asOf": "2026-10-31",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {

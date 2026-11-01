@@ -45,6 +45,7 @@ server-side logic. Data changes are **git commits**, which is what makes the his
 | `jp-tokyo-jepx` | JP-Tokyo | JEPX spot | daily | — |
 | `jp-kyushu-jepx` | JP-Kyushu | JEPX spot | daily | — |
 | `jp-hokkaido-jepx` | JP-Hokkaido | JEPX spot | daily | — |
+| `fi-storage-capacity` | FI | Fingrid dataset 424, hourly network-model technical power (MW, CC BY 4.0); includes some units approaching operation | 24h | `FINGRID_API_KEY` |
 | `fi-day-ahead` | FI | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
 | `fi-fcr-n`, `fi-fcr-d-up`, `fi-fcr-d-down`, `fi-afrr-up`, `fi-afrr-down`, `fi-mfrr-up`, `fi-mfrr-down` | FI | Fingrid open data, hourly reserve capacity prices (EUR/MW/h, CC BY 4.0) | 12h | `FINGRID_API_KEY` |
 
@@ -255,3 +256,9 @@ from generating proposals.
 - [`governance.md`](governance.md) — who may change what, and how it is enforced
 - [`data-policy.md`](data-policy.md) — public vs confidential
 - [`architecture.md`](architecture.md) — the application structure
+
+### Finland story scale comparison
+
+The story's storage feed, `fi-storage-capacity`, is dataset [424](https://data.fingrid.fi/en/datasets/424): hourly technical power in the network model, in MW. It includes systems over one MW and some units approaching operation. It is not an all-size connected or prequalified fleet; it has no `bearsOn` path and supplies no merchant or reserve earnings estimate. The existing seven price feeds retain EUR/MW/h.
+
+The need side is a sourced, dated publication table in [storyNeed.js](../src/markets/fi/data/storyNeed.js), alongside the separate early-February connected estimate. Historical average procurement, the current gross product-obligation band and the later network-model series keep their different definitions. No feed is invented for publication tables and no line joins the two storage definitions.

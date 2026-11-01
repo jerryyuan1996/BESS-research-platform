@@ -62,10 +62,9 @@ const HOURS = 4;
    Sicilia. Delivery from 2028, 15-year term. */
 const MACSE_PER_MWH_YR = 12959;
 
-/* Capacity market: €47,000/MW/yr premium at the DY2027 auction, applied at the
-   current four-hour de-rating factor of 67%. Terna has PROPOSED cutting that to
-   53% for DY2028 — Italy currently has Europe's most favourable battery
-   de-rating and the proposal withdraws a fifth of it. */
+/* Legacy delivery-2027 award illustration: verify each asset's actual factor
+   and retained rights. New delivery-2028 storage has decided zonal credits
+   and needs a separate price case; this is not a general new-entry quote. */
 const CM_PREMIUM = 47000;
 const CM_DERATING_4H = 0.67;
 
@@ -162,8 +161,8 @@ const economics = {
   },
 
   capNote: [
-    '15-yr contracts for new build at €47,000/MW/yr; 4h de-rating 67% today, proposed 53% for DY2028',
-    '新建项目15年期合同，每MW每年€47,000；4小时折减系数现为67%，2028实需年度拟降至53%',
+    'Legacy delivery-2027 illustration: €47,000 per credited MW-year and the retained four-hour factor; verify the awarded contract. New delivery-2028 storage needs its decided zonal factor and a separately priced case.',
+    '旧批次2027年交付参考情景：每计入MW年€47,000及保留的四小时系数，须核实实际中标合同。2028年新储能须采用已确定的分区系数并另行定价。',
   ],
   tollNote: [
     '10-yr precedent tenor (Axpo / Zelestra, 207 MW, northern Italy); merchant tail from yr 11; no Italian toll price has been disclosed',
@@ -232,8 +231,8 @@ const ranges = {
   contracted: band(economics.contracted,
     Math.round(CM_PREMIUM * 0.53), Math.round(CM_PREMIUM * 0.90), {
       basis: [
-        'The €47,000/MW/yr DY2027 clearing premium at three de-rating factors. The seed applies the current four-hour factor of 67%. The floor applies the 53% Terna has PROPOSED for DY2028 — a 21% cut per nameplate MW that would withdraw what is currently Europe\'s most favourable battery de-rating. The ceiling applies the 90% factor an eight-hour system receives today.',
-        '以2027实需年度出清溢价每MW每年€47,000为基础，应用三种折减系数。种子值采用当前4小时系数67%。下限采用Terna为2028实需年度所拟定的53% — 按铭牌MW计相当于削减21%，将撤回目前欧洲最有利的储能折减待遇。上限采用八小时系统当前适用的90%系数。',
+        'Legacy-award sensitivity at the DY2027 premium: the seed uses the earlier four-hour factor, the floor retains the old proposed-factor stress and the ceiling the earlier eight-hour factor. This is not the decided zonal credit for new DY2028 batteries; verify each earlier award before using the illustration.',
+        '按2027年度溢价作旧批次授标敏感性分析：种子采用早先四小时系数，下限保留旧提案系数压力情景，上限采用早先八小时系数。这不是2028年度新电池已确定的分区计入比例；使用参考情景前须核实每份早先授标。',
       ],
       source: 'Timera Energy on the DY2027 auction premium; Modo Energy on Terna\'s DY2028 de-rating proposal',
     }),
@@ -404,8 +403,8 @@ export const comparison = {
   narrative: {
     archetype: ['100 MW · 4h · four routes to market', '100MW · 4小时 · 四条售电路径'],
     thesis: [
-      'The only market on this platform offering all four routes, and the only one where the choice between them is a genuine spread rather than a formality. MACSE cleared at 35% of its own price cap and at roughly half the wholesale value of the same stored energy — what it buys is a fifteen-year TSO counterparty and the gearing that comes with it. Three announced tolls prove an offtake market exists at a price nobody has published.',
-      '本平台唯一提供全部四条路径的市场，也是唯一一个路径选择构成真实价差而非形式差别的市场。MACSE以其自身价格上限的35%出清，约为同等储存电量批发价值的一半 — 其换来的是十五年期电网运营商对手方以及随之而来的杠杆能力。三笔已公告的租赁交易证明存在承购市场，但无人公布其价格。',
+      'Price the earlier awarded capacity contract and verify its rights. New delivery-2028 storage requires its decided zonal credit and a separately known auction price. MACSE and tolls remain distinct routes with different dispatch rights; do not combine payments without compatibility evidence.',
+      '须按早先容量授标合同定价并核实权利。2028年新储能须采用已确定的分区计入比例，并另行取得拍卖价格。MACSE和租赁的调度权利不同，仍属独立路径；合同兼容性未核实前不得合并付款。',
     ],
     pipelineRatio: '~8×',
   },

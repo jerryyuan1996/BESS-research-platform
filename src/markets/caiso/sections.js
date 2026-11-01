@@ -141,9 +141,9 @@ SEC_B.story = function (){
           d:['No completion date. This is the only relief item on this market\'s register with no year attached, and it is the binding one.',
              '没有完成日期。这是本市场登记表中唯一没有年份的缓解事项，同时也是起约束作用的那一项。'] },
       ] },
-      { t:'why', text:['Note what is NOT on this ladder: a change to the four-hour NQC test. Nothing published proposes moving it, which means the ceiling on duration credit is the most stable input in this market and can be underwritten as such. That is unusual — on most dashboards here the contracted mechanism is the thing most likely to change. In CAISO it is the queue.',
-        '请注意本时间序列中没有的内容：四小时净合格容量测试的变更。没有任何公开信息提议调整该标准，这意味着时长信用的上限是本市场最稳定的输入，可据此进行承销。这颇为反常 — 在本平台多数看板中，合同化机制才是最可能发生变化的部分。而在CAISO，最可能变化的是排队。'],
-        sig:['The mechanism is stable; the access is not','机制稳定，准入则不然'] },
+      { t:'why', text:['CPUC decision D.26-07-008 changes storage qualifying capacity for foldback from the 2027 RA year, with unit-specific UCAP from 2028. It sends the four-hour eligibility requirement to a later track and provides separate slice-of-day treatment for storage of at least eight hours from 2027. Verify the asset’s sellable MW and contract obligations as well as its connection rights.',
+        'CPUC第D.26-07-008号决定自2027容量充裕度年度起按出力回落调整储能合格容量，并自2028年起采用机组专项UCAP。四小时资格要求留待后续阶段处理；自2027年起，至少八小时的储能另有分时段处理规则。须同时核实资产可出售MW、合同义务和接入权利。'],
+        sig:['Accreditation and access both require review','核证与准入均须复核'] },
     ] },
   ] };
 };
@@ -274,10 +274,10 @@ SEC_B.services = function (){
 // ============================== DURATION ==============================
 SEC_B.duration = function (){
   return {
-  head: ['Storage Duration — the one market here where four hours is a ceiling',
-         '储能时长 — 本平台唯一一个四小时构成上限的市场'],
-  cap: ['The CPUC tests net qualifying capacity on four-hour sustained output and pays nothing beyond it. Duration in CAISO is a solved question, and the answer is exactly four.',
-        'CPUC按四小时持续出力测定净合格容量，超出部分不予支付。CAISO的时长问题已有定论，答案恰好是四小时。'],
+  head: ['Storage Duration — four-hour reference, changing accreditation',
+         '储能时长 — 四小时参考，核证规则正在变化'],
+  cap: ['The reference model prices a four-hour RA design. CPUC decision D.26-07-008 changes storage qualification, and longer-duration slice-of-day treatment must be checked separately. A flat model curve above four hours is not a permanent rule for every contract.',
+        '参考模型测算四小时容量充裕度方案。CPUC第D.26-07-008号决定调整储能资格认定，长时储能的分时段处理须另行核实。模型四小时以上的平坦曲线，并非适用于所有合同的永久规则。'],
   blocks: [
     { t:'card', mt:false, title:['Why the archetype is four hours','为何原型采用四小时'], badges:['official'], blocks:[
       { t:'table', head:[['Evidence','证据'],['Points to','指向']], rows:[

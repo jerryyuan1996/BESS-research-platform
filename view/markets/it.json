@@ -1,8 +1,8 @@
 {
   "marketId": "it",
   "thesis": [
-    "Four routes, and a real spread between them. The capacity market at four hours is the best design here, at 14.6% hold; MACSE's fifteen-year contract returns 2.5–3% unless the marginal MWh costs well under the turnkey price. Terna's proposed cut to the four-hour de-rating is the risk to watch.",
-    "四条路径并存，且彼此之间差距真实存在。四小时容量市场是这里的最佳设计，持有期回报14.6%；MACSE的十五年合同回报仅2.5–3%，除非边际MWh成本远低于交钥匙价格。需要关注的风险是Terna拟下调四小时折减系数。"
+    "Screen the awarded contract and the zone. The capacity illustration applies to earlier awarded RTB assets whose rights are verified; new delivery-2028 batteries require their decided zonal credit and a known auction price. Compare MACSE separately on a clearly labelled basis, with compatibility and dispatch rights checked before combining any payments.",
+    "以中标合同和所在分区筛选。容量参考情景适用于权利已核验的早先中标RTB资产；2028年新电池须采用已确定的分区计入比例，并取得明确的拍卖价格。MACSE按清楚标注的口径单独比较，任何付款合并之前先核实合同兼容性与调度权利。"
   ],
   "grades": {
     "assetReturn": {
@@ -210,7 +210,10 @@
     },
     "infraFund": {
       "archetype": "infraFund",
-      "where": null,
+      "where": [
+        "RTB assets already holding an earlier awarded capacity contract with verified terms",
+        "已持有早先容量授标合同且条款已核验的RTB资产"
+      ],
       "reviewBy": "2027-03-31",
       "call": "enter-now",
       "route": "ready-to-build",
@@ -219,8 +222,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "Capacity market at four hours is the best design in Italy and the second-best return on the platform: 14.6% hold, 17.2% exit.",
-            "四小时容量市场是意大利的最佳设计，回报在本平台排名第二：持有期14.6%，退出17.2%。"
+            "The legacy capacity design remains worth screening only against an asset’s verified awarded terms and entry price.",
+            "旧批次容量设计仅在资产的实际授标条款及进入价格核实后，才值得继续筛选。"
           ]
         },
         {
@@ -232,15 +235,15 @@
         }
       ],
       "despite": [
-        "Terna proposes cutting the four-hour de-rating from 0.67 to 0.53 for 2028 delivery, a fifth off the capacity line, and four-fifths of revenue stays merchant.",
-        "Terna拟将2028年交付的四小时折减系数从0.67下调至0.53，容量收入减少约五分之一，且五分之四的收入仍为市场化收入。"
+        "New delivery-2028 storage has decided zone-specific credit and is outside the legacy illustration; uncontracted trading remains exposed.",
+        "2028年新储能已确定分区计入比例，不属于旧批次参考情景；未锁定的交易收入仍有敞口。"
       ],
       "changesIf": [
         "it-capacity-derating-dy2028",
         "it-first-toll-price"
       ],
       "author": "analyst",
-      "asOf": "2026-10-23",
+      "asOf": "2026-11-01",
       "lockedUntil": null
     },
     "foreignFirstTimer": {
@@ -316,8 +319,8 @@
       "kind": "event",
       "market": "it",
       "label": [
-        "Terna decides the four-hour de-rating for 2028 delivery; it has proposed cutting it from 0.67 to 0.53",
-        "Terna裁定2028年交付的四小时折减系数；其已提议从0.67下调至0.53"
+        "Delivery-2028 storage credit decided by zone; legacy awards require their own vintage check",
+        "2028年储能计入比例已按分区确定；旧批次授标须核对其自身年度"
       ],
       "expected": null,
       "watches": [
@@ -326,15 +329,22 @@
       ],
       "direction": "down",
       "source": "derating",
-      "effect": null
+      "effect": null,
+      "outcome": {
+        "on": "2026-10-16",
+        "text": [
+          "Decree 327/2026 approved the revised factors. The analyst restricted the play to verified earlier awards on 1 November 2026.",
+          "第327/2026号法令批准修订系数；分析师于2026年11月1日将方案收窄至已核验的早先授标资产。"
+        ]
+      }
     },
     {
       "id": "it-first-toll-price",
       "kind": "event",
       "market": "it",
       "label": [
-        "An Italian toll's price, or a priced tenor, is disclosed; at the €87k seed a toll returns 5.1% and needs about €158k to match the capacity play",
-        "意大利租赁协议的价格或附价格的期限被公开；按€87k的种子值租赁回报为5.1%，需约€158k才能与容量市场方案持平"
+        "An executed Italian toll discloses its price and term",
+        "已签意大利租赁披露价格与期限"
       ],
       "expected": null,
       "watches": [
@@ -373,18 +383,18 @@
       "hours": 4,
       "stage": "ready-to-build",
       "why": [
-        "The best design in Italy: 14.6% hold, with a fifteen-year contract on a fifth of revenue.",
-        "意大利的最佳设计：持有期回报14.6%，五分之一的收入有十五年合同。"
+        "The capacity design is a legacy-award illustration. Screen only RTB assets already holding an earlier contract, with its actual price, credit and delivery rights verified; new storage needs a separately priced zonal case.",
+        "容量设计是旧批次中标情景。仅筛选已持有早先合同的RTB资产，并核实实际价格、计入比例和交付权利；新储能须另按分区定价。"
       ],
       "action": {
         "text": [
-          "Screen ready-to-build capacity-market projects in the south and the islands; price them at a four-hour de-rating of 0.53 as well as 0.67.",
-          "筛选南部及海岛地区具备开工条件的容量市场项目；同时按0.53与0.67两种四小时折减系数定价。"
+          "Screen RTB assets already holding an earlier awarded capacity contract. Verify auction vintage, credited MW, price, delivery date, transferability and grid rights. Price new delivery-2028 storage separately by zone after the auction price is known.",
+          "筛选已持有早先容量授标合同的RTB资产；核实拍卖批次、计入MW、价格、交付日期、转让条件及并网权利。2028年新储能待拍卖价格明确后，另按分区定价。"
         ],
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-11-01",
       "lockedUntil": null
     },
     "it-ltda-6h": {
@@ -397,8 +407,8 @@
       "hours": 6,
       "stage": "ready-to-build",
       "why": [
-        "MACSE pays per MWh-year, so winners build long (the first auction's fleet averaged 6.68 hours), but on the published capex the design returns 2.5–3% hold.",
-        "MACSE按每MWh每年付费，因此中标者倾向长时设计（首轮中标项目平均6.68小时），但按公开的资本开支测算，该设计持有期回报仅2.5–3%。"
+        "MACSE pays per MWh-year and exchanges time-shifting rights for contracted payments. Verify awarded power and marginal energy-block cost before treating a longer design as investable.",
+        "MACSE按每MWh年付费，以时移权利换取合同付款。将更长设计视为可投资之前，应核实中标功率及新增能量段成本。"
       ],
       "action": {
         "text": [
@@ -417,8 +427,8 @@
             {
               "dimension": "assetReturn",
               "text": [
-                "On the published €220/kWh capex the MACSE design returns 2.5–3% hold at six to eight hours.",
-                "按公开的每kWh 220欧元资本开支测算，MACSE设计在六至八小时下的持有期回报为2.5–3%。"
+                "The modelled MACSE design falls short of the fund’s target at the published capital cost; verify the actual marginal energy-block price.",
+                "按公开资本成本，模型MACSE设计达不到基金目标；须核实实际新增能量段价格。"
               ]
             },
             {

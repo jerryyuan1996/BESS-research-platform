@@ -215,6 +215,24 @@ test('services do not scale with duration; merchant revenue follows the capture 
   near(at8.merchGross, e.merchGross * 2 * (0.55 / 0.75), 1e-6, 'twice the energy at 0.55/0.75 of the 4h rate');
 });
 
+test('PJM renewals use each duration’s own non-binding credit, not the secured-year ratio', () => {
+  const pjm = byId('pjm');
+  const four = marketAt(pjm, 'cap', 4).comparison.economics;
+  const six = marketAt(pjm, 'cap', 6).comparison.economics;
+  const ten = marketAt(pjm, 'cap', 10).comparison.economics;
+  assert.equal(four.auctionRenewalCurve[1], 500 * 365 * .42, '2030/31 4h');
+  assert.equal(six.auctionRenewalCurve[1], 500 * 365 * .52, '2030/31 6h');
+  assert.equal(ten.auctionRenewalCurve[1], 500 * 365 * .66, '2030/31 10h');
+  near(six.securedContracted, pjm.comparison.economics.securedContracted * .68 / .59, 1e-6, 'secured year retains its published duration ratio');
+  assert.deepEqual(four.auctionRenewalCurve, pjm.comparison.economics.auctionRenewalCurve);
+  assert.deepEqual(validateDurationResponse(pjm), []);
+  const incomplete = { ...pjm, comparison: { ...pjm.comparison, durationResponse: {
+    ...pjm.comparison.durationResponse, auctionRenewalCurves: { 4: four.auctionRenewalCurve },
+  } } };
+  assert.ok(validateDurationResponse(incomplete).some(x => x.includes('auctionRenewalCurves.6')));
+  assert.ok(marketAt(incomplete, 'cap', 6).na, 'missing duration must not silently use fixed-ratio scaling');
+});
+
 test('the band is measured in capital, and holds the best design', () => {
   for (const m of priced){
     const sweep = sweepDesign(m);

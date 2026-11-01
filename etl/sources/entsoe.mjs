@@ -42,11 +42,12 @@ const DOMAIN = {
   ie: '10Y1001A1001A59C',    // SEM — the all-island Irish market
   ro: '10YRO-TEL------P',
   pl: '10YPL-AREA-----S',
+  de: '10Y1001A1001A82H', // Germany–Luxembourg bidding zone, not national DE
   fi: '10YFI-1--------U',    // Finland, Fingrid BZ / CA / MBA
 };
 
 /** ISO 4217 per market, used to label the snapshot's units. */
-const CURRENCY = { gb: 'GBP', ie: 'EUR', ro: 'EUR', pl: 'EUR' };
+const CURRENCY = { gb: 'GBP', ie: 'EUR', ro: 'EUR', pl: 'EUR', de: 'EUR' };
 
 /** ENTSO-E's compact UTC stamp: YYYYMMDDHHMM. */
 function stamp(date){
@@ -130,6 +131,10 @@ function parseDocument(xml){
 }
 
 export async function fetchDataset({ dataset, previous, log, now }){
+  // GAP-DE-PRICES: API access is not permission to publish raw or derived prices.
+  if (dataset.republishable === false){
+    return { skipped: true, reason: 'Publication rights unresolved; observed layer blocked (GAP-DE-PRICES)' };
+  }
   const token = secret('ENTSOE_TOKEN');
   if (!token){
     // Not an error. A missing credential means "not refreshed this run"; the
