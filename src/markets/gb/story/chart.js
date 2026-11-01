@@ -17,6 +17,7 @@ const T={
   example:['Example','示例'],missing:['Quantitative history not yet available','量化历史暂不可用'],loading:['Loading source data…','正在载入来源数据…'],retry:['Could not load data; retry','数据未能载入，重试'],
   platform:['Platform change','平台变更'],observed:['Auction observations, not battery earnings','这是拍卖观测，不是电池收入'],
   attribution:['Supported by National Energy SO Open Data','Supported by National Energy SO Open Data'],
+  coverage:['Coverage (UTC)','覆盖期（UTC）'],fetched:['EAC fetched (UTC)','EAC提取时间（UTC）'],partial:['Edge months may be partial.','首末月份可能不完整。'],
   low:['Low frequency','低频'],high:['High frequency','高频'],
 };
 const COLORS={DCL:'#1d654e',DCH:'#68a98b',DRL:'#b05b32',DRH:'#dca880',DML:'#53548c',DMH:'#9694bd'};
@@ -103,9 +104,10 @@ export function chartSvg(shot,{values={},data=null,selected=3}={}){
 function monthlyTable(data,selected){
   const allowed=selected===3?null:[['DCL','DCH'],['DRL','DRH'],['DML','DMH']][selected];
   const rows=data.rows.filter(r=>!allowed||allowed.includes(r.service)).sort((a,b)=>a.month.localeCompare(b.month)||a.service.localeCompare(b.service)||a.platform.localeCompare(b.platform));
-  return h('details',{class:'gb-monthly'},h('summary',{},L(T.monthly)),h('div',{class:'gb-table-scroll',tabindex:'0'},h('table',{},
-    h('caption',{},L(T.observed)),h('thead',{},h('tr',{},...[T.date,T.service,T.price,T.mw,T.battery,T.other,T.method].map(p=>h('th',{scope:'col'},L(p))))),
-    h('tbody',{},...rows.map(r=>h('tr',{'data-service':r.service,'data-platform':r.platform},h('th',{scope:'row'},r.month),h('td',{},r.service),h('td',{},number(r.price)),h('td',{},number(r.clearedMW)),h('td',{},number(r.batteryMW)),h('td',{},number(r.otherMW)),h('td',{},r.basis==='accepted-bid'?L(T.accepted):L(T.clearing))))))));
+  const body=rows.map(r=>h('tr',{'data-service':r.service,'data-platform':r.platform},h('th',{scope:'row'},r.month),
+    ...[r.service,number(r.price),number(r.clearedMW),number(r.batteryMW),number(r.otherMW),r.basis==='accepted-bid'?L(T.accepted):L(T.clearing),r.from.slice(0,10)+' — '+r.to.slice(0,10)].map(value=>h('td',{},value))));
+  const table=h('table',{},h('caption',{},L(T.observed)),h('thead',{},h('tr',{},...[T.date,T.service,T.price,T.mw,T.battery,T.other,T.method,T.coverage].map(p=>h('th',{scope:'col'},L(p))))),h('tbody',{},...body));
+  return h('details',{class:'gb-monthly'},h('summary',{},L(T.monthly)),h('div',{class:'gb-table-scroll',tabindex:'0'},table));
 }
 
 export function signatureChart(shot,ctx={}){
@@ -128,7 +130,7 @@ export function signatureChart(shot,ctx={}){
       const next=await (ctx.loadData||loadResponseData)({reload});
       if(host.isConnected===false)return;
       data=next;draw();
-      if(data){status.textContent=L(T.observed);host.setAttribute('data-coverage',data.sources.map(s=>s.coverage.from+'/'+s.coverage.to).join(';'));}
+      if(data){const [first,last]=data.sources;status.replaceChildren(L(T.observed),h('br'),L(T.coverage)+' '+first.coverage.from.slice(0,10)+' — '+last.coverage.to.slice(0,10)+' · '+L(T.fetched)+' '+last.fetchedAt.slice(0,10),h('br'),L(T.partial));}
       else status.replaceChildren(h('span',{},L(T.missing)),' ',h('button',{type:'button',class:'ix-text-link',onclick:()=>load(true)},L(T.retry)));
     };
     load();
