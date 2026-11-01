@@ -9,6 +9,7 @@ import {story} from '../story.js';
 import {IT_ZONES,IT_HISTORY,historyValues} from '../storyBindings.js';
 import {forkChart} from './chart.js';
 import {ITALY_MAP} from './geo.js';
+import {IT_AUCTION_RESULTS} from '../data/auctionResults.js';
 
 const words=(pair,values)=>L(fillPair(pair,values));
 const wrap=(...nodes)=>h('div',{class:'k-scene it-scene'},...nodes);
@@ -86,7 +87,9 @@ function duration(shot,{values}){
   let hours=preferred;
   if(macse)hours=[4,6,8][i];else if(i===1){hours=choices[alternative++%choices.length]||preferred;}
   if(available.includes(hours))draw(hours);
- },macse?1:0),holder,readout,labels(shot,values),h('details',{},h('summary',{},words(shot.controls.at(-1),values)),h('p',{},words(shot.meaning,values))));
+ },macse?1:0),holder,readout,labels(shot,values),h('details',{},h('summary',{},words(shot.controls.at(-1),values)),h('p',{},words(shot.meaning,values)),
+  macse?h('a',{href:IT_AUCTION_RESULTS.macseTotals.source.url,target:'_blank',rel:'noopener noreferrer'},words(shot.controls.at(-1),values)):null,
+  macse?h('p',{},IT_AUCTION_RESULTS.macseTotals.source.locator):null));
 }
 function payment(shot,{values}){
  const holder=h('div'),area=h('p');
