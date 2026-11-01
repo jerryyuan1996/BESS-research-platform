@@ -293,8 +293,8 @@ const economics = {
 
   auctionRenewalScenario: {
     basis: [
-      'A published clearing price and a published accreditation factor, projected separately because they move in opposite directions. The FERC-approved price collar covers four auctions and ends after 2029/2030, after which the cap reverts to a Net CONE-based figure PJM estimates at about $550/MW-day — the uncapped 2027/2028 simulation cleared at $529.80 RTO-wide. Against that, 4-hour ELCC erodes as storage penetration rises, which is what an ELCC rating measures. The curve therefore rises above its secured year before falling below it, and no single taper could express that.',
-      '一个已公布的出清价格与一个已公布的核证系数，因二者走向相反而分别预测。经FERC批准的价格上下限机制覆盖四次拍卖、至2029/2030年度结束，其后价格上限将回归至PJM估算约每MW每日$550的净新增成本（Net CONE）基准 — 2027/2028年度无上限模拟的全RTO出清价为$529.80。与此相对，4小时储能的ELCC将随储能渗透率上升而下降，这正是ELCC所衡量的内容。因此该曲线先高于其已锁定年度、随后再降至其下，任何单一递减规则都无法表达这一形态。',
+      'One cleared delivery year is separated from uncontracted renewals. Future prices retain the analyst scenario, including the end of the collar; each duration uses its own published indicative credit. Later credits are non-binding, not secured payments.',
+      '将一个已出清交付年度与未签约续期分开。未来价格保留分析师情景，包括价格上下限机制到期；各时长采用自身已公布的参考计入比例。后续比例不具约束力，也不是已锁定付款。',
     ],
     source: 'PJM BRA results and class ratings (secured year); RBP preliminary class table, p.1 (non-binding indicative credits after 2029/30); unchanged analyst price scenario. Approved 1 Nov 2026.',
     gate: 'G28',
@@ -385,8 +385,8 @@ const ranges = {
 
   securedContracted: band(economics.securedContracted, economics.securedContracted, BRA_2728, {
     basis: [
-      'The narrowest band on the platform, and narrow because this is the only capacity figure in the set that is a settled fact rather than an estimate. Both ends are cleared auctions with published storage accreditation: 2028/2029 at $325.00/MW-day × 59% and 2027/2028 at $333.44/MW-day × 58%, each × 365 days. Three consecutive auctions have cleared at the FERC-approved cap, so the band measures the cap\'s own step-down, not price discovery. What is uncertain about PJM capacity revenue is entirely in the years after this one.',
-      '这是本平台最窄的区间，其原因在于：这是全样本中唯一属于既成事实而非估算的容量数值。两端均为已出清拍卖且储能核证系数均已公布：2028/2029年度为每MW每日$325.00×59%，2027/2028年度为$333.44×58%，各乘以365天。连续三次拍卖均以FERC批准的上限出清，因此该区间衡量的是上限本身的下调幅度，而非价格发现过程。PJM容量收入的不确定性完全存在于本年度之后的年份。',
+      'Both bounds use cleared prices, published storage credit and days per year. The band compares award vintages; it does not secure later re-auctions.',
+      '两端均采用已出清价格、已公布储能计入比例及年度天数。区间比较授标批次，不会锁定后续再拍卖。',
     ],
     source: 'PJM 2028/2029 BRA (14 July 2026) and 2027/2028 BRA (December 2025) results; PJM ELCC class ratings for both delivery years',
   }),
@@ -410,8 +410,8 @@ const ranges = {
 
   services: band(economics.services, REGULATION_FLOOR, REGULATION_OBSERVED, {
     basis: [
-      'A saturation band, not a measurement band, and all three cases priced at the year-1 vintage the arbitrage leg beside it uses. BASE is $240,000/MW/yr at full assignment (Modo\'s twelve-hours-a-day worked example at June 2025\'s pre-spike $55/MW/h) divided by the ~3,000 MW competing in 2029 — the 400 MW operating today plus the 1.9 GW that took interconnection agreements in Transition Cycle 1. DOWNSIDE assumes the queue arrives faster and year 1 already faces 4,000 MW. UPSIDE is what the fleet earns TODAY — the observed $24/kW-month index read apart on the estimated 86% Regulation share, $247,680/MW/yr — which requires the queue to stall completely, and is here because it is the level a reader will have seen quoted elsewhere. What happens after year 1 is in `servicesCurve`, not in this band. The October 2025 redesign roughly doubled the requirement from 320 MW to 750 MW and that was a one-off; Phase 2 in October 2026 splits the signal into RegUp and RegDown rather than growing it. Regulation is power-based and must never be scaled by duration.',
-      '这是饱和区间而非测量区间，且三种情形均按与其旁边套利收入项相同的第1年口径定价。基准情形为满额中标下每MW每年$240,000（取Modo每日十二小时示例，按2025年6月价格飙升前的$55/MW/h计），除以2029年约3,000MW的竞争机组 — 即当前在运的400MW加上过渡周期一中取得并网协议的1.9GW。下行情形假设排队产能到位更快、第1年即面对4,000MW。上行情形为机组当前的实际收入 — 按估算的86%调频占比拆解已观测的每kW每月$24指数，得每MW每年$247,680 — 该情形要求排队完全停滞，列出是因为读者可能在别处见过该数字。第1年之后的变化由`servicesCurve`承载，而非由本区间表达。2025年10月的市场重构将需求由320MW约增至750MW，属一次性调整；2026年10月的第二阶段是将信号拆分为上调与下调，而非扩大规模。调频为功率型服务，绝不可按时长放大。',
+      'The year-one saturation band shares the arbitrage vintage. Base and downside use the declared competing-fleet assumptions; the upside retains the historical fleet index as context, not a future promise. Later decay is in servicesCurve. Regulation is power-based and never scales with duration.',
+      '首年饱和区间与套利采用同一口径年度。基准及下行情景采用声明的竞争机组假设；上限保留历史机组指数作参考，不代表未来收入承诺。后续递减由servicesCurve承载。调频按功率计，不随时长放大。',
     ],
     source: 'PJM Regulation Redesign Phase 1 (1 October 2025) market size; Modo Energy PJM Regulation pricing and fleet build-out projections; FERC Electric Quarterly Reports Q1 2025 (86% share, estimated)',
     gate: 'G30',
@@ -518,15 +518,15 @@ export const comparison = {
      merchant rather than a substitute for it, so merchant is exposed from
      commercial operation. See src/comparison/vintage.js. */
   merchantVintage: merchantVintage(1, economics, ranges, [
-    'Year 1, because the capacity payment sits alongside merchant revenue rather than replacing it — unlike a toll, it leaves the merchant legs exposed from commercial operation. Both legs are stated at 2029 conditions on one set of forward assumptions: a Regulation requirement fixed at about 750 MW that Phase 2 splits rather than grows, a competing fleet of about 3,000 MW in 2029 rising to Modo\'s 7 GW ceiling, and a TB4 spread carried forward from calendar 2025 unchanged. That last one is deliberately conservative: PJM\'s spread rose 49% in a single year against a tightening reserve margin, so holding it flat understates the arbitrage leg rather than flattering it.',
-    '第1年，因为容量收入与市场化收入并存而非取代后者 — 与租赁不同，它使市场化收入项自商业运行起即处于敞口状态。两个收入项均按2029年条件、基于同一套前瞻假设列示：调频需求固定在约750MW且第二阶段仅作拆分而非扩容，竞争机组由2029年约3,000MW升至Modo预计的7GW上限，TB4价差自2025日历年起保持不变延用。最后一项属刻意保守：PJM价差在备用率收紧的背景下一年内上涨49%，因此保持不变是低估而非高估套利收入项。',
+    'Both trading legs start in operating year one, alongside capacity. The shared forward assumptions retain the fixed Regulation requirement, competing-fleet path and unchanged observed arbitrage seed. These are scenarios, not a promise of future captured revenue.',
+    '两项交易收入与容量收入一同自运营首年开始。共同前瞻假设保留固定调频需求、竞争机组路径及不变的已观察套利种子。这些属于情景，不是未来捕获收入承诺。',
   ]),
 
   narrative: {
     archetype: ['90 MW · 4h · RTO-wide capacity', '90MW · 4小时 · 全RTO容量'],
     thesis: [
-      'The best-published contracted revenue on the platform, and it lasts one year. PJM prints both halves of the capacity payment — $325.00/MW-day at a 59% four-hour accreditation — so there is nothing to estimate about year one and nothing settled about years two to fifteen, where a price collar lifts and an accreditation factor erodes in opposite directions. The merchant leg is the trap: the observed fleet earns Regulation revenue an order of magnitude above what this model publishes, because 400 MW is competing for a 750 MW requirement and 67 GW is in the queue behind it.',
-      '本平台披露最完整的合同化收入 — 而它只持续一年。PJM同时公布了容量收入的两个组成部分 — 每MW每日$325.00与四小时59%的核证系数 — 因此第一年没有任何需要估算之处，而第二至十五年则没有任何确定之处：价格上限将上移，核证系数将下降，二者方向相反。真正的陷阱在市场化收入端：已观测机组的调频收入比本模型所发布的高出一个数量级，因为当前仅400MW在争夺750MW的系统需求，而其身后还有67GW在排队。',
+      'A published capacity price and credit establish one delivery-year reference. Renewals remain exposed to price and accreditation changes. Regulation faces competing entry, so verify queue access and executable trading before underwriting.',
+      '已公布的容量价格和计入比例构成单个交付年度的参考。续期仍面临价格及核证变化；调频面临竞争进入，投资前须核实并网及可执行交易收入。',
     ],
     /* 67 GW of storage in the reopened queue against ~400 MW operating. The ratio
        is quoted against the ~5 GW expected operating by 2030 rather than against

@@ -403,8 +403,8 @@ export const comparison = {
   narrative: {
     archetype: ['100 MW · 4h · four routes to market', '100MW · 4小时 · 四条售电路径'],
     thesis: [
-      'The only market on this platform offering all four routes, and the only one where the choice between them is a genuine spread rather than a formality. MACSE cleared at 35% of its own price cap and at roughly half the wholesale value of the same stored energy — what it buys is a fifteen-year TSO counterparty and the gearing that comes with it. Three announced tolls prove an offtake market exists at a price nobody has published.',
-      '本平台唯一提供全部四条路径的市场，也是唯一一个路径选择构成真实价差而非形式差别的市场。MACSE以其自身价格上限的35%出清，约为同等储存电量批发价值的一半 — 其换来的是十五年期电网运营商对手方以及随之而来的杠杆能力。三笔已公告的租赁交易证明存在承购市场，但无人公布其价格。',
+      'Price the earlier awarded capacity contract and verify its rights. New delivery-2028 storage requires its decided zonal credit and a separately known auction price. MACSE and tolls remain distinct routes with different dispatch rights; do not combine payments without compatibility evidence.',
+      '须按早先容量授标合同定价并核实权利。2028年新储能须采用已确定的分区计入比例，并另行取得拍卖价格。MACSE和租赁的调度权利不同，仍属独立路径；合同兼容性未核实前不得合并付款。',
     ],
     pipelineRatio: '~8×',
   },

@@ -62,18 +62,6 @@ export function featuredOpportunity(rows, lens){
     rows.find(r=>r.econ.priced&&r.play)||rows[0];
 }
 
-/** Distinct Polish cohorts keep their own call and action. Only the selected
- * row owns the financial case below; another play must not inherit its grant
- * or investment summary. Other markets retain their single opening card. */
-export function storyRowsFor(row, lens = 'infraFund') {
-  if (row.id !== 'pl') return [row];
-  const rows = HOME_BRIEFING.lenses[lens]?.rows || [];
-  return [row, ...rows.filter(r => r.market === row.id && r.play !== row.play?.id).map(r => {
-    const play = HOME_BRIEFING.plays[`${r.market}/${r.play}`];
-    return { ...r, id: row.id, market: row.market, play, econ: play?.econ || {} };
-  })];
-}
-
 export function caseFor(row) {
   let market = row.market;
   if (Number.isFinite(row.play?.grantPct)) {
