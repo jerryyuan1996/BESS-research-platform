@@ -15,6 +15,7 @@
    --------------------------------------------------------------------------- */
 export const STORIES = {
   wa: { released: true, load: () => import('../../markets/wa/storyPack.js') },
+  fi: { released: true, load: () => import('../../markets/fi/storyPack.js') },
 };
 
 /** The story entry for a market, or null when it has none or it is unreleased. */

@@ -238,6 +238,7 @@ const BUDGET = {
        fetched only when a reader opens the story from the market page. The
        plan's ceiling for shell, content and kit together is about 40 KiB. */
     'story-wa': 40,
+    'story-fi': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -780,4 +781,19 @@ test('the dossier stylesheet exists as its own chunk', async (t) => {
     'missing entirely or split across chunks; both are worse than the leak.');
   assert.ok(carrier.bytes < 8 * 1024,
     `the dossier stylesheet is ${(carrier.bytes / 1024).toFixed(1)} kB, over its 8 kB budget`);
+});
+
+
+test('the Finland story remains lazy and its complete additional graph fits the story cap',async t=>{
+  if(skipWithoutDist(t))return;
+  const {entry,features,byName}=await chunks();
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const own=features.get('story-fi');assert.ok(own,'the Finland lazy story chunk exists');
+  assert.ok(!first.has(own),'the story is absent from home and entry-page dependencies');
+  const probe='What is actually secured, and until when?';
+  assert.ok(own.text.includes(probe),'the story-content probe still exists');
+  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no story content in '+chunk.name);
+  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
+  assert.ok(kB(gzipOf(extra))<=BUDGET.features['story-fi'],
+    'Finland story, shell, kit and additional dependencies: '+kB(gzipOf(extra))+' KiB gzip, cap '+BUDGET.features['story-fi']);
 });
