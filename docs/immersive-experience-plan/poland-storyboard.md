@@ -1,7 +1,7 @@
 # Poland: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Poland script researched 31 October 2026; shot layout v1.2
-Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
+Status: G-1 signed off 1 November 2026 and reconciled to the approved model/function changes. This is a G-1 script; G-2 construction, dataset and rights gates remain explicit. Merge only after dependency and exact-head checks pass.
 Navigation: [Master plan](README.md) | [Narrative card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [WA format](western-australia-storyboard.md) | [Sources and claims](#11-sources-and-claims)
 
 ## 1. Scope, argument and reading route
@@ -15,7 +15,7 @@ The story explains **two published infrastructure-fund calls that the platform k
 
 Both rows carry evidence `fair` and watch the same undated trigger, `pl-capacity-successor-framework`. The thesis is the 31 October ruling 2A text: no new-entry capacity route while the capacity framework is unsettled, so new entrants rely on day-ahead revenue and every ungranted design loses value at the platform's yields; a project in the 2025 grant cohort is the exception with its own call; an asset holding an earlier seventeen-year contract is worth pricing only below replacement cost. The story never copies the thesis, `why`, `because` or `despite` strings, all of which carry typed figures.
 
-**Which card opens the story (CF-PL-01).** The market page passes the story one row: `opportunities(lens)` keeps the first Polish row of the shortlist, which under the fund lens is `pl-grant-4h`. The page's play card, decision panel, next action and the story's `row` therefore all show the grant cohort's Situational call. The market verdict, Watch on `pl-cap-4h`, appears on none of the home, comparison or market pages. pl-00 opens on the card the page passes and adds the market verdict as a second card bound to the briefing's verdict row; the analyst decides this at G-1.
+**Which card opens the story (CF-PL-01, resolved).** The separate feature supplies both current Polish opportunity rows. The grant-cohort card and ordinary-capacity card keep distinct calls, designs and actions. Only the selected row owns the financial case below; the ordinary capacity card must never inherit the grant reference. Story controls explain the difference and do not change either approved case.
 
 Allocation: `pl`; physical boundary: Poland's national system, one bidding zone, operated by PSE. Default lens: `infraFund`. `reviewedAgainst`: **REPO-PL-LIVE**.
 
@@ -64,7 +64,7 @@ Thirteen shots, about five minutes. Shared fixed-view isometric SVG kit, off-whi
 | Scene | Small static outline of Poland beside two cards, the grant cohort's card first because the page passes it; no animation |
 | Feedback | None; this shot is the conclusion. A text alternative carries both cards' fields in the same order |
 | Evidence and chart | REPO-PL-LIVE; CL-PL-18. Card 1: the existing market-page play card for `row` (`pl-grant-4h` at check). Card 2: the briefing's verdict row for the same lens (`pl-cap-4h` at check). No new chart |
-| Authoring check | The page passes only the first Polish shortlist row; card 2 needs the story shell to receive the verdict row as well (BUILD-PL-01, CF-PL-01). Card 1's figures are the investment-summary fields the decision panel shows; card 2 shows call, play, evidence and next action only, because no investment summary is computed for a second row. Never copy the 17.1%, 9.8%, 7.4%, 37.9% or "about $200k per MW" in the view's strings (CF-PL-04). If either call or play changes, the card updates itself and `reviewedAgainst` flags the story |
+| Authoring check | The separate feature passes both Polish rows in ctx.rows; storyRowsFor keeps their calls and designs distinct. Only the selected row owns the financial case. Never attach the selected grant investment summary to the ordinary capacity card. Model figures bind current results; no typed returns or grant ratios in page copy |
 | Mobile | Card 1 full width, card 2 beneath, then two buttons; no scene before the conclusion |
 | Status | `sourced` / `model-assumes-route`; card source flagged for G-1 (CF-PL-01) |
 
@@ -334,7 +334,7 @@ Thirteen shots, about five minutes. Shared fixed-view isometric SVG kit, off-whi
 
 ### Financial bindings that already exist
 
-Authoring references, not a new adapter. `row` is the Poland row the market page passes for the selected lens, after the investment-summary projection (`src/experience/model.js`). `v` is the briefing's Poland shortlist row whose play the market verdict names (`HOME_BRIEFING.lenses[lens].rows`, `market: 'pl'`, `play: view.verdicts[lens].play`); reading it is the one shell change this script needs (BUILD-PL-01). The at-check column lets the analyst review the script against the live case; it never becomes page copy.
+Authoring references, not a new adapter. `row` is the Poland row the market page passes for the selected lens, after the investment-summary projection (`src/experience/model.js`). `v` is the briefing's Poland shortlist row whose play the market verdict names (`HOME_BRIEFING.lenses[lens].rows`, `market: 'pl'`, `play: view.verdicts[lens].play`); the separate feature supplies it through ctx.rows (BUILD-PL-01 resolved). The at-check column lets the analyst review the script against the live case; it never becomes page copy.
 
 | Token | Existing owner and field | At check, 31 Oct 2026 (reviewer reference only) | Uses |
 | --- | --- | --- | --- |
@@ -344,7 +344,7 @@ Authoring references, not a new adapter. `row` is the Poland row the market page
 | ‹bound: next action› | `row.play.action.text` | List cohort projects whose owners might sell before the end-2028 completion deadline; check which also hold a capacity contract | pl-00, pl-12 |
 | ‹bound: play evidence› | `row.evidence`, through the existing evidence labels | Fair | pl-00 |
 | ‹bound: play duration› | `row.play.hours` | 4 | pl-08 |
-| ‹bound: grant share› | `row.play.grantPct`, formatted as a percentage | 37.9% | pl-11 |
+| ‹bound: grant share› | `row.play.grantPct`, formatted as a percentage | 37.3% | pl-11 |
 | ‹bound: market call› | `CALLS[v.call]` | Watch / 保持观察 (`wait`) | pl-00 |
 | ‹bound: market play name› | `playTitle(HOME_BRIEFING.plays['pl/' + v.play], v.stage)` | Capacity market · 4h · ready-to-build | pl-00 |
 | ‹bound: market next action› | `HOME_BRIEFING.plays['pl/' + v.play].action.text` | Wait for a successor to the main auctions; until then, price only assets holding an earlier seventeen-year contract, and only below replacement cost | pl-00, pl-12 |
@@ -611,7 +611,7 @@ Reviewer copy of the evidence the chart would plot. Every value binds through �
 | --- | --- | --- |
 | CF-PL-01 | The market page and the story receive only the grant play's row (`opportunities` keeps the first Polish row); the market verdict on `pl-cap-4h` appears on none of the home, comparison or market pages | Flagged at the top of the PR; G-1 point 1 |
 | CF-PL-02 | The brief says the grant play "ranks first on the shortlist"; live it is fourth of seventeen and the first Polish row | Flagged; the script says neither |
-| CF-PL-03 | The play's text says 169 projects with PLN 3.735 billion of grants on PLN 9.847 billion of cost (37.9 %). NFOŚiGW's lists give 172 recommended grants on PLN 10.004 billion (37.3 %); its signed list shows 170 grants for PLN 3.687 billion; the 161 signed grants matched to the list by amount give 37.3 %. The grant total matches the list; the count and cost do not | Flagged; no figure moves; the story binds the signed count from the record and the play's own grant share from the model |
+| CF-PL-03 | Closed: 172 positive recommended grant rows total PLN3,734,999,999.99 on PLN10,003,742,317.00 eligible cost: 37.3360%, rounded to the approved 37.3% model assumption. Loans and zero recommendations excluded | Current play matches this cohort basis; recommendation, signed agreement and cash receipt stay distinct |
 | CF-PL-04 | The grant call's text cites a 17.1 % hold return (design engine); the market page's card shows an all-equity hold of 11.51 %, 1.74 points below the 13.25 % target, with "No supported price" (investment summary) | Flagged; the story binds the card and labels any design value's basis |
 | CF-PL-05 | `pl-cap-4h` prices the capacity line on the last auction's terms (13.39 % × PLN 465.02); agreements from the auctions for 2027 and 2028 carry about 6.2 and 3.7 times that per kW (CALC-PL-01) | Observation for the analyst; the story says value depends on vintage and binds no vintage value |
 | CF-PL-06 | Contract length is not technology: the 2026 auction's seventeen-year agreements were not batteries, and the 2027 auction's seventeen-year total exceeds its 165 MW of batteries. A code comment's battery volume for the 2027 supplementary auction rests on a third party | Story uses URE's battery split only |
@@ -622,7 +622,7 @@ Press reports were used only to find primary documents: Gramwzielone, WysokieNap
 
 ## Analyst decisions — 1 November 2026
 
-Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original research findings remain as evidence; the approved disposition governs the revised shot copy and closes the G-1 decision requests.
 
 | Item | Approved disposition / retained gate |
 | --- | --- |
@@ -633,4 +633,6 @@ Authority: the analyst signed off the Chinese recommendations in this chat and a
 
 **Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
 
-**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
+**Final reconciliation:** shot copy, bindings, scopes and model dependencies have been reconciled to the approved separate changes. Exact-head validation and dependency merges remain release gates. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
+
+**Financial basis.** Investment-summary IRRs use the existing after-tax nominal cash-flow layer, including its inflation convention. The design-grid comparison is a separate basis. Do not add inflation again to the investment return or treat assumed contract escalation as verified contractual entitlement.
