@@ -80,8 +80,8 @@ const points = [
   point('nqc', ['Four-hour NQC test — state-wide', '四小时净合格容量测试 — 全州'], [-120.20, 35.40], 'node', ['Accreditation rule', '核证规则'], ['current','future'],
     ['The CPUC determines net qualifying capacity from tested sustained output over four hours, and gives no additional credit for longer duration. This is the rule that makes four hours a ceiling in California rather than a floor.',
      'CPUC依据四小时持续出力测试结果确定净合格容量，更长时长不予额外计入。正是该规则使四小时在加州构成上限而非下限。'],
-    ['Drawn as a point because it applies everywhere and has no geography. It is also the most stable input in this market: nothing published proposes changing it, so the duration ceiling can be underwritten as a constant.',
-     '之所以绘制为一个点，是因为它在全州适用且没有地理属性。它同时也是本市场最稳定的输入：没有任何公开信息提议对其作出修改，因此该时长上限可作为常量进行承销。'],
+    ['Drawn as a point for a system-wide rule. D.26-07-008 changes storage qualifying capacity from the 2027 RA year and adds longer-duration slice-of-day treatment; the reference model’s four-hour ceiling must not be treated as permanent contract protection.',
+     '以点表示全系统规则。第D.26-07-008号决定自2027容量充裕度年度起调整储能合格容量，并增加长时储能的分时段处理；参考模型的四小时上限不得视作永久合同保障。'],
     'CAISO 2026 NQC values', URL.nqc),
 
   point('queue', ['Interconnection queue — ~500 GW', '并网排队 — 约500GW'], [-120.90, 39.40], 'node', ['Access constraint', '准入约束'], ['future'],

@@ -143,18 +143,17 @@
       "trend": "deteriorating",
       "basis": "third-party",
       "evidence": [
-        "modoIndex",
-        "buildout"
+        "imm-som"
       ],
       "reason": [
-        "The fleet reached about 15 GW in early 2026, and the published fleet revenue index fell from USD 193 per kW in 2023 to USD 56 in 2024 and about USD 29 in 2025.",
-        "截至2026年初，机组规模约达15GW；公开的机组收入指数由2023年的每kW 193美元降至2024年的56美元，2025年约为29美元。"
+        "Public market-monitor evidence for 2025 reports rapid battery entry and lower reserve prices and battery revenue per kW. This reason uses that public evidence rather than the subscription fleet-revenue index.",
+        "2025年公开市场监测报告记载电池快速进入、备用价格和每kW电池收入下降。本项依据采用公开监测证据，替代订阅类机组收入指数。"
       ],
       "trendCause": [
         "Published fleet revenue per kW has fallen two years running as the fleet grew.",
         "随着机组规模扩大，公开的每kW机组收入已连续两年下降。"
       ],
-      "asOf": "2026-10-12",
+      "asOf": "2026-11-01",
       "author": "analyst",
       "lockedUntil": null
     },

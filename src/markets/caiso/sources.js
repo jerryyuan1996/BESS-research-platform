@@ -18,6 +18,11 @@
    --------------------------------------------------------------------------- */
 
 const SRC = {
+  ra2026: { file:'CPUC — Decision D.26-07-008, RA program refinements',
+    status:['Official — Final','官方 — 最终'], date:'2 Jul 2026; issued 10 Jul 2026',
+    cy:'Storage foldback and qualifying capacity, pp.19–28; long-duration slice-of-day treatment, pp.48–51; UCAP and subsequent four-hour eligibility review, p.177; Ordering Paragraph 6.',
+    url:'https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M610/K575/610575803.PDF',
+    lastChecked:'2026-11-01', provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'} },
   // ---- the framework: fully published --------------------------------------
   nqc: { file:'CAISO — 2026 Net Qualifying Capacity values for Resource Adequacy Resources', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2026', cy:'NQC by resource; storage tested on sustained output over four hours, with no additional credit for longer duration', url:'https://www.caiso.com/notices/2026-net-qualifying-capacity-values-for-resource-adequacy-resources', authority:'observed', historical:'NQC values by resource and year', forecast:'None', frequency:'Annual', format:'XLSX', machineReadable:'Yes', automation:'B — fetchable and parseable', lastChecked:'2026-08-04', freshness:'2026 compliance year' },
   sod: { file:'CPUC — 2026 Resource Adequacy and Slice of Day Guide', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'2026', cy:'Slice of Day framework: hourly RA obligations across 24 slices, and the storage excess-capacity test', url:'https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/electric-power-procurement/resource-adequacy-homepage', authority:'observed', historical:'Compliance framework by year', forecast:'None', frequency:'Annual', format:'PDF', machineReadable:'Limited', automation:'C — fetchable; extraction requires review', lastChecked:'2026-08-04', freshness:'2026 compliance year' },
