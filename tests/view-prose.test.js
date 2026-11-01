@@ -23,9 +23,9 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'view', 'markets');
 
-/* Markets whose prose is held for a separate ruling. Remove an entry when its
-   text is rewritten. Italy: its de-rating trigger resolved (CF-IT-01, #92). */
-const HELD = new Set(['it']);
+/* Italy's entry-cohort ruling was approved on 1 November 2026. Its prose now
+   follows the same bound-result rule as every other market. */
+const HELD = new Set();
 
 const EN = [
   /\b(?:returns?|hold|IRR)\b[^.;:]{0,20}?−?\d+(?:\.\d+)?%/i,
