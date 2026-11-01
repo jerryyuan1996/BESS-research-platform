@@ -281,13 +281,13 @@ function renderMarket(container, row, route) {
   } }, markets.map(market => h('option', { value: market.manifest.slug }, L(market.manifest.name)))); select.value = mf.slug;
   content.append(h('section', { class: 'ix-market-intro' }, h('div', {}, eyebrow(['FROM MARKET SCREEN TO INVESTMENT CASE', '从市场筛选，走向投资方案']), h('h1', {}, name(row)), h('p', { class: 'ix-lead' }, L(routeName(row))), h('div', { class: 'ix-actions' }, tag(row), h('span', { class: 'ix-mono' }, `${row.investment?.currency||mf.currency} · ${row.play?.hours || m.comparison.archetype.durationHours}H`))),
     h('div', { class: 'ix-market-controls' }, select, button(['Print investment brief ↗', '打印投资简报 ↗'], () => window.print(), 'ix-outline'))));
-  if (storyRows.length > 1) content.append(h('section', { class: 'ix-panel ix-play-choices', 'aria-label': L(['Two separate opportunities', '两类独立投资机会']) },
-    h('h2', {}, L(['Two separate opportunities', '两类独立投资机会'])),
-    h('div', { class: 'ix-dialog-grid', style: '--compare-count:2' }, storyRows.map(r => h('article', { class: 'ix-story-play', 'data-play': r.play.id },
-      tag(r), h('h3', {}, L(playTitle(r.play, r.stage))),
-      r.play.why ? h('p', {}, L(r.play.why)) : null,
-      r.play.action?.text ? h('p', {}, L(r.play.action.text)) : null))),
-    h('p', { class: 'ix-basis-note' }, L(['Financial case below: ', '下方财务测算对应：']), L(playTitle(row.play, row.stage)))));
+  if (storyRows.length > 1) {
+    const choices = h('div');
+    content.append(choices);
+    import('./playChoices.js').then(({ renderPlayChoices }) => {
+      if (choices.isConnected) choices.replaceWith(renderPlayChoices(storyRows, row, tag));
+    });
+  }
   content.append(decisionPanel(row));
   const anchors = [['decision',['Decision','投资判断']],['overview', ['Overview', '市场概览']], ['revenue-drivers', ['Revenue drivers', '收入动因']], ['bankable', ['Bankable case', '可融资方案']], ['revenue', ['Revenue', '收益拆解']], ['execution', ['Execution', '执行步骤']], ['opportunity-comparison', ['Special opportunity', '特殊机会']], ['downside', ['Downside', '下行风险']], ['sources', ['Sources', '来源']]];
   content.append(h('nav', { class: 'ix-section-nav', 'aria-label': L(['Market sections', '市场详情章节']) }, anchors.map(([id, label]) => link(`#${id}`, label))));
