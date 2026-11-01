@@ -29,7 +29,7 @@ function grid(shot, values, { renewable = true, battery = true, plant = true, bo
     { symbol: 'substation', at: GRID.substation }, { symbol: 'city', at: GRID.city },
     ...GRID.homes.map(at => ({ symbol: renewable ? 'homeSolar' : 'home', at })),
     ...(renewable ? [...GRID.wind.map(at => ({ symbol: 'wind', at })), { symbol: 'solarFarm', at: GRID.solar, opts: { rows: 2 } }] : []),
-    ...(battery ? [{ symbol: 'battery', at: GRID.battery, opts: { count: 3, highlight, future: batteryFuture }, lift: cutaway ? 2 : 0 },
+    ...(battery ? [{ symbol: 'battery', at: GRID.battery, opts: { count: energy ? 4 : 3, highlight, future: batteryFuture }, lift: cutaway ? 2 : 0 },
       { symbol: 'pcs', at: [12, 10], lift: cutaway ? 3.5 : 0 }, { symbol: 'transformer', at: [14, 11], lift: cutaway ? 3.5 : 0 },
       ...(cutaway ? [{ symbol: 'controls', at: [8, 10], lift: 5 }] : [])] : []),
     ...(booster ? [{ symbol: 'battery', at: GRID.booster, opts: { count: 2 } }] : [])];

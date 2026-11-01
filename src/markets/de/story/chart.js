@@ -29,14 +29,15 @@ export function spreadTollChart(shot, { values, model, chartShot, vocab, focus =
     h('h5', {}, L(fillPair(lower, values))),
     model.fee === null ? h('p', { class: 'k-readout' }, L(vocab('Financial value unavailable')))
       : image(shot.question, 78, s('path', { class: 'de-flat', d: 'M12,42 L372,42' })));
-  const chart = h('div', { class: 'de-spread-chart', 'data-chart': 'Chart-DE-SPREAD-TOLL', 'data-mode': 'example', 'data-focus': focus, 'data-fee': model.fee ?? '', 'data-grid-income': 'none', 'data-after-expiry': String(tail) },
-    h('p', { class: 'k-readout' }, h('span', { class: 'k-tag' }, L(fillPair(chartShot.caption, values)))),
-    price, fee, h('p', { class: 'k-readout' }, L(vocab('Observed series awaiting publication clearance; showing an Example'))));
+  const clock = [];
   if (shot.id === 'de-10') {
     const en = shot.labels.all[0].split(' · '), zh = shot.labels.all[1].split(' · ');
-    chart.append(h('div', { class: 'de-clock', 'data-clock': 'model-entry', 'data-expiry': model.expiry ?? '', 'data-tail': String(tail) },
+    clock.push(h('div', { class: 'de-clock', 'data-clock': 'model-entry', 'data-expiry': model.expiry ?? '', 'data-tail': String(tail) },
     h('span', {}, L(fillPair([en.slice(0, 2).join(' · '), zh.slice(0, 2).join(' · ')], values))),
     h('span', { class: 'de-tail' }, L([en[2], zh[2]]))));
   }
+  const chart = h('div', { class: 'de-spread-chart', 'data-chart': 'Chart-DE-SPREAD-TOLL', 'data-mode': 'example', 'data-focus': focus, 'data-fee': model.fee ?? '', 'data-grid-income': 'none', 'data-after-expiry': String(tail) },
+    h('p', { class: 'k-readout' }, h('span', { class: 'k-tag' }, L(fillPair(chartShot.caption, values)))),
+    ...clock, price, fee, h('p', { class: 'k-readout' }, L(vocab('Observed series awaiting publication clearance; showing an Example'))));
   return chart;
 }

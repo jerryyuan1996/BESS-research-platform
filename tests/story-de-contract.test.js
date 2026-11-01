@@ -6,6 +6,7 @@ import { storyBindings } from '../src/markets/de/storyBindings.js';
 import { HISTORY, PRICE_PUBLICATION_BLOCKED } from '../src/markets/de/story/history.js';
 import { validateStory, isStale, fillPair } from '../src/experience/story/contract.js';
 import { opportunities, caseFor, CALLS } from '../src/experience/model.js';
+import { perMW } from '../src/briefing/sentences.js';
 import { HOME_BRIEFING } from '../src/briefing/homeData.js';
 
 const shots = [story.opening, ...story.chapters.flatMap(c => c.shots)];
@@ -59,6 +60,8 @@ test('financial tokens and chart facts read the existing result without repricin
   assert.equal(bound.chart.expiry, result.base.codOffset + result.base.securedYears);
   const best = HOME_BRIEFING.grids.de.cells.find(c => c.route === 'mer' && c.best);
   assert.equal(bound.duration.value, best.value);
+  assert.deepEqual(bound.values.merchantValue, perMW(best.value));
+  for (const cell of bound.duration.cells) assert.deepEqual(cell.label, perMW(cell.value));
   assert.equal(bound.duration.preferred, best.hours);
   assert.equal(bound.values.call, CALLS[row.call]);
   for (const token of story.tokens.filter(t => !['spreadChartLabels', 'observedRange', 'observedInterval'].includes(t))) assert.notEqual(bound.values[token], null, token);

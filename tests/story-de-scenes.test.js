@@ -90,7 +90,20 @@ test('expiry uses the model entry clock, never a date from the price window', ()
   const n = build('de-10');
   const clock = all(n, x => css(x, 'de-clock'))[0];
   assert.equal(clock.getAttribute('data-clock'), 'model-entry');
+  const chart = all(n, x => css(x, 'de-spread-chart'))[0];
+  assert.ok(chart.children.indexOf(clock) < chart.children.findIndex(x => css(x, 'de-chart-panel')), 'expiry annotation precedes the chart on mobile');
   assert.equal(Number(clock.getAttribute('data-expiry')), result.base.codOffset + result.base.securedYears);
   toggles(n).find(b => words(b) === 'After expiry').click();
   assert.equal(all(n, x => css(x, 'de-clock'))[0].getAttribute('data-tail'), 'true');
+});
+
+test('a longer duration adds schematic energy blocks while conversion equipment stays fixed', () => {
+  const n = build('de-08');
+  const containers = () => all(n, x => css(x, 'k-container')).length;
+  const conversion = () => ['k-pcs', 'k-transformer'].map(c => all(n, x => css(x, c)).length);
+  const before = { containers: containers(), conversion: conversion() };
+  toggles(n)[1].click();
+  assert.ok(containers() > before.containers);
+  assert.deepEqual(conversion(), before.conversion);
+  assert.match(words(n), /MW/);
 });
