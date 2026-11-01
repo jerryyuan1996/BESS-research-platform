@@ -425,11 +425,13 @@ test('Finland reads the signed-off play in both languages and returns focus',asy
 });
 
 test('Finland teaching controls preserve the case, URL and history',async({page})=>{
-  const {dialog}=await openFinland(page);
+  await page.goto(FI+'?view=story&chapter=battery&shot=fi-08');
+  const dialog=page.locator('.ix-story-dialog');
+  await expect(dialog.locator('#ix-shot-fi-08')).toBeFocused();
   const before=await page.locator('#bankable').innerText();
   const duration=dialog.locator('[data-shot=fi-08]');
   const longer=duration.getByRole('button',{name:'Longer teaching battery',exact:true});
-  await longer.scrollIntoViewIfNeeded();await longer.focus();
+  await longer.focus();
   const url=page.url(),history=await page.evaluate(()=>window.history.length);
   await page.keyboard.press('Enter');
   await expect(duration.locator('[data-duration]')).toHaveAttribute('data-duration','4');
