@@ -26,7 +26,7 @@ Allocation: `pl`; physical boundary: Poland's national system, one bidding zone,
 3. The scheme had an end date. The law schedules no main auction after the one held in December 2025 for 2030 delivery, and in its last auctions the factor for batteries fell to a fraction of its earlier level. The auctions that remain are for units already running, a quarter or a year at a time, until 2028 (CL-PL-06, CL-PL-10, CL-PL-11).
 4. So a new battery has no capacity contract to win. It must trade, and on the platform's model every ungranted design loses value at the platform's yields. The market's verdict waits for a successor. Meanwhile an asset holding an earlier agreement is worth buying only below replacement cost, and what that agreement is worth depends on the auction it came from (CL-PL-18, CALC-PL-01).
 5. The grant cohort is the exception. NFOŚiGW's programme pays part of a project's build cost, with completion and durability conditions. The trading case is unchanged, the capital at risk is smaller, and the cohort's own call follows (CL-PL-13 to CL-PL-15).
-6. The two cohorts are separate investments: different payers, different obligations. A project holding both has its capacity price reduced by the grant (CL-PL-02).
+6. The two cohorts are separate investments: different payers, different obligations. A project holding both has its capacity price reduced by the grant (CL-PL-20).
 
 Comprehension check: from the story alone, the reader can say why the market's verdict waits, why an earlier capacity agreement is priced only below replacement cost, and why a project in the grant cohort carries its own call, and can say that a grant is conditional capital support, not income.
 
@@ -294,7 +294,7 @@ Thirteen shots, about five minutes. Shared fixed-view isometric SVG kit, off-whi
 | --- | --- |
 | Scene | A capital stack: build cost, the grant share removed, the capital at risk beneath; the revenue line beside it unchanged. An overlay, "Also holds a capacity agreement", shows the capacity price reduced by the grant across the agreement |
 | Feedback | Presets switch between without grant, with grant and holding both; value cards from the design engine on one basis |
-| Evidence and chart | CL-PL-15, CL-PL-02; SRC-PL-01 art. 62(1)–(3); SRC-PL-19 §§10–11; REPO-PL-LIVE `row.play.grantPct`, play `econ.value`, `grids.pl` cells |
+| Evidence and chart | CL-PL-15, CL-PL-20; SRC-PL-01 art. 62(1)–(3); SRC-PL-19 §§10–11; REPO-PL-LIVE `row.play.grantPct`, play `econ.value`, `grids.pl` cells |
 | Authoring check | The play prices the cohort's average grant share, not any project's award; it is the analyst's stored input and differs slightly from NFOŚiGW's documents (CF-PL-03). The two values share one basis (design engine, value per MW at the platform's yields). Art. 62 spreads the grant as a price reduction over the agreement; the platform does not price that stack (MR-5). Never type the grant percentage or a value |
 | Mobile | Two stacked bars, then the deduction card |
 | Status | `model-assumption`; mechanism `sourced`; capacity-plus-grant stack `unpriced` |
@@ -444,10 +444,10 @@ References to the dated records in §11, **not runtime fields**. The build creat
 | pl-08 | CL-PL-17 → SRC-PL-15, REPO-DG1, SRC-PL-19/20 | Play duration; merchant band | Four hours read as a trading rule or a grant requirement |
 | pl-09 | CL-PL-03/13 → SRC-PL-01/19/20/22 | None; rules only | Ready-to-build read as free of obligations |
 | pl-10 | CL-PL-03/13/14 → SRC-PL-01/02/17/18/19/21/22 | Cohort records | A grant read as income; a list place read as an award |
-| pl-11 | CL-PL-02/15 → SRC-PL-01/19, REPO-PL-LIVE | Grant share; design values | Grant and capacity payment stacked in full |
+| pl-11 | CL-PL-20/15 → SRC-PL-01/19, REPO-PL-LIVE | Grant share; design values | Grant and capacity payment stacked in full |
 | pl-12 | CL-PL-13/16/18 → SRC-PL-19/23, REPO-PL-LIVE | Existing Bankable case, Revenue, Execution, Downside | A second financial view; a probability implied |
 
-Reverse traceability: SRC-PL-02 → CL-PL-04/05 → H-PL-01 → pl-01; SRC-PL-01/02 → CL-PL-03 → H-PL-02 → pl-02/09/10; SRC-PL-10/11/16 → CL-PL-06/08 → H-PL-03 → pl-03/05; SRC-PL-01/02/03/04/12 → CL-PL-10/11 → H-PL-04/05 → pl-04/06; SRC-PL-05 to SRC-PL-12 → CL-PL-07/09 → CALC-PL-01 → Chart-PL-AUCTIONS → pl-05; SRC-PL-13/14 → CL-PL-12 → pl-06; SRC-PL-15 → CL-PL-17 → pl-08; SRC-PL-17 to SRC-PL-22 → CL-PL-13/14/15 → H-PL-06 → pl-09/10/11; SRC-PL-01 art. 62 → CL-PL-02 → pl-11; SRC-PL-23 → CL-PL-16 → pl-12; REPO-PL-LIVE → CL-PL-18 → pl-00/07/08/11/12. A replaced source therefore queues a finite set of shots, translations and labels.
+Reverse traceability: SRC-PL-02 → CL-PL-04/05 → H-PL-01 → pl-01; SRC-PL-01/02 → CL-PL-03 → H-PL-02 → pl-02/09/10; SRC-PL-10/11/16 → CL-PL-06/08 → H-PL-03 → pl-03/05; SRC-PL-01/02/03/04/12 → CL-PL-10/11 → H-PL-04/05 → pl-04/06; SRC-PL-05 to SRC-PL-12 → CL-PL-07/09 → CALC-PL-01 → Chart-PL-AUCTIONS → pl-05; SRC-PL-13/14 → CL-PL-12 → pl-06; SRC-PL-15 → CL-PL-17 → pl-08; SRC-PL-17 to SRC-PL-22 → CL-PL-13/14/15 → H-PL-06 → pl-09/10/11; SRC-PL-01 art. 62 → CL-PL-20 → pl-11; SRC-PL-23 → CL-PL-16 → pl-12; REPO-PL-LIVE → CL-PL-18 → pl-00/07/08/11/12. A replaced source therefore queues a finite set of shots, translations and labels.
 
 ## 10. G-1 record
 
@@ -475,150 +475,7 @@ Checks run for this PR on 31 October 2026: all thirteen shots carry the six spec
 
 ## 11. Sources and claims
 
-All sources below were opened and read as text on **31 October 2026** unless marked otherwise; downloaded documents were read from the publisher's own URL. EUR-Lex refused automated access, so two EU texts were read from the Official Journal reproduction named in the record and should be rechecked on EUR-Lex. Search summaries and press reports are discovery leads only and support no claim. No licence-restricted report or subscription index is used.
-
-### Repository evidence
-
-| ID | Evidence | Locator | Supports |
-| --- | --- | --- | --- |
-| REPO-PL-LIVE | Published view and briefing, `main` at `edcb39c`, briefing evaluated for 2026-10-31 | `view/markets/pl.json`; `src/briefing/plays.js` (`lensRows`, `orderRows`); `src/experience/model.js` (`opportunities`); `src/opportunities/summary.js`; computed in memory with no file written | Both calls, plays, triggers, positions, evidence, card fields and design values; CF-PL-01 to CF-PL-05 |
-| REPO-DG1 | Duration gate DG-1, opened 15 October 2026 | `docs/duration-and-route-fit-research-gates.md`, §DG-1 | The four-hour certification reading for shorter batteries (MWh ÷ test hours) |
-
-### Source records
-
-| ID | Publisher, title | Locator | Dates | Access, reuse | Supports |
-| --- | --- | --- | --- | --- | --- |
-| SRC-PL-01 | Sejm: *Ustawa z dnia 8 grudnia 2017 r. o rynku mocy* (Capacity Market Act), consolidated text | Dz.U. 2026 poz. 1400, https://api.sejm.gov.pl/eli/acts/DU/2026/1400/text.pdf ; arts. 2(1)(1), (1a), (2), (3a), (9), (10); 18(1)–(3); 19(1)(1); 25(1)–(5); 29(3)–(6); 39a(1)–(4); 44(4)–(5); 46(1); 52(1)–(2); 60–62 | Act 8 Dec 2017, in force 18 Jan 2018; consolidated text announced 2 Oct 2026 | Opened; normative act, outside copyright (SRC-PL-24 art. 4) | CL-PL-02, 03, 10, 11, 12 |
-| SRC-PL-02 | European Commission: Decision C(2018) 601 final, State aid SA.46100 (2017/N), *Planned Polish capacity mechanism* | https://ec.europa.eu/competition/state_aid/cases/272253/272253_1977790_162_2.pdf ; recitals (4)–(8), (43), (49)–(50), (109)–(110), (140); conclusion | 7 Feb 2018 | Opened; Commission document, reuse with attribution | CL-PL-03, 04, 05, 10 |
-| SRC-PL-03 | European Commission: Decision (EU) 2026/341 granting Poland a derogation from art. 22(4)(b) of Regulation (EU) 2019/943 | ELI http://data.europa.eu/eli/dec/2026/341/oj ; arts. 1–3; recitals (1)–(8), (27)–(28), (73). Read from the Polish-language OJ reproduction at https://www.inforlex.pl/download/akty_pdf,E0L,2026,55,341.pdf | Adopted 11 Aug 2025 (C(2025) 5575); OJ L 24 Feb 2026 | Opened (reproduction); recheck on EUR-Lex | CL-PL-11 |
-| SRC-PL-04 | Sejm ELI act record for the Capacity Market Act: amending acts, implementing acts, consolidated texts | https://api.sejm.gov.pl/eli/acts/DU/2018/9 | Record changed 28 Oct 2026 | Opened | CL-PL-10 (no successor act; no catch-up regulation for 2030 delivery) |
-| SRC-PL-05 | URE: final results of the main auctions for 2021–2025 delivery (Informacje nr 99/2018, 103/2018, 10/2019, 106/2019, 2/2021) | Index https://www.ure.gov.pl/pl/energia-elektryczna/rynek-mocy/informcjepure ; each notice, point (c) | Notices 27 Nov 2018 to 5 Jan 2021 | Opened; official documents | CL-PL-07 |
-| SRC-PL-06 | URE: Informacja nr 2/2022, final results of the main auction for 2026 delivery | https://ure.gov.pl/download/9/12529/Ostatecznewynikiaukcjiglownejnarokdostaw2026.pdf ; points (b)–(e), (l) | 7 Jan 2022; auction 16 Dec 2021 | Opened | CL-PL-07 |
-| SRC-PL-07 | URE: Informacja nr 2/2023 and nr 2/2024, final results of the main auctions for 2027 and 2028 delivery | https://www.ure.gov.pl/download/9/13461/20230109INFOPUREwynikiaukcjiglownejnarokdostaw2027.pdf ; https://www.ure.gov.pl/download/9/14266/Ostateczneogloszeniewynikowaukcjiglownejna2028.pdf ; point (c) and the unit list | 9 Jan 2023 and 5 Jan 2024; auctions 15 Dec 2022 and 14 Dec 2023 | Opened | CL-PL-07, 08 (term cross-check) |
-| SRC-PL-08 | URE: Informacja nr 02/2025, final results of the main auction for 2029 delivery | https://www.ure.gov.pl/download/9/15112/Ostateczneogloszeniewynikowaukcjiglownejna2029.pdf ; points (b)–(f), (m)–(n) and the unit list | 3 Jan 2025; auction 12 Dec 2024 | Opened | CL-PL-07, 08 |
-| SRC-PL-09 | URE: Informacja nr 44/2025, final results of the catch-up auction for 2029 delivery | https://www.ure.gov.pl/download/9/15656/Ogloszenieostatecznychwynikowaukcjidogrywkowejna2029.pdf ; points (c), (e)–(h) | 8 Aug 2025; auction 17 Jul 2025 | Opened | CL-PL-06, 07 |
-| SRC-PL-10 | Minister of Climate and Environment: parameters of the main auction for 2027 delivery, and earlier years | Dz.U. 2022 poz. 1690, chapter 1 factor list, item 9; for 2021–2026 delivery: Dz.U. 2018 poz. 1632, 2019 poz. 1457, 2020 poz. 1355, 2021 poz. 1480, same item | 2018–2022 | Opened; normative acts | CL-PL-06 |
-| SRC-PL-11 | Minister of Climate and Environment: parameters of the main auctions for 2028 and 2029 delivery, and of the 2029 catch-up auction | Dz.U. 2023 poz. 1561 and 2024 poz. 1154, chapter 1 factor list, item 9; Dz.U. 2025 poz. 571, § 9 item 9 | 4 Aug 2023; 26 Jul 2024; 29 Apr 2025 | Opened | CL-PL-06 |
-| SRC-PL-12 | Minister of Energy: parameters of the main auction for 2030 delivery and of additional auctions for 2027 | Dz.U. 2025 poz. 1066, §§ 1–2, 8, 10 item 9 (13.39 %, pumped storage grouped with batteries); additional-auction list, item 9 | 1 Aug 2025, published 5 Aug 2025 | Opened | CL-PL-06, 10 |
-| SRC-PL-13 | Minister of Energy: parameters of the supplementary auction for 2027 delivery | M.P. 2026 poz. 542, items 1–8 (battery factor item 8(i)) | 28 May 2026 | Opened | CL-PL-12 |
-| SRC-PL-14 | URE: Informacja nr 43/2026, final results of the supplementary auction for 2027 delivery | https://www.ure.gov.pl/download/9/16483/Informacjanr43-2026.pdf ; points 3–5 | 24 Sep 2026; auction 3 Sep 2026 | Opened | CL-PL-12 |
-| SRC-PL-15 | PSE: *Regulamin Rynku Mocy* (capacity market rules), text with update card RRM/Z/16/2026 | https://pse.pl/documents/20182/51490/RRM_Z_16_2026.pdf ; pkt 6.3.2.5, 7.4.2.1(8) | Text dated 4 Aug 2026 | Opened; PSE terms not checked, so link only | CL-PL-17 |
-| SRC-PL-16 | URE: *Magazynowanie energii elektrycznej – Raport 2024* | https://www.ure.gov.pl/download/9/14751/Raportmagazynyenergii.pdf ; pp. 5–6, Figure 1 | Published 8 Jul 2024 | Opened; official material | CL-PL-08 |
-| SRC-PL-17 | NFOŚiGW (Modernisation Fund portal): programme page, *Magazyny energii elektrycznej i związana z nimi infrastruktura…*, with the 8 Dec 2025 results notice and the 12 Dec 2025 update | https://www.gov.pl/web/funduszmodernizacyjny/magazyny-energii-elektrycznej-i-zwiazana-z-nimi-infrastruktura-dla-poprawy-stabilnosci-polskiej-sieci-elektroenergetycznej2 | Notices 8 and 12 Dec 2025 | Opened | CL-PL-14 (list place is no commitment; aid basis SA.112460) |
-| SRC-PL-18 | NFOŚiGW: ranking lists, original and updated | https://www.gov.pl/attachment/2f26965d-d748-4623-95f2-fc893ad349c4 (8 Dec 2025); https://www.gov.pl/attachment/20702c51-561a-418d-898e-e84139263bfb (file dated 11 Dec 2025, posted 12 Dec 2025) | Dec 2025 | Opened; totals computed from rows, no names copied | CL-PL-14 |
-| SRC-PL-19 | Minister of Climate and Environment: regulation on NFOŚiGW state aid for electricity storage | Dz.U. 2025 poz. 280, https://api.sejm.gov.pl/eli/acts/DU/2025/280/text.pdf ; §§ 4–7, 9–11, 13 | 5 Mar 2025, in force 8 Mar 2025 | Opened; normative act | CL-PL-02, 13 |
-| SRC-PL-20 | NFOŚiGW: programme text, *Program FM Magazyny energii z infrastrukturą* | https://www.gov.pl/attachment/e8a27407-5de8-4b60-897b-6f494d0000ea ; aims, budget, period, intensity, durability sections | March 2025 call documents | Opened | CL-PL-13 |
-| SRC-PL-21 | Modernisation Fund portal: signed agreements, storage-programme table | https://www.gov.pl/web/funduszmodernizacyjny/zawarte-umowy | Retrieved 31 Oct 2026 | Opened; counts and sums only | CL-PL-14 |
-| SRC-PL-22 | NFOŚiGW: general Modernisation Fund grant agreement template 2025 | https://www.gov.pl/attachment/a9b7fc19-0672-4cb7-b1d3-3eb0a2a1839b (archive), grant template §§ 3, 12–13 | 2025 | Opened; general template, programme-specific conditions not read | CL-PL-13 |
-| SRC-PL-23 | URE: *Summary of URE activities in 2024* | https://ure.gov.pl/en/communication/news/436%2CSummary-of-URE-activities-in-2024-deregulation-demands-and-new-competences-of-th.html ; connection section and its caveat | Published 9 Jun 2025 | Opened | CL-PL-16 |
-| SRC-PL-24 | Sejm: *Ustawa o prawie autorskim i prawach pokrewnych*, consolidated text | Dz.U. 2025 poz. 24, art. 4 | 2025 | Opened | Reuse terms for the chart's data |
-| SRC-PL-25 | European Commission: SA.112460, *TCTF/RRF – Poland: Support for electricity storage and related infrastructure* | OJ C/2024/6473 (29 Oct 2024); decision of 3 Oct 2024 as cited by SRC-PL-17 and SRC-PL-20 | 3 Oct 2024 | Not opened (EUR-Lex refused automated access); reference confirmed through SRC-PL-17 | CL-PL-13 |
-| SRC-PL-26 | URE: Informacja nr 1/2026, final results of the main auction for 2030 delivery | https://www.ure.gov.pl/download/9/15928/InformacjaPrezesaUrzeduRegulacjiEnergetykiNr12026.pdf ; points (b)–(g) and the unit list | 2 Jan 2026; auction 11 Dec 2025 | Opened; official document | CL-PL-07, 08, 10 |
-
-### Claim ledger
-
-Each claim is split into event and interpretation where they need different evidence. Status `sourced` means opened today and awaiting the analyst's review.
-
-| Claim ID | Exact claim | Type / scope | Source and locator | Supported inference / limit | Shots | Status |
-| --- | --- | --- | --- | --- | --- | --- |
-| CL-PL-03 | The capacity market buys capacity through central auctions run by PSE, open to new and existing generation, demand response and storage. New units may take agreements of up to fifteen delivery years, plus two for units at or below 450 kg CO2/MWh; existing units take one year. Winners are paid for availability and penalised for failing to deliver; payment starts after a new unit's operational milestone, and a new unit's agreement terminates if that milestone is missed by the end of its third delivery year. Users fund it through a capacity charge | historical-fact, market-rule | SRC-PL-01 arts. 25(4)–(5), 44(4)–(5), 46(1), 52(1)–(2), 60–61; SRC-PL-02 recitals (4), (43), (49) | Establishes the instrument and its obligations, not any project's agreement | pl-02, pl-09, pl-10 | sourced |
-| CL-PL-04 | Poland experienced shortages in the summer of 2015 that limited supply to numerous industrial customers; the Polish authorities also expected substantial retirement of old units by 2020 | historical-fact as recorded by the Commission | SRC-PL-02 recitals (5)–(6) | The Commission reports the Polish authorities' account; PSE's own record not opened (GAP-PL-2015) | pl-01 | sourced |
-| CL-PL-05 | Interpretation: the mechanism was built to keep an ageing, largely coal-fired fleet adequate; storage entered later as one technology among many | interpretation | SRC-PL-02 recitals (6)–(8), (140) | A causal reading for the analyst; no generation-mix number | pl-01 | proposed |
-| CL-PL-06 | The main-auction correction factor for batteries was 96.11 % for 2021–2026 delivery, 95.00 % for 2027 and 2028, 61.30 % for 2029, 12.33 % in the 2029 catch-up auction, and 13.39 % for 2030, when pumped storage joined the battery group | market-rule | SRC-PL-10, SRC-PL-11, SRC-PL-12 | Factors apply to certified power at the auction; agreements keep their auction's obligation | pl-03, pl-05 | sourced |
-| CL-PL-07 | Main-auction clearing prices for units in Poland, PLN/kW/year: 240.32 (2021), 198.00 (2022), 202.99 (2023), 259.87 (2024), 172.85 (2025), 400.39 (2026), 406.35 (2027), 244.90 (2028), 264.90 (2029), 465.02 (2030); the 2029 catch-up auction cleared at 534.09 | observed-data | SRC-PL-05 to SRC-PL-09 and SRC-PL-26, point (c) of each notice | Nominal, by auction vintage | pl-05 | sourced |
-| CL-PL-08 | Battery agreements in main auctions: 165 MW of obligation from the auction for 2027 delivery, and 1,734 MW from 33 battery units in the auction for 2028 delivery, about a quarter of that auction's 7,070.951 MW. URE's lists show new units on seventeen-year agreements of 2,572.838 MW (81 units) for 2029 and 684.701 MW (57 units) for 2030, without technology | observed-data | SRC-PL-16 pp. 5–6 and Figure 1; SRC-PL-07 list (33 units, 1,733.952 MW on seventeen-year agreements); SRC-PL-08 list; URE Informacja nr 1/2026 list (SRC-PL-26) | Battery volumes for 2029 and 2030 need URE's technology split (GAP-PL-TECH); the 2027 auction's seventeen-year total also includes non-battery plant | pl-03, pl-05 | sourced |
-| CL-PL-09 | Interpretation: the earlier auctions built a contracted battery cohort because a battery could commit almost all its certified power into a seventeen-year agreement; the contract one kW could win fell by about five-sixths between the auctions for 2027 and 2030 delivery | interpretation; calculation | CL-PL-06, CL-PL-07, CALC-PL-01 | The fall is arithmetic; the causal reading is proposed | pl-03, pl-05 | proposed |
-| CL-PL-10 | The Act schedules main auctions only through the 2025 auction for 2030 delivery; the Commission approved the mechanism for ten years from the first auction and was told the last main auction would be held in 2025. A catch-up auction for 2030 delivery needed a regulation by 30 April 2026, and none was issued. No successor framework is legislated at 31 October 2026 | market-rule; observed absence | SRC-PL-01 arts. 29(3), 39a(4); SRC-PL-02 recitals (109)–(110), conclusion; SRC-PL-04 implementing and amending acts | An absence checked against the consolidated text and the act record; ministry plans are not evidence of law | pl-04, pl-06 | sourced |
-| CL-PL-11 | Additional (quarterly) and supplementary (one-year) auctions give one-period agreements to existing units only, meaning units connected and commissioned before certification; supplementary auctions are defined only for the second half of 2025 to 2028. Coal units above the emission limit may take part only in supplementary auctions, under an EU derogation that applies until 31 December 2028; after it they can no longer compete in the existing mechanism | market-rule | SRC-PL-01 arts. 2(1)(1), (3a), (9), 25(2), 25(4)(4), 29(4)–(6); SRC-PL-03 arts. 2–3, recitals (27)–(28), (73) | A route for running units, not for new build | pl-04, pl-06 | sourced |
-| CL-PL-12 | The supplementary auction for 2027 delivery, held 3 September 2026, closed in round 5 at PLN 325.55/kW/year, with 7,480.733 MW of one-year obligations; batteries carried a 95.00 % factor in it | observed-data | SRC-PL-13 item 8(i); SRC-PL-14 points 3–5 | One-year income for existing units; URE's list carries no technology, so no battery volume is claimed (CF-PL-06) | pl-06 | sourced |
-| CL-PL-13 | NFOŚiGW's Modernisation Fund programme supports new storage of at least 2 MW and 4 MWh with grants of up to 45 % of total cost (plus 20 points for small and 10 for medium firms) and loans; budget up to PLN 3.735 billion of grants and PLN 0.415 billion of loans; aid granted by 31 December 2025 under scheme SA.112460; completion within 36 months of award, with the aid cut by 5 % a month for delays of three to six months and 10 % a month after; costs eligible to 31 December 2028; five-year durability with no disposal of financed assets; repayable with interest on termination, secured until durability ends; combinable only with capacity-market remuneration | market-rule; programme terms | SRC-PL-19 §§ 4–7, 9–11, 13; SRC-PL-20; SRC-PL-22 §§ 12–13; SRC-PL-25 | Programme terms; a project's own agreement may add conditions (GAP-PL-TRANSFER) | pl-08, pl-09, pl-10, pl-12 | sourced |
-| CL-PL-14 | The ranking list of 8 December 2025, updated 12 December 2025, recommends 172 grant applications for PLN 3.735 billion on PLN 10.004 billion of total cost (37.3 %) and ten loans for PLN 0.415 billion on the same projects; a list place is not a commitment. On 31 October 2026 NFOŚiGW lists 170 signed grant agreements for PLN 3.687 billion and nine loans | observed-data | SRC-PL-17; SRC-PL-18 (computed from rows); SRC-PL-21 | Award evidence, not receipt; differs from the play's text (CF-PL-03) | pl-10, pl-11 | sourced |
-| CL-PL-15 | Interpretation: a grant raises the return because it pays part of the build cost up front while trading revenue is unchanged; the platform prices the cohort's average share through the play's grant percentage | interpretation; model | REPO-PL-LIVE (`designEconomics` grant override); CL-PL-13 | A model treatment, not a project award | pl-11 | proposed |
-| CL-PL-16 | Grid-connection refusals rose by almost 5 % in number in 2024; the refused capacity, about 73.6 GW, sums all refused applications and overstates unmet demand because applicants resubmit | observed-data | SRC-PL-23 | Context for connection risk; no storage-specific count | pl-12 | sourced |
-| CL-PL-17 | Certification requires net achievable capacity deliverable for at least four uninterrupted hours | market-rule | SRC-PL-15 pkt 7.4.2.1(8), 6.3.2.5; REPO-DG1 | That a shorter battery certifies MWh ÷ test hours is the platform's reading, not PSE's statement | pl-08 | sourced |
-| CL-PL-18 | On the live model, the best ungranted design is the capacity route at four hours, with negative value at the platform's yields; the ungranted merchant design at four hours is lower; the grant play at four hours is positive. The market page shows only the grant play's row | model fact | REPO-PL-LIVE | Values move with the model; bound, never typed | pl-00, pl-07, pl-11, pl-12 | sourced |
-
-**Results for the existing candidate claims** (recorded here; `source-register.md` is unchanged):
-
-| Claim | Result | Where |
-| --- | --- | --- |
-| CL-PL-01 | **Confirmed and split.** Batteries won long agreements (CL-PL-08), their factor was cut (CL-PL-06) and no successor is legislated (CL-PL-10) | pl-03 to pl-06 |
-| CL-PL-02 | **Confirmed in law.** Investment aid granted before a new unit's first delivery period is deducted from its capacity remuneration, as a price reduction spread over the whole agreement (SRC-PL-01 art. 62(1)–(3)); the storage aid regulation permits combination only with that remuneration (SRC-PL-19 § 11). URE's calculation practice is still open (MR-5) | pl-11 |
-
-### Historical nodes
-
-| Node | Date or period | Event (source) | Constraint → choice → inheritance → present effect | Interpretation status |
-| --- | --- | --- | --- | --- |
-| H-PL-01 | Summer 2015 | Shortages limit supply to industrial customers (SRC-PL-02 recital (6)) | Ageing fleet → pay for capacity → the adequacy concern → capacity is paid for | Event via the Commission; causal link proposed (CL-PL-05) |
-| H-PL-02 | Act 8 Dec 2017; in force 18 Jan 2018; approval 7 Feb 2018; first auctions 15 Nov–21 Dec 2018 | Capacity market created and approved (SRC-PL-01, SRC-PL-02, SRC-PL-05) | Missing money → long agreements for new plant → contract cohorts → earlier agreements still running | Events sourced |
-| H-PL-03 | Auctions 15 Dec 2022 and 14 Dec 2023 | Batteries win seventeen-year agreements at a 95.00 % factor (SRC-PL-07, SRC-PL-11, SRC-PL-16) | Batteries certify → near-full credit → a battery cohort → the cohort the verdict prices | Events sourced; CL-PL-09 proposed |
-| H-PL-04 | 12 Dec 2024 to 11 Dec 2025 | Battery factor 61.30 %, then 12.33 % (catch-up, 17 Jul 2025), then 13.39 % in the last scheduled main auction (SRC-PL-08, SRC-PL-09, SRC-PL-11, SRC-PL-12) | Fixed approval and a falling factor → last auction held → no schedule after it → no new-entry route | Events sourced; factor-cut cause proposed (GAP-PL-KWD-WHY) |
-| H-PL-05 | Decision 11 Aug 2025; published 24 Feb 2026 | Coal limited to one-year supplementary auctions until 31 Dec 2028 (SRC-PL-03) | Emission limit → derogation → one-year auctions → a bridge, not a route | Event sourced |
-| H-PL-06 | 3 Oct 2024 to 31 Oct 2026 | Scheme approved; regulation and call; ranking list 8 Dec, updated 12 Dec 2025; aid granted by 31 Dec 2025; 170 grants signed by the check date (SRC-PL-17 to SRC-PL-22, SRC-PL-25) | Storage needed fast → capital grants with conditions → a grant cohort → its own call | Events sourced |
-
-The timeline boundary sits after H-PL-06; the successor is drawn dashed and labelled not legislated.
-
-### CALC-PL-01 — what one kW of battery could contract, by auction
-
-| Field | Entry |
-| --- | --- |
-| Question | How much capacity revenue could one kW of certified battery power win in each main auction, and how did that change? |
-| Inputs | Clearing price for units in Poland, PLN/kW/year, from each URE final notice (SRC-PL-05 to SRC-PL-09, SRC-PL-26); battery correction factor from that auction's parameter regulation (SRC-PL-10 to SRC-PL-12) |
-| Method | Contract value = price × factor ÷ 100, rounded half-up to PLN 0.01. One row per auction; the catch-up auction kept as its own row |
-| Economic meaning | Gross annual capacity revenue per kW of certified power for a battery of at least four hours, in nominal PLN of its auction, before the art. 62 aid deduction and before any indexation. Not cash received, not equity cash, not a return |
-| Outputs | See the chart table below; the auction for 2030 delivery gives 16.1 % of the 2027 value (62.27 ÷ 386.03), and 26.8 % of the 2028 value |
-| Limits | No forecast; no technology split; shorter batteries certify less (CL-PL-17); the value of a held agreement also depends on its indexation, which is not computed here |
-| Review | Proposed; the analyst accepts or changes the method at G-1 |
-
-### Chart-PL-AUCTIONS — data and contract (proposed, not built)
-
-Reviewer copy of the evidence the chart would plot. Every value binds through ‹bound: auction series›; none is typed into page copy.
-
-| Delivery year | Auction | URE notice | Round | Price, PLN/kW/yr | Battery factor | Contract per kW (CALC-PL-01) | Battery obligation awarded |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 2021 | 15 Nov 2018 | 99/2018, 27 Nov 2018 | 5 | 240.32 | 96.11 % | 230.97 | None reported |
-| 2022 | 5 Dec 2018 | 103/2018, 14 Dec 2018 | 7 | 198.00 | 96.11 % | 190.30 | None reported |
-| 2023 | 21 Dec 2018 | 10/2019, 14 Jan 2019 | 8 | 202.99 | 96.11 % | 195.09 | None reported |
-| 2024 | 6 Dec 2019 | 106/2019, 30 Dec 2019 | 5 | 259.87 | 96.11 % | 249.76 | None reported |
-| 2025 | 14 Dec 2020 | 2/2021, 5 Jan 2021 | 7 | 172.85 | 96.11 % | 166.13 | None reported |
-| 2026 | 16 Dec 2021 | 2/2022, 7 Jan 2022 | 1 | 400.39 | 96.11 % | 384.81 | None reported |
-| 2027 | 15 Dec 2022 | 2/2023, 9 Jan 2023 | 1 | 406.35 | 95.00 % | 386.03 | 165 MW |
-| 2028 | 14 Dec 2023 | 2/2024, 5 Jan 2024 | 6 | 244.90 | 95.00 % | 232.66 | 1,734 MW, 33 units |
-| 2029 | 12 Dec 2024 | 02/2025, 3 Jan 2025 | 7 | 264.90 | 61.30 % | 162.38 | Split pending |
-| 2029, catch-up | 17 Jul 2025 | 44/2025, 8 Aug 2025 | 1 | 534.09 | 12.33 % | 65.85 | Split pending |
-| 2030 | 11 Dec 2025 | 1/2026, 2 Jan 2026 | 2 | 465.02 | 13.39 % | 62.27 | Split pending |
-| 2031 onwards | None scheduled | — | — | — | — | — | — |
-
-"None reported" means URE's storage report shows only pumped storage before the 2027 auction (SRC-PL-16, Figure 1). Price and contract value use the same left-hand unit; factors are labels, not a second axis.
-
-**Dataset.** The chart needs an analyst-entered, versioned record of these rows (proposed `src/markets/pl/data/capacityAuctions.js`, on the pattern of `src/markets/wa/data/rcmHistory.js`), each row carrying its URE notice and regulation locator. **It is not registered in `src/governance/datasets.js`, and that catalogue deliberately keeps capacity-market results out of automation** ("They stay analyst-entered until a connector exists that can assert the vintage it read"). This is a gap for the build (GAP-PL-AUCTIONS); nothing is registered now. **Terms:** the parameter regulations are normative acts and URE's notices are official documents, both outside copyright under SRC-PL-24 art. 4; URE's storage report is official material on the same basis, to confirm at the build's rights review. Attribution: "URE; Dziennik Ustaw". **No exchange day-ahead prices are needed**; the merchant line the story mentions in pl-07 is the model's existing field, built on PSE's day-ahead series, which is under the analyst's separate price-data rights review.
-
-### Gaps and review queue
-
-| Issue ID | Missing evidence or conflict | Affected | Temporary treatment | Next action |
-| --- | --- | --- | --- | --- |
-| GAP-PL-AUCTIONS | Auction-history dataset not registered | pl-05 | Chart reviewed as a design; nothing built | Build: create the analyst-entered module with locators; analyst approves |
-| GAP-PL-TECH | No technology split for battery obligations in the 2029 and 2030 auctions; contract length is not technology | pl-03, pl-05 | "Technology split pending" | Research: URE annual report or PSE certification statistics |
-| GAP-PL-2015 | PSE's own dated record of the 2015 supply limits; no primary generation-mix series opened | pl-01 | Fair marker; no coal share | Research: PSE announcement archive; a primary generation statistic |
-| GAP-PL-KWD-WHY | The regulation's stated reason for the battery factor cut not opened | pl-03 to pl-05 | Cause kept as interpretation under art. 18(2) | Research: the justification of Dz.U. 2024 poz. 1154 and 2025 poz. 1066 |
-| GAP-PL-TRANSFER | Whether grant conditions pass to a buyer of the project company, and whether a share sale needs NFOŚiGW's consent | pl-09, pl-12 | Stated as not verified | Diligence: the programme's specific grant conditions |
-| MR-5 (existing gate) | How URE computes the art. 62 deduction for a project holding both a grant and a capacity agreement | pl-11 | Mechanism only; the stack stays unpriced | Research: URE practice |
-| GAP-PL-SUCCESSOR | No public draft of a successor framework | pl-04, pl-06 | Dashed, "not legislated" | Watch the trigger; Sejm and government legislative records |
-
-### Conflicts and flags
-
-| ID | Finding | Disposition |
-| --- | --- | --- |
-| CF-PL-01 | Closed by the separate two-card feature: the grant and ordinary-capacity opportunities keep distinct calls and actions | Only the selected row owns its financial summary; ctx.rows supplies both story cards |
-| CF-PL-02 | The brief says the grant play "ranks first on the shortlist"; live it is fourth of seventeen and the first Polish row | Flagged; the script says neither |
-| CF-PL-03 | Closed: 172 positive recommended grant rows total PLN3,734,999,999.99 on PLN10,003,742,317.00 eligible cost: 37.3360%, rounded to the approved 37.3% model assumption. Loans and zero recommendations excluded | Current play matches this cohort basis; recommendation, signed agreement and cash receipt stay distinct |
-| CF-PL-04 | The grant call's text cites a 17.1 % hold return (design engine); the market page's card shows an all-equity hold of 11.51 %, 1.74 points below the 13.25 % target, with "No supported price" (investment summary) | Flagged; the story binds the card and labels any design value's basis |
-| CF-PL-05 | `pl-cap-4h` prices the capacity line on the last auction's terms (13.39 % × PLN 465.02); agreements from the auctions for 2027 and 2028 carry about 6.2 and 3.7 times that per kW (CALC-PL-01) | Observation for the analyst; the story says value depends on vintage and binds no vintage value |
-| CF-PL-06 | Contract length is not technology: the 2026 auction's seventeen-year agreements were not batteries, and the 2027 auction's seventeen-year total exceeds its 165 MW of batteries. A code comment's battery volume for the 2027 supplementary auction rests on a third party | Story uses URE's battery split only |
-
-### Discovery leads not used as sources
-
-Press reports were used only to find primary documents: Gramwzielone, WysokieNapiecie, wnp.pl, e-magazyny, Globenergia, Parkiet and ISBnews items on the 2028–2030 auctions, the catch-up auction, PSE's advice against a catch-up auction for 2030, and the Ministry of Energy's reported plan to present a new capacity market to the Commission in the second quarter of 2026. None supports a claim above. The ministry's plan is the lead to follow for GAP-PL-SUCCESSOR.
+Canonical [sources, history, calculations and G-2 gaps](source-register.md#g1-pl-evidence) and [claim ledger](market-narratives.md#g1-pl-claims). IDs in the shots resolve there. The script owns scene and bilingual page copy; the registers own the evidence records.
 
 ## Analyst decisions — 1 November 2026
 
