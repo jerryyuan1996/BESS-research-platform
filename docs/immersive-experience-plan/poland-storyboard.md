@@ -609,7 +609,7 @@ Reviewer copy of the evidence the chart would plot. Every value binds through â€
 
 | ID | Finding | Disposition |
 | --- | --- | --- |
-| CF-PL-01 | The market page and the story receive only the grant play's row (`opportunities` keeps the first Polish row); the market verdict on `pl-cap-4h` appears on none of the home, comparison or market pages | Flagged at the top of the PR; G-1 point 1 |
+| CF-PL-01 | Closed by the separate two-card feature: the grant and ordinary-capacity opportunities keep distinct calls and actions | Only the selected row owns its financial summary; ctx.rows supplies both story cards |
 | CF-PL-02 | The brief says the grant play "ranks first on the shortlist"; live it is fourth of seventeen and the first Polish row | Flagged; the script says neither |
 | CF-PL-03 | Closed: 172 positive recommended grant rows total PLN3,734,999,999.99 on PLN10,003,742,317.00 eligible cost: 37.3360%, rounded to the approved 37.3% model assumption. Loans and zero recommendations excluded | Current play matches this cohort basis; recommendation, signed agreement and cash receipt stay distinct |
 | CF-PL-04 | The grant call's text cites a 17.1 % hold return (design engine); the market page's card shows an all-equity hold of 11.51 %, 1.74 points below the 13.25 % target, with "No supported price" (investment summary) | Flagged; the story binds the card and labels any design value's basis |
