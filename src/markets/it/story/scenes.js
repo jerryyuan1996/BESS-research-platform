@@ -6,7 +6,7 @@ import {isoStage} from '../../../experience/story/kit/symbols.js';
 import {toggleGroup} from '../../../experience/story/kit/controls.js';
 import {s} from '../../../experience/story/kit/svg.js';
 import {story} from '../story.js';
-import {IT_ZONES,IT_HISTORY,historyValues} from '../storyBindings.js';
+import {IT_ZONES,IT_HISTORY,historyValues,datePair} from '../storyBindings.js';
 import {forkChart} from './chart.js';
 import {ITALY_MAP} from './geo.js';
 import {IT_AUCTION_RESULTS} from '../data/auctionResults.js';
@@ -49,7 +49,7 @@ function geography(shot,{values}){
 function timeline(shot,values,ids){
  const holder=h('div');
  const draw=index=>{
-  const node=IT_HISTORY[index],source=story.sources[node.source],local={...values,...historyValues(node)};
+  const node=IT_HISTORY[index],source=story.sources[node.source],local={...values,...historyValues(node),sourceCheckedDate:datePair(source.checkedOn)};
   holder.replaceChildren(h('p',{},words(vocab(node.id),local)),h('details',{},
    h('summary',{},words(vocab('Evidence drawer'),local)),
    h('a',{href:source.url,target:'_blank',rel:'noopener noreferrer'},source.title),h('p',{},source.locator),
