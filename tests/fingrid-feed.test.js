@@ -3,7 +3,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { SERIES, toPoints, requestWindow, fetchDataset } from '../etl/sources/fingrid.mjs';
+import { SERIES, toPoints, toCapacityPoints, requestWindow, fetchDataset } from '../etl/sources/fingrid.mjs';
 import { DATASETS } from '../src/governance/datasets.js';
 import { detectDrift } from '../etl/drift/detect.mjs';
 import { markets } from '../src/markets/registry.js';
@@ -15,7 +15,7 @@ test('every Fingrid catalogue dataset maps to a Fingrid series, and nothing else
   assert.deepEqual(catalogue, Object.keys(SERIES).sort());
   for (const d of DATASETS.filter(x => x.connector === 'fingrid')){
     assert.equal(d.marketId, 'fi');
-    assert.deepEqual(d.bearsOn, ['economics.services'], `${d.id}: a reserve price never bears on the merchant line`);
+    assert.deepEqual(d.bearsOn, d.id === 'fi-storage-capacity' ? [] : ['economics.services'], `${d.id}: a reserve price never bears on the merchant line`);
     assert.match(d.source.licence, /CC BY 4\.0/);
   }
 });
@@ -62,4 +62,17 @@ test('a reserve price series never reaches the merchant drift detector', () => {
   const dataset = DATASETS.find(d => d.id === 'fi-fcr-d-up');
   const { findings } = detectDrift({ results: [{ dataset, snapshot: { series } }], markets });
   assert.deepEqual(findings, [], 'a EUR/MW/h reserve price was read as an energy spread');
+});
+
+test('storage technical capacity stays non-negative MW and cannot imply an earnings index', () => {
+  const d = DATASETS.find(x => x.id === 'fi-storage-capacity');
+  assert.deepEqual(d.bearsOn, []);
+  assert.deepEqual(SERIES[d.id].units, { power: 'MW' });
+  assert.equal(SERIES[d.id].id, 424);
+  const rows = [{ startTime: '2026-10-30T00:00:00Z', endTime: '2026-10-30T01:00:00Z', value: 1800 }];
+  assert.deepEqual(toCapacityPoints(rows), [{ t: '2026-10-30T00:00:00.000Z', v: 1800 }]);
+  assert.throws(() => toCapacityPoints([{ ...rows[0], value: -1 }]), /non-negative MW/);
+  assert.throws(() => toCapacityPoints([{ ...rows[0], endTime: '2026-10-30T02:00:00Z' }]), /hourly interval/);
+  const { findings } = detectDrift({ results: [{ dataset: d, snapshot: { series: toCapacityPoints(rows) } }], markets });
+  assert.deepEqual(findings, []);
 });

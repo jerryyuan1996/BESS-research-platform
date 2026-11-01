@@ -116,7 +116,7 @@ async function runDataset(dataset, now){
      summary the site loads, never an arbitrage figure read off the wrong unit. */
   const energyPrice = dataset.bearsOn?.includes('economics.merchGross');
   if (market && !energyPrice){
-    summary = buildSummary(snapshot, null, {});
+    summary = buildSummary(snapshot, null, { timezone: snapshot.units?.power ? market.manifest.timezone : undefined });
   } else if (market && Array.isArray(snapshot.series) && snapshot.series.length > 0){
     const timezone = market.manifest.timezone;
     const durationHours = market.comparison?.archetype?.durationHours;

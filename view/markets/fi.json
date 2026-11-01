@@ -1,8 +1,8 @@
 {
   "marketId": "fi",
   "thesis": [
-    "Europe's clearest fast-reserve market, and already oversupplied: connected storage exceeds the fast-reserve need, so reserves are priced at what the 2026 annual market paid across the fleet, about €15k/MW a year. No capacity contract exists; secured revenue is a floor negotiated project by project, at half of expected revenue for seven years. Two hours, 14.6% hold at build cost.",
-    "欧洲最典型的快速备用市场，且已供过于求：并网储能已超过快速备用需求，因此备用收入按2026年度市场在全部储能间分摊后的水平计价，约每MW每年1.5万欧元。不存在容量合同；锁定收入来自逐个项目协商的保底，水平为预期收入的一半、为期七年。两小时，按建设成本持有期IRR为14.6%。"
+    "Europe's clearest fast-reserve market, and already oversupplied: connected storage exceeds the fast-reserve need, so reserves are priced at what the 2026 annual market paid across the fleet, about €15k/MW a year. No capacity contract exists; secured revenue is a floor negotiated project by project, at half of expected revenue for seven years. Two hours is the best design, and at build cost it clears the fund's target.",
+    "欧洲最典型的快速备用市场，且已供过于求：并网储能已超过快速备用需求，因此备用收入按2026年度市场在全部储能间分摊后的水平计价，约每MW每年1.5万欧元。不存在容量合同；锁定收入来自逐个项目协商的保底，水平为预期收入的一半、为期七年。两小时是最佳设计，按建设成本测算可达到基金目标回报。"
   ],
   "grades": {
     "assetReturn": {
@@ -393,8 +393,8 @@
       "hours": 2,
       "stage": "ready-to-build",
       "why": [
-        "Trading carries the revenue and reserves add a thin line, so the secured part is an optimiser floor: half of expected revenue for seven years, with the upside kept. On the engine this is the best design here, 14.6% hold with half of year-one revenue secured.",
-        "交易是主要收入、备用仅为薄薄一层，因此锁定部分来自优化商保底：为期七年、相当于预期收入一半，超额收益归业主。在引擎测算中这是本市场的最佳设计，持有期IRR 14.6%，第一年收入的一半被锁定。"
+        "Trading carries the revenue and reserves add a thin line, so the secured part is an optimiser floor: half of expected revenue for seven years, with the upside kept. On the engine this is the best design here.",
+        "交易是主要收入、备用仅为薄薄一层，因此锁定部分来自优化商保底：为期七年、相当于预期收入一半，超额收益归业主。在引擎测算中这是本市场的最佳设计。"
       ],
       "action": {
         "text": [
@@ -404,7 +404,7 @@
         "due": "2026-11-30"
       },
       "author": "analyst",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     }
   }

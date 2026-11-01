@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "Thirteenth of fifteen markets on hold IRR, 2.5%.",
-        "持有期IRR为2.5%，在十五个市场中排第十三。"
+        "Thirteenth of fifteen markets on the design grid's hold IRR, 2.5% (23 October 2026).",
+        "按设计表测算的持有期IRR为2.5%（2026年10月23日），在十五个市场中排第十三。"
       ],
       "asOf": "2026-10-23",
       "author": "analyst",
@@ -31,8 +31,8 @@
         "occtoLtda2026"
       ],
       "reason": [
-        "96% of first-year revenue is secured across the fifteen-year window under a representative long-term auction award, which normally runs twenty years; the payment is derived from costs and is not an identified contract price, and a project without an award secures nothing.",
-        "在代表性的长期拍卖中标情景下，首年收入的96%在十五年测算期内均已锁定（该类合同通常为期二十年）；该付款金额由成本推算，并非已确认的合同价格，未中标的项目没有任何锁定收入。"
+        "On the design grid (12 October 2026), 96% of first-year revenue is secured across the fifteen-year window under a representative long-term auction award, which normally runs twenty years; the payment is derived from costs and is not an identified contract price, and a project without an award secures nothing.",
+        "按设计表测算（2026年10月12日），在代表性的长期拍卖中标情景下，首年收入的96%在十五年测算期内均已锁定（该类合同通常为期二十年）；该付款金额由成本推算，并非已确认的合同价格，未中标的项目没有任何锁定收入。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
