@@ -28,7 +28,7 @@ test('the four bilingual investment exits use the shared shell without mutating 
   assert.equal(JSON.stringify(story),before);
 });
 
-test('G-2 preview is lazy and ordinary readers retain the research dialog until release',()=>{
-  assert.equal(STORIES.gb.released,false);assert.equal(typeof STORIES.gb.load,'function');
-  assert.equal(storyFor('gb',''),null);assert.equal(storyFor('gb','?story=preview'),STORIES.gb);
+test('the candidate registers a lazy GB entry for the existing research button',()=>{
+  assert.equal(STORIES.gb.released,true);assert.equal(typeof STORIES.gb.load,'function');
+  assert.equal(storyFor('gb',''),STORIES.gb);assert.equal(storyFor('gb','?story=preview'),STORIES.gb);
 });

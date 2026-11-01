@@ -68,13 +68,13 @@ test('GB unavailable data shows an unscaled Example and a retry, with one eviden
   await expect(shot.locator('.gb-tick')).toHaveCount(0);await expect(shot.locator('.gb-observed-line')).toHaveCount(0);await expect(shot.locator('.ix-marker')).toHaveCount(1);
 });
 
-test('GB stays lazy on home and market, and unreleased readers keep the research dialog',async({page})=>{
+test('GB stays lazy until its existing market research button opens the story',async({page})=>{
   const requests=[];page.on('request',r=>requests.push(r.url()));
   const storyRequests=()=>requests.filter(u=>/\/story-gb-|\/gb-(dynamic|eac)-response\.summary\.json/.test(u));
   await page.goto('/');await expect(page.locator('main')).toBeVisible();expect(storyRequests()).toEqual([]);
   await page.goto(GB);const trigger=page.locator('.ix-full-research');await expect(trigger).toBeVisible();expect(storyRequests()).toEqual([]);
-  await trigger.click();await expect(page.locator('.ix-research-dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);expect(storyRequests()).toEqual([]);
-  await page.keyboard.press('Escape');await open(page);await expect(page.locator('[data-chart=Chart-GB-FILL]')).toHaveAttribute('data-mode','observed',{timeout:30000});
+  await trigger.click();await expect(page.locator('.ix-story-dialog')).toBeVisible();await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
+  await expect(page.locator('[data-chart=Chart-GB-FILL]')).toHaveAttribute('data-mode','observed',{timeout:30000});
   expect(storyRequests().some(u=>u.includes('/story-gb-'))).toBeTruthy();expect(storyRequests().filter(u=>u.includes('.summary.json')).length).toBe(2);
 });
 

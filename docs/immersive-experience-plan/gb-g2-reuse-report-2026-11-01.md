@@ -6,9 +6,9 @@ The built candidate explains the signed-off saturation argument through all thir
 
 Baseline `main`: `26a678b8bf0c01e8b04c3b9553b2e877c68497bb`, containing the 1 November model/function stack through #113 and script #93. The checked infrastructure-fund row is Situational (`opportunistic`), operating entry, `gb-toll-4h`, four hours. The existing new-build headline and the operating purchase-price test retain their different bases.
 
-The registry entry is lazy and `released: false`. In a built-public preview, open `/markets/great-britain?story=preview`, then the existing **Grid, history and full research context** button. A direct chart link is `/markets/great-britain?story=preview&view=story&chapter=tensions&shot=gb-05`. Ordinary readers continue to get the research dialog. A different call, play, duration, entry stage, route or lens also gets that dialog.
+The candidate registry entry is lazy and `released: true`, following the Germany and Finland wiring pattern. In the built candidate, open `/markets/great-britain`, then the existing **Grid, history and full research context** button. A direct chart link is `/markets/great-britain?view=story&chapter=tensions&shot=gb-05`. A different call, play, duration, entry stage, route or lens gets the research dialog. This remains an unmerged PR; the analyst controls release by reviewing G-2 before merging.
 
-Preview only built output (`npm run build`, then `npm run preview` on loopback). Do not use the development server for this review. Release enablement and merging stay with the analyst after G-2.
+Preview only built output (`npm run build`, then `npm run preview` on loopback). Do not use the development server for this review. Merging and publication stay with the analyst after G-2.
 
 ## Configuration, reuse and new code
 
@@ -17,7 +17,7 @@ Preview only built output (`npm run build`, then `npm run preview` on loopback).
 | Data | Dataset catalogue; provenance envelope; validation and boundary writer; fixed public records with field-level locators; the existing six-hour schedule | NESO service-only SQL connector, technology normalisation, overlap/cancellation checks and monthly auction summary hook | Full exact-head checks: 14m40s; source opening and preparation preceded that window |
 | Content | Signed-off English/Chinese tables; shared contract; current card fields and existing operating-price formatter | Read-only bindings, missing-sentence handling and parity tests | Full exact-head checks: 17m37s; about twenty minutes of active authoring, excluding the approval-service pause |
 | Scenes/chart | Shared isometric symbols, fixed-view stage, toggle controls, typography/radius/theme tokens and the existing story style | GB-local layouts and teaching state; the two-panel chart, monthly table and checksummed summary reader | About thirty-five minutes of composition/correction; full exact-head checks: 14m17s |
-| Wiring | Existing research button, shell, navigator, URL/history handling, play card and four market-section handoffs | Lazy pack, reviewed-case guard, card basis/operating-price configuration, preview entry and browser coverage | About thirty-five minutes through integration preflight; sixteen GB browser cases passed in 4m06s. Final full-suite timing is recorded in the wiring PR |
+| Wiring | Existing research button, shell, navigator, URL/history handling, play card and four market-section handoffs | Lazy pack, reviewed-case guard, card basis/operating-price configuration, registry entry and browser coverage | About thirty-five minutes through integration preflight; sixteen GB browser cases passed in 4m06s. Final full-suite timing is recorded in the wiring PR |
 
 Authoring estimates are approximate active working windows, overlap across layers and exclude the long approval-service pause; they are not a sequential delivery schedule. Validation times come from the recorded exact-head runs. No kit, shell, navigator, marker or contract is forked. The wiring integration also exposes source coverage, current EAC fetch date and partial-month status beside the chart, with per-row coverage in the table.
 
@@ -28,14 +28,14 @@ Authoring estimates are approximate active working windows, overlap across layer
 | `src/governance/datasets.js` | Registers only the two approved licensed response datasets, with attribution and empty financial `bearsOn` paths |
 | `etl/run.mjs` | Registers the new connector and lets it supply a monthly auction summary instead of energy-price spread/arbitrage statistics |
 | `docs/live-data.md` | Explains initial archives, fixed-vintage skipping, live EAC refresh and their effect on ordinary six-hour data commits |
-| `src/experience/story/registry.js` | Makes the GB pack discoverable through the existing button and story URL, behind G-2 preview |
+| `src/experience/story/registry.js` | Makes the GB pack discoverable through the existing button and story URL in the PR candidate; analyst merging follows G-2 |
 | `tests/bundle-budget.test.js` | Enforces the unchanged 40 KiB cap over the story and extra static graph, including lazy story CSS, and checks that neither content nor styles load on home |
 
 All other added product files are GB-local. `src/experience/story/kit/`, `shell.js`, `place.js`, `contract.js`, the shared marker and `src/styles/story.css` are unchanged. No page-rendering, model, financing, scoring, discount-rate, fixture or pre-existing snapshot file changes are part of this stack.
 
 ## Loading and numeric boundaries
 
-The measured story chunk is 26,008 bytes gzip. Its additional static JavaScript, including the shared shell/kit, is 35,474 bytes. Adding both lazy stylesheets gives **40,739 bytes / 39.78 KiB gzip**, below the unchanged 40,960-byte cap. Browser checks confirm no GB story or response-summary request before opening. Summaries are runtime chart data, not static imports or home payloads.
+The integration preflight measured the story chunk at 26,008 bytes gzip and the complete additional static JavaScript, including that chunk and the shared shell/kit, at 35,474 bytes. Adding both lazy stylesheets gave **40,739 bytes / 39.78 KiB gzip**, below the unchanged 40,960-byte cap. The final exact-head measurement and checks are recorded in the wiring PR. Browser checks confirm no GB story or response-summary request before opening. Summaries are runtime chart data, not static imports or home payloads.
 
 Only correctly licensed, structurally valid and checksummed summaries enable the numeric chart. Observations are solid. The early accepted-bid method, later block-clearing method and EAC platform have separate paths. Missing months remain gaps. Clearing prices keep GBP/MW/h; lower-panel quantities keep MW. No maxima are summed, no requirement line is invented and no observation is labelled captured revenue. The first and last months can be partial. The monthly table carries the same figures and coverage.
 
