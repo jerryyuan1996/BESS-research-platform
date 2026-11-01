@@ -79,6 +79,7 @@ export default defineConfig({
           /* The changelog page, with every changelog line. Fetched by /changes
              and by nothing else. */
           if (/[\\/]changes[\\/]changesPage\.js$/.test(id)) return 'assets/changes-[hash].js';
+          if (id.includes('virtual:bess-view-history/')) return 'assets/view-history-[name]-[hash].js';
           /* The scouting page, with every scout card whole. Fetched by /scout
              and by nothing else. */
           if (/[\\/]scout[\\/]scoutPage\.js$/.test(id)) return 'assets/scout-page-[hash].js';
