@@ -123,25 +123,39 @@ const RENEWAL = [
      parameters for the 2029/2030 BRA, posted 31 August 2026 (FERC ER26-1556).
      337.83 × 365 × 0.57 = $70,286. Still a scenario until the auction prints. */
   ['2029/30', 337.83, 0.57],   // last collared auction — bids December 2026
-  ['2030/31', 500, 0.54],   // collar gone; shortfall persists, clears near Net CONE
-  ['2031/32', 520, 0.50],
-  ['2032/33', 470, 0.46],   // Reliability Backstop and the reformed cycle land supply — the
+  ['2030/31', 500, 0.42],   // existing analyst price; PJM non-binding indicative credit
+  ['2031/32', 520, 0.34],
+  ['2032/33', 470, 0.30],   // Reliability Backstop and the reformed cycle land supply — the
                             // Backstop filing was suspended by FERC on 29 Sep 2026 to 28 Feb 2027,
                             // so this timing is less certain than when it was written
-  ['2033/34', 430, 0.42],
-  ['2034/35', 400, 0.39],
-  ['2035/36', 380, 0.36],   // balanced market: price settles, accreditation keeps eroding
-  ['2036/37', 380, 0.34],
-  ['2037/38', 380, 0.32],
-  ['2038/39', 380, 0.30],
-  ['2039/40', 380, 0.29],
-  ['2040/41', 380, 0.28],
-  ['2041/42', 380, 0.27],
-  ['2042/43', 380, 0.26],
+  ['2033/34', 430, 0.26],
+  ['2034/35', 400, 0.24],
+  ['2035/36', 380, 0.23],
+  ['2036/37', 380, 0.22],
+  ['2037/38', 380, 0.22],
+  ['2038/39', 380, 0.22],
+  ['2039/40', 380, 0.21],
+  ['2040/41', 380, 0.20],
+  ['2041/42', 380, 0.20],
+  ['2042/43', 380, 0.19],
 ];
 
 const renewalPayment = ([, price, elcc]) => Math.round(price * DAYS * elcc);
 const auctionRenewalCurve = RENEWAL.map(renewalPayment);
+
+/* Analyst approved 1 Nov 2026, docs/g1-model-change-plan-2026-11-01.md.
+   PJM's RBP class table, p.1, years 2029/30–2042/43. Beyond 2029/30 the
+   credits are explicitly non-binding. Keep the existing price scenario and
+   multiply each duration's own credit, rather than a fixed 2028/29 ratio.
+   https://www.pjm.com/-/media/DotCom/committees-groups/cifp-rbp/postings/preliminary-elcc-class-ratings-for-period-dy28-dy42.pdf */
+const RENEWAL_CREDIT = {
+  4: RENEWAL.map(row => row[2]),
+  6: [.66,.52,.44,.40,.36,.34,.33,.31,.32,.32,.32,.30,.30,.28],
+  8: [.69,.56,.50,.47,.44,.41,.41,.39,.40,.41,.40,.39,.38,.37],
+  10: [.76,.66,.60,.56,.54,.52,.51,.50,.51,.52,.51,.49,.48,.47],
+};
+const auctionRenewalCurves = Object.fromEntries(Object.entries(RENEWAL_CREDIT)
+  .map(([hours, credits]) => [hours, credits.map((credit, i) => Math.round(RENEWAL[i][1] * DAYS * credit))]));
 
 /* ---------------------------------------------------------------------------
    ENERGY ARBITRAGE — the leg that grows.
@@ -282,7 +296,7 @@ const economics = {
       'A published clearing price and a published accreditation factor, projected separately because they move in opposite directions. The FERC-approved price collar covers four auctions and ends after 2029/2030, after which the cap reverts to a Net CONE-based figure PJM estimates at about $550/MW-day — the uncapped 2027/2028 simulation cleared at $529.80 RTO-wide. Against that, 4-hour ELCC erodes as storage penetration rises, which is what an ELCC rating measures. The curve therefore rises above its secured year before falling below it, and no single taper could express that.',
       '一个已公布的出清价格与一个已公布的核证系数，因二者走向相反而分别预测。经FERC批准的价格上下限机制覆盖四次拍卖、至2029/2030年度结束，其后价格上限将回归至PJM估算约每MW每日$550的净新增成本（Net CONE）基准 — 2027/2028年度无上限模拟的全RTO出清价为$529.80。与此相对，4小时储能的ELCC将随储能渗透率上升而下降，这正是ELCC所衡量的内容。因此该曲线先高于其已锁定年度、随后再降至其下，任何单一递减规则都无法表达这一形态。',
     ],
-    source: 'PJM 2028/2029 and 2027/2028 Base Residual Auction results and ELCC class ratings (cleared years); price and accreditation paths beyond 2029/2030 are analyst scenarios',
+    source: 'PJM BRA results and class ratings (secured year); RBP preliminary class table, p.1 (non-binding indicative credits after 2029/30); unchanged analyst price scenario. Approved 1 Nov 2026.',
     gate: 'G28',
     securedYear: {
       deliveryYear: '2028/29',
@@ -469,7 +483,8 @@ export const comparison = {
   /* How each line scales with duration, for the design-fit sweep
      (src/comparison/designFit.js). Shapes relative to four hours. The de-rating
      row is PJM's published ELCC class table for the 2028/29 BRA — every point a
-     primary figure — and scales the secured year and the renewal path alike.
+     primary figure — and scales the secured year. Each future year uses its
+     own duration-specific indicative credit via auctionRenewalCurves.
      The capture curve is the dashboard's, moved over unchanged. The sweep starts
      at four hours for the reason the dashboard's does: there is no ELCC class
      below it to read. */
@@ -477,6 +492,7 @@ export const comparison = {
     hours: [4, 6, 8, 10],
     capacityDerating: [0.59, 0.68, 0.71, 0.78],
     capacityDeratingBasis: 'published',
+    auctionRenewalCurves,
     merchantCapture: [1.00, 0.82, 0.70, 0.61],
     merchantCaptureBasis: 'seed',
     opexEnergyShare: 0.5,
