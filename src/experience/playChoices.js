@@ -1,6 +1,7 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { playTitle } from '../governance/playTitle.js';
+export { storyRowsFor } from './storyRows.js';
 
 /** Loaded only by a market with multiple distinct opportunities. */
 export function renderPlayChoices(rows, selected, tag) {
