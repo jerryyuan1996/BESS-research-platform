@@ -1,20 +1,20 @@
 # Great Britain: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Great Britain script researched 31 October 2026; shot layout v1.2
-Status: `proposed` script and bilingual page-text draft; **G-1 analyst sign-off pending**; steps 1 and 2 only. Markdown only; nothing built, registered or published
+Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
 Navigation: [Master plan](README.md) | [Story card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Sources and claims](#10-sources-and-claims) | [WA format](western-australia-storyboard.md)
 
 ## 1. Scope, argument and reading route
 
 The story explains the **current infrastructure-fund call and play**, read from the view store and briefing model on `main`, not from the 16 October content document, which is stale. `reviewedAgainst`: **REPO-GB-LIVE**, commit `edcb39ca0d69397f3683dffc9af5ffb49473c98c`, briefing evaluated for 2026-10-31. At that check: call `opportunistic`, displayed **Situational / 择机投入**; route `operating`; play **`gb-toll-4h`**, route `toll`, four hours, stage `operating`; evidence `fair`; call dated 2026-10-16, review by 2027-03-31. Other lenses have other calls (`build-position` for the strategic investor, `wait` for the developer); this script does not generalise the fund call to them.
 
-**Argument: saturation.** Great Britain keeps its own frequency, so it has bought fast response for years. Each service batteries entered then filled in turn: the 2016 Enhanced Frequency Response tender, then the Dynamic services from 2020, until value moved into wholesale trading and the Balancing Mechanism. Those earnings are uncontracted, and the Capacity Market secures only a de-rated slice. In the reference case without a toll, little revenue is secured. A toll fixes most of it for its term. New build also faces queue rules that are still being set. So a fund buys operating assets that already carry a toll, at a price that clears its yield.
+**Argument: saturation.** Great Britain keeps its own frequency, so it has bought fast response for years. Each service batteries entered then filled in turn: the 2016 Enhanced Frequency Response tender, then the Dynamic services from 2020, while batteries also gained access to wholesale trading and the Balancing Mechanism. The share of revenue from each route has not been established here. Those earnings are uncontracted, and the Capacity Market secures only a de-rated slice. In the reference case without a toll, little revenue is secured. A toll fixes most of it for its term. New build also faces queue rules that are still being set. So a fund buys operating assets that already carry a toll, at a price that clears its yield.
 
 1. GB is its own synchronous area, linked to its neighbours by direct current (CL-GB-03).
 2. Bilateral trading replaced the Pool in 2001; the Balancing Mechanism settles the residual (CL-GB-04).
 3. The first battery wave came for a small, fast tender (CL-GB-07). The Capacity Market pays for de-rated MW, and storage is de-rated by duration (CL-GB-05, CL-GB-06).
 4. The Dynamic services drew more MW than each requirement, and clearing prices fell far below their launch levels; since 2023 they have moved with requirements, some below zero (CL-GB-08, CL-GB-09). This is the signature chart.
-5. Batteries moved into trading and balancing, which pay energy spreads and secure nothing (CL-GB-10, CL-GB-18).
+5. Bulk dispatch opened more balancing access; trading and balancing income remains exposed to market prices. No revenue-share shift is asserted (CL-GB-10, CL-GB-18).
 6. The reformed queue still holds more batteries than the 2030 plan needs; a new commitment fee is pending (CL-GB-12, CL-GB-13, CL-GB-14).
 7. A toll secures most first-year revenue for its tenor, with merchant exposure after; an operating asset avoids the queue. The entry price decides the case (CL-GB-15, CL-GB-16).
 
@@ -58,7 +58,7 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 | Evidence and chart | REPO-GB-LIVE; CL-GB-16. Existing card fields only, including its marker ‹bound: play evidence›. No new chart |
 | Authoring check | Reuse the card, never `view.thesis` or `play.why`, which carry typed figures. The card's headline return is the shared new-build case, and the card says so; the operating-asset price beside it is the operating figure (§9). Keep the call even where its score crosses a band (the view's scoreNote explains why). If call, play or lens differs at build, queue review |
 | Mobile | Card full width, one line beneath, two buttons; no scene before the conclusion |
-| Status | `sourced`; `model-assumes-route`, not `contract-verified`; G-1 pending |
+| Status | `sourced`; `model-assumes-route`, not `contract-verified`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -116,7 +116,7 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 | Item | Shot specification |
 | --- | --- |
 | Scene | H-GB-03. A tender board with many battery sites queuing at one small box; a few pass and receive a multi-year contract bar; the rest stay outside |
-| Feedback | EN: "Tendered sites: ‹bound: EFR tendered sites›"; "Accepted: ‹bound: EFR accepted tenders› tenders, ‹bound: EFR accepted MW›"; "Average price: ‹bound: EFR average price›". ZH: "投标场址：‹bound: EFR tendered sites›"；"中标：‹bound: EFR accepted tenders›个标书，‹bound: EFR accepted MW›"；"平均价格：‹bound: EFR average price›" |
+| Feedback | EN: "Fast response"; "Multi-year terms"; "Results figures withheld". ZH: "快速响应"；"多年期条款"；"结果数值待核实" |
 | Evidence and chart | CL-GB-07; SRC-GB-05 (results), SRC-GB-06 (site technology), SRC-GB-07 (requirement and cap). H-GB-03. The EFR point also appears, separately styled, on the signature chart |
 | Authoring check | The event is the tender and its result; "first wave" is the interpretation. Battery count is of tendered sites, not winners, unless the winners' list is extracted. The average price is £/MW/h availability, not revenue. Name no provider |
 | Mobile | Tender board as three stacked figures with the contract bar below |
@@ -125,10 +125,10 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | What first brought large batteries onto Britain's grid? | 是什么最早把大型电池带上英国电网？ |
-| Copy | In ‹bound: H-GB-03 date›, National Grid published the results of its first Enhanced Frequency Response tender, a service for very fast response. Almost every tendered site was a battery. ‹bound: EFR accepted tenders› tenders won ‹bound: EFR accepted MW› on multi-year contracts, priced per MW per hour. Far more sites bid than the tender accepted. | ‹bound: H-GB-03 date›，National Grid公布首次增强型频率响应（EFR）招标结果，这是一项要求极快响应的服务。几乎所有投标场址都是电池。‹bound: EFR accepted tenders›个标书中标，合计‹bound: EFR accepted MW›，签订多年期合同，按每MW每小时计价。投标场址远多于最终中标数量。 |
-| Meaning | A small, fast service drew the first wave and showed how quickly battery supply can outgrow a fixed need. | 一项规模小、速度快的服务吸引了第一波电池，也显示出电池供给超过固定需求的速度之快。 |
+| Copy | The first Enhanced Frequency Response tender procured very fast response on multi-year terms. Batteries could provide that service. Exact tender counts, accepted MW and prices are withheld until the original results report has been opened. | 首次增强型频率响应招标以多年期条款采购极快响应，电池可以提供这项服务。具体投标数量、中标MW和价格，须待打开原始结果报告后再展示。 |
+| Meaning | A fast-response procurement route existed; its exact award figures remain an evidence gap. | 当时已存在快速响应采购路径；具体中标数字仍属证据缺口。 |
 | Marker | Fair evidence. What would change it: the opened tender report and site list, confirming accepted MW, price and technology. | 证据尚可。会改变判断的证据：打开招标报告及场址清单，核实中标MW、价格和技术类型。 |
-| Controls | Tendered sites · Accepted · Contract term | 投标场址 · 中标 · 合同期限 |
+| Controls | Service requirements · Contract term | 服务要求 · 合同期限 |
 | Labels | Enhanced Frequency Response · Tendered sites · Accepted tenders · Availability price · £/MW/h | 增强型频率响应 · 投标场址 · 中标标书 · 可用容量价格 · 英镑/MW/小时 |
 
 ### gb-04 — Capacity, paid by duration · 容量按时长计价
@@ -187,10 +187,10 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
-| Question | Where did the batteries go next? | 电池接下来转向了哪里？ |
-| Copy | From ‹bound: H-GB-06 OBP date›, NESO's control room could instruct many batteries at once in the Balancing Mechanism, and battery instructions rose. Batteries now trade ahead in the wholesale market and offer into balancing. Those earnings are energy spreads, per MWh, and they move with prices; no contract fixes them. | 自‹bound: H-GB-06 OBP date›起，NESO调度室可在平衡机制中一次性向大批电池发出指令，电池接到的调度指令随之增加。如今电池在批发市场提前交易，并在平衡机制中报价。这些收入是按MWh计算的电能量价差，随价格波动，没有合同加以锁定。 |
-| Meaning | This asset's value now sits mainly in trading, and that is the value a toll counterparty takes on. | 资产价值如今主要来自交易，而租赁对手方承接的正是这部分价值。 |
-| Marker | Thin evidence. What would change it: a revenue split by route, computed from Elexon settlement data and NESO service results. | 证据单薄。会改变判断的证据：基于Elexon结算数据与NESO服务结果，按收入渠道计算的收入构成。 |
+| Question | How can batteries participate in balancing? | 电池如何参与平衡机制？ |
+| Copy | From ‹bound: H-GB-06 OBP date›, the control room could instruct many batteries at once in the Balancing Mechanism. This is a change in dispatch access. A dispatch instruction and a clearing price do not establish the owner’s captured revenue. | 自‹bound: H-GB-06 OBP date›起，调度室可在平衡机制中一次性向多台电池发出指令。这体现的是调度参与方式的变化；调度指令与出清价格不能直接证明业主实际获得的收入。 |
+| Meaning | Keep the participation mechanism separate from the still-unverified revenue split. | 应把参与机制与尚未核实的收入构成区分开。 |
+| Marker | Fair evidence. What would change it: the operator’s dispatch records and payment terms; a revenue split needs separate sourcing. | 证据尚可。会改变判断的证据：运营商调度记录与付款条款；收入构成需要另行查证。 |
 | Controls | Response · Balancing Mechanism · Wholesale · Units | 响应服务 · 平衡机制 · 批发市场 · 单位 |
 | Labels | Capacity held ready · £/MW/h · Energy traded · £/MWh · Different units; never added | 待命容量 · 英镑/MW/小时 · 交易电量 · 英镑/MWh · 单位不同，不可相加 |
 
@@ -203,7 +203,7 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 | Evidence and chart | CL-GB-11–CL-GB-14; SRC-GB-22–SRC-GB-26. H-GB-07, H-GB-08 |
 | Authoring check | Queue and fleet figures come from one dated record with its definition (CF-GB-06); never mix a transmission-register count with Ofgem's Gate 2 figure. The fee is a minded-to proposal, not a decision; the protection change for batteries without revenue support is a consultation. The view's trigger cites a subscription article (CF-GB-07); the story cites SRC-GB-24/25 instead. National pricing is secondary here: one sentence, no zonal map |
 | Mobile | Queue bars stacked, then the pending card with its date |
-| Status | Reform and letter `official-plan / sourced`; fee `official-plan`, decision `missing`; G-1 pending |
+| Status | Reform and letter `official-plan / sourced`; fee `official-plan`, decision `missing`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -263,7 +263,7 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 | Item | Shot specification |
 | --- | --- |
 | Scene | Separate 2D payment paths, each with its own unit badge: NESO → response availability (£/MW/h); Elexon settlement → balancing actions and imbalance (£/MWh); market counterparties → trading (£/MWh); suppliers → Electricity Settlements Company → capacity agreement (£/kW/year). Only the capacity path carries a term bar |
-| Feedback | Selecting a path shows payer, obligation and term. Reference-case line: EN "Secured without a toll: ‹bound: reference secured share›"; ZH "不含租赁时的锁定比例：‹bound: reference secured share›" |
+| Feedback | Selecting a path shows payer, obligation, units and term. No reference secured-share comparison is displayed. |
 | Evidence and chart | CL-GB-15, CL-GB-17, CL-GB-18; SRC-GB-12/13 (service results), SRC-GB-17 (settlement data), SRC-GB-20/21 (capacity results and settlement). REPO-GB-LIVE reference case; GAP-GB-REFSECURED |
 | Authoring check | A response award is a short delivery obligation, not a floor. Balancing settlement can charge as well as pay. The capacity agreement's term for an operating asset is whatever it holds, not the new-build term the model uses; check it in the Capacity Market Register. The reference share is the engine's capacity-route case without a toll; do not mix it with the card's toll share |
 | Mobile | Choose a path; vertical payer → obligation → settlement steps; unit stays visible |
@@ -272,8 +272,8 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Who pays a British battery, and what is fixed? | 谁向英国电池付钱？哪些收入是固定的？ |
-| Copy | NESO pays for response held ready, per MW per hour, in short auctions. Balancing actions and imbalance are settled through Elexon; trading earns the price spread. Suppliers fund the Capacity Market, paid through the Electricity Settlements Company for the agreement's term. In the reference case without a toll, only ‹bound: reference secured share› of revenue is secured. | NESO在短期拍卖中为待命响应付费，按每MW每小时计价。平衡操作与不平衡电量通过Elexon结算；交易赚取价差。容量市场资金来自售电商，由电力结算公司（ESC）在协议期内支付。在不含租赁的参考情景中，仅有‹bound: reference secured share›的收入被锁定。 |
-| Meaning | Only the capacity agreement is fixed, and it is a small share, so this play needs a toll. | 只有容量协议是固定收入，且占比很小，因此本方案需要租赁合同。 |
+| Copy | NESO procures response in short auctions. Balancing actions and imbalance settle through Elexon; trading earns a price spread. Suppliers fund the Capacity Market through the Electricity Settlements Company for the agreement’s term. Each payment has its own obligations and units. | NESO通过短期拍卖采购响应。平衡操作与不平衡电量通过Elexon结算；交易赚取价差。容量市场由售电商出资，经电力结算公司在协议期内付款。每项付款有各自的履约义务和计量单位。 |
+| Meaning | A capacity agreement fixes one payment line for a term; the executed toll must establish what else is fixed. | 容量协议在一定期限内固定一项付款；其他哪些收入被固定，需要以已签租赁合同为依据。 |
 | Marker | Fair evidence. What would change it: payment terms checked in the EMR Settlement guidance and in the asset's own capacity agreement. | 证据尚可。会改变判断的证据：核对EMR结算指引中的付款条款，以及资产自身的容量协议。 |
 | Controls | Response · Balancing and imbalance · Trading · Capacity | 响应 · 平衡与不平衡 · 交易 · 容量 |
 | Labels | NESO · Elexon settlement · Market counterparties · Electricity Settlements Company · Suppliers · £/MW/h · £/MWh · £/kW/year | NESO · Elexon结算 · 市场交易对手 · 电力结算公司 · 售电商 · 英镑/MW/小时 · 英镑/MWh · 英镑/kW/年 |
@@ -283,7 +283,7 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 | Item | Shot specification |
 | --- | --- |
 | Scene | Qualitative revenue band over the hold: a fixed toll layer and a capacity layer during the toll's tenor, then a dashed merchant tail. A two-line text card compares the reference share with the play's share; no new chart |
-| Feedback | EN: "Fixed toll fee"; "Capacity agreement"; "Merchant after the toll"; "Model assumption, not a signed contract"; "Reference case: ‹bound: reference secured share›"; "This play: ‹bound: secured share›". ZH: "固定租赁费"；"容量协议"；"租赁期后承担市场风险"；"模型假设，并非已签合同"；"参考情景：‹bound: reference secured share›"；"本方案：‹bound: secured share›" |
+| Feedback | EN: "Fixed toll fee"; "Capacity agreement"; "Merchant after the toll"; "Model assumption, not a signed contract". ZH: "固定租赁费"；"容量协议"；"租赁期后承担市场风险"；"模型假设，并非已签合同" |
 | Evidence and chart | CL-GB-16; REPO-GB-LIVE card share and tenor; REPO-GB-01 (`tollAdditiveWithCapacity`, `tollRevertsToMerchant`, `contractYears`); GAP-GB-TOLL. The market page's Revenue section owns the numbers |
 | Authoring check | The toll's level and tenor come from a reported precedent with no public primary source; never name it. The capacity agreement in the model outlasts the toll (‹bound: capacity agreement years›); after the toll the secured share falls to the capacity line, then to nothing. Contract indexation follows the settled 2.5% convention inside the model; never state it as a term of an actual toll. No renewal assumed |
 | Mobile | Two stacked panels, during the toll and after; contract checks listed beneath, not in a hover |
@@ -293,7 +293,7 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 | --- | --- | --- |
 | Question | What does the toll secure, and until when? | 租赁锁定了什么？锁定到什么时候？ |
 | Copy | In this play an offtaker pays a fixed annual fee and dispatches the battery, while the owner keeps its capacity agreement. Together they secure ‹bound: secured share› of first-year modelled revenue, for ‹bound: secured tenor› years. After the toll, revenue returns to merchant unless a new toll is signed. Until the asset's contract is checked, the toll is a model assumption. | 在本方案中，承租方支付固定年费并调度电池，业主保留容量协议。二者合计锁定首年模型收入的‹bound: secured share›，期限‹bound: secured tenor›年。租赁到期后，若未签新租赁，收入回归市场化。在核实资产合同之前，租赁只是模型假设。 |
-| Meaning | For a fixed term, the toll turns the market's small secured slice into most of the revenue. | 在固定期限内，租赁把市场中很小的锁定部分变为收入的大部分。 |
+| Meaning | The toll fixes an agreed fee for its term, subject to counterparty and performance obligations. | 租赁在合同期内固定约定费用，同时承担对手方与履约条件风险。 |
 | Marker | Fair evidence. What would change it: a signed toll, with its counterparty, tenor, dispatch rights, availability deductions and termination terms checked. | 证据尚可。会改变判断的证据：已签署的租赁合同，并核实对手方、期限、调度权、可用率扣款和终止条款。 |
 | Controls | During the toll · After the toll · Contract checks | 租赁期内 · 租赁期后 · 合同核查 |
 | Labels | Fixed toll fee · Capacity agreement · Merchant after the toll · Model assumption, not a signed contract · Reference case: ‹bound: reference secured share› · This play: ‹bound: secured share› | 固定租赁费 · 容量协议 · 租赁期后承担市场风险 · 模型假设，并非已签合同 · 参考情景：‹bound: reference secured share› · 本方案：‹bound: secured share› |
@@ -309,7 +309,7 @@ Thirteen shots, about five minutes. Fixed-view isometric SVG from the shared sym
 | Evidence and chart | CL-GB-09, CL-GB-13, CL-GB-16; REPO-GB-LIVE (`operatingPrice`, next action, trigger); SRC-GB-24/25. No new financial figure |
 | Authoring check | The headline return on the card is the new-build case; the operating-asset price is the operating figure, and the story points to it, not to the headline. The live next action names Gate 2; the story adds the commitment-fee consultation from primary sources but does not edit the action. Risk cards explain direction only; no probability or slider |
 | Mobile | Factor cards stacked, each with its section link; all four destinations visible at the end |
-| Status | Investment reading `proposed`; sources `sourced`; G-1 pending. The story stops at the market page |
+| Status | Investment reading `proposed`; sources `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained. The story stops at the market page |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -340,7 +340,6 @@ Authoring references, not code. `row` is the selected-lens GB row from `opportun
 | ‹bound: toll quoted hours› | `market.comparison.durationResponse.routeRules.toll.quotedHours` (`src/markets/gb/comparison.js`) | 4 | gb-08 |
 | ‹bound: capacity agreement years› | `market.comparison.economics.contractYears` | 15 | gb-11 (authoring) |
 | ‹bound: de-rating curve› | `market.comparison.durationResponse.hours` with `.capacityDerating`, basis `published` (T-4 2029/30, Table 3) | 1h 10.99% · 2h 21.98% · 4h 43.96% · 6h 66.08% · 8h 87.77% | gb-04, gb-08 |
-| ‹bound: reference secured share› | **Gap.** `runBaseCase(byId('gb'), 5).securedShare`, base route `cap`, four hours; computed as `engine[id].secured` in `src/briefing/model.js` but not exported or shown on the card (GAP-GB-REFSECURED) | 11.7%, for 15 years | gb-10, gb-11 |
 
 The view's `thesis` and `play.why` describe the reference share as "a tenth"; the grade reason says 12%. Both are typed strings. The story binds the engine result, never those strings.
 
@@ -569,7 +568,7 @@ The v1.3 story card proposed a different signature chart: the reference project'
 | Electricity mechanics | Pending: GB as its own synchronous area; NETA and BETTA; EFR as the first battery wave; de-rating by duration; Dynamic services filling and NESO's attribution; bulk dispatch; Gate 2, the queue letter and the pending fee |
 | Investment meaning | Pending: the live `gb-toll-4h` / Situational anchor; saturation as the argument; toll plus capacity agreement as the secured revenue, with tenor and merchant tail; the operating-asset price as the entry test; no service price shown as revenue |
 | English / Chinese | Pending: same meaning for availability price, energy spread, de-rated capacity, toll, offtaker, commitment fee and pending decision; all figures bound |
-| Script decision | **G-1 pending. Analyst: sign off gb-00 to gb-12, or name changes.** |
+| Script decision | **G-1 reviewed 1 November 2026; G-2 conditions retained. Analyst: sign off gb-00 to gb-12, or name changes.** |
 | Build boundary | Stop here. No code, dataset registration, snapshot, model or view change, rendering, build, deployment or G-2 work in this task |
 
 Points for the analyst at G-1:
@@ -585,3 +584,18 @@ Points for the analyst at G-1:
 9. Whether the EFR tender figures may stay on a search record (CF-GB-12) or must wait for a copy of the moved report.
 
 Checks run for this script: the live call, play, card fields and engine results were read from `main` at `edcb39c` by running the existing model functions, with no change; thirteen shots each have the six specification rows and the five page-text rows in both languages (gb-00 without a Meaning line, as in the templates); every `‹bound›` token in page text has a register entry in §9; page text carries no figure outside a bound token except unit names and the service name Gate 2. After network access changed, the sources in the access table were opened and the NESO datasets downloaded to a scratch folder outside the repository for CALC-GB-TECH and CALC-GB-PRICE; nothing from them was added to the repository. The existing test suite passed 1,023 tests (15 skipped) and the current-model checks passed 84, with no fixture regeneration. No build, budget, browser or ETL check was run: only this Markdown file changed, under the task's "build nothing" scope. The local confidentiality guard could not scan, because this session has no marker list; CI repeats it with the secrets.
+
+## Analyst decisions — 1 November 2026
+
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+
+| Item | Approved disposition / retained gate |
+| --- | --- |
+| Chart / GAP-GB-REFSECURED | Approve Chart-GB-FILL. Omit the reference secured-share comparison; it has no existing safe binding and no new financial result is authorised by this script. |
+| gb-03 / CF-GB-12 | Withhold search-only EFR tender counts, MW and price. Keep the qualitative procurement mechanism. |
+| gb-06 | Delete the unverified claim that revenue/value shifted mainly to trading. Retain sourced bulk-dispatch mechanics at Fair. |
+| gb-05/12 | Accept corrected price wording; buying operating assets is tested against the operating purchase price, not the new-build headline. Markers and bilingual drafts approved with these edits. |
+
+**Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
+
+**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
