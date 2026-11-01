@@ -230,7 +230,7 @@ export const comparison = {
   /* How each line scales with duration, for the design-fit sweep
      (src/comparison/designFit.js). Shapes relative to four hours; the levels
      stay the engine's. Both curves are the dashboard's (data.js), moved over
-     unchanged; its 4h de-rating point matches the capacity line's 0.66. */
+     to the approved 2029/30 capacity credit; four hours remains the scaling anchor. */
   durationResponse: {
     hours: [1, 2, 4, 6, 8],
     capacityDerating: [0.072, 0.143, 0.277, 0.425, 0.549],
@@ -252,8 +252,8 @@ export const comparison = {
 
   /* Both merchant legs priced at the same year. See src/comparison/vintage.js. */
   merchantVintage: merchantVintage(1, economics, ranges, [
-    'Year 1. Reliability Option difference payments are additive to merchant, so both merchant legs are exposed from commercial operation. The DS3-to-FASS transition after year 1 is carried by servicesCurve rather than folded into the seed — which is the arrangement the platform-wide vintage rule was later generalised from.',
-    '第1年。可靠性期权差价支付与市场化收入并存，因此两个市场化收入项自商业运行起即处于敞口状态。第1年之后由DS3向FASS的过渡由servicesCurve承载，而非并入种子值 — 本平台的口径年度规则正是由这一做法推广而来。',
+    'Trading is exposed from operating year one alongside capacity. Services and their relative-year decay remain uncontracted assumptions, not a dated DS3-to-FASS forecast. Verify reliability-option settlement in the project’s captured trading income.',
+    '交易自运营首年起与容量收入并存并承担风险。辅助服务及按运营年度的递减仍属未签约假设，不是注明日期的DS3至FASS预测。须在项目交易捕获收入中核对可靠性期权结算。',
   ]),
 
   narrative: {
