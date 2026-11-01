@@ -13,12 +13,12 @@
     "licence": "JEPX published market data — attribution required",
     "attribution": "Source: JEPX spot market data"
   },
-  "fetchedAt": "2026-11-01T06:19:14.889Z",
+  "fetchedAt": "2026-11-01T17:57:51.620Z",
   "coverage": {
-    "from": "2025-11-01T06:30:00.000Z",
+    "from": "2025-11-01T18:00:00.000Z",
     "to": "2026-11-02T14:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17585
+    "points": 17562
   },
   "units": {
     "price": "JPY/MWh"
@@ -32,12 +32,12 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17585,
-    "coverageDays": 367,
+    "points": 17562,
+    "coverageDays": 366,
     "pointsPerHour": 2,
-    "mean": 13922.91,
+    "mean": 13926.82,
     "median": 12000,
-    "stdev": 7588.15,
+    "stdev": 7592.3,
     "p5": 2000,
     "p95": 28020,
     "negativeHoursPct": 0,
@@ -52,10 +52,10 @@
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 20764437,
-    "marginPerCycle": 83783.31,
+    "revenuePerMW": 20764429,
+    "marginPerCycle": 83783.28,
     "inputs": {
-      "chargeMean": 8495.711900425018,
+      "chargeMean": 8495.714936247725,
       "dischargeMean": 19304.21220400729,
       "durationHours": 9,
       "roundTripEfficiency": 0.85,
@@ -71,23 +71,13 @@
   },
   "daily": [
     {
-      "d": "2025-11-01",
-      "n": 17,
-      "mean": 11010.59,
-      "min": 8720,
-      "max": 12830,
-      "spread": null,
-      "charge": null,
-      "discharge": null
-    },
-    {
       "d": "2025-11-02",
-      "n": 48,
-      "mean": 11090.63,
+      "n": 42,
+      "mean": 11142.14,
       "min": 7320,
       "max": 20830,
-      "spread": 6023.33,
-      "charge": 8170.56,
+      "spread": 6022.22,
+      "charge": 8171.67,
       "discharge": 14193.89
     },
     {
@@ -3743,8 +3733,8 @@
   ],
   "sourceSnapshot": {
     "file": "jp-hokkaido-jepx.json",
-    "contentChecksum": "sha256:b5a8f93b07e0f2817acd3f1ff6899cb0f3740340ad16ede5587c32d0532e03db",
-    "points": 17585
+    "contentChecksum": "sha256:cdfde6237d6e30a0446dcf3607bedb099043255de387e41eabccbace1b581489",
+    "points": 17562
   },
-  "summaryChecksum": "sha256:987fe077eca4c50560889fbff8b630b2e2e2838106cead8e0076c42558e8cdac"
+  "summaryChecksum": "sha256:7bc3af2ebfbee97a7f30ad0115c2305040352d1ea3ea3d1fb609f1391bcfdfa8"
 }

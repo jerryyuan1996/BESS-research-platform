@@ -241,6 +241,7 @@ const BUDGET = {
     'story-fi': 40,
     'story-de': 40,
     'story-gb': 40,
+    'story-it': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -816,4 +817,20 @@ test('the GB story, additional static graph and lazy styles stay below 40 KiB gz
   const cssBytes=storyStyles.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
   const total=gzipOf(extra)+cssBytes;
   assert.ok(total<=40*1024,'GB story and additional static closure including CSS: '+kB(total)+' KiB gzip; cap 40');
+});
+
+test('the Italy story and its entire additional static graph stay lazy and below 40 KiB gzip',async t=>{
+  if(skipWithoutDist(t))return;
+  const {entry,features,byName}=await chunks();
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const own=features.get('story-it');assert.ok(own,'the Italy lazy story chunk exists');
+  assert.ok(!first.has(own));
+  const probe='What is the call here, and what is the alternative?';
+  assert.ok(own.text.includes(probe));
+  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no Italy story content in '+chunk.name);
+  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
+  const css=(await styles()).lazy.filter(c=>c.text.includes('.it-scene')||c.text.includes('.ix-story-dialog'));
+  const extraCss=css.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
+  assert.ok(css.some(c=>c.text.includes('.it-scene')),'Italy styles remain lazy');
+  assert.ok(kB(gzipOf(extra)+extraCss)<=40,'Italy story complete additional static graph and styles: '+kB(gzipOf(extra)+extraCss)+' KiB gzip');
 });
