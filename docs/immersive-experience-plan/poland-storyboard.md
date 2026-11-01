@@ -1,7 +1,7 @@
 # Poland: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Poland script researched 31 October 2026; shot layout v1.2
-Status: `proposed` script and bilingual page-text draft; G-1 analyst sign-off pending; steps 1 and 2 only, build nothing
+Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
 Navigation: [Master plan](README.md) | [Narrative card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [WA format](western-australia-storyboard.md) | [Sources and claims](#11-sources-and-claims)
 
 ## 1. Scope, argument and reading route
@@ -456,7 +456,7 @@ Reverse traceability: SRC-PL-02 → CL-PL-04/05 → H-PL-01 → pl-01; SRC-PL-01
 | Electricity mechanics | Accept the reading of the capacity market: long agreements for new plant, the battery factor by auction, the four-hour certification test, the end of the main-auction schedule, one-year auctions for existing units only, and art. 62's deduction of investment aid |
 | Investment meaning | Accept two separate calls on one page: the market verdict waiting for a successor, an earlier agreement priced only below replacement cost, and the grant cohort's own call; the grant as conditional capital support; values shown only on labelled bases |
 | English / Chinese | Confirm equal meaning for capacity obligation, correction factor, catch-up, supplementary and additional auctions, grant, cohort, award, receipt and replacement cost; every visible string is drafted |
-| Script decision | **G-1 pending. Analyst: sign off pl-00 to pl-12, or name the changes.** No build, dataset registration, view edit or model change follows from this script |
+| Script decision | **G-1 reviewed 1 November 2026; G-2 conditions retained. Analyst: sign off pl-00 to pl-12, or name the changes.** No build, dataset registration, view edit or model change follows from this script |
 
 Points for the analyst to decide at G-1:
 
@@ -619,3 +619,18 @@ Reviewer copy of the evidence the chart would plot. Every value binds through �
 ### Discovery leads not used as sources
 
 Press reports were used only to find primary documents: Gramwzielone, WysokieNapiecie, wnp.pl, e-magazyny, Globenergia, Parkiet and ISBnews items on the 2028–2030 auctions, the catch-up auction, PSE's advice against a catch-up auction for 2030, and the Ministry of Energy's reported plan to present a new capacity market to the Commission in the second quarter of 2026. None supports a claim above. The ministry's plan is the lead to follow for GAP-PL-SUCCESSOR.
+
+## Analyst decisions — 1 November 2026
+
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+
+| Item | Approved disposition / retained gate |
+| --- | --- |
+| CF-PL-01 / BUILD-PL-01 | Approve two cards: grant cohort Situational and ordinary capacity Wait, with distinct actions. Selected grant financial summary is not attached to the capacity card. Separate feature PR supplies the context rows. |
+| CF-PL-03 / 05 | Approve 37.3% grant-cohort assumption after primary aggregate verification in a separate data PR. Keep award, recommendation and cash receipt distinct. Prior contract vintages are compared by payment per kW, never by a claimed IRR multiple. |
+| Chart / design values | Approve Chart-PL-AUCTIONS and CALC-PL-01, manual official records, labelled design values distinct from investment returns, and battery volumes only where the official technology split exists. |
+| Interpretation / markers | Accept capacity-adequacy and early-credit causal readings as interpretations; open the statutory explanation before attributing a motive to the factor cut. Proposed markers and bilingual copy approved. |
+
+**Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
+
+**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
