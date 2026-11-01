@@ -38,6 +38,8 @@ server-side logic. Data changes are **git commits**, which is what makes the his
 |---|---|---|---|---|
 | `fx-ecb` | global | ECB euro reference rates | daily | — |
 | `gb-day-ahead` | GB | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
+| `gb-dynamic-response` | GB | NESO Dynamic results, fixed 2020–2023 vintage; availability prices and cleared/technology MW | fixed after initial import | — |
+| `gb-eac-response` | GB | NESO EAC response results; FY2023–FY2025 archives plus current results | read on the existing 6h run; source daily | — |
 | `ie-day-ahead` | IE | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
 | `ro-day-ahead` | RO | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
 | `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | 12h | — |
@@ -91,6 +93,10 @@ ENTSO-E carries GB day-ahead, is already wired for three other markets, and is p
 Adding Elexon later is additive — a second dataset for the same market, not a replacement.
 
 ### Deliberately not automated
+
+GB story response data uses `etl/sources/neso-response.mjs`, under the NESO Open Data Licence with attribution. These two datasets have `bearsOn: []`: response availability prices never become merchant revenue or a drift proposal. The cold import queries service-level summary records and technology totals, excluding participant and site identities. Fixed Dynamic history then skips before network access; loaded EAC archives are retained, while current EAC results refresh on the existing six-hour job. New results can add the two snapshot/summary pairs to its ordinary data commits; identical payloads create no timestamp-only commit. There is no schedule change. Each query uses stable bounded pagination and the existing failed-fetch retention policy.
+
+The response summary carries a monthly table, with separate product/direction, GBP/MW/h and MW. It uses the connector's `summarize` hook instead of the generic energy-price daily/spread path. No arbitrage metric is produced. The initial data audit and source gates are recorded in [the GB data QA note](immersive-experience-plan/gb-data-qa-2026-11-01.md).
 
 - **Capacity-market results** (NESO CM Register, OCCTO, SEMO, PSE, Transelectrica) — published as
   periodic auction outcomes rather than a feed, and each needs a de-rating factor applied before it
