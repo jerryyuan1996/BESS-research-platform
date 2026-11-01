@@ -381,10 +381,10 @@
       "route": "mer",
       "hours": 4,
       "stage": "ready-to-build",
-      "grantPct": 37.9,
+      "grantPct": 37.3,
       "why": [
-        "Projects in NFOŚiGW's 2025 storage cohort receive grants covering about 38% of cost on average; with that grant, merchant four hours is the engine's best Polish design, but at build cost it falls short of the fund's target.",
-        "国家环保基金2025年储能批次项目的补贴平均约占成本的38%；按此补贴，四小时市场化设计是引擎在波兰的最佳设计，但按建设成本测算达不到基金目标回报。"
+        "The awarded capital grant lowers the cohort’s investment cost; verify each project’s signed grant and capacity-payment deduction. At build cost the reference case still falls short of the fund’s target.",
+        "已授予的资本补助降低了该批次的投资成本；须核实每个项目的已签补助及容量付款扣减。按建设成本测算，参考情景仍未达到基金目标。"
       ],
       "action": {
         "text": [
@@ -406,8 +406,8 @@
             {
               "dimension": "assetReturn",
               "text": [
-                "With the cohort's grant of about 38% of cost, merchant four hours clears the platform's yields on the model, but at build cost it falls short of the fund's target.",
-                "按该批次约占成本38%的补贴，四小时市场化设计按模型测算可达到本平台收益率要求，但按建设成本测算达不到基金目标回报。"
+                "The awarded grant improves the modelled merchant design, but the investment case at build cost still falls short of the fund’s target.",
+                "已授予的补助改善模型中的市场化方案，但按建设成本测算的投资情景仍未达到基金目标。"
               ]
             },
             {
@@ -432,7 +432,7 @@
         }
       },
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-01",
       "lockedUntil": null
     }
   }
