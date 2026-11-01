@@ -1,7 +1,7 @@
 # Ireland: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Ireland script researched 31 October 2026; shot layout v1.2
-Status: `proposed` script and bilingual page-text draft; **G-1 analyst sign-off pending**; steps 1 and 2 only. **The research contradicts the call's capacity economics; see the flag in §1 and CF-IE-05.** Markdown only; no implementation, dataset registration or publication approval.
+Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final approved six-hour/Wait recommendation, retained-services wording and history must match the independent Ireland PR before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
 Navigation: [Master plan](README.md) | [Ireland card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Sources and claims](#11-sources-and-claims) | [WA format](western-australia-storyboard.md)
 
 ## 1. Scope, argument and reading route
@@ -50,7 +50,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Evidence and chart | REPO-IE-LIVE, CL-IE-14; current briefing row, published play and investment summary, with the card's own basis labels. No new chart |
 | Authoring check | Reuse the card, not `view.thesis` or `play.why`, which hold typed figures. Preserve lens, return basis, stage and tenor. The opening says the play needs a project that already holds a capacity contract; it never implies the reader's project has one<br>The card bridge shows no services line; the engine still folds a small decaying DS3/FASS tail into trading (CF-IE-01). The copy says what the play's action says, "priced without them", and does not claim the model holds zero<br>Existing market play card: **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**<br>Second link: `#bankable` on the market page |
 | Mobile | Full-width card, short paragraph and buttons; no scene before the conclusion |
-| Status | `sourced` / `model-assumes-route`; G-1 pending |
+| Status | `sourced` / `model-assumes-route`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -67,7 +67,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | --- | --- |
 | Scene | Fixed schematic of the island with one all-island system boundary across both jurisdictions; DC links to Great Britain drawn as DC; the Celtic link to France dashed as planned. No flow arrows, no cable routes |
 | Feedback | EN: "One power system, two jurisdictions"; "Power transfer by DC"; "Planned". ZH: "一个电力系统，两个司法辖区"；"直流输电"；"规划中"。 Boundary stays fixed |
-| Evidence and chart | CL-IE-01, CL-IE-12; SRC-IE-01, SRC-IE-03 (frequency workstream: rate of change of frequency as the key limit), SRC-IE-19, SRC-IE-20. No interconnector MW on the page until the analyst reviews the list (GAP-IE-LINKS) |
+| Evidence and chart | CL-IE-18, CL-IE-12; SRC-IE-01, SRC-IE-03 (frequency workstream: rate of change of frequency as the key limit), SRC-IE-19, SRC-IE-20. No interconnector MW on the page until the analyst reviews the list (GAP-IE-LINKS) |
 | Authoring check | Do not draw the island as synchronous with Great Britain or Europe. Do not print interconnector counts or capacities from news reports. Celtic is a planned project with an expected year, never drawn as built<br>A small synchronous island must cover both a sudden loss of a large unit and firm evening supply from its own resources; that is why both fast services and capacity have been paid for here |
 | Mobile | Same labelled schematic, stacked legend, both toggles; description readable without the map |
 | Status | `sourced` (read in full); "holds its own frequency" is an interpretation of the DC links and SRC-IE-03; geography and rights review pending |
@@ -89,7 +89,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | --- | --- |
 | Scene | Timeline nodes H-IE-01 and H-IE-03 over the island thumbnail; the two jurisdictions' markets join, then the redesign adds a capacity auction drawn as a separate, forward-dated layer |
 | Feedback | EN: "Wholesale market"; "Capacity auction"; "Years ahead of delivery". ZH: "批发市场"；"容量拍卖"；"提前数年采购"。 Node dates read through ‹bound: history node› |
-| Evidence and chart | CL-IE-01, CL-IE-09; SRC-IE-01, SRC-IE-02, SRC-IE-16. Constraint, decision, inherited feature and present implication separated in the evidence drawer |
+| Evidence and chart | CL-IE-18, CL-IE-09; SRC-IE-01, SRC-IE-02, SRC-IE-16. Constraint, decision, inherited feature and present implication separated in the evidence drawer |
 | Authoring check | The SEM start and the I-SEM go-live are events. "Built into the design, not added for batteries" is an interpretation; keep it in Meaning only. Do not state the first capacity auction's date until it is extracted (GAP-IE-CRM)<br>A forward capacity auction was part of the market's design from the 2018 redesign, so the contract this play relies on is a standing feature, subject to redesign (ie-11) |
 | Mobile | Vertical dated nodes, text first, small diagram below |
 | Status | Events `sourced` (SRC-IE-01 read in full); causal reading `proposed` |
@@ -109,7 +109,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | --- | --- |
 | Scene | Wind farms, a gas unit and a battery on the island; a stepped SNSP gauge rises node by node (H-IE-02, H-IE-05). As it rises, a "fast reserve needed" layer lights; no invented frequency trace |
 | Feedback | EN: "Share of non-synchronous power allowed"; "Fast reserve"; "Inertia". ZH: "允许的非同步电源占比"；"快速备用"；"转动惯量"。 Gauge values ‹bound: SNSP level› with their dates |
-| Evidence and chart | CL-IE-02; SRC-IE-03 (programme launch), SRC-IE-04 (SNSP steps). Intermediate steps drawn only where SRC-IE-04 dates them |
+| Evidence and chart | CL-IE-19; SRC-IE-03 (programme launch), SRC-IE-04 (SNSP steps). Intermediate steps drawn only where SRC-IE-04 dates them |
 | Authoring check | SNSP is an operating limit, not the annual renewable share. The programme start is not the date any service was first paid. Do not claim DS3 alone raised the limit; it combined rule changes, trials and services<br>DS3 paid for capabilities the grid needed to run at high wind. That made fast batteries bankable for a time, under a programme with an end, not a long-term contract |
 | Mobile | Gauge as a vertical stepped list with dates; legend stacked |
 | Status | `sourced` (read in full: 65% by 2018, 70% in 2021, 75% in March 2022) |
@@ -222,8 +222,8 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Why is this play ‹bound: play duration› hours? | 为什么本方案选择‹bound: play duration›小时？ |
-| Copy | The auction does not credit a battery's full power. It publishes a de-rating curve for each auction: the longer a battery can run, the more of its power counts. In recent auctions each extra hour adds a similar amount of credit and costs about as much again, so duration is a cost choice as well as a credit one. The model picks ‹bound: play duration› hours on today's costs and prices. | 容量拍卖不会按电池的全部功率计入容量，而是为每轮拍卖公布折减曲线：电池可持续放电的时间越长，计入的功率比例越高。近几轮拍卖中，每增加一小时带来的计入容量大致相同，所需投入也相近，因此时长既关乎计入容量，也关乎成本。按当前成本与价格，模型选择‹bound: play duration›小时。 |
-| Meaning | The ‹bound: play duration›-hour design is the model's choice; the auction's current curve does not single out this duration. | ‹bound: play duration›小时设计是模型的选择；拍卖的现行折减曲线并未特别偏向这一时长。 |
+| Copy | Each auction publishes storage credit by duration and unit size. Longer batteries receive more credit but need more capital. The earlier illustrative curve does not establish that the current play is the best duration. The refreshed four-, six- and eight-hour cases are awaiting the analyst’s decision before the call or play changes. | 每轮拍卖按储能时长和机组规模公布计入比例。更长时长可获得更多计入容量，但也需要更多资本。此前的示例曲线不能证明当前方案时长最优。更新后的四、六、八小时情景正等待分析师决定，之后才调整投资判断或方案。 |
+| Meaning | Compare return, capital required and value per MW on the same auction vintage; a higher IRR alone does not establish an investable case. | 应按同一拍卖批次比较回报、所需资本及每MW价值；更高的IRR本身不能证明方案值得投资。 |
 | Marker | Fair evidence. What would change it: the analyst's ruling on the model's de-rating curve, and a duration result rerun on the auction's published factors. | 证据尚可。会改变判断的证据：分析师就模型折减曲线作出裁定，并按拍卖公布的折减系数重新测算最佳时长。 |
 | Controls | Current play · Shorter teaching battery · Longer teaching battery · Open duration evidence | 当前方案 · 更短时长示例 · 更长时长示例 · 查看时长依据 |
 | Labels | Built megawatts · Credited megawatts · More capital · Example | 建成功率 · 计入容量 · 更多资本投入 · 示例 |
@@ -281,7 +281,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Evidence and chart | CL-IE-10, CL-IE-12, CL-IE-13, CL-IE-15, CL-IE-17; SRC-IE-17 (consultation), SRC-IE-14, SRC-IE-22, SRC-IE-20, SRC-IE-24; current Downside and Execution fields from REPO-IE-LIVE |
 | Authoring check | The redesign is a consultation, not a decision: it proposes a T-5 main auction with a T-1 top-up, a review of de-rating for energy-limited resources and stronger availability incentives (SRC-IE-17); do not describe these as adopted. The next T-4 auction's initial pack already shows lower storage credit (SRC-IE-22). Celtic has an expected year, not a commissioning date. The new services auction is an upside, never listed as a weakness of an unpriced line<br>The investment action is to verify the contract a project holds and its delivery date at the offered price; system need does not protect an owner's return |
 | Mobile | Factor cards, each with its section link; all four destinations visible at the end |
-| Status | `sourced`, future design `official-plan` (consultation); G-1 pending |
+| Status | `sourced`, future design `official-plan` (consultation); G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -300,7 +300,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Evidence and chart | REPO-IE-LIVE; existing market-page sections only |
 | Authoring check | No second financial view. If the call, play or lens differs at implementation, flag the story through `reviewedAgainst` instead of showing it beside another play |
 | Mobile | Four full-width links |
-| Status | Uses existing sections; G-1 pending. Stop at the market page |
+| Status | Uses existing sections; G-1 reviewed 1 November 2026; G-2 conditions retained. Stop at the market page |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -378,9 +378,9 @@ Explicit references to the dated records in §11, **not existing runtime fields*
 | Shot | Claims → sources | Chart / binding owner | Misreading prevented |
 | --- | --- | --- | --- |
 | ie-00 | CL-IE-14 → REPO-IE-LIVE | Existing market card | Thesis figures read as live; a modelled contract read as held |
-| ie-01 | CL-IE-01, CL-IE-12 → SRC-IE-01/03/19/20 | Own schematic | The island shares frequency with Great Britain; planned link drawn as built |
-| ie-02 | CL-IE-01, CL-IE-09 → SRC-IE-01/02/16 | H-IE-01, H-IE-03 | Capacity auction seen as a battery subsidy |
-| ie-03 | CL-IE-02 → SRC-IE-03/04 | H-IE-02, H-IE-05 | SNSP read as the renewable share; DS3 read as a permanent contract |
+| ie-01 | CL-IE-18, CL-IE-12 → SRC-IE-01/03/19/20 | Own schematic | The island shares frequency with Great Britain; planned link drawn as built |
+| ie-02 | CL-IE-18, CL-IE-09 → SRC-IE-01/02/16 | H-IE-01, H-IE-03 | Capacity auction seen as a battery subsidy |
+| ie-03 | CL-IE-19 → SRC-IE-03/04 | H-IE-02, H-IE-05 | SNSP read as the renewable share; DS3 read as a permanent contract |
 | ie-04 | CL-IE-03 → SRC-IE-05/06 | H-IE-04 | Every battery held a fixed contract; fast sizing fits the capacity auction |
 | ie-05 | CL-IE-04/05/06 → SRC-IE-07/08/09/10; REPO-IE-DP | Long-stop marker | Services end for good; an unconfirmed date shown as set |
 | ie-06 | CL-IE-07/08/11/15/16 → SRC-IE-11/12/13/14/18/21/22 | Chart-IE-CRM from CALC-IE-CRM | De-rated MW read as nameplate; price read as revenue per built MW; one auction's credit assumed for every contract |
@@ -429,10 +429,10 @@ New records for this market only. A later PR folds them into `source-register.md
 
 | ID | Publisher and title | Locator / URL | How read | Supports |
 | --- | --- | --- | --- | --- |
-| SRC-IE-01 | SEM Committee, "SEM" | https://www.semcommittee.com/sem, opening paragraphs | Read in full | CL-IE-01 |
-| SRC-IE-02 | SEM Committee, "SEM arrangements (2007–2018)" | https://www.semcommittee.com/node/2844 | Listing only | CL-IE-01 |
-| SRC-IE-03 | EirGrid and SONI, DS3 Programme Overview 2011 | https://cms.eirgrid.ie/sites/default/files/publications/DS3-Programme-Overview-2011.pdf, §1 (programme established) and the frequency workstream (rate of change of frequency as the key limit above 50% SNSP) | Read in full | CL-IE-01, CL-IE-02 |
-| SRC-IE-04 | EirGrid Group, "DS3 Programme" | https://www.eirgridgroup.com/how-the-grid-works/ds3-programme/, "What DS3 achieved" | Read in full | CL-IE-02, CL-IE-03 |
+| SRC-IE-01 | SEM Committee, "SEM" | https://www.semcommittee.com/sem, opening paragraphs | Read in full | CL-IE-18 |
+| SRC-IE-02 | SEM Committee, "SEM arrangements (2007–2018)" | https://www.semcommittee.com/node/2844 | Listing only | CL-IE-18 |
+| SRC-IE-03 | EirGrid and SONI, DS3 Programme Overview 2011 | https://cms.eirgrid.ie/sites/default/files/publications/DS3-Programme-Overview-2011.pdf, §1 (programme established) and the frequency workstream (rate of change of frequency as the key limit above 50% SNSP) | Read in full | CL-IE-18, CL-IE-19 |
+| SRC-IE-04 | EirGrid Group, "DS3 Programme" | https://www.eirgridgroup.com/how-the-grid-works/ds3-programme/, "What DS3 achieved" | Read in full | CL-IE-19, CL-IE-03 |
 | SRC-IE-05 | SEM Committee, SEM-19-062 System Services Fixed Contracts Procurement Outcomes, Information Paper, 13 November 2019 | https://www.semcommittee.com/files/semcommittee/media-files/SEM-19-062%20-%20System%20Services%20Fixed%20Contracts%20Procurement%20Outcomes%20-%20Information%20note.pdf, outcome section | Read in full | CL-IE-03 |
 | SRC-IE-06 | EirGrid and SONI, DS3 System Services Recommendations Paper (volume capped) | https://cms.eirgrid.ie/sites/default/files/publications/DS3-System-Services-Recommendations-Paper-website.pdf | Search extract; five services confirmed by SRC-IE-05 | CL-IE-03, ie-07 |
 | SRC-IE-07 | SEM Committee, SEM-25-031 FASS: System Services Regulated Arrangements to Future Arrangements – The Gap, Decision Paper, 23 June 2025 | https://www.semcommittee.com/files/semcommittee/2025-06/SEM-25-031%20System%20Services%20Regulated%20Arrangements%20to%20FASS%20-%20The%20Gap%20-%20Decision%20Paper.pdf, executive summary p. 2; §3.1 and Decisions 1–2, p. 9 | Read in full | CL-IE-04, CL-IE-06 |
@@ -473,8 +473,8 @@ Future (dashed): DS3 long-stop 30 September 2027 (SRC-IE-07); DASSA go-live, no 
 
 | ID | Claim | Type / scope | Source and locator | Limit | Shots | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| CL-IE-01 | Ireland and Northern Ireland trade wholesale power in one all-island market, live since 1 November 2007; its links to Great Britain are DC; the operators treat rate of change of frequency as the key limit at high non-synchronous output | `historical-fact`, `market-rule` | SRC-IE-01; SRC-IE-03 | "Holds its own frequency" is an interpretation of the DC links and the frequency limit | ie-01, ie-02 | `sourced` |
-| CL-IE-02 | DS3 was established in 2011; the SNSP limit rose from 50% to 65% by 2018, 70% in 2021 and 75% in March 2022 | `historical-fact` | SRC-IE-03; SRC-IE-04 | Operating limit, not annual renewable share | ie-03 | `sourced` |
+| CL-IE-18 | Ireland and Northern Ireland trade wholesale power in one all-island market, live since 1 November 2007; its links to Great Britain are DC; the operators treat rate of change of frequency as the key limit at high non-synchronous output | `historical-fact`, `market-rule` | SRC-IE-01; SRC-IE-03 | "Holds its own frequency" is an interpretation of the DC links and the frequency limit | ie-01, ie-02 | `sourced` |
+| CL-IE-19 | DS3 was established in 2011; the SNSP limit rose from 50% to 65% by 2018, 70% in 2021 and 75% in March 2022 | `historical-fact` | SRC-IE-03; SRC-IE-04 | Operating limit, not annual renewable share | ie-03 | `sourced` |
 | CL-IE-03 | The 2019 volume-capped competition drew bids from 18 providers; three succeeded, with 110 MW, all battery storage, on fixed six-year contracts for FFR, POR, SOR, TOR1 and TOR2 at one contracted volume; the regulated volume-uncapped arrangements continued in gates | `historical-fact` | SRC-IE-05; SRC-IE-04 (volume-uncapped gates) | Projects not named | ie-04 | `sourced` |
 | CL-IE-04 | Regulated arrangements for all system services continue until the earlier of DASSA go-live or 30 September 2027; any product not moved to DASSA stays on tariffs to the long-stop; no further tariff extension; the TSOs must have defined-volume procurement and a backstop by then | `market-rule` | SRC-IE-07, p. 2; Decisions 1–2, p. 9 | A later SEMC decision could change it | ie-05, ie-10 | `sourced` |
 | CL-IE-05 | DASSA go-live has moved: December 2026 was declared no longer viable in PIR V3.0, which set May 2027; at 24 June and 21 October 2026 the TSOs reported the programme red and PIR v4.0 in drafting, with no go-live date given | `official-plan` | SRC-IE-08; SRC-IE-24 | The repository's "not feasible" wording is not in these decks (CF-IE-02) | ie-05 | `sourced` |
@@ -526,3 +526,18 @@ Values are as published; nothing is calculated. Factor: Table 3 of the auction's
 | CF-IE-05 | **The model's 4-hour de-rating factor (0.66, a seed) is far above every published factor since the 2027/28 auction (0.268–0.291; 0.151 in the 2030/31 initial pack), and the published curves since then do not favour four hours** | ie-06, ie-08, ie-09, ie-11 | `ie-08` blocked; other shots bind to the card and state no factor | **Analyst: rule at G-1; any model change goes through a written plan** |
 
 Closed in this revision: GAP-IE-DERATE (factors extracted, now CF-IE-05), GAP-IE-SETTLE (SEMO settlement guide), CF-IE-04 (six-year term, SRC-IE-05).
+
+## Analyst decisions — 1 November 2026
+
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+
+| Item | Approved disposition / retained gate |
+| --- | --- |
+| CF-IE-05 / duration | Analyst approved the official 2029/30 credit, a six-hour research candidate and infraFund Wait call after reviewing 4/6/8h returns. Append old/new inputs, recommendation and learning to market history; six hours is the highest-IRR candidate among 4/6/8h, not the value-per-MW optimum. |
+| CF-IE-01 | Retain the existing assumed services seed and decay. Describe it as uncontracted competitive income included within trading, not secured revenue or continued DS3 tariffs. Delete the claim that the case is priced without services. |
+| CF-IE-02/03 | Successor start unconfirmed; secured share binds row.investment.secured. |
+| Claims / chart | Renumber conflicting CL-IE-01/02 to CL-IE-18/19 in this script. Four-hour chart only; 2030/31 initial-pack point dashed and labelled. All non-opening markers Fair. Public price layers remain subject to rights clearance. |
+
+**Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
+
+**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
