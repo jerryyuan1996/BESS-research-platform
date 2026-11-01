@@ -29,7 +29,7 @@ import { sha256 } from './envelope.mjs';
  * One row per local trading day: enough to draw every chart the site needs
  * without shipping the underlying half-hourly series.
  */
-export function dailyRollup(series, { timezone, durationHours }){
+export function dailyRollup(series, { timezone, durationHours, price = true }){
   const clean = cleanSeries(series);
   if (clean.length === 0) return [];
 
@@ -39,7 +39,7 @@ export function dailyRollup(series, { timezone, durationHours }){
 
   for (const [d, pts] of [...days.entries()].sort((a, b) => a[0].localeCompare(b[0]))){
     const values = pts.map(p => p.v);
-    const detail = dailySpreadDetail(pts, durationHours, pointsPerHour);
+    const detail = price ? dailySpreadDetail(pts, durationHours, pointsPerHour) : null;
     rows.push({
       d,
       n: pts.length,
@@ -68,7 +68,8 @@ function round(v){
  * @param {object} extra     { arbitrage } — bridge output, when computable
  */
 export function buildSummary(snapshot, metrics, { timezone, durationHours, arbitrage = null } = {}){
-  const daily = dailyRollup(snapshot.series, { timezone, durationHours });
+  const rollupTimezone = timezone || (snapshot.units?.power ? 'UTC' : undefined);
+  const daily = dailyRollup(snapshot.series, { timezone: rollupTimezone, durationHours, price: Boolean(snapshot.units?.price) });
 
   const summary = {
     schemaVersion: snapshot.schemaVersion,
@@ -125,6 +126,7 @@ export function buildSummary(snapshot, metrics, { timezone, durationHours, arbit
       claim: arbitrage.claim,
     } : null,
 
+    ...(snapshot.units?.power ? { dailyTimezone: rollupTimezone } : {}),
     daily,
 
     /* Ties this summary to the exact snapshot it was computed from. */
