@@ -1,7 +1,7 @@
 # Italy: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Italy script researched 31 October 2026; shot layout v1.2
-Status: `proposed` script and bilingual page-text draft; hinge sources opened 31 October 2026; **G-1 analyst sign-off pending**; steps 1 and 2 only. Markdown only; nothing is built, registered or published.
+Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
 Navigation: [Master plan](README.md) | [Narrative card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Source register](source-register.md) (SRC-IT-01 to 04, CL-IT-01 to 03) | [Finland format](finland-storyboard.md)
 
 ## 0. Read first: the research meets the call's own trigger
@@ -21,7 +21,7 @@ The play's next action reads: "Screen ready-to-build capacity-market projects in
 
 ## 1. Scope, argument and reading route
 
-**Explain the current fund call: advance on the capacity market at four hours, with MACSE as a separate, lower-return route.** Italy is long, priced in zones, and its new solar, wind and storage requests sit mostly in the south and on the islands. It has two storage contracts that never stack. The capacity market pays a premium per credited MW for fifteen years and leaves the trading margin with the owner. MACSE pays a fixed premium per MWh of storage and takes the battery's time-shifting use for the system. The platform's model finds the capacity route at four hours worth more than the MACSE design at six. The capacity route is therefore the call, mostly merchant and graded Thin on that line. MACSE remains the alternative that a cheaper marginal MWh could reopen.
+**Explain the narrowed fund call: screen ready-to-build assets already holding an earlier awarded capacity contract, with MACSE priced separately.** The legacy contract-vintage illustration is not a delivery-2028 new-entry case. New projects need their zone-specific credit, a known auction price and a separate underwriting decision. Italy is long, priced in zones, and its new solar, wind and storage requests sit mostly in the south and on the islands. It has two storage mechanisms. Their contractual compatibility remains a diligence gap, and this model prices them separately. The capacity market pays a premium per credited MW for fifteen years and leaves the trading margin with the owner. MACSE pays a fixed premium per MWh of storage and takes the battery's time-shifting use for the system. The platform's model finds the capacity route at four hours worth more than the MACSE design at six. The capacity route is therefore the call, mostly merchant and graded Thin on that line. MACSE remains the alternative that a cheaper marginal MWh could reopen.
 
 Allocation: `it`; physical boundary: the Italian transmission system, mainland and the two large islands, priced in day-ahead zones. Default lens: `infraFund`. `reviewedAgainst`: **REPO-IT-LIVE**, `main` at `edcb39ca0d69397f3683dffc9af5ffb49473c98c`, briefing built for 2026-10-31.
 
@@ -72,12 +72,12 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Evidence and chart | REPO-IT-LIVE; CL-IT-13. Existing market play card only; a one-line fork note reads the MACSE row from the briefing. No new chart |
 | Authoring check | Reuse the card, never `view.thesis` or `play.why`, which type a return and the superseded 0.53. The card's headline return (investment summary) and the briefing play's return (design grid) differ; the card's is shown here (CF-IT-02). Flag CF-IT-01 beside the build ticket: the bound next action names the south and islands at 0.53, which the decided factors overtake. Do not edit the action from the story |
 | Mobile | Full-width card, fork line and two buttons; no scene before the conclusion |
-| Status | `sourced` / `model-assumes-route`; G-1 pending; build blocked until the analyst rules on CF-IT-01 |
+| Status | `sourced` / `model-assumes-route`; G-1 reviewed 1 November 2026; G-2 conditions retained; build blocked until the analyst rules on CF-IT-01 |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | What is the call here, and what is the alternative? | 这里的投资判断是什么？备选路径又是什么？ |
-| Copy | **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**. Italy offers two storage contracts that never stack. This play takes the capacity market at ‹bound: play duration› hours; MACSE is a separate route, rated ‹bound: MACSE call›. The story explains why. | **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**。意大利有两种储能合同，二者不能叠加。本方案选择‹bound: play duration›小时的容量市场；MACSE是另一条路径，评级为‹bound: MACSE call›。下面说明原因。 |
+| Copy | **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**. Italy offers two storage mechanisms, modelled as separate cases pending confirmation of contract compatibility. This play takes the capacity market at ‹bound: play duration› hours; MACSE is a separate route, rated ‹bound: MACSE call›. The story explains why. | **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**。意大利有两种储能机制；在核实合同兼容性前，分别测算两条路径。本方案选择‹bound: play duration›小时的容量市场；MACSE是另一条路径，评级为‹bound: MACSE call›。下面说明原因。 |
 | Marker | The play's own marker, already on the card | 沿用方案卡上该方案自身的证据标记 |
 | Controls | Start the story · Go to the investment case | 开始阅读 · 前往投资方案 |
 
@@ -176,7 +176,7 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Evidence and chart | CL-IT-10 (event) and CL-IT-10i (interpretation); SRC-IT-07, SRC-IT-08, SRC-IT-09; CF-IT-01. Values bind ‹bound: DY2027 de-rating› and ‹bound: DY2028 de-rating by zone› from the decree's annex record |
 | Authoring check | State the event, not a verdict: the play's re-pricing is the analyst's. Do not show the superseded single-figure proposal as current; if shown at all, it is a ghosted "Proposed earlier" mark with its own date. Apply the 2028 factors only to new storage; existing and contracted capacity, and MACSE winners, keep the 2027 factor. The 2028 premium is set at the 21 December auction and is unknown; never multiply the 2027 premium by a 2028 factor on this panel |
 | Mobile | Bars stacked vertically, zone names as row labels, values in text |
-| Status | Event opened (decree 327/2026, Annex 4 Table 11; ARERA 370/2026); delivery-2027 factor from the repository record (GAP-IT-DY27); interpretation `proposed`; G-1 pending, analyst ruling on CF-IT-01 required |
+| Status | Event opened (decree 327/2026, Annex 4 Table 11; ARERA 370/2026); delivery-2027 factor from the repository record (GAP-IT-DY27); interpretation `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained, analyst ruling on CF-IT-01 required |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -203,8 +203,8 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Why does this play build ‹bound: play duration› hours? | 本方案为何选择‹bound: play duration›小时？ |
-| Copy | A longer battery is credited for more of its power, but every extra hour costs capital and spreads the trading margin thinner. On the platform's design test, ‹bound: play duration› hours gives the capacity route the most value per MW. | 电池越长，计入的功率比例越高；但每增加一小时都要投入资本，交易收益也会摊薄。在平台的时长测试中，容量路径在‹bound: play duration›小时时每MW价值最高。 |
-| Meaning | This duration balances credited capacity, trading value and capital cost under the factors the model uses; a lower factor can move that balance. | 在模型采用的系数下，这一时长在计入容量、交易价值与资本成本之间取得平衡；系数降低可能改变这一平衡。 |
+| Copy | A longer battery receives more capacity credit, but needs more capital. The current design test uses legacy contract-vintage assumptions. Check the asset’s actual awarded price, factor and delivery obligations before applying it; the decided new-storage factors require a separate zonal case. | 更长时长可以获得更多计入容量，但也需要更多资本。当前设计测试采用旧合同批次的假设。使用前须核对资产实际中标价格、计入比例与交付义务；已确定的新储能系数需要另建分区测算情景。 |
+| Meaning | A legacy award and a new entrant have different rights; the old design result does not establish the best new-entry duration. | 旧批次中标资产与新进入者享有不同权利；旧设计结果不能证明新进入者的最优时长。 |
 | Marker | Fair evidence. What would change it: the design test re-run at the decided delivery-2028 factors, or a different cost per MWh. | 证据尚可。会改变判断的证据：按已确定的2028交付年度系数重新进行时长测试，或每MWh成本发生变化。 |
 | Controls | Current play · Teaching battery: two, six, eight hours · Open duration evidence | 当前方案 · 示例电池：二、六、八小时 · 查看时长依据 |
 | Labels | More hours, more of the power credited · More hours, more capital · Thinner trading margin per MWh · Example | 时长越长，计入的功率越多 · 时长越长，资本投入越多 · 每MWh交易收益摊薄 · 示例 |
@@ -286,8 +286,8 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | If MACSE secures more, why is it not the call? | MACSE锁定的收入更多，为何不是首选？ |
-| Copy | Because here, security costs return. On the platform's design comparison, the MACSE play secures ‹bound: MACSE secured share› of revenue and returns ‹bound: MACSE design hold›, against ‹bound: capacity design hold› for the capacity play on the same basis. The fund rates MACSE ‹bound: MACSE call›: it pays only if the marginal MWh costs well below the published turnkey price. Next for MACSE: ‹bound: MACSE next action› | 原因在于，在这里，确定性要以回报为代价。在平台的设计对比中，MACSE方案锁定‹bound: MACSE secured share›的收入，回报为‹bound: MACSE design hold›；同一口径下，容量方案为‹bound: capacity design hold›。基金对MACSE的评级为‹bound: MACSE call›：只有边际MWh成本远低于公开的交钥匙价格，它才划算。MACSE的下一步：‹bound: MACSE next action› |
-| Meaning | MACSE is the lower-return route, and a cheaper marginal MWh or a higher second-auction clear could reopen it; the call stays with the capacity market. | MACSE是回报较低的路径；若边际MWh更便宜或第二轮拍卖出清价更高，判断可能重新打开；投资首选仍是容量市场。 |
+| Copy | The two routes trade different rights for different payments. The legacy capacity illustration and MACSE are compared on the labelled design basis: ‹bound: capacity design hold› and ‹bound: MACSE design hold›. MACSE’s modelled secured share is ‹bound: MACSE secured share›. These are separate vintages and contract assumptions, not a current new-entry ranking. Next for MACSE: ‹bound: MACSE next action› | 两条路径以不同权利换取不同付款。旧批次容量情景与MACSE按明确标注的设计口径比较：分别为‹bound: capacity design hold›和‹bound: MACSE design hold›。MACSE模型的固定收入占比为‹bound: MACSE secured share›。两者对应不同批次和合同假设，不能用作当前新进入者的投资排序。MACSE下一步：‹bound: MACSE next action› |
+| Meaning | Underwrite the awarded contract, the zone and the entry price. Reprice new storage before comparing it with MACSE. | 承销依据是实际中标合同、所在分区及进入价格。比较新储能与MACSE之前，应先重新定价。 |
 | Marker | Thin evidence. What would change it: the second auction's clearing prices by area, and an EPC price for the marginal MWh. | 证据单薄。会改变判断的证据：第二轮拍卖各区域的出清价格，以及边际MWh的EPC报价。 |
 | Controls | Capacity market · MACSE · About the basis | 容量市场 · MACSE · 口径说明 |
 | Labels | Secured share · Hold return, design comparison · Not the market page's headline basis | 锁定收入占比 · 持有期回报（设计对比口径） · 与市场页标题回报口径不同 |
@@ -303,7 +303,7 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Evidence and chart | CL-IT-10, CL-IT-11, CL-IT-12, CL-IT-14; triggers in REPO-IT-LIVE; Downside definitions in `src/experience/downsideNarrative.js` |
 | Authoring check | A risk card shows direction only, no probability or new number. Do not tell the reader to avoid the south; the analyst rules on CF-IT-01. Keep "no toll play" as settled: the toll card is a watch, not a third route. Exits to the market page; no second financial view |
 | Mobile | Factor cards stacked, then four large section links |
-| Status | Decree and MACSE auction opened; capacity auction date from press (SRC-IT-10); future auctions `official-plan`; G-1 pending |
+| Status | Decree and MACSE auction opened; capacity auction date from press (SRC-IT-10); future auctions `official-plan`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -510,3 +510,18 @@ Existing claims CL-IT-01 to 03 stay in the source register. This script supplies
 | GAP-IT-STRIKE | Strike-price level and stress-hour obligations | it-02, it-09 | Qualitative |
 | GAP-IT-QUEUE | Storage connection requests by region | it-04 | Stacked symbols, not to scale |
 | GAP-IT-ZONES | **Closed.** SRC-IT-05 gives seven physical day-ahead zones from 2021; `src/markets/it/data.js` says six | it-01 | Bind names; the repository count is for the analyst to correct separately |
+
+## Analyst decisions — 1 November 2026
+
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+
+| Item | Approved disposition / retained gate |
+| --- | --- |
+| CF-IT-01 / entry | Approved: narrow to RTB assets already holding an earlier awarded capacity contract. Verify its actual factor, price, delivery date and transferability; price new storage separately by zone. No new-entry price is invented. |
+| CF-IT-02 / chart | Approve Chart-IT-FORK and fixed-vintage source records. Keep investment-summary headline and the labelled design comparison distinct; no cross-basis ranking. |
+| Stacking / gaps | Capacity and MACSE are separately calculated pending compatibility clauses. Withhold awarded MW/average duration until the results report is opened. Seven physical bidding zones and procurement-area groups are distinct. Use maximum premium. |
+| Markers / Chinese | Approve proposed markers for the revised scope; all build evidence, rights and primary-source gaps remain G-2 conditions. Review both languages against the narrowed call. |
+
+**Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
+
+**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
