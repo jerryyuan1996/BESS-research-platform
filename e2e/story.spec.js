@@ -383,3 +383,153 @@ test('German full research remains one click deeper and returns focus', async ({
   await page.keyboard.press('Escape');
   await expect(trigger).toBeFocused();
 });
+
+/* ---- Finland: WP-09 reuse of the released story shell ------------------- */
+const FI='/markets/finland';
+const openFinland=async page=>{
+  await page.goto(FI);
+  const trigger=page.locator('.ix-full-research');
+  await trigger.click();
+  const dialog=page.locator('.ix-story-dialog');
+  await expect(dialog).toBeVisible();
+  return {trigger,dialog};
+};
+
+test('Finland reads the signed-off play in both languages and returns focus',async({page},info)=>{
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  const {trigger,dialog}=await openFinland(page);
+  await expect(dialog.locator('article.ix-shot')).toHaveCount(13);
+  await expect(dialog.locator('.ix-marker')).toHaveCount(13);
+  await expect(dialog.locator('article.ix-shot .k-scene')).toHaveCount(12);
+  await expect(dialog.locator('.fi-opening-thumb')).toHaveCount(1);
+  const opening=dialog.locator('[data-shot=fi-00]');
+  await expect(opening.locator('.ix-story-play-title')).toContainText('2h');
+  await expect(opening.locator('.ix-shot-copy')).toContainText('merchant exposure after expiry');
+  await expect(dialog.locator('[data-shot=fi-08] .ix-shot-copy')).toContainText('uses 2 hours');
+  await expect(dialog.locator('[data-shot=fi-11] .ix-shot-copy')).toContainText('revenue reverts to merchant exposure');
+  await expect(dialog).not.toContainText('[object');
+  await dialog.getByRole('button',{name:'Start the story',exact:true}).click();
+  await expect(dialog.locator('#ix-shot-fi-01')).toBeFocused();
+  await dialog.getByRole('button',{name:'Switch to Chinese'}).click();
+  await expect(dialog.locator('[data-shot=fi-01] h4')).toHaveText('芬兰与谁共享电网频率？');
+  await expect(dialog.locator('[data-shot=fi-08] .ix-shot-copy')).toContainText('采用2小时');
+  await expect(dialog.locator('.fi-opening-thumb')).toHaveCount(1);
+  await expect(dialog.locator('.ix-marker-fair').first()).toHaveText('证据尚可');
+  await dialog.screenshot({path:info.outputPath('finland-story-zh.png')});
+  await dialog.getByRole('button',{name:'切换到英文'}).click();
+  await dialog.getByRole('button',{name:'Full research ↗'}).click();
+  await expect(page.locator('.ix-research-dialog')).toBeVisible();
+  await page.keyboard.press('Escape');await page.keyboard.press('Escape');
+  await expect(trigger).toBeFocused();
+  expect(errors).toEqual([]);
+});
+
+test('Finland teaching controls preserve the case, URL and history',async({page})=>{
+  await page.goto(FI+'?view=story&chapter=battery&shot=fi-08');
+  const dialog=page.locator('.ix-story-dialog');
+  await expect(dialog.locator('#ix-shot-fi-08')).toBeFocused();
+  const before=await page.locator('#bankable').innerText();
+  const duration=dialog.locator('[data-shot=fi-08]');
+  const longer=duration.getByRole('button',{name:'Longer teaching battery',exact:true});
+  await longer.focus();
+  const url=page.url(),history=await page.evaluate(()=>window.history.length);
+  await page.keyboard.press('Enter');
+  await expect(duration.locator('[data-duration]')).toHaveAttribute('data-duration','4');
+  await expect(longer).toHaveAttribute('aria-pressed','true');
+  expect(page.url()).toBe(url);expect(await page.evaluate(()=>window.history.length)).toBe(history);
+  await dialog.getByRole('button',{name:'Switch to Chinese'}).click();
+  await expect(duration.getByRole('button',{name:'更长时长示例',exact:true})).toHaveAttribute('aria-pressed','true');
+  await dialog.getByRole('button',{name:'切换到英文'}).click();
+  const historyShot=dialog.locator('[data-shot=fi-03]');
+  await historyShot.getByRole('button',{name:'Future plans',exact:true}).click();
+  await expect(historyShot.locator('.ix-marker')).toHaveCount(1);
+  await expect(historyShot.locator('.ix-marker')).toHaveClass(/ix-marker-thin/);
+  await historyShot.getByRole('button',{name:'History',exact:true}).click();
+  await expect(historyShot.locator('.ix-marker')).toHaveClass(/ix-marker-fair/);
+  await page.keyboard.press('Escape');
+  expect(await page.locator('#bankable').innerText()).toBe(before);
+});
+
+test('Finland need keeps storage definitions, source gaps and the crossing honest',async({page},info)=>{
+  const {dialog}=await openFinland(page),shot=dialog.locator('[data-shot=fi-05]');
+  await shot.getByRole('button',{name:'Current scale',exact:true}).click();
+  await expect(shot.locator('[data-series=network-model-technical-capacity]')).toHaveCount(7);
+  await expect(shot.locator('[data-crossing=left-censored]')).toHaveCount(1);
+  await expect(shot.locator('[data-connected-observation]')).toHaveAttribute('data-precision','early-month');
+  await expect(shot.locator('.ix-shot-copy')).toContainText('exact crossing date is unknown');
+  await shot.getByRole('button',{name:'Show definitions',exact:true}).click();
+  await expect(shot).toContainText('differs from the all-size connected estimate');
+  await shot.screenshot({path:info.outputPath('finland-need-en.png')});
+  await shot.getByRole('button',{name:'Procurement history',exact:true}).click();
+  await expect(shot.locator('[data-crossing]')).toHaveCount(0);
+  await expect(shot).toContainText('annual obligation is a different measure');
+  await expect(shot.locator('[data-series=fcrN]')).toHaveCount(7);
+});
+
+test('Finland reserve auction prices stay separate from activation energy and captured revenue',async({page})=>{
+  const {dialog}=await openFinland(page),prices=dialog.locator('[data-shot=fi-06]');
+  await prices.getByText('Inspect capacity prices',{exact:true}).click();
+  const product=prices.getByRole('combobox',{name:'Choose product'});
+  for(const id of ['fi-fcr-n','fi-fcr-d-up','fi-fcr-d-down','fi-afrr-up','fi-afrr-down','fi-mfrr-up','fi-mfrr-down']){
+    await product.selectOption(id);
+    await expect(prices.locator('[data-series="'+id+'"]').first()).toBeVisible();
+    await expect(prices).toContainText('EUR/MW/h');
+    await expect(prices).toContainText('Europe/Helsinki');
+    await expect(prices).toContainText('Auction observations, not captured earnings');
+  }
+  const payment=dialog.locator('[data-shot=fi-10]');
+  await payment.getByRole('button',{name:'Capacity',exact:true}).click();
+  await expect(payment.locator('[data-payment-path=capacity]')).toBeVisible();
+  await expect(payment.locator('[data-payment-path=capacity]')).toContainText('EUR/MW/h');
+  await payment.getByRole('button',{name:'Activation energy',exact:true}).click();
+  await expect(payment.locator('[data-payment-path=energy]')).toBeVisible();
+  await expect(payment.locator('[data-payment-path=energy]')).toContainText('EUR/MWh');
+  await expect(payment.locator('[data-payment-path=capacity]')).toBeHidden();
+  await expect(payment.locator('[data-payment-path=energy]')).toContainText('no separate energy-market fee shown');
+});
+
+test('Finland uses shared story URLs and retains its local teaching state on refresh',async({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto(FI+'?view=story&chapter=battery&shot=fi-08');
+  const dialog=page.locator('.ix-story-dialog');
+  await expect(dialog.locator('#ix-shot-fi-08')).toBeFocused();
+  await dialog.locator('[data-shot=fi-08]').getByRole('button',{name:'Longer teaching battery',exact:true}).click();
+  await dialog.getByRole('button',{name:'Next →'}).click();
+  await expect(page).toHaveURL(/shot=fi-09$/);
+  await page.goBack();await expect(dialog.locator('#ix-shot-fi-08')).toBeFocused();
+  await page.reload();await expect(page.locator('#ix-shot-fi-08')).toBeFocused();
+  await expect(page.locator('[data-shot=fi-08] [data-duration]')).toHaveAttribute('data-duration','4');
+  await page.goto(FI+'?view=story&chapter=payment&shot=fi-99');
+  await expect(page.locator('#ix-shot-fi-10')).toBeFocused();
+});
+
+test('Finland fits four widths in English and Chinese with keyboard controls',async({page},info)=>{
+  const {dialog}=await openFinland(page);
+  for(const language of ['en','zh']){
+    if(language==='zh')await dialog.getByRole('button',{name:'Switch to Chinese'}).click();
+    for(const width of [390,768,1440,1920]){
+      await page.setViewportSize({width,height:900});
+      expect(await dialog.locator('.ix-story-body').evaluate(el=>el.scrollWidth-el.clientWidth)).toBeLessThanOrEqual(1);
+    }
+    await page.setViewportSize({width:390,height:844});
+    await dialog.locator('[data-shot=fi-08]').scrollIntoViewIfNeeded();
+    await dialog.screenshot({path:info.outputPath('finland-phone-'+language+'.png')});
+  }
+});
+
+test('Finland evidence and investment exits reach the existing market sections',async({page})=>{
+  const exits=[['fi-08','Open duration evidence','bankable'],['fi-11','Contract evidence','bankable'],['fi-12','Bankable case','bankable'],['fi-12','Revenue','revenue'],['fi-12','Execution','execution'],['fi-12','Downside','downside']];
+  for(const [shot,label,anchor]of exits){
+    const {dialog}=await openFinland(page);
+    await dialog.locator('[data-shot='+shot+'] .ix-story-exits').getByRole('link',{name:label,exact:true}).click();
+    await expect(dialog).toHaveCount(0);await expect(page.locator('#'+anchor)).toBeFocused();
+  }
+});
+
+test('Finland story code loads only after its existing market-page button',async({page})=>{
+  const chunks=[];page.on('request',r=>{if(/story-fi-.*\.js/.test(r.url()))chunks.push(r.url());});
+  await page.goto('/');expect(chunks).toEqual([]);
+  await page.goto(FI);await expect(page.locator('.ix-full-research')).toBeVisible();expect(chunks).toEqual([]);
+  await page.locator('.ix-full-research').click();await expect(page.locator('.ix-story-dialog')).toBeVisible();
+  expect(chunks.length).toBe(1);
+});

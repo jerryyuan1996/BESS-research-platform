@@ -15,6 +15,7 @@
    --------------------------------------------------------------------------- */
 export const STORIES = {
   wa: { released: true, load: () => import('../../markets/wa/storyPack.js') },
+  fi: { released: true, load: () => import('../../markets/fi/storyPack.js') },
   de: { released: true, load: () => import('../../markets/de/storyPack.js') },
 };
 
