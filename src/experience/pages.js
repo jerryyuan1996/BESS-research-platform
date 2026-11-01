@@ -272,6 +272,7 @@ function compareDialog(rows) {
 let stopStoryPlace = null;
 function renderMarket(container, row, route) {
   const data = caseFor(row), m = row.market, mf = m.manifest;
+  let storyRows = [row], storyReady = Promise.resolve();
   const content = main();
   content.append(h('nav', { class: 'ix-breadcrumb', 'aria-label': L(['Breadcrumb', '面包屑导航']) }, link('/', ['Investment brief', '投资简报']), ' / ', link('/returns', ['Global markets', '全球市场']), ' / ', h('span', {}, name(row))));
   content.append(metaBar('03', ['MARKET INTELLIGENCE', '市场详情']));
@@ -280,6 +281,18 @@ function renderMarket(container, row, route) {
   } }, markets.map(market => h('option', { value: market.manifest.slug }, L(market.manifest.name)))); select.value = mf.slug;
   content.append(h('section', { class: 'ix-market-intro' }, h('div', {}, eyebrow(['FROM MARKET SCREEN TO INVESTMENT CASE', '从市场筛选，走向投资方案']), h('h1', {}, name(row)), h('p', { class: 'ix-lead' }, L(routeName(row))), h('div', { class: 'ix-actions' }, tag(row), h('span', { class: 'ix-mono' }, `${row.investment?.currency||mf.currency} · ${row.play?.hours || m.comparison.archetype.durationHours}H`))),
     h('div', { class: 'ix-market-controls' }, select, button(['Print investment brief ↗', '打印投资简报 ↗'], () => window.print(), 'ix-outline'))));
+  if (row.id === 'pl') {
+    const choices = h('div');
+    content.append(choices);
+    const investor = lens();
+    storyReady = import('./playChoices.js').then(({ renderPlayChoices, storyRowsFor }) => {
+      storyRows = storyRowsFor(row, investor);
+      if (choices.isConnected) {
+        if (storyRows.length > 1) choices.replaceWith(renderPlayChoices(storyRows, row, tag));
+        else choices.remove();
+      }
+    });
+  }
   content.append(decisionPanel(row));
   const anchors = [['decision',['Decision','投资判断']],['overview', ['Overview', '市场概览']], ['revenue-drivers', ['Revenue drivers', '收入动因']], ['bankable', ['Bankable case', '可融资方案']], ['revenue', ['Revenue', '收益拆解']], ['execution', ['Execution', '执行步骤']], ['opportunity-comparison', ['Special opportunity', '特殊机会']], ['downside', ['Downside', '下行风险']], ['sources', ['Sources', '来源']]];
   content.append(h('nav', { class: 'ix-section-nav', 'aria-label': L(['Market sections', '市场详情章节']) }, anchors.map(([id, label]) => link(`#${id}`, label))));
@@ -299,7 +312,7 @@ function renderMarket(container, row, route) {
     research.disabled=true;
     const story=storyFor(mf.id);
     (story
-      ? story.load().then(pack=>{if(research.isConnected&&!storyOpen()&&!pack.open({row,result:data,name:marketName(row),trigger:research,openResearch,place,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
+      ? storyReady.then(()=>story.load()).then(pack=>{if(research.isConnected&&!storyOpen()&&!pack.open({row,rows:storyRows,result:data,name:marketName(row),trigger:research,openResearch,place,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
       : openResearch(research))
       .catch(()=>{research.textContent=L(['Could not load; click to retry','暂未载入，点击重试']);})
       .finally(()=>{research.disabled=false;});
