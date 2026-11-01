@@ -239,6 +239,7 @@ const BUDGET = {
        plan's ceiling for shell, content and kit together is about 40 KiB. */
     'story-wa': 40,
     'story-fi': 40,
+    'story-de': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -782,7 +783,6 @@ test('the dossier stylesheet exists as its own chunk', async (t) => {
   assert.ok(carrier.bytes < 8 * 1024,
     `the dossier stylesheet is ${(carrier.bytes / 1024).toFixed(1)} kB, over its 8 kB budget`);
 });
-
 
 test('the Finland story remains lazy and its complete additional graph fits the story cap',async t=>{
   if(skipWithoutDist(t))return;

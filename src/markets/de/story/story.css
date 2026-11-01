@@ -30,3 +30,6 @@
 .de-clock[data-tail=true] .de-tail { font-weight:var(--fw-bold); }
 
 .de-spread-chart[data-after-expiry=true] .de-fee-panel, .de-clock[data-tail=true] span:first-child, .de-clock[data-tail=false] .de-tail { opacity:.5; }
+
+.de-clock > span { padding-bottom:5px; border-bottom:2px solid var(--ix-green); }
+.de-clock > .de-tail { border-bottom-style:dashed; }
