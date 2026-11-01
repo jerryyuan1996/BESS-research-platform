@@ -7,9 +7,9 @@ import {opportunities} from '../src/experience/model.js';
 import {reviewedRowsMatch} from '../src/markets/it/storyBindings.js';
 import {story} from '../src/markets/it/story.js';
 const row=opportunities('infraFund').find(r=>r.id==='it');
-test('Italy stays an analyst preview until G-2 releases it',()=>{
- assert.equal(STORIES.it.released,false);
- assert.equal(storyFor('it',''),null);
+test('Italy opens for ordinary readers after G-2 approval',()=>{
+ assert.equal(STORIES.it.released,true);
+ assert.equal(storyFor('it',''),STORIES.it);
  assert.equal(storyFor('it','?story=preview'),STORIES.it);
 });
 test('the existing multi-opportunity pattern carries two independent calls and one selected case',()=>{

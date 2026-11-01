@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 test.beforeEach(async({page})=>{
  await page.route(/^https:\/\//,route=>new URL(route.request().url()).origin===process.env.PLATFORM_TEST_BASE_URL?route.continue():route.abort());
 });
-const open=async(page,path='/markets/italy?story=preview')=>{
+const open=async(page,path='/markets/italy')=>{
  await page.goto(path);
  const trigger=page.locator('.ix-full-research');await trigger.click();
  const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();return {trigger,dialog};
@@ -26,7 +26,7 @@ test('Italy reads both independent plays in two languages and returns keyboard f
  expect(errors).toEqual([]);
 });
 test('Italy teaching controls keep case, URL and history; the chart remains an Example',async({page})=>{
- await page.goto('/markets/italy?story=preview&view=story&chapter=battery&shot=it-06');
+ await page.goto('/markets/italy?view=story&chapter=battery&shot=it-06');
  const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
  await expect(dialog.locator('#ix-shot-it-06')).toBeFocused();
  const before=await page.locator('#bankable').innerText(),url=page.url(),history=await page.evaluate(()=>window.history.length);
@@ -43,16 +43,16 @@ test('Italy story code and stylesheet load only on opening, with no Italian pric
  const requests=[];page.on('request',r=>requests.push(r.url()));
  await page.goto('/');await expect(page.locator('main')).toBeVisible();
  expect(requests.some(u=>/story-it-|storyPack-/.test(u))).toBe(false);
- await page.goto('/markets/italy?story=preview');await expect(page.locator('.ix-full-research')).toBeVisible();
+ await page.goto('/markets/italy');await expect(page.locator('.ix-full-research')).toBeVisible();
  expect(requests.some(u=>/story-it-|storyPack-/.test(u))).toBe(false);
  await page.locator('.ix-full-research').click();await expect(page.locator('.ix-story-dialog')).toBeVisible();
  expect(requests.some(u=>/story-it-/.test(u))).toBe(true);
  expect(requests.some(u=>/it-day-ahead|mercatoelettrico|entsoe|it-auction-results\.json/.test(u))).toBe(false);
 });
-test('Italy preview guards the lens, while the standard button keeps research',async({page})=>{
- await page.goto('/markets/italy');await page.locator('.ix-full-research').click();await expect(page.locator('.ix-research-dialog')).toBeVisible();await page.keyboard.press('Escape');
+test('Italy opens normally and keeps research for a different lens',async({page})=>{
+ await page.goto('/markets/italy');await page.locator('.ix-full-research').click();await expect(page.locator('.ix-story-dialog')).toBeVisible();await page.keyboard.press('Escape');
  await page.evaluate(()=>localStorage.setItem('hub_lens','developer'));
- await page.goto('/markets/italy?story=preview');await page.locator('.ix-full-research').click();
+ await page.goto('/markets/italy');await page.locator('.ix-full-research').click();
  await expect(page.locator('.ix-research-dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
 });
 test('Italy direct links, refresh, Back and section handoffs retain the reading place',async({page})=>{
@@ -61,7 +61,7 @@ test('Italy direct links, refresh, Back and section handoffs retain the reading 
  await page.goBack();await expect(dialog.locator('#ix-shot-it-01')).toBeFocused();
  await page.reload();await expect(page.locator('.ix-story-dialog #ix-shot-it-01')).toBeFocused();
  for(const anchor of ['bankable','revenue','execution','downside']){
-  await page.goto('/markets/italy?story=preview&view=story&chapter=investment&shot=it-11');
+  await page.goto('/markets/italy?view=story&chapter=investment&shot=it-11');
   await page.locator('[data-shot="it-11"] .ix-story-exits a[href="#'+anchor+'"]').click();
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);await expect(page.locator('#'+anchor)).toBeFocused();
  }

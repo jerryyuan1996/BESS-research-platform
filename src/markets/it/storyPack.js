@@ -1,4 +1,4 @@
-/* G-2 preview only. All application-wide story behaviour stays on the kit. */
+/* G-2 approved release. All application-wide story behaviour stays on the kit. */
 import '../../experience/story/kit/index.js';
 import './story/story.css';
 import {h} from '../../utils/dom.js';
