@@ -1,6 +1,7 @@
 /* Germany — reads the same briefing cells and case result as the market page.
  * The page supplies its already-computed case result; importing the page chunk
  * here would disturb lazy splitting. No underwriting input is changed. */
+import { perMW } from '../../briefing/sentences.js';
 import { HOME_BRIEFING } from '../../briefing/homeData.js';
 import { HISTORY, REVIEW_DATE, PRICE_REUSE_LICENCE } from './story/history.js';
 
@@ -26,7 +27,7 @@ export function storyBindings(row, ui = {}) {
     playDuration: finite(row?.play?.hours) ? String(row.play.hours) : null,
     preferredDuration: finite(preferred?.hours) ? String(preferred.hours) : null,
     longerDuration: finite(longer?.hours) ? String(longer.hours) : null,
-    merchantValue: number(preferred?.value),
+    merchantValue: finite(preferred?.value) ? perMW(preferred.value) : null,
     annualFeeLabel: number(fee),
     securedYears: tenor === null ? null : String(tenor),
     contractExpiryLabel: expiryMonth === null ? null : ['T+' + expiryMonth + 'm', 'T+' + expiryMonth + '月'],
@@ -43,7 +44,7 @@ export function storyBindings(row, ui = {}) {
     researchDate: date(REVIEW_DATE),
     spreadChartLabels: null, observedRange: null, observedInterval: null,
   };
-  return { values, chart: { fee, tenor, expiry, codOffset: base?.codOffset ?? null }, duration: { preferred: preferred?.hours ?? null, longer: longer?.hours ?? null, value: preferred?.value ?? null, cells: (grid?.cells || []).filter(c => c.route === 'mer' && c.priced).map(c => ({ hours: c.hours, value: c.value, label: number(c.value) })) } };
+  return { values, chart: { fee, tenor, expiry, codOffset: base?.codOffset ?? null }, duration: { preferred: preferred?.hours ?? null, longer: longer?.hours ?? null, value: preferred?.value ?? null, cells: (grid?.cells || []).filter(c => c.route === 'mer' && c.priced).map(c => ({ hours: c.hours, value: c.value, label: finite(c.value) ? perMW(c.value) : null })) } };
 }
 
 export const storyValues = (row, ui) => storyBindings(row, ui).values;
