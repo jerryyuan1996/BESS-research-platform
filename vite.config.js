@@ -90,6 +90,9 @@ export default defineConfig({
              page and every market. Left alone, the second is emitted as
              `index-[hash].js`, the same shape as the entry chunk's name. */
           const ids = chunk.moduleIds || [];
+          // Shared helpers can remove the facade id after a route is split.
+          // Keep the home renderer identifiable so budgets count its real graph.
+          if (ids.some(m => /[\\/]experience[\\/]pages\.js$/.test(m))) return 'assets/investor-experience-[hash].js';
           /* The home projection of the briefing, shared by the home page and
              every market's brief since PR 5 of the guided-experience plan. */
           if (ids.some(m => /[\\/]briefing[\\/]homeData\.js$/.test(m))) return 'assets/briefing-data-[hash].js';
