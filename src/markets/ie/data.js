@@ -40,7 +40,8 @@ const M = {
   crmYears: ['24/25', '25/26', '26/27', '27/28', '28/29'],
   crmPriceSeries: [46.2, 62, 84, 110, 149.96],
   derateHours: [0.5, 1, 2, 4, 6, 8, 12],
-  deratingCurve: { 0.5: 0.11, 1: 0.22, 2: 0.41, 4: 0.66, 6: 0.81, 8: 0.89, 12: 0.94 },
+  // IAIP2930T-4 v1.1 Table 3, Other Storage, 40 < IC <= 50 MW.
+  deratingCurve: { 0.5: 0.036, 1: 0.072, 2: 0.143, 4: 0.277, 6: 0.425, 8: 0.549, 12: 0.690 },
   futureCapFactor: 0.6,
 
   // ---- wholesale ----
@@ -242,7 +243,7 @@ const M = {
     devCostPct: 0, rtbPremiumPct: 0, constructionMonths: 12,
     mw: 50, hours: 4, capexKWh: 250, dcQuoteKWh: landedDcPerKWh('EUR'), capexKW: 160, opexKW: 10,
     rte: 87, avail: 97, degr: 2.0, cycles: 1.1, spread: 59, optFee: 9,
-    capPrice: 149.96, capYrs: 10, servicesKW: 8,
+    capPrice: 135.50, capYrs: 10, servicesKW: 8,
     life: 15, disc: 8.5, debtPct: 60, rate: 5.6, tenor: 12,
   },
 

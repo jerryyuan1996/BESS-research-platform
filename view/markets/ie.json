@@ -1,23 +1,23 @@
 {
   "marketId": "ie",
   "thesis": [
-    "Capacity-led: a capacity contract secures most of its revenue for ten years, and four hours is the best design on the model. Underwrite capacity and wholesale and drop the system-services line, because DS3 ends at a September 2027 long-stop with no date for its successor.",
-    "以容量收入为主：容量合同可在十年内锁定大部分收入，按模型测算四小时是最佳设计。按容量与批发收入承保，不计系统服务收入，因为DS3将于2027年9月的最终截止日结束，而后继机制尚无日期。"
+    "Capacity credit must match the project’s auction vintage. The reviewed six-hour case improves hold IRR over four hours but remains below the fund’s target, so the fund watches. Capacity and wholesale carry the case, with an assumed declining, uncontracted services contribution included in trading; DS3 tariff rights are not extended beyond the long-stop.",
+    "容量认定必须与项目的拍卖批次一致。已复核的六小时情景长持IRR高于四小时，但仍低于基金目标，因此基金保持观察。情景主要依靠容量与批发收入，同时在交易收入中计入一项假设递减、未锁定的辅助服务收入；DS3费率权利不延续至最终截止日之后。"
   ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 4,
+      "grade": 1,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Sixth of fifteen markets on the design grid's hold IRR, 9.0% (17 October 2026).",
-        "按设计表测算的持有期IRR为9.0%（2026年10月17日），在十五个市场中排第六。"
+        "The approved source-matched capacity inputs change the engine ordering. This grade follows the existing hold-return fifth rule; the original grade remains in history.",
+        "已批准的同批次容量输入改变了引擎排序。本评级沿用既定长持回报五分位规则；原评级保留在历史中。"
       ],
-      "asOf": "2026-10-17",
+      "asOf": "2026-11-01",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -30,10 +30,10 @@
         "comparison-engine"
       ],
       "reason": [
-        "On the design grid (12 October 2026), 55% of first-year revenue is secured, for ten years, by a capacity contract.",
-        "按设计表测算（2026年10月12日），首年收入的55%由容量合同锁定，期限十年。"
+        "Reviewed 1 November 2026: the current reference fixes only part of first-year revenue for a ten-year capacity assumption. Services remain an uncontracted model assumption, not DS3 tariff rights after 30 September 2027.",
+        "2026年11月1日复核：当前参考情景仅有部分首年收入按十年容量合同假设固定。辅助服务仍为未锁定的模型假设，并非2027年9月30日之后的DS3费率权利。"
       ],
-      "asOf": "2026-10-12",
+      "asOf": "2026-11-01",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -209,8 +209,8 @@
         {
           "dimension": "revenueCertainty",
           "text": [
-            "A capacity contract secures most of a project's revenue for ten years, if the project holds one.",
-            "容量合同可在十年内锁定大部分收入，但前提是项目已取得该合同。"
+            "A capacity contract fixes part of project revenue for its own term; verify the auction vintage and credited MW.",
+            "容量合同在其自身期限内固定项目的部分收入；须核实拍卖批次与计入MW。"
           ]
         },
         {
@@ -242,15 +242,18 @@
     },
     "infraFund": {
       "archetype": "infraFund",
-      "call": "build-position",
+      "call": "wait",
       "route": "ready-to-build",
-      "where": null,
+      "where": [
+        "A six-hour capacity candidate with a verified award, still awaiting an investable price",
+        "容量授标已核验、仍待取得可投资价格的六小时候选"
+      ],
       "because": [
         {
           "dimension": "revenueCertainty",
           "text": [
-            "A capacity contract secures most of a project's revenue for ten years, if the project holds one.",
-            "容量合同可在十年内锁定大部分收入，但前提是项目已取得该合同。"
+            "The capacity award fixes only part of revenue for its term; wholesale and assumed services remain exposed to prices.",
+            "容量授标仅在其期限内固定部分收入；批发及假设辅助服务仍暴露于价格。"
           ]
         },
         {
@@ -262,17 +265,21 @@
         }
       ],
       "despite": [
-        "A small system: service volumes are thin and a second project competes with the first.",
-        "系统规模小：系统服务体量有限，第二个项目会与第一个项目相互竞争。"
+        "Longer duration earns more capacity credit, but needs more capital and does not remove wholesale, services, delivery or renewal risk.",
+        "更长时长获得更多计入容量，但需要更多资本，且不能消除批发、辅助服务、交付或续期风险。"
       ],
       "changesIf": [
         "ie-ds3-long-stop"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-01",
       "lockedUntil": null,
-      "play": "ie-cap-4h"
+      "play": "ie-cap-6h",
+      "scoreNote": [
+        "The approved fund call follows the six-hour investment case and its target shortfall. The generic score does not substitute for verified awarded terms, actual entry price or the investment cash-flow test.",
+        "已批准的基金判断依据六小时投资情景及其目标缺口。通用评分不能替代实际授标条款、进入价格及投资现金流检验。"
+      ]
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
@@ -283,8 +290,8 @@
         {
           "dimension": "revenueCertainty",
           "text": [
-            "A capacity contract secures most of a project's revenue for ten years, if the project holds one.",
-            "容量合同可在十年内锁定大部分收入，但前提是项目已取得该合同。"
+            "A capacity contract fixes part of project revenue for its own term; verify the auction vintage and credited MW.",
+            "容量合同在其自身期限内固定项目的部分收入；须核实拍卖批次与计入MW。"
           ]
         },
         {
@@ -361,28 +368,28 @@
     }
   ],
   "plays": {
-    "ie-cap-4h": {
-      "id": "ie-cap-4h",
+    "ie-cap-6h": {
+      "id": "ie-cap-6h",
       "label": [
-        "Capacity market · 4h",
-        "容量市场 · 4小时"
+        "Capacity market · 6h candidate",
+        "容量市场 · 六小时候选"
       ],
       "route": "cap",
-      "hours": 4,
+      "hours": 6,
       "stage": "ready-to-build",
       "why": [
-        "De-rating rewards four hours, and a capacity contract secures most of its revenue for ten years.",
-        "折减系数有利于四小时设计，容量合同可在十年内锁定大部分收入。"
+        "Six hours has the highest hold IRR among the reviewed four-, six- and eight-hour cases, but all remain below the fund’s target. It is a research candidate, not the design with the most value per MW.",
+        "在已复核的四、六、八小时情景中，六小时长持IRR最高，但各方案仍低于基金目标。它是研究候选，并非每MW价值最高的设计。"
       ],
       "action": {
         "text": [
-          "Shortlist projects holding a capacity contract; price them on capacity and wholesale only, with no system-services line after the DS3 long-stop.",
-          "筛选持有容量合同的项目；仅按容量与批发收入定价，DS3截止日之后不计系统服务收入。"
+          "Compare a verified capacity award and the marginal energy-block cost at six and four hours before pricing. Retain the assumed declining services income as uncontracted trading exposure; do not treat it as secured DS3 tariffs.",
+          "定价前，对比六小时与四小时的已核验容量授标和新增能量段成本。保留假设递减的辅助服务收入，作为未锁定的交易敞口；不得视为有保障的DS3费率。"
         ],
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-01",
       "lockedUntil": null
     }
   }
