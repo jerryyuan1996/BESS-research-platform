@@ -1,0 +1,35 @@
+/* Germany-only composition. The symbol kit, shell and their styles are reused. */
+.de-scene, .de-spread-chart, .de-chart-panel { min-width:0; }
+.de-scene .k-stage { max-width:760px; margin:auto; }
+.de-scene-labels { display:flex; flex-wrap:wrap; gap:6px 12px; margin:8px 0; line-height:1.55; color:var(--ix-body); font-size:var(--fs-sm); }
+.de-history-nav { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px; }
+.de-history-nav .k-toggle { border-radius:var(--r-sm); max-width:100%; text-align:left; }
+.de-event-details details { padding:7px 0; font-size:var(--fs-sm); }
+.de-event-details summary { min-height:36px; cursor:pointer; color:var(--ix-green); }
+.de-event-details p { margin:5px 0; line-height:1.6; }
+.de-history-current { border-left:3px solid var(--ix-green); padding:0 12px; }
+.de-scenario { border:1px dashed var(--ix-muted); border-radius:var(--r-sm); padding:10px; }
+.de-spread-chart { border:1px solid var(--ix-line,#c6d0c0); border-radius:var(--r-sm); padding:12px; background:var(--ix-panel,#fffefa); }
+.de-chart-panel + .de-chart-panel { border-top:1px solid var(--ix-line,#c6d0c0); margin-top:12px; padding-top:12px; }
+.de-chart-panel h5 { margin:0 0 8px; line-height:1.5; font-size:var(--fs-sm); font-weight:var(--fw-medium); overflow-wrap:anywhere; color:var(--ix-ink); }
+.de-chart-panel svg { display:block; width:100%; height:auto; }
+.de-chart-panel path { vector-effect:non-scaling-stroke; }
+.de-chart-panel .de-trace { fill:none; stroke:var(--ix-green,#224e40); stroke-width:2; }
+.de-chart-panel .de-band { fill:var(--ix-green,#224e40); opacity:.15; }
+.de-chart-panel .de-flat { fill:none; stroke:var(--ix-green,#224e40); stroke-width:2.5; }
+.de-spread-chart[data-focus=merchant] .de-fee-panel, .de-spread-chart[data-focus=toll] .de-price-panel { opacity:.55; }
+.de-clock { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0; padding:10px; border-left:3px solid var(--ix-green); font-size:var(--fs-sm); }
+.de-clock .de-tail { border-left:1px dashed var(--ix-muted); padding-left:8px; }
+.de-risk-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:10px 0; }
+.de-risk-cards button { min-height:52px; white-space:normal; border-radius:var(--r-sm); }
+.de-opening-thumb { width:180px; max-width:100%; margin:8px 0; }
+@media (max-width:560px) { .de-risk-cards { grid-template-columns:1fr; } .de-spread-chart { padding:8px; } }
+
+.de-cost { fill:none; stroke:var(--ix-risk,#a37732); stroke-width:2; stroke-dasharray:5 4; }
+.ix-story-exits a.de-exit-focus { outline:2px solid var(--ix-green); outline-offset:2px; background:var(--ix-panel,#fffefa); }
+.de-clock[data-tail=true] .de-tail { font-weight:var(--fw-bold); }
+
+.de-spread-chart[data-after-expiry=true] .de-fee-panel, .de-clock[data-tail=true] span:first-child, .de-clock[data-tail=false] .de-tail { opacity:.5; }
+
+.de-clock > span { padding-bottom:5px; border-bottom:2px solid var(--ix-green); }
+.de-clock > .de-tail { border-bottom-style:dashed; }

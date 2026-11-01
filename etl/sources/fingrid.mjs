@@ -38,6 +38,10 @@ const SPACING_MS = 2_500;
 
 /** Catalogue dataset → Fingrid dataset id and what the series is. */
 export const SERIES = {
+  'fi-storage-capacity': {
+    id: 424, product: 'Network-model storage technical capacity; over one MW, including some near-operation units',
+    validFrom: '2026-03-11T00:00:00.000Z', units: { power: 'MW' },
+  },
   'fi-fcr-n':       { id: 317, product: 'FCR-N, hourly market price' },
   'fi-fcr-d-up':    { id: 318, product: 'FCR-D up, hourly market price' },
   'fi-fcr-d-down':  { id: 283, product: 'FCR-D down, hourly market price' },
@@ -67,6 +71,19 @@ export function toPoints(rows){
     .map(([ms, v]) => ({ t: new Date(ms).toISOString(), v }));
 }
 
+/** Technical capacity is non-negative hourly MW; reject malformed intervals.
+ *  A gap remains a gap, and restated starts keep the last source value. */
+export function toCapacityPoints(rows){
+  for (const row of rows || []){
+    const start = Date.parse(row?.startTime), end = Date.parse(row?.endTime);
+    if (!Number.isFinite(start) || end - start !== 3_600_000
+      || typeof row.value !== 'number' || !Number.isFinite(row.value) || row.value < 0){
+      throw new Error('Fingrid storage capacity: expected a non-negative MW value in a complete hourly interval');
+    }
+  }
+  return toPoints(rows);
+}
+
 /** The window to ask for: from the last point held (less a day, to pick up
  *  late revisions) or a full window on a cold start, to the next day. */
 export function requestWindow(previous, end){
@@ -83,7 +100,9 @@ export async function fetchDataset({ dataset, previous, log, now }){
   if (!spec) throw new Error(`Fingrid: no series mapped for dataset "${dataset.id}"`);
 
   const end = now ? Date.parse(now) : Date.now();
-  const { from, to } = requestWindow(previous, end);
+  const window = requestWindow(previous, end);
+  const from = spec.validFrom && window.from < spec.validFrom ? spec.validFrom : window.from;
+  const to = window.to;
 
   const rows = [];
   for (let page = 1; page; ){
@@ -94,7 +113,7 @@ export async function fetchDataset({ dataset, previous, log, now }){
     page = body.pagination?.nextPage || null;
   }
 
-  const incoming = toPoints(rows);
+  const incoming = spec.units?.power ? toCapacityPoints(rows) : toPoints(rows);
   if (!incoming.length && !previous?.series?.length) throw new Error(`Fingrid ${spec.id}: no points fetched and no previous snapshot to extend`);
 
   const series = mergeSeries(previous?.series, incoming, { windowDays: WINDOW_DAYS, now: new Date(end).toISOString() });
@@ -102,7 +121,7 @@ export async function fetchDataset({ dataset, previous, log, now }){
     snapshot: buildSnapshot({
       dataset,
       coverage: coverageOf(series, 'PT60M'),
-      units: { price: 'EUR/MW/h' },
+      units: spec.units || { price: 'EUR/MW/h' },
       series,
       notes: [`Fingrid open data, dataset ${spec.id}: ${spec.product}. CC BY 4.0.`],
     }),
