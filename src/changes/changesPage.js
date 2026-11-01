@@ -11,10 +11,9 @@
    Filterable by market and by author, with the filters in the URL so "every
    change a rule has made in Western Australia" is a link.
 
-   FETCHED ON DEMAND, WITH THE CHANGELOG. The home page carries ten lines of
-   the changelog and no more. The whole of it — every line, with both records
-   — is a chunk of its own that only this route loads, so the entry chunk and
-   the home page's first view do not grow as the changelog does.
+   The route downloads a complete filter index and only the full-record pages
+   needed for the visible entries. Older records remain reachable by filtering
+   and Show more; neither this route nor home initially downloads the archive.
    --------------------------------------------------------------------------- */
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
@@ -24,7 +23,7 @@ import { marketNav } from '../components/navigation.js';
 import { renderFooter } from '../components/footer.js';
 import { markets, byId } from '../markets/registry.js';
 import { scoutMarket } from '../governance/scout.js';
-import { VIEW_CHANGELOG } from '../markets/viewChangelog.js';
+import { VIEW_CHANGELOG, VIEW_TRIGGER_LABELS, loadChangelogPage } from '../markets/viewChangelog.js';
 import {
   AUTHOR_LABEL, filterChanges, filterOptions, describeChange, authorLine, recordLabel, changesHref, pathParts,
 } from './changeModel.js';
@@ -37,16 +36,12 @@ let lastFilter = '';
 /* A registered market by its short name, a scout market by its roster name. */
 const marketName = (id) => { const m = byId(id); return m ? L(m.manifest.shortName) : scoutMarket(id) ? L(scoutMarket(id).name) : id; };
 
-/* A trigger's label, from wherever the changelog last held the record: a rule
-   is named by what it watches, even after the trigger itself is gone. */
-function triggerLabels(entries){
-  const labels = new Map();
-  for (const e of entries){
-    const { section, key } = pathParts(e.path);
-    const record = e.to || e.from;
-    if (section === 'triggers' && key && Array.isArray(record?.label)) labels.set(`${e.market}/${key}`, record.label);
-  }
-  return labels;
+const loadedPages = new Map();
+function pageRecords(page){
+  if (!loadedPages.has(page)) loadedPages.set(page, loadChangelogPage(page).catch(error => {
+    loadedPages.delete(page); throw error;
+  }));
+  return loadedPages.get(page);
 }
 
 function select(label, value, options, onChange){
@@ -118,7 +113,7 @@ export function renderChangesPage(app, filter = {}){
   if (key !== lastFilter){ shown = PAGE; lastFilter = key; }
 
   const entries = filterChanges(VIEW_CHANGELOG, { market, author });
-  const labels = triggerLabels(VIEW_CHANGELOG);
+  const labels = new Map(Object.entries(VIEW_TRIGGER_LABELS));
   const go = (next) => navigate(changesHref({ market, author, ...next }));
 
   app.append(renderHeader({
@@ -154,8 +149,27 @@ export function renderChangesPage(app, filter = {}){
   if (!entries.length){
     card.append(h('div', { class: 'note' }, L(['No change matches these filters.', '没有符合筛选条件的变更。'])));
   } else {
-    const list = h('ol', { class: 'cp-list cl-list' }, entries.slice(0, shown).map(e => entryCard(e, labels)));
+    const visible = entries.slice(0, shown);
+    const list = h('ol', { class: 'cp-list cl-list', 'aria-busy': 'true' });
     card.append(list);
+    const status = h('div', { class: 'note', role: 'status' }, L(['Loading history…', '正在载入历史…']));
+    card.append(status);
+    const load = () => {
+      status.textContent = L(['Loading history…', '正在载入历史…']);
+      list.setAttribute('aria-busy', 'true');
+      Promise.all([...new Set(visible.map(e=>e.page))].map(pageRecords)).then(pages => {
+        if (!list.isConnected) return;
+        const records = new Map(pages.flat().map(e=>[e.id,e]));
+        list.replaceChildren(...visible.map(e=>entryCard(records.get(e.id),labels)));
+        list.setAttribute('aria-busy', 'false');
+        status.remove();
+      }).catch(() => {
+        if (!list.isConnected) return;
+        list.setAttribute('aria-busy', 'false');
+        status.replaceChildren(h('button', {class:'btn',type:'button',onclick:()=>window.location.reload()}, L(['Could not load history. Reload', '历史暂未载入，重新载入'])));
+      });
+    };
+    load();
     card.append(h('div', { class: 'cap' }, L([
       `Showing ${Math.min(shown, entries.length)} of ${entries.length}.`,
       `共${entries.length}项，当前显示${Math.min(shown, entries.length)}项。`,

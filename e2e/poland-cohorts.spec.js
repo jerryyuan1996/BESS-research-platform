@@ -10,7 +10,7 @@ test('Poland keeps the grant and ordinary capacity calls separate in both langua
   await expect(page.locator('#decision')).toHaveCount(1);
   await page.getByRole('button', { name: 'Switch to Chinese', exact: true }).click();
   await expect(page.locator('.ix-play-choices')).toContainText('两类独立投资机会');
-  await expect(page.locator('[data-play="pl-grant-4h"]')).toContainText('择机投入');
-  await expect(page.locator('[data-play="pl-cap-4h"]')).toContainText('保持观察');
+  await expect(choices.locator('[data-play="pl-grant-4h"]')).toContainText('择机投入');
+  await expect(choices.locator('[data-play="pl-cap-4h"]')).toContainText('保持观察');
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2)).toBe(false);
 });
