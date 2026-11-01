@@ -4,7 +4,7 @@
    Preserve both languages when the analyst approves any later wording. */
 export const story = {
   "storySchemaVersion": 1,
-  "contentVersion": "2026-10-31",
+  "contentVersion": "2026-11-01",
   "marketId": "fi",
   "systemBoundary": [
     "Finland · Nordic synchronous area",
@@ -231,7 +231,7 @@ export const story = {
     "SRC-FI-30": {
       "title": "Nord Pool Spot, Annual review 2003",
       "url": "https://www.nordpoolgroup.com/globalassets/download-center/annual-report/annual-review_nord-pool-spot_2003.pdf",
-      "locator": "printed p. 4, “A brief history”, entries 1998–1999",
+      "locator": "printed p. 4, “A brief history”, entries 1998–1999; printed/PDF p. 8, “The Elbas Market for Finland and Sweden”, auction-to-delivery adjustments and continuous trading",
       "checkedOn": "2026-10-31"
     },
     "SRC-FI-31": {
@@ -607,6 +607,22 @@ export const story = {
                 "title": [
                   "{historyNode}: Finnish–Swedish connection opens",
                   "{historyNode}：芬瑞电网连接投运"
+                ],
+                "constraint": [
+                  "Sharing power across the border required a physical link.",
+                  "跨境共享电力，需要先连接电网。"
+                ],
+                "choice": [
+                  "Finland and Sweden opened a cross-border transmission line.",
+                  "芬兰与瑞典开通跨境输电线路。"
+                ],
+                "remains": [
+                  "Finland now shares Nordic frequency through AC-connected grids.",
+                  "如今，芬兰通过交流互联电网共享北欧频率。"
+                ],
+                "effect": [
+                  "Shared frequency creates a reserve task. Trading and a negotiated project floor support this {playDuration}-hour case.",
+                  "共享频率带来备用任务；本方案采用{playDuration}小时设计，由交易和项目协商保底支撑。"
                 ]
               },
               {
@@ -614,6 +630,22 @@ export const story = {
                 "title": [
                   "{historyNode}: Finland joins Elspot; intraday trading follows",
                   "{historyNode}：芬兰加入Elspot，随后开展日内交易"
+                ],
+                "constraint": [
+                  "Plans could change between the day-ahead auction and delivery.",
+                  "从日前拍卖到实际交割，电量计划仍可能变化。"
+                ],
+                "choice": [
+                  "Finland joined Elspot; Elbas then added trading closer to delivery.",
+                  "芬兰加入Elspot；随后，Elbas让交易更接近交割时点。"
+                ],
+                "remains": [
+                  "A separate intraday market let participants adjust energy purchases and sales.",
+                  "独立的日内市场让参与者调整电量买卖安排。"
+                ],
+                "effect": [
+                  "Trading is central to this {playDuration}-hour case. The project floor must be negotiated separately.",
+                  "交易是这项{playDuration}小时投资方案的支撑；项目保底仍须另行协商。"
                 ]
               },
               {
@@ -621,6 +653,22 @@ export const story = {
                 "title": [
                   "{historyNode}: hourly FCR records, FFR introduction, then FCR-D down procurement",
                   "{historyNode}：可查小时FCR记录，随后引入FFR及FCR-D下调采购"
+                ],
+                "constraint": [
+                  "Low inertia and frequency deviations called for different kinds of response.",
+                  "低惯量和频率偏差，需要不同类型的响应。"
+                ],
+                "choice": [
+                  "Hourly FCR is recorded; FFR was introduced, then FCR-D down procurement began.",
+                  "可查小时FCR采购记录；其后引入FFR，再开始FCR-D下调采购。"
+                ],
+                "remains": [
+                  "Qualified storage, generation and flexible demand can compete for response services.",
+                  "满足要求的储能、发电和灵活用电，都可以竞争响应服务。"
+                ],
+                "effect": [
+                  "Market access offers a chance to compete. This {playDuration}-hour case still needs trading and a negotiated project floor.",
+                  "市场准入提供竞争机会；这项{playDuration}小时方案仍需交易和项目协商保底支撑。"
                 ]
               },
               {
@@ -628,6 +676,22 @@ export const story = {
                 "title": [
                   "{historyNode}: {plantName} regular production begins",
                   "{historyNode}：{plantName}开始常规发电"
+                ],
+                "constraint": [
+                  "Losing the larger unit at once required special protection.",
+                  "更大的机组一旦突然停机，需要专门的系统保护。"
+                ],
+                "choice": [
+                  "The connection plan combined rapid industrial load cuts, reserve preparation and transmission adjustments.",
+                  "接入方案结合了快速切除工业负荷、备用准备和输电安排调整。"
+                ],
+                "remains": [
+                  "With protection available, the grid faces a smaller net loss.",
+                  "保护可用时，电网承受的净缺口更小。"
+                ],
+                "effect": [
+                  "Security need creates a market to compete in. This {playDuration}-hour case still needs trading and a negotiated project floor.",
+                  "安全需求带来可以竞争的市场；这项{playDuration}小时方案仍需交易和项目协商保底支撑。"
                 ]
               },
               {
@@ -635,6 +699,22 @@ export const story = {
                 "title": [
                   "{historyNode}: connected storage already exceeds the fast-product scale",
                   "{historyNode}：并网储能已超过快速备用品种规模"
+                ],
+                "constraint": [
+                  "Reserve demand follows system tasks; more batteries do not create matching demand.",
+                  "备用需求取决于系统任务；电池增加，并不会自动带来等量需求。"
+                ],
+                "choice": [
+                  "Storage participated in reserves and increasingly in energy trading.",
+                  "储能参与备用，也越来越多地参与电力交易。"
+                ],
+                "remains": [
+                  "The larger connected fleet means more potential competitors for fast reserves.",
+                  "更大的并网储能规模，意味着快速备用有更多潜在竞争者。"
+                ],
+                "effect": [
+                  "System need alone cannot support this {playDuration}-hour case. Trading and a negotiated project floor remain central.",
+                  "单靠系统需求，不足以支撑这项{playDuration}小时方案；核心仍是交易和项目协商保底。"
                 ]
               },
               {
@@ -642,6 +722,22 @@ export const story = {
                 "title": [
                   "{historyNode}: Fingrid announces the hourly procurement shift",
                   "{historyNode}：Fingrid公布转向小时采购的决定"
+                ],
+                "constraint": [
+                  "Fingrid sought lower procurement costs and better hourly reserve availability.",
+                  "Fingrid希望降低采购成本，让小时市场更容易买到备用。"
+                ],
+                "choice": [
+                  "Fingrid announced hourly-only domestic FCR procurement for {fcrHourlyYear}.",
+                  "Fingrid宣布，{fcrHourlyYear}年的国内FCR仅通过小时市场采购。"
+                ],
+                "remains": [
+                  "Under the announced plan, more procurement would move to hourly auctions.",
+                  "按计划，更多采购量将转入小时拍卖。"
+                ],
+                "effect": [
+                  "An hourly auction is a bidding route. Trading and a separately negotiated floor support this {playDuration}-hour case.",
+                  "小时拍卖提供报价渠道；这项{playDuration}小时方案仍由交易和另行协商的项目保底支撑。"
                 ]
               }
             ],
@@ -654,6 +750,24 @@ export const story = {
               "change": [
                 "review of the historical causal links; future quantities require the underlying scenario tables.",
                 "复核历史因果关系；未来数量还须核对原始情景表。"
+              ]
+            },
+            "historyFieldLabels": {
+              "constraint": [
+                "Constraint at the time",
+                "当时的约束"
+              ],
+              "choice": [
+                "Choice",
+                "作出的选择"
+              ],
+              "remains": [
+                "Inherited effect",
+                "留下的影响"
+              ],
+              "effect": [
+                "Meaning today",
+                "对今天的意义"
               ]
             }
           }

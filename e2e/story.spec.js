@@ -533,3 +533,23 @@ test('Finland story code loads only after its existing market-page button',async
   await page.locator('.ix-full-research').click();await expect(page.locator('.ix-story-dialog')).toBeVisible();
   expect(chunks.length).toBe(1);
 });
+
+
+test('Finland historical explanations retain the approved four fields and translate the selected node',async({page})=>{
+  const {dialog}=await openFinland(page),history=dialog.locator('[data-shot=fi-03]');
+  await history.getByRole('button',{name:'History',exact:true}).click();
+  await history.locator('.ix-node button').first().click();
+  await history.locator('.k-scene details>summary').click();
+  await expect(history.locator('[data-history-fields] dt')).toHaveCount(4);
+  await expect(history.locator('[data-history-fields]')).toContainText('Sharing power across the border required a physical link.');
+  await history.locator('.ix-node button').last().click();
+  const drawer=history.locator('.k-scene details:has([data-history-fields])');
+  if(!await drawer.evaluate(e=>e.open))await drawer.locator('summary').click();
+  await expect(history.locator('[data-history-fields]')).toHaveAttribute('data-history-fields','H-FI-06');
+  await expect(history.locator('[data-history-fields]')).toContainText('hourly-only domestic FCR procurement for 2027');
+  await dialog.getByRole('button',{name:'Switch to Chinese'}).click();
+  await expect(history.locator('[data-history-fields] dt')).toHaveCount(4);
+  await expect(history.locator('[data-history-fields]')).toContainText('当时的约束');
+  await expect(history.locator('[data-history-fields]')).toContainText('让小时市场更容易买到备用');
+  await expect(history.locator('.ix-marker')).toHaveCount(1);
+});

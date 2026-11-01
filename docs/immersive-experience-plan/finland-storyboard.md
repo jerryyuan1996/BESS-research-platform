@@ -380,6 +380,37 @@ This catalogue completes the visible labels, timeline copy, evidence text and al
 
 Binding control for the timeline: `history node` resolves to the **selected node's** dated record, not a reusable undifferentiated value; the paired events within H-FI-02/03 each keep their own sub-date. In the optional vision branch it resolves to the report origin. The figure-free copy remains available if an evidence binding is missing. The evidence drawer must use the selected source's actual retrieval/event field; the price timestamp label is only for price evidence.
 
+### Approved fi-03 historical explanation fields
+
+The analyst signed off these additional English and Chinese fields on 1 November 2026. The original event sentences, dates and one marker are retained. Event facts and causal interpretation remain separate, as documented in the approved supplementary review.
+
+| Node | Field | English | 简体中文 |
+| --- | --- | --- | --- |
+| H-FI-01 | constraint | Sharing power across the border required a physical link. | 跨境共享电力，需要先连接电网。 |
+| H-FI-01 | choice | Finland and Sweden opened a cross-border transmission line. | 芬兰与瑞典开通跨境输电线路。 |
+| H-FI-01 | remains | Finland now shares Nordic frequency through AC-connected grids. | 如今，芬兰通过交流互联电网共享北欧频率。 |
+| H-FI-01 | effect | Shared frequency creates a reserve task. Trading and a negotiated project floor support this ‹bound: play duration›-hour case. | 共享频率带来备用任务；本方案采用‹bound: play duration›小时设计，由交易和项目协商保底支撑。 |
+| H-FI-02 | constraint | Plans could change between the day-ahead auction and delivery. | 从日前拍卖到实际交割，电量计划仍可能变化。 |
+| H-FI-02 | choice | Finland joined Elspot; Elbas then added trading closer to delivery. | 芬兰加入Elspot；随后，Elbas让交易更接近交割时点。 |
+| H-FI-02 | remains | A separate intraday market let participants adjust energy purchases and sales. | 独立的日内市场让参与者调整电量买卖安排。 |
+| H-FI-02 | effect | Trading is central to this ‹bound: play duration›-hour case. The project floor must be negotiated separately. | 交易是这项‹bound: play duration›小时投资方案的支撑；项目保底仍须另行协商。 |
+| H-FI-03 | constraint | Low inertia and frequency deviations called for different kinds of response. | 低惯量和频率偏差，需要不同类型的响应。 |
+| H-FI-03 | choice | Hourly FCR is recorded; FFR was introduced, then FCR-D down procurement began. | 可查小时FCR采购记录；其后引入FFR，再开始FCR-D下调采购。 |
+| H-FI-03 | remains | Qualified storage, generation and flexible demand can compete for response services. | 满足要求的储能、发电和灵活用电，都可以竞争响应服务。 |
+| H-FI-03 | effect | Market access offers a chance to compete. This ‹bound: play duration›-hour case still needs trading and a negotiated project floor. | 市场准入提供竞争机会；这项‹bound: play duration›小时方案仍需交易和项目协商保底支撑。 |
+| H-FI-04 | constraint | Losing the larger unit at once required special protection. | 更大的机组一旦突然停机，需要专门的系统保护。 |
+| H-FI-04 | choice | The connection plan combined rapid industrial load cuts, reserve preparation and transmission adjustments. | 接入方案结合了快速切除工业负荷、备用准备和输电安排调整。 |
+| H-FI-04 | remains | With protection available, the grid faces a smaller net loss. | 保护可用时，电网承受的净缺口更小。 |
+| H-FI-04 | effect | Security need creates a market to compete in. This ‹bound: play duration›-hour case still needs trading and a negotiated project floor. | 安全需求带来可以竞争的市场；这项‹bound: play duration›小时方案仍需交易和项目协商保底支撑。 |
+| H-FI-05 | constraint | Reserve demand follows system tasks; more batteries do not create matching demand. | 备用需求取决于系统任务；电池增加，并不会自动带来等量需求。 |
+| H-FI-05 | choice | Storage participated in reserves and increasingly in energy trading. | 储能参与备用，也越来越多地参与电力交易。 |
+| H-FI-05 | remains | The larger connected fleet means more potential competitors for fast reserves. | 更大的并网储能规模，意味着快速备用有更多潜在竞争者。 |
+| H-FI-05 | effect | System need alone cannot support this ‹bound: play duration›-hour case. Trading and a negotiated project floor remain central. | 单靠系统需求，不足以支撑这项‹bound: play duration›小时方案；核心仍是交易和项目协商保底。 |
+| H-FI-06 | constraint | Fingrid sought lower procurement costs and better hourly reserve availability. | Fingrid希望降低采购成本，让小时市场更容易买到备用。 |
+| H-FI-06 | choice | Fingrid announced hourly-only domestic FCR procurement for ‹bound: FCR hourly delivery year›. | Fingrid宣布，‹bound: FCR hourly delivery year›年的国内FCR仅通过小时市场采购。 |
+| H-FI-06 | remains | Under the announced plan, more procurement would move to hourly auctions. | 按计划，更多采购量将转入小时拍卖。 |
+| H-FI-06 | effect | An hourly auction is a bidding route. Trading and a separately negotiated floor support this ‹bound: play duration›-hour case. | 小时拍卖提供报价渠道；这项‹bound: play duration›小时方案仍由交易和另行协商的项目保底支撑。 |
+
 ### Source-to-shot mapping
 
 | Shot | Claims → sources / precise records | Chart / binding owner | Likely misreading prevented |
@@ -401,6 +432,8 @@ Binding control for the timeline: `history node` resolves to the **selected node
 Reverse mapping: each source ID in the primary register names its affected claim(s) here; historical sources also map through H-FI nodes. A replacement source therefore queues a finite set of shots, their translations and numeric labels for review.
 
 ## 10. G-1 sign-off record
+
+Additional approval on 1 November 2026: the analyst signed off the six fi-03 nodes’ four explanation fields in both languages, the supplementary source locators, and requested their inclusion and merge with the build. This supersedes the temporary event-only layout clarification. The original event sentences and dates stay unchanged.
 
 The analyst re-signed off the complete v1.2 script on 31 October 2026, including the layout, new Meaning sentences and fixed marker wording. G-1 is met. WP-09 implementation is authorised by the subsequent build task; the original documentation-only handoff below remains a historical record. G-2 review is still required for the built story.
 
