@@ -51,14 +51,14 @@ const M = {
   dataDate: '2025 annual / 2026 published auctions / Jul 2026 forecast',
   modelVersion: 'it-seed-1.0-macse-vs-toll',
   title: ['Italy Battery Investment Dashboard', '意大利储能投资看板'],
-  sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Six bidding zones; reference archetype 100 MW / 4h; four routes to market.',
-        '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。六个报价区；参考原型为100MW/4小时；四条售电路径。'],
-  nextMilestone: ['Next milestone: second MACSE auction — 24 November 2026, 16 GWh, up from 10 GWh. Reserve premium €27,000/MWh/yr (ARERA 332/2026), down from €37,000.',
-                  '下一里程碑：第二次MACSE拍卖 — 2026年11月24日，规模16GWh，高于此前的10GWh。保留溢价为每MWh每年€27,000（ARERA第332/2026号决议），低于此前的€37,000。'],
+  sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Seven physical bidding zones; procurement-area groupings differ. Reference archetype 100 MW / 4h; four routes to market.',
+        '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。七个实体报价区，采购区域分组与之不同。参考原型为100MW/4小时；四条售电路径。'],
+  nextMilestone: ['Next milestone: second MACSE auction — 24 November 2026, 16 GWh, up from 10 GWh. Maximum premium €27,000/MWh/yr (ARERA 332/2026), down from €37,000.',
+                  '下一里程碑：第二次MACSE拍卖 — 2026年11月24日，规模16GWh，高于此前的10GWh。最高溢价上限为每MWh每年€27,000（ARERA第332/2026号决议），低于此前的€37,000。'],
   footerNote: ['Public and official sources collected 1 August 2026. No Italian toll price has been disclosed in any of the three announced deals; no Italian fixed opex, optimiser fee or degradation series is published; the ARERA reference-cost study that would settle Italian capex could not be machine-read; and the only published MSD total is a single month annualised. Every contracted figure other than the MACSE clear and the capacity premium is a derived bracket, not a quotation.',
                '公开及官方来源于2026年8月1日采集。三笔已公告的意大利租赁交易均未披露价格；意大利未公布固定运维成本、优化商费率或衰减率序列；可解决意大利造价问题的ARERA参考成本研究无法机器读取；且唯一公布的辅助服务市场总额为单月年化数据。除MACSE出清价与容量溢价外，所有合同类数值均为推导区间，而非报价。'],
-  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. MACSE and the capacity market are mutually exclusive and must never be added together. The capex band on this page spans a factor of 2.4 because two credible sources disagree by half. Terna has proposed cutting the four-hour capacity de-rating from 67% to 53% for DY2028. And a 2026 MACSE result does not exist — the second auction has not been held.',
-             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。MACSE与容量市场互斥，绝不可相加。本页造价区间跨度达2.4倍，因两个可信来源相差一半。Terna已提议将2028实需年度的四小时容量折减系数由67%下调至53%。此外，2026年MACSE结果并不存在 — 第二次拍卖尚未举行。'],
+  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. MACSE and the capacity market are mutually exclusive and must never be added together. The capex band on this page spans a factor of 2.4 because two credible sources disagree by half. Delivery-2028 new storage uses decided zonal factors; this capacity illustration applies only to earlier awards with verified retained rights. And a 2026 MACSE result does not exist — the second auction has not been held.',
+             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。MACSE与容量市场互斥，绝不可相加。本页造价区间跨度达2.4倍，因两个可信来源相差一半。2028年新储能采用已确定的分区计入比例；本容量情景仅适用于已核实保留原权利的早先授标资产。此外，2026年MACSE结果并不存在 — 第二次拍卖尚未举行。'],
 
   /* ---- official / sourced snapshot -------------------------------------
      Only values that come from a named publication sit here. Illustrative
@@ -161,9 +161,10 @@ const M = {
       fit: ['The owner does NOT keep dispatch optionality on contracted energy. This is the trade a MACSE bidder makes', '业主对已签约电量不保留调度选择权。这正是MACSE投标人所做的取舍'] },
   ],
 
-  /* Six bidding zones. Used as the pipeline region column and as the locational
-     frame the MACSE requirement table runs on. Zone eligibility is a hard line in
-     Italy, not a gradient. */
+  /* Seven physical day-ahead zones: ARERA 103/2019, operative points 1–2,
+     effective 2021. The six regions below are procurement/reference groups;
+     South and Calabria are combined there, not in the day-ahead zone list. */
+  biddingZones: ['NORD', 'CNOR', 'CSUD', 'SUD', 'CALA', 'SICI', 'SARD'],
   regions: [
     { id: 'Nord',            n: ['Nord — the industrial north', '北部 — 工业区'],
       note: ['MACSE requirement zero. Contracted options are the capacity market or a bilateral toll, nothing else', 'MACSE需求为零。合同化选项仅有容量市场或双边租赁'] },
@@ -520,7 +521,7 @@ const M = {
     ['Mercato della Capacità — the Italian capacity market', 'Mercato della Capacità — 意大利容量市场'],
     ['Coefficiente di derating — the de-rating factor by duration', '折减系数 — 按时长确定'],
     ['PUN — Prezzo Unico Nazionale, a demand-side average', 'PUN — 全国统一电价，需求侧平均价'],
-    ['Bidding zones: NORD, CNOR, CSUD, SUD, SICI, SARD', '报价区：北部、中北部、中南部、南部、西西里、撒丁岛'],
+    ['Bidding zones: NORD, CNOR, CSUD, SUD, CALA, SICI, SARD', '报价区：北部、中北部、中南部、南部、卡拉布里亚、西西里、撒丁岛'],
     ['STMG — Soluzione Tecnica Minima Generale, the connection solution', 'STMG — 最小技术方案，即并网方案'],
     ['Autorizzazione Unica / PAUR — the single authorisation route', '单一许可/PAUR — 单一授权路径'],
     ['UVAM — Unità Virtuali Abilitate Miste, mixed virtual enabled units', 'UVAM — 混合型虚拟合格单元'],

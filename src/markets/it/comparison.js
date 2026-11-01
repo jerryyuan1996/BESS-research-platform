@@ -62,10 +62,9 @@ const HOURS = 4;
    Sicilia. Delivery from 2028, 15-year term. */
 const MACSE_PER_MWH_YR = 12959;
 
-/* Capacity market: €47,000/MW/yr premium at the DY2027 auction, applied at the
-   current four-hour de-rating factor of 67%. Terna has PROPOSED cutting that to
-   53% for DY2028 — Italy currently has Europe's most favourable battery
-   de-rating and the proposal withdraws a fifth of it. */
+/* Legacy delivery-2027 award illustration: verify each asset's actual factor
+   and retained rights. New delivery-2028 storage has decided zonal credits
+   and needs a separate price case; this is not a general new-entry quote. */
 const CM_PREMIUM = 47000;
 const CM_DERATING_4H = 0.67;
 
@@ -162,8 +161,8 @@ const economics = {
   },
 
   capNote: [
-    '15-yr contracts for new build at €47,000/MW/yr; 4h de-rating 67% today, proposed 53% for DY2028',
-    '新建项目15年期合同，每MW每年€47,000；4小时折减系数现为67%，2028实需年度拟降至53%',
+    'Legacy delivery-2027 illustration: €47,000 per credited MW-year and the retained four-hour factor; verify the awarded contract. New delivery-2028 storage needs its decided zonal factor and a separately priced case.',
+    '旧批次2027年交付参考情景：每计入MW年€47,000及保留的四小时系数，须核实实际中标合同。2028年新储能须采用已确定的分区系数并另行定价。',
   ],
   tollNote: [
     '10-yr precedent tenor (Axpo / Zelestra, 207 MW, northern Italy); merchant tail from yr 11; no Italian toll price has been disclosed',
