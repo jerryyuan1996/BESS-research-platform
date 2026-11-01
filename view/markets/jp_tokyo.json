@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "Thirteenth of seventeen markets on hold IRR, 2.8%.",
-        "持有期IRR为2.8%，在十七个市场中排第十三。"
+        "Thirteenth of seventeen markets on the design grid's hold IRR, 2.8% (29 October 2026).",
+        "按设计表测算的持有期IRR为2.8%（2026年10月29日），在十七个市场中排第十三。"
       ],
       "asOf": "2026-10-29",
       "author": "analyst",
@@ -31,8 +31,8 @@
         "occtoLtda2026"
       ],
       "reason": [
-        "96% of first-year revenue is secured across the fifteen-year window under a representative long-term auction award, which normally runs twenty years; the payment is derived from costs and is not an identified contract price, and a project without an award secures nothing.",
-        "在代表性的长期拍卖中标情景下，首年收入的96%在十五年测算期内均已锁定（该类合同通常为期二十年）；该付款金额由成本推算，并非已确认的合同价格，未中标的项目没有任何锁定收入。"
+        "On the design grid (12 October 2026), 96% of first-year revenue is secured across the fifteen-year window under a representative long-term auction award, which normally runs twenty years; the payment is derived from costs and is not an identified contract price, and a project without an award secures nothing.",
+        "按设计表测算（2026年10月12日），在代表性的长期拍卖中标情景下，首年收入的96%在十五年测算期内均已锁定（该类合同通常为期二十年）；该付款金额由成本推算，并非已确认的合同价格，未中标的项目没有任何锁定收入。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
@@ -271,11 +271,11 @@
         "jp-tokyo-ltda-round-4-bids"
       ],
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-31",
       "lockedUntil": null,
       "scoreNote": [
-        "The score reads how secure the award is, and it is: 96% of revenue for twenty years. What it cannot read is the price: a battery bid may carry at most a 4.5% pre-tax return, so a new build loses value at a fund's yields. A fund buys an operating award at a price that clears, or not at all.",
-        "评分反映中标合同的安全性，而它确实安全：二十年内锁定96%的收入。评分无法反映的是价格：蓄电池报价可计入的税前回报上限为4.5%，因此新建项目按基金收益率会损失价值。基金只能以达标价格收购已投运的中标资产，否则不投。"
+        "The score reads how secure the award is, and it is: nearly all revenue for twenty years. What it cannot read is the price: a battery bid may carry at most a 4.5% pre-tax return, so a new build loses value at a fund's yields. A fund buys an operating award at a price that clears, or not at all.",
+        "评分反映中标合同的安全性，而它确实安全：二十年内锁定几乎全部收入。评分无法反映的是价格：蓄电池报价可计入的税前回报上限为4.5%，因此新建项目按基金收益率会损失价值。基金只能以达标价格收购已投运的中标资产，否则不投。"
       ]
     },
     "foreignFirstTimer": {

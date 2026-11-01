@@ -21,6 +21,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { markets } from '../src/markets/registry.js';
+import { isResolved } from '../src/governance/triggers.js';
 import { viewFor, hasView, allTriggers, viewFileMarketIds } from '../src/markets/viewRegistry.js';
 import { ledgerFor } from '../src/entry/ledgerRegistry.js';
 import { FX } from '../src/comparison/assumptions.js';
@@ -249,7 +250,7 @@ test('the calendar window is twelve months from the reader\'s date and loses not
   for (const on of ['2026-10-11', '2027-06-30', '2031-01-01']){
     const c = triggerCalendar(all, on);
     assert.equal(c.months.length, 12);
-    const placed = c.upcoming.length + c.overdue.length + c.later.length + c.undated.length;
+    const placed = c.upcoming.length + c.overdue.length + c.later.length + c.undated.length + c.resolved.length;
     assert.equal(placed, all.length, `${on}: every trigger is in exactly one group`);
     assert.equal(c.lanes.flatMap(l => l.cells.flat()).length, c.upcoming.length);
     for (const lane of c.lanes) assert.equal(lane.cells.length, 12);
@@ -259,7 +260,8 @@ test('the calendar window is twelve months from the reader\'s date and loses not
   /* Far enough ahead, every dated trigger is overdue and says so. */
   const late = triggerCalendar(all, '2031-01-01');
   assert.equal(late.upcoming.length, 0);
-  assert.equal(late.overdue.length, all.filter(t => t.expected !== null).length);
+  assert.equal(late.overdue.length, all.filter(t => t.expected !== null && !isResolved(t)).length);
+  assert.deepEqual(late.resolved.map(t=>t.id).sort(), all.filter(isResolved).map(t=>t.id).sort());
 });
 
 /* ---- what changed ----------------------------------------------------------- */

@@ -1,23 +1,23 @@
 {
   "marketId": "caiso",
   "thesis": [
-    "Substantially a capacity contract with a trading option: resource adequacy carries most revenue and credits exactly four hours. At build cost the reference project returns 3.2%, so buy operating RA-contracted assets only at a price that clears the hurdle, after the 2027 foldback cut.",
-    "本质上是附带交易选择权的容量合同：资源充裕度贡献大部分收入，且恰好按四小时计量。按建设成本测算参考项目回报为3.2%，因此只在2027年出力回落下调之后、以达到回报门槛的价格收购持有资源充裕度合同的在运资产。"
+    "Resource adequacy provides the reference contract, with trading exposure alongside it. Buy operating contracted assets only at a price that meets the fund’s target, after quantifying qualification changes, including the decided 2027 foldback. Four hours is the reference design, not a guarantee of unchanged future credited MW.",
+    "资源充足性合同构成参考收入基础，另有交易敞口。须量化资格变化，包括已确定的2027年折减，再以达到基金目标的价格购买已签约的在运资产。四小时是参考设计，不保证未来计入MW维持不变。"
   ],
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 2,
+      "grade": 3,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Tenth of fifteen markets on hold IRR, 3.2%.",
-        "持有期IRR为3.2%，在十五个市场中排第十。"
+        "The approved source-matched capacity inputs change the engine ordering. This grade follows the existing hold-return fifth rule; the original grade remains in history.",
+        "已批准的同批次容量输入改变了引擎排序。本评级沿用既定长持回报五分位规则；原评级保留在历史中。"
       ],
-      "asOf": "2026-10-23",
+      "asOf": "2026-11-01",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -31,8 +31,8 @@
         "ormat"
       ],
       "reason": [
-        "78% of first-year revenue is secured for ten years under a resource adequacy contract; such contracts are bilateral and their prices are not public.",
-        "首年收入的78%由资源充裕度合同锁定十年；此类合同为双边合同，价格并不公开。"
+        "On the design grid (12 October 2026), 78% of first-year revenue is secured for ten years under a resource adequacy contract; such contracts are bilateral and their prices are not public.",
+        "按设计表测算（2026年10月12日），首年收入的78%由资源充裕度合同锁定十年；此类合同为双边合同，价格并不公开。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
@@ -139,8 +139,8 @@
         "sod"
       ],
       "reason": [
-        "A state regulator's decision cuts the qualifying capacity of storage from 2027 and moves it to unit-specific accreditation from 2028; contracts already signed are bilateral and keep their terms.",
-        "州监管机构的一项决定自2027年起下调储能的合格容量，并自2028年起改按机组逐一核定；已签订的合同为双边合同，条款不变。"
+        "A state regulator's decision cuts the qualifying capacity of storage from 2027 and moves it to unit-specific accreditation from 2028; contracts already signed are bilateral and keep their terms, but the 2027 change applies to all storage, so the capacity a signed contract can sell may fall.",
+        "州监管机构的一项决定自2027年起下调储能的合格容量，并自2028年起改按机组逐一核定；已签订的合同为双边合同，条款不变；但2027年的调整适用于所有储能，因此已签合同可出售的容量仍可能下降。"
       ],
       "asOf": "2026-10-12",
       "author": "analyst",
@@ -207,8 +207,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "The reference project returns 3.2% on the model.",
-            "参考项目的模型回报为3.2%。"
+            "On the model the reference project falls short of this investor's target.",
+            "按模型测算，参考项目达不到该类投资者的目标回报。"
           ]
         },
         {
@@ -235,7 +235,7 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     },
     "infraFund": {
@@ -252,8 +252,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "At build cost the reference project returns 3.2% hold, below a fund's hurdle.",
-            "按建设成本测算，参考项目持有期回报为3.2%，低于基金的回报门槛。"
+            "At build cost the reference project falls short of a fund's target.",
+            "按建设成本测算，参考项目达不到基金的目标回报。"
           ]
         },
         {
@@ -272,7 +272,7 @@
         "caiso-storage-capacity-foldback"
       ],
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-31",
       "lockedUntil": null,
       "scoreNote": [
         "The call stays at Opportunistic on the analyst's ruling of 16 October, which holds it there until the research gate on CAISO's seeds closes. The score rose on 17 October only because Japan's three markets fell below CAISO on hold IRR; CAISO's own numbers did not move.",
@@ -288,8 +288,8 @@
         {
           "dimension": "assetReturn",
           "text": [
-            "The reference project returns 3.2% on the model.",
-            "参考项目的模型回报为3.2%。"
+            "On the model the reference project falls short of this investor's target.",
+            "按模型测算，参考项目达不到该类投资者的目标回报。"
           ]
         },
         {
@@ -309,7 +309,7 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     },
     "developer": {
@@ -375,18 +375,18 @@
       "hours": 4,
       "stage": "operating",
       "why": [
-        "Resource adequacy credits exactly four hours and carries most revenue; at build cost the reference project returns 3.2%.",
-        "资源充裕度恰好按四小时计量，并贡献大部分收入；按建设成本测算，参考项目回报为3.2%。"
+        "The four-hour RA reference remains subject to changing qualifying-capacity rules. At build cost it falls short of the fund’s target; verify contracted MW and entry price before buying an operating asset.",
+        "四小时RA参考情景仍受合资格容量规则变化影响。按建设成本测算未达基金目标；购买在运资产前须核实合同MW和进入价格。"
       ],
       "action": {
         "text": [
-          "After the January 2027 foldback cut, price operating assets with RA contracts; buy only where the price clears the hurdle.",
-          "2027年1月出力回落下调生效后，再为持有资源充裕度合同的在运资产定价；只在价格达到回报门槛时买入。"
+          "Once the 2027 foldback cut is sized, price operating assets with RA contracts; buy only where the price clears the hurdle.",
+          "待2027年出力回落下调的幅度明确后，再为持有资源充裕度合同的在运资产定价；只在价格达到回报门槛时买入。"
         ],
         "due": "2027-01-31"
       },
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-11-01",
       "lockedUntil": null
     }
   }

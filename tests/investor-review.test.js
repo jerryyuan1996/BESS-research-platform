@@ -29,8 +29,10 @@ test('the comparison table margin uses each markets actual hurdle and shows thin
   const row=opportunities('infraFund').find(r=>r.id==='ie');
   near(margin(row),row.econ.hold-row.econ.test.target);
   near(margin(row,'levered'),row.econ.levered-row.econ.test.leveredTarget);
-  assert.ok(margin(row)<0 && margin(row,'levered')>=0 && margin(row,'levered')<.005);
-  assert.match(marginText(row,'levered')[0],/thin margin/);
+  // Source-matched capacity credit puts Ireland below both targets.
+  assert.ok(margin(row)<0 && margin(row,'levered')<0);
+  const thin={...row,econ:{...row.econ,levered:row.econ.test.leveredTarget+.003}};
+  assert.match(marginText(thin,'levered')[0],/thin margin/);
   const sa=opportunities('infraFund').find(r=>r.id==='sa');
   assert.equal(margin(sa),null);assert.match(availability(sa)[0],/payment is unpublished/);
 });
