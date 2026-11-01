@@ -222,7 +222,7 @@ test('an investor switch behind a closed story leaves it closed, and Back reopen
 });
 
 test('a market without a story ignores a story link', async ({ page }) => {
-  await page.goto('/markets/italy?view=story&chapter=tensions&shot=wa-06');
+  await page.goto('/markets/ontario?view=story&chapter=tensions&shot=wa-06');
   await expect(page.locator('.ix-full-research')).toBeVisible();
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
   await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
