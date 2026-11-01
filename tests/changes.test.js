@@ -15,14 +15,15 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { gzipSync } from 'node:zlib';
 
 import { parseRoute } from '../src/app/router.js';
 import {
   AUTHOR_KINDS, AUTHOR_LABEL, describeChange, authorLine, recordLabel, filterChanges, filterOptions, changesHref,
 } from '../src/changes/changeModel.js';
 import { VIEW_CHANGELOG } from '../src/markets/viewChangelog.js';
-import { fullChangelog, digestChangelog } from '../vite-plugin-view-changes.js';
+import { fullChangelog, digestChangelog, archiveChangelog, HISTORY_PAGE_SIZE } from '../vite-plugin-view-changes.js';
 import { PERMITTED_AUTHORS } from '../view/schema/view.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -163,16 +164,50 @@ test('only the changes page imports the whole changelog, and it is loaded on dem
   assert.match(await readFile(path.join(REPO, 'src/components/investmentCase.js'), 'utf8'), /\/changes\?market=\$\{marketId\}/);
 });
 
-test('in a build, the changelog is in the changes chunk and nowhere a first view loads', async (t) => {
+test('the paged archive preserves every record and filters across page boundaries', async () => {
+  const text = await readFile(path.join(REPO, 'view/changelog.jsonl'), 'utf8');
+  const full = filterChanges(fullChangelog(text), {}), archive = archiveChangelog(text);
+  assert.deepEqual(archive.pages.flat(), full);
+  assert.ok(archive.pages.every(p => p.length <= HISTORY_PAGE_SIZE));
+  for (const market of [null, ...filterOptions(full).markets.map(m=>m.id)]) {
+    const wanted = filterChanges(full, {market}).slice(0,40);
+    const matches = filterChanges(archive.index, {market}).slice(0,40);
+    const records = new Map([...new Set(matches.map(e=>e.page))].flatMap(p=>archive.pages[p]).map(e=>[e.id,e]));
+    assert.deepEqual(matches.map(e=>records.get(e.id)), wanted);
+  }
+  assert.deepEqual(archiveChangelog(''), {index:[],pages:[],labels:{}});
+  assert.throws(()=>archiveChangelog(text,0));
+});
+
+test('built history pages retain all records within the original first-load budget', async (t) => {
   const assets = path.join(REPO, 'dist', 'assets');
   if (!existsSync(assets)) return t.skip('no dist/ — run `npm run build` first');
   const files = (await readdir(assets)).filter(f => f.endsWith('.js'));
   const chunk = files.find(f => f.startsWith('changes-'));
   assert.ok(chunk, 'no changes chunk in the build');
   const lines = (await readFile(path.join(REPO, 'view/changelog.jsonl'), 'utf8')).split('\n').filter(Boolean).map(l => JSON.parse(l));
-  /* A changelog id appears in the bundle only where the full record is. */
-  const marker = lines[0].id;
-  const holders = [];
-  for (const f of files) if ((await readFile(path.join(assets, f), 'utf8')).includes(marker)) holders.push(f);
-  assert.deepEqual(holders, [chunk], 'the full changelog is in a chunk other than the changes page\'s');
+  const archive = archiveChangelog(lines.map(e=>JSON.stringify(e)).join('\n'));
+  const pageFiles = files.filter(f=>f.startsWith('view-history-'));
+  assert.equal(pageFiles.length, archive.pages.length);
+  const sizes = new Map(), rebuilt = [];
+  for (const file of pageFiles) {
+    const records = (await import(pathToFileURL(path.join(assets,file)))).default;
+    const index = archive.pages.findIndex(p=>p[0].id===records[0]?.id);
+    assert.ok(index >= 0, file);
+    assert.deepEqual(records, archive.pages[index]);
+    rebuilt.push(...records);
+    sizes.set(index, gzipSync(await readFile(path.join(assets,file))).length);
+  }
+  assert.deepEqual(rebuilt.map(e=>e.id).sort(), lines.map(e=>e.id).sort());
+  const shell = gzipSync(await readFile(path.join(assets,chunk))).length;
+  const options = filterOptions(archive.index);
+  for (const market of [null,...options.markets.map(m=>m.id)]) for(const author of [null,...AUTHOR_KINDS]) {
+    const pages = new Set(filterChanges(archive.index,{market,author}).slice(0,40).map(e=>e.page));
+    const bytes = shell + [...pages].reduce((sum,p)=>sum+sizes.get(p),0);
+    assert.ok(bytes <= 124000, `${market}/${author}: first history view ${bytes} exceeds the existing 124 kB allowance`);
+  }
+  for (const file of files.filter(f=>f!==chunk && !pageFiles.includes(f))) {
+    const source = await readFile(path.join(assets,file),'utf8');
+    assert.ok(!source.includes(lines[0].id), `${file}: history leaked outside its route`);
+  }
 });
