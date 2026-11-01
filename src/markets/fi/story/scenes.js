@@ -74,7 +74,7 @@ function history(shot,{values}){
       fill(panel,h('ol',{class:'ix-story-timeline'},shot.extra.historyNodes.map((node,i)=>h('li',{class:'ix-node'},
         h('p',{class:'ix-node-title'},text(node.title,{...values,...historyValues(FI_HISTORY[i])})),
         h('button',{type:'button',class:'k-toggle','aria-pressed':String(i===state.node),onclick:()=>{state.node=i;save();draw();}},L(historyValues(FI_HISTORY[i]).historyNode))))),
-        note(shared('Non-price source date label'),local),evidence(shot,local,{label:w.control(2),ids:record.sources}));
+        note(shared('Non-price source date label'),local),evidence(shot,local,{label:w.control(2),ids:record.sources,content:h('dl',{class:'k-lane-terms','data-history-fields':record.id},['constraint','choice','remains','effect'].flatMap(key=>[h('dt',{},L(shot.extra.historyFieldLabels[key])),h('dd',{},text(shot.extra.historyNodes[state.node][key],local))]))}));
     }
     panel.setAttribute('data-mode',state.mode);
     updateMarker(root,state.mode==='future'?shot.extra.futureMarker:shot.marker);

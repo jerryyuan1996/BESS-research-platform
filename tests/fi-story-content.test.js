@@ -70,3 +70,13 @@ test('content imports no rendering code and no financial figure is typed into th
   assert.equal(/^\s*import\s/m.test(src),false);
   assert.ok(md.includes('G-1 met'));
 });
+
+
+test('the additional approved history fields match the sign-off table in both languages',()=>{
+  const shot=shots.find(s=>s.id==='fi-03');
+  for(let i=0;i<6;i++)for(const key of ['constraint','choice','remains','effect']){
+    const line=md.split('\n').find(l=>l.startsWith('| H-FI-0'+(i+1)+' | '+key+' | '));
+    assert.ok(line,'approved field exists');
+    assert.deepEqual(shot.extra.historyNodes[i][key].map(normal),line.slice(2,-2).split(' | ').slice(2,4).map(normal));
+  }
+});

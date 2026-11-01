@@ -31,7 +31,7 @@ export function updateMarker(root,marker){
   const pill=root.closest?.('article')?.querySelector('.ix-story-marker .ix-marker');
   if(pill&&MARKERS[marker.level]){pill.className='ix-marker ix-marker-'+marker.level;pill.textContent=L(MARKERS[marker.level]);}
 }
-export function evidence(shot,values,{label,ids,definition,sources}={}){
+export function evidence(shot,values,{label,ids,definition,sources,content}={}){
   const choices=sources||[...new Set(ids||(shot.claims||[]).flatMap(c=>story.claims[c]?.sources||[]))].map(id=>({id,...story.sources[id]}));
   const labels=parts('Evidence drawer'),panel=h('div',{}),select=h('select',{'aria-label':L(labels[0]),style:'width:100%;max-width:100%;'},choices.map(src=>h('option',{value:src.id},src.title)));
   const draw=()=>{
@@ -47,7 +47,7 @@ export function evidence(shot,values,{label,ids,definition,sources}={}){
   const {state,save}=stateFor('evidence-'+shot.id+'-'+choices.map(s=>s.id).join('-'),{source:choices[0]?.id||'',open:false});
   select.value=choices.some(s=>s.id===state.source)?state.source:choices[0]?.id||'';
   select.onchange=()=>{state.source=select.value;save();draw();};draw();
-  const details=h('details',{class:'ix-story-sources',...(state.open?{open:''}:{})},h('summary',{},L(label||parts('Common navigation')[3])),select,panel);
+  const details=h('details',{class:'ix-story-sources',...(state.open?{open:''}:{})},h('summary',{},L(label||parts('Common navigation')[3])),content||null,select,panel);
   details.addEventListener('toggle',()=>{state.open=details.open;save();});
   return details;
 }

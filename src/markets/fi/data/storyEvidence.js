@@ -10,11 +10,11 @@ export const FI_EVIDENCE = {
 };
 
 export const FI_HISTORY = [
-  { id:'H-FI-01', dates:['1959'], sources:['SRC-FI-29'], kind:'event' },
+  { id:'H-FI-01', dates:['1959'], sources:['SRC-FI-29','SRC-FI-28','SRC-FI-01'], kind:'event' },
   { id:'H-FI-02', dates:['1998','1999'], sources:['SRC-FI-30'], kind:'event' },
-  { id:'H-FI-03', dates:['2014','2020-05','2022-01-01'], sources:['SRC-FI-32','SRC-FI-06','SRC-FI-31'], kind:'event' },
-  { id:'H-FI-04', dates:['2023-04-16'], sources:['SRC-FI-18'], kind:'event' },
-  { id:'H-FI-05', dates:['2026-02'], early:true, sources:['SRC-FI-04'], kind:'event' },
+  { id:'H-FI-03', dates:['2014','2020-05','2022-01-01'], sources:['SRC-FI-32','SRC-FI-06','SRC-FI-31','SRC-FI-01'], kind:'event' },
+  { id:'H-FI-04', dates:['2023-04-16'], sources:['SRC-FI-18','SRC-FI-19','SRC-FI-20','SRC-FI-21'], kind:'event' },
+  { id:'H-FI-05', dates:['2026-02'], early:true, sources:['SRC-FI-04','SRC-FI-01'], kind:'event' },
   { id:'H-FI-06', dates:['2026-09-08'], sources:['SRC-FI-23'], kind:'event' },
 ];
 
