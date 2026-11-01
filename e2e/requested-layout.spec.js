@@ -48,6 +48,7 @@ test('the plan switch changes both timeline and monthly lifecycle cash and survi
   expect(errors).toEqual([]);
 });
 test('research opens in a closeable modal and returns focus and scroll to the judgment',async({page},info)=>{
+  await page.addInitScript(()=>localStorage.setItem('hub_lens','developer'));
   await page.goto('/markets/italy');
   const trigger=page.locator('.ix-full-research');await trigger.scrollIntoViewIfNeeded();
   const y=await page.evaluate(()=>scrollY);
