@@ -74,4 +74,7 @@ test('physical zones, the same-basis comparison and the toll watch retain their 
  assert.ok(!content(comparison).includes(values.cardFigures[0]));
  const end=build(shots.find(s=>s.id==='it-11'));
  assert.equal(find(end,n=>n.getAttribute?.('data-watch')==='toll').length,1);
+ for(const plan of find(end,n=>['official-plan','scenario'].includes(n.getAttribute?.('data-authority'))))assert.ok(plan.getAttribute('stroke-dasharray'));
+ const macse=build(shots.find(s=>s.id==='it-07'));
+ assert.ok(buttons(macse).find(b=>content(b)==='Six hours').getAttribute('aria-pressed')==='true');
 });

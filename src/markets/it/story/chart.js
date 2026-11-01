@@ -28,7 +28,8 @@ export function forkChart(shot,values,{panel='both',focus=0}={}){
  const table=h('table',{class:'it-chart-table'},h('caption',{},L(story.text['Chart fallback'])),
   h('thead',{},h('tr',{},h('th',{},L(story.text['Route switch']).split(' · ')[0]),h('th',{},text(labels.label1,values)),h('th',{},text(labels.label0,values)))),
   h('tbody',{},[0,1].map(i=>h('tr',{},h('th',{},text(paymentShot.controls[i],values)),h('td',{},L(story.text['Missing value'])),h('td',{},text(labels[i?'label6':'label5'],values))))));
- return h('div',{class:'it-fork-chart','data-panel':panel},h('p',{class:'it-chart-status'},L(story.text['Chart fallback'])),svg,table,
+ return h('div',{class:'it-fork-chart','data-panel':panel},h('p',{class:'it-chart-status'},L(story.text['Chart fallback'])),
+  h('div',{class:'it-chart-scroll',tabindex:'0',role:'region','aria-label':L(data.chart.fallback)},svg),table,
   h('details',{},h('summary',{},text(paymentShot.controls[3],values)),
    h('p',{},text(labels.label2,values)),
    h('p',{},L(['Gross contracted payment before obligations and costs; not revenue, value or return.','履约义务及成本扣除前的合同付款，不等同于收入、价值或回报。'])),

@@ -25,15 +25,15 @@ function battery(shot,values,{hours=Number(values.playDuration),future=false,tim
    {symbol:'solarFarm',at:[1,10],opts:{rows:2}}],wires:[{from:[8,6],to:[12,6]}],time});
 }
 
-export function italyMap(shot,values,{selected=-1,planned=false,queue=false}={}){
+export function italyMap(shot,values,{selected=-1,planned=false,queue=false,futureQueue=false}={}){
  const titleId='it-map-'+shot.id;
  const svg=s('svg',{viewBox:'0 0 600 420',role:'img','aria-labelledby':titleId,class:'it-map'},
   s('title',{id:titleId},words(shot.question,values)),
   ITALY_MAP.map((polygon,i)=>s('g',{'data-zone':IT_ZONES[i][0]},
-   s('polygon',{points:polygon,fill:selected===i?'#b7cca5':'#e4e8da',stroke:'#224e40','stroke-width':2}),
+   s('polygon',{points:polygon,fill:(Array.isArray(selected)?selected.includes(i):selected===i)?'#b7cca5':'#e4e8da',stroke:'#224e40','stroke-width':2}),
    s('text',{x:[265,300,330,375,410,420,175][i],y:[70,120,175,235,295,370,260][i],'text-anchor':'middle',class:'it-map-label'},L(IT_ZONES[i])))));
  if(planned)svg.append(s('path',{d:'M180 230 Q270 135 340 195 M350 200 Q430 185 405 280',fill:'none',stroke:'#9b7d48','stroke-width':3,'stroke-dasharray':'7 5','data-authority':'official-plan'}));
- if(queue)for(let i=0;i<3;i++)svg.append(s('rect',{x:470+i*14,y:265-i*10,width:22,height:30,fill:'#b7cca5',stroke:'#224e40','data-authority':'schematic'}));
+ if(queue)for(let i=0;i<3;i++)svg.append(s('rect',{x:470+i*14,y:265-i*10,width:22,height:30,fill:'#b7cca5',stroke:'#224e40',...(futureQueue?{'stroke-dasharray':'5 3'}:{}),'data-authority':futureQueue?'scenario':'schematic'}));
  return svg;
 }
 
@@ -59,7 +59,7 @@ function timeline(shot,values,ids){
 }
 function history(shot,{values}){
  const holder=h('div');
- const draw=i=>holder.replaceChildren(battery(shot,values,{plant:shot.id==='it-02',cutaway:i===1}),labels(shot,values));
+ const draw=i=>holder.replaceChildren(shot.id==='it-03'&&i===1?italyMap(shot,values,{selected:[2,3,4,5,6]}):battery(shot,values,{plant:shot.id==='it-02',cutaway:i===1}),labels(shot,values));
  draw(0);
  return wrap(controls(shot,values,[0,1,2],draw),holder,timeline(shot,values,shot.id==='it-02'?[0,3]:[2,4]));
 }
@@ -86,7 +86,7 @@ function duration(shot,{values}){
   let hours=preferred;
   if(macse)hours=[4,6,8][i];else if(i===1){hours=choices[alternative++%choices.length]||preferred;}
   if(available.includes(hours))draw(hours);
- }),holder,readout,labels(shot,values),h('details',{},h('summary',{},words(shot.controls.at(-1),values)),h('p',{},words(shot.meaning,values))));
+ },macse?1:0),holder,readout,labels(shot,values),h('details',{},h('summary',{},words(shot.controls.at(-1),values)),h('p',{},words(shot.meaning,values))));
 }
 function payment(shot,{values}){
  const holder=h('div'),area=h('p');
@@ -110,7 +110,7 @@ function comparison(shot,{values}){
 }
 function risks(shot,{values}){
  const destinations=[['bankable','downside'],['revenue','downside'],['downside'],['execution'],['revenue']];
- return wrap(italyMap(shot,values,{queue:true,planned:true}),h('div',{class:'it-risk-cards'},shot.extra.factorCards.map((pair,i)=>h('article',{'data-watch':i===4?'toll':'risk'},
+ return wrap(italyMap(shot,values,{queue:true,planned:true,futureQueue:true}),h('div',{class:'it-risk-cards'},shot.extra.factorCards.map((pair,i)=>h('article',{'data-watch':i===4?'toll':'risk'},
   i<4?h('h3',{},words(shot.controls[i],values)):null,h('p',{},words(pair,values)),
   destinations[i].map(anchor=>h('a',{href:'#'+anchor,onclick:e=>{e.preventDefault();shotHost(shot,anchor);}},words(shot.controls[{bankable:4,revenue:5,execution:6,downside:7}[anchor]],values)))))));
 }
