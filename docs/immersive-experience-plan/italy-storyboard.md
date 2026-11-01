@@ -1,21 +1,21 @@
 # Italy: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Italy script researched 31 October 2026; shot layout v1.2
-Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
+Status: G-1 signed off 1 November 2026 and reconciled to the approved model/function changes. This is a G-1 script; G-2 construction, dataset and rights gates remain explicit. Merge only after dependency and exact-head checks pass.
 Navigation: [Master plan](README.md) | [Narrative card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Source register](source-register.md) (SRC-IT-01 to 04, CL-IT-01 to 03) | [Finland format](finland-storyboard.md)
 
 ## 0. Read first: the research meets the call's own trigger
 
-The infrastructure-fund call watches `it-capacity-derating-dy2028`: "Terna decides the four-hour de-rating for 2028 delivery; it has proposed cutting it from 0.67 to 0.53". The decision has been taken, and it differs from the proposal the call and its next action price against (CF-IT-01). Primary documents opened on 31 October 2026:
+The original infrastructure-fund trigger is now closed: the delivery-2028 rule was decided. The analyst approved a narrower legacy-award screen on 1 November 2026. The following primary evidence explains why new storage needs a separate zonal case:
 
 - **ARERA resolution 370/2026/R/eel, 14 October 2026** (SRC-IT-09) found Terna's second delivery-2028 DTF 2 proposal of 18 September compliant, limited to the delivery-2028 auction. It records that Terna raised the de-rating of electrochemical storage, kept the split by macro-zone, and that this cuts, ceteris paribus, what new batteries can earn in the capacity market.
 - **MASE decree 327 of 16 October 2026** (SRC-IT-08) approved DTF 2 and its Annex 4 for the delivery-2028 auction. Annex 4 §8.3, Table 11 gives the credited share of nameplate power (CDP) for new storage by duration and zone group. At four hours it is **40% in North and Centre-North, 51% in Centre-South, 21% in South and Calabria, and 21% in Sicily and Sardinia**. At eight hours it is 55%, 71%, 29% and 33%.
 - **Who it applies to** (same §8.3): storage not in the delivery-2027 supply curve, and new storage offered but not selected in that auction. Existing capacity in the delivery-2027 curve, new capacity already contracted in an earlier auction, and the lithium batteries contracted in the first MACSE auction keep the delivery-2027 factors from Annex 3 to DTF 2.
 - **The auction** for delivery 2028 is reported for 21 December 2026, with applications from 20 October to 3 November. Terna's own notice was not found on its capacity-market page at check (SRC-IT-10).
 
-The play's next action reads: "Screen ready-to-build capacity-market projects in the south and the islands; price them at a four-hour de-rating of 0.53 as well as 0.67." For new storage, the south and islands now carry the lowest factor of any zone, well below 0.53. A project already holding a delivery-2027 contract keeps the old factor.
+The approved action screens only RTB assets already holding an earlier capacity award. Verify price, credited MW, term, transfer, delivery and grid rights. New delivery-2028 storage is outside this legacy illustration and must be priced by zone after its auction price is known.
 
-**This script does not change the call.** It argues for `it-cap-4h` as published, binds every figure to the card, and states the decided rule as a dated event in it-05. Whether the call, the play's zone, or its entry route (for example, ready-to-build projects already holding a delivery-2027 contract) should change is the analyst's decision. It is listed first in §11. Under rule 11 of the master plan, the story cannot go to build until the analyst has either re-confirmed the call against the decided factors or re-graded it.
+**G-1 decision applied.** Keep the fund’s Advance call only within the narrowed earlier-awarded scope. The view, action and resolved trigger are updated in the independent Italy change; this script follows them. Source gaps for contract compatibility and specific award terms remain G-2 underwriting conditions.
 
 **Research access.** A first pass on 31 October ran with the primary hosts blocked. After network access was opened the same day, the hinge documents were opened and read (§12 marks each record "Opened" or "Not opened"). The decided factors match the trade-press reports. Corrections from that pass are recorded in §12 (CF-IT-04, CF-IT-05, GAP-IT-ZONES closed, SRC-IT-20 split).
 
@@ -70,14 +70,14 @@ Twelve shots, about five minutes. Fixed-view isometric SVG from the shared kit, 
 | Scene | Small schematic Italy thumbnail with the zones outlined; no animation |
 | Feedback | None; this shot is the conclusion. A text alternative carries the same card fields |
 | Evidence and chart | REPO-IT-LIVE; CL-IT-13. Existing market play card only; a one-line fork note reads the MACSE row from the briefing. No new chart |
-| Authoring check | Reuse the card, never `view.thesis` or `play.why`, which type a return and the superseded 0.53. The card's headline return (investment summary) and the briefing play's return (design grid) differ; the card's is shown here (CF-IT-02). Flag CF-IT-01 beside the build ticket: the bound next action names the south and islands at 0.53, which the decided factors overtake. Do not edit the action from the story |
+| Authoring check | Reuse the current narrowed call, play and next action. It applies only to verified earlier-awarded RTB assets. The investment-summary headline and design-grid comparison have separate bases. Do not carry the superseded southern/island 0.53 new-entry instruction into the story. |
 | Mobile | Full-width card, fork line and two buttons; no scene before the conclusion |
 | Status | `sourced` / `model-assumes-route`; G-1 reviewed 1 November 2026; G-2 conditions retained; build blocked until the analyst rules on CF-IT-01 |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | What is the call here, and what is the alternative? | 这里的投资判断是什么？备选路径又是什么？ |
-| Copy | **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**. Italy offers two storage mechanisms, modelled as separate cases pending confirmation of contract compatibility. This play takes the capacity market at ‹bound: play duration› hours; MACSE is a separate route, rated ‹bound: MACSE call›. The story explains why. | **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**。意大利有两种储能机制；在核实合同兼容性前，分别测算两条路径。本方案选择‹bound: play duration›小时的容量市场；MACSE是另一条路径，评级为‹bound: MACSE call›。下面说明原因。 |
+| Copy | **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**. Screen only ready-to-build assets with an earlier awarded capacity contract and verified terms. New storage needs its decided zonal credit and a separately established auction price. MACSE remains a separate calculation pending compatibility checks. | **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**。仅筛选已持有早先容量授标合同、条款已核实的具备开工条件资产。新储能须采用已确定的分区计入比例，并另行取得拍卖价格。合同兼容性核实前，MACSE仍单独测算。 |
 | Marker | The play's own marker, already on the card | 沿用方案卡上该方案自身的证据标记 |
 | Controls | Start the story · Go to the investment case | 开始阅读 · 前往投资方案 |
 
@@ -498,7 +498,7 @@ Existing claims CL-IT-01 to 03 stay in the source register. This script supplies
 
 | ID | Item | Affects | Treatment |
 | --- | --- | --- | --- |
-| CF-IT-01 | The call's trigger is resolved: for new storage, four-hour factors are 40%, 51%, 21% and 21% by zone group, against the 0.53 the play and its action price; the south and islands are lowest | it-00, it-05, it-06, it-11; the call | Flagged at the top of the PR; the analyst rules at G-1; no call change |
+| CF-IT-01 | The call's trigger is resolved: for new storage, four-hour factors are 40%, 51%, 21% and 21% by zone group, against the 0.53 the play and its action price; the south and islands are lowest | it-00, it-05, it-06, it-11; the call | Resolved: earlier-awarded RTB scope only; new storage needs a separate zonal case |
 | CF-IT-02 | Two return bases: the card's investment-summary hold against the briefing's design-grid hold (typed in `play.why` and the thesis) | it-00, it-10 | Bind each to its own field with a basis label; never mix |
 | CF-IT-03 | Typed figures in the view thesis, `despite` and trigger label are stale against the decision | Copy only | Not copied; flagged |
 | CF-IT-04 | Wording only: Terna's release calls the first auction's €37,000 the "reserve premium", ARERA calls the cap the "maximum premium", and `src/markets/it/data.js` uses "reserve premium" for the second auction's €27,000 | it-10 | Use "maximum premium" (ARERA's term) on the page |
@@ -509,11 +509,11 @@ Existing claims CL-IT-01 to 03 stay in the source register. This script supplies
 | GAP-IT-STACK | Whether one battery can hold both contracts. ARERA 247/2023 does not state it; Annex 4 §8.3 counts MACSE batteries in adequacy at the delivery-2027 factor "consistent with the values used to estimate the MACSE need". Read the MACSE rules | it-03, it-08 | Keep the view's "never stacked"; confirm before build |
 | GAP-IT-STRIKE | Strike-price level and stress-hour obligations | it-02, it-09 | Qualitative |
 | GAP-IT-QUEUE | Storage connection requests by region | it-04 | Stacked symbols, not to scale |
-| GAP-IT-ZONES | **Closed.** SRC-IT-05 gives seven physical day-ahead zones from 2021; `src/markets/it/data.js` says six | it-01 | Bind names; the repository count is for the analyst to correct separately |
+| GAP-IT-ZONES | **Closed.** SRC-IT-05 gives seven physical day-ahead zones from 2021; `src/markets/it/data.js` says six | it-01 | Bind names; Corrected in the separate Italy change: seven physical zones, distinct from procurement groups |
 
 ## Analyst decisions — 1 November 2026
 
-Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original research findings remain as evidence; the approved disposition governs the revised shot copy and closes the G-1 decision requests.
 
 | Item | Approved disposition / retained gate |
 | --- | --- |
@@ -524,4 +524,6 @@ Authority: the analyst signed off the Chinese recommendations in this chat and a
 
 **Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
 
-**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
+**Final reconciliation:** shot copy, bindings, scopes and model dependencies have been reconciled to the approved separate changes. Exact-head validation and dependency merges remain release gates. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
+
+**Financial basis.** Investment-summary IRRs use the existing after-tax nominal cash-flow layer, including its inflation convention. The design-grid comparison is a separate basis. Do not add inflation again to the investment return or treat assumed contract escalation as verified contractual entitlement.
