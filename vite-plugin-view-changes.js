@@ -14,10 +14,10 @@
    local-data stubs, this one is replaced in BOTH modes — the changelog is
    public and belongs in a build.
 
-   THE REST GOES TO ONE PLACE ONLY. The /changes page shows every line in
-   full, so a second stub, src/markets/viewChangelog.js, is replaced with the
-   whole changelog. Only that page imports it and the page is loaded on demand,
-   so the full record is a chunk of its own that the home page never fetches.
+   The /changes route receives a lightweight complete filter index. Full
+   before/after records live in lazy twenty-record modules, emitted as normal
+   content-hashed build assets and scanned by the same publishing pipeline.
+   Every record is preserved; only visible pages are downloaded.
 
    READ-ONLY. Nothing here writes to view/. The only writer is
    etl/lib/viewWriter.mjs.
@@ -34,6 +34,8 @@ import path from 'node:path';
 const STUB = 'src/markets/viewChanges.js';
 const FULL_STUB = 'src/markets/viewChangelog.js';
 const CHANGELOG = 'view/changelog.jsonl';
+const PAGE_MODULE = 'virtual:bess-view-history/';
+export const HISTORY_PAGE_SIZE = 20;
 
 /** How many changes the page shows. */
 export const RECENT_CHANGES = 10;
@@ -85,6 +87,22 @@ export function fullChangelog(text){
   return String(text || '').split(/\r?\n/).filter(line => line.trim()).map(line => JSON.parse(line));
 }
 
+/** Preserve every record; the route initially downloads only its visible pages. */
+export function archiveChangelog(text, pageSize = HISTORY_PAGE_SIZE){
+  if (!Number.isInteger(pageSize) || pageSize < 1) throw new Error('Invalid history page size');
+  const entries = fullChangelog(text).sort((a,b) => String(b.at).localeCompare(String(a.at)));
+  const pages = [];
+  for (let i = 0; i < entries.length; i += pageSize) pages.push(entries.slice(i, i + pageSize));
+  const index = entries.map((e,i) => ({id:e.id,at:e.at,market:e.market,author:{kind:e.author?.kind},page:Math.floor(i/pageSize)}));
+  const labels = {};
+  // Chronological traversal preserves the latest label for retired triggers.
+  for (const e of [...entries].reverse()) {
+    const [section,key] = e.path.split('.'), record = e.to || e.from;
+    if (section === 'triggers' && key && Array.isArray(record?.label)) labels[`${e.market}/${key}`] = record.label;
+  }
+  return {index,pages,labels};
+}
+
 const norm = (p) => p.split(path.sep).join('/');
 
 export default function viewChanges(){
@@ -92,16 +110,28 @@ export default function viewChanges(){
   return {
     name: 'bess-view-changes',
     configResolved(config){ root = config.root || root; },
+    resolveId(id){ if (id.startsWith(PAGE_MODULE)) return '\0' + id; },
 
     async load(id){
+      if (id.startsWith('\0' + PAGE_MODULE)) {
+        const source = path.resolve(root, CHANGELOG);
+        this.addWatchFile(source);
+        const archive = archiveChangelog(existsSync(source) ? await readFile(source,'utf8') : '');
+        const page = Number(id.slice(PAGE_MODULE.length + 1));
+        if (!Number.isInteger(page) || !archive.pages[page]) throw new Error('Unknown history page');
+        return `export default ${JSON.stringify(archive.pages[page])};\n`;
+      }
       const file = norm(id.split('?')[0]);
       const full = file.endsWith('/' + FULL_STUB);
       if (!full && !file.endsWith('/' + STUB)) return null;
       const source = path.resolve(root, CHANGELOG);
       this.addWatchFile(source);
       if (full){
-        const entries = existsSync(source) ? fullChangelog(await readFile(source, 'utf8')) : [];
-        return `export const VIEW_CHANGELOG = ${JSON.stringify(entries)};\n`;
+        const archive = archiveChangelog(existsSync(source) ? await readFile(source, 'utf8') : '');
+        const loaders = archive.pages.map((_,i) => `()=>import(${JSON.stringify(PAGE_MODULE+i)})`).join(',');
+        return `export const VIEW_CHANGELOG = ${JSON.stringify(archive.index)};\n` +
+          `export const VIEW_TRIGGER_LABELS = ${JSON.stringify(archive.labels)};\n` +
+          `const pages=[${loaders}];\nexport const loadChangelogPage=i=>pages[i]().then(m=>m.default);\n`;
       }
       const digest = existsSync(source)
         ? digestChangelog(await readFile(source, 'utf8'))
