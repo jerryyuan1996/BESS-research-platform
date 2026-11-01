@@ -231,8 +231,8 @@ const ranges = {
   contracted: band(economics.contracted,
     Math.round(CM_PREMIUM * 0.53), Math.round(CM_PREMIUM * 0.90), {
       basis: [
-        'The €47,000/MW/yr DY2027 clearing premium at three de-rating factors. The seed applies the current four-hour factor of 67%. The floor applies the 53% Terna has PROPOSED for DY2028 — a 21% cut per nameplate MW that would withdraw what is currently Europe\'s most favourable battery de-rating. The ceiling applies the 90% factor an eight-hour system receives today.',
-        '以2027实需年度出清溢价每MW每年€47,000为基础，应用三种折减系数。种子值采用当前4小时系数67%。下限采用Terna为2028实需年度所拟定的53% — 按铭牌MW计相当于削减21%，将撤回目前欧洲最有利的储能折减待遇。上限采用八小时系统当前适用的90%系数。',
+        'Legacy-award sensitivity at the DY2027 premium: the seed uses the earlier four-hour factor, the floor retains the old proposed-factor stress and the ceiling the earlier eight-hour factor. This is not the decided zonal credit for new DY2028 batteries; verify each earlier award before using the illustration.',
+        '按2027年度溢价作旧批次授标敏感性分析：种子采用早先四小时系数，下限保留旧提案系数压力情景，上限采用早先八小时系数。这不是2028年度新电池已确定的分区计入比例；使用参考情景前须核实每份早先授标。',
       ],
       source: 'Timera Energy on the DY2027 auction premium; Modo Energy on Terna\'s DY2028 de-rating proposal',
     }),
