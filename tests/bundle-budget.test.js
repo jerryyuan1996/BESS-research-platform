@@ -240,6 +240,7 @@ const BUDGET = {
     'story-wa': 40,
     'story-fi': 40,
     'story-de': 40,
+    'story-gb': 40,
     'story-it': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
@@ -797,6 +798,25 @@ test('the Finland story remains lazy and its complete additional graph fits the 
   const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
   assert.ok(kB(gzipOf(extra))<=BUDGET.features['story-fi'],
     'Finland story, shell, kit and additional dependencies: '+kB(gzipOf(extra))+' KiB gzip, cap '+BUDGET.features['story-fi']);
+});
+
+test('the GB story, additional static graph and lazy styles stay below 40 KiB gzip',async t=>{
+  if(skipWithoutDist(t))return;
+  const {entry,features,byName}=await chunks();
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const own=features.get('story-gb');assert.ok(own,'the GB lazy story chunk exists');
+  assert.ok(!first.has(own),'the story is absent before it opens');
+  const probe='What happened to prices as batteries filled each service?';
+  assert.ok(own.text.includes(probe),'the GB content probe still exists');
+  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no GB story content in '+chunk.name);
+  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
+  const css=await styles();
+  assert.ok(!css.main.text.includes('.gb-scene'),'GB styles do not load on home');
+  const storyStyles=css.lazy.filter(c=>c.text.includes('.gb-scene')||c.text.includes('.ix-story-dialog'));
+  assert.ok(storyStyles.some(c=>c.text.includes('.gb-scene')),'the local story stylesheet exists');
+  const cssBytes=storyStyles.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
+  const total=gzipOf(extra)+cssBytes;
+  assert.ok(total<=40*1024,'GB story and additional static closure including CSS: '+kB(total)+' KiB gzip; cap 40');
 });
 
 test('the Italy story and its entire additional static graph stay lazy and below 40 KiB gzip',async t=>{
