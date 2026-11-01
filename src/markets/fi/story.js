@@ -953,6 +953,17 @@ export const story = {
               "Value depends on use",
               "价值取决于用途"
             ]
+          },
+          "extra": {
+            "exits": [
+              {
+                "anchor": "bankable",
+                "label": [
+                  "Open duration evidence",
+                  "查看时长依据"
+                ]
+              }
+            ]
           }
         },
         {
@@ -1171,6 +1182,17 @@ export const story = {
             "unverified": [
               "Project contract not verified",
               "项目合同尚未核验"
+            ]
+          },
+          "extra": {
+            "exits": [
+              {
+                "anchor": "bankable",
+                "label": [
+                  "Contract evidence",
+                  "合同证据"
+                ]
+              }
             ]
           }
         }
