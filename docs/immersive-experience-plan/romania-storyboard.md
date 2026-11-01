@@ -1,7 +1,7 @@
 # Romania: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Romania script researched 31 October 2026; shot layout v1.2  
-Status: `proposed` research and bilingual script; analyst sign-off at **G-1** pending; steps 1 and 2 only. Markdown only: no build, data, model, view or fixture change  
+Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
 Navigation: [Master plan](README.md) | [Narrative method](market-narratives.md) | [Evidence specification](evidence-and-content-specification.md) | [Sources and claims](#10-sources-and-claims) | [Finland format](finland-storyboard.md)
 
 ## 1. Scope, argument and reading route
@@ -59,7 +59,7 @@ Thirteen shots, about five minutes. Shared fixed-view isometric SVG kit, off-whi
 | Evidence and chart | REPO-RO-LIVE; CL-RO-04, CL-RO-18. Existing card fields only: call, play title, decision-panel metrics, the operating-purchase line, next action. No new chart |
 | Authoring check | Reuse the card; never paste the view thesis or `play.why` figures. The card's headline return is the shared new-build case and the operating-purchase line beside it is the fund's entry price; neither is the design grid's build return (ro-08). The floor is a condition of entry, never secured or priced. If call, play or lens differ at build, `reviewedAgainst` queues review |
 | Mobile | Card full width, short paragraph, two buttons; no scene before the conclusion |
-| Status | `sourced` / `model-assumes-route`; floor `eligibility-unverified`; G-1 pending |
+| Status | `sourced` / `model-assumes-route`; floor `eligibility-unverified`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -79,7 +79,7 @@ Thirteen shots, about five minutes. Shared fixed-view isometric SVG kit, off-whi
 | Evidence and chart | CL-RO-03 (SRC-RO-10, SRC-RO-11); CL-RO-04 (REPO-RO-MODEL `capabilities`; no capacity-mechanism proposal located on 31 October 2026); generation types only, GAP-RO-HISTORY |
 | Authoring check | No plant locations, line counts, capacities or flows. Generation is drawn by type with no shares until GAP-RO-HISTORY closes from a primary source. "No capacity payment" describes the current rules; a later mechanism would reopen the play |
 | Mobile | Same schematic with a stacked legend and both toggles; the description reads without the map |
-| Status | Coupling `sourced`; no-capacity rule from the model's capability flags; generation history qualitative; G-1 pending |
+| Status | Coupling `sourced`; no-capacity rule from the model's capability flags; generation history qualitative; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -102,7 +102,7 @@ Thirteen shots, about five minutes. Shared fixed-view isometric SVG kit, off-whi
 | Evidence and chart | CL-RO-03: H-RO-01 (SRC-RO-08, pp. 4, 19), H-RO-02 (SRC-RO-09), H-RO-03 (SRC-RO-10; SRC-RO-11) |
 | Authoring check | Coupling shares one price only while cross-border capacity is free; when an interconnector is full, prices separate. Do not say coupling makes Romanian prices equal to its neighbours'. No price series drawn (MR-4) |
 | Mobile | Vertical node list; one diagram |
-| Status | Events `historical-fact`, `sourced`; interpretation `proposed`; G-1 pending |
+| Status | Events `historical-fact`, `sourced`; interpretation `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -138,7 +138,7 @@ Timeline nodes (page text):
 | Evidence and chart | H-RO-04: CL-RO-05 (SRC-RO-12). H-RO-05: CL-RO-06 (SRC-RO-13; SRC-RO-14 flagged, CF-RO-08). H-RO-06: CL-RO-16, CL-RO-19 (SRC-RO-03, -04, -05, -06, -07) |
 | Authoring check | The tariff exemption covers only energy stored and fed back; the battery's own consumption and losses still pay. Connection auctions ration access and cost the developer guarantees; they pay nothing. A scheme budget is not an award, programme funding confirmed or disbursed to the state is not a beneficiary list, and an award is not a receipt. Never describe the call as closed or awarded (OC-RO-GRANT) |
 | Mobile | Three stacked cards; the dashed-outcome legend stays visible |
-| Status | H-RO-04 and the scheme `sourced`; H-RO-05 from repository records; grant outcome `missing`; G-1 pending |
+| Status | H-RO-04 and the scheme `sourced`; H-RO-05 from repository records; grant outcome `missing`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -177,7 +177,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-RO-11: solar build SRC-RO-01, p. 1 (solar connected in 2026); SRC-RO-20 (prosumers, reported); GAP-RO-PRICES and MR-4 for any observed spread; REPO-RO-MODEL `merchantEvidence` (basis, not shown) |
 | Authoring check | No observed Romanian day-ahead figure: the platform's Romanian spread statistics were computed on a private-use mirror and stay withheld until recomputed from a publishable primary series (MR-4). Price-data rights are under separate review. Draw the Example shape only. Drought, gas and demand also move prices; the shot names the main mechanism, not the only cause. A spread is a price opportunity, not captured cash |
 | Mobile | Two stacked panels (midday, evening) sharing the Example shape; text first |
-| Status | Mechanism `sourced` / `proposed`; observed layer `blocked` (MR-4, `rights-unresolved`); G-1 pending |
+| Status | Mechanism `sourced` / `proposed`; observed layer `blocked` (MR-4, `rights-unresolved`); G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -198,13 +198,13 @@ Timeline nodes (page text):
 | Evidence and chart | CL-RO-09 (SRC-RO-15, p. 3; 2026 counts reported); CL-RO-10 (merchant-lines plan §1, mirror-derived and withheld under MR-4); SRC-RO-11 (implicit allocation of the border) |
 | Authoring check | Do not show the share of hours the two zones clear together, or the evening price gap: both were computed on the private-use mirror (MR-4). Bulgarian 2026 counts differ by source; use the Bulgarian operator's end-2025 figure as the dated observation and label later counts "Reported". Interconnector capacity is not quantified here |
 | Mobile | Two stacked country panels with the border card between them |
-| Status | Fleet `sourced` (end-2025); decoupling `blocked` (MR-4); interpretation `proposed`; G-1 pending |
+| Status | Fleet `sourced` (end-2025); decoupling `blocked` (MR-4); interpretation `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
-| Question | Bulgaria built far more batteries first. Why is that not Romania's main risk? | 保加利亚率先建成了多得多的电池，为什么这不是罗马尼亚的主要风险？ |
-| Copy | Bulgaria's battery fleet reached ‹bound: Bulgaria fleet end-2025› by the end of 2025 and has grown fast since. In the evening those batteries export north, but only until the interconnector is full; beyond that, Romania's evening price is set at home. | 截至2025年底，保加利亚的电池规模达到‹bound: Bulgaria fleet end-2025›，此后仍在快速增长。傍晚时段，这些电池向北出口电力，但仅限于联络线满载之前；超出这一限度，罗马尼亚的傍晚电价就由本国决定。 |
-| Meaning | The neighbour's fleet trims the spread only up to the border's limit; Romania's own build is the larger risk to this play. | 邻国的电池只能在边境容量限度内压缩价差；本方案更大的风险来自罗马尼亚自身的建设。 |
+| Question | How can neighbouring batteries affect Romania? | 邻国电池如何影响罗马尼亚？ |
+| Copy | Coupled markets can transmit part of a neighbouring battery fleet’s effect through cross-border trade. The interconnector limits that effect when it is constrained. This story has not established how often the border binds or how large the price effect is. | 耦合市场可以通过跨境交易传递邻国电池的部分影响。联络线拥塞时，传递会受到限制。本故事尚未证实边境有多频繁受到约束，也未证实对价格的影响有多大。 |
+| Meaning | Cross-border competition remains relevant; compare it with domestic additions once publishable price evidence is available. | 跨境竞争仍然相关；取得可公开发布的价格证据后，再与本国新增储能的影响比较。 |
 | Marker | Thin evidence. What would change it: the share of hours Romania and Bulgaria clear at the same day-ahead price, recomputed from a publishable primary source. | 证据单薄。会改变判断的证据：基于可公开发布的一手来源，重新计算罗马尼亚与保加利亚日前同价出清的小时占比。 |
 | Controls | Midday · Evening · Border | 中午 · 傍晚 · 边境 |
 | Labels | Bulgaria's batteries · Romania's batteries · Interconnector · Border full: prices separate · Reported | 保加利亚的电池 · 罗马尼亚的电池 · 联络线 · 边境满载：价格分离 · 报道数据 |
@@ -239,13 +239,13 @@ Timeline nodes (page text):
 | Evidence and chart | CL-RO-14: REPO-RO-MODEL `services`, `servicesCurve` (saturation calibrated on Great Britain); SRC-RO-03, p. 10 (grant winners must seek balancing qualification); GAP-RO-RESERVES |
 | Authoring check | Reserve capacity prices (per MW per hour) are not energy spreads; never share an axis. The saturation is the model's assumption, calibrated on Great Britain, not a Romanian observation; the verdict's "saturating" rests on it (CF-RO-07). Not every battery qualifies for every product |
 | Mobile | Static ladder with the qualitative bar beneath |
-| Status | `model-assumption`; research hypothesis; G-1 pending |
+| Status | `model-assumption`; research hypothesis; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Can reserve payments carry the case instead? | 备用服务收入能否转而支撑这项投资？ |
-| Copy | Not for long. The grid operator buys only a limited amount of fast reserve, and every new battery competes for it; batteries that win the new grants must also try to qualify. The model lets reserve income fade over the first years as the fleet arrives. | 难以持久。电网运营商采购的快速备用数量有限，每台新电池都在争夺这部分需求；获得新补贴的电池也必须争取参与资格。模型假设，随着储能陆续投运，备用收入会在最初几年内逐步减少。 |
-| Meaning | Reserves are an early top-up that fades; trading carries this play. | 备用收入是早期的补充，会逐步减少；支撑本方案的是电力交易。 |
+| Copy | The model assumes reserve income fades as more batteries compete for a limited procurement volume. That curve was calibrated on Britain, not on a Romanian reserve-price series. Local procurement results are needed to test it. | 模型假设，更多电池争夺有限采购量时，备用收入会逐步减少。这条曲线以英国经验标定，并非根据罗马尼亚备用价格序列得出；需要本地采购结果来检验。 |
+| Meaning | Treat fading reserve revenue as a model assumption; trading carries the priced case. | 备用收入递减属于模型假设；已定价情景依靠电力交易。 |
 | Marker | Thin evidence. What would change it: Transelectrica's frequency-reserve procurement results for 2025–2026, by product. | 证据单薄。会改变判断的证据：Transelectrica按品种公布的2025–2026年频率备用采购结果。 |
 | Controls | Seconds · Minutes · Hours · More batteries | 秒级 · 分钟级 · 小时级 · 更多电池 |
 | Labels | Frequency containment · Frequency restoration · Trading · Reserve income · Model assumption | 频率遏制 · 频率恢复 · 电力交易 · 备用收入 · 模型假设 |
@@ -261,7 +261,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-RO-13: REPO-RO-LIVE `grids.ro` (`byRoute.mer.best`; the two- and four-hour merchant cells); REPO-RO-MODEL `durationResponse.merchantCapture`, `capexStack`; merchant-lines plan §1 (Checks: in Bulgaria four-hour value compressed slightly less than two-hour) |
 | Authoring check | Best is by value per MW, not by highest return. Never say four hours "falls faster" in spread terms: the model applies one curve to every duration, and Bulgaria's four-hour value compressed slightly less (CF-RO-01). The duration capture curve was derived on the private-use mirror; call it the model's, not observed (MR-4). The teaching battery is 100 MW, tagged Example. Do not set the grid's build return beside the card's new-build return as one figure |
 | Mobile | Cutaway with two presets; the grid's preferred cell in text below |
-| Status | `model-assumption`, `sourced`; G-1 pending |
+| Status | `model-assumption`, `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -281,7 +281,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-RO-15 (SRC-RO-03, p. 10: markets directly or through an aggregator); REPO-RO-MODEL `feePct`, `merchantEvidence` (full realisation, MR-1); REPO-06 stack feasibility |
 | Authoring check | Never add lane maxima; one MW is sold once. Full capture of perfect-foresight day-ahead value is the model's assumption, with quarter-hour and intraday trading taken to offset imperfect foresight (MR-1); say so. No optimiser or project named |
 | Mobile | Three stacked lane cards and the shared-capacity bar |
-| Status | Routes `sourced`; realisation `model-assumption`; G-1 pending |
+| Status | Routes `sourced`; realisation `model-assumption`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -303,7 +303,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-RO-15 (SRC-RO-03, p. 10; SRC-RO-11); CL-RO-16 (SRC-RO-03, -05, -06, -07); CL-RO-17 (REPO-RO-MODEL: engine `grantForMW` and `capitalWithGrant`; `src/acquisition/reference.js`, operating stage); CL-RO-04. Revenue detail stays in `#revenue` |
 | Authoring check | Never place the grant in a revenue line or the secured share. The modelled new-build case assumes a capital grant (‹bound: grant note›); the operating-purchase price on the card carries none. An award is not a receipt; the call's outcome is unpublished. Name units: per MWh for trading, per MW held for reserve. If the secured share ever becomes non-zero, the copy must name its tenor and what follows it (plan rule 7) and return to G-1 |
 | Mobile | One route at a time as stacked steps |
-| Status | Routes and scheme `sourced`; grant in the build case `model-assumption`; award `missing`; G-1 pending |
+| Status | Routes and scheme `sourced`; grant in the build case `model-assumption`; award `missing`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -326,7 +326,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-RO-18: REPO-RO-LIVE (`verdicts.infraFund.where`, `because`, `despite`; `plays.ro-mer-2h.action`); open-calls plan §3 (3A; OC-RO-FLOOR); SRC-RO-17 (the repository's counterparty record behind the `revenueCertainty` grade); the engine's `tollIsFloor` rule, for authoring only |
 | Authoring check | The floor never appears as secured, priced or modelled revenue; the secured share stays bound to the card. Do not transplant Finland's floor price or tenor. Do not name the announced floor's parties or project. Once a floor is negotiated and priced, the platform counts it as secured at its own level, for its stated term (the settled ruling); that is a later proposal through OC-RO-FLOOR, not this story |
 | Mobile | Two stacked panels: the priced merchant case, then the floor checklist |
-| Status | Condition `sourced` (analyst ruling); floor terms `missing`; `eligibility-unverified`; G-1 pending |
+| Status | Condition `sourced` (analyst ruling); floor terms `missing`; `eligibility-unverified`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -348,7 +348,7 @@ Timeline nodes (page text):
 | Evidence and chart | CL-RO-06, -07, -12, -14, -16, -18, -19; REPO-RO-LIVE triggers (`ro-grant-call-close`, `ro-grant-status-review`, `ro-connection-guarantee-order`) and `changesIf`; SRC-RO-04; SRC-RO-14 |
 | Authoring check | No grant outcome: the call is unresolved at check (OC-RO-GRANT), and 2 November is the analyst's review date, not a closing date. ANRE Order 16/2026 is flagged to the analyst, not treated as having fired a trigger (CF-RO-08). A downside case is not a probability. Stop at the market page; no second financial view |
 | Mobile | Factor cards, each with its section link; the four destinations visible at the end |
-| Status | `sourced`; triggers bound; G-1 pending |
+| Status | `sourced`; triggers bound; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -602,3 +602,18 @@ Points for the analyst to decide at G-1:
 Script checks, 31 October 2026: thirteen shots, each with its specification rows (scene, feedback, evidence and chart, authoring check, mobile, status) and its page-text rows (question, copy, meaning, marker, controls) in English and Simplified Chinese; ro-00 has no meaning line, because it is the conclusion. Page copy carries no figure outside a ‹bound› token except dates and values tagged Example. No project, developer or deal is named. No application test, build or preview was run: only this Markdown file is added.
 
 Stop here. No application code, dataset registration, snapshot, model or view change, rendering, build, deployment or G-2 work in this task.
+
+## Analyst decisions — 1 November 2026
+
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+
+| Item | Approved disposition / retained gate |
+| --- | --- |
+| Chart / data | Approve fleet-growth chart, fixed-vintage official records, index-only model path and unscaled Example daily shape. Open each primary release and settle reuse before quantitative build. MR-4 stays open. |
+| Grant / order | Grant outcome and reported extension remain unverified; 2 November 2026 is the review date, not a grant deadline. Do not fire the order trigger until the formal text and its connection/guarantee scope are established. |
+| ro-05/07 | Keep cross-border effect and reserve saturation at Thin. The reserve curve is explicitly a Britain-calibrated model assumption; source Romanian procurement before calling saturation observed. |
+| Interpretation / Chinese | Approve the route with competing water, gas, demand and other-flexibility explanations. Preserve existing calls and both-language meaning. |
+
+**Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
+
+**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
