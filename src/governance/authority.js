@@ -197,6 +197,12 @@ export const COMPARISON_AUTHORITY = {
      Route rules have their own leaf rule below. */
   'durationResponse.hours': AUTHORITY.METHODOLOGY,
   'durationResponse.capacityDerating': AUTHORITY.ANALYST,
+  // Forward money curves are protected like economics.auctionRenewalCurve.
+  'durationResponse.auctionRenewalCurves': AUTHORITY.METHODOLOGY,
+  'durationResponse.auctionRenewalCurves.4': AUTHORITY.METHODOLOGY,
+  'durationResponse.auctionRenewalCurves.6': AUTHORITY.METHODOLOGY,
+  'durationResponse.auctionRenewalCurves.8': AUTHORITY.METHODOLOGY,
+  'durationResponse.auctionRenewalCurves.10': AUTHORITY.METHODOLOGY,
   'durationResponse.capacityDeratingBasis': AUTHORITY.METHODOLOGY,
   'durationResponse.merchantCapture': AUTHORITY.ANALYST,
   'durationResponse.merchantCaptureBasis': AUTHORITY.METHODOLOGY,
