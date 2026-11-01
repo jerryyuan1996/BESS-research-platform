@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { opportunities, storyRowsFor, caseFor, revenueBridge, LENSES } from '../src/experience/model.js';
+import { opportunities, caseFor, revenueBridge, LENSES } from '../src/experience/model.js';
+import { storyRowsFor } from '../src/experience/storyRows.js';
 import { markets } from '../src/markets/registry.js';
 
 test('all investor screens cover each registered market exactly once', () => {
