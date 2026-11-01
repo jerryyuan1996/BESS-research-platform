@@ -238,6 +238,8 @@ const BUDGET = {
        fetched only when a reader opens the story from the market page. The
        plan's ceiling for shell, content and kit together is about 40 KiB. */
     'story-wa': 40,
+    'story-fi': 40,
+    'story-de': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -374,7 +376,10 @@ const BUDGET = {
     // RAISED FROM 98 TO 106 (2026-10-31): the open-calls plan's 15 lines
     // (Poland, Romania, Japan and ERCOT theses, plays, calls and two triggers)
     // took it to 102.57.
-    'changes': 106,
+    // RAISED FROM 106 TO 124 (2026-10-31): the view-text plan's 68 lines
+    // (typed returns out of prose in twelve markets, dated grade reasons, ten
+    // source fixes, each carrying a whole play, call or grade) took it to 120.79.
+    'changes': 124,
     /* The /scout page with every scout card whole: facts with their
        quotations, a reason in two languages for each grade, four verdicts.
        Fetched only on that route — the home page carries each card's four
@@ -777,4 +782,18 @@ test('the dossier stylesheet exists as its own chunk', async (t) => {
     'missing entirely or split across chunks; both are worse than the leak.');
   assert.ok(carrier.bytes < 8 * 1024,
     `the dossier stylesheet is ${(carrier.bytes / 1024).toFixed(1)} kB, over its 8 kB budget`);
+});
+
+test('the Finland story remains lazy and its complete additional graph fits the story cap',async t=>{
+  if(skipWithoutDist(t))return;
+  const {entry,features,byName}=await chunks();
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const own=features.get('story-fi');assert.ok(own,'the Finland lazy story chunk exists');
+  assert.ok(!first.has(own),'the story is absent from home and entry-page dependencies');
+  const probe='What is actually secured, and until when?';
+  assert.ok(own.text.includes(probe),'the story-content probe still exists');
+  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no story content in '+chunk.name);
+  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
+  assert.ok(kB(gzipOf(extra))<=BUDGET.features['story-fi'],
+    'Finland story, shell, kit and additional dependencies: '+kB(gzipOf(extra))+' KiB gzip, cap '+BUDGET.features['story-fi']);
 });

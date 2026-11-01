@@ -1,8 +1,8 @@
 {
   "marketId": "wa",
   "thesis": [
-    "Capacity-led and difficult for small cheques. Capacity is roughly three-quarters of year-one revenue. A fund enters behind a strategic sponsor once Capacity Credits are assigned. The current priced design is eight hours; compare its value and hold return with seven hours in the grid below, including the duration haircut as the battery degrades.",
-    "以容量收入为主，小额出资者难以进入。容量收入约占首年收入的四分之三。基金在容量信用分配后跟随战略投资者进入。当前定价方案为八小时；请对照下方设计表比较其与七小时的价值和持有回报，计入电池衰减导致的容量折减。"
+    "Capacity-led and difficult for small cheques. Capacity carries most of year-one revenue. A fund enters behind a strategic sponsor once Capacity Credits are assigned. The current priced design is eight hours; compare its value and hold return with seven hours in the grid below, including the duration haircut as the battery degrades.",
+    "以容量收入为主，小额出资者难以进入。容量收入占首年收入的大部分。基金在容量信用分配后跟随战略投资者进入。当前定价方案为八小时；请对照下方设计表比较其与七小时的价值和持有回报，计入电池衰减导致的容量折减。"
   ],
   "grades": {
     "assetReturn": {
@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "First of fifteen markets on hold IRR, 19.8%.",
-        "持有期IRR为19.8%，在十五个市场中排第一。"
+        "First of fifteen markets on the design grid's hold IRR, 19.8% (23 October 2026).",
+        "按设计表测算的持有期IRR为19.8%（2026年10月23日），在十五个市场中排第一。"
       ],
       "asOf": "2026-10-23",
       "author": "analyst",
@@ -31,8 +31,8 @@
         "rules"
       ],
       "reason": [
-        "Capacity revenue is about 77% of revenue, but its price is set again each year. The market rules guarantee only a floor at half the benchmark price, which secures about 39% of expected revenue for the long term.",
-        "容量收入约占总收入的77%，但其价格每年重新确定。市场规则只保证基准价一半的保底，据此长期锁定的约为预期收入的39%。"
+        "On the design grid (11 October 2026), capacity revenue is about 77% of revenue, but its price is set again each year. The market rules guarantee only a floor at half the benchmark price, which secures about 39% of expected revenue for the long term.",
+        "按设计表测算（2026年10月11日），容量收入约占总收入的77%，但其价格每年重新确定。市场规则只保证基准价一半的保底，据此长期锁定的约为预期收入的39%。"
       ],
       "asOf": "2026-10-11",
       "author": "analyst",
@@ -219,8 +219,8 @@
         {
           "dimension": "revenueCertainty",
           "text": [
-            "About three-quarters of revenue comes from the capacity mechanism, with a floor at half the benchmark price: the most secured revenue of the four markets.",
-            "约四分之三的收入来自容量机制，并有基准价一半的保底：在四个市场中锁定收入最高。"
+            "Most revenue comes from the capacity mechanism, with a floor at half the benchmark price: the most secured revenue of the four markets.",
+            "大部分收入来自容量机制，并有基准价一半的保底：在四个市场中锁定收入最高。"
           ]
         },
         {
@@ -250,7 +250,7 @@
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-11",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     },
     "infraFund": {

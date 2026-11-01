@@ -56,7 +56,8 @@ test('Poland carries the December 2025 auction, not the December 2024 one', () =
 test('Ireland carries the 2029/30 auction, not the 2028/29 one', () => {
   const c = byId('ie').comparison.economics.capacity;
   assert.equal(c.price, 135.50, '€/kW/yr — supersedes €149.96 for 2028/29');
-  near(byId('ie').comparison.economics.contracted, 89430, 1, 'IE contracted');
+  assert.equal(c.derating, .277, 'same-auction 40–50 MW four-hour factor, approved 1 Nov 2026');
+  near(byId('ie').comparison.economics.contracted, 37533.5, .01, 'IE price × same-vintage credit');
 });
 
 test('WA prices AEMO’s published 2028-29 RCP, not the benchmark', () => {
@@ -351,7 +352,8 @@ test('published base-case outcomes', () => {
     // GB moved 2026-10-15: 4h de-rating 0.38 → 0.4396, NESO's published T-4
     // 2029/30 factor (gate G1); capacity line £10,298 → £11,913/MW-yr.
     gb:          ['cap',   10.8,         4.5],
-    ie:          ['cap',   14.3,         9.0],
+    // 1 Nov 2026: same-vintage 2029/30 credit .277 replaces .66; services retained.
+    ie:          ['cap',    9.5,         1.7],
     /* Moved 2026-10-23 (docs/merchant-lines-plan-2026-10.md): merchant lines
        re-seeded from observed day-ahead value with a dated fleet path. Were
        ro 26.1/20.2 and pl 8.2/0.2. */
@@ -386,7 +388,7 @@ test('the ordering the cockpit asks readers to use', () => {
   assert.ok(irr('wa') > irr('ro'), 'Romania’s own build takes it off the top');
   assert.ok(irr('ro') > irr('ie'), 'Romania still beats Ireland');
   assert.ok(irr('wa') > irr('ie'), 'WA’s 7h build beats Ireland');
-  assert.ok(irr('pl') < irr('ie'), 'Poland falls below Ireland on the KWD cut');
+  assert.ok(irr('pl') > irr('ie'), 'source-matched Irish capacity credit now puts its reference below Poland');
 
   // Poland's new-entry screen no longer inherits the final main-auction award.
   // The legacy route remains available for vintage analysis, but is not the

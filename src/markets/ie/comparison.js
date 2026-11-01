@@ -1,48 +1,8 @@
-/* ---------------------------------------------------------------------------
-   Ireland (SEM) — comparison interface. Economics are per MW per year, in EUR.
-
-   REVISED 2026-07-30. Two changes, one a data refresh and one structural.
-
-   1. CAPACITY PRICE. €149.96/kW/yr is the 2028/29 T-4 result. The 2029/30 T-4,
-      held April 2026, cleared at €135,499.99/MW/yr — about 10% lower. The newer
-      auction is the one a market-entry benchmark should carry.
-
-   2. SYSTEM SERVICES ARE NO LONGER FLAT. This is the important one. DS3 regulated
-      arrangements continue only until FASS go-live, with a long-stop of 30
-      September 2027. The May 2027 go-live target no longer stands: the TSOs
-      told industry in June 2026 that it "is not feasible", no replacement date
-      has been set, and they added that a further DS3 gate up to the long-stop
-      "may not be practical". The year-3 step below survives either outcome —
-      DASSA arrives late, or DS3 lapses at the long-stop — so the curve is
-      unchanged and only the stated date moves. Effective DS3 rates have already fallen
-      more than 40% since 2022. A flat fifteen-year services line models a regime
-      that will not exist for fourteen of those years.
-
-   THE CURVE, AND WHY IT HAS THIS SHAPE. Great Britain has already run this
-   experiment, and Modo draws the analogy explicitly — Ireland is heading where
-   GB went "when frequency response revenues collapsed". The GB sequence:
-
-       2020        FFR is 40-50% of battery revenue
-       Q4 2020     Dynamic Containment launches, quickly becomes dominant
-       2022        DC saturates and revenues fall away
-       Jan 2024    Balancing Mechanism revenue overtakes frequency response
-
-   Saturation arrived at roughly 1.1× the requirement — about 1,567 MW installed
-   against a frequency response requirement below 1,400 MW — and the fall was on
-   the order of 75-80% within two years of that crossing.
-
-   Ireland's crossing is not in doubt: ~800 MW operational against a pipeline of
-   ~10 GW / 50 GWh across 155 projects. What is different is that Ireland's
-   transition is DATED rather than emergent, so the curve steps rather than
-   drifting: years 1-2 are the DS3 run-out, year 3 is FASS, and the tail is the
-   competitive-auction floor GB settled at.
-
-   OPEN ITEM. The BASE level of €8,000/MW/yr is inherited from the prototype and
-   is not verified — Modo describes DS3 as historically the dominant Irish
-   revenue source, which €8,000 against €71,200 of merchant does not reflect. The
-   curve is applied to whatever that level turns out to be; gate G6 closes it.
-   docs/external-view.md §3.
-   --------------------------------------------------------------------------- */
+/* Ireland: source-matched 2029/30 awarded-vintage illustration.
+   Six hours is the approved research candidate, not an underwriting clearance.
+   The four-hour archetype stays the scaling anchor. Services and their decay
+   remain analyst assumptions; no DS3 right is extended beyond the long-stop.
+   See docs/ireland-six-hour-learning-2026-11-01.md. */
 import { capacityRevenuePerMW } from '../../comparison/capacityLine.js';
 import { band, limits } from '../../comparison/ranges.js';
 import { merchantVintage } from '../../comparison/vintage.js';
@@ -54,23 +14,22 @@ const capacity = {
   unit: 'kW',
   priceCurrency: 'EUR',
   fxToMarket: 1,
-  derating: 0.66,
-  auction: ['T-4, April 2026', '2026年4月T-4拍卖'],
+  derating: 0.277,
+  auction: ['T-4, 26 March 2026; final results 5 May', '2026年3月26日T-4拍卖；5月5日最终结果'],
   deliveryYear: 2029,
-  source: 'SEM-O PCAR2930T-4, €135,499.99/MW/yr (supersedes €149,960 for 2028/29)',
+  source: 'SEMO 2029/30 final results: €135,499.99/MW-year; IAIP2930T-4 v1.1 Table 3, 40–50 MW row: 4h factor .277. Approved 1 Nov 2026.',
   note: [
-    'De-rating factors are beginning to erode capacity payments, hardest at short duration.',
-    '可信容量系数已开始侵蚀容量收入，短时长资产受影响最大。',
+    'Award-vintage illustration, not an available new-entry price. Verify awarded MW, term and contract start against the project’s first revenue date.',
+    '已授标批次参考情景，并非当前可取得的新入场价格。须核对获付MW、期限及合同开始日与项目首笔收入日期。',
   ],
 };
 
-/* Multipliers on `services`, index 0 = year 1. GB-calibrated; see the header.
-   The tail is a floor, and the engine holds the last value for any year beyond
-   the array — extending a floor is not an additional assumption. */
+/* Assumed services multipliers, index 0 = operating year 1. Retained by the
+   analyst; relative years do not assert a calendar date for FASS commencement. */
 const DS3_TO_FASS = [
-  1.00,   // yr 1  — DS3 regulated arrangements continue
-  0.85,   // yr 2  — extension to FASS go-live; rates already declining
-  0.45,   // yr 3  — FASS competitive auctions begin. The step.
+  1.00,   // operating year 1: assumed competitive income
+  0.85,   // operating year 2: assumed decay
+  0.45,   // operating year 3: retained assumed step
   0.30,   // yr 4
   0.25,   // yr 5
   0.22, 0.22, 0.21, 0.21, 0.20, 0.20, 0.19, 0.19, 0.18, 0.18,
@@ -120,7 +79,7 @@ const economics = {
   serviceSchedulePerMW: QUOTED.serviceSchedulePerMW,
 
   capacity,
-  contracted: capacityRevenuePerMW(capacity),   // ≈ €89,430
+  contracted: capacityRevenuePerMW(capacity),   // €135.50 × 1,000 × .277 = €37,533.50/MW/year
   contractYears: 10,
   postFactor: 0.6,
 
@@ -138,8 +97,8 @@ const economics = {
 
   capNote: ['Reliability Option difference payments above the strike', '高于执行价时的可靠性期权差价支付'],
   servicesNote: [
-    'DS3 regulated arrangements continue until FASS competitive auctions start; the May 2027 target was withdrawn as not feasible in June 2026 and no new date is set, against a 30 September 2027 long-stop. Curve calibrated on GB’s frequency-response collapse.',
-    'DS3受监管安排持续至FASS竞价拍卖启动；2027年5月的目标已于2026年6月被认定不可行，新日期未定，最终截止日为2027年9月30日。衰减曲线以英国调频收入崩塌为标定依据。',
+    'Assumed competitive services income, uncontracted and included in trading. The existing GB-calibrated decay is retained by the analyst; it is not continued DS3 tariffs beyond 30 September 2027. The successor start is unconfirmed.',
+    '假设的竞争性辅助服务收入，未签约并计入交易收入。分析师保留既有英国经验递减曲线；这不代表2027年9月30日之后继续享有DS3费率。后继机制启动日期未确认。',
   ],
 };
 
@@ -199,10 +158,10 @@ const ranges = {
     gate: 'G13',
   }),
 
-  contracted: band(economics.contracted, null, Math.round(149.96 * capacity.derating * 1000), {
+  contracted: band(economics.contracted, null, 149.96 * 0.268 * 1000, {
     basis: [
-      'The 2029/30 T-4 (April 2026) cleared €135,499.99/MW/yr and the 2028/29 T-4 cleared €149,960 — about 10% higher. Both applied at the seeded 4h de-rating factor of 66%. The newer auction is what a market-entry benchmark carries; the older one is the ceiling.',
-      '2029/30年度T-4拍卖（2026年4月）出清价为€135,499.99/MW/年，2028/29年度T-4为€149,960，高出约10%。两者均按种子设定的4小时可信容量系数66%换算。市场进入基准采用较新一次拍卖结果，较早一次作为上限。',
+      'Keep price and credit within one award vintage: 2029/30 uses €135.50/kW-year × .277; the 2028/29 context ceiling uses €149.96 × .268. Verify actual awarded quantities and payment dates.',
+      '价格和计入比例须属于同一授标批次：2029/30采用每kW年€135.50乘.277；2028/29参考上限采用€149.96乘.268。须核实实际获付数量及付款日期。',
     ],
     source: 'SEM-O PCAR2930T-4 and PCAR2829T-4 final auction results',
   }),
@@ -244,8 +203,8 @@ const ranges = {
   /* The one band on this page that is deliberately lopsided. */
   services: band(economics.services, null, Math.round(0.40 * economics.merchGross), {
     basis: [
-      '€8,000/MW/yr is inherited and unverified. Modo describes DS3 as historically the dominant Irish revenue source, which €8,000 against €71,200 of merchant does not reflect. The ceiling applies the GB precedent — frequency response was 40–50% of battery revenue through 2020 — to the Irish merchant leg. The DS3→FASS decay curve applies on top of whatever level is set.',
-      '€8,000/MW/年为沿用且未经验证的数值。Modo称DS3历史上是爱尔兰最主要的收入来源，而€8,000相对于€71,200的市场化收入并不符合这一描述。上限参照英国先例 — 2020年前调频收入占电池收入的40–50% — 应用于爱尔兰市场化收入。DS3至FASS的衰减曲线在所设水平之上叠加适用。',
+      'Retained analyst assumption: €8,000/MW-year, with the existing decay and exploratory upper bound. Neither seed nor bound is an Irish successor-auction price; verify captured income and simultaneous availability.',
+      '分析师保留的假设：每MW年€8,000、既有递减曲线和探索上限。种子值及上限均非爱尔兰后继拍卖价格；须核实实际捕获收入和同时履约能力。',
     ],
     source: 'EirGrid DS3 settlement data would replace it; GB FFR share 40–50% (2020) used for the ceiling',
     gate: 'G6',
@@ -271,11 +230,11 @@ export const comparison = {
   /* How each line scales with duration, for the design-fit sweep
      (src/comparison/designFit.js). Shapes relative to four hours; the levels
      stay the engine's. Both curves are the dashboard's (data.js), moved over
-     unchanged; its 4h de-rating point matches the capacity line's 0.66. */
+     to the approved 2029/30 capacity credit; four hours remains the scaling anchor. */
   durationResponse: {
     hours: [1, 2, 4, 6, 8],
-    capacityDerating: [0.22, 0.41, 0.66, 0.81, 0.89],
-    capacityDeratingBasis: 'seed',
+    capacityDerating: [0.072, 0.143, 0.277, 0.425, 0.549],
+    capacityDeratingBasis: 'published',
     merchantCapture: [1.12, 1.00, 0.86, 0.75, 0.66],
     merchantCaptureBasis: 'seed',
     opexEnergyShare: 0.5,
@@ -293,15 +252,15 @@ export const comparison = {
 
   /* Both merchant legs priced at the same year. See src/comparison/vintage.js. */
   merchantVintage: merchantVintage(1, economics, ranges, [
-    'Year 1. Reliability Option difference payments are additive to merchant, so both merchant legs are exposed from commercial operation. The DS3-to-FASS transition after year 1 is carried by servicesCurve rather than folded into the seed — which is the arrangement the platform-wide vintage rule was later generalised from.',
-    '第1年。可靠性期权差价支付与市场化收入并存，因此两个市场化收入项自商业运行起即处于敞口状态。第1年之后由DS3向FASS的过渡由servicesCurve承载，而非并入种子值 — 本平台的口径年度规则正是由这一做法推广而来。',
+    'Trading is exposed from operating year one alongside capacity. Services and their relative-year decay remain uncontracted assumptions, not a dated DS3-to-FASS forecast. Verify reliability-option settlement in the project’s captured trading income.',
+    '交易自运营首年起与容量收入并存并承担风险。辅助服务及按运营年度的递减仍属未签约假设，不是注明日期的DS3至FASS预测。须在项目交易捕获收入中核对可靠性期权结算。',
   ]),
 
   narrative: {
     archetype: ['50 MW · 4h · CRM-led', '50MW · 4小时 · 容量机制主导'],
     thesis: [
-      'Still the highest capacity pay per nameplate MW in the set, but the second revenue leg is changing: DS3 regulated arrangements continue only until FASS replaces the tariff structure with competitive auctions. The May 2027 target has been withdrawn as not feasible and no new date is set, against a 30 September 2027 long-stop on the tariff, so the gap between the two is now an open risk. Underwrite the capacity contract and the wholesale spread, not the system-services line.',
-      '每铭牌MW容量付费仍为样本最高，但第二收入支柱正在变化：DS3受监管安排仅持续至FASS以竞价拍卖替代现行电价结构。2027年5月的目标已被认定不可行且新日期未定，而费率的最终截止日为2027年9月30日，两者之间的空档已成为未决风险。承销依据应为容量合同与批发价差，而非系统服务收入。',
+      'Match capacity payment to the award vintage. Six hours improves hold IRR over four at the reviewed inputs, but remains below the fund’s target. Services are retained as assumed, uncontracted trading income. Verify cost scope, captured trading and actual contract dates before pricing.',
+      '容量付款须匹配授标批次。在已复核输入下，六小时长持IRR高于四小时，但仍低于基金目标。辅助服务保留为假设、未签约的交易收入。定价前须核实造价范围、交易捕获及实际合同日期。',
     ],
     pipelineRatio: '~10×',
   },
