@@ -1,7 +1,7 @@
 # ERCOT (Texas): Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; ERCOT research and script, 31 October 2026; shot layout v1.2
-Status: `proposed` script and bilingual page-text draft; **G-1 analyst sign-off pending**; steps 1 and 2 only; build nothing
+Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
 Navigation: [Master plan](README.md) | [ERCOT story card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Sources and claims](#10-sources-and-claims) | [Ruling 5A](../open-calls-plan-2026-10-31.md#5-ercot-add-a-real-dated-review-leave-toll-underwriting-gated) | [Germany format](germany-storyboard.md)
 
 ## 1. Scope, argument and reading route
@@ -79,7 +79,7 @@ Values at check are given only so the analyst can review the script against the 
 | Evidence and chart | REPO-ERCOT-LIVE; CL-ERCOT-11. The story shell's existing play card, with its marker ‹bound: play evidence›; no new chart |
 | Authoring check | Reuse the card. Never paste the view's `thesis` or the play's `why` (CF-ERCOT-04). The card's IRR is slightly positive and far below target while the thesis says the model "loses money"; the line beneath says "falls short of the fund's target", which is true on every basis the card shows (CF-ERCOT-03). The toll is the model's assumed route, never a signed contract, and no toll price, range or proxy appears anywhere in the story. Second button opens `/markets/ercot#bankable` |
 | Mobile | Full-width card, one line beneath, two buttons; no scene before the conclusion |
-| Status | `sourced` / `model-assumes-route`, not `contract-verified`; G-1 pending |
+| Status | `sourced` / `model-assumes-route`, not `contract-verified`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -121,7 +121,7 @@ Values at check are given only so the analyst can review the script against the 
 | Evidence and chart | CL-ERCOT-03; SRC-ERCOT-01 pp. 2, 7–8, 48, 99–100; SRC-ERCOT-06 pp. 1, 4–5; SRC-ERCOT-07; SRC-ERCOT-08 (Items 47 and 48; minutes of 19 December 2024, item 17); SRC-ERCOT-19 for the ORDC's start month (search result) |
 | Authoring check | "Energy and reserves only" means no payment for capacity, not no reliability policy: ERCOT buys reserves, runs emergency programmes and is adding a reliability reserve (ercot-12). The credit was adopted in January 2023 and set aside by the regulator on 19 December 2024, not rejected by the legislature. The ORDC adder ended in December 2025 and reserve demand curves now price scarcity, so the copy says "scarcity prices", not "the ORDC". Cap values only through tokens |
 | Mobile | Vertical node list, text first, one small diagram; dates as text |
-| Status | Events `historical-fact`, `sourced` (primary, opened); readings `proposed`; G-1 pending |
+| Status | Events `historical-fact`, `sourced` (primary, opened); readings `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -142,7 +142,7 @@ Timeline nodes (page text, shared with ercot-04). Each node's date displays thro
 | H-ERCOT-02 · February 2021 · Winter Storm Uri | Constraint | Extreme cold cut supply as demand soared, and ERCOT ordered outages for days. | 极寒天气使供给锐减而需求激增，ERCOT连续数日下令停电。 |
 | | Choice | Run the grid more cautiously, with far more reserves held ready. | 以更审慎的方式运行电网，保持多得多的备用待命。 |
 | | What remains | Larger reserve purchases. | 更大规模的备用采购。 |
-| | Effect today | Reserves became the first market for batteries. | 备用成为电池的第一个市场。 |
+| | Effect today | Larger reserve purchases expanded an opportunity batteries could compete for. | 备用采购扩大了电池可以争取的收入机会。 |
 | H-ERCOT-03 · December 2021 · A lower price cap | Constraint | After the storm, the regulator found the old cap a liability for market participants and customers. | 寒潮之后，监管机构认为原有上限已成为市场参与者和用户的负担。 |
 | | Choice | Lower the offer cap from ‹bound: old offer cap› to ‹bound: offer cap›, from 2022, and keep the market's design. | 将报价上限由‹bound: old offer cap›降至‹bound: offer cap›，自2022年起执行，并保留市场设计。 |
 | | What remains | The lower cap. | 较低的上限。 |
@@ -189,14 +189,14 @@ Timeline nodes (page text, shared with ercot-04). Each node's date displays thro
 | Evidence and chart | CL-ERCOT-06; SRC-ERCOT-04 p. iv (Uri); SRC-ERCOT-03 p. 1 (conservative posture since July 2021), p. 24 (reserve procurement after Uri), p. viii (ECRS almost doubled ten-minute reserves), p. ix (from 10 June 2023); SRC-ERCOT-01 p. 23 (before 2024, batteries took part mainly through reserves) |
 | Authoring check | Events: the storm, the larger reserve purchases and ECRS. Reading: post-storm reserve buying created the batteries' first revenue pool; this is proposed, and the monitor supports its two halves separately. The monitor calls ERCOT's reserve volumes oversized and ECRS's first months "artificial" scarcity; attribute the word if it is ever used. No outage counts or casualty figures |
 | Mobile | Vertical nodes; one diagram |
-| Status | Events `sourced` (opened); reading `proposed`; G-1 pending |
+| Status | Events `sourced` (opened); reading `proposed`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Where did the first batteries earn their money? | 第一批电池靠什么赚钱？ |
-| Copy | After Winter Storm Uri in 2021, ERCOT ran the grid more cautiously and bought far more reserves. A new reserve product, ECRS, began on 10 June 2023. Batteries respond almost instantly, and until 2024 they earned mainly by selling these reserves. | 2021年Uri冬季风暴之后，ERCOT以更审慎的方式运行电网，采购的备用大幅增加。新的备用品种ECRS于2023年6月10日启动。电池几乎能即时响应，在2024年之前主要靠出售这些备用赚钱。 |
-| Meaning | The first batteries were paid for standing ready, and that pay depended on how few batteries there were. | 第一批电池靠“随时待命”获得报酬，而这份报酬取决于当时电池之少。 |
-| Marker | Fair evidence. What would change it: ERCOT's record showing the larger reserve purchases had a cause other than the storm. | 证据尚可。会改变判断的证据：ERCOT的记录显示备用采购增加另有原因，而非寒潮所致。 |
+| Copy | After Winter Storm Uri, ERCOT adopted a more cautious operating posture and increased reserve procurement. ECRS added another product. These changes expanded opportunities that batteries could compete for; the market monitor reports that reserves accounted for much of their early income. | Uri冬季风暴之后，ERCOT采用更审慎的运行方式并增加备用采购，ECRS又新增了一项产品。这些变化扩大了电池可以争取的收入机会；市场监测报告指出，备用占早期电池收入的较大部分。 |
+| Meaning | Reserve purchases, battery entry and other market changes jointly shaped the opportunity. | 备用采购、电池进入及其他市场变化共同塑造了这项机会。 |
+| Marker | Fair evidence. What would change it: the operator’s procurement records or a different explanation supported by the market monitor. | 证据尚可。会改变判断的证据：运营商采购记录，或市场监测报告支持的其他解释。 |
 | Controls | The storm · A new reserve · Who supplied it | 寒潮 · 新增备用 · 由谁提供 |
 | Labels | Outages · Reserves bought · Batteries · Gas plants · Schematic | 停电 · 采购的备用 · 电池 · 燃气电厂 · 示意 |
 
@@ -294,7 +294,7 @@ Timeline nodes (page text, shared with ercot-04). Each node's date displays thro
 | Evidence and chart | CL-ERCOT-11; REPO-ERCOT-LIVE (`HOME_BRIEFING.grids.ercot`; `src/markets/ercot/comparison.js` on why the archetype is two hours); SRC-ERCOT-01 p. 21 (fleet average duration) |
 | Authoring check | The grid's best is by value, and every priced cell is below zero: say "loses the least", never "earns most". Toll cells at other durations are unpriced, not worthless. The monitor reports developers moving to longer duration; that is a trend to watch, not a model input. Never call the toll a price |
 | Mobile | The table becomes stacked cards, current play first |
-| Status | `model-assumption`, `sourced`; G-1 pending |
+| Status | `model-assumption`, `sourced`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -354,11 +354,11 @@ Timeline nodes (page text, shared with ercot-04). Each node's date displays thro
 | Item | Shot specification |
 | --- | --- |
 | Scene | Calm overview of the grid; factor cards; future and pending items dashed (more batteries, reserve rules, the new reliability reserve, load growth); a next-event card |
-| Feedback | Each factor names the line it affects and links to its section: toll price and tenor to `#bankable`; reserves and spreads to `#revenue`; ownership, supply and contract checks to `#execution`; more batteries and lower prices to `#downside`. The next-event card shows ‹bound: next event› on ‹bound: next event date› |
+| Feedback | Each factor names the line it affects and links to its section: toll price and tenor to `#bankable`; reserves and spreads to `#revenue`; a short applicable-ownership check and contract checks to `#execution`; detailed ownership and supply diligence belongs to the new-entrant lens; more batteries and lower prices to `#downside`. The next-event card shows ‹bound: next event› on ‹bound: next event date› |
 | Evidence and chart | CL-ERCOT-07 to CL-ERCOT-10, CL-ERCOT-13 to CL-ERCOT-15; SRC-ERCOT-01 pp. iv, viii, 37, 43, 107; SRC-ERCOT-11 (MORA cadence, search result); SRC-ERCOT-15 §113.002; SRC-ERCOT-17; REPO-ERCOT-LIVE (the trigger and its note) |
 | Authoring check | Load growth is a queue, not commitments. The MORA is ERCOT's monthly adequacy outlook; the monitor finds its shortage probabilities likely overstated, and the trigger's own note says it is not toll-price evidence. The new reliability reserve is adopted, but storage's role in it is unsettled: dashed. Next year's reserve quantities await the regulator: dashed. No probabilities and no new model numbers. The ownership card states the law's test, not a finding about any investor or supplier |
 | Mobile | Factor cards, each with its link; the four section links at the end; no financial dashboard |
-| Status | `sourced`; pending rules `official-plan`; G-1 pending. Stop at the market page |
+| Status | `sourced`; pending rules `official-plan`; G-1 reviewed 1 November 2026; G-2 conditions retained. Stop at the market page |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
@@ -366,7 +366,7 @@ Timeline nodes (page text, shared with ercot-04). Each node's date displays thro
 | Copy | More batteries, lower reserve prices, a weaker or shorter toll, and rules that cut how much reserve ERCOT buys can all weaken it. Faster load growth, mostly data centres, is what could tighten the market again; today it is a queue, not committed demand. Next: ‹bound: next action› | 更多电池、更低的备用价格、更弱或更短的租赁，以及削减ERCOT备用采购量的规则，都可能削弱本方案。负荷加速增长（主要来自数据中心）可能使市场重新趋紧；但目前它只是排队申请，并非已确定的需求。下一步：‹bound: next action› |
 | Meaning | The toll's price and term decide the case; adequacy reports describe the market behind it, not its price. | 决定方案的是租赁的价格和期限；资源充裕度报告描述的是其背后的市场，而不是租赁价格。 |
 | Marker | Fair evidence. What would change it: ERCOT's next adequacy outlook, due on ‹bound: next event date›; the regulator's decision on next year's reserve quantities; or an executed toll. | 证据尚可。会改变判断的证据：预计于‹bound: next event date›发布的ERCOT下一期资源充裕度月报、监管机构对下一年度备用采购量的决定，或已签署的租赁。 |
-| Controls | More batteries · Reserve rules · Toll terms · Load growth · Ownership and supply · Bankable case · Revenue · Execution · Downside | 更多电池 · 备用规则 · 租赁条款 · 负荷增长 · 所有权与供应 · 可融资方案 · 收益拆解 · 执行步骤 · 下行风险 |
+| Controls | More batteries · Reserve rules · Toll terms · Load growth · Ownership check · Bankable case · Revenue · Execution · Downside | 更多电池 · 备用规则 · 租赁条款 · 负荷增长 · 所有权检查 · 可融资方案 · 收益拆解 · 执行步骤 · 下行风险 |
 | Factor cards | Affects reserve and energy income; see Downside · Affects reserve income: ERCOT sets quantities each year, and the market monitor argues they are too high; see Revenue · Affects secured revenue and its tenor; see Bankable case · Could raise prices if demand arrives; it is a queue today; see Revenue · State law bars agreements giving certain foreign-owned companies access to or control of critical infrastructure; check owners, operator and suppliers; see Execution | 影响备用和电能量收入；见下行风险 · 影响备用收入：ERCOT每年确定采购量，市场监测机构认为采购量过高；见收益拆解 · 影响锁定收入及其期限；见可融资方案 · 需求到来可能推高价格；目前仍只是排队；见收益拆解 · 州法禁止与特定外国所有公司签订使其能够访问或控制关键基础设施的协议；须核查所有者、运营方和供应商；见执行步骤 |
 | Exits | Bankable case · Revenue · Execution · Downside | 可融资方案 · 收益拆解 · 执行步骤 · 下行风险 |
 
@@ -495,7 +495,7 @@ Research for this script ran on 31 October 2026, Australia/Perth, from `main` at
 | CL-ERCOT-03 | ERCOT pays for energy and reserves and has no capacity payment. Scarcity was priced by the ORDC adder from 2014 to December 2025 and since then by reserve demand curves. The offer cap was lowered from $9,000 to $5,000 per MWh after Uri. The PUCT adopted a performance credit mechanism in January 2023, deferred it, and on 19 December 2024 adopted staff's recommendation not to proceed | Nothing pays a battery for being available | SRC-ERCOT-01 pp. 2, 7–8, 48, 99–100; SRC-ERCOT-06 pp. 1, 4; SRC-ERCOT-07; SRC-ERCOT-08 | ercot-02, ercot-10 | `sourced` (opened) |
 | CL-ERCOT-04 | Under connect-and-manage, generators do not pay for network upgrades; ERCOT requests reached signed agreements in 24 months on average, faster than comparable requests elsewhere | Fast connection lets the play and its competitors in quickly; Berkeley Lab calls it "likely one reason" for ERCOT's higher agreement rates | SRC-ERCOT-10 slides 26–27, 44, 47 | ercot-03 | `sourced`; rule text `proposed` (GAP-ERCOT-RULE) |
 | CL-ERCOT-05 | Installed battery capacity: below 300 MW before 2021; 2.7 GW (2022), 4.4 GW (2023), 9,505 MW (2024), above 17,000 MW (2025); average duration 1.83 hours at end-2025 | Nothing capped entry | SRC-ERCOT-01 pp. ii, 21–22; SRC-ERCOT-02 p. 22; SRC-ERCOT-03 p. v; SRC-ERCOT-05 p. ii; REPO-ERCOT-LIVE | ercot-05 | `sourced`; 2021 value in conflict (CF-ERCOT-02) |
-| CL-ERCOT-06 | After Uri, ERCOT adopted a conservative operating posture and raised reserve procurement from roughly 4,000 to 7,000 MW; ECRS from 10 June 2023 almost doubled ten-minute reserves; before 2024 batteries took part mainly through reserves | Post-storm reserve buying created the batteries' first revenue pool | SRC-ERCOT-03 pp. 1, 24, viii, ix; SRC-ERCOT-04 p. iv; SRC-ERCOT-01 p. 23 | ercot-04 | Events `sourced`; reading `proposed` |
+| CL-ERCOT-06 | After Uri, ERCOT adopted a conservative operating posture and raised reserve procurement from roughly 4,000 to 7,000 MW; ECRS from 10 June 2023 almost doubled ten-minute reserves; before 2024 batteries took part mainly through reserves | Post-storm reserve procurement expanded the revenue opportunity available to batteries; it is not asserted to be the sole origin of battery revenues | SRC-ERCOT-03 pp. 1, 24, viii, ix; SRC-ERCOT-04 p. iv; SRC-ERCOT-01 p. 23 | ercot-04 | Events `sourced`; reading `proposed` |
 | CL-ERCOT-07 | Annual average day-ahead reserve prices fell across all products from 2024 to 2025, and steeply from 2023: Responsive Reserve $21.04 to $2.74, ECRS $73.18 to $2.65; reserve cost was $0.39 per MWh of load in 2025, the lowest since 2020 | The monitor: "As ESRs have flooded the AS markets, AS prices have fallen" | SRC-ERCOT-01 pp. 3, 22, 40 | ercot-06 | `sourced` (opened) |
 | CL-ERCOT-08 | Revenue per unit of battery capacity fell almost 37% in 2025, reserve revenue more than 37%, while net energy revenue rose 57%; 2024 revenue also fell | The monitor expects revenue per unit to keep falling as reserves saturate and spreads tighten | SRC-ERCOT-01 pp. 22–23; SRC-ERCOT-02 p. 26 | ercot-06 | `sourced` |
 | CL-ERCOT-09 | In 2025 the ORDC was active for 57 hours, under 8% of its 2021–2024 average, adding less than $0.02 per MWh, the least since 2014; summer price spikes were 40% less frequent than in 2024 as battery capacity grew | Scarcity revenue is rare and cannot be underwritten | SRC-ERCOT-01 pp. iii, 6, 8 | ercot-07 | `sourced`; reading `proposed` |
@@ -567,3 +567,18 @@ Points the analyst must decide at G-1:
 Checks on this draft, 31 October 2026: thirteen shots, each with the six specification rows and the page-text rows (Question, Copy, Meaning except ercot-00, Marker, Controls); every marker uses the fixed wording; page copy carries no figure outside a `‹bound›` token except years and dates; figures in labels appear only on values tagged Example; English and Chinese rows use the same tokens; local links resolve. ERCOT's website could not be read by automation, and the local confidentiality scan could not run because this environment has no marker list; CI's scan is the check. No code, data, view, fixture or dataset changed.
 
 Build boundary: stop here. Design, dataset registration, ingestion, code, build, preview and G-2 are later, separately authorised work.
+
+## Analyst decisions — 1 November 2026
+
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+
+| Item | Approved disposition / retained gate |
+| --- | --- |
+| CL-ERCOT-06 | Approve narrower reading: reserve procurement expanded the opportunity; do not claim a sole cause or the creation of all early battery income. |
+| Chart / rights | Approve Chart-ERCOT-AS replacing the subscription-index/toll-band chart. Rights-unresolved reserve-price panel is an unscaled Example until cleared; data route must cite opened primary records. |
+| ercot-12 / map | Keep a short applicable-ownership check; move detailed diligence to the entrant lens. Texas outline is explicitly schematic, with no asserted ERCOT footprint. Check operator rule/terms pages before G-2. |
+| Settled / Chinese | Keep #101 dispositions closed; correct the remaining saturation reason using public monitoring evidence in the independent content PR. Revised bilingual copy and markers approved. |
+
+**Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
+
+**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
