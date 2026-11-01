@@ -1,8 +1,8 @@
 {
   "marketId": "ro",
   "thesis": [
-    "Wide day-ahead spreads and nothing contracted, with a home fleet that doubles this year. Bulgaria's batteries mostly stay behind the border; Romania's own build takes about 17% off the two-hour value by 2027. Two hours is the best design on merchant revenue alone; a fund enters only with a negotiated optimiser floor, whose terms are not yet priced here.",
-    "日前价差宽但没有任何合同化收入，且本国储能规模今年翻倍。保加利亚的电池大多被边境阻隔；罗马尼亚自身的建设到2027年将使两小时价值减少约17%。仅按市场化收入测算，两小时是最佳设计；基金只有在谈定优化商保底后才进入，而该保底条款尚未在此定价。"
+    "Wide day-ahead spreads and nothing contracted, with a home fleet that doubles this year; Romania's own build is the main risk to the two-hour value. Two hours is the best design on merchant revenue alone; a fund enters only with a negotiated optimiser floor, whose terms are not yet priced here.",
+    "日前价差宽但没有任何合同化收入，且本国储能规模今年翻倍；罗马尼亚自身的建设是两小时价值的主要风险。仅按市场化收入测算，两小时是最佳设计；基金只有在谈定优化商保底后才进入，而该保底条款尚未在此定价。"
   ],
   "grades": {
     "assetReturn": {
@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "Fifth of fifteen markets on hold IRR, 13.7%.",
-        "持有期IRR为13.7%，在十五个市场中排第五。"
+        "Fifth of fifteen markets on the design grid's hold IRR, 13.7% (23 October 2026).",
+        "按设计表测算的持有期IRR为13.7%（2026年10月23日），在十五个市场中排第五。"
       ],
       "asOf": "2026-10-23",
       "author": "analyst",
@@ -415,8 +415,8 @@
       "hours": 2,
       "stage": "operating",
       "why": [
-        "Two hours is the best design here on merchant revenue alone, and the figures shown price no floor; four hours gives up about 30% of its value as Romania's own fleet doubles.",
-        "仅按市场化收入测算，两小时是这里的最佳设计，所示数据未计入任何保底；随着罗马尼亚自身储能规模翻倍，四小时设计损失约30%的价值。"
+        "Two hours is the best design here on merchant revenue alone, and the figures shown price no floor; Romania's own fleet growth compresses every duration's value.",
+        "仅按市场化收入测算，两小时是这里的最佳设计，所示数据未计入任何保底；罗马尼亚自身储能规模的增长会压缩各时长设计的价值。"
       ],
       "action": {
         "text": [

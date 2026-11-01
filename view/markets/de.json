@@ -1,8 +1,8 @@
 {
   "marketId": "de",
   "thesis": [
-    "Europe's most liquid storage market, with no capacity revenue for a four-hour battery. Merchant four hours is the best design at 13.9% hold, and a toll is how a fund secures it at 11.7%. The open risk is the storage grid-fee framework, still a draft.",
-    "欧洲流动性最好的储能市场，但四小时电池没有容量收入。纯市场化四小时是最佳设计，持有期回报13.9%；基金可通过租赁锁定收入，回报11.7%。尚未落定的风险是仍为草案的储能电网费框架。"
+    "Europe's most liquid storage market, with no capacity revenue for a four-hour battery. Merchant four hours is the best design, and a toll is how a fund secures it, giving up some return for certainty; at build cost the toll case falls short of the fund's target. The open risk is the storage grid-fee framework, still a draft.",
+    "欧洲流动性最好的储能市场，但四小时电池没有容量收入。纯市场化四小时是最佳设计；基金可通过租赁锁定收入，以部分回报换取确定性；按建设成本测算，租赁情形达不到基金目标回报。尚未落定的风险是仍为草案的储能电网费框架。"
   ],
   "grades": {
     "assetReturn": {
@@ -14,8 +14,8 @@
         "comparison-engine"
       ],
       "reason": [
-        "Third of seventeen markets on hold IRR, 13.9%.",
-        "持有期IRR为13.9%，在十七个市场中排第三。"
+        "Third of seventeen markets on the design grid's hold IRR, 13.9% (30 October 2026).",
+        "按设计表测算的持有期IRR为13.9%（2026年10月30日），在十七个市场中排第三。"
       ],
       "asOf": "2026-10-30",
       "author": "analyst",
@@ -410,8 +410,8 @@
       "hours": 4,
       "stage": "ready-to-build",
       "why": [
-        "No capacity revenue exists for a four-hour battery; a five-year toll secures it at 11.7% hold, against 13.9% merchant.",
-        "四小时电池没有容量收入；五年期租赁可锁定收入，持有期回报11.7%，纯市场化为13.9%。"
+        "No capacity revenue exists for a four-hour battery; a five-year toll secures it, at a lower hold return than merchant.",
+        "四小时电池没有容量收入；五年期租赁可锁定收入，持有期回报低于纯市场化。"
       ],
       "action": {
         "text": [
@@ -421,7 +421,7 @@
         "due": null
       },
       "author": "analyst",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-31",
       "lockedUntil": null
     }
   }

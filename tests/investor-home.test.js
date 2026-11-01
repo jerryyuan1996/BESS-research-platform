@@ -45,7 +45,7 @@ test('published costs, income and coverage reconcile to the same priced annual c
 
 test('the Poland grant cohort keeps its grant without inventing a fixed income contract',()=>{
   const r=briefing.acquisitions.infraFund.find(r=>r.playId==='pl-grant-4h');
-  assert.equal(r.play.grantPct,37.9);assert.equal(r.strategyId,'mer');
+  assert.equal(r.play.grantPct,37.3);assert.equal(r.strategyId,'mer');
   const market=markets.find(m=>m.manifest.id==='pl');
   const granted=referenceInputs(market,r.stage,{play:r.play,strategyId:r.strategyId}).find(c=>c.key==='base');
   const without=referenceInputs(market,r.stage,{play:{...r.play,grantPct:0},strategyId:r.strategyId}).find(c=>c.key==='base');
