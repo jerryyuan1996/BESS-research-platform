@@ -1,7 +1,7 @@
 # ERCOT (Texas): Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; ERCOT research and script, 31 October 2026; shot layout v1.2
-Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final dependency reconciliation and exact-head checks required before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
+Status: G-1 signed off 1 November 2026 and reconciled to the approved model/function changes. This is a G-1 script; G-2 construction, dataset and rights gates remain explicit. Merge only after dependency and exact-head checks pass.
 Navigation: [Master plan](README.md) | [ERCOT story card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Sources and claims](#10-sources-and-claims) | [Ruling 5A](../open-calls-plan-2026-10-31.md#5-ercot-add-a-real-dated-review-leave-toll-underwriting-gated) | [Germany format](germany-storyboard.md)
 
 ## 1. Scope, argument and reading route
@@ -549,7 +549,7 @@ The signature chart needs two series. Neither is registered in `src/governance/d
 | Electricity mechanics | Accept: grid apart with DC ties only; energy and reserves only, scarcity pricing under a lowered cap, the credit adopted then set aside; connect-and-manage; post-Uri reserve buying and ECRS; the battery influx; reserve prices and scarcity hours falling; duration rules under co-optimisation |
 | Investment meaning | Accept: nothing pays for availability; reserve and scarcity revenue competed away; merchant upside real but unpredictable; the toll as the least-bad priced design, not a contract and not a price; only an executed toll at a known price makes the case |
 | English / Chinese | Confirm equal meaning, especially: reserves held ready against energy delivered; the modelled toll as an assumption; "falls short of the fund's target"; adopted against pending rules |
-| G-1 | **Pending. Analyst: sign off ercot-00 to ercot-12, or name changes.** |
+| G-1 | **Approved 1 November 2026.** The dated disposition below supersedes the original research questions; the actual shot copy incorporates the approved choices. G-2 evidence and rights gates remain open where identified. |
 
 Points the analyst must decide at G-1:
 
@@ -570,7 +570,7 @@ Build boundary: stop here. Design, dataset registration, ingestion, code, build,
 
 ## Analyst decisions — 1 November 2026
 
-Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original research findings remain as evidence; the approved disposition governs the revised shot copy and closes the G-1 decision requests.
 
 | Item | Approved disposition / retained gate |
 | --- | --- |
@@ -581,4 +581,6 @@ Authority: the analyst signed off the Chinese recommendations in this chat and a
 
 **Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
 
-**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
+**Final reconciliation:** shot copy, bindings, scopes and model dependencies have been reconciled to the approved separate changes. Exact-head validation and dependency merges remain release gates. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
+
+**Financial basis.** Investment-summary IRRs use the existing after-tax nominal cash-flow layer, including its inflation convention. The design-grid comparison is a separate basis. Do not add inflation again to the investment return or treat assumed contract escalation as verified contractual entitlement.
