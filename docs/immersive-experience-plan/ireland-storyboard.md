@@ -1,26 +1,26 @@
 # Ireland: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; Ireland script researched 31 October 2026; shot layout v1.2
-Status: editorial decisions signed off by the analyst on **1 November 2026**, with the revisions recorded below. Final approved six-hour/Wait recommendation, retained-services wording and history must match the independent Ireland PR before merge. G-1 documentation only; G-2 implementation and publication gates remain separate.
+Status: G-1 signed off 1 November 2026 and reconciled to the approved model/function changes. This is a G-1 script; G-2 construction, dataset and rights gates remain explicit. Merge only after dependency and exact-head checks pass.
 Navigation: [Master plan](README.md) | [Ireland card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Sources and claims](#11-sources-and-claims) | [WA format](western-australia-storyboard.md)
 
 ## 1. Scope, argument and reading route
 
-**Explain the current fund call: build a position in ready-to-build four-hour batteries that hold a capacity contract.** Ireland and Northern Ireland run one small power system on one island, linked to Great Britain only by direct-current cables. To run that system on a very high share of wind, the operators created the DS3 programme and paid for fast system services; those payments built the island's first battery fleet. The regulators have now set a long-stop on the DS3 tariffs, with competitive daily auctions to follow and no confirmed start date. The capacity auction, which pays for firm megawatts years ahead and credits storage by duration, is what carries the case. The play prices a project on capacity and wholesale income, with no system-services line after the long-stop.
+**Explain the approved fund call: keep a six-hour capacity candidate under observation.** Correctly matched capacity credit improves with duration, but extra energy capacity costs money and every reviewed case remains below the fund target. Capacity and wholesale income carry the reference, including a retained, declining assumption for uncontracted competitive services. DS3 tariff rights do not continue beyond the long-stop. The story distinguishes the reference from individual projects with different awards, costs and offtake.
 
-Allocation: `ie`; physical boundary: the all-island system of Ireland and Northern Ireland (the SEM). Default lens: `infraFund`. `reviewedAgainst`: **REPO-IE-LIVE**, `main` at commit `edcb39ca0d69397f3683dffc9af5ffb49473c98c`, briefing evaluated for 2026-10-31: call `build-position`, displayed **Build position / 提前布局**, tier `prepare`, play **`ie-cap-4h`**, route `cap`, entry `ready-to-build`, row evidence `strong`, next trigger `ie-ds3-long-stop`, review by 2027-03-31. This matches the market card (PR #83). `docs/briefing-content-2026-10.md` is stale and was not used.
+Current reconciliation, 1 November 2026: allocation `ie`; physical boundary the all-island SEM, with Republic-of-Ireland financial assumptions. `infraFund` call `wait` (**Watch / 保持观察**), play `ie-cap-6h`, route `cap`, entry `ready-to-build`. Bind call, evidence, next trigger and review date from the current row. The model is an awarded-2029/30-vintage illustration, not an available new-entry auction price. The original `edcb39c` / four-hour Build-position snapshot is superseded and retained in market history.
 
-> **Flag for the analyst: the research contradicts the call's capacity economics (CF-IE-05).** The play rests on a capacity contract that secures over half of first-year revenue, and on de-rating that "rewards four hours". SEMO's published de-rating curves do not support either at the model's level. The model credits a four-hour battery with a seeded factor of 0.66 (`src/markets/ie/comparison.js`; `src/markets/ie/data.js` marks it "illustrative, verify auction vintage"). For a 40–50 MW four-hour storage unit, the auctions' own curves gave 0.721 and 0.745 (2022/23, 2023/24), 0.585 (2024/25 to 2026/27), then 0.291, 0.268 and 0.277 (2027/28 to 2029/30), and 0.151 in the initial pack for 2030/31. Since 2027/28 each extra hour of storage earns roughly the same credit, so the curve no longer singles out four hours. The call and the model are not changed here. `ie-08` holds back the "rewards four hours" claim until the analyst rules; the other shots bind to the card and do not state the factor. An in-memory sensitivity is in §10.
+> **Resolved at G-1: CF-IE-05.** The analyst approved same-vintage official capacity factors, the six-hour candidate and Wait. Six hours has the highest hold IRR among the reviewed four-, six- and eight-hour cases, but is not the value-per-MW optimum and does not reach the target. The prior illustrative credit and recommendation remain in append-only history. See the separate numerical plan and duration-learning record; this script adds no model assumption.
 
 The published view's thesis, `play.why` and grade reasons contain typed figures and dates. They are not copied; every figure on the page binds to a result field or a dated evidence record (§9).
 
-**Competing explanation.** The services line may not vanish: the successor daily auction (DASSA) could start, pay well for scarce fast response, and give a four-hour battery a second income. Wholesale spreads on a wind-led island could also carry more of the case than the model assumes. Both would be upside to this play, not reasons to change it.
+**Competing explanation.** Actual projects may have lower scope-complete costs, different award vintages or higher executable trading capture than the generic reference. Services can exceed or fall below the retained assumption. Construction announcements show activity, not a comparable equity return. These possibilities motivate project-specific underwriting; they do not turn an unverified revenue forecast into a contract.
 
 **Disconfirming condition.** Part of it is already observed: storage de-rating factors have fallen sharply since the 2027/28 auction (CF-IE-05). The case weakens further if the capacity auction is redesigned so that new storage earns less credit or a shorter contract, or if a project cannot deliver by its contract date. A different live call, play or duration needs re-sign-off; research does not re-grade it.
 
 | Chapter / page heading EN · 简体中文 | Shots | What the reader can explain afterwards |
 | --- | --- | --- |
-| Opening · 先看投资判断 | ie-00 | The live call, the four-hour play, the capacity contract it needs and the next action |
+| Opening · 先看投资判断 | ie-00 | The live Wait call, six-hour research candidate, required award evidence and next action |
 | Origins · 系统起点 | ie-01 | A small island that holds its own frequency, linked by DC cables |
 | Historical choices · 历史选择 | ie-02–04 | One market for two jurisdictions; DS3 and high wind; fast services that built the first batteries |
 | Today's tensions · 当下矛盾 | ie-05–06 | The services line ends at a long-stop; the capacity auction pays more per credited megawatt but credits storage less |
@@ -34,7 +34,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 
 - **Figures:** every page figure, date, tick, tooltip and accessibility value is a named `‹bound: …›` token. Financial tokens resolve to the existing market-card and section fields; historical and auction tokens resolve to the dated evidence records in §11. No literal number or financial sentence is copied from the view's thesis or `play.why`.
 - **Controls:** only era, service, teaching battery preset, evidence drawer and hotspot. Preserve navigation, language, selection and evidence state through Back and refresh, as in the WA plan. No control changes the investment case.
-- **Evidence:** each shot has one marker using the site's fixed strings (Strong evidence 证据充分 / Fair evidence 证据尚可 / Thin evidence 证据单薄), followed by "What would change it:" / "会改变判断的证据：". The opening inherits the card's marker. Fair is the ceiling for sourced material awaiting the analyst's review; see §10 for why no shot is Strong yet.
+- **Evidence:** the opening inherits the card’s current marker. Other shots retain the analyst-approved Fair markers and a concrete “what would change it” statement. Approval alone does not upgrade evidence; Strong describes evidence, not investment quality.
 - **Time:** observations solid, future dates and plans dashed, teaching values tagged **Example / 示例**. The DS3 long-stop is a decided date and is drawn as a dated marker; the DASSA start has no confirmed date and is drawn as an undated dashed band.
 - **Money:** capacity payments (EUR per de-rated MW per year) and energy prices (EUR/MWh) never share an unlabelled axis. A de-rated MW is not a nameplate MW, and every capacity label says which.
 - **Secured revenue:** wherever the story mentions it, name its tenor and what follows it (rule 7). A model assumption is never shown as a signed contract.
@@ -48,7 +48,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Scene | Small schematic island thumbnail beside the existing play card; no animation |
 | Feedback | Conclusion readable at once; a text alternative carries the same card fields and copy |
 | Evidence and chart | REPO-IE-LIVE, CL-IE-14; current briefing row, published play and investment summary, with the card's own basis labels. No new chart |
-| Authoring check | Reuse the card, not `view.thesis` or `play.why`, which hold typed figures. Preserve lens, return basis, stage and tenor. The opening says the play needs a project that already holds a capacity contract; it never implies the reader's project has one<br>The card bridge shows no services line; the engine still folds a small decaying DS3/FASS tail into trading (CF-IE-01). The copy says what the play's action says, "priced without them", and does not claim the model holds zero<br>Existing market play card: **‹bound: call› · ‹bound: play name› · ‹bound: card figures› · ‹bound: next action›**<br>Second link: `#bankable` on the market page |
+| Authoring check | Reuse current row and investment-summary fields. Keep the twenty-year tax-after nominal investment return separate from the fifteen-year design comparison. The services contribution is included in trading and remains uncontracted. Bind six-hour design, Wait and next action; a model-assumed award is not a signed project contract. |
 | Mobile | Full-width card, short paragraph and buttons; no scene before the conclusion |
 | Status | `sourced` / `model-assumes-route`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
@@ -152,15 +152,15 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Scene | Timeline from H-IE-06 to the long-stop. The tariff line runs solid to a dated marker ‹bound: DS3 long-stop date›; the daily auction (DASSA) is an undated dashed band that may start before it; a "backstop" note sits after it. The battery's services slice fades at the marker |
 | Feedback | EN: "Tariffs end: the earlier of the new auction's start or the long-stop"; "No further extension"; "New auction: start date not confirmed"; "Backstop procurement". ZH: "费率终止：以新拍卖启动或最终截止日中较早者为准"；"不再延期"；"新拍卖：启动日期未确定"；"后备采购"。 |
 | Evidence and chart | CL-IE-04, CL-IE-05, CL-IE-06; SRC-IE-07 (decision, p. 2 and Decision 1, p. 9), SRC-IE-08, SRC-IE-24 (TSO workshops, June and October 2026), SRC-IE-10 (DASSA design); REPO-IE-DP (CF-IE-02) |
-| Authoring check | The long-stop and "no further extension" are SEM Committee decisions (SRC-IE-07). The DASSA start has moved before: December 2026 was declared no longer viable and May 2027 set (SRC-IE-08). The TSOs' workshops of 24 June and 21 October 2026 report the programme red and the next roadmap (PIR v4.0) still in drafting, with no go-live date (SRC-IE-24). The repository's "not feasible" wording was not found in them (CF-IE-02), so the page says only "not confirmed". Decision 1 keeps any product not moved to DASSA on tariffs until the long-stop. Do not say services "end" for good: competitive procurement replaces tariffs<br>Any income from the new auction would be upside to this play, not its underwriting. The regulators describe reserve products as over-procured, which is a reason to expect thin prices for a new entrant |
+| Authoring check | The official long-stop closes DS3 tariff rights, not all services markets. The successor start remains unconfirmed in the opened workshops. The analyst retains a competitive-services seed and decay within trading; do not describe this as either zero income or a secured extension of tariffs. |
 | Mobile | Vertical timeline; marker and dashed band labelled in text; services slice as a short bar pair (before / after) |
 | Status | Long-stop `sourced` (decision paper read in full); DASSA date `official-plan`, none set at 21 October 2026 |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
-| Question | Why is the services income ending? | 系统服务收入为什么要结束？ |
+| Question | Why are the regulated services tariffs ending? | 受监管的系统服务费率为什么终止？ |
 | Copy | The regulators extended the DS3 tariffs only until a new daily auction starts, or ‹bound: DS3 long-stop date› at the latest, and ruled out any further extension. The new auction's start date is not confirmed. After that, fast services are bought competitively, in a market the regulators already describe as over-procured. | 监管机构将DS3费率延期至新的日前系统服务拍卖启动为止，最迟不超过‹bound: DS3 long-stop date›，并明确不再延期。新拍卖的启动日期尚未确定。此后，快速服务将以竞争方式采购；监管机构已指出，这类备用目前采购过量。 |
-| Meaning | The play counts no services income after the long-stop; anything the new auction pays would be upside. | 本方案在最终截止日之后不计系统服务收入；新拍卖带来的任何收入都属于额外收益。 |
+| Meaning | The model retains an assumed declining competitive-services contribution within trading. It is uncontracted and does not extend DS3 tariffs. | 模型在交易收入中保留假设递减的竞争性辅助服务收入。该收入未锁定，也不代表DS3费率延期。 |
 | Marker | Fair evidence. What would change it: a published go-live date and first results for the new auction, or a SEM Committee decision changing the long-stop. | 证据尚可。会改变判断的证据：新拍卖公布上线日期及首批结果，或单一电力市场委员会作出变更最终截止日的决定。 |
 | Controls | Tariffs · New auction · After the long-stop | 监管费率 · 新拍卖 · 截止日之后 |
 | Labels | Tariffs end: the earlier of the new auction's start or the long-stop · No further extension · New auction: start date not confirmed · Backstop procurement | 费率终止：以新拍卖启动或最终截止日中较早者为准 · 不再延期 · 新拍卖：启动日期未确定 · 后备采购 |
@@ -169,17 +169,17 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 
 | Item | Shot specification |
 | --- | --- |
-| Scene | **Signature chart Chart-IE-CRM**, full width, with a small island thumbnail. Two stacked panels on one shared axis of T-4 auctions by delivery year: top, clearing price (EUR per de-rated MW per year); bottom, the de-rating factor the auction gives a storage unit of the play's duration in the archetype's size band. A toggle replaces the bottom panel with battery storage awarded (de-rated MW, new and existing) for the auctions that publish it. A vertical marker at the end of the capacity year that contains the DS3 long-stop. A side note binds the data-centre share |
+| Scene | Signature Chart-IE-CRM: clearing-price history and a separately labelled fixed four-hour historical credit series in the 40–50 MW source band. This context series does not claim to be the six-hour play’s credit. A separate current-vintage duration view explains the approved candidate. Preserve optional awarded-volume gaps and the dashed initial-pack point. |
 | Feedback | EN: "Clearing price · EUR per de-rated MW per year"; "Storage credit · de-rating factor"; "Battery storage awarded · de-rated MW"; "New"; "Existing"; "Initial pack, auction not yet held"; "DS3 tariffs end by here". ZH: "出清价 · 欧元/折减MW/年"；"储能计入比例 · 折减系数"；"中标电池储能 · 折减MW"；"新建"；"既有"；"初步信息包，拍卖尚未举行"；"DS3费率最迟于此结束"。 Values from ‹bound: CRM auction series›; data centres ‹bound: data-centre share› in ‹bound: data-centre year› |
 | Evidence and chart | CL-IE-07, CL-IE-08, CL-IE-11, CL-IE-15, CL-IE-16; SRC-IE-11, SRC-IE-12, SRC-IE-13, SRC-IE-14, SRC-IE-18, SRC-IE-21, SRC-IE-22; CALC-IE-CRM (§11, values already extracted); GAP-IE-CRM for the older auctions' battery totals |
-| Authoring check | Price and factor are each as published; never multiply them on the page, which would be a revenue inference the Revenue section owns. The factor row is the archetype's size band (`comparison.archetype.powerMW`) at ‹bound: play duration› hours, labelled as such. The next auction's factor comes from an initial pack and is drawn dashed. Every MW is de-rated. The two panels never share a y-axis. Most qualified new batteries did not offer into the latest auction (SRC-IE-21, Table 5); the reports give no reason, so the copy states the fact only<br>The capacity contract carries this play, but its value per built megawatt depends on both price and credit, and credit for storage has fallen. A contract already won keeps the factor of its own auction, so the project's agreement is the evidence that matters. See CF-IE-05 |
+| Authoring check | Use CALC-IE-CRM’s extracted four-hour context column only; never relabel it to the live play duration. Price and factor remain separate axes and source vintages. The current duration comparison uses the approved same-vintage curve. Actual project documents determine awarded MW and payment dates. |
 | Mobile | Two panels stacked, data table beneath, keyboard and tap crosshair. If CALC-IE-CRM is not approved, a qualitative sketch tagged Example / 示例 with no numbers |
 | Status | Series extracted from the published reports and packs (read in full); `observed-data`; G-1 reviews the chart design and the series; nothing is built |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | What does the capacity auction pay, and how much does it credit a battery? | 容量拍卖付多少钱，又给电池计入多少容量？ |
-| Copy | Each year the auction buys firm megawatts years ahead, for demand that keeps rising: data centres alone used ‹bound: data-centre share› of metered electricity in ‹bound: data-centre year›. The price per credited megawatt has risen, but the share of a ‹bound: play duration›-hour battery's power that the auction credits has fallen. In the latest auction most qualified new batteries did not bid. A contract won in an earlier auction keeps that auction's credit, so what a project holds matters. | 容量拍卖每年提前数年采购可靠容量，以满足持续增长的需求：仅数据中心在‹bound: data-centre year›就占计量用电量的‹bound: data-centre share›。每计入MW的价格有所上升，但拍卖对‹bound: play duration›小时电池计入的功率比例却在下降。最近一轮拍卖中，多数已获资格的新建电池没有报价。早先拍卖中赢得的合同沿用该轮的计入比例，因此项目实际持有的合同至关重要。 |
+| Copy | Each year the auction buys firm megawatts years ahead, for demand that keeps rising: data centres alone used ‹bound: data-centre share› of metered electricity in ‹bound: data-centre year›. The price per credited megawatt has risen, but the share of a ‹bound: CRM context duration›-hour battery's power that the auction credits has fallen. In the latest auction most qualified new batteries did not bid. A contract won in an earlier auction keeps that auction's credit, so what a project holds matters. | 容量拍卖每年提前数年采购可靠容量，以满足持续增长的需求：仅数据中心在‹bound: data-centre year›就占计量用电量的‹bound: data-centre share›。每计入MW的价格有所上升，但拍卖对‹bound: CRM context duration›小时参考电池计入的功率比例却在下降。最近一轮拍卖中，多数已获资格的新建电池没有报价。早先拍卖中赢得的合同沿用该轮的计入比例，因此项目实际持有的合同至关重要。 |
 | Meaning | The capacity contract carries this play; its value depends on the price and the credit the project actually holds. | 容量合同支撑本方案；其价值取决于项目实际持有的价格与计入比例。 |
 | Marker | Fair evidence. What would change it: the price and de-rating factor in the project's own capacity agreement, and the analyst's review of the auction series. | 证据尚可。会改变判断的证据：项目自身容量协议中的价格与折减系数，以及分析师对拍卖序列的复核。 |
 | Controls | Clearing price · Storage credit · Batteries awarded · Show definitions | 出清价 · 储能计入比例 · 电池中标量 · 查看口径 |
@@ -195,7 +195,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Scene | One battery, inverter and connection with a qualitative state-of-charge bar. Two teaching cases: a frequency fall (a short power burst, little energy used) and the evening peak (a long discharge from a full battery) |
 | Feedback | EN: "Fast response: power for seconds"; "Evening peak: energy for hours"; "Same megawatts, promised once"; "Example". ZH: "快速响应：数秒的功率"；"晚高峰：数小时的电量"；"同一份功率，只能承诺一次"；"示例"。 Starting duration ‹bound: play duration› |
 | Evidence and chart | CL-IE-09; SRC-IE-06 for service purposes; SRC-IE-16 for the capacity obligation. Qualitative physics only; no dispatch calculation |
-| Authoring check | Nominal hours are not usable energy. Do not claim a battery can hold its full capacity obligation and its full reserve offer at once. No financial effect from controls<br>A four-hour battery can answer both jobs, but the capacity contract needs it charged and available when scarcity comes |
+| Authoring check | Do not promise the same power or stored energy twice. Longer duration is a capital choice, not a guarantee of simultaneous capacity and reserve earnings. Controls are teaching examples and never alter the investment case. |
 | Mobile | Two static cards (seconds / hours) with the SOC bar; controls below |
 | Status | `teaching-example`; `sourced` mechanism |
 
@@ -203,7 +203,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | --- | --- | --- |
 | Question | What does a battery do here? | 电池在这里起什么作用？ |
 | Copy | The same battery can answer a frequency fall within seconds, or deliver its stored energy across the evening peak. Fast response uses little energy; the evening needs the battery full. A ‹bound: play duration›-hour battery can do both jobs, but it cannot promise the same megawatts twice. | 同一组电池既能在数秒内响应频率下跌，也能在晚高峰期间持续放出储存的电量。快速响应耗电很少；晚高峰则需要电池充满待命。‹bound: play duration›小时电池两项任务都能承担，但同一份功率不能重复承诺。 |
-| Meaning | This play sizes the battery for the evening hours the auction pays for; fast response is not underwritten. | 本方案按容量拍卖所付费的晚高峰时段设计电池；快速响应收入不计入承保。 |
+| Meaning | The capacity obligation requires charged and available power. Assumed services income remains exposed and must share physical capability with trading. | 容量义务要求电池充好电并保持可用。假设辅助服务收入仍有风险，并须与交易共用实际功率和电量。 |
 | Marker | Fair evidence. What would change it: the asset's tested usable energy and the capacity contract's availability and performance terms. | 证据尚可。会改变判断的证据：项目经测试的可用电量，以及容量合同中的可用性与履约条款。 |
 | Controls | Frequency fall · Evening peak · Reset example | 频率下跌 · 晚高峰 · 重置示例 |
 | Labels | Fast response: power for seconds · Evening peak: energy for hours · Same megawatts, promised once · Example | 快速响应：数秒的功率 · 晚高峰：数小时的电量 · 同一份功率，只能承诺一次 · 示例 |
@@ -215,14 +215,14 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Scene | The same battery at the teaching presets from ‹bound: duration grid›; a credited-MW bar beside the built-MW bar for each preset, using the latest held auction's published curve; a capital layer grows steadily |
 | Feedback | EN: "Built megawatts"; "Credited megawatts"; "More capital"; "Example". ZH: "建成功率"；"计入容量"；"更多资本投入"；"示例"。 Credit values from ‹bound: storage de-rating factor› for the latest held auction, its vintage named |
 | Evidence and chart | CL-IE-10, CL-IE-14, CL-IE-15; SRC-IE-14 and SRC-IE-22 (Table 3 of each pack), SRC-IE-15 (method); REPO-IE-LIVE design grid and best duration |
-| Authoring check | **Blocked on CF-IE-05.** The play says de-rating rewards four hours; the auction's curves since 2027/28 give each extra hour roughly the same credit, and the model's own curve is a seed. The draft below asserts only what is true either way: the mechanism, and that the duration is the model's choice. It does not say the auction favours four hours. If the analyst corrects the model, the Meaning line is rewritten to its result<br>Duration is a capital choice: credit, trading capture and cost each change with hours |
+| Authoring check | Resolved CF-IE-05: bind the approved same-vintage duration curve and six-hour play. Show IRR, required capital and value per MW on clearly separate bases. The candidate has the highest investment hold IRR among the three reviewed durations, but all fail the existing target. Do not label six hours an unconditional optimum. |
 | Mobile | Current-play duration card first, teaching alternative beneath; link to the existing design evidence |
 | Status | Mechanism `sourced` (packs read in full); `model-assumption` for the best duration; **`blocked` pending the analyst's ruling on CF-IE-05** |
 
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Why is this play ‹bound: play duration› hours? | 为什么本方案选择‹bound: play duration›小时？ |
-| Copy | Each auction publishes storage credit by duration and unit size. Longer batteries receive more credit but need more capital. The earlier illustrative curve does not establish that the current play is the best duration. The refreshed four-, six- and eight-hour cases are awaiting the analyst’s decision before the call or play changes. | 每轮拍卖按储能时长和机组规模公布计入比例。更长时长可获得更多计入容量，但也需要更多资本。此前的示例曲线不能证明当前方案时长最优。更新后的四、六、八小时情景正等待分析师决定，之后才调整投资判断或方案。 |
+| Copy | Longer batteries receive more capacity credit and need more capital. The reviewed candidate is ‹bound: play duration› hours: its hold IRR is highest among the reviewed alternatives, but remains below the fund’s target. The fund therefore watches while it verifies project award terms, construction cost and executable trading income. | 更长时长可获得更多计入容量，也需要更多资本。已复核的候选为‹bound: play duration›小时：其长持IRR在已比较方案中最高，但仍低于基金目标。因此基金保持观察，继续核实项目授标条款、建设成本及可执行交易收入。 |
 | Meaning | Compare return, capital required and value per MW on the same auction vintage; a higher IRR alone does not establish an investable case. | 应按同一拍卖批次比较回报、所需资本及每MW价值；更高的IRR本身不能证明方案值得投资。 |
 | Marker | Fair evidence. What would change it: the analyst's ruling on the model's de-rating curve, and a duration result rerun on the auction's published factors. | 证据尚可。会改变判断的证据：分析师就模型折减曲线作出裁定，并按拍卖公布的折减系数重新测算最佳时长。 |
 | Controls | Current play · Shorter teaching battery · Longer teaching battery · Open duration evidence | 当前方案 · 更短时长示例 · 更长时长示例 · 查看时长依据 |
@@ -237,7 +237,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Scene | Qualitative revenue band: a capacity floor across ‹bound: secured tenor› years, merchant tail afterwards; a strike line with a scarcity spike above it, the difference flowing back. Contract evidence beside the band |
 | Feedback | EN: "Capacity payment"; "Strike price"; "Difference paid back"; "Merchant after expiry"; "Project contract not verified". ZH: "容量付款"；"执行价"；"超额部分返还"；"到期后承担市场风险"；"项目合同尚未核验"。 Tenor and share only from bound fields |
 | Evidence and chart | CL-IE-09, CL-IE-14; SRC-IE-16 (reliability option and term), SRC-IE-17 (strike description); REPO-IE-LIVE card share and tenor; Bankable case contract-evidence field |
-| Authoring check | Bind the share to the card's `row.investment.secured`, never `play.econ.secured` or the acquisition reference's share, which use other denominators (CF-IE-03). The card's capacity line rests on the seeded de-rating factor (CF-IE-05); the share is shown as the model's, never as a published auction value. Do not call the model's contract "awarded" or "signed". The contract pays for availability, not energy. Difference payments apply in scarcity; their size is not modelled on this page<br>The analyst counts an awarded capacity payment as secured revenue for its term. Its value still depends on delivering on time, staying available in scarcity and the contract's termination terms |
+| Authoring check | Bind row.investment.secured and its own tenor. The model uses the approved source-matched credit; the payment is conditional on verified award rights. Explain reliability-option and performance obligations, and separately label the platform’s assumed indexation, renewal and operating start. Do not describe them as verified contract rights. |
 | Mobile | Two stacked panels: during the contract / after expiry; the strike example below; evidence adjacent, not in a hover |
 | Status | `sourced` mechanism; `model-assumes-route`; project contract `eligibility-unverified` |
 
@@ -245,7 +245,7 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | --- | --- | --- |
 | Question | What does the capacity contract secure, and until when? | 容量合同锁定了什么，锁定到什么时候？ |
 | Copy | A new project that wins can fix its capacity payment for up to ‹bound: RO max years› years. In return it sells a reliability option: when market prices rise above a strike price, it pays the difference back on its credited megawatts, so it must be charged and available when prices spike. The contract pays for being there; energy is sold separately. | 新建项目中标后，最长可将容量付款锁定‹bound: RO max years›年。作为交换，它出售一份可靠性期权：当市场价格高于执行价时，须按计入容量返还差价，因此价格飙升时电池必须充满并可用。合同付费的是"随时可用"，电量另行出售。 |
-| Meaning | The capacity payment secures ‹bound: secured share› of first-year revenue for ‹bound: secured tenor› years; after that, revenue is merchant unless a new contract is won. | 容量付款在‹bound: secured tenor›年内锁定首年收入的‹bound: secured share›；此后若未赢得新合同，收入将承担市场风险。 |
+| Meaning | Conditional on obtaining and performing the modelled contract, capacity secures ‹bound: secured share› of first-year revenue for ‹bound: secured tenor› years. Renewal after expiry is an assumption. | 以取得并履行模型合同为条件，容量付款在‹bound: secured tenor›年内锁定首年收入的‹bound: secured share›。到期后的续期收入仍是假设。 |
 | Marker | Fair evidence. What would change it: the project's signed capacity agreement, its de-rated quantity and its delivery milestones. | 证据尚可。会改变判断的证据：项目已签署的容量协议、其折减容量及交付里程碑。 |
 | Controls | During the contract · Scarcity example · After expiry · Contract evidence | 合同期内 · 稀缺时段示例 · 到期以后 · 合同证据 |
 | Labels | Capacity payment · Strike price · Difference paid back · Merchant after expiry · Project contract not verified | 容量付款 · 执行价 · 超额部分返还 · 到期后承担市场风险 · 项目合同尚未核验 |
@@ -264,8 +264,8 @@ Thirteen shots, about five minutes; scroll and chapter links work without animat
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | Who pays the battery, and for what? | 谁向电池付钱，为什么付？ |
-| Copy | Three buyers. Suppliers fund capacity payments through the market operator. Energy is sold in the day-ahead, intraday and balancing markets. System services are paid by the grid operators, on tariffs until the long-stop and by auction after. The play is priced on the first two. | 共有三类买方。售电商通过市场运营商为容量付款出资；电量在日前、日内和平衡市场出售；系统服务由电网运营商付费，最终截止日前按费率支付，此后通过拍卖采购。本方案仅按前两项定价。 |
-| Meaning | The case rests on capacity and wholesale income, and the capacity line is modelled until the project's contract is verified. | 投资逻辑建立在容量与批发收入之上；在项目合同核实之前，容量收入仍是模型假设。 |
+| Copy | Suppliers fund capacity payments through the market operator. Energy is sold through wholesale markets, and grid operators procure services. The model includes capacity, wholesale trading and an assumed declining competitive-services contribution within trading; those services are uncontracted. | 售电商通过市场运营商为容量付款出资；电量通过批发市场出售；电网运营商采购系统服务。模型计入容量、批发交易，以及交易收入中一项假设递减的竞争性辅助服务收入；该辅助服务收入未锁定。 |
+| Meaning | Verify each buyer, contract and settlement obligation. The reference is a screening case, not proof that a new entrant already holds those revenues. | 须核实每类买方、合同与结算义务。参考情景用于初筛，不代表新进入者已经取得这些收入。 |
 | Marker | Fair evidence. What would change it: verified settlement terms for the project, and the new auction's rules and first results. | 证据尚可。会改变判断的证据：核实项目的结算条款，以及新拍卖的规则与首批结果。 |
 | Controls | Capacity · Energy · System services | 容量 · 电量 · 系统服务 |
 | Labels | Capacity · EUR per de-rated MW per year · Energy · EUR/MWh · System services: not counted in this play | 容量 · 欧元/折减MW/年 · 电量 · 欧元/MWh · 系统服务：本方案不计入 |
@@ -318,7 +318,7 @@ Authoring references, not a new adapter. `row` is the selected-lens Ireland row 
 
 | Token | Existing owner / exact field and display convention | Uses |
 | --- | --- | --- |
-| ‹bound: call› | `CALLS[row.call]` in `src/experience/model.js`; `build-position` renders Build position / 提前布局 | ie-00 |
+| ‹bound: call› | `CALLS[row.call]`; the current fund `wait` renders Watch / 保持观察 | ie-00 |
 | ‹bound: play name› | `playTitle(row.play, row.stage)`, as in `src/experience/pages.js` | ie-00 |
 | ‹bound: card figures› | The card's existing fields: `row.investment.holdIRR`, `row.investment.secured`, `row.investment.securedYears` and their basis labels; same formats as the card | ie-00 |
 | ‹bound: next action› | `row.play.action.text`, bilingual | ie-00, ie-11 |
@@ -403,10 +403,10 @@ Sensitivity, for the analyst only and not for publication. The briefing's own `d
 
 | Analyst pass | Decision required |
 | --- | --- |
-| Investment meaning | **First: rule on CF-IE-05.** Either keep the call and story as drafted, with `ie-08` saying the auction does not single out four hours, or open separate model work on the de-rating curve before this story is built. Then accept the anchor on `ie-cap-4h` / Build position; "priced without services" while the engine keeps a small services tail (CF-IE-01); the secured-share binding (CF-IE-03); and the signature chart and its series (CALC-IE-CRM) |
+| Investment meaning | Approved six-hour candidate and fund Wait; same-vintage capacity factors, retained assumed services within trading, row.investment.secured binding and fixed four-hour historical chart. Separate numerical changes and duration learning govern; no prior four-hour Build-position instruction remains active |
 | Electricity mechanics | Accept the island wording (ie-01); the DS3 and SNSP framing (ie-03, ie-04); the long-stop wording with the DASSA date shown as not set (ie-05); seconds versus hours (ie-07); reliability-option and payer wording (ie-09, ie-10) |
-| English / Chinese | Confirm equal meaning of long-stop, reliability option, strike price, de-rating factor, credited megawatts and "priced without" |
-| G-1 | **Pending. Analyst: sign off ie-00 to ie-12, the markers and the open points in the PR, or identify changes.** `ie-08` stays blocked until CF-IE-05 is ruled on |
+| English / Chinese | Confirm equal meaning of long-stop, reliability option, strike price, de-rating factor, credited megawatts and "assumed uncontracted services included in trading" |
+| G-1 | **Approved 1 November 2026.** The dated disposition below supersedes the original research questions; the actual shot copy incorporates the approved choices. G-2 evidence and rights gates remain open where identified. |
 | Build boundary | Stop here. No code, dataset registration, snapshot, model change, rendering, build, deployment or G-2 work |
 
 Checks for this draft: thirteen shots, each with the six specification rows and the Question / Copy / Meaning / Marker / Controls rows in both languages (`ie-00` has no Meaning, as the conclusion); one marker per shot in the fixed wording; page copy carries no figure outside a `‹bound›` token; every token has a register entry. The marker list (`local-data/markers.json`) is not on this machine, so the confidentiality scan could not run here. No project, developer, deal or auction participant is named; the auction reports list participants, and none is copied. No tests, build or baseline regeneration were run, and no code, data or fixtures changed.
@@ -419,8 +419,8 @@ New records for this market only. A later PR folds them into `source-register.md
 
 | ID | Record | Locator | Use |
 | --- | --- | --- | --- |
-| REPO-IE-LIVE | Published view and live briefing row | `view/markets/ie.json` (`verdicts.infraFund`, `plays.ie-cap-4h`, `triggers`); briefing built 2026-10-31 from `main` at `edcb39c`: call `build-position`, tier `prepare`, play `ie-cap-4h`, evidence `strong`, `next` `ie-ds3-long-stop` | ie-00, ie-08, ie-09, ie-12 |
-| REPO-IE-CMP | Comparison economics | `src/markets/ie/comparison.js`: `capacity.derating` 0.66 on the 2029/30 T-4 price; `durationResponse.capacityDerating` seed curve; `services` seed with `servicesCurve` `DS3_TO_FASS` | CF-IE-01, CF-IE-05 |
+| REPO-IE-LIVE | Current approved view and briefing | view/markets/ie.json: verdicts.infraFund = wait, plays.ie-cap-6h; bind current evidence and triggers. Original edcb39c is historical only | ie-00, ie-08, ie-09, ie-12 |
+| REPO-IE-CMP | Approved comparison and nominal investment layer | src/markets/ie/comparison.js: same-vintage factor and curve, retained services seed/decay; src/acquisition/cashflows.js: nominal conversion; docs/ireland-six-hour-learning-2026-11-01.md | CF-IE-01, CF-IE-05 |
 | REPO-IE-DATA | Dashboard seed | `src/markets/ie/data.js`: `CRM de-rating factor 4h`, 0.66, marked "illustrative", "verify auction vintage" | CF-IE-05 |
 | REPO-IE-DP | Decision profile | `src/markets/decisionProfiles.js`, `ie.consensus` and `ie.currentUpdate`: June 2026 TSO statement that May 2027 DASSA go-live is not feasible | CF-IE-02 |
 | REPO-IE-SUM | Investment summary | `src/opportunities/summaryData.js` → `OPPORTUNITY_SUMMARY.infraFund.markets.ie`: `secured`, `securedYears`, `bridge.service` (zero) | CF-IE-01, CF-IE-03 |
@@ -486,7 +486,7 @@ Future (dashed): DS3 long-stop 30 September 2027 (SRC-IE-07); DASSA go-live, no 
 | CL-IE-11 | Data centres used 22% of metered electricity in 2024 and 23% in 2025 (7,663 GWh), up from 5% in 2015 (CSO estimates) | `observed-data` | SRC-IE-18, key findings | CSO identifies data centres by method | ie-06 | `sourced` |
 | CL-IE-12 | Greenlink entered commercial operation in 2025; Celtic is planned | `historical-fact`, `official-plan` | SRC-IE-19; SRC-IE-20 | Capacities withheld (GAP-IE-LINKS) | ie-01, ie-11 | `sourced` (event) |
 | CL-IE-13 | The SEM Committee is consulting on CRM 2.0: a T-5 main auction with a T-1 top-up, a review of de-rating for energy-limited resources such as storage, and stronger availability incentives | `official-plan` | SRC-IE-17 | Consultation, not a decision | ie-11 | `sourced` |
-| CL-IE-14 | The fund's call is Build position on `ie-cap-4h`, ready-to-build, four hours, priced on capacity and wholesale with no services line after the long-stop | `model-assumption` | REPO-IE-LIVE | CF-IE-01, CF-IE-05 | ie-00, ie-08, ie-09 | `sourced` |
+| CL-IE-14 | Fund Wait on ie-cap-6h; same-vintage capacity and trading with assumed uncontracted services; all reviewed durations remain below target | `model-assumption` | REPO-IE-LIVE and approved duration learning | Actual award and cost still need verification | ie-00, ie-08, ie-09 | `sourced` |
 | CL-IE-15 | The published de-rating factor for a four-hour storage unit fell from 0.585–0.745 (auctions for 2022/23 to 2026/27) to 0.291, 0.268 and 0.277 (2027/28 to 2029/30), and 0.151 in the initial pack for 2030/31 | `observed-data` | SRC-IE-22, Table 3, row 40 < IC ≤ 50 MW; CALC-IE-CRM | The 2030/31 pack's 8- and 12-hour columns repeat 2029/30's values exactly; flagged, not used | ie-06, ie-08, ie-11 | `sourced` |
 | CL-IE-16 | In the 2029/30 auction, 20% of qualified new battery capacity was offered (42.514 of 210.663 de-rated MW); 13 of 27 qualified battery projects succeeded | `observed-data` | SRC-IE-21, Tables 5–6 | The reports give no reason for not offering | ie-06 | `sourced` |
 | CL-IE-17 | The TSOs expected the 2030/31 T-4 auction in Q1 2027 | `official-plan` | SRC-IE-24, June 2026 deck | | ie-11 | `sourced` |
@@ -520,16 +520,16 @@ Values are as published; nothing is calculated. Factor: Table 3 of the auction's
 | GAP-IE-CRM | Battery totals for the four earlier T-4 auctions are not published as totals | ie-06 | Toggle shows the four recent auctions only | Optional: sum from the reports' unit tables with a calculation record |
 | GAP-IE-DS3-TERMS | DS3 service response times and terms not extracted | ie-04 | Purposes only | Read the DS3 protocol |
 | GAP-IE-LINKS | Interconnector list and capacities not reviewed | ie-01 | No MW on the map | Analyst review against operator pages |
-| CF-IE-01 | The play says no services line after the long-stop; the card bridge shows none, but the engine folds `services` × `DS3_TO_FASS` (tail floor) into trading every year | ie-00, ie-10 | Copy says "priced without them" | Analyst: accept the copy, or open model work |
+| CF-IE-01 | Closed by approved wording: services remain an uncontracted assumed contribution inside trading, without extending DS3 tariffs | ie-00, ie-05, ie-10 | The bridge’s lack of a separate services slice does not mean zero services income | Keep future procurement and co-optimisation as research gates |
 | CF-IE-02 | The June 2026 "May 2027 not feasible" record (REPO-IE-DP) does not appear in the TSOs' June or October 2026 workshop decks, which say only that the programme is red and PIR v4.0 is in drafting | ie-05 | Page says "start date not confirmed" | Find the 2 June 2026 stakeholder email or PIR v4.0 |
-| CF-IE-03 | Secured share differs by denominator: card investment summary vs acquisition reference | ie-09 | Bind the card field only | Analyst: confirm the card field |
-| CF-IE-05 | **The model's 4-hour de-rating factor (0.66, a seed) is far above every published factor since the 2027/28 auction (0.268–0.291; 0.151 in the 2030/31 initial pack), and the published curves since then do not favour four hours** | ie-06, ie-08, ie-09, ie-11 | `ie-08` blocked; other shots bind to the card and state no factor | **Analyst: rule at G-1; any model change goes through a written plan** |
+| CF-IE-03 | Closed: use row.investment.secured and its own denominator and tenor | ie-09 | Bind the current result | No comparison with a different return basis |
+| CF-IE-05 | Closed by the approved source-matched capacity correction, six-hour candidate and Wait | ie-06, ie-08, ie-09, ie-11 | Earlier illustrative credit is historical only | Project award, cost and trading evidence remain underwriting gates |
 
 Closed in this revision: GAP-IE-DERATE (factors extracted, now CF-IE-05), GAP-IE-SETTLE (SEMO settlement guide), CF-IE-04 (six-year term, SRC-IE-05).
 
 ## Analyst decisions — 1 November 2026
 
-Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original G-1 checklists above are retained as historical questions and are superseded by this disposition.
+Authority: the analyst signed off the Chinese recommendations in this chat and authorised updates to the existing eight PRs. The numerical plan was approved for PJM, Poland and Italy. After a separate duration review, the analyst also approved Ireland’s six-hour candidate and Wait call, retaining assumed services revenue and appending the learning to history. The original research findings remain as evidence; the approved disposition governs the revised shot copy and closes the G-1 decision requests.
 
 | Item | Approved disposition / retained gate |
 | --- | --- |
@@ -540,4 +540,6 @@ Authority: the analyst signed off the Chinese recommendations in this chat and a
 
 **Common build conditions.** Model labels bind existing result fields; no financial constants are typed into page copy. Observations, non-binding plans, model paths and teaching Examples remain visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records retain primary URL, locator, vintage, units and arithmetic; no dataset is registered by this documentation PR. “Strong” assesses evidence, not investment quality. Shared source/claim consolidation follows the script merges.
 
-**Final reconciliation:** pending the referenced independent PRs and exact-head validation. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
+**Final reconciliation:** shot copy, bindings, scopes and model dependencies have been reconciled to the approved separate changes. Exact-head validation and dependency merges remain release gates. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
+
+**Financial basis.** Investment-summary IRRs use the existing after-tax nominal cash-flow layer, including its inflation convention. The design-grid comparison is a separate basis. Do not add inflation again to the investment return or treat assumed contract escalation as verified contractual entitlement.
