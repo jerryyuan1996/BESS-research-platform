@@ -5,7 +5,7 @@ import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { app, setLens, requestRender } from '../app/state.js';
 import { markets } from '../markets/registry.js';
-import { CALLS, LENSES, REGIONS, opportunities, storyRowsFor, caseFor, marketName, caseUrl, compareUrl,
+import { CALLS, LENSES, REGIONS, opportunities, caseFor, marketName, caseUrl, compareUrl,
   pct, returnPct, share, multiple, money, finite, snapshotDate, featuredOpportunity } from './model.js';
 import { siteHeader, siteFooter, link, eyebrow, sectionTitle, metric } from './chrome.js';
 import { opportunityMatrix, miniature, revenueWaterfall, revenueBar, MATRIX_BASIS } from './charts.js';
@@ -272,7 +272,7 @@ function compareDialog(rows) {
 let stopStoryPlace = null;
 function renderMarket(container, row, route) {
   const data = caseFor(row), m = row.market, mf = m.manifest;
-  const storyRows = storyRowsFor(row, lens());
+  let storyRows = [row], storyReady = Promise.resolve();
   const content = main();
   content.append(h('nav', { class: 'ix-breadcrumb', 'aria-label': L(['Breadcrumb', '面包屑导航']) }, link('/', ['Investment brief', '投资简报']), ' / ', link('/returns', ['Global markets', '全球市场']), ' / ', h('span', {}, name(row))));
   content.append(metaBar('03', ['MARKET INTELLIGENCE', '市场详情']));
@@ -281,11 +281,16 @@ function renderMarket(container, row, route) {
   } }, markets.map(market => h('option', { value: market.manifest.slug }, L(market.manifest.name)))); select.value = mf.slug;
   content.append(h('section', { class: 'ix-market-intro' }, h('div', {}, eyebrow(['FROM MARKET SCREEN TO INVESTMENT CASE', '从市场筛选，走向投资方案']), h('h1', {}, name(row)), h('p', { class: 'ix-lead' }, L(routeName(row))), h('div', { class: 'ix-actions' }, tag(row), h('span', { class: 'ix-mono' }, `${row.investment?.currency||mf.currency} · ${row.play?.hours || m.comparison.archetype.durationHours}H`))),
     h('div', { class: 'ix-market-controls' }, select, button(['Print investment brief ↗', '打印投资简报 ↗'], () => window.print(), 'ix-outline'))));
-  if (storyRows.length > 1) {
+  if (row.id === 'pl') {
     const choices = h('div');
     content.append(choices);
-    import('./playChoices.js').then(({ renderPlayChoices }) => {
-      if (choices.isConnected) choices.replaceWith(renderPlayChoices(storyRows, row, tag));
+    const investor = lens();
+    storyReady = import('./playChoices.js').then(({ renderPlayChoices, storyRowsFor }) => {
+      storyRows = storyRowsFor(row, investor);
+      if (choices.isConnected) {
+        if (storyRows.length > 1) choices.replaceWith(renderPlayChoices(storyRows, row, tag));
+        else choices.remove();
+      }
     });
   }
   content.append(decisionPanel(row));
@@ -307,7 +312,7 @@ function renderMarket(container, row, route) {
     research.disabled=true;
     const story=storyFor(mf.id);
     (story
-      ? story.load().then(pack=>{if(research.isConnected&&!storyOpen()&&!pack.open({row,rows:storyRows,result:data,name:marketName(row),trigger:research,openResearch,place,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
+      ? storyReady.then(()=>story.load()).then(pack=>{if(research.isConnected&&!storyOpen()&&!pack.open({row,rows:storyRows,result:data,name:marketName(row),trigger:research,openResearch,place,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
       : openResearch(research))
       .catch(()=>{research.textContent=L(['Could not load; click to retry','暂未载入，点击重试']);})
       .finally(()=>{research.disabled=false;});
