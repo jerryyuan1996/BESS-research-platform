@@ -142,11 +142,11 @@
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
-      "call": "build-position",
+      "call": "wait",
       "route": "ready-to-build",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-01",
       "reviewBy": "2027-03-31",
-      "play": "ie-cap-4h"
+      "play": "ie-cap-6h"
     },
     "foreignFirstTimer": {
       "call": "build-position",

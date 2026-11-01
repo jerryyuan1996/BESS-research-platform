@@ -7,17 +7,17 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 2,
+      "grade": 3,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
         "comparison-engine"
       ],
       "reason": [
-        "Tenth of fifteen markets on the design grid's hold IRR, 3.2% (23 October 2026).",
-        "按设计表测算的持有期IRR为3.2%（2026年10月23日），在十五个市场中排第十。"
+        "The approved source-matched capacity inputs change the engine ordering. This grade follows the existing hold-return fifth rule; the original grade remains in history.",
+        "已批准的同批次容量输入改变了引擎排序。本评级沿用既定长持回报五分位规则；原评级保留在历史中。"
       ],
-      "asOf": "2026-10-23",
+      "asOf": "2026-11-01",
       "author": "analyst",
       "lockedUntil": null
     },
