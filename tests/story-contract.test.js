@@ -102,3 +102,19 @@ test('one marker per shot, each Strong, Fair or Thin with a line, except the pla
     assert.equal(tokensIn(shot.marker.change[0]).length, 0, `${shot.id}: the marker line binds nothing`);
   }
 });
+
+/* The date allowance: a sourced event date may be typed, including the
+   Chinese month-precision form the scripts use ("2014年11月"). A four-digit
+   amount outside a token is still a typed figure. */
+test('a typed event date passes, a typed amount does not', () => {
+  const dated = clone(story);
+  dated.chapters[1].shots[0].copy = [
+    'In November 2014 it coupled; the Chinese says 2014年11月 and 2005年6月30日.',
+    '2014年11月，该市场与三个邻国耦合；2005年6月30日开始竞价。',
+  ];
+  assert.deepEqual(validateStory(dated).problems, []);
+
+  const amount = clone(story);
+  amount.chapters[1].shots[0].copy = ['The fleet reached 3000 MW.', '储能规模达到3000MW。'];
+  assert.match(validateStory(amount).problems.join('\n'), /typed figure/);
+});
