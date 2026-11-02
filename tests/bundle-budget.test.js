@@ -240,9 +240,10 @@ const BUDGET = {
     'story-wa': 40,
     'story-fi': 40,
     'story-de': 40,
-    'story-gb': 40,
-    'story-it': 40,
-    'story-ie': 40,
+    /* The Romania story: shell, kit, the fixed-vintage records, thirteen
+       bilingual shots and their scenes and signature chart. Registered but
+       unreleased, so it is fetched only behind ?story=preview. */
+    'story-ro': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -787,6 +788,25 @@ test('the dossier stylesheet exists as its own chunk', async (t) => {
     `the dossier stylesheet is ${(carrier.bytes / 1024).toFixed(1)} kB, over its 8 kB budget`);
 });
 
+test('the Romania story stays out of the first load and its additional graph fits the story cap',async t=>{
+  if(skipWithoutDist(t))return;
+  const {entry,features,byName}=await chunks();
+  /* Nothing fetches a story before one opens: not the shell, not the home
+     page, not a market chunk. */
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const own=features.get('story-ro');assert.ok(own,'the Romania lazy story chunk exists');
+  assert.ok(!first.has(own),'the story is absent from the home page and entry dependencies');
+  /* A phrase only the Romania script carries, held to exist in its chunk and in
+     no other: a story that quietly rejoined the entry would fail here. */
+  const probe='What is the call here, and what must be in hand before entry?';
+  assert.ok(own.text.includes(probe),'the story-content probe still exists');
+  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no story content in '+chunk.name);
+  /* What the story adds on top of what the reader already has. */
+  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
+  assert.ok(kB(gzipOf(extra))<=BUDGET.features['story-ro'],
+    'Romania story, shell, kit, records, content and scenes: '+kB(gzipOf(extra))+' KiB gzip, cap '+BUDGET.features['story-ro']);
+});
+
 test('the Finland story remains lazy and its complete additional graph fits the story cap',async t=>{
   if(skipWithoutDist(t))return;
   const {entry,features,byName}=await chunks();
@@ -799,39 +819,4 @@ test('the Finland story remains lazy and its complete additional graph fits the 
   const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
   assert.ok(kB(gzipOf(extra))<=BUDGET.features['story-fi'],
     'Finland story, shell, kit and additional dependencies: '+kB(gzipOf(extra))+' KiB gzip, cap '+BUDGET.features['story-fi']);
-});
-
-test('the GB story, additional static graph and lazy styles stay below 40 KiB gzip',async t=>{
-  if(skipWithoutDist(t))return;
-  const {entry,features,byName}=await chunks();
-  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
-  const own=features.get('story-gb');assert.ok(own,'the GB lazy story chunk exists');
-  assert.ok(!first.has(own),'the story is absent before it opens');
-  const probe='What happened to prices as batteries filled each service?';
-  assert.ok(own.text.includes(probe),'the GB content probe still exists');
-  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no GB story content in '+chunk.name);
-  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
-  const css=await styles();
-  assert.ok(!css.main.text.includes('.gb-scene'),'GB styles do not load on home');
-  const storyStyles=css.lazy.filter(c=>c.text.includes('.gb-scene')||c.text.includes('.ix-story-dialog'));
-  assert.ok(storyStyles.some(c=>c.text.includes('.gb-scene')),'the local story stylesheet exists');
-  const cssBytes=storyStyles.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
-  const total=gzipOf(extra)+cssBytes;
-  assert.ok(total<=40*1024,'GB story and additional static closure including CSS: '+kB(total)+' KiB gzip; cap 40');
-});
-
-test('the Italy story and its entire additional static graph stay lazy and below 40 KiB gzip',async t=>{
-  if(skipWithoutDist(t))return;
-  const {entry,features,byName}=await chunks();
-  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
-  const own=features.get('story-it');assert.ok(own,'the Italy lazy story chunk exists');
-  assert.ok(!first.has(own));
-  const probe='What is the call here, and what is the alternative?';
-  assert.ok(own.text.includes(probe));
-  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no Italy story content in '+chunk.name);
-  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
-  const css=(await styles()).lazy.filter(c=>c.text.includes('.it-scene')||c.text.includes('.ix-story-dialog'));
-  const extraCss=css.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
-  assert.ok(css.some(c=>c.text.includes('.it-scene')),'Italy styles remain lazy');
-  assert.ok(kB(gzipOf(extra)+extraCss)<=40,'Italy story complete additional static graph and styles: '+kB(gzipOf(extra)+extraCss)+' KiB gzip');
 });

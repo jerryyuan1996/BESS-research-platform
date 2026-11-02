@@ -17,11 +17,8 @@ export const STORIES = {
   wa: { released: true, load: () => import('../../markets/wa/storyPack.js') },
   fi: { released: true, load: () => import('../../markets/fi/storyPack.js') },
   de: { released: true, load: () => import('../../markets/de/storyPack.js') },
-  gb: { released: true, load: () => import('../../markets/gb/storyPack.js') },
-  it: { released: true, load: () => import('../../markets/it/storyPack.js') },
-  /* Registered for the G-2 preview and not released: the release PR sets
-     `released`, which is when the market button opens the story. */
-  ie: { released: false, load: () => import('../../markets/ie/storyPack.js') },
+  // Romania is registered but not released: its gate is the G-2 release PR.
+  ro: { released: false, load: () => import('../../markets/ro/storyPack.js') },
 };
 
 /** The story entry for a market, or null when it has none or it is unreleased. */
