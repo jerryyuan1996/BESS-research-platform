@@ -6,6 +6,7 @@ import {storyValues,storyWithAvailableValues,reviewedRowsMatch,IT_ZONES,IT_HISTO
 import {validateStory,CHAPTERS,isStale,fillPair} from '../src/experience/story/contract.js';
 import {opportunities,CALLS,returnPct} from '../src/experience/model.js';
 import {HOME_BRIEFING} from '../src/briefing/homeData.js';
+import {IT_AUCTION_RESULTS} from '../src/markets/it/data/auctionResults.js';
 const row=opportunities('infraFund').find(r=>r.id==='it'),values=storyValues(row,{CALLS,returnPct});
 const md=readFileSync(new URL('../docs/immersive-experience-plan/italy-storyboard.md',import.meta.url),'utf8').replaceAll('\r','');
 const shots=[story.opening,...story.chapters.flatMap(c=>c.shots)];
@@ -51,7 +52,7 @@ test('the two return bases bind their own live owners and never rank across them
 test('unresolved source values use the approved missing state without invented figures',()=>{
  assert.equal(values.mACSETerm,null);
  assert.equal(values.cMDY2028AuctionDate,null);
- assert.equal(values.mACSEAwardedHours,null);
+ assert.equal(values.mACSEAwardedHours,(IT_AUCTION_RESULTS.macseTotals.mwh/IT_AUCTION_RESULTS.macseTotals.mw).toFixed(1));
  const available=storyWithAvailableValues(story,values);
  assert.deepEqual(available.chapters[1].shots[1].copy,story.text['Missing value']);
  assert.equal(IT_ZONES.length,7);

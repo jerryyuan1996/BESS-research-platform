@@ -49,6 +49,7 @@ import * as jepx from './sources/jepx.mjs';
 import * as aemoWem from './sources/aemo-wem.mjs';
 import * as news from './sources/news.mjs';
 import * as fingrid from './sources/fingrid.mjs';
+import * as nesoResponse from './sources/neso-response.mjs';
 
 const CONNECTORS = {
   ecb,
@@ -57,6 +58,7 @@ const CONNECTORS = {
   jepx,
   'aemo-wem': aemoWem,
   fingrid,
+  'neso-response': nesoResponse,
   /* News used to run from its own entrypoint, outside this orchestrator and
      outside the envelope. That is how it ended up unverifiable. It is an
      ordinary connector now — `npm run etl` covers it, and there is no second
@@ -115,7 +117,9 @@ async function runDataset(dataset, now){
      merchant line (Finland's reserve capacity prices, EUR/MW/h) gets the plain
      summary the site loads, never an arbitrage figure read off the wrong unit. */
   const energyPrice = dataset.bearsOn?.includes('economics.merchGross');
-  if (market && !energyPrice){
+  if (connector.summarize){
+    summary = connector.summarize(snapshot);
+  } else if (market && !energyPrice){
     summary = buildSummary(snapshot, null, { timezone: snapshot.units?.power ? market.manifest.timezone : undefined });
   } else if (market && Array.isArray(snapshot.series) && snapshot.series.length > 0){
     const timezone = market.manifest.timezone;

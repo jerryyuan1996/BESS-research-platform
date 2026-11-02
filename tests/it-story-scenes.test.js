@@ -72,6 +72,8 @@ test('physical zones, the same-basis comparison and the toll watch retain their 
  const comparison=build(shots.find(s=>s.id==='it-10'));
  assert.equal(find(comparison,n=>n.getAttribute?.('data-basis')==='design').length,2);
  assert.ok(!content(comparison).includes(values.cardFigures[0]));
+ const historic=build(shots.find(s=>s.id==='it-02'));
+ assert.ok(content(historic).includes('31 October 2026'),'selected source check date, not the auction-table vintage');
  const end=build(shots.find(s=>s.id==='it-11'));
  assert.equal(find(end,n=>n.getAttribute?.('data-watch')==='toll').length,1);
  for(const plan of find(end,n=>['official-plan','scenario'].includes(n.getAttribute?.('data-authority'))))assert.ok(plan.getAttribute('stroke-dasharray'));
