@@ -126,9 +126,9 @@ export const IE_STORY_EVIDENCE = {
      the final one; no intermediate date is added. */
   snsp: {
     steps: [
-      { date: '2018', qualifier: 'by', limitShare: obs(.65, 'share', 'SRC-IE-04', '“What DS3 achieved”, first milestone paragraph: 65 / 100 by 2018.', { arithmetic: '65 / 100' }) },
-      { date: '2021', qualifier: 'in', limitShare: obs(.70, 'share', 'SRC-IE-04', 'Same paragraph, second step: 70 / 100 in 2021.', { arithmetic: '70 / 100' }) },
-      { date: '2022-03', qualifier: 'in', limitShare: obs(.75, 'share', 'SRC-IE-04', 'Same paragraph, final step: 75 / 100 in March 2022.', { arithmetic: '75 / 100' }) },
+      { date: '2018', precision: 'year', qualifier: 'by', limitShare: obs(.65, 'share', 'SRC-IE-04', '“What DS3 achieved”, first milestone paragraph: 65 / 100 by 2018.', { arithmetic: '65 / 100' }) },
+      { date: '2021', precision: 'year', qualifier: 'in', limitShare: obs(.70, 'share', 'SRC-IE-04', 'Same paragraph, second step: 70 / 100 in 2021.', { arithmetic: '70 / 100' }) },
+      { date: '2022-03', precision: 'month', qualifier: 'in', limitShare: obs(.75, 'share', 'SRC-IE-04', 'Same paragraph, final step: 75 / 100 in March 2022.', { arithmetic: '75 / 100' }) },
     ],
     sources: ['SRC-IE-04'],
   },
