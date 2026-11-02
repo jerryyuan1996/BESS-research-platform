@@ -243,6 +243,10 @@ const BUDGET = {
     'story-gb': 40,
     'story-it': 40,
     'story-ie': 40,
+    /* The Romania story: shell, kit, the fixed-vintage records, thirteen
+       bilingual shots, their scenes and the signature chart. Registered but
+       unreleased, so it is fetched only behind ?story=preview. */
+    'story-ro': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -834,4 +838,23 @@ test('the Italy story and its entire additional static graph stay lazy and below
   const extraCss=css.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
   assert.ok(css.some(c=>c.text.includes('.it-scene')),'Italy styles remain lazy');
   assert.ok(kB(gzipOf(extra)+extraCss)<=40,'Italy story complete additional static graph and styles: '+kB(gzipOf(extra)+extraCss)+' KiB gzip');
+});
+
+test('the Romania story stays out of the first load and its additional graph fits the story cap',async t=>{
+  if(skipWithoutDist(t))return;
+  const {entry,features,byName}=await chunks();
+  /* Nothing fetches a story before one opens: not the shell, not the home
+     page, not a market chunk. */
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const own=features.get('story-ro');assert.ok(own,'the Romania lazy story chunk exists');
+  assert.ok(!first.has(own),'the story is absent from the home page and entry dependencies');
+  /* A phrase only the Romania script carries, held to exist in its chunk and in
+     no other: a story that quietly rejoined the entry would fail here. */
+  const probe='What is the call here, and what must be in hand before entry?';
+  assert.ok(own.text.includes(probe),'the story-content probe still exists');
+  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no story content in '+chunk.name);
+  /* What the story adds on top of what the reader already has. */
+  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
+  assert.ok(kB(gzipOf(extra))<=BUDGET.features['story-ro'],
+    'Romania story, shell, kit, records, content and scenes: '+kB(gzipOf(extra))+' KiB gzip, cap '+BUDGET.features['story-ro']);
 });
