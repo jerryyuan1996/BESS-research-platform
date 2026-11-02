@@ -415,8 +415,8 @@ export const story = {
             "储能的规则改变了什么，又有什么没有变？"
           ],
           "copy": [
-            "In July 2025 the regulator stopped charging network tariffs twice on energy that is stored and fed back. Since 2026, grid connections of {auctionThreshold} and more are allocated by auction, against guarantees. An EU-approved scheme now offers grants towards building new stand-alone batteries; its first call has no published result. None of these pays a battery for what it does.",
-            "2025年7月，监管机构不再对储存后回送电网的电量重复收取电网费。自2026年起，{auctionThreshold}及以上的并网容量须通过拍卖分配，并须提交保函。经欧盟批准的计划如今为新建独立电池提供建设补贴，其首轮申报尚无公布结果。这些规则都不为电池提供的服务付费。"
+            "In July 2025 the regulator stopped charging network tariffs twice on energy that is stored and fed back. Since 2026, grid connections of {auctionThreshold} and more are allocated by auction, against guarantees. An EU-approved scheme now offers grants towards building new stand-alone batteries; the timetable and outcome of its first call remain unverified. None of these pays a battery for what it does.",
+            "2025年7月，监管机构不再对储存后回送电网的电量重复收取电网费。自2026年起，{auctionThreshold}及以上的并网容量须通过拍卖分配，并须提交保函。经欧盟批准的计划如今为新建独立电池提供建设补贴，其首轮申报的时间表与结果仍未核实。这些规则都不为电池提供的服务付费。"
           ],
           "meaning": [
             "These rules cut a cost or ration access; the play's revenue still comes from the market.",
@@ -471,8 +471,8 @@ export const story = {
               "补贴计划"
             ],
             "l05": [
-              "Result not published",
-              "结果尚未公布"
+              "Outcome unverified",
+              "结果尚未核实"
             ],
             "l06": [
               "Checked: {researchCheckDate}",
@@ -530,8 +530,8 @@ export const story = {
                   "以直接补贴支持新建独立电池，按每MWh补贴额竞标授予；欧盟委员会于2026年3月6日批准该计划。"
                 ],
                 "remains": [
-                  "The first call has no published ranking; its timetable is under review.",
-                  "首轮申报尚无公布排名，其时间表正在核查。"
+                  "The first call's timetable and outcome remain unverified at the latest check.",
+                  "截至最近一次核查，首轮申报的时间表与结果仍未核实。"
                 ],
                 "effect": [
                   "Grant-funded batteries will add to the home fleet; a grant cuts what a battery costs to build, not what it earns.",
@@ -1039,8 +1039,8 @@ export const story = {
               "属于资本，并非收入"
             ],
             "l06": [
-              "Award not published",
-              "中标结果未公布"
+              "Award unverified",
+              "中标结果未核实"
             ],
             "l07": [
               "New-build case: assumes a grant",
@@ -1070,8 +1070,8 @@ export const story = {
               {
                 "id": "grant",
                 "text": [
-                  "Tender → Provisional ranking → Final list → Contract → Paid against build costs. Paid by: the Ministry of Energy, from the Modernisation Fund, once. Obligation: commission within {grantBuildDeadline} months and operate for at least {grantOperationYears} years. Evidence: Strong for the rules; no award published",
-                  "竞标 → 初步排名 → 最终名单 → 签约 → 按建设成本拨付。付费方：能源部，资金来自现代化基金，一次性拨付。义务：在{grantBuildDeadline}个月内投运，并至少运营{grantOperationYears}年。证据：证据充分（规则）；尚无中标结果公布"
+                  "Tender → Provisional ranking → Final list → Contract → Paid against build costs. Paid by: the Ministry of Energy, from the Modernisation Fund, once. Obligation: commission within {grantBuildDeadline} months and operate for at least {grantOperationYears} years. Evidence: Strong for the rules; award unverified",
+                  "竞标 → 初步排名 → 最终名单 → 签约 → 按建设成本拨付。付费方：能源部，资金来自现代化基金，一次性拨付。义务：在{grantBuildDeadline}个月内投运，并至少运营{grantOperationYears}年。证据：证据充分（规则）；中标结果尚未核实"
                 ]
               }
             ]
@@ -1086,8 +1086,8 @@ export const story = {
             "如果没有任何锁定收入，基金为何还会买入？"
           ],
           "copy": [
-            "Only with a floor. An optimiser can agree to pay the owner a minimum each year and share what the battery earns above it; one such floor has been announced in Romania, with its level undisclosed. The fund enters only once a seller can show those terms: the payment, how long it lasts, indexation, the share above the floor, fees, availability conditions and who stands behind it. Until then the price paid rests on merchant revenue alone.",
-            "只有在有保底的情况下才会。优化商可以同意每年向业主支付一个最低金额，并分享电池在此之上的收益；罗马尼亚已公布过一项此类保底，但未披露金额。只有当卖方能拿出以下条款时，基金才会进入：付费金额、期限、指数化、保底以上的分成、费用、可用率条件以及担保方。在此之前，收购价只能以市场化收入为依据。"
+            "Only with a floor. An optimiser can agree to pay the owner a minimum each year and share what the battery earns above it; such a floor has been announced in Romania, with its level undisclosed. The fund enters only once a seller can show those terms: the payment, how long it lasts, indexation, the share above the floor, fees, availability conditions and who stands behind it. Until then the price paid rests on merchant revenue alone.",
+            "只有在有保底的情况下才会。优化商可以同意每年向业主支付一个最低金额，并分享电池在此之上的收益；罗马尼亚已公布过此类保底，但未披露金额。只有当卖方能拿出以下条款时，基金才会进入：付费金额、期限、指数化、保底以上的分成、费用、可用率条件以及担保方。在此之前，收购价只能以市场化收入为依据。"
           ],
           "meaning": [
             "The floor is a condition of entry and a diligence gate, not part of the price.",
@@ -1174,8 +1174,8 @@ export const story = {
             "什么会让本方案失去吸引力？"
           ],
           "copy": [
-            "Romania's own build running ahead of the model's path; reserves fading faster; a floor that is short, low or not on offer; a new order on connections or guarantees; and grant-funded batteries joining the fleet. The grant call's result is not yet published. Next: {nextTrigger}, then {nextAction}.",
-            "罗马尼亚自身的建设快于模型路径；备用收入消退更快；保底期限短、金额低或根本无法取得；出台新的并网或保函法令；以及获补贴的电池加入储能队伍。补贴申报结果尚未公布。下一步：{nextTrigger}，然后是{nextAction}。"
+            "Romania's own build running ahead of the model's path; reserves fading faster; a floor that is short, low or not on offer; a new order on connections or guarantees; and grant-funded batteries joining the fleet. The grant call's timetable and outcome remain unverified at the latest check. Next: {nextTrigger}, then {nextAction}.",
+            "罗马尼亚自身的建设快于模型路径；备用收入消退更快；保底期限短、金额低或根本无法取得；出台新的并网或保函法令；以及获补贴的电池加入储能队伍。截至最近一次核查，补贴申报的时间表与结果仍未核实。下一步：{nextTrigger}，然后是{nextAction}。"
           ],
           "meaning": [
             "The entry price must work on merchant revenue alone, with the floor's terms in hand before signing.",

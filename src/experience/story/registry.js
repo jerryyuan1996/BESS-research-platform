@@ -21,8 +21,8 @@ export const STORIES = {
   it: { released: true, load: () => import('../../markets/it/storyPack.js') },
   /* Released at G-2 on 2 November 2026. */
   ie: { released: true, load: () => import('../../markets/ie/storyPack.js') },
-  /* Romania: registered for the G-2 preview and not released. */
-  ro: { released: false, load: () => import('../../markets/ro/storyPack.js') },
+  /* Romania: G-2 signed off 2 November 2026. */
+  ro: { released: true, load: () => import('../../markets/ro/storyPack.js') },
 };
 
 /** The story entry for a market, or null when it has none or it is unreleased. */
