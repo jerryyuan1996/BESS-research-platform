@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-10-31T05:53:30.887Z",
+  "fetchedAt": "2026-11-02T12:39:06.470Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-10-31T05:00:00.000Z",
+    "to": "2026-11-02T11:37:57.000Z",
     "resolution": "event",
     "points": 45
   },
@@ -135,36 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-10-27T11:32:15.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/samsung-sdi-signs-1gwh-us-bess-supply-agreement-with-alpha-omega-power/",
-      "source": "Energy-Storage.news",
-      "title": "Samsung SDI signs 1GWh US BESS supply agreement with Alpha Omega Power",
-      "url": "https://www.energy-storage.news/samsung-sdi-signs-1gwh-us-bess-supply-agreement-with-alpha-omega-power/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Korean battery and electronics materials manufacturer Samsung SDI has signed a 1GWh supply agreement with US IPP Alpha Omega Power (AOP)."
-    },
-    {
-      "t": "2026-10-27T16:05:05.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/india-has-5-3gwh-of-operational-bess-with-185gwh-under-development-cea-official-says/",
-      "source": "Energy-Storage.news",
-      "title": "India has 5.3GWh of operational BESS, with 185GWh under development, CEA official says",
-      "url": "https://www.energy-storage.news/india-has-5-3gwh-of-operational-bess-with-185gwh-under-development-cea-official-says/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "India has 5.3GWh of operational battery energy storage system (BESS) capacity, with a further 185GWh of projects under development, according to Prashant Bhamu, deputy director of integrated resources planning at the Central Electricity Authority (CEA), part of the Ministry of Power."
-    },
-    {
-      "t": "2026-10-27T16:19:55.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-security-not-just-climate-goals-drive-caribbean-and-latin-american-storage-growth/",
-      "source": "Energy-Storage.news",
-      "title": "Energy security, not just climate goals, drive Caribbean and Latin American storage growth",
-      "url": "https://www.energy-storage.news/energy-security-not-just-climate-goals-drive-caribbean-and-latin-american-storage-growth/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Regulation, energy independence and energy demand growth as key drivers for BESS development across several markets in Latin America."
-    },
-    {
       "t": "2026-10-28T04:20:00.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/catl-holds-global-launch-for-9mwh-tener-bess-at-all-energy-australia-signs-pcs-agreement-with-hitachi-energy/",
       "source": "Energy-Storage.news",
@@ -243,26 +213,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "IPP Sonnedix has put two solar-plus-storage projects into commercial operation in Portugal, coinciding with the government moving to use BESS to strengthen the reliability of its electricity grid."
-    },
-    {
-      "t": "2026-10-29T12:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/data-center-purchases-of-electrical-equipment-up-80-since-2025-hubbell/873134/",
-      "source": "Utility Dive",
-      "title": "Data center purchases of electrical equipment up 80% since 2025: Hubbell",
-      "url": "https://www.utilitydive.com/news/data-center-purchases-of-electrical-equipment-up-80-since-2025-hubbell/873134/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A temporary shortage of meter components should be fully resolved by the end of the year, the electrical equipment supplier said in its third-quarter earnings call."
-    },
-    {
-      "t": "2026-10-29T13:00:02.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/firstenergy-data-center-pipeline-maidsville/873149/",
-      "source": "Utility Dive",
-      "title": "FirstEnergy data center pipeline increases to 26 GW in Q3",
-      "url": "https://www.utilitydive.com/news/firstenergy-data-center-pipeline-maidsville/873149/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Two FirstEnergy utilities reserved combined-cycle turbines for a 1.2-GW data center-focused project in West Virginia and issued a solicitation for an additional 3 GW, company officials said."
     },
     {
       "t": "2026-10-29T13:08:06.000Z",
@@ -375,16 +325,6 @@
       "summary": "We're back with another BESS Industry Buzz after a short period off, tracking interesting hot takes and analysis from across the energy storage industry."
     },
     {
-      "t": "2026-10-30T10:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/seg-solar-plans-4-gw-hjt-cell-manufacturing-plant-in-texas/",
-      "source": "pv magazine",
-      "title": "SEG Solar plans 4 GW HJT cell manufacturing plant in Texas",
-      "url": "https://www.pv-magazine.com/2026/10/30/seg-solar-plans-4-gw-hjt-cell-manufacturing-plant-in-texas/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "SEG Solar has secured land for a planned $950 million heterojunction (HJT) solar cell manufacturing facility in the Houston area, Texas. The post SEG Solar plans 4 GW HJT cell manufacturing plant in Texas appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-30T11:37:05.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/fercs-rulings-on-pjm-home-of-data-centre-alley-put-the-spotlight-on-states/",
       "source": "Energy-Storage.news",
@@ -395,16 +335,6 @@
       "summary": "Few grids illustrate the strain of America's data centre boom more starkly than the PJM Interconnection."
     },
     {
-      "t": "2026-10-30T12:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/benin-secures-financing-for-62-mw-of-solar-across-four-sites/",
-      "source": "pv magazine",
-      "title": "Benin secures financing for first solar IPP projects",
-      "url": "https://www.pv-magazine.com/2026/10/30/benin-secures-financing-for-62-mw-of-solar-across-four-sites/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The €30 million ($33.5 million) financing package goes towards the construction and operation of four PV plants forming part of Benin’s first independent power producer solar project. The post Benin secures financing for first solar IPP projects appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-10-30T12:25:14.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-augmentation-what-owner-operators-need-to-know/",
       "source": "Energy-Storage.news",
@@ -413,46 +343,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "How should BESS owner-operators be thinking about augmentation of their projects further down the line?"
-    },
-    {
-      "t": "2026-10-30T13:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/new-framework-identifies-key-costs-in-pv-panel-recycling/",
-      "source": "pv magazine",
-      "title": "New framework identifies key costs in PV panel recycling",
-      "url": "https://www.pv-magazine.com/2026/10/30/new-framework-identifies-key-costs-in-pv-panel-recycling/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers have proposed a decision-support framework for assessing the costs of recycling end-of-life solar panels. An expert panel assigned the highest relative importance to operations and production, followed closely by infrastructure and facilities. The post New framework identifies key costs in PV panel recyc…"
-    },
-    {
-      "t": "2026-10-30T13:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/chinese-pv-industry-brief-ja-solars-nine-month-loss-widens/",
-      "source": "pv magazine",
-      "title": "Chinese PV Industry Brief: JA Solar’s nine-month loss widens",
-      "url": "https://www.pv-magazine.com/2026/10/30/chinese-pv-industry-brief-ja-solars-nine-month-loss-widens/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "JA Solar reported a CNY 3.64 billion ($546.5 million) net loss for the first nine months of 2026, while Tongwei signed 1 GW in solar module cooperation agreements with Australian distributors. The post Chinese PV Industry Brief: JA Solar’s nine-month loss widens appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-10-30T13:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/the-hydrogen-stream-finnish-researchers-increase-voltage-in-alkaline-systems-to-cut-costs-by-10-15/",
-      "source": "pv magazine",
-      "title": "The Hydrogen Stream: Finnish researchers increase voltage in alkaline systems to cut costs by 10-15%",
-      "url": "https://www.pv-magazine.com/2026/10/30/the-hydrogen-stream-finnish-researchers-increase-voltage-in-alkaline-systems-to-cut-costs-by-10-15/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Recent developments across the global green hydrogen sector highlight growing efforts to improve production efficiency, reduce costs, strengthen international supply chains and accelerate investment in renewable hydrogen infrastructure, with new advances and agreements emerging across Europe, and Asia. The post The…"
-    },
-    {
-      "t": "2026-10-30T16:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/10/30/first-solar-cuts-sales-forecast-as-tariff-uncertainty-slows-orders/",
-      "source": "pv magazine",
-      "title": "First Solar cuts sales forecast as tariff uncertainty slows orders",
-      "url": "https://www.pv-magazine.com/2026/10/30/first-solar-cuts-sales-forecast-as-tariff-uncertainty-slows-orders/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "First Solar reported third-quarter net sales of $1.23 billion and net income of $571 million, as the US thin-film manufacturer navigated customer uncertainty over Section 232 tariffs. The post First Solar cuts sales forecast as tariff uncertainty slows orders appeared first on pv magazine Global ."
     },
     {
       "t": "2026-10-30T17:00:00.000Z",
@@ -473,6 +363,116 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "As module manufacturing capacity outpaces domestic demand, India’s solar industry is entering a new phase, where vertical integration, disciplined investment, higher utilization and access to new markets will be critical for sustaining growth. Uma Gupta reports. The post Indian PV at a turning point appeared first o…"
+    },
+    {
+      "t": "2026-11-02T01:59:49.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/five-days-deliver-38-of-australias-nem-bess-fleet-revenue-for-october/",
+      "source": "Energy-Storage.news",
+      "title": "Five days deliver 38% of Australia’s NEM BESS fleet revenue for October",
+      "url": "https://www.energy-storage.news/five-days-deliver-38-of-australias-nem-bess-fleet-revenue-for-october/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australia's grid-scale BESS fleet earned an estimated AU$37.62 million in the National Electricity Market (NEM) in October 2026."
+    },
+    {
+      "t": "2026-11-02T02:13:35.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/advancing-grid-forming-energy-storage-sungrow-wins-hazelwood-bess-2-pcs-and-bess-order-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "‘Advancing grid-forming energy storage’: Sungrow wins Hazelwood BESS 2 PCS and BESS order in Australia",
+      "url": "https://www.energy-storage.news/advancing-grid-forming-energy-storage-sungrow-wins-hazelwood-bess-2-pcs-and-bess-order-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Sungrow will supply both the BESS and the grid-forming power conversion equipment for ENGIE's Hazelwood BESS expansion in Victoria, Australia."
+    },
+    {
+      "t": "2026-11-02T02:22:39.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/agl-refers-2gwh-bess-in-queensland-to-australias-epbc-act-as-acenergy-submits-250mw-victoria-project/",
+      "source": "Energy-Storage.news",
+      "title": "AGL refers 2GWh BESS in Queensland to Australia’s EPBC Act as ACEnergy submits 250MW Victoria project",
+      "url": "https://www.energy-storage.news/agl-refers-2gwh-bess-in-queensland-to-australias-epbc-act-as-acenergy-submits-250mw-victoria-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Two Australian battery storage projects in Queensland and Victoria have entered federal environmental review, with AGL Energy and developer ACEnergy each submitting referrals under the same national process."
+    },
+    {
+      "t": "2026-11-02T05:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/end-of-life-is-just-the-beginning/",
+      "source": "pv magazine",
+      "title": "End-of-life is just the beginning",
+      "url": "https://www.pv-magazine.com/2026/11/02/end-of-life-is-just-the-beginning/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "After decommissioning, a used solar module can take hundreds of different pathways. Different policies, technologies, and capabilities make each recycling process one of a kind. And the optimal route can differ greatly depending on regional issues and other factors. The post End-of-life is just the beginning appeare…"
+    },
+    {
+      "t": "2026-11-02T08:08:55.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/outer-space-debuts-solar-pavilion-with-hidden-battery-storage-decking/",
+      "source": "pv magazine",
+      "title": "Outer Space debuts solar pavilion with hidden battery storage decking",
+      "url": "https://www.pv-magazine.com/2026/11/02/outer-space-debuts-solar-pavilion-with-hidden-battery-storage-decking/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Outer Spaces launches with a novel approach to solar and battery energy storage for a home, using horizontal metal packs that are part of the decking. The post Outer Space debuts solar pavilion with hidden battery storage decking appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-02T08:12:18.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/mach-launches-tier-1-autonomous-solar-mowing-solution-for-utility-scale-fleets/",
+      "source": "pv magazine",
+      "title": "Mach launches Tier-1 autonomous solar mowing solution for utility-scale fleets",
+      "url": "https://www.pv-magazine.com/2026/11/02/mach-launches-tier-1-autonomous-solar-mowing-solution-for-utility-scale-fleets/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Mach’s factory-integrated hardware and fleet orchestration platform target vegetation management bottlenecks for independent power producers. The post Mach launches Tier-1 autonomous solar mowing solution for utility-scale fleets appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-02T08:19:20.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/longi-unveils-690-w-back-contact-solar-module-with-25-54-efficiency/",
+      "source": "pv magazine",
+      "title": "Longi unveils 690 W back-contact solar module with 25.54% efficiency",
+      "url": "https://www.pv-magazine.com/2026/11/02/longi-unveils-690-w-back-contact-solar-module-with-25-54-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Longi has introduced its Hi-MO X12 back-contact solar modules, featuring an integrated conductive backsheet that replaces conventional soldered ribbons with metal foil circuits. The company claims the design eliminates more than 15,000 potential solder-joint failure points per module, improves current-carrying capac…"
+    },
+    {
+      "t": "2026-11-02T08:28:40.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/retractable-photovoltaics-for-wastewater-treatment/",
+      "source": "pv magazine",
+      "title": "Retractable photovoltaics for wastewater treatment",
+      "url": "https://www.pv-magazine.com/2026/11/02/retractable-photovoltaics-for-wastewater-treatment/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Germany’s largest retractable solar roof, with a capacity of 2.745 MW, is under construction at a wastewater treatment plant in Stuttgart. Scheduled for completion in 2027, the system will generate more than 2.2 GWh annually, covering around 9% of the plant’s electricity demand. The post Retractable photovoltaics fo…"
+    },
+    {
+      "t": "2026-11-02T09:22:53.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/pakistan-seeks-consultant-for-distributed-solar-project/",
+      "source": "pv magazine",
+      "title": "Pakistan seeks consultant for distributed solar project",
+      "url": "https://www.pv-magazine.com/2026/11/02/pakistan-seeks-consultant-for-distributed-solar-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A tender is open in Pakistan searching for a consultant to verify all non-solar works that form part of a 100 MW distributed PV project in the region of Gilgit-Baltistan. The deadline for expressions of interest is November 30. The post Pakistan seeks consultant for distributed solar project appeared first on pv mag…"
+    },
+    {
+      "t": "2026-11-02T10:43:06.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/zwitterions-could-be-much-more-than-defect-passivators-in-perovskite-solar-cells/",
+      "source": "pv magazine",
+      "title": "Zwitterions could be much more than defect passivators in perovskite solar cells",
+      "url": "https://www.pv-magazine.com/2026/11/02/zwitterions-could-be-much-more-than-defect-passivators-in-perovskite-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chinese researchers have reviewed the potential of zwitterions to improve the efficiency and stability of perovskite solar cells through defect passivation, crystallization control, and interface engineering. They found that these compounds could also enhance charge extraction, stabilize the perovskite structure, an…"
+    },
+    {
+      "t": "2026-11-02T11:37:57.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/belgian-spin-off-noak-raises-e5-million-for-perovskite-silicon-solar-cells/",
+      "source": "pv magazine",
+      "title": "Belgian spin-off Noak raises €5 million for perovskite-silicon solar cells",
+      "url": "https://www.pv-magazine.com/2026/11/02/belgian-spin-off-noak-raises-e5-million-for-perovskite-silicon-solar-cells/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Noak will use the seed funding to industrialise its perovskite-silicon tandem technology, which combines a proprietary layer stack with a 3D woven back-contact foil. The post Belgian spin-off Noak raises €5 million for perovskite-silicon solar cells appeared first on pv magazine Global ."
     }
   ],
   "derived": {
@@ -481,8 +481,8 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 7,
-      "capital": 4,
+      "policy": 6,
+      "capital": 5,
       "grid": 32,
       "technology": 2
     },
@@ -503,13 +503,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 4
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 10
       }
     ]
   },
@@ -518,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:f2cf410230cf1ece1126ca17fbf1c10938c1a282036ac6c8cc867cc6b69a7a55",
-  "envelopeChecksum": "sha256:1e850e657df87dc646f602f1b8898d9ccaa9d427ea184fed1c21dfeba958b07a"
+  "contentChecksum": "sha256:4c77d25e654e1ed5b827d0c428252e70add77d2a8d8934e188ef236e9c73c8a6",
+  "envelopeChecksum": "sha256:4cef5632547c3e56e7255044a604cbe197a7bec1c783b227d58dc5e5077f737d"
 }
