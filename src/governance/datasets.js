@@ -145,6 +145,18 @@ export const DATASETS = [
     official: true,
   },
 
+  // GB response auctions inform the story, never a financial assumption.
+  ...[
+    ['gb-dynamic-response', 'dynamic-containment-data', 'Dynamic services, fixed 2020–2023 vintage', '动态类服务，2020–2023固定版本', true],
+    ['gb-eac-response', 'eac-auction-results', 'EAC response auctions and archives', 'EAC响应拍卖及历史档案', false],
+  ].map(([id, slug, en, zh, fixed]) => ({
+    id, kind: 'timeseries', marketId: 'gb', connector: 'neso-response', title: [en, zh],
+    source: { name: 'NESO Open Data', url: `https://www.neso.energy/data-portal/${slug}`,
+      licence: 'NESO Open Data Licence', attribution: 'Supported by National Energy SO Open Data' },
+    refreshHours: fixed ? 876000 : 6, staleAfterHours: fixed ? 876000 : 72,
+    bearsOn: [], republishable: true, requiresKey: false, official: true,
+  })),
+
   // ---- Finland — Fingrid's hourly reserve prices (gate FI-2), 2026-10-30 ----
   /* Snapshots for the analyst: bearsOn names the reserve line, but no detector
      reads these, so nothing proposes a change from them. The yearly FCR market

@@ -32,12 +32,14 @@ test('overview reuses the full research and explains the mechanism without the d
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/markets/italy');
   await page.locator('.ix-full-research').click();
+  await page.locator('.ix-story-dialog').getByRole('button',{name:'Full research ↗',exact:true}).click();
   await expect(page.locator('.ix-research-dialog')).toBeVisible();
   await expect(page.locator('.ix-research-summary')).toHaveAttribute('aria-busy','false');
   await expect(page.locator('.ix-research-summary')).toContainText('House view');
   await expect(page.locator('.ix-research-summary')).toContainText('One-minute market orientation');
   await page.getByRole('button',{name:'Close research details',exact:true}).click();
   await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
+  await page.locator('.ix-story-dialog').getByRole('button',{name:'Close the story',exact:true}).click();
   await expect(page.locator('#revenue-drivers')).toContainText('MACSE');
   await expect(page.getByText('Cash generation & debt payments',{exact:true})).toHaveCount(0);
   await page.locator('#revenue-drivers details > summary').first().click();

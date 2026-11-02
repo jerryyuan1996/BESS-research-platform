@@ -11,7 +11,7 @@
 .it-chart-table caption { white-space:normal; text-align:left; overflow-wrap:anywhere; }
 .it-chart-scroll { max-width:100%; overflow-x:auto; }
 .it-chart-scroll svg { width:620px; max-width:none; margin-inline:auto; }
-.it-chart-table td,.it-chart-table th { border-bottom:1px solid #c9d2c1; padding:.6rem; text-align:left; overflow-wrap:anywhere; }
+.it-chart-table td,.it-chart-table th { border-bottom:1px solid #c9d2c1; padding:.6rem; text-align:left; overflow-wrap:anywhere; white-space:normal; }
 .it-timeline details,.it-fork-chart details { margin-top:1rem; overflow-wrap:anywhere; }
 .it-design-comparison article { min-width:0; }
 .it-design-comparison[data-focus="0"] article:first-child,.it-design-comparison[data-focus="1"] article:last-child { outline:2px solid #73916b; }
