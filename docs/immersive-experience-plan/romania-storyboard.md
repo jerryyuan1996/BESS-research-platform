@@ -143,11 +143,11 @@ Timeline nodes (page text):
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | What changed for storage, and what did not? | 储能的规则改变了什么，又有什么没有变？ |
-| Copy | In July 2025 the regulator stopped charging network tariffs twice on energy that is stored and fed back. Since 2026, grid connections of ‹bound: auction threshold› and more are allocated by auction, against guarantees. An EU-approved scheme now offers grants towards building new stand-alone batteries; its first call has no published result. None of these pays a battery for what it does. | 2025年7月，监管机构不再对储存后回送电网的电量重复收取电网费。自2026年起，‹bound: auction threshold›及以上的并网容量须通过拍卖分配，并须提交保函。经欧盟批准的计划如今为新建独立电池提供建设补贴，其首轮申报尚无公布结果。这些规则都不为电池提供的服务付费。 |
+| Copy | In July 2025 the regulator stopped charging network tariffs twice on energy that is stored and fed back. Since 2026, grid connections of ‹bound: auction threshold› and more are allocated by auction, against guarantees. An EU-approved scheme now offers grants towards building new stand-alone batteries; the timetable and outcome of its first call remain unverified. None of these pays a battery for what it does. | 2025年7月，监管机构不再对储存后回送电网的电量重复收取电网费。自2026年起，‹bound: auction threshold›及以上的并网容量须通过拍卖分配，并须提交保函。经欧盟批准的计划如今为新建独立电池提供建设补贴，其首轮申报的时间表与结果仍未核实。这些规则都不为电池提供的服务付费。 |
 | Meaning | These rules cut a cost or ration access; the play's revenue still comes from the market. | 这些规则降低了成本或限制了准入；本方案的收入仍来自市场。 |
 | Marker | Fair evidence. What would change it: the regulator's text of any 2026 order on licences or guarantees, read against the auction rules, and the ministry's published grant lists. | 证据尚可。会改变判断的证据：监管机构2026年关于许可或保函的法令文本（对照拍卖规则核读），以及能源部公布的补贴名单。 |
 | Controls | Tariffs · Connection · Grant · Checked boundary | 电网费 · 并网 · 补贴 · 核查截止线 |
-| Labels | Network tariffs · Connection auction · Guarantees · Grant scheme · Result not published · Checked: ‹bound: research check date› | 电网费 · 并网拍卖 · 保函 · 补贴计划 · 结果尚未公布 · 核查截至：‹bound: research check date› |
+| Labels | Network tariffs · Connection auction · Guarantees · Grant scheme · Outcome unverified · Checked: ‹bound: research check date› | 电网费 · 并网拍卖 · 保函 · 补贴计划 · 结果尚未核实 · 核查截至：‹bound: research check date› |
 
 Timeline nodes (page text):
 
@@ -163,7 +163,7 @@ Timeline nodes (page text):
 | | Effect today | New projects wait longer and post more security; an operating battery already holds its connection. | 新项目等待更久、须提交更多担保；在运电池已持有并网权。 |
 | 2026 · Grants for stand-alone batteries (outcome dashed) | Constraint | Variable renewables need more storage to join the grid smoothly. | 波动性可再生能源需要更多储能才能顺利并网。 |
 | | Choice | Direct grants for new stand-alone batteries, awarded by tender on aid per MWh, approved by the European Commission on 6 March 2026. | 以直接补贴支持新建独立电池，按每MWh补贴额竞标授予；欧盟委员会于2026年3月6日批准该计划。 |
-| | What remains | The first call has no published ranking; its timetable is under review. | 首轮申报尚无公布排名，其时间表正在核查。 |
+| | What remains | The first call's timetable and outcome remain unverified at the latest check. | 截至最近一次核查，首轮申报的时间表与结果仍未核实。 |
 | | Effect today | Grant-funded batteries will add to the home fleet; a grant cuts what a battery costs to build, not what it earns. | 获补贴的电池将增加本国储能规模；补贴降低的是电池的建设成本，而非其收入。 |
 
 ## 5. Today's tensions
@@ -299,9 +299,9 @@ Timeline nodes (page text):
 | Item | Shot specification |
 | --- | --- |
 | Scene | The scene recedes; three 2D paths. Trading: exchange counterparties, settled per MWh. Balancing: the grid operator, per MW held ready and per MWh activated. Capital grant: the ministry, from the Modernisation Fund, paid once against build cost and drawn on a separate capital track, never in the revenue column |
-| Feedback | The selected path shows payer, unit, obligation and evidence. The grant path carries "Capital, not income" and "Award not published" |
+| Feedback | The selected path shows payer, unit, obligation and evidence. The grant path carries "Capital, not income" and "Award unverified" |
 | Evidence and chart | CL-RO-15 (SRC-RO-03, p. 10; SRC-RO-11); CL-RO-16 (SRC-RO-03, -05, -06, -07); CL-RO-17 (REPO-RO-MODEL: engine `grantForMW` and `capitalWithGrant`; `src/acquisition/reference.js`, operating stage); CL-RO-04. Revenue detail stays in `#revenue` |
-| Authoring check | Never place the grant in a revenue line or the secured share. The modelled new-build case assumes a capital grant (‹bound: grant note›); the operating-purchase price on the card carries none. An award is not a receipt; the call's outcome is unpublished. Name units: per MWh for trading, per MW held for reserve. If the secured share ever becomes non-zero, the copy must name its tenor and what follows it (plan rule 7) and return to G-1 |
+| Authoring check | Never place the grant in a revenue line or the secured share. The modelled new-build case assumes a capital grant (‹bound: grant note›); the operating-purchase price on the card carries none. An award is not a receipt; the call's outcome is unverified. Name units: per MWh for trading, per MW held for reserve. If the secured share ever becomes non-zero, the copy must name its tenor and what follows it (plan rule 7) and return to G-1 |
 | Mobile | One route at a time as stacked steps |
 | Status | Routes and scheme `sourced`; grant in the build case `model-assumption`; award `missing`; G-1 reviewed 1 November 2026; G-2 conditions retained |
 
@@ -312,10 +312,10 @@ Timeline nodes (page text):
 | Meaning | This play's revenue is all market revenue; a grant lowers what a battery costs to build, never what it earns. | 本方案的收入全部来自市场；补贴降低的是电池的建设成本，绝不是其收入。 |
 | Marker | Fair evidence. What would change it: the ministry's published grant lists, or a signed contract that secures part of the revenue. | 证据尚可。会改变判断的证据：能源部公布的补贴名单，或已签署并锁定部分收入的合同。 |
 | Controls | Trading · Balancing · Capital grant | 电力交易 · 平衡服务 · 资本补贴 |
-| Labels | Paid by · Unit · Obligation · Evidence · Capital, not income · Award not published · New-build case: assumes a grant · Operating purchase: no grant | 付费方 · 计价单位 · 义务 · 证据 · 属于资本，并非收入 · 中标结果未公布 · 新建情景：假设获得补贴 · 收购在运资产：不含补贴 |
+| Labels | Paid by · Unit · Obligation · Evidence · Capital, not income · Award unverified · New-build case: assumes a grant · Operating purchase: no grant | 付费方 · 计价单位 · 义务 · 证据 · 属于资本，并非收入 · 中标结果未核实 · 新建情景：假设获得补贴 · 收购在运资产：不含补贴 |
 | Trading route | Offered → Cleared → Delivered → Settled. Paid by: the exchange's counterparties, per MWh at the cleared price. Obligation: deliver what clears. Evidence: Fair: the price series awaits a publishable source | 报价 → 出清 → 交付 → 结算。付费方：交易所的交易对手，按出清价、每MWh结算。义务：按出清结果交付。证据：证据尚可：价格序列尚待可公开发布的来源 |
 | Balancing route | Qualified → Bid → Held ready or activated → Paid. Paid by: the grid operator, per MW held ready and per MWh activated. Obligation: respond when called. Evidence: Thin: results not yet located | 获得资格 → 报价 → 待命或被调用 → 付费。付费方：电网运营商，按每MW待命及每MWh调用电量付费。义务：接到指令即响应。证据：证据单薄：尚未找到采购结果 |
-| Grant route | Tender → Provisional ranking → Final list → Contract → Paid against build costs. Paid by: the Ministry of Energy, from the Modernisation Fund, once. Obligation: commission within ‹bound: grant build deadline› months and operate for at least ‹bound: grant operation years› years. Evidence: Strong for the rules; no award published | 竞标 → 初步排名 → 最终名单 → 签约 → 按建设成本拨付。付费方：能源部，资金来自现代化基金，一次性拨付。义务：在‹bound: grant build deadline›个月内投运，并至少运营‹bound: grant operation years›年。证据：证据充分（规则）；尚无中标结果公布 |
+| Grant route | Tender → Provisional ranking → Final list → Contract → Paid against build costs. Paid by: the Ministry of Energy, from the Modernisation Fund, once. Obligation: commission within ‹bound: grant build deadline› months and operate for at least ‹bound: grant operation years› years. Evidence: Strong for the rules; award unverified | 竞标 → 初步排名 → 最终名单 → 签约 → 按建设成本拨付。付费方：能源部，资金来自现代化基金，一次性拨付。义务：在‹bound: grant build deadline›个月内投运，并至少运营‹bound: grant operation years›年。证据：证据充分（规则）；中标结果尚未核实 |
 
 ### ro-11 — The floor comes first · 先谈定保底
 
@@ -331,7 +331,7 @@ Timeline nodes (page text):
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | If nothing is secured, why would a fund buy in? | 如果没有任何锁定收入，基金为何还会买入？ |
-| Copy | Only with a floor. An optimiser can agree to pay the owner a minimum each year and share what the battery earns above it; one such floor has been announced in Romania, with its level undisclosed. The fund enters only once a seller can show those terms: the payment, how long it lasts, indexation, the share above the floor, fees, availability conditions and who stands behind it. Until then the price paid rests on merchant revenue alone. | 只有在有保底的情况下才会。优化商可以同意每年向业主支付一个最低金额，并分享电池在此之上的收益；罗马尼亚已公布过一项此类保底，但未披露金额。只有当卖方能拿出以下条款时，基金才会进入：付费金额、期限、指数化、保底以上的分成、费用、可用率条件以及担保方。在此之前，收购价只能以市场化收入为依据。 |
+| Copy | Only with a floor. An optimiser can agree to pay the owner a minimum each year and share what the battery earns above it; such a floor has been announced in Romania, with its level undisclosed. The fund enters only once a seller can show those terms: the payment, how long it lasts, indexation, the share above the floor, fees, availability conditions and who stands behind it. Until then the price paid rests on merchant revenue alone. | 只有在有保底的情况下才会。优化商可以同意每年向业主支付一个最低金额，并分享电池在此之上的收益；罗马尼亚已公布过此类保底，但未披露金额。只有当卖方能拿出以下条款时，基金才会进入：付费金额、期限、指数化、保底以上的分成、费用、可用率条件以及担保方。在此之前，收购价只能以市场化收入为依据。 |
 | Meaning | The floor is a condition of entry and a diligence gate, not part of the price. | 保底是进入条件和尽职调查关口，而非定价的一部分。 |
 | Marker | Fair evidence. What would change it: a floor term sheet, with credit support, that passes the platform's floor check. | 证据尚可。会改变判断的证据：附带信用支持并通过本平台保底核查的保底条款清单。 |
 | Controls | The priced case · The floor checklist | 已定价情景 · 保底核查清单 |
@@ -353,7 +353,7 @@ Timeline nodes (page text):
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | What would make this play less attractive? | 什么会让本方案失去吸引力？ |
-| Copy | Romania's own build running ahead of the model's path; reserves fading faster; a floor that is short, low or not on offer; a new order on connections or guarantees; and grant-funded batteries joining the fleet. The grant call's result is not yet published. Next: ‹bound: next trigger›, then ‹bound: next action›. | 罗马尼亚自身的建设快于模型路径；备用收入消退更快；保底期限短、金额低或根本无法取得；出台新的并网或保函法令；以及获补贴的电池加入储能队伍。补贴申报结果尚未公布。下一步：‹bound: next trigger›，然后是‹bound: next action›。 |
+| Copy | Romania's own build running ahead of the model's path; reserves fading faster; a floor that is short, low or not on offer; a new order on connections or guarantees; and grant-funded batteries joining the fleet. The grant call's timetable and outcome remain unverified at the latest check. Next: ‹bound: next trigger›, then ‹bound: next action›. | 罗马尼亚自身的建设快于模型路径；备用收入消退更快；保底期限短、金额低或根本无法取得；出台新的并网或保函法令；以及获补贴的电池加入储能队伍。补贴申报结果尚未核实。下一步：‹bound: next trigger›，然后是‹bound: next action›。 |
 | Meaning | The entry price must work on merchant revenue alone, with the floor's terms in hand before signing. | 进入价格必须在仅有市场化收入时也能成立，并须在签约前取得保底条款。 |
 | Marker | Fair evidence. What would change it: the ministry's published grant lists, Transelectrica's fleet counts set against the model's path, or a priced floor. | 证据尚可。会改变判断的证据：能源部公布的补贴名单、Transelectrica储能统计与模型路径的对比，或已定价的保底。 |
 | Controls | Home fleet · Reserves · Floor · Connection rules · Grant-funded fleet · Bankable case · Revenue · Execution · Downside | 本国储能 · 备用收入 · 保底 · 并网规则 · 获补贴储能 · 可融资方案 · 收益拆解 · 执行步骤 · 下行风险 |
@@ -485,3 +485,7 @@ Authority: the analyst signed off the Chinese recommendations in this chat and a
 **Final reconciliation:** shot copy, bindings, scopes and model dependencies have been reconciled to the approved separate changes. Exact-head validation and dependency merges remain release gates. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
 
 **Financial basis.** Investment-summary IRRs use the existing after-tax nominal cash-flow layer, including its inflation convention. The design-grid comparison is a separate basis. Do not add inflation again to the investment return or treat assumed contract escalation as verified contractual entitlement.
+
+## G-2 release — 2 November 2026
+
+The analyst signed off G-2 and authorised merge and publication. Grant wording now records an unverified timetable/outcome rather than inferring non-publication from failed access; the floor precedent is qualitative. Both languages retain the same meaning, existing call, play and financial bindings. All source/reuse gates and Example treatments remain in place.
