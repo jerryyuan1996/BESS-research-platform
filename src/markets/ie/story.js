@@ -341,7 +341,14 @@ export const story = {
           {
             labels: {
               proposed: ['Proposed, not decided', '拟议，尚未决定'],
-              fallbackLink: ['Open the duration evidence', '查看时长依据'],
+            },
+            extra: {
+              exits: [
+                { anchor: 'bankable', label: ['Bankable case', '可融资方案'] },
+                { anchor: 'revenue', label: ['Revenue', '收益拆解'] },
+                { anchor: 'execution', label: ['Execution', '执行步骤'] },
+                { anchor: 'downside', label: ['Downside', '下行风险'] },
+              ],
             },
           }),
 
@@ -389,6 +396,10 @@ export const story = {
     'Signature chart example': ['Example: price and storage credit', '示例：价格与储能计入比例'],
     'Service purposes': ['FFR: arrest the frequency fall; POR: replace the immediate response; SOR: sustain reserve; TOR1 and TOR2: continue reserve cover', 'FFR：遏制频率下跌；POR：接替即时响应；SOR：维持备用；TOR1和TOR2：继续提供备用支撑'],
     'Battery / station': ['Battery modules; Inverter; Transformer; Controls; Connection; Usable energy; Charge; Discharge', '电池模块；逆变器；变压器；控制系统；并网接入；可用电量；充电；放电'],
+    'Investment IRR basis': ['All-equity hold IRR · after-tax nominal · from RTB closing', '全股权长持IRR · 项目税后名义 · 自RTB交割起算'],
+    'Capital basis': ['Construction budget including reserves · current prices', '含储备的建设预算 · 当期价格'],
+    'Value basis': ['Design value less net capital at COD · USD per nameplate MW', '设计口径投运时价值减净投入 · 美元/铭牌MW'],
+    'Awarded scope': ['Batteries awarded — four recent auctions only', '电池中标量——仅最近四轮拍卖'],
     'Redesign factor': ['A new auction design could change contract length, credit or price for new storage', '新的拍卖设计可能改变新建储能的合同期限、计入容量或价格'],
     'De-rating factor': ['Less credit per megawatt built means less capacity income for the same battery', '每MW建成功率可计入的容量减少，同一电池的容量收入随之下降'],
     'Competition factor': ['More batteries and interconnection can narrow evening prices and the trading line', '更多电池和互联线路可能压低晚高峰价格及交易收入'],

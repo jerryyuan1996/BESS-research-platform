@@ -1,0 +1,81 @@
+/* Ireland-only composition. The kit, shell and their stylesheet are reused. */
+.ie-scene { min-width: 0; }
+.ie-scene .k-stage { max-width: 760px; margin: auto; }
+.ie-note, .ie-locator { margin: 6px 0; font-size: var(--fs-sm); color: var(--ix-body); line-height: 1.55; }
+.ie-evidence { margin-top: 10px; font-size: var(--fs-sm); }
+.ie-evidence summary { min-height: 36px; cursor: pointer; color: var(--ix-green); }
+.ie-evidence ul { margin: 6px 0; padding-left: 18px; }
+.ie-evidence li { margin-bottom: 8px; overflow-wrap: anywhere; }
+
+/* the schematic island */
+.ie-map, .ie-thumb { display: block; width: 100%; height: auto; max-width: 620px; margin: auto; }
+.ie-thumb { max-width: 200px; }
+.ie-land { fill: #c8d6b4; stroke: #224e40; stroke-width: 2; }
+.ie-land-far { fill: #e6e9dc; }
+.ie-boundary { fill: none; stroke: #224e40; stroke-width: 2; stroke-dasharray: 6 5; }
+.ie-dc { stroke: #224e40; stroke-width: 3; }
+.ie-dc.ie-planned { stroke: #9b7d48; stroke-dasharray: 7 5; }
+.ie-map-label { fill: #224e40; font-size: 13px; }
+.ie-map[data-focus="links"] .ie-boundary { opacity: .35; }
+.ie-map[data-focus="system"] .ie-dc { opacity: .5; }
+
+/* stepped gauge, ladder and timeline */
+.ie-step { fill: #b7cca5; stroke: #224e40; }
+.ie-step-label, .ie-step-date, .ie-marker-label { fill: #22372c; font-size: 12px; text-anchor: middle; }
+.ie-marker-label { text-anchor: start; }
+.ie-axis { stroke: #7b8c7a; stroke-width: 1; }
+.ie-rung { fill: #dbe3cd; stroke: #224e40; }
+.ie-rung-label { fill: #22372c; font-size: 12px; }
+.ie-note-text { fill: #3d5044; font-size: 12px; }
+.ie-purpose { border-left: 3px solid #224e40; padding: 4px 12px; margin: 8px 0; }
+.ie-contract-cards { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.ie-card { border: 1px solid #c6d0c0; border-radius: 4px; padding: 8px 10px; margin: 0; flex: 1 1 200px; }
+.ie-card[data-current="true"] { border-color: #224e40; border-width: 2px; font-weight: 600; }
+.ie-history .ix-node[data-current="true"] .ix-node-title { border-left: 3px solid #224e40; padding-left: 10px; }
+
+/* the long-stop and the contract band */
+.ie-tariff { stroke: #224e40; stroke-width: 4; }
+.ie-marker { stroke: #a37732; stroke-width: 3; stroke-dasharray: 5 4; }
+.ie-band { fill: #efe6d2; stroke: #9b7d48; stroke-dasharray: 6 4; }
+.ie-floor { fill: #224e40; }
+.ie-merchant { fill: #b7cca5; }
+.ie-strike { stroke: #9b7d48; stroke-width: 2; stroke-dasharray: 6 4; }
+.ie-spike { fill: none; stroke: #a37732; stroke-width: 2; }
+
+/* teaching drawings */
+.ie-soc { fill: #224e40; }
+.ie-power { fill: #a37732; }
+.ie-built { fill: #224e40; }
+.ie-credited { fill: #b7cca5; }
+.ie-capital { fill: #9b7d48; }
+.ie-measures { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; margin: 10px 0; font-size: var(--fs-sm); }
+.ie-measures dt { color: var(--ix-body); }
+.ie-measures dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+/* payers and factors */
+.ie-path { border-left: 3px solid #224e40; padding: 6px 12px; margin: 8px 0; }
+.ie-path h5 { margin: 0 0 4px; }
+.ie-path-services.ie-assumed { border-left-style: dashed; }
+.ie-factors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ie-factor { border: 1px solid #c6d0c0; border-radius: 4px; padding: 8px 10px; }
+.ie-factor[data-current="true"] { border-color: #224e40; border-width: 2px; }
+.ie-factor h5 { margin: 0 0 4px; }
+.ie-factor a { display: inline-block; margin-top: 6px; }
+.ie-tag-line { font-size: var(--fs-xs); color: #9b7d48; margin: 4px 0; }
+@media (max-width: 560px) { .ie-factors { grid-template-columns: 1fr; } .ie-measures { grid-template-columns: 1fr; } }
+
+/* Chart-IE-CRM, Example only */
+.ie-crm-chart { border: 1px solid #c6d0c0; border-radius: 4px; padding: 10px; background: #fffefa; }
+.ie-crm-status { margin: 0 0 6px; font-size: var(--fs-sm); }
+.ie-crm-scroll { overflow-x: auto; }
+.ie-crm-drawing { display: block; width: 100%; height: auto; min-width: 320px; }
+.ie-crm-title { fill: #22372c; font-size: 13px; font-weight: 600; }
+.ie-crm-heading { fill: #3d5044; font-size: 12px; }
+.ie-crm-axis { stroke: #7b8c7a; stroke-width: 1; }
+.ie-crm-trace { fill: none; stroke: #224e40; stroke-width: 2; }
+.ie-crm-trace.ie-crm-future { stroke-dasharray: 6 4; }
+.ie-crm-new { fill: #224e40; }
+.ie-crm-existing { fill: #b7cca5; }
+.ie-crm-legend { fill: #3d5044; font-size: 11px; }
+.ie-crm-definitions { margin-top: 8px; font-size: var(--fs-sm); }
+.ie-crm-definitions summary { min-height: 36px; cursor: pointer; color: var(--ix-green); }
