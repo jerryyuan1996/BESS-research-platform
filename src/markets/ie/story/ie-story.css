@@ -15,22 +15,22 @@
 .ie-boundary { fill: none; stroke: #224e40; stroke-width: 2; stroke-dasharray: 6 5; }
 .ie-dc { stroke: #224e40; stroke-width: 3; }
 .ie-dc.ie-planned { stroke: #9b7d48; stroke-dasharray: 7 5; }
-.ie-map-label { fill: #224e40; font-size: 13px; }
+.ie-map-label { fill: #224e40; font-size: var(--fs-sm); }
 .ie-map[data-focus="links"] .ie-boundary { opacity: .35; }
 .ie-map[data-focus="system"] .ie-dc { opacity: .5; }
 
 /* stepped gauge, ladder and timeline */
 .ie-step { fill: #b7cca5; stroke: #224e40; }
-.ie-step-label, .ie-step-date, .ie-marker-label { fill: #22372c; font-size: 12px; text-anchor: middle; }
+.ie-step-label, .ie-step-date, .ie-marker-label { fill: #22372c; font-size: var(--fs-xs); text-anchor: middle; }
 .ie-marker-label { text-anchor: start; }
 .ie-axis { stroke: #7b8c7a; stroke-width: 1; }
 .ie-rung { fill: #dbe3cd; stroke: #224e40; }
-.ie-rung-label { fill: #22372c; font-size: 12px; }
-.ie-note-text { fill: #3d5044; font-size: 12px; }
+.ie-rung-label { fill: #22372c; font-size: var(--fs-xs); }
+.ie-note-text { fill: #3d5044; font-size: var(--fs-xs); }
 .ie-purpose { border-left: 3px solid #224e40; padding: 4px 12px; margin: 8px 0; }
 .ie-contract-cards { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.ie-card { border: 1px solid #c6d0c0; border-radius: 4px; padding: 8px 10px; margin: 0; flex: 1 1 200px; }
-.ie-card[data-current="true"] { border-color: #224e40; border-width: 2px; font-weight: 600; }
+.ie-card { border: 1px solid #c6d0c0; border-radius: var(--r-sm); padding: 8px 10px; margin: 0; flex: 1 1 200px; }
+.ie-card[data-current="true"] { border-color: #224e40; border-width: 2px; font-weight: var(--fw-medium); }
 .ie-history .ix-node[data-current="true"] .ix-node-title { border-left: 3px solid #224e40; padding-left: 10px; }
 
 /* the long-stop and the contract band */
@@ -57,7 +57,7 @@
 .ie-path h5 { margin: 0 0 4px; }
 .ie-path-services.ie-assumed { border-left-style: dashed; }
 .ie-factors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.ie-factor { border: 1px solid #c6d0c0; border-radius: 4px; padding: 8px 10px; }
+.ie-factor { border: 1px solid #c6d0c0; border-radius: var(--r-sm); padding: 8px 10px; }
 .ie-factor[data-current="true"] { border-color: #224e40; border-width: 2px; }
 .ie-factor h5 { margin: 0 0 4px; }
 .ie-factor a { display: inline-block; margin-top: 6px; }
@@ -65,17 +65,17 @@
 @media (max-width: 560px) { .ie-factors { grid-template-columns: 1fr; } .ie-measures { grid-template-columns: 1fr; } }
 
 /* Chart-IE-CRM, Example only */
-.ie-crm-chart { border: 1px solid #c6d0c0; border-radius: 4px; padding: 10px; background: #fffefa; }
+.ie-crm-chart { border: 1px solid #c6d0c0; border-radius: var(--r-sm); padding: 10px; background: #fffefa; }
 .ie-crm-status { margin: 0 0 6px; font-size: var(--fs-sm); }
 .ie-crm-scroll { overflow-x: auto; }
 .ie-crm-drawing { display: block; width: 100%; height: auto; min-width: 320px; }
-.ie-crm-title { fill: #22372c; font-size: 13px; font-weight: 600; }
-.ie-crm-heading { fill: #3d5044; font-size: 12px; }
+.ie-crm-title { fill: #22372c; font-size: var(--fs-sm); font-weight: var(--fw-medium); }
+.ie-crm-heading { fill: #3d5044; font-size: var(--fs-xs); }
 .ie-crm-axis { stroke: #7b8c7a; stroke-width: 1; }
 .ie-crm-trace { fill: none; stroke: #224e40; stroke-width: 2; }
 .ie-crm-trace.ie-crm-future { stroke-dasharray: 6 4; }
 .ie-crm-new { fill: #224e40; }
 .ie-crm-existing { fill: #b7cca5; }
-.ie-crm-legend { fill: #3d5044; font-size: 11px; }
+.ie-crm-legend { fill: #3d5044; font-size: var(--fs-2xs); }
 .ie-crm-definitions { margin-top: 8px; font-size: var(--fs-sm); }
 .ie-crm-definitions summary { min-height: 36px; cursor: pointer; color: var(--ix-green); }
