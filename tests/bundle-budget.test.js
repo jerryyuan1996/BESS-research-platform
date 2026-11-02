@@ -242,6 +242,7 @@ const BUDGET = {
     'story-de': 40,
     'story-gb': 40,
     'story-it': 40,
+    'story-ie': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,

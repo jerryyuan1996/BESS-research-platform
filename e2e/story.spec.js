@@ -553,3 +553,37 @@ test('Finland historical explanations retain the approved four fields and transl
   await expect(history.locator('[data-history-fields]')).toContainText('让小时市场更容易买到备用');
   await expect(history.locator('.ix-marker')).toHaveCount(1);
 });
+
+/* Ireland is registered but not released (its G-2 release PR sets `released`),
+   so the market button still opens the research dialog. ?story=preview makes
+   the same button open the story; another investor's lens returns to research. */
+test('Ireland opens only in preview, shows no withheld figure, and follows the lens', async ({ page }) => {
+  await page.goto('/markets/ireland');
+  const trigger = page.locator('.ix-full-research');
+  await trigger.scrollIntoViewIfNeeded();
+  await trigger.click();
+  await expect(page.locator('.ix-research-dialog')).toBeVisible();
+  await page.keyboard.press('Escape');
+
+  await page.goto('/markets/ireland?story=preview');
+  const preview = page.locator('.ix-full-research');
+  await preview.scrollIntoViewIfNeeded();
+  await preview.click();
+  const dialog = page.locator('.ix-story-dialog');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator('article.ix-shot')).toHaveCount(13);
+  await expect(dialog.locator('.ix-marker')).toHaveCount(13);
+  await expect(dialog.locator('[data-shot="ie-00"] .ix-shot-copy')).toContainText('System services: assumed');
+  const chart = dialog.locator('[data-shot="ie-06"]');
+  await expect(chart).not.toContainText('most qualified new batteries did not bid');
+  await expect(chart.locator('.ie-crm-drawing')).toHaveAttribute('data-authority', 'example');
+  await expect(chart.locator('.ie-crm-drawing')).toHaveAttribute('data-scaled', 'false');
+  await expect(dialog.locator('[data-shot="ie-01"] .ie-dc.ie-planned')).toHaveCount(1);
+  await page.keyboard.press('Escape');
+
+  await page.addInitScript(() => localStorage.setItem('hub_lens', 'strategic'));
+  await page.goto('/markets/ireland?story=preview');
+  await page.locator('.ix-full-research').click();
+  await expect(page.locator('.ix-research-dialog')).toBeVisible();
+  await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
+});
