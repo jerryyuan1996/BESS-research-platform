@@ -22,8 +22,8 @@ export const STORIES = {
   /* Registered for the G-2 preview and not released: the release PR sets
      `released`, which is when the market button opens the story. */
   ie: { released: false, load: () => import('../../markets/ie/storyPack.js') },
-  /* Romania: registered for the G-2 preview and not released. */
-  ro: { released: false, load: () => import('../../markets/ro/storyPack.js') },
+  /* Romania: G-2 signed off 2 November 2026. */
+  ro: { released: true, load: () => import('../../markets/ro/storyPack.js') },
 };
 
 /** The story entry for a market, or null when it has none or it is unreleased. */
