@@ -34,7 +34,7 @@ function renderMarket(container, row, route) {
   } }, markets.map(market => h('option', { value: market.manifest.slug }, L(market.manifest.name)))); select.value = mf.slug;
   content.append(h('section', { class: 'ix-market-intro' }, h('div', {}, eyebrow(['FROM MARKET SCREEN TO INVESTMENT CASE', '从市场筛选，走向投资方案']), h('h1', {}, name(row)), h('p', { class: 'ix-lead' }, L(routeName(row))), h('div', { class: 'ix-actions' }, tag(row), h('span', { class: 'ix-mono' }, `${row.investment?.currency||mf.currency} · ${row.play?.hours || m.comparison.archetype.durationHours}H`))),
     h('div', { class: 'ix-market-controls' }, select, button(['Print investment brief ↗', '打印投资简报 ↗'], () => window.print(), 'ix-outline'))));
-  if (row.id === 'pl') {
+  if (['pl','it'].includes(row.id)) {
     const choices = h('div');
     content.append(choices);
     const investor = lens();
@@ -65,7 +65,7 @@ function renderMarket(container, row, route) {
     research.disabled=true;
     const story=storyFor(mf.id);
     (story
-      ? storyReady.then(()=>story.load()).then(pack=>{if(research.isConnected&&!storyOpen()&&!pack.open({row,rows:storyRows,result:data,name:marketName(row),trigger:research,openResearch,place,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
+      ? storyReady.then(()=>story.load()).then(pack=>{if(research.isConnected&&!storyOpen()&&!pack.open({row,rows:storyRows,lens:lens(),result:data,name:marketName(row),trigger:research,openResearch,place,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
       : openResearch(research))
       .catch(()=>{research.textContent=L(['Could not load; click to retry','暂未载入，点击重试']);})
       .finally(()=>{research.disabled=false;});

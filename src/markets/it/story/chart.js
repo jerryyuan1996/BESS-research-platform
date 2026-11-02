@@ -26,8 +26,8 @@ export function forkChart(shot,values,{panel='both',focus=0}={}){
   s('text',{x:465,y:218,'text-anchor':'middle'},text(labels.label7,values)),
   s('text',{x:310,y:273,'text-anchor':'middle'},text(labels[panel==='credit'?'label0':'label1'],values)));
  const table=h('table',{class:'it-chart-table'},h('caption',{},L(story.text['Chart fallback'])),
-  h('thead',{},h('tr',{},h('th',{},L(story.text['Route switch']).split(' · ')[0]),h('th',{},text(labels.label1,values)),h('th',{},text(labels.label0,values)))),
-  h('tbody',{},[0,1].map(i=>h('tr',{},h('th',{},text(paymentShot.controls[i],values)),h('td',{},L(story.text['Missing value'])),h('td',{},text(labels[i?'label6':'label5'],values))))));
+  h('thead',{},h('tr',{},h('th',{},text(paymentShot.controls[0],values)+' / '+text(paymentShot.controls[1],values)),h('th',{},text(labels.label1,values)),h('th',{},text(labels.label0,values)))),
+  h('tbody',{},[0,1].map(i=>h('tr',{},h('th',{},text(paymentShot.controls[i],values)),h('td',{},L(story.text['Missing value'])),h('td',{},L(story.text['Missing value']))))));
  return h('div',{class:'it-fork-chart','data-panel':panel},h('p',{class:'it-chart-status'},L(story.text['Chart fallback'])),
   h('div',{class:'it-chart-scroll',tabindex:'0',role:'region','aria-label':L(data.chart.fallback)},svg),table,
   h('details',{},h('summary',{},text(paymentShot.controls[3],values)),
