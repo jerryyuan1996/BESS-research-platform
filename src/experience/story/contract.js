@@ -52,7 +52,12 @@ const COPY_FIELDS = ['question', 'copy', 'meaning'];
 /* Fields where a figure is allowed only on a value tagged Example. */
 const LIST_FIELDS = ['controls', 'labels'];
 
-const YEAR = /\b(19|20)\d{2}(-\d{2})?\b|(19|20)\d{2}年|\d{1,2}\s?(January|February|March|April|May|June|July|August|September|October|November|December)|\d{1,2}月\d{1,2}日/g;
+/* A date is not a typed figure: the scripts state sourced events in words, and
+   the Chinese writes a month-precision date without a day ("2014年11月"). The
+   Chinese forms come first and longest first — a word boundary ends at the
+   character before 年, so a bare-year alternative placed earlier would consume
+   "2014" and leave the month behind. */
+const YEAR = /(19|20)\d{2}年\d{1,2}月\d{1,2}日|(19|20)\d{2}年\d{1,2}月|\b(19|20)\d{2}(-\d{2})?\b|(19|20)\d{2}年|\d{1,2}\s?(January|February|March|April|May|June|July|August|September|October|November|December)|\d{1,2}月\d{1,2}日/g;
 const EXAMPLE = /Example|示例/;
 
 /** Digits left in a string once tokens and dates are removed. */
