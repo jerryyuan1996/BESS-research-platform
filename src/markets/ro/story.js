@@ -1175,7 +1175,7 @@ export const story = {
           ],
           "copy": [
             "Romania's own build running ahead of the model's path; reserves fading faster; a floor that is short, low or not on offer; a new order on connections or guarantees; and grant-funded batteries joining the fleet. The grant call's timetable and outcome remain unverified at the latest check. Next: {nextTrigger}, then {nextAction}.",
-            "罗马尼亚自身的建设快于模型路径；备用收入消退更快；保底期限短、金额低或根本无法取得；出台新的并网或保函法令；以及获补贴的电池加入储能队伍。补贴申报结果尚未核实。下一步：{nextTrigger}，然后是{nextAction}。"
+            "罗马尼亚自身的建设快于模型路径；备用收入消退更快；保底期限短、金额低或根本无法取得；出台新的并网或保函法令；以及获补贴的电池加入储能队伍。截至最近一次核查，补贴申报的时间表与结果仍未核实。下一步：{nextTrigger}，然后是{nextAction}。"
           ],
           "meaning": [
             "The entry price must work on merchant revenue alone, with the floor's terms in hand before signing.",
