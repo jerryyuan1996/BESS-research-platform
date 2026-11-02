@@ -203,7 +203,8 @@ that ships, with no rebuild in between.
 
 You do not need to set a build command, an output directory, or a Node version in
 the Vercel dashboard. `vercel.json` carries the build settings and the SPA
-rewrite, and GitHub Actions pins Node 20.
+rewrite, and GitHub Actions takes its Node version from the repository's
+`.nvmrc`.
 
 ### 2b — Create the token and find the two IDs
 

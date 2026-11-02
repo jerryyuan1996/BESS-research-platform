@@ -122,7 +122,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
 
       - run: npm ci
 
@@ -303,7 +303,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
 
       - run: npm ci
 
@@ -402,7 +402,7 @@ jobs:
       - uses: actions/setup-node@v4
         if: env.ANTHROPIC_API_KEY != ''
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
 
       - run: npm ci
         if: env.ANTHROPIC_API_KEY != ''
@@ -492,7 +492,7 @@ jobs:
       - uses: actions/setup-node@v4
         if: env.ANTHROPIC_API_KEY != ''
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
 
       - run: npm ci
         if: env.ANTHROPIC_API_KEY != ''
@@ -629,7 +629,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
 
       - name: Render the last thirty-one days
         run: node scripts/view/digest.mjs > digest.md
@@ -662,7 +662,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
 
       - run: npm ci
 

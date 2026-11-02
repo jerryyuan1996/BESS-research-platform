@@ -314,7 +314,7 @@ build anything.** Git-triggered builds are refused by `git.deploymentEnabled: fa
 | Setting | Value |
 |---|---|
 | Built by | `.github/workflows/ci.yml`, job `deploy` |
-| Build command | `npx vercel build --prod` (in Actions, on Node 20) |
+| Build command | `npx vercel build --prod` (in Actions, on the `.nvmrc` version) |
 | Published directory | `.vercel/output` — the Build Output API directory |
 | Deploy command | `npx vercel deploy --prebuilt --prod` |
 | Vercel project | `bess-research-platform` |
