@@ -21,13 +21,13 @@ const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.resolve(REPO, process.env.SCAN_DIR || 'dist');
 const row = opportunities('infraFund').find((r) => r.id === 'ie');
 
-test('Ireland is registered lazily and is not released', () => {
+test('Ireland is released lazily and opens without a preview flag', () => {
   const entry = STORIES.ie;
   assert.ok(entry, 'no Ireland entry: the market page would never offer the story');
-  assert.equal(entry.released, false, 'released belongs to the G-2 release PR');
+  assert.equal(entry.released, true, 'Ireland has analyst G-2 release approval');
   assert.equal(typeof entry.load, 'function');
-  assert.equal(storyFor('ie', ''), null, 'an unreleased story must not open from the button');
-  assert.equal(storyFor('ie', '?story=other'), null);
+  assert.equal(storyFor('ie', ''), entry, 'the released story opens from the market button');
+  assert.equal(storyFor('ie', '?story=other'), entry);
   assert.equal(storyFor('ie', '?story=preview'), entry, 'the analyst walks it in preview');
   assert.equal(storyFor('wa', ''), STORIES.wa, 'other markets keep their released entries');
   assert.equal(storyFor('fi', ''), STORIES.fi);
