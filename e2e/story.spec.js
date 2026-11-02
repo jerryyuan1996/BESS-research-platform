@@ -554,16 +554,16 @@ test('Finland historical explanations retain the approved four fields and transl
   await expect(history.locator('.ix-marker')).toHaveCount(1);
 });
 
-/* Ireland is registered but not released (its G-2 release PR sets `released`),
-   so the market button still opens the research dialog. ?story=preview makes
-   the same button open the story; another investor's lens returns to research. */
-test('Ireland opens only in preview, shows no withheld figure, and follows the lens', async ({ page }) => {
+/* Ireland is released at G-2. Its market button opens the story;
+   another investor's lens still returns to research. */
+test('Ireland opens publicly, shows no withheld figure, and follows the lens', async ({ page }) => {
   await page.goto('/markets/ireland');
   const trigger = page.locator('.ix-full-research');
   await trigger.scrollIntoViewIfNeeded();
   await trigger.click();
-  await expect(page.locator('.ix-research-dialog')).toBeVisible();
+  await expect(page.locator('.ix-story-dialog')).toBeVisible();
   await page.keyboard.press('Escape');
+  await expect(trigger).toBeFocused();
 
   await page.goto('/markets/ireland?story=preview');
   const preview = page.locator('.ix-full-research');
