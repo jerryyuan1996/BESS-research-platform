@@ -353,7 +353,7 @@ Timeline nodes (page text):
 | Page text | English | 简体中文 |
 | --- | --- | --- |
 | Question | What would make this play less attractive? | 什么会让本方案失去吸引力？ |
-| Copy | Romania's own build running ahead of the model's path; reserves fading faster; a floor that is short, low or not on offer; a new order on connections or guarantees; and grant-funded batteries joining the fleet. The grant call's timetable and outcome remain unverified at the latest check. Next: ‹bound: next trigger›, then ‹bound: next action›. | 罗马尼亚自身的建设快于模型路径；备用收入消退更快；保底期限短、金额低或根本无法取得；出台新的并网或保函法令；以及获补贴的电池加入储能队伍。补贴申报结果尚未核实。下一步：‹bound: next trigger›，然后是‹bound: next action›。 |
+| Copy | Romania's own build running ahead of the model's path; reserves fading faster; a floor that is short, low or not on offer; a new order on connections or guarantees; and grant-funded batteries joining the fleet. The grant call's timetable and outcome remain unverified at the latest check. Next: ‹bound: next trigger›, then ‹bound: next action›. | 罗马尼亚自身的建设快于模型路径；备用收入消退更快；保底期限短、金额低或根本无法取得；出台新的并网或保函法令；以及获补贴的电池加入储能队伍。截至最近一次核查，补贴申报的时间表与结果仍未核实。下一步：‹bound: next trigger›，然后是‹bound: next action›。 |
 | Meaning | The entry price must work on merchant revenue alone, with the floor's terms in hand before signing. | 进入价格必须在仅有市场化收入时也能成立，并须在签约前取得保底条款。 |
 | Marker | Fair evidence. What would change it: the ministry's published grant lists, Transelectrica's fleet counts set against the model's path, or a priced floor. | 证据尚可。会改变判断的证据：能源部公布的补贴名单、Transelectrica储能统计与模型路径的对比，或已定价的保底。 |
 | Controls | Home fleet · Reserves · Floor · Connection rules · Grant-funded fleet · Bankable case · Revenue · Execution · Downside | 本国储能 · 备用收入 · 保底 · 并网规则 · 获补贴储能 · 可融资方案 · 收益拆解 · 执行步骤 · 下行风险 |
