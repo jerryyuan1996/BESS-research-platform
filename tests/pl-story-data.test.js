@@ -18,9 +18,10 @@
         grant, no terminal date for the quarterly product, no technology split
         for the last three auctions. A null is a gap, never a zero.
 
-     4. THE QUANTITATIVE LAYER IS STILL GATED. `quantitativeReady` is false and
-        the catalogue holds only this set: the page draws the Example form
-        until the analyst accepts the rendering at G-2.
+     4. THE GATE IS RECORDED, NOT ASSUMED. `quantitativeReady` turned true at
+        G-2 on 3 November 2026, and the record says so: the flag, a null gate,
+        and one rights disposition per source. Turning it back is a decision
+        with the same paper trail.
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -156,7 +157,8 @@ test('the reuse basis is recorded per source, and the report keeps its open revi
     }
   }
   assert.equal(PL_STORY_SOURCES['SRC-PL-24'].reuse.permitsNumericPublication, false, 'the basis itself publishes no figure');
-  assert.equal(PL_STORY_SOURCES['SRC-PL-16'].reuse.status, 'pending-review', 'B-PL-RIGHTS closes at G-2');
+  assert.equal(PL_STORY_SOURCES['SRC-PL-16'].reuse.status, 'official-material-factual-summary', 'B-PL-RIGHTS closed at G-2');
+  assert.match(PL_STORY_SOURCES['SRC-PL-16'].reuse.constraints, /closed at G-2 on 3 November 2026/);
   assert.match(PL_STORY_SOURCES['SRC-PL-16'].reuse.constraints, /no report image/);
   assert.equal(PL_STORY_SOURCES['SRC-PL-15'].reuse.status, 'limited-factual-summary');
   assert.match(PL_STORY_SOURCES['SRC-PL-15'].reuse.constraints, /Link only/);
@@ -232,11 +234,11 @@ test('the set is one fixed vintage outside the automated catalogue', () => {
   assert.equal(PL_STORY_DATASETS['pl-capacity-auctions'], PL_STORY_EVIDENCE);
 });
 
-test('the quantitative layer stays gated until G-2, and the Example wording is the approved one', () => {
-  assert.equal(PL_CHART.quantitativeReady, false);
+test('the quantitative layer was retired at G-2, and the Example wording stays on the record', () => {
+  assert.equal(PL_CHART.quantitativeReady, true);
+  assert.equal(PL_CHART.open, null, 'a null gate is a cleared record');
   assert.deepEqual(PL_CHART.fallback, ['Example: auction price × correction factor', '示例：拍卖价格×修正系数']);
   assert.equal(PL_CHART.referenceKW, 1);
-  assert.match(PL_CHART.open.gate, /G-2/);
 });
 
 test('the records the page reads are the records the set exports', () => {

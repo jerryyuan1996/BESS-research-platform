@@ -290,19 +290,20 @@ test('the card and design figures come from the page, not from a pasted string',
   assert.match(values.nextAction[0], /ranking list/i);
 });
 
-test('pl-05 ships the Example sentence while the chart is gated, and the numbers when it is not', () => {
-  assert.equal(PL_CHART.quantitativeReady, false);
-  const gated = storyWithGate(composed);
-  const open = storyWithGate(composed, true);
-  const gatedShot = gated.chapters.find(c => c.id === 'tensions').shots[0];
-  const openShot = open.chapters.find(c => c.id === 'tensions').shots[0];
-  assert.deepEqual(gatedShot.copy, story.chapters.find(c => c.id === 'tensions').shots[0].exampleCopy);
-  assert.deepEqual(openShot.copy, story.chapters.find(c => c.id === 'tensions').shots[0].copy);
-  /* No digit may survive in the Example sentence, in either language. */
-  for (const text of gatedShot.copy) assert.equal(/\d/.test(text), false, text);
-  assert.equal(/Example|示例/.test(gatedShot.copy.join(' ')), true, 'the Example tag stays');
-  /* Only pl-05 is affected. */
-  assert.equal(gated.chapters.flatMap(c => c.shots).filter(s => s.exampleCopy).length, 1);
+test('pl-05 ships the numbers now, and keeps the Example sentence for a re-gate', () => {
+  assert.equal(PL_CHART.quantitativeReady, true);
+  const released = storyWithGate(composed);
+  const regated = storyWithGate(composed, false);
+  const numeric = story.chapters.find(c => c.id === 'tensions').shots[0];
+  const releasedShot = released.chapters.find(c => c.id === 'tensions').shots[0];
+  const regatedShot = regated.chapters.find(c => c.id === 'tensions').shots[0];
+  assert.deepEqual(releasedShot.copy, numeric.copy, 'the signed sentence is what ships');
+  assert.deepEqual(regatedShot.copy, numeric.exampleCopy, 'the gate still knows how to retreat');
+  /* The Example sentence carries no digit, in either language. */
+  for (const text of numeric.exampleCopy) assert.equal(/\d/.test(text), false, text);
+  assert.equal(/Example|示例/.test(numeric.exampleCopy.join(' ')), true, 'the Example tag stays');
+  /* Only pl-05 has a second form. */
+  assert.equal(released.chapters.flatMap(c => c.shots).filter(s => s.exampleCopy).length, 1);
 });
 
 test('a missing binding replaces its sentence in the approved wording', () => {

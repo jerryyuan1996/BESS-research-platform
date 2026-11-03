@@ -588,25 +588,16 @@ test('Ireland opens publicly, shows no withheld figure, and follows the lens', a
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
 });
 
-/* Poland. Registered unreleased after G-1, so the market button still opens
-   the research dialog and the story is reached at ?story=preview. The auction
-   chart's quantitative layer is gated until G-2, and the opening puts one
-   evidence marker on each of its two cards. */
-test('Poland keeps the research dialog publicly, and previews two calls without auction numbers', async ({ page }, info) => {
+/* Poland. Released at G-2 on 3 November 2026, with the quantitative auction
+   rendering accepted in the same review, so the market button opens the story
+   and the chart carries the records. The opening still puts one evidence
+   marker on each of its two cards. */
+test('Poland opens publicly, keeps two calls apart, and draws the auction records', async ({ page }, info) => {
   const errors = []; page.on('pageerror', e => errors.push(e.message));
   await page.goto('/markets/poland');
   const trigger = page.locator('.ix-full-research');
   await trigger.scrollIntoViewIfNeeded();
   await trigger.click();
-  await expect(page.locator('.ix-research-dialog')).toBeVisible();
-  await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
-  await page.keyboard.press('Escape');
-  await expect(trigger).toBeFocused();
-
-  await page.goto('/markets/poland?story=preview');
-  const preview = page.locator('.ix-full-research');
-  await preview.scrollIntoViewIfNeeded();
-  await preview.click();
   const dialog = page.locator('.ix-story-dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('article.ix-shot')).toHaveCount(13);
@@ -621,14 +612,15 @@ test('Poland keeps the research dialog publicly, and previews two calls without 
   await expect(dialog.locator('.pl-card-marker')).toHaveCount(2);
   await expect(dialog.locator('[data-shot="pl-00"] .ix-story-marker')).toHaveCount(0);
 
-  /* The signature chart is the Example while the layer is gated: no clearing
-     price, no contract value, no obligation, and the approved tag. */
+  /* The signature chart now draws the records: two panels, the 2027 and 2030
+     contracts, the accessible table, and no Example tag. */
   const chart = dialog.locator('[data-shot="pl-05"]');
-  await expect(chart.locator('svg[data-auction-chart]')).toHaveAttribute('data-chart-state', 'example');
-  await expect(chart).not.toContainText('386.03');
-  await expect(chart).not.toContainText('1,734');
-  await expect(chart).toContainText('Example: auction price × correction factor');
-  await expect(chart.locator('table')).toHaveCount(0);
+  await expect(chart.locator('svg[data-auction-chart]')).toHaveAttribute('data-chart-state', 'numeric');
+  await expect(chart).toContainText('386.03');
+  await expect(chart).toContainText('62.27');
+  await expect(chart).toContainText('1,734 MW');
+  await expect(chart.locator('table')).toHaveCount(1);
+  await expect(chart.locator('tbody tr')).toHaveCount(11);
 
   /* The pl-06 scope correction and the pl-12 delay bands are the shipped words. */
   await expect(dialog.locator('[data-shot="pl-06"] .ix-shot-copy')).toContainText('Quarterly additional auctions admit existing units.');
@@ -644,10 +636,11 @@ test('Poland keeps the research dialog publicly, and previews two calls without 
   await expect(dialog.locator('[data-shot="pl-00"] .ix-shot-copy')).toContainText('Situational');
   await dialog.screenshot({ path: info.outputPath('story-pl-en.png') });
 
-  /* Chinese at the same place. */
+  /* Chinese at the same place, with the same figures. */
   await dialog.getByRole('button', { name: 'Switch to Chinese' }).click();
   await expect(dialog.locator('[data-shot="pl-06"] .ix-shot-copy')).toContainText('季度追加拍卖面向既有机组。');
-  await expect(dialog.locator('[data-shot="pl-05"] .ix-shot-copy')).toContainText('示例：拍卖价格×修正系数。');
+  await expect(dialog.locator('[data-shot="pl-05"] .ix-shot-copy')).toContainText('PLN 386.03');
+  await expect(dialog.locator('[data-shot="pl-05"] .ix-shot-copy')).toContainText('PLN 62.27');
   await dialog.screenshot({ path: info.outputPath('story-pl-zh.png') });
   expect(errors).toEqual([]);
 });

@@ -349,12 +349,12 @@ export const PL_STORY_SOURCES = {
       clause: 'Figure 1, electrochemical-storage series by delivery year (p. 6); first paragraph (p. 7): 33 units and 1,734 MW from the 2023 auction',
     },
     reuse: {
-      status: 'pending-review',
+      status: 'official-material-factual-summary',
       permitsNumericPublication: true,
       basisUrl: 'https://api.sejm.gov.pl/eli/acts/DU/2025/24/text.pdf',
       basisLocator: 'Copyright Act art. 4, printed/PDF p. 3 (SRC-PL-24)',
       attribution: 'Źródło: URE, Raport 2024 - magazynowanie energii elektrycznej',
-      constraints: 'B-PL-RIGHTS: official material on the art. 4 basis, to be confirmed at the build\u2019s rights review. Extracted facts and an original drawing only; no report image, figure or table is republished. The status stays pending-review until the analyst records the source-by-source disposition at G-2.',
+      constraints: 'B-PL-RIGHTS closed at G-2 on 3 November 2026: official material on the art. 4 basis, with the analyst recording this source-by-source disposition. Extracted facts and an original drawing only; no report image, figure or table is republished.',
     },
   },
   'SRC-PL-17': {
@@ -719,10 +719,15 @@ export const PL_SUCCESSOR = {
 /** Chart-PL-AUCTIONS: the records above, and the mode they may be drawn in. */
 export const PL_CHART = {
   id: 'Chart-PL-AUCTIONS',
-  quantitativeReady: false,
+  quantitativeReady: true,
   referenceKW: 1,
   fallback: ['Example: auction price × correction factor', '示例：拍卖价格×修正系数'],
-  open: OPEN('G-2 acceptance', 'Section 5 retires the Example only when the records exist, the eleven joins reproduce, the locators resolve, the rights disposition is recorded, the numeric copy binds, both Rule 11 rows still match and the analyst accepts the quantitative rendering at G-2.'),
+  /* Retired at G-2 on 3 November 2026: the records exist, the eleven joins
+     reproduce, the locators resolve, the rights disposition is recorded on each
+     source, the numeric copy binds, and both Rule 11 rows still match. A null
+     gate means the record is cleared, as it does for the rules and the
+     connection records. */
+  open: null,
 };
 
 /** One object, so a caller cannot pick a value out of its provenance. */
