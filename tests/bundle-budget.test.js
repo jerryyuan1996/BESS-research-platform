@@ -247,6 +247,7 @@ const BUDGET = {
        bilingual shots, their scenes and the signature chart. Registered but
        unreleased, so it is fetched only behind ?story=preview. */
     'story-ro': 40,
+    'story-caiso': 40,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -857,4 +858,22 @@ test('the Romania story stays out of the first load and its additional graph fit
   const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
   assert.ok(kB(gzipOf(extra))<=BUDGET.features['story-ro'],
     'Romania story, shell, kit, records, content and scenes: '+kB(gzipOf(extra))+' KiB gzip, cap '+BUDGET.features['story-ro']);
+});
+
+test('the CAISO story, complete additional static closure and lazy styles fit 40 KiB gzip',async t=>{
+  if(skipWithoutDist(t))return;
+  const {entry,features,byName}=await chunks();
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const own=features.get('story-caiso');assert.ok(own,'the CAISO story has its own lazy chunk');
+  assert.ok(!first.has(own),'no CAISO story bytes before opening');
+  const probe='What is the call here, and why should I read on?';
+  assert.ok(own.text.includes(probe));
+  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no story content in '+chunk.name);
+  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
+  const css=await styles();assert.ok(!css.main.text.includes('.caiso-scene'));
+  const lazyCss=css.lazy.filter(c=>c.text.includes('.caiso-scene')||c.text.includes('.ix-story-dialog'));
+  assert.ok(lazyCss.some(c=>c.text.includes('.caiso-scene')));
+  const total=gzipOf(extra)+lazyCss.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
+  t.diagnostic('CAISO complete additional static graph including CSS: '+kB(total)+' KiB gzip');
+  assert.ok(total<=40*1024,'CAISO complete static graph including CSS: '+kB(total)+' KiB gzip, cap 40');
 });
