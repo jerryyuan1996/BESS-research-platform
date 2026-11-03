@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-02T21:45:15.972Z",
+  "fetchedAt": "2026-11-03T06:55:57.600Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-11-02T16:59:10.000Z",
+    "to": "2026-11-03T06:51:17.000Z",
     "resolution": "event",
     "points": 42
   },
@@ -133,46 +133,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
-    },
-    {
-      "t": "2026-10-28T10:14:15.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/kyon-energy-282mwh-alfeld-battery-storage-project-germany-operation/",
-      "source": "Energy-Storage.news",
-      "title": "Kyon Energy puts 282MWh Alfeld battery storage project in Germany into operation",
-      "url": "https://www.energy-storage.news/kyon-energy-282mwh-alfeld-battery-storage-project-germany-operation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS developer Kyon Energy has commissioned and put into operation its 137.5MW/282MWh Alfeld BESS project in Germany, potentially the country’s largest to reach that milestone."
-    },
-    {
-      "t": "2026-10-28T10:45:20.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/lg-energy-solution-signs-mou-with-energix-for-4-5gwh-of-potential-bess-deployments-in-us-and-europe/",
-      "source": "Energy-Storage.news",
-      "title": "LG Energy Solution signs MOU with Energix for 4.5GWh of potential BESS deployments in US and Europe",
-      "url": "https://www.energy-storage.news/lg-energy-solution-signs-mou-with-energix-for-4-5gwh-of-potential-bess-deployments-in-us-and-europe/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "South Korean battery giant LG Energy Solution (LG ES) has signed a non-binding memorandum of understanding (MOU) with owner-operator Energix-Renewable Energies to expand collaboration on energy storage projects in Europe and the US."
-    },
-    {
-      "t": "2026-10-28T11:43:36.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/data-centres-could-drive-sodium-ion-ldes-adoption-in-europe-analyst/",
-      "source": "Energy-Storage.news",
-      "title": "Data centres could drive sodium-ion, LDES adoption in Europe – analyst",
-      "url": "https://www.energy-storage.news/data-centres-could-drive-sodium-ion-ldes-adoption-in-europe-analyst/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Sodium-ion’s position has strengthened substantially in the past 12 months but its adoption in Europe depends on several key factors including data centres and their use case, an analyst said."
-    },
-    {
-      "t": "2026-10-28T12:18:12.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/europe-has-the-capability-to-support-homegrown-bess-industry-valo-ceo-fath-says-in-exclusive-interview/",
-      "source": "Energy-Storage.news",
-      "title": "‘Europe has the capability’ to support homegrown BESS industry, Valo CEO Fath says in exclusive interview",
-      "url": "https://www.energy-storage.news/europe-has-the-capability-to-support-homegrown-bess-industry-valo-ceo-fath-says-in-exclusive-interview/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ESN Premium meets Peter Fath, CEO of Valo, about the newly launched energy storage joint venture’s next steps and broader strategy."
     },
     {
       "t": "2026-10-28T12:25:15.000Z",
@@ -335,36 +295,6 @@
       "summary": "Two Australian battery storage projects in Queensland and Victoria have entered federal environmental review, with AGL Energy and developer ACEnergy each submitting referrals under the same national process."
     },
     {
-      "t": "2026-11-02T08:28:40.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/retractable-photovoltaics-for-wastewater-treatment/",
-      "source": "pv magazine",
-      "title": "Retractable photovoltaics for wastewater treatment",
-      "url": "https://www.pv-magazine.com/2026/11/02/retractable-photovoltaics-for-wastewater-treatment/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Germany’s largest retractable solar roof, with a capacity of 2.745 MW, is under construction at a wastewater treatment plant in Stuttgart. Scheduled for completion in 2027, the system will generate more than 2.2 GWh annually, covering around 9% of the plant’s electricity demand. The post Retractable photovoltaics fo…"
-    },
-    {
-      "t": "2026-11-02T09:22:53.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/pakistan-seeks-consultant-for-distributed-solar-project/",
-      "source": "pv magazine",
-      "title": "Pakistan seeks consultant for distributed solar project",
-      "url": "https://www.pv-magazine.com/2026/11/02/pakistan-seeks-consultant-for-distributed-solar-project/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A tender is open in Pakistan searching for a consultant to verify all non-solar works that form part of a 100 MW distributed PV project in the region of Gilgit-Baltistan. The deadline for expressions of interest is November 30. The post Pakistan seeks consultant for distributed solar project appeared first on pv mag…"
-    },
-    {
-      "t": "2026-11-02T10:43:06.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/zwitterions-could-be-much-more-than-defect-passivators-in-perovskite-solar-cells/",
-      "source": "pv magazine",
-      "title": "Zwitterions could be much more than defect passivators in perovskite solar cells",
-      "url": "https://www.pv-magazine.com/2026/11/02/zwitterions-could-be-much-more-than-defect-passivators-in-perovskite-solar-cells/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese researchers have reviewed the potential of zwitterions to improve the efficiency and stability of perovskite solar cells through defect passivation, crystallization control, and interface engineering. They found that these compounds could also enhance charge extraction, stabilize the perovskite structure, an…"
-    },
-    {
       "t": "2026-11-02T11:37:57.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/11/02/belgian-spin-off-noak-raises-e5-million-for-perovskite-silicon-solar-cells/",
       "source": "pv magazine",
@@ -443,6 +373,76 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The UK BESS-owning Gresham House Energy Storage Fund has launched a formal sales process, a decision which has seen its share price jump 10%."
+    },
+    {
+      "t": "2026-11-03T01:55:22.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-victorias-sec-secures-4-hour-glenrowan-bess-offtake-first-bess-units-arrive-at-gentaris-maryvale/",
+      "source": "Energy-Storage.news",
+      "title": "Australia: Victoria’s SEC secures 4-hour Glenrowan BESS offtake, first BESS units arrive at Gentari’s Maryvale",
+      "url": "https://www.energy-storage.news/australia-victorias-sec-secures-4-hour-glenrowan-bess-offtake-first-bess-units-arrive-at-gentaris-maryvale/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Victoria's SEC secures 10-year Glenrowan BESS offtake as Gentari's first BESS units arrive at NSW's Maryvale solar-storage project."
+    },
+    {
+      "t": "2026-11-03T01:58:54.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/capital-to-move-our-next-wave-revera-energy-doubles-holdco-facility-to-us300-million-for-bess-in-uk-and-australia/",
+      "source": "Energy-Storage.news",
+      "title": "‘Capital to move our next wave’: Revera Energy doubles holdco facility to US$300 million for BESS in UK and Australia",
+      "url": "https://www.energy-storage.news/capital-to-move-our-next-wave-revera-energy-doubles-holdco-facility-to-us300-million-for-bess-in-uk-and-australia/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Revera Energy has doubled its holdco credit facility from US$150 million to US$300 million to fund its BESS pipeline in the UK and Australia."
+    },
+    {
+      "t": "2026-11-03T02:18:25.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/a-lot-of-interest-in-sodium-ion-from-australian-mining-and-data-centres-catls-anz-general-manager-says/",
+      "source": "Energy-Storage.news",
+      "title": "‘A lot of interest in sodium-ion’ from Australian mining and data centres, CATL’s ANZ general manager says",
+      "url": "https://www.energy-storage.news/a-lot-of-interest-in-sodium-ion-from-australian-mining-and-data-centres-catls-anz-general-manager-says/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "ESN Premium speaks with Zane Zhou of CATL Australia and New Zealand, about TENER+, sodium-ion demand, the Collie BESS and more."
+    },
+    {
+      "t": "2026-11-03T03:29:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-ceo-julian-nebreda-and-cfo-ahmed-pasha-leave-with-immediate-effect/",
+      "source": "Energy-Storage.news",
+      "title": "Fluence CEO Julian Nebreda and CFO Ahmed Pasha leave with immediate effect",
+      "url": "https://www.energy-storage.news/fluence-ceo-julian-nebreda-and-cfo-ahmed-pasha-leave-with-immediate-effect/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "CEO and CFO of energy storage technology provider Fluence have both left the company."
+    },
+    {
+      "t": "2026-11-03T05:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/quality-at-gigawatt-scale/",
+      "source": "pv magazine",
+      "title": "Quality at gigawatt scale",
+      "url": "https://www.pv-magazine.com/2026/11/03/quality-at-gigawatt-scale/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "India is currently expanding its solar manufacturing capacity at an unprecedented pace, establishing gigawatt-scale cell and module production to meet growing demand. But how can quality and long-term reliability be assured while maintaining such a fast-paced buildout? The post Quality at gigawatt scale appeared fir…"
+    },
+    {
+      "t": "2026-11-03T06:47:07.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/gokin-unveils-latest-additions-to-back-contact-module-portfolio/",
+      "source": "pv magazine",
+      "title": "Gokin unveils latest additions to back-contact PV module portfolio",
+      "url": "https://www.pv-magazine.com/2026/11/03/gokin-unveils-latest-additions-to-back-contact-module-portfolio/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Gokin Solar has unveiled a back-contact module series offering power outputs up to 510 W for Australian residential and commercial rooftops. The series supports 1,500 V systems and reaches efficiencies of up to 25%. The post Gokin unveils latest additions to back-contact PV module portfolio appeared first on pv maga…"
+    },
+    {
+      "t": "2026-11-03T06:51:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/rayzon-solar-to-start-production-at-5-1-gw-topcon-cell-facility-in-december-plans-ingot-wafer-manufacturing-by-2028/",
+      "source": "pv magazine",
+      "title": "Rayzon Solar to start production at 5.1 GW TOPCon cell facility in December, plans ingot-wafer manufacturing by 2028",
+      "url": "https://www.pv-magazine.com/2026/11/03/rayzon-solar-to-start-production-at-5-1-gw-topcon-cell-facility-in-december-plans-ingot-wafer-manufacturing-by-2028/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The India-based solar manufacturer expects to start initial solar cell deliveries in the first quarter of 2027. It is also planning a 5.1 GW ingot casting and wafer slicing facility by 2028. The post Rayzon Solar to start production at 5.1 GW TOPCon cell facility in December, plans ingot-wafer manufacturing by 2028…"
     }
   ],
   "derived": {
@@ -452,8 +452,8 @@
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 8,
-      "capital": 7,
-      "grid": 25,
+      "capital": 8,
+      "grid": 24,
       "technology": 2
     },
     "sourceStatus": [
@@ -488,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:3af0e2e387ac10465e8e0e42a2699ae380432a0ac5a649008e8668d2da6bf623",
-  "envelopeChecksum": "sha256:2afd4a3fe9b86b4116eb3474418f83cd9460b86ca049637067dad2b95b7a87fd"
+  "contentChecksum": "sha256:f6a75300fac58b0f8813e9870ecb0e6d5144f56eb5f4756d1e0fb5646942fbde",
+  "envelopeChecksum": "sha256:9e57b7ea7a8090bad950e3f9c14ab65ff8aac0c1ab5f05d7bded42045ddea685"
 }

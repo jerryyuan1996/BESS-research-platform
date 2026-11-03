@@ -13,53 +13,17 @@
     "licence": "PSE public reporting data — reuse with attribution to PSE S.A.",
     "attribution": "Source: PSE S.A.; ECB reference rates"
   },
-  "fetchedAt": "2026-11-02T21:45:18.892Z",
+  "fetchedAt": "2026-11-03T06:55:59.910Z",
   "coverage": {
-    "from": "2025-11-02T22:00:00.000Z",
+    "from": "2025-11-03T07:00:00.000Z",
     "to": "2026-11-03T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8785
+    "points": 8776
   },
   "units": {
     "price": "EUR/MWh"
   },
   "series": [
-    {
-      "t": "2025-11-02T22:00:00.000Z",
-      "v": 90.6
-    },
-    {
-      "t": "2025-11-02T23:00:00.000Z",
-      "v": 96.64
-    },
-    {
-      "t": "2025-11-03T00:00:00.000Z",
-      "v": 100.55
-    },
-    {
-      "t": "2025-11-03T01:00:00.000Z",
-      "v": 101.85
-    },
-    {
-      "t": "2025-11-03T02:00:00.000Z",
-      "v": 99.96
-    },
-    {
-      "t": "2025-11-03T03:00:00.000Z",
-      "v": 101.94
-    },
-    {
-      "t": "2025-11-03T04:00:00.000Z",
-      "v": 118.39
-    },
-    {
-      "t": "2025-11-03T05:00:00.000Z",
-      "v": 158.16
-    },
-    {
-      "t": "2025-11-03T06:00:00.000Z",
-      "v": 158.84
-    },
     {
       "t": "2025-11-03T07:00:00.000Z",
       "v": 167.25
@@ -35172,6 +35136,6 @@
   ],
   "refreshHours": 12,
   "staleAfterHours": 72,
-  "contentChecksum": "sha256:4de8f020e73d4edf3f338a6d10e8377840a1f7d2003af3d816f6262f54aeee12",
-  "envelopeChecksum": "sha256:ecfbdef05570540fd33b35937438f4244151d45d4df68954bb67feabe011150b"
+  "contentChecksum": "sha256:e523e53b136111a3513698ef05a9c28068e34afcbdb7fe7d189289e50f402824",
+  "envelopeChecksum": "sha256:3d7bda2d94de136f090f92210fd1df9fd4dda94c1d396d73882986819f707e32"
 }
