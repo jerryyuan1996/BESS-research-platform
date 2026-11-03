@@ -20,7 +20,8 @@ import { HOME_BRIEFING } from '../../briefing/homeData.js';
 import { playTitle } from '../../governance/playTitle.js';
 import { fmtUSD } from '../../utils/formatting.js';
 import { storyRowsFor } from '../../experience/storyRows.js';
-import { MARKERS, tokensIn } from '../../experience/story/contract.js';
+import { story } from './story.js';
+import { MARKERS, isStale, tokensIn } from '../../experience/story/contract.js';
 import {
   PL_STORY_META, PL_STORY_SOURCES, PL_AUCTIONS, PL_RULES, PL_HISTORY,
   PL_GRANT, PL_SUCCESSOR, PL_CHART, auctionSeries,
@@ -216,6 +217,30 @@ export function storyValues(row, ui = {}, lens = 'infraFund'){
         `${PL_AUCTIONS.length}份公告，交付年${PL_AUCTIONS[0].deliveryYear}—${PL_AUCTIONS[PL_AUCTIONS.length - 1].deliveryYear}年`]
       : null,
   };
+}
+
+/**
+ * The reviewed tuple (rule 11) resolved to the values the page will print, or
+ * null when the market page must keep the research dialog. Pure, so a test can
+ * hold the guards without a browser: the pack supplies the lens.
+ */
+export function reviewed({ row, lens = 'infraFund', ui = {} } = {}){
+  if (row?.id !== 'pl') return null;
+  if (lens !== story.reviewedAgainst.lens) return null;
+  if (isStale(story, row)) return null;
+  if (!storyMatches(story, row, lens)) return null;
+  const values = storyValues(row, ui, lens);
+  if (Number(values.playDuration) !== story.reviewedAgainst.hours) return null;
+  return { values, route: storyRows(row, lens) };
+}
+
+/** One marker per opening card, from that card's own row. */
+export function cardMarkers(rows){
+  return (rows || []).map(row => ({
+    play: row?.play?.id || null,
+    level: row?.evidence || null,
+    label: MARKERS[row?.evidence] || null,
+  })).filter(entry => entry.label);
 }
 
 /**
