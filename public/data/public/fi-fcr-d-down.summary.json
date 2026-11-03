@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-03T06:56:13.457Z",
+  "fetchedAt": "2026-11-03T19:33:40.220Z",
   "coverage": {
-    "from": "2025-11-03T07:00:00.000Z",
+    "from": "2025-11-03T20:00:00.000Z",
     "to": "2026-11-03T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8776
+    "points": 8763
   },
   "units": {
     "price": "EUR/MW/h"
@@ -33,13 +33,13 @@
   "daily": [
     {
       "d": "2025-11-03",
-      "n": 17,
-      "mean": 4.1,
-      "min": 3.5,
+      "n": 4,
+      "mean": 4.88,
+      "min": 4.51,
       "max": 5,
-      "spread": 4.1,
+      "spread": 4.88,
       "charge": null,
-      "discharge": 4.1
+      "discharge": 4.88
     },
     {
       "d": "2025-11-04",
@@ -3694,8 +3694,8 @@
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-d-down.json",
-    "contentChecksum": "sha256:9d5562095761cccac4fb96e33344cd72ca74e1f9745a583849428ded73f363d1",
-    "points": 8776
+    "contentChecksum": "sha256:e22f4d7ebede271bef4c2c9f4721e6eb6be7448ca74572c657fa7f7bb586563b",
+    "points": 8763
   },
-  "summaryChecksum": "sha256:52e7e83168e78585aa9f92724371d5047d00c896fc89ed9e4fa6a2bd3a08aedb"
+  "summaryChecksum": "sha256:ec4203cc8af57678cb7103bd425108e2c4db84a348a6782c4e92de8449f72eb6"
 }
