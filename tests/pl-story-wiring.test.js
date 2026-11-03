@@ -24,14 +24,14 @@ const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.resolve(REPO, process.env.SCAN_DIR || 'dist');
 const row = opportunities('infraFund').find(r => r.id === 'pl');
 
-test('Poland is registered lazily and unreleased: preview only until G-2', () => {
+test('Poland is released lazily: the button opens it, and it still costs nothing up front', () => {
   const entry = STORIES.pl;
   assert.ok(entry, 'no Poland entry: the market page would never offer the story');
-  assert.equal(entry.released, false, 'releasing belongs to the G-2 release PR');
+  assert.equal(entry.released, true, 'G-2 signed off 3 November 2026');
   assert.equal(typeof entry.load, 'function');
-  assert.equal(storyFor('pl', ''), null, 'the button keeps the research dialog');
-  assert.equal(storyFor('pl', '?story=other'), null);
-  assert.equal(storyFor('pl', '?story=preview'), entry, 'the analyst walks it in preview');
+  assert.equal(storyFor('pl', ''), entry, 'the market button opens the story');
+  assert.equal(storyFor('pl', '?story=other'), entry);
+  assert.equal(storyFor('pl', '?story=preview'), entry, 'the preview route still resolves');
   /* The released entries are untouched. */
   for (const id of ['wa', 'fi', 'de', 'gb', 'it', 'ie', 'ro']) assert.equal(storyFor(id, ''), STORIES[id], id);
 });

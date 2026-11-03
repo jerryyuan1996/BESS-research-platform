@@ -117,22 +117,31 @@ test('every control changes the drawing, and never the case', () => {
 
 /* ---- the signature chart ------------------------------------------------ */
 
-test('the gated chart is the approved Example: two panels, no number anywhere', () => {
-  assert.equal(PL_CHART.quantitativeReady, false);
+test('the released chart is the numeric one: both panels, the records, and the table', () => {
+  assert.equal(PL_CHART.quantitativeReady, true);
   const shot = shots.find(s => s.id === 'pl-05');
   const node = build(shot);
   const svg = byTag(node, 'svg')[0];
-  assert.equal(svg.getAttribute('data-chart-state'), 'example');
-  const labels = texts(svg).join(' ');
-  assert.equal(/\d/.test(labels), false, `no axis, tick or point label: ${labels}`);
-  assert.ok(series(svg, 'example-price').length, 'the price panel is drawn as a teaching shape');
-  assert.ok(series(svg, 'example-contract').length, 'the contract panel is drawn as a teaching shape');
-  assert.equal(series(svg, 'price').length, 0, 'no observed price mark in this mode');
-  assert.equal(series(svg, 'obligation').length, 0, 'no obligation marker in this mode');
-  assert.equal(byTag(node, 'table').length, 0, 'no numeric table in this mode');
-  assert.ok(all(node, n => cls(n).includes('k-tag')).some(n => /Example|示例/.test(texts(n).join(''))), 'the Example tag is present');
-  const title = byTag(svg, 'title')[0];
-  assert.match(texts(title).join(''), /Example: auction price × correction factor/);
+  assert.equal(svg.getAttribute('data-chart-state'), 'numeric');
+  assert.ok(series(svg, 'price').length > 0, 'the observed price marks are drawn');
+  assert.ok(series(svg, 'contract').length > 0, 'the calculated contract marks are drawn');
+  assert.equal(series(svg, 'example-price').length, 0, 'no teaching shape stands in for a record');
+  const printed = texts(svg).join(' ');
+  assert.match(printed, /386\.03/, 'the 2027 contract is printed from the record');
+  assert.match(printed, /62\.27/, 'and the last main auction');
+  assert.equal(byTag(node, 'table').length, 1, 'the accessible table is built from the same records');
+  const rows = byTag(node, 'tr').filter(tr => tr.children.some(cell => cell.tag === 'td'));
+  assert.equal(rows.length, 11, 'one row per notice');
+  assert.equal(all(node, n => cls(n).includes('k-tag')).length, 0, 'no Example tag on a numeric chart');
+});
+
+test('the Example form still exists for a re-gate, unchanged', () => {
+  const labels = { l01: ['d', '交'], l02: ['p', '价'], l03: ['f', '系'], l04: ['c', '同'] };
+  const example = exampleAuctionChart({ labels });
+  assert.equal(example.getAttribute('data-chart-state'), 'example');
+  assert.equal(/\d/.test(texts(example).join(' ')), false, 'no number in the teaching form');
+  assert.equal(series(example, 'price').length, 0);
+  assert.equal(signatureChart({ rows: auctionSeries(), boundary: 2031, labels, ready: false }).getAttribute('data-chart-state'), 'example');
 });
 
 test('the numeric chart uses the records, both panels, and a label rather than a second axis', () => {
