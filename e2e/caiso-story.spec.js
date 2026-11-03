@@ -1,12 +1,11 @@
 import {test,expect} from '@playwright/test';
 import {story} from '../src/markets/caiso/story.js';
 const MARKET='/markets/caiso',PREVIEW=MARKET+'?story=preview';
-async function open(page,url=PREVIEW){await page.goto(url);const trigger=page.locator('.ix-full-research');await trigger.scrollIntoViewIfNeeded();await trigger.click();const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();return {trigger,dialog};}
+async function open(page,url=MARKET){await page.goto(url);const trigger=page.locator('.ix-full-research');await trigger.scrollIntoViewIfNeeded();await trigger.click();const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();return {trigger,dialog};}
 
-test('CAISO remains unreleased and loads no story code until the preview research button opens it',async({page})=>{
+test('CAISO opens ordinarily after G-2 and loads no story code before the research button opens it',async({page})=>{
  const loaded=[];page.on('request',r=>{if(/story-caiso-/.test(r.url()))loaded.push(r.url());});
- await page.goto(MARKET);await page.locator('.ix-full-research').click();await expect(page.getByRole('dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);expect(loaded).toEqual([]);
- await page.goto(PREVIEW);await expect(page.locator('.ix-full-research')).toBeVisible();expect(loaded).toEqual([]);
+ await page.goto(MARKET);await expect(page.locator('.ix-full-research')).toBeVisible();expect(loaded).toEqual([]);
  await page.locator('.ix-full-research').click();await expect(page.locator('.ix-story-dialog')).toBeVisible();expect(loaded.length).toBeGreaterThan(0);
 });
 
