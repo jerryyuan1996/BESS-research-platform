@@ -1,0 +1,1710 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-11-04T13:09:38.820Z",
+  "commit": null,
+  "environment": {
+    "node": "v22.22.2",
+    "platform": "win32 x64",
+    "cpus": 8,
+    "cpuModel": "Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz",
+    "totalMemoryGB": 17.1
+  },
+  "build": "dist-profile (minify:false, attribution only)",
+  "browser": "chromium 156.0.8078.4",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "runs": 1,
+  "routes": [
+    {
+      "id": "gb",
+      "url": "http://127.0.0.1:4189/markets/great-britain/grid",
+      "cold": {
+        "wallMs": 16042,
+        "busyMs": 2584,
+        "idleMs": 11937,
+        "selfMs": [
+          {
+            "fn": "(program)",
+            "url": "",
+            "line": 0,
+            "category": "engine",
+            "selfMs": 868.6,
+            "samples": 968
+          },
+          {
+            "fn": "settle",
+            "url": "assets/index.js",
+            "line": 8506,
+            "category": "app code",
+            "selfMs": 828.3,
+            "samples": 962
+          },
+          {
+            "fn": "(anonymous)",
+            "url": "assets/finance.js",
+            "line": 2,
+            "category": "app code",
+            "selfMs": 97.1,
+            "samples": 117
+          },
+          {
+            "fn": "numberFormats",
+            "url": "assets/formatting.js",
+            "line": 1,
+            "category": "app code",
+            "selfMs": 66.3,
+            "samples": 81
+          },
+          {
+            "fn": "(garbage collector)",
+            "url": "",
+            "line": 0,
+            "category": "garbage collection",
+            "selfMs": 52.5,
+            "samples": 76
+          },
+          {
+            "fn": "linePathData",
+            "url": "assets/buildPathwayPanel.js",
+            "line": 165,
+            "category": "app code",
+            "selfMs": 33.8,
+            "samples": 49
+          },
+          {
+            "fn": "npvOf",
+            "url": "assets/finance.js",
+            "line": 1,
+            "category": "app code",
+            "selfMs": 27.7,
+            "samples": 31
+          },
+          {
+            "fn": "checkVisibility",
+            "url": "",
+            "line": 0,
+            "category": "engine",
+            "selfMs": 26.9,
+            "samples": 39
+          },
+          {
+            "fn": "polygonContains",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 350,
+            "category": "app code",
+            "selfMs": 26.1,
+            "samples": 25
+          },
+          {
+            "fn": "mercatorRaw",
+            "url": "assets/buildPathwayPanel.js",
+            "line": 9,
+            "category": "app code",
+            "selfMs": 21.3,
+            "samples": 30
+          },
+          {
+            "fn": "setAttribute",
+            "url": "",
+            "line": 0,
+            "category": "DOM calls",
+            "selfMs": 20.9,
+            "samples": 29
+          },
+          {
+            "fn": "appendChild",
+            "url": "",
+            "line": 0,
+            "category": "DOM calls",
+            "selfMs": 20.9,
+            "samples": 28
+          },
+          {
+            "fn": "(anonymous)",
+            "url": "assets/index.js",
+            "line": 1,
+            "category": "app code",
+            "selfMs": 17.9,
+            "samples": 21
+          },
+          {
+            "fn": "transmissionSegments",
+            "url": "assets/buildPathwayPanel.js",
+            "line": 186,
+            "category": "app code",
+            "selfMs": 17.8,
+            "samples": 25
+          },
+          {
+            "fn": "addEventListener",
+            "url": "",
+            "line": 0,
+            "category": "engine",
+            "selfMs": 16.1,
+            "samples": 6
+          },
+          {
+            "fn": "add",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 10,
+            "category": "app code",
+            "selfMs": 11.2,
+            "samples": 15
+          },
+          {
+            "fn": "compose2",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 167,
+            "category": "app code",
+            "selfMs": 10.4,
+            "samples": 15
+          },
+          {
+            "fn": "linePoint",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 1242,
+            "category": "app code",
+            "selfMs": 10,
+            "samples": 14
+          },
+          {
+            "fn": "(anonymous)",
+            "url": "",
+            "line": 2,
+            "category": "engine",
+            "selfMs": 9.9,
+            "samples": 11
+          },
+          {
+            "fn": "query",
+            "url": "",
+            "line": 5816,
+            "category": "engine",
+            "selfMs": 9.6,
+            "samples": 11
+          },
+          {
+            "fn": "merge",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 48,
+            "category": "app code",
+            "selfMs": 9.5,
+            "samples": 13
+          },
+          {
+            "fn": "h",
+            "url": "assets/index.js",
+            "line": 206,
+            "category": "app code",
+            "selfMs": 9.4,
+            "samples": 12
+          },
+          {
+            "fn": "createElement",
+            "url": "",
+            "line": 0,
+            "category": "DOM calls",
+            "selfMs": 9.4,
+            "samples": 8
+          },
+          {
+            "fn": "(anonymous)",
+            "url": "",
+            "line": 1,
+            "category": "engine",
+            "selfMs": 9.3,
+            "samples": 11
+          }
+        ],
+        "categories": [
+          {
+            "category": "app code",
+            "ms": 1497,
+            "share": 58
+          },
+          {
+            "category": "engine",
+            "ms": 971,
+            "share": 38
+          },
+          {
+            "category": "DOM calls",
+            "ms": 64,
+            "share": 2
+          },
+          {
+            "category": "garbage collection",
+            "ms": 53,
+            "share": 2
+          }
+        ],
+        "inclusive": {
+          "renderGeographicGridMap": 185,
+          "fitExtent": 59,
+          "projection2.fitExtent": 59,
+          "path": 55,
+          "path.centroid": 31,
+          "projection2": 30,
+          "update": 23,
+          "render": 17,
+          "renderMarketPage": 15,
+          "renderLoading": 14,
+          "renderPoints": 8,
+          "renderConstraints": 3,
+          "renderSelector": 3,
+          "projection": 2,
+          "placeLabels": 2,
+          "renderCongestionRegister": 2,
+          "renderHeader": 1,
+          "projection2.clipExtent": 1,
+          "projection2.stream": 1,
+          "renderRoutes": 1,
+          "renderProjects": 1,
+          "clusterProjects": 1,
+          "renderDetail": 1,
+          "renderDetailToggle": 1
+        },
+        "sample": {
+          "cold": [
+            {
+              "wallMs": 16042,
+              "busyMs": 2584,
+              "idleMs": 11937,
+              "inclusive": {
+                "renderGeographicGridMap": 185,
+                "fitExtent": 59,
+                "projection2.fitExtent": 59,
+                "path": 55,
+                "path.centroid": 31,
+                "projection2": 30,
+                "update": 23,
+                "render": 17,
+                "renderMarketPage": 15,
+                "renderLoading": 14,
+                "renderPoints": 8,
+                "renderConstraints": 3,
+                "renderSelector": 3,
+                "projection": 2,
+                "placeLabels": 2,
+                "renderCongestionRegister": 2,
+                "renderHeader": 1,
+                "projection2.clipExtent": 1,
+                "projection2.stream": 1,
+                "renderRoutes": 1,
+                "renderProjects": 1,
+                "clusterProjects": 1,
+                "renderDetail": 1,
+                "renderDetailToggle": 1
+              }
+            }
+          ],
+          "warm": [
+            {
+              "wallMs": 4517,
+              "busyMs": 2118,
+              "idleMs": 485,
+              "inclusive": {
+                "renderGeographicGridMap": 113,
+                "fitExtent": 36,
+                "projection2.fitExtent": 36,
+                "path": 34,
+                "path.centroid": 26,
+                "projection2": 25,
+                "render": 17,
+                "renderMarketPage": 16,
+                "update": 11,
+                "renderSelector": 4,
+                "renderPoints": 3,
+                "renderLoading": 2,
+                "renderConstraints": 2,
+                "projection": 1,
+                "projection2.stream": 1,
+                "placeLabels": 1,
+                "renderDetail": 1,
+                "renderCongestionRegister": 1,
+                "renderDetailToggle": 1,
+                "loadPendingBands": 1
+              }
+            }
+          ]
+        }
+      },
+      "warm": {
+        "wallMs": 4517,
+        "busyMs": 2118,
+        "idleMs": 485,
+        "selfMs": [
+          {
+            "fn": "(program)",
+            "url": "",
+            "line": 0,
+            "category": "engine",
+            "selfMs": 1633.1,
+            "samples": 2054
+          },
+          {
+            "fn": "(anonymous)",
+            "url": "assets/finance.js",
+            "line": 2,
+            "category": "app code",
+            "selfMs": 66,
+            "samples": 95
+          },
+          {
+            "fn": "(garbage collector)",
+            "url": "",
+            "line": 0,
+            "category": "garbage collection",
+            "selfMs": 36.9,
+            "samples": 50
+          },
+          {
+            "fn": "linePathData",
+            "url": "assets/buildPathwayPanel.js",
+            "line": 165,
+            "category": "app code",
+            "selfMs": 34.3,
+            "samples": 47
+          },
+          {
+            "fn": "mercatorRaw",
+            "url": "assets/buildPathwayPanel.js",
+            "line": 9,
+            "category": "app code",
+            "selfMs": 20.4,
+            "samples": 28
+          },
+          {
+            "fn": "appendChild",
+            "url": "",
+            "line": 0,
+            "category": "DOM calls",
+            "selfMs": 17.8,
+            "samples": 24
+          },
+          {
+            "fn": "transmissionSegments",
+            "url": "assets/buildPathwayPanel.js",
+            "line": 186,
+            "category": "app code",
+            "selfMs": 16.9,
+            "samples": 25
+          },
+          {
+            "fn": "InjectedScript",
+            "url": "",
+            "line": 6969,
+            "category": "engine",
+            "selfMs": 10.5,
+            "samples": 13
+          },
+          {
+            "fn": "npvOf",
+            "url": "assets/finance.js",
+            "line": 1,
+            "category": "app code",
+            "selfMs": 10.5,
+            "samples": 14
+          },
+          {
+            "fn": "compose2",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 167,
+            "category": "app code",
+            "selfMs": 9.8,
+            "samples": 14
+          },
+          {
+            "fn": "polygonContains",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 350,
+            "category": "app code",
+            "selfMs": 9.5,
+            "samples": 11
+          },
+          {
+            "fn": "(anonymous)",
+            "url": "assets/index.js",
+            "line": 0,
+            "category": "app code",
+            "selfMs": 9.3,
+            "samples": 13
+          },
+          {
+            "fn": "query",
+            "url": "",
+            "line": 5816,
+            "category": "engine",
+            "selfMs": 8.2,
+            "samples": 10
+          },
+          {
+            "fn": "append",
+            "url": "",
+            "line": 0,
+            "category": "DOM calls",
+            "selfMs": 7.7,
+            "samples": 10
+          },
+          {
+            "fn": "irrSolutions",
+            "url": "assets/finance.js",
+            "line": 15,
+            "category": "app code",
+            "selfMs": 7.2,
+            "samples": 12
+          },
+          {
+            "fn": "h",
+            "url": "assets/index.js",
+            "line": 206,
+            "category": "app code",
+            "selfMs": 6.8,
+            "samples": 9
+          },
+          {
+            "fn": "transform",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 1282,
+            "category": "app code",
+            "selfMs": 5.8,
+            "samples": 7
+          },
+          {
+            "fn": "(anonymous)",
+            "url": "assets/index.js",
+            "line": 171,
+            "category": "app code",
+            "selfMs": 5.2,
+            "samples": 7
+          },
+          {
+            "fn": "append2",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 1069,
+            "category": "app code",
+            "selfMs": 5,
+            "samples": 7
+          },
+          {
+            "fn": "streamLine",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 124,
+            "category": "app code",
+            "selfMs": 4.5,
+            "samples": 7
+          },
+          {
+            "fn": "Adder",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 6,
+            "category": "app code",
+            "selfMs": 4.5,
+            "samples": 6
+          },
+          {
+            "fn": "(anonymous)",
+            "url": "assets/buildPathwayPanel.js",
+            "line": 1452,
+            "category": "app code",
+            "selfMs": 4.5,
+            "samples": 1
+          },
+          {
+            "fn": "rotationIdentity",
+            "url": "assets/charts-BFuUiAQ-.js",
+            "line": 175,
+            "category": "app code",
+            "selfMs": 4.2,
+            "samples": 9
+          },
+          {
+            "fn": "runLegacyCase",
+            "url": "assets/engine.js",
+            "line": 304,
+            "category": "app code",
+            "selfMs": 4.2,
+            "samples": 6
+          }
+        ],
+        "categories": [
+          {
+            "category": "engine",
+            "ms": 1679,
+            "share": 79
+          },
+          {
+            "category": "app code",
+            "ms": 362,
+            "share": 17
+          },
+          {
+            "category": "DOM calls",
+            "ms": 40,
+            "share": 2
+          },
+          {
+            "category": "garbage collection",
+            "ms": 37,
+            "share": 2
+          }
+        ],
+        "inclusive": {
+          "renderGeographicGridMap": 113,
+          "fitExtent": 36,
+          "projection2.fitExtent": 36,
+          "path": 34,
+          "path.centroid": 26,
+          "projection2": 25,
+          "render": 17,
+          "renderMarketPage": 16,
+          "update": 11,
+          "renderSelector": 4,
+          "renderPoints": 3,
+          "renderLoading": 2,
+          "renderConstraints": 2,
+          "projection": 1,
+          "projection2.stream": 1,
+          "placeLabels": 1,
+          "renderDetail": 1,
+          "renderCongestionRegister": 1,
+          "renderDetailToggle": 1,
+          "loadPendingBands": 1
+        }
+      },
+      "interactions": [
+        {
+          "run": 0,
+          "zoom": {
+            "wallMs": 1537,
+            "busyMs": 550,
+            "idleMs": 1120,
+            "inclusive": {
+              "setView": 3,
+              "applyView": 2,
+              "loadPendingBands": 1
+            },
+            "zoomAfter": "2.74",
+            "transmissionNodes": 8,
+            "categories": [
+              {
+                "category": "engine",
+                "ms": 425,
+                "share": 77
+              },
+              {
+                "category": "app code",
+                "ms": 74,
+                "share": 13
+              },
+              {
+                "category": "garbage collection",
+                "ms": 36,
+                "share": 7
+              },
+              {
+                "category": "DOM calls",
+                "ms": 15,
+                "share": 3
+              }
+            ]
+          },
+          "pan": {
+            "wallMs": 1187,
+            "busyMs": 558,
+            "idleMs": 686,
+            "inclusive": {},
+            "categories": [
+              {
+                "category": "engine",
+                "ms": 558,
+                "share": 100
+              }
+            ]
+          },
+          "toggle": {
+            "wallMs": 303,
+            "busyMs": 185,
+            "idleMs": 156,
+            "inclusive": {
+              "update": 33,
+              "renderPoints": 24,
+              "placeLabels": 19,
+              "renderSelector": 4,
+              "renderConstraints": 2,
+              "clusterProjects": 1,
+              "renderProjects": 1,
+              "renderDetail": 1,
+              "path": 1
+            },
+            "categories": [
+              {
+                "category": "engine",
+                "ms": 151,
+                "share": 82
+              },
+              {
+                "category": "DOM calls",
+                "ms": 27,
+                "share": 14
+              },
+              {
+                "category": "app code",
+                "ms": 7,
+                "share": 4
+              }
+            ]
+          },
+          "select": {
+            "wallMs": 159,
+            "busyMs": 142,
+            "idleMs": 90,
+            "inclusive": {
+              "renderSelector": 2
+            },
+            "categories": [
+              {
+                "category": "engine",
+                "ms": 139,
+                "share": 98
+              },
+              {
+                "category": "DOM calls",
+                "ms": 2,
+                "share": 1
+              },
+              {
+                "category": "app code",
+                "ms": 1,
+                "share": 1
+              }
+            ]
+          },
+          "rebuilds": {
+            "before": 0,
+            "after": 0
+          }
+        }
+      ],
+      "medianInteractions": {
+        "zoom": {
+          "wallMs": 1537,
+          "busyMs": 550,
+          "idleMs": 1120,
+          "selfMs": [
+            {
+              "fn": "(program)",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 396.4,
+              "samples": 301
+            },
+            {
+              "fn": "drawBand",
+              "url": "assets/buildPathwayPanel.js",
+              "line": 617,
+              "category": "app code",
+              "selfMs": 52.2,
+              "samples": 77
+            },
+            {
+              "fn": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "category": "garbage collection",
+              "selfMs": 36.3,
+              "samples": 45
+            },
+            {
+              "fn": "setAttribute",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 12.3,
+              "samples": 17
+            },
+            {
+              "fn": "mercatorRaw",
+              "url": "assets/buildPathwayPanel.js",
+              "line": 9,
+              "category": "app code",
+              "selfMs": 8.6,
+              "samples": 14
+            },
+            {
+              "fn": "query",
+              "url": "",
+              "line": 5816,
+              "category": "engine",
+              "selfMs": 5.6,
+              "samples": 7
+            },
+            {
+              "fn": "transform",
+              "url": "assets/charts-BFuUiAQ-.js",
+              "line": 1282,
+              "category": "app code",
+              "selfMs": 4.1,
+              "samples": 6
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 3.9,
+              "samples": 6
+            },
+            {
+              "fn": "listener",
+              "url": "",
+              "line": 7874,
+              "category": "engine",
+              "selfMs": 3.4,
+              "samples": 2
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "assets/buildPathwayPanel.js",
+              "line": 215,
+              "category": "app code",
+              "selfMs": 2.9,
+              "samples": 4
+            },
+            {
+              "fn": "elementsFromPoint",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 2.3,
+              "samples": 3
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "",
+              "line": 1,
+              "category": "engine",
+              "selfMs": 2.2,
+              "samples": 3
+            },
+            {
+              "fn": "evaluate",
+              "url": "",
+              "line": 364,
+              "category": "engine",
+              "selfMs": 1.6,
+              "samples": 3
+            },
+            {
+              "fn": "expectHitTarget",
+              "url": "",
+              "line": 7771,
+              "category": "engine",
+              "selfMs": 1.6,
+              "samples": 2
+            },
+            {
+              "fn": "previewNode",
+              "url": "",
+              "line": 7986,
+              "category": "engine",
+              "selfMs": 1.6,
+              "samples": 1
+            },
+            {
+              "fn": "compose2",
+              "url": "assets/charts-BFuUiAQ-.js",
+              "line": 167,
+              "category": "app code",
+              "selfMs": 1.4,
+              "samples": 2
+            },
+            {
+              "fn": "querySelectorAll",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 1.3,
+              "samples": 1
+            },
+            {
+              "fn": "rescaleMarkers",
+              "url": "assets/buildPathwayPanel.js",
+              "line": 982,
+              "category": "app code",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "isError",
+              "url": "",
+              "line": 57,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "parentElementOrShadowHost",
+              "url": "",
+              "line": 3109,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "getBoundingClientRect",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "querySelector",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "computeAriaRole",
+              "url": "",
+              "line": 3551,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "",
+              "line": 5814,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            }
+          ],
+          "categories": [
+            {
+              "category": "engine",
+              "ms": 425,
+              "share": 77
+            },
+            {
+              "category": "app code",
+              "ms": 74,
+              "share": 13
+            },
+            {
+              "category": "garbage collection",
+              "ms": 36,
+              "share": 7
+            },
+            {
+              "category": "DOM calls",
+              "ms": 15,
+              "share": 3
+            }
+          ],
+          "inclusive": {
+            "setView": 3,
+            "applyView": 2,
+            "loadPendingBands": 1
+          },
+          "zoomAfter": "2.74",
+          "transmissionNodes": 8
+        },
+        "pan": {
+          "wallMs": 1187,
+          "busyMs": 558,
+          "idleMs": 686,
+          "selfMs": [
+            {
+              "fn": "(program)",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 541.4,
+              "samples": 661
+            },
+            {
+              "fn": "query",
+              "url": "",
+              "line": 5816,
+              "category": "engine",
+              "selfMs": 4.4,
+              "samples": 3
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 4,
+              "samples": 6
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "",
+              "line": 6,
+              "category": "engine",
+              "selfMs": 2.3,
+              "samples": 3
+            },
+            {
+              "fn": "evaluate",
+              "url": "",
+              "line": 364,
+              "category": "engine",
+              "selfMs": 1.5,
+              "samples": 2
+            },
+            {
+              "fn": "removeEventListener",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "",
+              "line": 1,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "mouseListener",
+              "url": "",
+              "line": 5,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "_promiseAwareJsonValueNoThrow",
+              "url": "",
+              "line": 386,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "window.__cleanupDrag",
+              "url": "",
+              "line": 12,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "setupDragListeners",
+              "url": "",
+              "line": 1,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "queryAll",
+              "url": "",
+              "line": 7261,
+              "category": "engine",
+              "selfMs": 0.6,
+              "samples": 1
+            }
+          ],
+          "categories": [
+            {
+              "category": "engine",
+              "ms": 558,
+              "share": 100
+            }
+          ],
+          "inclusive": {}
+        },
+        "toggle": {
+          "wallMs": 303,
+          "busyMs": 185,
+          "idleMs": 156,
+          "selfMs": [
+            {
+              "fn": "(program)",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 137.8,
+              "samples": 125
+            },
+            {
+              "fn": "getBBox",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 14,
+              "samples": 19
+            },
+            {
+              "fn": "setAttribute",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 3.4,
+              "samples": 5
+            },
+            {
+              "fn": "append",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 3.3,
+              "samples": 5
+            },
+            {
+              "fn": "replaceChildren",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 3.1,
+              "samples": 4
+            },
+            {
+              "fn": "placeLabels",
+              "url": "assets/buildPathwayPanel.js",
+              "line": 550,
+              "category": "app code",
+              "selfMs": 2.6,
+              "samples": 4
+            },
+            {
+              "fn": "elementsFromPoint",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 2.5,
+              "samples": 3
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 2,
+              "samples": 3
+            },
+            {
+              "fn": "query",
+              "url": "",
+              "line": 5816,
+              "category": "engine",
+              "selfMs": 1.9,
+              "samples": 3
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "",
+              "line": 5814,
+              "category": "engine",
+              "selfMs": 1.8,
+              "samples": 2
+            },
+            {
+              "fn": "update",
+              "url": "assets/buildPathwayPanel.js",
+              "line": 962,
+              "category": "app code",
+              "selfMs": 1.3,
+              "samples": 2
+            },
+            {
+              "fn": "markTargetElements",
+              "url": "",
+              "line": 8144,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "h",
+              "url": "assets/index.js",
+              "line": 206,
+              "category": "app code",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "_cached",
+              "url": "",
+              "line": 5597,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "renderPoints",
+              "url": "assets/buildPathwayPanel.js",
+              "line": 738,
+              "category": "app code",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "absorb",
+              "url": "assets/buildPathwayPanel.js",
+              "line": 97,
+              "category": "app code",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "createElement",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "_callQuery",
+              "url": "",
+              "line": 5805,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "createElementNS",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "querySelectorAll",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "elementFromPoint",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "cartesian",
+              "url": "assets/charts-BFuUiAQ-.js",
+              "line": 146,
+              "category": "app code",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "expectHitTarget",
+              "url": "",
+              "line": 7771,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "createTextNode",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 0.7,
+              "samples": 1
+            }
+          ],
+          "categories": [
+            {
+              "category": "engine",
+              "ms": 151,
+              "share": 82
+            },
+            {
+              "category": "DOM calls",
+              "ms": 27,
+              "share": 14
+            },
+            {
+              "category": "app code",
+              "ms": 7,
+              "share": 4
+            }
+          ],
+          "inclusive": {
+            "update": 33,
+            "renderPoints": 24,
+            "placeLabels": 19,
+            "renderSelector": 4,
+            "renderConstraints": 2,
+            "clusterProjects": 1,
+            "renderProjects": 1,
+            "renderDetail": 1,
+            "path": 1
+          }
+        },
+        "select": {
+          "wallMs": 159,
+          "busyMs": 142,
+          "idleMs": 90,
+          "selfMs": [
+            {
+              "fn": "(program)",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 131.2,
+              "samples": 71
+            },
+            {
+              "fn": "query",
+              "url": "",
+              "line": 5816,
+              "category": "engine",
+              "selfMs": 3,
+              "samples": 4
+            },
+            {
+              "fn": "(anonymous)",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 1.5,
+              "samples": 2
+            },
+            {
+              "fn": "setSelected",
+              "url": "assets/buildPathwayPanel.js",
+              "line": 444,
+              "category": "app code",
+              "selfMs": 1.2,
+              "samples": 1
+            },
+            {
+              "fn": "createElement",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 0.9,
+              "samples": 1
+            },
+            {
+              "fn": "query",
+              "url": "",
+              "line": 5631,
+              "category": "engine",
+              "selfMs": 0.8,
+              "samples": 1
+            },
+            {
+              "fn": "sortInDOMOrder",
+              "url": "",
+              "line": 5991,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "append",
+              "url": "",
+              "line": 0,
+              "category": "DOM calls",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "parseEvaluationResultValue",
+              "url": "",
+              "line": 120,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "remove",
+              "url": "",
+              "line": 0,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            },
+            {
+              "fn": "serialize",
+              "url": "",
+              "line": 203,
+              "category": "engine",
+              "selfMs": 0.7,
+              "samples": 1
+            }
+          ],
+          "categories": [
+            {
+              "category": "engine",
+              "ms": 139,
+              "share": 98
+            },
+            {
+              "category": "DOM calls",
+              "ms": 2,
+              "share": 1
+            },
+            {
+              "category": "app code",
+              "ms": 1,
+              "share": 1
+            }
+          ],
+          "inclusive": {
+            "renderSelector": 2
+          }
+        }
+      },
+      "probe": {
+        "run": 0,
+        "before": {
+          "marks": {
+            "transmissionLayer": 3428.0999999940395,
+            "baseMap": 3428.2999999970198,
+            "firstPointLabel": 3428.2999999970198,
+            "firstTransmission": 4007.4000000059605
+          },
+          "rebuilds": 0,
+          "transmissions": [],
+          "longTasks": [
+            {
+              "start": 3248.5999999940395,
+              "duration": 180
+            },
+            {
+              "start": 3429.0999999940395,
+              "duration": 128
+            },
+            {
+              "start": 3643,
+              "duration": 118
+            },
+            {
+              "start": 3844.2000000029802,
+              "duration": 61
+            },
+            {
+              "start": 3907.0999999940395,
+              "duration": 100
+            }
+          ],
+          "nodes": {
+            "svg": 141,
+            "transmission": 5,
+            "points": 96,
+            "projects": 0,
+            "labels": 12
+          },
+          "zoom": "1.00",
+          "gridRequests": [
+            {
+              "file": "gb-transmission.manifest.json",
+              "durationMs": 9,
+              "bytes": 300
+            },
+            {
+              "file": "gb-transmission-275plus.json",
+              "durationMs": 17,
+              "bytes": 300
+            }
+          ]
+        },
+        "after": {
+          "marks": {
+            "transmissionLayer": 3428.0999999940395,
+            "baseMap": 3428.2999999970198,
+            "firstPointLabel": 3428.2999999970198,
+            "firstTransmission": 4007.4000000059605
+          },
+          "rebuilds": 0,
+          "transmissions": [],
+          "longTasks": [
+            {
+              "start": 3248.5999999940395,
+              "duration": 180
+            },
+            {
+              "start": 3429.0999999940395,
+              "duration": 128
+            },
+            {
+              "start": 3643,
+              "duration": 118
+            },
+            {
+              "start": 3844.2000000029802,
+              "duration": 61
+            },
+            {
+              "start": 3907.0999999940395,
+              "duration": 100
+            },
+            {
+              "start": 5729.4000000059605,
+              "duration": 87
+            }
+          ],
+          "nodes": {
+            "svg": 144,
+            "transmission": 8,
+            "points": 96,
+            "projects": 0,
+            "labels": 12
+          },
+          "zoom": "2.74",
+          "gridRequests": [
+            {
+              "file": "gb-transmission.manifest.json",
+              "durationMs": 9,
+              "bytes": 300
+            },
+            {
+              "file": "gb-transmission-275plus.json",
+              "durationMs": 17,
+              "bytes": 300
+            },
+            {
+              "file": "gb-transmission-132-274.json",
+              "durationMs": 190,
+              "bytes": 291409
+            }
+          ]
+        },
+        "errors": []
+      },
+      "errors": [],
+      "selfProfile": [
+        {
+          "fn": "(program)",
+          "url": "",
+          "line": 0,
+          "category": "engine",
+          "selfMs": 868.6,
+          "samples": 968
+        },
+        {
+          "fn": "settle",
+          "url": "assets/index.js",
+          "line": 8506,
+          "category": "app code",
+          "selfMs": 828.3,
+          "samples": 962
+        },
+        {
+          "fn": "(anonymous)",
+          "url": "assets/finance.js",
+          "line": 2,
+          "category": "app code",
+          "selfMs": 97.1,
+          "samples": 117
+        },
+        {
+          "fn": "numberFormats",
+          "url": "assets/formatting.js",
+          "line": 1,
+          "category": "app code",
+          "selfMs": 66.3,
+          "samples": 81
+        },
+        {
+          "fn": "(garbage collector)",
+          "url": "",
+          "line": 0,
+          "category": "garbage collection",
+          "selfMs": 52.5,
+          "samples": 76
+        },
+        {
+          "fn": "linePathData",
+          "url": "assets/buildPathwayPanel.js",
+          "line": 165,
+          "category": "app code",
+          "selfMs": 33.8,
+          "samples": 49
+        },
+        {
+          "fn": "npvOf",
+          "url": "assets/finance.js",
+          "line": 1,
+          "category": "app code",
+          "selfMs": 27.7,
+          "samples": 31
+        },
+        {
+          "fn": "checkVisibility",
+          "url": "",
+          "line": 0,
+          "category": "engine",
+          "selfMs": 26.9,
+          "samples": 39
+        },
+        {
+          "fn": "polygonContains",
+          "url": "assets/charts-BFuUiAQ-.js",
+          "line": 350,
+          "category": "app code",
+          "selfMs": 26.1,
+          "samples": 25
+        },
+        {
+          "fn": "mercatorRaw",
+          "url": "assets/buildPathwayPanel.js",
+          "line": 9,
+          "category": "app code",
+          "selfMs": 21.3,
+          "samples": 30
+        },
+        {
+          "fn": "setAttribute",
+          "url": "",
+          "line": 0,
+          "category": "DOM calls",
+          "selfMs": 20.9,
+          "samples": 29
+        },
+        {
+          "fn": "appendChild",
+          "url": "",
+          "line": 0,
+          "category": "DOM calls",
+          "selfMs": 20.9,
+          "samples": 28
+        },
+        {
+          "fn": "(anonymous)",
+          "url": "assets/index.js",
+          "line": 1,
+          "category": "app code",
+          "selfMs": 17.9,
+          "samples": 21
+        },
+        {
+          "fn": "transmissionSegments",
+          "url": "assets/buildPathwayPanel.js",
+          "line": 186,
+          "category": "app code",
+          "selfMs": 17.8,
+          "samples": 25
+        },
+        {
+          "fn": "addEventListener",
+          "url": "",
+          "line": 0,
+          "category": "engine",
+          "selfMs": 16.1,
+          "samples": 6
+        },
+        {
+          "fn": "add",
+          "url": "assets/charts-BFuUiAQ-.js",
+          "line": 10,
+          "category": "app code",
+          "selfMs": 11.2,
+          "samples": 15
+        },
+        {
+          "fn": "compose2",
+          "url": "assets/charts-BFuUiAQ-.js",
+          "line": 167,
+          "category": "app code",
+          "selfMs": 10.4,
+          "samples": 15
+        },
+        {
+          "fn": "linePoint",
+          "url": "assets/charts-BFuUiAQ-.js",
+          "line": 1242,
+          "category": "app code",
+          "selfMs": 10,
+          "samples": 14
+        },
+        {
+          "fn": "(anonymous)",
+          "url": "",
+          "line": 2,
+          "category": "engine",
+          "selfMs": 9.9,
+          "samples": 11
+        },
+        {
+          "fn": "query",
+          "url": "",
+          "line": 5816,
+          "category": "engine",
+          "selfMs": 9.6,
+          "samples": 11
+        },
+        {
+          "fn": "merge",
+          "url": "assets/charts-BFuUiAQ-.js",
+          "line": 48,
+          "category": "app code",
+          "selfMs": 9.5,
+          "samples": 13
+        },
+        {
+          "fn": "h",
+          "url": "assets/index.js",
+          "line": 206,
+          "category": "app code",
+          "selfMs": 9.4,
+          "samples": 12
+        },
+        {
+          "fn": "createElement",
+          "url": "",
+          "line": 0,
+          "category": "DOM calls",
+          "selfMs": 9.4,
+          "samples": 8
+        },
+        {
+          "fn": "(anonymous)",
+          "url": "",
+          "line": 1,
+          "category": "engine",
+          "selfMs": 9.3,
+          "samples": 11
+        }
+      ],
+      "categories": [
+        {
+          "category": "app code",
+          "ms": 1497,
+          "share": 58
+        },
+        {
+          "category": "engine",
+          "ms": 971,
+          "share": 38
+        },
+        {
+          "category": "DOM calls",
+          "ms": 64,
+          "share": 2
+        },
+        {
+          "category": "garbage collection",
+          "ms": 53,
+          "share": 2
+        }
+      ]
+    }
+  ]
+}

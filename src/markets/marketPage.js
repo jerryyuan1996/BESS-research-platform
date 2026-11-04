@@ -166,6 +166,14 @@ export function renderMarketPage(container, market, tabId, regionOverride, subId
     if (typeof dashboard !== 'function') return renderPending(container, market);
 
     container.innerHTML = '';
+    /* BEFORE the dashboard draws, not after it is wrapped in the research
+       shell. `.ix-app` takes the padding and the max-width off #app
+       (styles/experience.css), so adding it to a container that already held
+       the finished dashboard resized a box with 800 px of content in it — the
+       largest single layout shift on the GB grid page (0.042 of its 0.17, before
+       Phase A3). At this point the container is empty and the change is
+       invisible. */
+    if (tabId) container.classList.add('ix-app');
     dashboard(container, {
       tabId,
       subId,
@@ -182,7 +190,6 @@ export function renderMarketPage(container, market, tabId, regionOverride, subId
         h('p',{class:'ix-basis-note'},L(['Research sections retain their stated historical and operating-model conventions. Use the market investment case for the current 20-year nominal after-tax RTB return.',
           '研究章节保留其注明的历史与运营模型口径；当前20年、税后名义RTB回报请以市场投资方案页为准。'])),
         ...Array.from(container.childNodes));
-      container.classList.add('ix-app');
       container.replaceChildren(siteHeader('market'), research, siteFooter());
     }
   }).catch(err => {
