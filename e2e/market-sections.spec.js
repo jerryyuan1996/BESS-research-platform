@@ -21,10 +21,10 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const MARKETS = [
-  { id:'gb', slug:'great-britain', drawers:false },
-  { id:'ie', slug:'ireland',       drawers:true  },
-  { id:'pl', slug:'poland',        drawers:true  },
-  { id:'ro', slug:'romania',       drawers:true  },
+  { id:'gb', slug:'great-britain' },
+  { id:'ie', slug:'ireland'       },
+  { id:'pl', slug:'poland'        },
+  { id:'ro', slug:'romania'       },
 ];
 
 /** The tab links, by their label. */
@@ -45,7 +45,7 @@ function sectionRequests(page, marketId){
    sections/registry.js; the rest are skipped until their commit lands. */
 const isSplit = (id) => existsSync(path.join(process.cwd(), 'src/markets', id, 'sections/registry.js'));
 
-for (const { id, slug, drawers } of MARKETS){
+for (const { id, slug } of MARKETS){
   const MARKET = `/markets/${slug}`;
 
   test.describe(`${id} sections`, () => {
@@ -145,20 +145,24 @@ for (const { id, slug, drawers } of MARKETS){
       await page.goto(MARKET + '/entry/grid');
       await expect(page.locator('[data-section="grid"] .geo-grid-map svg')).toBeVisible({ timeout: 30_000 });
 
-      if (drawers){
-        await page.goto(MARKET + '/data');
-        const drawer = page.locator('[data-section="data"] .source-drawer').first();
-        await expect(drawer).toBeVisible();
-        await expect(drawer).toHaveJSProperty('open', false);
-        await drawer.locator('summary').click();
-        await expect(drawer).toHaveJSProperty('open', true);
-      } else {
-        /* Great Britain's evidence section states its sources in a registry
-           table rather than in drawers. The binding is the assertion here. */
-        await page.goto(MARKET + '/data');
-        await expect(page.locator('[data-section="data"] table')).toBeVisible();
-        await expect(page.locator('[data-section="data"]')).toContainText('Source registry');
-      }
+      /* A source drawer is attached to a CARD that carries a `src` binding, so
+         it lives on the grid and story tabs — not on the evidence tab, whose
+         sources are a registry TABLE. All four markets have them here; looking
+         for them under [data-section="data"] would assert against an empty
+         set and prove nothing. */
+      const drawer = page.locator('.source-drawer').first();
+      await expect(drawer).toBeVisible();
+      await expect(drawer).toHaveJSProperty('open', false);
+      await drawer.locator('summary').click();
+      await expect(drawer).toHaveJSProperty('open', true);
+
+      /* The evidence section's own source binding: a registry table, in both
+         languages. `.first()` because the section holds several tables and a
+         locator matching five of them is a strict-mode violation, not a pass. */
+      await page.goto(MARKET + '/data');
+      await expect(page.locator('[data-section="data"] .sect')).toBeVisible();
+      await expect(page.locator('[data-section="data"] table').first()).toBeVisible();
+      await expect(page.locator('[data-section="data"]')).toContainText('Source registry');
     });
   });
 }

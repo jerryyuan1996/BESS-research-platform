@@ -20,8 +20,10 @@ markets/gb/
 ├── tabs.js        [[id, [en, zh]], …]
 ├── sources.js     source register
 ├── data.js        M — the entire market dataset
-├── sections.js    buildSections(api) — one declarative block spec per tab
-├── sections/      optional: one module per domain, when the market splits (see below)
+├── sections.js    buildSections(api) — a declarative block spec per tab, or a
+│                  synchronous facade when the market loads sections on demand
+├── sections/      optional: one module per domain, plus shared.js and registry.js
+│                  (see below). Present for nem, gb, ie, pl and ro since P1-C.
 ├── text.js        optional overrides to the shared strings (GB only)
 └── dashboard.js   ~20 lines of wiring
 ```
@@ -95,13 +97,22 @@ exactly as before; that is the whole compatibility story.
 
 Three rules make it a split rather than a story: every loader entry is a thunk
 around a literal specifier (`() => import('./grid.js')`), nothing in the market
-imports a section statically, and a section module imports nothing but
-`sections/shared.js` and the registries it is joined through. All three are
-asserted in `tests/nem-sections-lazy.test.js`.
+imports a section statically, and a section module imports neither another
+section, the market dataset nor the independently lazy-loaded story pack.
+`tests/market-sections-lazy.test.js` asserts all three for every market that
+uses the contract, and `tests/bundle-budget.test.js` holds the bytes.
 
-The National Electricity Market is the pilot. `docs/p1-sections-pilot.md` has
-the measurements and the recommendation for the other large markets;
-`src/markets/nem/sections/registry.js` is the shape.
+**The final contract (P1-C).** Five markets use it now: the NEM pilot plus
+Great Britain, Ireland, Poland and Romania. The shape is generated once by
+`scripts/split-market-sections.mjs`; only the `LOADERS` map in each
+`sections/registry.js` and the prelude helpers in `sections/shared.js` are
+market-specific. A market's research and economic logic stays in its own
+modules — nothing was normalised into a shared schema to make the loader fit.
+
+`docs/p1-sections-pilot.md` is the pilot's measurement and recommendation;
+`docs/p1-sections-rollout.md` is the final contract, the per-market results
+and the chunk-composition decisions. The engine gained exactly one optional
+cfg key and no change to any market that omits it.
 
 ## What does NOT live here
 
