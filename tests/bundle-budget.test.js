@@ -179,8 +179,14 @@ const BUDGET = {
        before the pilot and 23.93 after, with the sections in chunks of their
        own under `sections` below. Ratcheted from 132 to 30 in the same change —
        the room is for the dataset, not for analysis that has drifted back in. */
-    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
-    pl: 101, jp: 127, nem: 30, gb: 144, ie: 149, wa: 207,
+    /* RATCHETED DOWN BY THE P1-C ROLLOUT (2026-11-04): four more markets now
+       fetch their sections per tab, so their dashboard chunks hold only data,
+       sources, the view and the ledger. Measured after the split: gb 53.21,
+       ie 64.88, pl 33.93, ro 28.40 KiB gzipped — from 129.17, 132.13, 91.34
+       and 84.12. The room left is for the dataset, not for analysis that has
+       drifted back in. The caps are lowered, never raised. */
+    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 34,
+    pl: 40, jp: 127, nem: 30, gb: 62, ie: 75, wa: 207,
   },
 
   /* A market's sections, when it fetches them one at a time.
@@ -201,6 +207,15 @@ const BUDGET = {
      investment-case component and are not held to the floor. */
   sections: {
     nem: { total: 100, largest: 15, count: 13 },
+    /* P1-C, measured 2026-11-04 from the build output. Each cap sits a little
+       above measured: GB 94.96 / 22.37, IE 82.41 / 20.17, PL 76.24 / 17.42,
+       RO 74.26 / 16.51 (total / largest, KiB gzip). The four story sections
+       are the largest single domain in each market and are not split further:
+       a section is the unit a tab draws and a claim attaches to. */
+    gb:  { total: 100, largest: 24, count: 13 },
+    ie:  { total: 90,  largest: 22, count: 13 },
+    pl:  { total: 84,  largest: 19, count: 13 },
+    ro:  { total: 82,  largest: 18, count: 13 },
   },
 
   /* Chunks Rollup factors out because several MARKET chunks share them. Not
@@ -798,11 +813,14 @@ test('market payloads are absent from the entry chunk, not merely duplicated', a
 });
 
 /* ---------------------------------------------------------------------------
-   A MARKET THAT FETCHES ITS SECTIONS PER TAB.
+   MARKETS THAT FETCH THEIR SECTIONS PER TAB.
 
    The NEM pilot (docs/p1-sections-pilot.md) cut one 199 kB sections.js into
-   thirteen modules behind a loader. The three assertions below are what stop
-   that from being a story rather than a property:
+   thirteen modules behind a loader. P1-C applied the same contract to Great
+   Britain, Ireland, Poland and Romania (docs/p1-sections-rollout.md). The
+   assertions below are GENERALISED BY MARKET ID — the pilot asked for that
+   rather than a second copy — and are what stop the split being a story rather
+   than a property:
 
      the split is real      no section is in the landing tab's static graph, and
                             the loader is genuinely wired to the brief
@@ -812,81 +830,98 @@ test('market payloads are absent from the entry chunk, not merely duplicated', a
      nothing is duplicated  a section lives in exactly one chunk; a module
                             reachable from two places is emitted twice, which
                             costs more than not splitting it at all
+     story stays lazy       the independently loaded market story pack did not
+                            drift into the first load when sections were split
    --------------------------------------------------------------------------- */
-test('the NEM\'s sections are fetched per tab and absent from its first load', async (t) => {
-  if (skipWithoutDist(t)) return;
-  const { markets, byName } = await chunks();
-  const nem = markets.get('nem');
-  assert.ok(nem, 'no market-nem chunk');
+/* A phrase that belongs to ONE section of ONE market and to no other. The
+   lineage shares headings such as "Revenue Driver Bridge" across five
+   dashboards, so a generic heading would report six carriers and mean nothing.
+   Two carriers of one of these would mean Rollup emitted that section both
+   statically and dynamically, which costs more than not splitting it at all. */
+const SECTION_PROBE = {
+  nem: { text: 'Project EnergyConnect Stage 1', chunk: /^section-nem-grid-/ },
+  gb:  { text: 'GB Market Evolution — from energy-only trading market to a duration-and-connection-constrained storage market', chunk: /^section-gb-story-/ },
+  ie:  { text: 'Ireland Market Evolution — from a wind-integration problem to a capacity-priced storage market', chunk: /^section-ie-story-/ },
+  pl:  { text: 'Poland Market Evolution — from a coal capacity market to a storage capacity market', chunk: /^section-pl-story-/ },
+  ro:  { text: 'Romania Market Evolution — from a coal-and-hydro system to a solar-driven arbitrage market', chunk: /^section-ro-story-/ },
+};
 
-  const first = closure(nem, byName);
-  const sections = [...byName.values()].filter(c => /^section-nem-/.test(c.name));
+for (const [id, budget] of Object.entries(BUDGET.sections)){
+  test(`${id}: sections are fetched per tab and absent from its first load`, async (t) => {
+    if (skipWithoutDist(t)) return;
+    const { markets, byName } = await chunks();
+    const market = markets.get(id);
+    assert.ok(market, `no market-${id} chunk`);
 
-  const { count } = BUDGET.sections.nem;
-  assert.equal(sections.length, count,
-    `expected ${count} section-nem-*.js chunks, found ${sections.length}. ` +
-    'One missing means a section went back into the dashboard chunk; one extra ' +
-    'means a section file was added without registering it in sections/registry.js.');
+    const first = closure(market, byName);
+    const prefix = `section-${id}-`;
+    const sections = [...byName.values()].filter(c => c.name.startsWith(prefix));
 
-  for (const section of sections){
-    assert.ok(!first.has(section),
-      `${section.name} is in the NEM's static graph, so the landing tab downloads it. ` +
-      'Check sections/registry.js: every entry must be `() => import(...)`, and ' +
-      'nothing else in the market may import a section module.');
-  }
+    assert.equal(sections.length, budget.count,
+      `expected ${budget.count} ${prefix}*.js chunks, found ${sections.length}. ` +
+      'One missing means a section went back into the dashboard chunk; one extra ' +
+      'means a section file was added without registering it in sections/registry.js.');
 
-  /* The other half: a split that sent nothing would also pass the loop above.
-     The brief is what a reader lands on, and its chunk has to be reachable
-     from the dashboard. */
-  const onDemand = new Set([...nem.dynamics].map(name => byName.get(name)).filter(Boolean));
-  assert.ok([...onDemand].some(c => /^section-nem-case-/.test(c.name)),
-    'the dashboard does not load the brief: /markets/<slug>/case would render an empty tab');
+    for (const section of sections){
+      assert.ok(!first.has(section),
+        `${section.name} is in ${id}'s static graph, so the landing tab downloads it. ` +
+        'Check sections/registry.js: every entry must be `() => import(...)`, and ' +
+        'nothing else in the market may import a section module.');
+    }
 
-  /* The grid map moved out of the dashboard chunk in the same change. It must
-     not have moved into the first load by another route.
-     BY CHUNK NAME, not by text: the dashboard chunk legitimately carries the
-     map chunk's FILENAME in Vite's preload manifest (`__vite__mapDeps`), so a
-     string probe would report a payload that is not there. */
-  assert.ok(![...first].some(c => /^nem-grid-map-data-/.test(c.name)),
-    'the NEM grid map is in the first load again: it is imported by overview.js ' +
-    'and grid.js, and by nothing the dashboard imports at load time');
-});
+    /* The other half: a split that sent nothing would also pass the loop above.
+       The brief is what a reader lands on, and its chunk has to be reachable
+       from the dashboard. */
+    const onDemand = new Set([...market.dynamics].map(name => byName.get(name)).filter(Boolean));
+    assert.ok([...onDemand].some(c => c.name.startsWith(`${prefix}case-`)),
+      `${id}: the dashboard does not load the brief — /markets/<slug>/case would render an empty tab`);
 
-test('the NEM\'s whole analysis stays within its section budget', async (t) => {
-  if (skipWithoutDist(t)) return;
-  const { byName } = await chunks();
-  const { total, largest } = BUDGET.sections.nem;
-  const sections = [...byName.values()].filter(c => /^section-nem-/.test(c.name));
-  assert.ok(sections.length, 'no section chunks to measure');
+    /* A market story is independently lazy-loaded (WP-03). Splitting sections
+       must not drag its pack into the first load by another route. BY CHUNK
+       NAME, not by text: a chunk legitimately carries a lazy chunk's FILENAME
+       in Vite's preload manifest, so a string probe would report a payload
+       that is not there. */
+    assert.ok(![...first].some(c => c.name.startsWith(`story-${id}-`)),
+      `${id}: the market story pack is in the first load again`);
 
-  const sum = sections.reduce((n, c) => n + c.gzip, 0);
-  assert.ok(kB(sum) <= total,
-    `the NEM's ${sections.length} section chunks total ${kB(sum)} kB gzipped, over ` +
-    `the ${total} kB budget. Opening every tab costs about 12.6 kB more than the ` +
-    'single chunk did, and that is expected; growth beyond it is content.');
+    if (id === 'nem')
+      assert.ok(![...first].some(c => /^nem-grid-map-data-/.test(c.name)),
+        'the NEM grid map is in the first load again: it is imported by overview.js ' +
+        'and grid.js, and by nothing the dashboard imports at load time');
+  });
 
-  const biggest = sections.slice().sort((a, b) => b.gzip - a.gzip)[0];
-  assert.ok(kB(biggest.gzip) <= largest,
-    `${biggest.name} is ${kB(biggest.gzip)} kB gzipped, over the ${largest} kB per-section ` +
-    'budget. A section that grows past it should be split by domain, not re-budgeted.');
-});
+  test(`${id}: the whole analysis stays within its section budget`, async (t) => {
+    if (skipWithoutDist(t)) return;
+    const { byName } = await chunks();
+    const prefix = `section-${id}-`;
+    const sections = [...byName.values()].filter(c => c.name.startsWith(prefix));
+    assert.ok(sections.length, `${id}: no section chunks to measure`);
 
-test('no NEM section is shipped twice', async (t) => {
-  if (skipWithoutDist(t)) return;
-  const { byName } = await chunks();
-  /* A phrase that belongs to one NEM section and to no other market — the
-     lineage shares headings like "Revenue Driver Bridge" across five
-     dashboards, so a heading would report six carriers and mean nothing. Two
-     carriers of a NEM-only phrase would mean Rollup emitted the module both
-     statically and dynamically, which costs more than not splitting it. */
-  const PROBE = 'Project EnergyConnect Stage 1';
-  const holders = [...byName.values()].filter(c => c.text.includes(PROBE)).map(c => c.name);
-  assert.equal(holders.length, 1,
-    `"${PROBE}" is in ${holders.length} chunks: ${holders.join(', ') || 'none'}. ` +
-    'A section reachable from two places is shipped twice; the fix is to remove ' +
-    'the static path, not to raise a budget.');
-  assert.match(holders[0] || '', /^section-nem-grid-/, 'the grid section carries its own evidence');
-});
+    const { total, largest } = budget;
+    const sum = sections.reduce((n, c) => n + c.gzip, 0);
+    assert.ok(kB(sum) <= total,
+      `${id}'s ${sections.length} section chunks total ${kB(sum)} kB gzipped, over ` +
+      `the ${total} kB budget. Thirteen files compress worse than one; growth ` +
+      'beyond that expected overhead is content, not the loader.');
+
+    const biggest = sections.slice().sort((a, b) => b.gzip - a.gzip)[0];
+    assert.ok(kB(biggest.gzip) <= largest,
+      `${biggest.name} is ${kB(biggest.gzip)} kB gzipped, over the ${largest} kB per-section ` +
+      'budget. A section that grows past it should be split by domain, not re-budgeted.');
+  });
+
+  test(`no ${id} section is shipped twice`, async (t) => {
+    if (skipWithoutDist(t)) return;
+    const { byName } = await chunks();
+    const { text, chunk } = SECTION_PROBE[id];
+    const holders = [...byName.values()].filter(c => c.text.includes(text)).map(c => c.name);
+    assert.equal(holders.length, 1,
+      `"${text}" is in ${holders.length} chunks: ${holders.join(', ') || 'none'}. ` +
+      'A section reachable from two places is shipped twice; the fix is to remove ' +
+      'the static path, not to raise a budget.');
+    assert.match(holders[0] || '', chunk, `${id}: the probe section carries its own evidence`);
+  });
+}
 
 /* ---------------------------------------------------------------------------
    CSS CROSSES THE LAZY BOUNDARY TOO, AND IT IS EASIER TO MISS.

@@ -46,14 +46,22 @@ const RUNS = Math.max(1, Number(option('--runs', 7)));
 const PORT_A = Number(option('--port-a', 4191));
 const PORT_B = Number(option('--port-b', 4192));
 const ONLY = option('--routes', null)?.split(',').map(s => s.trim()).filter(Boolean) ?? null;
+/* The controlled rollout (P1-C) measures four more markets with the same
+   paired rig. `--markets gb,ie,pl,ro` generates the same four routes per market
+   the NEM pilot used, so a per-market comparison is made in one process rather
+   than against a number recorded an hour earlier on a warmer laptop. */
+const MARKETS = option('--markets', null)?.split(',').map(s => s.trim()).filter(Boolean) ?? null;
 
 if (!A_DIR){
-  console.error('usage: node scripts/perf/ab-compare.mjs --a <baseline-dist> [--b dist] [--runs 15]');
+  console.error('usage: node scripts/perf/ab-compare.mjs --a <baseline-dist> [--b dist] [--runs 15] [--markets gb,ie,pl,ro]');
   process.exit(1);
 }
 
-/** Every route a market dashboard can be entered by, and what "ready" means. */
-const ALL_ROUTES = [
+const SLUGS = { nem:'nem', gb:'great-britain', ie:'ireland', pl:'poland', ro:'romania' };
+
+/** The pilot's four routes, unchanged, so its recorded A/B numbers stay
+ *  comparable if this script is rerun without `--markets`. */
+const NEM_ROUTES = [
   { id:'nem-brief', path:'/markets/nem/case', ready:'.tab-section[data-section="case"] .sect',
     note:'the NEM landing tab — one small section' },
   { id:'nem-story', path:'/markets/nem/story', ready:'.tab-section[data-section="home"] .card',
@@ -63,6 +71,25 @@ const ALL_ROUTES = [
   { id:'nem-data', path:'/markets/nem/data', ready:'.tab-section[data-section="data"] .sect',
     note:'an old address, resolved to the evidence tab' },
 ];
+
+/** Every route a market dashboard can be entered by, and what "ready" means. */
+function routesFor(id){
+  if (id === 'nem') return NEM_ROUTES;
+  const slug = SLUGS[id];
+  if (!slug) throw new Error(`no slug for market ${id}`);
+  return [
+    { id:`${id}-brief`, path:`/markets/${slug}/case`, ready:'.tab-section[data-section="case"] .sect',
+      note:'the landing tab — one small section' },
+    { id:`${id}-story`, path:`/markets/${slug}/story`, ready:'.tab-section[data-section="home"] .card',
+      note:'overview and market story — the largest sections' },
+    { id:`${id}-entry`, path:`/markets/${slug}/entry`, ready:'.tab-section[data-section="grid"] .sect',
+      note:'the entry ledger, then the grid section' },
+    { id:`${id}-data`, path:`/markets/${slug}/data`, ready:'.tab-section[data-section="data"] .sect',
+      note:'an old address, resolved to the evidence tab' },
+  ];
+}
+
+const ALL_ROUTES = MARKETS ? MARKETS.flatMap(routesFor) : NEM_ROUTES;
 const ROUTES = ALL_ROUTES.filter(r => !ONLY || ONLY.includes(r.id));
 
 const MIME = {
@@ -112,6 +139,11 @@ const COLLECT = () => {
     lcpMs: window.__perf.lcp == null ? null : Math.round(window.__perf.lcp),
     longTaskMs: Math.round(window.__perf.longTasks.reduce((total, ms) => total + ms, 0)),
     requests: resources.length,
+    /* The rollout's "number of dynamic requests": section chunks fetched for
+       the route being measured. Before a split there are none; after it, the
+       brief asks for one and a stacked tab for two. */
+    sectionRequests: resources.filter(r => /\/assets\/section-[^/]+\.js$/.test(r.name)).length,
+    scriptRequests: script.length,
     transferBytes: resources.reduce((total, r) => total + (r.transferSize || 0), 0),
     scriptBytes: script.reduce((total, r) => total + (r.decodedBodySize || 0), 0),
   };
@@ -164,7 +196,7 @@ async function main(){
   }
 
   console.log(`\nA: ${A_DIR}\nB: ${B_DIR}\n${RUNS} cold repetitions each, alternating, identity encoding\n`);
-  console.log('route        build   ready med (p25–p75)   LCP   FCP   long tasks   req   JS decoded');
+  console.log('route        build   ready med (p25–p75)   LCP   FCP   long tasks   req   sect   JS decoded');
   for (const [id, { a, b }] of Object.entries(results)){
     for (const [label, samples] of [['A', a], ['B', b]]){
       const take = (key) => samples.map(s => s[key]);
@@ -175,11 +207,13 @@ async function main(){
         String(ms(median(take('fcpMs')))).padStart(5),
         String(ms(median(take('longTaskMs')))).padStart(11),
         String(median(take('requests'))).padStart(5),
+        String(median(take('sectionRequests'))).padStart(6),
         String(kilobyte(median(take('scriptBytes')))).padStart(11) + ' kB');
     }
     const delta = ms(median(b.map(s => s.readyMs))) - ms(median(a.map(s => s.readyMs)));
     console.log(`             Δ ready ${delta > 0 ? '+' : ''}${delta} ms, ` +
-      `Δ JS ${kilobyte(median(b.map(s => s.scriptBytes)) - median(a.map(s => s.scriptBytes)))} kB\n`);
+      `Δ JS ${kilobyte(median(b.map(s => s.scriptBytes)) - median(a.map(s => s.scriptBytes)))} kB, ` +
+      `section requests ${median(a.map(s => s.sectionRequests))} → ${median(b.map(s => s.sectionRequests))}\n`);
   }
   console.log('Transfer sizes are uncompressed: compare them between builds, not with the network tab.');
 }

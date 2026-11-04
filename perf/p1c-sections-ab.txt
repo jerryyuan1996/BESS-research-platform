@@ -1,0 +1,87 @@
+  gb-brief … done
+  gb-story … done
+  gb-entry … done
+  gb-data … done
+  ie-brief … done
+  ie-story … done
+  ie-entry … done
+  ie-data … done
+  pl-brief … done
+  pl-story … done
+  pl-entry … done
+  pl-data … done
+  ro-brief … done
+  ro-story … done
+  ro-entry … done
+  ro-data … done
+
+A: tmp/p1c-before-dist
+B: dist
+8 cold repetitions each, alternating, identity encoding
+
+route        build   ready med (p25–p75)   LCP   FCP   long tasks   req   sect   JS decoded
+gb-brief     A       1365 (1350–1615)   1048   824         734    44      0        1662 kB
+gb-brief     B       1432 (1356–1452)    872   864         654    43      1        1448 kB
+             Δ ready +67 ms, Δ JS -213 kB, section requests 0 → 1
+
+gb-story     A       1344 (1282–1440)   1216  1192         910    26      0        1192 kB
+gb-story     B       1437 (1335–1596)   1356   768         620    28      2        1058 kB
+             Δ ready +93 ms, Δ JS -134 kB, section requests 0 → 2
+
+gb-entry     A       1293 (1239–1437)    996   944         854    45      0        1662 kB
+gb-entry     B       1279 (1242–1677)   1040   628         654    46      2        1493 kB
+             Δ ready -14 ms, Δ JS -169 kB, section requests 0 → 2
+
+gb-data      A        869 (858–969)       0     0         162    25      0        1192 kB
+gb-data      B        946 (924–1015)    880   644         384    28      1         994 kB
+             Δ ready +77 ms, Δ JS -198 kB, section requests 0 → 1
+
+ie-brief     A        886 (860–996)     692   692         212    39      0        1634 kB
+ie-brief     B        908 (871–938)     592   592         405    42      1        1458 kB
+             Δ ready +22 ms, Δ JS -175 kB, section requests 0 → 1
+
+ie-story     A       1201 (1114–1273)   1088  1088         794    23      0        1164 kB
+ie-story     B       1212 (976–1461)   1112   640         548    27      2        1070 kB
+             Δ ready +11 ms, Δ JS -94 kB, section requests 0 → 2
+
+ie-entry     A       1170 (1113–1637)   1104  1020         823    42      0        1634 kB
+ie-entry     B       1306 (1124–1420)   1232   664         741    45      2        1475 kB
+             Δ ready +136 ms, Δ JS -158 kB, section requests 0 → 2
+
+ie-data      A        821 (787–839)       0     0         135    22      0        1164 kB
+ie-data      B        831 (810–914)     596   596         336    26      1         997 kB
+             Δ ready +10 ms, Δ JS -167 kB, section requests 0 → 1
+
+pl-brief     A       1002 (954–1180)    756   756         238    39      0        1510 kB
+pl-brief     B       1042 (990–1133)    656   640         477    42      1        1357 kB
+             Δ ready +40 ms, Δ JS -153 kB, section requests 0 → 1
+
+pl-story     A        926 (878–1191)    840   840         614    23      0        1040 kB
+pl-story     B       1104 (898–1136)    636   636         453    26      2         950 kB
+             Δ ready +178 ms, Δ JS -90 kB, section requests 0 → 2
+
+pl-entry     A        982 (937–988)     728   728         603    42      0        1510 kB
+pl-entry     B        990 (958–996)     548   548         460    45      2        1380 kB
+             Δ ready +8 ms, Δ JS -130 kB, section requests 0 → 2
+
+pl-data      A        839 (763–848)       0     0         132    22      0        1040 kB
+pl-data      B        865 (847–882)     600   600         359    26      1         896 kB
+             Δ ready +26 ms, Δ JS -144 kB, section requests 0 → 1
+
+ro-brief     A        821 (794–828)     648   648         197    41      0        1509 kB
+ro-brief     B        810 (796–855)     576   576         345    43      1        1347 kB
+             Δ ready -11 ms, Δ JS -162 kB, section requests 0 → 1
+
+ro-story     A        897 (847–915)     788   788         581    25      0        1039 kB
+ro-story     B        882 (870–893)     836   572         321    27      2         935 kB
+             Δ ready -15 ms, Δ JS -104 kB, section requests 0 → 2
+
+ro-entry     A       1031 (998–1071)    788   788         662    45      0        1515 kB
+ro-entry     B        995 (980–1110)    820   548         477    48      2        1391 kB
+             Δ ready -36 ms, Δ JS -124 kB, section requests 0 → 2
+
+ro-data      A        747 (744–790)       0     0         126    24      0        1039 kB
+ro-data      B        802 (771–851)     744   564         301    27      1         885 kB
+             Δ ready +55 ms, Δ JS -154 kB, section requests 0 → 1
+
+Transfer sizes are uncompressed: compare them between builds, not with the network tab.

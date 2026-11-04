@@ -1,0 +1,121 @@
+{
+  "dist": "tmp/p1c-before-dist",
+  "markets": {
+    "gb": {
+      "id": "gb",
+      "marketChunk": {
+        "name": "market-gb-B4pH2yzt.js",
+        "kB": 129.17,
+        "rawKB": 336.71
+      },
+      "marketStaticClosureKB": 428.98,
+      "entryChunkKB": 168.05,
+      "firstVisitJSKB": 428.98,
+      "staticChunkCount": 21,
+      "sectionChunks": {
+        "count": 0,
+        "totalKB": 0,
+        "largestKB": 0,
+        "largestName": null,
+        "dynamicFromMarketChunk": 0,
+        "inFirstLoad": []
+      },
+      "storyChunksInFirstLoad": [],
+      "eagerGridMapChunks": []
+    },
+    "ie": {
+      "id": "ie",
+      "marketChunk": {
+        "name": "market-ie-OcCk-y5L.js",
+        "kB": 132.13,
+        "rawKB": 364.75
+      },
+      "marketStaticClosureKB": 413.59,
+      "entryChunkKB": 168.05,
+      "firstVisitJSKB": 413.59,
+      "staticChunkCount": 18,
+      "sectionChunks": {
+        "count": 0,
+        "totalKB": 0,
+        "largestKB": 0,
+        "largestName": null,
+        "dynamicFromMarketChunk": 0,
+        "inFirstLoad": []
+      },
+      "storyChunksInFirstLoad": [],
+      "eagerGridMapChunks": []
+    },
+    "pl": {
+      "id": "pl",
+      "marketChunk": {
+        "name": "market-pl-DqB55EX1.js",
+        "kB": 91.34,
+        "rawKB": 240.72
+      },
+      "marketStaticClosureKB": 372.8,
+      "entryChunkKB": 168.05,
+      "firstVisitJSKB": 372.8,
+      "staticChunkCount": 18,
+      "sectionChunks": {
+        "count": 0,
+        "totalKB": 0,
+        "largestKB": 0,
+        "largestName": null,
+        "dynamicFromMarketChunk": 0,
+        "inFirstLoad": []
+      },
+      "storyChunksInFirstLoad": [],
+      "eagerGridMapChunks": []
+    },
+    "ro": {
+      "id": "ro",
+      "marketChunk": {
+        "name": "market-ro-Biz_2wSV.js",
+        "kB": 84.12,
+        "rawKB": 217.31
+      },
+      "marketStaticClosureKB": 375.65,
+      "entryChunkKB": 168.05,
+      "firstVisitJSKB": 375.65,
+      "staticChunkCount": 20,
+      "sectionChunks": {
+        "count": 0,
+        "totalKB": 0,
+        "largestKB": 0,
+        "largestName": null,
+        "dynamicFromMarketChunk": 0,
+        "inFirstLoad": []
+      },
+      "storyChunksInFirstLoad": [],
+      "eagerGridMapChunks": []
+    },
+    "nem": {
+      "id": "nem",
+      "marketChunk": {
+        "name": "market-nem-DZCtaIUM.js",
+        "kB": 23.93,
+        "rawKB": 58.45
+      },
+      "marketStaticClosureKB": 305.39,
+      "entryChunkKB": 168.05,
+      "firstVisitJSKB": 305.39,
+      "staticChunkCount": 18,
+      "sectionChunks": {
+        "count": 13,
+        "totalKB": 85.73,
+        "largestKB": 12.35,
+        "largestName": "section-nem-story-BE6DZuuU.js",
+        "dynamicFromMarketChunk": 13,
+        "inFirstLoad": []
+      },
+      "storyChunksInFirstLoad": [],
+      "eagerGridMapChunks": []
+    }
+  },
+  "globals": {
+    "entryChunkKB": 168.05,
+    "entryStaticClosureKB": 168.05,
+    "allMarketChunksKB": 1137.18,
+    "chunkCount": 154
+  }
+}

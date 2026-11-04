@@ -1,0 +1,60 @@
+{
+  "market": "gb",
+  "takenFrom": "src/markets/gb/sections.js (single-file implementation, before the split)",
+  "note": "Digests of every section specification: bilingual strings, numbers, block order, source references and function source. See tests/market-sections-parity.test.js.",
+  "totalBytes": 298444,
+  "sections": {
+    "benchmark": {
+      "bytes": 16023,
+      "sha": "828a4747532c2060"
+    },
+    "capacity": {
+      "bytes": 10417,
+      "sha": "be4f39dea1cb2445"
+    },
+    "case": {
+      "bytes": 362,
+      "sha": "d50517b42dc94171"
+    },
+    "data": {
+      "bytes": 15094,
+      "sha": "d2073093e643afc5"
+    },
+    "duration": {
+      "bytes": 11314,
+      "sha": "7c783546f13e26ab"
+    },
+    "energy": {
+      "bytes": 7832,
+      "sha": "0f514207b52f2548"
+    },
+    "entry": {
+      "bytes": 11793,
+      "sha": "6ed8bd80cc95eb77"
+    },
+    "grid": {
+      "bytes": 146008,
+      "sha": "c457bbf1dd24d544"
+    },
+    "home": {
+      "bytes": 16099,
+      "sha": "e26bfa6c3b936745"
+    },
+    "pipeline": {
+      "bytes": 9580,
+      "sha": "415bf0d7aa135133"
+    },
+    "portfolio": {
+      "bytes": 6155,
+      "sha": "f5682b2a793fb317"
+    },
+    "services": {
+      "bytes": 5972,
+      "sha": "bd309720e6a53495"
+    },
+    "story": {
+      "bytes": 41795,
+      "sha": "8afe688c350148e0"
+    }
+  }
+}

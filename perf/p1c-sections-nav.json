@@ -1,0 +1,91 @@
+{
+  "a": "tmp/p1c-before-dist",
+  "b": "dist",
+  "runs": 6,
+  "markets": {
+    "gb": {
+      "before": {
+        "briefReadyMs": 795,
+        "deepSectionMs": 484,
+        "briefRequests": 0,
+        "deepRequests": 0,
+        "totalRequests": 0,
+        "deepIds": []
+      },
+      "after": {
+        "briefReadyMs": 819,
+        "deepSectionMs": 546,
+        "briefRequests": 1,
+        "deepRequests": 2,
+        "totalRequests": 3,
+        "deepIds": [
+          "home",
+          "story"
+        ]
+      }
+    },
+    "ie": {
+      "before": {
+        "briefReadyMs": 804,
+        "deepSectionMs": 456,
+        "briefRequests": 0,
+        "deepRequests": 0,
+        "totalRequests": 0,
+        "deepIds": []
+      },
+      "after": {
+        "briefReadyMs": 777,
+        "deepSectionMs": 588,
+        "briefRequests": 1,
+        "deepRequests": 2,
+        "totalRequests": 3,
+        "deepIds": [
+          "home",
+          "story"
+        ]
+      }
+    },
+    "pl": {
+      "before": {
+        "briefReadyMs": 786,
+        "deepSectionMs": 385,
+        "briefRequests": 0,
+        "deepRequests": 0,
+        "totalRequests": 0,
+        "deepIds": []
+      },
+      "after": {
+        "briefReadyMs": 810,
+        "deepSectionMs": 382,
+        "briefRequests": 1,
+        "deepRequests": 2,
+        "totalRequests": 3,
+        "deepIds": [
+          "home",
+          "story"
+        ]
+      }
+    },
+    "ro": {
+      "before": {
+        "briefReadyMs": 789,
+        "deepSectionMs": 421,
+        "briefRequests": 0,
+        "deepRequests": 0,
+        "totalRequests": 0,
+        "deepIds": []
+      },
+      "after": {
+        "briefReadyMs": 869,
+        "deepSectionMs": 397,
+        "briefRequests": 1,
+        "deepRequests": 2,
+        "totalRequests": 3,
+        "deepIds": [
+          "home",
+          "story"
+        ]
+      }
+    }
+  }
+}

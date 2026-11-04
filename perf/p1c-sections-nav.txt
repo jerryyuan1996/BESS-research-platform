@@ -1,0 +1,29 @@
+  gb … done
+  ie … done
+  pl … done
+  ro … done
+
+A: tmp/p1c-before-dist
+B: dist
+6 cold repetitions each, alternating, identity encoding
+
+market  build   brief ready   deep section   section reqs (brief / deep / total)
+gb      A              795            484                   0 /    0 /     0
+gb      B              819            546                   1 /    2 /     3
+        Δ deep section +62 ms, Δ brief ready +24 ms
+
+ie      A              804            456                   0 /    0 /     0
+ie      B              777            588                   1 /    2 /     3
+        Δ deep section +132 ms, Δ brief ready -27 ms
+
+pl      A              786            385                   0 /    0 /     0
+pl      B              810            382                   1 /    2 /     3
+        Δ deep section -3 ms, Δ brief ready +24 ms
+
+ro      A              789            421                   0 /    0 /     0
+ro      B              869            397                   1 /    2 /     3
+        Δ deep section -24 ms, Δ brief ready +80 ms
+
+Wall-clock on an unthrottled localhost is precise to about ±150 ms; read the request counts and the build sizes for the durable claim.
+
+wrote perf/p1c-sections-nav.json
