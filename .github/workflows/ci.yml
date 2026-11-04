@@ -47,10 +47,11 @@ jobs:
     name: Tests and governance gates
     runs-on: ubuntu-latest
     # Every gate below runs through scripts/ci/timed.mjs, which appends a label,
-    # a duration and an exit code here. The summary step at the end renders it.
-    # runner.temp is per job, so the deploy job's file never mixes with this one.
-    env:
-      CI_TIMINGS_FILE: ${{ runner.temp }}/ci-timings.tsv
+    # a duration and an exit code to the runner's temporary directory; the
+    # summary step at the end renders it. The path is not set here on purpose:
+    # `runner` is not an available context in a job-level `env:`, and setting it
+    # that way makes the whole workflow invalid. scripts/ci/timings-file.mjs
+    # reads RUNNER_TEMP instead.
     steps:
       # When called from etl.yml, github.sha is the commit the ETL run STARTED
       # on — the one before the data it just pushed. inputs.ref is the data
@@ -200,8 +201,6 @@ jobs:
       group: vercel-production
       cancel-in-progress: false
       queue: max
-    env:
-      CI_TIMINGS_FILE: ${{ runner.temp }}/ci-timings.tsv
     steps:
       # Belt and braces for a repository whose highest-frequency committer is a
       # bot. If the credentials are absent the job stops here with an explanation

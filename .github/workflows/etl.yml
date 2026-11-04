@@ -115,9 +115,10 @@ jobs:
     runs-on: ubuntu-latest
     # The ETL step records its wall time through scripts/ci/timed.mjs, and the
     # job summary prints it beside the drift report. ETL duration is otherwise
-    # only visible by reading etl/out/summary.json out of the artifact.
-    env:
-      CI_TIMINGS_FILE: ${{ runner.temp }}/ci-timings.tsv
+    # only visible by reading etl/out/summary.json out of the artifact. The file
+    # path comes from RUNNER_TEMP inside the script — `runner` is not an
+    # available context in a job-level `env:`, and using it there invalidates
+    # the workflow.
     outputs:
       material: ${{ steps.drift.outputs.material }}
       committed: ${{ steps.commit.outputs.committed }}

@@ -16,13 +16,15 @@
    --------------------------------------------------------------------------- */
 import { appendFileSync, existsSync, readFileSync } from 'node:fs';
 
+import { timingsFile } from './timings-file.mjs';
+
 const argv = process.argv.slice(2);
 const option = (name) => {
   const i = argv.indexOf(name);
   return i >= 0 && argv[i + 1] ? argv[i + 1] : null;
 };
 
-const mainFile = process.env.CI_TIMINGS_FILE;
+const mainFile = timingsFile();
 const extraFile = option('--extra');
 const artifacts = (option('--artifacts') ?? '').split(',').map(s => s.trim()).filter(Boolean);
 const title = option('--title') ?? 'CI timings';

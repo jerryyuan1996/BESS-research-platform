@@ -23,6 +23,8 @@ import { spawnSync } from 'node:child_process';
 import { appendFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
 
+import { timingsFile } from './timings-file.mjs';
+
 const argv = process.argv.slice(2);
 const separator = argv.indexOf('--');
 
@@ -54,7 +56,7 @@ record(seconds, status);
 process.exit(status);
 
 function record(durationSeconds, exitCode){
-  const file = process.env.CI_TIMINGS_FILE;
+  const file = timingsFile();
   if (!file) return;
   try {
     mkdirSync(path.dirname(file), { recursive: true });
