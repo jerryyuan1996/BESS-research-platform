@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-const preview='/markets/pjm?story=preview';
+const preview='/markets/pjm';
 test.beforeEach(async({page})=>{
   await page.route(/^https:\/\//,route=>new URL(route.request().url()).origin===process.env.PLATFORM_TEST_BASE_URL?route.continue():route.abort());
 });
@@ -22,7 +22,7 @@ test('PJM reads all thirteen bilingual shots with one marker each and returns fo
   expect(errors).toEqual([]);
 });
 test('PJM teaching duration leaves the live case, URL and history unchanged',async({page})=>{
-  await page.goto(preview+'&view=story&chapter=battery&shot=pjm-08');
+  await page.goto(preview+'?view=story&chapter=battery&shot=pjm-08');
   const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
   await expect(dialog.locator('#ix-shot-pjm-08')).toBeFocused();
   const before=await page.locator('#bankable').innerText(),url=page.url(),history=await page.evaluate(()=>window.history.length);
@@ -44,9 +44,9 @@ test('PJM loads the pack on opening and per-value locators only on evidence expa
   await expect(shot.locator('.pjm-provenance')).toBeVisible();
   expect(requests.some(url=>/storyEvidenceProvenance-/.test(url))).toBe(true);
 });
-test('PJM ordinary entry and a different lens retain the research-dialog fallback',async({page})=>{
+test('PJM ordinary entry opens publicly and a different lens retains research',async({page})=>{
   await page.goto('/markets/pjm');await page.locator('.ix-full-research').click();
-  await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
+  await expect(page.locator('.ix-story-dialog')).toBeVisible();
   await page.goto(preview);await page.evaluate(()=>localStorage.setItem('hub_lens','strategic'));await page.reload();
   await page.locator('.ix-full-research').click();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
 });

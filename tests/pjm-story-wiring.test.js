@@ -5,9 +5,9 @@ import {story} from '../src/markets/pjm/story.js';
 import {storyMatches} from '../src/markets/pjm/storyBindings.js';
 import {opportunities} from '../src/experience/model.js';
 
-test('PJM remains unreleased and lazy, with the reviewed tuple falling back to research',()=>{
-  assert.equal(STORIES.pjm.released,false);
-  assert.equal(storyFor('pjm',''),null);
+test('PJM is released at G-2 and remains lazy, with the reviewed tuple falling back to research',()=>{
+  assert.equal(STORIES.pjm.released,true);
+  assert.equal(storyFor('pjm',''),STORIES.pjm);
   assert.equal(storyFor('pjm','?story=preview'),STORIES.pjm);
   const row=opportunities('infraFund').find(r=>r.id==='pjm');
   assert.equal(storyMatches(story,row,'infraFund'),true);
