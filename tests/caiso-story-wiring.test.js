@@ -5,9 +5,9 @@ import {storyMatches} from '../src/markets/caiso/story/guard.js';
 import {opportunities} from '../src/experience/model.js';
 const row=opportunities('infraFund').find(r=>r.id==='caiso');
 
-test('CAISO stays unreleased and its registry entry loads only on demand in preview',()=>{
- assert.equal(STORIES.caiso.released,false);assert.equal(typeof STORIES.caiso.load,'function');
- assert.equal(storyFor('caiso',''),null);assert.equal(storyFor('caiso','?story=other'),null);
+test('CAISO is released at G-2 and its registry entry loads only on demand',()=>{
+ assert.equal(STORIES.caiso.released,true);assert.equal(typeof STORIES.caiso.load,'function');
+ assert.equal(storyFor('caiso',''),STORIES.caiso);assert.equal(storyFor('caiso','?story=other'),STORIES.caiso);
  assert.equal(storyFor('caiso','?story=preview'),STORIES.caiso);
 });
 
