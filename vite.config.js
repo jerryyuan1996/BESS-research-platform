@@ -107,14 +107,20 @@ export default defineConfig({
           if (ids.some(m => /[\\/]briefing[\\/]designData\.js$/.test(m))) return 'assets/design-answer-[hash].js';
           if (ids.some(m => /[\\/]governance[\\/]investability\.js$/.test(m))) return 'assets/investment-method-[hash].js';
           if (ids.some(m => /[\\/]charts[\\/]barChart\.js$/.test(m))) return 'assets/charts-[hash].js';
-          /* The two chunks a market with lazily-loaded sections factors out and
+          /* The chunks a market with lazily-loaded sections factors out and
              that have no entry module to be named by: the shared constants every
              section reads (sections/shared.js) and the grid map the story and
-             grid tabs both draw. Without these they would be emitted as
-             `shared-<hash>.js` and `gridMapData-<hash>.js`, which say nothing
-             about which market they belong to. */
-          if (ids.some(m => /[\\/]markets[\\/]nem[\\/]sections[\\/]shared\.js$/.test(m))) return 'assets/nem-sections-shared-[hash].js';
-          if (ids.some(m => /[\\/]markets[\\/]nem[\\/]gridMapData\.js$/.test(m))) return 'assets/nem-grid-map-data-[hash].js';
+             grid tabs both draw. Named BY MARKET, not just by role, since the
+             P1-C rollout gave four more markets the same shape and an
+             unlabelled `shared-<hash>.js` no longer says whose it is. */
+          for (const moduleId of ids){
+            const shared = /[\\/]markets[\\/]([^\\/]+)[\\/]sections[\\/]shared\.js$/.exec(moduleId);
+            if (shared) return `assets/${shared[1]}-sections-shared-[hash].js`;
+          }
+          for (const moduleId of ids){
+            const grid = /[\\/]markets[\\/]([^\\/]+)[\\/]gridMapData\.js$/.exec(moduleId);
+            if (grid) return `assets/${grid[1]}-grid-map-data-[hash].js`;
+          }
           return 'assets/[name]-[hash].js';
         },
       },
