@@ -68,6 +68,10 @@ deliverables/_comparison_system/.work/
 # ---------------------------------------------------------------------------
 node_modules/
 dist/
+# An unminified copy of the build, made only so the CPU profiler can attribute
+# samples to real function names (scripts/perf/profile-grid-map.mjs). Never
+# deployed, never scanned as a release artefact.
+dist-profile/
 .vite/
 *.local
 .DS_Store

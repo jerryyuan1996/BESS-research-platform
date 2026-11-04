@@ -1,5 +1,6 @@
 import { geoMercator, geoPath } from 'd3-geo';
 import { clusterProjects, clusterLabel } from '../projects/clusters.js';
+import { transmissionSegments } from './transmissionGeometry.js';
 import { energyMWh } from '../projects/schema.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
@@ -195,6 +196,12 @@ export function renderGeographicGridMap(parent, dataIn){
      map that a reader glances at, not one they navigate. */
   const interactive = !data.compact;
   const view = { zoom:1, x:0, y:0 };
+  /* The map is built detached and attached at the end — the overview map is even
+     built into a card that is attached later still. So "not connected" only
+     means "gone" once it has been connected at least once; before that it means
+     "still mounting", and treating it as gone would abandon every fetch. */
+  let attached = false;
+  const gone = () => attached && !root.isConnected;
   const applyView = () => {
     viewport.setAttribute('transform', `translate(${view.x} ${view.y}) scale(${view.zoom})`);
     svg.setAttribute('data-zoom', view.zoom.toFixed(2));
@@ -280,10 +287,21 @@ export function renderGeographicGridMap(parent, dataIn){
      This is the same failure, and the same fix, as src/home/marketGlobe.js. It
      was reintroduced here when the grid map gained pan and zoom. */
   const selectableByNode = new WeakMap();
+  /* The same registrations in draw order. Selection is a class on nodes that
+     already exist, and this is what lets it stay that way: re-running the whole
+     map because the reader pressed a different battery rebuilt six layers, and
+     on Great Britain that was 130 ms of work to add one class. */
+  const selectableNodes = [];
+  /* Markers and the coordinate each one is drawn at, so a zoom can rescale them
+     in place. Their POSITION never changes with zoom — it is expressed in the
+     viewport's coordinates — only the counter-scale that keeps them the same
+     size on screen. */
+  const markerNodes = [];
 
   /** Registers a node as selectable, by both routes. */
   const bindSelectable = (node, id) => {
     selectableByNode.set(node, id);
+    selectableNodes.push({ node, id });
     node.addEventListener('click', () => setSelected(id));
   };
 
@@ -295,9 +313,22 @@ export function renderGeographicGridMap(parent, dataIn){
     return null;
   };
 
+  /** Move the `selected` class to the feature now chosen, and nowhere else. */
+  function applySelection(){
+    for (const { node, id } of selectableNodes){
+      node.classList.toggle('selected', id === state.selectedId);
+    }
+  }
+
   function setSelected(id){
+    if (id === state.selectedId) return;
     state.selectedId = id;
-    update();
+    /* Nothing about the geometry changed, so nothing geometric is redrawn: the
+       class moves, the selector follows it, and the panel is rebuilt because its
+       content is the only thing that actually differs. */
+    applySelection();
+    renderSelector();
+    renderDetail();
   }
 
   for (const key of data.periodOrder){
@@ -459,11 +490,6 @@ export function renderGeographicGridMap(parent, dataIn){
     }
   }
 
-  /* ---- transmission network ------------------------------------------------
-     Drawn once: the geometry does not change with period or selection, and a
-     market's grid can run to thousands of segments. Voltage bands are styled in
-     CSS from `data-band`, and the bulk band is the only one visible until the
-     reader zooms past the bulk/detail threshold the market declared. */
   /* ---- transmission delivery ----------------------------------------------
 
      Loaded on demand and in voltage bands, never imported.
@@ -475,8 +501,79 @@ export function renderGeographicGridMap(parent, dataIn){
      for, and the 132–150 kV class waits for a zoom or an explicit request
      because it is two thirds of the payload and none of the first read.
 
-     Every band is real data. None of it is omitted; the delivery is staged. */
-  const bandState = { loaded: new Set(), manifest: null, detailRequested: false };
+     Every band is real data. None of it is omitted; the delivery is staged.
+
+     DRAWN ONCE PER BAND, INCREMENTALLY. The layer used to be emptied and every
+     line re-projected whenever another band arrived. Measured on Great Britain
+     (docs/p1-svg-performance.md), one zoom step removed 6,272 nodes, created
+     14,806 and blocked the main thread for 821 ms — to add geometry that had
+     not changed. A band is now built into a fragment, appended once, and never
+     touched again; the layer keeps one group per band, declared in manifest
+     order, so a later arrival cannot disturb or reorder an earlier one.
+
+     ONE PATH PER BAND AND STYLE, NOT ONE PER SEGMENT. 7,771 backbone paths gave
+     no reader anything a single path does not: they carry no hover, no label and
+     no handler (`pointer-events:none` is in the stylesheet), so their only cost
+     is 7,771 nodes in every style pass. Segments are joined into one path per
+     band class and overhead/underground pair. The geometry is identical — the
+     subpath count is asserted against the source data in
+     tests/grid-map-rendering.test.js — and the stylesheet is unchanged. */
+  const bandState = {
+    loaded: new Set(),          // band keys whose bytes are in the DOM
+    failed: new Set(),          // band keys whose download failed — zoom alone does not retry
+    groups: new Map(),          // band key → its <g>, created once, in manifest order
+    manifest: null,
+    backboneFloor: null,
+    detailRequested: false,
+  };
+
+  /* Projected path data, remembered per line. A line object is immutable and the
+     projection is fitted once from the market boundary, so the result can never
+     go stale — and a band arriving twice must not re-project the lines already
+     drawn. */
+  const linePaths = new WeakMap();
+
+  function bandGroup(key){
+    const existing = bandState.groups.get(key);
+    if (existing) return existing;
+    const group = svgEl('g', { class:'geo-band', 'data-band-group':key });
+    bandState.groups.set(key, group);
+    transmissionLayer.append(group);
+    return group;
+  }
+
+  /**
+   * Draw one band's geometry into its group, once.
+   *
+   * Both paths and squares are already joined by `transmissionSegments`, so this
+   * function is only DOM: build a fragment, fill it, insert it once.
+   */
+  function drawBand(key, { lines = [], substations = [], backboneFloor = 0 }){
+    const group = bandGroup(key);
+    /* Drawn is drawn. Re-entering here — a duplicate response, a second caller,
+       a zoom after the band landed — must not add a second copy of the same
+       geometry. */
+    if (group.childElementCount) return 0;
+
+    const band = transmissionSegments({
+      lines, substations, backboneFloor, project:projection, cache:linePaths,
+    });
+
+    const fragment = document.createDocumentFragment();
+    for (const segment of band.segments){
+      fragment.append(svgEl('path', {
+        class:'geo-transmission-line' + (segment.underground ? ' underground' : ''),
+        'data-band':segment.bandClass,
+        d:segment.d,
+      }));
+    }
+    for (const square of band.substations){
+      fragment.append(svgEl('path', { class:'geo-substation', 'data-band':square.bandClass, d:square.d }));
+    }
+    /* One insertion for the whole band: one style pass, not one per segment. */
+    if (fragment.childNodes.length) group.append(fragment);
+    return band.subpaths;
+  }
 
   const shouldLoad = (band) =>
     band.backbone || bandState.detailRequested || view.zoom >= DETAIL_ZOOM;
@@ -490,10 +587,19 @@ export function renderGeographicGridMap(parent, dataIn){
       .then(response => (response.ok ? response.json() : null))
       .then(manifest => {
         if (!manifest?.bands?.length) return;
+        if (gone()) return;                            // the reader has left the page
         bandState.manifest = manifest;
-        if (!data.transmission){
-          data = { ...data, transmission:{ ...manifest, lines:[], substations:[] } };
-        }
+        /* Where the backbone ends. With three bands — Italy's 380 / 220 / 132–150
+           — the backbone runs down to 220 kV, not to `bulkKV`, so the styling
+           floor comes from the manifest rather than from the single bulk
+           threshold that was correct when every market had exactly two bands. */
+        const backboneBands = manifest.bands.filter(band => band.backbone);
+        bandState.backboneFloor = backboneBands.length
+          ? Math.min(...backboneBands.map(band => band.minKV))
+          : (manifest.bulkKV ?? 0);
+        /* Declared before any of them has data, so the drawing order is the
+           manifest's order and never the order the responses happen to arrive. */
+        for (const band of manifest.bands) bandGroup(band.band);
         renderDetailToggle();
         loadPendingBands();
       })
@@ -504,58 +610,52 @@ export function renderGeographicGridMap(parent, dataIn){
   }
 
   function loadPendingBands(){
-    for (const band of bandState.manifest.bands){
-      if (bandState.loaded.has(band.band) || !shouldLoad(band)) continue;
-      bandState.loaded.add(band.band);          // claim it before awaiting
+    const manifest = bandState.manifest;
+    if (!manifest) return;
+    for (const band of manifest.bands){
+      const key = band.band;
+      if (bandState.loaded.has(key) || bandState.failed.has(key) || !shouldLoad(band)) continue;
+      bandState.loaded.add(key);          // claim it before awaiting
 
       /* A band may arrive in parts: Italy's 132–219 kV class is 11,266 segments
          and does not fit one file however hard it is simplified, so it ships as
-         two and is concatenated here. */
-      Promise.all((band.urls || []).map(url =>
+         two. ALL OF THEM OR NONE: a band drawn from half its files is a network
+         with a country-shaped hole in it, and nothing on the map would say so.
+         A failed band is recorded rather than retried on the next zoom step,
+         which would turn one dead URL into a request per wheel event. */
+      const urls = band.urls || [];
+      if (!urls.length){ bandState.loaded.delete(key); continue; }
+      Promise.all(urls.map(url =>
         fetch(url).then(r => (r.ok ? r.json() : null)).catch(() => null)))
         .then(parts => {
-          const good = parts.filter(Boolean);
-          if (!good.length){ bandState.loaded.delete(band.band); return; }
-          data = { ...data, transmission:{
-            ...data.transmission,
-            lines:[...data.transmission.lines, ...good.flatMap(p => p.lines || [])],
-            substations:[...data.transmission.substations, ...good.flatMap(p => p.substations || [])],
-          } };
-          renderTransmission();
+          if (gone()) return;             // navigated away mid-flight
+          if (parts.some(part => !part)){
+            bandState.loaded.delete(key);
+            bandState.failed.add(key);
+            return;
+          }
+          drawBand(key, {
+            lines:parts.flatMap(part => part.lines || []),
+            substations:parts.flatMap(part => part.substations || []),
+            backboneFloor:bandState.backboneFloor ?? 0,
+          });
         });
     }
   }
 
+  /* The single-seam fallback: a market that carries its transmission network
+     inline instead of as a manifest. No manifest, no bands — everything is one
+     group, styled against the `bulkKV` the data declares. */
   function renderTransmission(){
+    if (!interactive) return;
+    if (bandState.manifest) return;         // bands arrive through drawBand
     const network = data.transmission;
-    if (!network || !interactive) return;
-    transmissionLayer.replaceChildren();
-
-    /* Where the backbone ends. With three bands — Italy's 380 / 220 / 132–150 —
-       the backbone runs down to 220 kV, not to `bulkKV`, so the styling floor
-       comes from the manifest rather than from the single bulk threshold that
-       was correct when every market had exactly two bands. */
-    const backboneFloor = bandState.manifest
-      ? Math.min(...bandState.manifest.bands.filter(b => b.backbone).map(b => b.minKV))
-      : network.bulkKV;
-    for (const line of network.lines || []){
-      const d = line.path.map((p, i) => `${i ? 'L' : 'M'}${projection(p)?.[0]} ${projection(p)?.[1]}`).join(' ');
-      if (d.includes('undefined')) continue;
-      transmissionLayer.append(svgEl('path', {
-        class:'geo-transmission-line' + (line.underground ? ' underground' : ''),
-        'data-band':line.kv >= backboneFloor ? 'bulk' : 'detail',
-        d,
-      }));
-    }
-    for (const s of network.substations || []){
-      const p = projection(s.coord);
-      if (!p) continue;
-      transmissionLayer.append(svgEl('rect', {
-        class:'geo-substation',
-        'data-band':s.kv >= backboneFloor ? 'bulk' : 'detail',
-        x:p[0] - 2.6, y:p[1] - 2.6, width:5.2, height:5.2,
-      }));
-    }
+    if (!network) return;
+    drawBand('inline', {
+      lines:network.lines,
+      substations:network.substations,
+      backboneFloor:network.bulkKV ?? 0,
+    });
   }
 
   /* ---- project pipeline ----------------------------------------------------
@@ -620,6 +720,7 @@ export function renderGeographicGridMap(parent, dataIn){
   function renderPoints(){
     pointLayer.replaceChildren();
     labelLayer.replaceChildren();
+    markerNodes.length = 0;
     const pendingLabels = [];
     for (const item of visiblePoints()){
       const projected = projection(item.coord);
@@ -652,6 +753,7 @@ export function renderGeographicGridMap(parent, dataIn){
         }));
       }
       bindSelectable(group, item.id);
+      markerNodes.push({ node:group, x, y });
       pointLayer.append(group);
 
       if (item.label && !selected) pendingLabels.push({ item, x, y });
@@ -835,6 +937,11 @@ export function renderGeographicGridMap(parent, dataIn){
   function update(){
     const allowed = visibleFeatures();
     if (!allowed.some(x => x.id === state.selectedId)) state.selectedId = allowed[0]?.id || null;
+    /* Every layer below rebuilds its nodes, so the registries that point at them
+       restart with it. Without this they would accumulate detached markers on
+       every layer toggle and hold them alive. */
+    selectableNodes.length = 0;
+    markerNodes.length = 0;
     periodGroup.querySelectorAll('button').forEach(button => {
       const active = button.dataset.period === state.period;
       button.classList.toggle('active', active);
@@ -850,10 +957,44 @@ export function renderGeographicGridMap(parent, dataIn){
     renderDetail();
   }
 
-  /* Pan and zoom. Only the geometry and the marker counter-scale change, so a
-     zoom step re-runs the two renderers whose output is pixel-dependent rather
-     than the whole map. */
+  /* Pan and zoom.
+
+     A PAN IS ONE ATTRIBUTE WRITE. Every marker and every project sits at its
+     projected position inside the transformed viewport, so moving the viewport
+     moves them — there is nothing to redraw. The old code rebuilt the point and
+     project layers on every pointermove, labels included, which meant a forced
+     layout per label per frame to produce identical DOM.
+
+     A ZOOM changes two things that are expressed in the layer's own
+     coordinates: each marker's counter-scale, and which projects are close
+     enough to merge. Both are handled in one frame, and a wheel gesture that
+     fires a dozen events still gets one frame's work. */
+  let zoomFrame = 0;
+
+  function rescaleMarkers(){
+    const scale = 1 / view.zoom;
+    for (const { node, x, y } of markerNodes){
+      node.setAttribute('transform', `translate(${x} ${y}) scale(${scale})`);
+    }
+  }
+
+  function scheduleZoomWork(){
+    if (zoomFrame) return;
+    const run = () => {
+      zoomFrame = 0;
+      if (gone()) return;                   // the reader has left the map
+      rescaleMarkers();
+      renderProjects();
+    };
+    /* A tab that is not being painted never gets a frame, and leaving the
+       markers at the previous size until someone looks at them is worse than
+       doing the work now: the viewport transform has already moved. */
+    if (document.hidden) return void run();
+    zoomFrame = requestAnimationFrame(run);
+  }
+
   function setView(next){
+    const previousZoom = view.zoom;
     view.zoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, next.zoom ?? view.zoom));
     view.x = next.x ?? view.x;
     view.y = next.y ?? view.y;
@@ -861,8 +1002,7 @@ export function renderGeographicGridMap(parent, dataIn){
        rather than letting a reader drag the country off the canvas. */
     if (view.zoom === MIN_ZOOM){ view.x = 0; view.y = 0; }
     applyView();
-    renderPoints();
-    renderProjects();
+    if (view.zoom !== previousZoom) scheduleZoomWork();
     /* Zooming past DETAIL_ZOOM is a request for the detail band, so the fetch is
        driven by the same gesture rather than by a separate control the reader
        has to find. */
@@ -882,7 +1022,13 @@ export function renderGeographicGridMap(parent, dataIn){
     const input = h('input', { type:'checkbox' });
     input.addEventListener('change', () => {
       bandState.detailRequested = input.checked;
-      if (input.checked) loadPendingBands();
+      /* A tick is a reader asking again, so it is the one gesture that clears a
+         failed band and retries it. Zooming does not: that would be a request
+         per wheel event against a URL that has already refused. */
+      if (input.checked){
+        bandState.failed.clear();
+        loadPendingBands();
+      }
       /* Unticking hides rather than unloads: the bytes are already spent, and
          re-fetching them because a reader changed their mind twice is worse than
          keeping them. */
@@ -1001,5 +1147,6 @@ export function renderGeographicGridMap(parent, dataIn){
     ),
   );
   parent.append(root);
+  attached = true;
   update();
 }

@@ -218,7 +218,14 @@ export function render(){
 
   const app = $id('app');
   app.innerHTML = '';
-  app.classList.toggle('ix-app',['data','investmentLab','changes','scout','desk'].includes(route.name));
+  /* A market's tab route is a research page and carries `.ix-app`, which takes
+     the padding and the max-width off #app (styles/experience.css). Setting it
+     here — on the frame the container is emptied, before any of the page's own
+     content exists — is what stops it being set later, under 800 px of finished
+     dashboard, where the width change is a layout shift (0.042 on the GB grid
+     page before Phase A3). The same condition the research shell below uses. */
+  app.classList.toggle('ix-app', ['data','investmentLab','changes','scout','desk'].includes(route.name)
+    || (route.name === 'market' && Boolean(route.tab)));
   const experience = route.name === 'home' || route.name === 'returns' || (route.name === 'market' && !route.tab && bySlug(route.slug));
   document.body.classList.toggle('ix-experience', Boolean(experience) || ['market','news','data','investmentLab','changes','scout','desk'].includes(route.name));
   document.body.classList.toggle('ix-research', route.name === 'market' && Boolean(route.tab));

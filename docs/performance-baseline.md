@@ -8,6 +8,14 @@ what it means and what to change first.
 All gzip figures are KiB (1 KiB = 1024 bytes), matching the convention
 `tests/bundle-budget.test.js` uses. CI figures are minutes from the GitHub Actions API.
 
+> **Updated later the same day.** Phase P1-A took bottleneck 3 (the GB grid map)
+> apart and fixed what it found. Two of this document's conclusions about that
+> route were wrong in a way worth recording: the 0.17 CLS was never the map's
+> layout, and the map was about a third of the route's long tasks rather than most
+> of them. [`docs/p1-svg-performance.md`](p1-svg-performance.md) has the profile,
+> the before/after and the corrected ranking. Everything else here stands.
+
+
 ## The call
 
 The build is not the problem, and the ETL's wall time is real but contained. The cost is in
