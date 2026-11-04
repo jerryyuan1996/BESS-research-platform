@@ -63,6 +63,25 @@ async function fetchYear(year, log){
   }
 }
 
+/* ONE DOWNLOAD PER FILE PER RUN.
+
+   The three area datasets read the same two fiscal-year archives and differ only
+   in which column they parse. Before this map they downloaded each archive three
+   times — six requests for two files — and once the run fetched areas
+   concurrently, the duplicates competed for the same bandwidth and made each
+   area slower than it had been in sequence.
+
+   This is request coalescing, not a cache with a staleness question: a second
+   caller in the same process is asking for the same bytes the first caller is
+   already fetching. `fetchYear` resolves to null rather than rejecting when a
+   year is missing, so a failed download is shared as an absence, exactly as it
+   was when each dataset discovered it separately. */
+const fiscalYear = new Map();
+function fetchYearOnce(year, log){
+  if (!fiscalYear.has(year)) fiscalYear.set(year, fetchYear(year, log));
+  return fiscalYear.get(year);
+}
+
 /** JST instant for a trading date and 30-minute period code. */
 function jstInstant(dateStr, period){
   const [y, m, d] = dateStr.split('/').map(Number);
@@ -107,7 +126,7 @@ export async function fetchDataset({ dataset, previous, log, now }){
 
   const incoming = [];
   for (const year of fiscalYearsFor(now)){
-    const text = await fetchYear(year, log);
+    const text = await fetchYearOnce(year, log);
     if (text) incoming.push(...parseCsv(text, column));
   }
 

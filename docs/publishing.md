@@ -16,13 +16,13 @@ Budget about 30 minutes. Nothing here costs money.
    GitHub repository
         │
         ├── GitHub Actions, on every push to main
-        │     npm test  ·  build  ·  scan  ·  etl:verify
+        │     npm test  ·  build  ·  scan  ·  etl:verify  ·  full browser suite
         │           │
         │           └──► vercel build → scan .vercel/output → deploy --prebuilt
         │                                                          │
         │                                                          ▼
         │                                                       Vercel
-        │                                                    serves the URL
+        │                                            smoke check on the live URL
         │
         └── GitHub Actions, every 6 hours
               fetches public market data
