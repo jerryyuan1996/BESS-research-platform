@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-03T19:33:35.676Z",
+  "fetchedAt": "2026-11-04T06:37:36.180Z",
   "coverage": {
-    "from": "2025-11-03T20:00:00.000Z",
-    "to": "2026-11-03T22:00:00.000Z",
+    "from": "2025-11-04T07:00:00.000Z",
+    "to": "2026-11-04T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8763
+    "points": 8776
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-03",
-      "n": 4,
-      "mean": 9.54,
-      "min": 9.44,
-      "max": 9.59,
-      "spread": 9.54,
-      "charge": null,
-      "discharge": 9.54
-    },
-    {
       "d": "2025-11-04",
-      "n": 24,
-      "mean": 9.94,
-      "min": 9.4,
+      "n": 17,
+      "mean": 10.08,
+      "min": 9.68,
       "max": 11.01,
-      "spread": 9.94,
+      "spread": 10.08,
       "charge": null,
-      "discharge": 9.94
+      "discharge": 10.08
     },
     {
       "d": "2025-11-05",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-03",
-      "n": 23,
-      "mean": 15.19,
+      "n": 24,
+      "mean": 15.31,
       "min": 8,
       "max": 23.79,
-      "spread": 15.19,
+      "spread": 15.31,
       "charge": null,
-      "discharge": 15.19
+      "discharge": 15.31
+    },
+    {
+      "d": "2026-11-04",
+      "n": 23,
+      "mean": 8.73,
+      "min": 6.05,
+      "max": 15,
+      "spread": 8.73,
+      "charge": null,
+      "discharge": 8.73
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-n.json",
-    "contentChecksum": "sha256:a9cd293843bdfebfbe89d095c15df88269fe2217f52298c9bee918a310ace438",
-    "points": 8763
+    "contentChecksum": "sha256:f7ea93d0441b44cc07bd5b49c48892dfa785218bc1c004b5811eab11df11ee6a",
+    "points": 8776
   },
-  "summaryChecksum": "sha256:ff8c57754a09b04cb3fddf0062ba1accb9518f9fcc1df968cbc40a5b091ec9ba"
+  "summaryChecksum": "sha256:61eb55b07df2576774e9c636a83e61de6089127113ce3e1f9b8239e5f8538b4c"
 }

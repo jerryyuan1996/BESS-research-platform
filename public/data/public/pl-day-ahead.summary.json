@@ -13,12 +13,12 @@
     "licence": "PSE public reporting data — reuse with attribution to PSE S.A.",
     "attribution": "Source: PSE S.A.; ECB reference rates"
   },
-  "fetchedAt": "2026-11-03T19:33:23.337Z",
+  "fetchedAt": "2026-11-04T06:37:27.925Z",
   "coverage": {
-    "from": "2025-11-03T20:00:00.000Z",
+    "from": "2025-11-04T07:00:00.000Z",
     "to": "2026-11-04T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8787
+    "points": 8776
   },
   "units": {
     "price": "EUR/MWh"
@@ -31,37 +31,37 @@
   "staleAfterHours": 72,
   "derived": {
     "authority": "derived",
-    "points": 8787,
-    "coverageDays": 367,
+    "points": 8776,
+    "coverageDays": 366,
     "pointsPerHour": 1,
-    "mean": 124.44,
-    "median": 117.38,
-    "stdev": 70,
-    "p5": 1.5,
-    "p95": 238.62,
-    "negativeHoursPct": 0.03493797655627632,
-    "spreadMean": 135.34,
-    "spreadMedian": 130.43,
-    "spreadP25": 76.55,
-    "spreadP75": 176.53,
-    "spreadDays": 366,
-    "chargeMean": 59.4,
-    "dischargeMean": 194.74,
+    "mean": 124.48,
+    "median": 117.46,
+    "stdev": 70.03,
+    "p5": 1.49,
+    "p95": 238.71,
+    "negativeHoursPct": 0.03498176845943482,
+    "spreadMean": 135.39,
+    "spreadMedian": 130.59,
+    "spreadP25": 76.37,
+    "spreadP75": 176.61,
+    "spreadDays": 365,
+    "chargeMean": 59.36,
+    "dischargeMean": 194.75,
     "durationHours": 4
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 123778,
-    "marginPerCycle": 499.44,
+    "revenuePerMW": 123835,
+    "marginPerCycle": 499.67,
     "inputs": {
-      "chargeMean": 59.39665300546451,
-      "dischargeMean": 194.73761612021875,
+      "chargeMean": 59.35582191780824,
+      "dischargeMean": 194.74686986301384,
       "durationHours": 4,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
       "availability": 0.97,
       "spreadRealisation": 0.7,
-      "spreadDays": 366
+      "spreadDays": 365
     },
     "claim": [
       "Wholesale arbitrage only — excludes capacity, ancillary and balancing revenue",
@@ -70,23 +70,13 @@
   },
   "daily": [
     {
-      "d": "2025-11-03",
-      "n": 3,
-      "mean": 96.53,
-      "min": 83.14,
-      "max": 107.14,
-      "spread": null,
-      "charge": null,
-      "discharge": null
-    },
-    {
       "d": "2025-11-04",
-      "n": 24,
-      "mean": 110.62,
-      "min": 72.74,
+      "n": 16,
+      "mean": 122.87,
+      "min": 72.76,
       "max": 221.58,
-      "spread": 117.06,
-      "charge": 74.3,
+      "spread": 113.71,
+      "charge": 77.65,
       "discharge": 191.36
     },
     {
@@ -3742,8 +3732,8 @@
   ],
   "sourceSnapshot": {
     "file": "pl-day-ahead.json",
-    "contentChecksum": "sha256:6dffb677e4906f6d84f82120e76d5e852070f45a5a8d624fe9a61a0b72f9d8e8",
-    "points": 8787
+    "contentChecksum": "sha256:32e19b1d99ef506eb7b6e7cf01d06ca5240d4f03881bea021c6df1d6e51ca77c",
+    "points": 8776
   },
-  "summaryChecksum": "sha256:081ac90b1cc143c3a8a2b15f9e843b780385c7fdf4835d728eca857ef0ab19cd"
+  "summaryChecksum": "sha256:f2217e64ec3dccadb9f1f4166484d99aa3fe1a7411b22f3a5b352cf04a6550f6"
 }
