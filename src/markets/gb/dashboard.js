@@ -12,7 +12,7 @@ import { MKT } from './mkt.js';
 import { TABS } from './tabs.js';
 import { SRC } from './sources.js';
 import { M } from './data.js';
-import { buildSections } from './sections.js';
+import { buildSections, loadSections } from './sections.js';
 import './gridMapData.js';   // side effect: registers this market's grid map
 import VIEW from '../../../view/markets/gb.json' with { type: 'json' };
 import { ENTRY_LEDGER } from './entryLedger.js';
@@ -27,16 +27,21 @@ registerCase('gb', { view: VIEW, ledger: ENTRY_LEDGER });
 const engine = createMarketEngine({
   MKT, TABS, SRC, M, buildSections,
   textOverrides,
+  prepareSections: (api, ids) => loadSections(api, ids),
 });
 
-export function researchSummary(container, route) {
+/* The house view and the one-minute orientation are sections now, so they
+   must be fetched before the summary reads them. A failure leaves the summary
+   short rather than breaking the dialog. */
+export async function researchSummary(container, route) {
+  await loadSections(engine.api, ['home', 'story']).catch(() => {});
   engine.researchSummary(container, route, markets);
 }
 
 export const state = engine.state;
 
 export function dashboard(container, route){
-  engine.dashboard(container, route, markets);
+  return engine.dashboard(container, route, markets);
 }
 
 export default dashboard;
