@@ -19,11 +19,11 @@ count is configurable from the environment, left at two because no measurement j
 **Selective testing for data-only commits was investigated and rejected.** The reasoning is in
 §4, and it is a rejection on evidence rather than on principle.
 
-Evidence marker: **Strong** for the smoke replacement and the cache — both are mechanical, and the
-smoke suite is measured locally. **Fair** for the CI time saved, because no Actions run has been
-executed from the authoring environment; the before/after workflow totals in §2 are arithmetic on
-P0-1's step timings and this session's local smoke run, not an observed CI run. What would change
-it: the first push, whose job summary prints the real numbers.
+Evidence marker: **Strong** for the smoke replacement — the suite is measured locally, and the test job of the pull
+request that introduced it ran green in CI. **Fair** for the publish-side saving, because a pull
+request cannot reach the deploy job: the 8.4-minute live step is replaced in §2 by a derived
+estimate from the local smoke run. What would change it: the first merge, whose deploy summary
+prints the `production smoke` line.
 
 ## 1. What changed
 
@@ -39,25 +39,34 @@ it: the first push, whose job summary prints the real numbers.
 
 ## 2. What it costs now
 
-The publish job's shape, before and after:
+The publish job's shape, before and after. The test-job column is now observed: the pull request that
+introduced this change ran green (run `41815632247`).
 
-| Publish job step | P0-1 CI | Now |
-|---|---:|---:|
-| checkout, `npm ci`, Vercel CLI, env pull | 0.66 min | 0.66 min (the cache trims the `npm ci` part) |
-| `vercel build` + scan + deploy | 0.64 min | 0.64 min |
-| live check: install Chromium | 0.23–0.37 min | 0.23–0.37 min |
-| live check: browser suite | **8.40 min** (168 tests) | **~1.0–1.5 min estimated** (10 tests) |
-| **Publish job** | **9.7 min** | **~2.5–3.0 min estimated** |
-| **Push to `main`, both jobs** | **20.3 min** | **~12.5–13.5 min estimated** |
+| | P0-1 (observed) | This PR (observed) | Publish side after the change |
+|---|---:|---:|---:|
+| Test job | 10.3 min | **13.45 min** | unchanged — same gates |
+| — `npm test` | 3.32 min | 4.5 min | — |
+| — full E2E | 6.25 min | 8.1 min | unchanged, still pre-deploy |
+| — build, scans, budgets, Chromium, `etl:verify` | 0.5 min | 0.7 min | — |
+| Publish job | 9.7 min | not exercised from a PR | **~2.5–3.0 min estimated** |
+| — live check: install Chromium | 0.23–0.37 min | — | 0.23–0.37 min |
+| — live check: browser suite | **8.40 min** (168 tests) | — | **~1.0–1.5 min estimated** (10 tests) |
+| **Push to `main`, both jobs** | **20.3 min** | — | **~15–16 min estimated** |
 
-The local measurement behind the estimate: the smoke suite ran 10 tests (5 × desktop and mobile)
-in **1.2–1.8 min** across two runs against `vite preview` on this laptop, with three workers. CI runs the browser suite
-2–3× faster than this host (P0-1 measured 6.25 min in CI against 19.4 min locally), so 1.0–1.5 min
-is the honest range — and the live step is a production network away from the preview server.
+**The test job was three minutes slower than P0-1, and none of it is this change.** The untouched E2E
+step went from 6.25 to 8.1 min and `npm test` from 3.32 to 4.5 in the same run — the runner was
+slower that hour. The steps this change adds (the timing wrapper, the two artifact uploads, the
+summary) total 0.1 min.
 
-**No CI run was executed from this environment.** The GitHub connector required authorisation, so
-the workflow totals above are derived, not observed. Each job now prints its own measured table;
-the first push replaces the estimate with a fact.
+The local measurement behind the publish estimate: the smoke suite ran 10 tests (5 × desktop and
+mobile) in **1.2–1.8 min** across two runs against `vite preview`, with three workers. CI runs the
+browser suite 2–3× faster than this host (P0-1 measured 6.25 min in CI against 19.4 min locally), so
+1.0–1.5 min is the honest range — and the live step is a production network away from the preview
+server.
+
+**The publish side is still derived.** A pull request cannot reach the deploy job by design, so the
+only step this change actually removes has not been observed yet. The first merge replaces the
+estimate with the deploy summary's `production smoke` line.
 
 ## 3. The live check: what it actually proves
 
@@ -146,13 +155,15 @@ shows both halves of the workflow. A missing artifact leaves the table short; it
 job. Timing is a report, never a gate.
 
 Artifacts are unchanged and still retained on failure: `page-check-evidence`, `ci-timings`,
-`production-release-<sha>`, `live-page-check-evidence-<sha>`.
+`production-release-<sha>`, `live-page-check-evidence-<sha>`. The PR run confirmed the loop end to
+end: `ci-timings` uploaded at 279 bytes beside a 13.2 MB `page-check-evidence`, and the summary step
+finished green.
 
 ## 7. What is left
 
 | # | Bottleneck | Evidence | Next step |
 |---|---|---|---|
-| 1 | `npm test` — 1,307 tests, 3.3–4.4 min in CI | P0-1; no per-file breakdown exists | Capture TAP and rank files before changing anything |
+| 1 | `npm test` — 1,307 tests, 3.3–4.5 min in CI | P0-1 and the PR run; no per-file breakdown exists | Capture TAP and rank files before changing anything |
 | 2 | `story.spec.js` — 6.1 min on desktop alone | P0-1 | Parallelise within the file (`test.describe.configure`), not more workers |
 | 3 | Chromium download — 0.23–0.37 min per job, twice per publish | P0-1 | Cache `~/.cache/ms-playwright` keyed on the Playwright version |
 | 4 | Deploy job setup — 0.66 min for checkout, `npm ci`, global CLI install | P0-1 | Cache the Vercel CLI; `npm ci` is genuinely needed (`vercel build` runs Vite) |

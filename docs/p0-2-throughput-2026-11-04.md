@@ -19,7 +19,7 @@ the measurement record: what was run, what it produced, and what is left.
 | Date | 2026-11-04, 08:50–10:10 UTC |
 | ETL command | `node etl/run.mjs --dry-run` (all 22 datasets, nothing written) |
 | ETL comparison | **Paired**: base commit `c16a5f0` checked out in a separate worktree, run immediately before the branch, same network, same source state |
-| CI comparison | Derived from P0-1's step timings plus the local smoke measurement — no Actions run was executed from this environment |
+| CI comparison | The PR's test job was observed (run `41815632247`); the publish job is derived, because a pull request cannot reach it |
 
 The ETL pairing matters. Three dry runs of the *unchanged* code on this host produced 158.4 s
 (P0-1), 178.7 s and 175.0 s. The spread is the sources and the network, not the code, so an
@@ -72,25 +72,38 @@ which moves with the source's response time.
 
 ## CI
 
-| | P0-1 (observed) | Now |
-|---|---:|---:|
-| Test job | 10.3 min | 10.3 min, plus cache (unmeasured locally) |
-| Publish job | 9.7 min | **~2.5–3.0 min (derived)** |
-| — of which the live browser step | **8.40 min** | **1.0–1.5 min (derived)** |
-| Push to `main`, total | **20.3 min** | **~12.5–13.5 min (derived)** |
-| Smoke suite, 10 tests, local | — | **1.2–1.8 min** (two runs, `vite preview`, 3 workers) |
-| `story.spec.js`, 2 workers | — | **456 s** (measured) |
-| `story.spec.js`, 4 workers | — | **544 s** (measured) |
+The PR run ([#155](https://github.com/jerryyuan1996/BESS-research-platform/pull/155), run
+`41815632247`) exercised the test job. A pull request cannot reach the publish job, so the post-deploy
+half is still an estimate — the only step this change actually removes.
 
-**The CI column on the right is arithmetic, not observation.** The GitHub connector required
-authorisation from this environment, so no workflow was dispatched. The estimate takes P0-1's
-measured live step (8.40 min), replaces it with the locally measured smoke run (1.2–1.8 min) scaled by the 2–3×
-speed difference P0-1 observed between this laptop and the runner, and keeps every other step as
-measured. The first push replaces the estimate with the job summary's own numbers.
+| | P0-1 (observed) | This PR run (observed) | After the change (publish side) |
+|---|---:|---:|---:|
+| Test job, whole | 10.3 min | **13.45 min** | unchanged gates |
+| — `npm test` | 3.32 min | 4.5 min | — |
+| — build | 0.22 min | 0.3 min | — |
+| — scans and budgets | 0.07 min | 0.1 min | — |
+| — install Chromium | 0.23 min | 0.2 min | — |
+| — full E2E | 6.25 min | 8.1 min | unchanged |
+| — `etl:verify`, evidence, summary | — | 0.1 min | — |
+| Publish job | 9.7 min | not exercised | **~2.5–3.0 min (derived)** |
+| — live browser step | **8.40 min** | not exercised | **1.0–1.5 min (derived)** |
+| Push to `main`, total | **20.3 min** | — | **~15–16 min (derived)** |
+| Smoke suite, 10 tests, local | — | — | **1.2–1.8 min** (two runs, `vite preview`) |
+| `story.spec.js`, 2 workers | — | — | **456 s** (measured) |
+| `story.spec.js`, 4 workers | — | — | **544 s** (measured) |
 
-The npm cache is not measurable from here at all: it saves download time on a runner with a warm
-cache, and locally `npm ci` was already using a populated cache. It is included because it is
-standard, free, and keyed on the lockfile — not because a number justified it.
+**The test job took 3 minutes longer than in P0-1, and none of it is this change.** The full E2E step
+alone went from 6.25 to 8.1 min and `npm test` from 3.32 to 4.5, on gates that were not touched — the
+runner was simply slower that hour. The comparison that matters is within this run: the pre-deploy
+side is dominated by two steps, the unit suite and the browser suite, and both are unchanged.
+
+**The publish side is still derived.** It replaces P0-1's measured 8.40-minute live step with the
+locally measured smoke run (1.2–1.8 min) scaled by the 2–3× speed difference P0-1 observed between
+this laptop and the runner. The first merge to `main` replaces the estimate with the job summary's own
+number; the deploy job's `production smoke` line is the one to read.
+
+The npm cache is not separately measurable: `npm ci` took 0.1 min with it. On the same run the cache
+is keyed on the lockfile and either hits or misses; either way it cannot make an install slower.
 
 ## What did not help, and what was rejected
 
@@ -108,7 +121,7 @@ standard, free, and keyed on the lockfile — not because a number justified it.
 | 1 | JEPX download | ~79 s of a 120 s ETL run | Conditional request (`If-Modified-Since`) or parse once into three columns; the archive changes daily at most |
 | 2 | ETL post-processing (drift over 18 markets) | ~25–30 s of the run, single-threaded | Profile `detectDrift` before touching it; it is pure and could fan out |
 | 3 | `gb-eac-response` | 35 s, unchanged by concurrency | The P0-1 suggestion stands: stop refetching an unchanged archive |
-| 4 | Unit suite | 3.3–4.4 min in CI, 1,307 tests | Capture TAP and rank files; no per-file data exists |
+| 4 | Unit suite | 3.3–4.5 min in CI, 1,307 tests | Capture TAP and rank files; no per-file data exists |
 | 5 | `story.spec.js` | 7.6 min local, 6.1 min desktop in CI | Parallelise within the file, not across workers |
 | 6 | Chromium download | 0.23–0.37 min per job, twice per publish | Cache `~/.cache/ms-playwright` on the Playwright version |
 
@@ -130,8 +143,8 @@ standard, free, and keyed on the lockfile — not because a number justified it.
   uncaught exception nor a failed asset — a blank section, a wrong number — this suite will not see
   it. The trade is explicit: the full suite has already asserted those behaviours against the same
   artefact, and re-asserting them after promotion bought 8.4 minutes of nothing.
-- **The first publish after this change is the proof.** Both workstreams need one green workflow run
-  before the derived CI numbers can be called measured.
+- **The first publish after this change is the proof.** The PR run proves the test job, the timing
+  wrapper and the summary; the publish half stays derived until one merge to `main` exercises it.
 
 ## Next priorities
 
