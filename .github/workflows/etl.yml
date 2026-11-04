@@ -113,6 +113,11 @@ jobs:
     # their own job. Nor when a scout pass was asked for by hand.
     if: github.event.schedule != '43 5 2 * *' && github.event.schedule != '7 6 3 * *' && github.event.schedule != '23 4 1 * *' && github.event.schedule != '7 23 * * 0' && inputs.scout_region == '' && inputs.weekly_briefing != true
     runs-on: ubuntu-latest
+    # The ETL step records its wall time through scripts/ci/timed.mjs, and the
+    # job summary prints it beside the drift report. ETL duration is otherwise
+    # only visible by reading etl/out/summary.json out of the artifact.
+    env:
+      CI_TIMINGS_FILE: ${{ runner.temp }}/ci-timings.tsv
     outputs:
       material: ${{ steps.drift.outputs.material }}
       committed: ${{ steps.commit.outputs.committed }}
@@ -123,6 +128,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - run: npm ci
 
@@ -138,11 +144,14 @@ jobs:
         # One command. Industry news used to need a second, separate invocation
         # because it was not a catalogue dataset; it is now, so `run.mjs` covers
         # it along with everything else and `--only` can select it by id.
+        #
+        # Timed, not changed: the same two invocations as before, behind a
+        # wrapper that records the duration for the job summary.
         run: |
           if [ -n "${{ inputs.only }}" ]; then
-            node etl/run.mjs --only "${{ inputs.only }}"
+            node scripts/ci/timed.mjs "etl fetch" -- node etl/run.mjs --only "${{ inputs.only }}"
           else
-            node etl/run.mjs
+            node scripts/ci/timed.mjs "etl fetch" -- node etl/run.mjs
           fi
 
       - name: Apply rules
@@ -260,6 +269,7 @@ jobs:
 
       - name: Reports to the job summary
         run: |
+          node scripts/ci/summary.mjs --title "Live data — refresh"
           cat etl/out/drift-report.md >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           if [ -f etl/out/rules-report.md ]; then cat etl/out/rules-report.md >> "$GITHUB_STEP_SUMMARY"; fi
@@ -304,6 +314,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - run: npm ci
 
@@ -403,6 +414,7 @@ jobs:
         if: env.ANTHROPIC_API_KEY != ''
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - run: npm ci
         if: env.ANTHROPIC_API_KEY != ''
@@ -493,6 +505,7 @@ jobs:
         if: env.ANTHROPIC_API_KEY != ''
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - run: npm ci
         if: env.ANTHROPIC_API_KEY != ''
@@ -663,6 +676,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - run: npm ci
 

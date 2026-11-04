@@ -11,6 +11,8 @@
     "//test": "Scoped globs on purpose. A bare `node --test` discovers every *.test.js under the working tree, including archived copies in tmp/, .tmp/, .claude/worktrees/ and local-data/ backups — those import modules that no longer exist and fail the suite for reasons unrelated to this branch. New test directories must be added here deliberately.",
     "test": "node --test \"tests/**/*.test.js\" \"tests/**/*.test.mjs\" \"etl/tests/**/*.test.mjs\"",
     "test:e2e": "playwright test",
+    "//test:smoke": "The production smoke suite: six routes, structural assertions, both viewports. Runs after a publish against PLATFORM_TEST_BASE_URL; locally it previews the built site. Never the dev server — see AGENTS.md.",
+    "test:smoke": "playwright test --config=playwright.smoke.config.js",
     "test:structural": "node --test tests/registry.test.js tests/governance.test.js tests/finance.test.js",
     "test:bundle": "node --test tests/bundle-confidentiality.test.js",
     "test:budget": "node --test tests/bundle-budget.test.js",

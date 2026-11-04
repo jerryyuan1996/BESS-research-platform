@@ -46,6 +46,11 @@ jobs:
   test:
     name: Tests and governance gates
     runs-on: ubuntu-latest
+    # Every gate below runs through scripts/ci/timed.mjs, which appends a label,
+    # a duration and an exit code here. The summary step at the end renders it.
+    # runner.temp is per job, so the deploy job's file never mixes with this one.
+    env:
+      CI_TIMINGS_FILE: ${{ runner.temp }}/ci-timings.tsv
     steps:
       # When called from etl.yml, github.sha is the commit the ETL run STARTED
       # on — the one before the data it just pushed. inputs.ref is the data
@@ -58,6 +63,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+          # Keyed on package-lock.json. `npm ci` stays as it is: the cache saves
+          # the download, not the install, and a lockfile mismatch still fails
+          # the step instead of silently resolving a different tree.
+          cache: 'npm'
 
       - run: npm ci
 
@@ -87,14 +96,14 @@ jobs:
       # the correct direction to fail for a private repository — the alternative
       # is a green run that scanned nothing.
       - name: Test
-        run: npm test
+        run: node scripts/ci/timed.mjs "unit and governance tests" -- npm test
         env:
           GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
           GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
           REQUIRE_MARKERS: '1'
 
       - name: Build
-        run: npm run build
+        run: node scripts/ci/timed.mjs "build" -- npm run build
 
       # The confidentiality guard asserts on the BUILD OUTPUT, so it is worthless
       # before this point — and it used to run only before this point. `npm test`
@@ -111,7 +120,7 @@ jobs:
       # moving it earlier silently disarms the last check standing between
       # confidential content and a publish.
       - name: Scan the built bundle for confidential content
-        run: npm run test:bundle
+        run: node scripts/ci/timed.mjs "confidentiality scan (dist)" -- npm run test:bundle
         env:
           SCAN_DIR: dist
           REQUIRE_OUTPUT: '1'
@@ -125,16 +134,16 @@ jobs:
       # after Build for the same reason the confidentiality scan does — there is
       # nothing to measure before it.
       - name: Check the bundle budgets
-        run: npm run test:budget
+        run: node scripts/ci/timed.mjs "bundle budgets" -- npm run test:budget
         env:
           SCAN_DIR: dist
           REQUIRE_OUTPUT: '1'
 
       - name: Install the isolated browser for page checks
-        run: npx playwright install --with-deps --no-shell chromium
+        run: node scripts/ci/timed.mjs "install chromium" -- npx playwright install --with-deps --no-shell chromium
 
       - name: Check desktop, mobile, both languages and saved cases
-        run: npm run test:e2e
+        run: node scripts/ci/timed.mjs "end-to-end suite" -- npm run test:e2e
 
       - name: Retain page-check evidence
         if: always()
@@ -148,7 +157,23 @@ jobs:
       # A hand-edited "observed" file is exactly the confusion the envelope
       # exists to prevent, so it fails the build rather than shipping.
       - name: Verify snapshot integrity
-        run: npm run etl:verify
+        run: node scripts/ci/timed.mjs "snapshot integrity" -- npm run etl:verify
+
+      # The raw timings travel to the deploy job, which reports the pre-deploy
+      # half of the workflow beside its own. A failed upload must not fail a
+      # green test job: the numbers are a report, not a gate.
+      - name: Retain the step timings
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-timings
+          path: ${{ runner.temp }}/ci-timings.tsv
+          if-no-files-found: ignore
+
+      - name: Summarise this job
+        if: always()
+        run: node scripts/ci/summary.mjs --title "CI timings — tests and gates" --artifacts page-check-evidence,ci-timings
 
   deploy:
     name: Publish the scanned artefact to Vercel
@@ -175,6 +200,8 @@ jobs:
       group: vercel-production
       cancel-in-progress: false
       queue: max
+    env:
+      CI_TIMINGS_FILE: ${{ runner.temp }}/ci-timings.tsv
     steps:
       # Belt and braces for a repository whose highest-frequency committer is a
       # bot. If the credentials are absent the job stops here with an explanation
@@ -204,11 +231,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - run: npm ci
 
       - name: Install the Vercel CLI
         run: npm install --global vercel@48.12.1
+
+      # The pre-deploy timings, so the summary can report both halves of the
+      # workflow rather than one. A missing artifact — a rerun, a partial
+      # upload — leaves the table short, not the job red.
+      - name: Collect the test job's timings
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: ci-timings
+          path: ${{ runner.temp }}/test-job-timings
 
       # Writes .vercel/project.json and the production environment into the
       # workspace. Nothing here is committed — .vercel is git-ignored.
@@ -223,7 +261,7 @@ jobs:
       # build runs the Vite build and then copies and adds to its result, so
       # dist/ and .vercel/output are not the same bytes.
       - name: Build the deployment artefact
-        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        run: node scripts/ci/timed.mjs "vercel build" -- vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -244,7 +282,7 @@ jobs:
       # skipping. Zero skips is the requirement: a skip here would be a publish
       # nothing looked at.
       - name: Scan .vercel/output for confidential content
-        run: npm run test:bundle
+        run: node scripts/ci/timed.mjs "confidentiality scan (.vercel/output)" -- npm run test:bundle
         env:
           SCAN_DIR: .vercel/output
           REQUIRE_OUTPUT: '1'
@@ -257,7 +295,7 @@ jobs:
       # scan in this workflow has ever seen — which is the exact defect this job
       # is arranged to prevent. Do not remove the flag.
       - name: Deploy
-        run: node scripts/publish-production.mjs
+        run: node scripts/ci/timed.mjs "deploy to production" -- node scripts/publish-production.mjs
         env:
           RELEASE_SHA: ${{ inputs.ref || github.sha }}
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -277,11 +315,29 @@ jobs:
           path: release-records/
           if-no-files-found: ignore
 
+      # THE LIVE CHECK IS A SMOKE CHECK, AND ONLY A SMOKE CHECK.
+      #
+      # This step used to run the whole Playwright suite again against
+      # production: 8.4 minutes of a 9.7-minute publish job, re-asserting 168
+      # behaviours that the test job had just asserted against this exact
+      # artefact. It found deployment faults, not application ones — and it
+      # could not be trusted to say the deploy had worked, because a green run
+      # says nothing about whether the domain serves the new bytes.
+      #
+      # What the live step uniquely proves is narrower: the domain answers, a
+      # deep link survives the production rewrite, the market chunks are served,
+      # and no uncaught error reaches the console. e2e-smoke/ does that in under
+      # a minute across desktop and mobile.
+      #
+      # The gate that a publish actually happened is above, in the release
+      # script: the deployment identity, readiness and `release.json` stamp are
+      # checked before promotion, and a superseded candidate records
+      # published:false and skips this step.
       - name: Check the live production pages
         run: |
           if [ -f release-records/production.json ] && node --input-type=module -e "import fs from 'node:fs'; process.exit(JSON.parse(fs.readFileSync('release-records/production.json')).published ? 0 : 1)"; then
-            npx playwright install --with-deps --no-shell chromium
-            npm run test:e2e
+            node scripts/ci/timed.mjs "install chromium" -- npx playwright install --with-deps --no-shell chromium
+            node scripts/ci/timed.mjs "production smoke" -- npm run test:smoke
           else
             echo 'Superseded candidate did not publish; live checks belong to its successor.'
           fi
@@ -296,3 +352,11 @@ jobs:
           name: live-page-check-evidence-${{ inputs.ref || github.sha }}
           path: test-results/
           if-no-files-found: ignore
+
+      - name: Summarise this job
+        if: always()
+        run: >-
+          node scripts/ci/summary.mjs
+          --title "CI timings — publish"
+          --extra "${{ runner.temp }}/test-job-timings/ci-timings.tsv"
+          --artifacts production-release-${{ inputs.ref || github.sha }},live-page-check-evidence-${{ inputs.ref || github.sha }}
