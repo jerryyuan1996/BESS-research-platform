@@ -173,8 +173,34 @@ const BUDGET = {
      SAUDI ARABIA 16 AND SPAIN 20 (2026-10-29), ungraded: measured 13.79 and
      17.57. Saudi Arabia carries no Lab and no merchant derivation. */
   markets: {
+    /* A market that fetches its sections per tab (docs/p1-sections-pilot.md)
+       holds only its data, its source register, its view and its ledger. The
+       NEM's thirteen sections left this chunk on 2026-11-04: measured 117.42
+       before the pilot and 23.93 after, with the sections in chunks of their
+       own under `sections` below. Ratcheted from 132 to 30 in the same change —
+       the room is for the dataset, not for analysis that has drifted back in. */
     sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 100,
-    pl: 101, jp: 127, nem: 132, gb: 144, ie: 149, wa: 207,
+    pl: 101, jp: 127, nem: 30, gb: 144, ie: 149, wa: 207,
+  },
+
+  /* A market's sections, when it fetches them one at a time.
+
+     This is the OTHER side of the split, and it is here so the pilot cannot
+     claim a first-load win by making every visit slower: the whole of a
+     market's analysis is capped, per market, at what it cost when it shipped
+     in one chunk plus the cost of being in pieces. Gzip has no cross-file
+     dictionary, so thirteen files compress worse than one — that overhead is
+     expected, and it is the price of not sending eleven sections to a reader
+     who opened the brief.
+
+     MEASURED for the NEM on 2026-11-04: 85.73 kB across thirteen chunks, with
+     the largest (the market story) at 12.35. Before the split the same content
+     measured 73.13 kB inside market-nem, so opening every section costs about
+     12.6 kB more than it used to and opening the landing tab costs 93 kB less.
+     `section-nem-case` and `section-nem-entry` are two short pointers to the shared
+     investment-case component and are not held to the floor. */
+  sections: {
+    nem: { total: 100, largest: 15, count: 13 },
   },
 
   /* Chunks Rollup factors out because several MARKET chunks share them. Not
@@ -220,8 +246,23 @@ const BUDGET = {
      src/markets/_shared/designAnswer.js), so the GB, WA and Japan tabs that name
      a duration say what the Brief says (guided-experience plan, PR 7). Its
      chunk is 1.63 kB gzipped. Measured 102.2 after, with the cards the page
-     used to delete at runtime now gone from source. */
-  sharedTotal: 171,
+     used to delete at runtime now gone from source.
+
+     RAISED FROM 171 TO 173 after the NEM pilot was merged with the SVG grid-map
+     rendering work of PR #156 (2026-11-04). The cap had 0.81 kB of room and TWO
+     independent changes landed on it at once:
+
+        170.19  main at b41648e
+        + 0.77  PR #156 (grid-map rendering in a shared chunk)
+        + 0.56  this pilot: the async boundary in _shared/engine.js (skeleton,
+                failure panel, stale-render token), which every market carries
+        = 171.52 measured on the merged tree
+
+     Each change alone fits inside 171; together they do not. This is a measured
+     raise with both contributors named, not a slack allowance — and it leaves
+     1.48 kB of room, so the next change here still has to justify itself.
+     See docs/p1-sections-pilot.md. */
+  sharedTotal: 173,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {
@@ -453,7 +494,12 @@ const SHARED_OUT_OF_ENTRY = {
  */
 const MUST_NOT_BE_IN_ENTRY = {
   wa: 'wa-grid-map',
-  nem: 'nem-grid-map',
+  /* The NEM's probe moved from its grid-map id to a phrase from one of its
+     sections when the sections were split out (docs/p1-sections-pilot.md): the
+     map's id now appears in the dashboard chunk as a FILENAME in Vite's
+     preload manifest, which would make the assertion below pass on a string
+     that carries no payload. */
+  nem: 'CIS shortfall share below the floor',
   gb: 'gb-grid-map',
   de: 'de-grid-map',
   it: 'it-grid-map',
@@ -500,7 +546,11 @@ async function chunks(){
        later, on demand, which is the whole point of the split. */
     const imports = new Set(
       [...text.matchAll(/(?:^|[;}\n])import(?:\s*\{[^}]*\}\s*from|\s*[\w$]+\s*from|)\s*"\.\/([^"]+\.js)"/g)].map(m => m[1]));
-    const entry = { name, raw: buf.length, gzip: gzipSync(buf).length, text, imports };
+    /* What this chunk fetches LATER, on demand. Not part of what a reader waits
+       for, which is why it is a separate set: a market's sections live here. */
+    const dynamics = new Set(
+      [...text.matchAll(/import\("\.\/([^"]+\.js)"\)/g)].map(m => m[1]));
+    const entry = { name, raw: buf.length, gzip: gzipSync(buf).length, text, imports, dynamics };
     out.byName.set(name, entry);
 
     /* NON-GREEDY, and the hash is matched by length rather than by charset.
@@ -525,6 +575,16 @@ function closure(chunk, byName, seen = new Set()){
   if (!chunk || seen.has(chunk)) return seen;
   seen.add(chunk);
   for (const name of chunk.imports) closure(byName.get(name), byName, seen);
+  return seen;
+}
+
+/** Everything a chunk can reach, static and on demand. Used only to prove that
+ *  a payload MOVED rather than vanished; a first-load assertion always uses
+ *  `closure`, which stops at the dynamic boundary. */
+function reachable(chunk, byName, seen = new Set()){
+  if (!chunk || seen.has(chunk)) return seen;
+  seen.add(chunk);
+  for (const name of [...chunk.imports, ...(chunk.dynamics || [])]) reachable(byName.get(name), byName, seen);
   return seen;
 }
 
@@ -713,7 +773,7 @@ test('each split market has its own chunk, within budget', async (t) => {
 
 test('market payloads are absent from the entry chunk, not merely duplicated', async (t) => {
   if (skipWithoutDist(t)) return;
-  const { entry, markets } = await chunks();
+  const { entry, markets, byName } = await chunks();
   assert.ok(entry, 'no entry chunk to check');
 
   for (const [id, probe] of Object.entries(MUST_NOT_BE_IN_ENTRY)){
@@ -725,11 +785,107 @@ test('market payloads are absent from the entry chunk, not merely duplicated', a
       `from the shell to src/markets/${id}/.`);
 
     const chunk = markets.get(id);
-    assert.ok(chunk?.text.includes(probe),
-      `"${probe}" is in neither the entry chunk nor market-${id}. It has not moved,\n` +
-      'it has disappeared — which means this probe is stale and the test is no\n' +
-      'longer checking anything. Pick a new one from what the market actually ships.');
+    assert.ok(chunk, `no market-${id}-*.js chunk`);
+    /* In the market chunk, or in something it fetches on demand — a market
+       that splits its own sections keeps the grid map in a section chunk. What
+       this must never do is pass because the probe was deleted. */
+    assert.ok([...reachable(chunk, byName)].some(c => c.text.includes(probe)),
+      `"${probe}" is in neither the entry chunk nor anything market-${id} loads.\n` +
+      'It has not moved, it has disappeared — which means this probe is stale and\n' +
+      'the test is no longer checking anything. Pick a new one from what the market\n' +
+      'actually ships.');
   }
+});
+
+/* ---------------------------------------------------------------------------
+   A MARKET THAT FETCHES ITS SECTIONS PER TAB.
+
+   The NEM pilot (docs/p1-sections-pilot.md) cut one 199 kB sections.js into
+   thirteen modules behind a loader. The three assertions below are what stop
+   that from being a story rather than a property:
+
+     the split is real      no section is in the landing tab's static graph, and
+                            the loader is genuinely wired to the brief
+     it is bounded          the whole of the market's analysis fits a budget,
+                            so a reader who opens everything does not pay an
+                            unbounded premium for other readers' first load
+     nothing is duplicated  a section lives in exactly one chunk; a module
+                            reachable from two places is emitted twice, which
+                            costs more than not splitting it at all
+   --------------------------------------------------------------------------- */
+test('the NEM\'s sections are fetched per tab and absent from its first load', async (t) => {
+  if (skipWithoutDist(t)) return;
+  const { markets, byName } = await chunks();
+  const nem = markets.get('nem');
+  assert.ok(nem, 'no market-nem chunk');
+
+  const first = closure(nem, byName);
+  const sections = [...byName.values()].filter(c => /^section-nem-/.test(c.name));
+
+  const { count } = BUDGET.sections.nem;
+  assert.equal(sections.length, count,
+    `expected ${count} section-nem-*.js chunks, found ${sections.length}. ` +
+    'One missing means a section went back into the dashboard chunk; one extra ' +
+    'means a section file was added without registering it in sections/registry.js.');
+
+  for (const section of sections){
+    assert.ok(!first.has(section),
+      `${section.name} is in the NEM's static graph, so the landing tab downloads it. ` +
+      'Check sections/registry.js: every entry must be `() => import(...)`, and ' +
+      'nothing else in the market may import a section module.');
+  }
+
+  /* The other half: a split that sent nothing would also pass the loop above.
+     The brief is what a reader lands on, and its chunk has to be reachable
+     from the dashboard. */
+  const onDemand = new Set([...nem.dynamics].map(name => byName.get(name)).filter(Boolean));
+  assert.ok([...onDemand].some(c => /^section-nem-case-/.test(c.name)),
+    'the dashboard does not load the brief: /markets/<slug>/case would render an empty tab');
+
+  /* The grid map moved out of the dashboard chunk in the same change. It must
+     not have moved into the first load by another route.
+     BY CHUNK NAME, not by text: the dashboard chunk legitimately carries the
+     map chunk's FILENAME in Vite's preload manifest (`__vite__mapDeps`), so a
+     string probe would report a payload that is not there. */
+  assert.ok(![...first].some(c => /^nem-grid-map-data-/.test(c.name)),
+    'the NEM grid map is in the first load again: it is imported by overview.js ' +
+    'and grid.js, and by nothing the dashboard imports at load time');
+});
+
+test('the NEM\'s whole analysis stays within its section budget', async (t) => {
+  if (skipWithoutDist(t)) return;
+  const { byName } = await chunks();
+  const { total, largest } = BUDGET.sections.nem;
+  const sections = [...byName.values()].filter(c => /^section-nem-/.test(c.name));
+  assert.ok(sections.length, 'no section chunks to measure');
+
+  const sum = sections.reduce((n, c) => n + c.gzip, 0);
+  assert.ok(kB(sum) <= total,
+    `the NEM's ${sections.length} section chunks total ${kB(sum)} kB gzipped, over ` +
+    `the ${total} kB budget. Opening every tab costs about 12.6 kB more than the ` +
+    'single chunk did, and that is expected; growth beyond it is content.');
+
+  const biggest = sections.slice().sort((a, b) => b.gzip - a.gzip)[0];
+  assert.ok(kB(biggest.gzip) <= largest,
+    `${biggest.name} is ${kB(biggest.gzip)} kB gzipped, over the ${largest} kB per-section ` +
+    'budget. A section that grows past it should be split by domain, not re-budgeted.');
+});
+
+test('no NEM section is shipped twice', async (t) => {
+  if (skipWithoutDist(t)) return;
+  const { byName } = await chunks();
+  /* A phrase that belongs to one NEM section and to no other market — the
+     lineage shares headings like "Revenue Driver Bridge" across five
+     dashboards, so a heading would report six carriers and mean nothing. Two
+     carriers of a NEM-only phrase would mean Rollup emitted the module both
+     statically and dynamically, which costs more than not splitting it. */
+  const PROBE = 'Project EnergyConnect Stage 1';
+  const holders = [...byName.values()].filter(c => c.text.includes(PROBE)).map(c => c.name);
+  assert.equal(holders.length, 1,
+    `"${PROBE}" is in ${holders.length} chunks: ${holders.join(', ') || 'none'}. ` +
+    'A section reachable from two places is shipped twice; the fix is to remove ' +
+    'the static path, not to raise a budget.');
+  assert.match(holders[0] || '', /^section-nem-grid-/, 'the grid section carries its own evidence');
 });
 
 /* ---------------------------------------------------------------------------

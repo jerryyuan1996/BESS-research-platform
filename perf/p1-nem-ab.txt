@@ -1,0 +1,27 @@
+  nem-brief … done
+  nem-story … done
+  nem-entry … done
+  nem-data … done
+
+A: C:/Users/Jerry/Downloads/p1-baseline/dist
+B: dist
+15 cold repetitions each, alternating, identity encoding
+
+route        build   ready med (p25–p75)   LCP   FCP   long tasks   req   JS decoded
+nem-brief    A       1438 (1409–1499)    896   888         718    41        1574 kB
+nem-brief    B       1479 (1391–1498)    864   852         663    42        1326 kB
+             Δ ready +41 ms, Δ JS -249 kB
+
+nem-story    A       1646 (1618–1731)   1376  1364        1108    23        1105 kB
+nem-story    B       1673 (1607–1735)   1484   808         661    27         984 kB
+             Δ ready +27 ms, Δ JS -121 kB
+
+nem-entry    A       1787 (1740–1867)   1344  1308        1168    40        1574 kB
+nem-entry    B       1784 (1701–1883)   1396   804         833    44        1425 kB
+             Δ ready -3 ms, Δ JS -150 kB
+
+nem-data     A       1406 (1381–1479)   1144  1072         819    24        1105 kB
+nem-data     B       1427 (1324–1505)    876   792         556    25         863 kB
+             Δ ready +21 ms, Δ JS -241 kB
+
+Transfer sizes are uncompressed: compare them between builds, not with the network tab.

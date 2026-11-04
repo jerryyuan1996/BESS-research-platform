@@ -1,0 +1,58 @@
+{
+  "note": "Content digest of every NEM section spec, taken from src/markets/nem/sections.js before it was split into src/markets/nem/sections/. Regenerate only when the content is meant to change. See docs/p1-sections-pilot.md.",
+  "taken": "2026-11-04",
+  "sections": {
+    "benchmark": {
+      "bytes": 13904,
+      "sha": "82c86ae9ee42a3a9"
+    },
+    "capacity": {
+      "bytes": 15682,
+      "sha": "5e06c4e382df6bf3"
+    },
+    "case": {
+      "bytes": 366,
+      "sha": "cb745b1269d40995"
+    },
+    "data": {
+      "bytes": 12695,
+      "sha": "18dc09a7f3fc7037"
+    },
+    "duration": {
+      "bytes": 12598,
+      "sha": "48d5d258177dacf0"
+    },
+    "energy": {
+      "bytes": 10903,
+      "sha": "afe14cd2ac76250b"
+    },
+    "entry": {
+      "bytes": 301,
+      "sha": "8ff311b8f11168f4"
+    },
+    "grid": {
+      "bytes": 133109,
+      "sha": "9d83e979db6d9f99"
+    },
+    "home": {
+      "bytes": 17492,
+      "sha": "356ab2db667cfdd4"
+    },
+    "pipeline": {
+      "bytes": 7338,
+      "sha": "2ee60b527643db0f"
+    },
+    "portfolio": {
+      "bytes": 6646,
+      "sha": "90e6dd42197f417b"
+    },
+    "services": {
+      "bytes": 9314,
+      "sha": "161fd3ef9380c98a"
+    },
+    "story": {
+      "bytes": 19986,
+      "sha": "25417daa5da55558"
+    }
+  }
+}

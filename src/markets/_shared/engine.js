@@ -60,13 +60,49 @@ import { createExports } from './exports.js';
  * @param {object} cfg.SRC            source register
  * @param {object} cfg.M              market dataset
  * @param {(api:object)=>Function} cfg.buildSections  returns SECTIONS()
+ * @param {(api:object, ids:string[])=>Promise<void>} [cfg.prepareSections]
+ *        load the sections a route is about to draw, before anything is drawn
  * @param {object} [cfg.textOverrides]  market-specific additions to the shared T
  */
 /** The heading the overview takes when it is stacked under the investment case. */
 const OVERVIEW_HEAD = ['Market at a glance', '市场概览'];
 
+/**
+ * What a reader sees between "this tab was asked for" and "this tab can be
+ * drawn", for a market that fetches its sections on demand.
+ *
+ * Three bars rather than a spinner, and the same element and classes the
+ * market page uses while it waits for a dashboard chunk, so the two waits look
+ * like one behaviour. It is appended only after 120 ms: a section already in
+ * memory resolves in a microtask, and a skeleton that flashes is worse than no
+ * skeleton at all.
+ */
+function sectionSkeleton(){
+  return h('div', {
+    class: 'dash-skeleton', 'aria-busy': 'true', 'aria-label': L(['Loading this section', '正在加载本节']),
+  }, h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' }));
+}
+
+/**
+ * A section chunk that would not load.
+ *
+ * The realistic cause is not a network blip: a redeploy replaces hashed file
+ * names, and a tab that was open across one asks for bytes that no longer
+ * exist. That is recoverable by reloading, and the reader is told so rather
+ * than left with a heading and nothing under it.
+ */
+function renderSectionFailure(main, err){
+  console.error('[market] section chunk failed to load:', err);
+  main.append(h('div', { class: 'warnbox' }, L([
+    'This section could not be loaded. The most likely cause is that the site was updated while this page was open, which replaces the files this tab was going to request. Reloading fixes that.',
+    '本节加载失败。最可能的原因是本页打开期间站点已更新，导致本标签页请求的文件已被替换。刷新即可解决。',
+  ])));
+  main.append(h('div', {}, h('button', { class: 'btn', onclick: () => window.location.reload() },
+    L(['Reload the page', '刷新页面']))));
+}
+
 export function createMarketEngine(cfg){
-  const { MKT, TABS, SRC, buildSections, textOverrides, regions } = cfg;
+  const { MKT, TABS, SRC, buildSections, textOverrides, regions, prepareSections } = cfg;
 
   /* The sponsor's buying position is applied HERE rather than in each market's
      data.js, for the same reason the registry applies it rather than each
@@ -100,6 +136,9 @@ export function createMarketEngine(cfg){
   let basePath = '';
   /* The registry, captured on the first render. See api.marketEntry(). */
   let registry = null;
+  /* Which render's section load is still current. See the async boundary in
+     dashboard(). */
+  let sectionToken = 0;
 
   let regionValue = REGIONS ? REGIONS[0][0] : null;
 
@@ -171,6 +210,14 @@ export function createMarketEngine(cfg){
     marketEntry: () => (registry || []).find(m => basePath === '/markets/' + m.manifest.slug) || null,
   };
 
+  /* A market that splits its sections into chunks says how to fetch them.
+     Absent for every market in the synchronous lineage — GB, IE, RO, PL, WA,
+     Japan — and then nothing about dashboard() changes: no await is taken, no
+     skeleton is inserted and no token is read, because PREPARE is null. */
+  const PREPARE = typeof prepareSections === 'function'
+    ? (ids) => prepareSections(api, ids)
+    : null;
+
   // Markets supply SECTIONS() as a function so every string re-evaluates per language.
   const SECTIONS = buildSections(api);
 
@@ -233,8 +280,13 @@ export function createMarketEngine(cfg){
    * @param {HTMLElement} container
    * @param {{tabId:string|null, basePath:string, region?:string|null}} route
    * @param {Array} allMarkets  registry, for the application nav row
+   *
+   * Async only for a market that fetches its sections; for every other market
+   * the body runs straight through, as it always did, and the returned promise
+   * is resolved by the time the caller sees it. marketPage.js ignores the
+   * return value either way.
    */
-  function dashboard(container, route, allMarkets){
+  async function dashboard(container, route, allMarkets){
     registry = allMarkets;
     basePath = route.basePath;
     /* Where the address lands: one of seven tabs, holding one section or
@@ -272,7 +324,60 @@ export function createMarketEngine(cfg){
     const main = h('div');
     container.append(main);
 
+    /* The footer closes the page on every path, including the two that draw no
+       section, so it is built once and appended wherever dashboard() ends. */
+    const footerLine = () => renderFooter([
+      L(['Model version: ', '模型版本：']) + M.modelVersion + ' · ' + L(MKT.tzNote) + ' · ' + L(M.footerNote),
+    ]);
+
+    /* -----------------------------------------------------------------------
+       THE ASYNC BOUNDARY.
+
+       Everything above this line is the page's chrome and is drawn from the
+       manifest, which every market carries eagerly: a reader who asks for a
+       tab sees its header, its tab strip and its market nav immediately. Only
+       the sections are fetched, and only the ones this route draws.
+
+       The token guards the third state in the gap. Between the request and the
+       resolve the reader may have changed tab, changed language, pressed back
+       or opened another market; the engine's state and this container then
+       belong to a different page. Drawing then puts the previous route's
+       sections under the current address, which is the failure a cache makes
+       easy and a test hard to see. The counter makes the check unconditional.
+
+       A PREPARE that throws is a chunk that 404'd — a real case, because a
+       redeploy replaces hashed names. It is reported in place, with a reload,
+       rather than thrown into the router's console.
+       ----------------------------------------------------------------------- */
+    if (PREPARE){
+      const token = ++sectionToken;
+      let pending;
+      try { pending = PREPARE(where.sections); }
+      catch (err){ renderSectionFailure(main, err); container.append(footerLine()); return; }
+
+      const timer = setTimeout(() => {
+        if (token === sectionToken && !main.firstChild) main.append(sectionSkeleton());
+      }, 120);
+
+      try { await pending; }
+      catch (err){
+        clearTimeout(timer);
+        if (token !== sectionToken) return;
+        renderSectionFailure(main, err);
+        container.append(footerLine());
+        return;
+      }
+      clearTimeout(timer);
+      if (token !== sectionToken) return;
+      main.replaceChildren();
+    }
+
     const S_ = SECTIONS();
+    /* summaryPicks reads what has been loaded for this route, not the whole
+       market. That is exact for the NEM, where no section outside `home` holds
+       an `ic` block and `home` is only drawn on the tab that loads it; the
+       investment-case summary, which needs the house view wherever it is shown,
+       loads home and story itself before asking. See docs/p1-sections-pilot.md. */
     const picks = summaryPicks(S_);
     /* The orientation is lifted out where the story is split into panels
        (components/pageEnhancements.js), which keys on that card. */
@@ -295,9 +400,7 @@ export function createMarketEngine(cfg){
         marketId: MKT.id, tabId: id,
       }),
     });
-    container.append(renderFooter([
-      L(['Model version: ', '模型版本：']) + M.modelVersion + ' · ' + L(MKT.tzNote) + ' · ' + L(M.footerNote),
-    ]));
+    container.append(footerLine());
   }
 
   // Reuse the full research's own blocks in the investor overview. No copied

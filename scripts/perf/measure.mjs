@@ -28,7 +28,8 @@
      --port <n>      preview server port (default 4188)
      --runs <n>      cold/warm repetitions per route (default 3; the median
                      repetition is reported, with min/max alongside it)
-     --routes <ids>  comma-separated subset of home,gb,wa,gb-grid,returns
+     --routes <ids>  comma-separated subset of home,gb,wa,gb-grid,returns,
+                     nem,nem-story,nem-entry,nem-data
 
    On a host that intercepts recursive deletes (the WorkBuddy sandbox does),
    Vite cannot empty dist/. Prefix the command with
@@ -279,6 +280,21 @@ const ROUTES = [
     note:'the GB transmission map, the largest SVG network' },
   { id:'returns', path:'/returns', ready:'.ix-results tbody tr',
     note:'the comparison engine and league table' },
+  /* The National Electricity Market, measured section by section (P1 pilot,
+     docs/p1-sections-pilot.md). A bare /markets/<slug> is the investment-case
+     experience, not the dashboard; the dashboard's landing tab is /case. Both
+     are measured, because both are ways a reader arrives. Deep links are typed
+     in rather than clicked, which is the case the section loader must get right. */
+  { id:'nem', path:'/markets/nem', ready:'.ix-decision-panel',
+    note:'the investment-case experience, the address a reader usually lands on' },
+  { id:'nem-brief', path:'/markets/nem/case', ready:'.tab-section[data-section="case"] .sect',
+    note:'the dashboard landing tab — the brief alone' },
+  { id:'nem-story', path:'/markets/nem/story', ready:'.tab-section[data-section="home"] .card',
+    note:'overview and market story, stacked' },
+  { id:'nem-entry', path:'/markets/nem/entry', ready:'.tab-section[data-section="grid"] .geo-grid-map svg',
+    note:'entry and delivery: the ledger, then the grid map' },
+  { id:'nem-data', path:'/markets/nem/data', ready:'.tab-section[data-section="data"] .sect',
+    note:'an old address, resolved to the evidence tab' },
 ];
 
 /* Registered before any page script runs: LCP, CLS and long tasks are only
