@@ -213,6 +213,44 @@ The run exits non-zero only when the *pipeline* is broken — a boundary violati
 A source being down exits zero, because that is a normal Tuesday, and a red cron every time an
 upstream regulator reboots trains everyone to ignore it.
 
+### Concurrency
+
+Datasets run through a small pool, not one at a time and not all at once. Two limits apply:
+
+| Limit | Default | Set by |
+|---|---:|---|
+| Datasets in flight, overall | 3 | `ETL_CONCURRENCY` (1–8; above 8 is clamped and reported) |
+| Datasets in flight, per provider | 1 | `ETL_PROVIDER_CONCURRENCY=jepx=2,entsoe=2` |
+
+Per-provider defaults to one because a provider is the unit a rate limit is expressed in. Two
+providers are declared in `etl/lib/concurrency.mjs` rather than defaulted:
+
+- **`jepx` — 3.** Three area prices published as static CSV files: no key, no published rate limit.
+  The three datasets read the same two fiscal-year archives, and the connector now fetches each file
+  once per run and shares it, so running them together makes *fewer* requests than running them in
+  sequence (two instead of six).
+- **`fingrid` — pinned at 1, and not configurable.** The starter key allows about one request every
+  two seconds and answers 429 beyond it; the connector spaces its own requests with a module-level
+  clock that two concurrent datasets would race. `ETL_PROVIDER_CONCURRENCY=fingrid=…` is ignored with
+  a warning.
+
+A provider whose allowance is used up does not hold a global slot: the scheduler skips it and starts
+the next dataset whose provider has capacity. That is the difference between a pool and a batch.
+
+**Concurrency is an execution detail.** Results are assembled in catalogue order, the per-dataset
+report is printed in catalogue order, and drift detection runs only after every selected dataset has
+settled. A dataset that fails is recorded and the rest continue; a source being down cannot cancel an
+unrelated one.
+
+Each run writes what the pool was allowed to do and what it did:
+
+```json
+"concurrency": { "global": 3, "maxObserved": 3, "providers": { "jepx": 3, "fingrid": 1, "ecb": 1 } }
+```
+
+`maxObserved` below `global` means the provider limits are the binding constraint, not the pool. That
+is the number to read before raising anything.
+
 ### Backfill is incremental
 
 Several sources publish one file per trading day. Rebuilding a year of history every six hours would

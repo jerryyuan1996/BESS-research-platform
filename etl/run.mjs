@@ -2,7 +2,7 @@
 /* ---------------------------------------------------------------------------
    THE ETL RUN.
 
-       for each dataset in the catalogue
+       for each dataset in the catalogue, a few at a time
          load the snapshot currently on disk
          fetch from the source
          validate the result
@@ -10,6 +10,13 @@
        detect drift against the approved assumptions
        write the drift report
        emit a pull-request body if anything is material
+
+   A few at a time, not all at once. The pool is bounded globally and again per
+   provider — see etl/lib/concurrency.mjs for why both limits exist and what the
+   two pinned providers are. The rule that matters here is that concurrency is
+   an execution detail: results come back in catalogue order, so the report, the
+   drift findings and the published files are identical to a sequential run.
+   Nothing downstream may depend on which dataset finished first.
 
    Failure policy, which is the part worth reading: a dataset that fails does not
    fail the run, and never causes a bad snapshot to be published. The previous
@@ -25,10 +32,15 @@
      node etl/run.mjs                 all datasets
      node etl/run.mjs --only gb-day-ahead,fx-ecb
      node etl/run.mjs --dry-run       fetch and validate, write nothing
+
+   Concurrency:
+     ETL_CONCURRENCY=3                datasets in flight (default 3, max 8)
+     ETL_PROVIDER_CONCURRENCY=jepx=2  per-provider overrides
    --------------------------------------------------------------------------- */
 import { writeFile, mkdir } from 'node:fs/promises';
 import { performance } from 'node:perf_hooks';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 import { DATASETS, snapshotFile, summaryFile } from '../src/governance/datasets.js';
 import { markets } from '../src/markets/registry.js';
@@ -40,6 +52,7 @@ import { arbitrageRevenuePerMW } from '../src/derive/merchantBridge.js';
 import { MIN_WINDOW_DAYS } from '../src/governance/automation.js';
 import { detectDrift } from './drift/detect.mjs';
 import { renderDriftReport, renderPullRequestBody } from './drift/report.mjs';
+import { readConcurrencyConfig, runWithConcurrency, providerLimit } from './lib/concurrency.mjs';
 
 /* Connectors are imported statically so that a typo in a catalogue entry is a
    startup error rather than a runtime surprise three hours into a cron run. */
@@ -71,13 +84,58 @@ const argv = process.argv.slice(2);
 const DRY_RUN = argv.includes('--dry-run');
 const ONLY = (() => {
   const i = argv.indexOf('--only');
-  return i >= 0 && argv[i + 1] ? new Set(argv[i + 1].split(',').map(s => s.trim())) : null;
+  return i >= 0 && argv[i + 1] ? argv[i + 1] : null;
 })();
 
-const log = (msg) => process.stdout.write(msg + '\n');
+/**
+ * Apply `--only`.
+ *
+ * A blank value means the whole catalogue, as the workflow's dispatch input
+ * documents. An id that matches nothing selects nothing: a typo in a dispatch
+ * input must fail visibly as an empty run, never fall back to fetching
+ * everything.
+ */
+export function selectDatasets(datasets, only = null){
+  const wanted = new Set(String(only ?? '').split(',').map(s => s.trim()).filter(Boolean));
+  if (wanted.size === 0) return datasets.slice();
+  return datasets.filter(d => wanted.has(d.id));
+}
 
-async function runDataset(dataset, now){
-  const connector = CONNECTORS[dataset.connector];
+const stdout = (msg) => process.stdout.write(msg + '\n');
+const log = stdout;
+
+/** One duration, in the unit a reader can scan. Exact milliseconds stay in summary.json. */
+const formatDuration = (ms) => ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${Math.round(ms)} ms`;
+
+/**
+ * Print a dataset's outcome, then anything its connector logged while fetching.
+ *
+ * Connector messages are buffered per dataset rather than written straight to
+ * stdout: three datasets run at once, and an unbuffered retry line would land in
+ * the middle of another dataset's status block. Each block is emitted
+ * synchronously when that dataset settles, so a block is never interleaved —
+ * the blocks themselves arrive in completion order, which is why the run also
+ * prints the catalogue-ordered table at the end.
+ */
+function reportResult(result, lines, write){
+  const { dataset } = result;
+  write(`▸ ${dataset.id} · ${dataset.connector} · ${formatDuration(result.durationMs ?? 0)}`);
+
+  const points = result.snapshot?.series?.length ?? 0;
+  switch (result.status){
+    case 'written':   write(`  ${result.detail} — ${points} points`); break;
+    case 'unchanged': write(`  unchanged (${result.detail}) — ${points} points`); break;
+    case 'dry-run':   write(`  validated, not written — ${points} points`); break;
+    case 'skipped':   write(`  skipped: ${result.error}`); break;
+    case 'invalid':   write(`  NOT PUBLISHED — previous snapshot retained`); break;
+    default:          write(`  failed: ${result.error}`); break;
+  }
+  for (const line of lines) write(`    ${line}`);
+  write('');
+}
+
+async function runDataset(dataset, now, { connectors = CONNECTORS, log = stdout, dryRun = DRY_RUN } = {}){
+  const connector = connectors[dataset.connector];
   if (!connector?.fetchDataset){
     return { dataset, status: 'error', error: `no connector "${dataset.connector}"` };
   }
@@ -136,7 +194,7 @@ async function runDataset(dataset, now){
     summary = buildSummary(snapshot, null, {});
   }
 
-  if (DRY_RUN){
+  if (dryRun){
     return { dataset, status: 'dry-run', snapshot, summary, observations };
   }
 
@@ -160,38 +218,101 @@ async function runDataset(dataset, now){
   };
 }
 
+/**
+ * Run a set of datasets through the pool.
+ *
+ * Exported so the tests can drive the real executor with fake connectors and a
+ * fixed clock. Everything that decides what is published — validation, summary
+ * derivation, the write boundary, the failure policy — is the same code path the
+ * scheduled run uses; only the connectors and the concurrency setting differ.
+ *
+ * @param {object}   args
+ * @param {Array}    args.datasets
+ * @param {object}   [args.connectors]  connector id → module
+ * @param {boolean}  [args.dryRun]
+ * @param {string}   [args.now]         ISO instant, injected for reproducible tests
+ * @param {object}   [args.env]
+ * @param {Function} [args.log]
+ * @returns {Promise<{results:Array, config:object, maxObserved:number}>}
+ */
+export async function runSelection({
+  datasets, connectors = CONNECTORS, dryRun = DRY_RUN, now = new Date().toISOString(),
+  env = process.env, log = stdout,
+} = {}){
+  const config = readConcurrencyConfig(env, { knownProviders: Object.keys(connectors) });
+  /* A typo in a repository variable must not stop the day's data. It is
+     reported, the default is used, and the run continues. */
+  for (const warning of config.warnings) log(`  warn: ${warning}`);
+  if (config.warnings.length > 0) log('');
+
+  const tasks = datasets.map(dataset => ({
+    provider: dataset.connector,
+    run: async () => {
+      const startedAt = performance.now();
+      const lines = [];
+      const buffered = (msg) => lines.push(String(msg));
+
+      let result;
+      try {
+        result = await runDataset(dataset, now, { connectors, log: buffered, dryRun });
+      } catch (err){
+        /* runDataset handles source failures itself; reaching here means a bug
+           or a boundary violation. Record it against this dataset and let the
+           others finish — one bad dataset must not cancel the run. */
+        result = { dataset, status: 'error', error: err?.message ?? String(err) };
+      }
+
+      /* Wall time for this dataset, including the fetch. It is recorded rather
+         than guessed: the slowest source is an operational fact, and the six-
+         hourly schedule has a budget it can only be measured against. The clock
+         starts when the pool starts this task, so queue time is not attributed
+         to the source. */
+      result.durationMs = Math.round(performance.now() - startedAt);
+      reportResult(result, lines, log);
+      return result;
+    },
+  }));
+
+  const { results, maxObserved } = await runWithConcurrency(tasks, config);
+
+  return {
+    config,
+    maxObserved,
+    /* Catalogue order, not completion order. A dataset that failed to run at
+       all still occupies its slot, so the report has one row per selected
+       dataset and downstream code can index results against `datasets`. */
+    results: results.map((outcome, i) => outcome.ok
+      ? outcome.value
+      : { dataset: datasets[i], status: 'error', error: outcome.error.message, durationMs: 0 }),
+  };
+}
+
+/** The deterministic recap: one row per dataset, in catalogue order. */
+function printOrderedResults(results){
+  const idWidth = Math.max(...results.map(r => r.dataset.id.length), 7);
+  const connectorWidth = Math.max(...results.map(r => r.dataset.connector.length), 9);
+
+  log('Result, in catalogue order:');
+  for (const r of results){
+    const points = `${r.snapshot?.series?.length ?? 0} pts`.padStart(8);
+    log(`  ${r.dataset.id.padEnd(idWidth)}  ${r.dataset.connector.padEnd(connectorWidth)}` +
+        `  ${r.status.padEnd(10)}${points}  ${formatDuration(r.durationMs ?? 0).padStart(7)}`);
+  }
+  log('');
+}
+
 async function main(){
   const now = new Date().toISOString();
   const runStarted = performance.now();
-  const selected = DATASETS.filter(d => !ONLY || ONLY.has(d.id));
+  const selected = selectDatasets(DATASETS, ONLY);
 
   log(`ETL run — ${now}`);
   log(`${selected.length} dataset(s)${DRY_RUN ? ' — DRY RUN, nothing will be written' : ''}`);
   log('');
 
-  const results = [];
-  for (const dataset of selected){
-    log(`▸ ${dataset.id}`);
-    const datasetStarted = performance.now();
-    const r = await runDataset(dataset, now);
-    /* Wall time for this dataset, including the fetch. It is recorded rather
-       than guessed: the slowest source is an operational fact, and the six-
-       hourly schedule has a budget it can only be measured against. */
-    r.durationMs = Math.round(performance.now() - datasetStarted);
-    results.push(r);
+  const { results, config, maxObserved } = await runSelection({ datasets: selected, dryRun: DRY_RUN, now });
 
-    const points = r.snapshot?.series?.length ?? 0;
-    switch (r.status){
-      case 'written':   log(`  ${r.detail} — ${points} points`); break;
-      case 'unchanged': log(`  unchanged (${r.detail}) — ${points} points`); break;
-      case 'dry-run':   log(`  validated, not written — ${points} points`); break;
-      case 'skipped':   log(`  skipped: ${r.error}`); break;
-      case 'invalid':   log(`  NOT PUBLISHED — previous snapshot retained`); break;
-      default:          log(`  failed: ${r.error}`); break;
-    }
-    log(`  ${r.durationMs} ms`);
-    log('');
-  }
+  printOrderedResults(results);
 
   // ---- drift ---------------------------------------------------------------
   log('Detecting drift against approved assumptions…');
@@ -279,13 +400,36 @@ async function main(){
       durationMs: r.durationMs,
       points: r.snapshot?.series?.length ?? 0,
     })),
+    /* What the pool was allowed to do and what it actually did. `maxObserved`
+       is the load-bearing one: a configured limit of 3 proves nothing if every
+       provider is capped at 1, and this is the number that distinguishes the
+       two. Configuration values only — no URL, no credential. */
+    concurrency: {
+      global: config.global,
+      maxObserved,
+      /* The limits that actually applied, defaults included — a summary that
+         listed only the environment overrides would hide the two provider
+         rules that matter most. */
+      providers: Object.fromEntries(
+        [...new Set(selected.map(d => d.connector))].sort()
+          .map(id => [id, providerLimit(id, config.providers)])),
+    },
   };
   await writeFile(path.join(outDir, 'summary.json'), JSON.stringify(summary, null, 2) + '\n', 'utf8');
-  log(`Run time ${(summary.durationMs / 1000).toFixed(1)} s — per-dataset timings in etl/out/summary.json`);
+  log(`Run time ${(summary.durationMs / 1000).toFixed(1)} s — concurrency ` +
+      `${summary.concurrency.global} global, ${maxObserved} observed — per-dataset timings in etl/out/summary.json`);
 }
 
-main().catch(err => {
-  // Only a pipeline fault reaches here. Sources failing are handled above.
-  console.error('\nETL run aborted:', err?.stack || err);
-  process.exit(1);
-});
+/* Only run when executed, not when imported. The tests import runSelection()
+   to drive the real executor; without this guard, importing the module would
+   start a live ETL run over the network. */
+const invokedDirectly = process.argv[1]
+  && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;
+
+if (invokedDirectly){
+  main().catch(err => {
+    // Only a pipeline fault reaches here. Sources failing are handled above.
+    console.error('\nETL run aborted:', err?.stack || err);
+    process.exit(1);
+  });
+}
