@@ -248,15 +248,21 @@ const BUDGET = {
      chunk is 1.63 kB gzipped. Measured 102.2 after, with the cards the page
      used to delete at runtime now gone from source.
 
-     HELD AT 171 for the NEM section pilot (2026-11-04). Measured 170.19 before
-     the change and 170.75 after: +0.56, all of it the async boundary in
-     src/markets/_shared/engine.js (skeleton, failure panel, stale-render token),
-     which every market that loads the engine now carries. The grid-map registry
-     did not move into this budget — the NEM's section chunks load it on demand,
-     so it is not in any market's static closure. The cap holds with 0.25 kB to
-     spare, and that is worth knowing before the next change here.
+     RAISED FROM 171 TO 173 after the NEM pilot was merged with the SVG grid-map
+     rendering work of PR #156 (2026-11-04). The cap had 0.81 kB of room and TWO
+     independent changes landed on it at once:
+
+        170.19  main at b41648e
+        + 0.77  PR #156 (grid-map rendering in a shared chunk)
+        + 0.56  this pilot: the async boundary in _shared/engine.js (skeleton,
+                failure panel, stale-render token), which every market carries
+        = 171.52 measured on the merged tree
+
+     Each change alone fits inside 171; together they do not. This is a measured
+     raise with both contributors named, not a slack allowance — and it leaves
+     1.48 kB of room, so the next change here still has to justify itself.
      See docs/p1-sections-pilot.md. */
-  sharedTotal: 171,
+  sharedTotal: 173,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {

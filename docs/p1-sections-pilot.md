@@ -203,9 +203,18 @@ the NEM's thirteen section chunks are absent from the dashboard chunk's static
 graph, that the loader is genuinely wired to the brief, that the grid map is not
 in the first load either, that no section is shipped twice, and that the whole
 set stays inside a 100 kB budget with no chunk over 15 kB. `market-nem`'s budget
-was ratcheted **132 → 30**. `sharedTotal` was **left at 171**: measured 170.19
-before and 170.75 after, the 0.56 being the async boundary in `_shared/engine.js`
-that every market now carries, and inside a cap with 0.25 kB to spare.
+was ratcheted **132 → 30**. `sharedTotal` measured 170.19 before and 170.75 on
+this branch alone — the 0.56 being the async boundary in `_shared/engine.js` that
+every market now carries — which fits the 171 cap with 0.25 kB to spare.
+
+**Post-merge adjustment.** PR #156 (SVG grid-map rendering) reached `main` while
+this PR was open and added 0.77 kB to the same shared budget. On the merged tree
+`sharedTotal` measures **171.52**: each change alone fits inside 171, together
+they do not, so the cap was raised **171 → 173** with both contributions spelled
+out in the test rather than as a slack allowance. The merged `market-nem` chunk
+measures 24.50 kB; the 23.93 in the table is this branch against `b41648e`,
+before #156 landed. Both figures are from real builds — the difference is chunk
+grouping, not content.
 
 **Navigation does not become slower, and that is all the timing rig can say.**
 The comparison runs both builds in one process, alternating, against the same
