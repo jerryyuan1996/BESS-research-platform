@@ -1,0 +1,11 @@
+/* ASSET-CAISO-BA: original simplified tracing in source-page pixel space.
+   No site coordinates, area calculation or network-capacity meaning. */
+export const MAP={
+ sourceUrl:'https://www.caiso.com/documents/presentation-tribal-engagement-on-long-term-transmission-planning-apr-09-2026.pdf',
+ locator:'Tribal Engagement on Long-term Transmission Planning, 9 April 2026, printed page 9, CAISO Balancing Authority (BA), orange California ISO area; original simplified outer ring and excluded-area holes',
+ vintage:'2026-04-09',checkedOn:'2026-11-03',
+ attribution:'Geographic reference: California ISO, public presentation, 9 April 2026, p. 9. Original approximate schematic; not a service-territory determination.',
+ licence:'Original schematic geometry from geographic facts in the credited public reference; no source image is redistributed. California ISO public/proprietary notices retained through attribution.',
+ precision:'approximate',scope:'CAISO balancing area',viewBox:'900 200 500 620',
+ balancingArea:'M947 252 L974 258 978 277 992 284 995 302 1006 306 1014 284 1036 293 1038 276 1060 279 1072 291 1087 289 1087 298 1120 308 1110 372 1100 375 1097 387 1100 409 1110 415 1109 430 1145 444 1174 474 1187 462 1198 464 1207 470 1207 494 1215 496 1215 502 1278 507 1278 515 1268 515 1268 546 1288 566 1316 568 1316 604 1306 608 1344 656 1351 661 1359 670 1349 688 1352 699 1345 717 1338 748 1340 770 1350 785 1220 792 1213 780 1211 748 1188 719 1177 708 1168 724 1157 699 1149 708 1124 689 1110 676 1089 667 1070 670 1063 664 1066 652 1062 651 1060 629 1050 623 1054 609 1045 600 1038 594 1030 580 1027 573 1013 562 1010 548 1006 542 1009 540 1014 535 1017 516 1005 517 990 504 991 488 995 480 992 469 981 458 973 456 976 442 965 430 963 420 954 406 946 392 948 386 942 370 946 357 941 345 939 335 930 326 928 316 925 307 932 291 939 276 Z M979 277 L996 285 1014 267 1004 300 995 316 982 302 Z M1042 415 L1060 419 1068 445 1040 450 1044 430 Z M1058 460 L1075 472 1087 480 1069 491 1041 495 1038 488 1055 483 Z M1167 503 L1184 504 1193 545 1208 572 1198 582 1187 580 1178 555 1169 526 Z M1156 686 L1173 690 1177 706 1165 717 1160 704 Z M1270 706 L1295 710 1304 732 1328 741 1335 772 1348 779 1344 787 1278 788 1276 765 Z M1350 684 L1370 699 1350 717 1340 744 1334 750 1335 730 Z',
+};
