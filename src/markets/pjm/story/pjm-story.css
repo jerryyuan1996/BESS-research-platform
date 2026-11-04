@@ -1,0 +1,43 @@
+/* Market-local styles; shared kit and shell styles remain unchanged. */
+.pjm-scene,.pjm-chart { min-width: 0; }
+.pjm-map,.pjm-chart svg,.pjm-scene svg { display: block; width: 100%; height: auto; margin: auto; }
+.pjm-scene .k-stage { max-width: 760px; }
+.pjm-note { color: var(--ix-body); font-size: var(--fs-sm); line-height: 1.6; }
+.pjm-readouts { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 8px 16px; }
+.pjm-readouts dt { color: var(--ix-body); }
+.pjm-readouts dd { margin: 0; text-align: end; font-variant-numeric: tabular-nums; }
+.pjm-state { fill: #c8d6b4; stroke: #224e40; stroke-width: 1.2; }
+.pjm-zone { fill: none; stroke: #224e40; stroke-width: 2; opacity: .55; }
+.pjm-map-label,.pjm-chart-label { fill: #224e40; font-size: var(--fs-xs); }
+.pjm-chart-title { fill: #224e40; font-size: var(--fs-sm); }
+.pjm-price-example { fill: #c8d6b4; stroke: #224e40; }
+.pjm-band { fill: #e5d7b8; stroke: #8e7440; fill-opacity: .5; }
+.pjm-rating { fill: none; stroke: #224e40; stroke-width: 3; }
+.pjm-point { fill: #224e40; }
+.pjm-grid { stroke: #224e40; stroke-opacity: .18; }
+.pjm-axis { fill: none; stroke: #224e40; }
+.pjm-plan { stroke-dasharray: 7 5; }
+.pjm-delivery { fill: #b7cca5; stroke: #224e40; }
+.pjm-uncredited { fill: #e6e9dc; }
+.pjm-days { display: flex; gap: 10px; flex-wrap: wrap; }
+.pjm-days span,.pjm-commitment { border: 1px solid var(--ix-body); padding: 10px; }
+.pjm-future .pjm-days span,.pjm-commitment.pjm-plan { border-style: dashed; }
+.pjm-chart-table { width: 100%; font-size: var(--fs-sm); border-collapse: collapse; }
+.pjm-chart-table th,.pjm-chart-table td { padding: 6px; text-align: start; border-bottom: 1px solid var(--ix-body); }
+.pjm-chart details { overflow-x: auto; }
+.pjm-chart > div { overflow-x: auto; }
+.pjm-chart svg { min-width: 900px; }
+.pjm-chart [hidden] { display: none; }
+.pjm-opening { max-width: 210px; margin: auto; }
+.pjm-delivery-strip { text-align: center; font-size: var(--fs-xs); }
+.pjm-history-detail { border: 1px solid var(--ix-body); padding: 10px; }
+.pjm-history-detail.pjm-future { border-style: dashed; }
+.pjm-provenance { font-size: var(--fs-sm); overflow-wrap: anywhere; }
+.pjm-provenance dt { margin-top: 8px; }
+.pjm-provenance dd { margin: 4px 0 0; }
+@media (prefers-color-scheme: dark) {
+  .pjm-map-label,.pjm-chart-label,.pjm-chart-title { fill: #cadacb; }
+  .pjm-state { fill: #355441; stroke: #a4bea1; }
+  .pjm-rating,.pjm-axis,.pjm-zone { stroke: #a4bea1; }
+  .pjm-point { fill: #a4bea1; }
+}
