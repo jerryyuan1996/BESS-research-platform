@@ -21,6 +21,7 @@ markets/gb/
 ├── sources.js     source register
 ├── data.js        M — the entire market dataset
 ├── sections.js    buildSections(api) — one declarative block spec per tab
+├── sections/      optional: one module per domain, when the market splits (see below)
 ├── text.js        optional overrides to the shared strings (GB only)
 └── dashboard.js   ~20 lines of wiring
 ```
@@ -71,6 +72,36 @@ than importing `utils/finance.js`. Unifying them would change published IRRs.
 about, and the next render would overwrite it from the URL. The setter records the intent and
 `render()` turns it into a navigation — so deep links and the back button work without editing a
 line of the migrated code.
+
+## A market that fetches its sections on demand
+
+`sections.js` may instead be a small facade over `sections/`, one module per
+domain, with a loader in front of it. `buildSections(api)` stays **synchronous**
+and returns a map of whichever sections the current route has loaded; a market
+that wants that declares a second key:
+
+```javascript
+const engine = createMarketEngine({
+  MKT, TABS, SRC, M, buildSections,
+  prepareSections: (api, ids) => loadSections(api, ids),   // the ids this route draws
+});
+```
+
+`dashboard()` then draws the chrome first, awaits `prepareSections`, and draws
+the sections — with a skeleton that appears only after 120 ms, a panel for a
+chunk that 404s, and a token that discards a resolve which arrives after the
+reader has moved on. A market that omits the key takes no await and behaves
+exactly as before; that is the whole compatibility story.
+
+Three rules make it a split rather than a story: every loader entry is a thunk
+around a literal specifier (`() => import('./grid.js')`), nothing in the market
+imports a section statically, and a section module imports nothing but
+`sections/shared.js` and the registries it is joined through. All three are
+asserted in `tests/nem-sections-lazy.test.js`.
+
+The National Electricity Market is the pilot. `docs/p1-sections-pilot.md` has
+the measurements and the recommendation for the other large markets;
+`src/markets/nem/sections/registry.js` is the shape.
 
 ## What does NOT live here
 

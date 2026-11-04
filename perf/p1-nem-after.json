@@ -1,0 +1,1094 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-11-04T13:17:50.772Z",
+  "commit": "2dd4474",
+  "environment": {
+    "node": "v22.22.2",
+    "platform": "win32 x64",
+    "cpus": 8,
+    "cpuModel": "Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz",
+    "totalMemoryGB": 15.9
+  },
+  "build": null,
+  "bundle": {
+    "dir": "dist",
+    "totals": {
+      "js": {
+        "files": 154,
+        "rawBytes": 7407139,
+        "gzipBytes": 2504123
+      },
+      "css": {
+        "files": 10,
+        "rawBytes": 185630,
+        "gzipBytes": 40587
+      },
+      "jsonAssets": {
+        "files": 57,
+        "bytes": 36334350
+      }
+    },
+    "firstLoad": {
+      "entry": {
+        "name": "index-Dh2bB-rn.js",
+        "rawBytes": 535630,
+        "gzipBytes": 172065
+      },
+      "staticClosure": {
+        "files": 1,
+        "rawBytes": 535630,
+        "gzipBytes": 172065,
+        "names": [
+          "index-Dh2bB-rn.js"
+        ]
+      },
+      "css": [
+        {
+          "name": "index-njTanm4D.css",
+          "rawBytes": 146817,
+          "gzipBytes": 28726
+        }
+      ],
+      "cssGzipBytes": 28726,
+      "homeFirstView": {
+        "gzipBytes": 264443,
+        "files": 12
+      }
+    },
+    "markets": [
+      {
+        "id": "wa",
+        "name": "market-wa-Di7SMbNJ.js",
+        "rawBytes": 535431,
+        "gzipBytes": 181611,
+        "visitCostGzipBytes": 283141
+      },
+      {
+        "id": "ie",
+        "name": "market-ie-ClmtWBoi.js",
+        "rawBytes": 373501,
+        "gzipBytes": 135300,
+        "visitCostGzipBytes": 250642
+      },
+      {
+        "id": "gb",
+        "name": "market-gb-DpGvPzDR.js",
+        "rawBytes": 344786,
+        "gzipBytes": 132265,
+        "visitCostGzipBytes": 266405
+      },
+      {
+        "id": "jp",
+        "name": "market-jp-DwBgV2h_.js",
+        "rawBytes": 360065,
+        "gzipBytes": 120019,
+        "visitCostGzipBytes": 281581
+      },
+      {
+        "id": "pl",
+        "name": "market-pl-Nj-zh3fb.js",
+        "rawBytes": 246501,
+        "gzipBytes": 93532,
+        "visitCostGzipBytes": 208874
+      },
+      {
+        "id": "ro",
+        "name": "market-ro-9_8i2eZc.js",
+        "rawBytes": 222522,
+        "gzipBytes": 86136,
+        "visitCostGzipBytes": 211790
+      },
+      {
+        "id": "it",
+        "name": "market-it-CHaQizLn.js",
+        "rawBytes": 188102,
+        "gzipBytes": 71662,
+        "visitCostGzipBytes": 187004
+      },
+      {
+        "id": "pjm",
+        "name": "market-pjm-CdXrfSrY.js",
+        "rawBytes": 158357,
+        "gzipBytes": 63345,
+        "visitCostGzipBytes": 178687
+      },
+      {
+        "id": "de",
+        "name": "market-de-BNEF9YDa.js",
+        "rawBytes": 158968,
+        "gzipBytes": 62686,
+        "visitCostGzipBytes": 178028
+      },
+      {
+        "id": "ercot",
+        "name": "market-ercot-CzVbf4XX.js",
+        "rawBytes": 147770,
+        "gzipBytes": 56793,
+        "visitCostGzipBytes": 174745
+      },
+      {
+        "id": "caiso",
+        "name": "market-caiso-BvrFGxK2.js",
+        "rawBytes": 118417,
+        "gzipBytes": 43822,
+        "visitCostGzipBytes": 161034
+      },
+      {
+        "id": "fi",
+        "name": "market-fi-Ch165DyG.js",
+        "rawBytes": 95191,
+        "gzipBytes": 36652,
+        "visitCostGzipBytes": 159214
+      },
+      {
+        "id": "nem",
+        "name": "market-nem-BsGjJUh5.js",
+        "rawBytes": 59851,
+        "gzipBytes": 24500,
+        "visitCostGzipBytes": 139842
+      },
+      {
+        "id": "ca_on",
+        "name": "market-ca_on-C7c_a59v.js",
+        "rawBytes": 56419,
+        "gzipBytes": 23932,
+        "visitCostGzipBytes": 140762
+      },
+      {
+        "id": "es",
+        "name": "market-es--iggF5bw.js",
+        "rawBytes": 40701,
+        "gzipBytes": 18006,
+        "visitCostGzipBytes": 134836
+      },
+      {
+        "id": "sa",
+        "name": "market-sa-CfqW78QU.js",
+        "rawBytes": 33567,
+        "gzipBytes": 14137,
+        "visitCostGzipBytes": 129338
+      }
+    ],
+    "topChunks": [
+      {
+        "name": "market-wa-Di7SMbNJ.js",
+        "role": "market",
+        "id": "wa",
+        "rawBytes": 535431,
+        "gzipBytes": 181611
+      },
+      {
+        "name": "index-Dh2bB-rn.js",
+        "role": "entry",
+        "id": null,
+        "rawBytes": 535630,
+        "gzipBytes": 172065
+      },
+      {
+        "name": "market-ie-ClmtWBoi.js",
+        "role": "market",
+        "id": "ie",
+        "rawBytes": 373501,
+        "gzipBytes": 135300
+      },
+      {
+        "name": "market-gb-DpGvPzDR.js",
+        "role": "market",
+        "id": "gb",
+        "rawBytes": 344786,
+        "gzipBytes": 132265
+      },
+      {
+        "name": "market-jp-DwBgV2h_.js",
+        "role": "market",
+        "id": "jp",
+        "rawBytes": 360065,
+        "gzipBytes": 120019
+      },
+      {
+        "name": "market-pl-Nj-zh3fb.js",
+        "role": "market",
+        "id": "pl",
+        "rawBytes": 246501,
+        "gzipBytes": 93532
+      },
+      {
+        "name": "market-ro-9_8i2eZc.js",
+        "role": "market",
+        "id": "ro",
+        "rawBytes": 222522,
+        "gzipBytes": 86136
+      },
+      {
+        "name": "returns-BgaeMqwU.js",
+        "role": "shared",
+        "id": null,
+        "rawBytes": 184644,
+        "gzipBytes": 73410
+      },
+      {
+        "name": "market-it-CHaQizLn.js",
+        "role": "market",
+        "id": "it",
+        "rawBytes": 188102,
+        "gzipBytes": 71662
+      },
+      {
+        "name": "market-pjm-CdXrfSrY.js",
+        "role": "market",
+        "id": "pjm",
+        "rawBytes": 158357,
+        "gzipBytes": 63345
+      },
+      {
+        "name": "market-de-BNEF9YDa.js",
+        "role": "market",
+        "id": "de",
+        "rawBytes": 158968,
+        "gzipBytes": 62686
+      },
+      {
+        "name": "market-ercot-CzVbf4XX.js",
+        "role": "market",
+        "id": "ercot",
+        "rawBytes": 147770,
+        "gzipBytes": 56793
+      },
+      {
+        "name": "congestionRegistry-Bj4tqnNe.js",
+        "role": "shared",
+        "id": null,
+        "rawBytes": 135911,
+        "gzipBytes": 53327
+      },
+      {
+        "name": "market-caiso-BvrFGxK2.js",
+        "role": "market",
+        "id": "caiso",
+        "rawBytes": 118417,
+        "gzipBytes": 43822
+      },
+      {
+        "name": "briefing-data-WFjB9tSA.js",
+        "role": "shared",
+        "id": null,
+        "rawBytes": 347960,
+        "gzipBytes": 42816
+      }
+    ],
+    "largestJson": [
+      {
+        "path": "data/public/gb-eac-response.json",
+        "bytes": 9194885,
+        "gzipBytes": 474265
+      },
+      {
+        "path": "data/public/gb-dynamic-response.json",
+        "bytes": 5384248,
+        "gzipBytes": 255744
+      },
+      {
+        "path": "data/grid/it-transmission-132-219.part1.json",
+        "bytes": 1560751,
+        "gzipBytes": 344473
+      },
+      {
+        "path": "data/grid/gb-transmission-275plus.json",
+        "bytes": 1492529,
+        "gzipBytes": 227926
+      },
+      {
+        "path": "data/grid/gb-transmission-132-274.json",
+        "bytes": 1441611,
+        "gzipBytes": 291109
+      },
+      {
+        "path": "data/grid/de-transmission-380plus.json",
+        "bytes": 1272883,
+        "gzipBytes": 246604
+      },
+      {
+        "path": "data/public/jp-tokyo-jepx.json",
+        "bytes": 1215595,
+        "gzipBytes": 92710
+      },
+      {
+        "path": "data/public/wa-wem-prices.json",
+        "bytes": 1211439,
+        "gzipBytes": 107765
+      },
+      {
+        "path": "data/public/jp-hokkaido-jepx.json",
+        "bytes": 1210457,
+        "gzipBytes": 90590
+      },
+      {
+        "path": "data/public/jp-kyushu-jepx.json",
+        "bytes": 1209221,
+        "gzipBytes": 85051
+      },
+      {
+        "path": "data/grid/it-transmission-132-219.part2.json",
+        "bytes": 878942,
+        "gzipBytes": 133500
+      },
+      {
+        "path": "data/grid/de-transmission-220-379.json",
+        "bytes": 634593,
+        "gzipBytes": 120458
+      },
+      {
+        "path": "data/public/pl-day-ahead.json",
+        "bytes": 611855,
+        "gzipBytes": 56670
+      },
+      {
+        "path": "data/grid/it-transmission-380plus.json",
+        "bytes": 604357,
+        "gzipBytes": 144727
+      },
+      {
+        "path": "data/public/fi-fcr-n.json",
+        "bytes": 593594,
+        "gzipBytes": 43791
+      }
+    ]
+  },
+  "browser": {
+    "baseURL": "http://127.0.0.1:4188/",
+    "browser": "chromium 156.0.8078.4",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "runs": 3,
+    "throttling": "none",
+    "routes": [
+      {
+        "id": "nem",
+        "path": "/markets/nem",
+        "ready": ".ix-decision-panel",
+        "note": "the investment-case experience, the address a reader usually lands on",
+        "errors": [],
+        "cold": {
+          "wallMs": 2194,
+          "readyMs": 2179,
+          "ttfbMs": 190,
+          "dclMs": 553,
+          "loadMs": 605,
+          "fpMs": 1148,
+          "fcpMs": 1148,
+          "lcpMs": 2064,
+          "cls": 0.042,
+          "longTasks": {
+            "count": 4,
+            "totalMs": 453,
+            "maxMs": 157
+          },
+          "resources": {
+            "count": 25,
+            "transferBytes": 385792,
+            "decodedBytes": 1338851,
+            "byInitiator": {
+              "script": 356466,
+              "link": 29026,
+              "other": 300
+            }
+          },
+          "dom": {
+            "elements": 1039,
+            "svgElements": 180,
+            "mapSvgElements": 0
+          }
+        },
+        "warm": {
+          "wallMs": 640,
+          "readyMs": 629,
+          "ttfbMs": 13,
+          "dclMs": 81,
+          "loadMs": 137,
+          "fpMs": 120,
+          "fcpMs": 120,
+          "lcpMs": 372,
+          "cls": 0.004,
+          "longTasks": {
+            "count": 1,
+            "totalMs": 90,
+            "maxMs": 90
+          },
+          "resources": {
+            "count": 24,
+            "transferBytes": 7200,
+            "decodedBytes": 0,
+            "byInitiator": {
+              "script": 6900,
+              "link": 300
+            }
+          },
+          "dom": {
+            "elements": 1039,
+            "svgElements": 180,
+            "mapSvgElements": 0
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 1498,
+            "max": 5988
+          },
+          "warm": {
+            "min": 552,
+            "max": 1198
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 2179,
+              "dclMs": 553,
+              "loadMs": 605,
+              "fcpMs": 1148,
+              "lcpMs": 2064,
+              "cls": 0.042,
+              "longTaskMs": 453,
+              "requests": 25
+            },
+            {
+              "readyMs": 5988,
+              "dclMs": 3575,
+              "loadMs": 3615,
+              "fcpMs": 3632,
+              "lcpMs": 5816,
+              "cls": 0.004,
+              "longTaskMs": 201,
+              "requests": 15
+            },
+            {
+              "readyMs": 1498,
+              "dclMs": 268,
+              "loadMs": 304,
+              "fcpMs": 320,
+              "lcpMs": 1104,
+              "cls": 0.004,
+              "longTaskMs": 289,
+              "requests": 24
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 629,
+              "dclMs": 81,
+              "loadMs": 137,
+              "fcpMs": 120,
+              "lcpMs": 372,
+              "cls": 0.004,
+              "longTaskMs": 90,
+              "requests": 24
+            },
+            {
+              "readyMs": 1198,
+              "dclMs": 595,
+              "loadMs": 786,
+              "fcpMs": 624,
+              "lcpMs": 1072,
+              "cls": 0.004,
+              "longTaskMs": 0,
+              "requests": 15
+            },
+            {
+              "readyMs": 552,
+              "dclMs": 72,
+              "loadMs": 110,
+              "fcpMs": 100,
+              "lcpMs": 316,
+              "cls": 0.004,
+              "longTaskMs": 78,
+              "requests": 24
+            }
+          ]
+        }
+      },
+      {
+        "id": "nem-brief",
+        "path": "/markets/nem/case",
+        "ready": ".tab-section[data-section=\"case\"] .sect",
+        "note": "the dashboard landing tab — the brief alone",
+        "errors": [],
+        "cold": {
+          "wallMs": 1412,
+          "readyMs": 1394,
+          "ttfbMs": 10,
+          "dclMs": 245,
+          "loadMs": 257,
+          "fpMs": 104,
+          "fcpMs": 708,
+          "lcpMs": 988,
+          "cls": 0.127,
+          "longTasks": {
+            "count": 5,
+            "totalMs": 631,
+            "maxMs": 197
+          },
+          "resources": {
+            "count": 40,
+            "transferBytes": 476276,
+            "decodedBytes": 1594742,
+            "byInitiator": {
+              "script": 427599,
+              "link": 29026,
+              "css": 19651
+            }
+          },
+          "dom": {
+            "elements": 600,
+            "svgElements": 7,
+            "mapSvgElements": 0
+          }
+        },
+        "warm": {
+          "wallMs": 559,
+          "readyMs": 533,
+          "ttfbMs": 10,
+          "dclMs": 83,
+          "loadMs": 143,
+          "fpMs": 112,
+          "fcpMs": 328,
+          "lcpMs": 444,
+          "cls": 0.053,
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "resources": {
+            "count": 39,
+            "transferBytes": 12964,
+            "decodedBytes": 2108,
+            "byInitiator": {
+              "script": 12064,
+              "link": 300,
+              "css": 600
+            }
+          },
+          "dom": {
+            "elements": 160,
+            "svgElements": 0,
+            "mapSvgElements": 0
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 1260,
+            "max": 2008
+          },
+          "warm": {
+            "min": 448,
+            "max": 680
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 2008,
+              "dclMs": 233,
+              "loadMs": 241,
+              "fcpMs": 1516,
+              "lcpMs": 1900,
+              "cls": 0.116,
+              "longTaskMs": 664,
+              "requests": 40
+            },
+            {
+              "readyMs": 1260,
+              "dclMs": 312,
+              "loadMs": 320,
+              "fcpMs": 708,
+              "lcpMs": 1108,
+              "cls": 0.053,
+              "longTaskMs": 569,
+              "requests": 31
+            },
+            {
+              "readyMs": 1394,
+              "dclMs": 245,
+              "loadMs": 257,
+              "fcpMs": 708,
+              "lcpMs": 988,
+              "cls": 0.127,
+              "longTaskMs": 631,
+              "requests": 40
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 680,
+              "dclMs": 78,
+              "loadMs": 121,
+              "fcpMs": 276,
+              "lcpMs": 408,
+              "cls": 0.127,
+              "longTaskMs": 60,
+              "requests": 40
+            },
+            {
+              "readyMs": 533,
+              "dclMs": 83,
+              "loadMs": 143,
+              "fcpMs": 328,
+              "lcpMs": 444,
+              "cls": 0.053,
+              "longTaskMs": 0,
+              "requests": 39
+            },
+            {
+              "readyMs": 448,
+              "dclMs": 79,
+              "loadMs": 107,
+              "fcpMs": 308,
+              "lcpMs": 308,
+              "cls": 0.013,
+              "longTaskMs": 0,
+              "requests": 24
+            }
+          ]
+        }
+      },
+      {
+        "id": "nem-story",
+        "path": "/markets/nem/story",
+        "ready": ".tab-section[data-section=\"home\"] .card",
+        "note": "overview and market story, stacked",
+        "errors": [],
+        "cold": {
+          "wallMs": 1687,
+          "readyMs": 1672,
+          "ttfbMs": 12,
+          "dclMs": 229,
+          "loadMs": 237,
+          "fpMs": 108,
+          "fcpMs": 644,
+          "lcpMs": 1560,
+          "cls": 0.172,
+          "longTasks": {
+            "count": 5,
+            "totalMs": 718,
+            "maxMs": 230
+          },
+          "resources": {
+            "count": 26,
+            "transferBytes": 420738,
+            "decodedBytes": 1244571,
+            "byInitiator": {
+              "script": 372061,
+              "link": 29026,
+              "css": 19651
+            }
+          },
+          "dom": {
+            "elements": 1070,
+            "svgElements": 225,
+            "mapSvgElements": 183
+          }
+        },
+        "warm": {
+          "wallMs": 561,
+          "readyMs": 535,
+          "ttfbMs": 13,
+          "dclMs": 89,
+          "loadMs": 120,
+          "fpMs": 116,
+          "fcpMs": 332,
+          "lcpMs": 332,
+          "cls": 0.132,
+          "longTasks": {
+            "count": 1,
+            "totalMs": 71,
+            "maxMs": 71
+          },
+          "resources": {
+            "count": 26,
+            "transferBytes": 7800,
+            "decodedBytes": 0,
+            "byInitiator": {
+              "script": 6900,
+              "link": 300,
+              "css": 600
+            }
+          },
+          "dom": {
+            "elements": 1070,
+            "svgElements": 225,
+            "mapSvgElements": 183
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 1623,
+            "max": 2088
+          },
+          "warm": {
+            "min": 530,
+            "max": 696
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 2088,
+              "dclMs": 605,
+              "loadMs": 613,
+              "fcpMs": 992,
+              "lcpMs": 2044,
+              "cls": 0.172,
+              "longTaskMs": 705,
+              "requests": 26
+            },
+            {
+              "readyMs": 1672,
+              "dclMs": 229,
+              "loadMs": 237,
+              "fcpMs": 644,
+              "lcpMs": 1560,
+              "cls": 0.172,
+              "longTaskMs": 718,
+              "requests": 26
+            },
+            {
+              "readyMs": 1623,
+              "dclMs": 229,
+              "loadMs": 236,
+              "fcpMs": 716,
+              "lcpMs": 1532,
+              "cls": 0.172,
+              "longTaskMs": 708,
+              "requests": 26
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 696,
+              "dclMs": 120,
+              "loadMs": 213,
+              "fcpMs": 336,
+              "lcpMs": 636,
+              "cls": 0.172,
+              "longTaskMs": 68,
+              "requests": 26
+            },
+            {
+              "readyMs": 530,
+              "dclMs": 99,
+              "loadMs": 131,
+              "fcpMs": 360,
+              "lcpMs": 492,
+              "cls": 0.132,
+              "longTaskMs": 74,
+              "requests": 26
+            },
+            {
+              "readyMs": 535,
+              "dclMs": 89,
+              "loadMs": 120,
+              "fcpMs": 332,
+              "lcpMs": 332,
+              "cls": 0.132,
+              "longTaskMs": 71,
+              "requests": 26
+            }
+          ]
+        }
+      },
+      {
+        "id": "nem-entry",
+        "path": "/markets/nem/entry",
+        "ready": ".tab-section[data-section=\"grid\"] .geo-grid-map svg",
+        "note": "entry and delivery: the ledger, then the grid map",
+        "errors": [],
+        "cold": {
+          "wallMs": 1747,
+          "readyMs": 1728,
+          "ttfbMs": 9,
+          "dclMs": 257,
+          "loadMs": 261,
+          "fpMs": 124,
+          "fcpMs": 640,
+          "lcpMs": 1456,
+          "cls": 0.194,
+          "longTasks": {
+            "count": 6,
+            "totalMs": 859,
+            "maxMs": 219
+          },
+          "resources": {
+            "count": 43,
+            "transferBytes": 515886,
+            "decodedBytes": 1695944,
+            "byInitiator": {
+              "script": 467209,
+              "link": 29026,
+              "css": 19651
+            }
+          },
+          "dom": {
+            "elements": 1536,
+            "svgElements": 204,
+            "mapSvgElements": 183
+          }
+        },
+        "warm": {
+          "wallMs": 681,
+          "readyMs": 668,
+          "ttfbMs": 9,
+          "dclMs": 85,
+          "loadMs": 124,
+          "fpMs": 100,
+          "fcpMs": 300,
+          "lcpMs": 516,
+          "cls": 0.246,
+          "longTasks": {
+            "count": 2,
+            "totalMs": 183,
+            "maxMs": 105
+          },
+          "resources": {
+            "count": 43,
+            "transferBytes": 12900,
+            "decodedBytes": 0,
+            "byInitiator": {
+              "script": 12000,
+              "link": 300,
+              "css": 600
+            }
+          },
+          "dom": {
+            "elements": 1536,
+            "svgElements": 204,
+            "mapSvgElements": 183
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 1646,
+            "max": 1763
+          },
+          "warm": {
+            "min": 635,
+            "max": 718
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 1763,
+              "dclMs": 260,
+              "loadMs": 269,
+              "fcpMs": 740,
+              "lcpMs": 1476,
+              "cls": 0.194,
+              "longTaskMs": 837,
+              "requests": 43
+            },
+            {
+              "readyMs": 1728,
+              "dclMs": 257,
+              "loadMs": 261,
+              "fcpMs": 640,
+              "lcpMs": 1456,
+              "cls": 0.194,
+              "longTaskMs": 859,
+              "requests": 43
+            },
+            {
+              "readyMs": 1646,
+              "dclMs": 218,
+              "loadMs": 227,
+              "fcpMs": 608,
+              "lcpMs": 1392,
+              "cls": 0.286,
+              "longTaskMs": 824,
+              "requests": 43
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 718,
+              "dclMs": 106,
+              "loadMs": 142,
+              "fcpMs": 364,
+              "lcpMs": 516,
+              "cls": 0.246,
+              "longTaskMs": 180,
+              "requests": 43
+            },
+            {
+              "readyMs": 668,
+              "dclMs": 85,
+              "loadMs": 124,
+              "fcpMs": 300,
+              "lcpMs": 516,
+              "cls": 0.246,
+              "longTaskMs": 183,
+              "requests": 43
+            },
+            {
+              "readyMs": 635,
+              "dclMs": 76,
+              "loadMs": 108,
+              "fcpMs": 300,
+              "lcpMs": 484,
+              "cls": 0.246,
+              "longTaskMs": 181,
+              "requests": 43
+            }
+          ]
+        }
+      },
+      {
+        "id": "nem-data",
+        "path": "/markets/nem/data",
+        "ready": ".tab-section[data-section=\"data\"] .sect",
+        "note": "an old address, resolved to the evidence tab",
+        "errors": [],
+        "cold": {
+          "wallMs": 1048,
+          "readyMs": 1036,
+          "ttfbMs": 8,
+          "dclMs": 214,
+          "loadMs": 222,
+          "fpMs": 112,
+          "fcpMs": 564,
+          "lcpMs": 844,
+          "cls": 0.172,
+          "longTasks": {
+            "count": 4,
+            "totalMs": 432,
+            "maxMs": 185
+          },
+          "resources": {
+            "count": 23,
+            "transferBytes": 371674,
+            "decodedBytes": 1121153,
+            "byInitiator": {
+              "script": 322997,
+              "link": 29026,
+              "css": 19651
+            }
+          },
+          "dom": {
+            "elements": 596,
+            "svgElements": 0,
+            "mapSvgElements": 0
+          }
+        },
+        "warm": {
+          "wallMs": 354,
+          "readyMs": 338,
+          "ttfbMs": 7,
+          "dclMs": 62,
+          "loadMs": 87,
+          "fpMs": 76,
+          "fcpMs": 260,
+          "lcpMs": 260,
+          "cls": 0.132,
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "resources": {
+            "count": 23,
+            "transferBytes": 6900,
+            "decodedBytes": 0,
+            "byInitiator": {
+              "script": 6000,
+              "link": 300,
+              "css": 600
+            }
+          },
+          "dom": {
+            "elements": 596,
+            "svgElements": 0,
+            "mapSvgElements": 0
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 838,
+            "max": 1141
+          },
+          "warm": {
+            "min": 313,
+            "max": 349
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 1141,
+              "dclMs": 232,
+              "loadMs": 242,
+              "fcpMs": 604,
+              "lcpMs": 904,
+              "cls": 0.172,
+              "longTaskMs": 477,
+              "requests": 23
+            },
+            {
+              "readyMs": 838,
+              "dclMs": 173,
+              "loadMs": 182,
+              "fcpMs": 668,
+              "lcpMs": 668,
+              "cls": 0.132,
+              "longTaskMs": 286,
+              "requests": 23
+            },
+            {
+              "readyMs": 1036,
+              "dclMs": 214,
+              "loadMs": 222,
+              "fcpMs": 564,
+              "lcpMs": 844,
+              "cls": 0.172,
+              "longTaskMs": 432,
+              "requests": 23
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 313,
+              "dclMs": 57,
+              "loadMs": 80,
+              "fcpMs": 244,
+              "lcpMs": 244,
+              "cls": 0.132,
+              "longTaskMs": 0,
+              "requests": 23
+            },
+            {
+              "readyMs": 338,
+              "dclMs": 62,
+              "loadMs": 87,
+              "fcpMs": 260,
+              "lcpMs": 260,
+              "cls": 0.132,
+              "longTaskMs": 0,
+              "requests": 23
+            },
+            {
+              "readyMs": 349,
+              "dclMs": 69,
+              "loadMs": 97,
+              "fcpMs": 264,
+              "lcpMs": 264,
+              "cls": 0.132,
+              "longTaskMs": 0,
+              "requests": 23
+            }
+          ]
+        }
+      }
+    ],
+    "caveat": "vite preview serves identity encoding and revalidates hashed assets; transfer sizes are an upper bound and warm visits are not production cache hits."
+  }
+}

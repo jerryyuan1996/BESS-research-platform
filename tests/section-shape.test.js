@@ -57,14 +57,18 @@ const ANY = new Proxy(function (){}, {
 });
 
 async function sectionsFor(dir){
-  const { buildSections } = await import(`../src/markets/${dir}/sections.js`);
+  const mod = await import(`../src/markets/${dir}/sections.js`);
   const { M } = await import(`../src/markets/${dir}/data.js`);
   const { SRC } = await import(`../src/markets/${dir}/sources.js`);
   const api = new Proxy(
     { L: a => (Array.isArray(a) ? a[0] : a), M, SRC, fmtN: String, fmt: String },
     { get: (t, k) => (k in t ? t[k] : ANY) },
   );
-  const built = buildSections(api);
+  /* A market that fetches its sections on demand (the NEM, since the P1 pilot)
+     builds nothing until they arrive, and says how to get them. Every other
+     market has no such export and is built from the one file, as before. */
+  if (typeof mod.loadAllSections === 'function') await mod.loadAllSections(api);
+  const built = mod.buildSections(api);
   return typeof built === 'function' ? built() : built;
 }
 

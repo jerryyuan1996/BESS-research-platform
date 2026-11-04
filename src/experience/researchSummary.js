@@ -12,7 +12,12 @@ export function marketResearchSummary(market) {
       const module = await loaders[path]();
       if (!holder.isConnected) return;
       holder.replaceChildren();
-      module.researchSummary(holder,{basePath:'/markets/'+market.manifest.slug,region:market.manifest.region});
+      /* Awaited, because a market whose sections load on demand has to fetch
+         the two it summarises before it can write them. Awaiting a market that
+         returns nothing defers the caption by one microtask and changes no
+         pixel: nothing paints between a microtask and the frame it belongs to.
+         See docs/p1-sections-pilot.md. */
+      await module.researchSummary(holder,{basePath:'/markets/'+market.manifest.slug,region:market.manifest.region});
       holder.append(h('p',{class:'ix-caption'},L(['Extracted directly from the full market research · source vintage: ','直接引用完整市场研究 · 原研究口径：']),
         market.manifest.dataDate||market.manifest.asOf));
     } catch {

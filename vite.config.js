@@ -55,6 +55,12 @@ export default defineConfig({
           if (delivery) return `assets/delivery-${delivery[1]}-[hash].js`;
           const m = /[\\/]markets[\\/]([^\\/]+)[\\/]dashboard\.js$/.exec(id);
           if (m) return `assets/market-${m[1]}-[hash].js`;
+          /* A market that fetches its sections one at a time (P1 pilot): each
+             section is a chunk of its own, and both the build summary and
+             tests/bundle-budget.test.js have to be able to say which one they
+             are reading. The directory is the market, the file is the section. */
+          const section = /[\\/]markets[\\/]([^\\/]+)[\\/]sections[\\/]([^\\/]+)\.js$/.exec(id);
+          if (section) return `assets/section-${section[1]}-${section[2]}-[hash].js`;
           /* The dossier shell's entry module is page.js, which would otherwise
              emit as `page-<hash>.js` and say nothing about what it holds. */
           if (/[\\/]projects[\\/]dossier[\\/]page\.js$/.test(id)) return 'assets/dossier-shell-[hash].js';
@@ -101,6 +107,14 @@ export default defineConfig({
           if (ids.some(m => /[\\/]briefing[\\/]designData\.js$/.test(m))) return 'assets/design-answer-[hash].js';
           if (ids.some(m => /[\\/]governance[\\/]investability\.js$/.test(m))) return 'assets/investment-method-[hash].js';
           if (ids.some(m => /[\\/]charts[\\/]barChart\.js$/.test(m))) return 'assets/charts-[hash].js';
+          /* The two chunks a market with lazily-loaded sections factors out and
+             that have no entry module to be named by: the shared constants every
+             section reads (sections/shared.js) and the grid map the story and
+             grid tabs both draw. Without these they would be emitted as
+             `shared-<hash>.js` and `gridMapData-<hash>.js`, which say nothing
+             about which market they belong to. */
+          if (ids.some(m => /[\\/]markets[\\/]nem[\\/]sections[\\/]shared\.js$/.test(m))) return 'assets/nem-sections-shared-[hash].js';
+          if (ids.some(m => /[\\/]markets[\\/]nem[\\/]gridMapData\.js$/.test(m))) return 'assets/nem-grid-map-data-[hash].js';
           return 'assets/[name]-[hash].js';
         },
       },

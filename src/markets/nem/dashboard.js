@@ -4,6 +4,17 @@
    Four data modules plus this wiring. Every rendering decision lives in the
    shared block engine, which is why this file is the same length for every
    market in the lineage.
+
+   The one thing this market does that the others do not: its sections are
+   fetched per tab rather than shipped with the dashboard. `prepareSections` is
+   the whole of that difference — the engine asks for the ids it is about to
+   draw, this market's loader fetches them, and the engine draws afterwards. See
+   src/markets/nem/sections/registry.js and docs/p1-sections-pilot.md.
+
+   The grid map is no longer imported here. It registers itself from the two
+   sections that draw it — the overview, where the page pairs the map with the
+   house view, and the grid tab — so the landing tab does not carry 20 kB of
+   coordinates it has no use for.
    --------------------------------------------------------------------------- */
 import { createMarketEngine } from '../_shared/engine.js';
 import { markets } from '../registry.js';
@@ -12,8 +23,7 @@ import { MKT } from './mkt.js';
 import { TABS } from './tabs.js';
 import { SRC } from './sources.js';
 import { M } from './data.js';
-import { buildSections } from './sections.js';
-import './gridMapData.js';   // side effect: registers this market's grid map
+import { buildSections, loadSections } from './sections.js';
 import VIEW from '../../../view/markets/nem.json' with { type: 'json' };
 import { ENTRY_LEDGER } from './entryLedger.js';
 import { registerCase } from '../caseRegistry.js';
@@ -25,16 +35,23 @@ registerCase('nem', { view: VIEW, ledger: ENTRY_LEDGER });
 
 const engine = createMarketEngine({
   MKT, TABS, SRC, M, buildSections,
+  prepareSections: (api, ids) => loadSections(api, ids),
 });
 
-export function researchSummary(container, route) {
+/* The market page's summary — the house view and the one-minute orientation,
+   lifted out of the research itself. Its two sources are sections now, so it
+   fetches them first: the house view is in `home`, the orientation in `story`.
+   A failure leaves the summary short rather than breaking the dialog; the
+   engine falls back to the market's own rationale for the house view. */
+export async function researchSummary(container, route) {
+  await loadSections(engine.api, ['home', 'story']).catch(() => {});
   engine.researchSummary(container, route, markets);
 }
 
 export const state = engine.state;
 
 export function dashboard(container, route){
-  engine.dashboard(container, route, markets);
+  return engine.dashboard(container, route, markets);
 }
 
 export default dashboard;
