@@ -22,7 +22,7 @@ test('PJM reads all thirteen bilingual shots with one marker each and returns fo
   expect(errors).toEqual([]);
 });
 test('PJM teaching duration leaves the live case, URL and history unchanged',async({page})=>{
-  await page.goto(preview+'&view=story&chapter=battery&shot=pjm-08');
+  await page.goto(preview+'?view=story&chapter=battery&shot=pjm-08');
   const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
   await expect(dialog.locator('#ix-shot-pjm-08')).toBeFocused();
   const before=await page.locator('#bankable').innerText(),url=page.url(),history=await page.evaluate(()=>window.history.length);
