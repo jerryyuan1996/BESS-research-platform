@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, relative } from 'node:path';
 import { createHash } from 'node:crypto';
-import { publishProduction } from './lib/production-release.mjs';
+import { publishProduction, waitForLiveStamp } from './lib/production-release.mjs';
 
 const required = name => { if (!process.env[name]) throw new Error(`Missing ${name}`); return process.env[name]; };
 const candidate = required('RELEASE_SHA');
@@ -65,10 +65,10 @@ const result = await publishProduction({
   promote:async url => {
     cli('promote',url,'--yes');
     if ((await project()).targets?.production?.id !== deploymentId) throw new Error('The production target does not match the checked deployment.');
-    // Retain existing Standard Protection: verify the public production stamp.
-    const domain = required('PRODUCTION_URL');
-    const res = await fetch(`${domain}/release.json`,{cache:'no-store'});
-    if (!res.ok || (await res.json()).commit !== candidate) throw new Error('The live source version did not match the candidate.');
+    /* Retain existing Standard Protection: verify the public production stamp.
+       The alias can answer with the previous deployment for a few seconds after
+       the promotion returns, so the check polls rather than reading once. */
+    await waitForLiveStamp({ url:required('PRODUCTION_URL'), candidate });
   },
   record:async data => {
     mkdirSync('release-records',{recursive:true});

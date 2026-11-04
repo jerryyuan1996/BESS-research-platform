@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { publishProduction } from '../scripts/lib/production-release.mjs';
+import { publishProduction, waitForLiveStamp } from '../scripts/lib/production-release.mjs';
 const setup = () => {
   const calls=[];
   return { calls, args:{candidate:'new',readMain:async()=>'new',
@@ -47,4 +47,22 @@ test('a manual release verification refreshes data without running the analyst a
   assert.match(workflow,/verify_release:[\s\S]*?type: boolean/);
   const agent=workflow.slice(workflow.indexOf('\n  agent:'));
   assert.match(agent,/inputs\.verify_release != true/);
+});
+test('the live stamp is polled until the promoted alias answers',async()=>{
+  let calls=0;
+  const body=await waitForLiveStamp({url:'https://example.test',candidate:'new',attempts:3,intervalMs:0,sleepImpl:async()=>{},
+    fetchImpl:async url=>{calls++;assert.match(String(url),/\?ts=\d+/);
+      return calls===1?{ok:false,status:503}:{ok:true,status:200,json:async()=>({commit:'new'})};}});
+  assert.equal(body.commit,'new');
+  assert.equal(calls,2);
+});
+test('a stale live stamp fails after the bounded attempts and names what it saw',async()=>{
+  let calls=0;
+  await assert.rejects(waitForLiveStamp({url:'https://example.test',candidate:'new',attempts:2,intervalMs:0,sleepImpl:async()=>{},
+    fetchImpl:async()=>{calls++;return{ok:true,status:200,json:async()=>({commit:'old'})};}}),/last saw old/);
+  assert.equal(calls,2);
+});
+test('a live stamp that is not JSON is reported, not thrown as a parse error',async()=>{
+  await assert.rejects(waitForLiveStamp({url:'https://example.test',candidate:'new',attempts:1,intervalMs:0,sleepImpl:async()=>{},
+    fetchImpl:async()=>({ok:true,status:200,json:async()=>{throw new SyntaxError('not json');}})}),/no commit field/);
 });
