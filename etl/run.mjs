@@ -27,6 +27,7 @@
      node etl/run.mjs --dry-run       fetch and validate, write nothing
    --------------------------------------------------------------------------- */
 import { writeFile, mkdir } from 'node:fs/promises';
+import { performance } from 'node:perf_hooks';
 import path from 'node:path';
 
 import { DATASETS, snapshotFile, summaryFile } from '../src/governance/datasets.js';
@@ -161,6 +162,7 @@ async function runDataset(dataset, now){
 
 async function main(){
   const now = new Date().toISOString();
+  const runStarted = performance.now();
   const selected = DATASETS.filter(d => !ONLY || ONLY.has(d.id));
 
   log(`ETL run — ${now}`);
@@ -170,7 +172,12 @@ async function main(){
   const results = [];
   for (const dataset of selected){
     log(`▸ ${dataset.id}`);
+    const datasetStarted = performance.now();
     const r = await runDataset(dataset, now);
+    /* Wall time for this dataset, including the fetch. It is recorded rather
+       than guessed: the slowest source is an operational fact, and the six-
+       hourly schedule has a budget it can only be measured against. */
+    r.durationMs = Math.round(performance.now() - datasetStarted);
     results.push(r);
 
     const points = r.snapshot?.series?.length ?? 0;
@@ -182,6 +189,7 @@ async function main(){
       case 'invalid':   log(`  NOT PUBLISHED — previous snapshot retained`); break;
       default:          log(`  failed: ${r.error}`); break;
     }
+    log(`  ${r.durationMs} ms`);
     log('');
   }
 
@@ -246,9 +254,15 @@ async function main(){
   log(`Done. ${written.length} snapshot(s) updated, ${failed.length} dataset(s) unavailable.`);
 
   /* Exit zero even with failed sources — see the failure policy above. A summary
-     line is written for the workflow to surface without failing the job. */
+     line is written for the workflow to surface without failing the job.
+
+     The `datasets` array is the timing record: one row per dataset with its
+     connector, outcome, point count and wall time. Ids and counts only — no
+     snapshot payload, no URL, no credential — so the file can be kept as an
+     artifact and diffed between runs. */
   const summary = {
     runAt: now,
+    durationMs: Math.round(performance.now() - runStarted),
     updated: written.map(r => r.dataset.id),
     /* Every dataset this run fetched AND validated, whether or not the file
        changed. The rules engine tests a snapshot only if its id is here: a
@@ -258,8 +272,16 @@ async function main(){
     failed: failed.map(r => ({ id: r.dataset.id, status: r.status, error: r.error ?? r.errors?.[0] })),
     material: drift.material.length,
     reportable: drift.reportable.length,
+    datasets: results.map(r => ({
+      id: r.dataset.id,
+      connector: r.dataset.connector,
+      status: r.status,
+      durationMs: r.durationMs,
+      points: r.snapshot?.series?.length ?? 0,
+    })),
   };
   await writeFile(path.join(outDir, 'summary.json'), JSON.stringify(summary, null, 2) + '\n', 'utf8');
+  log(`Run time ${(summary.durationMs / 1000).toFixed(1)} s — per-dataset timings in etl/out/summary.json`);
 }
 
 main().catch(err => {

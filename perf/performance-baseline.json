@@ -1,0 +1,1109 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-11-04T08:33:04.435Z",
+  "commit": "d02f26d",
+  "environment": {
+    "node": "v22.22.2",
+    "platform": "win32 x64",
+    "cpus": 8,
+    "cpuModel": "Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz",
+    "totalMemoryGB": 15.9
+  },
+  "build": {
+    "exitCode": 0,
+    "durationMs": 56366,
+    "viteReportedSeconds": 51.56,
+    "tail": [
+      "dist/assets/market-wa-DffptiDA.js                535.43 kB │ gzip: 181.61 kB",
+      "dist/assets/index-BL_ixa8U.js                    535.63 kB │ gzip: 172.06 kB",
+      "",
+      "(!) Some chunks are larger than 500 kB after minification. Consider:",
+      "- Using dynamic import() to code-split the application",
+      "- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks",
+      "- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.",
+      "✓ built in 51.56s"
+    ]
+  },
+  "bundle": {
+    "dir": "dist",
+    "totals": {
+      "js": {
+        "files": 139,
+        "rawBytes": 7401080,
+        "gzipBytes": 2483420
+      },
+      "css": {
+        "files": 10,
+        "rawBytes": 185630,
+        "gzipBytes": 40587
+      },
+      "jsonAssets": {
+        "files": 57,
+        "bytes": 36334350
+      }
+    },
+    "firstLoad": {
+      "entry": {
+        "name": "index-BL_ixa8U.js",
+        "rawBytes": 535630,
+        "gzipBytes": 172056
+      },
+      "staticClosure": {
+        "files": 1,
+        "rawBytes": 535630,
+        "gzipBytes": 172056,
+        "names": [
+          "index-BL_ixa8U.js"
+        ]
+      },
+      "css": [
+        {
+          "name": "index-njTanm4D.css",
+          "rawBytes": 146817,
+          "gzipBytes": 28726
+        }
+      ],
+      "cssGzipBytes": 28726,
+      "homeFirstView": {
+        "gzipBytes": 264439,
+        "files": 12
+      }
+    },
+    "markets": [
+      {
+        "id": "wa",
+        "name": "market-wa-DffptiDA.js",
+        "rawBytes": 535431,
+        "gzipBytes": 181614,
+        "visitCostGzipBytes": 283150
+      },
+      {
+        "id": "ie",
+        "name": "market-ie-Dad5T_Mn.js",
+        "rawBytes": 373501,
+        "gzipBytes": 135304,
+        "visitCostGzipBytes": 250061
+      },
+      {
+        "id": "gb",
+        "name": "market-gb-BeJ38iXt.js",
+        "rawBytes": 344786,
+        "gzipBytes": 132270,
+        "visitCostGzipBytes": 265826
+      },
+      {
+        "id": "nem",
+        "name": "market-nem-FMmtsReg.js",
+        "rawBytes": 316022,
+        "gzipBytes": 120241,
+        "visitCostGzipBytes": 234998
+      },
+      {
+        "id": "jp",
+        "name": "market-jp-BC5m6Kt5.js",
+        "rawBytes": 360065,
+        "gzipBytes": 120023,
+        "visitCostGzipBytes": 281001
+      },
+      {
+        "id": "pl",
+        "name": "market-pl-DTye_Gs8.js",
+        "rawBytes": 246501,
+        "gzipBytes": 93533,
+        "visitCostGzipBytes": 208290
+      },
+      {
+        "id": "ro",
+        "name": "market-ro-BkfZdeY4.js",
+        "rawBytes": 222522,
+        "gzipBytes": 86140,
+        "visitCostGzipBytes": 211209
+      },
+      {
+        "id": "it",
+        "name": "market-it-CVAPmEN_.js",
+        "rawBytes": 188102,
+        "gzipBytes": 71664,
+        "visitCostGzipBytes": 186421
+      },
+      {
+        "id": "pjm",
+        "name": "market-pjm-CHZj4BlE.js",
+        "rawBytes": 158357,
+        "gzipBytes": 63351,
+        "visitCostGzipBytes": 178108
+      },
+      {
+        "id": "de",
+        "name": "market-de-D2BW3keh.js",
+        "rawBytes": 158968,
+        "gzipBytes": 62690,
+        "visitCostGzipBytes": 177447
+      },
+      {
+        "id": "ercot",
+        "name": "market-ercot-Iq_na9wj.js",
+        "rawBytes": 147770,
+        "gzipBytes": 56799,
+        "visitCostGzipBytes": 174166
+      },
+      {
+        "id": "caiso",
+        "name": "market-caiso-tB2RI6Os.js",
+        "rawBytes": 118417,
+        "gzipBytes": 43826,
+        "visitCostGzipBytes": 160453
+      },
+      {
+        "id": "fi",
+        "name": "market-fi-C9TSUle4.js",
+        "rawBytes": 95191,
+        "gzipBytes": 36654,
+        "visitCostGzipBytes": 158631
+      },
+      {
+        "id": "ca_on",
+        "name": "market-ca_on-DnnDMMSs.js",
+        "rawBytes": 56419,
+        "gzipBytes": 23935,
+        "visitCostGzipBytes": 140180
+      },
+      {
+        "id": "es",
+        "name": "market-es-DksUz3BK.js",
+        "rawBytes": 40701,
+        "gzipBytes": 18010,
+        "visitCostGzipBytes": 134255
+      },
+      {
+        "id": "sa",
+        "name": "market-sa-C3hlblLK.js",
+        "rawBytes": 33567,
+        "gzipBytes": 14140,
+        "visitCostGzipBytes": 128756
+      }
+    ],
+    "topChunks": [
+      {
+        "name": "market-wa-DffptiDA.js",
+        "role": "market",
+        "id": "wa",
+        "rawBytes": 535431,
+        "gzipBytes": 181614
+      },
+      {
+        "name": "index-BL_ixa8U.js",
+        "role": "entry",
+        "id": null,
+        "rawBytes": 535630,
+        "gzipBytes": 172056
+      },
+      {
+        "name": "market-ie-Dad5T_Mn.js",
+        "role": "market",
+        "id": "ie",
+        "rawBytes": 373501,
+        "gzipBytes": 135304
+      },
+      {
+        "name": "market-gb-BeJ38iXt.js",
+        "role": "market",
+        "id": "gb",
+        "rawBytes": 344786,
+        "gzipBytes": 132270
+      },
+      {
+        "name": "market-nem-FMmtsReg.js",
+        "role": "market",
+        "id": "nem",
+        "rawBytes": 316022,
+        "gzipBytes": 120241
+      },
+      {
+        "name": "market-jp-BC5m6Kt5.js",
+        "role": "market",
+        "id": "jp",
+        "rawBytes": 360065,
+        "gzipBytes": 120023
+      },
+      {
+        "name": "market-pl-DTye_Gs8.js",
+        "role": "market",
+        "id": "pl",
+        "rawBytes": 246501,
+        "gzipBytes": 93533
+      },
+      {
+        "name": "market-ro-BkfZdeY4.js",
+        "role": "market",
+        "id": "ro",
+        "rawBytes": 222522,
+        "gzipBytes": 86140
+      },
+      {
+        "name": "returns-Mi_cCkwO.js",
+        "role": "shared",
+        "id": null,
+        "rawBytes": 184644,
+        "gzipBytes": 73413
+      },
+      {
+        "name": "market-it-CVAPmEN_.js",
+        "role": "market",
+        "id": "it",
+        "rawBytes": 188102,
+        "gzipBytes": 71664
+      },
+      {
+        "name": "market-pjm-CHZj4BlE.js",
+        "role": "market",
+        "id": "pjm",
+        "rawBytes": 158357,
+        "gzipBytes": 63351
+      },
+      {
+        "name": "market-de-D2BW3keh.js",
+        "role": "market",
+        "id": "de",
+        "rawBytes": 158968,
+        "gzipBytes": 62690
+      },
+      {
+        "name": "market-ercot-Iq_na9wj.js",
+        "role": "market",
+        "id": "ercot",
+        "rawBytes": 147770,
+        "gzipBytes": 56799
+      },
+      {
+        "name": "congestionRegistry-tjOGzvs5.js",
+        "role": "shared",
+        "id": null,
+        "rawBytes": 135911,
+        "gzipBytes": 53328
+      },
+      {
+        "name": "market-caiso-tB2RI6Os.js",
+        "role": "market",
+        "id": "caiso",
+        "rawBytes": 118417,
+        "gzipBytes": 43826
+      }
+    ],
+    "largestJson": [
+      {
+        "path": "data/public/gb-eac-response.json",
+        "bytes": 9194885,
+        "gzipBytes": 474265
+      },
+      {
+        "path": "data/public/gb-dynamic-response.json",
+        "bytes": 5384248,
+        "gzipBytes": 255744
+      },
+      {
+        "path": "data/grid/it-transmission-132-219.part1.json",
+        "bytes": 1560751,
+        "gzipBytes": 344473
+      },
+      {
+        "path": "data/grid/gb-transmission-275plus.json",
+        "bytes": 1492529,
+        "gzipBytes": 227926
+      },
+      {
+        "path": "data/grid/gb-transmission-132-274.json",
+        "bytes": 1441611,
+        "gzipBytes": 291109
+      },
+      {
+        "path": "data/grid/de-transmission-380plus.json",
+        "bytes": 1272883,
+        "gzipBytes": 246604
+      },
+      {
+        "path": "data/public/jp-tokyo-jepx.json",
+        "bytes": 1215595,
+        "gzipBytes": 92710
+      },
+      {
+        "path": "data/public/wa-wem-prices.json",
+        "bytes": 1211439,
+        "gzipBytes": 107765
+      },
+      {
+        "path": "data/public/jp-hokkaido-jepx.json",
+        "bytes": 1210457,
+        "gzipBytes": 90590
+      },
+      {
+        "path": "data/public/jp-kyushu-jepx.json",
+        "bytes": 1209221,
+        "gzipBytes": 85051
+      },
+      {
+        "path": "data/grid/it-transmission-132-219.part2.json",
+        "bytes": 878942,
+        "gzipBytes": 133500
+      },
+      {
+        "path": "data/grid/de-transmission-220-379.json",
+        "bytes": 634593,
+        "gzipBytes": 120458
+      },
+      {
+        "path": "data/public/pl-day-ahead.json",
+        "bytes": 611855,
+        "gzipBytes": 56670
+      },
+      {
+        "path": "data/grid/it-transmission-380plus.json",
+        "bytes": 604357,
+        "gzipBytes": 144727
+      },
+      {
+        "path": "data/public/fi-fcr-n.json",
+        "bytes": 593594,
+        "gzipBytes": 43791
+      }
+    ]
+  },
+  "browser": {
+    "baseURL": "http://127.0.0.1:4188/",
+    "browser": "chromium 156.0.8078.4",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "runs": 3,
+    "throttling": "none",
+    "routes": [
+      {
+        "id": "home",
+        "path": "/",
+        "ready": "#app select[aria-label=\"Investor profile\"]",
+        "note": "the briefing and its investor selector",
+        "errors": [],
+        "cold": {
+          "wallMs": 866,
+          "readyMs": 850,
+          "ttfbMs": 8,
+          "dclMs": 221,
+          "loadMs": 256,
+          "fpMs": 112,
+          "fcpMs": 264,
+          "lcpMs": 780,
+          "cls": 0.042,
+          "longTasks": {
+            "count": 1,
+            "totalMs": 73,
+            "maxMs": 73
+          },
+          "resources": {
+            "count": 18,
+            "transferBytes": 302360,
+            "decodedBytes": 1153114,
+            "byInitiator": {
+              "script": 268589,
+              "link": 29026,
+              "css": 4745
+            }
+          },
+          "dom": {
+            "elements": 325,
+            "svgElements": 23,
+            "mapSvgElements": 0
+          }
+        },
+        "warm": {
+          "wallMs": 280,
+          "readyMs": 263,
+          "ttfbMs": 7,
+          "dclMs": 52,
+          "loadMs": 82,
+          "fpMs": 76,
+          "fcpMs": 76,
+          "lcpMs": 192,
+          "cls": 0.042,
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "resources": {
+            "count": 18,
+            "transferBytes": 5400,
+            "decodedBytes": 0,
+            "byInitiator": {
+              "script": 3900,
+              "link": 300,
+              "css": 1200
+            }
+          },
+          "dom": {
+            "elements": 325,
+            "svgElements": 23,
+            "mapSvgElements": 0
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 774,
+            "max": 1780
+          },
+          "warm": {
+            "min": 246,
+            "max": 799
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 1780,
+              "dclMs": 286,
+              "loadMs": 292,
+              "fcpMs": 1556,
+              "lcpMs": 1556,
+              "cls": 0,
+              "longTaskMs": 431,
+              "requests": 19
+            },
+            {
+              "readyMs": 850,
+              "dclMs": 221,
+              "loadMs": 256,
+              "fcpMs": 264,
+              "lcpMs": 780,
+              "cls": 0.042,
+              "longTaskMs": 73,
+              "requests": 18
+            },
+            {
+              "readyMs": 774,
+              "dclMs": 192,
+              "loadMs": 225,
+              "fcpMs": 232,
+              "lcpMs": 700,
+              "cls": 0.042,
+              "longTaskMs": 51,
+              "requests": 18
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 799,
+              "dclMs": 284,
+              "loadMs": 365,
+              "fcpMs": 392,
+              "lcpMs": 676,
+              "cls": 0.042,
+              "longTaskMs": 0,
+              "requests": 18
+            },
+            {
+              "readyMs": 246,
+              "dclMs": 53,
+              "loadMs": 82,
+              "fcpMs": 76,
+              "lcpMs": 192,
+              "cls": 0.042,
+              "longTaskMs": 0,
+              "requests": 18
+            },
+            {
+              "readyMs": 263,
+              "dclMs": 52,
+              "loadMs": 82,
+              "fcpMs": 76,
+              "lcpMs": 192,
+              "cls": 0.042,
+              "longTaskMs": 0,
+              "requests": 18
+            }
+          ]
+        }
+      },
+      {
+        "id": "gb",
+        "path": "/markets/great-britain",
+        "ready": "#bankable",
+        "note": "a block-engine dashboard, default tab",
+        "errors": [],
+        "cold": {
+          "wallMs": 954,
+          "readyMs": 936,
+          "ttfbMs": 12,
+          "dclMs": 192,
+          "loadMs": 224,
+          "fpMs": 108,
+          "fcpMs": 240,
+          "lcpMs": 892,
+          "cls": 0.004,
+          "longTasks": {
+            "count": 4,
+            "totalMs": 408,
+            "maxMs": 203
+          },
+          "resources": {
+            "count": 24,
+            "transferBytes": 385500,
+            "decodedBytes": 1338851,
+            "byInitiator": {
+              "script": 356474,
+              "link": 29026
+            }
+          },
+          "dom": {
+            "elements": 1111,
+            "svgElements": 180,
+            "mapSvgElements": 0
+          }
+        },
+        "warm": {
+          "wallMs": 297,
+          "readyMs": 281,
+          "ttfbMs": 6,
+          "dclMs": 44,
+          "loadMs": 66,
+          "fpMs": 64,
+          "fcpMs": 64,
+          "lcpMs": 164,
+          "cls": 0.004,
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "resources": {
+            "count": 24,
+            "transferBytes": 7200,
+            "decodedBytes": 0,
+            "byInitiator": {
+              "script": 6900,
+              "link": 300
+            }
+          },
+          "dom": {
+            "elements": 1111,
+            "svgElements": 180,
+            "mapSvgElements": 0
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 704,
+            "max": 991
+          },
+          "warm": {
+            "min": 279,
+            "max": 346
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 936,
+              "dclMs": 192,
+              "loadMs": 224,
+              "fcpMs": 240,
+              "lcpMs": 892,
+              "cls": 0.004,
+              "longTaskMs": 408,
+              "requests": 24
+            },
+            {
+              "readyMs": 991,
+              "dclMs": 183,
+              "loadMs": 216,
+              "fcpMs": 240,
+              "lcpMs": 804,
+              "cls": 0.004,
+              "longTaskMs": 207,
+              "requests": 24
+            },
+            {
+              "readyMs": 704,
+              "dclMs": 139,
+              "loadMs": 168,
+              "fcpMs": 184,
+              "lcpMs": 552,
+              "cls": 0.004,
+              "longTaskMs": 220,
+              "requests": 24
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 346,
+              "dclMs": 54,
+              "loadMs": 83,
+              "fcpMs": 76,
+              "lcpMs": 196,
+              "cls": 0.004,
+              "longTaskMs": 0,
+              "requests": 24
+            },
+            {
+              "readyMs": 279,
+              "dclMs": 49,
+              "loadMs": 75,
+              "fcpMs": 60,
+              "lcpMs": 180,
+              "cls": 0.004,
+              "longTaskMs": 0,
+              "requests": 24
+            },
+            {
+              "readyMs": 281,
+              "dclMs": 44,
+              "loadMs": 66,
+              "fcpMs": 64,
+              "lcpMs": 164,
+              "cls": 0.004,
+              "longTaskMs": 0,
+              "requests": 24
+            }
+          ]
+        }
+      },
+      {
+        "id": "wa",
+        "path": "/markets/western-australia",
+        "ready": "#bankable",
+        "note": "the largest market chunk and hand-written dashboard",
+        "errors": [],
+        "cold": {
+          "wallMs": 974,
+          "readyMs": 964,
+          "ttfbMs": 11,
+          "dclMs": 183,
+          "loadMs": 215,
+          "fpMs": 96,
+          "fcpMs": 228,
+          "lcpMs": 644,
+          "cls": 0.004,
+          "longTasks": {
+            "count": 5,
+            "totalMs": 505,
+            "maxMs": 166
+          },
+          "resources": {
+            "count": 25,
+            "transferBytes": 397400,
+            "decodedBytes": 1409371,
+            "byInitiator": {
+              "script": 356474,
+              "link": 29026,
+              "fetch": 11900
+            }
+          },
+          "dom": {
+            "elements": 1033,
+            "svgElements": 180,
+            "mapSvgElements": 0
+          }
+        },
+        "warm": {
+          "wallMs": 456,
+          "readyMs": 444,
+          "ttfbMs": 6,
+          "dclMs": 45,
+          "loadMs": 73,
+          "fpMs": 60,
+          "fcpMs": 60,
+          "lcpMs": 176,
+          "cls": 0.004,
+          "longTasks": {
+            "count": 2,
+            "totalMs": 201,
+            "maxMs": 148
+          },
+          "resources": {
+            "count": 25,
+            "transferBytes": 7500,
+            "decodedBytes": 70520,
+            "byInitiator": {
+              "script": 6900,
+              "link": 300,
+              "fetch": 300
+            }
+          },
+          "dom": {
+            "elements": 1033,
+            "svgElements": 180,
+            "mapSvgElements": 0
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 888,
+            "max": 1123
+          },
+          "warm": {
+            "min": 414,
+            "max": 464
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 964,
+              "dclMs": 183,
+              "loadMs": 215,
+              "fcpMs": 228,
+              "lcpMs": 644,
+              "cls": 0.004,
+              "longTaskMs": 505,
+              "requests": 25
+            },
+            {
+              "readyMs": 1123,
+              "dclMs": 167,
+              "loadMs": 197,
+              "fcpMs": 220,
+              "lcpMs": 720,
+              "cls": 0.004,
+              "longTaskMs": 665,
+              "requests": 25
+            },
+            {
+              "readyMs": 888,
+              "dclMs": 139,
+              "loadMs": 171,
+              "fcpMs": 184,
+              "lcpMs": 568,
+              "cls": 0.004,
+              "longTaskMs": 414,
+              "requests": 25
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 414,
+              "dclMs": 44,
+              "loadMs": 69,
+              "fcpMs": 60,
+              "lcpMs": 180,
+              "cls": 0.004,
+              "longTaskMs": 187,
+              "requests": 25
+            },
+            {
+              "readyMs": 464,
+              "dclMs": 46,
+              "loadMs": 69,
+              "fcpMs": 64,
+              "lcpMs": 180,
+              "cls": 0.004,
+              "longTaskMs": 230,
+              "requests": 25
+            },
+            {
+              "readyMs": 444,
+              "dclMs": 45,
+              "loadMs": 73,
+              "fcpMs": 60,
+              "lcpMs": 176,
+              "cls": 0.004,
+              "longTaskMs": 201,
+              "requests": 25
+            }
+          ]
+        }
+      },
+      {
+        "id": "gb-grid",
+        "path": "/markets/great-britain/grid",
+        "ready": ".geo-grid-map svg",
+        "note": "the GB transmission map, the largest SVG network",
+        "errors": [],
+        "cold": {
+          "wallMs": 1298,
+          "readyMs": 1309,
+          "ttfbMs": 8,
+          "dclMs": 153,
+          "loadMs": 158,
+          "fpMs": 100,
+          "fcpMs": 1068,
+          "lcpMs": null,
+          "cls": 0.17,
+          "longTasks": {
+            "count": 5,
+            "totalMs": 817,
+            "maxMs": 364
+          },
+          "resources": {
+            "count": 44,
+            "transferBytes": 831438,
+            "decodedBytes": 3429009,
+            "byInitiator": {
+              "script": 553662,
+              "link": 29026,
+              "fetch": 229099,
+              "css": 19651
+            }
+          },
+          "dom": {
+            "elements": 9427,
+            "svgElements": 8100,
+            "mapSvgElements": 8100
+          }
+        },
+        "warm": {
+          "wallMs": 656,
+          "readyMs": 651,
+          "ttfbMs": 6,
+          "dclMs": 49,
+          "loadMs": 70,
+          "fpMs": 60,
+          "fcpMs": 276,
+          "lcpMs": null,
+          "cls": 0.171,
+          "longTasks": {
+            "count": 3,
+            "totalMs": 215,
+            "maxMs": 89
+          },
+          "resources": {
+            "count": 44,
+            "transferBytes": 13200,
+            "decodedBytes": 1493706,
+            "byInitiator": {
+              "script": 11700,
+              "link": 300,
+              "fetch": 600,
+              "css": 600
+            }
+          },
+          "dom": {
+            "elements": 9427,
+            "svgElements": 8100,
+            "mapSvgElements": 8100
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 1273,
+            "max": 1353
+          },
+          "warm": {
+            "min": 546,
+            "max": 688
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 1309,
+              "dclMs": 153,
+              "loadMs": 158,
+              "fcpMs": 1068,
+              "lcpMs": null,
+              "cls": 0.17,
+              "longTaskMs": 817,
+              "requests": 44
+            },
+            {
+              "readyMs": 1273,
+              "dclMs": 182,
+              "loadMs": 189,
+              "fcpMs": 856,
+              "lcpMs": null,
+              "cls": 0.17,
+              "longTaskMs": 635,
+              "requests": 44
+            },
+            {
+              "readyMs": 1353,
+              "dclMs": 160,
+              "loadMs": 165,
+              "fcpMs": 516,
+              "lcpMs": null,
+              "cls": 0.211,
+              "longTaskMs": 818,
+              "requests": 43
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 688,
+              "dclMs": 62,
+              "loadMs": 82,
+              "fcpMs": 344,
+              "lcpMs": null,
+              "cls": 0.171,
+              "longTaskMs": 220,
+              "requests": 44
+            },
+            {
+              "readyMs": 651,
+              "dclMs": 49,
+              "loadMs": 70,
+              "fcpMs": 276,
+              "lcpMs": null,
+              "cls": 0.171,
+              "longTaskMs": 215,
+              "requests": 44
+            },
+            {
+              "readyMs": 546,
+              "dclMs": 68,
+              "loadMs": 94,
+              "fcpMs": 392,
+              "lcpMs": null,
+              "cls": 0.17,
+              "longTaskMs": 232,
+              "requests": 43
+            }
+          ]
+        }
+      },
+      {
+        "id": "returns",
+        "path": "/returns",
+        "ready": ".ix-results tbody tr",
+        "note": "the comparison engine and league table",
+        "errors": [],
+        "cold": {
+          "wallMs": 640,
+          "readyMs": 630,
+          "ttfbMs": 7,
+          "dclMs": 172,
+          "loadMs": 204,
+          "fpMs": 96,
+          "fcpMs": 228,
+          "lcpMs": 596,
+          "cls": 0.042,
+          "longTasks": {
+            "count": 1,
+            "totalMs": 55,
+            "maxMs": 55
+          },
+          "resources": {
+            "count": 15,
+            "transferBytes": 298929,
+            "decodedBytes": 1149169,
+            "byInitiator": {
+              "script": 268589,
+              "link": 29026,
+              "css": 1314
+            }
+          },
+          "dom": {
+            "elements": 703,
+            "svgElements": 96,
+            "mapSvgElements": 0
+          }
+        },
+        "warm": {
+          "wallMs": 238,
+          "readyMs": 225,
+          "ttfbMs": 6,
+          "dclMs": 44,
+          "loadMs": 70,
+          "fpMs": 56,
+          "fcpMs": 56,
+          "lcpMs": 156,
+          "cls": 0.042,
+          "longTasks": {
+            "count": 0,
+            "totalMs": 0,
+            "maxMs": 0
+          },
+          "resources": {
+            "count": 15,
+            "transferBytes": 4500,
+            "decodedBytes": 0,
+            "byInitiator": {
+              "script": 3900,
+              "link": 300,
+              "css": 300
+            }
+          },
+          "dom": {
+            "elements": 703,
+            "svgElements": 96,
+            "mapSvgElements": 0
+          }
+        },
+        "spread": {
+          "cold": {
+            "min": 580,
+            "max": 739
+          },
+          "warm": {
+            "min": 219,
+            "max": 276
+          }
+        },
+        "samples": {
+          "cold": [
+            {
+              "readyMs": 739,
+              "dclMs": 190,
+              "loadMs": 226,
+              "fcpMs": 236,
+              "lcpMs": 704,
+              "cls": 0.042,
+              "longTaskMs": 56,
+              "requests": 15
+            },
+            {
+              "readyMs": 630,
+              "dclMs": 172,
+              "loadMs": 204,
+              "fcpMs": 228,
+              "lcpMs": 596,
+              "cls": 0.042,
+              "longTaskMs": 55,
+              "requests": 15
+            },
+            {
+              "readyMs": 580,
+              "dclMs": 161,
+              "loadMs": 195,
+              "fcpMs": 208,
+              "lcpMs": 524,
+              "cls": 0.042,
+              "longTaskMs": 0,
+              "requests": 15
+            }
+          ],
+          "warm": [
+            {
+              "readyMs": 276,
+              "dclMs": 60,
+              "loadMs": 86,
+              "fcpMs": 72,
+              "lcpMs": 208,
+              "cls": 0.042,
+              "longTaskMs": 0,
+              "requests": 15
+            },
+            {
+              "readyMs": 225,
+              "dclMs": 44,
+              "loadMs": 70,
+              "fcpMs": 56,
+              "lcpMs": 156,
+              "cls": 0.042,
+              "longTaskMs": 0,
+              "requests": 15
+            },
+            {
+              "readyMs": 219,
+              "dclMs": 50,
+              "loadMs": 76,
+              "fcpMs": 68,
+              "lcpMs": 168,
+              "cls": 0.042,
+              "longTaskMs": 0,
+              "requests": 15
+            }
+          ]
+        }
+      }
+    ],
+    "caveat": "vite preview serves identity encoding and revalidates hashed assets; transfer sizes are an upper bound and warm visits are not production cache hits."
+  }
+}
