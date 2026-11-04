@@ -10,6 +10,7 @@ The existing research button, lazy story registry, shared shell, navigator, cont
 
 | File | Reason |
 | --- | --- |
+| `tests/bundle-budget.test.js` | Enforce the PJM static graph, lazy style and locator-loading budget in the dedicated budget command. Existing market budgets are preserved. |
 | `src/experience/story/registry.js` | Add the lazy PJM pack with `released: false`. Existing market entries are preserved. Ordinary readers retain the research dialog; the candidate opens through the existing preview route. |
 
 ## Market-local work
@@ -37,4 +38,3 @@ The runtime imports the value module. The full authoring registry still exposes 
 The wiring tests measure the complete additional static JavaScript closure and lazy styles against 40 KiB gzip, excluding only assets already loaded by the market page. Browser checks cover the initial request graph, first-open pack request, demand-loaded locators, thirteen bilingual shots and markers, focus, fallback and local controls on desktop and mobile. Each PR records its exact-head build, unit, current-model, budget and browser results; the data PR also records ETL verification. No fixture or snapshot is regenerated.
 
 At G-2 the analyst checks the call/play/duration/lens anchor, all thirteen bilingual shots and markers, the credit-refresh binding reconciliation, the source-vintage distinction, price rights and null payloads, comparison/settlement fallbacks, solid/dashed/Example semantics, the approximate footprint, local-only controls, focus/history/language/mobile behaviour, and the measured lazy graph budget. Setting `released` belongs to the separate G-2 release PR. The stack does not merge or publish the story.
-
