@@ -326,8 +326,9 @@ jobs:
       #
       # What the live step uniquely proves is narrower: the domain answers, a
       # deep link survives the production rewrite, the market chunks are served,
-      # and no uncaught error reaches the console. e2e-smoke/ does that in under
-      # a minute across desktop and mobile.
+      # and no uncaught error reaches the console. e2e-smoke/ does that in 1.2–1.8
+      # minutes locally, across desktop and mobile — against 8.4 for the suite it
+      # replaces. The job summary reports the runner's own figure.
       #
       # The gate that a publish actually happened is above, in the release
       # script: the deployment identity, readiness and `release.json` stamp are

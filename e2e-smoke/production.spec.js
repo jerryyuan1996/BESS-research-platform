@@ -16,8 +16,9 @@
        that dropped an asset fails here rather than on a reader's screen;
      · no uncaught error reaches the console on the routes that matter.
 
-   Six routes across both viewports. Under a minute, and every assertion is one
-   that would mean "the publish is broken", not "a number moved".
+   Five tests across both viewports. 1.2–1.8 minutes locally against a preview
+   server, and every assertion is one that would mean "the publish is broken",
+   not "a number moved".
    --------------------------------------------------------------------------- */
 import { test, expect } from '@playwright/test';
 

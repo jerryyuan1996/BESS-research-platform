@@ -51,7 +51,7 @@ The publish job's shape, before and after:
 | **Push to `main`, both jobs** | **20.3 min** | **~12.5–13.5 min estimated** |
 
 The local measurement behind the estimate: the smoke suite ran 10 tests (5 × desktop and mobile)
-in **1.8 min** against `vite preview` on this laptop, with three workers. CI runs the browser suite
+in **1.2–1.8 min** across two runs against `vite preview` on this laptop, with three workers. CI runs the browser suite
 2–3× faster than this host (P0-1 measured 6.25 min in CI against 19.4 min locally), so 1.0–1.5 min
 is the honest range — and the live step is a production network away from the preview server.
 
