@@ -14,7 +14,7 @@
    again; story links then open nothing.
    --------------------------------------------------------------------------- */
 export const STORIES = {
-  pjm: { released: false, load: () => import('../../markets/pjm/storyPack.js') },
+  pjm: { released: true, load: () => import('../../markets/pjm/storyPack.js') },
   /* Analyst G-2 signed off 3 November 2026. */
   caiso: { released: true, load: () => import('../../markets/caiso/storyPack.js') },
   wa: { released: true, load: () => import('../../markets/wa/storyPack.js') },
