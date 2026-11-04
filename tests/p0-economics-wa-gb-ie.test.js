@@ -1,6 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+/** A market's section source. Since P1-C a market may keep its sections in
+ *  sections/*.js rather than one sections.js; the integration being asserted
+ *  lives in whichever of them carries the story. */
+function marketSections(market){
+  const base = `src/markets/${market}`;
+  const parts = [readFileSync(path.join(ROOT, base, 'sections.js'), 'utf8')];
+  const dir = path.join(ROOT, base, 'sections');
+  if (existsSync(dir))
+    for (const name of readdirSync(dir).filter(n => n.endsWith('.js')))
+      parts.push(readFileSync(path.join(dir, name), 'utf8'));
+  return parts.join('\n');
+}
 
 import { WA_ECONOMICS_P0 } from '../src/markets/wa/economicsP0.js';
 import { GB_ECONOMICS_P0 } from '../src/markets/gb/economicsP0.js';
@@ -124,8 +141,8 @@ test('capacity and competition arithmetic is reproducible', () => {
 
 test('each market story visibly integrates its P0 economics section', () => {
   const waStory = readFileSync(new URL('../src/markets/wa/sections/story.js', import.meta.url), 'utf8');
-  const gbSections = readFileSync(new URL('../src/markets/gb/sections.js', import.meta.url), 'utf8');
-  const ieSections = readFileSync(new URL('../src/markets/ie/sections.js', import.meta.url), 'utf8');
+  const gbSections = marketSections('gb');
+  const ieSections = marketSections('ie');
 
   assert.match(waStory, /renderWaEconomicsP0\(main\)/);
   assert.match(gbSections, /\.\.\.gbEconomicsP0Blocks\(SRC\)/);

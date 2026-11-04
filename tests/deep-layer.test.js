@@ -12,7 +12,7 @@
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -39,6 +39,19 @@ function walk(dir, out = []){
 }
 const FILES = walk(SRC).map(p => ({ rel: path.relative(ROOT, p).split(path.sep).join('/'), text: readFileSync(p, 'utf8') }));
 const file = (rel) => readFileSync(path.join(ROOT, rel), 'utf8');
+
+/** A market's sections, whether they are one file or one module per section.
+ *  The P1 rollout moved GB's deep tabs into sections/*.js; a guard held against
+ *  a single filename would go blind rather than fail, so it reads the whole
+ *  market's section source. */
+const marketSections = (rel) => {
+  const dir = path.join(ROOT, path.dirname(rel), 'sections');
+  if (!existsSync(dir)) return file(rel);
+  const parts = [file(rel)];
+  for (const name of readdirSync(dir).filter(n => n.endsWith('.js')))
+    parts.push(file(path.join(path.dirname(rel), 'sections', name)));
+  return parts.join('\n');
+};
 
 /* Source without its comments, so a comment may name what the rule forbids. A
    "//" after a colon is a URL, not a comment. */
@@ -81,7 +94,7 @@ test('the deep tabs read what to build from the briefing the Brief reads', () =>
   }
 
   for (const rel of ['src/markets/gb/sections.js', 'src/markets/jp/sections.js', 'src/markets/wa/lib/design.js']){
-    assert.match(file(rel), /_shared\/designAnswer\.js/, `${rel} names durations through designAnswer.js`);
+    assert.match(marketSections(rel), /_shared\/designAnswer\.js/, `${rel} names durations through designAnswer.js`);
   }
   for (const rel of ['src/markets/wa/sections/home.js', 'src/markets/wa/sections/duration.js', 'src/markets/wa/sections/story.js']){
     assert.match(file(rel), /lib\/design\.js/, `${rel} reads WA's design from the engine`);
