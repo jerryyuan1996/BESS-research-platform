@@ -1,21 +1,22 @@
 # Implementation checkpoint
 
-Integration branch: `feat/policy-intelligence-v4`, based on `494ce7b`. This is an **incomplete draft**, not the complete D0–D8 release candidate. The existing platform remains available locally. No new Policy UI, pilot content, live model or policy auto-publication has been represented as complete.
+Integration branch: `feat/policy-intelligence-v4`, based on `494ce7b`. Draft PR #159 is an **incomplete v4 deliverable**. A passing software check does not accept missing source governance, content reviews or empirical model evaluation. Do not merge it as the full D0-D8 release.
 
-| Phase | Status |
-|---|---|
-| Gate 0 / D0 | Actual 30-day job audit, design/authority/dependency/permission/acceptance documents prepared; account billing access limitation explicit |
-| D1 | Policy-only contracts, semantic safety checks, external attestation boundary, immutable writer/replay, read-only resolver and synthetic adversarial tests implemented; full release acceptance pending integration gates |
-| D2 | Offline-tested deterministic discovery and proposed single daily workflow; source inventory intentionally inactive pending source/rights approval; no claim publication |
-| D3 | Not implemented; no paid model calls, tokens or measured model quality |
-| D4–D5 | Not implemented; no Policy Radar/Dossier/Story routes shipped |
-| D6 × 4 | Primary-source review queue prepared; no market pilot accepted |
-| D7–D8 | Not implemented; no activation or production release |
+| Phase | Implemented | Outstanding acceptance |
+|---|---|---|
+| Gate 0 / D0 | 30-day job audit; authority, architecture, dependency and permission design | Account billing/reset inaccessible; production policy runtime unmeasured |
+| D1 | Policy-only contracts/writer; immutable history; external evidence/translation/rights/narrative review; read-only resolver | Real content and final integration gates |
+| D2 | Deterministic discovery and proposed single daily ETL+policy workflow | All four source/rights inventory entries remain unapproved and inactive |
+| D3 | Bounded tool-free shadow transport, incremental merge, durable daily-job audit, quarantine and material review packets | No paid model configured; zero actual calls or accepted historical gold cases |
+| D4-D5 | Lazy Radar/map/feed/filters/preview; Dossier/history/diffs; bilingual brief/guided/explorer; declarative SVG | Real published content and complete performance/release acceptance |
+| D6 x 4 | Separate software fixtures and official-source review queue | Four source-backed deep pilots and independent analyst content reviews incomplete |
+| D7 | Shared lazy market route, strict-basis comparison, read-only pending-review sidecar | Real comparative claims and four accepted pilots |
+| D8 | Disabled live configuration; isolated read-only model job; independent publisher; combined commit/CI path; public-store release gate | Concrete source/model/cost acceptance, offline source validators, historical evaluation, release/rollback rehearsal and production measurements |
 
-Existing GB parity failure reproduced on untouched main: portfolio 6,155 bytes retained but hash changed when observed FX changed the live Brief sentence. The existing fingerprint and financial baselines are unchanged. A small historical projection fixture was reconstructed from the original fingerprint commit `d85f172`; only the exact current bilingual Brief sentence is normalized for static extraction comparison. The test also requires exactly one current Brief sentence per language; all remaining prose/numbers/functions remain under the original hash. Current runtime engine linkage remains covered by `tests/deep-layer.test.js`.
+No Policy snapshot exists in public/. Synthetic browser fixtures stay in tests and are intercepted at request time. Empty coverage is displayed honestly. Software tests are not empirical historical evaluation or model precision/recall. Both live model and policy publication remain OFF.
 
-New policy tests are synthetic software safety cases. They are **not** 12 historically source-verified gold cases or empirical model precision/recall. Publication requires independent claim-digest-bound evidence/translation attestations in addition to source body hashes; candidate booleans cannot self-approve legal meaning.
+The workflow proposal replaces `17 */6 * * *` with `17 6 * * *`, preserves unrelated monthly/weekly schedules, and retains the original exact-SHA scanned-prebuilt release chain. It is not active on main. Existing deterministic rules retain their original authority. Policy AI cannot write investment views, model assumptions, methodology or signed-off Market Stories. No paid request, billing change, repository visibility change or production deployment occurred.
 
-Current release blockers: proposed source/rights list not approved; NEM source retrieval returned 403; downstream phases and four independent content reviews incomplete; no measured production policy cycle or model cost/configuration acceptance. The complete release cannot merge or deploy until these gates pass. Do not mark a draft as production-ready merely because code checks turn green.
+Original GB parity failed on untouched main. Only the exact current bilingual Brief projection is normalized to the original public-data vintage for the unchanged static fingerprint. Exactly one sentence per language and existing current-engine linkage remain asserted. Financial baselines were not regenerated.
 
-No investment view, pricing input, discount rate, grade, signed market story, legacy baseline, existing source governance or repository visibility was changed. The only governance amendment implemented is the specifically authorized daily cadence and its documentation; the policy model exception remains a proposal.
+See release-readiness.md, source-review-proposal.md and validation-record.md for actual evidence and blockers.

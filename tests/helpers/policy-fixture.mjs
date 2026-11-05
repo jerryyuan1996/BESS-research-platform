@@ -18,4 +18,4 @@ export function fixture(state='consultation',market='gb'){
   return snapshot;
 }
 export const bodies=()=>new Map([['test-source',BODY]]);
-export const attestedContext=s=>({...CONTEXT,attestations:new Map(s.claims.map(c=>[c.id,{claimHash:digest(c),supported:true,translationEquivalent:true}])),sourceReviews:new Map(s.sources.map(source=>[source.id,{sourceHash:digest(source),maxQuoteChars:300}]))});
+export const attestedContext=s=>({...CONTEXT,publicationReviewHash:digest(s),attestations:new Map(s.claims.map(c=>[c.id,{claimHash:digest(c),supported:true,translationEquivalent:true}])),sourceReviews:new Map(s.sources.map(source=>[source.id,{sourceHash:digest(source),maxQuoteChars:300}]))});

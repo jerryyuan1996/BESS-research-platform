@@ -1,0 +1,9 @@
+import { appendFile } from 'node:fs/promises';
+import { POLICY_AUTHORIZATION } from '../../policy/authorization.mjs';
+import { POLICY_SOURCES } from '../../policy/source-inventory.mjs';
+import { TRUSTED_POLICY_PROFILES,APPROVED_HISTORICAL_EVALUATION } from '../../policy/validation-profiles.mjs';
+import { activationProblems } from '../../policy/activation.mjs';
+const errors=activationProblems({config:POLICY_AUTHORIZATION,sources:POLICY_SOURCES,profiles:TRUSTED_POLICY_PROFILES,evaluation:APPROVED_HISTORICAL_EVALUATION});
+const enabled=errors.length===0;
+if(process.env.GITHUB_OUTPUT)await appendFile(process.env.GITHUB_OUTPUT,`enabled=${enabled}\n`);
+console.log(JSON.stringify({enabled,publicationEnabled:enabled&&POLICY_AUTHORIZATION.publicationEnabled,blockers:errors},null,2));

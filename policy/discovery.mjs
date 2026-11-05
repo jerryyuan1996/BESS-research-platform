@@ -35,7 +35,7 @@ async function fetchReviewed(url,source,fetcher,limits){
   throw new Error('redirect_limit');
 }
 /** Pure runner: callers own report serialization. No publisher, fs, model or token. */
-export async function discoverPolicies({sources,previous=[],now=new Date(),fetcher=fetch,limits=DISCOVERY_LIMITS,sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms)),killSwitch=false}){
+export async function discoverPolicies({sources,previous=[],now=new Date(),fetcher=fetch,limits=DISCOVERY_LIMITS,sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms)),killSwitch=false,onDocument=null}){
   const checkedAt=new Date(now).toISOString();const cycle=cycleId(now);const records=[];const seenURLs=new Set(),seenIdentities=new Set();
   const old=new Map(previous.map(x=>[x.identity,x]));
   for(const source of sources){
@@ -58,6 +58,7 @@ export async function discoverPolicies({sources,previous=[],now=new Date(),fetch
         const type=result.response.headers.get('content-type')||'';if(!/^text\/(?:html|plain)|application\/(?:json|xml)/i.test(type))throw new Error('unsupported_document_type');
         const body=await boundedText(result.response,limits.bytes);if(!body.trim())throw new Error('empty_document');
         const hash=sourceDigest(body);const document={url:result.url,contentHash:hash,observedAt:checkedAt,publishedAt:null,effectiveAt:null};
+        if(onDocument)await onDocument({source,document,body});
         const unchanged=prior?.lastKnownGood?.contentHash===hash;
         records.push({...base,status:unchanged?'unchanged':'changed',lastSuccessfulAt:checkedAt,lastKnownGood:unchanged?prior.lastKnownGood:document});success=true;break;
       }catch(error){failure=/^[a-z_0-9]+$/.test(error.message)?error.message:'network_error';if(attempt<limits.retries)await sleep(250*(2**attempt));}

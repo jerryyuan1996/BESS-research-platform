@@ -193,7 +193,11 @@ let experiencePage = null;
 let experienceToken = 0;
 function renderExperiencePage(app, route, market) {
   const token = ++experienceToken;
-  if (experiencePage) return void experiencePage.renderExperience(app, route, market);
+  const draw=module=>Promise.resolve(module.renderExperience(app,route,market)).then(()=>{
+    if(!market||token!==experienceToken)return;
+    import('../policy/notice.js').then(m=>{if(token===experienceToken)m.attachReviewNotice(app,market);}).catch(()=>{});
+  });
+  if (experiencePage) return void draw(experiencePage);
   const holder = h('div', { class: 'ix-container', 'aria-busy': 'true', style: 'padding-top:60px' },
     h('p', {}, L(['Loading the investment brief…', '正在加载投资简报…'])));
   app.append(holder);
@@ -201,13 +205,22 @@ function renderExperiencePage(app, route, market) {
     experiencePage = module;
     if (token !== experienceToken || !holder.isConnected) return;
     app.replaceChildren();
-    module.renderExperience(app, route, market);
+    draw(module);
   }).catch(error => {
     if (!holder.isConnected) return;
     console.error('[experience]', error);
     holder.replaceChildren(h('p', {}, L(['The page could not be loaded.', '页面未能加载。'])),
       h('button', { class: 'ix-button', onclick: () => window.location.reload() }, L(['Reload', '刷新'])));
   });
+}
+
+function renderPolicy(app,route,market=null){
+  const token=experienceToken;
+  const holder=h('div',{class:'ix-container','aria-busy':'true'},h('p',{},L(['Loading policy intelligence…','正在读取政策情报…'])));app.append(holder);
+  import('../policy/page.js').then(module=>{
+    if(token!==experienceToken||!holder.isConnected)return;
+    module.renderPolicyPage(app,{route,market,markets});
+  }).catch(()=>{if(holder.isConnected)holder.replaceChildren(h('p',{},L(['Policy intelligence could not be loaded. Reload the page.','无法读取政策情报，请刷新页面。'])));});
 }
 
 /** Renders the current route into #app. This is the app's only render entry point. */
@@ -224,12 +237,19 @@ export function render(){
      content exists — is what stops it being set later, under 800 px of finished
      dashboard, where the width change is a layout shift (0.042 on the GB grid
      page before Phase A3). The same condition the research shell below uses. */
-  app.classList.toggle('ix-app', ['data','investmentLab','changes','scout','desk'].includes(route.name)
+  app.classList.toggle('ix-app', ['data','investmentLab','changes','scout','desk','policy'].includes(route.name)
     || (route.name === 'market' && Boolean(route.tab)));
   const experience = route.name === 'home' || route.name === 'returns' || (route.name === 'market' && !route.tab && bySlug(route.slug));
-  document.body.classList.toggle('ix-experience', Boolean(experience) || ['market','news','data','investmentLab','changes','scout','desk'].includes(route.name));
+  document.body.classList.toggle('ix-experience', Boolean(experience) || ['market','news','data','investmentLab','changes','scout','desk','policy'].includes(route.name));
   document.body.classList.toggle('ix-research', route.name === 'market' && Boolean(route.tab));
   ++experienceToken;
+  if(route.name==='policy'){
+    document.title=L(['Global BESS | Policy intelligence','全球储能 | 政策情报']);return renderPolicy(app,route);
+  }
+  if(route.name==='market'&&route.tab==='policy'){
+    const market=bySlug(route.slug);
+    if(market){document.title=L(market.manifest.name)+' | '+L(['Policy','政策']);return renderPolicy(app,{...route,kind:'radar'},market);}
+  }
   if (experience) {
     const market = route.name === 'market' ? bySlug(route.slug) : null;
     document.title = L(['Global BESS', '全球储能']) + ' | ' + (market ? L(market.manifest.name) : route.name === 'returns' ? L(['Global opportunities', '全球投资机会']) : L(['Investment brief', '投资简报']));

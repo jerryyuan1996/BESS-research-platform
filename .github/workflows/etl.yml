@@ -118,6 +118,8 @@ jobs:
     permissions:
       contents: read
     timeout-minutes: 5
+    outputs:
+      ai_enabled: ${{ steps.authorization.outputs.enabled }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -135,6 +137,9 @@ jobs:
         run: node scripts/policy/discover.mjs
         env:
           POLICY_DISCOVERY_DISABLED: ${{ vars.POLICY_DISCOVERY_DISABLED }}
+      - name: Check concrete policy authorization without a credential
+        id: authorization
+        run: node scripts/policy/authorize.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: policy-discovery
@@ -142,9 +147,60 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 
+  policy-research:
+    name: Policy research, gated shadow
+    needs: policy-discovery
+    if: needs.policy-discovery.outputs.ai_enabled == 'true' && inputs.dry_run != true && vars.POLICY_AI_DISABLED != '1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: policy-discovery
+          path: etl/out/
+      - uses: actions/cache@v4
+        with:
+          path: etl/out/policy-ledger.json
+          key: policy-ledger-${{ hashFiles('policy/authorization.mjs', 'policy/source-inventory.mjs', 'policy/validation-profiles.mjs') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: policy-ledger-${{ hashFiles('policy/authorization.mjs', 'policy/source-inventory.mjs', 'policy/validation-profiles.mjs') }}-
+      - name: Reserve the one daily model-job slot using durable run history
+        run: node scripts/policy/daily-slot.mjs
+        env:
+          GH_READ_TOKEN: ${{ github.token }}
+      - name: Run the bounded tool-free policy model
+        run: node scripts/policy/research.mjs
+        env:
+          POLICY_MODEL_API_KEY: ${{ secrets.POLICY_MODEL_API_KEY }}
+          POLICY_AI_DISABLED: ${{ vars.POLICY_AI_DISABLED }}
+      - name: Independently scan policy artifacts before uploading
+        run: node scripts/policy/scan-artifact.mjs
+        env:
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+          REQUIRE_MARKERS: '1'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: policy-candidate
+          path: |
+            etl/out/policy-candidate.json
+            etl/out/policy-research.json
+          retention-days: 7
+          if-no-files-found: error
+
   refresh:
     name: Fetch, validate, publish
-    needs: policy-discovery
+    needs: [policy-discovery, policy-research]
     # Not on the agent's, the digest's or the scout pass's schedule: those run
     # their own job. Nor when a scout pass was asked for by hand.
     if: ${{ !cancelled() && (github.event.schedule == '17 6 * * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '' && inputs.weekly_briefing != true)) }}
@@ -210,6 +266,22 @@ jobs:
         id: rules
         if: inputs.dry_run != true
         run: node etl/rules.mjs || echo "rejected=true" >> "$GITHUB_OUTPUT"
+
+      - name: Collect the independently scanned policy candidate
+        if: needs.policy-research.result == 'success' && inputs.dry_run != true
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: policy-candidate
+          path: etl/out/
+
+      - name: Independently validate policy and retain last known-good on failure
+        if: inputs.dry_run != true
+        run: node scripts/policy/publish-candidate.mjs
+        env:
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+          REQUIRE_MARKERS: '1'
 
       - name: Check the walls held
         # Belt and braces. The two writers make writing anywhere else throw, but

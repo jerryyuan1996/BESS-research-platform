@@ -192,6 +192,7 @@ export function renderMarketPage(container, market, tabId, regionOverride, subId
         ...Array.from(container.childNodes));
       container.replaceChildren(siteHeader('market'), research, siteFooter());
     }
+    import('../policy/notice.js').then(m=>{if(token===renderToken)m.attachReviewNotice(container,market);}).catch(()=>{});
   }).catch(err => {
     clearTimeout(skeletonTimer);
     if (token !== renderToken) return;

@@ -1,11 +1,13 @@
 import { createHash } from 'node:crypto';
-export function canonical(value){
-  if(Array.isArray(value))return value.map(canonical);
-  if(value&&typeof value==='object')return Object.fromEntries(Object.keys(value).sort().map(k=>[k,canonical(value[k])]));
-  return value;
-}
+import { canonical } from './canonical.mjs';
+export { canonical } from './canonical.mjs';
 export const digest = value => createHash('sha256').update(typeof value==='string'?value:JSON.stringify(canonical(value))).digest('hex');
 export const sourceDigest = text => `sha256:${digest(text)}`;
+export function policyContentDigest(snapshot){
+  return digest(Object.fromEntries(['sources','instruments','events','claims','impacts','stories','links','reviews'].map(kind=>[kind,(snapshot[kind]||[]).map(record=>{
+    const copy={...record};if(kind==='sources')delete copy.checkedAt;if(kind==='events')delete copy.verifiedAt;return copy;
+  })])));
+}
 export function snapshotDiff(before,after){
   const changes=[];
   for(const kind of ['sources','instruments','events','claims','impacts','stories','links','reviews']){
@@ -14,8 +16,8 @@ export function snapshotDiff(before,after){
   }
   return changes;
 }
-export function verifyEvidenceHashes(snapshot,bodies){
-  return snapshot.sources.flatMap(s=>typeof bodies.get(s.id)!=='string'||sourceDigest(bodies.get(s.id))!==s.contentHash?[`${s.id}: source body hash mismatch`]:[]);
+export function verifyEvidenceHashes(snapshot,bodies,{retainedSourceIds=new Set()}={}){
+  return snapshot.sources.flatMap(s=>!bodies.has(s.id)&&retainedSourceIds.has(s.id)?[]:typeof bodies.get(s.id)!=='string'||sourceDigest(bodies.get(s.id))!==s.contentHash?[`${s.id}: source body hash mismatch`]:[]);
 }
 
 const COLLECTIONS=['sources','instruments','events','claims','impacts','stories','links','reviews'];

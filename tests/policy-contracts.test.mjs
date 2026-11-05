@@ -65,9 +65,11 @@ test('policy publication fails closed, then preserves immutable replay and paren
     const next=structuredClone(snapshot);next.id='synthetic-revision';next.parent=first.head;next.createdAt='2026-11-06T06:17:00Z';
     await assert.rejects(publishPolicySnapshot({...args,snapshot:next,enabled:true}),/parent/);
     next.events[0].summary=['Silently rewritten','静默重写'];
-    await assert.rejects(publishPolicySnapshot({...args,snapshot:next,expectedParent:first.head,enabled:true}),/historical event mutation/);
+    await assert.rejects(publishPolicySnapshot({...args,snapshot:next,context:attestedContext(next),expectedParent:first.head,enabled:true}),/historical event mutation/);
     next.events[0]=snapshot.events[0];
-    const second=await publishPolicySnapshot({...args,snapshot:next,expectedParent:first.head,enabled:true});
+    assert.equal((await publishPolicySnapshot({...args,snapshot:next,context:attestedContext(next),expectedParent:first.head,enabled:true})).changed,false,'timestamps and snapshot ids alone must not produce a commit');
+    next.events.push({...structuredClone(next.events[0]),id:'test-correction',kind:'correction',from:'consultation',to:'consultation',corrects:'test-event',verifiedAt:next.createdAt,summary:['Synthetic correction record','模拟更正记录']});
+    const second=await publishPolicySnapshot({...args,snapshot:next,context:attestedContext(next),expectedParent:first.head,enabled:true});
     const index=JSON.parse(await readFile(path.join(repo,'public/data/public/policy/index.json'),'utf8'));assert.deepEqual(index.versions,[first.head,second.head]);
     assert.deepEqual(JSON.parse(await readFile(path.join(repo,'public/data/public/policy/snapshots',first.head+'.json'),'utf8')),snapshot);
   }finally{await rm(repo,{recursive:true,force:true});}

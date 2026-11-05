@@ -109,6 +109,14 @@ export function parseRoute(pathname, search = ''){
   if (parts[0] === 'news' && parts.length === 1) return { name: 'news', ...view };
 
 
+  if(parts[0]==='policy'){
+    const version=params.get('version');
+    if(parts.length===1)return {name:'policy',kind:'radar',version,...view};
+    if(parts.length===2&&parts[1]==='compare')return {name:'policy',kind:'compare',version,...view};
+    if(parts.length===3&&['dossiers','stories'].includes(parts[1])&&/^[a-z][a-z0-9_-]{1,95}$/.test(parts[2]))return {name:'policy',kind:parts[1]==='dossiers'?'dossier':'story',id:parts[2],version,...view};
+    return {name:'notFound',path:pathname,...view};
+  }
+
   if (parts[0] === 'markets'){
     if (parts.length === 1) return { name: 'home', ...view };   // /markets → home
     return {

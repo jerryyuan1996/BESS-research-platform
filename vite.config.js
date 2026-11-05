@@ -43,6 +43,8 @@ export default defineConfig({
            label wanted. Anything not matching that shape keeps the default. */
         chunkFileNames(chunk){
           const id = chunk.facadeModuleId || '';
+          if (/[\\/]policy[\\/]page\.js$/.test(id)) return 'assets/policy-page-[hash].js';
+          if (/[\\/]policy[\\/]map\.js$/.test(id)) return 'assets/policy-map-[hash].js';
           if (/[\\/]experience[\\/]pages\.js$/.test(id)) return 'assets/investor-experience-[hash].js';
           /* A market's story: its content, the story shell and the isometric
              kit, fetched when the reader opens the story (immersive-experience

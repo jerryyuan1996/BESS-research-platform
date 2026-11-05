@@ -23,6 +23,7 @@ export function siteHeader(active = 'home') {
     link('/', ['Investment brief', '投资简报'], active === 'home' ? 'is-active' : '', active === 'home' ? { 'aria-current': 'page' } : {}),
     link('/returns', ['Global markets', '全球市场'], active === 'returns' ? 'is-active' : '', active === 'returns' ? { 'aria-current': 'page' } : {}),
     link(marketPath, active==='market'?['Market intelligence', '市场详情']:['Choose a market','选择市场'], active === 'market' ? 'is-active' : '', active === 'market' ? { 'aria-current': 'page' } : {}),
+    link(active==='market'?marketPath+'/policy':'/policy',active==='market'?['Policy','政策']:['Policy intelligence','政策情报'],active==='policy'?'is-active':'',active==='policy'?{'aria-current':'page'}:{}),
     /* Shown in the menu only where the header button below is hidden. */
     link('/news', ['Industry news', '行业新闻'], 'ix-nav-news' + (active === 'news' ? ' is-active' : ''), active === 'news' ? { 'aria-current': 'page' } : {}));
   const toggle = h('button', { class: 'ix-menu-toggle', type: 'button', 'aria-label': L(['Toggle navigation', '展开导航']), 'aria-expanded': 'false', onclick: () => {

@@ -103,6 +103,9 @@ jobs:
           GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
           REQUIRE_MARKERS: '1'
 
+      - name: Verify policy publication approval and immutable store
+        run: node scripts/ci/timed.mjs "policy publication gate" -- npm run policy:verify
+
       - name: Build
         run: node scripts/ci/timed.mjs "build" -- npm run build
 

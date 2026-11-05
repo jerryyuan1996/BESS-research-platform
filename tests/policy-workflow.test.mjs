@@ -18,8 +18,17 @@ test('policy process has read-only permissions, no saved credential, no model ke
   }
 });
 test('refresh tolerates policy failure without ignoring explicit workflow cancellation',()=>{
-  assert.match(job('refresh'),/needs: policy-discovery/);assert.match(job('refresh'),/!cancelled\(\)/);assert.match(job('refresh'),/needs\.policy-discovery\.result/);
+  assert.match(job('refresh'),/needs: \[policy-discovery, policy-research\]/);assert.match(job('refresh'),/!cancelled\(\)/);assert.match(job('refresh'),/needs\.policy-discovery\.result/);
   assert.doesNotMatch(job('refresh'),/needs\.policy-discovery\.result == 'success'/);
+});
+
+test('model job cannot acquire the publisher credential or monthly model identity',()=>{
+  const model=executable(job('policy-research'));
+  assert.match(model,/contents: read/);assert.match(model,/actions: read/);assert.match(model,/persist-credentials: false/);
+  assert.doesNotMatch(model,/contents: write|pull-requests: write|VERCEL_TOKEN|ANTHROPIC_API_KEY|git push|git commit/);
+  assert.match(model,/POLICY_MODEL_API_KEY/);assert.match(model,/daily-slot\.mjs/);assert.match(model,/scan-artifact\.mjs/);
+  const publisher=executable(job('refresh'));assert.doesNotMatch(publisher,/POLICY_MODEL_API_KEY/);
+  assert.match(publisher,/publish-candidate\.mjs/);
 });
 test('one normal refresh commit/push and one exact-SHA gated publish remain',()=>{
   const refresh=executable(job('refresh'));assert.equal((refresh.match(/git commit /g)||[]).length,1);assert.equal((refresh.match(/^\s+git push\s*$/gm)||[]).length,1);

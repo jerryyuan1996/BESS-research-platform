@@ -1,24 +1,30 @@
-# Local validation — 2026-11-05
+# Local validation: 2026-11-05
 
-Environment: connected Windows computer, Node 26.2.0, locked dependencies installed with `npm ci`; isolated feature worktree based on `494ce7b`. Original ignored marker and fingerprint-key files restored locally without printing their contents. Their fingerprint matches the committed expected value; original hooks installed. No Cloud partial diff was imported.
+Connected Windows worktree `feat/policy-intelligence-v4`, base `494ce7b`. Locked dependencies installed with npm ci. Original ignored marker/key restored locally without printing values, expected fingerprint matched and original hooks enabled. No Cloud partial diff imported. No model key created or paid request made.
 
-| Check | Actual result |
+| Check | Actual evidence |
 |---|---|
-| Final complete `npm test` | 1,437 passed, 0 failed, 0 skipped; 213.6 s |
-| `npm run test:policy` | 60 passed, covering contracts, source/translation attestation, immutable history, discovery and workflow isolation |
-| Affected governance/scout/briefing checks | 184 passed before the final two additional policy rights cases; final full suite includes them |
-| `npm run test:current` | 84 passed; approved fixtures untouched |
-| `npm run build` | Passed; no Policy code imported by any browser route |
-| `npm run test:budget` | 30 passed; no budget raised |
-| `npm run etl:verify` | All existing snapshots verified; no dataset modified |
-| Original bundle confidentiality check | 7 passed with `REQUIRE_MARKERS=1`, `REQUIRE_OUTPUT=1`, `SCAN_DIR=dist` |
-| Original staged guard | Passed on every checkpoint; no scanner/fingerprint exemptions or weakening |
-| YAML parse | Parsed 9 jobs successfully |
-| Full `npm run test:e2e` | **243 passed, 1 failed** in 15.2 min; original desktop map test hit `ECONNRESET` while requesting the local Italy manifest |
-| Exact failed E2E case, isolated rerun | 1 passed in 16.8 s, no test or application change; this does not turn the full command's failed result into a pass |
-| Shadow discovery operational invocation | 0 changed documents, 4 sources pending review, 0 policy claims published |
-| Local built preview | Opened and visibly verified at `http://127.0.0.1:4176/`; existing platform, not a completed Policy UI |
+| Original checkpoint complete unit suite | 1,437 passed, zero failed/skipped on previously pushed D0-D2 source |
+| Original checkpoint complete E2E rerun | 244/244 passed in 13.2 minutes; this superseded the earlier full command with a local ECONNRESET |
+| Expanded Node 26 complete suite | CSS token violations fixed; two budget reads collided with a concurrent build, then serial checks used instead. Another serial run hit the Node 26 test-runner deserialization error; original affected ETL file passed 17/17 independently |
+| Project-matching runtime | Portable Node 22.23.4 from official nodejs.org archive; official SHA-256 verified; system installation untouched |
+| Expanded Node 22 complete unit suite | 1,464 passed, zero failed/skipped; 203.1 seconds before the final two preflight/history tests |
+| Latest focused Policy suite | 89 passed, zero failed/skipped, including the final activation and retained-history safeguards |
+| Final staged-source complete unit suite | 1,466/1,466 passed, zero failed/skipped; 215.3 seconds, serially after map checks |
+| Financial baseline | 84/84 passed; original approved baselines not regenerated |
+| Stable build | Passed; Policy page/map remain lazy |
+| Existing bundle budgets | 30/30 passed; no cap increased |
+| Existing ETL verification | All snapshots verified, no dataset changed |
+| Required original bundle guard | 7/7 passed, REQUIRE_MARKERS=1, REQUIRE_OUTPUT=1, SCAN_DIR=dist |
+| Original staged guard | 54-file checkpoint clean; final report/test changes rescanned by the unchanged original staged guard before commit |
+| Syntax / YAML | 35 new/current policy modules syntax-checked; CI 2 jobs and ETL 10 jobs parsed |
+| Targeted desktop/mobile Policy E2E | 14/14 passed in 24.9 seconds; fixtures intercepted only, never public content |
+| Expanded complete E2E | 257 passed, 1 failed in 15.9 minutes: original mobile Italy network test inspected a stable-but-incomplete async band. Exact-manifest polling added without changing expected segments, budgets or application geometry; focused desktop/mobile map rerun 16/16 passed in 1.2 minutes. A new complete exact-head CI run is still required |
+| Operational OFF-state run | Authorization false; research disabled without a model request; publisher disabled; policy store unpublished with zero versions |
+| Visible built preview | Local http://127.0.0.1:4176/policy visibly shows honest empty Policy coverage |
 
-The GB extraction fingerprint failed on untouched main and now passes against the **unchanged** original hashes after normalizing only its exact live Brief sentence to the original public-data vintage. Runtime sentence presence and existing current-engine linkage remain asserted. No baseline generation command was run.
+Static graph measurements, baseline-dist versus current dist (gzip bytes): entry 172,040 -> 172,574; home experience closure 247,436 -> 247,964; GB market closure 352,561 -> 353,149; NEM closure 312,690 -> 313,275. Closures include already-shared entry dependencies, so they are not incremental transfer sizes. Current Policy page closure is 187,970 and map closure 221,080; neither is in the entry closure. These bundle measurements do not measure CPU, CLS, long tasks or production timing.
 
-GitHub checks must run freshly on the pushed PR head; local results are not GitHub statuses. This record is not production verification. No merge, production deployment, model invocation or cron activation has occurred. No historical gold-case/model-accuracy claim is made for synthetic fixtures. Full D0–D8 release gates remain unsatisfied as listed in `implementation-status.md`.
+Previously pushed exact head `18b55ffb79a9c27d13e401e55e0cf13fda5a4b8a` passed CI run 42025983107: test job 12:18:17-12:27:14 UTC, 537 seconds / 9 rounded runner minutes; deployment skipped without a runner. This is workload, not verified account billing. A new push needs fresh exact-head CI.
+
+Zero accepted historical gold cases, zero measured model precision/recall, zero paid usage and zero production policy runs. New local software checks and synthetic callback counts are not production deployment proof. No merge, production deployment or schedule activation occurred. See release-readiness.md for incomplete content, permissions, source, evaluation, visual and release gates.
