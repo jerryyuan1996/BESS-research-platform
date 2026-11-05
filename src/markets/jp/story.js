@@ -1135,3 +1135,19 @@ export function composeStory(regionId){
     chapters:CHAPTER_LAYOUT.map(([id,title,ids])=>({id,title,shots:ids.map(shot)})),
   };
 }
+
+/* Rendering labels for the required table and disclosures. Shot prose and
+   each signed Labels row above remain unchanged. */
+export const JP_UI = {
+  area:['Area','区域'],case:['Case','情景'],target:['Target return','目标收益率'],
+  jpyUnit:['JPY per MW','日元/兆瓦'],month:['Month','月份'],days:['Days','天数'],
+  frequencyBand:['Approximate frequency boundary','频率分界（近似）'],
+  source:['Source','来源'],locator:['Locator','具体位置'],checked:['Checked on','核查时间'],
+  units:['Unit','单位'],dateBasis:['Date semantics','日期口径'],
+  securedYears:['Secured years','锁定年限'],
+  returnBases:{equity:['Equity','股权'],'all-cash':['All cash','全现金']},
+  paymentRoles:[['electricity users','电力用户'],['retailers','售电公司'],['capacity market','容量市场'],['OCCTO','OCCTO'],['holder','持有人']],
+  timelineFields:{constraint:['Constraint','约束'],choice:['Choice','选择'],remains:['What remains','遗留'],effect:['Effect today','今日影响'],event:['Event','事件']},
+  statementTypes:{observed:['Observed','实测'],rule:['Rule','规则'],'official-plan':['Official plan','官方规划'],interpretation:['Interpretation','解读']},
+  unitNames:{'calendar day':['calendar day','日期'],month:['month','月份'],year:['year','年份'],'fiscal year-end':['fiscal year-end','财年末'],years:['years','年'],hours:['hours','小时'],days:['days','天'],'count of studies':['concurrent studies','同时进行的研究数'],'count of systems':['systems','系统数'],'month interval':['observation window','观察窗口'],'bilingual words':['rule wording','规则措辞']},
+};

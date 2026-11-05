@@ -126,6 +126,10 @@ test('chart cases decode every market/play reference without currency conversion
   }
 });
 
+test('an unavailable compact-reference pool withholds all prices without crashing or inserting zeros',()=>{
+  for(const area of chartRows({...B,acquisitionReferenceData:null}))for(const point of area.cases){assert.equal(point.pricePerMW,null);assert.equal(point.targetReturn,null);}
+});
+
 test('missing build cost hides its sentence, retains signed available sentences and validates',()=>{
   for(const row of rows){
     const composed=composeStory(row.id),values=storyValues(row,ui),available=storyWithAvailableValues(composed,values);

@@ -40,16 +40,19 @@ export function cardFigures(row,ui={}){
 
 /** Decode the platform's public projection; never recalculate a reference. */
 export function chartRows(briefing=HOME_BRIEFING){
-  const rows=expandReferences(briefing.acquisitions?.infraFund||[],briefing.acquisitionReferenceData);
+  const raw=briefing.acquisitions?.infraFund||[],pool=briefing.acquisitionReferenceData;
+  const rows=pool?.metadata&&pool?.assumptions?expandReferences(raw,pool):raw.filter(r=>r.meta==null);
   return Object.entries(REGION_IDS).map(([marketId,region])=>{
     const playId=`jp-${region}-ltda-6h`;
     const row=rows.find(r=>r.market===marketId&&r.playId===playId&&r.stage==='operating');
     const cases=['cautious','base','favourable'].map(key=>{
-      const own=row?.currency==='JPY'?row.referenceCases.find(c=>c.key===key):null;
+      const own=row?.currency==='JPY'&&Array.isArray(row.referenceCases)?row.referenceCases.find(c=>c.key===key):null;
       return {key,pricePerMW:own?.status==='priced'&&finite(own.pricePerMW)&&own.pricePerMW>0?own.pricePerMW:null,
         targetReturn:finite(own?.targetReturn)?own.targetReturn:null,returnBasis:own?.returnBasis||null,route:own?.route||null};
     });
+    const economics=briefing.plays?.[`${marketId}/${playId}`]?.econ;
     return {marketId,region,name:briefing.markets?.[marketId]?.name||null,currency:'JPY',cases,
+      securedShare:finite(economics?.secured)?economics.secured:null,securedYears:finite(economics?.securedYears)?economics.securedYears:null,
       /* BUILD-JP-02: neither designEconomics nor the operating reference exposes
          the play design's build cost in JPY. An operating budget zero is not it. */
       buildCostPerMW:null,designValueUSD:finite(briefing.plays?.[`${marketId}/${playId}`]?.econ?.value)?briefing.plays[`${marketId}/${playId}`].econ.value:null};
@@ -98,7 +101,7 @@ export function storyValues(row,ui={}){
 
 /** Per-composition guards; a stale area never changes another area's result. */
 export function storyMatches(story,row,lens='infraFund'){
-  return Boolean(story&&row?.id===story.marketId&&lens===story.reviewedAgainst.lens
+  return Boolean(story&&row?.id===story.marketId&&row.market?.manifest?.id===story.marketId&&lens===story.reviewedAgainst.lens
     &&row.play?.id===story.playRef&&row.play.hours===story.reviewedAgainst.hours
     &&row.call===story.reviewedAgainst.call&&row.play.route===story.reviewedAgainst.route
     &&row.stage===story.reviewedAgainst.stage);
@@ -107,6 +110,8 @@ export function storyMatches(story,row,lens='infraFund'){
 export function reviewed({row,lens='infraFund',ui={},regionId=row?.id}={}){
   const story=composeStory(regionId);
   if(!story||isStale(story,row)||!storyMatches(story,row,lens))return null;
+  const rule=row.market.comparison?.economics?.ltda;
+  if(rule?.minDurationHours!==V.national.obligationHours||rule?.years!==V.national.awardTerm)return null;
   return {story,values:storyValues(row,ui)};
 }
 
