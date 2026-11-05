@@ -20,6 +20,13 @@ test('unapproved corpus never reserves or invokes a model',async()=>{
   const result=await runReservedManualCase({repo,cases:[],caseId:'a',config:{},profiles:[],invoke:async()=>calls++});assert.equal(result.status,'disabled');assert.equal(calls,0);
  }finally{await rm(repo,{recursive:true,force:true});}
 });
+test('twelve reserved cases exhaust the bounded evaluation and excess per-call cost is refused',async()=>{
+ const repo=await mkdtemp(path.join(os.tmpdir(),'evaluation-limit-'));try{
+  await assert.rejects(reserveManualCall({repo,caseId:'over',config:{...config,maxDailyUSD:0.02},now:new Date('2026-11-01T07:00:00Z')}),/budget/);
+  for(let i=1;i<=12;i++)await reserveManualCall({repo,caseId:`case-${i}`,config,now:new Date(`2026-11-${String(i).padStart(2,'0')}T07:00:00Z`)});
+  await assert.rejects(reserveManualCall({repo,caseId:'case-13',config,now:new Date('2026-11-13T07:00:00Z')}),/limit/);
+ }finally{await rm(repo,{recursive:true,force:true});}
+});
 test('wired runner checks original guard and independent semantics using a fake transport',async()=>{
  const repo=await mkdtemp(path.join(os.tmpdir(),'evaluation-wired-'));const source=fixture().sources[0];
  const cases=Array.from({length:12},(_,i)=>({id:`case-${i}`,market:['de','gb','nem','wa'][i%4],reviewer:'test-reviewer',sourceReviewed:true,rightsReviewed:true,translationReviewed:true,expectedReview:false,source,locator:'section 1',body:BODY}));
