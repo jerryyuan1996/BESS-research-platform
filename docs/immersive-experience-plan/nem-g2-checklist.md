@@ -2,34 +2,40 @@
 
 For the analyst, 5 November 2026. The story is built and **unreleased** (`released: false`); it opens on `/markets/nem?story=preview` in the built preview (`npm run build`, then `npm run preview`). Details: [build evidence](nem-build-evidence.md), [reuse report](nem-story-reuse-report.md).
 
+## Decisions — 5 November 2026
+
+The analyst accepted all seven recommendations below and ruled that an over-cap result raises the cap. They are applied at code head `865f1d7` (build evidence §0).
+
+| # | Question | Decision |
+| --- | --- | --- |
+| 1 | Rights switch for AEMO's observed layers (`nem-05`, `nem-06`, `nem-07`) | **On.** Cleared under AEMO's copyright permissions with attribution; the two spread sentences print |
+| 2 | Remove "(to be confirmed)" from the 2016 node, CL-NEM-19 being sourced to QED Q4 2019 | **Accepted** |
+| 3 | Register count in `nem-11`: register-wide 17 or NEM-only 15 | **NEM-only 15** ("NEM battery agreements") |
+| 4 | Chinese zero count ("有无份已投运") | **Count carries its verb:** 尚无一份 when zero, 有N份 otherwise ("尚无一份已投运") |
+| 5 | Bundle measure | **JavaScript-only measure accepted; over a cap, raise it.** `story-nem` raised from 40 to 41 KiB. A cross-story budget method is a separate PR |
+| 6 | New Chinese node titles and `nem-12` step labels | **Approved** |
+| 7 | `nem-00` "…CIS terms.. Beneath it" | **Fixed** (action bound without its final stop); the "The existing play card:" wording is left for a pass across all stories |
+
+Not yet given: the G-2 sign-off itself and authority for the release PR.
+
 ## Checks on the exact head
 
-Code head `0ae7f1a3935bece73f5df56770d8544ff1fe830a` (branch `claude/nem-story-g2-dc1e93`, not pushed).
+Code head `865f1d729fa703eae946fa79fdc0a2cb7a1d8b90` (branch `claude/nem-story-g2-dc1e93`, not pushed). The first build, with the switch off, passed every check at `0ae7f1a` (1,392 unit, 84 current-model, 31 budget, 258 browser).
 
 | Check | Result |
 | --- | --- |
 | `npm test` | 1,392 passed, 0 failed, 4 skipped (1,396) |
 | `npm run test:current` | 84 passed, 0 failed |
-| `npm run build` | Passed; `story-nem` chunk 27.4 KiB gzip |
-| `npm run test:budget` | 31 passed, 0 failed; NEM additional JavaScript graph 39.00 KiB of 40 |
-| `npm run test:e2e` | 258 passed, 0 failed (desktop and mobile; includes the 14 NEM tests), 14.3 min |
-| `npm run guard:staged` (with the marker set) | Clean, 23 files |
+| `npm run build` | Passed; `story-nem` chunk 29.0 KiB gzip |
+| `npm run test:budget` | 31 passed, 0 failed; NEM additional JavaScript graph 40.59 KiB of 41 (45.57 with lazy styles) |
+| `npm run test:e2e` | Running at hand-off; result not yet recorded (the switch-off build passed 258/258) |
+| `npm run guard:staged` (with the marker set) | Clean, 15 files |
 | `npm run etl:verify` | Not run: no data or dataset outside the story module was touched |
-| Built-preview walk | Desktop and phone width, English and Chinese: thirteen shots, one marker each, no sideways scroll, no stray text. Two scene bugs found and fixed (a blank slot printed "null"; nem-08's route rows were hidden); the scenes test now catches both |
-
-## Decisions for the analyst
-
-1. **Rights switch (off).** Turn on AEMO's observed layers for `nem-05`, `nem-06` and `nem-07` after the price-data review? While off, the charts draw the unscaled Example, and two copy sentences that would print a spread are hidden (nem-06's two-year spread fall, nem-07's NSW spread). Turning on is one reviewed change (build evidence §5) and restores the script text exactly.
-2. **CL-NEM-19 (sourced).** AEMO's QED Q4 2019 (§1.4.6, p. 19) shows battery revenue driven by FCAS in 2019, with energy arbitrage 12% of battery revenue in Q4 2019. The build removed "(to be confirmed)" / "（待核实）" from the 2016 node. Accept, or keep the label because the source covers 2019, not 2017–18?
-3. **Register count.** `nem-11` says none of the **17** battery agreements on the register is operating, as signed. Two of the 17 are in WA's WEM; the NEM count is 15. Keep 17 (register-wide) or bind the NEM-only 15?
-4. **Chinese for a zero count.** The signed rule renders zero as 无, which makes `nem-11` read "17份电池协议中，有无份已投运". Proposed: "其中尚无一份已投运" (or render 零). Approve a wording?
-5. **Bundle measure.** The NEM graph fits 40 KiB on the Romania/Finland measure (JavaScript, 39.00) but not on the CAISO/PJM measure that adds lazy styles (43.97). Accept the JavaScript measure, raise the NEM cap, or ask for content cuts?
-6. **New Chinese text.** The script has English-only node titles for `nem-02`; the build added Chinese titles (build evidence §8, item 2), and scene labels for `nem-12`'s dated strip (item 5). Approve?
-7. **Opening line.** `nem-00` transcribes "The existing play card: …" literally, as PJM and CAISO did; with the bound action it renders "…CIS terms.. Beneath it". Keep, or trim the authoring wording in a later pass?
+| Built-preview walk | Not yet repeated after the decisions (the switch-off build was walked at both widths and in both languages) |
 
 ## Page-text changes from the script
 
-Listed with before and after, both languages, in [build evidence §8](nem-build-evidence.md#8-page-text-changes-made-during-the-build). No approved question, copy, meaning, marker, control or caption was reworded; the content test compares each against the script.
+Listed with before and after, both languages, in [build evidence §8](nem-build-evidence.md#8-page-text-changes-made-during-the-build): the 2016 label removal, the new Chinese node titles, the `nem-12` step labels, the compare link, and decisions 3, 4 and 7 in `nem-11` and `nem-00`.
 
 ## Anchor drift
 
@@ -41,4 +47,4 @@ CF-NEM-01 to CF-NEM-07 stay open; none affects the page as built, because the st
 
 ## What `released: true` would change
 
-The market page's research button would open the story for every reader on the infrastructure-fund lens without `?story=preview`; story links (`?view=story`) would work publicly. Nothing else: the rights switch stays as set, the chunk stays lazy, and other lenses keep the research dialog. Release is a separate PR (`nem-g2-release.md`) after your G-2 sign-off, published only through GitHub Actions.
+The market page's research button would open the story for every reader on the infrastructure-fund lens without `?story=preview`, and story links (`?view=story`) would work publicly, with AEMO's observed layers. Other lenses keep the research dialog and the chunk stays lazy. Release is a separate PR (`nem-g2-release.md`) after your G-2 sign-off, published only through GitHub Actions.
