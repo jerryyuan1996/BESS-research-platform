@@ -1,0 +1,525 @@
+{
+  "dataCommit": "d85f172",
+  "now": "2026-11-04T14:42:12Z",
+  "note": "The briefing design answer (src/briefing/designData.js) as the section fixtures saw it: view/ and public/data/public/ at dataCommit, briefing clock at now. Written by scripts/pin-section-design.mjs; read by tests/helpers/pin-design.mjs.",
+  "design": {
+    "build": [
+      {
+        "market": "wa",
+        "line": [
+          "Western Australia: Reserve Capacity Mechanism at 8h, +$1266k/MW; the modelled Reserve Capacity Mechanism 7h gives up $61k/MW.",
+          "西澳：备用容量机制8小时，每MW +126.6万美元；模型中的备用容量机制7小时设计每MW少赚6.1万美元。"
+        ],
+        "best": {
+          "route": "cap",
+          "hours": 8,
+          "name": [
+            "capacity contract",
+            "容量合同"
+          ]
+        }
+      },
+      {
+        "market": "nem",
+        "line": [
+          "the NEM: Tender award at 4h, +$36k/MW.",
+          "澳大利亚国家电力市场：容量投资计划中标4小时，每MW +3.6万美元。"
+        ],
+        "best": {
+          "route": "ltda",
+          "hours": 4,
+          "name": [
+            "long-term auction award",
+            "长期拍卖中标合同"
+          ]
+        }
+      },
+      {
+        "market": "gb",
+        "line": [
+          "Great Britain: nothing clears the platform's yields; toll at 4h comes closest, at −$277k/MW.",
+          "英国：没有设计能达到平台收益率；租赁4小时最为接近，每MW −27.7万美元。"
+        ],
+        "best": {
+          "route": "toll",
+          "hours": 4,
+          "name": [
+            "toll or floor",
+            "租赁或保底"
+          ]
+        }
+      },
+      {
+        "market": "de",
+        "line": [
+          "Germany: Merchant at 4h, +$144k/MW.",
+          "德国：市场化4小时，每MW +14.4万美元。"
+        ],
+        "best": {
+          "route": "mer",
+          "hours": 4,
+          "name": [
+            "merchant",
+            "纯市场化"
+          ]
+        }
+      },
+      {
+        "market": "it",
+        "line": [
+          "Italy: Capacity market at 4h, +$259k/MW.",
+          "意大利：容量市场4小时，每MW +25.9万美元。"
+        ],
+        "best": {
+          "route": "cap",
+          "hours": 4,
+          "name": [
+            "capacity contract",
+            "容量合同"
+          ]
+        }
+      },
+      {
+        "market": "ie",
+        "line": [
+          "Ireland: nothing clears the platform's yields; capacity market at 1h comes closest, at −$395k/MW.",
+          "爱尔兰：没有设计能达到平台收益率；容量市场1小时最为接近，每MW −39.5万美元。"
+        ],
+        "best": {
+          "route": "cap",
+          "hours": 1,
+          "name": [
+            "capacity contract",
+            "容量合同"
+          ]
+        }
+      },
+      {
+        "market": "ro",
+        "line": [
+          "Romania: Merchant at 2h, +$68k/MW.",
+          "罗马尼亚：市场化2小时，每MW +6.8万美元。"
+        ],
+        "best": {
+          "route": "mer",
+          "hours": 2,
+          "name": [
+            "merchant",
+            "纯市场化"
+          ]
+        }
+      },
+      {
+        "market": "pl",
+        "line": [
+          "Poland: nothing clears the platform's yields; capacity market at 4h comes closest, at −$24k/MW.",
+          "波兰：没有设计能达到平台收益率；容量市场4小时最为接近，每MW −2.4万美元。"
+        ],
+        "best": {
+          "route": "cap",
+          "hours": 4,
+          "name": [
+            "capacity contract",
+            "容量合同"
+          ]
+        }
+      },
+      {
+        "market": "jp_tokyo",
+        "line": [
+          "Tokyo: nothing clears the platform's yields; long-term auction award at 9h comes closest, at −$386k/MW.",
+          "东京：没有设计能达到平台收益率；长期脱碳电源拍卖中标9小时最为接近，每MW −38.6万美元。"
+        ],
+        "best": {
+          "route": "ltda",
+          "hours": 9,
+          "name": [
+            "long-term auction award",
+            "长期拍卖中标合同"
+          ]
+        }
+      },
+      {
+        "market": "jp_kyushu",
+        "line": [
+          "Kyushu: nothing clears the platform's yields; long-term auction award at 9h comes closest, at −$376k/MW.",
+          "九州：没有设计能达到平台收益率；长期脱碳电源拍卖中标9小时最为接近，每MW −37.6万美元。"
+        ],
+        "best": {
+          "route": "ltda",
+          "hours": 9,
+          "name": [
+            "long-term auction award",
+            "长期拍卖中标合同"
+          ]
+        }
+      },
+      {
+        "market": "jp_hokkaido",
+        "line": [
+          "Hokkaido: nothing clears the platform's yields; long-term auction award at 9h comes closest, at −$414k/MW.",
+          "北海道：没有设计能达到平台收益率；长期脱碳电源拍卖中标9小时最为接近，每MW −41.4万美元。"
+        ],
+        "best": {
+          "route": "ltda",
+          "hours": 9,
+          "name": [
+            "long-term auction award",
+            "长期拍卖中标合同"
+          ]
+        }
+      },
+      {
+        "market": "pjm",
+        "line": [
+          "PJM: nothing clears the platform's yields; capacity auction at 4h comes closest, at −$577k/MW.",
+          "PJM：没有设计能达到平台收益率；容量拍卖4小时最为接近，每MW −57.7万美元。"
+        ],
+        "best": {
+          "route": "cap",
+          "hours": 4,
+          "name": [
+            "capacity contract",
+            "容量合同"
+          ]
+        }
+      },
+      {
+        "market": "ercot",
+        "line": [
+          "ERCOT: nothing clears the platform's yields; toll at 2h comes closest, at −$462k/MW.",
+          "ERCOT：没有设计能达到平台收益率；租赁2小时最为接近，每MW −46.2万美元。"
+        ],
+        "best": {
+          "route": "toll",
+          "hours": 2,
+          "name": [
+            "toll or floor",
+            "租赁或保底"
+          ]
+        }
+      },
+      {
+        "market": "caiso",
+        "line": [
+          "CAISO: nothing clears the platform's yields; resource adequacy at 4h comes closest, at −$333k/MW.",
+          "CAISO：没有设计能达到平台收益率；资源充裕度4小时最为接近，每MW −33.3万美元。"
+        ],
+        "best": {
+          "route": "cap",
+          "hours": 4,
+          "name": [
+            "capacity contract",
+            "容量合同"
+          ]
+        }
+      },
+      {
+        "market": "fi",
+        "line": [
+          "Finland: Trading and reserves under a negotiated floor at 2h, +$31k/MW.",
+          "芬兰：谈定保底下的交易与备用2小时，每MW +3.1万美元。"
+        ],
+        "best": {
+          "route": "toll",
+          "hours": 2,
+          "name": [
+            "toll or floor",
+            "租赁或保底"
+          ]
+        }
+      }
+    ],
+    "byRoute": {
+      "wa": {
+        "cap": {
+          "best": 8,
+          "band": [
+            8
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        }
+      },
+      "nem": {
+        "mer": {
+          "best": 6,
+          "band": [
+            6
+          ],
+          "requiredHours": null
+        },
+        "toll": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        },
+        "ltda": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        }
+      },
+      "gb": {
+        "cap": {
+          "best": 2,
+          "band": [
+            2
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 1,
+          "band": [
+            1,
+            2
+          ],
+          "requiredHours": null
+        },
+        "toll": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        }
+      },
+      "de": {
+        "mer": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        },
+        "toll": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        }
+      },
+      "it": {
+        "cap": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 2,
+          "band": [
+            2
+          ],
+          "requiredHours": null
+        },
+        "toll": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        },
+        "ltda": {
+          "best": 2,
+          "band": [
+            2,
+            4
+          ],
+          "requiredHours": null
+        }
+      },
+      "ie": {
+        "cap": {
+          "best": 1,
+          "band": [
+            1,
+            2
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 1,
+          "band": [
+            1
+          ],
+          "requiredHours": null
+        }
+      },
+      "ro": {
+        "mer": {
+          "best": 2,
+          "band": [
+            2
+          ],
+          "requiredHours": null
+        }
+      },
+      "pl": {
+        "cap": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 2,
+          "band": [
+            2,
+            4
+          ],
+          "requiredHours": null
+        }
+      },
+      "jp_tokyo": {
+        "cap": {
+          "best": 9,
+          "band": [
+            9
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 1,
+          "band": [
+            1,
+            2
+          ],
+          "requiredHours": null
+        },
+        "ltda": {
+          "best": 9,
+          "band": [
+            9
+          ],
+          "requiredHours": null
+        }
+      },
+      "jp_kyushu": {
+        "cap": {
+          "best": 9,
+          "band": [
+            9
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 1,
+          "band": [
+            1,
+            2
+          ],
+          "requiredHours": null
+        },
+        "ltda": {
+          "best": 9,
+          "band": [
+            9
+          ],
+          "requiredHours": null
+        }
+      },
+      "jp_hokkaido": {
+        "cap": {
+          "best": 9,
+          "band": [
+            9
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 1,
+          "band": [
+            1,
+            2
+          ],
+          "requiredHours": null
+        },
+        "ltda": {
+          "best": 9,
+          "band": [
+            9
+          ],
+          "requiredHours": null
+        }
+      },
+      "pjm": {
+        "cap": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        }
+      },
+      "ercot": {
+        "mer": {
+          "best": 1,
+          "band": [
+            1
+          ],
+          "requiredHours": null
+        },
+        "toll": {
+          "best": 2,
+          "band": [
+            2
+          ],
+          "requiredHours": null
+        }
+      },
+      "caiso": {
+        "cap": {
+          "best": 4,
+          "band": [
+            4
+          ],
+          "requiredHours": null
+        },
+        "mer": {
+          "best": 2,
+          "band": [
+            2
+          ],
+          "requiredHours": null
+        }
+      },
+      "fi": {
+        "mer": {
+          "best": 2,
+          "band": [
+            2
+          ],
+          "requiredHours": null
+        },
+        "toll": {
+          "best": 2,
+          "band": [
+            2
+          ],
+          "requiredHours": null
+        }
+      }
+    }
+  }
+}
