@@ -17,6 +17,15 @@
    WHEN THIS FAILS, the answer is almost never "regenerate the fixture". Find
    what moved. Regenerating is for a deliberate content change, and a change
    that moves a published number needs the analyst's sign-off (AGENTS.md).
+
+   ONE INPUT IS PINNED. GB's home, duration and portfolio sections quote the
+   Brief's design answer (src/briefing/designData.js), which is built from the
+   ETL's live snapshots on the wall clock: each six-hourly data commit can move
+   it (a new ECB GBP rate turned "−$277k/MW" into "−$279k/MW" on 5 Nov 2026).
+   That is the briefing changing, not a section, so these sections are rendered
+   against the design answer as it stood when the fixtures were taken
+   (tests/fixtures/sections-design-vintage.json, scripts/pin-section-design.mjs).
+   Everything a section's own code says is still compared byte for byte.
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -24,7 +33,13 @@ import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { buildAllMarketSections, digests, marketApi } from './helpers/market-sections.mjs';
+import { PINNED_URL } from './helpers/pin-design.mjs';
+/* Loaded after the pin is registered: a static import would resolve first. */
+const { buildAllMarketSections, digests, marketApi } = await import('./helpers/market-sections.mjs');
+const { DESIGN: PINNED, PINNED_VINTAGE } = await import(PINNED_URL);
+const { designLine } = await import('../src/markets/_shared/designAnswer.js');
+const { briefingFromDisk } = await import('../src/briefing/disk.js');
+const { designProjection } = await import('../src/briefing/model.js');
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MARKETS = ['gb', 'ie', 'pl', 'ro'];
@@ -34,6 +49,34 @@ const fixtureFor = (id) => {
   if (!existsSync(file)) return null;
   return JSON.parse(readFileSync(file, 'utf8'));
 };
+
+/* The pin must be what the sections actually read, or the fingerprints below
+   would be compared against live data again without anyone noticing. */
+test('sections read the pinned design answer, not the live one', () => {
+  assert.ok(PINNED_VINTAGE.dataCommit && PINNED_VINTAGE.now, 'the pin records the data commit and clock it was taken at');
+  for (const id of MARKETS){
+    const pinned = PINNED.build.find(x => x.market === id)?.line || null;
+    assert.deepEqual(designLine(id), pinned, `${id}: designAnswer.js is not reading the pin`);
+  }
+});
+
+/* The pin freezes values, not the projection's form. If designProjection()
+   gains, loses or renames a field, the sections would read a stale shape:
+   re-pin at the recorded vintage (node scripts/pin-section-design.mjs) and
+   check every fingerprint still passes. */
+test('the pinned design answer has the live projection\'s shape', async () => {
+  const live = designProjection(await briefingFromDisk());
+  const shape = (value) => {
+    if (Array.isArray(value) || value === null || typeof value !== 'object') return 'value';
+    return Object.fromEntries(Object.keys(value).sort().map(k => [k, shape(value[k])]));
+  };
+  assert.deepEqual(Object.keys(live).sort(), Object.keys(PINNED).sort(), 'design projection top-level fields');
+  for (const id of MARKETS){
+    const was = PINNED.build.find(x => x.market === id), is = live.build.find(x => x.market === id);
+    assert.deepEqual(shape(was), shape(is), `${id}: the build entry's shape changed — re-pin`);
+    assert.deepEqual(shape(PINNED.byRoute[id]), shape(live.byRoute[id]), `${id}: the per-route answer's shape changed — re-pin`);
+  }
+});
 
 /** A floor per market, deliberately well below what any of them carries. */
 const MIN_TOTAL_BYTES = { gb: 250_000, ie: 270_000, pl: 150_000, ro: 150_000 };

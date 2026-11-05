@@ -97,6 +97,20 @@ static graph. Section loading did not make them eager.
 before it moves (`scripts/generate-section-fixtures.mjs`) and compared
 afterwards (`tests/market-sections-parity.test.js`).
 
+**One live input is pinned.** GB's home, duration and portfolio sections quote
+the Brief's design answer (`src/briefing/designData.js`), which is built from
+the ETL's public snapshots on the wall clock, so every six-hourly data commit
+can move it. On 5 Nov 2026 a new ECB GBP rate (1.3411 → 1.3500 USD) turned
+GB's "toll at 4h comes closest, at −$277k/MW" into "−$279k/MW" and broke the
+parity test with no section change. Both the test and the fixture generator
+now render against the design answer as the fixtures saw it
+(`tests/fixtures/sections-design-vintage.json`: data commit `d85f172`, clock
+2026-11-04T14:42:12Z), through a test-only module hook
+(`tests/helpers/pin-design.mjs`). The site and build are untouched. Rebuild the
+pin with `node scripts/pin-section-design.mjs` only when the projection's
+shape changes; the test checks that shape against the live one. Ireland,
+Poland and Romania have no import path from their sections to the briefing.
+
 ## 3. What changed, market by market
 
 Sizes are **KiB gzipped** (1 KiB = 1024 bytes), measured from `dist/` with
