@@ -28,7 +28,7 @@ Code head `865f1d729fa703eae946fa79fdc0a2cb7a1d8b90` (branch `claude/nem-story-g
 | `npm run test:current` | 84 passed, 0 failed |
 | `npm run build` | Passed; `story-nem` chunk 29.0 KiB gzip |
 | `npm run test:budget` | 31 passed, 0 failed; NEM additional JavaScript graph 40.59 KiB of 41 (45.57 with lazy styles) |
-| `npm run test:e2e` | Running at hand-off; result not yet recorded (the switch-off build passed 258/258) |
+| `npm run test:e2e` | 258 passed, 0 failed (desktop and mobile; includes the 14 NEM tests), 13.5 min |
 | `npm run guard:staged` (with the marker set) | Clean, 15 files |
 | `npm run etl:verify` | Not run: no data or dataset outside the story module was touched |
 | Built-preview walk | Not yet repeated after the decisions (the switch-off build was walked at both widths and in both languages) |
