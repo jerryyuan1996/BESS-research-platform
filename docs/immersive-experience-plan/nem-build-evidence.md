@@ -5,7 +5,7 @@ Branch: `claude/nem-story-g2-dc1e93`, cut from `claude/nem-storyboard-65e619` at
 Script: [NEM storyboard](nem-storyboard.md), signed off at G-1 on 5 November 2026 as drafted.
 Authority: the G-2 build brief. This file authorises no release: `released` stays `false`.
 
-**Result: Rule 11 passes, the story is built and unreleased, and the rights switch is off.** All thirteen shots render in both languages from live case fields and dated records. AEMO's price-derived layers (`nem-05`, `nem-06`, `nem-07`) draw the unscaled Example; the observed records exist in the repository but no runtime module imports them, so none reaches the browser. The story chunk is 26.8 KiB gzip, and its additional JavaScript graph is 38.96 KiB of the 40 KiB cap (43.92 KiB with lazy styles; see §6).
+**Result: Rule 11 passes, the story is built and unreleased, and the rights switch is off.** All thirteen shots render in both languages from live case fields and dated records. AEMO's price-derived layers (`nem-05`, `nem-06`, `nem-07`) draw the unscaled Example; the observed records exist in the repository but no runtime module imports them, so none reaches the browser. The story chunk is 27.4 KiB gzip, and its additional JavaScript graph is 39.00 KiB of the 40 KiB cap (43.97 KiB with lazy styles; see §6).
 
 ## 1. Rule 11 verdict
 
@@ -108,7 +108,7 @@ Also bound but not printed in copy: `entryRoute` (`STAGE_WORD`), `where`, `decis
 
 New: the region asset (Natural Earth admin-1, 2 KB of paths), the two-file rights split (observed records never bundled), sentence-level hiding of missing values, the three charts, and the scene compositions. No shared kit, shell or contract change was needed.
 
-Bundle (exact-head build, §7): `story-nem` chunk 26.8 KiB gzip. Additional JavaScript graph (pack + shell + kit symbols + WA geo + playTitle) 38.96 KiB against the 40 KiB cap, measured as Romania and Finland are. With the lazy story styles counted, as CAISO and PJM are, it is 43.92 KiB: over 40. The NEM content is about 17% longer than PJM's.
+Bundle (exact-head build, §7): `story-nem` chunk 27.4 KiB gzip. Additional JavaScript graph (pack + shell + kit symbols + WA geo + playTitle) 39.00 KiB against the 40 KiB cap, measured as Romania and Finland are. With the lazy story styles counted, as CAISO and PJM are, it is 43.97 KiB: over 40. The NEM content is about 17% longer than PJM's.
 
 ## 7. Checks
 

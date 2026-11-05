@@ -32,8 +32,8 @@ From the exact-head build (`npm run build`):
 
 | Measure | KiB gzip | Cap |
 | --- | --- | --- |
-| `story-nem` chunk alone | 26.8 | 40 (`story-nem` in `BUDGET.features`) |
-| Additional JavaScript graph on opening (pack, shell, kit symbols, WA geo, playTitle) | 38.96 | 40 (passes; Romania and Finland method) |
-| The same plus lazy story styles (CAISO and PJM method) | 43.92 | 40 would fail |
+| `story-nem` chunk alone | 27.4 | 40 (`story-nem` in `BUDGET.features`) |
+| Additional JavaScript graph on opening (pack, shell, kit symbols, WA geo, playTitle) | 39.00 | 40 (passes; Romania and Finland method) |
+| The same plus lazy story styles (CAISO and PJM method) | 43.97 | 40 would fail |
 
-The NEM chunk is the largest of the eleven story chunks (Romania 28.0, Finland 25.5, PJM 23.5). Its text is about 17% longer than PJM's, and it carries a second Australian map layer. Trimming done during the build: source locators moved to the lazy provenance file, claim metadata dropped from the runtime copy, region geometry rounded to whole units.
+The NEM chunk is the second largest of the eleven story chunks, after Romania's 28.0 (Finland 25.5, PJM 23.5). Its text is about 17% longer than PJM's, and it carries a second Australian map layer. Trimming done during the build: source locators moved to the lazy provenance file, claim metadata dropped from the runtime copy, region geometry rounded to whole units.
