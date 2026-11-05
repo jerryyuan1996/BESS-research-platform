@@ -17,6 +17,15 @@
    WHEN THIS FAILS, the answer is almost never "regenerate the fixture". Find
    what moved. Regenerating is for a deliberate content change, and a change
    that moves a published number needs the analyst's sign-off (AGENTS.md).
+
+   ONE INPUT IS PINNED. GB's home, duration and portfolio sections quote the
+   Brief's design answer (src/briefing/designData.js), which is built from the
+   ETL's live snapshots on the wall clock: each six-hourly data commit can move
+   it (a new ECB GBP rate turned "−$277k/MW" into "−$279k/MW" on 5 Nov 2026).
+   That is the briefing changing, not a section, so these sections are rendered
+   against the design answer as it stood when the fixtures were taken
+   (tests/fixtures/sections-design-vintage.json, scripts/pin-section-design.mjs).
+   Everything a section's own code says is still compared byte for byte.
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -24,8 +33,13 @@ import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { buildAllMarketSections, digests, marketApi } from './helpers/market-sections.mjs';
-import { designLine } from '../src/markets/_shared/designAnswer.js';
+import { PINNED_URL } from './helpers/pin-design.mjs';
+/* Loaded after the pin is registered: a static import would resolve first. */
+const { buildAllMarketSections, digests, marketApi } = await import('./helpers/market-sections.mjs');
+const { DESIGN: PINNED, PINNED_VINTAGE } = await import(PINNED_URL);
+const { designLine } = await import('../src/markets/_shared/designAnswer.js');
+const { briefingFromDisk } = await import('../src/briefing/disk.js');
+const { designProjection } = await import('../src/briefing/model.js');
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MARKETS = ['gb', 'ie', 'pl', 'ro'];
@@ -36,32 +50,36 @@ const fixtureFor = (id) => {
   return JSON.parse(readFileSync(file, 'utf8'));
 };
 
+/* The pin must be what the sections actually read, or the fingerprints below
+   would be compared against live data again without anyone noticing. */
+test('sections read the pinned design answer, not the live one', () => {
+  assert.ok(PINNED_VINTAGE.dataCommit && PINNED_VINTAGE.now, 'the pin records the data commit and clock it was taken at');
+  for (const id of MARKETS){
+    const pinned = PINNED.build.find(x => x.market === id)?.line || null;
+    assert.deepEqual(designLine(id), pinned, `${id}: designAnswer.js is not reading the pin`);
+  }
+});
+
+/* The pin freezes values, not the projection's form. If designProjection()
+   gains, loses or renames a field, the sections would read a stale shape:
+   re-pin at the recorded vintage (node scripts/pin-section-design.mjs) and
+   check every fingerprint still passes. */
+test('the pinned design answer has the live projection\'s shape', async () => {
+  const live = designProjection(await briefingFromDisk());
+  const shape = (value) => {
+    if (Array.isArray(value) || value === null || typeof value !== 'object') return 'value';
+    return Object.fromEntries(Object.keys(value).sort().map(k => [k, shape(value[k])]));
+  };
+  assert.deepEqual(Object.keys(live).sort(), Object.keys(PINNED).sort(), 'design projection top-level fields');
+  for (const id of MARKETS){
+    const was = PINNED.build.find(x => x.market === id), is = live.build.find(x => x.market === id);
+    assert.deepEqual(shape(was), shape(is), `${id}: the build entry's shape changed — re-pin`);
+    assert.deepEqual(shape(PINNED.byRoute[id]), shape(live.byRoute[id]), `${id}: the per-route answer's shape changed — re-pin`);
+  }
+});
+
 /** A floor per market, deliberately well below what any of them carries. */
 const MIN_TOTAL_BYTES = { gb: 250_000, ie: 270_000, pl: 150_000, ro: 150_000 };
-
-/* The GB portfolio includes a live briefing projection, intentionally following
-   committed observed FX. Pin only that sentence to the public-data vintage used
-   by the original fingerprint; preserve every other string, number and function.
-   Its runtime value is checked below, rather than discarded from coverage. */
-function staticGbProjection(sections){
-  const original=JSON.parse(readFileSync(path.join(REPO,'tests/fixtures/gb-section-design-projection.json'),'utf8')).line;
-  const current=designLine('gb');
-  assert.ok(current?.length===2,'GB briefing projection must remain bilingual');
-  const counts=[0,0];
-  const visit=value=>{
-    if(typeof value==='string'){
-      let out=value;
-      for(let i=0;i<2;i++)if(out.includes(current[i])){counts[i]++;out=out.replace(current[i],original[i]);}
-      return out;
-    }
-    if(Array.isArray(value))return value.map(visit);
-    if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,visit(v)]));
-    return value;
-  };
-  const portfolio=visit(sections.portfolio);
-  assert.deepEqual(counts,[1,1],'The GB portfolio must carry exactly one current Brief sentence per language');
-  return {...sections,portfolio};
-}
 
 for (const id of MARKETS){
   const FIXTURE = fixtureFor(id);
@@ -69,7 +87,7 @@ for (const id of MARKETS){
   test(`${id}: every section is byte-for-byte what the pre-split file produced`, async () => {
     assert.ok(FIXTURE, `${id} has no pre-split fixture — run scripts/generate-section-fixtures.mjs first`);
     const sections = await buildAllMarketSections(id, await marketApi(id));
-    const now = digests(id === 'gb' ? staticGbProjection(sections) : sections);
+    const now = digests(sections);
 
     assert.deepEqual(Object.keys(now).sort(), Object.keys(FIXTURE.sections).sort(),
       `${id}: a section has appeared or disappeared since the fixture was taken`);

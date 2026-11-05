@@ -17,7 +17,11 @@
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { marketApi, buildAllMarketSections, digests } from '../tests/helpers/market-sections.mjs';
+/* Rendered against the same pinned design answer as the parity test
+   (scripts/pin-section-design.mjs), so a fixture never captures one ETL
+   commit's FX rate. Registered first; the harness is loaded after it. */
+import '../tests/helpers/pin-design.mjs';
+const { marketApi, buildAllMarketSections, digests } = await import('../tests/helpers/market-sections.mjs');
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);

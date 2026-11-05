@@ -17,6 +17,6 @@ No Policy snapshot exists in public/. Synthetic browser fixtures stay in tests a
 
 The workflow proposal replaces `17 */6 * * *` with `17 6 * * *`, preserves unrelated monthly/weekly schedules, and retains the original exact-SHA scanned-prebuilt release chain. It is not active on main. Existing deterministic rules retain their original authority. Policy AI cannot write investment views, model assumptions, methodology or signed-off Market Stories. No paid request, billing change, repository visibility change or production deployment occurred.
 
-Original GB parity failed on untouched main. Only the exact current bilingual Brief projection is normalized to the original public-data vintage for the unchanged static fingerprint. Exactly one sentence per language and existing current-engine linkage remain asserted. Financial baselines were not regenerated.
+Original GB parity failed on the initial untouched main. During delivery, main advanced to `13dacf0` with a general design-projection pin at the same original `d85f172` public-data vintage. The branch adopts that upstream implementation and removes its redundant single-GB normalization fixture. Original pre-split content fingerprints remain unchanged; upstream pin/shape tests and existing live Brief/current-engine linkage remain asserted. No baseline generator was run. Main's unrelated Japan documentation is preserved.
 
 See release-readiness.md, source-review-proposal.md and validation-record.md for actual evidence and blockers.
