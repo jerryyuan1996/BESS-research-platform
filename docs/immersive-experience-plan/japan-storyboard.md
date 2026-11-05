@@ -1,14 +1,14 @@
 # Japan: One Storyboard for Three Allocation Markets
 
 Pack: BESS-IX-2026-10-30; Japan script researched 5 November 2026; shot layout v1.2
-Status: **G-1 draft, not signed off.** The script covers `jp_tokyo`, `jp_kyushu` and `jp_hokkaido`. It proposes one shared story with a regional lens (§1), anchors each region to its published call (§2), and asks the analyst for a go/no-go on the shared pack (§10). Nothing is built: no data, content module, scene, wiring, registry or contract change follows from this document.
+Status: **G-1 draft; shared pack approved 5 November 2026, script not yet signed off.** The script covers `jp_tokyo`, `jp_kyushu` and `jp_hokkaido`. It sets out one shared story with a regional lens (§1), anchors each region to its published call (§2), and records the analyst's go on the shared pack (§12). The remaining G-1 questions in §10 stay open. Nothing is built: no data, content module, scene, wiring, registry or contract change follows from this document.
 Navigation: [Master plan](README.md) | [Narrative cards](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Poland format](poland-storyboard.md) | [Sources and claims](source-register.md#g1-jp-evidence)
 
 ## 1. Can three markets share one story?
 
 ### 1.1 Recommendation
 
-**Yes. Write one Japan story, load it as one pack, and point all three registry entries at it.** National chapters are written once. Three regional slots carry what differs. The pack reads the region from the row the market page already passes.
+**Approved by the analyst on 5 November 2026 (§12).** **Yes. Write one Japan story, load it as one pack, and point all three registry entries at it.** National chapters are written once. Three regional slots carry what differs. The pack reads the region from the row the market page already passes.
 
 The case for sharing is in the published views, not only in the plan's v1.3 note:
 
@@ -734,7 +734,7 @@ References to the dated records in the register, **not runtime fields**. The bui
 
 Open questions for the analyst:
 
-1. **Go/no-go on the shared pack.** (a) Recommended: one pack, `src/markets/jp/storyPack.js`, three registry entries, one composed story per region, guards per region (§1.3–1.5). (b) The fallback: three thin packs over one national module (§1.6). (c) One story for Tokyo only, with Kyushu and Hokkaido keeping the research dialog.
+1. **Go/no-go on the shared pack. Decided 5 November 2026: (a), see §12.** (a) Recommended: one pack, `src/markets/jp/storyPack.js`, three registry entries, one composed story per region, guards per region (§1.3–1.5). (b) The fallback: three thin packs over one national module (§1.6). (c) One story for Tokyo only, with Kyushu and Hokkaido keeping the research dialog.
 2. **Signature chart.** (a) Recommended: one parameterised Chart-JP-PRICE, with the Kyushu and Hokkaido panels as evidence in their battery shots. (b) Three regional charts as the v1.3 cards proposed: Tokyo's purchase-price chart, Kyushu's curtailment against charging window, and Hokkaido's firm against non-firm charging hours.
 3. **Release.** Release the three areas together under one G-2, or each on its own G-2 through its `released` flag.
 4. **Round 4's longer term (CF-JP-02).** The Round 4 guidelines let a battery elect an application period of twenty to forty years (pp. 10, 68). The plays and the floor ruling assume twenty years, and the story says "twenty years in principle". Should a later model or view change consider longer terms for new awards? The call buys operating holders, whose terms were set by their own rounds (GAP-JP-TERM).
@@ -750,3 +750,15 @@ Checks run on 5 November 2026: all twenty shot tables carry the six specificatio
 ## 11. Sources and claims
 
 Canonical [sources, claims, history, calculations, conflicts and gaps](source-register.md#g1-jp-evidence). IDs in the shots resolve there. The script owns scene and bilingual page copy; the register owns the evidence records.
+
+## 12. Analyst decisions — 5 November 2026
+
+Authority: the analyst answered "Approve shared pack" in this session on 5 November 2026, in reply to §10 question 1.
+
+| Item | Disposition |
+| --- | --- |
+| §10 question 1, shared pack | **Approved: option (a).** One Japan story in one pack, `src/markets/jp/storyPack.js`, emitted as one `story-jp` chunk. Three registry entries share its loader. The pack composes one story per region from `ctx.row.id`, with its own `marketId` and `reviewedAgainst`, and applies the four guards per region (§1.3). The build makes the registry, budget and test changes in §1.4 and no contract, shell or router change |
+| Fallback | Kept as written (§1.6). If a re-grade gives one area a different call or route, the build moves to three thin packs over one national module, and that change returns to the analyst |
+| Questions 2–10 | **Open.** Signature chart, release grouping, Round 4 term, shot ids, supplier naming, the Kyushu workbook, causal readings, markers and the Chinese drafts still need the analyst's answers before the script is signed off at G-1 |
+
+This approval fixes the pack's structure only. It signs off no shot copy, marker, chart or evidence record, and it authorises no code: registry, content, scene and wiring work starts after the script's G-1 sign-off, in the usual data → content → scenes → wiring order.
