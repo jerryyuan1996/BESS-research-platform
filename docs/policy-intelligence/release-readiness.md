@@ -29,7 +29,7 @@ Normal collection changes from six-hour to daily. Scheduling drift, outages and 
 4. A named model, current reviewed pricing, daily USD ceiling and concrete activation permissions require acceptance. No credential or billing setting was created or changed.
 5. Final-head CI, complete performance measurements, production exact-artifact scan/deployment, rollback rehearsal and production smoke remain release gates. There is no production release URL for this change.
 6. Account-wide Actions balance/reset cannot be verified with current billing access. The documented 1,512-minute P90-plus-contingency planning scenario is not measured steady-state usage or a spending guarantee. Preserve the long-term 400-minute reserve.
-7. Scene rendering is an initial bounded evidence-list/bar treatment, with lifecycle connectors and source-backed relation lines. Bespoke causal, stakeholder, waterfall and matrix visual treatments, comprehensive visual/a11y review and full bilingual editorial acceptance remain incomplete; a safe template identifier is not acceptance of its visual storytelling quality.
+7. Dedicated timeline/lifecycle, before-after, sourced causal/stakeholder graph, additive scenario waterfall, compatible-value and market-scope matrix renderers are implemented with accessible evidence tables. Data and browser share the reference/basis/arithmetic safety contract. Comprehensive visual/a11y review, actual pilot storytelling and independent bilingual editorial acceptance remain incomplete; template safety is not content acceptance.
 
 ## Rollback procedure requiring rehearsal
 

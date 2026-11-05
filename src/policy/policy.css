@@ -42,6 +42,10 @@
 .policy-scene text{fill:var(--ink);font-size:var(--fs-xs)}
 .policy-scene-dot,.policy-scene-bar{fill:var(--s1)}
 .policy-scene-line{stroke:var(--border);stroke-width:2}
+.policy-scene-card{fill:var(--surface);stroke:var(--border)}
+.policy-scene-date{fill:var(--muted)!important}
+.policy-scene table{width:100%}
+.policy-scene details{overflow-x:auto}
 .policy-scene figcaption{font-size:var(--fs-xs);color:var(--muted)}
 .policy-page table{width:100%;border-collapse:collapse}
 .policy-page td,.policy-page th{padding:12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:var(--fs-sm);line-height:1.65}

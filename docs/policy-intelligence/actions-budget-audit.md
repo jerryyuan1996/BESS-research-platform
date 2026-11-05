@@ -31,3 +31,5 @@ Measured job distributions above do not measure a new policy pipeline. Conservat
 | Merge/deploy | Only after every technical/content release gate; user authorized final release conditionally |
 
 First production cycle and steady-state forecast cannot be measured before deployment. Record them without representing synthetic tests as production evidence. Keep the original confidentiality guard and full release gates even on a public repository.
+
+Resume checkpoint: repository visibility was reverified as public, without changing it. Cancelled run 42051263151 acquired a standard `ubuntu-latest` test runner from 15:04:42 to 15:11:19 UTC: 397 seconds, seven rounded workload minutes. Its cancelled deploy acquired no meaningful runtime and is not a production verification. One consolidated PR update is planned after local checks, using the existing standard runner and unchanged full gates. No billing change or paid runner is requested. Account-wide balance/reset remain unavailable; the 1,512-minute forecast retains its assumptions and contingency and is not account usage proof.

@@ -1,4 +1,6 @@
 /** Policy data is separate from investment authority. No model/view imports. */
+import {isCalendarDate,criticalValueInQuote} from './evidence-values.mjs';
+import {policySceneProblems} from './scene-contract.mjs';
 export const SCHEMA_VERSION = 1;
 export const STATES = Object.freeze(['draft','consultation','amended','adopted','effective','suspended','withdrawn','repealed','superseded']);
 export const TRANSITIONS = Object.freeze({
@@ -26,6 +28,7 @@ const unique = (rows,at,errors) => {
 };
 const textPair=(value,at,errors)=>{if(!isPair(value))errors.push(`${at}: en/zh pair required`);};
 const time=(value,at,errors,nullable=false)=>{if(!(nullable&&value===null)&&!isTime(value))errors.push(`${at}: explicit UTC timestamp required`);};
+const policyDate=(value,at,errors,nullable=false)=>{if(!(nullable&&value===null)&&!isTime(value)&&!isCalendarDate(value))errors.push(`${at}: calendar date or explicit UTC timestamp required`);};
 
 /** Structural/semantic safety check, not a substitute for human translation or legal review. */
 export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, allowedHosts=[],retainedClaimIds=new Set()}={}){
@@ -48,14 +51,20 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     if(!r.publisher||!r.title||!r.language||!r.locator)errors.push(`${r.id}: original source metadata/locator missing`);
     if(!/^sha256:[a-f0-9]{64}$/.test(r.contentHash||''))errors.push(`${r.id}: source hash missing`);
     if(r.rights?.metadata!==true||!r.rights?.termsURL||!safeURL(r.rights.termsURL)||r.rights?.reviewed!==true)errors.push(`${r.id}: redistribution terms not reviewed`);
-    time(r.issuedAt,`${r.id}.issuedAt`,errors,true);time(r.checkedAt,`${r.id}.checkedAt`,errors);
+    policyDate(r.issuedAt,`${r.id}.issuedAt`,errors,true);time(r.checkedAt,`${r.id}.checkedAt`,errors);
   }
   const identities=new Set();
   for(const r of s.instruments){
-    requiredKeys(r,['id','officialId','jurisdiction','markets','title','state','supersedes'],r.id,errors);
+    requiredKeys(r,['id','officialId','jurisdiction','markets','title','state','supersedes','provision'],r.id,errors);
     textPair(r.title,r.id,errors);scope(r.markets,r.id);
     if(!r.officialId||!r.jurisdiction||!STATES.includes(r.state))errors.push(`${r.id}: instrument identity/state missing`);
-    const identity=`${r.jurisdiction}:${r.officialId}`;if(identities.has(identity))errors.push(`${r.id}: duplicate official identity`);identities.add(identity);
+    const identity=`${r.jurisdiction}:${r.officialId}:${r.provision?.locator||''}`;if(identities.has(identity))errors.push(`${r.id}: duplicate official identity`);identities.add(identity);
+    if(r.provision!==undefined){
+      if(requiredKeys(r.provision,['parent','locator'],`${r.id}.provision`,errors)){
+        const parent=instrumentById.get(r.provision.parent);ref('instruments',r.provision.parent,r.id);
+        if(typeof r.provision.locator!=='string'||!r.provision.locator.trim()||r.provision.locator.length>300||!parent||parent.id===r.id||parent.provision!==undefined||parent.officialId!==r.officialId||parent.jurisdiction!==r.jurisdiction||r.markets?.some(m=>!parent.markets?.includes(m)))errors.push(`${r.id}: invalid provision parent, scope or original locator`);
+      }
+    }
     if(r.supersedes!==null){ref('instruments',r.supersedes,r.id);if(r.supersedes===r.id)errors.push(`${r.id}: self supersession`);}
   }
   const eventStates=new Map();const eventTimes=new Map();
@@ -69,9 +78,9 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     if(r.corrects!==null){ref('events',r.corrects,r.id);if(r.corrects===r.id)errors.push(`${r.id}: self correction`);}
     if(eventStates.has(r.instrument)&&eventStates.get(r.instrument)!==r.from)errors.push(`${r.id}: discontinuous event history`);
     eventStates.set(r.instrument,r.to);
-    for(const k of ['announcedAt','effectiveAt'])time(r[k],`${r.id}.${k}`,errors,true);
-    for(const k of ['consultationClosesAt','adoptedAt'])if(r[k]!=null)time(r[k],`${r.id}.${k}`,errors);
-    for(const k of ['publishedAt','verifiedAt'])time(r[k],`${r.id}.${k}`,errors);
+    for(const k of ['announcedAt','effectiveAt'])policyDate(r[k],`${r.id}.${k}`,errors,true);
+    for(const k of ['consultationClosesAt','adoptedAt'])if(r[k]!=null)policyDate(r[k],`${r.id}.${k}`,errors);
+    policyDate(r.publishedAt,`${r.id}.publishedAt`,errors);time(r.verifiedAt,`${r.id}.verifiedAt`,errors);
     if(Date.parse(r.publishedAt)>Date.parse(r.verifiedAt))errors.push(`${r.id}: verified before publication`);
     if(Date.parse(r.verifiedAt)<(eventTimes.get(r.instrument)||0))errors.push(`${r.id}: non-append-only chronology`);
     eventTimes.set(r.instrument,Date.parse(r.verifiedAt));
@@ -96,7 +105,7 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     if(!MECHANISMS.includes(r.mechanism))errors.push(`${r.id}: unknown impact mechanism`);
     if(r.markets?.some(m=>!instrumentById.get(r.instrument)?.markets?.includes(m)))errors.push(`${r.id}: claim exceeds instrument jurisdiction`);
     if(r.kind==='legal_status'&&!STATES.includes(r.value))errors.push(`${r.id}: invalid legal state value`);
-    if(r.kind==='date'&&!isTime(r.value))errors.push(`${r.id}: invalid date value`);
+    if(r.kind==='date'&&!isTime(r.value)&&!isCalendarDate(r.value))errors.push(`${r.id}: invalid date value`);
     if(r.kind==='date'&&!['effective_at','announced_at','published_at','consultation_closes_at','adopted_at'].includes(r.predicate))errors.push(`${r.id}: date must name its exact legal-time meaning`);
     if(r.kind==='number'&&!Number.isFinite(r.value))errors.push(`${r.id}: invalid numeric value`);
     if(!Array.isArray(r.evidence)||!r.evidence.length)errors.push(`${r.id}: missing original evidence`);
@@ -107,7 +116,7 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
       if(['legal_status','date'].includes(r.kind)&&source?.authority!=='official')errors.push(`${r.id}: legal status/date requires official authority`);
       const body=evidenceBodies?.get(e.source);
       if(evidenceBodies&&(!body||!body.includes(e.quote))&&!retainedClaimIds.has(r.id))errors.push(`${r.id}: invented quotation`);
-      if(['legal_status','date','number'].includes(r.kind)&&e.quote&&!String(e.quote).includes(String(r.value)))errors.push(`${r.id}: critical value absent from quotation`);
+      if(['legal_status','date','number'].includes(r.kind)&&e.quote&&!criticalValueInQuote(r,e.quote,{language:source?.language}))errors.push(`${r.id}: critical value absent from quotation`);
     }
     const nums=(str)=>(str.match(/\d+(?:\.\d+)?/g)||[]).sort().join('|');
     if(isPair(r.text)&&nums(r.text[0])!==nums(r.text[1]))errors.push(`${r.id}: bilingual numeric mismatch`);
@@ -137,9 +146,11 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     else{for(const x of r.instrumentIds)ref('instruments',x,r.id);for(const x of r.claimIds)ref('claims',x,r.id);}
     for(const chapter of r.chapters||[]){
       requiredKeys(chapter,['id','title','text','claimIds','scene'],r.id,errors);textPair(chapter.title,r.id,errors);textPair(chapter.text,r.id,errors);for(const x of chapter.claimIds||[])ref('claims',x,r.id);
+      if(!Array.isArray(chapter.claimIds)||chapter.claimIds.some(id=>!r.claimIds.includes(id)))errors.push(`${r.id}: chapter exceeds the story evidence graph`);
       if(chapter.scene!==null){
         const scene=chapter.scene;
         if(!requiredKeys(scene,['template','claimIds','impactIds','relations'],'scene',errors))continue;
+        errors.push(...policySceneProblems(scene,s,{storyClaimIds:r.claimIds}).map(problem=>`${r.id}: ${problem}`));
         if(!['timeline','lifecycle','status_transition','before_after','causal','stakeholder','sourced_range','impact_waterfall','market_matrix'].includes(scene.template))errors.push(`${r.id}: unreviewed scene template`);
         for(const [key,kind]of [['claimIds','claims'],['impactIds','impacts']])if(!Array.isArray(scene[key]))errors.push(`${r.id}: scene needs typed references`);else for(const id of scene[key])ref(kind,id,r.id);
         if((scene.claimIds?.length||0)+(scene.impactIds?.length||0)>24)errors.push(`${r.id}: scene exceeds bounded item count`);

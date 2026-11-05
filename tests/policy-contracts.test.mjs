@@ -111,3 +111,21 @@ test('independently reviewed quotation allowance applies across all claims of a 
   const repo=await mkdtemp(path.join(os.tmpdir(),'policy-quotes-'));const snapshot=fixture();const context=attestedContext(snapshot);context.sourceReviews.get('test-source').maxQuoteChars=1;
   try{await assert.rejects(publishPolicySnapshot({repo,snapshot,context,bodies:bodies(),enabled:true,expectedParent:null}),/quotation allowance exceeded/);}finally{await rm(repo,{recursive:true,force:true});}
 });
+
+test('source aliases and changed URL fragments cannot multiply a document quotation allowance',async()=>{
+  const repo=await mkdtemp(path.join(os.tmpdir(),'policy-quote-alias-'));
+  try{
+    const snapshot=fixture();
+    const alias={...structuredClone(snapshot.sources[0]),id:'source-alias',url:snapshot.sources[0].url+'#second-section'};
+    snapshot.sources.push(alias);
+    snapshot.claims.push({...structuredClone(snapshot.claims[0]),id:'alias-claim',evidence:[{...snapshot.claims[0].evidence[0],source:alias.id}]});
+    const context=attestedContext(snapshot);for(const review of context.sourceReviews.values())review.maxQuoteChars=15;
+    const evidence=bodies();evidence.set(alias.id,evidence.get('test-source'));
+    await assert.rejects(publishPolicySnapshot({repo,snapshot,context,bodies:evidence,enabled:true,expectedParent:null}),/document quotation allowance exceeded/);
+    alias.url='https://official.example/relocated-record';
+    const relocated=attestedContext(snapshot);for(const review of relocated.sourceReviews.values())review.maxQuoteChars=15;
+    await assert.rejects(publishPolicySnapshot({repo,snapshot,context:relocated,bodies:evidence,enabled:true,expectedParent:null}),/document quotation allowance exceeded/);
+    for(const review of relocated.sourceReviews.values())review.maxQuoteChars=30;
+    assert.equal((await publishPolicySnapshot({repo,snapshot,context:relocated,bodies:evidence,enabled:true,expectedParent:null})).changed,true);
+  }finally{await rm(repo,{recursive:true,force:true});}
+});

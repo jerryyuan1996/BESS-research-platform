@@ -1,5 +1,6 @@
 import { digest,verifyEvidenceHashes } from './integrity.mjs';
 import { validatePolicySnapshot,PublicInvestmentReferenceResolver,policyMateriality } from './schema.mjs';
+import {quotationRightsProblems} from './quotation-rights.mjs';
 /** Only trusted code supplies profiles, never fields from the candidate JSON. */
 export function independentlyValidate({snapshot,bodies,profiles,marketIds,publicReferences={},retained=null}){
   const context={marketIds,allowedHosts:profiles.filter(p=>p.reviewed&&p.rightsReviewed).map(p=>p.host),attestations:new Map(retained?.attestations||[]),sourceReviews:new Map(retained?.sourceReviews||[]),storyReviews:new Map(retained?.storyReviews||[]),humanReviewDecisions:new Map(retained?.humanReviewDecisions||[]),resolver:new PublicInvestmentReferenceResolver({markets:marketIds,records:publicReferences})};
@@ -16,6 +17,7 @@ export function independentlyValidate({snapshot,bodies,profiles,marketIds,public
     for(const claim of claims){if(verdict.supportedClaimIds?.includes(claim.id)&&profile.translationEquivalent(claim))context.attestations.set(claim.id,{claimHash:digest(claim),supported:true,translationEquivalent:true});else errors.push(`${claim.id}: cited source did not independently support this claim/translation`);}
   }
   for(const claim of snapshot.claims)if(!context.attestations.has(claim.id))errors.push(`${claim.id}: independent semantic/translation approval missing`);
+  errors.push(...quotationRightsProblems(snapshot,context.sourceReviews));
   for(const link of snapshot.links)if(link.state!=='unmapped'&&context.resolver.resolve(link).state==='unmapped')errors.push(`${link.id}: public investment reference unresolved`);
   for(const claim of snapshot.claims){
     const links=snapshot.links.filter(link=>link.claim===claim.id&&link.state!=='unmapped');

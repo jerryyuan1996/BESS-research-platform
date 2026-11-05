@@ -5,10 +5,10 @@ Integration branch: `feat/policy-intelligence-v4`, based on `494ce7b`. Draft PR 
 | Phase | Implemented | Outstanding acceptance |
 |---|---|---|
 | Gate 0 / D0 | 30-day job audit; authority, architecture, dependency and permission design | Account billing/reset inaccessible; production policy runtime unmeasured |
-| D1 | Policy-only contracts/writer; immutable history; external evidence/translation/rights/narrative review; read-only resolver | Real content and final integration gates |
+| D1 | Policy-only contracts/writer; immutable history; original-locale calendar dates; separately scoped provision lifecycles; document-level quotation limits; read-only resolver | Real content and independent evidence/translation/rights/narrative acceptance |
 | D2 | Deterministic discovery and proposed single daily ETL+policy workflow | All four source/rights inventory entries remain unapproved and inactive |
-| D3 | Bounded tool-free shadow transport, incremental merge, durable daily-job audit, quarantine and material review packets | No paid model configured; zero actual calls or accepted historical gold cases |
-| D4-D5 | Lazy Radar/map/feed/filters/preview; Dossier/history/diffs; bilingual brief/guided/explorer; declarative SVG | Real published content and complete performance/release acceptance |
+| D3 | Bounded tool-free shadow transport; fixed endpoint and independent credentials; hash-pinned manual corpus command; durable reservations/results; PDF raw/text receipts; quarantine and review packets | No paid model configured; zero actual calls or accepted historical gold cases; trusted PDF adapters and host/corpus approval absent |
+| D4-D5 | Lazy Radar/map/feed/filters/preview; Dossier/history/provision branches; bilingual brief/guided/explorer; dedicated declarative timeline/graph/waterfall/matrix templates and evidence tables | Real published content and independent editorial/visual/release acceptance |
 | D6 x 4 | Separate software fixtures and official-source review queue | Four source-backed deep pilots and independent analyst content reviews incomplete |
 | D7 | Shared lazy market route, strict-basis comparison, read-only pending-review sidecar | Real comparative claims and four accepted pilots |
 | D8 | Disabled live configuration; isolated read-only model job; independent publisher; combined commit/CI path; public-store release gate | Concrete source/model/cost acceptance, offline source validators, historical evaluation, release/rollback rehearsal and production measurements |

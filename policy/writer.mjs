@@ -5,6 +5,7 @@ import { randomUUID } from 'node:crypto';
 import { validatePolicySnapshot } from './schema.mjs';
 import { digest, verifyEvidenceHashes,policyContentDigest } from './integrity.mjs';
 import { retainedProofs } from './retained.mjs';
+import { quotationRightsProblems } from './quotation-rights.mjs';
 
 export const POLICY_RELATIVE_ROOT='public/data/public/policy';
 const FILE=/^(?:index\.json|snapshots\/[a-f0-9]{64}\.json)$/;
@@ -48,12 +49,7 @@ export async function publishPolicySnapshot({repo,snapshot,context,bodies,expect
   }
   if(!(bodies instanceof Map))errors.push('Verified source bodies required');
   else errors.push(...verifyEvidenceHashes(snapshot,bodies,{retainedSourceIds:retained.sourceIds}));
-  for(const source of snapshot.sources||[]){
-    const review=trusted.sourceReviews.get(source.id);
-    const quoted=(snapshot.claims||[]).flatMap(c=>c.evidence||[]).filter(e=>e.source===source.id).reduce((n,e)=>n+(e.quote?.length||0),0);
-    if(!review||review.sourceHash!==digest(source)||!Number.isInteger(review.maxQuoteChars)||review.maxQuoteChars<0||quoted>review.maxQuoteChars)
-      errors.push(`${source.id}: independent source/rights review missing or quotation allowance exceeded`);
-  }
+  errors.push(...quotationRightsProblems(snapshot,trusted.sourceReviews));
   for(const link of snapshot.links||[]){
     if(link.state!=='unmapped'&&context?.resolver?.resolve(link)?.state==='unmapped')errors.push(`${link.id}: unresolved investment dependency`);
     if(link.state!=='unmapped'&&!context?.resolver)errors.push(`${link.id}: independent public investment resolver required`);

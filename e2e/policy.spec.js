@@ -25,12 +25,38 @@ test('Dossier versions and story depths share evidence, translate and retain saf
   const data=await servePolicy(page);await page.goto('/policy/dossiers/gb-test-instrument');await expect(page.getByRole('heading',{name:'Immutable history and corrections'})).toBeVisible();await expect(page.getByText('changed records; prior versions remain available.',{exact:false})).toBeVisible();
   await page.getByRole('link',{name:data.index.versions[0].slice(0,12),exact:true}).click();await expect(page.getByText('GB · SYN-gb · Consultation',{exact:false})).toBeVisible();await page.goBack();
   await page.getByRole('link',{name:'Synthetic Great Britain policy story'}).click();await expect(page.getByRole('heading',{name:'From consultation to adoption'})).toBeVisible();expect(await page.locator('.policy-scene svg').count()).toBe(3);expect(await page.locator('.policy-scene svg *').count()).toBeLessThan(100);
+  await expect(page.locator('[data-policy-template=timeline]')).toContainText('2021-01-01');
+  await expect(page.locator('[data-policy-template=timeline]')).toContainText('2027-01-01');
+  await expect(page.locator('[data-policy-component=gb-test-number]')).toHaveCount(2);
+  await expect(page.locator('[data-policy-total=gb-scenario]')).toHaveCount(1);
+  const accessible=page.locator('.policy-scene').last().getByText('Accessible evidence table',{exact:true});await accessible.click();
+  await expect(page.locator('.policy-scene').last().getByRole('table')).toContainText('GBP / MW');
   await page.getByRole('link',{name:'Evidence explorer',exact:true}).click();await expect(page.getByRole('heading',{name:'One canonical evidence graph'})).toBeVisible();await expect(page.locator('.policy-evidence')).toHaveCount(4);await expect(page.locator('.policy-evidence a').first()).toHaveAttribute('href',/^https:\/\/official\.example\//);
   await page.getByRole('button',{name:'Switch to Chinese'}).click();await expect(page.getByRole('heading',{name:'同一份规范证据图谱'})).toBeVisible();await expect(page.getByText('政策解读独立于已批准投资论点。')).toBeVisible();
 });
 test('comparison keeps NEM and WA separate and declines incompatible quantitative returns',async({page})=>{
   await servePolicy(page);await page.goto('/policy/compare');await expect(page.getByRole('heading',{name:'Compare mechanisms, keep the basis visible'})).toBeVisible();await expect(page.getByRole('columnheader',{name:/National Electricity Market/})).toBeVisible();await expect(page.getByRole('columnheader',{name:'Western Australia'})).toBeVisible();await expect(page.getByText('Not comparable',{exact:false}).first()).toBeVisible();
   await page.goto('/markets/nem/policy');await expect(page.locator('.policy-event')).toHaveCount(2);await expect(page.locator('.policy-feed')).not.toContainText('Synthetic WEM');
+});
+
+test('reviewed scene templates draw distinct sourced relationships, comparisons and scope with table fallbacks',async({page})=>{
+  const data=policyUIFixture(),story=data.snapshot.stories.find(s=>s.id==='gb-test-story');
+  const claims=['gb-consultation','gb-adopted'],relations=[{from:claims[0],to:claims[1],evidenceClaim:claims[1]}];
+  const original=data.snapshot.impacts.find(i=>i.id==='gb-scenario');data.snapshot.impacts.push({...original,id:'gb-second-scenario'});
+  for(const template of ['status_transition','before_after','causal','stakeholder','sourced_range','market_matrix']){
+    const scene={template,claimIds:template==='sourced_range'?[]:claims,impactIds:template==='sourced_range'?['gb-scenario','gb-second-scenario']:[],...(['causal','stakeholder'].includes(template)?{relations}:{})};
+    story.chapters.push({id:`scene-${template}`,title:[`Synthetic ${template}`,`Synthetic ${template}`],text:['Synthetic safety fixture.','模拟安全测试。'],claimIds:claims,scene});
+  }
+  const hash=digest(data.snapshot);data.index.head=hash;data.index.versions=[data.index.versions[0],hash];data.versions.set(hash,data.snapshot);await servePolicy(page,data);
+  await page.goto('/policy/stories/gb-test-story');await expect(page.locator('.policy-scene svg')).toHaveCount(9);
+  await expect(page.locator('[data-policy-template=causal] [data-policy-relation]')).toHaveCount(1);
+  await expect(page.locator('[data-policy-template=stakeholder] .policy-scene-card')).toHaveCount(2);
+  await expect(page.locator('[data-policy-template=market_matrix]')).toContainText('gb');
+  await expect(page.locator('[data-policy-template=sourced_range] circle')).toHaveCount(2);
+  await expect(page.locator('.policy-scene script,.policy-scene foreignObject,.policy-scene style')).toHaveCount(0);
+  expect(await page.locator('.policy-scene svg *').count()).toBeLessThan(350);
+  await expect(page.locator('.policy-scene summary')).toHaveCount(9);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
 
 test('material review appears outside the approved market content without loading policy maps',async({page})=>{
