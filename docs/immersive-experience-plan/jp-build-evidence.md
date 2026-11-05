@@ -82,7 +82,7 @@ The national source of an event is stored once; multiple date precisions are exp
 | --- | --- | --- | --- |
 | `call`: `ui.CALLS[row.call]` | Existing bilingual call pair | Hide affected sentence; current-case copy | Situational / 择机投入, all three |
 | `playName`: `ui.playTitle(row.play,row.stage)` | Existing play-title function | Same | Each area's LTDA play, nine-hour build / six-hour obligation, operating |
-| `cardFigures`: decision-panel metrics for `row` | `ui.returnPct`, `ui.marginText`; opening uses the existing shell card | Same; no substituted engine case | Base all-equity IRR: 2.82% / 2.94% / 2.54%; margin supplied by the same UI helper |
+| `cardFigures`: decision-panel metrics for `row`, **`row.investment.holdIRR`**, not the legacy design-grid return | `ui.returnPct`, `ui.marginText`; opening uses the existing shell card | Same; no substituted engine case | Base all-equity IRR as the decision panel prints it: **4.0% / 4.1% / 3.8%**; margins **−3.15 / −3.08 / −3.34 pp** from the same UI helper. Owner rechecked during the content binding; this corrects the initial design-grid reference in the evidence layer |
 | `nextAction`: `row.play.action.text` | Existing pair, unchanged | Hide affected sentence | Each area's Round 4 action; no holder names inserted |
 | `playEvidence`: `row.evidence` | Shared `MARKERS` | No fabricated marker | `fair` / `fair` / `fair` |
 | `areaName`, `areaSlug`: `m.manifest.name/slug` | Existing pair / slug | Hide affected sentence or link | `japan-tokyo` / `japan-kyushu` / `japan-hokkaido` |
@@ -119,6 +119,7 @@ Map source: `src/markets/jp/jp-zones.json`, Natural Earth admin-1, public domain
 ## 7. Judgement calls and validation handoff
 
 1. **BUILD-JP-02:** propose a separate model-owner change exposing an existing run's gross design build capex in local currency and its basis alongside `designEconomics` (for example a nullable `buildCostPerMW` plus currency/basis), using the same variant and hours. That change is outside this build; no conversion or reconstruction belongs in the story. The analyst can walk through the withheld chart state now.
+   The content-layer owner audit also inspected `row.investment.capexPerMW`: it is **317,937,817.132634 JPY per MW for all three** at this check, a **ready-to-build reference budget** (`investmentMetrics` → `reference.assumptions.buildBudget`), not an exposed gross design build-cost field. `referenceInputs()` includes contingency and grid allowance in that budget; `referenceTerms().buildPerMW` is zero for the operating acquisition cases. Neither is silently substituted for the §8 design-cost owner. An analyst could separately choose a reference-budget comparison, but that would change the signed chart's basis.
 2. Funding mechanism evidence is stronger than at G-1; keep signed copy and Fair marker. The manual consultation status is not silently promoted to final rules.
 3. Charging-control mechanism is now located, but actual restriction hours remain asset-specific. Keep the signed unscaled Example, not a quantitative availability claim.
 4. Primary capacity results support Tokyo as largest by **contracted capacity**, rather than a demand time series. Preserve the approved wording and this recorded limit; no new demand quantity is displayed.
