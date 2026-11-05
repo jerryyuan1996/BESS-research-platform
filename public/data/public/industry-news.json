@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-04T06:37:25.090Z",
+  "fetchedAt": "2026-11-05T06:57:01.168Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-11-03T15:15:54.000Z",
+    "to": "2026-11-05T06:41:44.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -135,46 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-10-29T13:27:47.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/california-energy-commission-releases-us46-million-for-ders-supporting-grid-reliability/",
-      "source": "Energy-Storage.news",
-      "title": "California Energy Commission releases US$46 million for DERS supporting grid reliability",
-      "url": "https://www.energy-storage.news/california-energy-commission-releases-us46-million-for-ders-supporting-grid-reliability/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The California Energy Commission (CEC) has released over US$46 million for the state’s Distributed Electricity Backup Assets (DEBA) Programme."
-    },
-    {
-      "t": "2026-10-29T15:46:23.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/scatecs-us650-million-solar-plus-storage-project-for-egypt-aluminium-gets-ebrd-eib-and-afd-financing-commitment/",
-      "source": "Energy-Storage.news",
-      "title": "Scatec’s US$650 million solar-plus-storage project for Egypt Aluminium gets EBRD, EIB and AfD financing commitment",
-      "url": "https://www.energy-storage.news/scatecs-us650-million-solar-plus-storage-project-for-egypt-aluminium-gets-ebrd-eib-and-afd-financing-commitment/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Scatec, the European Investment Bank (EIB), the European Bank for Reconstruction and Development (EBRD) and the African Development Bank (AfDB) have signed an investment agreement for Dandara solar-plus-storage project in Egypt."
-    },
-    {
-      "t": "2026-10-30T01:08:21.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/sma-launches-dc-coupled-grid-forming-solar-plus-storage-solution-for-germany-australia-and-the-uk/",
-      "source": "Energy-Storage.news",
-      "title": "SMA launches DC-coupled grid-forming solar-plus-storage solution for Germany, Australia and the UK",
-      "url": "https://www.energy-storage.news/sma-launches-dc-coupled-grid-forming-solar-plus-storage-solution-for-germany-australia-and-the-uk/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Germany-headquartered inverter manufacturer SMA has launched a grid-forming solar-plus-storage solution in Australia, unveiling it at the All-Energy Australia 2026 event in Melbourne this week."
-    },
-    {
-      "t": "2026-10-30T01:21:31.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/8-hour-bess-market-completely-artificial-but-asymmetric-registration-adds-value-says-tesla-at-all-energy-australia-2026/",
-      "source": "Energy-Storage.news",
-      "title": "8-hour BESS market ‘completely artificial’, but asymmetric registration adds value, says Tesla at All-Energy Australia 2026",
-      "url": "https://www.energy-storage.news/8-hour-bess-market-completely-artificial-but-asymmetric-registration-adds-value-says-tesla-at-all-energy-australia-2026/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Demand for 8-hour battery energy storage in Australia is \"completely artificial\" and relies on government underwriting, according to Tesla, which said asymmetric registration can help such projects earn more."
-    },
-    {
       "t": "2026-10-30T09:52:19.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-sonnens-collapse-bess-contracts-new-market-entrants-and-over-reporting-availability/",
       "source": "Energy-Storage.news",
@@ -245,16 +205,6 @@
       "summary": "US President Donald Trump’s 26 August emergency executive order banning imports of certain foreign-made power equipment has prompted widespread public comment and private concern across the energy storage industry."
     },
     {
-      "t": "2026-11-02T14:26:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/exelon-energy-storage-new-jersey-earnings/873423/",
-      "source": "Utility Dive",
-      "title": "Exelon eyes $8B in energy storage, partly to address PJM supply crunch",
-      "url": "https://www.utilitydive.com/news/exelon-energy-storage-new-jersey-earnings/873423/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "President and CEO Calvin Butler said the grid operator isn&rsquo;t adding generation fast enough, but the utility&rsquo;s plan to invest in&nbsp;energy storage and transmission can help address the issue."
-    },
-    {
       "t": "2026-11-02T16:59:10.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/newsflash-gresham-house-energy-storage-fund-launches-sales-process/",
       "source": "Energy-Storage.news",
@@ -315,26 +265,6 @@
       "summary": "Energy-Storage.news proudly presents our sponsored webinar with Amphenol, 'Designing high-current battery module connections for energy storage systems.'"
     },
     {
-      "t": "2026-11-03T10:02:58.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/behind-the-meter-generation-could-deliver-five-times-more-grid-relief-than-data-center-load-shifting/",
-      "source": "pv magazine",
-      "title": "Behind-the-meter generation could deliver five times more grid relief than data center load shifting",
-      "url": "https://www.pv-magazine.com/2026/11/03/behind-the-meter-generation-could-deliver-five-times-more-grid-relief-than-data-center-load-shifting/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "An Ember analysis finds that data center load shifting could reduce peak electricity demand by up to 1.5% in Ireland by 2030, offering limited grid flexibility. Behind-the-meter generation and storage could provide nearly five times more relief, with potential reductions of up to 2.7 GW in Texas. The post Behind-the…"
-    },
-    {
-      "t": "2026-11-03T10:06:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/yingfa-ruineng-establishes-7-5-gw-pv-manufacturing-plant-in-indonesia/",
-      "source": "pv magazine",
-      "title": "Yingfa Ruineng establishes 7.5 GW PV manufacturing plant in Indonesia",
-      "url": "https://www.pv-magazine.com/2026/11/03/yingfa-ruineng-establishes-7-5-gw-pv-manufacturing-plant-in-indonesia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The facility is the Chinese manufacturer's first overseas base. It will produce n-type TOPCon solar cells for Indonesia’s domestic market while also acting as a regional supply hub for Southeast Asia and the Middle East. The post Yingfa Ruineng establishes 7.5 GW PV manufacturing plant in Indonesia appeared first on…"
-    },
-    {
       "t": "2026-11-03T10:35:40.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bw-ess-puts-europes-largest-bess-commercial-operation-uk-gb/",
       "source": "Energy-Storage.news",
@@ -343,56 +273,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "BW ESS has put its 350MW/1,240MWh Hams Hall BESS project in the UK into operation, the largest in Europe."
-    },
-    {
-      "t": "2026-11-03T10:58:33.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/shenzhen-nanshan-power-seeks-majority-stake-in-trina-solars-tracker-business/",
-      "source": "pv magazine",
-      "title": "Shenzhen Nanshan Power seeks majority stake in Trina Solar’s tracker business",
-      "url": "https://www.pv-magazine.com/2026/11/03/shenzhen-nanshan-power-seeks-majority-stake-in-trina-solars-tracker-business/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Shenzhen Nanshan Power plans to acquire a 51% to 70% stake in Trina Solar’s tracker business through a cash transaction. The proposed deal could provide Trina Solar with additional capital as it navigates financial pressure and intensifying competition in China’s solar sector. The post Shenzhen Nanshan Power seeks m…"
-    },
-    {
-      "t": "2026-11-03T11:09:19.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/slovenia-tenders-solar-plus-storage-project/",
-      "source": "pv magazine",
-      "title": "Slovenia tenders solar-plus-storage project",
-      "url": "https://www.pv-magazine.com/2026/11/03/slovenia-tenders-solar-plus-storage-project/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A tender is open in Slovenia for the development of a solar-plus-storage project at a former waste landfill site. The deadline for applications is November 19. The post Slovenia tenders solar-plus-storage project appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-03T11:10:01.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/solar-pv-cuts-spains-electricity-costs-by-e17-02-billion-over-18-months/",
-      "source": "pv magazine",
-      "title": "Solar PV cuts Spain’s electricity costs by €17.02 billion over 18 months",
-      "url": "https://www.pv-magazine.com/2026/11/03/solar-pv-cuts-spains-electricity-costs-by-e17-02-billion-over-18-months/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "A study by Spanish solar association UNEF estimates that solar PV generation reduced Spain’s wholesale electricity costs by €17.02 billion ($19.03 billion) between January 2025 and June 2026. Without solar generation, average daily market prices would have been 86% higher, according to the analysis. The post Solar P…"
-    },
-    {
-      "t": "2026-11-03T11:14:39.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/batteries-are-big-at-all-energy-australia-2026/",
-      "source": "pv magazine",
-      "title": "Key takeaways from All Energy Australia 2026",
-      "url": "https://www.pv-magazine.com/2026/11/03/batteries-are-big-at-all-energy-australia-2026/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The outlook for Australia’s renewable energy transition appears positive with supportive government policies and renewable energy targets, a surge in battery installations, and a strong pipeline of grid-scale solar and storage projects helping to fuel confidence. The post Key takeaways from All Energy Australia 2026…"
-    },
-    {
-      "t": "2026-11-03T11:57:14.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/germany-awards-288-mw-of-solar-in-rooftop-tender-at-average-price-of-e0-0967-kwh/",
-      "source": "pv magazine",
-      "title": "Germany awards 288 MW of solar in rooftop tender at average price of €0.0967/kWh",
-      "url": "https://www.pv-magazine.com/2026/11/03/germany-awards-288-mw-of-solar-in-rooftop-tender-at-average-price-of-e0-0967-kwh/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Germany’s latest rooftop solar tender received 177 bids totaling 347 MW, with 108 bids representing 208 MW ultimately awarded contracts. The post Germany awards 288 MW of solar in rooftop tender at average price of €0.0967/kWh appeared first on pv magazine Global ."
     },
     {
       "t": "2026-11-03T11:58:58.000Z",
@@ -415,16 +295,6 @@
       "summary": "Battery storage projects have won nearly 40% of the capacity in Belgium’s latest capacity market (CM) auction results, while Germany’s first has all gone to gas, paying nearly eight times more than Belgium in the process."
     },
     {
-      "t": "2026-11-03T12:31:51.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/03/waaree-solar-americas-begins-commercial-production-on-1-6-gw-of-new-module-lines-doubling-texas-capacity-to-3-2-gw/",
-      "source": "pv magazine",
-      "title": "Waaree doubles Texas solar module manufacturing capacity to 3.2 GW",
-      "url": "https://www.pv-magazine.com/2026/11/03/waaree-solar-americas-begins-commercial-production-on-1-6-gw-of-new-module-lines-doubling-texas-capacity-to-3-2-gw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Waaree Solar Americas has started commercial production on two new 800 MW solar module manufacturing lines at its Brookshire facility in Texas, doubling the plant's annual production capacity. The post Waaree doubles Texas solar module manufacturing capacity to 3.2 GW appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-11-03T13:00:10.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/pjm-revised-data-center-backstop-procurement-ferc/873551/",
       "source": "Utility Dive",
@@ -443,17 +313,157 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "But one of the units at the Salem plant in New Jersey, which is jointly owned with Constellation Energy, faces an extended outage to deal with degraded equipment, according to&nbsp;federal filings."
+    },
+    {
+      "t": "2026-11-03T16:42:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/caterpillar-posts-highest-sales-quarter-ever-data-centers-q3-2026/873586/",
+      "source": "Utility Dive",
+      "title": "Caterpillar expands production of engines and turbines to meet data center demand",
+      "url": "https://www.utilitydive.com/news/caterpillar-posts-highest-sales-quarter-ever-data-centers-q3-2026/873586/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The heavy machinery and power equipment maker saw its order backlog reach $78 billion during the third quarter, almost double what it was a year ago."
+    },
+    {
+      "t": "2026-11-04T09:34:38.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/eu-wrong-direction-battery-labelling-rules-energy-storage-associations-joint-letter/",
+      "source": "Energy-Storage.news",
+      "title": "EU going in wrong direction on battery labelling rules, energy storage associations say in joint letter",
+      "url": "https://www.energy-storage.news/eu-wrong-direction-battery-labelling-rules-energy-storage-associations-joint-letter/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The European Union is treading the wrong path on battery regulation, according to industry groups from battery, energy storage, electric mobility and adjacent sectors."
+    },
+    {
+      "t": "2026-11-04T09:59:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/04/lithuania-moves-to-revive-renewables-growth-with-sweeping-reforms/",
+      "source": "pv magazine",
+      "title": "Lithuania moves to revive renewables growth with sweeping reforms",
+      "url": "https://www.pv-magazine.com/2026/11/04/lithuania-moves-to-revive-renewables-growth-with-sweeping-reforms/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Lithuania has approved legislative reforms to accelerate renewable energy development, allowing project extensions of up to 48 months, halving developer guarantees and easing permitting requirements. The measures also aim to speed up grid connections, strengthen infrastructure resilience and tighten energy cybersecu…"
+    },
+    {
+      "t": "2026-11-04T10:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/04/poweroad-flex-261-series-passes-dual-standard-large-scale-fire-testing/",
+      "source": "pv magazine",
+      "title": "Poweroad FLEX-261 series passes dual-standard large-scale fire testing",
+      "url": "https://www.pv-magazine.com/2026/11/04/poweroad-flex-261-series-passes-dual-standard-large-scale-fire-testing/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Testing was conducted in accordance with UL 9540A and CSA C800 and provides technical evidence to support fire safety assessments for multi-cabinet C&I energy storage installations. POWEROAD has received a CSA Group Letter of Attestation for passing the tests. The post Poweroad FLEX-261 series passes dual-standard l…"
+    },
+    {
+      "t": "2026-11-04T10:31:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/04/vietnam-approves-452-mw-floating-solar-project/",
+      "source": "pv magazine",
+      "title": "Vietnam approves 452 MW floating solar project",
+      "url": "https://www.pv-magazine.com/2026/11/04/vietnam-approves-452-mw-floating-solar-project/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Vietnam’s Dak Lak province has approved a $355 million floating solar project on the Ea Sup Thuong reservoir. The facility is expected to be completed by late 2028. The post Vietnam approves 452 MW floating solar project appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-04T11:00:40.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/return-finances-220mwh-in-spain-bw-ess-buys-800mwh-in-france/",
+      "source": "Energy-Storage.news",
+      "title": "Return finances 220MWh in Spain, BW ESS buys 800MWh in France",
+      "url": "https://www.energy-storage.news/return-finances-220mwh-in-spain-bw-ess-buys-800mwh-in-france/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BESS owner-operators Return and BW ESS have financed and acquired large-scale projects in Spain and France, respectively, totalling a little over 1GWh."
+    },
+    {
+      "t": "2026-11-04T11:01:20.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/04/malaysias-data-center-industry-gets-500-mw-solar-1-gwh-battery-storage-boost/",
+      "source": "pv magazine",
+      "title": "Malaysia’s data center industry gets 500 MW solar, 1 GWh battery storage boost",
+      "url": "https://www.pv-magazine.com/2026/11/04/malaysias-data-center-industry-gets-500-mw-solar-1-gwh-battery-storage-boost/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A 500 MW solar project paired with a 1 GWh battery storage system is planned in Malaysia to supply renewable electricity to DayOne’s data centers. The project, backed by IOI Corporation and Tenaga Nasional Berhad, will operate under the country’s Corporate Renewable Energy Supply Scheme. The post Malaysia’s data cen…"
+    },
+    {
+      "t": "2026-11-04T11:45:04.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/could-bess-move-towards-lmfp-battery-chemistry/",
+      "source": "Energy-Storage.news",
+      "title": "Could BESS move towards LMFP battery chemistry?",
+      "url": "https://www.energy-storage.news/could-bess-move-towards-lmfp-battery-chemistry/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "What is LMFP battery chemistry, and why is interest growing in it as a possible alternative to LFP batteries in battery energy storage system (BESS) applications?"
+    },
+    {
+      "t": "2026-11-04T12:34:26.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/04/danish-tso-proposes-limited-grid-access-scheme/",
+      "source": "pv magazine",
+      "title": "Danish TSO proposes limited grid access scheme",
+      "url": "https://www.pv-magazine.com/2026/11/04/danish-tso-proposes-limited-grid-access-scheme/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Energinet has submitted two proposals for consultation that could see electricity producers, such as solar power plants, offered quicker grid connections in exchange for accepting restrictions on production. The post Danish TSO proposes limited grid access scheme appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-04T13:27:26.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/04/turkiye-awards-785-mw-of-solar-in-latest-yeka-tender/",
+      "source": "pv magazine",
+      "title": "Türkiye awards 785 MW of solar in latest YEKA tender",
+      "url": "https://www.pv-magazine.com/2026/11/04/turkiye-awards-785-mw-of-solar-in-latest-yeka-tender/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Türkiye has allocated 785 MW of solar power capacity across 11 projects under the YEKA GES-2026 tender. Winning developers will benefit from a 60-month free-market electricity sales period, followed by a 20-year fixed tariff of €0.0325/kWh. The post Türkiye awards 785 MW of solar in latest YEKA tender appeared first…"
+    },
+    {
+      "t": "2026-11-04T14:36:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/04/shoals-and-array-announce-merger-plan-in-bid-to-create-one-stop-shop/",
+      "source": "pv magazine",
+      "title": "Shoals and Array announce merger plan in bid to create ‘one-stop shop’",
+      "url": "https://www.pv-magazine.com/2026/11/04/shoals-and-array-announce-merger-plan-in-bid-to-create-one-stop-shop/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Merger between electronic balance of system (EBOS) and tracker company brings a raft of products for solar and battery storage installations into a single business. Shoals shareholders are expected to own roughly 65% of the merged company. The post Shoals and Array announce merger plan in bid to create ‘one-stop sho…"
+    },
+    {
+      "t": "2026-11-04T15:32:22.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/lg-energy-solution-reports-60-growth-in-ess-shipments-160gwh-order-backlog/",
+      "source": "Energy-Storage.news",
+      "title": "LG Energy Solution reports 60% growth in ESS shipments, 160GWh order backlog",
+      "url": "https://www.energy-storage.news/lg-energy-solution-reports-60-growth-in-ess-shipments-160gwh-order-backlog/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "LG Energy Solution saw 28% quarter-on-quarter growth in revenue in Q3 2026, with “significant energy storage system (ESS) shipment growth” among the main drivers."
+    },
+    {
+      "t": "2026-11-04T17:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/04/every-solar-plant-can-be-a-data-center/",
+      "source": "pv magazine",
+      "title": "‘Every solar plant can be a data center’",
+      "url": "https://www.pv-magazine.com/2026/11/04/every-solar-plant-can-be-a-data-center/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Rune Energy’s business model is based on a simple premise: data centers need vast amounts of clean, deployable power and there are thousands of solar plants available as an underused resource. By retrofitting solar farms with plug-in, modular data center systems manufactured at its factory in California, Rune Energy…"
+    },
+    {
+      "t": "2026-11-05T06:41:44.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/solar-ppa-prices-rose-in-q3-as-section-232-tariffs-began-to-take-effect-reports-levelten/",
+      "source": "pv magazine",
+      "title": "U.S. solar PPA prices rose in Q3 as Section 232 tariffs began to take effect",
+      "url": "https://www.pv-magazine.com/2026/11/05/solar-ppa-prices-rose-in-q3-as-section-232-tariffs-began-to-take-effect-reports-levelten/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Power purchase agreement prices for solar projects in North America rose sharply in Q3, resuming an upward trend after a slight dip in Q2. Analysts pointed to early effects of Section 232 tariffs on imported polysilicon products as one reason behind the increases. The post U.S. solar PPA prices rose in Q3 as Section…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 9,
-      "capital": 7,
-      "grid": 24,
+      "policy": 8,
+      "capital": 6,
+      "grid": 27,
       "technology": 2
     },
     "sourceStatus": [
@@ -479,7 +489,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 9
       }
     ]
   },
@@ -488,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:ca065468609be3e1daa746931e2def1136dc515a9c0ebacd457bc8328cde0c78",
-  "envelopeChecksum": "sha256:51081ddc48c41320a8ba8b0edba28e242842232ab15ce68b6a548343057642e8"
+  "contentChecksum": "sha256:5ec42eb8d46f88e458fc2efbc5546defab25f0a6cb4773be0c7997539f2aa524",
+  "envelopeChecksum": "sha256:98f9f3339f605e18794759c6f118e0bfe05267212a3a10a87d74754d5c440194"
 }
