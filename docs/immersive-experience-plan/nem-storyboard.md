@@ -1,7 +1,7 @@
 # NEM: Six-Chapter Storyboard
 
 Pack: BESS-IX-2026-10-30; NEM research and script, 5 November 2026; shot layout v1.2
-Status: **G-1 draft for the analyst's review; not signed off.** This is a G-1 script only. Data registration, the content module, scenes, wiring and release are later work packages, and their gates stay open.
+Status: **G-1 signed off by the analyst on 5 November 2026** (see [Analyst decisions](#analyst-decisions--5-november-2026)). This is a G-1 script; the build evidence, data, content, scenes, wiring and G-2 release are later work packages, and their gates stay open.
 Navigation: [Master plan](README.md) | [Narrative card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [WA format](western-australia-storyboard.md) | [Sources and claims](#11-sources-and-claims)
 
 ## 1. Scope, argument and reading route
@@ -511,7 +511,7 @@ Research found nothing that changes the published call. It strengthens the case 
 | Electricity mechanics | Pending: regional five-minute prices; energy only since 1998, kept by the December 2025 review; the award's collar; AEMO's battery spread and its definition; loss factors fixed by financial year |
 | Investment meaning | Pending: an award as the only secured line; four hours as the tender's unit; buying an operating awarded asset at a price below the operating ceiling; the pool of such assets still forming; the counterpoint left bound |
 | English and Chinese | Pending: same meaning for award (中标合同), floor and ceiling (下限、上限), spread (价差), fast services (快速调频服务), loss factor (网损系数), region (价区) and toll (租赁); all model figures bound |
-| Script decision | **Analyst: sign off `nem-00` to `nem-12`, or identify changes.** |
+| Script decision | **Signed off 5 November 2026: `nem-00` to `nem-12` as drafted.** |
 | Build boundary | Stop here. No application code, dataset registration, data module, snapshot, model or view change, rendering, build or deployment in this task |
 
 Open questions for the analyst at G-1:
@@ -534,3 +534,20 @@ Open questions for the analyst at G-1:
 ## 11. Sources and claims
 
 Canonical [sources, history, gaps and conflicts](source-register.md#g1-nem-evidence) and [claim ledger](market-narratives.md#g1-nem-claims). IDs in the shots resolve there. The script owns scene and bilingual page copy; the registers own the evidence records.
+
+## Analyst decisions — 5 November 2026
+
+Authority: the analyst signed off G-1 in this chat on 5 November 2026 ("Sign off G-1"), without changes to the script. The sign-off approves the script as drafted; it does not settle items that belong to the view, the model or the data, which keep their own processes.
+
+| Item | Disposition |
+| --- | --- |
+| 1. Argument (§1), including AEMO's attribution and the WA contrast | Approved as drafted |
+| 2. Chart-NEM-SPREAD with the optional WEM layer | Approved as specified, WA layer kept |
+| 10. Toll as a dashed route in `nem-10` and a row in `nem-08` | Approved; no separate shot |
+| 11. The 2016 node with "to be confirmed" | Kept as drafted; the label stays until CL-NEM-19 is sourced, and is removed or replaced at G-2 if it is not |
+| 12. Markers and "What would change it" lines | Approved as drafted |
+| 13. Chinese drafts | Approved as drafted |
+| 3–9. CF-NEM-01 to CF-NEM-07 (next action, operating pool, thesis details, grade reason, nominal floors, source-register links, earlier dated steps) | **Not settled by this sign-off.** They concern the view store, the model or `src/markets/nem/sources.js`. The story binds the live fields and types none of the disputed values, so it is correct whichever way each is decided; a change to the call, play or action flags the story through `reviewedAgainst` |
+| 14. Rights for the AEMO observed layers | Stays a G-2 condition: until the price-data review confirms them, `nem-05`, `nem-06` and `nem-07` ship the unscaled Example fallback |
+
+**Build conditions carried to G-2.** Model labels bind existing result fields; no financial constant is typed into page copy. Observations, proposed law, model values and teaching Examples stay visually distinct. A rights block is withheld or replaced by an unscaled Example, not downgraded to Thin observed data. Manual chart records keep their primary URL, locator, vintage, units and arithmetic. Approval of an editorial choice does not close an unresolved source, contract, rights or numerical dependency.
