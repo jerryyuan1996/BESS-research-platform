@@ -3,13 +3,15 @@ import assert from 'node:assert/strict';
 import {evaluationCorpusProblems,runManualShadowCase} from '../policy/manual-evaluation.mjs';
 import {fixture,BODY,CONTEXT,NOW} from './helpers/policy-fixture.mjs';
 const source=fixture().sources[0];
-const cases=Array.from({length:12},(_,i)=>({id:`case-${i}`,market:['de','gb','nem','wa'][i%4],reviewer:'independent-reviewer',sourceReviewed:true,rightsReviewed:true,translationReviewed:true,expectedReview:false,source,locator:'section 1',body:BODY}));
+const cases=Array.from({length:12},(_,i)=>({id:`case-${i}`,market:['de','gb','nem','wa'][i%4],reviewer:'independent-reviewer',sourceReviewed:true,rightsReviewed:true,translationReviewed:true,expectedReview:false,source,locator:'section 1',body:BODY,originalByteHash:source.contentHash,mediaType:'text/html'}));
 test('manual corpus requires twelve reviewed cases across four markets and byte-matching sources',()=>{
   assert.deepEqual(evaluationCorpusProblems(cases),[]);
   assert.ok(evaluationCorpusProblems(cases.slice(1)).length);
   assert.ok(evaluationCorpusProblems(cases.map(c=>({...c,market:'gb'}))).length);
   assert.ok(evaluationCorpusProblems(cases.map(c=>({...c,rightsReviewed:false}))).length);
   assert.ok(evaluationCorpusProblems(cases.map(c=>({...c,body:'tampered'}))).length);
+  assert.ok(evaluationCorpusProblems(cases.map(c=>({...c,mediaType:'application/pdf'}))).length);
+  assert.ok(evaluationCorpusProblems(cases.map(c=>({...c,originalByteHash:'sha256:fake'}))).length);
 });
 test('mock transport sees no labels and independent semantic rejection quarantines output',async()=>{
   const config={enabled:true,approvalId:'synthetic',provider:'anthropic',model:'test',maxInputTokens:12000,maxOutputTokens:3000,maxDailyUSD:0.1,wallTimeMs:1000,inputUSDPerMTokens:1,outputUSDPerMTokens:2,priceSource:'https://www.anthropic.com/pricing'};

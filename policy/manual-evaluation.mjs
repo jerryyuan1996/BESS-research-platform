@@ -9,7 +9,7 @@ export function evaluationCorpusProblems(cases){
   for(const c of cases){
     if(!c.id||ids.has(c.id))errors.push('Duplicate or missing case identity');ids.add(c.id);markets.add(c.market);
     if(!c.reviewer||c.sourceReviewed!==true||c.rightsReviewed!==true||c.translationReviewed!==true||typeof c.expectedReview!=='boolean')errors.push(`${c.id}: independent labels, rights or translation review missing`);
-    if(!c.source?.url?.startsWith('https://')||!c.locator||typeof c.body!=='string'||sourceDigest(c.body)!==c.source.contentHash)errors.push(`${c.id}: original evidence hash or locator missing`);
+    if(!c.source?.url?.startsWith('https://')||!c.locator||typeof c.body!=='string'||sourceDigest(c.body)!==c.source.contentHash||c.originalByteHash!==c.source.contentHash||!['text/html','text/plain'].includes(c.mediaType))errors.push(`${c.id}: original UTF-8 source bytes, hash, media type or locator missing`);
   }
   for(const market of ['de','gb','nem','wa'])if(!markets.has(market))errors.push(`${market}: case coverage missing`);
   return errors;
