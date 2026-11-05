@@ -300,10 +300,10 @@ These are research targets, not verified statements. Each needs an exact locator
 | CL-RO-02 | Romanian connection capacity is allocated by auction with guarantees, under ANRE orders that keep changing | ANRE orders (to locate) | `ro` card. Unverified; v1.3 |
 | CL-PL-01 | Storage won long capacity contracts in earlier Polish auctions, then its credit was cut, and no successor to the main auctions is legislated | PSE auction results; URE; the capacity market act (to locate) | `pl` card. Unverified; v1.3 |
 | CL-PL-02 | A capital grant reduces the capacity payment of a project that holds both | Capacity market act; NFOŚiGW programme terms (to locate) | `pl` card, both forks. Unverified; v1.3 |
-| CL-JP-01 | The long-term decarbonisation auction pays a twenty-year fixed award, requires most other-market earnings to be returned, caps battery bids at a regulated return, and from Round 4 limits lithium-ion to a smaller pool where certified cells clear first | METI and OCCTO auction guidelines (to locate) | National layer for `jp_tokyo`, `jp_kyushu`, `jp_hokkaido`. Unverified; v1.3 |
-| CL-JP-02 | Tokyo sits on Japan's eastern frequency, linked to the west only through limited converter stations | OCCTO (to locate) | `jp_tokyo` card. Unverified; v1.3 |
-| CL-JP-03 | Kyushu has Japan's deepest solar curtailment, with export limited by its link to Honshu | Kyushu network operator; OCCTO (to locate) | `jp_kyushu` card. Unverified; v1.3 |
-| CL-JP-04 | Hokkaido offers early connection on charging-control terms, and its HVDC links to Honshu are being reinforced | Hokkaido network operator; OCCTO wide-area plan (to locate) | `jp_hokkaido` card. Unverified; v1.3 |
+| CL-JP-01 | The long-term decarbonisation auction pays a twenty-year fixed award, requires most other-market earnings to be returned, caps battery bids at a regulated return, and from Round 4 limits lithium-ion to a smaller pool where certified cells clear first | METI and OCCTO auction guidelines (to locate) | National layer for `jp_tokyo`, `jp_kyushu`, `jp_hokkaido`. Checked 5 Nov 2026: confirmed and split into CL-JP-05 to CL-JP-14; see [Japan G-1 evidence](#g1-jp-evidence) |
+| CL-JP-02 | Tokyo sits on Japan's eastern frequency, linked to the west only through limited converter stations | OCCTO (to locate) | `jp_tokyo` card. Checked 5 Nov 2026: repository-cited, reopen before G-2; see [Japan G-1 evidence](#g1-jp-evidence) |
+| CL-JP-03 | Kyushu has Japan's deepest solar curtailment, with export limited by its link to Honshu | Kyushu network operator; OCCTO (to locate) | `jp_kyushu` card. Checked 5 Nov 2026: history and export link confirmed (CL-JP-19, CL-JP-20); "deepest" not supported (CF-JP-04); see [Japan G-1 evidence](#g1-jp-evidence) |
+| CL-JP-04 | Hokkaido offers early connection on charging-control terms, and its HVDC links to Honshu are being reinforced | Hokkaido network operator; OCCTO wide-area plan (to locate) | `jp_hokkaido` card. Checked 5 Nov 2026: confirmed (CL-JP-21 to CL-JP-23); see [Japan G-1 evidence](#g1-jp-evidence) |
 | CL-PJM-01 | PJM accredits storage by load-carrying capability, and four-hour accreditation has fallen across auctions while the price rose | PJM accreditation reports and auction results (to locate) | `pjm` card. Unverified; v1.3 |
 | CL-ERCOT-01 | ERCOT is energy-only with scarcity pricing, runs largely apart from the rest of the US grid, and battery revenue came mostly from rare price events and services that the growing fleet competed away | ERCOT and PUCT; the published fleet revenue index (to locate) | `ercot` card. Unverified; v1.3 |
 | CL-CAISO-01 | California's RA programme followed its energy crisis, credits four-hour storage, and cuts storage qualifying capacity for foldback | CPUC RA decisions (to locate) | `caiso` card. Unverified; v1.3 |
@@ -1293,3 +1293,146 @@ Reviewer copy of the evidence the chart would plot. Every value binds through �
 ### Discovery leads not used as sources
 
 Press reports were used only to find primary documents: Gramwzielone, WysokieNapiecie, wnp.pl, e-magazyny, Globenergia, Parkiet and ISBnews items on the 2028–2030 auctions, the catch-up auction, PSE's advice against a catch-up auction for 2030, and the Ministry of Energy's reported plan to present a new capacity market to the Commission in the second quarter of 2026. None supports a claim above. The ministry's plan is the lead to follow for GAP-PL-SUCCESSOR.
+
+<a id="g1-jp-evidence"></a>
+
+### Japan / 日本 (`jp_tokyo`, `jp_kyushu`, `jp_hokkaido`) — G-1 evidence draft, 5 November 2026
+
+Source owner for the [Japan shot references](japan-storyboard.md). **Draft for G-1; nothing here is signed off.** One national layer serves all three allocation markets; regional records are keyed by area.
+
+Sources marked **opened** were read on **5 November 2026** at the publisher's URL. Downloaded PDFs were read as extracted text, and one table was read as a rendered page image. Nothing downloaded is stored in the repository. Sources marked **repository-cited** are registered in `src/markets/jp/sources.js` or `src/markets/jp/gridMapData.js` with an earlier check date and were not reopened today; they must be reopened before G-2. Search summaries and law-firm notes are discovery leads only. No licence-restricted report is used, and no award holder, developer or project is named.
+
+#### Repository evidence
+
+| ID | Evidence | Locator | Supports |
+| --- | --- | --- | --- |
+| REPO-JP-LIVE | Published views and briefing, `main` at `e7eda6f`, computed in memory on 5 Nov 2026 | `view/markets/jp_tokyo.json`, `jp_kyushu.json`, `jp_hokkaido.json`; `src/briefing/homeData.js` (`HOME_BRIEFING.lenses.infraFund.rows`, `.plays`, `.acquisitions.infraFund`); `src/markets/jp-*/index.js` (`economics.ltda`) | Anchors, card fields, design values, acquisition reference cases; CL-JP-25 |
+| REPO-JP-RULINGS | Analyst rulings on Japan | `docs/japan-ltda-floor-plan.md` (16 Oct 2026); `docs/japan-ltda-repricing-plan.md` (16 Oct 2026); `docs/japan-cell-origin-plan.md` (signed off 23 Oct 2026); `docs/open-calls-plan-2026-10-31.md` §4, ruling 4A; `docs/external-view.md` G42–G47 | Nine-hour build for a six-hour obligation; operating fund call; regulated bid return; certified supplier as practitioner evidence; ids kept, labels name both quantities; CL-JP-12, CL-JP-13, CL-JP-28 |
+| REPO-JP-MAP | Japanese area boundaries | `src/markets/jp/jp-zones.json` (Natural Earth admin-1 10m, public domain; areas as prefecture groups) | Story map; frequency boundary drawn approximate |
+
+#### Source records
+
+| ID | Publisher, title | Locator | Dates | Access, reuse | Supports |
+| --- | --- | --- | --- | --- | --- |
+| SRC-JP-01 | OCCTO: 長期脱炭素電源オークション募集要綱（対象応札年度：2026年度）, Round 4 guidelines | https://www.occto.or.jp/assets/260902_boshuyoukou_long_2026.pdf ; p. 4 (background), p. 5 (place in the capacity market), p. 9 (schedule), p. 10 (volumes, caps, application period, target area), p. 13 (battery requirement), pp. 18–19 (price ceilings by area), pp. 35–36 (award order, certified cells), p. 41 (contract amount), p. 43 (requirements, assessments, penalties), p. 46 (clawback), p. 68 (battery form: declared capacity and operating risks; application period) | Published 2 Sep 2026 | Opened; official document, link and short citation only | CL-JP-05 to CL-JP-11, CL-JP-14, CL-JP-15 |
+| SRC-JP-02 | OCCTO: 長期脱炭素電源オークション約定結果（応札年度：2025年度）別紙：落札電源一覧, Round 3 award list | https://www.occto.or.jp/assets/various/capacity-market/jitsujukyukanren/2025_boshuyoukou_long/260513_longauction_youryouyakujokekka_kouhyou_besshi_ousatsu2025.pdf | 13 May 2026 | Opened; lists awarded units by bidder, unit and source type, **with no area column**. No name copied | GAP-JP-HOLDERS; CF-JP-08 |
+| SRC-JP-03 | METI: 電力安定供給WG 資料2「長期脱炭素電源オークションの第4回募集に向けて」 (`meti006s02`) | https://www.meti.go.jp/shingikai/enecho/denryoku_gas/jisedai_kiban/stable_power_supply_wg/pdf/006_s02_00.pdf ; p. 11, p. 36, tables 17 and 29–31 as registered | Aug 2026 | Repository-cited; returned HTTP 403 on 31 Oct and 5 Nov 2026 | CL-JP-12 (regulated bid return) |
+| SRC-JP-04 | METI: 資料7-3, 13 May 2026, p. 8 (individual award prices not published) | As recorded in `docs/external-view.md` G42 | 13 May 2026 | Repository-cited | CL-JP-13 |
+| SRC-JP-05 | OCCTO: About OCCTO (English) | https://www.occto.or.jp/en/about_occto/about_occto.html ; the three reform steps and listed works | Retrieved 5 Nov 2026 | Opened | CL-JP-16 |
+| SRC-JP-06 | 総務省消防庁: 平成23年版 消防白書, 第2章第5節「2 計画停電」(1) | https://www.fdma.go.jp/publication/hakusho/h23/cat-2/5/579.html | 2011 | Opened; government publication | CL-JP-17 |
+| SRC-JP-07 | OCCTO: 平成30年北海道胆振東部地震に伴う大規模停電に関する検証委員会 最終報告（本文） | https://www.occto.or.jp/assets/iinkai/hokkaido_kensho/files/181219_hokkaido_saishu_honbun.pdf ; contents p. 2; p. 5 (new Hokkaido–Honshu link expected Feb–Mar 2019); p. 25, figure 2-20 (system state at 03:25, 6 Sep); p. 59 (「我が国で初めて発生したブラックアウト」). Index: https://www.occto.or.jp/houkokusho/2018/hokkaidokensho_saishuhoukoku.html | Dec 2018 (file dated 19 Dec 2018) | Opened | CL-JP-23 |
+| SRC-JP-08 | 九州電力: 会社の歴史「2. 再生可能エネルギーの最大限の活用」 | https://www.kyuden.co.jp/company/history/energy/renewableenergy/supply.html | Retrieved 5 Nov 2026 | Opened; company history page, link only | CL-JP-19 |
+| SRC-JP-09 | 九州電力送配電: 過去の出力制御実績 (Excel workbooks for the Kyushu mainland and islands; control counts FY2018–FY2025; daily demand and curtailment-need data FY2023–FY2025) | https://www.kyuden.co.jp/td_power_usages/out_ctrl_history.html | Page retrieved 5 Nov 2026 | Page opened; workbooks not opened; the page states no terms of use | GAP-JP-CURTAIL |
+| SRC-JP-10 | 九州電力送配電: notice, 転送遮断システムの運用開始 | https://www.kyuden.co.jp/td/news/notice/260401.html | 1 Apr 2026 | Opened; attachment not opened; no MW figure | CL-JP-20 |
+| SRC-JP-11 | 北海道電力ネットワーク: 充電制御装置を活用した系統用蓄電池の接続について (list of specified systems) | https://www.hepco.co.jp/network/info/info2026/1253068_2078.html | 10 Apr 2026 | Opened; attachment with charging conditions not opened | CL-JP-21; GAP-JP-CHARGECTRL |
+| SRC-JP-12 | OCCTO: verified output-control notices for Kyushu (Jan–Mar 2026), Tokyo (Mar–May 2026) and Hokkaido (Mar–May 2026) | https://www.occto.or.jp/news/012277.html ; …/012583.html ; …/012578.html (`occtoKyushuCurtail`, `occtoTokyoCurtail`, `occtoHokkaidoCurtail`) | 2026 | Repository-cited; days anchored in `src/markets/jp/regions.js` | Regional month panels; CF-JP-04 |
+| SRC-JP-13 | Network companies' connection-study caps and battery terms: TEPCO Power Grid (`tepcoStudyCap`, `tepcoDeposit`), Kyushu Electric Power T&D (`kyudenStudyCap`, `kyudenContribution`), HEPCO Network (`hepcoStudyCap`, `hepcoAccess`) | URLs as registered in `src/markets/jp/sources.js` | Jul–Aug 2026; effective 1 Aug 2026 | Repository-cited (grade evidence checked 12 Oct 2026) | CL-JP-24 |
+| SRC-JP-14 | OCCTO: cross-regional reinforcement status (frequency converters, Tokyo–Tohoku) | https://www.occto.or.jp/assets/iinkai/kouikikeitouseibi/cost/2024/files/cost_40_01_01.pdf (`occto-reinforcement` in `gridMapData.js`) | 2024 | Repository-cited | CL-JP-02 |
+| SRC-JP-15 | HEPCO Network: New Hokkaido–Honshu HVDC link pages and the expansion works summary | https://www.hepco.co.jp/network/stable_supply/efforts/north_reinforcement/index.html ; https://www.hepco.co.jp/network/info/2023/__icsFiles/afieldfile/2023/09/01/230901.pdf | 2023–2026 | Repository-cited | CL-JP-22 |
+| SRC-JP-16 | Reference supplier's battery supply-assurance plan certification under the Economic Security Promotion Act (`hithiumEspaCertification`) | No public URL; METI's public list did not show it on 23 Oct 2026 | Reported 23 Oct 2026 | Practitioner evidence, restricted; not public | CL-JP-26 |
+| SRC-JP-17 | OCCTO: capacity market main auction, delivery year 2029, area results (`occtoCm2029`) | https://www.occto.or.jp/various/capacity-market/jitsujukyukanren/2029_jitsujukyu_kanren.html | 2026 | Repository-cited; contracted kW by area anchored in `src/markets/jp/national.js` | CL-JP-29 |
+| SRC-JP-18 | OCCTO: capacity-market contribution rules (容量拠出金), who funds capacity payments | To locate | — | Candidate | CL-JP-27 |
+
+#### Claim ledger
+
+Status `sourced` means opened today and awaiting the analyst's review. `repository-cited` means a registered source not reopened today. `candidate` means not located at a primary source.
+
+| Claim ID | Exact claim | Type / scope | Source and locator | Supported inference / limit | Shots | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| CL-JP-05 | An awarded unit earns capacity revenue from the fiscal year after its supply starts, for twenty years in principle. From Round 4 some types, batteries among them, may elect a longer period in one-year steps; the battery form allows 20 to 40 years | market-rule | SRC-JP-01 p. 10 (table), p. 68 | Round 4 rule; terms of earlier rounds' awards not checked (GAP-JP-TERM, CF-JP-02) | jp-00, jp-05 | sourced |
+| CL-JP-06 | A battery qualifies only if it can run continuously for six hours or more at least once a day, with an annual average continuous duration of six hours or more in its expected-capacity form, and at least 30 MW at the sending end | market-rule | SRC-JP-01 p. 13 | Round 4 text; the floor ruling relies on the same requirement in earlier rounds | jp-05, jp-09 | sourced |
+| CL-JP-07 | The bid capacity is deemed to have every operating risk built in and is assessed on that basis; the form's examples include capacity decline from degradation and charging restrictions from additional early-connection measures | market-rule | SRC-JP-01 p. 68 (「あらゆる運用のリスクが織り込まれているものと見なし」; 「劣化による容量低下」; 「早期連系追加対策による充電制限」) | Links fade and non-firm charging to the floor; penalties per p. 43 | jp-05, jp-09, jp-hokkaido-10, jp-hokkaido-13 | sourced |
+| CL-JP-08 | An awarded operator must refund about 90 % of its actual other-market profit to OCCTO (contract terms art. 28); the Electricity and Gas Market Surveillance Commission monitors the amount each year | market-rule | SRC-JP-01 p. 46 (「実際の他市場収益の約9割」) | Rule share; the model's retained share is a separate input | jp-05, jp-11, jp-12, jp-*-10 | sourced |
+| CL-JP-09 | Round 4 recruits 5 GW of decarbonised capacity; lithium-ion batteries are capped at 400 MW and other batteries at 400 MW, the latter with a 30 % per-country cell limit; awards in capped categories cannot exceed the cap | market-rule | SRC-JP-01 p. 10, pp. 35–36 | Round 4 only | jp-06, jp-*-13 | sourced |
+| CL-JP-10 | Lithium-ion projects on cells from makers certified under the Economic Security Promotion Act are awarded before others; non-certified projects are awarded only if the cap is not filled once all certified projects have been judged | market-rule | SRC-JP-01 pp. 35–36 | Order of award, not a guaranteed award | jp-06 | sourced |
+| CL-JP-11 | The battery price ceiling is set per area for Round 4 | market-rule | SRC-JP-01 pp. 18–19 | Values not used in copy | jp-05 | sourced |
+| CL-JP-12 | METI caps the return a battery bid may price at 4.5 % pre-tax | market-rule | SRC-JP-03 tables 29–31, as registered; REPO-JP-RULINGS | Not reopened (HTTP 403); GAP-JP-RETURN | jp-08 | repository-cited |
+| CL-JP-13 | Individual award prices are not published | market-rule | SRC-JP-04 p. 8 | No award price is plotted | jp-06, jp-08 | repository-cited |
+| CL-JP-14 | Round 4 bids are accepted from 27 January to 3 February 2027; results are expected about three months after the window closes, published in the following fiscal year | official-plan | SRC-JP-01 p. 9 | A target date, which the guidelines say may move | jp-06, jp-*-13 | sourced |
+| CL-JP-15 | OCCTO's account: before full retail liberalisation, regulated cost-of-service tariffs gave the predictability to finance large plant; liberalisation lowered it and new investment stalled; Japan created the capacity market from FY2020 and the long-term auction from FY2023; gas-fired new build was added after the March 2022 supply tightness in eastern Japan, which followed rising thermal retirements | historical-fact as recorded by OCCTO | SRC-JP-01 pp. 4–5 | OCCTO's stated rationale; METI's own record not opened (GAP-JP-REFORM-WHY) | jp-01, jp-04 | sourced |
+| CL-JP-16 | Electricity system reform ran in three steps: OCCTO established April 2015; full retail liberalisation April 2016; legal unbundling of transmission and distribution April 2020 | historical-fact | SRC-JP-05 | The 2013 Cabinet decision is not on the page | jp-03 | sourced |
+| CL-JP-17 | After the Great East Japan Earthquake, TEPCO's rotating planned outages were first carried out on 14 March 2011 at 17:00 and again on 15–18, 22–25 and 28 March | historical-fact | SRC-JP-06 | The supply lost and converter transfers are not in this source (GAP-JP-FC2011) | jp-02 | sourced |
+| CL-JP-18 | Interpretation: the 2011 shortage, and the limited exchange between the eastern and western halves, set off the reform that created today's auctions | interpretation | CL-JP-15, CL-JP-16, CL-JP-17 | Causal reading for the analyst | jp-02 | proposed |
+| CL-JP-19 | In Kyushu, renewables, led by solar, grew rapidly after the feed-in tariff began in July 2012; Kyushu Electric withheld replies to connection applications on the Kyushu mainland from 25 September 2014; it carried out the first output control on the Kyushu mainland on 13 October 2018 | historical-fact | SRC-JP-08 | "First on the Kyushu mainland", not "first in Japan" (CF-JP-03) | jp-kyushu-07 | sourced |
+| CL-JP-20 | Kyushu Electric Power T&D began operating a transfer-trip system on 1 April 2026 that enables more renewable transfer over the Kanmon interconnection and is expected to reduce output control further | observed-data; operator statement | SRC-JP-10 | No MW figure | jp-kyushu-07, jp-kyushu-10, jp-kyushu-13 | sourced |
+| CL-JP-21 | HEPCO Network connects grid-scale batteries early with a charging-control device where reinforcement for forward-flow capacity takes long; its list of specified systems grew from 26 to 27 on 10 April 2026, with scheduled operation dates for the reinforcements | market-rule; operator notice | SRC-JP-11 | Charging limits themselves not read (GAP-JP-CHARGECTRL) | jp-hokkaido-07, jp-hokkaido-10, jp-hokkaido-13 | sourced |
+| CL-JP-22 | Hokkaido–Honshu interconnection 900 MW today, 1,200 MW planned by end-FY2027 | official-plan | SRC-JP-15 | Plan, drawn dashed | jp-hokkaido-07, jp-hokkaido-10 | repository-cited |
+| CL-JP-23 | The Hokkaido area went into a whole-area blackout at 03:25 on 6 September 2018 after the Hokkaido Eastern Iburi earthquake, the first such blackout in Japan; the new Hokkaido–Honshu link was due to start in February–March 2019 | historical-fact | SRC-JP-07 pp. 5, 25, 59 | Start of the link from the report's expectation; commissioning date to confirm at SRC-JP-15 | jp-hokkaido-07 | sourced |
+| CL-JP-24 | From 1 August 2026 one applicant may have at most eleven (Tokyo), eight (Kyushu) or five (Hokkaido) connection studies open at once; TEPCO Power Grid publishes battery deposit and contribution terms | market-rule | SRC-JP-13 | A throughput limit, not a capacity measure | jp-tokyo-07, jp-tokyo-10, jp-*-13 | repository-cited |
+| CL-JP-25 | On the live model: all three fund calls are Situational on an operating nine-hour award play; the new-build design loses value at the platform's yields; the acquisition screen prices an operating holder in three cases per area | model fact | REPO-JP-LIVE | Values move with the model; bound, never typed | jp-00, jp-08, jp-12, jp-*-13 | sourced |
+| CL-JP-26 | The reference build's supplier is certified under the Economic Security Promotion Act | practitioner evidence | SRC-JP-16; ruling of 23 Oct 2026 | Not on METI's public list at 23 Oct 2026 (GAP-JP-CERT); not named on the page | jp-06 (authoring only) | practitioner |
+| CL-JP-27 | Award payments are funded through the capacity market by electricity retailers, and so by users | market-rule | SRC-JP-18 (to locate) | Drawn dashed until located | jp-11 | candidate |
+| CL-JP-28 | Interpretation: at a regulated bid return, a new build does not clear a fund's yields; a fund earns its target only by buying an operating holder below build cost | interpretation; ruling | REPO-JP-RULINGS (repricing ruling of 16 Oct 2026); CL-JP-12; CL-JP-25 | The analyst's ruling; the competing explanation is low-cost winners (G44) | jp-00, jp-08 | proposed (ruled 16 Oct) |
+| CL-JP-29 | Tokyo is the largest area by contracted capacity in the capacity market's delivery-year 2029 results | observed-data | SRC-JP-17; `src/markets/jp/national.js` `capacity2029` | Contracted capacity, not a demand series | jp-tokyo-07 | repository-cited |
+
+**Results for the existing candidate claims:**
+
+| Claim | Result | Where |
+| --- | --- | --- |
+| CL-JP-01 | **Confirmed and split** into CL-JP-05 to CL-JP-14. Twenty years is "in principle"; Round 4 lets a battery elect up to forty (CF-JP-02). The regulated return is METI's and was not reopened | jp-05, jp-06, jp-08 |
+| CL-JP-02 | **Repository-cited.** The east–west split and converter capacity rest on OCCTO's reinforcement status as registered; reopen before G-2 (GAP-JP-FC) | jp-01, jp-tokyo-07 |
+| CL-JP-03 | **Partly confirmed.** History and the single export link are sourced (CL-JP-19, CL-JP-20). "Deepest" cannot be read from the repository's counts, which cover different windows (CF-JP-04) | jp-kyushu-07, jp-kyushu-10 |
+| CL-JP-04 | **Confirmed** (CL-JP-21 to CL-JP-23); link capacity repository-cited | jp-hokkaido-07, jp-hokkaido-10 |
+
+<a id="g1-jp-history"></a>
+
+#### Historical nodes — events separate from interpretation
+
+| Node | Date or period | Event (source) | Constraint → choice → inheritance → present effect | Interpretation status |
+| --- | --- | --- | --- | --- |
+| H-JP-01 | Before April 2016 | Regulated cost-of-service tariffs (SRC-JP-01 p. 4) | Large plant needs long payback → regulated recovery → areas built for themselves → each area its own market | Event via OCCTO's account |
+| H-JP-02 | 11 Mar 2011; outages from 14 Mar 2011 | Rotating planned outages in TEPCO's area (SRC-JP-06) | Eastern supply lost → rotate outages → adequacy a national issue → reform | Event sourced; supply loss and converter limit candidate; causal link proposed (CL-JP-18) |
+| H-JP-03 | Apr 2015, Apr 2016, Apr 2020 | OCCTO, full retail liberalisation, legal unbundling (SRC-JP-05) | Regional monopolies → reform → short-term price setting → no guaranteed recovery | Events sourced |
+| H-JP-04 | FY2020; FY2023 | Capacity market; long-term auction (SRC-JP-01 pp. 4–5) | Missing long-term predictability → multi-year award for new decarbonised capacity → award holders → the asset the call buys | Events and OCCTO's rationale sourced |
+| H-JP-05 | Mar 2022 | Supply tightness in eastern Japan (SRC-JP-01 p. 4) | Thermal retirements → keep adequacy on the agenda, add gas-fired new build → yearly rounds | Event via OCCTO's account |
+| H-JP-06 | Bids 27 Jan–3 Feb 2027 | Round 4: capped lithium-ion pool, certified cells first (SRC-JP-01 pp. 9–10, 35–36) | Supply-chain security → certified-first order → fewer new awards → the watched trigger | Official plan; drawn dashed |
+| H-JP-TK-01 | From 1 Aug 2026 | Per-applicant cap on concurrent connection studies (SRC-JP-13) | Queue pressure → ration studies → slower new connections → a connection already held has value | Event repository-cited |
+| H-JP-KY-01 | Jul 2012; 25 Sep 2014; 13 Oct 2018 | FIT, paused replies to connection applications, first mainland output control (SRC-JP-08) | Fast solar build → curtail → surplus at noon → charging windows | Events sourced |
+| H-JP-KY-02 | 1 Apr 2026 | Transfer-trip system in service (SRC-JP-10) | Export limit → raise transfer over Kanmon → less curtailment expected → less surplus to charge from | Event sourced; effect is the operator's expectation |
+| H-JP-HK-01 | 6 Sep 2018; link due Feb–Mar 2019 | Whole-area blackout; new Hokkaido–Honshu link (SRC-JP-07) | Small islanded system → blackout → stronger link → export still thin | Events sourced |
+| H-JP-HK-02 | 10 Apr 2026 | Charging-control connection list extended (SRC-JP-11) | Slow reinforcement → connect early with charging control → non-firm charging → floor risk | Event sourced |
+
+#### Calculation records
+
+| ID | Question | Inputs and method | Meaning and limits | Review |
+| --- | --- | --- | --- | --- |
+| CALC-JP-FADE | Does the play's design hold the floor in the award's last year? | `termCheck` in `src/comparison/designFit.js`: year-term hours = installed hours × (1 − fade)^(term − 1); live inputs 9 h, 2 %/yr, 20 years → 6.13 h against 6 h; 6 ÷ 0.98¹⁹ = 8.81 h at commissioning would just hold it | Teaching reference for jp-09; the fade is the model's seed under the 12 Oct augmentation ruling; a holder's warranted curve replaces it in diligence | Repository arithmetic; floor ruling of 16 Oct |
+| CALC-JP-PRICE | At what price does an operating holder clear the fund's target, against build cost? | No new calculation: the acquisition screen's reference cases per area (`pricePerMW`, `targetReturn`, keys cautious/base/favourable) and the play design's build cost per MW (BUILD-JP-02); discount = build cost − base price, at render | JPY per MW at acquisition; not a bid, not an observed price; the design value (USD per MW at the platform's yields) is a separate label | Proposed for G-1 |
+
+#### Conflicts and dispositions
+
+| ID | Finding | Disposition |
+| --- | --- | --- |
+| CF-JP-01 | `src/markets/jp/national.js` describes Round 3 as "6h receives partial credit, 8h+ full credit", while the floor ruling and SRC-JP-01 p. 13 state a six-hour continuous minimum | Both can hold: one concerns the expected-capacity factor, the other eligibility. The story uses p. 13's wording only; the credit statement needs its own locator before any page uses it |
+| CF-JP-02 | Round 4 lets a battery elect an application period of 20 to 40 years (SRC-JP-01 pp. 10, 68); the plays, `economics.ltda.years` and the floor ruling assume twenty | Closed 5 Nov 2026: the analyst kept twenty years (storyboard §12). The story says "twenty years in principle"; no model or view change |
+| CF-JP-03 | The dashboard's national timeline calls Kyushu's 2018 curtailment "the first sustained renewable curtailment in mainland Japan"; Kyushu Electric's page says "first on the Kyushu mainland" | Story uses the source's wording; the dashboard line is outside this task |
+| CF-JP-04 | Verified output-control days cover different windows: Kyushu Jan–Mar 2026; Tokyo and Hokkaido Mar–May 2026. `jp-zones.json` calls Hokkaido "the highest curtailment"; the v1.3 card calls Kyushu "deepest" | No cross-region ranking on the page until a matched-window series exists |
+| CF-JP-05 | `hokkaidoHonshu` in `sources.js` points at OCCTO's home page, while `gridMapData.js` cites HEPCO's expansion summary for the same 900 → 1,200 MW | Story binds to SRC-JP-15 (HEPCO); the weak locator is outside this task |
+| CF-JP-06 | The thesis, `despite` and trigger label carry typed figures, including a trade-press range for award prices | Never copied; the trigger binds by date only |
+| CF-JP-07 | The v1.3 cards propose three different signature charts; this script proposes one parameterised chart | Closed 5 Nov 2026: the analyst chose one shared chart (storyboard §12) |
+| CF-JP-08 | The next action asks to list each area's award holders, but SRC-JP-02 has no area column | No holder named or counted on the page; GAP-JP-HOLDERS |
+| CF-JP-09 | Verdict dates differ: Tokyo 2026-10-31; Kyushu and Hokkaido 2026-10-16 | Each region's `reviewedAgainst` records its own tuple; one review date for the script |
+
+#### Gaps and review queue
+
+| Issue ID | Missing evidence or conflict | Affected | Temporary treatment | Next action |
+| --- | --- | --- | --- | --- |
+| GAP-JP-HOLDERS | Area of each Round 1–3 battery award holder | jp-*-13; next action | No names, no counts | Research: OCCTO results with areas, or network companies' connection records |
+| GAP-JP-TERM | Whether Rounds 1–3 let batteries elect more than twenty years, and operating holders' actual terms | jp-05, CF-JP-02 | "In principle" wording | Research: Rounds 1–3 guidelines, p. 10 equivalent |
+| GAP-JP-FUNDING | Who funds award payments | jp-11 | Funding leg dashed; Fair marker | Locate OCCTO's 容量拠出金 rules (SRC-JP-18) |
+| GAP-JP-REFORM-WHY | METI's own record of why the reform began (2013 Cabinet decision) | jp-02, jp-03 | Causal link proposed | Locate METI's reform policy page or Cabinet decision |
+| GAP-JP-FC | Converter capacity and frequency split reopened at OCCTO | jp-01, jp-tokyo-07 | Repository-cited, Fair | Reopen SRC-JP-14 |
+| GAP-JP-FC2011 | Supply lost in the east and converter transfers in March 2011 | jp-02 | Qualitative, Fair | Locate an OCCTO or METI record |
+| GAP-JP-RETURN | METI's regulated bid return reopened | jp-08 | Repository-cited | Retry SRC-JP-03 from another network, or METI's meeting index |
+| GAP-JP-CERT | METI's public list showing the reference supplier's certification | jp-06 | Practitioner; not named on the page | Recheck METI's list; register the official entry |
+| GAP-JP-CURTAIL | Kyushu daily output-control series and its terms of use | jp-kyushu-10 | Repository-anchored monthly days only | Rights review of SRC-JP-09 workbooks |
+| GAP-JP-CHARGECTRL | HEPCO's charging-control conditions (hours, amounts, end date) | jp-hokkaido-07, jp-hokkaido-10 | Unscaled Example | Open SRC-JP-11's attachment |
+| BUILD-JP-02 | The field carrying the play design's build cost per MW in JPY | jp-08, Chart-JP-PRICE | Token defined, value read at build | Build: confirm in `designEconomics` or the acquisition reference |
+
+#### Access log, 5 November 2026
+
+OCCTO's Round 4 guidelines, Round 3 award list and 2018 blackout report were downloaded through the fetch tool and read as extracted text outside the repository; page 10's table was read from a rendered image. METI's 006_s02_00 returned HTTP 403, as on 31 October. A TEPCO 2011 press release also returned 403, so SRC-JP-06 is used instead. Web-search summaries located SRC-JP-05 to SRC-JP-08 and were not used as evidence.
+
+#### Discovery leads not used as sources
+
+Search summaries on the 2018 blackout, the reform steps, Kyushu's first curtailment and the frequency converters, including the trade and manufacturer items they cited on the converter expansion; and the law-firm notes on Round 3 already cited in `docs/japan-ltda-floor-plan.md`. None supports a claim above.
