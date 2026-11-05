@@ -50,6 +50,7 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     if(!['official','attributed_forecast'].includes(r.authority))errors.push(`${r.id}: unsupported source authority`);
     if(!r.publisher||!r.title||!r.language||!r.locator)errors.push(`${r.id}: original source metadata/locator missing`);
     if(!/^sha256:[a-f0-9]{64}$/.test(r.contentHash||''))errors.push(`${r.id}: source hash missing`);
+    requiredKeys(r.rights,['metadata','termsURL','reviewed'],`${r.id}.rights`,errors);
     if(r.rights?.metadata!==true||!r.rights?.termsURL||!safeURL(r.rights.termsURL)||r.rights?.reviewed!==true)errors.push(`${r.id}: redistribution terms not reviewed`);
     policyDate(r.issuedAt,`${r.id}.issuedAt`,errors,true);time(r.checkedAt,`${r.id}.checkedAt`,errors);
   }
@@ -172,7 +173,7 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     requiredKeys(r,['id','claim','linkIds','status','reason','action'],r.id,errors);ref('claims',r.claim,r.id);
     if(!['pending_reassessment','resolved','deferred'].includes(r.status))errors.push(`${r.id}: invalid review state`);
     if(!Array.isArray(r.linkIds)||!r.linkIds.length)errors.push(`${r.id}: review without affected reference`);
-    else for(const x of r.linkIds)ref('links',x,r.id);
+    else for(const x of r.linkIds){ref('links',x,r.id);if(s.links.find(link=>link.id===x)?.claim!==r.claim)errors.push(`${r.id}: review link names a different policy claim`);}
     textPair(r.reason,r.id,errors);textPair(r.action,r.id,errors);
   }
   return errors;

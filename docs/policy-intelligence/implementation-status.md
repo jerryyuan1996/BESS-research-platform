@@ -11,7 +11,7 @@ Integration branch: `feat/policy-intelligence-v4`, based on `494ce7b`. Draft PR 
 | D4-D5 | Lazy Radar/map/feed/filters/preview; Dossier/history/provision branches; bilingual brief/guided/explorer; dedicated declarative timeline/graph/waterfall/matrix templates and evidence tables | Real published content and independent editorial/visual/release acceptance |
 | D6 x 4 | Separate software fixtures and official-source review queue | Four source-backed deep pilots and independent analyst content reviews incomplete |
 | D7 | Shared lazy market route, strict-basis comparison, read-only pending-review sidecar | Real comparative claims and four accepted pilots |
-| D8 | Disabled live configuration; isolated read-only model job; independent publisher; combined commit/CI path; public-store release gate | Concrete source/model/cost acceptance, offline source validators, historical evaluation, release/rollback rehearsal and production measurements |
+| D8 | Disabled live configuration; isolated read-only model; independent publisher and combined commit/CI; separate exact-hash manual static approval; strict public-store/index/history/rights gates | Source/content acceptance, offline validators, historical evaluation, operational release/rollback and production measurements; separate model/cost approval for model use |
 
 No Policy snapshot exists in public/. Synthetic browser fixtures stay in tests and are intercepted at request time. Empty coverage is displayed honestly. Software tests are not empirical historical evaluation or model precision/recall. Both live model and policy publication remain OFF.
 

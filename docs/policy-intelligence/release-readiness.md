@@ -12,6 +12,7 @@ Previously pushed head `18b55ffb79a9c27d13e401e55e0cf13fda5a4b8a` passed [CI run
 | Provider/model | Anthropic structured-JSON transport supported; no named live model approved/configured |
 | Cost/token/time limits | Daily USD cap/prices unset; token proposal 12,000 input / 3,000 output, 120-second request bound; no paid measurements |
 | Model/publication | Both OFF; historical evaluation unapproved with zero accepted cases |
+| Manual static publication | Separately OFF; exact snapshot/ancestor hashes and a concrete analyst approval required, with the same historical/source/rights/schema/history gates; this path cannot enable model calls |
 | Model credentials | Read-only repository/actions; checkout credential not persisted; model key only in call step; no publisher token |
 | Publisher | Existing daily refresh job; independent guard, body/hash/semantics/translation/rights/full-record checks, policy-only atomic writer, ETL verification and staged scan |
 | Public namespace | Only policy index and immutable hash snapshots; disabled public-store gate rejects drafts and orphan assets |

@@ -6,6 +6,7 @@ import { validatePolicySnapshot } from './schema.mjs';
 import { digest, verifyEvidenceHashes,policyContentDigest } from './integrity.mjs';
 import { retainedProofs } from './retained.mjs';
 import { quotationRightsProblems } from './quotation-rights.mjs';
+import { pendingReviewIndex } from './review-index.mjs';
 
 export const POLICY_RELATIVE_ROOT='public/data/public/policy';
 const FILE=/^(?:index\.json|snapshots\/[a-f0-9]{64}\.json)$/;
@@ -82,9 +83,7 @@ export async function publishPolicySnapshot({repo,snapshot,context,bodies,expect
     const existing=await readJSON(versionPath);
     if(existing&&digest(existing)!==hash)throw new Error('Policy rejected: immutable version collision');
     if(!existing){const handle=await open(versionPath,'wx');try{await handle.writeFile(JSON.stringify(snapshot,null,2)+'\n');await handle.sync();}finally{await handle.close();}}
-    const pendingReviews=snapshot.reviews.filter(r=>r.status==='pending_reassessment').flatMap(review=>{
-      const claim=snapshot.claims.find(c=>c.id===review.claim);return review.linkIds.map(id=>snapshot.links.find(l=>l.id===id)).filter(link=>link&&link.state!=='unmapped').map(link=>({id:review.id,market:link.market,instrument:claim.instrument,claim:claim.id}));
-    });
+    const pendingReviews=pendingReviewIndex(snapshot);
     const verification={sources:Object.fromEntries(snapshot.sources.map(s=>{const p=trusted.sourceReviews.get(s.id);return [s.id,{sourceHash:p.sourceHash,maxQuoteChars:p.maxQuoteChars}];})),claims:Object.fromEntries(snapshot.claims.map(c=>[c.id,{claimHash:digest(c),supported:true,translationEquivalent:true}])),stories:Object.fromEntries(snapshot.stories.map(s=>[s.id,{storyHash:digest(s),supported:true,translationEquivalent:true}])),reviewDecisions:Object.fromEntries(snapshot.reviews.filter(r=>trusted.humanReviewDecisions.has(r.id)).map(r=>[r.id,{reviewHash:digest(r)}]))};
     verification.records=Object.fromEntries(['instruments','events','impacts','stories','links','reviews'].map(kind=>[kind,Object.fromEntries(snapshot[kind].map(r=>[r.id,digest(r)]))]));
     const index={schemaVersion:1,head:hash,versions:[...(current?.versions||[]),hash],publishedAt:snapshot.createdAt,pendingReviews,verification};

@@ -26,6 +26,7 @@ const negativeCases=[
   ['bilingual numeric mismatch',s=>{s.claims[0].text=['Amount 10','金额20'];}],
   ['invented number',s=>{s.claims[0].kind='number';s.claims[0].value=42;s.claims[0].evidence[0].supports='number';s.claims[0].evidence[0].quote='Amount 42';}],
   ['unreviewed source licence',s=>{s.sources[0].rights.reviewed=false;}],
+  ['unapproved nested source-rights fields',s=>{s.sources[0].rights.notes='Synthetic unapproved field';}],
   ['fake original locator',s=>{s.claims[0].evidence[0].locator='invented section';}],
   ['host redirect outside reviewed allowlist',s=>{s.sources[0].url='https://unapproved.example/record';}],
   ['attempted rule-author impersonation',s=>{s.claims[0].author='rule';}],
@@ -128,4 +129,11 @@ test('source aliases and changed URL fragments cannot multiply a document quotat
     for(const review of relocated.sourceReviews.values())review.maxQuoteChars=30;
     assert.equal((await publishPolicySnapshot({repo,snapshot,context:relocated,bodies:evidence,enabled:true,expectedParent:null})).changed,true);
   }finally{await rm(repo,{recursive:true,force:true});}
+});
+
+test('an investment review cannot borrow the dependency link of a different policy claim',()=>{
+  const s=fixture();s.claims.push({...structuredClone(s.claims[0]),id:'different-claim'});
+  s.links.push({id:'different-link',claim:'different-claim',market:'gb',target:'view/markets/gb.json#thesis',kind:'context',mechanism:'context',source:'test-source',relevance:['Synthetic reference','模拟关联'],approvedAt:NOW,state:'pending_reassessment'});
+  s.reviews.push({id:'wrong-review',claim:'test-claim',linkIds:['different-link'],status:'pending_reassessment',reason:['Synthetic review','模拟复核'],action:['Review separately','单独复核']});
+  assert.ok(validate(s).some(error=>error.includes('different policy claim')));
 });

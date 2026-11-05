@@ -3,7 +3,7 @@
 import { validatePolicySnapshot,policyMateriality } from './schema.mjs';
 import { digest,snapshotDiff,verifyEvidenceHashes } from './integrity.mjs';
 import { authorizationProblems,worstCaseModelUSD } from './authorization.mjs';
-import { POLICY_OUTPUT_SCHEMA } from './model-contract.mjs';
+import { policyModelRequest } from './model-contract.mjs';
 import { mergePolicyDelta,priorPolicySummary } from './merge.mjs';
 import { retainedProofs } from './retained.mjs';
 
@@ -39,7 +39,8 @@ export async function researchShadow({changedDocuments,invoke,config,ledger,cont
   // UTF-8 bytes are a conservative upper bound for token count; reserve the
   // full reviewed worst-case charge before any call, rather than trusting usage.
   const previousPolicy=priorPolicySummary(before);
-  if(Buffer.byteLength(sourceText,'utf8')+Buffer.byteLength(JSON.stringify(previousPolicy),'utf8')+Buffer.byteLength(POLICY_SYSTEM,'utf8')+Buffer.byteLength(JSON.stringify(POLICY_OUTPUT_SCHEMA),'utf8')+1024>config.maxInputTokens)return {...base,status:'input_cap'};
+  const request=policyModelRequest({system:POLICY_SYSTEM,evidence:sourceText,previousPolicy,model:config.model,maxOutputTokens:config.maxOutputTokens});
+  if(Buffer.byteLength(JSON.stringify(request),'utf8')+1024>config.maxInputTokens)return {...base,status:'input_cap'};
   const reserved=worstCaseModelUSD(config);
   if(!Number.isFinite(ledger.reservedUSD)||ledger.reservedUSD<0||!Number.isFinite(ledger.worstCaseCallUSD)||ledger.worstCaseCallUSD<reserved||ledger.reservedUSD+reserved>config.maxDailyUSD)return {...base,status:'cost_cap'};
   let timer;
