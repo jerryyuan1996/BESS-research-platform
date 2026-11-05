@@ -1409,7 +1409,7 @@ Status `sourced` means opened today and awaiting the analyst's review. `reposito
 | CF-JP-04 | Verified output-control days cover different windows: Kyushu Jan–Mar 2026; Tokyo and Hokkaido Mar–May 2026. `jp-zones.json` calls Hokkaido "the highest curtailment"; the v1.3 card calls Kyushu "deepest" | No cross-region ranking on the page until a matched-window series exists |
 | CF-JP-05 | `hokkaidoHonshu` in `sources.js` points at OCCTO's home page, while `gridMapData.js` cites HEPCO's expansion summary for the same 900 → 1,200 MW | Story binds to SRC-JP-15 (HEPCO); the weak locator is outside this task |
 | CF-JP-06 | The thesis, `despite` and trigger label carry typed figures, including a trade-press range for award prices | Never copied; the trigger binds by date only |
-| CF-JP-07 | The v1.3 cards propose three different signature charts; this script proposes one parameterised chart | Analyst question (storyboard §10, item 2) |
+| CF-JP-07 | The v1.3 cards propose three different signature charts; this script proposes one parameterised chart | Closed 5 Nov 2026: the analyst chose one shared chart (storyboard §12) |
 | CF-JP-08 | The next action asks to list each area's award holders, but SRC-JP-02 has no area column | No holder named or counted on the page; GAP-JP-HOLDERS |
 | CF-JP-09 | Verdict dates differ: Tokyo 2026-10-31; Kyushu and Hokkaido 2026-10-16 | Each region's `reviewedAgainst` records its own tuple; one review date for the script |
 

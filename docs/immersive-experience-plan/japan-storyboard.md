@@ -685,7 +685,7 @@ References to the dated records in the register, **not runtime fields**. The bui
 
 ## 9. Signature chart and calculations
 
-**One parameterised chart, Chart-JP-PRICE**, is proposed as the signature for all three areas, instead of the three different charts sketched in the v1.3 cards. The reason is the call: in every area it is the same purchase-price decision, so the picture that explains it is the price. The cards' regional chart ideas move into the regional battery shots as evidence panels: Kyushu's output-control months in jp-kyushu-10, and Hokkaido's firm against controlled charging hours in jp-hokkaido-10. Tokyo has no regional chart, because its edge is location and connection, which a map shows better. The analyst decides at G-1 (§10, item 2).
+**One parameterised chart, Chart-JP-PRICE**, is proposed as the signature for all three areas, instead of the three different charts sketched in the v1.3 cards. The reason is the call: in every area it is the same purchase-price decision, so the picture that explains it is the price. The cards' regional chart ideas move into the regional battery shots as evidence panels: Kyushu's output-control months in jp-kyushu-10, and Hokkaido's firm against controlled charging hours in jp-hokkaido-10. Tokyo has no regional chart, because its edge is location and connection, which a map shows better. The analyst chose this chart on 5 November 2026 (§12).
 
 | Field | Chart-JP-PRICE |
 | --- | --- |
@@ -735,7 +735,7 @@ References to the dated records in the register, **not runtime fields**. The bui
 Open questions for the analyst:
 
 1. **Go/no-go on the shared pack. Decided 5 November 2026: (a), see §12.** (a) Recommended: one pack, `src/markets/jp/storyPack.js`, three registry entries, one composed story per region, guards per region (§1.3–1.5). (b) The fallback: three thin packs over one national module (§1.6). (c) One story for Tokyo only, with Kyushu and Hokkaido keeping the research dialog.
-2. **Signature chart.** (a) Recommended: one parameterised Chart-JP-PRICE, with the Kyushu and Hokkaido panels as evidence in their battery shots. (b) Three regional charts as the v1.3 cards proposed: Tokyo's purchase-price chart, Kyushu's curtailment against charging window, and Hokkaido's firm against non-firm charging hours.
+2. **Signature chart. Decided 5 November 2026: (a), see §12.** (a) Recommended: one parameterised Chart-JP-PRICE, with the Kyushu and Hokkaido panels as evidence in their battery shots. (b) Three regional charts as the v1.3 cards proposed: Tokyo's purchase-price chart, Kyushu's curtailment against charging window, and Hokkaido's firm against non-firm charging hours.
 3. **Release.** Release the three areas together under one G-2, or each on its own G-2 through its `released` flag.
 4. **Round 4's longer term (CF-JP-02).** The Round 4 guidelines let a battery elect an application period of twenty to forty years (pp. 10, 68). The plays and the floor ruling assume twenty years, and the story says "twenty years in principle". Should a later model or view change consider longer terms for new awards? The call buys operating holders, whose terms were set by their own rounds (GAP-JP-TERM).
 5. **Shot ids.** Accept region-prefixed ids for regional shots (`jp-tokyo-07`) and the place fallback when a regional id is opened on another area's page.
@@ -753,12 +753,13 @@ Canonical [sources, claims, history, calculations, conflicts and gaps](source-re
 
 ## 12. Analyst decisions — 5 November 2026
 
-Authority: the analyst answered "Approve shared pack" in this session on 5 November 2026, in reply to §10 question 1.
+Authority: the analyst answered "Approve shared pack" (§10 question 1) and then "One shared chart" (§10 question 2) in this session on 5 November 2026.
 
 | Item | Disposition |
 | --- | --- |
 | §10 question 1, shared pack | **Approved: option (a).** One Japan story in one pack, `src/markets/jp/storyPack.js`, emitted as one `story-jp` chunk. Three registry entries share its loader. The pack composes one story per region from `ctx.row.id`, with its own `marketId` and `reviewedAgainst`, and applies the four guards per region (§1.3). The build makes the registry, budget and test changes in §1.4 and no contract, shell or router change |
 | Fallback | Kept as written (§1.6). If a re-grade gives one area a different call or route, the build moves to three thin packs over one national module, and that change returns to the analyst |
-| Questions 2–10 | **Open.** Signature chart, release grouping, Round 4 term, shot ids, supplier naming, the Kyushu workbook, causal readings, markers and the Chinese drafts still need the analyst's answers before the script is signed off at G-1 |
+| §10 question 2, signature chart | **Approved: option (a)**, answered "One shared chart". One parameterised Chart-JP-PRICE in jp-08 for all three areas, with the reader's area highlighted and the others behind "Compare areas" (§9). Kyushu's output-control months and Hokkaido's firm against controlled charging hours stay as evidence panels in their battery shots; Tokyo has none. CF-JP-07 closes. The chart's values still bind as in §8, and BUILD-JP-02 stays open |
+| Questions 3–10 | **Open.** Release grouping, Round 4 term, shot ids, supplier naming, the Kyushu workbook, causal readings, markers and the Chinese drafts still need the analyst's answers before the script is signed off at G-1 |
 
 This approval fixes the pack's structure only. It signs off no shot copy, marker, chart or evidence record, and it authorises no code: registry, content, scene and wiring work starts after the script's G-1 sign-off, in the usual data → content → scenes → wiring order.
