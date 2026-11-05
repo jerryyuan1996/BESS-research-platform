@@ -6,6 +6,8 @@ import {evaluateHistoricalCases} from '../policy/evaluation.mjs';
 import {independentlyValidate} from '../policy/validation.mjs';
 import {fixture,bodies,CONTEXT,attestedContext} from './helpers/policy-fixture.mjs';
 import {activationProblems} from '../policy/activation.mjs';
+import {candidateEnvelopeProblems} from '../policy/candidate-envelope.mjs';
+import {pendingDocuments} from '../policy/recovery.mjs';
 import {POLICY_AUTHORIZATION} from '../policy/authorization.mjs';
 import {digest} from '../policy/integrity.mjs';
 import {publishPolicySnapshot} from '../policy/writer.mjs';
@@ -64,6 +66,27 @@ test('trusted source semantics and every public record must pass independent rev
 test('manual and workflow activation share fail-closed source/evaluation/cost requirements',()=>{
   const result=activationProblems({config:POLICY_AUTHORIZATION,sources:[],profiles:[],evaluation:{approved:false,cases:[]}});
   assert.ok(result.some(e=>e.includes('activation is OFF')));assert.ok(result.some(e=>e.includes('independently approved')));assert.ok(result.some(e=>e.includes('validators missing')));
+});
+
+test('publisher requires exact candidate bytes from the current shadow run and attempt',()=>{
+  const snapshot=fixture(),now=new Date('2026-11-05T07:00:00Z');
+  const report={status:'shadow_valid',canPublish:false,published:false,candidateHash:digest(snapshot),workflowRunId:'123',workflowAttempt:1,reportedAt:'2026-11-05T06:59:00Z',cycle:'2026-11-05'};
+  const verify=patch=>candidateEnvelopeProblems({snapshot,report:{...report,...patch},runId:123,attempt:1,now});
+  assert.deepEqual(verify({}),[]);
+  for(const patch of [{candidateHash:'0'.repeat(64)},{workflowRunId:'124'},{workflowAttempt:2},{reportedAt:'2026-11-04T06:59:00Z'},{reportedAt:'2026-11-05T08:00:00Z'},{canPublish:true},{status:'unchanged'}])assert.ok(verify(patch).length);
+  assert.ok(candidateEnvelopeProblems({snapshot,report,runId:null,attempt:1,now}).length);
+});
+
+test('quarantined and expired candidates stay retryable regardless of legacy attempt ledger',()=>{
+  const record={id:'source',status:'unchanged',lastKnownGood:{url:'https://official.example/a',contentHash:'new'}};
+  const published={sources:[{url:record.lastKnownGood.url,contentHash:'old'}]};
+  assert.deepEqual(pendingDocuments([record],published),[record]);
+  assert.deepEqual(pendingDocuments([record],null),[record]);
+  published.sources.push({url:record.lastKnownGood.url,contentHash:'new'});
+  assert.deepEqual(pendingDocuments([record],published),[]);
+  published.sources.push({url:record.lastKnownGood.url,contentHash:'later'});
+  assert.deepEqual(pendingDocuments([record],published),[record],'a return to an older version requires new review');
+  assert.deepEqual(pendingDocuments([{...record,status:'failed'}],published),[]);
 });
 
 test('byte-identical verified history survives source outages but changed claims cannot borrow approval',async()=>{

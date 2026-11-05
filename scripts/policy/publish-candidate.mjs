@@ -1,6 +1,7 @@
 import { POLICY_AUTHORIZATION } from '../../policy/authorization.mjs';
 import { TRUSTED_POLICY_PROFILES,APPROVED_HISTORICAL_EVALUATION } from '../../policy/validation-profiles.mjs';
 import { activationProblems } from '../../policy/activation.mjs';
+import { candidateEnvelopeProblems } from '../../policy/candidate-envelope.mjs';
 import { POLICY_SOURCES } from '../../policy/source-inventory.mjs';
 import { independentlyValidate } from '../../policy/validation.mjs';
 import { publishPolicySnapshot,retainedVerification } from '../../policy/writer.mjs';
@@ -15,6 +16,8 @@ async function run(){
   if(POLICY_AUTHORIZATION.publicationEnabled!==true)return {status:'disabled',changed:false};
   if(activationProblems({config:POLICY_AUTHORIZATION,sources:POLICY_SOURCES,profiles:TRUSTED_POLICY_PROFILES,evaluation:APPROVED_HISTORICAL_EVALUATION}).length)return {status:'quarantined',changed:false,reason:'Concrete policy activation gates are incomplete'};
   const snapshot=await readReport('policy-candidate.json');if(!snapshot)return {status:'no_candidate',changed:false};
+  const report=await readReport('policy-research.json');
+  if(process.env.GITHUB_ACTIONS!=='true'||candidateEnvelopeProblems({snapshot,report,runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT}).length)return {status:'quarantined',changed:false,reason:'Candidate is not bound to this publisher workflow run/attempt'};
   snapshot.createdAt=new Date().toISOString();
   if(POLICY_SOURCES.some(s=>!s.reviewed||!s.rightsReviewed)||!TRUSTED_POLICY_PROFILES.length)return {status:'quarantined',changed:false,reason:'Independent source/rights approval missing'};
   const markers=loadMarkers({required:true});const actual=fingerprintOf(markers.markers,loadFingerprintKey({required:true}).key);
