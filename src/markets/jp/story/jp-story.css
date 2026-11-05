@@ -1,14 +1,20 @@
 .jp-scene { min-width:0; color:var(--ix-ink); }
+/* Keep the preceding shot outside the shell's reading-position observer when
+   Back or language restoration aligns a Japan shot with the viewport. */
+.jp-story .ix-shot { scroll-margin-top:-1px; }
 .jp-scene-body { min-width:0; }
+.jp-narrow { display:none; }
 .jp-scene .k-controls { flex-wrap:wrap; }
 .jp-drawing { display:block; width:100%; height:auto; overflow:hidden; font:inherit; }
 .jp-drawing text { fill:var(--ix-ink); font-family:inherit; font-size:12px; }
+.jp-drawing .jp-inverse { fill:var(--ix-paper); }
 .jp-map-area { fill:var(--ix-line); stroke:var(--ix-paper); stroke-width:1; stroke-linejoin:round; }
 .jp-map-east { fill:var(--ix-lime); }
 .jp-map-own { stroke:var(--ix-green); stroke-width:2.8; fill:var(--ix-lime); }
 .jp-map-link,.jp-arrow { fill:none; stroke:var(--ix-green); stroke-width:2; }
 .jp-frequency-band { fill:var(--ix-gold); opacity:.3; stroke:none; }
 .jp-band-label { font-size:10px; }
+.jp-map { max-height:470px; }
 .jp-plan { stroke-dasharray:6 4; fill:none; stroke:var(--ix-gold); stroke-width:2; }
 .jp-future-fill { fill:var(--ix-lime); stroke:var(--ix-gold); stroke-dasharray:6 4; }
 .jp-gridline { stroke:var(--ix-line); stroke-width:1; }
@@ -50,6 +56,8 @@
 .jp-node dl { margin:8px 0 0; font-size:.76rem; }
 .jp-node dt { font-weight:600; color:var(--ix-ink); }
 .jp-node dd { margin:0 0 6px; color:var(--ix-body); }
+.jp-history-steps,.jp-checklist { padding-left:20px; color:var(--ix-body); font-size:.84rem; line-height:1.6; }
+.jp-history-steps li,.jp-checklist li { margin:8px 0; }
 .jp-provenance { max-width:100%; overflow-wrap:anywhere; }
 .jp-record { border-top:1px solid var(--ix-line); padding:10px 0; font-size:.75rem; }
 .jp-record code { font-size:.69rem; }
@@ -58,7 +66,7 @@
 .jp-opening-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(170px,.7fr); gap:12px; }
 .jp-opening-grid > * { grid-column:1/-1; }
 .jp-opening-grid > h4 { grid-row:1; }
-.jp-opening-grid > .ix-story-play { grid-row:2; grid-column:1; }
+.jp-opening-grid > .ix-story-play { grid-row:2; grid-column:1; align-self:start; }
 .jp-opening-grid > .jp-opening { grid-row:2; grid-column:2; }
 .jp-opening-grid > .ix-shot-copy { grid-row:3; }
 .jp-opening-grid > .ix-story-marker { grid-row:4; }
@@ -70,14 +78,24 @@
 .jp-rotate:nth-child(3n+1) { animation-delay:-2.6s; }
 @keyframes jp-outage { 0%,65% { opacity:.85; } 66%,100% { opacity:.17; } }
 @media (max-width:700px) {
+  .jp-wide { display:none; }
+  .jp-narrow { display:block; }
+  .jp-narrow .jp-drawing text { font-size:12px; }
+  .jp-narrow .jp-drawing .jp-tick-name { font-size:12px; }
+  .jp-narrow .jp-drawing .jp-axis { font-size:11px; }
+  .jp-narrow [data-revenue-plot] text { font-size:18px; }
+  [data-scene="jp-03"] .jp-scene-body { display:flex; flex-direction:column; }
+  [data-scene="jp-03"] .jp-timeline { order:-1; }
+  .jp-rotate { animation:none; }
   .jp-opening-grid { display:block; }
   .jp-panels { grid-template-columns:1fr; }
   .jp-panel { padding:10px; }
   .jp-drawing text { font-size:12px; }
   .jp-table { font-size:.68rem; table-layout:fixed; }
   .jp-table th,.jp-table td { padding:6px 3px; }
-  .jp-table[data-price-table] th:nth-child(1) { width:21%; }
-  .jp-table[data-price-table] th:nth-child(2) { width:15%; }
+  .jp-table[data-price-table] { min-width:600px; table-layout:auto; }
+  .jp-table[data-price-table] th,.jp-table[data-price-table] td { white-space:nowrap; }
+  .jp-table[data-price-table] th:last-child,.jp-table[data-price-table] td:last-child { white-space:normal; min-width:150px; }
 }
 @media (prefers-reduced-motion:reduce) {
   .jp-rotate { animation:none; }

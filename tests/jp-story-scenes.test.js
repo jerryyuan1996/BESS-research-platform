@@ -59,12 +59,15 @@ test('all twenty approved shot ids have local scenes and every composed scene re
   app.lang='en';assert.deepEqual(new Set(Object.keys(scenes)),used);
 });
 
-test('every scene and each of its teaching states stays below the SVG/DOM node budget',()=>{
+test('every scene and each of its teaching states stays below the SVG/DOM node budget',t=>{
+  let largest={id:null,count:0};
+  const check=(node,id)=>{const count=all(node,()=>true).length;assert.ok(count<1500,id);if(count>largest.count)largest={id,count};};
   for(const row of rows)for(const shot of shots(composeStory(row.id))){
     const node=build(row,shot);
-    assert.ok(all(node,()=>true).length<1500,shot.id);
-    for(const button of buttons(node)){button.click();assert.ok(all(node,()=>true).length<1500,shot.id+' changed state');}
+    check(node,shot.id);
+    for(const button of buttons(node)){button.click();check(node,shot.id+' changed state');}
   }
+  t.diagnostic(`Japan largest scene including HTML and text nodes: ${largest.id}, ${largest.count} nodes`);
 });
 
 test('teaching controls change their local scene without changing a case, URL or history',()=>{
@@ -130,7 +133,7 @@ test('price table values equal bound case values; USD never enters the JPY plot 
   assert.equal(expected.length,9);
   for(const row of rows){
     const shot=shots(composeStory(row.id)).find(s=>s.id==='jp-08'),ctx=context(row),node=priceChart(shot,ctx,{compare:true});
-    assert.equal(data(node,'axis-currency','JPY').length,1);assert.equal(data(node,'currency','USD').length,1);
+    assert.equal(data(node,'axis-currency','JPY').length,2);assert.equal(data(node,'currency','USD').length,1);
     const svg=data(node,'axis-currency','JPY')[0],table=data(node,'price-table','true')[0];
     assert.doesNotMatch(textOf(svg),/USD|美元|platform.s yields/);assert.doesNotMatch(textOf(table),/USD|美元|\$/);
     assert.equal(all(node,n=>cls(n,'jp-build-cost')).length,0);assert.equal(all(node,n=>cls(n,'jp-discount-band')).length,0);
@@ -148,7 +151,7 @@ test('resolved synthetic chart inputs produce a render-time price difference; mi
   const copy=chartRows().map(area=>({...area,buildCostPerMW:300000000,cases:area.cases.map(c=>({...c}))}));
   const area=copy.find(r=>r.marketId===row.id),base=area.cases.find(c=>c.key==='base');
   const node=priceChart(shot,ctx,{data:copy});
-  assert.equal(data(node,'discount-jpy',String(300000000-base.pricePerMW)).length,1);
+  assert.equal(data(node,'discount-jpy',String(300000000-base.pricePerMW)).length,2);
   area.cases[0].pricePerMW=null;const missing=priceChart(shot,ctx,{data:copy});
   assert.equal(data(missing,'case','cautious').length,0);
   assert.equal(priceTableRows([area]).length,2);
@@ -168,7 +171,7 @@ test('all area revenue bars bind their own secured share; gross profit is a sepa
     const shot=shots(composeStory(row.id)).find(s=>s.id==='jp-12'),node=build(row,shot);
     buttons(node)[1].click();
     for(const expected of chartRows())assert.equal(data(node,'secured-share',String(expected.securedShare)).length>=1,true,expected.marketId);
-    assert.equal(data(node,'base','other-market-profit').length,1);
+    assert.equal(data(node,'base','other-market-profit').length,2);
     assert.equal(data(node,'revenue-table','true').length,1);
   }
 });

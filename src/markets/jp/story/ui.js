@@ -47,7 +47,7 @@ export function interactive(shot,ctx,draw,{options=shot.controls}={}){
 }
 
 export function table(headers,rows,{caption,attrs={}}={}){
-  return h('div',{class:'jp-table-wrap'},h('table',{class:'jp-table',...attrs},
+  return h('div',{class:'jp-table-wrap',tabindex:0,role:'region','aria-label':caption?(Array.isArray(caption)?L(caption):caption):L(JP_UI.table)},h('table',{class:'jp-table',...attrs},
     caption?h('caption',{},Array.isArray(caption)?L(caption):caption):null,
     h('thead',{},h('tr',{},headers.map(v=>h('th',{scope:'col'},Array.isArray(v)?L(v):v)))),
     h('tbody',{},rows.map(row=>h('tr',{},row.map(v=>h('td',{},Array.isArray(v)?L(v):v)))))));

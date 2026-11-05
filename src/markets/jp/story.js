@@ -1139,7 +1139,7 @@ export function composeStory(regionId){
 /* Rendering labels for the required table and disclosures. Shot prose and
    each signed Labels row above remain unchanged. */
 export const JP_UI = {
-  area:['Area','区域'],case:['Case','情景'],target:['Target return','目标收益率'],
+  area:['Area','区域'],case:['Case','情景'],target:['Target return','目标收益率'],table:['Data table','数据表'],returnBasis:['Return basis','回报口径'],
   jpyUnit:['JPY per MW','日元/兆瓦'],month:['Month','月份'],days:['Days','天数'],
   frequencyBand:['Approximate frequency boundary','频率分界（近似）'],
   source:['Source','来源'],locator:['Locator','具体位置'],checked:['Checked on','核查时间'],
