@@ -1,7 +1,6 @@
 /* Lazy, unreleased NEM story pack. The shared story infrastructure is unchanged.
-   The rights switch stays off: scenes draw the unscaled Example for nem-05 to
-   nem-07, and the observed AEMO records are not imported (data/storyEvidence-
-   Values.js explains the one change that turns them on). */
+   The rights switch is on (analyst, 5 November 2026): scenes draw AEMO's
+   observed layers for nem-05 to nem-07 (data/storyEvidenceValues.js). */
 import '../../experience/story/kit/index.js';
 import './story/nem-story.css';
 import { h } from '../../utils/dom.js';

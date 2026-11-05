@@ -39,7 +39,7 @@ const T = {
   construction: ['Under construction', '建设中'],
   development: ['In development', '开发中'],
   noStage: ['No stage stated', '未注明阶段'],
-  register: ['Battery agreements on the register', '登记册上的电池协议'],
+  register: ['NEM battery agreements on the register', '登记册上的NEM电池协议'],
   hold: ['Return, building new', '新建情景回报'],
   target: ["Fund's target", '基金目标'],
   ceiling: ['Most the fund can pay, operating', '基金收购在运资产的最高价格'],
@@ -274,15 +274,15 @@ function payment(shot, { values }) {
 
 /* ---- nem-11: bought at a price ------------------------------------------- */
 function operating(shot, { values }) {
-  const r = E.register;
+  const r = E.register.nem;
   return interactive(shot, values, mode => {
     if (mode === 0) return h('div', {}, station({ title: W(shot.labels.built, values), future: 1, batteries: 0 }),
       readouts([[T.hold, values.holdReturn], [T.target, values.targetReturn]]), note(shot.labels.built, values));
     if (mode === 1) return h('div', {}, station({ title: W(shot.labels.most, values), batteries: 2 }),
       readouts([[T.ceiling, values.operatingCeiling], [T.capex, values.buildCapex]]), note(shot.labels.most, values));
     return h('div', {}, station({ title: W(shot.labels.queue, values), batteries: 0, future: Math.min(6, r.batteryConstruction) }),
-      readouts([[T.register, String(r.batteryAgreements)], [T.operating, values.awardedBatteriesOperating], [T.construction, String(r.batteryConstruction)], [T.development, String(r.batteryDevelopment)], [T.noStage, String(r.batteryNoStage)]]),
-      note([`${shot.labels.queue[0]} · ${datePair(r.correctAsAt)[0]}`, `${shot.labels.queue[1]} · ${datePair(r.correctAsAt)[1]}`]));
+      readouts([[T.register, String(r.batteryAgreements)], [T.operating, r.batteryOperating === 0 ? ['None', '无'] : String(r.batteryOperating)], [T.construction, String(r.batteryConstruction)], [T.development, String(r.batteryDevelopment)], [T.noStage, String(r.batteryNoStage)]]),
+      note([`${shot.labels.queue[0]} · ${datePair(E.register.correctAsAt)[0]}`, `${shot.labels.queue[1]} · ${datePair(E.register.correctAsAt)[1]}`]));
   });
 }
 
@@ -298,4 +298,5 @@ function closing(shot, { values, row }) {
     h('p', { class: 'nem-factor' }, W(shot.extra.factors[5].affects, values))));
 }
 
-export const scenes = makeScenes({ observed: null });
+/* Observed layers follow the rights switch in the evidence values. */
+export const scenes = makeScenes({ observed: E.rights.mode === 'observed' ? E.qed : null });

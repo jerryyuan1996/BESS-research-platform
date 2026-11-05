@@ -56,7 +56,10 @@ export function storyValues(row, ui = {}, evidence = E) {
       : format === 'spreadLast' ? spread(value.at(-1))
       : format === 'date' ? datePair(value)
       : format === 'trigger' ? [`${value.label[0]} · ${datePair(value.expected)[0]}`, `${value.label[1]} · ${datePair(value.expected)[1]}`]
-      : format === 'countWords' ? (value === 0 ? ['none', '无'] : String(value))
+      /* Zero in words; the Chinese carries its own verb (尚无一份 / 有N份) so the
+         sentence reads in both cases. Analyst decision 4, 5 November 2026. */
+      : format === 'countWords' ? (value === 0 ? ['none', '尚无一份'] : [String(value), `有${value}份`])
+      : format === 'clause' ? value.map(s => s.replace(/[.。]\s*$/, ''))
       : format === 'list' ? value.join(' / ')
       : format === 'pair' ? value
       : String(value);

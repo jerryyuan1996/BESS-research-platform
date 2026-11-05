@@ -22,7 +22,7 @@ test('NEM is unreleased: the ordinary market page keeps the research dialog and 
   expect(loaded).toEqual([]);
 });
 
-test('NEM preview reads thirteen bilingual shots, one marker each, with the Example fallback and no console errors', async ({ page }) => {
+test('NEM preview reads thirteen bilingual shots, one marker each, with the observed AEMO layers and no console errors', async ({ page }) => {
   const errors = []; page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error' && !/_vercel\/insights/.test(m.location().url)) errors.push(m.text()); }); // Vercel's analytics script exists only in production
   const loaded = []; page.on('request', r => { if (/story-nem-/.test(r.url())) loaded.push(r.url()); });
   const { trigger, dialog } = await open(page);
@@ -30,17 +30,20 @@ test('NEM preview reads thirteen bilingual shots, one marker each, with the Exam
   await expect(dialog.locator('article.ix-shot')).toHaveCount(13);
   await expect(dialog.locator('.ix-marker')).toHaveCount(13);
   await expect(dialog.locator('.ix-story-play')).toContainText('7.4%');
-  await expect(dialog.locator('[data-chart=Chart-NEM-SPREAD]')).toHaveAttribute('data-mode', 'example');
-  await expect(dialog.locator('[data-chart=Chart-NEM-DAY]')).toHaveAttribute('data-mode', 'example');
-  for (const id of ['nem-05', 'nem-06', 'nem-07']) await expect(dialog.locator(`[data-shot=${id}] [data-kind=observed]`)).toHaveCount(0);
-  await expect(dialog.locator('[data-shot=nem-06] .ix-shot-copy')).not.toContainText('/MWh');
-  await expect(dialog.locator('[data-shot=nem-11] .ix-shot-copy')).toContainText('none of the 17 battery agreements');
+  await expect(dialog.locator('[data-chart=Chart-NEM-SPREAD]')).toHaveAttribute('data-mode', 'observed');
+  await expect(dialog.locator('[data-chart=Chart-NEM-DAY]')).toHaveAttribute('data-mode', 'observed');
+  await expect(dialog.locator('[data-shot=nem-06] [data-kind=observed]')).toHaveCount(10);
+  await expect(dialog.locator('[data-shot=nem-06] .ix-shot-copy')).toContainText('fell from $339/MWh to $59/MWh');
+  await expect(dialog.locator('[data-shot=nem-07] .ix-shot-copy')).toContainText('narrowest at $51/MWh');
+  await expect(dialog.locator('[data-shot=nem-00] .ix-shot-copy')).not.toContainText('..');
+  await expect(dialog.locator('[data-shot=nem-11] .ix-shot-copy')).toContainText('none of the 15 NEM battery agreements');
   expect(await dialog.evaluate(el => /\bnull\b|undefined|NaN/.test(el.innerText))).toBe(false);
   await expect(dialog.locator('[data-shot=nem-08] tr[data-route=ltda]')).toBeVisible();
   await dialog.getByRole('button', { name: 'Start the story', exact: true }).click();
   await expect(dialog.locator('#ix-shot-nem-01')).toBeFocused();
   await dialog.getByRole('button', { name: 'Switch to Chinese' }).click();
   await expect(dialog.locator('#ix-shot-nem-01')).toHaveText(q('nem-01')[1]);
+  await expect(dialog.locator('[data-shot=nem-11] .ix-shot-copy')).toContainText('15份NEM电池协议中，尚无一份已投运');
   await expect(dialog.locator('.ix-marker')).toHaveCount(13);
   await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
   expect(errors).toEqual([]);

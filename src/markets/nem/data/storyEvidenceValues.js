@@ -4,21 +4,20 @@
    storyEvidenceProvenance.js, which loads only when a reader opens a source
    disclosure.
 
-   Rights switch (Chart-NEM-SPREAD, Chart-NEM-DAY): AEMO's price-derived
-   series wait for the analyst's price-data review. While `rights.mode` is
-   'example', nem-05, nem-06 and nem-07 draw the unscaled Example, every
-   price-derived field below is null, and the observed records in
-   storyEvidenceObserved.js are imported by no runtime module, so they never
-   reach the browser. Turning the layers on is one reviewed change: set
-   `mode: 'observed'` with the analyst's clearance reference, and import the
-   observed records here (nem-build-evidence.md §5). Volumes, shares and
-   counts are not price data and ship now. */
+   Rights switch (Chart-NEM-SPREAD, Chart-NEM-DAY): ON. The analyst cleared
+   AEMO's price-derived series at the G-2 review on 5 November 2026, under
+   AEMO's copyright permissions with attribution. nem-05, nem-06 and nem-07
+   draw the observed layers from storyEvidenceObserved.js. Setting `mode` back
+   to 'example' (and the four price fields to null) restores the unscaled
+   Example (nem-build-evidence.md §5). */
+import { NEM_STORY_OBSERVED as O } from './storyEvidenceObserved.js';
+
 export const NEM_STORY_VALUES = {
   marketId: 'nem',
   rights: {
-    status: 'rights-unresolved',
-    clearanceRef: null,
-    mode: 'example',
+    status: 'cleared',
+    clearanceRef: 'Analyst decision at the NEM G-2 review, 5 November 2026 (nem-g2-checklist.md, decision 1)',
+    mode: 'observed',
     scope: 'AEMO price-derived series: battery price spreads (NEM, WEM, regional) and time-of-day spot prices',
   },
   /* Source list for the shell's Sources disclosure: title, link, check date.
@@ -61,11 +60,11 @@ export const NEM_STORY_VALUES = {
     priceSettingShare: { latest: 0.48, yearBefore: 0.18 },
     fcasRevenueShare: 0.023,
     fcasVolumeShare: 0.75,
-    /* Price-derived: withheld while rights.mode is 'example'. */
-    nemSpreadAUDPerMWh: null,
-    wemSpreadAUDPerMWh: null,
-    regionalSpreadAUDPerMWh: null,
-    timeOfDayPriceAUDPerMWh: null,
+    /* Price-derived: from the observed records while rights.mode is 'observed'. */
+    nemSpreadAUDPerMWh: O.nemSpreadAUDPerMWh,
+    wemSpreadAUDPerMWh: O.wemSpreadAUDPerMWh,
+    regionalSpreadAUDPerMWh: O.regionalSpreadAUDPerMWh,
+    timeOfDayPriceAUDPerMWh: O.timeOfDayPriceAUDPerMWh,
   },
   /* CIS Tender 10 Tender Guidelines, Table 5. Floor, ceiling and payment cap
      are bid variables, fixed nominal amounts, and are never stored or drawn. */
@@ -78,9 +77,12 @@ export const NEM_STORY_VALUES = {
     { id: 'tender-8', kind: 'dispatchable', status: 'announced', announcedOn: '2026-06-24', projects: 15, mw: 4200, mwh: 16100 },
     { id: 'tender-10', kind: 'dispatchable', status: 'assessing', bidsClosedOn: '2026-08-18', resultsExpected: '2026-12', projects: null, mw: null, mwh: null },
   ],
-  /* Project register: dispatchable (battery) agreements by stage. The count is
-     register-wide; two of the seventeen are in the WEM (G-2 question). */
-  register: { correctAsAt: '2026-10-23', batteryAgreements: 17, batteryOperating: 0, batteryConstruction: 9, batteryDevelopment: 7, batteryNoStage: 1, batteryInWem: 2 },
+  /* Project register: dispatchable (battery) agreements by stage, register-wide
+     and for the NEM alone. */
+  register: { correctAsAt: '2026-10-23', batteryAgreements: 17, batteryOperating: 0, batteryConstruction: 9, batteryDevelopment: 7, batteryNoStage: 1, batteryInWem: 2,
+    /* NEM only (the story binds these): the register less its two WEM entries,
+       both under construction. Analyst decision 3, 5 November 2026. */
+    nem: { batteryAgreements: 15, batteryOperating: 0, batteryConstruction: 7, batteryDevelopment: 7, batteryNoStage: 1 } },
   history: {
     'H-NEM-01': { when: '1998' },
     'H-NEM-02': { when: '2016' },

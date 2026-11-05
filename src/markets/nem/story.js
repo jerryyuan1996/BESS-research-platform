@@ -46,8 +46,8 @@ export const story = {
     id: 'nem-00', chapter: 'opening', scene: 'nem-00',
     question: ['What is the call here, and why should I read on?', '这里的投资判断是什么？为什么值得读下去？'],
     copy: [
-      'The existing play card: {call}, {play}, the figures the card already shows, {nextAction}. Beneath it: "Why: the NEM pays batteries only for energy, and batteries are closing the spread they earn. The secured revenue on offer is an award, and only the price paid for an awarded asset makes the case."',
-      '沿用现有投资方案卡：{call}、{play}、卡片已显示的各项数据、{nextAction}。卡片下方一行：“原因在于：NEM只为电能量付费，而电池正在收窄自己赖以获利的价差。可供锁定的收入只有中标合同，而成败取决于收购中标资产时支付的价格。”',
+      'The existing play card: {call}, {play}, the figures the card already shows, {nextActionClause}. Beneath it: "Why: the NEM pays batteries only for energy, and batteries are closing the spread they earn. The secured revenue on offer is an award, and only the price paid for an awarded asset makes the case."',
+      '沿用现有投资方案卡：{call}、{play}、卡片已显示的各项数据、{nextActionClause}。卡片下方一行：“原因在于：NEM只为电能量付费，而电池正在收窄自己赖以获利的价差。可供锁定的收入只有中标合同，而成败取决于收购中标资产时支付的价格。”',
     ],
     meaning: null,
     marker: { level: 'play' },
@@ -309,8 +309,8 @@ export const story = {
       { id: 'nem-11', chapter: 'investment', scene: 'nem-11',
         question: ['Why buy an operating battery with an award, rather than build one?', '为什么收购持有中标合同的在运电池，而不是新建？'],
         copy: [
-          "Because at build cost the numbers do not reach the fund's target. A new {playDuration}-hour project with an award returns {holdReturn}, against the fund's target of {targetReturn}. An operating asset that already holds a signed agreement meets the fund's operating target of {operatingTarget} only if bought for no more than {operatingCeiling}, against {buildCapex} to build new. Few such assets exist yet: on {registerDate}, {awardedBatteriesOperating} of the {awardedBatteryAgreements} battery agreements on the Government's register were operating.",
-          '因为按建设成本测算，数字达不到基金的目标。一个持有中标合同、新建的{playDuration}小时项目，回报为{holdReturn}，而基金的目标为{targetReturn}。已签署协议的在运资产，只有在买入价不高于{operatingCeiling}时，才能达到基金{operatingTarget}的在运资产目标回报；相比之下，新建成本为{buildCapex}。这样的资产目前还很少：截至{registerDate}，政府登记册上的{awardedBatteryAgreements}份电池协议中，有{awardedBatteriesOperating}份已投运。',
+          "Because at build cost the numbers do not reach the fund's target. A new {playDuration}-hour project with an award returns {holdReturn}, against the fund's target of {targetReturn}. An operating asset that already holds a signed agreement meets the fund's operating target of {operatingTarget} only if bought for no more than {operatingCeiling}, against {buildCapex} to build new. Few such assets exist yet: on {registerDate}, {awardedBatteriesOperating} of the {awardedBatteryAgreements} NEM battery agreements on the Government's register were operating.",
+          '因为按建设成本测算，数字达不到基金的目标。一个持有中标合同、新建的{playDuration}小时项目，回报为{holdReturn}，而基金的目标为{targetReturn}。已签署协议的在运资产，只有在买入价不高于{operatingCeiling}时，才能达到基金{operatingTarget}的在运资产目标回报；相比之下，新建成本为{buildCapex}。这样的资产目前还很少：截至{registerDate}，政府登记册上的{awardedBatteryAgreements}份NEM电池协议中，{awardedBatteriesOperating}已投运。',
         ],
         meaning: ['The price paid sets the return; the pool of assets to buy is still forming.', '买入价格决定回报；可供收购的资产池仍在形成之中。'],
         marker: { level: 'fair', change: ['the first sales of operating batteries holding awards, at prices set against their build cost.', '首批持有中标合同的在运电池的交易，以及其相对于建设成本的成交价格。'] },
@@ -367,6 +367,8 @@ export const FIELD_BINDINGS = {
   entryRoute: { path: 'R.play.stage', format: 'stage' },
   where: { path: 'R.where', format: 'pair' },
   nextAction: { path: 'R.play.action.text', format: 'pair' },
+  /* nem-00 prints the action mid-sentence: the same field without its full stop. */
+  nextActionClause: { path: 'R.play.action.text', format: 'clause' },
   playEvidence: { path: 'R.evidence', format: 'marker' },
   holdReturn: { path: 'R.econ.hold', format: 'return' },
   targetReturn: { path: 'R.econ.test.target', format: 'return' },
@@ -398,8 +400,8 @@ export const FIELD_BINDINGS = {
   spreadNswLatest: { path: 'E.qed.regionalSpreadAUDPerMWh.latest.NSW1', format: 'spread' },
   batteryPriceSettingShare: { path: 'E.qed.priceSettingShare.latest', format: 'share' },
   registerDate: { path: 'E.register.correctAsAt', format: 'date' },
-  awardedBatteryAgreements: { path: 'E.register.batteryAgreements', format: 'text' },
-  awardedBatteriesOperating: { path: 'E.register.batteryOperating', format: 'countWords' },
+  awardedBatteryAgreements: { path: 'E.register.nem.batteryAgreements', format: 'text' },
+  awardedBatteriesOperating: { path: 'E.register.nem.batteryOperating', format: 'countWords' },
   teachingPower: { path: 'E.teaching.powerMW', format: 'text' },
 };
 

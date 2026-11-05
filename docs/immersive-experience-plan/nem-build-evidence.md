@@ -5,7 +5,23 @@ Branch: `claude/nem-story-g2-dc1e93`, cut from `claude/nem-storyboard-65e619` at
 Script: [NEM storyboard](nem-storyboard.md), signed off at G-1 on 5 November 2026 as drafted.
 Authority: the G-2 build brief. This file authorises no release: `released` stays `false`.
 
-**Result: Rule 11 passes, the story is built and unreleased, and the rights switch is off.** All thirteen shots render in both languages from live case fields and dated records. AEMO's price-derived layers (`nem-05`, `nem-06`, `nem-07`) draw the unscaled Example; the observed records exist in the repository but no runtime module imports them, so none reaches the browser. The story chunk is 27.4 KiB gzip, and its additional JavaScript graph is 39.00 KiB of the 40 KiB cap (43.97 KiB with lazy styles; see §6).
+**Result: Rule 11 passes, the story is built and unreleased, and the analyst's G-2 decisions of 5 November 2026 are applied.** All thirteen shots render in both languages from live case fields and dated records. The rights switch is on: `nem-05`, `nem-06` and `nem-07` draw AEMO's observed layers. The story chunk is 29.0 KiB gzip; its additional JavaScript graph is 40.59 KiB against a cap raised from 40 to 41 KiB (45.57 KiB with lazy styles; see §6).
+
+## 0. Analyst decisions — 5 November 2026 (G-2 review)
+
+Authority: the analyst, in the build session's chat, accepted all seven recommendations in [the G-2 checklist](nem-g2-checklist.md) ("Accept all your proposal") and ruled that an over-cap result raises the cap ("always raise the cap"). The build had first run with the switch off at code head `0ae7f1a`; these decisions were applied after it.
+
+| # | Decision | Applied |
+| --- | --- | --- |
+| 1 | AEMO's observed layers cleared (AEMO copyright permissions, with attribution) | `rights.mode: 'observed'`, `clearanceRef` recorded; the price fields read `storyEvidenceObserved.js`; the nem-06 and nem-07 spread sentences return. The proposed lazy load of the records was not built: the cap was raised instead (decision 5 rule) |
+| 2 | The 2016 node's label removal accepted | Unchanged from the build |
+| 3 | The NEM-only count, 15, is bound | `register.nem` (15 agreements: 7 construction, 7 development, 1 no stage, none operating); copy says "NEM battery agreements" |
+| 4 | The Chinese zero count carries its own verb | 尚无一份 when zero, 有N份 otherwise; template "…中，‹count›已投运" |
+| 5 | JavaScript-only measure accepted; over a cap, raise it | `story-nem` cap 40 → 41 KiB; the cross-story method is a separate budget PR |
+| 6 | New Chinese node titles and step labels approved | Unchanged from the build |
+| 7 | nem-00's double full stop fixed; the "The existing play card:" wording is left for a cross-story pass | `nextActionClause` binds the action without its final stop |
+
+The analyst has not signed off G-2 itself or authorised release; `released` stays `false`.
 
 ## 1. Rule 11 verdict
 
@@ -30,11 +46,11 @@ The content contract carries `reviewedAgainst: { playRef: 'nem-ltda-4h', hours: 
 | --- | --- | --- |
 | GAP-NEM-QED | Built as an analyst-entered, fixed-vintage module (`src/markets/nem/data/`), QED Q3 2026 vintage. No catalogue dataset, connector or ETL | Volumes, shares and counts bind now; price-derived values wait for rights |
 | GAP-NEM-CIS | Built: four announced dispatchable rounds plus Tender 10 (being assessed), and the register count by stage | `nem-04` round cards; `nem-11` dated count |
-| **Price-data rights** (G-2 condition) | **Open. Switch off** (`rights.mode: 'example'`) | `nem-05` and `nem-06` charts draw the unscaled Example; `nem-07` region tags read "Example"; the copy sentences that would print a spread are hidden (§8) |
+| **Price-data rights** (G-2 condition) | **Cleared by the analyst, 5 November 2026. Switch on** (`rights.mode: 'observed'`) | All three shots draw the observed layers; the spread sentences print. The Example fallback remains in code and tests |
 | CL-NEM-19 | **Sourced for its revenue fact** (SRC-NEM-20, AEMO QED Q4 2019 §1.4.6 p. 19: energy arbitrage was 12% of battery market revenue in Q4 2019; FCAS drove 2019 revenue). The 2016-to-entry link stays an editorial reading | The "to be confirmed" label is removed from the 2016 node (§8). `nem-03` stays Fair |
 | GAP-NEM-CLAUSES | Open (proforma CISA settlement clauses not extracted) | `nem-10` keeps "clauses pending"; Fair |
 | GAP-NEM-OPERATING, GAP-NEM-TOLL | Open (analyst items) | Bound count and dashed toll route only |
-| Register scope | New finding: the register's 17 battery agreements include **2 in the WEM** (15 in the NEM) | `nem-11` prints the register-wide 17, as signed; G-2 question |
+| Register scope | The register's 17 battery agreements include **2 in the WEM** (15 in the NEM) | `nem-11` binds the NEM-only 15 (decision 3) |
 
 The one attempt at CL-NEM-19: a search of AEMO and AEMC sources, then the QED Q4 2019 report read in the browser. The script's alternative (keep the label or drop the line) is therefore not needed; the analyst may still prefer to keep the label (G-2 question).
 
@@ -94,7 +110,7 @@ Also bound but not printed in copy: `entryRoute` (`STAGE_WORD`), `where`, `decis
 
 **nem-09 collar** (`collarDiagram`). Unscaled, tagged Example; no axis values in any state (tested). The below-floor slope is 1 − 0.9 and the above-ceiling slope 1 − 0.5, the only bound inputs. Floor, ceiling and payment cap are labelled "(not published)" and sit at Example positions.
 
-**Turning the observed layers on** (only after the analyst's price-data review): in `storyEvidenceValues.js` set `rights.mode: 'observed'` and `clearanceRef`; fill the four `qed` price fields from `NEM_STORY_OBSERVED`; in `storyPack.js` build scenes with `makeScenes({ observed: NEM_STORY_OBSERVED })`; move the observed locators into the shipped provenance; update the data test's "switch off" assertions. The renderers are tested with the observed records today (`tests/nem-story-scenes.test.js`).
+**Rights switch, as applied on 5 November 2026:** `storyEvidenceValues.js` sets `rights.mode: 'observed'` with the clearance reference and reads the four `qed` price fields from `NEM_STORY_OBSERVED`; `story/scenes.js` builds the observed scenes whenever the mode is `'observed'`; the observed locators moved into the lazily loaded provenance file (which imports nothing, so the pack keeps its own chunk). To turn the layers off again, set the mode to `'example'` and the four fields to `null`; the Example renderers stay tested.
 
 ## 6. Reuse extract
 
@@ -108,7 +124,7 @@ Also bound but not printed in copy: `entryRoute` (`STAGE_WORD`), `where`, `decis
 
 New: the region asset (Natural Earth admin-1, 2 KB of paths), the two-file rights split (observed records never bundled), sentence-level hiding of missing values, the three charts, and the scene compositions. No shared kit, shell or contract change was needed.
 
-Bundle (exact-head build, §7): `story-nem` chunk 27.4 KiB gzip. Additional JavaScript graph (pack + shell + kit symbols + WA geo + playTitle) 39.00 KiB against the 40 KiB cap, measured as Romania and Finland are. With the lazy story styles counted, as CAISO and PJM are, it is 43.97 KiB: over 40. The NEM content is about 17% longer than PJM's.
+Bundle (exact-head build, §7): `story-nem` chunk 29.0 KiB gzip. Additional JavaScript graph (pack + shell + kit symbols + WA geo + playTitle) 40.59 KiB, measured as Romania and Finland are; the cap was raised from 40 to 41 KiB under the analyst's rule. With the lazy story styles counted, as CAISO and PJM are, it is 45.57 KiB. Before the observed layers were switched on the graph was 39.00 KiB (43.97 with styles). The NEM content is about 17% longer than PJM's.
 
 ## 7. Checks
 
@@ -120,13 +136,15 @@ Recorded in [the G-2 checklist](nem-g2-checklist.md) with the exact head SHA.
 | --- | --- | --- | --- | --- |
 | 1 | nem-02, 2016 node, Effect today | "The first batteries' revenue came largely from fast services (to be confirmed)." / "第一批电池的收入主要来自快速调频服务（待核实）。" | "The first batteries' revenue came largely from fast services." / "第一批电池的收入主要来自快速调频服务。" | CL-NEM-19 sourced (SRC-NEM-20); the G-1 ruling removes the label once sourced |
 | 2 | nem-02, node titles (Chinese) | English only in the script | 东海岸的统一市场 · 南澳大利亚全州停电 · 按五分钟定价 · 储能在规则中有了自己的位置 · 政府为新增容量托底 · 计划之后 | The script gives no Chinese node titles; new text for review |
-| 3 | nem-06 copy, while the switch is off | Full paragraph | The sentence "Over two years their average output rose … fell from ‹spread› to ‹spread›." is hidden (zh: "两年间……降至‹spread›。") | Spread values withheld; the sentence returns unchanged when the switch is on |
-| 4 | nem-07 copy, while the switch is off | Full paragraph | The sentence "Spreads fell in every region … at ‹spread NSW latest›." is hidden (zh: "过去一年……为‹spread›。") | As 3 |
+| 3 | nem-06 copy | Full paragraph | Unchanged now the switch is on. With the switch off, the sentence "Over two years their average output rose … fell from ‹spread› to ‹spread›." is hidden (zh: "两年间……降至‹spread›。") | Behaviour, not text |
+| 4 | nem-07 copy | Full paragraph | As 3, for "Spreads fell in every region … at ‹spread NSW latest›." (zh: "过去一年……为‹spread›。") | Behaviour, not text |
 | 5 | nem-12 dated strip (scene labels) | Described in the Scene row | "Energy Ministers consider the successor's draft law" / "能源部长们审议后继机制的法律草案"; "The last dispatchable round's results (indicative)" / "最后一轮可调度容量招标结果（暂定）" | Scene labels authored from the Scene row |
 | 6 | nem-12 exit "Compare with WA" | Named in Exits | Links to `/returns?compare=nem,wa` | The shell's exits only scroll within the NEM page |
+| 8 | nem-11 copy (decision 3) | "…of the ‹awarded battery agreements› battery agreements on the Government's register were operating." / "政府登记册上的‹…›份电池协议中，有‹…›份已投运。" | "…of the ‹…› NEM battery agreements on the Government's register were operating." / "政府登记册上的‹…›份NEM电池协议中，‹…›已投运。" (renders "尚无一份已投运") | NEM-only count; Chinese zero count (decision 4) |
+| 9 | nem-00 copy (decision 7) | "‹bound: next action›." | The same field without its final full stop ("…CIS terms. Beneath it") | Removes the double full stop; no words changed |
 | 7 | Scene-only strings | Not in the script | Readout and legend words in `story/scenes.js` and `story/chart.js` (`T` tables), all bilingual; no figures except Example-tagged teaching values and observed-mode axis ticks | Needed to draw the scenes |
 
-No approved copy, question, meaning, marker, control or caption was reworded; the content test compares each against the script.
+Apart from rows 8 and 9, which the analyst approved on 5 November 2026, no approved copy, question, meaning, marker, control or caption was reworded; the content test compares each against the script and names those two reconciliations.
 
 ## 9. CF-NEM-01 to CF-NEM-07
 

@@ -305,8 +305,11 @@ const BUDGET = {
     'story-ro': 40,
     'story-caiso': 40,
     /* The NEM story: shell, kit, fixed-vintage records, the region map, thirteen
-       bilingual shots and both charts. Registered unreleased (?story=preview). */
-    'story-nem': 40,
+       bilingual shots and both charts. Registered unreleased (?story=preview).
+       RAISED FROM 40 TO 41 on 5 November 2026, when the analyst cleared AEMO's
+       observed price layers at G-2: the additional JavaScript graph measured
+       40.59 KiB gzip (45.57 with lazy styles). Analyst rule: over a cap, raise it. */
+    'story-nem': 41,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -1093,8 +1096,6 @@ test('the NEM story stays out of the first load and its additional JavaScript gr
   const probe='Which market is this, and how is it different from WA';
   assert.ok(own.text.includes(probe));
   for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no NEM story content in '+chunk.name);
-  /* The withheld AEMO price records are bundled nowhere while the rights switch is off. */
-  for(const chunk of byName.values())assert.ok(!chunk.text.includes('NEM_STORY_OBSERVED')&&!chunk.text.includes('339.01,242.6'),'observed records in '+chunk.name);
   const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
   /* Measured as Romania and Finland are (JavaScript closure). The lazy story
      styles are reported beside it, as CAISO and PJM count them: see

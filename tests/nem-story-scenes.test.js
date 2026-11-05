@@ -77,26 +77,31 @@ test('every teaching control changes only its own scene, never the case or its v
   }
 });
 
-test('while the rights switch is off, nem-05 to nem-07 draw only the unscaled Example', () => {
-  for (const id of ['nem-05', 'nem-06', 'nem-07']) {
-    const node = build(byId(id));
-    for (const b of find(node, n => n.tag === 'button')) b.click();
-    assert.equal(kind(node, 'observed').length, 0, id);
-    assert.equal(/\$\d|\d+\/MWh|339|123|\b59\b/.test(content(node)), false, `${id}: ${content(node)}`);
-  }
+test('with the rights switch on (analyst, 5 November 2026), nem-05 to nem-07 draw the observed AEMO layers', () => {
   const spread = build(byId('nem-06'));
-  assert.equal(find(spread, n => n.getAttribute?.('data-chart') === 'Chart-NEM-SPREAD')[0].getAttribute('data-mode'), 'example');
-  assert.ok(kind(spread, 'example').length >= 9);
-  assert.equal(find(spread, n => n.tag === 'table').length, 0, 'no table of withheld values');
+  assert.equal(find(spread, n => n.getAttribute?.('data-chart') === 'Chart-NEM-SPREAD')[0].getAttribute('data-mode'), 'observed');
+  assert.equal(kind(spread, 'observed').length, 10);
+  assert.equal(kind(spread, 'example').length, 0);
+  assert.ok(find(spread, n => n.tag === 'table').length, 'table view for phones');
+  assert.ok(/\$59/.test(content(spread)));
+  const day = build(byId('nem-05'));
+  assert.equal(find(day, n => n.getAttribute?.('data-chart') === 'Chart-NEM-DAY')[0].getAttribute('data-mode'), 'observed');
+  assert.ok(kind(day, 'observed').length);
+  const place = build(byId('nem-07'));
+  assert.ok(/\$51\/MWh/.test(content(place)));
 });
 
-test('with the observed records (switch on, test only) the same charts draw AEMO values', () => {
-  const on = makeScenes({ observed: NEM_STORY_OBSERVED });
-  const spread = build(byId('nem-06'), on);
-  assert.equal(kind(spread, 'observed').length, 10);
-  assert.ok(find(spread, n => n.tag === 'table').length);
-  const day = build(byId('nem-05'), on);
-  assert.ok(kind(day, 'observed').length);
+test('the unscaled Example fallback still works if the switch is turned off', () => {
+  const off = makeScenes({ observed: null });
+  for (const id of ['nem-05', 'nem-06', 'nem-07']) {
+    const node = build(byId(id), off);
+    for (const b of find(node, n => n.tag === 'button')) b.click();
+    assert.equal(kind(node, 'observed').length, 0, id);
+    assert.equal(/\$\d|\d+\/MWh/.test(content(node)), false, id);
+  }
+  const spread = build(byId('nem-06'), off);
+  assert.ok(kind(spread, 'example').length >= 9);
+  assert.equal(find(spread, n => n.tag === 'table').length, 0);
 });
 
 test('the WA layer toggles on and off in Chart-NEM-SPREAD', () => {

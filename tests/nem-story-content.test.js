@@ -6,6 +6,7 @@ import { storyValues, storyMatches, storyWithAvailableValues, withoutMissing } f
 import { validateStory, fillPair, tokensIn, isStale, CHAPTERS } from '../src/experience/story/contract.js';
 import { opportunities, CALLS, returnPct } from '../src/experience/model.js';
 import { HOME_BRIEFING as B } from '../src/briefing/homeData.js';
+import { NEM_STORY_VALUES as E } from '../src/markets/nem/data/storyEvidenceValues.js';
 
 const row = opportunities('infraFund').find(r => r.id === 'nem');
 const values = storyValues(row, { CALLS, returnPct });
@@ -47,6 +48,11 @@ test('question, copy, meaning, marker, controls, labels and captions are the sig
       if (shot[field] === null) continue;
       let expected = f[title];
       if (shot.id === 'nem-00' && field === 'copy') expected = expected.map(s => s.replace('‹bound: play›', '{play}'));
+      /* G-2 decisions 3 and 4 (5 November 2026): NEM-only count, and the Chinese
+         zero count carries its own verb. */
+      if (shot.id === 'nem-11' && field === 'copy') expected = [
+        expected[0].replace('‹bound: awarded battery agreements› battery agreements', '‹bound: awarded battery agreements› NEM battery agreements'),
+        expected[1].replace('份电池协议中，有‹bound: awarded batteries operating›份已投运', '份NEM电池协议中，‹bound: awarded batteries operating›已投运')];
       assert.deepEqual(shot[field].map(normal), expected.map(normal), `${shot.id}.${field}`);
     }
     if (shot.marker.level !== 'play') assert.deepEqual(shot.marker.change.map(normal), [f.Marker[0].split('What would change it: ')[1], f.Marker[1].split('会改变判断的证据：')[1]].map(normal), `${shot.id}.marker`);
@@ -74,9 +80,10 @@ test('every figure is a token: no typed digits in copy, en and zh share tokens, 
       for (const t of tokensIn(pair[0])) assert.ok(FIELD_BINDINGS[t], t);
     }
   }
-  const withheld = ['spreadLatest', 'spreadTwoYearsBefore', 'spreadNswLatest'];
-  for (const token of story.tokens) if (!withheld.includes(token)) assert.ok(values[token] !== null && values[token] !== undefined, token);
-  for (const token of withheld) assert.equal(values[token], null, `${token} stays withheld while the rights switch is off`);
+  for (const token of story.tokens) assert.ok(values[token] !== null && values[token] !== undefined, token);
+  assert.deepEqual([values.spreadTwoYearsBefore, values.spreadLatest, values.spreadNswLatest], [['$339/MWh', '339澳元/MWh'], ['$59/MWh', '59澳元/MWh'], ['$51/MWh', '51澳元/MWh']]);
+  assert.deepEqual(values.awardedBatteryAgreements, '15');
+  assert.equal(fillPair(['{nextActionClause}.', '{nextActionClause}。'], values).some(s => /[.。]{2}$/.test(s)), false);
   assert.equal(values.holdReturn, returnPct(row.econ.hold));
   assert.equal(values.targetReturn, returnPct(row.econ.test.target));
   assert.equal(values.securedShare, `${Math.round(row.econ.secured * 100)}%`);
@@ -85,7 +92,8 @@ test('every figure is a token: no typed digits in copy, en and zh share tokens, 
   assert.equal(values.merchantBest, String(B.grids.nem.byRoute.mer.best));
   assert.deepEqual(values.designLine, B.build.find(x => x.market === 'nem').line);
   assert.deepEqual(values.nextTrigger[0].split(' · ')[0], B.triggers[row.next].label[0]);
-  assert.deepEqual(values.awardedBatteriesOperating, ['none', '无']);
+  assert.deepEqual(values.awardedBatteriesOperating, ['none', '尚无一份']);
+  assert.deepEqual(storyValues(row, { CALLS, returnPct }, { ...E, register: { ...E.register, nem: { ...E.register.nem, batteryOperating: 3 } } }).awardedBatteriesOperating, ['3', '有3份']);
   const shown = storyWithAvailableValues(story, values);
   for (const shot of [shown.opening, ...shown.chapters.flatMap(c => c.shots)])
     for (const pair of [shot.question, shot.copy, shot.meaning, ...Object.values(shot.labels || {})].filter(Boolean))
@@ -94,14 +102,15 @@ test('every figure is a token: no typed digits in copy, en and zh share tokens, 
 
 test('a missing value hides its sentence in both languages rather than printing zero', () => {
   const copy = story.chapters[2].shots[1].copy;
-  const hidden = withoutMissing(copy, values);
+  const off = { ...values, spreadLatest: null, spreadTwoYearsBefore: null };
+  const hidden = withoutMissing(copy, off);
   assert.equal(hidden[0].includes('Over two years'), false);
   assert.equal(hidden[1].includes('两年间'), false);
   assert.ok(hidden[0].startsWith('Because batteries are closing the gap'));
   assert.ok(hidden[0].includes('{batteryPriceSettingShare}'));
-  const full = withoutMissing(copy, { ...values, spreadLatest: ['$59/MWh', '59澳元/MWh'], spreadTwoYearsBefore: ['$339/MWh', '339澳元/MWh'] });
+  const full = withoutMissing(copy, values);
   assert.deepEqual(full, copy);
-  const gone = withoutMissing(['{spreadLatest}.', '{spreadLatest}。'], values, ['fallback', '后备']);
+  const gone = withoutMissing(['{spreadLatest}.', '{spreadLatest}。'], off, ['fallback', '后备']);
   assert.deepEqual(gone, ['fallback', '后备']);
   const one = storyValues({ ...row, play: { ...row.play, action: undefined } }, { CALLS, returnPct });
   assert.equal(one.nextAction, null);

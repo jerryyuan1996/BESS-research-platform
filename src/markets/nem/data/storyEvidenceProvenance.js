@@ -1,16 +1,16 @@
 /* Per-value locators for the NEM story evidence. Loaded on demand, only when a
    reader opens a shot's source disclosure. Every value was re-read from the
    primary source in a browser on 5 November 2026 (checkedOn). Paths name a
-   field of NEM_STORY_VALUES. The withheld observed records keep their own
-   locators in storyEvidenceObserved.js, which is never bundled. */
+   field of NEM_STORY_VALUES, or `observed.` for the report-text
+   reconciliation record in storyEvidenceObserved.js. */
 const QED = 'SRC-NEM-06', REPORT = 'SRC-NEM-05', VINTAGE = 'QED Q3 2026 (October 2026)';
 const qed = (locator, unit, arithmetic = 'Workbook cell, rounded to one decimal', kind = 'observed-data') =>
   ({ sourceRef: QED, locator, unit, vintage: VINTAGE, checkedOn: '2026-11-05', arithmetic, kind, rights: 'AEMO copyright permissions, attribution' });
 const text = (sourceRef, locator, unit, arithmetic = 'As stated in the source', kind = 'observed-data', vintage = VINTAGE) =>
   ({ sourceRef, locator, unit, vintage, checkedOn: '2026-11-05', arithmetic, kind, rights: 'public-link-only' });
-const price = { rights: 'Withheld: no analyst rights clearance (price-data review)' };
 
 export const NEM_STORY_PROVENANCE = {
+
   'qed.vintage': text(REPORT, 'Cover; "covering 1 July to 30 September 2026"', 'quarter'),
   'qed.quarters': qed('Figure 56, column I, rows 11–19 (Q3 24 to Q3 26)', 'quarter', 'Labels rewritten as YYYY-Qn'),
   'qed.nemDischargeMW': qed('Figure 56 "NEM-wide battery price spread", column J "Average Discharge", rows 11–19', 'MW'),
@@ -20,10 +20,6 @@ export const NEM_STORY_PROVENANCE = {
   'qed.priceSettingShare': text(REPORT, 'Executive summary p. 4: battery charging or discharging set prices in 48% of dispatch intervals, up from 18%; workbook Figure 23 rows 11–12, Battery 23.6% + Battery Charge 24.3% (Q3 26), 9.1% + 9.1% (Q3 25)', 'share of dispatch intervals', 'Report text; workbook sum reconciles to the rounded figure'),
   'qed.fcasRevenueShare': text(REPORT, '§2.4.1 p. 38: "FCAS accounted for only 2.3% of total battery revenue"', 'share of battery net revenue'),
   'qed.fcasVolumeShare': qed('Figure 71 title "Batteries FCAS market share rose to 75%"; cell I10, Battery 0.7459', 'share of FCAS volume', 'Title figure; cell rounds to 75%'),
-  'qed.nemSpreadAUDPerMWh': { ...qed('Withheld; see observed.nemSpreadAUDPerMWh', 'AUD/MWh', 'null while rights.mode is example'), ...price },
-  'qed.wemSpreadAUDPerMWh': { ...qed('Withheld; see observed.wemSpreadAUDPerMWh', 'AUD/MWh', 'null while rights.mode is example'), ...price },
-  'qed.regionalSpreadAUDPerMWh': { ...text(REPORT, 'Withheld; see observed.regionalSpreadAUDPerMWh', 'AUD/MWh', 'null while rights.mode is example'), ...price },
-  'qed.timeOfDayPriceAUDPerMWh': { ...qed('Withheld; see observed.timeOfDayPriceAUDPerMWh', 'AUD/MWh', 'null while rights.mode is example'), ...price },
   'cisa.floorSupportShare': text('SRC-NEM-08', 'Table 5 p. 13, "Revenue Floor Support Percentage (%) 90%"; p. 12 top up of 90% of the difference below the Annual Floor', 'share of shortfall', 'As stated', 'market-rule', 'Tender Guidelines, 23 June 2026'),
   'cisa.ceilingSharingShare': text('SRC-NEM-08', 'Table 5 p. 13, "Revenue Ceiling Sharing Percentage (%) 50%"; p. 12 pay 50% of the excess above the Annual Ceiling', 'share of excess', 'As stated', 'market-rule', 'Tender Guidelines, 23 June 2026'),
   'cisa.maxTermYears': text('SRC-NEM-08', 'Table 5 p. 13, Final Expiry Date: "Maximum of 15 years after the Support Start Date"', 'years', 'As stated', 'market-rule', 'Tender Guidelines, 23 June 2026'),
@@ -38,6 +34,11 @@ export const NEM_STORY_PROVENANCE = {
   'register.batteryConstruction': text('SRC-NEM-13', 'Dispatchable entries at Construction (one entry spells it "Project: Construction")', 'count', 'Counted', 'observed-data', 'Register of 23 October 2026'),
   'register.batteryDevelopment': text('SRC-NEM-13', 'Dispatchable entries at Development', 'count', 'Counted', 'observed-data', 'Register of 23 October 2026'),
   'register.batteryNoStage': text('SRC-NEM-13', 'Dispatchable entry with no stated stage', 'count', 'Counted', 'observed-data', 'Register of 23 October 2026'),
+  'register.nem.batteryAgreements': text('SRC-NEM-13', 'Dispatchable entries outside Western Australia', 'count', 'batteryAgreements 17 less batteryInWem 2', 'observed-data', 'Register of 23 October 2026'),
+  'register.nem.batteryOperating': text('SRC-NEM-13', 'NEM dispatchable entries at Operations: none', 'count', 'Counted', 'observed-data', 'Register of 23 October 2026'),
+  'register.nem.batteryConstruction': text('SRC-NEM-13', 'NEM dispatchable entries at Construction', 'count', 'batteryConstruction 9 less the two WEM entries, both at Construction', 'observed-data', 'Register of 23 October 2026'),
+  'register.nem.batteryDevelopment': text('SRC-NEM-13', 'NEM dispatchable entries at Development', 'count', 'Counted; no WEM entry at Development', 'observed-data', 'Register of 23 October 2026'),
+  'register.nem.batteryNoStage': text('SRC-NEM-13', 'NEM dispatchable entry with no stated stage', 'count', 'Counted', 'observed-data', 'Register of 23 October 2026'),
   'register.batteryInWem': text('SRC-NEM-13', 'Dispatchable entries located in Western Australia (WEM)', 'count', 'Counted; included in batteryAgreements', 'observed-data', 'Register of 23 October 2026'),
   'history.H-NEM-01.when': text('SRC-NEM-03', 'Paragraph 1: commenced as a wholesale spot market in December 1998', 'year', 'As stated', 'historical-fact', 'Read 5 November 2026'),
   'history.H-NEM-02.when': text('SRC-NEM-18', 'Title and p. 1: Black System, South Australia, 28 September 2016', 'year', 'As stated', 'historical-fact', 'March 2017'),
@@ -46,4 +47,11 @@ export const NEM_STORY_PROVENANCE = {
   'history.H-NEM-05.when': text('SRC-NEM-10', 'Scope and size: pilots from 2023; tenders rolled out from 2024 to 2027', 'years', 'As stated', 'historical-fact', 'Page last updated 24 June 2026'),
   'history.H-NEM-06.when': text('SRC-NEM-15', 'Energy Ministers to consider the law changes in December 2026; outlook, not a decision', 'outlook', 'Dashed; nothing drawn as completed', 'official-plan', 'Page last updated 14 October 2026'),
   'teaching.powerMW': { sourceRef: 'REPO-NEM-LIVE', locator: 'Evidence specification §4, teaching battery', unit: 'MW', vintage: 'Teaching value', checkedOn: '2026-11-05', arithmetic: 'Example value; never changes the case', kind: 'teaching', rights: 'Platform' },
+  /* AEMO price-derived records (storyEvidenceObserved.js), cleared by the
+     analyst on 5 November 2026; read through the qed price fields. */
+  'qed.nemSpreadAUDPerMWh': qed('Figure 56, column K "Spread", rows 11–19', 'AUD/MWh', 'Workbook cell, rounded to two decimals'),
+  'qed.wemSpreadAUDPerMWh': qed('Figure 107, column M "spread_$_MWh", rows 5–13', 'AUD/MWh', 'Workbook cell, rounded to two decimals'),
+  'observed.reportText': text(REPORT, 'p. 39: NEM spread $123/MWh (Q3 2025) to $59/MWh (Q3 2026); p. 69: WEM $51/MWh to $2/MWh; SRC-NEM-07 p. 37: $342/MWh to $51/MWh (Q2 2026)', 'AUD/MWh'),
+  'qed.regionalSpreadAUDPerMWh': text(REPORT, 'p. 39: SA fell by $82/MWh to $65; QLD $68 and VIC $58; NSW lowest at $51, down $33. Tasmania not reported', 'AUD/MWh', 'Year before: NSW 51 + 33 = 84; SA 65 + 82 = 147; QLD and VIC year-before not stated, left null'),
+  'qed.timeOfDayPriceAUDPerMWh': qed('Figure 15, row 11 "Q3 2026" and row 12 "Q3 2025", columns I to KJ (288 intervals, labelled by interval end 00:05 to 24:00, market time)', 'AUD/MWh'),
 };

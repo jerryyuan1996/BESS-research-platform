@@ -4,7 +4,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { NEM_STORY_EVIDENCE as E } from '../src/markets/nem/data/storyEvidence.js';
 import { NEM_STORY_VALUES as V } from '../src/markets/nem/data/storyEvidenceValues.js';
-import { NEM_STORY_OBSERVED as O, NEM_STORY_OBSERVED_PROVENANCE as OP } from '../src/markets/nem/data/storyEvidenceObserved.js';
+import { NEM_STORY_OBSERVED as O } from '../src/markets/nem/data/storyEvidenceObserved.js';
 
 const SECTIONS = ['qed', 'cisa', 'register', 'history', 'teaching'];
 
@@ -20,9 +20,8 @@ test('every NEM evidence value carries a source, locator, unit, vintage, check d
   };
   for (const section of SECTIONS) visit(E[section], section);
   for (const t of E.tenders) check(E.provenance[`tenders.${t.id}`], `tenders.${t.id}`);
-  for (const key of ['nemSpreadAUDPerMWh', 'wemSpreadAUDPerMWh', 'reportText', 'regionalSpreadAUDPerMWh', 'timeOfDayPriceAUDPerMWh']) {
-    assert.ok(O[key], key); assert.ok(E.sources[OP[key].sourceRef], key); assert.match(OP[key].rights, /Withheld/);
-  }
+  for (const key of ['nemSpreadAUDPerMWh', 'wemSpreadAUDPerMWh', 'regionalSpreadAUDPerMWh', 'timeOfDayPriceAUDPerMWh']) assert.ok(O[key], key);
+  check(E.provenance['observed.reportText'], 'observed.reportText');
   for (const s of Object.values(E.sources)) { assert.match(s.url, /^(https:\/\/|\/markets\/)/); assert.match(s.checkedOn, /^2026-1[01]-\d\d$/); }
 });
 
@@ -54,8 +53,10 @@ test('no value is zero where the source is missing, and the register zero is a s
   };
   for (const section of [...SECTIONS, 'tenders']) visit(E[section], section);
   visit(O, 'observed');
-  assert.deepEqual(zeros, ['register.batteryOperating']);
-  assert.match(E.provenance['register.batteryOperating'].arithmetic, /Counted/);
+  assert.deepEqual(zeros, ['register.batteryOperating', 'register.nem.batteryOperating']);
+  for (const z of zeros) assert.match(E.provenance[z].arithmetic, /Counted/);
+  assert.equal(E.register.nem.batteryAgreements, E.register.batteryAgreements - E.register.batteryInWem);
+  assert.equal(E.register.nem.batteryConstruction + E.register.nem.batteryDevelopment + E.register.nem.batteryNoStage + E.register.nem.batteryOperating, E.register.nem.batteryAgreements);
   const t10 = E.tenders.find(t => t.id === 'tender-10');
   assert.equal(t10.status, 'assessing');
   for (const k of ['projects', 'mw', 'mwh']) assert.equal(t10[k], null);
@@ -63,18 +64,15 @@ test('no value is zero where the source is missing, and the register zero is a s
   assert.equal(O.regionalSpreadAUDPerMWh.latest.TAS1, null);
 });
 
-test('the rights switch is off: price-derived fields are null and no runtime module imports the observed records', () => {
-  assert.deepEqual([V.rights.status, V.rights.mode, V.rights.clearanceRef], ['rights-unresolved', 'example', null]);
-  for (const k of ['nemSpreadAUDPerMWh', 'wemSpreadAUDPerMWh', 'regionalSpreadAUDPerMWh', 'timeOfDayPriceAUDPerMWh']) assert.equal(V.qed[k], null, k);
+test('the rights switch is on: the clearance is recorded and the price fields read the observed records', () => {
+  assert.equal(V.rights.status, 'cleared');
+  assert.equal(V.rights.mode, 'observed');
+  assert.match(V.rights.clearanceRef, /5 November 2026/);
+  for (const k of ['nemSpreadAUDPerMWh', 'wemSpreadAUDPerMWh', 'regionalSpreadAUDPerMWh', 'timeOfDayPriceAUDPerMWh']) assert.equal(V.qed[k], O[k], k);
+  /* The authoring registry (all records combined) stays out of the runtime. */
   const files = [];
   const walk = d => { for (const f of readdirSync(d)) { const p = `${d}/${f}`; if (statSync(p).isDirectory()) walk(p); else if (/\.(js|mjs)$/.test(f)) files.push(p); } };
   walk(fileURLToPath(new URL('../src', import.meta.url)));
-  const nemImports = f => [...readFileSync(f, 'utf8').matchAll(/import[^'"]*['"]([^'"]+)['"]/g)].map(m => m[1]);
-  const inNem = f => /[\\/]src[\\/]markets[\\/]nem[\\/]/.test(f);
-  const importers = files.filter(f => !/storyEvidence(Observed)?\.js$/.test(f)
-    && nemImports(f).some(spec => /markets\/nem\/data\/storyEvidence(Observed)?\.js$/.test(spec)
-      || (inNem(f) && /^\.\.?\/(data\/)?storyEvidence(Observed)?\.js$/.test(spec))));
+  const importers = files.filter(f => /[\\/]markets[\\/]nem[\\/]/.test(f) && [...readFileSync(f, 'utf8').matchAll(/import[^'"]*['"]([^'"]+)['"]/g)].some(m => /(^|\/)storyEvidence\.js$/.test(m[1])));
   assert.deepEqual(importers, []);
-  const shipped = readFileSync(new URL('../src/markets/nem/data/storyEvidenceProvenance.js', import.meta.url), 'utf8');
-  assert.equal(/\$\d/.test(shipped), false, 'the shipped provenance quotes no price-derived value');
 });
