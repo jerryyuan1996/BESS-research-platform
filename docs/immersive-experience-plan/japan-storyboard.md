@@ -1,7 +1,7 @@
 # Japan: One Storyboard for Three Allocation Markets
 
 Pack: BESS-IX-2026-10-30; Japan script researched 5 November 2026; shot layout v1.2
-Status: **G-1 draft; shared pack approved 5 November 2026, script not yet signed off.** The script covers `jp_tokyo`, `jp_kyushu` and `jp_hokkaido`. It sets out one shared story with a regional lens (§1), anchors each region to its published call (§2), and records the analyst's go on the shared pack (§12). The remaining G-1 questions in §10 stay open. Nothing is built: no data, content module, scene, wiring, registry or contract change follows from this document.
+Status: **G-1 signed off 5 November 2026** (all ten questions answered, §12). The script covers `jp_tokyo`, `jp_kyushu` and `jp_hokkaido`. It sets out one shared story with a regional lens (§1), anchors each region to its published call (§2), and records the analyst's G-1 decisions (§12). Nothing is built: no data, content module, scene, wiring, registry or contract change follows from this document.
 Navigation: [Master plan](README.md) | [Narrative cards](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Poland format](poland-storyboard.md) | [Sources and claims](source-register.md#g1-jp-evidence)
 
 ## 1. Can three markets share one story?
@@ -739,11 +739,11 @@ Open questions for the analyst:
 3. **Release. Decided 5 November 2026: together, see §12.** Release the three areas together under one G-2, or each on its own G-2 through its `released` flag.
 4. **Round 4's longer term (CF-JP-02). Decided 5 November 2026: keep twenty years, see §12.** The Round 4 guidelines let a battery elect an application period of twenty to forty years (pp. 10, 68). The plays and the floor ruling assume twenty years, and the story says "twenty years in principle". Should a later model or view change consider longer terms for new awards? The call buys operating holders, whose terms were set by their own rounds (GAP-JP-TERM).
 5. **Shot ids. Decided 5 November 2026: accepted, see §12.** Accept region-prefixed ids for regional shots (`jp-tokyo-07`) and the place fallback when a regional id is opened on another area's page.
-6. **Supplier on the page.** Keep the certified reference supplier out of page copy ("a certified maker") until METI's public list shows the certification (recommended), or name it with a practitioner label.
-7. **Kyushu month panel.** Use the repository's anchored output-control days only (recommended), or approve a rights review of Kyushu T&D's daily workbook (GAP-JP-CURTAIL).
-8. **Causal readings.** CL-JP-18 (the 2011 shortage set off the reform) and CL-JP-28 (a fund earns its yield only by buying below build cost) as interpretations.
-9. **Markers.** Strong on jp-03, jp-04, jp-05, jp-06 and jp-kyushu-07 (opened official records, assuming your review); Fair elsewhere; jp-00 keeps the play's marker.
-10. **The Chinese drafts.**
+6. **Supplier on the page. Decided: recommended option, see §12.** Keep the certified reference supplier out of page copy ("a certified maker") until METI's public list shows the certification (recommended), or name it with a practitioner label.
+7. **Kyushu month panel. Decided: recommended option, see §12.** Use the repository's anchored output-control days only (recommended), or approve a rights review of Kyushu T&D's daily workbook (GAP-JP-CURTAIL).
+8. **Causal readings. Decided: accepted, see §12.** CL-JP-18 (the 2011 shortage set off the reform) and CL-JP-28 (a fund earns its yield only by buying below build cost) as interpretations.
+9. **Markers. Decided: as proposed, see §12.** Strong on jp-03, jp-04, jp-05, jp-06 and jp-kyushu-07 (opened official records, assuming your review); Fair elsewhere; jp-00 keeps the play's marker.
+10. **The Chinese drafts. Decided: approved, see §12.**
 
 Checks run on 5 November 2026: all twenty shot tables carry the six specification rows and the page-text rows in both languages. A scan found no digit in any page-text cell outside a `‹bound›` token or a year. English and Chinese use the same tokens in every row; every token has a register entry; local links and anchors resolve. The staged-file confidentiality scan ran against the marker list and was clean. No company, developer, project or award holder is named; the register names public institutions and network companies, and refers to the reference supplier only by its existing repository record. `npm test` passed 1,339 of 1,377 tests, with 38 skipped and none failing. `npm run test:current` passed 84 of 84, with no fixture regenerated. Build, budget and browser checks were not run, because only Markdown changed.
 
@@ -753,7 +753,7 @@ Canonical [sources, claims, history, calculations, conflicts and gaps](source-re
 
 ## 12. Analyst decisions — 5 November 2026
 
-Authority: the analyst answered "Approve shared pack" (§10 question 1) then "One shared chart" (§10 question 2), "Release together" (§10 question 3), "Keep twenty years" (§10 question 4) and "Accept the ids" (§10 question 5) in this session on 5 November 2026.
+Authority: the analyst answered "Approve shared pack" (§10 question 1) then "One shared chart" (§10 question 2), "Release together" (§10 question 3), "Keep twenty years" (§10 question 4), "Accept the ids" (§10 question 5) and "Use recommended options for the following items" (§10 questions 6–10) in this session on 5 November 2026.
 
 | Item | Disposition |
 | --- | --- |
@@ -763,6 +763,7 @@ Authority: the analyst answered "Approve shared pack" (§10 question 1) then "On
 | §10 question 3, release | **Approved: release together**, answered "Release together". One G-2 walkthrough covers all three areas, and one release PR sets `released` on `jp_tokyo`, `jp_kyushu` and `jp_hokkaido` at once. The per-id flags stay as the rollback: if a later re-grade makes one area stale, its flag alone can be set back to `false` |
 | §10 question 4, Round 4 term | **Keep twenty years**, answered "Keep twenty years". The story keeps "twenty years in principle" bound to `economics.ltda.years`, and jp-05 does not mention Round 4's optional longer terms. No model or view change follows; the call buys operating holders whose terms were set by their own rounds. GAP-JP-TERM stays open as diligence |
 | §10 question 5, shot ids | **Accepted**, answered "Accept the ids". Shared shots keep `jp-00` to `jp-12`; regional shots use `jp-tokyo-07`, `jp-kyushu-07`, `jp-hokkaido-07` and likewise for slots 10 and 13. A regional id opened on another area's page falls back to its chapter's first shot through `resolvePlace()`; no shell change |
-| Questions 6–10 | **Open.** Supplier naming, the Kyushu workbook, causal readings, markers and the Chinese drafts still need the analyst's answers before the script is signed off at G-1 |
+| §10 questions 6–10 | **Recommended options approved**, answered "Use recommended options for the following items". (6) The certified reference supplier stays out of page copy ("a certified maker") until METI's public list shows it. (7) The Kyushu panel uses the repository's anchored output-control days only; the daily workbook stays out pending a rights review (GAP-JP-CURTAIL). (8) CL-JP-18 and CL-JP-28 are accepted as interpretations and labelled as such. (9) Markers as proposed: Strong on jp-03, jp-04, jp-05, jp-06 and jp-kyushu-07, Fair elsewhere, jp-00 keeps the play's marker. (10) The Simplified Chinese drafts are approved |
+| G-1 | **Signed off 5 November 2026.** Open evidence gaps and BUILD-JP-02 remain build and G-2 conditions |
 
-This approval fixes the pack's structure only. It signs off no shot copy, marker, chart or evidence record, and it authorises no code: registry, content, scene and wiring work starts after the script's G-1 sign-off, in the usual data → content → scenes → wiring order.
+G-1 sign-off authorises the build to start in the usual data → content → scenes → wiring order, each as its own PR when the analyst asks. It closes no evidence gap and authorises no model, view or dataset change.
