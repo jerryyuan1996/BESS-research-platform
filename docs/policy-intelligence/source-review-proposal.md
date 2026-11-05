@@ -1,0 +1,14 @@
+# Official source inventory — proposal, not activation
+
+Checked 2026-11-05. The proposed inventory in `policy/source-inventory.mjs` has **all reviewed and rights flags false**. No model, source crawler or public policy writer is activated by it. This document requests a concrete source-governance review, not a blanket permission expansion. Existing market/scout reading lists remain unchanged.
+
+| Scope | Proposed original register | Current verification / remaining work |
+|---|---|---|
+| DE | [AgNes register](https://www.bundesnetzagentur.de/1059162) | The regulator's [6 August 2026 announcement](https://www.bundesnetzagentur.de/SharedDocs/Pressemitteilungen/EN/2026/20260806_Agnes.html) establishes consultation of a final draft and a planned later determination. It is not proof of adoption or BESS tariff amounts. Retrieve the German determination and exact clauses, current status, rights and robots before activation. |
+| GB | [Ofgem connections reform decision package](https://www.ofgem.gov.uk/decision/decision-connections-reform-package-tm04) | Page dated 15 April 2025 lists code/methodology/licence decisions and describes ready/needed criteria. Each live claim needs its exact decision/appendix locator and current revision. Rights and robots remain to be recorded. |
+| NEM | [AEMC IESS rule-change register](https://www.aemc.gov.au/rule-changes/integrating-energy-storage-systems-nem) | Direct fetch returned 403 in the research environment. Search metadata is not accepted as claim proof. Use an accessible official final determination/statutory notice with original locators; keep NEM separate from WA. Rights, reliable access and historical versions remain blockers. |
+| WA | [WEM investment certainty review](https://www.wa.gov.au/government/document-collections/wholesale-electricity-market-investment-certainty-review) | Official collection distinguishes consultation, review outcomes and draft rules; it notes WEM Rules renamed ESM Rules. A review page is not evidence that every proposed provision is in force. Retrieve the current official rules and commencement clauses, rights and robots. |
+
+Recommended decision: accept these as a **review queue**, keep all network/model/publication activation flags OFF until exact sources, terms and scope are verified. A new source's approval must be explicit versioned configuration, not an LLM's assertion. Do not infer legal status from titles, news tags or search snippets. No source bodies, participant identities or copyrighted reports are included here.
+
+The four independent market pilot content reviews required by D6 are still outstanding. None of these entries constitutes a published Dossier, Policy Story, approved investment implication or historical model evaluation. Synthetic fixtures exercise failure handling only.

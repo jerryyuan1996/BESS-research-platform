@@ -24,7 +24,7 @@ Budget about 30 minutes. Nothing here costs money.
         │                                                       Vercel
         │                                            smoke check on the live URL
         │
-        └── GitHub Actions, every 6 hours
+        └── GitHub Actions, once daily at 06:17 UTC (ETL + policy discovery)
               fetches public market data
               commits it back to the repo
                     │
@@ -167,7 +167,7 @@ That is the opposite of the usual Vercel setup, so it is worth stating why. A Gi
 integration builds on *every* push to `main` and does not wait for GitHub Actions.
 The confidentiality scan, the snapshot verifier and the whole test suite would run
 beside the deployment rather than in front of it, and a red CI run would publish
-anyway. The ETL bot pushes to `main` every six hours, so that is not a rare edge
+anyway. The ETL bot may push to `main` each daily cycle, so that is not a rare edge
 case — it is the normal path. Branch protection would not help either: the bot
 pushes directly, not through a pull request.
 
@@ -301,7 +301,7 @@ variable and never reaches the browser — do **not** add it to Vercel.
 
 ## Step 6 — Run the pipeline once, by hand
 
-Do not wait six hours to find out whether it works.
+Do not wait for the next daily cycle to find out whether it works.
 
 1. GitHub → **Actions** tab.
 2. If you see a banner asking you to enable workflows, click to enable them.
@@ -354,7 +354,7 @@ You do not need to do anything for the site to stay current.
 
 | What happens | When |
 |---|---|
-| Data refresh, validate, publish, rebuild | every 6 hours, automatically |
+| Data refresh, validate, publish, rebuild | once daily, with policy discovery; only changed content publishes |
 | A pull request proposing an assumption change | only when drift is material |
 | Tests and the confidentiality scan | on every push and pull request |
 
