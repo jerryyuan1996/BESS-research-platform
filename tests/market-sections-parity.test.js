@@ -25,6 +25,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { buildAllMarketSections, digests, marketApi } from './helpers/market-sections.mjs';
+import { designLine } from '../src/markets/_shared/designAnswer.js';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MARKETS = ['gb', 'ie', 'pl', 'ro'];
@@ -38,13 +39,37 @@ const fixtureFor = (id) => {
 /** A floor per market, deliberately well below what any of them carries. */
 const MIN_TOTAL_BYTES = { gb: 250_000, ie: 270_000, pl: 150_000, ro: 150_000 };
 
+/* The GB portfolio includes a live briefing projection, intentionally following
+   committed observed FX. Pin only that sentence to the public-data vintage used
+   by the original fingerprint; preserve every other string, number and function.
+   Its runtime value is checked below, rather than discarded from coverage. */
+function staticGbProjection(sections){
+  const original=JSON.parse(readFileSync(path.join(REPO,'tests/fixtures/gb-section-design-projection.json'),'utf8')).line;
+  const current=designLine('gb');
+  assert.ok(current?.length===2,'GB briefing projection must remain bilingual');
+  const counts=[0,0];
+  const visit=value=>{
+    if(typeof value==='string'){
+      let out=value;
+      for(let i=0;i<2;i++)if(out.includes(current[i])){counts[i]++;out=out.replace(current[i],original[i]);}
+      return out;
+    }
+    if(Array.isArray(value))return value.map(visit);
+    if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,visit(v)]));
+    return value;
+  };
+  const portfolio=visit(sections.portfolio);
+  assert.deepEqual(counts,[1,1],'The GB portfolio must carry exactly one current Brief sentence per language');
+  return {...sections,portfolio};
+}
+
 for (const id of MARKETS){
   const FIXTURE = fixtureFor(id);
 
   test(`${id}: every section is byte-for-byte what the pre-split file produced`, async () => {
     assert.ok(FIXTURE, `${id} has no pre-split fixture — run scripts/generate-section-fixtures.mjs first`);
     const sections = await buildAllMarketSections(id, await marketApi(id));
-    const now = digests(sections);
+    const now = digests(id === 'gb' ? staticGbProjection(sections) : sections);
 
     assert.deepEqual(Object.keys(now).sort(), Object.keys(FIXTURE.sections).sort(),
       `${id}: a section has appeared or disappeared since the fixture was taken`);

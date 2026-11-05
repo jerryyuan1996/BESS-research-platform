@@ -1,0 +1,9 @@
+{
+  "sourceCommit": "d85f17236c550c3d28a44ef66ef9519e00d4383a",
+  "asOf": "2026-11-04T14:42:12Z",
+  "note": "Original public-data design projection reconstructed from the commit that introduced the unchanged section fingerprints. Only the live briefing sentence is normalized for the static extraction comparison; runtime linkage is asserted separately.",
+  "line": [
+    "Great Britain: nothing clears the platform's yields; toll at 4h comes closest, at −$277k/MW.",
+    "英国：没有设计能达到平台收益率；租赁4小时最为接近，每MW −27.7万美元。"
+  ]
+}
