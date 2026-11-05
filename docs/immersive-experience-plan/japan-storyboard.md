@@ -737,7 +737,7 @@ Open questions for the analyst:
 1. **Go/no-go on the shared pack. Decided 5 November 2026: (a), see §12.** (a) Recommended: one pack, `src/markets/jp/storyPack.js`, three registry entries, one composed story per region, guards per region (§1.3–1.5). (b) The fallback: three thin packs over one national module (§1.6). (c) One story for Tokyo only, with Kyushu and Hokkaido keeping the research dialog.
 2. **Signature chart. Decided 5 November 2026: (a), see §12.** (a) Recommended: one parameterised Chart-JP-PRICE, with the Kyushu and Hokkaido panels as evidence in their battery shots. (b) Three regional charts as the v1.3 cards proposed: Tokyo's purchase-price chart, Kyushu's curtailment against charging window, and Hokkaido's firm against non-firm charging hours.
 3. **Release. Decided 5 November 2026: together, see §12.** Release the three areas together under one G-2, or each on its own G-2 through its `released` flag.
-4. **Round 4's longer term (CF-JP-02).** The Round 4 guidelines let a battery elect an application period of twenty to forty years (pp. 10, 68). The plays and the floor ruling assume twenty years, and the story says "twenty years in principle". Should a later model or view change consider longer terms for new awards? The call buys operating holders, whose terms were set by their own rounds (GAP-JP-TERM).
+4. **Round 4's longer term (CF-JP-02). Decided 5 November 2026: keep twenty years, see §12.** The Round 4 guidelines let a battery elect an application period of twenty to forty years (pp. 10, 68). The plays and the floor ruling assume twenty years, and the story says "twenty years in principle". Should a later model or view change consider longer terms for new awards? The call buys operating holders, whose terms were set by their own rounds (GAP-JP-TERM).
 5. **Shot ids.** Accept region-prefixed ids for regional shots (`jp-tokyo-07`) and the place fallback when a regional id is opened on another area's page.
 6. **Supplier on the page.** Keep the certified reference supplier out of page copy ("a certified maker") until METI's public list shows the certification (recommended), or name it with a practitioner label.
 7. **Kyushu month panel.** Use the repository's anchored output-control days only (recommended), or approve a rights review of Kyushu T&D's daily workbook (GAP-JP-CURTAIL).
@@ -753,7 +753,7 @@ Canonical [sources, claims, history, calculations, conflicts and gaps](source-re
 
 ## 12. Analyst decisions — 5 November 2026
 
-Authority: the analyst answered "Approve shared pack" (§10 question 1) then "One shared chart" (§10 question 2) and "Release together" (§10 question 3) in this session on 5 November 2026.
+Authority: the analyst answered "Approve shared pack" (§10 question 1) then "One shared chart" (§10 question 2), "Release together" (§10 question 3) and "Keep twenty years" (§10 question 4) in this session on 5 November 2026.
 
 | Item | Disposition |
 | --- | --- |
@@ -761,6 +761,7 @@ Authority: the analyst answered "Approve shared pack" (§10 question 1) then "On
 | Fallback | Kept as written (§1.6). If a re-grade gives one area a different call or route, the build moves to three thin packs over one national module, and that change returns to the analyst |
 | §10 question 2, signature chart | **Approved: option (a)**, answered "One shared chart". One parameterised Chart-JP-PRICE in jp-08 for all three areas, with the reader's area highlighted and the others behind "Compare areas" (§9). Kyushu's output-control months and Hokkaido's firm against controlled charging hours stay as evidence panels in their battery shots; Tokyo has none. CF-JP-07 closes. The chart's values still bind as in §8, and BUILD-JP-02 stays open |
 | §10 question 3, release | **Approved: release together**, answered "Release together". One G-2 walkthrough covers all three areas, and one release PR sets `released` on `jp_tokyo`, `jp_kyushu` and `jp_hokkaido` at once. The per-id flags stay as the rollback: if a later re-grade makes one area stale, its flag alone can be set back to `false` |
-| Questions 4–10 | **Open.** Round 4 term, shot ids, supplier naming, the Kyushu workbook, causal readings, markers and the Chinese drafts still need the analyst's answers before the script is signed off at G-1 |
+| §10 question 4, Round 4 term | **Keep twenty years**, answered "Keep twenty years". The story keeps "twenty years in principle" bound to `economics.ltda.years`, and jp-05 does not mention Round 4's optional longer terms. No model or view change follows; the call buys operating holders whose terms were set by their own rounds. GAP-JP-TERM stays open as diligence |
+| Questions 5–10 | **Open.** Shot ids, supplier naming, the Kyushu workbook, causal readings, markers and the Chinese drafts still need the analyst's answers before the script is signed off at G-1 |
 
 This approval fixes the pack's structure only. It signs off no shot copy, marker, chart or evidence record, and it authorises no code: registry, content, scene and wiring work starts after the script's G-1 sign-off, in the usual data → content → scenes → wiring order.
