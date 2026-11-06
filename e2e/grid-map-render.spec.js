@@ -16,6 +16,19 @@ import { test, expect } from '@playwright/test';
    a number that a data run would invalidate.
    --------------------------------------------------------------------------- */
 
+// A joined path can stay unchanged while an entire voltage band is in flight.
+// Observe completion from before navigation; path-node stability alone cannot
+// establish that every requested response has reached the renderer.
+const pendingGridRequests = new WeakMap();
+test.beforeEach(async ({ page }) => {
+  const pending = new Set(); pendingGridRequests.set(page, pending);
+  page.on('request', request => {
+    if (new URL(request.url()).pathname.startsWith('/data/grid/')) pending.add(request);
+  });
+  page.on('requestfinished', request => pending.delete(request));
+  page.on('requestfailed', request => pending.delete(request));
+});
+
 const MARKETS = [
   { slug:'great-britain', id:'gb', manifest:'gb-transmission.manifest.json' },
   { slug:'germany', id:'de', manifest:'de-transmission.manifest.json' },
@@ -53,7 +66,7 @@ async function settleLayer(page){
   await expect.poll(async () => {
     const now = await page.evaluate(
       () => document.querySelectorAll('.geo-transmission-layer [d]').length);
-    const stable = now === previous;
+    const stable = now === previous && pendingGridRequests.get(page).size === 0;
     previous = now;
     return stable;
   }, { timeout:25000, intervals:[350] }).toBe(true);
@@ -263,4 +276,26 @@ test('the map is usable at 390 px as well as 1440 px', async ({ page }) => {
     return shell.scrollWidth - shell.clientWidth;
   });
   expect(overflow, 'the map must not widen the page').toBeLessThanOrEqual(1);
+});
+
+test('a pending detail band cannot be mistaken for a settled drawing', async ({ page, request }) => {
+  const manifest = await (await request.get('/data/grid/gb-transmission.manifest.json')).json();
+  let release, requested = false, settled = false;
+  const held = new Promise(resolve => { release = resolve; });
+  await page.route('**/gb-transmission-132-274.json', async route => {
+    requested = true; await held; await route.continue();
+  });
+  try {
+    await page.goto(mapPath('great-britain'));
+    await expect(page.locator('.geo-transmission-line').first()).toBeVisible();
+    const reading = zoomIntoDetail(page).then(() => { settled = true; });
+    await expect.poll(() => requested).toBe(true);
+    // Several original 350ms stability probes fit while this response is held.
+    await page.waitForTimeout(1800);
+    expect(settled, 'unchanging path-node counts do not finish an active band request').toBe(false);
+    release(); await reading;
+    const layer = await page.evaluate(readLayer);
+    expect(layer.groups.reduce((n, group) => n + group.subpaths, 0))
+      .toBe(manifest.bands.reduce((n, band) => n + band.lines, 0));
+  } finally { release(); }
 });
