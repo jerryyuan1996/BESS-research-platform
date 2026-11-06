@@ -1,0 +1,79 @@
+/* NEM story: market-local styles on the existing experience tokens (--ix-*).
+   Shared kit and shell styles are unchanged. Nothing here animates, so
+   reduced motion already reads still frames. */
+.nem-scene, .nem-chart { min-width: 0; }
+.nem-scene svg, .nem-chart svg, .nem-map { display: block; width: 100%; height: auto; margin: auto; }
+.nem-scene .k-stage { max-width: 720px; }
+.nem-map { max-width: 600px; }
+.nem-map-small { max-width: 420px; }
+.nem-note, .nem-legend { color: var(--ix-body); font-size: var(--fs-sm); line-height: 1.6; margin: 8px 0 0; }
+.nem-readouts { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; margin: 10px 0 0; }
+.nem-readouts dt { color: var(--ix-body); }
+.nem-readouts dd { margin: 0; text-align: end; font-variant-numeric: tabular-nums; color: var(--ix-ink); }
+.nem-region { fill: var(--ix-lime); stroke: var(--ix-green); stroke-width: 1; }
+.nem-map[data-view="grid"] .nem-region { fill: var(--ix-green); fill-opacity: .55; stroke: var(--ix-paper); }
+.nem-map[data-view="wa"] .k-map-swis { fill-opacity: 1; }
+.nem-link { stroke: var(--ix-gold); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 5; }
+.nem-map-label, .nem-chart-label { fill: var(--ix-ink); font-size: var(--fs-2xs); }
+.nem-map-label.nem-strong { font-weight: var(--fw-bold); font-size: var(--fs-sm); }
+.nem-tag rect { fill: var(--ix-panel); stroke: var(--ix-gold); }
+.nem-tag text { fill: var(--ix-ink); font-size: var(--fs-micro); }
+.nem-chart-title { fill: var(--ix-ink); font-size: var(--fs-sm); font-weight: var(--fw-bold); }
+.nem-small { font-size: var(--fs-micro); }
+.nem-tag-line, .nem-tag { font-style: normal; }
+.nem-chart .nem-tag { fill: var(--ix-muted); font-size: var(--fs-2xs); }
+.nem-axis { fill: none; stroke: var(--ix-ink); stroke-width: 1; }
+.nem-grid { stroke: var(--ix-line); stroke-width: 1; }
+.nem-dash { stroke-dasharray: 4 4; stroke: var(--ix-muted); }
+.nem-bar { fill: var(--ix-green); }
+.nem-rest { fill: var(--ix-line); }
+.nem-line { fill: none; stroke: var(--ix-green); stroke-width: 2.5; }
+.nem-prior { stroke: var(--ix-muted); }
+.nem-battery { stroke: var(--ix-gold); }
+.nem-ghost { stroke: var(--ix-muted); stroke-opacity: .6; }
+.nem-wem { stroke: var(--ix-risk); stroke-width: 1.5; }
+.nem-example.nem-bar { fill: var(--ix-lime); stroke: var(--ix-green); stroke-dasharray: 3 3; }
+.nem-example.nem-line { stroke-dasharray: 6 4; }
+.nem-panel { opacity: .55; }
+.nem-panel.nem-focus { opacity: 1; }
+.nem-band { fill: var(--ix-lime); fill-opacity: .25; }
+.nem-band.nem-on { fill-opacity: .6; }
+.nem-key { display: inline-block; width: 18px; height: 3px; margin: 0 6px 3px 0; vertical-align: middle; background: var(--ix-green); }
+.nem-key-prior { background: var(--ix-muted); }
+.nem-collar { fill: none; stroke: var(--ix-gold); stroke-width: 3; }
+.nem-point { fill: var(--ix-green); }
+.nem-owner { fill: var(--ix-gold); }
+.nem-arrow { stroke: var(--ix-ink); stroke-width: 2; }
+.nem-cap { stroke: var(--ix-risk); stroke-width: 3; }
+.nem-dial { fill: var(--ix-panel); stroke: var(--ix-green); stroke-width: 2; }
+.nem-flag { fill: var(--ix-risk); stroke: var(--ix-risk); }
+.nem-node { fill: var(--ix-green); }
+.nem-node.nem-future { fill: var(--ix-panel); stroke: var(--ix-green); stroke-dasharray: 3 2; }
+.nem-wa-marker { fill: var(--ix-risk); }
+.nem-history-detail { border: 1px solid var(--ix-line); background: var(--ix-panel); padding: 10px 12px; margin-top: 8px; }
+.nem-history-detail.nem-future, .nem-future .nem-flow, .nem-card.nem-future, .nem-dashed { border-style: dashed; }
+.nem-history-detail h5 { margin: 0 0 4px; }
+.nem-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.nem-cards, .nem-rounds, .nem-steps { list-style: none; padding: 0; margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.nem-card { border: 1px solid var(--ix-line); background: var(--ix-panel); padding: 10px; font-size: var(--fs-sm); }
+.nem-card-wide { grid-column: 1 / -1; }
+.nem-open { border-style: dashed; }
+.nem-edge { border: 0; border-left: 2px dashed var(--ix-muted); background: none; }
+.nem-watched { border-color: var(--ix-gold); }
+.nem-flow { border: 1px solid var(--ix-line); padding: 10px; }
+.nem-share p { margin: 8px 0 4px; font-size: var(--fs-sm); }
+.nem-routes, .nem-table table, table.nem-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); margin-top: 10px; }
+.nem-routes th, .nem-routes td, .nem-table th, .nem-table td { padding: 6px; text-align: start; border-bottom: 1px solid var(--ix-line); }
+.nem-routes .nem-best { background: var(--ix-lime); }
+.nem-routes [hidden] { display: none; }
+.nem-factor { margin: 10px 0 0; }
+.nem-opening { max-width: 260px; margin: 8px auto; }
+.nem-trace { max-width: 220px; }
+.nem-provenance { font-size: var(--fs-sm); overflow-wrap: anywhere; }
+.nem-provenance dt { margin-top: 8px; }
+.nem-provenance dd { margin: 4px 0 0; }
+.nem-chart-frame { overflow-x: auto; }
+@media (max-width: 560px) {
+  .nem-chart-frame svg { min-width: 520px; }
+  .nem-tick { font-size: var(--fs-micro); }
+}
