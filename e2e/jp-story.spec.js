@@ -1,4 +1,4 @@
-/* Japan G-2 candidate: built output only, all three preview-only allocation
+/* Japan G-2 release: built output and public routes for all three allocation
    pages, in both configured desktop/mobile projects. */
 import {test,expect} from '@playwright/test';
 import {composeStory} from '../src/markets/jp/story.js';
@@ -119,21 +119,26 @@ for(const area of areas){
     await page.locator('.ix-full-research').click();await expect(page.locator('.ix-research-dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
   });
 
-  test(`${area.region}: normal entry stays research-only and reduced-motion outage teaching is static`,async({page})=>{
-    await page.goto(base);await page.locator('.ix-full-research').click();
-    await expect(page.locator('.ix-research-dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
-    await page.keyboard.press('Escape');await page.emulateMedia({reducedMotion:'reduce'});
-    await page.goto(preview+'&view=story&chapter=origins&shot=jp-02');
+  test(`${area.region}: normal entry opens the released story lazily and reduced-motion outage teaching is static`,async({page})=>{
+    const requests=[],errors=[];page.on('request',r=>requests.push(r.url()));page.on('pageerror',e=>errors.push(e.message));
+    const packs=()=>requests.filter(u=>/\/story-jp-[^/]+\.js/.test(u));
+    await page.goto(base);const trigger=page.locator('.ix-full-research');await expect(trigger).toBeVisible();expect(packs()).toEqual([]);
+    await trigger.click();const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
+    await expect(dialog.locator('article.ix-shot')).toHaveCount(14);await expect(dialog.locator('.ix-marker')).toHaveCount(14);
+    await expect(page.locator('.ix-research-dialog')).toBeHidden();expect(new Set(packs()).size).toBe(1);
+    expect(requests.filter(u=>/\/storyEvidenceProvenance[^/]*\.js/.test(u))).toEqual([]);
+    await page.keyboard.press('Escape');await expect(trigger).toBeFocused();await page.emulateMedia({reducedMotion:'reduce'});
+    await page.goto(base+'?view=story&chapter=origins&shot=jp-02');
     const shot=page.locator('[data-shot="jp-02"]');await expect(shot.locator('h4')).toBeFocused();
     await shot.locator('.k-toggle').last().click();await expect(shot.locator('.jp-rotate')).toHaveCount(0);
     const animations=await shot.locator('svg rect').evaluateAll(nodes=>nodes.map(node=>getComputedStyle(node).animationName));
-    expect(animations.every(name=>name==='none')).toBeTruthy();
+    expect(animations.every(name=>name==='none')).toBeTruthy();expect(errors).toEqual([]);
   });
 }
 
 test('Japan source disclosure failure keeps the story readable and exposes its bilingual retry state',async({page})=>{
   await page.route('**/storyEvidenceProvenance*.js',route=>route.abort());
-  await page.goto('/markets/japan-tokyo?story=preview&view=story&chapter=choices&shot=jp-05');
+  await page.goto('/markets/japan-tokyo?view=story&chapter=choices&shot=jp-05');
   const dialog=page.locator('.ix-story-dialog'),source=dialog.locator('[data-shot="jp-05"] .ix-story-sources');
   await expect(dialog).toBeVisible();await source.locator('summary').click();
   await expect(source.getByRole('button',{name:'Retry',exact:true})).toBeVisible();
