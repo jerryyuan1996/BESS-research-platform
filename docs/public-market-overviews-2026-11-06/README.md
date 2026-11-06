@@ -1,6 +1,6 @@
 # Fifteen-market public Overview and narrative edition
 
-Implementation baseline: `c0229820ff609e38f45b259c3abf9a948aaee51c` (latest `origin/main` when this isolated worktree was created). Public edition: `2026-11-06.1`.
+Implementation baseline: `c0229820ff609e38f45b259c3abf9a948aaee51c` (latest `origin/main` when this isolated worktree was created). Date-accuracy patch baseline: `966ce1af673590620518bfae5ee163621eab3369` (#171 already merged and published). Public edition: `2026-11-06.2`.
 
 Jerry selected the narrower first delivery: “A 先把15个市场已有的脚本做成所有投资人共用的新版本”. The authorised implementation and normal PR/CI/merge flow therefore cover **15 markets**, with reorganised or new public interpretations explicitly pending content confirmation. This does not create a new content sign-off.
 
@@ -37,9 +37,9 @@ See [the bilingual content review](content-review.md) for each market's draft, o
 
 `marketPage.js` places a lightweight public summary before decisions, strategy choices and financial cards in both DOM and visual reading order. It also removes the previous financial-card relocation for these fifteen markets. The three other markets retain their previous path.
 
-The public registry has a separate scope from the original `STORIES` release flags. Overview/card data, modal shell, market content, chapter renderer and SVG scene load across separate dynamic boundaries. Successful content promises are cached; rejected content promises are evicted. A failed module can be retried by reloading the same versioned chapter URL, with readable summary/research fallbacks. A source record newer than the script review has a separate evidence-update state.
+The public registry has a separate scope from the original `STORIES` release flags. Overview/card data, modal shell, market content, chapter renderer and SVG scene load across separate dynamic boundaries. Successful content promises are cached; rejected content promises are evicted. A failed module can be retried by reloading the same versioned chapter URL, with readable summary/research fallbacks. A later `checkedOn` is a later source check; it does not establish changed content or approval. Missing check dates remain unknown. The [fifteen-market date audit](approval-date-audit.md) distinguishes original G-1, supplementary content approvals, original scoped G-2, content-module versions and binding-anchor dates.
 
-The native modal retains the existing story-place router and its three whitelisted parameters. Public shot IDs encode locale and edition, e.g. `?view=story&chapter=storage&shot=public-zh-2026-11-06-1-storage`. Market/region is the pathname. Old shot IDs and original scoped-story/research entrances remain valid. Japan's region selector carries the chapter, locale and edition to the selected regional path.
+The native modal retains the existing story-place router and its three whitelisted parameters. Public shot IDs encode locale and edition, e.g. `?view=story&chapter=storage&shot=public-zh-2026-11-06-2-storage`. Market/region is the pathname. Old shot IDs and original scoped-story/research entrances remain valid. Japan's region selector carries the chapter, locale and edition to the selected regional path.
 
 The shared SVG uses the existing 2:1 projection and symbol vocabulary, with a new cutaway battery, rack modules, cooling details, PCS cabinets, transformer fins and bushings, protected busbar, metering, cable routes and energy-flow arrows. Each market configures local constraints and payment causality. Scene steps, equipment focus and charging direction use keyboard/touch controls; annotations also exist as readable HTML. Small screens can pan the scene. Reduced-motion reading requires no animation.
 

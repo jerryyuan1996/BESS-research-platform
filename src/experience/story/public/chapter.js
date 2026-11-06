@@ -1,6 +1,7 @@
 import {h} from '../../../utils/dom.js';
 import {L} from '../../../app/i18n.js';
 import {CHAPTERS} from './content.js';
+import {approvalRecordUrl} from './approvalRecords.js';
 
 const P=(text,cls='')=>h('p',{class:cls},L(text));
 const TEXT={
@@ -15,7 +16,7 @@ const TEXT={
 export function renderChapter(data,id,ctx){
   const heading=h('h3',{tabindex:'-1'},L(CHAPTERS.find(c=>c[0]===id)[1]));
   const node=h('article',{class:'public-chapter','data-chapter':id},heading);
-  if(data.evidenceUpdated)node.append(h('p',{class:'public-version-note',role:'status'},L(['Evidence record updated after the source-script review: ','证据记录晚于来源脚本复核：']),data.latestSourceOn,' · ',L(['Recheck the linked sources; the public interpretation remains pending.','请复核链接来源；公共解读仍待确认。'])));
+  if(data.checkedAfterG1)node.append(h('p',{class:'public-version-note public-source-check-note',role:'status'},L(['Source check recorded after original G-1 sign-off: ','原脚本 G-1 签核后有来源核对记录：']),data.latestCheckedOn,' · ',L(['A later check does not establish changed source content or new approval.','仅表示核对时间，不代表原文变化或新增批准。'])));
   const badge=text=>h('p',{class:'public-content-label'},L(text));
   const excerpts=section=>data.extracts[section].map(e=>h('blockquote',{class:'public-reference'},badge(TEXT.excerpt),h('h4',{},L(e.question)),P(e.text),
     h('details',{},h('summary',{},L(['Excerpt provenance','原文追溯'])),h('small',{},e.shotId,' · ',e.claimIds.join(' / ')))));
@@ -51,7 +52,14 @@ export function renderChapter(data,id,ctx){
     h('h4',{},L(group.title)),sourceList(refs.filter(([key])=>group.ids.includes(key))))):sourceList(refs);
   node.append(h('details',{class:'public-chapter-sources',...(id==='research'?{open:''}:{})},
     h('summary',{},L(['Source records & original scope','来源记录与原适用范围'])),
-    P(['Source-script review: '+data.summary.reviewedOn+' · Public edition '+data.version+' · Public logic review pending.', '来源脚本复核：'+data.summary.reviewedOn+' · 公共版本'+data.version+' · 公共逻辑待确认。']),
+    P(['Public edition '+data.version+' · Public logic review pending.', '公共版本'+data.version+' · 公共逻辑待确认。']),
+    h('p',{'data-date-kind':'g1'},L(['Original script G-1 sign-off: ','原脚本 G-1 签核：']),
+      h('a',{href:approvalRecordUrl(data.approvalRecords.g1Record),target:'_blank',rel:'noopener noreferrer'},data.summary.g1ApprovedOn)),
+    data.latestCheckedOn?h('p',{'data-date-kind':'source-check'},L(['Latest recorded source check: ','最近来源核对记录：']),data.latestCheckedOn):null,
+    ...data.approvalRecords.supplements.map(event=>h('p',{'data-date-kind':'supplement'},L(['Supplementary original-content approval: ','原内容补充批准：']),
+      h('a',{href:approvalRecordUrl(event.record),target:'_blank',rel:'noopener noreferrer'},event.on),' · ',L(event.scope))),
+    data.approvalRecords.originalG2.on?h('p',{'data-date-kind':'g2'},L(['Original scoped G-2 release sign-off: ','原研究范围 G-2 放行签核：']),
+      h('a',{href:approvalRecordUrl(data.approvalRecords.originalG2.record),target:'_blank',rel:'noopener noreferrer'},data.approvalRecords.originalG2.on)):null,
     renderedSources,
     h('a',{href:`https://github.com/jerryyuan1996/BESS-research-platform/blob/c0229820ff609e38f45b259c3abf9a948aaee51c/${data.script}`,target:'_blank',rel:'noopener noreferrer'},L(['Original script & approval scope ↗','原脚本与签核范围 ↗'])),
     P(['Original script version: '+data.legacyVersion+'. Original investor, strategy and stage restrictions remain in force. Public edits have no new Jerry sign-off.', '原脚本版本：'+data.legacyVersion+'。原投资人、策略与阶段限制继续有效；公共编辑尚无新的Jerry签核。'])));

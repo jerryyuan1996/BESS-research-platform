@@ -83,7 +83,7 @@ function renderMarket(container, row, route) {
     if(!publicEntry || storyOpen())return;
     if(trigger?.dataset.loadFailed){
       const params=new URLSearchParams(window.location.search);
-      const edition=trigger.closest('[data-version]')?.dataset.version||'2026-11-06.1';
+      const edition=trigger.closest('[data-version]')?.dataset.version||'2026-11-06.2';
       params.set('view','story');params.set('chapter','history');params.set('shot',`public-${app.lang}-${edition.replace('.','-')}-history`);
       window.history.replaceState({},'',`${window.location.pathname}?${params}${window.location.hash}`);window.location.reload();return;
     }

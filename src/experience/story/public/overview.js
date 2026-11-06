@@ -20,6 +20,7 @@ export function renderPublicOverview(id, { name, open, researchUrl }){
         trigger,
         h('p', { class:'public-reading-time' }, L(['About 5 minutes · EN / 简体中文', '约5分钟 · EN / 简体中文'])),
         h('p', { class:'public-status' }, L(['Public logic · review pending', '公共逻辑 · 待确认'])),
-        h('p', { class:'public-source-date' }, L(['Source-script review: ', '来源脚本复核：']), c.reviewedOn),
+        h('p', { class:'public-source-date', 'data-date-kind':'g1' }, L(['Original script G-1 sign-off: ', '原脚本 G-1 签核：']), c.g1ApprovedOn),
+        c.evidenceCheckedOn?h('p', { class:'public-source-date', 'data-date-kind':'source-check' }, L(['Source check recorded: ', '来源核对记录：']), c.evidenceCheckedOn):null,
         h('a',{href:researchUrl,class:'ix-text-link'},L(['Sources & full research ↗','来源与完整研究 ↗'])))));
 }

@@ -62,7 +62,7 @@ export function open(ctx){
       const node=renderer.renderChapter(data,chapter,{alive:()=>alive()&&run===version,research,legacy:ctx.id==='ercot'?null:legacy});
       const versionNote=initial.version&&initial.version!==PUBLIC_VERSION?h('p',{role:'status',class:'public-version-note'},L(['This link names an older edition. Showing the current review draft: ','链接指向其他版本。当前显示最新待确认稿：']),PUBLIC_VERSION):null;
       body.replaceChildren(...(versionNote?[versionNote]:[]),node,
-        h('footer',{class:'public-chapter-footer'},h('span',{},L(['Source-script review: ','来源脚本复核：']),summary.reviewedOn),
+        h('footer',{class:'public-chapter-footer'},h('span',{},L(['Original script G-1 sign-off: ','原脚本 G-1 签核：']),summary.g1ApprovedOn),
           chapter!=='research'?h('button',{type:'button',class:'ix-button ix-outline',onclick:()=>show(CHAPTERS[CHAPTERS.findIndex(c=>c[0]===chapter)+1][0])},L(['Next chapter →','下一章 →'])):h('button',{type:'button',class:'ix-button ix-outline',onclick:()=>close()},L(['Return to overview','返回市场概况']))));
       body.scrollTop=0;if(focus)node.querySelector('h3')?.focus({preventScroll:true});
     }catch{
