@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    National Electricity Market — market dataset.
 
@@ -27,9 +28,9 @@
 import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
-  asOf: '2026-08-01',
-  dataDate: '2025 annual / Q2 2026 quarterly / Jun 2026 monthly',
-  modelVersion: 'nem-seed-1.0-energy-only-cis-collar',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['National Electricity Market Battery Investment Dashboard', '澳大利亚国家电力市场储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Reference region NSW1.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。参考区域为NSW1。'],
@@ -51,17 +52,17 @@ const M = {
        South Australian Parliament in the first half of 2027), and the first
        procurement round is indicatively late 2027. The gap after Tender 10 is
        therefore about a year, not a few months. */
-    reviewDate: '16 Dec 2025', esemDraftDate: '14 September 2026', esemStart: 'late 2027',
+    reviewDate: HISTORY_DATA.official.reviewDate, esemDraftDate: '14 September 2026', esemStart: HISTORY_DATA.official.esemStart,
 
     // Capacity Investment Scheme — the collar
     cisFloorSharePct: 90, cisCeilingSharePct: 50, cisTermMinYr: 10, cisTermMaxYr: 15,
     // Tender 3, December 2024
-    t3MW: 4130, t3MWh: 15370, t3Projects: 16, t3FourHourProjects: 14,
-    t3Bids: 124, t3BidMW: 34000, t3BidMWh: 135000, t3TargetMW: 4000,
+    t3MW: HISTORY_DATA.official.t3MW, t3MWh: HISTORY_DATA.official.t3MWh, t3Projects: HISTORY_DATA.official.t3Projects, t3FourHourProjects: HISTORY_DATA.official.t3FourHourProjects,
+    t3Bids: HISTORY_DATA.official.t3Bids, t3BidMW: HISTORY_DATA.official.t3BidMW, t3BidMWh: 135000, t3TargetMW: 4000,
     // Tender 8, 24 June 2026 — largest storage procurement in CIS history
-    t8MW: 4205, t8MWh: 16074, t8Projects: 15,
+    t8MW: HISTORY_DATA.official.t8MW, t8MWh: HISTORY_DATA.official.t8MWh, t8Projects: 15,
     // Tender 10 — reported final dispatchable tender
-    t10MW: 4000, t10MWh: 16000, t10Close: '18 August 2026', cisWindUp: 2027,
+    t10MW: 4000, t10MWh: 16000, t10Close: '18 August 2026', cisWindUp: HISTORY_DATA.official.cisWindUp,
     // delivery risk
     preT3FidPct: 28,
 
@@ -80,7 +81,7 @@ const M = {
     lowerContJulK: 56, lowerContAugK: 126,
 
     // negative prices
-    negVicQ2Pct: 22.4, negSaQ2Pct: 21.9, negSaQ4Pct: 48.4,
+    negVicQ2Pct: HISTORY_DATA.official.negVicQ2Pct, negSaQ2Pct: HISTORY_DATA.official.negSaQ2Pct, negSaQ4Pct: HISTORY_DATA.official.negSaQ4Pct,
 
     // duration
     fleetMW: 7960, fleetMWh: 18961, fleetHours: 2.38,

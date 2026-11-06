@@ -37,6 +37,19 @@ export default defineConfig({
         onlyExplicitManualChunks: true,
         manualChunks(id){
           if(/[\\/]experience[\\/]story[\\/]kit[\\/](svg|iso|symbols)\.js$/.test(id))return 'story-geometry';
+          // The public history and original research share the SAME owner data.
+          // Keep owner-only bytes identifiable; never fold other markets into
+          // the common engine or move a full dashboard across this boundary.
+          const split=new Set(['nem','gb','ie','ro','pl']);
+          const history=/[\\/]markets[\\/]([^\\/]+)[\\/](history|historyEntry)\.js$/.exec(id);
+          if(history){
+            // The public-only adapter must never hitch a ride on the original
+            // dashboard's history/data payload. Its COMPLETE closure is still
+            // charged and tested when the public reader actually opens it.
+            if(history[2]==='history')return (split.has(history[1])?'research-history-':'research-owner-')+history[1];
+          }
+          const data=/[\\/]markets[\\/]([^\\/]+)[\\/](?:historyData|data[\\/]rcmHistory)\.js$/.exec(id);
+          if(data)return (split.has(data[1])?'research-data-':'research-owner-')+data[1];
         },
         /* NAME A MARKET CHUNK AFTER ITS MARKET.
            Every lazily-loaded dashboard entry is called `dashboard.js`, so
@@ -51,8 +64,11 @@ export default defineConfig({
            label wanted. Anything not matching that shape keeps the default. */
         chunkFileNames(chunk){
           const id = chunk.facadeModuleId || '';
+          if(/^research-(?:data|history|owner)-/.test(chunk.name))return 'assets/[name]-[hash].js';
           const publicReading = /[\\/]experience[\\/]story[\\/]public[\\/](content[\\/])?([^\\/]+)\.js$/.exec(id);
           if(publicReading)return `assets/public-${publicReading[1]?'content-':''}${publicReading[2]}-[hash].js`;
+          const historyEntry=/[\\/]markets[\\/]([^\\/]+)[\\/]historyEntry\.js$/.exec(id);
+          if(historyEntry)return `assets/research-entry-${historyEntry[1]}-[hash].js`;
           // A shared public pack can lose its facade when a chapter also uses
           // its content helpers. Preserve its diagnostic/retry asset identity.
           for(const part of ['pack','scene','chapter','overview','catalog','content']){

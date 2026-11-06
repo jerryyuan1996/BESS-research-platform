@@ -1,3 +1,5 @@
+import {SNAPSHOT_INTRO,US_ITC_TERM} from '../_shared/researchStatus.js';
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    PJM — market dataset.
 
@@ -43,9 +45,9 @@
    --------------------------------------------------------------------------- */
 
 const M = {
-  asOf: '2026-08-03',
-  dataDate: '2028/29 BRA (Jul 2026) / CY2025 spreads / Regulation to Apr 2026',
-  modelVersion: 'pjm-seed-1.0-rpm-auction-renewal-two-leg-merchant',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['PJM Battery Investment Dashboard', 'PJM储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. RTO-wide capacity clearing; reference archetype 90 MW / 4h.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。容量按全RTO统一出清；参考原型为90MW/4小时。'],
@@ -53,25 +55,24 @@ const M = {
                   '下一里程碑：2029/2030年度基准剩余容量拍卖，2026年12月举行 — 这是价格上下限机制下的最后一次拍卖，上限为每MW每日$337.83。此后价格上限将回归至PJM估算约每MW每日$550的净新增成本基准。'],
   footerNote: ['Public and official sources collected 3 August 2026. The capacity line is taken from two PJM primary documents and is not an estimate. The merchant line is: no PJM battery revenue index is published, no PJM toll price has ever been disclosed, no US fixed opex series exists, and the Regulation/arbitrage split is estimated from FERC filings by nineteen units. Every merchant figure in this build is derived, not quoted.',
                '公开及官方来源于2026年8月3日采集。容量收入项取自两份PJM官方原始文件，非估算值。市场化收入项则为估算：PJM未发布储能收入指数，从未披露任何PJM租赁价格，不存在美国固定运维成本序列，且调频与套利的拆分系依据十九台机组的FERC申报推算。本版本所有市场化数值均为推导值而非报价。'],
-  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. Three specific warnings: a Base Residual Auction secures ONE delivery year and everything after it on this page is an analyst scenario; the observed Regulation revenue of the current ~400 MW fleet is not available to a new entrant and is carried as a band ceiling, not a base case; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page, so returns on this page exclude it.',
-             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。三点具体警示：基准剩余容量拍卖仅锁定一个实需年度，本页其后所有年份均属分析师情景假设；当前约400MW机组所观测到的调频收入对新进入者并不可得，故仅作为区间上限而非基准情形；§48E投资税收抵免在本页种子值为零、可在首页投资实验室中调整，因此本页收益率不含该抵免。'],
+  seedWarn: [SNAPSHOT_INTRO[0]+"Three specific warnings: a Base Residual Auction secures ONE delivery year and everything after it on this page is an analyst scenario; the observed Regulation revenue of the current ~400 MW fleet is not available to a new entrant and is carried as a band ceiling, not a base case; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page, so returns on this page exclude it.",SNAPSHOT_INTRO[1]+"三点具体警示：基准剩余容量拍卖仅锁定一个实需年度，本页其后所有年份均属分析师情景假设；当前约400MW机组所观测到的调频收入对新进入者并不可得，故仅作为区间上限而非基准情形；§48E投资税收抵免在本页种子值为零、可在首页投资实验室中调整，因此本页收益率不含该抵免。"],
 
   /* ---- official / sourced snapshot -------------------------------------
      Only values that come from a named publication sit here. Illustrative
      series live further down and are badged as such wherever they render. */
   official: {
     // ---- RPM capacity market ----
-    braPrice: 325.00, braDeliveryYear: '2028/2029', braDate: '14 July 2026',
+    braPrice: HISTORY_DATA.official.braPrice, braDeliveryYear: HISTORY_DATA.official.braDeliveryYear, braDate: '14 July 2026',
     braUcapMW: 138318, braFrrMW: 10864, braTotalUcapMW: 149182,
-    braShortMW: 6831, braValueBn: 16.4, braReserveMarginPct: 14.7,
+    braShortMW: HISTORY_DATA.official.braShortMW, braValueBn: 16.4, braReserveMarginPct: 14.7,
     braNewMW: 525, braOfferedMW: 139595, braPrevClearedMW: 134585,
     braChangePct: -2.5, braSupplyTotalMW: 202288, braSupplyPrevMW: 200994,
-    prevBraPrice: 333.44, prevBraDeliveryYear: '2027/2028', prevBraShortMW: 6500,
+    prevBraPrice: HISTORY_DATA.official.prevBraPrice, prevBraDeliveryYear: HISTORY_DATA.official.prevBraDeliveryYear, prevBraShortMW: HISTORY_DATA.official.prevBraShortMW,
     /* What the same auction would have cleared at with no collar. This is PJM's
        own published simulation and it is the single most important forward number
        on this tab. */
     uncappedSimRto: 529.80, uncappedSimDom: 542.83,
-    collarAuctions: 4, collarLastDeliveryYear: '2029/2030',
+    collarAuctions: HISTORY_DATA.official.collarAuctions, collarLastDeliveryYear: HISTORY_DATA.official.collarLastDeliveryYear,
     nextBraDate: 'December 2026', nextBraDeliveryYear: '2029/2030',
     /* PJM planning parameters for the 2029/2030 BRA, posted 31 August 2026. The
        collar is re-derived per auction: the Reference Resource UCAP factor fell
@@ -84,7 +85,7 @@ const M = {
     // Supply mix, UCAP, 2028/2029 cleared plus FRR.
     mixGasPct: 46, mixNuclearPct: 20, mixCoalPct: 18, mixDrPct: 5,
     mixHydroPct: 4, mixWindPct: 2, mixOilPct: 2, mixSolarPct: 1,
-    gasChangeMW: 5639, coalChangeMW: -2941, solarChangeMW: 651,
+    gasChangeMW: 5639, coalChangeMW: HISTORY_DATA.official.coalChangeMW, solarChangeMW: 651,
 
     // ---- ELCC accreditation ----
     elcc4h: 59, elcc6h: 68, elcc8h: 71, elcc10h: 78,
@@ -94,7 +95,7 @@ const M = {
 
     // ---- Regulation ----
     regRedesignDate: '1 October 2025', regPhase2Date: 'October 2026',
-    regMarketBeforeMW: 320, regMarketAfterMW: 750,
+    regMarketBeforeMW: HISTORY_DATA.official.regMarketBeforeMW, regMarketAfterMW: HISTORY_DATA.official.regMarketAfterMW,
     regPriceOct25: 129, regPriceSep25: 56, regPriceJun25: 55,
     regPricePeakLo: 66, regPricePeakHi: 83,
     regSpike5minAm: 750, regSpike5minPm: 1800,
@@ -500,7 +501,7 @@ const M = {
     ['TB4 spread — four highest hourly prices less the four lowest', 'TB4价差 — 最高四个小时电价减去最低四个小时'],
     ['System impact study — where network upgrade cost is quantified', '系统影响研究 — 量化电网升级成本的环节'],
     ['Interconnection Service Agreement (ISA)', '并网服务协议（ISA）'],
-    ['§48E investment tax credit — 30% for standalone storage', '§48E投资税收抵免 — 独立储能30%'],
+    US_ITC_TERM,
     ['FEOC / Material Assistance Cost Ratio (MACR) — pass or lose the credit', 'FEOC/实质协助成本比率（MACR） — 通过方可保留抵免，否则全额丧失'],
     ['Transfer market — how a sponsor monetises the credit, at ~93 cents', '转让市场 — 投资人变现抵免的途径，约93美分'],
     ['Electric Quarterly Report (EQR) — FERC revenue filings', '电力季度报告（EQR） — 提交至FERC的收入申报'],

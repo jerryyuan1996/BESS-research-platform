@@ -1,10 +1,10 @@
-# 公共内容审阅 · 2026-11-06.1
+# 公共内容审阅 · 2026-11-06.3
 
-15 个公共版本均为待确认。旧批准只覆盖原脚本、投资人／策略／阶段；以下内容没有新的 Jerry 签核。
+原十五市场的公共投资逻辑及新版公共编辑仍待确认。新增历史迁移覆盖十八市场，原研究全文与资本视角保留原作用域；原内容批准不等于公共新版本批准。
 
 ## 西澳 WEM · wa
 
-状态：**公共解读待确认**；原脚本版本 2026-10-30；来源复核 2026-10-30。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-10-30；补充内容批准：未推断；明确来源核对：未单列。不同事件不合用一种批准日期。
 
 - history EN: 2006 · The WEM opened with energy and capacity payments on an isolated grid.
 - history ZH: 2006年 · WEM在独立电网上引入电能量及容量付费。
@@ -17,7 +17,7 @@ Mechanism EN: AEMO allocates Capacity Credits after certification. Capacity avai
 
 Mechanism ZH: AEMO在认证后分配容量信用。容量可用性、电能量和系统服务对应不同义务；年度容量价格不是长期固定电价。
 
-原适用范围：`{"playRef":"wa-cap-8h","hours":8,"call":"opportunistic","on":"2026-10-30"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"wa-cap-8h","hours":8,"call":"opportunistic","on":"2026-10-30"}`。
 
 原脚本：[docs/immersive-experience-plan/western-australia-storyboard.md](../../docs/immersive-experience-plan/western-australia-storyboard.md)。
 
@@ -25,7 +25,7 @@ Mechanism ZH: AEMO在认证后分配容量信用。容量可用性、电能量�
 
 ## 澳洲 NEM · nem
 
-状态：**公共解读待确认**；原脚本版本 2026-11-05；来源复核 2026-11-05。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-05；补充内容批准：未推断；明确来源核对：2026-11-05。不同事件不合用一种批准日期。
 
 - history EN: December 1998 · The east coast joined an energy-only wholesale market.
 - history ZH: 1998年12月 · 东海岸组成以电能量交易为核心的批发市场。
@@ -38,7 +38,7 @@ Mechanism EN: Energy trading earns the regional spot price and FCAS pays qualifi
 
 Mechanism ZH: 电能量交易按区域现货价格结算，FCAS为合格服务付费。CIS或其他收入支持中标是独立协议：收入下限、上限、支付限额、起始与到期条件须从合同核对。申请不等于中标。
 
-原适用范围：`{"playRef":"nem-ltda-4h","hours":4,"call":"opportunistic","on":"2026-11-05"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"nem-ltda-4h","hours":4,"call":"opportunistic","on":"2026-11-05"}`。
 
 原脚本：[docs/immersive-experience-plan/nem-storyboard.md](../../docs/immersive-experience-plan/nem-storyboard.md)。
 
@@ -46,7 +46,7 @@ Mechanism ZH: 电能量交易按区域现货价格结算，FCAS为合格服务�
 
 ## 英国 · gb
 
-状态：**公共解读待确认**；原脚本版本 2026-11-01；来源复核 2026-11-01。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-01；补充内容批准：未推断；明确来源核对：2026-10-31。不同事件不合用一种批准日期。
 
 - history EN: 2001–2005 · Bilateral trading replaced the Pool and expanded across Great Britain.
 - history ZH: 2001—2005年 · 双边交易取代电力库，并扩展至整个大不列颠。
@@ -59,7 +59,7 @@ Mechanism EN: Trading, NESO response procurement, balancing settlement and Capac
 
 Mechanism ZH: 交易、NESO响应采购、平衡结算和容量市场协议，为不同动作付费。私人租赁合同可在期限内以费用交换调度权；市场并不向所有电池授予这笔租赁费。
 
-原适用范围：`{"playRef":"gb-toll-4h","call":"opportunistic","hours":4,"lens":"infraFund","stage":"operating","route":"toll","on":"2026-11-01","commit":"26a678b8bf0c01e8b04c3b9553b2e877c68497bb"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"gb-toll-4h","call":"opportunistic","hours":4,"lens":"infraFund","stage":"operating","route":"toll","on":"2026-11-01","commit":"26a678b8bf0c01e8b04c3b9553b2e877c68497bb"}`。
 
 原脚本：[docs/immersive-experience-plan/great-britain-storyboard.md](../../docs/immersive-experience-plan/great-britain-storyboard.md)。
 
@@ -67,7 +67,7 @@ Mechanism ZH: 交易、NESO响应采购、平衡结算和容量市场协议，�
 
 ## 德国 · de
 
-状态：**公共解读待确认**；原脚本版本 2026-10-31；来源复核 2026-10-31。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-10-31；补充内容批准：未推断；明确来源核对：未单列。不同事件不合用一种批准日期。
 
 - history EN: 1998 · Market opening established competition and energy-price signals.
 - history ZH: 1998年 · 市场开放确立了竞争与电能量价格信号。
@@ -80,7 +80,7 @@ Mechanism EN: The public market pays trading and qualified balancing activity. A
 
 Mechanism ZH: 公共市场为交易和合格平衡服务付费。租赁以调度权交换合同期内约定收入。须核对充电成本、电网成本、可用率扣款以及到期后的市场风险。容量采购资格须单独检验。
 
-原适用范围：`{"playRef":"de-toll-4h","hours":4,"call":"opportunistic","on":"2026-10-31"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"de-toll-4h","hours":4,"call":"opportunistic","on":"2026-10-31"}`。
 
 原脚本：[docs/immersive-experience-plan/germany-storyboard.md](../../docs/immersive-experience-plan/germany-storyboard.md)。
 
@@ -88,7 +88,7 @@ Mechanism ZH: 公共市场为交易和合格平衡服务付费。租赁以调度
 
 ## 意大利 · it
 
-状态：**公共解读待确认**；原脚本版本 2026-11-01；来源复核 2026-11-01。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-01；补充内容批准：未推断；明确来源核对：2026-10-31。不同事件不合用一种批准日期。
 
 - history EN: 2021 · A decree set the route toward centrally procured storage alongside the capacity market.
 - history ZH: 2021年 · 法令为容量市场之外的集中采购储能建立路径。
@@ -101,7 +101,7 @@ Mechanism EN: The capacity market pays per credited unit of power; MACSE procure
 
 Mechanism ZH: 容量市场按计入功率付费；MACSE采购储存电量，并转移该签约电量的时移使用权。合同的计量单位、控制权和批次须一并核对。旧批次示例不能当作当前新进入者的排名。
 
-原适用范围：`{"playRef":"it-cap-4h","hours":4,"call":"enter-now","lens":"infraFund","on":"2026-11-01","commit":"7effd37"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"it-cap-4h","hours":4,"call":"enter-now","lens":"infraFund","on":"2026-11-01","commit":"7effd37"}`。
 
 原脚本：[docs/immersive-experience-plan/italy-storyboard.md](../../docs/immersive-experience-plan/italy-storyboard.md)。
 
@@ -109,7 +109,7 @@ Mechanism ZH: 容量市场按计入功率付费；MACSE采购储存电量，并�
 
 ## 爱尔兰 · ie
 
-状态：**公共解读待确认**；原脚本版本 2026-11-02；来源复核 2026-11-02。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-01；补充内容批准：未推断；明确来源核对：2026-10-31。不同事件不合用一种批准日期。
 
 - history EN: 2007 / 2018 · The all-island market formed, then introduced the redesigned I-SEM.
 - history ZH: 2007／2018年 · 全岛市场成立，随后实施I-SEM新设计。
@@ -122,7 +122,7 @@ Mechanism EN: Suppliers fund capacity through the market operator; energy trades
 
 Mechanism ZH: 售电商通过市场运营商为容量付费；电能量通过批发市场交易，系统运营商采购服务。资格与实际中标须分别核实。历史系统服务费率，不能确立新进入者未来的收入。
 
-原适用范围：`{"playRef":"ie-cap-6h","hours":6,"call":"wait","lens":"infraFund","on":"2026-11-01","commit":"7e00c1a0abac88d9bb4355624febb0bb571ff381"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"ie-cap-6h","hours":6,"call":"wait","lens":"infraFund","on":"2026-11-01","commit":"7e00c1a0abac88d9bb4355624febb0bb571ff381"}`。
 
 原脚本：[docs/immersive-experience-plan/ireland-storyboard.md](../../docs/immersive-experience-plan/ireland-storyboard.md)。
 
@@ -130,7 +130,7 @@ Mechanism ZH: 售电商通过市场运营商为容量付费；电能量通过批
 
 ## 罗马尼亚 · ro
 
-状态：**公共解读待确认**；原脚本版本 2026-11-02；来源复核 2026-11-02。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-01；补充内容批准：未推断；明确来源核对：2026-11-02。不同事件不合用一种批准日期。
 
 - history EN: 2005–2021 · Day-ahead auctions developed into European market coupling.
 - history ZH: 2005—2021年 · 日前拍卖逐步接入欧洲市场耦合。
@@ -143,7 +143,7 @@ Mechanism EN: Trading and balancing pay market revenues. A private optimiser flo
 
 Mechanism ZH: 交易和平衡服务产生市场收入。已签署的私人优化商保底是另一种承诺：须核对付款、期限、费用、可用率测试和对手方。将境外标定曲线视为罗马尼亚证据之前，需要本地备用采购结果。
 
-原适用范围：`{"playRef":"ro-mer-2h","hours":2,"call":"opportunistic","on":"2026-11-02","commit":"7e00c1a"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"ro-mer-2h","hours":2,"call":"opportunistic","on":"2026-11-02","commit":"7e00c1a"}`。
 
 原脚本：[docs/immersive-experience-plan/romania-storyboard.md](../../docs/immersive-experience-plan/romania-storyboard.md)。
 
@@ -151,7 +151,7 @@ Mechanism ZH: 交易和平衡服务产生市场收入。已签署的私人优化
 
 ## 波兰 · pl
 
-状态：**公共解读待确认**；原脚本版本 2026-11-01；来源复核 2026-11-01。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-01；补充内容批准：未推断；明确来源核对：2026-11-02。不同事件不合用一种批准日期。
 
 - history EN: 2017 · Poland created a capacity market as its coal-based fleet aged.
 - history ZH: 2017年 · 煤电机组老化背景下，波兰建立容量市场。
@@ -164,7 +164,7 @@ Mechanism EN: A capacity agreement pays for availability and carries delivery pe
 
 Mechanism ZH: 容量协议为可用性付费，并附带未履约罚则。建设补贴报销合格建设成本，不是持续运营收入。电力交易另行计算。早期容量系数和已关闭的补贴批次，不能套用到尚未中标的新项目。
 
-原适用范围：`{"playRef":"pl-grant-4h","hours":4,"call":"opportunistic","on":"2026-11-01","commit":"474766e","lens":"infraFund"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"pl-grant-4h","hours":4,"call":"opportunistic","on":"2026-11-01","commit":"474766e","lens":"infraFund"}`。
 
 原脚本：[docs/immersive-experience-plan/poland-storyboard.md](../../docs/immersive-experience-plan/poland-storyboard.md)。
 
@@ -172,7 +172,7 @@ Mechanism ZH: 容量协议为可用性付费，并附带未履约罚则。建设
 
 ## 日本东京／关东 · jp_tokyo
 
-状态：**公共解读待确认**；原脚本版本 2026-11-05；来源复核 2026-11-05。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-05；补充内容批准：未推断；明确来源核对：未单列。不同事件不合用一种批准日期。
 
 - history EN: 2011–2020 · Supply shocks led into national coordination, retail opening and grid separation.
 - history ZH: 2011—2020年 · 供给冲击之后，推进全国协调、售电开放与电网分离。
@@ -185,7 +185,7 @@ Mechanism EN: National capacity auctions and long-term decarbonisation awards ha
 
 Mechanism ZH: 全国容量拍卖与长期脱碳中标采用不同期限。长期中标者取得合同容量付费，须满足放电与履约义务，并按适用规则返还大部分其他市场利润。容量中标不能消除区域充电或并网约束。
 
-原适用范围：`{"lens":"infraFund","route":"ltda","stage":"operating","on":"2026-11-05"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"lens":"infraFund","route":"ltda","stage":"operating","on":"2026-11-05"}`。
 
 原脚本：[docs/immersive-experience-plan/japan-storyboard.md](../../docs/immersive-experience-plan/japan-storyboard.md)。
 
@@ -195,7 +195,7 @@ Mechanism ZH: 全国容量拍卖与长期脱碳中标采用不同期限。长期
 
 ## 日本九州 · jp_kyushu
 
-状态：**公共解读待确认**；原脚本版本 2026-11-05；来源复核 2026-11-05。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-05；补充内容批准：未推断；明确来源核对：未单列。不同事件不合用一种批准日期。
 
 - history EN: 2012–2018 · Renewable support preceded connection pressure and mainland curtailment.
 - history ZH: 2012—2018年 · 可再生能源支持之后，出现并网压力及九州本土弃电。
@@ -208,7 +208,7 @@ Mechanism EN: National capacity auctions and long-term decarbonisation awards ha
 
 Mechanism ZH: 全国容量拍卖与长期脱碳中标采用不同期限。长期中标者取得合同容量付费，须满足放电与履约义务，并按适用规则返还大部分其他市场利润。容量中标不能消除区域充电或并网约束。
 
-原适用范围：`{"lens":"infraFund","route":"ltda","stage":"operating","on":"2026-11-05"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"lens":"infraFund","route":"ltda","stage":"operating","on":"2026-11-05"}`。
 
 原脚本：[docs/immersive-experience-plan/japan-storyboard.md](../../docs/immersive-experience-plan/japan-storyboard.md)。
 
@@ -218,7 +218,7 @@ Mechanism ZH: 全国容量拍卖与长期脱碳中标采用不同期限。长期
 
 ## 日本北海道 · jp_hokkaido
 
-状态：**公共解读待确认**；原脚本版本 2026-11-05；来源复核 2026-11-05。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-05；补充内容批准：未推断；明确来源核对：未单列。不同事件不合用一种批准日期。
 
 - history EN: 2018 · The Hokkaido blackout highlighted the needs of a small, linked regional system.
 - history ZH: 2018年 · 北海道停电凸显了小型区域互联系统的运行需求。
@@ -231,7 +231,7 @@ Mechanism EN: National capacity auctions and long-term decarbonisation awards ha
 
 Mechanism ZH: 全国容量拍卖与长期脱碳中标采用不同期限。长期中标者取得合同容量付费，须满足放电与履约义务，并按适用规则返还大部分其他市场利润。容量中标不能消除区域充电或并网约束。
 
-原适用范围：`{"lens":"infraFund","route":"ltda","stage":"operating","on":"2026-11-05"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"lens":"infraFund","route":"ltda","stage":"operating","on":"2026-11-05"}`。
 
 原脚本：[docs/immersive-experience-plan/japan-storyboard.md](../../docs/immersive-experience-plan/japan-storyboard.md)。
 
@@ -241,7 +241,7 @@ Mechanism ZH: 全国容量拍卖与长期脱碳中标采用不同期限。长期
 
 ## 美国 PJM · pjm
 
-状态：**公共解读待确认**；原脚本版本 2026-11-03；来源复核 2026-11-03。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-01；补充内容批准：未推断；明确来源核对：2026-11-03。不同事件不合用一种批准日期。
 
 - history EN: 1927 / 2007–2008 · A power pool developed into energy and forward capacity markets.
 - history ZH: 1927年／2007—2008年度 · 电力联营体逐步发展出电能量及远期容量市场。
@@ -254,7 +254,7 @@ Mechanism EN: Electricity suppliers pay through PJM for capacity that cleared th
 
 Mechanism ZH: 售电主体通过PJM为拍卖中出清的容量付费。资源须在紧急状态下履约。核定系数决定铭牌功率中有多少可计入；单次高价拍卖不锁定下一交付年度。电能量和调频仍属独立市场业务。
 
-原适用范围：`{"playRef":"pjm-cap-4h","hours":4,"call":"wait","on":"2026-10-31"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"pjm-cap-4h","hours":4,"call":"wait","on":"2026-10-31"}`。
 
 原脚本：[docs/immersive-experience-plan/pjm-storyboard.md](../../docs/immersive-experience-plan/pjm-storyboard.md)。
 
@@ -262,7 +262,7 @@ Mechanism ZH: 售电主体通过PJM为拍卖中出清的容量付费。资源须
 
 ## 美国 ERCOT · ercot
 
-状态：**公共解读待确认**；原脚本版本 2026-11-01；来源复核 2026-11-02。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-01；补充内容批准：未推断；明确来源核对：2026-11-02。不同事件不合用一种批准日期。
 
 - history EN: 2021–2025 · After Uri, reserve procurement and later real-time co-optimisation reshaped the market.
 - history ZH: 2021—2025年 · Uri寒潮之后，备用采购及后续实时联合优化重塑市场。
@@ -275,7 +275,7 @@ Mechanism EN: Energy and ancillary-service awards pay for different actions. Sca
 
 Mechanism ZH: 电能量与辅助服务中标，为不同动作付费。稀缺收入随系统条件与竞争变化。已签私人租赁合同以调度权交换约定收入；模型中的租赁费既不是已签合同，也不是公开市场费率。
 
-原适用范围：`{"lens":"infraFund","playRef":"ercot-toll-2h","on":"2026-11-01","gate":"G-1 only"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"lens":"infraFund","playRef":"ercot-toll-2h","on":"2026-11-01","gate":"G-1 only"}`。
 
 原脚本：[docs/immersive-experience-plan/ercot-storyboard.md](../../docs/immersive-experience-plan/ercot-storyboard.md)。
 
@@ -283,7 +283,7 @@ Mechanism ZH: 电能量与辅助服务中标，为不同动作付费。稀缺收
 
 ## 美国 CAISO · caiso
 
-状态：**公共解读待确认**；原脚本版本 2026-11-03；来源复核 2026-11-03。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-11-01；补充内容批准：2026-11-03；明确来源核对：2026-10-31。不同事件不合用一种批准日期。
 
 - history EN: 2006 · System Resource Adequacy requirements preceded the solar-driven duck curve.
 - history ZH: 2006年 · 系统资源充足性要求实施，随后光伏增长形成鸭子曲线。
@@ -296,7 +296,7 @@ Mechanism EN: Resource Adequacy is a bilateral obligation backed by deliverabili
 
 Mechanism ZH: 资源充足性是以可交付性及售电主体合同为基础的双边义务，仅有并网连接不足以取得收入。已出售的RA容量须满足市场报价及再充电要求；交易只能使用与之兼容的剩余能力。
 
-原适用范围：`{"playRef":"caiso-cap-4h","hours":4,"call":"opportunistic","lens":"infraFund","on":"2026-11-02","commit":"474766e07ff78a20a57e0a999a3da05c0a62dbf3"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"caiso-cap-4h","hours":4,"call":"opportunistic","lens":"infraFund","on":"2026-11-02","commit":"474766e07ff78a20a57e0a999a3da05c0a62dbf3"}`。
 
 原脚本：[docs/immersive-experience-plan/caiso-storyboard.md](../../docs/immersive-experience-plan/caiso-storyboard.md)。
 
@@ -304,7 +304,7 @@ Mechanism ZH: 资源充足性是以可交付性及售电主体合同为基础的
 
 ## 芬兰 · fi
 
-状态：**公共解读待确认**；原脚本版本 2026-11-01；来源复核 2026-11-01。
+状态：**公共新编辑待确认**。原脚本 G-1：2026-10-31；补充内容批准：2026-11-01；明确来源核对：2026-10-31。不同事件不合用一种批准日期。
 
 - history EN: 2023 · Olkiluoto 3 entered regular production within the Nordic synchronous system.
 - history ZH: 2023年 · Olkiluoto 3在北欧同步系统内开始常规发电。
@@ -317,8 +317,14 @@ Mechanism EN: Fingrid pays accepted reserve capability; activation energy follow
 
 Mechanism ZH: Fingrid为获接受的备用能力付费；调用电量遵循各品种结算规则。交易及私人优化商保底另行核算。已并网储能代表潜在竞争，并不等于已获资格或已中标的备用供给。
 
-原适用范围：`{"playRef":"fi-toll-2h","hours":2,"call":"opportunistic","on":"2026-10-31","commit":"edcb39ca0d69397f3683dffc9af5ffb49473c98c"}`。
+原绑定作用域（其中 on 是绑定锚点，不是 G-1 签核日期）：`{"playRef":"fi-toll-2h","hours":2,"call":"opportunistic","on":"2026-10-31","commit":"edcb39ca0d69397f3683dffc9af5ffb49473c98c"}`。
 
 原脚本：[docs/immersive-experience-plan/finland-storyboard.md](../../docs/immersive-experience-plan/finland-storyboard.md)。
 
 原始证据：SRC-FI-01, SRC-FI-02, SRC-FI-03, SRC-FI-04, SRC-FI-05, SRC-FI-06, SRC-FI-07, SRC-FI-08, SRC-FI-09, SRC-FI-10, SRC-FI-11, SRC-FI-12, SRC-FI-13, SRC-FI-14, SRC-FI-15, SRC-FI-16, SRC-FI-17, SRC-FI-18, SRC-FI-19, SRC-FI-20, SRC-FI-21, SRC-FI-22, SRC-FI-23, SRC-FI-24, SRC-FI-25, SRC-FI-26, SRC-FI-27, SRC-FI-28, SRC-FI-29, SRC-FI-30, SRC-FI-31, SRC-FI-32, SRC-FI-33, SRC-FI-34。
+
+## 完整历史迁移与三个历史专属入口
+
+十八市场、十六源所有者、九十独立节点均迁入历史背景；不是摘要摘录。双语 y/t/p/i、开篇、why、来源、支撑图表及原始数据绑定的逐项记录见 [完整来源映射](history/source-mapping.json)。西澳两条线十五节点保留，不能按年份去重；日本全国七节点共用，三区分化及尾解保持。原资本视角、未来计划与预测语义均保持原范围；公共位置和新布局仍待确认。
+
+安大略、沙特、西班牙仅开放现有历史和研究/来源两章，不生成公共投资逻辑、模型或 Story G-1 日期。原研究入口继续可用。[逐市场覆盖](history/coverage.md) · [十五市场批准事件核对](history/approval-date-audit.md)。

@@ -1,3 +1,4 @@
+import {HISTORY_FORMAT} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Italy — engine configuration.
 
@@ -7,7 +8,7 @@
    --------------------------------------------------------------------------- */
 
 const MKT = {
-  id: 'it', ns: 'it', locale: 'en-GB', cur: '€', curCode: 'EUR',
+  id: 'it', ns: 'it', locale: HISTORY_FORMAT.locale, cur: HISTORY_FORMAT.cur, curCode: 'EUR',
   tz: 'Europe/Rome', tzShort: 'CET',
   tzNote: ['All timestamps CET/CEST', '所有时间为中欧时间（CET/CEST）'],
   seedTag: 'IT_SEED_V1',

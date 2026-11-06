@@ -1,3 +1,5 @@
+import {HISTORY_SEED} from '../historyData.js';
+const historicalAverage=Object.getOwnPropertyDescriptor(HISTORY_SEED,'fleetAvgHours').get;
 /* ---------------------------------------------------------------------------
    WA seed dataset, verbatim from the prototype (lines 338-531).
    Official snapshot values plus the illustrative series that must be replaced by
@@ -8,14 +10,14 @@ import { landedDcPerKWh } from '../../../comparison/supplierQuote.js';
 
 // ---------------- SEED DATA (spec §3 official snapshot + §24 example JSON) ----------------
 const SEED = {
-  asOf: '2026-07-26',
-  modelVersion: 'seed-1.3-wem-structure-nem-benchmark',
+  asOf: HISTORY_SEED.asOf,
+  modelVersion: HISTORY_SEED.modelVersion,
   // --- official snapshot values (spec §3) — badge: official, status: SEED_JSON_V1 ---
-  brcp2829: 488500,          // A$/MW/yr, 2028-29 Peak & Flexible BRCP (ERA, 200 MW / 1,200 MWh benchmark)
-  rcp2728: 360700,           // A$/MW/yr, 2027-28 published Peak RCP
+  brcp2829: HISTORY_SEED.brcp2829,          // A$/MW/yr, 2028-29 Peak & Flexible BRCP (ERA, 200 MW / 1,200 MWh benchmark)
+  rcp2728: HISTORY_SEED.rcp2728,           // A$/MW/yr, 2027-28 published Peak RCP
   peakRcr2829: 6323,         // MW
   surplusAboveRcr: 347,      // MW existing+committed above Peak RCR (official position)
-  fleetMW: 1275, fleetMWh: 5140,          // Q1 2026 (AEMO)
+  fleetMW: HISTORY_SEED.fleetMW, fleetMWh: HISTORY_SEED.fleetMWh,          // Q1 2026 (AEMO)
   spreadNow: 13, spreadPrior: 51,          // A$/MWh energy price spread Q1 2026 vs Q1 2025 (AEMO)
   fcessBattRevNow: 4.2, fcessBattRevPrior: 8.6,   // A$M battery FCESS revenue Q1 2026 vs Q1 2025
   fcessCostNow: 5.1,         // A$M FCESS enablement cost Q1 2026 (down ~75% yoy)
@@ -25,7 +27,7 @@ const SEED = {
   get supplyRatio(){ return this.expectedCC / this.peakRcr2829; },                  // 1.0549
   get upperDeadbandHeadroom(){ return Math.round(this.peakRcr2829 * 1.05 - this.expectedCC); },  // −31 MW
   get lowerDeadbandHeadroom(){ return Math.round(this.expectedCC - this.peakRcr2829 * 0.95); },
-  get fleetAvgHours(){ return this.fleetMWh / this.fleetMW; },
+  get fleetAvgHours(){ return historicalAverage.call(this); },
 
   // --- homepage decision seed (spec §24, illustrative) ---
   overall: { confidence: 74, codWindow: '2028–2029',
@@ -79,8 +81,8 @@ const SEED = {
   ],
 
   // --- ESR trajectory (rule path per spec §2.6/§9.2A; transition vintages indicative) ---
-  esrYears: ['2024-25', '2025-26', '2026-27', '2027-28', '2028-29'],
-  esrPath: [4, 4, 4, 6, 7],
+  esrYears: HISTORY_SEED.esrYears,
+  esrPath: HISTORY_SEED.esrPath,
 
   // --- fleet + pipeline duration distribution (illustrative) ---
   durBuckets: ['≤2h', '4h', '6h', '≥8h'],

@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {PUBLIC_CATALOG,PUBLIC_VERSION} from '../src/experience/story/public/catalog.js';
 import {loadPublicContent} from '../src/experience/story/public/content.js';
+import {expectCompleteHistory} from './helpers/research-history.js';
 const slugs={wa:'western-australia',nem:'nem',gb:'great-britain',de:'germany',it:'italy',ie:'ireland',ro:'romania',pl:'poland',jp_tokyo:'japan-tokyo',jp_kyushu:'japan-kyushu',jp_hokkaido:'japan-hokkaido',pjm:'pjm',ercot:'ercot',caiso:'caiso',fi:'finland'};
 const investors=['infraFund','strategic','foreignFirstTimer','developer'];
 test.beforeEach(async({page})=>{await page.route(/^https:\/\//,r=>r.abort());});
@@ -20,10 +21,15 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       await expect(profile).toBeVisible();await expect(profile).toHaveValue(investor);
       const bound=await trigger.boundingBox();expect(bound.y+bound.height).toBeLessThanOrEqual(page.viewportSize().height);
       const c=PUBLIC_CATALOG[id];await expect(overview).toContainText(c.history[locale==='en'?0:1]);await expect(overview).toContainText(c.logic[locale==='en'?0:1]);await expect(overview).toContainText(c.condition[locale==='en'?0:1]);
+      await expect(overview.locator('[data-date-kind=g1]')).toContainText(c.g1ApprovedOn);
+      await expect(overview.locator('[data-date-kind=source-check]')).toHaveCount(c.evidenceCheckedOn?1:0);
+      if(c.evidenceCheckedOn)await expect(overview.locator('[data-date-kind=source-check]')).toContainText(c.evidenceCheckedOn);
       const order=await overview.evaluate(el=>['decision','bankable','revenue'].every(id=>{const target=document.getElementById(id);return !target||Boolean(el.compareDocumentPosition(target)&Node.DOCUMENT_POSITION_FOLLOWING);}));expect(order).toBe(true);
       const summary=await overview.innerText();if(expectedOverview)expect(summary).toBe(expectedOverview);else expectedOverview=summary;
       await trigger.click();const dialog=page.locator('.public-story-dialog');await expect(dialog).toBeVisible();await expect(dialog.locator('[data-chapter=history].public-chapter')).toBeVisible();
       await expect(dialog).toHaveAttribute('data-market',id);await expect(dialog).toHaveAttribute('lang',locale);
+      await expectCompleteHistory(page,id,locale);
+      await expect(dialog.locator('.public-source-check-note')).toHaveCount(c.evidenceCheckedOn&&c.evidenceCheckedOn>c.g1ApprovedOn?1:0);
       await dialog.locator('.public-story-nav button[data-chapter=mechanism]').click();await expect(dialog.locator('.public-power-scene')).toBeVisible();
       const text=await dialog.locator('.public-chapter').innerText();if(expectedMechanism)expect(text).toBe(expectedMechanism);else expectedMechanism=text;
       await expect(dialog.locator('.public-power-scene')).toHaveAttribute('data-market',id);
@@ -50,7 +56,7 @@ test('keyboard, history, language, deep links and repeated opening preserve the 
   await page.goBack();await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','system');
   await page.goForward();await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
   await dialog.getByRole('button',{name:'Switch to Chinese'}).click();await expect(dialog).toHaveAttribute('lang','zh');await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
-  const deep=page.url();expect(deep).toContain('public-zh-2026-11-06-1-storage');await page.reload();await expect(page.locator('.public-story-dialog')).toHaveAttribute('lang','zh');await expect(page.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
+  const deep=page.url();expect(deep).toContain('public-zh-'+PUBLIC_VERSION.replace('.','-')+'-storage');await page.reload();await expect(page.locator('.public-story-dialog')).toHaveAttribute('lang','zh');await expect(page.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
   await page.keyboard.press('Escape');await expect(page.locator('.public-story-dialog')).toHaveCount(0);expect(await page.evaluate(()=>scrollY)).toBeCloseTo(scroll,0);await expect(page.locator('.public-story-trigger')).toBeFocused();
   await page.goBack();await expect(page.locator('.public-story-dialog')).toBeVisible();
   await page.keyboard.press('Escape');await page.locator('.public-story-trigger').click();await expect(page.locator('.public-story-dialog')).toBeVisible();
@@ -98,6 +104,22 @@ test('the first screen fetches no complete narrative or SVG; subsequent chapters
   await page.locator('.public-story-trigger').click();await page.locator('.public-chapter').waitFor();expect(fetched.some(s=>/public-content-nem-/.test(s))).toBe(true);expect(fetched.some(s=>/public-scene-|story-geometry-/.test(s))).toBe(false);
   await page.locator('.public-story-nav button[data-chapter=mechanism]').click();await page.locator('.public-power-scene').waitFor();
   await page.waitForLoadState('networkidle');const count=fetched.length;await page.locator('.public-story-nav button[data-chapter=storage]').click();await page.locator('.public-power-scene').waitFor();await page.waitForLoadState('networkidle');expect(fetched.length).toBe(count);
+});
+
+test('original approval events and later source checks remain distinct, including an older-edition link',async({page})=>{
+  await page.goto('/markets/ercot?view=story&chapter=history&shot=public-en-2026-11-06-1-history');
+  let dialog=page.locator('.public-story-dialog');await expect(dialog).toHaveAttribute('data-version',PUBLIC_VERSION);
+  await expect(dialog.locator('.public-source-check-note')).toContainText('2026-11-02');
+  await expect(dialog.locator('.public-source-check-note')).toContainText('does not establish changed source content or new approval');
+  await expect(dialog).toContainText('Showing the current review draft');
+  await dialog.locator('.public-story-nav button[data-chapter=research]').click();
+  await expect(dialog.locator('[data-date-kind=g1]')).toContainText('2026-11-01');
+  await expect(dialog.locator('[data-date-kind=source-check]')).toContainText('2026-11-02');
+  await expect(dialog.locator('[data-date-kind=g2]')).toHaveCount(0);
+  await page.goto('/markets/finland');await page.locator('.public-story-trigger').click();dialog=page.locator('.public-story-dialog');
+  await dialog.locator('.public-story-nav button[data-chapter=research]').click();
+  await expect(dialog.locator('[data-date-kind=g1]')).toContainText('2026-10-31');
+  await expect(dialog.locator('[data-date-kind=supplement]')).toContainText('2026-11-01');
 });
 
 test.describe('touch panning',()=>{
