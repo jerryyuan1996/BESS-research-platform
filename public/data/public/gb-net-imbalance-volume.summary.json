@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "gb-net-imbalance-volume",
+  "marketId": "gb",
+  "title": [
+    "GB net system imbalance volume",
+    "英国系统净不平衡电量"
+  ],
+  "authority": "observed",
+  "source": {
+    "name": "Elexon Insights, DISEBSP",
+    "url": "https://bmrs.elexon.co.uk/system-prices",
+    "licence": "Elexon BMRS Open Data Licence",
+    "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
+    "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
+  },
+  "fetchedAt": "2026-11-06T14:11:03.819Z",
+  "coverage": {
+    "from": "2026-10-27T00:00:00.000Z",
+    "to": "2026-11-05T23:30:00.000Z",
+    "resolution": "PT30M",
+    "points": 480
+  },
+  "units": {
+    "energy": "MWh"
+  },
+  "derived": null,
+  "notes": [
+    "Elexon DISEBSP indicative system prices/NIV; D+1 revisions remain possible. Not final settlement data.",
+    "Europe/London settlement days have 46, 48 or 50 half-hours; timestamps are UTC interval starts.",
+    "netImbalanceVolume, signed MWh per half-hour: positive = system short, negative = system long. Not MW or battery dispatch.",
+    "Rolling 365-day window, at most two revision days plus four backfill days per run. Partial/failed days retain prior points; coverage is not a claim of a complete year."
+  ],
+  "refreshHours": 6,
+  "staleAfterHours": 72,
+  "summarySchemaVersion": 1,
+  "arbitrage": null,
+  "metric": {
+    "schemaVersion": 1,
+    "field": "netImbalanceVolume",
+    "quantity": "energy",
+    "unit": "MWh",
+    "intervalMinutes": 30,
+    "settlementStatus": "indicative"
+  },
+  "dailyTimezone": "Europe/London",
+  "daily": [
+    {
+      "d": "2026-10-27",
+      "n": 48,
+      "expected": 48,
+      "mean": -188.133,
+      "min": -933.252721161032,
+      "max": 631.1231666666666,
+      "netMWh": -9030.3822
+    },
+    {
+      "d": "2026-10-28",
+      "n": 48,
+      "expected": 48,
+      "mean": 56.0827,
+      "min": -508.2550112367725,
+      "max": 479.63400119047617,
+      "netMWh": 2691.9694
+    },
+    {
+      "d": "2026-10-29",
+      "n": 48,
+      "expected": 48,
+      "mean": 102.4211,
+      "min": -375.0459098009393,
+      "max": 670.8970576356453,
+      "netMWh": 4916.2135
+    },
+    {
+      "d": "2026-10-30",
+      "n": 48,
+      "expected": 48,
+      "mean": 0.0395,
+      "min": -385.9222184963768,
+      "max": 477.211760719697,
+      "netMWh": 1.8955
+    },
+    {
+      "d": "2026-10-31",
+      "n": 48,
+      "expected": 48,
+      "mean": 62.6306,
+      "min": -309.53583194444445,
+      "max": 384.71401694444444,
+      "netMWh": 3006.2677
+    },
+    {
+      "d": "2026-11-01",
+      "n": 48,
+      "expected": 48,
+      "mean": 67.944,
+      "min": -283.8741957598039,
+      "max": 869.9254166666667,
+      "netMWh": 3261.3135
+    },
+    {
+      "d": "2026-11-02",
+      "n": 48,
+      "expected": 48,
+      "mean": 68.0838,
+      "min": -353.0545027493177,
+      "max": 483.0652746564744,
+      "netMWh": 3268.0202
+    },
+    {
+      "d": "2026-11-03",
+      "n": 48,
+      "expected": 48,
+      "mean": -92.2296,
+      "min": -482.4027551295518,
+      "max": 537.4623157804233,
+      "netMWh": -4427.021
+    },
+    {
+      "d": "2026-11-04",
+      "n": 48,
+      "expected": 48,
+      "mean": 23.847,
+      "min": -527.1110116884921,
+      "max": 362.2074969444445,
+      "netMWh": 1144.6572
+    },
+    {
+      "d": "2026-11-05",
+      "n": 48,
+      "expected": 48,
+      "mean": -27.0084,
+      "min": -465.99308621615313,
+      "max": 401.1398515402071,
+      "netMWh": -1296.4018
+    }
+  ],
+  "sourceSnapshot": {
+    "file": "gb-net-imbalance-volume.json",
+    "contentChecksum": "sha256:100da976e86ba9fa95b014a4672245f714ae9b8174afc806169c10031f33be36",
+    "points": 480
+  },
+  "contentChecksum": "sha256:dcfc12a6ec792c643b875ac2a547a55d8192c5c0e433c8322423fdb41f8fae43",
+  "summaryChecksum": "sha256:2ef0473d4ab0a466dc157ba21977a8b0b8341fb9b5daab4b1d3343a1bd414817"
+}

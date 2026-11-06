@@ -12,9 +12,9 @@
    a plant ID, a state and a county, and the latitude and longitude live on the
    ANNUAL EIA-860. Until that join is built these projects are pipeline-table
    rows with no map marker, which the schema supports on purpose: a project that
-   cannot be plotted is not a project that does not exist. It also carries no
-   energy capacity — `durationHours` stays null and every cluster containing one
-   reports power only.
+   cannot be plotted is not a project that does not exist. This MONTHLY form
+   carries no energy capacity — `durationHours` stays null until an explicit
+   generator-level join to the annual storage schedule is implemented.
 
    EIA's own warning is worth repeating: monthly capacities are restated
    retroactively and are less reliable than the annual form. This is a pipeline
@@ -157,8 +157,9 @@ export const REQUIRED_COLUMNS = [
 /**
  * Read one market's batteries from a downloaded EIA-860M workbook.
  *
- * The file is a manual download — EIA publishes no API — so this takes a path
- * rather than fetching. Operating and planned units live on separate sheets and
+ * This parser takes an already-downloaded workbook path. Official public files
+ * can be fetched separately; release discovery is not implemented here.
+ * Operating and planned units live on separate sheets and
  * both are read: a battery under construction is pipeline, and one already
  * operating is the fleet it joins.
  */
