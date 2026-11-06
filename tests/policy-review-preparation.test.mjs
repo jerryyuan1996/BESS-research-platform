@@ -127,3 +127,29 @@ test('draft preparation and serialized assertions cannot manufacture event verif
   assert.ok(errors.some(e=>e.includes('.verifiedAt: explicit UTC timestamp required')));
   assert.equal(first.manifest.publicationApproved,false);
 });
+
+test('supplementary case evidence retains exact source bindings and may only narrow excerpt use',()=>{
+  const {p,pilot,units}=syntheticDraft();
+  p.documents[0].rightsEvidence.sourceUse={reproduction:'bounded_excerpt',
+    attribution:['Synthetic authority, synthetic record','模拟机关、模拟文件'],
+    license:['Synthetic excerpt permission','模拟摘录许可'],changes:['Synthetic test only','仅模拟测试']};
+  const unit='supplement-de',body=units.get('core-de').body,quote='approved',start=body.indexOf(quote);
+  pilot.evidenceUnits.push({id:unit,sourceId:'source-one',pages:[1],locator:'Page1',issuedAt:null,withholdOriginalExcerpts:true});
+  units.set(unit,{documentId:'source-one',body,locator:'Page1'});
+  const c=p.cases.find(c=>c.market==='de');
+  c.supplementalEvidence=[{unit,spans:[{start,end:start+quote.length,textHash:sourceDigest(body),quoteHash:sourceDigest(quote)}]}];
+  const result=buildPilotDraft(pilot,p,units,'2026-11-06T00:00:00.000Z');
+  assert.deepEqual(result.manifest.structuralProblems,[]);
+  const claim=result.snapshot.claims.find(cl=>cl.id==='cl-'+c.id);
+  assert.equal(claim.evidence.length,2);assert.equal(claim.evidence[0].quote,'Original source.');
+  assert.equal(claim.evidence[1].source,'src-'+unit);assert.equal(claim.evidence[1].reproduction,'withheld');
+  assert.equal('quote' in claim.evidence[1],false);assert.equal(claim.evidence[1].quoteHash,sourceDigest(quote));
+  const source=result.snapshot.sources.find(s=>s.id==='src-'+unit);
+  assert.equal(source.rights.reproduction,'facts_only');assert.equal(source.rights.reviewed,false);
+  assert.equal(result.quoteProofs.get('src-'+unit+':'+sourceDigest(quote)),quote);
+  assert.equal(result.manifest.publicationApproved,false);
+  c.supplementalEvidence[0].spans[0].quoteHash='sha256:'+'0'.repeat(64);
+  assert.throws(()=>buildPilotDraft(pilot,p,units,'2026-11-06T00:00:00.000Z'),/Original quotation hash differs/);
+  c.supplementalEvidence[0].unit='absent-unit';
+  assert.throws(()=>buildPilotDraft(pilot,p,units,'2026-11-06T00:00:00.000Z'),/Original evidence unit missing/);
+});

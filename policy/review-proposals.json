@@ -468,8 +468,8 @@
       "sourceId": "gb-cm-response",
       "locator": "PDF p.12, Government response on the MPCM",
       "referenceFact": [
-        "The government response declines to implement the MPCM policy proposals ahead of Prequalification 2026. Reporting the consultation responses does not adopt the rejected proposals.",
-        "政府答复决定不在 2026 年预审前实施 MPCM 政策建议。汇报咨询意见不代表采纳已拒绝的建议。"
+        "The government response declines to implement the MPCM policy proposals ahead of Prequalification 2026. This decision is scoped to that implementation window; it does not by itself establish permanent abandonment or subsequent adoption.",
+        "政府答复决定不在2026年预审前实施MPCM政策建议。这是针对该实施窗口的决定；不能单凭该答复认定永久放弃或此后采纳。"
       ],
       "rejectOverreach": [
         "Every item in the original consultation was implemented.",
@@ -1201,6 +1201,31 @@
           "textHash": "sha256:43b9e87c383425f7e589199be13bb5f9c9db98cd7bba5b5f7ecb8e4f4dc93fc8",
           "quoteHash": "sha256:e06d05c61b9a119c284863c52e8c971e3436c204fdee97aded45eae221002e11"
         }
+      ],
+      "supplementalEvidence": [
+        {
+          "unit": "wa-capacity-credit-assignment-supplement",
+          "spans": [
+            {
+              "start": 2949,
+              "end": 3229,
+              "textHash": "sha256:e0d19cf6a943387554b7e0501c05cd673c954986d03ab825c6f2ef4b8966c3c7",
+              "quoteHash": "sha256:2bd5d848631d4f9ac1db0ae65d084b986689e5ec1b27ada5e923fad0ed990fc2"
+            },
+            {
+              "start": 3229,
+              "end": 3467,
+              "textHash": "sha256:e0d19cf6a943387554b7e0501c05cd673c954986d03ab825c6f2ef4b8966c3c7",
+              "quoteHash": "sha256:b8cb86a45da83d229faed5f3d85709d788dc56d11d8a966cd8356a42e15e56e1"
+            },
+            {
+              "start": 3504,
+              "end": 3758,
+              "textHash": "sha256:e0d19cf6a943387554b7e0501c05cd673c954986d03ab825c6f2ef4b8966c3c7",
+              "quoteHash": "sha256:65ae8f59955285ada469da458935bfe91bff80e75bf51cabf1b8b0da612a83af"
+            }
+          ]
+        }
       ]
     },
     {
@@ -1213,8 +1238,8 @@
       ],
       "locator": "PDF pp.258-259, clauses 2.34A.1-2.34A.4B; conditional tests or re-tests",
       "referenceFact": [
-        "The current ESM rules distinguish the listed FCESS services, a facility application, required information, any required tests or re-tests, and AEMO approval or rejection. AEMO may require a test or re-test only where it considers it reasonably necessary to consider accreditation. A general battery description or a capacity-credit award does not establish this separate accreditation.",
-        "现行 ESM 规则区分所列 FCESS 服务、设施申请、所需信息、任何被要求的测试或复测，以及 AEMO 的批准或拒绝。AEMO 仅可在其认为审查认证有合理必要时要求测试或复测。一般电池描述或容量额度授予不能证明这项独立认证。"
+        "The cited ESM rules distinguish the listed FCESS services, a facility application, required information, any required tests or re-tests, and AEMO approval or rejection. AEMO may require a test or re-test only where it considers it reasonably necessary to consider accreditation. A general battery description or a capacity-credit award does not establish this separate accreditation.",
+        "所引 ESM 规则区分所列 FCESS 服务、设施申请、所需信息、任何被要求的测试或复测，以及 AEMO 的批准或拒绝。AEMO 仅可在其认为审查认证有合理必要时要求测试或复测。一般电池描述或容量额度授予不能证明这项独立认证。"
       ],
       "rejectOverreach": [
         "All batteries automatically hold every ESS accreditation when awarded capacity credits.",
@@ -1283,6 +1308,19 @@
           "end": 3342,
           "textHash": "sha256:2c2c0382e5a4aeede3dbfccf613932226816b92b3d496b6a9319d9f4f6b62465",
           "quoteHash": "sha256:284674be765b85aff7c5648b7d1b987499da8125f2191727a1b0c72fdb0cbb6d"
+        }
+      ],
+      "supplementalEvidence": [
+        {
+          "unit": "wa-capacity-credit-assignment-supplement",
+          "spans": [
+            {
+              "start": 65,
+              "end": 334,
+              "textHash": "sha256:e0d19cf6a943387554b7e0501c05cd673c954986d03ab825c6f2ef4b8966c3c7",
+              "quoteHash": "sha256:3cf33a66fc97381a4f87123151c121ab1acf774d8fd0d6adcce6873a53e667af"
+            }
+          ]
         }
       ]
     },
@@ -1517,6 +1555,19 @@
           "textHash": "sha256:b570056cd59d65821e84326c27a7cdc55a7d81064de74fe4ae248de00fa6f46c",
           "quoteHash": "sha256:5942fc6982e0b7757069570654eb8e79b41d71268daa83032fe9f3c85e2f3e0c"
         }
+      ],
+      "supplementalEvidence": [
+        {
+          "unit": "gb-nomination-derating-supplement",
+          "spans": [
+            {
+              "start": 462,
+              "end": 570,
+              "textHash": "sha256:b3c5dffbfba5698e6e3461a5d07d82db0288be097480ab0f39b5fd15564e2af8",
+              "quoteHash": "sha256:06a6e2684c0da711c2573874483993ccc12a596e33a6abd0495ced76811216de"
+            }
+          ]
+        }
       ]
     },
     {
@@ -1609,8 +1660,8 @@
       ],
       "locator": "PDF pp.1,4-5,14, release history, NER/NEM scope and testing guidance",
       "referenceFact": [
-        "The current FCAS guide identifies version 5.0 and its earlier version history, including additional post-fault simulation requirements. A guidance version change is not repeal of a statute or proof of facility accreditation.",
-        "现行 FCAS 指南标示 5.0 版本及先前版本历史，并增加故障后仿真要求。指南换版不等于废除法规，也不证明某设施已获认证。"
+        "The cited FCAS guide identifies version 5.0 and its earlier version history, including additional post-fault simulation requirements. A guidance version change is not repeal of a statute or proof of facility accreditation.",
+        "所引 FCAS 指南标示 5.0 版本及先前版本历史，并增加故障后仿真要求。指南换版不等于废除法规，也不证明某设施已获认证。"
       ],
       "rejectOverreach": [
         "An older guidance version remains the current test specification, or the guide alone awards FCAS registration.",
@@ -1665,8 +1716,8 @@
         },
         {
           "text": [
-            "The current release lists version 5.0 with effective date 2026-09-02 and adds post-fault simulation requirements.",
-            "当前发布记录列出 5.0 版，其生效日期为 2026-09-02，并增加故障后仿真要求。"
+            "The cited release lists version 5.0 with effective date 2026-09-02 and adds post-fault simulation requirements.",
+            "所引发布记录列出 5.0 版，其生效日期为 2026-09-02，并增加故障后仿真要求。"
           ],
           "kind": "date",
           "predicate": "context_at",
@@ -1716,8 +1767,8 @@
       ],
       "locator": "PDF p.3 Table 1 and p.16 Table 7 EC4-EC5",
       "referenceFact": [
-        "CIS Tender 10 distinguishes the aggregate 4-hour-equivalent target from EC 5 minimum duration and capacity conditions. It requires NEM registration intent and satisfaction of all eligibility and merit criteria.",
-        "CIS 第 10 轮区分合计 4 小时等效招标目标与 EC5 的最低时长、容量条件，并要求拟在 NEM 注册且满足全部资格和评审条件。"
+        "CIS Tender 10 distinguishes the aggregate 4-hour-equivalent target from EC 5 minimum duration and capacity conditions. It requires NEM registration intent and satisfaction of all eligibility criteria, and merit assessment under which a bid assessed as low merit on any individual criterion may be excluded without further assessment against other criteria.",
+        "CIS 第 10 轮区分合计 4 小时等效招标目标与 EC5 的最低时长、容量条件，并要求拟在 NEM 注册且满足全部资格条件，并接受评审；在任一标准上被认定为评审表现较弱的投标，可能在未进一步评估其他标准的情况下被排除。"
       ],
       "rejectOverreach": [
         "The aggregate target makes every battery eligible or guarantees an underwriting agreement.",
@@ -1769,6 +1820,25 @@
           "end": 4419,
           "textHash": "sha256:519a963e0025cc8f14e5c36dc024cbacc3de2501b2a35a126fd1f0a93ab5bd21",
           "quoteHash": "sha256:1f3f12bf427507b513fa2db45176392309950922d5a359e2c80ae7edbefd43bb"
+        }
+      ],
+      "supplementalEvidence": [
+        {
+          "unit": "nem-cis-assessment-supplement",
+          "spans": [
+            {
+              "start": 4039,
+              "end": 4144,
+              "textHash": "sha256:297e6ba33e32f45966e0b81eb8bd7b8904b4dcce0ef0e65c4345312186e00f27",
+              "quoteHash": "sha256:372c378df917b7305420b8ee1a75da078ca34fcb036891e03799fb3df0452195"
+            },
+            {
+              "start": 4590,
+              "end": 4829,
+              "textHash": "sha256:297e6ba33e32f45966e0b81eb8bd7b8904b4dcce0ef0e65c4345312186e00f27",
+              "quoteHash": "sha256:8078d0c74bf5771ab34b1cc0dec3434d5d6aaa843310a83009961e9aa1a42e3d"
+            }
+          ]
         }
       ]
     },
@@ -1854,10 +1924,10 @@
       "market": "de",
       "sourceId": "de-capacity-statute",
       "pages": [],
-      "locator": "Statute §2(4), §12(5)-(6) long-term tender class and §87 state-aid condition; raw HTML with declared ISO-8859-1 decoding",
+      "locator": "Statute §2 No.4, §12(5)-(6) long-term tender class and §87 state-aid condition; raw HTML with declared ISO-8859-1 decoding",
       "referenceFact": [
-        "The statute defines storage as an energy-limited class. Section 12(5) sets the long-term tender’s 10-hour/80% delivery test and a separate requirement that energy-limited assets can meet sentence 1 at any time within 3 hours at the latest. These class-specific conditions and the section 87 state-aid condition do not establish a battery award or payment.",
-        "该法将储能定义为能量受限类别。第12(5)条为长期招标设置10小时／80%供电测试，并另要求能量受限资产最迟在3小时内随时能够满足第1句条件。该类别条件及第87条国家援助批准条件不证明某电池已获授标或付款。"
+        "The statute defines storage as an energy-limited class. Section 12(5) sets the long-term tender’s test of the technical ability to feed 80% of installed power capacity into the public grid for at least 10 uninterrupted consecutive hours and a separate requirement that energy-limited assets can meet sentence 1 at any time within 3 hours at the latest. These class-specific conditions and the section 87 state-aid condition do not establish a battery award or payment.",
+        "该法将储能定义为能量受限类别。第12(5)条为长期招标设置的测试要求具备以装机功率的80%向公共电网连续不间断供电至少10小时的技术能力，并另要求能量受限资产最迟在3小时内随时能够满足第1句条件。该类别条件及第87条国家援助批准条件不证明某电池已获授标或付款。"
       ],
       "rejectOverreach": [
         "All battery technologies are categorically prohibited by the statute, or publication establishes a particular battery income.",
@@ -1941,8 +2011,8 @@
         "Kostenreflexivität"
       ],
       "referenceFact": [
-        "The regulator links the 2021 European court judgment on regulatory independence to the later framework and records opening the AgNes procedure in May 2025. Cost reflectivity and other tariff objectives can conflict; this history is not final adoption or a battery-specific invoice.",
-        "监管机构将2021年欧洲法院关于监管独立性的判决与后续框架联系起来，并记录AgNes程序于2025年5月启动。成本反映等电价目标可能冲突；该历史不等于最终通过，也不是某储能设施的缴费账单。"
+        "The regulator links the 2021 European court judgment on regulatory independence to the later framework and records opening the AgNes procedure in 2025-05. Cost reflectivity and other tariff objectives can conflict; this history is not final adoption or a battery-specific invoice.",
+        "监管机构将2021年欧洲法院关于监管独立性的判决与后续框架联系起来，并记录AgNes程序于2025-05启动。成本反映等电网费目标可能冲突；该历史不等于最终通过，也不是某储能设施的缴费账单。"
       ],
       "rejectOverreach": [
         "The 2021 judgment or 2025 procedure itself adopts the 2026 tariff draft.",
@@ -3458,8 +3528,8 @@
             "征询意见的框架，不是收费账单"
           ],
           "text": [
-            "The official overview traces the 2021 regulatory-independence judgment and the AgNes procedure opened in May 2025. The 2026 announcement then opens consultation on a final draft. A comment deadline closes consultation; it does not itself adopt the instrument or establish an immediately payable tariff.",
-            "官方概览追溯2021年监管独立性判决及2025年5月启动的AgNes程序。2026年公告随后就最终草案展开咨询。意见截止日终结咨询，但本身不代表通过文件，也不确立即时应缴电价。"
+            "The official overview traces the 2021 regulatory-independence judgment and the AgNes procedure opened in 2025-05. The 2026 announcement then opens consultation on a final draft. A comment deadline closes consultation; it does not itself adopt the instrument or establish an immediately payable tariff.",
+            "官方概览追溯2021年监管独立性判决及2025-05启动的AgNes程序。2026年公告随后就最终草案展开咨询。意见截止日终结咨询，但本身不代表通过文件，也不确立即时应缴电网费。"
           ],
           "caseIds": [
             "de-regulatory-history-to-agnes",
@@ -3861,8 +3931,8 @@
             "沿完整容量规则链核对"
           ],
           "text": [
-            "The storage nomination provision must be read with later connection-capacity constraints and reporting amendments. Nomination is distinct from de-rating, award and payment. The economic exhibit remains not quantifiable without the facility’s applicable capacity and agreement data. The consultation record also says the multiple-price proposal would not be implemented ahead of Prequalification 2026; an abandoned proposal is not an operative mechanism.",
-            "储能容量申报条款须与后续并网容量限制、报告修订一并阅读。申报不同于容量折减、中标和付款。缺少具体设施的适用容量及协议数据时，经济展项仍不可量化。咨询记录还表明多价格方案不在 2026 年预审前实施；被放弃的建议不能被当作现行机制。"
+            "The storage nomination provision must be read with later connection-capacity constraints and reporting amendments. Nomination is distinct from de-rating, award and payment. The economic exhibit remains not quantifiable without the facility’s applicable capacity and agreement data. The consultation record also says the multiple-price proposal would not be implemented ahead of Prequalification 2026; a proposal not implemented in that window is not thereby an operative mechanism.",
+            "储能容量申报条款须与后续并网容量限制、报告修订一并阅读。申报不同于容量折减、中标和付款。缺少具体设施的适用容量及协议数据时，经济展项仍不可量化。咨询记录还表明多价格方案不在 2026 年预审前实施；未在该窗口实施的建议不能因此被当作已实施机制。"
           ],
           "caseIds": [
             "gb-storage-nomination-not-award",
@@ -3931,6 +4001,17 @@
           ],
           "locator": "PDF p.3 clause1.2 explicit commencement",
           "issuedAt": null
+        },
+        {
+          "id": "gb-nomination-derating-supplement",
+          "sourceId": "gb-cm-response",
+          "pages": [
+            28,
+            54
+          ],
+          "locator": "PDF pp.28,54; government response, nomination followed by de-rating and final rule-change summary. Explanatory context, not proof that every proposal was enacted.",
+          "issuedAt": null,
+          "withholdOriginalExcerpts": true
         }
       ],
       "records": {
@@ -4506,8 +4587,8 @@
             "保留原始与后续里程碑"
           ],
           "text": [
-            "The original rule separates its schedule commencement dates. Those as-issued dates remain historical evidence even where later implementation or amendments differ. The FCAS guide supplies a separate version history leading to the current release. A guidance revision is not repeal of the IESS rule, and an operator timeline should not silently replace an original legal commencement clause.",
-            "原始规则区分各附表的生效日期。即使后续实施或修订有所不同，这些发布时日期仍属于历史证据。FCAS 指南另列通向当前版本的修订历史。指南换版不等于废除 IESS 规则，运营方时间表也不能静默替换原始法律生效条款。"
+            "The original rule separates its schedule commencement dates. Those as-issued dates remain historical evidence even where later implementation or amendments differ. The FCAS guide supplies a separate version history leading to the cited release. A guidance revision is not repeal of the IESS rule, and an operator timeline should not silently replace an original legal commencement clause.",
+            "原始规则区分各附表的生效日期。即使后续实施或修订有所不同，这些发布时日期仍属于历史证据。FCAS 指南另列通向所引版本的修订历史。指南换版不等于废除 IESS 规则，运营方时间表也不能静默替换原始法律生效条款。"
           ],
           "caseIds": [
             "nem-as-issued-commencement-split",
@@ -4529,8 +4610,8 @@
             "FCAS 仍须能力及注册检验"
           ],
           "text": [
-            "The current guide adds post-fault simulation and clarifies testing requirements. It also records earlier versions. That supports a genuine revision example, while leaving each facility’s technical performance and registration to its own evidence. Name the service and applicable guide version. A battery specification or a guide’s publication cannot demonstrate an actual accreditation or sustained ancillary-service income.",
-            "当前指南新增故障后仿真并澄清测试要求，同时记录较早版本。这可支撑真实的修订示例，但各设施的技术表现和注册仍须自身证据。应明确服务种类和适用指南版本；电池规格或指南公布都不能证明实际认证或持续辅助服务收入。"
+            "The cited guide adds post-fault simulation and clarifies testing requirements. It also records earlier versions. That supports a genuine revision example, while leaving each facility’s technical performance and registration to its own evidence. Name the service and applicable guide version. A battery specification or a guide’s publication cannot demonstrate an actual accreditation or sustained ancillary-service income.",
+            "所引指南新增故障后仿真并澄清测试要求，同时记录较早版本。这可支撑真实的修订示例，但各设施的技术表现和注册仍须自身证据。应明确服务种类和适用指南版本；电池规格或指南公布都不能证明实际认证或持续辅助服务收入。"
           ],
           "caseIds": [
             "nem-fcas-guidance-version-change"
@@ -4620,6 +4701,18 @@
           ],
           "locator": "PDF p.4 version5.0 release details explicitly headed Effective date",
           "issuedAt": null
+        },
+        {
+          "id": "nem-cis-assessment-supplement",
+          "sourceId": "nem-cis-t10-guidelines",
+          "pages": [
+            21,
+            43,
+            46
+          ],
+          "locator": "PDF pp.21,43,46; Merit Criteria and Tender Process: satisfying eligibility, addressing criteria, and scored merit assessment are distinct.",
+          "issuedAt": null,
+          "withholdOriginalExcerpts": true
         }
       ],
       "records": {
@@ -5278,6 +5371,17 @@
           ],
           "locator": "PDF p.1 Gazette cover, publication date",
           "issuedAt": "2026-01-13"
+        },
+        {
+          "id": "wa-capacity-credit-assignment-supplement",
+          "sourceId": "wa-current-rules",
+          "pages": [
+            494,
+            495
+          ],
+          "locator": "PDF pp.494-495; clauses 4.20.5A-4.20.5C and 4.20.7: separate credit assignment/eligibility and payment-obligation period.",
+          "issuedAt": null,
+          "withholdOriginalExcerpts": true
         }
       ],
       "records": {

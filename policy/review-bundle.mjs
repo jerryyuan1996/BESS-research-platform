@@ -97,7 +97,7 @@ export function buildPilotDraft(pilot,proposal,units,now,{publicReferences=null}
     if(sourceIds.has(id))return sourceIds.get(id);
     const unit=units.get(id),d=proposal.documents.find(d=>d.id===unit?.documentId);
     if(!d)throw Error('Original evidence unit missing');
-    const source={id:'src-'+id,url:d.url,publisher:d.publisher,title:d.title,language:d.language,authority:'official',locator:unit.locator,contentHash:sourceDigest(unit.body),issuedAt:unit.issuedAt??null,checkedAt:new Date(d.retrievedAt).toISOString(),rights:sourceUseRights(d)};
+    const source={id:'src-'+id,url:d.url,publisher:d.publisher,title:d.title,language:d.language,authority:'official',locator:unit.locator,contentHash:sourceDigest(unit.body),issuedAt:unit.issuedAt??null,checkedAt:new Date(d.retrievedAt).toISOString(),rights:{...sourceUseRights(d),...(pilot.evidenceUnits.find(def=>def.id===id)?.withholdOriginalExcerpts===true?{reproduction:'facts_only'}:{})}};
     sources.push(source);bodies.set(source.id,unit.body);sourceIds.set(id,source);return source;
   };
   const evidenceFor=(refs,kind)=>refs.flatMap(ref=>{
@@ -113,7 +113,7 @@ export function buildPilotDraft(pilot,proposal,units,now,{publicReferences=null}
   for(const c of cases){
     const refs=spans=>[{unit:c.id,spans}];
     const base={instrument:c.instrumentId??pilot.records.rootInstrument,markets:c.applicability==='excluded'?[]:[pilot.market],mechanism:c.mechanism};
-    const claim=add({...base,id:'cl-'+c.id,kind:'fact',predicate:'related_policy_context',value:null,text:c.referenceFact,evidence:refs(c.quoteSpans)});
+    const claim=add({...base,id:'cl-'+c.id,kind:'fact',predicate:'related_policy_context',value:null,text:c.referenceFact,evidence:[...refs(c.quoteSpans),...(c.supplementalEvidence??[])]});
     claimIds.set(c.id,claim.id);
     if(c.positions)positionIds.set(c.id,c.positions.map((text,i)=>add({...base,id:`cl-${c.id}-${i?'b':'a'}`,kind:'fact',predicate:'attributed_consultation_position',value:null,text,evidence:refs(c.positionQuoteSpans[i])}).id));
     if(c.details)detailIds.set(c.id,c.details.map((d,i)=>add({...base,id:`cl-${c.id}-${i?'new':'old'}`,kind:d.kind??'fact',predicate:d.predicate??'source_version_record',value:d.value??null,text:d.text,...(d.dateSubject?{dateSubject:d.dateSubject}:{}),evidence:refs(d.quoteSpans)}).id));
