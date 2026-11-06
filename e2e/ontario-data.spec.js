@@ -10,6 +10,8 @@ test('Ontario feed loads its governed points and complete reproduction notice in
     const row=page.locator('tr').filter({has:page.locator('.obs-tag').filter({hasText:/^ca-on-da-zonal$/})});
     await expect(row).toHaveCount(1);
     await expect(row).not.toHaveClass(/absent/);
+    await expect(page.getByRole('heading',{name:lang==='en'?'What automation may and may not change':'自动化的权限边界',exact:true})).toBeVisible();
+    await expect(page.locator('.ds-auth')).toHaveCount(5);
     await expect(row).toContainText(IESO_NOTICE);
     await expect(row.locator('b')).toHaveText(lang==='en'?'Ontario day-ahead zonal prices and version archive':'安大略日前区域价格与版本归档');
     const response=await page.request.get('/data/public/ca-on-da-zonal.summary.json');
