@@ -25,6 +25,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {assertSectionHelperImports} from './helpers/section-helper-graph.js';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIR = path.join(REPO, 'src/markets/nem');
@@ -82,7 +83,9 @@ test('a section module imports shared helpers and nothing else', async () => {
   /* What a section may reach for: the constants module, and — for the two that
      draw the map — the two registries it is joined through and the side-effect
      import that registers it. Nothing else, in particular not data.js, not
-     sources.js, not another section and not the dashboard. */
+     sources.js, not another section and not the dashboard. A shared API-fed
+     history factory is also valid only after its COMPLETE transitive graph
+     passes the pure-helper guard (including re-exports and dynamic imports). */
   const ALLOWED = new Set([
     './shared.js',
     '../gridMapData.js',
@@ -94,9 +97,10 @@ test('a section module imports shared helpers and nothing else', async () => {
   for (const file of files){
     if (file === 'shared.js') continue;
     const source = await readFile(path.join(SECTIONS, file), 'utf8');
-    for (const spec of importsOf(source)){
-      if (!ALLOWED.has(spec)) offenders.push(`${file} → ${spec}`);
-    }
+    try{
+      await assertSectionHelperImports({source,moduleId:'src/markets/nem/sections/'+file,
+        allowed:ALLOWED,readSource:id=>readFile(path.join(REPO,id),'utf8')});
+    }catch(error){offenders.push(`${file} → ${error.message}`);}
   }
   assert.deepEqual(offenders, [],
     'a section may not depend on another section (a cycle), on the market dataset ' +

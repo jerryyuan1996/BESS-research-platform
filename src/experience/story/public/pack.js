@@ -32,13 +32,15 @@ export function open(ctx){
   const legacy=()=>{close({restore:false});ctx.openLegacy?.();};
   function readingPlace(){
     const viewport=body.getBoundingClientRect(),top=viewport.top;
-    // Outer event boxes include bottom spacing. A few pixels of that spacing
-    // are not a readable previous event: anchor the first visible BODY instead.
-    const node=[...body.querySelectorAll('[data-history-node]')].find(el=>{
-      const bounds=(el.querySelector('.tl-body')||el).getBoundingClientRect();
-      return bounds.bottom>top+24&&bounds.top<viewport.bottom;
+    // Save a readable field, not event padding. A translated paragraph can be
+    // shorter: preserve progress within that field when its top is off screen.
+    const field=[...body.querySelectorAll('.tl-body [data-history-field]')].find(el=>{
+      const bounds=el.getBoundingClientRect();
+      return Math.min(bounds.bottom,viewport.bottom)-Math.max(bounds.top,top)>=Math.min(24,bounds.height)-.5;
     });
-    return {node:node?.dataset.historyNode,offset:node?.getBoundingClientRect().top-top,scroll:body.scrollTop,
+    const bounds=field?.getBoundingClientRect(),offset=bounds?.top-top;
+    return {node:field?.closest('[data-history-node]').dataset.historyNode,field:field?.dataset.historyField,offset,
+      progress:offset<0?Math.min(1,-offset/bounds.height):0,scroll:body.scrollTop,
       details:[...body.querySelectorAll('details')].flatMap((el,i)=>el.open?[i]:[])};
   }
   function build(){
@@ -82,7 +84,9 @@ export function open(ctx){
       if(reading){
         const details=body.querySelectorAll('details');reading.details.forEach(i=>{if(details[i])details[i].open=true;});
         const anchor=[...body.querySelectorAll('[data-history-node]')].find(el=>el.dataset.historyNode===reading.node);
-        body.scrollTop=anchor?anchor.getBoundingClientRect().top-body.getBoundingClientRect().top-reading.offset:reading.scroll;
+        const field=anchor?.querySelector(`[data-history-field="${reading.field}"]`),bounds=field?.getBoundingClientRect();
+        const offset=reading.offset<0&&bounds?-Math.min(reading.progress*bounds.height,Math.max(0,bounds.height-Math.min(24,bounds.height))):reading.offset;
+        body.scrollTop=field?bounds.top-body.getBoundingClientRect().top-offset:reading.scroll;
       }
       if(focus)node.querySelector('h3')?.focus({preventScroll:true});
     }catch{

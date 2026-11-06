@@ -55,6 +55,24 @@ for(const id of ['gb','wa'])test(id+' · long history preserves reading place, s
   await dialog.getByRole('button',{name:'Switch to Chinese'}).click();await expectCompleteHistory(page,id,'zh');
   const offset=await body.evaluate((body,anchor)=>body.querySelector(`[data-history-node="${anchor}"]`).getBoundingClientRect().top-body.getBoundingClientRect().top,anchor);
   expect(Math.abs(offset-30)).toBeLessThan(3);
+  // Read the END of a capital-lens paragraph. Preserving an English event's
+  // outer offset alone scrolls the shorter Chinese paragraph entirely away.
+  await dialog.getByRole('button',{name:'切换到英文'}).click();await expectCompleteHistory(page,id,'en');
+  const progress=await body.evaluate((body,anchor)=>{
+    const field=body.querySelector(`[data-history-node="${anchor}"] [data-history-field="i"]`);
+    body.scrollTop+=field.getBoundingClientRect().bottom-body.getBoundingClientRect().top-35;
+    const r=field.getBoundingClientRect(),v=body.getBoundingClientRect();
+    return {fraction:(v.top-r.top)/r.height,visible:Math.min(r.bottom,v.bottom)-Math.max(r.top,v.top)};
+  },anchor);
+  expect(progress.visible).toBeGreaterThanOrEqual(24);
+  await dialog.getByRole('button',{name:'Switch to Chinese'}).click();await expectCompleteHistory(page,id,'zh');
+  const translated=await body.evaluate((body,anchor)=>{
+    const r=body.querySelector(`[data-history-node="${anchor}"] [data-history-field="i"]`).getBoundingClientRect(),v=body.getBoundingClientRect();
+    return {top:r.top-v.top,height:r.height,visible:Math.min(r.bottom,v.bottom)-Math.max(r.top,v.top)};
+  },anchor);
+  expect(translated.visible).toBeGreaterThanOrEqual(Math.min(24,translated.height)-1);
+  const target=-Math.min(progress.fraction*translated.height,Math.max(0,translated.height-Math.min(24,translated.height)));
+  expect(Math.abs(translated.top-target)).toBeLessThan(3);
   const source=dialog.locator('.public-history-provenance');await source.locator('summary').scrollIntoViewIfNeeded();await source.locator('summary').focus();await page.keyboard.press('Enter');await expect(source).toHaveAttribute('open','');
   await expect(source.locator('a').last()).toBeVisible();
   const deep=page.url();expect(deep).toContain('public-zh-'+PUBLIC_VERSION.replace('.','-')+'-history');
