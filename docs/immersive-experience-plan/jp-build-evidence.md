@@ -82,7 +82,7 @@ The national source of an event is stored once; multiple date precisions are exp
 | --- | --- | --- | --- |
 | `call`: `ui.CALLS[row.call]` | Existing bilingual call pair | Hide affected sentence; current-case copy | Situational / 择机投入, all three |
 | `playName`: `ui.playTitle(row.play,row.stage)` | Existing play-title function | Same | Each area's LTDA play, nine-hour build / six-hour obligation, operating |
-| `cardFigures`: decision-panel metrics for `row` | `ui.returnPct`, `ui.marginText`; opening uses the existing shell card | Same; no substituted engine case | Base all-equity IRR: 2.82% / 2.94% / 2.54%; margin supplied by the same UI helper |
+| `cardFigures`: decision-panel metrics for `row`, **`row.investment.holdIRR`**, not the legacy design-grid return | `ui.returnPct`, `ui.marginText`; opening uses the existing shell card | Same; no substituted engine case | Base all-equity IRR as the decision panel prints it: **4.0% / 4.1% / 3.8%**; margins **−3.15 / −3.08 / −3.34 pp** from the same UI helper. Owner rechecked during the content binding; this corrects the initial design-grid reference in the evidence layer |
 | `nextAction`: `row.play.action.text` | Existing pair, unchanged | Hide affected sentence | Each area's Round 4 action; no holder names inserted |
 | `playEvidence`: `row.evidence` | Shared `MARKERS` | No fabricated marker | `fair` / `fair` / `fair` |
 | `areaName`, `areaSlug`: `m.manifest.name/slug` | Existing pair / slug | Hide affected sentence or link | `japan-tokyo` / `japan-kyushu` / `japan-hokkaido` |
@@ -119,6 +119,7 @@ Map source: `src/markets/jp/jp-zones.json`, Natural Earth admin-1, public domain
 ## 7. Judgement calls and validation handoff
 
 1. **BUILD-JP-02:** propose a separate model-owner change exposing an existing run's gross design build capex in local currency and its basis alongside `designEconomics` (for example a nullable `buildCostPerMW` plus currency/basis), using the same variant and hours. That change is outside this build; no conversion or reconstruction belongs in the story. The analyst can walk through the withheld chart state now.
+   The content-layer owner audit also inspected `row.investment.capexPerMW`: it is **317,937,817.132634 JPY per MW for all three** at this check, a **ready-to-build reference budget** (`investmentMetrics` → `reference.assumptions.buildBudget`), not an exposed gross design build-cost field. `referenceInputs()` includes contingency and grid allowance in that budget; `referenceTerms().buildPerMW` is zero for the operating acquisition cases. Neither is silently substituted for the §8 design-cost owner. An analyst could separately choose a reference-budget comparison, but that would change the signed chart's basis.
 2. Funding mechanism evidence is stronger than at G-1; keep signed copy and Fair marker. The manual consultation status is not silently promoted to final rules.
 3. Charging-control mechanism is now located, but actual restriction hours remain asset-specific. Keep the signed unscaled Example, not a quantitative availability claim.
 4. Primary capacity results support Tokyo as largest by **contracted capacity**, rather than a demand time series. Preserve the approved wording and this recorded limit; no new demand quantity is displayed.
@@ -150,3 +151,39 @@ Map source: `src/markets/jp/jp-zones.json`, Natural Earth admin-1, public domain
 [RETURN-INDEX]: https://www.meti.go.jp/shingikai/enecho/denryoku_gas/jisedai_kiban/stable_power_supply_wg/006.html
 [FUNDING]: https://www.occto.or.jp/capacity-market/decarbonation_know/
 [CONTRIBUTIONS]: https://www.occto.or.jp/assets/news/capacity-market/261021_youryou_kyoshutsukin_setsumeikai.pdf
+
+
+## Resumption checkpoint - 6 November 2026
+
+The analyst authorised completing G-2, merging and publishing all three areas together. This supersedes the earlier permission-only handoff restrictions, while retaining the signed copy, evidence limits, 40,960-byte budget, confidentiality gates and separate joint release PR. All three registry flags remain `released: false` at this checkpoint; no Japan branch has been pushed or published.
+
+Current main was fetched at **`2940ed9129ae03731c1de21226b013612d4f63b0`** and merged normally, preserving the original five layer commits and upstream snapshot history. The sole cap-list conflict was resolved by retaining both feature entries without changing either cap. After the merge at **`71954431510216600e1d6516c0b3b0feeef49811`**, the live briefing and all three model modules were read again: each remains `infraFund` / `opportunistic`, its own `jp-<area>-ltda-6h`, nine-hour build, `ltda` / `operating`, six-hour obligation, twenty-year term, Fair evidence and the 2027-02-03 trigger. **Rule 11 passed.** The original review dates and per-area stale guards remain intact.
+
+Japan-local representation reductions preserve visible content and model owners:
+
+- The source envelope contains the same original-language title and primary URL; per-value locators and their rendering/labels load through the existing provenance disclosure import. No additional regional or scene chunk was introduced.
+- Identical reversed prefecture edges cancel before stitching the region outlines. Every stitched boundary closes and the unsimplified signed area is unchanged. The same source Git blob, Mercator fit, 1.5-pixel simplification, 0.5-pixel rounding and drawing centres are retained. Relative SVG segments and implicit ring closure store 392 vertices. No site data is added.
+- The complete signed text register stays available to authoring checks. A runtime projection omits unused register entries; navigation and marker labels still come from the unchanged shell, and the source renderer keeps its keyed labels. Every shot's English/Chinese words, tokens and marker stay exact.
+
+The last **intermediate**, pre-main-integration build measured **46,047 gzip bytes**, down from 49,126: an improvement of 3,079, but **still 5,087 over** the unchanged 40,960 cap. This is not a green result. Japan data/content/scenes/wiring checks passed 37/37 before main integration. Final exact-head command statuses, counts, durations and logs belong to the adjacent local `japan-g2-validation.json`; no unrun layer or final suite is represented as passed here.
+
+The preserved broad-browser failure opened the neighbouring return explanation after a price-button click. Its recorded click box and final screenshot differ by about 50 vertical pixels; smooth scrolling is a hypothesis, not an established cause. Twelve fresh exact-flow attempts and four instrumented scrolling/delay attempts passed against the preserved build. Those repeats do not erase the broad failure. No assertion, timeout, shared component or unrelated product behaviour was changed; any required change outside the Japan scope must be separately cleared.
+
+**BUILD-JP-02 stays unresolved**, with the approved build-cost bar and discount band withheld. Existing fixed-vintage source gaps and all other fallbacks above remain. The five original layer tips still need their own complete exact-head checks after relevant fixes are carried through the stack. Joint release and production verification remain pending.
+
+### Deferred-renderer regression checkpoint
+
+A direct renderer test reproduced an undefined `records` reference introduced while moving the disclosure renderer. The renderer now reads its exported provenance record set directly. The added regression exercises actual record rendering, regional filtering and interpretation labels in both languages. The complete Japan data/content/scenes/wiring suite passes **38/38, zero skips** after this correction.
+
+The preceding exact-head run at `eb0763185e584b09a14e1f2bfbe8393cd2a36e5f` recorded unit **1,435/1,436**, with only the Japan cap failing; current model **84/84**; artifact confidentiality **7/7, zero skips**; and all **17** snapshots verified. Its measured graph was **46,039 = 40,513 JS + 5,526 CSS**, still **5,079** above the unchanged cap. Its broad browser run was deliberately stopped to correct the identified renderer defect and is **not** a completed pass or failure. The interrupted ledger is preserved as `japan-g2-validation-eb07631-interrupted.json`. New exact-head checks after the correction replace neither that record nor the unresolved historical acquisition-popover diagnosis.
+
+
+## Analyst-authorised Japan budget - 6 November 2026
+
+The analyst instructed that, after reasonable measured reductions, the cap should increase rather than sacrificing quality or spending more time on size tricks. This supersedes the earlier fixed 40 KiB restriction for Japan only. The Japan cap is now **46 KiB / 47,104 bytes**, measured over the **complete extra static JavaScript graph plus lazy CSS**. No other market cap or assertion is changed.
+
+At clean head `b7fc28322d637a949caed0193bc525e7629f06eb`, the complete graph measured **46,044 = 40,518 JS + 5,526 CSS bytes gzip**, down **3,082** from the preserved 49,126. The new cap provides **1,060 bytes (about 2.3%)** of explained headroom. Signed English/Chinese copy, all twenty shot tables, source disclosures, the shared pack, map accuracy, accessibility, mobile layouts and the approved BUILD-JP-02 withheld state are retained. More complex encoding probes increased size and were not applied.
+
+That head's full local validation recorded **1,436/1,437 units**, with only the old Japan budget failing; **84/84** current-model checks; **7/7** artifact confidentiality checks with zero skips; **17** verified snapshots; and **32/32** Japan browser cases within the broad suite. Its six focused disclosure browser cases also passed. The broad suite finished **288 passed / 2 failed**: both failures were at `platform.spec.js:52`, where the local wrapper had omitted `RELEASE_SHA`. The stamp correctly contained the tested commit; the expected value was `undefined`. The wrapper now supplies the exact head, retaining the stamp/model-commit assertions and all timeouts. This is a validation-configuration correction, not a product or assertion change.
+
+The preceding acquisition-popover assertion did not fail in that complete run; its historical trace and prior diagnostic limits remain recorded above. New exact-head validation, per-layer PR gates and joint release checks remain required. Source/model/view/snapshot/dependency and shared-infrastructure paths have no Japan-authored diff against the fetched main.
