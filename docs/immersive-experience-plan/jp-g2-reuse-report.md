@@ -180,3 +180,23 @@ The preceding four layer heads completed their required local checks. Their orig
 All listed local suites passed with zero skips; every head also verified all 17 existing ETL snapshots. Durations are command wall time, not development effort. The sibling layer ledgers retain each command, exact head, elapsed time and log. Newer local browser artifacts use separate layer/head/time directories; CI retains page-check evidence by run. Earlier dated failure records remain historical; their captured counts and tails are preserved. Older common log paths are not fresh validation evidence.
 
 **BUILD-JP-02 remains unresolved and approved withheld:** no build-cost bar or discount band is invented. FUNDING, CHARGECTRL, FC2011, HOLDERS, CURTAIL, TERM and CERT retain their documented gaps and fallbacks. No model, view, scoring weight, discount rate, fixture or snapshot was changed by Japan G-2.
+
+## Joint G-2 release audit - 6 November 2026
+
+The analyst authorised G-2 sign-off, merge and publication. The five implementation PRs below passed their local checks and exact-head CI and have merged. This separate release activates Tokyo, Kyushu and Hokkaido together, retaining the shared loader and independent area guards.
+
+| Layer | PR and CI checks | Validated head | Unit | Model | Budget | Artifact scan | Browser | Local validation seconds |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| evidence | [#164](https://github.com/jerryyuan1996/BESS-research-platform/pull/164) / [checks](https://github.com/jerryyuan1996/BESS-research-platform/pull/164/checks) | `ba02d15dc532fad2fa11363c83058fbc9aa42fcd` | 1398 | 84 | 31 | 7 | 258 | 1237.10 |
+| data | [#165](https://github.com/jerryyuan1996/BESS-research-platform/pull/165) / [checks](https://github.com/jerryyuan1996/BESS-research-platform/pull/165/checks) | `a6bc72ee7f4617cee3b0c007b26fcb7bb70d344e` | 1404 | 84 | 31 | 7 | 258 | 1223.52 |
+| content | [#166](https://github.com/jerryyuan1996/BESS-research-platform/pull/166) / [checks](https://github.com/jerryyuan1996/BESS-research-platform/pull/166/checks) | `766c3e60b13d01b4bca9e011f0e9322435b2a0ec` | 1417 | 84 | 31 | 7 | 258 | 1217.04 |
+| scenes | [#167](https://github.com/jerryyuan1996/BESS-research-platform/pull/167) / [checks](https://github.com/jerryyuan1996/BESS-research-platform/pull/167/checks) | `6154bb3cf60d9354949d4ba4470ddb51fac71854` | 1430 | 84 | 31 | 7 | 258 | 996.76 |
+| wiring | [#168](https://github.com/jerryyuan1996/BESS-research-platform/pull/168) / [checks](https://github.com/jerryyuan1996/BESS-research-platform/pull/168/checks) | `95003205d869b0913056dab596c00646f363d6fe` | 1437 | 84 | 32 | 7 | 290 | 1296.83 |
+
+All listed local suites passed with zero skips; every head also verified all 17 existing ETL snapshots. Durations are command wall time, not development effort. The sibling layer ledgers retain each command, exact head, elapsed time and log. Newer local browser artifacts use separate layer/head/time directories; CI retains page-check evidence by run. Earlier dated failure records remain historical; their captured counts and tails are preserved. Older common log paths are not fresh validation evidence.
+
+The corrected wiring graph measured **46048 gzip bytes = 40522 JavaScript + 5526 CSS**, against the authorised Japan-only **47,104-byte / 46 KiB** cap. The release head receives its own complete-graph check in its validation ledger and PR body.
+
+The release assertions cover ordinary public entry and the unchanged reduced-motion teaching state. Signed English/Chinese text, all twenty shot tables, public primary locators, geography, accessible tables, mobile layouts, Example/plan semantics and all other market caps remain intact. Current production identity is observed at [`release.json`](https://globalbess.vercel.app/release.json); the release PR records the actual deployment and live-route checks. This audit note makes no deployment claim in advance of those observations.
+
+**BUILD-JP-02 remains unresolved and approved withheld:** no build-cost bar or discount band is invented. FUNDING, CHARGECTRL, FC2011, HOLDERS, CURTAIL, TERM and CERT retain their documented gaps and fallbacks. No model, view, scoring weight, discount rate, fixture or snapshot was changed by Japan G-2.

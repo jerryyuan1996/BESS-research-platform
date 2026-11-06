@@ -11,11 +11,11 @@ import {opportunities} from '../src/experience/model.js';
 const ids=['jp_tokyo','jp_kyushu','jp_hokkaido'];
 const rows=opportunities('infraFund').filter(row=>ids.includes(row.id));
 
-test('three unreleased Japan ids share one loader and only the preview gate opens them',()=>{
+test('three released Japan ids share one loader and open together without preview',()=>{
   assert.equal(new Set(ids.map(id=>STORIES[id].load)).size,1);
   for(const id of ids){
-    assert.equal(STORIES[id].released,false);assert.equal(storyFor(id,''),null);
-    assert.equal(storyFor(id,'?view=story'),null);assert.equal(storyFor(id,'?story=preview'),STORIES[id]);
+    assert.equal(STORIES[id].released,true);assert.equal(storyFor(id,''),STORIES[id]);
+    assert.equal(storyFor(id,'?view=story'),STORIES[id]);assert.equal(storyFor(id,'?story=preview'),STORIES[id]);
     assert.equal(storyFor(id,'?story=preview&region=compare'),STORIES[id]);
   }
   assert.equal(storyFor('jp','?story=preview'),null);

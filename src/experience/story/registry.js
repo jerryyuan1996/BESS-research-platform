@@ -14,12 +14,13 @@
    again; story links then open nothing.
    --------------------------------------------------------------------------- */
 /* Japan G-1 shared-pack sign-off: 5 November 2026, japan-storyboard.md §12.
-   All three remain preview-only until the joint G-2 release decision. */
+   Analyst G-2 sign-off, merge and publication authorised 6 November 2026.
+   Tokyo, Kyushu and Hokkaido release together. */
 const loadJapanStory = () => import('../../markets/jp/storyPack.js');
 export const STORIES = {
-  jp_tokyo: { released: false, load: loadJapanStory },
-  jp_kyushu: { released: false, load: loadJapanStory },
-  jp_hokkaido: { released: false, load: loadJapanStory },
+  jp_tokyo: { released: true, load: loadJapanStory },
+  jp_kyushu: { released: true, load: loadJapanStory },
+  jp_hokkaido: { released: true, load: loadJapanStory },
   pjm: { released: true, load: () => import('../../markets/pjm/storyPack.js') },
   /* Analyst G-2 signed off 3 November 2026. */
   caiso: { released: true, load: () => import('../../markets/caiso/storyPack.js') },
