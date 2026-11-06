@@ -95,7 +95,7 @@ test('a scenario must reproduce its number from cited numeric inputs',()=>{
   s.impacts[0].value=20;s.impacts[0].formula='eval(20)';assert.ok(validate(s).some(x=>x.includes('arithmetic')));
 });
 test('scene specs accept referenced templates and reject executable payloads',()=>{
-  const s=fixture();s.stories.push({id:'test-story',title:['Story','故事'],answer:['Answer','答案'],instrumentIds:['test-instrument'],claimIds:['test-claim'],changesIf:['Evidence changes','证据变化'],chapters:[{id:'test-chapter',title:['Title','标题'],text:['Text','文字'],claimIds:['test-claim'],scene:{template:'timeline',claimIds:['test-claim'],impactIds:[]}}]});
+  const s=fixture();s.stories.push({id:'test-story',title:['Story','故事'],answer:['Answer','答案'],instrumentIds:['test-instrument'],claimIds:['test-claim'],changesIf:['Evidence changes','证据变化'],chapters:[{id:'test-chapter',title:['Title','标题'],text:['Text','文字'],claimIds:['test-claim'],scene:{template:'lifecycle',claimIds:['test-claim'],impactIds:[]}}]});
   assert.deepEqual(validate(s),[]);s.stories[0].chapters[0].scene.onclick='alert(1)';assert.ok(validate(s).some(x=>x.includes('unknown field')));
 });
 test('version replay reconstructs metadata, changes and order exactly, and rejects tampering',()=>{

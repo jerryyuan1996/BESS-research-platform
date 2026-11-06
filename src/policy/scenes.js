@@ -1,21 +1,21 @@
 import {h} from '../utils/dom.js';
 import {L} from '../app/i18n.js';
 import {policySceneProblems} from '../../policy/scene-contract.mjs';
+import {claimDate,claimDateLabel,orderedSceneClaims,definitelyBefore} from '../../policy/dates.mjs';
 export const sceneProblems=policySceneProblems;
 const NS='http://www.w3.org/2000/svg';
 const TITLES={timeline:['Policy chronology','政策时间线'],lifecycle:['Instrument lifecycle','文件生命周期'],status_transition:['Legal status transitions','法律状态变化'],before_after:['Before and after','前后变化'],causal:['Cited causal interpretation','有据的因果解释'],stakeholder:['Attributed positions and tensions','有出处的立场与分歧'],sourced_range:['Sourced values on the same basis','相同口径的来源数值'],impact_waterfall:['Transparent scenario breakdown','透明情景分解'],market_matrix:['Policy scope by market','各市场政策范围']};
 function node(tag,attrs={},text=null){const element=document.createElementNS(NS,tag);for(const [key,value]of Object.entries(attrs))element.setAttribute(key,String(value));if(text!==null)element.textContent=String(text);return element;}
 const short=(text,max=76)=>text.length>max?text.slice(0,max-1)+'…':text;
 const basis=i=>`${i.currency||''} / ${i.denominator||''} · ${i.period||''} · ${i.asOf||''}`;
-const claimDate=(claim,snapshot)=>claim.kind==='date'?claim.value:snapshot.events.find(e=>e.claimIds.includes(claim.id))?.publishedAt||'';
 const text=(svg,x,y,label,attrs={})=>svg.append(node('text',{x,y,...attrs},label));
 function sequence(svg,claims,snapshot,template){
   const pair=template==='before_after';
   claims.forEach((claim,i)=>{
     const x=pair?24+i*350:24,y=pair?40:35+i*70;
-    if(!pair&&i<claims.length-1)svg.append(node('line',{x1:x+6,x2:x+6,y1:y+8,y2:y+62,class:'policy-scene-line'}));
+    if(!pair&&i<claims.length-1&&(template!=='timeline'||definitelyBefore(claim,claims[i+1])))svg.append(node('line',{x1:x+6,x2:x+6,y1:y+8,y2:y+62,class:'policy-scene-line'}));
     svg.append(node('circle',{cx:x+6,cy:y,r:5,class:'policy-scene-dot'}));
-    text(svg,x+22,y,claimDate(claim,snapshot),{class:'policy-scene-date'});
+    text(svg,x+22,y,claimDate(claim)?`${short(L(claimDateLabel(claim)),pair?10:52)} · ${claimDate(claim)}`:short(L(claimDateLabel(claim)),pair?35:84),{class:'policy-scene-date'});
     text(svg,x+22,y+23,short(L(claim.text),pair?35:76));
   });
 }
@@ -50,8 +50,13 @@ function matrix(svg,claims){
 export function renderPolicyScene(spec,snapshot){
   const wrap=h('figure',{class:'policy-scene'});
   if(sceneProblems(spec,snapshot).length){wrap.append(h('p',{class:'policy-empty'},L(['This scene failed its evidence or safety check.','此场景未通过证据或安全检查。'])));return wrap;}
-  const claims=spec.claimIds.map(id=>snapshot.claims.find(c=>c.id===id)),impacts=spec.impactIds.map(id=>snapshot.impacts.find(i=>i.id===id));
-  const rows=[...claims.map(c=>({id:c.id,text:L(c.text),value:claimDate(c,snapshot),lane:c.kind})),...impacts.map(i=>({id:i.id,text:basis(i),value:i.lane==='not_quantifiable'?null:i.value,lane:i.lane}))];
+  if(spec.template==='impact_summary'){
+    const params=new URLSearchParams(window.location.search);params.set('depth','explorer');
+    wrap.append(h('figcaption',{},L(['Impact awaiting quantification','影响待量化'])),...spec.impactIds.map(id=>{const impact=snapshot.impacts.find(i=>i.id===id),claim=snapshot.claims.find(c=>c.id===impact.claim);return h('div',{'data-policy-template':'impact_summary','data-policy-impact':id},h('strong',{},L(['Not yet quantifiable','尚无法量化'])),h('p',{},L(claim.text)),h('p',{class:'policy-meta'},impact.location+' · '+impact.technology+' · '+impact.marketDefinition),h('a',{href:window.location.pathname+'?'+params+'#claim-'+claim.id},L(['Source evidence','来源证据']))); }));
+    return wrap;
+  }
+  const claims=orderedSceneClaims(spec.template,spec.claimIds.map(id=>snapshot.claims.find(c=>c.id===id))),impacts=spec.impactIds.map(id=>snapshot.impacts.find(i=>i.id===id));
+  const rows=[...claims.map(c=>({id:c.id,text:L(c.text),value:claimDate(c)||L(claimDateLabel(c)),lane:c.kind==='date'?L(claimDateLabel(c)):c.kind})),...impacts.map(i=>({id:i.id,text:basis(i),value:i.lane==='not_quantifiable'?null:i.value,lane:i.lane}))];
   if(spec.template==='impact_waterfall')for(const id of impacts[0].inputs){const claim=snapshot.claims.find(c=>c.id===id);rows.push({id,text:L(claim.text),value:claim.value,lane:claim.kind});}
   const length=spec.template==='impact_waterfall'?impacts[0].inputs.length+1:Math.max(1,claims.length,impacts.length);
   const height=['causal','stakeholder'].includes(spec.template)?Math.max(110,Math.ceil(claims.length/2)*90):spec.template==='before_after'?110:Math.max(100,length*70+35);
@@ -61,6 +66,6 @@ export function renderPolicyScene(spec,snapshot){
   else if(spec.template==='impact_waterfall')waterfall(svg,impacts[0],snapshot);
   else if(spec.template==='sourced_range')sourcedValues(svg,impacts);
   else matrix(svg,claims);
-  wrap.append(svg,h('figcaption',{},L(TITLES[spec.template]),impacts.length?' · '+basis(impacts[0]):'',h('p',{},L(['Marks and relationships use the cited claims below; interpretation does not revise the approved investment view.','图形与关系对应下方引用论断；政策解释不会改写已批准的投资观点。']))),h('details',{},h('summary',{},L(['Accessible evidence table','无障碍证据表'])),h('table',{},h('thead',{},h('tr',{},...[[ 'Reference','引用'],['Evidence / basis','证据／口径'],['Date / value','日期／数值'],['Type','类别']].map(label=>h('th',{scope:'col'},L(label))))),h('tbody',{},rows.map(r=>h('tr',{},h('th',{scope:'row'},r.id),h('td',{},r.text),h('td',{},r.value===null?L(['Not yet quantifiable','尚无法量化']):String(r.value)),h('td',{},r.lane)))))));
+  wrap.append(h('div',{class:'policy-scene-viewport',tabindex:'0',role:'region','aria-label':L(['Scrollable policy diagram','可横向滚动的政策图'])},svg),h('figcaption',{},L(TITLES[spec.template]),impacts.length?' · '+basis(impacts[0]):'',h('p',{},L(['Marks and relationships use the cited claims below; interpretation does not revise the approved investment view.','图形与关系对应下方引用论断；政策解释不会改写已批准的投资观点。']))),h('details',{},h('summary',{},L(['Accessible evidence table','无障碍证据表'])),h('table',{},h('thead',{},h('tr',{},...[[ 'Reference','引用'],['Evidence / basis','证据／口径'],['Date / value','日期／数值'],['Type','类别']].map(label=>h('th',{scope:'col'},L(label))))),h('tbody',{},rows.map(r=>h('tr',{},h('th',{scope:'row'},r.id),h('td',{},r.text),h('td',{},r.value===null?L(['Not yet quantifiable','尚无法量化']):String(r.value)),h('td',{},r.lane)))))));
   return wrap;
 }

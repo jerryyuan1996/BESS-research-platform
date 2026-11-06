@@ -38,7 +38,8 @@
 .policy-story article{padding:36px 0;border-bottom:1px solid var(--border);scroll-margin-top:85px}
 .policy-story p{line-height:1.85}
 .policy-scene{margin:24px 0}
-.policy-scene svg{width:100%;height:auto;max-height:750px}
+.policy-scene-viewport{max-width:100%;overflow-x:auto}
+.policy-scene svg{display:block;width:100%;min-width:720px;height:auto;max-height:750px}
 .policy-scene text{fill:var(--ink);font-size:var(--fs-xs)}
 .policy-scene-dot,.policy-scene-bar{fill:var(--s1)}
 .policy-scene-line{stroke:var(--border);stroke-width:2}

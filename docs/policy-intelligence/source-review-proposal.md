@@ -24,7 +24,7 @@ No source hashes are claimed from search snippets or browser-extracted text. Ori
 
 ## Original-byte research checkpoint
 
-Original PDF bytes were subsequently fetched in memory and checked independently from extracted text. Metadata below records retrieval, not source-governance approval. Restricted bodies and drafts remain outside tracked/public assets. No automated allowlist changed.
+Original PDF bytes were subsequently fetched in memory and checked independently from extracted text. Metadata below records retrieval, not source-governance approval. Original source bodies and generated canonical drafts remain outside tracked/public assets. The tracked proposal catalogue also contains author-written factual and chapter proposals; those proposals are not approved content. No automated allowlist changed.
 
 | Candidate | Original SHA-256 | Exact fact/remaining review |
 |---|---|---|

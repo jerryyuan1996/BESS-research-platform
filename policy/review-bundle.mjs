@@ -1,6 +1,8 @@
 import {createHash} from 'node:crypto';
 import {digest,sourceDigest} from './integrity.mjs';
 import {policyMateriality,validatePolicySnapshot} from './schema.mjs';
+import {sourceUseRights,projectEvidence} from './source-use.mjs';
+import {investmentReviewDrafts} from './investment-review-drafts.mjs';
 
 export const originalHash=bytes=>'sha256:'+createHash('sha256').update(bytes).digest('hex');
 const normal=text=>text.normalize('NFC').replace(/<script\b[\s\S]*?<\/script>/gi,' ').replace(/<style\b[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&#(x[0-9a-f]+|\d+);/gi,(_,n)=>{const p=n[0].toLowerCase()==='x'?parseInt(n.slice(1),16):Number(n);return p>0&&p<=0x10ffff?String.fromCodePoint(p):' ';}).replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/\s+/g,' ').toLowerCase();
@@ -39,7 +41,7 @@ export function proposePDFRanges(extracted,tokens,{maxChars=1400,rules=null}={})
 }
 
 export function requireUnapprovedProposal(proposal){
-  if(proposal?.schemaVersion!==1||proposal.approvalState!=='proposal_only'||proposal.activationAllowed!==false||proposal.independentReviewer!==null||
+  if(proposal?.schemaVersion!==2||proposal.approvalState!=='proposal_only'||proposal.activationAllowed!==false||proposal.independentReviewer!==null||
     !Array.isArray(proposal.cases)||proposal.cases.length<12||!Array.isArray(proposal.documents)||!Array.isArray(proposal.pilots))throw Error('Only the fixed unapproved review proposal is accepted');
   const ids=new Set(),sources=new Set();
   for(const d of proposal.documents){
@@ -51,13 +53,26 @@ export function requireUnapprovedProposal(proposal){
     if(!/^[a-z][a-z0-9-]+$/.test(c.id)||ids.has(c.id)||!sources.has(c.sourceId)||c.expectedReview!==null||c.actualReview!==null||c.reviewedBy!==null||
       c.sourceReviewed!==false||c.rightsReviewed!==false||c.translationReviewed!==false||typeof c.proposedExpectedReview!=='boolean'||!Array.isArray(c.literalChecks)||!c.literalChecks.length)throw Error('Invalid or prematurely approved case proposal');
     ids.add(c.id);
+    if(proposal.schemaVersion===2&&(!Array.isArray(c.quoteSpans)||!c.quoteSpans.length||!['applicable','excluded','unresolved'].includes(c.applicability)||!Array.isArray(c.applicabilityReason)||c.applicabilityReason.length!==2))throw Error('Explicit evidence selection and applicability are required');
   }
   if(new Set(proposal.pilots.map(p=>p.market)).size!==4||['de','gb','nem','wa'].some(m=>!proposal.pilots.some(p=>p.market===m)))throw Error('Four distinct market pilot drafts required');
   return true;
 }
 
 export function proposedMateriality(c){
-  return policyMateriality({verified:true,markets:c.mechanism==='context'?[]:[c.market],mechanisms:[c.mechanism]});
+  return policyMateriality({verified:c.applicability!=='unresolved',markets:c.applicability==='excluded'?[]:[c.market],mechanisms:[c.mechanism]});
+}
+
+/** Fixed author-selected offsets, bound to the whole evidence unit. Repeated
+ * headings, changed context and stale offsets must not silently pick a quote. */
+export function selectedQuotes(unit,spans){
+  if(!unit||!Array.isArray(spans)||!spans.length)throw Error('Explicit original quotation spans required');
+  return spans.map(span=>{
+    if(Object.keys(span).some(k=>!['start','end','textHash','quoteHash'].includes(k))||!Number.isInteger(span.start)||!Number.isInteger(span.end)||span.start<0||span.end>unit.body.length||span.end<=span.start||span.end-span.start>300||span.textHash!==sourceDigest(unit.body))throw Error('Original quotation span or context hash differs');
+    const quote=unit.body.slice(span.start,span.end);
+    if(sourceDigest(quote)!==span.quoteHash)throw Error('Original quotation hash differs');
+    return quote;
+  });
 }
 
 const months={January:'01',February:'02',March:'03',April:'04',May:'05',June:'06',July:'07',August:'08',September:'09',October:'10',November:'11',December:'12'};
@@ -68,68 +83,68 @@ export function parityDates(text){
     .replace(/(\d{4})年(\d{1,2})月/g,(_,y,m)=>`${y}-${m.padStart(2,'0')}`);
 }
 
-/** Returns original source characters, never a normalized or invented quote. */
-export function originalQuote(body,anchor){
-  const exact=body.indexOf(anchor);
-  if(exact>=0)return body.slice(exact,exact+Math.min(260,Math.max(anchor.length,180)));
-  const pattern=anchor.split(/\s+/).map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('\\s+');
-  const match=new RegExp(pattern,'i').exec(body);
-  if(!match)return null;
-  return body.slice(match.index,match.index+Math.min(260,Math.max(match[0].length,180)));
-}
+// A missing verification time is a pending review gate, never an approved or
+// fabricated timestamp. The public schema still requires an actual UTC time.
+const pendingDraftReviewGate=(error,snapshot)=>/redistribution terms not reviewed|semantic translation review missing/.test(error)||snapshot.events.some(event=>event.verifiedAt===null&&error===event.id+'.verifiedAt: explicit UTC timestamp required');
 
 /** Canonical-shaped drafts stay unpublishable. Evidence units are produced by
  * the offline byte/extraction runner, not a model or serialized approval. */
-export function buildPilotDraft(pilot,proposal,units,now){
+export function buildPilotDraft(pilot,proposal,units,now,{publicReferences=null}={}){
+  if(proposal.schemaVersion!==2||!pilot.records)throw Error('Explicit v2 evidence selections and dated records required; legacy first-match preparation is retired');
   const cases=proposal.cases.filter(c=>c.market===pilot.market);
-  const sources=[],claims=[];const bodies=new Map();
-  const sourceFor=(id,unit,issuedAt=null)=>{
-    const d=proposal.documents.find(d=>d.id===unit.documentId);
-    const source={id,url:d.url,publisher:d.publisher,title:d.title,language:d.language,authority:'official',locator:unit.locator,contentHash:sourceDigest(unit.body),issuedAt,checkedAt:new Date(d.retrievedAt).toISOString(),rights:{metadata:true,termsURL:d.rightsEvidence.termsURL,reviewed:false}};
-    sources.push(source);bodies.set(id,unit.body);return source;
+  const sources=[],claims=[],bodies=new Map(),sourceIds=new Map(),quoteProofs=new Map();
+  const sourceFor=id=>{
+    if(sourceIds.has(id))return sourceIds.get(id);
+    const unit=units.get(id),d=proposal.documents.find(d=>d.id===unit?.documentId);
+    if(!d)throw Error('Original evidence unit missing');
+    const source={id:'src-'+id,url:d.url,publisher:d.publisher,title:d.title,language:d.language,authority:'official',locator:unit.locator,contentHash:sourceDigest(unit.body),issuedAt:unit.issuedAt??null,checkedAt:new Date(d.retrievedAt).toISOString(),rights:sourceUseRights(d)};
+    sources.push(source);bodies.set(source.id,unit.body);sourceIds.set(id,source);return source;
   };
-  const instrument='pol-'+pilot.id;
-  const core=units.get('core-'+pilot.market);if(!core)throw Error('Core source unit missing');
-  const coreSource=sourceFor('src-core-'+pilot.market,core,pilot.lifecycle.publishedAt);
-  const stateQuote=originalQuote(core.body,pilot.lifecycle.stateAnchor),dateQuote=originalQuote(core.body,pilot.lifecycle.dateAnchor);
-  if(!stateQuote||!dateQuote)throw Error(`${pilot.market}: core original quotation missing`);
-  const add=(id,kind,predicate,value,text,source,quote,mechanism='context')=>{
-    const claim={id,instrument,kind,predicate,value,status:'verified',text:text.map(parityDates),markets:[pilot.market],mechanism,evidence:(Array.isArray(quote)?quote:[quote]).map(q=>({source:source.id,locator:source.locator,quote:q,supports:kind})),translationReviewed:false};claims.push(claim);return claim;
+  const evidenceFor=(refs,kind)=>refs.flatMap(ref=>{
+    const source=sourceFor(ref.unit);
+    return selectedQuotes(units.get(ref.unit),ref.spans).map(quote=>projectEvidence({source,quote,kind,quoteProofs}));
+  });
+  const add=definition=>{
+    const {evidence,...data}=definition;
+    const claim={...data,status:'verified',text:data.text.map(parityDates),markets:data.markets??[pilot.market],mechanism:data.mechanism??'context',evidence:evidenceFor(evidence,data.kind),translationReviewed:false};
+    claims.push(claim);return claim;
   };
-  const zhState={consultation:'征询意见',adopted:'已正式制定'}[pilot.lifecycle.state];
-  const state=add('cl-state-'+pilot.market,'legal_status',null,pilot.lifecycle.state,[`The cited original record establishes ${pilot.lifecycle.state} for the named instrument; later completeness remains a separate check.`,`所引原始记录支持该文件处于“${zhState}”状态；后续证据的完整性须另行核对。`],coreSource,stateQuote);
-  const published=add('cl-published-'+pilot.market,'date','published_at',pilot.lifecycle.publishedAt,[`The cited original record is dated ${pilot.lifecycle.publishedAt}.`,`所引原始记录日期为 ${pilot.lifecycle.publishedAt}。`],coreSource,dateQuote);
-  const claimIds=new Map();const positionIds=new Map();const detailIds=new Map();
+  const claimIds=new Map(),positionIds=new Map(),detailIds=new Map();
   for(const c of cases){
-    const unit=units.get(c.id);if(!unit)throw Error('Case source unit missing');
-    const source=sourceFor('src-'+c.id,unit);
-    const quote=c.positions?c.positionAnchors.map(anchor=>originalQuote(unit.body,anchor)):c.literalChecks.map(anchor=>originalQuote(unit.body,anchor)).find(Boolean);
-    if(Array.isArray(quote)?quote.some(q=>!q):!quote)throw Error(`${c.id}: original evidence quotation missing`);
-    const claim=add('cl-'+c.id,'fact','related_policy_context',null,c.referenceFact,source,quote,c.mechanism);claimIds.set(c.id,claim.id);
-    if(c.positions){const ids=c.positions.map((pair,i)=>add(`cl-${c.id}-${i?'b':'a'}`,'fact','attributed_consultation_position',null,pair,source,quote[i],c.mechanism).id);positionIds.set(c.id,ids);}
-    if(c.details){const ids=c.details.map((detail,i)=>add(`cl-${c.id}-${i?'new':'old'}`,'fact','source_version_record',null,detail.text,source,originalQuote(unit.body,detail.anchor),c.mechanism).id);detailIds.set(c.id,ids);}
+    const refs=spans=>[{unit:c.id,spans}];
+    const base={instrument:c.instrumentId??pilot.records.rootInstrument,markets:c.applicability==='excluded'?[]:[pilot.market],mechanism:c.mechanism};
+    const claim=add({...base,id:'cl-'+c.id,kind:'fact',predicate:'related_policy_context',value:null,text:c.referenceFact,evidence:refs(c.quoteSpans)});
+    claimIds.set(c.id,claim.id);
+    if(c.positions)positionIds.set(c.id,c.positions.map((text,i)=>add({...base,id:`cl-${c.id}-${i?'b':'a'}`,kind:'fact',predicate:'attributed_consultation_position',value:null,text,evidence:refs(c.positionQuoteSpans[i])}).id));
+    if(c.details)detailIds.set(c.id,c.details.map((d,i)=>add({...base,id:`cl-${c.id}-${i?'new':'old'}`,kind:d.kind??'fact',predicate:d.predicate??'source_version_record',value:d.value??null,text:d.text,...(d.dateSubject?{dateSubject:d.dateSubject}:{}),evidence:refs(d.quoteSpans)}).id));
   }
+  for(const definition of pilot.records.claims)add(definition);
   const chapterRows=pilot.chapters.map(c=>{
     let ids=c.caseIds.map(id=>claimIds.get(id));if(ids.some(id=>!id))throw Error('Chapter refers outside its market evidence graph');
-    let relations=[];
+    let sceneIds=ids,relations=[];
     if(c.scene==='stakeholder'){
       const positions=positionIds.get(c.caseIds[0]);if(!positions||positions.length!==2)throw Error('Sourced stakeholder endpoints missing');
-      ids=[...positions,ids[0]];relations=[{from:positions[0],to:positions[1],evidenceClaim:ids[2]}];
+      sceneIds=[...positions,ids[0]];relations=[{from:positions[0],to:positions[1],evidenceClaim:ids[0]}];ids=[...ids,...positions];
     }
-    if(c.scene==='timeline')ids=[published.id,...ids];
-    if(c.scene==='before_after'&&ids.length===1&&detailIds.has(c.caseIds[0]))ids=detailIds.get(c.caseIds[0]);
-    return {id:c.id,title:c.title,text:c.text.map(parityDates),claimIds:[...new Set(ids)],scene:{template:c.scene,claimIds:[...new Set(ids)],impactIds:[],relations}};
+    if(c.scene==='timeline'){
+      sceneIds=c.timelineClaimIds;
+      if(!Array.isArray(sceneIds)||!sceneIds.length||sceneIds.some(id=>claims.find(claim=>claim.id===id)?.kind!=='date'))throw Error('Timeline requires explicitly dated claims');
+      ids=[...ids,...sceneIds];
+    }
+    if(c.scene==='before_after'&&ids.length===1&&detailIds.has(c.caseIds[0])){sceneIds=detailIds.get(c.caseIds[0]);ids=[...ids,...sceneIds];}
+    if(c.scene==='impact_summary'){const economicClaim=claimIds.get(pilot.economicCase);ids=[...ids,economicClaim];sceneIds=[...sceneIds,economicClaim];}
+    return {id:c.id,title:c.title,text:c.text.map(parityDates),claimIds:[...new Set(ids)],scene:{template:c.scene,claimIds:[...new Set(sceneIds)],impactIds:c.scene==='impact_summary'?['imp-'+pilot.market+'-unquantified']:[],relations}};
   });
-  const economicClaim=claimIds.get(pilot.economicCase);
-  const snapshot={schemaVersion:1,id:pilot.id,createdAt:now,parent:null,sources,
-    instruments:[{id:instrument,officialId:pilot.officialId,jurisdiction:pilot.jurisdiction,markets:[pilot.market],title:pilot.title,state:pilot.lifecycle.state,supersedes:null}],
-    events:[{id:'evt-'+pilot.id,instrument,kind:'transition',from:null,to:pilot.lifecycle.state,announcedAt:null,publishedAt:pilot.lifecycle.publishedAt,effectiveAt:null,verifiedAt:now,consultationClosesAt:null,adoptedAt:null,claimIds:[state.id,published.id],corrects:null,summary:[`Original ${pilot.lifecycle.state} record; no universal current entitlement inferred.`,`原始记录的状态为“${zhState}”；不据此推断普遍的现行收入权利。`]}],claims,
-    impacts:[{id:'imp-'+pilot.market+'-unquantified',claim:economicClaim,lane:'not_quantifiable',value:null,currency:null,denominator:null,period:null,technology:'BESS',location:pilot.market,formula:null,inputs:[],attribution:null,asOf:now.slice(0,10),contract:null,taxTreatment:null,marketDefinition:pilot.jurisdiction}],
-    stories:[{id:'story-'+pilot.id,title:pilot.title,answer:pilot.answer,instrumentIds:[instrument],claimIds:claims.map(c=>c.id),chapters:chapterRows,changesIf:pilot.changesIf}],links:[],reviews:[]};
-  const errors=validatePolicySnapshot(snapshot,{marketIds:['de','gb','nem','wa'],allowedHosts:[...new Set(sources.map(s=>new URL(s.url).hostname))],evidenceBodies:bodies});
-  const expectedReviewGates=errors.filter(e=>/redistribution terms not reviewed|semantic translation review missing/.test(e));
+  const instruments=structuredClone(pilot.records.instruments).map(instrument=>({...instrument,currentness:{status:'unknown',asOf:null,scope:['Only the cited source versions have been examined; later changes and complete current law are not established.','仅检查所引来源版本；尚未确立后续变更及完整现行法律。']}})),events=pilot.records.events.map(event=>({...structuredClone(event),verifiedAt:null}));
+  const snapshot={schemaVersion:1,id:pilot.id,createdAt:now,parent:null,sources,instruments,events,claims,
+    impacts:[{id:'imp-'+pilot.market+'-unquantified',claim:claimIds.get(pilot.economicCase),lane:'not_quantifiable',value:null,currency:null,denominator:null,period:null,technology:'BESS',location:pilot.market,formula:null,inputs:[],attribution:null,asOf:null,contract:null,taxTreatment:null,marketDefinition:pilot.jurisdiction}],
+    stories:[{id:'story-'+pilot.id,title:pilot.title,answer:pilot.answer,instrumentIds:instruments.map(i=>i.id),claimIds:claims.map(c=>c.id),chapters:chapterRows,changesIf:pilot.changesIf}],links:[],reviews:[]};
+  const investment=publicReferences?investmentReviewDrafts(snapshot,cases,publicReferences):{links:[],reviews:[],baselines:[]};
+  snapshot.links=investment.links;snapshot.reviews=investment.reviews;
+  const errors=validatePolicySnapshot(snapshot,{marketIds:['de','gb','nem','wa'],allowedHosts:[...new Set(sources.map(s=>new URL(s.url).hostname))],evidenceBodies:bodies,quoteProofs});
+  const expectedReviewGates=errors.filter(e=>pendingDraftReviewGate(e,snapshot));
   const structuralProblems=errors.filter(e=>!expectedReviewGates.includes(e));
-  return {snapshot,bodies,manifest:{market:pilot.market,candidateHash:digest(snapshot),fullSchemaValid:errors.length===0,structuralProblems,unapprovedReviewGateCount:expectedReviewGates.length,publicationApproved:false,independentSemanticReview:false,questions:pilot.questions}};
+  return {snapshot,bodies,quoteProofs,baselines:investment.baselines,manifest:{market:pilot.market,candidateHash:digest(snapshot),fullSchemaValid:errors.length===0,structuralProblems,unapprovedReviewGateCount:expectedReviewGates.length,verificationPendingEvents:events.filter(e=>e.verifiedAt===null).map(e=>e.id),publicationApproved:false,independentSemanticReview:false,questions:pilot.questions}};
 }
 
 /** One initial publication candidate, retaining four independently reviewable
@@ -139,7 +154,8 @@ export function combinePilotDrafts(drafts,now){
   const snapshot={schemaVersion:1,id:'four-market-policy-pilots',createdAt:now,parent:null};
   for(const key of ['sources','instruments','events','claims','impacts','stories','links','reviews'])snapshot[key]=drafts.flatMap(d=>structuredClone(d.snapshot[key]));
   const bodies=new Map(drafts.flatMap(d=>[...d.bodies]));
-  const errors=validatePolicySnapshot(snapshot,{marketIds:['de','gb','nem','wa'],allowedHosts:[...new Set(snapshot.sources.map(s=>new URL(s.url).hostname))],evidenceBodies:bodies});
-  const structuralProblems=errors.filter(e=>!/redistribution terms not reviewed|semantic translation review missing/.test(e));
-  return {snapshot,bodies,manifest:{market:'all',candidateHash:digest(snapshot),fullSchemaValid:errors.length===0,structuralProblems,publicationApproved:false,independentSemanticReview:false}};
+  const quoteProofs=new Map(drafts.flatMap(d=>[...d.quoteProofs]));
+  const errors=validatePolicySnapshot(snapshot,{marketIds:['de','gb','nem','wa'],allowedHosts:[...new Set(snapshot.sources.map(s=>new URL(s.url).hostname))],evidenceBodies:bodies,quoteProofs});
+  const structuralProblems=errors.filter(e=>!pendingDraftReviewGate(e,snapshot));
+  return {snapshot,bodies,quoteProofs,manifest:{market:'all',candidateHash:digest(snapshot),fullSchemaValid:errors.length===0,structuralProblems,verificationPendingEvents:snapshot.events.filter(e=>e.verifiedAt===null).map(e=>e.id),publicationApproved:false,independentSemanticReview:false}};
 }

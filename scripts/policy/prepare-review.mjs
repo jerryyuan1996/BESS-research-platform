@@ -14,6 +14,7 @@ import {TRUSTED_POLICY_PROFILES} from '../../policy/validation-profiles.mjs';
 import {scanManualEvidence} from './manual-evaluation-guards.mjs';
 import {publicInvestmentReferences} from './public-references.mjs';
 import {proposedReviewProfiles} from './proposed-review-profiles.mjs';
+import {sourceUseRights} from '../../policy/source-use.mjs';
 
 const REPO=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const PROPOSAL=path.join(REPO,'policy','review-proposals.json');
@@ -30,6 +31,7 @@ async function nonSymbolic(target){
 const sourceRoot=await realpath(await nonSymbolic(options['--source-root']));
 if(sourceRoot.split(/[\\/]/).some(part=>part.toLowerCase()==='local-data')||sourceRoot===REPO||sourceRoot.startsWith(path.join(REPO,'public')+path.sep)||sourceRoot.startsWith(path.join(REPO,'dist')+path.sep))throw Error('Private or public build paths cannot be source intake directories');
 const rawProposal=await readFile(PROPOSAL,'utf8');const proposal=JSON.parse(rawProposal);requireUnapprovedProposal(proposal);
+if(proposal.schemaVersion!==2)throw Error('Legacy first-match authoring is retired; explicit v2 selections required');
 const now=new Date().toISOString();const bytes=new Map(),units=new Map(),proofs=new Map();
 const documents=new Map(proposal.documents.map(d=>[d.id,d]));
 const baseExtractor=createPinnedPDFExtractor({moduleRoot:options['--pypdf-root']?await nonSymbolic(options['--pypdf-root']):null});
@@ -61,7 +63,7 @@ function prospectiveInputBound(row){
 }
 for(const c of proposal.cases){
   const d=documents.get(c.sourceId),unit=await evidenceUnit(c.id,c.sourceId,c.pages,c.locator);
-  const source={id:'src-'+c.id,url:d.url,publisher:d.publisher,title:d.title,language:d.language,authority:'official',locator:c.locator,contentHash:unit.textHash,issuedAt:null,checkedAt:new Date(d.retrievedAt).toISOString(),rights:{metadata:true,termsURL:d.rightsEvidence.termsURL,reviewed:false}};
+  const source={id:'src-'+c.id,url:d.url,publisher:d.publisher,title:d.title,language:d.language,authority:'official',locator:c.locator,contentHash:unit.textHash,issuedAt:null,checkedAt:new Date(d.retrievedAt).toISOString(),rights:sourceUseRights(d)};
   const row={id:c.id,market:c.market,mediaType:d.mediaType,locator:c.locator,originalByteHash:unit.originalByteHash,body:unit.body,source,expectedReview:null,actualReview:null,reviewer:null,sourceReviewed:false,rightsReviewed:false,translationReviewed:false};
   let processLocalPDFProof=false,bodyPolicy=d.mediaType==='application/pdf'?'full_selected_pages':'unmodified_html';
   if(d.mediaType==='application/pdf'){
@@ -87,22 +89,25 @@ for(const c of proposal.cases){
     bodyPolicy,excerptLiteralChecks:excerptChecks,excerptLiteralChecksPassed:excerptChecks.every(x=>x.found),excerptSelectionReviewed:false,prospectiveInputByteBound:inputBound,fits12000InputBound:inputBound<=12000,readyForPaidEvaluation:false,independentSemanticAcceptance:false});
   corpus.push(row);
 }
-for(const pilot of proposal.pilots)await evidenceUnit('core-'+pilot.market,pilot.lifecycle.sourceId,pilot.lifecycle.pages,pilot.lifecycle.locator);
-const drafts=proposal.pilots.map(p=>buildPilotDraft(p,proposal,units,now));
+for(const pilot of proposal.pilots)for(const definition of pilot.evidenceUnits){
+  if(units.has(definition.id))throw Error('Duplicate evidence unit identity');
+  const unit=await evidenceUnit(definition.id,definition.sourceId,definition.pages,definition.locator);unit.issuedAt=definition.issuedAt??null;
+}
+const publicReferences=await publicInvestmentReferences(['de','gb','nem','wa']);
+const drafts=proposal.pilots.map(p=>buildPilotDraft(p,proposal,units,now,{publicReferences}));
 const combined=combinePilotDrafts(drafts,now);
 const profileDrafts=proposedReviewProfiles({proposal,drafts:[...drafts,combined],corpus,sourceRoot,extractor});
 for(const draft of [...drafts,combined]){
-  const validation=independentlyValidate({snapshot:draft.snapshot,bodies:draft.bodies,profiles:TRUSTED_POLICY_PROFILES,marketIds:['de','gb','nem','wa']});
+  const validation=independentlyValidate({snapshot:draft.snapshot,bodies:draft.bodies,quoteProofs:draft.quoteProofs,profiles:TRUSTED_POLICY_PROFILES,marketIds:['de','gb','nem','wa'],publicReferences});
   draft.manifest.independentValidationPassed=validation.valid;draft.manifest.independentValidationErrors=validation.errors;
   if(validation.valid)throw Error('Review preparation unexpectedly obtained publication validation');
 }
-const publicReferences=await publicInvestmentReferences(['de','gb','nem','wa']);
 const dependencyReasons={de:'Draft tariffs and capacity eligibility are triggers to examine the existing fee-risk and technology assumptions, not observed income for the reference battery.',gb:'Connection timetables and Capacity Market rules must be checked against the existing separation of connection, derating and realized revenue.',nem:'Registration, market-cost and tender eligibility facts must be checked against the existing distinction between framework, project award and observed floor.',wa:'Commencement, capacity pricing and essential-service accreditation must be checked separately against the existing capacity-led thesis.'};
 const dependencies=proposal.cases.filter(c=>c.mechanism!=='context').map(c=>{const target=`view/markets/${c.market}.json#thesis`,record=publicReferences[target];return {caseId:c.id,claimId:'cl-'+c.id,market:c.market,mechanism:c.mechanism,target,exists:!!record,publicRecordHash:record?digest(record):null,state:'unmapped',approved:false,baselineApprovedAt:null,reason:dependencyReasons[c.market],blocker:'The public record has no approvedAt metadata. Analyst confirmation of the exact baseline and claim-to-judgment mapping is required; no date is inferred from Git or retrieval time.'};});
 const failures=diagnostics.filter(d=>!d.literalChecksPassed||!d.labelFollowsExistingMechanismRule).map(d=>d.id);
 const snapshotProblems=[...drafts,combined].flatMap(d=>d.manifest.structuralProblems.map(problem=>({market:d.manifest.market,problem})));
 const head=execFileSync('git',['rev-parse','HEAD'],{cwd:REPO,encoding:'utf8'}).trim();
-const implementationFiles=['policy/review-bundle.mjs','policy/extracted-evidence.mjs','policy/evidence-values.mjs','scripts/policy/prepare-review.mjs','scripts/policy/proposed-review-profiles.mjs','scripts/policy/review-evidence-io.mjs','scripts/policy/pinned-pdf-extractor.mjs','scripts/policy/extract-review-pdf.py','scripts/policy/requirements-review.txt'];
+const implementationFiles=['policy/review-bundle.mjs','policy/schema.mjs','policy/model-contract.mjs','policy/scene-contract.mjs','policy/dates.mjs','policy/extracted-evidence.mjs','policy/evidence-values.mjs','policy/source-use.mjs','policy/manual-evaluation.mjs','policy/investment-review-drafts.mjs','policy/integrity.mjs','policy/quotation-rights.mjs','policy/validation.mjs','policy/writer.mjs','policy/shadow.mjs','src/policy/page.js','src/policy/scenes.js','src/policy/policy.css','scripts/policy/prepare-review.mjs','scripts/policy/proposed-review-profiles.mjs','scripts/policy/manual-evaluation-runner.mjs','scripts/policy/review-evidence-io.mjs','scripts/policy/pinned-pdf-extractor.mjs','scripts/policy/extract-review-pdf.py','scripts/policy/requirements-review.txt'];
 const implementationHashes=Object.fromEntries(await Promise.all(implementationFiles.map(async file=>[file,originalHash(await readFile(path.join(REPO,file)))])));
 const manifest={schemaVersion:1,createdAt:now,worktreeHead:head,preparationImplementationHash:digest(implementationHashes),implementationHashes,proposalHash:sourceDigest(rawProposal),public:false,publicationApproved:false,activationChanged:false,acceptedGoldCases:0,providerRequests:0,empiricalModelPrecision:null,falsePositive:null,falseNegative:null,
   sourceDocuments:proposal.documents.length,cases:diagnostics,caseCount:corpus.length,caseFailures:failures,pilots:drafts.map(d=>d.manifest),combinedCandidate:combined.manifest,proposedProfileCount:profileDrafts.length,structuralProblems:snapshotProblems,dependencyCandidates:dependencies,
@@ -112,9 +117,12 @@ for(const part of [...OUTPUT_PARTS,runId]){directory=path.join(directory,part);t
 if(execFileSync('git',['check-ignore',path.relative(REPO,directory).replaceAll('\\','/')+'/manifest.json'],{cwd:REPO,encoding:'utf8'}).trim()==='')throw Error('Private output is not ignored');
 async function write(name,value){const file=path.join(directory,name);const handle=await open(file,'wx');try{await handle.writeFile(JSON.stringify(value,null,2)+'\n');await handle.sync();}finally{await handle.close();}}
 await write('manifest.json',manifest);await write('candidate-corpus.json',{schemaVersion:1,approvalState:'unapproved',acceptedGoldCases:0,cases:corpus});
+await write('local-originals-location.json',{public:false,hostLocalOnly:true,sourceRoot,proposalPath:PROPOSAL,proposalHash:sourceDigest(rawProposal),documents:proposal.documents.map(d=>({id:d.id,file:d.file,originalByteHash:d.originalByteHash})),meaning:'Explicit host-local intake location for reproduction. Originals are not in Git or the built site.'});
 await write('source-profile-drafts.json',{approvalState:'unapproved',profiles:profileDrafts.map(p=>p.manifest)});
 for(const draft of drafts)await write(draft.manifest.market+'-snapshot-candidate.json',draft.snapshot);
 await write('four-market-snapshot-candidate.json',combined.snapshot);
+await write('private-quote-proofs.json',{public:false,meaning:'Host-local proof only. Never copy to a public snapshot, model request or tracked file.',quotes:Object.fromEntries(combined.quoteProofs)});
+await write('investment-review-baselines.json',{public:false,approvalState:'unapproved',baselines:drafts.flatMap(d=>d.baselines)});
 let markdown='# Policy pilot review packet / 政策试点审阅包\n\nPrivate unapproved drafts. Accepted gold cases: 0. No model request or publication. / 私有未批准草稿；正式金标准案例为零，未调用模型或发布。\n\n';
 for(const draft of drafts){const story=draft.snapshot.stories[0];markdown+=`## ${story.title[0]} / ${story.title[1]}\n\nSnapshot SHA-256: ${draft.manifest.candidateHash}\n\n${story.answer.join('\n\n')}\n\n`;for(const chapter of story.chapters)markdown+=`### ${chapter.title.join(' / ')}\n\n${chapter.text.join('\n\n')}\n\nClaims: ${chapter.claimIds.join(', ')}\n\n`;markdown+=`What changes this / 何种证据会改变判断：\n\n${story.changesIf.join('\n\n')}\n\n`;}
 markdown+='## Proposed labels / 建议标签\n\nExpected and actual accepted labels remain null. / 获批预期标签和实际输出均为空。\n\n';

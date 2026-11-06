@@ -3,14 +3,15 @@ import assert from 'node:assert/strict';
 import {mkdtemp,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
-import {originalHash,literalReviewChecks,originalQuote,parityDates,requireUnapprovedProposal,buildPilotDraft,combinePilotDrafts} from '../policy/review-bundle.mjs';
+import {originalHash,literalReviewChecks,selectedQuotes,parityDates,requireUnapprovedProposal,buildPilotDraft,combinePilotDrafts} from '../policy/review-bundle.mjs';
 import {proposedReviewProfiles} from '../scripts/policy/proposed-review-profiles.mjs';
 import {independentlyValidate} from '../policy/validation.mjs';
+import {validatePolicySnapshot} from '../policy/schema.mjs';
 import {sourceDigest} from '../policy/integrity.mjs';
 import {hasVerifiedExtraction} from '../policy/extracted-evidence.mjs';
 import {readPinnedReviewOriginal,createPinnedPDFPreparer} from '../scripts/policy/review-evidence-io.mjs';
 
-function proposal(){return {schemaVersion:1,approvalState:'proposal_only',activationAllowed:false,independentReviewer:null,documents:[{id:'source-one',file:'source-one.pdf',mediaType:'application/pdf',originalByteHash:'sha256:'+'a'.repeat(64),rightsEvidence:{reviewed:false,rightsReviewed:false}}],cases:Array.from({length:12},(_,i)=>({id:'case-'+i,sourceId:'source-one',expectedReview:null,actualReview:null,reviewedBy:null,sourceReviewed:false,rightsReviewed:false,translationReviewed:false,proposedExpectedReview:true,literalChecks:['source']})),pilots:['de','gb','nem','wa'].map(m=>({market:m}))};}
+function proposal(){return {schemaVersion:2,approvalState:'proposal_only',activationAllowed:false,independentReviewer:null,documents:[{id:'source-one',file:'source-one.pdf',mediaType:'application/pdf',originalByteHash:'sha256:'+'a'.repeat(64),rightsEvidence:{reviewed:false,rightsReviewed:false}}],cases:Array.from({length:12},(_,i)=>({id:'case-'+i,sourceId:'source-one',expectedReview:null,actualReview:null,reviewedBy:null,sourceReviewed:false,rightsReviewed:false,translationReviewed:false,proposedExpectedReview:true,literalChecks:['source'],applicability:'applicable',applicabilityReason:['Applies.','适用。'],quoteSpans:[{start:0,end:1,textHash:'sha256:'+'b'.repeat(64),quoteHash:'sha256:'+'c'.repeat(64)}]})),pilots:['de','gb','nem','wa'].map(m=>({market:m}))};}
 test('a review proposal cannot smuggle approval, accepted labels or a source path',()=>{
   assert.equal(requireUnapprovedProposal(proposal()),true);
   for(const change of [p=>p.activationAllowed=true,p=>p.independentReviewer='invented',p=>p.cases[0].expectedReview=true,p=>p.cases[0].rightsReviewed=true,p=>p.documents[0].file='../source-one.pdf']){
@@ -20,7 +21,9 @@ test('a review proposal cannot smuggle approval, accepted labels or a source pat
 test('literal diagnostics ignore script text and never rewrite source quotations',()=>{
   assert.equal(literalReviewChecks('<script>approved</script><p>consultation</p>',['approved','consultation'])[0].found,false);
   const body='The source\nrecords a date and has extra context.';
-  const quote=originalQuote(body,'source records');assert.ok(body.includes(quote));assert.ok(quote.includes('\n'));assert.equal(originalQuote(body,'invented'),null);
+  const start=body.indexOf('source'),end=body.length,spans=[{start,end,textHash:sourceDigest(body),quoteHash:sourceDigest(body.slice(start,end))}];
+  const [quote]=selectedQuotes({body},spans);assert.ok(body.includes(quote));assert.ok(quote.includes('\n'));
+  assert.throws(()=>selectedQuotes({body:body+' changed'},spans),/context hash differs/);
   assert.equal(parityDates('2 September 2026'),'2026-09-02');assert.equal(parityDates('2026年9月2日'),'2026-09-02');
 });
 test('a pinned manual original rejects filename traversal and byte drift without reading private paths',async()=>{
@@ -47,12 +50,19 @@ test('a future profile preparer binds case, source URL, locator, text hash and e
   assert.equal(hasVerifiedExtraction(c,JSON.parse(JSON.stringify(receipt))),false);
 });
 
-function syntheticDraft(){
+function syntheticDraft(market='de'){
   const p=proposal(),body='Original source. Publication date: 1 January 2025. This proposal was approved.';
+  const span=quote=>{const start=body.indexOf(quote);return [{start,end:start+quote.length,textHash:sourceDigest(body),quoteHash:sourceDigest(quote)}];};
   Object.assign(p.documents[0],{url:'https://official.example.test/source.pdf',publisher:'Synthetic official publisher',title:'Synthetic record',language:'en',retrievedAt:'2026-11-05T03:00:00Z',rightsEvidence:{...p.documents[0].rightsEvidence,termsURL:'https://official.example.test/terms'}});
-  for(let i=0;i<p.cases.length;i++)Object.assign(p.cases[i],{market:['de','gb','nem','wa'][Math.floor(i/3)],mechanism:'context',referenceFact:['A sourced context fact.','有来源的背景事实。']});
-  const pilot={market:'de',id:'synthetic-pilot',officialId:'synthetic-record',jurisdiction:'DE',title:['Synthetic policy','合成政策'],lifecycle:{sourceId:'source-one',pages:[1],locator:'Page 1',publishedAt:'2025-01-01',state:'adopted',stateAnchor:'approved',dateAnchor:'1 January 2025'},answer:['Synthetic answer.','合成回答。'],changesIf:['New source.','新来源。'],economicCase:'case-0',questions:[],chapters:[{id:'synthetic-before',title:['Two records','两条记录'],text:['Sourced comparison.','有来源的比较。'],caseIds:['case-0','case-1'],scene:'before_after'},{id:'synthetic-timeline',title:['Timeline','时间线'],text:['Dated record.','有日期的记录。'],caseIds:['case-0'],scene:'timeline'}]};
-  const units=new Map([...p.cases.map(c=>[c.id,{documentId:'source-one',locator:'Page 1',body}]),['core-de',{documentId:'source-one',locator:'Page 1',body}]]);
+  for(let i=0;i<p.cases.length;i++)Object.assign(p.cases[i],{market:['de','gb','nem','wa'][Math.floor(i/3)],mechanism:'context',proposedExpectedReview:false,quoteSpans:span('Original source.'),referenceFact:['A sourced context fact.','有来源的背景事实。']});
+  const ids=p.cases.filter(c=>c.market===market).map(c=>c.id),instrument='pol-synthetic-'+market,unit='core-'+market;
+  const evidence=quote=>[{unit,spans:span(quote)}];
+  const pilot={market,id:'synthetic-'+market,officialId:'record-'+market,jurisdiction:market.toUpperCase(),title:['Synthetic policy','模拟政策'],answer:['Synthetic answer.','模拟回答。'],changesIf:['New source.','新来源。'],economicCase:ids[0],questions:[],evidenceUnits:[],
+    records:{rootInstrument:instrument,instruments:[{id:instrument,officialId:'record-'+market,jurisdiction:market.toUpperCase(),markets:[market],title:['Synthetic record','模拟记录'],state:'adopted',supersedes:null}],
+      claims:[{id:'cl-state-'+market,instrument,kind:'legal_status',predicate:null,value:'adopted',text:['An approved record.','获批记录。'],evidence:evidence('approved')},{id:'cl-date-'+market,instrument,kind:'date',predicate:'published_at',value:'2025-01-01',text:['Published 2025-01-01.','公布于2025-01-01。'],evidence:evidence('1 January 2025')}],
+      events:[{id:'evt-synthetic-'+market,instrument,kind:'transition',from:null,to:'adopted',announcedAt:null,publishedAt:'2025-01-01',effectiveAt:null,consultationClosesAt:null,adoptedAt:null,claimIds:['cl-state-'+market,'cl-date-'+market],corrects:null,summary:['Synthetic approved record.','模拟批准记录。']}]},
+    chapters:[{id:market+'-before',title:['Two records','两份记录'],text:['Sourced comparison.','有来源的比较。'],caseIds:ids.slice(0,2),scene:'before_after'},{id:market+'-timeline',title:['Timeline','时间线'],text:['Dated record.','有日期的记录。'],caseIds:[ids[0]],scene:'timeline',timelineClaimIds:['cl-date-'+market]}]};
+  const units=new Map([...p.cases.map(c=>[c.id,{documentId:'source-one',locator:'Page1',body}]),[unit,{documentId:'source-one',locator:'Page1',body,issuedAt:'2025-01-01'}]]);
   return {p,pilot,units};
 }
 test('canonical-shaped synthetic drafts retain every source and translation gate and cannot independently validate',()=>{
@@ -65,8 +75,8 @@ test('canonical-shaped synthetic drafts retain every source and translation gate
 test('a draft chapter cannot borrow another market case or an invented core citation',()=>{
   const {p,pilot,units}=syntheticDraft();pilot.chapters[0].caseIds=['case-0','case-3'];
   assert.throws(()=>buildPilotDraft(pilot,p,units,'2026-11-06T00:00:00.000Z'),/outside its market evidence graph/);
-  pilot.chapters[0].caseIds=['case-0','case-1'];pilot.lifecycle.stateAnchor='invented approval text';
-  assert.throws(()=>buildPilotDraft(pilot,p,units,'2026-11-06T00:00:00.000Z'),/original quotation missing/);
+  pilot.chapters[0].caseIds=['case-0','case-1'];units.get('core-de').body+=' changed';
+  assert.throws(()=>buildPilotDraft(pilot,p,units,'2026-11-06T00:00:00.000Z'),/quotation span or context hash differs/);
 });
 
 test('draft profiles bind exact source, translation, story and stored records without conferring approval',()=>{
@@ -91,17 +101,29 @@ test('draft profiles bind exact source, translation, story and stored records wi
 });
 
 test('one initial candidate combines four market drafts while retaining their unapproved gates',()=>{
-  const {p,pilot,units}=syntheticDraft(),now='2026-11-06T00:00:00.000Z';
+  const now='2026-11-06T00:00:00.000Z';
   const drafts=['de','gb','nem','wa'].map(m=>{
-    const marketCases=p.cases.filter(c=>c.market===m).map(c=>c.id),base=marketCases[0];
-    units.set('core-'+m,units.get('core-de'));
-    const next={...pilot,market:m,id:'synthetic-'+m,officialId:'record-'+m,jurisdiction:m.toUpperCase(),economicCase:base,
-      chapters:[{...pilot.chapters[0],id:m+'-records',caseIds:marketCases.slice(0,2)},{...pilot.chapters[1],id:m+'-timeline',caseIds:[base]}]};
-    return buildPilotDraft(next,p,units,now);
+    const {p,pilot,units}=syntheticDraft(m);return buildPilotDraft(pilot,p,units,now);
   });
   const combined=combinePilotDrafts(drafts,now);
   assert.deepEqual(combined.manifest.structuralProblems,[]);assert.equal(combined.snapshot.parent,null);
   assert.equal(combined.snapshot.stories.length,4);assert.equal(combined.manifest.publicationApproved,false);
   assert.equal(combined.snapshot.sources[0].checkedAt,'2026-11-05T03:00:00.000Z');
   assert.throws(()=>combinePilotDrafts(drafts.slice(1),now));
+});
+
+test('draft preparation and serialized assertions cannot manufacture event verification',()=>{
+  const {p,pilot,units}=syntheticDraft();
+  pilot.records.events[0].verifiedAt='2026-11-06T12:00:00.000Z';
+  const first=buildPilotDraft(pilot,p,units,'2026-11-06T13:00:00.000Z');
+  const later=buildPilotDraft(pilot,p,units,'2026-11-07T13:00:00.000Z');
+  assert.deepEqual(first.snapshot.events,later.snapshot.events);
+  assert.ok(first.snapshot.events.every(e=>e.verifiedAt===null));
+  assert.deepEqual(first.manifest.structuralProblems,[]);
+  const flagsOnly=structuredClone(first.snapshot);
+  flagsOnly.sources.forEach(source=>source.rights.reviewed=true);
+  flagsOnly.claims.forEach(claim=>claim.translationReviewed=true);
+  const errors=validatePolicySnapshot(flagsOnly,{marketIds:['de','gb','nem','wa'],allowedHosts:['official.example.test'],evidenceBodies:first.bodies});
+  assert.ok(errors.some(e=>e.includes('.verifiedAt: explicit UTC timestamp required')));
+  assert.equal(first.manifest.publicationApproved,false);
 });

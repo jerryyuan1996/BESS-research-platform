@@ -16,8 +16,14 @@ export function snapshotDiff(before,after){
   }
   return changes;
 }
-export function verifyEvidenceHashes(snapshot,bodies,{retainedSourceIds=new Set()}={}){
-  return snapshot.sources.flatMap(s=>!bodies.has(s.id)&&retainedSourceIds.has(s.id)?[]:typeof bodies.get(s.id)!=='string'||sourceDigest(bodies.get(s.id))!==s.contentHash?[`${s.id}: source body hash mismatch`]:[]);
+export function verifyEvidenceHashes(snapshot,bodies,{retainedSourceIds=new Set(),retainedClaimIds=new Set(),quoteProofs=new Map()}={}){
+  const errors=snapshot.sources.flatMap(s=>!bodies.has(s.id)&&retainedSourceIds.has(s.id)?[]:typeof bodies.get(s.id)!=='string'||sourceDigest(bodies.get(s.id))!==s.contentHash?[`${s.id}: source body hash mismatch`]:[]);
+  for(const claim of snapshot.claims)for(const e of claim.evidence||[]){
+    if(e.reproduction!=='withheld'||retainedClaimIds.has(claim.id))continue;
+    const quote=quoteProofs.get(e.source+':'+e.quoteHash),body=bodies.get(e.source);
+    if(typeof quote!=='string'||!quote||quote.length>300||sourceDigest(quote)!==e.quoteHash||typeof body!=='string'||!body.includes(quote))errors.push(`${claim.id}: withheld quotation proof hash or original span mismatch`);
+  }
+  return errors;
 }
 
 const COLLECTIONS=['sources','instruments','events','claims','impacts','stories','links','reviews'];

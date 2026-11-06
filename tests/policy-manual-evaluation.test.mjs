@@ -25,3 +25,9 @@ test('missing corpus or authorization cannot invoke a model or publish',async()=
   const missing=await runManualShadowCase({cases:[],caseId:'case-0',invoke});assert.equal(missing.status,'disabled');
   const disabled=await runManualShadowCase({cases,caseId:'case-0',config:{},ledger:{},context:{},invoke});assert.equal(disabled.status,'disabled');assert.equal(disabled.canPublish,false);assert.equal(calls,0);
 });
+test('manual evaluation preserves source-use fields and blocks protected originals before transport',async()=>{
+ const restricted=structuredClone(cases);for(const c of restricted)c.source.rights.reproduction='facts_only';
+ const config={enabled:true,approvalId:'synthetic',provider:'anthropic',model:'test',maxInputTokens:12000,maxOutputTokens:3000,maxDailyUSD:0.1,wallTimeMs:1000,inputUSDPerMTokens:1,outputUSDPerMTokens:2,priceSource:'https://www.anthropic.com/pricing'};
+ let calls=0;const result=await runManualShadowCase({cases:restricted,caseId:'case-0',config,ledger:{reservedUSD:0,worstCaseCallUSD:0.018,completed:false},context:CONTEXT,now:NOW,invoke:async()=>{calls++;},scanEvidence:async()=>true,independentCheck:async()=>true});
+ assert.equal(result.status,'disabled');assert.equal(calls,0);
+});

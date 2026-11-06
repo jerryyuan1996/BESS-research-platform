@@ -30,6 +30,14 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
+        // Keep the reused projection/factory/symbols together. Splitting each
+        // tiny helper into its own shared response increased the original GB
+        // story's complete graph. Explicit membership prevents app/state or
+        // other eager dependencies being moved into this lazy geometry chunk.
+        onlyExplicitManualChunks: true,
+        manualChunks(id){
+          if(/[\\/]experience[\\/]story[\\/]kit[\\/](svg|iso|symbols)\.js$/.test(id))return 'story-geometry';
+        },
         /* NAME A MARKET CHUNK AFTER ITS MARKET.
            Every lazily-loaded dashboard entry is called `dashboard.js`, so
            Rollup's default naming produced `dashboard-mhaQJ28Y.js` and
@@ -45,6 +53,13 @@ export default defineConfig({
           const id = chunk.facadeModuleId || '';
           if (/[\\/]policy[\\/]page\.js$/.test(id)) return 'assets/policy-page-[hash].js';
           if (/[\\/]policy[\\/]map\.js$/.test(id)) return 'assets/policy-map-[hash].js';
+          const publicReading = /[\\/]experience[\\/]story[\\/]public[\\/](content[\\/])?([^\\/]+)\.js$/.exec(id);
+          if(publicReading)return `assets/public-${publicReading[1]?'content-':''}${publicReading[2]}-[hash].js`;
+          // A shared public pack can lose its facade when a chapter also uses
+          // its content helpers. Preserve its diagnostic/retry asset identity.
+          for(const part of ['pack','scene','chapter','overview','catalog','content']){
+            if((chunk.moduleIds||[]).some(moduleId=>new RegExp('[\\\\/]experience[\\\\/]story[\\\\/]public[\\\\/]'+part+'\\.js$').test(moduleId)))return `assets/public-${part}-[hash].js`;
+          }
           if (/[\\/]experience[\\/]pages\.js$/.test(id)) return 'assets/investor-experience-[hash].js';
           /* A market's story: its content, the story shell and the isometric
              kit, fetched when the reader opens the story (immersive-experience

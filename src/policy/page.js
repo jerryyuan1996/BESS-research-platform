@@ -4,6 +4,7 @@ import { navigate } from '../app/router.js';
 import { siteHeader,siteFooter,link } from '../experience/chrome.js';
 import { loadPolicyIndex,loadPolicySnapshot,policyDiff } from './client.js';
 import { renderPolicyScene } from './scenes.js';
+import {eventDates,eventVerification,compareEventVerification,matchesVerificationFreshness} from '../../policy/dates.mjs';
 import { safeURL,MECHANISMS } from '../../policy/schema.mjs';
 import { impactCompatibility } from '../../policy/compare.mjs';
 import './policy.css';
@@ -15,6 +16,8 @@ const JURISDICTIONS={DE:['Germany','德国'],GB:['Great Britain','英国'],'AU-N
 const TOPICS=MECHANISMS.map(id=>[id,MECHANISM[id]]);
 const unknown=()=>L(['Not established','尚未确认']);
 const date=value=>value?new Date(value).toLocaleDateString(L(['en-GB','zh-CN']),{year:'numeric',month:'short',day:'numeric',...(/^\d{4}-\d{2}-\d{2}$/.test(value)?{timeZone:'UTC'}:{})}):unknown();
+const eventDateSummary=event=>eventDates(event).map(row=>L(row.label)+' '+date(row.value)).join(' · ')||L(['Legal dates not established','法律日期未确定']);
+const verificationText=event=>{const verification=eventVerification(event);return L(verification.label)+(verification.at?' '+date(verification.at):'');};
 const labelState=value=>L(STATE[value]||[String(value),String(value)]);
 const sourceLink=source=>{
   if(!source||!safeURL(source.url))return h('span',{},L(['Original source unavailable','原始来源不可用']));
@@ -28,7 +31,7 @@ const cleanBack=value=>/^\/policy(?:[/?]|$)/.test(value||'')?value:'/policy';
 const resourceURL=(type,id,version=null)=>`/policy/${type}/${encodeURIComponent(id)}?${new URLSearchParams({from:window.location.pathname+window.location.search,...(version?{version}:{})})}`;
 const evidenceFor=(snapshot,claim)=>claim.evidence.map(item=>({item,source:snapshot.sources.find(s=>s.id===item.source)}));
 function evidenceCard(snapshot,claim){
-  return h('article',{class:'policy-evidence',id:`claim-${claim.id}`},h('span',{class:'policy-badge'},claim.kind==='inference'||claim.kind==='scenario'?L(['Policy interpretation / scenario','政策解读／情景']):L(['Verified policy fact','已核实政策事实'])),h('p',{},L(claim.text)),...evidenceFor(snapshot,claim).map(({item,source})=>h('div',{},sourceLink(source),h('blockquote',{},item.quote),h('small',{class:'policy-meta'},`${source?.language||''} · ${source?.contentHash||''} · ${L(['Checked','核查'])} ${date(source?.checkedAt)}`))));
+  return h('article',{class:'policy-evidence',id:`claim-${claim.id}`},h('span',{class:'policy-badge'},claim.kind==='inference'||claim.kind==='scenario'?L(['Policy interpretation / scenario','政策解读／情景']):L(['Verified policy fact','已核实政策事实'])),h('p',{},L(claim.text)),...evidenceFor(snapshot,claim).map(({item,source})=>h('div',{},sourceLink(source),item.reproduction==='withheld'?h('small',{'data-policy-reproduction':'withheld'},L(['Original excerpt omitted; the factual summary links to the cited source.','原文引文已省略；事实摘要链接至所引来源。'])):h('blockquote',{},item.quote),source?.rights?.attribution?h('p',{class:'policy-meta','data-policy-attribution':source.id},L(source.rights.attribution)):null,source?.rights?.license?h('p',{class:'policy-meta'},L(source.rights.license)):null,source?.rights?.changes?h('p',{class:'policy-meta'},L(source.rights.changes)):null,h('small',{class:'policy-meta'},`${source?.language||''} · ${source?.contentHash||''} · ${L(['Retrieved / availability checked','获取／可访问性检查'])} ${date(source?.checkedAt)}`))));
 }
 function impactExhibits(snapshot,claimIds){
   const impacts=snapshot.impacts.filter(i=>claimIds.includes(i.claim));
@@ -54,24 +57,23 @@ function filterEvents(snapshot,params,market){
     if(params.get('mechanism')&&!claims.some(c=>c.mechanism===params.get('mechanism')))return false;
     const dates=[event.effectiveAt,event.consultationClosesAt].filter(Boolean).map(Date.parse);
     if(params.get('deadline')==='upcoming'&&!dates.some(t=>t>=cutoff&&t<=cutoff+90*86400000))return false;
-    const stale=Date.parse(event.verifiedAt)<cutoff-7*86400000;
-    if(params.get('freshness')==='stale'&&!stale||params.get('freshness')==='recent'&&stale)return false;
+    if(!matchesVerificationFreshness(event,params.get('freshness'),cutoff))return false;
     if(params.get('review')==='pending'&&!snapshot.reviews.some(r=>r.status==='pending_reassessment'&&event.claimIds.includes(r.claim)))return false;
     if(params.get('strength')==='official'&&!claims.some(c=>c.evidence.some(e=>snapshot.sources.find(s=>s.id===e.source)?.authority==='official')))return false;
     return true;
-  }).sort((a,b)=>b.verifiedAt.localeCompare(a.verifiedAt)||a.id.localeCompare(b.id));
+  }).sort(compareEventVerification);
 }
 function renderRadar(main,{snapshot,index,market,markets}){
   const params=getParams();const marketId=market?.manifest.id;
   main.append(heading(['POLICY INTELLIGENCE','政策情报'],market?[`${L(market.manifest.name)} · Policy`,`${L(market.manifest.name)} · 政策`]:['Global Policy Radar','全球政策雷达'],['Official evidence, separate policy interpretation and an explicit investment review boundary.','官方证据、独立政策解读与明确的投资复核边界。']));
   main.append(h('div',{class:'policy-links'},link('/policy/compare',['Compare policy mechanisms','比较政策机制']),market?link(`/markets/${market.manifest.slug}`,['Back to approved investment case','返回已批准投资分析']):null));
-  main.append(h('p',{class:'policy-meta'},index?`${L(['Published','发布'])} ${date(index.publishedAt)} · ${snapshot.events.length} ${L(['verified events','已核实事件'])}`:L(['No verified policy snapshot has been published. Source discovery and legal-status verification are separate gates.','尚未发布已核实政策快照。来源发现与法律状态验证是两个独立环节。'])));
+  main.append(h('p',{class:'policy-meta'},index?`${L(['Published','发布'])} ${date(index.publishedAt)} · ${snapshot.events.filter(e=>eventVerification(e).at).length} ${L(['verified events','已核实事件'])}`:L(['No verified policy snapshot has been published. Source discovery and legal-status verification are separate gates.','尚未发布已核实政策快照。来源发现与法律状态验证是两个独立环节。'])));
   const filterBar=h('form',{class:'policy-filters','aria-label':L(['Policy filters','政策筛选']),onsubmit:e=>e.preventDefault()});
   let feed;
   function update(key,value){const next=getParams();if(value)next.set(key,value);else next.delete(key);if(key!=='selected'&&key!=='panel'&&key!=='page'){next.delete('selected');next.delete('page');next.delete('list_y');}if(key==='selected'&&feed){next.set('list_y',String(Math.round(feed.scrollTop)));history.replaceState({...history.state,policyScroll:feed.scrollTop},'',`${location.pathname}?${next}`);}navigate(`${location.pathname}?${next}`);}
   function select(key,label,options){const control=h('select',{id:`policy-${key}`,'aria-label':L(label),onchange:e=>update(key,e.target.value)},h('option',{value:''},L(['All','全部'])),...options.map(([value,text])=>h('option',{value},L(text))));control.value=params.get(key)||'';filterBar.append(h('label',{for:`policy-${key}`},L(label),control));}
   if(!market)select('market',['Investment market','投资市场'],markets.map(m=>[m.manifest.id,m.manifest.name]));
-  const jurisdictions=[...new Set([...Object.keys(JURISDICTIONS),...snapshot.instruments.map(i=>i.jurisdiction)])].map(id=>({id,label:JURISDICTIONS[id]||[id,id],count:snapshot.events.filter(e=>recordJurisdiction(snapshot,e)===id).length}));
+  const jurisdictions=[...new Set([...Object.keys(JURISDICTIONS),...snapshot.instruments.map(i=>i.jurisdiction)])].map(id=>({id,label:JURISDICTIONS[id]||[id,id],count:snapshot.events.filter(e=>recordJurisdiction(snapshot,e)===id&&eventVerification(e).at).length}));
   select('jurisdiction',['Jurisdiction','司法辖区'],jurisdictions.map(j=>[j.id,j.label]));select('lifecycle',['Legal lifecycle','法律阶段'],Object.entries(STATE));select('mechanism',['Mechanism / topic','机制／主题'],TOPICS);select('deadline',['Deadline','期限'],[['upcoming',['Within 90 days','未来90天']]]);select('freshness',['Last verified','最近核实'],[['recent',['Within 7 days','最近7天']],['stale',['More than 7 days','超过7天']]]);select('strength',['Evidence strength','证据强度'],[['official',['Official source','官方来源']]]);select('review',['Investment review','投资复核'],[['pending',['Pending reassessment','待复核']]]);main.append(filterBar);
   const panel=params.get('panel')==='map'?'map':'feed';
   main.append(h('div',{class:'policy-switch policy-mobile-switch','aria-label':L(['Mobile policy view','移动端政策视图'])},...['feed','map'].map(id=>h('button',{type:'button','aria-pressed':String(panel===id),onclick:()=>update('panel',id)},L(id==='feed'?['Event feed','事件列表']:['Coverage map','覆盖地图'])))));
@@ -80,14 +82,14 @@ function renderRadar(main,{snapshot,index,market,markets}){
   const events=filterEvents(snapshot,params,marketId);const page=Math.max(0,Math.min(Number(params.get('page'))||0,Math.max(0,Math.ceil(events.length/20)-1)));feed=h('div',{class:'policy-feed',tabindex:'0','aria-label':L(['Policy event feed','政策事件列表'])});
   for(const event of events.slice(page*20,page*20+20)){
     const instrument=snapshot.instruments.find(i=>i.id===event.instrument);const claims=eventClaims(snapshot,event);
-    feed.append(h('article',{class:'policy-event','data-policy-event':event.id},h('div',{class:'policy-tags'},h('span',{},recordJurisdiction(snapshot,event)),h('span',{},labelState(event.to)),h('time',{datetime:event.verifiedAt},`${L(['Verified','核实'])} ${date(event.verifiedAt)}`)),h('button',{type:'button',onclick:()=>update('selected',event.id),'aria-expanded':String(params.get('selected')===event.id)},L(instrument.title)),h('p',{},L(event.summary)),h('div',{class:'policy-tags'},...new Set(claims.map(c=>L(MECHANISM[c.mechanism]))))));
+    feed.append(h('article',{class:'policy-event','data-policy-event':event.id},h('div',{class:'policy-tags'},h('span',{},recordJurisdiction(snapshot,event)),h('span',{},labelState(event.to)),h(eventVerification(event).at?'time':'span',{'data-policy-verification':eventVerification(event).at?'recorded':'pending',...(eventVerification(event).at?{datetime:eventVerification(event).at}:{})},verificationText(event))),h('button',{type:'button',onclick:()=>update('selected',event.id),'aria-expanded':String(params.get('selected')===event.id)},L(instrument.title)),h('p',{},L(event.summary)),h('div',{class:'policy-tags'},...new Set(claims.map(c=>L(MECHANISM[c.mechanism]))))));
   }
   if(!events.length)feed.append(empty(index?['No verified events match these filters.','没有符合筛选条件的已核实事件。']:['Verified policy coverage is not available yet. Unreviewed drafts are not shown as facts.','已核实政策覆盖尚不可用。未经复核的草案不会作为事实显示。']));
   layout.append(mapPane,h('section',{class:'policy-feed-pane'},h('h2',{},`${L(['Policy events','政策事件'])} · ${events.length}`),feed,h('div',{class:'policy-switch'},page>0?h('button',{type:'button',onclick:()=>update('page',String(page-1))},L(['Previous events','上一页事件'])):null,(page+1)*20<events.length?h('button',{type:'button',onclick:()=>update('page',String(page+1))},L(['Next events','下一页事件'])):null)));
   const selected=events.find(e=>e.id===params.get('selected'));
   if(selected){
     const instrument=snapshot.instruments.find(i=>i.id===selected.instrument);const stories=snapshot.stories.filter(s=>s.instrumentIds.includes(instrument.id));
-    layout.append(h('aside',{class:'policy-preview',role:'region',tabindex:'-1','aria-label':L(['Policy preview','政策预览'])},h('button',{type:'button',class:'btn',onclick:()=>update('selected','')},L(['Close preview','关闭预览'])),h('h2',{},L(instrument.title)),h('p',{},L(selected.summary)),h('p',{class:'policy-meta'},`${labelState(selected.to)} · ${L(['Published','公布'])} ${date(selected.publishedAt)} · ${L(['Effective','生效'])} ${date(selected.effectiveAt)}`),...eventClaims(snapshot,selected).map(c=>evidenceCard(snapshot,c)),reviewNotice(snapshot,selected.claimIds,markets),h('div',{class:'policy-links'},link(resourceURL('dossiers',instrument.id),['Open policy dossier','打开政策档案']),...stories.map(story=>link(resourceURL('stories',story.id),story.title)))));
+    layout.append(h('aside',{class:'policy-preview',role:'region',tabindex:'-1','aria-label':L(['Policy preview','政策预览'])},h('button',{type:'button',class:'btn',onclick:()=>update('selected','')},L(['Close preview','关闭预览'])),h('h2',{},L(instrument.title)),h('p',{},L(selected.summary)),h('p',{class:'policy-meta'},`${labelState(selected.to)} · ${eventDateSummary(selected)} · ${verificationText(selected)}`),...eventClaims(snapshot,selected).map(c=>evidenceCard(snapshot,c)),reviewNotice(snapshot,selected.claimIds,markets),h('div',{class:'policy-links'},link(resourceURL('dossiers',instrument.id),['Open policy dossier','打开政策档案']),...stories.map(story=>link(resourceURL('stories',story.id),story.title)))));
   }
   main.append(layout);feed.scrollTop=Number(params.get('list_y'))||history.state?.policyScroll||0;
   main.addEventListener('keydown',e=>{if(e.key==='Escape'&&selected)update('selected','');});
@@ -109,12 +111,13 @@ function renderHistory(main,{index,snapshot,route,marketIds}){
 function renderDossier(main,{snapshot,index,route,markets}){
   const instrument=snapshot.instruments.find(i=>i.id===route.id);if(!instrument){main.append(heading(['POLICY DOSSIER','政策档案'],['No verified dossier at this address','此地址暂无已核实档案']),empty(['This instrument is unavailable in the selected published version.','所选发布版本不包含此政策文件。']));return;}
   const events=snapshot.events.filter(e=>e.instrument===instrument.id);const claims=snapshot.claims.filter(c=>c.instrument===instrument.id);const latest=events.at(-1);
+  if(instrument.currentness)main.append(h('p',{class:'policy-meta','data-policy-currentness':instrument.currentness.status},L(['Current law: not established.','现行法律状态：尚未确立。'])+' '+L(instrument.currentness.scope)));
   if(instrument.provision){const parent=snapshot.instruments.find(i=>i.id===instrument.provision.parent);main.append(h('p',{class:'policy-meta'},L(['Provision-specific status','条款层级状态']),` · ${instrument.provision.locator} · `,link(resourceURL('dossiers',parent.id,getParams().get('version')),parent.title)));}
   const provisions=snapshot.instruments.filter(i=>i.provision?.parent===instrument.id);
   if(provisions.length)main.append(h('section',{class:'policy-provisions'},h('h2',{},L(['Separate provision commencement','条款分别生效'])),h('p',{},L(['The instrument status does not mean every provision has commenced. Open each cited schedule or clause for its own dates.','文件状态不代表所有条款均已生效。请逐项查看所引用附表或条款的日期。'])),h('ul',{},...provisions.map(i=>h('li',{},link(resourceURL('dossiers',i.id,getParams().get('version')),i.title),` · ${i.provision.locator} · ${labelState(i.state)}`)))));
   main.append(link(cleanBack(getParams().get('from')),['← Back to Radar context','← 返回雷达上下文']),heading(['POLICY DOSSIER','政策档案'],instrument.title),h('p',{class:'policy-meta'},`${instrument.jurisdiction} · ${instrument.officialId} · ${labelState(instrument.state)}`));
-  const dates=[['Announcement','公告',latest?.announcedAt],['Published document','文件公布',latest?.publishedAt],['Consultation closes','征询截止',latest?.consultationClosesAt],['Adopted','通过决定',latest?.adoptedAt],['Legally effective','法律生效',latest?.effectiveAt],['Last verified','最近核实',latest?.verifiedAt]];
-  main.append(h('dl',{class:'policy-dates'},...dates.map(([en,zh,value])=>h('div',{},h('dt',{},L([en,zh])),h('dd',{},date(value))))),reviewNotice(snapshot,claims.map(c=>c.id),markets),h('h2',{},L(['Instrument lifecycle','文件生命周期'])),h('ol',{class:'policy-timeline'},...events.map(e=>h('li',{},h('time',{datetime:e.publishedAt},date(e.publishedAt)),h('strong',{},` · ${labelState(e.to)}`),h('p',{},L(e.summary)),e.corrects?h('p',{},`${L(['Correction to','更正对象'])}: ${e.corrects}`):null))),h('h2',{},L(['Policy-only impact','政策层面影响'])),impactExhibits(snapshot,claims.map(c=>c.id)),h('h2',{},L(['Original evidence and interpretation','原始证据与解读'])),...claims.map(c=>evidenceCard(snapshot,c)));
+  const dates=[['Announcement','公告',latest?.announcedAt],['Published document','文件公布',latest?.publishedAt],['Document dated','文件落款',latest?.recordDatedAt],['Consultation closes','征询截止',latest?.consultationClosesAt],['Adopted','通过决定',latest?.adoptedAt],['Commencement / effective date','施行／生效日期',latest?.effectiveAt],['Last verified','最近核实',eventVerification(latest).at,eventVerification(latest).label]];
+  main.append(h('dl',{class:'policy-dates'},...dates.map(([en,zh,value,fallback])=>h('div',{},h('dt',{},L([en,zh])),h('dd',{},value?date(value):fallback?L(fallback):unknown())))),reviewNotice(snapshot,claims.map(c=>c.id),markets),h('h2',{},L(['Instrument lifecycle','文件生命周期'])),h('ol',{class:'policy-timeline'},...events.map(e=>h('li',{},h('span',{class:'policy-meta'},eventDateSummary(e)+' · '+verificationText(e)),h('strong',{},` · ${labelState(e.to)}`),h('p',{},L(e.summary)),e.corrects?h('p',{},`${L(['Correction to','更正对象'])}: ${e.corrects}`):null))),h('h2',{},L(['Policy-only impact','政策层面影响'])),impactExhibits(snapshot,claims.map(c=>c.id)),h('h2',{},L(['Original evidence and interpretation','原始证据与解读'])),...claims.map(c=>evidenceCard(snapshot,c)));
   const stories=snapshot.stories.filter(s=>s.instrumentIds.includes(instrument.id));main.append(h('div',{class:'policy-links'},...stories.map(s=>link(resourceURL('stories',s.id,getParams().get('version')),s.title))));renderHistory(main,{index,snapshot,route,marketIds:markets.map(m=>m.manifest.id)});
 }
 function renderStory(main,{snapshot,index,route,markets}){

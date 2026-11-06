@@ -2,10 +2,10 @@ import { digest,verifyEvidenceHashes } from './integrity.mjs';
 import { validatePolicySnapshot,PublicInvestmentReferenceResolver,policyMateriality } from './schema.mjs';
 import {quotationRightsProblems} from './quotation-rights.mjs';
 /** Only trusted code supplies profiles, never fields from the candidate JSON. */
-export function independentlyValidate({snapshot,bodies,profiles,marketIds,publicReferences={},retained=null}){
-  const context={marketIds,allowedHosts:profiles.filter(p=>p.reviewed&&p.rightsReviewed).map(p=>p.host),attestations:new Map(retained?.attestations||[]),sourceReviews:new Map(retained?.sourceReviews||[]),storyReviews:new Map(retained?.storyReviews||[]),humanReviewDecisions:new Map(retained?.humanReviewDecisions||[]),resolver:new PublicInvestmentReferenceResolver({markets:marketIds,records:publicReferences})};
+export function independentlyValidate({snapshot,bodies,profiles,marketIds,publicReferences={},retained=null,quoteProofs=new Map()}){
+  const context={marketIds,quoteProofs,allowedHosts:profiles.filter(p=>p.reviewed&&p.rightsReviewed).map(p=>p.host),attestations:new Map(retained?.attestations||[]),sourceReviews:new Map(retained?.sourceReviews||[]),storyReviews:new Map(retained?.storyReviews||[]),humanReviewDecisions:new Map(retained?.humanReviewDecisions||[]),resolver:new PublicInvestmentReferenceResolver({markets:marketIds,records:publicReferences})};
   const errors=[];
-  try{errors.push(...validatePolicySnapshot(snapshot,{...context,evidenceBodies:bodies,retainedClaimIds:retained?.claimIds||new Set()}),...verifyEvidenceHashes(snapshot,bodies,{retainedSourceIds:retained?.sourceIds||new Set()}));}catch{return {valid:false,errors:['Malformed candidate'],context};}
+  try{errors.push(...validatePolicySnapshot(snapshot,{...context,evidenceBodies:bodies,retainedClaimIds:retained?.claimIds||new Set()}),...verifyEvidenceHashes(snapshot,bodies,{quoteProofs,retainedSourceIds:retained?.sourceIds||new Set(),retainedClaimIds:retained?.claimIds||new Set()}));}catch{return {valid:false,errors:['Malformed candidate'],context};}
   for(const source of snapshot.sources){
     if(retained?.sourceIds.has(source.id))continue;
     const profile=profiles.find(p=>p.reviewed&&p.rightsReviewed&&p.host===new URL(source.url).hostname&&p.sourceIds.includes(source.id));

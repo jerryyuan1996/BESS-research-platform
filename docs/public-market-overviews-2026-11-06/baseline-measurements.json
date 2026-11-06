@@ -1,0 +1,163 @@
+{
+  "recordedAt": "2026-11-06T10:22:10.425Z",
+  "baseline": true,
+  "records": [
+    {
+      "id": "nem",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "firstMs": 2951.4575000000004,
+      "openMs": 743.2486000000008,
+      "chapterMs": null,
+      "cachedMs": null,
+      "firstBytes": 1336158,
+      "openBytes": 123940,
+      "sceneBytes": 0,
+      "button": {
+        "x": 100,
+        "y": 2565.828125,
+        "width": 255.390625,
+        "height": 47.796875
+      },
+      "overview": {
+        "x": 100,
+        "y": 2285.65625,
+        "width": 1240,
+        "height": 384.96875
+      },
+      "errors": [],
+      "initialResources": [
+        "/assets/index-B3OvHvmj.js",
+        "/assets/index-njTanm4D.css",
+        "/_vercel/insights/script.js",
+        "/assets/investor-experience-DnBl_UIK.js",
+        "/assets/model-e-jnWnrV.js",
+        "/assets/briefing-data-mVg7TvMx.js",
+        "/assets/designFit-BnLanhu4.js",
+        "/assets/engine-Buc3DwHD.js",
+        "/assets/finance-zfZFydws.js",
+        "/assets/refinement-DZjBrk3D.js",
+        "/assets/scenario-D5En2ULc.js",
+        "/assets/parameters-BhccaqUl.js",
+        "/assets/playTitle-B-GGOcAu.js",
+        "/favicon.ico",
+        "/assets/infraFund-DumBSw-a.js",
+        "/assets/marketPage-DER-W7jO.js",
+        "/assets/ui-D9siDRFK.js",
+        "/assets/archetypes-CSAC2Aql.js",
+        "/assets/investment-method-C8VBQ4NH.js",
+        "/assets/valuation-DPBMOYtb.js",
+        "/assets/investment-EgB-Ye7s.js",
+        "/assets/reference-BN4tU-5Z.js",
+        "/assets/referencePolicy-B9Vab8TU.js",
+        "/assets/downsideNarrative-CJ9aRz_-.js",
+        "/assets/deliveryUI-DJD1lJ7w.js"
+      ]
+    },
+    {
+      "id": "jp_tokyo",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "firstMs": 7691.790899999998,
+      "openMs": 2193.4904000000024,
+      "chapterMs": null,
+      "cachedMs": null,
+      "firstBytes": 1170371,
+      "openBytes": 364518,
+      "sceneBytes": 0,
+      "button": {
+        "x": 100,
+        "y": 2559.90625,
+        "width": 255.390625,
+        "height": 47.796875
+      },
+      "overview": {
+        "x": 100,
+        "y": 2278.65625,
+        "width": 1240,
+        "height": 386.046875
+      },
+      "errors": [],
+      "initialResources": [
+        "/assets/index-B3OvHvmj.js",
+        "/assets/index-njTanm4D.css",
+        "/_vercel/insights/script.js",
+        "/assets/investor-experience-DnBl_UIK.js",
+        "/assets/model-e-jnWnrV.js",
+        "/assets/briefing-data-mVg7TvMx.js",
+        "/assets/designFit-BnLanhu4.js",
+        "/assets/engine-Buc3DwHD.js",
+        "/assets/finance-zfZFydws.js",
+        "/assets/refinement-DZjBrk3D.js",
+        "/assets/scenario-D5En2ULc.js",
+        "/assets/parameters-BhccaqUl.js",
+        "/assets/playTitle-B-GGOcAu.js",
+        "/favicon.ico",
+        "/assets/infraFund-DumBSw-a.js",
+        "/assets/marketPage-DER-W7jO.js"
+      ]
+    },
+    {
+      "id": "wa",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "firstMs": 1608.671000000002,
+      "openMs": 776.6948999999986,
+      "chapterMs": null,
+      "cachedMs": null,
+      "firstBytes": 1406675,
+      "openBytes": 90821,
+      "sceneBytes": 0,
+      "button": {
+        "x": 100,
+        "y": 2565.828125,
+        "width": 255.390625,
+        "height": 47.796875
+      },
+      "overview": {
+        "x": 100,
+        "y": 2285.65625,
+        "width": 1240,
+        "height": 384.96875
+      },
+      "errors": [],
+      "initialResources": [
+        "/assets/index-B3OvHvmj.js",
+        "/assets/index-njTanm4D.css",
+        "/_vercel/insights/script.js",
+        "/assets/investor-experience-DnBl_UIK.js",
+        "/assets/model-e-jnWnrV.js",
+        "/assets/briefing-data-mVg7TvMx.js",
+        "/assets/designFit-BnLanhu4.js",
+        "/assets/engine-Buc3DwHD.js",
+        "/assets/finance-zfZFydws.js",
+        "/assets/refinement-DZjBrk3D.js",
+        "/assets/scenario-D5En2ULc.js",
+        "/assets/parameters-BhccaqUl.js",
+        "/assets/playTitle-B-GGOcAu.js",
+        "/favicon.ico",
+        "/assets/infraFund-DumBSw-a.js",
+        "/assets/marketPage-DER-W7jO.js",
+        "/assets/ui-D9siDRFK.js",
+        "/assets/archetypes-CSAC2Aql.js",
+        "/assets/investment-method-C8VBQ4NH.js",
+        "/assets/valuation-DPBMOYtb.js",
+        "/assets/investment-EgB-Ye7s.js",
+        "/assets/reference-BN4tU-5Z.js",
+        "/assets/referencePolicy-B9Vab8TU.js",
+        "/assets/downsideNarrative-CJ9aRz_-.js",
+        "/assets/deliveryUI-DJD1lJ7w.js",
+        "/data/public/wa-wem-prices.summary.json"
+      ]
+    }
+  ]
+}

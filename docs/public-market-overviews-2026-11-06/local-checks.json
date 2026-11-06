@@ -1,0 +1,58 @@
+[
+  {
+    "name": "unit",
+    "command": "npm test",
+    "startedUtc": "2026-11-06T12:15:09.3605454Z",
+    "endedUtc": "2026-11-06T12:20:12.7284326Z",
+    "seconds": 303.3678872,
+    "exitCode": 0
+  },
+  {
+    "name": "current",
+    "command": "npm run test:current",
+    "startedUtc": "2026-11-06T12:20:12.9315608Z",
+    "endedUtc": "2026-11-06T12:20:16.8523904Z",
+    "seconds": 3.9208296,
+    "exitCode": 0
+  },
+  {
+    "name": "build",
+    "command": "npm run build",
+    "startedUtc": "2026-11-06T12:20:16.8638185Z",
+    "endedUtc": "2026-11-06T12:20:58.4604758Z",
+    "seconds": 41.5966573,
+    "exitCode": 0
+  },
+  {
+    "name": "budget",
+    "command": "npm run test:budget",
+    "startedUtc": "2026-11-06T12:20:59.2990468Z",
+    "endedUtc": "2026-11-06T12:21:36.2158826Z",
+    "seconds": 36.9168358,
+    "exitCode": 0
+  },
+  {
+    "name": "bundle",
+    "command": "npm run test:bundle",
+    "startedUtc": "2026-11-06T12:21:36.2217728Z",
+    "endedUtc": "2026-11-06T12:21:42.8111509Z",
+    "seconds": 6.5893781,
+    "exitCode": 0
+  },
+  {
+    "name": "etl",
+    "command": "npm run etl:verify",
+    "startedUtc": "2026-11-06T12:21:42.8191266Z",
+    "endedUtc": "2026-11-06T12:21:45.7167796Z",
+    "seconds": 2.897653,
+    "exitCode": 0
+  },
+  {
+    "name": "e2e",
+    "command": "npm run test:e2e -- --reporter=line,json",
+    "startedUtc": "2026-11-06T12:21:45.7232902Z",
+    "endedUtc": "2026-11-06T13:00:48.5423427Z",
+    "seconds": 2342.8190525,
+    "exitCode": 0
+  }
+]

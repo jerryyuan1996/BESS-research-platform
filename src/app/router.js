@@ -40,6 +40,22 @@ const storyListeners = new Set();
    the story checks the ids against its own content. They are a reading
    position, not a page, so a change to them alone never re-renders the page. */
 export const STORY_PARAMS = ['view', 'chapter', 'shot'];
+/** Shared URL writing for both original and public reading shells. Keeping it
+ * beside the router avoids a second shared response for a tiny History API. */
+export function storyPlaceSearch(search,place){
+  const params=new URLSearchParams(search);
+  for(const key of STORY_PARAMS)params.delete(key);
+  if(place){params.set('view','story');params.set('chapter',place.chapter);params.set('shot',place.shot);}
+  const value=params.toString();return value?'?'+value:'';
+}
+export function recordStoryPlace(place,how='push'){
+  if(typeof window==='undefined'||!window.history)return;
+  const {pathname,search,hash}=window.location,next=storyPlaceSearch(search,place);
+  if(next===search)return;
+  const url=pathname+next+hash;
+  if(how==='replace')window.history.replaceState(window.history.state,'',url);
+  else window.history.pushState({},'',url);
+}
 const STORY_ID = /^[a-z0-9-]{1,40}$/;
 function storyPlace(params){
   if (params.get('view') !== 'story') return null;

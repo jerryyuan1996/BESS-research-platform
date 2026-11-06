@@ -1,5 +1,5 @@
 /** Policy data is separate from investment authority. No model/view imports. */
-import {isCalendarDate,criticalValueInQuote} from './evidence-values.mjs';
+import {isCalendarDate,isContextPeriod,criticalValueInQuote} from './evidence-values.mjs';
 import {policySceneProblems} from './scene-contract.mjs';
 export const SCHEMA_VERSION = 1;
 export const STATES = Object.freeze(['draft','consultation','amended','adopted','effective','suspended','withdrawn','repealed','superseded']);
@@ -31,7 +31,7 @@ const time=(value,at,errors,nullable=false)=>{if(!(nullable&&value===null)&&!isT
 const policyDate=(value,at,errors,nullable=false)=>{if(!(nullable&&value===null)&&!isTime(value)&&!isCalendarDate(value))errors.push(`${at}: calendar date or explicit UTC timestamp required`);};
 
 /** Structural/semantic safety check, not a substitute for human translation or legal review. */
-export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, allowedHosts=[],retainedClaimIds=new Set()}={}){
+export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, quoteProofs=new Map(),allowedHosts=[],retainedClaimIds=new Set()}={}){
   const errors=[];
   if(!requiredKeys(s,['schemaVersion','id','createdAt','parent','sources','instruments','events','claims','impacts','stories','links','reviews'], 'snapshot',errors))return errors;
   if(s.schemaVersion!==SCHEMA_VERSION)errors.push('snapshot: unsupported schemaVersion');
@@ -50,13 +50,20 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     if(!['official','attributed_forecast'].includes(r.authority))errors.push(`${r.id}: unsupported source authority`);
     if(!r.publisher||!r.title||!r.language||!r.locator)errors.push(`${r.id}: original source metadata/locator missing`);
     if(!/^sha256:[a-f0-9]{64}$/.test(r.contentHash||''))errors.push(`${r.id}: source hash missing`);
-    requiredKeys(r.rights,['metadata','termsURL','reviewed'],`${r.id}.rights`,errors);
+    requiredKeys(r.rights,['metadata','termsURL','reviewed','reproduction','attribution','license','changes'],`${r.id}.rights`,errors);
     if(r.rights?.metadata!==true||!r.rights?.termsURL||!safeURL(r.rights.termsURL)||r.rights?.reviewed!==true)errors.push(`${r.id}: redistribution terms not reviewed`);
+    if(r.rights?.reproduction!==undefined){
+      if(!['bounded_excerpt','facts_only'].includes(r.rights.reproduction)||!isPair(r.rights.attribution)||!isPair(r.rights.changes)||!isPair(r.rights.license))errors.push(`${r.id}: source-specific use and attribution incomplete`);
+    }
     policyDate(r.issuedAt,`${r.id}.issuedAt`,errors,true);time(r.checkedAt,`${r.id}.checkedAt`,errors);
   }
   const identities=new Set();
   for(const r of s.instruments){
-    requiredKeys(r,['id','officialId','jurisdiction','markets','title','state','supersedes','provision'],r.id,errors);
+    requiredKeys(r,['id','officialId','jurisdiction','markets','title','state','supersedes','provision','currentness'],r.id,errors);
+    if(r.currentness!==undefined){
+      requiredKeys(r.currentness,['status','asOf','scope'],`${r.id}.currentness`,errors);
+      if(r.currentness?.status!=='unknown'||r.currentness?.asOf!==null||!isPair(r.currentness?.scope))errors.push(`${r.id}: currentness needs a separately reviewed contract; source availability is not current law`);
+    }
     textPair(r.title,r.id,errors);scope(r.markets,r.id);
     if(!r.officialId||!r.jurisdiction||!STATES.includes(r.state))errors.push(`${r.id}: instrument identity/state missing`);
     const identity=`${r.jurisdiction}:${r.officialId}:${r.provision?.locator||''}`;if(identities.has(identity))errors.push(`${r.id}: duplicate official identity`);identities.add(identity);
@@ -70,9 +77,11 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
   }
   const eventStates=new Map();const eventTimes=new Map();
   for(const r of s.events){
-    requiredKeys(r,['id','instrument','kind','from','to','announcedAt','publishedAt','effectiveAt','verifiedAt','consultationClosesAt','adoptedAt','claimIds','corrects','summary'],r.id,errors);
+    requiredKeys(r,['id','instrument','kind','from','to','announcedAt','publishedAt','recordDatedAt','effectiveAt','verifiedAt','consultationClosesAt','adoptedAt','claimIds','corrects','summary'],r.id,errors);
     ref('instruments',r.instrument,r.id);textPair(r.summary,r.id,errors);
-    if(!['transition','correction'].includes(r.kind))errors.push(`${r.id}: unknown event kind`);
+    if(!['transition','correction','observation','notice'].includes(r.kind))errors.push(`${r.id}: unknown event kind`);
+    if(r.kind==='observation'&&(r.from!==null||eventStates.has(r.instrument)||r.corrects!==null))errors.push(`${r.id}: an observation records only the first evidenced state, not a legal transition date`);
+    if(r.kind==='notice'&&(r.from!==r.to||!eventStates.has(r.instrument)||r.corrects!==null))errors.push(`${r.id}: a notice must preserve an existing state`);
     if(!STATES.includes(r.to))errors.push(`${r.id}: invalid event state`);
     if(r.kind==='transition' && !(r.from===null||TRANSITIONS[r.from]?.includes(r.to)))errors.push(`${r.id}: illegal lifecycle transition`);
     if(r.kind==='correction' && (!r.corrects||r.from!==r.to))errors.push(`${r.id}: correction must preserve state and name prior event`);
@@ -81,8 +90,10 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     eventStates.set(r.instrument,r.to);
     for(const k of ['announcedAt','effectiveAt'])policyDate(r[k],`${r.id}.${k}`,errors,true);
     for(const k of ['consultationClosesAt','adoptedAt'])if(r[k]!=null)policyDate(r[k],`${r.id}.${k}`,errors);
-    policyDate(r.publishedAt,`${r.id}.publishedAt`,errors);time(r.verifiedAt,`${r.id}.verifiedAt`,errors);
-    if(Date.parse(r.publishedAt)>Date.parse(r.verifiedAt))errors.push(`${r.id}: verified before publication`);
+    policyDate(r.publishedAt,`${r.id}.publishedAt`,errors,true);time(r.verifiedAt,`${r.id}.verifiedAt`,errors);
+    if(r.recordDatedAt!=null)policyDate(r.recordDatedAt,`${r.id}.recordDatedAt`,errors);
+    for(const field of ['publishedAt','recordDatedAt','announcedAt','adoptedAt'])if(r[field]!=null&&Date.parse(r[field])>Date.parse(r.verifiedAt))errors.push(`${r.id}: verified before ${field}`);
+    if(r.kind==='transition'&&!['publishedAt','recordDatedAt','announcedAt','adoptedAt','effectiveAt','consultationClosesAt'].some(field=>r[field]!=null))errors.push(`${r.id}: undated state evidence must be an observation`);
     if(Date.parse(r.verifiedAt)<(eventTimes.get(r.instrument)||0))errors.push(`${r.id}: non-append-only chronology`);
     eventTimes.set(r.instrument,Date.parse(r.verifiedAt));
     if(r.to==='effective'&&(!r.effectiveAt||Date.parse(r.effectiveAt)>Date.parse(r.verifiedAt)))errors.push(`${r.id}: future or unknown effect is not effective law`);
@@ -90,15 +101,15 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     else for(const c of r.claimIds){ref('claims',c,r.id);const claim=claimById.get(c);if(claim?.kind==='legal_status'&&claim.value!==r.to)errors.push(`${r.id}: legal state claim disagrees with event`);}
     const eventClaims=(r.claimIds||[]).map(id=>claimById.get(id)).filter(Boolean);
     if(!eventClaims.some(c=>c.kind==='legal_status'&&c.value===r.to&&c.instrument===r.instrument))errors.push(`${r.id}: event lacks matching legal-state evidence`);
-    for(const [field,predicate] of [['effectiveAt','effective_at'],['announcedAt','announced_at'],['consultationClosesAt','consultation_closes_at'],['adoptedAt','adopted_at']]){
+    for(const [field,predicate] of [['effectiveAt','effective_at'],['announcedAt','announced_at'],['consultationClosesAt','consultation_closes_at'],['adoptedAt','adopted_at'],['recordDatedAt','document_dated_at']]){
       if(r[field]!=null&&!eventClaims.some(c=>c.kind==='date'&&c.predicate===predicate&&c.value===r[field]&&c.instrument===r.instrument))errors.push(`${r.id}: ${field} lacks matching dated claim`);
     }
-    if(!eventClaims.some(c=>c.evidence?.some(e=>sourceById.get(e.source)?.issuedAt===r.publishedAt)))errors.push(`${r.id}: publication date lacks matching original source`);
+    if(r.publishedAt!==null&&!eventClaims.some(c=>c.evidence?.some(e=>sourceById.get(e.source)?.issuedAt===r.publishedAt)))errors.push(`${r.id}: publication date lacks matching original source`);
   }
   for(const [id,state]of eventStates)if(instrumentById.get(id)?.state!==state)errors.push(`${id}: final state disagrees with event history`);
   for(const r of s.instruments)if(!eventStates.has(r.id))errors.push(`${r.id}: instrument has no evidenced lifecycle`);
   for(const r of s.claims){
-    requiredKeys(r,['id','instrument','kind','predicate','value','status','text','markets','mechanism','evidence','translationReviewed'],r.id,errors);
+    requiredKeys(r,['id','instrument','kind','predicate','value','status','text','markets','mechanism','evidence','translationReviewed','dateSubject','datePrecision'],r.id,errors);
     ref('instruments',r.instrument,r.id);textPair(r.text,r.id,errors);scope(r.markets,r.id);
     if(!['legal_status','date','number','fact','inference','scenario'].includes(r.kind)||!['verified','uncertain','contradictory'].includes(r.status))errors.push(`${r.id}: invalid claim kind/status`);
     if(r.status!=='verified')errors.push(`${r.id}: unverified claim must remain quarantined`);
@@ -106,18 +117,25 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     if(!MECHANISMS.includes(r.mechanism))errors.push(`${r.id}: unknown impact mechanism`);
     if(r.markets?.some(m=>!instrumentById.get(r.instrument)?.markets?.includes(m)))errors.push(`${r.id}: claim exceeds instrument jurisdiction`);
     if(r.kind==='legal_status'&&!STATES.includes(r.value))errors.push(`${r.id}: invalid legal state value`);
-    if(r.kind==='date'&&!isTime(r.value)&&!isCalendarDate(r.value))errors.push(`${r.id}: invalid date value`);
-    if(r.kind==='date'&&!['effective_at','announced_at','published_at','consultation_closes_at','adopted_at'].includes(r.predicate))errors.push(`${r.id}: date must name its exact legal-time meaning`);
+    const partialContext=r.kind==='date'&&r.predicate==='context_at'&&isContextPeriod(r.value,r.datePrecision);
+    if(r.kind==='date'&&!isTime(r.value)&&!isCalendarDate(r.value)&&!partialContext)errors.push(`${r.id}: invalid date value`);
+    if(r.datePrecision!==undefined&&!partialContext)errors.push(`${r.id}: partial precision is only valid for a contextual year or month`);
+    if(r.kind==='date'&&!['effective_at','announced_at','published_at','consultation_closes_at','adopted_at','document_dated_at','context_at','deadline_at'].includes(r.predicate))errors.push(`${r.id}: date must name its exact legal-time meaning`);
+    if(r.kind==='date'&&['context_at','deadline_at'].includes(r.predicate))textPair(r.dateSubject,`${r.id}.dateSubject`,errors);
+    else if(r.dateSubject!==undefined)errors.push(`${r.id}: only a contextual date or deadline has a separate subject`);
     if(r.kind==='number'&&!Number.isFinite(r.value))errors.push(`${r.id}: invalid numeric value`);
     if(!Array.isArray(r.evidence)||!r.evidence.length)errors.push(`${r.id}: missing original evidence`);
     else for(const e of r.evidence){
-      requiredKeys(e,['source','locator','quote','supports'],`${r.id}.evidence`,errors);ref('sources',e.source,r.id);
-      if(!e.locator||!e.quote||e.quote.length>300||e.supports!==r.kind)errors.push(`${r.id}: invalid source locator/quote/type`);
+      requiredKeys(e,['source','locator','quote','quoteHash','reproduction','supports'],`${r.id}.evidence`,errors);ref('sources',e.source,r.id);
+      const withheld=e.reproduction==='withheld';
+      if(!e.locator||e.supports!==r.kind||(withheld?e.quote!==undefined||!/^sha256:[a-f0-9]{64}$/.test(e.quoteHash||''):typeof e.quote!=='string'||!e.quote||e.quote.length>300||e.quoteHash!==undefined||e.reproduction!==undefined))errors.push(`${r.id}: invalid source locator/quote/type`);
       const source=sourceById.get(e.source);if(source?.locator!==e.locator)errors.push(`${r.id}: locator differs from verified source`);
+      if(withheld&&source?.rights?.reproduction!=='facts_only'||source?.rights?.reproduction==='facts_only'&&!withheld)errors.push(`${r.id}: evidence reproduction contradicts source use policy`);
       if(['legal_status','date'].includes(r.kind)&&source?.authority!=='official')errors.push(`${r.id}: legal status/date requires official authority`);
       const body=evidenceBodies?.get(e.source);
-      if(evidenceBodies&&(!body||!body.includes(e.quote))&&!retainedClaimIds.has(r.id))errors.push(`${r.id}: invented quotation`);
-      if(['legal_status','date','number'].includes(r.kind)&&e.quote&&!criticalValueInQuote(r,e.quote,{language:source?.language}))errors.push(`${r.id}: critical value absent from quotation`);
+      const quote=withheld?quoteProofs.get(e.source+':'+e.quoteHash):e.quote;
+      if(evidenceBodies&&(!body||typeof quote!=='string'||!quote||quote.length>300||!body.includes(quote))&&!retainedClaimIds.has(r.id))errors.push(`${r.id}: invented quotation or missing private quotation proof`);
+      if(['legal_status','date','number'].includes(r.kind)&&quote&&!criticalValueInQuote(r,quote,{language:source?.language}))errors.push(`${r.id}: critical value absent from quotation`);
     }
     const nums=(str)=>(str.match(/\d+(?:\.\d+)?/g)||[]).sort().join('|');
     if(isPair(r.text)&&nums(r.text[0])!==nums(r.text[1]))errors.push(`${r.id}: bilingual numeric mismatch`);
@@ -152,7 +170,7 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
         const scene=chapter.scene;
         if(!requiredKeys(scene,['template','claimIds','impactIds','relations'],'scene',errors))continue;
         errors.push(...policySceneProblems(scene,s,{storyClaimIds:r.claimIds}).map(problem=>`${r.id}: ${problem}`));
-        if(!['timeline','lifecycle','status_transition','before_after','causal','stakeholder','sourced_range','impact_waterfall','market_matrix'].includes(scene.template))errors.push(`${r.id}: unreviewed scene template`);
+        if(!['timeline','lifecycle','status_transition','before_after','causal','stakeholder','sourced_range','impact_waterfall','impact_summary','market_matrix'].includes(scene.template))errors.push(`${r.id}: unreviewed scene template`);
         for(const [key,kind]of [['claimIds','claims'],['impactIds','impacts']])if(!Array.isArray(scene[key]))errors.push(`${r.id}: scene needs typed references`);else for(const id of scene[key])ref(kind,id,r.id);
         if((scene.claimIds?.length||0)+(scene.impactIds?.length||0)>24)errors.push(`${r.id}: scene exceeds bounded item count`);
         if(scene.relations!==undefined){
@@ -167,7 +185,7 @@ export function validatePolicySnapshot(s, {marketIds=[], evidenceBodies=null, al
     ref('claims',r.claim,r.id);ref('sources',r.source,r.id);if(!marketIds.includes(r.market)||!claimById.get(r.claim)?.markets?.includes(r.market))errors.push(`${r.id}: invalid market mapping`);
     if(!/^view\/markets\/[a-z_]+\.json#(?:grades|verdicts|plays|thesis|triggers)(?:\.[a-zA-Z0-9_-]+)*$|^src\/markets\/[a-z_]+\/(?:story|comparison)\.js#[a-zA-Z0-9_.-]+$/.test(r.target||''))errors.push(`${r.id}: invalid public investment reference`);
     if(!['supports','challenges','context'].includes(r.kind)||!MECHANISMS.includes(r.mechanism)||!['current','pending_reassessment','unmapped'].includes(r.state))errors.push(`${r.id}: invalid dependency relation/state`);
-    textPair(r.relevance,r.id,errors);time(r.approvedAt,`${r.id}.approvedAt`,errors);
+    textPair(r.relevance,r.id,errors);time(r.approvedAt,`${r.id}.approvedAt`,errors,r.state==='unmapped');
   }
   for(const r of s.reviews){
     requiredKeys(r,['id','claim','linkIds','status','reason','action'],r.id,errors);ref('claims',r.claim,r.id);

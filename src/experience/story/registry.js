@@ -13,7 +13,14 @@
    Rollback: set `released: false`, and the button opens the research dialog
    again; story links then open nothing.
    --------------------------------------------------------------------------- */
+/* Japan G-1 shared-pack sign-off: 5 November 2026, japan-storyboard.md §12.
+   Analyst G-2 sign-off, merge and publication authorised 6 November 2026.
+   Tokyo, Kyushu and Hokkaido release together. */
+const loadJapanStory = () => import('../../markets/jp/storyPack.js');
 export const STORIES = {
+  jp_tokyo: { released: true, load: loadJapanStory },
+  jp_kyushu: { released: true, load: loadJapanStory },
+  jp_hokkaido: { released: true, load: loadJapanStory },
   pjm: { released: true, load: () => import('../../markets/pjm/storyPack.js') },
   /* Analyst G-2 signed off 3 November 2026. */
   caiso: { released: true, load: () => import('../../markets/caiso/storyPack.js') },
@@ -39,4 +46,14 @@ export function storyFor(marketId, search = globalThis.location?.search ?? ''){
   if (!entry) return null;
   if (entry.released) return entry;
   return new URLSearchParams(search).get('story') === 'preview' ? entry : null;
+}
+
+/* A separate public edition. G-1/G-2 flags above still govern the original,
+   investor-scoped stories; they are never used as a public-content approval. */
+export const PUBLIC_STORY_IDS = Object.freeze(['wa','nem','gb','de','it','ie','ro','pl','jp_tokyo','jp_kyushu','jp_hokkaido','pjm','ercot','caiso','fi']);
+export function publicStoryFor(id){
+  return PUBLIC_STORY_IDS.includes(id) ? {
+    loadOverview: () => import('./public/overview.js'),
+    load: () => import('./public/pack.js'),
+  } : null;
 }

@@ -30,7 +30,7 @@ export function proposedReviewProfiles({proposal,drafts,corpus,sourceRoot,extrac
   // Count the combined snapshot once rather than double-counting its four
   // independently reviewable market projections.
   const largest=snapshots.reduce((a,b)=>a.claims.length>b.claims.length?a:b);
-  for(const claim of largest.claims)for(const evidence of claim.evidence){const source=largest.sources.find(s=>s.id===evidence.source);quoteByURL.set(source.url,(quoteByURL.get(source.url)||0)+evidence.quote.length);}
+  for(const claim of largest.claims)for(const evidence of claim.evidence){const source=largest.sources.find(s=>s.id===evidence.source);quoteByURL.set(source.url,(quoteByURL.get(source.url)||0)+(evidence.quote?.length||0));}
   const profiles=[];
   for(const document of proposal.documents){
     const allowed=bindings.get(document.id);if(!allowed?.length)continue;
@@ -38,7 +38,7 @@ export function proposedReviewProfiles({proposal,drafts,corpus,sourceRoot,extrac
     for(const c of corpus.filter(c=>proposal.cases.find(p=>p.id===c.id)?.sourceId===document.id&&c.mediaType==='application/pdf')){
       manual.set(c.id,createPinnedPDFPreparer({sourceRoot,document,extractor,definition:{caseId:c.id,sourceId:c.source.id,url:c.source.url,locator:c.locator,textHash:c.source.contentHash,pages:c.extraction.pages,...(c.extraction.ranges?{ranges:c.extraction.ranges}:{})}}));
     }
-    const profile={id:'proposed-'+document.id,host:new URL(document.url).hostname,sourceIds:Object.freeze([...new Set(allowed.map(b=>b.source.id))]),reviewed:false,rightsReviewed:false,maxQuoteChars:0,
+    const profile={id:'proposed-'+document.id,host:new URL(document.url).hostname,sourceIds:Object.freeze([...new Set(allowed.map(b=>b.source.id))]),reviewed:false,rightsReviewed:false,modelTransmission:false,maxQuoteChars:0,
       proposedMaxQuoteChars:quoteByURL.get(document.url)||0,
       validate:({source,claims,body})=>{
         const known=allowed.some(b=>b.source.id===source.id&&b.sourceHash===digest(sourceData(source))&&sourceDigest(body)===b.source.contentHash);
@@ -50,7 +50,7 @@ export function proposedReviewProfiles({proposal,drafts,corpus,sourceRoot,extrac
       verifyStoredSnapshot:({snapshot})=>snapshotHashes.has(digest(snapshotData(snapshot))),
       prepareManualEvidence:async args=>{const prepare=manual.get(args.case?.id);if(!prepare)throw Error('No pinned manual PDF definition for this source');return prepare(args);},
     };
-    const manifest={id:profile.id,host:profile.host,sourceIds:profile.sourceIds,reviewed:false,rightsReviewed:false,maxQuoteChars:0,proposedMaxQuoteChars:profile.proposedMaxQuoteChars,
+    const manifest={id:profile.id,host:profile.host,sourceIds:profile.sourceIds,reviewed:false,rightsReviewed:false,modelTransmission:false,maxQuoteChars:0,proposedMaxQuoteChars:profile.proposedMaxQuoteChars,sourceUse:document.rightsEvidence.sourceUse??null,
       originalByteHash:document.originalByteHash,sourceBindings:allowed.map(b=>({sourceId:b.source.id,sourceHash:b.sourceHash,textHash:b.source.contentHash})),
       claimHashes:Object.fromEntries(claimHashes),translationHashes:Object.fromEntries(translations),storyHashes:Object.fromEntries(stories),recordHashes:Object.fromEntries(records),snapshotHashes:[...snapshotHashes],
       meaning:'Author-proposed exact-template matching only. Requires independent source/meaning/translation/rights and analyst configuration acceptance. Serialized data is not an approved executable profile.'};

@@ -24,6 +24,8 @@ export function quotationRightsProblems(snapshot,reviews){
   });
   const bySource=new Map(sources.map((source,i)=>[source.id,groups.get(find(i))]));
   for(const claim of snapshot.claims||[])for(const evidence of claim.evidence||[]){
+    const source=sources.find(s=>s.id===evidence.source);
+    if(source?.rights?.reproduction==='facts_only'&&(evidence.quote!==undefined||evidence.reproduction!=='withheld'))errors.push(`${evidence.source}: protected reproduction must be omitted`);
     const group=bySource.get(evidence.source);if(group)group.quoted+=evidence.quote?.length||0;
   }
   for(const group of groups.values())if(group.quoted>group.limit)errors.push(`${group.ids.join(',')}: document quotation allowance exceeded`);

@@ -49,7 +49,7 @@ export async function publishPolicySnapshot({repo,snapshot,context,bodies,expect
       errors.push(`${claim.id}: independent evidence/translation attestation missing`);
   }
   if(!(bodies instanceof Map))errors.push('Verified source bodies required');
-  else errors.push(...verifyEvidenceHashes(snapshot,bodies,{retainedSourceIds:retained.sourceIds}));
+  else errors.push(...verifyEvidenceHashes(snapshot,bodies,{quoteProofs:trusted.quoteProofs,retainedSourceIds:retained.sourceIds,retainedClaimIds:retained.claimIds}));
   errors.push(...quotationRightsProblems(snapshot,trusted.sourceReviews));
   for(const link of snapshot.links||[]){
     if(link.state!=='unmapped'&&context?.resolver?.resolve(link)?.state==='unmapped')errors.push(`${link.id}: unresolved investment dependency`);

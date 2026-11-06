@@ -24,7 +24,7 @@ export async function runManualShadowCase({cases,caseId,config,ledger,invoke,con
   const selected=cases?.find(c=>c.id===caseId);
   if(problems.length||!selected)return {status:'disabled',problems,canPublish:false};
   const body=selected.body;const source=Object.fromEntries(['id','url','publisher','title','language','authority','locator','contentHash','issuedAt','checkedAt','rights'].filter(key=>key in selected.source).map(key=>[key,selected.source[key]]));
-  if(source.rights)source.rights=Object.fromEntries(['metadata','termsURL','reviewed'].filter(key=>key in source.rights).map(key=>[key,source.rights[key]]));
+  if(source.rights)source.rights=Object.fromEntries(['metadata','termsURL','reviewed','reproduction','attribution','license','changes'].filter(key=>key in source.rights).map(key=>[key,source.rights[key]]));
   if(typeof scanEvidence!=='function'||await scanEvidence({body,source})!==true||typeof independentCheck!=='function')return {status:'disabled',problems:['Independent confidentiality and semantic validators required'],canPublish:false};
   const result=await researchShadow({changedDocuments:[{sourceId:source.id,source,excerpt:body}],invoke,config:{...config,validatedGoldCases:12},ledger,context,bodies:new Map([[source.id,body]]),now});
   if(result.status!=='shadow_valid')return {status:result.status,canPublish:false,usage:result.usage??null};

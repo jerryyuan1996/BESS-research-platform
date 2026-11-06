@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-05T20:02:22.355Z",
+  "fetchedAt": "2026-11-06T06:56:42.040Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-11-05T17:00:00.000Z",
+    "to": "2026-11-06T06:51:17.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -305,16 +305,6 @@
       "summary": "Eku Energy has fully commissioned its 250MW/500MWh Williamsdale BESS in the Australian Capital Territory (ACT)."
     },
     {
-      "t": "2026-11-05T10:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/what-class-a-reveals-about-solar-pv-module-fire-performance/",
-      "source": "pv magazine",
-      "title": "What Class A reveals about solar PV module fire performance",
-      "url": "https://www.pv-magazine.com/2026/11/05/what-class-a-reveals-about-solar-pv-module-fire-performance/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "When it comes to solar PV module safety, it’s important to understand how Class A designations differ. Any Class A claim must identify the standard used. The post What Class A reveals about solar PV module fire performance appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-11-05T10:32:53.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/return-secures-835-million-germany-bess-rollout-targets-1gw-annually/",
       "source": "Energy-Storage.news",
@@ -435,6 +425,16 @@
       "summary": "The New Orleans-based company separately inked firm pipeline contracts for enough natural gas to support 10 new combined-cycle power plants in Louisiana, CEO Drew Marsh said Monday."
     },
     {
+      "t": "2026-11-05T16:37:03.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/storage-solar-colocation-eia-seia/873882/",
+      "source": "Utility Dive",
+      "title": "Co-located solar, storage jumps to 16% of all installations, up from 2% in 2017: EIA",
+      "url": "https://www.utilitydive.com/news/storage-solar-colocation-eia-seia/873882/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The share of solar projects co-located with storage is projected to pass 30% over the next two years, based on planned additions, according to a report from the&nbsp;U.S. Energy Information Administration."
+    },
+    {
       "t": "2026-11-05T17:00:00.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/enforcement-pricing-and-the-tax-credit-window/",
       "source": "pv magazine",
@@ -443,18 +443,28 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Enforcement of the polysilicon Section 232 framework is tightening, module prices are still settling, the window for extending the ITC and 45X credits is real but narrow, and utility-scale project economics are under increasing pressure. Roth Capital Partners sponsored two US solar events in fall 2026, including the…"
+    },
+    {
+      "t": "2026-11-06T06:51:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/06/australian-developed-hydrogen-technology-may-cut-electricity-use-30/",
+      "source": "pv magazine",
+      "title": "Australian-developed hydrogen technology may cut electricity use by 30%",
+      "url": "https://www.pv-magazine.com/2026/11/06/australian-developed-hydrogen-technology-may-cut-electricity-use-30/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "An Australian-developed hydrogen technology evolved from CSIRO research and advanced by Hadean Energy has the potential to cut green hydrogen costs and improve commercial viability of lower-emissions steelmaking, and other industrial applications. The post Australian-developed hydrogen technology may cut electricity…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 9,
       "capital": 7,
       "grid": 23,
-      "technology": 3
+      "technology": 4
     },
     "sourceStatus": [
       {
@@ -473,7 +483,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 4
       },
       {
         "source": "pv magazine",
@@ -488,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:5193f0ee1756e3e44c0ca49c34120f4ebecf1e3e36e4a9016dcc2dfa683000cc",
-  "envelopeChecksum": "sha256:6e6a8fa66d61e457321a1a11755c042d1a534a9f5190b36f5cd235537c2cb8e1"
+  "contentChecksum": "sha256:a6cc24f06b9b18ebe837b723e2c499e30d735f6c871aea05515da7087297bd03",
+  "envelopeChecksum": "sha256:ca5cc02502852fd5cb6644fd9f2516ed39c7d84cd30148788fcbb791701b678e"
 }
