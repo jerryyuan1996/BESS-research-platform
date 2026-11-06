@@ -1,0 +1,74 @@
+name: Full page checks
+
+# The full browser suite for a pull request, on request.
+#
+# CI runs the ten-test smoke suite on pull requests and the full suite before
+# every publish (ci.yml). When a change needs the full suite before it merges —
+# a layout change, a story, a new market — label the pull request `full-check`.
+# This runs the suite when the label is added and on every push while it stays.
+#
+# Its own workflow, not a `labeled` trigger on ci.yml, so that adding any other
+# label starts nothing there and cannot post a skipped check over a red one.
+# Other labels start a run here whose only job is skipped, which costs no
+# minutes. No secret is read: the suite needs the build and nothing else, and
+# the gates that need the marker set ran in ci.yml on the same commit.
+on:
+  pull_request:
+    types: [labeled, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    name: Full browser suite (full-check label)
+    if: >-
+      contains(github.event.pull_request.labels.*.name, 'full-check') &&
+      github.event.pull_request.draft == false &&
+      (github.event.action != 'labeled' || github.event.label.name == 'full-check')
+    runs-on: ubuntu-latest
+    # A newer push cancels the run it makes obsolete. A run for some other
+    # label gets a group of its own, so it can never cancel a real one.
+    concurrency:
+      group: ${{ (github.event.action != 'labeled' || github.event.label.name == 'full-check') && format('full-check-pr-{0}', github.event.pull_request.number) || format('full-check-ignored-{0}', github.run_id) }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Build
+        run: node scripts/ci/timed.mjs "build" -- npm run build
+
+      - name: Read the Playwright version
+        id: playwright
+        run: echo "version=$(node -p "require('./node_modules/@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the isolated browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+
+      - name: Install the isolated browser for page checks
+        run: node scripts/ci/timed.mjs "install chromium" -- npx playwright install --with-deps --no-shell chromium
+
+      - name: Check desktop, mobile, both languages and saved cases
+        run: node scripts/ci/timed.mjs "end-to-end suite" -- npm run test:e2e
+
+      - name: Retain page-check evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-check-evidence
+          path: test-results/
+          if-no-files-found: ignore
+
+      - name: Summarise this job
+        if: always()
+        run: node scripts/ci/summary.mjs --title "CI timings — full page checks" --artifacts full-check-evidence

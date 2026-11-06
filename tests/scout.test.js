@@ -27,6 +27,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { createViewStore, ViewRejected, VIEW_ROOT } from '../etl/lib/viewWriter.mjs';
+import { steadyClock } from './helpers/steady-clock.mjs';
 import {
   AUTHOR_RIGHTS, LIVE_AUTHORS, PERMITTED_AUTHORS, HELD_AUTHORS, parsePath, validateChangelogEntry,
 } from '../view/schema/view.mjs';
@@ -89,7 +90,7 @@ const change = (p, to, patch = {}) => ({ market: 'bg', path: p, to, author: agen
 
 async function scratch(run){
   const root = await mkdtemp(path.join(tmpdir(), 'bess-scout-'));
-  try { await run(createViewStore(root), root); }
+  try { await run(steadyClock(createViewStore(root)), root); }
   finally { await rm(root, { recursive: true, force: true }); }
 }
 const rejects = (promise, pattern) => assert.rejects(promise, (error) => {

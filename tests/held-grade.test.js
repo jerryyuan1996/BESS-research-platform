@@ -28,6 +28,7 @@ import {
 } from '../view/schema/view.mjs';
 import { createViewStore, ViewRejected, VIEW_ROOT } from '../scripts/view/writer.mjs';
 import { trackRecord } from '../scripts/view/track-record.mjs';
+import { steadyClock } from './helpers/steady-clock.mjs';
 import {
   NOTES_KEY, PRIVATE_METRICS, validateNotes, heldNote, privateMetrics, heldWithoutReason, hasNotes,
 } from '../src/local/notes.js';
@@ -60,7 +61,7 @@ const notesFor = (dimension) => ({ fi: { held: { [dimension]: { reason: ['A priv
 
 async function scratch(run, notes = notesFor('gridScarcity')){
   const root = await mkdtemp(path.join(tmpdir(), 'bess-held-'));
-  try { await run(createViewStore(root, { notes: async () => notes }), root); }
+  try { await run(steadyClock(createViewStore(root, { notes: async () => notes })), root); }
   finally { await rm(root, { recursive: true, force: true }); }
 }
 const rejects = (promise, pattern) => assert.rejects(promise, (error) => {

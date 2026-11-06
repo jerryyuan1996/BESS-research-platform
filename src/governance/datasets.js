@@ -85,7 +85,7 @@ const entsoe = (marketId, title, { sourceId, republishable = true, licence = 'EN
   id: marketId + '-day-ahead', kind: 'timeseries', marketId, connector: 'entsoe', title,
   ...(sourceId ? { sourceId } : {}),
   source: { name: 'ENTSO-E Transparency Platform', url: 'https://transparency.entsoe.eu/', licence, attribution: 'Source: ENTSO-E Transparency Platform' },
-  refreshHours: 12 * HOURS, staleAfterHours: 3 * DAYS,
+  refreshHours: 24 * HOURS, staleAfterHours: 3 * DAYS,
   bearsOn: ['economics.merchGross'], republishable, requiresKey: true, official: true,
 });
 
@@ -132,7 +132,7 @@ export const DATASETS = [
       licence: 'Elexon BMRS Open Data Licence',
       licenceUrl: 'https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/',
       attribution: 'Contains BMRS data © Elexon Limited copyright and database right 2026.' },
-    refreshHours: 6 * HOURS, staleAfterHours: 3 * DAYS,
+    refreshHours: 24 * HOURS, staleAfterHours: 3 * DAYS,
     bearsOn: [], republishable: true, requiresKey: false, official: true,
   })),
 
@@ -153,7 +153,7 @@ export const DATASETS = [
       licence: 'PSE public reporting data — reuse with attribution to PSE S.A.',
       attribution: 'Source: PSE S.A.; ECB reference rates',
     },
-    refreshHours: 12 * HOURS,
+    refreshHours: 24 * HOURS,
     staleAfterHours: 3 * DAYS,
     bearsOn: ['economics.merchGross'],
     republishable: true,
@@ -169,7 +169,7 @@ export const DATASETS = [
     id, kind: 'timeseries', marketId: 'gb', connector: 'neso-response', title: [en, zh],
     source: { name: 'NESO Open Data', url: `https://www.neso.energy/data-portal/${slug}`,
       licence: 'NESO Open Data Licence', attribution: 'Supported by National Energy SO Open Data' },
-    refreshHours: fixed ? 876000 : 6, staleAfterHours: fixed ? 876000 : 72,
+    refreshHours: fixed ? 876000 : 24, staleAfterHours: fixed ? 876000 : 72,
     bearsOn: [], republishable: true, requiresKey: false, official: true,
   })),
 
@@ -185,7 +185,7 @@ export const DATASETS = [
   ].map(([id, en, zh]) => ({
     id, kind: 'timeseries', marketId: 'fi', connector: 'fingrid',
     title: [`Finland ${en} reserve price, hourly`, `芬兰${zh}备用小时价格`],
-    source: FINGRID, refreshHours: 12 * HOURS, staleAfterHours: 3 * DAYS,
+    source: FINGRID, refreshHours: 24 * HOURS, staleAfterHours: 3 * DAYS,
     bearsOn: ['economics.services'], republishable: true, requiresKey: true, official: true,
   })),
   entsoe("fi", ["Finland day-ahead prices","芬兰日前电价"]),

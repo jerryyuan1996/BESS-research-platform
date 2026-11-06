@@ -20,7 +20,7 @@
 
    ONE INPUT IS PINNED. GB's home, duration and portfolio sections quote the
    Brief's design answer (src/briefing/designData.js), which is built from the
-   ETL's live snapshots on the wall clock: each six-hourly data commit can move
+   ETL's live snapshots on the wall clock: each daily data commit can move
    it (a new ECB GBP rate turned "−$277k/MW" into "−$279k/MW" on 5 Nov 2026).
    That is the briefing changing, not a section, so these sections are rendered
    against the design answer as it stood when the fixtures were taken
