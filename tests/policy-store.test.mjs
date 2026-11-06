@@ -26,7 +26,7 @@ async function manualFixture(){
   const repo=await mkdtemp(path.join(os.tmpdir(),'policy-manual-store-')),snapshot=fixture();
   const first=await publishPolicySnapshot({repo,snapshot,context:attestedContext(snapshot),bodies:bodies(),enabled:true,expectedParent:null});
   const cases=Array.from({length:12},(_,i)=>({id:`synthetic-${i}`,market:['de','gb','nem','wa'][i%4],synthetic:false,originalSourceVerified:true,reviewedBy:'synthetic-test-reviewer',sourceLocator:'section 1',sourceURL:snapshot.sources[0].url,sourceHash:snapshot.sources[0].contentHash,expectedReview:false,actualReview:false,criticalAssertions:1,unsupportedAssertions:0}));
-  return {repo,snapshot,first,options:{repo,config:POLICY_AUTHORIZATION,marketIds:CONTEXT.marketIds,manualPublication:{enabled:true,approvalId:'synthetic-manual-decision',approvedHeads:[first.head]},evaluation:{approved:true,cases},profiles:[{host:'official.example',sourceIds:['test-source'],maxQuoteChars:300,reviewed:true,rightsReviewed:true,verifyStoredSnapshot:()=>true}]}};
+  return {repo,snapshot,first,options:{repo,config:POLICY_AUTHORIZATION,marketIds:CONTEXT.marketIds,manualPublication:{enabled:true,approvalId:'synthetic-manual-decision',approvedHeads:[first.head]},evaluation:{approved:true,method:'deterministic_source_regression',model:null,cases},profiles:[{host:'official.example',sourceIds:['test-source'],maxQuoteChars:300,reviewed:true,rightsReviewed:true,verifyStoredSnapshot:()=>true}]}};
 }
 async function cleanManual(repo){assert.equal(path.dirname(repo),path.resolve(os.tmpdir()));await rm(repo,{recursive:true,force:true});}
 

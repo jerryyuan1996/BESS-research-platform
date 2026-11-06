@@ -1,0 +1,2391 @@
+{
+  "schemaVersion": 1,
+  "approvalState": "proposal_only",
+  "activationAllowed": false,
+  "independentReviewer": null,
+  "cases": [
+    {
+      "id": "de-bkz-judgment-scope",
+      "market": "de",
+      "sourceId": "de-bkz",
+      "locator": "Netzentgelte: first FAQ, BGH EnVR 1/24; following questions on reductions and project-specific calculation",
+      "referenceFact": [
+        "The regulator reports that the 15 July 2025 judgment upheld the capacity-price BKZ in the case considered; its FAQ also distinguishes unconditional access from restrictions agreed in a connection contract.",
+        "监管机构记载，2025年7月15日判决认可了该案按容量价格法征收的BKZ；其问答也区分了无条件接入与并网合同约定的限制。"
+      ],
+      "rejectOverreach": [
+        "Every battery has an identical fixed BKZ, or all batteries are exempt.",
+        "所有电池的BKZ均为同一固定金额，或所有电池均获豁免。"
+      ],
+      "coverage": [
+        "judgment_scope",
+        "misleading_generalisation"
+      ],
+      "pages": [],
+      "literalChecks": [
+        "15.07.2025",
+        "EnVR 1/24"
+      ],
+      "mechanism": "grid_cost",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "de-agnes-consultation-not-adoption",
+      "market": "de",
+      "sourceId": "de-register",
+      "locator": "Konsultation des vollständigen Festlegungsentwurfs; closing paragraphs; Stand 21.09.2026",
+      "referenceFact": [
+        "The retrieved register still describes consultation of a draft and a decision planned during 2026; the consultation deadline is 18 September 2026.",
+        "本次取得的登记页仍将文件描述为征询中的草案，并称计划于2026年作出决定；征询截止日期为2026年9月18日。"
+      ],
+      "rejectOverreach": [
+        "The consultation deadline itself establishes adoption or legal effect.",
+        "征询截止日期本身证明已正式通过或生效。"
+      ],
+      "coverage": [
+        "consultation",
+        "unknown_adoption",
+        "wrong_effective_date"
+      ],
+      "pages": [],
+      "literalChecks": [
+        "Festlegungsentwurfs",
+        "18.09.2026"
+      ],
+      "mechanism": "grid_cost",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "de-fid-draft-definition",
+      "market": "de",
+      "sourceId": "de-draft",
+      "locator": "PDF p.3, Tenor 2 Nr.1; explanatory paragraphs 499-500, PDF pp.186-187",
+      "referenceFact": [
+        "The draft FID definition and its explanation must be read together. They are proposed transition conditions rather than proof that a particular project qualifies.",
+        "草案中的FID定义必须与解释段落一并阅读；它们是拟议的过渡条件，不能证明某个具体项目已经符合资格。"
+      ],
+      "rejectOverreach": [
+        "A private project's FID or grandfathering eligibility is established from the general draft alone.",
+        "仅凭通用草案即可确认某个私有项目的FID或过渡保护资格。"
+      ],
+      "coverage": [
+        "draft",
+        "eligibility_gap"
+      ],
+      "pages": [
+        3,
+        187
+      ],
+      "literalChecks": [
+        "endgültige Investitionsentscheidung",
+        "25%"
+      ],
+      "mechanism": "eligibility",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false,
+      "excerptRules": [
+        {
+          "page": 3,
+          "start": "1. endgültige Investitionsentscheidung",
+          "end": "2. Entnahmestelle"
+        },
+        {
+          "page": 187,
+          "start": "Die Wesentlichkeit",
+          "end": "501 Sobald"
+        }
+      ]
+    },
+    {
+      "id": "de-fid-clarification",
+      "market": "de",
+      "sourceId": "de-register",
+      "locator": "FID clarification, discussion of Tenor 2 Nr.1 and Randnummer 500",
+      "referenceFact": [
+        "The register clarifies that 25% is not a universal minimum loss threshold in the proposed FID test.",
+        "登记页澄清，拟议FID测试中的25%并非普遍适用的最低损失门槛。"
+      ],
+      "rejectOverreach": [
+        "The explanatory example creates a universal 25% legal minimum.",
+        "解释性示例构成普遍适用的25%法定最低门槛。"
+      ],
+      "coverage": [
+        "clarification",
+        "numeric_misinterpretation"
+      ],
+      "pages": [],
+      "literalChecks": [
+        "25",
+        "Mindest"
+      ],
+      "mechanism": "grid_cost",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "gb-gate2-approval-boundary",
+      "market": "gb",
+      "sourceId": "gb-gate2",
+      "locator": "PDF pp.1,4-6; summary paragraphs 1.2 and 1.9",
+      "referenceFact": [
+        "The 15 April 2025 decision approves the specified methodology. It distinguishes readiness and strategic alignment and refers separately to the associated licence standstill.",
+        "2025年4月15日决定批准了指定版本的方法，区分准备程度与战略匹配性，并另行提及相关许可证变更的等待期。"
+      ],
+      "rejectOverreach": [
+        "Approval proves a particular battery has passed Gate 2 or been energised.",
+        "方法获批证明某一电池项目已经通过Gate 2或完成送电。"
+      ],
+      "coverage": [
+        "adoption",
+        "delayed_effect",
+        "project_scope"
+      ],
+      "pages": [
+        1,
+        4
+      ],
+      "literalChecks": [
+        "decided to approve",
+        "Readiness Criteria",
+        "Strategic Alignment Criteria"
+      ],
+      "mechanism": "grid_access",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "gb-june-phased-deadlines",
+      "market": "gb",
+      "sourceId": "gb-timetable-june",
+      "locator": "PDF p.3, alternative timetable and separate distribution expectations",
+      "referenceFact": [
+        "The June decision sets NESO Phase 1 and Phase 2 issuance deadlines of 30 September 2026 and 31 January 2027; distribution completion expectations are stated separately.",
+        "六月决定将NESO第 1、第 2 阶段要约发出期限分别设为2026年9月30日和2027年1月31日；配电要约完成预期另列。"
+      ],
+      "rejectOverreach": [
+        "The requested blanket end date, each distribution expectation and every energisation date are interchangeable.",
+        "请求中的统一截止日期、各配电完成预期与所有送电日期可以互换。"
+      ],
+      "coverage": [
+        "deadline",
+        "requested_vs_approved",
+        "date_semantics"
+      ],
+      "pages": [
+        3
+      ],
+      "literalChecks": [
+        "30 September 2026",
+        "31 January 2027"
+      ],
+      "mechanism": "deadline",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "gb-october-limited-revision",
+      "market": "gb",
+      "sourceId": "gb-timetable-october",
+      "locator": "PDF p.1 decision; p.2 retained milestones; p.3 encouragement of completion confirmation",
+      "referenceFact": [
+        "The October decision moves only Phase 1 issuance to 31 October 2026 and retains the other timetable elements. It encourages regular updates and later written confirmation of completion.",
+        "十月决定仅将第 1 阶段要约发出期限改为 2026年10月31日，保留其他时间表要素，并鼓励定期更新进展及之后书面确认完成情况。"
+      ],
+      "rejectOverreach": [
+        "Passing the deadline proves that all offers were issued, accepted or energised.",
+        "期限已经过去即可证明所有要约已发出、已接受或已送电。"
+      ],
+      "coverage": [
+        "amendment",
+        "postponement",
+        "completion_gap"
+      ],
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "literalChecks": [
+        "31 October 2026",
+        "Phase 1"
+      ],
+      "mechanism": "deadline",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false,
+      "excerptRules": [
+        {
+          "page": 1,
+          "start": "The Authority consents to a second extension",
+          "end": "1 The terms"
+        },
+        {
+          "page": 2,
+          "start": "NESO has proposed",
+          "end": "In such circumstances"
+        },
+        {
+          "page": 3,
+          "start": "Ofgem encou rages regular written progress updates",
+          "end": "Transmission Owners"
+        }
+      ]
+    },
+    {
+      "id": "gb-multiple-price-proposal-abandoned",
+      "market": "gb",
+      "sourceId": "gb-cm-response",
+      "locator": "PDF p.12, Government response on the MPCM",
+      "referenceFact": [
+        "The government response declines to implement the MPCM policy proposals ahead of Prequalification 2026. Reporting the consultation responses does not adopt the rejected proposals.",
+        "政府答复决定不在 2026 年预审前实施 MPCM 政策建议。汇报咨询意见不代表采纳已拒绝的建议。"
+      ],
+      "rejectOverreach": [
+        "Every item in the original consultation was implemented.",
+        "原征询文件中的每项提案均已实施。"
+      ],
+      "coverage": [
+        "withdrawn_proposal",
+        "consultation_vs_outcome"
+      ],
+      "pages": [
+        12
+      ],
+      "literalChecks": [
+        "government has decided not to proceed",
+        "MPCM",
+        "Prequalification 2026"
+      ],
+      "mechanism": "revenue_right",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false,
+      "excerptRules": [
+        {
+          "page": 12,
+          "start": "Following consideration of the issues raised in the consultation",
+          "end": "The government continues to recognise"
+        }
+      ]
+    },
+    {
+      "id": "nem-2021-final-design",
+      "market": "nem",
+      "sourceId": "nem-determination",
+      "locator": "PDF pp.1-3; reference ERC0280; summary paragraphs 1-5",
+      "referenceFact": [
+        "The 2 December 2021 final determination introduces the IRP category and describes the earlier operator proposal; it establishes the historical design decision.",
+        "2021年12月2日最终决定引入IRP类别，并说明较早的运营机构提案；它可证明当时的设计决定。"
+      ],
+      "rejectOverreach": [
+        "This historical determination proves all later operational steps were completed.",
+        "这份历史决定证明之后所有运行实施步骤均已完成。"
+      ],
+      "coverage": [
+        "adoption",
+        "competing_designs"
+      ],
+      "pages": [
+        3
+      ],
+      "literalChecks": [
+        "has made a final determination",
+        "Integrated Resource Provider"
+      ],
+      "mechanism": "eligibility",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "nem-as-issued-commencement-split",
+      "market": "nem",
+      "sourceId": "nem-rule",
+      "locator": "PDF p.2, clause 2 Commencement",
+      "referenceFact": [
+        "As issued, the rule sets schedules 1-6 for 3 June 2024 and schedule 7 for 9 December 2021. Later amendments and operational releases need separate evidence.",
+        "发布时规则将附表1至6设为2024年6月3日生效，附表7设为2021年12月9日生效；后续修订与运行发布需要单独证据。"
+      ],
+      "rejectOverreach": [
+        "Every schedule commenced on the same day, or the as-issued version proves the current complete rulebook.",
+        "所有附表均在同日生效，或发布时版本证明当前完整规则内容。"
+      ],
+      "coverage": [
+        "staged_effect",
+        "version_scope"
+      ],
+      "pages": [
+        2
+      ],
+      "literalChecks": [
+        "3 June 2024",
+        "9 December 2021"
+      ],
+      "mechanism": "deadline",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "nem-nonenergy-cost-basis",
+      "market": "nem",
+      "sourceId": "nem-determination",
+      "locator": "PDF p.8, Recovery of non-energy costs, paragraphs 1-3",
+      "referenceFact": [
+        "The final determination distinguishes consumed and sent-out energy and describes measuring them separately for non-energy cost recovery rather than netting them.",
+        "最终决定区分用电量与送出电量，并说明非电能成本回收分别计量两者，而非将其相互净额抵销。"
+      ],
+      "rejectOverreach": [
+        "The registration reform by itself guarantees revenue or a universal reduction in a battery's costs.",
+        "注册改革本身保证电池获得收入，或保证所有电池的成本均下降。"
+      ],
+      "coverage": [
+        "economic_mechanism",
+        "unsupported_savings"
+      ],
+      "pages": [
+        8
+      ],
+      "literalChecks": [
+        "consumed",
+        "sent out"
+      ],
+      "mechanism": "grid_cost",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "nem-territorial-scope",
+      "market": "nem",
+      "sourceId": "nem-rule",
+      "locator": "PDF p.1, National Electricity Law application list; p.4, rule 2.1A.5",
+      "referenceFact": [
+        "The instrument is a NEM rule under the listed National Electricity Law applications and separately addresses ancillary-service participation; it is not a WA WEM capacity entitlement.",
+        "该文件依据所列国家电力法适用安排制定NEM规则，并另列辅助服务参与要求；它不是WA WEM容量收益权。"
+      ],
+      "rejectOverreach": [
+        "An Australia label transfers the NEM rule or an ancillary-service entitlement automatically to WA.",
+        "澳大利亚标签可使NEM规则或辅助服务收益权自动适用于WA。"
+      ],
+      "coverage": [
+        "jurisdiction",
+        "ancillary_services",
+        "not_applicable"
+      ],
+      "pages": [
+        1,
+        4
+      ],
+      "literalChecks": [
+        "South Australia",
+        "New South Wales",
+        "National Electricity Law",
+        "Providing market ancillary services",
+        "Ancillary Service Provider"
+      ],
+      "mechanism": "context",
+      "proposedExpectedReview": false,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "wa-gazettal-not-universal-effect",
+      "market": "wa",
+      "sourceId": "wa-gazette-2025",
+      "locator": "PDF pp.3-4, printed pp.29-30; making of rules and commencement table",
+      "referenceFact": [
+        "The 14 January 2025 Gazette distinguishes making the RCM Reviews Sequencing Rules from their schedule-specific commencement, including a later notice for some schedules.",
+        "2025年1月14日公报区分RCM评估排序规则的制定与各附表的生效安排，其中部分附表须另发通知。"
+      ],
+      "rejectOverreach": [
+        "Gazettal made every schedule effective immediately.",
+        "刊宪使所有附表立即生效。"
+      ],
+      "coverage": [
+        "adoption",
+        "staged_effect"
+      ],
+      "pages": [
+        3,
+        4
+      ],
+      "literalChecks": [
+        "14 January 2025",
+        "15 January",
+        "Schedules 5, 6 and 7"
+      ],
+      "mechanism": "deadline",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "wa-schedule5-later-notice",
+      "market": "wa",
+      "sourceId": "wa-gazette-2026",
+      "locator": "PDF p.3, printed p.141, EE401, schedule 5 paragraph",
+      "referenceFact": [
+        "The notice published on 13 January 2026 states that schedule 5 commences at 8:00 AM WST on 1 April 2026; its signature date is separately 19 December 2025.",
+        "2026年1月13日刊发的通知规定，附表5于2026年4月1日WST上午8:00生效；签署日期另为2025年12月19日。"
+      ],
+      "rejectOverreach": [
+        "The signature date, publication date and commencement date are one interchangeable instant.",
+        "签署日期、刊发日期与生效日期属于可互换的同一时点。"
+      ],
+      "coverage": [
+        "later_notice",
+        "publication_vs_signature_vs_effect"
+      ],
+      "pages": [
+        3
+      ],
+      "literalChecks": [
+        "13 January 2026",
+        "1 April 2026",
+        "19th December 2025"
+      ],
+      "mechanism": "deadline",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "wa-schedule6-relative-order",
+      "market": "wa",
+      "sourceId": "wa-gazette-2026",
+      "locator": "PDF p.3, printed p.141, EE401, schedule 6 paragraph",
+      "referenceFact": [
+        "Schedule 6 commences immediately after Tranche 8 schedule 5, whose stated commencement is 8:00 AM WST on 1 October 2027. The ordering relationship is part of the source.",
+        "附表6紧接Tranche 8附表5之后生效，后者所载生效时间为2027年10月1日WST上午8:00；这一先后关系属于原文内容。"
+      ],
+      "rejectOverreach": [
+        "The source provides no date for the predecessor, or permits dropping the immediately-after condition.",
+        "原文未提供前置附表日期，或允许省略紧接其后的条件。"
+      ],
+      "coverage": [
+        "relative_commencement",
+        "correction_of_prior_gap"
+      ],
+      "pages": [
+        3
+      ],
+      "literalChecks": [
+        "immediate",
+        "1 October 2027",
+        "Schedule 6"
+      ],
+      "mechanism": "deadline",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "wa-current-versus-future-schedules",
+      "market": "wa",
+      "sourceId": "wa-sequencing-register",
+      "locator": "Event/Date table, schedules 1-7; last updated 13 January 2026",
+      "referenceFact": [
+        "The official register lists different dates for schedules 1-6 and leaves schedule 7 to a ministerial Gazette notice. A register update alone does not make that missing notice known.",
+        "官方登记表列明附表1至6的不同日期，并将附表7留待部长公报通知；登记页更新本身不能证明尚未取得的通知内容。"
+      ],
+      "rejectOverreach": [
+        "All RCM changes are already effective, or schedule 7 has an inferred fixed date.",
+        "所有RCM修改均已生效，或可为附表7推定一个固定日期。"
+      ],
+      "coverage": [
+        "future_effect",
+        "unknown_notice",
+        "source_gap"
+      ],
+      "pages": [],
+      "literalChecks": [
+        "Schedule 7",
+        "gazett"
+      ],
+      "mechanism": "deadline",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "Proposed label follows the existing mechanism rule; it does not approve a change to an investment conclusion.",
+        "建议标签依据现有影响机制规则；并不批准修改投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "gb-current-connection-capacity-constraint",
+      "market": "gb",
+      "sourceId": "gb-cm-amendment3",
+      "pages": [
+        3,
+        52
+      ],
+      "locator": "PDF p.3 clause 1.2; p.52 Part 6 clause 13.2",
+      "referenceFact": [
+        "No.3 changes the shared-connection capacity constraint and states relative commencement after the day the rules are made. It cannot be omitted when reading the earlier storage nomination provision.",
+        "No.3 修改了共享并网协议下的容量限制，并规定在规则制定日次日生效。阅读较早的储能容量申报条款时，不能忽略该修订。"
+      ],
+      "rejectOverreach": [
+        "A nominated storage capacity overrides the connection agreement limit, or publication alone supplies an invented commencement instant.",
+        "储能申报容量可以凌驾于并网协议限制之上，或可仅凭公布日期虚构精确生效时刻。"
+      ],
+      "coverage": [
+        "amendment",
+        "relative_commencement",
+        "current_rule_chain"
+      ],
+      "literalChecks": [
+        "day after the day",
+        "must not exceed",
+        "minimum Maximum Export Capacity"
+      ],
+      "mechanism": "revenue_right",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "nem-spot-obligations-not-support-contract",
+      "market": "nem",
+      "sourceId": "nem-rule",
+      "pages": [
+        13
+      ],
+      "locator": "PDF p.13, inserted clause 2.2.5A(b)-(c)",
+      "referenceFact": [
+        "The original IESS rule requires market bidirectional units to sell sent-out generation and purchase supplied electricity through spot settlement. This participation obligation is distinct from a CIS or LTESA support contract.",
+        "IESS 原始规则要求市场双向机组通过现货结算售出发电量并购入供电量。这项参与义务与 CIS 或 LTESA 收入支持合同是不同事项。"
+      ],
+      "rejectOverreach": [
+        "IRP registration itself provides a capacity-support contract.",
+        "IRP 注册本身提供容量收入支持合同。"
+      ],
+      "coverage": [
+        "energy_market_design",
+        "participation_vs_support"
+      ],
+      "literalChecks": [
+        "sell all sent out generation",
+        "purchase all electricity",
+        "spot market"
+      ],
+      "mechanism": "revenue_right",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "wa-flexible-price-not-two-full-prices",
+      "market": "wa",
+      "sourceId": "wa-current-rules",
+      "pages": [
+        556
+      ],
+      "locator": "PDF p.556, clause 4.29.1F",
+      "referenceFact": [
+        "The floating daily flexible-capacity price is a non-negative difference involving the flexible price per trading day and the floating daily peak-capacity price. It is not an instruction to add two full capacity prices; actual payments require the applicable credit and eligibility rules.",
+        "浮动日灵活容量价格是灵活容量价格按交易日折算后与浮动日峰值容量价格之间的非负差额，并非要求将两项完整容量价格相加；实际付款仍须依据适用容量额度和资格规则。"
+      ],
+      "rejectOverreach": [
+        "Each battery can add two complete headline capacity prices as guaranteed income.",
+        "每个电池都可将两项完整容量标价相加作为保证收入。"
+      ],
+      "coverage": [
+        "price_formula",
+        "unsupported_income",
+        "economic_mechanism"
+      ],
+      "literalChecks": [
+        "4.29.1F",
+        "Floating Daily Flexible Reserve Capacity Price",
+        "Floating Daily Peak Reserve Capacity Price"
+      ],
+      "mechanism": "revenue_right",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "wa-ess-accreditation-is-facility-specific",
+      "market": "wa",
+      "sourceId": "wa-current-rules",
+      "pages": [
+        258,
+        259
+      ],
+      "locator": "PDF pp.258-259, clauses 2.34A.1-2.34A.4",
+      "referenceFact": [
+        "The current ESM rules distinguish the listed FCESS services, a facility application, required information and tests, and AEMO approval or rejection. A general battery description or a capacity-credit award does not establish this separate accreditation.",
+        "现行 ESM 规则区分所列 FCESS 服务、设施申请、所需信息与测试，以及 AEMO 的批准或拒绝。一般电池描述或容量额度授予不能证明这项独立认证。"
+      ],
+      "rejectOverreach": [
+        "All batteries automatically hold every ESS accreditation when awarded capacity credits.",
+        "电池获得容量额度后就自动具备全部 ESS 认证。"
+      ],
+      "coverage": [
+        "ess_scope",
+        "eligibility",
+        "separate_mechanisms"
+      ],
+      "literalChecks": [
+        "Essential System Service Accreditation",
+        "may accredit a Facility",
+        "must approve or reject"
+      ],
+      "mechanism": "eligibility",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "gb-consultation-discretion-tradeoff",
+      "market": "gb",
+      "sourceId": "gb-gate2",
+      "pages": [
+        11
+      ],
+      "locator": "PDF p.11, paragraph 3.4, competing consultation responses",
+      "referenceFact": [
+        "The decision records an objection that operator discretion reduced transparency, alongside responses accepting bounded discretion and asking for published principles and processes.",
+        "决定记录了一方认为运营方裁量降低透明度的意见，以及认可有限裁量、同时要求公开原则和程序的其他意见。"
+      ],
+      "rejectOverreach": [
+        "All consultation respondents supported unrestricted operator discretion.",
+        "所有咨询参与方都支持不受限制的运营方裁量。"
+      ],
+      "coverage": [
+        "stakeholder_tradeoff",
+        "competing_explanations"
+      ],
+      "literalChecks": [
+        "reduced transparency",
+        "bounded discretion"
+      ],
+      "mechanism": "grid_access",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false,
+      "positions": [
+        [
+          "One respondent argued that operator discretion reduced transparency.",
+          "一位咨询参与方认为运营方裁量降低了透明度。"
+        ],
+        [
+          "Other respondents accepted bounded discretion while asking for published principles and processes.",
+          "其他参与方认可有限裁量，同时要求公开原则和程序。"
+        ]
+      ],
+      "positionAnchors": [
+        "reduced transparency",
+        "bounded discretion"
+      ]
+    },
+    {
+      "id": "wa-network-access-competing-positions",
+      "market": "wa",
+      "sourceId": "wa-response",
+      "pages": [
+        19,
+        20
+      ],
+      "locator": "PDF pp.19-20 / printed pp.14-15, Appendix 3 and clause 4.9.2A responses",
+      "referenceFact": [
+        "The consultation records objections to giving new NCESS facilities the same network-access priority as existing facilities. The authority defends the priority where NCESS avoids inefficient network reinforcement and separately explains its restriction on mutually exclusive facility variants.",
+        "咨询记录了反对给予新 NCESS 设施与现有设施相同网络接入优先级的意见。主管部门以 NCESS 可避免低效网络增容说明该优先级，并另行解释互斥设施方案的限制。"
+      ],
+      "rejectOverreach": [
+        "The consultation establishes consensus that every new battery receives first-priority access.",
+        "咨询表明各方一致同意每个新电池都获得最高接入优先级。"
+      ],
+      "coverage": [
+        "stakeholder_tradeoff",
+        "access_priority",
+        "facility_variants"
+      ],
+      "literalChecks": [
+        "NCESS",
+        "highest priority group",
+        "different versions of the same Facility"
+      ],
+      "mechanism": "grid_access",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false,
+      "positions": [
+        [
+          "A submission sought network-access priority for existing facilities ahead of new NCESS facilities.",
+          "一份意见要求现有设施的网络接入优先级高于新 NCESS 设施。"
+        ],
+        [
+          "The authority defended top-priority NCESS where it avoids inefficient network reinforcement.",
+          "主管部门认为，能够避免低效网络增容的 NCESS 应处于最高优先级。"
+        ]
+      ],
+      "positionAnchors": [
+        "prioritisation order, of",
+        "The prioritisation order reflects the policy intent"
+      ]
+    },
+    {
+      "id": "gb-storage-nomination-not-award",
+      "market": "gb",
+      "sourceId": "gb-cm-amendment2",
+      "pages": [
+        6
+      ],
+      "locator": "PDF p.6, inserted rule 3.5.6",
+      "referenceFact": [
+        "The storage connection-capacity nomination provision has a floor relative to the specified connection capacity. A nomination is not de-rated capacity, an auction award or payment.",
+        "储能并网容量申报条款设有相对于指定并网容量的下限。申报容量不等于折减后的容量、中标结果或付款。"
+      ],
+      "rejectOverreach": [
+        "A connection-capacity nomination itself guarantees capacity revenue.",
+        "并网容量申报本身保证取得容量收入。"
+      ],
+      "coverage": [
+        "capacity_mechanism",
+        "nomination_vs_award"
+      ],
+      "literalChecks": [
+        "3.5.6",
+        "50%"
+      ],
+      "mechanism": "revenue_right",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "gb-storage-later-reporting-amendment",
+      "market": "gb",
+      "sourceId": "gb-cm-amendment4",
+      "pages": [
+        3,
+        44
+      ],
+      "locator": "PDF p.3 clause 1.2 and p.44 clauses 21-22",
+      "referenceFact": [
+        "The later No.4 rules specify their own commencement and add storage-related application and register information. The nomination rule must be read with this later reporting chain.",
+        "其后的 No.4 规则规定自身生效日期，并增加储能申请及登记信息要求。容量申报条款须与这条后续报告链一并阅读。"
+      ],
+      "rejectOverreach": [
+        "The No.2 rule can be treated as the complete unchanged 2026 application process.",
+        "可将 No.2 规则视为完整且此后未变的 2026 申请流程。"
+      ],
+      "coverage": [
+        "amendment",
+        "effective",
+        "original_ordinal_date"
+      ],
+      "literalChecks": [
+        "17th July 2026",
+        "3.5.6",
+        "maximum amount of energy"
+      ],
+      "mechanism": "revenue_right",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "nem-fcas-guidance-version-change",
+      "market": "nem",
+      "sourceId": "nem-fcas-guide",
+      "pages": [
+        1,
+        4,
+        5,
+        14
+      ],
+      "locator": "PDF pp.1,4-5,14, release history, NER/NEM scope and testing guidance",
+      "referenceFact": [
+        "The current FCAS guide identifies version 5.0 and its earlier version history, including additional post-fault simulation requirements. A guidance version change is not repeal of a statute or proof of facility accreditation.",
+        "现行 FCAS 指南标示 5.0 版本及先前版本历史，并增加故障后仿真要求。指南换版不等于废除法规，也不证明某设施已获认证。"
+      ],
+      "rejectOverreach": [
+        "An older guidance version remains the current test specification, or the guide alone awards FCAS registration.",
+        "旧版指南仍是现行测试规范，或仅凭指南即可取得 FCAS 注册。"
+      ],
+      "coverage": [
+        "guidance_supersession",
+        "eligibility",
+        "current_vs_historical"
+      ],
+      "literalChecks": [
+        "5.0",
+        "2 September 2026",
+        "28 July 2024",
+        "post-fault",
+        "National Electricity Rules",
+        "NEM"
+      ],
+      "mechanism": "eligibility",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false,
+      "details": [
+        {
+          "text": [
+            "The release history lists guide version 4.0 with effective date 2024-07-28.",
+            "版本历史列出 4.0 版指南，其生效日期为 2024-07-28。"
+          ],
+          "anchor": "28 July 2024"
+        },
+        {
+          "text": [
+            "The current release lists version 5.0 with effective date 2026-09-02 and adds post-fault simulation requirements.",
+            "当前发布记录列出 5.0 版，其生效日期为 2026-09-02，并增加故障后仿真要求。"
+          ],
+          "anchor": "2 September 2026"
+        }
+      ]
+    },
+    {
+      "id": "nem-cis-target-not-minimum-duration",
+      "market": "nem",
+      "sourceId": "nem-cis-t10-guidelines",
+      "pages": [
+        3,
+        16
+      ],
+      "locator": "PDF p.3 Table 1 and p.16 Table 7 EC4-EC5",
+      "referenceFact": [
+        "CIS Tender 10 distinguishes the aggregate 4-hour-equivalent target from EC5 minimum duration and capacity conditions. It requires NEM registration intent and satisfaction of all eligibility and merit criteria.",
+        "CIS 第 10 轮区分合计 4 小时等效招标目标与 EC5 的最低时长、容量条件，并要求拟在 NEM 注册且满足全部资格和评审条件。"
+      ],
+      "rejectOverreach": [
+        "The aggregate target makes every battery eligible or guarantees an underwriting agreement.",
+        "合计招标目标使所有电池都自动符合资格，或保证获得收入支持协议。"
+      ],
+      "coverage": [
+        "eligibility",
+        "misleading_headline",
+        "scope"
+      ],
+      "literalChecks": [
+        "4-hour equivalent",
+        "minimum duration of 2 hours",
+        "30MW",
+        "region of the NEM"
+      ],
+      "mechanism": "eligibility",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "nem-ltesa-duration-and-double-support",
+      "market": "nem",
+      "sourceId": "nem-ltesa-guidelines",
+      "pages": [
+        9,
+        30
+      ],
+      "locator": "PDF p.9 Table 1 interaction with CIS; p.30 Table 5 EC4-EC5",
+      "referenceFact": [
+        "NSW Tender 9 uses its own long-duration and NSW-region criteria. Its guidelines prohibit holding an LTESA and a CISA for the same project at the same time; the two support schemes cannot simply be stacked.",
+        "NSW 第 9 轮有自身的长时储能和 NSW 区域条件。指南禁止同一项目同时持有 LTESA 与 CISA，不能简单叠加两项支持。"
+      ],
+      "rejectOverreach": [
+        "An NEM battery automatically has access to NSW long-duration support and simultaneous CIS support.",
+        "NEM 电池自动有权取得 NSW 长时储能支持并同时叠加 CIS 支持。"
+      ],
+      "coverage": [
+        "state_scope",
+        "eligibility",
+        "incompatible_support"
+      ],
+      "literalChecks": [
+        "cannot hold both",
+        "eight (8) hours",
+        "NSW region of the NEM"
+      ],
+      "mechanism": "eligibility",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "id": "de-capacity-distinct-auction-classes",
+      "market": "de",
+      "sourceId": "de-capacity-statute",
+      "pages": [],
+      "locator": "Sections 2-6,12-13,87 of the government-hosted statute",
+      "referenceFact": [
+        "The statute has distinct tender classes and technical conditions. Its long-term criteria cannot be replaced by a categorical statement that all battery storage is prohibited or currently receives a capacity payment.",
+        "该法区分招标类别和技术条件。不能把长期条件改写为所有电池储能均被禁止，或所有电池目前均获得容量付款。"
+      ],
+      "rejectOverreach": [
+        "All battery technologies are categorically prohibited by the statute, or publication establishes a particular battery income.",
+        "该法一概禁止所有电池技术，或法律公布即证明某电池已获得收入。"
+      ],
+      "coverage": [
+        "market_design",
+        "technical_scope",
+        "unsupported_entitlement"
+      ],
+      "literalChecks": [
+        "StromVKG",
+        "10 aufeinanderfolgende Stunden",
+        "80 Prozent"
+      ],
+      "mechanism": "eligibility",
+      "proposedExpectedReview": true,
+      "labelReason": [
+        "A verified eligibility or revenue mechanism can require investment review; an award or new investment conclusion is not inferred.",
+        "经验证的资格或收入机制可能需要投资复核；不据此推断中标或新的投资结论。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false
+    },
+    {
+      "mechanism": "context",
+      "proposedExpectedReview": false,
+      "labelReason": [
+        "Historical context does not alone establish a material change in an approved investment judgment.",
+        "历史背景本身不证明已批准投资判断发生重大变化。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false,
+      "id": "de-regulatory-history-to-agnes",
+      "market": "de",
+      "sourceId": "de-history",
+      "pages": [],
+      "locator": "AgNes overview: 2 September 2021 court judgment, 12 May 2025 procedure opening and conflicting tariff objectives",
+      "literalChecks": [
+        "2. September 2021",
+        "12. Mai 2025",
+        "Kostenreflexivität"
+      ],
+      "referenceFact": [
+        "The regulator links the 2021 European court judgment on regulatory independence to the later framework and records opening the AgNes procedure in May 2025. Cost reflectivity and other tariff objectives can conflict; this history is not final adoption or a battery-specific invoice.",
+        "监管机构将2021年欧洲法院关于监管独立性的判决与后续框架联系起来，并记录AgNes程序于2025年5月启动。成本反映等电价目标可能冲突；该历史不等于最终通过，也不是某储能设施的缴费账单。"
+      ],
+      "rejectOverreach": [
+        "The 2021 judgment or 2025 procedure itself adopts the 2026 tariff draft.",
+        "2021年判决或2025年程序本身即通过2026年电价草案。"
+      ],
+      "coverage": [
+        "historical_context",
+        "jurisdiction",
+        "not_adoption"
+      ]
+    },
+    {
+      "mechanism": "context",
+      "proposedExpectedReview": false,
+      "labelReason": [
+        "Historical context does not alone establish a material change in an approved investment judgment.",
+        "历史背景本身不证明已批准投资判断发生重大变化。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false,
+      "id": "gb-connections-reform-history",
+      "market": "gb",
+      "sourceId": "gb-gate2",
+      "pages": [
+        7,
+        8,
+        9
+      ],
+      "locator": "PDF pp.7-9, paragraphs 2.6-2.10: 2023 open letter, 2024 reforms and 2025 licence consultation",
+      "literalChecks": [
+        "May 2023",
+        "September 2024",
+        "February 2025"
+      ],
+      "referenceFact": [
+        "The 2025 decision recounts the May 2023 connections-policy letter and later 2024 reforms and licence work. This is a multi-year policy history, distinct from evidence that a particular connection was delivered.",
+        "2025年决定回顾了2023年5月并网政策公开信、后续2024年改革及牌照相关工作。这是多年政策沿革，并不证明某个并网项目已经交付。"
+      ],
+      "rejectOverreach": [
+        "A policy objective or consultation proves an individual offer, acceptance or energisation.",
+        "政策目标或咨询即可证明个别要约已发出、已接受或已送电。"
+      ],
+      "coverage": [
+        "historical_context",
+        "consultation",
+        "completion_gap"
+      ]
+    },
+    {
+      "mechanism": "context",
+      "proposedExpectedReview": false,
+      "labelReason": [
+        "Historical context does not alone establish a material change in an approved investment judgment.",
+        "历史背景本身不证明已批准投资判断发生重大变化。"
+      ],
+      "expectedReview": null,
+      "actualReview": null,
+      "reviewedBy": null,
+      "sourceReviewed": false,
+      "rightsReviewed": false,
+      "translationReviewed": false,
+      "id": "wa-reserve-capacity-reform-history",
+      "market": "wa",
+      "sourceId": "wa-response",
+      "pages": [
+        3
+      ],
+      "locator": "PDF p.3 / printed p.ii: reviews since 2022, December 2023 reform and later resequencing",
+      "literalChecks": [
+        "since the start of 2022",
+        "December 2023",
+        "sequenced"
+      ],
+      "referenceFact": [
+        "The official response traces market reviews from 2022 and Reserve Capacity Reform rules made in December 2023, then explains implementation resequencing. The earlier making date does not establish that every later schedule had commenced.",
+        "官方回应追溯了2022年起的市场审查及2023年12月制定的储备容量改革规则，并解释后续实施顺序调整。较早的制定日期不能证明所有后续附表均已生效。"
+      ],
+      "rejectOverreach": [
+        "All later reserve-capacity provisions were effective when the 2023 reform was made.",
+        "2023年改革制定时，所有后续储备容量条款即已生效。"
+      ],
+      "coverage": [
+        "historical_context",
+        "amendment",
+        "postponement"
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "id": "de-announcement",
+      "file": "de-announcement.html",
+      "url": "https://www.bundesnetzagentur.de/SharedDocs/Pressemitteilungen/EN/2026/20260806_Agnes.html",
+      "publisher": "Bundesnetzagentur",
+      "title": "Bundesnetzagentur starts consultation on reform of electricity network tariff system",
+      "language": "en",
+      "mediaType": "text/html",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:95e9d13c02d440f7ed52e0eb7374c13723f420ee15c1ef6fbe7f9dab5ca84c6d",
+      "originalBytes": 82655,
+      "retrievedAt": "2026-11-06T02:09:19.969447+00:00",
+      "rightsEvidence": {
+        "basis": "UrhG section 5 for qualifying official works, with sections 62-63; otherwise the exact Bundesnetzagentur BY-ND terms require a source-specific use decision.",
+        "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+        "proposedUse": "Own factual paraphrase and original links; classification of the draft/website material and translated quoted text remains for review.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "de-bkz",
+      "file": "de-bkz.html",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Speicher/_faq/faq_table4.html",
+      "publisher": "Bundesnetzagentur",
+      "title": "Bundesnetzagentur storage FAQ: Baukostenzuschuss",
+      "language": "de",
+      "mediaType": "text/html",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:e2d9a68739dc12c8c6c332598103f9e6cf397c638ea1d1123ccdaef2c66685f1",
+      "originalBytes": 59156,
+      "retrievedAt": "2026-11-06T00:53:01.284127+00:00",
+      "rightsEvidence": {
+        "basis": "UrhG section 5 for qualifying official works, with sections 62-63; otherwise the exact Bundesnetzagentur BY-ND terms require a source-specific use decision.",
+        "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+        "proposedUse": "Own factual paraphrase and original links; classification of the draft/website material and translated quoted text remains for review.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "de-capacity-statute",
+      "file": "de-capacity-statute.html",
+      "url": "https://www.gesetze-im-internet.de/stromvkg/BJNR0D2AB0026.html",
+      "publisher": "Gesetze im Internet",
+      "title": "StromVKG: Gesetz zur Sicherung der Versorgungssicherheit Strom und zur Bereitstellung neuer Kapazitäten",
+      "language": "de",
+      "mediaType": "text/html",
+      "charset": "iso-8859-1",
+      "originalByteHash": "sha256:8f6d6e5bc1fb3cf681add64319d200488d5c765f42fadd85e87f8cac154fa3a0",
+      "originalBytes": 388081,
+      "retrievedAt": "2026-11-06T01:08:07.343807+00:00",
+      "rightsEvidence": {
+        "basis": "Statutory text: UrhG section 5(1) excludes laws and regulations from copyright protection. Do not substitute the different website/draft-work classification in section 5(2).",
+        "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+        "proposedUse": "Accurate own-language statutory facts, precise provision locators and original links; independent applicability and bilingual meaning review remain necessary.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "de-draft",
+      "file": "de-draft.pdf",
+      "url": "https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/GBK-GZ/2025/GBK-25-01-1x3_AgNes/Downloads/FL-Entwurf_DE_DL_BF.html?nn=1059162",
+      "publisher": "Bundesnetzagentur",
+      "title": "Entwurf der Festlegung AgNes, GBK-25-01-1#3",
+      "language": "de",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:2fce8a8bd50b5d5f8af3cddf9dafc57de40d7dea0f7c66b3aa528cb7120e6da5",
+      "originalBytes": 1724669,
+      "retrievedAt": "2026-11-06T00:51:06.459637+00:00",
+      "rightsEvidence": {
+        "basis": "UrhG section 5 for qualifying official works, with sections 62-63; otherwise the exact Bundesnetzagentur BY-ND terms require a source-specific use decision.",
+        "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+        "proposedUse": "Own factual paraphrase and original links; classification of the draft/website material and translated quoted text remains for review.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "de-history",
+      "file": "de-history.html",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Netzentgelte/Anreizregulierung/Agnes/start.html",
+      "publisher": "Bundesnetzagentur",
+      "title": "AgNes: Reform der Netzentgeltsystematik",
+      "language": "de",
+      "mediaType": "text/html",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:6ca087349e4e38acc5d9abfbe276fff807d255c7bc09b42f1afbdb27baac77e0",
+      "originalBytes": 68829,
+      "retrievedAt": "2026-11-06T00:53:01.285170+00:00",
+      "rightsEvidence": {
+        "basis": "UrhG section 5 for qualifying official works, with sections 62-63; otherwise the exact Bundesnetzagentur BY-ND terms require a source-specific use decision.",
+        "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+        "proposedUse": "Own factual paraphrase and original links; classification of the draft/website material and translated quoted text remains for review.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "de-register",
+      "file": "de-register.html",
+      "url": "https://www.bundesnetzagentur.de/1059162",
+      "publisher": "Bundesnetzagentur",
+      "title": "AgNes, proceeding GBK-25-01-1#3",
+      "language": "de",
+      "mediaType": "text/html",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:c1e263a8746a2a10b9199b5066e79534044ed1159de05934d9fe51c8888a259d",
+      "originalBytes": 118221,
+      "retrievedAt": "2026-11-06T00:51:07.751881+00:00",
+      "rightsEvidence": {
+        "basis": "UrhG section 5 for qualifying official works, with sections 62-63; otherwise the exact Bundesnetzagentur BY-ND terms require a source-specific use decision.",
+        "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+        "proposedUse": "Own factual paraphrase and original links; classification of the draft/website material and translated quoted text remains for review.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "de-urhg5",
+      "file": "de-urhg5.html",
+      "url": "https://www.gesetze-im-internet.de/urhg/__5.html",
+      "publisher": "Gesetze im Internet",
+      "title": "Urheberrechtsgesetz, section 5: Amtliche Werke",
+      "language": "de",
+      "mediaType": "text/html",
+      "charset": "iso-8859-1",
+      "originalByteHash": "sha256:0d1230ebb389ebdfdd0cb265ac74ee91345d19787520507c4db51cf85e375524",
+      "originalBytes": 4525,
+      "retrievedAt": "2026-11-06T02:09:19.971417+00:00",
+      "rightsEvidence": {
+        "basis": "Statutory text: UrhG section 5(1) excludes laws and regulations from copyright protection. Do not substitute the different website/draft-work classification in section 5(2).",
+        "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+        "proposedUse": "Accurate own-language statutory facts, precise provision locators and original links; independent applicability and bilingual meaning review remain necessary.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "de-urhg62",
+      "file": "de-urhg62.html",
+      "url": "https://www.gesetze-im-internet.de/urhg/__62.html",
+      "publisher": "Gesetze im Internet",
+      "title": "Urheberrechtsgesetz, section 62: Änderungsverbot",
+      "language": "de",
+      "mediaType": "text/html",
+      "charset": "iso-8859-1",
+      "originalByteHash": "sha256:defc56c56f9cee2f5d86c16efffc239be9ea1e0466b41833dcab11823c1335e6",
+      "originalBytes": 5637,
+      "retrievedAt": "2026-11-06T02:09:19.972390+00:00",
+      "rightsEvidence": {
+        "basis": "Statutory text: UrhG section 5(1) excludes laws and regulations from copyright protection. Do not substitute the different website/draft-work classification in section 5(2).",
+        "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+        "proposedUse": "Accurate own-language statutory facts, precise provision locators and original links; independent applicability and bilingual meaning review remain necessary.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "de-urhg63",
+      "file": "de-urhg63.html",
+      "url": "https://www.gesetze-im-internet.de/urhg/__63.html",
+      "publisher": "Gesetze im Internet",
+      "title": "Urheberrechtsgesetz, section 63: Quellenangabe",
+      "language": "de",
+      "mediaType": "text/html",
+      "charset": "iso-8859-1",
+      "originalByteHash": "sha256:fd0b3f2bc9f16fa779090fdd3a1241c65fb40ba120ff5fdb9d3ba45f4643bc8f",
+      "originalBytes": 5643,
+      "retrievedAt": "2026-11-06T02:09:22.610135+00:00",
+      "rightsEvidence": {
+        "basis": "Statutory text: UrhG section 5(1) excludes laws and regulations from copyright protection. Do not substitute the different website/draft-work classification in section 5(2).",
+        "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+        "proposedUse": "Accurate own-language statutory facts, precise provision locators and original links; independent applicability and bilingual meaning review remain necessary.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "gb-cm-amendment2",
+      "file": "gb-cm-amendment2.pdf",
+      "url": "https://assets.publishing.service.gov.uk/media/6a3bf038da47783d877239d9/The_Capacity_Market__Amendment___No._2__Rules_2026.pdf",
+      "publisher": "UK Government",
+      "title": "The Capacity Market (Amendment) (No.2) Rules 2026",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:9ed0af47c4d9b49500a95af699966962cabe3a89d70e2f6fdc931e4f4aaf6b89",
+      "originalBytes": 302615,
+      "retrievedAt": "2026-11-06T01:08:07.353417+00:00",
+      "rightsEvidence": {
+        "basis": "Open Government Licence, subject to source-specific Crown attribution, document title and third-party exclusions.",
+        "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "proposedUse": "Bounded attributed excerpts and marked translations; no logos or excluded third-party material.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "gb-cm-amendment3",
+      "file": "gb-cm-amendment3.pdf",
+      "url": "https://assets.publishing.service.gov.uk/media/6a562f692cbe5d1c179a6487/The_Capacity_Market__Amendment___No._3__Rules_2026.pdf",
+      "publisher": "UK Government",
+      "title": "The Capacity Market (Amendment) (No.3) Rules 2026",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:b448cc6c491ea0f175be7c2433f6128cc3ba7d9647a8dda606750fa137ca8134",
+      "originalBytes": 1014990,
+      "retrievedAt": "2026-11-06T02:09:25.140725+00:00",
+      "rightsEvidence": {
+        "basis": "Open Government Licence, subject to source-specific Crown attribution, document title and third-party exclusions.",
+        "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "proposedUse": "Bounded attributed excerpts and marked translations; no logos or excluded third-party material.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "gb-cm-amendment4",
+      "file": "gb-cm-amendment4.pdf",
+      "url": "https://assets.publishing.service.gov.uk/media/6a562f722cbe5d1c179a6488/The_Capacity_Market__Amendment___No._4__Rules_2026.pdf",
+      "publisher": "UK Government",
+      "title": "The Capacity Market (Amendment) (No.4) Rules 2026",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:bf586b098bb510443fa5820771242e6eef1979fa7cd9d64484c4dcd735d4c40e",
+      "originalBytes": 400291,
+      "retrievedAt": "2026-11-06T02:09:25.895401+00:00",
+      "rightsEvidence": {
+        "basis": "Open Government Licence, subject to source-specific Crown attribution, document title and third-party exclusions.",
+        "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "proposedUse": "Bounded attributed excerpts and marked translations; no logos or excluded third-party material.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "gb-cm-regulations850",
+      "file": "gb-cm-regulations850.pdf",
+      "url": "https://www.legislation.gov.uk/uksi/2026/850/pdfs/uksi_20260850_en.pdf",
+      "publisher": "UK Government",
+      "title": "The Electricity Capacity (Amendment and Transitional Provision) Regulations 2026, SI 2026/850",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:754e338ac3d09655cec81ac00c98688ab92647fceae722746dcc7f72aac384d6",
+      "originalBytes": 258137,
+      "retrievedAt": "2026-11-06T01:11:24.617230+00:00",
+      "rightsEvidence": {
+        "basis": "Open Government Licence, subject to source-specific Crown attribution, document title and third-party exclusions.",
+        "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "proposedUse": "Bounded attributed excerpts and marked translations; no logos or excluded third-party material.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "gb-cm-response",
+      "file": "gb-cm-response.pdf",
+      "url": "https://assets.publishing.service.gov.uk/media/6a0449b6e71c4cdf4026bae7/capacity-market-proposed-changes-for-prequalification-2026-gov-response.pdf",
+      "publisher": "UK Government",
+      "title": "Capacity Market: proposed changes for prequalification 2026, government response",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:3770ba616eee47006c005cbf2bdda31d770875bd6a342d3618393c52f037f7bf",
+      "originalBytes": 492625,
+      "retrievedAt": "2026-11-06T00:53:03.168523+00:00",
+      "rightsEvidence": {
+        "basis": "Open Government Licence, subject to source-specific Crown attribution, document title and third-party exclusions.",
+        "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "proposedUse": "Bounded attributed excerpts and marked translations; no logos or excluded third-party material.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "gb-gate2",
+      "file": "gb-gate2.pdf",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf",
+      "publisher": "Ofgem",
+      "title": "Decision: Gate 2 Criteria Methodology",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:6497c6d5674031315f3fbce54bc480aa77c70be08293c2697445e0317152c85b",
+      "originalBytes": 434240,
+      "retrievedAt": "2026-11-06T00:50:53.088836+00:00",
+      "rightsEvidence": {
+        "basis": "Open Government Licence, subject to source-specific Crown attribution, document title and third-party exclusions.",
+        "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "proposedUse": "Bounded attributed excerpts and marked translations; no logos or excluded third-party material.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "gb-timetable-june",
+      "file": "gb-timetable-june.pdf",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-06/OFGEM-E12.14-decision-letter-FINAL.pdf",
+      "publisher": "Ofgem",
+      "title": "Decision on the alternative Gate 2 to Whole Queue timetable, 3 June 2026",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:143a9a30c0f4d64ec118f91220d53fdf63b87702e959b64c0eb639373bcbcf3b",
+      "originalBytes": 119401,
+      "retrievedAt": "2026-11-06T00:50:53.085793+00:00",
+      "rightsEvidence": {
+        "basis": "Open Government Licence, subject to source-specific Crown attribution, document title and third-party exclusions.",
+        "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "proposedUse": "Bounded attributed excerpts and marked translations; no logos or excluded third-party material.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "gb-timetable-october",
+      "file": "gb-timetable-october.pdf",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-10/Ofgem-agreement-for-revision-to-G2TWQ-timetable.pdf",
+      "publisher": "Ofgem",
+      "title": "Agreement for revision to Gate 2 to Whole Queue timetable, 2 October 2026",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:79e98c8a21b6d2381d521cf6fcc6c1226956b9a05c7dd72fac3b83bb3ebddf0c",
+      "originalBytes": 94911,
+      "retrievedAt": "2026-11-06T00:50:53.087838+00:00",
+      "rightsEvidence": {
+        "basis": "Open Government Licence, subject to source-specific Crown attribution, document title and third-party exclusions.",
+        "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "proposedUse": "Bounded attributed excerpts and marked translations; no logos or excluded third-party material.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "nem-cis-t10-guidelines",
+      "file": "nem-cis-t10-guidelines.pdf",
+      "url": "https://asl.org.au/-/media/services/files/cis/cis-t10-nem/260623-cis-tender-10-nem-dispatchable-capacity-tender-guidelines.pdf?rev=9a4dbc9fb60c4f7e9bef2f03f11c515c&sc_lang=en",
+      "publisher": "Commonwealth of Australia",
+      "title": "Capacity Investment Scheme Tender 10: NEM Dispatchable Capacity Tender Guidelines",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:153cefb9a921613f472bf60b6bab770b4f9efcde82519d64f990fa5d80bd3d9d",
+      "originalBytes": 1782763,
+      "retrievedAt": "2026-11-06T02:09:34.668688+00:00",
+      "rightsEvidence": {
+        "basis": "The exact Tender 10 guidelines, PDF p.2: CC BY 4.0 with enumerated exclusions and the required attribution.",
+        "termsURL": "https://creativecommons.org/licenses/by/4.0/",
+        "proposedUse": "Attribute the document to DCCEEW, June 2026, CC BY 4.0; identify translation/changes and exclude third-party, logo, trademark and Coat of Arms material.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "nem-determination",
+      "file": "nem-determination.pdf",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/Final%20determination.pdf",
+      "publisher": "AEMC",
+      "title": "Integrating energy storage systems into the NEM, final determination",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:3398ab75b8f95b5f0ea87b0b881a8e01aad72992b43214bfd453f0baac706302",
+      "originalBytes": 844085,
+      "retrievedAt": "2026-11-06T00:50:55.576175+00:00",
+      "rightsEvidence": {
+        "basis": "AEMC final determination, PDF p.2, permits selected passages for the specified research/review purposes with acknowledgement; do not infer blanket republication rights.",
+        "termsURL": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/Final%20determination.pdf",
+        "proposedUse": "Own factual paraphrase, exact source links and a separately reviewed bounded quotation allowance.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "nem-fcas-guide",
+      "file": "nem-fcas-guide.pdf",
+      "url": "https://www.aemo.com.au/-/media/files/stakeholder_consultation/consultations/nem-consultations/2026/fcas-registration-guides-consultation/bess-guide-for-contingency-fcas-registration-v50.pdf?rev=ae32400a98d44de6b204ba33e2837546&sc_lang=en",
+      "publisher": "AEMO",
+      "title": "Battery Energy Storage System guide to Contingency FCAS registration, version 5.0",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:9487b60e23557a19c4a7d7762c22f2744d80fda782d54e2ffb8383e28977096d",
+      "originalBytes": 685274,
+      "retrievedAt": "2026-11-06T01:08:13.088286+00:00",
+      "rightsEvidence": {
+        "basis": "AEMO owned-public-material Copyright Permissions, referred to by the guide at PDF p.2; exclusions apply.",
+        "termsURL": "https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions",
+        "proposedUse": "Accurate AEMO and guide-title attribution; exclude confidential and other-owner commissioned content.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "nem-ltesa-guidelines",
+      "file": "nem-ltesa-guidelines.pdf",
+      "url": "https://asl.org.au/-/media/services/files/tender-round-9/260520-tender-round-9-tender-guidelines-20-may-2026.pdf?rev=3fb76e8a51184ceabbdeb0d863540f4d&sc_lang=en",
+      "publisher": "ASL",
+      "title": "NSW Electricity Infrastructure Roadmap Guidelines: Tender Round 9, LDS Infrastructure",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:51ca37bc81367c259cd935c3bca41df7cf219338cd4fd03624f61f2616cff8ab",
+      "originalBytes": 1797775,
+      "retrievedAt": "2026-11-06T02:09:22.802086+00:00",
+      "rightsEvidence": {
+        "basis": "The exact Tender 9 guidelines, PDF p.3, grant general use with accurate and appropriate report/author attribution; confidential/other-owner material excluded.",
+        "termsURL": "https://asl.org.au/-/media/services/files/tender-round-9/260520-tender-round-9-tender-guidelines-20-may-2026.pdf?rev=3fb76e8a51184ceabbdeb0d863540f4d&sc_lang=en",
+        "proposedUse": "Bounded attributed public guideline facts and excerpts only; never confidential tender submissions or other-owner reports.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "nem-rule",
+      "file": "nem-rule.pdf",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+      "publisher": "AEMC",
+      "title": "National Electricity Amendment (Integrating energy storage systems into the NEM) Rule 2021 No.13",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+      "originalBytes": 731132,
+      "retrievedAt": "2026-11-06T00:50:55.452776+00:00",
+      "rightsEvidence": {
+        "basis": "Original AEMC amending rule; the final-determination selected-passage notice does not itself license this separate rule PDF. Confirm the rule-specific or applicable AEMC use basis before any quoted public release.",
+        "termsURL": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+        "proposedUse": "Private source review, own factual paraphrase and original links pending rule-specific reproduction and quotation review.",
+        "automation": "not_approved",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "wa-current-rules",
+      "file": "wa-current-rules.pdf",
+      "url": "https://www.wa.gov.au/system/files/2026-09/electricity_system_and_market_rules_-_1_october_2026.pdf",
+      "publisher": "State of Western Australia",
+      "title": "Electricity System and Market Rules, as at 1 October 2026",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:b93f6c4a603bfce01e6278585e98bc4190a60efb44e0b350e443f30dd1d65c96",
+      "originalBytes": 5275403,
+      "retrievedAt": "2026-11-06T00:53:08.398777+00:00",
+      "rightsEvidence": {
+        "basis": "WA.gov.au terms prohibit automated access; Gazette is excluded from the WA Legislation CC licence. Existing offline copies do not authorize a crawler.",
+        "termsURL": "https://www.wa.gov.au/terms-of-use",
+        "proposedUse": "Private review only pending exact document reuse and authorized acquisition path; no new automated WA.gov.au requests.",
+        "automation": "blocked_terms",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "wa-gazette-2025",
+      "file": "wa-gazette-2025.pdf",
+      "url": "https://www.wa.gov.au/system/files/2025-01/gg2025_003.pdf",
+      "publisher": "State of Western Australia",
+      "title": "Government Gazette WA, 14 January 2025, No.3, notice EN401",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:6e7c6ade41b1e65604832ca84692da26cbbd3038311ea9e667b9edf8bdace448",
+      "originalBytes": 363790,
+      "retrievedAt": "2026-11-06T00:50:58.593481+00:00",
+      "rightsEvidence": {
+        "basis": "WA.gov.au terms prohibit automated access; Gazette is excluded from the WA Legislation CC licence. Existing offline copies do not authorize a crawler.",
+        "termsURL": "https://www.wa.gov.au/terms-of-use",
+        "proposedUse": "Private review only pending exact document reuse and authorized acquisition path; no new automated WA.gov.au requests.",
+        "automation": "blocked_terms",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "wa-gazette-2026",
+      "file": "wa-gazette-2026.pdf",
+      "url": "https://www.wa.gov.au/system/files/2026-01/gg2026_006.pdf",
+      "publisher": "State of Western Australia",
+      "title": "Government Gazette WA, 13 January 2026, No.6, notice EE401",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:bc6528e18a89eb47e770922a51f6df020c0170efc431f78fc5a07e1b06d93e78",
+      "originalBytes": 300561,
+      "retrievedAt": "2026-11-06T00:51:04.571619+00:00",
+      "rightsEvidence": {
+        "basis": "WA.gov.au terms prohibit automated access; Gazette is excluded from the WA Legislation CC licence. Existing offline copies do not authorize a crawler.",
+        "termsURL": "https://www.wa.gov.au/terms-of-use",
+        "proposedUse": "Private review only pending exact document reuse and authorized acquisition path; no new automated WA.gov.au requests.",
+        "automation": "blocked_terms",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "wa-response",
+      "file": "wa-response.pdf",
+      "url": "https://www.wa.gov.au/system/files/2025-01/response_to_stakeholder_submissions_exposure_draft_of_wem_investment_certainty_and_rcm_review_amending_rules.pdf",
+      "publisher": "State of Western Australia",
+      "title": "Response to stakeholder submissions: WEM Investment Certainty and RCM Review amending rules",
+      "language": "en",
+      "mediaType": "application/pdf",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:d4d3d652f56e95a6706dc5f08f5d87e6aa198bb7aaba5834cbaa3e991d7027c8",
+      "originalBytes": 691884,
+      "retrievedAt": "2026-11-06T00:53:22.003179+00:00",
+      "rightsEvidence": {
+        "basis": "WA.gov.au terms prohibit automated access; Gazette is excluded from the WA Legislation CC licence. Existing offline copies do not authorize a crawler.",
+        "termsURL": "https://www.wa.gov.au/terms-of-use",
+        "proposedUse": "Private review only pending exact document reuse and authorized acquisition path; no new automated WA.gov.au requests.",
+        "automation": "blocked_terms",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    },
+    {
+      "id": "wa-sequencing-register",
+      "file": "wa-sequencing-register.html",
+      "url": "https://www.wa.gov.au/government/document-collections/wholesale-electricity-market-amendment-rcm-reviews-sequencing-rules-2025",
+      "publisher": "State of Western Australia",
+      "title": "Wholesale Electricity Market Amendment (RCM Reviews Sequencing) Rules 2025",
+      "language": "en",
+      "mediaType": "text/html",
+      "charset": "utf-8",
+      "originalByteHash": "sha256:45803a31feac71e5e867e57abf9895f1a743748304089a83ad4647a465b73231",
+      "originalBytes": 75109,
+      "retrievedAt": "2026-11-06T00:51:10.707507+00:00",
+      "rightsEvidence": {
+        "basis": "WA.gov.au terms prohibit automated access; Gazette is excluded from the WA Legislation CC licence. Existing offline copies do not authorize a crawler.",
+        "termsURL": "https://www.wa.gov.au/terms-of-use",
+        "proposedUse": "Private review only pending exact document reuse and authorized acquisition path; no new automated WA.gov.au requests.",
+        "automation": "blocked_terms",
+        "reviewed": false,
+        "rightsReviewed": false
+      }
+    }
+  ],
+  "evaluationMeaning": "Literal source/byte replay and proposed labels only. No model quality, independent semantic acceptance, gold admission or publication authority.",
+  "pilots": [
+    {
+      "market": "de",
+      "id": "de-grid-access-policy",
+      "officialId": "GBK-25-01-1#3",
+      "jurisdiction": "DE",
+      "title": [
+        "Germany: connection costs, AgNes and capacity-policy boundaries",
+        "德国：并网成本、AgNes 与容量政策边界"
+      ],
+      "lifecycle": {
+        "sourceId": "de-announcement",
+        "pages": [],
+        "locator": "Date of issue and opening paragraph",
+        "publishedAt": "2026-08-06",
+        "state": "consultation",
+        "stateAnchor": "has today started a consultation on the final draft determination",
+        "dateAnchor": "2026.08.06"
+      },
+      "answer": [
+        "Separate the connection contract, the consulted charging framework and the capacity-law route. None of these records alone establishes a battery fee or income. Fair evidence: the draft and clarification are available; a final decision and source-specific eligibility would change the analysis.",
+        "应分别核对并网合同、正在征询意见的收费框架，以及容量法律路径。任何一份材料都不能单独证明电池的费用或收入。证据为 Fair：已有草案与澄清；正式决定及具体适用条件会改变分析。"
+      ],
+      "changesIf": [
+        "A final AgNes decision, its implementing determinations, authoritative eligibility evidence or the applicable connection contract changes the supported position.",
+        "AgNes 正式决定、实施决定、权威资格证据或适用并网合同出现变化时，应重新核对。"
+      ],
+      "economicCase": "de-bkz-judgment-scope",
+      "chapters": [
+        {
+          "id": "de-problem",
+          "title": [
+            "Start with the mechanism",
+            "先辨明机制"
+          ],
+          "text": [
+            "A connection contribution, an ongoing network charge and a capacity-support instrument answer different questions. The regulator’s BKZ FAQ reports a court decision in the case considered and distinguishes contractual restrictions. It does not supply a universal battery charge. The practical research task is to identify which cost or eligibility condition applies before comparing economics.",
+            "一次性并网贡献、持续网络收费和容量支持工具回答的是不同问题。监管机构的 BKZ 问答报道了特定案件中的法院决定，并区分合同约束，但未给出统一的电池收费。研究应先确认适用成本和资格条件，再比较经济性。"
+          ],
+          "caseIds": [
+            "de-bkz-judgment-scope",
+            "de-capacity-distinct-auction-classes"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "de-history",
+          "title": [
+            "A consulted framework, not a tariff invoice",
+            "征询意见的框架，不是收费账单"
+          ],
+          "text": [
+            "The official overview traces the 2021 regulatory-independence judgment and the AgNes procedure opened in May 2025. The 2026 announcement then opens consultation on a final draft. A comment deadline closes consultation; it does not itself adopt the instrument or establish an immediately payable tariff.",
+            "官方概览追溯2021年监管独立性判决及2025年5月启动的AgNes程序。2026年公告随后就最终草案展开咨询。意见截止日终结咨询，但本身不代表通过文件，也不确立即时应缴电价。"
+          ],
+          "caseIds": [
+            "de-regulatory-history-to-agnes",
+            "de-agnes-consultation-not-adoption",
+            "de-fid-draft-definition"
+          ],
+          "scene": "timeline"
+        },
+        {
+          "id": "de-tradeoff",
+          "title": [
+            "Transition certainty and cost allocation",
+            "过渡确定性与成本分摊"
+          ],
+          "text": [
+            "The regulator reports objections about satisfying the proposed FID condition. Its clarification rejects reading the explanatory percentage as a universal minimum threshold. The competing concern is understandable: transition protection must distinguish sufficiently committed investments while the framework reallocates network costs. This is a research interpretation of the documented issue, not an assertion that a particular project qualifies.",
+            "监管机构记录了针对拟议 FID 条件可达性的异议，并澄清解释中的比例不能被读成统一最低门槛。文件反映的权衡是：过渡保护既要识别投入充分的投资，也要处理网络成本再分配。这是对已记录问题的研究解释，并非认定某个项目符合资格。"
+          ],
+          "caseIds": [
+            "de-fid-draft-definition",
+            "de-fid-clarification"
+          ],
+          "scene": "before_after"
+        },
+        {
+          "id": "de-capacity",
+          "title": [
+            "Read the actual tender class",
+            "核对真正适用的招标类别"
+          ],
+          "text": [
+            "The capacity statute distinguishes tender classes and technical conditions. A general headline about batteries is insufficient to decide eligibility under every part of the law. Read the relevant provision, its technology and delivery conditions, and the implementing process together. Neither publication of the statute nor its long-term design establishes a present payment to an unnamed battery.",
+            "容量法律区分不同招标类别和技术条件。关于电池的概括标题不足以判断该法各部分的适用资格。应同时阅读有关条款、技术及交付条件和实施流程。法律公布及其长期制度设计，都不能证明某个未指明的电池目前获得付款。"
+          ],
+          "caseIds": [
+            "de-capacity-distinct-auction-classes"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "de-economics",
+          "title": [
+            "Economic exhibit: inputs remain project-specific",
+            "经济影响：输入仍取决于具体条件"
+          ],
+          "text": [
+            "Observed policy facts belong in one lane; forecasts and scenario arithmetic belong in separate lanes. The cited material does not provide a defensible common currency amount for these mechanisms. The exhibit therefore remains not quantifiable. Required inputs include the connection terms, charging basis, applicable dates and verified eligibility; an invented range would conceal those missing inputs.",
+            "已观察到的政策事实、外部预测和情景计算应分列。已审阅材料没有为这些机制造成的影响提供可靠的统一金额，因此经济展项保持“暂不可量化”。仍需并网条件、计费基础、适用日期和经验证的资格；虚构区间只会掩盖缺少的输入。"
+          ],
+          "caseIds": [
+            "de-bkz-judgment-scope",
+            "de-capacity-distinct-auction-classes"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "de-revision",
+          "title": [
+            "What changed and what to verify next",
+            "变化及下一步核对"
+          ],
+          "text": [
+            "The later FID clarification explains how to read the original draft’s transition conditions, including the illustrative percentage. Verify the final operative record, applicable connection terms and relevant statutory tender class before proposing a material investment reassessment.",
+            "后续FID澄清解释了原草案过渡条件的读法，包括示例比例。提出重大投资复核前，应核实最终有效文件、适用并网条款及相关法定招标类别。"
+          ],
+          "caseIds": [
+            "de-fid-draft-definition",
+            "de-fid-clarification"
+          ],
+          "scene": "before_after"
+        }
+      ],
+      "questions": [
+        "Which final AgNes and implementing versions are operative?",
+        "Which connection conditions and statutory tender class apply?",
+        "Can the exact translated or adapted source excerpts be reused under the accepted rights basis?"
+      ]
+    },
+    {
+      "market": "gb",
+      "id": "gb-connection-capacity-policy",
+      "officialId": "Gate 2 Criteria Methodology, decision of 15 April 2025",
+      "jurisdiction": "GB",
+      "title": [
+        "Great Britain: a connection offer is distinct from capacity income",
+        "英国：并网要约与容量收入应分别核对"
+      ],
+      "lifecycle": {
+        "sourceId": "gb-gate2",
+        "pages": [
+          1,
+          4
+        ],
+        "locator": "PDF pp.1,4, publication and approval",
+        "publishedAt": "2025-04-15",
+        "state": "adopted",
+        "stateAnchor": "We have decided to approve",
+        "dateAnchor": "Publication date: 15 April 2025"
+      },
+      "answer": [
+        "Gate 2, offer issuance and Capacity Market participation are separate tests. Fair evidence: the approval, revised timetable and formal capacity amendments are available; actual delivery and facility-specific qualification would change the assessment.",
+        "Gate 2、要约发出与容量市场参与是不同检验。证据为 Fair：已有批准决定、修订时间表和正式容量市场修订；实际交付及具体设施资格会改变判断。"
+      ],
+      "changesIf": [
+        "Verified offer completion, a later operative methodology or rule amendment, or facility-specific capacity qualification changes the supported interpretation.",
+        "经验证的要约完成情况、后续生效方法或规则修订，以及具体设施的容量资格，会改变现有解释。"
+      ],
+      "economicCase": "gb-storage-nomination-not-award",
+      "chapters": [
+        {
+          "id": "gb-problem",
+          "title": [
+            "Three decisions, three evidence chains",
+            "三项决定，三条证据链"
+          ],
+          "text": [
+            "The methodology approval defines the Gate 2 process. It is not a finding that an individual battery passed that process. The timetable governs issuance, while Capacity Market rules govern a separate participation route. An investor needs the evidence chain for each: readiness and strategic alignment, the actual connection offer, and the applicable capacity process.",
+            "方法批准确定了 Gate 2 流程，但不代表某个电池已通过该流程。时间表管理要约发出，容量市场规则则对应另一条参与路径。投资研究需要分别取得准备程度和战略匹配证据、实际并网要约，以及适用的容量市场流程证据。"
+          ],
+          "caseIds": [
+            "gb-gate2-approval-boundary",
+            "gb-storage-nomination-not-award"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "gb-history",
+          "title": [
+            "Approval and later timetable changes",
+            "批准与后续时间表变化"
+          ],
+          "text": [
+            "The final decision recounts policy development from the May 2023 open letter through 2024 reforms and the 2025 consultation and approval. The June 2026 letter sets phased issuance deadlines; the October letter revises only Phase 1. Approval, issuance, acceptance and energisation require distinct evidence.",
+            "最终决定回顾了从2023年5月公开信、2024年改革到2025年咨询与批准的政策演进。2026年6月函件规定分阶段发出期限，10月函件仅修订第1阶段。批准、发出、接受与送电均需各自证据。"
+          ],
+          "caseIds": [
+            "gb-connections-reform-history",
+            "gb-gate2-approval-boundary",
+            "gb-june-phased-deadlines",
+            "gb-october-limited-revision"
+          ],
+          "scene": "timeline"
+        },
+        {
+          "id": "gb-deadline",
+          "title": [
+            "A deadline is not delivery evidence",
+            "期限不是交付证据"
+          ],
+          "text": [
+            "The October letter preserves other timetable elements and encourages later written confirmation of completion. An elapsed issuance deadline therefore does not prove that every offer was sent or accepted, or that a site was energised. Report the limited revision and identify the missing completion evidence; do not substitute a calendar calculation for an observed outcome.",
+            "十月函保留其他时间表要素，并鼓励之后书面确认完成情况。因此，要约发出期限已过去，并不证明全部要约已发出或接受，更不证明场址已经送电。应报告有限修订并明确缺少的完成证据，不能用日历推算代替实际观察。"
+          ],
+          "caseIds": [
+            "gb-june-phased-deadlines",
+            "gb-october-limited-revision"
+          ],
+          "scene": "before_after"
+        },
+        {
+          "id": "gb-stakeholders",
+          "title": [
+            "Discretion and transparency",
+            "裁量与透明度"
+          ],
+          "text": [
+            "The primary consultation record contains competing views. One response criticised operator discretion for reducing transparency. Other responses accepted bounded discretion while seeking principles and processes for balancing trade-offs. This supports a sourced stakeholder scene. It does not establish unanimous support or let the research infer how discretion was exercised for an individual connection.",
+            "原始咨询记录包含不同意见。一份意见批评运营方裁量降低透明度；其他意见认可有限裁量，同时要求明确平衡各项权衡的原则和程序。这些证据可支撑利益相关方图示，但不能被改写为各方一致支持，也不能据此推断某一并网申请实际如何受到裁量。"
+          ],
+          "caseIds": [
+            "gb-consultation-discretion-tradeoff"
+          ],
+          "scene": "stakeholder"
+        },
+        {
+          "id": "gb-capacity",
+          "title": [
+            "Follow the whole capacity-rule chain",
+            "沿完整容量规则链核对"
+          ],
+          "text": [
+            "The storage nomination provision must be read with later connection-capacity constraints and reporting amendments. Nomination is distinct from de-rating, award and payment. The economic exhibit remains not quantifiable without the facility’s applicable capacity and agreement data. The consultation record also says the multiple-price proposal would not be implemented ahead of Prequalification 2026; an abandoned proposal is not an operative mechanism.",
+            "储能容量申报条款须与后续并网容量限制、报告修订一并阅读。申报不同于容量折减、中标和付款。缺少具体设施的适用容量及协议数据时，经济展项仍不可量化。咨询记录还表明多价格方案不在 2026 年预审前实施；被放弃的建议不能被当作现行机制。"
+          ],
+          "caseIds": [
+            "gb-storage-nomination-not-award",
+            "gb-current-connection-capacity-constraint",
+            "gb-storage-later-reporting-amendment",
+            "gb-multiple-price-proposal-abandoned"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "gb-revision",
+          "title": [
+            "What changed and what closes the gap",
+            "变化及如何补齐证据"
+          ],
+          "text": [
+            "The timetable letters and later capacity amendments establish distinct process and eligibility changes. They do not themselves establish a facility’s connection or income. Obtain the actual offer and qualification records before proposing a material change to an approved investment interpretation.",
+            "时间表函件与后续容量修订分别确立流程及资格变化，其本身不证明某设施已经并网或取得收入。在提出已批准投资解读的重大调整前，应取得实际要约与资格记录。"
+          ],
+          "caseIds": [
+            "gb-october-limited-revision",
+            "gb-storage-later-reporting-amendment"
+          ],
+          "scene": "market_matrix"
+        }
+      ],
+      "questions": [
+        "Was the exact offer issued and accepted?",
+        "Which later methodology and connection-capacity provisions apply?",
+        "Which facility-specific de-rating, award and payment conditions are evidenced?"
+      ]
+    },
+    {
+      "market": "nem",
+      "id": "nem-participation-and-support-policy",
+      "officialId": "National Electricity Amendment (Integrating energy storage systems into the NEM) Rule 2021 No.13",
+      "jurisdiction": "AU-NEM",
+      "title": [
+        "NEM: spot participation, FCAS registration and support contracts",
+        "NEM：现货参与、FCAS 注册与收入支持合同"
+      ],
+      "lifecycle": {
+        "sourceId": "nem-determination",
+        "pages": [
+          3
+        ],
+        "locator": "PDF p.3, summary and dated footer",
+        "publishedAt": "2021-12-02",
+        "state": "adopted",
+        "stateAnchor": "has made a final determination",
+        "dateAnchor": "2 December 2021"
+      },
+      "answer": [
+        "Market registration, FCAS capability and underwriting are separate routes. Fair evidence: original rules and current guidance/tender conditions are available; consolidated amendments, facility approvals and executed support terms would change the interpretation.",
+        "市场注册、FCAS 能力与收入保障属于不同路径。证据为 Fair：已有原始规则和当前指南、招标条件；后续汇编修订、设施批准及已签支持条款会改变解释。"
+      ],
+      "changesIf": [
+        "Current consolidated legal changes, actual FCAS accreditation, or an applicable executed CISA/LTESA changes the supported position.",
+        "现行汇编法律变化、实际 FCAS 认证，或适用且已签署的 CISA／LTESA，会改变现有判断。"
+      ],
+      "economicCase": "nem-nonenergy-cost-basis",
+      "chapters": [
+        {
+          "id": "nem-problem",
+          "title": [
+            "Participation is distinct from support",
+            "参与资格与收入支持应分开"
+          ],
+          "text": [
+            "The original IESS rule places the buying and selling of electricity by market bidirectional units within spot settlement. Its IRP category simplifies a participation framework; it does not award an underwriting contract. Read this spot-market foundation alongside the separate FCAS guide and competitive support tenders. A shared battery technology does not make these rights interchangeable.",
+            "IESS 原始规则将市场双向机组的购售电置于现货结算框架。IRP 类别简化了参与制度，但不授予收入支持合同。应把这项现货市场基础与独立 FCAS 指南、竞争性收入支持招标分别阅读。同为电池技术，并不意味着这些权利可以互换。"
+          ],
+          "caseIds": [
+            "nem-spot-obligations-not-support-contract",
+            "nem-2021-final-design"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "nem-history",
+          "title": [
+            "Preserve original and later milestones",
+            "保留原始与后续里程碑"
+          ],
+          "text": [
+            "The original rule separates its schedule commencement dates. Those as-issued dates remain historical evidence even where later implementation or amendments differ. The FCAS guide supplies a separate version history leading to the current release. A guidance revision is not repeal of the IESS rule, and an operator timeline should not silently replace an original legal commencement clause.",
+            "原始规则区分各附表的生效日期。即使后续实施或修订有所不同，这些发布时日期仍属于历史证据。FCAS 指南另列通向当前版本的修订历史。指南换版不等于废除 IESS 规则，运营方时间表也不能静默替换原始法律生效条款。"
+          ],
+          "caseIds": [
+            "nem-as-issued-commencement-split",
+            "nem-fcas-guidance-version-change"
+          ],
+          "scene": "timeline"
+        },
+        {
+          "id": "nem-technical",
+          "title": [
+            "FCAS remains a capability and registration test",
+            "FCAS 仍须能力及注册检验"
+          ],
+          "text": [
+            "The current guide adds post-fault simulation and clarifies testing requirements. It also records earlier versions. That supports a genuine revision example, while leaving each facility’s technical performance and registration to its own evidence. Name the service and applicable guide version. A battery specification or a guide’s publication cannot demonstrate an actual accreditation or sustained ancillary-service income.",
+            "当前指南新增故障后仿真并澄清测试要求，同时记录较早版本。这可支撑真实的修订示例，但各设施的技术表现和注册仍须自身证据。应明确服务种类和适用指南版本；电池规格或指南公布都不能证明实际认证或持续辅助服务收入。"
+          ],
+          "caseIds": [
+            "nem-fcas-guidance-version-change"
+          ],
+          "scene": "before_after"
+        },
+        {
+          "id": "nem-support",
+          "title": [
+            "CIS and NSW LTESA have different boundaries",
+            "CIS 与 NSW LTESA 的边界不同"
+          ],
+          "text": [
+            "CIS Tender 10 separates an aggregate equivalent-duration target from minimum project criteria. The NSW long-duration tender has different duration and regional conditions and prohibits simultaneous support contracts for the same project. Eligibility, tender assessment and execution are successive questions. Neither a national target nor an open programme description establishes a facility’s contractual right to support.",
+            "CIS 第 10 轮区分合计等效时长目标与项目最低条件。NSW 长时储能招标具有不同的时长及区域要求，并禁止同一项目同时持有两种支持合同。资格、招标评审与协议签署是逐步核对的问题，国家目标或计划介绍都不构成设施取得支持的合同权利。"
+          ],
+          "caseIds": [
+            "nem-cis-target-not-minimum-duration",
+            "nem-ltesa-duration-and-double-support"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "nem-design",
+          "title": [
+            "Entry barriers and fair cost recovery",
+            "进入壁垒与合理成本分摊"
+          ],
+          "text": [
+            "AEMO’s original request sought storage-specific participation changes. The final determination chose a flexible, technology-neutral IRP design and changed recovery of non-energy costs. The documented design question is how to facilitate two-way resources while allocating service costs. This is distinct from a claim that netting flows eliminates charges or that every participant receives the same saving.",
+            "AEMO 原始申请提出了针对储能的参与制度变化。最终决定采用灵活、技术中立的 IRP 设计，并调整非电能成本回收。文件涉及的设计问题是如何促进双向资源参与，同时分摊系统服务成本。这不等于认定净额处理消除了收费，也不意味着每位参与者取得同样节省。"
+          ],
+          "caseIds": [
+            "nem-2021-final-design",
+            "nem-nonenergy-cost-basis"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "nem-economics",
+          "title": [
+            "Economic exhibit and remaining evidence",
+            "经济展项与剩余证据"
+          ],
+          "text": [
+            "Keep cost allocation, earned service revenue and conditional contractual support in separate lanes. The current evidence does not establish a comparable facility payment, so the monetary impact stays not quantifiable. The next useful evidence is the applicable current rule, measured facility capability and actual support terms. NEM evidence must never be inherited by WA without separate scope support.",
+            "成本分摊、已赚取的服务收入和附条件合同支持应分列。现有证据不足以确定可比设施付款，因此金额影响保持不可量化。下一步需要适用的现行规则、实测设施能力和实际支持条款。没有独立范围证据，NEM 材料不得沿用至 WA。"
+          ],
+          "caseIds": [
+            "nem-nonenergy-cost-basis",
+            "nem-cis-target-not-minimum-duration",
+            "nem-territorial-scope"
+          ],
+          "scene": "market_matrix"
+        }
+      ],
+      "questions": [
+        "Which later consolidated NER provisions apply?",
+        "Which FCAS service has the facility actually registered?",
+        "Which support contract, scope, eligibility and non-stacking conditions apply?"
+      ]
+    },
+    {
+      "market": "wa",
+      "id": "wa-capacity-and-ess-policy",
+      "officialId": "Wholesale Electricity Market Amendment (RCM Reviews Sequencing) Rules 2025",
+      "jurisdiction": "AU-WA",
+      "title": [
+        "WA: capacity credits, price mechanics and ESS accreditation",
+        "WA：容量额度、价格机制与 ESS 认证"
+      ],
+      "lifecycle": {
+        "sourceId": "wa-gazette-2025",
+        "pages": [
+          3,
+          4
+        ],
+        "locator": "PDF pp.3-4 / printed pp.29-30, EN401",
+        "publishedAt": "2025-01-14",
+        "state": "adopted",
+        "stateAnchor": "Market Rules made by the Minister for Energy.",
+        "dateAnchor": "14 January 2025"
+      },
+      "answer": [
+        "Separate capacity eligibility, the price calculation and each ESS accreditation. Fair evidence: staged commencement notices and the existing consolidated rules are available; later notices, facility credits and authorized current-source access would change the assessment.",
+        "应分别核对容量资格、价格计算和各项 ESS 认证。证据为 Fair：已取得分阶段生效公告及汇编规则；后续公告、设施容量额度和获准的现行来源访问会改变判断。"
+      ],
+      "changesIf": [
+        "A later commencement notice, verified current rule amendment, facility credit/accreditation decision or accepted source-use authorization changes the supported position.",
+        "后续生效公告、经验证的现行规则修订、设施容量额度或认证决定，以及来源使用授权，会改变现有判断。"
+      ],
+      "economicCase": "wa-flexible-price-not-two-full-prices",
+      "chapters": [
+        {
+          "id": "wa-problem",
+          "title": [
+            "Do not combine distinct entitlements",
+            "不同权利不能合并推断"
+          ],
+          "text": [
+            "The Reserve Capacity Mechanism, its price calculation and Essential System Services use different conditions. A capacity-credit outcome is not a general ESS accreditation, and an ESS capability is not a capacity-price guarantee. Treat WA as its own market. A national battery headline or an NEM participation rule cannot establish these WEM rights.",
+            "储备容量机制、价格计算与系统必要服务各有不同条件。容量额度结果不是一般性 ESS 认证，ESS 能力也不保证容量价格。WA 必须作为独立市场处理，全国性电池标题或 NEM 参与规则都不能证明这些 WEM 权利。"
+          ],
+          "caseIds": [
+            "wa-flexible-price-not-two-full-prices",
+            "wa-ess-accreditation-is-facility-specific"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "wa-history",
+          "title": [
+            "Gazettal is one date among several",
+            "公报公布只是多个日期之一"
+          ],
+          "text": [
+            "The official history traces reviews from 2022, rules made in December 2023 and later resequencing. The 2025 Gazette distinguishes several schedule dates; the 2026 notice supplies a later commencement and relative order. Publication, signature and commencement remain separate facts.",
+            "官方沿革追溯2022年起的审查、2023年12月制定的规则及后续实施顺序调整。2025年公报区分多个附表日期，2026年通知补充后续生效日期及相对顺序。公布、签署与生效仍是不同事实。"
+          ],
+          "caseIds": [
+            "wa-reserve-capacity-reform-history",
+            "wa-gazettal-not-universal-effect",
+            "wa-schedule5-later-notice",
+            "wa-schedule6-relative-order"
+          ],
+          "scene": "timeline"
+        },
+        {
+          "id": "wa-sequencing",
+          "title": [
+            "A known predecessor still has an order",
+            "已知前序日期仍须保留顺序"
+          ],
+          "text": [
+            "The predecessor time for the later sequence is known; the notice nevertheless says the relevant change follows immediately after it. The earlier review’s unspecified-date gap is therefore corrected without replacing relative order by an invented simultaneous instant. A remaining schedule still requires its own notice. Missing current evidence must remain visible rather than be filled from neighbouring schedules.",
+            "后续顺序中的前序规则时间已知，但公告仍规定有关变化须紧随其后。由此可修正较早审阅中的日期不明问题，同时不把相对顺序替换为虚构的同时生效。另一个附表仍需要自身公告，缺少的现行证据应明确保留，不能从相邻附表推填。"
+          ],
+          "caseIds": [
+            "wa-schedule6-relative-order",
+            "wa-current-versus-future-schedules"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "wa-stakeholders",
+          "title": [
+            "Investment certainty and network priority",
+            "投资确定性与网络优先级"
+          ],
+          "text": [
+            "The consultation records a disagreement over priority for new NCESS facilities compared with existing facilities. The authority defends top priority where NCESS avoids inefficient reinforcement. It also explains why mutually exclusive facility variants cannot all proceed through later capacity processes. This is a documented trade-off, not consensus that every battery should have first-priority network access.",
+            "咨询记录了新 NCESS 设施相对现有设施的优先级争议。主管部门以 NCESS 能避免低效增容说明最高优先级，并解释为何互斥设施方案不能同时进入后续容量流程。这是已记录的权衡，不是所有电池都应取得最高网络接入优先级的共识。"
+          ],
+          "caseIds": [
+            "wa-network-access-competing-positions"
+          ],
+          "scene": "stakeholder"
+        },
+        {
+          "id": "wa-mechanics",
+          "title": [
+            "Read the formula and the separate service approval",
+            "核对公式和独立服务批准"
+          ],
+          "text": [
+            "The flexible daily price is a non-negative difference, not the sum of two full headline capacity prices. Actual payments depend on applicable credits and rules. Separately, the ESM accreditation provisions require a facility application, information, tests and an approval or rejection. These mechanisms can be compared as sourced conditions; they cannot be added into an unsupported common income number.",
+            "灵活日容量价格是非负差额，并非两项完整容量标价之和。实际付款取决于适用容量额度和规则。另一方面，ESM 认证条款要求设施申请、信息、测试，以及批准或拒绝。这些机制可以作为有来源的条件进行比较，但不能合成为缺乏依据的统一收入数字。"
+          ],
+          "caseIds": [
+            "wa-flexible-price-not-two-full-prices",
+            "wa-ess-accreditation-is-facility-specific"
+          ],
+          "scene": "market_matrix"
+        },
+        {
+          "id": "wa-economics",
+          "title": [
+            "Economic exhibit and source boundary",
+            "经济展项与来源边界"
+          ],
+          "text": [
+            "The monetary exhibit remains not quantifiable until the capacity year, facility credits, prices and service outcomes are supported. Establish the current rule version and any further commencement notice before declaring complete current coverage or proposing a materially different investment conclusion.",
+            "在容量年度、设施容量额度、价格及服务结果得到证据支持前，货币影响仍不可量化。应核实当前规则版本及任何后续生效通知，再宣布现行覆盖完整或提出重大不同的投资结论。"
+          ],
+          "caseIds": [
+            "wa-flexible-price-not-two-full-prices",
+            "wa-current-versus-future-schedules"
+          ],
+          "scene": "market_matrix"
+        }
+      ],
+      "questions": [
+        "What is the authorized current-source acquisition path?",
+        "Has the remaining schedule received a later notice?",
+        "Which capacity-year credits, prices and separate ESS approvals apply to the facility?"
+      ]
+    }
+  ]
+}

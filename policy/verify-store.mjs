@@ -2,7 +2,7 @@ import {lstat,readdir,readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {digest} from './integrity.mjs';
 import {authorizationProblems} from './authorization.mjs';
-import {evaluateHistoricalCases} from './evaluation.mjs';
+import {evaluateHistoricalCases,approvedEvaluationProblems} from './evaluation.mjs';
 import {validatePolicySnapshot} from './schema.mjs';
 import {quotationRightsProblems} from './quotation-rights.mjs';
 import {pendingReviewIndex} from './review-index.mjs';
@@ -17,7 +17,7 @@ export async function verifyPolicyStore({repo,config,profiles,evaluation,marketI
   if(config.publicationEnabled!==true)modelErrors.push('Policy publication is OFF');
   const automatic=modelErrors.length===0;
   const errors=manual?[]:modelErrors;
-  if(!evaluation.approved)errors.push('Historical evaluation is not approved');
+  errors.push(...approvedEvaluationProblems(evaluation,{requireModel:automatic,model:config.model}));
   errors.push(...evaluateHistoricalCases(evaluation.cases).blockers);
   if(!profiles.length||profiles.some(p=>!p.reviewed||!p.rightsReviewed||!p.host||!Array.isArray(p.sourceIds)||!Number.isInteger(p.maxQuoteChars)||p.maxQuoteChars<0||typeof p.verifyStoredSnapshot!=='function'))errors.push('Independent offline source validators missing');
   if(errors.length)throw Error(`Public policy release blocked: ${errors.join('; ')}`);

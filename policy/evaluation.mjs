@@ -1,4 +1,16 @@
-/** Recorded empirical cases are distinct from synthetic contract fixtures. */
+/** Static source regression and actual model evaluation have different scope.
+ * Neither method is accepted by labels alone or by this preparation tool. */
+export function approvedEvaluationProblems(evaluation,{requireModel=false,model=null}={}){
+  const errors=[];
+  if(evaluation?.approved!==true)errors.push('Historical evaluation is not independently approved');
+  if(!['deterministic_source_regression','model_shadow'].includes(evaluation?.method))errors.push('Historical evaluation method is not recorded');
+  if(evaluation?.method==='model_shadow'&&(!evaluation.model||typeof evaluation.model!=='string'))errors.push('Historical model identity is missing');
+  if(requireModel&&(evaluation?.method!=='model_shadow'||evaluation.model!==model))errors.push('Production model requires an independently approved evaluation of the configured model');
+  return errors;
+}
+/** Source-reviewed measurements are distinct from synthetic contract fixtures.
+ * The enclosing method identifies whether actual results concern static rules
+ * or a named model; these counts alone never establish model accuracy. */
 export function evaluateHistoricalCases(cases){
   const blockers=[];const ids=new Set();const markets=new Set();let tp=0,fp=0,fn=0,critical=0,unsupported=0;
   for(const row of cases){

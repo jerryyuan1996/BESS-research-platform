@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {prepareCycle,publishCycleOnce} from '../policy/cycle.mjs';
 import {dailyModelSlot} from '../policy/daily-slot.mjs';
-import {evaluateHistoricalCases} from '../policy/evaluation.mjs';
+import {evaluateHistoricalCases,approvedEvaluationProblems} from '../policy/evaluation.mjs';
 import {independentlyValidate} from '../policy/validation.mjs';
 import {fixture,bodies,CONTEXT,attestedContext} from './helpers/policy-fixture.mjs';
 import {activationProblems} from '../policy/activation.mjs';
@@ -53,6 +53,16 @@ test('rerun, API outage and incomplete audit all deny paid invocation',async()=>
 test('synthetic contract cases cannot be reported as empirical historical accuracy',()=>{
   const result=evaluateHistoricalCases([]);assert.equal(result.eligible,false);assert.equal(result.precision,null);
   assert.equal(evaluateHistoricalCases(Array.from({length:12},(_,i)=>({id:String(i),market:['de','gb','nem','wa'][i%4],synthetic:true}))).eligible,false);
+});
+
+test('static source regression cannot activate a model or borrow a different model evaluation',()=>{
+  const staticReview={approved:true,method:'deterministic_source_regression',model:null};
+  assert.deepEqual(approvedEvaluationProblems(staticReview),[]);
+  assert.ok(approvedEvaluationProblems(staticReview,{requireModel:true,model:'pinned-model'}).length);
+  const modelReview={approved:true,method:'model_shadow',model:'pinned-model'};
+  assert.deepEqual(approvedEvaluationProblems(modelReview,{requireModel:true,model:'pinned-model'}),[]);
+  assert.ok(approvedEvaluationProblems(modelReview,{requireModel:true,model:'other-model'}).length);
+  assert.ok(approvedEvaluationProblems({approved:true}).length);
 });
 test('candidate flags cannot grant source, translation or complete-record approval',()=>{
   const snapshot=fixture();const result=independentlyValidate({snapshot,bodies:bodies(),profiles:[],marketIds:CONTEXT.marketIds});assert.equal(result.valid,false);assert.equal(result.context.publicationReviewHash,undefined);assert.ok(result.errors.some(e=>e.includes('complete-record')));

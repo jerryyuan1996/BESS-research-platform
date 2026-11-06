@@ -9,8 +9,13 @@ export function calendarDatesInQuote(quote,{language=''}={}){
   if(typeof quote!=='string')return [];
   const dates=new Set();const text=quote.normalize('NFC').toLowerCase();
   for(const match of text.matchAll(/\b(\d{4})-(\d{2})-(\d{2})\b/g))dates.add(day(match[1],match[2],match[3]));
+  for(const match of text.matchAll(/\b(\d{4})\.(\d{2})\.(\d{2})\b/g))dates.add(day(match[1],match[2],match[3]));
   for(const match of text.matchAll(/\b(\d{1,2})\.?\s+([a-zä]+)\s+(\d{4})\b/gu))if(MONTHS[match[2]])dates.add(day(match[3],MONTHS[match[2]],match[1]));
   for(const match of text.matchAll(/\b([a-zä]+)\s+(\d{1,2}),?\s+(\d{4})\b/gu))if(MONTHS[match[1]])dates.add(day(match[3],MONTHS[match[1]],match[2]));
+  if(/^en(?:-|$)/i.test(language))for(const match of text.matchAll(/\b(\d{1,2})(st|nd|rd|th)\s+([a-z]+)\s+(\d{4})\b/g)){
+    const n=Number(match[1]),suffix=n%100>=11&&n%100<=13?'th':({1:'st',2:'nd',3:'rd'}[n%10]||'th');
+    if(match[2]===suffix&&MONTHS[match[3]])dates.add(day(match[4],MONTHS[match[3]],n));
+  }
   // German dotted dates require original-locale metadata. Slash dates remain
   // ambiguous and are never guessed from investment market or UI language.
   if(/^de(?:-|$)/i.test(language))for(const match of text.matchAll(/\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b/g))dates.add(day(match[3],match[2],match[1]));
@@ -25,9 +30,11 @@ export function criticalValueInQuote(claim,quote,{language=''}={}){
     return new RegExp(`(^|[^\\d.,])${escaped}(?![\\d.,])`).test(quote);
   }
   if(claim.kind!=='legal_status')return true;
-  const text=quote.normalize('NFC').toLowerCase();
+  const text=quote.normalize('NFC').toLowerCase().replace(/\s+/g,' ');
   const words=WORDS[claim.value]||[];
-  if(!words.some(word=>new RegExp(`\\b${word}\\b`,'u').test(text)))return false;
+  const officialForms={adopted:/\b(?:has made a final determination and rule|market rules made|have decided to approve)\b/u,effective:/\bcome(?:s)? into force\b/u};
+  if(!words.some(word=>new RegExp(`\\b${word}\\b`,'u').test(text))&&!officialForms[claim.value]?.test(text))return false;
+  if(claim.value==='effective'&&/\bnot(?: yet)? (?:come|comes) into force\b/u.test(text))return false;
   if(['adopted','effective','repealed'].includes(claim.value)&&/\b(?:not(?:\s+yet)?|never|nicht)\s+(?:adopted|approved|effective|in force|repealed|beschlossen|genehmigt)\b/u.test(text))return false;
   return true;
 }

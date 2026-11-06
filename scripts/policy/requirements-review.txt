@@ -1,0 +1,4 @@
+pypdf==6.21.4
+cryptography==48.0.0
+cffi==2.0.0
+pycparser==3.0
