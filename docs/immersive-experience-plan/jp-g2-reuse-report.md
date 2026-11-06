@@ -165,3 +165,18 @@ At clean head `b7fc28322d637a949caed0193bc525e7629f06eb`, the complete graph mea
 That head's full local validation recorded **1,436/1,437 units**, with only the old Japan budget failing; **84/84** current-model checks; **7/7** artifact confidentiality checks with zero skips; **17** verified snapshots; and **32/32** Japan browser cases within the broad suite. Its six focused disclosure browser cases also passed. The broad suite finished **288 passed / 2 failed**: both failures were at `platform.spec.js:52`, where the local wrapper had omitted `RELEASE_SHA`. The stamp correctly contained the tested commit; the expected value was `undefined`. The wrapper now supplies the exact head, retaining the stamp/model-commit assertions and all timeouts. This is a validation-configuration correction, not a product or assertion change.
 
 The preceding acquisition-popover assertion did not fail in that complete run; its historical trace and prior diagnostic limits remain recorded above. New exact-head validation, per-layer PR gates and joint release checks remain required. Source/model/view/snapshot/dependency and shared-infrastructure paths have no Japan-authored diff against the fetched main.
+
+## Forward-stack validation receipts - 6 November 2026
+
+The preceding four layer heads completed their required local checks. Their original commits remain ancestors. These receipts supersede earlier pending-layer statements for those heads; each PR records its own CI conclusion and timings. The wiring head is validated separately in its PR and the adjacent `japan-g2-validation.json`. All three registry entries stay `released: false` in the implementation stack.
+
+| Layer | PR and CI checks | Validated head | Unit | Model | Budget | Artifact scan | Browser | Local validation seconds |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| evidence | [#164](https://github.com/jerryyuan1996/BESS-research-platform/pull/164) / [checks](https://github.com/jerryyuan1996/BESS-research-platform/pull/164/checks) | `ba02d15dc532fad2fa11363c83058fbc9aa42fcd` | 1398 | 84 | 31 | 7 | 258 | 1237.10 |
+| data | [#165](https://github.com/jerryyuan1996/BESS-research-platform/pull/165) / [checks](https://github.com/jerryyuan1996/BESS-research-platform/pull/165/checks) | `a6bc72ee7f4617cee3b0c007b26fcb7bb70d344e` | 1404 | 84 | 31 | 7 | 258 | 1223.52 |
+| content | [#166](https://github.com/jerryyuan1996/BESS-research-platform/pull/166) / [checks](https://github.com/jerryyuan1996/BESS-research-platform/pull/166/checks) | `766c3e60b13d01b4bca9e011f0e9322435b2a0ec` | 1417 | 84 | 31 | 7 | 258 | 1217.04 |
+| scenes | [#167](https://github.com/jerryyuan1996/BESS-research-platform/pull/167) / [checks](https://github.com/jerryyuan1996/BESS-research-platform/pull/167/checks) | `6154bb3cf60d9354949d4ba4470ddb51fac71854` | 1430 | 84 | 31 | 7 | 258 | 996.76 |
+
+All listed local suites passed with zero skips; every head also verified all 17 existing ETL snapshots. Durations are command wall time, not development effort. The sibling layer ledgers retain each command, exact head, elapsed time and log. Newer local browser artifacts use separate layer/head/time directories; CI retains page-check evidence by run. Earlier dated failure records remain historical; their captured counts and tails are preserved. Older common log paths are not fresh validation evidence.
+
+**BUILD-JP-02 remains unresolved and approved withheld:** no build-cost bar or discount band is invented. FUNDING, CHARGECTRL, FC2011, HOLDERS, CURTAIL, TERM and CERT retain their documented gaps and fallbacks. No model, view, scoring weight, discount rate, fixture or snapshot was changed by Japan G-2.
