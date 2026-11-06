@@ -16,7 +16,8 @@ import { gateLabel } from './labels.js';
 import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
 import { navigate, onStoryPlace } from '../app/router.js';
-import { storyFor } from './story/registry.js';
+import { storyFor, publicStoryFor } from './story/registry.js';
+import './story/public/overview.css';
 
 
 /** Market details are loaded only on a market route. Shared UI conventions are passed unchanged. */
@@ -25,8 +26,10 @@ export function createMarketRenderer(ui) {
 let stopStoryPlace = null;
 function renderMarket(container, row, route) {
   const data = caseFor(row), m = row.market, mf = m.manifest;
+  const publicEntry = publicStoryFor(mf.id);
   let storyRows = [row], storyReady = Promise.resolve();
   const content = main();
+  if(publicEntry) content.classList.add('public-market');
   content.append(h('nav', { class: 'ix-breadcrumb', 'aria-label': L(['Breadcrumb', '面包屑导航']) }, link('/', ['Investment brief', '投资简报']), ' / ', link('/returns', ['Global markets', '全球市场']), ' / ', h('span', {}, name(row))));
   content.append(metaBar('03', ['MARKET INTELLIGENCE', '市场详情']));
   const select = h('select', { 'aria-label': L(['Switch market', '切换市场']), onchange: e => {
@@ -34,6 +37,9 @@ function renderMarket(container, row, route) {
   } }, markets.map(market => h('option', { value: market.manifest.slug }, L(market.manifest.name)))); select.value = mf.slug;
   content.append(h('section', { class: 'ix-market-intro' }, h('div', {}, eyebrow(['FROM MARKET SCREEN TO INVESTMENT CASE', '从市场筛选，走向投资方案']), h('h1', {}, name(row)), h('p', { class: 'ix-lead' }, L(routeName(row))), h('div', { class: 'ix-actions' }, tag(row), h('span', { class: 'ix-mono' }, `${row.investment?.currency||mf.currency} · ${row.play?.hours || m.comparison.archetype.durationHours}H`))),
     h('div', { class: 'ix-market-controls' }, select, button(['Print investment brief ↗', '打印投资简报 ↗'], () => window.print(), 'ix-outline'))));
+  // Lightweight public reading precedes every investor-specific decision/card.
+  const publicHost = publicEntry ? h('div',{class:'public-overview-loading','aria-busy':'true'},L(['Loading market background…','正在加载市场背景…'])) : null;
+  if(publicHost) content.append(publicHost);
   if (['pl','it'].includes(row.id)) {
     const choices = h('div');
     content.append(choices);
@@ -48,8 +54,9 @@ function renderMarket(container, row, route) {
   }
   content.append(decisionPanel(row));
   const anchors = [['decision',['Decision','投资判断']],['overview', ['Overview', '市场概览']], ['revenue-drivers', ['Revenue drivers', '收入动因']], ['bankable', ['Bankable case', '可融资方案']], ['revenue', ['Revenue', '收益拆解']], ['execution', ['Execution', '执行步骤']], ['opportunity-comparison', ['Special opportunity', '特殊机会']], ['downside', ['Downside', '下行风险']], ['sources', ['Sources', '来源']]];
+  if(publicEntry) anchors.unshift(...anchors.splice(anchors.findIndex(([id])=>id==='overview'),1));
   content.append(h('nav', { class: 'ix-section-nav', 'aria-label': L(['Market sections', '市场详情章节']) }, anchors.map(([id, label]) => link(`#${id}`, label))));
-  content.append(h('section', { id: 'overview', class: 'ix-section ix-overview' },
+  content.append(h('section', { id: publicEntry ? 'investment-overview' : 'overview', class: 'ix-section ix-overview' },
     sectionTitle(['THE INVESTMENT VIEW', '市场投资判断'], ['Understand what drives the case.', '先理解这项投资，为什么成立。']),
     h('div', { class: 'ix-overview-body' }, h('div', {}, h('p', { class: 'ix-thesis' }, L(currentThesis(row))),
       link(`${caseUrl(row)}/home`, ['Explore the full market research ↗', '阅读完整市场研究 ↗'], 'ix-text-link')),
@@ -71,10 +78,42 @@ function renderMarket(container, row, route) {
       .finally(()=>{research.disabled=false;});
   };
   const research=button(['Grid, history and full research context ↗','电网、历史与完整研究背景 ↗'],()=>openFrom(null),'ix-outline ix-full-research');
-  content.querySelector('#overview').append(research);
+  content.querySelector(publicEntry ? '#investment-overview' : '#overview').append(research);
+  const openPublicFrom = async (place=null, trigger=content.querySelector('.public-story-trigger')) => {
+    if(!publicEntry || storyOpen())return;
+    if(trigger?.dataset.loadFailed){
+      const params=new URLSearchParams(window.location.search);
+      const edition=trigger.closest('[data-version]')?.dataset.version||'2026-11-06.1';
+      params.set('view','story');params.set('chapter','history');params.set('shot',`public-${app.lang}-${edition.replace('.','-')}-history`);
+      window.history.replaceState({},'',`${window.location.pathname}?${params}${window.location.hash}`);window.location.reload();return;
+    }
+    trigger?.setAttribute('aria-busy','true');
+    try {
+      const pack=await publicEntry.load();
+      if(content.isConnected && !storyOpen()) pack.open({id:mf.id,name:marketName(row),trigger,place,openResearch,
+        openLegacy:()=>document.querySelector('.ix-full-research')?.click(),researchUrl:`${caseUrl(row)}/home`});
+    } catch {
+      if(trigger)trigger.dataset.loadFailed='true';
+      const status=content.querySelector('.public-status');
+      if(status)status.textContent=L(['Story could not load. The summary remains available; press the button to retry.','叙事未能加载。摘要仍可阅读；再次点击按钮重试。']);
+    } finally {trigger?.removeAttribute('aria-busy');}
+  };
+  if(publicEntry){
+    const loadOverview=()=>publicEntry.loadOverview().then(module=>{
+      if(!publicHost.isConnected)return;
+      publicHost.replaceWith(module.renderPublicOverview(mf.id,{name:marketName(row),open:trigger=>openPublicFrom(null,trigger),researchUrl:`${caseUrl(row)}/home`}));
+      if(route?.story?.shot?.startsWith('public-')&&!storyOpen())openPublicFrom(route.story);
+      if(window.location.hash==='#overview')content.querySelector('#overview')?.scrollIntoView();
+    }).catch(()=>{if(publicHost.isConnected)publicHost.replaceChildren(button(['Retry market background','重试市场背景'],loadOverview,'ix-outline'),link(`${caseUrl(row)}/home`,['Full research ↗','完整研究 ↗'],'ix-text-link'));});
+    loadOverview();
+  }
   stopStoryPlace?.();
-  stopStoryPlace=onStoryPlace((r,{samePage})=>{if(samePage&&r.story&&research.isConnected&&!storyOpen()&&storyFor(mf.id))openFrom(r.story);});
-  if(route?.story&&storyFor(mf.id)&&!storyOpen())openFrom(route.story);
+  stopStoryPlace=onStoryPlace((r,{samePage})=>queueMicrotask(()=>{
+    if(!samePage||!r.story||!research.isConnected||storyOpen())return;
+    if(r.story.shot?.startsWith('public-')&&publicEntry)openPublicFrom(r.story);
+    else if(storyFor(mf.id))openFrom(r.story);
+  }));
+  if(route?.story&&!route.story.shot?.startsWith('public-')&&storyFor(mf.id)&&!storyOpen())openFrom(route.story);
   /* Revenue drivers sit under the overview. The special-opportunity comparison
      appears only where one is valid, and then at the foot of the case, just
      above the downside. Otherwise the timeline shows the conventional play alone. */
@@ -129,7 +168,7 @@ function renderMarket(container, row, route) {
   });
   if (!data.unavailable) content.append(downsideSection(data));
   const overview=content.querySelector('#overview');
-  for(const id of ['bankable','revenue']){const node=content.querySelector('#'+id);if(node)content.insertBefore(node,overview);}
+  if(!publicEntry)for(const id of ['bankable','revenue']){const node=content.querySelector('#'+id);if(node)content.insertBefore(node,overview);}
   if(data.unavailable) for(const id of ['revenue','downside'])content.querySelector('.ix-section-nav a[href="#'+id+'"]')?.remove();
   content.append(sourcesSection(row));
   content.append(nextSection(['Keep the opportunity in context.', '让投资判断，始终保有全球视角。'], ['Return to the matrix and compare this case with your next market.', '返回全球矩阵，将当前方案与下一个市场放在一起比较。'], compareUrl([row.id]), ['Back to global comparison ↗', '返回全球比较 ↗']));

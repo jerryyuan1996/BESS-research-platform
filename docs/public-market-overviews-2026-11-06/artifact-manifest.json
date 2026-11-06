@@ -1,0 +1,533 @@
+{
+  "edition": "2026-11-06.1",
+  "recordedAt": "2026-11-06T13:03:44.857Z",
+  "scope": [
+    "wa",
+    "nem",
+    "gb",
+    "de",
+    "it",
+    "ie",
+    "ro",
+    "pl",
+    "jp_tokyo",
+    "jp_kyushu",
+    "jp_hokkaido",
+    "pjm",
+    "ercot",
+    "caiso",
+    "fi"
+  ],
+  "artifacts": [
+    {
+      "file": "caiso-desktop-mechanism.png",
+      "bytes": 100437,
+      "sha256": "ddd3697757d43fee154549e5bed6d0b6b6a261a275a9fe949031b338e1e13f05"
+    },
+    {
+      "file": "caiso-desktop-overview.png",
+      "bytes": 90039,
+      "sha256": "1bf48507dbd1b71823d9eba7475d8e652bd536644a2d224affd9e1662ab3a752"
+    },
+    {
+      "file": "caiso-ipad-mechanism.png",
+      "bytes": 89255,
+      "sha256": "bc6cb6e17d0eaa18d507e8ead21a4266bad93aa809e0fb60047612c6d1b8cd26"
+    },
+    {
+      "file": "caiso-ipad-overview.png",
+      "bytes": 93989,
+      "sha256": "80242641e48274b4313516f5259ba1544b5713e3ed799e704b880c31179ded2f"
+    },
+    {
+      "file": "caiso-phone-mechanism.png",
+      "bytes": 40693,
+      "sha256": "779f95ae95bfa534ce85c6d8db65bcf4d3b622cee33ad840f88f7afac86f5d3a"
+    },
+    {
+      "file": "caiso-phone-overview.png",
+      "bytes": 50407,
+      "sha256": "3264fa4a07d27b6410da7dc052024ae3be783ff172733292687619fd171b3774"
+    },
+    {
+      "file": "de-desktop-mechanism.png",
+      "bytes": 98087,
+      "sha256": "8da8ebf052151f3f120c35f68b2f48e4e9c1c67518cbecc2403619f73d952879"
+    },
+    {
+      "file": "de-desktop-overview.png",
+      "bytes": 86945,
+      "sha256": "1d61160afd3c1d3869a851fe9e56abfa4d8a61f1ce45b66ea65529f7508928ed"
+    },
+    {
+      "file": "de-ipad-mechanism.png",
+      "bytes": 97880,
+      "sha256": "384e052ace40a91b784ce3553167a8b6460e37af2b8328c05e7a65ee9b248bce"
+    },
+    {
+      "file": "de-ipad-overview.png",
+      "bytes": 90084,
+      "sha256": "9170084ec8433c005e7acc8aeb4d7a7f2d97fe52ca7116be5c4421cd2ac81432"
+    },
+    {
+      "file": "de-phone-mechanism.png",
+      "bytes": 46340,
+      "sha256": "fd4eb72de2a65b8da93edcb9b98bce7dcc8b7cb7790783bae6234e5491d21578"
+    },
+    {
+      "file": "de-phone-overview.png",
+      "bytes": 51218,
+      "sha256": "d473de84e28fc12cc2634b7631bd82f92b5f70b8625635ea0d26611b417874ff"
+    },
+    {
+      "file": "ercot-desktop-mechanism.png",
+      "bytes": 96177,
+      "sha256": "52c221306fedd5ba2a629186e21028c988afd18bca4accea1bf0f367cb80e41e"
+    },
+    {
+      "file": "ercot-desktop-overview.png",
+      "bytes": 89612,
+      "sha256": "3db7994900f27eb680098dbd76719d49c22c31fd23b98ac1778445029b1bf4ed"
+    },
+    {
+      "file": "ercot-ipad-mechanism.png",
+      "bytes": 94615,
+      "sha256": "652b5d4a21d3ec4d6722ae3772d103d68a2a667e9bfa68017367c93da7524b18"
+    },
+    {
+      "file": "ercot-ipad-overview.png",
+      "bytes": 92597,
+      "sha256": "bae7ed6bcb969d156d61d1734031ec59729fc60b7e9a861f7d6283dd29288a7d"
+    },
+    {
+      "file": "ercot-phone-mechanism.png",
+      "bytes": 45893,
+      "sha256": "f0d879b939c170f1b7dc1130380fc45298f908b19dfffc5c2351612bea8fde2a"
+    },
+    {
+      "file": "ercot-phone-overview.png",
+      "bytes": 50440,
+      "sha256": "848d251e613d57916efb529f2c777ecfe5cb71e876a92fd0c1a676d1703afa5c"
+    },
+    {
+      "file": "fi-desktop-mechanism.png",
+      "bytes": 98735,
+      "sha256": "ab0804343f464b857b2e7419d596a43743060db9f5fa2419efc05820842b4be5"
+    },
+    {
+      "file": "fi-desktop-overview.png",
+      "bytes": 83525,
+      "sha256": "41922ae068098e30ed42fd5402846abc31f03019754267f939155cd997330909"
+    },
+    {
+      "file": "fi-ipad-mechanism.png",
+      "bytes": 96982,
+      "sha256": "5414265c48f9cb1ac417e0c349d13986f3c18ffed78d10e88395b73caae9a4a1"
+    },
+    {
+      "file": "fi-ipad-overview.png",
+      "bytes": 91965,
+      "sha256": "c9a949b3e982575ba87c7e581834d4d76e8d4dad4a77bf58ea198d888d8acf0e"
+    },
+    {
+      "file": "fi-phone-mechanism.png",
+      "bytes": 40434,
+      "sha256": "205d58ef8985b3b98d919e186f105a523959ae4086b51eaec01069f09d081046"
+    },
+    {
+      "file": "fi-phone-overview.png",
+      "bytes": 49238,
+      "sha256": "0ade49866202b6ff2ee002b5246c0fdf3f0728f76de40893b2c067b233d5f40c"
+    },
+    {
+      "file": "gb-desktop-mechanism.png",
+      "bytes": 101083,
+      "sha256": "38fb91b05ed90ea5442c1f05081c704cb5cfd0492718455c84d749c11bcfe6b8"
+    },
+    {
+      "file": "gb-desktop-overview.png",
+      "bytes": 87120,
+      "sha256": "868b2c828a1ea0cc19a7c0dade1ffe4f800d8add4b3f6990fffcb62099510daa"
+    },
+    {
+      "file": "gb-ipad-mechanism.png",
+      "bytes": 92749,
+      "sha256": "d157f1e1e2452dc125d9c236905158bb5f22a419ded22f460c67c31ccdaac0ae"
+    },
+    {
+      "file": "gb-ipad-overview.png",
+      "bytes": 90695,
+      "sha256": "53427659dae033920e7c0fd6156bdc395bcd315459b8f1a330cb39f89eb78f5a"
+    },
+    {
+      "file": "gb-phone-mechanism.png",
+      "bytes": 41448,
+      "sha256": "924a2f60b17ac0ea8173df35708cfad5da5310e11aafc35828cecf5e775c0015"
+    },
+    {
+      "file": "gb-phone-overview.png",
+      "bytes": 50526,
+      "sha256": "79e4c552f23b11f0d0010069be98fae2a46ffe52e79090fc93538db2349b46c0"
+    },
+    {
+      "file": "ie-desktop-mechanism.png",
+      "bytes": 98879,
+      "sha256": "2794f687017b929a1122fbd0288625435b30efae83f75696e113106c09cad648"
+    },
+    {
+      "file": "ie-desktop-overview.png",
+      "bytes": 86395,
+      "sha256": "cca07a40549247a97bbc9528594aa7602290cbfa95966973cb987cffe744593e"
+    },
+    {
+      "file": "ie-ipad-mechanism.png",
+      "bytes": 94523,
+      "sha256": "8238a4f71bf9105bcab119aa976d285c8c16eaea0c85b2e1e7b5e4a54ff190b0"
+    },
+    {
+      "file": "ie-ipad-overview.png",
+      "bytes": 92045,
+      "sha256": "26c4950f24c76e9c38c200b941fc26e58eb9fc9b5637f5659631e9452587278c"
+    },
+    {
+      "file": "ie-phone-mechanism.png",
+      "bytes": 44457,
+      "sha256": "e1926a21d5681fb54d71aa88e7a80c22b5bf57eb8f923b5c5ec21f6c0df4e691"
+    },
+    {
+      "file": "ie-phone-overview.png",
+      "bytes": 51063,
+      "sha256": "e05c00c80e03937d927d90008b4aabfd4a2a387ce91232e850a80f15de74ef50"
+    },
+    {
+      "file": "it-desktop-mechanism.png",
+      "bytes": 102859,
+      "sha256": "aa9fe38e5a616fff32aa002cadc5fd18a280dad8ae3ac6147c2ff368cd120d4a"
+    },
+    {
+      "file": "it-desktop-overview.png",
+      "bytes": 91889,
+      "sha256": "fefbac98003520c820d0cdec1b5f8e45941f33df62beb3bec28be8db36a90c95"
+    },
+    {
+      "file": "it-ipad-mechanism.png",
+      "bytes": 93953,
+      "sha256": "6ad58eec5028a307995d704052b131907b99c048e533c12cac3ce5736f36b002"
+    },
+    {
+      "file": "it-ipad-overview.png",
+      "bytes": 99783,
+      "sha256": "c1c4752b8de32e1f20dddf5967289f2089843fc3c46cbb0b76c6b3919ce6d03f"
+    },
+    {
+      "file": "it-phone-mechanism.png",
+      "bytes": 43461,
+      "sha256": "33570213b79e28bf4f88bef3eeef4e065de1c0a3c2221a4aaa72b4bb9fb62931"
+    },
+    {
+      "file": "it-phone-overview.png",
+      "bytes": 48720,
+      "sha256": "1441c86381bf962b168671b30ca6c67c159ca345d6da103563f70d0c909df2dd"
+    },
+    {
+      "file": "jp_hokkaido-desktop-cutaway.png",
+      "bytes": 123683,
+      "sha256": "05bce80dd59df6a0835dab9ea89f835c1a6b04986dd71fca3cb9b53531b875a9"
+    },
+    {
+      "file": "jp_hokkaido-desktop-mechanism.png",
+      "bytes": 96787,
+      "sha256": "5f11f118fc63d77374f4e8279e992342d82ca2efe27a4b8e5698733d4babcd05"
+    },
+    {
+      "file": "jp_hokkaido-desktop-overview.png",
+      "bytes": 84838,
+      "sha256": "f2f5636f781d19187cb9dd77eac6e7dc29853c7c879d0e25b88714a9f88cfc42"
+    },
+    {
+      "file": "jp_hokkaido-ipad-cutaway.png",
+      "bytes": 108988,
+      "sha256": "2315c3aefc8210e488bf323ef90bf6dfbc0c324cca91989b6b7a73d41aef679b"
+    },
+    {
+      "file": "jp_hokkaido-ipad-mechanism.png",
+      "bytes": 100395,
+      "sha256": "3c114e45b1a27821088af6774254f46df211604bc67ff995aefab5a8efd90bf4"
+    },
+    {
+      "file": "jp_hokkaido-ipad-overview.png",
+      "bytes": 92308,
+      "sha256": "445101b27b8c55201b79021877e2d5b87fcd2ddb20f4395735cb8421fcdbbc7c"
+    },
+    {
+      "file": "jp_hokkaido-phone-cutaway.png",
+      "bytes": 52075,
+      "sha256": "ae75e369c966695631b3d1125938a8faafea008040b5bb28263b889a84bcec1e"
+    },
+    {
+      "file": "jp_hokkaido-phone-mechanism.png",
+      "bytes": 44910,
+      "sha256": "f2ed10d84df4883aaabeaa147c3c67d797b22fcb08ff7eac9e4a3461082b5017"
+    },
+    {
+      "file": "jp_hokkaido-phone-overview.png",
+      "bytes": 50755,
+      "sha256": "1e7837806c2645e4e4a6b5498ca6fdbdd668fd30eb78b26962d0b59e157368a7"
+    },
+    {
+      "file": "jp_kyushu-desktop-cutaway.png",
+      "bytes": 124205,
+      "sha256": "3670387478bafc952a00747677221c3057172c1b15eceedc9af2bab3e18ce1e6"
+    },
+    {
+      "file": "jp_kyushu-desktop-mechanism.png",
+      "bytes": 98175,
+      "sha256": "ba83596e1d2c2435cec233fe7773e23326b66ac05052884021033e955f1af059"
+    },
+    {
+      "file": "jp_kyushu-desktop-overview.png",
+      "bytes": 86784,
+      "sha256": "2962e36e52c61635d2617bb1a1b32e98cfd44bcaf26aec81a69f80270ea0304c"
+    },
+    {
+      "file": "jp_kyushu-ipad-cutaway.png",
+      "bytes": 108704,
+      "sha256": "27e0e52f2e0eb3487d30d36c7c19f95540bf28379a01cec58c4ed67797743e2f"
+    },
+    {
+      "file": "jp_kyushu-ipad-mechanism.png",
+      "bytes": 100728,
+      "sha256": "678f93173d99502e4576e671fe24a50ec621ac7e06033f79a8d07e3322e01392"
+    },
+    {
+      "file": "jp_kyushu-ipad-overview.png",
+      "bytes": 93073,
+      "sha256": "66500b2e7ba6e20e98d53fffb686df5e8776c4edc06ca6a8f828575ceb5dc3d3"
+    },
+    {
+      "file": "jp_kyushu-phone-cutaway.png",
+      "bytes": 51805,
+      "sha256": "3191af82db3ceb94b675cd2d2de41db06ecfbf14d338dd4201ebe96619f524c3"
+    },
+    {
+      "file": "jp_kyushu-phone-mechanism.png",
+      "bytes": 45083,
+      "sha256": "2ea87ef47421809fce6970cbf598d287952ca0832e2286ca6eac56f7a74cd6ad"
+    },
+    {
+      "file": "jp_kyushu-phone-overview.png",
+      "bytes": 49433,
+      "sha256": "d0f25d358ae1621b26487f3f469346646ef096f9b61387836efebcd25e27b842"
+    },
+    {
+      "file": "jp_tokyo-desktop-cutaway.png",
+      "bytes": 123973,
+      "sha256": "2c9212da35084bbde37b3e96d40b70a3797886103b3cdcd8068d924092d9bf4e"
+    },
+    {
+      "file": "jp_tokyo-desktop-mechanism.png",
+      "bytes": 96409,
+      "sha256": "780a63847c86248fd1dacb1fc629f014ca0c26e2e3cf3e964edb578fb5ba29ad"
+    },
+    {
+      "file": "jp_tokyo-desktop-overview.png",
+      "bytes": 86414,
+      "sha256": "b904fd9cee796ba0d3b4433f31b461cf49756e0abbc957958f3ae114b00d4147"
+    },
+    {
+      "file": "jp_tokyo-ipad-cutaway.png",
+      "bytes": 108926,
+      "sha256": "19ccd67fefe5badb6019d2adca2cbf2b7143ac0632be2f5e2cbaddc00363edda"
+    },
+    {
+      "file": "jp_tokyo-ipad-mechanism.png",
+      "bytes": 100122,
+      "sha256": "c5b7b0cf4cb61d249443db6f254d9ed7b36f916f2181bf6564221f7ce99cc897"
+    },
+    {
+      "file": "jp_tokyo-ipad-overview.png",
+      "bytes": 91758,
+      "sha256": "15fb03ed39d5f5294f9fc4cb5887ff89796f5fee0f43a7f99bec063e86b22749"
+    },
+    {
+      "file": "jp_tokyo-phone-cutaway.png",
+      "bytes": 51898,
+      "sha256": "3e977a8ee24ab1ce320324216b6f0e9f2c5b0fcf3b801ea66e1ef05c274a9208"
+    },
+    {
+      "file": "jp_tokyo-phone-mechanism.png",
+      "bytes": 45194,
+      "sha256": "db7b6c3010b32da55addc4c70d06f0d13cef779a8cd90a6c2b191aa619bd7919"
+    },
+    {
+      "file": "jp_tokyo-phone-overview.png",
+      "bytes": 49068,
+      "sha256": "5f14da241227bbed0fc4edb65aa5e1b325cd957d850856bb2c29c8c7d22a9e04"
+    },
+    {
+      "file": "nem-desktop-cutaway.png",
+      "bytes": 123488,
+      "sha256": "42a201847f04b1e385d8673d36aa38f9a502b2f7148440d1c05c13d44b0445d5"
+    },
+    {
+      "file": "nem-desktop-mechanism.png",
+      "bytes": 96460,
+      "sha256": "8ee7ddead328b59a035d83e10f4829b74b1205129f718908f5ca563d96d3e4d4"
+    },
+    {
+      "file": "nem-desktop-overview.png",
+      "bytes": 86830,
+      "sha256": "a3385f106b953be0e41787a93e7c21cf2c785680d7e19932c09c74970091c57d"
+    },
+    {
+      "file": "nem-ipad-cutaway.png",
+      "bytes": 104322,
+      "sha256": "54204c2dd3593430132016753dc5c6e74a4e86fb136f3ed7eca66252a408b910"
+    },
+    {
+      "file": "nem-ipad-mechanism.png",
+      "bytes": 93997,
+      "sha256": "b98b063d9d5b039fcacd39e18273f0941ef57eabfbe861babc1057ed150a6560"
+    },
+    {
+      "file": "nem-ipad-overview.png",
+      "bytes": 90513,
+      "sha256": "ebb2f80b75ac3569bfdce65166d4026dea8fc50811369f8f4c3c4c9aa6025c64"
+    },
+    {
+      "file": "nem-phone-cutaway.png",
+      "bytes": 52370,
+      "sha256": "f3cdb310d80130cefbe00de62fa2510557f95ce399d486e60a99053e00bc8a2b"
+    },
+    {
+      "file": "nem-phone-mechanism.png",
+      "bytes": 45392,
+      "sha256": "76d965c3dd05137bf3627fd02490652dbe60c2027c2f47bf524e668072bfafd5"
+    },
+    {
+      "file": "nem-phone-overview.png",
+      "bytes": 49855,
+      "sha256": "dbd63494eec2e760c4e5ca201947dd8411a0efe1f30d307f8951b06df6eb2dfd"
+    },
+    {
+      "file": "pjm-desktop-mechanism.png",
+      "bytes": 98239,
+      "sha256": "a37518a664bf058d2aeb4aef9719ddb43ed3a444a7b20497648a097eea26a7ee"
+    },
+    {
+      "file": "pjm-desktop-overview.png",
+      "bytes": 85700,
+      "sha256": "690f14125cd6af716885562e7543aab9f6b316496b2cdd131155bf20de1cb77e"
+    },
+    {
+      "file": "pjm-ipad-mechanism.png",
+      "bytes": 96885,
+      "sha256": "b8840a0beb9c6b75e77a1316db9a8fdcc3920f3aee5909233964be6646bd0801"
+    },
+    {
+      "file": "pjm-ipad-overview.png",
+      "bytes": 91381,
+      "sha256": "199c678958090a6e8e5cfa5199e2d6cd234c479d1597cd3519718047482584c5"
+    },
+    {
+      "file": "pjm-phone-mechanism.png",
+      "bytes": 44052,
+      "sha256": "f814a39b3030ceb507155e0f3ab7938cfb31e7b6a299b777c508048a90858ef8"
+    },
+    {
+      "file": "pjm-phone-overview.png",
+      "bytes": 50927,
+      "sha256": "1ff621574da9a93f29cf43a019267654a8965e6a0e9add7bf3f9e5a2c23dce8a"
+    },
+    {
+      "file": "pl-desktop-mechanism.png",
+      "bytes": 104172,
+      "sha256": "499b545a334b5e6b1efe874c29cb1e03f6a62b8dc39ca4832185bb2caa58c23d"
+    },
+    {
+      "file": "pl-desktop-overview.png",
+      "bytes": 88200,
+      "sha256": "c0ad49900ca67e26d4ada7e08ef118ea9a701ca56676d1775c2279f76defa4a8"
+    },
+    {
+      "file": "pl-ipad-mechanism.png",
+      "bytes": 98873,
+      "sha256": "12551fed5792b6ba79e7db6504b40b73b54903b765e056805bf68a3dd8f515f2"
+    },
+    {
+      "file": "pl-ipad-overview.png",
+      "bytes": 96332,
+      "sha256": "ad17983381eeff19c08baa692add416f29485b8bcff92eaeb96f84227d10b80a"
+    },
+    {
+      "file": "pl-phone-mechanism.png",
+      "bytes": 45407,
+      "sha256": "4c470eba9fe8b9e7a1c969a3a15e599cb9e71b104770c73d9b09adc2955e1431"
+    },
+    {
+      "file": "pl-phone-overview.png",
+      "bytes": 48722,
+      "sha256": "c079e4b106b9d00cee3fb49ae6f70bef408f01f3febb61ec216db2506b570f57"
+    },
+    {
+      "file": "ro-desktop-mechanism.png",
+      "bytes": 98916,
+      "sha256": "678aba656b8a17220f4e653da1950fee73e451ac84bb6cb711f0887784e7087c"
+    },
+    {
+      "file": "ro-desktop-overview.png",
+      "bytes": 85648,
+      "sha256": "e6f17e0828dba5d498bd85d67cd273d7fc455b96a1351471e4a4118d4bad3ef2"
+    },
+    {
+      "file": "ro-ipad-mechanism.png",
+      "bytes": 93946,
+      "sha256": "1173cf0c2708e7b4059a538cee683be26d5f7781224703d09bf51a5f24fa589f"
+    },
+    {
+      "file": "ro-ipad-overview.png",
+      "bytes": 92422,
+      "sha256": "fe9ecd311e141a76962d2550c9cbd033afc1c8912de34b425ddc17d092806552"
+    },
+    {
+      "file": "ro-phone-mechanism.png",
+      "bytes": 45265,
+      "sha256": "59072744829d36fcaf9652d7ada8f2e676cca6936164f5bb9da6c7b727c19395"
+    },
+    {
+      "file": "ro-phone-overview.png",
+      "bytes": 48978,
+      "sha256": "00eb282d4d7136e5e724ab23cfdf9d42cb6387227db7f6518b575c0e4aa925e3"
+    },
+    {
+      "file": "wa-desktop-mechanism.png",
+      "bytes": 102419,
+      "sha256": "3636adaa7c2fd1ac638a2ea424ddaa6c35ed63c98417f62e647058a29c807d29"
+    },
+    {
+      "file": "wa-desktop-overview.png",
+      "bytes": 91555,
+      "sha256": "822de08f52a47b8a9b0a8c530dfb70479ead31e8b61eb0a2145e56d656895bda"
+    },
+    {
+      "file": "wa-ipad-mechanism.png",
+      "bytes": 94237,
+      "sha256": "8a3a33003ac0bf7c8c80d237625b3399dca169ddd80444340f3bcf9d188ed6a5"
+    },
+    {
+      "file": "wa-ipad-overview.png",
+      "bytes": 94875,
+      "sha256": "0b509bc64210c68f728db70bc76d3302d26e0cd9fa3ed254516e7a2da3fec46b"
+    },
+    {
+      "file": "wa-phone-mechanism.png",
+      "bytes": 42263,
+      "sha256": "8e57387409f2340b1a9cd3e7bd6746e0816e7426147a53bda194e4328fdee5ff"
+    },
+    {
+      "file": "wa-phone-overview.png",
+      "bytes": 52241,
+      "sha256": "40a968f26bbdf245dea223420929f6f29cff3a136c544e1e9348ff163e02abbd"
+    }
+  ]
+}
