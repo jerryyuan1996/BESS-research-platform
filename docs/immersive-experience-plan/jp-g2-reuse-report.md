@@ -111,3 +111,40 @@ Apply every check below separately to all three URLs, in English and Simplified 
 8. Review the measured complete graph against 40 KiB and resolve the engineering gate before recording G-2 disposition. The analyst's later release PR must change all three released flags together. / 对照 40 KiB 上限审核完整新增依赖图，解决工程关口后再记录 G-2 结论；后续发布 PR 必须同时修改三个区域的发布标记。
 
 Screenshots, command logs and the exact-head validation ledger are local review evidence. The five layer PRs remain unopened until the analyst asks; G-2 sign-off and joint release are not inferred from engineering checks.
+
+
+## Resumption checkpoint - 6 November 2026
+
+The analyst authorised completing G-2, merging and publishing all three areas together. This supersedes the earlier permission-only handoff restrictions, while retaining the signed copy, evidence limits, 40,960-byte budget, confidentiality gates and separate joint release PR. All three registry flags remain `released: false` at this checkpoint; no Japan branch has been pushed or published.
+
+Current main was fetched at **`2940ed9129ae03731c1de21226b013612d4f63b0`** and merged normally, preserving the original five layer commits and upstream snapshot history. The sole cap-list conflict was resolved by retaining both feature entries without changing either cap. After the merge at **`71954431510216600e1d6516c0b3b0feeef49811`**, the live briefing and all three model modules were read again: each remains `infraFund` / `opportunistic`, its own `jp-<area>-ltda-6h`, nine-hour build, `ltda` / `operating`, six-hour obligation, twenty-year term, Fair evidence and the 2027-02-03 trigger. **Rule 11 passed.** The original review dates and per-area stale guards remain intact.
+
+Japan-local representation reductions preserve visible content and model owners:
+
+- The source envelope contains the same original-language title and primary URL; per-value locators and their rendering/labels load through the existing provenance disclosure import. No additional regional or scene chunk was introduced.
+- Identical reversed prefecture edges cancel before stitching the region outlines. Every stitched boundary closes and the unsimplified signed area is unchanged. The same source Git blob, Mercator fit, 1.5-pixel simplification, 0.5-pixel rounding and drawing centres are retained. Relative SVG segments and implicit ring closure store 392 vertices. No site data is added.
+- The complete signed text register stays available to authoring checks. A runtime projection omits unused register entries; navigation and marker labels still come from the unchanged shell, and the source renderer keeps its keyed labels. Every shot's English/Chinese words, tokens and marker stay exact.
+
+The last **intermediate**, pre-main-integration build measured **46,047 gzip bytes**, down from 49,126: an improvement of 3,079, but **still 5,087 over** the unchanged 40,960 cap. This is not a green result. Japan data/content/scenes/wiring checks passed 37/37 before main integration. Final exact-head command statuses, counts, durations and logs belong to the adjacent local `japan-g2-validation.json`; no unrun layer or final suite is represented as passed here.
+
+The preserved broad-browser failure opened the neighbouring return explanation after a price-button click. Its recorded click box and final screenshot differ by about 50 vertical pixels; smooth scrolling is a hypothesis, not an established cause. Twelve fresh exact-flow attempts and four instrumented scrolling/delay attempts passed against the preserved build. Those repeats do not erase the broad failure. No assertion, timeout, shared component or unrelated product behaviour was changed; any required change outside the Japan scope must be separately cleared.
+
+**BUILD-JP-02 stays unresolved**, with the approved build-cost bar and discount band withheld. Existing fixed-vintage source gaps and all other fallbacks above remain. The five original layer tips still need their own complete exact-head checks after relevant fixes are carried through the stack. Joint release and production verification remain pending.
+
+
+### Preserved final validation summary - 5 November
+
+This appends the summary that was interrupted by desktop transport failure. The preserved ledger ran at `0ee6cd1bf5148709fd1914a5c9459e1dab914f9d`, 17:44:37-18:13:19 UTC, with clean before/after status:
+
+| Check | Recorded result | Wall seconds |
+| --- | --- | ---: |
+| Build | Passed | 15.927 |
+| Unit suite | 1,416/1,417; only Japan budget failed; zero skips | 138.523 |
+| Current model | 84/84 | 1.290 |
+| Budget | Failed: 49,126 = 43,600 JS + 5,526 CSS; cap 40,960 | 15.949 |
+| ETL verification | All 17 existing snapshots verified | 1.217 |
+| Artifact confidentiality | 7/7, zero skips | 2.675 |
+| Broad browser suite | 275/276; acquisition explanation assertion failed | 811.599 |
+| Isolated acquisition repeats | 4/4; not proof of the broad failure's cause | 22.246 |
+
+The separately recorded Japan browser integration passed 32/32. These are historical results, not validation of the resumed source. The prior ledger and browser evidence are preserved beside the checkout; the resumption ledger retains their reference.

@@ -151,3 +151,22 @@ Map source: `src/markets/jp/jp-zones.json`, Natural Earth admin-1, public domain
 [RETURN-INDEX]: https://www.meti.go.jp/shingikai/enecho/denryoku_gas/jisedai_kiban/stable_power_supply_wg/006.html
 [FUNDING]: https://www.occto.or.jp/capacity-market/decarbonation_know/
 [CONTRIBUTIONS]: https://www.occto.or.jp/assets/news/capacity-market/261021_youryou_kyoshutsukin_setsumeikai.pdf
+
+
+## Resumption checkpoint - 6 November 2026
+
+The analyst authorised completing G-2, merging and publishing all three areas together. This supersedes the earlier permission-only handoff restrictions, while retaining the signed copy, evidence limits, 40,960-byte budget, confidentiality gates and separate joint release PR. All three registry flags remain `released: false` at this checkpoint; no Japan branch has been pushed or published.
+
+Current main was fetched at **`2940ed9129ae03731c1de21226b013612d4f63b0`** and merged normally, preserving the original five layer commits and upstream snapshot history. The sole cap-list conflict was resolved by retaining both feature entries without changing either cap. After the merge at **`71954431510216600e1d6516c0b3b0feeef49811`**, the live briefing and all three model modules were read again: each remains `infraFund` / `opportunistic`, its own `jp-<area>-ltda-6h`, nine-hour build, `ltda` / `operating`, six-hour obligation, twenty-year term, Fair evidence and the 2027-02-03 trigger. **Rule 11 passed.** The original review dates and per-area stale guards remain intact.
+
+Japan-local representation reductions preserve visible content and model owners:
+
+- The source envelope contains the same original-language title and primary URL; per-value locators and their rendering/labels load through the existing provenance disclosure import. No additional regional or scene chunk was introduced.
+- Identical reversed prefecture edges cancel before stitching the region outlines. Every stitched boundary closes and the unsimplified signed area is unchanged. The same source Git blob, Mercator fit, 1.5-pixel simplification, 0.5-pixel rounding and drawing centres are retained. Relative SVG segments and implicit ring closure store 392 vertices. No site data is added.
+- The complete signed text register stays available to authoring checks. A runtime projection omits unused register entries; navigation and marker labels still come from the unchanged shell, and the source renderer keeps its keyed labels. Every shot's English/Chinese words, tokens and marker stay exact.
+
+The last **intermediate**, pre-main-integration build measured **46,047 gzip bytes**, down from 49,126: an improvement of 3,079, but **still 5,087 over** the unchanged 40,960 cap. This is not a green result. Japan data/content/scenes/wiring checks passed 37/37 before main integration. Final exact-head command statuses, counts, durations and logs belong to the adjacent local `japan-g2-validation.json`; no unrun layer or final suite is represented as passed here.
+
+The preserved broad-browser failure opened the neighbouring return explanation after a price-button click. Its recorded click box and final screenshot differ by about 50 vertical pixels; smooth scrolling is a hypothesis, not an established cause. Twelve fresh exact-flow attempts and four instrumented scrolling/delay attempts passed against the preserved build. Those repeats do not erase the broad failure. No assertion, timeout, shared component or unrelated product behaviour was changed; any required change outside the Japan scope must be separately cleared.
+
+**BUILD-JP-02 stays unresolved**, with the approved build-cost bar and discount band withheld. Existing fixed-vintage source gaps and all other fallbacks above remain. The five original layer tips still need their own complete exact-head checks after relevant fixes are carried through the stack. Joint release and production verification remain pending.
