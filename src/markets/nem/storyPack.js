@@ -1,4 +1,4 @@
-/* Lazy, unreleased NEM story pack. The shared story infrastructure is unchanged.
+/* Lazy NEM story pack, released at G-2 (6 November 2026). The shared story infrastructure is unchanged.
    The rights switch is on (analyst, 5 November 2026): scenes draw AEMO's
    observed layers for nem-05 to nem-07 (data/storyEvidenceValues.js). */
 import '../../experience/story/kit/index.js';

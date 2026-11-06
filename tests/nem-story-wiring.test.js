@@ -6,11 +6,11 @@ import { story } from '../src/markets/nem/story.js';
 import { storyMatches } from '../src/markets/nem/storyBindings.js';
 import { opportunities } from '../src/experience/model.js';
 
-test('NEM is registered unreleased: it opens only behind ?story=preview', () => {
-  assert.equal(STORIES.nem.released, false);
+test('NEM is released at G-2 and still loads only through its own lazy pack', () => {
+  assert.equal(STORIES.nem.released, true);
   assert.equal(typeof STORIES.nem.load, 'function');
-  assert.equal(storyFor('nem', ''), null);
-  assert.equal(storyFor('nem', '?view=story'), null);
+  assert.equal(storyFor('nem', ''), STORIES.nem);
+  assert.equal(storyFor('nem', '?view=story'), STORIES.nem);
   assert.equal(storyFor('nem', '?story=preview'), STORIES.nem);
 });
 
@@ -25,7 +25,7 @@ test('a changed call, play, duration or lens falls back to the research dialog',
 
 test('the pack is loaded only through its own dynamic import, and imports no observed records', () => {
   const registry = readFileSync(new URL('../src/experience/story/registry.js', import.meta.url), 'utf8');
-  assert.match(registry, /nem: \{ released: false, load: \(\) => import\('\.\.\/\.\.\/markets\/nem\/storyPack\.js'\) \}/);
+  assert.match(registry, /nem: \{ released: true, load: \(\) => import\('\.\.\/\.\.\/markets\/nem\/storyPack\.js'\) \}/);
   const pack = readFileSync(new URL('../src/markets/nem/storyPack.js', import.meta.url), 'utf8');
   assert.equal(/storyEvidenceObserved|storyEvidence\.js/.test(pack), false);
   assert.match(pack, /isStale\(story, ctx\.row\) \|\| !storyMatches/);
