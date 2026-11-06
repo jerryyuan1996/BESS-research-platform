@@ -14,6 +14,7 @@ A battery-storage (BESS) investment research platform: a static Vite site (nativ
 - On a new clone, restore `local-data/markers.json` and `local-data/fingerprint-key.txt`, run `npm run guard:install` to enable the pre-commit scan, and confirm it with `npm run guard:staged` before the first commit. A guard that cannot scan blocks the commit, and a skipped bundle scan is not a pass.
 - Everything shipped to the browser is public, including unlinked files and source maps. See `docs/data-policy.md`.
 - The repository stays private. Never make it public, add collaborators or rewrite history without the analyst. If content redaction is ever run, restore `tests/bundle-confidentiality.test.js` and `docs/data-policy.md` afterwards.
+- A history rewrite does not reach everything. GitHub keeps every pull request's commits as they were, and content redaction does not change commit messages. Before any visibility change or new collaborator, GitHub Support must first purge old pull-request references and unreachable objects, and old commit messages must be checked against the marker set.
 
 ## Numbers and the model
 
@@ -25,10 +26,11 @@ A battery-storage (BESS) investment research platform: a static Vite site (nativ
 
 ## Automation and release
 
-- The ETL refreshes public data every six hours and commits snapshots to `main`. That history is the audit trail: never rewrite or regenerate snapshots to hide a difference.
+- The ETL refreshes public data once a day (06:17 UTC) and commits snapshots to `main`. That history is the audit trail: never rewrite or regenerate snapshots to hide a difference.
 - Model-driven jobs (agent, scout, digest) run on a schedule at most once a month, with the model set in `agent/prompt.mjs`. The analyst may dispatch any of them by hand at any time. Do not propose a more frequent schedule or a larger model without evidence.
 - Judgement may publish automatically after validation; methodology never does. See `docs/governance.md`.
 - GitHub Actions builds the site, scans the exact output and deploys it to Vercel with `--prebuilt`. Vercel is not connected to Git. Never deploy around this pipeline; see `docs/publishing.md`.
+- Automation minutes are a budget: keep GitHub Actions under 2,000 minutes a month. Pull-request checks run the fast gates and a smoke suite; the full browser suite runs on `main` before every deploy, and on a pull request only when it carries the `full-check` label. See `docs/ci-performance.md`.
 
 ## Writing for the site
 
@@ -40,6 +42,11 @@ A battery-storage (BESS) investment research platform: a static Vite site (nativ
 
 - Work on a branch, not on `main`. Commit or push only when the analyst asks.
 - Preserve work you did not make. Never reset, clean or force-push.
+- One pull request per feature or market release. Do not split one release into a chain of pull requests: each one pays for a check, a second check on `main` and a deploy. Keep unfinished work as a draft, which runs no checks.
+- Run the checks locally before pushing. Local runs cost no automation minutes; push when the work is ready, not after every step.
+- One AI tool per area at a time. Before starting, check open pull requests and branches for work on the same files, and continue that work rather than starting a parallel copy.
+- Every pull request body opens with three plain-English lines for the analyst, who does not read code: **What changes on the site**, **Cost or risk**, **Decision needed**. No internal codes (gate, work-package or decision IDs) in those lines.
+- One decision log per topic, updated in place. Do not add a new storyboard, build-evidence, release or reuse document for each pull request; the pull request body is the record of a change.
 - Before a PR, run `npm test`, `npm run test:current`, `npm run build`, `npm run test:budget` and `npm run test:e2e`, plus `npm run etl:verify` after any data or dataset change. CI repeats them with the confidentiality secrets.
 - To show the site to anyone, use the built output (`npm run build`, then `npm run preview`). Never share the dev server: it can load local confidential material.
 
