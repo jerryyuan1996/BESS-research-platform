@@ -173,6 +173,17 @@ export const DATASETS = [
     bearsOn: [], republishable: true, requiresKey: false, official: true,
   })),
 
+  // EAC BR/QR/SR clearing prices and accepted MW; independent of DC/DM/DR.
+  {
+    id: 'gb-eac-reserve', kind: 'timeseries', marketId: 'gb', connector: 'neso-reserve',
+    title: ['GB EAC reserve auction prices and cleared capacity', '英国 EAC 备用服务拍卖价格与成交容量'],
+    source: { name: 'NESO Open Data', url: 'https://www.neso.energy/data-portal/eac-auction-results',
+      licence: 'NESO Open Data Licence', licenceUrl: 'https://www.neso.energy/data-portal/neso-open-licence',
+      attribution: 'Supported by National Energy SO Open Data' },
+    refreshHours: 6 * HOURS, staleAfterHours: 3 * DAYS,
+    bearsOn: [], republishable: true, requiresKey: false, official: true,
+  },
+
   // ---- Finland — Fingrid's hourly reserve prices (gate FI-2), 2026-10-30 ----
   /* Snapshots for the analyst: bearsOn names the reserve line, but no detector
      reads these, so nothing proposes a change from them. The yearly FCR market
