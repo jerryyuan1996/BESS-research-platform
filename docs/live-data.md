@@ -50,6 +50,8 @@ failures; the snapshots retain their actual fetched timestamps rather than claim
 | `gb-day-ahead` | GB | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
 | `gb-dynamic-response` | GB | NESO Dynamic results, fixed 2020–2023 vintage; availability prices and cleared/technology MW | fixed after initial import | — |
 | `gb-eac-response` | GB | NESO EAC response results; FY2023–FY2025 archives plus current results | read on the daily combined run; source daily | — |
+| `gb-imbalance-buy`, `gb-imbalance-sell` | GB | Elexon DISEBSP indicative system prices, GBP/MWh; independent of day-ahead | read on the daily combined run | — |
+| `gb-net-imbalance-volume` | GB | Elexon DISEBSP signed net system imbalance, MWh per half-hour | read on the daily combined run | — |
 | `ie-day-ahead` | IE | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
 | `ro-day-ahead` | RO | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
 | `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | 12h | — |
@@ -92,15 +94,26 @@ Locally: put `FINGRID_API_KEY=…` in the git-ignored `.env.fingrid` (not `.env.
 Vercel CLI rewrites). Then run `node --env-file=.env.fingrid etl/run.mjs --only fi-fcr-n`. Behind a
 proxy, add `NODE_USE_ENV_PROXY=1`, because Node's fetch ignores `HTTPS_PROXY` without it.
 
-### Why GB uses ENTSO-E rather than Elexon
+### GB day-ahead and Elexon system balance
 
-Elexon BMRS is the better GB source — it carries imbalance and Balancing Mechanism data that ENTSO-E
-does not, and those are a large part of a GB battery's revenue. Its gateway returned `403` to every
-request during development, so it is not wired: a connector that cannot be verified against the live
-service is one that fails its first unattended cron run.
+Anonymous Elexon Insights requests succeeded on 2026-11-06, including a historical 50-period
+clock-change day. The three new DISEBSP datasets carry indicative system buy/sell prices and signed
+net imbalance volume. This is cash-out and system-balance evidence; `gb-day-ahead` keeps its existing
+ENTSO-E connector and gap status. These observations have `bearsOn: []` and create no arbitrage
+index, model change or automatic investment-view change.
 
-ENTSO-E carries GB day-ahead, is already wired for three other markets, and is proven to respond.
-Adding Elexon later is additive — a second dataset for the same market, not a replacement.
+The existing runner shares at most six anonymous day requests across all three metrics in one
+logical run: two completed days for D+1 revisions and up to four missing/incomplete days. There is
+no new cron, publisher, secret or private storage. Failed/partial days retain prior points; a full
+failure retains the last-good snapshot. A 401, 403 or 429 stops further new requests in that run.
+Summaries explicitly distinguish GBP/MWh from signed MWh, retain the London settlement calendar
+(46/48/50 periods), and leave generic price spreads/arbitrage empty. The 365-day window is unchanged;
+this is not a multi-year archive or final settlement data. See the [phase-one verification and
+source record](data-channel-phase1-2026-11-06.md).
+
+WEM interval gaps can be inspected without network access or writes using
+`node scripts/audit-wem-coverage.mjs`. This audits only the first-to-last observed span and leaves
+unpublished/missing classification open; it does not fill prices or revise existing snapshots.
 
 ### Deliberately not automated
 

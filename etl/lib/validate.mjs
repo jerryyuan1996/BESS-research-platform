@@ -131,6 +131,39 @@ function validateFeed(snapshot, series, r){
   return r;
 }
 
+/** Non-price numeric data has a separate, stricter schema. The existing price
+    bounds, unit-shift ratio and tolerated malformed-price fraction stay intact. */
+function validateMetric(snapshot, dataset, previous, r){
+  const schema = dataset.metric;
+  if (!schema?.quantity || !schema.unit || !schema.resolution
+      || !Number.isInteger(schema.intervalMinutes) || schema.intervalMinutes < 1
+      || !isFiniteNum(schema.min) || !isFiniteNum(schema.max) || schema.min >= schema.max){
+    return r.error('metric dataset requires an explicit unit, interval, resolution and bounds');
+  }
+  const expectedUnits = JSON.stringify({ [schema.quantity]: schema.unit });
+  if (JSON.stringify(snapshot.units) !== expectedUnits) r.error('metric units do not match the declared schema');
+  if (previous && JSON.stringify(previous.units) !== expectedUnits) r.error('metric units changed from the last-good snapshot');
+  const seen = new Set();
+  let last = -Infinity;
+  for (const [i, p] of snapshot.series.entries()){
+    const t = Date.parse(p?.t);
+    if (typeof p?.t !== 'string' || !/(?:Z|[+-]\d{2}:\d{2})$/i.test(p.t)
+        || !Number.isFinite(t) || t % (schema.intervalMinutes * 60_000) !== 0){
+      r.error(`metric series[${i}] has an invalid interval start`);
+      continue;
+    }
+    if (seen.has(t) || t < last) r.error(`metric series[${i}] is duplicate or out of order`);
+    seen.add(t); last = t;
+    if (!isFiniteNum(p.v) || p.v < schema.min || p.v > schema.max) r.error(`metric series[${i}] is outside declared bounds`);
+  }
+  const cov = snapshot.coverage;
+  if (cov?.resolution !== schema.resolution || cov?.points !== snapshot.series.length
+      || cov?.from !== snapshot.series[0]?.t || cov?.to !== snapshot.series.at(-1)?.t){
+    r.error('metric coverage does not match the series and declared resolution');
+  }
+  return r;
+}
+
 /**
  * Validate a freshly built snapshot, optionally against the one it would replace.
  *
@@ -192,6 +225,7 @@ export function validateSnapshot(snapshot, dataset, previous = null){
      units to shift, and running the price checks against it would reject every
      item for the crime of not being a number. */
   if (dataset.kind === 'feed') return validateFeed(snapshot, series, r);
+  if (dataset.kind === 'metric') return validateMetric(snapshot, dataset, previous, r);
 
   const prices = [];
   let badPoints = 0, lastTs = null, outOfOrder = 0;

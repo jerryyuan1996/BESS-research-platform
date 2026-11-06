@@ -40,6 +40,7 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
  * @param {number} [opts.timeoutMs]
  * @param {number} [opts.retries]
  * @param {object} [opts.headers]
+ * @param {AbortSignal} [opts.signal]  optional caller lifetime, including body reads
  * @param {(msg:string)=>void} [opts.log]
  */
 export async function httpGet(url, opts = {}){
@@ -64,7 +65,10 @@ export async function httpGet(url, opts = {}){
 
     try {
       const res = await fetch(url, {
-        signal: controller.signal,
+        // Optional caller lifetime can outlive the header timeout, so a
+        // connector can also bound reading a stalled response body. Existing
+        // callers without a signal retain exactly their current behaviour.
+        signal: opts.signal ? AbortSignal.any([controller.signal, opts.signal]) : controller.signal,
         redirect: 'follow',
         method,
         body,
