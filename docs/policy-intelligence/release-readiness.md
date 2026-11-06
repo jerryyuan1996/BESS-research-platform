@@ -2,7 +2,7 @@
 
 PR: https://github.com/jerryyuan1996/BESS-research-platform/pull/159
 
-Previously pushed head `18b55ffb79a9c27d13e401e55e0cf13fda5a4b8a` passed [CI run 42025983107](https://github.com/jerryyuan1996/BESS-research-platform/actions/runs/42025983107). Deployment was correctly skipped for a draft PR. Later changes require fresh exact-head CI. The built loopback preview at http://127.0.0.1:4176/ is local review, not production verification.
+The latest certified software head `f45891d14a654736924b1fe5c6b224541c2e1851` passed [CI run 42075680345](https://github.com/jerryyuan1996/BESS-research-platform/actions/runs/42075680345). Draft deployment was skipped. A later documentation checkpoint requires its own exact-head CI; a green software run does not accept missing content/source gates. The built loopback preview is local review, not production verification.
 
 | Activation setting | Current value |
 |---|---|
@@ -35,3 +35,9 @@ Normal collection changes from six-hour to daily. Scheduling drift, outages and 
 ## Rollback procedure requiring rehearsal
 
 Disable policy processing first. Prepare an analyst-reviewed feature-branch rollback/correction through the existing PR and full CI path, retaining immutable policy history. Never erase an old revision or rewrite an approved investment conclusion. Deploy only through the exact-artifact scan and Vercel --prebuilt workflow, then run production smoke. A failed policy stream retains last-known-good content while verified market data continues normally. This is a documented procedure, not a claim that production rollback was tested.
+
+## Resumed release checkpoint, 6 November 2026
+
+Original-byte gaps for the two GB timetable letters are resolved. Four private packets, a scope supplement and 16 historical reference cases now have a reviewable evidence checkpoint. Accepted gold cases remain zero; the AI bilingual second pass is not human acceptance. The four source inventory entries remain unapproved, trusted profiles remain empty and no canonical public pilot exists. Missing final/historical/source-specific applicability, rights/validator decisions, independent human content/label acceptance and publication authorization still block the full v4 release. AEMO's specific public-material permission is documented with its attribution/exclusion scope; do not demand duplicate copyright-owner consent where it applies or treat it as source-configuration approval.
+
+Local software checks were rerun successfully on the unchanged software tree: 1,497 unit tests, 84 financial/current tests, 30 budget tests, all ETL snapshots, unpublished Policy-store verification, the original required artifact guard (7) and the complete desktop/mobile browser suite (260). No source activation, paid call, credential creation, merge, production artifact scan, deployment or rollback rehearsal occurred. See [source-review-checkpoint-2026-11-06.md](source-review-checkpoint-2026-11-06.md).

@@ -20,3 +20,9 @@ The workflow proposal replaces `17 */6 * * *` with `17 6 * * *`, preserves unrel
 Original GB parity failed on the initial untouched main. During delivery, main advanced to `13dacf0` with a general design-projection pin at the same original `d85f172` public-data vintage. The branch adopts that upstream implementation and removes its redundant single-GB normalization fixture. Original pre-split content fingerprints remain unchanged; upstream pin/shape tests and existing live Brief/current-engine linkage remain asserted. No baseline generator was run. Main's unrelated Japan documentation is preserved.
 
 See release-readiness.md, source-review-proposal.md and validation-record.md for actual evidence and blockers.
+
+## Resumed research checkpoint, 6 November 2026
+
+The previously existing four private pilots were reviewed before edits. An independent AI second pass examined 24 original EN/ZH chapter pairs; three pairs were revised to reflect complete GB bytes, the distinct NEM operator account and WA's known predecessor date/order. This is not independent human acceptance. Sixteen reference cases consolidate earlier proposals with complete original-byte provenance; all investment-review labels and evaluated outcomes remain null, with zero accepted gold cases.
+
+The private scope supplement adds DE capacity-law distinctions, the GB capacity-rule commencement chain, the current NEM FCAS guide/CIS scope, and WA capacity-payment/ESS mechanisms and consultation positions. Thirty of 39 identified research resources have complete verified entity bytes, including 16 PDFs; failed and browser-only evidence remains separately identified. No canonical public pilot was approved or written. See [source-review-checkpoint-2026-11-06.md](source-review-checkpoint-2026-11-06.md). D6-D8 acceptance remains incomplete, and all activation decisions remain OFF.
