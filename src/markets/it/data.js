@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Italy — market dataset.
 
@@ -47,9 +48,9 @@
 import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
-  asOf: '2026-08-01',
-  dataDate: '2025 annual / 2026 published auctions / Jul 2026 forecast',
-  modelVersion: 'it-seed-1.0-macse-vs-toll',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['Italy Battery Investment Dashboard', '意大利储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Seven physical bidding zones; procurement-area groupings differ. Reference archetype 100 MW / 4h; four routes to market.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。七个实体报价区，采购区域分组与之不同。参考原型为100MW/4小时；四条售电路径。'],
@@ -66,17 +67,17 @@ const M = {
   official: {
     // ---- MACSE, Terna's centralised storage procurement ----
     macseAuction1Date: '30 September 2025', macseAuction1Rev: '10 October 2025',
-    macseAwardedMWh: 9968, macseAwardedMW: 1491, macseProjects: 14, macseHoursAvg: 6.68,
-    macseWavg: 12959, macseSud: 12146, macseSard: 15029, macseSici: 15846,
+    macseAwardedMWh: HISTORY_DATA.official.macseAwardedMWh, macseAwardedMW: 1491, macseProjects: HISTORY_DATA.official.macseProjects, macseHoursAvg: 6.68,
+    macseWavg: HISTORY_DATA.official.macseWavg, macseSud: 12146, macseSard: 15029, macseSici: 15846,
     macseCap: 37000, macseClearPctOfCap: 35,
     /* Second auction (24 Nov 2026): ARERA resolution 332/2026, 24 Sep 2026. */
     macseCapAuction2: 27000,
-    macseYears: 15, macseDelivery: 2028,
+    macseYears: 15, macseDelivery: HISTORY_DATA.official.macseDelivery,
     macse4hEquiv: 51836, macseAtAwardedHours: 86566,
-    macseAuction1GWh: 10, macseAuction2GWh: 16, macseAuction2Date: '24 November 2026',
+    macseAuction1GWh: HISTORY_DATA.official.macseAuction1GWh, macseAuction2GWh: HISTORY_DATA.official.macseAuction2GWh, macseAuction2Date: HISTORY_DATA.official.macseAuction2Date,
     /* The locational decision. Zero is a requirement Terna SET, not an outcome. */
-    macseNorthReqGWh: 0, macseSudCeil1: 7, macseSudCeil2: 11.5,
-    macseSiciFloor1: 0.5, macseSiciFloor2: 1,
+    macseNorthReqGWh: 0, macseSudCeil1: HISTORY_DATA.official.macseSudCeil1, macseSudCeil2: HISTORY_DATA.official.macseSudCeil2,
+    macseSiciFloor1: 0.5, macseSiciFloor2: HISTORY_DATA.official.macseSiciFloor2,
     /* Terna resells the time-shifting product; the assignee keeps MSD trading
        control but returns roughly 80% of contribution margin. Corroborated by two
        independent secondary readings, NOT verified in Terna's regulation text. */
@@ -112,7 +113,7 @@ const M = {
 
     // ---- fleet and system ----
     fleet2025GW: 1.9, fleetSardMW: 800, fleet2030GWhi: 15,
-    renewShare2025Pct: 41, renewShare2024Pct: 42,
+    renewShare2025Pct: HISTORY_DATA.official.renewShare2025Pct, renewShare2024Pct: 42,
 
     // ---- capex ----
     capexKWhLo: 180, capexKWhMid: 220, capexKWhHi: 260,
@@ -136,7 +137,7 @@ const M = {
     elmedMW: 600, elmedKm: 200, elmedCod: 2028,
 
     // ---- policy ----
-    maseDecree: 'DM 53 of 27 February 2025',
+    maseDecree: HISTORY_DATA.official.maseDecree,
     areraCurtailRes: 'Resolution 128/2025/R/EFR',
   },
 

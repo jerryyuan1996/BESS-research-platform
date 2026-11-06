@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    PJM — market dataset.
 
@@ -43,9 +44,9 @@
    --------------------------------------------------------------------------- */
 
 const M = {
-  asOf: '2026-08-03',
-  dataDate: '2028/29 BRA (Jul 2026) / CY2025 spreads / Regulation to Apr 2026',
-  modelVersion: 'pjm-seed-1.0-rpm-auction-renewal-two-leg-merchant',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['PJM Battery Investment Dashboard', 'PJM储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. RTO-wide capacity clearing; reference archetype 90 MW / 4h.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。容量按全RTO统一出清；参考原型为90MW/4小时。'],
@@ -61,17 +62,17 @@ const M = {
      series live further down and are badged as such wherever they render. */
   official: {
     // ---- RPM capacity market ----
-    braPrice: 325.00, braDeliveryYear: '2028/2029', braDate: '14 July 2026',
+    braPrice: HISTORY_DATA.official.braPrice, braDeliveryYear: HISTORY_DATA.official.braDeliveryYear, braDate: '14 July 2026',
     braUcapMW: 138318, braFrrMW: 10864, braTotalUcapMW: 149182,
-    braShortMW: 6831, braValueBn: 16.4, braReserveMarginPct: 14.7,
+    braShortMW: HISTORY_DATA.official.braShortMW, braValueBn: 16.4, braReserveMarginPct: 14.7,
     braNewMW: 525, braOfferedMW: 139595, braPrevClearedMW: 134585,
     braChangePct: -2.5, braSupplyTotalMW: 202288, braSupplyPrevMW: 200994,
-    prevBraPrice: 333.44, prevBraDeliveryYear: '2027/2028', prevBraShortMW: 6500,
+    prevBraPrice: HISTORY_DATA.official.prevBraPrice, prevBraDeliveryYear: HISTORY_DATA.official.prevBraDeliveryYear, prevBraShortMW: HISTORY_DATA.official.prevBraShortMW,
     /* What the same auction would have cleared at with no collar. This is PJM's
        own published simulation and it is the single most important forward number
        on this tab. */
     uncappedSimRto: 529.80, uncappedSimDom: 542.83,
-    collarAuctions: 4, collarLastDeliveryYear: '2029/2030',
+    collarAuctions: HISTORY_DATA.official.collarAuctions, collarLastDeliveryYear: HISTORY_DATA.official.collarLastDeliveryYear,
     nextBraDate: 'December 2026', nextBraDeliveryYear: '2029/2030',
     /* PJM planning parameters for the 2029/2030 BRA, posted 31 August 2026. The
        collar is re-derived per auction: the Reference Resource UCAP factor fell
@@ -84,7 +85,7 @@ const M = {
     // Supply mix, UCAP, 2028/2029 cleared plus FRR.
     mixGasPct: 46, mixNuclearPct: 20, mixCoalPct: 18, mixDrPct: 5,
     mixHydroPct: 4, mixWindPct: 2, mixOilPct: 2, mixSolarPct: 1,
-    gasChangeMW: 5639, coalChangeMW: -2941, solarChangeMW: 651,
+    gasChangeMW: 5639, coalChangeMW: HISTORY_DATA.official.coalChangeMW, solarChangeMW: 651,
 
     // ---- ELCC accreditation ----
     elcc4h: 59, elcc6h: 68, elcc8h: 71, elcc10h: 78,
@@ -94,7 +95,7 @@ const M = {
 
     // ---- Regulation ----
     regRedesignDate: '1 October 2025', regPhase2Date: 'October 2026',
-    regMarketBeforeMW: 320, regMarketAfterMW: 750,
+    regMarketBeforeMW: HISTORY_DATA.official.regMarketBeforeMW, regMarketAfterMW: HISTORY_DATA.official.regMarketAfterMW,
     regPriceOct25: 129, regPriceSep25: 56, regPriceJun25: 55,
     regPricePeakLo: 66, regPricePeakHi: 83,
     regSpike5minAm: 750, regSpike5minPm: 1800,

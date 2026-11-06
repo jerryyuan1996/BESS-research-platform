@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Great Britain 鈥?market dataset, verbatim from the prototype (lines 1365-1631).
 
@@ -12,9 +13,9 @@ import {
 } from './officialData.js';
 
 const M = {
-  asOf: '2026-07-29',
-  dataDate: 'FES 2025 / TEC 29 Jul 2026 / TTM Apr 2026 / DY 2029-30',
-  modelVersion: 'gb-governed-2.0-fes-tec',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['Great Britain Battery Investment Dashboard', '英国储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。'],
@@ -30,11 +31,11 @@ const M = {
 
   // ---- official snapshot ----
   official: {
-    t4Price: 27.10, t4DY: '2029/30', t4AwardedMW: 40108.6,
+    t4Price: HISTORY_DATA.official.t4Price, t4DY: HISTORY_DATA.official.t4DY, t4AwardedMW: HISTORY_DATA.official.t4AwardedMW,
     t1Price: 5.00, t1DY: '2026/27', t1AwardedMW: 7192.3,
     cmAgreementYears: 15,
     cp2030BatteryGW: [23, 27], cp2030LdesGW: [4, 6], batteryBaselineGW: 4.5, ldesBaselineGW: 2.9,
-    ldesWindow1Projects: 16,
+    ldesWindow1Projects: HISTORY_DATA.official.ldesWindow1Projects,
     fleetGW: 6.5, fleetAvgHours: 1.7, pipelineAvgHours: 2.2,
   },
 
@@ -42,21 +43,18 @@ const M = {
     rationale: ['A diversified revenue stack remains, but returns are now set by connection certainty, realised BM dispatch and saturation — not by a generic storage-scarcity thesis.',
                 '收入来源仍然多元，但收益已由并网确定性、平衡机制实际调度与市场饱和决定，而非笼统的“储能稀缺”逻辑。'] },
   // ---- Capacity Market ----
-  cmYears: ['24/25', '25/26', '26/27', '27/28', '28/29', '29/30'],
-  t4Series: [18.00, 30.59, 63.00, 65.00, 60.00, 27.10],
+  cmYears: HISTORY_DATA.cmYears,
+  t4Series: HISTORY_DATA.t4Series,
   t1Years: ['22/23', '23/24', '24/25', '25/26', '26/27'],
   t1Series: [75.00, 60.00, 35.79, 20.00, 5.00],
-  derateHours: [1, 2, 4, 6, 8, 10, 12],
+  derateHours: HISTORY_DATA.derateHours,
   /* NESO's published duration-limited storage factors (Scaled EFC, Rule 2.3.5),
      opened on 2026-10-15 for gate G1. T-4 2028/29 from the 2024 Electricity
      Capacity Report; T-4 2029/30 from Table 3 of its Capacity Auction
      Guidelines. 10h and 12h take the longest duration-limited class (9h+ at
      92.99%; 9.5h+ at 92.16%). Replaces a seed row whose 4h point was 0.45 and
      which showed every factor falling between the vintages — they rose. */
-  derateVintages: {
-    'T-4 2028/29': [0.1047, 0.2094, 0.4174, 0.6267, 0.8347, 0.9299, 0.9299],
-    'T-4 2029/30': [0.1099, 0.2198, 0.4396, 0.6608, 0.8777, 0.9216, 0.9216],
-  },
+  derateVintages: HISTORY_DATA.derateVintages,
   deratingCurve: { 1: 0.1099, 2: 0.2198, 4: 0.4396, 6: 0.6608, 8: 0.8777, 10: 0.9216, 12: 0.9216 },
 
   // ---- wholesale & BM ----
@@ -67,7 +65,7 @@ const M = {
     { n: ['Intraday', '日内'], pct: 14, c: 'var(--s3)' },
     { n: ['Imbalance', '不平衡结算'], pct: 9, c: 'var(--muted)' },
   ],
-  realisedRatio: { fleetMedian: 0.82, strong: 0.92, weak: 0.65 },
+  realisedRatio: HISTORY_DATA.realisedRatio,
   skipRate: 0.34,
   buildYears: ['2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032'],
   buildLow:     [5.6, 6.5, 7.8, 9.5, 11.0, 12.5, 13.5, 14.5],

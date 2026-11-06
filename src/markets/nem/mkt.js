@@ -1,3 +1,4 @@
+import {HISTORY_FORMAT} from './historyData.js';
 /* ---------------------------------------------------------------------------
    National Electricity Market — engine configuration.
 
@@ -7,7 +8,7 @@
    --------------------------------------------------------------------------- */
 
 const MKT = {
-  id: 'nem', ns: 'nem', locale: 'en-AU', cur: 'A$', curCode: 'AUD',
+  id: 'nem', ns: 'nem', locale: HISTORY_FORMAT.locale, cur: HISTORY_FORMAT.cur, curCode: 'AUD',
   tz: 'Australia/Sydney', tzShort: 'AEST',
   tzNote: ['All timestamps AEST', '所有时间为澳大利亚东部时间（AEST/AEDT）'],
   seedTag: 'NEM_SEED_V1',

@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    ERCOT — market dataset.
 
@@ -40,9 +41,9 @@
    --------------------------------------------------------------------------- */
 
 const M = {
-  asOf: '2026-08-04',
-  dataDate: 'CY2025 revenue index / Q1 2026 fleet / RTC+B live Dec 2025',
-  modelVersion: 'ercot-seed-1.0-energy-only-toll-led-two-hour',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['ERCOT Battery Investment Dashboard', 'ERCOT储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Energy-only market with ORDC scarcity pricing; reference archetype 100 MW / 2h.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。纯电能量市场，通过ORDC实现稀缺定价；参考原型为100MW/2小时。'],
@@ -57,25 +58,25 @@ const M = {
      Only values that come from a named publication sit here. */
   official: {
     // ---- market design ----
-    rtcbDate: '5 December 2025',
-    ecrsHoursBefore: 2, ecrsHoursAfter: 1,
-    rrsHoursBefore: 1, rrsHoursAfterMin: 30,
-    nonSpinHours: 4,
+    rtcbDate: HISTORY_DATA.official.rtcbDate,
+    ecrsHoursBefore: HISTORY_DATA.official.ecrsHoursBefore, ecrsHoursAfter: HISTORY_DATA.official.ecrsHoursAfter,
+    rrsHoursBefore: HISTORY_DATA.official.rrsHoursBefore, rrsHoursAfterMin: HISTORY_DATA.official.rrsHoursAfterMin,
+    nonSpinHours: HISTORY_DATA.official.nonSpinHours,
     rrsPfrMinMW: 1377,
     asMethodYear: 2026, asMethodEffective: '1 January 2026',
     rtcbSavingsBn: 1,
 
     // ---- fleet and buildout ----
-    fleet2024GW: 8.6, fleet2026GW: 14, fleetQ1_2026GW: 14.96,
-    fleet2030GW: 40, fleet2023GW: 5.3,
+    fleet2024GW: 8.6, fleet2026GW: HISTORY_DATA.official.fleet2026GW, fleetQ1_2026GW: 14.96,
+    fleet2030GW: 40, fleet2023GW: HISTORY_DATA.official.fleet2023GW,
     fleetHours: 1.6, shortSharePct: 97,
     queueApplications: 1470, queueLargeGen: 1354, queueSuccessPct: 28,
 
     // ---- revenue: two sources, one direction, different levels ----
-    idx2023: 193000, idx2024: 56000, idx2025: 29400,
+    idx2023: HISTORY_DATA.official.idx2023, idx2024: 56000, idx2025: HISTORY_DATA.official.idx2025,
     enverus2023: 149000, enverus2025: 17000,
-    asShare2023Pct: 84, asShare2025Pct: 48,
-    asFallSince2023Pct: 90,
+    asShare2023Pct: HISTORY_DATA.official.asShare2023Pct, asShare2025Pct: HISTORY_DATA.official.asShare2025Pct,
+    asFallSince2023Pct: HISTORY_DATA.official.asFallSince2023Pct,
     energyShareJun25Pct: 76,
     monJan26: 46264, monFeb26: 15306, monApr26: 38145,
     monOct25: 2.00, monNov25: 2.38, monSep25: 3.16, monJul25: 3.63, monJun25: 3.01,
@@ -102,9 +103,9 @@ const M = {
        data centres — double the 238.6 GW / 77.5% of March 2026. Roughly 200 GW of
        it sits in the Batch Zero verification the Governor's 3 August 2026 pause
        triggered. A queue, not a commitment, and now an audited one. */
-    largeLoadQueueGW: 474, largeLoadDataCentrePct: 90,
+    largeLoadQueueGW: HISTORY_DATA.official.largeLoadQueueGW, largeLoadDataCentrePct: HISTORY_DATA.official.largeLoadDataCentrePct,
     largeLoadAsOf: 'August 2026', largeLoadPauseDate: '3 August 2026', largeLoadAuditDue: '10 December 2026',
-    largeLoadQ1_2026GW: 198, largeLoadUnderReviewGW: 86,
+    largeLoadQ1_2026GW: HISTORY_DATA.official.largeLoadQ1_2026GW, largeLoadUnderReviewGW: 86,
 
     // ---- capex and tax ----
     nrel4hPerKWh: 334, energySharePct: 56, powerSharePct: 44,

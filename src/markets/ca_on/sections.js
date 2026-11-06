@@ -1,3 +1,4 @@
+import {researchHistory} from './history.js';
 /* ---------------------------------------------------------------------------
    Ontario — declarative section specs for the shared block engine.
 
@@ -114,10 +115,8 @@ export function buildSections(api){
   ] });
 
   // ---------------- Market story -------------------------------------------
-  SEC_B.story = () => ({ head: ['How Ontario got here — from four-hour batteries to eight-hour contracts', '安大略的演进 — 从四小时储能到八小时合同'], blocks: [
-    { t: 'card', mt: false, title: ['How the market got here', '市场如何演变至此'], badges: ['official'], blocks: [
-      { t: 'timeline', items: M.timeline },
-    ] },
+  SEC_B.story = () => ({ head: researchHistory(api).head, blocks: [
+    researchHistory(api).cards[0],
     { t: 'card', title: ['What Market Renewal did to the spread', '电力市场改革对价差的影响'], badges: ['official', 'calc'], blocks: [
       { t: 'bar', cfg: { xs: ['HOEP 2023', 'HOEP 2024', 'Day-ahead 2026*'], bw: 46, labels: true, h: 230, yfmt: v => 'C$' + fmtN(v),
         series: [{ name: ['Eight-hour spread, C$/MW-yr', '八小时价差（加元/MW/年）'], color: 'var(--s6)', vals: [T.hoep2023Annual, T.hoep2024Annual, T.tb8Annual] }] } },

@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Ireland (SEM, all-island) 鈥?market dataset, verbatim from the prototype (lines 1359-1643).
 
@@ -8,9 +9,9 @@
 import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
-  asOf: '2026-07-26',
-  dataDate: '2025 outturn / CY 2028-29',
-  modelVersion: 'ie-seed-1.0-crm-structure-gb-benchmark',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['Ireland Battery Investment Dashboard — SEM', '爱尔兰储能投资看板 — 单一电力市场(SEM)'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。'],
@@ -22,26 +23,26 @@ const M = {
              '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。DS3历史收入绝非长期下限；日前价差宽不等于可调度性；铭牌MW不等于折减后MW；MEC不等于MIC；征询文件不等于既定政策。'],
 
   official: {
-    crmPrice: 149.96, crmDY: '2028/29', crmAwardedMW: 5942, crmAgreementYears: 10,
+    crmPrice: HISTORY_DATA.official.crmPrice, crmDY: HISTORY_DATA.official.crmDY, crmAwardedMW: HISTORY_DATA.official.crmAwardedMW, crmAgreementYears: 10,
     fleetMW: 1000, pipelineMW: 10000, pipelineMWh: 50000, pipelineProjects: 155,
-    daSpread: 103, ds3DeclinePct: 40,
+    daSpread: 103, ds3DeclinePct: HISTORY_DATA.official.ds3DeclinePct,
     dcSharePct: 23, dcGWh2025: 7663,
     windDispatchDownPct: 11.3, constraintCostM: 567, constraintForecastM: 700,
     snspNow: 75, snsp2030: 95,
     storageAmbitionMW: 2000, ldesMW: 201, ldesMWh: 804, ldesAmbitionMW: 500,
-    greenlinkMW: 500, celticMW: 700,
-    ds3LongStop: '30 Sep 2027', dassaTarget: '2027', sdp02Live: '12 Nov 2025',
+    greenlinkMW: HISTORY_DATA.official.greenlinkMW, celticMW: HISTORY_DATA.official.celticMW,
+    ds3LongStop: HISTORY_DATA.official.ds3LongStop, dassaTarget: '2027', sdp02Live: HISTORY_DATA.official.sdp02Live,
   },
 
   overall: { confidence: 71, codWindow: '2028–2030',
     rationale: ['Wide spreads, a high capacity print and data-centre demand growth are real; but FASS/DASSA repricing, connection readiness and de-rated (not nameplate) capacity economics decide bankability for 2028–2030 CODs.',
                 '宽价差、高容量出清价与数据中心需求增长真实存在；但对2028–2030年投运项目而言，FASS/DASSA重新定价、并网准备度及按折减（而非铭牌）口径的容量经济性才是可融资性的决定因素。'] },
   // ---- capacity mechanism ----
-  crmYears: ['24/25', '25/26', '26/27', '27/28', '28/29'],
-  crmPriceSeries: [46.2, 62, 84, 110, 149.96],
-  derateHours: [0.5, 1, 2, 4, 6, 8, 12],
+  crmYears: HISTORY_DATA.crmYears,
+  crmPriceSeries: HISTORY_DATA.crmPriceSeries,
+  derateHours: HISTORY_DATA.derateHours,
   // IAIP2930T-4 v1.1 Table 3, Other Storage, 40 < IC <= 50 MW.
-  deratingCurve: { 0.5: 0.036, 1: 0.072, 2: 0.143, 4: 0.277, 6: 0.425, 8: 0.549, 12: 0.690 },
+  deratingCurve: HISTORY_DATA.deratingCurve,
   futureCapFactor: 0.6,
 
   // ---- wholesale ----

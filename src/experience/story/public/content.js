@@ -1,5 +1,6 @@
 import { PUBLIC_CATALOG, PUBLIC_VERSION } from './catalog.js';
 import {SCRIPT_APPROVAL_RECORDS} from './approvalRecords.js';
+import {PUBLIC_READING_CATALOG} from './historyCatalog.js';
 const loaders = {
   wa:()=>import('./content/wa.js'), nem:()=>import('./content/nem.js'),
   gb:()=>import('./content/gb.js'), de:()=>import('./content/de.js'),
@@ -17,7 +18,9 @@ export function publicEvidenceState(g1ApprovedOn,sources){
 }
 /** Shared Japan module is fetched once; immutable region objects keep evidence local. */
 export async function loadPublicContent(id){
-  if(!PUBLIC_CATALOG[id])throw new Error('Public edition unavailable');
+  const summary=PUBLIC_READING_CATALOG[id];
+  if(!summary)throw new Error('Public edition unavailable');
+  if(summary.historyOnly)return {marketId:id,summary,version:PUBLIC_VERSION,extracts:{history:[],system:[],mechanism:[]},sources:{},internalReferences:{}};
   const group=id.startsWith('jp_')?'jp':id;
   if(!cache.has(group))cache.set(group,loaders[group]().then(m=>m.default).catch(e=>{cache.delete(group);throw e;}));
   const data=await cache.get(group);

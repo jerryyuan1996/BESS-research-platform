@@ -1,3 +1,4 @@
+import {HISTORY_FORMAT} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Ireland (SEM, all-island) 鈥?engine configuration.
 
@@ -11,7 +12,7 @@
    --------------------------------------------------------------------------- */
 
 const MKT = {
-  id: 'ie', ns: 'ie', locale: 'en-IE', cur: '€', curCode: 'EUR',
+  id: 'ie', ns: 'ie', locale: HISTORY_FORMAT.locale, cur: HISTORY_FORMAT.cur, curCode: 'EUR',
   tz: 'Europe/Dublin', tzShort: 'Europe/Dublin',
   tzNote: ['All timestamps Europe/Dublin', '所有时间为都柏林时间'],
   seedTag: 'IE_SEED_V1',

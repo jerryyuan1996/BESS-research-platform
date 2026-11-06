@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {PUBLIC_CATALOG,PUBLIC_VERSION} from '../src/experience/story/public/catalog.js';
 import {loadPublicContent} from '../src/experience/story/public/content.js';
+import {expectCompleteHistory} from './helpers/research-history.js';
 const slugs={wa:'western-australia',nem:'nem',gb:'great-britain',de:'germany',it:'italy',ie:'ireland',ro:'romania',pl:'poland',jp_tokyo:'japan-tokyo',jp_kyushu:'japan-kyushu',jp_hokkaido:'japan-hokkaido',pjm:'pjm',ercot:'ercot',caiso:'caiso',fi:'finland'};
 const investors=['infraFund','strategic','foreignFirstTimer','developer'];
 test.beforeEach(async({page})=>{await page.route(/^https:\/\//,r=>r.abort());});
@@ -27,6 +28,7 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       const summary=await overview.innerText();if(expectedOverview)expect(summary).toBe(expectedOverview);else expectedOverview=summary;
       await trigger.click();const dialog=page.locator('.public-story-dialog');await expect(dialog).toBeVisible();await expect(dialog.locator('[data-chapter=history].public-chapter')).toBeVisible();
       await expect(dialog).toHaveAttribute('data-market',id);await expect(dialog).toHaveAttribute('lang',locale);
+      await expectCompleteHistory(page,id,locale);
       await expect(dialog.locator('.public-source-check-note')).toHaveCount(c.evidenceCheckedOn&&c.evidenceCheckedOn>c.g1ApprovedOn?1:0);
       await dialog.locator('.public-story-nav button[data-chapter=mechanism]').click();await expect(dialog.locator('.public-power-scene')).toBeVisible();
       const text=await dialog.locator('.public-chapter').innerText();if(expectedMechanism)expect(text).toBe(expectedMechanism);else expectedMechanism=text;

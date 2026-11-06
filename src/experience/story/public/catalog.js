@@ -2,7 +2,7 @@
    Re-edited public interpretations are review drafts, authorised for implementation
    on 6 November 2026. The original G-1/G-2 approvals retain their original scope. */
 import {SOURCE_CHECK_DATES} from './sourceCheckDates.js';
-export const PUBLIC_VERSION = '2026-11-06.2';
+export const PUBLIC_VERSION = '2026-11-06.3';
 export const PUBLIC_STATUS = 'pending-public-review';
 const item = (g1ApprovedOn, history, logic, condition, theme) => ({
   version: PUBLIC_VERSION, status: PUBLIC_STATUS, g1ApprovedOn, history, logic, condition, theme,

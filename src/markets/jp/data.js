@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Japan — dataset assembled for the shared block engine.
 
@@ -89,9 +90,9 @@ const NAMED_PIPELINE = [
 ];
 
 export const M = {
-  asOf: '2026-08-04',
-  dataDate: 'JEPX TTM Jul 2026 / CM delivery year 2029',
-  modelVersion: 'jp-seed-1.0-three-region-capacity-renewal',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
 
   title: ['Japan BESS Investment Dashboard', '日本储能投资看板'],
   sub: ['One national market architecture, three regional investment lenses: Tokyo, Kyushu and Hokkaido.',

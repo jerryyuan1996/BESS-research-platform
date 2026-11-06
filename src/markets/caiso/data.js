@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    CAISO — market dataset.
 
@@ -31,9 +32,9 @@
    --------------------------------------------------------------------------- */
 
 const M = {
-  asOf: '2026-08-04',
-  dataDate: 'H1 2025 RA benchmark / CY2025 merchant / Jul 2026 fleet',
-  modelVersion: 'caiso-seed-1.0-bilateral-ra-four-hour-nqc-ceiling',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['CAISO Battery Investment Dashboard', 'CAISO储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Bilateral Resource Adequacy; reference archetype 100 MW / 4h.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。双边容量充裕度合约；参考原型为100MW/4小时。'],
@@ -51,7 +52,7 @@ const M = {
     raAbove100Count: 82, raAbove100Period: '2023–2024',
     raTenorSeed: 10, raTenorLo: 5, raTenorHi: 15,
     ormatTenor: 15, ormatCounterparty: 'City of Riverside',
-    nqcTestHours: 4, sodFromYear: 2025, sodSlices: 24,
+    nqcTestHours: 4, sodFromYear: 2025, sodSlices: HISTORY_DATA.official.sodSlices,
 
     // ---- merchant ----
     merchPerKWMonth2025: 2.6, merchPerMWYr2025: 31200,
@@ -61,8 +62,8 @@ const M = {
     energyShareEstimatedPct: 80, asShareEstimatedPct: 20,
 
     // ---- fleet and queue ----
-    fleet2024GW: 11.6, fleet2024GrowthPct: 45, fleet2026GW: 16.7,
-    queueTotalGW: 500, queueBatterySharePct: 46,
+    fleet2024GW: HISTORY_DATA.official.fleet2024GW, fleet2024GrowthPct: HISTORY_DATA.official.fleet2024GrowthPct, fleet2026GW: HISTORY_DATA.official.fleet2026GW,
+    queueTotalGW: HISTORY_DATA.official.queueTotalGW, queueBatterySharePct: HISTORY_DATA.official.queueBatterySharePct,
 
     // ---- capex and tax ----
     nrelPerKWh: 334, usEpcLoPerKWh: 230, usEpcHiPerKWh: 320,

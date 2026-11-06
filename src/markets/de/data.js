@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Germany — market dataset.
 
@@ -36,9 +37,9 @@
 import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
-  asOf: '2026-08-01',
-  dataDate: '2025 annual / Q2 2026 quarterly / Jul 2026 monthly',
-  modelVersion: 'de-seed-1.0-stromvkg-10h-floor-merchant-toll',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['Germany Battery Investment Dashboard', '德国储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Single bidding zone; reference archetype 100 MW / 4h.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。单一报价区；参考原型为100MW/4小时。'],
@@ -54,9 +55,9 @@ const M = {
      series live further down and are badged as such wherever they render. */
   official: {
     // ---- StromVKG capacity market ----
-    capAuctionGW: 4.5, capBidDeadline: '8 September 2026', capWinners: '3 November 2026',
-    capYears: 15, capCapPerMW: 244000,
-    capMinHours: 10, capMinRtePct: 92, capAvailPct: 100,
+    capAuctionGW: HISTORY_DATA.official.capAuctionGW, capBidDeadline: '8 September 2026', capWinners: '3 November 2026',
+    capYears: HISTORY_DATA.official.capYears, capCapPerMW: HISTORY_DATA.official.capCapPerMW,
+    capMinHours: HISTORY_DATA.official.capMinHours, capMinRtePct: 92, capAvailPct: 100,
     derate10h: 0.58, derate20h: 0.85,
     /* The realistic entry point for shorter duration: a later generation-capacity
        auction that drops the ten-hour test. */

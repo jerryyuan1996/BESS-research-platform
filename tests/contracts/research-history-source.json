@@ -1,0 +1,1894 @@
+{
+  "sourceCommit": "247ce950c5c0db42fbe6125c7adb44eef6c8f552",
+  "owners": {
+    "nem": {
+      "original": "src/markets/nem/sections/story.js",
+      "target": "src/markets/nem/history.js",
+      "originalLine": 33,
+      "headHash": "627306288f630589b8347ebd9750c88a87c67508f3798a89e2cf53659c8623ee",
+      "capHash": "c5e25c64d64cb717e9dd5557c0db9f0666bb044b39e7b63abee0f5daf3f63eb5",
+      "cardHashes": [
+        "a510fddb80a3f3fdd5b58845f6e08c6bb25062137c7409874e441a16817c633e"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2017–2021",
+          "hash": "f9f17ff4d717b12bc04458ded60314202135fce12a28aaae7ce73ed257032b03",
+          "line": 38
+        },
+        {
+          "axis": 0,
+          "period": "2022–2024",
+          "hash": "96f21742522e6e34f37d78d1a0af7e5e58f70b37605d0b03f69671c0c93ff966",
+          "line": 43
+        },
+        {
+          "axis": 0,
+          "period": "2023–2026",
+          "hash": "72709267e4e042e0abcba37d39d85a524b26ceb572ea83a5bc7d79f4c9326015",
+          "line": 48
+        },
+        {
+          "axis": 0,
+          "period": "2025–2026",
+          "hash": "0381644b147ca430f11b199e67c93ab5fd07833f34e4c6804b4b3b2fe86dc5c3",
+          "line": 53
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/nem/data.js",
+        "target": "src/markets/nem/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 30,
+            "hash": "5adda256595fe711a50b02f04e2f10d936f9f7ce26a1c873bf74c5fd6efed377"
+          },
+          {
+            "path": "dataDate",
+            "line": 31,
+            "hash": "eeeea95c29b81ae8dc1cf5ccdd10b5f5402e5873797aefabd83c2f2529dddd57"
+          },
+          {
+            "path": "modelVersion",
+            "line": 32,
+            "hash": "7313988b03320cca4371205a67a27f89472e4dd5ba3f9cfb44d3cc51723e7ebb"
+          },
+          {
+            "path": "official.cisWindUp",
+            "line": 64,
+            "hash": "5313e5bf17148de844ff74be3663d47c6e361ca469b30a36337701233c89a15e"
+          },
+          {
+            "path": "official.negVicQ2Pct",
+            "line": 83,
+            "hash": "1ff1d3a076f9bd4f332805f11e4a9f18ba3a515c76ffd6c1914d77ff9367e0d4"
+          },
+          {
+            "path": "official.negSaQ2Pct",
+            "line": 83,
+            "hash": "89ebff7bf414048f7ee3ad6f755dd41c755bf8916cf7d6c29ac8fea6f74fdb9c"
+          },
+          {
+            "path": "official.negSaQ4Pct",
+            "line": 83,
+            "hash": "4f31e8606b873efe13f48feffeaca73e2e05a52f3758f26283b34151cc9df639"
+          },
+          {
+            "path": "official.t3MW",
+            "line": 59,
+            "hash": "8296f1f76b7d679cfb8dad201c219da6fd4ea5b4c8f0a6b62f7f8a29dae61910"
+          },
+          {
+            "path": "official.t3MWh",
+            "line": 59,
+            "hash": "6f76f25988ea4f8c3187381d63dee9da47b197a64fdc5505ae3f229e99102b2b"
+          },
+          {
+            "path": "official.t3Projects",
+            "line": 59,
+            "hash": "b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"
+          },
+          {
+            "path": "official.t3FourHourProjects",
+            "line": 59,
+            "hash": "8527a891e224136950ff32ca212b45bc93f69fbb801c3b1ebedac52775f99e61"
+          },
+          {
+            "path": "official.t3Bids",
+            "line": 60,
+            "hash": "6affdae3b3c1aa6aa7689e9b6a7b3225a636aa1ac0025f490cca1285ceaf1487"
+          },
+          {
+            "path": "official.t3BidMW",
+            "line": 60,
+            "hash": "3ebb904517b0c6cf6b2d387f1e5f0ba715258125efc4012d88c4053d0da62233"
+          },
+          {
+            "path": "official.t8MW",
+            "line": 62,
+            "hash": "f6563999cf206aa7c0113c3378785452f0950c37bf22742c5b8cf79ac3d2e2fb"
+          },
+          {
+            "path": "official.t8MWh",
+            "line": 62,
+            "hash": "6049031e56ad4afe5f7e7b7a7c79e9e77c09b3a25b852a2daeedd1b33d30054c"
+          },
+          {
+            "path": "official.esemStart",
+            "line": 54,
+            "hash": "f2b5a9d23ac170a0f62b01183873e1da288f85affcc0b32e9eb60628b9b0cdec"
+          },
+          {
+            "path": "official.reviewDate",
+            "line": 54,
+            "hash": "7390fc3bd56e2c713bacbe47f2a94c89f04442cee084027cb4a1b97fd03a2fd8"
+          }
+        ]
+      },
+      "formatBindings": {
+        "original": "src/markets/nem/mkt.js",
+        "target": "src/markets/nem/historyData.js",
+        "fields": [
+          {
+            "path": "locale",
+            "line": 10,
+            "hash": "f281f79a0221872937378c704d5c78c338ed39fa6276f475ed14d076214c3d57"
+          },
+          {
+            "path": "cur",
+            "line": 10,
+            "hash": "3c4b2618e593351abfff64391810f8c1be4d87f15e6c20fb01f8c81dd353f7e1"
+          }
+        ]
+      }
+    },
+    "gb": {
+      "original": "src/markets/gb/sections/story.js",
+      "target": "src/markets/gb/history.js",
+      "originalLine": 75,
+      "headHash": "367809eaf7706bb35094e8a6c2724a29126d567479b4c5ec71e1f9cba2070beb",
+      "capHash": "b3f5e07e300168d86398a95eee60aee2adc9cabb163931cdba718b01bfd3c5cd",
+      "cardHashes": [
+        "21d434828c1b71b540a490ffb2e5ecfe5804c488f9d1fb9ba27037cd7c7d9958"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2001–2005",
+          "hash": "ceff4b02be10703e0a5a027cafda0db09ad3a05e3341e6aa68f494cf2aa20bf8",
+          "line": 80
+        },
+        {
+          "axis": 0,
+          "period": "2014",
+          "hash": "9d8059b165c4f3e75a682143aca3fd7b0e83a367bfeeee03e1ee79ae74cf6449",
+          "line": 85
+        },
+        {
+          "axis": 0,
+          "period": "2016–2019",
+          "hash": "f1edfe561aabc99a4dc47b54d5d50a1d959c254cd16ab97bb0ec2a2879b7148b",
+          "line": 90
+        },
+        {
+          "axis": 0,
+          "period": "2020–2023",
+          "hash": "c41a818fa57002de5e277a20dcc2fd587af09800a86e64cc46cd30acb32dea10",
+          "line": 95
+        },
+        {
+          "axis": 0,
+          "period": "2022–2025",
+          "hash": "d2b640278ef149297fb644bbed366a6dda1444b722630a2f1dd7caa9f0c57b36",
+          "line": 100
+        },
+        {
+          "axis": 0,
+          "period": "2024–2025",
+          "hash": "de19bb467b399c1e69062cbb867b53500b5f81b0d7c5baa43dab2b11cbf7edd6",
+          "line": 105
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "06433ae80d526d3900fb7676db66d5be6fda88313758391356e4c5e6a2364745",
+          "line": 110
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/gb/data.js",
+        "target": "src/markets/gb/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 15,
+            "hash": "02cc42d87a5d40a3e232a22efb3d606201c5d330e37647fe98b6c9daaa1e3432"
+          },
+          {
+            "path": "dataDate",
+            "line": 16,
+            "hash": "355b6efeffc455383854d958f1d191ee230ade10ac2290d3c4b3d9b7e4095554"
+          },
+          {
+            "path": "modelVersion",
+            "line": 17,
+            "hash": "778b6f1d0eeeba77cca7db30469270f40e882376d31d7ac672252455dfca8972"
+          },
+          {
+            "path": "realisedRatio",
+            "line": 70,
+            "hash": "130ec684ad75ac261d31d2f54e0e91cc86fdcc86d7611a2bd40f0c40fa373845"
+          },
+          {
+            "path": "cmYears",
+            "line": 45,
+            "hash": "cb449a4ab49d252bc2a52aec36fe8b53885c005b94e9bac86fda91ecabcd492f"
+          },
+          {
+            "path": "t4Series",
+            "line": 46,
+            "hash": "46afacecc7b649a16efd76d074d5a96da0bf0c59271828af7528f479bd14ea0f"
+          },
+          {
+            "path": "derateHours",
+            "line": 49,
+            "hash": "e8efc90d0b6decc2b56f2ac3ff464d25c6fe0323eea94cea985f50e7d4baab8e"
+          },
+          {
+            "path": "derateVintages",
+            "line": 56,
+            "hash": "bb544733ba7d4151ef898a2d34b61a8edf8f23d415172e34474b85812952ff97"
+          },
+          {
+            "path": "official.t4DY",
+            "line": 33,
+            "hash": "f819555954d8c0f0a3a8d86105a07d3b6ffd919012c88df19d423d65de085b67"
+          },
+          {
+            "path": "official.t4Price",
+            "line": 33,
+            "hash": "d425420ce5d2d8ee237f2ee69767630e49e8c7aaa96c0ae01d1c09d6b6e75212"
+          },
+          {
+            "path": "official.t4AwardedMW",
+            "line": 33,
+            "hash": "79bca37ed15b0a1027b6958d292daafb3b2abb41eb5bd2241464361d15bb4561"
+          },
+          {
+            "path": "official.ldesWindow1Projects",
+            "line": 37,
+            "hash": "b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"
+          }
+        ]
+      },
+      "formatBindings": {
+        "original": "src/markets/gb/mkt.js",
+        "target": "src/markets/gb/historyData.js",
+        "fields": [
+          {
+            "path": "locale",
+            "line": 14,
+            "hash": "981077a491cb05982a1891f8ef68cbfbcc68af47045071a663b0dd1fa37dab75"
+          },
+          {
+            "path": "cur",
+            "line": 14,
+            "hash": "a996984f61ef6896c130205acac14866129c3bea41a7c15a1cbaa8f64fcf7117"
+          }
+        ]
+      }
+    },
+    "de": {
+      "original": "src/markets/de/sections.js",
+      "target": "src/markets/de/history.js",
+      "originalLine": 103,
+      "headHash": "d1ba6fc62f21ddbb63576ef970c0a9d7b64029c36c3ffa499d65140804473999",
+      "capHash": "9c2798007999cb3216d660a404717bbacaa4cf6433f2516c6e335713695fbe0b",
+      "cardHashes": [
+        "3f33e6d2d7f399940c49a1a595f6bf777d38b5d9e64e23eefaa1bd0ec1eb5576"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2010",
+          "hash": "d4476b9b794d4eb4416ba2a7a80e61009dd05e7145b44a84212363ebf3cd3c7f",
+          "line": 105
+        },
+        {
+          "axis": 0,
+          "period": "2011–2023",
+          "hash": "7844e4406374938e6b0a6fd75b58db8f151e14abbdbd5f97c1a95b1c86fe00e9",
+          "line": 109
+        },
+        {
+          "axis": 0,
+          "period": "2025",
+          "hash": "131315c7994deadbcb8df66f49b2e4a80ebe4af4ab28cb54a4a4446b3d2d7de3",
+          "line": 113
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "259f4b0d9f3b8c5acdfd43d3debb91f6371bc84a0941830a935df58db41a383e",
+          "line": 117
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/de/data.js",
+        "target": "src/markets/de/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 39,
+            "hash": "5adda256595fe711a50b02f04e2f10d936f9f7ce26a1c873bf74c5fd6efed377"
+          },
+          {
+            "path": "dataDate",
+            "line": 40,
+            "hash": "a065e5d6386abd38775e292d52288e372c96c47c81effac2323decb143864f27"
+          },
+          {
+            "path": "modelVersion",
+            "line": 41,
+            "hash": "9d72e2030e5a310da8928c02a88062559488fe87561e8d0a53785ea8b998b3f8"
+          },
+          {
+            "path": "official.capAuctionGW",
+            "line": 57,
+            "hash": "32209ccbf8a8e509b9027698cc173343a2695e8ecdbe899bf5335a3100c956fc"
+          },
+          {
+            "path": "official.capYears",
+            "line": 58,
+            "hash": "e629fa6598d732768f7c726b4b621285f9c3b85303900aa912017db7617d8bdb"
+          },
+          {
+            "path": "official.capCapPerMW",
+            "line": 58,
+            "hash": "fa08123ca4606c4210f0a05145d97d5587d6f6e25b966345ba3ed35b4fcbe69d"
+          },
+          {
+            "path": "official.capMinHours",
+            "line": 59,
+            "hash": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+          }
+        ]
+      },
+      "formatBindings": {
+        "original": "src/markets/de/mkt.js",
+        "target": "src/markets/de/historyData.js",
+        "fields": [
+          {
+            "path": "locale",
+            "line": 10,
+            "hash": "981077a491cb05982a1891f8ef68cbfbcc68af47045071a663b0dd1fa37dab75"
+          },
+          {
+            "path": "cur",
+            "line": 10,
+            "hash": "d2ab7434b561396226f5052a7277bd6ed5a641b4cefb93ce15841a757311e8da"
+          }
+        ]
+      }
+    },
+    "it": {
+      "original": "src/markets/it/sections.js",
+      "target": "src/markets/it/history.js",
+      "originalLine": 110,
+      "headHash": "e5bcb54c1a72baff38691f8122600de563a3323832ce02d3dc2a208c095c98b4",
+      "capHash": "ddd5a9b2c5af6de5cf6a98c8ad26a6fd9fe96427565faed36475859629df5a7c",
+      "cardHashes": [
+        "53cfe38b2ae0dec2c17219a9f4c53bcf9ddfe50b4fdfda2aaba2cc57721308ad"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2010",
+          "hash": "3447ef2eb70290723203819d7ee123c4ab5086368c2ea38f96caf8c469f1f4d8",
+          "line": 112
+        },
+        {
+          "axis": 0,
+          "period": "2015–2024",
+          "hash": "066c51e659e7993be2df8509603b9597c2030e887f7f79d2c346072811d708db",
+          "line": 116
+        },
+        {
+          "axis": 0,
+          "period": "Feb 2025",
+          "hash": "a42a8b79fdcd49559175eb523729d814cb746495c3f6a30354afd0562d25dec7",
+          "line": 120
+        },
+        {
+          "axis": 0,
+          "period": "Sep 2025",
+          "hash": "9e87307862fe51729f4aea12e4cfb5697299d16d28413d6050f0b88564b274f7",
+          "line": 124
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "b8424c31a3ad970092a27ce7c7b310270703d642657bdc28349807d9a79ae804",
+          "line": 128
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/it/data.js",
+        "target": "src/markets/it/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 50,
+            "hash": "5adda256595fe711a50b02f04e2f10d936f9f7ce26a1c873bf74c5fd6efed377"
+          },
+          {
+            "path": "dataDate",
+            "line": 51,
+            "hash": "88ec985dfae7198090f25f3d268768cfc91f7de557a800d7387eebb4b8300138"
+          },
+          {
+            "path": "modelVersion",
+            "line": 52,
+            "hash": "05945c0cbdc9010783925d3c2ef607d8dc9e21e8a1abf6f6342123d534326802"
+          },
+          {
+            "path": "official.renewShare2025Pct",
+            "line": 115,
+            "hash": "3d914f9348c9cc0ff8a79716700b9fcd4d2f3e711608004eb8f138bcba7f14d9"
+          },
+          {
+            "path": "official.maseDecree",
+            "line": 139,
+            "hash": "ba9f4a69e6a94fdb55fcbb31057241c67bb2b3913eec1cabbda723a0249dcfee"
+          },
+          {
+            "path": "official.macseAwardedMWh",
+            "line": 69,
+            "hash": "0b6b2a784da2f04ac816130c772789c49623a02816c9ba1bfb993f0fa52873fb"
+          },
+          {
+            "path": "official.macseProjects",
+            "line": 69,
+            "hash": "8527a891e224136950ff32ca212b45bc93f69fbb801c3b1ebedac52775f99e61"
+          },
+          {
+            "path": "official.macseWavg",
+            "line": 70,
+            "hash": "56c9a89118d0fd11b32fbe8b5610c34bd6c8ab98acb0447d9498caed0cd9eb27"
+          },
+          {
+            "path": "official.macseDelivery",
+            "line": 74,
+            "hash": "6ae9e4d22c4670b9140fc378214b3274fb3f64d16058717f974515000680b24c"
+          },
+          {
+            "path": "official.macseAuction2Date",
+            "line": 76,
+            "hash": "bcedb2edc50f116694c5a9e5cba84d1febcbe306fccd39b6f96c51262c5039cf"
+          },
+          {
+            "path": "official.macseAuction2GWh",
+            "line": 76,
+            "hash": "b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"
+          },
+          {
+            "path": "official.macseAuction1GWh",
+            "line": 76,
+            "hash": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+          },
+          {
+            "path": "official.macseSudCeil1",
+            "line": 78,
+            "hash": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"
+          },
+          {
+            "path": "official.macseSudCeil2",
+            "line": 78,
+            "hash": "d9d8b73e7fa3813fae560964e8385264962717722f793f97bd6c3baebe6941d6"
+          },
+          {
+            "path": "official.macseSiciFloor2",
+            "line": 79,
+            "hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+          }
+        ]
+      },
+      "formatBindings": {
+        "original": "src/markets/it/mkt.js",
+        "target": "src/markets/it/historyData.js",
+        "fields": [
+          {
+            "path": "locale",
+            "line": 10,
+            "hash": "981077a491cb05982a1891f8ef68cbfbcc68af47045071a663b0dd1fa37dab75"
+          },
+          {
+            "path": "cur",
+            "line": 10,
+            "hash": "d2ab7434b561396226f5052a7277bd6ed5a641b4cefb93ce15841a757311e8da"
+          }
+        ]
+      }
+    },
+    "ie": {
+      "original": "src/markets/ie/sections/story.js",
+      "target": "src/markets/ie/history.js",
+      "originalLine": 40,
+      "headHash": "72d28dcee21ab3f7b14e24cfbad8a041de82da916c727b6c129591161f438e01",
+      "capHash": "b3f5e07e300168d86398a95eee60aee2adc9cabb163931cdba718b01bfd3c5cd",
+      "cardHashes": [
+        "c8035ce939f7171ccef493fbc30f5bba1cd83bf25cd29cb7a77993b60e0003ae"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2007–2018",
+          "hash": "51feb0e809ff4f1dc699bdb51ee0f27de616207e9dce7e545dccf635fabc1440",
+          "line": 45
+        },
+        {
+          "axis": 0,
+          "period": "2016–2022",
+          "hash": "b3a9b2989d66dd6d9d14fc5416ba1c5cfa2c15872ca95dc7e11017b5ef77950c",
+          "line": 50
+        },
+        {
+          "axis": 0,
+          "period": "2022–2026",
+          "hash": "78e2f34f054049e79e707957b59ca8f08bcb4755efa4fc4cb33b6d7fd8bd64a3",
+          "line": 55
+        },
+        {
+          "axis": 0,
+          "period": "2024–2026",
+          "hash": "bfe37e1102f667ecf9d2d56146e23d4f5ac2d3db04ea9f1a3f4fd58dae253061",
+          "line": 60
+        },
+        {
+          "axis": 0,
+          "period": "Nov 2025",
+          "hash": "9e11c8ba8c11866855ff6814dabedf26af462c4bdcbbbfbcea787d1fd1b3662d",
+          "line": 65
+        },
+        {
+          "axis": 0,
+          "period": "2026–2028",
+          "hash": "59fe35e347a9ef82edf12b66ee777a1636c609fcc897de5597e2c0f37a9ff540",
+          "line": 70
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/ie/data.js",
+        "target": "src/markets/ie/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 11,
+            "hash": "a098a156a452bfe929d321e1915389d3493b0e626b2cd9a15df35c1977323426"
+          },
+          {
+            "path": "dataDate",
+            "line": 12,
+            "hash": "4ec53436178f2e9ca5496f8b7987f9735fe2cb328ad1fc037095921dd2370ca2"
+          },
+          {
+            "path": "modelVersion",
+            "line": 13,
+            "hash": "d4c47c7e2d06218d86b3f558ab5fe30c9162d15ce19c1d6b7ab73259f40a64d8"
+          },
+          {
+            "path": "crmYears",
+            "line": 40,
+            "hash": "94cf507ef2120b16b1af5210c3a8a19048250091e3c534d327fdce1dad33dcb7"
+          },
+          {
+            "path": "crmPriceSeries",
+            "line": 41,
+            "hash": "2bdf49f18170c52ba14118355c113e4ccb3750b61074fb4ad93fa3551efabed9"
+          },
+          {
+            "path": "derateHours",
+            "line": 42,
+            "hash": "7f5335a712bc67dfebcf9a0be422f06214ae610fc6eeeb8105f89777d1dd25f6"
+          },
+          {
+            "path": "deratingCurve",
+            "line": 44,
+            "hash": "34a06d74c93d931a3fa3de589802edc2dc23f112feee018c56f8ecf36304d5e4"
+          },
+          {
+            "path": "official.ds3DeclinePct",
+            "line": 27,
+            "hash": "d59eced1ded07f84c145592f65bdf854358e009c5cd705f5215bf18697fed103"
+          },
+          {
+            "path": "official.ds3LongStop",
+            "line": 33,
+            "hash": "2d7a1a950bd95ed30ec0433c2ea80a52f02a51e398f4753aa4f86b79cc4416a6"
+          },
+          {
+            "path": "official.crmPrice",
+            "line": 25,
+            "hash": "8be08976216d1f7f20827877cb54fc25228a7930d8c88a8dedcfd1a96aacdec1"
+          },
+          {
+            "path": "official.crmDY",
+            "line": 25,
+            "hash": "2a45628d64ef6c442d634e2613120510545d64bcc7ff14d3ad2c65991f2cf4e1"
+          },
+          {
+            "path": "official.crmAwardedMW",
+            "line": 25,
+            "hash": "95e06f0741c4e9736eaa885fff0e3a99af69acc9f31cea093820f801e198a41a"
+          },
+          {
+            "path": "official.sdp02Live",
+            "line": 33,
+            "hash": "2b4719be58cb1b4d95d8f821e54581e0b1654eabc5e5cd374efe3c9a84eb1cb9"
+          },
+          {
+            "path": "official.celticMW",
+            "line": 32,
+            "hash": "99ee50221221864d50c60baea6f14d8ac2e235cc6e78be6088cd40cc97fca394"
+          },
+          {
+            "path": "official.greenlinkMW",
+            "line": 32,
+            "hash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a"
+          }
+        ]
+      },
+      "formatBindings": {
+        "original": "src/markets/ie/mkt.js",
+        "target": "src/markets/ie/historyData.js",
+        "fields": [
+          {
+            "path": "locale",
+            "line": 14,
+            "hash": "229327e4cf867fcbeef213f93dcec1712f4406e3dca04057caac4d1e2b5c1e24"
+          },
+          {
+            "path": "cur",
+            "line": 14,
+            "hash": "d2ab7434b561396226f5052a7277bd6ed5a641b4cefb93ce15841a757311e8da"
+          }
+        ]
+      }
+    },
+    "ro": {
+      "original": "src/markets/ro/sections/story.js",
+      "target": "src/markets/ro/history.js",
+      "originalLine": 41,
+      "headHash": "27dcd2d84389a0851c1359a2860c2c58b5f87e8682721fbf7c798bd99c898148",
+      "capHash": "b3f5e07e300168d86398a95eee60aee2adc9cabb163931cdba718b01bfd3c5cd",
+      "cardHashes": [
+        "00a2bfa5e13db317dd706dcb98e7e73d124369b676fda58c4f8927f64b67655c"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2019–2022",
+          "hash": "d25c1d8a139c466f25f550745ce5e2a0ffaff40542d318b6bbabb934f1d442ea",
+          "line": 46
+        },
+        {
+          "axis": 0,
+          "period": "2022–2024",
+          "hash": "2ce1d9e0ad34a272078d6079f9095e88b697f721cd5ccb9443f9cdb38edc3ddd",
+          "line": 51
+        },
+        {
+          "axis": 0,
+          "period": "2024–2025",
+          "hash": "4343f395c061733187fca5a87d55d59c2f8f10168155c9ffb8c1d9764672e78a",
+          "line": 56
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "70bec9ede8a6c839691fdb728f544d52c0568898c397e587d233fd55a99db8ef",
+          "line": 61
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/ro/data.js",
+        "target": "src/markets/ro/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 11,
+            "hash": "a098a156a452bfe929d321e1915389d3493b0e626b2cd9a15df35c1977323426"
+          },
+          {
+            "path": "dataDate",
+            "line": 12,
+            "hash": "0882dfa2498bc99a25841629911363e9ffa1dd813afc419a95b31f239e6753ad"
+          },
+          {
+            "path": "modelVersion",
+            "line": 13,
+            "hash": "d0908f89d46a3ee1cf31f963ca97f771b3f1b82762ae0188e5416eb3edb3c0b7"
+          },
+          {
+            "path": "pxLabels",
+            "line": 39,
+            "hash": "cc9336c30c6722c9bedcf10e6131dc819260c2977ef73e318e9e636f17061d3f"
+          },
+          {
+            "path": "damSeries",
+            "line": 40,
+            "hash": "0e1eec637a7d4998a052c528ca9514e2cd1875534ccd36d8e328958a099061f3"
+          },
+          {
+            "path": "idmSeries",
+            "line": 41,
+            "hash": "5a300d95da6e97258cd856864d9050e498d028f83a175b6c903a2876eee029ee"
+          },
+          {
+            "path": "qLabels",
+            "line": 42,
+            "hash": "2b1e8934481a8d853e3dba2cba3f08e6eda986e3460afab70c3cada321d1093d"
+          },
+          {
+            "path": "negHoursSeries",
+            "line": 43,
+            "hash": "6b3727410ce4644d023ceccb710d318a79dd7968b7b9e03647a55ac549eddbe1"
+          },
+          {
+            "path": "highHoursSeries",
+            "line": 44,
+            "hash": "2b742110ae159aeb86dcd52759904b75fdb5500137c4822a0ce414140b9075a8"
+          },
+          {
+            "path": "official.schemeBudgetEurM",
+            "line": 27,
+            "hash": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b"
+          },
+          {
+            "path": "official.idm2025Wap",
+            "line": 26,
+            "hash": "7258ba226fe3779d811864e55dc53fe3534a7bb5df4002b5cd955fa4b6d4d9ab"
+          },
+          {
+            "path": "official.dam2025Wap",
+            "line": 26,
+            "hash": "7955542a0b57022070df0bc24a6ba55d06d5bb61c67df577c128130b1b03c89e"
+          }
+        ]
+      },
+      "formatBindings": {
+        "original": "src/markets/ro/mkt.js",
+        "target": "src/markets/ro/historyData.js",
+        "fields": [
+          {
+            "path": "locale",
+            "line": 14,
+            "hash": "981077a491cb05982a1891f8ef68cbfbcc68af47045071a663b0dd1fa37dab75"
+          },
+          {
+            "path": "cur",
+            "line": 14,
+            "hash": "d2ab7434b561396226f5052a7277bd6ed5a641b4cefb93ce15841a757311e8da"
+          }
+        ]
+      }
+    },
+    "pl": {
+      "original": "src/markets/pl/sections/story.js",
+      "target": "src/markets/pl/history.js",
+      "originalLine": 41,
+      "headHash": "b2e26c6b9336121f7c40b87f5e28c4990c6f858a708851f8924ead0e264bc4da",
+      "capHash": "b3f5e07e300168d86398a95eee60aee2adc9cabb163931cdba718b01bfd3c5cd",
+      "cardHashes": [
+        "5300dab1776741b6545a7286e2e31756707617a6d64766b7667471231fa75931"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2018–2021",
+          "hash": "0caab7dfe5d605eb8d5028d6439d7d875eab5d497aca78a5a985784bc2a0388b",
+          "line": 46
+        },
+        {
+          "axis": 0,
+          "period": "2021–2023",
+          "hash": "16635297340eeb2c56cc03922d1d6b4e80147e7463e66215f7e3f319bc1ebf42",
+          "line": 51
+        },
+        {
+          "axis": 0,
+          "period": "2023–2025",
+          "hash": "401fbdc466cf64e6bf698367a06245f470162067b4bc15e449a7231570103de8",
+          "line": 56
+        },
+        {
+          "axis": 0,
+          "period": "2024–2026",
+          "hash": "1e71fa23e5add926eb4a08c6439401a0998d8718017ff89903901c0a4f4d95a4",
+          "line": 61
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/pl/data.js",
+        "target": "src/markets/pl/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 11,
+            "hash": "a098a156a452bfe929d321e1915389d3493b0e626b2cd9a15df35c1977323426"
+          },
+          {
+            "path": "dataDate",
+            "line": 12,
+            "hash": "da4dee10e6a6f9f0a3c36cb6b0dc6fe14b2dac227533eaab18eea815278b99c7"
+          },
+          {
+            "path": "modelVersion",
+            "line": 13,
+            "hash": "48bb21fbc7778c312e605bbfd986d8ca83ea3237a6b6465e6bdfd782385bd640"
+          },
+          {
+            "path": "cmYears",
+            "line": 37,
+            "hash": "1391cce43b28bd5be1fbca1fa65107c5739ebd40b2973d59c9b0b92aaab91438"
+          },
+          {
+            "path": "cmPriceSeries",
+            "line": 38,
+            "hash": "99bb784990d7fb3db721297fdc5205872afb0ee4b9bf7a527f9b9bfb6cdf2135"
+          },
+          {
+            "path": "derateHours",
+            "line": 39,
+            "hash": "c0dd4daca5df007ab933e3150c32a1188d82f1646ab61bf4b24af3f95e57433d"
+          },
+          {
+            "path": "deratingCurve",
+            "line": 46,
+            "hash": "5c4a950164816b3da9aaa697780b8ac6d57a96cc3f4f11245a95ef1c681bfd85"
+          },
+          {
+            "path": "official.negHours",
+            "line": 28,
+            "hash": "15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43"
+          },
+          {
+            "path": "official.cmAgreementYears",
+            "line": 26,
+            "hash": "4523540f1504cd17100c4835e85b7eefd49911580f8efff0599a8f283be6b9e3"
+          }
+        ]
+      },
+      "formatBindings": {
+        "original": "src/markets/pl/mkt.js",
+        "target": "src/markets/pl/historyData.js",
+        "fields": [
+          {
+            "path": "locale",
+            "line": 14,
+            "hash": "981077a491cb05982a1891f8ef68cbfbcc68af47045071a663b0dd1fa37dab75"
+          },
+          {
+            "path": "cur",
+            "line": 14,
+            "hash": "d2ab7434b561396226f5052a7277bd6ed5a641b4cefb93ce15841a757311e8da"
+          }
+        ]
+      }
+    },
+    "jp": {
+      "original": "src/markets/jp/sections.js",
+      "target": "src/markets/jp/history.js",
+      "originalLine": 224,
+      "headHash": "3583897180b5e9c03009040eb2b18001e28b3100e327a31ba3a2f2349443632f",
+      "capHash": "1ce015bbfeee1fa517569720dc4b3fe1cdf9baed45323d1ffc2b7010ee139a73",
+      "cardHashes": [
+        "415b35809a1ce87442dbe2f33f55dbc85684317735df4cd967a0f109e299b063",
+        "b0401e0490a89342ebd5ee94b4fc8d4c2b00a062bf877ba9687ba03c0298c4ce"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2005",
+          "hash": "caaa9c6b31711e375722e10e8bd0450d02e274f91395bdb09f5ad2a4825bf62b",
+          "line": 226
+        },
+        {
+          "axis": 0,
+          "period": "2012",
+          "hash": "0633576dcfdb64f2b2e20173dbb24f6799f727a1546d41d97a42553e36165553",
+          "line": 228
+        },
+        {
+          "axis": 0,
+          "period": "2018",
+          "hash": "42ffb6827a634977fca7138e7f5074fdf16a7aa4c56001fabbd4fa5651c9464a",
+          "line": 230
+        },
+        {
+          "axis": 0,
+          "period": "2020",
+          "hash": "68a9a0c17721c35e12196455b355b7af9d64d5b7ec957d9714f4338a1ef9f50d",
+          "line": 232
+        },
+        {
+          "axis": 0,
+          "period": "2021",
+          "hash": "116bb097aadf2f00f260ee0617dc7d4cd1039ae9daf0f96dbc5a62ec0362ed4d",
+          "line": 234
+        },
+        {
+          "axis": 0,
+          "period": "2023",
+          "hash": "2b8623add86547de7db0319a15dc4c8d2ad889320e99f21348e3b5b7ca1bc7d6",
+          "line": 236
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "f5e59de9d0a01fbe874e46902e9a9e6b83902f462a941f099a35540e7040c039",
+          "line": 238
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/jp/data.js",
+        "target": "src/markets/jp/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 92,
+            "hash": "c28d5f6dc196e0d486aa0d85a54ad4e7006dd53adcbc31172cc1326b733d7750"
+          },
+          {
+            "path": "dataDate",
+            "line": 93,
+            "hash": "3bb12fab2061c31a42852fda644900cc53dac289092aeac5a8a0ee7427986e26"
+          },
+          {
+            "path": "modelVersion",
+            "line": 94,
+            "hash": "5381a9fe69bbe2b89aee0ebe7139ae76ffb423e8db621080dec9aaef2f0f9cc8"
+          }
+        ]
+      }
+    },
+    "pjm": {
+      "original": "src/markets/pjm/sections.js",
+      "target": "src/markets/pjm/history.js",
+      "originalLine": 114,
+      "headHash": "1672251de62695af7b804f0dbf003b673db4fa39fc43c717146e035f53b59e94",
+      "capHash": "d41ab6e771468b0f7e06636f995b205491adc4ac6581173a0d305dd2c5a0fe03",
+      "cardHashes": [
+        "6625dab7c7c722bdd20aa2a9253fbc2cae972dcd753f0744261bd1540fe22d73"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2010s",
+          "hash": "a5c71bbbbdb3645ed7b5380e7793dc64ee83932c4596edc3ecc16c2118aa6b92",
+          "line": 116
+        },
+        {
+          "axis": 0,
+          "period": "2022–2025",
+          "hash": "3ad4f2a4988e7b6773da246e87e428961482f941b29ff5383f514a9714f495c7",
+          "line": 120
+        },
+        {
+          "axis": 0,
+          "period": "Jan 2025",
+          "hash": "32b5b442c3cd8ab3036e13a3728e6b3bc03c0a955d970e2d0fea54eb4b558861",
+          "line": 124
+        },
+        {
+          "axis": 0,
+          "period": "Oct 2025",
+          "hash": "d63df43bc99d6d3cae23482908c83c61f718b5054f3e5c91454a293222820b9b",
+          "line": 128
+        },
+        {
+          "axis": 0,
+          "period": "Dec 2025 – Jul 2026",
+          "hash": "d47000123259f07e3ecf059f5a91cfda352c5de2c6e266494096d0624e3bd5a1",
+          "line": 132
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/pjm/data.js",
+        "target": "src/markets/pjm/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 46,
+            "hash": "d9b421e2433fd803979a5ee6521d7f7c35af64c1a62f719f1b71a69a1c0adbb7"
+          },
+          {
+            "path": "dataDate",
+            "line": 47,
+            "hash": "f74ffe7fa23b19b2c4e53ff05c5693aeee902fc266f14d0f262f0d5d05b6b5ce"
+          },
+          {
+            "path": "modelVersion",
+            "line": 48,
+            "hash": "21710306578459101f64ff9a6c1d80e0a72bd2a42a22b155f9af1b1432c8c2e4"
+          },
+          {
+            "path": "official.coalChangeMW",
+            "line": 87,
+            "hash": "3fa06355fb4511969e466cbdc070e4267c4b5557f59d8266b949c863f1effc78"
+          },
+          {
+            "path": "official.braDeliveryYear",
+            "line": 64,
+            "hash": "cdefdef4d8761ec7b3c7c40f64a15fee95b9d6e6bbe37b633170007698279a63"
+          },
+          {
+            "path": "official.collarAuctions",
+            "line": 74,
+            "hash": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          {
+            "path": "official.collarLastDeliveryYear",
+            "line": 74,
+            "hash": "bef54fd65c2a5a7d58062ffd1f6d7fa4a76be48f5d9dffa165083a52d0d84c60"
+          },
+          {
+            "path": "official.regMarketBeforeMW",
+            "line": 97,
+            "hash": "88820462180e5c893eff2ed73f4ec33e205d1cd5acc4d17fa7b2bca2495d3448"
+          },
+          {
+            "path": "official.regMarketAfterMW",
+            "line": 97,
+            "hash": "64d095f2fecfdeb907dae5403b10966c4ae755b7598aa078cb932e345bd0b5d0"
+          },
+          {
+            "path": "official.prevBraDeliveryYear",
+            "line": 69,
+            "hash": "c22a9559331c9228feb04af79a997affe866759f8a3bc4d94cf0ef0ba9fa5e38"
+          },
+          {
+            "path": "official.prevBraPrice",
+            "line": 69,
+            "hash": "11d6c69c3aca19e268399f5f4675508fc3465a56bc360c3b1972fa6787edcc41"
+          },
+          {
+            "path": "official.prevBraShortMW",
+            "line": 69,
+            "hash": "01375f53651cff383d9aca5da90de6f4d859a2069e920c39f9700fe8a86e463c"
+          },
+          {
+            "path": "official.braPrice",
+            "line": 64,
+            "hash": "f69dad2ceed24c9c7b661fb397e9529ba585c03ea01154123d575f34605dfdd0"
+          },
+          {
+            "path": "official.braShortMW",
+            "line": 66,
+            "hash": "55635dfb6830783b5a0d2b4b79ffaa7c079e4f391352bc200251bb98ecf1173b"
+          }
+        ]
+      },
+      "formatBindings": {
+        "original": "src/markets/pjm/mkt.js",
+        "target": "src/markets/pjm/historyData.js",
+        "fields": [
+          {
+            "path": "locale",
+            "line": 15,
+            "hash": "4e825c8d0ecc117b0b1c262b99964c45c4b2316a783a14ee2049a02baece1eb5"
+          },
+          {
+            "path": "cur",
+            "line": 15,
+            "hash": "ef67463a1fc6f8b198ec6bce60b37a2636b3c8c3cd76e4badc4e572d28060cd5"
+          }
+        ]
+      }
+    },
+    "ercot": {
+      "original": "src/markets/ercot/sections.js",
+      "target": "src/markets/ercot/history.js",
+      "originalLine": 117,
+      "headHash": "eafbf279975d8191d863bad9091edf2aab7c3015fc6f77b4969e2978b013fc93",
+      "capHash": "54a2728cbfbc886310d5f15e2fde849deca6f8643dd7cb2ba4de4f78bf9cdc78",
+      "cardHashes": [
+        "edbfaf87b332fe1e229b50f5a43327488cef4b386c3c9c613ff978b501f9a019"
+      ],
+      "bindingHash": "975484dcb15ce50eef620756dd421b20b0e713bfa1e03dfd949763b3c50884b0",
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2021",
+          "hash": "fadd731b1c864ac937378caa3ac98d1fdf341a9d4bcd68febe722cf4d67ebb95",
+          "line": 119
+        },
+        {
+          "axis": 0,
+          "period": "2023",
+          "hash": "322cb4253254f166dd95b7333a6ccb0080c4449ad1a69d9c586bff85c7a17bd0",
+          "line": 123
+        },
+        {
+          "axis": 0,
+          "period": "2024–2025",
+          "hash": "b071d6c68e7ddb063cf9eaffad32d96f1b8f98f9047cb6928f7009f3c54a8bfd",
+          "line": 127
+        },
+        {
+          "axis": 0,
+          "period": "Dec 2025",
+          "hash": "b539d1176a66a0363cc30980b86a5d8c8dc91564167168a50e39619e54e23df8",
+          "line": 131
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "bccff0dbf8c34aed02713cf01a72c47b5a853f6aa2ae57de4d9be4086f326622",
+          "line": 135
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/ercot/data.js",
+        "target": "src/markets/ercot/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 43,
+            "hash": "c28d5f6dc196e0d486aa0d85a54ad4e7006dd53adcbc31172cc1326b733d7750"
+          },
+          {
+            "path": "dataDate",
+            "line": 44,
+            "hash": "77fb8c85083b52894e6743e9cca678362346c3b30bd5a3470341c6225db863c6"
+          },
+          {
+            "path": "modelVersion",
+            "line": 45,
+            "hash": "b844cfbf348b0bc288dff2bade48536cc772a02b21bfbf2e1c60105f7f60c472"
+          },
+          {
+            "path": "official.idx2023",
+            "line": 75,
+            "hash": "2f2cac0b14bf2592543789045a02fa2ea9f0a91ab1f6e23e8859e8e618e6d1a7"
+          },
+          {
+            "path": "official.fleet2023GW",
+            "line": 70,
+            "hash": "f54f1e8b9a3810596ef045f25d69c96911a0f3bf616071e97262ed9c55462aff"
+          },
+          {
+            "path": "official.asShare2023Pct",
+            "line": 77,
+            "hash": "44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d5de5af435c9c35da69"
+          },
+          {
+            "path": "official.fleet2026GW",
+            "line": 69,
+            "hash": "8527a891e224136950ff32ca212b45bc93f69fbb801c3b1ebedac52775f99e61"
+          },
+          {
+            "path": "official.asFallSince2023Pct",
+            "line": 78,
+            "hash": "69f59c273b6e669ac32a6dd5e1b2cb63333d8b004f9696447aee2d422ce63763"
+          },
+          {
+            "path": "official.asShare2025Pct",
+            "line": 77,
+            "hash": "98010bd9270f9b100b6214a21754fd33bdc8d41b2bc9f9dd16ff54d3c34ffd71"
+          },
+          {
+            "path": "official.idx2025",
+            "line": 75,
+            "hash": "e3a9bd32512909dfa7c6a8fc5dbc6dca544cffbffb024d76d565e10444b3dec1"
+          },
+          {
+            "path": "official.rtcbDate",
+            "line": 60,
+            "hash": "137839030c74a36d10ecc47b430293e6e4e45375c40174fbf6ee559f5470a9ff"
+          },
+          {
+            "path": "official.ecrsHoursBefore",
+            "line": 61,
+            "hash": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+          },
+          {
+            "path": "official.ecrsHoursAfter",
+            "line": 61,
+            "hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+          },
+          {
+            "path": "official.rrsHoursBefore",
+            "line": 62,
+            "hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+          },
+          {
+            "path": "official.rrsHoursAfterMin",
+            "line": 62,
+            "hash": "624b60c58c9d8bfb6ff1886c2fd605d2adeb6ea4da576068201b6c6958ce93f4"
+          },
+          {
+            "path": "official.nonSpinHours",
+            "line": 63,
+            "hash": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+          },
+          {
+            "path": "official.largeLoadQueueGW",
+            "line": 105,
+            "hash": "98144d79af44407273f26589afc01901b7b296deada61a4740b0d404c5043c53"
+          },
+          {
+            "path": "official.largeLoadDataCentrePct",
+            "line": 105,
+            "hash": "69f59c273b6e669ac32a6dd5e1b2cb63333d8b004f9696447aee2d422ce63763"
+          },
+          {
+            "path": "official.largeLoadQ1_2026GW",
+            "line": 107,
+            "hash": "a4e00d7e6aa82111575438c5e5d3e63269d4c475c718b2389f6d02932c47f8a6"
+          }
+        ]
+      },
+      "formatBindings": {
+        "original": "src/markets/ercot/mkt.js",
+        "target": "src/markets/ercot/historyData.js",
+        "fields": [
+          {
+            "path": "locale",
+            "line": 16,
+            "hash": "4e825c8d0ecc117b0b1c262b99964c45c4b2316a783a14ee2049a02baece1eb5"
+          },
+          {
+            "path": "cur",
+            "line": 16,
+            "hash": "ef67463a1fc6f8b198ec6bce60b37a2636b3c8c3cd76e4badc4e572d28060cd5"
+          }
+        ]
+      }
+    },
+    "caiso": {
+      "original": "src/markets/caiso/sections.js",
+      "target": "src/markets/caiso/history.js",
+      "originalLine": 108,
+      "headHash": "41ce3e58e97d39bfb3f78b16d4005f759d4ae6f4c54347ced8951a9b9483cfc8",
+      "capHash": "7d6f1a8bbe2609ad0bf88fca0eda021962c84b836e3d695d5980469be94de000",
+      "cardHashes": [
+        "d008058cc60e94007edf5a8a2079718f5938e7c1447fbb258d22f3eb676edca6"
+      ],
+      "bindingHash": null,
+      "dataTimeline": null,
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2010s",
+          "hash": "0b3b04528301349c6b2bcb9ec085a540b206a2375779630c69da4e8b1ede4ba1",
+          "line": 110
+        },
+        {
+          "axis": 0,
+          "period": "2020–2024",
+          "hash": "6429de42e758f1798d5c1bc76be8bd8348c98b4b44cd3ff268e62580b74f6f54",
+          "line": 114
+        },
+        {
+          "axis": 0,
+          "period": "2025",
+          "hash": "c659990d6b5d8bcbfb068c26429f5cba92a95eeaa3e41a85c5ad21547b90ccf4",
+          "line": 118
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "31634c44d11172955400615edd3b7cd6cdd566cae0c2af0cc33930a635d7c8a7",
+          "line": 122
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/caiso/data.js",
+        "target": "src/markets/caiso/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 34,
+            "hash": "c28d5f6dc196e0d486aa0d85a54ad4e7006dd53adcbc31172cc1326b733d7750"
+          },
+          {
+            "path": "dataDate",
+            "line": 35,
+            "hash": "38a816d15e6233cafdd937e23c9c1ca33494baef528bfdfa3a37f4c432aac935"
+          },
+          {
+            "path": "modelVersion",
+            "line": 36,
+            "hash": "17d573bc1a7d8be89e4f0dcb7dfdbdd8a96fd50eb635e3f3935f7cd42be255a8"
+          },
+          {
+            "path": "official.fleet2024GW",
+            "line": 64,
+            "hash": "71c603045bd8764593e2f8a990b452ddbc93d461629f7b10832bda73237c404f"
+          },
+          {
+            "path": "official.fleet2024GrowthPct",
+            "line": 64,
+            "hash": "811786ad1ae74adfdd20dd0372abaaebc6246e343aebd01da0bfc4c02bf0106c"
+          },
+          {
+            "path": "official.fleet2026GW",
+            "line": 64,
+            "hash": "9a80cbde0c0fd67d411980e9d12a6f2bbec7cc5f5bb2125ad7afad55edf570e3"
+          },
+          {
+            "path": "official.sodSlices",
+            "line": 54,
+            "hash": "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"
+          },
+          {
+            "path": "official.queueTotalGW",
+            "line": 65,
+            "hash": "0604cd3138feed202ef293e062da2f4720f77a05d25ee036a7a01c9cfcdd1f0a"
+          },
+          {
+            "path": "official.queueBatterySharePct",
+            "line": 65,
+            "hash": "25fc0e7096fc653718202dc30b0c580b8ab87eac11a700cba03a7c021bc35b0c"
+          }
+        ]
+      }
+    },
+    "fi": {
+      "original": "src/markets/fi/sections.js",
+      "target": "src/markets/fi/history.js",
+      "originalLine": 136,
+      "headHash": "d94e1988e470d9eeabad6d707af2fde8a6bf6e5de0bc6d14db6e37ee21e243f8",
+      "capHash": null,
+      "cardHashes": [
+        "6557eee7b81c6e46429633f4460124d2189bf6b6473d47365f4841d053c3b640"
+      ],
+      "bindingHash": null,
+      "dataTimeline": {
+        "path": "src/markets/fi/data.js",
+        "hash": "5cfe2707309221b0b0ed7b7a4be9975128c9fdbd50720870ffa0180b2e80cd2b",
+        "target": "src/markets/fi/historyData.js"
+      },
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2022–2023",
+          "hash": "12736a3ff6780173606c492ed45ebcac4857b7585d5118b37b87f76f740185f9",
+          "line": 232
+        },
+        {
+          "axis": 0,
+          "period": "2023",
+          "hash": "eefdebf25c5a1a9c70a19a61bedd47145ef44aebf4411ebd13ded6dbeddc76c9",
+          "line": 235
+        },
+        {
+          "axis": 0,
+          "period": "2024–2025",
+          "hash": "367e9a61e7319945679e1e61649b18e49b58a6f0d539d9fce0c8a6570d80de08",
+          "line": 238
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "bd92c8485522ed931bfd70af5bc98f9f0bc2c31cbb23e5ee703c4dd899da4694",
+          "line": 241
+        },
+        {
+          "axis": 0,
+          "period": "2027",
+          "hash": "bc3a494d7c646248bfd93623d5e5f5403c7533187aab62e458b613092fa706fb",
+          "line": 245
+        },
+        {
+          "axis": 0,
+          "period": "2029",
+          "hash": "169fe44eab53b9d228e7507d8bebb8cda8a4f3ed0fd71edb0099f378738e3f8e",
+          "line": 248
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/fi/data.js",
+        "target": "src/markets/fi/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 20,
+            "hash": "02c340edf79d1473cee29f59e211c869f8bed0b1ba13ad5b824a21b3a0b2c69a"
+          },
+          {
+            "path": "dataDate",
+            "line": 21,
+            "hash": "86b2fe76bd347dc09207081ed38f1fbb623f55a47dd6a1fd25edeb796dff4005"
+          },
+          {
+            "path": "modelVersion",
+            "line": 22,
+            "hash": "e06bc7a8f3890eba5bba56ed0878c4572189906b354b77985b91cac0edb364f8"
+          },
+          {
+            "path": "timeline",
+            "line": 231,
+            "hash": "5cfe2707309221b0b0ed7b7a4be9975128c9fdbd50720870ffa0180b2e80cd2b"
+          }
+        ]
+      }
+    },
+    "ca_on": {
+      "original": "src/markets/ca_on/sections.js",
+      "target": "src/markets/ca_on/history.js",
+      "originalLine": 118,
+      "headHash": "f87eb7ee243c2fda3c4377bd62ae76a95607185aab32aee3328cfea696b9766f",
+      "capHash": null,
+      "cardHashes": [
+        "86a2d7fc04fd51833b12defedd4a324134d6c4197dab5c2065705f86235b7470"
+      ],
+      "bindingHash": null,
+      "dataTimeline": {
+        "path": "src/markets/ca_on/data.js",
+        "hash": "de3cbabb6ae97360afced00920e91fcaea7c3eaadc0de015b739023fbbc01342",
+        "target": "src/markets/ca_on/historyData.js"
+      },
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2023",
+          "hash": "0ea7bbc8148939cbd754a0c1167e5126a62c9a6c1d1b8aa74dc64d8026f5d916",
+          "line": 81
+        },
+        {
+          "axis": 0,
+          "period": "May 2025",
+          "hash": "3d6c2d79fff38b5a7fb8ff6d207b4d207dfe8c7d3f3a0222b96b570e348d210d",
+          "line": 84
+        },
+        {
+          "axis": 0,
+          "period": "Dec 2025",
+          "hash": "5af180da7a039464f37df11158d7e75ee4491c29b4d6fa6d0f0a6184dee6eb9b",
+          "line": 87
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "bdf9f0ee61569a2166a0658a8302b23ed4919cf20421da2be24525ed0ad47384",
+          "line": 90
+        },
+        {
+          "axis": 0,
+          "period": "2032",
+          "hash": "1420c2472c192b23dfefcbeda418b50dee7b03f1faee992f5d7a72961e4b76a5",
+          "line": 93
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/ca_on/data.js",
+        "target": "src/markets/ca_on/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 10,
+            "hash": "b3b35aa8f170724e69b02a0ce8f2789d64b30b69fb60f5037d48cc52ff6afec3"
+          },
+          {
+            "path": "dataDate",
+            "line": 11,
+            "hash": "8bfcc4c95bc92e79a79a0bd97d9524f9ae4bd6ad734dca9a9e0d419132d1ba68"
+          },
+          {
+            "path": "modelVersion",
+            "line": 12,
+            "hash": "63027e4927ba96f28d2aaf3299f4def9135a06d9944357775e3cf3565bfd407b"
+          },
+          {
+            "path": "timeline",
+            "line": 80,
+            "hash": "de3cbabb6ae97360afced00920e91fcaea7c3eaadc0de015b739023fbbc01342"
+          }
+        ]
+      }
+    },
+    "sa": {
+      "original": "src/markets/sa/sections.js",
+      "target": "src/markets/sa/history.js",
+      "originalLine": 65,
+      "headHash": "c0be7df4392aafbd5a6cc36aa06a711d7afa26eb5df4de6bf05d0678c3e89cab",
+      "capHash": null,
+      "cardHashes": [
+        "a05cb8117023d3fa070527ba202a17600d7e46fd672e1b658fefc0361215c1df"
+      ],
+      "bindingHash": null,
+      "dataTimeline": {
+        "path": "src/markets/sa/data.js",
+        "hash": "5a120780e62779fb6143ac23ce2e983ad1c1f040085fe02bffcf1c8a3cbcf305",
+        "target": "src/markets/sa/historyData.js"
+      },
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "Nov 2024",
+          "hash": "a00775c5c08d27f177530cc05ae31d145d387b104119ac4c272c261d10b02018",
+          "line": 61
+        },
+        {
+          "axis": 0,
+          "period": "Jul 2026",
+          "hash": "98876f7ebb301403459d5d3179388ac6ed5fbc473b4900b4b914ddc7890c1e21",
+          "line": 62
+        },
+        {
+          "axis": 0,
+          "period": "Aug 2026",
+          "hash": "6c26a7b02c8cd6306d7a7d1606b3c9986e518e72f96a3cec6eeed27c984198a6",
+          "line": 63
+        },
+        {
+          "axis": 0,
+          "period": "Nov 2026",
+          "hash": "04563461470c1b1b2d10e014da23dac1b0c95b59fad86a1d38fbada9b61b20f6",
+          "line": 64
+        },
+        {
+          "axis": 0,
+          "period": "2030",
+          "hash": "94de41122dc945a8b7b2ba011616424dd494907bbf8b9dfe4c2d79cbcc723131",
+          "line": 65
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/sa/data.js",
+        "target": "src/markets/sa/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 14,
+            "hash": "d01a00c9fbc49b6835982af251598517d0eb8c7dae8871c3825f23fa8bca79a4"
+          },
+          {
+            "path": "dataDate",
+            "line": 15,
+            "hash": "cc45db6d635596ca5031087bfee971b5543cb1a913adca0bdbb39e3e80b45660"
+          },
+          {
+            "path": "modelVersion",
+            "line": 16,
+            "hash": "0db6494c441cceea88d552bdc6a6a6d0e3b834c3846ba5c5e70f0322513c5afa"
+          },
+          {
+            "path": "timeline",
+            "line": 60,
+            "hash": "5a120780e62779fb6143ac23ce2e983ad1c1f040085fe02bffcf1c8a3cbcf305"
+          },
+          {
+            "path": "target2030GWh",
+            "line": 50,
+            "hash": "98010bd9270f9b100b6214a21754fd33bdc8d41b2bc9f9dd16ff54d3c34ffd71"
+          }
+        ]
+      }
+    },
+    "es": {
+      "original": "src/markets/es/sections.js",
+      "target": "src/markets/es/history.js",
+      "originalLine": 114,
+      "headHash": "e1fdd917a1b45b364a3eaef180810f280eeda0e99e5233007cfe6245c5e8ff04",
+      "capHash": null,
+      "cardHashes": [
+        "86a2d7fc04fd51833b12defedd4a324134d6c4197dab5c2065705f86235b7470"
+      ],
+      "bindingHash": null,
+      "dataTimeline": {
+        "path": "src/markets/es/data.js",
+        "hash": "50554b6500e85c7bd7bf5f43353ca9519252ea5d60ac0534e0dd2fba9f2c8cf6",
+        "target": "src/markets/es/historyData.js"
+      },
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2023",
+          "hash": "65a5052fb3d082f622c0483a2ea9f9e5025e5178b0e37e7bd6ca43a1cd4ef068",
+          "line": 78
+        },
+        {
+          "axis": 0,
+          "period": "2025",
+          "hash": "e53b8665ec8bfe238dfa72bc287eabe4d5af5ba04135242dd26e6caafc675402",
+          "line": 81
+        },
+        {
+          "axis": 0,
+          "period": "2026",
+          "hash": "5ec2e8275c7074b8dec1c26a00bab6b1010a68667cca5e8ba5bb86bf39cf708b",
+          "line": 84
+        },
+        {
+          "axis": 0,
+          "period": "2027–29",
+          "hash": "e3934b306f3a240d7fa2a9fd27196fbe5fa845acbf322050488100fd670ce9b7",
+          "line": 87
+        }
+      ],
+      "dataBindings": {
+        "original": "src/markets/es/data.js",
+        "target": "src/markets/es/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 12,
+            "hash": "d01a00c9fbc49b6835982af251598517d0eb8c7dae8871c3825f23fa8bca79a4"
+          },
+          {
+            "path": "dataDate",
+            "line": 13,
+            "hash": "f63165823fb9011f227d23da7324f27f791670c0094fc2608f3c2cf568e8e444"
+          },
+          {
+            "path": "modelVersion",
+            "line": 14,
+            "hash": "80c43f83f3cb0a882b60f6c3558d1923985b9b9d6419960d47730017a063604d"
+          },
+          {
+            "path": "timeline",
+            "line": 77,
+            "hash": "50554b6500e85c7bd7bf5f43353ca9519252ea5d60ac0534e0dd2fba9f2c8cf6"
+          }
+        ]
+      }
+    },
+    "wa": {
+      "original": "src/markets/wa/sections/story.js",
+      "target": "src/markets/wa/history.js",
+      "originalLine": 51,
+      "cardHashes": [],
+      "headHash": "b56e14f1ddeb7b306fb2062c62b4227360659f77a9fccedcdbbd55452c020cda",
+      "capHash": "674b8f29dd7bbe80afbd1c6ac7290150137c76892139858605d55d2e7a059861",
+      "textPairs": [
+        [
+          "Why this history is underwriting-relevant",
+          "这段历史为何与承销相关"
+        ],
+        [
+          "The RCM is not a static subsidy. It has been re-pointed three times — once because the market was over-built, once because renewables changed what capacity has to do, and once because the cheapest new entrant stopped being a gas turbine and became a battery. Each re-pointing changed which projects earned full value, without changing any physical asset.",
+          "RCM并非静态补贴。它已被三次重新定向 — 一次因市场超建，一次因新能源改变了容量的职能，一次因最低成本新进入者由燃气轮机变为电池。每次重新定向都改变了哪些项目能获得足额价值，而任何实体资产本身并未改变。"
+        ],
+        [
+          "Capacity years",
+          "容量年度"
+        ],
+        [
+          "Benchmark technology",
+          "基准技术"
+        ],
+        [
+          "Class",
+          "类别"
+        ],
+        [
+          "160 MW OCGT + 14 h fuel",
+          "160MW OCGT+14小时燃料"
+        ],
+        [
+          "Reserve Capacity Cycle",
+          "容量周期"
+        ],
+        [
+          "Trading intervals",
+          "交易时段"
+        ],
+        [
+          "Hours",
+          "小时"
+        ],
+        [
+          "Effect",
+          "影响"
+        ],
+        [
+          "Dimension",
+          "维度"
+        ],
+        [
+          "Before scaled BESS",
+          "规模化储能前"
+        ],
+        [
+          "After scaled BESS",
+          "规模化储能后"
+        ]
+      ],
+      "dataTimeline": {
+        "path": "src/markets/wa/data/rcmHistory.js",
+        "key": "milestones",
+        "hash": "83eed889a9e29938f7d2da66656291d53ec6a985a5c5ac30fc2f506bcede71ca"
+      },
+      "nodes": [
+        {
+          "axis": 0,
+          "period": "2006",
+          "hash": "45008dbd08362dd983709361552d9529e42c5cc9a0b2c4a059ae2313acfc54f8",
+          "line": 24
+        },
+        {
+          "axis": 0,
+          "period": "2016",
+          "hash": "1c2b6ccd1c499488cce7eb1925351e8fcd71e99b0d41605900ba943b513926e4",
+          "line": 28
+        },
+        {
+          "axis": 0,
+          "period": "2019–2021",
+          "hash": "44eb7c433ecc620e94ea417d9f1b9c6659cea0e5a2339649c3ff919288f0bde2",
+          "line": 32
+        },
+        {
+          "axis": 0,
+          "period": "1 Oct 2023",
+          "hash": "ae704af1f6bfba8550ac6cb68e756489f65dd9df2dac5d0665f68e6ae73c13e7",
+          "line": 36
+        },
+        {
+          "axis": 0,
+          "period": "2024",
+          "hash": "6b32f86e76f022981cd30be215a4a5d81c6c7048a91d6b99b3d16a0b47483877",
+          "line": 40
+        },
+        {
+          "axis": 0,
+          "period": "2024–2025",
+          "hash": "5a499cce9b57633185fa5da95674bb6a950e45b218ee06cd8afbf57da7162cfd",
+          "line": 44
+        },
+        {
+          "axis": 0,
+          "period": "2025–2026",
+          "hash": "c1b012c1fac8e81951d9fdba971f0f8d7d35b211edad3cd3e82a1143b2c7c829",
+          "line": 48
+        },
+        {
+          "axis": 1,
+          "period": "2006–2018",
+          "hash": "fef25363e3de750e01bc9aecc756103da9d22a85d8bbe8c7399fc367610ae522",
+          "line": 104
+        },
+        {
+          "axis": 1,
+          "period": "2019–2022",
+          "hash": "ee8fac825cd8f404b7d4639887d2d26082b8ae1dad74b56f7f19adf312f110dc",
+          "line": 108
+        },
+        {
+          "axis": 1,
+          "period": "2023",
+          "hash": "73d0a25fd0b0714f2c14e70daa5654443c312fd0f1dbdeceef9989b4d049835b",
+          "line": 112
+        },
+        {
+          "axis": 1,
+          "period": "2024–2025",
+          "hash": "53b2dd2304b55e46f686bf8485037210df8ebc9161ba23d621456a990ee39a59",
+          "line": 116
+        },
+        {
+          "axis": 1,
+          "period": "2025–2026",
+          "hash": "a89aa8ab42840b0375418d811cfdb7b76678da71363d528511d5271b0f9fa212",
+          "line": 120
+        },
+        {
+          "axis": 1,
+          "period": "2025–2026",
+          "hash": "a7fb440eb60d2301a548ee89471f1da6a9534d6eea3df7cc26e9463c9b299f0e",
+          "line": 124
+        },
+        {
+          "axis": 1,
+          "period": "2027–2029",
+          "hash": "5ad097128ecfb3d4b64f382596607f60fd5b7d0b10271947f7bc331cfe8e7da0",
+          "line": 128
+        },
+        {
+          "axis": 1,
+          "period": "2030–2036",
+          "hash": "6b8682b684a29c1f16bfc4b6aad98e8cc4f725c9eb0986dd3f35c9d4b1acfa8c",
+          "line": 132
+        }
+      ],
+      "contextHashes": [
+        "5041ab7d14e5ecb8aeb65053ab63b450f4bc84dde4aeea1602ff071d8a1d8239",
+        "d55d7d31607f3701c87b8740d8e43b795b091533302e64688167802c740e08a4",
+        "2016b5d3f3a33f5b26ae2c67eaf40ee092cb4c524ad10b1ed0f051dcd0222afc",
+        "77b9563ef87f997b17aaa269d21fb0a06fc7e23e8a7f79d6e9aedc01eb0b4b0e",
+        "b35647a49403c768e57388a2d383065b02111590395282caa40ad09b13ab5380",
+        "13d0325ccb2c502176ef395ffe08c0897913f7fcddc8c08142d03e699700852c",
+        "1a111549aaf411107dd3c48c6bbe29299c1cccc1e3d61e977fb3ec53929cc18e",
+        "defc03e2fd1e301c12f22c47fd42354f294bd737b23edf87bfe23225380dcec5",
+        "76e0b5e24136a2efd019096cc31cbe1ab102ffb81bfb2417b2099d0b0ad8b541",
+        "2bd0e035a206db8bc70f82634e561adc1760c40bb3cfebdefd4519d9e222b344",
+        "46bc52d3f02d024bc2bcbb6e5cf0061dea2dd4f92c900fe848be7a0ad65ef6e9",
+        "1a42b60cd08f11a7c02de316bfb5b94185ec70d8fbfafc65bf0c5c106591d6c2",
+        "4779c40a983d6260b879104d7a773db52a9b34791d9155f33cff2dd665b0ec09"
+      ],
+      "dataBindings": {
+        "original": [
+          "src/markets/wa/data/seed.js",
+          "src/markets/wa/data/wemMarket.js"
+        ],
+        "target": "src/markets/wa/historyData.js",
+        "fields": [
+          {
+            "path": "asOf",
+            "line": 11,
+            "hash": "b84e00346f2b6c4b2214bc5cfb942ded5463529c0b865cd5c4e7c05c04e7293d"
+          },
+          {
+            "path": "modelVersion",
+            "line": 12,
+            "hash": "4a747fd38e97e154724227955cea29637928c0ef4da885aef3fbd1edef8e1064"
+          },
+          {
+            "path": "brcp2829",
+            "line": 14,
+            "hash": "52bd898a3dff0b7462290c3eda295282d16acc802fc846ef43843a092f39ac50"
+          },
+          {
+            "path": "rcp2728",
+            "line": 15,
+            "hash": "c68e4490b6b55921b522894489e117cb3b7ed4f60b6d37e818c4dd03384da732"
+          },
+          {
+            "path": "fleetMWh",
+            "line": 18,
+            "hash": "8babd7ef30bf8e6c608a876e8eb7e6515370e3c5ac24d32122e1a6e1d94a56ae"
+          },
+          {
+            "path": "fleetMW",
+            "line": 18,
+            "hash": "e48a11adcf98ac7eacad44de2edd47143466bd92d8d83df78f31955ff6e0530b"
+          },
+          {
+            "path": "fleetAvgHours",
+            "line": 28,
+            "hash": "e4d2dcf5ed610c2ca8f9e505890d4500eeb7090e5b04c50701f869ffdf8b1dac"
+          },
+          {
+            "path": "esrYears",
+            "line": 82,
+            "hash": "8c548847b0a54d3b775a174d37fd7b3bb151262eb42c9932b5df79877374ec10"
+          },
+          {
+            "path": "esrPath",
+            "line": 83,
+            "hash": "5215d83cac8dd31a1b9ef5ea7d1062bed2a0650d0fe7bdf92d983aa8f659e5c5"
+          },
+          {
+            "path": "cis",
+            "line": 19,
+            "hash": "4a08bf5f842de84aa2abd87251b102d82a91a2486cce6e4fa22b298bcca48356"
+          }
+        ]
+      }
+    }
+  }
+}

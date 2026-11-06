@@ -2,6 +2,7 @@ import {h} from '../../../utils/dom.js';
 import {L} from '../../../app/i18n.js';
 import {CHAPTERS} from './content.js';
 import {approvalRecordUrl} from './approvalRecords.js';
+import {renderResearchHistory,renderHistoryProvenance} from './historyChapter.js';
 
 const P=(text,cls='')=>h('p',{class:cls},L(text));
 const TEXT={
@@ -20,8 +21,13 @@ export function renderChapter(data,id,ctx){
   const badge=text=>h('p',{class:'public-content-label'},L(text));
   const excerpts=section=>data.extracts[section].map(e=>h('blockquote',{class:'public-reference'},badge(TEXT.excerpt),h('h4',{},L(e.question)),P(e.text),
     h('details',{},h('summary',{},L(['Excerpt provenance','原文追溯'])),h('small',{},e.shotId,' · ',e.claimIds.join(' / ')))));
-  if(id==='history')node.append(badge(TEXT.fact),P(data.summary.history,'public-chapter-lead'),...(data.background?[P(data.background)]:[]),
-    h('ol',{class:'public-history-timeline','aria-label':L(['Institutional timeline','制度时间轴'])},(data.timeline||[]).map(([when,en,zh])=>h('li',{},h('time',{},when),P([en,zh])))),...excerpts('history'));
+  if(id==='history')node.append(renderResearchHistory(data.historyResearch));
+  if(data.summary.historyOnly){
+    if(id==='research')node.append(renderHistoryProvenance(data.historyResearch),
+      P(['This entry relocates the existing research history only. No public investment thesis or original Story G-1 approval is asserted.','本入口仅迁移既有研究历程，不确立新的公共投资逻辑或原Story G-1批准。']),
+      h('button',{type:'button',class:'ix-button',onclick:ctx.research},L(['Open full research','打开完整研究'])));
+    return node;
+  }
   if(id==='system')node.append(badge(TEXT.draft),P(data.constraint,'public-chapter-lead'),P(data.summary.logic),...excerpts('system'));
   if(id==='mechanism')node.append(badge(TEXT.draft),P(data.payment,'public-chapter-lead'),...excerpts('mechanism'));
   if(id==='storage')node.append(badge(TEXT.draft),P(TEXT.equipment,'public-chapter-lead'),P(TEXT.physical),P(TEXT.limit));
