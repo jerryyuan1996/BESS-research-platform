@@ -13,12 +13,12 @@
     "licence": "JEPX published market data — attribution required",
     "attribution": "Source: JEPX spot market data"
   },
-  "fetchedAt": "2026-11-04T06:38:02.398Z",
+  "fetchedAt": "2026-11-05T20:02:38.168Z",
   "coverage": {
-    "from": "2025-11-04T07:00:00.000Z",
-    "to": "2026-11-05T14:30:00.000Z",
+    "from": "2025-11-05T20:30:00.000Z",
+    "to": "2026-11-06T14:30:00.000Z",
     "resolution": "PT30M",
-    "points": 17584
+    "points": 17557
   },
   "units": {
     "price": "JPY/MWh"
@@ -32,37 +32,37 @@
   "staleAfterHours": 96,
   "derived": {
     "authority": "derived",
-    "points": 17584,
-    "coverageDays": 367,
+    "points": 17557,
+    "coverageDays": 366,
     "pointsPerHour": 2,
-    "mean": 17848.51,
-    "median": 16755,
-    "stdev": 8077.28,
-    "p5": 9030,
-    "p95": 32398.5,
+    "mean": 17889.06,
+    "median": 16830,
+    "stdev": 8092.25,
+    "p5": 9020,
+    "p95": 32400,
     "negativeHoursPct": 0,
-    "spreadMean": 8330.53,
-    "spreadMedian": 7533.61,
-    "spreadP25": 4366.39,
-    "spreadP75": 11185.83,
-    "spreadDays": 366,
-    "chargeMean": 13882.46,
-    "dischargeMean": 22212.99,
+    "spreadMean": 8364.35,
+    "spreadMedian": 7567.78,
+    "spreadP25": 4460.56,
+    "spreadP75": 11186.67,
+    "spreadDays": 365,
+    "chargeMean": 13909.25,
+    "dischargeMean": 22273.6,
     "durationHours": 9
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 13116947,
-    "marginPerCycle": 52926.13,
+    "revenuePerMW": 13181845,
+    "marginPerCycle": 53187.99,
     "inputs": {
-      "chargeMean": 13882.459016393443,
-      "dischargeMean": 22212.985731633282,
+      "chargeMean": 13909.251141552511,
+      "dischargeMean": 22273.601217656025,
       "durationHours": 9,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
       "availability": 0.97,
       "spreadRealisation": 0.7,
-      "spreadDays": 366
+      "spreadDays": 365
     },
     "claim": [
       "Wholesale arbitrage only — excludes capacity, ancillary and balancing revenue",
@@ -71,33 +71,13 @@
   },
   "daily": [
     {
-      "d": "2025-11-04",
-      "n": 16,
-      "mean": 14435.63,
-      "min": 11620,
-      "max": 16930,
-      "spread": null,
-      "charge": null,
-      "discharge": null
-    },
-    {
-      "d": "2025-11-05",
-      "n": 48,
-      "mean": 12544.17,
-      "min": 10750,
-      "max": 16130,
-      "spread": 3386.67,
-      "charge": 11121.67,
-      "discharge": 14508.33
-    },
-    {
       "d": "2025-11-06",
-      "n": 48,
-      "mean": 12823.75,
+      "n": 37,
+      "mean": 13172.7,
       "min": 11220,
       "max": 15710,
-      "spread": 3526.11,
-      "charge": 11403.89,
+      "spread": 3451.11,
+      "charge": 11478.89,
       "discharge": 14930
     },
     {
@@ -3739,12 +3719,22 @@
       "spread": 9674.44,
       "charge": 28615.56,
       "discharge": 38290
+    },
+    {
+      "d": "2026-11-06",
+      "n": 48,
+      "mean": 24817.71,
+      "min": 6000,
+      "max": 30620,
+      "spread": 10927.78,
+      "charge": 18422.22,
+      "discharge": 29350
     }
   ],
   "sourceSnapshot": {
     "file": "jp-tokyo-jepx.json",
-    "contentChecksum": "sha256:e2874f76163af633bcdec4935fb24edccb5e0b93d0d9bad8f462e1575b0cd94b",
-    "points": 17584
+    "contentChecksum": "sha256:2b5d5d58ad50cfd8d1950ce6d75b348b78d15dea4ddee59928f5baf6853851e8",
+    "points": 17557
   },
-  "summaryChecksum": "sha256:bc835df373bfb721a10039219c60217ca22ce3dfb91b139a98ab749fd10870c1"
+  "summaryChecksum": "sha256:68402064f9f9d9fb86c7b2434c0b8114b1169d466341875b2f94ba4be954942e"
 }

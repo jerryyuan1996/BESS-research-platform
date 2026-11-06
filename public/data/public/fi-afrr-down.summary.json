@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-04T06:37:46.292Z",
+  "fetchedAt": "2026-11-05T20:02:43.777Z",
   "coverage": {
-    "from": "2025-11-04T07:00:00.000Z",
-    "to": "2026-11-04T22:00:00.000Z",
+    "from": "2025-11-05T21:00:00.000Z",
+    "to": "2026-11-06T19:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8776
+    "points": 8783
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-04",
-      "n": 17,
-      "mean": 3.94,
-      "min": 3,
-      "max": 10.14,
-      "spread": 3.94,
-      "charge": null,
-      "discharge": 3.94
-    },
-    {
       "d": "2025-11-05",
-      "n": 24,
-      "mean": 8.75,
-      "min": 2.55,
-      "max": 12,
-      "spread": 8.75,
+      "n": 3,
+      "mean": 9.26,
+      "min": 8.44,
+      "max": 10.9,
+      "spread": 9.26,
       "charge": null,
-      "discharge": 8.75
+      "discharge": 9.26
     },
     {
       "d": "2025-11-06",
@@ -3683,19 +3673,39 @@
     },
     {
       "d": "2026-11-04",
-      "n": 23,
-      "mean": 1.64,
-      "min": 1.5,
+      "n": 24,
+      "mean": 1.62,
+      "min": 1,
       "max": 2.1,
-      "spread": 1.64,
+      "spread": 1.62,
       "charge": null,
-      "discharge": 1.64
+      "discharge": 1.62
+    },
+    {
+      "d": "2026-11-05",
+      "n": 24,
+      "mean": 1.77,
+      "min": 1,
+      "max": 2.33,
+      "spread": 1.77,
+      "charge": null,
+      "discharge": 1.77
+    },
+    {
+      "d": "2026-11-06",
+      "n": 20,
+      "mean": 1.61,
+      "min": 1,
+      "max": 5,
+      "spread": 1.61,
+      "charge": null,
+      "discharge": 1.61
     }
   ],
   "sourceSnapshot": {
     "file": "fi-afrr-down.json",
-    "contentChecksum": "sha256:b0e67c99bc052b4e601eaaa5fbeaef845b3f295670e4935b6340deebcac23dae",
-    "points": 8776
+    "contentChecksum": "sha256:a8cf48f0eb26e4e682f6d3442cdf26bfd7cc5f9cc80b1ecaf91ead2f295b8e46",
+    "points": 8783
   },
-  "summaryChecksum": "sha256:647739431d16beb2eb5c6a84c430754525966ebce5892dc80dff942c38f8603b"
+  "summaryChecksum": "sha256:0a0e3de72eea181679fd64a43f61b0978b31490c4bd8e9f0bd962f88af49ad66"
 }

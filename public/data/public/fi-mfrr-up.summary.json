@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-04T06:37:48.777Z",
+  "fetchedAt": "2026-11-05T20:02:46.283Z",
   "coverage": {
-    "from": "2025-11-04T07:00:00.000Z",
-    "to": "2026-11-04T22:00:00.000Z",
+    "from": "2025-11-05T21:00:00.000Z",
+    "to": "2026-11-06T19:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8776
+    "points": 8783
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-04",
-      "n": 17,
+      "d": "2025-11-05",
+      "n": 3,
       "mean": 1.99,
       "min": 1.98,
       "max": 1.99,
       "spread": 1.99,
       "charge": null,
       "discharge": 1.99
-    },
-    {
-      "d": "2025-11-05",
-      "n": 24,
-      "mean": 2.07,
-      "min": 1.98,
-      "max": 3,
-      "spread": 2.07,
-      "charge": null,
-      "discharge": 2.07
     },
     {
       "d": "2025-11-06",
@@ -3683,19 +3673,39 @@
     },
     {
       "d": "2026-11-04",
-      "n": 23,
+      "n": 24,
       "mean": 0.65,
       "min": 0.5,
       "max": 1,
       "spread": 0.65,
       "charge": null,
       "discharge": 0.65
+    },
+    {
+      "d": "2026-11-05",
+      "n": 24,
+      "mean": 0.5,
+      "min": 0.5,
+      "max": 0.5,
+      "spread": 0.5,
+      "charge": null,
+      "discharge": 0.5
+    },
+    {
+      "d": "2026-11-06",
+      "n": 20,
+      "mean": 0.73,
+      "min": 0.5,
+      "max": 1,
+      "spread": 0.73,
+      "charge": null,
+      "discharge": 0.73
     }
   ],
   "sourceSnapshot": {
     "file": "fi-mfrr-up.json",
-    "contentChecksum": "sha256:fb4fdc49e4a7987efddc0554657778eff94c1ba8d6559fd8ecade91990a755f7",
-    "points": 8776
+    "contentChecksum": "sha256:2aa9b56c58760f1bb230560d3cf5d9071add6cf518820cfeeeebdb3e699aeb9f",
+    "points": 8783
   },
-  "summaryChecksum": "sha256:91a28b5f4a922fbba0bdbe9e332c9539c7e65faacfd3df37ecd57acea6e60ffe"
+  "summaryChecksum": "sha256:69f452f381dfa2f029358585508b0d1cac83fce9461d19968c42251f08370ba7"
 }

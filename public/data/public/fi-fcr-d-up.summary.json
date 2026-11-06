@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-04T06:37:38.783Z",
+  "fetchedAt": "2026-11-05T20:02:34.321Z",
   "coverage": {
-    "from": "2025-11-04T07:00:00.000Z",
-    "to": "2026-11-04T22:00:00.000Z",
+    "from": "2025-11-05T21:00:00.000Z",
+    "to": "2026-11-06T19:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8776
+    "points": 8783
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-04",
-      "n": 17,
-      "mean": 3.51,
-      "min": 1.92,
-      "max": 5.42,
-      "spread": 3.51,
-      "charge": null,
-      "discharge": 3.51
-    },
-    {
       "d": "2025-11-05",
-      "n": 24,
-      "mean": 3.55,
-      "min": 1.9,
-      "max": 6.34,
-      "spread": 3.55,
+      "n": 3,
+      "mean": 3.2,
+      "min": 2.5,
+      "max": 3.84,
+      "spread": 3.2,
       "charge": null,
-      "discharge": 3.55
+      "discharge": 3.2
     },
     {
       "d": "2025-11-06",
@@ -3683,19 +3673,39 @@
     },
     {
       "d": "2026-11-04",
-      "n": 23,
-      "mean": 2.26,
+      "n": 24,
+      "mean": 2.28,
       "min": 1.5,
       "max": 5,
-      "spread": 2.26,
+      "spread": 2.28,
       "charge": null,
-      "discharge": 2.26
+      "discharge": 2.28
+    },
+    {
+      "d": "2026-11-05",
+      "n": 24,
+      "mean": 2.64,
+      "min": 1.5,
+      "max": 6,
+      "spread": 2.64,
+      "charge": null,
+      "discharge": 2.64
+    },
+    {
+      "d": "2026-11-06",
+      "n": 20,
+      "mean": 7.66,
+      "min": 1.5,
+      "max": 31.42,
+      "spread": 7.66,
+      "charge": null,
+      "discharge": 7.66
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-d-up.json",
-    "contentChecksum": "sha256:7ea826d1f7ea01cee273f321c6799c5f6efc79d1e4a221646776cbd1044399f1",
-    "points": 8776
+    "contentChecksum": "sha256:cefafd328a66a5d825f960fb48d3e16a6558182cd5aea845a966b7fc11032d54",
+    "points": 8783
   },
-  "summaryChecksum": "sha256:3cc5369bffb4e8964c31ef053b6e26c5c9aa928606fa2b3a1d36fdc050548ffd"
+  "summaryChecksum": "sha256:7bf177346868c884d15a72621eee323703860d5d4e6bb3364f3ce3bf4716e0f1"
 }
