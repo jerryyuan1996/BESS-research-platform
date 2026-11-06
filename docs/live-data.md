@@ -10,7 +10,7 @@ operational half.
 ## Shape
 
 ```
-   GitHub Actions cron (every 6h)
+   GitHub Actions cron (daily, 06:17 UTC)
         │
         ├─ etl/run.mjs
         │    ├─ read the snapshot currently on disk
@@ -37,21 +37,21 @@ server-side logic. Data changes are **git commits**, which is what makes the his
 | Dataset | Market | Source | Cadence | Key |
 |---|---|---|---|---|
 | `fx-ecb` | global | ECB euro reference rates | daily | — |
-| `gb-day-ahead` | GB | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
+| `gb-day-ahead` | GB | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
 | `gb-dynamic-response` | GB | NESO Dynamic results, fixed 2020–2023 vintage; availability prices and cleared/technology MW | fixed after initial import | — |
-| `gb-eac-response` | GB | NESO EAC response results; FY2023–FY2025 archives plus current results | read on the existing 6h run; source daily | — |
-| `gb-imbalance-buy`, `gb-imbalance-sell` | GB | Elexon DISEBSP indicative system prices, GBP/MWh; independent of day-ahead | existing 6h run | — |
-| `gb-net-imbalance-volume` | GB | Elexon DISEBSP signed net system imbalance, MWh per half-hour | existing 6h run | — |
-| `ie-day-ahead` | IE | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
-| `ro-day-ahead` | RO | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
-| `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | 12h | — |
+| `gb-eac-response` | GB | NESO EAC response results; FY2023–FY2025 archives plus current results | daily run; source daily | — |
+| `gb-imbalance-buy`, `gb-imbalance-sell` | GB | Elexon DISEBSP indicative system prices, GBP/MWh; independent of day-ahead | daily | — |
+| `gb-net-imbalance-volume` | GB | Elexon DISEBSP signed net system imbalance, MWh per half-hour | daily | — |
+| `ie-day-ahead` | IE | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
+| `ro-day-ahead` | RO | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
+| `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | daily | — |
 | `wa-wem-prices` | WA | AEMO WEM reference trading price | daily | — |
 | `jp-tokyo-jepx` | JP-Tokyo | JEPX spot | daily | — |
 | `jp-kyushu-jepx` | JP-Kyushu | JEPX spot | daily | — |
 | `jp-hokkaido-jepx` | JP-Hokkaido | JEPX spot | daily | — |
-| `fi-storage-capacity` | FI | Fingrid dataset 424, hourly network-model technical power (MW, CC BY 4.0); includes some units approaching operation | 24h | `FINGRID_API_KEY` |
-| `fi-day-ahead` | FI | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
-| `fi-fcr-n`, `fi-fcr-d-up`, `fi-fcr-d-down`, `fi-afrr-up`, `fi-afrr-down`, `fi-mfrr-up`, `fi-mfrr-down` | FI | Fingrid open data, hourly reserve capacity prices (EUR/MW/h, CC BY 4.0) | 12h | `FINGRID_API_KEY` |
+| `fi-storage-capacity` | FI | Fingrid dataset 424, hourly network-model technical power (MW, CC BY 4.0); includes some units approaching operation | daily | `FINGRID_API_KEY` |
+| `fi-day-ahead` | FI | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
+| `fi-fcr-n`, `fi-fcr-d-up`, `fi-fcr-d-down`, `fi-afrr-up`, `fi-afrr-down`, `fi-mfrr-up`, `fi-mfrr-down` | FI | Fingrid open data, hourly reserve capacity prices (EUR/MW/h, CC BY 4.0) | daily | `FINGRID_API_KEY` |
 
 The catalogue is [`src/governance/datasets.js`](../src/governance/datasets.js) — the only place the
 platform learns a dataset exists, in the same way `markets/registry.js` is for markets.
@@ -107,7 +107,7 @@ unpublished/missing classification open; it does not fill prices or revise exist
 
 ### Deliberately not automated
 
-GB story response data uses `etl/sources/neso-response.mjs`, under the NESO Open Data Licence with attribution. These two datasets have `bearsOn: []`: response availability prices never become merchant revenue or a drift proposal. The cold import queries service-level summary records and technology totals, excluding participant and site identities. Fixed Dynamic history then skips before network access; loaded EAC archives are retained, while current EAC results refresh on the existing six-hour job. New results can add the two snapshot/summary pairs to its ordinary data commits; identical payloads create no timestamp-only commit. There is no schedule change. Each query uses stable bounded pagination and the existing failed-fetch retention policy.
+GB story response data uses `etl/sources/neso-response.mjs`, under the NESO Open Data Licence with attribution. These two datasets have `bearsOn: []`: response availability prices never become merchant revenue or a drift proposal. The cold import queries service-level summary records and technology totals, excluding participant and site identities. Fixed Dynamic history then skips before network access; loaded EAC archives are retained, while current EAC results refresh on the daily data job. New results can add the two snapshot/summary pairs to its ordinary data commits; identical payloads create no timestamp-only commit. There is no schedule change. Each query uses stable bounded pagination and the existing failed-fetch retention policy.
 
 The response summary carries a monthly table, with separate product/direction, GBP/MW/h and MW. It uses the connector's `summarize` hook instead of the generic energy-price daily/spread path. No arbitrage metric is produced. The initial data audit and source gates are recorded in [the GB data QA note](immersive-experience-plan/gb-data-qa-2026-11-01.md).
 
@@ -154,8 +154,8 @@ what units it is in, who was allowed to write it, and whether it has changed.
 }
 ```
 
-Two checksums, and the split matters: `contentChecksum` covers the data only, so a six-hourly cron
-that fetches identical data writes nothing instead of committing four near-identical files a day.
+Two checksums, and the split matters: `contentChecksum` covers the data only, so a cron that
+fetches identical data writes nothing instead of committing a near-identical file every run.
 
 ---
 
@@ -266,8 +266,8 @@ is the number to read before raising anything.
 
 ### Backfill is incremental
 
-Several sources publish one file per trading day. Rebuilding a year of history every six hours would
-mean roughly fifteen hundred requests per run against a public regulator, four times a day, forever.
+Several sources publish one file per trading day. Rebuilding a year of history on every run would
+mean roughly fifteen hundred requests per run against a public regulator, every day, forever.
 That gets an IP blocked and deserves to.
 
 So the window fills at most 45 days per run, newest first. A cold start takes about a week of cron

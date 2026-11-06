@@ -165,8 +165,8 @@ finished green.
 |---|---|---|---|
 | 1 | `npm test` — 1,307 tests, 3.3–4.5 min in CI | P0-1 and the PR run; no per-file breakdown exists | Capture TAP and rank files before changing anything |
 | 2 | `story.spec.js` — 6.1 min on desktop alone | P0-1 | Parallelise within the file (`test.describe.configure`), not more workers |
-| 3 | Chromium download — 0.23–0.37 min per job, twice per publish | P0-1 | Cache `~/.cache/ms-playwright` keyed on the Playwright version |
-| 4 | Deploy job setup — 0.66 min for checkout, `npm ci`, global CLI install | P0-1 | Cache the Vercel CLI; `npm ci` is genuinely needed (`vercel build` runs Vite) |
+| 3 | Chromium download — 0.23–0.37 min per job, twice per publish | P0-1 | Done 7 Nov 2026: cached on the Playwright version (§9) |
+| 4 | Deploy job setup — 0.66 min for checkout, `npm ci`, global CLI install | P0-1 | Vercel CLI cached 7 Nov 2026 (§9); `npm ci` is genuinely needed (`vercel build` runs Vite) |
 | 5 | The live smoke run is serialised behind the deploy lock | This document | Fine at ~1 min; revisit if it grows past two |
 | 6 | Data-only changes still pay for the full suite | §4 | The ownership map described there |
 
@@ -187,3 +187,86 @@ flaky suite in the release path is worse than a slow one.
 | `package.json` | `test:smoke` |
 | `docs/publishing.md` | The publish diagram and what runs after a deploy |
 | `docs/ci-performance.md` | This document |
+
+## 9. Cutting the monthly minutes (7 Nov 2026)
+
+**The call: about 3,700 minutes a month comes down to an expected 1,900–2,100, with no published
+number moved and the release chain unchanged.** Every publish still runs the full unit, governance
+and browser suites first, scans the exact `.vercel/output` bytes, and goes through
+`scripts/publish-production.mjs` inside the `vercel-production` lock. What changed is the work that
+could never publish anything: browser checks on pull requests, tests of commits main had already
+moved past, and three of every four data runs.
+
+Evidence marker: **Fair.** The baseline is measured; the savings are projected from it.
+What would change it: the Monday briefing's new "Automation minutes" line, which reports the real
+7- and 30-day figures every week from job durations.
+
+### Where the minutes went
+
+Measured over the last 30 days to 7 Nov 2026 with `scripts/ci/minutes.mjs`: 4,090 minutes, 2,961
+of them in the last week. Each job is rounded up to the minute, as GitHub bills it.
+
+| Work | 30 days | What it bought |
+|---|---:|---|
+| Pull-request test jobs (288) | 1,771 | The full browser suite averaged 4.7 min a run in the last week, every push of every PR |
+| Main test jobs on push (156) | 1,030 | 56 of them (456 min) overlapped a newer merge; the release script refused those anyway |
+| Main deploy jobs (148) | 462 | Each superseded candidate still ran `npm ci` and `vercel build` before being refused |
+| Scheduled data runs (101) | 733 | Four a day, each a full test and publish, for sources that mostly change daily |
+
+### What changed
+
+| Item | Change | Expected saving |
+|---|---|---|
+| A1 | The data refresh runs once a day, 06:17 UTC, instead of every six hours. Connectors fetch from the last point they hold, so a daily run misses nothing. Datasets now declare `refreshHours: 24`, so the freshness badge does not call a day-old snapshot "overdue". | ~500 min/month (about 70% of the data line) |
+| A2 | Pull requests: drafts run nothing; a newer push cancels the PR's run in progress; the browser step is the 10-test smoke suite against the PR's own build. All other gates stay. Label a PR `full-check` to run the full suite on it (`full-check.yml`). | ~700–800 min/month at the current pull-request rate |
+| A3 | A main run whose commit is no longer main's head skips its remaining gates and its deploy. Checked at the start and again before the browser suite. | ~300–450 min/month, depending on how often merges land minutes apart |
+| A4 | The data bot rebases onto the latest main and retries when a merge lands during its run, instead of failing at "Commit published data". | Fewer red runs; no minutes |
+| A5 | Tests that wrote two view changes in the same millisecond, and failed on the writer's duplicate-id guard, use a clock that always moves forward. | Fewer red runs and re-runs |
+| A6 | The Playwright browser is cached on its version; the Vercel CLI is cached on its pinned version. | ~100 min/month |
+| A7 | The weekly briefing issue gains an "Automation minutes" section. | Costs ~3 min a week |
+
+### Why main is not simply cancelled
+
+`concurrency: cancel-in-progress` on main would be the obvious tool, and it is unsafe here. GitHub
+orders a concurrency group by arrival, not by commit. A run created late for an older commit would
+cancel the newer commit's tests, and then the release script would refuse the older candidate as
+superseded, so nothing would publish. The same shape is why the deploy lock is `queue: max` and never
+cancels.
+
+`scripts/ci/superseded.mjs` asks the question the release script asks, earlier: is this candidate
+still the head of main? Main only moves forward, because force-pushing is forbidden, so a commit that
+has been passed can never be published, and skipping its tests changes no outcome. The newer commit's
+own run tests and publishes both. The check covers the `workflow_call` path too: when the data
+workflow calls CI, `github.ref` and `github.event_name` are the caller's (`refs/heads/main`,
+`schedule`), and the candidate is `inputs.ref`. A data commit can only be passed by a human merge,
+because the `live-data` concurrency group runs one data run at a time, and a human merge has a run of
+its own. Pull requests and branch runs are never skipped. If GitHub cannot be read, nothing is
+skipped.
+
+### Why the full-check label is its own workflow
+
+A `labeled` trigger on `ci.yml` would start a run for every label. Filtering in the job leaves a
+skipped "Tests and governance gates" check on the commit, which can sit over a red one and make the
+pull request look green. `full-check.yml` owns the label instead: other labels start a run whose only
+job is skipped, at no cost, under a check name that is not CI's. It reads no secret and cannot
+publish.
+
+### The failures investigated
+
+| Run | Cause | Status |
+|---|---|---|
+| 41983792650 | GB section parity test read the live briefing design answer, which moved with an ECB rate | Fixed on 5 Nov, before this change: the design answer is pinned (`tests/helpers/pin-design.mjs`) |
+| 41756859163, 41244741463 | Two view changes to one path in the same millisecond tripped the changelog's duplicate-id guard | Fixed here: `tests/helpers/steady-clock.mjs`, plus a test that the guard still refuses a real repeat |
+| 41399142010 | The bot's push was rejected because main moved during the run | Fixed here: `scripts/ci/push-main.sh` |
+| 41802717494, 41355538861, 41270054432 | The live release stamp was read once, before the alias switched | Fixed on 4 Nov, before this change: `waitForLiveStamp` polls |
+
+`tests/print-snapshot.test.js` and `tests/transmission-snapshots.test.js` were checked and already
+assert structure against fixtures and manifests, not live values. They needed no change.
+
+### What it does not change
+
+The deploy allowlist, the release lock, the scan of the uploaded bytes, the release script, the
+REQUIRE_MARKERS pairing and the rule that nothing auto-merges. `tests/ci-workflow.test.js` pins the
+new lines that keep them that way: every event the deploy job accepts runs the full browser suite;
+only a pull request's own run is ever cancelled; every gate after the head-of-main check is skipped
+together or not at all; the bot pushes only through `push-main.sh`, which never force-pushes.

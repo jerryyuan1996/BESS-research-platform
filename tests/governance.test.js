@@ -461,6 +461,18 @@ test('every dataset is well formed and points at a real market', () => {
   }
 });
 
+/* The freshness badge reads `refreshHours` as the promised cadence, and marks a
+   snapshot overdue at 1.5x it. The ETL runs once a day (etl.yml, from
+   7 Nov 2026), so a dataset that promised six or twelve hours would read
+   "overdue" for most of every day while nothing was wrong. */
+test('no dataset promises a refresh faster than the daily ETL schedule', async () => {
+  const wf = await readFile(path.join(REPO, '.github', 'workflows', 'etl.yml'), 'utf8');
+  assert.match(wf, /- cron: '17 6 \* \* \*'/, 'the data refresh runs once a day at 06:17 UTC');
+  for (const d of DATASETS){
+    assert.ok(d.refreshHours >= 24, `${d.id}: refreshHours ${d.refreshHours} is faster than the ETL runs`);
+  }
+});
+
 test('every path a dataset claims to bear on is a classified, proposable field', () => {
   for (const d of DATASETS){
     for (const p of d.bearsOn){

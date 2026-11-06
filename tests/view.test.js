@@ -36,6 +36,7 @@ import { NOT_ACCESSIBLE } from '../src/governance/archetypes.js';
 import { BASIS } from '../src/governance/investability.js';
 import { createViewStore, ViewRejected, VIEW_ROOT } from '../scripts/view/writer.mjs';
 import { byId } from '../src/markets/registry.js';
+import { steadyClock } from './helpers/steady-clock.mjs';
 import { ARCHETYPE_IDS, DIMENSION_IDS } from '../src/governance/investability.js';
 import { SOURCE_DECISION_PROFILE } from '../src/governance/triggers.js';
 import { markets as registered } from '../src/markets/registry.js';
@@ -81,7 +82,7 @@ const play = (patch = {}) => ({
 
 async function scratch(run){
   const root = await mkdtemp(path.join(tmpdir(), 'bess-view-'));
-  try { await run(createViewStore(root), root); }
+  try { await run(steadyClock(createViewStore(root)), root); }
   finally { await rm(root, { recursive: true, force: true }); }
 }
 
@@ -561,6 +562,16 @@ test('removing a record is a change like any other, and is refused if it would s
   const removed = await store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: null, reason, author: analyst });
   assert.equal(removed.to, null);
   assert.deepEqual(await store.read('fi'), emptyView('fi'));
+}));
+
+/* The scratch store's steady clock keeps unrelated tests off this guard; this
+   test walks into it on purpose, with one explicit instant used twice. */
+test('two changes to one path in the same instant are refused, not merged', () => scratch(async (store) => {
+  const now = new Date('2026-10-11T09:00:00Z');
+  await store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: trigger(), reason, author: analyst }, now);
+  await rejects(store.apply({ market: 'fi', path: 'triggers.fi-an-event', to: null, reason, author: analyst }, now),
+    /a changelog id repeats/);
+  assert.equal((await store.changelog()).length, 1);
 }));
 
 test('a dry run and a real run cannot differ, and a dry run writes nothing', () => scratch(async (store, root) => {

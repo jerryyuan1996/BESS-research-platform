@@ -57,9 +57,13 @@ name: Live data
 
 on:
   schedule:
-    # Every six hours. The sources publish daily or better; six hours keeps the
-    # site current without hammering a public regulator's server.
-    - cron: '17 */6 * * *'
+    # Once a day, 06:17 UTC (14:17 in Perth). The sources publish daily, and
+    # every connector fetches from the last point it holds, so one run a day
+    # misses nothing. It ran every six hours until 7 Nov 2026; four runs a day
+    # cost four publishes a day for data that mostly changed once. The
+    # freshness badge reads each dataset's refreshHours, which is 24 to match
+    # (src/governance/datasets.js, tests/governance.test.js).
+    - cron: '17 6 * * *'
     # The agent's dry pass, once a month. No job that asks a model runs more
     # often than monthly: the analyst's ruling of 2026-10-12.
     - cron: '43 5 2 * *'
@@ -229,7 +233,7 @@ jobs:
                        -m "Written by the rules engine through the view writer's gate. The rule, its threshold and its change were written in advance by the analyst; the changelog line carries the evidence, and the weekly digest gives the command that undoes it."
           fi
           if [ -z "$DATA_CHANGED" ]; then
-            git push
+            bash scripts/ci/push-main.sh
             echo "committed=true" >> "$GITHUB_OUTPUT"
             echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
             exit 0
@@ -242,9 +246,13 @@ jobs:
           git commit -m "data: refresh ${UPDATED}" \
                      -m "Observed data and derived metrics only. No analyst assumption was modified." \
                      -m "$(node -e "const s=require('./etl/out/summary.json');console.log('Failed: '+(s.failed.map(f=>f.id+' ('+f.status+')').join(', ')||'none'))")"
-          git push
+          # Rebases onto main and retries if a merge landed during the run
+          # (run 41399142010 failed here with "fetch first"). A conflict fails
+          # the job and pushes nothing. See scripts/ci/push-main.sh.
+          bash scripts/ci/push-main.sh
           # Written only after the push succeeded, so the publish job can never
-          # be handed a commit that is not on the remote.
+          # be handed a commit that is not on the remote. After a rebase HEAD is
+          # the rebased commit, which is the one on the remote.
           echo "committed=true" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
@@ -593,7 +601,7 @@ jobs:
           WRITTEN=$(node -e "console.log(require('./etl/out/scout-report.json').pass.written)")
           git commit -m "view: scout pass ${REGION}, ${WRITTEN} records" \
                      -m "Written by the agent through the view writer's gate, to scout cards only. Every record carries a quotation found in a page fetched in this run; the changelog line holds it, and the weekly digest gives the command that undoes it."
-          git push
+          bash scripts/ci/push-main.sh
           echo "committed=true" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
@@ -668,9 +676,12 @@ jobs:
     # page is built with (src/briefing/), no model asked, no key needed.
     if: github.event.schedule == '7 23 * * 0' || inputs.weekly_briefing == true
     runs-on: ubuntu-latest
+    # actions: read is for the minutes line below, and reads run and job
+    # records only. Nothing here can start, cancel or change a run.
     permissions:
       contents: read
       issues: write
+      actions: read
     steps:
       - uses: actions/checkout@v4
 
@@ -683,6 +694,21 @@ jobs:
 
       - name: Render this week's briefing
         run: node scripts/briefing/weekly.mjs > briefing.md
+
+      # Automation minutes for the last 7 and 30 days, summed from job
+      # durations (billable minutes read zero while the repository is public).
+      # A report, never a gate: if GitHub cannot be read, the briefing posts
+      # without the line.
+      - name: Add the automation minutes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if node scripts/ci/minutes.mjs > minutes.md; then
+            echo >> briefing.md
+            cat minutes.md >> briefing.md
+          else
+            echo "::warning::The minutes line could not be read; the briefing posts without it."
+          fi
 
       - name: Post it, one issue a week
         # A second run in the same week edits that week's issue instead of
