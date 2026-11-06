@@ -1,0 +1,49 @@
+.public-scene { margin:24px 0 0; border:1px solid #cdd7cc; border-radius:var(--r-lg); padding:16px; background:#f4f5ec; }
+.public-scene-modes { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:12px; }
+.public-scene button { min-height:44px; font:inherit; font-size:var(--fs-xs); color:inherit; background:#fafbf6; border:1px solid #bdcdbf; border-radius:var(--r-sm); padding:9px 12px; cursor:pointer; }
+.public-scene button[aria-pressed=true] { background:#244f3d; color:#fff; border-color:#244f3d; }
+.public-scene-viewport { overflow:auto; border-radius:var(--r-md); scrollbar-width:thin; }
+.public-power-scene { display:block; width:100%; min-width:640px; height:auto; font-family:inherit; }
+.public-scene-background { fill:#edf1e5; }.public-land { fill:#dce5d3; stroke:#c5d1be; stroke-width:1; }
+.public-power-scene .k-box { stroke-opacity:.4; stroke-width:.65; }
+.public-pad { fill:#c3c9ba; stroke:#a6b1a3; stroke-width:.7; }
+.public-station-base { --t:#a2ad9d;--l:#7c8a79;--r:#65745f; }
+.public-station-shell { --t:#f3f3e8;--l:#d8ddcd;--r:#becbb5; }
+.public-station-roof { --t:#f7f7ec;--l:#cfd7c4;--r:#b6c5aa; }
+.public-rack-frame { --t:#465d4f;--l:#293e32;--r:#354c3d; }
+.public-cell-module { --t:#cddfca;--l:#92ad8d;--r:#6e946b; }
+.public-module-detail { fill:none;stroke:#deebd7;stroke-width:1; }
+.public-dc-bus,.public-dc-line { stroke:#b57c29;fill:none;stroke-width:2.8; }
+.public-safety-panel { --t:#d3aa78;--l:#a57144;--r:#875b35; }
+.public-pcs-cabinet { --t:#f0f0e7;--l:#d1d8d0;--r:#a8b9ae; }
+.public-control-screen { --t:#5e9fa1;--l:#204f5e;--r:#356b72; }
+.public-vent { stroke:#60766c;stroke-width:.85;fill:none; }
+.public-transformer-tank { --t:#8a9d9d;--l:#566e70;--r:#3e5c61; }
+.public-cooling-fin { --t:#a2b2ab;--l:#718c7c;--r:#527061; }
+.public-insulator { --t:#e0dbc8;--l:#b2a98e;--r:#918772; }
+.public-bus-frame { --t:#a9b5ac;--l:#7c8c84;--r:#657a70; }
+.public-hv-wire { stroke:#3e6854;fill:none;stroke-width:1.5; }
+.public-ac-line,.public-hv-line { stroke:#447b91;fill:none;stroke-width:2.6;stroke-linejoin:round; }
+.public-constrained-line { stroke:#b87e32;fill:none;stroke-width:3;stroke-dasharray:5 3; }
+.public-cable-trench { stroke:#9aab95;fill:none;stroke-width:11; }
+.public-boundary { stroke:#b58c57;fill:none;stroke-width:2;stroke-dasharray:7 5; }
+.public-switch { stroke:#a26632;fill:none;stroke-width:2; }
+.public-poc-ring { fill:#eaf2cf;stroke:#305e44;stroke-width:2; }
+.public-scene-title { fill:#214e38;font-size:var(--fs-2xl);font-weight:var(--fw-medium); }
+.public-scene-disclosure { fill:#637463;font-size:var(--fs-xs);letter-spacing:.6px; }
+.public-part-marker circle { fill:#fff7df;stroke:#6f7e52;stroke-width:1.2; }
+.public-part-marker text { fill:#244b32;font-size:var(--fs-sm);font-weight:var(--fw-bold); }
+.public-local-payment { fill:#2c5942;font-size:var(--fs-2xl);font-weight:var(--fw-medium); }
+.public-flow-label { fill:#617160;font-size:var(--fs-md); }
+.public-equipment.is-muted { opacity:.25; }.public-equipment.is-selected { filter:drop-shadow(0 0 4px #c58b2d66); }
+.public-causal-card { fill:#f9fbf4;stroke:#bfcdb8;stroke-width:1; }
+.public-causal-title { fill:#32543d;font-size:var(--fs-lg);font-weight:var(--fw-medium); }
+.public-causal-copy { fill:#47664b;font-size:var(--fs-body); }
+.public-causal-arrow { fill:none;stroke:#6e865a;stroke-width:2; }
+.public-response-trace { fill:none;stroke:#a47b37;stroke-width:2; }
+.public-flow-controls { display:flex;gap:7px; margin:12px 0; }
+.public-parts { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px; }
+.public-parts button { text-align:left; }
+.public-chapter p.public-hotspot-description { font-size:var(--fs-sm);line-height:1.6;min-height:44px;margin:13px 0; }
+.public-chapter p.public-scene-scroll-hint,.public-scene figcaption { font-size:var(--fs-2xs);color:#697b65;line-height:1.5; }
+@media(max-width:720px){.public-scene { padding:10px; }.public-scene button { font-size:var(--fs-2xs); padding:8px 10px; }.public-parts { grid-template-columns:repeat(2,minmax(0,1fr)); }}

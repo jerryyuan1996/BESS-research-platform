@@ -47,3 +47,13 @@ export function storyFor(marketId, search = globalThis.location?.search ?? ''){
   if (entry.released) return entry;
   return new URLSearchParams(search).get('story') === 'preview' ? entry : null;
 }
+
+/* A separate public edition. G-1/G-2 flags above still govern the original,
+   investor-scoped stories; they are never used as a public-content approval. */
+export const PUBLIC_STORY_IDS = Object.freeze(['wa','nem','gb','de','it','ie','ro','pl','jp_tokyo','jp_kyushu','jp_hokkaido','pjm','ercot','caiso','fi']);
+export function publicStoryFor(id){
+  return PUBLIC_STORY_IDS.includes(id) ? {
+    loadOverview: () => import('./public/overview.js'),
+    load: () => import('./public/pack.js'),
+  } : null;
+}
