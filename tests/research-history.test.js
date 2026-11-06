@@ -86,6 +86,7 @@ test('chapter-only inputs are verbatim source fields shared back into the comple
     }else{
       const [{M},{HISTORY_DATA}]=await Promise.all([import(`../src/markets/${owner}/data.js`),import(`../src/markets/${owner}/historyData.js`)]);
       for(const field of c.dataBindings.fields){const parts=field.path.split('.');assert.deepEqual(parts.reduce((n,k)=>n[k],M),parts.reduce((n,k)=>n[k],HISTORY_DATA),owner+'/'+field.path);}
+      for(const [field,digest]of Object.entries(c.sharedCopyHashes||{}))assert.equal(hash(JSON.stringify(M[field])),digest,owner+'/'+field+' full original research copy remains byte-equivalent');
     }
     assert.doesNotMatch(await source(`src/markets/${owner}/historyEntry.js`),/from ['"].*(?:dashboard|sections|\/data|engine|finance)\.js/,'chapter adapters do not import complete datasets or dashboards');
   }

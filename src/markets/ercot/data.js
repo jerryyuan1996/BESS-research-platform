@@ -1,3 +1,4 @@
+import {SNAPSHOT_INTRO,US_ITC_TERM} from '../_shared/researchStatus.js';
 import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    ERCOT — market dataset.
@@ -51,8 +52,7 @@ const M = {
                   '下一里程碑：RTC+B机制下的首个完整结算年度。自2025年12月5日起，辅助服务与电能量在实时市场同时出清，且时长要求同步下调 — ECRS由两小时降至一小时，RRS与调频由一小时降至三十分钟。'],
   footerNote: ['Public and official sources collected 4 August 2026. ERCOT publishes its market design in full and its contract prices not at all: no ERCOT toll price has ever been disclosed across ten announced agreements and twelve known tolled batteries. Two independent sources disagree about CY2025 revenue by nearly two times, and the transacted toll market prices this asset at roughly five times what the realised index delivered. Every contracted figure in this build is derived, not quoted.',
                '公开及官方来源于2026年8月4日采集。ERCOT完整公布其市场机制，却完全不公布合同价格：在十份已公布的协议与十二个已知租赁储能项目中，从未披露过任何ERCOT租赁价格。两个独立来源对2025日历年收入的判断相差近两倍，且实际成交的租赁市场对该资产的定价约为已实现指数的五倍。本版本中所有合同类数值均为推导值，而非报价。'],
-  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. Four specific warnings: this archetype is TWO hours and is not directly comparable with the four-hour archetypes elsewhere on this platform; ERCOT has no capacity mechanism, so the contracted route is a private toll whose price has never been disclosed; the realised revenue index and the transacted toll market disagree about this asset by roughly five times; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page, so returns on this page exclude it.',
-             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。四点具体警示：本页原型为两小时，与本平台其他市场的四小时原型不可直接比较；ERCOT没有容量机制，因此合同化路径为价格从未披露的私下租赁；已实现收入指数与实际成交的租赁市场对该资产的判断相差约五倍；§48E投资税收抵免在本页种子值为零、可在首页投资实验室中调整，因此本页收益率不含该抵免。'],
+  seedWarn: [SNAPSHOT_INTRO[0]+"Four specific warnings: this archetype is TWO hours and is not directly comparable with the four-hour archetypes elsewhere on this platform; ERCOT has no capacity mechanism, so the contracted route is a private toll whose price has never been disclosed; the realised revenue index and the transacted toll market disagree about this asset by roughly five times; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page, so returns on this page exclude it.",SNAPSHOT_INTRO[1]+"四点具体警示：本页原型为两小时，与本平台其他市场的四小时原型不可直接比较；ERCOT没有容量机制，因此合同化路径为价格从未披露的私下租赁；已实现收入指数与实际成交的租赁市场对该资产的判断相差约五倍；§48E投资税收抵免在本页种子值为零、可在首页投资实验室中调整，因此本页收益率不含该抵免。"],
 
   /* ---- official / sourced snapshot -------------------------------------
      Only values that come from a named publication sit here. */
@@ -461,7 +461,7 @@ const M = {
     ['TB2 spread — two-hour top-bottom spread benchmark', 'TB2价差 — 两小时高低价差基准'],
     ['Tolling agreement / offtake agreement', '租赁协议/承购协议'],
     ['Chapter 313 — the lapsed Texas school-district value limitation', '第313章 — 已失效的德州学区估值限制'],
-    ['§48E investment tax credit — 30% for standalone storage', '§48E投资税收抵免 — 独立储能30%'],
+    US_ITC_TERM,
     ['FEOC / Material Assistance Cost Ratio (MACR) — pass or lose the credit', 'FEOC/实质协助成本比率（MACR） — 通过方可保留抵免，否则全额丧失'],
   ],
 

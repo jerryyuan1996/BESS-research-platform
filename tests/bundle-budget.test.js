@@ -781,6 +781,7 @@ test('the shared chunks stay out of the first load', async (t) => {
   }
   assert.ok(shared.size > 0, 'no market imports a shared chunk — the split has collapsed');
   const sharedGzip = gzipOf(shared);
+  t.diagnostic('Complete market-shared graph: '+kB(sharedGzip)+' KiB; unchanged cap '+BUDGET.sharedTotal);
   assert.ok(kB(sharedGzip) <= BUDGET.sharedTotal,
     `market-shared chunks total ${kB(sharedGzip)} kB gzipped across ${shared.size} files ` +
     `(${[...shared].map(c => c.name).join(', ')}), ` +
@@ -818,6 +819,7 @@ test('each split market has its own chunk, within budget', async (t) => {
       'still exports loadDashboard — or something now imports its dashboard\n' +
       'statically, which merges the chunk back into the entry.');
     const owned=marketOwnedChunks(graph,id),bytes=gzipOf(owned);
+    if(id==='caiso')t.diagnostic('CAISO complete owner payload: '+kB(bytes)+' KiB; unchanged cap '+budget);
     assertOwnerIsolation(chunk,id,graph.byName);
     assert.ok(kB(bytes) <= budget,
       `market-${id} and ALL owner data/history are ${kB(bytes)} kB gzipped (${owned.map(c=>c.name).join(', ')}), over its ` +

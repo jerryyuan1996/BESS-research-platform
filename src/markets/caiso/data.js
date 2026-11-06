@@ -1,3 +1,4 @@
+import {SNAPSHOT_INTRO,US_ITC_TERM} from '../_shared/researchStatus.js';
 import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    CAISO — market dataset.
@@ -42,8 +43,7 @@ const M = {
                   '下一里程碑：分时段机制下的2027年容量充裕度合规年度 — 储能合格容量自该年度起因出力回落（foldback）被下调（CPUC D.26-07-008），机组级UCAP将于2028年跟进 — 以及在16.7GW在运、而约500GW排队中储能约占46%的背景下，容量充裕度价格能否维持。'],
   footerNote: ['Public and official sources collected 4 August 2026. CAISO publishes the Resource Adequacy framework in full — Slice of Day, the NQC methodology and the NQC values themselves — and no contract price at all, because RA is negotiated bilaterally. Reported RA has ranged $4.29–14.67/kW-month in unconstrained areas. The published full stack of $14.83/kW-month does not reconcile to the RA benchmark plus observed merchant, and the roughly $3/kW-month residual is recorded rather than allocated.',
                '公开及官方来源于2026年8月4日采集。CAISO完整公布容量充裕度制度框架 — 分时段机制、净合格容量方法及净合格容量数值本身 — 但完全不公布合约价格，因为容量充裕度采取双边协商。非受限区域已报告的容量充裕度价格区间为每kW每月$4.29–14.67。已公布的每kW每月$14.83全口径收入无法与容量充裕度基准加已观测市场化收入相调和，约$3/kW每月的残差予以记录而非分摊。'],
-  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. Four specific warnings: Resource Adequacy is a bilateral contract with no clearing price, so the contracted band is the widest on this platform and a specific project\'s outcome depends on its counterparty; net qualifying capacity is tested on four-hour sustained output and pays nothing beyond it, so duration above four hours earns only spread; the published full-stack figure does not reconcile and the residual is unallocated; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page.',
-             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。四点具体警示：容量充裕度是无出清价格的双边合约，因此其合同化区间为本平台最宽，且特定项目的结果取决于其交易对手；净合格容量按四小时持续出力测定，超出部分不予支付，故四小时以上时长仅能获得价差收入；已公布的全口径收入数据无法调和，残差未作分摊；§48E投资税收抵免在本页种子值为零，可在首页投资实验室中调整。'],
+  seedWarn: [SNAPSHOT_INTRO[0]+"Four specific warnings: Resource Adequacy is a bilateral contract with no clearing price, so the contracted band is the widest on this platform and a specific project's outcome depends on its counterparty; net qualifying capacity is tested on four-hour sustained output and pays nothing beyond it, so duration above four hours earns only spread; the published full-stack figure does not reconcile and the residual is unallocated; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page.",SNAPSHOT_INTRO[1]+"四点具体警示：容量充裕度是无出清价格的双边合约，因此其合同化区间为本平台最宽，且特定项目的结果取决于其交易对手；净合格容量按四小时持续出力测定，超出部分不予支付，故四小时以上时长仅能获得价差收入；已公布的全口径收入数据无法调和，残差未作分摊；§48E投资税收抵免在本页种子值为零，可在首页投资实验室中调整。"],
 
   official: {
     // ---- Resource Adequacy ----
@@ -338,7 +338,7 @@ const M = {
     ['Midday trough — solar-driven negative prices', '午间低谷 — 光伏驱动的负电价'],
     ['CEQA — California Environmental Quality Act review', 'CEQA — 加州环境质量法案审查'],
     ['CPUC — California Public Utilities Commission', 'CPUC — 加州公用事业委员会'],
-    ['§48E investment tax credit — 30% for standalone storage', '§48E投资税收抵免 — 独立储能30%'],
+    US_ITC_TERM,
     ['FEOC / Material Assistance Cost Ratio (MACR)', 'FEOC/实质协助成本比率（MACR）'],
   ],
 

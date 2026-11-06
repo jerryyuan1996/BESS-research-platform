@@ -1104,6 +1104,10 @@
             "hash": "ef67463a1fc6f8b198ec6bce60b37a2636b3c8c3cd76e4badc4e572d28060cd5"
           }
         ]
+      },
+      "sharedCopyHashes": {
+        "seedWarn": "bc7f62255cf9cd6017973e089c1b741a6a546d31e939035a64532aa5d0f7c441",
+        "glossary": "0cf835eec796e2d5a113613273a70a9bcf556811a07e67d036dc7a447f69d6ac"
       }
     },
     "ercot": {
@@ -1265,6 +1269,10 @@
             "hash": "ef67463a1fc6f8b198ec6bce60b37a2636b3c8c3cd76e4badc4e572d28060cd5"
           }
         ]
+      },
+      "sharedCopyHashes": {
+        "seedWarn": "41075a586191308c76c3df0f059fac4796ec3577f75cc969397d8d23535cca78",
+        "glossary": "0f6df3bea2fe8572ea177fc50bdbb2418933ba49def9996c5814392488404167"
       }
     },
     "caiso": {
@@ -1354,6 +1362,10 @@
             "hash": "25fc0e7096fc653718202dc30b0c580b8ab87eac11a700cba03a7c021bc35b0c"
           }
         ]
+      },
+      "sharedCopyHashes": {
+        "seedWarn": "bc89370742a9d436306ea7ed03f06f27ba2a0cfb5508814fafbf889af138fe29",
+        "glossary": "c6839240eee548abbcd9111eeb6e904d00ebaed55ad63e757489a8ee2dbb4205"
       }
     },
     "fi": {
