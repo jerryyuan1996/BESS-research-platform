@@ -10,7 +10,7 @@
    ?story=preview) are kept as they are. The address carries no part of the
    investment case: the story reads the case from the market page.
    --------------------------------------------------------------------------- */
-import { STORY_PARAMS } from '../../app/router.js';
+export { storyPlaceSearch as placeSearch, recordStoryPlace as recordPlace } from '../../app/router.js';
 
 /** Every shot in reading order, the opening first. */
 export const shotsOf = (story) => [story.opening, ...story.chapters.flatMap(c => c.shots)];
@@ -32,38 +32,10 @@ export function resolvePlace(story, place){
   return chapter?.shots[0]?.id || story.opening.id;
 }
 
-/** The query string with the story's place set, or removed when `place` is null. */
-export function placeSearch(search, place){
-  const params = new URLSearchParams(search);
-  for (const k of STORY_PARAMS) params.delete(k);
-  if (place){
-    params.set('view', 'story');
-    params.set('chapter', place.chapter);
-    params.set('shot', place.shot);
-  }
-  const text = params.toString();
-  return text ? `?${text}` : '';
-}
-
 /** The place of a shot id in a story. */
 export function placeOf(story, id){
   const shot = shotsOf(story).find(s => s.id === id);
   return shot ? { chapter: chapterOf(shot), shot: shot.id } : null;
-}
-
-/**
- * Writes the place into the address: 'push' adds a history entry, 'replace'
- * updates the current one. Nothing is written when the address already says
- * it. The router is not told, so the page behind is not re-rendered.
- */
-export function recordPlace(place, how = 'push'){
-  if (typeof window === 'undefined' || !window.history) return;
-  const { pathname, search, hash } = window.location;
-  const next = placeSearch(search, place);
-  if (next === search || (next === '' && search === '')) return;
-  const url = `${pathname}${next}${hash}`;
-  if (how === 'replace') window.history.replaceState(window.history.state, '', url);
-  else window.history.pushState({}, '', url);
 }
 
 /** fn(route, { samePage }) when Back or Forward moves; returns a stop function. */
