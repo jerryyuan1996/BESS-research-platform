@@ -221,6 +221,14 @@ authorization — a different project, not an extension of this one.
 4. Confirm the disclaimer still renders. Every page carries it, and it is not decoration — these are
    illustrative figures presented to investors.
 
+5. Before the repository's visibility changes or anyone is added to it: a history rewrite is not
+   enough. GitHub keeps each pull request's commits as they were when it was opened, and content
+   redaction (`git filter-repo --replace-text`) rewrites file contents but not commit messages.
+   Scan old commit messages against the marker set, and have GitHub Support purge old
+   pull-request references and unreachable objects first. Commit messages, pull-request text and
+   branch names are not covered by the staged-file guard, so check them with `scanText` from
+   `scripts/lib/markers.mjs` before pushing.
+
 ## Source register
 
 Each market keeps its own source register in `markets/<id>/sources.js`, next to the market rather
