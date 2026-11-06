@@ -10,7 +10,7 @@ operational half.
 ## Shape
 
 ```
-   GitHub Actions cron (daily, 06:17 UTC)
+   GitHub Actions cron (daily at 06:17 UTC; same cycle as policy discovery)
         │
         ├─ etl/run.mjs
         │    ├─ read the snapshot currently on disk
@@ -30,6 +30,16 @@ The site is still completely static. There is no backend, no database, no runtim
 server-side logic. Data changes are **git commits**, which is what makes the history an audit trail:
 `git log public/data` shows when every number moved and what the run said about it.
 
+The owner approved once-daily collection on 2026-11-05, replacing the ordinary six-hour cron.
+The same workflow runs read-only policy discovery before the market publisher; policy failure
+does not prevent a valid market refresh. Source review and policy publication remain disabled
+in the initial shadow configuration. No policy model is invoked. One combined data/rule commit
+explicitly calls the existing reusable CI on its exact SHA, since a bot push starts no workflow.
+An unchanged cycle does not commit or deploy. Manual `dry_run` fetches/reports without applying
+rules, committing, opening a drift proposal or publishing. Monthly agents and the weekly briefing
+are unchanged. Source data may lag by roughly 24 hours plus source latency, scheduling drift and
+failures; the snapshots retain their actual fetched timestamps rather than claiming real-time data.
+
 ---
 
 ## Sources
@@ -39,12 +49,12 @@ server-side logic. Data changes are **git commits**, which is what makes the his
 | `fx-ecb` | global | ECB euro reference rates | daily | — |
 | `gb-day-ahead` | GB | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
 | `gb-dynamic-response` | GB | NESO Dynamic results, fixed 2020–2023 vintage; availability prices and cleared/technology MW | fixed after initial import | — |
-| `gb-eac-response` | GB | NESO EAC response results; FY2023–FY2025 archives plus current results | daily run; source daily | — |
-| `gb-imbalance-buy`, `gb-imbalance-sell` | GB | Elexon DISEBSP indicative system prices, GBP/MWh; independent of day-ahead | daily | — |
-| `gb-net-imbalance-volume` | GB | Elexon DISEBSP signed net system imbalance, MWh per half-hour | daily | — |
-| `ie-day-ahead` | IE | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
-| `ro-day-ahead` | RO | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
-| `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | daily | — |
+| `gb-eac-response` | GB | NESO EAC response results; FY2023–FY2025 archives plus current results | read on the daily combined run; source daily | — |
+| `gb-imbalance-buy`, `gb-imbalance-sell` | GB | Elexon DISEBSP indicative system prices, GBP/MWh; independent of day-ahead | read on the daily combined run | — |
+| `gb-net-imbalance-volume` | GB | Elexon DISEBSP signed net system imbalance, MWh per half-hour | read on the daily combined run | — |
+| `ie-day-ahead` | IE | ENTSO-E Transparency | read on the daily combined run | `ENTSOE_TOKEN` |
+| `ro-day-ahead` | RO | ENTSO-E Transparency | read on the daily combined run | `ENTSOE_TOKEN` |
+| `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | read on the daily combined run | — |
 | `wa-wem-prices` | WA | AEMO WEM reference trading price | daily | — |
 | `jp-tokyo-jepx` | JP-Tokyo | JEPX spot | daily | — |
 | `jp-kyushu-jepx` | JP-Kyushu | JEPX spot | daily | — |
@@ -111,7 +121,7 @@ The ca-on-da-zonal feed reads the public IESO day-ahead Ontario zonal report on 
 
 ### Deliberately not automated
 
-GB story response data uses `etl/sources/neso-response.mjs`, under the NESO Open Data Licence with attribution. These two datasets have `bearsOn: []`: response availability prices never become merchant revenue or a drift proposal. The cold import queries service-level summary records and technology totals, excluding participant and site identities. Fixed Dynamic history then skips before network access; loaded EAC archives are retained, while current EAC results refresh on the daily data job. New results can add the two snapshot/summary pairs to its ordinary data commits; identical payloads create no timestamp-only commit. There is no schedule change. Each query uses stable bounded pagination and the existing failed-fetch retention policy.
+GB story response data uses `etl/sources/neso-response.mjs`, under the NESO Open Data Licence with attribution. These two datasets have `bearsOn: []`: response availability prices never become merchant revenue or a drift proposal. The cold import queries service-level summary records and technology totals, excluding participant and site identities. Fixed Dynamic history then skips before network access; loaded EAC archives are retained, while current EAC results refresh on the owner-approved daily combined job. New results can add the two snapshot/summary pairs to its ordinary data commit; identical payloads create no timestamp-only commit. Each query uses stable bounded pagination and the existing failed-fetch retention policy.
 
 The response summary carries a monthly table, with separate product/direction, GBP/MW/h and MW. It uses the connector's `summarize` hook instead of the generic energy-price daily/spread path. No arbitrage metric is produced. The initial data audit and source gates are recorded in [the GB data QA note](immersive-experience-plan/gb-data-qa-2026-11-01.md).
 

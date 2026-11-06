@@ -64,6 +64,8 @@ export default defineConfig({
            label wanted. Anything not matching that shape keeps the default. */
         chunkFileNames(chunk){
           const id = chunk.facadeModuleId || '';
+          if (/[\\/]policy[\\/]page\.js$/.test(id)) return 'assets/policy-page-[hash].js';
+          if (/[\\/]policy[\\/]map\.js$/.test(id)) return 'assets/policy-map-[hash].js';
           if(/^research-(?:data|history|owner)-/.test(chunk.name))return 'assets/[name]-[hash].js';
           const publicReading = /[\\/]experience[\\/]story[\\/]public[\\/](content[\\/])?([^\\/]+)\.js$/.exec(id);
           if(publicReading)return `assets/public-${publicReading[1]?'content-':''}${publicReading[2]}-[hash].js`;
