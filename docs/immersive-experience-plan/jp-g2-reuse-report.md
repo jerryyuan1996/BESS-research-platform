@@ -148,3 +148,9 @@ This appends the summary that was interrupted by desktop transport failure. The 
 | Isolated acquisition repeats | 4/4; not proof of the broad failure's cause | 22.246 |
 
 The separately recorded Japan browser integration passed 32/32. These are historical results, not validation of the resumed source. The prior ledger and browser evidence are preserved beside the checkout; the resumption ledger retains their reference.
+
+### Deferred-renderer regression checkpoint
+
+A direct renderer test reproduced an undefined `records` reference introduced while moving the disclosure renderer. The renderer now reads its exported provenance record set directly. The added regression exercises actual record rendering, regional filtering and interpretation labels in both languages. The complete Japan data/content/scenes/wiring suite passes **38/38, zero skips** after this correction.
+
+The preceding exact-head run at `eb0763185e584b09a14e1f2bfbe8393cd2a36e5f` recorded unit **1,435/1,436**, with only the Japan cap failing; current model **84/84**; artifact confidentiality **7/7, zero skips**; and all **17** snapshots verified. Its measured graph was **46,039 = 40,513 JS + 5,526 CSS**, still **5,079** above the unchanged cap. Its broad browser run was deliberately stopped to correct the identified renderer defect and is **not** a completed pass or failure. The interrupted ledger is preserved as `japan-g2-validation-eb07631-interrupted.json`. New exact-head checks after the correction replace neither that record nor the unresolved historical acquisition-popover diagnosis.

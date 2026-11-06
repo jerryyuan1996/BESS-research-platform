@@ -182,3 +182,30 @@ test('per-value provenance stays behind a disclosure import and Japan styles res
   const css=await readFile(new URL('../src/markets/jp/story/jp-story.css',import.meta.url),'utf8');
   assert.match(css,/@media \(prefers-reduced-motion:reduce\)/);assert.match(css,/\.jp-plan[^}]*stroke-dasharray/);
 });
+
+
+test('deferred source renderer shows the selected records and interpretations in both languages',async()=>{
+  const {renderEvidence}=await import('../src/markets/jp/data/storyEvidenceProvenance.js');
+  const {h,L,replace}=await import('../src/markets/jp/story/ui.js');
+  const {datePair}=await import('../src/markets/jp/storyBindings.js');
+  const {JP_COPY}=await import('../src/markets/jp/story.js');
+  try{
+    for(const lang of ['en','zh']){
+      app.lang=lang;
+      for(const row of rows){
+        const story=composeStory(row.id),region=row.id.slice(3);
+        for(const id of ['jp-'+region+'-07','jp-02','jp-08']){
+          const host=new El('div'),article=new El('article');article.setAttribute('data-shot',id);
+          renderEvidence({host,details:{isConnected:true},article,story,region,h,L,replace,datePair,interpretation:JP_COPY.Interpretation});
+          const surface=textOf(host),paths=tagged(host,'code').map(textOf);
+          assert.doesNotMatch(surface,/undefined|NaN|\[object/);
+          assert.ok(paths.filter(p=>p.startsWith('regional.')).every(p=>p.startsWith('regional.'+region+'.')));
+          if(id.endsWith('-07')){
+            assert.ok(paths.length,id+' has source records');
+            assert.ok(surface.includes(L(datePair('2026-11-05'))),id+' check date');
+          }else assert.ok(surface.includes(L(JP_COPY.Interpretation)),id+' interpretation');
+        }
+      }
+    }
+  }finally{app.lang='en';}
+});

@@ -931,7 +931,7 @@ export function renderEvidence({host,details,article,story,region,h,L,replace,da
             const id=article.getAttribute('data-shot');
             const shot=[story.opening,...story.chapters.flatMap(c=>c.shots)].find(s=>s.id===id);
             const sourceIds=new Set((shot.claims||[]).flatMap(c=>story.claims[c].sources));
-            const shown=Object.entries(records).filter(([path,p])=>includes(path,region,sourceIds,p));
+            const shown=Object.entries(JP_STORY_PROVENANCE).filter(([path,p])=>includes(path,region,sourceIds,p));
             replace(host,...shown.map(([path,p])=>h('section',{class:'jp-record'},
               h('code',{},path),h('p',{},h('a',{href:p.url,target:'_blank',rel:'noopener noreferrer'},p.sourceRef),' · ',p.locator),
               h('p',{},L(EVIDENCE_UI.checked),' ',L(datePair(p.checkedOn)),' · ',L(EVIDENCE_UI.units),' ',L(EVIDENCE_UI.unitNames[p.unit]||[p.unit,p.unit]),' · ',L(EVIDENCE_UI.statementTypes[p.statementType])))),
