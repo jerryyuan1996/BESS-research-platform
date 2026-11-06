@@ -46,13 +46,17 @@ const DAYS = 24 * HOURS;
  *               a reader, never evidence about an approved assumption, and the
  *               empty array is what stops the drift detector treating it as one.
  *
- * @typedef {'timeseries'|'feed'} DatasetKind
+ *   metric      non-price numeric observations with a declared unit, interval
+ *               and bounds. Uses strict metric checks, never price medians.
+ *
+ * @typedef {'timeseries'|'feed'|'metric'} DatasetKind
  */
 
 /**
  * @typedef {object} Dataset
  * @property {string}   id             stable key; also the snapshot filename
  * @property {DatasetKind} kind        payload shape; selects the validator
+ * @property {object}   [metric]       non-price unit, interval and numeric bounds
  * @property {string?}  marketId       registry market id, or null for global
  * @property {string?}  sourceId       governed source-registry id when registered
  * @property {string[]} title          [en, zh]
@@ -69,7 +73,7 @@ const DAYS = 24 * HOURS;
  */
 
 /** Every value `Dataset.kind` may take. */
-export const DATASET_KINDS = ['timeseries', 'feed'];
+export const DATASET_KINDS = ['timeseries', 'feed', 'metric'];
 
 /** @type {Dataset[]} */
 /* Fingrid open data: CC BY 4.0, per each dataset's own metadata (2026-10-30). */
@@ -108,17 +112,29 @@ export const DATASETS = [
   },
 
   // ---- Great Britain -------------------------------------------------------
-  /* Served by ENTSO-E rather than Elexon. Elexon BMRS is the richer GB source —
-     it carries imbalance and Balancing Mechanism data that ENTSO-E does not, and
-     those are a large part of a GB battery's revenue. It is not used here
-     because its gateway returned 403 to every request from the development
-     environment, and a connector that cannot be verified against the live
-     service is a connector that will fail its first cron run unattended.
-
-     ENTSO-E carries GB day-ahead, is already wired for three other markets, and
-     is proven to respond. Adding Elexon later is additive: a second dataset for
-     the same market, not a replacement. See docs/live-data.md. */
+  // ENTSO-E retains the day-ahead identity. Elexon cash-out/NIV below is
+  // independent balancing evidence, verified anonymously on 2026-11-06.
   entsoe("gb", ["GB day-ahead wholesale prices","英国日前批发电价"], {"sourceId":"gb-entsoe-transparency"}),
+
+  // DISEBSP is indicative cash-out data. It never substitutes for day-ahead
+  // prices and bears on no approved financial input or automatic view rule.
+  ...[
+    ['gb-imbalance-buy', 'GB indicative system buy price', '英国指示性系统买入价'],
+    ['gb-imbalance-sell', 'GB indicative system sell price', '英国指示性系统卖出价'],
+    ['gb-net-imbalance-volume', 'GB net system imbalance volume', '英国系统净不平衡电量'],
+  ].map(([id, en, zh]) => ({
+    id, kind: id === 'gb-net-imbalance-volume' ? 'metric' : 'timeseries',
+    ...(id === 'gb-net-imbalance-volume' ? { metric: {
+      quantity: 'energy', unit: 'MWh', intervalMinutes: 30, resolution: 'PT30M', min: -100000, max: 100000,
+    } } : {}),
+    marketId: 'gb', connector: 'elexon-system-prices', title: [en, zh],
+    source: { name: 'Elexon Insights, DISEBSP', url: 'https://bmrs.elexon.co.uk/system-prices',
+      licence: 'Elexon BMRS Open Data Licence',
+      licenceUrl: 'https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/',
+      attribution: 'Contains BMRS data © Elexon Limited copyright and database right 2026.' },
+    refreshHours: 6 * HOURS, staleAfterHours: 3 * DAYS,
+    bearsOn: [], republishable: true, requiresKey: false, official: true,
+  })),
 
   // ---- Ireland · Romania · Poland — one connector, one token ---------------
   entsoe("ie", ["SEM day-ahead prices","爱尔兰单一电力市场日前电价"]),

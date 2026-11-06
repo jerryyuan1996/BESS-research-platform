@@ -64,6 +64,7 @@ import * as aemoWem from './sources/aemo-wem.mjs';
 import * as news from './sources/news.mjs';
 import * as fingrid from './sources/fingrid.mjs';
 import * as nesoResponse from './sources/neso-response.mjs';
+import * as elexonSystemPrices from './sources/elexon-system-prices.mjs';
 
 const CONNECTORS = {
   ecb,
@@ -73,6 +74,7 @@ const CONNECTORS = {
   'aemo-wem': aemoWem,
   fingrid,
   'neso-response': nesoResponse,
+  'elexon-system-prices': elexonSystemPrices,
   /* News used to run from its own entrypoint, outside this orchestrator and
      outside the envelope. That is how it ended up unverifiable. It is an
      ordinary connector now — `npm run etl` covers it, and there is no second

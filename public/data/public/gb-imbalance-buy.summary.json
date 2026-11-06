@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "gb-imbalance-buy",
+  "marketId": "gb",
+  "title": [
+    "GB indicative system buy price",
+    "英国指示性系统买入价"
+  ],
+  "authority": "observed",
+  "source": {
+    "name": "Elexon Insights, DISEBSP",
+    "url": "https://bmrs.elexon.co.uk/system-prices",
+    "licence": "Elexon BMRS Open Data Licence",
+    "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
+    "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
+  },
+  "fetchedAt": "2026-11-06T11:01:39.296Z",
+  "coverage": {
+    "from": "2026-10-31T00:00:00.000Z",
+    "to": "2026-11-05T23:30:00.000Z",
+    "resolution": "PT30M",
+    "points": 288
+  },
+  "units": {
+    "price": "GBP/MWh"
+  },
+  "derived": null,
+  "notes": [
+    "Elexon DISEBSP indicative system prices/NIV; D+1 revisions remain possible. Not final settlement data.",
+    "Europe/London settlement days have 46, 48 or 50 half-hours; timestamps are UTC interval starts.",
+    "systemBuyPrice, GBP/MWh. Cash-out price, not day-ahead price or achieved battery revenue.",
+    "Rolling 365-day window, at most two revision days plus four backfill days per run. Partial/failed days retain prior points; coverage is not a claim of a complete year."
+  ],
+  "refreshHours": 6,
+  "staleAfterHours": 72,
+  "summarySchemaVersion": 1,
+  "arbitrage": null,
+  "metric": {
+    "schemaVersion": 1,
+    "field": "systemBuyPrice",
+    "quantity": "price",
+    "unit": "GBP/MWh",
+    "intervalMinutes": 30,
+    "settlementStatus": "indicative"
+  },
+  "dailyTimezone": "Europe/London",
+  "daily": [
+    {
+      "d": "2026-10-31",
+      "n": 48,
+      "expected": 48,
+      "mean": 240.0344,
+      "min": 175,
+      "max": 326
+    },
+    {
+      "d": "2026-11-01",
+      "n": 48,
+      "expected": 48,
+      "mean": 221.0949,
+      "min": 165.23,
+      "max": 349.5131022505161
+    },
+    {
+      "d": "2026-11-02",
+      "n": 48,
+      "expected": 48,
+      "mean": 223.2697,
+      "min": 163,
+      "max": 313
+    },
+    {
+      "d": "2026-11-03",
+      "n": 48,
+      "expected": 48,
+      "mean": 199.1665,
+      "min": 156,
+      "max": 348.7
+    },
+    {
+      "d": "2026-11-04",
+      "n": 48,
+      "expected": 48,
+      "mean": 213.0351,
+      "min": 151.1,
+      "max": 290
+    },
+    {
+      "d": "2026-11-05",
+      "n": 48,
+      "expected": 48,
+      "mean": 203.795,
+      "min": 124.46999999999998,
+      "max": 337.99
+    }
+  ],
+  "sourceSnapshot": {
+    "file": "gb-imbalance-buy.json",
+    "contentChecksum": "sha256:1220d00264257f431d2f92e5a0dbf4f787d7d359a73cd815b5e49dc5fc5d5856",
+    "points": 288
+  },
+  "contentChecksum": "sha256:7ea2e42515aedcf56ceaadbbe87350c14bb23f22e2cc541086b34f31d228a689",
+  "summaryChecksum": "sha256:b211c37dcf5fc10227c193f5faba87b7220df9b755ed6c8c4a4acc41b1a344a0"
+}
