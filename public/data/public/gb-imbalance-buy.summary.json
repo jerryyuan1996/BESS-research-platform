@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-06T11:01:39.296Z",
+  "fetchedAt": "2026-11-06T14:11:03.819Z",
   "coverage": {
-    "from": "2026-10-31T00:00:00.000Z",
+    "from": "2026-10-27T00:00:00.000Z",
     "to": "2026-11-05T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 288
+    "points": 480
   },
   "units": {
     "price": "GBP/MWh"
@@ -45,6 +45,38 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-10-27",
+      "n": 48,
+      "expected": 48,
+      "mean": 118.3884,
+      "min": -15.60999999999999,
+      "max": 280.13
+    },
+    {
+      "d": "2026-10-28",
+      "n": 48,
+      "expected": 48,
+      "mean": 202.3473,
+      "min": 48.36999999999999,
+      "max": 261.8
+    },
+    {
+      "d": "2026-10-29",
+      "n": 48,
+      "expected": 48,
+      "mean": 221.2283,
+      "min": 137.42,
+      "max": 310
+    },
+    {
+      "d": "2026-10-30",
+      "n": 48,
+      "expected": 48,
+      "mean": 204.5491,
+      "min": 127.78608894923974,
+      "max": 252
+    },
     {
       "d": "2026-10-31",
       "n": 48,
@@ -96,9 +128,9 @@
   ],
   "sourceSnapshot": {
     "file": "gb-imbalance-buy.json",
-    "contentChecksum": "sha256:1220d00264257f431d2f92e5a0dbf4f787d7d359a73cd815b5e49dc5fc5d5856",
-    "points": 288
+    "contentChecksum": "sha256:67cfbcc83f9fededcf5c1060f18a7c9e42e1b7b7ae2661c962dba668901722f7",
+    "points": 480
   },
-  "contentChecksum": "sha256:7ea2e42515aedcf56ceaadbbe87350c14bb23f22e2cc541086b34f31d228a689",
-  "summaryChecksum": "sha256:b211c37dcf5fc10227c193f5faba87b7220df9b755ed6c8c4a4acc41b1a344a0"
+  "contentChecksum": "sha256:faecdc2a4eff13f75db7c9126e5986fbaa59c5173d0ba73ad8aa5159d1935045",
+  "summaryChecksum": "sha256:62e2feabb737b887a05f3db19b46e8f9534b39e7e08e421a373eee15eed84d45"
 }
