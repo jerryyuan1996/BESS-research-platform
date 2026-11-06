@@ -11,15 +11,14 @@ async function open(page, url = PREVIEW) {
   return { trigger, dialog };
 }
 
-test('NEM is unreleased: the ordinary market page keeps the research dialog and fetches no story bytes', async ({ page }) => {
+test('NEM opens publicly after G-2 and fetches no story bytes before the research button is pressed', async ({ page }) => {
   const loaded = []; page.on('request', r => { if (/story-nem-|storyEvidenceProvenance-/.test(r.url())) loaded.push(r.url()); });
   await page.goto('/'); await page.goto(MARKET);
   await expect(page.locator('.ix-full-research')).toBeVisible();
   expect(loaded).toEqual([]);
   await page.locator('.ix-full-research').click();
-  await expect(page.getByRole('dialog')).toBeVisible();
-  await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
-  expect(loaded).toEqual([]);
+  await expect(page.locator('.ix-story-dialog')).toBeVisible();
+  expect(loaded.some(u => /story-nem-/.test(u))).toBe(true);
 });
 
 test('NEM preview reads thirteen bilingual shots, one marker each, with the observed AEMO layers and no console errors', async ({ page }) => {

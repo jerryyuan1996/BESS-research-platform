@@ -305,7 +305,7 @@ const BUDGET = {
     'story-ro': 40,
     'story-caiso': 40,
     /* The NEM story: shell, kit, fixed-vintage records, the region map, thirteen
-       bilingual shots and both charts. Registered unreleased (?story=preview).
+       bilingual shots and both charts. Released at G-2 on 6 November 2026.
        RAISED FROM 40 TO 41 on 5 November 2026, when the analyst cleared AEMO's
        observed price layers at G-2: the additional JavaScript graph measured
        40.59 KiB gzip (45.57 with lazy styles). Analyst rule: over a cap, raise it. */

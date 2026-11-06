@@ -29,9 +29,8 @@ export const STORIES = {
   /* Poland: G-2 signed off 3 November 2026, with the quantitative auction
      rendering accepted in the same review. */
   pl: { released: true, load: () => import('../../markets/pl/storyPack.js') },
-  /* NEM: built to G-2, not released; opens only behind ?story=preview until
-     the analyst signs off G-2 and authorises the release PR. */
-  nem: { released: false, load: () => import('../../markets/nem/storyPack.js') },
+  /* NEM: G-2 signed off 6 November 2026, with merge and publication authorised. */
+  nem: { released: true, load: () => import('../../markets/nem/storyPack.js') },
 };
 
 /** The story entry for a market, or null when it has none or it is unreleased. */
