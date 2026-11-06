@@ -308,6 +308,10 @@ from generating proposals.
 
 ---
 
+## Policy status and data publication
+
+Optional Policy research may be skipped, or discovery may fail, while market refresh validates and commits data. The data-to-CI handoff explicitly checks that the workflow is not cancelled, refresh succeeded, a real update was committed, and the branch is main. This avoids GitHub's implicit status check suppressing the handoff because a Policy ancestor was skipped. Failed/cancelled refreshes and unchanged content still cannot publish. The same reusable CI checks the exact pushed SHA, including the full browser suite and scanned-artifact publisher; Policy activation, permissions and cadence are unchanged.
+
 ## Adding a dataset
 
 1. Write `etl/sources/<connector>.mjs` exporting

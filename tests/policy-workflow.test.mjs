@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 import { POLICY_SOURCES } from '../policy/source-inventory.mjs';
 const workflow=readFileSync(new URL('../.github/workflows/etl.yml',import.meta.url),'utf8');
 const job=id=>workflow.split(`\n  ${id}:\n`)[1]?.split(/\n  [a-z][a-z-]*:\n/)[0]||'';
@@ -37,6 +38,37 @@ test('one normal refresh commit/push and one exact-SHA gated publish remain',()=
   assert.match(refresh,/npm run etl:verify/);assert.match(refresh,/npm run guard:staged/);assert.match(refresh,/GUARD_MARKER_SET:/);assert.match(refresh,/GUARD_FINGERPRINT_KEY:/);
   const publish=executable(job('publish'));assert.match(publish,/committed == 'true'/);assert.match(publish,/uses: \.\/\.github\/workflows\/ci.yml/);assert.match(publish,/ref: \$\{\{ needs.refresh.outputs.sha \}\}/);
   assert.doesNotMatch(refresh,/vercel deploy|gh pr merge/);
+});
+
+test('validated data reaches CI despite optional policy skips while failed, cancelled and no-change runs stay closed',()=>{
+  const line=job('publish').match(/^    if:\s*(.+)$/m)?.[1];
+  assert.ok(line,'the data publisher has an eligibility condition');
+  const expression=line.replace(/^\$\{\{\s*|\s*\}\}$/g,'');
+  // GitHub adds success() across ancestors unless a status function is explicit.
+  // Evaluate the actual workflow predicate, including that documented default.
+  const explicitStatus=/\b(?:always|cancelled|failure|success)\s*\(/.test(expression);
+  const cases=[
+    {name:'model disabled',policy:'skipped',expected:true},
+    {name:'discovery failed but market refresh validated',discovery:'failure',policy:'skipped',expected:true},
+    {name:'all predecessors succeeded',expected:true},
+    {name:'refresh failed after producing an output',refresh:'failure',expected:false},
+    {name:'refresh skipped',refresh:'skipped',expected:false},
+    {name:'refresh cancelled',refresh:'cancelled',cancelled:true,expected:false},
+    {name:'workflow cancelled after refresh',cancelled:true,expected:false},
+    {name:'no changed content',committed:'false',expected:false},
+    {name:'missing commit output',committed:'',expected:false},
+    {name:'another branch',ref:'refs/heads/research',expected:false},
+  ];
+  for(const entry of cases){
+    const c={discovery:'success',policy:'success',refresh:'success',cancelled:false,committed:'true',ref:'refs/heads/main',...entry};
+    const states=[c.discovery,c.policy,c.refresh];
+    const success=()=>states.every(s=>s==='success');
+    const result=runInNewContext(expression,{
+      needs:{refresh:{result:c.refresh,outputs:{committed:c.committed}}},github:{ref:c.ref},
+      cancelled:()=>c.cancelled,always:()=>true,success,failure:()=>states.includes('failure'),
+    },{timeout:100});
+    assert.equal(Boolean(result)&&(explicitStatus||success()),c.expected,c.name);
+  }
 });
 test('manual dry run suppresses rules, commits and drift proposal without adding a cron',()=>{
   assert.match(workflow,/dry_run:[\s\S]*?type: boolean/);assert.match(job('refresh'),/ARGS\+=\(--dry-run\)/);

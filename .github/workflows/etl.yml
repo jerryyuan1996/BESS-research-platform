@@ -406,7 +406,9 @@ jobs:
     # No data commit, no deploy — a run that changed nothing must not republish
     # what is already live. The ref test repeats the one on ci.yml's deploy job
     # so a run dispatched from another branch does not start the suite at all.
-    if: needs.refresh.outputs.committed == 'true' && github.ref == 'refs/heads/main'
+    # Optional Policy ancestors may be skipped or fail while refresh succeeds.
+    # Override implicit success() without allowing failed/cancelled refreshes.
+    if: ${{ !cancelled() && needs.refresh.result == 'success' && needs.refresh.outputs.committed == 'true' && github.ref == 'refs/heads/main' }}
     # This workflow holds write permissions for the commit above and the
     # proposal below. Publishing needs neither.
     permissions:
