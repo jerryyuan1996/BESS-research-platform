@@ -105,6 +105,10 @@ WEM interval gaps can be inspected without network access or writes using
 `node scripts/audit-wem-coverage.mjs`. This audits only the first-to-last observed span and leaves
 unpublished/missing classification open; it does not fill prices or revise existing snapshots.
 
+### Ontario day-ahead zonal archive
+
+The ca-on-da-zonal feed reads the public IESO day-ahead Ontario zonal report on the existing daily cycle. It retains acquired report versions separately from the unchanged 365-day view, with a bounded earliest-first backlog, complete fixed-EST days and explicit pending coverage. The IESO reproduction statement accompanies both files and the catalogue row. This contextual feed has no financial-input authority and does not replace HOEP, OEMP or nodal prices. See the [source contract](data-sources/ieso-ontario-zonal.md).
+
 ### Deliberately not automated
 
 GB story response data uses `etl/sources/neso-response.mjs`, under the NESO Open Data Licence with attribution. These two datasets have `bearsOn: []`: response availability prices never become merchant revenue or a drift proposal. The cold import queries service-level summary records and technology totals, excluding participant and site identities. Fixed Dynamic history then skips before network access; loaded EAC archives are retained, while current EAC results refresh on the daily data job. New results can add the two snapshot/summary pairs to its ordinary data commits; identical payloads create no timestamp-only commit. There is no schedule change. Each query uses stable bounded pagination and the existing failed-fetch retention policy.

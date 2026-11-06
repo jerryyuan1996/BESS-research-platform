@@ -116,6 +116,10 @@ function renderFeeds(main){
       h('td', { class: 'num' }, '—'),
       h('td', {}, liveBadge(null)));
 
+    const reproductionNotice = d.source.notice;
+    if (reproductionNotice){
+      tr.children[2].append(h('div', { class: 'obs-hint', style: 'max-width:28rem;white-space:normal' }, reproductionNotice));
+    }
     body.append(tr);
 
     /* Each row fills itself in when its summary arrives. Rendering the whole
@@ -135,9 +139,19 @@ function renderFeeds(main){
       tr.classList.remove('absent');
 
       const cov = summary.coverage;
+      if (summary.source?.notice && !reproductionNotice){
+        tr.children[2].append(h('div', { class: 'obs-hint', style: 'max-width:28rem;white-space:normal' }, summary.source.notice));
+      }
       tr.children[3].textContent = cov?.from
         ? `${cov.from.slice(0, 10)} → ${cov.to.slice(0, 10)}`
         : '—';
+      const zonalCoverage = summary.zonal?.coverageAudit;
+      if (zonalCoverage){
+        tr.children[3].append(h('br'), h('span', { class: 'obs-hint' }, L([
+          zonalCoverage.completeRollingDays + ' complete days; ' + zonalCoverage.pendingReportFiles.length + ' reports pending',
+          zonalCoverage.completeRollingDays + ' 个完整日；' + zonalCoverage.pendingReportFiles.length + ' 份报表待归档',
+        ])));
+      }
       tr.children[4].textContent = (cov?.points ?? 0).toLocaleString('en-US');
       tr.children[5].replaceChildren(liveBadge(summary),
         h('span', { class: 'obs-hint' }, ' ' + L(ageLabel(f.ageHours))));
