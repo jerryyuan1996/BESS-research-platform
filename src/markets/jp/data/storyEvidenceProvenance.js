@@ -913,3 +913,27 @@ export const JP_STORY_PROVENANCE = {
     "available": true
   }
 };
+
+/* Disclosure rendering travels with the per-value records. The initial pack
+   only registers toggle/retry handlers; no extra scene or regional chunk. */
+const EVIDENCE_UI={"checked":["Checked on","核查时间"],"units":["Unit","单位"],"unitNames":{"calendar day":["calendar day","日期"],"month":["month","月份"],"year":["year","年份"],"fiscal year-end":["fiscal year-end","财年末"],"years":["years","年"],"hours":["hours","小时"],"days":["days","天"],"count of studies":["concurrent studies","同时进行的研究数"],"count of systems":["systems","系统数"],"month interval":["observation window","观察窗口"],"bilingual words":["rule wording","规则措辞"]},"statementTypes":{"observed":["Observed","实测"],"rule":["Rule","规则"],"official-plan":["Official plan","官方规划"],"interpretation":["Interpretation","解读"]}};
+const includes=(path,region,sourceIds,p)=>{
+  if(!sourceIds.has(p.sourceRef))return false;
+  if(path.startsWith('regional.'))return path.startsWith('regional.'+region+'.');
+  if(path.startsWith('history.H-JP-TK'))return region==='tokyo';
+  if(path.startsWith('history.H-JP-KY'))return region==='kyushu';
+  if(path.startsWith('history.H-JP-HK'))return region==='hokkaido';
+  return true;
+};
+
+export function renderEvidence({host,details,article,story,region,h,L,replace,datePair,interpretation}){
+            if(!details.isConnected)return;
+            const id=article.getAttribute('data-shot');
+            const shot=[story.opening,...story.chapters.flatMap(c=>c.shots)].find(s=>s.id===id);
+            const sourceIds=new Set((shot.claims||[]).flatMap(c=>story.claims[c].sources));
+            const shown=Object.entries(JP_STORY_PROVENANCE).filter(([path,p])=>includes(path,region,sourceIds,p));
+            replace(host,...shown.map(([path,p])=>h('section',{class:'jp-record'},
+              h('code',{},path),h('p',{},h('a',{href:p.url,target:'_blank',rel:'noopener noreferrer'},p.sourceRef),' · ',p.locator),
+              h('p',{},L(EVIDENCE_UI.checked),' ',L(datePair(p.checkedOn)),' · ',L(EVIDENCE_UI.units),' ',L(EVIDENCE_UI.unitNames[p.unit]||[p.unit,p.unit]),' · ',L(EVIDENCE_UI.statementTypes[p.statementType])))),
+              ...(shot.claims||[]).filter(id=>story.claims[id].type==='interpretation').map(id=>h('p',{class:'jp-interpretation'},L(interpretation),' · ',id)));
+}

@@ -676,22 +676,14 @@ export const SHARED_SHOTS = {
     }
   }
 };
-export const JP_TEXT = {
-  "Story button and navigation": [
-    "Story · Previous · Next · Chapters · Sources",
-    "故事 · 上一节 · 下一节 · 章节 · 来源"
-  ],
+/* The runtime reads only local scene and missing-state text. The complete
+   signed text register remains exported for authoring and parity checks; the
+   shell already owns its navigation/marker labels, so that register is not
+   retained as an unused browser payload. */
+export const JP_COPY = {
   "Area switch note": [
     "This story is told for {areaName}. The other areas have their own.",
     "本故事针对{areaName}讲述，其他区域各有其故事。"
-  ],
-  "Evidence drawer": [
-    "Source · Locator · Checked on {sourceCheckedDate} · Definition",
-    "来源 · 具体位置 · 核查时间：{sourceCheckedDate} · 统计口径"
-  ],
-  "Marker strings": [
-    "Strong evidence. · Fair evidence. · Thin evidence. · What would change it:",
-    "证据充分。 · 证据尚可。 · 证据单薄。 · 会改变判断的证据："
   ],
   "Legend": [
     "Schematic · Observed · Official plan · Example · Model value",
@@ -704,14 +696,6 @@ export const JP_TEXT = {
   "Chart accessible summary": [
     "For {areaName}: build cost of the play's design per MW, and the purchase prices per MW at which an operating award holder clears the fund's target, in three cases. Values are model results in JPY per MW",
     "{areaName}：本方案设计的每兆瓦建设成本，以及在三种情景下已投运中标资产达到基金目标收益的每兆瓦收购价。数值为模型结果，单位为日元/兆瓦"
-  ],
-  "Exits": [
-    "Go to the investment case · Back to the play",
-    "前往投资方案 · 返回方案卡"
-  ],
-  "Stale call": [
-    "This story was last reviewed against the call of {researchCheckDate}.",
-    "本故事最近一次依据{researchCheckDate}的投资判断复核。"
   ],
   "Loading / retry": [
     "Loading source data… · Could not load data · Retry",
@@ -734,7 +718,28 @@ export const JP_TEXT = {
     "解读"
   ]
 };
-export const JP_TIMELINE = [
+export const JP_TEXT = { ...JP_COPY, ...{
+  "Story button and navigation": [
+    "Story · Previous · Next · Chapters · Sources",
+    "故事 · 上一节 · 下一节 · 章节 · 来源"
+  ],
+  "Evidence drawer": [
+    "Source · Locator · Checked on {sourceCheckedDate} · Definition",
+    "来源 · 具体位置 · 核查时间：{sourceCheckedDate} · 统计口径"
+  ],
+  "Marker strings": [
+    "Strong evidence. · Fair evidence. · Thin evidence. · What would change it:",
+    "证据充分。 · 证据尚可。 · 证据单薄。 · 会改变判断的证据："
+  ],
+  "Exits": [
+    "Go to the investment case · Back to the play",
+    "前往投资方案 · 返回方案卡"
+  ],
+  "Stale call": [
+    "This story was last reviewed against the call of {researchCheckDate}.",
+    "本故事最近一次依据{researchCheckDate}的投资判断复核。"
+  ]
+} };export const JP_TIMELINE = [
   {
     "dateToken": "h01Year",
     "style": "observed",
@@ -1130,7 +1135,7 @@ export function composeStory(regionId){
     systemBoundary:{tokyo:['Japan — Tokyo Area','日本 — 东京区域'],kyushu:['Japan — Kyushu Area','日本 — 九州区域'],hokkaido:['Japan — Hokkaido Area','日本 — 北海道区域']}[region],supportedLocales:['en','zh'],
     reviewedAgainst:{playRef,hours:9,call:'opportunistic',lens:'infraFund',route:'ltda',stage:'operating',on:'2026-11-05',commit:'13dacf0e1e3874bd888452f694fc7c90240a97aa'},
     tokens:["areaName","areaSlug","call","playName","cardFigures","nextAction","awardTerm","regionalSentence","eastFrequency","westFrequency","h01Year","earthquakeDate","outageDate","earthquakeMonth","earthquakeYear","supplyCrunchDate","supplyCrunchYear","reformStep1","reformStep2","reformStep3","capacityMarketYear","ltdaYear","obligationHours","clawbackShare","nextRound","lithiumIonPool","bidCloseDate","designValue","purchaseCeiling","buildCostPerMW","playDuration","securedShare","securedYears","retainedShare","converterYear","studyCapDate","studyCap","fitDate","suspensionDate","firstCurtailmentDate","transferTripDate","blackoutDate","blackoutMonth","newKitahonYear","linkYear","chargingControlSystems","sourceCheckedDate","researchCheckDate","playEvidence","purchaseTarget","triggerDate"],
-    text:JP_TEXT,claims:JP_CLAIMS,sources:JP_STORY_SOURCES,
+    text:JP_COPY,claims:JP_CLAIMS,sources:JP_STORY_SOURCES,
     opening:SHARED_SHOTS['jp-00'],
     chapters:CHAPTER_LAYOUT.map(([id,title,ids])=>({id,title,shots:ids.map(shot)})),
   };
@@ -1139,15 +1144,112 @@ export function composeStory(regionId){
 /* Rendering labels for the required table and disclosures. Shot prose and
    each signed Labels row above remain unchanged. */
 export const JP_UI = {
-  area:['Area','区域'],case:['Case','情景'],target:['Target return','目标收益率'],
-  jpyUnit:['JPY per MW','日元/兆瓦'],month:['Month','月份'],days:['Days','天数'],
-  frequencyBand:['Approximate frequency boundary','频率分界（近似）'],
-  source:['Source','来源'],locator:['Locator','具体位置'],checked:['Checked on','核查时间'],
-  units:['Unit','单位'],dateBasis:['Date semantics','日期口径'],
-  securedYears:['Secured years','锁定年限'],
-  returnBases:{equity:['Equity','股权'],'all-cash':['All cash','全现金']},
-  paymentRoles:[['electricity users','电力用户'],['retailers','售电公司'],['capacity market','容量市场'],['OCCTO','OCCTO'],['holder','持有人']],
-  timelineFields:{constraint:['Constraint','约束'],choice:['Choice','选择'],remains:['What remains','遗留'],effect:['Effect today','今日影响'],event:['Event','事件']},
-  statementTypes:{observed:['Observed','实测'],rule:['Rule','规则'],'official-plan':['Official plan','官方规划'],interpretation:['Interpretation','解读']},
-  unitNames:{'calendar day':['calendar day','日期'],month:['month','月份'],year:['year','年份'],'fiscal year-end':['fiscal year-end','财年末'],years:['years','年'],hours:['hours','小时'],days:['days','天'],'count of studies':['concurrent studies','同时进行的研究数'],'count of systems':['systems','系统数'],'month interval':['observation window','观察窗口'],'bilingual words':['rule wording','规则措辞']},
+  "area": [
+    "Area",
+    "区域"
+  ],
+  "case": [
+    "Case",
+    "情景"
+  ],
+  "target": [
+    "Target return",
+    "目标收益率"
+  ],
+  "table": [
+    "Data table",
+    "数据表"
+  ],
+  "returnBasis": [
+    "Return basis",
+    "回报口径"
+  ],
+  "jpyUnit": [
+    "JPY per MW",
+    "日元/兆瓦"
+  ],
+  "month": [
+    "Month",
+    "月份"
+  ],
+  "days": [
+    "Days",
+    "天数"
+  ],
+  "frequencyBand": [
+    "Approximate frequency boundary",
+    "频率分界（近似）"
+  ],
+  "securedYears": [
+    "Secured years",
+    "锁定年限"
+  ],
+  "returnBases": {
+    "equity": [
+      "Equity",
+      "股权"
+    ],
+    "all-cash": [
+      "All cash",
+      "全现金"
+    ]
+  },
+  "paymentRoles": [
+    [
+      "electricity users",
+      "电力用户"
+    ],
+    [
+      "retailers",
+      "售电公司"
+    ],
+    [
+      "capacity market",
+      "容量市场"
+    ],
+    [
+      "OCCTO",
+      "OCCTO"
+    ],
+    [
+      "holder",
+      "持有人"
+    ]
+  ],
+  "timelineFields": {
+    "constraint": [
+      "Constraint",
+      "约束"
+    ],
+    "choice": [
+      "Choice",
+      "选择"
+    ],
+    "remains": [
+      "What remains",
+      "遗留"
+    ],
+    "effect": [
+      "Effect today",
+      "今日影响"
+    ],
+    "event": [
+      "Event",
+      "事件"
+    ]
+  },
+  "unitNames": {
+    "years": [
+      "years",
+      "年"
+    ],
+    "hours": [
+      "hours",
+      "小时"
+    ],
+    "count of systems": [
+      "systems",
+      "系统数"
+    ]
+  }
 };

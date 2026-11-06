@@ -6,7 +6,7 @@ import {fillPair} from '../../../experience/story/contract.js';
 import {s,uid} from '../../../experience/story/kit/svg.js';
 import {toggleGroup} from '../../../experience/story/kit/controls.js';
 import {isoStage} from '../../../experience/story/kit/symbols.js';
-import {JP_TEXT,JP_UI} from '../story.js';
+import {JP_COPY as JP_TEXT,JP_UI} from '../story.js';
 import {datePair} from '../storyBindings.js';
 
 export {h,L,s,uid,JP_UI};
@@ -47,20 +47,12 @@ export function interactive(shot,ctx,draw,{options=shot.controls}={}){
 }
 
 export function table(headers,rows,{caption,attrs={}}={}){
-  return h('div',{class:'jp-table-wrap'},h('table',{class:'jp-table',...attrs},
+  return h('div',{class:'jp-table-wrap',tabindex:0,role:'region','aria-label':caption?(Array.isArray(caption)?L(caption):caption):L(JP_UI.table)},h('table',{class:'jp-table',...attrs},
     caption?h('caption',{},Array.isArray(caption)?L(caption):caption):null,
     h('thead',{},h('tr',{},headers.map(v=>h('th',{scope:'col'},Array.isArray(v)?L(v):v)))),
     h('tbody',{},rows.map(row=>h('tr',{},row.map(v=>h('td',{},Array.isArray(v)?L(v):v)))))));
 }
 
-const includes=(path,region,sourceIds,p)=>{
-  if(!sourceIds.has(p.sourceRef))return false;
-  if(path.startsWith('regional.'))return path.startsWith('regional.'+region+'.');
-  if(path.startsWith('history.H-JP-TK'))return region==='tokyo';
-  if(path.startsWith('history.H-JP-KY'))return region==='kyushu';
-  if(path.startsWith('history.H-JP-HK'))return region==='hokkaido';
-  return true;
-};
 let provenance;
 export function attachEvidence(dialog,story,row){
   const attached=new WeakSet(),region=row.id.slice(3);
@@ -76,16 +68,8 @@ export function attachEvidence(dialog,story,row){
           replace(host,note(JP_TEXT['Loading / retry'].map(s=>s.split(' · ')[0])));
           try{
             provenance||=import('../data/storyEvidenceProvenance.js');
-            const {JP_STORY_PROVENANCE:records}=await provenance;
-            if(!details.isConnected)return;
-            const id=article.getAttribute('data-shot');
-            const shot=[story.opening,...story.chapters.flatMap(c=>c.shots)].find(s=>s.id===id);
-            const sourceIds=new Set((shot.claims||[]).flatMap(c=>story.claims[c].sources));
-            const shown=Object.entries(records).filter(([path,p])=>includes(path,region,sourceIds,p));
-            replace(host,...shown.map(([path,p])=>h('section',{class:'jp-record'},
-              h('code',{},path),h('p',{},h('a',{href:p.url,target:'_blank',rel:'noopener noreferrer'},p.sourceRef),' · ',p.locator),
-              h('p',{},L(JP_UI.checked),' ',L(datePair(p.checkedOn)),' · ',L(JP_UI.units),' ',L(JP_UI.unitNames[p.unit]||[p.unit,p.unit]),' · ',L(JP_UI.statementTypes[p.statementType])))),
-              ...(shot.claims||[]).filter(id=>story.claims[id].type==='interpretation').map(id=>h('p',{class:'jp-interpretation'},L(JP_TEXT.Interpretation),' · ',id)));
+            const {renderEvidence}=await provenance;
+            renderEvidence({host,details,article,story,region,h,L,replace,datePair,interpretation:JP_TEXT.Interpretation});
           }catch{
             provenance=undefined;
             const parts=JP_TEXT['Loading / retry'].map(s=>s.split(' · '));

@@ -2,7 +2,7 @@
    schematics; station cutaways never identify a geographic site. */
 import {JP_STORY_VALUES as V} from '../data/storyEvidenceValues.js';
 import {JP_AREAS,JP_FREQUENCY_BAND} from './geo.js';
-import {SHARED_SHOTS,JP_TEXT,JP_TIMELINE} from '../story.js';
+import {SHARED_SHOTS,JP_COPY as JP_TEXT,JP_TIMELINE} from '../story.js';
 import {datePair,chartRows} from '../storyBindings.js';
 import {isoStage} from '../../../experience/story/kit/symbols.js';
 import {signatureChart} from './chart.js';
@@ -14,7 +14,7 @@ const line=(x1,y1,x2,y2,cls='jp-arrow')=>s('line',{x1,y1,x2,y2,class:cls});
 const svgLabel=(pair,values,x,y,attrs={})=>s('text',{x,y,...attrs},text(pair,values));
 const rect=(x,y,width,height,cls='jp-solid',attrs={})=>s('rect',{x,y,width,height,rx:2,class:cls,...attrs});
 
-function mapDrawing(ctx,{band=true,night=false,planned=false,controlled=false,flow=false}={}){
+function mapDrawing(ctx,{band=true,night=false,planned=false,controlled=false,flow=false,muted=false}={}){
   const region=regionOf(ctx),values=ctx.values,hatching=hatch();
   const kids=[hatching.node];
   for(const area of JP_AREAS)kids.push(s('path',{d:area.path,class:`jp-map-area${area.east?' jp-map-east':''}${area.id===region?' jp-map-own':''}`,'data-region':area.id}));
@@ -23,8 +23,10 @@ function mapDrawing(ctx,{band=true,night=false,planned=false,controlled=false,fl
   if(planned){const [x,y]=centers[region];kids.push(s('path',{d:`M${x-20},${y+8}Q${x+40},${y-48} ${x+62},${y+4}`,class:'jp-plan','data-official-plan':'true'}));}
   if(band){
     kids.push(s('polygon',{points:JP_FREQUENCY_BAND.map(p=>p.join(',')).join(' '),class:'jp-frequency-band','data-frequency-band':'approximate'}));
-    const [x,y]=JP_FREQUENCY_BAND[1];kids.push(svgLabel(JP_UI.frequencyBand,values,x+10,y-12,{class:'jp-band-label'}));
-    kids.push(svgLabel(SHARED_SHOTS['jp-01'].labels.east,values,365,78),svgLabel(SHARED_SHOTS['jp-01'].labels.west,values,70,330));
+    kids.push(svgLabel(JP_UI.frequencyBand,values,160,392,{class:'jp-band-label'}));
+    const [cx,cy]=centers.chubu;
+    kids.push(line(cx-5,cy-9,cx-5,cy+9),line(cx+5,cy-9,cx+5,cy+9),svgLabel(JP_TEXT.Map.map(s=>s.split(' · ')[3]),values,cx+15,cy+22));
+    kids.push(svgLabel(SHARED_SHOTS['jp-01'].labels.east,values,350,78),svgLabel(SHARED_SHOTS['jp-01'].labels.west,values,170,330));
   }
   if(controlled){
     const area=JP_AREAS.find(a=>a.id==='hokkaido'),clip=uid('jp-system-area');
@@ -34,18 +36,21 @@ function mapDrawing(ctx,{band=true,night=false,planned=false,controlled=false,fl
   if(flow){const [a,b]=[centers.kyushu,centers.chugoku];kids.push(s('path',{d:`M${a[0]},${a[1]}Q${a[0]+35},${b[1]+12} ${b[0]},${b[1]}`,class:'jp-arrow','stroke-width':5}));}
   if(night)kids.push(rect(0,0,600,420,'jp-night-overlay',{'fill':'var(--ix-ink)','opacity':.19}));
   const svg=diagram(values.areaName||JP_TEXT.Map.map(s=>s.split(' · ')[0]),600,420,...kids);
-  svg.setAttribute('data-map','prefecture-groups');return svg;
+  /* Crop only unused horizontal frame space; every retained source ring stays
+     inside the portrait viewport. This keeps map text legible on phones. */
+  svg.setAttribute('viewBox','140 0 320 420');svg.setAttribute('class','jp-drawing k-chart jp-map');
+  svg.setAttribute('data-map','prefecture-groups');if(muted)svg.setAttribute('opacity','.35');return svg;
 }
 
 export function openingThumbnail(ctx){
-  return h('div',{class:'jp-opening'},mapDrawing(ctx,{band:false}),tag('schematic'),note(SHARED_SHOTS['jp-01'].caption,ctx.values));
+  return h('div',{class:'jp-opening'},mapDrawing(ctx,{band:false}),tag('schematic'),note(SHARED_SHOTS['jp-01'].caption,ctx.values),note(JP_TEXT['Area switch note'],ctx.values));
 }
 
 const opening=(shot,ctx)=>h('div',{class:'jp-scene k-scene','data-scene':shot.id},openingThumbnail(ctx));
 
 function frequency(shot,ctx){
   return interactive(shot,ctx,index=>[
-    tag('schematic'),mapDrawing(ctx),
+    tag('schematic'),mapDrawing(ctx,{muted:index===1}),
     index===1?panel(shot.controls[1],station(shot,ctx.values,{items:[{symbol:'plant',at:[-4,3]}]}),
       note(shot.labels.tariff,ctx.values),note(shot.labels.recovered,ctx.values))
       :h('ul',{class:'k-key'},['east','west','converters','links'].map(key=>h('li',{},label(shot,key,ctx.values)))),
@@ -56,7 +61,7 @@ function outages(shot,ctx){
   return interactive(shot,ctx,index=>{
     const reduced=Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
     const cells=Array.from({length:24},(_,i)=>rect(70+(i%6)*71,55+Math.floor(i/6)*38,55,24,index&&i%3!==1?`jp-outage-off${reduced?'':' jp-rotate'}`:'jp-pale'));
-    return [tag('observed'),diagram(text(shot.question,ctx.values),600,265,...cells,
+    return [tag('observed'),mapDrawing(ctx,{night:true}),diagram(text(shot.question,ctx.values),600,265,...cells,
       svgLabel(shot.labels.outages,ctx.values,70,235)),note(shot.controls[index],ctx.values),
       reduced?note(JP_TEXT['Reduced motion']):null,note(shot.labels.converters,ctx.values)];
   });
@@ -124,12 +129,17 @@ function queue(shot,ctx){
   return interactive(shot,ctx,index=>{
     const bids=Array.from({length:6},(_,i)=>({id:i,certified:i%2===0}));
     const order=index===0?[...bids.filter(b=>b.certified),...bids.filter(b=>!b.certified)]:bids;
-    const blocks=order.map((bid,i)=>{
-      return s('g',{'data-certified':String(bid.certified),'data-bid-order':bid.id},rect(38+i*81,90,60,39,i<4?'jp-pale':'jp-muted'),bid.certified?s('circle',{cx:68+i*81,cy:108,r:6,class:'jp-solid'}):null);
-    });
-    return [tag('schematic'),diagram(text(shot.question,ctx.values),600,245,
-      ...blocks,line(362,57,362,158),s('line',{x1:492,y1:30,x2:492,y2:200,class:'jp-plan','data-official-plan':'true'}),
-      svgLabel(shot.labels.pool,ctx.values,45,48),svgLabel(shot.labels.bidClose,ctx.values,405,218)),
+    const draw=vertical=>{
+      const blocks=order.map((bid,i)=>{
+        const x=vertical?90:38+i*81,y=vertical?70+i*65:90;
+        return s('g',{'data-certified':String(bid.certified),'data-bid-order':bid.id},rect(x,y,60,39,i<4?'jp-pale':'jp-muted'),bid.certified?s('circle',{cx:x+30,cy:y+18,r:6,class:'jp-solid'}):null);
+      });
+      return diagram(text(shot.question,ctx.values),vertical?320:600,vertical?510:245,
+        ...blocks,vertical?line(65,324,180,324):line(362,57,362,158),
+        s('line',vertical?{x1:65,y1:470,x2:250,y2:470,class:'jp-plan','data-official-plan':'true'}:{x1:492,y1:30,x2:492,y2:200,class:'jp-plan','data-official-plan':'true'}),
+        svgLabel(shot.labels.pool,ctx.values,vertical?20:45,vertical?35:48),svgLabel(shot.labels.bidClose,ctx.values,vertical?20:405,vertical?500:218));
+    };
+    return [tag('schematic'),h('div',{class:'jp-wide'},draw(false)),h('div',{class:'jp-narrow'},draw(true)),
       note(['{lithiumIonPool} · {nextRound}','{lithiumIonPool} · {nextRound}'],ctx.values),note(['{bidCloseDate}','{bidCloseDate}'],ctx.values),
       h('ul',{class:'k-key'},['certified','other'].map(key=>h('li',{},label(shot,key,ctx.values))))];
   });
@@ -148,7 +158,8 @@ function fade(shot,ctx){
     const series=fadeSeries({hours,floor,years,fade:rate});
     if(!series.length)return note(JP_TEXT['Missing financial binding']);
     const x=t=>56+(t-1)/Math.max(1,years-1)*470,y=h=>220-h/(installed+1)*180;
-    return [tag('example'),station(shot,ctx.values),diagram(text(shot.question,ctx.values),600,265,
+    return [tag('example'),station(shot,ctx.values,{items:index?[{symbol:'battery',at:[1,6],opts:{count:1,highlight:true},lift:1.2}]:[]}),
+      index?note(shot.labels.addedHours,ctx.values):null,diagram(text(shot.question,ctx.values),600,265,
       s('polyline',{points:series.map(p=>`${x(p.year)},${y(p.hours)}`).join(' '),class:'jp-arrow','data-fade-example':'true'}),
       line(56,y(floor),526,y(floor),'jp-outline'),svgLabel(shot.labels.floor,ctx.values,56,y(floor)-8),
       svgLabel(shot.labels.finalYear,ctx.values,435,251)),
@@ -159,13 +170,17 @@ function fade(shot,ctx){
 
 function payment(shot,ctx){
   return interactive(shot,ctx,index=>{
+    const draw=vertical=>{
     const fundingOpen=V.gaps.funding,kids=[];
     JP_UI.paymentRoles.forEach((pair,i)=>{
-      kids.push(rect(22+i*116,75,100,57,i===index?'jp-solid':'jp-pale'),svgLabel(pair,ctx.values,28+i*116,162));
-      if(i<4)kids.push(line(122+i*116,102,138+i*116,102,fundingOpen&&i<2?'jp-plan':'jp-arrow'));
+      const x=vertical?45:22+i*116,y=vertical?22+i*85:75;
+      kids.push(rect(x,y,vertical?230:100,vertical?48:57,i===index?'jp-solid':'jp-pale'),svgLabel(pair,ctx.values,x+6,vertical?y+30:162,vertical&&i===index?{class:'jp-inverse'}:{}));
+      if(i<4)kids.push(vertical?line(160,y+48,160,y+85,fundingOpen&&i<2?'jp-plan':'jp-arrow'):line(x+100,102,x+116,102,fundingOpen&&i<2?'jp-plan':'jp-arrow'));
     });
-    kids.push(s('path',{d:'M535,74Q390,12 370,73',class:'jp-arrow','data-return':'penalty'}),s('path',{d:'M535,132Q390,212 370,132',class:'jp-arrow','data-return':'clawback'}));
-    return [diagram(text(shot.question,ctx.values),600,235,...kids),note(shot.controls[index],ctx.values),
+    kids.push(s('path',{d:vertical?'M275,380Q330,330 275,300':'M535,74Q390,12 370,73',class:'jp-arrow','data-return':'penalty'}),s('path',{d:vertical?'M45,380Q0,330 45,300':'M535,132Q390,212 370,132',class:'jp-arrow','data-return':'clawback'}));
+    return diagram(text(shot.question,ctx.values),vertical?320:600,vertical?430:235,...kids);
+    };
+    return [h('div',{class:'jp-wide'},draw(false)),h('div',{class:'jp-narrow'},draw(true)),note(shot.controls[index],ctx.values),
       note(index===1?shot.labels.penalty:index===2?shot.labels.returned:index===3?shot.labels.surveillance:shot.labels.monthly,ctx.values),
       index===2?note(['{clawbackShare}','{clawbackShare}'],ctx.values):null];
   });
@@ -191,11 +206,13 @@ function revenueDrawing(shot,ctx,{compare=false,keptLabel}={}){
     rect(52,y,490*(1-retention),16,'jp-muted'),rect(52+490*(1-retention),y,490*retention,16,'jp-solid'),
     svgLabel(shot.labels.returned||SHARED_SHOTS['jp-12'].labels.returned,ctx.values,52,y+43),
     svgLabel(keptLabel||shot.labels.kept||SHARED_SHOTS['jp-12'].labels.kept,ctx.values,470,y+43)));
-  return diagram(text(shot.question,ctx.values),600,y+72,...kids);
+  const svg=diagram(text(shot.question,ctx.values),600,y+72,...kids);
+  svg.setAttribute('data-revenue-plot','true');return svg;
 }
 
 function retained(shot,ctx){
-  return interactive(shot,ctx,index=>[tag('model'),revenueDrawing(shot,ctx,{compare:index===1}),
+  return interactive(shot,ctx,index=>[tag('model'),
+    h('div',{class:'jp-wide'},revenueDrawing(shot,ctx,{compare:index===1})),h('div',{class:'jp-narrow'},revenueDrawing(shot,ctx)),
     table([JP_UI.area,shot.labels.award,JP_UI.securedYears,shot.labels.kept],chartRows().filter(r=>index===1||r.marketId===ctx.row.id).map(r=>[
       r.name,Number.isFinite(r.securedShare)?(r.securedShare*100).toFixed(1)+'%':L(JP_TEXT['Missing financial binding']),r.securedYears===null?L(JP_TEXT['Missing financial binding']):String(r.securedYears),ctx.values.retainedShare,
     ]),{attrs:{'data-revenue-table':'true'}}),
@@ -223,6 +240,7 @@ function kyushuTension(shot,ctx){
       line(410,60,550,index===3?30:70),svgLabel(shot.labels.link,ctx.values,250,155)),
     note(shot.controls[index],ctx.values),
     note([['{fitDate}','{suspensionDate}','{firstCurtailmentDate}','{transferTripDate}'][index],['{fitDate}','{suspensionDate}','{firstCurtailmentDate}','{transferTripDate}'][index]],ctx.values),
+    h('ol',{class:'jp-narrow jp-history-steps'},['fitDate','suspensionDate','firstCurtailmentDate'].map((key,i)=>h('li',{},text(shot.controls[i],ctx.values),' · ',text(['{'+key+'}','{'+key+'}'],ctx.values)))),
   ]);
 }
 
@@ -233,6 +251,7 @@ function hokkaidoTension(shot,ctx){
     note(shot.controls[index],ctx.values),
     index===2?h('p',{class:'jp-readout'},ctx.values.chargingControlSystems,' ',L(JP_UI.unitNames['count of systems']))
       :index===1?h('div',{},note(['{newKitahonYear}','{newKitahonYear}'],ctx.values),tag('plan'),note(['{linkYear}','{linkYear}'],ctx.values)):note(shot.labels.blackout,ctx.values),
+    h('ol',{class:'jp-narrow jp-history-steps'},[datePair(n.blackoutDate),datePair(n.newKitahonYear),datePair(n.chargingControlNotice)].map((date,i)=>h('li',{},text(shot.controls[i],ctx.values),' · ',L(date)))),
   ]);
 }
 
@@ -278,8 +297,9 @@ function hokkaidoBattery(shot,ctx){
 }
 
 function investment(shot,ctx){
-  return h('div',{class:'jp-scene k-scene','data-scene':shot.id},mapDrawing(ctx,{band:false,planned:regionOf(ctx)!=='kyushu'}),
-    tag('schematic'),note(shot.meaning,ctx.values));
+  const copy=text(shot.copy,ctx.values),items=copy.split(/(?<=[.!?；。])\s*/).filter(Boolean);
+  return h('div',{class:'jp-scene k-scene','data-scene':shot.id},h('div',{class:'jp-wide'},mapDrawing(ctx,{band:false,planned:regionOf(ctx)!=='kyushu'}),tag('schematic')),
+    h('ul',{class:'jp-narrow jp-checklist'},items.map(s=>h('li',{},s))),note(shot.meaning,ctx.values));
 }
 
 export const scenes={
