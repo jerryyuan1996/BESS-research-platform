@@ -6,19 +6,19 @@ The four DE/GB/NEM/WA candidates are now concrete, source-bound drafts. They are
 
 The fixed committed catalogue is `policy/review-proposals.json`: 27 complete original documents (including supporting rights material), 31 historical/reference cases and four six-chapter bilingual pilots. The authoring runner reads only these pinned public-original filenames, never confidential intake or arbitrary candidate paths. Its output is ignored and never copied to `public/`.
 
-- Private output: `etl/out/policy-review/offline-preparation/d0170ad796e23dca659b7a1faf5a7273329f316498cd8981e140cdd54588f9f8/`.
-- Manifest digest/run ID: `d0170ad796e23dca659b7a1faf5a7273329f316498cd8981e140cdd54588f9f8`.
-- Catalogue text SHA-256: `sha256:3cc1bbba19b272515f6fa5236e87cde5bf1fa8d7352e5c6220e6be276b8f01ac`.
-- Preparation implementation digest: `5d1c447b9b5283bba4417777825db9ebe23a816e43ff3d393c63724446175448`.
-- Combined initial candidate digest: `3d44e772a042d6bc45c2efd77fb60ca778bec674cf39946df64913acf98af386`.
+- Private output: `etl/out/policy-review/offline-preparation/074dacfde94271c508a6cb42377a45b42300c342f6dda10f024962c8fc2fdf7d/`.
+- Manifest digest/run ID: `074dacfde94271c508a6cb42377a45b42300c342f6dda10f024962c8fc2fdf7d`.
+- Catalogue text SHA-256: `sha256:ee3bfe357746bec51c017d49a0dbba1e369548f3c913ddeb6ac032bb157607dc`.
+- Preparation implementation digest: `d5097e5712e704ed044c4b726824f683eeef70df3821978fa3df6d34c182c2f3`.
+- Combined initial candidate digest: `982a0e2d928645834e5aa700469dfef9cda85303feaa557a35eaf93e83df998f`.
 - The manifest records the worktree HEAD at preparation time, not a claim that its then-uncommitted code was already certified. Exact implementation hashes bind those actual files.
 
 | Market | Candidate digest | Independent acceptance |
 |---|---|---|
-| DE | `baf2d2b17b5023311228d97919e373d1272949c9196831dd284f3aca30283e3f` | Missing |
-| GB | `92268bd387ecb5ad3296907d2e3341eb6d2289d79aa28d87dbd75a112378a59c` | Missing |
-| NEM | `b3f96a8d7177e89e4699597ee9548b6156b57e27d6ad3729eb4e0f8d9afeb466` | Missing |
-| WA | `a4a1e81ef11608daf5939b01423b6a9cf059fe1adada4ffcc0e63d1c1bf52117` | Missing |
+| DE | `c9cf26311be63fd7122b0a41822f754cd8076ed84dd5f775a9112aba630ac2e6` | Missing |
+| GB | `e6e8294a2417cd23073c56cb1721736f31f25a915ff85a61c56b8a2cf4b43d44` | Missing |
+| NEM | `2a74ef76f74b879e765b7a4b08ea566004914ffe908f405321c0890615407397` | Missing |
+| WA | `5dd33cccf0bf0c6e0ce2d1cc83e4c3916c01681a154faee6fe899bc2d03639aa` | Missing |
 
 The directory contains `review.md`, `candidate-corpus.json`, four market projections, `four-market-snapshot-candidate.json`, `manifest.json` and `source-profile-drafts.json`. All expected/actual accepted labels and reviewer identities are null. The 23 executable profile drafts in `scripts/policy/proposed-review-profiles.mjs` match exact author-proposed templates; every approval flag is false and every active quotation cap is zero. Their serialized manifests cannot become executable approvals by changing a JSON flag. They are deliberately separate from the empty trusted registry.
 
@@ -86,3 +86,7 @@ The remaining independent review, analyst baseline/configuration acceptance and 
 
 
 The three later NEM PDFs were subsequently readable through the official web PDF text service. A single bounded 55-second direct retry still timed out for each, so the 39 complete original-byte receipts / 20 PDFs count is unchanged and the pinned catalogue is unchanged. A separate ignored `nem-web-context-2026-11-06.json` records dated EN/ZH research: the [December 2025 final review](https://www.energy.gov.au/sites/default/files/2025-12/national-electricity-market-wholesale-market-settings-review-final-report.pdf) is a recommendation; the [March 2026 pathways](https://www.energy.gov.au/sites/default/files/2026-03/national-electricity-market-wholesale-market-settings-review-nem-review-recommendations-implementation.pdf) distinguish agreement from agreement in principle, qualify jurisdictional agreement as excluding Queensland, and leave ESEM detailed design/legislation and the aimed first tender as future work at that date; the [AER submission](https://www.aer.gov.au/system/files/2026-01/AER%20submission%20to%20DCCEEW%20%E2%80%93%20NEM%20wholesale%20market%20settings%20review%20draft%20report.pdf) is attributed consultation evidence. Neither an energy-only short-term design nor a proposed longer-term contract mechanism supplies an executed project entitlement. This closes a reading gap without claiming original-byte admission, current legislative completeness or independent acceptance.
+
+The bound run above was repeated after matching physical source line endings to the committed LF blobs and normally merging approved main `ed62995b50162d79d961615fcfd74372fa72b06a` as `d55639da3cf2ba58c8f3eec9fe87a3ed5cd2deb0`. The catalogue and all nine preparation implementation SHA-256 values were checked against `git show HEAD:<path>` bytes, not merely the local working files. Prior runs remain in the ignored audit history; no accepted label/result changed.
+
+The final editorial run adds one proposed Thin evidence marker per EN/ZH answer, retaining each what-would-change condition. This does not alter an approved market judgment. Its first replay hit the unchanged 20-second PDF-parser limit while the full local suite was running; that failed log is preserved. The isolated retry above passed all original-byte/literal/structural checks without increasing the parser or model limits. The policy citation UI now also displays each already-recorded safe use-terms URL in both languages; displaying a link is not rights acceptance.

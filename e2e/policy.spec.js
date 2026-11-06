@@ -32,7 +32,9 @@ test('Dossier versions and story depths share evidence, translate and retain saf
   const accessible=page.locator('.policy-scene').last().getByText('Accessible evidence table',{exact:true});await accessible.click();
   await expect(page.locator('.policy-scene').last().getByRole('table')).toContainText('GBP / MW');
   await page.getByRole('link',{name:'Evidence explorer',exact:true}).click();await expect(page.getByRole('heading',{name:'One canonical evidence graph'})).toBeVisible();await expect(page.locator('.policy-evidence')).toHaveCount(4);await expect(page.locator('.policy-evidence a').first()).toHaveAttribute('href',/^https:\/\/official\.example\//);
+  await expect(page.locator('.policy-evidence').first().getByRole('link',{name:'Use terms',exact:true})).toHaveAttribute('href','https://official.example/terms');
   await page.getByRole('button',{name:'Switch to Chinese'}).click();await expect(page.getByRole('heading',{name:'同一份规范证据图谱'})).toBeVisible();await expect(page.getByText('政策解读独立于已批准投资论点。')).toBeVisible();
+  await expect(page.locator('.policy-evidence').first().getByRole('link',{name:'使用条款',exact:true})).toHaveAttribute('href','https://official.example/terms');
 });
 test('comparison keeps NEM and WA separate and declines incompatible quantitative returns',async({page})=>{
   await servePolicy(page);await page.goto('/policy/compare');await expect(page.getByRole('heading',{name:'Compare mechanisms, keep the basis visible'})).toBeVisible();await expect(page.getByRole('columnheader',{name:/National Electricity Market/})).toBeVisible();await expect(page.getByRole('columnheader',{name:'Western Australia'})).toBeVisible();await expect(page.getByText('Not comparable',{exact:false}).first()).toBeVisible();

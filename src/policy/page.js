@@ -16,7 +16,11 @@ const TOPICS=MECHANISMS.map(id=>[id,MECHANISM[id]]);
 const unknown=()=>L(['Not established','尚未确认']);
 const date=value=>value?new Date(value).toLocaleDateString(L(['en-GB','zh-CN']),{year:'numeric',month:'short',day:'numeric',...(/^\d{4}-\d{2}-\d{2}$/.test(value)?{timeZone:'UTC'}:{})}):unknown();
 const labelState=value=>L(STATE[value]||[String(value),String(value)]);
-const sourceLink=(source)=>source&&safeURL(source.url)?h('a',{href:source.url,target:'_blank',rel:'noopener noreferrer'},`${source.publisher} · ${source.title} · ${source.locator}`):h('span',{},L(['Original source unavailable','原始来源不可用']));
+const sourceLink=source=>{
+  if(!source||!safeURL(source.url))return h('span',{},L(['Original source unavailable','原始来源不可用']));
+  return h('span',{},h('a',{href:source.url,target:'_blank',rel:'noopener noreferrer'},`${source.publisher} · ${source.title} · ${source.locator}`),
+    source.rights?.termsURL&&safeURL(source.rights.termsURL)?h('span',{},' · ',h('a',{href:source.rights.termsURL,target:'_blank',rel:'noopener noreferrer'},L(['Use terms','使用条款']))):null);
+};
 const heading=(kicker,title,sub=null)=>h('div',{class:'policy-heading'},h('div',{},h('div',{class:'policy-kicker'},L(kicker)),h('h1',{},L(title)),sub?h('p',{class:'policy-meta'},L(sub)):null));
 const empty=text=>h('div',{class:'policy-empty',role:'status'},L(text));
 const getParams=()=>new URLSearchParams(window.location.search);
