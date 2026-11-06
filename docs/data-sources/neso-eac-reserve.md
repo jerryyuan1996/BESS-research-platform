@@ -1,4 +1,6 @@
-# A11: NESO reserve clearing evidence
+# NESO EAC reserve: source contract and decisions
+
+This is the single topic log for the NESO reserve dataset. Update it in place as coverage and parsing decisions evolve. Implementation checks and publication receipts are recorded in the associated pull request.
 
 This phase adds one independent `gb-eac-reserve` dataset for EAC Balancing Reserve (BR), Quick Reserve (QR) and Slow Reserve (SR), with positive and negative directions kept separate. Existing DC/DM/DR observations, approved model inputs and every other dataset retain their identities and behaviour. This is a partial implementation of A11, following the Elexon phase in PR #170; it does not complete the original A01–A14 list.
 
@@ -17,7 +19,7 @@ Baseline: `main` / `4c1f1fe84bc72f9857ae68420ce246122a50ae81`, checked on 2026-1
 | Access conditions | No login, key or payment. Ordinary anonymous GET; no browser scraping or protection bypass |
 | Access budget | One small CSV and one attempt per existing ETL run, no runtime DataStore query. [Official API guidance](https://www.neso.energy/data-portal/api-guidance) recommends CKAN at most 1 request/second and DataStore at most 2/minute; this connector adds no calls to either API |
 | Failure handling | The entire response body has a 20-second deadline; accepted CSV is at most 1 MiB. The shared HTTP helper retains its own response-size checks. Any download, format or validation failure leaves last-good files unchanged and lets other providers run. 401/403/429 cause no retry or alternate URL |
-| Update frequency | NESO updates the file daily with the latest auction only. The existing six-hour orchestration checks it; no new cron, lock, direct writer or publisher |
+| Update frequency | NESO updates the file daily with the latest auction only. This source follows the existing ETL cycle; it adds no cron, lock, direct writer or publisher. At the initial baseline the effective workflow was six-hourly; the approved daily 06:17 UTC target is documented separately. The workflow at the release commit determines the actual cadence |
 
 The licence metadata API returned `license_id: ESO`, with its legacy `ngeso-open-licence` URL. The current portal and current licence page above were separately checked. No private source, participant identity, account credential, paid data or restricted fixture is used.
 

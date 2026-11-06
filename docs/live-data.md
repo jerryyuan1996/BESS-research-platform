@@ -40,7 +40,7 @@ server-side logic. Data changes are **git commits**, which is what makes the his
 | `gb-day-ahead` | GB | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
 | `gb-dynamic-response` | GB | NESO Dynamic results, fixed 2020–2023 vintage; availability prices and cleared/technology MW | fixed after initial import | — |
 | `gb-eac-response` | GB | NESO EAC response results; FY2023–FY2025 archives plus current results | read on the existing 6h run; source daily | — |
-| `gb-eac-reserve` | GB | NESO EAC BR/QR/SR clearing prices (GBP/MW/h) and accepted MW; latest-auction accumulation | existing 6h run; source daily | — |
+| `gb-eac-reserve` | GB | NESO EAC BR/QR/SR clearing prices (GBP/MW/h) and accepted MW; latest-auction accumulation | existing ETL cycle; source daily | — |
 | `gb-imbalance-buy`, `gb-imbalance-sell` | GB | Elexon DISEBSP indicative system prices, GBP/MWh; independent of day-ahead | existing 6h run | — |
 | `gb-net-imbalance-volume` | GB | Elexon DISEBSP signed net system imbalance, MWh per half-hour | existing 6h run | — |
 | `ie-day-ahead` | IE | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
@@ -108,7 +108,7 @@ unpublished/missing classification open; it does not fill prices or revise exist
 
 ### NESO reserve clearing evidence
 
-`gb-eac-reserve` adds BR/QR/SR clearing prices and accepted MW through one anonymous daily CSV in the existing ETL. It is separate from the existing DC/DM/DR response feed and has no financial-input authority. Latest-auction accumulation is prospective; it is not a full-history backfill. See the [source, rights, sample and compatibility record](data-channel-neso-reserve-2026-11-06.md).
+`gb-eac-reserve` adds BR/QR/SR clearing prices and accepted MW through one anonymous daily CSV in the existing ETL. It is separate from the existing DC/DM/DR response feed and has no financial-input authority. Latest-auction accumulation is prospective; it is not a full-history backfill. See the [source contract and topic log](data-sources/neso-eac-reserve.md).
 
 ### Deliberately not automated
 
