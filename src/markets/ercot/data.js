@@ -1,3 +1,5 @@
+import {SNAPSHOT_INTRO,US_ITC_TERM} from '../_shared/researchStatus.js';
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    ERCOT — market dataset.
 
@@ -40,9 +42,9 @@
    --------------------------------------------------------------------------- */
 
 const M = {
-  asOf: '2026-08-04',
-  dataDate: 'CY2025 revenue index / Q1 2026 fleet / RTC+B live Dec 2025',
-  modelVersion: 'ercot-seed-1.0-energy-only-toll-led-two-hour',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['ERCOT Battery Investment Dashboard', 'ERCOT储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application. Energy-only market with ORDC scarcity pricing; reference archetype 100 MW / 2h.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。纯电能量市场，通过ORDC实现稀缺定价；参考原型为100MW/2小时。'],
@@ -50,32 +52,31 @@ const M = {
                   '下一里程碑：RTC+B机制下的首个完整结算年度。自2025年12月5日起，辅助服务与电能量在实时市场同时出清，且时长要求同步下调 — ECRS由两小时降至一小时，RRS与调频由一小时降至三十分钟。'],
   footerNote: ['Public and official sources collected 4 August 2026. ERCOT publishes its market design in full and its contract prices not at all: no ERCOT toll price has ever been disclosed across ten announced agreements and twelve known tolled batteries. Two independent sources disagree about CY2025 revenue by nearly two times, and the transacted toll market prices this asset at roughly five times what the realised index delivered. Every contracted figure in this build is derived, not quoted.',
                '公开及官方来源于2026年8月4日采集。ERCOT完整公布其市场机制，却完全不公布合同价格：在十份已公布的协议与十二个已知租赁储能项目中，从未披露过任何ERCOT租赁价格。两个独立来源对2025日历年收入的判断相差近两倍，且实际成交的租赁市场对该资产的定价约为已实现指数的五倍。本版本中所有合同类数值均为推导值，而非报价。'],
-  seedWarn: ['Every value on this page is an approved base-case snapshot or an illustrative placeholder. No figure is production-complete until its live feed, validation and source-health check are running. Four specific warnings: this archetype is TWO hours and is not directly comparable with the four-hour archetypes elsewhere on this platform; ERCOT has no capacity mechanism, so the contracted route is a private toll whose price has never been disclosed; the realised revenue index and the transacted toll market disagree about this asset by roughly five times; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page, so returns on this page exclude it.',
-             '本页所有数值均为已批准的基准情景快照或示例占位数据。在实时数据接入、校验及来源健康检测上线前，任何指标均不可用于生产决策。四点具体警示：本页原型为两小时，与本平台其他市场的四小时原型不可直接比较；ERCOT没有容量机制，因此合同化路径为价格从未披露的私下租赁；已实现收入指数与实际成交的租赁市场对该资产的判断相差约五倍；§48E投资税收抵免在本页种子值为零、可在首页投资实验室中调整，因此本页收益率不含该抵免。'],
+  seedWarn: [SNAPSHOT_INTRO[0]+"Four specific warnings: this archetype is TWO hours and is not directly comparable with the four-hour archetypes elsewhere on this platform; ERCOT has no capacity mechanism, so the contracted route is a private toll whose price has never been disclosed; the realised revenue index and the transacted toll market disagree about this asset by roughly five times; and the §48E investment tax credit is seeded at zero here and is editable in the dedicated Investment Lab page, so returns on this page exclude it.",SNAPSHOT_INTRO[1]+"四点具体警示：本页原型为两小时，与本平台其他市场的四小时原型不可直接比较；ERCOT没有容量机制，因此合同化路径为价格从未披露的私下租赁；已实现收入指数与实际成交的租赁市场对该资产的判断相差约五倍；§48E投资税收抵免在本页种子值为零、可在首页投资实验室中调整，因此本页收益率不含该抵免。"],
 
   /* ---- official / sourced snapshot -------------------------------------
      Only values that come from a named publication sit here. */
   official: {
     // ---- market design ----
-    rtcbDate: '5 December 2025',
-    ecrsHoursBefore: 2, ecrsHoursAfter: 1,
-    rrsHoursBefore: 1, rrsHoursAfterMin: 30,
-    nonSpinHours: 4,
+    rtcbDate: HISTORY_DATA.official.rtcbDate,
+    ecrsHoursBefore: HISTORY_DATA.official.ecrsHoursBefore, ecrsHoursAfter: HISTORY_DATA.official.ecrsHoursAfter,
+    rrsHoursBefore: HISTORY_DATA.official.rrsHoursBefore, rrsHoursAfterMin: HISTORY_DATA.official.rrsHoursAfterMin,
+    nonSpinHours: HISTORY_DATA.official.nonSpinHours,
     rrsPfrMinMW: 1377,
     asMethodYear: 2026, asMethodEffective: '1 January 2026',
     rtcbSavingsBn: 1,
 
     // ---- fleet and buildout ----
-    fleet2024GW: 8.6, fleet2026GW: 14, fleetQ1_2026GW: 14.96,
-    fleet2030GW: 40, fleet2023GW: 5.3,
+    fleet2024GW: 8.6, fleet2026GW: HISTORY_DATA.official.fleet2026GW, fleetQ1_2026GW: 14.96,
+    fleet2030GW: 40, fleet2023GW: HISTORY_DATA.official.fleet2023GW,
     fleetHours: 1.6, shortSharePct: 97,
     queueApplications: 1470, queueLargeGen: 1354, queueSuccessPct: 28,
 
     // ---- revenue: two sources, one direction, different levels ----
-    idx2023: 193000, idx2024: 56000, idx2025: 29400,
+    idx2023: HISTORY_DATA.official.idx2023, idx2024: 56000, idx2025: HISTORY_DATA.official.idx2025,
     enverus2023: 149000, enverus2025: 17000,
-    asShare2023Pct: 84, asShare2025Pct: 48,
-    asFallSince2023Pct: 90,
+    asShare2023Pct: HISTORY_DATA.official.asShare2023Pct, asShare2025Pct: HISTORY_DATA.official.asShare2025Pct,
+    asFallSince2023Pct: HISTORY_DATA.official.asFallSince2023Pct,
     energyShareJun25Pct: 76,
     monJan26: 46264, monFeb26: 15306, monApr26: 38145,
     monOct25: 2.00, monNov25: 2.38, monSep25: 3.16, monJul25: 3.63, monJun25: 3.01,
@@ -102,9 +103,9 @@ const M = {
        data centres — double the 238.6 GW / 77.5% of March 2026. Roughly 200 GW of
        it sits in the Batch Zero verification the Governor's 3 August 2026 pause
        triggered. A queue, not a commitment, and now an audited one. */
-    largeLoadQueueGW: 474, largeLoadDataCentrePct: 90,
+    largeLoadQueueGW: HISTORY_DATA.official.largeLoadQueueGW, largeLoadDataCentrePct: HISTORY_DATA.official.largeLoadDataCentrePct,
     largeLoadAsOf: 'August 2026', largeLoadPauseDate: '3 August 2026', largeLoadAuditDue: '10 December 2026',
-    largeLoadQ1_2026GW: 198, largeLoadUnderReviewGW: 86,
+    largeLoadQ1_2026GW: HISTORY_DATA.official.largeLoadQ1_2026GW, largeLoadUnderReviewGW: 86,
 
     // ---- capex and tax ----
     nrel4hPerKWh: 334, energySharePct: 56, powerSharePct: 44,
@@ -460,7 +461,7 @@ const M = {
     ['TB2 spread — two-hour top-bottom spread benchmark', 'TB2价差 — 两小时高低价差基准'],
     ['Tolling agreement / offtake agreement', '租赁协议/承购协议'],
     ['Chapter 313 — the lapsed Texas school-district value limitation', '第313章 — 已失效的德州学区估值限制'],
-    ['§48E investment tax credit — 30% for standalone storage', '§48E投资税收抵免 — 独立储能30%'],
+    US_ITC_TERM,
     ['FEOC / Material Assistance Cost Ratio (MACR) — pass or lose the credit', 'FEOC/实质协助成本比率（MACR） — 通过方可保留抵免，否则全额丧失'],
   ],
 

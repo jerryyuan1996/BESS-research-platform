@@ -355,9 +355,13 @@ jobs:
           git commit -m "data: daily refresh ${UPDATED}" \
                      -m "Validated observed data and existing pre-approved rule changes only; policy remains shadow-only. No analyst assumption was modified." \
                      -m "$(node -e "const s=require('./etl/out/summary.json');console.log('Failed: '+(s.failed.map(f=>f.id+' ('+f.status+')').join(', ')||'none'))")"
-          git push
+          # Rebases onto main and retries if a merge landed during the run
+          # (run 41399142010 failed here with "fetch first"). A conflict fails
+          # the job and pushes nothing. See scripts/ci/push-main.sh.
+          bash scripts/ci/push-main.sh
           # Written only after the push succeeded, so the publish job can never
-          # be handed a commit that is not on the remote.
+          # be handed a commit that is not on the remote. After a rebase HEAD is
+          # the rebased commit, which is the one on the remote.
           echo "committed=true" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
         env:
@@ -713,7 +717,7 @@ jobs:
           WRITTEN=$(node -e "console.log(require('./etl/out/scout-report.json').pass.written)")
           git commit -m "view: scout pass ${REGION}, ${WRITTEN} records" \
                      -m "Written by the agent through the view writer's gate, to scout cards only. Every record carries a quotation found in a page fetched in this run; the changelog line holds it, and the weekly digest gives the command that undoes it."
-          git push
+          bash scripts/ci/push-main.sh
           echo "committed=true" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
@@ -788,9 +792,12 @@ jobs:
     # page is built with (src/briefing/), no model asked, no key needed.
     if: github.event.schedule == '7 23 * * 0' || inputs.weekly_briefing == true
     runs-on: ubuntu-latest
+    # actions: read is for the minutes line below, and reads run and job
+    # records only. Nothing here can start, cancel or change a run.
     permissions:
       contents: read
       issues: write
+      actions: read
     steps:
       - uses: actions/checkout@v4
 
@@ -803,6 +810,21 @@ jobs:
 
       - name: Render this week's briefing
         run: node scripts/briefing/weekly.mjs > briefing.md
+
+      # Automation minutes for the last 7 and 30 days, summed from job
+      # durations (billable minutes read zero while the repository is public).
+      # A report, never a gate: if GitHub cannot be read, the briefing posts
+      # without the line.
+      - name: Add the automation minutes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if node scripts/ci/minutes.mjs > minutes.md; then
+            echo >> briefing.md
+            cat minutes.md >> briefing.md
+          else
+            echo "::warning::The minutes line could not be read; the briefing posts without it."
+          fi
 
       - name: Post it, one issue a week
         # A second run in the same week edits that week's issue instead of

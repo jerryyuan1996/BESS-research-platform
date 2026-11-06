@@ -37,6 +37,7 @@ import { existsSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {assertOwnerIsolation} from './helpers/bundle-ownership.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SCAN_REL = process.env.SCAN_DIR || 'dist';
@@ -553,7 +554,12 @@ function skipWithoutDist(t){
 }
 
 /** The JavaScript in the output directory, by role. */
-async function chunks(){
+// Every assertion measures the same immutable built artefact. Do not reread
+// hundreds of identical files for each assertion; every new command gets a
+// fresh process/snapshot, and no test in this file writes dist/.
+let builtGraph;
+function chunks(){return builtGraph??=readChunks();}
+async function readChunks(){
   const dir = path.join(DIST, 'assets');
   const files = (await readdir(dir)).filter(f => f.endsWith('.js'));
 
@@ -565,7 +571,7 @@ async function chunks(){
   const html = await readFile(path.join(DIST, 'index.html'), 'utf8');
   const entryName = /<script[^>]+src="\/assets\/([^"]+\.js)"/.exec(html)?.[1] ?? null;
 
-  const out = { entry: null, markets: new Map(), other: [], features: new Map(), byName: new Map() };
+  const out = { entry: null, markets: new Map(), other: [], features: new Map(), byName: new Map(), researchData:new Map(), researchHistory:new Map(),researchEntries:new Map() };
   for (const name of files){
     const buf = await readFile(path.join(dir, name));
     const text = buf.toString('utf8');
@@ -580,6 +586,12 @@ async function chunks(){
       [...text.matchAll(/import\("\.\/([^"]+\.js)"\)/g)].map(m => m[1]));
     const entry = { name, raw: buf.length, gzip: gzipSync(buf).length, text, imports, dynamics };
     out.byName.set(name, entry);
+    const research=/^research-(data|history|owner|entry)-(.+?)-[A-Za-z0-9_-]{8}\.js$/.exec(name);
+    if(research){
+      assert.ok(research[2] in BUDGET.markets,'unregistered research owner '+research[2]);
+      if(research[1]==='owner'){out.researchData.set(research[2],entry);out.researchHistory.set(research[2],entry);}
+      else out[{data:'researchData',history:'researchHistory',entry:'researchEntries'}[research[1]]].set(research[2],entry);
+    }
 
     /* NON-GREEDY, and the hash is matched by length rather than by charset.
        Vite's hash alphabet includes `-`, so a chunk can be emitted as
@@ -595,6 +607,15 @@ async function chunks(){
     else out.other.push(entry);
   }
   return out;
+}
+
+/* Reused data now has two importers: the original dashboard and public chapter.
+   Charge ALL owner data to its unchanged market cap. The five split markets'
+   histories stay charged to their original story-section cap. Complete public
+   and first-visit closures are also checked; no bytes or CSS are excluded. */
+function marketOwnedChunks(graph,id){
+  return [...new Set([graph.markets.get(id),graph.researchData.get(id),
+    id in BUDGET.sections?null:graph.researchHistory.get(id)].filter(Boolean))];
 }
 
 /** A chunk and everything it statically imports, transitively: what a reader
@@ -718,7 +739,8 @@ test('every market loads its dashboard on demand', async (t) => {
 
 test('the shared chunks stay out of the first load', async (t) => {
   if (skipWithoutDist(t)) return;
-  const { entry, other, features, markets, byName } = await chunks();
+  const graph=await chunks();
+  const { entry, other, features, markets, byName } = graph;
   assert.ok(entry, 'no entry chunk');
 
   /* Search EVERY non-entry chunk, not just the market-shared ones. The first
@@ -749,15 +771,17 @@ test('the shared chunks stay out of the first load', async (t) => {
      visit. */
   const first = closure(entry, byName);
   const marketChunks = new Set(markets.values());
+  const ownerChunks=new Set([...markets.keys()].flatMap(id=>marketOwnedChunks(graph,id)));
   const shared = new Set();
   const deliveryChunks = new Set([...features].filter(([name]) => name.startsWith('delivery-')).map(([, chunk]) => chunk));
   for (const chunk of marketChunks){
     for (const dep of closure(chunk, byName)){
-      if (!first.has(dep) && !marketChunks.has(dep) && !deliveryChunks.has(dep)) shared.add(dep);
+      if (!first.has(dep) && !ownerChunks.has(dep) && !deliveryChunks.has(dep)) shared.add(dep);
     }
   }
   assert.ok(shared.size > 0, 'no market imports a shared chunk — the split has collapsed');
   const sharedGzip = gzipOf(shared);
+  t.diagnostic('Complete market-shared graph: '+kB(sharedGzip)+' KiB; unchanged cap '+BUDGET.sharedTotal);
   assert.ok(kB(sharedGzip) <= BUDGET.sharedTotal,
     `market-shared chunks total ${kB(sharedGzip)} kB gzipped across ${shared.size} files ` +
     `(${[...shared].map(c => c.name).join(', ')}), ` +
@@ -784,7 +808,8 @@ test('feature chunks exist, stay out of the entry, and stay small', async (t) =>
 
 test('each split market has its own chunk, within budget', async (t) => {
   if (skipWithoutDist(t)) return;
-  const { markets } = await chunks();
+  const graph=await chunks();
+  const { markets } = graph;
 
   for (const [id, budget] of Object.entries(BUDGET.markets)){
     const chunk = markets.get(id);
@@ -793,8 +818,11 @@ test('each split market has its own chunk, within budget', async (t) => {
       `Either ${id} stopped loading its dashboard on demand — check its index.js\n` +
       'still exports loadDashboard — or something now imports its dashboard\n' +
       'statically, which merges the chunk back into the entry.');
-    assert.ok(kB(chunk.gzip) <= budget,
-      `market-${id} is ${kB(chunk.gzip)} kB gzipped (${kB(chunk.raw)} kB raw), over its ` +
+    const owned=marketOwnedChunks(graph,id),bytes=gzipOf(owned);
+    if(id==='caiso')t.diagnostic('CAISO complete owner payload: '+kB(bytes)+' KiB; unchanged cap '+budget);
+    assertOwnerIsolation(chunk,id,graph.byName);
+    assert.ok(kB(bytes) <= budget,
+      `market-${id} and ALL owner data/history are ${kB(bytes)} kB gzipped (${owned.map(c=>c.name).join(', ')}), over its ` +
       `${budget} kB budget.`);
   }
 });
@@ -853,10 +881,10 @@ test('market payloads are absent from the entry chunk, not merely duplicated', a
    statically and dynamically, which costs more than not splitting it at all. */
 const SECTION_PROBE = {
   nem: { text: 'Project EnergyConnect Stage 1', chunk: /^section-nem-grid-/ },
-  gb:  { text: 'GB Market Evolution — from energy-only trading market to a duration-and-connection-constrained storage market', chunk: /^section-gb-story-/ },
-  ie:  { text: 'Ireland Market Evolution — from a wind-integration problem to a capacity-priced storage market', chunk: /^section-ie-story-/ },
-  pl:  { text: 'Poland Market Evolution — from a coal capacity market to a storage capacity market', chunk: /^section-pl-story-/ },
-  ro:  { text: 'Romania Market Evolution — from a coal-and-hydro system to a solar-driven arbitrage market', chunk: /^section-ro-story-/ },
+  gb:  { text: 'GB Market Evolution — from energy-only trading market to a duration-and-connection-constrained storage market', chunk: /^research-history-gb-/ },
+  ie:  { text: 'Ireland Market Evolution — from a wind-integration problem to a capacity-priced storage market', chunk: /^research-history-ie-/ },
+  pl:  { text: 'Poland Market Evolution — from a coal capacity market to a storage capacity market', chunk: /^research-history-pl-/ },
+  ro:  { text: 'Romania Market Evolution — from a coal-and-hydro system to a solar-driven arbitrage market', chunk: /^research-history-ro-/ },
 };
 
 for (const [id, budget] of Object.entries(BUDGET.sections)){
@@ -876,6 +904,7 @@ for (const [id, budget] of Object.entries(BUDGET.sections)){
       'means a section file was added without registering it in sections/registry.js.');
 
     for (const section of sections){
+      assertOwnerIsolation(section,id,byName);
       assert.ok(!first.has(section),
         `${section.name} is in ${id}'s static graph, so the landing tab downloads it. ` +
         'Check sections/registry.js: every entry must be `() => import(...)`, and ' +
@@ -905,19 +934,21 @@ for (const [id, budget] of Object.entries(BUDGET.sections)){
 
   test(`${id}: the whole analysis stays within its section budget`, async (t) => {
     if (skipWithoutDist(t)) return;
-    const { byName } = await chunks();
+    const graph=await chunks();
+    const { byName } = graph;
     const prefix = `section-${id}-`;
     const sections = [...byName.values()].filter(c => c.name.startsWith(prefix));
     assert.ok(sections.length, `${id}: no section chunks to measure`);
 
     const { total, largest } = budget;
-    const sum = sections.reduce((n, c) => n + c.gzip, 0);
+    const history=graph.researchHistory.get(id);assert.ok(history,id+' shared original history exists');
+    const sum = sections.reduce((n, c) => n + c.gzip, 0)+history.gzip;
     assert.ok(kB(sum) <= total,
-      `${id}'s ${sections.length} section chunks total ${kB(sum)} kB gzipped, over ` +
+      `${id}'s ${sections.length} section chunks AND shared full history total ${kB(sum)} kB gzipped, over ` +
       `the ${total} kB budget. Thirteen files compress worse than one; growth ` +
       'beyond that expected overhead is content, not the loader.');
 
-    const biggest = sections.slice().sort((a, b) => b.gzip - a.gzip)[0];
+    const biggest = sections.map(c=>({...c,gzip:c.gzip+(c.name.startsWith(prefix+'story-')?history.gzip:0)})).sort((a, b) => b.gzip - a.gzip)[0];
     assert.ok(kB(biggest.gzip) <= largest,
       `${biggest.name} is ${kB(biggest.gzip)} kB gzipped, over the ${largest} kB per-section ` +
       'budget. A section that grows past it should be split by domain, not re-budgeted.');
@@ -925,7 +956,7 @@ for (const [id, budget] of Object.entries(BUDGET.sections)){
 
   test(`no ${id} section is shipped twice`, async (t) => {
     if (skipWithoutDist(t)) return;
-    const { byName } = await chunks();
+    const { byName,markets } = await chunks();
     const { text, chunk } = SECTION_PROBE[id];
     const holders = [...byName.values()].filter(c => c.text.includes(text)).map(c => c.name);
     assert.equal(holders.length, 1,
@@ -933,8 +964,42 @@ for (const [id, budget] of Object.entries(BUDGET.sections)){
       'A section reachable from two places is shipped twice; the fix is to remove ' +
       'the static path, not to raise a budget.');
     assert.match(holders[0] || '', chunk, `${id}: the probe section carries its own evidence`);
+    if(id!=='nem'){
+      const story=[...byName.values()].find(c=>c.name.startsWith(`section-${id}-story-`));
+      assert.ok(closure(story,byName).has(byName.get(holders[0])),id+' original story reads the single shared history');
+      assert.ok(!closure(markets.get(id),byName).has(byName.get(holders[0])),id+' full history stays out of the dashboard landing tab');
+    }
   });
 }
+
+test('complete history graphs are lazy, single-owner, and included in unchanged market/section budgets',async t=>{
+  if(skipWithoutDist(t))return;
+  const graph=await chunks(),{entry,byName,markets,researchHistory,researchData,features}=graph;
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const loader=[...byName.values()].find(c=>/^public-history-[A-Za-z0-9_-]{8}\.js$/.test(c.name));
+  assert.ok(loader,'a separate on-demand public history loader exists');
+  assert.ok(!first.has(loader),'history loader is absent from the market Overview');
+  assert.equal(researchHistory.size,EXPECTED_MARKET_CHUNKS,'all original research owners have one history payload');
+  assert.equal(researchData.size,EXPECTED_MARKET_CHUNKS,'all owner-only input payloads are visible in accounting');
+  const allHistories=reachable(loader,byName);
+  for(const [id,history]of researchHistory){
+    assert.ok(allHistories.has(history),'public loader reaches '+id+' original history');
+    assert.ok(!first.has(history),'no full history prose in the initial Overview: '+id);
+    const ownData=researchData.get(id);assert.ok(ownData,id+' history input owner');
+    assert.ok(!first.has(ownData),id+' full owner data is absent from the initial Overview');
+    const reader=graph.researchEntries.get(id)||history;
+    const chapter=closure(reader,byName);
+    assertOwnerIsolation(reader,id,byName);
+    assert.ok(chapter.has(ownData),id+' history reads its owner inputs');
+    for(const [other,data]of researchData)if(other!==id)assert.ok(!chapter.has(data),id+' does not fetch '+other+' data');
+    const extra=[...chapter].filter(c=>!first.has(c));
+    for(const chunk of extra)assert.doesNotMatch(chunk.name,/^(?:market-|engine-|finance-)/,id+' history does not fetch a dashboard or financial renderer');
+    const cap=BUDGET.markets[id]+(BUDGET.sections[id]?.largest||0);
+    assert.ok(kB(gzipOf(extra))<=cap,id+' COMPLETE history closure is '+kB(gzipOf(extra))+' KiB; unchanged owner data + story-section allowance '+cap);
+    const visit=[...closure(markets.get(id),byName)].filter(c=>!closure(entry,byName).has(c));
+    assert.ok(kB(gzipOf(visit))<=BUDGET.markets[id]+BUDGET.sharedTotal,id+' complete first research visit stays inside existing market + shared caps');
+  }
+});
 
 /* ---------------------------------------------------------------------------
    CSS CROSSES THE LAZY BOUNDARY TOO, AND IT IS EASIER TO MISS.

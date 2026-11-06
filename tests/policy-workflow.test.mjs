@@ -31,7 +31,9 @@ test('model job cannot acquire the publisher credential or monthly model identit
   assert.match(publisher,/publish-candidate\.mjs/);
 });
 test('one normal refresh commit/push and one exact-SHA gated publish remain',()=>{
-  const refresh=executable(job('refresh'));assert.equal((refresh.match(/git commit /g)||[]).length,1);assert.equal((refresh.match(/^\s+git push\s*$/gm)||[]).length,1);
+  const refresh=executable(job('refresh'));assert.equal((refresh.match(/git commit /g)||[]).length,1);
+  assert.equal((refresh.match(/^\s+bash scripts\/ci\/push-main\.sh\s*$/gm)||[]).length,1);
+  assert.doesNotMatch(refresh,/^\s+git push\b/gm);
   assert.match(refresh,/npm run etl:verify/);assert.match(refresh,/npm run guard:staged/);assert.match(refresh,/GUARD_MARKER_SET:/);assert.match(refresh,/GUARD_FINGERPRINT_KEY:/);
   const publish=executable(job('publish'));assert.match(publish,/committed == 'true'/);assert.match(publish,/uses: \.\/\.github\/workflows\/ci.yml/);assert.match(publish,/ref: \$\{\{ needs.refresh.outputs.sha \}\}/);
   assert.doesNotMatch(refresh,/vercel deploy|gh pr merge/);

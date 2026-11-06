@@ -1,3 +1,4 @@
+import {researchHistory} from './history.js';
 /* ---------------------------------------------------------------------------
    Finland — declarative section specs.
 
@@ -132,10 +133,8 @@ export function buildSections(api){
   ] });
 
   // ---------------- Market story -------------------------------------------
-  SEC_B.story = () => ({ head: ['How Finland got here — from a reserve boom to a trading market', '芬兰市场的演进 — 从备用收入高峰到交易主导'], blocks: [
-    { t: 'card', mt: false, title: ['How the system got here', '系统如何演变至此'], badges: ['official'], blocks: [
-      { t: 'timeline', items: M.timeline },
-    ] },
+  SEC_B.story = () => ({ head: researchHistory(api).head, blocks: [
+    researchHistory(api).cards[0],
     { t: 'card', title: ['What the reserve boom did to reserve prices', '备用收入高峰对备用价格的影响'], badges: ['tp'], blocks: [
       { t: 'bar', cfg: { xs: M.fcrnPrice.map(p => p.y), bw: 40, labels: true, h: 230, yfmt: v => '€' + fmtN(v),
         series: [{ name: ['FCR-N reservation price, €/MW,h', 'FCR-N预留价（€/MW,h）'], color: 'var(--s3)', vals: M.fcrnPrice.map(p => p.v) }] } },

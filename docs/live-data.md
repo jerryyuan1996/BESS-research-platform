@@ -47,21 +47,21 @@ failures; the snapshots retain their actual fetched timestamps rather than claim
 | Dataset | Market | Source | Cadence | Key |
 |---|---|---|---|---|
 | `fx-ecb` | global | ECB euro reference rates | daily | — |
-| `gb-day-ahead` | GB | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
+| `gb-day-ahead` | GB | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
 | `gb-dynamic-response` | GB | NESO Dynamic results, fixed 2020–2023 vintage; availability prices and cleared/technology MW | fixed after initial import | — |
 | `gb-eac-response` | GB | NESO EAC response results; FY2023–FY2025 archives plus current results | read on the daily combined run; source daily | — |
 | `gb-imbalance-buy`, `gb-imbalance-sell` | GB | Elexon DISEBSP indicative system prices, GBP/MWh; independent of day-ahead | read on the daily combined run | — |
 | `gb-net-imbalance-volume` | GB | Elexon DISEBSP signed net system imbalance, MWh per half-hour | read on the daily combined run | — |
-| `ie-day-ahead` | IE | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
-| `ro-day-ahead` | RO | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
-| `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | 12h | — |
+| `ie-day-ahead` | IE | ENTSO-E Transparency | read on the daily combined run | `ENTSOE_TOKEN` |
+| `ro-day-ahead` | RO | ENTSO-E Transparency | read on the daily combined run | `ENTSOE_TOKEN` |
+| `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | read on the daily combined run | — |
 | `wa-wem-prices` | WA | AEMO WEM reference trading price | daily | — |
 | `jp-tokyo-jepx` | JP-Tokyo | JEPX spot | daily | — |
 | `jp-kyushu-jepx` | JP-Kyushu | JEPX spot | daily | — |
 | `jp-hokkaido-jepx` | JP-Hokkaido | JEPX spot | daily | — |
-| `fi-storage-capacity` | FI | Fingrid dataset 424, hourly network-model technical power (MW, CC BY 4.0); includes some units approaching operation | 24h | `FINGRID_API_KEY` |
-| `fi-day-ahead` | FI | ENTSO-E Transparency | 12h | `ENTSOE_TOKEN` |
-| `fi-fcr-n`, `fi-fcr-d-up`, `fi-fcr-d-down`, `fi-afrr-up`, `fi-afrr-down`, `fi-mfrr-up`, `fi-mfrr-down` | FI | Fingrid open data, hourly reserve capacity prices (EUR/MW/h, CC BY 4.0) | 12h | `FINGRID_API_KEY` |
+| `fi-storage-capacity` | FI | Fingrid dataset 424, hourly network-model technical power (MW, CC BY 4.0); includes some units approaching operation | daily | `FINGRID_API_KEY` |
+| `fi-day-ahead` | FI | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
+| `fi-fcr-n`, `fi-fcr-d-up`, `fi-fcr-d-down`, `fi-afrr-up`, `fi-afrr-down`, `fi-mfrr-up`, `fi-mfrr-down` | FI | Fingrid open data, hourly reserve capacity prices (EUR/MW/h, CC BY 4.0) | daily | `FINGRID_API_KEY` |
 
 The catalogue is [`src/governance/datasets.js`](../src/governance/datasets.js) — the only place the
 platform learns a dataset exists, in the same way `markets/registry.js` is for markets.
@@ -164,8 +164,8 @@ what units it is in, who was allowed to write it, and whether it has changed.
 }
 ```
 
-Two checksums, and the split matters: `contentChecksum` covers the data only, so a daily cron
-that fetches identical data writes nothing instead of committing four near-identical files a day.
+Two checksums, and the split matters: `contentChecksum` covers the data only, so a cron that
+fetches identical data writes nothing instead of committing a near-identical file every run.
 
 ---
 
@@ -276,8 +276,8 @@ is the number to read before raising anything.
 
 ### Backfill is incremental
 
-Several sources publish one file per trading day. Rebuilding a year of history every day would
-mean roughly fifteen hundred requests per run against a public regulator, four times a day, forever.
+Several sources publish one file per trading day. Rebuilding a year of history on every run would
+mean roughly fifteen hundred requests per run against a public regulator, every day, forever.
 That gets an IP blocked and deserves to.
 
 So the window fills at most 45 days per run, newest first. A cold start takes about a week of cron

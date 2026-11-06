@@ -1,3 +1,4 @@
+import {HISTORY_FORMAT} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Great Britain 鈥?engine configuration.
 
@@ -11,7 +12,7 @@
    --------------------------------------------------------------------------- */
 
 const MKT = {
-  id: 'gb', ns: 'gb', locale: 'en-GB', cur: '£', curCode: 'GBP',
+  id: 'gb', ns: 'gb', locale: HISTORY_FORMAT.locale, cur: HISTORY_FORMAT.cur, curCode: 'GBP',
   tz: 'Europe/London', tzShort: 'Europe/London',
   tzNote: ['All timestamps Europe/London', '所有时间为伦敦时间'],
   seedTag: 'GB_SEED_V1',

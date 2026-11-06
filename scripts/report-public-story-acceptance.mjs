@@ -5,6 +5,8 @@ import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {PUBLIC_CATALOG,PUBLIC_MARKET_IDS,PUBLIC_VERSION} from '../src/experience/story/public/catalog.js';
 import {loadPublicContent} from '../src/experience/story/public/content.js';
+import {approvalRecordUrl} from '../src/experience/story/public/approvalRecords.js';
+import {writeApprovalDateAudit} from './report-public-approval-dates.mjs';
 import {loadMarkers,scanText} from './lib/markers.mjs';
 const evidence=path.resolve(process.env.PUBLIC_EVIDENCE_ROOT||'../evidence');
 const root=path.resolve('docs/public-market-overviews-2026-11-06');
@@ -13,9 +15,9 @@ const json=async file=>{try{return JSON.parse((await readFile(file,'utf8')).repl
 const measured=await json(path.join(evidence,'public','performance.json'));
 if(!measured?.records?.length)throw new Error('No actual browser measurements');
 const baseline=await json(path.join(evidence,'baseline','performance.json'));
-const checkData=await json(path.resolve('../final-checks.json'));
+const checkData=await json(path.resolve(process.env.PUBLIC_CHECKS_FILE||'../final-checks.json'));
 const checks=Array.isArray(checkData)?checkData:checkData?[checkData]:[];
-const e2e=await json(path.join(evidence,'full-e2e.json'));
+const e2e=await json(path.resolve(process.env.PUBLIC_E2E_FILE||path.join(evidence,'full-e2e.json')));
 const names={wa:'西澳 WEM',nem:'澳洲 NEM',gb:'英国',de:'德国',it:'意大利',ie:'爱尔兰',ro:'罗马尼亚',pl:'波兰',jp_tokyo:'日本东京／关东',jp_kyushu:'日本九州',jp_hokkaido:'日本北海道',pjm:'美国 PJM',ercot:'美国 ERCOT',caiso:'美国 CAISO',fi:'芬兰'};
 const devices=['desktop','ipad','phone'];
 const deviceNames={desktop:'桌面 1440×900',ipad:'iPad 820×1180',phone:'手机 390×844'};
@@ -68,6 +70,7 @@ table.push('','| 本轮未纳入 | 状态 |','|---|---|','| ca_on 安大略 | �
   '','全部设备记录都验证关闭后的触发焦点、重复章节加载零资源请求及无页面错误。专项另验键盘、Back/Forward、版本／语言深链接、减少动态效果、章节／场景／弹窗加载失败与重试、日本区域切换后的最终来源清单，以及手机原生横向触控手势。',
   '','## 完整命令门禁','','| 命令 | 实际退出码 | 用时（秒） |','|---|---|---|');
 for(const check of checks||[])table.push(`| ${check.command} | ${check.exitCode} | ${check.seconds.toFixed(1)} |`);
+table.push('',`本地浏览器验证命令：\`${checks.find(c=>c.name==='e2e')?.command||'未运行'}\`。若命令指定 public-story 文件，则是公共版专项（包括 360 个组合），不冒称完整原功能套件；补丁精确提交的完整 CI 另有其运行记录。#171 的历史 CI 不作为后续补丁 SHA 的验证。`);
 table.push('','未出现在上表的门禁仍为待运行，不能视为通过。保密检查使用真实 marker set 与 fingerprint key，最终构建检查设置 REQUIRE_OUTPUT=1／REQUIRE_MARKERS=1。原本仅在本地保密叠加层存在时才有内容的条件检查，若跳过，会在完整测试日志中单列；它不替代独立的最终构建扫描。','',
   '## 样板截图','','每组均含首屏摘要与主按钮，以及精细电站剖面。其余市场的三视口首屏／机制场景也已生成，完整 102 张 PNG 的字节数和校验和见 [产物清单](artifact-manifest.json)。完整本地产物目录为执行工作区相邻的 `evidence/public/`。','');
 for(const id of pilots){table.push(`### ${names[id]}`,'');for(const device of devices)table.push(`- ${deviceNames[device]}：[首屏](gallery/${id}-${device}-overview.png) · [电站剖面](gallery/${id}-${device}-cutaway.png)`);table.push('');}
@@ -90,18 +93,22 @@ perf.push('','首屏只读取轻量公共摘要。完整市场包、章节渲染
 await write('performance.md',perf.join('\n')+'\n');
 
 const review=['# 公共内容审阅 · '+PUBLIC_VERSION,'','15 个公共版本均为待确认。旧批准只覆盖原脚本、投资人／策略／阶段；以下内容没有新的 Jerry 签核。',''];
-for(const [id,c] of Object.entries(PUBLIC_CATALOG)){const d=await loadPublicContent(id);review.push('## '+names[id]+' · '+id,'','状态：**公共解读待确认**；原脚本版本 '+d.legacyVersion+'；来源复核 '+c.reviewedOn+'。','',
+for(const [id,c] of Object.entries(PUBLIC_CATALOG)){const d=await loadPublicContent(id);review.push('## '+names[id]+' · '+id,'','状态：**公共解读待确认**；原脚本 G-1 签核 '+c.g1ApprovedOn+'；原内容模块版本 '+d.legacyVersion+'（版本日期不是批准日期）。','',
+  'G-1 依据：['+d.approvalRecords.g1Record.path+':'+d.approvalRecords.g1Record.line+']('+approvalRecordUrl(d.approvalRecords.g1Record)+')。来源核对记录：'+(d.latestCheckedOn||'未单列日期，未由其他日期推算')+'。',
+  ...d.approvalRecords.supplements.map(e=>'后续原内容补充批准：'+e.on+'；'+e.scope[1]+' [依据]('+approvalRecordUrl(e.record)+')。'),'补充批准仅适用原研究范围，不是本次公共编辑的新批准。','',
   ...['history','logic','condition'].flatMap(k=>['- '+k+' EN: '+c[k][0],'- '+k+' ZH: '+c[k][1]]),'','Mechanism EN: '+d.payment[0],'','Mechanism ZH: '+d.payment[1],'',
   '原适用范围：`'+JSON.stringify(d.legacyScope)+'`。','','原脚本：['+d.script+'](../../'+d.script+')。','');
   if(d.sourceGroups)for(const g of d.sourceGroups)review.push(g.title[1]+'：'+g.ids.join(', ')+'。','');else review.push('原始证据：'+Object.keys(d.sources).join(', ')+'。','');
 }
 await write('content-review.md',review.join('\n')+'\n');
+await writeApprovalDateAudit(write,names);
 await write('release-notes.md',[
   '# 发布说明 · 公共 Market Overview '+PUBLIC_VERSION,'',
   '将 15 个已有 G-1 脚本市场接入统一公共首屏、六章弹窗和精细 SVG；ERCOT 新增公共入口。安大略、沙特、西班牙未扩写公共判断。',
   '','公共摘要先于决策、策略与财务卡；公共正文不读取投资人定价绑定。同地区跨投资人复用同版本，EN/ZH 含义对应。日本全国背景共用，东京／关东、九州、北海道有独立区域证据、标题、场景、内部研究链接和章节 URL。',
   '','新增电站剖切和三幕场景：系统约束、电站设备、收入因果。支持触控／键盘注释、充放电方向、章节深链接、Back/Forward、焦点与滚动恢复、失败重试、减少动态效果及成功资源缓存。',
   '','原 G-2 入口和适用范围校验保留；原已发布财务数据、模型基线、来源权利限制和保密边界未更改。原脚本事实可追溯，新编辑的公共投资逻辑全部显示待确认。',
+  '','日期准确性补丁：十五市场原 G-1 均逐项引用原记录；后续补充内容批准、原 G-2、模块版本／绑定基线及来源核对分别命名。后来核对不推断内容变化或新批准。见 [日期审计](approval-date-audit.md)。',
   '',`设备证据：${measured.records.length}/45 条；${manifest.length} 张截图；设备检查${accepted?'通过':'待完成'}。完整矩阵${matrixPass?'360 个组合通过':'仍以验收表的实际状态为准'}。`,
   '','本地门禁结果、完整市场表、内容待确认状态及实测性能分别见 [验收表](acceptance.md)、[内容审阅](content-review.md)、[性能记录](performance.md)。',
   '','仅通过正常 PR、精确提交 SHA 的 CI 与正常 merge 发布；不独立部署、不绕过已有流水线。最终 PR、提交和 merge SHA 由交付记录与 PR 时间线提供。',

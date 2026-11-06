@@ -57,3 +57,11 @@ export function publicStoryFor(id){
     load: () => import('./public/pack.js'),
   } : null;
 }
+/* Existing-history coverage is wider than the fifteen original Story scripts. */
+export const HISTORY_ONLY_IDS=Object.freeze(['ca_on','sa','es']);
+export function publicReadingFor(id){
+  return publicStoryFor(id)||(HISTORY_ONLY_IDS.includes(id)?{
+    loadOverview:()=>import('./public/overview.js'),
+    load:()=>import('./public/pack.js'),
+  }:null);
+}

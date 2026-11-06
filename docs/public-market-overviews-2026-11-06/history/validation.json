@@ -1,0 +1,110 @@
+{
+  "checks": [
+    {
+      "command": "npm run build",
+      "sourceSha": "45a916e8affdd08e5172138d89276518c1fbbcaa",
+      "nodeVersion": "v22.23.4",
+      "exitCode": 0,
+      "nativeExitCode": 0,
+      "started": "2026-11-06T19:14:43.0817214Z",
+      "completed": "2026-11-06T19:15:18.1647523Z",
+      "seconds": 35.08,
+      "log": "C:\\Users\\Jerry\\Documents\\Codex\\2026-11-06\\task-5\\evidence\\history-gates\\20261106T191442Z\\build.log",
+      "guardSkips": null
+    },
+    {
+      "command": "local preview identity rehearsal",
+      "sourceSha": "45a916e8affdd08e5172138d89276518c1fbbcaa",
+      "nodeVersion": "v22.23.4",
+      "exitCode": 0,
+      "nativeExitCode": 0,
+      "started": "2026-11-06T19:15:18.1940660Z",
+      "completed": "2026-11-06T19:15:20.2727888Z",
+      "seconds": 2.08,
+      "log": "C:\\Users\\Jerry\\Documents\\Codex\\2026-11-06\\task-5\\evidence\\history-gates\\20261106T191442Z\\preview-identity.log",
+      "guardSkips": null
+    },
+    {
+      "command": "npm run test:budget",
+      "sourceSha": "45a916e8affdd08e5172138d89276518c1fbbcaa",
+      "nodeVersion": "v22.23.4",
+      "exitCode": 0,
+      "nativeExitCode": 0,
+      "started": "2026-11-06T19:15:20.2804341Z",
+      "completed": "2026-11-06T19:15:22.3070548Z",
+      "seconds": 2.03,
+      "log": "C:\\Users\\Jerry\\Documents\\Codex\\2026-11-06\\task-5\\evidence\\history-gates\\20261106T191442Z\\budget.log",
+      "guardSkips": null
+    },
+    {
+      "command": "npm test",
+      "sourceSha": "45a916e8affdd08e5172138d89276518c1fbbcaa",
+      "nodeVersion": "v22.23.4",
+      "exitCode": 0,
+      "nativeExitCode": 0,
+      "started": "2026-11-06T19:15:22.3131959Z",
+      "completed": "2026-11-06T19:18:47.4311643Z",
+      "seconds": 205.12,
+      "log": "C:\\Users\\Jerry\\Documents\\Codex\\2026-11-06\\task-5\\evidence\\history-gates\\20261106T191442Z\\unit.log",
+      "guardSkips": null
+    },
+    {
+      "command": "npm run test:current",
+      "sourceSha": "45a916e8affdd08e5172138d89276518c1fbbcaa",
+      "nodeVersion": "v22.23.4",
+      "exitCode": 0,
+      "nativeExitCode": 0,
+      "started": "2026-11-06T19:18:47.4371630Z",
+      "completed": "2026-11-06T19:18:48.7215841Z",
+      "seconds": 1.28,
+      "log": "C:\\Users\\Jerry\\Documents\\Codex\\2026-11-06\\task-5\\evidence\\history-gates\\20261106T191442Z\\current.log",
+      "guardSkips": null
+    },
+    {
+      "command": "npm run test:bundle",
+      "sourceSha": "45a916e8affdd08e5172138d89276518c1fbbcaa",
+      "nodeVersion": "v22.23.4",
+      "exitCode": 0,
+      "nativeExitCode": 0,
+      "started": "2026-11-06T19:18:48.7273664Z",
+      "completed": "2026-11-06T19:18:51.4544698Z",
+      "seconds": 2.73,
+      "log": "C:\\Users\\Jerry\\Documents\\Codex\\2026-11-06\\task-5\\evidence\\history-gates\\20261106T191442Z\\bundle.log",
+      "guardSkips": 0
+    },
+    {
+      "command": "npm run etl:verify",
+      "sourceSha": "45a916e8affdd08e5172138d89276518c1fbbcaa",
+      "nodeVersion": "v22.23.4",
+      "exitCode": 0,
+      "nativeExitCode": 0,
+      "started": "2026-11-06T19:18:51.4602577Z",
+      "completed": "2026-11-06T19:18:52.9594165Z",
+      "seconds": 1.5,
+      "log": "C:\\Users\\Jerry\\Documents\\Codex\\2026-11-06\\task-5\\evidence\\history-gates\\20261106T191442Z\\etl.log",
+      "guardSkips": null
+    },
+    {
+      "command": "npm run test:e2e",
+      "sourceSha": "45a916e8affdd08e5172138d89276518c1fbbcaa",
+      "nodeVersion": "v22.23.4",
+      "exitCode": 0,
+      "nativeExitCode": 0,
+      "started": "2026-11-06T19:18:54.1858229Z",
+      "completed": "2026-11-06T19:53:24.3212618Z",
+      "seconds": 2070.14,
+      "log": "C:\\Users\\Jerry\\Documents\\Codex\\2026-11-06\\task-5\\evidence\\history-gates\\20261106T191442Z\\e2e.log",
+      "guardSkips": null
+    }
+  ],
+  "e2e": {
+    "startTime": "2026-11-06T19:18:59.446Z",
+    "duration": 2064749.382,
+    "expected": 407,
+    "skipped": 15,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "sourceCommit": "45a916e8affdd08e5172138d89276518c1fbbcaa",
+  "publicVersion": "2026-11-06.3"
+}

@@ -1,3 +1,4 @@
+import {HISTORY_FORMAT} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Romania 鈥?engine configuration.
 
@@ -11,7 +12,7 @@
    --------------------------------------------------------------------------- */
 
 const MKT = {
-  id: 'ro', ns: 'ro', locale: 'en-GB', cur: '€', curCode: 'EUR',
+  id: 'ro', ns: 'ro', locale: HISTORY_FORMAT.locale, cur: HISTORY_FORMAT.cur, curCode: 'EUR',
   tz: 'Europe/Bucharest', tzShort: 'EET',
   tzNote: ['All timestamps EET', '所有时间为东欧时间(EET)'],
   seedTag: 'RO_SEED_V1',

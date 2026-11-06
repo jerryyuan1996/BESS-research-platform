@@ -96,6 +96,13 @@ The rewrite changed *this* repository. It could not change:
 - old pull requests and their diffs;
 - GitHub's own unreferenced objects, which stay reachable by commit SHA until
   GitHub garbage-collects them — that needs a support request, not a push.
+- commit messages: content redaction rewrites file contents only, so a term
+  typed into a commit message survives it.
+
+Before the repository is ever made public or shared, ask GitHub Support to purge
+old pull-request references and unreachable objects, and scan old commit messages
+against the marker set. Making it public first and cleaning up afterwards does
+not work: automated crawlers clone newly public repositories within hours.
 
 Vercel works with private repositories at no cost, and in this setup it does not
 read the repository at all, so there is no trade-off to weigh here.
@@ -401,11 +408,11 @@ ever goes quiet for a couple of months, check the Actions tab first.
 
 ## What this costs
 
-Nothing, at this scale.
+Little, if the automation stays within its budget.
 
 | | |
 |---|---|
-| GitHub | private repositories and Actions are free; this uses a few minutes of the monthly allowance |
+| GitHub | Private repositories are free. Actions in a private repository draw on the plan's included compute (GitHub Pro: $18 a month, about 3,000 Linux minutes at $0.006 a minute) and are billed beyond it. Keep a payment method and a monthly Actions budget with alerts in **Settings → Billing → Budgets and alerts**: without a payment method, Actions stop when the allowance runs out and the site stops updating. The target is under 2,000 minutes a month; see `docs/ci-performance.md`. |
 | Vercel | Hobby plan covers this comfortably; CI does the building, so no Vercel build minutes are consumed at all |
 | Data sources | ECB, ENTSO-E, AEMO and JEPX are all free public data |
 

@@ -8,7 +8,7 @@
    Some sections (GB's home, duration and portfolio) read the Brief's design
    answer, src/briefing/designData.js, which builds the whole briefing from the
    committed view store and the ETL's public snapshots, on the wall clock. The
-   ETL commits new snapshots every six hours, so that answer moves (a new ECB
+   ETL commits new snapshots every day, so that answer moves (a new ECB
    GBP rate moves GB's "comes closest, at −$277k/MW"). The parity test checks
    that splitting a sections.js did not change what it says, not what the
    briefing says, so it renders against this pin instead

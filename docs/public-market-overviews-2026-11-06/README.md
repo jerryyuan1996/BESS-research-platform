@@ -1,60 +1,50 @@
-# Fifteen-market public Overview and narrative edition
+# Public market Overview, narratives and complete research history
 
-Implementation baseline: `c0229820ff609e38f45b259c3abf9a948aaee51c` (latest `origin/main` when this isolated worktree was created). Public edition: `2026-11-06.1`.
+Current public edition: `2026-11-06.3`. This topic keeps the original fifteen-market Overview/SVG release and its full-history follow-up together. The earlier implementation was merged and published in #171. Its original [acceptance](acceptance.md), [performance](performance.md) and screenshots are the baseline, not evidence for the follow-up.
 
-Jerry selected the narrower first delivery: “A 先把15个市场已有的脚本做成所有投资人共用的新版本”. The authorised implementation and normal PR/CI/merge flow therefore cover **15 markets**, with reorganised or new public interpretations explicitly pending content confirmation. This does not create a new content sign-off.
+Jerry subsequently requested the **complete existing market development history for every market with that material**. The current follow-up therefore covers **18 market routes, 16 source owners and 90 unique original events (104 route-rendered instances)**. It preserves full English/Chinese periods, titles, paragraphs, capital perspectives, introductions, conclusions, source blocks and supporting context. WA retains both axes (15 distinct events); Japan shares seven national events and keeps all three regional paths. Future and planned events keep their original wording. Runtime values still come from their original data expressions.
 
-| Market | ID | This delivery | Original Story state |
-|---|---|---|---|
-| Western Australia | wa | Public summary, six chapters, local mechanism SVG | Existing G-2 entry retained |
-| NEM | nem | Public summary, six chapters, local mechanism SVG; visual pilot | Existing scoped G-2 entry retained |
-| Great Britain | gb | Public summary, six chapters, local mechanism SVG | Existing G-2 entry retained |
-| Germany | de | Public summary, six chapters, local mechanism SVG | Existing G-2 entry retained |
-| Italy | it | Public summary, six chapters, local mechanism SVG | Existing scoped route choices retained |
-| Ireland | ie | Public summary, six chapters, local mechanism SVG | Existing G-2 entry retained |
-| Romania | ro | Public summary, six chapters, local mechanism SVG | Existing G-2 entry retained |
-| Poland | pl | Public summary, six chapters, local mechanism SVG | Existing scoped cohorts retained |
-| Japan Tokyo / Kanto | jp_tokyo | Shared national background, independent regional context / evidence / URLs | Original lens, route and operating-stage checks retained |
-| Japan Kyushu | jp_kyushu | Shared national background, independent regional context / evidence / URLs | Original lens, route and operating-stage checks retained |
-| Japan Hokkaido | jp_hokkaido | Shared national background, independent regional context / evidence / URLs | Original lens, route and operating-stage checks retained |
-| PJM | pjm | Public summary, six chapters, local mechanism SVG | Existing G-2 entry retained |
-| ERCOT | ercot | New public entry from G-1 script / fixed evidence; no new quantitative chart | Original G-2 remains unreleased |
-| CAISO | caiso | Public summary, six chapters, local mechanism SVG | Existing G-2 entry retained |
-| Finland | fi | Public summary, six chapters, local mechanism SVG | Existing G-2 entry retained |
-| Ontario | ca_on | **Outside this delivery; existing functionality retained** | Public content gap remains |
-| Saudi Arabia | sa | **Outside this delivery; existing functionality retained** | Public content gap remains |
-| Spain | es | **Outside this delivery; existing functionality retained** | Public content gap remains |
+| Market | ID | Current public scope |
+|---|---|---|
+| Western Australia | `wa` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| NEM | `nem` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Great Britain | `gb` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Germany | `de` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Italy | `it` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Ireland | `ie` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Romania | `ro` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Poland | `pl` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Japan Tokyo / Kanto | `jp_tokyo` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Japan Kyushu | `jp_kyushu` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Japan Hokkaido | `jp_hokkaido` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| PJM | `pjm` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| ERCOT | `ercot` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| CAISO | `caiso` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Finland | `fi` | Public Overview, six chapters, complete existing history and local mechanism SVG |
+| Ontario | `ca_on` | Complete existing history and research/source chapter only |
+| Saudi Arabia | `sa` | Complete existing history and research/source chapter only |
+| Spain | `es` | Complete existing history and research/source chapter only |
 
-## Content boundary
+Ontario, Saudi Arabia and Spain now have a minimal history entrance. This does not supply a new investment thesis, quantitative model, original Story approval or a full mechanism/SVG narrative for those three markets.
 
-All fifteen public editions are `pending-public-review`. A dated source-script review is distinct from public editorial approval. Verbatim, token-free excerpts retain their questions, claim IDs and original source provenance. New summaries, mechanisms, conditions, timelines and diagrams are public-review drafts. No original G-1/G-2 record is changed, no investor-specific financial conclusion is promoted to a public approval, and no model/financial/dataset/fixture input is changed.
+## Content and approval boundary
 
-External primary evidence and internal research/model links are separate. Japan's internal links resolve the actual regional slug; no `{areaSlug}` link is rendered. Original rights and withholding gates remain in the research modules. ERCOT's gated price charts are not recreated. Diagrams are original qualitative schematics, with no vendor specifications, simulated dispatch or observed quantitative curves.
+Every new public interpretation and the public relocation/editing of existing history remain visibly **pending confirmation**. Original research facts and capital perspectives retain their original wording, scope and source ownership. No original G-1/G-2 approval is rewritten, and investor-specific strategies or financial conclusions do not become approvals for every investor. No financial input, discount rate, model fixture or upstream snapshot is changed by this feature.
 
-See [the bilingual content review](content-review.md) for each market's draft, original approval scope and source register. Remaining confirmation: Jerry's new public-content review for all fifteen editions. The authorised engineering delivery can merge while these interpretations remain visibly pending.
+The [content review](content-review.md) records the original fifteen public drafts and the history-only boundary. The [event-date audit](history/approval-date-audit.md) independently traces every original G-1, supplementary approval, scoped G-2, module version, binding date and explicit source check. A later source check does not establish a changed fact or new approval. Missing dates remain unknown.
 
-## Implementation
+## Implementation and reading
 
-`marketPage.js` places a lightweight public summary before decisions, strategy choices and financial cards in both DOM and visual reading order. It also removes the previous financial-card relocation for these fifteen markets. The three other markets retain their previous path.
+A lightweight Overview precedes decisions, strategy and finance in DOM and visual order. Complete history, chapter renderers and SVG load only when requested. Each owner has a small history adapter; original research and public history read the same canonical factory, timeline renderer and authoritative data fields. Cache checks count every resource request, including repeated URLs. Original scoped Story/research entrances and validation remain available.
 
-The public registry has a separate scope from the original `STORIES` release flags. Overview/card data, modal shell, market content, chapter renderer and SVG scene load across separate dynamic boundaries. Successful content promises are cached; rejected content promises are evicted. A failed module can be retried by reloading the same versioned chapter URL, with readable summary/research fallbacks. A source record newer than the script review has a separate evidence-update state.
+The native modal retains bilingual chapters, stable reading-field anchors, long-content scrolling, keyboard/touch access, sources, focus and page-position restoration, Back/Forward, chapter deep links, loading retry and reduced-motion reading. Japan's national history is shared while the pathname, title, selected region, source grouping and current-region path remain specific.
 
-The native modal retains the existing story-place router and its three whitelisted parameters. Public shot IDs encode locale and edition, e.g. `?view=story&chapter=storage&shot=public-zh-2026-11-06-1-storage`. Market/region is the pathname. Old shot IDs and original scoped-story/research entrances remain valid. Japan's region selector carries the chapter, locale and edition to the selected regional path.
+The original fifteen local mechanism scenes retain the refined battery racks, PCS, transformer, busbar, meter, connection point, network constraint, payment causality and touch annotations. No invented equipment specification or observed quantitative curve is added.
 
-The shared SVG uses the existing 2:1 projection and symbol vocabulary, with a new cutaway battery, rack modules, cooling details, PCS cabinets, transformer fins and bushings, protected busbar, metering, cable routes and energy-flow arrows. Each market configures local constraints and payment causality. Scene steps, equipment focus and charging direction use keyboard/touch controls; annotations also exist as readable HTML. Small screens can pan the scene. Reduced-motion reading requires no animation.
+## Current evidence
 
-## Verification and evidence
+The current [acceptance record](history/acceptance.md), [18-market coverage](history/coverage.md), [complete source mapping](history/source-mapping.json), [performance comparison](history/performance.md) and [clean screenshot gallery](history/gallery.md) belong to this follow-up. Measurements cover 72 market/viewport combinations: desktop, portrait iPad, landscape iPad and phone. These are Chromium emulations, not physical-device tests. The original fifteen markets retain all-investor EN/ZH and SVG checks; the other three are history-only.
 
-The browser matrix covers every scoped market, all four investor entries, both languages, desktop, iPad and phone. Interaction checks include native keyboard access, touch annotations, scroll/focus restoration, repeated opening, Back/Forward, regional switching, versioned chapter URLs, loading failures/retry and reduced motion. Original scoped Story tests remain in the full regression suite.
+The complete local browser run records 407 passed, 0 failed, 0 flaky and 15 original duplicate-project skips. Local code evidence is bound to `45a916e8affdd08e5172138d89276518c1fbbcaa`; a later evidence-only commit is separately checked by exact-head CI. Publication and merge status are authoritative in the final PR and Actions records.
 
-An early cache diagnostic identified Chromium's automatic `/favicon.ico` lookup on History-API chapter navigation, rather than an extra content or SVG module. The document now declares an original inline SVG icon, avoiding that fallback HTTP lookup. The cache check retains its zero-additional-resource assertion and records repeated URLs as a multiset, so a same-URL repeat cannot disappear from the diagnostic.
-
-`scripts/public-story-diagnostics.mjs` serves only a production build, writes screenshots and Performance API records, and checks first-screen button bounds. The cached-transition check settles unrelated initial-page requests, then still requires **zero additional resources of any kind**. It records the intervening background completions and the complete cached-transition resource delta; no budget or zero-request assertion is relaxed.
-
-The baseline is a separate preserved build. Baseline browser measurements use the old research/Story trigger; new measurements use the public summary/Story trigger. They measure reader-visible readiness, not a synthetic claim that all route resources completed. Raw body bytes and gzip chunk bytes are separately labelled. See [acceptance](acceptance.md), [performance](performance.md), and [release notes](release-notes.md) for final results.
-
-## Reproducing
-
-Use the locked dependencies and repository confidentiality setup. `node scripts/author-public-stories.mjs` is a deliberate text migration from the signed scripts, not ETL or fixture generation. It scans authored output before writing and never imports investor pricing bindings. Review content diffs after running it.
-
-Run the normal `npm test`, `npm run test:current`, `npm run build`, `npm run test:budget`, and `npm run test:e2e` gates, plus the staged and exact-built-output confidentiality scans. `npm run etl:verify` is also recorded as an extra integrity check even though no dataset changes are intended. Never share a dev server or deploy around the existing GitHub Actions publication pipeline.
+Use the repository's Node 22 runtime, locked dependencies and real confidentiality setup. Run the required unit/current/build/budget/browser/ETL checks and staged/exact-built-output scans. Show only a compiled preview. Publish only through the existing scanned GitHub Actions/Vercel pipeline.

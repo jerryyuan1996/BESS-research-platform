@@ -1,3 +1,4 @@
+import {HISTORY_FORMAT} from './historyData.js';
 /* ---------------------------------------------------------------------------
    PJM — engine configuration.
 
@@ -12,7 +13,7 @@
    --------------------------------------------------------------------------- */
 
 const MKT = {
-  id: 'pjm', ns: 'pjm', locale: 'en-US', cur: '$', curCode: 'USD',
+  id: 'pjm', ns: 'pjm', locale: HISTORY_FORMAT.locale, cur: HISTORY_FORMAT.cur, curCode: 'USD',
   tz: 'America/New_York', tzShort: 'EPT',
   tzNote: ['All timestamps Eastern Prevailing Time, which PJM settles on across the whole RTO',
            '所有时间为美东现行时间（EPT），PJM全RTO范围均按此结算'],

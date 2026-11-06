@@ -1,4 +1,6 @@
 import { PUBLIC_CATALOG, PUBLIC_VERSION } from './catalog.js';
+import {SCRIPT_APPROVAL_RECORDS} from './approvalRecords.js';
+import {PUBLIC_READING_CATALOG} from './historyCatalog.js';
 const loaders = {
   wa:()=>import('./content/wa.js'), nem:()=>import('./content/nem.js'),
   gb:()=>import('./content/gb.js'), de:()=>import('./content/de.js'),
@@ -9,14 +11,16 @@ const loaders = {
   jp:()=>import('./content/jp.js'),
 };
 const cache = new Map();
-export function publicEvidenceState(reviewedOn,sources){
+export function publicEvidenceState(g1ApprovedOn,sources){
   const dates=Object.values(sources).map(s=>s.checkedOn).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d||''));
-  const latestSourceOn=[reviewedOn,...dates].sort().at(-1);
-  return {latestSourceOn,evidenceUpdated:latestSourceOn>reviewedOn};
+  const latestCheckedOn=dates.sort().at(-1)||null;
+  return {latestCheckedOn,checkedAfterG1:Boolean(latestCheckedOn&&latestCheckedOn>g1ApprovedOn)};
 }
 /** Shared Japan module is fetched once; immutable region objects keep evidence local. */
 export async function loadPublicContent(id){
-  if(!PUBLIC_CATALOG[id])throw new Error('Public edition unavailable');
+  const summary=PUBLIC_READING_CATALOG[id];
+  if(!summary)throw new Error('Public edition unavailable');
+  if(summary.historyOnly)return {marketId:id,summary,version:PUBLIC_VERSION,extracts:{history:[],system:[],mechanism:[]},sources:{},internalReferences:{}};
   const group=id.startsWith('jp_')?'jp':id;
   if(!cache.has(group))cache.set(group,loaders[group]().then(m=>m.default).catch(e=>{cache.delete(group);throw e;}));
   const data=await cache.get(group);
@@ -30,7 +34,7 @@ export async function loadPublicContent(id){
   ]:null;
   const sources=sourceGroups?Object.fromEntries([...national,...regional].map(key=>[key,data.sources[key]])):data.sources;
   return {...data,...region,marketId:id,summary:PUBLIC_CATALOG[id],version:PUBLIC_VERSION,
-    sources,sourceGroups,...publicEvidenceState(PUBLIC_CATALOG[id].reviewedOn,sources),
+    sources,sourceGroups,approvalRecords:SCRIPT_APPROVAL_RECORDS[id],...publicEvidenceState(PUBLIC_CATALOG[id].g1ApprovedOn,sources),
     internalReferences:data.internalReferencesByRegion?.[id]||{},
     regionalSourceIds:data.regionalEvidence?.[id]||[],extracts:data.extracts||{history:[],system:[],mechanism:[]}};
 }

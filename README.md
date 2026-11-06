@@ -336,7 +336,7 @@ between the check and the thing checked. Pull requests still scan `dist/` —
 from a pull request.
 
 A Vercel Git integration undoes all of this: it builds on push without waiting for
-Actions, and the ETL bot pushes to `main` every six hours. It was enabled — on
+Actions, and the ETL bot pushes to `main` every day. It was enabled — on
 2026-08-17 a pull request drew two platform-built Preview deployments, the first
 published before CI had started and while it was failing. `vercel.json` now sets
 `git.deploymentEnabled: false`. See [`docs/publishing.md`](docs/publishing.md) for

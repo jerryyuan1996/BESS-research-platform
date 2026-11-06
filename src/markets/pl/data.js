@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Poland 鈥?market dataset, verbatim from the prototype (lines 1358-1588).
 
@@ -8,9 +9,9 @@
 import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
-  asOf: '2026-07-26',
-  dataDate: '2025 annual / DY 2030',
-  modelVersion: 'pl-seed-1.0-capacity-structure-ro-benchmark',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['Poland Battery Investment Dashboard', '波兰储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。'],
@@ -23,9 +24,9 @@ const M = {
 
   fx: 4.27,   // PLN per EUR — illustrative mid-rate; replace with the central-bank series
   official: {
-    cmPricePln: 260, cmDY: '2030', cmAgreementYears: 17, cmAwardedBessGW: 5.0,
+    cmPricePln: 260, cmDY: '2030', cmAgreementYears: HISTORY_DATA.official.cmAgreementYears, cmAwardedBessGW: 5.0,
     fleetMW: 1500, fleetMWh: 3500, pipelineGW: 20,
-    daSpreadEur: 109, negHours: 1200, coalSharePct: 55,
+    daSpreadEur: 109, negHours: HISTORY_DATA.official.negHours, coalSharePct: 55,
     supportEurM: 1200, balancingReformYear: 2024,
     dam2025Eur: 104, idm2025Eur: 88,
   },
@@ -34,16 +35,16 @@ const M = {
     rationale: ['A long capacity contract makes Polish storage conventionally financeable, but the auction is competitive, the correction factor decides how much of the asset is paid, and connection refusals decide whether the project can bid at all.',
                 '长期容量合同使波兰储能具备常规可融资性，但拍卖竞争激烈、折减系数决定资产中获付费的比例，而并网拒批则决定项目能否参与投标。'] },
   // ---- capacity market ----
-  cmYears: ['2026', '2027', '2028', '2029', '2030'],
-  cmPriceSeries: [400, 340, 300, 275, 260],           // PLN/kW/yr — SEED, verify
-  derateHours: [1, 2, 4, 6, 8],
+  cmYears: HISTORY_DATA.cmYears,
+  cmPriceSeries: HISTORY_DATA.cmPriceSeries,           // PLN/kW/yr — SEED, verify
+  derateHours: HISTORY_DATA.derateHours,
   /* One correction factor, 13.39%, for storage of every duration (December 2025
      main auction, 2030 delivery) — applied to CERTIFIED capacity, which must be
      deliverable for four uninterrupted hours, so a battery shorter than four
      hours certifies MWh ÷ 4. Hence 0.1339 × min(1, h/4). Gate DG-1, opened
      2026-10-15 (docs/duration-and-route-fit-research-gates.md); the analyst's
      correction of the same day, replacing a seed that rose 0.22 → 0.89. */
-  deratingCurve: { 1: 0.1339 / 4, 2: 0.1339 / 2, 4: 0.1339, 6: 0.1339, 8: 0.1339 },
+  deratingCurve: HISTORY_DATA.deratingCurve,
   futureCapFactor: 0.5,
 
   // ---- wholesale ----

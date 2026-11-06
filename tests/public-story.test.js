@@ -7,6 +7,7 @@ import {loadPublicContent,CHAPTERS,publicPlace,readPublicPlace,publicEvidenceSta
 import {parseRoute,STORY_PARAMS} from '../src/app/router.js';
 import {placeSearch} from '../src/experience/story/place.js';
 import {composeStory,SHARED_SHOTS,JP_CLAIMS} from '../src/markets/jp/story.js';
+import {SCRIPT_APPROVAL_RECORDS} from '../src/experience/story/public/approvalRecords.js';
 
 test('the authorised fifteen share public scope; three unapproved additions stay outside it',()=>{
   assert.deepEqual(PUBLIC_MARKET_IDS,PUBLIC_STORY_IDS);
@@ -18,7 +19,7 @@ test('the authorised fifteen share public scope; three unapproved additions stay
 test('every public summary is bilingual, explicitly pending, and free of financial bindings',()=>{
   for(const [id,c] of Object.entries(PUBLIC_CATALOG)){
     assert.equal(c.status,PUBLIC_STATUS,id);assert.equal(c.status,'pending-public-review');assert.equal(c.version,PUBLIC_VERSION);
-    assert.match(c.reviewedOn,/^2026-\d{2}-\d{2}$/);
+    assert.match(c.g1ApprovedOn,/^2026-\d{2}-\d{2}$/);assert.equal('reviewedOn' in c,false);
     for(const key of ['history','logic','condition']){assert.equal(c[key].length,2,id+'/'+key);assert.ok(c[key].every(x=>typeof x==='string'&&x.length>20));assert.doesNotMatch(c[key].join(' '),/[{}]|\bIRR\b|\btarget return\b/);}
     assert.match(c.history[1],/[\u3400-\u9fff]/);
   }
@@ -80,8 +81,32 @@ test('public reading imports neither financial models nor investor bindings; ful
   const chapter=await readFile(new URL('chapter.js',dir),'utf8');assert.match(chapter,/import\('\.\/scene\.js'\)/);
 });
 
-test('evidence updates are distinguished from pending editorial approval without inventing a review date',()=>{
-  assert.deepEqual(publicEvidenceState('2026-11-01',{a:{checkedOn:'2026-11-03'}}),{latestSourceOn:'2026-11-03',evidenceUpdated:true});
-  assert.deepEqual(publicEvidenceState('2026-11-01',{a:{checkedOn:null}}),{latestSourceOn:'2026-11-01',evidenceUpdated:false});
+test('source-check dates compare dates only; they prove neither changed content nor approval',()=>{
+  assert.deepEqual(publicEvidenceState('2026-11-01',{a:{checkedOn:'2026-11-03'}}),{latestCheckedOn:'2026-11-03',checkedAfterG1:true});
+  assert.deepEqual(publicEvidenceState('2026-11-01',{a:{checkedOn:'2026-10-31'}}),{latestCheckedOn:'2026-10-31',checkedAfterG1:false});
+  assert.deepEqual(publicEvidenceState('2026-11-01',{a:{checkedOn:null}}),{latestCheckedOn:null,checkedAfterG1:false});
   assert.equal(PUBLIC_STATUS,'pending-public-review');
+});
+
+test('all fifteen G-1 dates cite original sign-off records; supplements, G-2 and evidence dates remain separate',async()=>{
+  const human=on=>new Date(on+'T00:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+  for(const id of PUBLIC_MARKET_IDS){
+    const c=PUBLIC_CATALOG[id],records=SCRIPT_APPROVAL_RECORDS[id],d=await loadPublicContent(id);
+    const lines=(await readFile(new URL('../'+records.g1Record.path,import.meta.url),'utf8')).split('\n');
+    assert.match(lines[records.g1Record.line-1],/G-1/,id);
+    assert.ok(lines[records.g1Record.line-1].includes(human(c.g1ApprovedOn)),id+' original G-1 date');
+    assert.equal(records.originalG2.configured,Boolean(STORIES[id]?.released),id+' original entry state');
+    assert.equal(c.evidenceCheckedOn,d.latestCheckedOn,id+' lightweight source-check date');
+    assert.equal(d.checkedAfterG1,Boolean(d.latestCheckedOn&&d.latestCheckedOn>c.g1ApprovedOn));
+    for(const event of records.supplements){
+      const text=(await readFile(new URL('../'+event.record.path,import.meta.url),'utf8')).split('\n')[event.record.line-1];
+      assert.ok(text.includes(human(event.on)),id+' supplement date');assert.match(text,/signed off|approved/i);
+    }
+    if(records.originalG2.on){
+      const event=records.originalG2,text=(await readFile(new URL('../'+event.record.path,import.meta.url),'utf8')).split('\n').slice(event.record.line-1,event.record.line+2).join('\n');
+      assert.ok(text.includes(human(event.on)),id+' independent G-2 date');assert.match(text,/G-2/);
+    }
+  }
+  const ercot=await loadPublicContent('ercot');assert.equal(ercot.summary.g1ApprovedOn,'2026-11-01');assert.equal(ercot.latestCheckedOn,'2026-11-02');assert.equal(ercot.checkedAfterG1,true);
+  const pjm=await loadPublicContent('pjm');assert.equal(pjm.summary.g1ApprovedOn,'2026-11-01');assert.equal(pjm.legacyScope.on,'2026-10-31');assert.equal(pjm.legacyVersion,'2026-11-03');assert.equal(pjm.approvalRecords.originalG2.on,'2026-11-04');
 });

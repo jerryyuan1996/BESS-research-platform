@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Romania 鈥?market dataset, verbatim from the prototype (lines 1351-1578).
 
@@ -8,9 +9,9 @@
 import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 
 const M = {
-  asOf: '2026-07-26',
-  dataDate: '2025 annual / Jun 2026 monthly',
-  modelVersion: 'ro-seed-1.0-support-structure-pl-benchmark',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['Romania Battery Investment Dashboard', '罗马尼亚储能投资看板'],
   sub: ['Institutional investor storyline: market evolution, forward signals, project underwriting and portfolio application.',
         '面向机构投资人的投资叙事：市场演进、前瞻信号、项目承销与组合应用。'],
@@ -23,8 +24,8 @@ const M = {
 
   fx: 4.97,   // RON per EUR — illustrative mid-rate; replace with the central-bank series
   official: {
-    dam2025Wap: 575.22, dam2025TWh: 15.7, dam2025SharePct: 32, idm2025Wap: 518.43, damJun2026Wap: 694.48,
-    schemeBudgetEurM: 150, schemeMinMWh: 2174, policyExtraMW: 2496,
+    dam2025Wap: HISTORY_DATA.official.dam2025Wap, dam2025TWh: 15.7, dam2025SharePct: 32, idm2025Wap: HISTORY_DATA.official.idm2025Wap, damJun2026Wap: 694.48,
+    schemeBudgetEurM: HISTORY_DATA.official.schemeBudgetEurM, schemeMinMWh: 2174, policyExtraMW: 2496,
     connTariffGuarPct: 20, auctionGuarEurMW: 20000, estabGuarEurKW: 30,
     authFeb2026MW: 596,
     /* Transelectrica's storage list, excluding prosumers, 1 August 2026 (via
@@ -36,12 +37,12 @@ const M = {
     rationale: ['Wholesale volatility, improving tariff treatment and capital-grant support are real; but connection rights, balancing qualification and award evidence — not scheme budgets — decide whether capital should be committed.',
                 '批发波动、电价待遇改善与资本补贴支持真实存在；但决定是否应投入资本的是并网权利、平衡资格与正式授予证据，而非计划预算。'] },
   // ---- wholesale ----
-  pxLabels: ['Q1-25', 'Q2-25', 'Q3-25', 'Q4-25', 'Jan-26', 'Feb-26', 'Mar-26', 'Apr-26', 'May-26', 'Jun-26'],
-  damSeries: [640, 470, 555, 635, 660, 610, 505, 465, 545, 694.48],
-  idmSeries: [585, 430, 505, 555, 600, 560, 470, 435, 505, 640],
-  qLabels: ['Q1-25', 'Q2-25', 'Q3-25', 'Q4-25', 'Q1-26', 'Q2-26'],
-  negHoursSeries: [45, 260, 210, 60, 85, 340],
-  highHoursSeries: [120, 40, 95, 180, 210, 75],
+  pxLabels: HISTORY_DATA.pxLabels,
+  damSeries: HISTORY_DATA.damSeries,
+  idmSeries: HISTORY_DATA.idmSeries,
+  qLabels: HISTORY_DATA.qLabels,
+  negHoursSeries: HISTORY_DATA.negHoursSeries,
+  highHoursSeries: HISTORY_DATA.highHoursSeries,
   spreadBridge: [
     { l: ['Published day-ahead top–bottom spread (2h block)', '公布日前峰谷价差（2小时块）'], v: 85, t: 'start' },
     { l: ['Intraday re-trade uplift', '日内再交易增益'], v: 6, t: 'd' },
