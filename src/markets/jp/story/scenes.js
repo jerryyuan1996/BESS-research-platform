@@ -2,7 +2,7 @@
    schematics; station cutaways never identify a geographic site. */
 import {JP_STORY_VALUES as V} from '../data/storyEvidenceValues.js';
 import {JP_AREAS,JP_FREQUENCY_BAND} from './geo.js';
-import {SHARED_SHOTS,JP_TEXT,JP_TIMELINE} from '../story.js';
+import {SHARED_SHOTS,JP_COPY as JP_TEXT,JP_TIMELINE} from '../story.js';
 import {datePair,chartRows} from '../storyBindings.js';
 import {isoStage} from '../../../experience/story/kit/symbols.js';
 import {signatureChart} from './chart.js';

@@ -1,6 +1,6 @@
 /* Chart-JP-PRICE: one JPY axis, with USD design value outside the drawing.
    All prices/targets arrive from the existing acquisition owner. */
-import {JP_TEXT} from '../story.js';
+import {JP_COPY as JP_TEXT} from '../story.js';
 import {jpy,chartRows} from '../storyBindings.js';
 import {h,L,s,text,note,diagram,table,tag,interactive,JP_UI} from './ui.js';
 
