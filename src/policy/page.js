@@ -145,6 +145,7 @@ function renderComparison(main,{snapshot,markets}){
   main.append(h('ul',{},...checks));
 }
 export async function renderPolicyPage(app,{route,market=null,markets=[]}){
+  document.title=market?L(market.manifest.name)+' | '+L(['Policy','政策']):L(['Global BESS | Policy intelligence','全球储能 | 政策情报']);
   const main=shell(app,market);main.append(empty(['Loading verified policy evidence…','正在读取已核实政策证据…']));main.setAttribute('aria-busy','true');
   try{
     const index=await loadPolicyIndex();const marketIds=markets.map(m=>m.manifest.id);const snapshot=index?await loadPolicySnapshot(index,{version:route.version||index.head,marketIds}):{instruments:[],events:[],claims:[],sources:[],stories:[],impacts:[],links:[],reviews:[]};

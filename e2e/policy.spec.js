@@ -61,9 +61,9 @@ test('reviewed scene templates draw distinct sourced relationships, comparisons 
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
 
-test('material review appears outside the approved market content without loading policy maps',async({page})=>{
+for(const path of ['/markets/great-britain','/markets/great-britain/revenue'])test(`material review stays outside approved content without policy maps: ${path}`,async({page})=>{
   const requests=[];page.on('request',r=>{if(/policy-page|policy-map/.test(r.url()))requests.push(r.url());});
-  await servePolicy(page);await page.goto('/markets/great-britain/revenue');
+  await servePolicy(page);await page.goto(path);
   const notice=page.locator('[data-policy-review-notice]');await expect(notice).toBeVisible();await expect(notice.getByRole('link',{name:'Inspect the policy evidence'})).toHaveAttribute('href',/^\/policy\/dossiers\/gb-test-instrument\?version=[a-f0-9]{64}$/);
   await expect(page.locator('.policy-page')).toHaveCount(0);expect(requests).toEqual([]);
 });

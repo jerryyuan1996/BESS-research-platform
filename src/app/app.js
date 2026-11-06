@@ -167,6 +167,13 @@ function renderDesk(app){
    one: the reader may navigate again before the chunk resolves. */
 let dossierToken = 0;
 
+function pageLoadFailure(holder,error,page){
+  if(!holder.isConnected)return;
+  console.error(`[${page}]`,error);
+  holder.replaceChildren(h('p',{},L(['The page could not be loaded.','页面未能加载。'])),
+    h('button',{class:'ix-button',onclick:()=>window.location.reload()},L(['Reload','刷新'])));
+}
+
 /* /news — the opportunity bell, the policy calendar and the headlines. Its own
    chunk: the trigger records and the feed are read only by a reader who opens it. */
 let newsPage = null;
@@ -181,23 +188,14 @@ function renderNews(app){
     if (token !== experienceToken || !holder.isConnected) return;
     app.replaceChildren();
     module.renderNewsPage(app);
-  }).catch(error => {
-    if (!holder.isConnected) return;
-    console.error('[news]', error);
-    holder.replaceChildren(h('p', {}, L(['The page could not be loaded.', '页面未能加载。'])),
-      h('button', { class: 'ix-button', onclick: () => window.location.reload() }, L(['Reload', '刷新'])));
-  });
+  }).catch(error=>pageLoadFailure(holder,error,'news'));
 }
 
 let experiencePage = null;
 let experienceToken = 0;
 function renderExperiencePage(app, route, market) {
   const token = ++experienceToken;
-  const draw=module=>Promise.resolve(module.renderExperience(app,route,market)).then(()=>{
-    if(!market||token!==experienceToken)return;
-    import('../policy/notice.js').then(m=>{if(token===experienceToken)m.attachReviewNotice(app,market);}).catch(()=>{});
-  });
-  if (experiencePage) return void draw(experiencePage);
+  if (experiencePage) return void experiencePage.renderExperience(app,route,market);
   const holder = h('div', { class: 'ix-container', 'aria-busy': 'true', style: 'padding-top:60px' },
     h('p', {}, L(['Loading the investment brief…', '正在加载投资简报…'])));
   app.append(holder);
@@ -205,22 +203,17 @@ function renderExperiencePage(app, route, market) {
     experiencePage = module;
     if (token !== experienceToken || !holder.isConnected) return;
     app.replaceChildren();
-    draw(module);
-  }).catch(error => {
-    if (!holder.isConnected) return;
-    console.error('[experience]', error);
-    holder.replaceChildren(h('p', {}, L(['The page could not be loaded.', '页面未能加载。'])),
-      h('button', { class: 'ix-button', onclick: () => window.location.reload() }, L(['Reload', '刷新'])));
-  });
+    module.renderExperience(app,route,market);
+  }).catch(error=>pageLoadFailure(holder,error,'experience'));
 }
 
 function renderPolicy(app,route,market=null){
   const token=experienceToken;
-  const holder=h('div',{class:'ix-container','aria-busy':'true'},h('p',{},L(['Loading policy intelligence…','正在读取政策情报…'])));app.append(holder);
+  const holder=h('div',{class:'ix-container','aria-busy':'true'},h('p',{},L(['Loading','加载中'])));app.append(holder);
   import('../policy/page.js').then(module=>{
     if(token!==experienceToken||!holder.isConnected)return;
     module.renderPolicyPage(app,{route,market,markets});
-  }).catch(()=>{if(holder.isConnected)holder.replaceChildren(h('p',{},L(['Policy intelligence could not be loaded. Reload the page.','无法读取政策情报，请刷新页面。'])));});
+  }).catch(error=>pageLoadFailure(holder,error,'policy'));
 }
 
 /** Renders the current route into #app. This is the app's only render entry point. */
@@ -244,11 +237,11 @@ export function render(){
   document.body.classList.toggle('ix-research', route.name === 'market' && Boolean(route.tab));
   ++experienceToken;
   if(route.name==='policy'){
-    document.title=L(['Global BESS | Policy intelligence','全球储能 | 政策情报']);return renderPolicy(app,route);
+    return renderPolicy(app,route);
   }
   if(route.name==='market'&&route.tab==='policy'){
     const market=bySlug(route.slug);
-    if(market){document.title=L(market.manifest.name)+' | '+L(['Policy','政策']);return renderPolicy(app,{...route,kind:'radar'},market);}
+    if(market)return renderPolicy(app,route,market);
   }
   if (experience) {
     const market = route.name === 'market' ? bySlug(route.slug) : null;
