@@ -19,10 +19,11 @@
    An ambiguous fallback — the same normalised name twice in one state — is NOT
    resolved by picking one. It is left unmatched and counted.
 
-   WHAT IT NEVER ADDS. Energy capacity or duration. EIA does not publish an MWh
-   for battery generators on either form, and a joined record must not gain one
-   by implication. The enrichment adds position and plant metadata; the capacity
-   story is unchanged by it.
+   WHAT THIS JOIN NEVER ADDS. Energy capacity or duration. It reads the Plant
+   schedule only. Annual EIA-860's separate 3_4_Energy_Storage workbook DOES
+   publish MWh and maximum charge/discharge MW (verified 2026-11-06), but is not
+   joined here. That requires a plant+generator match and an explicit power
+   denominator; a plant-coordinate match cannot imply a battery's duration.
    --------------------------------------------------------------------------- */
 import { readSheet, num, resolveColumns } from '../lib/workbook.mjs';
 
@@ -170,8 +171,8 @@ export function enrichProjects(projects, index, { allowNameFallback = true } = {
          the only place a US project can get one. */
       lat: plant.lat,
       lon: plant.lon,
-      /* Duration is untouched on purpose. EIA publishes no MWh for batteries on
-         either form and the join must not appear to have supplied one. */
+      /* This Plant-only join supplies no generator-level energy observation.
+         The annual storage schedule needs its own explicit integration. */
       durationHours: project.durationHours,
       sourceIds: [...new Set([...project.sourceIds, SOURCE_ID])],
       sourceRef: {
