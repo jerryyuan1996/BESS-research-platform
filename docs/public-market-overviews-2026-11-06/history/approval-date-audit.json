@@ -1,0 +1,595 @@
+{
+  "sourceSnapshot": "966ce1af673590620518bfae5ee163621eab3369",
+  "edition": "2026-11-06.3",
+  "rows": [
+    {
+      "marketId": "wa",
+      "g1ApprovedOn": "2026-10-30",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/western-australia-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/western-australia-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-10-30",
+      "originalContentModuleVersion": "2026-10-30",
+      "originalBindingAnchorOn": "2026-10-30",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": null,
+        "record": {
+          "path": "src/experience/story/registry.js",
+          "line": 1
+        }
+      },
+      "latestExplicitSourceCheckOn": null,
+      "sourceIdsForLatestCheck": [],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "nem",
+      "g1ApprovedOn": "2026-11-05",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/nem-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/nem-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-05",
+      "originalContentModuleVersion": "2026-11-05",
+      "originalBindingAnchorOn": "2026-11-05",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": "2026-11-06",
+        "record": {
+          "path": "docs/immersive-experience-plan/nem-g2-release.md",
+          "line": 3
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-11-05",
+      "sourceIdsForLatestCheck": [
+        "SRC-NEM-03",
+        "SRC-NEM-04",
+        "SRC-NEM-05",
+        "SRC-NEM-06",
+        "SRC-NEM-07",
+        "SRC-NEM-08",
+        "SRC-NEM-09",
+        "SRC-NEM-10",
+        "SRC-NEM-11",
+        "SRC-NEM-12",
+        "SRC-NEM-13",
+        "SRC-NEM-14",
+        "SRC-NEM-15",
+        "SRC-NEM-16",
+        "SRC-NEM-17",
+        "SRC-NEM-18",
+        "SRC-NEM-19",
+        "SRC-NEM-20",
+        "SRC-NE-01"
+      ],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "gb",
+      "g1ApprovedOn": "2026-11-01",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/great-britain-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/great-britain-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-01",
+      "originalContentModuleVersion": "2026-11-01",
+      "originalBindingAnchorOn": "2026-11-01",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": null,
+        "record": {
+          "path": "src/experience/story/registry.js",
+          "line": 1
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-10-31",
+      "sourceIdsForLatestCheck": [
+        "SRC-GB-01",
+        "SRC-GB-02",
+        "SRC-GB-03",
+        "SRC-GB-04",
+        "SRC-GB-05",
+        "SRC-GB-06",
+        "SRC-GB-07",
+        "SRC-GB-08",
+        "SRC-GB-09",
+        "SRC-GB-10",
+        "SRC-GB-11",
+        "SRC-GB-12",
+        "SRC-GB-13",
+        "SRC-GB-14",
+        "SRC-GB-15",
+        "SRC-GB-16",
+        "SRC-GB-17",
+        "SRC-GB-18",
+        "SRC-GB-19",
+        "SRC-GB-20",
+        "SRC-GB-21",
+        "SRC-GB-22",
+        "SRC-GB-23",
+        "SRC-GB-24",
+        "SRC-GB-25",
+        "SRC-GB-26",
+        "SRC-GB-27"
+      ],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "de",
+      "g1ApprovedOn": "2026-10-31",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/germany-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/germany-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-10-31",
+      "originalContentModuleVersion": "2026-10-31",
+      "originalBindingAnchorOn": "2026-10-31",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": null,
+        "record": {
+          "path": "src/experience/story/registry.js",
+          "line": 1
+        }
+      },
+      "latestExplicitSourceCheckOn": null,
+      "sourceIdsForLatestCheck": [],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "it",
+      "g1ApprovedOn": "2026-11-01",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/italy-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/italy-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-01",
+      "originalContentModuleVersion": "2026-11-01",
+      "originalBindingAnchorOn": "2026-11-01",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": null,
+        "record": {
+          "path": "src/experience/story/registry.js",
+          "line": 1
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-10-31",
+      "sourceIdsForLatestCheck": [
+        "SRC-IT-05",
+        "SRC-IT-06",
+        "SRC-IT-07",
+        "SRC-IT-08",
+        "SRC-IT-09",
+        "SRC-IT-10",
+        "SRC-IT-11",
+        "SRC-IT-12",
+        "SRC-IT-13",
+        "SRC-IT-14",
+        "SRC-IT-15",
+        "SRC-IT-16",
+        "SRC-IT-17",
+        "SRC-IT-18",
+        "SRC-IT-19",
+        "SRC-IT-20",
+        "SRC-IT-21",
+        "SRC-IT-22"
+      ],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "ie",
+      "g1ApprovedOn": "2026-11-01",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/ireland-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/ireland-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-02",
+      "originalContentModuleVersion": "2026-11-02",
+      "originalBindingAnchorOn": "2026-11-01",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": null,
+        "record": {
+          "path": "src/experience/story/registry.js",
+          "line": 1
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-10-31",
+      "sourceIdsForLatestCheck": [
+        "SRC-IE-01",
+        "SRC-IE-03",
+        "SRC-IE-04",
+        "SRC-IE-05",
+        "SRC-IE-07",
+        "SRC-IE-08",
+        "SRC-IE-12",
+        "SRC-IE-13",
+        "SRC-IE-14",
+        "SRC-IE-16",
+        "SRC-IE-17",
+        "SRC-IE-18",
+        "SRC-IE-19",
+        "SRC-IE-20",
+        "SRC-IE-21",
+        "SRC-IE-22",
+        "SRC-IE-24",
+        "SRC-IE-S1"
+      ],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "ro",
+      "g1ApprovedOn": "2026-11-01",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/romania-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/romania-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-02",
+      "originalContentModuleVersion": "2026-11-02",
+      "originalBindingAnchorOn": "2026-11-02",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": null,
+        "record": {
+          "path": "src/experience/story/registry.js",
+          "line": 1
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-11-02",
+      "sourceIdsForLatestCheck": [
+        "SRC-RO-01",
+        "SRC-RO-03",
+        "SRC-RO-04",
+        "SRC-RO-05",
+        "SRC-RO-06",
+        "SRC-RO-07",
+        "SRC-RO-08",
+        "SRC-RO-09",
+        "SRC-RO-10",
+        "SRC-RO-11",
+        "SRC-RO-12",
+        "SRC-RO-15",
+        "SRC-RO-13a",
+        "SRC-RO-13b"
+      ],
+      "checkedAfterG1": true,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "pl",
+      "g1ApprovedOn": "2026-11-01",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/poland-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/poland-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-01",
+      "originalContentModuleVersion": "2026-11-01",
+      "originalBindingAnchorOn": "2026-11-01",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": null,
+        "record": {
+          "path": "src/experience/story/registry.js",
+          "line": 1
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-11-02",
+      "sourceIdsForLatestCheck": [
+        "SRC-PL-01",
+        "SRC-PL-02",
+        "SRC-PL-03",
+        "SRC-PL-05",
+        "SRC-PL-06",
+        "SRC-PL-07",
+        "SRC-PL-08",
+        "SRC-PL-09",
+        "SRC-PL-10",
+        "SRC-PL-11",
+        "SRC-PL-12",
+        "SRC-PL-15",
+        "SRC-PL-16",
+        "SRC-PL-17",
+        "SRC-PL-18",
+        "SRC-PL-19",
+        "SRC-PL-21",
+        "SRC-PL-26",
+        "SRC-PL-24"
+      ],
+      "checkedAfterG1": true,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "jp_tokyo",
+      "g1ApprovedOn": "2026-11-05",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/japan-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/japan-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-05",
+      "originalContentModuleVersion": "2026-11-05",
+      "originalBindingAnchorOn": "2026-11-05",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": "2026-11-06",
+        "record": {
+          "path": "docs/immersive-experience-plan/jp-g2-reuse-report.md",
+          "line": 184
+        }
+      },
+      "latestExplicitSourceCheckOn": null,
+      "sourceIdsForLatestCheck": [],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "jp_kyushu",
+      "g1ApprovedOn": "2026-11-05",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/japan-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/japan-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-05",
+      "originalContentModuleVersion": "2026-11-05",
+      "originalBindingAnchorOn": "2026-11-05",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": "2026-11-06",
+        "record": {
+          "path": "docs/immersive-experience-plan/jp-g2-reuse-report.md",
+          "line": 184
+        }
+      },
+      "latestExplicitSourceCheckOn": null,
+      "sourceIdsForLatestCheck": [],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "jp_hokkaido",
+      "g1ApprovedOn": "2026-11-05",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/japan-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/japan-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-05",
+      "originalContentModuleVersion": "2026-11-05",
+      "originalBindingAnchorOn": "2026-11-05",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": "2026-11-06",
+        "record": {
+          "path": "docs/immersive-experience-plan/jp-g2-reuse-report.md",
+          "line": 184
+        }
+      },
+      "latestExplicitSourceCheckOn": null,
+      "sourceIdsForLatestCheck": [],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "pjm",
+      "g1ApprovedOn": "2026-11-01",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/pjm-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/pjm-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-03",
+      "originalContentModuleVersion": "2026-11-03",
+      "originalBindingAnchorOn": "2026-10-31",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": true,
+        "on": "2026-11-04",
+        "record": {
+          "path": "docs/immersive-experience-plan/pjm-g2-release.md",
+          "line": 3
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-11-03",
+      "sourceIdsForLatestCheck": [
+        "SRC-PJM-01",
+        "SRC-PJM-08",
+        "SRC-PJM-09",
+        "SRC-PJM-14",
+        "ASSET-PJM-FOOTPRINT"
+      ],
+      "checkedAfterG1": true,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "ercot",
+      "g1ApprovedOn": "2026-11-01",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/ercot-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/ercot-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-02",
+      "originalContentModuleVersion": "2026-11-01",
+      "originalBindingAnchorOn": "2026-11-01",
+      "supplementaryContentApprovals": [],
+      "originalScopedG2": {
+        "configured": false,
+        "on": null,
+        "record": {
+          "path": "src/experience/story/registry.js",
+          "line": 1
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-11-02",
+      "sourceIdsForLatestCheck": [
+        "SRC-ERCOT-01",
+        "SRC-ERCOT-02",
+        "SRC-ERCOT-03",
+        "SRC-ERCOT-05"
+      ],
+      "checkedAfterG1": true,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "caiso",
+      "g1ApprovedOn": "2026-11-01",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/caiso-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/caiso-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-03",
+      "originalContentModuleVersion": "2026-11-03",
+      "originalBindingAnchorOn": "2026-11-02",
+      "supplementaryContentApprovals": [
+        {
+          "on": "2026-11-03",
+          "record": {
+            "path": "src/markets/caiso/story.js",
+            "line": 1
+          },
+          "scope": [
+            "caiso-03 timing amendment only; original scoped story.",
+            "仅 caiso-03 时间修订；适用原 Story 范围。"
+          ]
+        }
+      ],
+      "originalScopedG2": {
+        "configured": true,
+        "on": "2026-11-03",
+        "record": {
+          "path": "docs/immersive-experience-plan/caiso-g2-release.md",
+          "line": 3
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-10-31",
+      "sourceIdsForLatestCheck": [
+        "SRC-CAISO-01",
+        "SRC-CAISO-02",
+        "SRC-CAISO-03",
+        "SRC-CAISO-04",
+        "SRC-CAISO-05",
+        "SRC-CAISO-06",
+        "SRC-CAISO-07",
+        "SRC-CAISO-08",
+        "SRC-CAISO-09",
+        "SRC-CAISO-10",
+        "SRC-CAISO-11",
+        "SRC-CAISO-12",
+        "SRC-CAISO-13",
+        "SRC-CAISO-14",
+        "SRC-CAISO-15",
+        "SRC-CAISO-16",
+        "SRC-CAISO-17",
+        "SRC-CAISO-18",
+        "SRC-CAISO-19",
+        "SRC-CAISO-20",
+        "SRC-CAISO-21",
+        "SRC-CAISO-22"
+      ],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    },
+    {
+      "marketId": "fi",
+      "g1ApprovedOn": "2026-10-31",
+      "g1Record": {
+        "path": "docs/immersive-experience-plan/finland-storyboard.md",
+        "line": 4
+      },
+      "g1RecordUrl": "https://github.com/jerryyuan1996/BESS-research-platform/blob/966ce1af673590620518bfae5ee163621eab3369/docs/immersive-experience-plan/finland-storyboard.md#L4",
+      "previousUnifiedDateLabel": "2026-11-01",
+      "originalContentModuleVersion": "2026-11-01",
+      "originalBindingAnchorOn": "2026-10-31",
+      "supplementaryContentApprovals": [
+        {
+          "on": "2026-11-01",
+          "record": {
+            "path": "docs/immersive-experience-plan/finland-storyboard.md",
+            "line": 385
+          },
+          "scope": [
+            "The six fi-03 nodes: four explanation fields in EN/ZH and supplementary source locators.",
+            "fi-03 六个节点的四项中英文解释字段及补充来源定位。"
+          ]
+        }
+      ],
+      "originalScopedG2": {
+        "configured": true,
+        "on": null,
+        "record": {
+          "path": "src/experience/story/registry.js",
+          "line": 1
+        }
+      },
+      "latestExplicitSourceCheckOn": "2026-10-31",
+      "sourceIdsForLatestCheck": [
+        "SRC-FI-01",
+        "SRC-FI-02",
+        "SRC-FI-03",
+        "SRC-FI-04",
+        "SRC-FI-05",
+        "SRC-FI-06",
+        "SRC-FI-07",
+        "SRC-FI-08",
+        "SRC-FI-09",
+        "SRC-FI-10",
+        "SRC-FI-11",
+        "SRC-FI-12",
+        "SRC-FI-13",
+        "SRC-FI-14",
+        "SRC-FI-15",
+        "SRC-FI-16",
+        "SRC-FI-17",
+        "SRC-FI-18",
+        "SRC-FI-19",
+        "SRC-FI-20",
+        "SRC-FI-21",
+        "SRC-FI-22",
+        "SRC-FI-23",
+        "SRC-FI-24",
+        "SRC-FI-25",
+        "SRC-FI-26",
+        "SRC-FI-27",
+        "SRC-FI-28",
+        "SRC-FI-29",
+        "SRC-FI-30",
+        "SRC-FI-31",
+        "SRC-FI-32",
+        "SRC-FI-33",
+        "SRC-FI-34"
+      ],
+      "checkedAfterG1": false,
+      "publicEditorialStatus": "pending-public-review"
+    }
+  ]
+}
