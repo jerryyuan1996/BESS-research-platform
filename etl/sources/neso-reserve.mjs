@@ -178,9 +178,9 @@ export function createConnector({request=httpGetText, requestTimeoutMs=20000}={}
       validateReserveSeries(old);
       const oldLast=old.at(-1).auctionDay;
       if(lastDay<oldLast)fail('daily file is older than the last-good auction');
-      const sameDay=old.find(p=>p.auctionDay===lastDay);
-      if(sameDay && incoming[0].auctionID<sameDay.auctionID)fail('older auction version');
     }
+    // Auction IDs are opaque identifiers, not documented revision timestamps.
+    // For the same delivery day the official latest file is authoritative.
     // Replace a whole revised auction atomically; never blend versions or trim
     // half an EFA day. No existing connector or global window is changed.
     const cutoff=Date.parse(now)-WINDOW_DAYS*DAY;

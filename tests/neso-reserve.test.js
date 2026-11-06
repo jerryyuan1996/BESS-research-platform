@@ -138,12 +138,13 @@ test('only the latest auction is added; missing EFA days stay visible and unfill
   assert.equal(verifyContentChecksum(next),true);assert.equal(validateSnapshot(next,dataset,first).ok,true);
 });
 
-test('revised auctions replace a whole day; stale versions and implausible future files fail',async()=>{
+test('revised auctions replace a whole day without ordering opaque IDs; stale days and far-future files fail',async()=>{
   const first=(await fetchBody(body()).fetchDataset({dataset,now})).snapshot;
   const revised=rows('2026-11-07',2973);revised[0].clearingPrice=7;
   const next=(await fetchBody(csv(revised)).fetchDataset({dataset,previous:first,now})).snapshot;
   assert.equal(next.series.length,288);assert.equal(next.series[0].v,7);assert.ok(next.series.every(p=>p.auctionID===2973));
-  await assert.rejects(()=>fetchBody(body()).fetchDataset({dataset,previous:next,now}),/older auction version/);
+  const reset=(await fetchBody(body('2026-11-07',100)).fetchDataset({dataset,previous:next,now})).snapshot;
+  assert.equal(reset.series.length,288);assert.ok(reset.series.every(p=>p.auctionID===100),'the source does not promise numeric ID revision ordering');
   await assert.rejects(()=>fetchBody(body('2026-11-06')).fetchDataset({dataset,previous:first,now}),/older than/);
   await assert.rejects(()=>fetchBody(body('2026-11-12')).fetchDataset({dataset,now}),/far ahead/);
 });
