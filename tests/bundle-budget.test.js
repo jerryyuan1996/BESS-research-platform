@@ -304,8 +304,13 @@ const BUDGET = {
        unreleased, so it is fetched only behind ?story=preview. */
     'story-ro': 40,
     'story-caiso': 40,
-    /* One preview-only shared Japan pack for three allocation ids, G-1 §12. */
-    'story-jp': 40,
+    /* One shared Japan pack for three allocation ids, G-1 §12.
+       Analyst authorised a Japan-only increase on 6 November 2026 after safe
+       reductions, preserving signed copy, geography, accessibility and sources.
+       Measured at b7fc283: 46,044 bytes = 40,518 additional static JS + 5,526
+       lazy CSS. 46 KiB (47,104 bytes) leaves 1,060 bytes, about 2.3%, headroom.
+       This cap covers the complete extra graph and styles, not only the pack. */
+    'story-jp': 46,
     /* The NEM story: shell, kit, fixed-vintage records, the region map, thirteen
        bilingual shots and both charts. Released at G-2 on 6 November 2026.
        RAISED FROM 40 TO 41 on 5 November 2026, when the analyst cleared AEMO's
@@ -1127,7 +1132,7 @@ test('the CAISO story, complete additional static closure and lazy styles fit 40
   assert.ok(total<=40*1024,'CAISO complete static graph including CSS: '+kB(total)+' KiB gzip, cap 40');
 });
 
-test('the single shared Japan story and its complete additional graph plus lazy CSS fit 40 KiB gzip',async t=>{
+test('the single shared Japan story and its complete additional graph plus lazy CSS fit its authorised cap',async t=>{
   if(skipWithoutDist(t))return;
   const {entry,features,byName}=await chunks();
   const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
@@ -1144,5 +1149,5 @@ test('the single shared Japan story and its complete additional graph plus lazy 
   assert.ok(lazyCss.some(c=>c.text.includes('.jp-scene')),'the Japan local stylesheet is lazy');
   const jsBytes=gzipOf(extra),cssBytes=lazyCss.reduce((sum,c)=>sum+gzipSync(c.text).length,0),total=jsBytes+cssBytes;
   t.diagnostic(`Japan pack ${gzipSync(own.text).length} bytes; additional static JS ${jsBytes}; lazy CSS ${cssBytes}; total ${total} bytes gzip`);
-  assert.ok(total<=BUDGET.features['story-jp']*1024,'Japan complete additional graph plus CSS: '+kB(total)+' KiB gzip, cap 40');
+  assert.ok(total<=BUDGET.features['story-jp']*1024,'Japan complete additional graph plus CSS: '+kB(total)+' KiB gzip, cap '+BUDGET.features['story-jp']);
 });
