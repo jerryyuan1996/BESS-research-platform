@@ -10,6 +10,7 @@ import {loadPublicContent} from '../src/experience/story/public/content.js';
 import {createFormat} from '../src/markets/_shared/format.js';
 import {app} from '../src/app/state.js';
 import {renderResearchHistory} from '../src/experience/story/public/historyChapter.js';
+import {badge} from '../src/components/badge.js';
 
 const contract=JSON.parse(await readFile(new URL('./contracts/research-history-source.json',import.meta.url)));
 const source=path=>readFile(new URL('../'+path,import.meta.url),'utf8');
@@ -140,6 +141,14 @@ test('actual EN/ZH rendering includes every full field and all original explanat
           if(b.t==='src')for(const key of ['file','date','cy'])if(b.src[key])assert.ok(rendered.textContent.includes(b.src[key]),id+'/source/'+key);
         }
         fullText(h);h.cards.forEach(fullText);instances+=actual.length;
+        const authority=[];
+        function classifications(block){
+          if(block.badges?.length)authority.push(block.badges.map(kind=>badge(kind).textContent).join(''));
+          (block.blocks||block.cards||[]).forEach(classifications);
+        }
+        h.cards.forEach(classifications);
+        assert.deepEqual(descendants(rendered,n=>n.className==='public-history-authority').map(n=>n.textContent),authority,
+          id+'/'+lang+' source classifications retain their vocabulary, not array-index label overrides');
         if(owner==='jp'){
           assert.equal(expected[2].t[0],'Kyushu output control begins');
           const regions=descendants(rendered,n=>n.className==='public-history-region');assert.equal(regions.length,3);

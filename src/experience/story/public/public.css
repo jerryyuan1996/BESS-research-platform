@@ -60,6 +60,7 @@
 .public-history-card { margin:28px 0; }
 .public-history-card>h4 { font-size:var(--fs-lg); line-height:1.45; margin:16px 0 8px; }
 .public-history-authority,.public-chapter p.public-history-scope { font-size:var(--fs-xs); color:var(--ix-muted); }
+.public-history-authority { display:flex; flex-wrap:wrap; gap:.4rem .8rem; }
 .public-full-history .story-band { padding:18px 22px; border-left:3px solid #597b91; background:#edf3f6; border-radius:var(--r-md); }
 .public-full-history .story-band p { margin-bottom:0; }
 .public-full-history .timeline { margin-top:22px; }

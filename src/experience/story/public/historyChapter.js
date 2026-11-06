@@ -17,7 +17,7 @@ export function renderResearchHistory(history){
     if(b.t==='timeline')return researchHistoryTimeline(b.items,{owner:history.owner,axis:axis++});
     if(b.t==='card'||b.t==='g2')return h('section',{class:b.t==='card'?'public-history-card':'public-history-support','data-history-block':key},
       b.title?h('h4',{},L(b.title)):null,
-      b.badges?.length?h('div',{class:'public-history-authority'},b.badges.map(badge)):null,
+      b.badges?.length?h('div',{class:'public-history-authority'},b.badges.map(kind=>badge(kind))):null,
       (b.blocks||b.cards||[]).map((child,i)=>block(b.t==='g2'?{...child,t:'card'}:child,key+'-'+i)));
     if(b.t==='band-story')return h('div',{class:'story-band','data-history-block':key},h('strong',{},L(b.b)),h('p',{},L(b.text)));
     if(b.t==='why')return h('aside',{class:'public-history-why','data-history-block':key},h('p',{},L(b.text)),b.sig?h('strong',{},L(b.sig)):null);
