@@ -304,6 +304,12 @@ const BUDGET = {
        unreleased, so it is fetched only behind ?story=preview. */
     'story-ro': 40,
     'story-caiso': 40,
+    /* The NEM story: shell, kit, fixed-vintage records, the region map, thirteen
+       bilingual shots and both charts. Registered unreleased (?story=preview).
+       RAISED FROM 40 TO 41 on 5 November 2026, when the analyst cleared AEMO's
+       observed price layers at G-2: the additional JavaScript graph measured
+       40.59 KiB gzip (45.57 with lazy styles). Analyst rule: over a cap, raise it. */
+    'story-nem': 41,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -1080,6 +1086,26 @@ test('the complete initial PJM static closure and styles fit 40 KiB without prel
   for(const file of closure)assert.equal(chunks.get(file).text.includes('Withheld: no analyst rights clearance'),false,`${file} preloads provenance`);
   t.diagnostic(`PJM static closure including styles: ${bytes} bytes gzip`);
  });
+
+test('the NEM story stays out of the first load and its additional JavaScript graph fits the story cap',async t=>{
+  if(skipWithoutDist(t))return;
+  const {entry,features,byName}=await chunks();
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const own=features.get('story-nem');assert.ok(own,'the NEM story has its own lazy chunk');
+  assert.ok(!first.has(own),'no NEM story bytes before opening');
+  const probe='Which market is this, and how is it different from WA';
+  assert.ok(own.text.includes(probe));
+  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no NEM story content in '+chunk.name);
+  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
+  /* Measured as Romania and Finland are (JavaScript closure). The lazy story
+     styles are reported beside it, as CAISO and PJM count them: see
+     nem-story-reuse-report.md for both figures and the G-2 question. */
+  const css=await styles();assert.ok(!css.main.text.includes('.nem-scene'));
+  const lazyCss=css.lazy.filter(c=>c.text.includes('.nem-scene')||c.text.includes('.ix-story-dialog'));
+  const js=gzipOf(extra),withCss=js+lazyCss.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
+  t.diagnostic('NEM additional JavaScript graph: '+kB(js)+' KiB gzip; with lazy styles: '+kB(withCss)+' KiB gzip');
+  assert.ok(js<=BUDGET.features['story-nem']*1024,'NEM story, shell, kit, records, content and scenes: '+kB(js)+' KiB gzip, cap '+BUDGET.features['story-nem']);
+});
 
 test('the CAISO story, complete additional static closure and lazy styles fit 40 KiB gzip',async t=>{
   if(skipWithoutDist(t))return;
