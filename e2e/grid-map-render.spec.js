@@ -108,8 +108,14 @@ test('every market draws exactly the segments its manifest declares', async ({ p
       .toEqual(manifest.bands.map(band => band.band));
 
     await zoomIntoDetail(page);
-    const detailed = await page.evaluate(readLayer);
     const declared = manifest.bands.reduce((total, band) => total + band.lines, 0);
+    // A quiet 350 ms is not proof that an asynchronously fetched band arrived.
+    // Wait for the actual manifest contract, retaining the exact count and node
+    // budget assertions below. A missing/failed band still fails this test.
+    await expect.poll(async () => (await page.evaluate(readLayer)).groups
+      .reduce((total, group) => total + group.subpaths, 0), { timeout:25000 })
+      .toBe(declared);
+    const detailed = await page.evaluate(readLayer);
     const drawnSubpaths = detailed.groups.reduce((total, group) => total + group.subpaths, 0);
     expect(drawnSubpaths, `${market.id}: the full network after zooming`).toBe(declared);
     /* Still a handful of nodes for the whole national network. */

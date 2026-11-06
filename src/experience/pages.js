@@ -105,6 +105,12 @@ export async function renderExperience(container, route, market) {
     }
   }
   container.append(siteFooter());
+  // Policy sidecars belong to the requested market page, not the eager shell.
+  // Recheck this render after the lazy module arrives, just as above.
+  if(market)import('../policy/notice.js').then(module=>{
+    if(version===renderVersion&&window.location.pathname===pathname&&lens()===investor)
+      module.attachReviewNotice(container,market);
+  }).catch(()=>{});
 }
 
 function renderHome(container, rows) {
