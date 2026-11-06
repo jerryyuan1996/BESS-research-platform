@@ -17,8 +17,9 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import { REPO_ROOT, listSnapshots } from './lib/boundary.mjs';
-import { verifyContentChecksum } from './lib/envelope.mjs';
+import { verifyContentChecksum, sha256 } from './lib/envelope.mjs';
 import { DATASETS, datasetById } from '../src/governance/datasets.js';
+import { validateOntarioSnapshot, summarize as summarizeOntario } from './sources/ieso-ontario-zonal.mjs';
 
 const log = (m) => process.stdout.write(m + '\n');
 
@@ -54,6 +55,15 @@ async function main(){
       // should look.
       problems.push(`${name}: no dataset "${id}" in the catalogue — orphaned snapshot`);
       continue;
+    }
+
+    if (dataset.connector === 'ieso-ontario-zonal'){
+      try {
+        validateOntarioSnapshot(snapshot);
+        const summary = JSON.parse(await readFile(path.join(REPO_ROOT, 'public', 'data', 'public', id + '.summary.json'), 'utf8'));
+        if (sha256(summary) !== sha256(summarizeOntario(snapshot))) throw new Error('Ontario summary does not match its source snapshot');
+      }
+      catch (error){ problems.push(name + ': ' + error.message); continue; }
     }
 
     if (snapshot.authority !== 'observed'){

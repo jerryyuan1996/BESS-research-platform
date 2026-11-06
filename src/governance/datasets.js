@@ -173,6 +173,17 @@ export const DATASETS = [
     bearsOn: [], republishable: true, requiresKey: false, official: true,
   })),
 
+  // Ontario zonal prices remain evidence, separate from project settlement.
+  {
+    id: 'ca-on-da-zonal', kind: 'timeseries', marketId: 'ca_on', connector: 'ieso-ontario-zonal',
+    title: ['Ontario day-ahead zonal prices and version archive', '安大略日前区域价格与版本归档'],
+    source: { name: 'IESO public reports', url: 'https://reports-public.ieso.ca/public/DAHourlyOntarioZonalPrice/',
+      licence: 'IESO limited content reproduction licence', licenceUrl: 'https://www.ieso.ca/Terms-of-Use',
+      noticeId: 'ieso' },
+    refreshHours: 24 * HOURS, staleAfterHours: 3 * DAYS,
+    bearsOn: [], republishable: true, requiresKey: false, official: true,
+  },
+
   // ---- Finland — Fingrid's hourly reserve prices (gate FI-2), 2026-10-30 ----
   /* Snapshots for the analyst: bearsOn names the reserve line, but no detector
      reads these, so nothing proposes a change from them. The yearly FCR market

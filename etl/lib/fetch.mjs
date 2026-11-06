@@ -41,6 +41,7 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
  * @param {number} [opts.retries]
  * @param {object} [opts.headers]
  * @param {AbortSignal} [opts.signal]  optional caller lifetime, including body reads
+ * @param {'follow'|'error'|'manual'} [opts.redirect] optional source restriction
  * @param {(msg:string)=>void} [opts.log]
  */
 export async function httpGet(url, opts = {}){
@@ -69,7 +70,7 @@ export async function httpGet(url, opts = {}){
         // connector can also bound reading a stalled response body. Existing
         // callers without a signal retain exactly their current behaviour.
         signal: opts.signal ? AbortSignal.any([controller.signal, opts.signal]) : controller.signal,
-        redirect: 'follow',
+        redirect: opts.redirect ?? 'follow',
         method,
         body,
         headers: { 'user-agent': USER_AGENT, accept: '*/*', ...headers },
