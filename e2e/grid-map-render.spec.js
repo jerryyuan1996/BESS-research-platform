@@ -124,12 +124,13 @@ test('a band is fetched when it is wanted and never before', async ({ page }) =>
   expect(requested).toContain('gb-transmission-132-274.json');
 
   /* And it is on screen once it has been asked for: the stylesheet hides the
-     detail class only at the fitted extent. */
-  const detailVisible = await page.evaluate(() => {
+     detail class only at the fitted extent. Polled, because the request is
+     recorded when it is sent and the band is drawn after its response: read
+     once, the check raced the draw and failed now and then on a slow host. */
+  await expect.poll(() => page.evaluate(() => {
     const path = document.querySelector('.geo-transmission-line[data-band="detail"]');
     return path ? getComputedStyle(path).display !== 'none' : false;
-  });
-  expect(detailVisible, 'the detail band is shown above the zoom threshold').toBe(true);
+  }), { message: 'the detail band is shown above the zoom threshold', timeout: 10000 }).toBe(true);
 });
 
 test('repeated zooming never duplicates or rebuilding the layer', async ({ page }) => {
