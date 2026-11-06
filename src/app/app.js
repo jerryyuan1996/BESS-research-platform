@@ -174,46 +174,38 @@ function pageLoadFailure(holder,error,page){
     h('button',{class:'ix-button',onclick:()=>window.location.reload()},L(['Reload','刷新'])));
 }
 
-/* /news — the opportunity bell, the policy calendar and the headlines. Its own
-   chunk: the trigger records and the feed are read only by a reader who opens it. */
-let newsPage = null;
-function renderNews(app){
-  const token = ++experienceToken;
-  if (newsPage) return void newsPage.renderNewsPage(app);
-  const holder = h('div', { class: 'ix-container', 'aria-busy': 'true', style: 'padding-top:60px' },
-    h('p', {}, L(['Loading industry news…', '正在加载行业新闻…'])));
+// Shared lazy-page boundary: discard stale renders and offer one reload path.
+function loadExperiencePage(app,load,draw,page){
+  const token=experienceToken;
+  const holder=h('div',{class:'ix-container','aria-busy':'true',style:'padding-top:60px'},h('p',{},L(['Loading','加载中'])));
   app.append(holder);
-  import('../news/newsPage.js').then(module => {
-    newsPage = module;
-    if (token !== experienceToken || !holder.isConnected) return;
-    app.replaceChildren();
-    module.renderNewsPage(app);
-  }).catch(error=>pageLoadFailure(holder,error,'news'));
+  load().then(module=>{
+    if(token!==experienceToken||!holder.isConnected)return;
+    app.replaceChildren();draw(module);
+  }).catch(error=>pageLoadFailure(holder,error,page));
 }
 
-let experiencePage = null;
-let experienceToken = 0;
-function renderExperiencePage(app, route, market) {
-  const token = ++experienceToken;
-  if (experiencePage) return void experiencePage.renderExperience(app,route,market);
-  const holder = h('div', { class: 'ix-container', 'aria-busy': 'true', style: 'padding-top:60px' },
-    h('p', {}, L(['Loading the investment brief…', '正在加载投资简报…'])));
-  app.append(holder);
-  import('../experience/pages.js').then(module => {
-    experiencePage = module;
-    if (token !== experienceToken || !holder.isConnected) return;
-    app.replaceChildren();
-    module.renderExperience(app,route,market);
-  }).catch(error=>pageLoadFailure(holder,error,'experience'));
+let newsPage=null;
+function renderNews(app){
+  ++experienceToken;
+  if(newsPage)return void newsPage.renderNewsPage(app);
+  loadExperiencePage(app,()=>import('../news/newsPage.js'),module=>{
+    newsPage=module;module.renderNewsPage(app);
+  },'news');
+}
+
+let experiencePage=null;
+let experienceToken=0;
+function renderExperiencePage(app,route,market){
+  ++experienceToken;
+  if(experiencePage)return void experiencePage.renderExperience(app,route,market);
+  loadExperiencePage(app,()=>import('../experience/pages.js'),module=>{
+    experiencePage=module;module.renderExperience(app,route,market);
+  },'experience');
 }
 
 function renderPolicy(app,route,market=null){
-  const token=experienceToken;
-  const holder=h('div',{class:'ix-container','aria-busy':'true'},h('p',{},L(['Loading','加载中'])));app.append(holder);
-  import('../policy/page.js').then(module=>{
-    if(token!==experienceToken||!holder.isConnected)return;
-    module.renderPolicyPage(app,{route,market,markets});
-  }).catch(error=>pageLoadFailure(holder,error,'policy'));
+  loadExperiencePage(app,()=>import('../policy/page.js'),module=>module.renderPolicyPage(app,{route,market,markets}),'policy');
 }
 
 /** Renders the current route into #app. This is the app's only render entry point. */
