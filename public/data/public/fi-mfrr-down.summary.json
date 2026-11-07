@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-06T06:57:12.914Z",
+  "fetchedAt": "2026-11-07T13:14:13.861Z",
   "coverage": {
-    "from": "2025-11-06T07:00:00.000Z",
-    "to": "2026-11-06T22:00:00.000Z",
+    "from": "2025-11-07T14:00:00.000Z",
+    "to": "2026-11-08T12:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8776
+    "points": 8783
   },
   "units": {
     "price": "EUR/MW/h"
@@ -26,30 +26,20 @@
   "notes": [
     "Fingrid open data, dataset 330: mFRR balancing capacity, down, hourly market price. CC BY 4.0."
   ],
-  "refreshHours": 12,
+  "refreshHours": 24,
   "staleAfterHours": 72,
   "derived": null,
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-06",
-      "n": 17,
-      "mean": 3.42,
-      "min": 3,
-      "max": 6.4,
-      "spread": 3.42,
-      "charge": null,
-      "discharge": 3.42
-    },
-    {
       "d": "2025-11-07",
-      "n": 24,
-      "mean": 6.33,
+      "n": 10,
+      "mean": 6.27,
       "min": 4,
       "max": 13.3,
-      "spread": 6.33,
+      "spread": 6.27,
       "charge": null,
-      "discharge": 6.33
+      "discharge": 6.27
     },
     {
       "d": "2025-11-08",
@@ -3683,19 +3673,39 @@
     },
     {
       "d": "2026-11-06",
-      "n": 23,
-      "mean": 1.32,
+      "n": 24,
+      "mean": 1.33,
       "min": 1.04,
       "max": 1.5,
-      "spread": 1.32,
+      "spread": 1.33,
       "charge": null,
-      "discharge": 1.32
+      "discharge": 1.33
+    },
+    {
+      "d": "2026-11-07",
+      "n": 24,
+      "mean": 1.24,
+      "min": 1,
+      "max": 1.49,
+      "spread": 1.24,
+      "charge": null,
+      "discharge": 1.24
+    },
+    {
+      "d": "2026-11-08",
+      "n": 13,
+      "mean": 1.24,
+      "min": 1,
+      "max": 1.49,
+      "spread": 1.24,
+      "charge": null,
+      "discharge": 1.24
     }
   ],
   "sourceSnapshot": {
     "file": "fi-mfrr-down.json",
-    "contentChecksum": "sha256:a5f8058acfc4a3e1ddeedb93b51192136d765f19fa6996ff2693f58ca26d8ea7",
-    "points": 8776
+    "contentChecksum": "sha256:f377df440034254ccdfdb92afecdb3d1f41af37ef3852050fe00dc9a9381afeb",
+    "points": 8783
   },
-  "summaryChecksum": "sha256:af35c5b40b0cc9afed94f0812c4a44b1f50e4a2192dfe2d73533fdf12243d01e"
+  "summaryChecksum": "sha256:1db121df301875ed9f7ee0be8e1fe4346c59d4e05855354fa1bdd7af61306413"
 }

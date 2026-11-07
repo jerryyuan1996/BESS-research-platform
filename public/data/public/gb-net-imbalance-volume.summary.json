@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-06T14:11:03.819Z",
+  "fetchedAt": "2026-11-07T13:13:52.451Z",
   "coverage": {
-    "from": "2026-10-27T00:00:00.000Z",
-    "to": "2026-11-05T23:30:00.000Z",
+    "from": "2026-10-22T23:00:00.000Z",
+    "to": "2026-11-06T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 480
+    "points": 722
   },
   "units": {
     "energy": "MWh"
@@ -31,7 +31,7 @@
     "netImbalanceVolume, signed MWh per half-hour: positive = system short, negative = system long. Not MW or battery dispatch.",
     "Rolling 365-day window, at most two revision days plus four backfill days per run. Partial/failed days retain prior points; coverage is not a claim of a complete year."
   ],
-  "refreshHours": 6,
+  "refreshHours": 24,
   "staleAfterHours": 72,
   "summarySchemaVersion": 1,
   "arbitrage": null,
@@ -45,6 +45,42 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-10-23",
+      "n": 48,
+      "expected": 48,
+      "mean": -28.2263,
+      "min": -466.08193708333334,
+      "max": 742.3601853228088,
+      "netMWh": -1354.8642
+    },
+    {
+      "d": "2026-10-24",
+      "n": 48,
+      "expected": 48,
+      "mean": 342.774,
+      "min": -363.195346762758,
+      "max": 1154.45436124562,
+      "netMWh": 16453.1537
+    },
+    {
+      "d": "2026-10-25",
+      "n": 50,
+      "expected": 50,
+      "mean": 277.7311,
+      "min": -639.6666613888889,
+      "max": 1694.6781844279863,
+      "netMWh": 13886.5544
+    },
+    {
+      "d": "2026-10-26",
+      "n": 48,
+      "expected": 48,
+      "mean": 151.46,
+      "min": -590.206268997114,
+      "max": 602.6462504125616,
+      "netMWh": 7270.0776
+    },
     {
       "d": "2026-10-27",
       "n": 48,
@@ -130,17 +166,26 @@
       "d": "2026-11-05",
       "n": 48,
       "expected": 48,
-      "mean": -27.0084,
+      "mean": -25.6927,
       "min": -465.99308621615313,
       "max": 401.1398515402071,
-      "netMWh": -1296.4018
+      "netMWh": -1233.2518
+    },
+    {
+      "d": "2026-11-06",
+      "n": 48,
+      "expected": 48,
+      "mean": 35.3789,
+      "min": -372.66213416199815,
+      "max": 654.6125345202021,
+      "netMWh": 1698.1849
     }
   ],
   "sourceSnapshot": {
     "file": "gb-net-imbalance-volume.json",
-    "contentChecksum": "sha256:100da976e86ba9fa95b014a4672245f714ae9b8174afc806169c10031f33be36",
-    "points": 480
+    "contentChecksum": "sha256:012a1337b5ef9203bc286a3cd3e2747f7eef6b7b0e45d81557850795e0b194bd",
+    "points": 722
   },
-  "contentChecksum": "sha256:dcfc12a6ec792c643b875ac2a547a55d8192c5c0e433c8322423fdb41f8fae43",
-  "summaryChecksum": "sha256:2ef0473d4ab0a466dc157ba21977a8b0b8341fb9b5daab4b1d3343a1bd414817"
+  "contentChecksum": "sha256:bcae2c6e2d81c042f6ef1d9209071ba760d991777f14e012840f9551dd3b7c49",
+  "summaryChecksum": "sha256:e02dc096383b6c46964c015048e47b1c8c239822dd838a4212d6ce15b72cd20b"
 }

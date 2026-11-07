@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-06T06:56:42.040Z",
+  "fetchedAt": "2026-11-07T13:13:52.451Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-11-06T06:51:17.000Z",
+    "to": "2026-11-07T10:50:00.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -135,56 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-11-02T12:42:19.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/trump-bulk-power-equipment-ban-sparks-industry-pushback-lets-not-reinvent-the-wheel/",
-      "source": "Energy-Storage.news",
-      "title": "Trump bulk power equipment ban sparks industry pushback: ‘Let’s not reinvent the wheel’",
-      "url": "https://www.energy-storage.news/trump-bulk-power-equipment-ban-sparks-industry-pushback-lets-not-reinvent-the-wheel/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "US President Donald Trump’s 26 August emergency executive order banning imports of certain foreign-made power equipment has prompted widespread public comment and private concern across the energy storage industry."
-    },
-    {
-      "t": "2026-11-02T16:59:10.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/newsflash-gresham-house-energy-storage-fund-launches-sales-process/",
-      "source": "Energy-Storage.news",
-      "title": "Gresham House Energy Storage Fund launches sales process",
-      "url": "https://www.energy-storage.news/newsflash-gresham-house-energy-storage-fund-launches-sales-process/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The UK BESS-owning Gresham House Energy Storage Fund has launched a formal sales process, a decision which has seen its share price jump 10%."
-    },
-    {
-      "t": "2026-11-03T01:55:22.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-victorias-sec-secures-4-hour-glenrowan-bess-offtake-first-bess-units-arrive-at-gentaris-maryvale/",
-      "source": "Energy-Storage.news",
-      "title": "Australia: Victoria’s SEC secures 4-hour Glenrowan BESS offtake, first BESS units arrive at Gentari’s Maryvale",
-      "url": "https://www.energy-storage.news/australia-victorias-sec-secures-4-hour-glenrowan-bess-offtake-first-bess-units-arrive-at-gentaris-maryvale/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Victoria's SEC secures 10-year Glenrowan BESS offtake as Gentari's first BESS units arrive at NSW's Maryvale solar-storage project."
-    },
-    {
-      "t": "2026-11-03T01:58:54.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/capital-to-move-our-next-wave-revera-energy-doubles-holdco-facility-to-us300-million-for-bess-in-uk-and-australia/",
-      "source": "Energy-Storage.news",
-      "title": "‘Capital to move our next wave’: Revera Energy doubles holdco facility to US$300 million for BESS in UK and Australia",
-      "url": "https://www.energy-storage.news/capital-to-move-our-next-wave-revera-energy-doubles-holdco-facility-to-us300-million-for-bess-in-uk-and-australia/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Revera Energy has doubled its holdco credit facility from US$150 million to US$300 million to fund its BESS pipeline in the UK and Australia."
-    },
-    {
-      "t": "2026-11-03T02:18:25.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/a-lot-of-interest-in-sodium-ion-from-australian-mining-and-data-centres-catls-anz-general-manager-says/",
-      "source": "Energy-Storage.news",
-      "title": "‘A lot of interest in sodium-ion’ from Australian mining and data centres, CATL’s ANZ general manager says",
-      "url": "https://www.energy-storage.news/a-lot-of-interest-in-sodium-ion-from-australian-mining-and-data-centres-catls-anz-general-manager-says/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "ESN Premium speaks with Zane Zhou of CATL Australia and New Zealand, about TENER+, sodium-ion demand, the Collie BESS and more."
-    },
-    {
       "t": "2026-11-03T03:29:36.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/fluence-ceo-julian-nebreda-and-cfo-ahmed-pasha-leave-with-immediate-effect/",
       "source": "Energy-Storage.news",
@@ -233,16 +183,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "Battery storage projects have won nearly 40% of the capacity in Belgium’s latest capacity market (CM) auction results, while Germany’s first has all gone to gas, paying nearly eight times more than Belgium in the process."
-    },
-    {
-      "t": "2026-11-03T16:42:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/caterpillar-posts-highest-sales-quarter-ever-data-centers-q3-2026/873586/",
-      "source": "Utility Dive",
-      "title": "Caterpillar expands production of engines and turbines to meet data center demand",
-      "url": "https://www.utilitydive.com/news/caterpillar-posts-highest-sales-quarter-ever-data-centers-q3-2026/873586/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The heavy machinery and power equipment maker saw its order backlog reach $78 billion during the third quarter, almost double what it was a year ago."
     },
     {
       "t": "2026-11-04T09:34:38.000Z",
@@ -315,26 +255,6 @@
       "summary": "BESS owner-operator Return has secured an €835 million (US$938 million) portfolio financing underwritten by Deutsche Bank and Rabobank to expand its BESS activities in Germany."
     },
     {
-      "t": "2026-11-05T10:33:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/pairing-residential-heat-pumps-with-potassium-carbonate-based-thermochemical-storage/",
-      "source": "pv magazine",
-      "title": "Pairing residential heat pumps with potassium carbonate-based thermochemical storage",
-      "url": "https://www.pv-magazine.com/2026/11/05/pairing-residential-heat-pumps-with-potassium-carbonate-based-thermochemical-storage/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "U.S. researchers have found that combining residential heat pumps with thermochemical energy storage could reduce electricity demand during cold spells. Improved storage efficiency and heat pump performance could increase the contribution of thermal storage in highly decarbonized power grids. The post Pairing reside…"
-    },
-    {
-      "t": "2026-11-05T10:38:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/lebanon-issues-solar-tender/",
-      "source": "pv magazine",
-      "title": "Lebanon issues solar tender",
-      "url": "https://www.pv-magazine.com/2026/11/05/lebanon-issues-solar-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "A tender is open in Lebanon for the operation and maintenance of solar energy facilities on the Beirut River. The deadline to submit bids is January 7. The post Lebanon issues solar tender appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-11-05T11:23:26.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/what-democratic-control-of-congress-could-mean-for-us-bess-and-renewables/",
       "source": "Energy-Storage.news",
@@ -353,36 +273,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "US retail giant Walmart has made a strategic investment in home battery storage firm Base Power, while Sunrun has doubled the size of its home battery VPP in Puerto Rico."
-    },
-    {
-      "t": "2026-11-05T13:00:47.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/hoymiles-plans-to-establish-inverter-factory-in-oman/",
-      "source": "pv magazine",
-      "title": "Hoymiles plans to establish inverter factory in Oman",
-      "url": "https://www.pv-magazine.com/2026/11/05/hoymiles-plans-to-establish-inverter-factory-in-oman/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese inverter manufacturer Hoymiles has signed a strategic agreement with three partners to develop solar, energy storage and manufacturing projects in Oman. The proposed $100 million partnership includes a renewable energy investment fund and a solar inverter manufacturing facility targeting Middle Eastern and N…"
-    },
-    {
-      "t": "2026-11-05T14:05:23.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/malawi-launches-net-metering-scheme/",
-      "source": "pv magazine",
-      "title": "Malawi launches net metering scheme",
-      "url": "https://www.pv-magazine.com/2026/11/05/malawi-launches-net-metering-scheme/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Malawi officially launched its net-metering framework, allowing eligible consumers to export surplus solar electricity to the grid in exchange for credits. Pilot implementation is underway, targeting 34 prosumers with approximately 3.9 MW of capacity, while nationwide rollout remains unconfirmed. The post Malawi lau…"
-    },
-    {
-      "t": "2026-11-05T14:17:21.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/chinas-energy-storage-fleet-grows-to-167-gw-as-utilization-improves/",
-      "source": "pv magazine",
-      "title": "China’s energy storage fleet grows to 167 GW as utilization improves",
-      "url": "https://www.pv-magazine.com/2026/11/05/chinas-energy-storage-fleet-grows-to-167-gw-as-utilization-improves/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The NEA reported 63% annual growth in installed capacity, alongside longer storage durations and improving utilization rates. The post China’s energy storage fleet grows to 167 GW as utilization improves appeared first on pv magazine Global ."
     },
     {
       "t": "2026-11-05T14:27:13.000Z",
@@ -405,16 +295,6 @@
       "summary": "We catch up with the CEO of Netherlands-headquartered system integrator Alfen to discuss its sodium-ion BESS partnership with CATL and plans for the technology in Europe."
     },
     {
-      "t": "2026-11-05T15:23:37.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/congo-launches-energy-supply-study-into-economic-zones-industries/",
-      "source": "pv magazine",
-      "title": "Congo launches energy supply study into economic zones, industries",
-      "url": "https://www.pv-magazine.com/2026/11/05/congo-launches-energy-supply-study-into-economic-zones-industries/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The study plans to establish a pricing benchmark for the Congolese industrial market after the country’s industrial development minister referred to current solar electricity price offers as low as XAF 130 ($0.22)/kWh as ‘opportunistic’. The post Congo launches energy supply study into economic zones, industries app…"
-    },
-    {
       "t": "2026-11-05T15:51:49.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/entergy-makes-progress-on-arkansas-data-center-reports-strong-q3-sales/873873/",
       "source": "Utility Dive",
@@ -435,36 +315,166 @@
       "summary": "The share of solar projects co-located with storage is projected to pass 30% over the next two years, based on planned additions, according to a report from the&nbsp;U.S. Energy Information Administration."
     },
     {
-      "t": "2026-11-05T17:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/05/enforcement-pricing-and-the-tax-credit-window/",
-      "source": "pv magazine",
-      "title": "Enforcement, pricing, and the tax credit window",
-      "url": "https://www.pv-magazine.com/2026/11/05/enforcement-pricing-and-the-tax-credit-window/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Enforcement of the polysilicon Section 232 framework is tightening, module prices are still settling, the window for extending the ITC and 45X credits is real but narrow, and utility-scale project economics are under increasing pressure. Roth Capital Partners sponsored two US solar events in fall 2026, including the…"
+      "t": "2026-11-06T08:44:46.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/energyaustralia-takes-delivery-of-final-units-for-250mwh-hallett-battery-storage-system/",
+      "source": "Energy-Storage.news",
+      "title": "EnergyAustralia takes delivery of final units for 250MWh Hallett battery storage system",
+      "url": "https://www.energy-storage.news/energyaustralia-takes-delivery-of-final-units-for-250mwh-hallett-battery-storage-system/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "EnergyAustralia has taken delivery of the final battery storage units for its 50MW/250MWh Hallett BESS in South Australia, as construction continues at the site."
     },
     {
-      "t": "2026-11-06T06:51:17.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/06/australian-developed-hydrogen-technology-may-cut-electricity-use-30/",
+      "t": "2026-11-06T14:02:00.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/india-approves-viability-gap-funding-to-support-92gwh-of-bess-and-pumped-hydro-energy-storage-capacity/",
+      "source": "Energy-Storage.news",
+      "title": "India approves Viability Gap Funding to support 92GWh of BESS and pumped hydro energy storage capacity",
+      "url": "https://www.energy-storage.news/india-approves-viability-gap-funding-to-support-92gwh-of-bess-and-pumped-hydro-energy-storage-capacity/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "India’s Union government has approved the next IR145 billion (US$1.5 billion) phase of the Viability Gap Funding (VGP) policy support mechanism for energy storage capacity additions. In addition, a Ministry of Power official has reportedly said state power companies will likely soon be required to include energy sto…"
+    },
+    {
+      "t": "2026-11-06T14:04:07.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/norwegian-central-bank-buys-us300-million-stake-in-brookfields-soon-to-be-acquired-bess-developer-aypa-power/",
+      "source": "Energy-Storage.news",
+      "title": "Norwegian central bank buys US$300 million stake in Brookfield’s soon-to-be acquired BESS developer Aypa Power",
+      "url": "https://www.energy-storage.news/norwegian-central-bank-buys-us300-million-stake-in-brookfields-soon-to-be-acquired-bess-developer-aypa-power/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Norges Bank Investment Management (NBIM), the asset management unit of the central bank of Norway, has acquired a 10% interest in North American battery storage developer-operator Aypa Power."
+    },
+    {
+      "t": "2026-11-06T14:05:57.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-blue-wave-in-the-midterms-rte-disagreements-cybersecurity-incident-in-chile/",
+      "source": "Energy-Storage.news",
+      "title": "BESS Industry Buzz: Blue Wave in the midterms, RTE disagreements, cybersecurity incident in Chile",
+      "url": "https://www.energy-storage.news/bess-industry-buzz-blue-wave-in-the-midterms-rte-disagreements-cybersecurity-incident-in-chile/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Welcome to our latest BESS Industry Buzz, this week featuring the US midterms, ultra-rapid BESS commissioning, how to calculate RTE and a cybersecurity incident in Chile."
+    },
+    {
+      "t": "2026-11-06T14:06:23.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/ford-energy-partners-with-desri-to-deploy-us-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Ford Energy partners with DESRI to deploy US BESS",
+      "url": "https://www.energy-storage.news/ford-energy-partners-with-desri-to-deploy-us-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Renewables developer D. E. Shaw Renewable Investments (DESRI) and Ford Motor Company’s energy storage subsidiary, Ford Energy, will partner to deploy energy storage in the US."
+    },
+    {
+      "t": "2026-11-06T14:44:59.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/eversources-revolution-wind-rate-case-earnings/873983/",
+      "source": "Utility Dive",
+      "title": "Eversource’s financial risk eases as Revolution Wind hits full commercial operations: CEO",
+      "url": "https://www.utilitydive.com/news/eversources-revolution-wind-rate-case-earnings/873983/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Eversource Energy&rsquo;s third-quarter income fell 22% year over year to $346 million, partly driven by a lack of income from Aquarion, a water utility subsidiary the company sold in June."
+    },
+    {
+      "t": "2026-11-06T18:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/historic-election-night-wont-change-growth-focus-at-duke-energy-executi/873965/",
+      "source": "Utility Dive",
+      "title": "Duke Energy to stay course on data center-fueled growth plan after ‘historic’ election",
+      "url": "https://www.utilitydive.com/news/historic-election-night-wont-change-growth-focus-at-duke-energy-executi/873965/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The company&rsquo;s large-load pipeline of 15.4 GW has remained virtually unchanged since the first quarter of 2026 as it pursues a $103 billion spending plan heavily focused on new natural gas generation."
+    },
+    {
+      "t": "2026-11-07T05:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/07/beyond-scale-and-hardware/",
       "source": "pv magazine",
-      "title": "Australian-developed hydrogen technology may cut electricity use by 30%",
-      "url": "https://www.pv-magazine.com/2026/11/06/australian-developed-hydrogen-technology-may-cut-electricity-use-30/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "An Australian-developed hydrogen technology evolved from CSIRO research and advanced by Hadean Energy has the potential to cut green hydrogen costs and improve commercial viability of lower-emissions steelmaking, and other industrial applications. The post Australian-developed hydrogen technology may cut electricity…"
+      "title": "Beyond scale and hardware",
+      "url": "https://www.pv-magazine.com/2026/11/07/beyond-scale-and-hardware/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar and battery energy storage systems (BESS) have scaled dramatically since 2015, but demand growth is not necessarily translating into better economics for manufacturers, writes Susan Taylor of S&P Global Energy. Solar manufacturers continue to battle overcapacity after years of capacity growth outpacing demand.…"
+    },
+    {
+      "t": "2026-11-07T07:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/07/indias-installed-solar-pv-capacity-to-exceed-350-gw-by-2030-says-iea/",
+      "source": "pv magazine",
+      "title": "India’s installed solar PV capacity to exceed 350 GW by 2030, says IEA",
+      "url": "https://www.pv-magazine.com/2026/11/07/indias-installed-solar-pv-capacity-to-exceed-350-gw-by-2030-says-iea/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Growth will be supported by utility-scale projects, rooftop solar and corporate procurement, although grid and storage investments remain critical. The post India’s installed solar PV capacity to exceed 350 GW by 2030, says IEA appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-07T07:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/07/study-finds-0-5-meter-spacing-between-solar-module-rows-improves-cooling-in-floating-pv-systems/",
+      "source": "pv magazine",
+      "title": "Study finds 0.5-meter spacing between solar module rows improves cooling in floating PV systems",
+      "url": "https://www.pv-magazine.com/2026/11/07/study-finds-0-5-meter-spacing-between-solar-module-rows-improves-cooling-in-floating-pv-systems/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A study by Italian researchers has found that 0.5-meter spacing between module rows optimizes cooling in floating PV systems by improving airflow. The findings highlight the importance of row spacing in thermal management, although further research is needed to assess its impact on electricity generation. The post S…"
+    },
+    {
+      "t": "2026-11-07T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/07/researchers-unveil-10-56-kw-solar-powered-pleasure-boat/",
+      "source": "pv magazine",
+      "title": "Researchers develop 10.56 kW solar-powered pleasure boat",
+      "url": "https://www.pv-magazine.com/2026/11/07/researchers-unveil-10-56-kw-solar-powered-pleasure-boat/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in Canada have designed a solar-powered pleasure boat featuring a 10.56 kW PV array and a 19.68 kWh battery system. Simulations under solar conditions in Cyprus showed that the system could meet propulsion demand while providing a 39.8% surplus energy margin. The post Researchers develop 10.56 kW solar-p…"
+    },
+    {
+      "t": "2026-11-07T08:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/07/portable-solar-powered-system-produces-1-64-liters-of-drinking-water-in-8-hours/",
+      "source": "pv magazine",
+      "title": "Portable solar-powered system produces 1.64 liters of drinking water in 8 hours",
+      "url": "https://www.pv-magazine.com/2026/11/07/portable-solar-powered-system-produces-1-64-liters-of-drinking-water-in-8-hours/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers at Soochow University in China have developed a portable solar-powered system that converts saline, turbid and contaminated water into drinking water using an electrothermal evaporator and concentrated sunlight. The device produced 1.64 liters of clean water in eight hours, achieving an energy efficiency…"
+    },
+    {
+      "t": "2026-11-07T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/07/ecuadors-largest-pv-plant-goes-online/",
+      "source": "pv magazine",
+      "title": "Ecuador’s largest PV plant goes online",
+      "url": "https://www.pv-magazine.com/2026/11/07/ecuadors-largest-pv-plant-goes-online/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Lighthouse, a subsidiary of Ecuador's Difare Group, has inaugurated an 82 MW solar plant in Santa Elena province. The post Ecuador’s largest PV plant goes online appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-07T10:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/07/how-the-solar-industries-can-make-better-decisions-for-the-energy-transition/",
+      "source": "pv magazine",
+      "title": "How the Solar+ industries can make better decisions for the energy transition",
+      "url": "https://www.pv-magazine.com/2026/11/07/how-the-solar-industries-can-make-better-decisions-for-the-energy-transition/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This week, Women in Solar+ Europe (WiSEu) shares the lessons from its Solar & Storage Live European tour: why silence puts projects at risk, what turns representation into real influence, and how leaders can make room for challenge, learning and innovation, even under pressure. The post How the Solar+ industries can…"
+    },
+    {
+      "t": "2026-11-07T10:50:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/07/u-s-solar-developers-navigate-policy-stack-as-section-232-deadline-nears/",
+      "source": "pv magazine",
+      "title": "U.S. solar developers navigate policy stack as Section 232 deadline nears",
+      "url": "https://www.pv-magazine.com/2026/11/07/u-s-solar-developers-navigate-policy-stack-as-section-232-deadline-nears/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "With national inventory surging 126% in the second quarter of 2026 ahead of shifting trade cutoffs, utility-scale developers are altering procurement strategies and contracts to manage multi-layered regulatory uncertainty. The post U.S. solar developers navigate policy stack as Section 232 deadline nears appeared fi…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 9,
+      "policy": 7,
       "capital": 7,
-      "grid": 23,
-      "technology": 4
+      "grid": 28,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -483,7 +493,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 5
       },
       {
         "source": "pv magazine",
@@ -498,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:a6cc24f06b9b18ebe837b723e2c499e30d735f6c871aea05515da7087297bd03",
-  "envelopeChecksum": "sha256:ca5cc02502852fd5cb6644fd9f2516ed39c7d84cd30148788fcbb791701b678e"
+  "contentChecksum": "sha256:b5d2be566d37209060495b0e60a97bf962f06c288d09b398f067d3027d49524a",
+  "envelopeChecksum": "sha256:22c8e5dce79f0c7b843a3f29a380462c94abf57d381c1c36625293620ff26908"
 }

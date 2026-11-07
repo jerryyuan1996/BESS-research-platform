@@ -13,12 +13,12 @@
     "licence": "NESO Open Data Licence",
     "attribution": "Supported by National Energy SO Open Data"
   },
-  "fetchedAt": "2026-11-05T20:02:22.355Z",
+  "fetchedAt": "2026-11-07T13:13:52.451Z",
   "coverage": {
     "from": "2023-11-02T23:00:00.000Z",
-    "to": "2026-11-06T23:00:00.000Z",
+    "to": "2026-11-07T23:00:00.000Z",
     "resolution": "EFA-block",
-    "points": 39600
+    "points": 39636
   },
   "units": {
     "price": "GBP/MW/h",
@@ -30,7 +30,7 @@
     "Historical Delivery Start/End are London wall time, converted to UTC by the source SQL. Masterdata UTC and EAC delivery instants are retained as UTC.",
     "No provider identities, offered-MW line, service maxima sum, requirement series, wholesale price or captured-revenue estimate."
   ],
-  "refreshHours": 6,
+  "refreshHours": 24,
   "staleAfterHours": 72,
   "summarySchemaVersion": 1,
   "derived": {
@@ -2880,88 +2880,88 @@
       "month": "2026-11",
       "service": "DCH",
       "basis": "clearing",
-      "blocks": 36,
-      "price": 2.114403151479114,
-      "clearedMW": 1494.888888888889,
-      "batteryMW": 1465.6944444444443,
-      "otherMW": 29.194444444444443,
+      "blocks": 42,
+      "price": 2.0509129423756884,
+      "clearedMW": 1494.904761904762,
+      "batteryMW": 1465.4285714285713,
+      "otherMW": 29.476190476190474,
       "missingTechnology": 0,
       "from": "2026-10-31T23:00:00.000Z",
-      "to": "2026-11-06T23:00:00.000Z"
+      "to": "2026-11-07T23:00:00.000Z"
     },
     {
       "month": "2026-11",
       "service": "DCL",
       "basis": "clearing",
-      "blocks": 36,
-      "price": 3.1339238601315444,
-      "clearedMW": 1495.0555555555557,
-      "batteryMW": 1478.888888888889,
-      "otherMW": 16.166666666666668,
+      "blocks": 42,
+      "price": 3.0676740297176344,
+      "clearedMW": 1495.0238095238096,
+      "batteryMW": 1479.4761904761904,
+      "otherMW": 15.547619047619047,
       "missingTechnology": 0,
       "from": "2026-10-31T23:00:00.000Z",
-      "to": "2026-11-06T23:00:00.000Z"
+      "to": "2026-11-07T23:00:00.000Z"
     },
     {
       "month": "2026-11",
       "service": "DMH",
       "basis": "clearing",
-      "blocks": 36,
-      "price": -2.4743501165028863,
-      "clearedMW": 548.3888888888889,
-      "batteryMW": 547.2777777777778,
-      "otherMW": 1.1111111111111112,
+      "blocks": 42,
+      "price": -2.5226160923530934,
+      "clearedMW": 548.6190476190476,
+      "batteryMW": 544.8095238095239,
+      "otherMW": 3.8095238095238093,
       "missingTechnology": 0,
       "from": "2026-10-31T23:00:00.000Z",
-      "to": "2026-11-06T23:00:00.000Z"
+      "to": "2026-11-07T23:00:00.000Z"
     },
     {
       "month": "2026-11",
       "service": "DML",
       "basis": "clearing",
-      "blocks": 36,
-      "price": 9.873586188292421,
-      "clearedMW": 514.8611111111111,
-      "batteryMW": 510.94444444444446,
-      "otherMW": 3.9166666666666665,
+      "blocks": 42,
+      "price": 9.727847299297077,
+      "clearedMW": 514.8571428571429,
+      "batteryMW": 510.4047619047619,
+      "otherMW": 4.4523809523809526,
       "missingTechnology": 0,
       "from": "2026-10-31T23:00:00.000Z",
-      "to": "2026-11-06T23:00:00.000Z"
+      "to": "2026-11-07T23:00:00.000Z"
     },
     {
       "month": "2026-11",
       "service": "DRH",
       "basis": "clearing",
-      "blocks": 36,
-      "price": -19.48438850919598,
-      "clearedMW": 499.9166666666667,
-      "batteryMW": 471.3611111111111,
-      "otherMW": 28.555555555555557,
+      "blocks": 42,
+      "price": -19.383032814211557,
+      "clearedMW": 499.92857142857144,
+      "batteryMW": 471.95238095238096,
+      "otherMW": 27.976190476190474,
       "missingTechnology": 0,
       "from": "2026-10-31T23:00:00.000Z",
-      "to": "2026-11-06T23:00:00.000Z"
+      "to": "2026-11-07T23:00:00.000Z"
     },
     {
       "month": "2026-11",
       "service": "DRL",
       "basis": "clearing",
-      "blocks": 36,
-      "price": 20.64692227559465,
-      "clearedMW": 479.97222222222223,
-      "batteryMW": 457.97222222222223,
-      "otherMW": 22,
+      "blocks": 42,
+      "price": 20.465210079865074,
+      "clearedMW": 479.9761904761905,
+      "batteryMW": 458.9047619047619,
+      "otherMW": 21.071428571428573,
       "missingTechnology": 0,
       "from": "2026-10-31T23:00:00.000Z",
-      "to": "2026-11-06T23:00:00.000Z"
+      "to": "2026-11-07T23:00:00.000Z"
     }
   ],
   "daily": [],
   "arbitrage": null,
   "sourceSnapshot": {
     "file": "gb-eac-response.json",
-    "contentChecksum": "sha256:e081dee93207f2c513c5df6ece23cda361fafdb67c533d61a106b97a25b62d8e",
-    "points": 39600
+    "contentChecksum": "sha256:5cccba4163704a9ee63cf5da535c0a9bb729a14949d1fb07432cc734d96c38b6",
+    "points": 39636
   },
-  "contentChecksum": "sha256:0a23af68a00a4a316f81e3c531e35c96a2138127d11f8bcb3d58198e2d62b8ef",
-  "summaryChecksum": "sha256:3991fd68eca01ac24cc7d32331814016261969b5477eeaf38f86ff377336cba7"
+  "contentChecksum": "sha256:a36edcb7852c1a7aeb42da00c986ddcfbe7f939a347b782b9a8196e3b826edcf",
+  "summaryChecksum": "sha256:e1cbd2aec66576c82a8eb26eba9ea96038a0a36ffbd62fb8a10cd4e1446ccf05"
 }

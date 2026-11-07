@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-06T06:56:46.194Z",
+  "fetchedAt": "2026-11-07T13:14:00.029Z",
   "coverage": {
-    "from": "2025-11-06T07:00:00.000Z",
-    "to": "2026-11-06T22:00:00.000Z",
+    "from": "2025-11-07T14:00:00.000Z",
+    "to": "2026-11-07T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8776
+    "points": 8769
   },
   "units": {
     "price": "EUR/MW/h"
@@ -26,30 +26,20 @@
   "notes": [
     "Fingrid open data, dataset 318: FCR-D up, hourly market price. CC BY 4.0."
   ],
-  "refreshHours": 12,
+  "refreshHours": 24,
   "staleAfterHours": 72,
   "derived": null,
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-06",
-      "n": 17,
-      "mean": 7.75,
-      "min": 2,
-      "max": 30.5,
-      "spread": 7.75,
-      "charge": null,
-      "discharge": 7.75
-    },
-    {
       "d": "2025-11-07",
-      "n": 24,
-      "mean": 2.2,
-      "min": 1.5,
+      "n": 10,
+      "mean": 2.97,
+      "min": 1.95,
       "max": 5,
-      "spread": 2.2,
+      "spread": 2.97,
       "charge": null,
-      "discharge": 2.2
+      "discharge": 2.97
     },
     {
       "d": "2025-11-08",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-06",
-      "n": 23,
-      "mean": 7.11,
+      "n": 24,
+      "mean": 6.89,
       "min": 1.5,
       "max": 31.42,
-      "spread": 7.11,
+      "spread": 6.89,
       "charge": null,
-      "discharge": 7.11
+      "discharge": 6.89
+    },
+    {
+      "d": "2026-11-07",
+      "n": 23,
+      "mean": 2.1,
+      "min": 1.5,
+      "max": 5,
+      "spread": 2.1,
+      "charge": null,
+      "discharge": 2.1
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-d-up.json",
-    "contentChecksum": "sha256:c48a56a92623b0c6a94ba60f1f5ee488c5a537a4a9233a422be0575b5b6a146d",
-    "points": 8776
+    "contentChecksum": "sha256:e17518c056985234094b420c447d0b4208861ecbdcd6b0c9cd83d0034725e500",
+    "points": 8769
   },
-  "summaryChecksum": "sha256:ce26002eedc9fd7e32a93e3a4bebeb5312541b97dcf4e68a5b052d0718502763"
+  "summaryChecksum": "sha256:a2638462c6cccf11b8a3ccbd51e96b81ec9e1042fe29a701945228d6d3904218"
 }

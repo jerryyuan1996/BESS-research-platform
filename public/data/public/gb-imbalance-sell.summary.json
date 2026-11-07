@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-06T14:11:03.819Z",
+  "fetchedAt": "2026-11-07T13:13:52.451Z",
   "coverage": {
-    "from": "2026-10-27T00:00:00.000Z",
-    "to": "2026-11-05T23:30:00.000Z",
+    "from": "2026-10-22T23:00:00.000Z",
+    "to": "2026-11-06T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 480
+    "points": 722
   },
   "units": {
     "price": "GBP/MWh"
@@ -31,7 +31,7 @@
     "systemSellPrice, GBP/MWh. Cash-out price, not day-ahead price or achieved battery revenue.",
     "Rolling 365-day window, at most two revision days plus four backfill days per run. Partial/failed days retain prior points; coverage is not a claim of a complete year."
   ],
-  "refreshHours": 6,
+  "refreshHours": 24,
   "staleAfterHours": 72,
   "summarySchemaVersion": 1,
   "arbitrage": null,
@@ -45,6 +45,38 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-10-23",
+      "n": 48,
+      "expected": 48,
+      "mean": 149.068,
+      "min": 12.63444944629321,
+      "max": 265
+    },
+    {
+      "d": "2026-10-24",
+      "n": 48,
+      "expected": 48,
+      "mean": 96.6392,
+      "min": 13.14,
+      "max": 248
+    },
+    {
+      "d": "2026-10-25",
+      "n": 50,
+      "expected": 50,
+      "mean": 120.9796,
+      "min": -16.26999999999999,
+      "max": 271
+    },
+    {
+      "d": "2026-10-26",
+      "n": 48,
+      "expected": 48,
+      "mean": 176.2838,
+      "min": 13.31137789732251,
+      "max": 267.45
+    },
     {
       "d": "2026-10-27",
       "n": 48,
@@ -121,16 +153,24 @@
       "d": "2026-11-05",
       "n": 48,
       "expected": 48,
-      "mean": 203.795,
+      "mean": 203.9765,
       "min": 124.46999999999998,
       "max": 337.99
+    },
+    {
+      "d": "2026-11-06",
+      "n": 48,
+      "expected": 48,
+      "mean": 224.83,
+      "min": 148.75,
+      "max": 450
     }
   ],
   "sourceSnapshot": {
     "file": "gb-imbalance-sell.json",
-    "contentChecksum": "sha256:b726335ada323d2d5879fe60fffdf3b4b9ddc59b2ba54bf3bf7ab69b01e95cad",
-    "points": 480
+    "contentChecksum": "sha256:42b44d554592cf3b83b6f21737c4cda67310b7cff734961627631b47646d4ebd",
+    "points": 722
   },
-  "contentChecksum": "sha256:f89f9e258f6655a3b15e1b72794633091d3e0beefdea13548f1b09ab03562bb2",
-  "summaryChecksum": "sha256:92f8c0a2f832d7ec2598df2f14aa802250bef45df45b13c11f90ead68f15023a"
+  "contentChecksum": "sha256:627580e83d549973cd8ab7ff5e86ab744341acb9fdeae633cf1ff8e3184afd5f",
+  "summaryChecksum": "sha256:95103305f6f132fd96fd0f3cc085678f91594c2566e93e5695fb03d142994438"
 }

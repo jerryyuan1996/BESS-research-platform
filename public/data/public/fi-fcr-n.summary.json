@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-06T06:56:43.582Z",
+  "fetchedAt": "2026-11-07T13:13:59.523Z",
   "coverage": {
-    "from": "2025-11-06T07:00:00.000Z",
-    "to": "2026-11-06T22:00:00.000Z",
+    "from": "2025-11-07T14:00:00.000Z",
+    "to": "2026-11-07T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8776
+    "points": 8769
   },
   "units": {
     "price": "EUR/MW/h"
@@ -26,30 +26,20 @@
   "notes": [
     "Fingrid open data, dataset 317: FCR-N, hourly market price. CC BY 4.0."
   ],
-  "refreshHours": 12,
+  "refreshHours": 24,
   "staleAfterHours": 72,
   "derived": null,
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-06",
-      "n": 17,
-      "mean": 10.31,
-      "min": 9.51,
-      "max": 11.89,
-      "spread": 10.31,
-      "charge": null,
-      "discharge": 10.31
-    },
-    {
       "d": "2025-11-07",
-      "n": 24,
-      "mean": 13.1,
+      "n": 10,
+      "mean": 11.02,
       "min": 7.11,
-      "max": 19,
-      "spread": 13.1,
+      "max": 15,
+      "spread": 11.02,
       "charge": null,
-      "discharge": 13.1
+      "discharge": 11.02
     },
     {
       "d": "2025-11-08",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-06",
-      "n": 23,
-      "mean": 16.63,
+      "n": 24,
+      "mean": 16.27,
       "min": 8,
       "max": 31.25,
-      "spread": 16.63,
+      "spread": 16.27,
       "charge": null,
-      "discharge": 16.63
+      "discharge": 16.27
+    },
+    {
+      "d": "2026-11-07",
+      "n": 23,
+      "mean": 8.15,
+      "min": 8,
+      "max": 10,
+      "spread": 8.15,
+      "charge": null,
+      "discharge": 8.15
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-n.json",
-    "contentChecksum": "sha256:d1214557227482603e25c243d6dbf7758e9e9c7da632a9700c73c5321f24a361",
-    "points": 8776
+    "contentChecksum": "sha256:9909608b90915410a913d5d0c8b9d405f2d659a59f227b0cbab3cf64fd221e95",
+    "points": 8769
   },
-  "summaryChecksum": "sha256:d76ce83484a3b33133af639117e4ab24a58a10dc6e113dd59ad97cf0b53c07f9"
+  "summaryChecksum": "sha256:7cd2025022b92789c6ee2de736a4339e7b1185b932cec67739f10a87d18ed52b"
 }
