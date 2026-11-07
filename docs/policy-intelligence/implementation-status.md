@@ -1,4 +1,10 @@
-# Implementation checkpoint
+# Policy Intelligence implementation status
+
+The 7 November 2026 analyst source decision admits one fixed 23-document/47-binding historical facts-only release under proposal `a8c6d20fba8630e2e4c48b4bc4a134e550ee4c8a81fc821858c7d59bf937067f`. Separate independent content/date/projection review is complete. The approved static regression receipt covers 16 cases, 85 factual units and 170 bilingual expressions; model accuracy remains unmeasured. Exact release readiness is tracked in [release-readiness.md](release-readiness.md).
+
+This historical release leaves all 27 investment cases pending and changes no approved investment conclusion. Current-law completeness remains unestablished. Model calls, paid evaluation, automatic publication and new discovery source activation remain OFF. A source decision is not a rights waiver or permission to resume WA acquisition. The older entries below describe their dated preparation checkpoints and are retained as history.
+
+## Earlier implementation checkpoints (historical)
 
 Integration branch: `feat/policy-intelligence-v4`, based on `494ce7b`. Draft PR #159 is an **incomplete v4 deliverable**. A passing software check does not accept missing source governance, content reviews or empirical model evaluation. Do not merge it as the full D0-D8 release.
 

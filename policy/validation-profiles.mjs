@@ -1,6 +1,4 @@
-/** Independent, analyst-reviewed source parsers/translation templates belong
- * here. A model cannot supply or alter them. Empty means no unattended approval.
- * Each profile must bind an official document/locator and validate its semantics,
- * dates, scope, numeric normalization, licence and bilingual template. */
-export const TRUSTED_POLICY_PROFILES=Object.freeze([]);
-export const APPROVED_HISTORICAL_EVALUATION=Object.freeze({approved:false,method:null,model:null,reviewedAt:null,cases:[],falsePositive:null,falseNegative:null,criticalUnsupported:null});
+/** One owner-admitted, independently reviewed historical source set only.
+ * These exact static profiles cannot review a new document or model output. */
+export {STATIC_POLICY_PROFILES as TRUSTED_POLICY_PROFILES,
+  STATIC_HISTORICAL_EVALUATION as APPROVED_HISTORICAL_EVALUATION} from './static-release.mjs';

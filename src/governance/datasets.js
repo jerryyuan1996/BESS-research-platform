@@ -173,6 +173,17 @@ export const DATASETS = [
     bearsOn: [], republishable: true, requiresKey: false, official: true,
   })),
 
+  // EAC BR/QR/SR clearing prices and accepted MW; independent of DC/DM/DR.
+  {
+    id: 'gb-eac-reserve', kind: 'timeseries', marketId: 'gb', connector: 'neso-reserve',
+    title: ['GB EAC reserve auction prices and cleared capacity', '英国 EAC 备用服务拍卖价格与成交容量'],
+    source: { name: 'NESO Open Data', url: 'https://www.neso.energy/data-portal/eac-auction-results',
+      licence: 'NESO Open Data Licence', licenceUrl: 'https://www.neso.energy/data-portal/neso-open-licence',
+      attribution: 'Supported by National Energy SO Open Data', notice: 'Supported by National Energy SO Open Data' },
+    refreshHours: 24 * HOURS, staleAfterHours: 3 * DAYS,
+    bearsOn: [], republishable: true, requiresKey: false, official: true,
+  },
+
   // Ontario zonal prices remain evidence, separate from project settlement.
   {
     id: 'ca-on-da-zonal', kind: 'timeseries', marketId: 'ca_on', connector: 'ieso-ontario-zonal',
