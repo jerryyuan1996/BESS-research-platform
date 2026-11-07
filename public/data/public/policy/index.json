@@ -1,0 +1,790 @@
+{
+  "schemaVersion": 1,
+  "head": "366275d243854a017d6b8ef54ac5fc94d58a5d06e10406d469622fac21091a8b",
+  "versions": [
+    "366275d243854a017d6b8ef54ac5fc94d58a5d06e10406d469622fac21091a8b"
+  ],
+  "publishedAt": "2026-11-07T00:29:47.152Z",
+  "pendingReviews": [],
+  "verification": {
+    "sources": {
+      "src-de-bkz-judgment-scope": {
+        "sourceHash": "ab33d2389b4adde5f976a3670fc7eeff605807e3ff7d98a608f295e02e002377",
+        "maxQuoteChars": 0
+      },
+      "src-de-agnes-consultation-not-adoption": {
+        "sourceHash": "5d07cb1b92d8269acfae805b9184726c1a444c17fcafb0c9f2790bfc88eaba6c",
+        "maxQuoteChars": 0
+      },
+      "src-de-fid-draft-definition": {
+        "sourceHash": "a16d64d9f8c8430606d852e0e6d1e732a7ad31e913bacfc3de19b0000b8c5405",
+        "maxQuoteChars": 0
+      },
+      "src-de-fid-clarification": {
+        "sourceHash": "ee43688ebe79009f0ab261eaa76c777c9a88460e125ac6b229eba9da890f1a6b",
+        "maxQuoteChars": 0
+      },
+      "src-de-capacity-distinct-auction-classes": {
+        "sourceHash": "01e55f7cd286adf9e71f8a3e142cf247f6c9807ec45026df6daadf300fb70b31",
+        "maxQuoteChars": 0
+      },
+      "src-de-regulatory-history-to-agnes": {
+        "sourceHash": "05cf62cc49a362f573b5834d436a91df025cfb201a6c5dc116096a13674d62ac",
+        "maxQuoteChars": 0
+      },
+      "src-record-de-announcement": {
+        "sourceHash": "36b8d8421fead42ae11904343ce1334ac56775cd10171993ded8e70f2b06aeca",
+        "maxQuoteChars": 0
+      },
+      "src-gb-gate2-approval-boundary": {
+        "sourceHash": "c3c4c541068f51781e034d24e7df5104cc322a16f53b4a7a25d1108668da6723",
+        "maxQuoteChars": 0
+      },
+      "src-gb-june-phased-deadlines": {
+        "sourceHash": "a5ac5b08f308e014b86b38d76dc817391e47e0f41b3f01aaf87cd7f524c3abd3",
+        "maxQuoteChars": 0
+      },
+      "src-gb-october-limited-revision": {
+        "sourceHash": "21c7338657cc72ef611d9f58083b5788e9589a63abe34c087cf016adaac5f37e",
+        "maxQuoteChars": 0
+      },
+      "src-gb-multiple-price-proposal-abandoned": {
+        "sourceHash": "62deea5993b7642df828106f08f7b4b567340095856be3ed7b4b03a3f84962d3",
+        "maxQuoteChars": 0
+      },
+      "src-gb-current-connection-capacity-constraint": {
+        "sourceHash": "b41c7542b192e722ab721c6de9deb1365e8dd67d47592ab2d8d5d4cd6f967aa2",
+        "maxQuoteChars": 0
+      },
+      "src-gb-consultation-discretion-tradeoff": {
+        "sourceHash": "75e8692ca5997284a833386f52cd17459f883fadd27feb5bd6189dd5eeb82dd0",
+        "maxQuoteChars": 0
+      },
+      "src-gb-storage-nomination-not-award": {
+        "sourceHash": "f671d1fc31b80b4f8dd6322c5acf637b30f50e23c5affdf77446dac26f79a1cd",
+        "maxQuoteChars": 0
+      },
+      "src-gb-nomination-derating-supplement": {
+        "sourceHash": "a322fd6f61dac8504c889f44188e7547f2902dbd26dbb6ff5432a180e4107244",
+        "maxQuoteChars": 0
+      },
+      "src-gb-storage-later-reporting-amendment": {
+        "sourceHash": "d82923ae3c7c4290a6ef6cc0bf3311138babf65aaf1e93bbe2e9af9c424db1a2",
+        "maxQuoteChars": 0
+      },
+      "src-gb-connections-reform-history": {
+        "sourceHash": "46d0b0cd3444c82b2f67feca8aeeb3ea2f0e5f82c0f1c9071a4e44d2df48d062",
+        "maxQuoteChars": 0
+      },
+      "src-record-gb-methodology": {
+        "sourceHash": "573cc59f931ccc968261caea9d7fe7a8c8c41a799f4adf8473def8e570401166",
+        "maxQuoteChars": 0
+      },
+      "src-record-gb-e12-june": {
+        "sourceHash": "f9367d30a24bd74bdfc2024beb7c3d4c184824b6ae35c3a07e729d2b7862cf40",
+        "maxQuoteChars": 0
+      },
+      "src-record-gb-e12-october": {
+        "sourceHash": "127c004d3049d55af3c1ca44e3f95620318c72ea7310458df35979cf6b3d3c12",
+        "maxQuoteChars": 0
+      },
+      "src-record-gb-cm-no4": {
+        "sourceHash": "243b9a025aa0566a26e41a4c4e8a6fd7e124f4282aa660e83c7c31557f295dc0",
+        "maxQuoteChars": 0
+      },
+      "src-nem-2021-final-design": {
+        "sourceHash": "a96c06e31b18e2573cdfa6c823606c441a0f7b1330464388959abc0f73421875",
+        "maxQuoteChars": 0
+      },
+      "src-nem-as-issued-commencement-split": {
+        "sourceHash": "b45dcb0fc8ac8e04c67e025750a5122e55b6384387ff2f81e9b25d1a8a8e5cce",
+        "maxQuoteChars": 0
+      },
+      "src-nem-nonenergy-cost-basis": {
+        "sourceHash": "454f478411449f06028cdbc214f5007160e8ec1cf39070c6ad4c6c2dda35f43e",
+        "maxQuoteChars": 0
+      },
+      "src-nem-territorial-scope": {
+        "sourceHash": "0c685c21246783f74609a94fd3889f164ed35ec86ca86909b0eb3d6e1f83e820",
+        "maxQuoteChars": 0
+      },
+      "src-nem-spot-obligations-not-support-contract": {
+        "sourceHash": "635286c8bc0ca577165d3c69eb136a52bc44fc9f9e6809dec451fe16d7ffacac",
+        "maxQuoteChars": 0
+      },
+      "src-nem-fcas-guidance-version-change": {
+        "sourceHash": "a9780af345d5449caf031a1dfa0407de35265d3e8e879c46cc51a3bc43f4566d",
+        "maxQuoteChars": 0
+      },
+      "src-nem-cis-target-not-minimum-duration": {
+        "sourceHash": "d28009ee2a7a9f9c2c8f814a46eabfafbd1cc9c64c0c45f66357325ecb5ac836",
+        "maxQuoteChars": 0
+      },
+      "src-nem-cis-assessment-supplement": {
+        "sourceHash": "9e571a98f870c1ca5943c19c773fe8cb8ef0a0196957c7cc6c3193c914abc991",
+        "maxQuoteChars": 0
+      },
+      "src-nem-ltesa-duration-and-double-support": {
+        "sourceHash": "c34cfcfdb7dc0a2836fba3a5aa8ef0712061345a438a87e1b10653cf02aa1107",
+        "maxQuoteChars": 0
+      },
+      "src-record-nem-determination": {
+        "sourceHash": "38cb143db0b710d283be179dc99f575d000487f0259d47f6a755c19b3a5421a5",
+        "maxQuoteChars": 0
+      },
+      "src-record-nem-rule": {
+        "sourceHash": "807f9078e14eba7c9789d3f037970f8ff309c21e22116386f94c634fb4bed5b3",
+        "maxQuoteChars": 0
+      },
+      "src-record-nem-fcas-v5": {
+        "sourceHash": "d76043c75ba7c2f83f81838c6d2164e0e5845b811fb1f6af66b3c86842e431cc",
+        "maxQuoteChars": 0
+      },
+      "src-wa-gazettal-not-universal-effect": {
+        "sourceHash": "5b40a5ba313992ae926a94cce54c4f40c638f1e006c3ab1664c6753358c4c6c0",
+        "maxQuoteChars": 0
+      },
+      "src-wa-schedule5-later-notice": {
+        "sourceHash": "8effc759ade3882952237054252676611d1857c09b303b806143f623f8a9c10f",
+        "maxQuoteChars": 0
+      },
+      "src-wa-schedule6-relative-order": {
+        "sourceHash": "41984d664cec2571bdb0b6003fb348fc90779f4d8dd3dbe66ebd6ed4729d1225",
+        "maxQuoteChars": 0
+      },
+      "src-wa-current-versus-future-schedules": {
+        "sourceHash": "6e45f864e71efdb4e8f8a65f5c0ece080e4190b5725eccdf328575cbee318ff9",
+        "maxQuoteChars": 0
+      },
+      "src-wa-flexible-price-not-two-full-prices": {
+        "sourceHash": "c9d8545fe76384fc314442cb581f10f45554c93adc4b11fbb255f72ce8461d67",
+        "maxQuoteChars": 0
+      },
+      "src-wa-capacity-credit-assignment-supplement": {
+        "sourceHash": "ac14a02b3802c8afde94e5b3b2fcae73a5137f288adfb51f5c12965f65f17d41",
+        "maxQuoteChars": 0
+      },
+      "src-wa-ess-accreditation-is-facility-specific": {
+        "sourceHash": "ca274f827d5ff572fe450e275a904a3adc33f6d55e64823a8c8e9beccda658b6",
+        "maxQuoteChars": 0
+      },
+      "src-wa-network-access-competing-positions": {
+        "sourceHash": "19c7354d9e28aada997aba735c9782aab843d88518ab189f11452d61c14973e6",
+        "maxQuoteChars": 0
+      },
+      "src-wa-reserve-capacity-reform-history": {
+        "sourceHash": "40e70adf6e1a38186c6cf9bb3ad5dbb1767196753af8e59096e2e1a12778596a",
+        "maxQuoteChars": 0
+      },
+      "src-wa-nem-rule-outside-wem": {
+        "sourceHash": "9d5ef679499e746172d1bf6db7948e97f3e35db9899e0cb545e40d2e20bb2a61",
+        "maxQuoteChars": 0
+      },
+      "src-record-wa-2025": {
+        "sourceHash": "76bc0c82a34d7e48ab9aeab1929a791f6457e929464777c8e34cdc78d5128a1d",
+        "maxQuoteChars": 0
+      },
+      "src-record-wa-cover2025": {
+        "sourceHash": "fa62f5bff1c9d9b66002134bcfd1fc94f55f8e4145564348810c361ebc63e506",
+        "maxQuoteChars": 0
+      },
+      "src-record-wa-2026": {
+        "sourceHash": "4815c5d6cfffd990b53da51559ab6c55e107936d42ad2a1ed977a94f0002ebb7",
+        "maxQuoteChars": 0
+      },
+      "src-record-wa-cover2026": {
+        "sourceHash": "47dddd538f56b325358f9ef1f18e89b821aeee4b9adc5e241c4d978403c2360f",
+        "maxQuoteChars": 0
+      }
+    },
+    "claims": {
+      "cl-de-bkz-judgment-scope": {
+        "claimHash": "205771c769a732c9ffdcea0fa9daf7bc535f95c08d2348423d53a2d79e4ff04b",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-agnes-consultation-not-adoption": {
+        "claimHash": "fe2335818093d39ab92c34ac5876a514ecc612fcc1743e1571117d95f79f94ed",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-fid-draft-definition": {
+        "claimHash": "58b2c50ab2ce8caffd1f30e6c8ddab25f573f73d799f49c5d0b386ed7bfcb414",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-fid-clarification": {
+        "claimHash": "04dc0d5fe0f7b64e5a978a427c3e097ad40eb8233800cb93f8bfec21ab179a94",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-capacity-distinct-auction-classes": {
+        "claimHash": "25abefb8ef0638e4139792a1f793abbb128ac5ffed826633b6a56ac9d24f2900",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-regulatory-history-to-agnes": {
+        "claimHash": "4fe835bd98db8af4cdc8c01215dea328ec577f9971a66a43a005fcab0918411f",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-consultation-state": {
+        "claimHash": "47822a86064474893b935cbb9574ab0a78d1ccdd69597601029e62663c1f09bd",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-announcement-date": {
+        "claimHash": "6cc00d9770490231f29b2b23d6e01a52bc6993fd7bef5b283da09857a39ec537",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-record-date": {
+        "claimHash": "9b43968d952e3f68c2e5bb23068b89453345f97c98354b89bbf57bca9a903ba2",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-consultation-close": {
+        "claimHash": "e589f3aa4e3ffe60e371502cf9a02dd481ef12ccd1977fd1e3cf1d8137c40920",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-2021-context": {
+        "claimHash": "a249dadac66da65a1bba04424cc71b1022885267766caa4a8dc8f3a080a5f7be",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-de-procedure-context": {
+        "claimHash": "5f2d33d635e1f8aeab624cca080716baac17c5cf848530590e5aa2394614234e",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-gate2-approval-boundary": {
+        "claimHash": "1ce9da2a425486b870388ed75afe3b0cd7fd1b4f506263a37c3ff270e98b849a",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-june-phased-deadlines": {
+        "claimHash": "f2d04daebb70878e082b6440e8e904658967a46a40c2ca1fc4013979bdf1b8b0",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-october-limited-revision": {
+        "claimHash": "1955651b050b7ea7e4dae46e606e5a0a9574c0df7cb48b5e5ef2587be15459c5",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-multiple-price-proposal-abandoned": {
+        "claimHash": "549a391bd86afba3dd887f039407413844f8ba4c4dd711e891c59137a2d32036",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-current-connection-capacity-constraint": {
+        "claimHash": "7110bd8106b3c37fab96e36ad57ac66f1a1150dd5c32349a7a368a7e5466edd8",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-consultation-discretion-tradeoff": {
+        "claimHash": "7036c274e48c789ff9b327159fd5f12d6f9125f7083c31216d114ae89d30b1a5",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-consultation-discretion-tradeoff-a": {
+        "claimHash": "85ea009aba0375905df9abf47bd2fe5f888992e4628a228da8402f6f044039e1",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-consultation-discretion-tradeoff-b": {
+        "claimHash": "9c26a5879bae1d5fdad1fdacfa6c8810bf8cf6e1685098ab4ecce4c74a7ea649",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-storage-nomination-not-award": {
+        "claimHash": "b962d30d41809823b859da09bb348974396e71c11fe54b2faadb0692717b6eb3",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-storage-later-reporting-amendment": {
+        "claimHash": "55a6bb18b219c2e4a9f15d7fcb70ce79ccb4eeb8ba56e21a06b51dae3cc85fae",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-connections-reform-history": {
+        "claimHash": "8afc47d5c899c82d1e30ff7ef7bfdecdfe0bf15a8aac688283e248e631bd0cc9",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-methodology-adopted": {
+        "claimHash": "27bcb9f400821514eedf423298bdd33b3a4cf7d8e51ce1ffd7a7ce27d9eddd0d",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-methodology-published": {
+        "claimHash": "df20c31172b93e264642085a45815d4aeb0d1c576ab7a656980fd78aacbb89da",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-e12-june-adopted": {
+        "claimHash": "5f2abf4ccd99fd9f07e9b1120d281f90ecf81785c3b5f66ea784b9a94c628a02",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-e12-june-dated": {
+        "claimHash": "bf916c3d0136643dafea161d3d61e9812b9821e6b365e7d6d964666280168dda",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-e12-october-adopted": {
+        "claimHash": "fa8bc104507b1765b69139cd8ae4a17844d65d35add26075ea9bc523a6bd1dae",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-e12-october-dated": {
+        "claimHash": "b4ee93d1ca033c2074ce384ca6f43f44725a4fd91a8457884c4b5553073ab5ce",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-june-phase1-deadline": {
+        "claimHash": "a6791939e9f7f14905a5b8a4bd29df57c8e594c12549c78430e7b1cf4f8a513d",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-october-phase1-deadline": {
+        "claimHash": "6f58d9d8064a5a5687008b6dc9ae10461a0f98557d215c5ee9a1ec86a4f7bed8",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-phase2-deadline": {
+        "claimHash": "0e14381d4b2690447700537580ed59ccec264d7c0de73b0dc0054da6ccd54563",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-cm-no4-effective": {
+        "claimHash": "c161fec243617d2c35db71703a971ef99106e28be71b4f1fa8e0198759f52993",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-cm-no4-effective-date": {
+        "claimHash": "efe565e9c433db9d04738a6463fc17ae57811035f336791ff4c958eb0ec4e2b6",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-history-2023-letter": {
+        "claimHash": "54f3acad3389c107d3fa584d6f89f44c9463765a9952aee9c283b4fe846dda67",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-history-2024-letter": {
+        "claimHash": "e1d5be689293f6229fff082328e0d164ec35ec78dedcd8f6d8fdc3c4be5cbc80",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-gb-history-2025-consultation": {
+        "claimHash": "4f37b15dfc0d7d2718e16f26a37947a19b787a768f0b997a2199842b1389de29",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-2021-final-design": {
+        "claimHash": "52974315d006ca8c0e60dc83e59b64fbafabcc30d6f521106ee5a690186b2cad",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-as-issued-commencement-split": {
+        "claimHash": "0b7fce398843e9a63edcce2ca1f15b6d566763f4785d96e26bf2477260b1b724",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-nonenergy-cost-basis": {
+        "claimHash": "6c69cbe43e42e399b388cd7209c22a49799db9e3d83246633663060dfafdae2e",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-territorial-scope": {
+        "claimHash": "c199a27b239b8d9d96f415c25df73ef13a142d8b13c91644caf84d4ca0bffb30",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-spot-obligations-not-support-contract": {
+        "claimHash": "50d8a1ae31556362c137551c7b6f81e428f4149d1adbf0b991211bd31570a2a6",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-fcas-guidance-version-change": {
+        "claimHash": "fafddf7e109b2533c3820d8920ced8c49d55c7c2cdef85234ff5804f208b4010",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-fcas-guidance-version-change-old": {
+        "claimHash": "6f340a9f743b456de474189b93e8f54cab7e70f3e2f06e6461654df3e143f85f",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-fcas-guidance-version-change-new": {
+        "claimHash": "d4d4b1dcda559fc109fbaa9670811740f0d20a2e7c106dbbbf2fe6e9de6c929d",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-cis-target-not-minimum-duration": {
+        "claimHash": "4a94f2f9e0b239f11d9b5459e269e724a5315f8061a5bdba334b1c289e85ad40",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-ltesa-duration-and-double-support": {
+        "claimHash": "53e1366e94a6dd911be67c8e1c3f57958866848abb5d4c801205c64bfa7f0625",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-determination-adopted": {
+        "claimHash": "d2ad96c7b478a37c02e89b847d43853591809cd0d878e12d6dd961abb5a1433a",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-determination-dated": {
+        "claimHash": "849120f0e5359f01bc55df258d2e3ca595fb98db664ac27dd2048e3c87a322f3",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-rule13-made": {
+        "claimHash": "6d46f3dada79e541bbd9c6292e67253d48735c29aa12214c603cdf07de824fcb",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-s1-6-effective": {
+        "claimHash": "ee895571ded2b1d5319d5334e3c7bf0b7e26ad1e2bbcf6dc3b0656638d6df59c",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-s1-6-effective-date": {
+        "claimHash": "d7271760804a775ad0dbedda0782667099662ec174bc97837a66aca5c227c2da",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-s7-effective": {
+        "claimHash": "b428c2a2ed766f270121d7a0804821dccb8e31c8ea405276274a289df3c455f0",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-s7-effective-date": {
+        "claimHash": "14cac3d65b07eedd4af7450031b98e761d171f8b5e7b2d89d643f5dd7a1ed664",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-guide-effective": {
+        "claimHash": "87c65850b1dc6a97c16a54b2ddeb0bf8db1d622f1f75e077908e9a3372dfe6be",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-nem-guide-effective-date": {
+        "claimHash": "68a12903027044cdcf00aaa04bcd8ccd311de244e7d9695664e471d2c2ed58f0",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-gazettal-not-universal-effect": {
+        "claimHash": "9d6e36ccbc5e540a33ed266ad151966972affa4f4b21fef029193799a8f5b11a",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-schedule5-later-notice": {
+        "claimHash": "0445b149d10f600dfdafea6fe72529e303227b843233368082d25067a23c5c76",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-schedule6-relative-order": {
+        "claimHash": "39b3c4ba60796305cd79a09274e11125c03616f41ddb24e59396089f36ed25a5",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-current-versus-future-schedules": {
+        "claimHash": "64a83db13acaee39b402bbae03428e054d2191dee20a398f52fe0d590a97a09d",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-flexible-price-not-two-full-prices": {
+        "claimHash": "3f977747e45501877773026df9cc38de0320e18241c4452b2afa4be0453ccb27",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-ess-accreditation-is-facility-specific": {
+        "claimHash": "2ba2ed3b092d51c2295f2e0df67dd35adfed13e8520648f9bc52e053eb0cb004",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-network-access-competing-positions": {
+        "claimHash": "12c244ac7403c3ff1513f0659de51b96b79a9a241c1d60319cc22b15a22e28c3",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-network-access-competing-positions-a": {
+        "claimHash": "6997269104b12655cef004a7bbf3bb3b66e3530f791dab45e1e4578ff999d6ba",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-network-access-competing-positions-b": {
+        "claimHash": "f9ebdce04cb859e7a4893edee2af7bbc4786c996d3318eee482148122017a15a",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-reserve-capacity-reform-history": {
+        "claimHash": "5c035cea18f7d8c4ee9ffd87b4bd616330b3bf7774376ba9d0ba0cbf43d0dbf2",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-nem-rule-outside-wem": {
+        "claimHash": "4d8531fb1e296c30193ed2bd4c9eb861da4d20a764c6cc5fe7d32541037a9b16",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-rules-made": {
+        "claimHash": "c1d0af8298497821f7d7eb42eadd05ee75cedc37bd31bd5a2c3e32b236d19896",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-2025-published": {
+        "claimHash": "e88ecfdc395d1b4d8bc38582eb6a74040dbb7d75c0dbed580b0e855af9bd20e0",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-notice-2025-dated": {
+        "claimHash": "dfe68080882e5f5220dcf3e9d209eee8b292a9adf34c40109de11eceb7f876ba",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s1-state": {
+        "claimHash": "985a821ca8daf631dddeea8787393f58258c2f64bae02c537f6227a494fb12ff",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s1-effective-date": {
+        "claimHash": "0acde1496e7e0ad67d768fbc57d0d708868d90a46392bc46b44cc5600509d498",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s2-state": {
+        "claimHash": "1b31ebb6bc8c423393be0e1f92857b2a5e798d5b9a1e1e05ba8512ca005b7c6c",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s2-effective-date": {
+        "claimHash": "03b81ab0ba85e4f5776c7419eb89166e18fab15bd3476bd742b5ca09f7e219d7",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s3-state": {
+        "claimHash": "5a7973035a55732bb53edb8c89b4da03c5df583271897c67b4efae97211d50e1",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s3-effective-date": {
+        "claimHash": "c18983711d9d80aa1fe09d3f69bcc5893186cb4df4e2f5e63c74f4c5e42858f1",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s4-state": {
+        "claimHash": "df6fbecd764adbd6de8482e31f1538ea97e13854ae69a140623f80c67e7e0739",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s4-effective-date": {
+        "claimHash": "28a3ef9afba3d5c4c5521efbf26c5485de4c9fbad1026f25b8bb27d84b0fd959",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s5-adopted": {
+        "claimHash": "45e779b9aed64a2e96e57f944fef277acdc36cc4c680199ad3a4e8c153159a05",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s5-notice-dated": {
+        "claimHash": "e72b6925c7b0c9fefde6b298bf1750c31ef0b6f42030724eadaa138793509f5c",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s5-notice-published": {
+        "claimHash": "d7d91719bac7533d7696d330a55986e4254ebd047681a116ebda79d9594eaa7f",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s5-effective": {
+        "claimHash": "0aa625f7e5932c6ef1cb711e223e9f5a70bea25855b84b3cc965327d4e82c875",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s5-effective-date": {
+        "claimHash": "6515ef27930fde82d86bd79b416ef5c394e8618d8c0c5db6557e27adeb9e62ac",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s6-adopted": {
+        "claimHash": "3813bebe21d9b64ffcd7f48268b86849389558eda8146f78cf75010717035a1e",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s6-notice-dated": {
+        "claimHash": "a5f3a6de7b51c7f87eead656a0ca7fe80b11813abdefb6c3edcfbc7d013a5920",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s6-notice-published": {
+        "claimHash": "711d3c8a79fdf34545b5426cd15c5b0644bac2036b37e4d4e13ace1902f08316",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s6-predecessor-context": {
+        "claimHash": "ffbd10e7bc29e380389aec8295406ae0e2165cfec20aa0fa50529457b8d1d077",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-s7-adopted": {
+        "claimHash": "7cd54eefc418278e57aa5165b72c4fccc4e4e4847c6e784f869b0637c6172d45",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-history-reviews-2022": {
+        "claimHash": "fc074480605fb373ceecea76f7a90a16b0c385f7a13b8ce805ff09c298114a9c",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "cl-wa-history-rules-2023": {
+        "claimHash": "b4dac3029cd52e60cac776ef7de64575081b39f42feaf2310f6f08a4cae37cc0",
+        "supported": true,
+        "translationEquivalent": true
+      }
+    },
+    "stories": {
+      "story-de-grid-access-policy": {
+        "storyHash": "52efcdb735cc343c2d83455fcbc02cbb70b899f863ef1764972202a869661917",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "story-gb-connection-capacity-policy": {
+        "storyHash": "94bae560e3a18bcf54f6f97048a9f6411c4de5013a6e568218f46e7427799218",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "story-nem-participation-and-support-policy": {
+        "storyHash": "b4a52628c95dfbc187be568e7234f3d9325309e8bcef5357160212309b91a7fe",
+        "supported": true,
+        "translationEquivalent": true
+      },
+      "story-wa-capacity-and-ess-policy": {
+        "storyHash": "013f53883651128610a7263bceffb751026cf48ac3ec4709c5cbfc8c220abfd2",
+        "supported": true,
+        "translationEquivalent": true
+      }
+    },
+    "reviewDecisions": {},
+    "records": {
+      "instruments": {
+        "pol-de-grid-access-policy": "61070e9c6df3eeeb56a8789f753aa8d88e07a598e5add133680dd41e7f11642a",
+        "pol-gb-connection-capacity-policy": "4977a1e86ab2b9ecd9fcf4ba87021b62c7cae3fa8c8f7678dce6b22545eb6ecc",
+        "pol-gb-e12-june": "80ad40f3c45562c022c6a3fada02c10037d8dc2cff7cb5e81ed469317fb8bf49",
+        "pol-gb-e12-october": "b0e84e0f5e6c9b34284e6e8a6f82e56a07201e5b7fd405ae8fa4bb347921411b",
+        "pol-gb-cm-no4": "fd3a442df8d28edfc70558a41b7ae23c4fcf9f907a0baab0f9d3c3d01bb28bfc",
+        "pol-nem-participation-and-support-policy": "3f634fbffe8e5f322b781169d0f4432b7def64888391c1ffe127ece7d3dd263e",
+        "pol-nem-rule13": "e48ecf7e8e4951305fd32d4de42b3d6dc5862edcbdd70e86e9da64f9514362d1",
+        "pol-nem-rule13-s1-6": "0ce1b4208330ebcf09c63ce7533cafc8574f01ad477b522743b8328410c00f60",
+        "pol-nem-rule13-s7": "b4635f21004f314f371944a064524d544e8bb79d880de76977f54137e4557fdc",
+        "pol-nem-fcas-v5": "e0aeb819fde2637a2286965326bc152f5d88ad742ab67a9ccf6cd256817bf5ac",
+        "pol-wa-capacity-and-ess-policy": "035740f68534b6c419d3eca6a9c9bd202d5d1f19352b4efdc7c3f2d34c2ba79b",
+        "pol-wa-capacity-and-ess-policy-s1": "0e3de62a5e1f38531846db7d067196993a9abd564d9b8d352ecfa57d0f928abb",
+        "pol-wa-capacity-and-ess-policy-s2": "4368b510250e9c850c95c8f8ffbd29bef498398b7a285a2b66b3833c3964ced5",
+        "pol-wa-capacity-and-ess-policy-s3": "7502afc6c45fa2c0ed720ad9cab093304b05190d7500e5712e142e8bff9240f6",
+        "pol-wa-capacity-and-ess-policy-s4": "4a6ab58602d1fef569cedeb97e165279937a4735bcb5d6077fc8e1aee04a21f8",
+        "pol-wa-capacity-and-ess-policy-s5": "3456408aa2af7f50b06ccea2fa2cb672f6bb831230d85dde782bbff941f29f70",
+        "pol-wa-capacity-and-ess-policy-s6": "819a05f941d00beefd187fa3b8bf0eaad9467ef25c07d87ba38d81cab21c4b90",
+        "pol-wa-capacity-and-ess-policy-s7": "af88369f854b8145a0e278cf8524ef4319d75f55a76a7405b4f7d1708c89d220"
+      },
+      "events": {
+        "evt-de-consultation": "2f75351e9a6a4e733979df76cddfddba8f5b8f66db05c8129265845a5c713f3a",
+        "evt-gb-methodology": "8b4c5bd3c3b1f9763b0788223c6a2518cbefce2460c2d6d610454340b82f1918",
+        "evt-gb-e12-june": "5ec5b2dbd02504a19fe586e75ec429fe64c11e0bef81719679695041dd8c4ad1",
+        "evt-gb-e12-october": "b3c6e56c026114321f91b4f7ed91dc6e4e6d5a19fa4d3d4c4b3a44fd13ffbaea",
+        "evt-gb-cm-no4": "7f09de562173e39af674880513a1425e227fcf098001f32395fe78781eb93a32",
+        "evt-nem-determination": "d9ebff48ba2a48a2f72aa19861c324d5c4dd8fa73d59a6b1eb83cf29ba446084",
+        "evt-nem-rule13-observed": "9122f73d0731f9ea3bcb12c5275dc4e14eea2aae856cbce394c9ffd066356744",
+        "evt-nem-s1-6": "b56934180929cce3e4452bad0157a9edb36ec50f1bf85ab041161b212bd525d9",
+        "evt-nem-s7": "a8ac77efa56ffecdfe164f918c8f6e7890a17b5af5af953bb881207b6066867d",
+        "evt-nem-guide5": "8a812ecbae1d4c0c7ebe510c6b64403130f73cdd55ef9a5d5604e47a722328ad",
+        "evt-wa-2025-notice": "d5c468b06e3aff846cd930b2591db15c1630b45111f2b7a5e7d2ecedb2dff38a",
+        "evt-wa-s1": "bd6d07a1a4c0cf738edf9a97cbfd8ffa84a883229ae769e87986d4208b9345e4",
+        "evt-wa-s2": "f5defd55688f9131bd2a1bf43aed60ddb4517c444721610857fce2c37d1a5c48",
+        "evt-wa-s3": "555340ccd6b18b47f2d51ae9be6431139f2e8807538de0ce4b898be2d0725341",
+        "evt-wa-s4": "cae017110668a32619a3d62f0055ab6298cde6a9026b75291145db53eedda50c",
+        "evt-wa-s5-adoption-observed": "a139ccf48830e4594c6d98984ff6f3eefa9efb2c5813814724aba0a0abecd61f",
+        "evt-wa-s5-commencement": "b59fd8a5cfc1c6814bb5231b71722988a82579f4eba67e1f984ae6451a6e073c",
+        "evt-wa-s6-adoption-observed": "125125a9b054e9f2dc3c177bdd7c9196b2fe772a2cc2b435cd0e5b6e8e987df0",
+        "evt-wa-s6-later-notice": "c352cc6990cd124ab178c84e04d5d8db930e88dd7807ddd6295a647f171f7670",
+        "evt-wa-s7-adoption-observed": "1db9fc0df8d9734d60ac573376b6303bdc18d92829ef2df01018c9c2bf80bab4"
+      },
+      "impacts": {
+        "imp-de-unquantified": "8e7a882ded641fe849fb75135ab8e6b7c466217c02c72dcdd6ead379507f1525",
+        "imp-gb-unquantified": "95123db2a4279febe9250c5bf5a464cef0d5b9593004cce07819a46ba45b6a47",
+        "imp-nem-unquantified": "c5cc0f66943eef24e3c7d073754f5922b5753635112a7b2361afae911d7126d6",
+        "imp-wa-unquantified": "43625fd1c4686171e2bc4e49fb940583fdf552226c58139e670f58c02ea9b3fa"
+      },
+      "stories": {
+        "story-de-grid-access-policy": "52efcdb735cc343c2d83455fcbc02cbb70b899f863ef1764972202a869661917",
+        "story-gb-connection-capacity-policy": "94bae560e3a18bcf54f6f97048a9f6411c4de5013a6e568218f46e7427799218",
+        "story-nem-participation-and-support-policy": "b4a52628c95dfbc187be568e7234f3d9325309e8bcef5357160212309b91a7fe",
+        "story-wa-capacity-and-ess-policy": "013f53883651128610a7263bceffb751026cf48ac3ec4709c5cbfc8c220abfd2"
+      },
+      "links": {
+        "link-de-bkz-judgment-scope": "444c9acbd344afef9c014d62f21cf70a34055d72d76187dce6ef868f69bf54a9",
+        "link-de-agnes-consultation-not-adoption": "084a9139b9374adf8877a6b71bd8a5353cb4ace7c8f1ec5bd9c9a880c5f90ef5",
+        "link-de-fid-draft-definition": "676f14e31129d34b3e7159041f1bf34153e7b70911091eb04389515722a27899",
+        "link-de-fid-clarification": "f685ecf05601690af7e07de0a7ae9bc7677dda80b060334ef994836f10536edc",
+        "link-de-capacity-distinct-auction-classes": "83c048610284f00385e199356276605d802f54e4207483d31569dd34f04b1be2",
+        "link-gb-gate2-approval-boundary": "2a562f1a63619224f911a7afbcaf1fc1a4a27afe86bdf1ba1ae35dd92694dbe1",
+        "link-gb-june-phased-deadlines": "ac13a963d186860ee377710d62a9acfdd53a394fba840a4eabc275f537f35ac2",
+        "link-gb-october-limited-revision": "a7474fa922792d0e2b9b09f0970d5c3530ef1616625fd921827e97cbd2b28e91",
+        "link-gb-multiple-price-proposal-abandoned": "1a53c9e91f69483335ee1be7faa8d42306f02a9499494145a9336cd62700659e",
+        "link-gb-current-connection-capacity-constraint": "536c7f57d28016ccfaefafb7e399468bbf2a50ccda30a91eba94e8e347ab9804",
+        "link-gb-consultation-discretion-tradeoff": "10a0530d0afba9fac9f6f40953dba8b0b9ec6828316076789974f83c20d20106",
+        "link-gb-storage-nomination-not-award": "e5113da6e2aac765b668d87da8ed859810224280c7e55b9eb51896974bcb198f",
+        "link-gb-storage-later-reporting-amendment": "7f96be0598d56804e223d6ef879c8d137eb06467a0829a39866c08d0cfbf23c9",
+        "link-nem-2021-final-design": "d1e01ce19086a24a087660452ddc9c14be53971aeab28c451c51be7f513143ed",
+        "link-nem-as-issued-commencement-split": "c2951f3ef4975772af4edff0d91e7db72afe1ce587d8b79a3217a842645e11ae",
+        "link-nem-nonenergy-cost-basis": "e13205f43897d179b9880f5dc63daf519717fab1f07a99dd582f0840fdd08f35",
+        "link-nem-spot-obligations-not-support-contract": "236c9ecbeb8e90f43e734234bfaa01b58f488d6dbfc15b2460d8334c22250734",
+        "link-nem-fcas-guidance-version-change": "4e03e58f79e9e8143405713851decaad25c5f4667ac17d1bf0937cd710486b47",
+        "link-nem-cis-target-not-minimum-duration": "e8210078ca8e753a92ac54a81cfdac0453868221ea6da76d3dc51956f2b63ad1",
+        "link-nem-ltesa-duration-and-double-support": "9abbd305c26ebaea85186a1181d6e60d036e1992c6e4dd051e77ab57fe25825c",
+        "link-wa-gazettal-not-universal-effect": "94d22b9649aafafc46a013d22a7ea7113aa9c04d11c1cbe759242011ae819ace",
+        "link-wa-schedule5-later-notice": "fec044a8242be3451cf251db35b3bcc21a618cfb61e7744cea529ff0dfbfcaef",
+        "link-wa-schedule6-relative-order": "753c85a5d28cbc879d30e3c82ebed1b967cf0f95bd8288e970058b24258b9552",
+        "link-wa-current-versus-future-schedules": "398128f5330d8108309fe68f8211e21447bb8ccf393d1ae57b44871df064e577",
+        "link-wa-flexible-price-not-two-full-prices": "6d7c8305d50b00a40afc4edfd6cec5a6d067cced15f2f4a412e6181ade3200db",
+        "link-wa-ess-accreditation-is-facility-specific": "7d33bb25d09085b62a8f5575679b6888415b93cf2c97b170d8800f0bee4007fe",
+        "link-wa-network-access-competing-positions": "bbc96bfbc37d74b2f894d279bf2ddb050874f720135e3692ab283a71fdebb175"
+      },
+      "reviews": {
+        "review-de-bkz-judgment-scope": "87b9539d440bcabd14d437e7159c7667b036d79d3abfd6824ec497628a787744",
+        "review-de-agnes-consultation-not-adoption": "3f5e484ad342f7a52b6407ae397152defffe6864d827d3b983eb5a630546135f",
+        "review-de-fid-draft-definition": "06915f3e5c6bc8042dd2ef0909986a289c480670453577d584a51052ab8f5339",
+        "review-de-fid-clarification": "84beaff71f86f4f07c0ed1e758eb875a44544218b4e1cbbd1b24af1171ca037b",
+        "review-de-capacity-distinct-auction-classes": "140d6192da79854840fcf9fb5633560f9e79b2dab4888be486fdc518b5dd12d3",
+        "review-gb-gate2-approval-boundary": "1d7648194a9b77782a1dc9928d4dce1aad93b805fac41bc8a2cc0a2fde5c5650",
+        "review-gb-june-phased-deadlines": "64a8147f3db2be9fe8f71774e85a653721b403f36c39050c10ffaa19b9f6ae6f",
+        "review-gb-october-limited-revision": "cfeb841ae591047d6387f3cf8ab08bcdfab9715a938439abfa3133da238df5ac",
+        "review-gb-multiple-price-proposal-abandoned": "85d90dfc1a91a5827fb713e2f610510b18e4cf06fcbb7a30373b84ea8feff9e2",
+        "review-gb-current-connection-capacity-constraint": "511d353c8bc95cb3cceab78b104594762fcfaddf282b0be5e1c8425e8c4308a4",
+        "review-gb-consultation-discretion-tradeoff": "de189d1955f769cb2525146e9e80a5bd2bca5a3515c054b650392428523994bf",
+        "review-gb-storage-nomination-not-award": "a4437ad03c01667298309027018c2fd2507758898e3ae81e5cff65d558259ed9",
+        "review-gb-storage-later-reporting-amendment": "84c5ec9de05ba9528f54dd1258a2a17857c72e80abd2193180bab54660522d07",
+        "review-nem-2021-final-design": "47e36851d40ca5cb4750cfd0c60ea74478db45308473e31b6ad8934f35be5a72",
+        "review-nem-as-issued-commencement-split": "daba0df302beaa5dee6e223f3b16ec2d0095dffd80dfd96afa758842c6878a96",
+        "review-nem-nonenergy-cost-basis": "c6a7a84633b472450d0054ab20b1baccbbd4e2cebac8c79fa1384d1cc8503f46",
+        "review-nem-spot-obligations-not-support-contract": "fdb14d7f3669d7d4039d4dc84f0024bc0152f0f953f869ff7e277df50fe34a2f",
+        "review-nem-fcas-guidance-version-change": "58adcd00b5254641f9896f2bf1f4bd97572ffaf1fdf7fb1dacfccbc33ee58685",
+        "review-nem-cis-target-not-minimum-duration": "95beab372eb9e11b4b939fde822ef024f48d5290f15da7bf2b9532a270d35c76",
+        "review-nem-ltesa-duration-and-double-support": "dae0d981be27193ab0869f35f872185a60c431ac76377e18f92bcfdf5a9a45f2",
+        "review-wa-gazettal-not-universal-effect": "7516627b08f6295062d4a194a66b04091d8976b49c94a225f83d350807b7ca43",
+        "review-wa-schedule5-later-notice": "5809c18f7d88fc33891f0830e00b42104a8ab007b052579a297404ea47b68138",
+        "review-wa-schedule6-relative-order": "b2ae1e67558c0e4a1a5b37cdab3c261a1f06409495a217be007be931232b4551",
+        "review-wa-current-versus-future-schedules": "e496851ec5f37155184b2d7c9fb734fc87df559df08563d8292b8fbb8721383d",
+        "review-wa-flexible-price-not-two-full-prices": "1354494ad8883869d1a7229b7fc6877f91032e402dbee69651a4d5434f46926e",
+        "review-wa-ess-accreditation-is-facility-specific": "e2423d9219b110d858490b670a844175c57a14848a337442fbb21d6be781cbb9",
+        "review-wa-network-access-competing-positions": "9f9973808b119a8242d7bb23a9434a74ada2e351a087c4d203ba603ff1c2e0c2"
+      }
+    }
+  }
+}

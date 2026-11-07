@@ -3,6 +3,9 @@ import { digest } from '../policy/integrity.mjs';
 import { policyUIFixture,servePolicy } from '../tests/helpers/policy-ui-fixture.mjs';
 test.beforeEach(async({page})=>{await page.addInitScript(()=>localStorage.setItem('hub_lang','en'));});
 test('policy routes are lazy, expose honest empty coverage and preserve market sections',async({page})=>{
+  // Explicitly exercise the unpublished state even when a real historical
+  // snapshot is installed. Published content has separate browser coverage.
+  await page.route('**/data/public/policy/index.json',route=>route.fulfill({status:404,body:''}));
   const policyRequests=[];page.on('request',r=>{if(/policy-page|policy-map|\/data\/public\/policy\//.test(r.url()))policyRequests.push(r.url());});
   await page.goto('/');await expect(page.getByRole('heading',{name:'Capital priorities. Conditions first.'})).toBeVisible();expect(policyRequests).toEqual([]);
   await page.goto('/policy');await expect(page.getByRole('heading',{name:'Global Policy Radar'})).toBeVisible();await expect(page.getByText('No verified policy snapshot has been published.',{exact:false})).toBeVisible();await expect(page.locator('.policy-event')).toHaveCount(0);
@@ -103,7 +106,7 @@ test('verification labels use the actual recorded event time rather than snapsho
  event.verifiedAt='2026-10-15T12:00:00Z';
  const hash=digest(data.snapshot);data.index.head=hash;data.index.versions=[data.index.versions[0],hash];data.versions.set(hash,data.snapshot);
  await servePolicy(page,data);await page.goto('/policy/dossiers/gb-test-instrument');
- const verification=page.locator('.policy-dates div').filter({has:page.locator('dt',{hasText:'Last verified'})}).locator('dd');
+ const verification=page.locator('.policy-dates div').filter({has:page.locator('dt',{hasText:'Author source check'})}).locator('dd');
  await expect(verification).toContainText('Oct 2026');
  await expect(verification).not.toContainText('Nov 2026');
 });

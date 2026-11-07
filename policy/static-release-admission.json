@@ -1,0 +1,1518 @@
+{
+  "schemaVersion": 1,
+  "kind": "exact_historical_static_source_admission",
+  "approvalId": "policy-static-sources-2026-11-07",
+  "approvalReceiptHash": "ed90c2d25391085c40a14a29b9d94e646ec031ccd73cc9d858dca31e9dd427fb",
+  "approvalRecordedAt": "2026-11-07T02:35:48.632Z",
+  "decisionOccurredAt": null,
+  "proposalFileSHA256": "a8c6d20fba8630e2e4c48b4bc4a134e550ee4c8a81fc821858c7d59bf937067f",
+  "reviewedCandidateHash": "8c3c8a1e91913645418bd191fe0c99b2a99d078923569ed25aeca49ad65d9396",
+  "releaseSnapshotHash": "366275d243854a017d6b8ef54ac5fc94d58a5d06e10406d469622fac21091a8b",
+  "transition": {
+    "allowedChanges": [
+      "sources[*].rights.reviewed: false -> true",
+      "claims[*].translationReviewed: false -> true"
+    ],
+    "sourceRecordCount": 47,
+    "claimRecordCount": 90,
+    "allOtherValuesUnchanged": true
+  },
+  "sourceUse": {
+    "originalWorks": 23,
+    "sourceBindings": 47,
+    "staticFactsOnly": true,
+    "perWorkOriginalExcerptCharLimit": 0,
+    "newAutomatedAcquisition": false,
+    "modelTransmission": false,
+    "paidModelActivation": false,
+    "investmentConclusionChanges": false,
+    "extendsToNewDocumentsOrHashes": false,
+    "waGovAcquisitionStopLifted": false
+  },
+  "sourceAdmissionIsRightsWaiver": false,
+  "fcasGuideIncorporatedTerms": {
+    "status": "not_independently_established_in_this_packet",
+    "confirmedOriginalReuseGrantClaimed": false,
+    "originalExcerptCharLimit": 0
+  },
+  "documents": [
+    {
+      "documentId": "de-bkz",
+      "title": "Bundesnetzagentur storage FAQ: Baukostenzuschuss",
+      "publisher": "Bundesnetzagentur",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Speicher/_faq/faq_table4.html",
+      "originalByteHash": "sha256:e2d9a68739dc12c8c6c332598103f9e6cf397c638ea1d1123ccdaef2c66685f1",
+      "sourceBindingIds": [
+        "src-de-bkz-judgment-scope"
+      ],
+      "termsURL": "https://www.bundesnetzagentur.de/DE/Service/Impressum/start.html",
+      "attribution": [
+        "Bundesnetzagentur — Bundesnetzagentur storage FAQ: Baukostenzuschuss",
+        "Bundesnetzagentur — Bundesnetzagentur storage FAQ: Baukostenzuschuss"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "restricted_original_reproduction"
+    },
+    {
+      "documentId": "de-register",
+      "title": "AgNes, proceeding GBK-25-01-1#3",
+      "publisher": "Bundesnetzagentur",
+      "url": "https://www.bundesnetzagentur.de/1059162",
+      "originalByteHash": "sha256:c1e263a8746a2a10b9199b5066e79534044ed1159de05934d9fe51c8888a259d",
+      "sourceBindingIds": [
+        "src-de-agnes-consultation-not-adoption",
+        "src-de-fid-clarification"
+      ],
+      "termsURL": "https://www.bundesnetzagentur.de/DE/Service/Impressum/start.html",
+      "attribution": [
+        "Bundesnetzagentur — AgNes, proceeding GBK-25-01-1#3",
+        "Bundesnetzagentur — AgNes, proceeding GBK-25-01-1#3"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "restricted_original_reproduction"
+    },
+    {
+      "documentId": "de-draft",
+      "title": "Entwurf der Festlegung AgNes, GBK-25-01-1#3",
+      "publisher": "Bundesnetzagentur",
+      "url": "https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/GBK-GZ/2025/GBK-25-01-1x3_AgNes/Downloads/FL-Entwurf_DE_DL_BF.html?nn=1059162",
+      "originalByteHash": "sha256:2fce8a8bd50b5d5f8af3cddf9dafc57de40d7dea0f7c66b3aa528cb7120e6da5",
+      "sourceBindingIds": [
+        "src-de-fid-draft-definition"
+      ],
+      "termsURL": "https://www.bundesnetzagentur.de/DE/Service/Impressum/start.html",
+      "attribution": [
+        "Bundesnetzagentur — Entwurf der Festlegung AgNes, GBK-25-01-1#3",
+        "Bundesnetzagentur — Entwurf der Festlegung AgNes, GBK-25-01-1#3"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "restricted_original_reproduction"
+    },
+    {
+      "documentId": "de-capacity-statute",
+      "title": "StromVKG: Gesetz zur Sicherung der Versorgungssicherheit Strom und zur Bereitstellung neuer Kapazitäten",
+      "publisher": "Gesetze im Internet",
+      "url": "https://www.gesetze-im-internet.de/stromvkg/BJNR0D2AB0026.html",
+      "originalByteHash": "sha256:8f6d6e5bc1fb3cf681add64319d200488d5c765f42fadd85e87f8cac154fa3a0",
+      "sourceBindingIds": [
+        "src-de-capacity-distinct-auction-classes"
+      ],
+      "termsURL": "https://www.gesetze-im-internet.de/urhg/__5.html",
+      "attribution": [
+        "Gesetze im Internet — StromVKG: Gesetz zur Sicherung der Versorgungssicherheit Strom und zur Bereitstellung neuer Kapazitäten",
+        "Gesetze im Internet — StromVKG: Gesetz zur Sicherung der Versorgungssicherheit Strom und zur Bereitstellung neuer Kapazitäten"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "statutory_exclusion"
+    },
+    {
+      "documentId": "de-history",
+      "title": "AgNes: Reform der Netzentgeltsystematik",
+      "publisher": "Bundesnetzagentur",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Netzentgelte/Anreizregulierung/Agnes/start.html",
+      "originalByteHash": "sha256:6ca087349e4e38acc5d9abfbe276fff807d255c7bc09b42f1afbdb27baac77e0",
+      "sourceBindingIds": [
+        "src-de-regulatory-history-to-agnes"
+      ],
+      "termsURL": "https://www.bundesnetzagentur.de/DE/Service/Impressum/start.html",
+      "attribution": [
+        "Bundesnetzagentur — AgNes: Reform der Netzentgeltsystematik",
+        "Bundesnetzagentur — AgNes: Reform der Netzentgeltsystematik"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "restricted_original_reproduction"
+    },
+    {
+      "documentId": "de-announcement",
+      "title": "Bundesnetzagentur starts consultation on reform of electricity network tariff system",
+      "publisher": "Bundesnetzagentur",
+      "url": "https://www.bundesnetzagentur.de/SharedDocs/Pressemitteilungen/EN/2026/20260806_Agnes.html",
+      "originalByteHash": "sha256:95e9d13c02d440f7ed52e0eb7374c13723f420ee15c1ef6fbe7f9dab5ca84c6d",
+      "sourceBindingIds": [
+        "src-record-de-announcement"
+      ],
+      "termsURL": "https://www.bundesnetzagentur.de/DE/Service/Impressum/start.html",
+      "attribution": [
+        "Bundesnetzagentur — Bundesnetzagentur starts consultation on reform of electricity network tariff system",
+        "Bundesnetzagentur — Bundesnetzagentur starts consultation on reform of electricity network tariff system"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "restricted_original_reproduction"
+    },
+    {
+      "documentId": "gb-gate2",
+      "title": "Decision: Gate 2 Criteria Methodology",
+      "publisher": "Ofgem",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf",
+      "originalByteHash": "sha256:6497c6d5674031315f3fbce54bc480aa77c70be08293c2697445e0317152c85b",
+      "sourceBindingIds": [
+        "src-gb-gate2-approval-boundary",
+        "src-gb-consultation-discretion-tradeoff",
+        "src-gb-connections-reform-history",
+        "src-record-gb-methodology"
+      ],
+      "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "attribution": [
+        "© Crown copyright 2025. Decision: Gate 2 Criteria Methodology. Ofgem.",
+        "© Crown copyright 2025。Decision: Gate 2 Criteria Methodology。Ofgem。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "OGL_subject_to_exclusions"
+    },
+    {
+      "documentId": "gb-timetable-june",
+      "title": "Decision on the alternative Gate 2 to Whole Queue timetable, 3 June 2026",
+      "publisher": "Ofgem",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-06/OFGEM-E12.14-decision-letter-FINAL.pdf",
+      "originalByteHash": "sha256:143a9a30c0f4d64ec118f91220d53fdf63b87702e959b64c0eb639373bcbcf3b",
+      "sourceBindingIds": [
+        "src-gb-june-phased-deadlines",
+        "src-record-gb-e12-june"
+      ],
+      "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "attribution": [
+        "© Crown copyright 2026. Ofgem agreement regarding the timetable for issuing connection offers under the Gate 2 to Whole Queue (G2tWQ) process. Ofgem.",
+        "© Crown copyright 2026。Ofgem agreement regarding the timetable for issuing connection offers under the Gate 2 to Whole Queue (G2tWQ) process。Ofgem。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "OGL_subject_to_exclusions"
+    },
+    {
+      "documentId": "gb-timetable-october",
+      "title": "Agreement for revision to Gate 2 to Whole Queue timetable, 2 October 2026",
+      "publisher": "Ofgem",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-10/Ofgem-agreement-for-revision-to-G2TWQ-timetable.pdf",
+      "originalByteHash": "sha256:79e98c8a21b6d2381d521cf6fcc6c1226956b9a05c7dd72fac3b83bb3ebddf0c",
+      "sourceBindingIds": [
+        "src-gb-october-limited-revision",
+        "src-record-gb-e12-october"
+      ],
+      "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "attribution": [
+        "© Crown copyright 2026. Ofgem agreement to a further alternative timetable for issuing Gate 2 Phase 1 connection offers under the Gate 2 to Whole Queue (G2tWQ) process. Ofgem.",
+        "© Crown copyright 2026。Ofgem agreement to a further alternative timetable for issuing Gate 2 Phase 1 connection offers under the Gate 2 to Whole Queue (G2tWQ) process。Ofgem。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "OGL_subject_to_exclusions"
+    },
+    {
+      "documentId": "gb-cm-response",
+      "title": "Capacity Market: proposed changes for prequalification 2026, government response",
+      "publisher": "UK Government",
+      "url": "https://assets.publishing.service.gov.uk/media/6a0449b6e71c4cdf4026bae7/capacity-market-proposed-changes-for-prequalification-2026-gov-response.pdf",
+      "originalByteHash": "sha256:3770ba616eee47006c005cbf2bdda31d770875bd6a342d3618393c52f037f7bf",
+      "sourceBindingIds": [
+        "src-gb-multiple-price-proposal-abandoned",
+        "src-gb-nomination-derating-supplement"
+      ],
+      "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "attribution": [
+        "© Crown copyright 2026. Capacity Market: proposed changes for prequalification 2026, government response. UK Government.",
+        "© Crown copyright 2026。Capacity Market: proposed changes for prequalification 2026, government response。UK Government。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "OGL_subject_to_exclusions"
+    },
+    {
+      "documentId": "gb-cm-amendment3",
+      "title": "The Capacity Market (Amendment) (No.3) Rules 2026",
+      "publisher": "UK Government",
+      "url": "https://assets.publishing.service.gov.uk/media/6a562f692cbe5d1c179a6487/The_Capacity_Market__Amendment___No._3__Rules_2026.pdf",
+      "originalByteHash": "sha256:b448cc6c491ea0f175be7c2433f6128cc3ba7d9647a8dda606750fa137ca8134",
+      "sourceBindingIds": [
+        "src-gb-current-connection-capacity-constraint"
+      ],
+      "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "attribution": [
+        "© Crown copyright 2026. The Capacity Market (Amendment) (No.3) Rules 2026. UK Government.",
+        "© Crown copyright 2026。The Capacity Market (Amendment) (No.3) Rules 2026。UK Government。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "OGL_subject_to_exclusions"
+    },
+    {
+      "documentId": "gb-cm-amendment2",
+      "title": "The Capacity Market (Amendment) (No.2) Rules 2026",
+      "publisher": "UK Government",
+      "url": "https://assets.publishing.service.gov.uk/media/6a3bf038da47783d877239d9/The_Capacity_Market__Amendment___No._2__Rules_2026.pdf",
+      "originalByteHash": "sha256:9ed0af47c4d9b49500a95af699966962cabe3a89d70e2f6fdc931e4f4aaf6b89",
+      "sourceBindingIds": [
+        "src-gb-storage-nomination-not-award"
+      ],
+      "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "attribution": [
+        "© Crown copyright 2026. The Capacity Market (Amendment) (No.2) Rules 2026. UK Government.",
+        "© Crown copyright 2026。The Capacity Market (Amendment) (No.2) Rules 2026。UK Government。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "OGL_subject_to_exclusions"
+    },
+    {
+      "documentId": "gb-cm-amendment4",
+      "title": "The Capacity Market (Amendment) (No.4) Rules 2026",
+      "publisher": "UK Government",
+      "url": "https://assets.publishing.service.gov.uk/media/6a562f722cbe5d1c179a6488/The_Capacity_Market__Amendment___No._4__Rules_2026.pdf",
+      "originalByteHash": "sha256:bf586b098bb510443fa5820771242e6eef1979fa7cd9d64484c4dcd735d4c40e",
+      "sourceBindingIds": [
+        "src-gb-storage-later-reporting-amendment",
+        "src-record-gb-cm-no4"
+      ],
+      "termsURL": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "attribution": [
+        "© Crown copyright 2026. The Capacity Market (Amendment) (No.4) Rules 2026. UK Government.",
+        "© Crown copyright 2026。The Capacity Market (Amendment) (No.4) Rules 2026。UK Government。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "OGL_subject_to_exclusions"
+    },
+    {
+      "documentId": "nem-determination",
+      "title": "Integrating energy storage systems into the NEM, final determination",
+      "publisher": "AEMC",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/Final%20determination.pdf",
+      "originalByteHash": "sha256:3398ab75b8f95b5f0ea87b0b881a8e01aad72992b43214bfd453f0baac706302",
+      "sourceBindingIds": [
+        "src-nem-2021-final-design",
+        "src-nem-nonenergy-cost-basis",
+        "src-record-nem-determination"
+      ],
+      "termsURL": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/Final%20determination.pdf",
+      "attribution": [
+        "AEMC, Integrating energy storage systems into the NEM, Rule determination, 2 December 2021.",
+        "AEMC，Integrating energy storage systems into the NEM，Rule determination，2021年12月2日。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "qualified_selected_research_passages"
+    },
+    {
+      "documentId": "nem-rule",
+      "title": "National Electricity Amendment (Integrating energy storage systems into the NEM) Rule 2021 No.13",
+      "publisher": "AEMC",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+      "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+      "sourceBindingIds": [
+        "src-nem-as-issued-commencement-split",
+        "src-nem-territorial-scope",
+        "src-nem-spot-obligations-not-support-contract",
+        "src-record-nem-rule",
+        "src-wa-nem-rule-outside-wem"
+      ],
+      "termsURL": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+      "attribution": [
+        "AEMC — National Electricity Amendment (Integrating energy storage systems into the NEM) Rule 2021 No.13",
+        "AEMC — National Electricity Amendment (Integrating energy storage systems into the NEM) Rule 2021 No.13"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "no_original_reproduction_grant_asserted"
+    },
+    {
+      "documentId": "nem-fcas-guide",
+      "title": "Battery Energy Storage System guide to Contingency FCAS registration, version 5.0",
+      "publisher": "AEMO",
+      "url": "https://www.aemo.com.au/-/media/files/stakeholder_consultation/consultations/nem-consultations/2026/fcas-registration-guides-consultation/bess-guide-for-contingency-fcas-registration-v50.pdf?rev=ae32400a98d44de6b204ba33e2837546&sc_lang=en",
+      "originalByteHash": "sha256:9487b60e23557a19c4a7d7762c22f2744d80fda782d54e2ffb8383e28977096d",
+      "sourceBindingIds": [
+        "src-nem-fcas-guidance-version-change",
+        "src-record-nem-fcas-v5"
+      ],
+      "termsURL": "https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions",
+      "attribution": [
+        "AEMO — Battery Energy Storage System guide to Contingency FCAS registration, version 5.0",
+        "AEMO — Battery Energy Storage System guide to Contingency FCAS registration, version 5.0"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "not_independently_established_in_this_packet"
+    },
+    {
+      "documentId": "nem-cis-t10-guidelines",
+      "title": "Capacity Investment Scheme Tender 10: NEM Dispatchable Capacity Tender Guidelines",
+      "publisher": "Commonwealth of Australia",
+      "url": "https://asl.org.au/-/media/services/files/cis/cis-t10-nem/260623-cis-tender-10-nem-dispatchable-capacity-tender-guidelines.pdf?rev=9a4dbc9fb60c4f7e9bef2f03f11c515c&sc_lang=en",
+      "originalByteHash": "sha256:153cefb9a921613f472bf60b6bab770b4f9efcde82519d64f990fa5d80bd3d9d",
+      "sourceBindingIds": [
+        "src-nem-cis-target-not-minimum-duration",
+        "src-nem-cis-assessment-supplement"
+      ],
+      "termsURL": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": [
+        "Capacity Investment Scheme Tender 10 – National Electricity Market Dispatchable Capacity Tender Guidelines, Department of Climate Change, Energy, the Environment and Water, Canberra, June 2026. CC BY 4.0.",
+        "Capacity Investment Scheme Tender 10 – National Electricity Market Dispatchable Capacity Tender Guidelines，Department of Climate Change, Energy, the Environment and Water，Canberra，2026年6月。CC BY 4.0。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "CC_BY_4_with_document_exclusions"
+    },
+    {
+      "documentId": "nem-ltesa-guidelines",
+      "title": "NSW Electricity Infrastructure Roadmap Guidelines: Tender Round 9, LDS Infrastructure",
+      "publisher": "ASL",
+      "url": "https://asl.org.au/-/media/services/files/tender-round-9/260520-tender-round-9-tender-guidelines-20-may-2026.pdf?rev=3fb76e8a51184ceabbdeb0d863540f4d&sc_lang=en",
+      "originalByteHash": "sha256:51ca37bc81367c259cd935c3bca41df7cf219338cd4fd03624f61f2616cff8ab",
+      "sourceBindingIds": [
+        "src-nem-ltesa-duration-and-double-support"
+      ],
+      "termsURL": "https://asl.org.au/-/media/services/files/tender-round-9/260520-tender-round-9-tender-guidelines-20-may-2026.pdf?rev=3fb76e8a51184ceabbdeb0d863540f4d&sc_lang=en",
+      "attribution": [
+        "AusEnergy Services Limited (ASL), NSW Electricity Infrastructure Roadmap Guidelines: Tender Round 9 – LDS Infrastructure, May 2026.",
+        "AusEnergy Services Limited（ASL），NSW Electricity Infrastructure Roadmap Guidelines: Tender Round 9 – LDS Infrastructure，2026年5月。"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "general_attributed_use"
+    },
+    {
+      "documentId": "wa-gazette-2025",
+      "title": "Government Gazette WA, 14 January 2025, No.3, notice EN401",
+      "publisher": "State of Western Australia",
+      "url": "https://www.wa.gov.au/system/files/2025-01/gg2025_003.pdf",
+      "originalByteHash": "sha256:6e7c6ade41b1e65604832ca84692da26cbbd3038311ea9e667b9edf8bdace448",
+      "sourceBindingIds": [
+        "src-wa-gazettal-not-universal-effect",
+        "src-record-wa-2025",
+        "src-record-wa-cover2025"
+      ],
+      "termsURL": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/copyright.html",
+      "attribution": [
+        "State of Western Australia — Government Gazette WA, 14 January 2025, No.3, notice EN401",
+        "State of Western Australia — Government Gazette WA, 14 January 2025, No.3, notice EN401"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "acquisition_blocked_original_reproduction_not_established"
+    },
+    {
+      "documentId": "wa-gazette-2026",
+      "title": "Government Gazette WA, 13 January 2026, No.6, notice EE401",
+      "publisher": "State of Western Australia",
+      "url": "https://www.wa.gov.au/system/files/2026-01/gg2026_006.pdf",
+      "originalByteHash": "sha256:bc6528e18a89eb47e770922a51f6df020c0170efc431f78fc5a07e1b06d93e78",
+      "sourceBindingIds": [
+        "src-wa-schedule5-later-notice",
+        "src-wa-schedule6-relative-order",
+        "src-record-wa-2026",
+        "src-record-wa-cover2026"
+      ],
+      "termsURL": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/copyright.html",
+      "attribution": [
+        "State of Western Australia — Government Gazette WA, 13 January 2026, No.6, notice EE401",
+        "State of Western Australia — Government Gazette WA, 13 January 2026, No.6, notice EE401"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "acquisition_blocked_original_reproduction_not_established"
+    },
+    {
+      "documentId": "wa-sequencing-register",
+      "title": "Wholesale Electricity Market Amendment (RCM Reviews Sequencing) Rules 2025",
+      "publisher": "State of Western Australia",
+      "url": "https://www.wa.gov.au/government/document-collections/wholesale-electricity-market-amendment-rcm-reviews-sequencing-rules-2025",
+      "originalByteHash": "sha256:45803a31feac71e5e867e57abf9895f1a743748304089a83ad4647a465b73231",
+      "sourceBindingIds": [
+        "src-wa-current-versus-future-schedules"
+      ],
+      "termsURL": "https://www.wa.gov.au/terms-of-use",
+      "attribution": [
+        "State of Western Australia — Wholesale Electricity Market Amendment (RCM Reviews Sequencing) Rules 2025",
+        "State of Western Australia — Wholesale Electricity Market Amendment (RCM Reviews Sequencing) Rules 2025"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "acquisition_blocked_original_reproduction_not_established"
+    },
+    {
+      "documentId": "wa-current-rules",
+      "title": "Electricity System and Market Rules, as at 1 October 2026",
+      "publisher": "State of Western Australia",
+      "url": "https://www.wa.gov.au/system/files/2026-09/electricity_system_and_market_rules_-_1_october_2026.pdf",
+      "originalByteHash": "sha256:b93f6c4a603bfce01e6278585e98bc4190a60efb44e0b350e443f30dd1d65c96",
+      "sourceBindingIds": [
+        "src-wa-flexible-price-not-two-full-prices",
+        "src-wa-capacity-credit-assignment-supplement",
+        "src-wa-ess-accreditation-is-facility-specific"
+      ],
+      "termsURL": "https://www.wa.gov.au/terms-of-use",
+      "attribution": [
+        "State of Western Australia — Electricity System and Market Rules, as at 1 October 2026",
+        "State of Western Australia — Electricity System and Market Rules, as at 1 October 2026"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "acquisition_blocked_original_reproduction_not_established"
+    },
+    {
+      "documentId": "wa-response",
+      "title": "Response to stakeholder submissions: WEM Investment Certainty and RCM Review amending rules",
+      "publisher": "State of Western Australia",
+      "url": "https://www.wa.gov.au/system/files/2025-01/response_to_stakeholder_submissions_exposure_draft_of_wem_investment_certainty_and_rcm_review_amending_rules.pdf",
+      "originalByteHash": "sha256:d4d3d652f56e95a6706dc5f08f5d87e6aa198bb7aaba5834cbaa3e991d7027c8",
+      "sourceBindingIds": [
+        "src-wa-network-access-competing-positions",
+        "src-wa-reserve-capacity-reform-history"
+      ],
+      "termsURL": "https://www.wa.gov.au/terms-of-use",
+      "attribution": [
+        "State of Western Australia — Response to stakeholder submissions: WEM Investment Certainty and RCM Review amending rules",
+        "State of Western Australia — Response to stakeholder submissions: WEM Investment Certainty and RCM Review amending rules"
+      ],
+      "maxQuoteChars": 0,
+      "grantAssessmentState": "acquisition_blocked_original_reproduction_not_established"
+    }
+  ],
+  "bindings": [
+    {
+      "sourceId": "src-de-bkz-judgment-scope",
+      "documentId": "de-bkz",
+      "originalByteHash": "sha256:e2d9a68739dc12c8c6c332598103f9e6cf397c638ea1d1123ccdaef2c66685f1",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Speicher/_faq/faq_table4.html",
+      "locator": "Netzentgelte: first FAQ, BGH EnVR 1/24; following questions on reductions and project-specific calculation",
+      "reviewedSourceHash": "f50e28697bd8516aea859039c9d07a77c7774f9b88b171bf3bf8ad72ec04cd09",
+      "releaseSourceHash": "ab33d2389b4adde5f976a3670fc7eeff605807e3ff7d98a608f295e02e002377",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-de-agnes-consultation-not-adoption",
+      "documentId": "de-register",
+      "originalByteHash": "sha256:c1e263a8746a2a10b9199b5066e79534044ed1159de05934d9fe51c8888a259d",
+      "url": "https://www.bundesnetzagentur.de/1059162",
+      "locator": "Konsultation des vollständigen Festlegungsentwurfs; closing paragraphs; Stand 21.09.2026",
+      "reviewedSourceHash": "8d9ea79bdbb247e141e1cc2a4cae8f23b6e0dc7b21d8986c235108d19cebbed7",
+      "releaseSourceHash": "5d07cb1b92d8269acfae805b9184726c1a444c17fcafb0c9f2790bfc88eaba6c",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-de-fid-draft-definition",
+      "documentId": "de-draft",
+      "originalByteHash": "sha256:2fce8a8bd50b5d5f8af3cddf9dafc57de40d7dea0f7c66b3aa528cb7120e6da5",
+      "url": "https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/GBK-GZ/2025/GBK-25-01-1x3_AgNes/Downloads/FL-Entwurf_DE_DL_BF.html?nn=1059162",
+      "locator": "PDF p.3, Tenor 2 Nr.1; explanatory paragraphs 499-500, PDF pp.186-187",
+      "reviewedSourceHash": "9934809f02a759de998f1da1047c6f8772ca035fefec0bc7dda58036d1404879",
+      "releaseSourceHash": "a16d64d9f8c8430606d852e0e6d1e732a7ad31e913bacfc3de19b0000b8c5405",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-de-fid-clarification",
+      "documentId": "de-register",
+      "originalByteHash": "sha256:c1e263a8746a2a10b9199b5066e79534044ed1159de05934d9fe51c8888a259d",
+      "url": "https://www.bundesnetzagentur.de/1059162",
+      "locator": "FID clarification, discussion of Tenor 2 Nr.1 and Randnummer 500",
+      "reviewedSourceHash": "f128dab7c8fd6eba5d0354273873932d175c7716842333aac4b5fb72c4c708ff",
+      "releaseSourceHash": "ee43688ebe79009f0ab261eaa76c777c9a88460e125ac6b229eba9da890f1a6b",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-de-capacity-distinct-auction-classes",
+      "documentId": "de-capacity-statute",
+      "originalByteHash": "sha256:8f6d6e5bc1fb3cf681add64319d200488d5c765f42fadd85e87f8cac154fa3a0",
+      "url": "https://www.gesetze-im-internet.de/stromvkg/BJNR0D2AB0026.html",
+      "locator": "Statute §2 No.4, §12(5)-(6) long-term tender class and §87 state-aid condition; raw HTML with declared ISO-8859-1 decoding",
+      "reviewedSourceHash": "5698476b088473e261733097b139770c3c35cc08ddb2e4fabf97debed5b83e70",
+      "releaseSourceHash": "01e55f7cd286adf9e71f8a3e142cf247f6c9807ec45026df6daadf300fb70b31",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-de-regulatory-history-to-agnes",
+      "documentId": "de-history",
+      "originalByteHash": "sha256:6ca087349e4e38acc5d9abfbe276fff807d255c7bc09b42f1afbdb27baac77e0",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Netzentgelte/Anreizregulierung/Agnes/start.html",
+      "locator": "AgNes overview: 2 September 2021 court judgment, 12 May 2025 procedure opening and conflicting tariff objectives",
+      "reviewedSourceHash": "fc15e4cd531e45718f36460837cdbac0fd2434c6e89358dddea569da1d222ed7",
+      "releaseSourceHash": "05cf62cc49a362f573b5834d436a91df025cfb201a6c5dc116096a13674d62ac",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-de-announcement",
+      "documentId": "de-announcement",
+      "originalByteHash": "sha256:95e9d13c02d440f7ed52e0eb7374c13723f420ee15c1ef6fbe7f9dab5ca84c6d",
+      "url": "https://www.bundesnetzagentur.de/SharedDocs/Pressemitteilungen/EN/2026/20260806_Agnes.html",
+      "locator": "Date of issue and announcement opening",
+      "reviewedSourceHash": "50830629d5f3052a95df2f33c62a47f6cba713f3fac6a2fa41e23503082f0f45",
+      "releaseSourceHash": "36b8d8421fead42ae11904343ce1334ac56775cd10171993ded8e70f2b06aeca",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-gate2-approval-boundary",
+      "documentId": "gb-gate2",
+      "originalByteHash": "sha256:6497c6d5674031315f3fbce54bc480aa77c70be08293c2697445e0317152c85b",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf",
+      "locator": "PDF pp.1,4,6: named version approval, Readiness/Strategic Alignment, paragraph1.9 56-day associated-licence standstill",
+      "reviewedSourceHash": "eb0878f6823a0371dfeeee9caee6bf41fb46fe28ce3d257649549e1794108c95",
+      "releaseSourceHash": "c3c4c541068f51781e034d24e7df5104cc322a16f53b4a7a25d1108668da6723",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-june-phased-deadlines",
+      "documentId": "gb-timetable-june",
+      "originalByteHash": "sha256:143a9a30c0f4d64ec118f91220d53fdf63b87702e959b64c0eb639373bcbcf3b",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-06/OFGEM-E12.14-decision-letter-FINAL.pdf",
+      "locator": "PDF p.3, alternative timetable and separate distribution expectations",
+      "reviewedSourceHash": "b860de5e49273213a4313fb4c92ba52050bad8f3601a988ab28c84a0785720b3",
+      "releaseSourceHash": "a5ac5b08f308e014b86b38d76dc817391e47e0f41b3f01aaf87cd7f524c3abd3",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-october-limited-revision",
+      "documentId": "gb-timetable-october",
+      "originalByteHash": "sha256:79e98c8a21b6d2381d521cf6fcc6c1226956b9a05c7dd72fac3b83bb3ebddf0c",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-10/Ofgem-agreement-for-revision-to-G2TWQ-timetable.pdf",
+      "locator": "PDF p.1 decision; p.2 retained milestones; p.3 encouragement of completion confirmation",
+      "reviewedSourceHash": "256e89cecaf2d58784bfdc3e95fd96674bdfd3ebe591bb1a8da70218babeaadc",
+      "releaseSourceHash": "21c7338657cc72ef611d9f58083b5788e9589a63abe34c087cf016adaac5f37e",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-multiple-price-proposal-abandoned",
+      "documentId": "gb-cm-response",
+      "originalByteHash": "sha256:3770ba616eee47006c005cbf2bdda31d770875bd6a342d3618393c52f037f7bf",
+      "url": "https://assets.publishing.service.gov.uk/media/6a0449b6e71c4cdf4026bae7/capacity-market-proposed-changes-for-prequalification-2026-gov-response.pdf",
+      "locator": "PDF p.12, Government response on the MPCM",
+      "reviewedSourceHash": "a45d85a491588cf836813ca7438348c0da95ef7a88f3017315723c238443f412",
+      "releaseSourceHash": "62deea5993b7642df828106f08f7b4b567340095856be3ed7b4b03a3f84962d3",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-current-connection-capacity-constraint",
+      "documentId": "gb-cm-amendment3",
+      "originalByteHash": "sha256:b448cc6c491ea0f175be7c2433f6128cc3ba7d9647a8dda606750fa137ca8134",
+      "url": "https://assets.publishing.service.gov.uk/media/6a562f692cbe5d1c179a6487/The_Capacity_Market__Amendment___No._3__Rules_2026.pdf",
+      "locator": "PDF p.52 / printed p.47, substituted rule3.5.1A connection-capacity cap; PDF p.3 relative commencement only",
+      "reviewedSourceHash": "a78b93bbfcb3ecc8643abd49703480f5558a1bde8e489ccacdc1c050e83bcc19",
+      "releaseSourceHash": "b41c7542b192e722ab721c6de9deb1365e8dd67d47592ab2d8d5d4cd6f967aa2",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-consultation-discretion-tradeoff",
+      "documentId": "gb-gate2",
+      "originalByteHash": "sha256:6497c6d5674031315f3fbce54bc480aa77c70be08293c2697445e0317152c85b",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf",
+      "locator": "PDF p.11, paragraph 3.4, competing consultation responses",
+      "reviewedSourceHash": "4b0657a6a26e7b90116ed58f6216e87873280f933c1f117954b6129ffcba5a8d",
+      "releaseSourceHash": "75e8692ca5997284a833386f52cd17459f883fadd27feb5bd6189dd5eeb82dd0",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-storage-nomination-not-award",
+      "documentId": "gb-cm-amendment2",
+      "originalByteHash": "sha256:9ed0af47c4d9b49500a95af699966962cabe3a89d70e2f6fdc931e4f4aaf6b89",
+      "url": "https://assets.publishing.service.gov.uk/media/6a3bf038da47783d877239d9/The_Capacity_Market__Amendment___No._2__Rules_2026.pdf",
+      "locator": "PDF p.6, inserted rule 3.5.6",
+      "reviewedSourceHash": "d6bbdbc271cef8aaddf2c9f0fb7b5d03792ec0aa43ff0ecdeaacbdce03ee2ad2",
+      "releaseSourceHash": "f671d1fc31b80b4f8dd6322c5acf637b30f50e23c5affdf77446dac26f79a1cd",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-nomination-derating-supplement",
+      "documentId": "gb-cm-response",
+      "originalByteHash": "sha256:3770ba616eee47006c005cbf2bdda31d770875bd6a342d3618393c52f037f7bf",
+      "url": "https://assets.publishing.service.gov.uk/media/6a0449b6e71c4cdf4026bae7/capacity-market-proposed-changes-for-prequalification-2026-gov-response.pdf",
+      "locator": "PDF pp.28,54; government response, nomination followed by de-rating and final rule-change summary. Explanatory context, not proof that every proposal was enacted.",
+      "reviewedSourceHash": "c50d40d0f67df6564ca58300b5189777fe50d408fd0d80d21da0125ab33e234e",
+      "releaseSourceHash": "a322fd6f61dac8504c889f44188e7547f2902dbd26dbb6ff5432a180e4107244",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-storage-later-reporting-amendment",
+      "documentId": "gb-cm-amendment4",
+      "originalByteHash": "sha256:bf586b098bb510443fa5820771242e6eef1979fa7cd9d64484c4dcd735d4c40e",
+      "url": "https://assets.publishing.service.gov.uk/media/6a562f722cbe5d1c179a6488/The_Capacity_Market__Amendment___No._4__Rules_2026.pdf",
+      "locator": "PDF p.3 clause 1.2 and p.44 clauses 21-22",
+      "reviewedSourceHash": "25943f12996c9b95893559c51b13a0eea4c4c905e151afdeaf010187c5c775c2",
+      "releaseSourceHash": "d82923ae3c7c4290a6ef6cc0bf3311138babf65aaf1e93bbe2e9af9c424db1a2",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-gb-connections-reform-history",
+      "documentId": "gb-gate2",
+      "originalByteHash": "sha256:6497c6d5674031315f3fbce54bc480aa77c70be08293c2697445e0317152c85b",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf",
+      "locator": "PDF pp.7-9, paragraphs 2.6-2.10: 2023 open letter, 2024 reforms and 2025 licence consultation",
+      "reviewedSourceHash": "a15e4b29fb0ad7ed874a41c5ca99b3c01ee395db60024af036c5011de5ee07f3",
+      "releaseSourceHash": "46d0b0cd3444c82b2f67feca8aeeb3ea2f0e5f82c0f1c9071a4e44d2df48d062",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-gb-methodology",
+      "documentId": "gb-gate2",
+      "originalByteHash": "sha256:6497c6d5674031315f3fbce54bc480aa77c70be08293c2697445e0317152c85b",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf",
+      "locator": "PDF p.1: explicit publication and named-version approval",
+      "reviewedSourceHash": "373a2355c6b58dfb3d9a68322c74077eeb1eec75f0e235646571b704bdc338b2",
+      "releaseSourceHash": "573cc59f931ccc968261caea9d7fe7a8c8c41a799f4adf8473def8e570401166",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-gb-e12-june",
+      "documentId": "gb-timetable-june",
+      "originalByteHash": "sha256:143a9a30c0f4d64ec118f91220d53fdf63b87702e959b64c0eb639373bcbcf3b",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-06/OFGEM-E12.14-decision-letter-FINAL.pdf",
+      "locator": "PDF pp.1-2: E12.14(c) decision letter date and consent",
+      "reviewedSourceHash": "9aede22ef26efc2364cf4ac0e672e0f00fd3336abaaccb219d7e8aba4164e866",
+      "releaseSourceHash": "f9367d30a24bd74bdfc2024beb7c3d4c184824b6ae35c3a07e729d2b7862cf40",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-gb-e12-october",
+      "documentId": "gb-timetable-october",
+      "originalByteHash": "sha256:79e98c8a21b6d2381d521cf6fcc6c1226956b9a05c7dd72fac3b83bb3ebddf0c",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-10/Ofgem-agreement-for-revision-to-G2TWQ-timetable.pdf",
+      "locator": "PDF pp.1-2: E12.14(c) decision letter date and consent",
+      "reviewedSourceHash": "3cd35d4f3dd0f557cd4518ed18391fc5801b77818122902903c742d10941595c",
+      "releaseSourceHash": "127c004d3049d55af3c1ca44e3f95620318c72ea7310458df35979cf6b3d3c12",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-gb-cm-no4",
+      "documentId": "gb-cm-amendment4",
+      "originalByteHash": "sha256:bf586b098bb510443fa5820771242e6eef1979fa7cd9d64484c4dcd735d4c40e",
+      "url": "https://assets.publishing.service.gov.uk/media/6a562f722cbe5d1c179a6488/The_Capacity_Market__Amendment___No._4__Rules_2026.pdf",
+      "locator": "PDF p.3 clause1.2 explicit commencement",
+      "reviewedSourceHash": "1aedbc9bbd81f1b84cde9b1043f902ed47792b8d8f61c037ce19e6337734cbc2",
+      "releaseSourceHash": "243b9a025aa0566a26e41a4c4e8a6fd7e124f4282aa660e83c7c31557f295dc0",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-nem-2021-final-design",
+      "documentId": "nem-determination",
+      "originalByteHash": "sha256:3398ab75b8f95b5f0ea87b0b881a8e01aad72992b43214bfd453f0baac706302",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/Final%20determination.pdf",
+      "locator": "PDF pp.1-3; reference ERC0280; summary paragraphs 1-5",
+      "reviewedSourceHash": "b341733e2b33837fdb271ac27c7bbd03ffd03b1342d5710a26c746a3a93531d3",
+      "releaseSourceHash": "a96c06e31b18e2573cdfa6c823606c441a0f7b1330464388959abc0f73421875",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-nem-as-issued-commencement-split",
+      "documentId": "nem-rule",
+      "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+      "locator": "PDF p.2, clause 2 Commencement",
+      "reviewedSourceHash": "956d36e3e10eeb29ad013ca5b639867a96b2b3abdba3b6846d3c3e3a7267df6b",
+      "releaseSourceHash": "b45dcb0fc8ac8e04c67e025750a5122e55b6384387ff2f81e9b25d1a8a8e5cce",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-nem-nonenergy-cost-basis",
+      "documentId": "nem-determination",
+      "originalByteHash": "sha256:3398ab75b8f95b5f0ea87b0b881a8e01aad72992b43214bfd453f0baac706302",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/Final%20determination.pdf",
+      "locator": "PDF p.8, Recovery of non-energy costs, paragraphs 1-3",
+      "reviewedSourceHash": "f919965073b901021f8696a8c0cbb9cfc33bb2d13f54d192b795dbe6d70aea78",
+      "releaseSourceHash": "454f478411449f06028cdbc214f5007160e8ec1cf39070c6ad4c6c2dda35f43e",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-nem-territorial-scope",
+      "documentId": "nem-rule",
+      "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+      "locator": "PDF p.1, National Electricity Law application list; p.4, rule 2.1A.5",
+      "reviewedSourceHash": "4e540823a050c22bd6c7490d9c76b996b8eab6d2503c3c5ef28833f47a07771f",
+      "releaseSourceHash": "0c685c21246783f74609a94fd3889f164ed35ec86ca86909b0eb3d6e1f83e820",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-nem-spot-obligations-not-support-contract",
+      "documentId": "nem-rule",
+      "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+      "locator": "PDF p.13, inserted clause 2.2.5A(b)-(c)",
+      "reviewedSourceHash": "60eea87ce2ee0df6365cb6c9ce1191e11a8508db749641354d923e7fcb4a407b",
+      "releaseSourceHash": "635286c8bc0ca577165d3c69eb136a52bc44fc9f9e6809dec451fe16d7ffacac",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-nem-fcas-guidance-version-change",
+      "documentId": "nem-fcas-guide",
+      "originalByteHash": "sha256:9487b60e23557a19c4a7d7762c22f2744d80fda782d54e2ffb8383e28977096d",
+      "url": "https://www.aemo.com.au/-/media/files/stakeholder_consultation/consultations/nem-consultations/2026/fcas-registration-guides-consultation/bess-guide-for-contingency-fcas-registration-v50.pdf?rev=ae32400a98d44de6b204ba33e2837546&sc_lang=en",
+      "locator": "PDF pp.1,4-5,14, release history, NER/NEM scope and testing guidance",
+      "reviewedSourceHash": "b691f8d4886c8edf288925f85cc5d4124dd373f7574ba04d6c7df3dd06a10d36",
+      "releaseSourceHash": "a9780af345d5449caf031a1dfa0407de35265d3e8e879c46cc51a3bc43f4566d",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-nem-cis-target-not-minimum-duration",
+      "documentId": "nem-cis-t10-guidelines",
+      "originalByteHash": "sha256:153cefb9a921613f472bf60b6bab770b4f9efcde82519d64f990fa5d80bd3d9d",
+      "url": "https://asl.org.au/-/media/services/files/cis/cis-t10-nem/260623-cis-tender-10-nem-dispatchable-capacity-tender-guidelines.pdf?rev=9a4dbc9fb60c4f7e9bef2f03f11c515c&sc_lang=en",
+      "locator": "PDF p.3 Table 1 and p.16 Table 7 EC4-EC5",
+      "reviewedSourceHash": "486d0ab00edb0e3cf5785550f875af5b429a3fd3095249b05289fabcde57f354",
+      "releaseSourceHash": "d28009ee2a7a9f9c2c8f814a46eabfafbd1cc9c64c0c45f66357325ecb5ac836",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-nem-cis-assessment-supplement",
+      "documentId": "nem-cis-t10-guidelines",
+      "originalByteHash": "sha256:153cefb9a921613f472bf60b6bab770b4f9efcde82519d64f990fa5d80bd3d9d",
+      "url": "https://asl.org.au/-/media/services/files/cis/cis-t10-nem/260623-cis-tender-10-nem-dispatchable-capacity-tender-guidelines.pdf?rev=9a4dbc9fb60c4f7e9bef2f03f11c515c&sc_lang=en",
+      "locator": "PDF pp.21,43,46; Merit Criteria and Tender Process: satisfying eligibility, addressing criteria, and scored merit assessment are distinct.",
+      "reviewedSourceHash": "37db3a20fa56ed10b0f552a037c79075037490305509bf4a200bd81215ec22c6",
+      "releaseSourceHash": "9e571a98f870c1ca5943c19c773fe8cb8ef0a0196957c7cc6c3193c914abc991",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-nem-ltesa-duration-and-double-support",
+      "documentId": "nem-ltesa-guidelines",
+      "originalByteHash": "sha256:51ca37bc81367c259cd935c3bca41df7cf219338cd4fd03624f61f2616cff8ab",
+      "url": "https://asl.org.au/-/media/services/files/tender-round-9/260520-tender-round-9-tender-guidelines-20-may-2026.pdf?rev=3fb76e8a51184ceabbdeb0d863540f4d&sc_lang=en",
+      "locator": "PDF p.9 Table1 CIS interaction; p.30 Table8 EC4-EC5 and footnote16 relevant-capacity qualification",
+      "reviewedSourceHash": "1f72b4a955c01e3f85cad4992bca008603543b05ff47930a724ed2e1b84b8bd5",
+      "releaseSourceHash": "c34cfcfdb7dc0a2836fba3a5aa8ef0712061345a438a87e1b10653cf02aa1107",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-nem-determination",
+      "documentId": "nem-determination",
+      "originalByteHash": "sha256:3398ab75b8f95b5f0ea87b0b881a8e01aad72992b43214bfd453f0baac706302",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/Final%20determination.pdf",
+      "locator": "PDF p.3 final-determination statement and dated footer",
+      "reviewedSourceHash": "48ed9f746da8984db993bc8f9c276d81768ce3564318e490c76bc697e7bc80d1",
+      "releaseSourceHash": "38cb143db0b710d283be179dc99f575d000487f0259d47f6a755c19b3a5421a5",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-nem-rule",
+      "documentId": "nem-rule",
+      "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+      "locator": "PDF pp.1-2 making clause and as-issued schedule commencement",
+      "reviewedSourceHash": "ba2221b3c307761534d546ce17eba0bec978e2283d8d7299588f05250e240d77",
+      "releaseSourceHash": "807f9078e14eba7c9789d3f037970f8ff309c21e22116386f94c634fb4bed5b3",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-nem-fcas-v5",
+      "documentId": "nem-fcas-guide",
+      "originalByteHash": "sha256:9487b60e23557a19c4a7d7762c22f2744d80fda782d54e2ffb8383e28977096d",
+      "url": "https://www.aemo.com.au/-/media/files/stakeholder_consultation/consultations/nem-consultations/2026/fcas-registration-guides-consultation/bess-guide-for-contingency-fcas-registration-v50.pdf?rev=ae32400a98d44de6b204ba33e2837546&sc_lang=en",
+      "locator": "PDF p.4 version5.0 release details explicitly headed Effective date",
+      "reviewedSourceHash": "9d351629ab6ac24bbb3560706516f7f33d61067eb60acb08bc09c719e7d97634",
+      "releaseSourceHash": "d76043c75ba7c2f83f81838c6d2164e0e5845b811fb1f6af66b3c86842e431cc",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-gazettal-not-universal-effect",
+      "documentId": "wa-gazette-2025",
+      "originalByteHash": "sha256:6e7c6ade41b1e65604832ca84692da26cbbd3038311ea9e667b9edf8bdace448",
+      "url": "https://www.wa.gov.au/system/files/2025-01/gg2025_003.pdf",
+      "locator": "PDF pp.1,3-4 / printed pp.29-30: cover date and ENERGY EN401, not AX401 sports notice",
+      "reviewedSourceHash": "a580a69052e33c9c4fb3ee0f05469aeb14615b83e42493ced56a1d7511b8a092",
+      "releaseSourceHash": "5b40a5ba313992ae926a94cce54c4f40c638f1e006c3ab1664c6753358c4c6c0",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-schedule5-later-notice",
+      "documentId": "wa-gazette-2026",
+      "originalByteHash": "sha256:bc6528e18a89eb47e770922a51f6df020c0170efc431f78fc5a07e1b06d93e78",
+      "url": "https://www.wa.gov.au/system/files/2026-01/gg2026_006.pdf",
+      "locator": "PDF p.3, printed p.141, EE401, schedule 5 paragraph",
+      "reviewedSourceHash": "3eb815da21da3d9795d206d45e8b8ef4447ac9fb2beff67158d907ceddda9a52",
+      "releaseSourceHash": "8effc759ade3882952237054252676611d1857c09b303b806143f623f8a9c10f",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-schedule6-relative-order",
+      "documentId": "wa-gazette-2026",
+      "originalByteHash": "sha256:bc6528e18a89eb47e770922a51f6df020c0170efc431f78fc5a07e1b06d93e78",
+      "url": "https://www.wa.gov.au/system/files/2026-01/gg2026_006.pdf",
+      "locator": "PDF p.3, printed p.141, EE401, schedule 6 paragraph",
+      "reviewedSourceHash": "7cb2fc36cac4024b2d6facb490bc4af3b63c917e793c9db94ecf7f6ad6490482",
+      "releaseSourceHash": "41984d664cec2571bdb0b6003fb348fc90779f4d8dd3dbe66ebd6ed4729d1225",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-current-versus-future-schedules",
+      "documentId": "wa-sequencing-register",
+      "originalByteHash": "sha256:45803a31feac71e5e867e57abf9895f1a743748304089a83ad4647a465b73231",
+      "url": "https://www.wa.gov.au/government/document-collections/wholesale-electricity-market-amendment-rcm-reviews-sequencing-rules-2025",
+      "locator": "Event/Date table, schedules 1-7; last updated 13 January 2026",
+      "reviewedSourceHash": "749ac4dda96715151529dc637f0cc67e86de4945f2f8c1a04585a73a0c7ccf4a",
+      "releaseSourceHash": "6e45f864e71efdb4e8f8a65f5c0ece080e4190b5725eccdf328575cbee318ff9",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-flexible-price-not-two-full-prices",
+      "documentId": "wa-current-rules",
+      "originalByteHash": "sha256:b93f6c4a603bfce01e6278585e98bc4190a60efb44e0b350e443f30dd1d65c96",
+      "url": "https://www.wa.gov.au/system/files/2026-09/electricity_system_and_market_rules_-_1_october_2026.pdf",
+      "locator": "PDF p.556, clause 4.29.1F",
+      "reviewedSourceHash": "880d7f0d9d36c610a3a291d1872d6f10d5bac70e1519a47c7d2862db918e187b",
+      "releaseSourceHash": "c9d8545fe76384fc314442cb581f10f45554c93adc4b11fbb255f72ce8461d67",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-capacity-credit-assignment-supplement",
+      "documentId": "wa-current-rules",
+      "originalByteHash": "sha256:b93f6c4a603bfce01e6278585e98bc4190a60efb44e0b350e443f30dd1d65c96",
+      "url": "https://www.wa.gov.au/system/files/2026-09/electricity_system_and_market_rules_-_1_october_2026.pdf",
+      "locator": "PDF pp.494-495; clauses 4.20.5A-4.20.5C and 4.20.7: separate credit assignment/eligibility and payment-obligation period.",
+      "reviewedSourceHash": "e6972905be08b1c47a5f1122f7a013d330443ea3057ccc7c981e1ff104e4e0e7",
+      "releaseSourceHash": "ac14a02b3802c8afde94e5b3b2fcae73a5137f288adfb51f5c12965f65f17d41",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-ess-accreditation-is-facility-specific",
+      "documentId": "wa-current-rules",
+      "originalByteHash": "sha256:b93f6c4a603bfce01e6278585e98bc4190a60efb44e0b350e443f30dd1d65c96",
+      "url": "https://www.wa.gov.au/system/files/2026-09/electricity_system_and_market_rules_-_1_october_2026.pdf",
+      "locator": "PDF pp.258-259, clauses 2.34A.1-2.34A.4B; conditional tests or re-tests",
+      "reviewedSourceHash": "095e739f0c33d5828888e83ed8f2655f8bc1e3a49980b66201c22905fff4c247",
+      "releaseSourceHash": "ca274f827d5ff572fe450e275a904a3adc33f6d55e64823a8c8e9beccda658b6",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-network-access-competing-positions",
+      "documentId": "wa-response",
+      "originalByteHash": "sha256:d4d3d652f56e95a6706dc5f08f5d87e6aa198bb7aaba5834cbaa3e991d7027c8",
+      "url": "https://www.wa.gov.au/system/files/2025-01/response_to_stakeholder_submissions_exposure_draft_of_wem_investment_certainty_and_rcm_review_amending_rules.pdf",
+      "locator": "PDF pp.19-20 / printed pp.14-15, Appendix 3 and clause 4.9.2A responses",
+      "reviewedSourceHash": "07dc4923b3bba762c968b0663b07d3da97e35651fddef575f32f22c504f09c48",
+      "releaseSourceHash": "19c7354d9e28aada997aba735c9782aab843d88518ab189f11452d61c14973e6",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-reserve-capacity-reform-history",
+      "documentId": "wa-response",
+      "originalByteHash": "sha256:d4d3d652f56e95a6706dc5f08f5d87e6aa198bb7aaba5834cbaa3e991d7027c8",
+      "url": "https://www.wa.gov.au/system/files/2025-01/response_to_stakeholder_submissions_exposure_draft_of_wem_investment_certainty_and_rcm_review_amending_rules.pdf",
+      "locator": "PDF p.3 / printed p.ii: reviews since 2022, December 2023 reform and later resequencing",
+      "reviewedSourceHash": "c6ffddb98109a6acd949b55a694ab7a4fb8c79e331fae7e9fc866c9e078bc2d4",
+      "releaseSourceHash": "40e70adf6e1a38186c6cf9bb3ad5dbb1767196753af8e59096e2e1a12778596a",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-wa-nem-rule-outside-wem",
+      "documentId": "nem-rule",
+      "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+      "locator": "PDF p.1, National Electricity Law application list; p.4, rule 2.1A.5",
+      "reviewedSourceHash": "ba7fb3d66b0944a24c75f6f9d873efae1ebf2046119b826dfb9ae5f8a160e52e",
+      "releaseSourceHash": "9d5ef679499e746172d1bf6db7948e97f3e35db9899e0cb545e40d2e20bb2a61",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-wa-2025",
+      "documentId": "wa-gazette-2025",
+      "originalByteHash": "sha256:6e7c6ade41b1e65604832ca84692da26cbbd3038311ea9e667b9edf8bdace448",
+      "url": "https://www.wa.gov.au/system/files/2025-01/gg2025_003.pdf",
+      "locator": "PDF pp.3-4 ENERGY EN401 / printed pp.29-30",
+      "reviewedSourceHash": "664872bc614468755b5e2dee93cb864b402c76bb748f62f82b1ada9cb0bc8584",
+      "releaseSourceHash": "76bc0c82a34d7e48ab9aeab1929a791f6457e929464777c8e34cdc78d5128a1d",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-wa-cover2025",
+      "documentId": "wa-gazette-2025",
+      "originalByteHash": "sha256:6e7c6ade41b1e65604832ca84692da26cbbd3038311ea9e667b9edf8bdace448",
+      "url": "https://www.wa.gov.au/system/files/2025-01/gg2025_003.pdf",
+      "locator": "PDF p.1 Gazette cover, publication date",
+      "reviewedSourceHash": "c6513d2342ff2955290e666e80be00460634a47f4a752ba0954785b6588faeaa",
+      "releaseSourceHash": "fa62f5bff1c9d9b66002134bcfd1fc94f55f8e4145564348810c361ebc63e506",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-wa-2026",
+      "documentId": "wa-gazette-2026",
+      "originalByteHash": "sha256:bc6528e18a89eb47e770922a51f6df020c0170efc431f78fc5a07e1b06d93e78",
+      "url": "https://www.wa.gov.au/system/files/2026-01/gg2026_006.pdf",
+      "locator": "PDF p.3 EE401 / printed p.141",
+      "reviewedSourceHash": "564b982bd02c1eca7f8b002814b490cfc4b84723ee43aa478f825ff68c5a7a52",
+      "releaseSourceHash": "4815c5d6cfffd990b53da51559ab6c55e107936d42ad2a1ed977a94f0002ebb7",
+      "rightsReproduction": "facts_only"
+    },
+    {
+      "sourceId": "src-record-wa-cover2026",
+      "documentId": "wa-gazette-2026",
+      "originalByteHash": "sha256:bc6528e18a89eb47e770922a51f6df020c0170efc431f78fc5a07e1b06d93e78",
+      "url": "https://www.wa.gov.au/system/files/2026-01/gg2026_006.pdf",
+      "locator": "PDF p.1 Gazette cover, publication date",
+      "reviewedSourceHash": "d0ea0b8761bc7c74d52196789d3209f6d2c3b499ed538f91f37a9145bb147f23",
+      "releaseSourceHash": "47dddd538f56b325358f9ef1f18e89b821aeee4b9adc5e241c4d978403c2360f",
+      "rightsReproduction": "facts_only"
+    }
+  ],
+  "recordHashes": {
+    "sources": {
+      "src-de-bkz-judgment-scope": "ab33d2389b4adde5f976a3670fc7eeff605807e3ff7d98a608f295e02e002377",
+      "src-de-agnes-consultation-not-adoption": "5d07cb1b92d8269acfae805b9184726c1a444c17fcafb0c9f2790bfc88eaba6c",
+      "src-de-fid-draft-definition": "a16d64d9f8c8430606d852e0e6d1e732a7ad31e913bacfc3de19b0000b8c5405",
+      "src-de-fid-clarification": "ee43688ebe79009f0ab261eaa76c777c9a88460e125ac6b229eba9da890f1a6b",
+      "src-de-capacity-distinct-auction-classes": "01e55f7cd286adf9e71f8a3e142cf247f6c9807ec45026df6daadf300fb70b31",
+      "src-de-regulatory-history-to-agnes": "05cf62cc49a362f573b5834d436a91df025cfb201a6c5dc116096a13674d62ac",
+      "src-record-de-announcement": "36b8d8421fead42ae11904343ce1334ac56775cd10171993ded8e70f2b06aeca",
+      "src-gb-gate2-approval-boundary": "c3c4c541068f51781e034d24e7df5104cc322a16f53b4a7a25d1108668da6723",
+      "src-gb-june-phased-deadlines": "a5ac5b08f308e014b86b38d76dc817391e47e0f41b3f01aaf87cd7f524c3abd3",
+      "src-gb-october-limited-revision": "21c7338657cc72ef611d9f58083b5788e9589a63abe34c087cf016adaac5f37e",
+      "src-gb-multiple-price-proposal-abandoned": "62deea5993b7642df828106f08f7b4b567340095856be3ed7b4b03a3f84962d3",
+      "src-gb-current-connection-capacity-constraint": "b41c7542b192e722ab721c6de9deb1365e8dd67d47592ab2d8d5d4cd6f967aa2",
+      "src-gb-consultation-discretion-tradeoff": "75e8692ca5997284a833386f52cd17459f883fadd27feb5bd6189dd5eeb82dd0",
+      "src-gb-storage-nomination-not-award": "f671d1fc31b80b4f8dd6322c5acf637b30f50e23c5affdf77446dac26f79a1cd",
+      "src-gb-nomination-derating-supplement": "a322fd6f61dac8504c889f44188e7547f2902dbd26dbb6ff5432a180e4107244",
+      "src-gb-storage-later-reporting-amendment": "d82923ae3c7c4290a6ef6cc0bf3311138babf65aaf1e93bbe2e9af9c424db1a2",
+      "src-gb-connections-reform-history": "46d0b0cd3444c82b2f67feca8aeeb3ea2f0e5f82c0f1c9071a4e44d2df48d062",
+      "src-record-gb-methodology": "573cc59f931ccc968261caea9d7fe7a8c8c41a799f4adf8473def8e570401166",
+      "src-record-gb-e12-june": "f9367d30a24bd74bdfc2024beb7c3d4c184824b6ae35c3a07e729d2b7862cf40",
+      "src-record-gb-e12-october": "127c004d3049d55af3c1ca44e3f95620318c72ea7310458df35979cf6b3d3c12",
+      "src-record-gb-cm-no4": "243b9a025aa0566a26e41a4c4e8a6fd7e124f4282aa660e83c7c31557f295dc0",
+      "src-nem-2021-final-design": "a96c06e31b18e2573cdfa6c823606c441a0f7b1330464388959abc0f73421875",
+      "src-nem-as-issued-commencement-split": "b45dcb0fc8ac8e04c67e025750a5122e55b6384387ff2f81e9b25d1a8a8e5cce",
+      "src-nem-nonenergy-cost-basis": "454f478411449f06028cdbc214f5007160e8ec1cf39070c6ad4c6c2dda35f43e",
+      "src-nem-territorial-scope": "0c685c21246783f74609a94fd3889f164ed35ec86ca86909b0eb3d6e1f83e820",
+      "src-nem-spot-obligations-not-support-contract": "635286c8bc0ca577165d3c69eb136a52bc44fc9f9e6809dec451fe16d7ffacac",
+      "src-nem-fcas-guidance-version-change": "a9780af345d5449caf031a1dfa0407de35265d3e8e879c46cc51a3bc43f4566d",
+      "src-nem-cis-target-not-minimum-duration": "d28009ee2a7a9f9c2c8f814a46eabfafbd1cc9c64c0c45f66357325ecb5ac836",
+      "src-nem-cis-assessment-supplement": "9e571a98f870c1ca5943c19c773fe8cb8ef0a0196957c7cc6c3193c914abc991",
+      "src-nem-ltesa-duration-and-double-support": "c34cfcfdb7dc0a2836fba3a5aa8ef0712061345a438a87e1b10653cf02aa1107",
+      "src-record-nem-determination": "38cb143db0b710d283be179dc99f575d000487f0259d47f6a755c19b3a5421a5",
+      "src-record-nem-rule": "807f9078e14eba7c9789d3f037970f8ff309c21e22116386f94c634fb4bed5b3",
+      "src-record-nem-fcas-v5": "d76043c75ba7c2f83f81838c6d2164e0e5845b811fb1f6af66b3c86842e431cc",
+      "src-wa-gazettal-not-universal-effect": "5b40a5ba313992ae926a94cce54c4f40c638f1e006c3ab1664c6753358c4c6c0",
+      "src-wa-schedule5-later-notice": "8effc759ade3882952237054252676611d1857c09b303b806143f623f8a9c10f",
+      "src-wa-schedule6-relative-order": "41984d664cec2571bdb0b6003fb348fc90779f4d8dd3dbe66ebd6ed4729d1225",
+      "src-wa-current-versus-future-schedules": "6e45f864e71efdb4e8f8a65f5c0ece080e4190b5725eccdf328575cbee318ff9",
+      "src-wa-flexible-price-not-two-full-prices": "c9d8545fe76384fc314442cb581f10f45554c93adc4b11fbb255f72ce8461d67",
+      "src-wa-capacity-credit-assignment-supplement": "ac14a02b3802c8afde94e5b3b2fcae73a5137f288adfb51f5c12965f65f17d41",
+      "src-wa-ess-accreditation-is-facility-specific": "ca274f827d5ff572fe450e275a904a3adc33f6d55e64823a8c8e9beccda658b6",
+      "src-wa-network-access-competing-positions": "19c7354d9e28aada997aba735c9782aab843d88518ab189f11452d61c14973e6",
+      "src-wa-reserve-capacity-reform-history": "40e70adf6e1a38186c6cf9bb3ad5dbb1767196753af8e59096e2e1a12778596a",
+      "src-wa-nem-rule-outside-wem": "9d5ef679499e746172d1bf6db7948e97f3e35db9899e0cb545e40d2e20bb2a61",
+      "src-record-wa-2025": "76bc0c82a34d7e48ab9aeab1929a791f6457e929464777c8e34cdc78d5128a1d",
+      "src-record-wa-cover2025": "fa62f5bff1c9d9b66002134bcfd1fc94f55f8e4145564348810c361ebc63e506",
+      "src-record-wa-2026": "4815c5d6cfffd990b53da51559ab6c55e107936d42ad2a1ed977a94f0002ebb7",
+      "src-record-wa-cover2026": "47dddd538f56b325358f9ef1f18e89b821aeee4b9adc5e241c4d978403c2360f"
+    },
+    "instruments": {
+      "pol-de-grid-access-policy": "61070e9c6df3eeeb56a8789f753aa8d88e07a598e5add133680dd41e7f11642a",
+      "pol-gb-connection-capacity-policy": "4977a1e86ab2b9ecd9fcf4ba87021b62c7cae3fa8c8f7678dce6b22545eb6ecc",
+      "pol-gb-e12-june": "80ad40f3c45562c022c6a3fada02c10037d8dc2cff7cb5e81ed469317fb8bf49",
+      "pol-gb-e12-october": "b0e84e0f5e6c9b34284e6e8a6f82e56a07201e5b7fd405ae8fa4bb347921411b",
+      "pol-gb-cm-no4": "fd3a442df8d28edfc70558a41b7ae23c4fcf9f907a0baab0f9d3c3d01bb28bfc",
+      "pol-nem-participation-and-support-policy": "3f634fbffe8e5f322b781169d0f4432b7def64888391c1ffe127ece7d3dd263e",
+      "pol-nem-rule13": "e48ecf7e8e4951305fd32d4de42b3d6dc5862edcbdd70e86e9da64f9514362d1",
+      "pol-nem-rule13-s1-6": "0ce1b4208330ebcf09c63ce7533cafc8574f01ad477b522743b8328410c00f60",
+      "pol-nem-rule13-s7": "b4635f21004f314f371944a064524d544e8bb79d880de76977f54137e4557fdc",
+      "pol-nem-fcas-v5": "e0aeb819fde2637a2286965326bc152f5d88ad742ab67a9ccf6cd256817bf5ac",
+      "pol-wa-capacity-and-ess-policy": "035740f68534b6c419d3eca6a9c9bd202d5d1f19352b4efdc7c3f2d34c2ba79b",
+      "pol-wa-capacity-and-ess-policy-s1": "0e3de62a5e1f38531846db7d067196993a9abd564d9b8d352ecfa57d0f928abb",
+      "pol-wa-capacity-and-ess-policy-s2": "4368b510250e9c850c95c8f8ffbd29bef498398b7a285a2b66b3833c3964ced5",
+      "pol-wa-capacity-and-ess-policy-s3": "7502afc6c45fa2c0ed720ad9cab093304b05190d7500e5712e142e8bff9240f6",
+      "pol-wa-capacity-and-ess-policy-s4": "4a6ab58602d1fef569cedeb97e165279937a4735bcb5d6077fc8e1aee04a21f8",
+      "pol-wa-capacity-and-ess-policy-s5": "3456408aa2af7f50b06ccea2fa2cb672f6bb831230d85dde782bbff941f29f70",
+      "pol-wa-capacity-and-ess-policy-s6": "819a05f941d00beefd187fa3b8bf0eaad9467ef25c07d87ba38d81cab21c4b90",
+      "pol-wa-capacity-and-ess-policy-s7": "af88369f854b8145a0e278cf8524ef4319d75f55a76a7405b4f7d1708c89d220"
+    },
+    "events": {
+      "evt-de-consultation": "2f75351e9a6a4e733979df76cddfddba8f5b8f66db05c8129265845a5c713f3a",
+      "evt-gb-methodology": "8b4c5bd3c3b1f9763b0788223c6a2518cbefce2460c2d6d610454340b82f1918",
+      "evt-gb-e12-june": "5ec5b2dbd02504a19fe586e75ec429fe64c11e0bef81719679695041dd8c4ad1",
+      "evt-gb-e12-october": "b3c6e56c026114321f91b4f7ed91dc6e4e6d5a19fa4d3d4c4b3a44fd13ffbaea",
+      "evt-gb-cm-no4": "7f09de562173e39af674880513a1425e227fcf098001f32395fe78781eb93a32",
+      "evt-nem-determination": "d9ebff48ba2a48a2f72aa19861c324d5c4dd8fa73d59a6b1eb83cf29ba446084",
+      "evt-nem-rule13-observed": "9122f73d0731f9ea3bcb12c5275dc4e14eea2aae856cbce394c9ffd066356744",
+      "evt-nem-s1-6": "b56934180929cce3e4452bad0157a9edb36ec50f1bf85ab041161b212bd525d9",
+      "evt-nem-s7": "a8ac77efa56ffecdfe164f918c8f6e7890a17b5af5af953bb881207b6066867d",
+      "evt-nem-guide5": "8a812ecbae1d4c0c7ebe510c6b64403130f73cdd55ef9a5d5604e47a722328ad",
+      "evt-wa-2025-notice": "d5c468b06e3aff846cd930b2591db15c1630b45111f2b7a5e7d2ecedb2dff38a",
+      "evt-wa-s1": "bd6d07a1a4c0cf738edf9a97cbfd8ffa84a883229ae769e87986d4208b9345e4",
+      "evt-wa-s2": "f5defd55688f9131bd2a1bf43aed60ddb4517c444721610857fce2c37d1a5c48",
+      "evt-wa-s3": "555340ccd6b18b47f2d51ae9be6431139f2e8807538de0ce4b898be2d0725341",
+      "evt-wa-s4": "cae017110668a32619a3d62f0055ab6298cde6a9026b75291145db53eedda50c",
+      "evt-wa-s5-adoption-observed": "a139ccf48830e4594c6d98984ff6f3eefa9efb2c5813814724aba0a0abecd61f",
+      "evt-wa-s5-commencement": "b59fd8a5cfc1c6814bb5231b71722988a82579f4eba67e1f984ae6451a6e073c",
+      "evt-wa-s6-adoption-observed": "125125a9b054e9f2dc3c177bdd7c9196b2fe772a2cc2b435cd0e5b6e8e987df0",
+      "evt-wa-s6-later-notice": "c352cc6990cd124ab178c84e04d5d8db930e88dd7807ddd6295a647f171f7670",
+      "evt-wa-s7-adoption-observed": "1db9fc0df8d9734d60ac573376b6303bdc18d92829ef2df01018c9c2bf80bab4"
+    },
+    "claims": {
+      "cl-de-bkz-judgment-scope": "205771c769a732c9ffdcea0fa9daf7bc535f95c08d2348423d53a2d79e4ff04b",
+      "cl-de-agnes-consultation-not-adoption": "fe2335818093d39ab92c34ac5876a514ecc612fcc1743e1571117d95f79f94ed",
+      "cl-de-fid-draft-definition": "58b2c50ab2ce8caffd1f30e6c8ddab25f573f73d799f49c5d0b386ed7bfcb414",
+      "cl-de-fid-clarification": "04dc0d5fe0f7b64e5a978a427c3e097ad40eb8233800cb93f8bfec21ab179a94",
+      "cl-de-capacity-distinct-auction-classes": "25abefb8ef0638e4139792a1f793abbb128ac5ffed826633b6a56ac9d24f2900",
+      "cl-de-regulatory-history-to-agnes": "4fe835bd98db8af4cdc8c01215dea328ec577f9971a66a43a005fcab0918411f",
+      "cl-de-consultation-state": "47822a86064474893b935cbb9574ab0a78d1ccdd69597601029e62663c1f09bd",
+      "cl-de-announcement-date": "6cc00d9770490231f29b2b23d6e01a52bc6993fd7bef5b283da09857a39ec537",
+      "cl-de-record-date": "9b43968d952e3f68c2e5bb23068b89453345f97c98354b89bbf57bca9a903ba2",
+      "cl-de-consultation-close": "e589f3aa4e3ffe60e371502cf9a02dd481ef12ccd1977fd1e3cf1d8137c40920",
+      "cl-de-2021-context": "a249dadac66da65a1bba04424cc71b1022885267766caa4a8dc8f3a080a5f7be",
+      "cl-de-procedure-context": "5f2d33d635e1f8aeab624cca080716baac17c5cf848530590e5aa2394614234e",
+      "cl-gb-gate2-approval-boundary": "1ce9da2a425486b870388ed75afe3b0cd7fd1b4f506263a37c3ff270e98b849a",
+      "cl-gb-june-phased-deadlines": "f2d04daebb70878e082b6440e8e904658967a46a40c2ca1fc4013979bdf1b8b0",
+      "cl-gb-october-limited-revision": "1955651b050b7ea7e4dae46e606e5a0a9574c0df7cb48b5e5ef2587be15459c5",
+      "cl-gb-multiple-price-proposal-abandoned": "549a391bd86afba3dd887f039407413844f8ba4c4dd711e891c59137a2d32036",
+      "cl-gb-current-connection-capacity-constraint": "7110bd8106b3c37fab96e36ad57ac66f1a1150dd5c32349a7a368a7e5466edd8",
+      "cl-gb-consultation-discretion-tradeoff": "7036c274e48c789ff9b327159fd5f12d6f9125f7083c31216d114ae89d30b1a5",
+      "cl-gb-consultation-discretion-tradeoff-a": "85ea009aba0375905df9abf47bd2fe5f888992e4628a228da8402f6f044039e1",
+      "cl-gb-consultation-discretion-tradeoff-b": "9c26a5879bae1d5fdad1fdacfa6c8810bf8cf6e1685098ab4ecce4c74a7ea649",
+      "cl-gb-storage-nomination-not-award": "b962d30d41809823b859da09bb348974396e71c11fe54b2faadb0692717b6eb3",
+      "cl-gb-storage-later-reporting-amendment": "55a6bb18b219c2e4a9f15d7fcb70ce79ccb4eeb8ba56e21a06b51dae3cc85fae",
+      "cl-gb-connections-reform-history": "8afc47d5c899c82d1e30ff7ef7bfdecdfe0bf15a8aac688283e248e631bd0cc9",
+      "cl-gb-methodology-adopted": "27bcb9f400821514eedf423298bdd33b3a4cf7d8e51ce1ffd7a7ce27d9eddd0d",
+      "cl-gb-methodology-published": "df20c31172b93e264642085a45815d4aeb0d1c576ab7a656980fd78aacbb89da",
+      "cl-gb-e12-june-adopted": "5f2abf4ccd99fd9f07e9b1120d281f90ecf81785c3b5f66ea784b9a94c628a02",
+      "cl-gb-e12-june-dated": "bf916c3d0136643dafea161d3d61e9812b9821e6b365e7d6d964666280168dda",
+      "cl-gb-e12-october-adopted": "fa8bc104507b1765b69139cd8ae4a17844d65d35add26075ea9bc523a6bd1dae",
+      "cl-gb-e12-october-dated": "b4ee93d1ca033c2074ce384ca6f43f44725a4fd91a8457884c4b5553073ab5ce",
+      "cl-gb-june-phase1-deadline": "a6791939e9f7f14905a5b8a4bd29df57c8e594c12549c78430e7b1cf4f8a513d",
+      "cl-gb-october-phase1-deadline": "6f58d9d8064a5a5687008b6dc9ae10461a0f98557d215c5ee9a1ec86a4f7bed8",
+      "cl-gb-phase2-deadline": "0e14381d4b2690447700537580ed59ccec264d7c0de73b0dc0054da6ccd54563",
+      "cl-gb-cm-no4-effective": "c161fec243617d2c35db71703a971ef99106e28be71b4f1fa8e0198759f52993",
+      "cl-gb-cm-no4-effective-date": "efe565e9c433db9d04738a6463fc17ae57811035f336791ff4c958eb0ec4e2b6",
+      "cl-gb-history-2023-letter": "54f3acad3389c107d3fa584d6f89f44c9463765a9952aee9c283b4fe846dda67",
+      "cl-gb-history-2024-letter": "e1d5be689293f6229fff082328e0d164ec35ec78dedcd8f6d8fdc3c4be5cbc80",
+      "cl-gb-history-2025-consultation": "4f37b15dfc0d7d2718e16f26a37947a19b787a768f0b997a2199842b1389de29",
+      "cl-nem-2021-final-design": "52974315d006ca8c0e60dc83e59b64fbafabcc30d6f521106ee5a690186b2cad",
+      "cl-nem-as-issued-commencement-split": "0b7fce398843e9a63edcce2ca1f15b6d566763f4785d96e26bf2477260b1b724",
+      "cl-nem-nonenergy-cost-basis": "6c69cbe43e42e399b388cd7209c22a49799db9e3d83246633663060dfafdae2e",
+      "cl-nem-territorial-scope": "c199a27b239b8d9d96f415c25df73ef13a142d8b13c91644caf84d4ca0bffb30",
+      "cl-nem-spot-obligations-not-support-contract": "50d8a1ae31556362c137551c7b6f81e428f4149d1adbf0b991211bd31570a2a6",
+      "cl-nem-fcas-guidance-version-change": "fafddf7e109b2533c3820d8920ced8c49d55c7c2cdef85234ff5804f208b4010",
+      "cl-nem-fcas-guidance-version-change-old": "6f340a9f743b456de474189b93e8f54cab7e70f3e2f06e6461654df3e143f85f",
+      "cl-nem-fcas-guidance-version-change-new": "d4d4b1dcda559fc109fbaa9670811740f0d20a2e7c106dbbbf2fe6e9de6c929d",
+      "cl-nem-cis-target-not-minimum-duration": "4a94f2f9e0b239f11d9b5459e269e724a5315f8061a5bdba334b1c289e85ad40",
+      "cl-nem-ltesa-duration-and-double-support": "53e1366e94a6dd911be67c8e1c3f57958866848abb5d4c801205c64bfa7f0625",
+      "cl-nem-determination-adopted": "d2ad96c7b478a37c02e89b847d43853591809cd0d878e12d6dd961abb5a1433a",
+      "cl-nem-determination-dated": "849120f0e5359f01bc55df258d2e3ca595fb98db664ac27dd2048e3c87a322f3",
+      "cl-nem-rule13-made": "6d46f3dada79e541bbd9c6292e67253d48735c29aa12214c603cdf07de824fcb",
+      "cl-nem-s1-6-effective": "ee895571ded2b1d5319d5334e3c7bf0b7e26ad1e2bbcf6dc3b0656638d6df59c",
+      "cl-nem-s1-6-effective-date": "d7271760804a775ad0dbedda0782667099662ec174bc97837a66aca5c227c2da",
+      "cl-nem-s7-effective": "b428c2a2ed766f270121d7a0804821dccb8e31c8ea405276274a289df3c455f0",
+      "cl-nem-s7-effective-date": "14cac3d65b07eedd4af7450031b98e761d171f8b5e7b2d89d643f5dd7a1ed664",
+      "cl-nem-guide-effective": "87c65850b1dc6a97c16a54b2ddeb0bf8db1d622f1f75e077908e9a3372dfe6be",
+      "cl-nem-guide-effective-date": "68a12903027044cdcf00aaa04bcd8ccd311de244e7d9695664e471d2c2ed58f0",
+      "cl-wa-gazettal-not-universal-effect": "9d6e36ccbc5e540a33ed266ad151966972affa4f4b21fef029193799a8f5b11a",
+      "cl-wa-schedule5-later-notice": "0445b149d10f600dfdafea6fe72529e303227b843233368082d25067a23c5c76",
+      "cl-wa-schedule6-relative-order": "39b3c4ba60796305cd79a09274e11125c03616f41ddb24e59396089f36ed25a5",
+      "cl-wa-current-versus-future-schedules": "64a83db13acaee39b402bbae03428e054d2191dee20a398f52fe0d590a97a09d",
+      "cl-wa-flexible-price-not-two-full-prices": "3f977747e45501877773026df9cc38de0320e18241c4452b2afa4be0453ccb27",
+      "cl-wa-ess-accreditation-is-facility-specific": "2ba2ed3b092d51c2295f2e0df67dd35adfed13e8520648f9bc52e053eb0cb004",
+      "cl-wa-network-access-competing-positions": "12c244ac7403c3ff1513f0659de51b96b79a9a241c1d60319cc22b15a22e28c3",
+      "cl-wa-network-access-competing-positions-a": "6997269104b12655cef004a7bbf3bb3b66e3530f791dab45e1e4578ff999d6ba",
+      "cl-wa-network-access-competing-positions-b": "f9ebdce04cb859e7a4893edee2af7bbc4786c996d3318eee482148122017a15a",
+      "cl-wa-reserve-capacity-reform-history": "5c035cea18f7d8c4ee9ffd87b4bd616330b3bf7774376ba9d0ba0cbf43d0dbf2",
+      "cl-wa-nem-rule-outside-wem": "4d8531fb1e296c30193ed2bd4c9eb861da4d20a764c6cc5fe7d32541037a9b16",
+      "cl-wa-rules-made": "c1d0af8298497821f7d7eb42eadd05ee75cedc37bd31bd5a2c3e32b236d19896",
+      "cl-wa-2025-published": "e88ecfdc395d1b4d8bc38582eb6a74040dbb7d75c0dbed580b0e855af9bd20e0",
+      "cl-wa-notice-2025-dated": "dfe68080882e5f5220dcf3e9d209eee8b292a9adf34c40109de11eceb7f876ba",
+      "cl-wa-s1-state": "985a821ca8daf631dddeea8787393f58258c2f64bae02c537f6227a494fb12ff",
+      "cl-wa-s1-effective-date": "0acde1496e7e0ad67d768fbc57d0d708868d90a46392bc46b44cc5600509d498",
+      "cl-wa-s2-state": "1b31ebb6bc8c423393be0e1f92857b2a5e798d5b9a1e1e05ba8512ca005b7c6c",
+      "cl-wa-s2-effective-date": "03b81ab0ba85e4f5776c7419eb89166e18fab15bd3476bd742b5ca09f7e219d7",
+      "cl-wa-s3-state": "5a7973035a55732bb53edb8c89b4da03c5df583271897c67b4efae97211d50e1",
+      "cl-wa-s3-effective-date": "c18983711d9d80aa1fe09d3f69bcc5893186cb4df4e2f5e63c74f4c5e42858f1",
+      "cl-wa-s4-state": "df6fbecd764adbd6de8482e31f1538ea97e13854ae69a140623f80c67e7e0739",
+      "cl-wa-s4-effective-date": "28a3ef9afba3d5c4c5521efbf26c5485de4c9fbad1026f25b8bb27d84b0fd959",
+      "cl-wa-s5-adopted": "45e779b9aed64a2e96e57f944fef277acdc36cc4c680199ad3a4e8c153159a05",
+      "cl-wa-s5-notice-dated": "e72b6925c7b0c9fefde6b298bf1750c31ef0b6f42030724eadaa138793509f5c",
+      "cl-wa-s5-notice-published": "d7d91719bac7533d7696d330a55986e4254ebd047681a116ebda79d9594eaa7f",
+      "cl-wa-s5-effective": "0aa625f7e5932c6ef1cb711e223e9f5a70bea25855b84b3cc965327d4e82c875",
+      "cl-wa-s5-effective-date": "6515ef27930fde82d86bd79b416ef5c394e8618d8c0c5db6557e27adeb9e62ac",
+      "cl-wa-s6-adopted": "3813bebe21d9b64ffcd7f48268b86849389558eda8146f78cf75010717035a1e",
+      "cl-wa-s6-notice-dated": "a5f3a6de7b51c7f87eead656a0ca7fe80b11813abdefb6c3edcfbc7d013a5920",
+      "cl-wa-s6-notice-published": "711d3c8a79fdf34545b5426cd15c5b0644bac2036b37e4d4e13ace1902f08316",
+      "cl-wa-s6-predecessor-context": "ffbd10e7bc29e380389aec8295406ae0e2165cfec20aa0fa50529457b8d1d077",
+      "cl-wa-s7-adopted": "7cd54eefc418278e57aa5165b72c4fccc4e4e4847c6e784f869b0637c6172d45",
+      "cl-wa-history-reviews-2022": "fc074480605fb373ceecea76f7a90a16b0c385f7a13b8ce805ff09c298114a9c",
+      "cl-wa-history-rules-2023": "b4dac3029cd52e60cac776ef7de64575081b39f42feaf2310f6f08a4cae37cc0"
+    },
+    "impacts": {
+      "imp-de-unquantified": "8e7a882ded641fe849fb75135ab8e6b7c466217c02c72dcdd6ead379507f1525",
+      "imp-gb-unquantified": "95123db2a4279febe9250c5bf5a464cef0d5b9593004cce07819a46ba45b6a47",
+      "imp-nem-unquantified": "c5cc0f66943eef24e3c7d073754f5922b5753635112a7b2361afae911d7126d6",
+      "imp-wa-unquantified": "43625fd1c4686171e2bc4e49fb940583fdf552226c58139e670f58c02ea9b3fa"
+    },
+    "stories": {
+      "story-de-grid-access-policy": "52efcdb735cc343c2d83455fcbc02cbb70b899f863ef1764972202a869661917",
+      "story-gb-connection-capacity-policy": "94bae560e3a18bcf54f6f97048a9f6411c4de5013a6e568218f46e7427799218",
+      "story-nem-participation-and-support-policy": "b4a52628c95dfbc187be568e7234f3d9325309e8bcef5357160212309b91a7fe",
+      "story-wa-capacity-and-ess-policy": "013f53883651128610a7263bceffb751026cf48ac3ec4709c5cbfc8c220abfd2"
+    },
+    "links": {
+      "link-de-bkz-judgment-scope": "444c9acbd344afef9c014d62f21cf70a34055d72d76187dce6ef868f69bf54a9",
+      "link-de-agnes-consultation-not-adoption": "084a9139b9374adf8877a6b71bd8a5353cb4ace7c8f1ec5bd9c9a880c5f90ef5",
+      "link-de-fid-draft-definition": "676f14e31129d34b3e7159041f1bf34153e7b70911091eb04389515722a27899",
+      "link-de-fid-clarification": "f685ecf05601690af7e07de0a7ae9bc7677dda80b060334ef994836f10536edc",
+      "link-de-capacity-distinct-auction-classes": "83c048610284f00385e199356276605d802f54e4207483d31569dd34f04b1be2",
+      "link-gb-gate2-approval-boundary": "2a562f1a63619224f911a7afbcaf1fc1a4a27afe86bdf1ba1ae35dd92694dbe1",
+      "link-gb-june-phased-deadlines": "ac13a963d186860ee377710d62a9acfdd53a394fba840a4eabc275f537f35ac2",
+      "link-gb-october-limited-revision": "a7474fa922792d0e2b9b09f0970d5c3530ef1616625fd921827e97cbd2b28e91",
+      "link-gb-multiple-price-proposal-abandoned": "1a53c9e91f69483335ee1be7faa8d42306f02a9499494145a9336cd62700659e",
+      "link-gb-current-connection-capacity-constraint": "536c7f57d28016ccfaefafb7e399468bbf2a50ccda30a91eba94e8e347ab9804",
+      "link-gb-consultation-discretion-tradeoff": "10a0530d0afba9fac9f6f40953dba8b0b9ec6828316076789974f83c20d20106",
+      "link-gb-storage-nomination-not-award": "e5113da6e2aac765b668d87da8ed859810224280c7e55b9eb51896974bcb198f",
+      "link-gb-storage-later-reporting-amendment": "7f96be0598d56804e223d6ef879c8d137eb06467a0829a39866c08d0cfbf23c9",
+      "link-nem-2021-final-design": "d1e01ce19086a24a087660452ddc9c14be53971aeab28c451c51be7f513143ed",
+      "link-nem-as-issued-commencement-split": "c2951f3ef4975772af4edff0d91e7db72afe1ce587d8b79a3217a842645e11ae",
+      "link-nem-nonenergy-cost-basis": "e13205f43897d179b9880f5dc63daf519717fab1f07a99dd582f0840fdd08f35",
+      "link-nem-spot-obligations-not-support-contract": "236c9ecbeb8e90f43e734234bfaa01b58f488d6dbfc15b2460d8334c22250734",
+      "link-nem-fcas-guidance-version-change": "4e03e58f79e9e8143405713851decaad25c5f4667ac17d1bf0937cd710486b47",
+      "link-nem-cis-target-not-minimum-duration": "e8210078ca8e753a92ac54a81cfdac0453868221ea6da76d3dc51956f2b63ad1",
+      "link-nem-ltesa-duration-and-double-support": "9abbd305c26ebaea85186a1181d6e60d036e1992c6e4dd051e77ab57fe25825c",
+      "link-wa-gazettal-not-universal-effect": "94d22b9649aafafc46a013d22a7ea7113aa9c04d11c1cbe759242011ae819ace",
+      "link-wa-schedule5-later-notice": "fec044a8242be3451cf251db35b3bcc21a618cfb61e7744cea529ff0dfbfcaef",
+      "link-wa-schedule6-relative-order": "753c85a5d28cbc879d30e3c82ebed1b967cf0f95bd8288e970058b24258b9552",
+      "link-wa-current-versus-future-schedules": "398128f5330d8108309fe68f8211e21447bb8ccf393d1ae57b44871df064e577",
+      "link-wa-flexible-price-not-two-full-prices": "6d7c8305d50b00a40afc4edfd6cec5a6d067cced15f2f4a412e6181ade3200db",
+      "link-wa-ess-accreditation-is-facility-specific": "7d33bb25d09085b62a8f5575679b6888415b93cf2c97b170d8800f0bee4007fe",
+      "link-wa-network-access-competing-positions": "bbc96bfbc37d74b2f894d279bf2ddb050874f720135e3692ab283a71fdebb175"
+    },
+    "reviews": {
+      "review-de-bkz-judgment-scope": "87b9539d440bcabd14d437e7159c7667b036d79d3abfd6824ec497628a787744",
+      "review-de-agnes-consultation-not-adoption": "3f5e484ad342f7a52b6407ae397152defffe6864d827d3b983eb5a630546135f",
+      "review-de-fid-draft-definition": "06915f3e5c6bc8042dd2ef0909986a289c480670453577d584a51052ab8f5339",
+      "review-de-fid-clarification": "84beaff71f86f4f07c0ed1e758eb875a44544218b4e1cbbd1b24af1171ca037b",
+      "review-de-capacity-distinct-auction-classes": "140d6192da79854840fcf9fb5633560f9e79b2dab4888be486fdc518b5dd12d3",
+      "review-gb-gate2-approval-boundary": "1d7648194a9b77782a1dc9928d4dce1aad93b805fac41bc8a2cc0a2fde5c5650",
+      "review-gb-june-phased-deadlines": "64a8147f3db2be9fe8f71774e85a653721b403f36c39050c10ffaa19b9f6ae6f",
+      "review-gb-october-limited-revision": "cfeb841ae591047d6387f3cf8ab08bcdfab9715a938439abfa3133da238df5ac",
+      "review-gb-multiple-price-proposal-abandoned": "85d90dfc1a91a5827fb713e2f610510b18e4cf06fcbb7a30373b84ea8feff9e2",
+      "review-gb-current-connection-capacity-constraint": "511d353c8bc95cb3cceab78b104594762fcfaddf282b0be5e1c8425e8c4308a4",
+      "review-gb-consultation-discretion-tradeoff": "de189d1955f769cb2525146e9e80a5bd2bca5a3515c054b650392428523994bf",
+      "review-gb-storage-nomination-not-award": "a4437ad03c01667298309027018c2fd2507758898e3ae81e5cff65d558259ed9",
+      "review-gb-storage-later-reporting-amendment": "84c5ec9de05ba9528f54dd1258a2a17857c72e80abd2193180bab54660522d07",
+      "review-nem-2021-final-design": "47e36851d40ca5cb4750cfd0c60ea74478db45308473e31b6ad8934f35be5a72",
+      "review-nem-as-issued-commencement-split": "daba0df302beaa5dee6e223f3b16ec2d0095dffd80dfd96afa758842c6878a96",
+      "review-nem-nonenergy-cost-basis": "c6a7a84633b472450d0054ab20b1baccbbd4e2cebac8c79fa1384d1cc8503f46",
+      "review-nem-spot-obligations-not-support-contract": "fdb14d7f3669d7d4039d4dc84f0024bc0152f0f953f869ff7e277df50fe34a2f",
+      "review-nem-fcas-guidance-version-change": "58adcd00b5254641f9896f2bf1f4bd97572ffaf1fdf7fb1dacfccbc33ee58685",
+      "review-nem-cis-target-not-minimum-duration": "95beab372eb9e11b4b939fde822ef024f48d5290f15da7bf2b9532a270d35c76",
+      "review-nem-ltesa-duration-and-double-support": "dae0d981be27193ab0869f35f872185a60c431ac76377e18f92bcfdf5a9a45f2",
+      "review-wa-gazettal-not-universal-effect": "7516627b08f6295062d4a194a66b04091d8976b49c94a225f83d350807b7ca43",
+      "review-wa-schedule5-later-notice": "5809c18f7d88fc33891f0830e00b42104a8ab007b052579a297404ea47b68138",
+      "review-wa-schedule6-relative-order": "b2ae1e67558c0e4a1a5b37cdab3c261a1f06409495a217be007be931232b4551",
+      "review-wa-current-versus-future-schedules": "e496851ec5f37155184b2d7c9fb734fc87df559df08563d8292b8fbb8721383d",
+      "review-wa-flexible-price-not-two-full-prices": "1354494ad8883869d1a7229b7fc6877f91032e402dbee69651a4d5434f46926e",
+      "review-wa-ess-accreditation-is-facility-specific": "e2423d9219b110d858490b670a844175c57a14848a337442fbb21d6be781cbb9",
+      "review-wa-network-access-competing-positions": "9f9973808b119a8242d7bb23a9434a74ada2e351a087c4d203ba603ff1c2e0c2"
+    }
+  },
+  "independentReview": {
+    "content": true,
+    "dates": true,
+    "projection": true,
+    "sourceInventory": true,
+    "reviewOccurredAt": null,
+    "scope": "Parent-reported completed V25 independent content/date/projection and 23-document/47-binding review. Admission flags change only under the subsequent exact owner source decision. No independent timestamp invented."
+  },
+  "historicalEvaluation": {
+    "approved": true,
+    "method": "deterministic_source_regression",
+    "model": null,
+    "reviewedAt": null,
+    "receiptRecordedAt": "2026-11-07T00:14:47.908Z",
+    "receiptFileSHA256": "234fb0af71c0fa5ed9169ab0d44ce98ead5d8c80f8d2473384fd78d98e1f95dc",
+    "cases": [
+      {
+        "id": "de-agnes-consultation-not-adoption",
+        "market": "de",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "Konsultation des vollständigen Festlegungsentwurfs; closing paragraphs; Stand 21.09.2026",
+        "sourceURL": "https://www.bundesnetzagentur.de/1059162",
+        "sourceHash": "sha256:c1e263a8746a2a10b9199b5066e79534044ed1159de05934d9fe51c8888a259d",
+        "originalByteHash": "sha256:c1e263a8746a2a10b9199b5066e79534044ed1159de05934d9fe51c8888a259d",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 3,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-de-agnes-consultation-not-adoption",
+        "reviewedSummaryHash": "c6bda05caaae6b271cfd474ad67dbe78a559000dc9827fce80e9480303d8b533",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "de-fid-clarification",
+        "market": "de",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "FID clarification, discussion of Tenor 2 Nr.1 and Randnummer 500",
+        "sourceURL": "https://www.bundesnetzagentur.de/1059162",
+        "sourceHash": "sha256:c1e263a8746a2a10b9199b5066e79534044ed1159de05934d9fe51c8888a259d",
+        "originalByteHash": "sha256:c1e263a8746a2a10b9199b5066e79534044ed1159de05934d9fe51c8888a259d",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 2,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-de-fid-clarification",
+        "reviewedSummaryHash": "b008420d6010552149e42ea364d6f1133dc0e931c09f94a5f5fb1bd7ddc8f87b",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "de-capacity-distinct-auction-classes",
+        "market": "de",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "Statute §2 No.4, §12(5)-(6) long-term tender class and §87 state-aid condition; raw HTML with declared ISO-8859-1 decoding",
+        "sourceURL": "https://www.gesetze-im-internet.de/stromvkg/BJNR0D2AB0026.html",
+        "sourceHash": "sha256:e07ce110ec084e6505770a9483e8a9620611324614395680f0d7d8b08a0fcf20",
+        "originalByteHash": "sha256:8f6d6e5bc1fb3cf681add64319d200488d5c765f42fadd85e87f8cac154fa3a0",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 8,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-de-capacity-distinct-auction-classes",
+        "reviewedSummaryHash": "8141dbf95ac5ce30b50242ec6031dfc0fd83e4eb8a5790c5915edfb6a1f5d023",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "de-regulatory-history-to-agnes",
+        "market": "de",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "AgNes overview: 2 September 2021 court judgment, 12 May 2025 procedure opening and conflicting tariff objectives",
+        "sourceURL": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Netzentgelte/Anreizregulierung/Agnes/start.html",
+        "sourceHash": "sha256:6ca087349e4e38acc5d9abfbe276fff807d255c7bc09b42f1afbdb27baac77e0",
+        "originalByteHash": "sha256:6ca087349e4e38acc5d9abfbe276fff807d255c7bc09b42f1afbdb27baac77e0",
+        "expectedReview": false,
+        "actualReview": false,
+        "criticalAssertions": 6,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-de-regulatory-history-to-agnes",
+        "reviewedSummaryHash": "c7af53c1df87d643dfd64254cd6461ade7d806d94e3da6daeb399c1693faac2d",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "gb-gate2-approval-boundary",
+        "market": "gb",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF pp.1,4,6: named version approval, Readiness/Strategic Alignment, paragraph1.9 56-day associated-licence standstill",
+        "sourceURL": "https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf",
+        "sourceHash": "sha256:c4db728ee6bdddd3c837008fbf34a67bbd2a47c2c7ad1b2b9b4a839a77232450",
+        "originalByteHash": "sha256:6497c6d5674031315f3fbce54bc480aa77c70be08293c2697445e0317152c85b",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 7,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-gb-gate2-approval-boundary",
+        "reviewedSummaryHash": "9cee166594458e8e87651cd74219f98e52215c960a7679664ed64a6469fba3f7",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "gb-october-limited-revision",
+        "market": "gb",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF p.1 decision; p.2 retained milestones; p.3 encouragement of completion confirmation",
+        "sourceURL": "https://www.ofgem.gov.uk/sites/default/files/2026-10/Ofgem-agreement-for-revision-to-G2TWQ-timetable.pdf",
+        "sourceHash": "sha256:684905f0ad3673904ca6f211934324af9df03b7bee441f4e9581e02a0b801e4d",
+        "originalByteHash": "sha256:79e98c8a21b6d2381d521cf6fcc6c1226956b9a05c7dd72fac3b83bb3ebddf0c",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 5,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-gb-october-limited-revision",
+        "reviewedSummaryHash": "b00670d147571006587f2400a58d58280a347ccc16e2f1aee7c7f1170e763063",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "gb-storage-nomination-not-award",
+        "market": "gb",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF p.6, inserted rule 3.5.6",
+        "sourceURL": "https://assets.publishing.service.gov.uk/media/6a3bf038da47783d877239d9/The_Capacity_Market__Amendment___No._2__Rules_2026.pdf",
+        "sourceHash": "sha256:b570056cd59d65821e84326c27a7cdc55a7d81064de74fe4ae248de00fa6f46c",
+        "originalByteHash": "sha256:9ed0af47c4d9b49500a95af699966962cabe3a89d70e2f6fdc931e4f4aaf6b89",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 5,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-gb-storage-nomination-not-award",
+        "reviewedSummaryHash": "9f54ea22438fc585e393fe62f21e9da8846c3a5bc3dfd97a44fc635663127095",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "gb-connections-reform-history",
+        "market": "gb",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF pp.7-9, paragraphs 2.6-2.10: 2023 open letter, 2024 reforms and 2025 licence consultation",
+        "sourceURL": "https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf",
+        "sourceHash": "sha256:f4be49edd9182b2daddca6e6d20e0414d37f9566b3dd9533df1ac23561424a8d",
+        "originalByteHash": "sha256:6497c6d5674031315f3fbce54bc480aa77c70be08293c2697445e0317152c85b",
+        "expectedReview": false,
+        "actualReview": false,
+        "criticalAssertions": 6,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-gb-connections-reform-history",
+        "reviewedSummaryHash": "6eec0e435518d56a911902aa0bd1b790f8a84b7ba745768fd91e1ea115d47fb4",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "nem-as-issued-commencement-split",
+        "market": "nem",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF p.2, clause 2 Commencement",
+        "sourceURL": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+        "sourceHash": "sha256:3608a7a09243694dfa08b859b0e77c2eb06031cdfa857c567334b8ed619536da",
+        "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 9,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-nem-as-issued-commencement-split",
+        "reviewedSummaryHash": "604307ad47e0a9a572196f2715ea43d09aedd5815333060111bb4637ae1930aa",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "nem-cis-target-not-minimum-duration",
+        "market": "nem",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF p.3 Table 1 and p.16 Table 7 EC4-EC5",
+        "sourceURL": "https://asl.org.au/-/media/services/files/cis/cis-t10-nem/260623-cis-tender-10-nem-dispatchable-capacity-tender-guidelines.pdf?rev=9a4dbc9fb60c4f7e9bef2f03f11c515c&sc_lang=en",
+        "sourceHash": "sha256:519a963e0025cc8f14e5c36dc024cbacc3de2501b2a35a126fd1f0a93ab5bd21",
+        "originalByteHash": "sha256:153cefb9a921613f472bf60b6bab770b4f9efcde82519d64f990fa5d80bd3d9d",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 7,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-nem-cis-target-not-minimum-duration",
+        "reviewedSummaryHash": "156fb99e4f43994670ff1772ead6708132a93253dacd16addf36ad06e83fdbaa",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "nem-ltesa-duration-and-double-support",
+        "market": "nem",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF p.9 Table1 CIS interaction; p.30 Table8 EC4-EC5 and footnote16 relevant-capacity qualification",
+        "sourceURL": "https://asl.org.au/-/media/services/files/tender-round-9/260520-tender-round-9-tender-guidelines-20-may-2026.pdf?rev=3fb76e8a51184ceabbdeb0d863540f4d&sc_lang=en",
+        "sourceHash": "sha256:8bbcefbc2c0cd74e3deb04373311aa69991317acd3a7b4ec198e695651c4885d",
+        "originalByteHash": "sha256:51ca37bc81367c259cd935c3bca41df7cf219338cd4fd03624f61f2616cff8ab",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 6,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-nem-ltesa-duration-and-double-support",
+        "reviewedSummaryHash": "d3f288782ed94cb05566813fd408657adda843cf06628fb9d5737cc975c95422",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "nem-territorial-scope",
+        "market": "nem",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF p.1, National Electricity Law application list; p.4, rule 2.1A.5",
+        "sourceURL": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+        "sourceHash": "sha256:6556774d745e579689c4cf0d3913ff9b686be2ec5db99514ff2c776756d81085",
+        "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+        "expectedReview": false,
+        "actualReview": false,
+        "criticalAssertions": 3,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-nem-territorial-scope",
+        "reviewedSummaryHash": "d725a672572612695787c07b6a317edc71f6ba07447356a512cc57c87ce57c33",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "wa-schedule5-later-notice",
+        "market": "wa",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF p.3, printed p.141, EE401, schedule 5 paragraph",
+        "sourceURL": "https://www.wa.gov.au/system/files/2026-01/gg2026_006.pdf",
+        "sourceHash": "sha256:7d592a39a0aae37931d0d9d893307a31d4c4dd30e88253b62ccb9ee411326848",
+        "originalByteHash": "sha256:bc6528e18a89eb47e770922a51f6df020c0170efc431f78fc5a07e1b06d93e78",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 3,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-wa-schedule5-later-notice",
+        "reviewedSummaryHash": "49ee1b45ac11699788a7bce696d94892542cebe9cce6a4a924eb52a954c38a6e",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "wa-flexible-price-not-two-full-prices",
+        "market": "wa",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF p.556, clause 4.29.1F",
+        "sourceURL": "https://www.wa.gov.au/system/files/2026-09/electricity_system_and_market_rules_-_1_october_2026.pdf",
+        "sourceHash": "sha256:43b9e87c383425f7e589199be13bb5f9c9db98cd7bba5b5f7ecb8e4f4dc93fc8",
+        "originalByteHash": "sha256:b93f6c4a603bfce01e6278585e98bc4190a60efb44e0b350e443f30dd1d65c96",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 4,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-wa-flexible-price-not-two-full-prices",
+        "reviewedSummaryHash": "1267e95c1bdeb93d2500da1dc0103ca5b8b42402183937276de581595566294a",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "wa-ess-accreditation-is-facility-specific",
+        "market": "wa",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF pp.258-259, clauses 2.34A.1-2.34A.4B; conditional tests or re-tests",
+        "sourceURL": "https://www.wa.gov.au/system/files/2026-09/electricity_system_and_market_rules_-_1_october_2026.pdf",
+        "sourceHash": "sha256:2c2c0382e5a4aeede3dbfccf613932226816b92b3d496b6a9319d9f4f6b62465",
+        "originalByteHash": "sha256:b93f6c4a603bfce01e6278585e98bc4190a60efb44e0b350e443f30dd1d65c96",
+        "expectedReview": true,
+        "actualReview": true,
+        "criticalAssertions": 8,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-wa-ess-accreditation-is-facility-specific",
+        "reviewedSummaryHash": "79a8115dff6f008e667499823c9536a371ca9941cf0861f3a8825b5953e7000b",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      },
+      {
+        "id": "wa-nem-rule-outside-wem",
+        "market": "wa",
+        "synthetic": false,
+        "originalSourceVerified": true,
+        "reviewedBy": "Independent source and bilingual reviewer; scoped static result accepted",
+        "sourceLocator": "PDF p.1, National Electricity Law application list; p.4, rule 2.1A.5",
+        "sourceURL": "https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf",
+        "sourceHash": "sha256:6556774d745e579689c4cf0d3913ff9b686be2ec5db99514ff2c776756d81085",
+        "originalByteHash": "sha256:f8a286fbaf52c70b26b10e819c97e405ad3208e24d04786a26cd8801d2cef3c5",
+        "expectedReview": false,
+        "actualReview": false,
+        "criticalAssertions": 3,
+        "unsupportedAssertions": 0,
+        "canonicalClaimId": "cl-wa-nem-rule-outside-wem",
+        "reviewedSummaryHash": "8e3ce0463e2ccbeff9e50544cf2953eb6b1e4ffe20afe494bdde8f24240f3160",
+        "expectedAnswerApprovalHash": "a0868e32cabc22e8e3aaa211fd123f4c35591ce4f63d2d4e3938a01ae967bae6",
+        "scope": "Historical static regression only; no model-performance or investment-dependency acceptance."
+      }
+    ],
+    "falsePositive": 0,
+    "falseNegative": 0,
+    "criticalUnsupported": 0,
+    "criticalAssertions": 85,
+    "bilingualExpressions": 170,
+    "modelAccuracy": null,
+    "costUSD": 0
+  },
+  "currentLawCompleteness": "not_established",
+  "investmentCasesPending": 27,
+  "investmentLinksUnmapped": 27,
+  "publicationMode": "one_exact_manual_historical_snapshot",
+  "modelEnabled": false,
+  "automaticPublicationEnabled": false,
+  "futureContentAcceptance": "A new snapshot or any changed document/locator/hash has no admission under this record."
+}

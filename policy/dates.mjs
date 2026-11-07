@@ -29,10 +29,11 @@ export function orderedSceneClaims(template,claims){
 export const EVENT_DATE_FIELDS=Object.freeze([['announcedAt','announced_at'],['publishedAt','published_at'],['recordDatedAt','document_dated_at'],['consultationClosesAt','consultation_closes_at'],['adoptedAt','adopted_at'],['effectiveAt','effective_at']]);
 export function eventDates(event){return EVENT_DATE_FIELDS.filter(([field])=>event[field]!=null).map(([field,role])=>({role,value:event[field],label:POLICY_DATE_LABELS[role]}));}
 
-/** Retrieval/preparation times cannot substitute for source/meaning verification. */
+/** The recorded instant is the author's source check of the as-issued record;
+ * it does not date independent review or establish complete current law. */
 export function eventVerification(event){
   const at=isTime(event?.verifiedAt)?event.verifiedAt:null;
-  return {at,label:at?['Verified','已核实']:['Verification pending','待核实']};
+  return {at,label:at?['Author source check completed','作者来源检查完成']:['Source check pending','来源检查待完成']};
 }
 export function compareEventVerification(a,b){
   const left=eventVerification(a).at,right=eventVerification(b).at;
