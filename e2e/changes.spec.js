@@ -9,7 +9,7 @@ test('history loads visible pages, preserves older records and filters in both l
   expect(pages).toHaveLength(0);
   await page.goto('/changes');
   await expect(page.locator('.cl-entry')).toHaveCount(40);
-  expect(new Set(pages).size).toBe(2);
+  expect(new Set(pages).size).toBe(3);
   await page.getByRole('button',{name:'Show more',exact:true}).click();
   await expect(page.locator('.cl-entry')).toHaveCount(80);
   const lines=(await readFile(new URL('../view/changelog.jsonl',import.meta.url),'utf8')).trim().split('\n').map(JSON.parse);
