@@ -28,7 +28,7 @@ function attachEvidence(dialog) {
         const { locatorBlock } = await locators;
         /* Closing or translating the story can dispose of the requesting
            disclosure while its chunk is loading. Only decorate its live node. */
-        if (!dialog.open || !details.open || !dialog.contains(details) || details.querySelector('.ercot-provenance')) return;
+        if (!dialog.open || !details.open || !details.isConnected || !dialog.contains(details) || details.querySelector('.ercot-provenance')) return;
         const block = locatorBlock(details.closest('[data-shot]')?.getAttribute('data-shot'), ERCOT_STORY_RECORDS);
         if (block) details.append(block);
       } catch {
