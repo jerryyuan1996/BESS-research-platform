@@ -364,14 +364,21 @@
       "direction": "either",
       "source": {
         "publisher": "ERCOT",
-        "url": "https://www.ercot.com/gridinfo/resource",
+        "url": "https://www.ercot.com/files/docs/2026/11/06/MORA_January_2027.pdf",
         "access": "opened"
       },
       "note": [
         "ERCOT issues the MORA on the first Friday of each month, two months ahead of the reporting month (December 2026's was published on 2 October 2026). It informs demand and saturation; it is not evidence of a toll price.",
         "ERCOT于每月第一个星期五发布资源充裕度月报，提前两个月覆盖报告月份（2026年12月月报于2026年10月2日发布）。该报告反映需求与饱和程度，但不能作为租赁价格的依据。"
       ],
-      "effect": null
+      "effect": null,
+      "outcome": {
+        "on": "2026-11-06",
+        "text": [
+          "ERCOT published the January 2027 MORA on schedule. Winter risk is low: the riskiest hour is the morning, 8 a.m., at a 3.20% chance of an Energy Emergency Alert against ERCOT's 10% threshold, and evening hours stay near 1%. Storage keeps arriving: 21,528 MW installed, 807 MW more than in the December report, with 12,525 MW expected available at the riskiest hour; low wind is the main risk. A new battery sub-model slightly lowers the estimated risk. Nothing here prices a toll, so the call is unchanged.",
+          "ERCOT按时发布2027年1月资源充裕度月报。冬季风险低：风险最高的时段在早上8点，触发电力紧急警报的概率为3.20%，低于ERCOT的10%门槛；晚间时段约为1%。储能继续增加：装机21,528MW，比12月月报多807MW，风险最高时段预计可用12,525MW；主要风险来自低风电出力。新增的电池子模型使估算风险略有下降。报告不涉及租赁定价，因此投资判断不变。"
+        ]
+      }
     }
   ],
   "plays": {
