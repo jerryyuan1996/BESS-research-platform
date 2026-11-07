@@ -266,11 +266,11 @@
         "这是本平台各市场中最容易并网的一个，背后还有庞大的大负荷排队。"
       ],
       "changesIf": [
-        "ercot-january-2027-mora"
+        "ercot-february-2027-mora"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-07",
       "lockedUntil": null,
       "play": "ercot-toll-2h"
     },
@@ -349,6 +349,31 @@
   },
   "triggers": [
     {
+      "id": "ercot-february-2027-mora",
+      "kind": "event",
+      "market": "ercot",
+      "label": [
+        "February 2027 MORA: review winter adequacy and battery availability",
+        "2027年2月资源充裕度月报：复核冬季供需与电池可用性"
+      ],
+      "expected": "2026-12-04",
+      "watches": [
+        "demandGrowth",
+        "saturation"
+      ],
+      "direction": "either",
+      "source": {
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/files/docs/2026/11/06/MORA_January_2027.pdf",
+        "access": "opened"
+      },
+      "note": [
+        "ERCOT targets each MORA for the first Friday of the month, two months ahead of the reporting month, as the January 2027 MORA states; the first Friday of December 2026 is 4 December. It informs demand and saturation; it is not evidence of a toll price.",
+        "据2027年1月资源充裕度月报所述，ERCOT计划于每月第一个星期五发布月报，提前两个月覆盖报告月份；2026年12月的第一个星期五为12月4日。该报告反映需求与饱和程度，但不能作为租赁价格的依据。"
+      ],
+      "effect": null
+    },
+    {
       "id": "ercot-january-2027-mora",
       "kind": "event",
       "market": "ercot",
@@ -397,13 +422,13 @@
       ],
       "action": {
         "text": [
-          "Read the January 2027 MORA on 6 November for winter evening adequacy and battery availability. Engage only with an executed toll: get its price and test it against the market monitor's 2025 battery revenue before any bid.",
-          "于11月6日阅读2027年1月资源充裕度月报，复核冬季晚高峰供需与电池可用性。只考虑已签署租赁的项目：出价前取得租赁价格，并与市场监测机构公布的2025年电池收入对比检验。"
+          "Read the February 2027 MORA on 4 December for winter adequacy and battery availability. Engage only with an executed toll: get its price and test it against the market monitor's 2025 battery revenue before any bid.",
+          "于12月4日阅读2027年2月资源充裕度月报，复核冬季供需与电池可用性。只考虑已签署租赁的项目：出价前取得租赁价格，并与市场监测机构公布的2025年电池收入对比检验。"
         ],
-        "due": "2026-11-06"
+        "due": "2026-12-04"
       },
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-07",
       "lockedUntil": null
     }
   }
