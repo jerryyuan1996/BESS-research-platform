@@ -64,13 +64,13 @@ test('relevant historical context is routine, scope exclusions are inapplicable 
 
 test('pending verification never falls back to preparation, retrieval or legal dates',()=>{
  const event={id:'pending',verifiedAt:null,createdAt:'2026-11-06T00:00:00Z',preparedAt:'2026-11-06T00:00:00Z',checkedAt:'2026-11-06T00:00:00Z',publishedAt:'2025-01-01T00:00:00Z'};
- assert.deepEqual(eventVerification(event),{at:null,label:['Verification pending','待核实']});
+ assert.deepEqual(eventVerification(event),{at:null,label:['Source check pending','来源检查待完成']});
  assert.equal(eventVerification({...event,verifiedAt:'2026-11-06'}).at,null);
 });
 test('event ordering uses only recorded verification and leaves pending records last',()=>{
  const early={id:'early',verifiedAt:'2026-10-01T00:00:00Z',createdAt:'2030-01-01T00:00:00Z'},later={id:'later',verifiedAt:'2026-11-01T00:00:00Z'},pending={id:'pending',verifiedAt:null,createdAt:'2030-01-01T00:00:00Z'};
  assert.deepEqual([pending,early,later].sort(compareEventVerification).map(e=>e.id),['later','early','pending']);
- assert.deepEqual(eventVerification(early).label,['Verified','已核实']);
+ assert.deepEqual(eventVerification(early).label,['Author source check completed','作者来源检查完成']);
 });
 test('an unverified event qualifies for neither recent nor stale verification filters',()=>{
  const now=Date.parse('2026-11-10T00:00:00Z');

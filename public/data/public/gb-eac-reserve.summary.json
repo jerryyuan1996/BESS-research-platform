@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "gb-eac-reserve",
+  "marketId": "gb",
+  "title": [
+    "GB EAC reserve auction prices and cleared capacity",
+    "英国 EAC 备用服务拍卖价格与成交容量"
+  ],
+  "authority": "observed",
+  "source": {
+    "name": "NESO Open Data",
+    "url": "https://www.neso.energy/data-portal/eac-auction-results",
+    "licence": "NESO Open Data Licence",
+    "licenceUrl": "https://www.neso.energy/data-portal/neso-open-licence",
+    "attribution": "Supported by National Energy SO Open Data",
+    "resourceId": "3c51a666-1c33-450e-a6eb-c9b4a0c91584",
+    "downloadUrl": "https://api.neso.energy/dataset/291e3c28-75f2-4a8f-b5f5-008bebaac368/resource/3c51a666-1c33-450e-a6eb-c9b4a0c91584/download/neso-response-reserve-daily-results-summary.csv",
+    "inputSha256": "c0c2681c0ffb12bae6a1e0325ff967efa7fafaccf8503dd63e112f8920002cbe"
+  },
+  "fetchedAt": "2026-11-06T15:29:04.942Z",
+  "coverage": {
+    "from": "2026-11-06T23:00:00.000Z",
+    "to": "2026-11-07T23:00:00.000Z",
+    "resolution": "PT30M",
+    "points": 288
+  },
+  "units": {
+    "price": "GBP/MW/h",
+    "power": "MW"
+  },
+  "notes": [
+    "Latest-auction daily CSV, accumulated prospectively; earlier archives are not backfilled.",
+    "Source delivery timestamps are UTC, including source strings without Z. EFA days end at 23:00 Europe/London and contain 46/48/50 half-hours.",
+    "Coverage to is the exclusive delivery end. Future delivery awards are observed auction results, not measured outturn.",
+    "Cleared MW is accepted capacity; zero is retained only when explicitly observed. No requirement, offered-volume, battery-share, activation-energy or captured-income estimate.",
+    "Directions and BR/QR/SR remain separate. No simultaneous-service maxima sum, energy-price substitution or financial-model input."
+  ],
+  "refreshHours": 6,
+  "staleAfterHours": 72,
+  "summarySchemaVersion": 1,
+  "derived": null,
+  "reserve": {
+    "authority": "derived",
+    "basis": "auction-clearing",
+    "coverageAudit": {
+      "completeObservedEfaDays": 1,
+      "firstEfaDay": "2026-11-07",
+      "lastEfaDay": "2026-11-07",
+      "missingDays": [],
+      "intervalsPerProduct": 48,
+      "products": [
+        "NBR",
+        "NQR",
+        "NSR",
+        "PBR",
+        "PQR",
+        "PSR"
+      ],
+      "windowDays": 365,
+      "historicalBackfill": false
+    }
+  },
+  "monthly": [
+    {
+      "period": "2026-11",
+      "service": "NBR",
+      "serviceType": "Balancing Reserve",
+      "direction": "negative",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 1.875,
+      "volumeWeightedPrice": 0,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11",
+      "service": "NQR",
+      "serviceType": "Quick Reserve",
+      "direction": "negative",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 295.3125,
+      "volumeWeightedPrice": 2.9772719576719573,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11",
+      "service": "NSR",
+      "serviceType": "Slow Reserve",
+      "direction": "negative",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 0,
+      "volumeWeightedPrice": null,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11",
+      "service": "PBR",
+      "serviceType": "Balancing Reserve",
+      "direction": "positive",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 451.0625,
+      "volumeWeightedPrice": 4.371303403999817,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11",
+      "service": "PQR",
+      "serviceType": "Quick Reserve",
+      "direction": "positive",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 431.2916666666667,
+      "volumeWeightedPrice": 4.150504782146652,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11",
+      "service": "PSR",
+      "serviceType": "Slow Reserve",
+      "direction": "positive",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 1801.6875,
+      "volumeWeightedPrice": 3.524771799586036,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    }
+  ],
+  "latest": [
+    {
+      "period": "2026-11-07",
+      "service": "NBR",
+      "serviceType": "Balancing Reserve",
+      "direction": "negative",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 1.875,
+      "volumeWeightedPrice": 0,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11-07",
+      "service": "NQR",
+      "serviceType": "Quick Reserve",
+      "direction": "negative",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 295.3125,
+      "volumeWeightedPrice": 2.9772719576719573,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11-07",
+      "service": "NSR",
+      "serviceType": "Slow Reserve",
+      "direction": "negative",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 0,
+      "volumeWeightedPrice": null,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11-07",
+      "service": "PBR",
+      "serviceType": "Balancing Reserve",
+      "direction": "positive",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 451.0625,
+      "volumeWeightedPrice": 4.371303403999817,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11-07",
+      "service": "PQR",
+      "serviceType": "Quick Reserve",
+      "direction": "positive",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 431.2916666666667,
+      "volumeWeightedPrice": 4.150504782146652,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    },
+    {
+      "period": "2026-11-07",
+      "service": "PSR",
+      "serviceType": "Slow Reserve",
+      "direction": "positive",
+      "intervals": 48,
+      "hours": 24,
+      "meanClearedMW": 1801.6875,
+      "volumeWeightedPrice": 3.524771799586036,
+      "from": "2026-11-06T23:00:00.000Z",
+      "to": "2026-11-07T23:00:00.000Z"
+    }
+  ],
+  "daily": [],
+  "arbitrage": null,
+  "sourceSnapshot": {
+    "file": "gb-eac-reserve.json",
+    "contentChecksum": "sha256:6b22f609d34dbe56bcbda8ea322ccc233cc97143452fc16bbb8a4494192bf71c",
+    "points": 288
+  },
+  "contentChecksum": "sha256:a35bf708f0c77e3a2c817acf8e937b2b9d41d265622089a89c72255959946c85",
+  "summaryChecksum": "sha256:82bf1628629e51a0202fdf0bf57375d058493eeb93219a69744d6b06c539b778"
+}

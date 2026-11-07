@@ -7,12 +7,17 @@ import {fileURLToPath} from 'node:url';
 import {verifyPolicyStore} from '../policy/verify-store.mjs';
 import {POLICY_AUTHORIZATION} from '../policy/authorization.mjs';
 import {TRUSTED_POLICY_PROFILES,APPROVED_HISTORICAL_EVALUATION} from '../policy/validation-profiles.mjs';
+import {MANUAL_POLICY_PUBLICATION} from '../policy/publication-authorization.mjs';
+import {marketIds} from '../src/markets/registry.js';
 import {publishPolicySnapshot} from '../policy/writer.mjs';
 import {digest} from '../policy/integrity.mjs';
 import {fixture,bodies,CONTEXT,attestedContext} from './helpers/policy-fixture.mjs';
 const options={config:POLICY_AUTHORIZATION,profiles:TRUSTED_POLICY_PROFILES,evaluation:APPROVED_HISTORICAL_EVALUATION};
-test('actual public policy store passes only as unpublished while approval gates are OFF',async()=>{
-  assert.deepEqual(await verifyPolicyStore({repo:fileURLToPath(new URL('..',import.meta.url)),...options}),{versions:0,status:'unpublished'});
+test('actual historical policy store passes only for the exact manually approved snapshot while the model stays OFF',async()=>{
+  assert.equal(POLICY_AUTHORIZATION.enabled,false);
+  assert.equal(POLICY_AUTHORIZATION.publicationEnabled,false);
+  assert.deepEqual(await verifyPolicyStore({repo:fileURLToPath(new URL('..',import.meta.url)),...options,marketIds:marketIds(),manualPublication:MANUAL_POLICY_PUBLICATION}),
+    {versions:1,status:'verified',head:MANUAL_POLICY_PUBLICATION.approvedHeads[0],authorization:'exact_manual_snapshots'});
 });
 test('unapproved and orphan policy JSON cannot enter a release even without a public index',async()=>{
   const repo=await mkdtemp(path.join(os.tmpdir(),'policy-store-gate-'));try{

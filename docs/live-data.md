@@ -50,6 +50,7 @@ failures; the snapshots retain their actual fetched timestamps rather than claim
 | `gb-day-ahead` | GB | ENTSO-E Transparency | daily | `ENTSOE_TOKEN` |
 | `gb-dynamic-response` | GB | NESO Dynamic results, fixed 2020–2023 vintage; availability prices and cleared/technology MW | fixed after initial import | — |
 | `gb-eac-response` | GB | NESO EAC response results; FY2023–FY2025 archives plus current results | read on the daily combined run; source daily | — |
+| `gb-eac-reserve` | GB | NESO EAC BR/QR/SR clearing prices (GBP/MW/h) and accepted MW; latest-auction accumulation | read on the daily combined run; source daily | — |
 | `gb-imbalance-buy`, `gb-imbalance-sell` | GB | Elexon DISEBSP indicative system prices, GBP/MWh; independent of day-ahead | read on the daily combined run | — |
 | `gb-net-imbalance-volume` | GB | Elexon DISEBSP signed net system imbalance, MWh per half-hour | read on the daily combined run | — |
 | `ie-day-ahead` | IE | ENTSO-E Transparency | read on the daily combined run | `ENTSOE_TOKEN` |
@@ -118,6 +119,10 @@ unpublished/missing classification open; it does not fill prices or revise exist
 ### Ontario day-ahead zonal archive
 
 The ca-on-da-zonal feed reads the public IESO day-ahead Ontario zonal report on the existing daily cycle. It retains acquired report versions separately from the unchanged 365-day view, with a bounded earliest-first backlog, complete fixed-EST days and explicit pending coverage. The IESO reproduction statement accompanies both files and the catalogue row. This contextual feed has no financial-input authority and does not replace HOEP, OEMP or nodal prices. See the [source contract](data-sources/ieso-ontario-zonal.md).
+
+### NESO reserve clearing evidence
+
+`gb-eac-reserve` adds BR/QR/SR clearing prices and accepted MW through one anonymous daily CSV in the existing ETL. It is separate from the existing DC/DM/DR response feed and has no financial-input authority. Latest-auction accumulation is prospective; it is not a full-history backfill. See the [source contract and topic log](data-sources/neso-eac-reserve.md).
 
 ### Deliberately not automated
 

@@ -64,6 +64,7 @@ import * as aemoWem from './sources/aemo-wem.mjs';
 import * as news from './sources/news.mjs';
 import * as fingrid from './sources/fingrid.mjs';
 import * as nesoResponse from './sources/neso-response.mjs';
+import * as nesoReserve from './sources/neso-reserve.mjs';
 import * as elexonSystemPrices from './sources/elexon-system-prices.mjs';
 import * as iesoOntarioZonal from './sources/ieso-ontario-zonal.mjs';
 
@@ -75,6 +76,7 @@ const CONNECTORS = {
   'aemo-wem': aemoWem,
   fingrid,
   'neso-response': nesoResponse,
+  'neso-reserve': nesoReserve,
   'elexon-system-prices': elexonSystemPrices,
   'ieso-ontario-zonal': iesoOntarioZonal,
   /* News used to run from its own entrypoint, outside this orchestrator and
