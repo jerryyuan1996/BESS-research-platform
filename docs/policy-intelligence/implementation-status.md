@@ -4,6 +4,16 @@ The 7 November 2026 analyst source decision admits one fixed 23-document/47-bind
 
 This historical release leaves all 27 investment cases pending and changes no approved investment conclusion. Current-law completeness remains unestablished. Model calls, paid evaluation, automatic publication and new discovery source activation remain OFF. A source decision is not a rights waiver or permission to resume WA acquisition. The older entries below describe their dated preparation checkpoints and are retained as history.
 
+## Offline next-phase preparation, 7 November 2026
+
+An isolated feature branch prepares the supported provider-schema projection and strict local model-output regression coverage. Mocked SDK requests and synthetic responses are the only model-transport inputs. No provider request, token-count call or credential access occurred. Provider grammar acceptance, injected token overhead and paid-model quality remain unmeasured.
+
+The serialized request with current public prior metadata and empty evidence is 14,648 bytes including the local margin; the former raw schema also exceeded the old 12,000 gate. The input ceiling was explicitly increased to 16,000 (+4,000 / 33.3%) in both dormant configurations, preserving output, time, cost, source and activation constraints. Synthetic regressions check admission under the new ceiling and rejection of an insufficient reservation or daily budget. This is an offline sizing change, not paid-model approval or measured provider overhead.
+
+The inactive source proposal now distinguishes four dynamic registrations from the exact historical validators, and records acquisition, factual use, protected reproduction, transmission, currentness and adapter gaps. The existing statutory/OGL/CIS/NSW grants must be applied within their scope; missing NEM rule and FCAS incorporation evidence and the WA acquisition stop remain explicit. No allowlist, profile approval, recurring collection or switch changes.
+
+Ignored private preparation contains 27 clause-specific evidence packets (DE 5, GB 8, NEM 7, WA 7), exact EN/ZH clauses and public-record hashes, freshly rechecked historical original proofs and provisional keep/revise/needs-evidence recommendations. Twelve older specific proposals were reconciled; fifteen generic shells were filled. No proposal is accepted, all approval dates remain null, and published reviews/links and investment values remain unchanged. The private packet index and validation evidence are delivered locally, not committed or uploaded.
+
 ## Earlier implementation checkpoints (historical)
 
 Integration branch: `feat/policy-intelligence-v4`, based on `494ce7b`. Draft PR #159 is an **incomplete v4 deliverable**. A passing software check does not accept missing source governance, content reviews or empirical model evaluation. Do not merge it as the full D0-D8 release.

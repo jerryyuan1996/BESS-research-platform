@@ -4,7 +4,7 @@ import {mkdtemp,mkdir,readFile,writeFile,rm} from 'node:fs/promises';
 import path from 'node:path';import os from 'node:os';
 import {executeManualEvaluation} from '../scripts/policy/manual-command.mjs';
 import {sourceDigest} from '../policy/integrity.mjs';
-import {fixture,BODY} from './helpers/policy-fixture.mjs';
+import {fixture,modelFixture,BODY} from './helpers/policy-fixture.mjs';
 const source=fixture().sources[0];
 const cases=Array.from({length:12},(_,i)=>({id:`case-${i}`,market:['de','gb','nem','wa'][i%4],reviewer:'synthetic-independent-reviewer',sourceReviewed:true,rightsReviewed:true,translationReviewed:true,expectedReview:false,source,locator:'section 1',body:BODY,originalByteHash:source.contentHash,mediaType:'text/html'}));
 const raw=JSON.stringify({schemaVersion:1,cases});
@@ -26,7 +26,7 @@ test('manual command refuses OFF, unpinned, unreviewed and changed corpora befor
 });
 test('manual command scans and reserves one fake request then appends content-free durable outcome',async()=>{
   const repo=await corpusRepo();let requests=0;try{
-    const args={repo,caseId:'case-0',config,profiles,now:new Date('2026-11-05T07:00:00Z'),makeInvoke:()=>async()=>{requests++;return {text:JSON.stringify(fixture()),inputTokens:500,outputTokens:200};}};
+    const args={repo,caseId:'case-0',config,profiles,now:new Date('2026-11-05T07:00:00Z'),makeInvoke:()=>async()=>{requests++;return {text:JSON.stringify(modelFixture()),inputTokens:500,outputTokens:200};}};
     const result=await executeManualEvaluation(args);assert.equal(result.status,'evaluated');assert.equal(result.canPublish,false);assert.equal(requests,1);
     const audit=await readFile(path.join(repo,'etl/out/policy-evaluation-ledger/2026-11-05.result.json'),'utf8');
     const row=JSON.parse(audit);assert.equal(row.providerRequests,1);assert.equal(row.usage.inputTokens,500);assert.equal(row.matched,true);assert.equal(row.sourceHash,source.contentHash);assert.doesNotMatch(audit,/Synthetic test record|synthetic-independent-reviewer/);

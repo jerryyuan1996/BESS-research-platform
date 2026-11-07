@@ -18,4 +18,11 @@ export function fixture(state='consultation',market='gb'){
   return snapshot;
 }
 export const bodies=()=>new Map([['test-source',BODY]]);
+/** Complete synthetic model envelope, including nullable required fields. */
+export function modelFixture(){
+  const snapshot=fixture();
+  for(const event of snapshot.events)Object.assign(event,{consultationClosesAt:null,adoptedAt:null});
+  for(const claim of snapshot.claims)claim.predicate??=null;
+  return snapshot;
+}
 export const attestedContext=s=>({...CONTEXT,publicationReviewHash:digest(s),attestations:new Map(s.claims.map(c=>[c.id,{claimHash:digest(c),supported:true,translationEquivalent:true}])),sourceReviews:new Map(s.sources.map(source=>[source.id,{sourceHash:digest(source),maxQuoteChars:300}]))});
