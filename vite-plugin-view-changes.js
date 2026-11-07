@@ -15,7 +15,7 @@
    public and belongs in a build.
 
    The /changes route receives a lightweight complete filter index. Full
-   before/after records live in lazy sixteen-record modules, emitted as normal
+   before/after records live in lazy twenty-record modules, emitted as normal
    content-hashed build assets and scanned by the same publishing pipeline.
    Every record is preserved; only visible pages are downloaded.
 
@@ -35,8 +35,7 @@ const STUB = 'src/markets/viewChanges.js';
 const FULL_STUB = 'src/markets/viewChangelog.js';
 const CHANGELOG = 'view/changelog.jsonl';
 const PAGE_MODULE = 'virtual:bess-view-history/';
-/* Keep filtered first loads within the existing budget as history grows. */
-export const HISTORY_PAGE_SIZE = 16;
+export const HISTORY_PAGE_SIZE = 20;
 
 /** How many changes the page shows. */
 export const RECENT_CHANGES = 10;
