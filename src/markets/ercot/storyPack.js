@@ -1,5 +1,5 @@
-/* Lazy ERCOT story pack, built for G-2 and unreleased: the registry opens it
-   only behind ?story=preview. The shared story infrastructure is unchanged.
+/* Lazy ERCOT story pack, released with the analyst's merge/publication approval.
+   The shared story infrastructure is unchanged.
    Both Chart-ERCOT-AS gates are closed, so ercot-05 and ercot-06 draw the
    approved unscaled Example (story/chart.js). */
 import '../../experience/story/kit/index.js';
@@ -20,9 +20,20 @@ function attachEvidence(dialog) {
     details.dataset.locators = 'pending';
     details.addEventListener('toggle', async () => {
       if (!details.open || details.querySelector('.ercot-provenance')) return;
-      locators ||= import('./story/evidence.js');
-      const block = (await locators).locatorBlock(details.closest('[data-shot]')?.getAttribute('data-shot'), ERCOT_STORY_RECORDS);
-      if (block && details.isConnected && !details.querySelector('.ercot-provenance')) details.append(block);
+      try {
+        locators ||= import('./story/evidence.js').catch(error => {
+          locators = null;
+          throw error;
+        });
+        const { locatorBlock } = await locators;
+        /* Closing or translating the story can dispose of the requesting
+           disclosure while its chunk is loading. Only decorate its live node. */
+        if (!dialog.open || !details.open || !dialog.contains(details) || details.querySelector('.ercot-provenance')) return;
+        const block = locatorBlock(details.closest('[data-shot]')?.getAttribute('data-shot'), ERCOT_STORY_RECORDS);
+        if (block) details.append(block);
+      } catch {
+        /* The source links remain usable; reopening retries the locator chunk. */
+      }
     });
   }
 }

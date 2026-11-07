@@ -5,7 +5,7 @@ const MARKET = '/markets/ercot', PREVIEW = MARKET + '?story=preview';
 const q = id => [story.opening, ...story.chapters.flatMap(c => c.shots)].find(s => s.id === id).question;
 const row = opportunities('infraFund').find(r => r.id === 'ercot');
 
-async function open(page, url = PREVIEW) {
+async function open(page, url = MARKET) {
   await page.goto(url);
   const trigger = page.locator('.ix-full-research');
   await trigger.scrollIntoViewIfNeeded(); await trigger.click();
@@ -13,17 +13,18 @@ async function open(page, url = PREVIEW) {
   return { trigger, dialog };
 }
 
-test('ERCOT is unreleased: without ?story=preview the button opens research and fetches no story bytes', async ({ page }) => {
+test('ERCOT is released and loads story bytes only after the research button opens it', async ({ page }) => {
   const loaded = []; page.on('request', r => { if (/story-ercot-/.test(r.url())) loaded.push(r.url()); });
   await page.goto(MARKET);
+  expect(loaded).toEqual([]);
   const trigger = page.locator('.ix-full-research');
   await trigger.scrollIntoViewIfNeeded(); await trigger.click();
   await expect(page.getByRole('dialog')).toBeVisible();
-  await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
-  expect(loaded).toEqual([]);
+  await expect(page.locator('.ix-story-dialog')).toBeVisible();
+  expect(loaded.length).toBeGreaterThan(0);
 });
 
-test('ERCOT preview reads thirteen bilingual shots, one marker each, with the Example chart and no console errors', async ({ page }) => {
+test('ERCOT reads thirteen bilingual shots, one marker each, with the Example chart and no console errors', async ({ page }) => {
   const errors = []; page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error' && !/_vercel\/insights/.test(m.location().url)) errors.push(m.text()); }); // Vercel's analytics script exists only in production
   const loaded = []; page.on('request', r => { if (/story-ercot-/.test(r.url())) loaded.push(r.url()); });
   const { trigger, dialog } = await open(page);
@@ -100,6 +101,68 @@ test('ERCOT loads per-value locators only when a source disclosure opens', async
   await shot.locator('.ix-story-sources summary').click();
   await expect(shot.locator('.ercot-provenance')).toContainText('§II.H');
   expect(requests.some(u => /\/evidence-[^/]+\.js$/.test(u))).toBe(true);
+});
+
+test('ERCOT source locators retry a failed import without an unhandled error', async ({ page }) => {
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  let attempts = 0;
+  await page.route(/\/evidence-[^/]+\.js$/, route => ++attempts === 1
+    ? route.abort('failed') : route.continue());
+  const { dialog } = await open(page);
+  const sources = dialog.locator('[data-shot=ercot-01] .ix-story-sources');
+  await sources.locator('summary').click();
+  await expect.poll(() => attempts).toBe(1);
+  await expect(sources.locator('a').first()).toBeVisible();
+  await sources.locator('summary').click();
+  await sources.locator('summary').click();
+  await expect(sources.locator('.ercot-provenance')).toContainText('§II.H');
+  expect(attempts).toBe(2);
+  expect(errors).toEqual([]);
+});
+
+test('ERCOT concurrent disclosures attach only their own shot records', async ({ page }) => {
+  let release, requested;
+  const held = new Promise(resolve => { release = resolve; });
+  await page.route(/\/evidence-[^/]+\.js$/, async route => {
+    requested = route.request().url(); await held; await route.continue();
+  });
+  const { dialog } = await open(page);
+  const first = dialog.locator('[data-shot=ercot-01] .ix-story-sources');
+  const third = dialog.locator('[data-shot=ercot-03] .ix-story-sources');
+  await first.locator('summary').click();
+  await expect.poll(() => Boolean(requested)).toBe(true);
+  await third.locator('summary').click();
+  release();
+  await expect(first.locator('.ercot-provenance')).toContainText('§II.H');
+  await expect(third.locator('.ercot-provenance')).toContainText('47');
+  await expect(third.locator('.ercot-provenance')).not.toContainText('§II.H');
+  await expect(first.locator('.ercot-provenance')).toHaveCount(1);
+  await expect(third.locator('.ercot-provenance')).toHaveCount(1);
+});
+
+for (const action of ['language', 'close']) test(`ERCOT ignores pending source content after ${action} disposes its node`, async ({ page }) => {
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  let release, requested;
+  const held = new Promise(resolve => { release = resolve; });
+  await page.route(/\/evidence-[^/]+\.js$/, async route => {
+    requested = route.request().url(); await held; await route.continue();
+  });
+  const { dialog, trigger } = await open(page);
+  const sources = dialog.locator('[data-shot=ercot-01] .ix-story-sources');
+  const old = await sources.elementHandle();
+  await sources.locator('summary').click();
+  await expect.poll(() => Boolean(requested)).toBe(true);
+  if (action === 'language') await dialog.getByRole('button', { name: 'Switch to Chinese' }).click();
+  else { await page.keyboard.press('Escape'); await expect(trigger).toBeFocused(); }
+  release();
+  await page.evaluate(async url => { await import(url); }, requested);
+  expect(await old.evaluate(el => el.querySelector('.ercot-provenance'))).toBe(null);
+  if (action === 'close') await trigger.click();
+  const fresh = page.locator('.ix-story-dialog [data-shot=ercot-01] .ix-story-sources');
+  await fresh.locator('summary').click();
+  await expect(fresh.locator('.ercot-provenance')).toContainText(action === 'language' ? '逐值出处与计算' : 'Value locators and arithmetic');
+  await expect(fresh.locator('.ercot-provenance')).toHaveCount(1);
+  expect(errors).toEqual([]);
 });
 
 test('ERCOT falls back to research for another lens', async ({ page }) => {
