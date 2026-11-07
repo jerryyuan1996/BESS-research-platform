@@ -12,7 +12,7 @@ import {SCRIPT_APPROVAL_RECORDS} from '../src/experience/story/public/approvalRe
 test('the authorised fifteen share public scope; three unapproved additions stay outside it',()=>{
   assert.deepEqual(PUBLIC_MARKET_IDS,PUBLIC_STORY_IDS);
   for(const id of ['ca_on','sa','es']){assert.equal(publicStoryFor(id),null);assert.equal(PUBLIC_CATALOG[id],undefined);}
-  assert.equal(STORIES.ercot,undefined,'G-1 does not release an original G-2 story');
+  assert.equal(STORIES.ercot.released,false,'the ERCOT G-2 pack opens only behind ?story=preview until its release');
   assert.equal(Object.values(STORIES).filter(x=>x.released).length,14,'original release decisions preserved');
 });
 
