@@ -19,6 +19,8 @@
 
 /** Electricity prices go negative — that is a real and important market state,
     not an error. These bounds only catch nonsense. */
+import { validateEiaInventory } from '../../src/projects/eiaInventorySchema.js';
+
 const PRICE_BOUNDS = { min: -100_000, max: 1_000_000 };
 
 /** A new snapshot whose median is this many times the previous one is rejected
@@ -226,6 +228,11 @@ export function validateSnapshot(snapshot, dataset, previous = null){
      item for the crime of not being a number. */
   if (dataset.kind === 'feed') return validateFeed(snapshot, series, r);
   if (dataset.kind === 'metric') return validateMetric(snapshot, dataset, previous, r);
+  if (dataset.kind === 'projects'){
+    try { for (const error of validateEiaInventory(snapshot)) r.error(error); }
+    catch { r.error('project inventory schema is malformed'); }
+    return r;
+  }
 
   const prices = [];
   let badPoints = 0, lastTs = null, outOfOrder = 0;

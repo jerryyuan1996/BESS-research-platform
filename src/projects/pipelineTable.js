@@ -14,8 +14,8 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { fmtN } from '../utils/formatting.js';
-import { PROJECT_STAGE, energyMWh, isPlottable } from './schema.js';
-import { fleetTotals } from './clusters.js';
+import { PROJECT_STAGE, energyMWh, isPlottable } from './projectValues.js';
+import { fleetTotals } from './projectTotals.js';
 
 const STAGE_LABEL = {
   [PROJECT_STAGE.OPERATING]: ['Operating', '在运'],
@@ -25,7 +25,7 @@ const STAGE_LABEL = {
 function totalsRow(totals, stage){
   const t = totals[stage];
   if (!t?.count) return null;
-  const energy = t.energyMWh != null
+  const energy = t.energyPeriodsMixed ? L(['energy observation periods differ','能量观测时期不同']) : t.energyMWh != null
     ? fmtN(Math.round(t.energyMWh)) + ' MWh'
     : L(['energy not published for ', '未公布能量容量：']) + (t.count - t.energyKnown) + '/' + t.count;
   return h('div', { class:'pipe-total' },

@@ -1,5 +1,15 @@
 # Policy validation record
 
+## Integrated offline-code verification, 7 November 2026
+
+The feature integrates actual main `00e6bb2fc2f0d09fcdb9089c0ae1278dba649df9`, after the ERCOT story and EIA releases. Its dependency lock is unchanged. Checks below use this integrated source and its freshly rebuilt artifact on Node 22.23.4; the earlier feature-only results are not substituted for integration checks. Final integrated full-unit results, exact feature head and remote CI are recorded on [PR #182](https://github.com/jerryyuan1996/BESS-research-platform/pull/182).
+
+Fresh integrated checks passed: Policy 186/186, financial/current 84/84, bundle budgets 34/34, required original artifact guard 7/7 with no skips, all 23 snapshots and the single immutable historical Policy head. The desktop/mobile Policy and focused history browser checks passed 38/38 with one worker, including the actual historical snapshot, all four real stories, withheld excerpts and pending investment reviews. Old browser failures and interrupted runs remain recorded separately.
+
+Preservation against that exact main verifies 1,053 protected files byte-for-byte. The only two protected exceptions are the expressly authorized input ceiling 12,000 to 16,000; every other byte of those controls is unchanged. All four public thesis record hashes, 98 private EN/ZH clause slices, the immutable Policy snapshot and all 27 unmapped/pending investment links/reviews still match their preparation proofs; no approval date is inferred or populated. Private originals, packets, paths and audit receipts remain ignored and excluded from the public change.
+
+No new Policy acquisition, model request, paid evaluation, source activation or automatic Policy publication is enabled. The existing exact manual historical publication remains intact. Provider grammar acceptance, injected prompt tokens, actual model usage/invoices, model quality and dynamic current-law completeness remain unmeasured. The dated sections below retain earlier checkpoints and are not the current release status.
+
 ## Offline next-phase preparation, 7 November 2026
 
 Independent clone and feature branch, based on actual remote main `691be04c409ff863d927dab2d9f543f18da0104e`. Existing locked packages were installed offline. The system runtime is Node 26.2.0; the project-matching Node 22.23.4 portable runtime already present on this host was used for final focused checks. No runtime was installed or replaced. No provider or token-count request, new source collection, credential provisioning, source activation, investment edit, shared-main change or deployment occurred.

@@ -79,7 +79,8 @@ function renderFeeds(main){
     tr.append(
       h('td', {}, h('b', {}, L(d.title)), h('br'),
         h('span', { class: 'obs-tag' }, d.id)),
-      h('td', {}, market ? (market.manifest.flag + ' ' + L(market.manifest.shortName)) : L(['Global', '全局'])),
+      h('td', {}, market ? (market.manifest.flag + ' ' + L(market.manifest.shortName))
+        : d.marketIds ? d.marketIds.map(id=>L(markets.find(m=>m.manifest.id===id)?.manifest.shortName || id)).join(' / ') : L(['Global', '全局'])),
       h('td', {}, h('a', { href: d.source.url, target: '_blank', rel: 'noopener noreferrer' }, d.source.name),
         h('br'), h('span', { class: 'obs-tag' }, d.source.licence)),
       h('td', {}, '—'),
@@ -116,6 +117,13 @@ function renderFeeds(main){
         ? `${cov.from.slice(0, 10)} → ${cov.to.slice(0, 10)}`
         : '—';
       const zonalCoverage = summary.zonal?.coverageAudit;
+      if(summary.inventory){
+        const input=summary.inventory.sources;
+        tr.children[3].append(h('br'),h('span',{class:'obs-hint'},L([
+          `Inventory ${input.monthly.period}; published ${input.monthly.publishedAt}; annual supplement ${input.annual.reportingYear}`,
+          `清单 ${input.monthly.period}；发布 ${input.monthly.publishedAt}；年度补充 ${input.annual.reportingYear}`,
+        ])));
+      }
       if (zonalCoverage){
         tr.children[3].append(h('br'), h('span', { class: 'obs-hint' }, L([
           zonalCoverage.completeRollingDays + ' complete days; ' + zonalCoverage.pendingReportFiles.length + ' reports pending',

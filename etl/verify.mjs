@@ -20,6 +20,8 @@ import { REPO_ROOT, listSnapshots } from './lib/boundary.mjs';
 import { verifyContentChecksum, sha256 } from './lib/envelope.mjs';
 import { DATASETS, datasetById } from '../src/governance/datasets.js';
 import { validateOntarioSnapshot, summarize as summarizeOntario } from './sources/ieso-ontario-zonal.mjs';
+import { validateEiaInventory } from '../src/projects/eiaInventorySchema.js';
+import { summarize as summarizeEia } from './sources/eia-generator-inventory.mjs';
 
 const log = (m) => process.stdout.write(m + '\n');
 
@@ -55,6 +57,18 @@ async function main(){
       // should look.
       problems.push(`${name}: no dataset "${id}" in the catalogue — orphaned snapshot`);
       continue;
+    }
+
+    if (dataset.kind === 'projects'){
+      try {
+        const errors=validateEiaInventory(snapshot);
+        if(errors.length)throw new Error(errors.slice(0,4).join('; '));
+        const {envelopeChecksum,...envelope}=snapshot;
+        if(envelopeChecksum!==sha256(envelope))throw new Error('inventory envelope checksum mismatch');
+        if(snapshot.derived.inventory.revisions.at(-1).observationsChecksum!==sha256(snapshot.series))throw new Error('inventory revision observations mismatch');
+        const summary=JSON.parse(await readFile(path.join(REPO_ROOT,'public','data','public',id+'.summary.json'),'utf8'));
+        if(sha256(summary)!==sha256(summarizeEia(snapshot)))throw new Error('inventory summary mismatch');
+      } catch(error){problems.push(name+': '+error.message);continue;}
     }
 
     if (dataset.connector === 'ieso-ontario-zonal'){

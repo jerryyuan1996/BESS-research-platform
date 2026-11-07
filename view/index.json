@@ -63,7 +63,7 @@
     "infraFund": {
       "call": "opportunistic",
       "route": "ready-to-build",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-07",
       "reviewBy": "2027-03-31",
       "play": "ercot-toll-2h"
     },

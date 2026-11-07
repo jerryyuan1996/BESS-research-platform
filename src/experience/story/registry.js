@@ -38,6 +38,9 @@ export const STORIES = {
   pl: { released: true, load: () => import('../../markets/pl/storyPack.js') },
   /* NEM: G-2 signed off 6 November 2026, with merge and publication authorised. */
   nem: { released: true, load: () => import('../../markets/nem/storyPack.js') },
+  /* ERCOT: analyst confirmed completion and authorised merge/publication
+     on 7 November 2026. Observed chart publication remains separately gated. */
+  ercot: { released: true, load: () => import('../../markets/ercot/storyPack.js') },
 };
 
 /** The story entry for a market, or null when it has none or it is unreleased. */

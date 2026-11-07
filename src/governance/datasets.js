@@ -49,7 +49,10 @@ const DAYS = 24 * HOURS;
  *   metric      non-price numeric observations with a declared unit, interval
  *               and bounds. Uses strict metric checks, never price medians.
  *
- * @typedef {'timeseries'|'feed'|'metric'} DatasetKind
+ *   projects    generator inventory with explicit units and source vintages;
+ *               separately validated, never interpreted as a price series.
+ *
+ * @typedef {'timeseries'|'feed'|'metric'|'projects'} DatasetKind
  */
 
 /**
@@ -73,7 +76,7 @@ const DAYS = 24 * HOURS;
  */
 
 /** Every value `Dataset.kind` may take. */
-export const DATASET_KINDS = ['timeseries', 'feed', 'metric'];
+export const DATASET_KINDS = ['timeseries', 'feed', 'metric', 'projects'];
 
 /** @type {Dataset[]} */
 /* Fingrid open data: CC BY 4.0, per each dataset's own metadata (2026-10-30). */
@@ -91,6 +94,13 @@ const entsoe = (marketId, title, { sourceId, republishable = true, licence = 'EN
 
 export const DATASETS = [
   // ---- global --------------------------------------------------------------
+  {
+    id:'us-eia-storage-projects',kind:'projects',marketId:null,marketIds:['pjm','ercot','caiso'],sourceId:'us-eia-860m',
+    title:['US battery generator inventory and annual storage evidence','美国电池机组清单与年度储能证据'],
+    connector:'eia-generator-inventory',
+    source:{name:'U.S. Energy Information Administration',url:'https://www.eia.gov/electricity/data/eia860m/',licence:'EIA statistics — US public domain; attribution required'},
+    refreshHours:24,staleAfterHours:45*DAYS,bearsOn:[],republishable:true,requiresKey:false,official:true,
+  },
   {
     id: 'fx-ecb',
     kind: 'timeseries',
@@ -378,7 +388,7 @@ export const datasetsForMarket = (marketId) => DATASETS.filter(d => d.marketId =
 export const datasetsBearingOn = (path) => DATASETS.filter(d => d.bearsOn.includes(path));
 
 /** Global (non-market) datasets. */
-export const globalDatasets = () => DATASETS.filter(d => d.marketId === null);
+export const globalDatasets = () => DATASETS.filter(d => d.marketId === null && d.kind !== 'projects');
 
 /* Each dataset is published as two files. The site loads only the summary; the
    full series is the audit artefact. See etl/lib/summarize.mjs for why. */
