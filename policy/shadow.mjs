@@ -3,7 +3,7 @@
 import { validatePolicySnapshot,policyMateriality } from './schema.mjs';
 import { digest,snapshotDiff,verifyEvidenceHashes } from './integrity.mjs';
 import { authorizationProblems,worstCaseModelUSD } from './authorization.mjs';
-import { policyModelRequest } from './model-contract.mjs';
+import { policyModelRequest,policyModelOutputProblems } from './model-contract.mjs';
 import { mergePolicyDelta,priorPolicySummary } from './merge.mjs';
 import { retainedProofs } from './retained.mjs';
 import {sourceTransmissionProblems} from './source-use.mjs';
@@ -37,8 +37,9 @@ export async function researchShadow({changedDocuments,invoke,config,ledger,cont
   if(problems.length||typeof invoke!=='function')return {...base,status:'disabled',problems};
   if(ledger.cycle===cycle&&ledger.completed===true)return {...base,status:'already_processed'};
   const sourceText=JSON.stringify(changedDocuments.map(doc=>({sourceId:doc.sourceId,source:doc.source||null,evidence:doc.excerpt??bodies.get(doc.sourceId)??''})));
-  // UTF-8 bytes are a conservative upper bound for token count; reserve the
-  // full reviewed worst-case charge before any call, rather than trusting usage.
+  // Serialized UTF-8 bytes plus 1024 are a local admission estimate, not a
+  // measured bound on the provider's injected structured-output prompt. The
+  // reservation uses the configured token ceiling; usage is checked afterward.
   const previousPolicy=priorPolicySummary(before);
   const request=policyModelRequest({system:POLICY_SYSTEM,evidence:sourceText,previousPolicy,model:config.model,maxOutputTokens:config.maxOutputTokens});
   if(Buffer.byteLength(JSON.stringify(request),'utf8')+1024>config.maxInputTokens)return {...base,status:'input_cap'};
@@ -54,7 +55,9 @@ export async function researchShadow({changedDocuments,invoke,config,ledger,cont
     if(typeof result?.text!=='string'||Buffer.byteLength(result.text,'utf8')>512000)throw new Error('Candidate output limit exceeded');
     if(!Number.isInteger(result.outputTokens)||result.outputTokens<0||result.outputTokens>config.maxOutputTokens)throw new Error('Invalid or over-limit provider usage');
     if(!Number.isInteger(result.inputTokens)||result.inputTokens<0||result.inputTokens>config.maxInputTokens)throw new Error('Invalid or over-limit input usage');
-    const candidate=JSON.parse(result.text);const packet=buildDecisionPacket({before,candidate,context,bodies});
+    const candidate=JSON.parse(result.text);
+    if(policyModelOutputProblems(candidate).length)throw new Error('Model output violates the strict local structural contract');
+    const packet=buildDecisionPacket({before,candidate,context,bodies});
     return {...base,...packet,usage:{inputTokens:result.inputTokens,outputTokens:result.outputTokens,reservedUSD:reserved,actualUSD:(result.inputTokens*config.inputUSDPerMTokens+result.outputTokens*config.outputUSDPerMTokens)/1_000_000}};
   }catch{return {...base,status:'quarantined',errors:['Model, transport or candidate validation failed'],lastKnownGood:before,canPublish:false};}
   finally{clearTimeout(timer);controller.abort();}

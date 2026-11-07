@@ -4,7 +4,7 @@ import {mkdtemp,rm,symlink,mkdir} from 'node:fs/promises';
 import os from 'node:os';import path from 'node:path';
 import {reserveManualCall} from '../policy/manual-reservation.mjs';
 import {runReservedManualCase} from '../scripts/policy/manual-evaluation-runner.mjs';
-import {fixture,BODY} from './helpers/policy-fixture.mjs';
+import {fixture,modelFixture,BODY} from './helpers/policy-fixture.mjs';
 const config={maxDailyUSD:0.03,maxInputTokens:12000,maxOutputTokens:3000,wallTimeMs:120000,inputUSDPerMTokens:1,outputUSDPerMTokens:5};
 test('reservation survives uncertain outcome, rejects replay and serializes concurrent calls',async()=>{
  const repo=await mkdtemp(path.join(os.tmpdir(),'evaluation-reservation-'));try{
@@ -32,6 +32,6 @@ test('wired runner checks original guard and independent semantics using a fake 
  const cases=Array.from({length:12},(_,i)=>({id:`case-${i}`,market:['de','gb','nem','wa'][i%4],reviewer:'test-reviewer',sourceReviewed:true,rightsReviewed:true,translationReviewed:true,expectedReview:false,source,locator:'section 1',body:BODY,originalByteHash:source.contentHash,mediaType:'text/html'}));
  const profiles=[{reviewed:true,rightsReviewed:true,host:'official.example',sourceIds:['test-source'],maxQuoteChars:300,validate:()=>({sourceSupported:true,supportedClaimIds:['test-claim']}),translationEquivalent:()=>true,validatePublicRecord:()=>true}];
  const cfg={...config,enabled:true,manualEvaluationApproved:true,approvalId:'synthetic',provider:'anthropic',model:'test',inputUSDPerMTokens:1,outputUSDPerMTokens:2,priceSource:'https://www.anthropic.com/pricing'};let calls=0;
- try{const result=await runReservedManualCase({repo,cases,caseId:'case-0',config:cfg,profiles,now:new Date('2026-11-05T07:00:00Z'),invoke:async()=>{calls++;return {text:JSON.stringify(fixture()),inputTokens:500,outputTokens:200};}});assert.equal(result.status,'evaluated');assert.equal(result.canPublish,false);assert.equal(calls,1);await assert.rejects(runReservedManualCase({repo,cases,caseId:'case-0',config:cfg,profiles,now:new Date('2026-11-05T07:00:00Z'),invoke:async()=>calls++}),/limit/);assert.equal(calls,1);
+ try{const result=await runReservedManualCase({repo,cases,caseId:'case-0',config:cfg,profiles,now:new Date('2026-11-05T07:00:00Z'),invoke:async()=>{calls++;return {text:JSON.stringify(modelFixture()),inputTokens:500,outputTokens:200};}});assert.equal(result.status,'evaluated');assert.equal(result.canPublish,false);assert.equal(calls,1);await assert.rejects(runReservedManualCase({repo,cases,caseId:'case-0',config:cfg,profiles,now:new Date('2026-11-05T07:00:00Z'),invoke:async()=>calls++}),/limit/);assert.equal(calls,1);
  }finally{await rm(repo,{recursive:true,force:true});}
 });

@@ -1,4 +1,28 @@
-# Local validation: 2026-11-05
+# Policy validation record
+
+## Offline next-phase preparation, 7 November 2026
+
+Independent clone and feature branch, based on actual remote main `691be04c409ff863d927dab2d9f543f18da0104e`. Existing locked packages were installed offline. The system runtime is Node 26.2.0; the project-matching Node 22.23.4 portable runtime already present on this host was used for final focused checks. No runtime was installed or replaced. No provider or token-count request, new source collection, credential provisioning, source activation, investment edit, shared-main change or deployment occurred.
+
+| Check | Observed result |
+|---|---|
+| Final focused model/SDK/manual tests | **42 passed, zero failed/skipped**, Node 22, serial, 2.7 seconds. This includes actual mocked SDK request serialization, strict malformed-response rejection, facts-only transmission refusal, the input-ceiling case and unchanged cost/reservation refusals. The temporary reporter's first invocation had an invalid relative module path and started no tests; that harness failure is retained separately. |
+| Most recent completed full unit suite | Node 26: **1,708 tests, 1,707 passed, 1 failed, zero skipped**. The failure is in the unchanged workflow predicate test at `tests/policy-workflow.test.mjs:43`; its diagnostic values were suppressed by the safe reporter. The isolated project-matching Node 22 file passed 8/8. That recheck does not turn the full run green. |
+| Project-matching full unit rerun | Interrupted for host-load coordination; no final totals and no full-pass claim. A file-level failure event for `tests/ro-story-scenes.test.js` was recorded as the run stopped. Its cause is not established. No application test expectation or workflow timeout was changed. |
+| Earlier full unit history | Missing-material runs are retained: final initial run 1,702 passed, 2 unchanged guard failures, 4 marker-related skips out of 1,708. An earlier Node 26 run also had a test-runner deserialization error in unchanged ETL concurrency; that file subsequently passed 17/17 independently. |
+| Financial/current checks | **84 passed, zero failed/skipped**; no baseline regeneration. |
+| Build and bundle budgets | The original isolated build passed and **33 budget tests passed**. A final separate rebuild was interrupted during transformation for host-load coordination; it is not counted as passed. No bundle budget increased. |
+| ETL and Policy-store verification | All existing data snapshots verified. Policy store verified the single exact manual historical head `366275d243854a017d6b8ef54ac5fc94d58a5d06e10406d469622fac21091a8b`. |
+| Original required artifact confidentiality guard | **7/7 passed, zero skipped**, required markers and required output, scanning this clone's own 390-file built artifact. Its content manifest is retained privately. |
+| Original staged/private confidentiality guard | Passed the staged candidate and 64 relevant private files, plus branch and commit metadata, using the existing fingerprint-verified scanner through explicitly authorized transient same-host reuse. The final stage is rescanned before the normal guarded commit. No material value was returned, copied or persisted, no model/API credential was accessed, and persistent access was not expanded. |
+| Full browser suite | Interrupted after starting 253 of 456 cases on this clone's own built preview, with server reuse disabled. Before interruption: one ECONNRESET and two 60-second click/stability timeouts; a worker-exit error was recorded during stopping. Causes remain unestablished. Logs, error contexts and traces are retained privately. No full-browser pass is claimed. The earlier temporary-preview-path failure and sandbox stall are retained separately. |
+| Protected-source / private-packet QA | Of 1,032 protected tracked files, **1,030 match their base Git blobs**. The other two differ only by the expressly authorized input ceiling 12,000 to 16,000 (+4,000; +33.3%); all their other bytes match. Protected manifest SHA-256 `c8876c8c88726229c3e6b97a0a969abe2642af02d3c1386f385f6ab36969e6a1`. All 27 packets, 98 exact EN/ZH clause slices, 84 original evidence references and 27 stored original files verify; 23 originals are the admitted works. |
+
+The input-ceiling increase admits the measured current-prior envelope with empty evidence (14,648 bytes including the existing 1,024-byte local margin). Larger evidence still faces the same pre-call admission and reservation checks. Output remains 3,000 tokens and wall time 120 seconds; prices and monetary budgets remain unset, and all source, rights and activation controls remain unchanged. Provider grammar acceptance, provider-injected structured-output tokens, real usage, invoices and model quality are unmeasured. The byte estimate and post-response usage rejection are not an invoice guarantee.
+
+Model, automatic publication, manual paid evaluation and all four new source approvals remain OFF. The existing one-head manual historical publication approval remains enabled and unchanged. Private recommendations remain unaccepted and unapplied. Only this task's verified process trees were stopped after the host-load coordination instruction; other tasks were not terminated. Load is a reason to coordinate, not a proven explanation of the failures. Final full regression/build/browser verification remains outstanding. The review stays draft; no integration, deployment, dynamic current-law completeness or automation readiness is claimed.
+
+## Local validation: 2026-11-05
 
 Connected Windows worktree `feat/policy-intelligence-v4`, base `494ce7b`. Locked dependencies installed with npm ci. Original ignored marker/key restored locally without printing values, expected fingerprint matched and original hooks enabled. No Cloud partial diff imported. No model key created or paid request made.
 

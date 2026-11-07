@@ -1,7 +1,7 @@
 /** Analyst-owned release configuration. Never populated from model output. */
 export const POLICY_AUTHORIZATION=Object.freeze({
   enabled:false,publicationEnabled:false,approvalId:null,provider:null,model:null,
-  maxInputTokens:12000,maxOutputTokens:3000,maxDailyUSD:null,wallTimeMs:120000,
+  maxInputTokens:16000,maxOutputTokens:3000,maxDailyUSD:null,wallTimeMs:120000,
   inventoryVersion:1,validatedGoldCases:0,inputUSDPerMTokens:null,outputUSDPerMTokens:null,priceSource:null,
 });
 export function authorizationProblems(config){

@@ -2,11 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { researchShadow,buildDecisionPacket } from '../policy/shadow.mjs';
 import { POLICY_AUTHORIZATION,authorizationProblems } from '../policy/authorization.mjs';
-import { fixture,bodies,CONTEXT,NOW } from './helpers/policy-fixture.mjs';
+import { fixture,modelFixture,bodies,CONTEXT,NOW } from './helpers/policy-fixture.mjs';
 // Rates and model are synthetic test inputs, not a provider price claim.
 const config={enabled:true,publicationEnabled:false,approvalId:'synthetic-approval',provider:'anthropic',model:'test-model',maxInputTokens:12000,maxOutputTokens:3000,maxDailyUSD:0.1,wallTimeMs:1000,validatedGoldCases:12,inputUSDPerMTokens:1,outputUSDPerMTokens:2,priceSource:'https://www.anthropic.com/pricing'};
 const ledger={reservedUSD:0,worstCaseCallUSD:0.018,completed:false};
-const run=(extra={})=>researchShadow({changedDocuments:[{sourceId:'test-source'}],invoke:async()=>({text:JSON.stringify(fixture()),inputTokens:500,outputTokens:200}),config,ledger,context:CONTEXT,bodies:bodies(),now:NOW,...extra});
+const run=(extra={})=>researchShadow({changedDocuments:[{sourceId:'test-source'}],invoke:async()=>({text:JSON.stringify(modelFixture()),inputTokens:500,outputTokens:200}),config,ledger,context:CONTEXT,bodies:bodies(),now:NOW,...extra});
 test('production model/publication configuration remains disabled and unapproved',()=>{assert.equal(POLICY_AUTHORIZATION.enabled,false);assert.equal(POLICY_AUTHORIZATION.publicationEnabled,false);assert.ok(authorizationProblems(POLICY_AUTHORIZATION).length);});
 test('shadow research has no publication authority even for valid output',async()=>{const r=await run();assert.equal(r.status,'shadow_valid');assert.equal(r.canPublish,false);assert.equal(r.published,false);assert.equal(r.requiresIndependentEvidenceAttestations,true);});
 test('no change, no authorization, budget exhaustion and replay all skip model invocation',async()=>{
