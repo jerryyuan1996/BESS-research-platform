@@ -10,8 +10,8 @@ import { markets } from '../registry.js';
 
 import { MKT } from './mkt.js';
 import { TABS } from './tabs.js';
-import { M } from './data.js';
 import { SRC } from './sources.js';
+import { M } from './data.js';
 import { buildSections } from './sections.js';
 import './gridMapData.js';   // side effect: registers this market's grid map
 import VIEW from '../../../view/markets/caiso.json' with { type: 'json' };
