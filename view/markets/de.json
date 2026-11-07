@@ -1,8 +1,8 @@
 {
   "marketId": "de",
   "thesis": [
-    "Europe's most liquid storage market, with no capacity revenue for a four-hour battery. Merchant four hours is the best design, and a toll is how a fund secures it, giving up some return for certainty; at build cost the toll case falls short of the fund's target. The open risk is the storage grid-fee framework, still a draft.",
-    "欧洲流动性最好的储能市场，但四小时电池没有容量收入。纯市场化四小时是最佳设计；基金可通过租赁锁定收入，以部分回报换取确定性；按建设成本测算，租赁情形达不到基金目标回报。尚未落定的风险是仍为草案的储能电网费框架。"
+    "Europe's most liquid storage market. For the priced four-hour reference project, no capacity revenue is assumed. Merchant four hours is the best design, and a toll is how a fund secures it, giving up some return for certainty; at build cost the toll case falls short of the fund's target. The open risk is the storage grid-fee framework, still a draft.",
+    "欧洲流动性最好的储能市场。对已定价的四小时参考项目，不计入容量收入。纯市场化四小时是最佳设计；基金可通过租赁锁定收入，以部分回报换取确定性；按建设成本测算，租赁情形达不到基金目标回报。尚未落定的风险是仍为草案的储能电网费框架。"
   ],
   "grades": {
     "assetReturn": {
