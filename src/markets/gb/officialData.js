@@ -1,5 +1,5 @@
 import { metricsForMarket, metricValues, metricYears } from '../../governance/metrics.js';
-import { PROJECT_STAGE } from '../../projects/schema.js';
+import { PROJECT_STAGE } from '../../projects/projectValues.js';
 
 const series = (id) => ({
   id,

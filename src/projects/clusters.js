@@ -39,7 +39,8 @@
       It renders as the project itself, so a reader never sees "1 project" on a
       map that could simply have shown the project.
    --------------------------------------------------------------------------- */
-import { energyMWh, isPlottable, MAPPED_STAGES } from './schema.js';
+import { energyMWh, isPlottable, MAPPED_STAGES } from './projectValues.js';
+import { energyPeriod } from './projectTotals.js';
 
 /** Merge radius in screen pixels. Roughly two marker widths — close enough to
     overlap is close enough to merge. */
@@ -49,6 +50,7 @@ export const CLUSTER_RADIUS_PX = 26;
 export const CLUSTER_MAX_ZOOM = 8;
 
 const sum = (values) => values.reduce((total, value) => total + value, 0);
+
 
 /**
  * Group projects into map markers for the current zoom.
@@ -136,6 +138,7 @@ function clusterOf(members){
   const powers = projects.map(p => p.capacityMW);
   const energies = projects.map(energyMWh);
   const known = energies.filter(v => v != null);
+  const period=energyPeriod(projects,known.length);
 
   return {
     kind: 'cluster',
@@ -144,8 +147,9 @@ function clusterOf(members){
     powerMW: sum(powers),
     /* Rule 3: all or nothing. A partial sum is a smaller number that looks like
        a complete one, which is the worst of both. */
-    energyMWh: known.length === projects.length ? sum(known) : null,
+    energyMWh: known.length === projects.length && !period.energyPeriodsMixed ? sum(known) : null,
     energyKnown: known.length,
+    ...period,
     // Centroid of the members, so the marker sits on the fleet rather than on a cell corner.
     x: sum(members.map(m => m.xy[0])) / members.length,
     y: sum(members.map(m => m.xy[1])) / members.length,
@@ -162,11 +166,12 @@ function clusterOf(members){
 export function clusterLabel(cluster){
   const mw = Math.round(cluster.powerMW).toLocaleString('en-US');
   const n = cluster.count;
+  if(cluster.energyPeriodsMixed)return [`${n} projects · ${mw} MW · energy observation periods differ`,`${n}个项目 · ${mw} MW · 能量观测时期不同`];
   if (cluster.energyMWh != null){
     const mwh = Math.round(cluster.energyMWh).toLocaleString('en-US');
     return [
-      `${n} projects · ${mw} MW / ${mwh} MWh`,
-      `${n}个项目 · ${mw} MW / ${mwh} MWh`,
+      `${n} projects · ${mw} MW / ${mwh} MWh`+(cluster.energyPeriod?` (${cluster.energyPeriod})`:''),
+      `${n}个项目 · ${mw} MW / ${mwh} MWh`+(cluster.energyPeriod?`（${cluster.energyPeriod}）`:''),
     ];
   }
   /* Said plainly rather than left blank: a reader who sees no MWh should know
@@ -179,21 +184,4 @@ export function clusterLabel(cluster){
   ];
 }
 
-/** Totals for a market's drawable fleet, split by stage. Feeds the map caption
-    and the pipeline section header from one calculation. */
-export function fleetTotals(projects){
-  const out = {};
-  for (const stage of MAPPED_STAGES){
-    const inStage = projects.filter(p => p.stage === stage);
-    const energies = inStage.map(energyMWh);
-    const known = energies.filter(v => v != null);
-    out[stage] = {
-      count: inStage.length,
-      powerMW: sum(inStage.map(p => p.capacityMW)),
-      energyMWh: inStage.length && known.length === inStage.length ? sum(known) : null,
-      energyKnown: known.length,
-      plottable: inStage.filter(isPlottable).length,
-    };
-  }
-  return out;
-}
+export { fleetTotals } from './projectTotals.js';

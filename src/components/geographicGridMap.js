@@ -1,7 +1,5 @@
 import { geoMercator, geoPath } from 'd3-geo';
-import { clusterProjects, clusterLabel } from '../projects/clusters.js';
 import { transmissionSegments } from './transmissionGeometry.js';
-import { energyMWh } from '../projects/schema.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import {
@@ -99,6 +97,8 @@ function kindLabel(data, kind){
 
 export function renderGeographicGridMap(parent, dataIn){
   let data = dataIn;
+  let inventoryProjects = [];
+  let drawProjectMarkers=null,projectModuleRequested=false;
   /* Constraints are a fifth layer, added only where the market has a congestion
      register. They are given `kind:'constraint'` here rather than in the register
      so the register stays a statement about the market, not about this map. */
@@ -661,6 +661,7 @@ export function renderGeographicGridMap(parent, dataIn){
   /* ---- project pipeline ----------------------------------------------------
      Re-clustered on every zoom change, because whether two batteries overlap is
      a question about pixels and the answer changes as the reader zooms. */
+  const projectUnavailable=()=>{if(!gone())controlRow.append(h('span',{role:'status'},L(['Project markers unavailable.','项目标记暂不可用。'])));};
   function renderProjects(){
     projectLayer.replaceChildren();
     /* The overview map stays the orientation map it has always been. Projects,
@@ -668,53 +669,19 @@ export function renderGeographicGridMap(parent, dataIn){
        the grid tab where a reader can zoom into it. */
     if (!interactive || !state.layers.project) return;
 
-    /* Screen position: the viewport transform has not been applied to these
-       coordinates yet, so the clusterer sees the same pixels the reader will. */
-    const toScreen = (p) => {
-      const xy = projection([p.lon, p.lat]);
-      return xy ? [xy[0] * view.zoom + view.x, xy[1] * view.zoom + view.y] : null;
-    };
-
-    for (const marker of clusterProjects(data.projects || [], toScreen, { zoom:view.zoom })){
-      // Back out of screen space: the layer is inside the transformed viewport.
-      const cx = (marker.x - view.x) / view.zoom;
-      const cy = (marker.y - view.y) / view.zoom;
-      const g = svgEl('g', {
-        class:`geo-project ${marker.stage}` + (marker.kind === 'cluster' ? ' cluster' : ''),
-        transform:`translate(${cx} ${cy}) scale(${1 / view.zoom})`,
-      });
-
-      if (marker.kind === 'cluster'){
-        g.append(svgEl('circle', { class:'geo-project-shape', r:11 }));
-        g.append(appendText(svgEl('text', { class:'geo-project-count', y:3.5 }), String(marker.count)));
-        g.append(appendText(svgEl('title'), L(clusterLabel(marker))));
-      } else {
-        const p = marker.project;
-        const energy = energyMWh(p);
-        g.append(svgEl('circle', { class:'geo-project-shape', r:5.5 }));
-        g.append(appendText(svgEl('title'),
-          `${p.name} — ${Math.round(p.capacityMW)} MW`
-          + (energy != null ? ` / ${Math.round(energy)} MWh` : L([' · energy not published', ' · 未公布能量容量']))
-          + (p.operator ? ` — ${p.operator}` : '')));
+    // Dated observations appear only in the current period.
+    const projects=[...(data.projects||[]),...(state.period==='current'?inventoryProjects:[])];
+    if(!projects.length && !data.zoneClusters?.length)return;
+    if(!drawProjectMarkers){
+      if(!projectModuleRequested){
+        projectModuleRequested=true;
+        import('../projects/mapMarkers.js').then(module=>{
+          if(gone())return;drawProjectMarkers=module.renderProjectMarkers;renderProjects();
+        }).catch(projectUnavailable);
       }
-      projectLayer.append(g);
+      return;
     }
-
-    /* Italy only: Terna publishes MACSE volume nationally and price by zone, so
-       these markers carry a price and deliberately no capacity. They are drawn
-       through the same layer but never through the clusterer, which sums. */
-    for (const zone of data.zoneClusters || []){
-      const p = projection(zone.coord);
-      if (!p) continue;
-      const g = svgEl('g', {
-        class:'geo-project zone-cluster',
-        transform:`translate(${p[0]} ${p[1]}) scale(${1 / view.zoom})`,
-      });
-      g.append(svgEl('circle', { class:'geo-project-shape', r:10 }));
-      g.append(appendText(svgEl('title'), L(zone.label)));
-      g.append(appendText(svgEl('text', { class:'geo-project-zone-label', y:-15 }), L(zone.name)));
-      projectLayer.append(g);
-    }
+    drawProjectMarkers(projectLayer,projects,{projection,view,zoneClusters:data.zoneClusters,svgEl,appendText});
   }
 
   function renderPoints(){
@@ -1149,4 +1116,12 @@ export function renderGeographicGridMap(parent, dataIn){
   parent.append(root);
   attached = true;
   update();
+  if(interactive && ['pjm','ercot','caiso'].includes(data.marketId)){
+    void import('../projects/mapMarkers.js').then(module=>{
+      if(gone())return;drawProjectMarkers=module.renderProjectMarkers;
+      module.attachInventory(parent,data.marketId,{gone,layerGroup,onToggle:enabled=>{state.layers.project=enabled;renderProjects();},onProjects:projects=>{
+        if(gone())return;inventoryProjects=projects;renderProjects();
+      }});
+    }).catch(projectUnavailable);
+  }
 }

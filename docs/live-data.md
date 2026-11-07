@@ -57,6 +57,7 @@ failures; the snapshots retain their actual fetched timestamps rather than claim
 | `ro-day-ahead` | RO | ENTSO-E Transparency | read on the daily combined run | `ENTSOE_TOKEN` |
 | `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | read on the daily combined run | — |
 | `wa-wem-prices` | WA | AEMO WEM reference trading price | daily | — |
+| `us-eia-storage-projects` | PJM / ERCOT / CAISO | EIA-860M monthly generator inventory plus exact annual EIA-860 storage evidence | daily index check; bounded monthly/annual revision checks | — |
 | `jp-tokyo-jepx` | JP-Tokyo | JEPX spot | daily | — |
 | `jp-kyushu-jepx` | JP-Kyushu | JEPX spot | daily | — |
 | `jp-hokkaido-jepx` | JP-Hokkaido | JEPX spot | daily | — |
@@ -66,6 +67,30 @@ failures; the snapshots retain their actual fetched timestamps rather than claim
 
 The catalogue is [`src/governance/datasets.js`](../src/governance/datasets.js) — the only place the
 platform learns a dataset exists, in the same way `markets/registry.js` is for markets.
+
+### US generator inventory
+
+`us-eia-storage-projects` uses the same runner, validation boundary, lock and
+publisher. It is an inventory, with its own schema and summary, not a price
+series or model input (`bearsOn: []`). Current monthly nameplate MW/MWh and
+locations are separate from the annual reporting year's energy and maximum
+charge/discharge MW. Annual hours use annual MWh divided by annual maximum
+discharge MW; they never populate the legacy power-times-duration field.
+
+The normal daily cycle reads two small EIA indices. It downloads newly released
+files, conditionally checks monthly revisions on Mondays and annual revisions on
+the first of each month, and preserves unchanged timestamps and last-good files.
+Only observed revisions are recorded; accepted normalized snapshots persist in
+Git history. This is not a complete queue or an archive of unseen upstream edits.
+The 365-day price window does not apply to inventories.
+
+`node etl/run.mjs --only us-eia-storage-projects --dry-run` deliberately reads and
+validates both real workbooks, without publishing. The existing workflow's
+`only`, `dry_run` and `verify_release` inputs support the same bounded shadow
+verification. No new schedule or credentials are needed. Full inventory data is
+loaded only on the three US grid tabs, where the map and bilingual table share
+one verified source; `/data` uses the small summary. See the [source contract](data-sources/eia-generator-inventory.md)
+for download limits, identity matching, rights, coverage and rollback.
 
 ### Getting the ENTSO-E token
 

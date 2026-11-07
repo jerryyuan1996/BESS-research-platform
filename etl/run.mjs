@@ -67,6 +67,7 @@ import * as nesoResponse from './sources/neso-response.mjs';
 import * as nesoReserve from './sources/neso-reserve.mjs';
 import * as elexonSystemPrices from './sources/elexon-system-prices.mjs';
 import * as iesoOntarioZonal from './sources/ieso-ontario-zonal.mjs';
+import * as eiaGeneratorInventory from './sources/eia-generator-inventory.mjs';
 
 const CONNECTORS = {
   ecb,
@@ -79,6 +80,7 @@ const CONNECTORS = {
   'neso-reserve': nesoReserve,
   'elexon-system-prices': elexonSystemPrices,
   'ieso-ontario-zonal': iesoOntarioZonal,
+  'eia-generator-inventory': eiaGeneratorInventory,
   /* News used to run from its own entrypoint, outside this orchestrator and
      outside the envelope. That is how it ended up unverifiable. It is an
      ordinary connector now — `npm run etl` covers it, and there is no second
@@ -151,7 +153,7 @@ async function runDataset(dataset, now, { connectors = CONNECTORS, log = stdout,
 
   let result;
   try {
-    result = await connector.fetchDataset({ dataset, previous, log, now });
+    result = await connector.fetchDataset({ dataset, previous, log, now, dryRun });
   } catch (err){
     return { dataset, status: 'fetch-failed', error: err.message, snapshot: previous };
   }

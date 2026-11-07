@@ -186,7 +186,9 @@ const BUDGET = {
        ie 64.88, pl 33.93, ro 28.40 KiB gzipped — from 129.17, 132.13, 91.34
        and 84.12. The room left is for the dataset, not for analysis that has
        drifted back in. The caps are lowered, never raised. */
-    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 44, ercot: 59, de: 64, pjm: 65, it: 75, ro: 34,
+    // Owner approved 2026-11-07: CAISO +0.5 KiB (44 -> 44.5, +1.14%) for
+    // the EIA inventory integration. All other market/shared caps are unchanged.
+    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 44.5, ercot: 59, de: 64, pjm: 65, it: 75, ro: 34,
     pl: 40, jp: 127, nem: 30, gb: 62, ie: 75, wa: 207,
   },
 

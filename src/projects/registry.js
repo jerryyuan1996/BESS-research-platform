@@ -18,13 +18,14 @@
    an empty, honest answer — which is the Romania case, and the reason
    `hasSource()` exists separately from "returned no projects".
    --------------------------------------------------------------------------- */
-import { MAPPED_STAGES, isPlottable, energyMWh } from './schema.js';
-import { fleetTotals } from './clusters.js';
+import { MAPPED_STAGES, isPlottable, energyMWh } from './projectValues.js';
+import { fleetTotals } from './projectTotals.js';
 
 /* marketId → { projects, licence, attribution, dataset, publishedAt, note }.
    Populated by `registerProjects` at module load from each market's own data
    file, exactly as gridMapRegistry joins maps to markets. */
 const REGISTRY = new Map();
+const SOURCE_MEMBERS = new Map();
 
 /**
  * Register one market's project dataset.
@@ -55,11 +56,25 @@ export function registerProjects(marketId, entry){
 }
 
 const describe = (entry) => ({
+  ...(entry.sourceKey ? { sourceKey:entry.sourceKey } : {}),
   dataset: entry.dataset,
   licence: entry.licence || null,
   publishedAt: entry.publishedAt ?? null,
   note: entry.note || null,
 });
+
+/** Replace one governed source's records, including removals, without altering
+    legacy registrations or retaining retired IDs from an earlier revision. */
+export function replaceProjectsForSource(marketId, entry){
+  if (!marketId || !entry?.sourceKey || !Array.isArray(entry.projects)) throw new Error('project source identity and records required');
+  const key=marketId+':'+entry.sourceKey, oldIds=SOURCE_MEMBERS.get(key)||new Set();
+  const existing=REGISTRY.get(marketId);
+  REGISTRY.set(marketId,{
+    projects:dedupe([...(existing?.projects||[]).filter(p=>!oldIds.has(p.id)),...entry.projects]),
+    sources:[...(existing?.sources||[]).filter(s=>s.sourceKey!==entry.sourceKey),describe(entry)],
+  });
+  SOURCE_MEMBERS.set(key,new Set(entry.projects.map(p=>p.id)));
+}
 
 /* Later registration wins on a shared id, so an enriched record replaces the
    bare one it was built from rather than doubling the fleet. */
@@ -146,4 +161,5 @@ export function registeredMarkets(){
 /** Test seam. Never called by the application. */
 export function __resetRegistry(){
   REGISTRY.clear();
+  SOURCE_MEMBERS.clear();
 }

@@ -68,9 +68,8 @@ test('a zero coordinate pair is rejected rather than plotted off Africa', async 
 });
 
 test('the join adds position and metadata but never energy capacity', async () => {
-  /* EIA publishes no MWh for batteries on either form. A joined record that
-     gained a duration would be inventing the one number the platform is most
-     careful about. */
+  /* This Plant-only join reads no generator storage schedule. It cannot infer
+     MWh or discharge duration from a coordinate match. */
   const before = byName(await monthly('ercot'), 'Bat Cave');
   const after = byName(await enriched('ercot'), 'Bat Cave');
 

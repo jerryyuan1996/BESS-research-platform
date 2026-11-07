@@ -8,19 +8,17 @@
    Statutory monthly filing, so coverage is a legal obligation rather than a
    survey response, and it is US Government work in the public domain.
 
-   WHAT IT DOES NOT CARRY. Coordinates. The monthly file is generator-level with
-   a plant ID, a state and a county, and the latitude and longitude live on the
-   ANNUAL EIA-860. Until that join is built these projects are pipeline-table
-   rows with no map marker, which the schema supports on purpose: a project that
-   cannot be plotted is not a project that does not exist. This MONTHLY form
-   carries no energy capacity — `durationHours` stays null until an explicit
-   generator-level join to the annual storage schedule is implemented.
+   Current monthly releases also carry nameplate MWh and coordinates (verified
+   on September 2026 bytes). The legacy transform remains nullable by default;
+   the governed inventory explicitly opts into these dated observations.
+   Annual charge/discharge MW and discharge hours remain a separate supplement,
+   never a duration multiplied by monthly nameplate MW.
 
    EIA's own warning is worth repeating: monthly capacities are restated
    retroactively and are less reliable than the annual form. This is a pipeline
    register, not an accounting source.
    --------------------------------------------------------------------------- */
-import { readSheet, num, isoDate, requireColumns } from '../lib/workbook.mjs';
+import { readSheets, num, isoDate, requireColumns } from '../lib/workbook.mjs';
 import { provenance, AUTHORITY } from '../lib/provenance.mjs';
 import { PROJECT_STAGE, PROJECT_TECHNOLOGY } from '../../src/projects/schema.js';
 
@@ -61,9 +59,19 @@ export function stageOf(status){
   return code ? (STAGE_BY_CODE[code] ?? null) : null;
 }
 
-const isBattery = (row) =>
-  String(row.prime_mover_code ?? '').trim().toUpperCase() === BATTERY_PRIME_MOVER
-  || BATTERY_TECHNOLOGY.test(String(row.technology ?? ''));
+const isBattery = (row) => {
+  const code = String(row.prime_mover_code ?? '').trim().toUpperCase();
+  return code ? code === BATTERY_PRIME_MOVER : BATTERY_TECHNOLOGY.test(String(row.technology ?? ''));
+};
+
+/** Statistical cells with an explicit unit must not accept strings such as GW. */
+export function eiaNumber(value){
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  const text = String(value ?? '').trim();
+  if (!/^-?(?:\d+(?:\.\d+)?|\d{1,3}(?:,\d{3})+(?:\.\d+)?)$/.test(text)) return null;
+  const result = Number(text.replace(/,/g, ''));
+  return Number.isFinite(result) ? result : null;
+}
 
 /** Month + year columns → an ISO date. EIA splits them; the schema wants one. */
 export function codOf(row){
@@ -82,7 +90,7 @@ const slug = (value) => String(value ?? '').toLowerCase()
  * @param {object[]} rows
  * @param {object} ctx  { marketId, evidenceDate }
  */
-export function normalizeEia(rows, { marketId, evidenceDate, publishedAt = null }){
+export function normalizeEia(rows, { marketId, evidenceDate, publishedAt = null, reportingPeriod = null, includeObservations = false }){
   const ba = MARKET_BA[marketId];
   if (!ba) throw new Error(`eia-860m: ${marketId} has no balancing authority mapping`);
 
@@ -90,11 +98,12 @@ export function normalizeEia(rows, { marketId, evidenceDate, publishedAt = null 
   for (const row of rows){
     if (String(row.balancing_authority_code ?? '').trim().toUpperCase() !== ba) continue;
     if (!isBattery(row)) continue;
+    if (includeObservations && String(row.prime_mover_code ?? '').trim().toUpperCase() !== 'BA') continue;
 
     const stage = stageOf(row.status);
     if (!stage) continue;                 // queue entries are not pipeline
 
-    const capacityMW = num(row.nameplate_capacity);
+    const capacityMW = (includeObservations ? eiaNumber : num)(row.nameplate_capacity);
     /* No capacity, no project: a battery of unknown size cannot be summed into a
        fleet total, and every total on the page would be wrong by an unknown
        amount rather than visibly missing a row. */
@@ -102,9 +111,9 @@ export function normalizeEia(rows, { marketId, evidenceDate, publishedAt = null 
 
     const plantId = String(row.plant_id ?? '').trim();
     const generatorId = String(row.generator_id ?? '').trim();
-    if (!plantId) continue;
+    if (!plantId || !generatorId) continue;
 
-    projects.push({
+    const project = {
       id: `${marketId}-eia-${slug(plantId)}${generatorId ? '-' + slug(generatorId) : ''}`,
       marketId,
       name: String(row.plant_name ?? `EIA plant ${plantId}`).trim()
@@ -113,12 +122,12 @@ export function normalizeEia(rows, { marketId, evidenceDate, publishedAt = null 
       stage,
       statusRaw: String(row.status ?? '').trim(),
       capacityMW,
-      /* EIA-860M publishes no energy capacity. Null rather than a guessed
+      /* No common discharge-power duration is supplied. Null rather than a guessed
          duration — a two-hour assumption would flow straight into cluster
          labels and pipeline totals as though it had been observed. */
       durationHours: null,
       operator: String(row.entity_name ?? '').trim() || null,
-      // Coordinates live on the annual EIA-860 and are not joined yet.
+      // Legacy shape; the governed inventory opts into current monthly fields.
       lat: null,
       lon: null,
       expectedCod: codOf(row),
@@ -140,7 +149,27 @@ export function normalizeEia(rows, { marketId, evidenceDate, publishedAt = null 
       /* Kept so the annual-860 join has something to match on, and so a reader
          can find the row in the source file. */
       sourceRef: { plantId, generatorId: generatorId || null, state: row.plant_state ?? null },
-    });
+    };
+    if (includeObservations){
+      const mwh = eiaNumber(row.nameplate_energy_capacity);
+      const lat = eiaNumber(row.latitude), lon = eiaNumber(row.longitude);
+      const located = lat != null && lon != null && Math.abs(lat) <= 90 && Math.abs(lon) <= 180 && !(lat === 0 && lon === 0);
+      const year = eiaNumber(row.planned_operation_year) ?? eiaNumber(row.operating_year);
+      const month = eiaNumber(row.planned_operation_month) ?? eiaNumber(row.operating_month);
+      project.expectedCod = Number.isInteger(year) && Number.isInteger(month) && month >= 1 && month <= 12
+        ? `${year}-${String(month).padStart(2,'0')}-01` : null;
+      project.codPrecision = project.expectedCod ? 'month' : year ? 'year' : null;
+      project.reportedCodYear = year;
+      project.sourceRef.balancingAuthority = ba;
+      project.sourceRef.primeMover = 'BA';
+      project.sourceRef.operatingYear = eiaNumber(row.operating_year);
+      project.sourceRef.operatingMonth = eiaNumber(row.operating_month);
+      project.energyObservation = mwh > 0 ? { value:mwh, unit:'MWh', basis:'monthly-nameplate', reportingPeriod, sourceId:SOURCE_ID, sourceRecordId:`${plantId}:${generatorId}` } : null;
+      project.lat = located ? lat : null; project.lon = located ? lon : null;
+      project.coordinateEvidence = { sourceId:located ? SOURCE_ID : null, basis:located ? 'monthly-reported' : 'missing', reportingPeriod, confidence:located ? 'reported' : 'none' };
+      project.inventoryPeriod = reportingPeriod;
+    }
+    projects.push(project);
   }
 
   // Deterministic order so an unchanged release produces an unchanged file.
@@ -150,7 +179,7 @@ export function normalizeEia(rows, { marketId, evidenceDate, publishedAt = null 
 /* The columns the transform depends on. Named explicitly so a release that
    renames one stops the run instead of publishing a register of nulls. */
 export const REQUIRED_COLUMNS = [
-  'plant_id', 'plant_name', 'entity_name', 'status',
+  'plant_id', 'generator_id', 'plant_name', 'entity_name', 'status',
   'nameplate_capacity', 'prime_mover_code', 'balancing_authority_code',
 ];
 
@@ -163,21 +192,25 @@ export const REQUIRED_COLUMNS = [
  * both are read: a battery under construction is pipeline, and one already
  * operating is the fleet it joins.
  */
-export async function readEiaWorkbook(file, { marketId, evidenceDate, publishedAt = null, sheets = ['Operating', 'Planned'] } = {}){
-  const all = [];
-  for (const sheet of sheets){
-    let read;
-    try {
-      read = await readSheet(file, { sheet, headerRow: 3 });
-    } catch {
-      continue;                           // a vintage without this tab is not an error
-    }
-    requireColumns(read.headers, REQUIRED_COLUMNS, `eia-860m ${sheet}`);
-    all.push(...normalizeEia(read.rows, { marketId, evidenceDate, publishedAt }));
-  }
+export async function readEiaWorkbook(file, { sheets = ['Operating', 'Planned'], ...context } = {}){
+  const reads = await readSheets(file, sheets.map(sheet => ({ sheet, headerRow:3, exactSheet:true, rejectDuplicateHeaders:true, textColumns:['plant_id','generator_id'] })));
+  return eiaProjectsFromSheets(reads, context);
+}
 
-  /* A generator can appear on both sheets across a status change; the last one
-     wins, which is the operating row when a unit has just come online. */
-  const byId = new Map(all.map(project => [project.id, project]));
-  return [...byId.values()].sort((a, b) => a.id.localeCompare(b.id));
+/** Operating wins a cross-tab transition. Within-tab contradictions fail closed. */
+export function eiaProjectsFromSheets(reads, context){
+  const byId = new Map();
+  for (const read of reads){
+    requireColumns(read.headers, REQUIRED_COLUMNS, `eia-860m ${read.sheetName}`);
+    const rank = read.sheetName.trim().toLowerCase() === 'operating' ? 2 : 1;
+    for (const project of normalizeEia(read.rows, context)){
+      const prior = byId.get(project.id);
+      if (prior){
+        if (prior.project.sourceRef.plantId !== project.sourceRef.plantId || prior.project.sourceRef.generatorId !== project.sourceRef.generatorId) throw new Error('eia-860m: project ID collision');
+        if (prior.rank === rank && JSON.stringify(prior.project) !== JSON.stringify(project)) throw new Error('eia-860m: conflicting duplicate compound ID');
+      }
+      if (!prior || rank > prior.rank) byId.set(project.id, { project, rank });
+    }
+  }
+  return [...byId.values()].map(p => p.project).sort((a,b) => a.id.localeCompare(b.id));
 }

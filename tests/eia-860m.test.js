@@ -13,7 +13,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {
-  readEiaWorkbook, normalizeEia, stageOf, codOf, MARKET_BA, LICENCE, REQUIRED_COLUMNS,
+  readEiaWorkbook, normalizeEia, eiaProjectsFromSheets, stageOf, codOf, MARKET_BA, LICENCE, REQUIRED_COLUMNS,
 } from '../etl/sources/eia-860m.mjs';
 import { validateProjects, PROJECT_STAGE } from '../src/projects/schema.js';
 import { readSheet } from '../etl/lib/workbook.mjs';
@@ -80,7 +80,7 @@ test('EIA’s split month and year columns become one COD', () => {
   assert.equal(codOf({ operating_year:2024, operating_month:99 }), '2024-12-01', 'a bad month is clamped');
 });
 
-test('energy capacity is null because EIA does not publish it', async () => {
+test('the legacy transform does not invent a duration', async () => {
   /* Assuming two hours would flow into every cluster label and fleet total as
      though it had been observed. */
   for (const project of await read('ercot')){
@@ -109,9 +109,8 @@ test('a renamed column stops the run instead of publishing nulls', async () => {
     assert.ok(headers.includes(column), `the fixture must exercise ${column}`);
   }
   await assert.rejects(
-    () => readEiaWorkbook(FIXTURE, { marketId:'ercot', evidenceDate:'2026-08-09', sheets:['Formulas'] })
-      .catch(() => Promise.resolve([])).then(() => { throw new Error('unreachable'); }),
-    /unreachable/, 'a missing sheet is skipped rather than fatal');
+    () => readEiaWorkbook(FIXTURE, { marketId:'ercot', evidenceDate:'2026-08-09', sheets:['Formulas'] }),
+    /sheet.*not found/, 'a required missing sheet must fail rather than silently publish partial data');
 });
 
 test('an unmapped market is refused rather than silently empty', () => {
@@ -123,4 +122,21 @@ test('the public-domain terms travel with the data', () => {
   assert.match(LICENCE.attribution, /Energy Information Administration/);
   assert.equal(LICENCE.shareAlike, false);
   assert.ok(LICENCE.url.startsWith('https://'));
+});
+
+test('Operating wins a cross-sheet transition in either worksheet order',()=>{
+  const base={plant_id:'100',generator_id:'001',plant_name:'Synthetic transition',entity_name:'Synthetic operator',balancing_authority_code:'PJM',prime_mover_code:'BA',nameplate_capacity:10,status:'(OP) Operating'};
+  const op={sheetName:'Operating',headers:REQUIRED_COLUMNS,rows:[base]};
+  const plan={sheetName:'Planned',headers:REQUIRED_COLUMNS,rows:[{...base,status:'(V) Under construction',nameplate_capacity:20}]};
+  for(const reads of [[op,plan],[plan,op]]){
+    const result=eiaProjectsFromSheets(reads,{marketId:'pjm',evidenceDate:'2026-11-07'});
+    assert.equal(result.length,1);assert.equal(result[0].stage,'operating');assert.equal(result[0].capacityMW,10);assert.equal(result[0].id,'pjm-eia-100-001');
+  }
+});
+test('contradictory duplicate IDs and slug collisions are never silently overwritten',()=>{
+  const base={plant_id:'100',generator_id:'A_1',plant_name:'Synthetic collision',entity_name:'Synthetic operator',balancing_authority_code:'PJM',prime_mover_code:'BA',nameplate_capacity:10,status:'(OP) Operating'};
+  const read=rows=>eiaProjectsFromSheets([{sheetName:'Operating',headers:REQUIRED_COLUMNS,rows}],{marketId:'pjm',evidenceDate:'2026-11-07'});
+  assert.throws(()=>read([base,{...base,nameplate_capacity:11}]),/conflicting duplicate/);
+  assert.throws(()=>read([base,{...base,generator_id:'A-1'}]),/ID collision/);
+  assert.equal(normalizeEia([{...base,prime_mover_code:'PS',technology:'Batteries'}],{marketId:'pjm',evidenceDate:'2026-11-07'}).length,0);
 });

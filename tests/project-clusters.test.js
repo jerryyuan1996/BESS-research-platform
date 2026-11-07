@@ -165,3 +165,23 @@ test('fleet totals split by stage and report what cannot be plotted', () => {
   assert.equal(totals[PROJECT_STAGE.UNDER_CONSTRUCTION].energyMWh, 1200);
   assert.ok(!(PROJECT_STAGE.ANNOUNCED in totals), 'announced is not a mapped stage');
 });
+
+const observed=(period,value,over={})=>project({durationHours:null,sourceIds:['us-eia-860m'],sourceRef:{plantId:'1',generatorId:'01'},
+  energyObservation:{unit:'MWh',basis:'monthly-nameplate',sourceId:'us-eia-860m',sourceRecordId:'1:01',reportingPeriod:period,value},...over});
+
+test('observed MWh is summed only for one common period and is labelled with it',()=>{
+  const projects=[observed('2026-09',80),observed('2026-09',120)];
+  const [cluster]=clusterProjects(projects,xy);
+  assert.equal(cluster.energyMWh,200);assert.equal(cluster.energyPeriod,'2026-09');
+  assert.match(clusterLabel(cluster)[0],/200 MWh \(2026-09\)/);
+  assert.equal(fleetTotals(projects).operating.energyMWh,200);
+});
+
+test('mixed observation periods and undated inferred energy never form a dated fleet total',()=>{
+  for(const projects of [[observed('2026-09',80),observed('2026-08',120)],[observed('2026-09',80),project()]]){
+    const [cluster]=clusterProjects(projects,xy);
+    assert.equal(cluster.energyMWh,null);assert.equal(cluster.energyPeriodsMixed,true);
+    assert.match(clusterLabel(cluster)[0],/periods differ/);
+    assert.equal(fleetTotals(projects).operating.energyMWh,null);
+  }
+});
