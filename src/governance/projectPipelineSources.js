@@ -147,8 +147,8 @@ function JAPAN_REASON(){
 
 /* EIA-860M is one dataset covering all three US markets, so it is written once.
    Prime mover code "BA" is battery storage; the monthly file carries operating
-   status and planned operation date for units of 1 MW and above. Coordinates
-   are on the annual EIA-860 and join on Plant ID. */
+   status and planned operation month. Current releases also carry MWh and
+   coordinates. The annual supplement retains its own year and exact ID join. */
 function US_EIA(market){
   return {
     status: 'verified',
@@ -159,12 +159,12 @@ function US_EIA(market){
       url: 'https://www.eia.gov/electricity/data/eia860m/',
       licence: US_GOV,
       cadence: 'monthly',
-      fields: ['name', 'powerMW', 'operator', 'status', 'cod'],
-      joins: { coordinates: 'EIA-860 annual, on Plant ID', energyMWh: 'EIA-860 annual storage schedule' },
-      filter: { market, primeMover: 'BA', minMW: 1 },
+      fields: ['name', 'powerMW', 'energyMWh', 'operator', 'lat', 'lon', 'status', 'cod'],
+      joins: { coordinateFallback: 'EIA-860 annual Plant, preserving exact/name-state confidence', annualStorage: 'EIA-860 storage, exact Plant Code + Generator ID only' },
+      filter: { market, primeMover: 'BA', positiveGeneratorMW: true },
       note: [
-        'Statutory monthly filing, so coverage is a legal obligation rather than a survey response. Nameplate MW and planned operation date are on the monthly file; energy capacity and coordinates require the annual EIA-860 join. EIA warns the monthly capacities are restated retroactively and are less reliable than the annual form.',
-        '法定月度申报，其覆盖度源于法律义务而非调查回复。铭牌MW与计划投运日期见于月度文件；能量容量与坐标需关联年度EIA-860。EIA提示月度容量会被追溯修订，可靠性低于年度报表。',
+        'Current monthly files report nameplate MW/MWh, status, operation month and coordinates. Annual storage MWh and maximum charge/discharge MW are separate dated evidence, joined only by exact generator identity. EIA warns monthly inventories may be revised and are not capacity commitments.',
+        '当前月表申报铭牌MW/MWh、状态、投运月份与坐标。年度储能MWh及最大充放电MW为单独注明年份的证据，仅按精确机组身份关联。EIA提示月度清单可能修订，不构成容量承诺。',
       ],
     },
   };

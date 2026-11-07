@@ -39,20 +39,40 @@ import ExcelJS from 'exceljs';
  * @returns {Promise<{rows: object[], sheetName: string, headers: string[]}>}
  */
 export async function readSheet(source, options = {}){
+  return readWorksheet(await openWorkbook(source), options);
+}
+
+async function openWorkbook(source){
   const workbook = new ExcelJS.Workbook();
   if (Buffer.isBuffer(source)) await workbook.xlsx.load(source);
   else await workbook.xlsx.readFile(source);
+  return workbook;
+}
 
-  const sheet = resolveSheet(workbook, options.sheet);
+/** Several required tabs, one workbook load. A missing/corrupt tab is fatal. */
+export async function readSheets(source, requests){
+  const workbook = await openWorkbook(source);
+  return requests.map(options => readWorksheet(workbook, options));
+}
+
+function readWorksheet(workbook, options){
+  const sheet = options.exactSheet
+    ? workbook.worksheets.find(s => s.name.trim().toLowerCase() === String(options.sheet).trim().toLowerCase())
+    : resolveSheet(workbook, options.sheet);
   if (!sheet) throw new Error(`workbook: sheet ${JSON.stringify(options.sheet ?? 1)} not found`);
 
   const headerRow = options.headerRow || 1;
   const mapHeader = options.mapHeader || defaultHeader;
 
   const headers = [];
+  const headerLabels = {};
   sheet.getRow(headerRow).eachCell({ includeEmpty: true }, (cell, column) => {
     const label = mapHeader(cellText(cell));
-    if (label) headers[column] = label;
+    if (label){
+      if (options.rejectDuplicateHeaders && Object.hasOwn(headerLabels, label)) throw new Error('workbook: duplicate normalised header ' + label);
+      headers[column] = label;
+      headerLabels[label] = cellText(cell).trim();
+    }
   });
 
   const named = headers.filter(Boolean);
@@ -68,7 +88,11 @@ export async function readSheet(source, options = {}){
     row.eachCell({ includeEmpty: false }, (cell, column) => {
       const key = headers[column];
       if (!key) return;
-      const value = cellValue(cell);
+      let value = cellValue(cell);
+      if (options.textColumns?.includes(key) && value != null){
+        value = typeof value === 'number' && /^0{2,}$/.test(cell.numFmt || '')
+          ? String(value).padStart(cell.numFmt.length, '0') : String(value).trim();
+      }
       if (value === null || value === '') return;
       record[key] = value;
       populated = true;
@@ -77,7 +101,15 @@ export async function readSheet(source, options = {}){
     if (populated) rows.push(record);
   });
 
-  return { rows, sheetName: sheet.name, headers: named };
+  const result = { rows, sheetName: sheet.name, headers: named };
+  if (options.includeHeaderLabels) result.headerLabels = headerLabels;
+  if (options.includeTitleRows){
+    result.titleRows = [];
+    for (let i = 1; i < headerRow; i++) sheet.getRow(i).eachCell(cell => {
+      const text = cellText(cell).trim(); if (text) result.titleRows.push(text);
+    });
+  }
+  return result;
 }
 
 /**

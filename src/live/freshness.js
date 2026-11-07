@@ -31,13 +31,14 @@ export function freshnessOf(summary, now = Date.now()){
     return { state: FRESHNESS.ABSENT, ageHours: null, label: LABELS[FRESHNESS.ABSENT] };
   }
 
-  const fetched = Date.parse(summary.fetchedAt);
+  // Periodic inventories age from their publication, never from a no-op check.
+  const fetched = Date.parse(summary.freshnessAt || summary.fetchedAt);
   if (Number.isNaN(fetched)){
     return { state: FRESHNESS.ABSENT, ageHours: null, label: LABELS[FRESHNESS.ABSENT] };
   }
 
   const ageHours = (now - fetched) / 3_600_000;
-  const refresh = summary.refreshHours || 24;
+  const refresh = (summary.freshnessAt && summary.publicationCadenceHours) || summary.refreshHours || 24;
   const staleAfter = summary.staleAfterHours || refresh * 4;
 
   /* A small grace factor on the refresh cadence. A cron that runs once a

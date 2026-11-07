@@ -28,7 +28,8 @@ registerProjects('ie', {
   ],
 });
 
-/* EIA-860M (PJM · ERCOT · CAISO), MaStR (DE) and AEMO (NEM · WA) have working
-   connectors and pass end to end against fixtures. They register here once a
-   published artifact exists — `npm run etl:projects` writes them, and until then
-   those markets correctly report no source rather than an empty fleet. */
+/* US EIA records are loaded lazily from the governed public inventory by the
+   interactive map bridge (eiaInventoryClient.js), which registers the same rows
+   used by its table. Refresh: npm run etl -- --only us-eia-storage-projects.
+   MaStR and AEMO project connectors remain separate, unregistered candidates;
+   having a parser is not a production integration. */

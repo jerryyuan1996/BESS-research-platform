@@ -1,0 +1,6 @@
+.eia-inventory{margin-top:1rem;padding:1rem;border:1px solid var(--line,#d9dce2);border-radius:10px;min-width:0;overflow-wrap:anywhere}
+.eia-inventory h4{margin:0 0 .5rem}.eia-inventory p{font-size:.85rem;line-height:1.6;margin:.5rem 0}
+.eia-inventory .eia-coverage{font-weight:600}.eia-inventory details{margin-top:.7rem}.eia-inventory summary{cursor:pointer;font-weight:600;padding:.35rem 0}
+.eia-inventory .tbl-wrap{max-width:100%;overflow-x:auto;margin-top:.6rem}.eia-project-table{width:100%;min-width:940px;border-collapse:collapse;font-size:.78rem}
+.eia-project-table th,.eia-project-table td{padding:.5rem;border-bottom:1px solid var(--line,#d9dce2);text-align:left;vertical-align:top}.eia-project-table .num{text-align:right;font-variant-numeric:tabular-nums}
+.eia-project-table small{color:var(--muted,#5d6675)}.eia-attribution{color:var(--muted,#5d6675)}
