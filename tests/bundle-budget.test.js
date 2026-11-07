@@ -318,6 +318,17 @@ const BUDGET = {
        observed price layers at G-2: the additional JavaScript graph measured
        40.59 KiB gzip (45.57 with lazy styles). Analyst rule: over a cap, raise it. */
     'story-nem': 41,
+    /* The ERCOT story: shell, kit, the fixed-vintage records, the Texas
+       schematic, thirteen bilingual shots, their scenes and the Example
+       signature chart. Registered unreleased for G-2, so it is fetched only
+       behind ?story=preview.
+       SET AT 41, not the standard 40, on 7 November 2026: the additional
+       JavaScript graph measured 40.23 KiB gzip (45.39 with lazy styles) after
+       the per-value locators were moved to an on-demand chunk. The rest is the
+       signed bilingual copy (about 14 KiB) and the fixed-vintage records, which
+       cannot shrink without cutting approved text. As the NEM's (40 to 41).
+       Raised for the analyst's G-2 review. */
+    'story-ercot': 41,
     'delivery-gb': 8,
     'delivery-fi': 6,
     'delivery-ro': 7,
@@ -1177,6 +1188,26 @@ test('the NEM story stays out of the first load and its additional JavaScript gr
   const js=gzipOf(extra),withCss=js+lazyCss.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
   t.diagnostic('NEM additional JavaScript graph: '+kB(js)+' KiB gzip; with lazy styles: '+kB(withCss)+' KiB gzip');
   assert.ok(js<=BUDGET.features['story-nem']*1024,'NEM story, shell, kit, records, content and scenes: '+kB(js)+' KiB gzip, cap '+BUDGET.features['story-nem']);
+});
+
+test('the ERCOT story stays out of the first load and its additional graph fits the story cap',async t=>{
+  if(skipWithoutDist(t))return;
+  const {entry,features,byName}=await chunks();
+  const first=closure(features.get('investor-experience'),byName,closure(entry,byName));
+  const own=features.get('story-ercot');assert.ok(own,'the ERCOT story has its own lazy chunk');
+  assert.ok(!first.has(own),'no ERCOT story bytes before opening');
+  const probe='Which grid is this, and what sets it apart?';
+  assert.ok(own.text.includes(probe));
+  for(const chunk of first)assert.ok(!chunk.text.includes(probe),'no ERCOT story content in '+chunk.name);
+  const extra=new Set([...closure(own,byName)].filter(chunk=>!first.has(chunk)));
+  /* Measured as the NEM is (JavaScript closure); the lazy story styles are
+     reported beside it. */
+  const css=await styles();assert.ok(!css.main.text.includes('.ercot-scene'));
+  const lazyCss=css.lazy.filter(c=>c.text.includes('.ercot-scene')||c.text.includes('.ix-story-dialog'));
+  assert.ok(lazyCss.some(c=>c.text.includes('.ercot-scene')),'ERCOT styles remain lazy');
+  const js=gzipOf(extra),withCss=js+lazyCss.reduce((sum,c)=>sum+gzipSync(c.text).length,0);
+  t.diagnostic('ERCOT additional JavaScript graph: '+kB(js)+' KiB gzip; with lazy styles: '+kB(withCss)+' KiB gzip');
+  assert.ok(js<=BUDGET.features['story-ercot']*1024,'ERCOT story, shell, kit, records, content and scenes: '+kB(js)+' KiB gzip, cap '+BUDGET.features['story-ercot']);
 });
 
 test('the CAISO story, complete additional static closure and lazy styles fit 40 KiB gzip',async t=>{

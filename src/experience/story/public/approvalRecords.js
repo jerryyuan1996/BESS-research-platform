@@ -20,7 +20,7 @@ export const SCRIPT_APPROVAL_RECORDS={
   pl:record('poland','2026-11-01'),
   jp_tokyo:japan(),jp_kyushu:japan(),jp_hokkaido:japan(),
   pjm:record('pjm','2026-11-03',{g2On:'2026-11-04',g2Record:ref('docs/immersive-experience-plan/pjm-g2-release.md',3)}),
-  ercot:record('ercot','2026-11-02',{configured:false}),
+  ercot:record('ercot','2026-11-02',{configured:true}),
   caiso:record('caiso','2026-11-03',{
     supplements:[{on:'2026-11-03',record:ref('src/markets/caiso/story.js',1),scope:['caiso-03 timing amendment only; original scoped story.','仅 caiso-03 时间修订；适用原 Story 范围。']}],
     g2On:'2026-11-03',g2Record:ref('docs/immersive-experience-plan/caiso-g2-release.md',3),
