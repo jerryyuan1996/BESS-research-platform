@@ -12,8 +12,8 @@ import {SCRIPT_APPROVAL_RECORDS} from '../src/experience/story/public/approvalRe
 test('the authorised fifteen share public scope; three unapproved additions stay outside it',()=>{
   assert.deepEqual(PUBLIC_MARKET_IDS,PUBLIC_STORY_IDS);
   for(const id of ['ca_on','sa','es']){assert.equal(publicStoryFor(id),null);assert.equal(PUBLIC_CATALOG[id],undefined);}
-  assert.equal(STORIES.ercot,undefined,'G-1 does not release an original G-2 story');
-  assert.equal(Object.values(STORIES).filter(x=>x.released).length,14,'original release decisions preserved');
+  assert.equal(STORIES.ercot.released,true,'the analyst-authorised ERCOT original story is released');
+  assert.equal(Object.values(STORIES).filter(x=>x.released).length,15,'original release decisions preserved');
 });
 
 test('every public summary is bilingual, explicitly pending, and free of financial bindings',()=>{

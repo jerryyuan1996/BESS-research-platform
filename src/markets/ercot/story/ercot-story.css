@@ -1,0 +1,96 @@
+/* ERCOT story: market-local styles on the existing experience tokens (--ix-*).
+   Shared kit and shell styles are unchanged. Nothing here animates, so
+   reduced motion already reads still frames. */
+.ercot-scene, .ercot-chart { min-width: 0; }
+.ercot-scene svg, .ercot-chart svg { display: block; width: 100%; height: auto; margin: auto; }
+.ercot-scene .k-stage { max-width: 720px; }
+.ercot-map { max-width: 520px; }
+.ercot-opening { max-width: 180px; margin: 10px 0; }
+.ercot-map-small { max-width: 180px; }
+.ercot-tx { fill: var(--ix-paper); stroke: var(--ix-muted); stroke-width: 1.2; }
+.ercot-net { stroke: var(--ix-green); stroke-width: 2; }
+.ercot-hub { fill: var(--ix-green); }
+.ercot-map-small .ercot-net { stroke-width: 5; }
+.ercot-tie line { stroke: var(--ix-gold); stroke-width: 3; stroke-dasharray: 5 4; }
+.ercot-tie rect { fill: var(--ix-panel); stroke: var(--ix-gold); stroke-width: 2; }
+.ercot-map-small .ercot-tie line { stroke-width: 7; stroke-dasharray: 10 7; }
+.ercot-tie.ercot-on line { stroke-width: 5; }
+.ercot-tie.ercot-on rect { fill: var(--ix-gold); }
+.ercot-label, .ercot-chart-title { fill: var(--ix-ink); font-size: var(--fs-2xs); }
+.ercot-chart-title { font-size: var(--fs-sm); font-weight: var(--fw-bold); }
+.ercot-strong { font-size: var(--fs-sm); font-weight: var(--fw-bold); }
+.ercot-neighbour { fill: var(--ix-muted); font-style: italic; }
+.ercot-small { font-size: var(--fs-micro); }
+.ercot-tagline { fill: var(--ix-muted); }
+.ercot-rules rect { fill: var(--ix-lime); stroke: var(--ix-green); }
+.ercot-legend, .ercot-note { color: var(--ix-body); font-size: var(--fs-sm); line-height: 1.6; margin: 8px 0 0; }
+.ercot-key { display: inline-block; width: 22px; height: 0; margin: 0 6px 3px 0; vertical-align: middle; border-top: 3px solid var(--ix-green); }
+.ercot-key-tie { border-top: 3px dashed var(--ix-gold); margin-left: 10px; }
+.ercot-readouts { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; margin: 10px 0 0; }
+.ercot-readouts dt { color: var(--ix-body); }
+.ercot-readouts dd { margin: 0; text-align: end; font-variant-numeric: tabular-nums; color: var(--ix-ink); }
+.ercot-axis { fill: none; stroke: var(--ix-ink); stroke-width: 1; }
+.ercot-node { fill: var(--ix-green); }
+.ercot-node.ercot-closed { fill: var(--ix-panel); stroke: var(--ix-risk); stroke-width: 2; }
+.ercot-dim { opacity: .6; }
+.ercot-detail { border: 1px solid var(--ix-line); background: var(--ix-panel); padding: 10px 12px; margin-top: 8px; }
+.ercot-detail h5 { margin: 0 0 4px; }
+.ercot-closed-card { border-color: var(--ix-risk); }
+.ercot-tag { display: inline-block; margin: 0 0 4px 6px; padding: 0 6px; font-size: var(--fs-2xs); border: 1px solid var(--ix-line); color: var(--ix-muted); }
+.ercot-cap { stroke: var(--ix-risk); stroke-width: 2.5; }
+.ercot-old { stroke-dasharray: 6 4; stroke: var(--ix-muted); }
+.ercot-curve { fill: none; stroke: var(--ix-green); stroke-width: 2.5; }
+.ercot-branch rect { fill: var(--ix-panel); stroke: var(--ix-risk); }
+.ercot-branch path { stroke: var(--ix-risk); stroke-width: 2; }
+.ercot-gauge { fill: var(--ix-panel); stroke: var(--ix-green); }
+.ercot-gauge-fill { fill: var(--ix-green); fill-opacity: .7; }
+.ercot-flash { fill: var(--ix-gold); }
+.ercot-flash.ercot-example { fill: var(--ix-lime); stroke: var(--ix-gold); stroke-dasharray: 3 2; }
+.ercot-solar { fill: none; stroke: var(--ix-gold); stroke-width: 2.5; stroke-dasharray: 6 4; }
+.ercot-charge { fill: var(--ix-lime); stroke: var(--ix-green); }
+.ercot-discharge { fill: var(--ix-green); fill-opacity: .25; stroke: var(--ix-green); }
+.ercot-energy { fill: var(--ix-panel); stroke: var(--ix-green); stroke-width: 2; }
+.ercot-held-bar { fill: var(--ix-gold); fill-opacity: .6; }
+.ercot-beyond { fill: none; stroke: var(--ix-risk); stroke-width: 2; stroke-dasharray: 5 4; }
+.ercot-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ercot-grid { display: grid; gap: 10px; margin-top: 10px; }
+.ercot-grid-row h5 { margin: 0 0 6px; }
+.ercot-grid-row ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+.ercot-cell { border: 1px solid var(--ix-line); background: var(--ix-panel); padding: 8px; font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.ercot-unpriced { border-style: dashed; color: var(--ix-muted); }
+.ercot-best { background: var(--ix-lime); border-color: var(--ix-green); }
+.ercot-best-tag { display: block; font-size: var(--fs-2xs); font-weight: var(--fw-bold); }
+.ercot-grid-row[data-focus="false"] h5 { color: var(--ix-muted); }
+.ercot-box { fill: var(--ix-panel); stroke: var(--ix-green); stroke-width: 1.5; }
+.ercot-dashed, .ercot-box.ercot-dashed { stroke-dasharray: 5 4; border-style: dashed; }
+.ercot-arrow { stroke: var(--ix-ink); stroke-width: 2; }
+.ercot-head { fill: var(--ix-ink); }
+.ercot-empty { stroke: var(--ix-muted); stroke-width: 2; stroke-dasharray: 2 6; }
+.ercot-flow { border: 1px solid var(--ix-line); padding: 10px; margin: 8px 0 0; }
+.ercot-toll { fill: var(--ix-lime); stroke: var(--ix-green); stroke-dasharray: 6 4; fill-opacity: .55; }
+.ercot-tail { fill: var(--ix-panel); stroke: var(--ix-muted); stroke-dasharray: 5 4; }
+.ercot-toll.ercot-on, .ercot-tail.ercot-on { fill-opacity: 1; stroke-width: 2.5; }
+.ercot-expiry { stroke: var(--ix-ink); stroke-dasharray: 3 3; }
+.ercot-pricebox rect { fill: none; stroke: var(--ix-risk); stroke-dasharray: 4 3; }
+.ercot-checks { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 6px; }
+.ercot-checks details { border: 1px solid var(--ix-line); background: var(--ix-panel); padding: 8px 10px; }
+.ercot-checks summary { cursor: pointer; font-weight: var(--fw-bold); }
+.ercot-cards { list-style: none; padding: 0; margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.ercot-card { border: 1px solid var(--ix-line); background: var(--ix-panel); padding: 10px; font-size: var(--fs-sm); }
+.ercot-future { border-style: dashed; }
+.ercot-next { border-color: var(--ix-gold); grid-column: 1 / -1; }
+.ercot-line { fill: none; stroke: var(--ix-green); stroke-width: 2.5; }
+.ercot-example.ercot-line { stroke-dasharray: 6 4; }
+.ercot-measured { font-size: var(--fs-sm); color: var(--ix-body); margin: 8px 0 0; padding-left: 18px; }
+.ercot-provenance { font-size: var(--fs-sm); overflow-wrap: anywhere; }
+.ercot-provenance dt { margin-top: 8px; font-weight: var(--fw-bold); }
+.ercot-provenance dd { margin: 4px 0 0; }
+.ercot-panel-title { margin: 12px 0 2px; font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--ix-ink); }
+.ercot-on-bar { font-weight: var(--fw-bold); }
+/* SVG text is in drawing units, and on a phone the drawings render at about
+   half size: double the step so labels read at the scale's own sizes. */
+@media (max-width: 560px) {
+  .ercot-scene svg .ercot-label, .ercot-chart svg .ercot-label { font-size: calc(2 * var(--fs-xs)); }
+  .ercot-map .ercot-label { font-size: calc(2 * var(--fs-2xs)); }
+  .ercot-map .ercot-strong { font-size: calc(2 * var(--fs-xs)); }
+}
