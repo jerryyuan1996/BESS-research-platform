@@ -1,3 +1,4 @@
+import {HISTORY_DATA} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Saudi Arabia — market dataset. Every number is traceable to sources.js and
    to docs/saudi-registration-plan.md, signed off 2026-10-29.
@@ -11,9 +12,9 @@ import { landedDcPerKWh } from '../../comparison/supplierQuote.js';
 import { CAPEX_PER_MW, ENGIE_PER_MW, REBUILT_PER_MW, SAR_PER_USD, breakEvenFee } from './comparison.js';
 
 const M = {
-  asOf: '2026-10-29',
-  dataDate: 'SPPC Group 1 award, 20–21 Aug 2026; Group 2 bid deadline 12 Nov 2026',
-  modelVersion: 'sa-1.0-sppc-ssa',
+  asOf: HISTORY_DATA.asOf,
+  dataDate: HISTORY_DATA.dataDate,
+  modelVersion: HISTORY_DATA.modelVersion,
   title: ['Saudi Arabia Battery Investment Dashboard', '沙特储能投资看板'],
   sub: ['A state buyer, fifteen-year availability contracts and no merchant leg: what SPPC has procured, what it costs to build, and the one number — the fee — that has not been published.',
         '国有买方、十五年可用性合同且无市场化收入：SPPC已采购什么、建设成本多少，以及唯一尚未公布的数字 — 付费水平。'],
@@ -47,7 +48,7 @@ const M = {
     ],
     bidders: 'Masdar, ACWA Power, EDF, TotalEnergies, Marubeni, KEPCO, Korea Western Power, Sumitomo, SPIC, PowerChina, China Southern Power Grid, TNB, Tesla, Saudi Electricity',
   },
-  target2030GWh: 48,
+  target2030GWh: HISTORY_DATA.target2030GWh,
 
   /* ---- capex --------------------------------------------------------------- */
   capex: {
@@ -57,13 +58,7 @@ const M = {
   },
   breakEven: [0.06, 0.07, 0.08, 0.09].map(r => ({ rate: r, fee: breakEvenFee(r) })),
 
-  timeline: [
-    { y: 'Nov 2024', t: ['SPPC opens Group 1', 'SPPC启动第一组'], p: ['SPPC launched qualification for 2 GW / 8 GWh of four-hour storage on build-own-operate terms; 33 were prequalified in December.', 'SPPC启动2GW/8GWh四小时储能（建设-拥有-运营）资格预审；12月共33家通过。'], i: ['Storage procured like the solar rounds.', '储能按光伏轮次方式采购。'] },
-    { y: 'Jul 2026', t: ['Group 2 prequalified', '第二组资格预审'], p: ['27 developers and technology providers prequalified for 3 GW / 12 GWh at six sites, many of them foreign.', '六个场址共3GW/12GWh，27家开发商与技术提供商通过资格预审，其中不少为外资。'], i: ['The door is open to foreign developers.', '向外资开发商开放。'] },
-    { y: 'Aug 2026', t: ['Group 1 signed', '第一组签约'], p: ['Four 15-year Storage Services Agreements for SAR 4.35bn of investment: three to Saudi Energy and ACWA Power, one to ENGIE. No fee was published.', '签署四份15年储能服务协议，投资43.5亿里亚尔：三份归Saudi Energy与ACWA Power，一份归ENGIE。未公布付费水平。'], i: ['US$145/kWh all-in, price unknown.', '全包每kWh 145美元，价格未知。'] },
-    { y: 'Nov 2026', t: ['Group 2 bids', '第二组投标'], p: ['Bids close on 12 November after an extension; no award date is published.', '延期后于11月12日截标；授标日期未公布。'], i: ['The likeliest place a price is published.', '最可能公布价格之处。'] },
-    { y: '2030', t: ['48 GWh target', '48GWh目标'], p: ['The national target for battery storage by 2030; SPPC\'s two groups are 20 GWh of it.', '2030年全国电池储能目标；SPPC两组合计占20GWh。'], i: ['More rounds to come.', '后续还有更多轮次。'] },
-  ],
+  timeline: HISTORY_DATA.timeline,
 
   glossary: [
     ['SPPC — Saudi Power Procurement Company, the Principal Buyer', 'SPPC — 沙特电力采购公司，即主买方'],

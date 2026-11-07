@@ -1,3 +1,4 @@
+import {researchHistory} from './history.js';
 /* ---------------------------------------------------------------------------
    Spain — declarative section specs for the shared block engine.
 
@@ -110,10 +111,8 @@ export function buildSections(api){
   ] });
 
   // ---------------- Market story -------------------------------------------
-  SEC_B.story = () => ({ head: ['How Spain got here — solar made the spread', '西班牙的演进 — 光伏造就价差'], blocks: [
-    { t: 'card', mt: false, title: ['How the market got here', '市场如何演变至此'], badges: ['official'], blocks: [
-      { t: 'timeline', items: M.timeline },
-    ] },
+  SEC_B.story = () => ({ head: researchHistory(api).head, blocks: [
+    researchHistory(api).cards[0],
     { t: 'card', title: ['Price level against battery value', '电价水平与储能价值'], badges: ['official', 'calc'], blocks: [
       { t: 'bar', cfg: { xs: T.years.map(r => r.y), bw: 46, labels: true, h: 230, yfmt: v => '€' + fmtN(v) + 'k',
         series: [{ name: ['4 h day-ahead value, €k/MW-yr', '4小时日前价值（千欧元/MW/年）'], color: 'var(--s9)', vals: T.years.map(r => r.v4) }] } },

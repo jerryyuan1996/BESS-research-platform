@@ -15,10 +15,24 @@ name: CI
 # main took a data commit every six hours and production served the snapshot
 # from the last human merge. So the ETL now asks for the publish explicitly,
 # and it is the same jobs, in the same order, behind the same gates.
+#
+# What a pull request runs is lighter than what a publish runs, and only in
+# one place: the browser checks. A pull request runs the ten-test smoke suite
+# against its own build; push and workflow_call run the full suite, as before,
+# because those are the runs that deploy. Every other gate — unit and
+# governance tests, build, the confidentiality scan, budgets, snapshot
+# integrity — runs on every pull request. The full suite for a pull request is
+# on request: label it `full-check` and full-check.yml runs it. Decision and
+# numbers: docs/ci-performance.md §9.
 on:
   push:
     branches: [main]
+  # A draft runs nothing (the test job's `if:`); marking it ready for review
+  # starts its first run. There is no `labeled` here on purpose: a run started
+  # by an unrelated label would post a skipped check over a red one, and the
+  # PR would look green. full-check.yml owns the label.
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_call:
     inputs:
       ref:
@@ -45,7 +59,21 @@ permissions:
 jobs:
   test:
     name: Tests and governance gates
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    # A newer push to a pull request cancels that pull request's run in
+    # progress: its result would describe a commit nobody will merge.
+    #
+    # Nothing else is ever cancelled. Every other run gets a group of its own,
+    # so on main and in a data publish this block does nothing. Cancelling on
+    # main is unsafe because GitHub orders runs by arrival, not by commit: a
+    # late run for an older commit would cancel the newer commit's tests. Main
+    # skips superseded work a different way — the `check` step below.
+    concurrency:
+      group: ${{ github.event_name == 'pull_request' && format('ci-pr-{0}', github.event.pull_request.number) || format('ci-run-{0}-{1}', github.run_id, inputs.ref || github.sha) }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+    outputs:
+      superseded: ${{ steps.check.outputs.superseded == 'true' || steps.recheck.outputs.superseded == 'true' }}
     # Every gate below runs through scripts/ci/timed.mjs, which appends a label,
     # a duration and an exit code to the runner's temporary directory; the
     # summary step at the end renders it. The path is not set here on purpose:
@@ -61,7 +89,22 @@ jobs:
         with:
           ref: ${{ inputs.ref || github.sha }}
 
+      # Test only the newest commit on main. If main has already moved past
+      # this candidate, the release script would refuse to publish it, so its
+      # gates are skipped here and the deploy job does not start; the newer
+      # commit's own run tests and publishes both. Pull requests and runs on
+      # other branches are never skipped. Asked again before the browser suite,
+      # which is most of the job. Why this and not cancel-in-progress:
+      # scripts/ci/superseded.mjs.
+      - name: Check this commit is still the head of main
+        id: check
+        run: node scripts/ci/superseded.mjs
+        env:
+          CANDIDATE: ${{ inputs.ref || github.sha }}
+          GH_TOKEN: ${{ github.token }}
+
       - uses: actions/setup-node@v4
+        if: env.SUPERSEDED != 'true'
         with:
           node-version-file: '.nvmrc'
           # Keyed on package-lock.json. `npm ci` stays as it is: the cache saves
@@ -70,6 +113,7 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+        if: env.SUPERSEDED != 'true'
 
       # The full suite, including the governance tests that assert the ETL
       # cannot write outside public/data/ and that every comparison field is
@@ -97,13 +141,19 @@ jobs:
       # the correct direction to fail for a private repository — the alternative
       # is a green run that scanned nothing.
       - name: Test
+        if: env.SUPERSEDED != 'true'
         run: node scripts/ci/timed.mjs "unit and governance tests" -- npm test
         env:
           GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
           GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
           REQUIRE_MARKERS: '1'
 
+      - name: Verify policy publication approval and immutable store
+        if: env.SUPERSEDED != 'true'
+        run: node scripts/ci/timed.mjs "policy publication gate" -- npm run policy:verify
+
       - name: Build
+        if: env.SUPERSEDED != 'true'
         run: node scripts/ci/timed.mjs "build" -- npm run build
 
       # The confidentiality guard asserts on the BUILD OUTPUT, so it is worthless
@@ -121,6 +171,7 @@ jobs:
       # moving it earlier silently disarms the last check standing between
       # confidential content and a publish.
       - name: Scan the built bundle for confidential content
+        if: env.SUPERSEDED != 'true'
         run: node scripts/ci/timed.mjs "confidentiality scan (dist)" -- npm run test:bundle
         env:
           SCAN_DIR: dist
@@ -135,15 +186,51 @@ jobs:
       # after Build for the same reason the confidentiality scan does — there is
       # nothing to measure before it.
       - name: Check the bundle budgets
+        if: env.SUPERSEDED != 'true'
         run: node scripts/ci/timed.mjs "bundle budgets" -- npm run test:budget
         env:
           SCAN_DIR: dist
           REQUIRE_OUTPUT: '1'
 
+      - name: Check again that this commit is still the head of main
+        id: recheck
+        if: env.SUPERSEDED != 'true'
+        run: node scripts/ci/superseded.mjs
+        env:
+          CANDIDATE: ${{ inputs.ref || github.sha }}
+          GH_TOKEN: ${{ github.token }}
+
+      # The browser download, cached on the Playwright version. The install
+      # command still runs on a hit: it skips the download when the browser is
+      # already there, and installs the system libraries, which are not cached.
+      - name: Read the Playwright version
+        id: playwright
+        if: env.SUPERSEDED != 'true'
+        run: echo "version=$(node -p "require('./node_modules/@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the isolated browser
+        if: env.SUPERSEDED != 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+
       - name: Install the isolated browser for page checks
+        if: env.SUPERSEDED != 'true'
         run: node scripts/ci/timed.mjs "install chromium" -- npx playwright install --with-deps --no-shell chromium
 
+      # A pull request runs the smoke suite against its own build, through
+      # `vite preview` (playwright.smoke.config.js; PLATFORM_TEST_BASE_URL is
+      # not set here, so nothing is fetched from production). Push and
+      # workflow_call — the runs that can deploy — run the full suite, so no
+      # publish has ever skipped it. For the full suite on a pull request,
+      # label it `full-check` (full-check.yml).
+      - name: Check the key pages of the built site (pull request)
+        if: env.SUPERSEDED != 'true' && github.event_name == 'pull_request'
+        run: node scripts/ci/timed.mjs "smoke suite (pull request)" -- npm run test:smoke
+
       - name: Check desktop, mobile, both languages and saved cases
+        if: env.SUPERSEDED != 'true' && github.event_name != 'pull_request'
         run: node scripts/ci/timed.mjs "end-to-end suite" -- npm run test:e2e
 
       - name: Retain page-check evidence
@@ -158,6 +245,7 @@ jobs:
       # A hand-edited "observed" file is exactly the confusion the envelope
       # exists to prevent, so it fails the build rather than shipping.
       - name: Verify snapshot integrity
+        if: env.SUPERSEDED != 'true'
         run: node scripts/ci/timed.mjs "snapshot integrity" -- npm run etl:verify
 
       # The raw timings travel to the deploy job, which reports the pre-deploy
@@ -188,12 +276,21 @@ jobs:
     # etl.yml calls this workflow, github.event_name and github.ref are the
     # CALLER's — schedule or workflow_dispatch, and the branch that run is on —
     # so a "Live data" run dispatched from any other branch is tested and stops.
+    #
+    # The last clause: a candidate the test job found superseded (main had
+    # moved past it) would be refused by the release script anyway, after
+    # four minutes of setup and `vercel build`. It is not started. The
+    # allowlist above is unchanged, and the release script still checks main
+    # inside the lock — this skips work, it decides nothing.
     if: >-
       github.ref == 'refs/heads/main' &&
-      contains(fromJSON('["push", "schedule", "workflow_dispatch"]'), github.event_name)
+      contains(fromJSON('["push", "schedule", "workflow_dispatch"]'), github.event_name) &&
+      needs.test.outputs.superseded != 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      VERCEL_CLI_VERSION: 48.12.1
     # FIFO is entry order, not commit order. Keep all pending candidates and
     # never let an old late test cancel a newer publisher. The release script
     # checks current main inside this lock, again immediately before promotion.
@@ -234,8 +331,24 @@ jobs:
 
       - run: npm ci
 
+      # Installed into a cached folder keyed on the pinned version, instead of
+      # downloaded with `npm install --global` on every deploy. Only main
+      # deploys, so only main's runs write this cache; a pull request cannot
+      # put a different CLI in front of the production token.
+      - name: Restore the Vercel CLI
+        id: vercel-cli
+        uses: actions/cache@v4
+        with:
+          path: ~/.vercel-cli
+          key: vercel-cli-${{ runner.os }}-${{ env.VERCEL_CLI_VERSION }}-${{ hashFiles('.nvmrc') }}
+
       - name: Install the Vercel CLI
-        run: npm install --global vercel@48.12.1
+        run: |
+          if [ "${{ steps.vercel-cli.outputs.cache-hit }}" != "true" ]; then
+            npm install --prefix "$HOME/.vercel-cli" --no-audit --no-fund "vercel@$VERCEL_CLI_VERSION"
+          fi
+          echo "$HOME/.vercel-cli/node_modules/.bin" >> "$GITHUB_PATH"
+          "$HOME/.vercel-cli/node_modules/.bin/vercel" --version
 
       # The pre-deploy timings, so the summary can report both halves of the
       # workflow rather than one. A missing artifact — a rerun, a partial
@@ -333,6 +446,17 @@ jobs:
       # script: the deployment identity, readiness and `release.json` stamp are
       # checked before promotion, and a superseded candidate records
       # published:false and skips this step.
+      # The same browser cache as the test job.
+      - name: Read the Playwright version
+        id: playwright
+        run: echo "version=$(node -p "require('./node_modules/@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the isolated browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+
       - name: Check the live production pages
         run: |
           if [ -f release-records/production.json ] && node --input-type=module -e "import fs from 'node:fs'; process.exit(JSON.parse(fs.readFileSync('release-records/production.json')).published ? 0 : 1)"; then

@@ -1,0 +1,77 @@
+# Local validation: 2026-11-05
+
+Connected Windows worktree `feat/policy-intelligence-v4`, base `494ce7b`. Locked dependencies installed with npm ci. Original ignored marker/key restored locally without printing values, expected fingerprint matched and original hooks enabled. No Cloud partial diff imported. No model key created or paid request made.
+
+| Check | Actual evidence |
+|---|---|
+| Original checkpoint complete unit suite | 1,437 passed, zero failed/skipped on previously pushed D0-D2 source |
+| Original checkpoint complete E2E rerun | 244/244 passed in 13.2 minutes; this superseded the earlier full command with a local ECONNRESET |
+| Expanded Node 26 complete suite | CSS token violations fixed; two budget reads collided with a concurrent build, then serial checks used instead. Another serial run hit the Node 26 test-runner deserialization error; original affected ETL file passed 17/17 independently |
+| Project-matching runtime | Portable Node 22.23.4 from official nodejs.org archive; official SHA-256 verified; system installation untouched |
+| Expanded Node 22 complete unit suite | 1,464 passed, zero failed/skipped; 203.1 seconds before the final two preflight/history tests |
+| Latest focused Policy suite | 89 passed, zero failed/skipped, including the final activation and retained-history safeguards |
+| Final staged-source complete unit suite | 1,466/1,466 passed, zero failed/skipped; 215.3 seconds, serially after map checks |
+| Financial baseline | 84/84 passed; original approved baselines not regenerated |
+| Stable build | Passed; Policy page/map remain lazy |
+| Existing bundle budgets | 30/30 passed; no cap increased |
+| Existing ETL verification | All snapshots verified, no dataset changed |
+| Required original bundle guard | 7/7 passed, REQUIRE_MARKERS=1, REQUIRE_OUTPUT=1, SCAN_DIR=dist |
+| Original staged guard | 54-file checkpoint clean; final report/test changes rescanned by the unchanged original staged guard before commit |
+| Syntax / YAML | 35 new/current policy modules syntax-checked; CI 2 jobs and ETL 10 jobs parsed |
+| Targeted desktop/mobile Policy E2E | 14/14 passed in 24.9 seconds; fixtures intercepted only, never public content |
+| Expanded complete E2E | 257 passed, 1 failed in 15.9 minutes: original mobile Italy network test inspected a stable-but-incomplete async band. Exact-manifest polling added without changing expected segments, budgets or application geometry; focused desktop/mobile map rerun 16/16 passed in 1.2 minutes. A new complete exact-head CI run is still required |
+| Operational OFF-state run | Authorization false; research disabled without a model request; publisher disabled; policy store unpublished with zero versions |
+| Visible built preview | Local http://127.0.0.1:4176/policy visibly shows honest empty Policy coverage |
+
+Static graph measurements, baseline-dist versus current dist (gzip bytes): entry 172,040 -> 172,574; home experience closure 247,436 -> 247,964; GB market closure 352,561 -> 353,149; NEM closure 312,690 -> 313,275. Closures include already-shared entry dependencies, so they are not incremental transfer sizes. Current Policy page closure is 187,970 and map closure 221,080; neither is in the entry closure. These bundle measurements do not measure CPU, CLS, long tasks or production timing.
+
+Previously pushed exact head `18b55ffb79a9c27d13e401e55e0cf13fda5a4b8a` passed CI run 42025983107: test job 12:18:17-12:27:14 UTC, 537 seconds / 9 rounded runner minutes; deployment skipped without a runner. This is workload, not verified account billing. A new push needs fresh exact-head CI.
+
+Zero accepted historical gold cases, zero measured model precision/recall, zero paid usage and zero production policy runs. New local software checks and synthetic callback counts are not production deployment proof. No merge, production deployment or schedule activation occurred. See release-readiness.md for incomplete content, permissions, source, evaluation, visual and release gates.
+
+## Resumed local checkpoint, 5 November 2026
+
+After the requested stop, remote head `5d9eca5` remained draft and its run 42051263151 was confirmed cancelled. No cancelled check is counted as green. Prior head `e9a7c45` separately passed run 42049872493.
+
+The resumed consolidated source passed 1,490 complete local unit tests with zero failures/skips (231 seconds), plus 113 focused Policy tests as the manual-command and transport safeguards were added. Desktop/mobile Policy E2E passed 16/16 on the built site, including nine distinct scene templates, table fallbacks, sourced waterfall components and unchanged investment content. Financial baselines (84), bundle budgets (30), all ETL snapshots and the original required bundle guard (7) also passed. A sandbox browser-cache startup failure was not counted; the existing installed Chromium was used without downloading a browser. The final complete browser suite and new exact-head GitHub CI remain to be recorded on the PR after the consolidated push.
+
+Local comparative diagnostic, Chromium 156.0.8078.4, 1440×1000, three cold samples each, only loopback built assets: Home task CPU median 262→257 ms; GB 401→412 ms; NEM 703→773 ms. CLS was identical before/after (Home 0.0417; GB/NEM 0.00391); SVG counts were unchanged (23/180/180); each route added one navigation element and loaded zero Policy page/map resources. The NEM timing difference was investigated rather than dismissed: seven further paired visits, with pre-navigation task time subtracted, gave 1,356→1,324 ms task CPU and 335→335 ms long tasks, with identical CLS and SVG counts. Host timing varied materially between runs; these are local diagnostic samples, not production guarantees or a new budget. Reports retain the samples outside tracked files. The diagnostic's first static-server version incorrectly served HTML for missing JS assets; that harness error was corrected and those parsing-error samples were excluded.
+
+Private source review now records the later GB timetable letters, explicit WA Gazette licence exclusion and DE document/translation rights questions. Two new GB PDF downloads were incomplete and were not accepted as original-byte evidence. No source allowlist, rights approval or human content sign-off was granted.
+
+The complete local browser suite subsequently passed **260/260 in 15.1 minutes**. After main advanced to `13dacf0`, the branch retained its Japan documentation and original-vintage pinning, removed only its duplicate GB normalization fixture and passed the combined parity/live-design tests (17/17), Policy tests (113/113), current built budgets and the required original artifact guard. No approved fingerprint generator was run. The consolidated head `cdf2151` then passed [CI 42069929667](https://github.com/jerryyuan1996/BESS-research-platform/actions/runs/42069929667); draft deployment was skipped and GitHub reported MERGEABLE.
+
+A subsequent isolated D8 correction separates exact manual snapshot approval from model activation while retaining source/historical/rights gates. Policy tests passed 117/117, including forged sidecars, extra index fields, increased quotation allowances, history rewriting and cross-claim review links. This later correction needs its own final-head GitHub check; the preceding green run does not certify unpushed changes. All actual model, manual publication, source and historical-corpus approvals remain OFF/empty.
+
+Final focused checks reached 118/118 after rejecting extra nested source-rights fields. The exact serialized provider request is now shared by transport and conservative input-budget accounting, including escaped evidence and the full request/schema envelope; the transport test verifies the captured fake request matches that representation. No real provider was contacted. The rebuilt Policy UI passed 16/16; current financial baselines, unchanged budgets, required original artifact scan and unpublished-store verification passed. Final-head GitHub CI remains required for the new D8 commit.
+
+## Resumed research verification, 6 November 2026
+
+The clean initial head was `f45891d`; exact-head GitHub CI 42075680345 was independently confirmed successful. Research documentation and ignored source packets were then updated; application code, public datasets, frozen baselines, authority/configuration and Japan's checkout were not edited.
+
+With the existing verified portable Node 22.23.4 runtime, the complete local suite passed 1,497/1,497 with zero skipped or failed tests (327.4 seconds). Current/financial baseline checks passed 84/84; the build, unchanged budgets (30/30), all ETL snapshots, unpublished Policy store (zero versions) and original required artifact guard (7/7) passed. The full desktop/mobile browser suite passed 260/260 on built output at its own loopback port. Its temporary preview was stopped; the pre-existing preview was preserved. New documentation/private research passed the original fingerprint-verified confidentiality scan; the staged scan runs before commit.
+
+Thirty of 39 primary research/robots resources have complete entity-byte receipts, including 16 PDFs. Selected source pages were rendered and inspected; pypdf 6.21.4 page-text hashes remain distinct from original PDF hashes and from trusted evaluator receipts. Sixteen reference cases have four-market provenance and EN/ZH fact pairs, with null investment labels/results, zero accepted gold cases and no claimed empirical precision. Direct access denials and incomplete downloads were not admitted or bypassed. Model/manual evaluation/manual publication remain OFF. A new documentation commit requires fresh exact-head CI; no production result is inferred from local checks.
+
+The first isolated full browser invocation had 258 passes and two harness failures (17.1 minutes): setting `PLATFORM_TEST_BASE_URL` enabled production-stamp assertions on an unstamped local build, whose missing `release.json` received the normal HTML fallback. That result is retained, not counted as green. A temporary external Playwright config changed only the loopback port and resolved paths while preserving local-mode semantics; the original application, repository config and assertions were unchanged. The affected test was checked in both viewports before the successful complete local rerun reported above. This was a harness correction, not production-stamp verification.
+
+## Offline-preparation validation, 6 November 2026
+
+The feature worktree normally merged approved main `2940ed9` as `a49e3b0`, preserving Japan's separate checkout. The new offline implementation then passed the complete local Node 22 suite: **1,536 passed, zero failed/skipped**, 393.7 seconds. Financial/current checks passed 84/84, unchanged bundle budgets 31/31, ETL verification, unpublished Policy-store verification and the mandatory original artifact guard 7/7 all passed on stable rebuilt output. No baseline or dataset was regenerated. The complete 274-case browser suite is separately running; it is not yet counted as passed in this checkpoint.
+
+The final ignored preparation run `d0170ad796e23dca659b7a1faf5a7273329f316498cd8981e140cdd54588f9f8` records 27 original documents, 31 proposed cases, four market candidates, one combined initial candidate and 23 unapproved profile manifests. Literal and structural failures are zero; actual publication validation fails the required unapproved profile/rights/translation gates. Twenty-four PDF cases satisfy process-local pinned extraction/range proof and prospective input admission. Accepted gold cases, paid requests and public Policy versions remain zero. Exact source/implementation/candidate hashes and the independent decision form are linked in `offline-review-decision-2026-11-06.md`.
+
+Focused boundary checks passed 39/39 before the final source-catalogue expansion. Actual isolated PDF parsing reproduced the GB source hash and rejected text drift; separate synthetic public/copy-restricted/password-required PDF probes accepted only the public extractable case. Synthetic probes are not real historical accuracy cases. The Python helper parses successfully and all 31 case approval/label invariants are false/null. The original fingerprint-verified scanner accepted all prepared code/proposals/decision text and the private NEM supplement without exposing marker values.
+
+Three later NEM reports were readable through official web PDF text; the direct 25-second and one 55-second attempts still timed out. Those remain outside original-byte admission, and the prior failures are retained. WA automated intake remains stopped under its terms; no access denial is bypassed. Model/manual-evaluation/manual-publication/source-profile/historical approvals remain disabled/empty. Fresh exact-head CI is required after the final consolidated branch update.
+
+
+## Integrated source and final citation check
+
+Approved main `ed62995b50162d79d961615fcfd74372fa72b06a` was normally merged as `d55639da3cf2ba58c8f3eec9fe87a3ed5cd2deb0`, including Japan modules already owned/reviewed in their separate task. Japan's separate checkout was not edited. The rebuilt integrated tree passed **1,568/1,568 complete unit tests with zero failures/skips** (810.1 seconds), current financial checks 84/84, unchanged budgets 31/31, all ETL snapshots, unpublished Policy-store verification and the mandatory original guard 7/7. The additional Japan source tests passed 32/32.
+
+The earlier full local desktop/mobile suite passed **274/274 in 18.1 minutes** on the prior built tree. It is not represented as a final-Japan integration browser run. The later small Policy citation change exposes the already-recorded safe use-terms URL in English/Chinese without altering rights state; the rebuilt artifact passed **138 Policy tests**, budgets 31/31, the original guard 7/7 and **16/16 Policy browser cases**, including actual English/Chinese URL assertions. Complete final integration browser verification belongs to the final-head CI reported on the PR.
+
+The final editorial proof run is `074dacfde94271c508a6cb42377a45b42300c342f6dda10f024962c8fc2fdf7d`, with combined candidate `982a0e2d928645834e5aa700469dfef9cda85303feaa557a35eaf93e83df998f`. Catalogue SHA-256 is `sha256:ee3bfe357746bec51c017d49a0dbba1e369548f3c913ddeb6ac032bb157607dc`; preparation implementation digest is `d5097e5712e704ed044c4b726824f683eeef70df3821978fa3df6d34c182c2f3`. All nine implementation file hashes match the committed Git blobs; the final catalogue is checked against the staged and then committed blob before pushing. The four proposed Thin evidence markers retain their existing what-would-change conditions. No approved investment view, source authorization, quotation permission or accepted label is changed.
+
+The editorial replay first hit the unchanged 20-second pinned-parser timeout on `gb-gate2-approval-boundary` during the heavily loaded complete local test run. Its failure log is retained. The isolated retry then passed original-byte, literal and structural checks with the same limits, 27 documents/31 cases/24 PDF input-admitted cases and zero accepted gold/model calls. Every earlier private run remains preserved. The publication validator still rejects all unapproved candidates. Final-head CI and any production proof must be read from the exact PR/run; no merge or P1 deployment is inferred from these local results.

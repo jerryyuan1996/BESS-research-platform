@@ -40,8 +40,8 @@ export function freshnessOf(summary, now = Date.now()){
   const refresh = summary.refreshHours || 24;
   const staleAfter = summary.staleAfterHours || refresh * 4;
 
-  /* A small grace factor on the refresh cadence. A cron that runs every six
-     hours will routinely be six hours and a few minutes old when a page loads,
+  /* A small grace factor on the refresh cadence. A cron that runs once a
+     day will routinely be a day and a few minutes old when a page loads,
      and flagging that as degraded would make the badge meaningless. */
   const state = ageHours <= refresh * 1.5 ? FRESHNESS.FRESH
     : ageHours <= staleAfter ? FRESHNESS.AGING

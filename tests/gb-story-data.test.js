@@ -17,7 +17,7 @@ test('both NESO registrations are licensed context and carry no financial drift 
     assert.equal(d.republishable,true);assert.equal(d.requiresKey,false);
     assert.equal(d.source.attribution,'Supported by National Energy SO Open Data');
   }
-  assert.equal(dataset.refreshHours,6);
+  assert.equal(dataset.refreshHours,24);
 });
 
 test('CALC-GB-TECH recognises only battery labels and preserves NA/blank/other',()=>{

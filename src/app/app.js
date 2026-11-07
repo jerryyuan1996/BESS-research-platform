@@ -167,47 +167,45 @@ function renderDesk(app){
    one: the reader may navigate again before the chunk resolves. */
 let dossierToken = 0;
 
-/* /news — the opportunity bell, the policy calendar and the headlines. Its own
-   chunk: the trigger records and the feed are read only by a reader who opens it. */
-let newsPage = null;
-function renderNews(app){
-  const token = ++experienceToken;
-  if (newsPage) return void newsPage.renderNewsPage(app);
-  const holder = h('div', { class: 'ix-container', 'aria-busy': 'true', style: 'padding-top:60px' },
-    h('p', {}, L(['Loading industry news…', '正在加载行业新闻…'])));
-  app.append(holder);
-  import('../news/newsPage.js').then(module => {
-    newsPage = module;
-    if (token !== experienceToken || !holder.isConnected) return;
-    app.replaceChildren();
-    module.renderNewsPage(app);
-  }).catch(error => {
-    if (!holder.isConnected) return;
-    console.error('[news]', error);
-    holder.replaceChildren(h('p', {}, L(['The page could not be loaded.', '页面未能加载。'])),
-      h('button', { class: 'ix-button', onclick: () => window.location.reload() }, L(['Reload', '刷新'])));
-  });
+function pageLoadFailure(holder,error,page){
+  if(!holder.isConnected)return;
+  console.error(`[${page}]`,error);
+  holder.replaceChildren(h('p',{},L(['The page could not be loaded.','页面未能加载。'])),
+    h('button',{class:'ix-button',onclick:()=>window.location.reload()},L(['Reload','刷新'])));
 }
 
-let experiencePage = null;
-let experienceToken = 0;
-function renderExperiencePage(app, route, market) {
-  const token = ++experienceToken;
-  if (experiencePage) return void experiencePage.renderExperience(app, route, market);
-  const holder = h('div', { class: 'ix-container', 'aria-busy': 'true', style: 'padding-top:60px' },
-    h('p', {}, L(['Loading the investment brief…', '正在加载投资简报…'])));
+// Shared lazy-page boundary: discard stale renders and offer one reload path.
+function loadExperiencePage(app,load,draw,page){
+  const token=experienceToken;
+  const holder=h('div',{class:'ix-container','aria-busy':'true',style:'padding-top:60px'},h('p',{},L(['Loading','加载中'])));
   app.append(holder);
-  import('../experience/pages.js').then(module => {
-    experiencePage = module;
-    if (token !== experienceToken || !holder.isConnected) return;
-    app.replaceChildren();
-    module.renderExperience(app, route, market);
-  }).catch(error => {
-    if (!holder.isConnected) return;
-    console.error('[experience]', error);
-    holder.replaceChildren(h('p', {}, L(['The page could not be loaded.', '页面未能加载。'])),
-      h('button', { class: 'ix-button', onclick: () => window.location.reload() }, L(['Reload', '刷新'])));
-  });
+  load().then(module=>{
+    if(token!==experienceToken||!holder.isConnected)return;
+    app.replaceChildren();draw(module);
+  }).catch(error=>pageLoadFailure(holder,error,page));
+}
+
+let newsPage=null;
+function renderNews(app){
+  ++experienceToken;
+  if(newsPage)return void newsPage.renderNewsPage(app);
+  loadExperiencePage(app,()=>import('../news/newsPage.js'),module=>{
+    newsPage=module;module.renderNewsPage(app);
+  },'news');
+}
+
+let experiencePage=null;
+let experienceToken=0;
+function renderExperiencePage(app,route,market){
+  ++experienceToken;
+  if(experiencePage)return void experiencePage.renderExperience(app,route,market);
+  loadExperiencePage(app,()=>import('../experience/pages.js'),module=>{
+    experiencePage=module;module.renderExperience(app,route,market);
+  },'experience');
+}
+
+function renderPolicy(app,route,market=null){
+  loadExperiencePage(app,()=>import('../policy/page.js'),module=>module.renderPolicyPage(app,{route,market,markets}),'policy');
 }
 
 /** Renders the current route into #app. This is the app's only render entry point. */
@@ -224,12 +222,19 @@ export function render(){
      content exists — is what stops it being set later, under 800 px of finished
      dashboard, where the width change is a layout shift (0.042 on the GB grid
      page before Phase A3). The same condition the research shell below uses. */
-  app.classList.toggle('ix-app', ['data','investmentLab','changes','scout','desk'].includes(route.name)
+  app.classList.toggle('ix-app', ['data','investmentLab','changes','scout','desk','policy'].includes(route.name)
     || (route.name === 'market' && Boolean(route.tab)));
   const experience = route.name === 'home' || route.name === 'returns' || (route.name === 'market' && !route.tab && bySlug(route.slug));
-  document.body.classList.toggle('ix-experience', Boolean(experience) || ['market','news','data','investmentLab','changes','scout','desk'].includes(route.name));
+  document.body.classList.toggle('ix-experience', Boolean(experience) || ['market','news','data','investmentLab','changes','scout','desk','policy'].includes(route.name));
   document.body.classList.toggle('ix-research', route.name === 'market' && Boolean(route.tab));
   ++experienceToken;
+  if(route.name==='policy'){
+    return renderPolicy(app,route);
+  }
+  if(route.name==='market'&&route.tab==='policy'){
+    const market=bySlug(route.slug);
+    if(market)return renderPolicy(app,route,market);
+  }
   if (experience) {
     const market = route.name === 'market' ? bySlug(route.slug) : null;
     document.title = L(['Global BESS', '全球储能']) + ' | ' + (market ? L(market.manifest.name) : route.name === 'returns' ? L(['Global opportunities', '全球投资机会']) : L(['Investment brief', '投资简报']));

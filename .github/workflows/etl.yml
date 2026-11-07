@@ -57,9 +57,9 @@ name: Live data
 
 on:
   schedule:
-    # Every six hours. The sources publish daily or better; six hours keeps the
-    # site current without hammering a public regulator's server.
-    - cron: '17 */6 * * *'
+    # Owner-approved unified daily market ETL + policy discovery cycle.
+    # Source latency and scheduler drift are additional to this ~24h cadence.
+    - cron: '17 6 * * *'
     # The agent's dry pass, once a month. No job that asks a model runs more
     # often than monthly: the analyst's ruling of 2026-10-12.
     - cron: '43 5 2 * *'
@@ -76,6 +76,11 @@ on:
         description: 'Comma-separated dataset ids (blank = all)'
         required: false
         type: string
+      dry_run:
+        description: 'Fetch and report without committing data, applying rules or publishing'
+        required: false
+        type: boolean
+        default: false
       verify_release:
         description: 'Data-only release verification; skip the analyst agent'
         required: false
@@ -103,16 +108,105 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
+  policy-discovery:
+    name: Policy discovery, shadow only
+    if: github.event.schedule == '17 6 * * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '' && inputs.weekly_briefing != true)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    outputs:
+      ai_enabled: ${{ steps.authorization.outputs.enabled }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Restore last discovery metadata
+        uses: actions/cache@v4
+        with:
+          path: etl/out/policy-discovery.json
+          key: policy-discovery-${{ hashFiles('policy/source-inventory.mjs') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: policy-discovery-${{ hashFiles('policy/source-inventory.mjs') }}-
+      - name: Discover reviewed official records without a model
+        run: node scripts/policy/discover.mjs
+        env:
+          POLICY_DISCOVERY_DISABLED: ${{ vars.POLICY_DISCOVERY_DISABLED }}
+      - name: Check concrete policy authorization without a credential
+        id: authorization
+        run: node scripts/policy/authorize.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: policy-discovery
+          path: etl/out/policy-discovery.json
+          retention-days: 7
+          if-no-files-found: error
+
+  policy-research:
+    name: Policy research, gated shadow
+    needs: policy-discovery
+    if: needs.policy-discovery.outputs.ai_enabled == 'true' && inputs.dry_run != true && vars.POLICY_AI_DISABLED != '1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: policy-discovery
+          path: etl/out/
+      - uses: actions/cache@v4
+        with:
+          path: etl/out/policy-ledger.json
+          key: policy-ledger-${{ hashFiles('policy/authorization.mjs', 'policy/source-inventory.mjs', 'policy/validation-profiles.mjs') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: policy-ledger-${{ hashFiles('policy/authorization.mjs', 'policy/source-inventory.mjs', 'policy/validation-profiles.mjs') }}-
+      - name: Reserve the one daily model-job slot using durable run history
+        run: node scripts/policy/daily-slot.mjs
+        env:
+          GH_READ_TOKEN: ${{ github.token }}
+      - name: Run the bounded tool-free policy model
+        run: node scripts/policy/research.mjs
+        env:
+          POLICY_MODEL_API_KEY: ${{ secrets.POLICY_MODEL_API_KEY }}
+          POLICY_AI_DISABLED: ${{ vars.POLICY_AI_DISABLED }}
+      - name: Independently scan policy artifacts before uploading
+        run: node scripts/policy/scan-artifact.mjs
+        env:
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+          REQUIRE_MARKERS: '1'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: policy-candidate
+          path: |
+            etl/out/policy-candidate.json
+            etl/out/policy-research.json
+          retention-days: 7
+          if-no-files-found: error
+
   refresh:
     name: Fetch, validate, publish
+    needs: [policy-discovery, policy-research]
     # Not on the agent's, the digest's or the scout pass's schedule: those run
     # their own job. Nor when a scout pass was asked for by hand.
-    if: github.event.schedule != '43 5 2 * *' && github.event.schedule != '7 6 3 * *' && github.event.schedule != '23 4 1 * *' && github.event.schedule != '7 23 * * 0' && inputs.scout_region == '' && inputs.weekly_briefing != true
+    if: ${{ !cancelled() && (github.event.schedule == '17 6 * * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '' && inputs.weekly_briefing != true)) }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     # The ETL step records its wall time through scripts/ci/timed.mjs, and the
     # job summary prints it beside the drift report. ETL duration is otherwise
     # only visible by reading etl/out/summary.json out of the artifact. The file
@@ -133,8 +227,17 @@ jobs:
 
       - run: npm ci
 
+      - name: Report independent policy discovery outcome
+        # Discovery is shadow-only. Failed/absent policy output never discards
+        # validated market data; no policy artifact is copied to public/.
+        env:
+          POLICY_DISCOVERY_RESULT: ${{ needs.policy-discovery.result }}
+        run: echo "Policy discovery outcome=$POLICY_DISCOVERY_RESULT; policy publication disabled." >> "$GITHUB_STEP_SUMMARY"
+
       - name: Run ETL
         env:
+          ETL_ONLY: ${{ inputs.only }}
+          ETL_DRY_RUN: ${{ inputs.dry_run }}
           # Absent secrets are not an error. The connector skips its dataset and
           # the previous snapshot stays in place — see etl/lib/fetch.mjs.
           ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
@@ -149,11 +252,10 @@ jobs:
         # Timed, not changed: the same two invocations as before, behind a
         # wrapper that records the duration for the job summary.
         run: |
-          if [ -n "${{ inputs.only }}" ]; then
-            node scripts/ci/timed.mjs "etl fetch" -- node etl/run.mjs --only "${{ inputs.only }}"
-          else
-            node scripts/ci/timed.mjs "etl fetch" -- node etl/run.mjs
-          fi
+          ARGS=()
+          if [ -n "$ETL_ONLY" ]; then ARGS+=(--only "$ETL_ONLY"); fi
+          if [ "$ETL_DRY_RUN" = "true" ]; then ARGS+=(--dry-run); fi
+          node scripts/ci/timed.mjs "etl fetch" -- node etl/run.mjs "${ARGS[@]}"
 
       - name: Apply rules
         # After the refresh, in the same job, so a rule tests only what this run
@@ -162,7 +264,24 @@ jobs:
         # rejected change leaves a report and writes nothing; the data is still
         # published, and the job fails at its end so somebody looks.
         id: rules
+        if: inputs.dry_run != true
         run: node etl/rules.mjs || echo "rejected=true" >> "$GITHUB_OUTPUT"
+
+      - name: Collect the independently scanned policy candidate
+        if: needs.policy-research.result == 'success' && inputs.dry_run != true
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: policy-candidate
+          path: etl/out/
+
+      - name: Independently validate policy and retain last known-good on failure
+        if: inputs.dry_run != true
+        run: node scripts/policy/publish-candidate.mjs
+        env:
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+          REQUIRE_MARKERS: '1'
 
       - name: Check the walls held
         # Belt and braces. The two writers make writing anywhere else throw, but
@@ -208,6 +327,7 @@ jobs:
 
       - name: Commit published data
         id: commit
+        if: inputs.dry_run != true
         run: |
           # `git status`, not `git diff`: a dataset's FIRST snapshot is an
           # untracked file, which `git diff` never reports. Using it skipped the
@@ -221,32 +341,33 @@ jobs:
           git config user.name  "bess-etl[bot]"
           git config user.email "bess-etl[bot]@users.noreply.github.com"
           if [ "${{ steps.viewscan.outputs.changed }}" = "true" ]; then
-            # Its own commit, so `git log view/` reads as the view's history and
-            # a rule's change is one revertible unit.
+            # One combined cycle commit. Rule history remains in the unchanged
+            # view changelog and can still be reverted through its own writer.
             git add view/markets view/index.json view/changelog.jsonl
-            FIRED=$(node -e "const r=require('./etl/out/rules-report.json');console.log(r.reports.filter(x=>x.status==='fired').map(x=>x.rule).join(', '))")
-            git commit -m "view: rule ${FIRED} fired" \
-                       -m "Written by the rules engine through the view writer's gate. The rule, its threshold and its change were written in advance by the analyst; the changelog line carries the evidence, and the weekly digest gives the command that undoes it."
-          fi
-          if [ -z "$DATA_CHANGED" ]; then
-            git push
-            echo "committed=true" >> "$GITHUB_OUTPUT"
-            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-            exit 0
           fi
           git add public/data
           # The commit message carries the run summary, so `git log public/data`
           # reads as the data's provenance history rather than a wall of
           # identical "update data" lines.
           UPDATED=$(node -e "const s=require('./etl/out/summary.json');console.log(s.updated.join(', ')||'none')")
-          git commit -m "data: refresh ${UPDATED}" \
-                     -m "Observed data and derived metrics only. No analyst assumption was modified." \
+          npm run etl:verify
+          npm run guard:staged
+          git commit -m "data: daily refresh ${UPDATED}" \
+                     -m "Validated observed data and existing pre-approved rule changes only; policy remains shadow-only. No analyst assumption was modified." \
                      -m "$(node -e "const s=require('./etl/out/summary.json');console.log('Failed: '+(s.failed.map(f=>f.id+' ('+f.status+')').join(', ')||'none'))")"
-          git push
+          # Rebases onto main and retries if a merge landed during the run
+          # (run 41399142010 failed here with "fetch first"). A conflict fails
+          # the job and pushes nothing. See scripts/ci/push-main.sh.
+          bash scripts/ci/push-main.sh
           # Written only after the push succeeded, so the publish job can never
-          # be handed a commit that is not on the remote.
+          # be handed a commit that is not on the remote. After a rebase HEAD is
+          # the rebased commit, which is the one on the remote.
           echo "committed=true" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+        env:
+          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
+          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
+          REQUIRE_MARKERS: '1'
 
       - name: Read drift outcome
         id: drift
@@ -285,7 +406,9 @@ jobs:
     # No data commit, no deploy — a run that changed nothing must not republish
     # what is already live. The ref test repeats the one on ci.yml's deploy job
     # so a run dispatched from another branch does not start the suite at all.
-    if: needs.refresh.outputs.committed == 'true' && github.ref == 'refs/heads/main'
+    # Optional Policy ancestors may be skipped or fail while refresh succeeds.
+    # Override implicit success() without allowing failed/cancelled refreshes.
+    if: ${{ !cancelled() && needs.refresh.result == 'success' && needs.refresh.outputs.committed == 'true' && github.ref == 'refs/heads/main' }}
     # This workflow holds write permissions for the commit above and the
     # proposal below. Publishing needs neither.
     permissions:
@@ -303,8 +426,11 @@ jobs:
   propose:
     name: Open a proposal for material drift
     needs: refresh
-    if: needs.refresh.outputs.material != '0'
+    if: needs.refresh.outputs.material != '0' && inputs.dry_run != true
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -593,7 +719,7 @@ jobs:
           WRITTEN=$(node -e "console.log(require('./etl/out/scout-report.json').pass.written)")
           git commit -m "view: scout pass ${REGION}, ${WRITTEN} records" \
                      -m "Written by the agent through the view writer's gate, to scout cards only. Every record carries a quotation found in a page fetched in this run; the changelog line holds it, and the weekly digest gives the command that undoes it."
-          git push
+          bash scripts/ci/push-main.sh
           echo "committed=true" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
@@ -668,9 +794,12 @@ jobs:
     # page is built with (src/briefing/), no model asked, no key needed.
     if: github.event.schedule == '7 23 * * 0' || inputs.weekly_briefing == true
     runs-on: ubuntu-latest
+    # actions: read is for the minutes line below, and reads run and job
+    # records only. Nothing here can start, cancel or change a run.
     permissions:
       contents: read
       issues: write
+      actions: read
     steps:
       - uses: actions/checkout@v4
 
@@ -683,6 +812,21 @@ jobs:
 
       - name: Render this week's briefing
         run: node scripts/briefing/weekly.mjs > briefing.md
+
+      # Automation minutes for the last 7 and 30 days, summed from job
+      # durations (billable minutes read zero while the repository is public).
+      # A report, never a gate: if GitHub cannot be read, the briefing posts
+      # without the line.
+      - name: Add the automation minutes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if node scripts/ci/minutes.mjs > minutes.md; then
+            echo >> briefing.md
+            cat minutes.md >> briefing.md
+          else
+            echo "::warning::The minutes line could not be read; the briefing posts without it."
+          fi
 
       - name: Post it, one issue a week
         # A second run in the same week edits that week's issue instead of

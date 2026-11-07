@@ -1,0 +1,11 @@
+# Manual static policy publication — inactive
+
+Manually reviewed policy facts do not require enabling a paid model. `MANUAL_POLICY_PUBLICATION` is a separate analyst-owned decision: it defaults OFF, has no approval ID and approves no snapshot hashes. A future approval must name every exact immutable snapshot in the published ancestry. New or changed candidate bytes cannot inherit it. This decision cannot enable the model, change source governance, bypass investment review or grant a writer new paths.
+
+Both manual and model publication retain the same source-reviewed historical-case gate, independently reviewed offline source/rights validators, canonical bilingual schema, document-level quotation limits, immutable events and original-source history, checksum chain, bounded files and no orphan assets. Manual approval is an additional content decision, not a substitute for those checks. Source validators and real historical cases remain absent today, so no policy snapshot is publishable.
+
+The index is derived metadata rather than a separate opportunity to insert content. Its timestamp and pending-investment-review projection must match the approved snapshot. Proof fields must contain exactly the expected record digests, bounded quotation allowances and analyst-decision hashes; extra root/proof fields are rejected. A ReviewCase cannot borrow another policy claim's investment dependency. Approved investment text, model values and Market Stories remain unchanged.
+
+The existing writer owns only `public/data/public/policy/index.json` and immutable hash snapshots. There is no new publisher token, recurring workflow, backend, source allowlist or investment writer. Manual content must still pass a feature-branch PR, full CI, the unchanged original confidentiality scan of the exact production artifact and the scanned-prebuilt deployment pipeline. The source/rights and four market pilot decisions remain required before the full v4 release.
+
+The negative tests use synthetic authority records and private temporary stores. They are not real source approvals, historical model evaluation or production publication. No real hash, source profile, credential, paid budget or activation was approved by this implementation.

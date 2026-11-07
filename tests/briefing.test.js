@@ -318,6 +318,8 @@ test('the weekly briefing posts on Monday morning in Perth, reads only, and neve
   assert.match(job, /gh issue edit "\$EXISTING" --body-file briefing\.md/);
   /* The data refresh does not run on the briefing's schedule or when it is dispatched. */
   const refresh = wf.slice(wf.indexOf('\n  refresh:\n'), wf.indexOf('\n  publish:\n'));
-  assert.match(refresh, /github\.event\.schedule != '7 23 \* \* 0'/);
+  /* The daily allowlist replaces exclusions for each unrelated schedule. */
+  assert.match(refresh, /github\.event\.schedule == '17 6 \* \* \*'/);
+  assert.doesNotMatch(refresh.split('runs-on:')[0], /schedule == '7 23 \* \* 0'/);
   assert.match(refresh, /inputs\.weekly_briefing != true/);
 });

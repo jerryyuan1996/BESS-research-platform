@@ -1,3 +1,4 @@
+import {HISTORY_WEM} from '../historyData.js';
 /* ---------------------------------------------------------------------------
    WEM market structure - owners, exit routes, long-term holders.
    Verbatim from the prototype (lines 704-781).
@@ -16,9 +17,7 @@ const WEM_MARKET = {
     rooftopSystems: 564000, rooftopGW: 3.17,
     derBessNowMW: 550, derBessTargetMW: 2300, derBessTargetYear: '2035-36',
   },
-  cis: { tender2MW: 650, tender2MWh: 2600, tender2When:'Mar 2025',
-    t56Projects: 10, t56GenGW: 1.886, t56StorageGWh: 3.683, t56InvestAbn: 5, t56Jobs: 7000, t56When:'2 May 2026',
-    t6BessMW: 482, t6BessMWh: 3683 },
+  cis: HISTORY_WEM.cis,
   // Ownership / strategy taxonomy of the WA storage market
   players: [
     { type:['State utility','国有电力'], n:'Synergy', met:'825+ MW / 3,500+ MWh',

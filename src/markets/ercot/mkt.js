@@ -1,3 +1,4 @@
+import {HISTORY_FORMAT} from './historyData.js';
 /* ---------------------------------------------------------------------------
    ERCOT — engine configuration.
 
@@ -13,7 +14,7 @@
    --------------------------------------------------------------------------- */
 
 const MKT = {
-  id: 'ercot', ns: 'ercot', locale: 'en-US', cur: '$', curCode: 'USD',
+  id: 'ercot', ns: 'ercot', locale: HISTORY_FORMAT.locale, cur: HISTORY_FORMAT.cur, curCode: 'USD',
   tz: 'America/Chicago', tzShort: 'CPT',
   tzNote: ['All timestamps Central Prevailing Time, which ERCOT settles on',
            '所有时间为美中现行时间（CPT），ERCOT按此结算'],

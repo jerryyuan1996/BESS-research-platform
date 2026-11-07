@@ -4,7 +4,7 @@ This is the single topic log for the NESO reserve dataset. Update it in place as
 
 This phase adds one independent `gb-eac-reserve` dataset for EAC Balancing Reserve (BR), Quick Reserve (QR) and Slow Reserve (SR), with positive and negative directions kept separate. Existing DC/DM/DR observations, approved model inputs and every other dataset retain their identities and behaviour. This is a partial implementation of A11, following the Elexon phase in PR #170; it does not complete the original A01–A14 list.
 
-Baseline: `main` / `4c1f1fe84bc72f9857ae68420ce246122a50ae81`, checked on 2026-11-06. Development uses the isolated `feat/neso-reserve-evidence` branch. Ontario is owned by a separate task. Before merge, the final branch must incorporate and validate the then-current main. PR #159 and its Policy controls are outside this phase.
+Initial development baseline: `main` / `4c1f1fe84bc72f9857ae68420ce246122a50ae81`, checked on 2026-11-06. Development uses the isolated `feat/neso-reserve-evidence` branch. The release incorporates and validates current main, preserving the completed Ontario additions. Main already runs the owner-approved 06:17 UTC daily combined cycle; this source follows it without changing Policy controls or activation. Final head and publication receipts remain in PR #173.
 
 ## Source and rights
 
@@ -15,11 +15,11 @@ Baseline: `main` / `4c1f1fe84bc72f9857ae68420ce246122a50ae81`, checked on 2026-1
 | Download | [Official anonymous daily CSV](https://api.neso.energy/dataset/291e3c28-75f2-4a8f-b5f5-008bebaac368/resource/3c51a666-1c33-450e-a6eb-c9b4a0c91584/download/neso-response-reserve-daily-results-summary.csv) |
 | Resource ID | `3c51a666-1c33-450e-a6eb-c9b4a0c91584` |
 | Permission | [NESO Open Licence](https://www.neso.energy/data-portal/neso-open-licence): copying, adaptation and distribution for commercial and non-commercial uses, with attribution; third-party rights and endorsement exclusions remain applicable |
-| Attribution in both public files | Supported by National Energy SO Open Data |
+| Attribution in both public files and the catalogue | Supported by National Energy SO Open Data |
 | Access conditions | No login, key or payment. Ordinary anonymous GET; no browser scraping or protection bypass |
 | Access budget | One small CSV and one attempt per existing ETL run, no runtime DataStore query. [Official API guidance](https://www.neso.energy/data-portal/api-guidance) recommends CKAN at most 1 request/second and DataStore at most 2/minute; this connector adds no calls to either API |
 | Failure handling | The entire response body has a 20-second deadline; accepted CSV is at most 1 MiB. The shared HTTP helper retains its own response-size checks. Any download, format or validation failure leaves last-good files unchanged and lets other providers run. 401/403/429 cause no retry or alternate URL |
-| Update frequency | NESO updates the file daily with the latest auction only. This source follows the existing ETL cycle; it adds no cron, lock, direct writer or publisher. At the initial baseline the effective workflow was six-hourly; the approved daily 06:17 UTC target is documented separately. The workflow at the release commit determines the actual cadence |
+| Update frequency | NESO updates the file daily with the latest auction only. This source follows the existing ETL cycle; it adds no cron, lock, direct writer or publisher. The initial baseline used a six-hourly collector; current main already uses the approved daily 06:17 UTC combined cycle. This new catalogue entry expects daily refreshes; existing observations keep their original acquisition metadata until changed source content is accepted |
 
 The licence metadata API returned `license_id: ESO`, with its legacy `ngeso-open-licence` URL. The current portal and current licence page above were separately checked. No private source, participant identity, account credential, paid data or restricted fixture is used.
 

@@ -33,7 +33,7 @@
  .public-story-trigger { grid-column:1/-1; justify-content:space-between; width:100%; padding:10px 14px; font-size:var(--fs-sm)!important; }
  .public-reading-time { grid-column:1/-1; margin:0; }
  .public-status { margin:3px 0; font-size:var(--fs-2xs); }
- .public-source-date { margin:3px 0; font-size:var(--fs-micro); }
+ .public-source-date { grid-column:1/-1; margin:3px 0; font-size:var(--fs-2xs); }
  .public-overview-reading .ix-text-link { grid-column:1/-1; font-size:var(--fs-2xs); }
 }
 @media print { .public-story-trigger { display:none; } .public-overview { break-inside:avoid; } }

@@ -1,3 +1,4 @@
+import {HISTORY_FORMAT} from './historyData.js';
 /* ---------------------------------------------------------------------------
    Poland 鈥?engine configuration.
 
@@ -11,7 +12,7 @@
    --------------------------------------------------------------------------- */
 
 const MKT = {
-  id: 'pl', ns: 'pl', locale: 'en-GB', cur: '€', curCode: 'EUR',
+  id: 'pl', ns: 'pl', locale: HISTORY_FORMAT.locale, cur: HISTORY_FORMAT.cur, curCode: 'EUR',
   tz: 'Europe/Warsaw', tzShort: 'CET',
   tzNote: ['All timestamps CET', '所有时间为中欧时间(CET)'],
   seedTag: 'PL_SEED_V1',

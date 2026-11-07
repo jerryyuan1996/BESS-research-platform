@@ -22,6 +22,7 @@ import { buildPathwayPanel } from '../../components/buildPathwayPanel.js';
 import { mountInvestmentCase } from '../../components/investmentCaseLoader.js';
 import { lineChart, barChart, waterfall, bandChart } from '../../charts/index.js';
 import { GLOSS_CORE } from './glossary.js';
+import { researchHistoryTimeline } from '../../components/researchHistoryTimeline.js';
 
 /** @param {object} ctx  { MKT, M, T, state, render, fmt, compute, lab, exports } */
 export function createBlocks(ctx){
@@ -101,10 +102,7 @@ function B(parent, b){
         h('li', {}, L(it[0]), it[1] ? h('span', { class: 'trig' }, L(it[1])) : null))));
       break;
     case 'timeline':
-      parent.append(h('div', { class: 'timeline' }, b.items.map(e => h('div', { class: 'tl-item' },
-        h('div', { class: 'tl-year' }, e.y),
-        h('div', { class: 'tl-body' }, h('h4', {}, L(e.t)), h('p', {}, L(e.p)),
-          e.i ? h('p', { class: 'imp' }, h('b', {}, L(['Capital lens: ', '资本视角：'])), L(e.i)) : null)))));
+      parent.append(researchHistoryTimeline(b.items));
       break;
     case 'phases':
       parent.append(h('div', { class: 'phase-grid' }, b.items.map(p => h('div', { class: 'phase' },

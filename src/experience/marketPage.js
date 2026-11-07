@@ -16,7 +16,7 @@ import { gateLabel } from './labels.js';
 import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
 import { navigate, onStoryPlace } from '../app/router.js';
-import { storyFor, publicStoryFor } from './story/registry.js';
+import { storyFor, publicReadingFor } from './story/registry.js';
 import './story/public/overview.css';
 
 
@@ -26,7 +26,7 @@ export function createMarketRenderer(ui) {
 let stopStoryPlace = null;
 function renderMarket(container, row, route) {
   const data = caseFor(row), m = row.market, mf = m.manifest;
-  const publicEntry = publicStoryFor(mf.id);
+  const publicEntry = publicReadingFor(mf.id);
   let storyRows = [row], storyReady = Promise.resolve();
   const content = main();
   if(publicEntry) content.classList.add('public-market');
@@ -83,7 +83,7 @@ function renderMarket(container, row, route) {
     if(!publicEntry || storyOpen())return;
     if(trigger?.dataset.loadFailed){
       const params=new URLSearchParams(window.location.search);
-      const edition=trigger.closest('[data-version]')?.dataset.version||'2026-11-06.1';
+      const edition=trigger.closest('[data-version]')?.dataset.version||'2026-11-06.3';
       params.set('view','story');params.set('chapter','history');params.set('shot',`public-${app.lang}-${edition.replace('.','-')}-history`);
       window.history.replaceState({},'',`${window.location.pathname}?${params}${window.location.hash}`);window.location.reload();return;
     }

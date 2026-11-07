@@ -16,6 +16,19 @@ import { test, expect } from '@playwright/test';
    a number that a data run would invalidate.
    --------------------------------------------------------------------------- */
 
+// A joined path can stay unchanged while an entire voltage band is in flight.
+// Observe completion from before navigation; path-node stability alone cannot
+// establish that every requested response has reached the renderer.
+const pendingGridRequests = new WeakMap();
+test.beforeEach(async ({ page }) => {
+  const pending = new Set(); pendingGridRequests.set(page, pending);
+  page.on('request', request => {
+    if (new URL(request.url()).pathname.startsWith('/data/grid/')) pending.add(request);
+  });
+  page.on('requestfinished', request => pending.delete(request));
+  page.on('requestfailed', request => pending.delete(request));
+});
+
 const MARKETS = [
   { slug:'great-britain', id:'gb', manifest:'gb-transmission.manifest.json' },
   { slug:'germany', id:'de', manifest:'de-transmission.manifest.json' },
@@ -53,7 +66,7 @@ async function settleLayer(page){
   await expect.poll(async () => {
     const now = await page.evaluate(
       () => document.querySelectorAll('.geo-transmission-layer [d]').length);
-    const stable = now === previous;
+    const stable = now === previous && pendingGridRequests.get(page).size === 0;
     previous = now;
     return stable;
   }, { timeout:25000, intervals:[350] }).toBe(true);
@@ -95,8 +108,14 @@ test('every market draws exactly the segments its manifest declares', async ({ p
       .toEqual(manifest.bands.map(band => band.band));
 
     await zoomIntoDetail(page);
-    const detailed = await page.evaluate(readLayer);
     const declared = manifest.bands.reduce((total, band) => total + band.lines, 0);
+    // A quiet 350 ms is not proof that an asynchronously fetched band arrived.
+    // Wait for the actual manifest contract, retaining the exact count and node
+    // budget assertions below. A missing/failed band still fails this test.
+    await expect.poll(async () => (await page.evaluate(readLayer)).groups
+      .reduce((total, group) => total + group.subpaths, 0), { timeout:25000 })
+      .toBe(declared);
+    const detailed = await page.evaluate(readLayer);
     const drawnSubpaths = detailed.groups.reduce((total, group) => total + group.subpaths, 0);
     expect(drawnSubpaths, `${market.id}: the full network after zooming`).toBe(declared);
     /* Still a handful of nodes for the whole national network. */
@@ -124,12 +143,13 @@ test('a band is fetched when it is wanted and never before', async ({ page }) =>
   expect(requested).toContain('gb-transmission-132-274.json');
 
   /* And it is on screen once it has been asked for: the stylesheet hides the
-     detail class only at the fitted extent. */
-  const detailVisible = await page.evaluate(() => {
+     detail class only at the fitted extent. Polled, because the request is
+     recorded when it is sent and the band is drawn after its response: read
+     once, the check raced the draw and failed now and then on a slow host. */
+  await expect.poll(() => page.evaluate(() => {
     const path = document.querySelector('.geo-transmission-line[data-band="detail"]');
     return path ? getComputedStyle(path).display !== 'none' : false;
-  });
-  expect(detailVisible, 'the detail band is shown above the zoom threshold').toBe(true);
+  }), { message: 'the detail band is shown above the zoom threshold', timeout: 10000 }).toBe(true);
 });
 
 test('repeated zooming never duplicates or rebuilding the layer', async ({ page }) => {
@@ -262,4 +282,26 @@ test('the map is usable at 390 px as well as 1440 px', async ({ page }) => {
     return shell.scrollWidth - shell.clientWidth;
   });
   expect(overflow, 'the map must not widen the page').toBeLessThanOrEqual(1);
+});
+
+test('a pending detail band cannot be mistaken for a settled drawing', async ({ page, request }) => {
+  const manifest = await (await request.get('/data/grid/gb-transmission.manifest.json')).json();
+  let release, requested = false, settled = false;
+  const held = new Promise(resolve => { release = resolve; });
+  await page.route('**/gb-transmission-132-274.json', async route => {
+    requested = true; await held; await route.continue();
+  });
+  try {
+    await page.goto(mapPath('great-britain'));
+    await expect(page.locator('.geo-transmission-line').first()).toBeVisible();
+    const reading = zoomIntoDetail(page).then(() => { settled = true; });
+    await expect.poll(() => requested).toBe(true);
+    // Several original 350ms stability probes fit while this response is held.
+    await page.waitForTimeout(1800);
+    expect(settled, 'unchanging path-node counts do not finish an active band request').toBe(false);
+    release(); await reading;
+    const layer = await page.evaluate(readLayer);
+    expect(layer.groups.reduce((n, group) => n + group.subpaths, 0))
+      .toBe(manifest.bands.reduce((n, band) => n + band.lines, 0));
+  } finally { release(); }
 });

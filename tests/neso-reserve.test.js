@@ -32,7 +32,8 @@ test('new reserve identity is licensed context; old response filter and dataset 
   assert.equal(dataset.connector,'neso-reserve');assert.equal(dataset.kind,'timeseries');
   assert.equal(dataset.republishable,true);assert.equal(dataset.requiresKey,false);assert.deepEqual(dataset.bearsOn,[]);
   assert.equal(dataset.source.attribution,'Supported by National Energy SO Open Data');
-  assert.match(dataset.source.licenceUrl,/neso-open-licence/);assert.equal(dataset.refreshHours,6);
+  assert.equal(dataset.source.notice,'Supported by National Energy SO Open Data');
+  assert.match(dataset.source.licenceUrl,/neso-open-licence/);assert.equal(dataset.refreshHours,24);
   assert.deepEqual(SERVICES,['DCL','DCH','DRL','DRH','DML','DMH']);
   assert.equal(datasetById('gb-eac-response').connector,'neso-response');
   const q=queries('888e5029-f786-41d2-bc15-cbfd1d285e96','ddc4afde-d2bd-424d-891c-56ad49c13d1a');
