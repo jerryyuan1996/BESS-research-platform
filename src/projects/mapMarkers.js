@@ -28,7 +28,12 @@ export function renderProjectMarkers(projectLayer,projects,{projection,view,zone
       if (marker.kind === 'cluster'){
         g.append(svgEl('circle', { class:'geo-project-shape', r:11 }));
         g.append(appendText(svgEl('text', { class:'geo-project-count', y:3.5 }), String(marker.count)));
-        g.append(appendText(svgEl('title'), L(clusterLabel(marker))));
+        const labels=clusterLabel(marker);
+        if(marker.projects.every(p=>p.sourceIds?.includes('us-eia-860m'))){
+          labels[0]=labels[0].replace(' projects ·',' generator units ·');
+          labels[1]=labels[1].replace('个项目 ·','台机组 ·');
+        }
+        g.append(appendText(svgEl('title'), L(labels)));
       } else {
         const p = marker.project;
         const energy = energyMWh(p);

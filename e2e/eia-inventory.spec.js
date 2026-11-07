@@ -22,6 +22,7 @@ for(const market of ['pjm','ercot','caiso'])for(const lang of ['en','zh'])test(`
     await expect(panel.locator('.eia-attribution')).toContainText('U.S. Energy Information Administration');
     await page.locator('.geo-period-group button[data-period="current"]').click();
     await expect.poll(()=>markerIds(page)).toEqual(located.map(p=>p.id).sort());
+    for(const title of await page.locator('.geo-project.cluster title').allTextContents())expect(title).toContain(lang==='en'?'generator units':'台机组');
     const toggle=page.locator('.geo-layer-toggle.project input');
     await toggle.uncheck();await expect(page.locator('.geo-project-layer [data-project-ids]')).toHaveCount(0);
     await toggle.check();await expect.poll(()=>markerIds(page)).toEqual(located.map(p=>p.id).sort());
