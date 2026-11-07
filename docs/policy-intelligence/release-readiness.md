@@ -1,4 +1,14 @@
-# Release readiness: incomplete draft
+# Policy release readiness
+
+## Current historical static release — 7 November 2026
+
+The analyst approved the exact 23-work/47-binding source proposal `a8c6d20fba8630e2e4c48b4bc4a134e550ee4c8a81fc821858c7d59bf937067f` for one historical facts-only release, preserving attribution and links with no original excerpts. Independent content/date/projection and source-inventory review is complete. The accepted static historical evaluation covers 16 cases and 85 factual units; it does not establish model accuracy or current-law completeness.
+
+The exact source, record and snapshot bindings are in `policy/static-release-admission.json`. All 27 investment cases remain pending with unmapped dependencies. No approved investment conclusion changes. Model calls, automatic policy publication, new source discovery and paid evaluation remain disabled. The FCAS incorporated terms remain unestablished, and WA automated acquisition remains stopped.
+
+Local source proofs and release validation must pass before integration. Exact-head CI, the original production-artifact confidentiality scan, full browser checks, scanned-prebuilt deployment and production snapshot/smoke verification remain release steps; this document does not claim they already ran. See [manual-policy-publication.md](manual-policy-publication.md) for the exact boundary.
+
+## Earlier implementation checkpoints (historical)
 
 PR: https://github.com/jerryyuan1996/BESS-research-platform/pull/159
 
