@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.ieso.ca/Terms-of-Use",
     "notice": "Copyright © 2004-2022 Independent Electricity System Operator, all rights reserved.\nThis information is subject to the Terms of Use set out in the IESO’s website (www.ieso.ca)"
   },
-  "fetchedAt": "2026-11-07T13:13:52.451Z",
+  "fetchedAt": "2026-11-08T13:35:56.082Z",
   "coverage": {
     "from": "2026-08-08T05:00:00.000Z",
-    "to": "2026-11-08T05:00:00.000Z",
+    "to": "2026-11-09T05:00:00.000Z",
     "resolution": "PT1H",
-    "points": 1080
+    "points": 1368
   },
   "units": {
     "price": "CAD/MWh"
@@ -11642,6 +11642,2910 @@
       "reportVersion": 1
     },
     {
+      "t": "2026-09-21T05:00:00.000Z",
+      "e": "2026-09-21T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 26.11,
+      "lossPrice": 0.27,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T06:00:00.000Z",
+      "e": "2026-09-21T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 31.55,
+      "lossPrice": 0.44,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T07:00:00.000Z",
+      "e": "2026-09-21T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 31.93,
+      "lossPrice": 0.45,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T08:00:00.000Z",
+      "e": "2026-09-21T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 31.91,
+      "lossPrice": 0.45,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T09:00:00.000Z",
+      "e": "2026-09-21T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 31.74,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T10:00:00.000Z",
+      "e": "2026-09-21T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 40.95,
+      "lossPrice": 0.41,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T11:00:00.000Z",
+      "e": "2026-09-21T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 46.59,
+      "lossPrice": 0.44,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T12:00:00.000Z",
+      "e": "2026-09-21T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 45.17,
+      "lossPrice": 0.33,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T13:00:00.000Z",
+      "e": "2026-09-21T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 41.88,
+      "lossPrice": 0.27,
+      "congestionPrice": 0.57,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T14:00:00.000Z",
+      "e": "2026-09-21T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 36.04,
+      "lossPrice": 0.24,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T15:00:00.000Z",
+      "e": "2026-09-21T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 35.69,
+      "lossPrice": 0.2,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T16:00:00.000Z",
+      "e": "2026-09-21T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 34.95,
+      "lossPrice": 0.2,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T17:00:00.000Z",
+      "e": "2026-09-21T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 39.03,
+      "lossPrice": 0.24,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T18:00:00.000Z",
+      "e": "2026-09-21T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 37.5,
+      "lossPrice": 0.2,
+      "congestionPrice": 0.06,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T19:00:00.000Z",
+      "e": "2026-09-21T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 35.36,
+      "lossPrice": 0.16,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T20:00:00.000Z",
+      "e": "2026-09-21T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 41.25,
+      "lossPrice": 0.24,
+      "congestionPrice": 0.01,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T21:00:00.000Z",
+      "e": "2026-09-21T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 53.97,
+      "lossPrice": 0.23,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T22:00:00.000Z",
+      "e": "2026-09-21T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 58.78,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-21T23:00:00.000Z",
+      "e": "2026-09-22T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 60.97,
+      "lossPrice": 0.37,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T00:00:00.000Z",
+      "e": "2026-09-22T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 48.94,
+      "lossPrice": 0.31,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T01:00:00.000Z",
+      "e": "2026-09-22T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 42.68,
+      "lossPrice": 0.24,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T02:00:00.000Z",
+      "e": "2026-09-22T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 39.25,
+      "lossPrice": 0.25,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T03:00:00.000Z",
+      "e": "2026-09-22T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 36.33,
+      "lossPrice": 0.33,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T04:00:00.000Z",
+      "e": "2026-09-22T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 37.32,
+      "lossPrice": 0.31,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-21",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T05:00:00.000Z",
+      "e": "2026-09-22T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 32.02,
+      "lossPrice": 0.29,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T06:00:00.000Z",
+      "e": "2026-09-22T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 30.97,
+      "lossPrice": 0.33,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T07:00:00.000Z",
+      "e": "2026-09-22T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 30.35,
+      "lossPrice": 0.35,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T08:00:00.000Z",
+      "e": "2026-09-22T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 29.31,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T09:00:00.000Z",
+      "e": "2026-09-22T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 31.9,
+      "lossPrice": 0.3,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T10:00:00.000Z",
+      "e": "2026-09-22T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 37.37,
+      "lossPrice": 0.36,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T11:00:00.000Z",
+      "e": "2026-09-22T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 47.55,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T12:00:00.000Z",
+      "e": "2026-09-22T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 46.6,
+      "lossPrice": 0.29,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T13:00:00.000Z",
+      "e": "2026-09-22T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 44.6,
+      "lossPrice": 0.37,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T14:00:00.000Z",
+      "e": "2026-09-22T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 39.23,
+      "lossPrice": 0.36,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T15:00:00.000Z",
+      "e": "2026-09-22T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 38.35,
+      "lossPrice": 0.37,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T16:00:00.000Z",
+      "e": "2026-09-22T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 36.18,
+      "lossPrice": 0.34,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T17:00:00.000Z",
+      "e": "2026-09-22T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 36.89,
+      "lossPrice": 0.35,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T18:00:00.000Z",
+      "e": "2026-09-22T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 34.5,
+      "lossPrice": 0.28,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T19:00:00.000Z",
+      "e": "2026-09-22T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 34.26,
+      "lossPrice": 0.24,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T20:00:00.000Z",
+      "e": "2026-09-22T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 37.32,
+      "lossPrice": 0.28,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T21:00:00.000Z",
+      "e": "2026-09-22T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 48.12,
+      "lossPrice": 0.26,
+      "congestionPrice": -0.03,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T22:00:00.000Z",
+      "e": "2026-09-22T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 52.1,
+      "lossPrice": 0.19,
+      "congestionPrice": -0.04,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-22T23:00:00.000Z",
+      "e": "2026-09-23T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 52.88,
+      "lossPrice": 0.2,
+      "congestionPrice": -0.04,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T00:00:00.000Z",
+      "e": "2026-09-23T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 47.42,
+      "lossPrice": 0.24,
+      "congestionPrice": -0.04,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T01:00:00.000Z",
+      "e": "2026-09-23T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 40.59,
+      "lossPrice": 0.26,
+      "congestionPrice": -0.03,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T02:00:00.000Z",
+      "e": "2026-09-23T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 38.79,
+      "lossPrice": 0.32,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T03:00:00.000Z",
+      "e": "2026-09-23T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 37.34,
+      "lossPrice": 0.36,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T04:00:00.000Z",
+      "e": "2026-09-23T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 38.8,
+      "lossPrice": 0.32,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-22",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T05:00:00.000Z",
+      "e": "2026-09-23T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 25.2,
+      "lossPrice": 0.21,
+      "congestionPrice": -0.01,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T06:00:00.000Z",
+      "e": "2026-09-23T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 25.21,
+      "lossPrice": 0.26,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T07:00:00.000Z",
+      "e": "2026-09-23T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 24.52,
+      "lossPrice": 0.27,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T08:00:00.000Z",
+      "e": "2026-09-23T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 24.56,
+      "lossPrice": 0.28,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T09:00:00.000Z",
+      "e": "2026-09-23T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 25.05,
+      "lossPrice": 0.26,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T10:00:00.000Z",
+      "e": "2026-09-23T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 31.97,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T11:00:00.000Z",
+      "e": "2026-09-23T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 47.31,
+      "lossPrice": 0.29,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T12:00:00.000Z",
+      "e": "2026-09-23T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 47.22,
+      "lossPrice": 0.24,
+      "congestionPrice": -0.03,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T13:00:00.000Z",
+      "e": "2026-09-23T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 37.14,
+      "lossPrice": 0.14,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T14:00:00.000Z",
+      "e": "2026-09-23T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 34.13,
+      "lossPrice": 0.13,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T15:00:00.000Z",
+      "e": "2026-09-23T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 33.4,
+      "lossPrice": 0.14,
+      "congestionPrice": -0.03,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T16:00:00.000Z",
+      "e": "2026-09-23T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 33.93,
+      "lossPrice": 0.16,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T17:00:00.000Z",
+      "e": "2026-09-23T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 34.56,
+      "lossPrice": 0.16,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T18:00:00.000Z",
+      "e": "2026-09-23T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 36.51,
+      "lossPrice": 0.17,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T19:00:00.000Z",
+      "e": "2026-09-23T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 34.98,
+      "lossPrice": 0.17,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T20:00:00.000Z",
+      "e": "2026-09-23T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 35.94,
+      "lossPrice": 0.11,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T21:00:00.000Z",
+      "e": "2026-09-23T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 43.08,
+      "lossPrice": 0.16,
+      "congestionPrice": -0.04,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T22:00:00.000Z",
+      "e": "2026-09-23T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 51.96,
+      "lossPrice": 0.21,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-23T23:00:00.000Z",
+      "e": "2026-09-24T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 56.64,
+      "lossPrice": 0.22,
+      "congestionPrice": 0.07,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-24T00:00:00.000Z",
+      "e": "2026-09-24T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 48.72,
+      "lossPrice": 0.23,
+      "congestionPrice": 0.28,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-24T01:00:00.000Z",
+      "e": "2026-09-24T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 41.7,
+      "lossPrice": 0.23,
+      "congestionPrice": -0.09,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-24T02:00:00.000Z",
+      "e": "2026-09-24T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 37.93,
+      "lossPrice": 0.33,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-24T03:00:00.000Z",
+      "e": "2026-09-24T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 35.62,
+      "lossPrice": 0.27,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-24T04:00:00.000Z",
+      "e": "2026-09-24T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 36.82,
+      "lossPrice": 0.32,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-23",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-24T05:00:00.000Z",
+      "e": "2026-09-24T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 24.05,
+      "lossPrice": 0.26,
+      "congestionPrice": -0.2,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T06:00:00.000Z",
+      "e": "2026-09-24T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 24.98,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T07:00:00.000Z",
+      "e": "2026-09-24T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 26.39,
+      "lossPrice": 0.39,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T08:00:00.000Z",
+      "e": "2026-09-24T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 31.23,
+      "lossPrice": 0.48,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T09:00:00.000Z",
+      "e": "2026-09-24T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 32.13,
+      "lossPrice": 0.41,
+      "congestionPrice": -0.28,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T10:00:00.000Z",
+      "e": "2026-09-24T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 44.81,
+      "lossPrice": 0.52,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T11:00:00.000Z",
+      "e": "2026-09-24T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 48.33,
+      "lossPrice": 0.3,
+      "congestionPrice": -0.01,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T12:00:00.000Z",
+      "e": "2026-09-24T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 45.6,
+      "lossPrice": 0.2,
+      "congestionPrice": -0.45,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T13:00:00.000Z",
+      "e": "2026-09-24T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 37.86,
+      "lossPrice": 0.2,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T14:00:00.000Z",
+      "e": "2026-09-24T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 35.55,
+      "lossPrice": 0.21,
+      "congestionPrice": -0.01,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T15:00:00.000Z",
+      "e": "2026-09-24T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 33.34,
+      "lossPrice": 0.15,
+      "congestionPrice": -0.3,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T16:00:00.000Z",
+      "e": "2026-09-24T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 35.15,
+      "lossPrice": 0.16,
+      "congestionPrice": -0.01,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T17:00:00.000Z",
+      "e": "2026-09-24T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 36.12,
+      "lossPrice": 0.19,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T18:00:00.000Z",
+      "e": "2026-09-24T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 37.77,
+      "lossPrice": 0.19,
+      "congestionPrice": -0.35,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T19:00:00.000Z",
+      "e": "2026-09-24T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 37.89,
+      "lossPrice": 0.21,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T20:00:00.000Z",
+      "e": "2026-09-24T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 37.97,
+      "lossPrice": 0.21,
+      "congestionPrice": -0.24,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T21:00:00.000Z",
+      "e": "2026-09-24T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 45.79,
+      "lossPrice": 0.15,
+      "congestionPrice": -0.24,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T22:00:00.000Z",
+      "e": "2026-09-24T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 52.35,
+      "lossPrice": 0.25,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-24T23:00:00.000Z",
+      "e": "2026-09-25T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 64.43,
+      "lossPrice": 0.29,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-25T00:00:00.000Z",
+      "e": "2026-09-25T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 56.45,
+      "lossPrice": 0.25,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-25T01:00:00.000Z",
+      "e": "2026-09-25T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 46.62,
+      "lossPrice": 0.21,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-25T02:00:00.000Z",
+      "e": "2026-09-25T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 39.84,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-25T03:00:00.000Z",
+      "e": "2026-09-25T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 37.54,
+      "lossPrice": 0.26,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-25T04:00:00.000Z",
+      "e": "2026-09-25T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 37.86,
+      "lossPrice": 0.3,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-24",
+      "reportVersion": 3
+    },
+    {
+      "t": "2026-09-25T05:00:00.000Z",
+      "e": "2026-09-25T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 35.75,
+      "lossPrice": 0.43,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T06:00:00.000Z",
+      "e": "2026-09-25T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 38,
+      "lossPrice": 0.52,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T07:00:00.000Z",
+      "e": "2026-09-25T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 34.83,
+      "lossPrice": 0.51,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T08:00:00.000Z",
+      "e": "2026-09-25T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 35.33,
+      "lossPrice": 0.5,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T09:00:00.000Z",
+      "e": "2026-09-25T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 39.95,
+      "lossPrice": 0.55,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T10:00:00.000Z",
+      "e": "2026-09-25T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 47.86,
+      "lossPrice": 0.51,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T11:00:00.000Z",
+      "e": "2026-09-25T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 51.32,
+      "lossPrice": 0.42,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T12:00:00.000Z",
+      "e": "2026-09-25T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 47.75,
+      "lossPrice": 0.35,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T13:00:00.000Z",
+      "e": "2026-09-25T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 45.51,
+      "lossPrice": 0.36,
+      "congestionPrice": 0.19,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T14:00:00.000Z",
+      "e": "2026-09-25T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 41.98,
+      "lossPrice": 0.32,
+      "congestionPrice": 0.04,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T15:00:00.000Z",
+      "e": "2026-09-25T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 40.63,
+      "lossPrice": 0.3,
+      "congestionPrice": 0.28,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T16:00:00.000Z",
+      "e": "2026-09-25T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 39.08,
+      "lossPrice": 0.27,
+      "congestionPrice": -0.15,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T17:00:00.000Z",
+      "e": "2026-09-25T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 42.82,
+      "lossPrice": 0.22,
+      "congestionPrice": -0.14,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T18:00:00.000Z",
+      "e": "2026-09-25T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 43.11,
+      "lossPrice": 0.22,
+      "congestionPrice": -0.15,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T19:00:00.000Z",
+      "e": "2026-09-25T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 37.84,
+      "lossPrice": 0.17,
+      "congestionPrice": 0.13,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T20:00:00.000Z",
+      "e": "2026-09-25T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 38.97,
+      "lossPrice": 0.16,
+      "congestionPrice": 0.09,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T21:00:00.000Z",
+      "e": "2026-09-25T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 47.23,
+      "lossPrice": 0.18,
+      "congestionPrice": -0.22,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T22:00:00.000Z",
+      "e": "2026-09-25T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 53.23,
+      "lossPrice": 0.22,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-25T23:00:00.000Z",
+      "e": "2026-09-26T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 58.28,
+      "lossPrice": 0.28,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T00:00:00.000Z",
+      "e": "2026-09-26T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 49.52,
+      "lossPrice": 0.26,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T01:00:00.000Z",
+      "e": "2026-09-26T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 44.5,
+      "lossPrice": 0.35,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T02:00:00.000Z",
+      "e": "2026-09-26T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 40.63,
+      "lossPrice": 0.41,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T03:00:00.000Z",
+      "e": "2026-09-26T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 38.03,
+      "lossPrice": 0.39,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T04:00:00.000Z",
+      "e": "2026-09-26T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 37.4,
+      "lossPrice": 0.4,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-25",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T05:00:00.000Z",
+      "e": "2026-09-26T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 33.28,
+      "lossPrice": 0.42,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T06:00:00.000Z",
+      "e": "2026-09-26T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 32.59,
+      "lossPrice": 0.49,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T07:00:00.000Z",
+      "e": "2026-09-26T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 33.49,
+      "lossPrice": 0.53,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T08:00:00.000Z",
+      "e": "2026-09-26T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 33.46,
+      "lossPrice": 0.51,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T09:00:00.000Z",
+      "e": "2026-09-26T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 37.64,
+      "lossPrice": 0.64,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T10:00:00.000Z",
+      "e": "2026-09-26T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 38.62,
+      "lossPrice": 0.63,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T11:00:00.000Z",
+      "e": "2026-09-26T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 43.36,
+      "lossPrice": 0.62,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T12:00:00.000Z",
+      "e": "2026-09-26T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 44.68,
+      "lossPrice": 0.49,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T13:00:00.000Z",
+      "e": "2026-09-26T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 42.3,
+      "lossPrice": 0.43,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T14:00:00.000Z",
+      "e": "2026-09-26T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 36.62,
+      "lossPrice": 0.31,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T15:00:00.000Z",
+      "e": "2026-09-26T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 36.63,
+      "lossPrice": 0.35,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T16:00:00.000Z",
+      "e": "2026-09-26T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 36.58,
+      "lossPrice": 0.33,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T17:00:00.000Z",
+      "e": "2026-09-26T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 36.22,
+      "lossPrice": 0.28,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T18:00:00.000Z",
+      "e": "2026-09-26T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 36.53,
+      "lossPrice": 0.28,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T19:00:00.000Z",
+      "e": "2026-09-26T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 36.56,
+      "lossPrice": 0.28,
+      "congestionPrice": -0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T20:00:00.000Z",
+      "e": "2026-09-26T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 40.19,
+      "lossPrice": 0.26,
+      "congestionPrice": -0.03,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T21:00:00.000Z",
+      "e": "2026-09-26T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 50.45,
+      "lossPrice": 0.43,
+      "congestionPrice": -0.06,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T22:00:00.000Z",
+      "e": "2026-09-26T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 51.7,
+      "lossPrice": 0.5,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-26T23:00:00.000Z",
+      "e": "2026-09-27T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 51.62,
+      "lossPrice": 0.47,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T00:00:00.000Z",
+      "e": "2026-09-27T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 48.6,
+      "lossPrice": 0.46,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T01:00:00.000Z",
+      "e": "2026-09-27T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 46.73,
+      "lossPrice": 0.43,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T02:00:00.000Z",
+      "e": "2026-09-27T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 46.32,
+      "lossPrice": 0.5,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T03:00:00.000Z",
+      "e": "2026-09-27T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 42.89,
+      "lossPrice": 0.56,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T04:00:00.000Z",
+      "e": "2026-09-27T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 43.11,
+      "lossPrice": 0.49,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-26",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T05:00:00.000Z",
+      "e": "2026-09-27T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 31.46,
+      "lossPrice": 0.39,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T06:00:00.000Z",
+      "e": "2026-09-27T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 32.53,
+      "lossPrice": 0.47,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T07:00:00.000Z",
+      "e": "2026-09-27T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 31.46,
+      "lossPrice": 0.49,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T08:00:00.000Z",
+      "e": "2026-09-27T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 28.47,
+      "lossPrice": 0.44,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T09:00:00.000Z",
+      "e": "2026-09-27T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 29.29,
+      "lossPrice": 0.48,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T10:00:00.000Z",
+      "e": "2026-09-27T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 31.82,
+      "lossPrice": 0.5,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T11:00:00.000Z",
+      "e": "2026-09-27T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 32.45,
+      "lossPrice": 0.35,
+      "congestionPrice": 0.04,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T12:00:00.000Z",
+      "e": "2026-09-27T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 43.81,
+      "lossPrice": 0.47,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T13:00:00.000Z",
+      "e": "2026-09-27T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 43.97,
+      "lossPrice": 0.33,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T14:00:00.000Z",
+      "e": "2026-09-27T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 40.99,
+      "lossPrice": 0.22,
+      "congestionPrice": 0.01,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T15:00:00.000Z",
+      "e": "2026-09-27T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 34.83,
+      "lossPrice": 0.15,
+      "congestionPrice": 0.03,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T16:00:00.000Z",
+      "e": "2026-09-27T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 38.66,
+      "lossPrice": 0.17,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T17:00:00.000Z",
+      "e": "2026-09-27T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 43.47,
+      "lossPrice": 0.22,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T18:00:00.000Z",
+      "e": "2026-09-27T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 37.28,
+      "lossPrice": 0.26,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T19:00:00.000Z",
+      "e": "2026-09-27T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 39.68,
+      "lossPrice": 0.2,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T20:00:00.000Z",
+      "e": "2026-09-27T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 41.74,
+      "lossPrice": 0.23,
+      "congestionPrice": 0.01,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T21:00:00.000Z",
+      "e": "2026-09-27T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 49.3,
+      "lossPrice": 0.22,
+      "congestionPrice": -0.03,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T22:00:00.000Z",
+      "e": "2026-09-27T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 52.32,
+      "lossPrice": 0.26,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-27T23:00:00.000Z",
+      "e": "2026-09-28T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 57.05,
+      "lossPrice": 0.24,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T00:00:00.000Z",
+      "e": "2026-09-28T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 52.81,
+      "lossPrice": 0.31,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T01:00:00.000Z",
+      "e": "2026-09-28T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 46.62,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T02:00:00.000Z",
+      "e": "2026-09-28T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 41.37,
+      "lossPrice": 0.21,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T03:00:00.000Z",
+      "e": "2026-09-28T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 39.15,
+      "lossPrice": 0.23,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T04:00:00.000Z",
+      "e": "2026-09-28T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 39.88,
+      "lossPrice": 0.38,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-27",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T05:00:00.000Z",
+      "e": "2026-09-28T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 30.29,
+      "lossPrice": 0.23,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T06:00:00.000Z",
+      "e": "2026-09-28T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 33.89,
+      "lossPrice": 0.32,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T07:00:00.000Z",
+      "e": "2026-09-28T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 34.72,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T08:00:00.000Z",
+      "e": "2026-09-28T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 38.4,
+      "lossPrice": 0.36,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T09:00:00.000Z",
+      "e": "2026-09-28T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 40.48,
+      "lossPrice": 0.48,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T10:00:00.000Z",
+      "e": "2026-09-28T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 40.31,
+      "lossPrice": 0.45,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T11:00:00.000Z",
+      "e": "2026-09-28T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 50.01,
+      "lossPrice": 0.36,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T12:00:00.000Z",
+      "e": "2026-09-28T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 49.05,
+      "lossPrice": 0.3,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T13:00:00.000Z",
+      "e": "2026-09-28T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 47.55,
+      "lossPrice": 0.23,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T14:00:00.000Z",
+      "e": "2026-09-28T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 48.14,
+      "lossPrice": 0.18,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T15:00:00.000Z",
+      "e": "2026-09-28T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 48.16,
+      "lossPrice": 0.21,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T16:00:00.000Z",
+      "e": "2026-09-28T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 48.08,
+      "lossPrice": 0.17,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T17:00:00.000Z",
+      "e": "2026-09-28T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 47.89,
+      "lossPrice": 0.14,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T18:00:00.000Z",
+      "e": "2026-09-28T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 47.67,
+      "lossPrice": 0.16,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T19:00:00.000Z",
+      "e": "2026-09-28T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 48.08,
+      "lossPrice": 0.14,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T20:00:00.000Z",
+      "e": "2026-09-28T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 47.82,
+      "lossPrice": 0.11,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T21:00:00.000Z",
+      "e": "2026-09-28T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 56.19,
+      "lossPrice": 0.13,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T22:00:00.000Z",
+      "e": "2026-09-28T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 63.09,
+      "lossPrice": 0.23,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-28T23:00:00.000Z",
+      "e": "2026-09-29T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 67.92,
+      "lossPrice": 0.16,
+      "congestionPrice": 0.08,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T00:00:00.000Z",
+      "e": "2026-09-29T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 57.5,
+      "lossPrice": 0.13,
+      "congestionPrice": 0.16,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T01:00:00.000Z",
+      "e": "2026-09-29T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 47.81,
+      "lossPrice": 0.17,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T02:00:00.000Z",
+      "e": "2026-09-29T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 40.61,
+      "lossPrice": 0.24,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T03:00:00.000Z",
+      "e": "2026-09-29T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 40.56,
+      "lossPrice": 0.32,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T04:00:00.000Z",
+      "e": "2026-09-29T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 46.63,
+      "lossPrice": 0.23,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-28",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T05:00:00.000Z",
+      "e": "2026-09-29T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 39.09,
+      "lossPrice": 0.26,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T06:00:00.000Z",
+      "e": "2026-09-29T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 41.34,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T07:00:00.000Z",
+      "e": "2026-09-29T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 39.38,
+      "lossPrice": 0.34,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T08:00:00.000Z",
+      "e": "2026-09-29T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 39.24,
+      "lossPrice": 0.32,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T09:00:00.000Z",
+      "e": "2026-09-29T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 43.91,
+      "lossPrice": 0.44,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T10:00:00.000Z",
+      "e": "2026-09-29T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 50.89,
+      "lossPrice": 0.48,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T11:00:00.000Z",
+      "e": "2026-09-29T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 57.74,
+      "lossPrice": 0.41,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T12:00:00.000Z",
+      "e": "2026-09-29T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 55.34,
+      "lossPrice": 0.28,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T13:00:00.000Z",
+      "e": "2026-09-29T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 46.59,
+      "lossPrice": 0.15,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T14:00:00.000Z",
+      "e": "2026-09-29T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 47.27,
+      "lossPrice": 0.09,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T15:00:00.000Z",
+      "e": "2026-09-29T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 46.51,
+      "lossPrice": 0.1,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T16:00:00.000Z",
+      "e": "2026-09-29T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 48.29,
+      "lossPrice": 0.08,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T17:00:00.000Z",
+      "e": "2026-09-29T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 50.06,
+      "lossPrice": -0.01,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T18:00:00.000Z",
+      "e": "2026-09-29T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 53.55,
+      "lossPrice": 0.04,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T19:00:00.000Z",
+      "e": "2026-09-29T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 49.5,
+      "lossPrice": -0.01,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T20:00:00.000Z",
+      "e": "2026-09-29T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 58.11,
+      "lossPrice": -0.1,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T21:00:00.000Z",
+      "e": "2026-09-29T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 79.8,
+      "lossPrice": -0.14,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T22:00:00.000Z",
+      "e": "2026-09-29T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 92.48,
+      "lossPrice": -0.05,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-29T23:00:00.000Z",
+      "e": "2026-09-30T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 94.16,
+      "lossPrice": -0.12,
+      "congestionPrice": 0.03,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T00:00:00.000Z",
+      "e": "2026-09-30T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 87.64,
+      "lossPrice": 0,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T01:00:00.000Z",
+      "e": "2026-09-30T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 72.27,
+      "lossPrice": 0.07,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T02:00:00.000Z",
+      "e": "2026-09-30T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 57.9,
+      "lossPrice": 0.22,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T03:00:00.000Z",
+      "e": "2026-09-30T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 46.74,
+      "lossPrice": 0.29,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T04:00:00.000Z",
+      "e": "2026-09-30T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 43.93,
+      "lossPrice": 0.3,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-29",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T05:00:00.000Z",
+      "e": "2026-09-30T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 35.36,
+      "lossPrice": 0.21,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T06:00:00.000Z",
+      "e": "2026-09-30T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 44.43,
+      "lossPrice": 0.43,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T07:00:00.000Z",
+      "e": "2026-09-30T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 43.75,
+      "lossPrice": 0.46,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T08:00:00.000Z",
+      "e": "2026-09-30T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 43.41,
+      "lossPrice": 0.41,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T09:00:00.000Z",
+      "e": "2026-09-30T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 47.75,
+      "lossPrice": 0.44,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T10:00:00.000Z",
+      "e": "2026-09-30T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 52.03,
+      "lossPrice": 0.48,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T11:00:00.000Z",
+      "e": "2026-09-30T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 56.57,
+      "lossPrice": 0.31,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T12:00:00.000Z",
+      "e": "2026-09-30T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 53.23,
+      "lossPrice": 0.23,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T13:00:00.000Z",
+      "e": "2026-09-30T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 48.16,
+      "lossPrice": 0.16,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T14:00:00.000Z",
+      "e": "2026-09-30T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 48.88,
+      "lossPrice": 0.04,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T15:00:00.000Z",
+      "e": "2026-09-30T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 49.89,
+      "lossPrice": 0.07,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T16:00:00.000Z",
+      "e": "2026-09-30T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 57.21,
+      "lossPrice": 0.09,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T17:00:00.000Z",
+      "e": "2026-09-30T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 61.46,
+      "lossPrice": 0.03,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T18:00:00.000Z",
+      "e": "2026-09-30T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 73.68,
+      "lossPrice": -0.09,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T19:00:00.000Z",
+      "e": "2026-09-30T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 69.88,
+      "lossPrice": -0.12,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T20:00:00.000Z",
+      "e": "2026-09-30T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 86.46,
+      "lossPrice": -0.21,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T21:00:00.000Z",
+      "e": "2026-09-30T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 96.51,
+      "lossPrice": -0.06,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T22:00:00.000Z",
+      "e": "2026-09-30T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 95.12,
+      "lossPrice": 0.12,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-09-30T23:00:00.000Z",
+      "e": "2026-10-01T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 101.97,
+      "lossPrice": 0.11,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T00:00:00.000Z",
+      "e": "2026-10-01T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 89.85,
+      "lossPrice": 0.13,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T01:00:00.000Z",
+      "e": "2026-10-01T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 67.11,
+      "lossPrice": 0.18,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T02:00:00.000Z",
+      "e": "2026-10-01T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 52.19,
+      "lossPrice": 0.19,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T03:00:00.000Z",
+      "e": "2026-10-01T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 43.64,
+      "lossPrice": 0.35,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T04:00:00.000Z",
+      "e": "2026-10-01T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 44.58,
+      "lossPrice": 0.32,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-09-30",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T05:00:00.000Z",
+      "e": "2026-10-01T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 34.41,
+      "lossPrice": 0.23,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T06:00:00.000Z",
+      "e": "2026-10-01T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 34.57,
+      "lossPrice": 0.27,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T07:00:00.000Z",
+      "e": "2026-10-01T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 33.88,
+      "lossPrice": 0.27,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T08:00:00.000Z",
+      "e": "2026-10-01T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 33.94,
+      "lossPrice": 0.3,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T09:00:00.000Z",
+      "e": "2026-10-01T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 37.49,
+      "lossPrice": 0.38,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T10:00:00.000Z",
+      "e": "2026-10-01T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 45.01,
+      "lossPrice": 0.52,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T11:00:00.000Z",
+      "e": "2026-10-01T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 58.69,
+      "lossPrice": 0.43,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T12:00:00.000Z",
+      "e": "2026-10-01T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 58.99,
+      "lossPrice": 0.37,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T13:00:00.000Z",
+      "e": "2026-10-01T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 56.14,
+      "lossPrice": 0.14,
+      "congestionPrice": 0.05,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T14:00:00.000Z",
+      "e": "2026-10-01T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 61.02,
+      "lossPrice": 0.08,
+      "congestionPrice": 0.34,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T15:00:00.000Z",
+      "e": "2026-10-01T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 58.61,
+      "lossPrice": 0.1,
+      "congestionPrice": 0.33,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T16:00:00.000Z",
+      "e": "2026-10-01T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 62.16,
+      "lossPrice": 0.08,
+      "congestionPrice": 0.29,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T17:00:00.000Z",
+      "e": "2026-10-01T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 67.4,
+      "lossPrice": -0.05,
+      "congestionPrice": 0.25,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T18:00:00.000Z",
+      "e": "2026-10-01T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 67.23,
+      "lossPrice": -0.14,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T19:00:00.000Z",
+      "e": "2026-10-01T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 66.83,
+      "lossPrice": -0.1,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T20:00:00.000Z",
+      "e": "2026-10-01T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 86.66,
+      "lossPrice": -0.15,
+      "congestionPrice": 0.09,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T21:00:00.000Z",
+      "e": "2026-10-01T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 112.02,
+      "lossPrice": -0.2,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T22:00:00.000Z",
+      "e": "2026-10-01T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 99.04,
+      "lossPrice": -0.06,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-01T23:00:00.000Z",
+      "e": "2026-10-02T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 113.61,
+      "lossPrice": -0.19,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-02T00:00:00.000Z",
+      "e": "2026-10-02T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 98.53,
+      "lossPrice": 0.01,
+      "congestionPrice": 0.52,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-02T01:00:00.000Z",
+      "e": "2026-10-02T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 84.92,
+      "lossPrice": 0,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-02T02:00:00.000Z",
+      "e": "2026-10-02T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 59.18,
+      "lossPrice": 0.18,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-02T03:00:00.000Z",
+      "e": "2026-10-02T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 47.33,
+      "lossPrice": 0.28,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-10-02T04:00:00.000Z",
+      "e": "2026-10-02T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 45.63,
+      "lossPrice": 0.4,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-10-01",
+      "reportVersion": 1
+    },
+    {
       "t": "2026-11-07T05:00:00.000Z",
       "e": "2026-11-07T06:00:00.000Z",
       "hourEnding": 1,
@@ -11904,31 +14808,284 @@
       "flag": "DSO-RD",
       "deliveryDate": "2026-11-07",
       "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T05:00:00.000Z",
+      "e": "2026-11-08T06:00:00.000Z",
+      "hourEnding": 1,
+      "v": 37.49,
+      "lossPrice": 0.01,
+      "congestionPrice": 0.03,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T06:00:00.000Z",
+      "e": "2026-11-08T07:00:00.000Z",
+      "hourEnding": 2,
+      "v": 32,
+      "lossPrice": 0.01,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T07:00:00.000Z",
+      "e": "2026-11-08T08:00:00.000Z",
+      "hourEnding": 3,
+      "v": 30.79,
+      "lossPrice": 0.06,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T08:00:00.000Z",
+      "e": "2026-11-08T09:00:00.000Z",
+      "hourEnding": 4,
+      "v": 30.81,
+      "lossPrice": 0.08,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T09:00:00.000Z",
+      "e": "2026-11-08T10:00:00.000Z",
+      "hourEnding": 5,
+      "v": 28.59,
+      "lossPrice": 0.07,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T10:00:00.000Z",
+      "e": "2026-11-08T11:00:00.000Z",
+      "hourEnding": 6,
+      "v": 25.22,
+      "lossPrice": 0.01,
+      "congestionPrice": 0.01,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T11:00:00.000Z",
+      "e": "2026-11-08T12:00:00.000Z",
+      "hourEnding": 7,
+      "v": 29.13,
+      "lossPrice": 0.02,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T12:00:00.000Z",
+      "e": "2026-11-08T13:00:00.000Z",
+      "hourEnding": 8,
+      "v": 31.42,
+      "lossPrice": -0.04,
+      "congestionPrice": 0.68,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T13:00:00.000Z",
+      "e": "2026-11-08T14:00:00.000Z",
+      "hourEnding": 9,
+      "v": 30.06,
+      "lossPrice": -0.08,
+      "congestionPrice": 0.67,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T14:00:00.000Z",
+      "e": "2026-11-08T15:00:00.000Z",
+      "hourEnding": 10,
+      "v": 24.11,
+      "lossPrice": -0.1,
+      "congestionPrice": 0.91,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T15:00:00.000Z",
+      "e": "2026-11-08T16:00:00.000Z",
+      "hourEnding": 11,
+      "v": 21.27,
+      "lossPrice": -0.11,
+      "congestionPrice": 0.92,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T16:00:00.000Z",
+      "e": "2026-11-08T17:00:00.000Z",
+      "hourEnding": 12,
+      "v": 23.26,
+      "lossPrice": -0.16,
+      "congestionPrice": -0.53,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T17:00:00.000Z",
+      "e": "2026-11-08T18:00:00.000Z",
+      "hourEnding": 13,
+      "v": 23.18,
+      "lossPrice": -0.22,
+      "congestionPrice": -4.33,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T18:00:00.000Z",
+      "e": "2026-11-08T19:00:00.000Z",
+      "hourEnding": 14,
+      "v": 28.32,
+      "lossPrice": -0.23,
+      "congestionPrice": -2.35,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T19:00:00.000Z",
+      "e": "2026-11-08T20:00:00.000Z",
+      "hourEnding": 15,
+      "v": 25.2,
+      "lossPrice": -0.19,
+      "congestionPrice": 0.01,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T20:00:00.000Z",
+      "e": "2026-11-08T21:00:00.000Z",
+      "hourEnding": 16,
+      "v": 30.63,
+      "lossPrice": -0.22,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T21:00:00.000Z",
+      "e": "2026-11-08T22:00:00.000Z",
+      "hourEnding": 17,
+      "v": 42.99,
+      "lossPrice": -0.28,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T22:00:00.000Z",
+      "e": "2026-11-08T23:00:00.000Z",
+      "hourEnding": 18,
+      "v": 61.55,
+      "lossPrice": -0.57,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-08T23:00:00.000Z",
+      "e": "2026-11-09T00:00:00.000Z",
+      "hourEnding": 19,
+      "v": 47.04,
+      "lossPrice": -0.39,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-09T00:00:00.000Z",
+      "e": "2026-11-09T01:00:00.000Z",
+      "hourEnding": 20,
+      "v": 40.77,
+      "lossPrice": -0.25,
+      "congestionPrice": 0,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-09T01:00:00.000Z",
+      "e": "2026-11-09T02:00:00.000Z",
+      "hourEnding": 21,
+      "v": 33.94,
+      "lossPrice": -0.17,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-09T02:00:00.000Z",
+      "e": "2026-11-09T03:00:00.000Z",
+      "hourEnding": 22,
+      "v": 33.94,
+      "lossPrice": -0.1,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-09T03:00:00.000Z",
+      "e": "2026-11-09T04:00:00.000Z",
+      "hourEnding": 23,
+      "v": 30.71,
+      "lossPrice": -0.09,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
+    },
+    {
+      "t": "2026-11-09T04:00:00.000Z",
+      "e": "2026-11-09T05:00:00.000Z",
+      "hourEnding": 24,
+      "v": 28.37,
+      "lossPrice": -0.03,
+      "congestionPrice": 0.02,
+      "flag": "DSO-RD",
+      "deliveryDate": "2026-11-08",
+      "reportVersion": 1
     }
   ],
   "derived": {
     "authority": "derived",
     "basis": "coverage-and-archive-integrity",
-    "archiveChecksum": "sha256:088d7289d6ed31bb12222743ad364c7f731eabe4607a8445d6991d0ae561d97a",
+    "archiveChecksum": "sha256:be80538ddaa29a92aed66acaebc8ef692fd3e4aeab0d6dffbb1990bae88014a9",
     "coverageAudit": {
-      "archiveReports": 45,
-      "archiveDeliveryDays": 45,
+      "archiveReports": 57,
+      "archiveDeliveryDays": 57,
       "archiveFirst": "2026-08-08",
-      "archiveLast": "2026-11-07",
+      "archiveLast": "2026-11-08",
       "availableDeliveryDays": 91,
-      "archivedAvailableDeliveryDays": 44,
+      "archivedAvailableDeliveryDays": 55,
       "pendingReportFiles": [
-        "PUB_DAHourlyOntarioZonalPrice_20260921_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20260922_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20260923_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20260924_v3.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20260925_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20260926_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20260927_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20260928_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20260929_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20260930_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20261001_v1.xml",
         "PUB_DAHourlyOntarioZonalPrice_20261002_v1.xml",
         "PUB_DAHourlyOntarioZonalPrice_20261003_v1.xml",
         "PUB_DAHourlyOntarioZonalPrice_20261004_v1.xml",
@@ -11966,21 +15123,10 @@
         "PUB_DAHourlyOntarioZonalPrice_20261105_v1.xml",
         "PUB_DAHourlyOntarioZonalPrice_20261106_v1.xml"
       ],
-      "completeRollingDays": 45,
-      "expectedIntervalsBetweenObservedEndpoints": 2208,
-      "actualIntervals": 1080,
+      "completeRollingDays": 57,
+      "expectedIntervalsBetweenObservedEndpoints": 2232,
+      "actualIntervals": 1368,
       "missingDays": [
-        "2026-09-21",
-        "2026-09-22",
-        "2026-09-23",
-        "2026-09-24",
-        "2026-09-25",
-        "2026-09-26",
-        "2026-09-27",
-        "2026-09-28",
-        "2026-09-29",
-        "2026-09-30",
-        "2026-10-01",
         "2026-10-02",
         "2026-10-03",
         "2026-10-04",
@@ -12030,8 +15176,8 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 72,
-  "contentChecksum": "sha256:0a1fc68782d40ef1f905be9e80a2724295b52729769f7960c50483a54727407f",
-  "envelopeChecksum": "sha256:68a9f99f503132786a04ad3aaa45890940757f461d5b9cf6738472868c0b7f1a",
+  "contentChecksum": "sha256:3778b110146e979e351e93a27be634c9b65b2b8e1f3762ae90ea098fdfda6289",
+  "envelopeChecksum": "sha256:ee694ee261a9d781516c04b0bea38bf36a7d915f4afcf7190d9e301658945f27",
   "archive": {
     "schemaVersion": 1,
     "reports": [
@@ -19912,6 +23058,1975 @@
         "retrievedAt": "2026-11-07T13:13:52.451Z"
       },
       {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260921_v1.xml",
+        "deliveryDate": "2026-09-21",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-20T12:31:13",
+        "sourceSha256": "27bc08bba4953beb29bb8262c722a1c5452f331e0272a4a90dac6ab80281fca8",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 26.11,
+            "lossPrice": 0.27,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 31.55,
+            "lossPrice": 0.44,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 31.93,
+            "lossPrice": 0.45,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 31.91,
+            "lossPrice": 0.45,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 31.74,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 40.95,
+            "lossPrice": 0.41,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 46.59,
+            "lossPrice": 0.44,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 45.17,
+            "lossPrice": 0.33,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 41.88,
+            "lossPrice": 0.27,
+            "congestionPrice": 0.57,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 36.04,
+            "lossPrice": 0.24,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 35.69,
+            "lossPrice": 0.2,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 34.95,
+            "lossPrice": 0.2,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 39.03,
+            "lossPrice": 0.24,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 37.5,
+            "lossPrice": 0.2,
+            "congestionPrice": 0.06,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 35.36,
+            "lossPrice": 0.16,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 41.25,
+            "lossPrice": 0.24,
+            "congestionPrice": 0.01,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 53.97,
+            "lossPrice": 0.23,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 58.78,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 60.97,
+            "lossPrice": 0.37,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 48.94,
+            "lossPrice": 0.31,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 42.68,
+            "lossPrice": 0.24,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 39.25,
+            "lossPrice": 0.25,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 36.33,
+            "lossPrice": 0.33,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 37.32,
+            "lossPrice": 0.31,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260922_v1.xml",
+        "deliveryDate": "2026-09-22",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-21T12:31:14",
+        "sourceSha256": "b8a1b256dc9d8a8425aadf57b242fa8f2ebd7ed69844e261c534a6278d29a8e2",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 32.02,
+            "lossPrice": 0.29,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 30.97,
+            "lossPrice": 0.33,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 30.35,
+            "lossPrice": 0.35,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 29.31,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 31.9,
+            "lossPrice": 0.3,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 37.37,
+            "lossPrice": 0.36,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 47.55,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 46.6,
+            "lossPrice": 0.29,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 44.6,
+            "lossPrice": 0.37,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 39.23,
+            "lossPrice": 0.36,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 38.35,
+            "lossPrice": 0.37,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 36.18,
+            "lossPrice": 0.34,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 36.89,
+            "lossPrice": 0.35,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 34.5,
+            "lossPrice": 0.28,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 34.26,
+            "lossPrice": 0.24,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 37.32,
+            "lossPrice": 0.28,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 48.12,
+            "lossPrice": 0.26,
+            "congestionPrice": -0.03,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 52.1,
+            "lossPrice": 0.19,
+            "congestionPrice": -0.04,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 52.88,
+            "lossPrice": 0.2,
+            "congestionPrice": -0.04,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 47.42,
+            "lossPrice": 0.24,
+            "congestionPrice": -0.04,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 40.59,
+            "lossPrice": 0.26,
+            "congestionPrice": -0.03,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 38.79,
+            "lossPrice": 0.32,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 37.34,
+            "lossPrice": 0.36,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 38.8,
+            "lossPrice": 0.32,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260923_v1.xml",
+        "deliveryDate": "2026-09-23",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-22T12:31:13",
+        "sourceSha256": "21c3b7fbced2ce15ff6f4ecaeb143265df7c08dc97e437c9841f04ba29eefbef",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 25.2,
+            "lossPrice": 0.21,
+            "congestionPrice": -0.01,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 25.21,
+            "lossPrice": 0.26,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 24.52,
+            "lossPrice": 0.27,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 24.56,
+            "lossPrice": 0.28,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 25.05,
+            "lossPrice": 0.26,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 31.97,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 47.31,
+            "lossPrice": 0.29,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 47.22,
+            "lossPrice": 0.24,
+            "congestionPrice": -0.03,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 37.14,
+            "lossPrice": 0.14,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 34.13,
+            "lossPrice": 0.13,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 33.4,
+            "lossPrice": 0.14,
+            "congestionPrice": -0.03,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 33.93,
+            "lossPrice": 0.16,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 34.56,
+            "lossPrice": 0.16,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 36.51,
+            "lossPrice": 0.17,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 34.98,
+            "lossPrice": 0.17,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 35.94,
+            "lossPrice": 0.11,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 43.08,
+            "lossPrice": 0.16,
+            "congestionPrice": -0.04,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 51.96,
+            "lossPrice": 0.21,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 56.64,
+            "lossPrice": 0.22,
+            "congestionPrice": 0.07,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 48.72,
+            "lossPrice": 0.23,
+            "congestionPrice": 0.28,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 41.7,
+            "lossPrice": 0.23,
+            "congestionPrice": -0.09,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 37.93,
+            "lossPrice": 0.33,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 35.62,
+            "lossPrice": 0.27,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 36.82,
+            "lossPrice": 0.32,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260924_v3.xml",
+        "deliveryDate": "2026-09-24",
+        "version": 3,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-23T14:27:20",
+        "sourceSha256": "1625cbb65ee77236e72841e37fc083fba9bb8a9a7c54415c55035a41321a814a",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 24.05,
+            "lossPrice": 0.26,
+            "congestionPrice": -0.2,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 24.98,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 26.39,
+            "lossPrice": 0.39,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 31.23,
+            "lossPrice": 0.48,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 32.13,
+            "lossPrice": 0.41,
+            "congestionPrice": -0.28,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 44.81,
+            "lossPrice": 0.52,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 48.33,
+            "lossPrice": 0.3,
+            "congestionPrice": -0.01,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 45.6,
+            "lossPrice": 0.2,
+            "congestionPrice": -0.45,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 37.86,
+            "lossPrice": 0.2,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 35.55,
+            "lossPrice": 0.21,
+            "congestionPrice": -0.01,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 33.34,
+            "lossPrice": 0.15,
+            "congestionPrice": -0.3,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 35.15,
+            "lossPrice": 0.16,
+            "congestionPrice": -0.01,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 36.12,
+            "lossPrice": 0.19,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 37.77,
+            "lossPrice": 0.19,
+            "congestionPrice": -0.35,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 37.89,
+            "lossPrice": 0.21,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 37.97,
+            "lossPrice": 0.21,
+            "congestionPrice": -0.24,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 45.79,
+            "lossPrice": 0.15,
+            "congestionPrice": -0.24,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 52.35,
+            "lossPrice": 0.25,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 64.43,
+            "lossPrice": 0.29,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 56.45,
+            "lossPrice": 0.25,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 46.62,
+            "lossPrice": 0.21,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 39.84,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 37.54,
+            "lossPrice": 0.26,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 37.86,
+            "lossPrice": 0.3,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260925_v1.xml",
+        "deliveryDate": "2026-09-25",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-24T12:31:13",
+        "sourceSha256": "60db4a23335717919a848e771a84afc608965c328d8bf812184271a0bdebae49",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 35.75,
+            "lossPrice": 0.43,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 38,
+            "lossPrice": 0.52,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 34.83,
+            "lossPrice": 0.51,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 35.33,
+            "lossPrice": 0.5,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 39.95,
+            "lossPrice": 0.55,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 47.86,
+            "lossPrice": 0.51,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 51.32,
+            "lossPrice": 0.42,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 47.75,
+            "lossPrice": 0.35,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 45.51,
+            "lossPrice": 0.36,
+            "congestionPrice": 0.19,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 41.98,
+            "lossPrice": 0.32,
+            "congestionPrice": 0.04,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 40.63,
+            "lossPrice": 0.3,
+            "congestionPrice": 0.28,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 39.08,
+            "lossPrice": 0.27,
+            "congestionPrice": -0.15,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 42.82,
+            "lossPrice": 0.22,
+            "congestionPrice": -0.14,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 43.11,
+            "lossPrice": 0.22,
+            "congestionPrice": -0.15,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 37.84,
+            "lossPrice": 0.17,
+            "congestionPrice": 0.13,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 38.97,
+            "lossPrice": 0.16,
+            "congestionPrice": 0.09,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 47.23,
+            "lossPrice": 0.18,
+            "congestionPrice": -0.22,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 53.23,
+            "lossPrice": 0.22,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 58.28,
+            "lossPrice": 0.28,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 49.52,
+            "lossPrice": 0.26,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 44.5,
+            "lossPrice": 0.35,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 40.63,
+            "lossPrice": 0.41,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 38.03,
+            "lossPrice": 0.39,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 37.4,
+            "lossPrice": 0.4,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260926_v1.xml",
+        "deliveryDate": "2026-09-26",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-25T12:31:14",
+        "sourceSha256": "7bd6bf066a168357ceb35153ff25763a9ddbedcace41684e3717eb97d3ae6a49",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 33.28,
+            "lossPrice": 0.42,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 32.59,
+            "lossPrice": 0.49,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 33.49,
+            "lossPrice": 0.53,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 33.46,
+            "lossPrice": 0.51,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 37.64,
+            "lossPrice": 0.64,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 38.62,
+            "lossPrice": 0.63,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 43.36,
+            "lossPrice": 0.62,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 44.68,
+            "lossPrice": 0.49,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 42.3,
+            "lossPrice": 0.43,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 36.62,
+            "lossPrice": 0.31,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 36.63,
+            "lossPrice": 0.35,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 36.58,
+            "lossPrice": 0.33,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 36.22,
+            "lossPrice": 0.28,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 36.53,
+            "lossPrice": 0.28,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 36.56,
+            "lossPrice": 0.28,
+            "congestionPrice": -0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 40.19,
+            "lossPrice": 0.26,
+            "congestionPrice": -0.03,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 50.45,
+            "lossPrice": 0.43,
+            "congestionPrice": -0.06,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 51.7,
+            "lossPrice": 0.5,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 51.62,
+            "lossPrice": 0.47,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 48.6,
+            "lossPrice": 0.46,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 46.73,
+            "lossPrice": 0.43,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 46.32,
+            "lossPrice": 0.5,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 42.89,
+            "lossPrice": 0.56,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 43.11,
+            "lossPrice": 0.49,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260927_v1.xml",
+        "deliveryDate": "2026-09-27",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-26T12:31:17",
+        "sourceSha256": "21c7554490c171cac2f95dc7742bba563c3733a150952b4b946c5cd4501064da",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 31.46,
+            "lossPrice": 0.39,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 32.53,
+            "lossPrice": 0.47,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 31.46,
+            "lossPrice": 0.49,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 28.47,
+            "lossPrice": 0.44,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 29.29,
+            "lossPrice": 0.48,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 31.82,
+            "lossPrice": 0.5,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 32.45,
+            "lossPrice": 0.35,
+            "congestionPrice": 0.04,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 43.81,
+            "lossPrice": 0.47,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 43.97,
+            "lossPrice": 0.33,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 40.99,
+            "lossPrice": 0.22,
+            "congestionPrice": 0.01,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 34.83,
+            "lossPrice": 0.15,
+            "congestionPrice": 0.03,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 38.66,
+            "lossPrice": 0.17,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 43.47,
+            "lossPrice": 0.22,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 37.28,
+            "lossPrice": 0.26,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 39.68,
+            "lossPrice": 0.2,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 41.74,
+            "lossPrice": 0.23,
+            "congestionPrice": 0.01,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 49.3,
+            "lossPrice": 0.22,
+            "congestionPrice": -0.03,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 52.32,
+            "lossPrice": 0.26,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 57.05,
+            "lossPrice": 0.24,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 52.81,
+            "lossPrice": 0.31,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 46.62,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 41.37,
+            "lossPrice": 0.21,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 39.15,
+            "lossPrice": 0.23,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 39.88,
+            "lossPrice": 0.38,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260928_v1.xml",
+        "deliveryDate": "2026-09-28",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-27T12:31:13",
+        "sourceSha256": "34d1bdb955d3fc6f986acfa518c7de87d28f01511740259ab1dc53f84bfed8a1",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 30.29,
+            "lossPrice": 0.23,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 33.89,
+            "lossPrice": 0.32,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 34.72,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 38.4,
+            "lossPrice": 0.36,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 40.48,
+            "lossPrice": 0.48,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 40.31,
+            "lossPrice": 0.45,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 50.01,
+            "lossPrice": 0.36,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 49.05,
+            "lossPrice": 0.3,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 47.55,
+            "lossPrice": 0.23,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 48.14,
+            "lossPrice": 0.18,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 48.16,
+            "lossPrice": 0.21,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 48.08,
+            "lossPrice": 0.17,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 47.89,
+            "lossPrice": 0.14,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 47.67,
+            "lossPrice": 0.16,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 48.08,
+            "lossPrice": 0.14,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 47.82,
+            "lossPrice": 0.11,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 56.19,
+            "lossPrice": 0.13,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 63.09,
+            "lossPrice": 0.23,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 67.92,
+            "lossPrice": 0.16,
+            "congestionPrice": 0.08,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 57.5,
+            "lossPrice": 0.13,
+            "congestionPrice": 0.16,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 47.81,
+            "lossPrice": 0.17,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 40.61,
+            "lossPrice": 0.24,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 40.56,
+            "lossPrice": 0.32,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 46.63,
+            "lossPrice": 0.23,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260929_v1.xml",
+        "deliveryDate": "2026-09-29",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-28T12:31:16",
+        "sourceSha256": "72f6ccfc9aef08f0fb1a7caee3cb430c515a3d9f929c2a21c580ad65d6fdb0d3",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 39.09,
+            "lossPrice": 0.26,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 41.34,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 39.38,
+            "lossPrice": 0.34,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 39.24,
+            "lossPrice": 0.32,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 43.91,
+            "lossPrice": 0.44,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 50.89,
+            "lossPrice": 0.48,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 57.74,
+            "lossPrice": 0.41,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 55.34,
+            "lossPrice": 0.28,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 46.59,
+            "lossPrice": 0.15,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 47.27,
+            "lossPrice": 0.09,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 46.51,
+            "lossPrice": 0.1,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 48.29,
+            "lossPrice": 0.08,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 50.06,
+            "lossPrice": -0.01,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 53.55,
+            "lossPrice": 0.04,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 49.5,
+            "lossPrice": -0.01,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 58.11,
+            "lossPrice": -0.1,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 79.8,
+            "lossPrice": -0.14,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 92.48,
+            "lossPrice": -0.05,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 94.16,
+            "lossPrice": -0.12,
+            "congestionPrice": 0.03,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 87.64,
+            "lossPrice": 0,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 72.27,
+            "lossPrice": 0.07,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 57.9,
+            "lossPrice": 0.22,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 46.74,
+            "lossPrice": 0.29,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 43.93,
+            "lossPrice": 0.3,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20260930_v1.xml",
+        "deliveryDate": "2026-09-30",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-29T12:31:16",
+        "sourceSha256": "942cce23a20816dd2b1148bfa3385bb3f75a8f08047b86fdab5f9b72678f35b7",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 35.36,
+            "lossPrice": 0.21,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 44.43,
+            "lossPrice": 0.43,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 43.75,
+            "lossPrice": 0.46,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 43.41,
+            "lossPrice": 0.41,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 47.75,
+            "lossPrice": 0.44,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 52.03,
+            "lossPrice": 0.48,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 56.57,
+            "lossPrice": 0.31,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 53.23,
+            "lossPrice": 0.23,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 48.16,
+            "lossPrice": 0.16,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 48.88,
+            "lossPrice": 0.04,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 49.89,
+            "lossPrice": 0.07,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 57.21,
+            "lossPrice": 0.09,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 61.46,
+            "lossPrice": 0.03,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 73.68,
+            "lossPrice": -0.09,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 69.88,
+            "lossPrice": -0.12,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 86.46,
+            "lossPrice": -0.21,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 96.51,
+            "lossPrice": -0.06,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 95.12,
+            "lossPrice": 0.12,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 101.97,
+            "lossPrice": 0.11,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 89.85,
+            "lossPrice": 0.13,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 67.11,
+            "lossPrice": 0.18,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 52.19,
+            "lossPrice": 0.19,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 43.64,
+            "lossPrice": 0.35,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 44.58,
+            "lossPrice": 0.32,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20261001_v1.xml",
+        "deliveryDate": "2026-10-01",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-09-30T12:31:14",
+        "sourceSha256": "d0ff411347a49521178795f855fe80227eb33c3596ec52ecde291f9386d186fb",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 34.41,
+            "lossPrice": 0.23,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 34.57,
+            "lossPrice": 0.27,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 33.88,
+            "lossPrice": 0.27,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 33.94,
+            "lossPrice": 0.3,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 37.49,
+            "lossPrice": 0.38,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 45.01,
+            "lossPrice": 0.52,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 58.69,
+            "lossPrice": 0.43,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 58.99,
+            "lossPrice": 0.37,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 56.14,
+            "lossPrice": 0.14,
+            "congestionPrice": 0.05,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 61.02,
+            "lossPrice": 0.08,
+            "congestionPrice": 0.34,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 58.61,
+            "lossPrice": 0.1,
+            "congestionPrice": 0.33,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 62.16,
+            "lossPrice": 0.08,
+            "congestionPrice": 0.29,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 67.4,
+            "lossPrice": -0.05,
+            "congestionPrice": 0.25,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 67.23,
+            "lossPrice": -0.14,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 66.83,
+            "lossPrice": -0.1,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 86.66,
+            "lossPrice": -0.15,
+            "congestionPrice": 0.09,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 112.02,
+            "lossPrice": -0.2,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 99.04,
+            "lossPrice": -0.06,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 113.61,
+            "lossPrice": -0.19,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 98.53,
+            "lossPrice": 0.01,
+            "congestionPrice": 0.52,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 84.92,
+            "lossPrice": 0,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 59.18,
+            "lossPrice": 0.18,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 47.33,
+            "lossPrice": 0.28,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 45.63,
+            "lossPrice": 0.4,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
+      },
+      {
         "file": "PUB_DAHourlyOntarioZonalPrice_20261107_v1.xml",
         "deliveryDate": "2026-11-07",
         "version": 1,
@@ -20089,6 +25204,185 @@
           }
         ],
         "retrievedAt": "2026-11-06T21:32:10.448Z"
+      },
+      {
+        "file": "PUB_DAHourlyOntarioZonalPrice_20261108_v1.xml",
+        "deliveryDate": "2026-11-08",
+        "version": 1,
+        "schemaRevision": 1,
+        "createdAtSourceText": "2026-11-07T13:31:12",
+        "sourceSha256": "ec18d710fea5cc347c6ffba2861aa1692587bbd12db6aeaec8d5e2e1e4de43f5",
+        "rows": [
+          {
+            "hourEnding": 1,
+            "v": 37.49,
+            "lossPrice": 0.01,
+            "congestionPrice": 0.03,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 2,
+            "v": 32,
+            "lossPrice": 0.01,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 3,
+            "v": 30.79,
+            "lossPrice": 0.06,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 4,
+            "v": 30.81,
+            "lossPrice": 0.08,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 5,
+            "v": 28.59,
+            "lossPrice": 0.07,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 6,
+            "v": 25.22,
+            "lossPrice": 0.01,
+            "congestionPrice": 0.01,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 7,
+            "v": 29.13,
+            "lossPrice": 0.02,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 8,
+            "v": 31.42,
+            "lossPrice": -0.04,
+            "congestionPrice": 0.68,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 9,
+            "v": 30.06,
+            "lossPrice": -0.08,
+            "congestionPrice": 0.67,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 10,
+            "v": 24.11,
+            "lossPrice": -0.1,
+            "congestionPrice": 0.91,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 11,
+            "v": 21.27,
+            "lossPrice": -0.11,
+            "congestionPrice": 0.92,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 12,
+            "v": 23.26,
+            "lossPrice": -0.16,
+            "congestionPrice": -0.53,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 13,
+            "v": 23.18,
+            "lossPrice": -0.22,
+            "congestionPrice": -4.33,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 14,
+            "v": 28.32,
+            "lossPrice": -0.23,
+            "congestionPrice": -2.35,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 15,
+            "v": 25.2,
+            "lossPrice": -0.19,
+            "congestionPrice": 0.01,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 16,
+            "v": 30.63,
+            "lossPrice": -0.22,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 17,
+            "v": 42.99,
+            "lossPrice": -0.28,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 18,
+            "v": 61.55,
+            "lossPrice": -0.57,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 19,
+            "v": 47.04,
+            "lossPrice": -0.39,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 20,
+            "v": 40.77,
+            "lossPrice": -0.25,
+            "congestionPrice": 0,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 21,
+            "v": 33.94,
+            "lossPrice": -0.17,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 22,
+            "v": 33.94,
+            "lossPrice": -0.1,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 23,
+            "v": 30.71,
+            "lossPrice": -0.09,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          },
+          {
+            "hourEnding": 24,
+            "v": 28.37,
+            "lossPrice": -0.03,
+            "congestionPrice": 0.02,
+            "flag": "DSO-RD"
+          }
+        ],
+        "retrievedAt": "2026-11-08T13:35:56.082Z"
       }
     ]
   }

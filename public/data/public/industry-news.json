@@ -13,7 +13,7 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-07T13:13:52.451Z",
+  "fetchedAt": "2026-11-08T13:35:56.082Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
     "to": "2026-11-07T10:50:00.000Z",
@@ -332,7 +332,7 @@
       "url": "https://www.energy-storage.news/india-approves-viability-gap-funding-to-support-92gwh-of-bess-and-pumped-hydro-energy-storage-capacity/",
       "category": "capital",
       "categoryLabel": "Capital & M&A",
-      "summary": "India’s Union government has approved the next IR145 billion (US$1.5 billion) phase of the Viability Gap Funding (VGP) policy support mechanism for energy storage capacity additions. In addition, a Ministry of Power official has reportedly said state power companies will likely soon be required to include energy sto…"
+      "summary": "India’s Union government has approved the next IR145 billion phase of Viability Gap Funding (VGP) for energy storage capacity additions."
     },
     {
       "t": "2026-11-06T14:04:07.000Z",
@@ -508,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:b5d2be566d37209060495b0e60a97bf962f06c288d09b398f067d3027d49524a",
-  "envelopeChecksum": "sha256:22c8e5dce79f0c7b843a3f29a380462c94abf57d381c1c36625293620ff26908"
+  "contentChecksum": "sha256:ca2133b2ebcd25bd519e88abc111053b9742e6e61e7f3ced33a2acf8e520d71a",
+  "envelopeChecksum": "sha256:26c43b6b54253b4107380c1bd969d5a760e2f5f5d3dd13d417a63ce1ccaab083"
 }
