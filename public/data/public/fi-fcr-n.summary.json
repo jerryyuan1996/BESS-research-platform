@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-08T13:36:04.796Z",
+  "fetchedAt": "2026-11-09T16:34:08.222Z",
   "coverage": {
-    "from": "2025-11-08T14:00:00.000Z",
-    "to": "2026-11-08T22:00:00.000Z",
+    "from": "2025-11-09T17:00:00.000Z",
+    "to": "2026-11-09T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8769
+    "points": 8766
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-08",
-      "n": 10,
-      "mean": 7.77,
-      "min": 6.31,
-      "max": 9.65,
-      "spread": 7.77,
-      "charge": null,
-      "discharge": 7.77
-    },
-    {
       "d": "2025-11-09",
-      "n": 24,
-      "mean": 7.79,
-      "min": 7.01,
+      "n": 7,
+      "mean": 8.09,
+      "min": 7.51,
       "max": 8.34,
-      "spread": 7.79,
+      "spread": 8.09,
       "charge": null,
-      "discharge": 7.79
+      "discharge": 8.09
     },
     {
       "d": "2025-11-10",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-08",
-      "n": 23,
-      "mean": 7.23,
+      "n": 24,
+      "mean": 7.26,
       "min": 6.69,
       "max": 8,
-      "spread": 7.23,
+      "spread": 7.26,
       "charge": null,
-      "discharge": 7.23
+      "discharge": 7.26
+    },
+    {
+      "d": "2026-11-09",
+      "n": 23,
+      "mean": 7.58,
+      "min": 6.3,
+      "max": 10,
+      "spread": 7.58,
+      "charge": null,
+      "discharge": 7.58
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-n.json",
-    "contentChecksum": "sha256:0b7143667f249fb4392b22ce2e4d297e194f96992dd7589bfdb3129a11d4086b",
-    "points": 8769
+    "contentChecksum": "sha256:490536cec90e2e066eb99bfff36f9a9525a7aaf7fa18d3408fea7f5927f1330a",
+    "points": 8766
   },
-  "summaryChecksum": "sha256:52c49261fa01268424acefde8391ff06e7e5ba9cd6db80fe08db2fe1979ec69b"
+  "summaryChecksum": "sha256:63ca5a80af8f214de165c00b5d0c277b1c6124b1cbc620d9abf5963bde399142"
 }

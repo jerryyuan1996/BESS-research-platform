@@ -16,14 +16,14 @@
     "notice": "Supported by National Energy SO Open Data",
     "resourceId": "3c51a666-1c33-450e-a6eb-c9b4a0c91584",
     "downloadUrl": "https://api.neso.energy/dataset/291e3c28-75f2-4a8f-b5f5-008bebaac368/resource/3c51a666-1c33-450e-a6eb-c9b4a0c91584/download/neso-response-reserve-daily-results-summary.csv",
-    "inputSha256": "6de8038218de0c63476f38b0dd60a090414978ed9fec93f6e58feea5b2d492ce"
+    "inputSha256": "491d67f6704208a922e0a0ab1c11a1e257f90e87926437454bed18bf3ccafbab"
   },
-  "fetchedAt": "2026-11-08T13:35:56.082Z",
+  "fetchedAt": "2026-11-09T16:33:58.189Z",
   "coverage": {
     "from": "2026-11-06T23:00:00.000Z",
-    "to": "2026-11-08T23:00:00.000Z",
+    "to": "2026-11-10T23:00:00.000Z",
     "resolution": "PT30M",
-    "points": 576
+    "points": 864
   },
   "units": {
     "price": "GBP/MW/h",
@@ -44,11 +44,13 @@
     "authority": "derived",
     "basis": "auction-clearing",
     "coverageAudit": {
-      "completeObservedEfaDays": 2,
+      "completeObservedEfaDays": 3,
       "firstEfaDay": "2026-11-07",
-      "lastEfaDay": "2026-11-08",
-      "missingDays": [],
-      "intervalsPerProduct": 96,
+      "lastEfaDay": "2026-11-10",
+      "missingDays": [
+        "2026-11-09"
+      ],
+      "intervalsPerProduct": 144,
       "products": [
         "NBR",
         "NQR",
@@ -67,101 +69,101 @@
       "service": "NBR",
       "serviceType": "Balancing Reserve",
       "direction": "negative",
-      "intervals": 96,
-      "hours": 48,
-      "meanClearedMW": 1.7708333333333333,
+      "intervals": 144,
+      "hours": 72,
+      "meanClearedMW": 1.6527777777777777,
       "volumeWeightedPrice": 0,
       "from": "2026-11-06T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
       "period": "2026-11",
       "service": "NQR",
       "serviceType": "Quick Reserve",
       "direction": "negative",
-      "intervals": 96,
-      "hours": 48,
-      "meanClearedMW": 295.7708333333333,
-      "volumeWeightedPrice": 3.0740987532577297,
+      "intervals": 144,
+      "hours": 72,
+      "meanClearedMW": 266.90277777777777,
+      "volumeWeightedPrice": 3.782804548056407,
       "from": "2026-11-06T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
       "period": "2026-11",
       "service": "NSR",
       "serviceType": "Slow Reserve",
       "direction": "negative",
-      "intervals": 96,
-      "hours": 48,
+      "intervals": 144,
+      "hours": 72,
       "meanClearedMW": 0,
       "volumeWeightedPrice": null,
       "from": "2026-11-06T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
       "period": "2026-11",
       "service": "PBR",
       "serviceType": "Balancing Reserve",
       "direction": "positive",
-      "intervals": 96,
-      "hours": 48,
-      "meanClearedMW": 451.7291666666667,
-      "volumeWeightedPrice": 4.551321542222017,
+      "intervals": 144,
+      "hours": 72,
+      "meanClearedMW": 451.4791666666667,
+      "volumeWeightedPrice": 12.951413101994985,
       "from": "2026-11-06T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
       "period": "2026-11",
       "service": "PQR",
       "serviceType": "Quick Reserve",
       "direction": "positive",
-      "intervals": 96,
-      "hours": 48,
-      "meanClearedMW": 428.5,
-      "volumeWeightedPrice": 4.455657331777519,
+      "intervals": 144,
+      "hours": 72,
+      "meanClearedMW": 387.7708333333333,
+      "volumeWeightedPrice": 4.498832715485593,
       "from": "2026-11-06T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
       "period": "2026-11",
       "service": "PSR",
       "serviceType": "Slow Reserve",
       "direction": "positive",
-      "intervals": 96,
-      "hours": 48,
-      "meanClearedMW": 1801.3958333333333,
-      "volumeWeightedPrice": 3.9773462130061175,
+      "intervals": 144,
+      "hours": 72,
+      "meanClearedMW": 1801.548611111111,
+      "volumeWeightedPrice": 11.760483380425018,
       "from": "2026-11-06T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "to": "2026-11-10T23:00:00.000Z"
     }
   ],
   "latest": [
     {
-      "period": "2026-11-08",
+      "period": "2026-11-10",
       "service": "NBR",
       "serviceType": "Balancing Reserve",
       "direction": "negative",
       "intervals": 48,
       "hours": 24,
-      "meanClearedMW": 1.6666666666666667,
+      "meanClearedMW": 1.4166666666666667,
       "volumeWeightedPrice": 0,
-      "from": "2026-11-07T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "from": "2026-11-09T23:00:00.000Z",
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
-      "period": "2026-11-08",
+      "period": "2026-11-10",
       "service": "NQR",
       "serviceType": "Quick Reserve",
       "direction": "negative",
       "intervals": 48,
       "hours": 24,
-      "meanClearedMW": 296.2291666666667,
-      "volumeWeightedPrice": 3.170625923060694,
-      "from": "2026-11-07T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "meanClearedMW": 209.16666666666666,
+      "volumeWeightedPrice": 5.7870866533864564,
+      "from": "2026-11-09T23:00:00.000Z",
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
-      "period": "2026-11-08",
+      "period": "2026-11-10",
       "service": "NSR",
       "serviceType": "Slow Reserve",
       "direction": "negative",
@@ -169,53 +171,53 @@
       "hours": 24,
       "meanClearedMW": 0,
       "volumeWeightedPrice": null,
-      "from": "2026-11-07T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "from": "2026-11-09T23:00:00.000Z",
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
-      "period": "2026-11-08",
+      "period": "2026-11-10",
       "service": "PBR",
       "serviceType": "Balancing Reserve",
       "direction": "positive",
       "intervals": 48,
       "hours": 24,
-      "meanClearedMW": 452.3958333333333,
-      "volumeWeightedPrice": 4.7308091181211145,
-      "from": "2026-11-07T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "meanClearedMW": 450.9791666666667,
+      "volumeWeightedPrice": 29.77953573243406,
+      "from": "2026-11-09T23:00:00.000Z",
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
-      "period": "2026-11-08",
+      "period": "2026-11-10",
       "service": "PQR",
       "serviceType": "Quick Reserve",
       "direction": "positive",
       "intervals": 48,
       "hours": 24,
-      "meanClearedMW": 425.7083333333333,
-      "volumeWeightedPrice": 4.764812077909367,
-      "from": "2026-11-07T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "meanClearedMW": 306.3125,
+      "volumeWeightedPrice": 4.619628647214854,
+      "from": "2026-11-09T23:00:00.000Z",
+      "to": "2026-11-10T23:00:00.000Z"
     },
     {
-      "period": "2026-11-08",
+      "period": "2026-11-10",
       "service": "PSR",
       "serviceType": "Slow Reserve",
       "direction": "positive",
       "intervals": 48,
       "hours": 24,
-      "meanClearedMW": 1801.1041666666667,
-      "volumeWeightedPrice": 4.430067204145605,
-      "from": "2026-11-07T23:00:00.000Z",
-      "to": "2026-11-08T23:00:00.000Z"
+      "meanClearedMW": 1801.8541666666667,
+      "volumeWeightedPrice": 27.3227981593035,
+      "from": "2026-11-09T23:00:00.000Z",
+      "to": "2026-11-10T23:00:00.000Z"
     }
   ],
   "daily": [],
   "arbitrage": null,
   "sourceSnapshot": {
     "file": "gb-eac-reserve.json",
-    "contentChecksum": "sha256:fa69f7c3f499c9882b73c65a249217097481cc200950c528c35522a34b2f6de3",
-    "points": 576
+    "contentChecksum": "sha256:ca39f936173e58c74fbcfc3593c0464eb1d76aada88741746121cad68bddb62a",
+    "points": 864
   },
-  "contentChecksum": "sha256:5f4afab6b1cf48a0031b9528fad57cf504496ad53490b8d6e97c608cd4288746",
-  "summaryChecksum": "sha256:e96a737876116daa685b7d735aa093b2b5dcb40c8963f5a9fa50dc4eb5b9e991"
+  "contentChecksum": "sha256:c2fb33b78f2841e47bcf4d8220495fbaefcb6fd7aa04f6c82c22c6845c0ad71a",
+  "summaryChecksum": "sha256:d8622e07227bc362bff5291f2a70bfe211b58e5450ae5081dde0b99e916bd793"
 }

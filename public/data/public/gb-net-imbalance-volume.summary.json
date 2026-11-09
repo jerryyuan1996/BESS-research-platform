@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-08T13:35:56.082Z",
+  "fetchedAt": "2026-11-09T16:33:58.189Z",
   "coverage": {
-    "from": "2026-10-18T23:00:00.000Z",
-    "to": "2026-11-07T23:30:00.000Z",
+    "from": "2026-10-14T23:00:00.000Z",
+    "to": "2026-11-08T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 962
+    "points": 1202
   },
   "units": {
     "energy": "MWh"
@@ -45,6 +45,42 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-10-15",
+      "n": 48,
+      "expected": 48,
+      "mean": 173.4312,
+      "min": -366.91779009920634,
+      "max": 1023.6189205176768,
+      "netMWh": 8324.6997
+    },
+    {
+      "d": "2026-10-16",
+      "n": 48,
+      "expected": 48,
+      "mean": 89.3193,
+      "min": -268.0624759722222,
+      "max": 431.7983423106061,
+      "netMWh": 4287.3263
+    },
+    {
+      "d": "2026-10-17",
+      "n": 48,
+      "expected": 48,
+      "mean": 7.5906,
+      "min": -422.1299222491418,
+      "max": 384.3305923989899,
+      "netMWh": 364.3499
+    },
+    {
+      "d": "2026-10-18",
+      "n": 48,
+      "expected": 48,
+      "mean": -37.2251,
+      "min": -393.7595756117628,
+      "max": 277.1845564374895,
+      "netMWh": -1786.8037
+    },
     {
       "d": "2026-10-19",
       "n": 48,
@@ -220,17 +256,26 @@
       "d": "2026-11-07",
       "n": 48,
       "expected": 48,
-      "mean": 42.8777,
+      "mean": 42.8373,
       "min": -638.6428369794231,
       "max": 443.2908004166667,
-      "netMWh": 2058.1315
+      "netMWh": 2056.1898
+    },
+    {
+      "d": "2026-11-08",
+      "n": 48,
+      "expected": 48,
+      "mean": 61.6428,
+      "min": -142.18431097222222,
+      "max": 356.770241984127,
+      "netMWh": 2958.8563
     }
   ],
   "sourceSnapshot": {
     "file": "gb-net-imbalance-volume.json",
-    "contentChecksum": "sha256:f8cc51155a6321611ee15a72f24c6642ae6a0d1afba2ea3d3222f3c28d65b011",
-    "points": 962
+    "contentChecksum": "sha256:0056639d09d7cf9148ffaa404eeace085a003a8a53bae4c4d895d927cfa459dd",
+    "points": 1202
   },
-  "contentChecksum": "sha256:308706aa159ffac032a3631538038f542e4a08f9741d040337270c1f07fd3970",
-  "summaryChecksum": "sha256:85fff9190280095d53006008bf1a5d9c7f26a1de0aaa45ca626529d68b9743d0"
+  "contentChecksum": "sha256:77236ee98bd1a8a3b5bd3391e2a0e4c34ef55483f259984c6940a70d1dd52934",
+  "summaryChecksum": "sha256:073f7a430315be9c37ac2144bbef9a5f1cd1aaf211157a5b489584d413aba914"
 }
