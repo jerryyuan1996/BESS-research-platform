@@ -8,7 +8,7 @@ import {runReservedManualCase} from './manual-evaluation-runner.mjs';
 /** Fixed private corpus path; no user/model-supplied file names or profiles.
  * A committed owner approval binds the complete reviewed UTF-8 corpus hash.
  * PDF adapters, if any, must be trusted reviewed code issuing real receipts. */
-export async function executeManualEvaluation({repo,caseId,config,profiles,makeInvoke,now=new Date()}){
+export async function executeManualEvaluation({repo,caseId,config,profiles,makeInvoke,requestId,now=new Date()}){
   const problems=authorizationProblems({...config,validatedGoldCases:12});
   if(config?.manualEvaluationApproved!==true)problems.push('Separate manual evaluation approval missing');
   if(!/^sha256:[a-f0-9]{64}$/.test(config?.approvedCorpusHash||''))problems.push('Approved corpus hash missing');
@@ -31,6 +31,12 @@ export async function executeManualEvaluation({repo,caseId,config,profiles,makeI
   if(!corpus.cases.some(c=>c.id===caseId))errors.push('Case is absent from approved corpus');
   if(corpus.cases.some(c=>!profiles.some(p=>p.reviewed&&p.rightsReviewed&&p.host===new URL(c.source.url).hostname&&p.sourceIds?.includes(c.source.id)&&['validate','translationEquivalent','validatePublicRecord'].every(method=>typeof p[method]==='function'))))errors.push('Every corpus source needs an independent reviewed semantic/translation/record profile');
   if(errors.length)return disabled(errors);
-  const invoke=makeInvoke(config);if(typeof invoke!=='function')throw Error('Approved transport missing');
-  return runReservedManualCase({repo,cases:corpus.cases,caseId,config,profiles,invoke,now,evidenceProofs});
+  // Fixed private request path; missing requests never construct a transport.
+  const requestFile=path.join(path.dirname(file),'manual-request.json');
+  let request;
+  try{
+    const info=await lstat(requestFile);if(info.isSymbolicLink()||!info.isFile()||info.size>16000)throw Error('Invalid manual request file');
+    request=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(await readFile(requestFile)));
+  }catch{return disabled(['Explicit single-use manual request missing or invalid']);}
+  return runReservedManualCase({repo,cases:corpus.cases,caseId,config,profiles,makeInvoke,request,requestId,now,evidenceProofs});
 }

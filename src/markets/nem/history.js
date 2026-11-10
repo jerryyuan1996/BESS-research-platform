@@ -1,5 +1,7 @@
 /* Authoritative full research history. Extracted verbatim from src/markets/nem/sections/story.js.
-   Original facts, interpretations, scope and live data bindings are preserved.
+   Original interpretations, scope and live data bindings are preserved.
+   Very Fast FCAS dates corrected against AEMO on 10 November 2026:
+   final rule 15 July 2021; market commencement 9 October 2023.
    Public relocation is an editorial draft, not a new content approval. */
 export function researchHistory(api){
   const {M,SRC,fmtN,fmt1}=api;
@@ -15,9 +17,9 @@ cap: ['This section is the narrative bridge between the Overview and the detaile
           text:['The NEM did not design a storage market; it acquired one from coal retirement, rooftop solar and a Commonwealth underwriting scheme. Each of the four changes below improved the case, and only one of them created a contracted revenue line — which is being wound up in ' + O.cisWindUp + '. That is why the diligence emphasis here is contractual rather than analytical.',
                 'NEM并未设计储能市场；它是煤电退役、屋顶光伏与联邦承销计划共同的产物。以下四项变化均改善了投资逻辑，其中只有一项创造了合同化收入线 — 而该机制将于' + O.cisWindUp + '年结束。这正是当地尽调侧重合同而非分析的原因。'] },
         { t:'timeline', items:[
-          { y:'2017–2021', t:['Frequency services prove the technology','频率服务验证技术'],
-            p:['The first large NEM batteries earned most of their revenue in FCAS, and AEMO introduced very fast raise and lower markets in 2021 as synchronous plant retired and inertia thinned.',
-               'NEM首批大型电池的收入主要来自FCAS；随着同步机组退役、惯量下降，AEMO于2021年设立了极快速上调与下调市场。'],
+          { y:'2017–2023', t:['Frequency services prove the technology','频率服务验证技术'],
+            p:['The first large NEM batteries earned most of their revenue in FCAS as synchronous plant retired and inertia thinned. The AEMC made the final rule for very fast raise and lower FCAS on 15 July 2021; AEMO opened those markets on 9 October 2023.',
+               '随着同步机组退役、惯量下降，NEM首批大型电池的收入主要来自FCAS。AEMC于2021年7月15日制定极快速上调与下调FCAS的最终规则；AEMO于2023年10月9日启动这两个市场。'],
             i:['FCAS proved batteries work and then saturated. It is now under a tenth of the stack, which is why no NEM case should be built on ancillary services.',
                'FCAS验证了电池的可行性，随后趋于饱和。目前其占收入结构不足十分之一 — 这正是任何NEM投资逻辑都不应建立在辅助服务之上的原因。'] },
           { y:'2022–2024', t:['Rooftop and utility solar create the trough','屋顶与大型光伏形成低谷'],
@@ -39,6 +41,7 @@ cap: ['This section is the narrative bridge between the Overview and the detaile
         { t:'why', text:['Four changes, and only the third created a revenue floor — for the projects that won it, at a level nobody outside the transaction knows. The base rate to underwrite against is therefore: expect the physical case to keep improving and the merchant case to keep compressing, and treat the contracted layer as a competitive procurement with a closing window rather than as a market feature.',
           '四项变化中，只有第三项创造了收入下限 — 且仅限中标项目，其水平交易之外无人知晓。因此承销时应参照的基准判断是：预期物理层面持续改善、市场化层面持续压缩，并将合同层视为一项窗口正在关闭的竞争性采购，而非市场的固有特征。'],
           sig:['The contracted layer is a window, not a feature','合同层是窗口，不是固有特征'] },
+        { t:'src', src: SRC.fastFrequencyResponse, use:['Very Fast FCAS final rule on 15 July 2021 and market commencement on 9 October 2023','极快速FCAS最终规则制定于2021年7月15日，市场启动于2023年10月9日'] },
         { t:'src', src: SRC.nelson, use:['Retention of the energy-only model and the ESEM successor design','单一电能量模式的保留及ESEM后继方案设计'] },
         { t:'src', src: SRC.cis, use:['Tender volumes, project counts and closing dates','招标容量、项目数量及截标日期'] },
       ] }

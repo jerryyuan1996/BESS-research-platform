@@ -151,7 +151,7 @@ export function openStory(ctx){
     if (x.hotspots) out.push(h('section', { class: 'ix-story-parts', 'aria-label': L(T.parts) },
       h('ul', {}, x.hotspots.map(p => h('li', {}, h('strong', {}, L(p.name)), ' ', L(p.role))))));
     if (x.factors) out.push(h('section', { class: 'ix-story-factors', 'aria-label': L(T.factors) },
-      h('ul', {}, x.factors.map((f, i) => h('li', {}, h('strong', {}, L(shot.controls?.[i] || ['', ''])), ' ', L(f.affects))))));
+      h('ul', {}, x.factors.map((f, i) => h('li', {}, h('strong', {}, L(shot.controls?.[i] || ['', ''])), ' ', pairOf(f.affects, values))))));
     if (x.exits) out.push(h('nav', { class: 'ix-story-exits', 'aria-label': L(T.exits) },
       x.exits.map(e => h('a', { href: `#${e.anchor}`, class: 'ix-button ix-outline', onclick: (ev) => { ev.preventDefault(); goToSection(e.anchor); } }, L(e.label)))));
     return out;

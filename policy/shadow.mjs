@@ -30,35 +30,45 @@ export function buildDecisionPacket({before=null,candidate,context,bodies}){
   return {status:'shadow_valid',candidate,candidateHash:digest(candidate),changes,reviews,canPublish:false,requiresIndependentEvidenceAttestations:true,requiresIndependentTranslationReview:true,lastKnownGood:before};
 }
 /** Budget ledger is supplied by the trusted orchestrator, never model fields. */
-export async function researchShadow({changedDocuments,invoke,config,ledger,context,bodies,before=null,now=new Date()}){
+export function prepareShadowRequest({changedDocuments,bodies,before=null,config}){
+  const evidence=JSON.stringify(changedDocuments.map(doc=>({sourceId:doc.sourceId,source:doc.source||null,evidence:doc.excerpt??bodies.get(doc.sourceId)??''})));
+  const input={system:POLICY_SYSTEM,evidence,previousPolicy:priorPolicySummary(before),model:config.model,maxOutputTokens:config.maxOutputTokens};
+  return {input,request:policyModelRequest(input)};
+}
+export async function researchShadow({changedDocuments,invoke,countInputTokens=invoke?.countInputTokens,config,ledger,context,bodies,before=null,now=new Date()}){
   const cycle=new Date(now).toISOString().slice(0,10);const base={cycle,mode:'shadow',published:false,usage:null};
   if(!changedDocuments.length)return {...base,status:'unchanged'};
   const problems=[...authorizationProblems(config),...sourceTransmissionProblems(changedDocuments,context?.sourceUseReviews)];
+  if(typeof countInputTokens!=='function')problems.push('Provider token-count preflight required');
   if(problems.length||typeof invoke!=='function')return {...base,status:'disabled',problems};
   if(ledger.cycle===cycle&&ledger.completed===true)return {...base,status:'already_processed'};
-  const sourceText=JSON.stringify(changedDocuments.map(doc=>({sourceId:doc.sourceId,source:doc.source||null,evidence:doc.excerpt??bodies.get(doc.sourceId)??''})));
-  // Serialized UTF-8 bytes plus 1024 are a local admission estimate, not a
-  // measured bound on the provider's injected structured-output prompt. The
-  // reservation uses the configured token ceiling; usage is checked afterward.
-  const previousPolicy=priorPolicySummary(before);
-  const request=policyModelRequest({system:POLICY_SYSTEM,evidence:sourceText,previousPolicy,model:config.model,maxOutputTokens:config.maxOutputTokens});
-  if(Buffer.byteLength(JSON.stringify(request),'utf8')+1024>config.maxInputTokens)return {...base,status:'input_cap'};
+  // Bytes are a local serialization admission check, never provider tokens.
+  // The separate token ceiling alone controls reservation and usage checks.
+  const {input,request}=prepareShadowRequest({changedDocuments,bodies,before,config});
+  if(Buffer.byteLength(JSON.stringify(request),'utf8')+1024>config.maxSerializedInputBytes)return {...base,status:'input_cap'};
   const reserved=worstCaseModelUSD(config);
   if(!Number.isFinite(ledger.reservedUSD)||ledger.reservedUSD<0||!Number.isFinite(ledger.worstCaseCallUSD)||ledger.worstCaseCallUSD<reserved||ledger.reservedUSD+reserved>config.maxDailyUSD)return {...base,status:'cost_cap'};
   let timer;
   const controller=new AbortController();
   try{
     const result=await Promise.race([
-      invoke({system:POLICY_SYSTEM,evidence:sourceText,previousPolicy,model:config.model,maxOutputTokens:config.maxOutputTokens,signal:controller.signal}),
+      (async()=>{
+        const preflightInputTokens=await countInputTokens({...input,signal:controller.signal});
+        if(controller.signal.aborted)throw Error('Policy preflight expired');
+        if(!Number.isInteger(preflightInputTokens)||preflightInputTokens<0)throw Error('Invalid provider token count');
+        if(preflightInputTokens>config.maxInputTokens)return {inputCap:true,preflightInputTokens};
+        return {...await invoke({...input,signal:controller.signal}),preflightInputTokens};
+      })(),
       new Promise((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(new Error('Policy model timeout'));},config.wallTimeMs);}),
     ]);
+    if(result.inputCap)return {...base,status:'input_cap',preflightInputTokens:result.preflightInputTokens};
     if(typeof result?.text!=='string'||Buffer.byteLength(result.text,'utf8')>512000)throw new Error('Candidate output limit exceeded');
     if(!Number.isInteger(result.outputTokens)||result.outputTokens<0||result.outputTokens>config.maxOutputTokens)throw new Error('Invalid or over-limit provider usage');
     if(!Number.isInteger(result.inputTokens)||result.inputTokens<0||result.inputTokens>config.maxInputTokens)throw new Error('Invalid or over-limit input usage');
     const candidate=JSON.parse(result.text);
     if(policyModelOutputProblems(candidate).length)throw new Error('Model output violates the strict local structural contract');
     const packet=buildDecisionPacket({before,candidate,context,bodies});
-    return {...base,...packet,usage:{inputTokens:result.inputTokens,outputTokens:result.outputTokens,reservedUSD:reserved,actualUSD:(result.inputTokens*config.inputUSDPerMTokens+result.outputTokens*config.outputUSDPerMTokens)/1_000_000}};
+    return {...base,...packet,preflightInputTokens:result.preflightInputTokens,usage:{inputTokens:result.inputTokens,outputTokens:result.outputTokens,reservedUSD:reserved,actualUSD:(result.inputTokens*config.inputUSDPerMTokens+result.outputTokens*config.outputUSDPerMTokens)/1_000_000}};
   }catch{return {...base,status:'quarantined',errors:['Model, transport or candidate validation failed'],lastKnownGood:before,canPublish:false};}
   finally{clearTimeout(timer);controller.abort();}
 }

@@ -8,8 +8,8 @@ import {POLICY_AUTHORIZATION} from '../policy/authorization.mjs';
 import {MANUAL_EVALUATION_AUTHORIZATION} from '../policy/manual-authorization.mjs';
 import {modelFixture,bodies,BODY,CONTEXT,NOW} from './helpers/policy-fixture.mjs';
 
-const config={enabled:true,publicationEnabled:false,approvalId:'synthetic',provider:'anthropic',model:'synthetic-model',maxInputTokens:12000,maxOutputTokens:3000,maxDailyUSD:0.1,wallTimeMs:1000,validatedGoldCases:12,inputUSDPerMTokens:1,outputUSDPerMTokens:2,priceSource:'https://www.anthropic.com/pricing'};
-const run=(candidate,body=BODY)=>researchShadow({changedDocuments:[{sourceId:'test-source'}],invoke:async()=>({text:JSON.stringify(candidate),inputTokens:500,outputTokens:200}),config,ledger:{reservedUSD:0,worstCaseCallUSD:0.018},context:CONTEXT,bodies:new Map([['test-source',body]]),now:NOW});
+const config={enabled:true,publicationEnabled:false,approvalId:'synthetic',provider:'anthropic',model:'synthetic-model',maxSerializedInputBytes:16000,maxInputTokens:12000,maxOutputTokens:3000,maxDailyUSD:0.1,wallTimeMs:1000,validatedGoldCases:12,inputUSDPerMTokens:1,outputUSDPerMTokens:2,priceSource:'https://www.anthropic.com/pricing'};
+const run=(candidate,body=BODY)=>researchShadow({countInputTokens:async()=>500,changedDocuments:[{sourceId:'test-source'}],invoke:async()=>({text:JSON.stringify(candidate),inputTokens:500,outputTokens:200}),config,ledger:{reservedUSD:0,worstCaseCallUSD:0.018},context:CONTEXT,bodies:new Map([['test-source',body]]),now:NOW});
 function visit(schema,callback){
   callback(schema);
   for(const child of Object.values(schema.properties||{}))visit(child,callback);
@@ -76,7 +76,7 @@ test('local quote boundary is exactly 300 even when the original contains the lo
 
 test('facts-only originals cannot reach even an injected mock transport',async()=>{
   const candidate=modelFixture();candidate.sources[0].rights.reproduction='facts_only';let calls=0;
-  const result=await researchShadow({changedDocuments:[{sourceId:'test-source',source:candidate.sources[0],excerpt:BODY}],invoke:async()=>{calls++;},config,ledger:{reservedUSD:0,worstCaseCallUSD:0.018},context:CONTEXT,bodies:new Map([['test-source',BODY]]),now:NOW});
+  const result=await researchShadow({countInputTokens:async()=>500,changedDocuments:[{sourceId:'test-source',source:candidate.sources[0],excerpt:BODY}],invoke:async()=>{calls++;},config,ledger:{reservedUSD:0,worstCaseCallUSD:0.018},context:CONTEXT,bodies:new Map([['test-source',BODY]]),now:NOW});
   assert.equal(result.status,'disabled');assert.equal(calls,0);
 });
 
@@ -92,8 +92,8 @@ function priorWithEighteenInstruments(){
   return prior;
 }
 
-test('16,000 input ceiling admits a bounded synthetic prior/evidence request without enabling model operation',async()=>{
-  assert.equal(POLICY_AUTHORIZATION.maxInputTokens,16000);assert.equal(MANUAL_EVALUATION_AUTHORIZATION.maxInputTokens,16000);
+test('16,000 byte ceiling admits a bounded synthetic prior/evidence request without enabling model operation',async()=>{
+  assert.equal(POLICY_AUTHORIZATION.maxInputTokens,12000);assert.equal(MANUAL_EVALUATION_AUTHORIZATION.maxInputTokens,12000);
   assert.equal(POLICY_AUTHORIZATION.enabled,false);assert.equal(MANUAL_EVALUATION_AUTHORIZATION.enabled,false);
   assert.equal(POLICY_AUTHORIZATION.maxOutputTokens,3000);assert.equal(POLICY_AUTHORIZATION.wallTimeMs,120000);assert.equal(POLICY_AUTHORIZATION.maxDailyUSD,null);
   const before=priorWithEighteenInstruments(),source=before.sources[0],changedDocuments=[{sourceId:source.id,source,excerpt:BODY}];
@@ -102,14 +102,43 @@ test('16,000 input ceiling admits a bounded synthetic prior/evidence request wit
   const bytes=Buffer.byteLength(JSON.stringify(request),'utf8')+1024;assert.ok(bytes>12000&&bytes<=16000,`Synthetic request bound ${bytes}`);
   const delta={schemaVersion:1,id:'synthetic-delta',createdAt:NOW,parent:digest(before),sources:[],instruments:[],events:[],claims:[],impacts:[],stories:[],links:[],reviews:[]};
   let calls=0;const args={before,changedDocuments,invoke:async()=>{calls++;return {text:JSON.stringify(delta),inputTokens:500,outputTokens:200};},ledger:{reservedUSD:0,worstCaseCallUSD:0.022},context:CONTEXT,bodies:bodies(),now:NOW};
-  assert.equal((await researchShadow({...args,config})).status,'input_cap');assert.equal(calls,0);
-  const result=await researchShadow({...args,config:{...config,maxInputTokens:16000}});
+  assert.equal(POLICY_AUTHORIZATION.maxSerializedInputBytes,16000);assert.equal(MANUAL_EVALUATION_AUTHORIZATION.maxSerializedInputBytes,16000);
+  assert.equal((await researchShadow({countInputTokens:async()=>500,...args,config:{...config,maxSerializedInputBytes:12000}})).status,'input_cap');assert.equal(calls,0);
+  const result=await researchShadow({countInputTokens:async()=>500,...args,config:{...config,maxSerializedInputBytes:16000}});
   assert.equal(result.status,'shadow_valid');assert.equal(calls,1);assert.equal(result.canPublish,false);assert.equal(result.published,false);
 });
 
-test('raising input capacity preserves pre-call cost and reservation refusals',async()=>{
-  let calls=0;const args={changedDocuments:[{sourceId:'test-source'}],invoke:async()=>{calls++;},config:{...config,maxInputTokens:16000},context:CONTEXT,bodies:bodies(),now:NOW};
-  assert.equal((await researchShadow({...args,ledger:{reservedUSD:0,worstCaseCallUSD:0.018}})).status,'cost_cap');
-  assert.equal((await researchShadow({...args,config:{...args.config,maxDailyUSD:0.02},ledger:{reservedUSD:0,worstCaseCallUSD:0.022}})).status,'cost_cap');
+test('byte admission preserves pre-call cost and reservation refusals',async()=>{
+  let calls=0;const args={changedDocuments:[{sourceId:'test-source'}],invoke:async()=>{calls++;},config:{...config,maxSerializedInputBytes:16000},context:CONTEXT,bodies:bodies(),now:NOW};
+  assert.equal((await researchShadow({countInputTokens:async()=>500,...args,ledger:{reservedUSD:0,worstCaseCallUSD:0.017}})).status,'cost_cap');
+  assert.equal((await researchShadow({countInputTokens:async()=>500,...args,config:{...args.config,maxDailyUSD:0.017},ledger:{reservedUSD:0,worstCaseCallUSD:0.022}})).status,'cost_cap');
   assert.equal(calls,0);
+});
+
+test('UTF-8 admission boundary and provider-token usage are independently enforced',async()=>{
+  const changedDocuments=[{sourceId:'test-source',excerpt:BODY+'汉'.repeat(700)}];
+  const {prepareShadowRequest}=await import('../policy/shadow.mjs');
+  const {request}=prepareShadowRequest({changedDocuments,bodies:bodies(),config});
+  const bytes=Buffer.byteLength(JSON.stringify(request),'utf8')+1024;
+  assert.ok(bytes>JSON.stringify(request).length+1024);
+  let calls=0;
+  const args={countInputTokens:async()=>12000,changedDocuments,config:{...config,maxSerializedInputBytes:bytes},ledger:{reservedUSD:0,worstCaseCallUSD:0.018},context:CONTEXT,bodies:bodies(),now:NOW,invoke:async()=>{calls++;return {text:JSON.stringify(modelFixture()),inputTokens:12000,outputTokens:200};}};
+  assert.equal((await researchShadow({countInputTokens:async()=>500,...args,config:{...args.config,maxSerializedInputBytes:bytes-1}})).status,'input_cap');assert.equal(calls,0);
+  assert.equal((await researchShadow(args)).status,'shadow_valid');assert.equal(calls,1);
+  assert.equal((await researchShadow({countInputTokens:async()=>500,...args,invoke:async()=>({text:JSON.stringify(modelFixture()),inputTokens:12001,outputTokens:200})})).status,'quarantined');
+});
+
+test('mandatory provider preflight rejects over-limit, missing or invalid counts before generation',async()=>{
+  let calls=0;
+  const args={changedDocuments:[{sourceId:'test-source'}],invoke:async()=>{calls++;return {text:JSON.stringify(modelFixture()),inputTokens:500,outputTokens:200};},config,ledger:{reservedUSD:0,worstCaseCallUSD:0.018},context:CONTEXT,bodies:bodies(),now:NOW};
+  assert.equal((await researchShadow(args)).status,'disabled');
+  assert.equal((await researchShadow({...args,countInputTokens:async()=>12001})).status,'input_cap');
+  for(const value of [undefined,NaN,-1,1.5])assert.equal((await researchShadow({...args,countInputTokens:async()=>value})).status,'quarantined');
+  assert.equal((await researchShadow({...args,countInputTokens:async()=>{throw Error('unavailable');}})).status,'quarantined');
+  assert.equal(calls,0);
+});
+test('a late token count after timeout cannot trigger a delayed paid generation',async()=>{
+  let release,calls=0;
+  const result=await researchShadow({changedDocuments:[{sourceId:'test-source'}],countInputTokens:()=>new Promise(resolve=>{release=resolve;}),invoke:async()=>{calls++;},config:{...config,wallTimeMs:5},ledger:{reservedUSD:0,worstCaseCallUSD:0.018},context:CONTEXT,bodies:bodies(),now:NOW});
+  assert.equal(result.status,'quarantined');release(500);await new Promise(resolve=>setTimeout(resolve,5));assert.equal(calls,0);
 });
