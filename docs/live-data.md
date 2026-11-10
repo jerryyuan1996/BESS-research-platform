@@ -32,8 +32,15 @@ server-side logic. Data changes are **git commits**, which is what makes the his
 
 The owner approved once-daily collection on 2026-11-05, replacing the ordinary six-hour cron.
 The same workflow runs read-only policy discovery before the market publisher; policy failure
-does not prevent a valid market refresh. Source review and policy publication remain disabled
-in the initial shadow configuration. No policy model is invoked. One combined data/rule commit
+does not prevent a valid market refresh. Two reviewed DE/GB page collectors are enabled for original
+link metadata only; AEMC denied access and WA acquisition restrictions keep those sources inactive.
+Policy AI and policy publication remain disabled. The discovery job summary and JSON
+coverage counts distinguish actual page checks from pending, disabled and failed checks. A green
+job is not evidence of collected policies. The page-hash/link detector retains a bounded rolling
+90-day metadata index in Actions artifacts, restored only from the latest successful policy job
+on main ETL (even if its market refresh failed); lost or ambiguous history stops collection. It is not
+a durable or complete archive of policy releases. First observation is not publication or legal
+effectiveness. No policy model is invoked. One combined data/rule commit
 explicitly calls the existing reusable CI on its exact SHA, since a bot push starts no workflow.
 An unchanged cycle does not commit or deploy. Manual `dry_run` fetches/reports without applying
 rules, committing, opening a drift proposal or publishing. Monthly agents and the weekly briefing

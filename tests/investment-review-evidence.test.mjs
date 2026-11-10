@@ -11,6 +11,8 @@ const now = new Date('2026-11-10T09:17:39Z');
 const files = ['nem', 'pjm', 'wa', 'ercot', 'ro'].map(id => new URL(`../view/markets/${id}.json`, import.meta.url));
 const history = new URL('../view/changelog.jsonl', import.meta.url);
 const before = await Promise.all([...files, history].map(file => readFile(file, 'utf8')));
+const entries = before.at(-1).trim().split('\n').map(line => JSON.parse(line));
+const rationaleUpdate = (id, dimension) => entries.findLast(e => e.market === id && e.path === `grades.${dimension}` && e.to?.asOf === '2026-11-10');
 const engineBefore = Object.fromEntries(['nem', 'pjm', 'wa'].map(id => [id, runBaseCase(byId(id), 5)]));
 const report = await investmentEvidence({ now });
 
@@ -30,8 +32,10 @@ test('investment evidence reads current result fields without rewriting history 
 
 test('NEM historical rationale and current conditional CIS share remain separate', () => {
   const row = report.markets.nem, engine = engineBefore.nem;
-  assert.match(row.storedGrades.revenueCertainty.reason[0], /87%/);
-  assert.equal(row.storedGrades.revenueCertainty.asOf, '2026-10-12');
+  assert.match(rationaleUpdate('nem', 'revenueCertainty').from.reason[0], /87%/);
+  assert.equal(rationaleUpdate('nem', 'revenueCertainty').from.asOf, '2026-10-12');
+  assert.equal(row.storedGrades.revenueCertainty.asOf, '2026-11-10');
+  assert.match(row.storedGrades.revenueCertainty.reason[0], /modelled-award.*anchor/);
   assert.equal(row.base.securedShare, engine.secY[0] / (engine.capY[0] + engine.mchY[0]));
   assert.ok(row.base.securedShare >= .5 && row.base.securedShare < .87);
   assert.ok(row.base.securedYears >= 10);
@@ -55,9 +59,37 @@ test('WA baseline, fade-aware designs and tax/financing card retain their own ba
 });
 
 test('PJM historical rationale is retained; January ERCOT is closed and February is still a watch', () => {
-  assert.match(report.markets.pjm.storedGrades.assetReturn.reason[0], /2.4%/);
-  assert.equal(report.markets.pjm.storedGrades.assetReturn.asOf, '2026-10-23');
+  assert.match(rationaleUpdate('pjm', 'assetReturn').from.reason[0], /2.4%/);
+  assert.equal(rationaleUpdate('pjm', 'assetReturn').from.asOf, '2026-10-23');
+  assert.equal(report.markets.pjm.storedGrades.assetReturn.asOf, '2026-11-10');
   assert.equal(report.ercot.january.outcome.on, '2026-11-06');
   assert.equal(report.ercot.february.expected, '2026-12-04');
   assert.equal(report.ercot.february.outcome, undefined);
+});
+
+
+test('approved dated rationales retain grades and complete historical records without typed current model figures', () => {
+  for (const [id, dimension] of [['nem', 'revenueCertainty'], ['pjm', 'assetReturn'], ['wa', 'assetReturn']]) {
+    const entry = rationaleUpdate(id, dimension);
+    assert.ok(entry);
+    const { reason: oldReason, asOf: oldDate, ...oldFields } = entry.from;
+    const { reason, asOf, ...newFields } = entry.to;
+    assert.deepEqual(newFields, oldFields);
+    assert.deepEqual(entry.to, report.markets[id].storedGrades[dimension]);
+    assert.equal(asOf, '2026-11-10');
+    assert.ok(oldDate < asOf);
+    for (const text of reason) {
+      assert.ok(text.startsWith(asOf));
+      assert.doesNotMatch(text.slice(asOf.length), /[0-9]/);
+    }
+    assert.match(reason[0], /Fair evidence/);
+    assert.match(reason[0], /Recheck/);
+    assert.match(reason[1], /证据中等/);
+    assert.match(reason[1], /复核/);
+    assert.ok(entries.some(e => e.market === id && e.path === entry.path &&
+      JSON.stringify(e.to?.reason) === JSON.stringify(oldReason)), `${id}: original rationale is still in history`);
+  }
+  assert.match(rationaleUpdate('wa', 'assetReturn').from.reason[0], /19.8%/);
+  assert.match(report.markets.wa.storedGrades.assetReturn.reason[0], /not hold IRR/);
+  assert.match(report.markets.pjm.storedGrades.assetReturn.reason[0], /non-binding/);
 });

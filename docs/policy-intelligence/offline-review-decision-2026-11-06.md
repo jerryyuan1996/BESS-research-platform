@@ -450,3 +450,130 @@ Source content hashes and exact original retrieval times below are the admitted 
 Independent review, 10 November 2026: reviewed all 27 EN/ZH case pairs, four source-group boundaries, historical snapshot content hashes and exact bilingual thesis targets. The notice-date correction was verified. Wording preserves jurisdiction, draft/history status, conditional eligibility, date types and the distinction between access, reuse, transmission, publication and investment authority. This completes bounded semantic/bilingual review of the prepared evidence, not original-byte revalidation, complete current-law review, mapping acceptance or any permission/investment approval.
 
 独立复核，2026年11月10日：已核对27项中英案例、四组来源边界、历史快照内容哈希与精确双语论点目标，并确认通知日期修正。措辞保留司法范围、草案／历史状态、有条件资格、日期种类，区分访问、使用权、传输、发布及投资权限。本次完成已整理证据范围内的独立语义／双语复核，不代表原始字节重新核验、完整现行法审查、映射接纳或任何权限／投资批准。
+
+
+## Follow-up verification of all 27 mappings — 10 November 2026 / 27项映射后续核对
+
+This pass uses the public thesis records at main `d7fe5d9b199976c84555b99792453e061d9ea290` as the comparison baseline. That is a reproducible technical baseline, not an invented analyst approval date. The 27 case IDs, proposed targets and earlier evidence remain unchanged. The findings below refine the proposed relationships; they do not accept mappings, alter a rating or publish a new policy snapshot.
+
+本轮以main上述固定提交的公开论点作为可重现的技术比较基线，不把Git日期当作分析师批准日。27项ID、拟关联目标及原证据保留；以下补充限定关系，不接纳映射、不改评级、不新增政策公开快照。
+
+Two separate research passes covered DE/GB and NEM/WA. DE/GB and NEM findings identify official web/PDF text actually read, not newly admitted original-byte receipts. WA used only four existing original PDFs, saved page text and Gazette renders; all four byte hashes were checked against the catalogue. No new WA acquisition occurred. Historical retrieval dates remain 6 November; the review date is not a new retrieval date.
+
+德国/英国与NEM/西澳分开研究。前两组及NEM核对可读官方网页/PDF文本，不声称新增原始字节凭证。西澳只读既有四份原始PDF、已存页文本及公报渲染图，字节哈希均与目录一致；未新增西澳在线获取。历史检索日期仍为11月6日。
+
+### Germany: five cases / 德国五项
+
+1. `review-de-bkz-judgment-scope` → D2. The current [BNetzA FAQ](https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Speicher/_faq/faq_table4.html) supports an indirect connection-cost dependency, including contractual limits and possible FCA reductions. It does not establish a uniform charge, exemption or project return. Project voltage, network tariff and actual connection/FCA terms remain missing.
+   当前FAQ支持间接接入成本关系，需考虑合同限制及FCA可能减额；不能推成统一费用、普遍豁免或项目回报。缺项目电压、网商价表及实际接入/FCA条款。
+
+2. `review-de-agnes-consultation-not-adoption` → D3. The [official register](https://www.bundesnetzagentur.de/1059162), marked 21 September 2026, still describes a complete draft and the 18 September consultation close. This supports the dated draft status, not adoption or proof that no later decision exists.
+   该日期的登记仍为完整草案，咨询结束不等于采纳；页面未更新也不能证明没有后续决定。
+
+3. `review-de-fid-draft-definition` → D3. The [198-page draft](https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/GBK-GZ/2025/GBK-25-01-1x3_AgNes/Downloads/FL-Entwurf_DE_DL_BF.html?nn=1059162) was accessible. The earlier p.3 / pp.186–187 conditional-contract evidence is retained; this pass did not complete a full new/old text diff. Project procurement commitments, exit losses, total investment and final-rule treatment remain unverified.
+   草案可读，保留原页码的有条件合同证据；未完成全文新旧diff。项目约束订单、退出损失、总投资及最终规则适用仍未核。
+
+4. `review-de-fid-clarification` → D3. The [register's FID clarification](https://www.bundesnetzagentur.de/1059162) confirms that 25% is not a universal minimum. Accepting that interpretation would not establish a project's protected status.
+   澄清明确25%不是统一最低门槛；纠正草案解释不等于项目已获保护。
+
+5. `review-de-capacity-distinct-auction-classes` → D1. The current [StromVKG text](https://www.gesetze-im-internet.de/stromvkg/BJNR0D2AB0026.html) timed out in this pass. Earlier section-specific findings remain historical. The amendment chain, section 87 state-aid condition and actual tender eligibility are still open; no new capacity income or universal storage exclusion follows.
+   本次法条读取超时，保留原分条历史证据；修改链、第87条国家援助条件及具体招标资格仍缺。不得新增容量收入或推断全国排除储能。
+
+### Great Britain: eight cases / 英国八项
+
+The [official rules directory](https://www.gov.uk/government/publications/capacity-market-rules), updated 27 July 2026, lists the informal July consolidation and amendments No.2, No.3 and No.4. This is a reconciliation index, not a substitute for operative instruments.
+官方目录列明7月非正式合并版及第2/3/4号修订；目录是核对入口，不能代替正式文件。
+
+6. `review-gb-gate2-approval-boundary` → G1. The [Gate 2 decision](https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf), p.1, approves the 21 March 2025 methodology version. Current methodology/licence changes and the exact notice behind the waiting period still need checking. No two-hour project offer, readiness or strategic alignment is established.
+   已核所批准方法版本；现行方法/牌照修改链及等待期所依据通知仍待核。不能证明两小时项目已满足资格或获要约。
+
+7. `review-gb-june-phased-deadlines` → G1. The [June letter](https://www.ofgem.gov.uk/sites/default/files/2026-06/OFGEM-E12.14-decision-letter-FINAL.pdf), p.3, is a historical phased issuance timetable. Its Phase 1 date must be read with the October revision, not treated as energisation.
+   六月函仅证明历史分阶段发约安排；第一阶段日期须与十月修订联读，不是送电日。
+
+8. `review-gb-october-limited-revision` → G1. The [2 October official decision](https://www.ofgem.gov.uk/transparency-document/ofgem-agreement-alternative-gate-2-whole-queue-g2twq-timetable) moves Phase 1 to 31 October and retains the other milestones. No actual completion confirmation was obtained.
+   十月函仅将第一阶段改至10月31日，其他里程碑保留；未取得实际完成确认，期限已过不等于已发约或接受。
+
+9. `review-gb-multiple-price-proposal-abandoned` → G2. The [government response](https://assets.publishing.service.gov.uk/media/6a0449b6e71c4cdf4026bae7/capacity-market-proposed-changes-for-prequalification-2026-gov-response.pdf), p.12, excludes implementation before Prequalification 2026. Keep that window rather than claim permanent abandonment or a four-hour premium.
+   答复限定2026预审前不实施，不应扩大成永久放弃或四小时收入溢价。
+
+10. `review-gb-current-connection-capacity-constraint` → G2. [No.3](https://assets.publishing.service.gov.uk/media/6a562f692cbe5d1c179a6487/The_Capacity_Market__Amendment___No._3__Rules_2026.pdf), p.52, replaces 3.5.1A. Its p.3 states commencement the day after making; the making date was not established here. Shared-agreement limits and actual CMU composition remain project-specific.
+    已核第3号替换条款，生效为制定日次日；本轮未确定制定日，不虚构绝对日期。共享协议上限与CMU组成仍须逐项目核验。
+
+11. `review-gb-consultation-discretion-tradeoff` → G1. The [Gate 2 decision](https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf), p.11, records competing views, including support for bounded discretion and calls for NESO to publish the principles and processes. Retain attributed context; this does not prove publication or project approval.
+    记录不同意见，包括支持有限裁量以及要求NESO公布原则和流程；不证明这些材料已公布或项目获批。
+
+12. `review-gb-storage-nomination-not-award` → G2. [No.2](https://assets.publishing.service.gov.uk/media/6a3bf038da47783d877239d9/The_Capacity_Market__Amendment___No._2__Rules_2026.pdf), p.6, supports the nomination rule. Its commencement depends on the companion regulations. Nomination is not de-rated capacity, an award or payment; later amendments and actual CMU evidence remain required.
+    第2号支持容量申报规则，生效需与配套条例核对；申报不等于折减容量、中标或付款。
+
+13. `review-gb-storage-later-reporting-amendment` → G2. [No.4](https://assets.publishing.service.gov.uk/media/6a562f722cbe5d1c179a6488/The_Capacity_Market__Amendment___No._4__Rules_2026.pdf), p.3, states 17 July 2026 commencement. Storage/LDES reporting belongs in the chain; the earlier p.44 clauses 21–22 were not fully rechecked line by line here.
+    第4号载明7月17日生效，须纳入储能/LDES报送修改链；未把未逐行复核的旧页码标为本次全通过。
+
+### NEM: seven cases / NEM七项
+
+14. `review-nem-2021-final-design` → N1. The [2021 determination](https://oia.pmc.gov.au/sites/default/files/posts/2021/12/Final%20determination.pdf), pp.1–3, supports historical IRP design. Reject it as direct proof of the 2026 capacity-market proposition.
+    仅保留IRP历史参与背景，不能直接证明2026年的容量市场判断。
+
+15. `review-nem-as-issued-commencement-split` → N1. The [as-issued rule](https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf), p.2, separates schedules 1–6 (3 June 2024) and 7 (9 December 2021). The AEMC implementation-amendment and NER211 pages returned 403; neither was retried. A transition page returned no readable text. Later legal/operational sequencing remains incomplete.
+    已核原始分期，不能当作后续完整修改链。两处403已停止，无可读过渡页不能作为现行性证明。
+
+16. `review-nem-nonenergy-cost-basis` → N2. The [determination](https://oia.pmc.gov.au/sites/default/files/posts/2021/12/Final%20determination.pdf), p.8, separates consumed and sent-out quantities. Its wider meter-transition context prevents treating the summary as a universal formula. Current NER, applicable meter type and facility settlements remain missing.
+    分开用电/送出电量只支持成本尽调；仍需现行结算公式及项目计量口径，不量化CIS保底或回报。
+
+17. `review-nem-spot-obligations-not-support-contract` → N3. The [original rule](https://oia.pmc.gov.au/sites/default/files/posts/2021/12/National%20Electricity%20Amendment%20Rule%202021%20No.%2013.pdf), p.13, 2.2.5A(b)–(c), separates spot obligations from support contracts. Keep that distinction; current registration and executed contracts remain unverified.
+    原条款支持现货义务与收入支持合同分开，不构成CISA、LTESA或toll授予。
+
+18. `review-nem-fcas-guidance-version-change` → N2. The [AEMO final consultation](https://www.aemo.com.au/consultations/current-and-closed-consultations/fcas-registration-guides-bess-wind-farms-and-solar-farms-consultation) confirms v5.0 took effect on 2 September 2026. Final changes include sequential post-fault simulation instead of simultaneous compound faults, and removal of the draft inertia-disabled simulation requirement. This refines the draft-to-final chain, not facility accreditation or revenue.
+    已核最终版生效及两项草案修订，补强版本链；仍须具体设施/服务批准、测试及后续版本核验。
+
+19. `review-nem-cis-target-not-minimum-duration` → N3. [Tender 10 guidelines](https://asl.org.au/-/media/services/files/cis/cis-t10-nem/260623-cis-tender-10-nem-dispatchable-capacity-tender-guidelines.pdf?rev=9a4dbc9fb60c4f7e9bef2f03f11c515c&sc_lang=en), p.16, EC4/EC5, require two hours at Registered Capacity, with separate standalone/aggregation thresholds. [Q&A 19](https://asl.org.au/-/media/services/files/cis/cis-t10-nem/260817-cis-t10-qa-responses-batch-15.pdf?rev=03efbb70d1ff4fc087117014b35aa1e9&sc_lang=en), pp.15–16, first released 7 August and retained in the 17 August compilation, corrects MC1 minimum-hours guidance from nameplate to Registered Capacity. The [tender page](https://asl.org.au/tenders/cis-tender-10-nem-dispatchable) states bidding closed 18 August and results are expected Q1 2027. Full eligibility, addenda and an actual signed award remain unverified.
+    EC4/EC5以Registered Capacity计两小时，单体及聚合门槛分别适用。Q&A 19首次发布于8月7日，收录于8月17日汇编；四小时等效总目标不是最低准入时长。关闭投标/预计结果不等于中标或已获保底。
+
+20. `review-nem-ltesa-duration-and-double-support` → N3. [NSW9 guidelines](https://asl.org.au/-/media/services/files/tender-round-9/260520-tender-round-9-tender-guidelines-20-may-2026.pdf?rev=3fb76e8a51184ceabbdeb0d863540f4d&sc_lang=en), pp.9,30,60, distinguish the eight-hour route and contract execution. Section 5.36 allows an awarded but unexecuted CISA to participate; deciding to execute it requires withdrawal. The [tender status](https://asl.org.au/tenders/nsw-tender-9-long-duration-storage-infrastructure) gives 6 July closure and expected Q4 2026 results. No actual award is established.
+    不可同时持有合同不等于不可同时投标；已授标但未签CISA可参与，决定签署则须退出。保留八小时替代路线，不能证明四小时CIS基准或已签合同。
+
+### Western Australia: seven cases, offline recheck / 西澳七项离线复核
+
+21. `review-wa-gazettal-not-universal-effect` → W1. [2025 Gazette](https://www.wa.gov.au/system/files/2025-01/gg2025_003.pdf), printed pp.29–30, EN401, separates signature/publication and schedule commencement. Keep legal timing diligence only; no capacity-credit assignment follows.
+    分开落款、刊发和各附表生效；不能推导项目容量信用。
+
+22. `review-wa-schedule5-later-notice` → W1. [2026 Gazette](https://www.wa.gov.au/system/files/2026-01/gg2026_006.pdf), printed p.141, fixes schedule 5 at 1 April 2026 08:00 WST. Signature is 19 December 2025 and publication 13 January 2026. Later amendments and facility applicability remain unchecked.
+    仅支持该历史通知日期；不推断项目额度、收入或完整现行性。
+
+23. `review-wa-schedule6-relative-order` → W1. The same Gazette says immediately after Tranche 8 schedule 5, whose stated commencement is 1 October 2027 08:00 WST. The stored register's shortened absolute timestamp cannot replace this ordering.
+    保留紧接前序附表之后的相对顺序，拒绝同刻或已经生效的推断。
+
+24. `review-wa-current-versus-future-schedules` → W1. The [stored register](https://www.wa.gov.au/government/document-collections/wholesale-electricity-market-amendment-rcm-reviews-sequencing-rules-2025) is dated 13 January 2026; schedule 7 remains unknown in that record. Elapsed dates are not current-law completeness. A permitted acquisition route is still needed.
+    旧登记页日期与未知附表7保留，日期已过不代表现行法核验完成；需合法取得后续通知。
+
+25. `review-wa-flexible-price-not-two-full-prices` → W2. [October rules](https://www.wa.gov.au/system/files/2026-09/electricity_system_and_market_rules_-_1_october_2026.pdf), p.556, 4.29.1F, address the floating daily flexible-price difference; 1G/1H separately address transitional/fixed prices. Do not add two full prices or extend the floating formula to every credit/contract.
+    4.29.1F仅处理浮动每日灵活容量价格差额；1G/1H另处理过渡及固定价格，不能把两个完整价格相加。不外推全部付款；项目额度、类别、周期与价格类型仍缺。
+
+26. `review-wa-ess-accreditation-is-facility-specific` → W1. The same rules, pp.258–259, 2.34A.1–4B, require facility/service-specific information and conditionally necessary tests. The decision clock depends on complete information/results, not unconditionally on application day. Capacity credit does not replace FCESS approval.
+    独立核对设施/服务批准，测试仅在合理必要时要求；申请日不自动启动无条件期限。
+
+27. `review-wa-network-access-competing-positions` → W1. The [consultation response](https://www.wa.gov.au/system/files/2025-01/response_to_stakeholder_submissions_exposure_draft_of_wem_investment_certainty_and_rcm_review_amending_rules.pdf), pp.19–20, records attributed objections and the authority's network-efficiency response. Mutually exclusive variants under 4.9.2A are a separate issue. Neither establishes project access/NAQ/NCESS entitlement.
+    保留归属明确的历史争论并分开设施互斥议题，不直接关联容量信用或项目接入权。
+
+WA original-byte checks / 西澳原始字节核对:
+- October rules: `b93f6c4a603bfce01e6278585e98bc4190a60efb44e0b350e443f30dd1d65c96`.
+- 2025 Gazette: `6e7c6ade41b1e65604832ca84692da26cbbd3038311ea9e667b9edf8bdace448`.
+- 2026 Gazette: `bc6528e18a89eb47e770922a51f6df020c0170efc431f78fc5a07e1b06d93e78`.
+- Consultation response: `d4d3d652f56e95a6706dc5f08f5d87e6aa198bb7aaba5834cbaa3e991d7027c8`.
+
+These are original PDF hashes, not selected case-text hashes. They prove unchanged stored bytes, not current law or new online receipt.
+这些哈希证明既有PDF字节未变，不是case选段哈希，也不证明现行法律完整或新增在线取得。
+
+### Decisions and research work remain separate / 决策与研究待办分开
+
+All 27 bounded relationships have now been examined, with the refinements above. Complete current-law and project eligibility verification has not been established for any full mapping. Missing public amendments/completion evidence remain research tasks; the platform does not require a private file for every market merely to show a research limitation. Only an analyst choice to accept/revise/reject the bounded mapping, a material investment interpretation, or a concrete source-access/use configuration belongs in the decision queue.
+
+27项已完成上述限定范围审查，但未把任何一项标作完整现行法及项目资格验收。公开修改链/完成确认缺口继续作为研究待办；平台不以收齐每个市场私有项目文件为前提。仅映射接受/修订/拒绝、重大投资解释及精确来源配置等真正选择进入决策队列。
+
+Broader content-reuse permissions remain unchanged. The separately reviewed DE/GB metadata-only acquisition scope is recorded in source-review-checkpoint-2026-11-06.md and does not accept these mappings. DE draft/website material is distinct from statutory text; each GB document retains its own OGL/exclusion terms; the CIS guide's CC BY notice does not automatically cover the new Q&A; NEM rule/determination licences are separate; WA automated acquisition remains stopped and Gazette rights are not inherited from the general legislation licence. No provider transmission, automatic policy analysis/publication or strategy update is authorized by this research pass.
+
+正文使用权限保持不变。德国/英国另行核准的仅元数据采集范围见来源核对记录，不代表接纳这些映射。仍逐文件区分德国草案/法条、英国OGL排除项、CIS指南与新Q&A、NEM规则与决定的使用依据。西澳自动获取仍停止，公报不继承一般法例许可。本次不授权模型外发、自动政策分析/发布或策略更新。
+
+
+Independent bounded review of this follow-up section identified and corrected a wording error: the GB consultation called for publication of principles/processes; it did not establish that publication had occurred. The review checked all 27 bilingual summaries and the three dated rationale diffs. It did not independently revalidate NEM/WA original sources, Q&A first-release date, WA hashes, formula symbols or model calculations. The NEM research pass, not this editorial review, verified Q&A 19's first-release date.
+
+本轮独立限定复核纠正了英国咨询措辞：原文要求公布原则/流程，不证明已经公布。复核涵盖27项双语摘要及三条理由的diff，不重复认证NEM/西澳原始来源、问答首发日期、西澳哈希、公式符号或模型计算。Q&A 19首发日期由NEM原文研究环节核对，不归于本次编辑复核。

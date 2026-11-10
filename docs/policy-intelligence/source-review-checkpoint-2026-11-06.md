@@ -90,3 +90,51 @@ The examined historical references now form 31 proposed cases and four concrete 
 
 
 The three later NEM PDFs were subsequently readable through the official web PDF text service. A single bounded 55-second direct retry still timed out for each, so the 39 complete original-byte receipts / 20 PDFs count is unchanged and the pinned catalogue is unchanged. A separate ignored `nem-web-context-2026-11-06.json` records dated EN/ZH research: the [December 2025 final review](https://www.energy.gov.au/sites/default/files/2025-12/national-electricity-market-wholesale-market-settings-review-final-report.pdf) is a recommendation; the [March 2026 pathways](https://www.energy.gov.au/sites/default/files/2026-03/national-electricity-market-wholesale-market-settings-review-nem-review-recommendations-implementation.pdf) distinguish agreement from agreement in principle, qualify jurisdictional agreement as excluding Queensland, and leave ESEM detailed design/legislation and the aimed first tender as future work at that date; the [AER submission](https://www.aer.gov.au/system/files/2026-01/AER%20submission%20to%20DCCEEW%20%E2%80%93%20NEM%20wholesale%20market%20settings%20review%20draft%20report.pdf) is attributed consultation evidence. Neither an energy-only short-term design nor a proposed longer-term contract mechanism supplies an executed project entitlement. This closes a reading gap without claiming original-byte admission, current legislative completeness or independent acceptance.
+
+
+## Metadata-only source activation review — 10 November 2026 / 仅元数据来源启用核对
+
+The analyst requested objective policy collection with daily ETL, leaving impact analysis and strategy publication to an analyst-initiated Codex review. That request supports low-frequency acquisition of public factual metadata. It does not require a complete project/legal-chain review before reading a permitted public register, nor does it authorize translation, body republication, model transmission or a new policy snapshot.
+
+用户要求客观政策采集跟随每日ETL，影响分析及策略发布仍由其主动发起Codex复核。该指示支持低频读取允许访问的公开事实元数据，不以先核完项目资格或全部法律修改链为条件；不授权译文、正文转载、模型外发或新政策快照。
+
+### Two permitted acquisition scopes / 两项可用获取范围
+
+- DE: `https://www.bundesnetzagentur.de/1059162`, plus the exact same-host canonical path `/DE/Beschlusskammern/GBK/Ebene1_Rahmen/AgNes/start.html`. On 10 November, ordinary HTTP returned 200 for the selected page (111,918 bytes) and robots. Robots excluded `/SiteGlobals`, not these paths. [Impressum](https://www.bundesnetzagentur.de/DE/Service/Impressum/start.html), item 5, limits disruptive reading; its copyright terms do not prohibit this bounded original-language metadata use. Preserve attribution and the distinction between the website/draft and statutory text.
+- GB: `https://www.ofgem.gov.uk/decision/decision-connections-reform-package-tm04`. Ordinary HTTP returned 200 for the selected page (211,079 bytes) and robots. The robots exclusions did not cover this decision path. [Ofgem copyright](https://www.ofgem.gov.uk/c-ofgem-2026) provides OGL terms for Crown information and permits hyperlinks, subject to logo/third-party exclusions. No third-party attachment content is copied.
+
+德国所选页与robots均200，不在禁止路径内；仅低频读取，不影响其他访客，保留署名并区分网页/草案与法条。英国所选决定页与robots亦200；OGL和超链接依据不外推至标志、第三方附件或正文转载。上述为本次访问结果，不声称新政策原始字节已获发布接纳。
+
+No complete redirect chain was captured in that HTTP check. The implementation must therefore follow only separately enumerated exact page URLs, not every same-host path. Attachment-download hosts are an empty set: retain relevant source-bound link metadata without fetching the targets. A direct 200 response does not justify broadening redirects.
+
+本次未取得完整重定向链；实现只能跟随精确列举的页面，不能开放同站任意跳转。附件下载白名单为空，只保留来源范围内链接元数据，不请求目标文件。
+
+### Collection, accumulation and public-access boundary / 采集、累计与公开访问边界
+
+The permitted record is the original link title, URL, source-page hash and first/last observation time. Publication and effective dates stay unknown unless separately verified; first observation must never become a purported publication date. Bodies are parsed only in memory. No confidential files, private project documents, policy analysis or investment strategy belong in the journal.
+
+仅记录原文链接标题、URL、来源页哈希与首次/最近观察时间；首次观察不等于发布日期，未经单独核验的发布/生效日期仍未知。正文仅在内存解析，累计记录不含保密文件、私有项目资料、政策分析或投资策略。
+
+A bounded 90-day Actions metadata artifact can carry the rolling journal, restored only from this repository's successful main-branch ETL run. The repository is currently public; this artifact may therefore be accessible to other GitHub users and must not be called private. It is not published to the platform website or committed as a policy snapshot. Missing/expired restoration or truncation must be visible as incomplete history; this is not a permanent or exhaustive archive.
+
+累计记录采用有界90日Actions元数据附件，仅从本仓库main成功ETL恢复。本仓库当前公开，附件可能被其他GitHub用户取得，不能称为私有。它不进入网站或提交为政策快照。恢复缺失、过期或截断须明确显示历史不完整，不称永久或完整数据库。
+
+### Sources still stopped / 仍停止的来源
+
+- AEMC NEM registration: existing 403 observations remain unresolved. Do not automatically retry or use another route to bypass them. A later permitted source/route needs its own exact scope.
+- WA.gov.au: automated-access prohibition remains binding. The analyst cannot waive it. Continue existing offline research only until a rights-holder-permitted official acquisition route is established.
+- DE/GB metadata scope is separate from source profiles for translated/excerpted public policy content. Those broader permissions remain inactive. Daily cadence remains 06:17 UTC, not real-time.
+
+AEMC既有403未解决，西澳自动访问禁止仍有效；不得绕过，也不因其他网站许可而继承权限。德国/英国仅元数据配置不启用翻译/选段政策来源配置。保持06:17 UTC日频，不承诺实时。
+
+### Local operational receipt / 本地运行凭证
+
+At 2026-11-10T14:19:06.134Z, the actual metadata collector successfully checked both permitted source pages. It observed 22 bounded links: 4 DE and 18 GB, with zero overflow. All publication/effective dates remained null. AEMC and WA returned pending records with their explicit access/terms stop reasons and were not requested. This is a local collector receipt, not evidence that the scheduled deployed workflow or artifact recovery has already run.
+
+实际collector于上述UTC时间成功检查两项已审来源，记录德国4项、英国18项链接，无溢出，发布/生效日期保持未知。AEMC与西澳未请求，保留明确停止原因。这是本地采集凭证，不证明部署后的定时任务或附件恢复已运行。
+The deployed legacy bootstrap was also checked: [main ETL run 42655983426](https://github.com/jerryyuan1996/BESS-research-platform/actions/runs/42655983426), successful Policy discovery job, artifact 13693190097. Its ZIP SHA-256 matches GitHub's digest (`cb0dcab6a4ceb5b5c51e9c3aed29deb90609789b5f637644b188fa182339d8fc`). The actual archived report passes both restore and metadata validators: four pending sources, no successful fetch or stop state, and no journal. This supports the narrow first-cycle legacy migration without resetting an attempted collector. No ETL was dispatched; the next scheduled runtime restore remains to be verified.
+
+另已核实际远端旧版附件：上述main ETL的政策作业成功，附件哈希与GitHub一致；真实报告通过恢复与元数据校验，四源均待审、无成功/拒绝状态且无journal，可作首次安全迁移。未dispatch ETL；下一次定时任务的实际恢复仍须核验。
+Final quality check excludes source-page navigation: the initial 22 raw observations included two self-links (DE content navigation and GB skip-to-content). The deterministic cleanup retained 20 document links, DE 3 and GB 17. A same-day CLI replay made zero network calls, pruned only those two navigation records and preserved every retained firstObservedAt at 2026-11-10T14:19:06.134Z. The initial receipt remains an audit of the earlier QA output, not a claim of 22 policy releases.
+
+最终质量核对排除来源页导航：原始22条中有两个自链接，清理后有效文档线索为20条（德国3、英国17）。同日CLI重放0次联网，仅清理两项导航，保留其余首次观察时间；原凭证保留为QA历史，不是22项政策发布的证明。

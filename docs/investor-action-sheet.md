@@ -209,3 +209,61 @@ The repository's January event already has an outcome dated **6 November 2026**,
 Validation: `node --test tests/investment-review-evidence.test.mjs tests/current-model.test.js tests/baseline.test.js` passed **88/88**. The new audit checks result pairing, unchanged history/inputs, historical/current distinction and ERCOT closed/future status. No legacy fixture was regenerated. Aggregate release checks remain the integrator's responsibility.
 
 验证：上述命令**88/88通过**；新增审计检查同口径字段、历史/输入未改、旧依据与当前证据区分及ERCOT已结案/未来状态，未重建旧基线。整体验收与发布检查仍由分支整合执行。
+
+### 10 November 2026 follow-through: dated rationales and public evidence / 2026年11月10日推进：注明日期的依据与公开证据
+
+**Current decision, superseding the pending options above:** the analyst approved keeping the NEM revenue-certainty, PJM asset-return and WA asset-return grades and adding dated, model-scoped reasons. The view writer updates only those current reasons and their dates, appending the complete before/after records to `view/changelog.jsonl`. Earlier records, calls, model inputs, comparison rules and NPV 2% screening are unchanged. Current financial values remain in the existing model-result displays and the read-only audit command above; the new prose contains no typed current model figures.
+
+**当前决定，取代上文待选方案：** 分析师已批准维持NEM收入确定性、PJM资产回报和西澳资产回报评级，并增加有日期、明确模型口径的依据。观点写入器仅更新这三条当前理由及日期，并在变更历史中追加完整前后记录。旧记录、投资判断、模型输入、比较规则及NPV 2%筛选均不变。当前财务数值仍由既有模型结果展示及上方只读审计命令提供，新文字不写死当前模型数字。
+
+- **NEM:** the current modelled award meets the existing secured-share/tenor anchor under the approved CIS collar settlement. Assumed floor, ceiling and caps are not an executed CISA or cash received. Recheck actual award terms, eligible revenue and remaining term when a specific project is under review.
+- **PJM:** retain the existing hold-return fifth rule and Wait call. The approved duration-specific renewal ELCC path explains the difference from the old design return; the card's tax/financing basis is separate. Recheck published auction prices and updated accreditation before revisiting the view.
+- **WA:** keep base operating ranking, degradation-aware design sweep and investment-card results separate. The selected design maximises value per connection MW, not hold IRR. Recheck final benchmark decisions and actual project capacity/access eligibility before revisiting the view.
+
+- **NEM：** 按已批准的CIS上下限结算，当前模型中标情景仍满足既定锁定占比及期限锚点。假设保底、上限和付款限额不是已签CISA或实收现金；进入具体项目评估时再核实实际中标条款、合资格收入及剩余期限。
+- **PJM：** 保留既定持有回报五分位规则及Wait判断。已批准的分时长续期ELCC路径解释旧设计回报与当前结果的差异，投资卡片的税务/融资口径另列；取得已公布拍卖价格及更新认证后复核。
+- **西澳：** 基础运营排序、考虑衰减的设计扫描及投资卡片结果分开。所选设计以每接入MW价值最高为准，并非持有IRR最高；最终基准决定和实际项目容量/接入资格可核验后复核。
+
+#### Public-source follow-up and research coverage / 公开来源跟进与研究覆盖
+
+These are research-platform coverage limits, not a request to collect every market's private project files. Market-level public evidence can advance independently. Only a concrete project investment review needs that project's contract, award and access evidence; absence of such a review does not block market research. No new investment decision is requested by these three follow-ups.
+
+这些是研究平台当前覆盖边界，不要求收齐所有市场的私有项目文件。市场层面公开证据可独立推进；仅在评估具体项目投资时才需要该项目合同、授予及接入证据，没有具体项目材料并不阻碍市场研究。这三项跟进目前不需要新增投资决定。
+
+- **ERCOT February MORA, watch:** on 10 November the [official resource-adequacy page](https://www.ercot.com/gridinfo/resource), MORA section, explicitly states first-Friday publication two months before the reporting month. Its latest listed report is January 2027; no February 2027 entry was found. Thus 4 December 2026 is an expected release inferred from that rule, not a verified publication. Read the report once available and compare system adequacy and battery availability; do not infer project toll prices. The January PDF returned HTTP 403 again and was not retried through another route.
+- **WA benchmark review, public evidence gap:** the [official review collection](https://www.wa.gov.au/government/document-collections/2026-benchmark-technology-review), last updated 19 October, and its linked [draft determination](https://www.wa.gov.au/system/files/2026-10/2026_benchmark_technology_review_-_draft_determination_for_consultation.pdf) were opened. The collection lists the draft, configuration workbook and consultation submissions; this pass did not retrieve a final determination. This is not proof that no final document exists. Keep the proposal separate from adopted technology and from the earlier ERA price decision for a different capacity year; retain existing model assumptions pending verified final text.
+- **Romania grant, public evidence gap:** the ministry launch page timed out; the extension DOCX was not accessible through the reader. Following a secondary article's link also reached the [official opportunities-portal extension notice](https://oportunitati-ue.gov.ro/en/fondul-pentru-modernizare-a-fost-modificat-apelul-sprijinirea-investitiilor-in-dezvoltarea-instalatiilor-autonome-standalone-de-stocare-in-baterii-a-energiei-electrice-cu-finantare-din/), but it timed out. The reported 15 November deadline therefore remains unverified primary evidence, and no ranking or award was adopted. Preserve the no-grant reference; retry public official evidence when available, rather than requiring all private project packs.
+
+- **ERCOT二月MORA，继续跟踪：** 11月10日已打开官方资源充裕度页面，其MORA栏目明确按每月首个周五、提前两个月发布。当前列出的最新报告为2027年1月，未找到2月条目。因此2026年12月4日是由发布规则推导的预期日期，不是已发布事实。报告可取得后比较系统充裕度及电池可用性，不由此推导项目租赁价格。1月PDF再次返回HTTP 403，未换路径重试。
+- **西澳基准技术，公开证据缺口：** 已打开官方审查集合（页面更新于10月19日）及所链接草案。集合列有草案、配置工作簿及咨询意见，本轮未取得最终裁定，不等于证明官方未发布。草案、已采纳技术和另一个容量年度的既有ERA价格裁定保持区分；最终原文核验前保留模型假设。
+- **罗马尼亚补贴，公开证据缺口：** 能源部申报页超时，延期DOCX无法由读取工具访问；沿二手文章链接找到官方机会门户延期公告，但同样超时。因此报道的11月15日期限仍未由一手原文核实，未采纳任何排名或中标结果。保留无补贴参考情景，待官方公开资料可取得时再核验，而非要求收齐私有项目资料。
+
+Verification scope: observations above are official web-page/PDF extraction, not newly archived original bytes or content hashes. Focused view/history and investment-evidence tests passed 30/30 with no skips. The test now verifies that the old rationale survives in the append-only history, that only reason/date changed, and that the new bilingual reasons do not type model figures. Aggregate checks are recorded by the integrating release, not implied by this focused result.
+
+核验范围：上述观察来自官方网页/PDF提取，并非新存档的原始字节或内容哈希。观点/历史及投资证据定向测试30/30通过，无跳过；测试核实旧依据仍在追加式历史中、仅理由/日期变动，以及中英新文字未写死模型数字。完整检查由集成发布记录，不能由本次定向通过推定。
+
+#### WA project-capacity scope: public sources exist, but no target facility is selected / 西澳项目容量范围：有公开来源，但未指定目标设施
+
+**Scope clarification:** the three additional investment-evidence items are WA project capacity/access eligibility, WA benchmark technology, and Romania grants. ERCOT February MORA is an additional calendar watch, not a substitute for the WA project-capacity item.
+
+**范围澄清：** 三项额外投资证据是西澳项目容量/接入资格、西澳基准技术及罗马尼亚补贴。ERCOT二月MORA另作日历跟踪，不替代西澳项目容量事项。
+
+**No project-specific decision is needed now.** The public WA comparison interface defines an archetype by power and duration, and the public view selects a capacity design and entry route; neither identifies a target facility ID. The investment-card path builds a generic reference from these model inputs. This is a market-screening reference, not a named project's awarded capacity or permission to earn FCESS revenue. No private project files were consulted to infer a target.
+
+**目前无需项目级决定。** 公开西澳比较接口以功率及储能时长定义原型，公开观点选择容量设计及进入路径，二者均未指定目标设施ID。投资卡片从这些模型输入建立通用参考情景。这是市场筛选参考，不代表某个具名项目已获容量授予或FCESS收入资格。本轮未查询私有项目文件来推定目标。
+
+Public primary evidence inspected on 10 November:
+
+- [AEMO Reserve Capacity Price](https://www.aemo.com.au/energy-systems/electricity/wholesale-electricity-market-wem/wa-reserve-capacity-mechanism/reserve-capacity-price), “Outcome for 2028-29 Capacity Year”, confirms market-wide assigned credits and the price calculation. These aggregate observations support the market context, not the qualification of the model's reference asset.
+- [AEMO Certification of Reserve Capacity](https://www.aemo.com.au/energy-systems/electricity/wholesale-electricity-market-wem/wa-reserve-capacity-mechanism/certification-of-reserve-capacity), current CRC explanation, explicitly distinguishes certification from Capacity Credits/payment entitlement. Bilateral declarations, applicable security and the NAQ process remain relevant; assigned credits cannot exceed NAQ.
+- [AEMO registered facilities](https://www.aemo.com.au/energy-systems/electricity/wholesale-electricity-market-wem/participate-in-the-market/information-for-current-participants/rule-participants-and-registered-facilities-in-the-wem) links a daily-updated public facility register. [AEMO current FCESS accreditation](https://www.aemo.com.au/energy-systems/electricity/wholesale-electricity-market-wem/system-operations/essential-system-services/summary-of-frequency-co-optimised-essential-system-services/current-fcess-and-roco) separately links its accredited-facilities list, labelled 12 June 2026. Registration, capacity awards and service-specific accreditation are distinct evidence sets. Their landing pages were opened; the underlying facility tables were not parsed or matched to any project in this pass.
+
+11月10日核对的一手公开证据：
+
+- AEMO容量价格页面的2028/29容量年结果确认全市场容量信用分配及价格计算。这些汇总观察支持市场背景，不能证明模型参考资产的资格。
+- AEMO容量认证页面现行说明明确区分认证与容量信用/付款权利；仍涉及双边申报、适用保证金及NAQ流程，容量信用不得超过NAQ。
+- AEMO注册设施页面链接每日更新的公开设施名录；FCESS认证页面另列已获认证设施清单，页面标注2026年6月12日。注册、容量授予和分服务认证是不同证据。本轮已打开这些入口页，未解析底层设施表，也未将其与任何项目匹配。
+
+**Platform treatment:** mark the market-level evidence and public lookup routes as verified within that limited scope; mark project matching as “not applicable until a target is selected”, not “all private contracts missing”. Keep the generic model conditional and unchanged. Do not invent an ID, infer entitlement from market totals, or ask the analyst for any private contract now. If a real project is later selected, match its public facility identity, capacity year and service-specific accreditation first; request only the remaining material evidence necessary for that concrete decision, if any. This follow-up made no access to WA.gov.au and no change to models, grades or public event outcomes.
+
+**平台处理：** 将市场层面证据及公开查询入口记为限定范围内已核验；项目匹配标注为“指定目标后才适用”，而非“缺少所有私有合同”。通用模型继续保留条件且不变。现在不虚构ID、不从全市场总量推定项目权利，也不向分析师索取任何私有合同。未来选定实际项目时，先匹配公开设施身份、容量年度及分服务认证，再视具体决定需要仅补尚缺的关键证据。本次补查未访问WA.gov.au，未改变模型、评级或公开事件结果。

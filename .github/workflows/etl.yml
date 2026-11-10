@@ -117,6 +117,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -125,21 +126,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Restore last discovery metadata
-        uses: actions/cache@v4
-        with:
-          path: etl/out/policy-discovery.json
-          key: policy-discovery-${{ hashFiles('policy/source-inventory.mjs') }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: policy-discovery-${{ hashFiles('policy/source-inventory.mjs') }}-
+      - name: Restore bounded metadata from the latest trusted successful policy job
+        run: python scripts/policy/restore-discovery.py
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Discover reviewed official records without a model
         run: node scripts/policy/discover.mjs
         env:
           POLICY_DISCOVERY_DISABLED: ${{ vars.POLICY_DISCOVERY_DISABLED }}
+      - name: Report source coverage separately from workflow success
+        run: cat etl/out/policy-discovery.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: policy-discovery
-          path: etl/out/policy-discovery.json
-          retention-days: 7
+          path: |
+            etl/out/policy-discovery.json
+            etl/out/policy-discovery.md
+            etl/out/policy-discovery-journal.json
+          retention-days: 90
           if-no-files-found: error
 
   # Policy models are local manual-only. No scheduled/dispatch policy model job,
