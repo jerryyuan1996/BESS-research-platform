@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-09T16:33:58.189Z",
+  "fetchedAt": "2026-11-10T15:00:09.933Z",
   "coverage": {
-    "from": "2026-10-14T23:00:00.000Z",
-    "to": "2026-11-08T23:30:00.000Z",
+    "from": "2026-10-10T23:00:00.000Z",
+    "to": "2026-11-09T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 1202
+    "points": 1442
   },
   "units": {
     "energy": "MWh"
@@ -45,6 +45,42 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-10-11",
+      "n": 48,
+      "expected": 48,
+      "mean": 11.792,
+      "min": -393.26105955378057,
+      "max": 665.3673182850241,
+      "netMWh": 566.0182
+    },
+    {
+      "d": "2026-10-12",
+      "n": 48,
+      "expected": 48,
+      "mean": -80.32,
+      "min": -866.3699788997338,
+      "max": 408.9881002697244,
+      "netMWh": -3855.3584
+    },
+    {
+      "d": "2026-10-13",
+      "n": 48,
+      "expected": 48,
+      "mean": -58.3548,
+      "min": -637.845126940837,
+      "max": 334.93795224817103,
+      "netMWh": -2801.0282
+    },
+    {
+      "d": "2026-10-14",
+      "n": 48,
+      "expected": 48,
+      "mean": 193.6992,
+      "min": -520.5232216247796,
+      "max": 1776.0917401130014,
+      "netMWh": 9297.5619
+    },
     {
       "d": "2026-10-15",
       "n": 48,
@@ -265,17 +301,26 @@
       "d": "2026-11-08",
       "n": 48,
       "expected": 48,
-      "mean": 61.6428,
+      "mean": 62.1053,
       "min": -142.18431097222222,
       "max": 356.770241984127,
-      "netMWh": 2958.8563
+      "netMWh": 2981.0563
+    },
+    {
+      "d": "2026-11-09",
+      "n": 48,
+      "expected": 48,
+      "mean": 116.1817,
+      "min": -237.92510578989703,
+      "max": 728.3833333333333,
+      "netMWh": 5576.7204
     }
   ],
   "sourceSnapshot": {
     "file": "gb-net-imbalance-volume.json",
-    "contentChecksum": "sha256:0056639d09d7cf9148ffaa404eeace085a003a8a53bae4c4d895d927cfa459dd",
-    "points": 1202
+    "contentChecksum": "sha256:a59deb8550a08f56cfeec8fc2fc06ab31a025526b745693d37e71f4dac6b8a89",
+    "points": 1442
   },
-  "contentChecksum": "sha256:77236ee98bd1a8a3b5bd3391e2a0e4c34ef55483f259984c6940a70d1dd52934",
-  "summaryChecksum": "sha256:073f7a430315be9c37ac2144bbef9a5f1cd1aaf211157a5b489584d413aba914"
+  "contentChecksum": "sha256:fed287987bcfd3cbf5a3944530e2c90ce3c7f51653dad633673c12904023a31c",
+  "summaryChecksum": "sha256:58e5e5fa5d190ad490753a89fc1867bec9b64dd8dcd7819afc902d006608036d"
 }

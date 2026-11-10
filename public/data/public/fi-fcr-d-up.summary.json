@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-09T16:34:10.460Z",
+  "fetchedAt": "2026-11-10T15:00:46.021Z",
   "coverage": {
-    "from": "2025-11-09T17:00:00.000Z",
-    "to": "2026-11-09T22:00:00.000Z",
+    "from": "2025-11-10T16:00:00.000Z",
+    "to": "2026-11-10T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8766
+    "points": 8767
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-09",
-      "n": 7,
-      "mean": 5.42,
-      "min": 4,
-      "max": 8,
-      "spread": 5.42,
-      "charge": null,
-      "discharge": 5.42
-    },
-    {
       "d": "2025-11-10",
-      "n": 24,
-      "mean": 23.16,
-      "min": 2.5,
-      "max": 70.57,
-      "spread": 23.16,
+      "n": 8,
+      "mean": 33.27,
+      "min": 4.99,
+      "max": 69.43,
+      "spread": 33.27,
       "charge": null,
-      "discharge": 23.16
+      "discharge": 33.27
     },
     {
       "d": "2025-11-11",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-09",
-      "n": 23,
-      "mean": 2.37,
+      "n": 24,
+      "mean": 2.35,
       "min": 1.5,
       "max": 6.2,
-      "spread": 2.37,
+      "spread": 2.35,
       "charge": null,
-      "discharge": 2.37
+      "discharge": 2.35
+    },
+    {
+      "d": "2026-11-10",
+      "n": 23,
+      "mean": 6.95,
+      "min": 1.6,
+      "max": 28.87,
+      "spread": 6.95,
+      "charge": null,
+      "discharge": 6.95
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-d-up.json",
-    "contentChecksum": "sha256:e3dd0a1f6e9a717579b391073912c14a7ceed4a97c5965897ec9586b00c82adf",
-    "points": 8766
+    "contentChecksum": "sha256:519c4f5fa916627ec7b48fda7ebd8b87679e39444b7013cada5a292d1e8f7945",
+    "points": 8767
   },
-  "summaryChecksum": "sha256:79c7c703cad6c588085366f75234c93a5a0063aec21ebdaa11b5aa6d03c28db2"
+  "summaryChecksum": "sha256:cdce3733de73a172f71681cf0682242e2028eb76901b916a4a51a5df6b99186f"
 }
